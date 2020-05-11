@@ -1,0 +1,7 @@
+from distutils.core import setup
+
+#TODO make this file  verions number  be generated from cmake
+setup(name='hops',
+      version='@MODULE_VERSION_MAJOR@.@MODULE_VERSION_MINOR@.@MODULE_VERSION_PATCH@',
+      package_dir={ '': '@abs_srcdir@' },
+      packages=['hops'])
