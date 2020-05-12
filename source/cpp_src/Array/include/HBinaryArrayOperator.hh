@@ -5,20 +5,6 @@
 
 namespace hops{
 
-/**
-*
-*@file HBinaryArrayOperator.hh
-*@class HBinaryArrayOperator
-*@brief
-*@details
-*
-*<b>Revision History:<b>
-*Date Name Brief Description
-*Tue Sep 25 10:25:37 EDT 2012 J. Barrett (barrettj@mit.edu) First Version
-*
-*/
-
-
 template<typename T, unsigned int NDIM>
 class HBinaryArrayOperator: public HArrayOperator<T,NDIM>
 {

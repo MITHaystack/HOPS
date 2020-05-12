@@ -5,20 +5,6 @@
 
 namespace hops{
 
-/**
-*
-*@file HUnaryArrayOperator.hh
-*@class HUnaryArrayOperator
-*@brief
-*@details
-*
-*<b>Revision History:<b>
-*Date Name Brief Description
-*Tue Sep 25 10:25:37 EDT 2012 J. Barrett (barrettj@mit.edu) First Version
-*
-*/
-
-
 template<typename ArrayType, unsigned int NDIM>
 class HUnaryArrayOperator: public HArrayOperator<ArrayType, NDIM>
 {
@@ -40,7 +26,6 @@ class HUnaryArrayOperator: public HArrayOperator<ArrayType, NDIM>
 
         HArrayWrapper<ArrayType, NDIM>* fInput;
         HArrayWrapper<ArrayType, NDIM>* fOutput;
-
 };
 
 }//end of namespace
