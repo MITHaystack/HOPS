@@ -4,16 +4,6 @@
 #include <string>
 #include <ctime>
 
-
-/*
-*File: HTimer.hh
-*Class: HTimer
-*Author: J. Barrett
-*Email: barrettj@mit.edu
-*Date:
-*Description: time for debugging/performance test, uses clock_gettime
-*/
-
 namespace hops
 {
 

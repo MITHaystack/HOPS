@@ -1,11 +1,7 @@
 #ifndef HTimeStampConverter_HH__
 #define HTimeStampConverter_HH__
 
-#include <time.h>
-#include <ctime>
-#include <cmath>
 #include <string>
-#include <sstream>
 
 namespace hops
 {

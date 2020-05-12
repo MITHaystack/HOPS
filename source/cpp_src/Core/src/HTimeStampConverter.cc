@@ -1,6 +1,11 @@
 #include "HTimeStampConverter.hh"
 
 #include <iostream>
+#include <time.h>
+#include <ctime>
+#include <cmath>
+#include <sstream>
+
 
 namespace hops
 {
@@ -85,7 +90,7 @@ bool HTimeStampConverter::ConvertTimeStampToEpochSecond(const std::string& date,
         std::stringstream ss;
         ss.str(std::string()); ss.clear();
         ss << syear;
-        ss >> year; 
+        ss >> year;
         std::cout<<"year = "<<year<<std::endl;
         if(year < 1970 || year > 3000 ){epoch_sec = 0; return false;}
         ss.str(std::string()); ss.clear();
@@ -106,17 +111,17 @@ bool HTimeStampConverter::ConvertTimeStampToEpochSecond(const std::string& date,
         if(hour < 0 || hour > 23 ){epoch_sec = 0; return false;}
         ss.str(std::string()); ss.clear();
         ss << smin;
-        ss >> min;  
+        ss >> min;
         std::cout<<"min = "<<min<<std::endl;
         if(min < 0 || min > 59 ){epoch_sec = 0; return false;}
         ss.str(std::string()); ss.clear();
         ss << ssec;
-        ss >> sec;  
+        ss >> sec;
         std::cout<<"sec = "<<sec<<std::endl;
         if( sec < 0 || sec > 61 ){epoch_sec = 0; return false;}
         ss.str(std::string()); ss.clear();
         ss << sfrac;
-        ss >> frac;  
+        ss >> frac;
         std::cout<<"frac = "<<frac<<std::endl;
         if( frac < 0.0 || frac > 1.0 ){epoch_sec = 0; return false;}
 
@@ -125,10 +130,10 @@ bool HTimeStampConverter::ConvertTimeStampToEpochSecond(const std::string& date,
         // tm_hour	int	hours since midnight	0-23
         // tm_mday	int	day of the month	1-31
         // tm_mon	int	months since January	0-11
-        // tm_year	int	years since 1900	
+        // tm_year	int	years since 1900
         // tm_wday	int	days since Sunday	0-6
         // tm_yday	int	days since January 1	0-365
-        // tm_isdst	int	Daylight Saving Time flag	
+        // tm_isdst	int	Daylight Saving Time flag
 
         //now convert year, doy, hour, min, sec to epoch second
         std::tm tmdate;

@@ -6,15 +6,6 @@
 
 namespace hops
 {
-    
-/*
-*File: HTokenizer.hh
-*Class: HTokenizer
-*Author: J. Barrett
-*Email: barrettj@mit.edu
-*Date:
-*Description:
-*/
 
 
 class HTokenizer
