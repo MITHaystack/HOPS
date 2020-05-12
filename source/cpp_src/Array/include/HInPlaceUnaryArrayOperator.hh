@@ -1,23 +1,23 @@
-#ifndef HInPlaceUnaryArrayOperator_H__
-#define HInPlaceUnaryArrayOperator_H__
+#ifndef HInPlaceUnaryArrayOperator_HH__
+#define HInPlaceUnaryArrayOperator_HH__
 
 #include "HArrayOperator.hh"
 
 namespace hops{
 
-template< typename T, unsigned int RANK>
-class HInPlaceUnaryArrayOperator: public HArrayOperator<T,RANK>
+template< typename XValueType, unsigned int RANK>
+class HInPlaceUnaryArrayOperator: public HArrayOperator<XValueType,RANK>
 {
     public:
         HInPlaceUnaryArrayOperator():fOutput(NULL){};
         virtual ~HInPlaceUnaryArrayOperator(){};
 
-        virtual void SetOutput(HArrayWrapper<T,RANK>* out)
+        virtual void SetOutput(HArrayWrapper<XValueType,RANK>* out)
         {
             fOutput = out;
         };
 
-        virtual HArrayWrapper<T,RANK>* GetOutput(){return fOutput;};
+        virtual HArrayWrapper<XValueType,RANK>* GetOutput(){return fOutput;};
 
         virtual void Initialize(){};
 
@@ -25,11 +25,11 @@ class HInPlaceUnaryArrayOperator: public HArrayOperator<T,RANK>
 
     protected:
 
-        HArrayWrapper<T,RANK>* fOutput;
+        HArrayWrapper<XValueType,RANK>* fOutput;
 
 };
 
 }//end of namespace
 
 
-#endif /* __HInPlaceUnaryArrayOperator_H__ */
+#endif /* __HInPlaceUnaryArrayOperator_HH__ */

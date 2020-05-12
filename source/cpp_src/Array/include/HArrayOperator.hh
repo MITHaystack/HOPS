@@ -1,12 +1,12 @@
-#ifndef HArrayOperator_H__
-#define HArrayOperator_H__
+#ifndef HArrayOperator_HH__
+#define HArrayOperator_HH__
 
 #include "HArrayWrapper.hh"
 #include <cstring>
 
 namespace hops{
 
-template<typename T, size_t RANK>
+template<typename XValueType, size_t RANK>
 class HArrayOperator
 {
     public:
@@ -18,13 +18,13 @@ class HArrayOperator
 
         //utilities
         static bool
-        HaveSameNumberOfElements(const HArrayWrapper<T,RANK>* arr1, const HArrayWrapper<T,RANK>* arr2)
+        HaveSameNumberOfElements(const HArrayWrapper<XValueType,RANK>* arr1, const HArrayWrapper<XValueType,RANK>* arr2)
         {
             return ( arr1->GetArraySize() == arr2->GetArraySize() );
         }
 
         static bool
-        HaveSameDimensions(const HArrayWrapper<T,RANK>* arr1, const HArrayWrapper<T,RANK>* arr2)
+        HaveSameDimensions(const HArrayWrapper<XValueType,RANK>* arr1, const HArrayWrapper<XValueType,RANK>* arr2)
         {
             size_t shape1[RANK];
             size_t shape2[RANK];
@@ -42,9 +42,9 @@ class HArrayOperator
 
         //set all of the elements in an array to be equal to the object obj
         static void
-        ResetArray(HArrayWrapper<T,RANK>* arr, const T& obj)
+        ResetArray(HArrayWrapper<XValueType,RANK>* arr, const XValueType& obj)
         {
-            T* ptr = arr->GetData();
+            XValueType* ptr = arr->GetData();
             size_t n_elem = arr->GetArraySize();
             for(size_t i=0; i < n_elem; i++)
             {
@@ -54,10 +54,10 @@ class HArrayOperator
 
         //set all of the elements in an array to be equal to zero
         static void
-        ZeroArray(HArrayWrapper<T,RANK>* arr)
+        ZeroArray(HArrayWrapper<XValueType,RANK>* arr)
         {
-            T* ptr = arr->GetData();
-            size_t n_bytes = (arr->GetArraySize() )*( sizeof(T) );
+            XValueType* ptr = arr->GetData();
+            size_t n_bytes = (arr->GetArraySize() )*( sizeof(XValueType) );
             std::memset(ptr, 0, n_bytes);
         }
 
@@ -67,4 +67,4 @@ class HArrayOperator
 
 }//end of namespace
 
-#endif /* __HArrayOperator_H__ */
+#endif /* __HArrayOperator_HH__ */

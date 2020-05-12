@@ -1,22 +1,22 @@
-#ifndef HUnaryArrayOperator_H__
-#define HUnaryArrayOperator_H__
+#ifndef HUnaryArrayOperator_HH__
+#define HUnaryArrayOperator_HH__
 
 #include "HArrayOperator.hh"
 
 namespace hops{
 
-template<typename ArrayType, unsigned int NDIM>
-class HUnaryArrayOperator: public HArrayOperator<ArrayType, NDIM>
+template<typename XValueType, unsigned int RANK>
+class HUnaryArrayOperator: public HArrayOperator<XValueType, RANK>
 {
     public:
         HUnaryArrayOperator():fInput(NULL),fOutput(NULL){;};
         virtual ~HUnaryArrayOperator(){;};
 
-        virtual void SetInput(HArrayWrapper<ArrayType, NDIM>* in){fInput = in;};
-        virtual void SetOutput(HArrayWrapper<ArrayType, NDIM>* out){fOutput = out;};
+        virtual void SetInput(HArrayWrapper<XValueType, RANK>* in){fInput = in;};
+        virtual void SetOutput(HArrayWrapper<XValueType, RANK>* out){fOutput = out;};
 
-        virtual HArrayWrapper<ArrayType,NDIM>* GetInput(){return fInput;};
-        virtual HArrayWrapper<ArrayType,NDIM>* GetOutput(){return fOutput;};
+        virtual HArrayWrapper<XValueType,RANK>* GetInput(){return fInput;};
+        virtual HArrayWrapper<XValueType,RANK>* GetOutput(){return fOutput;};
 
         virtual void Initialize(){;};
 
@@ -24,11 +24,11 @@ class HUnaryArrayOperator: public HArrayOperator<ArrayType, NDIM>
 
     protected:
 
-        HArrayWrapper<ArrayType, NDIM>* fInput;
-        HArrayWrapper<ArrayType, NDIM>* fOutput;
+        HArrayWrapper<XValueType, RANK>* fInput;
+        HArrayWrapper<XValueType, RANK>* fOutput;
 };
 
 }//end of namespace
 
 
-#endif /* __HUnaryArrayOperator_H__ */
+#endif /* __HUnaryArrayOperator_HH__ */

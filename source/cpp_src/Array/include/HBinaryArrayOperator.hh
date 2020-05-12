@@ -1,24 +1,24 @@
-#ifndef HBinaryArrayOperator_H__
-#define HBinaryArrayOperator_H__
+#ifndef HBinaryArrayOperator_HH__
+#define HBinaryArrayOperator_HH__
 
 #include "HArrayOperator.hh"
 
 namespace hops{
 
-template<typename T, unsigned int NDIM>
-class HBinaryArrayOperator: public HArrayOperator<T,NDIM>
+template<typename XValueType, unsigned int NDIM>
+class HBinaryArrayOperator: public HArrayOperator<XValueType,NDIM>
 {
     public:
         HBinaryArrayOperator():fFirstInput(NULL),fSecondInput(NULL),fOutput(NULL){;};
         virtual ~HBinaryArrayOperator(){;};
 
-        virtual void SetFirstInput(HArrayWrapper<T,NDIM>* in){fFirstInput = in;};
-        virtual void SetSecondInput(HArrayWrapper<T,NDIM>* in){fSecondInput = in;};
-        virtual void SetOutput(HArrayWrapper<T,NDIM>* out){fOutput = out;};
+        virtual void SetFirstInput(HArrayWrapper<XValueType,NDIM>* in){fFirstInput = in;};
+        virtual void SetSecondInput(HArrayWrapper<XValueType,NDIM>* in){fSecondInput = in;};
+        virtual void SetOutput(HArrayWrapper<XValueType,NDIM>* out){fOutput = out;};
 
-        virtual HArrayWrapper<T,NDIM>* GetFirstInput(){return fFirstInput;};
-        virtual HArrayWrapper<T,NDIM>* GetSecondInput(){return fSecondInput;};
-        virtual HArrayWrapper<T,NDIM>* GetOutput(){return fOutput;};
+        virtual HArrayWrapper<XValueType,NDIM>* GetFirstInput(){return fFirstInput;};
+        virtual HArrayWrapper<XValueType,NDIM>* GetSecondInput(){return fSecondInput;};
+        virtual HArrayWrapper<XValueType,NDIM>* GetOutput(){return fOutput;};
 
         virtual void Initialize(){;};
 
@@ -26,12 +26,12 @@ class HBinaryArrayOperator: public HArrayOperator<T,NDIM>
 
     protected:
 
-        HArrayWrapper<T,NDIM>* fFirstInput;
-        HArrayWrapper<T,NDIM>* fSecondInput;
-        HArrayWrapper<T,NDIM>* fOutput;
+        HArrayWrapper<XValueType,NDIM>* fFirstInput;
+        HArrayWrapper<XValueType,NDIM>* fSecondInput;
+        HArrayWrapper<XValueType,NDIM>* fOutput;
 };
 
 }
 
 
-#endif /* __HBinaryArrayOperator_H__ */
+#endif /* __HBinaryArrayOperator_HH__ */

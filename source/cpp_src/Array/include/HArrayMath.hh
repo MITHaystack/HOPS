@@ -150,4 +150,4 @@ struct HArrayMath::Divide<numerator, 1>
 
 }//end of namespace
 
-#endif /* HArrayMath_H__ */
+#endif /* HArrayMath_HH__ */
