@@ -2,6 +2,8 @@
 #define HTimeStampConverter_HH__
 
 #include <string>
+#include <time.h>
+#include <ctime>
 
 namespace hops
 {

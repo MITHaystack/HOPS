@@ -3,7 +3,6 @@
 
 #include <map>
 
-
 template< typename XKeyType, typename XValueType >
 class KSingleTypeMap
 {
@@ -12,7 +11,6 @@ class KSingleTypeMap
         KSingleTypeMap();
         virtual ~KSingleTypeMap();
 
-
         void insert(const XKeyType& key, const XValueType& value)
         {
             fMap.insert( std::pair<XKeyType, XValueType>(key,value) );
@@ -20,13 +18,18 @@ class KSingleTypeMap
 
     private:
 
-        std::map< XKeyType, XXValueType > fMap;
+        std::map< XKeyType, XValueType > fMap;
 };
 
 
 template< typename XKeyType, typename... XValueTypes >
-class HMultiTypeMap: public KSingleTypeMap<XKeyType, XValueTypes>...
+class HMultiTypeMap: public KSingleTypeMap< XKeyType, XValueTypes >...
+{
+    public:
+        HMultiTypeMap(): KSingleTypeMap<XKeyType, XValueTypes>()... {};
+        virtual ~HMultiTypeMap(){};
 
+        using KSingleTypeMap<XKeyType, XValueTypes...>::insert;
 
 
 };

@@ -1,8 +1,6 @@
 #include "HTimeStampConverter.hh"
 
 #include <iostream>
-#include <time.h>
-#include <ctime>
 #include <cmath>
 #include <sstream>
 

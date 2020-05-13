@@ -4,6 +4,7 @@ set (HCORE_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/HTimer.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/HTokenizer.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/HTimeStampConverter.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/HMultiTypeMap.hh
 )
 
 #list source files #############################################################
