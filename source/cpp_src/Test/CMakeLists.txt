@@ -11,7 +11,7 @@ if (HOPS_ENABLE_TEST)
     )
 
     foreach( BASENAME ${SOURCE_BASENAMES} )
-        add_executable( ${BASENAME} ${BASENAME}.cxx )
+        add_executable( ${BASENAME} ${BASENAME}.cc )
         target_link_libraries( ${BASENAME} ${HOPS_TEST_LIBS})
     endforeach( BASENAME )
 

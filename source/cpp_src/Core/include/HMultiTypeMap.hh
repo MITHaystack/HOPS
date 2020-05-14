@@ -2,39 +2,56 @@
 #define HMultiTypeMap_HH__
 
 #include <map>
+#include <string>
+#include <iostream>
 
-template< typename XKeyType, typename XValueType >
-class KSingleTypeMap
+#include "HMeta.hh"
+
+namespace hops
+{
+
+template< typename XValueType >
+class HSingleTypeMap
 {
     public:
 
-        KSingleTypeMap();
-        virtual ~KSingleTypeMap();
+        HSingleTypeMap(){};
+        virtual ~HSingleTypeMap(){};
 
-        void insert(const XKeyType& key, const XValueType& value)
+        void insert(const std::string& key, const XValueType& value)
         {
-            fMap.insert( std::pair<XKeyType, XValueType>(key,value) );
+            fMap.insert( std::pair< std::string, XValueType>(key,value) );
+            std::cout<<"inserting an element: "<<key<<", "<<value<<std::endl;
         }
 
     private:
 
-        std::map< XKeyType, XValueType > fMap;
+        std::map< std::string, XValueType > fMap;
 };
 
+//declare a multi-type map which takes a variadic template parameter
+template <typename... XvalueTypeS>
+class HMultiTypeMap;
 
-template< typename XKeyType, typename... XValueTypes >
-class HMultiTypeMap: public KSingleTypeMap< XKeyType, XValueTypes >...
+//declare the base case of the recursion (which the parameter is a single type)
+template <typename XValueType>
+class HMultiTypeMap< XValueType >: public HSingleTypeMap< XValueType >
 {
     public:
-        HMultiTypeMap(): KSingleTypeMap<XKeyType, XValueTypes>()... {};
-        virtual ~HMultiTypeMap(){};
+        using HSingleTypeMap< XValueType >::insert;
+};
 
-        using KSingleTypeMap<XKeyType, XValueTypes...>::insert;
-
-
+//now set up the recursion 
+template< typename XValueType, typename... XvalueTypeS >
+class HMultiTypeMap< XValueType, XvalueTypeS...>: public HMultiTypeMap< XValueType >, HMultiTypeMap< XvalueTypeS... >
+{
+    public:
+        using HMultiTypeMap< XValueType >::insert;
+        using HMultiTypeMap< XvalueTypeS... >::insert;
 };
 
 
 
+}
 
 #endif /* end of include guard: HMultiTypeMap_HH__ */

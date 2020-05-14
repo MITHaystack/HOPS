@@ -1,6 +1,7 @@
 #list header files #############################################################
 
 set (HCORE_HEADERFILES
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/HMeta.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/HTimer.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/HTokenizer.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/HTimeStampConverter.hh
