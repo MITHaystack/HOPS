@@ -97,6 +97,27 @@ int main(int /*argc*/, char** /*argv*/)
     myMap.insert( key1, val1);
     myMap.insert( key2, val2);
 
+    int ret1 = 0;
+    bool ok = myMap.retrieve(key1, ret1);
+    if(ok)
+    {
+        std::cout<<"got an int with key: "<<key1<<", value = "<<ret1<<std::endl;
+    }
+    else
+    {
+        std::cout<<"could not find int with key: "<<key1<<std::endl;
+    }
+
+    double ret2 = 0;
+    bool ok2 = myMap.retrieve(key2, ret2);
+    if(ok2)
+    {
+        std::cout<<"got an double with key: "<<key2<<", value = "<<ret2<<std::endl;
+    }
+    else
+    {
+        std::cout<<"could not find double with key: "<<key2<<std::endl;
+    }
 
     return 0;
 }

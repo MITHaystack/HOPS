@@ -24,6 +24,20 @@ class HSingleTypeMap
             std::cout<<"inserting an element: "<<key<<", "<<value<<std::endl;
         }
 
+        bool retrieve(const std::string& key, XValueType& value)
+        {
+            auto iter = fMap.find(key);
+            if(iter == fMap.end())
+            {
+                return false;
+            }
+            else
+            {
+                value = iter->second;
+                return true;
+            }
+        }
+
     private:
 
         std::map< std::string, XValueType > fMap;
@@ -39,15 +53,19 @@ class HMultiTypeMap< XValueType >: public HSingleTypeMap< XValueType >
 {
     public:
         using HSingleTypeMap< XValueType >::insert;
+        using HSingleTypeMap< XValueType >::retrieve;
 };
 
-//now set up the recursion 
+//now set up the recursion
 template< typename XValueType, typename... XvalueTypeS >
 class HMultiTypeMap< XValueType, XvalueTypeS...>: public HMultiTypeMap< XValueType >, HMultiTypeMap< XvalueTypeS... >
 {
     public:
         using HMultiTypeMap< XValueType >::insert;
         using HMultiTypeMap< XvalueTypeS... >::insert;
+
+        using HMultiTypeMap< XValueType >::retrieve;
+        using HMultiTypeMap< XvalueTypeS... >::retrieve;
 };
 
 
