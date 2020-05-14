@@ -8,85 +8,14 @@
 
 using namespace hops;
 
-//typedef HTypelist<int, double, float, int, long int> a_typelist;
 
-//
-// class A1
-// {
-//     A1(){};
-//     virtual ~A1(){};
-//
-//     virtual void DoSomething() = 0;
-//
-// };
-//
-// class A2: public A1
-// {
-//     A2(){};
-//     virtual ~A2(){};
-//
-//     virtual void DoSomething() override {std::cout<<"A2"<<std::endl;}
-// };
-//
-// class A3: public A1
-// {
-//     A3(){};
-//     virtual ~A3(){};
-//
-//     virtual void DoSomething() override {std::cout<<"A3"<<std::endl;}
-// };
-//
-//
-// template< class T >
-// class AUnit
-// {
-//     void Call(){T->DoSomething();};
-// };
-//
-//
-// typedef HTypelist<A2, A3> example1;
-//
-//
-//
-// template<typename T> class Holder
-// {
-//   public:
-//
-//     Holder():
-//     {
-//         fObject = new T();
-//     };
-//
-//     virtual ~KFMObjectHolder()
-//     {
-//         delete fObject;
-//     };
-//
-//     void DoSomething()
-//     {
-//         fObject->Something();
-//     }
-//
-//     private:
-//         T* fObject;
-// };
-//
-//
-//
-// template<typename TypeList> class TypelistHolder : public HGenScatterHierarchy<TypeList, Holder>
-// {
-//   public:
-//     TypelistHolder(){};
-//     ~TypelistHolder() override{};
-//
-//   private:
-// };
+typedef std::string key_type1;
 
 int main(int /*argc*/, char** /*argv*/)
 {
 
     //std::cout<<"size of the typelist is: "<< HTypelistSize< a_typelist >::value <<std::endl;
-    HMultiTypeMap< int, double, float > myMap;
+    HMultiTypeMap< key_type1, int, double, float > myMap;
 
     std::string key1("i_am_an_int");
     int val1 = 1;

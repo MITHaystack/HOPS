@@ -10,7 +10,7 @@
 namespace hops
 {
 
-template< typename XValueType >
+template< typename XKeyType, typename XValueType >
 class HSingleTypeMap
 {
     public:
@@ -18,13 +18,13 @@ class HSingleTypeMap
         HSingleTypeMap(){};
         virtual ~HSingleTypeMap(){};
 
-        void insert(const std::string& key, const XValueType& value)
+        void insert(const XKeyType& key, const XValueType& value)
         {
-            fMap.insert( std::pair< std::string, XValueType>(key,value) );
+            fMap.insert( std::pair<XKeyType, XValueType>(key,value) );
             std::cout<<"inserting an element: "<<key<<", "<<value<<std::endl;
         }
 
-        bool retrieve(const std::string& key, XValueType& value)
+        bool retrieve(const XKeyType& key, XValueType& value)
         {
             auto iter = fMap.find(key);
             if(iter == fMap.end())
@@ -40,32 +40,32 @@ class HSingleTypeMap
 
     private:
 
-        std::map< std::string, XValueType > fMap;
+        std::map< XKeyType, XValueType > fMap;
 };
 
-//declare a multi-type map which takes a variadic template parameter
-template <typename... XvalueTypeS>
+//declare a multi-type map which takes a key type, and variadic template parameter for the types to be stored
+template <typename XKeyType, typename... XvalueTypeS>
 class HMultiTypeMap;
 
-//declare the base case of the recursion (which the parameter is a single type)
-template <typename XValueType>
-class HMultiTypeMap< XValueType >: public HSingleTypeMap< XValueType >
+//declare the base case of the recursion (in which the parameter XValueType is just a single type)
+template <typename  XKeyType, typename XValueType>
+class HMultiTypeMap< XKeyType, XValueType >: public HSingleTypeMap< XKeyType, XValueType >
 {
     public:
-        using HSingleTypeMap< XValueType >::insert;
-        using HSingleTypeMap< XValueType >::retrieve;
+        using HSingleTypeMap< XKeyType, XValueType >::insert;
+        using HSingleTypeMap< XKeyType, XValueType >::retrieve;
 };
 
 //now set up the recursion
-template< typename XValueType, typename... XvalueTypeS >
-class HMultiTypeMap< XValueType, XvalueTypeS...>: public HMultiTypeMap< XValueType >, HMultiTypeMap< XvalueTypeS... >
+template< typename XKeyType, typename XValueType, typename... XValueTypeS >
+class HMultiTypeMap< XKeyType, XValueType, XValueTypeS...>: public HMultiTypeMap< XKeyType, XValueType >, HMultiTypeMap< XKeyType, XValueTypeS... >
 {
     public:
-        using HMultiTypeMap< XValueType >::insert;
-        using HMultiTypeMap< XvalueTypeS... >::insert;
+        using HMultiTypeMap< XKeyType, XValueType >::insert;
+        using HMultiTypeMap< XKeyType, XValueTypeS... >::insert;
 
-        using HMultiTypeMap< XValueType >::retrieve;
-        using HMultiTypeMap< XvalueTypeS... >::retrieve;
+        using HMultiTypeMap< XKeyType, XValueType >::retrieve;
+        using HMultiTypeMap< XKeyType, XValueTypeS... >::retrieve;
 };
 
 
