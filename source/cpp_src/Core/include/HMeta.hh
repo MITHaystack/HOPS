@@ -32,7 +32,7 @@ template< class... T > struct HTypelistSizeImpl< HTypelist< T... > >
 {
     using type = std::integral_constant< size_t, sizeof...(T) >;
 };
-//alias to HTypelistSize, retrieve the value itself with ::value
+//alias to HTypelistSize, retrieve the value itself with ::value (element of std::integral_constant)
 template< class L > using HTypelistSize = typename HTypelistSizeImpl<L>::type;
 
 

@@ -2,6 +2,8 @@
 
 set (HCORE_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/HMeta.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/HNamed.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/HUnits.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/HTimer.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/HTokenizer.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/HTimeStampConverter.hh
@@ -12,12 +14,12 @@ set (HCORE_HEADERFILES
 
 set( HCORE_SOURCEFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/HTimer.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/HNamed.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/HTimeStampConverter.cc
 )
 
 #declare header paths ##########################################################
 
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../../c_src/Interface/include)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 #compile and install library ###################################################
