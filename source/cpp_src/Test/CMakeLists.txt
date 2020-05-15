@@ -8,6 +8,7 @@ if (HOPS_ENABLE_TEST)
     set(SOURCE_BASENAMES
         TestMultiTypeMap
         TestTimeStampConverter
+        TestScalarContainer
     )
 
     foreach( BASENAME ${SOURCE_BASENAMES} )

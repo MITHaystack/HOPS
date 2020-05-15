@@ -16,6 +16,8 @@
 #include "HUnits.hh"
 #include "HNamed.hh"
 
+#include "HArrayWrapper.hh"
+
 namespace hops
 {
 
@@ -28,7 +30,7 @@ class HScalarContainer: public HNamed, public HArrayWrapper< XValueType, 0>
         HScalarContainer(): HArrayWrapper<XValueType, 0>() {};
         virtual ~HScalarContainer(){};
 
-        void SetValue(const XValueType& value){fData = fValue};
+        void SetValue(const XValueType& value){fData = value;};
         XValueType GetValue(){ return fData;};
 
         //declare the unit type (not implemented for now)

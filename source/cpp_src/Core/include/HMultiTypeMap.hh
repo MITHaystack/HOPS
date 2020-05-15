@@ -1,6 +1,16 @@
 #ifndef HMultiTypeMap_HH__
 #define HMultiTypeMap_HH__
 
+
+/*
+*File: HMultiTypeMap.hh
+*Class: HMultiTypeMap
+*Author: J. Barrett
+*Email: barrettj@mit.edu
+*Date: 2020-05-15T20:56:55.583Z
+*Description:
+*/
+
 #include <map>
 #include <string>
 #include <iostream>
@@ -67,7 +77,6 @@ class HMultiTypeMap< XKeyType, XValueType, XValueTypeS...>: public HMultiTypeMap
         using HMultiTypeMap< XKeyType, XValueType >::retrieve;
         using HMultiTypeMap< XKeyType, XValueTypeS... >::retrieve;
 };
-
 
 
 }

@@ -1,9 +1,6 @@
 #ifndef HArrayWrapper_HH__
 #define HArrayWrapper_HH__
 
-#ifndef HArrayWrapper_HH__
-#define HArrayWrapper_HH__
-
 /*
 *File: HArrayWrapper.hh
 *Class: HArrayWrapper
@@ -96,8 +93,8 @@ class HArrayWrapper
 
 
 //specialization for a RANK-0 (i.e. a scalar)
-template< typename XValueType, 0>
-class HArrayWrapper
+template< typename XValueType >
+class HArrayWrapper<XValueType, 0>
 {
     public:
 
@@ -126,8 +123,8 @@ class HArrayWrapper
 };
 
 //specialization for RANK=1, (i.e. a vector)
-template< typename XValueType, 1>
-class HArrayWrapper
+template< typename XValueType >
+class HArrayWrapper<XValueType, 1>
 {
     public:
 
