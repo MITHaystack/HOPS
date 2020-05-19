@@ -1,9 +1,9 @@
 #declare library name ##########################################################
-set(LIBNAME "vex${CHOPS_LIBPOSTFIX}")
+set(LIBNAME "vex")
 
 #list header files #############################################################
 
-file(GLOB ${LIBNAME}_HEADER_BASENAMES RELATIVE "${CMAKE_CURRENT_SOURCE_DIR}/include" 
+file(GLOB ${LIBNAME}_HEADER_BASENAMES RELATIVE "${CMAKE_CURRENT_SOURCE_DIR}/include"
     "${CMAKE_CURRENT_SOURCE_DIR}/include/*.h")
 
 set( ${LIBNAME}_HEADER_PATH ${CMAKE_CURRENT_SOURCE_DIR}/include)
@@ -38,20 +38,16 @@ endforeach(path)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 #build/link/install library ####################################################
-list(APPEND LIBLIST "mk4util${CHOPS_LIBPOSTFIX}")
+list(APPEND LIBLIST "mk4util")
 
 add_library (${LIBNAME} SHARED ${${LIBNAME}_SOURCEFILES} ${${LIBNAME}_HEADERFILES})
 
 target_link_libraries (${LIBNAME} ${LIBLIST})
 
-chops_install_headers (${${LIBNAME}_HEADERFILES})
-chops_install_libraries (${LIBNAME})
+hops_install_headers (${${LIBNAME}_HEADERFILES})
+hops_install_libraries (${LIBNAME})
 
-# install txt files ############################################################ 
+# install txt files ############################################################
 
-chops_install_share_text( ${CMAKE_CURRENT_SOURCE_DIR}/text/blk_stmt.txt )
-chops_install_share_text( ${CMAKE_CURRENT_SOURCE_DIR}/text/pformat.txt )
-
-#configure/generate Makefile.am for autotools build ############################
-
-chops_configure_automake("${RELPATH_LIST}" "${LIBLIST}" ${LIBNAME} "${AM_${LIBNAME}_HEADERFILES}" "${AM_${LIBNAME}_SOURCEFILES}")
+hops_install_share_text( ${CMAKE_CURRENT_SOURCE_DIR}/text/blk_stmt.txt )
+hops_install_share_text( ${CMAKE_CURRENT_SOURCE_DIR}/text/pformat.txt )

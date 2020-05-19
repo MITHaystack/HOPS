@@ -1,9 +1,9 @@
 #declare library name ##########################################################
-set(LIBNAME "dfio${CHOPS_LIBPOSTFIX}")
+set(LIBNAME "dfio")
 
 #list header files #############################################################
 
-file(GLOB ${LIBNAME}_HEADER_BASENAMES RELATIVE "${CMAKE_CURRENT_SOURCE_DIR}/include" 
+file(GLOB ${LIBNAME}_HEADER_BASENAMES RELATIVE "${CMAKE_CURRENT_SOURCE_DIR}/include"
     "${CMAKE_CURRENT_SOURCE_DIR}/include/*.h")
 
 set( ${LIBNAME}_HEADER_PATH ${CMAKE_CURRENT_SOURCE_DIR}/include)
@@ -38,15 +38,11 @@ endforeach(path)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 #build/link/install library ####################################################
-list(APPEND LIBLIST "mk4util${CHOPS_LIBPOSTFIX}")
+list(APPEND LIBLIST "mk4util${HOPS_LIBPOSTFIX}")
 
 add_library (${LIBNAME} SHARED ${${LIBNAME}_SOURCEFILES} ${${LIBNAME}_HEADERFILES})
 
 target_link_libraries (${LIBNAME} ${LIBLIST})
 
-chops_install_headers (${${LIBNAME}_HEADERFILES})
-chops_install_libraries (${LIBNAME})
-
-#configure/generate Makefile.am for autotools build ############################
-
-chops_configure_automake("${RELPATH_LIST}" "${LIBLIST}" ${LIBNAME} "${AM_${LIBNAME}_HEADERFILES}" "${AM_${LIBNAME}_SOURCEFILES}")
+hops_install_headers (${${LIBNAME}_HEADERFILES})
+hops_install_libraries (${LIBNAME})

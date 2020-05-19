@@ -1,9 +1,9 @@
 #declare library name ##########################################################
-set(LIBNAME "mk4util${CHOPS_LIBPOSTFIX}")
+set(LIBNAME "mk4util")
 
 #list header files #############################################################
 
-file(GLOB ${LIBNAME}_HEADER_BASENAMES RELATIVE "${CMAKE_CURRENT_SOURCE_DIR}/include" 
+file(GLOB ${LIBNAME}_HEADER_BASENAMES RELATIVE "${CMAKE_CURRENT_SOURCE_DIR}/include"
     "${CMAKE_CURRENT_SOURCE_DIR}/include/*.h")
 
 set( ${LIBNAME}_HEADER_PATH ${CMAKE_CURRENT_SOURCE_DIR}/include)
@@ -36,15 +36,5 @@ add_library (${LIBNAME} SHARED ${${LIBNAME}_SOURCEFILES} ${${LIBNAME}_HEADERFILE
 
 target_link_libraries (${LIBNAME})
 
-chops_install_headers (${${LIBNAME}_HEADERFILES})
-chops_install_libraries (${LIBNAME})
-
-#configure/generate Makefile.am for autotools build ############################
-
-string (REPLACE ";" " " HEADER_BASENAMES_STR "${AM_${LIBNAME}_HEADERFILES}")
-string (REPLACE ";" " " SOURCE_BASENAMES_STR "${AM_${LIBNAME}_SOURCEFILES}")
-
-set(MAKEFILE_AM_IN "${CMAKE_CURRENT_SOURCE_DIR}/Makefile.am.in")
-set(MAKEFILE_AM    "${CMAKE_CURRENT_SOURCE_DIR}/Makefile.am")
-
-configure_file(${MAKEFILE_AM_IN} ${MAKEFILE_AM} @ONLY)
+hops_install_headers (${${LIBNAME}_HEADERFILES})
+hops_install_libraries (${LIBNAME})
