@@ -44,10 +44,9 @@ set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -pthread" )
 message(STATUS "Using compiler ${COMPILER_ID} ${COMPILER_VERSION}")
 
 #options for triggering additional dependencies
-option( HOPS_USE_OPENCL "Build OpenCL support." OFF)
-option( HOPS_USE_ROOT "Build ROOT based utilities." OFF)
-option( HOPS_USE_SPDLOG "Build logging support using spdlog library" ON)
-option( HOPS_ENABLE_TEST "Build developer tests." OFF)
+#option( HOPS_USE_OPENCL "Build OpenCL support." OFF)
+#option( HOPS_USE_ROOT "Build ROOT based utilities." OFF)
+option( HOPS_ENABLE_TEST "Build developer tests." ON)
 
 
 #convenience variables
