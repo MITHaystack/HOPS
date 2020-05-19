@@ -108,6 +108,7 @@ hops_include_directories(${CMAKE_CURRENT_BINARY_DIR})
 hops_add_cflag(HAVE_CONFIG_H)
 
 #mk4 and vex c-libraries from old HOPS
+add_subdirectory(${CSOURCE}/mk4stub)
 add_subdirectory(${CSOURCE}/mk4util)
 add_subdirectory(${CSOURCE}/vex)
 add_subdirectory(${CSOURCE}/dfio)
@@ -117,7 +118,9 @@ add_subdirectory(${CSOURCE}/dfio)
 #source sub directories (in order of dependence...this is important!)
 add_subdirectory(${CPPSOURCE}/Array)
 add_subdirectory(${CPPSOURCE}/Core)
+add_subdirectory(${CPPSOURCE}/MK4Interface)
 add_subdirectory(${CPPSOURCE}/Test)
+
 
 #python package setup
 find_package(PythonInterp REQUIRED)

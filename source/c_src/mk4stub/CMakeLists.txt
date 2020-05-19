@@ -1,5 +1,5 @@
 #declare library name ##########################################################
-set(LIBNAME "vex")
+set(LIBNAME "mk4stub")
 
 #list header files #############################################################
 
@@ -26,11 +26,6 @@ foreach( BASENAME ${${LIBNAME}_SOURCE_BASENAMES} )
 endforeach( BASENAME )
 
 #declare header paths ##########################################################
-set(MK4UTIL_RELPATH "../mk4stub")
-list(APPEND RELPATH_LIST ${MK4STUB_RELPATH})
-
-set(MK4UTIL_RELPATH "../mk4util")
-list(APPEND RELPATH_LIST ${MK4UTIL_RELPATH})
 
 #include library headers
 foreach(path ${RELPATH_LIST})
@@ -41,16 +36,9 @@ endforeach(path)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 #build/link/install library ####################################################
-list(APPEND LIBLIST "mk4stub" "mk4util")
-
 add_library (${LIBNAME} SHARED ${${LIBNAME}_SOURCEFILES} ${${LIBNAME}_HEADERFILES})
 
 target_link_libraries (${LIBNAME} ${LIBLIST})
 
 hops_install_headers (${${LIBNAME}_HEADERFILES})
 hops_install_libraries (${LIBNAME})
-
-# install txt files ############################################################
-
-hops_install_share_text( ${CMAKE_CURRENT_SOURCE_DIR}/text/blk_stmt.txt )
-hops_install_share_text( ${CMAKE_CURRENT_SOURCE_DIR}/text/pformat.txt )

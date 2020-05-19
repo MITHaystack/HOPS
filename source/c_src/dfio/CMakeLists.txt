@@ -26,6 +26,9 @@ foreach( BASENAME ${${LIBNAME}_SOURCE_BASENAMES} )
 endforeach( BASENAME )
 
 #declare header paths ##########################################################
+set(MK4UTIL_RELPATH "../mk4stub")
+list(APPEND RELPATH_LIST ${MK4STUB_RELPATH})
+
 set(MK4UTIL_RELPATH "../mk4util")
 list(APPEND RELPATH_LIST ${MK4UTIL_RELPATH})
 
@@ -38,7 +41,7 @@ endforeach(path)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 #build/link/install library ####################################################
-list(APPEND LIBLIST "mk4util${HOPS_LIBPOSTFIX}")
+list(APPEND LIBLIST "mk4stub" "mk4util")
 
 add_library (${LIBNAME} SHARED ${${LIBNAME}_SOURCEFILES} ${${LIBNAME}_HEADERFILES})
 
