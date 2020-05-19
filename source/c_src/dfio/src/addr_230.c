@@ -53,7 +53,7 @@ addr_230 ( short version,
     if (version == T230_VERSION) t230 = (struct type_230 *)address;
     else
         {
-        size_230 = sizeof (struct type_230) - sizeof (complex) + xpow_len;
+        size_230 = sizeof (struct type_230) - sizeof (_Complex) + xpow_len;
         t230 = (struct type_230 *) malloc (size_230);
         if (t230 == NULL)
             {
@@ -73,7 +73,7 @@ addr_230 ( short version,
                                         /* since sizeof() doesn't know we are */
                                         /* tricking compiler with variable numbers */
                                         /* of raw data blocks */
-        *size = sizeof (struct type_230_v0) - sizeof (complex) + xpow_len;
+        *size = sizeof (struct type_230_v0) - sizeof (_Complex) + xpow_len;
         t230_v0 = (struct type_230_v0 *)address;
                                         /* Start copying structure elements, */
                                         /* with hidden byte flipping if needed */
