@@ -15,7 +15,6 @@
 
 extern "C"
 {
-    //#define T230_VERSION 0 //have to do this to avoid conflicting complex.h in type_230
     #include "mk4_data.h"
     #include "mk4_dfio.h"
     #include "mk4_vex.h"
