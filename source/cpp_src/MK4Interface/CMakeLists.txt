@@ -2,12 +2,14 @@
 
 set (MK4INTERFACE_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/HMK4Interface.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/HMK4FringeInterface.hh
 )
 
 #list source files #############################################################
 
 set( MK4INTERFACE_SOURCEFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/HMK4Interface.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/HMK4FringeInterface.cc
 )
 
 #declare header paths ##########################################################
@@ -21,6 +23,7 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/${MK4UTIL_RELPATH})
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/${DFIO_RELPATH})
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/${VEX_RELPATH})
 
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../Core/include)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 #compile and install library ###################################################

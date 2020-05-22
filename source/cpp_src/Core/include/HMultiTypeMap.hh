@@ -31,7 +31,7 @@ class HSingleTypeMap
         void insert(const XKeyType& key, const XValueType& value)
         {
             fMap.insert( std::pair<XKeyType, XValueType>(key,value) );
-            std::cout<<"inserting an element: "<<key<<", "<<value<<std::endl;
+            std::cout<<"inserting an element with key: "<<key<<std::endl;
         }
 
         bool retrieve(const XKeyType& key, XValueType& value)
