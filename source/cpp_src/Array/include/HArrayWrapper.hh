@@ -44,6 +44,7 @@ class HArrayWrapper
         virtual ~HArrayWrapper(){;};
 
         void SetData(XValueType* ptr){fData = ptr;}
+
         XValueType* GetData(){return fData;};
         const XValueType* GetData() const {return fData;};
 

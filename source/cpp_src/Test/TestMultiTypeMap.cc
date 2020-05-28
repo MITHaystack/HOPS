@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <sstream>
 
 #include "HTimeStampConverter.hh"
 #include "HMultiTypeMap.hh"
@@ -15,7 +16,7 @@ int main(int /*argc*/, char** /*argv*/)
 {
 
     //std::cout<<"size of the typelist is: "<< HTypelistSize< a_typelist >::value <<std::endl;
-    HMultiTypeMap< key_type1, int, double, float > myMap;
+    HMultiTypeMap< key_type1, int, double, float, std::string > myMap;
 
     std::string key1("i_am_an_int");
     int val1 = 1;
@@ -47,6 +48,36 @@ int main(int /*argc*/, char** /*argv*/)
     {
         std::cout<<"could not find double with key: "<<key2<<std::endl;
     }
+
+
+    for(int i=0; i<10; i++)
+    {
+        std::stringstream ss;
+        ss << "key-int-";
+        ss << i;
+        myMap.insert( ss.str(), 2*i );
+
+        std::stringstream ssd;
+        ssd << "key-double-";
+        ssd << i;
+        double value = 3.14159*i;
+        myMap.insert( ssd.str(),  value);
+    }
+
+    myMap.insert(std::string("blah"), std::string("blah") );
+    myMap.insert(std::string("blah2"), std::string("blah2") );
+    myMap.insert(std::string("blah3"), std::string("blah3") );
+
+
+    std::cout<<"-- dumping the map of integers --"<<std::endl;
+    myMap.dump_map<int>();
+
+    std::cout<<"-- dumping the map of doubles -- "<<std::endl;
+    myMap.dump_map<double>();
+
+    std::cout<<"-- dumping the map of strings -- "<<std::endl;
+    myMap.dump_map<std::string>();
+
 
     return 0;
 }

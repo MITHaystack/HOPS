@@ -48,6 +48,15 @@ class HSingleTypeMap
             }
         }
 
+        void dump_map()
+        {
+            typedef typename std::map< XKeyType, XValueType>::iterator iterType;
+            for(iterType iter = fMap.begin(); iter != fMap.end(); iter++)
+            {
+                std::cout<<iter->first<<" : "<<iter->second<<std::endl;
+            }
+        }
+
     private:
 
         std::map< XKeyType, XValueType > fMap;
@@ -57,13 +66,21 @@ class HSingleTypeMap
 template <typename XKeyType, typename... XvalueTypeS>
 class HMultiTypeMap;
 
-//declare the base case of the recursion (in which the parameter XValueType is just a single type)
+//declare the specialization for the base case of the recursion (in which the parameter XValueType is just a single type)
 template <typename  XKeyType, typename XValueType>
 class HMultiTypeMap< XKeyType, XValueType >: public HSingleTypeMap< XKeyType, XValueType >
 {
     public:
         using HSingleTypeMap< XKeyType, XValueType >::insert;
         using HSingleTypeMap< XKeyType, XValueType >::retrieve;
+        using HSingleTypeMap< XKeyType, XValueType >::dump_map;
+
+        template<typename U = XValueType> typename std::enable_if<std::is_same<U,XValueType>::value>::type
+        dump_map()
+        {
+            static_cast< HSingleTypeMap< XKeyType, XValueType >* >( this )->dump_map();
+        };
+
 };
 
 //now set up the recursion
@@ -76,6 +93,9 @@ class HMultiTypeMap< XKeyType, XValueType, XValueTypeS...>: public HMultiTypeMap
 
         using HMultiTypeMap< XKeyType, XValueType >::retrieve;
         using HMultiTypeMap< XKeyType, XValueTypeS... >::retrieve;
+
+        using HMultiTypeMap< XKeyType, XValueType >::dump_map;
+        using HMultiTypeMap< XKeyType, XValueTypeS... >::dump_map;
 };
 
 

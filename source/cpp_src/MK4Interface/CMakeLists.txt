@@ -2,14 +2,14 @@
 
 set (MK4INTERFACE_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/HMK4Interface.hh
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/HMK4FringeInterface.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/HMK4CorelInterface.hh
 )
 
 #list source files #############################################################
 
 set( MK4INTERFACE_SOURCEFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/HMK4Interface.cc
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/HMK4FringeInterface.cc
+    //${CMAKE_CURRENT_SOURCE_DIR}/src/HMK4CorelInterface.cc
 )
 
 #declare header paths ##########################################################

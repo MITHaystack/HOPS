@@ -1,0 +1,55 @@
+#ifndef HDateTime_HH__
+#define HDateTime_HH__
+
+/*
+*File: HDateTime.hh
+*Class: HDateTime
+*Author: J. Barrett
+*Email: barrettj@mit.edu
+*Date: 2020-05-28T18:12:09.299Z
+*Description: Extremely basic date/time containter, needs work
+*/
+
+#include <string>
+#include <time.h>
+#include <ctime>
+
+#include "HTimeStampConverter.hh"
+
+namespace hops
+{
+
+class HDateTime
+{
+    public:
+
+        HDateTime();
+        HDateTime(int year, int day, int hour, int minute, float second);
+        virtual ~HDateTime();
+
+
+    private:
+
+        std::tm fDate;
+
+
+        // typedef struct date
+        //     {
+        //     short	year;
+        //     short	day;
+        //     short	hour;
+        //     short	minute;
+        //     float	second;
+        //     } date_struct;
+
+
+
+
+};
+
+
+
+
+} //end of namespace
+
+#endif /* end of include guard: HDateTime */

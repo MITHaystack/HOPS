@@ -24,7 +24,17 @@ template< typename XValueType, typename XUnitType = HEmptyUnit >
 class HVectorContainer: public HNamed, public HArrayWrapper< XValueType, 1>
 {
     public:
-        HVectorContainer(): HArrayWrapper<XValueType, 1>() {};
+
+        HVectorContainer(): HArrayWrapper<XValueType, 1>(){};
+
+        HVectorContainer( XValueType* data, const std::size_t* dim):
+            HArrayWrapper<XValueType,1>(data, dim)
+        {
+
+        };
+
+
+        HVectorContainer(): HArrayWrapper<XValueType, 1>(size_t ) {};
         virtual ~HVectorContainer(){};
 
 

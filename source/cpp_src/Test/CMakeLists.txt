@@ -25,6 +25,7 @@ if (HOPS_ENABLE_TEST)
         TestTimeStampConverter
         TestScalarContainer
         TestMK4Interface
+        TestMK4CorelInterface
     )
 
     foreach( BASENAME ${SOURCE_BASENAMES} )
