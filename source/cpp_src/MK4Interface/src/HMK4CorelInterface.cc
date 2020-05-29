@@ -3,6 +3,8 @@
 #include "HMultiTypeMap.hh"
 #include <array>
 
+#include <cstring>
+
 namespace hops
 {
 
@@ -21,12 +23,14 @@ std::array<XType, N> create_and_fill_array(XType values[N])
 HMK4CorelInterface::HMK4CorelInterface():
     fHaveCorel(false)
 {
+    fCorel = (struct mk4_corel *) calloc ( 1, sizeof(struct mk4_corel) );
 
 }
 
 HMK4CorelInterface::~HMK4CorelInterface()
 {
-    clear_mk4corel(&fCorel);
+    clear_mk4corel(fCorel);
+    free(fCorel);
 }
 
 void
@@ -35,19 +39,26 @@ HMK4CorelInterface::ReadCorelFile(const std::string& filename)
     std::cout<<"reading corel file"<<std::endl;
     if(fHaveCorel)
     {
-        clear_mk4corel(&fCorel);
+        std::cout<<"clearing corel struct"<<std::endl;
+        clear_mk4corel(fCorel);
     }
 
+    //have to copy filename for const_cast, as mk4 lib doesn't respect const
     std::string fname = filename;
-    int retval = read_mk4corel( const_cast<char*>(fname.c_str()), &fCorel );
+    std::cout<<"calling read_mk4corel: on: "<<fname<<std::endl;
+    int retval = read_mk4corel( const_cast<char*>(fname.c_str()), fCorel );
     if(retval == 0)
     {
         fHaveCorel = true;
+        std::cout<<"success"<<std::endl;
     }
     else
     {
         fHaveCorel = false;
+        std::cout<<"failure"<<std::endl;
     }
+
+    std::cout<<"done read"<<std::endl;
 }
 
 void
@@ -61,28 +72,30 @@ HMK4CorelInterface::ExportCorelFile()
         HMultiTypeMap< std::string, std::string, int, short, float, double > meta;
 
         //insert the type_100 meta data
-        meta.insert( std::string("type_000.record_id"), std::string(fCorel.id->record_id, 3) );
-        meta.insert( std::string("type_000.version_no"), std::string(fCorel.id->version_no, 2) );
-        meta.insert( std::string("type_000.unused1"), std::string(fCorel.id->unused1, 3) );
-        meta.insert( std::string("type_000.date"), std::string(fCorel.id->date, 16) );
-        meta.insert( std::string("type_000.name"), std::string(fCorel.id->name, 40) );
+        std::cout<<"getting type_000 info"<<std::endl;
+        meta.insert( std::string("type_000.record_id"), std::string(fCorel->id->record_id, 3) );
+        meta.insert( std::string("type_000.version_no"), std::string(fCorel->id->version_no, 2) );
+        meta.insert( std::string("type_000.unused1"), std::string(fCorel->id->unused1, 3) );
+        meta.insert( std::string("type_000.date"), std::string(fCorel->id->date, 16) );
+        meta.insert( std::string("type_000.name"), std::string(fCorel->id->name, 40) );
 
 
-        meta.insert( std::string("type_100.record_id"), std::string(fCorel.t100->record_id, 3) );
-        meta.insert( std::string("type_100.version_no"), std::string(fCorel.t100->version_no, 2) );
-        meta.insert( std::string("type_100.unused1"), std::string(fCorel.t100->unused1, 3) );
-        //meta.insert( std::string("type_100.procdate"), std::string(fCorel.t100->procdate) );
-        meta.insert( std::string("type_100.baseline"), std::string(fCorel.t100->baseline, 2) );
-        meta.insert( std::string("type_100.rootname"), std::string(fCorel.t100->rootname, 34) );
-        meta.insert( std::string("type_100.qcode"), std::string(fCorel.t100->qcode, 2) );
-        meta.insert( std::string("type_100.unused2"), std::string(fCorel.t100->unused2, 6) );
-        meta.insert( std::string("type_100.pct_done"), fCorel.t100->pct_done );
-        //meta.insert( std::string("type_100.start"), fCorel.t100->start );
-        //meta.insert( std::string("type_100.stop"), fCorel.t100->stop );
-        meta.insert( std::string("type_100.ndrec"), fCorel.t100->ndrec );
-        meta.insert( std::string("type_100.nindex"), fCorel.t100->nindex );
-        meta.insert( std::string("type_100.nlags"), fCorel.t100->nlags );
-        meta.insert( std::string("type_100.nblocks"), fCorel.t100->nblocks );
+        std::cout<<"getting type_100 info"<<std::endl;
+        meta.insert( std::string("type_100.record_id"), std::string(fCorel->t100->record_id, 3) );
+        meta.insert( std::string("type_100.version_no"), std::string(fCorel->t100->version_no, 2) );
+        meta.insert( std::string("type_100.unused1"), std::string(fCorel->t100->unused1, 3) );
+        //meta.insert( std::string("type_100.procdate"), std::string(fCorel->t100->procdate) );
+        meta.insert( std::string("type_100.baseline"), std::string(fCorel->t100->baseline, 2) );
+        meta.insert( std::string("type_100.rootname"), std::string(fCorel->t100->rootname, 34) );
+        meta.insert( std::string("type_100.qcode"), std::string(fCorel->t100->qcode, 2) );
+        meta.insert( std::string("type_100.unused2"), std::string(fCorel->t100->unused2, 6) );
+        meta.insert( std::string("type_100.pct_done"), fCorel->t100->pct_done );
+        //meta.insert( std::string("type_100.start"), fCorel->t100->start );
+        //meta.insert( std::string("type_100.stop"), fCorel->t100->stop );
+        meta.insert( std::string("type_100.ndrec"), fCorel->t100->ndrec );
+        meta.insert( std::string("type_100.nindex"), fCorel->t100->nindex );
+        meta.insert( std::string("type_100.nlags"), fCorel->t100->nlags );
+        meta.insert( std::string("type_100.nblocks"), fCorel->t100->nblocks );
 
 
         std::cout<<"dumping integer meta data"<<std::endl;
@@ -135,7 +148,7 @@ HMK4CorelInterface::ExportCorelFile()
         //     struct date  procdate;              /* Correlation time */
         //     char         baseline[2];           /* Standard baseline id */
         //     char         rootname[34];          /* Root filename, null-terminated */
-        //     char         qcode[2];              /*         meta.insert( std::string("type_100.pct_done"), fCorel.t100->pct_done );Quality code of correlation */
+        //     char         qcode[2];              /*         meta.insert( std::string("type_100.pct_done"), fCorel->t100->pct_done );Quality code of correlation */
         //     char         unused2[6];            /* Padding */
         //     float        pct_done;              /* 0-100% of scheduled data processed */
         //     struct date  start;                 /* Time of first AP */

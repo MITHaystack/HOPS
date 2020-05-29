@@ -1,3 +1,3 @@
 char progname[200] = "mk4stub.so";
-int msglev = 5;
+int msglev = -1;
 char datadir[200] = "";

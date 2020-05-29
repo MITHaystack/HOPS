@@ -40,10 +40,7 @@ class HMK4CorelInterface
     private:
 
         bool fHaveCorel;
-        struct mk4_corel fCorel;
-
-
-
+        struct mk4_corel* fCorel;
 
 };
 
