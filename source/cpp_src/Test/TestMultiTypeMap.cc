@@ -78,6 +78,9 @@ int main(int /*argc*/, char** /*argv*/)
     std::cout<<"-- dumping the map of strings -- "<<std::endl;
     myMap.dump_map<std::string>();
 
+    // myMap.SetName(std::string("myMap"));
+    // std::cout<<myMap.GetName()<<std::endl;
+
 
     return 0;
 }

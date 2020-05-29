@@ -2,11 +2,15 @@
 
 #include "HMultiTypeMap.hh"
 #include <array>
-
+#include <vector>
 #include <cstring>
 
 namespace hops
 {
+
+
+typedef HMultiTypeMap< std::string, std::string, short, int, std::vector<int> > Type101Map;
+
 
 template< typename XType, size_t N>
 std::array<XType, N> create_and_fill_array(XType values[N])
@@ -66,7 +70,6 @@ HMK4CorelInterface::ExportCorelFile()
 {
     if(fHaveCorel)
     {
-        //want to dump the information in the type_200 through type_230 objects
         //for now just do the POD data types
 
         HMultiTypeMap< std::string, std::string, int, short, float, double > meta;
@@ -111,7 +114,132 @@ HMK4CorelInterface::ExportCorelFile()
         meta.dump_map< std::string >();
 
 
+        int nalloc = fCorel->nalloc;
+        int index_space = fCorel->index_space;
 
+        std::cout<<"nalloc = "<<nalloc<<std::endl;
+        std::cout<<"index_space = "<<index_space<<std::endl;
+
+
+        int nindex = 0;
+        meta.retrieve(std::string("type_100.nindex"), nindex );
+
+
+
+        std::cout<<"sizeof 101 "<<sizeof(struct type_101)<<std::endl;
+        std::vector< Type101Map > type101vector;
+
+        std::cout<<"test"<<std::endl;
+
+        std::cout<<"ap space"<< fCorel->index->ap_space<<std::endl;
+
+
+        struct type_101* ptr = fCorel->index->t101;
+        struct type_101* t101 = ptr;
+        for(int i=0; i < nindex; i++)
+        {
+            Type101Map tmp;
+            //extract all of the type101 index records
+
+            ptr = &(fCorel->index->t101[i]);
+            t101 = ptr;
+            //check that the record_id info is a '101'
+            //if( strncmp(ptr->record_id, "101", 3) == 0)
+            {
+                (void) printf ("type_101 record_id = %.3s ", t101->record_id);
+                (void) printf (" version_no = %.2s \n", t101->version_no);
+                (void) printf (" status = %#x ", t101->status);
+                (void) printf (" nblocks = %d ", (t101->nblocks));
+                (void) printf (" index = %d ", (t101->index));
+                (void) printf (" primary = %d \n", (t101->primary));
+                (void) printf (" ref_chan_id = %.8s ", t101->ref_chan_id);
+                (void) printf (" rem_chan_id = %.8s ", t101->rem_chan_id);
+                (void) printf (" corr_board = %d ", (t101->corr_board));
+                (void) printf (" corr_slot = %d \n", (t101->corr_slot));
+                (void) printf (" ref_chan = %d ", (t101->ref_chan));
+                (void) printf (" rem_chan = %d ", (t101->rem_chan));
+                (void) printf (" post_mortem = %#x \n", (t101->post_mortem));
+                for (i = 0; i < (t101->nblocks); i++)
+                {           /* Each block */
+                    (void) printf (" blocks[%d] = 0x%8.8x ", i, (t101->blocks[i]));
+                }
+
+                int buffsize = sizeof(struct type_101);
+                std::cout<< std::string(ptr->record_id,3)<<std::endl;
+                int n = ptr->nblocks;
+                tmp.insert(std::string("nblocks"), n);
+                std::cout<<"nblocks = "<<n<<std::endl;
+                std::cout<<"buffsize1: "<<buffsize<<std::endl;
+                buffsize += (n-1)*sizeof(int);
+                std::cout<<"buffsize2: "<<buffsize<<std::endl;
+
+                //ptr += buffsize;
+                //t101 = ptr;
+
+                std::cout<<i<<", "<<ptr<<"  buff = "<<buffsize<<std::endl;
+
+                //type101vector.push_back(tmp);
+                // tmp.insert( std::string("type_101.record_id"), std::string(fCorel->id->record_id, 3) );
+                // tmp.insert( std::string("type_101.version_no"), std::string(fCorel->id->version_no, 2) );
+                // tmp.insert( std::string("type_101.unused1"), std::string(fCorel->id->unused1, 3) );
+                // tmp.insert( std::string("type_101.date"), std::string(fCorel->id->date, 16) );
+                // tmp.insert( std::string("type_101.name"), std::string(fCorel->id->name, 40) );
+            }
+
+
+        }
+
+        // struct type_101
+        //     {
+        //     char         record_id[3];          /* Standard 3-digit id */
+        //     char         version_no[2];         /* Standard 2-digit version # */
+        //     char         status;                /* Reserved space */
+        //     short        nblocks;               /* Needed up front for IO library */
+        //     short        index;                 /* Index number */
+        //     short        primary;               /* Index number of primary 101 */
+        //     char         ref_chan_id[8];        /* Ref station channel id */
+        //     char         rem_chan_id[8];        /* Rem station channel id */
+        //     short        corr_board;            /* Correlator board serial # */
+        //     short        corr_slot;             /* Correlator board slot */
+        //     short        ref_chan;              /* Ref station SU channel number */
+        //     short        rem_chan;              /* Rem station SU channel number */
+        //     int          post_mortem;           /* 32 1-bit flags */
+        //     int          blocks[1];             /* One entry per block in snake */
+        //     };
+
+
+
+        // std::vector< HMultiTypeMap< std::string, std::string, short, int, std::vector<int> > > aType101Vector;
+
+        // size_t nblocks =
+        //
+        //
+        //
+        // if (strncmp (t1->recId, "101", 3) == 0)
+        //             {           /* Type 101? */
+        //             /* Index number parameters */
+        //             (void) printf ("%s type_101 record_id = %.3s ", me, t101->record_id);
+        //             (void) printf (" version_no = %.2s \n", t101->version_no);
+        //             (void) printf (" status = %#x ", t101->status);
+        //             (void) printf (" nblocks = %d ", flip_short(t101->nblocks));
+        //             (void) printf (" index = %d ", flip_short(t101->index));
+        //             (void) printf (" primary = %d \n", flip_short(t101->primary));
+        //             (void) printf (" ref_chan_id = %.8s ", t101->ref_chan_id);
+        //             (void) printf (" rem_chan_id = %.8s ", t101->rem_chan_id);
+        //             (void) printf (" corr_board = %d ", flip_short(t101->corr_board));
+        //             (void) printf (" corr_slot = %d \n", flip_short(t101->corr_slot));
+        //             (void) printf (" ref_chan = %d ", flip_short(t101->ref_chan));
+        //             (void) printf (" rem_chan = %d ", flip_short(t101->rem_chan));
+        //             (void) printf (" post_mortem = %#x \n", flip_int(t101->post_mortem));
+        //             for (i = 0; i < flip_short(t101->nblocks); i++)
+        //                 {           /* Each block */
+        //                 (void) printf (" blocks[%d] = 0x%8.8x ", i, flip_int(t101->blocks[i]));
+        //                 if (i % 3 == 2)
+        //                     (void) printf ("\n");
+        //                 }
+        //             if (flip_short(t101->nblocks) % 3 != 0)
+        //                 (void) printf ("\n");
+        //             continue;
 
 
         // struct mk4_corel

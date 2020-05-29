@@ -24,7 +24,8 @@ class HDateTime
     public:
 
         HDateTime();
-        HDateTime(int year, int day, int hour, int minute, float second);
+        HDateTime(short year, short day, short hour, short minute, float second); //useful for init
+
         virtual ~HDateTime();
 
 

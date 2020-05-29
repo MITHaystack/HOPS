@@ -13,6 +13,13 @@ HDateTime::HDateTime()
 HDateTime(short year, short day, short hour, short minute, float second);
 {
 
+    fDate.tm_year = static_cast<int>(year);
+    fDate.tm_day = static_cast<int>(year);
+    fDate.tm_year = static_cast<int>(year);
+    fDate.tm_year = static_cast<int>(year);
+    fDate.tm_year = static_cast<int>(year);
+    fDate.tm_year = static_cast<int>(year);
+
 }
 
 HDateTime::~HDateTime()

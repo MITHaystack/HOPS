@@ -16,6 +16,7 @@
 #include <iostream>
 
 #include "HMeta.hh"
+#include "HNamed.hh"
 
 namespace hops
 {
@@ -88,6 +89,7 @@ template< typename XKeyType, typename XValueType, typename... XValueTypeS >
 class HMultiTypeMap< XKeyType, XValueType, XValueTypeS...>: public HMultiTypeMap< XKeyType, XValueType >, HMultiTypeMap< XKeyType, XValueTypeS... >
 {
     public:
+
         using HMultiTypeMap< XKeyType, XValueType >::insert;
         using HMultiTypeMap< XKeyType, XValueTypeS... >::insert;
 
@@ -97,6 +99,13 @@ class HMultiTypeMap< XKeyType, XValueType, XValueTypeS...>: public HMultiTypeMap
         using HMultiTypeMap< XKeyType, XValueType >::dump_map;
         using HMultiTypeMap< XKeyType, XValueTypeS... >::dump_map;
 };
+
+// template< typename XKeyType, typename XValueType, typename... XValueTypeS >
+// class HNamedMultiTypeMap< XKeyType, XValueType, XValueTypeS...>: public HMultiTypeMap< XKeyType, XValueType, XValueTypeS... >, public HNamed
+// {
+//
+//
+// }
 
 
 }
