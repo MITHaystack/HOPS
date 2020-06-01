@@ -1,6 +1,7 @@
 #include "HMK4CorelInterface.hh"
 
 #include "HMultiTypeMap.hh"
+
 #include <array>
 #include <vector>
 #include <cstring>
@@ -136,16 +137,26 @@ HMK4CorelInterface::ExportCorelFile()
 
         struct type_101* ptr = fCorel->index->t101;
         struct type_101* t101 = ptr;
-        for(int i=0; i < nindex; i++)
+
+
+        //see fourfit set_pointers.c for most of the mk4_corel access logic
+        struct mk4_corel::index_tag* idx;
+        for(int i=0; i<fCorel->index_space; i++)
         {
+            idx = fCorel->index + i;
+            if( (t101 = idx->t101) == NULL) continue;
+
+        // for(int i=0; i < nindex; i++)
+        // {
             Type101Map tmp;
             //extract all of the type101 index records
 
-            ptr = &(fCorel->index->t101[i]);
-            t101 = ptr;
+            //ptr = &(fCorel->index->t101[i]);
+            //t101 = ptr;
             //check that the record_id info is a '101'
-            //if( strncmp(ptr->record_id, "101", 3) == 0)
+            if( strncmp(t101->record_id, "101", 3) == 0)
             {
+                std::cout<<"i = "<<i<<std::endl;
                 (void) printf ("type_101 record_id = %.3s ", t101->record_id);
                 (void) printf (" version_no = %.2s \n", t101->version_no);
                 (void) printf (" status = %#x ", t101->status);
@@ -159,9 +170,9 @@ HMK4CorelInterface::ExportCorelFile()
                 (void) printf (" ref_chan = %d ", (t101->ref_chan));
                 (void) printf (" rem_chan = %d ", (t101->rem_chan));
                 (void) printf (" post_mortem = %#x \n", (t101->post_mortem));
-                for (i = 0; i < (t101->nblocks); i++)
+                for (int j = 0; j < (t101->nblocks); j++)
                 {           /* Each block */
-                    (void) printf (" blocks[%d] = 0x%8.8x ", i, (t101->blocks[i]));
+                    (void) printf (" blocks[%d] = 0x%8.8x ", j, (t101->blocks[j]));
                 }
 
                 int buffsize = sizeof(struct type_101);
@@ -176,7 +187,7 @@ HMK4CorelInterface::ExportCorelFile()
                 //ptr += buffsize;
                 //t101 = ptr;
 
-                std::cout<<i<<", "<<ptr<<"  buff = "<<buffsize<<std::endl;
+                //std::cout<<i<<", "<<ptr<<"  buff = "<<buffsize<<std::endl;
 
                 //type101vector.push_back(tmp);
                 // tmp.insert( std::string("type_101.record_id"), std::string(fCorel->id->record_id, 3) );
@@ -184,6 +195,10 @@ HMK4CorelInterface::ExportCorelFile()
                 // tmp.insert( std::string("type_101.unused1"), std::string(fCorel->id->unused1, 3) );
                 // tmp.insert( std::string("type_101.date"), std::string(fCorel->id->date, 16) );
                 // tmp.insert( std::string("type_101.name"), std::string(fCorel->id->name, 40) );
+            }
+            else
+            {
+                std::cout<<"got a different record id = "<<std::endl;//<< std::string(r->record_id,3) <<std::endl;
             }
 
 

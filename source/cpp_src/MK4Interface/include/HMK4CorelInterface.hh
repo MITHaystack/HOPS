@@ -16,6 +16,7 @@
 //mk4 IO library
 extern "C"
 {
+    #include "mk4_records.h"
     #include "mk4_data.h"
     #include "mk4_dfio.h"
     #include "mk4_vex.h"
