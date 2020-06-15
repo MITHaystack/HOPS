@@ -66,6 +66,7 @@ HMK4CorelInterface::ReadCorelFile(const std::string& filename)
     std::cout<<"done read"<<std::endl;
 }
 
+
 void
 HMK4CorelInterface::ExportCorelFile()
 {
@@ -77,22 +78,22 @@ HMK4CorelInterface::ExportCorelFile()
 
         //insert the type_100 meta data
         std::cout<<"getting type_000 info"<<std::endl;
-        meta.insert( std::string("type_000.record_id"), std::string(fCorel->id->record_id, 3) );
-        meta.insert( std::string("type_000.version_no"), std::string(fCorel->id->version_no, 2) );
-        meta.insert( std::string("type_000.unused1"), std::string(fCorel->id->unused1, 3) );
-        meta.insert( std::string("type_000.date"), std::string(fCorel->id->date, 16) );
-        meta.insert( std::string("type_000.name"), std::string(fCorel->id->name, 40) );
+        meta.insert( std::string("type_000.record_id"), getstr(fCorel->id->record_id, 3) );
+        meta.insert( std::string("type_000.version_no"), getstr(fCorel->id->version_no, 2) );
+        meta.insert( std::string("type_000.unused1"), getstr(fCorel->id->unused1, 3) );
+        meta.insert( std::string("type_000.date"), getstr(fCorel->id->date, 16) ); //max length 16
+        meta.insert( std::string("type_000.name"), getstr(fCorel->id->name, 40) ); //max length 40
 
 
         std::cout<<"getting type_100 info"<<std::endl;
-        meta.insert( std::string("type_100.record_id"), std::string(fCorel->t100->record_id, 3) );
-        meta.insert( std::string("type_100.version_no"), std::string(fCorel->t100->version_no, 2) );
-        meta.insert( std::string("type_100.unused1"), std::string(fCorel->t100->unused1, 3) );
+        meta.insert( std::string("type_100.record_id"), getstr(fCorel->t100->record_id, 3) );
+        meta.insert( std::string("type_100.version_no"), getstr(fCorel->t100->version_no, 2) );
+        meta.insert( std::string("type_100.unused1"), getstr(fCorel->t100->unused1, 3) );
         //meta.insert( std::string("type_100.procdate"), std::string(fCorel->t100->procdate) );
-        meta.insert( std::string("type_100.baseline"), std::string(fCorel->t100->baseline, 2) );
-        meta.insert( std::string("type_100.rootname"), std::string(fCorel->t100->rootname, 34) );
-        meta.insert( std::string("type_100.qcode"), std::string(fCorel->t100->qcode, 2) );
-        meta.insert( std::string("type_100.unused2"), std::string(fCorel->t100->unused2, 6) );
+        meta.insert( std::string("type_100.baseline"), getstr(fCorel->t100->baseline, 2) );
+        meta.insert( std::string("type_100.rootname"), getstr(fCorel->t100->rootname, 34) ); //max length 34
+        meta.insert( std::string("type_100.qcode"), getstr(fCorel->t100->qcode, 2) );
+        meta.insert( std::string("type_100.unused2"), getstr(fCorel->t100->unused2, 6) );
         meta.insert( std::string("type_100.pct_done"), fCorel->t100->pct_done );
         //meta.insert( std::string("type_100.start"), fCorel->t100->start );
         //meta.insert( std::string("type_100.stop"), fCorel->t100->stop );
@@ -125,13 +126,10 @@ HMK4CorelInterface::ExportCorelFile()
         int nindex = 0;
         meta.retrieve(std::string("type_100.nindex"), nindex );
 
-
-
         std::cout<<"sizeof 101 "<<sizeof(struct type_101)<<std::endl;
         std::vector< Type101Map > type101vector;
 
         std::cout<<"test"<<std::endl;
-
         std::cout<<"ap space"<< fCorel->index->ap_space<<std::endl;
 
 
@@ -139,70 +137,158 @@ HMK4CorelInterface::ExportCorelFile()
         struct type_101* t101 = ptr;
 
 
-        //see fourfit set_pointers.c for most of the mk4_corel access logic
+        //see fourfit set_pointers.c for some of the mk4_corel access logic
         struct mk4_corel::index_tag* idx;
         for(int i=0; i<fCorel->index_space; i++)
         {
             idx = fCorel->index + i;
-            if( (t101 = idx->t101) == NULL) continue;
-
-        // for(int i=0; i < nindex; i++)
-        // {
-            Type101Map tmp;
-            //extract all of the type101 index records
-
-            //ptr = &(fCorel->index->t101[i]);
-            //t101 = ptr;
-            //check that the record_id info is a '101'
-            if( strncmp(t101->record_id, "101", 3) == 0)
+            if( (t101 = idx->t101) != NULL)
             {
-                std::cout<<"i = "<<i<<std::endl;
-                (void) printf ("type_101 record_id = %.3s ", t101->record_id);
-                (void) printf (" version_no = %.2s \n", t101->version_no);
-                (void) printf (" status = %#x ", t101->status);
-                (void) printf (" nblocks = %d ", (t101->nblocks));
-                (void) printf (" index = %d ", (t101->index));
-                (void) printf (" primary = %d \n", (t101->primary));
-                (void) printf (" ref_chan_id = %.8s ", t101->ref_chan_id);
-                (void) printf (" rem_chan_id = %.8s ", t101->rem_chan_id);
-                (void) printf (" corr_board = %d ", (t101->corr_board));
-                (void) printf (" corr_slot = %d \n", (t101->corr_slot));
-                (void) printf (" ref_chan = %d ", (t101->ref_chan));
-                (void) printf (" rem_chan = %d ", (t101->rem_chan));
-                (void) printf (" post_mortem = %#x \n", (t101->post_mortem));
+                Type101Map tmp;
+                //extract all of the type101 index records
+                tmp.insert(std::string("type_101.record_id"), getstr(t101->record_id, 3) );
+                tmp.insert(std::string("type_101.version_no"), getstr(t101->version_no, 2) );
+                tmp.insert(std::string("type_101.status"), getstr(t101->version_no, 1) );
+                tmp.insert(std::string("type_101.nblocks"), t101->nblocks);
+                tmp.insert(std::string("type_101.index"), t101->index);
+                tmp.insert(std::string("type_101.primary"), t101->primary);
+                tmp.insert(std::string("type_101.ref_chan_id"), getstr(t101->ref_chan_id,8) );
+                tmp.insert(std::string("type_101.rem_chan_id"), getstr(t101->rem_chan_id,8) );
+                tmp.insert(std::string("type_101.corr_board"), t101->corr_board);
+                tmp.insert(std::string("type_101.corr_slot"), t101->corr_slot);
+                tmp.insert(std::string("type_101.ref_chan"), t101->ref_chan );
+                tmp.insert(std::string("type_101.rem_chan"), t101->rem_chan);
+                tmp.insert(std::string("type_101.post_mortem"), t101->post_mortem);
+                std::vector<int> tmp_blocks;
                 for (int j = 0; j < (t101->nblocks); j++)
                 {           /* Each block */
-                    (void) printf (" blocks[%d] = 0x%8.8x ", j, (t101->blocks[j]));
+                    tmp_blocks.push_back(t101->blocks[j]);
                 }
+                tmp.insert( std::string("type_101.blocks"), tmp_blocks);
+                type101vector.push_back(tmp);
 
-                int buffsize = sizeof(struct type_101);
-                std::cout<< std::string(ptr->record_id,3)<<std::endl;
-                int n = ptr->nblocks;
-                tmp.insert(std::string("nblocks"), n);
-                std::cout<<"nblocks = "<<n<<std::endl;
-                std::cout<<"buffsize1: "<<buffsize<<std::endl;
-                buffsize += (n-1)*sizeof(int);
-                std::cout<<"buffsize2: "<<buffsize<<std::endl;
-
-                //ptr += buffsize;
-                //t101 = ptr;
-
-                //std::cout<<i<<", "<<ptr<<"  buff = "<<buffsize<<std::endl;
-
-                //type101vector.push_back(tmp);
-                // tmp.insert( std::string("type_101.record_id"), std::string(fCorel->id->record_id, 3) );
-                // tmp.insert( std::string("type_101.version_no"), std::string(fCorel->id->version_no, 2) );
-                // tmp.insert( std::string("type_101.unused1"), std::string(fCorel->id->unused1, 3) );
-                // tmp.insert( std::string("type_101.date"), std::string(fCorel->id->date, 16) );
-                // tmp.insert( std::string("type_101.name"), std::string(fCorel->id->name, 40) );
+                }
+                else
+                {
+                    std::cout<<"got a different record id = "<<std::endl;//<< std::string(r->record_id,3) <<std::endl;
+                }
             }
-            else
+
+            for(unsigned int i=0; i<type101vector.size(); i++)
             {
-                std::cout<<"got a different record id = "<<std::endl;//<< std::string(r->record_id,3) <<std::endl;
+                type101vector[i].dump_map<std::string>();
+                type101vector[i].dump_map<short>();
+                type101vector[i].dump_map<int>();
             }
 
 
-        }
+
+
+
+
+        }//end of index space loop
+
+        //
+        //
+        // /* ** Type-120 record? ** */
+        //         else if (strncmp (t1->recId, "120", 3) == 0)
+        //             {
+        //             /* * Yes.  Calculate the length of the additional read * */
+        //             /* Special case variable-length record */
+        //             nbuff = sizeof (struct type_120) - sizeof (union lag_data) - k;
+        //             nlags = flip_short(t120->nlags);
+        //             /* (We've already read enough of a 120 to see type and nlags) */
+        //             if (t120->type == COUNTS_PER_LAG)   /* 1 */
+        //                 nbuff += nlags * sizeof (struct counts_per_lag);
+        //             else if (t120->type == COUNTS_GLOBAL)   /* 2 */
+        //                 nbuff += sizeof (struct counts_global) +
+        //                 (nlags - 1) * sizeof (struct lag_tag);
+        //             else if (t120->type == AUTO_GLOBAL) /* 3 */
+        //                 nbuff += sizeof (struct auto_global) + (nlags - 1) * sizeof (int);
+        //             else if (t120->type == AUTO_PER_LAG)    /* 4 */
+        //                 nbuff += nlags * sizeof (struct auto_per_lag);
+        //             else if (t120->type == SPECTRAL)    /* 5 */
+        //                 nbuff += nlags * sizeof (struct spectral);
+        //             else
+        //                 {       /* No other type-120 types */
+        //                 (void) fprintf (stderr,
+        //                     "%s%s type-120 %d at %dB?\n",
+        //                     me, ERRMSG, t120->type, tlast);
+        //                 return (-20);   /* Error */
+        //                 }
+        //             countt[3]++;        /* Increment record count */
+        //             }
+        //
+        //
+        // /* * Type-120 record? * */
+        //         if (strncmp (t1->recId, "120", 3) == 0)
+        //             {           /* Type 120? */
+        //             /* Sorted lag data */
+        //             (void) printf ("%s got type 120 \n", me);
+        //             (void) printf (" record_id = %.3s ", t120->record_id);
+        //             (void) printf ("version_no = %.2s ", t120->version_no);
+        //             (void) printf ("type = %d \n", t120->type);
+        //             nlags = flip_short(t120->nlags);
+        //             (void) printf (" nlags = %d ", nlags);
+        //             (void) printf ("baseline = %.2s ", t120->baseline);
+        //             (void) printf ("rootcode = %.6s ", t120->rootcode);
+        //             (void) printf ("index = %d ", flip_int(t120->index));
+        //             (void) printf ("ap = %d \n", flip_int(t120->ap));
+        //             (void) printf (" weight = %8.4f ", flip_float(t120->fw.weight));
+        //             (void) printf ("status = %#8.8x ", flip_int(t120->status));
+        //             /* (void) printf("bitshift = %f ", t120->bitshift); */
+        //             (void) printf ("fr_delay = %d ", flip_int(t120->fr_delay));
+        //             /* (void) printf("fbit = %f \n", t120->fbit); */
+        //             (void) printf ("delay_rate = %d \n", flip_int(t120->delay_rate));
+        //             if (t120->type == COUNTS_GLOBAL)
+        //                 {
+        //                 (void) printf (" cg.cosbits = 0x%8.8x ", flip_int(pcg->cosbits));
+        //                 (void) printf ("cg.sinbits = 0x%8.8x \n", flip_int(pcg->sinbits));
+        //                 }
+        //             else if (t120->type == AUTO_GLOBAL)
+        //                 (void) printf (" ag.cosbits = 0x%8.8x \n", flip_int(pag->cosbits));
+        //             for (j = 0; j < nlags; j++)
+        //                 {           /* Through union lag_data */
+        //                 (void) printf (" j =%3d ", j);
+        //                 if (t120->type == COUNTS_PER_LAG)
+        //                     {
+        //                     (void) printf (" coscor = 0x%8.8x %9d ",
+        //                                flip_int(pcpl[j].coscor), flip_int(pcpl[j].coscor));
+        //                     (void) printf (" cosbits = 0x%8.8x %9d \n",
+        //                                flip_int(pcpl[j].cosbits), flip_int(pcpl[j].cosbits));
+        //                     (void) printf ("         sincor = 0x%8.8x %9d ",
+        //                                flip_int(pcpl[j].sincor), flip_int(pcpl[j].sincor));
+        //                     (void) printf (" sinbits = 0x%8.8x %9d \n",
+        //                                flip_int(pcpl[j].sinbits), flip_int(pcpl[j].sinbits));
+        //                     }
+        //                 else if (t120->type == COUNTS_GLOBAL)
+        //                     {
+        //                     (void) printf (" lags[].coscor = 0x%8.8x %9d ",
+        //                                flip_int(pcg->lags[j].coscor), flip_int(pcg->lags[j].coscor));
+        //                     (void) printf (" lags[].sincor = 0x%8.8x %9d \n",
+        //                                flip_int(pcg->lags[j].sincor), flip_int(pcg->lags[j].sincor));
+        //                     }
+        //                 else if (t120->type == AUTO_PER_LAG)
+        //                     {
+        //                     (void) printf (" cosbits = 0x%8.8x %9d ",
+        //                                flip_int(papl[j].cosbits), flip_int(papl[j].cosbits));
+        //                     (void) printf (" coscor = 0x%8.8x %9d \n",
+        //                                flip_int(papl[j].coscor), flip_int(papl[j].coscor));
+        //                     }
+        //                 else if (t120->type == AUTO_GLOBAL)
+        //                     (void) printf (" coscor[] = 0x%8.8x %9d \n",
+        //                        flip_int(pag->coscor[j]), flip_int(pag->coscor[j]));
+        //                 else if (t120->type == SPECTRAL)
+        //                     {
+        //                     (void) printf (" real %9.6f  imag %9.6f\n",
+        //                                flip_float (psp[j].re), flip_float (psp[j].im));
+        //                     }
+        //                 }           /* End of for j lags */
+        //             continue;
+        //             }           /* End of if type 120 */
+        //
+
+
 
         // struct type_101
         //     {
@@ -222,39 +308,6 @@ HMK4CorelInterface::ExportCorelFile()
         //     int          blocks[1];             /* One entry per block in snake */
         //     };
 
-
-
-        // std::vector< HMultiTypeMap< std::string, std::string, short, int, std::vector<int> > > aType101Vector;
-
-        // size_t nblocks =
-        //
-        //
-        //
-        // if (strncmp (t1->recId, "101", 3) == 0)
-        //             {           /* Type 101? */
-        //             /* Index number parameters */
-        //             (void) printf ("%s type_101 record_id = %.3s ", me, t101->record_id);
-        //             (void) printf (" version_no = %.2s \n", t101->version_no);
-        //             (void) printf (" status = %#x ", t101->status);
-        //             (void) printf (" nblocks = %d ", flip_short(t101->nblocks));
-        //             (void) printf (" index = %d ", flip_short(t101->index));
-        //             (void) printf (" primary = %d \n", flip_short(t101->primary));
-        //             (void) printf (" ref_chan_id = %.8s ", t101->ref_chan_id);
-        //             (void) printf (" rem_chan_id = %.8s ", t101->rem_chan_id);
-        //             (void) printf (" corr_board = %d ", flip_short(t101->corr_board));
-        //             (void) printf (" corr_slot = %d \n", flip_short(t101->corr_slot));
-        //             (void) printf (" ref_chan = %d ", flip_short(t101->ref_chan));
-        //             (void) printf (" rem_chan = %d ", flip_short(t101->rem_chan));
-        //             (void) printf (" post_mortem = %#x \n", flip_int(t101->post_mortem));
-        //             for (i = 0; i < flip_short(t101->nblocks); i++)
-        //                 {           /* Each block */
-        //                 (void) printf (" blocks[%d] = 0x%8.8x ", i, flip_int(t101->blocks[i]));
-        //                 if (i % 3 == 2)
-        //                     (void) printf ("\n");
-        //                 }
-        //             if (flip_short(t101->nblocks) % 3 != 0)
-        //                 (void) printf ("\n");
-        //             continue;
 
 
         // struct mk4_corel
@@ -299,6 +352,7 @@ HMK4CorelInterface::ExportCorelFile()
         //     int          ndrec;                 /* Number of data records */
         //     int          nindex;                /* Number of index numbers present */
         //     short        nlags;                 /* # of lags in a type_120 record */
+
         //     short        nblocks;               /* # blocks per index number */
         //     };
 
@@ -353,12 +407,15 @@ HMK4CorelInterface::ExportCorelFile()
         //     float           weight;         // in spectral mode: ap weight (0.0-1.0)
         //     };
 
+}
 
 
 
 
-
-    }
+std::string
+HMK4CorelInterface::getstr(const char* char_array, size_t max_size)
+{
+    return std::string( char_array, std::min( strlen(char_array), max_size) );
 }
 
 

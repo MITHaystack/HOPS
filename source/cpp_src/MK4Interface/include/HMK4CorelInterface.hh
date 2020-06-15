@@ -40,6 +40,8 @@ class HMK4CorelInterface
 
     private:
 
+        std::string getstr(const char* char_array, size_t max_size);
+
         bool fHaveCorel;
         struct mk4_corel* fCorel;
 
