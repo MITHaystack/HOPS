@@ -172,8 +172,17 @@ HMK4CorelInterface::ExportCorelFile()
                 {
                     std::cout<<"got a different record id = "<<std::endl;//<< std::string(r->record_id,3) <<std::endl;
                 }
-            }
 
+
+
+
+
+
+            }//end of index loop
+
+
+
+            //text dump for debug
             for(unsigned int i=0; i<type101vector.size(); i++)
             {
                 type101vector[i].dump_map<std::string>();
@@ -186,108 +195,7 @@ HMK4CorelInterface::ExportCorelFile()
 
 
 
-        }//end of index space loop
-
-        //
-        //
-        // /* ** Type-120 record? ** */
-        //         else if (strncmp (t1->recId, "120", 3) == 0)
-        //             {
-        //             /* * Yes.  Calculate the length of the additional read * */
-        //             /* Special case variable-length record */
-        //             nbuff = sizeof (struct type_120) - sizeof (union lag_data) - k;
-        //             nlags = flip_short(t120->nlags);
-        //             /* (We've already read enough of a 120 to see type and nlags) */
-        //             if (t120->type == COUNTS_PER_LAG)   /* 1 */
-        //                 nbuff += nlags * sizeof (struct counts_per_lag);
-        //             else if (t120->type == COUNTS_GLOBAL)   /* 2 */
-        //                 nbuff += sizeof (struct counts_global) +
-        //                 (nlags - 1) * sizeof (struct lag_tag);
-        //             else if (t120->type == AUTO_GLOBAL) /* 3 */
-        //                 nbuff += sizeof (struct auto_global) + (nlags - 1) * sizeof (int);
-        //             else if (t120->type == AUTO_PER_LAG)    /* 4 */
-        //                 nbuff += nlags * sizeof (struct auto_per_lag);
-        //             else if (t120->type == SPECTRAL)    /* 5 */
-        //                 nbuff += nlags * sizeof (struct spectral);
-        //             else
-        //                 {       /* No other type-120 types */
-        //                 (void) fprintf (stderr,
-        //                     "%s%s type-120 %d at %dB?\n",
-        //                     me, ERRMSG, t120->type, tlast);
-        //                 return (-20);   /* Error */
-        //                 }
-        //             countt[3]++;        /* Increment record count */
-        //             }
-        //
-        //
-        // /* * Type-120 record? * */
-        //         if (strncmp (t1->recId, "120", 3) == 0)
-        //             {           /* Type 120? */
-        //             /* Sorted lag data */
-        //             (void) printf ("%s got type 120 \n", me);
-        //             (void) printf (" record_id = %.3s ", t120->record_id);
-        //             (void) printf ("version_no = %.2s ", t120->version_no);
-        //             (void) printf ("type = %d \n", t120->type);
-        //             nlags = flip_short(t120->nlags);
-        //             (void) printf (" nlags = %d ", nlags);
-        //             (void) printf ("baseline = %.2s ", t120->baseline);
-        //             (void) printf ("rootcode = %.6s ", t120->rootcode);
-        //             (void) printf ("index = %d ", flip_int(t120->index));
-        //             (void) printf ("ap = %d \n", flip_int(t120->ap));
-        //             (void) printf (" weight = %8.4f ", flip_float(t120->fw.weight));
-        //             (void) printf ("status = %#8.8x ", flip_int(t120->status));
-        //             /* (void) printf("bitshift = %f ", t120->bitshift); */
-        //             (void) printf ("fr_delay = %d ", flip_int(t120->fr_delay));
-        //             /* (void) printf("fbit = %f \n", t120->fbit); */
-        //             (void) printf ("delay_rate = %d \n", flip_int(t120->delay_rate));
-        //             if (t120->type == COUNTS_GLOBAL)
-        //                 {
-        //                 (void) printf (" cg.cosbits = 0x%8.8x ", flip_int(pcg->cosbits));
-        //                 (void) printf ("cg.sinbits = 0x%8.8x \n", flip_int(pcg->sinbits));
-        //                 }
-        //             else if (t120->type == AUTO_GLOBAL)
-        //                 (void) printf (" ag.cosbits = 0x%8.8x \n", flip_int(pag->cosbits));
-        //             for (j = 0; j < nlags; j++)
-        //                 {           /* Through union lag_data */
-        //                 (void) printf (" j =%3d ", j);
-        //                 if (t120->type == COUNTS_PER_LAG)
-        //                     {
-        //                     (void) printf (" coscor = 0x%8.8x %9d ",
-        //                                flip_int(pcpl[j].coscor), flip_int(pcpl[j].coscor));
-        //                     (void) printf (" cosbits = 0x%8.8x %9d \n",
-        //                                flip_int(pcpl[j].cosbits), flip_int(pcpl[j].cosbits));
-        //                     (void) printf ("         sincor = 0x%8.8x %9d ",
-        //                                flip_int(pcpl[j].sincor), flip_int(pcpl[j].sincor));
-        //                     (void) printf (" sinbits = 0x%8.8x %9d \n",
-        //                                flip_int(pcpl[j].sinbits), flip_int(pcpl[j].sinbits));
-        //                     }
-        //                 else if (t120->type == COUNTS_GLOBAL)
-        //                     {
-        //                     (void) printf (" lags[].coscor = 0x%8.8x %9d ",
-        //                                flip_int(pcg->lags[j].coscor), flip_int(pcg->lags[j].coscor));
-        //                     (void) printf (" lags[].sincor = 0x%8.8x %9d \n",
-        //                                flip_int(pcg->lags[j].sincor), flip_int(pcg->lags[j].sincor));
-        //                     }
-        //                 else if (t120->type == AUTO_PER_LAG)
-        //                     {
-        //                     (void) printf (" cosbits = 0x%8.8x %9d ",
-        //                                flip_int(papl[j].cosbits), flip_int(papl[j].cosbits));
-        //                     (void) printf (" coscor = 0x%8.8x %9d \n",
-        //                                flip_int(papl[j].coscor), flip_int(papl[j].coscor));
-        //                     }
-        //                 else if (t120->type == AUTO_GLOBAL)
-        //                     (void) printf (" coscor[] = 0x%8.8x %9d \n",
-        //                        flip_int(pag->coscor[j]), flip_int(pag->coscor[j]));
-        //                 else if (t120->type == SPECTRAL)
-        //                     {
-        //                     (void) printf (" real %9.6f  imag %9.6f\n",
-        //                                flip_float (psp[j].re), flip_float (psp[j].im));
-        //                     }
-        //                 }           /* End of for j lags */
-        //             continue;
-        //             }           /* End of if type 120 */
-        //
-
+        }//end of if HaveCorel
 
 
         // struct type_101
