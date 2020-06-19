@@ -5,6 +5,7 @@
 #include <array>
 #include <vector>
 #include <cstring>
+#include <complex>
 
 namespace hops
 {
@@ -12,6 +13,7 @@ namespace hops
 
 typedef HMultiTypeMap< std::string, std::string, short, int, std::vector<int> > Type101Map;
 
+typedef HMultiTypeMap< std::string, std::string, short, int, float, std::vector< std::complex<double> > > Type120Map;
 
 template< typename XType, size_t N>
 std::array<XType, N> create_and_fill_array(XType values[N])
@@ -129,13 +131,15 @@ HMK4CorelInterface::ExportCorelFile()
         std::cout<<"sizeof 101 "<<sizeof(struct type_101)<<std::endl;
         std::vector< Type101Map > type101vector;
 
+        std::cout<<"sizeof 120"<<sizeof(struct type_120)<<std::endl;
+        std::vector< Type120Map > type120vector;
+
         std::cout<<"test"<<std::endl;
         std::cout<<"ap space"<< fCorel->index->ap_space<<std::endl;
 
 
         struct type_101* ptr = fCorel->index->t101;
         struct type_101* t101 = ptr;
-
 
         //see fourfit set_pointers.c for some of the mk4_corel access logic
         struct mk4_corel::index_tag* idx;
@@ -144,176 +148,101 @@ HMK4CorelInterface::ExportCorelFile()
             idx = fCorel->index + i;
             if( (t101 = idx->t101) != NULL)
             {
-                Type101Map tmp;
+                Type101Map tmp101;
                 //extract all of the type101 index records
-                tmp.insert(std::string("type_101.record_id"), getstr(t101->record_id, 3) );
-                tmp.insert(std::string("type_101.version_no"), getstr(t101->version_no, 2) );
-                tmp.insert(std::string("type_101.status"), getstr(t101->version_no, 1) );
-                tmp.insert(std::string("type_101.nblocks"), t101->nblocks);
-                tmp.insert(std::string("type_101.index"), t101->index);
-                tmp.insert(std::string("type_101.primary"), t101->primary);
-                tmp.insert(std::string("type_101.ref_chan_id"), getstr(t101->ref_chan_id,8) );
-                tmp.insert(std::string("type_101.rem_chan_id"), getstr(t101->rem_chan_id,8) );
-                tmp.insert(std::string("type_101.corr_board"), t101->corr_board);
-                tmp.insert(std::string("type_101.corr_slot"), t101->corr_slot);
-                tmp.insert(std::string("type_101.ref_chan"), t101->ref_chan );
-                tmp.insert(std::string("type_101.rem_chan"), t101->rem_chan);
-                tmp.insert(std::string("type_101.post_mortem"), t101->post_mortem);
+                tmp101.insert(std::string("type_101.record_id"), getstr(t101->record_id, 3) );
+                tmp101.insert(std::string("type_101.version_no"), getstr(t101->version_no, 2) );
+                tmp101.insert(std::string("type_101.status"), getstr(&(t101->status), 1) );
+                tmp101.insert(std::string("type_101.nblocks"), t101->nblocks);
+                tmp101.insert(std::string("type_101.index"), t101->index);
+                tmp101.insert(std::string("type_101.primary"), t101->primary);
+                tmp101.insert(std::string("type_101.ref_chan_id"), getstr(t101->ref_chan_id,8) );
+                tmp101.insert(std::string("type_101.rem_chan_id"), getstr(t101->rem_chan_id,8) );
+                tmp101.insert(std::string("type_101.corr_board"), t101->corr_board);
+                tmp101.insert(std::string("type_101.corr_slot"), t101->corr_slot);
+                tmp101.insert(std::string("type_101.ref_chan"), t101->ref_chan );
+                tmp101.insert(std::string("type_101.rem_chan"), t101->rem_chan);
+                tmp101.insert(std::string("type_101.post_mortem"), t101->post_mortem);
                 std::vector<int> tmp_blocks;
                 for (int j = 0; j < (t101->nblocks); j++)
                 {           /* Each block */
                     tmp_blocks.push_back(t101->blocks[j]);
                 }
-                tmp.insert( std::string("type_101.blocks"), tmp_blocks);
-                type101vector.push_back(tmp);
+                tmp101.insert( std::string("type_101.blocks"), tmp_blocks);
+                type101vector.push_back(tmp101);
 
-                }
-                else
+                //now we want to extract the data in the type_120's
+                //note that this data is dumped into the type120vector in a completely disorganized fashion
+                //and needs to be restructured later into a sensibly ordered array
+                for(int ap=0; ap<idx->ap_space; ap++)
                 {
-                    std::cout<<"got a different record id = "<<std::endl;//<< std::string(r->record_id,3) <<std::endl;
+                    Type120Map tmp120;
+                    struct type_120* t120 = idx->t120[ap];
+                    if(t120 != NULL)
+                    {
+                        if(t120->type == SPECTRAL)
+                        {
+                            tmp120.insert(std::string("type_120.record_id"), getstr(t120->record_id, 3) );
+                            tmp120.insert(std::string("type_120.version_no"), getstr(t120->version_no, 2) );
+                            tmp120.insert(std::string("type_120.type"), getstr(&(t120->type), 1) );
+                            tmp120.insert(std::string("type_120.nlags"), t120->nlags);
+                            tmp120.insert(std::string("type_120.baseline"), getstr(t120->baseline, 2) );
+                            tmp120.insert(std::string("type_120.rootcode"), getstr(t120->rootcode, 6) );
+                            tmp120.insert(std::string("type_120.index"), t120->index );
+                            tmp120.insert(std::string("type_120.ap"),t120->ap );
+                            tmp120.insert(std::string("type_120.fw"), t120->fw.weight );
+                            tmp120.insert(std::string("type_120.status"), t120->status);
+                            tmp120.insert(std::string("type_120.fr_delay"), t120->fr_delay );
+                            tmp120.insert(std::string("type_120.delay_rate"), t120->delay_rate );
+                            std::vector< std::complex<double> > lag_data;
+                            for( unsigned int j=0; j<t120->nlags; j++)
+                            {
+                                double re = t120->ld.spec[j].re;
+                                double im = t120->ld.spec[j].im;
+                                lag_data.push_back( std::complex<double>(re,im) );
+                            }
+                            tmp120.insert(std::string("type_120.ld"), lag_data);
+
+                            type120vector.push_back(tmp120);
+
+                        }
+                        else
+                        {
+                            std::cout<<"non-spectral type-120 no longer supported."<<std::endl;
+                        }
+                    }
                 }
-
-
-
-
-
-
-            }//end of index loop
-
-
-
-            //text dump for debug
-            for(unsigned int i=0; i<type101vector.size(); i++)
+            }
+            else
             {
-                type101vector[i].dump_map<std::string>();
-                type101vector[i].dump_map<short>();
-                type101vector[i].dump_map<int>();
+                std::cout<<"got a different record id = "<<std::endl;//<< std::string(r->record_id,3) <<std::endl;
             }
 
+        }//end of index loop
+
+        std::cout<<"dump the type 101s"<<std::endl;
 
 
+        //text dump for debug
+        for(unsigned int i=0; i<type101vector.size(); i++)
+        {
+            type101vector[i].dump_map<std::string>();
+            type101vector[i].dump_map<short>();
+            type101vector[i].dump_map<int>();
+        }
 
+        std::cout<<"dump the type 120s"<<std::endl;
 
+        //text dump for debug
+        for(unsigned int i=0; i<type120vector.size(); i++)
+        {
+            type120vector[i].dump_map<std::string>();
+            type120vector[i].dump_map<short>();
+            type120vector[i].dump_map<int>();
+            type120vector[i].dump_map<float>();
+        }
 
-        }//end of if HaveCorel
-
-
-        // struct type_101
-        //     {
-        //     char         record_id[3];          /* Standard 3-digit id */
-        //     char         version_no[2];         /* Standard 2-digit version # */
-        //     char         status;                /* Reserved space */
-        //     short        nblocks;               /* Needed up front for IO library */
-        //     short        index;                 /* Index number */
-        //     short        primary;               /* Index number of primary 101 */
-        //     char         ref_chan_id[8];        /* Ref station channel id */
-        //     char         rem_chan_id[8];        /* Rem station channel id */
-        //     short        corr_board;            /* Correlator board serial # */
-        //     short        corr_slot;             /* Correlator board slot */
-        //     short        ref_chan;              /* Ref station SU channel number */
-        //     short        rem_chan;              /* Rem station SU channel number */
-        //     int          post_mortem;           /* 32 1-bit flags */
-        //     int          blocks[1];             /* One entry per block in snake */
-        //     };
-
-
-
-        // struct mk4_corel
-        //     {
-        //     void *allocated[MAXIND + 4];                /* Ignore type 120 recs */
-        //     int nalloc;
-        //     char *file_image;
-        //     struct type_000 *id;
-        //     struct type_100 *t100;
-        //     int index_space;
-        //     struct index_tag
-        //         {
-        //         struct type_101 *t101;
-        //         int ap_space;
-        //         struct type_120 **t120;
-        //         } *index;
-        //     };
-
-
-        // struct type_000
-        //     {
-        //     char                record_id[3];           /* Standard 3-digit id */
-        //     char                version_no[2];          /* Standard 2-digit version # */
-        //     char                unused1[3];             /* Reserved space */
-        //     char                date[16];               /* Creation date " yyyyddd-hhmmss " */
-        //     char                name[40];               /* exp/scan/name, null-terminated */
-        //     };
-
-        // struct type_100
-        //     {
-        //     char         record_id[3];          /* Standard 3-digit id */
-        //     char         version_no[2];         /* Standard 2-digit version # */
-        //     char         unused1[3];            /* Reserved space */
-        //     struct date  procdate;              /* Correlation time */
-        //     char         baseline[2];           /* Standard baseline id */
-        //     char         rootname[34];          /* Root filename, null-terminated */
-        //     char         qcode[2];              /*         meta.insert( std::string("type_100.pct_done"), fCorel->t100->pct_done );Quality code of correlation */
-        //     char         unused2[6];            /* Padding */
-        //     float        pct_done;              /* 0-100% of scheduled data processed */
-        //     struct date  start;                 /* Time of first AP */
-        //     struct date  stop;                  /* Time of last AP */
-        //     int          ndrec;                 /* Number of data records */
-        //     int          nindex;                /* Number of index numbers present */
-        //     short        nlags;                 /* # of lags in a type_120 record */
-
-        //     short        nblocks;               /* # blocks per index number */
-        //     };
-
-        // struct type_101
-        //     {
-        //     char         record_id[3];          /* Standard 3-digit id */
-        //     char         version_no[2];         /* Standard 2-digit version # */
-        //     char         status;                /* Reserved space */
-        //     short        nblocks;               /* Needed up front for IO library */
-        //     short        index;                 /* Index number */
-        //     short        primary;               /* Index number of primary 101 */
-        //     char         ref_chan_id[8];        /* Ref station channel id */
-        //     char         rem_chan_id[8];        /* Rem station channel id */
-        //     short        corr_board;            /* Correlator board serial # */
-        //     short        corr_slot;             /* Correlator board slot */
-        //     short        ref_chan;              /* Ref station SU channel number */
-        //     short        rem_chan;              /* Rem station SU channel number */
-        //     int          post_mortem;           /* 32 1-bit flags */
-        //     int          blocks[1];             /* One entry per block in snake */
-        //     };
-
-        // struct type_120
-        //     {
-        //     char            record_id[3];   /* Standard 3-digit id                    */
-        //     char            version_no[2];  /* Standard 2-digit version #             */
-        //     char            type;           /* Data type (defines above)              */
-        //     short           nlags;          /* Needed by IO library                   */
-        //     char            baseline[2];    /* Standard baseline id                   */
-        //     char            rootcode[6];    /* Root suffix                            */
-        //     int             index;          /* Index number for type 101 rec.         */
-        //     int             ap;             /* Acc period number                      */
-        //     union flag_wgt  fw;             // either flag or weight for lag or spectral
-        //     int             status;         /* Up to 32 status bits                   */
-        //     int             fr_delay;       /* Mid-AP fractional delay (bits * 2^32)  */
-        //     int             delay_rate;     /* Mid-AP delay rate (bits/sysclk * 2^32) */
-        //     union lag_data  ld;             /* Correlation counts                     */
-        //     };
-        //
-        //
-        // union lag_data
-        //     {
-        //     struct counts_per_lag cpl[1];
-        //     struct counts_global  cg;
-        //     struct auto_per_lag  apl[1];
-        //     struct auto_global  ag;
-        //     struct spectral spec[1];
-        //     };
-        //
-        // union flag_wgt
-        //     {
-        //     int             flag;           /* Up to 32 correlation flags             */
-        //     float           weight;         // in spectral mode: ap weight (0.0-1.0)
-        //     };
+    }//end of if HaveCorel
 
 }
 
@@ -325,8 +254,6 @@ HMK4CorelInterface::getstr(const char* char_array, size_t max_size)
 {
     return std::string( char_array, std::min( strlen(char_array), max_size) );
 }
-
-
 
 
 }
