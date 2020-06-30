@@ -195,13 +195,16 @@ HMK4CorelInterface::ExportCorelFile()
                             tmp120.insert(std::string("type_120.fr_delay"), t120->fr_delay );
                             tmp120.insert(std::string("type_120.delay_rate"), t120->delay_rate );
                             std::vector< std::complex<double> > lag_data;
-                            for( unsigned int j=0; j<t120->nlags; j++)
+                            for(int j=0; j<t120->nlags; j++)
                             {
                                 double re = t120->ld.spec[j].re;
                                 double im = t120->ld.spec[j].im;
                                 lag_data.push_back( std::complex<double>(re,im) );
+                                std::cout<<"("<<re<<","<<im<<")"<<std::endl;
                             }
                             tmp120.insert(std::string("type_120.ld"), lag_data);
+
+
 
                             type120vector.push_back(tmp120);
 

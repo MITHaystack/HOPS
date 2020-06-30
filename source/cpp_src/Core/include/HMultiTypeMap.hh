@@ -16,7 +16,6 @@
 #include <iostream>
 
 #include "HMeta.hh"
-#include "HNamed.hh"
 
 namespace hops
 {
