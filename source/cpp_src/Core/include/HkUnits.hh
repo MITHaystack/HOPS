@@ -1,9 +1,9 @@
-#ifndef HUnits_HH__
-#define HUnits_HH__
+#ifndef HkUnits_HH__
+#define HkUnits_HH__
 
 /*
-*File: HUnits.hh
-*Class: HUnits
+*File: HkUnits.hh
+*Class: HkUnits
 *Author: J. Barrett
 *Email: barrettj@mit.edu
 *Date: 2020-05-15T20:20:42.711Z
@@ -12,6 +12,6 @@
 
 
 //TODO implement an actual compile-time unit mechanism
-struct HEmptyUnit {};
+struct HkEmptyUnit {};
 
-#endif /* end of include guard: HUnits */
+#endif /* end of include guard: HkUnits */

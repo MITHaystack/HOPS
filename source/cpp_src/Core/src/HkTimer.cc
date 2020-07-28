@@ -1,46 +1,46 @@
-#include "HTimer.hh"
+#include "HkTimer.hh"
 
 namespace hops{
 
-HTimer::HTimer():fName("generic_timer")
+HkTimer::HkTimer():fName("generic_timer")
 {
 }
 
-HTimer::HTimer(std::string name):fName(name)
+HkTimer::HkTimer(std::string name):fName(name)
 {
 }
 
-HTimer::~HTimer(){}
+HkTimer::~HkkTimer(){}
 
 //set the clock type used
-void HTimer::MeasureWallclockTime()
+void HkTimer::MeasureWallclockTime()
 {
     fClockID = CLOCK_REALTIME;
 }
 
-void HTimer::MeasureProcessTime()
+void HkTimer::MeasureProcessTime()
 {
     fClockID = CLOCK_PROCESS_CPUTIME_ID;
 }
 
-void HTimer::MeasureThreadTime()
+void HkTimer::MeasureThreadTime()
 {
     fClockID = CLOCK_THREAD_CPUTIME_ID;
 }
 
-void HTimer::Start()
+void HkTimer::Start()
 {
     clock_gettime(CLOCK_REALTIME, &fStart);
 }
 
-void HTimer::Stop()
+void HkTimer::Stop()
 {
 	clock_gettime(CLOCK_REALTIME, &fStop);
 }
 
 
-timespec 
-HTimer::GetTimeDifference(const timespec& start, const timespec& stop) const
+timespec
+HkTimer::GetTimeDifference(const timespec& start, const timespec& stop) const
 {
     timespec ret_val;
     if( (stop.tv_nsec-start.tv_nsec) < 0)
@@ -57,13 +57,13 @@ HTimer::GetTimeDifference(const timespec& start, const timespec& stop) const
 }
 
 
-timespec 
-HTimer::GetDurationAsTimeSpec() const
+timespec
+HkTimer::GetDurationAsTimeSpec() const
 {
     return GetTimeDifference(fStart,fStop);
 }
 
-double HTimer::GetDurationAsDouble() const
+double HkTimer::GetDurationAsDouble() const
 {
     timespec duration = GetTimeDifference(fStart, fStop);
     double ret_val = duration.tv_sec;

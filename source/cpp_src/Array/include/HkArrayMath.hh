@@ -1,16 +1,16 @@
-#ifndef HArrayMath_HH__
-#define HArrayMath_HH__
+#ifndef HkArrayMath_HH__
+#define HkArrayMath_HH__
 
 #include <cmath>
 #include <cstddef>
 
 namespace hops{
 
-class HArrayMath
+class HkArrayMath
 {
     public:
-        HArrayMath(){};
-        virtual ~HArrayMath(){};
+        ArrayMath(){};
+        virtual ~HkArrayMath(){};
 
         //modulus of two integers
         static std::size_t Modulus(int arg, int n)
@@ -66,12 +66,12 @@ class HArrayMath
 
                 if(d == 0)
                 {
-                    Index[i] = HArrayMath::Modulus(offset, DimSize[i]);
+                    Index[i] = HkArrayMath::Modulus(offset, DimSize[i]);
                     div[i] = (offset - Index[i])/DimSize[i];
                 }
                 else
                 {
-                    Index[i] = HArrayMath::Modulus(div[i+1], DimSize[i]);
+                    Index[i] = HkArrayMath::Modulus(div[i+1], DimSize[i]);
                     div[i] = (div[i+1] - Index[i])/DimSize[i];
                 }
             }
@@ -118,13 +118,13 @@ class HArrayMath
         template<std::size_t RANK> static void
         OffsetsForReversedIndices(const std::size_t* DimSize, std::size_t* ReversedIndex)
         {
-            std::size_t total_array_size = HArrayMath::TotalArraySize<RANK>(DimSize);
+            std::size_t total_array_size = HkArrayMath::TotalArraySize<RANK>(DimSize);
             std::size_t index[RANK];
             for(std::size_t i=0; i<total_array_size; i++)
             {
-                HArrayMath::RowMajorIndexFromOffset<RANK>(i, DimSize, index);
+                HkArrayMath::RowMajorIndexFromOffset<RANK>(i, DimSize, index);
                 for(std::size_t j=0; j<RANK; j++){ index[j] = (DimSize[j] - index[j])%DimSize[j];};
-                ReversedIndex[i] = HArrayMath::OffsetFromRowMajorIndex<RANK>(DimSize, index);
+                ReversedIndex[i] = HkArrayMath::OffsetFromRowMajorIndex<RANK>(DimSize, index);
             }
         }
 
@@ -134,14 +134,14 @@ class HArrayMath
 
 //specialization for base case of power of two
 template <>
-struct HArrayMath::PowerOfTwo<0>
+struct HkArrayMath::PowerOfTwo<0>
 {
     enum { value = 1 };
 };
 
 //specialization for base case of divide
 template <int numerator>
-struct HArrayMath::Divide<numerator, 1>
+struct HkArrayMath::Divide<numerator, 1>
 {
     enum { value = numerator };
 };
@@ -150,4 +150,4 @@ struct HArrayMath::Divide<numerator, 1>
 
 }//end of namespace
 
-#endif /* HArrayMath_HH__ */
+#endif /* HkArrayMath_HH__ */

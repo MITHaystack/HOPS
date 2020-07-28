@@ -1,9 +1,9 @@
-#ifndef HNamed_HH__
-#define HNamed_HH__
+#ifndef HkNamed_HH__
+#define HkNamed_HH__
 
 /*
-*File: HNamed.hh
-*Class: HNamed
+*File: HkNamed.hh
+*Class: HkNamed
 *Author: J. Barrett
 *Email: barrettj@mit.edu
 *Date: 2020-05-15T20:21:32.924Z
@@ -15,14 +15,14 @@
 namespace hops
 {
 
-class HNamed
+class HkNamed
 {
     public:
 
-        HNamed();
-        HNamed(const HNamed& obj);
-        HNamed& operator=(const HNamed& lhs) = default;
-        virtual ~HNamed() = default;
+        HkNamed();
+        HkNamed(const HkNamed& obj);
+        HkNamed& operator=(const HkNamed& lhs) = default;
+        virtual ~HkNamed() = default;
 
         bool IsNamed(const std::string& name) const;
         const std::string& GetName() const;
@@ -35,4 +35,4 @@ class HNamed
 
 }  // namespace hops
 
-#endif /* end of include guard: HNamed */
+#endif /* end of include guard: HkNamed */

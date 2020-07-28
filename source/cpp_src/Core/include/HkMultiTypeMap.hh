@@ -1,10 +1,10 @@
-#ifndef HMultiTypeMap_HH__
-#define HMultiTypeMap_HH__
+#ifndef HkMultiTypeMap_HH__
+#define HkMultiTypeMap_HH__
 
 
 /*
-*File: HMultiTypeMap.hh
-*Class: HMultiTypeMap
+*File: HkMultiTypeMap.hh
+*Class: HkMultiTypeMap
 *Author: J. Barrett
 *Email: barrettj@mit.edu
 *Date: 2020-05-15T20:56:55.583Z
@@ -15,18 +15,18 @@
 #include <string>
 #include <iostream>
 
-#include "HMeta.hh"
+#include "HkMeta.hh"
 
 namespace hops
 {
 
 template< typename XKeyType, typename XValueType >
-class HSingleTypeMap
+class HkSingleTypeMap
 {
     public:
 
-        HSingleTypeMap(){};
-        virtual ~HSingleTypeMap(){};
+        HkSingleTypeMap(){};
+        virtual ~HkSingleTypeMap(){};
 
         void insert(const XKeyType& key, const XValueType& value)
         {
@@ -64,43 +64,43 @@ class HSingleTypeMap
 
 //declare a multi-type map which takes a key type, and variadic template parameter for the types to be stored
 template <typename XKeyType, typename... XvalueTypeS>
-class HMultiTypeMap;
+class HkMultiTypeMap;
 
 //declare the specialization for the base case of the recursion (in which the parameter XValueType is just a single type)
 template <typename  XKeyType, typename XValueType>
-class HMultiTypeMap< XKeyType, XValueType >: public HSingleTypeMap< XKeyType, XValueType >
+class HkMultiTypeMap< XKeyType, XValueType >: public HkSingleTypeMap< XKeyType, XValueType >
 {
     public:
-        using HSingleTypeMap< XKeyType, XValueType >::insert;
-        using HSingleTypeMap< XKeyType, XValueType >::retrieve;
-        using HSingleTypeMap< XKeyType, XValueType >::dump_map;
+        using HkSingleTypeMap< XKeyType, XValueType >::insert;
+        using HkSingleTypeMap< XKeyType, XValueType >::retrieve;
+        using HkSingleTypeMap< XKeyType, XValueType >::dump_map;
 
         template<typename U = XValueType> typename std::enable_if<std::is_same<U,XValueType>::value>::type
         dump_map()
         {
-            static_cast< HSingleTypeMap< XKeyType, XValueType >* >( this )->dump_map();
+            static_cast< HkSingleTypeMap< XKeyType, XValueType >* >( this )->dump_map();
         };
 
 };
 
 //now set up the recursion
 template< typename XKeyType, typename XValueType, typename... XValueTypeS >
-class HMultiTypeMap< XKeyType, XValueType, XValueTypeS...>: public HMultiTypeMap< XKeyType, XValueType >, HMultiTypeMap< XKeyType, XValueTypeS... >
+class HkMultiTypeMap< XKeyType, XValueType, XValueTypeS...>: public HkMultiTypeMap< XKeyType, XValueType >, HkMultiTypeMap< XKeyType, XValueTypeS... >
 {
     public:
 
-        using HMultiTypeMap< XKeyType, XValueType >::insert;
-        using HMultiTypeMap< XKeyType, XValueTypeS... >::insert;
+        using HkMultiTypeMap< XKeyType, XValueType >::insert;
+        using HkMultiTypeMap< XKeyType, XValueTypeS... >::insert;
 
-        using HMultiTypeMap< XKeyType, XValueType >::retrieve;
-        using HMultiTypeMap< XKeyType, XValueTypeS... >::retrieve;
+        using HkMultiTypeMap< XKeyType, XValueType >::retrieve;
+        using HkMultiTypeMap< XKeyType, XValueTypeS... >::retrieve;
 
-        using HMultiTypeMap< XKeyType, XValueType >::dump_map;
-        using HMultiTypeMap< XKeyType, XValueTypeS... >::dump_map;
+        using HkMultiTypeMap< XKeyType, XValueType >::dump_map;
+        using HkMultiTypeMap< XKeyType, XValueTypeS... >::dump_map;
 };
 
 // template< typename XKeyType, typename XValueType, typename... XValueTypeS >
-// class HNamedMultiTypeMap< XKeyType, XValueType, XValueTypeS...>: public HMultiTypeMap< XKeyType, XValueType, XValueTypeS... >, public HNamed
+// class HkNamedMultiTypeMap< XKeyType, XValueType, XValueTypeS...>: public HkMultiTypeMap< XKeyType, XValueType, XValueTypeS... >, public HkNamed
 // {
 //
 //
@@ -109,4 +109,4 @@ class HMultiTypeMap< XKeyType, XValueType, XValueTypeS...>: public HMultiTypeMap
 
 }
 
-#endif /* end of include guard: HMultiTypeMap_HH__ */
+#endif /* end of include guard: HkMultiTypeMap_HH__ */

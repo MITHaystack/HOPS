@@ -1,9 +1,9 @@
-#ifndef HDateTime_HH__
-#define HDateTime_HH__
+#ifndef HkDateTime_HH__
+#define HkDateTime_HH__
 
 /*
-*File: HDateTime.hh
-*Class: HDateTime
+*File: HkDateTime.hh
+*Class: HkDateTime
 *Author: J. Barrett
 *Email: barrettj@mit.edu
 *Date: 2020-05-28T18:12:09.299Z
@@ -14,17 +14,17 @@
 #include <time.h>
 #include <ctime>
 
-#include "HTimeStampConverter.hh"
+#include "HkTimeStampConverter.hh"
 
 namespace hops
 {
 
-class HDateTime
+class HkDateTime
 {
     public:
 
-        HDateTime();
-        HDateTime(short year, short day, short hour, short minute, float second); //useful for init
+        HkDateTime();
+        HkDateTime(short year, short day, short hour, short minute, float second); //useful for init
 
         virtual ~HDateTime();
 
@@ -53,4 +53,4 @@ class HDateTime
 
 } //end of namespace
 
-#endif /* end of include guard: HDateTime */
+#endif /* end of include guard: HkDateTime */

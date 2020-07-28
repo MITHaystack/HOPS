@@ -1,21 +1,21 @@
 #list header files #############################################################
 
 set (HCORE_HEADERFILES
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/HMeta.hh
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/HNamed.hh
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/HUnits.hh
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/HTimer.hh
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/HTokenizer.hh
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/HTimeStampConverter.hh
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/HMultiTypeMap.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/HkMeta.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/HkNamed.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/HkUnits.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/HkTimer.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/HkTokenizer.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/HkTimeStampConverter.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/HkMultiTypeMap.hh
 )
 
 #list source files #############################################################
 
 set( HCORE_SOURCEFILES
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/HTimer.cc
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/HNamed.cc
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/HTimeStampConverter.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/HkTimer.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/HkNamed.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/HkTimeStampConverter.cc
 )
 
 #declare header paths ##########################################################

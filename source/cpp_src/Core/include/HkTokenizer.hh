@@ -1,5 +1,5 @@
-#ifndef HTokenizer_HH__
-#define HTokenizer_HH__
+#ifndef HkTokenizer_HH__
+#define HkTokenizer_HH__
 
 #include <vector>
 #include <string>
@@ -8,16 +8,16 @@ namespace hops
 {
 
 
-class HTokenizer
+class HkTokenizer
 {
     public:
-        HTokenizer()
+        HkTokenizer()
         {
             fDelim = " "; //default delim is space
             fString = nullptr;
             fIncludeEmptyTokens = false;
         };
-        virtual ~HTokenizer(){;};
+        virtual ~HkTokenizer(){;};
 
         void SetIncludeEmptyTokensTrue(){fIncludeEmptyTokens = true;};
         void SetIncludeEmptyTokensFalse(){fIncludeEmptyTokens = false;};

@@ -1,5 +1,5 @@
-#ifndef HTimer_HH__
-#define HTimer_HH__
+#ifndef HkTimer_HH__
+#define HkTimer_HH__
 
 #include <string>
 #include <ctime>
@@ -7,12 +7,12 @@
 namespace hops
 {
 
-class HTimer
+class HkTimer
 {
     public:
-        HTimer();
-        HTimer(std::string name);
-        virtual ~HTimer();
+        HkTimer();
+        HkTimer(std::string name);
+        virtual ~HkTimer();
 
         void SetName(std::string name){fName = name;};
         std::string GetName() const {return fName;};
@@ -41,4 +41,4 @@ class HTimer
 
 }
 
-#endif /* end of include guard: HTimer */
+#endif /* end of include guard: HkTimer */

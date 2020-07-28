@@ -1,16 +1,17 @@
-#include "HDateTime.hh"
+#include "HkDateTime.hh"
 
 namespace hops
 {
 
 
-HDateTime::HDateTime()
+HkDateTime::HkDateTime()
 {
 
 }
 
 //useful for initialization from mk4 date type
-HDateTime(short year, short day, short hour, short minute, float second);
+void
+HkDateTime(short year, short day, short hour, short minute, float second);
 {
 
     fDate.tm_year = static_cast<int>(year);
@@ -22,7 +23,7 @@ HDateTime(short year, short day, short hour, short minute, float second);
 
 }
 
-HDateTime::~HDateTime()
+HkDateTime::~HkkDateTime()
 {
 
 }

@@ -1,14 +1,14 @@
 #include <iostream>
 #include <string>
 
-#include "HScalarContainer.hh"
+#include "HkScalarContainer.hh"
 
 
 using namespace hops;
 
 
 
-class Test: public HScalarContainer< double >
+class Test: public HkScalarContainer< double >
 {
 
     public:

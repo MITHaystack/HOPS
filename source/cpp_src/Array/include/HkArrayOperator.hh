@@ -1,30 +1,30 @@
-#ifndef HArrayOperator_HH__
-#define HArrayOperator_HH__
+#ifndef HkArrayOperator_HH__
+#define HkArrayOperator_HH__
 
-#include "HArrayWrapper.hh"
+#include "HkArrayWrapper.hh"
 #include <cstring>
 
 namespace hops{
 
 template<typename XValueType, size_t RANK>
-class HArrayOperator
+class HkArrayOperator
 {
     public:
-        HArrayOperator(){};
-        virtual ~HArrayOperator(){};
+        HkArrayOperator(){};
+        virtual ~HkArrayOperator(){};
 
         virtual void Initialize(){};
         virtual void ExecuteOperation() = 0;
 
         //utilities
         static bool
-        HaveSameNumberOfElements(const HArrayWrapper<XValueType,RANK>* arr1, const HArrayWrapper<XValueType,RANK>* arr2)
+        HaveSameNumberOfElements(const HkArrayWrapper<XValueType,RANK>* arr1, const HkArrayWrapper<XValueType,RANK>* arr2)
         {
             return ( arr1->GetArraySize() == arr2->GetArraySize() );
         }
 
         static bool
-        HaveSameDimensions(const HArrayWrapper<XValueType,RANK>* arr1, const HArrayWrapper<XValueType,RANK>* arr2)
+        HaveSameDimensions(const HkArrayWrapper<XValueType,RANK>* arr1, const HkArrayWrapper<XValueType,RANK>* arr2)
         {
             size_t shape1[RANK];
             size_t shape2[RANK];
@@ -42,7 +42,7 @@ class HArrayOperator
 
         //set all of the elements in an array to be equal to the object obj
         static void
-        ResetArray(HArrayWrapper<XValueType,RANK>* arr, const XValueType& obj)
+        ResetArray(HkArrayWrapper<XValueType,RANK>* arr, const XValueType& obj)
         {
             XValueType* ptr = arr->GetData();
             size_t n_elem = arr->GetArraySize();
@@ -54,7 +54,7 @@ class HArrayOperator
 
         //set all of the elements in an array to be equal to zero
         static void
-        ZeroArray(HArrayWrapper<XValueType,RANK>* arr)
+        ZeroArray(HkArrayWrapper<XValueType,RANK>* arr)
         {
             XValueType* ptr = arr->GetData();
             size_t n_bytes = (arr->GetArraySize() )*( sizeof(XValueType) );
@@ -67,4 +67,4 @@ class HArrayOperator
 
 }//end of namespace
 
-#endif /* __HArrayOperator_HH__ */
+#endif /* __HkArrayOperator_HH__ */

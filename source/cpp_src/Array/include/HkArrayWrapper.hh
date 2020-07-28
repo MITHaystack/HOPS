@@ -1,26 +1,26 @@
-#ifndef HArrayWrapper_HH__
-#define HArrayWrapper_HH__
+#ifndef HkArrayWrapper_HH__
+#define HkArrayWrapper_HH__
 
 /*
-*File: HArrayWrapper.hh
-*Class: HArrayWrapper
+*File: HkArrayWrapper.hh
+*Class: HkArrayWrapper
 *Author: J. Barrett
 *Email: barrettj@mit.edu
 *Date: 2020-05-15T20:22:38.395Z
 *Description:
 */
 
-#include "HArrayMath.hh"
+#include "HkArrayMath.hh"
 
 namespace hops
 {
 
 template< typename XValueType, std::size_t RANK>
-class HArrayWrapper
+class HkArrayWrapper
 {
     public:
 
-        HArrayWrapper()
+        HkArrayWrapper()
         {
             for(std::size_t i=0; i<RANK; i++)
             {
@@ -31,24 +31,24 @@ class HArrayWrapper
 
         //for the time being the data array is owned/managed externally,
         //we may want to improve this with an allocator parameter
-        HArrayWrapper(XValueType* data, const std::size_t* dim)
+        HkArrayWrapper(XValueType* data, const std::size_t* dim)
         {
             fData = data;
             for(std::size_t i=0; i<RANK; i++)
             {
                 fDimensions[i] = dim[i];
             }
-            fTotalArraySize = HArrayMath::TotalArraySize<RANK>(fDimensions);
+            fTotalArraySize = HkArrayMath::TotalArraySize<RANK>(fDimensions);
         }
 
-        virtual ~HArrayWrapper(){;};
+        virtual ~HkArrayWrapper(){;};
 
         void SetData(XValueType* ptr){fData = ptr;}
 
         XValueType* GetData(){return fData;};
         const XValueType* GetData() const {return fData;};
 
-        std::size_t GetArraySize() const {return HArrayMath::TotalArraySize<RANK>(fDimensions); };
+        std::size_t GetArraySize() const {return HkArrayMath::TotalArraySize<RANK>(fDimensions); };
 
         void SetArrayDimensions(const std::size_t* array_dim)
         {
@@ -56,7 +56,7 @@ class HArrayWrapper
             {
                 fDimensions[i] = array_dim[i];
             }
-            fTotalArraySize = HArrayMath::TotalArraySize<RANK>(fDimensions);
+            fTotalArraySize = HkArrayMath::TotalArraySize<RANK>(fDimensions);
         }
 
         void GetArrayDimensions(std::size_t* array_dim) const
@@ -79,7 +79,7 @@ class HArrayWrapper
 
         std::size_t GetOffsetForIndices(const size_t* index)
         {
-            return HArrayMath::OffsetFromRowMajorIndex<RANK>(fDimensions, index);
+            return HkArrayMath::OffsetFromRowMajorIndex<RANK>(fDimensions, index);
         }
 
         //TODO, implement [] operator overload for multi-dim array
@@ -95,22 +95,22 @@ class HArrayWrapper
 
 //specialization for a RANK-0 (i.e. a scalar)
 template< typename XValueType >
-class HArrayWrapper<XValueType, 0>
+class HkArrayWrapper<XValueType, 0>
 {
     public:
 
-        HArrayWrapper()
+        HkArrayWrapper()
         {
             fTotalArraySize = 1;
         }
 
-        HArrayWrapper(const XValueType& data)
+        HkArrayWrapper(const XValueType& data)
         {
             fData = data;
             fTotalArraySize = 1;
         }
 
-        virtual ~HArrayWrapper(){};
+        virtual ~HkArrayWrapper(){};
 
         void SetData(const XValueType& value){fData = value;}
         XValueType GetData(){return fData;};
@@ -125,35 +125,35 @@ class HArrayWrapper<XValueType, 0>
 
 //specialization for RANK=1, (i.e. a vector)
 template< typename XValueType >
-class HArrayWrapper<XValueType, 1>
+class HkArrayWrapper<XValueType, 1>
 {
     public:
 
-        HArrayWrapper()
+        HkArrayWrapper()
         {
             fDimensions[0] = 0;
             fTotalArraySize = 0;
         }
 
-        HArrayWrapper(XValueType* data, const std::size_t* dim)
+        HkArrayWrapper(XValueType* data, const std::size_t* dim)
         {
             fData = data;
             fDimensions[0] = dim[0];
-            fTotalArraySize = HArrayMath::TotalArraySize<1>(fDimensions);
+            fTotalArraySize = HkArrayMath::TotalArraySize<1>(fDimensions);
         }
 
-        virtual ~HArrayWrapper(){;};
+        virtual ~HkArrayWrapper(){;};
 
         void SetData(XValueType* ptr){fData = ptr;}
         XValueType* GetData(){return fData;};
         const XValueType* GetData() const {return fData;};
 
-        std::size_t GetArraySize() const {return HArrayMath::TotalArraySize<1>(fDimensions); };
+        std::size_t GetArraySize() const {return HkArrayMath::TotalArraySize<1>(fDimensions); };
 
         void SetArrayDimensions(const std::size_t* array_dim)
         {
             fDimensions[0] = array_dim[0];
-            fTotalArraySize = HArrayMath::TotalArraySize<1>(fDimensions);
+            fTotalArraySize = HkArrayMath::TotalArraySize<1>(fDimensions);
         }
 
         void GetArrayDimensions(std::size_t* array_dim) const
@@ -173,7 +173,7 @@ class HArrayWrapper<XValueType, 1>
 
         std::size_t GetOffsetForIndices(const size_t* index)
         {
-            return HArrayMath::OffsetFromRowMajorIndex<1>(fDimensions, index);
+            return HkArrayMath::OffsetFromRowMajorIndex<1>(fDimensions, index);
         }
 
     protected:
@@ -187,4 +187,4 @@ class HArrayWrapper<XValueType, 1>
 }//end of hops namespace
 
 
-#endif /* HArrayWrapper_HH__ */
+#endif /* HkArrayWrapper_HH__ */

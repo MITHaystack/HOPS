@@ -1,9 +1,9 @@
-#ifndef HMeta_HH__
-#define HMeta_HH__
+#ifndef HkMeta_HH__
+#define HkMeta_HH__
 
 
 /*
-*File: HMeta.hh
+*File: HkMeta.hh
 *Author: J. Barrett
 *Email: barrettj@mit.edu
 *Date: 2020-05-13T17:43:26.831Z
@@ -19,24 +19,24 @@ namespace hops
 {
 
 //null and empty types
-class HNullType {};
-struct HEmptyType {};
+class HkNullType {};
+struct HkEmptyType {};
 
 //typelist
-template< typename... T > struct HTypelist {};
+template< typename... T > struct HkTypelist {};
 
 //typelist size
-template< typename L > struct HTypelistSizeImpl;
+template< typename L > struct HkTypelistSizeImpl;
 //specialization for typelist
-template< class... T > struct HTypelistSizeImpl< HTypelist< T... > >
+template< class... T > struct HkTypelistSizeImpl< HkTypelist< T... > >
 {
     using type = std::integral_constant< size_t, sizeof...(T) >;
 };
-//alias to HTypelistSize, retrieve the value itself with ::value (element of std::integral_constant)
-template< class L > using HTypelistSize = typename HTypelistSizeImpl<L>::type;
+//alias to HkTypelistSize, retrieve the value itself with ::value (element of std::integral_constant)
+template< class L > using HkTypelistSize = typename HkTypelistSizeImpl<L>::type;
 
 
 
 }
 
-#endif /* end of include guard: HMeta */
+#endif /* end of include guard: HkMeta */

@@ -1,9 +1,9 @@
-#ifndef HScalarContainer_HH__
-#define HScalarContainer_HH__
+#ifndef HkScalarContainer_HH__
+#define HkScalarContainer_HH__
 
 /*
-*File: HScalarContainer.hh
-*Class: HScalarContainer
+*File: HkScalarContainer.hh
+*Class: HkScalarContainer
 *Author: J. Barrett
 *Email: barrettj@mit.edu
 *Date: 2020-05-15T20:22:06.227Z
@@ -13,10 +13,10 @@
 
 #include <string>
 
-#include "HUnits.hh"
-#include "HNamed.hh"
+#include "HkUnits.hh"
+#include "HkNamed.hh"
 
-#include "HArrayWrapper.hh"
+#include "HkArrayWrapper.hh"
 
 namespace hops
 {
@@ -24,11 +24,11 @@ namespace hops
 
 
 template< typename XValueType, typename XUnitType = HEmptyUnit >
-class HScalarContainer: public HNamed, public HArrayWrapper< XValueType, 0>
+class HkScalarContainer: public HNamed, public HkArrayWrapper< XValueType, 0>
 {
     public:
-        HScalarContainer(): HArrayWrapper<XValueType, 0>() {};
-        virtual ~HScalarContainer(){};
+        HkScalarContainer(): HkArrayWrapper<XValueType, 0>() {};
+        virtual ~HkScalarContainer(){};
 
         void SetValue(const XValueType& value){fData = value;};
         XValueType GetValue(){ return fData;};
@@ -37,14 +37,14 @@ class HScalarContainer: public HNamed, public HArrayWrapper< XValueType, 0>
         using unit = XUnitType;
 
         //have to make base class functions visible
-        using HArrayWrapper<XValueType,0>::SetData;
-        using HArrayWrapper<XValueType,0>::GetData;
+        using HkArrayWrapper<XValueType,0>::SetData;
+        using HkArrayWrapper<XValueType,0>::GetData;
 
         std::size_t GetArraySize() const {return 1;};
 
     protected:
 
-        using HArrayWrapper<XValueType,0>::fData;
+        using HkArrayWrapper<XValueType,0>::fData;
 
         std::string fName;
 
@@ -52,4 +52,4 @@ class HScalarContainer: public HNamed, public HArrayWrapper< XValueType, 0>
 
 }//end of hops namespace
 
-#endif /* end of include guard: HScalarContainer */
+#endif /* end of include guard: HkScalarContainer */

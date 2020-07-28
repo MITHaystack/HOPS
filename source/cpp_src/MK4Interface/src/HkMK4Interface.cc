@@ -1,4 +1,4 @@
-#include "HMK4Interface.hh"
+#include "HkMK4Interface.hh"
 
 
 namespace hops
@@ -8,9 +8,9 @@ namespace hops
 HMK4Interface::HMK4Interface(){};
 
 
-HMK4Interface::~HMK4Interface(){};
+HMK4Interface::~HkMK4Interface(){};
 
-void HMK4Interface::OpenFringeFile(std::string file_path)
+void HkMK4Interface::OpenFringeFile(std::string file_path)
 {
 
     struct mk4_fringe fringe;

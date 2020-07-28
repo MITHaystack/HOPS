@@ -1,9 +1,9 @@
-#ifndef HMK4CorelInterface_HH__
-#define HMK4CorelInterface_HH__
+#ifndef HkMK4CorelInterface_HH__
+#define HkMK4CorelInterface_HH__
 
 /*
-*File: HMK4CorelInterface.hh
-*Class: HMK4CorelInterface
+*File: HkMK4CorelInterface.hh
+*Class: HkMK4CorelInterface
 *Author: J. Barrett
 *Email: barrettj@mit.edu
 *Date: 2020-05-19T18:54:28.140Z
@@ -27,12 +27,12 @@ extern "C"
 namespace hops
 {
 
-class HMK4CorelInterface
+class HkMK4CorelInterface
 {
     public:
 
-        HMK4CorelInterface();
-        virtual ~HMK4CorelInterface();
+        HkMK4CorelInterface();
+        virtual ~HkMK4CorelInterface();
 
         void ReadCorelFile(const std::string& filename);
 
@@ -49,4 +49,4 @@ class HMK4CorelInterface
 
 }//end of hops namespace
 
-#endif /* end of include guard: HMK4CorelInterface */
+#endif /* end of include guard: HkMK4CorelInterface */

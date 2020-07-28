@@ -1,5 +1,5 @@
-#ifndef HTimeStampConverter_HH__
-#define HTimeStampConverter_HH__
+#ifndef HkTimeStampConverter_HH__
+#define HkTimeStampConverter_HH__
 
 #include <string>
 #include <time.h>
@@ -8,11 +8,11 @@
 namespace hops
 {
 
-class HTimeStampConverter
+class HkTimeStampConverter
 {
     public:
-        HTimeStampConverter(){};
-        ~HTimeStampConverter(){};
+        HkTimeStampConverter(){};
+        ~HkTimeStampConverter(){};
 
         //convert a long int epoch second count to a human readable date string in YYYY-MM-DDTHH:MM:SS.(F)Z format
         //fractional_part is rounded to the nearest nano second
@@ -26,4 +26,4 @@ class HTimeStampConverter
 
 }//end of namespace
 
-#endif /* end of include guard: HTimeStampConverter_HH__ */
+#endif /* end of include guard: HkTimeStampConverter_HH__ */

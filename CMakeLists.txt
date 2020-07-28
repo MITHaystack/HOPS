@@ -120,6 +120,7 @@ add_subdirectory(${CSOURCE}/fourfit_libs/ffcore)
 add_subdirectory(${CPPSOURCE}/Array)
 add_subdirectory(${CPPSOURCE}/Core)
 add_subdirectory(${CPPSOURCE}/MK4Interface)
+add_subdirectory(${CPPSOURCE}/Bindings)
 add_subdirectory(${CPPSOURCE}/Test)
 
 

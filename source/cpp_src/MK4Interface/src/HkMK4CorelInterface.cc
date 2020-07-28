@@ -1,6 +1,6 @@
-#include "HMK4CorelInterface.hh"
+#include "HkMK4CorelInterface.hh"
 
-#include "HMultiTypeMap.hh"
+#include "HkMultiTypeMap.hh"
 
 #include <array>
 #include <vector>
@@ -11,9 +11,9 @@ namespace hops
 {
 
 
-typedef HMultiTypeMap< std::string, std::string, short, int, std::vector<int> > Type101Map;
+typedef HkMultiTypeMap< std::string, std::string, short, int, std::vector<int> > Type101Map;
 
-typedef HMultiTypeMap< std::string, std::string, short, int, float, std::vector< std::complex<double> > > Type120Map;
+typedef HkMultiTypeMap< std::string, std::string, short, int, float, std::vector< std::complex<double> > > Type120Map;
 
 template< typename XType, size_t N>
 std::array<XType, N> create_and_fill_array(XType values[N])
@@ -34,7 +34,7 @@ HMK4CorelInterface::HMK4CorelInterface():
 
 }
 
-HMK4CorelInterface::~HMK4CorelInterface()
+HMK4CorelInterface::~HkMK4CorelInterface()
 {
     clear_mk4corel(fCorel);
     free(fCorel);
@@ -76,7 +76,7 @@ HMK4CorelInterface::ExportCorelFile()
     {
         //for now just do the POD data types
 
-        HMultiTypeMap< std::string, std::string, int, short, float, double > meta;
+        HkMultiTypeMap< std::string, std::string, int, short, float, double > meta;
 
         //insert the type_100 meta data
         std::cout<<"getting type_000 info"<<std::endl;
@@ -245,7 +245,7 @@ HMK4CorelInterface::ExportCorelFile()
             type120vector[i].dump_map<float>();
         }
 
-    }//end of if HaveCorel
+    }//end of if HkaveCorel
 
 }
 

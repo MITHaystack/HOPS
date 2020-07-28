@@ -1,6 +1,6 @@
-#include "HMK4FringeInterface.hh"
+#include "HkMK4FringeInterface.hh"
 
-#include "HMultiTypeMap.hh"
+#include "HkMultiTypeMap.hh"
 #include <array>
 
 namespace hops
@@ -24,7 +24,7 @@ HMK4FringeInterface::HMK4FringeInterface():
 
 }
 
-HMK4FringeInterface::~HMK4FringeInterface()
+HMK4FringeInterface::~HkMK4FringeInterface()
 {
     clear_mk4fringe(&fFringe);
 }
@@ -57,7 +57,7 @@ HMK4FringeInterface::ExportFringeFile()
         //want to dump the information in the type_200 through type_230 objects
         //for now just do the POD data types
 
-        HMultiTypeMap< std::string, int, short, float, double, std::array<double, 4>, std::string> _m;
+        HkMultiTypeMap< std::string, int, short, float, double, std::array<double, 4>, std::string> _m;
 
         //type_200
         _m.insert( std::string("type200.record_id"), std::string(fFringe.t200->record_id) );
