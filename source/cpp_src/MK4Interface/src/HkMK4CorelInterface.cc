@@ -11,9 +11,7 @@ namespace hops
 {
 
 
-typedef HkMultiTypeMap< std::string, std::string, short, int, std::vector<int> > Type101Map;
 
-typedef HkMultiTypeMap< std::string, std::string, short, int, float, std::vector< std::complex<double> > > Type120Map;
 
 template< typename XType, size_t N>
 std::array<XType, N> create_and_fill_array(XType values[N])
@@ -70,14 +68,10 @@ HkMK4CorelInterface::ReadCorelFile(const std::string& filename)
 
 
 void
-HkMK4CorelInterface::ExportCorelFile()
+HkMK4CorelInterface::ExportCorelFile(Type100MetaData& meta, std::vector< Type101Map >& type101vector, std::vector< Type120Map >& type120vector)
 {
     if(fHaveCorel)
     {
-        //for now just do the POD data types
-
-        HkMultiTypeMap< std::string, std::string, int, short, float, double > meta;
-
         //insert the type_100 meta data
         std::cout<<"getting type_000 info"<<std::endl;
         meta.insert( std::string("type_000.record_id"), getstr(fCorel->id->record_id, 3) );
@@ -128,11 +122,11 @@ HkMK4CorelInterface::ExportCorelFile()
         int nindex = 0;
         meta.retrieve(std::string("type_100.nindex"), nindex );
 
-        std::cout<<"sizeof 101 "<<sizeof(struct type_101)<<std::endl;
-        std::vector< Type101Map > type101vector;
-
-        std::cout<<"sizeof 120"<<sizeof(struct type_120)<<std::endl;
-        std::vector< Type120Map > type120vector;
+        // std::cout<<"sizeof 101 "<<sizeof(struct type_101)<<std::endl;
+        // std::vector< Type101Map > type101vector;
+        //
+        // std::cout<<"sizeof 120"<<sizeof(struct type_120)<<std::endl;
+        // std::vector< Type120Map > type120vector;
 
         std::cout<<"test"<<std::endl;
         std::cout<<"ap space"<< fCorel->index->ap_space<<std::endl;
@@ -172,7 +166,7 @@ HkMK4CorelInterface::ExportCorelFile()
                 type101vector.push_back(tmp101);
 
                 //now we want to extract the data in the type_120's
-                //note that this data is dumped into the type120vector in a completely disorganized fashion
+                //note that this data is dumped into the type120vector in a completely disorganized fashion (at it was stored)
                 //and needs to be restructured later into a sensibly ordered array
                 for(int ap=0; ap<idx->ap_space; ap++)
                 {

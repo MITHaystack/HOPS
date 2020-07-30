@@ -12,6 +12,7 @@
 
 #include <iostream>
 #include <string>
+#include <vector>
 
 //mk4 IO library
 extern "C"
@@ -27,6 +28,10 @@ extern "C"
 namespace hops
 {
 
+typedef HkMultiTypeMap< std::string, std::string, int, short, float, double > Type100MetaData;
+typedef HkMultiTypeMap< std::string, std::string, short, int, std::vector<int> > Type101Map;
+typedef HkMultiTypeMap< std::string, std::string, short, int, float, std::vector< std::complex<double> > > Type120Map;
+
 class HkMK4CorelInterface
 {
     public:
@@ -36,7 +41,7 @@ class HkMK4CorelInterface
 
         void ReadCorelFile(const std::string& filename);
 
-        void ExportCorelFile();
+        void ExportCorelFile(Type100MetaData& meta, std::vector< Type101Map >& type101vector, std::vector< Type120Map >& type120vector);
 
     private:
 

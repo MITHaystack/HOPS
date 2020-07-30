@@ -42,8 +42,13 @@ int main(int argc, char** argv)
     HkMK4CorelInterface mk4inter;
     mk4inter.ReadCorelFile(filename);
 
-    mk4inter.ExportCorelFile();
+    Type100MetaData meta;
+    std::vector< Type101Map > type101vector;
+    std::vector< Type120Map > type120vector;
+    mk4inter.ExportCorelFile(meta, type101vector, type120vector);
 
+
+    std::cout<<"size of vectors (101,120) = "<<type101vector.size()<<", "<<type120vector.size()<<std::endl;
 
 
     return 0;
