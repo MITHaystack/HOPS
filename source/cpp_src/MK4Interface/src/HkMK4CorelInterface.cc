@@ -27,21 +27,21 @@ std::array<XType, N> create_and_fill_array(XType values[N])
 }
 
 
-HMK4CorelInterface::HMK4CorelInterface():
+HkMK4CorelInterface::HkMK4CorelInterface():
     fHaveCorel(false)
 {
     fCorel = (struct mk4_corel *) calloc ( 1, sizeof(struct mk4_corel) );
 
 }
 
-HMK4CorelInterface::~HkMK4CorelInterface()
+HkMK4CorelInterface::~HkMK4CorelInterface()
 {
     clear_mk4corel(fCorel);
     free(fCorel);
 }
 
 void
-HMK4CorelInterface::ReadCorelFile(const std::string& filename)
+HkMK4CorelInterface::ReadCorelFile(const std::string& filename)
 {
     std::cout<<"reading corel file"<<std::endl;
     if(fHaveCorel)
@@ -70,7 +70,7 @@ HMK4CorelInterface::ReadCorelFile(const std::string& filename)
 
 
 void
-HMK4CorelInterface::ExportCorelFile()
+HkMK4CorelInterface::ExportCorelFile()
 {
     if(fHaveCorel)
     {
@@ -253,7 +253,7 @@ HMK4CorelInterface::ExportCorelFile()
 
 
 std::string
-HMK4CorelInterface::getstr(const char* char_array, size_t max_size)
+HkMK4CorelInterface::getstr(const char* char_array, size_t max_size)
 {
     return std::string( char_array, std::min( strlen(char_array), max_size) );
 }

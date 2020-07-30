@@ -18,19 +18,19 @@ std::array<XType, N> create_and_fill_array(XType values[N])
 }
 
 
-HMK4FringeInterface::HMK4FringeInterface():
+HkMK4FringeInterface::HkMK4FringeInterface():
     fHaveFringe(false)
 {
 
 }
 
-HMK4FringeInterface::~HkMK4FringeInterface()
+HkMK4FringeInterface::~HkMK4FringeInterface()
 {
     clear_mk4fringe(&fFringe);
 }
 
 void
-HMK4FringeInterface::ReadFringeFile(const std::string& filename)
+HkMK4FringeInterface::ReadFringeFile(const std::string& filename)
 {
     if(fHaveFringe)
     {
@@ -50,7 +50,7 @@ HMK4FringeInterface::ReadFringeFile(const std::string& filename)
 }
 
 void
-HMK4FringeInterface::ExportFringeFile()
+HkMK4FringeInterface::ExportFringeFile()
 {
     if(fHaveFringe)
     {

@@ -23,8 +23,8 @@ namespace hops
 
 
 
-template< typename XValueType, typename XUnitType = HEmptyUnit >
-class HkScalarContainer: public HNamed, public HkArrayWrapper< XValueType, 0>
+template< typename XValueType, typename XUnitType = HkEmptyUnit >
+class HkScalarContainer: public HkNamed, public HkArrayWrapper< XValueType, 0>
 {
     public:
         HkScalarContainer(): HkArrayWrapper<XValueType, 0>() {};

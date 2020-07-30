@@ -22,7 +22,7 @@ extern "C"
     #include "mk4_vex.h"
 }
 
-#include "HMultiTypeMap.hh"
+#include "HkMultiTypeMap.hh"
 
 namespace hops
 {

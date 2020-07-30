@@ -9,7 +9,7 @@ namespace hops{
 class HkArrayMath
 {
     public:
-        ArrayMath(){};
+        HkArrayMath(){};
         virtual ~HkArrayMath(){};
 
         //modulus of two integers

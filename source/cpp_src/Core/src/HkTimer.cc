@@ -10,7 +10,7 @@ HkTimer::HkTimer(std::string name):fName(name)
 {
 }
 
-HkTimer::~HkkTimer(){}
+HkTimer::~HkTimer(){}
 
 //set the clock type used
 void HkTimer::MeasureWallclockTime()

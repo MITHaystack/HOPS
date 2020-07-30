@@ -5,10 +5,10 @@ namespace hops
 {
 
 
-HMK4Interface::HMK4Interface(){};
+HkMK4Interface::HkMK4Interface(){};
 
 
-HMK4Interface::~HkMK4Interface(){};
+HkMK4Interface::~HkMK4Interface(){};
 
 void HkMK4Interface::OpenFringeFile(std::string file_path)
 {
