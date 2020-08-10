@@ -32,7 +32,6 @@
 #include <string>
 
 #include "HkUnits.hh"
-#include "HkNamed.hh"
 #include "HkArrayWrapper.hh"
 
 #include "HkVectorContainer.hh"
@@ -42,7 +41,7 @@ namespace hops
 
 
 template< typename XValueType, typename XUnitType = HEmptyUnit, size_t RANK >
-class HkTensorContainer: public HNamed, public HkArrayWrapper< XValueType, RANK >
+class HkTensorContainer: public HkArrayWrapper< XValueType, RANK >
 {
     public:
 

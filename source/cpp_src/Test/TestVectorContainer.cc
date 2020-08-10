@@ -7,26 +7,26 @@
 using namespace hops;
 
 
-
-class Test: public HkVectorContainer< double >
-{
-
-    public:
-        Test(){}
-        virtual ~Test (){}
-
-};
-
 int main(int /*argc*/, char** /*argv*/)
 {
-    Test* A = new Test();
 
+    size_t dim = 100;
 
-    A->SetName("a-test");
+    HkVectorContainer<double>* test = new HkVectorContainer<double>(&dim);
 
-    std::cout<<A->GetName()<<", "<<A->GetValue()<<std::endl;
+    std::cout<<"dimension @ 0 ="<<test->GetArrayDimension(0)<<std::endl;
+    std::cout<<"total array size = "<<test->GetArraySize()<<std::endl;
 
-    delete A;
+    double* data = test->GetData();
+
+    for(unsigned int i=0; i<dim; i++)
+    {
+        data[i] = i%10;
+    }
+
+    std::cout<<"data @ 23 = "<<data[23]<<std::endl;
+
+    delete test;
 
     return 0;
 }

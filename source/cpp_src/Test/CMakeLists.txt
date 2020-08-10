@@ -24,6 +24,7 @@ if (HOPS_ENABLE_TEST)
         TestMultiTypeMap
         TestTimeStampConverter
         TestScalarContainer
+        TestVectorContainer
         TestMK4Interface
         TestMK4CorelInterface
     )
