@@ -99,13 +99,6 @@ class HkMultiTypeMap< XKeyType, XValueType, XValueTypeS...>: public HkMultiTypeM
         using HkMultiTypeMap< XKeyType, XValueTypeS... >::dump_map;
 };
 
-// template< typename XKeyType, typename XValueType, typename... XValueTypeS >
-// class HkNamedMultiTypeMap< XKeyType, XValueType, XValueTypeS...>: public HkMultiTypeMap< XKeyType, XValueType, XValueTypeS... >, public HkNamed
-// {
-//
-//
-// }
-
 
 }
 
