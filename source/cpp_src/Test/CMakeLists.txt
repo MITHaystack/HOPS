@@ -25,6 +25,7 @@ if (HOPS_ENABLE_TEST)
         TestTimeStampConverter
         TestScalarContainer
         TestVectorContainer
+        TestTensorContainer
         TestMK4Interface
         TestMK4CorelInterface
     )

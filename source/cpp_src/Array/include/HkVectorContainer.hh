@@ -22,7 +22,7 @@ namespace hops
 
 
 template< typename XValueType, typename XUnitType = HkEmptyUnit >
-class HkVectorContainer: public HkNamed, public HkArrayWrapper< XValueType, 1>
+class HkVectorContainer: public HkArrayWrapper< XValueType, 1>
 {
     public:
 
