@@ -30,10 +30,6 @@ class HkVectorContainer: public HkArrayWrapper< XValueType, 1>
             HkArrayWrapper<XValueType,1>()
         {};
 
-        HkVectorContainer( XValueType* data, const std::size_t* dim):
-            HkArrayWrapper<XValueType,1>(data, dim)
-        {};
-
         HkVectorContainer(const size_t* dim):
             HkArrayWrapper<XValueType,1>(dim)
         {};
@@ -44,13 +40,15 @@ class HkVectorContainer: public HkArrayWrapper< XValueType, 1>
         using unit = XUnitType;
 
         //have to make base class functions visible
-        using HkArrayWrapper<XValueType,1>::SetData;
         using HkArrayWrapper<XValueType,1>::GetData;
+        using HkArrayWrapper<XValueType,1>::GetRawData;
         using HkArrayWrapper<XValueType,1>::GetArraySize;
-        using HkArrayWrapper<XValueType,1>::SetArrayDimensions;
         using HkArrayWrapper<XValueType,1>::GetArrayDimensions;
         using HkArrayWrapper<XValueType,1>::GetArrayDimension;
         using HkArrayWrapper<XValueType,1>::GetOffsetForIndices;
+
+        using HkArrayWrapper<XValueType,1>::operator();
+        using HkArrayWrapper<XValueType,1>::operator[];
 
     protected:
 

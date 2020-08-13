@@ -22,7 +22,7 @@ namespace hops
 {
 
 
-template< typename XValueType, typename XUnitType, size_t RANK, class... XAxisTypeS >
+template< typename XValueType, typename XUnitType, size_t RANK >
 class HkTensorContainer: public HkArrayWrapper< XValueType, RANK>
 {
     public:
@@ -31,14 +31,8 @@ class HkTensorContainer: public HkArrayWrapper< XValueType, RANK>
             HkArrayWrapper<XValueType,RANK>()
         {};
 
-        HkTensorContainer( XValueType* data, const std::size_t* dim, XAxisTypeS... axisValues ):
-            HkArrayWrapper<XValueType,RANK>(data, dim),
-            fAxes( std::make_tuple< XAxisTypeS... >(axisValues... ) )
-        {};
-
-        HkTensorContainer(const size_t* dim, XAxisTypeS... axisValues):
-            HkArrayWrapper<XValueType,RANK>(dim),
-            fAxes( std::make_tuple< XAxisTypeS... >(axisValues... ) )
+        HkTensorContainer(const size_t* dim):
+            HkArrayWrapper<XValueType,RANK>(dim)
         {};
 
         virtual ~HkTensorContainer(){};
@@ -47,21 +41,21 @@ class HkTensorContainer: public HkArrayWrapper< XValueType, RANK>
         using unit = XUnitType;
 
         //have to make base class functions visible
-        using HkArrayWrapper<XValueType,RANK>::SetData;
         using HkArrayWrapper<XValueType,RANK>::GetData;
+        using HkArrayWrapper<XValueType,RANK>::GetRawData;
         using HkArrayWrapper<XValueType,RANK>::GetArraySize;
-        using HkArrayWrapper<XValueType,RANK>::SetArrayDimensions;
         using HkArrayWrapper<XValueType,RANK>::GetArrayDimensions;
         using HkArrayWrapper<XValueType,RANK>::GetArrayDimension;
         using HkArrayWrapper<XValueType,RANK>::GetOffsetForIndices;
+
+        using HkArrayWrapper<XValueType,RANK>::operator();
+        using HkArrayWrapper<XValueType,RANK>::operator[];
 
     protected:
 
         using HkArrayWrapper<XValueType,RANK>::fData;
         using HkArrayWrapper<XValueType,RANK>::fDimensions;
         using HkArrayWrapper<XValueType,RANK>::fTotalArraySize;
-
-        std::tuple< XAxisTypeS... > fAxes;
 
 
 };

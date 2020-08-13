@@ -76,7 +76,7 @@ class HkArrayWrapper
             fData.resize(fTotalArraySize);
         }
 
-        //in some cases may need access to the underlying raw array pointer
+        //in some cases we may need access to the underlying raw array pointer
         XValueType* GetRawData(){return &(fData[0]);};
         const XValueType* GetawData() const {return &(fData[0]);};
 
@@ -135,7 +135,6 @@ class HkArrayWrapper
         {
             return fData[i];
         }
-
 
         HkArrayWrapper& operator=(const HkArrayWrapper& rhs)
         {

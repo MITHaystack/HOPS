@@ -17,7 +17,7 @@ int main(int /*argc*/, char** /*argv*/)
     std::cout<<"dimension @ 0 ="<<test->GetArrayDimension(0)<<std::endl;
     std::cout<<"total array size = "<<test->GetArraySize()<<std::endl;
 
-    double* data = test->GetData();
+    double* data = test->GetRawData();
 
     for(unsigned int i=0; i<dim; i++)
     {
