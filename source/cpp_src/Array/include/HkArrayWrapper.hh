@@ -8,6 +8,8 @@
 *Email: barrettj@mit.edu
 *Date: 2020-05-15T20:22:38.395Z
 *Description:
+* Thu 13 Aug 2020 02:53:11 PM EDT - simplified so as to handle memory management interally
+* externally managed arrays should be a different class
 */
 
 #include "HkArrayMath.hh"
@@ -22,50 +24,16 @@ class HkArrayWrapper
 
         HkArrayWrapper()
         {
+            //dimensions not known at time of construction
             for(std::size_t i=0; i<RANK; i++)
             {
                 fDimensions[i] = 0;
             }
             fTotalArraySize = 0;
-            fDataIsOwned = false;
-            fData = nullptr;
         }
 
-        //copy constructor, understood that if fData in obj exists that we copy its contents
-        HkArrayWrapper( const HkArrayWrapper& obj)
-        {
-            for(std::size_t i=0; i<RANK; i++)
-            {
-                fDimensions[i] = obj.fDimensions[i];
-            }
-            fTotalArraySize = obj.fTotalArraySize;
-
-            if(fTotalArraySize != 0)
-            {
-                fData = new XValueType[fTotalArraySize];
-
-                fDataIsOwned = true; //data is internally managed
-            }
-            else
-            {
-                fData = nullptr;
-                fDataIsOwned = false;
-            }
-        }
-
-        //for the time being the data array is owned/managed externally,
-        HkArrayWrapper(XValueType* data, const std::size_t* dim)
-        {
-            fData = data;
-            fDataIsOwned = false; //data is externally managed
-            for(std::size_t i=0; i<RANK; i++)
-            {
-                fDimensions[i] = dim[i];
-            }
-            fTotalArraySize = HkArrayMath::TotalArraySize<RANK>(fDimensions);
-        }
-
-        //data is internally allocated, we may want to improve this with an allocator type parameter
+        //data is internally allocated
+        //we may want to improve this with an allocator type parameter
         HkArrayWrapper(const std::size_t* dim)
         {
             for(std::size_t i=0; i<RANK; i++)
@@ -73,72 +41,48 @@ class HkArrayWrapper
                 fDimensions[i] = dim[i];
             }
             fTotalArraySize = HkArrayMath::TotalArraySize<RANK>(fDimensions);
-
-            if(fTotalArraySize != 0)
-            {
-                fData = new XValueType[fTotalArraySize];
-                fDataIsOwned = true; //data is internally managed
-            }
-            else
-            {
-                fData = nullptr;
-                fDataIsOwned = false;
-                //FIXME with proper exception
-                std::cout<<"Warning, total array size is zero, data ptr assumed to be externally managed!"<<std::endl;
-            }
+            fData.resize(fTotalArraySize);
         }
 
-
-        virtual ~HkArrayWrapper()
-        {
-            if(fDataIsOwned)
-            {
-                delete[] fData;
-            }
-        };
-
-        void SetData(XValueType* ptr) //should we also take an argument specifying the size?
-        {
-            if(fDataIsOwned)
-            {
-                delete[] fData;
-                fData = nullptr;
-                fDataIsOwned = false;
-            }
-            fData = ptr;
-        }
-
-        void SetData(std::vector<XValueType>* ptr) //should we also take an argument specifying the size?
-        {
-            if(fDataIsOwned)
-            {
-                delete[] fData;
-                fData = nullptr;
-                fDataIsOwned = false;
-            }
-            fData = ptr;
-        }
-
-
-
-        //in some cases may need access to the underlying array
-        XValueType* GetRawData(){return &(fData[0]);};
-        const XValueType* GetawData() const {return &(fData[0]);};
-
-        //pointer to underlying vector
-        std::vector<XValueType>* GetData(){return fData;};
-        const std::vector<XValueType>* GetData() const {return fData;};
-
-        std::size_t GetArraySize() const {return HkArrayMath::TotalArraySize<RANK>(fDimensions); };
-
-        void SetArrayDimensions(const std::size_t* array_dim)
+        //copy constructor
+        HkArrayWrapper(const HkArrayWrapper& obj)
         {
             for(std::size_t i=0; i<RANK; i++)
             {
-                fDimensions[i] = array_dim[i];
+                fDimensions[i] = obj.fDimensions[i];
             }
             fTotalArraySize = HkArrayMath::TotalArraySize<RANK>(fDimensions);
+
+            //understood that if fData in obj exists that we copy its contents
+            fData.resize(fTotalArraySize);
+            if(fTotalArraySize != 0)
+            {
+                std::copy(obj.fData.begin(), obj.fData.end(), fData.begin() );
+            }
         }
+
+        virtual ~HkArrayWrapper(){};
+
+
+        void Resize(const std::size_t* dim)
+        {
+            for(std::size_t i=0; i<RANK; i++)
+            {
+                fDimensions[i] = dim[i];
+            }
+            fTotalArraySize = HkArrayMath::TotalArraySize<RANK>(fDimensions);
+            fData.resize(fTotalArraySize);
+        }
+
+        //in some cases may need access to the underlying raw array pointer
+        XValueType* GetRawData(){return &(fData[0]);};
+        const XValueType* GetawData() const {return &(fData[0]);};
+
+        //pointer to data vector
+        std::vector<XValueType>* GetData(){return fData;};
+        const std::vector<XValueType>* GetData() const {return fData;};
+
+        std::size_t GetArraySize() const {return fTotalArraySize;};
 
         void GetArrayDimensions(std::size_t* array_dim) const
         {
@@ -163,13 +107,63 @@ class HkArrayWrapper
             return HkArrayMath::OffsetFromRowMajorIndex<RANK>(fDimensions, index);
         }
 
-        //TODO, implement [] operator overload for multi-dim array
-        //TODO, implement == operator, and clone
+
+
+        //access operator() using axis-positions, no checks on size/dim
+        template <typename ...indices >
+        XValueType& operator()(size_t first, size_t... other)
+        {
+            size_t arr[] = {first, other...};
+            return fData[  HkArrayMath::OffsetFromRowMajorIndex<>(fDimensions, arr) ];
+        }
+
+        template <typename ...indices >
+        const XValueType& operator()(size_t first, size_t... other) const
+        {
+            size_t arr[] = {first, other...};
+            return fData[  HkArrayMath::OffsetFromRowMajorIndex<>(fDimensions, arr) ];
+        }
+
+        //access operator by 1-dim index (absolute-position) into the array
+        XValueType& operator[](size_t i)
+        {
+            return fData[i];
+        }
+
+        const XValueType& operator[](size_t i) const
+        {
+            return fData[i];
+        }
+
+
+        HkArrayWrapper& operator=(const HkArrayWrapper& rhs)
+        {
+            if(this != &rhs)
+            {
+                for(std::size_t i=0; i<RANK; i++)
+                {
+                    fDimensions[i] = rhs.fDimensions[i];
+                }
+                `fTotalArraySize = HkArrayMath::TotalArraySize<RANK>(fDimensions);
+
+                //understood that if fData in obj exists that we copy its contents
+                fData.resize(fTotalArraySize);
+                if(fTotalArraySize != 0)
+                {
+                    std::copy(rhs.fData.begin(), rhs.fData.end(), fData.begin() );
+                }
+            }
+        }
+
+
+
 
     protected:
 
-        bool fDataIsOwned;
-        std::vector< XValueType > fData; //use a vector to simplfy storage of multidimensional array
+        //use a vector to simplfy storage of multidimensional array
+        //TODO, evaluate whether or not we want to handle different types of allocators
+
+        std::vector< XValueType > fData;
         std::size_t fDimensions[RANK]; //size of each dimension
         std::size_t fTotalArraySize; //total size of array
 };
