@@ -1,21 +1,3 @@
-
-//
-// template< typename XValueType, typename XUnitType, size_t RANK, typename... XAxisTypes >
-// class TensorContainer {
-//     public:
-//         TensorContainer();
-//         virtual ~TensorContainer();
-//         //...TBD impl...
-//     private:
-//         std::string fName;
-//         XUnitType fUnit; //units of the data
-//         std::vector< XValueType > fData; //row-indexed block of data
-//         std::tuple< XAxisTypes > fAxes; //tuple of length RANK of VectorContainers
-// };
-//
-
-
-
 #ifndef HkTensorContainer_HH__
 #define HkTensorContainer_HH__
 
@@ -49,12 +31,14 @@ class HkTensorContainer: public HkArrayWrapper< XValueType, RANK>
             HkArrayWrapper<XValueType,RANK>()
         {};
 
-        HkTensorContainer( XValueType* data, const std::size_t* dim):
-            HkArrayWrapper<XValueType,RANK>(data, dim)
+        HkTensorContainer( XValueType* data, const std::size_t* dim, XAxisTypeS... axisValues ):
+            HkArrayWrapper<XValueType,RANK>(data, dim),
+            fAxes( std::make_tuple< XAxisTypeS... >(axisValues... ) )
         {};
 
-        HkTensorContainer(const size_t* dim):
-            HkArrayWrapper<XValueType,RANK>(dim)
+        HkTensorContainer(const size_t* dim, XAxisTypeS... axisValues):
+            HkArrayWrapper<XValueType,RANK>(dim),
+            fAxes( std::make_tuple< XAxisTypeS... >(axisValues... ) )
         {};
 
         virtual ~HkTensorContainer(){};

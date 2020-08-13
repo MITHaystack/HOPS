@@ -15,8 +15,11 @@ int main(int /*argc*/, char** /*argv*/)
     dim[0] = 100;
     dim[1] = 100;
 
+    HkVectorContainer<double> axis0(&dim[0]);
+    HkVectorContainer<int> axis1(&dim[1]);
+
     HkTensorContainer<double, HkEmptyUnit, 2, HkVectorContainer<double>, HkVectorContainer<int> >* test =
-        new HkTensorContainer<double, HkEmptyUnit, 2, HkVectorContainer<double>, HkVectorContainer<int> >(dim);
+        new HkTensorContainer<double, HkEmptyUnit, 2, HkVectorContainer<double>, HkVectorContainer<int> >(dim, axis0, axis1);
 
     std::cout<<"dimension @ 0 ="<<test->GetArrayDimension(0)<<std::endl;
     std::cout<<"dimension @ 1 ="<<test->GetArrayDimension(1)<<std::endl;
