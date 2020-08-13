@@ -23,11 +23,12 @@ if (HOPS_ENABLE_TEST)
     set(SOURCE_BASENAMES
         TestMultiTypeMap
         TestTimeStampConverter
-        TestScalarContainer
-        TestVectorContainer
-        TestTensorContainer
-        TestMK4Interface
-        TestMK4CorelInterface
+        TestArrayWrapper
+#        TestScalarContainer#
+#        TestVectorContainer
+#        TestTensorContainer
+#        TestMK4Interface
+#        TestMK4CorelInterface
     )
 
     foreach( BASENAME ${SOURCE_BASENAMES} )

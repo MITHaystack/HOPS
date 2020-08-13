@@ -12,6 +12,8 @@
 * externally managed arrays should be a different class
 */
 
+#include <vector>
+#include <array>
 #include "HkArrayMath.hh"
 
 namespace hops
@@ -107,21 +109,20 @@ class HkArrayWrapper
             return HkArrayMath::OffsetFromRowMajorIndex<RANK>(fDimensions, index);
         }
 
-
-
-        //access operator() using axis-positions, no checks on size/dim
-        template <typename ...indices >
-        XValueType& operator()(size_t first, size_t... other)
+        template <typename ...XIndexTypeS >
+        typename std::enable_if<(sizeof...(XIndexTypeS) == RANK), XValueType& >::type
+        operator()(XIndexTypeS...idx)
         {
-            size_t arr[] = {first, other...};
-            return fData[  HkArrayMath::OffsetFromRowMajorIndex<>(fDimensions, arr) ];
+            const std::array<std::size_t, RANK> indices = {{idx...}};
+            return fData[  HkArrayMath::OffsetFromRowMajorIndex<RANK>(fDimensions, &(indices[0]) ) ];
         }
 
-        template <typename ...indices >
-        const XValueType& operator()(size_t first, size_t... other) const
+        template <typename ...XIndexTypeS >
+        typename std::enable_if<(sizeof...(XIndexTypeS) == RANK), const XValueType& >::type
+        operator()(XIndexTypeS...idx) const
         {
-            size_t arr[] = {first, other...};
-            return fData[  HkArrayMath::OffsetFromRowMajorIndex<>(fDimensions, arr) ];
+            const std::array<std::size_t, RANK> indices = {{idx...}};
+            return fData[  HkArrayMath::OffsetFromRowMajorIndex<RANK>(fDimensions, &(indices[0]) ) ];
         }
 
         //access operator by 1-dim index (absolute-position) into the array
@@ -144,7 +145,7 @@ class HkArrayWrapper
                 {
                     fDimensions[i] = rhs.fDimensions[i];
                 }
-                `fTotalArraySize = HkArrayMath::TotalArraySize<RANK>(fDimensions);
+                fTotalArraySize = HkArrayMath::TotalArraySize<RANK>(fDimensions);
 
                 //understood that if fData in obj exists that we copy its contents
                 fData.resize(fTotalArraySize);
@@ -156,8 +157,6 @@ class HkArrayWrapper
         }
 
 
-
-
     protected:
 
         //use a vector to simplfy storage of multidimensional array
@@ -166,6 +165,7 @@ class HkArrayWrapper
         std::vector< XValueType > fData;
         std::size_t fDimensions[RANK]; //size of each dimension
         std::size_t fTotalArraySize; //total size of array
+
 };
 
 
@@ -201,6 +201,7 @@ class HkArrayWrapper<XValueType, 0>
         XValueType fData; //single value
         std::size_t fTotalArraySize; //total size of array
 };
+
 
 
 }//end of hops namespace
