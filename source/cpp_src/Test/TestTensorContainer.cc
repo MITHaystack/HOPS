@@ -24,8 +24,6 @@ int main(int /*argc*/, char** /*argv*/)
     std::cout<<"dimension @ 1 ="<<test->GetDimension(1)<<std::endl;
     std::cout<<"total array size = "<<test->GetSize()<<std::endl;
 
-    double* data = test->GetRawData();
-
     for(unsigned int i=0; i<dim[0]; i++)
     {
         for(unsigned int j=0; j<dim[1]; j++)
@@ -43,22 +41,29 @@ int main(int /*argc*/, char** /*argv*/)
     // test->fAxisMap.insert(0,axis0);
     // test->fAxisMap.insert(1,axis1);
 
-    std::cout<<"size of axis 0 = "<<std::get<0>(test->fAxes).GetSize()<<std::endl;
-
-    std::get<0>( test->fAxes ).Resize(dim[0]);
-    std::get<1>( test->fAxes ).Resize(dim[1]);
-
-    std::cout<<"size of axis 0 = "<<std::get<0>(test->fAxes).GetSize()<<std::endl;
+    std::cout<<"size of axis 0 = "<<std::get<0>(*test).GetSize()<<std::endl;
+    // size_t* dim2 = new size_t[2];
+    // dim2[0] = 50;
+    // dim2[1] = 50;
 
     size_t* dim2 = new size_t[2];
-    dim2[0] = 50;
-    dim2[1] = 50;
+    dim2[0] = 5;
+    dim2[1] = 5;
+    test->Resize(dim2);
 
-    test->fAxes.resize_axis_pack(dim2);
+    // std::get<0>( *test ).Resize(5);
+    // std::get<1>( *test ).Resize(5);
 
-    std::cout<<"size of axis 0 = "<<std::get<0>(test->fAxes).GetSize()<<std::endl;
-    std::cout<<"size of axis 1 = "<<std::get<1>(test->fAxes).GetSize()<<std::endl;
+    std::cout<<"size of axis 0 = "<<std::get<0>(*test).GetSize()<<std::endl;
 
+
+
+    //
+    // test->fAxes.resize_axis_pack(dim2);
+    //
+    // std::cout<<"size of axis 0 = "<<std::get<0>(test->fAxes).GetSize()<<std::endl;
+    // std::cout<<"size of axis 1 = "<<std::get<1>(test->fAxes).GetSize()<<std::endl;
+    //
 
     delete test;
     delete dim;

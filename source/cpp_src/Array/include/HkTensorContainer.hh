@@ -28,8 +28,21 @@ class HkAxisPack:  public std::tuple< XAxisTypeS... >
 {
     public:
 
-        HkAxisPack():std::tuple< XAxisTypeS... >(){};
+        HkAxisPack():
+            std::tuple< XAxisTypeS... >()
+        {};
+
+        HkAxisPack(const size_t* dim):
+            std::tuple< XAxisTypeS... >()
+        {
+            resize_axis_pack(dim);
+        };
+
         virtual ~HkAxisPack(){};
+
+    protected:
+
+        //inductive access to all elements of the tuple, so we can re-size them
 
         template<size_t N = 0>
         typename std::enable_if< N == sizeof...(XAxisTypeS), void >::type
@@ -50,20 +63,21 @@ class HkAxisPack:  public std::tuple< XAxisTypeS... >
 
 };
 
-
-
 template< typename XValueType, size_t RANK, typename XAxisPackType >
-class HkTensorContainer: public HkArrayWrapper< XValueType, RANK>, public HkNamed
+class HkTensorContainer: public HkArrayWrapper< XValueType, RANK>, public XAxisPackType, public HkNamed
 {
     public:
 
         HkTensorContainer():
             HkArrayWrapper<XValueType,RANK>(),
+            XAxisPackType(),
             HkNamed()
         {};
 
         HkTensorContainer(const size_t* dim):
-            HkArrayWrapper<XValueType,RANK>(dim)
+            HkArrayWrapper<XValueType,RANK>(dim),
+            XAxisPackType(dim),
+            HkNamed()
         {};
 
         virtual ~HkTensorContainer(){};
@@ -73,7 +87,23 @@ class HkTensorContainer: public HkArrayWrapper< XValueType, RANK>, public HkName
         using HkNamed::SetName;
 
         //have to make base class functions visible
-        using HkArrayWrapper<XValueType,RANK>::Resize;
+        //using HkArrayWrapper<XValueType,RANK>::Resize;
+
+        using XAxisPackType::resize_axis_pack;
+
+        void Resize(const size_t* dim)
+        {
+            for(size_t i=0; i<RANK; i++)
+            {
+                fDimensions[i] = dim[i];
+            }
+            fTotalArraySize = HkArrayMath::TotalArraySize<RANK>(fDimensions);
+            fData.resize(fTotalArraySize);
+
+            resize_axis_pack(dim);
+        }
+
+
         using HkArrayWrapper<XValueType,RANK>::GetData;
         using HkArrayWrapper<XValueType,RANK>::GetRawData;
         using HkArrayWrapper<XValueType,RANK>::GetSize;
@@ -92,7 +122,6 @@ class HkTensorContainer: public HkArrayWrapper< XValueType, RANK>, public HkName
 
     public:
 
-        XAxisPackType fAxes;
 
         // //experimental map for axis types
         // HkMultiTypeMap< size_t, XAxesTypeS... > fAxisMap;
