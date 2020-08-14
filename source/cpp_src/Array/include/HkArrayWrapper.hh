@@ -14,6 +14,8 @@
 
 #include <vector>
 #include <array>
+#include <stdexcept>
+
 #include "HkArrayMath.hh"
 
 namespace hops
@@ -109,6 +111,8 @@ class HkArrayWrapper
             return HkArrayMath::OffsetFromRowMajorIndex<RANK>(fDimensions, index);
         }
 
+        //TODO fix narrowing warning on conversion of XIndexTypeS to size_t
+        //access operator (,,,) -- no bounds checking
         template <typename ...XIndexTypeS >
         typename std::enable_if<(sizeof...(XIndexTypeS) == RANK), XValueType& >::type
         operator()(XIndexTypeS...idx)
@@ -117,12 +121,45 @@ class HkArrayWrapper
             return fData[  HkArrayMath::OffsetFromRowMajorIndex<RANK>(fDimensions, &(indices[0]) ) ];
         }
 
+        //const operator()
         template <typename ...XIndexTypeS >
         typename std::enable_if<(sizeof...(XIndexTypeS) == RANK), const XValueType& >::type
         operator()(XIndexTypeS...idx) const
         {
             const std::array<size_t, RANK> indices = {{idx...}};
             return fData[  HkArrayMath::OffsetFromRowMajorIndex<RANK>(fDimensions, &(indices[0]) ) ];
+        }
+
+        //access via at(,,,,) -- TODO, make this include bounds checking on each dimension!
+        template <typename ...XIndexTypeS >
+        typename std::enable_if<(sizeof...(XIndexTypeS) == RANK), XValueType& >::type
+        at(XIndexTypeS...idx)
+        {
+            const std::array<size_t, RANK> indices = {{idx...}};
+            if( HkArrayMath::CheckIndexValidity<RANK>( fDimensions, &(indices[0]) ) )
+            {
+                return fData[  HkArrayMath::OffsetFromRowMajorIndex<RANK>(fDimensions, &(indices[0]) ) ];
+            }
+            else
+            {
+                throw std::out_of_range("HkArrayWrapper::at() indices out of range.");
+            }
+        }
+
+        //const at()
+        template <typename ...XIndexTypeS >
+        typename std::enable_if<(sizeof...(XIndexTypeS) == RANK), const XValueType& >::type
+        at(XIndexTypeS...idx) const
+        {
+            const std::array<size_t, RANK> indices = {{idx...}};
+            if( HkArrayMath::CheckIndexValidity<RANK>( fDimensions, &(indices[0]) ) )
+            {
+                return fData[  HkArrayMath::OffsetFromRowMajorIndex<RANK>(fDimensions, &(indices[0]) ) ];
+            }
+            else
+            {
+                throw std::out_of_range("HkArrayWrapper::at() indices out of range.");
+            }
         }
 
         //access operator by 1-dim index (absolute-position) into the array
@@ -179,6 +216,13 @@ class HkArrayWrapper<XValueType, 0>
             fTotalArraySize = 1;
         }
 
+        //copy constructor
+        HkArrayWrapper(const HkArrayWrapper& obj)
+        {
+            fTotalArraySize = 1;
+            fData = obj.fData;
+        }
+
         HkArrayWrapper(const XValueType& data)
         {
             fData = data;
@@ -188,12 +232,20 @@ class HkArrayWrapper<XValueType, 0>
         virtual ~HkArrayWrapper(){};
 
         void SetData(const XValueType& value){fData = value;}
-
         XValueType GetData(){return fData;};
+
         XValueType* GetRawData(){return &fData;};
         const XValueType* GetRawData() const {return &fData;};
 
         size_t GetSize() const {return 1;};
+
+        HkArrayWrapper& operator=(const HkArrayWrapper& rhs)
+        {
+            if(this != &rhs)
+            {
+                fData = rhs.fData;
+            }
+        }
 
     protected:
 
@@ -201,6 +253,164 @@ class HkArrayWrapper<XValueType, 0>
         size_t fTotalArraySize; //total size of array
 };
 
+//specialization for a RANK-1 (i.e. a vector)
+template< typename XValueType >
+class HkArrayWrapper<XValueType, 1>
+{
+    public:
+
+        HkArrayWrapper()
+        {
+            fDimensions[0] = 0;
+            fTotalArraySize = 0;
+            fData.resize(0);
+        }
+
+        //data is internally allocated
+        //we may want to improve this with an allocator type parameter
+        HkArrayWrapper(size_t dim)
+        {
+            fDimensions[0] = dim;
+            fTotalArraySize = dim;
+            fData.resize(fTotalArraySize);
+        }
+
+        //copy constructor
+        HkArrayWrapper(const HkArrayWrapper& obj)
+        {
+            fDimensions[0] = obj.fDimensions[0];
+            fTotalArraySize = obj.fTotalArraySize;
+            if(fTotalArraySize != 0)
+            {
+                std::copy(obj.fData.begin(), obj.fData.end(), fData.begin() );
+            }
+        }
+
+        virtual ~HkArrayWrapper(){};
+
+
+        void Resize(size_t dim)
+        {
+            fDimensions[0] = dim;
+            fTotalArraySize = dim;
+            fData.resize(fTotalArraySize);
+        }
+
+        //in some cases we may need access to the underlying raw array pointer
+        XValueType* GetRawData(){return &(fData[0]);};
+        const XValueType* GetawData() const {return &(fData[0]);};
+
+        //pointer to data vector
+        std::vector<XValueType>* GetData(){return fData;};
+        const std::vector<XValueType>* GetData() const {return fData;};
+
+        size_t GetSize() const {return fTotalArraySize;};
+
+        void GetDimensions(size_t* array_dim) const
+        {
+            for(size_t i=0; i<1; i++)
+            {
+                array_dim[i] = fDimensions[i];
+            }
+        }
+
+        const size_t* GetDimensions() const
+        {
+            return fDimensions;
+        }
+
+        size_t GetDimension(size_t dim_index) const
+        {
+            return fDimensions[dim_index];
+        }
+
+        size_t GetOffsetForIndices(const size_t* index)
+        {
+            return HkArrayMath::OffsetFromRowMajorIndex<1>(fDimensions, index);
+        }
+
+        //TODO fix narrowing warning on conversion of XIndexTypeS to size_t
+        //access operator (,,,) -- no bounds checking
+        template <typename ...XIndexTypeS >
+        typename std::enable_if<(sizeof...(XIndexTypeS) == 1), XValueType& >::type
+        operator()(XIndexTypeS...idx)
+        {
+            const std::array<size_t, 1> indices = {{idx...}};
+            return fData[ indices[0] ];
+        }
+
+        //const operator()
+        template <typename ...XIndexTypeS >
+        typename std::enable_if<(sizeof...(XIndexTypeS) == 1), const XValueType& >::type
+        operator()(XIndexTypeS...idx) const
+        {
+            const std::array<size_t, 1> indices = {{idx...}};
+            return fData[ indices[0] ];
+        }
+
+        //access via at(,,,,) -- TODO, make this include bounds checking on each dimension!
+        template <typename ...XIndexTypeS >
+        typename std::enable_if<(sizeof...(XIndexTypeS) == 1), XValueType& >::type
+        at(XIndexTypeS...idx)
+        {
+            const std::array<size_t, 1> indices = {{idx...}};
+            if( HkArrayMath::CheckIndexValidity<1>( fDimensions, &(indices[0]) ) )
+            {
+                return fData[ indices[0] ];
+            }
+            else
+            {
+                throw std::out_of_range("HkArrayWrapper::at() indices out of range.");
+            }
+        }
+
+        //const at()
+        template <typename ...XIndexTypeS >
+        typename std::enable_if<(sizeof...(XIndexTypeS) == 1), const XValueType& >::type
+        at(XIndexTypeS...idx) const
+        {
+            const std::array<size_t, 1> indices = {{idx...}};
+            if( HkArrayMath::CheckIndexValidity<1>( fDimensions, &(indices[0]) ) )
+            {
+                return fData[ indices[0] ];
+            }
+            else
+            {
+                throw std::out_of_range("HkArrayWrapper::at() indices out of range.");
+            }
+        }
+
+        //access operator by 1-dim index (absolute-position) into the array
+        XValueType& operator[](size_t i)
+        {
+            return fData[i];
+        }
+
+        const XValueType& operator[](size_t i) const
+        {
+            return fData[i];
+        }
+
+        HkArrayWrapper& operator=(const HkArrayWrapper& rhs)
+        {
+            if(this != &rhs)
+            {
+                fDimensions[0] = rhs.fDimensions[0];
+                fTotalArraySize = rhs.fTotalArraySize;
+                fData.resize(fTotalArraySize);
+                if(fTotalArraySize != 0)
+                {
+                    std::copy(rhs.fData.begin(), rhs.fData.end(), fData.begin() );
+                }
+            }
+        }
+
+    protected:
+
+        std::vector< XValueType > fData;
+        size_t fDimensions[1]; //size of each dimension
+        size_t fTotalArraySize; //total size of array
+};
 
 
 }//end of hops namespace

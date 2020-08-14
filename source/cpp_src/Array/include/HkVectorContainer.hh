@@ -31,7 +31,7 @@ class HkVectorContainer: public HkArrayWrapper< XValueType, 1>, public HkNamed
             HkNamed()
         {};
 
-        HkVectorContainer(const size_t* dim):
+        HkVectorContainer(size_t dim):
             HkArrayWrapper<XValueType,1>(dim),
             HkNamed()
         {};
@@ -43,6 +43,7 @@ class HkVectorContainer: public HkArrayWrapper< XValueType, 1>, public HkNamed
         using HkNamed::SetName;
 
         //have to make base class functions visible
+        using HkArrayWrapper<XValueType,1>::Resize;
         using HkArrayWrapper<XValueType,1>::GetData;
         using HkArrayWrapper<XValueType,1>::GetRawData;
         using HkArrayWrapper<XValueType,1>::GetSize;

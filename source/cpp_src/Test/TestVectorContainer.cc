@@ -12,7 +12,7 @@ int main(int /*argc*/, char** /*argv*/)
 
     size_t dim = 100;
 
-    HkVectorContainer<double>* test = new HkVectorContainer<double>(&dim);
+    HkVectorContainer<double>* test = new HkVectorContainer<double>(dim);
 
     std::cout<<"dimension @ 0 ="<<test->GetDimension(0)<<std::endl;
     std::cout<<"total array size = "<<test->GetSize()<<std::endl;
@@ -25,6 +25,8 @@ int main(int /*argc*/, char** /*argv*/)
     }
 
     std::cout<<"data @ 23 = "<<data[23]<<std::endl;
+
+    std::cout<<"data @ 3 = "<<(*test)(3)<<std::endl;
 
     delete test;
 
