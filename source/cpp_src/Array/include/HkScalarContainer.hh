@@ -13,40 +13,39 @@
 
 #include <string>
 
-#include "HkUnits.hh"
 #include "HkNamed.hh"
-
 #include "HkArrayWrapper.hh"
 
 namespace hops
 {
 
-
-
-template< typename XValueType, typename XUnitType = HkEmptyUnit >
-class HkScalarContainer: public HkNamed, public HkArrayWrapper< XValueType, 0>
+template< typename XValueType >
+class HkScalarContainer: public HkArrayWrapper< XValueType, 0>, public HkNamed
 {
     public:
-        HkScalarContainer(): HkArrayWrapper<XValueType, 0>() {};
+        HkScalarContainer():
+            HkArrayWrapper<XValueType, 0>(),
+            HkNamed()
+        {};
+
         virtual ~HkScalarContainer(){};
+
+        using HkNamed::IsNamed;
+        using HkNamed::GetName;
+        using HkNamed::SetName;
 
         void SetValue(const XValueType& value){fData = value;};
         XValueType GetValue(){ return fData;};
-
-        //declare the unit type (not implemented for now)
-        using unit = XUnitType;
 
         //have to make base class functions visible
         using HkArrayWrapper<XValueType,0>::SetData;
         using HkArrayWrapper<XValueType,0>::GetData;
 
-        std::size_t GetArraySize() const {return 1;};
+        std::size_t GetSize() const {return 1;};
 
     protected:
 
         using HkArrayWrapper<XValueType,0>::fData;
-
-        std::string fName;
 
 };
 

@@ -19,7 +19,7 @@
 namespace hops
 {
 
-template< typename XValueType, std::size_t RANK>
+template< typename XValueType, size_t RANK>
 class HkArrayWrapper
 {
     public:
@@ -27,7 +27,7 @@ class HkArrayWrapper
         HkArrayWrapper()
         {
             //dimensions not known at time of construction
-            for(std::size_t i=0; i<RANK; i++)
+            for(size_t i=0; i<RANK; i++)
             {
                 fDimensions[i] = 0;
             }
@@ -36,9 +36,9 @@ class HkArrayWrapper
 
         //data is internally allocated
         //we may want to improve this with an allocator type parameter
-        HkArrayWrapper(const std::size_t* dim)
+        HkArrayWrapper(const size_t* dim)
         {
-            for(std::size_t i=0; i<RANK; i++)
+            for(size_t i=0; i<RANK; i++)
             {
                 fDimensions[i] = dim[i];
             }
@@ -49,7 +49,7 @@ class HkArrayWrapper
         //copy constructor
         HkArrayWrapper(const HkArrayWrapper& obj)
         {
-            for(std::size_t i=0; i<RANK; i++)
+            for(size_t i=0; i<RANK; i++)
             {
                 fDimensions[i] = obj.fDimensions[i];
             }
@@ -66,9 +66,9 @@ class HkArrayWrapper
         virtual ~HkArrayWrapper(){};
 
 
-        void Resize(const std::size_t* dim)
+        void Resize(const size_t* dim)
         {
-            for(std::size_t i=0; i<RANK; i++)
+            for(size_t i=0; i<RANK; i++)
             {
                 fDimensions[i] = dim[i];
             }
@@ -84,27 +84,27 @@ class HkArrayWrapper
         std::vector<XValueType>* GetData(){return fData;};
         const std::vector<XValueType>* GetData() const {return fData;};
 
-        std::size_t GetArraySize() const {return fTotalArraySize;};
+        size_t GetSize() const {return fTotalArraySize;};
 
-        void GetArrayDimensions(std::size_t* array_dim) const
+        void GetDimensions(size_t* array_dim) const
         {
-            for(std::size_t i=0; i<RANK; i++)
+            for(size_t i=0; i<RANK; i++)
             {
                 array_dim[i] = fDimensions[i];
             }
         }
 
-        const std::size_t* GetArrayDimensions() const
+        const size_t* GetDimensions() const
         {
             return fDimensions;
         }
 
-        std::size_t GetArrayDimension(std::size_t dim_index) const
+        size_t GetDimension(size_t dim_index) const
         {
             return fDimensions[dim_index];
         }
 
-        std::size_t GetOffsetForIndices(const size_t* index)
+        size_t GetOffsetForIndices(const size_t* index)
         {
             return HkArrayMath::OffsetFromRowMajorIndex<RANK>(fDimensions, index);
         }
@@ -113,7 +113,7 @@ class HkArrayWrapper
         typename std::enable_if<(sizeof...(XIndexTypeS) == RANK), XValueType& >::type
         operator()(XIndexTypeS...idx)
         {
-            const std::array<std::size_t, RANK> indices = {{idx...}};
+            const std::array<size_t, RANK> indices = {{idx...}};
             return fData[  HkArrayMath::OffsetFromRowMajorIndex<RANK>(fDimensions, &(indices[0]) ) ];
         }
 
@@ -121,7 +121,7 @@ class HkArrayWrapper
         typename std::enable_if<(sizeof...(XIndexTypeS) == RANK), const XValueType& >::type
         operator()(XIndexTypeS...idx) const
         {
-            const std::array<std::size_t, RANK> indices = {{idx...}};
+            const std::array<size_t, RANK> indices = {{idx...}};
             return fData[  HkArrayMath::OffsetFromRowMajorIndex<RANK>(fDimensions, &(indices[0]) ) ];
         }
 
@@ -140,7 +140,7 @@ class HkArrayWrapper
         {
             if(this != &rhs)
             {
-                for(std::size_t i=0; i<RANK; i++)
+                for(size_t i=0; i<RANK; i++)
                 {
                     fDimensions[i] = rhs.fDimensions[i];
                 }
@@ -162,8 +162,8 @@ class HkArrayWrapper
         //TODO, evaluate whether or not we want to handle different types of allocators
 
         std::vector< XValueType > fData;
-        std::size_t fDimensions[RANK]; //size of each dimension
-        std::size_t fTotalArraySize; //total size of array
+        size_t fDimensions[RANK]; //size of each dimension
+        size_t fTotalArraySize; //total size of array
 
 };
 
@@ -193,12 +193,12 @@ class HkArrayWrapper<XValueType, 0>
         XValueType* GetRawData(){return &fData;};
         const XValueType* GetRawData() const {return &fData;};
 
-        std::size_t GetArraySize() const {return 1;};
+        size_t GetSize() const {return 1;};
 
     protected:
 
         XValueType fData; //single value
-        std::size_t fTotalArraySize; //total size of array
+        size_t fTotalArraySize; //total size of array
 };
 
 

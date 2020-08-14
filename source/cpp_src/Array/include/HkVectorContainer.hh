@@ -21,30 +21,33 @@ namespace hops
 {
 
 
-template< typename XValueType, typename XUnitType = HkEmptyUnit >
-class HkVectorContainer: public HkArrayWrapper< XValueType, 1>
+template< typename XValueType >
+class HkVectorContainer: public HkArrayWrapper< XValueType, 1>, public HkNamed
 {
     public:
 
         HkVectorContainer():
-            HkArrayWrapper<XValueType,1>()
+            HkArrayWrapper<XValueType,1>(),
+            HkNamed()
         {};
 
         HkVectorContainer(const size_t* dim):
-            HkArrayWrapper<XValueType,1>(dim)
+            HkArrayWrapper<XValueType,1>(dim),
+            HkNamed()
         {};
 
         virtual ~HkVectorContainer(){};
 
-        //declare the unit type (not implemented for now)
-        using unit = XUnitType;
+        using HkNamed::IsNamed;
+        using HkNamed::GetName;
+        using HkNamed::SetName;
 
         //have to make base class functions visible
         using HkArrayWrapper<XValueType,1>::GetData;
         using HkArrayWrapper<XValueType,1>::GetRawData;
-        using HkArrayWrapper<XValueType,1>::GetArraySize;
-        using HkArrayWrapper<XValueType,1>::GetArrayDimensions;
-        using HkArrayWrapper<XValueType,1>::GetArrayDimension;
+        using HkArrayWrapper<XValueType,1>::GetSize;
+        using HkArrayWrapper<XValueType,1>::GetDimensions;
+        using HkArrayWrapper<XValueType,1>::GetDimension;
         using HkArrayWrapper<XValueType,1>::GetOffsetForIndices;
 
         using HkArrayWrapper<XValueType,1>::operator();
@@ -55,7 +58,6 @@ class HkVectorContainer: public HkArrayWrapper< XValueType, 1>
         using HkArrayWrapper<XValueType,1>::fData;
         using HkArrayWrapper<XValueType,1>::fDimensions;
         using HkArrayWrapper<XValueType,1>::fTotalArraySize;
-
 
 };
 

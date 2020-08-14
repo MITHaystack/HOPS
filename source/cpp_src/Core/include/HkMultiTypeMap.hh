@@ -63,7 +63,7 @@ class HkSingleTypeMap
 };
 
 //declare a multi-type map which takes a key type, and variadic template parameter for the types to be stored
-template <typename XKeyType, typename... XvalueTypeS>
+template <typename XKeyType, typename... XValueTypeS>
 class HkMultiTypeMap;
 
 //declare the specialization for the base case of the recursion (in which the parameter XValueType is just a single type)

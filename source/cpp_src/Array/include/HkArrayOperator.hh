@@ -20,7 +20,7 @@ class HkArrayOperator
         static bool
         HaveSameNumberOfElements(const HkArrayWrapper<XValueType,RANK>* arr1, const HkArrayWrapper<XValueType,RANK>* arr2)
         {
-            return ( arr1->GetArraySize() == arr2->GetArraySize() );
+            return ( arr1->GetSize() == arr2->GetSize() );
         }
 
         static bool
@@ -29,8 +29,8 @@ class HkArrayOperator
             size_t shape1[RANK];
             size_t shape2[RANK];
 
-            arr1->GetArrayDimensions(shape1);
-            arr2->GetArrayDimensions(shape2);
+            arr1->GetDimensions(shape1);
+            arr2->GetDimensions(shape2);
 
             for(size_t i=0; i<RANK; i++)
             {
@@ -45,7 +45,7 @@ class HkArrayOperator
         ResetArray(HkArrayWrapper<XValueType,RANK>* arr, const XValueType& obj)
         {
             XValueType* ptr = arr->GetData();
-            size_t n_elem = arr->GetArraySize();
+            size_t n_elem = arr->GetSize();
             for(size_t i=0; i < n_elem; i++)
             {
                 ptr[i] = obj;
@@ -57,7 +57,7 @@ class HkArrayOperator
         ZeroArray(HkArrayWrapper<XValueType,RANK>* arr)
         {
             XValueType* ptr = arr->GetData();
-            size_t n_bytes = (arr->GetArraySize() )*( sizeof(XValueType) );
+            size_t n_bytes = (arr->GetSize() )*( sizeof(XValueType) );
             std::memset(ptr, 0, n_bytes);
         }
 

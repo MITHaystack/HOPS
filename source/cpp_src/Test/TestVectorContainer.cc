@@ -14,8 +14,8 @@ int main(int /*argc*/, char** /*argv*/)
 
     HkVectorContainer<double>* test = new HkVectorContainer<double>(&dim);
 
-    std::cout<<"dimension @ 0 ="<<test->GetArrayDimension(0)<<std::endl;
-    std::cout<<"total array size = "<<test->GetArraySize()<<std::endl;
+    std::cout<<"dimension @ 0 ="<<test->GetDimension(0)<<std::endl;
+    std::cout<<"total array size = "<<test->GetSize()<<std::endl;
 
     double* data = test->GetRawData();
 
