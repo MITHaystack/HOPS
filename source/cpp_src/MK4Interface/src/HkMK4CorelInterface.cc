@@ -239,6 +239,22 @@ HkMK4CorelInterface::ExportCorelFile(Type100MetaData& meta, std::vector< Type101
         //     type120vector[i].dump_map<float>();
         // }
 
+        // size_t dim[3];
+        // dim[0] = //num channels
+        // dim[1] = //num channel sub-frequencies (i.e lags)
+        // dim[2] = //num ap's
+        //
+        // std::vector< channel_visibility_type >
+        //
+        //
+        // for(size_t i; i< type120vector.size(); i++)
+        // {
+        //     int index, ap;
+        //     type120vector[i].retrieve("type_120.index", index);
+        //     type120vector[i].retrieve("type_120.ap", ap);
+        //     std::vector< std::complex<double> > lag_data;
+        //     type120vector[i].retrieve("type_120.ld", &lag_data);
+        // }
 
 
 

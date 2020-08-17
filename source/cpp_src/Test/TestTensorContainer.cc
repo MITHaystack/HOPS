@@ -30,7 +30,7 @@ int main(int argc, char** argv)
     dim[1] = 256; //y
     dim[2] = 3; // r,g,b
 
-    HkTensorContainer<double, NDIM, axis_pack_test >* test = new HkTensorContainer<double, NDIM, axis_pack_test >(dim);
+    HkTensorContainer<double, axis_pack_test >* test = new HkTensorContainer<double, axis_pack_test >(dim);
 
     for(size_t i=0; i<NDIM; i++)
     {
@@ -70,38 +70,7 @@ int main(int argc, char** argv)
         }
     }
 
-    // std::cout<<"data(2,3) = "<<test->at(2,3)<<std::endl;
-    //
-    // // //std::cout<<"data(101,3) = "<<test->at(101,3)<<std::endl;
-    // // HkVectorContainer<double> axis0(dim);
-    // // HkVectorContainer<int> axis1(&(dim[1]));
-    // //
-    // // test->fAxisMap.insert(0,axis0);
-    // // test->fAxisMap.insert(1,axis1);
-    //
-    // std::cout<<"size of axis 0 = "<<std::get<0>(*test).GetSize()<<std::endl;
-    // // size_t* dim2 = new size_t[2];
-    // // dim2[0] = 50;
-    // // dim2[1] = 50;
-    //
-    // size_t* dim2 = new size_t[2];
-    // dim2[0] = 5;
-    // dim2[1] = 5;
-    // test->Resize(dim2);
-    //
-    // // std::get<0>( *test ).Resize(5);
-    // // std::get<1>( *test ).Resize(5);
-    //
-    // std::cout<<"size of axis 0 = "<<std::get<0>(*test).GetSize()<<std::endl;
 
-
-
-    //
-    // test->fAxes.resize_axis_pack_test(dim2);
-    //
-    // std::cout<<"size of axis 0 = "<<std::get<0>(test->fAxes).GetSize()<<std::endl;
-    // std::cout<<"size of axis 1 = "<<std::get<1>(test->fAxes).GetSize()<<std::endl;
-    //
 
     std::cout<<"starting root plotting"<<std::endl;
 

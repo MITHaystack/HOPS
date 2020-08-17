@@ -32,7 +32,7 @@ class HkAxisPack:  public std::tuple< XAxisTypeS... >
         virtual ~HkAxisPack(){};
 
         //using rank = typename HkTypelistSize< HkTypelist< XAxisTypeS...> >::value;
-        typedef std::integral_constant< size_t, sizeof...(XAxisTypeS) > rank;
+        typedef std::integral_constant< size_t, sizeof...(XAxisTypeS) > RANK;
 
     protected:
 

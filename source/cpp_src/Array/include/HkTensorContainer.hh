@@ -25,19 +25,19 @@
 namespace hops
 {
 
-template< typename XValueType, size_t RANK, typename XAxisPackType >
-class HkTensorContainer: public HkArrayWrapper< XValueType, RANK>, public XAxisPackType, public HkNamed
+template< typename XValueType, typename XAxisPackType >
+class HkTensorContainer: public HkArrayWrapper< XValueType, XAxisPackType::RANK::value>, public XAxisPackType, public HkNamed
 {
     public:
 
         HkTensorContainer():
-            HkArrayWrapper<XValueType,RANK>(),
+            HkArrayWrapper<XValueType,XAxisPackType::RANK::value>(),
             XAxisPackType(),
             HkNamed()
         {};
 
         HkTensorContainer(const size_t* dim):
-            HkArrayWrapper<XValueType,RANK>(dim),
+            HkArrayWrapper<XValueType,XAxisPackType::RANK::value>(dim),
             XAxisPackType(dim),
             HkNamed()
         {};
@@ -52,39 +52,32 @@ class HkTensorContainer: public HkArrayWrapper< XValueType, RANK>, public XAxisP
         using XAxisPackType::resize_axis_pack;
         void Resize(const size_t* dim)
         {
-            for(size_t i=0; i<RANK; i++)
+            for(size_t i=0; i<XAxisPackType::RANK::value; i++)
             {
                 fDimensions[i] = dim[i];
             }
-            fTotalArraySize = HkArrayMath::TotalArraySize<RANK>(fDimensions);
+            fTotalArraySize = HkArrayMath::TotalArraySize<XAxisPackType::RANK::value>(fDimensions);
             fData.resize(fTotalArraySize);
 
             resize_axis_pack(dim);
         }
 
         //have to make base class functions visible
-        using HkArrayWrapper<XValueType,RANK>::GetData;
-        using HkArrayWrapper<XValueType,RANK>::GetRawData;
-        using HkArrayWrapper<XValueType,RANK>::GetSize;
-        using HkArrayWrapper<XValueType,RANK>::GetDimensions;
-        using HkArrayWrapper<XValueType,RANK>::GetDimension;
-        using HkArrayWrapper<XValueType,RANK>::GetOffsetForIndices;
+        using HkArrayWrapper<XValueType,XAxisPackType::RANK::value>::GetData;
+        using HkArrayWrapper<XValueType,XAxisPackType::RANK::value>::GetRawData;
+        using HkArrayWrapper<XValueType,XAxisPackType::RANK::value>::GetSize;
+        using HkArrayWrapper<XValueType,XAxisPackType::RANK::value>::GetDimensions;
+        using HkArrayWrapper<XValueType,XAxisPackType::RANK::value>::GetDimension;
+        using HkArrayWrapper<XValueType,XAxisPackType::RANK::value>::GetOffsetForIndices;
 
-        using HkArrayWrapper<XValueType,RANK>::operator();
-        using HkArrayWrapper<XValueType,RANK>::operator[];
+        using HkArrayWrapper<XValueType,XAxisPackType::RANK::value>::operator();
+        using HkArrayWrapper<XValueType,XAxisPackType::RANK::value>::operator[];
 
     protected:
 
-        using HkArrayWrapper<XValueType,RANK>::fData;
-        using HkArrayWrapper<XValueType,RANK>::fDimensions;
-        using HkArrayWrapper<XValueType,RANK>::fTotalArraySize;
-
-    public:
-
-
-        // //experimental map for axis types
-        // HkMultiTypeMap< size_t, XAxesTypeS... > fAxisMap;
-
+        using HkArrayWrapper<XValueType,XAxisPackType::RANK::value>::fData;
+        using HkArrayWrapper<XValueType,XAxisPackType::RANK::value>::fDimensions;
+        using HkArrayWrapper<XValueType,XAxisPackType::RANK::value>::fTotalArraySize;
 
 };
 
