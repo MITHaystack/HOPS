@@ -197,6 +197,7 @@ class HkArrayWrapper
 
         //use a vector to simplfy storage of multidimensional array
         //TODO, evaluate whether or not we want to handle different types of allocators
+        //TODO, evalaute whether or not we want to support arrays with external memory management
 
         std::vector< XValueType > fData;
         size_t fDimensions[RANK]; //size of each dimension

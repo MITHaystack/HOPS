@@ -166,7 +166,7 @@ HkMK4CorelInterface::ExportCorelFile(Type100MetaData& meta, std::vector< Type101
                 type101vector.push_back(tmp101);
 
                 //now we want to extract the data in the type_120's
-                //note that this data is dumped into the type120vector in a completely disorganized fashion (at it was stored)
+                //note that this data is dumped into the type120vector in a completely disorganized fashion (as it was stored)
                 //and needs to be restructured later into a sensibly ordered array
                 for(int ap=0; ap<idx->ap_space; ap++)
                 {
@@ -205,7 +205,7 @@ HkMK4CorelInterface::ExportCorelFile(Type100MetaData& meta, std::vector< Type101
                         }
                         else
                         {
-                            std::cout<<"non-spectral type-120 no longer supported."<<std::endl;
+                            std::cout<<"non-spectral type-120 not supported."<<std::endl;
                         }
                     }
                 }
