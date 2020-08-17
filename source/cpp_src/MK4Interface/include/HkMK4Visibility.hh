@@ -25,7 +25,7 @@ using visibility_type = std::complex<double>;
 using frequency_axis_type = HkVectorContainer<double>;
 using time_axis_type = HkVectorContainer<double>;
 
-using channel_axis_pack = HkAxisPack< frequency_axis_type, time_axis_type>;
+using channel_axis_pack = HkAxisPack< time_axis_type, frequency_axis_type>;
 using channel_data_type = HkTensorContainer< visibility_type, channel_axis_pack >;
 
 

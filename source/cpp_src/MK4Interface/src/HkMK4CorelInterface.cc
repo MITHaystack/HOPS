@@ -6,6 +6,7 @@
 #include <vector>
 #include <cstring>
 #include <complex>
+#include <set>
 
 #include "HkMK4Visibility.hh"
 
@@ -140,6 +141,7 @@ HkMK4CorelInterface::ExportCorelFile(Type100MetaData& meta, std::vector< Type101
         //see fourfit set_pointers.c for some of the mk4_corel access logic
         size_t max_ap = 0;
         size_t max_nlags = 0;
+        std::set< std::string > channel_labels;
 
         struct mk4_corel::index_tag* idx;
         for(int i=0; i<fCorel->index_space; i++)
@@ -153,7 +155,8 @@ HkMK4CorelInterface::ExportCorelFile(Type100MetaData& meta, std::vector< Type101
                 tmp101.insert(std::string("type_101.version_no"), getstr(t101->version_no, 2) );
                 tmp101.insert(std::string("type_101.status"), getstr(&(t101->status), 1) );
                 tmp101.insert(std::string("type_101.nblocks"), t101->nblocks);
-                tmp101.insert(std::string("type_101.index"), t101->index);
+                //tmp101.insert(std::string("type_101.index"), t101->index);
+                tmp101.insert(std::string("type_101.index"), i);
                 tmp101.insert(std::string("type_101.primary"), t101->primary);
                 tmp101.insert(std::string("type_101.ref_chan_id"), getstr(t101->ref_chan_id,8) );
                 tmp101.insert(std::string("type_101.rem_chan_id"), getstr(t101->rem_chan_id,8) );
@@ -162,6 +165,12 @@ HkMK4CorelInterface::ExportCorelFile(Type100MetaData& meta, std::vector< Type101
                 tmp101.insert(std::string("type_101.ref_chan"), t101->ref_chan );
                 tmp101.insert(std::string("type_101.rem_chan"), t101->rem_chan);
                 tmp101.insert(std::string("type_101.post_mortem"), t101->post_mortem);
+
+                std::string ref_chan_id = getstr(t101->ref_chan_id,8);
+                std::string rem_chan_id = getstr(t101->rem_chan_id,8);
+                std::string channel_label = ref_chan_id + "-" + rem_chan_id;
+                channel_labels.insert(channel_label);
+
                 std::vector<int> tmp_blocks;
                 for (int j = 0; j < (t101->nblocks); j++)
                 {           /* Each block */
@@ -187,7 +196,8 @@ HkMK4CorelInterface::ExportCorelFile(Type100MetaData& meta, std::vector< Type101
                             tmp120.insert(std::string("type_120.nlags"), t120->nlags);
                             tmp120.insert(std::string("type_120.baseline"), getstr(t120->baseline, 2) );
                             tmp120.insert(std::string("type_120.rootcode"), getstr(t120->rootcode, 6) );
-                            tmp120.insert(std::string("type_120.index"), t120->index );
+//                            // tmp120.insert(std::string("type_120.index"), t120->index );
+                            tmp120.insert(std::string("type_120.index"), i );
                             tmp120.insert(std::string("type_120.ap"),t120->ap );
                             tmp120.insert(std::string("type_120.fw"), t120->fw.weight );
                             tmp120.insert(std::string("type_120.status"), t120->status);
@@ -222,16 +232,16 @@ HkMK4CorelInterface::ExportCorelFile(Type100MetaData& meta, std::vector< Type101
 
         }//end of index loop
 
-        std::cout<<"dump the type 101s"<<std::endl;
-        //text dump for debug
-        for(unsigned int i=0; i<type101vector.size(); i++)
-        {
-            type101vector[i].dump_map<std::string>();
-            type101vector[i].dump_map<short>();
-            type101vector[i].dump_map<int>();
-        }
+        // std::cout<<"dump the type 101s"<<std::endl;
+        // //text dump for debug
+        // for(unsigned int i=0; i<type101vector.size(); i++)
+        // {
+        //     type101vector[i].dump_map<std::string>();
+        //     type101vector[i].dump_map<short>();
+        //     type101vector[i].dump_map<int>();
+        // }
 
-        // std::cout<<"dump the type 120s"<<std::endl;
+
         //
         // //text dump for debug
         // for(unsigned int i=0; i<type120vector.size(); i++)
@@ -242,30 +252,67 @@ HkMK4CorelInterface::ExportCorelFile(Type100MetaData& meta, std::vector< Type101
         //     type120vector[i].dump_map<float>();
         // }
 
-        // size_t dim[3];
-        // dim[0] = //num channels
-        // dim[1] = //num channel sub-frequencies (i.e lags)
-        // dim[2] = //num ap's
-        //
-        // std::vector< channel_data_type > channels;
-        // size_t naps = max_ap + 1;
-        //
-        // 
-        // for(size_t i; i< type120vector.size(); i++)
-        // {
-        //     int index, ap;
-        //     type120vector[i].retrieve("type_120.index", index);
-        //     type120vector[i].retrieve("type_120.ap", ap);
-        //     std::vector< std::complex<double> > lag_data;
-        //     type120vector[i].retrieve("type_120.ld", &lag_data);
-        //
-        //     channel_data_type a_channel;
-        //     a_channel.Resize(lag_data.size(), );
-        //
-        //
-        // }
 
 
+        size_t naps = max_ap + 1;
+        size_t nlags = max_nlags;
+        size_t dim[2];
+        dim[0] = naps;
+        dim[1] = max_nlags;
+        std::map< std::string, channel_data_type* > channels;
+        for(auto iter = channel_labels.begin(); iter != channel_labels.end(); iter++)
+        {
+            channel_data_type* chan = new channel_data_type(dim);
+            channels.insert( std::pair<std::string, channel_data_type* >(*iter, chan) );
+        }
+
+        for(size_t i; i< type120vector.size(); i++)
+        {
+            int index120, ap;
+            type120vector[i].retrieve("type_120.index", index120);
+            type120vector[i].retrieve("type_120.ap", ap);
+
+            std::string ref_chan_id;
+            std::string rem_chan_id;
+            std::string ref_chan;
+            std::string rem_chan;
+
+            //get the channel info
+            for(size_t j=0; j<type101vector.size(); j++)
+            {
+                int index101;
+                type101vector[j].retrieve( std::string("type_101.index"), index101 );
+                if( index101 == index120 )
+                {
+                    type101vector[j].retrieve( std::string("type_101.ref_chan_id"), ref_chan_id );
+                    type101vector[j].retrieve( std::string("type_101.rem_chan_id"), rem_chan_id );
+                    //std::cout<<"found matching type 101, index = "<<index120<<std::endl;
+                    //std::cout<<"ref, rem chan ids = "<<ref_chan_id<<", "<<rem_chan_id<<std::endl;
+                }
+            }
+
+            std::vector< std::complex<double> > lag_data;
+            type120vector[i].retrieve(std::string("type_120.ld"), lag_data);
+
+            std::string channel_label = ref_chan_id + "-" + rem_chan_id;
+            //std::cout<<"channel label = "<<channel_label<<std::endl;
+
+            auto iter = channels.find(channel_label);
+            if(iter != channels.end() )
+            {
+                for(size_t f = 0; f<lag_data.size(); f++)
+                {
+                    iter->second->at(ap, f) = lag_data[f];
+                }
+            }
+
+        }
+
+
+        for( auto iter = channels.begin(); iter != channels.end(); iter++)
+        {
+            std::cout<<"test channel: "<<iter->first<<", "<<iter->second->at(0,1)<<std::endl;
+        }
 
     }//end of if HkaveCorel
 

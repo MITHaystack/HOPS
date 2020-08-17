@@ -3,7 +3,7 @@
 namespace hops
 {
 
-    HkNamed::HkNamed():fName(""){};
+
     HkNamed::HkNamed(const HkNamed& obj) : fName(obj.fName) {};
 
     bool HkNamed::IsNamed(const std::string& name) const

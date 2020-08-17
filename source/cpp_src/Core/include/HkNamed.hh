@@ -19,7 +19,7 @@ class HkNamed
 {
     public:
 
-        HkNamed();
+        HkNamed():fName(""){};
         HkNamed(const HkNamed& obj);
         HkNamed& operator=(const HkNamed& lhs) = default;
         virtual ~HkNamed() = default;
