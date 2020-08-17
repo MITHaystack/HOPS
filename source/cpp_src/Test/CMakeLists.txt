@@ -10,13 +10,9 @@ if (HOPS_ENABLE_TEST)
     include_directories(${CMAKE_CURRENT_SOURCE_DIR}/${DFIO_RELPATH})
     include_directories(${CMAKE_CURRENT_SOURCE_DIR}/${VEX_RELPATH})
 
-
     include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../Array/include)
     include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../Core/include)
     include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../MK4Interface/include)
-
-
-
 
     set (HOPS_TEST_LIBS HCore HMK4Interface mk4stub mk4util dfio vex )
 
@@ -26,10 +22,18 @@ if (HOPS_ENABLE_TEST)
         TestArrayWrapper
         TestScalarContainer
         TestVectorContainer
-        TestTensorContainer
         TestMK4Interface
         TestMK4CorelInterface
     )
+
+    if (HOSE_USE_ROOT)
+        include(FindROOT)
+        find_package(ROOT REQUIRED)
+        include_directories(${ROOT_INCLUDE_DIRS})
+        list(APPEND HOPS_TEST_LIBS ${ROOT_LIBRARIES})
+        list(APPEND SOURCE_BASENAMES TestTensorContainer)
+    endif()
+
 
     foreach( BASENAME ${SOURCE_BASENAMES} )
         add_executable( ${BASENAME} ${BASENAME}.cc )

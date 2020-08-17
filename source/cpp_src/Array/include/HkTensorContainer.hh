@@ -86,9 +86,7 @@ class HkTensorContainer: public HkArrayWrapper< XValueType, RANK>, public XAxisP
         using HkNamed::GetName;
         using HkNamed::SetName;
 
-        //have to make base class functions visible
-        //using HkArrayWrapper<XValueType,RANK>::Resize;
-
+        //modify the Resize function
         using XAxisPackType::resize_axis_pack;
 
         void Resize(const size_t* dim)
@@ -103,7 +101,7 @@ class HkTensorContainer: public HkArrayWrapper< XValueType, RANK>, public XAxisP
             resize_axis_pack(dim);
         }
 
-
+        //have to make base class functions visible
         using HkArrayWrapper<XValueType,RANK>::GetData;
         using HkArrayWrapper<XValueType,RANK>::GetRawData;
         using HkArrayWrapper<XValueType,RANK>::GetSize;
