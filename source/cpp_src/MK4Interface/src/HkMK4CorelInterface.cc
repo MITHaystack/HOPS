@@ -138,6 +138,9 @@ HkMK4CorelInterface::ExportCorelFile(Type100MetaData& meta, std::vector< Type101
         struct type_101* t101 = ptr;
 
         //see fourfit set_pointers.c for some of the mk4_corel access logic
+        size_t max_ap = 0;
+        size_t max_nlags = 0;
+
         struct mk4_corel::index_tag* idx;
         for(int i=0; i<fCorel->index_space; i++)
         {
@@ -200,8 +203,8 @@ HkMK4CorelInterface::ExportCorelFile(Type100MetaData& meta, std::vector< Type101
                             }
                             tmp120.insert(std::string("type_120.ld"), lag_data);
 
-
-
+                            if(t120->ap > max_ap){max_ap = t120->ap;}
+                            if(t120->nlags > max_nlags){max_nlags = t120->nlags;}
                             type120vector.push_back(tmp120);
 
                         }
@@ -219,15 +222,15 @@ HkMK4CorelInterface::ExportCorelFile(Type100MetaData& meta, std::vector< Type101
 
         }//end of index loop
 
-//      std::cout<<"dump the type 101s"<<std::endl;
-        // //text dump for debug
-        // for(unsigned int i=0; i<type101vector.size(); i++)
-        // {
-        //     type101vector[i].dump_map<std::string>();
-        //     type101vector[i].dump_map<short>();
-        //     type101vector[i].dump_map<int>();
-        // }
-        //
+        std::cout<<"dump the type 101s"<<std::endl;
+        //text dump for debug
+        for(unsigned int i=0; i<type101vector.size(); i++)
+        {
+            type101vector[i].dump_map<std::string>();
+            type101vector[i].dump_map<short>();
+            type101vector[i].dump_map<int>();
+        }
+
         // std::cout<<"dump the type 120s"<<std::endl;
         //
         // //text dump for debug
@@ -239,29 +242,28 @@ HkMK4CorelInterface::ExportCorelFile(Type100MetaData& meta, std::vector< Type101
         //     type120vector[i].dump_map<float>();
         // }
 
-        size_t dim[3];
-        dim[0] = //num channels
-        dim[1] = //num channel sub-frequencies (i.e lags)
-        dim[2] = //num ap's
-
-        std::vector< channel_data_type > channels;
-
-        
-        size_t naps =
-        for(size_t i; i< type120vector.size(); i++)
-        {
-            int index, ap;
-            type120vector[i].retrieve("type_120.index", index);
-            type120vector[i].retrieve("type_120.ap", ap);
-            std::vector< std::complex<double> > lag_data;
-            type120vector[i].retrieve("type_120.ld", &lag_data);
-
-            channel_data_type a_channel;
-            size_t
-            a_channel.Resize()
-
-
-        }
+        // size_t dim[3];
+        // dim[0] = //num channels
+        // dim[1] = //num channel sub-frequencies (i.e lags)
+        // dim[2] = //num ap's
+        //
+        // std::vector< channel_data_type > channels;
+        // size_t naps = max_ap + 1;
+        //
+        // 
+        // for(size_t i; i< type120vector.size(); i++)
+        // {
+        //     int index, ap;
+        //     type120vector[i].retrieve("type_120.index", index);
+        //     type120vector[i].retrieve("type_120.ap", ap);
+        //     std::vector< std::complex<double> > lag_data;
+        //     type120vector[i].retrieve("type_120.ld", &lag_data);
+        //
+        //     channel_data_type a_channel;
+        //     a_channel.Resize(lag_data.size(), );
+        //
+        //
+        // }
 
 
 

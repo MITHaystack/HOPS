@@ -2,7 +2,7 @@
 
 set (MK4INTERFACE_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/HkMK4Interface.hh
-    ${CMAKE_CURRENT_BINARY_DIR}/include/HkMK4Visibility.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/HkMK4Visibility.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/HkMK4CorelInterface.hh
 )
 
