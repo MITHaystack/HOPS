@@ -78,6 +78,15 @@ class HkArrayWrapper
             fData.resize(fTotalArraySize);
         }
 
+        //resize function so we can give each dim as an individual size_t (rather than array)
+        template <typename ...XDimSizeTypeS >
+        typename std::enable_if< (sizeof...(XDimSizeTypeS) == RANK), void >::type //compile-time check that the number of arguments is the same as the rank of the array
+        Resize(XDimSizeTypeS...dim)
+        {
+            const std::array<size_t, RANK> dim_sizes = {{dim...}}; //convert the arguments to an array
+            Resize(&(dim_sizes[0]));
+        }
+
         //in some cases we may need access to the underlying raw array pointer
         XValueType* GetRawData(){return &(fData[0]);};
         const XValueType* GetawData() const {return &(fData[0]);};
@@ -292,6 +301,12 @@ class HkArrayWrapper<XValueType, 1>
 
         virtual ~HkArrayWrapper(){};
 
+        void Resize(const size_t* dim)
+        {
+            fDimensions[0] = dim[0];
+            fTotalArraySize = dim[0];
+            fData.resize(fTotalArraySize);
+        }
 
         void Resize(size_t dim)
         {

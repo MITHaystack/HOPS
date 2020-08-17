@@ -79,6 +79,11 @@ class HkTensorContainer: public HkArrayWrapper< XValueType, XAxisPackType::RANK:
         using HkArrayWrapper<XValueType,XAxisPackType::RANK::value>::fDimensions;
         using HkArrayWrapper<XValueType,XAxisPackType::RANK::value>::fTotalArraySize;
 
+    public:
+
+        //temporary -- for testing
+        HkMultiTypeMap< std::string, std::string, int, double > fTags;
+
 };
 
 }//end of namespace
