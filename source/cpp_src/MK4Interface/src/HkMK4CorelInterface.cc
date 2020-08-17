@@ -7,22 +7,24 @@
 #include <cstring>
 #include <complex>
 
+#include "HkMK4Visibility.hh"
+
 namespace hops
 {
 
 
 
 
-template< typename XType, size_t N>
-std::array<XType, N> create_and_fill_array(XType values[N])
-{
-    std::array<XType, N> arr;
-    for(size_t i=0; i<N; i++)
-    {
-        arr[i] = values[i];
-    }
-    return arr;
-}
+// template< typename XType, size_t N>
+// std::array<XType, N> create_and_fill_array(XType values[N])
+// {
+//     std::array<XType, N> arr;
+//     for(size_t i=0; i<N; i++)
+//     {
+//         arr[i] = values[i];
+//     }
+//     return arr;
+// }
 
 
 HkMK4CorelInterface::HkMK4CorelInterface():
@@ -217,27 +219,28 @@ HkMK4CorelInterface::ExportCorelFile(Type100MetaData& meta, std::vector< Type101
 
         }//end of index loop
 
-        std::cout<<"dump the type 101s"<<std::endl;
+//        std::cout<<"dump the type 101s"<<std::endl;
+        // //text dump for debug
+        // for(unsigned int i=0; i<type101vector.size(); i++)
+        // {
+        //     type101vector[i].dump_map<std::string>();
+        //     type101vector[i].dump_map<short>();
+        //     type101vector[i].dump_map<int>();
+        // }
+        //
+        // std::cout<<"dump the type 120s"<<std::endl;
+        //
+        // //text dump for debug
+        // for(unsigned int i=0; i<type120vector.size(); i++)
+        // {
+        //     type120vector[i].dump_map<std::string>();
+        //     type120vector[i].dump_map<short>();
+        //     type120vector[i].dump_map<int>();
+        //     type120vector[i].dump_map<float>();
+        // }
 
 
-        //text dump for debug
-        for(unsigned int i=0; i<type101vector.size(); i++)
-        {
-            type101vector[i].dump_map<std::string>();
-            type101vector[i].dump_map<short>();
-            type101vector[i].dump_map<int>();
-        }
 
-        std::cout<<"dump the type 120s"<<std::endl;
-
-        //text dump for debug
-        for(unsigned int i=0; i<type120vector.size(); i++)
-        {
-            type120vector[i].dump_map<std::string>();
-            type120vector[i].dump_map<short>();
-            type120vector[i].dump_map<int>();
-            type120vector[i].dump_map<float>();
-        }
 
     }//end of if HkaveCorel
 

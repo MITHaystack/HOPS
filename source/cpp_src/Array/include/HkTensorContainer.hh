@@ -19,49 +19,11 @@
 #include "HkMultiTypeMap.hh"
 #include "HkArrayWrapper.hh"
 #include "HkVectorContainer.hh"
+#include "HkAxisPack.hh"
+
 
 namespace hops
 {
-
-template< typename...XAxisTypeS >
-class HkAxisPack:  public std::tuple< XAxisTypeS... >
-{
-    public:
-
-        HkAxisPack():
-            std::tuple< XAxisTypeS... >()
-        {};
-
-        HkAxisPack(const size_t* dim):
-            std::tuple< XAxisTypeS... >()
-        {
-            resize_axis_pack(dim);
-        };
-
-        virtual ~HkAxisPack(){};
-
-    protected:
-
-        //inductive access to all elements of the tuple, so we can re-size them
-
-        template<size_t N = 0>
-        typename std::enable_if< N == sizeof...(XAxisTypeS), void >::type
-        resize_axis_pack( const size_t* /*dim*/)
-        {
-            //terminating case, do nothing
-        }
-
-        template<size_t N = 0>
-        typename std::enable_if< N < sizeof...(XAxisTypeS), void>::type
-        resize_axis_pack(const size_t* dim)
-        {
-            //resize the N-th element of the tuple
-            std::get<N>(*this).Resize(dim[N]);
-            //now run the induction
-            resize_axis_pack<N + 1>(dim);
-        }
-
-};
 
 template< typename XValueType, size_t RANK, typename XAxisPackType >
 class HkTensorContainer: public HkArrayWrapper< XValueType, RANK>, public XAxisPackType, public HkNamed
@@ -86,9 +48,8 @@ class HkTensorContainer: public HkArrayWrapper< XValueType, RANK>, public XAxisP
         using HkNamed::GetName;
         using HkNamed::SetName;
 
-        //modify the Resize function
+        //modify the Resize function to also resize the axes
         using XAxisPackType::resize_axis_pack;
-
         void Resize(const size_t* dim)
         {
             for(size_t i=0; i<RANK; i++)

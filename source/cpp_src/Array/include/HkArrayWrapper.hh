@@ -111,32 +111,35 @@ class HkArrayWrapper
             return HkArrayMath::OffsetFromRowMajorIndex<RANK>(fDimensions, index);
         }
 
-        //TODO fix narrowing warning on conversion of XIndexTypeS to size_t
+
         //access operator (,,,) -- no bounds checking
+        //TODO fix narrowing warning on conversion of XIndexTypeS to size_t
+        //this will require a recursive template to visit all types in XIndexTypeS and ensure that they are all
+        //size_t or convertible to size_t
         template <typename ...XIndexTypeS >
-        typename std::enable_if<(sizeof...(XIndexTypeS) == RANK), XValueType& >::type
+        typename std::enable_if< (sizeof...(XIndexTypeS) == RANK), XValueType& >::type //compile-time check that the number of arguments is the same as the rank of the array
         operator()(XIndexTypeS...idx)
         {
-            const std::array<size_t, RANK> indices = {{idx...}};
-            return fData[  HkArrayMath::OffsetFromRowMajorIndex<RANK>(fDimensions, &(indices[0]) ) ];
+            const std::array<size_t, RANK> indices = {{idx...}}; //convert the arguments to an array
+            return fData[  HkArrayMath::OffsetFromRowMajorIndex<RANK>(fDimensions, &(indices[0]) ) ]; //compute the offset into the array and return reference to the data
         }
 
-        //const operator()
+        //const reference access operator()
         template <typename ...XIndexTypeS >
-        typename std::enable_if<(sizeof...(XIndexTypeS) == RANK), const XValueType& >::type
+        typename std::enable_if< (sizeof...(XIndexTypeS) == RANK),  const XValueType& >::type
         operator()(XIndexTypeS...idx) const
         {
             const std::array<size_t, RANK> indices = {{idx...}};
             return fData[  HkArrayMath::OffsetFromRowMajorIndex<RANK>(fDimensions, &(indices[0]) ) ];
         }
 
-        //access via at(,,,,) -- TODO, make this include bounds checking on each dimension!
+        //access via at(,,,,) -- same as operator() but with bounds checking
         template <typename ...XIndexTypeS >
         typename std::enable_if<(sizeof...(XIndexTypeS) == RANK), XValueType& >::type
         at(XIndexTypeS...idx)
         {
             const std::array<size_t, RANK> indices = {{idx...}};
-            if( HkArrayMath::CheckIndexValidity<RANK>( fDimensions, &(indices[0]) ) )
+            if( HkArrayMath::CheckIndexValidity<RANK>( fDimensions, &(indices[0]) ) ) //make sure the indices are valid for the given array dimensions
             {
                 return fData[  HkArrayMath::OffsetFromRowMajorIndex<RANK>(fDimensions, &(indices[0]) ) ];
             }
@@ -162,7 +165,7 @@ class HkArrayWrapper
             }
         }
 
-        //access operator by 1-dim index (absolute-position) into the array
+        //fast access operator by 1-dim index (absolute-position) into the array
         XValueType& operator[](size_t i)
         {
             return fData[i];

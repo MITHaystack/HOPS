@@ -6,7 +6,10 @@ set (HARRAY_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/HkInPlaceUnaryArrayOperator.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/HkUnaryArrayOperator.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/HkBinaryArrayOperator.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/HkAxisPack.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/HkScalarContainer.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/HkVectorContainer.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/HkTensorContainer.hh
 )
 
 #declare header paths ##########################################################

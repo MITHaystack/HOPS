@@ -2,6 +2,7 @@
 
 set (MK4INTERFACE_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/HkMK4Interface.hh
+    ${CMAKE_CURRENT_BINARY_DIR}/include/HkMK4Visibility.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/HkMK4CorelInterface.hh
 )
 
@@ -28,6 +29,7 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/${FFCONTROL_RELPATH})
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/${FFCORE_RELPATH})
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../Core/include)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../Array/include)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 #compile and install library ###################################################
