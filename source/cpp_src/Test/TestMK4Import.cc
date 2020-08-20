@@ -60,6 +60,8 @@ int main(int argc, char** argv)
     mk4vi.OpenVexFile(root_filename);
     struct vex* vex_obj = mk4vi.GetVex();
 
+    double ap_time_length = vex_obj->evex.ap_length;
+
     HkMK4CorelInterface mk4ci;
     mk4ci.ReadCorelFile(corel_filename);
     struct mk4_corel* corel_obj = mk4ci.GetCorel();
@@ -70,84 +72,139 @@ int main(int argc, char** argv)
     std::cout<<"test"<<std::endl;
     std::cout<<"ap space"<< corel_obj->index->ap_space<<std::endl;
 
-    struct type_101* t101 = corel_obj->index->t101;
 
-    //see fourfit set_pointers.c for some of the mk4_corel access logic
-    size_t max_ap = 0;
-    size_t max_nlags = 0;
-    std::set< std::string > channel_labels;
+
+    //TODO...we need to evaluate whether not this is a feasible approach (probably not)
+    //since it is entirely possible for each baseline to have a different number of APs
+    //or for each channel to have a different number of lags/spectral points
+    //How would we store that? A fixed-size tensor may not a be good use of space, should
+    //we use/implement a ragged tensor? Or re-organize the data so that
+    //'channels' are not physically separate chunks of data, but instead just 'tags'
+    //which are associated with chunks of data in a larger array -- this tag mechanism
+    //could be used for other things like data flagging, etc.
+
+    //figure out the max number of APs and max lags, as well as the total number
+    //of channels and their names
+    size_t max_aps = 0;
+    size_t max_lags = 0;
+    std::set< std::pair<std::string, std::string > > channel_label_pairs;
 
     struct mk4_corel::index_tag* idx;
     for(int i=0; i<corel_obj->index_space; i++)
     {
         idx = corel_obj->index + i;
-        size_t num_aps = idx->ap_space;
+        int num_aps = idx->ap_space;
+        if(num_aps > max_aps){max_aps = num_aps;};
+        for(int ap=0; ap<idx->ap_space; ap++)
+        {
+            struct type_120* t120 = idx->t120[ap];
+            int nlags = t120->nlags;
+            if(max_lags < nlags){max_lags = nlags;}
+        }
 
+        struct type_101* t101;
+        if( (t101 = idx->t101) != NULL)
+        {
+            std::string ref_chan_id = getstr(t101->ref_chan_id,8) );
+            std::string rem_chan_id = mk4ci.getstr(t101->rem_chan_id,8) )
+            channel_label_pairs.insert( std::pair<std::string, std::string> (ref_chan_id, rem_chan_id) );
+        }
+    }
+
+    //create a map of channel-pairs to (empty) channel_data_containers
+    size_t dim[2];
+    dim[0] = max_aps;
+    dim[1] = max_lags;
+    std::map< std::pair<std::string, std::string >, channel_data_type > channels;
+    for(auto iter = channel_label_pairs.begin(); iter != channel_label_pairs.end(); iter++)
+    {
+        channels.insert( *iter, channel_data_type(dim) );
+    }
+
+    //now lets fill them up
+    for(int i=0; i<corel_obj->index_space; i++)
+    {
+        idx = corel_obj->index + i;
         if( (t101 = idx->t101) != NULL)
         {
             //extract all of the type101 index records
             int nblocks = t101->nblocks);
-
             std::string ref_chan_id = getstr(t101->ref_chan_id,8) );
             std::string rem_chan_id = mk4ci.getstr(t101->rem_chan_id,8) )
-            std::string channel_label = ref_chan_id + "-" + rem_chan_id;
-            channel_labels.insert(channel_label);
+            key = std::pair<std::string, std::string>(ref_chan_id, rem_chan_id);
 
-            std::vector<int> tmp_blocks;
-            for (int j = 0; j < (t101->nblocks); j++)
-            {           /* Each block */
-                tmp_blocks.push_back(t101->blocks[j]);
-            }
-            tmp101.insert( std::string("type_101.blocks"), tmp_blocks);
-            type101vector.push_back(tmp101);
-
-
-
-            //now we want to extract the data in the type_120's
-            //note that this data is dumped into the type120vector in a completely disorganized fashion (as it was stored)
-            //and needs to be restructured later into a sensibly ordered array
-            for(int ap=0; ap<idx->ap_space; ap++)
+            channel_elem = channels.find(key);
+            if( channel_elem != channels.end() )
             {
-                Type120Map tmp120;
-                struct type_120* t120 = idx->t120[ap];
-                if(t120 != NULL)
+                //now we want to extract the data in the type_120's
+                for(int ap=0; ap<idx->ap_space; ap++)
                 {
-                    if(t120->type == SPECTRAL)
+                    struct type_120* t120 = idx->t120[ap];
+                    if(t120 != NULL)
                     {
-                        tmp120.insert(std::string("type_120.record_id"), getstr(t120->record_id, 3) );
-                        tmp120.insert(std::string("type_120.version_no"), getstr(t120->version_no, 2) );
-                        tmp120.insert(std::string("type_120.type"), getstr(&(t120->type), 1) );
-                        tmp120.insert(std::string("type_120.nlags"), t120->nlags);
-                        tmp120.insert(std::string("type_120.baseline"), getstr(t120->baseline, 2) );
-                        tmp120.insert(std::string("type_120.rootcode"), getstr(t120->rootcode, 6) );
-//                            // tmp120.insert(std::string("type_120.index"), t120->index );
-                        tmp120.insert(std::string("type_120.index"), i );
-                        tmp120.insert(std::string("type_120.ap"),t120->ap );
-                        tmp120.insert(std::string("type_120.fw"), t120->fw.weight );
-                        tmp120.insert(std::string("type_120.status"), t120->status);
-                        tmp120.insert(std::string("type_120.fr_delay"), t120->fr_delay );
-                        tmp120.insert(std::string("type_120.delay_rate"), t120->delay_rate );
-                        std::vector< std::complex<double> > lag_data;
-                        for(int j=0; j<t120->nlags; j++)
+                        if(t120->type == SPECTRAL)
                         {
-                            double re = t120->ld.spec[j].re;
-                            double im = t120->ld.spec[j].im;
-                            lag_data.push_back( std::complex<double>(re,im) );
-                            //std::cout<<"("<<re<<","<<im<<")"<<std::endl;
+                            std::string baseline = mk4ci.getstr(t120->baseline, 2);
+                            char ref_st = baseline[0];
+                            char rem_st = baseline[1];
+
+                            //now look up the station and channel info so we can fill out the frequncy axis
+                            int nst = vex_obj->ovex.nst;
+                            for(int ist = 0; ist<nst; ist++)
+                            {
+                                if(ref_st == vex_obj->ovex.st[ist]->mk4_site_id )
+                                {
+                                    //get the channel information of the reference station
+
+
+                                }
+
+                                if(rem_st == vex_obj->ovex.st[ist]->mk4_site_id )
+                                {
+                                    //get the channel information of the remote station
+
+                                }
+
+
+                            }
+
+
+
+                            // tmp120.insert(std::string("type_120.record_id"), getstr(t120->record_id, 3) );
+                            // tmp120.insert(std::string("type_120.version_no"), getstr(t120->version_no, 2) );
+                            // tmp120.insert(std::string("type_120.type"), getstr(&(t120->type), 1) );
+                            // tmp120.insert(std::string("type_120.nlags"), t120->nlags);
+                            // tmp120.insert(std::string("type_120.baseline"), getstr(t120->baseline, 2) );
+                            // tmp120.insert(std::string("type_120.rootcode"), getstr(t120->rootcode, 6) );
+                            //
+                            //
+                            // tmp120.insert(std::string("type_120.index"), i );
+                            // tmp120.insert(std::string("type_120.ap"),t120->ap );
+                            // tmp120.insert(std::string("type_120.fw"), t120->fw.weight );
+                            // tmp120.insert(std::string("type_120.status"), t120->status);
+                            // tmp120.insert(std::string("type_120.fr_delay"), t120->fr_delay );
+                            // tmp120.insert(std::string("type_120.delay_rate"), t120->delay_rate );
+                            //std::vector< std::complex<double> > lag_data;
+                            for(int j=0; j<t120->nlags; j++)
+                            {
+                                double re = t120->ld.spec[j].re;
+                                double im = t120->ld.spec[j].im;
+                                channel_elem.second(ap,j) = std::std::complex<double>(re,im);
+                            }
                         }
-                        tmp120.insert(std::string("type_120.ld"), lag_data);
-
-                        if(t120->ap > max_ap){max_ap = t120->ap;}
-                        if(t120->nlags > max_nlags){max_nlags = t120->nlags;}
-                        type120vector.push_back(tmp120);
-
+                        else
+                        {
+                            std::cout<<"non-spectral type-120 not supported."<<std::endl;
+                        }
                     }
-                    else
-                    {
-                        std::cout<<"non-spectral type-120 not supported."<<std::endl;
-                    }
+
+                    //now assign values to the time (0-th dim) axis
+                    std::get<0>(channel_elem.second)(ap) = ap_time_length*ap;
                 }
+
+
             }
+
         }
         else
         {
