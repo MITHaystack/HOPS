@@ -43,6 +43,8 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 #build/link/install library ####################################################
 list(APPEND LIBLIST "mk4stub" "mk4util")
 
+list(APPEND PROPERTY COMPILE_DEFINITIONS PFORMAT_TEXT_DIR="${SHARE_TEXT_INSTALL_DIR}")
+
 add_library (${LIBNAME} SHARED ${${LIBNAME}_SOURCEFILES} ${${LIBNAME}_HEADERFILES})
 
 target_link_libraries (${LIBNAME} ${LIBLIST})

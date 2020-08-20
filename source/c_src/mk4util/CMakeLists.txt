@@ -32,6 +32,9 @@ list(APPEND RELPATH_LIST ${MK4STUB_RELPATH})
 set(INC_RELPATH "include")
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/${INC_RELPATH})
 
+#add compiler definition to specify where the 'text' directory is ##############
+add_compile_definitions( PFORMAT_TEXT_DIR="${SHARE_TEXT_INSTALL_DIR}")
+
 #build/link/install library ####################################################
 list(APPEND LIBLIST "mk4stub")
 
