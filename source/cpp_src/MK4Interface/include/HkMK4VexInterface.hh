@@ -32,7 +32,14 @@ class HkMK4VexInterface
 
         void OpenVexFile(std::string file_path);
 
+        struct vex* GetVex();
+
+        //void ExportVexFile();
+
     private:
+
+        bool fHaveVex;
+        struct vex* fVex;
 
 
 };

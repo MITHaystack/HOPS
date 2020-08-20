@@ -25,6 +25,7 @@ if (HOPS_ENABLE_TEST)
         TestMK4Interface
         TestMK4CorelInterface
         TestMK4VexInterface
+        TestMK4Import
     )
 
     if (HOSE_USE_ROOT)

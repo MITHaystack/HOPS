@@ -41,11 +41,14 @@ class HkMK4CorelInterface
 
         void ReadCorelFile(const std::string& filename);
 
+        struct mk4_corel* GetCorel();
+
         void ExportCorelFile(Type100MetaData& meta, std::vector< Type101Map >& type101vector, std::vector< Type120Map >& type120vector);
+
+        std::string getstr(const char* char_array, size_t max_size);
 
     private:
 
-        std::string getstr(const char* char_array, size_t max_size);
 
         bool fHaveCorel;
         struct mk4_corel* fCorel;

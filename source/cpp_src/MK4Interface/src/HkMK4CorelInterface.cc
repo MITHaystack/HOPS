@@ -70,6 +70,21 @@ HkMK4CorelInterface::ReadCorelFile(const std::string& filename)
 }
 
 
+struct mk4_corel*
+HkMK4CorelInterface::GetCorel()
+{
+    if(fHaveCorel)
+    {
+        return fCorel;
+    }
+    else
+    {
+        return nullptr;
+    }
+}
+
+
+
 void
 HkMK4CorelInterface::ExportCorelFile(Type100MetaData& meta, std::vector< Type101Map >& type101vector, std::vector< Type120Map >& type120vector)
 {
