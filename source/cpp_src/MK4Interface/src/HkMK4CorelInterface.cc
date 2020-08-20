@@ -209,7 +209,7 @@ HkMK4CorelInterface::ExportCorelFile(Type100MetaData& meta, std::vector< Type101
                                 double re = t120->ld.spec[j].re;
                                 double im = t120->ld.spec[j].im;
                                 lag_data.push_back( std::complex<double>(re,im) );
-                                std::cout<<"("<<re<<","<<im<<")"<<std::endl;
+                                //std::cout<<"("<<re<<","<<im<<")"<<std::endl;
                             }
                             tmp120.insert(std::string("type_120.ld"), lag_data);
 

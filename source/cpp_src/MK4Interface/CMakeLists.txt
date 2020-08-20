@@ -4,6 +4,7 @@ set (MK4INTERFACE_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/HkMK4Interface.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/HkMK4Visibility.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/HkMK4CorelInterface.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/HkMK4VexInterface.hh
 )
 
 #list source files #############################################################
@@ -11,6 +12,7 @@ set (MK4INTERFACE_HEADERFILES
 set( MK4INTERFACE_SOURCEFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/HkMK4Interface.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/HkMK4CorelInterface.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/HkMK4VexInterface.cc
 )
 
 #declare header paths ##########################################################

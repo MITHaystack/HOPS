@@ -24,6 +24,7 @@ if (HOPS_ENABLE_TEST)
         TestVectorContainer
         TestMK4Interface
         TestMK4CorelInterface
+        TestMK4VexInterface
     )
 
     if (HOSE_USE_ROOT)
