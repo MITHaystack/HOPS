@@ -5,12 +5,31 @@
 #include <map>
 #include <getopt.h>
 
+
+#ifdef USE_ROOT
+#include "TCanvas.h"
+#include "TApplication.h"
+#include "TStyle.h"
+#include "TColor.h"
+#include "TGraph.h"
+#include "TGraph2D.h"
+#include "TH2D.h"
+#include "TMath.h"
+#include "TMultiGraph.h"
+#endif
+
 #include "HkMK4VexInterface.hh"
 #include "HkMK4CorelInterface.hh"
 
 #include "HkVectorContainer.hh"
 #include "HkAxisPack.hh"
 #include "HkTensorContainer.hh"
+
+
+
+
+
+
 
 using namespace hops;
 
@@ -130,13 +149,12 @@ int main(int argc, char** argv)
     for(int i=0; i<corel_obj->index_space; i++)
     {
         idx = corel_obj->index + i;
-        int num_aps = idx->ap_space;
-        if(num_aps > max_aps){max_aps = num_aps;};
         for(int ap=0; ap<idx->ap_space; ap++)
         {
             struct type_120* t120 = idx->t120[ap];
             if(t120 != NULL)
             {
+                if(ap > max_aps){max_aps = ap;};
                 if(t120->type == SPECTRAL)
                 {
                     int nlags = t120->nlags;
@@ -156,14 +174,14 @@ int main(int argc, char** argv)
 
     //create a map of channel-pairs to (empty) channel_data_containers
     size_t dim[2];
-    dim[0] = max_aps;
+    dim[0] = max_aps+1;
     dim[1] = max_lags;
     std::map< std::pair<std::string, std::string >, channel_data_type* > channels;
     for(auto iter = channel_label_pairs.begin(); iter != channel_label_pairs.end(); iter++)
     {
         std::cout<<"channel pair: "<<iter->first<<", "<<iter->second<<std::endl;
         auto key = std::pair<std::string, std::string >(iter->first, iter->second);
-        channels.insert( std::pair< std::pair<std::string, std::string >, channel_data_type* >( key, new channel_data_type(dim) ) );
+        auto chan_it = channels.insert( std::pair< std::pair<std::string, std::string >, channel_data_type* >( key, new channel_data_type(dim) ) );
     }
 
     //now lets fill them up
@@ -265,6 +283,79 @@ int main(int argc, char** argv)
         }
 
     }//end of index loop
+
+    #ifdef USE_ROOT
+
+
+    std::cout<<"starting root plotting"<<std::endl;
+
+    //ROOT stuff for plots
+    TApplication* App = new TApplication("PowerPlot",&argc,argv);
+    TStyle* myStyle = new TStyle("Plain", "Plain");
+    myStyle->SetCanvasBorderMode(0);
+    myStyle->SetPadBorderMode(0);
+    myStyle->SetPadColor(0);
+    myStyle->SetCanvasColor(0);
+    myStyle->SetTitleColor(1);
+    myStyle->SetPalette(1,0);   // nice color scale for z-axis
+    myStyle->SetCanvasBorderMode(0); // gets rid of the stupid raised edge around the canvas
+    myStyle->SetTitleFillColor(0); //turns the default dove-grey background to white
+    myStyle->SetCanvasColor(0);
+    myStyle->SetPadColor(0);
+    myStyle->SetTitleFillColor(0);
+    myStyle->SetStatColor(0); //this one may not work
+    const int NRGBs = 5;
+    const int NCont = 48;
+    double stops[NRGBs] = { 0.00, 0.34, 0.61, 0.84, 1.00 };
+    double red[NRGBs]   = { 0.00, 0.00, 0.87, 1.00, 0.51 };
+    double green[NRGBs] = { 0.00, 0.81, 1.00, 0.20, 0.00 };
+    double blue[NRGBs]  = { 0.51, 1.00, 0.12, 0.00, 0.00 };
+    TColor::CreateGradientColorTable(NRGBs, stops, red, green, blue, NCont);
+    myStyle->SetNumberContours(NCont);
+    myStyle->cd();
+
+
+    auto first_channel_iter = channels.begin();
+    auto first_channel = first_channel_iter->second;
+    auto* x_axis = &(std::get<0>(*first_channel));
+    auto* y_axis = &(std::get<1>(*first_channel));
+
+    size_t x_axis_size = x_axis->GetSize();
+    size_t y_axis_size = y_axis->GetSize();
+
+    //just plot phases for a single channel
+    TGraph2D *gr = new TGraph2D(x_axis_size*y_axis_size);
+    TGraph2D *gb = new TGraph2D(x_axis_size*y_axis_size);
+
+    size_t count = 0;
+    for(size_t i=0; i<x_axis_size; i++)
+    {
+        for(size_t j=0; j<y_axis_size; j++)
+        {
+            std::complex<double> vis = first_channel->at(i,j);
+            gr->SetPoint(count, x_axis->at(i), y_axis->at(j), std::arg(vis) );
+            gb->SetPoint(count, x_axis->at(i), y_axis->at(j), std::abs(vis) );
+            //std::cout<<"i,j = "<<i<<", "<<j<<std::endl;
+            count++;
+        }
+    }
+
+    std::string name = first_channel_iter->first.first + "-" +  first_channel_iter->first.second;
+    TCanvas* c = new TCanvas(name.c_str(),name.c_str(), 50, 50, 950, 850);
+    c->SetFillColor(0);
+    c->SetRightMargin(0.2);
+    c->Divide(1,2);
+    c->cd(1);
+    gr->Draw("COLZ");
+    c->Update();
+    c->cd(2);
+    gb->Draw("COLZ");
+    c->Update();
+
+    App->Run();
+
+    #endif
+
 
 
 

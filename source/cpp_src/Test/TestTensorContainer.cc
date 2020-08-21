@@ -5,7 +5,7 @@
 #include "HkTensorContainer.hh"
 #include "HkVectorContainer.hh"
 
-
+#ifdef USE_ROOT
 #include "TCanvas.h"
 #include "TApplication.h"
 #include "TStyle.h"
@@ -15,6 +15,7 @@
 #include "TH2D.h"
 #include "TMath.h"
 #include "TMultiGraph.h"
+#endif
 
 
 using namespace hops;
@@ -71,6 +72,7 @@ int main(int argc, char** argv)
     }
 
 
+    #ifdef USE_ROOT
 
     std::cout<<"starting root plotting"<<std::endl;
 
@@ -100,9 +102,6 @@ int main(int argc, char** argv)
     myStyle->cd();
 
     //plotting objects
-    std::vector< TCanvas* > canvas;
-    std::vector< TGraph* > graph;
-    std::vector< TGraph2D* > graph2d;
 
     TGraph2D *gr = new TGraph2D(x_axis_size*y_axis_size);
     TGraph2D *gg = new TGraph2D(x_axis_size*y_axis_size);
@@ -141,10 +140,14 @@ int main(int argc, char** argv)
     App->Run();
 
 
+
     delete gr;
     delete gg;
     delete gb;
     delete c;
+
+    #endif
+
     delete test;
     delete dim;
 
