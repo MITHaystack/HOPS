@@ -7,7 +7,7 @@
 *Author: J. Barrett
 *Email: barrettj@mit.edu
 *Date: 17-08-2020 11:27
-*Description: visibility type for testing purposes
+*Description: visibility type for TESTING purposes
 */
 
 #include <string>
