@@ -27,10 +27,6 @@
 
 
 
-
-
-
-
 using namespace hops;
 
 using visibility_type = std::complex<double>;
@@ -260,6 +256,8 @@ int main(int argc, char** argv)
                             }
 
                             int nlags = t120->nlags;
+
+
                             for(int j=0; j<nlags; j++)
                             {
                                 double re = t120->ld.spec[j].re;
