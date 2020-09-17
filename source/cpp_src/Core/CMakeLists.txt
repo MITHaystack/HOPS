@@ -17,7 +17,6 @@ set( HCORE_SOURCEFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/HkTimer.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/HkNamed.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/HkTimeStampConverter.cc
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/HkInterval.cc
 )
 
 #declare header paths ##########################################################
