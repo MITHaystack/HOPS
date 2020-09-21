@@ -26,7 +26,7 @@ class HkInterval
         virtual ~HkInterval();
 
         void SetInterval(XIntegerType lower_bound, XIntegerType upper_bound);
-        void SetInterval(std::pair<XIntegerType,XIntegerType> lower_upper);
+        void SetInterval(const std::pair<XIntegerType,XIntegerType>& lower_upper);
         std::pair<XIntegerType,XIntegerType> GetInterval() const;
 
         void SetLowerBound(XIntegerType low);
@@ -38,8 +38,7 @@ class HkInterval
         {
             if(this != &rhs)
             {
-                fLowerBound = rhs.fLowerBound;
-                fUpperBound = rhs.fUpperBound;
+                SetIntervalImpl(rhs.fLowerBound, rhs.fUpperBound);
             }
         }
 
@@ -50,7 +49,7 @@ class HkInterval
         //transforms this object into the union of the two intervals
         bool Merge(HkInterval& other);
 
-    private:
+    protected:
 
         void SetIntervalImpl(XIntegerType low, XIntegerType up);
         int FindIntersection(XIntegerType a, XIntegerType b, XIntegerType c, XIntegerType d, XIntegerType result[2]);
@@ -91,7 +90,7 @@ HkInterval::SetBounds(XIntegerType lower_bound, XIntegerType upper_bound)
 }
 
 void
-HkInterval::SetBounds(std::pair<XIntegerType,XIntegerType> lower_upper)
+HkInterval::SetBounds(const std::pair<XIntegerType,XIntegerType>& lower_upper)
 {
     SetIntervalImpl(lower_upper.first, lower_upper.second);
 }
