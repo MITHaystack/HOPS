@@ -16,7 +16,7 @@
 namespace hops
 {
 
-template< typename XIntegerType >
+template< typename XIntegerType = std::size_t >
 class HkInterval
 {
     public:
