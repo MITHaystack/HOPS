@@ -68,16 +68,19 @@ set(INTERNAL_LIBLIST
     "vex"
 )
 
+#important! We need to list the (static) cpgplot library twice here so
+#the linker can resolve all of the c -> fortran symbols
 set(EXTERNAL_LIBLIST
     ${FFTW_LIBRARIES}
     ${PGPLOT_LIBRARIES}
     ${X11_LIBRARIES}
     ${GFORTRAN_LIBRARIES}
+    ${PGPLOT_LIBRARIES}
     m
 )
 
 add_executable (${EXENAME} ${${EXENAME}_SOURCEFILES} )
-target_link_libraries (${EXENAME} ${INTERNAL_LIBLIST} ${EXTERNAL_LIBLIST})
+target_link_libraries (${EXENAME}  ${EXTERNAL_LIBLIST} ${INTERNAL_LIBLIST} )
 
 hops_install_headers (${${EXENAME}_HEADERFILES})
 hops_install_executables(${EXENAME})
