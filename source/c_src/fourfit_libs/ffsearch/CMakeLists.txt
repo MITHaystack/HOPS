@@ -1,68 +1,73 @@
 # pre-requisites ###############################################################
-find_package (FFTW REQUIRED)
+find_package (FFTW)
 
-#declare library name ##########################################################
-set(LIBNAME "ffsearch")
+#only compile if the needed libraries are present
+if( FFTW_FOUND )
 
-#list header files #############################################################
+    #declare library name ##########################################################
+    set(LIBNAME "ffsearch")
 
-file(GLOB ${LIBNAME}_HEADER_BASENAMES RELATIVE "${CMAKE_CURRENT_SOURCE_DIR}/include"
-    "${CMAKE_CURRENT_SOURCE_DIR}/include/*.h")
+    #list header files #############################################################
 
-set( ${LIBNAME}_HEADER_PATH ${CMAKE_CURRENT_SOURCE_DIR}/include)
+    file(GLOB ${LIBNAME}_HEADER_BASENAMES RELATIVE "${CMAKE_CURRENT_SOURCE_DIR}/include"
+        "${CMAKE_CURRENT_SOURCE_DIR}/include/*.h")
 
-foreach( BASENAME ${${LIBNAME}_HEADER_BASENAMES} )
-	list( APPEND ${LIBNAME}_HEADERFILES ${${LIBNAME}_HEADER_PATH}/${BASENAME} )
-	list( APPEND AM_${LIBNAME}_HEADERFILES "./include/${BASENAME}" )
-endforeach( BASENAME )
+    set( ${LIBNAME}_HEADER_PATH ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
-#list source files #############################################################
+    foreach( BASENAME ${${LIBNAME}_HEADER_BASENAMES} )
+    	list( APPEND ${LIBNAME}_HEADERFILES ${${LIBNAME}_HEADER_PATH}/${BASENAME} )
+    	list( APPEND AM_${LIBNAME}_HEADERFILES "./include/${BASENAME}" )
+    endforeach( BASENAME )
 
-file(GLOB ${LIBNAME}_SOURCE_BASENAMES RELATIVE "${CMAKE_CURRENT_SOURCE_DIR}/src"
-    "${CMAKE_CURRENT_SOURCE_DIR}/src/*.c")
+    #list source files #############################################################
 
-set( ${LIBNAME}_SOURCE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/src)
+    file(GLOB ${LIBNAME}_SOURCE_BASENAMES RELATIVE "${CMAKE_CURRENT_SOURCE_DIR}/src"
+        "${CMAKE_CURRENT_SOURCE_DIR}/src/*.c")
 
-foreach( BASENAME ${${LIBNAME}_SOURCE_BASENAMES} )
-	list( APPEND ${LIBNAME}_SOURCEFILES ${${LIBNAME}_SOURCE_PATH}/${BASENAME} )
-	list( APPEND AM_${LIBNAME}_SOURCEFILES "./src/${BASENAME}" )
-endforeach( BASENAME )
+    set( ${LIBNAME}_SOURCE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/src)
 
-#declare header paths ##########################################################
-set(MK4STUB_RELPATH "../../mk4stub")
-set(MK4UTIL_RELPATH "../../mk4util")
-set(AFIO_RELPATH "../../afio")
-set(DFIO_RELPATH "../../dfio")
-set(VEX_RELPATH "../../vex")
-set(FFCONTROL_RELPATH "../ffcontrol")
-set(FFCORE_RELPATH "../ffcore")
-set(FFMATH_RELPATH "../ffmath")
-set(FFIO_RELPATH "../ffio")
+    foreach( BASENAME ${${LIBNAME}_SOURCE_BASENAMES} )
+    	list( APPEND ${LIBNAME}_SOURCEFILES ${${LIBNAME}_SOURCE_PATH}/${BASENAME} )
+    	list( APPEND AM_${LIBNAME}_SOURCEFILES "./src/${BASENAME}" )
+    endforeach( BASENAME )
 
-list(APPEND RELPATH_LIST ${MK4STUB_RELPATH} ${MK4UTIL_RELPATH} ${AFIO_RELPATH} ${DFIO_RELPATH} ${VEX_RELPATH} ${FFCONTROL_RELPATH} ${FFCORE_RELPATH} ${FFIO_RELPATH} ${FFMATH_RELPATH})
+    #declare header paths ##########################################################
+    set(MK4STUB_RELPATH "../../mk4stub")
+    set(MK4UTIL_RELPATH "../../mk4util")
+    set(AFIO_RELPATH "../../afio")
+    set(DFIO_RELPATH "../../dfio")
+    set(VEX_RELPATH "../../vex")
+    set(FFCONTROL_RELPATH "../ffcontrol")
+    set(FFCORE_RELPATH "../ffcore")
+    set(FFMATH_RELPATH "../ffmath")
+    set(FFIO_RELPATH "../ffio")
 
-#include library headers
-foreach(path ${RELPATH_LIST})
-    include_directories(${CMAKE_CURRENT_SOURCE_DIR}/${path}/include)
-endforeach(path)
+    list(APPEND RELPATH_LIST ${MK4STUB_RELPATH} ${MK4UTIL_RELPATH} ${AFIO_RELPATH} ${DFIO_RELPATH} ${VEX_RELPATH} ${FFCONTROL_RELPATH} ${FFCORE_RELPATH} ${FFIO_RELPATH} ${FFMATH_RELPATH})
 
-#include our own headers
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
+    #include library headers
+    foreach(path ${RELPATH_LIST})
+        include_directories(${CMAKE_CURRENT_SOURCE_DIR}/${path}/include)
+    endforeach(path)
 
-#external includes
-include_directories(${FFTW_INCLUDE_DIR})
+    #include our own headers
+    include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
-#build/link/install library ####################################################
-list(APPEND LIBLIST "mk4stub" "mk4util" "afio"
-                    "dfio" "vex"
-                    "ffcontrol" "ffcore"
-                    "ffio" "ffmath"
-                    "${FFTW_LIBRARIES}"
-    )
+    #external includes
+    include_directories(${FFTW_INCLUDE_DIR})
 
-add_library (${LIBNAME} SHARED ${${LIBNAME}_SOURCEFILES} ${${LIBNAME}_HEADERFILES})
+    #build/link/install library ####################################################
+    list(APPEND LIBLIST "mk4stub" "mk4util" "afio"
+                        "dfio" "vex"
+                        "ffcontrol" "ffcore"
+                        "ffio" "ffmath"
+                        "${FFTW_LIBRARIES}"
+        )
 
-target_link_libraries (${LIBNAME} ${LIBLIST})
+    add_library (${LIBNAME} SHARED ${${LIBNAME}_SOURCEFILES} ${${LIBNAME}_HEADERFILES})
 
-hops_install_headers (${${LIBNAME}_HEADERFILES})
-hops_install_libraries (${LIBNAME})
+    target_link_libraries (${LIBNAME} ${LIBLIST})
+
+    hops_install_headers (${${LIBNAME}_HEADERFILES})
+    hops_install_libraries (${LIBNAME})
+
+endif()

@@ -37,4 +37,4 @@ include(FindPackageHandleStandardArgs)
 
 find_package_handle_standard_args(GFORTRAN DEFAULT_MSG GFORTRAN_LIBRARIES)
 
-mark_as_advanced(PGPLOT_INCLUDE_DIR GFORTRAN_LIBRARIES)
+mark_as_advanced(GFORTRAN_INCLUDE_DIR GFORTRAN_LIBRARIES)
