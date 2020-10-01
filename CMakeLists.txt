@@ -60,14 +60,7 @@ set(PYSOURCE ${CMAKE_CURRENT_SOURCE_DIR}/source/python_src)
 
 ################################################################################
 add_subdirectory(${CSOURCE})
-
-#source sub directories (in order of dependence...this is important!)
-add_subdirectory(${CPPSOURCE}/Array)
-add_subdirectory(${CPPSOURCE}/Core)
-add_subdirectory(${CPPSOURCE}/MK4Interface)
-# add_subdirectory(${CPPSOURCE}/Bindings)
-add_subdirectory(${CPPSOURCE}/Test)
-
+add_subdirectory(${CPPSOURCE})
 
 #python package setup
 find_package(PythonInterp REQUIRED)
