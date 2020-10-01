@@ -1,9 +1,5 @@
 #paths to look in for libgfortran
 #TODO make this script more robust
-
-enable_language(Fortran)
-get_filename_component (Fortran_COMPILER_NAME ${CMAKE_Fortran_COMPILER} NAME)
-
 set(GFORTRAN_PATHS /usr/lib
                    /usr/lib64
                    /usr/local/lib
