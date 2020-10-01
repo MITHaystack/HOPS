@@ -27,10 +27,11 @@ endforeach( BASENAME )
 
 
 #declare header paths ##########################################################
+set(MK4STUB_RELPATH "../../mk4stub")
 set(MK4UTIL_RELPATH "../../mk4util")
 set(DFIO_RELPATH "../../dfio")
 
-list(APPEND RELPATH_LIST ${MK4UTIL_RELPATH} ${DFIO_RELPATH} )
+list(APPEND RELPATH_LIST ${MK4STUB_RELPATH} ${MK4UTIL_RELPATH} ${DFIO_RELPATH} )
 
 #include library headers
 foreach(path ${RELPATH_LIST})
@@ -41,7 +42,7 @@ endforeach(path)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 #build/link/install library ####################################################
-list(APPEND LIBLIST "mk4util" "dfio")
+list(APPEND LIBLIST "mk4stub" "mk4util" "dfio")
 
 add_library (${LIBNAME} SHARED ${${LIBNAME}_SOURCEFILES} ${${LIBNAME}_HEADERFILES})
 

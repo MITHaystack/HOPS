@@ -26,7 +26,7 @@ foreach( BASENAME ${${LIBNAME}_SOURCE_BASENAMES} )
 endforeach( BASENAME )
 
 #declare header paths ##########################################################
-set(MK4UTIL_RELPATH "../mk4stub")
+set(MK4STUB_RELPATH "../mk4stub")
 list(APPEND RELPATH_LIST ${MK4STUB_RELPATH})
 
 set(MK4UTIL_RELPATH "../mk4util")

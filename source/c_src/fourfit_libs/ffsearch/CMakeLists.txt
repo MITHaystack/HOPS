@@ -29,6 +29,7 @@ foreach( BASENAME ${${LIBNAME}_SOURCE_BASENAMES} )
 endforeach( BASENAME )
 
 #declare header paths ##########################################################
+set(MK4STUB_RELPATH "../../mk4stub")
 set(MK4UTIL_RELPATH "../../mk4util")
 set(AFIO_RELPATH "../../afio")
 set(DFIO_RELPATH "../../dfio")
@@ -38,7 +39,7 @@ set(FFCORE_RELPATH "../ffcore")
 set(FFMATH_RELPATH "../ffmath")
 set(FFIO_RELPATH "../ffio")
 
-list(APPEND RELPATH_LIST ${MK4UTIL_RELPATH} ${AFIO_RELPATH} ${DFIO_RELPATH} ${VEX_RELPATH} ${FFCONTROL_RELPATH} ${FFCORE_RELPATH} ${FFIO_RELPATH} ${FFMATH_RELPATH})
+list(APPEND RELPATH_LIST ${MK4STUB_RELPATH} ${MK4UTIL_RELPATH} ${AFIO_RELPATH} ${DFIO_RELPATH} ${VEX_RELPATH} ${FFCONTROL_RELPATH} ${FFCORE_RELPATH} ${FFIO_RELPATH} ${FFMATH_RELPATH})
 
 #include library headers
 foreach(path ${RELPATH_LIST})
@@ -52,7 +53,7 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 include_directories(${FFTW_INCLUDE_DIR})
 
 #build/link/install library ####################################################
-list(APPEND LIBLIST "mk4util" "afio"
+list(APPEND LIBLIST "mk4stub" "mk4util" "afio"
                     "dfio" "vex"
                     "ffcontrol" "ffcore"
                     "ffio" "ffmath"

@@ -11,6 +11,8 @@ set(MODULE_VERSION_NUMBER "${MODULE_VERSION_MAJOR}.${MODULE_VERSION_MINOR}${MODU
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake )
 include(HopsDefaults)
 include(CMakeDependentOption)
+include(FindGFORTRAN)
+include(FindPGPLOT)
 
 if (CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
     set (CMAKE_INSTALL_PREFIX "${PROJECT_SOURCE_DIR}/install" CACHE PATH "default install path" FORCE )
@@ -47,7 +49,7 @@ message(STATUS "Using compiler ${COMPILER_ID} ${COMPILER_VERSION}")
 #option( HOPS_USE_OPENCL "Build OpenCL support." OFF)
 #option( HOPS_USE_ROOT "Build ROOT based utilities." OFF)
 option( HOPS_ENABLE_TEST "Build developer tests." ON)
-option( HOSE_USE_ROOT "Build ROOT based utilities." OFF)
+option( HOPS_USE_ROOT "Build ROOT based utilities." OFF)
 
 
 #convenience variables
@@ -114,7 +116,13 @@ add_subdirectory(${CSOURCE}/vex)
 add_subdirectory(${CSOURCE}/dfio)
 add_subdirectory(${CSOURCE}/afio)
 add_subdirectory(${CSOURCE}/fourfit_libs/ffcontrol)
+add_subdirectory(${CSOURCE}/fourfit_libs/ffmath)
 add_subdirectory(${CSOURCE}/fourfit_libs/ffcore)
+add_subdirectory(${CSOURCE}/fourfit_libs/ffio)
+add_subdirectory(${CSOURCE}/fourfit_libs/ffsearch)
+add_subdirectory(${CSOURCE}/fourfit_libs/ffplot)
+
+
 
 ################################################################################
 
