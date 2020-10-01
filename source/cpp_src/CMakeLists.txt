@@ -1,0 +1,6 @@
+#source sub directories (in order of dependence...this is important!)
+add_subdirectory(${CPPSOURCE}/Array)
+add_subdirectory(${CPPSOURCE}/Core)
+add_subdirectory(${CPPSOURCE}/MK4Interface)
+# add_subdirectory(${CPPSOURCE}/Bindings)
+add_subdirectory(${CPPSOURCE}/Test)
