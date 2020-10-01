@@ -14,7 +14,7 @@ set(EXENAME "${CHOPS_EXEPREFIX}fourfit")
 
 #list header files #############################################################
 
-file(GLOB ${EXENAME}_HEADER_BASENAMES RELATIVE "${CMAKE_CURRENT_SOURCE_DIR}/include" 
+file(GLOB ${EXENAME}_HEADER_BASENAMES RELATIVE "${CMAKE_CURRENT_SOURCE_DIR}/include"
   "${CMAKE_CURRENT_SOURCE_DIR}/include/*.h")
 
 set( ${EXENAME}_HEADER_PATH ${CMAKE_CURRENT_SOURCE_DIR}/include)
@@ -48,14 +48,14 @@ set(FFIO_RELPATH "../../fourfit_libs/ffio")
 set(FFSEARCH_RELPATH "../../fourfit_libs/ffsearch")
 set(FFPLOT_RELPATH "../../fourfit_libs/ffplot")
 
-list(APPEND RELPATH_LIST 
-    ${MK4UTIL_RELPATH} 
-    ${AFIO_RELPATH} 
-    ${DFIO_RELPATH} 
-    ${VEX_RELPATH} 
+list(APPEND RELPATH_LIST
+    ${MK4UTIL_RELPATH}
+    ${AFIO_RELPATH}
+    ${DFIO_RELPATH}
+    ${VEX_RELPATH}
     ${FFCONTROL_RELPATH}
-    ${FFMATH_RELPATH} 
-    ${FFCORE_RELPATH} 
+    ${FFMATH_RELPATH}
+    ${FFCORE_RELPATH}
     ${FFIO_RELPATH}
     ${FFSEARCH_RELPATH}
     ${FFPLOT_RELPATH}
@@ -83,17 +83,17 @@ chops_add_cflag(${FF_PROGNAME_DEF})
 chops_add_cflag(${FF_VER_NO_DEF})
 
 # set library lists ############################################################
-set(INTERNAL_LIBLIST 
-    "mk4util${CHOPS_LIBPOSTFIX}"
-    "afio${CHOPS_LIBPOSTFIX}"
-    "dfio${CHOPS_LIBPOSTFIX}"
-    "vex${CHOPS_LIBPOSTFIX}"
-    "ffcontrol${CHOPS_LIBPOSTFIX}"
-    "ffmath${CHOPS_LIBPOSTFIX}"
-    "ffcore${CHOPS_LIBPOSTFIX}"
-    "ffio${CHOPS_LIBPOSTFIX}"
-    "ffsearch${CHOPS_LIBPOSTFIX}"
-    "ffplot${CHOPS_LIBPOSTFIX}"
+set(INTERNAL_LIBLIST
+    "mk4util"
+    "afio"
+    "dfio"
+    "vex"
+    "ffcontrol"
+    "ffmath"
+    "ffcore"
+    "ffio"
+    "ffsearch"
+    "ffplot"
 )
 
 set(EXTERNAL_LIBLIST
@@ -106,9 +106,5 @@ set(EXTERNAL_LIBLIST
 add_executable (${EXENAME} ${${EXENAME}_SOURCEFILES} )
 target_link_libraries (${EXENAME} ${INTERNAL_LIBLIST} ${EXTERNAL_LIBLIST})
 
-chops_install_headers (${${EXENAME}_HEADERFILES})
-chops_install_executables(${EXENAME})
-
-#configure/generate Makefile.am for autotools build ############################
-
-chops_configure_exe_automake("${RELPATH_LIST}" "${INTERNAL_LIBLIST}" ${EXENAME} "${AM_${EXENAME}_HEADERFILES}" "${AM_${EXENAME}_SOURCEFILES}")
+hops_install_headers (${${EXENAME}_HEADERFILES})
+hops_install_executables(${EXENAME})
