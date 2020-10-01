@@ -47,5 +47,5 @@ add_library (${LIBNAME} SHARED ${${LIBNAME}_SOURCEFILES} ${${LIBNAME}_HEADERFILE
 
 target_link_libraries (${LIBNAME} ${LIBLIST})
 
-chops_install_headers (${${LIBNAME}_HEADERFILES})
-chops_install_libraries (${LIBNAME})
+hops_install_headers (${${LIBNAME}_HEADERFILES})
+hops_install_libraries (${LIBNAME})

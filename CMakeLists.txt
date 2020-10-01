@@ -112,6 +112,7 @@ add_subdirectory(${CSOURCE}/mk4stub)
 add_subdirectory(${CSOURCE}/mk4util)
 add_subdirectory(${CSOURCE}/vex)
 add_subdirectory(${CSOURCE}/dfio)
+add_subdirectory(${CSOURCE}/afio)
 add_subdirectory(${CSOURCE}/fourfit_libs/ffcontrol)
 add_subdirectory(${CSOURCE}/fourfit_libs/ffcore)
 
