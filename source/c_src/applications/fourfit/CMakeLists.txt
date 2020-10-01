@@ -1,8 +1,3 @@
-if(POLICY CMP0053)
-    cmake_policy(SET CMP0053 OLD)
-endif()
-
-
 # pre-requisites ###############################################################
 find_package (PGPLOT REQUIRED)
 find_package (FFTW REQUIRED)
@@ -10,7 +5,7 @@ find_package (X11 REQUIRED)
 find_package (GFORTRAN REQUIRED)
 
 #declare exe name ############################################################
-set(EXENAME "${CHOPS_EXEPREFIX}fourfit")
+set(EXENAME "fourfit")
 
 #list header files #############################################################
 
@@ -79,8 +74,8 @@ include_directories(${FFTW_INCLUDE_DIR})
 set(FF_PROGNAME_DEF "FF_PROGNAME=\\\\\"fourfit\\\\\"")
 set(FF_VER_NO_DEF "FF_VER_NO=\\\\\"${MODULE_VERSION_NUMBER}\\\\\"")
 
-chops_add_cflag(${FF_PROGNAME_DEF})
-chops_add_cflag(${FF_VER_NO_DEF})
+hops_add_cflag(${FF_PROGNAME_DEF})
+hops_add_cflag(${FF_VER_NO_DEF})
 
 # set library lists ############################################################
 set(INTERNAL_LIBLIST
@@ -99,8 +94,8 @@ set(INTERNAL_LIBLIST
 set(EXTERNAL_LIBLIST
     ${FFTW_LIBRARIES}
     ${PGPLOT_LIBRARIES}
-    ${X11_LIBRARIES}
     ${GFORTRAN_LIBRARIES}
+    ${X11_LIBRARIES}
 )
 
 add_executable (${EXENAME} ${${EXENAME}_SOURCEFILES} )

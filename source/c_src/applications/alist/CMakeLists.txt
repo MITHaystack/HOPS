@@ -1,39 +1,5 @@
-# if(POLICY CMP0053)
-#     cmake_policy(SET CMP0053 OLD)
-# endif()
-#
-# include_directories(${CSOURCE}/mk4util/include)
-# include_directories(${CSOURCE}/dfio/include)
-# include_directories(${CSOURCE}/afio/include)
-#
-# set (ALIST_LIBS
-#     mk4util
-#     dfio
-#     afio
-#     m
-#   )
-#
-# set (ALIST_SOURCEFILES
-#     ${CMAKE_CURRENT_SOURCE_DIR}/alist.c
-#     ${CMAKE_CURRENT_SOURCE_DIR}/open_output.c
-#     ${CMAKE_CURRENT_SOURCE_DIR}/parse_cmdline.c
-#     ${CMAKE_CURRENT_SOURCE_DIR}/summarize_mk4fringe.c
-# )
-#
-# add_executable (alist ${ALIST_SOURCEFILES})
-# target_link_libraries (alist ${ALIST_LIBS} )
-#
-# hops_install_executables (
-#     alist
-#   )
-
-
-if(POLICY CMP0053)
-    cmake_policy(SET CMP0053 OLD)
-endif()
-
 #declare exe name ############################################################
-set(EXENAME "${CHOPS_EXEPREFIX}alist")
+set(EXENAME "alist")
 
 #list header files #############################################################
 

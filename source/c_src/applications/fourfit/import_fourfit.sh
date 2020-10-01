@@ -12,7 +12,7 @@ ret_val=0
 
 if [ -z ${HOPS_SRC_DIR} ] && [ -z ${CHOPS_SRC_DIR} ]; then
     echo "Need to set HOPS_SRC_DIR and CHOPS_SRC_DIR"
-else  
+else
 
     #copy fourfit
     if [ "${CHKSUM}" -eq "0" ]
@@ -20,9 +20,9 @@ else
         cp "${HOPS_SRC_DIR}/postproc/fourfit/fourfit.c" "${CHOPS_SRC_DIR}/source/c_src/applications/fourfit/fourfit.c"
     else
         SOURCE_HASH=$( md5sum "${HOPS_SRC_DIR}/postproc/fourfit/fourfit.c" | awk '{print $1}' | tr -d '\n')
-        SOURCE_HASH="${SOURCE_HASH%% *}" 
+        SOURCE_HASH="${SOURCE_HASH%% *}"
         DEST_HASH=$( md5sum "${CHOPS_SRC_DIR}/source/c_src/applications/fourfit/fourfit.c" | awk '{print $1}' | tr -d '\n')
-        DEST_HASH="${DEST_HASH%% *}" 
+        DEST_HASH="${DEST_HASH%% *}"
         if [ "${SOURCE_HASH}" != "${DEST_HASH}" ]
         then
             ret_val=1
