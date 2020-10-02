@@ -2,11 +2,26 @@
 #define T230_VERSION 0
 
 #include "mk4_typedefs.h"
-#include <complex.h>
                                         /* Set this to current version, */
                                         /* defined to be same as app struct */
 #define type_230_v0 type_230
 
+struct hops_complex_real_imag
+{
+    double re;
+    double im;
+};
+
+struct hops_complex_array
+{
+    double array[2];
+};
+
+union hops_complex
+{
+    struct hops_complex_array array;
+    struct hops_complex_real_imag xy;
+};
 
 struct type_230
     {
@@ -20,7 +35,7 @@ struct type_230
     int             ap;                 /* AP number, refer to 206 */
     float           lsbweight;          /* fraction of AP represented */
     float           usbweight;          /* fraction of AP represented */
-    _Complex         xpower[1];          /* Array of spectrum values */
+    union hops_complex    xpower[1];          /* Array of spectrum values */
     };
 
 #endif
