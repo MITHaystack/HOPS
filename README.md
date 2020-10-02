@@ -20,7 +20,10 @@ Current pre-requisites:
 (1) cmake, cmake-curses-gui, GNU make, and bash \
 (2) A c++ compiler which supports the C++11 standard (gcc > 4.8, or clang > 3.3)
 
-Future pre-requisites (not currently needed): 
+Optional dependencies (these may possibly become required at some point in the future):
 
 (1) Python 3.x \
-(2) FFTW3
+(2) FFTW3 \
+(3) PGPLOT \
+(4) X11 \
+(5) GFORTRAN

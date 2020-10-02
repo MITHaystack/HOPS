@@ -11,9 +11,14 @@ set(MODULE_VERSION_NUMBER "${MODULE_VERSION_MAJOR}.${MODULE_VERSION_MINOR}${MODU
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake )
 include(HopsDefaults)
 include(CMakeDependentOption)
+include(FindGFORTRAN)
+include(FindPGPLOT)
+
+message(STATUS "Architecture is ${CMAKE_SYSTEM_PROCESSOR}")
+set( DEFAULT_INSTALL_DIR  "${PROJECT_SOURCE_DIR}/../${CMAKE_SYSTEM_PROCESSOR}-${MODULE_VERSION_NUMBER}" )
 
 if (CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
-    set (CMAKE_INSTALL_PREFIX "${PROJECT_SOURCE_DIR}/install" CACHE PATH "default install path" FORCE )
+    set (CMAKE_INSTALL_PREFIX "${DEFAULT_INSTALL_DIR}" CACHE PATH "default install path" FORCE )
 endif()
 
 #define install directories
@@ -24,7 +29,6 @@ set(CONFIG_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/config")
 set(DATA_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/data")
 set(LOG_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/log")
 set(SHARE_TEXT_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/share/text")
-
 
 file(MAKE_DIRECTORY ${INCLUDE_INSTALL_DIR})
 file(MAKE_DIRECTORY ${LIB_INSTALL_DIR})
@@ -47,7 +51,7 @@ message(STATUS "Using compiler ${COMPILER_ID} ${COMPILER_VERSION}")
 #option( HOPS_USE_OPENCL "Build OpenCL support." OFF)
 #option( HOPS_USE_ROOT "Build ROOT based utilities." OFF)
 option( HOPS_ENABLE_TEST "Build developer tests." ON)
-option( HOSE_USE_ROOT "Build ROOT based utilities." OFF)
+option( HOPS_USE_ROOT "Build ROOT based utilities." OFF)
 
 
 #convenience variables
@@ -56,74 +60,9 @@ set(CPPSOURCE ${CMAKE_CURRENT_SOURCE_DIR}/source/cpp_src)
 set(SHSOURCE ${CMAKE_CURRENT_SOURCE_DIR}/source/bash_src)
 set(PYSOURCE ${CMAKE_CURRENT_SOURCE_DIR}/source/python_src)
 
-
-
-
 ################################################################################
-#CONFIGURE AND BUILD OLD C-LIBRARIES FROM HOPS
-
-#config header generation to mimic behavior of autoheader generated hops_config.h
-#some of these are probably not necessary
-include(TestBigEndian)
-TEST_BIG_ENDIAN(IS_BIG_ENDIAN)
-if(IS_BIG_ENDIAN)
-    message(STATUS "Machine is BIG_ENDIAN")
-    set(WORDS_BIGENDIAN TRUE)
-else()
-    message(STATUS "Machine is LITTLE_ENDIAN")
-    set(WORDS_BIGENDIAN FALSE)
-endif()
-
-#mimic a bunch of checks automake does (which AFAIK are not used anywhere)
-include(CheckIncludeFile)
-check_include_file(sys/stat.h HAVE_SYS_STAT_H)
-check_include_file(sys/time.h HAVE_SYS_TIME_H)
-check_include_file(sys/types.h HAVE_SYS_TYPES_H)
-
-check_include_file(alloca.h HAVE_ALLOCA_H)
-check_include_file(arpa/inet.h HAVE_ARPA_INET_H)
-check_include_file(fcntl.h HAVE_FCNTL_H)
-check_include_file(float.h HAVE_FLOAT_H)
-check_include_file(inttypes.h HAVE_INTTYPES_H)
-check_include_file(limits.h HAVE_LIMITS_H)
-
-check_include_file(locale.h HAVE_LOCALE_H)
-check_include_file(netdb.h HAVE_NETDB_H)
-check_include_file(netinet/in.h HAVE_NETINET_IN_H)
-check_include_file(stddef.h HAVE_STDDEF_H)
-check_include_file(stdint.h HAVE_STDINT_H)
-
-check_include_file(stdlib.h HAVE_STDLIB_H)
-check_include_file(strings.h HAVE_STRINGS_H)
-check_include_file(string.h HAVE_STRING_H)
-check_include_file(sys/socket.h HAVE_SYS_SOCKET_H)
-check_include_file(unistd.h HAVE_UNISTD_H)
-
-set(HOPS_SVN_REV_VALUE 0)
-set(HOPS_REVISION_VALUE ${MODULE_VERSION_NUMBER})
-set(PACKAGE_VERSION ${MODULE_VERSION_NUMBER})
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/hops_config.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/hops_config.h)
-hops_install_headers(${CMAKE_CURRENT_BINARY_DIR}/hops_config.h)
-hops_include_directories(${CMAKE_CURRENT_BINARY_DIR})
-hops_add_cflag(HAVE_CONFIG_H)
-
-#mk4 and vex c-libraries from old HOPS
-add_subdirectory(${CSOURCE}/mk4stub)
-add_subdirectory(${CSOURCE}/mk4util)
-add_subdirectory(${CSOURCE}/vex)
-add_subdirectory(${CSOURCE}/dfio)
-add_subdirectory(${CSOURCE}/fourfit_libs/ffcontrol)
-add_subdirectory(${CSOURCE}/fourfit_libs/ffcore)
-
-################################################################################
-
-#source sub directories (in order of dependence...this is important!)
-add_subdirectory(${CPPSOURCE}/Array)
-add_subdirectory(${CPPSOURCE}/Core)
-add_subdirectory(${CPPSOURCE}/MK4Interface)
-# add_subdirectory(${CPPSOURCE}/Bindings)
-add_subdirectory(${CPPSOURCE}/Test)
-
+add_subdirectory(${CSOURCE})
+add_subdirectory(${CPPSOURCE})
 
 #python package setup
 find_package(PythonInterp REQUIRED)
