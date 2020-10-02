@@ -44,7 +44,7 @@ copy_230 (struct type_230 *t230,
     if (version == T230_VERSION) *ptr = (char *)t230;
     else if (version == 0)
         {
-        size = sizeof (struct type_230_v0) - sizeof (union hops_complex) + xpow_len;
+        size = sizeof (struct type_230_v0) - sizeof (struct hops_complex) + xpow_len;
         *ptr = (char *)malloc (size);
         if (*ptr == NULL)
             {
@@ -72,12 +72,12 @@ copy_230 (struct type_230 *t230,
         cp_float (t230_v0->lsbweight, t230->lsbweight);
         for (i=0; i<nspec_pts; i++)
             {                           // _Complex copy
-            cp_double (rpart, t230->xpower[i].xy.re);
-            cp_double (ipart, t230->xpower[i].xy.im);
-            t230_v0->xpower[i].xy.re = rpart;
-            t230_v0->xpower[i].xy.im = ipart;
+            cp_double (rpart, t230->xpower[i].real);
+            cp_double (ipart, t230->xpower[i].imag);
+            t230_v0->xpower[i].real = rpart;
+            t230_v0->xpower[i].imag = ipart;
             }
-        size = sizeof (struct type_230_v0) - sizeof ( union hops_complex) + xpow_len;
+        size = sizeof (struct type_230_v0) - sizeof ( struct hops_complex) + xpow_len;
         return (size);
         }
     else

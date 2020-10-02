@@ -33,7 +33,7 @@ struct type_230 *t230)
     static fftw_plan fftplan;
 
     clear_230 (t230);
-    
+
     datum = pass->pass_data[fr].data + ap;
 
     t230->nspec_pts = 2 * param->nlags;
@@ -41,10 +41,10 @@ struct type_230 *t230)
     t230->ap = ap;
     t230->usbweight = datum->usbfrac;
     t230->lsbweight = datum->lsbfrac;
-    if (datum->flag == 0) 
+    if (datum->flag == 0)
         t230->usbweight = t230->lsbweight = -1.0;
 
-    for (i = 0; i < 4 * MAXLAG; i++) 
+    for (i = 0; i < 4 * MAXLAG; i++)
         work_array[i] = 0.0;
                                         /* Fill padded work array */
     nl = param->nlags;
@@ -57,11 +57,11 @@ struct type_230 *t230)
     for (lag = 0; lag < nl * 2; lag++)
         {
         j = lag - nl;
-        if (j < 0) 
+        if (j < 0)
             j += 4 * nl;
         // value = datum->sbdelay[lag];
                                         /* Remove mean phasecal */
-        // theta = (status.pc_phase[fr][1][stnpol[1][pass->pol]] 
+        // theta = (status.pc_phase[fr][1][stnpol[1][pass->pol]]
         //       - status.pc_phase[fr][0][stnpol[0][pass->pol]]);
         // work_array[j] = c_mult (value, c_exp (theta));
         work_array[j] = datum->sbdelay[lag];
@@ -73,7 +73,8 @@ struct type_230 *t230)
        {
        j = nl - i;
        if (j < 0) j += 4*nl;
-       t230->xpower[i] = work_array[j];
+       t230->xpower[i].real = creal(work_array[j]);
+       t230->xpower[i].imag = cimag(work_array[j]);
        }
 
     return (0);

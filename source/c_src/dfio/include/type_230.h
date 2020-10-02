@@ -6,21 +6,10 @@
                                         /* defined to be same as app struct */
 #define type_230_v0 type_230
 
-struct hops_complex_real_imag
+struct hops_complex
 {
-    double re;
-    double im;
-};
-
-struct hops_complex_array
-{
-    double array[2];
-};
-
-union hops_complex
-{
-    struct hops_complex_array array;
-    struct hops_complex_real_imag xy;
+    double real;
+    double imag;
 };
 
 struct type_230
@@ -35,7 +24,7 @@ struct type_230
     int             ap;                 /* AP number, refer to 206 */
     float           lsbweight;          /* fraction of AP represented */
     float           usbweight;          /* fraction of AP represented */
-    union hops_complex    xpower[1];          /* Array of spectrum values */
+    struct hops_complex    xpower[1];          /* Array of spectrum values */
     };
 
 #endif
