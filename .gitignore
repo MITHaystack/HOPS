@@ -30,3 +30,15 @@
 *.exe
 *.out
 *.app
+
+# Latex junk files
+*.aux
+*.bcf
+*.log
+*.pdf
+*.run.xml
+*.toc
+
+# Build and install directories
+*build*
+*x86_64*
