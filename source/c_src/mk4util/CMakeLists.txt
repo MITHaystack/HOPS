@@ -34,7 +34,7 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/${INC_RELPATH})
 
 #add compiler definition to specify where the 'text' directory is ##############
 #TODO what about the other directory locations defined in environment.c ?
-add_compile_definitions( PFORMAT_TEXT_DIR="${SHARE_TEXT_INSTALL_DIR}")
+add_definitions(-DPFORMAT_TEXT_DIR="${SHARE_TEXT_INSTALL_DIR}")
 
 #build/link/install library ####################################################
 list(APPEND LIBLIST "mk4stub")
