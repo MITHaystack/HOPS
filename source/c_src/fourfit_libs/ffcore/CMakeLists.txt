@@ -30,14 +30,13 @@ foreach( BASENAME ${${LIBNAME}_SOURCE_BASENAMES} )
 endforeach( BASENAME )
 
 #declare header paths ##########################################################
-set(MK4STUB_RELPATH "../../mk4stub")
 set(MK4UTIL_RELPATH "../../mk4util")
 set(DFIO_RELPATH "../../dfio")
 set(AFIO_RELPATH "../../afio")
 set(VEX_RELPATH "../../vex")
 set(FFCONTROL_RELPATH "../ffcontrol")
 
-list(APPEND RELPATH_LIST ${MK4STUB_RELPATH} ${MK4UTIL_RELPATH} ${AFIO_RELPATH} ${DFIO_RELPATH} ${VEX_RELPATH} ${FFCONTROL_RELPATH})
+list(APPEND RELPATH_LIST ${MK4UTIL_RELPATH} ${AFIO_RELPATH} ${DFIO_RELPATH} ${VEX_RELPATH} ${FFCONTROL_RELPATH})
 
 #include library headers
 foreach(path ${RELPATH_LIST})
@@ -48,7 +47,7 @@ endforeach(path)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 #build/link/install library ####################################################
-list(APPEND LIBLIST  "mk4stub" "mk4util" "dfio" "afio" "vex" "ffcontrol")
+list(APPEND LIBLIST "mk4util" "dfio" "afio" "vex" "ffcontrol")
 
 add_library (${LIBNAME} SHARED ${${LIBNAME}_SOURCEFILES} ${${LIBNAME}_HEADERFILES})
 

@@ -47,7 +47,6 @@ hops_include_directories(${CMAKE_CURRENT_BINARY_DIR})
 hops_add_cflag(HAVE_CONFIG_H)
 
 #mk4 and vex c-libraries from old HOPS
-add_subdirectory(mk4stub)
 add_subdirectory(mk4util)
 add_subdirectory(vex)
 add_subdirectory(dfio)
