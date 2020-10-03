@@ -31,7 +31,7 @@ class HkVectorContainer: public HkArrayWrapper< XValueType, 1>, public HkNamed
             HkNamed()
         {};
 
-        HkVectorContainer(size_t dim):
+        HkVectorContainer(std::size_t dim):
             HkArrayWrapper<XValueType,1>(dim),
             HkNamed()
         {};

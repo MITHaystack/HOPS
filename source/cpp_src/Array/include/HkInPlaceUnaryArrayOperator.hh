@@ -5,7 +5,7 @@
 
 namespace hops{
 
-template< typename XValueType, unsigned int RANK>
+template< typename XValueType, std::size_t RANK>
 class HkInPlaceUnaryArrayOperator: public HkArrayOperator<XValueType,RANK>
 {
     public:
