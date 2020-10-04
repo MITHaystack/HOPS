@@ -38,6 +38,10 @@
 *.pdf
 *.run.xml
 *.toc
+*.backup
+*.nav
+*.vrb
+
 
 # Build and install directories
 *build*
