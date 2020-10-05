@@ -64,7 +64,18 @@
 
 \section{Outline}
 
-\begin{frame}{Basic Architecture}
+\begin{frame}{Basic architecture}
+
+\begin{itemize}
+ \item Planned future work is mult-language project with C/C++ and python
+ \item Re-use of legacy c-libraries where needed (mk4io) and to allow for testing/comparison to old results
+ \item Most new code in either C++ or object-oriented C (when necessary)
+ \item User configuration to proceed via python interpreter front-end (with C/C++ libraries exposed via bindings - SWIG, pybind11?)
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Basic code structure}
 
 \begin{center}
       \includegraphics[width=\textwidth]{arch_overview.png}\\
@@ -184,6 +195,22 @@ public XAxisPackType, public HkNamed
 
  
 \end{frame}
+
+\begin{frame}{Logistics - for discussion}
+ 
+ How do we want to organized work-flow?
+ 
+\begin{itemize}
+ \item Code formatting/standards? Should we use clang-format to ensure consistency?
+ \item Do we want to adopt doxygen style comments?
+ \item Branching/Merging - What work can/should be done in 'master'? Should we squash merge feature branches?
+ \item Periodic meetings/planning?
+\end{itemize}
+
+  
+\end{frame}
+
+
 
 \begin{frame}{Fourfit libraries}
 
