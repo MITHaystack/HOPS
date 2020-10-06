@@ -41,7 +41,8 @@
 *.backup
 *.nav
 *.vrb
-
+*.snm
+*.synctex*
 
 # Build and install directories
 *build*
