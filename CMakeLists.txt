@@ -27,6 +27,7 @@ set(LIB_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/lib")
 set(BIN_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/bin")
 set(CONFIG_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/config")
 set(DATA_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/data")
+set(DOC_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/doc")
 set(LOG_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/log")
 set(SHARE_TEXT_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/share/text")
 
@@ -35,6 +36,7 @@ file(MAKE_DIRECTORY ${LIB_INSTALL_DIR})
 file(MAKE_DIRECTORY ${BIN_INSTALL_DIR})
 file(MAKE_DIRECTORY ${CONFIG_INSTALL_DIR})
 file(MAKE_DIRECTORY ${DATA_INSTALL_DIR})
+file(MAKE_DIRECTORY ${DOC_INSTALL_DIR})
 file(MAKE_DIRECTORY ${LOG_INSTALL_DIR})
 file(MAKE_DIRECTORY ${SHARE_TEXT_INSTALL_DIR})
 
@@ -63,6 +65,7 @@ set(PYSOURCE ${CMAKE_CURRENT_SOURCE_DIR}/source/python_src)
 ################################################################################
 add_subdirectory(${CSOURCE})
 add_subdirectory(${CPPSOURCE})
+add_subdirectory(doc)
 
 #python package setup
 find_package(PythonInterp REQUIRED)
