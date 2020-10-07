@@ -10,7 +10,7 @@
 
 \usepackage[english]{babel}
 \usepackage[backend=biber,style=numeric,sorting=none]{biblatex}
-\addbibresource{hops-development.bib}
+%\addbibresource{hops-spec.bib}
 
 \usepackage{adjustbox}
 \usepackage{graphicx}
@@ -329,9 +329,9 @@ These template classes are to serve as a simple wrapper around the management of
 
 Listing \ref{lst:objects} gives a brief sketch (without implementation) of the class templates for these data container objects, while listing \ref{lst:visib} gives a simple example of what template declaration of an object storing visibility data from an observation over multiple baselines and polarization products might look like.
 
-%\lstinputlisting[language=C++,label={lst:objects},caption=Data object templates]{./code/data_objects.hh}
+\lstinputlisting[language=C++,label={lst:objects},caption=Data object templates]{./code/data_objects.hh}
 
-%\lstinputlisting[language=C++,label={lst:visib},caption=Visibility object type]{./code/visibilities.hh}
+\lstinputlisting[language=C++,label={lst:visib},caption=Visibility object type]{./code/visibilities.hh}
 
 \subsection{Data operators}
 
@@ -339,7 +339,7 @@ The data operator classes are meant to organize the mathematic manipulations whi
 Most unary or binary operations that are to applied to visibility or other data residing in TensorContainers such as scaling, multiplication, transposition, summation, Fourier transformation, etc. will be made available as individual classes inheriting from the same interface. A uniform class interface will allow these data operators to be composed or modified to create more complicated composite operators or strung together to accomplish data pipelines of arbitrary complexity. An additional advantage of encapsulating individual operations is that any SIMD parallel-processing extension used to accelerate data processing can be made opaque to the user. Listing \ref{lst:operators} gives a brief sketch of the class templates generalizing the data operators.
 
 
-%\lstinputlisting[language=C++,label={lst:operators},caption=Data operator templates]{./code/data_operators.hh}
+\lstinputlisting[language=C++,label={lst:operators},caption=Data operator templates]{./code/data_operators.hh}
 
 
 \section{Interactivity definition}
@@ -385,24 +385,17 @@ named as such):
 
 
 
-
 %
 % above to be deleted after merger
 %
 \newpage
 \addtocounter{section}{1}
 \renewcommand{\refname}{\thesection. References}
-
-
-%\section{References}
-%% increment reference section number
-%\label{sec:references}
 %\bibstyle{plainurl}
-%\bibliography{hops-spec-bib}
+%\bibliography{hops-spec}
 
-%\printbibliography[title={\ref{sec:reference} References}]
-%\printbibliography
-%\bibliographystyle{plain}
+
+
 
 
 \end{document}

@@ -27,10 +27,4 @@ else()
 
 endif(DOXYGEN_FOUND)
 
-set(SPEC_DIR specification )
-list(APPEND SPEC_INPUTS ${SPEC_DIR}/code/data_objects.cxx)
-list(APPEND SPEC_INPUTS ${SPEC_DIR}/code/data_objects.hh)
-list(APPEND SPEC_INPUTS ${SPEC_DIR}/code/data_operators.hh)
-list(APPEND SPEC_INPUTS ${SPEC_DIR}/code/visibilities.hh)
-
-add_latex_document( ${SPEC_DIR}/hops-spec.tex)
+add_subdirectory(specification)
