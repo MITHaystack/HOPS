@@ -47,3 +47,7 @@
 # Build and install directories
 *build*
 *x86_64*
+
+#CMake cache files
+*CMakeCache.txt*
+*CMakeFiles*

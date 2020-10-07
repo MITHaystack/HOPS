@@ -13,6 +13,7 @@ include(HopsDefaults)
 include(CMakeDependentOption)
 include(FindGFORTRAN)
 include(FindPGPLOT)
+include(UseLATEX)
 
 message(STATUS "Architecture is ${CMAKE_SYSTEM_PROCESSOR}")
 set( DEFAULT_INSTALL_DIR  "${CMAKE_CURRENT_BINARY_DIR}/../${CMAKE_SYSTEM_PROCESSOR}-${MODULE_VERSION_NUMBER}" )
