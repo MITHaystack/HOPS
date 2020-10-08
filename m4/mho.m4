@@ -8,10 +8,18 @@ rm -f config.summary ; echo [$1] > config.summary
 ])
 
 dnl
-dnl AC_MHO_NOTICE([normal notice arguments])
-dnl-----------------------------------------
+dnl AC_MHO_NOTICE([notice arguments to summary])
+dnl-------------------------------------------
 AC_DEFUN([AC_MHO_NOTICE], [dnl
 echo "[$1]" >> config.summary
+AC_MSG_NOTICE([$1])dnl
+])
+
+dnl
+dnl AC_MHO_SUMMARY([%%% notice arguments to summary])
+dnl--------------------------------------------------
+AC_DEFUN([AC_MHO_SUMMARY], [dnl
+echo "%%% [$1]" >> config.summary
 AC_MSG_NOTICE([$1])dnl
 ])
 
@@ -23,7 +31,7 @@ AC_DEFUN([AC_MHO_BANNER], [dnl
     echo '  '[$1]
     echo ''
     grep '%%%' config.summary | sed 's/^.../    /'
-    echo ''
+    echo ''dnl
 ])
 
 dnl

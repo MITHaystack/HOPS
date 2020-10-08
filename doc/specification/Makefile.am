@@ -1,0 +1,8 @@
+#
+# documents
+#
+SUBDIRS = .
+
+#
+# eof
+#

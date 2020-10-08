@@ -53,4 +53,19 @@
 *CMakeFiles*
 
 # Autotool crap
+*~
 *.in
+ac*m4
+lt*.m4
+lib*.m4
+autom4te.cache
+compile
+config.guess
+config.sub
+configure
+depcomp
+install-sh
+ltmain.sh
+missing
+
+# eof

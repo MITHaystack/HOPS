@@ -10,12 +10,14 @@ nuke=${1-'false'}
 halt=${2-'false'}
 
 [ "$nuke" = help ] && cat <<\EOF
+
     Usage: autogen.sh [true|false] [true|false]
 
     the first boolean will nuke the installed (ignored) files if true
     the second boolean will exit after that if true
 
     by default the script (re)configures the autotools in the git repo
+
 EOF
 [ "$nuke" = help ] && exit 0
 
@@ -36,13 +38,14 @@ autoheader $force
 automake --add-missing $forcemissing
 
 cat <<EOF
+
     Now continue in a build directory:
 
     VERSION=4.00    # update as needed
 
-    mkdir ../ambld-$VERSION
-    cd ../ambld-$VERSION
-    ../configure
+    mkdir ../ambld-\$VERSION
+    cd ../ambld-\$VERSION
+    `pwd`/configure
 
     make all check install
 
