@@ -1,0 +1,67 @@
+\documentclass[notitlepage,letterpaper,pdftex,12pt,final]{article}
+%\documentclass[notitlepage,letterpaper,pdftex,12pt,draft]{article}
+% article < report < book ; preable material follows
+
+% (un)comment to get full paths to files actually used
+%\listfiles
+
+\addtolength\textwidth{1.8in}
+\addtolength\oddsidemargin{-0.90in}
+\addtolength\evensidemargin{-0.90in}
+\addtolength\marginparwidth{-0.90in}
+\typeout{textwidth is \the\textwidth}
+
+% useful to block out portions of text
+\usepackage{ifthen}
+% to allow defining our own colors
+\usepackage[dvipsnames]{xcolor}
+\definecolor{darkgreen}{rgb}{0,0.5,0}
+% makes hyperlinks work
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue,citecolor=darkgreen}
+% for figures; insert [draft] before {...} not to see imgs
+\usepackage{graphicx}
+% for small figures surrounded by text
+\usepackage{wrapfig}
+% for control over headers and footers
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+% for handling acronyms
+\usepackage[printonlyused]{acronym}
+
+% for bibliographies if needed
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[backend=biber,style=numeric,sorting=none]{biblatex}
+%\addbibresource{filename.bib}
+\usepackage{csquotes}
+% for bold math
+\usepackage{bm}
+% for serious math which we may have in a few places (eventually)
+\usepackage{amsmath}
+% equations include section number
+\numberwithin{equation}{section}
+
+% see common/shortcuts.tex for what this gives us
+\input{shortcuts}
+
+% control options
+\newboolean{skipappendix}
+\setboolean{skipappendix}{false}
+
+\begin{document}
+\DeclareGraphicsExtensions{.png, .jpg, .pdf}
+%\graphicspath{{figs/}{scans/}}
+
+
+\input{thereqs}
+
+% if false (nothing) else use Appendices
+\ifthenelse{\boolean{skipappendix}}{}{%
+\appendix
+\section{Acronyms}
+\input{acronyms}
+}
+
+\end{document}
