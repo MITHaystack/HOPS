@@ -23,7 +23,7 @@ class HkAxisPack:  public std::tuple< XAxisTypeS... >
             std::tuple< XAxisTypeS... >()
         {};
 
-        HkAxisPack(const size_t* dim):
+        HkAxisPack(const std::size_t* dim):
             std::tuple< XAxisTypeS... >()
         {
             resize_axis_pack(dim);
@@ -32,21 +32,21 @@ class HkAxisPack:  public std::tuple< XAxisTypeS... >
         virtual ~HkAxisPack(){};
 
         //using rank = typename HkTypelistSize< HkTypelist< XAxisTypeS...> >::value;
-        typedef std::integral_constant< size_t, sizeof...(XAxisTypeS) > RANK;
+        typedef std::integral_constant< std::size_t, sizeof...(XAxisTypeS) > RANK;
 
     protected:
 
         //inductive access to all elements of the tuple, so we can re-size them from an array
-        template<size_t N = 0>
+        template<std::size_t N = 0>
         typename std::enable_if< N == sizeof...(XAxisTypeS), void >::type
-        resize_axis_pack( const size_t* /*dim*/)
+        resize_axis_pack( const std::size_t* /*dim*/)
         {
             //terminating case, do nothing
         }
 
-        template<size_t N = 0>
+        template<std::size_t N = 0>
         typename std::enable_if< N < sizeof...(XAxisTypeS), void>::type
-        resize_axis_pack(const size_t* dim)
+        resize_axis_pack(const std::size_t* dim)
         {
             //resize the N-th element of the tuple
             std::get<N>(*this).Resize(dim[N]);

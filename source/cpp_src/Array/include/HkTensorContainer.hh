@@ -36,7 +36,7 @@ class HkTensorContainer: public HkArrayWrapper< XValueType, XAxisPackType::RANK:
             HkNamed()
         {};
 
-        HkTensorContainer(const size_t* dim):
+        HkTensorContainer(const std::size_t* dim):
             HkArrayWrapper<XValueType,XAxisPackType::RANK::value>(dim),
             XAxisPackType(dim),
             HkNamed()
@@ -50,9 +50,9 @@ class HkTensorContainer: public HkArrayWrapper< XValueType, XAxisPackType::RANK:
 
         //modify the Resize function to also resize the axes
         using XAxisPackType::resize_axis_pack;
-        void Resize(const size_t* dim)
+        void Resize(const std::size_t* dim)
         {
-            for(size_t i=0; i<XAxisPackType::RANK::value; i++)
+            for(std::size_t i=0; i<XAxisPackType::RANK::value; i++)
             {
                 fDimensions[i] = dim[i];
             }

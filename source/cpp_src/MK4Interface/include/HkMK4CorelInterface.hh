@@ -10,9 +10,6 @@
 *Description:
 */
 
-#include <iostream>
-#include <string>
-#include <vector>
 
 //mk4 IO library
 extern "C"
@@ -22,6 +19,13 @@ extern "C"
     #include "mk4_dfio.h"
     #include "mk4_vex.h"
 }
+
+
+#include <iostream>
+#include <string>
+#include <vector>
+#include <complex>
+
 
 #include "HkMultiTypeMap.hh"
 

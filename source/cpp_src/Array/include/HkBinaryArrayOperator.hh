@@ -5,20 +5,20 @@
 
 namespace hops{
 
-template<typename XValueType, unsigned int NDIM>
-class HkBinaryArrayOperator: public HkArrayOperator<XValueType,NDIM>
+template<typename XValueType, std::size_t RANK>
+class HkBinaryArrayOperator: public HkArrayOperator<XValueType,RANK>
 {
     public:
         HkBinaryArrayOperator():fFirstInput(NULL),fSecondInput(NULL),fOutput(NULL){;};
         virtual ~HkBinaryArrayOperator(){;};
 
-        virtual void SetFirstInput(HkArrayWrapper<XValueType,NDIM>* in){fFirstInput = in;};
-        virtual void SetSecondInput(HkArrayWrapper<XValueType,NDIM>* in){fSecondInput = in;};
-        virtual void SetOutput(HkArrayWrapper<XValueType,NDIM>* out){fOutput = out;};
+        virtual void SetFirstInput(HkArrayWrapper<XValueType,RANK>* in){fFirstInput = in;};
+        virtual void SetSecondInput(HkArrayWrapper<XValueType,RANK>* in){fSecondInput = in;};
+        virtual void SetOutput(HkArrayWrapper<XValueType,RANK>* out){fOutput = out;};
 
-        virtual HkArrayWrapper<XValueType,NDIM>* GetFirstInput(){return fFirstInput;};
-        virtual HkArrayWrapper<XValueType,NDIM>* GetSecondInput(){return fSecondInput;};
-        virtual HkArrayWrapper<XValueType,NDIM>* GetOutput(){return fOutput;};
+        virtual HkArrayWrapper<XValueType,RANK>* GetFirstInput(){return fFirstInput;};
+        virtual HkArrayWrapper<XValueType,RANK>* GetSecondInput(){return fSecondInput;};
+        virtual HkArrayWrapper<XValueType,RANK>* GetOutput(){return fOutput;};
 
         virtual void Initialize(){;};
 
@@ -26,9 +26,9 @@ class HkBinaryArrayOperator: public HkArrayOperator<XValueType,NDIM>
 
     protected:
 
-        HkArrayWrapper<XValueType,NDIM>* fFirstInput;
-        HkArrayWrapper<XValueType,NDIM>* fSecondInput;
-        HkArrayWrapper<XValueType,NDIM>* fOutput;
+        HkArrayWrapper<XValueType,RANK>* fFirstInput;
+        HkArrayWrapper<XValueType,RANK>* fSecondInput;
+        HkArrayWrapper<XValueType,RANK>* fOutput;
 };
 
 }

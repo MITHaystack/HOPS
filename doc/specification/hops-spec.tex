@@ -10,7 +10,7 @@
 
 \usepackage[english]{babel}
 \usepackage[backend=biber,style=numeric,sorting=none]{biblatex}
-\addbibresource{hops-development.bib}
+%\addbibresource{hops-spec.bib}
 
 \usepackage{adjustbox}
 \usepackage{graphicx}
@@ -184,24 +184,24 @@
 %   * External package identification
 %   * New objects specification
 %   * New library specification
-%   * New program specification 
+%   * New program specification
 
 
 \section{Architecture}
 
-The goal of the re-developed HOPS architecture is provide a component-based design which allows for a greater degree of flexibility 
+The goal of the re-developed HOPS architecture is provide a component-based design which allows for a greater degree of flexibility
 in the types of operations that may be applied to VLBI data during fringe fitting, and avoid the semi-monolithic approach used in the past.
 To do this, the software package to be delivered will primarily comprise of a set of loosely coupled libraries which can be composed
 into an variety of calibration and fringe-fitting applications. Moreover, rather than attempting to identify and categorize all manner of data
 and data manipulation which may be required by future observations at the outset, a primary goal of this project is to provide a
 relatively flexible set of data types and a plugin interface so as to allow for future extensions with minimal revision to the existing code.
 
-For the foreseeable future, the main source of input data to this software will be provided by the DiFX correlator. However, this may not always 
+For the foreseeable future, the main source of input data to this software will be provided by the DiFX correlator. However, this may not always
 be the case, so in order to decouple the correlator from the post-processing software a conversion utility must be provided. This follows
 the same paradigm as the current code (difx2mark4), except that we propose that this conversion utility operate mainly as a transparent pass-through, merely
 converting the correlator output into the native post-processing format, rather than applying any initial calibration (e.g. auto-corrs) or corrections.
 
-Once the data has been converted to the native post-processing format additional manipulation will take place in several stages, such as data-flagging, 
+Once the data has been converted to the native post-processing format additional manipulation will take place in several stages, such as data-flagging,
 a priori phase/delay calibration, fringe-fitting, and post-fringe-fitting calibration. Finally the data will be made available for export to archival formats
 (e.g. HDF5).
 
@@ -223,25 +223,25 @@ Several aspects need to be taken into account when deciding on a choice of progr
 Obtaining a reasonable balance between these considerations is difficult with a single language. Therefore we
 plan to develop a multi-language project, wherein the base computation layer is handled within C/C++,
 but additional data manipulation can be done via optional Python plugins embedded within the aapplication
-or independently by external Python scripts which have access to some of the underlying application libraries. 
+or independently by external Python scripts which have access to some of the underlying application libraries.
 C++ is a good choice given current personnel and developer expertise, and being a super-set of the C language
 it provides the ability to reuse of portions of the existing C code base with little to no change, while also adding modern language features
-(templates, classes and inheritance, const. correctness, function overloading, etc.). A combined C/C++ approach 
+(templates, classes and inheritance, const. correctness, function overloading, etc.). A combined C/C++ approach
 allows for much easier memory management (currently handled rather painfully in the existing HOPS code base) and also
 enables the use of a wide variety of open source libraries, not least of which is the built in standard template library
 which provides access to a wide collection of basic data types (strings, vectors, maps, etc) and algorithms (searching, sorting, etc.)
-which will reduce the required amount of maintenance of internal code and reliance on external libraries. 
+which will reduce the required amount of maintenance of internal code and reliance on external libraries.
 
-Further augmenting C/C++ libraries with inter-language communication to Python can be done via a wide variety of mature tools 
-(ctypes, boost.Python, SWIG, pybind11, etc.), and will increases the ease at which outside users can augment the software. 
+Further augmenting C/C++ libraries with inter-language communication to Python can be done via a wide variety of mature tools
+(ctypes, boost.Python, SWIG, pybind11, etc.), and will increases the ease at which outside users can augment the software.
 Since Python 2 is no longer supported, all new development will be Python 3.
 
-The build system for this project will be the CMake build system \urlfootnote{https://cmake.org}, and version control will proceed through a locally 
+The build system for this project will be the CMake build system \urlfootnote{https://cmake.org}, and version control will proceed through a locally
 hosted (Haystack) git repository. The CMake build system is generally easier to maintain than the current autotools system used by HOPS when faced with the complexities of a multi-language project. It also allows for a more user-friendly configuration at the time of compilation, as the user can be presented with a menu providing options which are dependent on the available set of tools/libraries that are currently installed and detected on the users system. It is also suggested to move to the git version control (over Subversion) system for several reasons\urlfootnote{http://git.wiki.kernel.org/index.php/GitSvnComparsion}. Two of which that particularly stand out are:
 
 \begin{enumerate}
  \item  Its access control model lets the repository owner maintain local control over the code base while providing and the ability to accept changes from external entities without them needing permissions. This will make it much easier to leverage community contributions if so desired at some point in the future.
- \item The manner in which branching and merging is handled in git is less cumbersome as it tracks the complete source tree. This is especially important when a project contains multiple independent tools that have separate development schedules. For example this obviates the need for a `virtualtrunk' -- the model used by DiFX. 
+ \item The manner in which branching and merging is handled in git is less cumbersome as it tracks the complete source tree. This is especially important when a project contains multiple independent tools that have separate development schedules. For example this obviates the need for a `virtualtrunk' -- the model used by DiFX.
 \end{enumerate}
 
 
@@ -268,7 +268,7 @@ This type of parallelism exploits vector instructions and/or multiple processors
 \section{External Package Selection}
 
 To the extent possible the software to be developed in this project should make all external dependencies optional whenever possible. That is to say, that
-while some features may be missing if an optional external package is missing, the core functionality of the software should not be affected. For example, if the fast Fourier transform library FFTW3 is missing, the code should fall back to an internal implementation (which is allowed to be slower), but which produces equivalent output. Likewise, while an effort should be made to support portability of the output data into useful downstream formats (HDF5), this should not preclude the use of a native format capable of storing the same data for development and debugging purposes. 
+while some features may be missing if an optional external package is missing, the core functionality of the software should not be affected. For example, if the fast Fourier transform library FFTW3 is missing, the code should fall back to an internal implementation (which is allowed to be slower), but which produces equivalent output. Likewise, while an effort should be made to support portability of the output data into useful downstream formats (HDF5), this should not preclude the use of a native format capable of storing the same data for development and debugging purposes.
 
 The following table is a preliminary list of which external packages are expected to be incorporated as required or optional dependencies. If an optional package is missing on a user's machine the software will default to a fallback option (if available) or disable the features which require that particular package.
 
@@ -316,7 +316,7 @@ The existing HOPS code base relies on a fixed number of \texttt{C} structs to or
 To make the data structures more flexible we intend to decouple the in-memory data layout from the file I/O, so they do not necessarily need to be byte-for-byte copies.
 Furthermore, to the extent possible, the in-memory data structures should be classes which provide access via a key-value pair mechanism so as to avoid exposing the private internal storage layout to the routines needing access to subsets of the data.
 
-In a strictly typed language such as \texttt{C}, flexible data structures have a high degree of code overhead, not only in the management of dynamic memory allocation, but more severely in the conversion of data types and typecasting. To ameliorate this we propose to exploit \texttt{C++11}'s variadic template mechanism, which allows for the transformation of type-agnostic class lists into concrete class types or hierarchies at compile time. This makes it possible to store disparate types (known at compile time) within in the same object that are indexed and can be retrieved by the same type of key (e.g. a name string). 
+In a strictly typed language such as \texttt{C}, flexible data structures have a high degree of code overhead, not only in the management of dynamic memory allocation, but more severely in the conversion of data types and typecasting. To ameliorate this we propose to exploit \texttt{C++11}'s variadic template mechanism, which allows for the transformation of type-agnostic class lists into concrete class types or hierarchies at compile time. This makes it possible to store disparate types (known at compile time) within in the same object that are indexed and can be retrieved by the same type of key (e.g. a name string).
 
 We propose the following basic set of class templates be used to construct most in-memory objects used for the manipulation of correlated observation data and its associated metadata:
 \begin{enumerate}
@@ -356,8 +356,8 @@ The software to be delivered will be presented largely as set of libraries with 
 \begin{enumerate}
  \item Core - Common template and abstract base classes, messaging and other utilities.
  \item Math - Common mathematical functions and minimization routines.
- \item Data containers and native I/O - Definitions of the in-memory data objects and a simple binary I/O interface. 
- \item Data operators - Definitions of data operations 
+ \item Data containers and native I/O - Definitions of the in-memory data objects and a simple binary I/O interface.
+ \item Data operators - Definitions of data operations
  \item Builders and process management - Provides classes which constructs data operators and the pipeline which organizes them from user input.
  \item Plugins:
  \begin{enumerate}
@@ -385,23 +385,17 @@ named as such):
 
 
 
-
 %
 % above to be deleted after merger
 %
 \newpage
 \addtocounter{section}{1}
 \renewcommand{\refname}{\thesection. References}
+%\bibstyle{plainurl}
+%\bibliography{hops-spec}
 
-\bibstyle{plainurl}
-%\section{References}
-%% increment reference section number
-\label{sec:references}
 
-%\printbibliography[title={\ref{sec:reference} References}]
-\printbibliography
-%\bibliography{hops-development}
-%\bibliographystyle{plain}
+
 
 
 \end{document}

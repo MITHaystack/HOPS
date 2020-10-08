@@ -55,6 +55,10 @@ macro(hops_install_config)
     install(FILES ${ARGN} DESTINATION ${${PROJECT_NAME}_CONFIG_INSTALL_DIR})
 endmacro()
 
+macro(hops_install_doc)
+    install(FILES ${ARGN} DESTINATION ${${PROJECT_NAME}_DOC_INSTALL_DIR})
+endmacro()
+
 #to match automake build
 macro(hops_install_share_text)
     install(FILES ${ARGN} DESTINATION ${SHARE_TEXT_INSTALL_DIR})

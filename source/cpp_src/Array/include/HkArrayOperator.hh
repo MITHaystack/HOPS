@@ -6,7 +6,7 @@
 
 namespace hops{
 
-template<typename XValueType, size_t RANK>
+template<typename XValueType, std::size_t RANK>
 class HkArrayOperator
 {
     public:
@@ -26,13 +26,13 @@ class HkArrayOperator
         static bool
         HaveSameDimensions(const HkArrayWrapper<XValueType,RANK>* arr1, const HkArrayWrapper<XValueType,RANK>* arr2)
         {
-            size_t shape1[RANK];
-            size_t shape2[RANK];
+            std::size_t shape1[RANK];
+            std::size_t shape2[RANK];
 
             arr1->GetDimensions(shape1);
             arr2->GetDimensions(shape2);
 
-            for(size_t i=0; i<RANK; i++)
+            for(std::size_t i=0; i<RANK; i++)
             {
                 if(shape1[i] != shape2[i]){return false;}
             }
@@ -45,8 +45,8 @@ class HkArrayOperator
         ResetArray(HkArrayWrapper<XValueType,RANK>* arr, const XValueType& obj)
         {
             XValueType* ptr = arr->GetData();
-            size_t n_elem = arr->GetSize();
-            for(size_t i=0; i < n_elem; i++)
+            std::size_t n_elem = arr->GetSize();
+            for(std::size_t i=0; i < n_elem; i++)
             {
                 ptr[i] = obj;
             }
@@ -57,7 +57,7 @@ class HkArrayOperator
         ZeroArray(HkArrayWrapper<XValueType,RANK>* arr)
         {
             XValueType* ptr = arr->GetData();
-            size_t n_bytes = (arr->GetSize() )*( sizeof(XValueType) );
+            std::size_t n_bytes = (arr->GetSize() )*( sizeof(XValueType) );
             std::memset(ptr, 0, n_bytes);
         }
 
