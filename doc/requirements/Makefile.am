@@ -1,23 +1,21 @@
 #
-# documents
+# makefile for requirements document
 #
 # SUBDIRS = .
 
 # list the sources in $(srcdir)
-tex_sources = reqs.tex
+TEXPDF=requirements
+TEXSRC=reqs
+tex_sources = $(srcdir).tex thereqs.tex
 
-# things for the tarball
-EXTRA_DIST = $(texdistfiles)
+# extra things for the tarball
+EXTRA_DIST =
 
 if WANT_DOCS
 # to be somewhat surgical, this is useful:
 # TEXINPUTS=... kpsewhich -show-path tex "filename"
 # KPSETEXMFPATH set to : in configure pulls in the rest of TeX
 TEXINPUTS=.:$(srcdir):$(srcdir)/../common@KPSETEXMFPATH@
-# these must be different for the rules below
-TEXSRC=reqs
-TEXPDF=requirements
-
 # can be overriden at the make command
 TEXOPT=-interaction=batchmode
 
@@ -42,7 +40,7 @@ force: $(srcdir)
 	-TEXINPUTS=$(TEXINPUTS) pdflatex $(TEXOPT) $(TEXSRC).tex
 	touch force
 
-CLEANFILES = $(TEXSRC).* $(TEXPDF).pdf force
+CLEANFILES = $(TEXSRC).* $(TEXPDF).pdf force *.log
 
 else
 # nothing built, installed or cleaned
