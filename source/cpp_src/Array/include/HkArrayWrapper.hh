@@ -83,7 +83,7 @@ class HkArrayWrapper
         typename std::enable_if< (sizeof...(XDimSizeTypeS) == RANK), void >::type //compile-time check that the number of arguments is the same as the rank of the array
         Resize(XDimSizeTypeS...dim)
         {
-            const std::array<std::size_t, RANK> dim_sizes = {{dim...}}; //convert the arguments to an array
+            const std::array<std::size_t, RANK> dim_sizes = {{static_cast<size_t>(dim)...}}; //convert the arguments to an array
             Resize(&(dim_sizes[0]));
         }
 
@@ -129,7 +129,7 @@ class HkArrayWrapper
         typename std::enable_if< (sizeof...(XIndexTypeS) == RANK), XValueType& >::type //compile-time check that the number of arguments is the same as the rank of the array
         operator()(XIndexTypeS...idx)
         {
-            const std::array<std::size_t, RANK> indices = {{idx...}}; //convert the arguments to an array
+            const std::array<std::size_t, RANK> indices = {{static_cast<size_t>(idx)...}}; //convert the arguments to an array
             return fData[  HkArrayMath::OffsetFromRowMajorIndex<RANK>(fDimensions, &(indices[0]) ) ]; //compute the offset into the array and return reference to the data
         }
 
@@ -138,7 +138,7 @@ class HkArrayWrapper
         typename std::enable_if< (sizeof...(XIndexTypeS) == RANK),  const XValueType& >::type
         operator()(XIndexTypeS...idx) const
         {
-            const std::array<std::size_t, RANK> indices = {{idx...}};
+            const std::array<std::size_t, RANK> indices = {{static_cast<size_t>(idx)...}};
             return fData[  HkArrayMath::OffsetFromRowMajorIndex<RANK>(fDimensions, &(indices[0]) ) ];
         }
 
@@ -147,7 +147,7 @@ class HkArrayWrapper
         typename std::enable_if<(sizeof...(XIndexTypeS) == RANK), XValueType& >::type
         at(XIndexTypeS...idx)
         {
-            const std::array<std::size_t, RANK> indices = {{idx...}};
+            const std::array<std::size_t, RANK> indices = {{static_cast<size_t>(idx)...}};
             if( HkArrayMath::CheckIndexValidity<RANK>( fDimensions, &(indices[0]) ) ) //make sure the indices are valid for the given array dimensions
             {
                 return fData[  HkArrayMath::OffsetFromRowMajorIndex<RANK>(fDimensions, &(indices[0]) ) ];
@@ -163,7 +163,7 @@ class HkArrayWrapper
         typename std::enable_if<(sizeof...(XIndexTypeS) == RANK), const XValueType& >::type
         at(XIndexTypeS...idx) const
         {
-            const std::array<std::size_t, RANK> indices = {{idx...}};
+            const std::array<std::size_t, RANK> indices = {{static_cast<size_t>(idx)...}};
             if( HkArrayMath::CheckIndexValidity<RANK>( fDimensions, &(indices[0]) ) )
             {
                 return fData[  HkArrayMath::OffsetFromRowMajorIndex<RANK>(fDimensions, &(indices[0]) ) ];
@@ -354,7 +354,7 @@ class HkArrayWrapper<XValueType, 1>
         typename std::enable_if<(sizeof...(XIndexTypeS) == 1), XValueType& >::type
         operator()(XIndexTypeS...idx)
         {
-            const std::array<std::size_t, 1> indices = {{idx...}};
+            const std::array<std::size_t, 1> indices = {{static_cast<size_t>(idx)...}};
             return fData[ indices[0] ];
         }
 
@@ -363,7 +363,7 @@ class HkArrayWrapper<XValueType, 1>
         typename std::enable_if<(sizeof...(XIndexTypeS) == 1), const XValueType& >::type
         operator()(XIndexTypeS...idx) const
         {
-            const std::array<std::size_t, 1> indices = {{idx...}};
+            const std::array<std::size_t, 1> indices = {{static_cast<size_t>(idx)...}};
             return fData[ indices[0] ];
         }
 
@@ -372,7 +372,7 @@ class HkArrayWrapper<XValueType, 1>
         typename std::enable_if<(sizeof...(XIndexTypeS) == 1), XValueType& >::type
         at(XIndexTypeS...idx)
         {
-            const std::array<std::size_t, 1> indices = {{idx...}};
+            const std::array<std::size_t, 1> indices = {{static_cast<size_t>(idx)...}};
             if( HkArrayMath::CheckIndexValidity<1>( fDimensions, &(indices[0]) ) )
             {
                 return fData[ indices[0] ];
@@ -388,7 +388,7 @@ class HkArrayWrapper<XValueType, 1>
         typename std::enable_if<(sizeof...(XIndexTypeS) == 1), const XValueType& >::type
         at(XIndexTypeS...idx) const
         {
-            const std::array<std::size_t, 1> indices = {{idx...}};
+            const std::array<std::size_t, 1> indices = {{static_cast<size_t>(idx)...}};
             if( HkArrayMath::CheckIndexValidity<1>( fDimensions, &(indices[0]) ) )
             {
                 return fData[ indices[0] ];
