@@ -57,6 +57,24 @@ class HkSingleTypeMap
             }
         }
 
+        void CopyFrom(const HkSingleTypeMap<XKeyType, XValueType>& copy_from_obj)
+        {
+            if(this != &copy_from_obj)
+            {
+                fMap.clear();
+                fMap = copy_from_obj.fMap;
+            }
+        }
+
+        void CopyTo(HkSingleTypeMap<XKeyType, XValueType>& copy_to_obj) const
+        {
+            if(this != &copy_to_obj)
+            {
+                copy_to_obj.fMap.clear();
+                copy_to_obj.fMap = fMap;
+            }
+        }
+
     private:
 
         std::map< XKeyType, XValueType > fMap;
@@ -74,6 +92,8 @@ class HkMultiTypeMap< XKeyType, XValueType >: public HkSingleTypeMap< XKeyType, 
         using HkSingleTypeMap< XKeyType, XValueType >::insert;
         using HkSingleTypeMap< XKeyType, XValueType >::retrieve;
         using HkSingleTypeMap< XKeyType, XValueType >::dump_map;
+        using HkSingleTypeMap< XKeyType, XValueType >::CopyFrom;
+        using HkSingleTypeMap< XKeyType, XValueType >::CopyTo;
 
         template<typename U = XValueType> typename std::enable_if<std::is_same<U,XValueType>::value>::type
         dump_map()
@@ -81,11 +101,25 @@ class HkMultiTypeMap< XKeyType, XValueType >: public HkSingleTypeMap< XKeyType, 
             static_cast< HkSingleTypeMap< XKeyType, XValueType >* >( this )->dump_map();
         };
 
+        template<typename U = XValueType> typename std::enable_if<std::is_same<U,XValueType>::value>::type
+        CopyFrom(const HkMultiTypeMap<XKeyType, XValueType>& copy_from_obj)
+        {
+            static_cast< HkSingleTypeMap< XKeyType, XValueType >* >( this )->
+            CopyFrom( *(static_cast< const HkSingleTypeMap< XKeyType, XValueType >* >(&copy_from_obj)) );
+        };
+
+        template<typename U = XValueType> typename std::enable_if<std::is_same<U,XValueType>::value>::type
+        CopyTo(HkMultiTypeMap<XKeyType, XValueType>& copy_to_obj) const
+        {
+            static_cast< const HkSingleTypeMap< XKeyType, XValueType >* >( this )->
+            CopyTo( *(static_cast< HkSingleTypeMap< XKeyType, XValueType >* >(&copy_to_obj)) );
+        };
+
 };
 
 //now set up the recursion
 template< typename XKeyType, typename XValueType, typename... XValueTypeS >
-class HkMultiTypeMap< XKeyType, XValueType, XValueTypeS...>: public HkMultiTypeMap< XKeyType, XValueType >, HkMultiTypeMap< XKeyType, XValueTypeS... >
+class HkMultiTypeMap< XKeyType, XValueType, XValueTypeS...>: public HkMultiTypeMap< XKeyType, XValueType >, public HkMultiTypeMap< XKeyType, XValueTypeS... >
 {
     public:
 
@@ -97,6 +131,12 @@ class HkMultiTypeMap< XKeyType, XValueType, XValueTypeS...>: public HkMultiTypeM
 
         using HkMultiTypeMap< XKeyType, XValueType >::dump_map;
         using HkMultiTypeMap< XKeyType, XValueTypeS... >::dump_map;
+
+        using HkMultiTypeMap< XKeyType, XValueType >::CopyFrom;
+        using HkMultiTypeMap< XKeyType, XValueTypeS... >::CopyFrom;
+
+        using HkMultiTypeMap< XKeyType, XValueType >::CopyTo;
+        using HkMultiTypeMap< XKeyType, XValueTypeS... >::CopyTo;
 };
 
 

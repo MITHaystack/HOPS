@@ -17,6 +17,7 @@ int main(int /*argc*/, char** /*argv*/)
 
     //std::cout<<"size of the typelist is: "<< HkTypelistSize< a_typelist >::value <<std::endl;
     HkMultiTypeMap< key_type1, int, double, float, std::string > myMap;
+    HkMultiTypeMap< key_type1, int, double, float, std::string > myMap2;
 
     std::string key1("i_am_an_int");
     int val1 = 1;
@@ -80,7 +81,17 @@ int main(int /*argc*/, char** /*argv*/)
 
     // myMap.SetName(std::string("myMap"));
     // std::cout<<myMap.GetName()<<std::endl;
+    myMap2.CopyFrom<double>(myMap);
 
+    std::cout<<"-- dumping the map of doubles of map2-- "<<std::endl;
+    myMap2.dump_map<double>();
+
+    myMap2.insert(std::string("blah4"), std::string("blah4"));
+
+    myMap2.CopyTo<std::string>(myMap);
+
+    std::cout<<"-- dumping the map of strings of map after copy -- "<<std::endl;
+    myMap.dump_map<std::string>();
 
     return 0;
 }
