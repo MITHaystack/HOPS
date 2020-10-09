@@ -16,7 +16,7 @@ if WANT_DOCS
 # TEXINPUTS=... kpsewhich -show-path tex "filename"
 # KPSETEXMFPATH set to : in configure pulls in the rest of TeX
 TEXINPUTS=.:$(srcdir):$(srcdir)/../common@KPSETEXMFPATH@
-# can be overriden at the make command
+# can be overriden at the make command to see errors
 TEXOPT=-interaction=batchmode
 
 # install to share

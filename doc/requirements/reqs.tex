@@ -95,11 +95,20 @@
 \maketitle
 \normalsize
 
-\renewcommand\abstractname{Executive Summary}
-\abstract{%
-\large
-A short description of this document
-doc for folks with short attention spans.
+\renewcommand\abstractname{\large Executive Summary}
+\abstract{
+This document spells out the requirements for the planned re-work of HOPS.
+With a defined set of requirements (\Sec~\ref{sec:testable}),
+we can ensure that the new architecture
+and implementation supports the needs.  And by the conclusion of the project
+a collection of test reports matching results to requirements may be presented.
+
+Note that there is an implicit desire to end up with a suite of software that
+not only meets the stated needs, but which also is easier to maintain, and more
+extensible for the future.  While we might state these desires as requirements,
+it is not possible to test against them, and thus these do not appear formally
+in this document.  Nevertheless, this is a goal we expect to meet and these
+are informally captured (\Sec~\ref{sec:desires}).
 }
 
 % \begingroup . . . \endgroup can be used to keep things together
@@ -121,16 +130,20 @@ doc for folks with short attention spans.
 
 % it is sometimes cleaner to start sections on new pages in a longer
 % document--then changes to each section don't repage everything.
-\pagebreak
 
 % break document into appropriate portions
+\pagebreak
 \input{thereqs}
 
 % if skipappendix-is-true then (nothing) else typeset Appendices
 \ifthenelse{\boolean{skipappendix}}{}{%
-\pagebreak
 \appendix
-\section{Acronyms}
+
+\pagebreak
+\input{hilo}
+
+\pagebreak
+\section{Acronyms, Commands, and Glossary}
 \input{acronyms}
 }
 
