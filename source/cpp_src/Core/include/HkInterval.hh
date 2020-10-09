@@ -123,18 +123,6 @@ class HkInterval
             return interval;
         }
 
-
-        //tests if this object intersects with an other interval, and if so
-        //transforms this object into the union of the two intervals
-        void Merge(HkInterval& other)
-        {
-            if(Intersects(other))
-            {
-                    HkInterval interval = Union(other);
-                    SetBounds(interval.GetLowerBound(), interval.GetUpperBound());
-            }
-        }
-
         HkInterval& operator=(const HkInterval& rhs)
         {
             if(this != &rhs)
@@ -143,6 +131,7 @@ class HkInterval
                 fLowerBound = rhs.fLowerBound;
                 fUpperBound = rhs.fUpperBound;
             }
+            return *this;
         }
 
     protected:

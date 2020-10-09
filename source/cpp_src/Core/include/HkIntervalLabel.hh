@@ -32,13 +32,18 @@ class HkIntervalLabel: public HkInterval< std::size_t >, public HkIntervalLabelM
         HkIntervalLabel(const HkIntervalLabel& copy);
         virtual ~HkIntervalLabel();
 
-        // HkIntervalLabel& operator=(const HkIntervalLabel& rhs)
-        // {
-        //     if(this != &rhs)
-        //     {
-        //         SetIntervalImpl(rhs.fLowerBound, rhs.fUpperBound );
-        //     }
-        // }
+        HkIntervalLabel& operator=(const HkIntervalLabel& rhs)
+        {
+            if(this != &rhs)
+            {
+                SetIntervalImpl(rhs.fLowerBound, rhs.fUpperBound );
+                this->CopyFrom<char>(rhs);
+                this->CopyFrom<bool>(rhs);
+                this->CopyFrom<int>(rhs);
+                this->CopyFrom<double>(rhs);
+            }
+            return *this;
+        }
 
     private:
 
