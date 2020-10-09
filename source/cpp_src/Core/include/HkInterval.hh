@@ -78,18 +78,9 @@ class HkInterval
             return fUpperBound;
         }
 
-        HkInterval& operator=(const HkInterval& rhs)
-        {
-            if(this != &rhs)
-            {
-                SetIntervalImpl(rhs.fLowerBound, rhs.fUpperBound);
-            }
-        }
-
         //test if this object itersects with an other interval
         bool Intersects(HkInterval& other) const
         {
-
             XIntegerType result[2];
             int numIntersections;
             numIntersections = FindIntersection(fLowerBound, fUpperBound, other.GetLowerBound(), other.GetUpperBound(), result);
@@ -135,7 +126,24 @@ class HkInterval
 
         //tests if this object intersects with an other interval, and if so
         //transforms this object into the union of the two intervals
-        bool Merge(HkInterval& other);
+        void Merge(HkInterval& other)
+        {
+            if(Intersects(other))
+            {
+                    HkInterval interval = Union(other);
+                    SetBounds(interval.GetLowerBound(), interval.GetUpperBound());
+            }
+        }
+
+        HkInterval& operator=(const HkInterval& rhs)
+        {
+            if(this != &rhs)
+            {
+                fValid = rhs.fValid;
+                fLowerBound = rhs.fLowerBound;
+                fUpperBound = rhs.fUpperBound;
+            }
+        }
 
     protected:
 
