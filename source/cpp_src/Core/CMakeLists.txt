@@ -9,6 +9,7 @@ set (HCORE_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/HkTimeStampConverter.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/HkMultiTypeMap.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/HkInterval.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/HkIntervalLabel.hh
 )
 
 #list source files #############################################################
@@ -17,6 +18,7 @@ set( HCORE_SOURCEFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/HkTimer.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/HkNamed.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/HkTimeStampConverter.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/HkIntervalLabel.cc
 )
 
 #declare header paths ##########################################################

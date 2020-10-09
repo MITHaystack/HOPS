@@ -20,13 +20,29 @@ template< typename XIntegerType = std::size_t >
 class HkInterval
 {
     public:
-        HkInterval();
-        HkInterval(XIntegerType lower_bound, XIntegerType upper_bound);
-        HkInterval(const HkInterval& copy);
-        virtual ~HkInterval();
 
-        void SetInterval(XIntegerType lower_bound, XIntegerType upper_bound);
-        void SetInterval(const std::pair<XIntegerType,XIntegerType>& lower_upper);
+        HkInterval():
+            fLowerBound(0),
+            fUpperBound(0),
+            fValid(false)
+        {};
+
+        HkInterval(XIntegerType lower_bound, XIntegerType upper_bound):
+            fValid(false)
+        {
+            SetIntervalImpl(lower_bound,upper_bound);
+        };
+
+        HkInterval(const HkInterval& copy):
+            fValid(false)
+        {
+            SetIntervalImpl(copy.fLowerBound, copy.fUpperBound);
+        }
+
+        virtual ~HkInterval(){};
+
+        void SetBounds(XIntegerType lower_bound, XIntegerType upper_bound);
+        void SetBounds(const std::pair<XIntegerType,XIntegerType>& lower_upper);
         std::pair<XIntegerType,XIntegerType> GetInterval() const;
 
         void SetLowerBound(XIntegerType low);
@@ -63,73 +79,60 @@ class HkInterval
 ////////////////////////////////////////////////////////////////////////////////
 
 
-HkInterval::HkInterval():
-    fLowerBound(0),
-    fUpperBound(0),
-    fValid(false)
-{};
-
-HkInterval::HkInterval(XIntegerType lower_bound, XIntegerType upper_bound):
-    fValid(false)
-{
-    SetIntervalImpl(lower_bound,upper_bound);
-};
-
-HkInterval::HkInterval(const HkInterval& copy):
-    fValid(false)
-{
-    SetIntervalImpl(copy.fLowerBound, copy.fUpperBound);
-}
-
-HkInterval::~HkInterval(){};
-
+template< typename XIntegerType = std::size_t >
 void
-HkInterval::SetBounds(XIntegerType lower_bound, XIntegerType upper_bound)
+HkInterval< XIntegerType >::SetBounds(XIntegerType lower_bound, XIntegerType upper_bound)
 {
     SetIntervalImpl(lower_bound,upper_bound);
 }
 
+template< typename XIntegerType = std::size_t >
 void
-HkInterval::SetBounds(const std::pair<XIntegerType,XIntegerType>& lower_upper)
+HkInterval< XIntegerType >::SetBounds(const std::pair<XIntegerType,XIntegerType>& lower_upper)
 {
     SetIntervalImpl(lower_upper.first, lower_upper.second);
 }
 
+template< typename XIntegerType = std::size_t >
 void
-HkInterval::SetLowerBound(XIntegerType low)
+HkInterval< XIntegerType >::SetLowerBound(XIntegerType low)
 {
     SetIntervalImpl(low, fUpperBound);
 }
 
+template< typename XIntegerType = std::size_t >
 void
-HkInterval::SetUpperBound(XIntegerType up)
+HkInterval< XIntegerType >::SetUpperBound(XIntegerType up)
 {
     SetIntervalImpl(fLowerBound, up);
 }
 
-
+template< typename XIntegerType = std::size_t >
 std::pair<XIntegerType,XIntegerType>
-HkInterval::GetIntervalPair() const
+HkInterval< XIntegerType >::GetIntervalPair() const
 {
     return std::pair<XIntegerType,XIntegerType>(fLowerBound, fUpperBound);
 }
 
+template< typename XIntegerType = std::size_t >
 XIntegerType
-HkInterval::GetLowerBound() const
+HkInterval< XIntegerType >::GetLowerBound() const
 {
     return fLowerBound;
 }
 
+template< typename XIntegerType = std::size_t >
 XIntegerType
-HkInterval::GetUpperBound() const
+HkInterval< XIntegerType >::GetUpperBound() const
 {
     return fUpperBound;
 }
 
 
 //test if this object itersects with an other interval
+template< typename XIntegerType = std::size_t >
 bool
-HkInterval::Intersects(const HkInterval& other) const
+HkInterval< XIntegerType >::Intersects(const HkInterval& other) const
 {
 
     XIntegerType result[2];
@@ -143,8 +146,9 @@ HkInterval::Intersects(const HkInterval& other) const
 }
 
 //returns the union of the two intervals
-HkInterval
-HkInterval::Union(HkInterval& other) const
+template< typename XIntegerType = std::size_t >
+HkInterval< XIntegerType >
+HkInterval< XIntegerType >::Union(HkInterval& other) const
 {
     HkInterval interval;
     XIntegerType result[2];
@@ -162,8 +166,9 @@ HkInterval::Union(HkInterval& other) const
     return interval;
 }
 
+template< typename XIntegerType = std::size_t >
 HkInterval
-HkInterval::Intersection(const HkInterval& other) const
+HkInterval< XIntegerType >::Intersection(const HkInterval& other) const
 {
     HkInterval interval;
     XIntegerType result[2];
@@ -177,7 +182,9 @@ HkInterval::Intersection(const HkInterval& other) const
 }
 
 
-int HkInterval::FindIntersection(XIntegerType a, XIntegerType b, XIntegerType c, XIntegerType d, XIntegerType result[2])
+template< typename XIntegerType = std::size_t >
+int
+HkInterval< XIntegerType >::FindIntersection(XIntegerType a, XIntegerType b, XIntegerType c, XIntegerType d, XIntegerType result[2])
 {
     //looks for overlap between the intervals
     //[a,b) and [c,d)
@@ -270,8 +277,9 @@ int HkInterval::FindIntersection(XIntegerType a, XIntegerType b, XIntegerType c,
 }
 
 
+template< typename XIntegerType = std::size_t >
 void
-HkInterval::SetIntervalImpl(XIntegerType low, XIntegerType up)
+HkInterval< XIntegerType >::SetIntervalImpl(XIntegerType low, XIntegerType up)
 {
     if(low < up)
     {
