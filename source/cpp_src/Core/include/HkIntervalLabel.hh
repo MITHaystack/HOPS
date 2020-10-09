@@ -16,13 +16,12 @@
 #include "HkInterval.hh"
 #include "HkMultiTypeMap.hh"
 
+namespace hops
+{
 
 //TODO: Make sure this set of types is complete for data-labelling.
 //Consider what other types might be needed (float? short? dates?)
 typedef HkMultiTypeMap< std::string, char, bool, int, double, std::string > HkIntervalLabelMap;
-
-namespace hops
-{
 
 class HkIntervalLabel: public HkInterval< std::size_t >, public HkIntervalLabelMap
 {
