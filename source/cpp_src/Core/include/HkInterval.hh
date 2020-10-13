@@ -170,7 +170,7 @@ class HkInterval
 
         }
 
-        int FindIntersection(XIntegerType a, XIntegerType b, XIntegerType c, XIntegerType d, XIntegerType result[2])
+        int FindIntersection(XIntegerType a, XIntegerType b, XIntegerType c, XIntegerType d, XIntegerType result[2]) const
         {
             //looks for overlap between the intervals
             //[a,b) and [c,d)

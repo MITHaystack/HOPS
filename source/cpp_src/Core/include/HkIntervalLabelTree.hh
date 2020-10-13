@@ -1,9 +1,9 @@
-#ifndef HkIntervalTree_HH__
-#define HkIntervalTree_HH__
+#ifndef HkIntervalLabelTree_HH__
+#define HkIntervalLabelTree_HH__
 
 /*
-*File: HkIntervalTree.hh
-*Class: HkIntervalTree
+*File: HkIntervalLabelTree.hh
+*Class: HkIntervalLabelTree
 *Author: J. Barrett
 *Email: barrettj@mit.edu
 *Date:
@@ -14,17 +14,19 @@
 
 #include "HkIntervalLabel.hh"
 
-class HkIntervalTree
+namespace hops
+{
+
+class HkIntervalLabelTree
 {
     public:
-        HkIntevalLabelTree();
-        virtual ~HkIntervalTree();
+        HkIntervalLabelTree();
+        virtual ~HkIntervalLabelTree();
 
         void Insert(HkIntervalLabel* label);
 
         std::vector< HkIntervalLabel* > GetIntervalsWhichIntersect(const std::size_t& idx);
-        std::vector< HkIntervalLabel* > GetIntervalsWhichIntersect(const HkInterval& interval);
-
+        std::vector< HkIntervalLabel* > GetIntervalsWhichIntersect(const HkInterval<std::size_t>* interval);
 
         std::vector< HkIntervalLabel* > GetIntervalsWithKeyValue(const std::string& key, const std::string& value);
         std::vector< HkIntervalLabel* > GetIntervalsWithKeyValue(const std::string& key, const char& value);
@@ -42,4 +44,6 @@ class HkIntervalTree
 
 };
 
-#endif /* end of include guard: HkIntervalTree */
+}//end namespace
+
+#endif /* end of include guard: HkIntervalLabelTree */
