@@ -16,6 +16,7 @@ if (HOPS_ENABLE_TEST)
 
     set(SOURCE_BASENAMES
         TestMultiTypeMap
+        TestIntervalLabelTree
         TestTimeStampConverter
         TestArrayWrapper
         TestScalarContainer

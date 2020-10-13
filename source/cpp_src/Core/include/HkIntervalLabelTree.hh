@@ -28,6 +28,7 @@ class HkIntervalLabelTree
         std::vector< HkIntervalLabel* > GetIntervalsWhichIntersect(const std::size_t& idx);
         std::vector< HkIntervalLabel* > GetIntervalsWhichIntersect(const HkInterval<std::size_t>* interval);
 
+        //TODO: consider replacing the following boiler-plate functions with a template function
         std::vector< HkIntervalLabel* > GetIntervalsWithKeyValue(const std::string& key, const std::string& value);
         std::vector< HkIntervalLabel* > GetIntervalsWithKeyValue(const std::string& key, const char& value);
         std::vector< HkIntervalLabel* > GetIntervalsWithKeyValue(const std::string& key, const bool& value);
