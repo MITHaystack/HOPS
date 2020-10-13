@@ -92,42 +92,42 @@ HkMK4CorelInterface::ExportCorelFile(Type100MetaData& meta, std::vector< Type101
     {
         //insert the type_100 meta data
         std::cout<<"getting type_000 info"<<std::endl;
-        meta.insert( std::string("type_000.record_id"), getstr(fCorel->id->record_id, 3) );
-        meta.insert( std::string("type_000.version_no"), getstr(fCorel->id->version_no, 2) );
-        meta.insert( std::string("type_000.unused1"), getstr(fCorel->id->unused1, 3) );
-        meta.insert( std::string("type_000.date"), getstr(fCorel->id->date, 16) ); //max length 16
-        meta.insert( std::string("type_000.name"), getstr(fCorel->id->name, 40) ); //max length 40
+        meta.Insert( std::string("type_000.record_id"), getstr(fCorel->id->record_id, 3) );
+        meta.Insert( std::string("type_000.version_no"), getstr(fCorel->id->version_no, 2) );
+        meta.Insert( std::string("type_000.unused1"), getstr(fCorel->id->unused1, 3) );
+        meta.Insert( std::string("type_000.date"), getstr(fCorel->id->date, 16) ); //max length 16
+        meta.Insert( std::string("type_000.name"), getstr(fCorel->id->name, 40) ); //max length 40
 
 
         std::cout<<"getting type_100 info"<<std::endl;
-        meta.insert( std::string("type_100.record_id"), getstr(fCorel->t100->record_id, 3) );
-        meta.insert( std::string("type_100.version_no"), getstr(fCorel->t100->version_no, 2) );
-        meta.insert( std::string("type_100.unused1"), getstr(fCorel->t100->unused1, 3) );
-        //meta.insert( std::string("type_100.procdate"), std::string(fCorel->t100->procdate) );
-        meta.insert( std::string("type_100.baseline"), getstr(fCorel->t100->baseline, 2) );
-        meta.insert( std::string("type_100.rootname"), getstr(fCorel->t100->rootname, 34) ); //max length 34
-        meta.insert( std::string("type_100.qcode"), getstr(fCorel->t100->qcode, 2) );
-        meta.insert( std::string("type_100.unused2"), getstr(fCorel->t100->unused2, 6) );
-        meta.insert( std::string("type_100.pct_done"), fCorel->t100->pct_done );
-        //meta.insert( std::string("type_100.start"), fCorel->t100->start );
-        //meta.insert( std::string("type_100.stop"), fCorel->t100->stop );
-        meta.insert( std::string("type_100.ndrec"), fCorel->t100->ndrec );
-        meta.insert( std::string("type_100.nindex"), fCorel->t100->nindex );
-        meta.insert( std::string("type_100.nlags"), fCorel->t100->nlags );
-        meta.insert( std::string("type_100.nblocks"), fCorel->t100->nblocks );
+        meta.Insert( std::string("type_100.record_id"), getstr(fCorel->t100->record_id, 3) );
+        meta.Insert( std::string("type_100.version_no"), getstr(fCorel->t100->version_no, 2) );
+        meta.Insert( std::string("type_100.unused1"), getstr(fCorel->t100->unused1, 3) );
+        //meta.Insert( std::string("type_100.procdate"), std::string(fCorel->t100->procdate) );
+        meta.Insert( std::string("type_100.baseline"), getstr(fCorel->t100->baseline, 2) );
+        meta.Insert( std::string("type_100.rootname"), getstr(fCorel->t100->rootname, 34) ); //max length 34
+        meta.Insert( std::string("type_100.qcode"), getstr(fCorel->t100->qcode, 2) );
+        meta.Insert( std::string("type_100.unused2"), getstr(fCorel->t100->unused2, 6) );
+        meta.Insert( std::string("type_100.pct_done"), fCorel->t100->pct_done );
+        //meta.Insert( std::string("type_100.start"), fCorel->t100->start );
+        //meta.Insert( std::string("type_100.stop"), fCorel->t100->stop );
+        meta.Insert( std::string("type_100.ndrec"), fCorel->t100->ndrec );
+        meta.Insert( std::string("type_100.nindex"), fCorel->t100->nindex );
+        meta.Insert( std::string("type_100.nlags"), fCorel->t100->nlags );
+        meta.Insert( std::string("type_100.nblocks"), fCorel->t100->nblocks );
 
 
         std::cout<<"dumping integer meta data"<<std::endl;
-        meta.dump_map<int>();
+        meta.DumpMap<int>();
 
         std::cout<<"dumping short meta data"<<std::endl;
-        meta.dump_map< short >();
+        meta.DumpMap< short >();
 
         std::cout<<"dumping float meta data"<<std::endl;
-        meta.dump_map< float >();
+        meta.DumpMap< float >();
 
         std::cout<<"dumping string meta data"<<std::endl;
-        meta.dump_map< std::string >();
+        meta.DumpMap< std::string >();
 
 
         int nalloc = fCorel->nalloc;
@@ -138,7 +138,7 @@ HkMK4CorelInterface::ExportCorelFile(Type100MetaData& meta, std::vector< Type101
 
 
         int nindex = 0;
-        meta.retrieve(std::string("type_100.nindex"), nindex );
+        meta.Retrieve(std::string("type_100.nindex"), nindex );
 
         // std::cout<<"sizeof 101 "<<sizeof(struct type_101)<<std::endl;
         // std::vector< Type101Map > type101vector;
@@ -166,21 +166,21 @@ HkMK4CorelInterface::ExportCorelFile(Type100MetaData& meta, std::vector< Type101
             {
                 Type101Map tmp101;
                 //extract all of the type101 index records
-                tmp101.insert(std::string("type_101.record_id"), getstr(t101->record_id, 3) );
-                tmp101.insert(std::string("type_101.version_no"), getstr(t101->version_no, 2) );
-                tmp101.insert(std::string("type_101.status"), getstr(&(t101->status), 1) );
-                tmp101.insert(std::string("type_101.nblocks"), t101->nblocks);
-                //tmp101.insert(std::string("type_101.index"), t101->index);
-                tmp101.insert(std::string("type_101.index"), i);
+                tmp101.Insert(std::string("type_101.record_id"), getstr(t101->record_id, 3) );
+                tmp101.Insert(std::string("type_101.version_no"), getstr(t101->version_no, 2) );
+                tmp101.Insert(std::string("type_101.status"), getstr(&(t101->status), 1) );
+                tmp101.Insert(std::string("type_101.nblocks"), t101->nblocks);
+                //tmp101.Insert(std::string("type_101.index"), t101->index);
+                tmp101.Insert(std::string("type_101.index"), i);
 
-                tmp101.insert(std::string("type_101.primary"), t101->primary);
-                tmp101.insert(std::string("type_101.ref_chan_id"), getstr(t101->ref_chan_id,8) );
-                tmp101.insert(std::string("type_101.rem_chan_id"), getstr(t101->rem_chan_id,8) );
-                tmp101.insert(std::string("type_101.corr_board"), t101->corr_board);
-                tmp101.insert(std::string("type_101.corr_slot"), t101->corr_slot);
-                tmp101.insert(std::string("type_101.ref_chan"), t101->ref_chan );
-                tmp101.insert(std::string("type_101.rem_chan"), t101->rem_chan);
-                tmp101.insert(std::string("type_101.post_mortem"), t101->post_mortem);
+                tmp101.Insert(std::string("type_101.primary"), t101->primary);
+                tmp101.Insert(std::string("type_101.ref_chan_id"), getstr(t101->ref_chan_id,8) );
+                tmp101.Insert(std::string("type_101.rem_chan_id"), getstr(t101->rem_chan_id,8) );
+                tmp101.Insert(std::string("type_101.corr_board"), t101->corr_board);
+                tmp101.Insert(std::string("type_101.corr_slot"), t101->corr_slot);
+                tmp101.Insert(std::string("type_101.ref_chan"), t101->ref_chan );
+                tmp101.Insert(std::string("type_101.rem_chan"), t101->rem_chan);
+                tmp101.Insert(std::string("type_101.post_mortem"), t101->post_mortem);
 
                 std::string ref_chan_id = getstr(t101->ref_chan_id,8);
                 std::string rem_chan_id = getstr(t101->rem_chan_id,8);
@@ -194,7 +194,7 @@ HkMK4CorelInterface::ExportCorelFile(Type100MetaData& meta, std::vector< Type101
                 {           /* Each block */
                     tmp_blocks.push_back(t101->blocks[j]);
                 }
-                tmp101.insert( std::string("type_101.blocks"), tmp_blocks);
+                tmp101.Insert( std::string("type_101.blocks"), tmp_blocks);
                 type101vector.push_back(tmp101);
 
                 //now we want to extract the data in the type_120's
@@ -208,20 +208,20 @@ HkMK4CorelInterface::ExportCorelFile(Type100MetaData& meta, std::vector< Type101
                     {
                         if(t120->type == SPECTRAL)
                         {
-                            tmp120.insert(std::string("type_120.record_id"), getstr(t120->record_id, 3) );
-                            tmp120.insert(std::string("type_120.version_no"), getstr(t120->version_no, 2) );
-                            tmp120.insert(std::string("type_120.type"), getstr(&(t120->type), 1) );
-                            tmp120.insert(std::string("type_120.nlags"), t120->nlags);
-                            tmp120.insert(std::string("type_120.baseline"), getstr(t120->baseline, 2) );
-                            tmp120.insert(std::string("type_120.rootcode"), getstr(t120->rootcode, 6) );
+                            tmp120.Insert(std::string("type_120.record_id"), getstr(t120->record_id, 3) );
+                            tmp120.Insert(std::string("type_120.version_no"), getstr(t120->version_no, 2) );
+                            tmp120.Insert(std::string("type_120.type"), getstr(&(t120->type), 1) );
+                            tmp120.Insert(std::string("type_120.nlags"), t120->nlags);
+                            tmp120.Insert(std::string("type_120.baseline"), getstr(t120->baseline, 2) );
+                            tmp120.Insert(std::string("type_120.rootcode"), getstr(t120->rootcode, 6) );
                             std::cout<<"t120 index @ ap "<<ap<<" = "<<t120->index<<std::endl;
-//                            // tmp120.insert(std::string("type_120.index"), t120->index );
-                            tmp120.insert(std::string("type_120.index"), i );
-                            tmp120.insert(std::string("type_120.ap"),t120->ap );
-                            tmp120.insert(std::string("type_120.fw"), t120->fw.weight );
-                            tmp120.insert(std::string("type_120.status"), t120->status);
-                            tmp120.insert(std::string("type_120.fr_delay"), t120->fr_delay );
-                            tmp120.insert(std::string("type_120.delay_rate"), t120->delay_rate );
+//                            // tmp120.Insert(std::string("type_120.index"), t120->index );
+                            tmp120.Insert(std::string("type_120.index"), i );
+                            tmp120.Insert(std::string("type_120.ap"),t120->ap );
+                            tmp120.Insert(std::string("type_120.fw"), t120->fw.weight );
+                            tmp120.Insert(std::string("type_120.status"), t120->status);
+                            tmp120.Insert(std::string("type_120.fr_delay"), t120->fr_delay );
+                            tmp120.Insert(std::string("type_120.delay_rate"), t120->delay_rate );
                             std::vector< std::complex<double> > lag_data;
                             for(int j=0; j<t120->nlags; j++)
                             {
@@ -230,7 +230,7 @@ HkMK4CorelInterface::ExportCorelFile(Type100MetaData& meta, std::vector< Type101
                                 lag_data.push_back( std::complex<double>(re,im) );
                                 //std::cout<<"("<<re<<","<<im<<")"<<std::endl;
                             }
-                            tmp120.insert(std::string("type_120.ld"), lag_data);
+                            tmp120.Insert(std::string("type_120.ld"), lag_data);
 
                             if(t120->ap > max_ap){max_ap = t120->ap;}
                             if(t120->nlags > max_nlags){max_nlags = t120->nlags;}
@@ -255,9 +255,9 @@ HkMK4CorelInterface::ExportCorelFile(Type100MetaData& meta, std::vector< Type101
         // //text dump for debug
         // for(unsigned int i=0; i<type101vector.size(); i++)
         // {
-        //     type101vector[i].dump_map<std::string>();
-        //     type101vector[i].dump_map<short>();
-        //     type101vector[i].dump_map<int>();
+        //     type101vector[i].DumpMap<std::string>();
+        //     type101vector[i].DumpMap<short>();
+        //     type101vector[i].DumpMap<int>();
         // }
 
 
@@ -265,10 +265,10 @@ HkMK4CorelInterface::ExportCorelFile(Type100MetaData& meta, std::vector< Type101
         // //text dump for debug
         // for(unsigned int i=0; i<type120vector.size(); i++)
         // {
-        //     type120vector[i].dump_map<std::string>();
-        //     type120vector[i].dump_map<short>();
-        //     type120vector[i].dump_map<int>();
-        //     type120vector[i].dump_map<float>();
+        //     type120vector[i].DumpMap<std::string>();
+        //     type120vector[i].DumpMap<short>();
+        //     type120vector[i].DumpMap<int>();
+        //     type120vector[i].DumpMap<float>();
         // }
 
 
@@ -282,14 +282,14 @@ HkMK4CorelInterface::ExportCorelFile(Type100MetaData& meta, std::vector< Type101
         // for(auto iter = channel_labels.begin(); iter != channel_labels.end(); iter++)
         // {
         //     channel_data_type* chan = new channel_data_type(dim);
-        //     channels.insert( std::pair<std::string, channel_data_type* >(*iter, chan) );
+        //     channels.Insert( std::pair<std::string, channel_data_type* >(*iter, chan) );
         // }
         //
         // for(size_t i; i< type120vector.size(); i++)
         // {
         //     int index120, ap;
-        //     type120vector[i].retrieve("type_120.index", index120);
-        //     type120vector[i].retrieve("type_120.ap", ap);
+        //     type120vector[i].Retrieve("type_120.index", index120);
+        //     type120vector[i].Retrieve("type_120.ap", ap);
         //
         //     std::string ref_chan_id;
         //     std::string rem_chan_id;
@@ -300,18 +300,18 @@ HkMK4CorelInterface::ExportCorelFile(Type100MetaData& meta, std::vector< Type101
         //     for(size_t j=0; j<type101vector.size(); j++)
         //     {
         //         int index101;
-        //         type101vector[j].retrieve( std::string("type_101.index"), index101 );
+        //         type101vector[j].Retrieve( std::string("type_101.index"), index101 );
         //         if( index101 == index120 )
         //         {
-        //             type101vector[j].retrieve( std::string("type_101.ref_chan_id"), ref_chan_id );
-        //             type101vector[j].retrieve( std::string("type_101.rem_chan_id"), rem_chan_id );
+        //             type101vector[j].Retrieve( std::string("type_101.ref_chan_id"), ref_chan_id );
+        //             type101vector[j].Retrieve( std::string("type_101.rem_chan_id"), rem_chan_id );
         //             //std::cout<<"found matching type 101, index = "<<index120<<std::endl;
         //             //std::cout<<"ref, rem chan ids = "<<ref_chan_id<<", "<<rem_chan_id<<std::endl;
         //         }
         //     }
         //
         //     std::vector< std::complex<double> > lag_data;
-        //     type120vector[i].retrieve(std::string("type_120.ld"), lag_data);
+        //     type120vector[i].Retrieve(std::string("type_120.ld"), lag_data);
         //
         //     std::string channel_label = ref_chan_id + "-" + rem_chan_id;
         //     //std::cout<<"channel label = "<<channel_label<<std::endl;

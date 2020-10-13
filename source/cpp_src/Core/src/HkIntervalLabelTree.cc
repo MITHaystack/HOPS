@@ -51,7 +51,7 @@ HkIntervalLabelTree::GetIntervalsWithKeyValue(const std::string& key, const std:
     //dumb brute for search over all intervals O(n)
     for(std::size_t i=0; i<fIntervals.size(); i++)
     {
-        if(fIntervals[i]->retrieve(key,tmp_value) )
+        if(fIntervals[i]->Retrieve(key,tmp_value) )
         {
             if(tmp_value == value)
             {
@@ -70,7 +70,7 @@ HkIntervalLabelTree::GetIntervalsWithKeyValue(const std::string& key, const char
     //dumb brute for search over all intervals O(n)
     for(std::size_t i=0; i<fIntervals.size(); i++)
     {
-        if(fIntervals[i]->retrieve(key,tmp_value) )
+        if(fIntervals[i]->Retrieve(key,tmp_value) )
         {
             if(tmp_value == value)
             {
@@ -89,7 +89,7 @@ HkIntervalLabelTree::GetIntervalsWithKeyValue(const std::string& key, const bool
     //dumb brute for search over all intervals O(n)
     for(std::size_t i=0; i<fIntervals.size(); i++)
     {
-        if(fIntervals[i]->retrieve(key,tmp_value) )
+        if(fIntervals[i]->Retrieve(key,tmp_value) )
         {
             if(tmp_value == value)
             {
@@ -108,7 +108,7 @@ HkIntervalLabelTree::GetIntervalsWithKeyValue(const std::string& key, const int&
     //dumb brute for search over all intervals O(n)
     for(std::size_t i=0; i<fIntervals.size(); i++)
     {
-        if(fIntervals[i]->retrieve(key,tmp_value) )
+        if(fIntervals[i]->Retrieve(key,tmp_value) )
         {
             if(tmp_value == value)
             {
@@ -127,7 +127,7 @@ HkIntervalLabelTree::GetIntervalsWithKeyValue(const std::string& key, const doub
     //dumb brute for search over all intervals O(n)
     for(std::size_t i=0; i<fIntervals.size(); i++)
     {
-        if(fIntervals[i]->retrieve(key,tmp_value) )
+        if(fIntervals[i]->Retrieve(key,tmp_value) )
         {
             if(tmp_value == value)
             {

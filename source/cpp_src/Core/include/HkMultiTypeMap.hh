@@ -28,13 +28,13 @@ class HkSingleTypeMap
         HkSingleTypeMap(){};
         virtual ~HkSingleTypeMap(){};
 
-        void insert(const XKeyType& key, const XValueType& value)
+        void Insert(const XKeyType& key, const XValueType& value)
         {
             fMap.insert( std::pair<XKeyType, XValueType>(key,value) );
             //std::cout<<"inserting an element with key: "<<key<<std::endl;
         }
 
-        bool retrieve(const XKeyType& key, XValueType& value)
+        bool Retrieve(const XKeyType& key, XValueType& value)
         {
             auto iter = fMap.find(key);
             if(iter == fMap.end())
@@ -48,7 +48,7 @@ class HkSingleTypeMap
             }
         }
 
-        void dump_map()
+        void DumpMap()
         {
             typedef typename std::map< XKeyType, XValueType>::iterator iterType;
             for(iterType iter = fMap.begin(); iter != fMap.end(); iter++)
@@ -89,16 +89,16 @@ template <typename  XKeyType, typename XValueType>
 class HkMultiTypeMap< XKeyType, XValueType >: public HkSingleTypeMap< XKeyType, XValueType >
 {
     public:
-        using HkSingleTypeMap< XKeyType, XValueType >::insert;
-        using HkSingleTypeMap< XKeyType, XValueType >::retrieve;
-        using HkSingleTypeMap< XKeyType, XValueType >::dump_map;
+        using HkSingleTypeMap< XKeyType, XValueType >::Insert;
+        using HkSingleTypeMap< XKeyType, XValueType >::Retrieve;
+        using HkSingleTypeMap< XKeyType, XValueType >::DumpMap;
         using HkSingleTypeMap< XKeyType, XValueType >::CopyFrom;
         using HkSingleTypeMap< XKeyType, XValueType >::CopyTo;
 
         template<typename U = XValueType> typename std::enable_if<std::is_same<U,XValueType>::value>::type
-        dump_map()
+        DumpMap()
         {
-            static_cast< HkSingleTypeMap< XKeyType, XValueType >* >( this )->dump_map();
+            static_cast< HkSingleTypeMap< XKeyType, XValueType >* >( this )->DumpMap();
         };
 
         template<typename U = XValueType> typename std::enable_if<std::is_same<U,XValueType>::value>::type
@@ -123,14 +123,14 @@ class HkMultiTypeMap< XKeyType, XValueType, XValueTypeS...>: public HkMultiTypeM
 {
     public:
 
-        using HkMultiTypeMap< XKeyType, XValueType >::insert;
-        using HkMultiTypeMap< XKeyType, XValueTypeS... >::insert;
+        using HkMultiTypeMap< XKeyType, XValueType >::Insert;
+        using HkMultiTypeMap< XKeyType, XValueTypeS... >::Insert;
 
-        using HkMultiTypeMap< XKeyType, XValueType >::retrieve;
-        using HkMultiTypeMap< XKeyType, XValueTypeS... >::retrieve;
+        using HkMultiTypeMap< XKeyType, XValueType >::Retrieve;
+        using HkMultiTypeMap< XKeyType, XValueTypeS... >::Retrieve;
 
-        using HkMultiTypeMap< XKeyType, XValueType >::dump_map;
-        using HkMultiTypeMap< XKeyType, XValueTypeS... >::dump_map;
+        using HkMultiTypeMap< XKeyType, XValueType >::DumpMap;
+        using HkMultiTypeMap< XKeyType, XValueTypeS... >::DumpMap;
 
         using HkMultiTypeMap< XKeyType, XValueType >::CopyFrom;
         using HkMultiTypeMap< XKeyType, XValueTypeS... >::CopyFrom;
