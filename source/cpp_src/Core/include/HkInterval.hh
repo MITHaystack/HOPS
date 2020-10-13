@@ -79,7 +79,7 @@ class HkInterval
         }
 
         //test if this object itersects with an other interval
-        bool Intersects(HkInterval& other) const
+        bool Intersects(const HkInterval& other) const
         {
             XIntegerType result[2];
             int numIntersections;
@@ -91,8 +91,19 @@ class HkInterval
             return false;
         }
 
+        //test if this open interval itersects with a point
+        bool Intersects(const XIntegerType& idx) const
+        {
+            if(fLowerBound <= idx && idx < fUpperBound)
+            {
+                return true;
+            }
+            return false;
+        }
+
+
         //returns the union of the two intervals
-        HkInterval Union(HkInterval& other) const
+        HkInterval Union(const HkInterval& other) const
         {
             HkInterval interval;
             XIntegerType result[2];

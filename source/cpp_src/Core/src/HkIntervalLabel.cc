@@ -27,4 +27,4 @@ HkIntervalLabel::HkIntervalLabel(const HkIntervalLabel& copy):
 HkIntervalLabel::~HkIntervalLabel(){};
 
 
-}
+}//end of namespace

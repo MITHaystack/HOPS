@@ -9,22 +9,34 @@
 *Date:
 *Description: Inteval-tree stucture, to allow for fast location of an interval
 * currently un-implemented...just does a dumb brute force O(n) search.
+* TODO: consider use of smart pointers for interval label objects
 */
 
-#include "HkInterval.hh"
+#include "HkIntervalLabel.hh"
 
 class HkIntervalTree
 {
     public:
-        HkIntervalTree();
+        HkIntevalLabelTree();
         virtual ~HkIntervalTree();
 
-        void Insert(HkInterval* )
+        void Insert(HkIntervalLabel* label);
+
+        std::vector< HkIntervalLabel* > GetIntervalsWhichIntersect(const std::size_t& idx);
+        std::vector< HkIntervalLabel* > GetIntervalsWhichIntersect(const HkInterval& interval);
+
+
+        std::vector< HkIntervalLabel* > GetIntervalsWithKeyValue(const std::string& key, const std::string& value);
+        std::vector< HkIntervalLabel* > GetIntervalsWithKeyValue(const std::string& key, const char& value);
+        std::vector< HkIntervalLabel* > GetIntervalsWithKeyValue(const std::string& key, const bool& value);
+        std::vector< HkIntervalLabel* > GetIntervalsWithKeyValue(const std::string& key, const int& value);
+        std::vector< HkIntervalLabel* > GetIntervalsWithKeyValue(const std::string& key, const double& value);
 
     protected:
 
-        //we are storing
-        std::vector< HkInterval* > fIntervals;
+        //we are storing them all in a vector currently, this needs to to be 
+        //replaced with a tree data structure
+        std::vector< HkIntervalLabel* > fIntervals;
 
 
 
