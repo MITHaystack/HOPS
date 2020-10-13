@@ -1,0 +1,68 @@
+%
+% the meat of the thing
+%
+\newcounter{req}
+\section{Testable Requirements}
+\label{sec:testable}
+
+This section enumerates specific requirements that we plan to meet by test.
+These are partitioned into subsections by automated test
+(\Sec~\ref{sec:auto}, \ie~these that that may be executed
+in a nightly build), software tests that may be run at specific
+juctions (\Sec~\ref{sec:regress}, \ie~regression tests),
+and tests that are procedural, requiring human interaction
+(\Sec~\ref{sec:procedure}, \ie~\ac{GUI} tests).%
+\geomargin{In addition to these requirements, there are geodetic
+requirements which are captured outside the ngEHT effort.}
+
+\ac{HOPS} is currently in the version 3.x series; the new code will
+begin with the 4.x series, and to distinguish the two flavors, we
+shall use \ac{MHO} for the latter.
+
+The requirements in this document are numbered with a prefix
+according to the type of test that may be employed.
+
+\subsection{Automated Testable Requirements}
+\label{sec:auto}
+
+It is anticipated that each of these tests will be captured by a
+``check'' script (as currently supported in the autotools).
+
+\begin{description}
+\item[A.\thereq] Every data type written to disk in \ac{MHO} shall be 
+amenable to human-comprehensible examination as with \texttt{\ac{CorAsc2}}
+\end{description}
+
+\subsection{Software-Testable Requirements}
+\label{sec:regress}
+
+It is anticipated that each of these tests will be captured by a
+script that may be executed periodically.
+
+\begin{description}
+\item[S.\thereq] foo.
+\end{description}
+
+It is anticipated that each of these tests will have a procedure
+for someone to follow to verify the capability.
+
+\subsection{Procedure-Testable Requirements}
+\label{sec:procedure}
+
+\begin{description}
+\item[P.\thereq] It should be possible to make 2D plots of the type
+currently possible within \texttt{\ac{aedit}} of \ac{HOPS}.
+\end{description}
+
+\section{General (not directly testable) Desires}
+\label{sec:desires}
+
+\begin{description}
+\item[D.\thereq] Everything currently possible in \ac{HOPS} should remain
+possible in \ac{MHO}.
+\item[D.\thereq] \ac{MHO} should be easier to use than \ac{HOPS}.
+\end{description}
+
+%
+% eof
+%
