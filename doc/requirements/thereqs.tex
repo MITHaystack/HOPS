@@ -32,6 +32,10 @@ It is anticipated that each of these tests will be captured by a
 \item[A.\thereq] Every data type written to disk in \ac{MHO} shall be 
 amenable to human-comprehensible examination as with \texttt{\ac{CorAsc2}}
 \end{description}
+\begin{itemize}
+\item Implement regression tests.
+\item Use unit tests for all new code.
+\end{itemize}
 
 \subsection{Software-Testable Requirements}
 \label{sec:regress}
@@ -46,6 +50,10 @@ script that may be executed periodically.
 It is anticipated that each of these tests will have a procedure
 for someone to follow to verify the capability.
 
+\begin{itemize}
+\item Refactor time average of data.
+\end{itemize}
+
 \subsection{Procedure-Testable Requirements}
 \label{sec:procedure}
 
@@ -54,6 +62,15 @@ for someone to follow to verify the capability.
 currently possible within \texttt{\ac{aedit}} of \ac{HOPS}.
 \end{description}
 
+\begin{itemize}
+\item mk4 data type should be changed to little endian or a more optimal algorithm should be used to convert it to little endian when processing it.
+\item Refactor the Single Bandf Delay (SBD) and Multi Band Delay (MBD) algorithm. Make it modular.
+\item Implement an algorithm using the least squares fitting technique for the global fringe fitter.
+\item Support mmVLBI work with spectral line sources (narrow sources).
+\item Pulsar folding functionality.
+\item Refactor alist, aedit, and fourfit to be compatible with \ac{HOPS}.
+\end{itemize}
+
 \section{General (not directly testable) Desires}
 \label{sec:desires}
 
@@ -61,6 +78,20 @@ currently possible within \texttt{\ac{aedit}} of \ac{HOPS}.
 \item[D.\thereq] Everything currently possible in \ac{HOPS} should remain
 possible in \ac{MHO}.
 \item[D.\thereq] \ac{MHO} should be easier to use than \ac{HOPS}.
+
+\begin{itemize}
+\item Python wrapper for the mk4 data type.
+\item Expand the functionality of alist to allow for more data analysis/visualization options. (Like Looker or Tableau?)
+\item Replace the existing fourfit commandline control file with a Python commandline control file that has the same exact functionality.
+\item Support VEX 2.0 and make it compatible with the VEX2XML parser tool.
+\item Rename the mk4 data type number series.
+\item Benchmarking and performance analysis should be augmenteded with a more sophisticated tools.
+\item Data import/export to/from ASCII. (Export to or import data froma human readible format.)
+\item Refactor how alist files are handled to make one line summaries of every fringe plot but do it in Python.
+\item Data visualization tools in Python. %Duplicate?
+\item Refactor all existing algorithms in to new Python libraries that run C or C++ code under the hood.
+\end{itemize}
+
 \end{description}
 
 %
