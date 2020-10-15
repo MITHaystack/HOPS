@@ -1,6 +1,7 @@
 #ifndef HkMessenger_HH__
 #define HkMessenger_HH__
 
+#include <cstdlib>
 #include <ostream>
 #include <sstream>
 #include <string>
@@ -16,11 +17,17 @@
 *Description:
 */
 
+namespace hops
+{
+
 class HkMessageNewline {};
 class HKMessageEndline {};
 
+static const HkMessageNewline ret = HkMessageNewline();
+static const HKMessageEndline eom = HkMessageNewline();
+
 enum
-HkMessageLevel : int
+HkMessageLevel: int
 {
     eFatalErrorLevel = 0, //use for fatal errors (program termination imminent)
     eErrorLevel = 1, //use for non-fatal errors which may lead to unexpected behavior
@@ -44,54 +51,70 @@ class HkMessenger
 {
 
     public:
-        //provide public access to the only static instance, and pass messages
-        static HkMessenger& GetInstance()
-        {
-            static HkMessenger instance;
-            return instance;
-
-        }
-
         //since this is a singleton we need to remove ability to copy/move
         HkMessenger(HkMessenger const&) = delete;
         HkMessenger(HkMessenger&&) = delete;
         HkMessenger& operator=(HkMessenger const&) = delete;
         HkMessenger& operator=(HkMessenger&&) = delete;
 
+        //provide public access to the only static instance, and pass messages
+        static HkMessenger& GetInstance()
+        {
+            if(fInstance == nullptr){fInstance = new HkMessenger();}
+            return *fInstance;
+        }
+
         void AddKey(const std::string& key);
-        void RemoveKey(const std::string& key);
+        void RemoveKey(const std::string& key);;
+        void RemoveAllKeys();
+        void Flush();
+        void SetMessageLevel(HkMessageLevel level){fAllowedLevel = level;}
+
 
         static HkMessenger& SendMessage(const HkMessageLevel& level, const std::string& key);
         static HkMessenger& SendMessage(const HkMessageLevel& level, const char* key);
 
-        template<class XStreamItemType>
-        HkMessenger& operator<<(const XStreamItemType& chunk);
+        template<class XStreamableItemType>
+        static HkMessenger& operator<<(const XStreamableItemType& item);
 
-        HkMessenger& operator<<(const HkMessengerNewline&);
-        HkMessenger& operator<<(const HkMessengerEndline&);
+        static HkMessenger& operator<<(const HkMessengerNewline&);
+        static HkMessenger& operator<<(const HkMessengerEndline&);
 
     private:
 
         //no public access to constructor
-        HkSingleton()
-        {
-            //set up the stream, for now just point to std::cout
-            //but we may want to allow this to be configured post-construction
-            fTerminalStream = &std::cout;
-        };
+        //set up the stream, for now just point to std::cout
+        //but we may want to allow this to be configured post-construction
+        HkMessenger():
+            fTerminalStream(&std::cout)
+        {};
 
-        virtual ~HkSingleton(){};
+        virtual ~HkMessenger(){};
 
-        //could also provide a stream for logging
-        std::ostream* fTerminalStream;
+        static HkMessenger* fInstance; //static global class instance
+        std::ostream* fTerminalStream; //stream to terminal output
+        std::set< std::string > fKeys //keys of which messages we will accept for output
+        HkMessageLevel fAllowedLevel;
 
-        //keys of which messages we will accept for output
-        std::set< std::string > fKeys
+        HkMessageLevel fCurrentLevel; //level of the current message
+        bool fCurrentKeyIsAllowed; //current key is in allowed set
+        std::stringstream fMessageStream; //the message container to be filled/flushed
+
 
 };
 
 
+template<class XStreamableItemType>
+static HkMessenger&
+HkMessenger::operator<<(const XStreamableItemType& item)
+{
+    if(fCurrentLevel <= fAllowedLevel && fCurrentKeyIsAllowed)
+    {
+        fMessageStream << item;
+    }
+    return *fInstance;
+}
 
-
+}//end of namespace
 
 #endif /* end of include guard: HkMessenger */
