@@ -50,7 +50,7 @@ HkMessenger::RemoveAllKeys()
 void
 HkMessenger::Flush()
 {
-    if( (fCurrentLevel <= fAllowedLevel && fCurrentKeyIsAllowed) || fCurrentLevel == eFatal )
+    if( PassMessage() )
     {
         *fTerminalStream << fMessageStream.str();
     }
@@ -64,10 +64,13 @@ HkMessenger::SendMessage(const HkMessageLevel& level, const std::string& key)
     fCurrentLevel = level;
     fCurrentKeyIsAllowed = false;
     auto iter = fKeys.find(key);
-    if(iter != fKeys.end())
+    if(iter != fKeys.end()){fCurrentKeyIsAllowed = true;}
+
+    if( PassMessage() )
     {
-        fCurrentKeyIsAllowed = true;
+        fMessageStream << GetCurrentPrefix(level,key);
     }
+
     return *fInstance;
 }
 
@@ -78,10 +81,13 @@ HkMessenger::SendMessage(const HkMessageLevel& level, const char* key)
     fCurrentKeyIsAllowed = false;
     std::string tmp_key(key);
     auto iter = fKeys.find(tmp_key);
-    if(iter != fKeys.end())
+    if(iter != fKeys.end()){fCurrentKeyIsAllowed = true;}
+
+    if( PassMessage() )
     {
-        fCurrentKeyIsAllowed = true;
+        fMessageStream << GetCurrentPrefix(level, tmp_key);
     }
+
     return *fInstance;
 }
 
@@ -98,6 +104,42 @@ HkMessenger::operator<<(const HkMessageEndline&)
     fMessageStream << std::endl;
     Flush();
     return *fInstance;
+}
+
+
+bool
+HkMessenger::PassMessage()
+{
+    return ( (fCurrentLevel <= fAllowedLevel && ( fCurrentKeyIsAllowed || fAcceptAllKeys ) )
+            || fCurrentLevel == eFatal );
+}
+
+std::string
+HkMessenger::GetCurrentPrefix(const HkMessageLevel& level, const std::string& key)
+{
+    std::stringstream ss;
+    switch (level)
+    {
+        case eFatal:
+            ss << "FATAL[" << key << "] ";
+            break;
+        case eError:
+            ss << "ERROR[" << key << "] ";
+            break;
+        case eWarning:
+            ss << "WARNING["  << key << "] ";
+            break;
+        case eStatus:
+            ss << "STATUS[" << key << "] ";
+            break;
+        case eInfo:
+            ss << "INFO[" << key << "] ";
+            break;
+        case eDebug:
+            ss << "DEBUG[" << key << "] ";
+            break;
+    }
+    return ss.str();
 }
 
 

@@ -64,13 +64,15 @@ class HkMessenger
         HkMessenger& operator=(HkMessenger const&) = delete;
         HkMessenger& operator=(HkMessenger&&) = delete;
 
-        //provide public access to the only static instance, and pass messages
+        //provide public access to the only static instance
         static HkMessenger& GetInstance()
         {
             if(fInstance == nullptr){fInstance = new HkMessenger();}
             return *fInstance;
         }
 
+        void AcceptAllKeys(){fAcceptAllKeys = true;}
+        void LimitToKeySet(){fAcceptAllKeys = false;}
         void AddKey(const std::string& key);
         void AddKey(const char* key);
         void RemoveKey(const std::string& key);
@@ -94,11 +96,18 @@ class HkMessenger
         //no public access to constructor
         //set up the stream, for now just point to std::cout
         //but we may want to allow this to be configured post-construction
+        //perhaps we should also pipe information into log file(s)
         HkMessenger():
-            fTerminalStream(&std::cout)
+            fTerminalStream(&std::cout),
+            fAllowedLevel(eStatus),
+            fCurrentLevel(eInfo),
+            fCurrentKeyIsAllowed(false),
+            fAcceptAllKeys(false)
         {};
-
         virtual ~HkMessenger(){};
+
+        bool PassMessage();
+        std::string GetCurrentPrefix(const HkMessageLevel& level, const std::string& key);
 
         static HkMessenger* fInstance; //static global class instance
         std::ostream* fTerminalStream; //stream to terminal output
@@ -107,6 +116,7 @@ class HkMessenger
 
         HkMessageLevel fCurrentLevel; //level of the current message
         bool fCurrentKeyIsAllowed; //current key is in allowed set
+        bool fAcceptAllKeys;
         std::stringstream fMessageStream; //the message container to be filled/flushed
 
 
@@ -117,7 +127,7 @@ template<class XStreamableItemType>
 HkMessenger&
 HkMessenger::operator<<(const XStreamableItemType& item)
 {
-    if( (fCurrentLevel <= fAllowedLevel && fCurrentKeyIsAllowed) || fCurrentLevel == eFatal )
+    if( PassMessage() )
     {
         fMessageStream << item;
     }
