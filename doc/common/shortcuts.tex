@@ -1,0 +1,51 @@
+%
+% a file of commands to save typing
+%
+
+% commonly used things
+\newcommand{\eg}{\textit{e.g.}}
+\newcommand{\EG}{\textit{E.g.}}
+\newcommand{\ie}{\textit{i.e.}}
+\newcommand{\IE}{\textit{I.e.}}
+\newcommand{\etc}{\textit{\&c.}}
+\newcommand{\Sec}{Section}
+\newcommand{\Fig}{Figure}
+\newcommand{\Tab}{Table}
+\newcommand{\App}{Appendix}
+
+% for a work in progress:
+\newcommand{\FIX}[1][fixme]{{\color{red}#1}}
+\newcommand{\TBC}{{\color{red}TBC}}
+\newcommand{\TBD}{{\color{red}TBD}}
+\newcommand{\TBR}{{\color{red}TBR}}
+\newcommand{\FIXME}[1][]{{\color{red}FIXME -- #1}}
+
+% specific to this project
+\newcommand{\MHO}{MIT-HOPS}
+\newcommand{\HOPS}{HOPS}
+
+% standard colors
+\definecolor{darkblue}{rgb}{0,0,.5}
+\definecolor{darkgreen}{rgb}{0,.5,0}
+\definecolor{darkred}{rgb}{.5,0,0}
+\definecolor{violet}{rgb}{.4,0.,.7}
+
+% for coping with geodetic things
+\newboolean{geos}
+\setboolean{geos}{true}% or false to hide geodetic marginal notations
+%
+\definecolor{boxfrcolor}{rgb}{.50,.20,.00}
+\definecolor{boxbgcolor}{rgb}{0.9,.98,.98}
+\definecolor{boxfgcolor}{rgb}{0.4,0.0,0.0}
+% \geomargin{footnote comment}
+% \geomargin[{\color{..}box note}]{footnote comment}
+\newcommand{\geobox}[1]%
+{{\parbox{10mm}{\small\textit{\fcolorbox{boxfrcolor}{boxbgcolor}{#1}}}}}
+\newcommand{\geomargin}[2][{\color{boxfgcolor}geodesy}]%
+{\ifthenelse{\boolean{geos}}{% if:
+\marginnote{\protect\geobox{#1}}\footnote{#2}}{% else: show nothing
+}}
+
+%
+% eof
+%

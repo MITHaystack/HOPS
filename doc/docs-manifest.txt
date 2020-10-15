@@ -1,0 +1,31 @@
+This directory contains the sources to for the HOPS project documents.
+
+##  directory       title / contents
+1   requirements    ngEHT Requirements for a new HOPS
+2   specification   Specification and Architectural Design
+3   develplan       Development Plan for new HOPS
+4   covertest       Coverage and Test Plan
+
+    code_outline    not sure what this is to be...
+
+The above were presented at the Design Review <DATE>.
+Note that additional related documents or captured versions might be
+present in these directories.
+
+Additional documents
+
+5   geodetic        Geodetic Appendicies
+
+
+6   testreports
+6.1 ...
+
+7   userman
+7.1 fourfit
+    ...
+
+Additionally
+
+    reference       not sure what this is to be...
+
+eof
