@@ -280,3 +280,8 @@ macro (hops_configure_exe_automake RELPATH_LIST INTERNAL_LIBLIST EXENAME HEADER_
         configure_file(${MAKEFILE_AM_IN} ${MAKEFILE_AM} @ONLY)
     endif(CHOPS_RECONFIGURE_AUTOMAKE)
 endmacro()
+
+macro (add_cflag CFLAG)
+    set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -D${CFLAG}")
+    set (CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} PARENT_SCOPE)
+endmacro()
