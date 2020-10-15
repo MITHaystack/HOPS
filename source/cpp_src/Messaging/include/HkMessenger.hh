@@ -108,12 +108,30 @@ template<class XStreamableItemType>
 static HkMessenger&
 HkMessenger::operator<<(const XStreamableItemType& item)
 {
-    if(fCurrentLevel <= fAllowedLevel && fCurrentKeyIsAllowed)
+    if( (fCurrentLevel <= fAllowedLevel && fCurrentKeyIsAllowed) || fCurrentLevel == eFatal )
     {
         fMessageStream << item;
     }
     return *fInstance;
 }
+
+
+//usage macros
+#define msg_fatal(xKEY, xCONTENT) HkMessenger::SendMessage(eFatal,xKEY) << xCONTENT;
+#define msg_error(xKEY, xCONTENT) HkMessenger::SendMessage(eError,xKEY) << xCONTENT;
+#define msg_warn(xKEY, xCONTENT) HkMessenger::SendMessage(eWarning,xKEY) << xCONTENT;
+#define msg_status(xKEY, xCONTENT) HkMessenger::SendMessage(eStatus,xKEY) << xCONTENT;
+#define msg_info(xKEY, xCONTENT) HkMessenger::SendMessage(eInfo,xKEY) << xCONTENT;
+
+#ifdef HOPS_ENABLE_DEBUG
+//allow debug messages when debug flag is active
+#define msg_debug(xKEY, xCONTENT) HkMessenger::SendMessage(eDebug,xKEY) << xCONTENT;
+#else
+//debug is not enabled, so we removed them from compilation
+#define msg_debug(xKEY, xCONTENT)
+#endif
+
+
 
 }//end of namespace
 

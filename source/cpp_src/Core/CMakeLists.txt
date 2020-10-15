@@ -25,7 +25,7 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 #compile and install library ###################################################
 
-set(HCORELIBS HInterface)
+set(HCORE_LIBS "")
 
 add_library (HCore SHARED ${HCORE_SOURCEFILES})
 target_link_libraries (HCore ${HCORE_LIBS})
