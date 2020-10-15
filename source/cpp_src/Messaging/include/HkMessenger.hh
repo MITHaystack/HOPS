@@ -21,10 +21,10 @@ namespace hops
 {
 
 class HkMessageNewline {};
-class HKMessageEndline {};
+class HkMessageEndline {};
 
 static const HkMessageNewline ret = HkMessageNewline();
-static const HKMessageEndline eom = HkMessageNewline();
+static const HkMessageEndline eom = HkMessageEndline();
 
 enum
 HkMessageLevel: int
@@ -45,6 +45,13 @@ static const HkMessageLevel eStatus = HkMessageLevel::eStatusLevel;
 static const HkMessageLevel eInfo = HkMessageLevel::eInfoLevel;
 static const HkMessageLevel eDebug = HkMessageLevel::eDebugLevel;
 
+using hops::eFatal;
+using hops::eError;
+using hops::eWarning;
+using hops::eStatus;
+using hops::eInfo;
+using hops::eDebug;
+
 //uses the singleton pattern (as we only have one terminal)
 //TODO make this class thread safe
 class HkMessenger
@@ -58,7 +65,7 @@ class HkMessenger
         HkMessenger& operator=(HkMessenger&&) = delete;
 
         //provide public access to the only static instance, and pass messages
-        static HkMessenger& GetInstance()
+        HkMessenger& GetInstance()
         {
             if(fInstance == nullptr){fInstance = new HkMessenger();}
             return *fInstance;
@@ -70,15 +77,14 @@ class HkMessenger
         void Flush();
         void SetMessageLevel(HkMessageLevel level){fAllowedLevel = level;}
 
-
-        static HkMessenger& SendMessage(const HkMessageLevel& level, const std::string& key);
-        static HkMessenger& SendMessage(const HkMessageLevel& level, const char* key);
+        HkMessenger& SendMessage(const HkMessageLevel& level, const std::string& key);
+        HkMessenger& SendMessage(const HkMessageLevel& level, const char* key);
 
         template<class XStreamableItemType>
-        static HkMessenger& operator<<(const XStreamableItemType& item);
+        HkMessenger& operator<<(const XStreamableItemType& item);
 
-        static HkMessenger& operator<<(const HkMessengerNewline&);
-        static HkMessenger& operator<<(const HkMessengerEndline&);
+        HkMessenger& operator<<(const HkMessageNewline&);
+        HkMessenger& operator<<(const HkMessageEndline&);
 
     private:
 
@@ -93,7 +99,7 @@ class HkMessenger
 
         static HkMessenger* fInstance; //static global class instance
         std::ostream* fTerminalStream; //stream to terminal output
-        std::set< std::string > fKeys //keys of which messages we will accept for output
+        std::set< std::string > fKeys; //keys of which messages we will accept for output
         HkMessageLevel fAllowedLevel;
 
         HkMessageLevel fCurrentLevel; //level of the current message
@@ -105,7 +111,7 @@ class HkMessenger
 
 
 template<class XStreamableItemType>
-static HkMessenger&
+HkMessenger&
 HkMessenger::operator<<(const XStreamableItemType& item)
 {
     if( (fCurrentLevel <= fAllowedLevel && fCurrentKeyIsAllowed) || fCurrentLevel == eFatal )
