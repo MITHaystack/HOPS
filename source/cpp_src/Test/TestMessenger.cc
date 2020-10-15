@@ -15,6 +15,7 @@ int main(int /*argc*/, char** /*argv*/)
     int n = 5;
     msg_info("math", "I have a math message for you: pi = " << pi_value << eom );
     msg_status("core", "I have core message for you: n = " << n << eom);
+    msg_status("dummy", "I have dummy message for you: " << "you better not see this!" << eom);
 
     return 0;
 }
