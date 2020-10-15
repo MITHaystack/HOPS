@@ -27,3 +27,14 @@ Optional dependencies (these may possibly become required at some point in the f
 (3) `PGPLOT` \
 (4) `X11` \
 (5) `GFORTRAN`
+
+## Documentation Dependencies
+### Ubuntu packages
+(1) `texlive-full` \
+(2) `graphviz` \
+(3) `doxygen`
+### Fedora packages
+### NixOS packages
+(1) `texlive.combined.scheme-full` \
+(2) `graphviz`
+(3) `doxygen` \
