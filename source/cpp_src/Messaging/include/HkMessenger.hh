@@ -65,15 +65,18 @@ class HkMessenger
         HkMessenger& operator=(HkMessenger&&) = delete;
 
         //provide public access to the only static instance, and pass messages
-        HkMessenger& GetInstance()
+        static HkMessenger& GetInstance()
         {
             if(fInstance == nullptr){fInstance = new HkMessenger();}
             return *fInstance;
         }
 
         void AddKey(const std::string& key);
-        void RemoveKey(const std::string& key);;
+        void AddKey(const char* key);
+        void RemoveKey(const std::string& key);
+        void RemoveKey(const char* key);
         void RemoveAllKeys();
+
         void Flush();
         void SetMessageLevel(HkMessageLevel level){fAllowedLevel = level;}
 
@@ -123,15 +126,15 @@ HkMessenger::operator<<(const XStreamableItemType& item)
 
 
 //usage macros
-#define msg_fatal(xKEY, xCONTENT) HkMessenger::SendMessage(eFatal,xKEY) << xCONTENT;
-#define msg_error(xKEY, xCONTENT) HkMessenger::SendMessage(eError,xKEY) << xCONTENT;
-#define msg_warn(xKEY, xCONTENT) HkMessenger::SendMessage(eWarning,xKEY) << xCONTENT;
-#define msg_status(xKEY, xCONTENT) HkMessenger::SendMessage(eStatus,xKEY) << xCONTENT;
-#define msg_info(xKEY, xCONTENT) HkMessenger::SendMessage(eInfo,xKEY) << xCONTENT;
+#define msg_fatal(xKEY, xCONTENT) HkMessenger::GetInstance().SendMessage(eFatal,xKEY) << xCONTENT;
+#define msg_error(xKEY, xCONTENT) HkMessenger::GetInstance().SendMessage(eError,xKEY) << xCONTENT;
+#define msg_warn(xKEY, xCONTENT) HkMessenger::GetInstance().SendMessage(eWarning,xKEY) << xCONTENT;
+#define msg_status(xKEY, xCONTENT) HkMessenger::GetInstance().SendMessage(eStatus,xKEY) << xCONTENT;
+#define msg_info(xKEY, xCONTENT) HkMessenger::GetInstance().SendMessage(eInfo,xKEY) << xCONTENT;
 
-#ifdef HOPS_ENABLE_DEBUG
+#ifdef HOPS_ENABLE_DEBUG_MSG
 //allow debug messages when debug flag is active
-#define msg_debug(xKEY, xCONTENT) HkMessenger::SendMessage(eDebug,xKEY) << xCONTENT;
+#define msg_debug(xKEY, xCONTENT) HkMessenger::GetInstance().SendMessage(eDebug,xKEY) << xCONTENT;
 #else
 //debug is not enabled, so we removed them from compilation
 #define msg_debug(xKEY, xCONTENT)

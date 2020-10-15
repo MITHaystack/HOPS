@@ -15,9 +15,26 @@ HkMessenger::AddKey(const std::string& key)
 }
 
 void
+HkMessenger::AddKey(const char* key)
+{
+    fKeys.insert(std::string(key));
+}
+
+void
 HkMessenger::RemoveKey(const std::string& key)
 {
     auto iter = fKeys.find(key);
+    if(iter != fKeys.end())
+    {
+        fKeys.erase(iter);
+    }
+}
+
+void
+HkMessenger::RemoveKey(const char* key)
+{
+    std::string tmp_key(key);
+    auto iter = fKeys.find(tmp_key);
     if(iter != fKeys.end())
     {
         fKeys.erase(iter);
