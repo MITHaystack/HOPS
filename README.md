@@ -36,5 +36,5 @@ Optional dependencies (these may possibly become required at some point in the f
 ### Fedora packages
 ### NixOS packages
 (1) `texlive.combined.scheme-full` \
-(2) `graphviz`
-(3) `doxygen` \
+(2) `graphviz` \
+(3) `doxygen` 
