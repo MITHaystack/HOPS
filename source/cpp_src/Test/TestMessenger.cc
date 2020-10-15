@@ -39,5 +39,8 @@ int main(int /*argc*/, char** /*argv*/)
     HkMessenger::GetInstance().AcceptAllKeys();
     msg_status("dummy", "I have message for you: " << "its OK if you see this!" << eom);
 
+    //try to pass a debug message
+    msg_debug("core", "If you have enabled the option ENABLE_DEBUG_MSG you will see me." << eom);
+
     return 0;
 }

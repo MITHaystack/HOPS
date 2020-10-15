@@ -117,6 +117,7 @@ HkMessenger::PassMessage()
 std::string
 HkMessenger::GetCurrentPrefix(const HkMessageLevel& level, const std::string& key)
 {
+
     std::stringstream ss;
     switch (level)
     {
