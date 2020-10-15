@@ -4,11 +4,11 @@ John Barrett, Geoff Crew, Dan Hoak, Violet Pfeiffer
 
 To configure with defaults and compile with cmake, run:
 
-$ cd ./chops \
-$ mkdir build \
-$ cd ./build \
-$ cmake ../ \
-$ make && make install
+`$ cd ./chops` \
+`$ mkdir build` \
+`$ cd ./build` \
+`$ cmake ../` \
+`$ make && make install`
 
 To change the default options or if a library is not automatically found and you
 need to specify a directory path in order for it to be located, use the command
