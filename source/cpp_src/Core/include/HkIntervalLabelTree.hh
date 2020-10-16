@@ -12,6 +12,8 @@
 * TODO: consider use of smart pointers for interval label objects
 */
 
+#include <vector>
+
 #include "HkIntervalLabel.hh"
 
 namespace hops
@@ -37,7 +39,7 @@ class HkIntervalLabelTree
 
     protected:
 
-        //we are storing them all in a vector currently, this needs to to be 
+        //we are storing them all in a vector currently, this needs to to be
         //replaced with a tree data structure
         std::vector< HkIntervalLabel* > fIntervals;
 
