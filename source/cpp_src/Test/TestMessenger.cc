@@ -21,7 +21,7 @@ int main(int /*argc*/, char** /*argv*/)
     msg_info("math", "I have a message for you: pi = " << pi_value << eom );
     msg_status("core", "I have message for you: n = " << n << eom);
 
-    //dummy is not is the set of keys, so this shouldn't make it to the terminal
+    //dummy is not in the set of keys, so this shouldn't make it to the terminal
     msg_status("dummy", "I have message for you: " << "you better not see this!" << eom);
 
     //pass an error message
