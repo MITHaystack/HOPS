@@ -2,7 +2,7 @@
 #include <string>
 #include <getopt.h>
 
-#include "HkMK4Interface.hh"
+#include "MHOMK4Interface.hh"
 
 using namespace hops;
 
@@ -39,7 +39,7 @@ int main(int argc, char** argv)
 
     std::cout<<"attempting to open: "<<filename<<std::endl;
 
-    HkMK4Interface mk4inter;
+    MHOMK4Interface mk4inter;
     mk4inter.OpenFringeFile(filename);
 
     return 0;

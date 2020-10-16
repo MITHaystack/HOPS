@@ -1,20 +1,20 @@
 #include <iostream>
 #include <string>
 
-#include "HkIntervalLabelTree.hh"
+#include "MHOIntervalLabelTree.hh"
 
 using namespace hops;
 
 int main(int /*argc*/, char** /*argv*/)
 {
-    HkIntervalLabelTree test;
+    MHOIntervalLabelTree test;
 
-    HkIntervalLabel label1(0,4);
-    HkIntervalLabel label2(4,6);
-    HkIntervalLabel label3(6,9);
-    HkIntervalLabel label4(9,12);
-    HkIntervalLabel label5(0,6);
-    HkIntervalLabel label6(6,12);
+    MHOIntervalLabel label1(0,4);
+    MHOIntervalLabel label2(4,6);
+    MHOIntervalLabel label3(6,9);
+    MHOIntervalLabel label4(9,12);
+    MHOIntervalLabel label5(0,6);
+    MHOIntervalLabel label6(6,12);
 
     label1.Insert(std::string("channel"), 'a');
     label1.Insert(std::string("bandwidth"), 32.0e6);

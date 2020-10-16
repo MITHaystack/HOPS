@@ -2,8 +2,8 @@
 #include <string>
 #include <cmath>
 
-#include "HkTensorContainer.hh"
-#include "HkVectorContainer.hh"
+#include "MHOTensorContainer.hh"
+#include "MHOVectorContainer.hh"
 
 #ifdef USE_ROOT
 #include "TCanvas.h"
@@ -21,7 +21,7 @@
 using namespace hops;
 
 #define NDIM 3
-typedef HkAxisPack< HkVectorContainer<double>, HkVectorContainer<double>, HkVectorContainer<char> > axis_pack_test;
+typedef MHOAxisPack< MHOVectorContainer<double>, MHOVectorContainer<double>, MHOVectorContainer<char> > axis_pack_test;
 
 int main(int argc, char** argv)
 {
@@ -31,7 +31,7 @@ int main(int argc, char** argv)
     dim[1] = 256; //y
     dim[2] = 3; // r,g,b
 
-    HkTensorContainer<double, axis_pack_test >* test = new HkTensorContainer<double, axis_pack_test >(dim);
+    MHOTensorContainer<double, axis_pack_test >* test = new MHOTensorContainer<double, axis_pack_test >(dim);
 
     for(size_t i=0; i<NDIM; i++)
     {
