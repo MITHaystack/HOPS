@@ -2,14 +2,14 @@
 #add an option to turn on/off debug messages, off by default
 option(ENABLE_DEBUG_MSG "Enable passing of debug messages" OFF)
 
-set (HKMESSAGE_HEADERFILES
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/HkMessenger.hh
+set (MESSAGE_HEADERFILES
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHOMessenger.hh
 )
 
 #list source files #############################################################
 
-set( HKMESSAGE_SOURCEFILES
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/HkMessenger.cc
+set( MESSAGE_SOURCEFILES
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHOMessenger.cc
 )
 
 #declare header paths ##########################################################
@@ -17,14 +17,14 @@ set( HKMESSAGE_SOURCEFILES
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 #compile and install library ###################################################
-set(HKMESSAGE_LIBS "")
+set(MESSAGE_LIBS "")
 
 if(ENABLE_DEBUG_MSG)
     add_cflag(HOPS_ENABLE_DEBUG_MSG)
 endif(ENABLE_DEBUG_MSG)
 
-add_library (HkMessage SHARED ${HKMESSAGE_SOURCEFILES})
-target_link_libraries (HkMessage ${HKMESSAGE_LIBS})
+add_library (MHOMessage SHARED ${MESSAGE_SOURCEFILES})
+target_link_libraries (MHOMessage ${MESSAGE_LIBS})
 
-hops_install_headers (${HKMESSAGE_HEADERFILES})
-hops_install_libraries (HkMessage )
+hops_install_headers (${MESSAGE_HEADERFILES})
+hops_install_libraries (MHOMessage )

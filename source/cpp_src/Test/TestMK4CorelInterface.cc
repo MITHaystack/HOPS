@@ -2,7 +2,7 @@
 #include <string>
 #include <getopt.h>
 
-#include "HkMK4CorelInterface.hh"
+#include "MHOMK4CorelInterface.hh"
 
 using namespace hops;
 
@@ -39,7 +39,7 @@ int main(int argc, char** argv)
 
     std::cout<<"attempting to open: "<<filename<<std::endl;
 
-    HkMK4CorelInterface mk4inter;
+    MHOMK4CorelInterface mk4inter;
     mk4inter.ReadCorelFile(filename);
 
     Type100MetaData meta;

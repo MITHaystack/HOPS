@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 
-#include "HkArrayWrapper.hh"
+#include "MHOArrayWrapper.hh"
 
 using namespace hops;
 
@@ -11,7 +11,7 @@ int main(int /*argc*/, char** /*argv*/)
 
     size_t dim[2] = {10, 10};
 
-    HkArrayWrapper<double, 2> test(dim);
+    MHOArrayWrapper<double, 2> test(dim);
 
     std::cout<<"dimension @ 0 ="<<test.GetDimension(0)<<std::endl;
     std::cout<<"total array size = "<<test.GetSize()<<std::endl;
@@ -27,7 +27,7 @@ int main(int /*argc*/, char** /*argv*/)
         }
     }
 
-    HkArrayWrapper<double,2> test2(test);
+    MHOArrayWrapper<double,2> test2(test);
 
     for(size_t i=0; i<dim[0]; i++)
     {

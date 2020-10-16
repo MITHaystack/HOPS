@@ -18,12 +18,12 @@
 #include "TMultiGraph.h"
 #endif
 
-#include "HkMK4VexInterface.hh"
-#include "HkMK4CorelInterface.hh"
+#include "MHOMK4VexInterface.hh"
+#include "MHOMK4CorelInterface.hh"
 
-#include "HkVectorContainer.hh"
-#include "HkAxisPack.hh"
-#include "HkTensorContainer.hh"
+#include "MHOVectorContainer.hh"
+#include "MHOAxisPack.hh"
+#include "MHOTensorContainer.hh"
 
 
 
@@ -31,11 +31,11 @@ using namespace hops;
 
 using visibility_type = std::complex<double>;
 
-using frequency_axis_type = HkVectorContainer<double>;
-using time_axis_type = HkVectorContainer<double>;
+using frequency_axis_type = MHOVectorContainer<double>;
+using time_axis_type = MHOVectorContainer<double>;
 
-using channel_axis_pack = HkAxisPack< time_axis_type, frequency_axis_type>;
-using channel_data_type = HkTensorContainer< visibility_type, channel_axis_pack >;
+using channel_axis_pack = MHOAxisPack< time_axis_type, frequency_axis_type>;
+using channel_data_type = MHOTensorContainer< visibility_type, channel_axis_pack >;
 
 
 double
@@ -108,13 +108,13 @@ int main(int argc, char** argv)
         }
     }
 
-    HkMK4VexInterface mk4vi;
+    MHOMK4VexInterface mk4vi;
     mk4vi.OpenVexFile(root_filename);
     struct vex* vex_obj = mk4vi.GetVex();
 
     double ap_time_length = vex_obj->evex->ap_length;
 
-    HkMK4CorelInterface mk4ci;
+    MHOMK4CorelInterface mk4ci;
     mk4ci.ReadCorelFile(corel_filename);
     struct mk4_corel* corel_obj = mk4ci.GetCorel();
 

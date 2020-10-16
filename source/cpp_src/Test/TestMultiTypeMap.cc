@@ -2,10 +2,10 @@
 #include <string>
 #include <sstream>
 
-#include "HkTimeStampConverter.hh"
-#include "HkMultiTypeMap.hh"
+#include "MHOTimeStampConverter.hh"
+#include "MHOMultiTypeMap.hh"
 
-#include "HkMeta.hh"
+#include "MHOMeta.hh"
 
 using namespace hops;
 
@@ -15,9 +15,9 @@ typedef std::string key_type1;
 int main(int /*argc*/, char** /*argv*/)
 {
 
-    //std::cout<<"size of the typelist is: "<< HkTypelistSize< a_typelist >::value <<std::endl;
-    HkMultiTypeMap< key_type1, int, double, float, std::string > myMap;
-    HkMultiTypeMap< key_type1, int, double, float, std::string > myMap2;
+    //std::cout<<"size of the typelist is: "<< MHOTypelistSize< a_typelist >::value <<std::endl;
+    MHOMultiTypeMap< key_type1, int, double, float, std::string > myMap;
+    MHOMultiTypeMap< key_type1, int, double, float, std::string > myMap2;
 
     std::string key1("i_am_an_int");
     int val1 = 1;

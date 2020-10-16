@@ -9,11 +9,11 @@ if (HOPS_ENABLE_TEST)
     include_directories(${CMAKE_CURRENT_SOURCE_DIR}/${VEX_RELPATH})
 
     include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../Messaging/include)
-    include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../Array/include)
-    include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../Core/include)
+    include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../Containers/include)
+    include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../Utilities/include)
     include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../MK4Interface/include)
 
-    set (HOPS_TEST_LIBS HkMessage HCore HMK4Interface mk4util dfio vex )
+    set (HOPS_TEST_LIBS MHOMessage MHOUtilities MHOMK4Interface mk4util dfio vex )
 
     set(SOURCE_BASENAMES
         TestMessenger

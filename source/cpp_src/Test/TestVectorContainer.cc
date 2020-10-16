@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 
-#include "HkVectorContainer.hh"
+#include "MHOVectorContainer.hh"
 
 
 using namespace hops;
@@ -12,7 +12,7 @@ int main(int /*argc*/, char** /*argv*/)
 
     size_t dim = 100;
 
-    HkVectorContainer<double>* test = new HkVectorContainer<double>(dim);
+    MHOVectorContainer<double>* test = new MHOVectorContainer<double>(dim);
 
     std::cout<<"dimension @ 0 ="<<test->GetDimension(0)<<std::endl;
     std::cout<<"total array size = "<<test->GetSize()<<std::endl;
