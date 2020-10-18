@@ -54,7 +54,8 @@
 
 # Autotool crap
 *~
-*.in
+*_config.h.in
+Makefile.in
 ac*m4
 lt*.m4
 lib*.m4
