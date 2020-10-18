@@ -94,8 +94,80 @@ AC_CHECK_FUNCS([clock_gettime floor getcwd gethostname gettimeofday dnl
 if [test -z "$KPSETEXMFPATH"] ; then [KPSETEXMFPATH=':'] ; fi
 AC_ARG_VAR(KPSETEXMFPATH, [normally ':' to find installed TeX files])
 
+# source makefile
+AC_CONFIG_FILES(source/Makefile)
+
+# source/bash_src makefiles; still to do:
+    # source/bash_src/Makefile
+
+# source/c_source makefiles; still to do:
+    # source/c_src
+    # source/c_src/mk4util
+    # source/c_src/mk4util/src
+    # source/c_src/mk4util/include
+    # source/c_src/afio
+    # source/c_src/afio/src
+    # source/c_src/afio/include
+    # source/c_src/applications
+    # source/c_src/applications/alist
+    # source/c_src/applications/aedit
+    # source/c_src/applications/aedit/src
+    # source/c_src/applications/aedit/include
+    # source/c_src/applications/fourfit
+    # source/c_src/dfio
+    # source/c_src/dfio/src
+    # source/c_src/dfio/include
+    # source/c_src/vex
+    # source/c_src/vex/text
+    # source/c_src/vex/src
+    # source/c_src/vex/include
+    # source/c_src/fourfit_libs
+    # source/c_src/fourfit_libs/ffplot
+    # source/c_src/fourfit_libs/ffplot/src
+    # source/c_src/fourfit_libs/ffplot/include
+    # source/c_src/fourfit_libs/ffsearch
+    # source/c_src/fourfit_libs/ffsearch/src
+    # source/c_src/fourfit_libs/ffsearch/include
+    # source/c_src/fourfit_libs/ffcontrol
+    # source/c_src/fourfit_libs/ffcontrol/src
+    # source/c_src/fourfit_libs/ffcontrol/include
+    # source/c_src/fourfit_libs/ffcore
+    # source/c_src/fourfit_libs/ffcore/src
+    # source/c_src/fourfit_libs/ffcore/include
+    # source/c_src/fourfit_libs/ffio
+    # source/c_src/fourfit_libs/ffio/src
+    # source/c_src/fourfit_libs/ffmath
+    # source/c_src/fourfit_libs/ffmath/src
+
+# source/python_src makefiles; still to do:
+    # source/python_src/Makefile
+    # source/python_src/scripts/Makefile
+    # source/python_src/hops/Makefile
+
+# source/cpp_src makefiles; still to do:
+    # source/cpp_src/Makefile
+    # source/cpp_src/Messaging/Makefile
+    # source/cpp_src/Messaging/src/Makefile
+    # source/cpp_src/Messaging/include/Makefile
+    # source/cpp_src/MK4Interface/Makefile
+    # source/cpp_src/MK4Interface/src/Makefile
+    # source/cpp_src/MK4Interface/include/Makefile
+    # source/cpp_src/Bindings/Makefile
+    # source/cpp_src/Utilities/Makefile
+    # source/cpp_src/Utilities/src/Makefile
+    # source/cpp_src/Utilities/include/Makefile
+    # source/cpp_src/Test/Makefile
+    # source/cpp_src/Containers/Makefile
+    # source/cpp_src/Containers/include/Makefile
+
+# document makefiles; still to do:
+    # doc/code_outline/Makefile
+    # doc/reference/Makefile
+    # doc/specification/code/Makefile # ?
+    # doc/developer/Makefile
 AC_CONFIG_FILES(Makefile
     doc/Makefile
+    doc/common/Makefile
     doc/covertest/Makefile
     doc/develplan/Makefile
     doc/geodetic/Makefile
@@ -103,7 +175,6 @@ AC_CONFIG_FILES(Makefile
     doc/specification/Makefile
     doc/testreports/Makefile
     doc/userman/Makefile
-    doc/common/Makefile
 )
 AC_OUTPUT
 
