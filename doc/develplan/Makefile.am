@@ -1,15 +1,14 @@
 #
 # makefile for the development plan
 #
-# SUBDIRS = .
 
-# list the sources in $(srcdir)
+# $(TEXPDF).pdf is built from $(TEXSRC).tex
 TEXPDF=develplan
 TEXSRC=dplan
-tex_sources = $(TEXSRC).tex theplan.tex
 
-# extra things for the tarball
-EXTRA_DIST =
+# everything from $(srcdir) included from $(TEXSRC).tex
+# needs to be listed here with a $(srcdir)/ path prefix
+EXTRA_DIST = $(srcdir)/$(TEXSRC).tex $(srcdir)/theplan.tex
 
 if WANT_DOCS
 # to be somewhat surgical, this is useful:
@@ -33,9 +32,8 @@ $(TEXPDF).pdf: $(TEXSRC).pdf
 $(TEXSRC).pdf: force
 	@echo final iteration
 	-TEXINPUTS=$(TEXINPUTS) pdflatex $(TEXOPT) $(TEXSRC).tex
-	rm force
 
-force: $(srcdir)
+force: $(srcdir)/Makefile.am $(EXTRA_DIST)
 	@echo first iteration
 	-TEXINPUTS=$(TEXINPUTS) pdflatex $(TEXOPT) $(TEXSRC).tex
 	touch force
