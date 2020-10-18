@@ -14,7 +14,7 @@ AM_INIT_AUTOMAKE([foreign subdir-objects])
 AC_ARG_VAR(MHO_ROOT, [Root directory for the MIT HOPS tools installation])
 AC_MHO_INIT([Configuration summary for mhops version 4.00])
 # default --prefix to $MHO_ROOT/$arch-$VERSION at make install time
-arch=`uname -m`
+arch=`uname -m`am
 AC_PREFIX_DEFAULT([${MHO_ROOT-'${MHO_ROOT}'}/${arch}-${VERSION-'${VERSION}'}])
 if [test -z "$MHO_ROOT"] ; then
     cwd=`pwd`
@@ -97,8 +97,8 @@ AC_ARG_VAR(KPSETEXMFPATH, [normally ':' to find installed TeX files])
 # source makefile
 AC_CONFIG_FILES(source/Makefile)
 
-# source/bash_src makefiles; still to do:
-    # source/bash_src/Makefile
+# source/bash_src makefile
+AC_CONFIG_FILES(source/bash_src/Makefile)
 
 # source/c_source makefiles; still to do:
     # source/c_src
@@ -176,6 +176,14 @@ AC_CONFIG_FILES(Makefile
     doc/testreports/Makefile
     doc/userman/Makefile
 )
+
+#
+# Shell setup convenience script
+#
+AC_CONFIG_FILES(source/bash_src/hops.bash,
+    [chmod +x source/bash_src/hops.bash])
+
+# this turns into the generator for config.status
 AC_OUTPUT
 
 AC_MHO_BANNER([Finished with configuration:])

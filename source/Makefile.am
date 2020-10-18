@@ -1,7 +1,7 @@
 #
 # Top-level Makefile
 #
-SUBDIRS = .
+SUBDIRS = bash_src
 
 #
 # eof
