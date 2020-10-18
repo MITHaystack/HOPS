@@ -8,7 +8,8 @@ TEXSRC=specs
 
 # everything from $(srcdir) included from $(TEXSRC).tex
 # needs to be listed here with a $(srcdir)/ path prefix
-EXTRA_DIST = $(srcdir)/$(TEXSRC).tex $(srcdir)/hops-spec.tex
+EXTRA_DIST = $(srcdir)/$(TEXSRC).tex $(srcdir)/hops-spec.tex \
+	$(srcdir)/srctree.tex
 
 if WANT_DOCS
 # to be somewhat surgical, this is useful:
