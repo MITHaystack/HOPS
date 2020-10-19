@@ -21,7 +21,7 @@
 #include "MHOMK4VexInterface.hh"
 #include "MHOMK4CorelInterface.hh"
 
-#include "MHOVectorContainer.hh"
+#include "MHOAxis.hh"
 #include "MHOAxisPack.hh"
 #include "MHOTensorContainer.hh"
 
@@ -31,9 +31,12 @@ using namespace hops;
 
 using visibility_type = std::complex<double>;
 
-using frequency_axis_type = MHOVectorContainer<double>;
-using time_axis_type = MHOVectorContainer<double>;
+using frequency_axis_type = MHOAxis<double>;
+using time_axis_type = MHOAxis<double>;
 
+
+#define TIME_AXIS 0
+#define FREQ_AXIS 1
 using channel_axis_pack = MHOAxisPack< time_axis_type, frequency_axis_type>;
 using channel_data_type = MHOTensorContainer< visibility_type, channel_axis_pack >;
 
@@ -266,7 +269,7 @@ int main(int argc, char** argv)
 
                                 //set up the frequency axis
                                 double freq =  calc_freq_bin(ref_sky_freq, rem_sky_freq, ref_bw, rem_bw, ref_net_sb,rem_net_sb, nlags, j);
-                                std::get<1>(*(channel_elem->second))(j) = freq;
+                                std::get<FREQ_AXIS>(*(channel_elem->second))(j) = freq;
                             }
                         }
                         else
@@ -275,7 +278,7 @@ int main(int argc, char** argv)
                         }
                     }
                     //now assign values to the time (0-th dim) axis
-                    std::get<0>(*(channel_elem->second))(ap) = ap_time_length*ap;
+                    std::get<TIME_AXIS>(*(channel_elem->second))(ap) = ap_time_length*ap;
                 }
             }
         }
@@ -315,8 +318,8 @@ int main(int argc, char** argv)
 
     auto first_channel_iter = channels.begin();
     auto first_channel = first_channel_iter->second;
-    auto* x_axis = &(std::get<0>(*first_channel));
-    auto* y_axis = &(std::get<1>(*first_channel));
+    auto* x_axis = &(std::get<TIME_AXIS>(*first_channel));
+    auto* y_axis = &(std::get<FREQ_AXIS>(*first_channel));
 
     size_t x_axis_size = x_axis->GetSize();
     size_t y_axis_size = y_axis->GetSize();

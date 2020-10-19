@@ -30,11 +30,11 @@ if (HOPS_ENABLE_TEST)
     )
 
     #for testing purposes only -- not intended to be a dependency
-    if (HOSE_USE_ROOT)
+    if (HOPS_USE_ROOT)
         include(FindROOT)
         find_package(ROOT REQUIRED)
         include_directories(${ROOT_INCLUDE_DIRS})
-        add_compile_definitions(USE_ROOT)
+        add_cflag(USE_ROOT)
         list(APPEND HOPS_TEST_LIBS ${ROOT_LIBRARIES})
         list(APPEND SOURCE_BASENAMES TestTensorContainer)
     endif()

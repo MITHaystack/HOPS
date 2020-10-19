@@ -41,6 +41,7 @@ class MHOIntervalLabel: public MHOInterval< std::size_t >, public MHOIntervalLab
                 this->CopyFrom<bool>(rhs);
                 this->CopyFrom<int>(rhs);
                 this->CopyFrom<double>(rhs);
+                this->CopyFrom<std::string>(rhs);
             }
             return *this;
         }
