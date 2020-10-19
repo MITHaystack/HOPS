@@ -31,7 +31,6 @@ class MHOAxisPack:  public std::tuple< XAxisTypeS... >
 
         virtual ~MHOAxisPack(){};
 
-        //using rank = typename MHOTypelistSize< MHOTypelist< XAxisTypeS...> >::value;
         typedef std::integral_constant< std::size_t, sizeof...(XAxisTypeS) > RANK;
 
     protected:
