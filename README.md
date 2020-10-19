@@ -38,3 +38,6 @@ Optional dependencies (these may possibly become required at some point in the f
 (1) `texlive.combined.scheme-full` \
 (2) `graphviz` \
 (3) `doxygen` 
+
+An equivalent build process using the GNU autotools is also available
+using the script autogen.sh which accepts a --help argument for usage.
