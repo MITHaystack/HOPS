@@ -107,9 +107,11 @@ AC_CONFIG_FILES(
 AC_CONFIG_FILES(source/bash_src/Makefile)
 
 # source/c_source makefiles
-AC_CONFIG_FILES(source/c_src/Makefile)
+AC_CONFIG_FILES(
+    source/c_src/Makefile
+    source/c_src/mk4util/Makefile
+)
 # still to do:
-    # source/c_src/mk4util/Makefile
     # source/c_src/mk4util/src/Makefile
     # source/c_src/mk4util/include/Makefile
     # source/c_src/afio/Makefile
@@ -195,6 +197,11 @@ AC_CONFIG_FILES(
 #
 AC_CONFIG_FILES(source/bash_src/hops.bash,
     [chmod +x source/bash_src/hops.bash])
+
+# MHO/HOPS compatibility (temporary)
+AC_CONFIG_FILES(hops_config.h,
+    [echo '#define HOPS_SVN_REV 3089' >> hops_config.h;
+     echo "#define PACKAGE_VERSION $VERSION" >> hops_config.h])
 
 # this turns into the generator for config.status
 AC_OUTPUT

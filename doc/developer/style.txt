@@ -11,6 +11,21 @@ Copyright: all files should include a current-date MIT copyright and
     (for files brought in from elsewhere) suitable adjustments should
     be made.
 
+Libraries
+  Should be buildable either statically or dynamically linked.  The default,
+  however, should be to only build one, ideally the dynamically linked one.
+
+Applications
+  Should all operate canonically to --help and --version.
+  Should generally require at least one argument.  Some applications consider
+    "no arguments" to be treated as a plea for help.  Other applications go
+    off and do something.  If an application has no side effects other than
+    providing information to the terminal, as does e.g. ls, no arguments need
+    be required.
+  Should exit 0 if there are no errors (or --help or --version used); otherwise
+    some non-zero exit return value should be used
+  Should use standard get-opt style processing.  See examples....
+
 Modularity
   Directory level:
     Source material should be sensibly decomposed into modular self-contained
