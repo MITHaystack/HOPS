@@ -94,58 +94,61 @@ AC_CHECK_FUNCS([clock_gettime floor getcwd gethostname gettimeofday dnl
 if [test -z "$KPSETEXMFPATH"] ; then [KPSETEXMFPATH=':'] ; fi
 AC_ARG_VAR(KPSETEXMFPATH, [normally ':' to find installed TeX files])
 
-# source makefile
-AC_CONFIG_FILES(source/Makefile)
+# top-level Makefile and primary directories
+AC_CONFIG_FILES(
+    Makefile
+    doc/Makefile
+    data/Makefile
+    source/Makefile
+)
 
 # source/bash_src makefile
+# includes perl scripts as well
 AC_CONFIG_FILES(source/bash_src/Makefile)
 
-# source/c_source makefiles; still to do:
-    # source/c_src
-    # source/c_src/mk4util
-    # source/c_src/mk4util/src
-    # source/c_src/mk4util/include
-    # source/c_src/afio
-    # source/c_src/afio/src
-    # source/c_src/afio/include
-    # source/c_src/applications
-    # source/c_src/applications/alist
-    # source/c_src/applications/aedit
-    # source/c_src/applications/aedit/src
-    # source/c_src/applications/aedit/include
-    # source/c_src/applications/fourfit
-    # source/c_src/dfio
-    # source/c_src/dfio/src
-    # source/c_src/dfio/include
-    # source/c_src/vex
-    # source/c_src/vex/text
-    # source/c_src/vex/src
-    # source/c_src/vex/include
-    # source/c_src/fourfit_libs
-    # source/c_src/fourfit_libs/ffplot
-    # source/c_src/fourfit_libs/ffplot/src
-    # source/c_src/fourfit_libs/ffplot/include
-    # source/c_src/fourfit_libs/ffsearch
-    # source/c_src/fourfit_libs/ffsearch/src
-    # source/c_src/fourfit_libs/ffsearch/include
-    # source/c_src/fourfit_libs/ffcontrol
-    # source/c_src/fourfit_libs/ffcontrol/src
-    # source/c_src/fourfit_libs/ffcontrol/include
-    # source/c_src/fourfit_libs/ffcore
-    # source/c_src/fourfit_libs/ffcore/src
-    # source/c_src/fourfit_libs/ffcore/include
-    # source/c_src/fourfit_libs/ffio
-    # source/c_src/fourfit_libs/ffio/src
-    # source/c_src/fourfit_libs/ffmath
-    # source/c_src/fourfit_libs/ffmath/src
+# source/c_source makefiles
+AC_CONFIG_FILES(source/c_src/Makefile)
+# still to do:
+    # source/c_src/mk4util/Makefile
+    # source/c_src/mk4util/src/Makefile
+    # source/c_src/mk4util/include/Makefile
+    # source/c_src/afio/Makefile
+    # source/c_src/afio/src/Makefile
+    # source/c_src/afio/include/Makefile
+    # source/c_src/applications/Makefile
+    # source/c_src/applications/alist/Makefile
+    # source/c_src/applications/aedit/Makefile
+    # source/c_src/applications/aedit/src/Makefile
+    # source/c_src/applications/aedit/include/Makefile
+    # source/c_src/applications/fourfit/Makefile
+    # source/c_src/dfio/Makefile
+    # source/c_src/dfio/src/Makefile
+    # source/c_src/dfio/include/Makefile
+    # source/c_src/vex/Makefile
+    # source/c_src/vex/text/Makefile
+    # source/c_src/vex/src/Makefile
+    # source/c_src/vex/include/Makefile
+    # source/c_src/fourfit_libs/Makefile
+    # source/c_src/fourfit_libs/ffplot/Makefile
+    # source/c_src/fourfit_libs/ffplot/src/Makefile
+    # source/c_src/fourfit_libs/ffplot/include/Makefile
+    # source/c_src/fourfit_libs/ffsearch/Makefile
+    # source/c_src/fourfit_libs/ffsearch/src/Makefile
+    # source/c_src/fourfit_libs/ffsearch/include/Makefile
+    # source/c_src/fourfit_libs/ffcontrol/Makefile
+    # source/c_src/fourfit_libs/ffcontrol/src/Makefile
+    # source/c_src/fourfit_libs/ffcontrol/include/Makefile
+    # source/c_src/fourfit_libs/ffcore/Makefile
+    # source/c_src/fourfit_libs/ffcore/src/Makefile
+    # source/c_src/fourfit_libs/ffcore/include/Makefile
+    # source/c_src/fourfit_libs/ffio/Makefile
+    # source/c_src/fourfit_libs/ffio/src/Makefile
+    # source/c_src/fourfit_libs/ffmath/Makefile
+    # source/c_src/fourfit_libs/ffmath/src/Makefile
 
-# source/python_src makefiles; still to do:
-    # source/python_src/Makefile
-    # source/python_src/scripts/Makefile
-    # source/python_src/hops/Makefile
-
-# source/cpp_src makefiles; still to do:
-    # source/cpp_src/Makefile
+# source/cpp_src makefiles
+AC_CONFIG_FILES(source/cpp_src/Makefile)
+# still to do:
     # source/cpp_src/Messaging/Makefile
     # source/cpp_src/Messaging/src/Makefile
     # source/cpp_src/Messaging/include/Makefile
@@ -160,13 +163,15 @@ AC_CONFIG_FILES(source/bash_src/Makefile)
     # source/cpp_src/Containers/Makefile
     # source/cpp_src/Containers/include/Makefile
 
-# document makefiles; still to do:
-    # doc/code_outline/Makefile
-    # doc/reference/Makefile
-    # doc/specification/code/Makefile # ?
-    # doc/developer/Makefile
-AC_CONFIG_FILES(Makefile
-    doc/Makefile
+# source/python_src makefiles
+AC_CONFIG_FILES(source/python_src/Makefile)
+# still to do:
+    # source/python_src/Makefile
+    # source/python_src/scripts/Makefile
+    # source/python_src/hops/Makefile
+
+# document makefiles
+AC_CONFIG_FILES(
     doc/common/Makefile
     doc/covertest/Makefile
     doc/develplan/Makefile
@@ -176,6 +181,14 @@ AC_CONFIG_FILES(Makefile
     doc/testreports/Makefile
     doc/userman/Makefile
 )
+# still to do:
+    # doc/code_outline/Makefile
+    # doc/reference/Makefile
+    # doc/specification/code/Makefile # ?
+    # doc/developer/Makefile
+
+# data for system tests
+#AC_CONFIG_FILES()
 
 #
 # Shell setup convenience script
