@@ -22,6 +22,7 @@ MHOIntervalLabel::MHOIntervalLabel(const MHOIntervalLabel& copy):
     this->CopyFrom<bool>(copy);
     this->CopyFrom<int>(copy);
     this->CopyFrom<double>(copy);
+    this->CopyFrom<std::string>(copy);
 }
 
 MHOIntervalLabel::~MHOIntervalLabel(){};

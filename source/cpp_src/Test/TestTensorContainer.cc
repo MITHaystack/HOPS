@@ -1,9 +1,10 @@
 #include <iostream>
 #include <string>
 #include <cmath>
+#include <sstream>
 
 #include "MHOTensorContainer.hh"
-#include "MHOVectorContainer.hh"
+#include "MHOAxis.hh"
 
 #ifdef USE_ROOT
 #include "TCanvas.h"
@@ -21,7 +22,10 @@
 using namespace hops;
 
 #define NDIM 3
-typedef MHOAxisPack< MHOVectorContainer<double>, MHOVectorContainer<double>, MHOVectorContainer<char> > axis_pack_test;
+#define XDIM 0
+#define YDIM 1
+#define ZDIM 2
+typedef MHOAxisPack< MHOAxis<double>, MHOAxis<double>, MHOAxis<char> > axis_pack_test;
 
 int main(int argc, char** argv)
 {
@@ -39,21 +43,45 @@ int main(int argc, char** argv)
     }
 
     //set up the axis labels
-    auto* x_axis = &(std::get<0>(*test));
+    auto* x_axis = &(std::get<XDIM>(*test));
     size_t x_axis_size = x_axis->GetDimension(0);
     for(size_t i=0; i<x_axis_size; i++)
     {
         x_axis->at(i) = i*(2.0*M_PI/(double)x_axis_size);
     }
+    
+    //now add some labels to the x_axis
+    size_t chan_width = 32;
+    for(size_t i=0; i < x_axis_size/chan_width; i++)
+    {
+        MHOIntervalLabel label;
+        label.SetBounds(i*chan_width, (i+1)*chan_width);
+        std::stringstream ss;
+        ss << "x-chan-" << i;
+        label.Insert(std::string("x-channel"), ss.str() );
+        x_axis->InsertLabel(label);
+    }
 
-    auto* y_axis = &(std::get<1>(*test));
+    auto* y_axis = &(std::get<YDIM>(*test));
     size_t y_axis_size = y_axis->GetDimension(0);
     for(size_t i=0; i<y_axis_size; i++)
     {
         y_axis->at(i) = i*(2.0*M_PI/(double)y_axis_size);
     }
 
-    auto* z_axis = &(std::get<2>(*test));
+    //now add some labels to the y_axis
+    chan_width = 64;
+    for(size_t i=0; i < x_axis_size/chan_width; i++)
+    {
+        MHOIntervalLabel label;
+        label.SetBounds(i*chan_width, (i+1)*chan_width);
+        std::stringstream ss;
+        ss << "y-chan-" << i;
+        label.Insert(std::string("y-channel"), ss.str() );
+        y_axis->InsertLabel(label);
+    }
+
+    auto* z_axis = &(std::get<ZDIM>(*test));
     size_t z_axis_size = z_axis->GetDimension(0);
     z_axis->at(0) = 'r';
     z_axis->at(1) = 'g';
@@ -70,6 +98,42 @@ int main(int argc, char** argv)
             }
         }
     }
+
+    //lets find interval associated with some channel names
+    auto labels = x_axis->GetIntervalsWithKeyValue(std::string("x-channel"), std::string("x-chan-5"));
+    size_t xlow;
+    size_t xup;
+    for( auto iter = labels.begin(); iter != labels.end(); iter++)
+    {
+        std::cout<<"bounds for x-chan-5 are: ["<<(*iter)->GetLowerBound()<<", "<<(*iter)->GetUpperBound()<<") "<<std::endl;
+        xlow = (*iter)->GetLowerBound();
+        xup = (*iter)->GetUpperBound();
+    }
+
+    auto labels2 = y_axis->GetIntervalsWithKeyValue(std::string("y-channel"), std::string("y-chan-3"));
+    size_t ylow;
+    size_t yup;
+    for( auto iter = labels2.begin(); iter != labels2.end(); iter++)
+    {
+        std::cout<<"bounds for y-chan-3 are: ["<<(*iter)->GetLowerBound()<<", "<<(*iter)->GetUpperBound()<<") "<<std::endl;
+        ylow = (*iter)->GetLowerBound();
+        yup = (*iter)->GetUpperBound();
+    }
+
+
+    //zero out values which happen to lie inside x-chan-5 and y-chan-3
+    for(size_t i=xlow; i<xup; i++)
+    {
+        for(size_t j=ylow; j<yup; j++)
+        {
+            for(size_t k=0; k<z_axis_size; k++)
+            {
+                (*test)(i,j,k) = 0.0;
+            }
+        }
+    }
+
+
 
 
     #ifdef USE_ROOT
