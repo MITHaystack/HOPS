@@ -1,7 +1,7 @@
 #
 # Makefile for C libraries and applications
 #
-SUBDIRS =
+SUBDIRS = mk4util
 
 #
 # eof

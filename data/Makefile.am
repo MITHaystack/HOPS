@@ -3,6 +3,8 @@
 #
 SUBDIRS = 
 
+bin_SCRIPTS = import_3to4.sh
+
 #
 # eof
 #
