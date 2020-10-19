@@ -1,0 +1,42 @@
+General guidance on style.  A more complete discussion is given in
+the development plan.  This is a starter....
+
+Copyright: all files should include a current-date MIT copyright and
+    a reference to the top-level Copyright file, e.g. in C++ source.
+
+    // (c) Massachusetts Institute of Technology, ????-2020
+    // The contents of the top-level Copyright statement apply here.
+
+    If other copyrights apply or copyright does not belong to MIT
+    (for files brought in from elsewhere) suitable adjustments should
+    be made.
+
+Modularity
+  Directory level:
+    Source material should be sensibly decomposed into modular self-contained
+    units according to best practices by language.  A directory may build
+    multiple items of related functionality
+  File level:
+    Within a file, functional (functions/methods) should ideally be "visible"
+    within a window of at most 80? columns and 45? lines.  This should be
+    violated if there are preformance or other sensible reasons for doing
+    so.  The point of this is to allow a develop to "see" what is going on.
+    (Material that is off the screen is usually out of mind, and errors may
+    easily result from inconsistencies that may result.)
+  Variables:
+    Should be given short, non-cryptic names, and almost never single letter.
+    Camel case or snake case are both acceptable.
+  End of File:
+    Files are on rare occasion truncated.  Some end of file marker should be
+    included (if the language allows it).  It may be followed by special vim
+    edit commands if the file requires it.
+
+Documentation
+  C/C++ Code
+    Should be documented for processing by doxygen
+  Python
+    Should be documented for processing by sphinx
+  Bash / Perl
+    dunno
+
+eof
