@@ -36,6 +36,11 @@ class MHOIntervalLabelTree
         std::vector< MHOIntervalLabel* >
         GetIntervalsWithKeyValue(const std::string& key, const XLabelValueType& value);
 
+        template<typename XLabelValueType>
+        MHOIntervalLabel*
+        GetFirstIntervalWithKeyValue(const std::string& key, const XLabelValueType& value);
+
+
     protected:
 
         //we are storing them all in a vector currently, this needs to to be
@@ -66,6 +71,28 @@ MHOIntervalLabelTree::GetIntervalsWithKeyValue(const std::string& key, const XLa
     return labels;
 }
 
+
+template<typename XLabelValueType>
+MHOIntervalLabel*
+MHOIntervalLabelTree::GetFirstIntervalWithKeyValue(const std::string& key, const XLabelValueType& value)
+{
+    MHOIntervalLabel* label = nullptr;
+    XLabelValueType tmp_value;
+    //dumb brute force search over all intervals O(n)
+    //we may want to make this smarter
+    for(std::size_t i=0; i<fIntervals.size(); i++)
+    {
+        if( fIntervals[i]->Retrieve(key,tmp_value) )
+        {
+            if(tmp_value == value)
+            {
+                label = fIntervals[i];
+                break;
+            }
+        }
+    }
+    return label;
+}
 
 
 }//end namespace
