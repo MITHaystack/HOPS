@@ -110,14 +110,14 @@ int main(int argc, char** argv)
         xup = (*iter)->GetUpperBound();
     }
 
-    auto labels2 = y_axis->GetIntervalsWithKeyValue(std::string("y-channel"), std::string("y-chan-3"));
+    auto label2 = y_axis->GetFirstIntervalWithKeyValue(std::string("y-channel"), std::string("y-chan-1"));
     size_t ylow;
     size_t yup;
-    for( auto iter = labels2.begin(); iter != labels2.end(); iter++)
+    if(label2 != nullptr)
     {
-        std::cout<<"bounds for y-chan-3 are: ["<<(*iter)->GetLowerBound()<<", "<<(*iter)->GetUpperBound()<<") "<<std::endl;
-        ylow = (*iter)->GetLowerBound();
-        yup = (*iter)->GetUpperBound();
+        ylow = label2->GetLowerBound();
+        yup = label2->GetUpperBound();
+        std::cout<<"bounds for y-chan-1 are: ["<<ylow<<", "<<yup<<") "<<std::endl;
     }
 
 
