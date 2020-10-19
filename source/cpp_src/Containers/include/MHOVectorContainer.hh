@@ -50,7 +50,6 @@ class MHOVectorContainer: public MHOArrayWrapper< XValueType, 1>, public MHOName
         using MHOArrayWrapper<XValueType,1>::GetDimensions;
         using MHOArrayWrapper<XValueType,1>::GetDimension;
         using MHOArrayWrapper<XValueType,1>::GetOffsetForIndices;
-
         using MHOArrayWrapper<XValueType,1>::operator();
         using MHOArrayWrapper<XValueType,1>::operator[];
 

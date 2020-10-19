@@ -10,6 +10,7 @@ set (CONTAINER_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHOScalarContainer.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHOVectorContainer.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHOTensorContainer.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHOAxis.hh
 )
 
 #declare header paths ##########################################################

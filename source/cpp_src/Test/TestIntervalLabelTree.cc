@@ -27,13 +27,13 @@ int main(int /*argc*/, char** /*argv*/)
     label5.Insert(std::string("sampler"), std::string("r2dbe-1"));
     label6.Insert(std::string("sampler"), std::string("r2dbe-2"));
 
-    test.Insert(&label1);
-    test.Insert(&label2);
-    test.Insert(&label3);
-    test.Insert(&label4);
-    test.Insert(&label5);
-    test.Insert(&label6);
-    
+    test.InsertLabel(label1);
+    test.InsertLabel(label2);
+    test.InsertLabel(label3);
+    test.InsertLabel(label4);
+    test.InsertLabel(label5);
+    test.InsertLabel(label6);
+
     auto label_vec1 = test.GetIntervalsWhichIntersect(5);
     for(auto iter = label_vec1.begin(); iter != label_vec1.end(); iter++)
     {
