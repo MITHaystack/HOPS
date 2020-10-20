@@ -148,11 +148,13 @@ AC_CONFIG_FILES(
     source/Makefile
 )
 
+### FIXME: revert the 'b' names to the normal names
+
 # source/bash_src makefile
 # includes perl scripts as well
 AC_CONFIG_FILES(source/bash_src/Makefile)
 
-# source/c_source makefiles
+# source/c_source makefiles, part 1: "sub" and applications
 AC_CONFIG_FILES(
     source/c_src/Makefile
     source/c_src/mk4util/Makefile
@@ -163,25 +165,18 @@ AC_CONFIG_FILES(
     source/c_src/applications/alist/Makefile
     source/c_src/applications/aedit/Makefile
 )
+# source/c_source makefiles, part 2: "fourfit"
+AC_CONFIG_FILES(
+    source/c_src/fourfit_libs/Makefile
+    source/c_src/fourfit_libs/ffcontrol/Makefile
+    source/c_src/fourfit_libs/ffcore/Makefile
+    source/c_src/fourfit_libs/ffmath/Makefile
+    source/c_src/fourfit_libs/ffio/Makefile
+    source/c_src/fourfit_libs/ffsearch/Makefile
+    source/c_src/fourfit_libs/ffplot/Makefile
+)
 # still to do:
     # source/c_src/applications/fourfit/Makefile
-    # source/c_src/fourfit_libs/Makefile
-    # source/c_src/fourfit_libs/ffplot/Makefile
-    # source/c_src/fourfit_libs/ffplot/src/Makefile
-    # source/c_src/fourfit_libs/ffplot/include/Makefile
-    # source/c_src/fourfit_libs/ffsearch/Makefile
-    # source/c_src/fourfit_libs/ffsearch/src/Makefile
-    # source/c_src/fourfit_libs/ffsearch/include/Makefile
-    # source/c_src/fourfit_libs/ffcontrol/Makefile
-    # source/c_src/fourfit_libs/ffcontrol/src/Makefile
-    # source/c_src/fourfit_libs/ffcontrol/include/Makefile
-    # source/c_src/fourfit_libs/ffcore/Makefile
-    # source/c_src/fourfit_libs/ffcore/src/Makefile
-    # source/c_src/fourfit_libs/ffcore/include/Makefile
-    # source/c_src/fourfit_libs/ffio/Makefile
-    # source/c_src/fourfit_libs/ffio/src/Makefile
-    # source/c_src/fourfit_libs/ffmath/Makefile
-    # source/c_src/fourfit_libs/ffmath/src/Makefile
 
 # source/cpp_src makefiles
 AC_CONFIG_FILES(source/cpp_src/Makefile)
