@@ -34,6 +34,7 @@ do
     tg=*)    eval "$1" ; shift ;;
     .)       break ;;
     *=)      echo "Usage: $USAGE"; exit 1;;
+    *)       break ;;
     esac
 done
 [ "$force" = true -o "$force" = false ] || { echo "Usage: $USAGE"; exit 1; }

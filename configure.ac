@@ -1,5 +1,7 @@
 #                                               -*- Autoconf -*-
 # Process this file with autoconf to produce a configure script.
+# (c) Massachusetts Institute of Technology, 2020
+# The contents of the package Copyright statement apply here.
 #
 # FIXME: mhops / hops package name collisions?
 # FIXME: mailman hops@mit.edu mailing list
@@ -94,6 +96,22 @@ AC_CHECK_FUNCS([clock_gettime floor getcwd gethostname gettimeofday dnl
 if [test -z "$KPSETEXMFPATH"] ; then [KPSETEXMFPATH=':'] ; fi
 AC_ARG_VAR(KPSETEXMFPATH, [normally ':' to find installed TeX files])
 
+#
+# package dependency checking
+#
+PKG_CHECK_MODULES(FFTW3, fftw3, [hasfftw=true], [hasfftw=false])
+if [$hasfftw] ; then
+    AC_DEFINE([HAVE_FFTW], 1, [Define to 1 if FFTW is available])
+    AC_MHO_NOTICE([FFTW3 was found via check modules])
+else
+    AC_DEFINE([HAVE_FFTW], 0, [Define to 1 if FFTW is available])
+    AC_MHO_NOTICE([FFTW3 not found via check modules])
+fi
+AC_MHO_NOTICE([%%% hasfftw is $hasfftw (required)])
+AC_SUBST(FFTW3_CFLAGS)
+AC_SUBST(FFTW3_LIBS)
+AM_CONDITIONAL(HAVE_FFTW, $hasfftw)
+
 # top-level Makefile and primary directories
 AC_CONFIG_FILES(
     Makefile
@@ -110,26 +128,17 @@ AC_CONFIG_FILES(source/bash_src/Makefile)
 AC_CONFIG_FILES(
     source/c_src/Makefile
     source/c_src/mk4util/Makefile
+    source/c_src/dfio/Makefile
+    source/c_src/afio/Makefile
+    source/c_src/vex/Makefile
+    source/c_src/applications/Makefile
+    source/c_src/applications/alist/Makefile
 )
 # still to do:
-    # source/c_src/mk4util/src/Makefile
-    # source/c_src/mk4util/include/Makefile
-    # source/c_src/afio/Makefile
-    # source/c_src/afio/src/Makefile
-    # source/c_src/afio/include/Makefile
-    # source/c_src/applications/Makefile
-    # source/c_src/applications/alist/Makefile
     # source/c_src/applications/aedit/Makefile
     # source/c_src/applications/aedit/src/Makefile
     # source/c_src/applications/aedit/include/Makefile
     # source/c_src/applications/fourfit/Makefile
-    # source/c_src/dfio/Makefile
-    # source/c_src/dfio/src/Makefile
-    # source/c_src/dfio/include/Makefile
-    # source/c_src/vex/Makefile
-    # source/c_src/vex/text/Makefile
-    # source/c_src/vex/src/Makefile
-    # source/c_src/vex/include/Makefile
     # source/c_src/fourfit_libs/Makefile
     # source/c_src/fourfit_libs/ffplot/Makefile
     # source/c_src/fourfit_libs/ffplot/src/Makefile
