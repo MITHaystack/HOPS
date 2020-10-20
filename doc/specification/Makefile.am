@@ -1,5 +1,7 @@
 #
 # make file for the specifications and architecture document
+# (c) Massachusetts Institute of Technology, 2020
+# The contents of the package Copyright statement apply here.
 #
 
 # $(TEXPDF).pdf is built from $(TEXSRC).tex
