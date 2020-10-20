@@ -130,7 +130,7 @@ class MHOArrayWrapper
         operator()(XIndexTypeS...idx)
         {
             const std::array<std::size_t, RANK> indices = {{static_cast<size_t>(idx)...}}; //convert the arguments to an array
-            return fData[  MHOArrayMath::OffsetFromRowMajorIndex<RANK>(fDimensions, &(indices[0]) ) ]; //compute the offset into the array and return reference to the data
+            return fData[ MHOArrayMath::OffsetFromRowMajorIndex<RANK>(fDimensions, &(indices[0]) ) ]; //compute the offset into the array and return reference to the data
         }
 
         //const reference access operator()
