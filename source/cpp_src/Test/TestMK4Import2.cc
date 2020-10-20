@@ -404,6 +404,7 @@ int main(int argc, char** argv)
     //this is trickier because the frequency axis is not continuous...
     //for the time being we assume the all pol-products have the same freq-axis
     std::size_t freq_count = 0;
+    std::map< std::string, MHOIntervalLabel > finall_chan_label_map;
     for(auto it = pp_chan_vec_map[*(pp_pairs.begin())].begin(); it != pp_chan_vec_map[*(pp_pairs.begin())].end(); it++)
     {
         // double ref_sky_freq, ref_bw, rem_sky_freq, rem_bw;
@@ -446,9 +447,12 @@ int main(int argc, char** argv)
     }
 
 
-/*
 
-    //now fill up the rest
+
+
+
+
+    //now fill in the actual visibility data
     struct type_101* t101 = nullptr;
     for(int i=0; i<corel_obj->index_space; i++)
     {
@@ -471,13 +475,8 @@ int main(int argc, char** argv)
                         if(t120->type == SPECTRAL)
                         {
                             std::string baseline = mk4ci.getstr(t120->baseline, 2);
-                            char ref_st = baseline[0];
-                            char rem_st = baseline[1];
-
-                            double ref_sky_freq, ref_bw, rem_sky_freq, rem_bw;
-                            char ref_net_sb, rem_net_sb, ref_pol, rem_pol;
-                            bool found_ref = false;
-                            bool found_rem = false;
+                            ref_st = baseline[0];
+                            rem_st = baseline[1];
 
                             //now look up the station and channel info so we can fill out the frequency axis
                             int nst = vex_obj->ovex->nst;
@@ -523,8 +522,6 @@ int main(int argc, char** argv)
                             }
 
                             int nlags = t120->nlags;
-
-
                             for(int j=0; j<nlags; j++)
                             {
                                 double re = t120->ld.spec[j].re;
@@ -550,7 +547,7 @@ int main(int argc, char** argv)
     }//end of index loop
 
 
-*/
+
 
 
 
