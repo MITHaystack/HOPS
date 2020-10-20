@@ -9,7 +9,7 @@ Copyright: all files should include a current-date MIT copyright and
 
     If other copyrights apply or copyright does not belong to MIT
     (for files brought in from elsewhere) suitable adjustments should
-    be made.
+    be made.  This plus a description should appear at the top of the file.
 
 Libraries
   Should be buildable either statically or dynamically linked.  The default,
@@ -33,23 +33,31 @@ Modularity
     multiple items of related functionality
   File level:
     Within a file, functional (functions/methods) should ideally be "visible"
-    within a window of at most 80? columns and 45? lines.  This should be
+    within a window of at most 80 columns and 45 lines.  This should be
     violated if there are preformance or other sensible reasons for doing
     so.  The point of this is to allow a develop to "see" what is going on.
     (Material that is off the screen is usually out of mind, and errors may
     easily result from inconsistencies that may result.)
+    Some files (e.g. C++ templates) require a different shape, e.g. as much
+    as 110 columns, but perhaps fewer lines.
   Variables:
-    Should be given short, non-cryptic names, and almost never single letter.
-    Camel case or snake case are both acceptable.
+    Should be given short, non-cryptic names when possible, and almost never
+    single letter.  Camel case or snake case are both acceptable.
+  Logic:
+    Use braces, but don't waste vertical space by doing so.  The opening
+    brace should be on the same line as the start of the statement/definition.
+    (FIXME: need to work through some doxygen and sphinx samples.)
   End of File:
     Files are on rare occasion truncated.  Some end of file marker should be
     included (if the language allows it).  It may be followed by special vim
-    edit commands if the file requires it.
+    edit commands if the file requires it.  Then it is obvious that you have
+    seen the end of the file.
 
 Working issues
   Put a FIXME in any file if you see something that needs to be understood and
-    possibly fixed for things where the plan forward is uncertain
-  If we have a working plan forward for the file in question, create an issue
+    possibly fixed for things where the plan forward is uncertain.
+  Once we have a working plan forward for the file in question, create an issue
+    in the github.
 
 Documentation
   C/C++ Code
@@ -57,6 +65,6 @@ Documentation
   Python
     Should be documented for processing by sphinx
   Bash / Perl
-    dunno
+    FIXME: dunno yet.
 
 eof

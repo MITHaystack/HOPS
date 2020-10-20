@@ -97,20 +97,48 @@ if [test -z "$KPSETEXMFPATH"] ; then [KPSETEXMFPATH=':'] ; fi
 AC_ARG_VAR(KPSETEXMFPATH, [normally ':' to find installed TeX files])
 
 #
-# package dependency checking
+# package dependency checking; ideally these should be optional
 #
-PKG_CHECK_MODULES(FFTW3, fftw3, [hasfftw=true], [hasfftw=false])
-if [$hasfftw] ; then
-    AC_DEFINE([HAVE_FFTW], 1, [Define to 1 if FFTW is available])
+
+# FFTW3
+PKG_CHECK_MODULES(FFTW3, fftw3, [has_fftw3=true], [has_fftw3=false])
+if [$has_fftw3] ; then
+    AC_DEFINE([HAVE_FFTW], 1, [Define to 1 when FFTW is available])
     AC_MHO_NOTICE([FFTW3 was found via check modules])
 else
-    AC_DEFINE([HAVE_FFTW], 0, [Define to 1 if FFTW is available])
+    AC_DEFINE([HAVE_FFTW], 0, [Define to 1 when FFTW is available])
     AC_MHO_NOTICE([FFTW3 not found via check modules])
 fi
-AC_MHO_NOTICE([%%% hasfftw is $hasfftw (required)])
+AC_MHO_NOTICE([%%% has_fftw3 is $has_fftw3 (required)])
 AC_SUBST(FFTW3_CFLAGS)
 AC_SUBST(FFTW3_LIBS)
-AM_CONDITIONAL(HAVE_FFTW, $hasfftw)
+AM_CONDITIONAL(HAVE_FFTW, $has_fftw3)
+
+# PGPLOT -- note that we typically don't need PGPLOT_CFLAGS or PGPLOT_LIBS
+PKG_CHECK_MODULES(PGPLOT, pgplot, [has_pgplot=true], [has_pgplot=false])
+if [$has_pgplot] ; then
+    AC_DEFINE([HAVE_PGPLOT], 1, [Define to 1 when PGPLOT is available])
+    AC_MHO_NOTICE([PGPLOT was found via check modules])
+else
+    AC_DEFINE([HAVE_PGPLOT], 0, [Define to 1 when PGPLOT is available])
+    AC_MHO_NOTICE([PGPLOT not found via check modules])
+fi
+AC_MHO_NOTICE([%%% has_pgplot is $has_pgplot (required)])
+AC_SUBST(PGPLOT_CFLAGS)
+AC_SUBST(PGPLOT_LIBS)
+# CPGPLOT -- as CPGPLOT_LIBS usually includes the pgplot linkage
+PKG_CHECK_MODULES(CPGPLOT, cpgplot, [has_cpgplot=true], [has_cpgplot=false])
+if [$has_cpgplot] ; then
+    AC_DEFINE([HAVE_CPGPLOT], 1, [Define to 1 when CPGPLOT is available])
+    AC_MHO_NOTICE([CPGPLOT was found via check modules])
+else
+    AC_DEFINE([HAVE_CPGPLOT], 0, [Define to 1 when CPGPLOT is available])
+    AC_MHO_NOTICE([CPGPLOT not found via check modules])
+fi
+AC_MHO_NOTICE([%%% has_cpgplot is $has_cpgplot (required)])
+AC_SUBST(CPGPLOT_CFLAGS)
+AC_SUBST(CPGPLOT_LIBS)
+AM_CONDITIONAL(HAVE_PGPLOT, [$has_cpgplot && $has_pgplot])
 
 # top-level Makefile and primary directories
 AC_CONFIG_FILES(
@@ -120,11 +148,13 @@ AC_CONFIG_FILES(
     source/Makefile
 )
 
+### FIXME: revert the 'b' names to the normal names
+
 # source/bash_src makefile
 # includes perl scripts as well
 AC_CONFIG_FILES(source/bash_src/Makefile)
 
-# source/c_source makefiles
+# source/c_source makefiles, part 1: "sub" and applications
 AC_CONFIG_FILES(
     source/c_src/Makefile
     source/c_src/mk4util/Makefile
@@ -133,29 +163,20 @@ AC_CONFIG_FILES(
     source/c_src/vex/Makefile
     source/c_src/applications/Makefile
     source/c_src/applications/alist/Makefile
+    source/c_src/applications/aedit/Makefile
+)
+# source/c_source makefiles, part 2: "fourfit"
+AC_CONFIG_FILES(
+    source/c_src/fourfit_libs/Makefile
+    source/c_src/fourfit_libs/ffcontrol/Makefile
+    source/c_src/fourfit_libs/ffcore/Makefile
+    source/c_src/fourfit_libs/ffmath/Makefile
+    source/c_src/fourfit_libs/ffio/Makefile
+    source/c_src/fourfit_libs/ffsearch/Makefile
+    source/c_src/fourfit_libs/ffplot/Makefile
 )
 # still to do:
-    # source/c_src/applications/aedit/Makefile
-    # source/c_src/applications/aedit/src/Makefile
-    # source/c_src/applications/aedit/include/Makefile
     # source/c_src/applications/fourfit/Makefile
-    # source/c_src/fourfit_libs/Makefile
-    # source/c_src/fourfit_libs/ffplot/Makefile
-    # source/c_src/fourfit_libs/ffplot/src/Makefile
-    # source/c_src/fourfit_libs/ffplot/include/Makefile
-    # source/c_src/fourfit_libs/ffsearch/Makefile
-    # source/c_src/fourfit_libs/ffsearch/src/Makefile
-    # source/c_src/fourfit_libs/ffsearch/include/Makefile
-    # source/c_src/fourfit_libs/ffcontrol/Makefile
-    # source/c_src/fourfit_libs/ffcontrol/src/Makefile
-    # source/c_src/fourfit_libs/ffcontrol/include/Makefile
-    # source/c_src/fourfit_libs/ffcore/Makefile
-    # source/c_src/fourfit_libs/ffcore/src/Makefile
-    # source/c_src/fourfit_libs/ffcore/include/Makefile
-    # source/c_src/fourfit_libs/ffio/Makefile
-    # source/c_src/fourfit_libs/ffio/src/Makefile
-    # source/c_src/fourfit_libs/ffmath/Makefile
-    # source/c_src/fourfit_libs/ffmath/src/Makefile
 
 # source/cpp_src makefiles
 AC_CONFIG_FILES(source/cpp_src/Makefile)
