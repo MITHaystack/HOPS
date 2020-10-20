@@ -1,5 +1,7 @@
 #
 # Makefile for the original chops/source/c_src/mk4util
+# (c) Massachusetts Institute of Technology, 2020
+# The contents of the package Copyright statement apply here.
 #
 #SUBDIRS = .
 

@@ -1,5 +1,7 @@
 #
 # makefile for requirements document
+# (c) Massachusetts Institute of Technology, 2020
+# The contents of the package Copyright statement apply here.
 #
 
 # $(TEXPDF).pdf is built from $(TEXSRC).tex
