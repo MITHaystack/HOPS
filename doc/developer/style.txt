@@ -5,7 +5,7 @@ Copyright: all files should include a current-date MIT copyright and
     a reference to the top-level Copyright file, e.g. in C++ source.
 
     // (c) Massachusetts Institute of Technology, ????-2020
-    // The contents of the top-level Copyright statement apply here.
+    // The contents of the package Copyright statement apply here.
 
     If other copyrights apply or copyright does not belong to MIT
     (for files brought in from elsewhere) suitable adjustments should
@@ -45,6 +45,11 @@ Modularity
     Files are on rare occasion truncated.  Some end of file marker should be
     included (if the language allows it).  It may be followed by special vim
     edit commands if the file requires it.
+
+Working issues
+  Put a FIXME in any file if you see something that needs to be understood and
+    possibly fixed for things where the plan forward is uncertain
+  If we have a working plan forward for the file in question, create an issue
 
 Documentation
   C/C++ Code
