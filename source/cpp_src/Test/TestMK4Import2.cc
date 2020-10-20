@@ -37,12 +37,13 @@ using polprod_axis_type = MHOAxis<std::string>;
 using frequency_axis_type = MHOAxis<double>;
 using time_axis_type = MHOAxis<double>;
 
+#define NDIM 3
 #define POLPROD_AXIS 0
 #define TIME_AXIS 1
 #define FREQ_AXIS 2
 
-using channel_axis_pack = MHOAxisPack< polprod_axis_type, time_axis_type, frequency_axis_type >;
-using channel_data_type = MHOTensorContainer< visibility_type, channel_axis_pack >;
+using baseline_axis_pack = MHOAxisPack< polprod_axis_type, time_axis_type, frequency_axis_type >;
+using baseline_data_type = MHOTensorContainer< visibility_type, baseline_axis_pack >;
 
 double
 calc_freq_bin(double ref_sky_freq, double rem_sky_freq, double ref_bw, double rem_bw, char ref_net_sb, char rem_net_sb, int nlags, int bin_index)
@@ -143,7 +144,7 @@ int main(int argc, char** argv)
     //for the time being we are just going build the visibilities for a single baseline
     std::string baseline = mk4ci.getstr(corel_obj->t100->baseline, 2);
     std::cout<<"baseline = "<<baseline<<std::endl;
-    
+
     std::cout<<"test"<<std::endl;
     std::cout<<"ap space"<< corel_obj->index->ap_space<<std::endl;
 
@@ -179,7 +180,7 @@ int main(int argc, char** argv)
                 }
             }
         }
-    
+
         struct type_101* t101;
         if( (t101 = idx->t101) != NULL)
         {
@@ -190,14 +191,26 @@ int main(int argc, char** argv)
     }
     num_channels = channel_label_pairs.size();
 
+    //create a map of channel-pairs to interval labels (to be filled in with more information later)
+    std::map< std::string, MHOIntervalLabel> channel_label_map;
+    for(auto it = channel_label_pairs.begin(); it != channel_label_pairs.end(); it++)
+    {
+        MHOIntervalLabel tmp_label;
+        tmp_label.Insert(std::string("ref_chan_id"), it->first);
+        tmp_label.Insert(std::string("rem_chan_id"), it->second);
+        std::string tmp_key = it->first + ":" + it->second;
+        channel_label_map.insert(std::make_pair( tmp_key, tmp_label ) );
+    }
+
     std::cout<<"number of channels = "<<num_channels<<std::endl;
     for(auto it = channel_label_pairs.begin(); it != channel_label_pairs.end(); it++)
     {
         std::cout<<"channel pairs = "<<it->first<<", "<<it->second<<std::endl;
     }
-    
+
     std::set< std::string > pp_pairs;
     //now look up the station and channel info so we can fill out the frequncy axis
+    //also create a set of channel-labels
     int nst = vex_obj->ovex->nst;
     char ref_st = baseline[0];
     char rem_st = baseline[1];
@@ -205,6 +218,7 @@ int main(int argc, char** argv)
     char ref_net_sb, rem_net_sb, ref_pol, rem_pol;
     bool found_ref = false;
     bool found_rem = false;
+
     for(auto chpairIT = channel_label_pairs.begin(); chpairIT != channel_label_pairs.end(); chpairIT++)
     {
         std::string ref_chan_id = chpairIT->first;
@@ -229,7 +243,7 @@ int main(int argc, char** argv)
                     }
                 }
             }
-    
+
             if(rem_st == vex_obj->ovex->st[ist].mk4_site_id && !found_rem)
             {
                 for(size_t nch=0; nch<MAX_CHAN; nch++)
@@ -244,7 +258,6 @@ int main(int argc, char** argv)
                         found_rem = true;
                     }
                 }
-    
             }
         }
         if(found_ref && found_rem)
@@ -253,18 +266,48 @@ int main(int argc, char** argv)
             pp.append(1,ref_pol);
             pp.append(1,rem_pol);
             pp_pairs.insert(pp);
-            std::cout<<"pol pair = "<<ref_pol<<"-"<<rem_pol<<std::endl;
+
+            //add the channel information to the labels
+            std::string tmp_key = ref_chan_id + ":" + rem_chan_id;
+            auto label_iter = channel_label_map.find(tmp_key);
+            if(label_iter != channel_label_map.end())
+            {
+                label_iter->second.Insert(std::string("ref_sky_freq"), ref_sky_freq);
+                label_iter->second.Insert(std::string("ref_bandwidth"), ref_bw);
+                label_iter->second.Insert(std::string("ref_net_sideband"), ref_net_sb);
+                label_iter->second.Insert(std::string("ref_polarization"), ref_pol);
+                label_iter->second.Insert(std::string("rem_sky_freq"), rem_sky_freq);
+                label_iter->second.Insert(std::string("rem_bandwidth"), rem_bw);
+                label_iter->second.Insert(std::string("rem_net_sideband"), rem_net_sb);
+                label_iter->second.Insert(std::string("rem_polarization"), rem_pol);
+
+                label_iter->second.DumpMap<std::string>();
+                label_iter->second.DumpMap<double>();
+                label_iter->second.DumpMap<char>();
+                label_iter->second.DumpMap<int>();
+            }
         }
     }
-    
+
+    num_pp = pp_pairs.size();
+
+    //now we can go ahead an create a container for all the visibilities
+    std::size_t bl_dim[NDIM] = {num_pp, num_lags, num_channels*num_lags};
+    baseline_data_type* bl_data = new baseline_data_type(bl_dim);
+
+    //first label the pol-product axis
+    std::size_t pp_count = 0;
     for(auto it = pp_pairs.begin(); it != pp_pairs.end(); it++)
     {
-        std::cout<<"pol-products include: "<<*it<<std::endl;
+        std::cout<<"pol-product @ "<<pp_count<<" = "<<*it<<std::endl;
+        std::get<POLPROD_AXIS>(*bl_data)[pp_count] = *it;
+        pp_count++;
     }
 
 
 
-    // 
+
+    //
     // //create a map of channel-pairs to (empty) channel_data_containers
     // size_t dim[2];
     // dim[0] = num_aps+1;
@@ -276,7 +319,7 @@ int main(int argc, char** argv)
     //     auto key = std::pair<std::string, std::string >(iter->first, iter->second);
     //     auto chan_it = channels.insert( std::pair< std::pair<std::string, std::string >, channel_data_type* >( key, new channel_data_type(dim) ) );
     // }
-    // 
+    //
     // //now lets fill them up
     // struct type_101* t101 = nullptr;
     // for(int i=0; i<corel_obj->index_space; i++)
@@ -288,7 +331,7 @@ int main(int argc, char** argv)
     //         std::string ref_chan_id = mk4ci.getstr(t101->ref_chan_id,8);
     //         std::string rem_chan_id = mk4ci.getstr(t101->rem_chan_id,8);
     //         auto key = std::pair<std::string, std::string>(ref_chan_id, rem_chan_id);
-    // 
+    //
     //         auto channel_elem = channels.find(key);
     //         if( channel_elem != channels.end() )
     //         {
@@ -303,12 +346,12 @@ int main(int argc, char** argv)
     //                         std::string baseline = mk4ci.getstr(t120->baseline, 2);
     //                         char ref_st = baseline[0];
     //                         char rem_st = baseline[1];
-    // 
+    //
     //                         double ref_sky_freq, ref_bw, rem_sky_freq, rem_bw;
     //                         char ref_net_sb, rem_net_sb, ref_pol, rem_pol;
     //                         bool found_ref = false;
     //                         bool found_rem = false;
-    // 
+    //
     //                         //now look up the station and channel info so we can fill out the frequncy axis
     //                         int nst = vex_obj->ovex->nst;
     //                         for(int ist = 0; ist<nst; ist++)
@@ -329,9 +372,9 @@ int main(int argc, char** argv)
     //                                         break;
     //                                     }
     //                                 }
-    // 
+    //
     //                             }
-    // 
+    //
     //                             if(rem_st == vex_obj->ovex->st[ist].mk4_site_id && !found_rem)
     //                             {
     //                                 for(size_t nch=0; nch<MAX_CHAN; nch++)
@@ -347,20 +390,20 @@ int main(int argc, char** argv)
     //                                         break;
     //                                     }
     //                                 }
-    // 
+    //
     //                             }
     //                             if(found_ref && found_rem){break;}
     //                         }
-    // 
+    //
     //                         int nlags = t120->nlags;
-    // 
-    // 
+    //
+    //
     //                         for(int j=0; j<nlags; j++)
     //                         {
     //                             double re = t120->ld.spec[j].re;
     //                             double im = t120->ld.spec[j].im;
     //                             channel_elem->second->at(ap,j) = std::complex<double>(re,im);
-    // 
+    //
     //                             //set up the frequency axis
     //                             double freq =  calc_freq_bin(ref_sky_freq, rem_sky_freq, ref_bw, rem_bw, ref_net_sb,rem_net_sb, nlags, j);
     //                             std::get<FREQ_AXIS>(*(channel_elem->second))(j) = freq;
@@ -376,14 +419,14 @@ int main(int argc, char** argv)
     //             }
     //         }
     //     }
-    // 
+    //
     // }//end of index loop
-    // 
+    //
     // #ifdef USE_ROOT
-    // 
-    // 
+    //
+    //
     // std::cout<<"starting root plotting"<<std::endl;
-    // 
+    //
     // //ROOT stuff for plots
     // TApplication* App = new TApplication("PowerPlot",&argc,argv);
     // TStyle* myStyle = new TStyle("Plain", "Plain");
@@ -408,20 +451,20 @@ int main(int argc, char** argv)
     // TColor::CreateGradientColorTable(NRGBs, stops, red, green, blue, NCont);
     // myStyle->SetNumberContours(NCont);
     // myStyle->cd();
-    // 
-    // 
+    //
+    //
     // auto first_channel_iter = channels.begin();
     // auto first_channel = first_channel_iter->second;
     // auto* x_axis = &(std::get<TIME_AXIS>(*first_channel));
     // auto* y_axis = &(std::get<FREQ_AXIS>(*first_channel));
-    // 
+    //
     // size_t x_axis_size = x_axis->GetSize();
     // size_t y_axis_size = y_axis->GetSize();
-    // 
+    //
     // //just plot phases for a single channel
     // TGraph2D *gr = new TGraph2D(x_axis_size*y_axis_size);
     // TGraph2D *gb = new TGraph2D(x_axis_size*y_axis_size);
-    // 
+    //
     // size_t count = 0;
     // for(size_t i=0; i<x_axis_size; i++)
     // {
@@ -434,7 +477,7 @@ int main(int argc, char** argv)
     //         count++;
     //     }
     // }
-    // 
+    //
     // std::string name = first_channel_iter->first.first + "-" +  first_channel_iter->first.second;
     // TCanvas* c = new TCanvas(name.c_str(),name.c_str(), 50, 50, 950, 850);
     // c->SetFillColor(0);
@@ -446,11 +489,11 @@ int main(int argc, char** argv)
     // c->cd(2);
     // gb->Draw("COLZ");
     // c->Update();
-    // 
+    //
     // App->Run();
-    // 
+    //
     // #endif
-    // 
+    //
 
 
 
