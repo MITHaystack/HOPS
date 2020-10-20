@@ -5,9 +5,9 @@
 #
 if HAVE_FFTW
 # SUBDIRS = fourfit alist aedit
-  SUBDIRS = alist
+  SUBDIRS = alist aedit
 else
-  SUBDIRS = alist
+  SUBDIRS = alist aedit
 endif
 #
 # eof
