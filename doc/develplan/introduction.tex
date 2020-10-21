@@ -1,0 +1,132 @@
+%
+% Introductory material
+%
+
+\section{Introduction}
+\label{sec:intro}
+
+\subsection{EHT MSRI Project}
+\label{sec:msriproj}
+
+The Event Horizon Telescope (EHT) has launched an
+MSRI (Mid-Scale Research Initiative) project which looks to develop
+the technologies needed for a second-generation Event Horizon
+Telescope (EHT).  This project is looking at all parts of the existing
+system and looking
+to scale it up to a larger and more capable array.  A significant component
+of the telescope is the software needed to properly operate, reduce and
+analyze the data taken by the member telescopes.  It is unfortunately true
+that the development and maintenance of such critical software is historically
+a side effect of other programmatics---\textit{i.e.} it is easier to get
+resources to build something than it is to obtain resources to properly
+analyze the data from it.  In this case, however, the MSRI project is
+unusual in that it specifically allocate resources at Haystack to address
+this and move the current collection
+of EHT-required software into the 21-st century.  This document is a start
+on organizing the thoughts in concert with the accepted MSRI proposal.
+
+The next generation EHT is looking to support $\sim$20 stations, with
+wider bandwidth (128 Gbps has been mentioned---meaning four dual-polarization,
+4 GHz bands), although support for greater bit depth
+is potentially also of interest should recording media be available.
+The EHT to date has had an annual cycle
+of observing; but the ability to make more observations per year has been
+mentioned.  Without a substantial increase in analytic support manpower,
+all of this implies that processing with HOPS must be made, smarter, more
+automatic, more robust and easier to use.
+
+At the same time it is critically important to recognize that the existing
+HOPS (Haystack Observatory Postprocessing System)
+framework is required by the geodetic community for current operations
+as well as planned development to their generation of geodetic stations
+(\cite{niell2018}).  At the same time, the geodetic analyses struggle
+from some of the same constraints the EHT is facing.  Thus the new design and
+implementation plan must repect the geodetic needs---at the end of the
+process, there are not likely to be resources to support divergent HOPS
+packages.  In this document we out the basic plan for development of the
+package and identify the work that will transpire under the MSRI program.
+
+\subsection{History of HOPS}
+\label{sec:histhops}
+
+At the heart of the VLBI technique is the correlation of the raw
+station data using either dedicated hardware or software to find
+the correlated signal from the cosmic source.  The correlation is
+manifest as an interference fringe that changes in an expected way
+as the Earth rotates.  This is a simple, but (computationally)
+expensive process that requires good, but nevertheless approximate,
+models in order to obtain useful a useful fringe.  Thus some
+post-correlation processing software is required to analyze the
+fringes to obtain scientifically useful results.
+
+The current Haystack Observatory Postprocessing system (HOPS) was
+born from the efforts of Alan Rogers in the late 70's with a program
+called FRNGE which was written in Fortran and designed to be efficient
+on an HP-21MX (later renamed HP-1000) minicomputer.  With improvements
+in hardware and software, a rewrite of the toolset was launched in
+the early 90's by Colin Lonsdale, Roger Cappallo and Cris Niell as
+driven by the needs of the geodetic community.  The basic algorithms
+were adopted from FRNGE; but there was a complete rewrite of the code
+into (K\&R) C and substantial revisions of the i/o, control and file
+structures resulting in the framework of the current HOPS system.
+This was followed by a substantial effort in the early-mid
+00's to develop tools for optimizing SNR and deriving correction factors
+for data with imperfect coherence, based on analysis of amplitude with
+coherent averaging time.
+While there is no definitive, published, HOPS reference in the literature,
+the Mark 4 Correlator paper (\cite{whitney2004mark}) touches upon the basic
+implementation available by this time.
+Further evolution in the late 00's was provoked
+by the re-emergence of software correlation
+(DiFX, \cite{deller2007difx}, \cite{deller2011difx}),
+and in the 10's by the
+needs of EHT-scale mm-VLBI which brings us to HOPS in its current form.
+
+Acknowledging its geodetic heritage, HOPS was optimized for precision
+on per-baseline delay and delay-rate measurements which are the raw
+material for the geodetic analysis programs.  Consequently, it is
+somewhat light on support for some routine calibration processes found
+in some other astronomical software packages (e.g. AIPS or CASA).
+Nevertheless, it provides a good framework for the reduction and
+analysis of mm-VLBI data, where the vagaries of atmospheric effects
+require ever more specialized processing to harvest significant
+astronomical results.
+
+For the needs of the EHT Campaigns of 2017 it was decided to augment
+the existing HOPS package with some python-based packages in order to
+create a pipeline for the initial reduction of data.  (See
+\cite{blackburn2019eht}, and \cite{eht1}, \cite{eht2}, and \cite{eht3}).
+The EHT also looked at data reduction with
+other packages.  There were initial surveys of options in 2015 (Leiden
+workshop) and 2016 (Nijmegen) which led to a focus on HOPS, AIPS and CASA
+as the three viable options to pursue for 2017.
+The Calibration and Error Analysis working group
+of the EHT was able to demonstrate consistent results between the three
+packages; ultimately production processing via HOPS for the EHT was the
+winning solution.  In this continued development of HOPS, we shall assume
+that HOPS alone must be capable of the full analysis; but we should also
+be mindful that options to move the data to AIPS or CASA must at some
+level exist.
+
+\subsection{The Basic Plan}
+\label{sec:theplanstan}
+
+So our charge from the MSRI project is to update the existing HOPS and
+EHT Pipeline system and produce a better organized, more useable and
+flexible system for the next decades.  A significant constraint is that
+HOPS is currently the critical analysis package for geodetic use.  This
+is especially true with the introduction of the VGOS system
+(Reference\dots).  Since we will not ultimately have resources to support
+multiple systems, it is a de facto requirement that the next-generation
+HOPS system work seamlessly with all of its user community (\textit{i.e.}
+EHT/astronomy and geodetic).  Given all the validation work that went
+into the HOPS/EHT Pipeline for the 2017 data analysis, this is not a
+real restriction.  The EHT will demand the same results from the old
+as well as the new HOPS.
+
+This document will evolve into a full development plan once in the
+months ahead.
+
+%
+% eof
+%

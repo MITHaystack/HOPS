@@ -1,0 +1,370 @@
+%
+% detailed timeline -- need a wide terminal (132chars)
+%
+
+\section{Development Schedule}
+\label{sec:devsched}
+
+\subsection{Pre-requisites}
+\label{sec:prereq}
+Probably the most critical thing is to evaluate whether there are any
+``gotchas'' in using HDF5 (the proposed new standard).  Some decisions
+about external package dependencies must also be made.
+
+\subsection{Re-use of existing code}
+\label{sec:reuse}
+
+Many portions of the existing HOPS code can and should be incorporated into the new software. In order to do so, some reorganization will be needed. This will consist
+of identifying and isolating useful functions in the existing code base, so they can be used independently and compiled into separate utility libraries. These utility
+libraries can than be linked in as needed.
+
+\subsection{Unit test coverage}
+\label{sec:unitest}
+
+During development a clear set of unit tests for various functions and libraries will need to be developed concurrently with the software. The purpose of this is two-fold. First, the
+implementation of unit test cases allows one to validate the correct operation of individual compontents, and secondly, it allows a rapid identification of problems and bugs that may
+be introduced during development before they become problematic. The unit tests for each component will necessarily be unique to each item they are testing, but should be operable
+on the test component independently with a minimum number of dependencies.
+
+\subsection{Verification and Validation}
+\label{sec:vandv}
+
+Apart from the unit testing of individual software components, it is critically important to verify the correction operation of the complete software package. This should be done
+using a combination of synthetic and real data. Use of synthetic data is desirable since it should be possible to make concrete calculations about the output of the software, whereas
+it is also imperative to test the performance of the software on read data which may exhibit pathologies that are not possible to replicate artificially. Validation should also done
+in comparison to the original HOPS software, to ensure no functionality is lost or degraded.
+
+\subsection{Other Considerations}
+\label{sec:otherstuff}
+
+
+\subsubsection{What can be worked on in parallel?}
+\label{sec:parallel-work}
+Once the general design is in place, many code modules may
+be worked on in parallel by independent developers provided
+well posed unit tests and interfaces are defined and implemented.
+
+
+\subsubsection{What must be sequential?}
+\label{sec:sequential-work}
+The main architectural decisions must be made early, the
+programs that put all the pieces together will come later.
+
+\subsubsection{What are the module dependencies?}
+\label{sec:dependencies}
+The algorithmic modules depend on the data access modules, but the internal data representation should not rely on having any particular data access (I/O) library installed. Whenever possible dependencies on external packages and libraries should be made optional, but not necessarily in a feature preserving way. For example,
+it is natural that in order to access data in HDF5 files, an HDF5 library must be available during compilation, but the lack of such a library should not keep the user from manipulating Mark4 or other file types so
+long as their prerequisites are met. Likewise, this should be done for other libraries when possible, e.g. visualization, where it should be possible to run the fringe fitting procedure with no visualization package available at all if desired.
+
+
+\subsubsection{What other resources may be used?}
+\label{sec:otherbodies}
+We expect to have access to some geodetic resources to support
+maintenance of traditional HOPS capabilities into the new package.
+We expect that EHT members from other working groups and other
+institutions than Haystack will be available to test aspects of
+the new package as they become available.  Should other developers
+wish to provide additional modules we would be open to that.
+
+\subsubsection{What parts must be supported by the geodetic team?}
+\label{sec:geodesy}
+If the EHT does not adopt a hardware phase cal system, the
+geodetic team would have to provide support for this feature/port from existing code.
+
+\subsubsection{Clarity on descope options}
+\label{sec:descope}
+
+\FIXME{more to come}
+
+
+\subsection{Detailed Timeline}
+\label{sec:timetables}
+
+In this section we provide some tables that provide inputs for Gantt-style
+charting.  However, in view of the fact that the first months of the project
+call for a refinement of the plan in terms of features, requirements and
+specifications\dots such a chart must at best be considered a best effort
+today and almost certainly to be revised within the first year of development.
+
+Since the manpower is likely to be distributed across parts of multiple
+individuals (at least one of whom is to be hired), this version considers
+1 FTE doing the complete job.
+
+The meanings of the columns are as follows:
+\begin{description}
+\item[N(umber)] is an arbitrary line label for tracking
+predecessors and successors
+\item[Ref(erence)] should be to the detailed commentary of
+Sec~\ref{sec:commentary} or equivalently, Sec~\ref{sec:outline}
+\item[Type] the type of task, see below
+\item[Topic] should be some short title for the task
+\item[Sta(rt)] should (at this point refer to quarter in which the work starts
+\item[Eff(ort)] is a number of man-weeks (5 work days)
+\item[Pre(decessors)] should indicate any predecessor tasks
+\item[Suc(cessors)] should indicate any tasks which depend on this
+\item[G(eodetic] indicates a geodetic task supported by other resources
+\item[Comments] as needed
+\end{description}
+The items in the tables are either tasks (which involve a time estimate
+to complete the work), or a milestone to represent conclusion of a stage.
+For example, the design process generally concludes with a specification
+prior to implementation, and completion of a set of tasks concludes with
+a review of the verification or validation results. Thus we use this
+shorthand (for readability)
+\begin{description}
+\item[(C)onsultation]
+with partners regarding feature requests and or usability considerations
+and other requirements
+\item[(D)esign]
+conducting the design study, trade-offs and convergion to a plan
+\item[(S)pecification]
+details of the code element, inputs, outputs, algorithms, methods
+\item[(I)mplementation]
+actual coding
+\item[(T)esting]
+unit testing for code modules
+\item[(Ve)rification]
+refers to verifying that the code does what specification called for
+\item[(Va)lidation]
+refers to validating the results of the code against previous work
+\item[(R)eview]
+review of testing, verification or validation
+\end{description}
+%
+%
+% to make the header readable and line up\ldots
+%
+\newsavebox{\NM}
+\savebox{\NM}[5mm][r]{N.}
+\newsavebox{\REF}
+\savebox{\REF}[8mm][r]{Ref.}
+\newsavebox{\WW}
+\savebox{\WW}[9mm][s]{Type}
+\newsavebox{\TPC}
+\savebox{\TPC}[32mm][l]{Topic}
+\newsavebox{\EFF}
+\savebox{\EFF}[6mm][l]{Eff.}
+\newsavebox{\ST}
+\savebox{\ST}[6mm][l]{Sta.}
+\newsavebox{\PRD}
+\savebox{\PRD}[11mm][l]{Pre.}
+\newsavebox{\SCC}
+\savebox{\SCC}[11mm][l]{Suc.}
+\newsavebox{\CMTS}
+\savebox{\CMTS}[36mm][l]{Comments}
+
+The following tables assign $\sim$142 man-weeks of effort which leaves $\sim$50 man-weeks of margin
+which is appropriate at this level of task specification (especially as features not in our minds
+might yet be proposed).  References to quarter for work (Q01 through Q16) are only approximate.
+
+\small
+\textbf{initial planning}\hfill\break
+\noindent
+\begin{tabular}{r|r|c|l|c|c|c|c|c|l}
+\hline
+\usebox{\NM}&\usebox{\REF}&\usebox{\WW}&\usebox{\TPC}&\usebox{\ST}&\usebox{\EFF}&\usebox{\PRD}&\usebox{\SCC}&G&\usebox{\CMTS}\\
+\hline
+\hline
+%00&\ref{sec:software-interaction} &XX& other visualizations & Q01 & 1.0 & - & - & N &  \\
+000&\ref{sec:software-lang}        &CD& language choices     & Q01 & 1.0 & none    &  013 & N & discussion with users\\
+001&\ref{sec:software-build}       &CD& build system         & Q01 & 1.0 & none    &  013 & N & discussion with users\\
+002&\ref{sec:software-parallel}    &CD& parallel support     & Q01 & 1.0 & none    &  013 & N & discussion with users\\
+003&\ref{sec:software-interaction} &CD& interactivity        & Q01 & 1.0 & none    &  013 & N & discussion with users\\
+004&\ref{sec:software-externals}   &CD& external packages    & Q01 & 1.0 & none    &  013 & N & discussion with users\\
+010&\ref{sec:newobjects}           &DS& new objects creation & Q01 & 2.0 & none    &  013 & N & work out object plan \\
+011&\ref{sec:libes}                &DS& new library creation & Q01 & 2.0 & none    &  013 & N & work out library plan \\
+012&\ref{sec:progs}                &DS& new program creation & Q01 & 2.0 & none    &  013 & N & progs \& scripts \\
+013&\ref{sec:genarch}              &R & review general plan  & Q01 & 0.0 & 000-012 & many & N & new features as well\\
+\hline
+\end{tabular}\vspace{6mm}
+
+\small
+\textbf{correlator input/file exchanges}\hfill\break
+\noindent
+\begin{tabular}{r|r|c|l|c|c|c|c|c|l}
+\hline
+\usebox{\NM}&\usebox{\REF}&\usebox{\WW}&\usebox{\TPC}&\usebox{\ST}&\usebox{\EFF}&\usebox{\PRD}&\usebox{\SCC}&G&\usebox{\CMTS}\\
+\hline
+\hline
+%00&\ref{sec:software-interaction} &XX& other visualizations & Q01 & 1.0 & - & - & N &  \\
+020&\ref{sec:difx-corr}            &DS& difx import          & Q02 & 1.0 & 013     & 021 & N & \texttt{difx2mark4} \\
+021&\ref{sec:difx-corr}            &I & difx import          & Q04 & 4.0 & 020     & 022 & N & recoding \\
+022&\ref{sec:difx-corr}            &T & difx import          & Q05 & 1.0 & 021     & 300 & N & unit test only \\
+030&\ref{sec:corr-import}          &DS& file exchange        & Q03 & 1.0 & 013     & 031 & N &  \\
+031&\ref{sec:corr-import}          &I & file exchange        & Q08 & 4.0 & 030,300 & 032 & N & coding \\
+032&\ref{sec:corr-import}          &T & file exchange        & Q09 & 1.0 & 031     & 400 & N & unit test only \\
+040&\ref{sec:corr-imports}         &VV& import/export tests  & Q12 & 1.0 & 400     & 041 & N & \texttt{difx2mark4} equiv. \\
+041&\ref{sec:corr-imports}         &VV& import/export tests  & Q13 & 1.0 & 040,500 & 600 & N & \texttt{difx2fits} equiv. \\
+\hline
+\end{tabular}\vspace{6mm}
+
+\small
+\textbf{outputs to analysis}\hfill\break
+\noindent
+\begin{tabular}{r|r|c|l|c|c|c|c|c|l}
+\hline
+\usebox{\NM}&\usebox{\REF}&\usebox{\WW}&\usebox{\TPC}&\usebox{\ST}&\usebox{\EFF}&\usebox{\PRD}&\usebox{\SCC}&G&\usebox{\CMTS}\\
+\hline
+\hline
+%00&\ref{sec:software-interaction} &XX& other visualizations & Q01 & 1.0 & - & - & N &  \\
+050&\ref{sec:uvfits}               &DS& uvfits               & Q02 & 1.0 & 013     & 051 & N &  \\
+051&\ref{sec:uvfits}               &I & uvfits               & Q08 & 4.0 & 050,300 & 052 & N & recoding \\
+052&\ref{sec:uvfits}               &T & uvfits               & Q09 & 1.0 & 051     & 400 & N & unit test only \\
+053&\ref{sec:uvfits}               &VV& uvfits               & Q12 & 1.0 & 052,500 & 600 & N & with imaging WG \\
+060&\ref{sec:calcsolve}            &DS& calcsolve            & Q02 & 1.0 & 013     & 061 & Y & (implicit) \\
+061&\ref{sec:calcsolve}            &I & calcsolve            & Q08 & 1.0 & 060,300 & 062 & Y & recoding \\
+062&\ref{sec:calcsolve}            &T & calcsolve            & Q09 & 1.0 & 061     & 400 & Y & unit test only \\
+063&\ref{sec:calcsolve}            &VV& calcsolve            & Q12 & 1.0 & 062,500 & 600 & Y & with GSFC \\
+\hline
+\end{tabular}\vspace{6mm}
+
+\pagebreak
+\small
+\textbf{object implementation}\hfill\break
+\noindent
+\begin{tabular}{r|r|c|l|c|c|c|c|c|l}
+\hline
+\usebox{\NM}&\usebox{\REF}&\usebox{\WW}&\usebox{\TPC}&\usebox{\ST}&\usebox{\EFF}&\usebox{\PRD}&\usebox{\SCC}&G&\usebox{\CMTS}\\
+\hline
+\hline
+%00&\ref{sec:software-interaction} &XX& other visualizations & Q01 & 1.0 & - & - & N &  \\
+070&\ref{sec:mk4types}             &DS& mk4 types            & Q02 & 1.0 & 013 & 071 & N &  \\
+071&\ref{sec:mk4types}             &I & mk4 types            & Q04 & 4.0 & 070 & 072 & N & recoding  \\
+072&\ref{sec:mk4types}             &T & mk4 types            & Q05 & 1.0 & 071 & 300 & N & unit test only \\
+073&\ref{sec:pywrap}               &DS& python wrappers      & Q02 & 1.0 & 013 & 074 & N &  \\
+074&\ref{sec:pywrap}               &I & python wrappers      & Q04 & 2.0 & 073 & 075 & N & recoding \\
+075&\ref{sec:pywrap}               &T & python wrappers      & Q05 & 1.0 & 074 & 300 & N & unit test only \\
+080&\ref{sec:alist}                &DS& alist                & Q02 & 1.0 & 013 & 081 & N & \texttt{alist} \\
+081&\ref{sec:alist}                &I & alist                & Q04 & 2.0 & 080 & 082 & N & recoding \\
+082&\ref{sec:alist}                &T & alist                & Q05 & 1.0 & 081 & 300 & N & unit test only \\
+083&\ref{sec:control}              &DS& control file         & Q02 & 1.0 & 013 & 084 & N &  \\
+084&\ref{sec:control}              &I & control file         & Q04 & 2.0 & 083 & 085 & N & coding \\
+085&\ref{sec:control}              &T & control file         & Q05 & 1.0 & 084 & 300 & N & unit test only  \\
+090&\ref{sec:vex2xml}              &DS& update vex2xml       & Q02 & 1.0 & 013 & 091 & N & \texttt{vex2xml} \\
+091&\ref{sec:vex2xml}              &I & update vex2xml       & Q04 & 2.0 & 090 & 092 & N & coding \\
+092&\ref{sec:vex2xml}              &T & update vex2xml       & Q05 & 1.0 & 091 & 300 & N & unit test only \\
+095&\ref{sec:hopsfiles}            &VV& old HOPS regression  & Q12 & 1.0 & 400 & 600 & N & data exchange tests \\
+\hline
+\end{tabular}\vspace{6mm}
+
+\small
+\textbf{algorithmic implementation}\hfill\break
+\noindent
+\begin{tabular}{r|r|c|l|c|c|c|c|c|l}
+\hline
+\usebox{\NM}&\usebox{\REF}&\usebox{\WW}&\usebox{\TPC}&\usebox{\ST}&\usebox{\EFF}&\usebox{\PRD}&\usebox{\SCC}&G&\usebox{\CMTS}\\
+\hline
+\hline
+%00&\ref{sec:software-interaction} &XX& other visualizations & Q01 & 1.0 & - & - & N &  \\
+100&\ref{sec:fringing}             &DS& baseline fringing    & Q02 & 1.0 & 013     & 101 & N &  \\
+101&\ref{sec:fringing}             &I & baseline fringing    & Q04 & 8.0 & 100     & 102 & N & recoding \\
+102&\ref{sec:fringing}             &T & baseline fringing    & Q05 & 1.0 & 101     & 300 & N & unit tests only \\
+103&\ref{sec:specline}             &DS& spectral line fits   & Q03 & 1.0 & 013     & 300 & N & design only \\
+104&\ref{sec:ionosphere}           &DS& ionospheric fits     & Q03 & 1.0 & 013     & 300 & Y &  \\
+105&\ref{sec:ionosphere}           &I & ionospheric fits     & Q08 & 4.0 & 104,300 & 106 & Y & recoding \\
+106&\ref{sec:ionosphere}           &T & ionospheric fits     & Q09 & 1.0 & 105     & 400 & Y & unit tests only \\
+110&\ref{sec:cofit}                &DS& coherence fits       & Q03 & 1.0 & 013     & 111 & N &  \\
+111&\ref{sec:cofit}                &I & coherence fits       & Q08 & 4.0 & 110,300 & 112 & N & recoding \\
+112&\ref{sec:cofit}                &T & coherence fits       & Q09 & 1.0 & 111     & 400 & N & unit tests only \\
+113&\ref{sec:search}               &DS& weak fringe search   & Q03 & 1.0 & 013     & 114 & N &  \\
+114&\ref{sec:search}               &I & weak fringe search   & Q08 & 4.0 & 113,300 & 115 & N & recoding \\
+115&\ref{sec:search}               &T & weak fringe search   & Q09 & 1.0 & 114     & 400 & N & unit tests only \\
+120&\ref{sec:pulsar}               &DS& pulsar fold/search   & Q03 & 1.0 & 013     & 300 & N & design only \\
+121&\ref{sec:space}                &DS& support for space    & Q03 & 1.0 & 013     & 300 & N & design only \\
+122&\ref{sec:polconvert}           &DS& polconversion        & Q03 & 1.0 & 013     & 300 & N & design only \\
+\hline
+\end{tabular}\vspace{6mm}
+
+\small
+\textbf{calibration implementation}\hfill\break
+\noindent
+\begin{tabular}{r|r|c|l|c|c|c|c|c|l}
+\hline
+\usebox{\NM}&\usebox{\REF}&\usebox{\WW}&\usebox{\TPC}&\usebox{\ST}&\usebox{\EFF}&\usebox{\PRD}&\usebox{\SCC}&G&\usebox{\CMTS}\\
+\hline
+\hline
+%00&\ref{sec:software-interaction} &XX& other visualizations & Q01 & 1.0 & - & - & N &  \\
+130&\ref{sec:phasecal}             &DS& phase calibration    & Q02 & 1.0 & 013     & 131,140 & N & general design \\
+131&\ref{sec:manphasecal}          &DS& man phase cals       & Q02 & 1.0 & 013     & 132     & N &  \\
+132&\ref{sec:manphasecal}          &I & man phase cals       & Q04 & 4.0 & 131     & 133     & N & recoding \\
+133&\ref{sec:manphasecal}          &T & man phase cals       & Q05 & 1.0 & 132     & 300     & N & unit tests \\
+134&\ref{sec:manphasecal}          &VV& man phase solving    & Q05 & 1.0 & 400     & 500     & N & validate autosolving \\
+140&\ref{sec:pulsephasecal}        &DS& pulse phase cals     & Q03 & 1.0 & 013     & 141     & Y &  \\
+141&\ref{sec:pulsephasecal}        &I & pulse phase cals     & Q08 & 8.0 & 140,300 & 142     & Y & recoding \\
+142&\ref{sec:pulsephasecal}        &T & pulse phase cals     & Q09 & 1.0 & 141     & 400     & Y & unit tests \\
+143&\ref{sec:pulsephasecal}        &VV& pulse phase cals     & Q12 & 1.0 & 500     & 600     & Y & validate with VGOS \\
+150&\ref{sec:bandpass}             &DS& bandpass cals        & Q03 & 1.0 & 013     & 151     & N &  \\
+151&\ref{sec:bandpass}             &I & bandpass cals        & Q08 & 4.0 & 150,300 & 152     & N & coding new functionality \\
+152&\ref{sec:bandpass}             &T & bandpass cals        & Q09 & 1.0 & 151     & 400     & N & unit tests \\
+160&\ref{sec:atmosphere}           &DS& atmospheric cals     & Q03 & 1.0 & 013     & 161     & N &  \\
+161&\ref{sec:atmosphere}           &I & atmospheric cals     & Q08 & 4.0 & 160,300 & 162     & N & coding new functionality \\
+162&\ref{sec:atmosphere}           &T & atmospheric cals     & Q09 & 1.0 & 161     & 400     & N & unit tests \\
+170&\ref{sec:polarization}         &DS& polarization cals    & Q03 & 1.0 & 013     & 300     & N & design only \\
+180&\ref{sec:ionoscalcorr}         &DS& ionospheric cals     & Q03 & 1.0 & 013     & 300     & Y & design only \\
+190&\ref{sec:sourcestructcorr}     &DS& source structure     & Q03 & 1.0 & 013     & 300     & Y & design only \\
+\hline
+\end{tabular}\vspace{6mm}
+
+\small
+\textbf{processing support}\hfill\break
+\noindent
+\begin{tabular}{r|r|c|l|c|c|c|c|c|l}
+\hline
+\usebox{\NM}&\usebox{\REF}&\usebox{\WW}&\usebox{\TPC}&\usebox{\ST}&\usebox{\EFF}&\usebox{\PRD}&\usebox{\SCC}&G&\usebox{\CMTS}\\
+\hline
+\hline
+%00&\ref{sec:software-interaction} &XX& other visualizations & Q01 & 1.0 & - & - & N &  \\
+200&\ref{sec:msg}                  &DS& processing messages  & Q02 & 1.0 & 013 & 201 & N &  \\
+201&\ref{sec:msg}                  &I & processing messages  & Q04 & 2.0 & 200 & 202 & N & recoding \\
+202&\ref{sec:msg}                  &T & processing messages  & Q05 & 1.0 & 201 & 300 & N & unit tests \\
+210&\ref{sec:utils}                &DS& utility library      & Q02 & 1.0 & 013 & 211 & N &  \\
+211&\ref{sec:utils}                &I & utility library      & Q04 & 2.0 & 210 & 212 & N & recoding \\
+212&\ref{sec:utils}                &T & utility library      & Q05 & 1.0 & 211 & 300 & N & unit tests \\
+220&\ref{sec:perform}              &DS& performance support  & Q02 & 1.0 & 013 & 221 & N &  \\
+221&\ref{sec:perform}              &I & performance support  & Q04 & 2.0 & 220 & 222 & N & recoding \\
+222&\ref{sec:perform}              &T & performance support  & Q05 & 1.0 & 221 & 300 & N & unit tests \\
+225&\ref{sec:average}              &DS& averaging support    & Q02 & 1.0 & 013 & 300 & N & implicit \\
+\hline
+\end{tabular}\vspace{6mm}
+
+\small
+\textbf{user interfaces}\hfill\break
+\noindent
+\begin{tabular}{r|r|c|l|c|c|c|c|c|l}
+\hline
+\usebox{\NM}&\usebox{\REF}&\usebox{\WW}&\usebox{\TPC}&\usebox{\ST}&\usebox{\EFF}&\usebox{\PRD}&\usebox{\SCC}&G&\usebox{\CMTS}\\
+\hline
+\hline
+%00&\ref{sec:software-interaction} &XX& other visualizations & Q01 & 1.0 & - & - & N &  \\
+230&\ref{sec:ascii}                &DS& ascii inspection     & Q02 & 1.0 & 013     & 231 & N & \texttt{corAsc2} \\
+231&\ref{sec:ascii}                &I & ascii inspection     & Q04 & 2.0 & 230     & 232 & N & coding \\
+232&\ref{sec:ascii}                &T & ascii inspection     & Q05 & 1.0 & 231     & 300 & N & unit tests \\
+240&\ref{sec:fplot}                &DS& plotting inspection  & Q02 & 1.0 & 013     & 241 & N & \texttt{fplot} \\
+241&\ref{sec:fplot}                &I & plotting inspection  & Q04 & 4.0 & 240     & 242 & N & coding \\
+242&\ref{sec:fplot}                &T & plotting inspection  & Q05 & 1.0 & 241     & 300 & N & unit tests \\
+250&\ref{sec:aedit}                &DS& data selection       & Q03 & 1.0 & 013     & 251 & N & \texttt{aedit} \\
+251&\ref{sec:aedit}                &I & data selection       & Q08 & 6.0 & 250,300 & 252 & N & coding \\
+252&\ref{sec:aedit}                &T & data selection       & Q09 & 1.0 & 251     & 400 & N & unit tests \\
+260&\ref{sec:alternatives}         &DS& other visualizations & Q03 & 1.0 & 013     & 300 & N & design only \\
+\hline
+\end{tabular}\vspace{6mm}
+
+\small
+\textbf{programmatics}\hfill\break
+\noindent
+\begin{tabular}{r|r|c|l|c|c|c|c|c|l}
+\hline
+\usebox{\NM}&\usebox{\REF}&\usebox{\WW}&\usebox{\TPC}&\usebox{\ST}&\usebox{\EFF}&\usebox{\PRD}&\usebox{\SCC}&G&\usebox{\CMTS}\\
+\hline
+\hline
+%00&\ref{sec:software-interaction} &XX& other visualizations & Q01 & 1.0 & - & - & N &  \\
+300&\ref{sec:devsched}             &R & review               & Q07 & 0.0 & many & many & N & mid-course review \\
+400&\ref{sec:devsched}             &R & review               & Q12 & 0.0 & many & many & N & pre-verification review \\
+500&\ref{sec:devsched}             &R & review               & Q14 & 0.0 & many & many & N & pre-validation review \\
+600&\ref{sec:devsched}             &R & delivery             & Q16 & 0.0 & many & none & N & final MSRI review/delivery \\
+\hline
+\end{tabular}
+
+%
+% eof
+%
