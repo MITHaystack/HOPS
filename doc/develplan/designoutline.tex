@@ -1,0 +1,124 @@
+%
+% the outline
+%
+
+\section{Re-Design Considerations}
+\label{sec:consider}
+
+\subsection{Outline of Discussion Topics}
+\label{sec:outline}
+
+This section contains an outline to help organize thought.
+For clarity, the discussion is shifted to paragraphs of a subsequent
+subsection.
+
+\begin{outline}[enumerate]
+\1 Software features and design (\ref{sec:commentary})
+  \2 General Architecture (\ref{sec:genarch})
+    \3 Language choice: C/C++ with python (\ref{sec:software-lang})
+    \3 Build system and version control (\ref{sec:software-build})
+    \3 Options for parallel processing (\ref{sec:software-parallel})
+    \3 Interactivity vs. batch processing (\ref{sec:software-interaction})
+    \3 External package dependencies (\ref{sec:software-externals})
+  \2 Imports from Correlator Output (\ref{sec:corr-imports})
+    \3 DiFX (Swin) output (\ref{sec:difx-corr})
+    \3 File conversion: difx2mark4, difx2fits, etc. (\ref{sec:corr-import})
+  \2 Exports to subsequent analyses (\ref{sec:exports})
+    \3 Export to imaging (UVFITS) (\ref{sec:uvfits})
+    \3 Export to geodetic reductions (CALCSOLVE) \ref{sec:calcsolve}
+  \2 HOPS file specifications (\ref{sec:hopsfiles})
+%   \3 Output file types Mark4, FITS, HDF5, MS, alist, etc.? (\ref{sec:ftypes})
+    \3 Mark4 file types \ref{sec:mk4types}
+    \3 python wrappers (mk4) \ref{sec:pywrap}
+    \3 alist format \ref{sec:alist}
+    \3 fourfit control file \ref{sec:control}
+    \3 vex2xml and vex2.0 \ref{sec:vex2xml}
+  \2 New Objects (\ref{sec:newobjects})
+    \3 equivalent to above
+  \2 Algorithm specification (\ref{sec:algospecs})
+    \3 baseline-specific delay/delay-rate fitting (\ref{sec:fringing})
+    \3 global-fringe fitting (\ref{sec:globalfringe})
+    \3 spectral line fringing (\ref{sec:specline})
+    \3 vgos ionospheric fitting (\ref{sec:ionosphere})
+    \3 coherence fitting (\ref{sec:cofit})
+    \3 weak fringe searching (\ref{sec:search})
+    \3 pulsar folding/searching (\ref{sec:pulsar})
+    \3 space-based problems (\ref{sec:space})
+    \3 Polconvert (\ref{sec:polconvert})
+  \2 Calibration specification (\ref{sec:calspecs})
+    \3 phase calibrations (EHT v Geodesy) (\ref{sec:phasecal})
+    \3 derivation of manual phase cals (\ref{sec:manphasecal})
+    \3 application of a-priori phase-cal. (\ref{sec:pulsephasecal})
+    \3 instrumental bandpass-correction (\ref{sec:bandpass})
+    \3 atmospheric phase correction (\ref{sec:atmosphere})
+    \3 polarization dependent corrections (\ref{sec:polarization})
+    \3 ionospheric corrections (\ref{sec:ionoscalcorr})
+    \3 source structure (\ref{sec:sourcestructcorr}
+  \2 Infrastructure (\ref{sec:infra})
+    \3 output messaging (\ref{sec:msg})
+    \3 data utilities (\ref{sec:utils})
+    \3 performance monitoring and profiling (\ref{sec:perform})
+    \3 averaging (\ref{sec:average})
+  \2 Data inspection and visualization (\ref{sec:inspect})
+    \3 inspection (corAsc) and import from ascii (\ref{sec:ascii})
+    \3 What do we do with the fourfit plot? (\ref{sec:fplot})
+    \3 Interactive tools like aedit? (\ref{sec:aedit})
+    \3 Alternate visualization options? (\ref{sec:alternatives})
+  \2 New Libraries (\ref{sec:libes})
+    \3 equivalent to above
+  \2 New Programs and scripts (\ref{sec:progs})
+    \3 equivalent to above
+\1 Development schedule (\ref{sec:devsched})
+  \2 Pre-requisites (\ref{sec:prereq})
+  \2 Re-use of existing code? (\ref{sec:reuse})
+  \2 Unit test coverage (\ref{sec:unitest})
+  \2 Testing/validation (\ref{sec:vandv})
+  \2 Other considerations (\ref{sec:genarch})
+    \3 What can be worked on in parallel? (\ref{sec:parallel-work})
+    \3 What must be done sequentially? (\ref{sec:sequential-work})
+    \3 What dependencies exist between modules? (\ref{sec:dependencies})
+    \3 What other resources may be used (\ref{sec:otherbodies})
+    \3 What parts must be supported by the geodetic team (\ref{sec:geodesy})
+    \3 Clarity Descope options (\ref{sec:descope})
+\end{outline}
+
+\subsection{Inputs and Resources}
+\label{sec:money}
+
+\marginnote{\tiny{at this time it is still 4x1FTE, but we have 3 years to complete}}
+The MSRI award to Haystack calls for approximately one FTE of effort
+spread across 4 years.  In principal additional resources for testing,
+validation and interfacing with other resources in the EHT will be
+available.  (At the very least, the Calibration and Analysis working
+group [C\&E-WG] will be involved in specification and testing.)
+
+\subsection{Proposed Timeline}
+\label{sec:timeline}
+
+\marginnote{\tiny{A design review at the end of 2020 (end of Q05) seems to be
+desirable--corresponding roughly to the end of Q03 in this list.  The overall
+ngEHT effort will need to start working on the MSRI-II proposal around Q13,
+so at that point, we should merely be completing the work necessary to be
+shovel-ready for whatever the ngEHT decides for its proposal.}}
+The preliminary proposal timeline called for the following general
+schedule:
+\begin{itemize}[itemsep=-1ex,label={}]
+ \item Q01 Obtain input for feature definitions/requests
+ \item Q02 Define software requirements
+ \item Q03 Selection of architecture and file system, begin porting algorithms
+ \item Q07 Review progress
+ \item Q10 Finish porting algorithms
+ \item Q12 Verification of new software package agains old
+ \item Q14 Validation on new wideband data
+ \item Q16 Final release
+\end{itemize}
+The work planned for the first two quarters will almost certainly result
+in some modifications of the general schedule, so we do not plan to fix
+the schedule at this point.  We anticipate that the general framework for
+the new HOPS will remain (we have been discussing this for several years),
+but some of the priorities and features may very well require adjustment
+by the start of Q3.
+
+%
+% eof
+%
