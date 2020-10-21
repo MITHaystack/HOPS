@@ -5,8 +5,8 @@
 #
 
 # FIXME: this conditional moves down a layer once we figure
-# out what we should do if FFTW isn't available
-if HAVE_FFTW
+# out what we should do if FFTW3 isn't available
+if HAVE_FFTW3
   SUBDIRS = fourfit alist aedit
 else
   SUBDIRS = alist aedit

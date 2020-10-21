@@ -3,8 +3,10 @@
 # (c) Massachusetts Institute of Technology, 2020
 # The contents of the package Copyright statement apply here.
 #
-# FIXME: mhops / hops package name collisions?
+# FIXME: mhops / hops package name collisions; what's the plan?
 # FIXME: mailman hops@mit.edu mailing list
+#
+# NOTE: [ ] are quotes to m4sugar.
 
 AC_PREREQ([2.69])
 AC_INIT([mhops], [4.00], [hops@mit.edu])
@@ -55,19 +57,39 @@ AC_ARG_ENABLE(sphinx,
 AC_PROG_AWK
 AC_PROG_CXX
 AC_PROG_CC
+AC_PROG_CPP
 AC_PROG_INSTALL
 AC_PROG_LEX
 AC_PROG_MAKE_SET
+AC_PROG_RANLIB
 
-# checks for specific/enable/disable cases
-AC_PATH_PROG([PDFLATEX], [pdflatex], [no-such-code])
+# for when/if we get have to deal with fortran
+# AC_PROG_F77
+# AC_F77_LIBRARY_LDFLAGS
+# AC_PROG_FC
+
+# less trivial checks for programs
+PKG_PROG_PKG_CONFIG
+AC_PATH_PROG([SWIG], [swig], [swig-not-found])
+AC_PATH_PROG([PDFLATEX], [pdflatex], [pdflatex-not-found])
 AC_PATH_PROG([DOXYGEN], [doxygen], [doxygen-not-found])
 AC_PATH_PROG([SPHINX], [sphinx], [sphinx-not-found])
-AM_CONDITIONAL(WANT_DOCS, [test $enable_docs = yes -a -x $PDFLATEX])
-AM_CONDITIONAL(WANT_DOXYGEN, [test $enable_docs = yes -a -x $DOXYGEN])
-AM_CONDITIONAL(WANT_SPHINX, [test $enable_docs = yes -a -x $SPHINX])
+AC_PATH_PROG([PERL], [perl], [perl-not-found])
 
-# Checks for libraries.
+# checks for specific/enable/disable cases
+AM_CONDITIONAL(HAVE_SWIG, [test -x $SWIG])
+AM_CONDITIONAL(WANT_DOCS, [test x$enable_docs = xyes -a -x $PDFLATEX])
+AM_CONDITIONAL(WANT_DOXYGEN, [test x$enable_docs = xyes -a -x $DOXYGEN])
+AM_CONDITIONAL(WANT_SPHINX, [test x$enable_docs = xyes -a -x $SPHINX])
+
+# getting our head around Python, see package section below
+AC_PATH_PROG([PYTHON2], [python2], [python2-not-found])
+AC_PATH_PROG([PYTHON3], [python3], [python3-not-found])
+# for the moment, require 3.0
+AM_PATH_PYTHON([3.0])
+# sets PYTHON, PYTHON_VERSION, PYTHON_PLATFORM
+# (PYTHON_PREFIX PYTHON_EXEC_PREFIX)
+# pythondir, pkgpythondir, pyexecdir, pkgpyexecdir
 
 # Checks for header files.
 AC_FUNC_ALLOCA
@@ -88,9 +110,18 @@ AC_TYPE_UINT8_T
 # Checks for library functions.
 AC_FUNC_MALLOC
 AC_FUNC_REALLOC
+# this puts things in the config file
 AC_CHECK_FUNCS([clock_gettime floor getcwd gethostname gettimeofday dnl
     isascii memset mkdir modf pow putenv regcomp rint sqrt strcasecmp dnl
     strchr strdup strerror strncasecmp strrchr strspn strstr strtoul ])
+# this builds the default LIBS collection
+AC_SEARCH_LIBS([floor], [m])
+
+# AC_CHECK_LIBS deprecated relative to AC_SEARCH_LIBS
+# don't have code (yet) using GSL
+# AC_SEARCH_LIBS([gsl_ran_gaussian], [gsl])
+# AC_SEARCH_LIBS([cblas_dgemm], [gslcblas])
+# or PKG_CHECK_MODULES(gsl) which defines GSL_CBLAS_LIB=-lgslcblas
 
 # Special variables
 if [test -z "$KPSETEXMFPATH"] ; then [KPSETEXMFPATH=':'] ; fi
@@ -99,6 +130,51 @@ AC_ARG_VAR(KPSETEXMFPATH, [normally ':' to find installed TeX files])
 #
 # package dependency checking; ideally these should be optional
 #
+
+# PERL should be optional
+AM_CONDITIONAL(HAVE_PERL, [test x$perl != xperl-not-found -a -x "$PERL"])
+
+# PYTHON
+# checking for the module allows us to build C extensions
+AC_ARG_VAR(PYTHON_EXECUTABLE, [force us to use some python executable])
+PKG_CHECK_MODULES(PYTHON, python, [has_python=true], has_python=false])
+if [$has_python] ; then
+    AC_DEFINE([HAVE_PYTHON], 1, [Define to 1 when PYTHON is available])
+    AC_MHO_NOTICE([PYTHON was found via check modules])
+else
+    AC_DEFINE([HAVE_PYTHON], 0, [Define to 1 when PYTHON is available])
+    AC_MHO_NOTICE([PYTHON not found via check modules])
+fi
+# capture for the summary
+AC_MHO_NOTICE([python2 is $PYTHON2])
+AC_MHO_NOTICE([python3 is $PYTHON3])
+AC_MHO_NOTICE([python is $PYTHON])
+AC_MHO_NOTICE([%%% has_python is $has_python (required)])
+# this can get much more elaborate
+if [test -z "$PYTHON_EXECUTABLE"] ; then
+   if [test -n "$PYTHON3"] ; then
+       PYTHON_EXECUTABLE=$PYTHON3
+   elif [test -n "$PYTHON"] ; then
+       PYTHON_EXECUTABLE=$PYTHON
+   elif [test -n "$PYTHON2"] ; then
+       PYTHON_EXECUTABLE=$PYTHON2
+   else
+       PYTHON_EXECUTABLE=false
+   fi
+else
+   AC_MHO_NOTICE([PYTHON_EXECUTABLE already set to $PYTHON_EXECUTABLE])
+fi
+AC_MHO_NOTICE([PYTHON_EXECUTABLE is $PYTHON_EXECUTABLE])
+AC_SUBST(PYTHON_CFLAGS)
+AC_SUBST(PYTHON_LIBS)
+AM_CONDITIONAL(HAVE_PYTHON, $has_python)
+# finally, for reference
+major=[`$PYTHON_EXECUTABLE -c 'import sys; print(sys.version_info[0])'`]
+minor=[`$PYTHON_EXECUTABLE -c 'import sys; print(sys.version_info[1])'`]
+patch=[`$PYTHON_EXECUTABLE -c 'import sys; print(sys.version_info[2])'`]
+AC_SUBST(MODULE_VERSION_MAJOR, $major)
+AC_SUBST(MODULE_VERSION_MINOR, $minor)
+AC_SUBST(MODULE_VERSION_PATCH, $patch)
 
 # FFTW3
 PKG_CHECK_MODULES(FFTW3, fftw3, [has_fftw3=true], [has_fftw3=false])
@@ -112,7 +188,7 @@ fi
 AC_MHO_NOTICE([%%% has_fftw3 is $has_fftw3 (required)])
 AC_SUBST(FFTW3_CFLAGS)
 AC_SUBST(FFTW3_LIBS)
-AM_CONDITIONAL(HAVE_FFTW, $has_fftw3)
+AM_CONDITIONAL(HAVE_FFTW3, $has_fftw3)
 
 # PGPLOT -- note that we typically don't need PGPLOT_CFLAGS or PGPLOT_LIBS
 PKG_CHECK_MODULES(PGPLOT, pgplot, [has_pgplot=true], [has_pgplot=false])
@@ -197,9 +273,9 @@ AC_CONFIG_FILES(source/cpp_src/Makefile)
 
 # source/python_src makefiles
 AC_CONFIG_FILES(source/python_src/Makefile)
-# still to do:
-    # source/python_src/Makefile
-    # source/python_src/scripts/Makefile
+AC_CONFIG_FILES(source/python_src/scripts/test.py,
+    [chmod +x source/python_src/scripts/test.py])
+# need to formulate the plan for this and other pythonic things
     # source/python_src/hops/Makefile
 
 # document makefiles
@@ -219,7 +295,10 @@ AC_CONFIG_FILES(
     # doc/specification/code/Makefile # ?
     # doc/developer/Makefile
 
-# data for system tests
+# data and scripting for system tests
+#AC_CONFIG_FILES()
+
+# captive copy of hops3.x
 #AC_CONFIG_FILES()
 
 #
