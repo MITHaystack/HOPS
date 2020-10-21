@@ -252,24 +252,17 @@ AC_CONFIG_FILES(
     source/c_src/fourfit_libs/ffplot/Makefile
     source/c_src/applications/fourfit/Makefile
 )
-# still to do:
 
 # source/cpp_src makefiles
-AC_CONFIG_FILES(source/cpp_src/Makefile)
-# still to do:
-    # source/cpp_src/Messaging/Makefile
-    # source/cpp_src/Messaging/src/Makefile
-    # source/cpp_src/Messaging/include/Makefile
-    # source/cpp_src/MK4Interface/Makefile
-    # source/cpp_src/MK4Interface/src/Makefile
-    # source/cpp_src/MK4Interface/include/Makefile
-    # source/cpp_src/Bindings/Makefile
-    # source/cpp_src/Utilities/Makefile
-    # source/cpp_src/Utilities/src/Makefile
-    # source/cpp_src/Utilities/include/Makefile
-    # source/cpp_src/Test/Makefile
-    # source/cpp_src/Containers/Makefile
-    # source/cpp_src/Containers/include/Makefile
+AC_CONFIG_FILES(
+    source/cpp_src/Makefile
+    source/cpp_src/Messaging/Makefile
+    source/cpp_src/Utilities/Makefile
+    source/cpp_src/MK4Interface/Makefile
+    source/cpp_src/Test/Makefile
+    source/cpp_src/Bindings/Makefile
+    source/cpp_src/Containers/Makefile
+)
 
 # source/python_src makefiles
 AC_CONFIG_FILES(source/python_src/Makefile)
