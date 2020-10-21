@@ -3,7 +3,6 @@
 # (c) Massachusetts Institute of Technology, 2020
 # The contents of the package Copyright statement apply here.
 #
-#SUBDIRS = .
 
 AM_CPPFLAGS = -I. -I$(srcdir)/include -I$(srcdir)/../../mk4util/include \
 	-I$(srcdir)/../../afio/include -I$(srcdir)/../../dfio/include \
@@ -13,11 +12,11 @@ AM_CPPFLAGS = -I. -I$(srcdir)/include -I$(srcdir)/../../mk4util/include \
 
 pkginclude_HEADERS = include/adhoc_flag.h
 
-pkglib_LTLIBRARIES = libffsearchb.la
+pkglib_LTLIBRARIES = libffsearch.la
 
-libffsearchb_la_LDFLAGS = -avoid-version
+libffsearch_la_LDFLAGS = -avoid-version
 
-libffsearchb_la_SOURCES = src/adhoc_flag.c src/apply_filter.c \
+libffsearch_la_SOURCES = src/adhoc_flag.c src/apply_filter.c \
 	src/apply_notches.c src/apply_passband.c src/calc_normalization.c \
 	src/calc_rms.c src/compute_model.c src/compute_qf.c \
 	src/create_fname.c src/delay_rate.c src/est_pc_manual.c \
@@ -28,14 +27,11 @@ libffsearchb_la_SOURCES = src/adhoc_flag.c src/apply_filter.c \
 	src/sampler_delays.c src/search.c src/search_windows.c \
 	src/update.c src/apply_video_bp.c src/ion_covariance.c
 
-libffsearchb_la_LIBADD = ../../mk4util/libmk4utilb.la ../../afio/libafiob.la \
-	../../dfio/libdfiob.la ../../vex/libvexb.la \
-	../ffcontrol/libffcontrolb.la ../ffcore/libffcoreb.la \
-	../ffio/libffiob.la ../ffmath/libffmathb.la
+libffsearch_la_LIBADD = ../../mk4util/libmk4util.la ../../afio/libafio.la \
+	../../dfio/libdfio.la ../../vex/libvex.la \
+	../ffcontrol/libffcontrol.la ../ffcore/libffcore.la \
+	../ffio/libffio.la ../ffmath/libffmath.la
 
-libffsearchb_la_LIBADD += ${FFTW3_LIBS}
-
-#check_SCRIPTS = ./import_ffsearch.sh
 EXTRA_DIST = 
 
 #

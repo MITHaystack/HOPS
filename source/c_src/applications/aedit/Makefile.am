@@ -75,14 +75,11 @@ aedit_SOURCES = aedit.c src/active_filter.c src/add_station.c \
 	src/write_psfile.c src/write_pshdr.c src/write_reproc.c \
 	src/write_tdata.c src/zoom.c
 
-aedit_LDADD = ../../mk4util/libmk4utilb.la ../../afio/libafiob.la \
-	../../dfio/libdfiob.la ../../vex/libvexb.la ${CPGPLOT_LIBS} -lm
+aedit_LDADD = ../../mk4util/libmk4util.la ../../afio/libafio.la \
+	../../dfio/libdfio.la ../../vex/libvex.la ${CPGPLOT_LIBS} -lm
 
 #${PNG_LIB} ${X_FPLOT_LIB} ${X11_LIB} ${FFTW3_LIBS}
 # FIXME: -lm should be configured
-
-#check_SCRIPTS = ./import_aedit.sh
-EXTRA_DIST =
 
 else # HAVE_PGPLOT
 
@@ -90,6 +87,8 @@ bin_PROGRAMS =
 pkginclude_HEADERS =
 
 endif # HAVE_PGPLOT
+
+EXTRA_DIST =
 
 #
 # eof
