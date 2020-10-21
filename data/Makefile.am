@@ -9,9 +9,9 @@ TESTS_ENVIRONMENT = srcdir=$(srcdir)
 
 TESTS = import_check.sh
 
-bin_SCRIPTS = import_3to4.sh
+dist_bin_SCRIPTS = import_3to4.sh
 
-check_SCRIPTS = import_check.sh
+dist_check_SCRIPTS = import_check.sh
 
 #
 # eof
