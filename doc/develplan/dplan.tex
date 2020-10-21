@@ -124,7 +124,11 @@ doc for folks with short attention spans.
 \pagebreak
 
 % break document into appropriate portions
-%\input{tbd}
+\input{introduction}
+
+\input{designoutline}
+
+\input{detailedtimeline}
 
 % if skipappendix-is-true then (nothing) else typeset Appendices
 \ifthenelse{\boolean{skipappendix}}{}{%
@@ -132,7 +136,9 @@ doc for folks with short attention spans.
 \appendix
 \section{Acronyms}
 \input{acronyms}
+\input{proposedplan}
 }
+
 
 \label{page:LastPage}
 \end{document}
