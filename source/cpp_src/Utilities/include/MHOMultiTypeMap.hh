@@ -34,7 +34,7 @@ class MHOSingleTypeMap
             //std::cout<<"inserting an element with key: "<<key<<std::endl;
         }
 
-        bool Retrieve(const XKeyType& key, XValueType& value)
+        bool Retrieve(const XKeyType& key, XValueType& value) const
         {
             auto iter = fMap.find(key);
             if(iter == fMap.end())
