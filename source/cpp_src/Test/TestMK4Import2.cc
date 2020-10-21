@@ -1,22 +1,25 @@
 #include <iostream>
 #include <string>
+#include <vector>
+#include <algorithm>
 #include <set>
 #include <utility>
 #include <map>
 #include <getopt.h>
 
 
-// #ifdef USE_ROOT
-// #include "TCanvas.h"
-// #include "TApplication.h"
-// #include "TStyle.h"
-// #include "TColor.h"
-// #include "TGraph.h"
-// #include "TGraph2D.h"
-// #include "TH2D.h"
-// #include "TMath.h"
-// #include "TMultiGraph.h"
-// #endif
+
+#ifdef USE_ROOT
+#include "TCanvas.h"
+#include "TApplication.h"
+#include "TStyle.h"
+#include "TColor.h"
+#include "TGraph.h"
+#include "TGraph2D.h"
+#include "TH2D.h"
+#include "TMath.h"
+#include "TMultiGraph.h"
+#endif
 
 #include "MHOTokenizer.hh"
 
@@ -49,11 +52,11 @@ double
 calc_freq_bin(double ref_sky_freq, double rem_sky_freq, double ref_bw, double rem_bw, char ref_net_sb, char rem_net_sb, int nlags, int bin_index)
 {
     double step_sign = 1.0;
-    if(ref_net_sb == 'U' && ref_net_sb == 'U')
+    if(ref_net_sb == 'U' && rem_net_sb == 'U')
     {
         step_sign = 1.0;
     }
-    else if(ref_net_sb == 'L' && ref_net_sb == 'L')
+    else if(ref_net_sb == 'L' && rem_net_sb == 'L')
     {
         step_sign = -1.0;
     }
@@ -77,6 +80,25 @@ calc_freq_bin(double ref_sky_freq, double rem_sky_freq, double ref_bw, double re
     return freq;
 
 }
+
+
+
+//the ordering operator
+class chan_label_freq_predicate
+{
+    public:
+        chan_label_freq_predicate(){};
+        virtual ~chan_label_freq_predicate(){};
+
+    virtual bool operator()(const MHOIntervalLabel* a, const MHOIntervalLabel* b)
+    {
+        double a_frq, b_frq;
+        a->Retrieve(std::string("ref_sky_freq"), a_frq);
+        b->Retrieve(std::string("ref_sky_freq"), b_frq);
+        return a_frq < b_frq;
+    }
+
+};
 
 
 int main(int argc, char** argv)
@@ -159,9 +181,10 @@ int main(int argc, char** argv)
     //of channels and their names
     size_t num_pp = 0;
     size_t num_aps = 0;
-    size_t num_lags = 0;
+    size_t num_lags = 0; //not really number of lags, but rather, spectral points
     size_t num_channels = 0;
     std::set< std::pair<std::string, std::string > > channel_label_pairs;
+    std::set< int > valid_aps;
 
     struct mk4_corel::index_tag* idx;
     for(int i=0; i<corel_obj->index_space; i++)
@@ -172,7 +195,7 @@ int main(int argc, char** argv)
             struct type_120* t120 = idx->t120[ap];
             if(t120 != NULL)
             {
-                if(ap > num_aps){num_aps = ap;};
+                valid_aps.insert(ap);
                 if(t120->type == SPECTRAL)
                 {
                     int nlags = t120->nlags;
@@ -190,6 +213,8 @@ int main(int argc, char** argv)
         }
     }
     num_channels = channel_label_pairs.size();
+    //we determined the max number of APs via max over valid indices, so the
+    num_aps = valid_aps.size();
 
     //create a map of channel-pairs to interval labels (to be filled in with more information later)
     std::map< std::string, MHOIntervalLabel> channel_label_map;
@@ -209,7 +234,7 @@ int main(int argc, char** argv)
     }
 
     std::set< std::string > pp_pairs;
-    //now look up the station and channel info so we can fill out the frequncy axis
+    //now look up the station and channel info so we can fill out the frequency axis
     //also create a set of channel-labels
     int nst = vex_obj->ovex->nst;
     char ref_st = baseline[0];
@@ -291,210 +316,328 @@ int main(int argc, char** argv)
 
     num_pp = pp_pairs.size();
 
+    //for the time being we are implicitly assuming the frequency set-up
+    //is the same for each polarization product, but we may want to make
+    //this more robust against pathological cases
+    //for now we just count the number of channels associated with  'XX'
+    std::map< std::string, std::set< MHOIntervalLabel* > > pp_chan_set_map;
+    std::map< std::string, std::vector< MHOIntervalLabel* > > pp_chan_vec_map;
+    for(auto it = pp_pairs.begin(); it != pp_pairs.end(); it++)
+    {
+        pp_chan_set_map[*it] = std::set<MHOIntervalLabel*>();
+        pp_chan_vec_map[*it] = std::vector< MHOIntervalLabel* >();
+    }
+
+    for(auto it = channel_label_map.begin(); it != channel_label_map.end(); it++)
+    {
+        char pol1;
+        char pol2;
+        it->second.Retrieve("ref_polarization", pol1);
+        it->second.Retrieve("rem_polarization", pol2);
+        std::string ppkey;
+        ppkey.append(1,pol1);
+        ppkey.append(1,pol2);
+        auto indicator = pp_chan_set_map[ppkey].insert( &(it->second) );
+        if(indicator.second)
+        {
+            pp_chan_vec_map[ppkey].push_back( &(it->second) );
+        }
+    }
+
+    //make sure all pol-products share the same number of channels
+    std::size_t num_channels_per_polprod = 0;
+    for(auto it = pp_chan_set_map.begin(); it != pp_chan_set_map.end(); it++)
+    {
+        if(num_channels_per_polprod == 0)
+        {
+            num_channels_per_polprod = it->second.size();
+        }
+        else
+        {
+            if(num_channels_per_polprod != it->second.size() )
+            {
+                std::cout<<"Warning: not all pol-products have the same number of channels!"<<std::endl;
+                std::cout<<it->first<<" : "<<it->second.size()<<std::endl;
+            }
+        }
+    }
+
+    std::cout<<"num channels per pol product = "<<num_channels_per_polprod<<std::endl;
+
+    //now sort the channels by sky frequency
+    chan_label_freq_predicate sort_pred;
+    for(auto it = pp_pairs.begin(); it != pp_pairs.end(); it++)
+    {
+        std::sort( pp_chan_vec_map[*it].begin(), pp_chan_vec_map[*it].end(), sort_pred);
+    }
+
+
+    for(auto it = pp_pairs.begin(); it != pp_pairs.end(); it++)
+    {
+        for(auto it2 = pp_chan_vec_map[*it].begin(); it2 !=pp_chan_vec_map[*it].end(); it2++)
+        {
+            std::string chan_id;
+            double sky_freq;
+            (*it2)->Retrieve(std::string("ref_chan_id"),chan_id);
+            (*it2)->Retrieve(std::string("ref_sky_freq"),sky_freq);
+            std::cout<<chan_id<<" : "<<sky_freq<<std::endl;
+        }
+    }
+
     //now we can go ahead an create a container for all the visibilities
-    std::size_t bl_dim[NDIM] = {num_pp, num_lags, num_channels*num_lags};
+    std::size_t bl_dim[NDIM] = {num_pp, num_aps, (num_channels_per_polprod*num_lags)};
     baseline_data_type* bl_data = new baseline_data_type(bl_dim);
 
     //first label the pol-product axis
     std::size_t pp_count = 0;
+    std::map<std::string, size_t> pp_index_lookup;
     for(auto it = pp_pairs.begin(); it != pp_pairs.end(); it++)
     {
+        pp_index_lookup[*it] = pp_count;
         std::cout<<"pol-product @ "<<pp_count<<" = "<<*it<<std::endl;
         std::get<POLPROD_AXIS>(*bl_data)[pp_count] = *it;
         pp_count++;
     }
 
+    //now assign values to the time (0-th dim) axis
+    for(size_t ap=0; ap<num_aps; ap++)
+    {
+        std::get<TIME_AXIS>(*bl_data)[ap] = ap_time_length*ap;
+    }
+
+    //finally we need to label the frequency axis
+    //this is trickier because the frequency axis is not continuous...
+    //for the time being we assume the all pol-products have the same freq-axis
+    std::size_t freq_count = 0;
+    std::size_t ch_count = 0;
+    for(auto it = pp_chan_vec_map[*(pp_pairs.begin())].begin(); it != pp_chan_vec_map[*(pp_pairs.begin())].end(); it++)
+    {
+        // double ref_sky_freq, ref_bw, rem_sky_freq, rem_bw;
+        // char ref_net_sb, rem_net_sb, ref_pol, rem_pol;
+        (*it)->Retrieve(std::string("ref_sky_freq"), ref_sky_freq);
+        (*it)->Retrieve(std::string("ref_bandwidth"), ref_bw);
+        (*it)->Retrieve(std::string("ref_net_sideband"), ref_net_sb);
+        (*it)->Retrieve(std::string("ref_polarization"), ref_pol);
+        (*it)->Retrieve(std::string("rem_sky_freq"), rem_sky_freq);
+        (*it)->Retrieve(std::string("rem_bandwidth"), rem_bw);
+        (*it)->Retrieve(std::string("rem_net_sideband"), rem_net_sb);
+        (*it)->Retrieve(std::string("rem_polarization"), rem_pol);
+        (*it)->SetBounds(freq_count, freq_count + num_lags); //add the freq-axis bounds for this channel for later lookup
+
+        //insert an appropriate label for this chunk of frequency data
+        //set the bounds on the channel label, and add some info
+        MHOIntervalLabel ch_label;
+        ch_label.Insert(std::string("ch_sky_freq"), ref_sky_freq);
+        ch_label.Insert(std::string("ch_bandwidth"), ref_bw);
+        //add channel ID, for now this is just a number, but it could be anything
+        std::stringstream ss;
+        ss << ch_count;
+        ch_label.Insert(std::string("channel"), ss.str());
+        ch_label.SetBounds(freq_count, freq_count + num_lags);
+        std::get<FREQ_AXIS>(*bl_data).InsertLabel(ch_label);
+
+        //set up the frequency axis
+        for(std::size_t sp=0; sp<num_lags; sp++)
+        {
+            double freq = calc_freq_bin(ref_sky_freq, rem_sky_freq, ref_bw, rem_bw, ref_net_sb, rem_net_sb, num_lags, sp);
+            std::get<FREQ_AXIS>(*bl_data)(freq_count) = freq;
+            freq_count++;
+        }
+
+        ch_count++;
+    }
+
+
+    //lets print out the pol, time and freq axes now:
+    for(std::size_t i=0; i< std::get<POLPROD_AXIS>(*bl_data).GetSize(); i++)
+    {
+        std::cout<<"pol_axis: "<<i<<" = "<<std::get<POLPROD_AXIS>(*bl_data).at(i)<<std::endl;
+    }
+
+    for(std::size_t i=0; i< std::get<TIME_AXIS>(*bl_data).GetSize(); i++)
+    {
+        std::cout<<"time_axis: "<<i<<" = "<<std::get<TIME_AXIS>(*bl_data).at(i)<<std::endl;
+    }
+
+    for(std::size_t i=0; i< std::get<FREQ_AXIS>(*bl_data).GetSize(); i++)
+    {
+        std::cout<<"freq_axis: "<<i<<" = "<<std::get<FREQ_AXIS>(*bl_data).at(i)<<std::endl;
+    }
+
+
+    //now fill in the actual visibility data
+    struct type_101* t101 = nullptr;
+    for(int i=0; i<corel_obj->index_space; i++)
+    {
+        idx = corel_obj->index + i;
+        if( (t101 = idx->t101) != NULL)
+        {
+            //extract all of the type101 index records
+            std::string ref_chan_id = mk4ci.getstr(t101->ref_chan_id,8);
+            std::string rem_chan_id = mk4ci.getstr(t101->rem_chan_id,8);
+            std::string key = ref_chan_id + ":" + rem_chan_id;
+            auto ch_label_iter = channel_label_map.find(key);
+            if( ch_label_iter != channel_label_map.end() )
+            {
+                //now we want to extract the data in the type_120's
+                for(int ap=0; ap<idx->ap_space; ap++)
+                {
+                    struct type_120* t120 = idx->t120[ap];
+                    if(t120 != NULL)
+                    {
+                        if(t120->type == SPECTRAL)
+                        {
+                            std::string baseline = mk4ci.getstr(t120->baseline, 2);
+                            ref_st = baseline[0];
+                            rem_st = baseline[1];
+
+                            //now look up the station and channel info so we can fill out the frequency axis
+                            int nst = vex_obj->ovex->nst;
+                            for(int ist = 0; ist<nst; ist++)
+                            {
+                                if(ref_st == vex_obj->ovex->st[ist].mk4_site_id && !found_ref)
+                                {
+                                    //get the channel information of the reference station
+                                    for(size_t nch=0; nch<MAX_CHAN; nch++)
+                                    {
+                                        std::string chan_name = mk4ci.getstr( vex_obj->ovex->st[ist].channels[nch].chan_name,32);
+                                        if(chan_name == ref_chan_id)
+                                        {
+                                            ref_sky_freq = vex_obj->ovex->st[ist].channels[nch].sky_frequency;
+                                            ref_bw = vex_obj->ovex->st[ist].channels[nch].bandwidth;
+                                            ref_net_sb = vex_obj->ovex->st[ist].channels[nch].net_sideband;
+                                            ref_pol = vex_obj->ovex->st[ist].channels[nch].polarization;
+                                            found_ref = true;
+                                            break;
+                                        }
+                                    }
+
+                                }
+
+                                if(rem_st == vex_obj->ovex->st[ist].mk4_site_id && !found_rem)
+                                {
+                                    for(size_t nch=0; nch<MAX_CHAN; nch++)
+                                    {
+                                        std::string chan_name = mk4ci.getstr( vex_obj->ovex->st[ist].channels[nch].chan_name,32);
+                                        if(chan_name == rem_chan_id)
+                                        {
+                                            rem_sky_freq = vex_obj->ovex->st[ist].channels[nch].sky_frequency;
+                                            rem_bw = vex_obj->ovex->st[ist].channels[nch].bandwidth;
+                                            rem_net_sb = vex_obj->ovex->st[ist].channels[nch].net_sideband;
+                                            rem_pol = vex_obj->ovex->st[ist].channels[nch].polarization;
+                                            found_rem = true;
+                                            break;
+                                        }
+                                    }
+
+                                }
+                                if(found_ref && found_rem){break;}
+                            }
+
+                            std::string ppkey;
+                            ppkey.append(1,ref_pol);
+                            ppkey.append(1,rem_pol);
+                            size_t pol_index = pp_index_lookup[ppkey];
+
+                            auto ch_it = channel_label_map.find(key);
+
+                            int nlags = t120->nlags;
+                            std::cout<<"adding freq data for ap: "<<ap<<" channels: "<<ref_chan_id<<" "<<rem_chan_id<<std::endl;
+                            for(int j=0; j<nlags; j++)
+                            {
+                                int low = ch_it->second.GetLowerBound();
+                                double re = t120->ld.spec[j].re;
+                                double im = t120->ld.spec[j].im;
+                                std::cout<<ppkey<<" "<<pol_index<<" "<<ap<<" "<<j<<" "<<re<<","<<im<<std::endl;
+                                bl_data->at(pol_index, ap, low+j) =  std::complex<double>(re,im);
+                            }
+                        }
+                        else
+                        {
+                            std::cout<<"non-spectral type-120 not supported."<<std::endl;
+                        }
+                    }
+                }
+            }
+        }
+
+    }//end of index loop
 
 
 
-    //
-    // //create a map of channel-pairs to (empty) channel_data_containers
-    // size_t dim[2];
-    // dim[0] = num_aps+1;
-    // dim[1] = num_lags;
-    // std::map< std::pair<std::string, std::string >, channel_data_type* > channels;
-    // for(auto iter = channel_label_pairs.begin(); iter != channel_label_pairs.end(); iter++)
-    // {
-    //     std::cout<<"channel pair: "<<iter->first<<", "<<iter->second<<std::endl;
-    //     auto key = std::pair<std::string, std::string >(iter->first, iter->second);
-    //     auto chan_it = channels.insert( std::pair< std::pair<std::string, std::string >, channel_data_type* >( key, new channel_data_type(dim) ) );
-    // }
-    //
-    // //now lets fill them up
-    // struct type_101* t101 = nullptr;
-    // for(int i=0; i<corel_obj->index_space; i++)
-    // {
-    //     idx = corel_obj->index + i;
-    //     if( (t101 = idx->t101) != NULL)
-    //     {
-    //         //extract all of the type101 index records
-    //         std::string ref_chan_id = mk4ci.getstr(t101->ref_chan_id,8);
-    //         std::string rem_chan_id = mk4ci.getstr(t101->rem_chan_id,8);
-    //         auto key = std::pair<std::string, std::string>(ref_chan_id, rem_chan_id);
-    //
-    //         auto channel_elem = channels.find(key);
-    //         if( channel_elem != channels.end() )
-    //         {
-    //             //now we want to extract the data in the type_120's
-    //             for(int ap=0; ap<idx->ap_space; ap++)
-    //             {
-    //                 struct type_120* t120 = idx->t120[ap];
-    //                 if(t120 != NULL)
-    //                 {
-    //                     if(t120->type == SPECTRAL)
-    //                     {
-    //                         std::string baseline = mk4ci.getstr(t120->baseline, 2);
-    //                         char ref_st = baseline[0];
-    //                         char rem_st = baseline[1];
-    //
-    //                         double ref_sky_freq, ref_bw, rem_sky_freq, rem_bw;
-    //                         char ref_net_sb, rem_net_sb, ref_pol, rem_pol;
-    //                         bool found_ref = false;
-    //                         bool found_rem = false;
-    //
-    //                         //now look up the station and channel info so we can fill out the frequncy axis
-    //                         int nst = vex_obj->ovex->nst;
-    //                         for(int ist = 0; ist<nst; ist++)
-    //                         {
-    //                             if(ref_st == vex_obj->ovex->st[ist].mk4_site_id && !found_ref)
-    //                             {
-    //                                 //get the channel information of the reference station
-    //                                 for(size_t nch=0; nch<MAX_CHAN; nch++)
-    //                                 {
-    //                                     std::string chan_name = mk4ci.getstr( vex_obj->ovex->st[ist].channels[nch].chan_name,32);
-    //                                     if(chan_name == key.first)
-    //                                     {
-    //                                         ref_sky_freq = vex_obj->ovex->st[ist].channels[nch].sky_frequency;
-    //                                         ref_bw = vex_obj->ovex->st[ist].channels[nch].bandwidth;
-    //                                         ref_net_sb = vex_obj->ovex->st[ist].channels[nch].net_sideband;
-    //                                         ref_pol = vex_obj->ovex->st[ist].channels[nch].polarization;
-    //                                         found_ref = true;
-    //                                         break;
-    //                                     }
-    //                                 }
-    //
-    //                             }
-    //
-    //                             if(rem_st == vex_obj->ovex->st[ist].mk4_site_id && !found_rem)
-    //                             {
-    //                                 for(size_t nch=0; nch<MAX_CHAN; nch++)
-    //                                 {
-    //                                     std::string chan_name = mk4ci.getstr( vex_obj->ovex->st[ist].channels[nch].chan_name,32);
-    //                                     if(chan_name == key.second)
-    //                                     {
-    //                                         rem_sky_freq = vex_obj->ovex->st[ist].channels[nch].sky_frequency;
-    //                                         rem_bw = vex_obj->ovex->st[ist].channels[nch].bandwidth;
-    //                                         rem_net_sb = vex_obj->ovex->st[ist].channels[nch].net_sideband;
-    //                                         rem_pol = vex_obj->ovex->st[ist].channels[nch].polarization;
-    //                                         found_rem = true;
-    //                                         break;
-    //                                     }
-    //                                 }
-    //
-    //                             }
-    //                             if(found_ref && found_rem){break;}
-    //                         }
-    //
-    //                         int nlags = t120->nlags;
-    //
-    //
-    //                         for(int j=0; j<nlags; j++)
-    //                         {
-    //                             double re = t120->ld.spec[j].re;
-    //                             double im = t120->ld.spec[j].im;
-    //                             channel_elem->second->at(ap,j) = std::complex<double>(re,im);
-    //
-    //                             //set up the frequency axis
-    //                             double freq =  calc_freq_bin(ref_sky_freq, rem_sky_freq, ref_bw, rem_bw, ref_net_sb,rem_net_sb, nlags, j);
-    //                             std::get<FREQ_AXIS>(*(channel_elem->second))(j) = freq;
-    //                         }
-    //                     }
-    //                     else
-    //                     {
-    //                         std::cout<<"non-spectral type-120 not supported."<<std::endl;
-    //                     }
-    //                 }
-    //                 //now assign values to the time (0-th dim) axis
-    //                 std::get<TIME_AXIS>(*(channel_elem->second))(ap) = ap_time_length*ap;
-    //             }
-    //         }
-    //     }
-    //
-    // }//end of index loop
-    //
-    // #ifdef USE_ROOT
-    //
-    //
-    // std::cout<<"starting root plotting"<<std::endl;
-    //
-    // //ROOT stuff for plots
-    // TApplication* App = new TApplication("PowerPlot",&argc,argv);
-    // TStyle* myStyle = new TStyle("Plain", "Plain");
-    // myStyle->SetCanvasBorderMode(0);
-    // myStyle->SetPadBorderMode(0);
-    // myStyle->SetPadColor(0);
-    // myStyle->SetCanvasColor(0);
-    // myStyle->SetTitleColor(1);
-    // myStyle->SetPalette(1,0);   // nice color scale for z-axis
-    // myStyle->SetCanvasBorderMode(0); // gets rid of the stupid raised edge around the canvas
-    // myStyle->SetTitleFillColor(0); //turns the default dove-grey background to white
-    // myStyle->SetCanvasColor(0);
-    // myStyle->SetPadColor(0);
-    // myStyle->SetTitleFillColor(0);
-    // myStyle->SetStatColor(0); //this one may not work
-    // const int NRGBs = 5;
-    // const int NCont = 48;
-    // double stops[NRGBs] = { 0.00, 0.34, 0.61, 0.84, 1.00 };
-    // double red[NRGBs]   = { 0.00, 0.00, 0.87, 1.00, 0.51 };
-    // double green[NRGBs] = { 0.00, 0.81, 1.00, 0.20, 0.00 };
-    // double blue[NRGBs]  = { 0.51, 1.00, 0.12, 0.00, 0.00 };
-    // TColor::CreateGradientColorTable(NRGBs, stops, red, green, blue, NCont);
-    // myStyle->SetNumberContours(NCont);
-    // myStyle->cd();
-    //
-    //
-    // auto first_channel_iter = channels.begin();
-    // auto first_channel = first_channel_iter->second;
-    // auto* x_axis = &(std::get<TIME_AXIS>(*first_channel));
-    // auto* y_axis = &(std::get<FREQ_AXIS>(*first_channel));
-    //
-    // size_t x_axis_size = x_axis->GetSize();
-    // size_t y_axis_size = y_axis->GetSize();
-    //
-    // //just plot phases for a single channel
-    // TGraph2D *gr = new TGraph2D(x_axis_size*y_axis_size);
-    // TGraph2D *gb = new TGraph2D(x_axis_size*y_axis_size);
-    //
-    // size_t count = 0;
-    // for(size_t i=0; i<x_axis_size; i++)
-    // {
-    //     for(size_t j=0; j<y_axis_size; j++)
-    //     {
-    //         std::complex<double> vis = first_channel->at(i,j);
-    //         gr->SetPoint(count, x_axis->at(i), y_axis->at(j), std::arg(vis) );
-    //         gb->SetPoint(count, x_axis->at(i), y_axis->at(j), std::abs(vis) );
-    //         //std::cout<<"i,j = "<<i<<", "<<j<<std::endl;
-    //         count++;
-    //     }
-    // }
-    //
-    // std::string name = first_channel_iter->first.first + "-" +  first_channel_iter->first.second;
-    // TCanvas* c = new TCanvas(name.c_str(),name.c_str(), 50, 50, 950, 850);
-    // c->SetFillColor(0);
-    // c->SetRightMargin(0.2);
-    // c->Divide(1,2);
-    // c->cd(1);
-    // gr->Draw("COLZ");
-    // c->Update();
-    // c->cd(2);
-    // gb->Draw("COLZ");
-    // c->Update();
-    //
-    // App->Run();
-    //
-    // #endif
-    //
 
+
+
+
+    #ifdef USE_ROOT
+
+
+    std::cout<<"starting root plotting"<<std::endl;
+
+    //ROOT stuff for plots
+    TApplication* App = new TApplication("PowerPlot",&argc,argv);
+    TStyle* myStyle = new TStyle("Plain", "Plain");
+    myStyle->SetCanvasBorderMode(0);
+    myStyle->SetPadBorderMode(0);
+    myStyle->SetPadColor(0);
+    myStyle->SetCanvasColor(0);
+    myStyle->SetTitleColor(1);
+    myStyle->SetPalette(1,0);   // nice color scale for z-axis
+    myStyle->SetCanvasBorderMode(0); // gets rid of the stupid raised edge around the canvas
+    myStyle->SetTitleFillColor(0); //turns the default dove-grey background to white
+    myStyle->SetCanvasColor(0);
+    myStyle->SetPadColor(0);
+    myStyle->SetTitleFillColor(0);
+    myStyle->SetStatColor(0); //this one may not work
+    const int NRGBs = 5;
+    const int NCont = 48;
+    double stops[NRGBs] = { 0.00, 0.34, 0.61, 0.84, 1.00 };
+    double red[NRGBs]   = { 0.00, 0.00, 0.87, 1.00, 0.51 };
+    double green[NRGBs] = { 0.00, 0.81, 1.00, 0.20, 0.00 };
+    double blue[NRGBs]  = { 0.51, 1.00, 0.12, 0.00, 0.00 };
+    TColor::CreateGradientColorTable(NRGBs, stops, red, green, blue, NCont);
+    myStyle->SetNumberContours(NCont);
+    myStyle->cd();
+
+    auto* x_axis = &(std::get<TIME_AXIS>(*bl_data));
+    auto* y_axis = &(std::get<FREQ_AXIS>(*bl_data));
+
+    size_t x_axis_size = x_axis->GetSize();
+    size_t y_axis_size = y_axis->GetSize();
+
+    //just plot phases for a single channel
+    TGraph2D *gr = new TGraph2D(x_axis_size*y_axis_size);
+    TGraph2D *gb = new TGraph2D(x_axis_size*y_axis_size);
+
+    size_t count = 0;
+    for(size_t i=0; i<x_axis_size; i++)
+    {
+        for(size_t j=0; j<y_axis_size; j++)
+        {
+            std::complex<double> vis = bl_data->at(0,i,j);
+            std::cout<<i<<", "<<j<<" = "<<bl_data->at(0,i,j)<<std::endl;
+            gr->SetPoint(count, x_axis->at(i), y_axis->at(j), std::arg(vis) );
+            gb->SetPoint(count, x_axis->at(i), y_axis->at(j), std::abs(vis) );
+            //std::cout<<"i,j = "<<i<<", "<<j<<std::endl;
+            count++;
+        }
+    }
+
+    std::string name = "test";
+    TCanvas* c = new TCanvas(name.c_str(),name.c_str(), 50, 50, 950, 850);
+    c->SetFillColor(0);
+    c->SetRightMargin(0.2);
+    c->Divide(1,2);
+    c->cd(1);
+    gr->Draw("PCOLZ");
+    c->Update();
+    c->cd(2);
+    gb->Draw("PCOLZ");
+    c->Update();
+
+    App->Run();
+
+    #endif //USE_ROOT
 
 
     return 0;
