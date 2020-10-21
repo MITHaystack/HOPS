@@ -4,7 +4,8 @@
 # The contents of the package Copyright statement apply here.
 #
 
-EXTRA_DIST = $(srcdir)/acronyms.tex $(srcdir)/shortcuts.tex
+EXTRA_DIST = $(srcdir)/acronyms.tex $(srcdir)/shortcuts.tex \
+	$(srcdir)/hops.bib $(srcdir)/nuHOPStimeline.png
 
 # eof
 #

@@ -10,7 +10,9 @@ TEXSRC=dplan
 
 # everything from $(srcdir) included from $(TEXSRC).tex
 # needs to be listed here with a $(srcdir)/ path prefix
-EXTRA_DIST = $(srcdir)/$(TEXSRC).tex $(srcdir)/theplan.tex
+EXTRA_DIST = $(srcdir)/$(TEXSRC).tex $(srcdir)/theplan.tex \
+	$(srcdir)/introduction.tex $(srcdir)/designoutline.tex \
+	$(srcdir)/detailedtimeline.tex $(srcdir)/proposedplan.tex
 
 if WANT_DOCS
 # to be somewhat surgical, this is useful:
