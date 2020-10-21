@@ -69,6 +69,7 @@ depcomp
 install-sh
 ltmain.sh
 missing
+test-driver
 
 # Editor junk
 *.swp

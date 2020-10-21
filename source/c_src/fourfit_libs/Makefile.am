@@ -4,7 +4,7 @@
 # The contents of the package Copyright statement apply here.
 #
 
-if HAVE_FFTW
+if HAVE_FFTW3
   SUBDIRS = ffcontrol ffcore ffio ffmath ffsearch ffplot
 else
   SUBDIRS = ffcontrol ffcore ffmath

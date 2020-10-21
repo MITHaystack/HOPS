@@ -1,10 +1,19 @@
 #!@PYTHON_EXECUTABLE@
+#
+# test executable
+#
 import sys
 
 def main():
-    print("HOPS version: ", '@MODULE_VERSION_MAJOR@.@MODULE_VERSION_MINOR@.@MODULE_VERSION_PATCH@')
+    print("HOPS version: ", '@PACKAGE_VERSION@')
+    print("using python: ",
+        '@MODULE_VERSION_MAJOR@.@MODULE_VERSION_MINOR@.@MODULE_VERSION_PATCH@')
 
 
 if __name__ == '__main__':          # official entry point
     main()
     sys.exit(0)
+
+#
+# eof
+#
