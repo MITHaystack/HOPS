@@ -26,7 +26,7 @@ class MHODateTime
         MHODateTime();
         MHODateTime(short year, short day, short hour, short minute, float second); //useful for init
 
-        virtual ~HDateTime();
+        virtual ~MHODateTime();
 
 
     private:

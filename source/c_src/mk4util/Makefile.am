@@ -21,7 +21,7 @@ libmk4util_la_SOURCES = src/account.c src/check_name.c src/clear_date.c \
 	src/report_times.c src/root_belong.c src/root_id.c \
 	src/sexigesimal2hrdeg.c src/sort_names.c src/swap.c \
 	src/syntax.c src/time_to_double.c src/time_to_int.c \
-	src/adler32_checksum.c
+	src/adler32_checksum.c src/mk4stub.c
 
 libmk4util_la_LDFLAGS = -avoid-version
 
