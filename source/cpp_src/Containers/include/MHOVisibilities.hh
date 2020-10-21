@@ -5,7 +5,7 @@
 *File: MHOVisibilities.hh
 *Author: J. Barrett
 *Email: barrettj@mit.edu
-*Date:
+*Date: Wed 21 Oct 2020 08:32:43 PM UTC
 *Description: Place-holder definitions for single-baseline visibility data-container
 * This will likely be re-worked as things progress.
 */
