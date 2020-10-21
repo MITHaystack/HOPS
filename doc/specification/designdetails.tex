@@ -1,0 +1,462 @@
+%
+% design details
+%
+\section{Commentary on Software Features and Design}
+\label{sec:commentary}
+
+The following sections provide some background and initial
+design discussions for the topics listed in the outline.
+
+\subsection{General Architecture}
+\label{sec:genarch}
+
+\subsubsection{Detail on language choice}
+\label{sec:software-lang}
+Several aspects need to be taken into account when deciding on a choice
+of programming language for this project. Namely, some of these are:
+\begin{enumerate}[itemsep=-1ex]
+ \item Availability of software developer expertise.
+ \item The inherent performance attainable with a specific language.
+ \item Availability of high performance open source utility libraries
+  for math, I/O, etc.
+ \item The primary language of the existing code base (C).
+ \item The accessibility and ease of extensibility of the project by
+  users with varying levels of experience.
+\end{enumerate}
+Obtaining a reasonable balance between these considerations is difficult
+with a single language. Therefore it may be desirable to consider a
+multi-language project, wherein the base computation layer is handled
+within C/C++, but additional data manipulation can be done via optional
+Python plugins embedded within the appplication or independently by
+external Python scripts which have access to some of the underlying
+application libraries.  C++ is a reasonable choice given current
+personnel, and the possibility of reuse of portions of the existing code
+base in C. It also allows for the use of a wide variety of open source libraries, bot C
+and C++ (not least of which is the built in standard library which provides
+access to a wide collection of basic data types (strings, vectors, maps, etc) and
+algorithms (searching, sorting, etc) which reduces the required amount
+of maintenance of internal code and reliance on external libraries.
+Further augmenting C/C++ libraries with inter-language
+communication to Python can be done via a wide variety of mature tools
+(ctypes, boost.Python, SWIG, etc.), and may increases the ease at which
+outside users can augment the software.  Adopting C++ would allow a
+easier path to memory management (currently handled rather painfully
+in the existing HOPS code base).
+
+Note that Python 2 is no longer supported, so to be clear, all new
+development will be Python 3.
+
+\subsubsection{Build system version control}
+\label{sec:software-build}
+We have a working SVN repository and the system is currently
+built with autotools.
+Do we want to continue using SVN or move to git?
+Do we want to continue using autotools or migrate to cmake?
+We can consider both, but there is no rush or a compelling
+reason to do either, except perhaps for long term maintenance.
+
+\subsubsection{Options for parallel processing}
+\label{sec:software-parallel}
+
+The existing fringe-fitting process is largely a data-parallel
+process operating on individual baselines with no inter-process
+communication. This lends itself easily to simple parallelism using
+multiple independent processes (SPMD), which has been exploited
+\cite{blackburn2019eht} to deal with the EHT data volume. However, this approach
+eliminates the ability to simultaneously fit for global or station-based
+parameters and requires multiple iterations in order to apply successive
+calibration/corrections. Therefore, if some calibration tasks are to be
+done simultaneously with fringe-fringe fitting, this will require both a
+substantial architectural change from the current fitting algorithm, but
+also necessarily reduce the degree of (simple) parallelism available. To
+accommodate this, some parallel processing will have to be addressed
+within the application. There several architectural options from which
+to choose to provide support for differing levels of parallelism. A
+limited table of these options is detailed in the following table:
+
+\small
+\begin{tabular}{|c|c|c|c|}
+\hline
+Name & Classification & Hardware Scalability & Effort \\ \hline
+OpenCL/CUDA & SIMD & Single machine, CPU/GPU & Low-Medium \\ \hline
+pthreads & MIMD & Single machine (CPU) & Medium \\ \hline
+c++11 threads & MIMD & Single machine (CPU) & Medium \\ \hline
+OpenMP & SIMD & Single machine (CPU) & Low-Medium \\ \hline
+OpenMPI & MIMD & Multiple machines (CPU) & High \\ \hline
+\end{tabular}
+\normalsize
+
+Note that a proper re-design of the data types and low-level algorithmic
+codes should make it relatively straightforward to develop various
+parallel versions of the fringe fitter or analysis tools, but this should probably be done
+only after profiling a single-threaded version of the code, to determine where the most crucial
+bottlenecks are.
+
+\subsubsection{Interactivity vs. batch processing}
+\label{sec:software-interaction}
+
+The existing HOPS processing is batch-oriented for fringing, but
+interactive at the \texttt{aedit} stage\dots.
+
+Batch-oriented fringe production works well at the later stages (after
+tuning) but at the initial analysis stages, some flexibility is needed.
+This is particularly true as the amount of information contained in
+broadband fringing greatly exceeds what will fit on one page.  And
+expansion to multiple pages places more burden on the analyst---too
+much to look at.
+
+In the analysis stage (e.g. \texttt{aedit}) some degree of sophistication is
+needed in the selection and display of data.  Again, the volumes of
+data to be understood will require smarter software.
+
+\subsection{External package dependencies}
+\label{sec:software-externals}
+
+In order to leverage existing open source software some decisions should be made relatively early on about which external (maintained by outside unrelated entities)
+should be required. For example the current library used by HOPS for executing FFT's is FFTW3, which is required and not optional, likewise, for creating fringe
+plots the package pgplot is required and not optional. Wherever possible requirements should be made optional in order to keep complexity low and reduce reliance on
+external maintainers, but to make the best use of existing resources some minimal subset needs to be decided upon.
+
+\subsection{Imports from Correlator Output}
+\label{sec:corr-imports}
+
+\subsubsection{DiFX Outputs}
+\label{sec:difx-corr}
+
+At present DiFX is the de-facto correlator for the EHT.  However, there
+are other correlator codes (e.g. SFXC or CorrelX) that may be useful in
+the future.  Also the so-called Swinbourne output format from DiFX may evolve.
+Thus we need a define a suitably generic model for the correlation output
+that will be adaptable to possible future development.
+
+In general this framework includes inputs to the correlation (e.g.
+VEX and V2D) as well as correlation setup files (e.g. calc).
+
+\subsubsection{File conversions}
+\label{sec:corr-import}
+
+The current HOPS pathway from DiFX is difx2mark4 which is very specific
+to DiFX and (the current) HOPS.  For analyis in AIPS or CASA, the difx2fits
+program is currently used.
+
+Aside from file input, there is generally a desire to migrate data
+between the HOPS world and the AIPS/CASA world.  Thus it is sensible
+to provide pathways from the new HOPS file structure to these other
+tools.
+
+\subsection{Exports to Subsequent Analyses}
+\label{sec:exports}
+
+\subsubsection{UVFITS}
+\label{sec:uvfits}
+The current C\&E-WG processing pipeline ends with the generation of
+the UV flavor of FITS (UVFITS).  That tool should properly be updated
+to work with the new fileset and added to the HOPS tool collection.
+
+\subsubsection{CALCSOLVE}
+\label{sec:calcsolve}
+The geodetic analysts current take delivery of HOPS fringe results
+for import into their CALCSOLVE program which solves for Earth Orientation
+Parameters and other geodetic products.  The current delivery format is
+native HOPS mk4 file format.  This capability must be preserved until
+they can adopt their input library to use the new HOPS.
+
+\subsection{HOPS file specifications}
+\label{sec:hopsfiles}
+
+\subsubsection{File Types}
+\label{sec:ftypes}
+HOPS makes use of a filesystem, and every file consists of representations
+of objects.  A uniform plan for migrating these from what we currently have
+to something more sensible is a project that decomposes into the various
+types discussed in the next sections.  This design task consists of
+all of the general considerations before the details of the subsequent tasks.
+
+\subsubsection{Mark4 file types}
+\label{sec:mk4types}
+The existing ``Mark4'' filesystem was (believe it or not) an improvement
+of the previous ``Mark3'' filesystem which was closely wedded to (a now
+extremely outdated) filesystem for an HP filesystem.  The modularity of
+the Mark4 data types is not particularly in question.  However the binary
+format is bigendian and wedded to the C structures and other capabilities
+of the UNIX system that was available at the time (SunOS, a precursor of
+Solaris).  Since that time a number of viable archival data formats have
+been created and are in general use.  A migration of the Mark4 types to
+an HDF5-based fileformat is considered to be the desirable option at this
+point.  The libraries from that package are well tested and essentially
+ready to use.
+
+\subsubsection{Python Wrappers}
+\label{sec:pywrap}
+One of the first steps of the C\&E-WG was to create Python wrappers for
+the Mark4 types so that some manipulations could be done directly in
+Python.  This is now considered an essential feature and it should be
+natively supported by \nuHOPS.
+\marginnote{\tiny{CASA uses numpy within its python layer, so that is
+likely a component of our python user interface.  Since this was written,
+I've discovered that SWIG may be used to automatically generate some of
+the bindings, including for numpy, if one is judicious about what you ask
+SWIG to do.}}
+
+\subsubsection{Alist}
+\label{sec:alist}
+Following fringing, for the data analysis stage, HOPS provided a ``oneline''
+fringe format (an aline) which could be manipulated by several tools
+(e.g. \texttt{alist} and \texttt{aedit}).
+The amount of information that is desirable to
+be captured on the aline has grown to the point of incomprehensibility,
+but the need for such a thing remains.  The precise solution is likely
+a topic of study as there are a number of alternatives.
+
+\subsubsection{Fourfit Control File}
+\label{sec:control}
+The fringing process may be controlled (almost) equivalently on the
+command line or via a ``control'' file.  This file has a peculiar
+format supporting a limited set of logic contructs for setting various
+parameters.  In a package making specific use of Python, it is sensible
+do discard the existing control file machinery in favor of a native
+Python format and conventions for command line adjustments to it.
+
+\subsubsection{VEX file parsing}
+\label{sec:vex2xml}
+The VLBI Experiments are specified in a rather arcane VEX file which
+is currently stuck at verion 1.5.  The community has identified a version
+2.0, but it has not actually been implemented.  For use at ALMA, we
+developed and recently added to HOPS a VEX2XML parser that allows the
+VEX file to be parsed to XML and then standard XML libraries may be
+used to extract information.  We propose to adopt 2.0 features as they
+become useful to the EHT, and work through the VEX2XML parser tool.
+
+\subsection{New Objects}
+\label{sec:newobjects}
+The mark4 fileset stores data in number types:  the 100 series for
+correlation products, the 200 series for fringes and the 300 series
+for station calibrations.  The list grew in a somewhat ad hoc fashion
+and was decidedly driving by the needs of analyzing data from the old
+hardware correlator.  The list of types needs to be reviewed and
+re-organized for the modern era.
+
+\subsection{Algorithmic specifications}
+\label{sec:algospecs}
+
+\subsubsection{Baseline-based delay/delay-rate fitting}
+\label{sec:fringing}
+At the heart of fourfit is the baseline-based delay/delay-rate fitting.
+Fourfit expresses as both a so-called ``single-band delay'' (SBD, an average
+over the recorded channels) as well as the ``multi-band delay'' (MBD, over the
+full band).  This algorithm must of course be preserved, but it should
+be noted that it may be decomposed into the data calculations and the fitting
+program.  The current algorithm also allows for an ionospheric fitter.
+These parts must be decomposed and put in library functions for more flexible
+use.
+
+\subsubsection{Global Fringe Fitting}
+\label{sec:globalfringe}
+In particular, given a saner organization for the fitting, it should be
+possible to provide the (more conventional, as provided in AIPS and CASA)
+global fringe fitter which assigns results on a station basis.  This requires
+a(t least one) least-squares fitting technique to be implemented.
+
+\subsubsection{Spectral Line Fringing}
+\label{sec:specline}
+There are developments in mmVLBI that should allow work with spectral line
+(i.e. narrow) sources; support for this capability should be in place in
+the \nuHOPS.
+
+\subsubsection{Ionospheric Fitting}
+\label{sec:ionosphere}
+VGOS currently fits for the total electron content (TEC) of the ionosphere
+as part of the high-delay precision fits.  This is likely not needed at
+the high frequencies the EHT uses, but it definitely must be preserved.
+
+\subsubsection{Coherence Fitting}
+\label{sec:cofit}
+The current HOPS tool \texttt{cofit} allows one to identify the shortest
+averaging interval with the maximum SNR.  The algorithm and plotting
+artifacts should be continue to be supported as the tool is still useful.
+
+\subsubsection{Weak Fringe Searching}
+\label{sec:search}
+The current HOPS tool \texttt{search} allows one to examine the two-dimensional
+delay and delay-rate space to ascertain whether weak peaks are likely to be
+real or not.  The tool is still of some use and should be retained.
+
+\subsubsection{Pulsar Folding/Searching}
+\label{sec:pulsar}
+Support for folding data on a known pulsar period, or for searching
+for pulsar periodicities in data was at one point contemplated for HOPS.
+It may be useful to consider this in the new architecture.
+
+\subsubsection{Space Based Support}
+\label{sec:space}
+
+If there is a future possibility of space based radio telescopes participating in the EHT network, this may require some additional features in the fringe fitting software, such
+as compensating for higher order delay residual terms (delay-acceleration) in addition to the linear delay/delay-rate model used for ground based stations.
+
+\subsubsection{PolConvert}
+\label{sec:polconvert}
+The ALMA observatory uses a linear, rather than a circular polarization
+basis.  The current practice is to follow the correlation process (into
+a mixed basis) by a polarization conversion step (using the tool
+\texttt{PolConvert}).  In principle this step could be carried out in
+the post-processing stage within \nuHOPS.  The architecture should
+support this.
+
+\subsection{Calibration Specification}
+\label{sec:calspecs}
+
+\subsubsection{Phase Calibration}
+\label{sec:phasecal}
+The EHT generally has used manual phase cals (no other alternative).
+The geodetic sites generally have a pulsed tone phase cal system.
+Depending on whether a pulsed system can be developed for the EHT,
+it may in principal need to use both methods.
+
+\subsubsection{Manual Phase Calibration}
+\label{sec:manphasecal}
+Lacking a pulse phase cal system at all of its observatories, the EHT
+generally relies on a manual phase cal procedure.  There are several
+scripts that have been written to estimate the manual phase cals (at
+each station) on one bright scan and then place these phases into the
+control file.  Likewise, delays may be estimated from a single scan
+and placed in the control file.  Scripts to continue to do this must
+be supported in the \nuHOPS~architecture.
+
+\subsubsection{Pulse Phase Calibration}
+\label{sec:pulsephasecal}
+
+Pulse phase calibration is a method of compensating for the time varying phase and delay response of a telescope's receiving system. This is done
+by injecting a train of sharp pulses (a Dirac comb) which are synchronized with the site's reference clock. This train of pulses is equivalent
+to set of equally separated tones in frequency space. Since the tones are known to be in phase at the point of injection, it is then possible to monitor
+the frequency dependent phase changes made to the incoming signal by the receiving system by tracking the accumulated phase of each tone.
+This technique allows for the elimination of the (possibly time-varying) dispersion introduced by the receiving system.
+
+Typically this calibration process is applied to the data in two steps after it is recorded. The first step is the extraction of the phase calibration tone phases. This is primarily done by
+the correlator by calculating the in-phase and quadrature components of the stations' signals at each of the discrete tone frequencies. The second step is done during the fringe-fitting process,
+where each stations tone-phase data is applied to correct the correlated signal. When there are many tone available across the correlated bandwidth, this process also allows for the correction of
+instrumental delays (higher order terms are not currently considered). However, as is often the case, the pulse calibration data is not perfect and it can be significantly contaminated by RFI or weak tones.
+The current implementation of (multiple tone) phase-calibration in fourfit is fairly robust, and admits some ability to mask bad tone data. However, there is ample room for improvement in the automatic
+flagging of bad phase calibration data, which would be especially useful in the case where the data quality varies across both the time and frequency domain.
+
+
+\subsubsection{Instrumental Bandpass Calibration}
+\label{sec:bandpass}
+It should be possible in \nuHOPS~to perform an instrumental bandpass
+correction as is available in other packages.  Here one or more scans
+on a bright calibrator may be used to establish the per-station deviation
+of the bandpass from the optimal flat response.  These derived bandpass
+solutions may then be applied to adjust the correlation amplitude as a
+function of frequency.  Such a bandpass correction  may also be fully
+complex (i.e. phase adjustments as well).
+
+\subsubsection{Atmospheric Phase Calibration}
+\label{sec:atmosphere}
+
+The currently implmentation of fourfit allows from some limited ability to handle atmospheric phase calibration. Currently, this is done via the introduction of ad-hoc phases, which are applied independently from the formal fitting procedure for delay/delay-rate.
+In the existing EHT calibration pipeline, these ad-hoc phases are estimated (after data-flagging and some bandpass correction have been applied) from data residuals after the fringe-fitting. The smoothed phase corrections estimated from the residuals
+must then be exported to a ad-hoc phase file in order to be applied on the next pass. This process (while generic) is time consuming and requires the presence of a reference station with good SNR to the majority of stations in the network. Therefore, it
+desirable to have a dedicated algorithm to estimate and apply atmospheric phase calibration within the fringe-fitting process itself.
+
+
+\subsubsection{Polarization Calibration Corrections}
+\label{sec:polarization}
+In the current EHT analysis, network calibration techniques are used to self-calibrate the array for polarization work.  This is an area
+to discuss with the other working groups what form of support in \nuHOPS~would be most effective. In addition, good estimates of station-based polarization calibration parameters
+also enables the coherent summation (Stokes-I) of individual polarization-products resulting in higher SNR observations. This is also of great interest for geodetic observations, and important
+for observations between stations with mixed polarization types (circular-linear).
+
+\subsubsection{Ionopheric Calibration Corrections}
+\label{sec:ionoscalcorr}
+
+While the ionosphere does not typically play much of a roll at the high frequencies at which the EHT is observing (230, 345 GHz), knowledge of the ionosphere is crucial for obtaining
+good results during geodetic observations that occur at lower frequencies (2-14 GHz) where the dispersion it causes is much stronger. Currently, fitting for the(line-of-site) differential total electron content ($\Delta$TEC) of the
+ionosphere can currently be done from geodetic VLBI observations themselves during fringe-fitting on a single baseline. However, the current implementation could be strengthened if the fringe-fitting architecture were extended to allow for the possibility
+of simultaneously fitting for the line-of-site TEC associated with station, as a station (rather than baseline) based quantity. This would help in the reduction of non-closing $\Delta$ TEC errors, and which can currently only be
+done in an ad-hoc manner. Additionally, fitting for the $\Delta$TEC is sensitive to residual instrumental phase effects which can be difficult to detect unless examining data from multiple single baselines/scans.
+
+
+\subsubsection{Source Structure Corrections}
+\label{sec:sourcestructcorr}
+
+One explicitly geodetic feature that may be desirable in the \nuHOPS is the possibility to introduce phase and delay corrections to compensate for source structure given an image model of a non-point like radio source. Having this ability would
+eliminate a significant source of systematic error in geodetic delay observables, and allow for a larger catalog of usable (bright) sources for geodetic observations.
+
+
+
+\subsection{Infrastructure}
+\label{sec:infra}
+
+\subsubsection{Messaging}
+\label{sec:msg}
+HOPS currently passes commentary to the user via a uniform messaging
+service.  This allows the user to turn on verbosity or run completely
+silently.  This should be preserved, but due to the potential volume
+of such messages, the control should become finer grained---i.e. the
+user should be able to specify what portions of code are making comments.
+
+\subsubsection{Utilities}
+\label{sec:utils}
+HOPS has a few utilities for date or geometry calculations---these
+should be reviewed and clearly supported.
+
+\subsubsection{Performance}
+\label{sec:perform}
+HOPS has a performance monitoring system built into the existing code.
+This should be retained and augmented by more sophisticated profiling tools.
+
+\subsubsection{Averaging}
+\label{sec:average}
+Time averaging of data was added ad hoc to several of the tools; we
+propose to build this capability in directly with native support.
+
+\subsection{Data Inspection and Visualization}
+\label{sec:inspect}
+
+\subsubsection{To/From ASCII}
+\label{sec:ascii}
+Every bit of data that HOPS works with should be available in a human-readable
+form.  So every object in the new design should support methods to export to
+or import from some human readable format.
+
+\subsubsection{The Fourfit Plot}
+\label{sec:fplot}
+The current fringe fitter, \texttt{fourfit} produces a single page summary
+of the fringe result for every baseline.  In the high-bandwidth modern era,
+one is hard pressed to capture everything in a readable format.  A single-page
+format is still desirable, as is the ability to page through multiple plots
+(i.e. as can be done with \texttt{fplot}), but some controls over the
+information that is displayed is probably desirable.  Thus in \nuHOPS,
+there will still be a standard page, but one may also create custom formats
+which may be more useful for some experiment setups.
+
+\subsubsection{Interactive Tools}
+\label{sec:aedit}
+The post-fringe processing in HOPS begins with \texttt{alist} which provides
+one line summaries of every fringe.  These ``alist'' files may then be
+used to make data-quality selections or support inspection (\texttt{fplot} of
+errant fringes).  This capability must be retained, but it can almost certainly
+be better implemented in Python, which would make it more extensible.
+
+\subsubsection{Alternative Visualization}
+\label{sec:alternatives}
+Additional visualizations of data should be provided as these are often
+useful for understanding subtle issues with data.  Again, a Python layer
+providing access to the underlying \nuHOPS~data formats would probably be
+the most elegant solution.
+
+\subsection{New Libraries}
+\label{sec:libes}
+The existing algorithms should be encoded into new library methods
+that have clear inputs, outputs and side-effects.  (In the current
+HOPS, there are many side-effects to global variables, so the methods
+cannot be directly reused as coded.)
+
+\subsection{New Programs}
+\label{sec:progs}
+With the new architecture in place, versions of the existing programs
+(e.g. \texttt{fourfit}, \texttt{alist} and \texttt{aedit}) should be
+provided along with new, improved tools for the desired new capabilities.
+
+%
+% eof
+%
