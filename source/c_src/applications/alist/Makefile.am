@@ -14,13 +14,12 @@ bin_PROGRAMS = alist
 
 alist_SOURCES = alist.c open_output.c parse_cmdline.c summarize_mk4fringe.c
 
-alist_LDADD = ../../mk4util/libmk4utilb.la ../../afio/libafiob.la \
-	../../dfio/libdfiob.la
+alist_LDADD = ../../mk4util/libmk4util.la ../../afio/libafio.la \
+	../../dfio/libdfio.la
 
 #added manually (should this be configured?)  FIXME: yes
 alist_LDADD += -lm
 
-#check_SCRIPTS = ./import_alist.sh
 EXTRA_DIST = 
 
 #

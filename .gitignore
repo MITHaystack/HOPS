@@ -70,4 +70,7 @@ install-sh
 ltmain.sh
 missing
 
+# Editor junk
+*.swp
+
 # eof

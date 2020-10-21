@@ -3,7 +3,6 @@
 # (c) Massachusetts Institute of Technology, 2020
 # The contents of the package Copyright statement apply here.
 #
-#SUBDIRS = .
 
 AM_CPPFLAGS = -I. -I$(srcdir)/include -I$(srcdir)/../mk4util/include \
 	-Wall -Wextra -DHAVE_CONFIG_H
@@ -21,9 +20,9 @@ pkginclude_HEADERS = include/T1.h include/bytflp.h include/mk4_data.h \
 	include/type_305.h include/type_306.h include/type_307.h \
 	include/type_308.h include/type_309.h include/type_comp.h
 
-pkglib_LTLIBRARIES = libdfiob.la
+pkglib_LTLIBRARIES = libdfio.la
 
-libdfiob_la_SOURCES = src/addr_100.c src/addr_101.c src/addr_110.c \
+libdfio_la_SOURCES = src/addr_100.c src/addr_101.c src/addr_110.c \
 	src/addr_120.c src/addr_200.c src/addr_201.c src/addr_202.c \
 	src/addr_203.c src/addr_204.c src/addr_205.c src/addr_206.c \
 	src/addr_207.c src/addr_208.c src/addr_210.c src/addr_212.c \
@@ -52,11 +51,8 @@ libdfiob_la_SOURCES = src/addr_100.c src/addr_101.c src/addr_110.c \
 	src/test_compress.c src/write_err.c src/write_mk4corel.c \
 	src/write_mk4fringe.c src/write_mk4sdata.c src/write_record.c
 
-libdfiob_la_LDFLAGS = -avoid-version
+libdfio_la_LDFLAGS = -avoid-version
 
-libdfiob_la_LIBADD = ../mk4util/libmk4utilb.la
-
-#check_SCRIPTS = ./import_dfio.sh
 EXTRA_DIST =
 
 #

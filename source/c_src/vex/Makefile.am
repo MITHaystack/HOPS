@@ -13,9 +13,9 @@ pkginclude_HEADERS = include/cvex.h include/evex.h include/ivex.h \
 	include/lvex.h include/mk4_vex.h include/ovex.h include/svex.h \
 	include/vex.h
 
-pkglib_LTLIBRARIES = libvexb.la
+pkglib_LTLIBRARIES = libvex.la
 
-libvexb_la_SOURCES = src/block_params.c src/check_intrange.c \
+libvex_la_SOURCES = src/block_params.c src/check_intrange.c \
 	src/check_realrange.c src/check_scan.c src/check_stloc.c \
 	src/check_strrange.c src/cvex_info.c src/decode_pval.c \
 	src/do_antenna.c src/do_bbc.c src/do_clock.c src/do_das.c \
@@ -38,11 +38,8 @@ libvexb_la_SOURCES = src/block_params.c src/check_intrange.c \
 	src/process_qstring.c src/read_file.c src/scan_info.c \
 	src/strip_text.c src/svex_info.c src/vex_init.c src/write_vexfile.c
 
-libvexb_la_LDFLAGS = -avoid-version
+libvex_la_LDFLAGS = -avoid-version
 
-libvexb_la_LIBADD = ../mk4util/libmk4utilb.la
-
-#check_SCRIPTS = ./import_vex.sh
 EXTRA_DIST =
 
 #

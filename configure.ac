@@ -174,9 +174,9 @@ AC_CONFIG_FILES(
     source/c_src/fourfit_libs/ffio/Makefile
     source/c_src/fourfit_libs/ffsearch/Makefile
     source/c_src/fourfit_libs/ffplot/Makefile
+    source/c_src/applications/fourfit/Makefile
 )
 # still to do:
-    # source/c_src/applications/fourfit/Makefile
 
 # source/cpp_src makefiles
 AC_CONFIG_FILES(source/cpp_src/Makefile)
