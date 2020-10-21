@@ -184,6 +184,7 @@ int main(int argc, char** argv)
     size_t num_lags = 0; //not really number of lags, but rather, spectral points
     size_t num_channels = 0;
     std::set< std::pair<std::string, std::string > > channel_label_pairs;
+    std::set< int > valid_aps;
 
     struct mk4_corel::index_tag* idx;
     for(int i=0; i<corel_obj->index_space; i++)
@@ -194,7 +195,7 @@ int main(int argc, char** argv)
             struct type_120* t120 = idx->t120[ap];
             if(t120 != NULL)
             {
-                if(num_aps < ap){num_aps = ap;};
+                valid_aps.insert(ap);
                 if(t120->type == SPECTRAL)
                 {
                     int nlags = t120->nlags;
@@ -212,7 +213,8 @@ int main(int argc, char** argv)
         }
     }
     num_channels = channel_label_pairs.size();
-    num_aps += 1;
+    //we determined the max number of APs via max over valid indices, so the
+    num_aps = valid_aps.size();
 
     //create a map of channel-pairs to interval labels (to be filled in with more information later)
     std::map< std::string, MHOIntervalLabel> channel_label_map;
@@ -627,15 +629,15 @@ int main(int argc, char** argv)
     c->SetRightMargin(0.2);
     c->Divide(1,2);
     c->cd(1);
-    gr->Draw("COLZ");
+    gr->Draw("PCOLZ");
     c->Update();
     c->cd(2);
-    gb->Draw("COLZ");
+    gb->Draw("PCOLZ");
     c->Update();
 
     App->Run();
 
-    #endif
+    #endif //USE_ROOT
 
 
     return 0;

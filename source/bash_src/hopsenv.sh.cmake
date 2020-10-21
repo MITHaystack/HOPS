@@ -39,6 +39,6 @@ export LD_LIBRARY_PATH=$HOPS_INSTALL/lib:${LD_LIBRARY_PATH//${OLD_LDLIBPATH}/}
 export CMAKE_PREFIX_PATH=$HOPS_INSTALL:${CMAKE_PREFIX_PATH//${OLD_CMAKE_PREF}/}
 export PYTHONPATH=${HOPSSYSPY}:${PYTHONPATH//${OLD_HOPSSYSPY}}
 
-echo -e "Hose install directory set to ${HOPS_INSTALL}"
+echo -e "HOPS install directory set to ${HOPS_INSTALL}"
 
 return 0
