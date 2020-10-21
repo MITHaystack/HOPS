@@ -15,17 +15,24 @@ AM_CXXFLAGS = -I. -I$(srcdir)/include \
 	-Wall -Wextra
 
 check_PROGRAMS = \
+	TestMessenger TestArrayWrapper \
+	TestIntervalLabelTree \
 	TestMK4CorelInterface TestMK4Import \
 	TestMK4Import2 TestMK4Interface TestMK4VexInterface \
 	TestMultiTypeMap TestScalarContainer \
-	TestVectorContainer
+	TestVectorContainer TestTimeStampConverter \
+	TestTensorContainer
 
-# TestMessenger TestArrayWrapper TestIntervalLabelTree TestTimeStampConverter
+TESTS_ENVIRONMENT = srcdir=$(srcdir)
+TESTS = $(check_PROGRAMS)
+
+# FIXME: these currently coredump
+XFAIL_TESTS = TestMK4Import TestMK4Import2
 
 # ls -1 *.cc | awk -F. '{print $1 "_SOURCES = " $1 "." $2}'
-#TestArrayWrapper_SOURCES = TestArrayWrapper.cc
-#TestIntervalLabelTree_SOURCES = TestIntervalLabelTree.cc
-#TestMessenger_SOURCES = TestMessenger.cc
+TestArrayWrapper_SOURCES = TestArrayWrapper.cc
+TestIntervalLabelTree_SOURCES = TestIntervalLabelTree.cc
+TestMessenger_SOURCES = TestMessenger.cc
 TestMK4CorelInterface_SOURCES = TestMK4CorelInterface.cc
 TestMK4Import2_SOURCES = TestMK4Import2.cc
 TestMK4Import_SOURCES = TestMK4Import.cc
@@ -33,8 +40,8 @@ TestMK4Interface_SOURCES = TestMK4Interface.cc
 TestMK4VexInterface_SOURCES = TestMK4VexInterface.cc
 TestMultiTypeMap_SOURCES = TestMultiTypeMap.cc
 TestScalarContainer_SOURCES = TestScalarContainer.cc
-#TestTensorContainer_SOURCES = TestTensorContainer.cc
-#TestTimeStampConverter_SOURCES = TestTimeStampConverter.cc
+TestTensorContainer_SOURCES = TestTensorContainer.cc
+TestTimeStampConverter_SOURCES = TestTimeStampConverter.cc
 TestVectorContainer_SOURCES = TestVectorContainer.cc
 
 # use a general rule here
