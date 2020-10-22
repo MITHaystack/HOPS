@@ -41,22 +41,42 @@ class MHOMK4CorelInterface
 
         //read the vex and corel files and dump into new formatvoid
 
-        void ExtractCorelFile();
+        baseline_data_type* ExtractCorelFile();
 
     private:
 
+        //corel and vex file members
         void ReadCorelFile();
         void ReadVexFile();
-
-        //helper function to convert raw char arrays to strings
-        std::string getstr(const char* char_array, size_t max_size);
-
         bool fHaveCorel;
         bool fHaveVex;
         struct mk4_corel* fCorel;
         struct mk4_vex* fVex;
         std::string fVexFile;
         std::string fCoreFile;
+
+        //data dimensions related members
+        void DetermineDataDimensions();
+        std::size_t fNPPs;
+        std::size_t fNAPs;
+        std::size_t fNSpectral; //not really number of lags, but rather, spectral points
+        std::size_t fNChannels;
+        std::size_t fNChannelsPerPP;
+        std::set< std::string > fPolProducts;
+
+        //store all channel related data in interval labels for convenience
+        //the keys are pol-product labels (e.g. XX, RL, YY, etc)
+        //the vectors are sorted by sky-frequency
+        std::map< std::string, MHOIntervalLabel > fAllChannelMap;
+        std::map< std::string, std::vector< MHOIntervalLabel > > fAllChannelInfo;
+
+        //helper function to convert raw char arrays to strings
+        std::string getstr(const char* char_array, size_t max_size);
+
+        double calc_freq_bin(double ref_sky_freq, double rem_sky_freq, double ref_bw, double rem_bw, char ref_net_sb, char rem_net_sb, int nlags, int bin_index)
+
+
+
 };
 
 }//end of hops namespace
