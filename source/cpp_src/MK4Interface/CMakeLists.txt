@@ -23,14 +23,16 @@ set(VEX_RELPATH "../../c_src/vex/include")
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/${MK4UTIL_RELPATH})
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/${DFIO_RELPATH})
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/${VEX_RELPATH})
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/${MESSAGE_RELPATH})
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../Utilities/include)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../Containers/include)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../Messaging/include)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 #compile and install library ###################################################
 
-set(MK4INTERFACE_LIBS mk4util dfio vex)
+set(MK4INTERFACE_LIBS mk4util dfio vex MHOMessage MHOUtilities)
 
 add_library (MHOMK4Interface SHARED ${MK4INTERFACE_SOURCEFILES})
 target_link_libraries (MHOMK4Interface ${MK4INTERFACE_LIBS})

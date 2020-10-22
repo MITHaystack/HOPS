@@ -20,7 +20,8 @@ extern "C"
 namespace hops
 {
 
-//the ordering operator for channel labels;
+
+//the ordering operator for channel labels to sort by frequency;
 class chan_label_freq_predicate
 {
     public:
@@ -37,53 +38,6 @@ class chan_label_freq_predicate
 };
 
 
-double
-MHOMK4CorelInterface::calc_freq_bin(double ref_sky_freq, double rem_sky_freq, double ref_bw, double rem_bw, char ref_net_sb, char rem_net_sb, int nlags, int bin_index)
-{
-    double step_sign = 1.0;
-    if(ref_net_sb == 'U' && rem_net_sb == 'U')
-    {
-        step_sign = 1.0;
-    }
-    else if(ref_net_sb == 'L' && rem_net_sb == 'L')
-    {
-        step_sign = -1.0;
-    }
-    else
-    {
-        std::cout<<"mixed side bands?!"<<std::endl;
-    }
-
-    //mixed U/L?
-
-    double freq = 0;
-    if( ref_sky_freq == rem_sky_freq && ref_bw == rem_bw)
-    {
-        freq = ref_sky_freq + bin_index*step_sign*(ref_bw/nlags);
-    }
-    else
-    {
-        std::cout<<"ref-rem channel infor mis-match?!"<<std::endl;
-    }
-
-    return freq;
-
-}
-
-
-
-
-// template< typename XType, std::size_t N>
-// std::array<XType, N> create_and_fill_array(XType values[N])
-// {
-//     std::array<XType, N> arr;
-//     for(size_t i=0; i<N; i++)
-//     {
-//         arr[i] = values[i];
-//     }
-//     return arr;
-// }
-
 
 MHOMK4CorelInterface::MHOMK4CorelInterface():
     fHaveCorel(false),
@@ -93,6 +47,14 @@ MHOMK4CorelInterface::MHOMK4CorelInterface():
 {
     fVex = (struct vex *) calloc ( 1, sizeof(struct vex) );
     fCorel = (struct mk4_corel *) calloc ( 1, sizeof(struct mk4_corel) );
+    fNPPs = 0;
+    fNAPs = 0;
+    fNSpectral = 0;
+    fNChannels = 0;
+    fNChannelsPerPP = 0;
+    fPolProducts.clear();
+    fAllChannelMap.clear();
+    fPPSortedChannelInfo.clear();
 }
 
 MHOMK4CorelInterface::~MHOMK4CorelInterface()
@@ -142,7 +104,9 @@ MHOMK4CorelInterface::ReadVexFile()
 
     std::string tmp_key(""); //use empty key for now
     std::string fname = fVexFile;
-    int retval = get_vex( const_cast<char*>(fname.c_str() ),  OVEX | EVEX | IVEX | LVEX , const_cast<char*>(tmp_key.c_str() ), fVex);
+    int retval = get_vex( const_cast<char*>(fname.c_str() ),
+                          OVEX | EVEX | IVEX | LVEX ,
+                          const_cast<char*>(tmp_key.c_str() ), fVex);
 
     if(retval !=0 )
     {
@@ -193,13 +157,19 @@ MHOMK4CorelInterface::DetermineDataDimensions()
         for(int ap=0; ap<idx->ap_space; ap++)
         {
             struct type_120* t120 = idx->t120[ap];
-            if(t120 != NULL)
+            if(t120 != nullptr)
             {
                 if(t120->type == SPECTRAL)
                 {
                     valid_aps.insert(ap);
                     std::size_t nlags = t120->nlags;
+                    //this implicitly assumes all channels have the same number
+                    //if spectral points
                     if(fNSpectral < nlags){fNSpectral = nlags;}
+                }
+                else
+                {
+                    msg_fatal("mk4interface", "Non-spectral type-120 not supported." << eom);
                 }
             }
         }
@@ -220,10 +190,10 @@ MHOMK4CorelInterface::DetermineDataDimensions()
     fNAPs = valid_aps.size();
 
     #ifdef  HOPS_ENABLE_DEBUG_MSG
-    msg_debug("mk4interface", "Total number of channels = "<< fNChannels << eom );
+    msg_debug("mk4interface", "Total number of channel pairs = "<< fNChannels << eom );
     for(auto it = fAllChannelMap.begin(); it != fAllChannelMap.end(); it++)
     {
-        msg_debug("mk4interface", " channel pair = "<<it->first<<", "<<it->second<< eom);
+        msg_debug("mk4interface", " channel pair = "<<it->first<< eom);
     }
     #endif
 
@@ -235,13 +205,13 @@ MHOMK4CorelInterface::DetermineDataDimensions()
     char ref_net_sb, rem_net_sb, ref_pol, rem_pol;
     bool found_ref = false;
     bool found_rem = false;
-    fPolProducts.clear(); //for counting pol-products
+    fPolProducts.clear();
 
     for(auto ch = fAllChannelMap.begin(); ch != fAllChannelMap.end(); ch++)
     {
         std::string ref_chan_id, rem_chan_id;
-        ch->second->Retrieve(std::string("ref_chan_id"), ref_chan_id);
-        ch->second->Retrieve(std::string("rem_chan_id"), rem_chan_id);
+        ch->second.Retrieve(std::string("ref_chan_id"), ref_chan_id);
+        ch->second.Retrieve(std::string("rem_chan_id"), rem_chan_id);
         found_ref = false;
         found_rem = false;
         for(int ist = 0; ist<nst; ist++)
@@ -297,18 +267,31 @@ MHOMK4CorelInterface::DetermineDataDimensions()
             ch->second.Insert(std::string("rem_polarization"), rem_pol);
             ch->second.Insert(std::string("pol_product"), pp);
 
-            #ifdef HOPS_ENABLE_DEBUG_MSG
-            msg_debug("mk4interface", "Dumping channel information for: " << tmp_key << eom);
-            ch->second.DumpMap<std::string>();
-            ch->second.DumpMap<double>();
-            ch->second.DumpMap<char>();
-            ch->second.DumpMap<int>();
-            #endif
+            //also attach some 'common across all pol-products' labels
+            if(channel_info_match(ref_sky_freq, rem_sky_freq, ref_bw, rem_bw, ref_net_sb, rem_net_sb) )
+            {
+                ch->second.Insert(std::string("sky_freq"), ref_sky_freq);
+                ch->second.Insert(std::string("bandwidth"), ref_bw);
+                ch->second.Insert(std::string("net_sideband"), ref_net_sb);
+            }
+            else
+            {
+                msg_error("mk4interface", "Mis-matched channel information in pair: " << ch->first << eom);
+            }
+
+            // #ifdef HOPS_ENABLE_DEBUG_MSG
+            // msg_debug("mk4interface", "Dumping channel information for: " << ch->first << eom);
+            // ch->second.DumpMap<std::string>();
+            // ch->second.DumpMap<double>();
+            // ch->second.DumpMap<char>();
+            // ch->second.DumpMap<int>();
+            // #endif
         }
     }
 
     fNPPs = fPolProducts.size();
     //for the time being we are implicitly assuming the frequency set-up
+    //is the same for each pol-product
     //but we count the number of channels per pol-product to make sure
     std::map< std::string, std::set< MHOIntervalLabel* > > pp_chan_set_map;
 
@@ -316,9 +299,9 @@ MHOMK4CorelInterface::DetermineDataDimensions()
     for(auto it = fPolProducts.begin(); it != fPolProducts.end(); it++)
     {
         pp_chan_set_map[*it] = std::set<MHOIntervalLabel*>();
-        fAllChannelInfo[*it] = std::vector< MHOIntervalLabel >();
+        fPPSortedChannelInfo[*it] = std::vector< MHOIntervalLabel* >();
     }
-    //now sort channel labels by pol-product
+    //now separate out channel labels by pol-product
     for(auto it = fAllChannelMap.begin(); it != fAllChannelMap.end(); it++)
     {
         char pol1, pol2;
@@ -330,12 +313,12 @@ MHOMK4CorelInterface::DetermineDataDimensions()
         auto indicator = pp_chan_set_map[ppkey].insert( &(it->second) );
         if(indicator.second)
         {
-            fAllChannelInfo[ppkey].push_back( it->second );
+            fPPSortedChannelInfo[ppkey].push_back( &(it->second) );
         }
     }
 
     //make sure all pol-products share the same number of channels
-    std::size_t fNChannelsPerPP = 0;
+    fNChannelsPerPP = 0;
     for(auto it = pp_chan_set_map.begin(); it != pp_chan_set_map.end(); it++)
     {
         if(fNChannelsPerPP == 0){fNChannelsPerPP = it->second.size();}
@@ -343,7 +326,7 @@ MHOMK4CorelInterface::DetermineDataDimensions()
         {
             if(fNChannelsPerPP != it->second.size() )
             {
-                msg_warning("mk4interface",
+                msg_error("mk4interface",
                     "Not all pol-products have the same number of channels! " <<
                     fNChannelsPerPP << " !=" << it->second.size() << eom );
             }
@@ -356,13 +339,10 @@ MHOMK4CorelInterface::DetermineDataDimensions()
     chan_label_freq_predicate sort_pred;
     for(auto it = fPolProducts.begin(); it != fPolProducts.end(); it++)
     {
-        std::sort( fAllChannelInfo[*it].begin(), fAllChannelInfo[*it].end(), sort_pred);
+        std::sort( fPPSortedChannelInfo[*it].begin(), fPPSortedChannelInfo[*it].end(), sort_pred);
     }
 
 }
-
-
-
 
 baseline_data_type*
 MHOMK4CorelInterface::ExtractCorelFile()
@@ -370,14 +350,22 @@ MHOMK4CorelInterface::ExtractCorelFile()
     ReadCorelFile();
     ReadVexFile();
 
+    baseline_data_type* bl_data = nullptr;
+
     if(fHaveCorel && fHaveVex)
     {
+
         DetermineDataDimensions();
         double ap_time_length = fVex->evex->ap_length;
 
         //now we can go ahead an create a container for all the visibilities
+        // std::cout<<"fNPPs: "<<fNPPs<<std::endl;
+        // std::cout<<"fNAPs: "<<fNAPs<<std::endl;
+        // std::cout<<"fNChannelsPerPP: "<<fNChannelsPerPP<<std::endl;
+        // std::cout<<"fNSpectral: "<<fNSpectral<<std::endl;
+
         std::size_t bl_dim[NDIM] = {fNPPs, fNAPs, (fNChannelsPerPP*fNSpectral)};
-        baseline_data_type* bl_data = new baseline_data_type(bl_dim);
+        bl_data = new baseline_data_type(bl_dim);
 
         //first label the pol-product axis
         std::size_t pp_count = 0;
@@ -398,71 +386,77 @@ MHOMK4CorelInterface::ExtractCorelFile()
         //finally we need to label the frequency axis
         //this is trickier because the frequency axis is not continuous...
         //for the time being we assume the all pol-products have the same freq-axis
-        std::size_t freq_count = 0;
-        std::size_t ch_count = 0;
-        double ref_sky_freq, ref_bw, rem_sky_freq, rem_bw;
-        char ref_net_sb, rem_net_sb, ref_pol, rem_pol;
-        for(auto it = fAllChannelInfo[*(fPolProducts.begin())].begin(); it != fAllChannelInfo[*(fPolProducts.begin())].end(); it++)
+        //so if true, the outer loop is actually unecessary
+        std::set< int > inserted_channel_labels;
+        for(auto ppit = fPolProducts.begin(); ppit != fPolProducts.end(); ppit++ )
         {
-            // double ref_sky_freq, ref_bw, rem_sky_freq, rem_bw;
-            // char ref_net_sb, rem_net_sb, ref_pol, rem_pol;
-            (*it)->Retrieve(std::string("ref_sky_freq"), ref_sky_freq);
-            (*it)->Retrieve(std::string("ref_bandwidth"), ref_bw);
-            (*it)->Retrieve(std::string("ref_net_sideband"), ref_net_sb);
-            (*it)->Retrieve(std::string("ref_polarization"), ref_pol);
-            (*it)->Retrieve(std::string("rem_sky_freq"), rem_sky_freq);
-            (*it)->Retrieve(std::string("rem_bandwidth"), rem_bw);
-            (*it)->Retrieve(std::string("rem_net_sideband"), rem_net_sb);
-            (*it)->Retrieve(std::string("rem_polarization"), rem_pol);
-            (*it)->SetBounds(freq_count, freq_count + fNSpectral); //add the freq-axis bounds for this channel for later lookup
-
-            //insert an appropriate label for this chunk of frequency data
-            //set the bounds on the channel label, and add some info
-            MHOIntervalLabel ch_label;
-            ch_label.Insert(std::string("ch_sky_freq"), ref_sky_freq);
-            ch_label.Insert(std::string("ch_bandwidth"), ref_bw);
-            //add channel ID, for now this is just a number, but it could be anything
-            std::stringstream ss;
-            ss << ch_count;
-            ch_label.Insert(std::string("channel"), ss.str());
-            ch_label.SetBounds(freq_count, freq_count + fNSpectral);
-            std::get<FREQ_AXIS>(*bl_data).InsertLabel(ch_label);
-
-            //set up the frequency axis
-            for(std::size_t sp=0; sp<fNSpectral; sp++)
+            std::size_t freq_count = 0;
+            std::size_t ch_count = 0;
+            double sky_freq, bw;
+            char net_sb;
+            for(auto it = fPPSortedChannelInfo[*ppit].begin();
+                it != fPPSortedChannelInfo[*ppit].end();
+                it++)
             {
-                double freq = calc_freq_bin(ref_sky_freq, rem_sky_freq, ref_bw, rem_bw, ref_net_sb, rem_net_sb, fNSpectral, sp);
-                std::get<FREQ_AXIS>(*bl_data)(freq_count) = freq;
-                freq_count++;
-            }
+                (*it)->Retrieve(std::string("sky_freq"), sky_freq);
+                (*it)->Retrieve(std::string("bandwidth"), bw);
+                (*it)->Retrieve(std::string("net_sideband"), net_sb);
+                //add the freq-axis bounds info for this channel
+                (*it)->SetBounds(freq_count, freq_count + fNSpectral);
+                //add a common channel ID, for now this is just an integer
+                //but eventually it could be anything
+                std::stringstream ss;
+                ss << ch_count;
+                (*it)->Insert(std::string("channel"), ss.str());
 
-            ch_count++;
+                //if not present, insert a clean channel label on this axis
+                auto indicator = inserted_channel_labels.insert(ch_count);
+                if(indicator.second)
+                {
+                    MHOIntervalLabel ch_label;
+                    ch_label.Insert(std::string("sky_freq"), sky_freq);
+                    ch_label.Insert(std::string("bandwidth"), bw);
+                    ch_label.Insert(std::string("net_sideband"), net_sb);
+                    ch_label.SetBounds(freq_count, freq_count + fNSpectral);
+                    std::get<FREQ_AXIS>(*bl_data).InsertLabel(ch_label);
+                }
+
+                //set up this portion of the frequency axis
+                for(std::size_t sp=0; sp<fNSpectral; sp++)
+                {
+                    double freq = calc_freq_bin(sky_freq, bw, net_sb, fNSpectral, sp);
+                    std::get<FREQ_AXIS>(*bl_data).at(freq_count) = freq;
+                    freq_count++;
+                }
+                ch_count++;
+            }
         }
 
-
+        #ifdef HOPS_ENABLE_DEBUG_MSG
         //lets print out the pol, time and freq axes now:
         for(std::size_t i=0; i< std::get<POLPROD_AXIS>(*bl_data).GetSize(); i++)
         {
-            std::cout<<"pol_axis: "<<i<<" = "<<std::get<POLPROD_AXIS>(*bl_data).at(i)<<std::endl;
+            msg_debug("mk4interface", "pol_axis: "<<i<<" = "<<std::get<POLPROD_AXIS>(*bl_data).at(i)<< eom);
         }
 
         for(std::size_t i=0; i< std::get<TIME_AXIS>(*bl_data).GetSize(); i++)
         {
-            std::cout<<"time_axis: "<<i<<" = "<<std::get<TIME_AXIS>(*bl_data).at(i)<<std::endl;
+            msg_debug("mk4interface", "time_axis: "<<i<<" = "<<std::get<TIME_AXIS>(*bl_data).at(i)<<eom);
         }
 
         for(std::size_t i=0; i< std::get<FREQ_AXIS>(*bl_data).GetSize(); i++)
         {
-            std::cout<<"freq_axis: "<<i<<" = "<<std::get<FREQ_AXIS>(*bl_data).at(i)<<std::endl;
+            msg_debug("mk4interface", "freq_axis: "<<i<<" = "<<std::get<FREQ_AXIS>(*bl_data).at(i)<<eom);
         }
-
+        #endif
 
         //now fill in the actual visibility data
         struct type_101* t101 = nullptr;
+        struct mk4_corel::index_tag* idx = nullptr;
         for(int i=0; i<fCorel->index_space; i++)
         {
             idx = fCorel->index + i;
-            if( (t101 = idx->t101) != NULL)
+            if( (t101 = idx->t101) != nullptr)
             {
                 //extract all of the type101 index records
                 std::string ref_chan_id = getstr(t101->ref_chan_id,8);
@@ -471,88 +465,40 @@ MHOMK4CorelInterface::ExtractCorelFile()
                 auto ch = fAllChannelMap.find(key);
                 if( ch != fAllChannelMap.end() )
                 {
+                    auto ch_label = ch->second;
                     //now we want to extract the data in the type_120's
                     for(int ap=0; ap<idx->ap_space; ap++)
                     {
                         struct type_120* t120 = idx->t120[ap];
-                        if(t120 != NULL)
+                        if(t120 != nullptr)
                         {
                             if(t120->type == SPECTRAL)
                             {
                                 std::string ppkey;
-                                ch->second.Retrieve(std::string("pol_product"), pp);
+                                ch_label.Retrieve(std::string("pol_product"), ppkey);
                                 std::size_t pol_index = pp_index_lookup[ppkey];
-
-                                auto ch_it = fAllChannelMap.find(key);
-
                                 int nlags = t120->nlags;
-                                std::cout<<"adding freq data for ap: "<<ap<<" channels: "<<ref_chan_id<<" "<<rem_chan_id<<std::endl;
+                                msg_debug("mk4interface",
+                                          "Adding freq data for ap: "<<ap
+                                          <<" channel: "<< key << eom);
+
                                 for(int j=0; j<nlags; j++)
                                 {
-                                    int low = ch_it->second.GetLowerBound();
+                                    int low = ch_label.GetLowerBound();
                                     double re = t120->ld.spec[j].re;
                                     double im = t120->ld.spec[j].im;
-                                    std::cout<<ppkey<<" "<<pol_index<<" "<<ap<<" "<<j<<" "<<re<<","<<im<<std::endl;
-                                    bl_data->at(pol_index, ap, low+j) =  std::complex<double>(re,im);
+                                    std::complex<double> val(re,im);
+                                    bl_data->at(pol_index, ap, low+j) = val;
                                 }
-                            }
-                            else
-                            {
-                                std::cout<<"non-spectral type-120 not supported."<<std::endl;
                             }
                         }
                     }
                 }
             }
-
         }//end of index loop
-
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    return bl_data;
 }
 
 
@@ -565,4 +511,28 @@ MHOMK4CorelInterface::getstr(const char* char_array, std::size_t max_size)
 }
 
 
+
+bool
+MHOMK4CorelInterface::channel_info_match(double ref_sky_freq, double rem_sky_freq,
+                        double ref_bw, double rem_bw,
+                        char ref_net_sb, char rem_net_sb)
+{
+    //perhaps we ought to consider some floating point tolerance?
+    if(ref_sky_freq != rem_sky_freq){return false;}
+    if(ref_bw != rem_bw){return false;}
+    if(ref_net_sb != rem_net_sb){return false;}
+    return true;
 }
+
+
+double
+MHOMK4CorelInterface::calc_freq_bin(double sky_freq, double bw, char net_sb, int nlags, int bin_index)
+{
+    double step_sign = 1.0;
+    if(net_sb == 'U'){step_sign = 1.0;}
+    if(net_sb == 'L'){step_sign = -1.0;}
+    double freq = sky_freq + bin_index*step_sign*(bw/nlags);
+    return freq;
+}
+
+}//end of namespace
