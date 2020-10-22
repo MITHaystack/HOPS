@@ -7,7 +7,9 @@
 *Author: J. Barrett
 *Email: barrettj@mit.edu
 *Date: 2020-05-19T18:54:28.140Z
-*Description:
+*Description: This class implicitly assumes that the frequency/channel configuration
+* is shared among all polarization products, we may want to loosen this restriction
+* in the future
 */
 
 #include <vector>
@@ -22,8 +24,11 @@
 //we do this to keep the mk4 structures from 'leaking' into the new code via includes,
 //We want to make sure any interface to the old mk4 IO libraries is kept only
 //within the MK4Interface library.
-struct mk4_corel;
-struct vex;
+extern "C"
+{
+    struct mk4_corel;
+    struct vex;
+}
 
 namespace hops
 {
@@ -37,7 +42,7 @@ class MHOMK4CorelInterface
 
         //need both the vex (root) file and corel file to extract the data
         void SetVexFile(const std::string& vex){fVexFile = vex;}
-        void SetCorelFile(const std::string& corel){fCoreFile = corel;}
+        void SetCorelFile(const std::string& corel){fCorelFile = corel;}
 
         //read the vex and corel files and dump into new formatvoid
 
@@ -51,9 +56,9 @@ class MHOMK4CorelInterface
         bool fHaveCorel;
         bool fHaveVex;
         struct mk4_corel* fCorel;
-        struct mk4_vex* fVex;
+        struct vex* fVex;
         std::string fVexFile;
-        std::string fCoreFile;
+        std::string fCorelFile;
 
         //data dimensions related members
         void DetermineDataDimensions();
@@ -64,17 +69,21 @@ class MHOMK4CorelInterface
         std::size_t fNChannelsPerPP;
         std::set< std::string > fPolProducts;
 
+
         //store all channel related data in interval labels for convenience
+        std::map< std::string, MHOIntervalLabel > fAllChannelMap;
+
+        //this field stores pointers to channel labels on a per-pol product basis
         //the keys are pol-product labels (e.g. XX, RL, YY, etc)
         //the vectors are sorted by sky-frequency
-        std::map< std::string, MHOIntervalLabel > fAllChannelMap;
-        std::map< std::string, std::vector< MHOIntervalLabel > > fAllChannelInfo;
+        std::map< std::string, std::vector< MHOIntervalLabel* > > fPPSortedChannelInfo;
 
         //helper function to convert raw char arrays to strings
         std::string getstr(const char* char_array, size_t max_size);
-
-        double calc_freq_bin(double ref_sky_freq, double rem_sky_freq, double ref_bw, double rem_bw, char ref_net_sb, char rem_net_sb, int nlags, int bin_index)
-
+        bool channel_info_match(double ref_sky_freq, double rem_sky_freq,
+                                double ref_bw, double rem_bw,
+                                char ref_net_sb, char rem_net_sb);
+        double calc_freq_bin(double sky_freq, double bw, char net_sb, int nlags, int bin_index);
 
 
 };
