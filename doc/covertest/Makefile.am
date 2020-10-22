@@ -18,8 +18,8 @@ if WANT_DOCS
 # to be somewhat surgical, this is useful:
 # TEXINPUTS=... kpsewhich -show-path tex "filename"
 # KPSETEXMFPATH set to : in configure pulls in the rest of TeX
-TEXINPUTS=.:$(srcdir):$(srcdir)/../common@KPSETEXMFPATH@
-TEXBIB=.:$(srcdir):$(srcdir)/../common:
+TEXINPUTS=.:$(srcdir):$(srcdir)/../common//@KPSETEXMFPATH@
+TEXBIB=.:$(srcdir):$(srcdir)/../common//:
 # can be overriden at the make command to see errors
 TEXOPT=-interaction=batchmode
 
