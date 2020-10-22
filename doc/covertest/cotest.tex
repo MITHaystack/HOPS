@@ -86,7 +86,7 @@
 \fancyfoot[R]{Page \thepage\ of\ \pageref{page:LastPage}}
 \fancyfoot[L]{\recdate}
 
-\title{ngEHT Requirements for a new HOPS}
+\title{ngEHT Coverage and Testing for a new HOPS}
 
 \author{%
 \LARGE John Barrett, Geoff Crew, Dan Hoak and Violet Pfeiffer \\
@@ -98,8 +98,8 @@
 \renewcommand\abstractname{Executive Summary}
 \abstract{%
 \large
-A short description of this document
-doc for folks with short attention spans.
+This document includes the general plan and some specifics
+on our testing of the new \ac{HOPS}.  \FIXME[more here]
 }
 
 % \begingroup . . . \endgroup can be used to keep things together
@@ -121,17 +121,28 @@ doc for folks with short attention spans.
 
 % it is sometimes cleaner to start sections on new pages in a longer
 % document--then changes to each section don't repage everything.
-\pagebreak
 
 % break document into appropriate portions
-%\input{tbd}
+\pagebreak
+\input{coverunit}
+
+\pagebreak
+\input{regress}
+
+\pagebreak
+\input{integration}
+
+\pagebreak
+\input{human}
 
 % if skipappendix-is-true then (nothing) else typeset Appendices
 \ifthenelse{\boolean{skipappendix}}{}{%
+
 \pagebreak
 \appendix
-\section{Acronyms}
+\section{Acronyms, Commands and Glossary}
 \input{acronyms}
+
 }
 
 \label{page:LastPage}
