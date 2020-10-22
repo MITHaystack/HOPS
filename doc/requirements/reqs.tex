@@ -41,13 +41,14 @@
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
 \usepackage[backend=biber,style=numeric,sorting=none]{biblatex}
-%\addbibresource{filename.bib}
+\addbibresource{hops.bib}
 % context-sensitive quotes
 \usepackage{csquotes}
 % underline for emphasis: \uline etc
 \usepackage{ulem}
-
-\usepackage{csquotes}
+% for generating outlines
+\usepackage{outlines}
+\usepackage{enumitem}
 
 % for bold math
 \usepackage{bm}
@@ -119,7 +120,8 @@ are informally captured (\Sec~\ref{sec:desires}).
 %\renewcommand\listfigurename{Figures}
 %\renewcommand\listtablename{Tables}
 %\vspace{24pt}\hrule
-%\tableofcontents
+\pagebreak
+\tableofcontents
 %\vspace{24pt}\hrule
 %\pagebreak
 %\listoffigures
@@ -134,6 +136,14 @@ are informally captured (\Sec~\ref{sec:desires}).
 % break document into appropriate portions
 \pagebreak
 \input{thereqs}
+
+\pagebreak
+\addtocounter{section}{1}
+\renewcommand{\refname}{\thesection. References}
+\addcontentsline{toc}{section}{\thesection. References}
+\bibstyle{plainurl}
+\printbibliography
+\label{sec:references}
 
 % if skipappendix-is-true then (nothing) else typeset Appendices
 \ifthenelse{\boolean{skipappendix}}{}{%
