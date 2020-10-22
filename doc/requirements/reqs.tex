@@ -28,6 +28,7 @@
 \hypersetup{colorlinks=true,linkcolor=darkblue,citecolor=darkgreen}
 % for figures; insert [draft] before {...} not to see imgs
 \usepackage{graphicx}
+\graphicspath{ {../common/uml-diagrams} }
 % for small figures surrounded by text
 \usepackage{wrapfig}
 % for control over headers and footers
@@ -42,6 +43,8 @@
 \usepackage[english]{babel}
 \usepackage[backend=biber,style=numeric,sorting=none]{biblatex}
 \addbibresource{hops.bib}
+% Use the appendix package.
+\usepackage{appendix}
 % context-sensitive quotes
 \usepackage{csquotes}
 % underline for emphasis: \uline etc
@@ -153,8 +156,12 @@ are informally captured (\Sec~\ref{sec:desires}).
 \input{hilo}
 
 \pagebreak
+\input{appendix}
+
+\pagebreak
 \section{Acronyms, Commands, and Glossary}
 \input{acronyms}
+
 }
 
 \label{page:LastPage}
