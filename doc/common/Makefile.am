@@ -9,7 +9,7 @@ EXTRA_DIST = $(srcdir)/acronyms.tex $(srcdir)/shortcuts.tex \
 	$(srcdir)/arch_overview.dia $(srcdir)/arch_overview.png \
 	$(srcdir)/ffcore.png $(srcdir)/ffsearch.png \
 	$(srcdir)/fourfit.png \
-	$(srcdir)/uml-diagrams/class-diagram-example.png
+	$(srcdir)/uml-diagrams/class-diagram-example.png \
 	$(srcdir)/uml-diagrams/uml-description.tex
 #
 # eof
