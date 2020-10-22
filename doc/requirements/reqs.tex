@@ -28,6 +28,7 @@
 \hypersetup{colorlinks=true,linkcolor=darkblue,citecolor=darkgreen}
 % for figures; insert [draft] before {...} not to see imgs
 \usepackage{graphicx}
+\graphicspath{ {../common/uml-diagrams} }
 % for small figures surrounded by text
 \usepackage{wrapfig}
 % for control over headers and footers
@@ -41,6 +42,8 @@
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
 \usepackage[backend=biber,style=numeric,sorting=none]{biblatex}
+% Use the appendix package.
+\usepackage{appendix}
 %\addbibresource{filename.bib}
 % context-sensitive quotes
 \usepackage{csquotes}
@@ -145,6 +148,10 @@ are informally captured (\Sec~\ref{sec:desires}).
 \pagebreak
 \section{Acronyms, Commands, and Glossary}
 \input{acronyms}
+
+\pagebreak
+\section{Appendix A}
+\input{appendix}
 }
 
 \label{page:LastPage}
