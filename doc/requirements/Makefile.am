@@ -17,6 +17,7 @@ if WANT_DOCS
 # TEXINPUTS=... kpsewhich -show-path tex "filename"
 # KPSETEXMFPATH set to : in configure pulls in the rest of TeX
 TEXINPUTS=.:$(srcdir):$(srcdir)/../common@KPSETEXMFPATH@
+TEXBIB=.:$(srcdir):$(srcdir)/../common:
 # can be overriden at the make command to see errors
 TEXOPT=-interaction=batchmode
 
@@ -38,6 +39,7 @@ $(TEXSRC).pdf: force
 force: $(srcdir)/Makefile.am $(EXTRA_DIST)
 	@echo first iteration
 	-TEXINPUTS=$(TEXINPUTS) pdflatex $(TEXOPT) $(TEXSRC).tex
+	-TEXBIB=$(TEXBIB) biber $(TEXSRC) >$(TEXSRC)-biber.log && echo biber ok
 	touch force
 
 CLEANFILES = $(TEXSRC).* $(TEXPDF).pdf force *.log

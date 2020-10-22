@@ -41,13 +41,14 @@
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
 \usepackage[backend=biber,style=numeric,sorting=none]{biblatex}
-%\addbibresource{filename.bib}
+\addbibresource{hops.bib}
 % context-sensitive quotes
 \usepackage{csquotes}
 % underline for emphasis: \uline etc
 \usepackage{ulem}
-
-\usepackage{csquotes}
+% for generating outlines
+\usepackage{outlines}
+\usepackage{enumitem}
 
 % for bold math
 \usepackage{bm}
@@ -117,7 +118,8 @@ at Haystack.
 %\renewcommand\listfigurename{Figures}
 %\renewcommand\listtablename{Tables}
 %\vspace{24pt}\hrule
-%\tableofcontents
+\pagebreak
+\tableofcontents
 %\vspace{24pt}\hrule
 %\pagebreak
 %\listoffigures
@@ -132,6 +134,14 @@ at Haystack.
 
 % break document into appropriate portions
 \input{gintro}
+
+\pagebreak
+\addtocounter{section}{1}
+\renewcommand{\refname}{\thesection. References}
+\addcontentsline{toc}{section}{\thesection. References}
+\bibstyle{plainurl}
+\printbibliography
+\label{sec:references}
 
 % if skipappendix-is-true then (nothing) else typeset Appendices
 \ifthenelse{\boolean{skipappendix}}{}{%
