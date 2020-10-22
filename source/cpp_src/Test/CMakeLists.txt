@@ -26,9 +26,7 @@ if (HOPS_ENABLE_TEST)
         TestMK4Interface
         #TestMK4CorelInterface
         TestMK4VexInterface
-        #TestMK4Import
-        #TestMK4Import2
-        TestMK4Import3
+        TestMK4Import
     )
 
     #for testing purposes only -- not intended to be a dependency
