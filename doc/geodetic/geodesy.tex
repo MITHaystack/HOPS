@@ -86,7 +86,7 @@
 \fancyfoot[R]{Page \thepage\ of\ \pageref{page:LastPage}}
 \fancyfoot[L]{\recdate}
 
-\title{ngEHT Requirements for a new HOPS}
+\title{Geodetic Considerations in a new HOPS}
 
 \author{%
 \LARGE John Barrett, Geoff Crew, Dan Hoak and Violet Pfeiffer \\
@@ -98,8 +98,15 @@
 \renewcommand\abstractname{Executive Summary}
 \abstract{%
 \large
-A short description of this document
-doc for folks with short attention spans.
+The \ac{ngEHT} project has provided funds so that \ac{HOPS} may
+be modernized and improved to support the needs of a \ac{ngEHT}.
+We are taking this opportunity to re-work the code so that no
+existing functionality is lost, and at the same time, improving
+it so that it becomes easier to maintain for the future.  This
+document covers some things that are not part of the formal
+\ac{ngEHT} project which provides the team with guidlines for
+development as may be funded separately by the geodetic programs
+at Haystack.
 }
 
 % \begingroup . . . \endgroup can be used to keep things together
@@ -124,14 +131,16 @@ doc for folks with short attention spans.
 \pagebreak
 
 % break document into appropriate portions
-%\input{tbd}
+\input{gintro}
 
 % if skipappendix-is-true then (nothing) else typeset Appendices
 \ifthenelse{\boolean{skipappendix}}{}{%
+
 \pagebreak
 \appendix
-\section{Acronyms}
+\section{Acronyms, Commands and Glossary}
 \input{acronyms}
+
 }
 
 \label{page:LastPage}
