@@ -7,6 +7,8 @@
 #include "MHOArrayWrapper.hh"
 #include "MHOFastFourierTransform.hh"
 
+int fftw_alignment_of(double*) __attribute__((weak));  // weak declaration must always be present
+
 namespace hops
 {
 
@@ -47,10 +49,11 @@ class MHOMultidimensionalFastFourierTransformFFTW: public MHOUnaryArrayOperator<
 
         virtual void Initialize()
         {
+            std::cout<<"YES FFTW3"<<std::endl;
             if(DoInputOutputDimensionsMatch())
             {
                 fIsValid = true;
-                this->fInput->GetArrayDimensions(fDimensionSize);
+                this->fInput->GetDimensions(fDimensionSize);
             }
             else
             {
@@ -59,7 +62,7 @@ class MHOMultidimensionalFastFourierTransformFFTW: public MHOUnaryArrayOperator<
 
             if(!fInitialized && fIsValid)
             {
-                fTotalArraySize = HArrayMath::TotalArraySize<NDIM>(fDimensionSize);
+                fTotalArraySize = MHOArrayMath::TotalArraySize<NDIM>(fDimensionSize);
                 AllocateWorkspace();
                 bool success = ConstructPlan();
                 fInitialized = success;
@@ -71,25 +74,25 @@ class MHOMultidimensionalFastFourierTransformFFTW: public MHOUnaryArrayOperator<
             if(fIsValid && fInitialized)
             {
                 //check memory alignment to determine if we can avoid copying the data around
-                if( ( fftw_alignment_of( reinterpret_cast<double*>(this->fInput->GetData() ) ) ==
+                if( ( fftw_alignment_of( reinterpret_cast<double*>(this->fInput->GetRawData() ) ) ==
                       fftw_alignment_of( reinterpret_cast<double*>(fInPtr) ) ) &&
-                    ( fftw_alignment_of( reinterpret_cast<double*>(this->fOutput->GetData() ) ) ==
+                    ( fftw_alignment_of( reinterpret_cast<double*>(this->fOutput->GetRawData() ) ) ==
                       fftw_alignment_of( reinterpret_cast<double*>(fOutPtr) ) ) )
                 {
-                    if( this->fInput->GetData() != this->fOutput->GetData() )
+                    if( this->fInput->GetRawData() != this->fOutput->GetRawData() )
                     {
                         //transform is out-of-place
                         if(fForward)
                         {
                             fftw_execute_dft(fPlanForward,
-                                         reinterpret_cast<fftw_complex*>(this->fInput->GetData() ),
-                                         reinterpret_cast<fftw_complex*>(this->fOutput->GetData() ) );
+                                         reinterpret_cast<fftw_complex*>(this->fInput->GetRawData() ),
+                                         reinterpret_cast<fftw_complex*>(this->fOutput->GetRawData() ) );
                         }
                         else
                         {
                             fftw_execute_dft(fPlanBackward,
-                                         reinterpret_cast<fftw_complex*>(this->fInput->GetData() ),
-                                         reinterpret_cast<fftw_complex*>(this->fOutput->GetData() ) );
+                                         reinterpret_cast<fftw_complex*>(this->fInput->GetRawData() ),
+                                         reinterpret_cast<fftw_complex*>(this->fOutput->GetRawData() ) );
                         }
                     }
                     else
@@ -98,21 +101,21 @@ class MHOMultidimensionalFastFourierTransformFFTW: public MHOUnaryArrayOperator<
                         if(fForward)
                         {
                             fftw_execute_dft(fPlanForwardInPlace,
-                                         reinterpret_cast<fftw_complex*>(this->fInput->GetData() ),
-                                         reinterpret_cast<fftw_complex*>(this->fOutput->GetData() ) );
+                                         reinterpret_cast<fftw_complex*>(this->fInput->GetRawData() ),
+                                         reinterpret_cast<fftw_complex*>(this->fOutput->GetRawData() ) );
                         }
                         else
                         {
                             fftw_execute_dft(fPlanBackwardInPlace,
-                                         reinterpret_cast<fftw_complex*>(this->fInput->GetData() ),
-                                         reinterpret_cast<fftw_complex*>(this->fOutput->GetData() ) );
+                                         reinterpret_cast<fftw_complex*>(this->fInput->GetRawData() ),
+                                         reinterpret_cast<fftw_complex*>(this->fOutput->GetRawData() ) );
                         }
                     }
                 }
                 else
                 {
                     //alignment doesn't match so we need to use memcpy
-                    std::memcpy( fInPtr, this->fInput->GetData() , fTotalArraySize*sizeof(fftw_complex) );
+                    std::memcpy( fInPtr, this->fInput->GetRawData() , fTotalArraySize*sizeof(fftw_complex) );
                     if(fForward)
                     {
                         fftw_execute(fPlanForward);
@@ -121,7 +124,7 @@ class MHOMultidimensionalFastFourierTransformFFTW: public MHOUnaryArrayOperator<
                     {
                         fftw_execute(fPlanBackward);
                     }
-                    std::memcpy(this->fOutput->GetData(), fOutPtr, fTotalArraySize*sizeof(fftw_complex) );
+                    std::memcpy(this->fOutput->GetRawData(), fOutPtr, fTotalArraySize*sizeof(fftw_complex) );
                 }
             }
         }
@@ -153,14 +156,14 @@ class MHOMultidimensionalFastFourierTransformFFTW: public MHOUnaryArrayOperator<
             //but we could implement a batched interface also...
             int howmany_rank = 0; //zero disables more than one x-form
             fHowManyDims.n = 1;
-            fHowManyDims.is = HArrayMath::TotalArraySize<NDIM>(fDimensionSize);
-            fHowManyDims.os = HArrayMath::TotalArraySize<NDIM>(fDimensionSize);
+            fHowManyDims.is = MHOArrayMath::TotalArraySize<NDIM>(fDimensionSize);
+            fHowManyDims.os = MHOArrayMath::TotalArraySize<NDIM>(fDimensionSize);
 
             for(size_t i=0; i<NDIM; i++)
             {
                 fDims[i].n = fDimensionSize[i];
-                fDims[i].is = HArrayMath::StrideFromRowMajorIndex<NDIM>(i,fDimensionSize);
-                fDims[i].os = HArrayMath::StrideFromRowMajorIndex<NDIM>(i,fDimensionSize);
+                fDims[i].is = MHOArrayMath::StrideFromRowMajorIndex<NDIM>(i,fDimensionSize);
+                fDims[i].os = MHOArrayMath::StrideFromRowMajorIndex<NDIM>(i,fDimensionSize);
             }
 
             fPlanForward = fftw_plan_guru_dft(rank, fDims, howmany_rank, &fHowManyDims,
@@ -191,8 +194,8 @@ class MHOMultidimensionalFastFourierTransformFFTW: public MHOUnaryArrayOperator<
             size_t in[NDIM];
             size_t out[NDIM];
 
-            this->fInput->GetArrayDimensions(in);
-            this->fOutput->GetArrayDimensions(out);
+            this->fInput->GetDimensions(in);
+            this->fOutput->GetDimensions(out);
 
             for(size_t i=0; i<NDIM; i++)
             {
