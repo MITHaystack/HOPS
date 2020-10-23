@@ -317,7 +317,7 @@ class MHOArrayWrapper<XValueType, 1>
 
         //in some cases we may need access to the underlying raw array pointer
         XValueType* GetRawData(){return &(fData[0]);};
-        const XValueType* GetawData() const {return &(fData[0]);};
+        const XValueType* GetRawData() const {return &(fData[0]);};
 
         //pointer to data vector
         std::vector<XValueType>* GetData(){return fData;};
