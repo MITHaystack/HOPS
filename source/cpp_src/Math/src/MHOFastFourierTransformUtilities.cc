@@ -30,12 +30,10 @@ MHOFastFourierTransformUtilities::ComputeConjugateTwiddleFactors(unsigned int N,
 {
     //using std::cos and std::sin is more accurate than the recursive method
     //to compute the twiddle factors
-    double di, dN;
-    dN = N;
+    ComputeTwiddleFactors(N, conj_twiddle);
     for(unsigned int i=0; i<N; i++)
     {
-        di = i;
-        conj_twiddle[i] = std::complex<double>(std::cos((2.0*M_PI*di)/dN), -1.0*std::sin((2.0*M_PI*di)/dN));
+        conj_twiddle[i] = std::conj(conj_twiddle[i]);
     }
 }
 
