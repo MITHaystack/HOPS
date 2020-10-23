@@ -6,8 +6,6 @@ This directory contains the sources to for the HOPS project documents.
 3   develplan       Development Plan for new HOPS
 4   covertest       Coverage and Test Plan
 
-    code_outline    not sure what this is to be...
-
 The above were presented at the Design Review <DATE>.
 Note that additional related documents or captured versions might be
 present in these directories.
@@ -22,10 +20,19 @@ Additional documents
 
 7   userman
 7.1 fourfit
+7.2 alist
+7.3 aedit
     ...
 
 Additionally
 
-    reference       not sure what this is to be...
+8   reference       a place to build doxygen and sphinx documentation
+8.1     C/C++ doxygen products
+8.2     sphinx products
+
+Finally,
+
+    common          a directory to hold graphics (or otherthings) that
+                    may be needed by more than one document.
 
 eof

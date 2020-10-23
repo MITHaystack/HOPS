@@ -10,14 +10,17 @@ TEXSRC=cotest
 
 # everything from $(srcdir) included from $(TEXSRC).tex
 # needs to be listed here with a $(srcdir)/ path prefix
-EXTRA_DIST = $(srcdir)/$(TEXSRC).tex
+EXTRA_DIST = $(srcdir)/$(TEXSRC).tex $(srcdir)/coverunit.tex \
+	$(srcdir)/integration.tex $(srcdir)/regress.tex \
+	$(srcdir)/human.tex 
 
 if WANT_DOCS
 # to be somewhat surgical, this is useful:
 # TEXINPUTS=... kpsewhich -show-path tex "filename"
 # KPSETEXMFPATH set to : in configure pulls in the rest of TeX
-TEXINPUTS=.:$(srcdir):$(srcdir)/../common@KPSETEXMFPATH@
-# can be overriden at the make command
+TEXINPUTS=.:$(srcdir):$(srcdir)/../common//@KPSETEXMFPATH@
+TEXBIB=.:$(srcdir):$(srcdir)/../common//:
+# can be overriden at the make command to see errors
 TEXOPT=-interaction=batchmode
 
 # install to share
@@ -38,6 +41,7 @@ $(TEXSRC).pdf: force
 force: $(srcdir)/Makefile.am $(EXTRA_DIST)
 	@echo first iteration
 	-TEXINPUTS=$(TEXINPUTS) pdflatex $(TEXOPT) $(TEXSRC).tex
+	-TEXBIB=$(TEXBIB) biber $(TEXSRC) >$(TEXSRC)-biber.log && echo biber ok
 	touch force
 
 CLEANFILES = $(TEXSRC).* $(TEXPDF).pdf force *.log

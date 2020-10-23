@@ -28,6 +28,7 @@
 \hypersetup{colorlinks=true,linkcolor=darkblue,citecolor=darkgreen}
 % for figures; insert [draft] before {...} not to see imgs
 \usepackage{graphicx}
+\graphicspath{ {../common/uml-diagrams} }
 % for small figures surrounded by text
 \usepackage{wrapfig}
 % for control over headers and footers
@@ -41,13 +42,16 @@
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
 \usepackage[backend=biber,style=numeric,sorting=none]{biblatex}
-%\addbibresource{filename.bib}
+\addbibresource{hops.bib}
+% Use the appendix package.
+\usepackage{appendix}
 % context-sensitive quotes
 \usepackage{csquotes}
 % underline for emphasis: \uline etc
 \usepackage{ulem}
-
-\usepackage{csquotes}
+% for generating outlines
+\usepackage{outlines}
+\usepackage{enumitem}
 
 % for bold math
 \usepackage{bm}
@@ -119,7 +123,8 @@ are informally captured (\Sec~\ref{sec:desires}).
 %\renewcommand\listfigurename{Figures}
 %\renewcommand\listtablename{Tables}
 %\vspace{24pt}\hrule
-%\tableofcontents
+\pagebreak
+\tableofcontents
 %\vspace{24pt}\hrule
 %\pagebreak
 %\listoffigures
@@ -135,6 +140,14 @@ are informally captured (\Sec~\ref{sec:desires}).
 \pagebreak
 \input{thereqs}
 
+\pagebreak
+\addtocounter{section}{1}
+\renewcommand{\refname}{\thesection. References}
+\addcontentsline{toc}{section}{\thesection. References}
+\bibstyle{plainurl}
+\printbibliography
+\label{sec:references}
+
 % if skipappendix-is-true then (nothing) else typeset Appendices
 \ifthenelse{\boolean{skipappendix}}{}{%
 \appendix
@@ -143,8 +156,12 @@ are informally captured (\Sec~\ref{sec:desires}).
 \input{hilo}
 
 \pagebreak
+\input{uml-description}
+
+\pagebreak
 \section{Acronyms, Commands, and Glossary}
 \input{acronyms}
+
 }
 
 \label{page:LastPage}
