@@ -111,17 +111,23 @@ int main(int argc, char** argv)
     size_t y_axis_size = y_axis->GetSize();
 
     //just plot phases for a single channel
-    TGraph2D *gr = new TGraph2D(x_axis_size*y_axis_size);
-    TGraph2D *gb = new TGraph2D(x_axis_size*y_axis_size);
+    // TGraph2D *gr = new TGraph2D(x_axis_size*y_axis_size);
+    // TGraph2D *gb = new TGraph2D(x_axis_size*y_axis_size);
+    TGraph* g = new TGraph(y_axis_size);
 
     size_t count = 0;
-    for(size_t i=0; i<x_axis_size; i++)
+    for(size_t j=0; j<y_axis_size; j++)
     {
-        for(size_t j=0; j<y_axis_size; j++)
+        std::cout<<j<<", "<<y_axis->at(j)<<std::endl;
+
+        //for(size_t i=0; i<x_axis_size; i++)
+        for(size_t i=0; i<1; i++)
         {
             std::complex<double> vis = bl_data->at(0,i,j);
-            gr->SetPoint(count, x_axis->at(i), y_axis->at(j), std::arg(vis) );
-            gb->SetPoint(count, x_axis->at(i), y_axis->at(j), std::abs(vis) );
+//            g->SetPoint(j,y_axis->at(j),std::arg(vis));
+            g->SetPoint(j,j,y_axis->at(j));
+            //gr->SetPoint(count, x_axis->at(i), y_axis->at(j), std::arg(vis) );
+            //gb->SetPoint(count, x_axis->at(i), y_axis->at(j), std::abs(vis) );
             count++;
         }
     }
@@ -130,12 +136,14 @@ int main(int argc, char** argv)
     TCanvas* c = new TCanvas(name.c_str(),name.c_str(), 50, 50, 950, 850);
     c->SetFillColor(0);
     c->SetRightMargin(0.2);
-    c->Divide(1,2);
-    c->cd(1);
-    gr->Draw("PCOLZ");
-    c->Update();
-    c->cd(2);
-    gb->Draw("PCOLZ");
+    //c->Divide(1,2);
+    //c->cd(1);
+    c->cd();
+    g->Draw("APL");
+    // gr->Draw("PCOLZ");
+    // c->Update();
+    // c->cd(2);
+    // gb->Draw("PCOLZ");
     c->Update();
 
     App->Run();

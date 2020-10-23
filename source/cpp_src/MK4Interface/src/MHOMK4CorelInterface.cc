@@ -424,7 +424,10 @@ MHOMK4CorelInterface::ExtractCorelFile()
                 //set up this portion of the frequency axis
                 for(std::size_t sp=0; sp<fNSpectral; sp++)
                 {
-                    double freq = calc_freq_bin(sky_freq, bw, net_sb, fNSpectral, sp);
+                    int findex = 0;
+                    if(net_sb == 'U'){findex = sp;};
+                    if(net_sb == 'L'){findex = fNSpectral-sp-1;}
+                    double freq = calc_freq_bin(sky_freq, bw, net_sb, fNSpectral, findex);
                     std::get<FREQ_AXIS>(*bl_data).at(freq_count) = freq;
                     freq_count++;
                 }
@@ -462,10 +465,12 @@ MHOMK4CorelInterface::ExtractCorelFile()
                 std::string ref_chan_id = getstr(t101->ref_chan_id,8);
                 std::string rem_chan_id = getstr(t101->rem_chan_id,8);
                 std::string key = ref_chan_id + ":" + rem_chan_id;
+                char net_sb;
                 auto ch = fAllChannelMap.find(key);
                 if( ch != fAllChannelMap.end() )
                 {
                     auto ch_label = ch->second;
+                    ch_label.Retrieve(std::string("net_sideband"), net_sb);
                     //now we want to extract the data in the type_120's
                     for(int ap=0; ap<idx->ap_space; ap++)
                     {
@@ -482,13 +487,19 @@ MHOMK4CorelInterface::ExtractCorelFile()
                                           "Adding freq data for ap: "<<ap
                                           <<" channel: "<< key << eom);
 
+                                //TODO FIXME!!
+                                //Do we need reverse the order of the freq axis for lower-sideband data??!
                                 for(int j=0; j<nlags; j++)
                                 {
+                                    int findex = 0;
                                     int low = ch_label.GetLowerBound();
+                                    int up = ch_label.GetUpperBound();
+                                    if(net_sb == 'U'){findex = low+j;};
+                                    if(net_sb == 'L'){findex = up-j-1;}
                                     double re = t120->ld.spec[j].re;
                                     double im = t120->ld.spec[j].im;
                                     std::complex<double> val(re,im);
-                                    bl_data->at(pol_index, ap, low+j) = val;
+                                    bl_data->at(pol_index, ap, findex) = val;
                                 }
                             }
                         }
