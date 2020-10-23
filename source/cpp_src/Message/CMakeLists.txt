@@ -3,13 +3,13 @@
 option(ENABLE_DEBUG_MSG "Enable passing of debug messages" OFF)
 
 set (MESSAGE_HEADERFILES
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHOMessenger.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHOMessage.hh
 )
 
 #list source files #############################################################
 
 set( MESSAGE_SOURCEFILES
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHOMessenger.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHOMessage.cc
 )
 
 #declare header paths ##########################################################
