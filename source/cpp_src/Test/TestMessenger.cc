@@ -1,4 +1,4 @@
-#include "MHOMessenger.hh"
+#include "MHOMessage.hh"
 
 
 using namespace hops;
@@ -8,11 +8,11 @@ int main(int /*argc*/, char** /*argv*/)
 {
 
     //add a list of acceptable message categories/keys
-    MHOMessenger::GetInstance().AddKey("math");
-    MHOMessenger::GetInstance().AddKey("core");
+    MHOMessage::GetInstance().AddKey("math");
+    MHOMessage::GetInstance().AddKey("core");
 
     //set the message level to the lowest possible
-    MHOMessenger::GetInstance().SetMessageLevel(eDebug);
+    MHOMessage::GetInstance().SetMessageLevel(eDebug);
 
     //send some messages
     double pi_value = 3.14159265;
@@ -29,14 +29,14 @@ int main(int /*argc*/, char** /*argv*/)
     //now change the message level to the most strict,
     //the following message shouldn't make it through, even though it is
     //in the 'math' category
-    MHOMessenger::GetInstance().SetMessageLevel(eFatal);
+    MHOMessage::GetInstance().SetMessageLevel(eFatal);
     msg_error("math", "I have found: " << a << " + " << a << " = " << n << eom);
 
     //reset the message level
-    MHOMessenger::GetInstance().SetMessageLevel(eDebug);
+    MHOMessage::GetInstance().SetMessageLevel(eDebug);
     //now set things up so any message with any key can be passed
     //(even if it is not is the list of acceptable keys)
-    MHOMessenger::GetInstance().AcceptAllKeys();
+    MHOMessage::GetInstance().AcceptAllKeys();
     msg_status("dummy", "I have message for you: " << "its OK if you see this!" << eom);
 
     //try to pass a debug message

@@ -8,7 +8,7 @@ if (HOPS_ENABLE_TEST)
     include_directories(${CMAKE_CURRENT_SOURCE_DIR}/${DFIO_RELPATH})
     include_directories(${CMAKE_CURRENT_SOURCE_DIR}/${VEX_RELPATH})
 
-    include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../Messaging/include)
+    include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../Message/include)
     include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../Containers/include)
     include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../Utilities/include)
     include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../MK4Interface/include)

@@ -6,11 +6,11 @@
 
 AM_CXXFLAGS = -I. -I$(srcdir)/include -Wall
 
-pkginclude_HEADERS = include/MHOMessenger.hh
+pkginclude_HEADERS = include/MHOMessage.hh
 
 pkglib_LTLIBRARIES = libMHOMessage.la
 
-libMHOMessage_la_SOURCES = src/MHOMessenger.cc
+libMHOMessage_la_SOURCES = src/MHOMessage.cc
 
 libMHOMessage_la_LDFLAGS = -avoid-version
 
