@@ -2,6 +2,7 @@
 add_subdirectory(${CPPSOURCE}/Message)
 add_subdirectory(${CPPSOURCE}/Containers)
 add_subdirectory(${CPPSOURCE}/Utilities)
+add_subdirectory(${CPPSOURCE}/Math)
 add_subdirectory(${CPPSOURCE}/MK4Interface)
 # add_subdirectory(${CPPSOURCE}/Bindings)
 add_subdirectory(${CPPSOURCE}/Test)

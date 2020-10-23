@@ -20,7 +20,7 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 set(MESSAGE_LIBS "")
 
 if(ENABLE_DEBUG_MSG)
-    add_cflag(HOPS_ENABLE_DEBUG_MSG)
+    hops_add_cxxflag(HOPS_ENABLE_DEBUG_MSG)
 endif(ENABLE_DEBUG_MSG)
 
 add_library (MHOMessage SHARED ${MESSAGE_SOURCEFILES})
