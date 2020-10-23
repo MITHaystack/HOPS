@@ -12,14 +12,17 @@ TEXSRC=dplan
 # needs to be listed here with a $(srcdir)/ path prefix
 EXTRA_DIST = $(srcdir)/$(TEXSRC).tex $(srcdir)/theplan.tex \
 	$(srcdir)/introduction.tex $(srcdir)/designoutline.tex \
-	$(srcdir)/detailedtimeline.tex $(srcdir)/proposedplan.tex
+	$(srcdir)/detailedtimeline.tex $(srcdir)/proposedplan.tex \
+	$(srcdir)/MSRI-task-origv3-1.pdf \
+	$(srcdir)/MSRI-task-origv3-2.pdf
 
 if WANT_DOCS
 # to be somewhat surgical, this is useful:
 # TEXINPUTS=... kpsewhich -show-path tex "filename"
 # KPSETEXMFPATH set to : in configure pulls in the rest of TeX
-TEXINPUTS=.:$(srcdir):$(srcdir)/../common@KPSETEXMFPATH@
-# can be overriden at the make command
+TEXINPUTS=.:$(srcdir):$(srcdir)/../common//@KPSETEXMFPATH@
+TEXBIB=.:$(srcdir):$(srcdir)/../common//:
+# can be overriden at the make command to see errors
 TEXOPT=-interaction=batchmode
 
 # install to share
@@ -40,6 +43,7 @@ $(TEXSRC).pdf: force
 force: $(srcdir)/Makefile.am $(EXTRA_DIST)
 	@echo first iteration
 	-TEXINPUTS=$(TEXINPUTS) pdflatex $(TEXOPT) $(TEXSRC).tex
+	-TEXBIB=$(TEXBIB) biber $(TEXSRC) >$(TEXSRC)-biber.log && echo biber ok
 	touch force
 
 CLEANFILES = $(TEXSRC).* $(TEXPDF).pdf force *.log

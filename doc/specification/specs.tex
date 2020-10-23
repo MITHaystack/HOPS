@@ -41,13 +41,14 @@
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
 \usepackage[backend=biber,style=numeric,sorting=none]{biblatex}
-%\addbibresource{filename.bib}
+\addbibresource{hops.bib}
 % context-sensitive quotes
 \usepackage{csquotes}
 % underline for emphasis: \uline etc
 \usepackage{ulem}
-
-\usepackage{csquotes}
+% for generating outlines
+\usepackage{outlines}
+\usepackage{enumitem}
 
 % for bold math
 \usepackage{bm}
@@ -86,7 +87,7 @@
 \fancyfoot[R]{Page \thepage\ of\ \pageref{page:LastPage}}
 \fancyfoot[L]{\recdate}
 
-\title{ngEHT Requirements for a new HOPS}
+\title{ngEHT Specifications for a new HOPS}
 
 \author{%
 \LARGE John Barrett, Geoff Crew, Dan Hoak and Violet Pfeiffer \\
@@ -98,8 +99,14 @@
 \renewcommand\abstractname{Executive Summary}
 \abstract{%
 \large
-A short description of this document
-doc for folks with short attention spans.
+This document lays out the general architecture adopted for
+this rewrite of \ac{HOPS}.  The orginal version of \ac{HOPS}
+was written with a mix of C and F77 with some dependencies
+that are becoming a challenge to satisfy.  The new architecture
+will involve a mix of C/C++ for the lower-layers, and add a
+Python layer to better support human interactions.  The new
+implementation will be more modular, and easier to support
+for the coming decades.
 }
 
 % \begingroup . . . \endgroup can be used to keep things together
@@ -110,7 +117,8 @@ doc for folks with short attention spans.
 %\renewcommand\listfigurename{Figures}
 %\renewcommand\listtablename{Tables}
 %\vspace{24pt}\hrule
-%\tableofcontents
+\pagebreak
+\tableofcontents
 %\vspace{24pt}\hrule
 %\pagebreak
 %\listoffigures
@@ -126,14 +134,27 @@ doc for folks with short attention spans.
 % break document into appropriate portions
 %\input{tbd}
 
+\pagebreak
+\input{designdetails}
+
+\pagebreak
 \input{srctree}
+
+\addtocounter{section}{1}
+\renewcommand{\refname}{\thesection. References}
+\addcontentsline{toc}{section}{\thesection. References}
+\bibstyle{plainurl}
+\printbibliography
+\label{sec:references}
 
 % if skipappendix-is-true then (nothing) else typeset Appendices
 \ifthenelse{\boolean{skipappendix}}{}{%
+
 \pagebreak
 \appendix
-\section{Acronyms}
+\section{Acronyms, Commands and Glossary}
 \input{acronyms}
+
 }
 
 \label{page:LastPage}

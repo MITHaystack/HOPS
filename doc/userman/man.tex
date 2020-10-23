@@ -41,13 +41,14 @@
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
 \usepackage[backend=biber,style=numeric,sorting=none]{biblatex}
-%\addbibresource{filename.bib}
+\addbibresource{hops.bib}
 % context-sensitive quotes
 \usepackage{csquotes}
 % underline for emphasis: \uline etc
 \usepackage{ulem}
-
-\usepackage{csquotes}
+% for generating outlines
+\usepackage{outlines}
+\usepackage{enumitem}
 
 % for bold math
 \usepackage{bm}
@@ -86,7 +87,7 @@
 \fancyfoot[R]{Page \thepage\ of\ \pageref{page:LastPage}}
 \fancyfoot[L]{\recdate}
 
-\title{ngEHT Requirements for a new HOPS}
+\title{User Manual for HOPS version 4}
 
 \author{%
 \LARGE John Barrett, Geoff Crew, Dan Hoak and Violet Pfeiffer \\
@@ -98,8 +99,9 @@
 \renewcommand\abstractname{Executive Summary}
 \abstract{%
 \large
-A short description of this document
-doc for folks with short attention spans.
+This manual provides an overview of version 4 of \ac{HOPS} which
+has been substantially rewritten since the version 3 series.
+\FIXME[more to say]
 }
 
 % \begingroup . . . \endgroup can be used to keep things together
@@ -110,7 +112,8 @@ doc for folks with short attention spans.
 %\renewcommand\listfigurename{Figures}
 %\renewcommand\listtablename{Tables}
 %\vspace{24pt}\hrule
-%\tableofcontents
+\pagebreak
+\tableofcontents
 %\vspace{24pt}\hrule
 %\pagebreak
 %\listoffigures
@@ -125,6 +128,14 @@ doc for folks with short attention spans.
 
 % break document into appropriate portions
 %\input{tbd}
+
+\pagebreak
+\addtocounter{section}{1}
+\renewcommand{\refname}{\thesection. References}
+\addcontentsline{toc}{section}{\thesection. References}
+\bibstyle{plainurl}
+\printbibliography
+\label{sec:references}
 
 % if skipappendix-is-true then (nothing) else typeset Appendices
 \ifthenelse{\boolean{skipappendix}}{}{%
