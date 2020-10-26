@@ -3,13 +3,13 @@
 option(ENABLE_DEBUG_MSG "Enable passing of debug messages" OFF)
 
 set (MESSAGE_HEADERFILES
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHOMessenger.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHOMessage.hh
 )
 
 #list source files #############################################################
 
 set( MESSAGE_SOURCEFILES
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHOMessenger.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHOMessage.cc
 )
 
 #declare header paths ##########################################################
@@ -20,7 +20,7 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 set(MESSAGE_LIBS "")
 
 if(ENABLE_DEBUG_MSG)
-    add_cflag(HOPS_ENABLE_DEBUG_MSG)
+    hops_add_cxxflag(HOPS_ENABLE_DEBUG_MSG)
 endif(ENABLE_DEBUG_MSG)
 
 add_library (MHOMessage SHARED ${MESSAGE_SOURCEFILES})

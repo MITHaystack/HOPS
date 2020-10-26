@@ -65,7 +65,7 @@ int main(int argc, char** argv)
         }
     }
 
-    MHOMessenger::GetInstance().AcceptAllKeys();
+    MHOMessage::GetInstance().AcceptAllKeys();
 
     MHOMK4CorelInterface mk4inter;
 

@@ -15,6 +15,11 @@ include(FindGFORTRAN)
 include(FindPGPLOT)
 include(UseLATEX)
 
+if(${CMAKE_VERSION} VERSION_GREATER "3.11.0") 
+cmake_policy(SET CMP0074 OLD)
+endif()
+
+
 message(STATUS "Architecture is ${CMAKE_SYSTEM_PROCESSOR}")
 set( DEFAULT_INSTALL_DIR  "${CMAKE_CURRENT_BINARY_DIR}/../${CMAKE_SYSTEM_PROCESSOR}-${MODULE_VERSION_NUMBER}" )
 
@@ -55,6 +60,7 @@ message(STATUS "Using compiler ${COMPILER_ID} ${COMPILER_VERSION}")
 #option( HOPS_USE_ROOT "Build ROOT based utilities." OFF)
 option( HOPS_ENABLE_TEST "Build developer tests." ON)
 option( HOPS_USE_ROOT "Build ROOT based utilities." OFF)
+
 
 
 #convenience variables
