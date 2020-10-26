@@ -2,8 +2,8 @@
 #define MHOMultidimensionalFastFourierTransform_HH__
 
 #include <cstring>
-#include <iostream>
 
+#include "MHOMessage.hh"
 #include "MHOArrayWrapper.hh"
 #include "MHOFastFourierTransform.hh"
 
@@ -38,7 +38,6 @@ class MHOMultidimensionalFastFourierTransform: public MHOUnaryArrayOperator< std
 
         virtual void Initialize() override
         {
-            std::cout<<"NO FFTW3"<<std::endl;
             if(DoInputOutputDimensionsMatch())
             {
                 fIsValid = true;
@@ -139,6 +138,11 @@ class MHOMultidimensionalFastFourierTransform: public MHOUnaryArrayOperator< std
                         }
                     }
                 }
+            }
+            else 
+            {
+                //error
+                msg_error("math", "FFT input/output array dimensions are not valid or intialization failed. Aborting transform." << eom);
             }
         }
 

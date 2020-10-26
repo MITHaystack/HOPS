@@ -4,10 +4,9 @@
 #include <cstring>
 #include <fftw3.h>
 
+#include "MHOMessage.hh"
 #include "MHOArrayWrapper.hh"
 #include "MHOFastFourierTransform.hh"
-
-int fftw_alignment_of(double*) __attribute__((weak));  // weak declaration must always be present
 
 namespace hops
 {
@@ -49,7 +48,6 @@ class MHOMultidimensionalFastFourierTransformFFTW: public MHOUnaryArrayOperator<
 
         virtual void Initialize()
         {
-            std::cout<<"YES FFTW3"<<std::endl;
             if(DoInputOutputDimensionsMatch())
             {
                 fIsValid = true;
@@ -126,6 +124,11 @@ class MHOMultidimensionalFastFourierTransformFFTW: public MHOUnaryArrayOperator<
                     }
                     std::memcpy(this->fOutput->GetRawData(), fOutPtr, fTotalArraySize*sizeof(fftw_complex) );
                 }
+            }
+            else 
+            {
+                //error
+                msg_error("math", "FFT input/output array dimensions are not valid or intialization failed. Aborting transform." << eom);
             }
         }
 

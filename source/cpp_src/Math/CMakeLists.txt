@@ -11,7 +11,6 @@ set (MATH_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHOBitReversalPermutation.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHOFastFourierTransform.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHOFastFourierTransformUtilities.hh
-
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHOMultidimensionalFastFourierTransform.hh
 )
 
@@ -32,7 +31,7 @@ set( MATH_SOURCEFILES
 #declare header paths ##########################################################
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../Containers/include)
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../Messaging/include)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../Message/include)
 
 #compile and install library ###################################################
 set(MATH_LIBS MHOMessage)

@@ -1,7 +1,7 @@
-#include "MHOBitReversalPermutation.hh"
-
-#include <iostream>
 #include <cstddef>
+
+#include "MHOMessage.hh"
+#include "MHOBitReversalPermutation.hh"
 
 namespace hops
 {
@@ -135,9 +135,7 @@ MHOBitReversalPermutation::ComputeBitReversedIndicesBaseTwo(unsigned int N, unsi
     }
     else
     {
-        std::cout<<"MHOBitReversalPermutation::ComputeBitReversedIndices: error, called with non-power of two array size."<<std::endl;
-        std::exit(1);
-        //error
+        msg_error("math", "MHOBitReversalPermutation::ComputeBitReversedIndices: called with non-power of two array size."<< eom );
     }
 }
 
@@ -181,9 +179,7 @@ void MHOBitReversalPermutation::ComputeBitReversedIndices(unsigned int N, unsign
     }
     else
     {
-        std::cout<<"MHOBitReversalPermutation::ComputeBitReversedIndices: error, called with non-power of "<<B<<" array size."<<std::endl;
-        std::exit(1);
-        //error
+        msg_error("math", "MHOBitReversalPermutation::ComputeBitReversedIndices: error, called with non-power of " << B << " array size." <<  eom);
     }
 }
 
