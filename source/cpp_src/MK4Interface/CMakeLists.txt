@@ -39,3 +39,8 @@ target_link_libraries (MHOMK4Interface ${MK4INTERFACE_LIBS})
 
 hops_install_headers (${MK4INTERFACE_HEADERFILES})
 hops_install_libraries (MHOMK4Interface)
+
+if (HOPS_ENABLE_TEST)
+    add_subdirectory(test)
+endif (HOPS_ENABLE_TEST)
+
