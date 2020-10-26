@@ -10,7 +10,8 @@ AM_CXXFLAGS = -I. -I$(srcdir)/include \
 	-I$(srcdir)/../../c_src/vex/include \
 	-I$(srcdir)/../Utilities/include \
 	-I$(srcdir)/../Containers/include \
-	-Wall
+	-I$(srcdir)/../Message/include \
+	-Wall -Wextra
 
 pkginclude_HEADERS = include/MHOMK4CorelInterface.hh \
 	include/MHOMK4FringeInterface.hh \
