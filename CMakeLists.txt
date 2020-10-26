@@ -57,7 +57,6 @@ message(STATUS "Using compiler ${COMPILER_ID} ${COMPILER_VERSION}")
 
 #options for triggering additional dependencies
 #option( HOPS_USE_OPENCL "Build OpenCL support." OFF)
-#option( HOPS_USE_ROOT "Build ROOT based utilities." OFF)
 option( HOPS_ENABLE_TEST "Build developer tests." ON)
 option( HOPS_USE_ROOT "Build ROOT based utilities." OFF)
 
