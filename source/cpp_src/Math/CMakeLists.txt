@@ -45,3 +45,8 @@ target_link_libraries (MHOMath ${MATH_LIBS})
 
 hops_install_headers (${MATH_HEADERFILES})
 hops_install_libraries (MHOMath )
+
+if (HOPS_ENABLE_TEST)
+    add_subdirectory(test)
+endif (HOPS_ENABLE_TEST)
+
