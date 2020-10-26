@@ -1,4 +1,4 @@
-#include "MHOMessenger.hh"
+#include "MHOMessage.hh"
 
 namespace hops
 {
@@ -6,22 +6,22 @@ namespace hops
 
 
 //initialization to nullptr
-MHOMessenger* MHOMessenger::fInstance = nullptr;
+MHOMessage* MHOMessage::fInstance = nullptr;
 
 void
-MHOMessenger::AddKey(const std::string& key)
+MHOMessage::AddKey(const std::string& key)
 {
     fKeys.insert(key);
 }
 
 void
-MHOMessenger::AddKey(const char* key)
+MHOMessage::AddKey(const char* key)
 {
     fKeys.insert(std::string(key));
 }
 
 void
-MHOMessenger::RemoveKey(const std::string& key)
+MHOMessage::RemoveKey(const std::string& key)
 {
     auto iter = fKeys.find(key);
     if(iter != fKeys.end())
@@ -31,7 +31,7 @@ MHOMessenger::RemoveKey(const std::string& key)
 }
 
 void
-MHOMessenger::RemoveKey(const char* key)
+MHOMessage::RemoveKey(const char* key)
 {
     std::string tmp_key(key);
     auto iter = fKeys.find(tmp_key);
@@ -42,13 +42,13 @@ MHOMessenger::RemoveKey(const char* key)
 }
 
 void
-MHOMessenger::RemoveAllKeys()
+MHOMessage::RemoveAllKeys()
 {
     fKeys.clear();
 }
 
 void
-MHOMessenger::Flush()
+MHOMessage::Flush()
 {
     if( PassMessage() )
     {
@@ -58,8 +58,8 @@ MHOMessenger::Flush()
     fMessageStream.str(std::string());
 }
 
-MHOMessenger&
-MHOMessenger::SendMessage(const MHOMessageLevel& level, const std::string& key)
+MHOMessage&
+MHOMessage::SendMessage(const MHOMessageLevel& level, const std::string& key)
 {
     fCurrentLevel = level;
     fCurrentKeyIsAllowed = false;
@@ -74,8 +74,8 @@ MHOMessenger::SendMessage(const MHOMessageLevel& level, const std::string& key)
     return *fInstance;
 }
 
-MHOMessenger&
-MHOMessenger::SendMessage(const MHOMessageLevel& level, const char* key)
+MHOMessage&
+MHOMessage::SendMessage(const MHOMessageLevel& level, const char* key)
 {
     fCurrentLevel = level;
     fCurrentKeyIsAllowed = false;
@@ -91,15 +91,15 @@ MHOMessenger::SendMessage(const MHOMessageLevel& level, const char* key)
     return *fInstance;
 }
 
-MHOMessenger&
-MHOMessenger::operator<<(const MHOMessageNewline&)
+MHOMessage&
+MHOMessage::operator<<(const MHOMessageNewline&)
 {
     fMessageStream << '\n';
     return *fInstance;
 }
 
-MHOMessenger&
-MHOMessenger::operator<<(const MHOMessageEndline&)
+MHOMessage&
+MHOMessage::operator<<(const MHOMessageEndline&)
 {
     fMessageStream << std::endl;
     Flush();
@@ -108,14 +108,14 @@ MHOMessenger::operator<<(const MHOMessageEndline&)
 
 
 bool
-MHOMessenger::PassMessage()
+MHOMessage::PassMessage()
 {
     return ( (fCurrentLevel <= fAllowedLevel && ( fCurrentKeyIsAllowed || fAcceptAllKeys ) )
             || fCurrentLevel == eFatal );
 }
 
 std::string
-MHOMessenger::GetCurrentPrefix(const MHOMessageLevel& level, const std::string& key)
+MHOMessage::GetCurrentPrefix(const MHOMessageLevel& level, const std::string& key)
 {
 
     std::stringstream ss;

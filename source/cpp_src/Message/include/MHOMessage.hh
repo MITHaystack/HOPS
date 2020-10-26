@@ -1,5 +1,5 @@
-#ifndef MHOMessenger_HH__
-#define MHOMessenger_HH__
+#ifndef MHOMessage_HH__
+#define MHOMessage_HH__
 
 #include <cstdlib>
 #include <ostream>
@@ -9,8 +9,8 @@
 #include <set>
 
 /*
-*File: MHOMessenger.hh
-*Class: MHOMessenger
+*File: MHOMessage.hh
+*Class: MHOMessage
 *Author: J. Barrett
 *Email: barrettj@mit.edu
 *Date:
@@ -54,20 +54,20 @@ using hops::eDebug;
 
 //uses the singleton pattern (as we only have one terminal)
 //TODO make this class thread safe
-class MHOMessenger
+class MHOMessage
 {
 
     public:
         //since this is a singleton we need to remove ability to copy/move
-        MHOMessenger(MHOMessenger const&) = delete;
-        MHOMessenger(MHOMessenger&&) = delete;
-        MHOMessenger& operator=(MHOMessenger const&) = delete;
-        MHOMessenger& operator=(MHOMessenger&&) = delete;
+        MHOMessage(MHOMessage const&) = delete;
+        MHOMessage(MHOMessage&&) = delete;
+        MHOMessage& operator=(MHOMessage const&) = delete;
+        MHOMessage& operator=(MHOMessage&&) = delete;
 
         //provide public access to the only static instance
-        static MHOMessenger& GetInstance()
+        static MHOMessage& GetInstance()
         {
-            if(fInstance == nullptr){fInstance = new MHOMessenger();}
+            if(fInstance == nullptr){fInstance = new MHOMessage();}
             return *fInstance;
         }
 
@@ -82,14 +82,14 @@ class MHOMessenger
         void Flush();
         void SetMessageLevel(MHOMessageLevel level){fAllowedLevel = level;}
 
-        MHOMessenger& SendMessage(const MHOMessageLevel& level, const std::string& key);
-        MHOMessenger& SendMessage(const MHOMessageLevel& level, const char* key);
+        MHOMessage& SendMessage(const MHOMessageLevel& level, const std::string& key);
+        MHOMessage& SendMessage(const MHOMessageLevel& level, const char* key);
 
         template<class XStreamableItemType>
-        MHOMessenger& operator<<(const XStreamableItemType& item);
+        MHOMessage& operator<<(const XStreamableItemType& item);
 
-        MHOMessenger& operator<<(const MHOMessageNewline&);
-        MHOMessenger& operator<<(const MHOMessageEndline&);
+        MHOMessage& operator<<(const MHOMessageNewline&);
+        MHOMessage& operator<<(const MHOMessageEndline&);
 
     private:
 
@@ -97,19 +97,19 @@ class MHOMessenger
         //set up the stream, for now just point to std::cout
         //but we may want to allow this to be configured post-construction
         //perhaps we should also pipe information into log file(s)
-        MHOMessenger():
+        MHOMessage():
             fTerminalStream(&std::cout),
             fAllowedLevel(eStatus),
             fCurrentLevel(eInfo),
             fCurrentKeyIsAllowed(false),
             fAcceptAllKeys(false)
         {};
-        virtual ~MHOMessenger(){};
+        virtual ~MHOMessage(){};
 
         bool PassMessage();
         std::string GetCurrentPrefix(const MHOMessageLevel& level, const std::string& key);
 
-        static MHOMessenger* fInstance; //static global class instance
+        static MHOMessage* fInstance; //static global class instance
         std::ostream* fTerminalStream; //stream to terminal output
         std::set< std::string > fKeys; //keys of which messages we will accept for output
         MHOMessageLevel fAllowedLevel;
@@ -124,8 +124,8 @@ class MHOMessenger
 
 
 template<class XStreamableItemType>
-MHOMessenger&
-MHOMessenger::operator<<(const XStreamableItemType& item)
+MHOMessage&
+MHOMessage::operator<<(const XStreamableItemType& item)
 {
     if( PassMessage() )
     {
@@ -136,15 +136,15 @@ MHOMessenger::operator<<(const XStreamableItemType& item)
 
 
 //usage macros
-#define msg_fatal(xKEY, xCONTENT) MHOMessenger::GetInstance().SendMessage(eFatal,xKEY) << xCONTENT;
-#define msg_error(xKEY, xCONTENT) MHOMessenger::GetInstance().SendMessage(eError,xKEY) << xCONTENT;
-#define msg_warn(xKEY, xCONTENT) MHOMessenger::GetInstance().SendMessage(eWarning,xKEY) << xCONTENT;
-#define msg_status(xKEY, xCONTENT) MHOMessenger::GetInstance().SendMessage(eStatus,xKEY) << xCONTENT;
-#define msg_info(xKEY, xCONTENT) MHOMessenger::GetInstance().SendMessage(eInfo,xKEY) << xCONTENT;
+#define msg_fatal(xKEY, xCONTENT) MHOMessage::GetInstance().SendMessage(eFatal,xKEY) << xCONTENT;
+#define msg_error(xKEY, xCONTENT) MHOMessage::GetInstance().SendMessage(eError,xKEY) << xCONTENT;
+#define msg_warn(xKEY, xCONTENT) MHOMessage::GetInstance().SendMessage(eWarning,xKEY) << xCONTENT;
+#define msg_status(xKEY, xCONTENT) MHOMessage::GetInstance().SendMessage(eStatus,xKEY) << xCONTENT;
+#define msg_info(xKEY, xCONTENT) MHOMessage::GetInstance().SendMessage(eInfo,xKEY) << xCONTENT;
 
 #ifdef HOPS_ENABLE_DEBUG_MSG
 //allow debug messages when debug flag is active
-#define msg_debug(xKEY, xCONTENT) MHOMessenger::GetInstance().SendMessage(eDebug,xKEY) << xCONTENT;
+#define msg_debug(xKEY, xCONTENT) MHOMessage::GetInstance().SendMessage(eDebug,xKEY) << xCONTENT;
 #else
 //debug is not enabled, so we removed them from compilation
 #define msg_debug(xKEY, xCONTENT)
@@ -154,4 +154,4 @@ MHOMessenger::operator<<(const XStreamableItemType& item)
 
 }//end of namespace
 
-#endif /* end of include guard: MHOMessenger */
+#endif /* end of include guard: MHOMessage */

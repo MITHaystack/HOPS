@@ -18,7 +18,7 @@
 #include <string>
 
 #include "MHOVisibilities.hh"
-#include "MHOMessenger.hh"
+#include "MHOMessage.hh"
 
 //forward declaration of mk4_corel and vex structs
 //we do this to keep the mk4 structures from 'leaking' into the new code via includes,
