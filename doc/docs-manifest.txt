@@ -5,15 +5,14 @@ This directory contains the sources to for the HOPS project documents.
 2   specification   Specification and Architectural Design
 3   develplan       Development Plan for new HOPS
 4   covertest       Coverage and Test Plan
-
-The above were presented at the Design Review <DATE>.
-Note that additional related documents or captured versions might be
-present in these directories.
-
-Additional documents
-
 5   geodetic        Geodetic Appendicies
 
+The above were finalized at the Design Review (FIXME) <DATE>.
+Note that additional related documents or captured versions might be
+present in these directories.  (Note that the geodetic document was
+reviewed separately by and for the geodetic team.)
+
+Additional living documents during the project
 
 6   testreports
 6.1 ...

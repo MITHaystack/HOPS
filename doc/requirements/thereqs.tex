@@ -1,7 +1,10 @@
 %
 % the meat of the thing
 %
+% this is a counter for consecutive numbering
 \newcounter{req}
+\newcommand{\reqid}[1]{\item[\refstepcounter{req}#1-\thereq]}
+
 \section{Testable Requirements}
 \label{sec:testable}
 
@@ -12,12 +15,12 @@ in a nightly build), software tests that may be run at specific
 juctions (\Sec~\ref{sec:regress}, \ie~regression tests),
 and tests that are procedural, requiring human interaction
 (\Sec~\ref{sec:procedure}, \ie~\ac{GUI} tests).%
-\geomargin{In addition to these requirements, there are geodetic
-requirements which are captured outside the ngEHT effort.}
+\geomargin{In addition to these requirements, there are a few additional
+geodetic requirements which are captured outside the ngEHT effort.}
 
 \ac{HOPS} is currently in the version 3.x series; the new code will
-begin with the 4.x series, and to distinguish the two flavors, we
-shall use \ac{MHO} for the latter.
+begin with the 4.x series, and to distinguish the two flavors, (in code
+or otherwise) we shall use \ac{MHO} for the latter.
 
 The requirements in this document are numbered with a prefix
 according to the type of test that may be employed.
@@ -26,72 +29,113 @@ according to the type of test that may be employed.
 \label{sec:auto}
 
 It is anticipated that each of these tests will be captured by a
-``check'' script (as currently supported in the autotools).
+``check'' (shell or Python) script (such as currently supported in
+the autotools or created to more fully ensure safe development).
 
 \begin{description}
-\item[A.\thereq] Every data type written to disk in \ac{MHO} shall be 
-amenable to human-comprehensible examination as with \texttt{\ac{CorAsc2}}
+\reqid{A} Every data type written to disk in \ac{MHO} shall be 
+amenable to human-comprehensible examination as is done by the
+\texttt{\ac{CorAsc2}} program.
+\reqid{A} Implement regression tests. \FIXME[enumerate]
+\reqid{A} Use unit tests for all new code. \FIXME[enumerate]
 \end{description}
-\begin{itemize}
-\item Implement regression tests.
-\item Use unit tests for all new code.
-\end{itemize}
+
+\FIXME[Refactor time average of data]
 
 \subsection{Software-Testable Requirements}
 \label{sec:regress}
 
 It is anticipated that each of these tests will be captured by a
-script that may be executed periodically.
+script that may be executed on a regular basis, possibly requiring
+user intervention.  For example, when run in an interactive mode,
+\ac{fourfit} displays fringe plots which require a human to acknowledge
+that they have in fact been displayed.  (One can test the generation of
+the plot without a human, but the display mechanics require visual
+inspection.)
 
 \begin{description}
-\item[S.\thereq] foo.
+\reqid{S} \ac{ghostscript} copypage test
+\reqid{S} \ac{aedit} experiment summary plot
+\reqid{S} \ac{aedit} quantity with time display plot
+\reqid{S} \FIXME[more]
 \end{description}
 
-It is anticipated that each of these tests will have a procedure
-for someone to follow to verify the capability.
-
-\begin{itemize}
-\item Refactor time average of data.
-\end{itemize}
+It is anticipated that for these a mechanism shall be provided
+so that they human need merely acknowledge success, failure or
+make a note of issues.
 
 \subsection{Procedure-Testable Requirements}
 \label{sec:procedure}
 
-\begin{description}
-\item[P.\thereq] It should be possible to make 2D plots of the type
-currently possible within \texttt{\ac{aedit}} of \ac{HOPS}.
-\end{description}
+This section includes items that may be directly verified in a quasi-automated
+fashion which may involve a human.  That is, there will be a procedure for the
+human to execute with a documented report to be generated.
 
-\begin{itemize}
-\item mk4 data type should be changed to little endian or a more optimal algorithm should be used to convert it to little endian when processing it.
-\item Refactor the Single Bandf Delay (SBD) and Multi Band Delay (MBD) algorithm. Make it modular.
-\item Implement an algorithm using the least squares fitting technique for the global fringe fitter.
-\item Support mmVLBI work with spectral line sources (narrow sources).
-\item Pulsar folding functionality.
-\item Refactor alist, aedit, and fourfit to be compatible with \ac{HOPS}.
-\end{itemize}
+\begin{description}
+\reqid{P} It should be possible to make 2D plots of the type
+currently possible within \texttt{\ac{aedit}} of \ac{HOPS}.
+\reqid{P} \FIXME[more]
+
+
+\reqid[X] mk4 data type should be changed to little endian or a more
+    optimal algorithm should be used to convert it to little endian
+    when processing it.
+\reqid[X] Refactor the Single Band Delay \ac{SBD}
+    and Multi Band Delay \ac{MBD} algorithm. Make it modular.
+\reqid[X] Implement an algorithm using a \ac{LSF} % least squares fitting
+    technique for the global fringe fitter.
+\reqid[X] Support mmVLBI work with spectral line sources (narrow sources).
+\reqid[X] Pulsar folding functionality.
+\reqid[X] Refactor alist, aedit, and fourfit to be compatible with \ac{HOPS}.
+
+\end{description}
 
 \section{General (not directly testable) Desires}
 \label{sec:desires}
 
+This section covers items that are verifiable by inspection (or analysis
+or discussion).  It is subdivided into a section on goals of the current
+project which we expect to reach by the end of the project, and a section
+on future-proofing.
+
+\subsection{Current Desires}
+\label{sec:currentdesires}
+
 \begin{description}
-\item[D.\thereq] Everything currently possible in \ac{HOPS} should remain
+\reqid{D} Everything currently possible in \ac{HOPS} should remain
 possible in \ac{MHO}.
-\item[D.\thereq] \ac{MHO} should be easier to use than \ac{HOPS}.
+\reqid{D} \ac{MHO} should be easier to use than \ac{HOPS}.
 
-\begin{itemize}
-\item Python wrapper for the mk4 data type.
-\item Expand the functionality of alist to allow for more data analysis/visualization options. (Like Looker or Tableau?)
-\item Replace the existing fourfit commandline control file with a Python commandline control file that has the same exact functionality.
-\item Support VEX 2.0 and make it compatible with the VEX2XML parser tool.
-\item Rename the mk4 data type number series.
-\item Benchmarking and performance analysis should be augmenteded with a more sophisticated tools.
-\item Data import/export to/from ASCII. (Export to or import data froma human readible format.)
-\item Refactor how alist files are handled to make one line summaries of every fringe plot but do it in Python.
-\item Data visualization tools in Python. %Duplicate?
-\item Refactor all existing algorithms in to new Python libraries that run C or C++ code under the hood.
-\end{itemize}
+\reqid{X} Python wrapper for the mk4 data type.
+\reqid{X} Expand the functionality of alist to allow for more data
+    analysis/visualization options.
+    % those are both commercial(Like Looker or Tableau?)
+\reqid{X} Replace the existing fourfit commandline control file with
+    a Python commandline control file that has the same exact functionality.
+\reqid{X} Support VEX 2.0 and make it compatible with the VEX2XML parser tool.
+\reqid{X} Rename the mk4 data type number series.
+\reqid{X} Benchmarking and performance analysis should be augmenteded
+    with a more sophisticated tools.
+\reqid{X} Data import/export to/from ASCII. (Export to or import data
+    from a human readible format.)
+\reqid{X} Refactor how alist files are handled to make one line
+    summaries of every fringe plot but do it in Python.
+\reqid{X} Data visualization tools in Python.
+\reqid{X} Refactor all existing algorithms in to new Python libraries
+    that run C or C++ code under the hood.
+\end{description}
 
+\subsection{Future-Proofing}
+\label{sec:future}
+
+For every required package (beyond the historically, generally
+available \ac{GNU/Linux} packages) the code should be structured so
+that it is relatively straightforwards to port to a new package with
+similar functionality.
+
+\begin{description}
+\reqid{F} The \ac{FFT} calls should be wrapped so that packages other than
+    \ac{FFTW3} can be used.
 \end{description}
 
 %
