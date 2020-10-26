@@ -61,7 +61,7 @@ AC_PROG_CPP
 AC_PROG_INSTALL
 AC_PROG_LEX
 AC_PROG_MAKE_SET
-AC_PROG_RANLIB
+# ranlib is obsoleted by lt init
 
 # for when/if we get have to deal with fortran
 # AC_PROG_F77
@@ -256,7 +256,7 @@ AC_CONFIG_FILES(
 # source/cpp_src makefiles
 AC_CONFIG_FILES(
     source/cpp_src/Makefile
-    source/cpp_src/Messaging/Makefile
+    source/cpp_src/Message/Makefile
     source/cpp_src/Utilities/Makefile
     source/cpp_src/MK4Interface/Makefile
     source/cpp_src/Test/Makefile

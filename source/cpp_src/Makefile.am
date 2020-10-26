@@ -4,7 +4,7 @@
 # The contents of the package Copyright statement apply here.
 #
 
-SUBDIRS = Messaging Utilities MK4Interface Test Bindings Containers
+SUBDIRS = Message Utilities MK4Interface Test Bindings Containers
 
 #
 # eof
