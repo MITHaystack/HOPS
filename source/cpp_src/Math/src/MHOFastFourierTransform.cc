@@ -111,7 +111,7 @@ MHOFastFourierTransform::ExecuteOperation()
         }
 
 
-        if(!fForward) //for IDFT we conjugate first
+        if(fForward) //for DFT we conjugate first
         {
             std::complex<double>* data = fOutput->GetRawData();
             for(unsigned int i=0; i<fN; i++)
@@ -132,7 +132,7 @@ MHOFastFourierTransform::ExecuteOperation()
             MHOFastFourierTransformUtilities::FFTBluestein(fN, fM, fOutput->GetRawData(), fTwiddle, fConjugateTwiddle, fScale, fCirculant, fWorkspace);
         }
 
-        if(!fForward) //for IDFT we conjugate again
+        if(fForward) //for DFT we conjugate again
         {
             std::complex<double>* data = fOutput->GetRawData();
             for(unsigned int i=0; i<fN; i++)
