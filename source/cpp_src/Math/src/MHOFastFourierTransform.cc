@@ -3,8 +3,8 @@
 #include <iostream>
 #include <cstddef>
 
+#include "MHOMessage.hh"
 #include "MHOFastFourierTransform.hh"
-
 #include "MHOBitReversalPermutation.hh"
 #include "MHOFastFourierTransformUtilities.hh"
 
@@ -56,9 +56,6 @@ MHOFastFourierTransform::SetBackward(){fForward = false;}
 void
 MHOFastFourierTransform::Initialize()
 {
-    // std::cout<<"fN = "<<fN<<std::endl;
-    // std::cout<<"input size = "<<fInput->GetSize()<<std::endl;
-    // std::cout<<"output size = "<<fOutput->GetSize()<<std::endl;
     if(fInput->GetSize() != fN || fOutput->GetSize() != fN)
     {
         fIsValid = false;
@@ -90,8 +87,6 @@ MHOFastFourierTransform::Initialize()
 
         fIsValid = true;
         fInitialized = true;
-
-        //std::cout<<"initialize = "<<fInitialized<<" and valid = "<<fIsValid<<std::endl;
     }
 }
 
@@ -99,8 +94,6 @@ MHOFastFourierTransform::Initialize()
 void
 MHOFastFourierTransform::ExecuteOperation()
 {
-    //std::cout<<"initialize = "<<fInitialized<<" and valid = "<<fIsValid<<std::endl;
-
     if(fIsValid)
     {
         //if input and output point to the same array, don't bother copying data over
@@ -111,7 +104,8 @@ MHOFastFourierTransform::ExecuteOperation()
         }
 
 
-        if(fForward) //for DFT we conjugate first
+        //for DFT we conjugate first (NOTE: this matches FFTW3 convention)
+        if(fForward)
         {
             std::complex<double>* data = fOutput->GetRawData();
             for(unsigned int i=0; i<fN; i++)
@@ -132,7 +126,8 @@ MHOFastFourierTransform::ExecuteOperation()
             MHOFastFourierTransformUtilities::FFTBluestein(fN, fM, fOutput->GetRawData(), fTwiddle, fConjugateTwiddle, fScale, fCirculant, fWorkspace);
         }
 
-        if(fForward) //for DFT we conjugate again
+        //for DFT we conjugate again (NOTE: this matches FFTW3 convention)
+        if(fForward) 
         {
             std::complex<double>* data = fOutput->GetRawData();
             for(unsigned int i=0; i<fN; i++)
@@ -143,8 +138,8 @@ MHOFastFourierTransform::ExecuteOperation()
     }
     else
     {
-        //warning
-        std::cout<<"MHOFastFourierTransform::ExecuteOperation: Warning, transform not valid. Aborting."<<std::endl;
+        //error
+        msg_error("math", "FFT input/output array dimensions are not valid or intialization failed. Aborting transform." << eom);
     }
 }
 

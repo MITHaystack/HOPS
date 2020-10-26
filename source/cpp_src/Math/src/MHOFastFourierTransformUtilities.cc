@@ -1,8 +1,9 @@
-#include "MHOFastFourierTransformUtilities.hh"
-
-#include <iostream>
 #include <cstddef>
 #include <cmath>
+
+#include "MHOMessage.hh"
+#include "MHOFastFourierTransformUtilities.hh"
+
 
 namespace hops
 {
@@ -150,7 +151,7 @@ MHOFastFourierTransformUtilities::FFTRadixTwo_DIT(unsigned int N, double* data, 
     }
     else
     {
-        std::cout<<"MHOFastFourierTransformUtilities::FFTRadixTwo_DIT: error, array has length: "<<N<<" which is not an integer power of 2."<<std::endl;
+        msg_error("math", "MHOFastFourierTransformUtilities::FFTRadixTwo_DIT: error, array has length: "<<N<<" which is not an integer power of 2."<<eom);
     }
 }
 
@@ -199,7 +200,7 @@ MHOFastFourierTransformUtilities::FFTRadixTwo_DIF(unsigned int N, double* data, 
     }
     else
     {
-        std::cout<<"MHOFastFourierTransformUtilities::FFTRadixTwo_DIF: error, array has length: "<<N<<" which is not an integer power of 2."<<std::endl;
+        msg_error("math", "MHOFastFourierTransformUtilities::FFTRadixTwo_DIF: error, array has length: "<<N<<" which is not an integer power of 2."<< eom);
     }
 
 }

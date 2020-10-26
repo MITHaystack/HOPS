@@ -5,7 +5,6 @@
 
 #include "MHOArrayWrapper.hh"
 #include "MHOUnaryArrayOperator.hh"
-
 #include "MHOBitReversalPermutation.hh"
 #include "MHOFastFourierTransformUtilities.hh"
 
