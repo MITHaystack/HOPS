@@ -5,7 +5,7 @@
 \label{sec:hilo}
 
 This appendix captures what was presented at the Hilo
-EHT meeting (Dec. 2019) in a software session intended to
+\ac{EHT} meeting (Dec. 2019) in a software session intended to
 capture feedback on the plan.  The discussion
 did not provide any clear guidance to adjust our plans.
 
@@ -13,18 +13,19 @@ did not provide any clear guidance to adjust our plans.
 
 \subsection{slide 2}
 \begin{itemize}
-\item HOPS performed adequately for 2017 data reduction
-\sbitem consistency with AIPS and CASA was established
-\sbitem the HOPS-based pipeline was adopted for production work\footnote{%
-after validation against the alternatives using AIPS and CASA.
+\item \ac{HOPS} performed adequately for 2017 data reduction
+\sbitem consistency with \ac{AIPS} and \ac{CASA} was established
+\sbitem the \ac{HOPS}-based pipeline was adopted for production
+work\footnote{%
+after validation against the alternatives using \ac{AIPS} and \ac{CASA}.
 We consider it still highly valuable to update \ac{HOPS}, and indeed, it
-makes sense to enable interoperability with CASA---however, that is outside
-of our scope.}
-\item The ngEHT funding via MSRI-I calls for updates to HOPS:
+makes sense to enable interoperability with \ac{CASA}---however, that is
+outside of our scope.}
+\item The \ac{ngEHT} funding via \ac{MSRI}-I calls for updates to HOPS:
 \sbitem 4 years of development to become “shovel ready”o
 \sbitem N stations more than doubles (\eg to 20-30)
 \sbitem Bandwidth quadruples at some sites (\eg 8 GHz)
-\sbitem Simultaneous 230 / 345 GHz observing perhaps
+\sbitem Simultaneous 230 / 345 \ac{GHz} observing perhaps
 \sbitem Anything else that gets decided in then next 4 years
 \end{itemize}
 
@@ -34,40 +35,43 @@ of our scope.}
 \item Maximum \# of channels is 64 and that’s hard to fix (a-zA-Z0-9\%\$)
 \item No full complex bandpass corrections (only per-channel phase+delay)
 \item single-baselines are both a virtue and a problem:
-\sbitem HOPS finds more fringes than AIPS or CASA
+\sbitem \ac{HOPS} finds more fringes than \ac{AIPS} or \ac{CASA}.
 \sbitem station-based phases and delays are not readily accessible
-\item Fourfit is a one-shot process; multi-step processing not supported
+\item \ac{fourfit} is a one-shot process; multi-step processing not supported
 \item User interface is a challenge:
 \sbitem control file syntax is a bit arcane
-\sbitem all you get is one fourfit plot that either works or is garbage
+\sbitem all you get is one \ac{fourfit} plot that either works or is garbage
 \end{itemize}
 
 \subsection{slide 3}
 \begin{itemize}
-\item HOPS code has 30+ years of history in it
-\sbitem was coded in C, but reads like the Fortran it was ported from
+\item \ac{HOPS} code has 30+ years of history in it
+\sbitem was coded in \ac{C}, but reads like the \ac{Fortran} it was ported from
 \sbitem not modular except for a few of the i/o libraries
 \sbitem was written for hardware correlators
 \sbitem was written for computers that no longer exist
 \sbitem little endianism won out over big endianism (apparently)
-\sbitem was (successfully) successfully adapted to DiFX (but not \eg SFXC)
+\sbitem was (successfully) successfully adapted to \ac{DiFX}
+(but not \eg \ac{SFXC})
 \item Plotting and results are not independently generated
-\sbitem amplitude and SNR come as side-effects of what you plotted
-\sbitem PGPLOT is maybe ok today, but not really supported anymore
+\sbitem amplitude and \ac{SNR} come as side-effects of what you plotted
+\sbitem \ac{PGPLOT} is maybe ok today, but not really supported anymore
 \end{itemize}
 
 \subsection{slide 4}
 \begin{itemize}
 \item Global fringe solutions (and station based-quantities)
 \item Complex bandpass
-\item A more human-friendly interface (\eg Python as CASA does)
+\item A more human-friendly interface (\eg \ac{Python} as \ac{CASA} does)
 \item Allow distributed computing and/or parallelization (threads, OpenMPI)
 \item Insert hooks to allow plug-in modules for customizations as needed
 \item Allow a strategy for iterative calibration and fringing
 \item Improved data formats (internal in-memory as well as disk storage)
 \item Enable better exchange with other analysis packages:
-\sbitem FITS-IDI? (or HDF5 or whatever else comes along?), CASA MS?, ...
-\sbitem (either enables better use of HOPS with simulated data)
+\sbitem \ac{FITS-IDI}? (or \ac{HDF5} or whatever else comes along?),
+\ac{CASA},
+\ac{MS}?,\ldots
+\sbitem (either enables better use of \ac{HOPS} with simulated data)
 \item A more flexible/interactive plotting system
 \sbitem single summary is fine when everything is working
 \sbitem provide real support for investigation of problems
@@ -91,8 +95,8 @@ of our scope.}
 \begin{itemize}
 \item Basically: FIX what is broken
 \item Not gratuitously break the current pipelines, but allow simplification
-\item Most likely to be implemented in a mix of C, C++ or Python
-\item Provide a more canonical adaptation to unix/linux environments
+\item Most likely to be implemented in a mix of \ac{C}, \ac{C++} or \ac{Python}
+\item Provide a more canonical adaptation to \ac{GNU/Linux} environments
 \item Implement what is most important to have available in 4 years
 \end{itemize}
 %
