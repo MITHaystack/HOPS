@@ -36,3 +36,8 @@ target_link_libraries (MHOUtilities ${UTILITIES_LIBS})
 
 hops_install_headers (${UTILITIES_HEADERFILES})
 hops_install_libraries (MHOUtilities)
+
+if (HOPS_ENABLE_TEST)
+    add_subdirectory(test)
+endif (HOPS_ENABLE_TEST)
+

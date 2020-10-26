@@ -28,3 +28,7 @@ target_link_libraries (MHOMessage ${MESSAGE_LIBS})
 
 hops_install_headers (${MESSAGE_HEADERFILES})
 hops_install_libraries (MHOMessage )
+
+if (HOPS_ENABLE_TEST)
+    add_subdirectory(test)
+endif (HOPS_ENABLE_TEST)

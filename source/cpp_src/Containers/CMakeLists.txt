@@ -21,3 +21,7 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 #install library (headers only) ################################################
 
 hops_install_headers (${CONTAINER_HEADERFILES})
+
+if (HOPS_ENABLE_TEST)
+    add_subdirectory(test)
+endif (HOPS_ENABLE_TEST)
