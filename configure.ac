@@ -257,6 +257,7 @@ AC_CONFIG_FILES(
 AC_CONFIG_FILES(
     source/cpp_src/Makefile
     source/cpp_src/Message/Makefile
+    source/cpp_src/Math/Makefile
     source/cpp_src/Utilities/Makefile
     source/cpp_src/MK4Interface/Makefile
     source/cpp_src/Bindings/Makefile
