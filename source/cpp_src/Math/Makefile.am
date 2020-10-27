@@ -22,7 +22,7 @@ TESTS = $(check_PROGRAMS)
 cxxflags = -I. -I$(srcdir)/include -Wall -Wextra
 cxxmho = -I$(srcdir)/../Message/include \
 	-I$(srcdir)/../Containers/include
-AM_CXXFLAGS = $(cxxflags)  $(cxxmho)
+AM_CXXFLAGS = $(cxxflags) $(cxxmho)
 
 libMHOMath_la_SOURCES = src/MHOBitReversalPermutation.cc \
 	src/MHOFastFourierTransform.cc \
