@@ -252,6 +252,10 @@ AC_CONFIG_FILES(
     source/c_src/fourfit_libs/ffplot/Makefile
     source/c_src/applications/fourfit/Makefile
 )
+# source/c_source makefiles, part 3: new things
+AC_CONFIG_FILES(
+    source/c_src/Bindings/Makefile
+)
 
 # source/cpp_src makefiles
 AC_CONFIG_FILES(
@@ -260,7 +264,6 @@ AC_CONFIG_FILES(
     source/cpp_src/Math/Makefile
     source/cpp_src/Utilities/Makefile
     source/cpp_src/MK4Interface/Makefile
-    source/cpp_src/Bindings/Makefile
     source/cpp_src/Containers/Makefile
 )
 
