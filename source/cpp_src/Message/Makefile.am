@@ -14,10 +14,9 @@ TESTS_ENVIRONMENT = srcdir=$(srcdir)
 TESTS = $(check_PROGRAMS)
 # XFAIL_TESTS =
 
-AM_CXXFLAGS = -I. -I$(srcdir)/include -Wall
+AM_CXXFLAGS = -I. -I$(srcdir)/include -Wall -Wextra
 
 libMHOMessage_la_SOURCES = src/MHOMessage.cc
-
 libMHOMessage_la_LDFLAGS = -avoid-version
 
 TestMessenger_SOURCES = test/TestMessenger.cc
