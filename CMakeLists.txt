@@ -15,7 +15,7 @@ include(FindGFORTRAN)
 include(FindPGPLOT)
 include(UseLATEX)
 
-if(${CMAKE_VERSION} VERSION_GREATER "3.11.0") 
+if(${CMAKE_VERSION} VERSION_GREATER "3.11.0")
 cmake_policy(SET CMP0074 OLD)
 endif()
 
@@ -52,7 +52,7 @@ hops_module_paths(Hops)
 hops_require_cpp11()
 
 set( CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -Wextra" )
-set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -pthread" )
+set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra" )
 message(STATUS "Using compiler ${COMPILER_ID} ${COMPILER_VERSION}")
 
 #options for triggering additional dependencies
