@@ -1,0 +1,103 @@
+% https://www.openoffice.org/bibliographic/bibtex-defs.html
+
+updated from Appendix B2 of the LaTeX guide, Leslie Lamport.
+
+References to different types of publications contain different
+information; a reference to a journal article might include the volume
+and number of the journal, which is usually not meaningful for a
+book. Therefore, database entries of different types have different
+fields. For each entry type, the fields are divided into three classes:
+
+ required
+    Omitting the field will produce a warning message and, rarely,
+    a badly formatted bibliography entry. If the required information
+    is not meaningful, you are using the wrong entry type. However, if
+    the required information is meaningful but, say, already included
+    is some other field, simply ignore the warning.
+
+ optional
+    The field's information will be used if present, but can be omitted
+    without causing any formatting problems. You should include the
+    optional field if it will help the reader.
+
+ ignored
+    The field is ignored. Ignores any field that is not required or
+    optional, so you can include any fields you want in a bib file
+    entry. It's a good idea to put all relevant information about a
+    reference in its bib file entry--even information that may never
+    appear in the bibliography. For example, if you want to keep an
+    abstract of a paper in a computer file, put it in an abstract
+    field in the paper's bib file entry. The bib file is likely to
+    be as good a place as any for the abstract, and it is possible to
+    design a bibliography style for printing selected abstracts. Note:
+    Misspelling a field name will result in its being ignored, so watch
+    out for typos (especially for optional fields, since won't warn you
+    when those are missing).
+
+Types of entries:
+
+ article
+    An article from a journal or magazine. Required fields: author, title,
+    journal, year. Optional fields: volume, number, pages, month, note.
+
+ book
+    A book with an explicit publisher. Required fields: author or editor,
+    title, publisher, year. Optional fields: volume or number, series,
+    address, edition, month, note.
+
+ booklet
+    A work that is printed and bound, but without a named publisher
+    or sponsoring institution. Required field: title. Optional fields:
+    author, howpublished, address, month, year, note.
+
+ conference
+    The same as INPROCEEDINGS, included for Scribe compatibility. 
+
+ inbook
+    A part of a book, which may be a chapter (or section or whatever)
+    and/or a range of pages. Required fields: author or editor, title,
+    chapter and/or pages, publisher, year. Optional fields: volume or
+    number, series, type, address, edition, month, note.
+
+ incollection
+    A part of a book having its own title. Required fields: author, title,
+    booktitle, publisher, year. Optional fields: editor, volume or number,
+    series, type, chapter, pages, address, edition, month, note.
+
+ inproceedings
+    An article in a conference proceedings. Required fields: author,
+    title, booktitle, year. Optional fields: editor, volume or number,
+    series, pages, address, month, organization, publisher, note.
+
+ manual
+    Technical documentation. Required field: title. Optional fields:
+    author, organization, address, edition, month, year, note.
+
+ mastersthesis
+    A Master's thesis. Required fields: author, title, school,
+    year. Optional fields: type, address, month, note.
+
+ misc
+    Use this type when nothing else fits. Required fields: none. Optional
+    fields: author, title, howpublished, month, year, note.
+
+ phdthesis
+    A PhD thesis. Required fields: author, title, school, year. Optional
+    fields: type, address, month, note.
+
+ proceedings
+    The proceedings of a conference. Required fields: title,
+    year. Optional fields: editor, volume or number, series, address,
+    month, organization, publisher, note.
+
+ techreport
+    A report published by a school or other institution, usually numbered
+    within a series. Required fields: author, title, institution,
+    year. Optional fields: type, number, address, month, note.
+
+ unpublished
+    A document having an author and title, but not formally
+    published. Required fields: author, title, note. Optional fields:
+    month, year.
+
+eof

@@ -1,26 +1,47 @@
 %
 % \section{Acronyms, Commands and Glossary}
 %
+% \acro{acronym}[short name]{full name / description}
+% \ac{acronym} is the usual usage in text that defines (and gives short name)
+% \acs{acronym} gives just the short name
+% \acf{acronym} gives just the full name
+% \acsu{acronym} gives the short name and marks it used
+%
+% the optional short name can include math as the acronym key cannot
+%
+% see https://ctan.org/pkg/acronym
+%
 \begin{acronym}
 % A---------------------------------------------------------------
 \acro{A-list}{a one line description of baseline fringes used by \ac{HOPS}}
 \acro{alist}{a program for creating a file of \ac{A-list} scans}
 \acro{aedit}{a program for editing a file of \ac{A-list} scans}
 \acro{AIPS}{Astronomical Image Processing System}
+\acro{ALMA}{Atacama Large Millimeter/Submillimeter Array}
+\acro{AMP}{short for ``amplitude'' the correlation coefficient}
 % C---------------------------------------------------------------
 \acro{C}{The ``C'' programming language, created to make \ac{UNIX} portable}
 \acro{C++}{The C++ programming language, an object-oriented
-successor to \ac{C}}
+    successor to \ac{C}}
 \acro{CASA}{Common Astronomy Software Applications package}
+\acro{channel}{an ambigous term which refers either to a spectral channel,
+    \ie~frequency point of an \acsu{FFT} or to a sub-band of a
+    larger receiver band.}
+\acro{cofit}{a \ac{HOPS} tool to assess atmospheric coherence in terms of
+    \ac{SNR} and \ac{AMP} variation with integration interval}
 \acro{CorAsc2}{Correlator to Ascii (2nd version)}
+\acro{cover}{a coverage test exercises all logic branches of some code module}
 % D---------------------------------------------------------------
 \acro{DFT}{Discrete Fourier Transform}
+\acro{DR}{Delay Rate, the fringe parameter concerning
+    the change of delay with time}
 \acro{DiFX}{the ``distributed'' \ac{FX} correlator}
 \acro{difx2mark4}{a program (part of \ac{DiFX}) to convert \ac{SWIN}
-format correlation products into the ``Mark4'' data files used by \ac{HOPS}}
+    format correlation products into the ``Mark4'' (or \acs{Mk4})
+    data files used by \ac{HOPS}}
 % E---------------------------------------------------------------
 \acro{EHT}{the Event Horizon Telescope, which usually refers to the
-observing array}
+    observing array}
 \acro{EHTC}{the Event Horizon Telescope Collaboration, which usually
 refers to the organization that operates the \ac{EHT}}
 % F---------------------------------------------------------------
@@ -28,67 +49,109 @@ refers to the organization that operates the \ac{EHT}}
 \acro{FFTW3}{Fastest Fourier Transform in the West, version 3}
 \acro{Fortran}{a FORmula TRANslation language, in common use prior to \ac{C}}
 \acro{FX}{a general term for correlation that does the cross-correlation
-after first transforming to frequency space}
-% F---------------------------------------------------------------
+    after first transforming to frequency space}
 \acro{FITS}{Flexible Image Transport System, now referring to a
-general digital data format}
+    general digital data format}
 \acro{FITS-IDI}{A dialect of \ac{FITS}
-designed for the interchange of data for interferometry}
+    designed for the interchange of data for interferometry}
 \acro{fourfit}{the main fringe-finding command in \ac{HOPS}}
 \acro{fringex}{an \ac{HOPS} tool to explore the fringe} 
+\acro{fourmer}{a program that combines data from two sub-bands into
+    a larger common band}
 % G---------------------------------------------------------------
-\acro{ghostscript}{Ghostscript, the GNU postscript emulator}
+\acro{ghostscript}{Ghostscript, the GNU \acs{PostScript} emulator}
 \acro{GHz}{one billion Hz}
 \acro{GNU}{GNU is Not Unix (a software project launched by
-Richard Stallman in the 80's)}
+    Richard Stallman in the 80's)}
 \acro{GNU/Linux}{a family of operating systems using Linus' kernel and
-GNU's software packages}
+    GNU's software packages}
+\acro{GS}{short for \ac{ghostscript}}
 \acro{GUI}{Graphical User Interface}
 % H---------------------------------------------------------------
 \acro{HDF5}{Hierarchical Data Format, version 5.}\footnote{Why would you
-\emph{want} to use anything that took 5 versions to get right?}
+    \textit{want} to use anything that took 5 versions to get right?}
 \acro{HOPS}{Haystack Observatory Postprocessing System}
 \acro{Hz}{A frequency unit named for Heinrich Hertz.
-A frequency of one Hz is one oscillation per second.}
+    A frequency of one Hz is one oscillation per second.}
+% I---------------------------------------------------------------
+\acro{i/o}{short for input/output referring to the fact that programs are
+    written to act on something and provide something}
+\acro{IPP}{Intel Performance Primitives is a library of functionality
+    optimized for use with the Intel processor family}
 % J---------------------------------------------------------------
 \acro{JIVE}{now just a name for an organization, it is still an
-Institution for VLBI in Europe, just not a Joint one}
+    Institution for VLBI in Europe, just not a Joint one}
 % L---------------------------------------------------------------
 \acro{Linux}{a family of operating systems built around Linus Torval's version
-of the UNIX kernel}
+    of the UNIX kernel}
 \acro{LSF}{Least Squares Fit}
 % M---------------------------------------------------------------
-\acro{MBD}{Multi-Band Delay}
+\acro{MBD}{Multi-Band Delay, the delay parameter referring to the change of
+    phase with frequency in a multi-channel (sub-band) system.}
 \acro{Mk4}{The fourth in a series of \ac{VLBI} hardware correlators.  The
-Mark4 replaced the Mark3 near the beginning of the millenium, and was
-finally put to rest by \ac{DiFX} in the mid 2010's}
+    Mark4 replaced the Mark3 near the beginning of the millenium, and was
+    finally put to rest by \ac{DiFX} in the mid 2010's}
+\acro{m4py}{a shallow \acs{Python} wrapper which provides access to
+    \acs{Mk4} data files and types}
 \acro{MS}{Measurement Set, a formal specification for data to be analyzed
-with reference to a Measurement Equation}
+    with reference to a Measurement Equation}
 \acro{MSRI}{Mid-scale Research Initiatives program at the \ac{NSF}}
 % N---------------------------------------------------------------
 \acro{NSF}{National Science Foundation}
-\acro{ngEHT}{next-generation \ac{EHT}}
+\acro{ngEHT}{next-generation \acs{EHT}}
+% O---------------------------------------------------------------
+\acro{ovex}{an ``observer'' dialect of \acs{VEX}}
+\acro{OpenMPI}{Open MPI Project is an open source Message Passing Interface
+    implementation}
 % P---------------------------------------------------------------
+\acro{PDF}{Portable Document Format (developed by Adobe) as a successor
+    to \ac{PostScript}}
 \acro{PGPLOT}{a ``pretty good'' plotting package developed and maintained
-by Tim Pearson at Caltech.  He's retired now, so it is stuck at verion 5.2.2,
-(released Feb 2001)}
+    by Tim Pearson at Caltech.  He's retired now, so it is stuck at verion
+    5.2.2, (released Feb 2001)}
+\acro{PostScript}{a printer page description language developed by Adobe.
+    \ac{fourfit} plots are currently generated in \ac{PostScript} and
+    often converted to \acs{PDF}}
+\acro{PS}{short for \ac{PostScript}}
 \acro{Python}{a programming language named in honor of Monty Python's Flying
-Circus}
+    Circus}
 % S---------------------------------------------------------------
-\acro{SBD}{Single Band Delay}
-\acro{SFXC}{\ac{JIVE}'s software FX-kind correlator}
+\acro{SBD}{Single Band Delay, the delay parameter referring to the time
+    offset between two signals being correlated}
+\acro{search}{this is a tool that searches in delay/delay-rate space to
+    allow visualization of a fringe peak and to aid in establishing the
+    validity of more marginal-\acs{SNR} cases}
+\acro{SFXC}{\acs{JIVE}'s software \ac{FX}-kind correlator}
 \acro{SNR}{Signal to Noise Ratio}
 \acro{SWIN}{the output format used by the \ac{DiFX} correlator}
 \acro{MHO}{MIT Haystack Observatory Postprocessing System}
 % U---------------------------------------------------------------
-% V---------------------------------------------------------------
-\acro{VLBI}{Very Long Baseline Interferometry}
+\acro{unit}{a unit test is a short test used to validate a small part of
+    some larger code module}
 \acro{UNIX}{the name of a family of operating systems
-(born in the 70's at Bell Laboratories)}
+    (born in the 70's at Bell Laboratories)}
+% V---------------------------------------------------------------
+\acro{VEX}{\acs{VLBI} EXperiment (file), a means of fully describing
+    a planned \acs{VLBI} experiment or observation}
+\acro{VEX2XML}{a program that converts \acs{VEX} files into an easily
+    parsed \acs{XML} represention}
+\acro{VGOS}{\acs{VLBI} Global Observing System;
+    was called \acs{VLBI}2010 until the mid 2010's}
+\acro{VLBI}{Very Long Baseline Interferometry}
+% W---------------------------------------------------------------
+\acro{Whitneys}{correlation amplitudes are normally expressed between 0 and 1,
+    but in our work they are usually small and in \ac{HOPS} traditionally
+    multiplied by ten thousand, in which case, the unit of correlation amplitude
+    is ``Whitneys'' after Alan Whitney who may be commended or blamed for the
+    usage.}
 % X---------------------------------------------------------------
 \acro{XF}{a general term for correlation that does the cross-correlation
-first, and then transforms the result to frequency space}
+    first, and then transforms the result to frequency space}
+\acro{XML}{eXtensible Markup Language}
 % Z---------------------------------------------------------------
+\acro{zero-pad}{the practice of extending time or frequency sequences with
+    some number of zeroes which, for \ac{FFT}s has the effect of smoothing
+    in the other domain}
 \end{acronym} 
 %
 % eof
