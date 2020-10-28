@@ -1,9 +1,8 @@
 %
 % the meat of the thing
 %
-% this is a counter for consecutive numbering
-\newcounter{req}
-\newcommand{\reqid}[1]{\item[\refstepcounter{req}#1-\thereq]}
+% a counter for consecutive numbering and \reqid are defined in shortcuts.
+%
 
 \section{Testable Requirements}
 \label{sec:testable}
@@ -24,10 +23,12 @@ and tests that are procedural, requiring human interaction
 (\Sec~\ref{sec:procedure}, \ie~\ac{GUI} tests).%
 \geomargin{In addition to these requirements, there are a few additional
 geodetic requirements which are captured outside the ngEHT effort.}
+Details of the testing process are to be found in the coverage
+and testing document (\cite{cover}).
 
-\ac{HOPS} is currently in the version 3.x series; the new code will
+\acs{HOPS} is currently in the version 3.x series; the new code will
 begin with the 4.x series, and to distinguish the two flavors, (in code
-and otherwise) we shall use \ac{MHO} to specifically refer to the latter.
+and otherwise) we shall use \acs{MHO} to specifically refer to the latter.
 
 The requirements in this document are numbered with a prefix
 according to the type of test that may be employed:
@@ -49,66 +50,101 @@ be validated with an automated test.
 
 \begin{description}
 \reqid{A} \ac{MHO} should support up to
-    \TBD{30} stations and \TBD{435} baselines.
-\reqid{A} the number of \acs{channels} may exceed 64 and should
+    \TBD~30 stations and \TBD~435 baselines.
+\reqid{A} the number of \acsp{channel} may exceed 64 and should
     have no practical limit.
 \end{description}
 
 The following existing tests currently exist in \ac{HOPS}
 and can be ported to pass in \ac{MHO} as well.
+\FIXME[This list is not currently well-ordered].
+\FIXME[The tests need to be reworded into ``requirement'' form.]
 % find . -name Makefile.am -print \
 % -exec sed '/TESTS[^_].*=/,/^$/!d' {} \; -print | sed 's/^/% /' |
 % grep -v PROGRAM
 
 \begin{description}
 % ./vex2xml/Makefile.am
-\reqid{A} \texttt{chk\_v2v.sh} is a test to verify that the \acsu{VEX2XML}
-    tool (developed) for \acsu{ALMA} performs against a dozen separate
-    \acs{VEX} files.
-\reqid{A} \texttt{run\_testsuite.sh} runs a suite of \ac{Python}-based
-    tests to validate \ac{HOPS} for \ac{VGOS}\geomargin{this is only
-    needed for \ac{VGOS} linear-pol experiments}
+\reqid{A} the \acsu{VEX2XML} tool which convert \acs{VEX} to \acs{XML}
+    should continue to work for \acs{VEX} version 1.5.
+    (\texttt{chk\_v2v.sh} is a test that verifies that this tool,
+    developed for \acsu{ALMA}, performs against a dozen separate
+    captured \acs{VEX} files.)
 % ./data/ae_testdata/Makefile.am
-\reqid{A} \texttt{chk\_fsumm.sh} runs a set of \ac{aedit} tests
-    to validate performance of \ac{aedit} for \ac{A-list} file
-    format 5 compared with format version 6.
+\reqid{A} \ac{aedit} performance consistency on versions 5 and 6
+    on captured data is needed.  (\texttt{chk\_fsumm.sh} currently
+    such a test with captured \ac{A-list} data.)
+\reqid{A} \ac{aedit} performance consistency on version 6 and
+    any version \TBD~7 should be maintained.
+    \FIXME[a discussion of a post-6 version should appear in the specification]
 % ./postproc/fourmer/Makefile.am
-\reqid{X} \texttt{test\_new\_chan\_id} is a program to verify the
-    relabelling of data channels when different frequency sub-bands
-    are combined with the \acs{fourmer} tool.
+\reqid{A} the \acs{fourmer} tool relabels channels when it combines
+    two sub-bands.  A test to assure this continues to be done
+    properly (such as is now done by \texttt{test\_new\_chan\_id})
+    should be maintained.
 % ./sub/dfio/Makefile.am
-\reqid{X} \texttt{test\_compress} a test of the \ac{PostScript}
-    compression used in the \ac{mk4} fringe file format
-\reqid{X} \texttt{test\_mk4fringe} a test related to the uncompress
-    or compressed storage of \ac{mk4} fringe files
-\reqid{X} \texttt{chk\_baselines.sh}
-\reqid{X} \texttt{chk\_alist.sh}
-\reqid{X} \texttt{chk\_adump.sh}
-\reqid{X} \texttt{chk\_aedit.sh}
-\reqid{X} \texttt{chk\_fringex.sh}
-\reqid{X} \texttt{chk\_average.sh}
-\reqid{X} \texttt{chk\_avefix.sh}
-\reqid{X} \texttt{chk\_cofit.sh}
-\reqid{X} \texttt{chk\_search.sh}
-\reqid{X} \texttt{chk\_fourmer.sh}
-\reqid{X} \texttt{chk\_frmrsrch.sh}
-\reqid{X} \texttt{chk\_hdlinks.sh}
-\reqid{X} \texttt{chk\_min\_weight.sh}
-\reqid{X} \texttt{chk\_notches.sh}
-\reqid{X} \texttt{chk\_flagging.sh}
-\reqid{X} \texttt{chk\_ff\_dump.sh}
+\reqid{A} if \TBD~the non-compressed form of the fringe file used in
+    the \acs{Mk4} file format is to be supported, we require that the
+    fringe plot be the same as that offered by the compressed version.
+    (\texttt{test\_compress} a test of the \ac{PostScript}
+    compression used in the \ac{Mk4} fringe file format.)
+\reqid{A} \FIXME[what does this test test, actually]
+    (\texttt{test\_mk4fringe} a test related to the uncompress
+    or compressed storage of \ac{Mk4} fringe files)
+\reqid{A} \FIXME[what does this test]
+    (\texttt{chk\_baselines.sh})
+\reqid{A} the \acs{alist} program should provide valid \acs{A-list}
+    files in versions 5, 6 and any version \TBD~7.
+    (\texttt{chk\_alist.sh} currently does this for versions 5 and 6.)
+\reqid{A}
+    \texttt{chk\_adump.sh}
+\reqid{A}
+    \texttt{chk\_aedit.sh}
+\reqid{A}
+    \texttt{chk\_fringex.sh}
+\reqid{A}
+    \texttt{chk\_average.sh}
+\reqid{A}
+    \texttt{chk\_avefix.sh}
+\reqid{A} there should be a test to verify \acs{cofit} functionality
+    (\texttt{chk\_cofit.sh} currently verifies this)
+\reqid{A} there should be a test to verify \acs{search} functionality
+    (\texttt{chk\_search.sh} currently does a search on a captive
+    data set)
+\reqid{A} there should continue to be a functional \acs{fourmer} tool
+    to assemble separately correlated frequency sub-bands.
+    (\texttt{chk\_fourmer.sh} currently does this for a
+    captive two 512-MHz bands.  A test to cover an extension
+    to current \acs{EHT} 2-GHz bands should be build and maintained.)
+\reqid{A}
+    \texttt{chk\_frmrsrch.sh}
+\reqid{A}
+    \texttt{chk\_hdlinks.sh}
+\reqid{A}
+    \texttt{chk\_min\_weight.sh}
+\reqid{A}
+    \texttt{chk\_notches.sh}
+\reqid{A}
+    \texttt{chk\_flagging.sh}
+\reqid{A}
+    \texttt{chk\_ff\_dump.sh}
 \end{description}
+
+\FIXME[should have tests for other common control constructs]
 
 In addition to the above tests, data from a variety of experiments
 has been captured and can be re-fringed on demand.  Data from two of
 these are packaged with the \ac{HOPS} distribution:
-
 % ./data/ff_testdata/Makefile.am
 \begin{description}
-\reqid{X} \texttt{chk\_ff\_2836.sh} a canonical S--X geodetic experiment
-\reqid{X} \texttt{chk\_ff\_3365.sh} an early \ac{EHT} session suitable for
+\reqid{A} \texttt{chk\_ff\_2836.sh} a canonical S--X geodetic experiment
+\reqid{A} \texttt{chk\_ff\_3365.sh} an early \ac{EHT} session suitable for
     testing \ac{fourmer}
 \end{description}
+Both of these tests exercise the basic fringe search and reduction
+that \ac{fourfit} was built to do and have been the basis of standard
+regression for \ac{HOPS} and distribution validation.   Additional tests
+with other captured data sets are discussed in the next section.
 
 Some additional tests extant in \ac{HOPS} should not be needed in
 \ac{MHO}; these are listed for reference in \App~\ref{sec:obsolete}.
@@ -196,7 +232,7 @@ on future-proofing.
 
 \reqid{D} \ac{MHO} should be easier to use than \ac{HOPS}.
 
-\reqid{D} mk4 data type should be changed to little endian or a more
+\reqid{D} Mk4 data type should be changed to little endian or a more
     optimal algorithm should be used to convert it to little endian
     when processing it.
 
@@ -204,7 +240,7 @@ on future-proofing.
     Multi Band Delay \ac{MBD} and Delay Rate \ac{DR} algorithm to
     make it more modular (and amenable to variations on the method).
 
-\reqid{D} Python wrapper for the mk4 data type.
+\reqid{D} Python wrapper for the Mk4 data type.
 
 \reqid{D} Expand the functionality of alist to allow for more data
     analysis/visualization options.
@@ -216,7 +252,7 @@ on future-proofing.
 
 \reqid{D} Support VEX 2.0 and make it compatible with the VEX2XML parser tool.
 
-\reqid{D} Rename the mk4 data type number series.
+\reqid{D} Rename the Mk4 data type number series.
 
 \reqid{D} Benchmarking and performance analysis should be augmenteded
     with a more sophisticated tools.

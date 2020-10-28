@@ -46,6 +46,10 @@
 \marginnote{\protect\geobox{#1}}\footnote{#2}}{% else: show nothing
 }}
 
+% for itemizing requirements
+\newcounter{req}
+\newcommand{\reqid}[1]{\item[\refstepcounter{req}#1-\thereq]}
+
 %
 % eof
 %
