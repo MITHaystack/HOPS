@@ -46,9 +46,12 @@
 \marginnote{\protect\geobox{#1}}\footnote{#2}}{% else: show nothing
 }}
 
-% for itemizing requirements
+% for itemizing and explaining requirements
 \newcounter{req}
 \newcommand{\reqid}[1]{\item[\refstepcounter{req}#1-\thereq]}
+% the first argument should be one of rationale, explanation, comment
+\newcommand{\reqex}[2][comment]{%
+ \hfill\break\vspace{2pt}\hspace{-1em}{{\textsl{\textbf{#1}:}} \textit{{#2}}}}
 
 %
 % eof
