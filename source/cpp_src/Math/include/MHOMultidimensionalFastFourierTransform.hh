@@ -10,13 +10,13 @@
 namespace hops
 {
 
-template<size_t NDIM>
-class MHOMultidimensionalFastFourierTransform: public MHOUnaryArrayOperator< std::complex<double>, NDIM >
+template<size_t RANK>
+class MHOMultidimensionalFastFourierTransform: public MHOUnaryArrayOperator< std::complex<double>, RANK >
 {
     public:
         MHOMultidimensionalFastFourierTransform()
         {
-            for(size_t i=0; i<NDIM; i++)
+            for(size_t i=0; i<RANK; i++)
             {
                 fDimensionSize[i] = 0;
                 fWorkspaceWrapper[i] = NULL;
@@ -62,7 +62,7 @@ class MHOMultidimensionalFastFourierTransform: public MHOUnaryArrayOperator< std
             if(fIsValid && fInitialized)
             {
                 size_t total_size = 1;
-                for(size_t i=0; i<NDIM; i++)
+                for(size_t i=0; i<RANK; i++)
                 {
                     total_size *= fDimensionSize[i];
                     if(fForward)
@@ -82,19 +82,19 @@ class MHOMultidimensionalFastFourierTransform: public MHOUnaryArrayOperator< std
                     std::memcpy( (void*) this->fOutput->GetRawData(), (void*) this->fInput->GetRawData(), total_size*sizeof(std::complex<double>) );
                 }
 
-                size_t index[NDIM];
-                size_t non_active_dimension_size[NDIM-1];
-                size_t non_active_dimension_value[NDIM-1];
-                size_t non_active_dimension_index[NDIM-1];
+                size_t index[RANK];
+                size_t non_active_dimension_size[RANK-1];
+                size_t non_active_dimension_value[RANK-1];
+                size_t non_active_dimension_index[RANK-1];
 
                 //select the dimension on which to perform the FFT
-                for(size_t d = 0; d < NDIM; d++)
+                for(size_t d = 0; d < RANK; d++)
                 {
                     //now we loop over all dimensions not specified by d
                     //first compute the number of FFTs to perform
                     size_t n_fft = 1;
                     size_t count = 0;
-                    for(size_t i = 0; i < NDIM; i++)
+                    for(size_t i = 0; i < RANK; i++)
                     {
                         if(i != d)
                         {
@@ -109,10 +109,10 @@ class MHOMultidimensionalFastFourierTransform: public MHOUnaryArrayOperator< std
                     for(size_t n=0; n<n_fft; n++)
                     {
                         //invert place in list to obtain indices of block in array
-                        MHOArrayMath::RowMajorIndexFromOffset<NDIM-1>(n, non_active_dimension_size, non_active_dimension_value);
+                        MHOArrayMath::RowMajorIndexFromOffset<RANK-1>(n, non_active_dimension_size, non_active_dimension_value);
 
                         //copy the value of the non-active dimensions in to index
-                        for(size_t i=0; i<NDIM-1; i++)
+                        for(size_t i=0; i<RANK-1; i++)
                         {
                             index[ non_active_dimension_index[i] ] = non_active_dimension_value[i];
                         }
@@ -122,7 +122,7 @@ class MHOMultidimensionalFastFourierTransform: public MHOUnaryArrayOperator< std
                         for(size_t i=0; i<fDimensionSize[d]; i++)
                         {
                             index[d] = i;
-                            data_location = MHOArrayMath::OffsetFromRowMajorIndex<NDIM>(fDimensionSize, index);
+                            data_location = MHOArrayMath::OffsetFromRowMajorIndex<RANK>(fDimensionSize, index);
                             (*(fWorkspaceWrapper[d]))[i] = (*(this->fOutput))[data_location];
                         }
 
@@ -133,13 +133,13 @@ class MHOMultidimensionalFastFourierTransform: public MHOUnaryArrayOperator< std
                         for(size_t i=0; i<fDimensionSize[d]; i++)
                         {
                             index[d] = i;
-                            data_location = MHOArrayMath::OffsetFromRowMajorIndex<NDIM>(fDimensionSize, index);
+                            data_location = MHOArrayMath::OffsetFromRowMajorIndex<RANK>(fDimensionSize, index);
                             (*(this->fOutput))[data_location] = (*(fWorkspaceWrapper[d]))[i];
                         }
                     }
                 }
             }
-            else 
+            else
             {
                 //error
                 msg_error("math", "FFT input/output array dimensions are not valid or intialization failed. Aborting transform." << eom);
@@ -151,7 +151,7 @@ class MHOMultidimensionalFastFourierTransform: public MHOUnaryArrayOperator< std
 
         virtual void AllocateWorkspace()
         {
-            for(size_t i=0; i<NDIM; i++)
+            for(size_t i=0; i<RANK; i++)
             {
                 fWorkspaceWrapper[i] = new MHOArrayWrapper< std::complex<double>, 1 >(fDimensionSize[i]);
                 fTransformCalculator[i] = new MHOFastFourierTransform();
@@ -164,7 +164,7 @@ class MHOMultidimensionalFastFourierTransform: public MHOUnaryArrayOperator< std
 
         virtual void DealocateWorkspace()
         {
-            for(size_t i=0; i<NDIM; i++)
+            for(size_t i=0; i<RANK; i++)
             {
                 delete fWorkspaceWrapper[i]; fWorkspaceWrapper[i] = NULL;
                 delete fTransformCalculator[i]; fTransformCalculator[i] = NULL;
@@ -173,13 +173,13 @@ class MHOMultidimensionalFastFourierTransform: public MHOUnaryArrayOperator< std
 
         virtual bool DoInputOutputDimensionsMatch()
         {
-            size_t in[NDIM];
-            size_t out[NDIM];
+            size_t in[RANK];
+            size_t out[RANK];
 
             this->fInput->GetDimensions(in);
             this->fOutput->GetDimensions(out);
 
-            for(size_t i=0; i<NDIM; i++)
+            for(size_t i=0; i<RANK; i++)
             {
                 if(in[i] != out[i])
                 {
@@ -193,10 +193,10 @@ class MHOMultidimensionalFastFourierTransform: public MHOUnaryArrayOperator< std
         bool fForward;
         bool fInitialized;
 
-        size_t fDimensionSize[NDIM];
+        size_t fDimensionSize[RANK];
 
-        MHOFastFourierTransform* fTransformCalculator[NDIM];
-        MHOArrayWrapper<std::complex<double>, 1>* fWorkspaceWrapper[NDIM];
+        MHOFastFourierTransform* fTransformCalculator[RANK];
+        MHOArrayWrapper<std::complex<double>, 1>* fWorkspaceWrapper[RANK];
 
 
 };

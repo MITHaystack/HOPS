@@ -13,8 +13,7 @@ set( MESSAGE_SOURCEFILES
 )
 
 #declare header paths ##########################################################
-
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
+hops_internal_include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 #compile and install library ###################################################
 set(MESSAGE_LIBS "")

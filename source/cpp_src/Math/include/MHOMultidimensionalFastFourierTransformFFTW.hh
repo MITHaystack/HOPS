@@ -11,8 +11,8 @@
 namespace hops
 {
 
-template<size_t NDIM>
-class MHOMultidimensionalFastFourierTransformFFTW: public MHOUnaryArrayOperator< std::complex<double>, NDIM >
+template<size_t RANK>
+class MHOMultidimensionalFastFourierTransformFFTW: public MHOUnaryArrayOperator< std::complex<double>, RANK >
 {
     public:
         MHOMultidimensionalFastFourierTransformFFTW()
@@ -21,7 +21,7 @@ class MHOMultidimensionalFastFourierTransformFFTW: public MHOUnaryArrayOperator<
             fInPtr = NULL;
             fOutPtr = NULL;
             fInPlacePtr = NULL;
-            for(size_t i=0; i<NDIM; i++)
+            for(size_t i=0; i<RANK; i++)
             {
                 fDimensionSize[i] = 0;
             }
@@ -60,7 +60,7 @@ class MHOMultidimensionalFastFourierTransformFFTW: public MHOUnaryArrayOperator<
 
             if(!fInitialized && fIsValid)
             {
-                fTotalArraySize = MHOArrayMath::TotalArraySize<NDIM>(fDimensionSize);
+                fTotalArraySize = MHOArrayMath::TotalArraySize<RANK>(fDimensionSize);
                 AllocateWorkspace();
                 bool success = ConstructPlan();
                 fInitialized = success;
@@ -125,7 +125,7 @@ class MHOMultidimensionalFastFourierTransformFFTW: public MHOUnaryArrayOperator<
                     std::memcpy(this->fOutput->GetRawData(), fOutPtr, fTotalArraySize*sizeof(fftw_complex) );
                 }
             }
-            else 
+            else
             {
                 //error
                 msg_error("math", "FFT input/output array dimensions are not valid or intialization failed. Aborting transform." << eom);
@@ -154,19 +154,19 @@ class MHOMultidimensionalFastFourierTransformFFTW: public MHOUnaryArrayOperator<
         {
             if(fInPtr == NULL || fOutPtr == NULL || fInPlacePtr == NULL){return false;}
 
-            int rank = NDIM;
+            int rank = RANK;
             //we force fftw to only do one fft at a time
             //but we could implement a batched interface also...
             int howmany_rank = 0; //zero disables more than one x-form
             fHowManyDims.n = 1;
-            fHowManyDims.is = MHOArrayMath::TotalArraySize<NDIM>(fDimensionSize);
-            fHowManyDims.os = MHOArrayMath::TotalArraySize<NDIM>(fDimensionSize);
+            fHowManyDims.is = MHOArrayMath::TotalArraySize<RANK>(fDimensionSize);
+            fHowManyDims.os = MHOArrayMath::TotalArraySize<RANK>(fDimensionSize);
 
-            for(size_t i=0; i<NDIM; i++)
+            for(size_t i=0; i<RANK; i++)
             {
                 fDims[i].n = fDimensionSize[i];
-                fDims[i].is = MHOArrayMath::StrideFromRowMajorIndex<NDIM>(i,fDimensionSize);
-                fDims[i].os = MHOArrayMath::StrideFromRowMajorIndex<NDIM>(i,fDimensionSize);
+                fDims[i].is = MHOArrayMath::StrideFromRowMajorIndex<RANK>(i,fDimensionSize);
+                fDims[i].os = MHOArrayMath::StrideFromRowMajorIndex<RANK>(i,fDimensionSize);
             }
 
             fPlanForward = fftw_plan_guru_dft(rank, fDims, howmany_rank, &fHowManyDims,
@@ -194,13 +194,13 @@ class MHOMultidimensionalFastFourierTransformFFTW: public MHOUnaryArrayOperator<
 
         virtual bool DoInputOutputDimensionsMatch()
         {
-            size_t in[NDIM];
-            size_t out[NDIM];
+            size_t in[RANK];
+            size_t out[RANK];
 
             this->fInput->GetDimensions(in);
             this->fOutput->GetDimensions(out);
 
-            for(size_t i=0; i<NDIM; i++)
+            for(size_t i=0; i<RANK; i++)
             {
                 if(in[i] != out[i])
                 {
@@ -215,9 +215,9 @@ class MHOMultidimensionalFastFourierTransformFFTW: public MHOUnaryArrayOperator<
         bool fInitialized;
 
         size_t fTotalArraySize;
-        size_t fDimensionSize[NDIM];
+        size_t fDimensionSize[RANK];
 
-        fftw_iodim fDims[NDIM];
+        fftw_iodim fDims[RANK];
         fftw_iodim fHowManyDims;
         fftw_plan fPlanForward;
         fftw_plan fPlanBackward;

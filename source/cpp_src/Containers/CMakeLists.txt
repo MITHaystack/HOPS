@@ -15,11 +15,9 @@ set (CONTAINER_HEADERFILES
 )
 
 #declare header paths ##########################################################
-
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
+hops_internal_include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 #install library (headers only) ################################################
-
 hops_install_headers (${CONTAINER_HEADERFILES})
 
 if (HOPS_ENABLE_TEST)

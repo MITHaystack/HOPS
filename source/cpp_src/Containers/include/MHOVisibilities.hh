@@ -26,7 +26,7 @@ using polprod_axis_type = MHOAxis<std::string>;
 using frequency_axis_type = MHOAxis<double>;
 using time_axis_type = MHOAxis<double>;
 
-#define NDIM 3
+#define VIS_NDIM 3
 #define POLPROD_AXIS 0
 #define TIME_AXIS 1
 #define FREQ_AXIS 2
