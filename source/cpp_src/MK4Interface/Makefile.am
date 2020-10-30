@@ -4,15 +4,6 @@
 # The contents of the package Copyright statement apply here.
 #
 
-AM_CXXFLAGS = -I. -I$(srcdir)/include \
-	-I$(srcdir)/../../c_src/mk4util/include \
-	-I$(srcdir)/../../c_src/dfio/include \
-	-I$(srcdir)/../../c_src/vex/include \
-	-I$(srcdir)/../Utilities/include \
-	-I$(srcdir)/../Containers/include \
-	-I$(srcdir)/../Message/include \
-	-Wall -Wextra
-
 pkginclude_HEADERS = include/MHOMK4CorelInterface.hh \
 	include/MHOMK4FringeInterface.hh \
 	include/MHOMK4Interface.hh \
@@ -21,12 +12,44 @@ pkginclude_HEADERS = include/MHOMK4CorelInterface.hh \
 
 pkglib_LTLIBRARIES = libMHOMK4Interface.la
 
+check_PROGRAMS = TestMK4Import TestMK4VexInterface
+
+TESTS_ENVIRONMENT = srcdir=$(srcdir)
+TESTS = $(check_PROGRAMS)
+# XFAIL_TESTS =
+
+cxxflags = -I. -I$(srcdir)/include -Wall -Wextra
+# v4
+cxxmho = -I$(srcdir)/../Utilities/include \
+	-I$(srcdir)/../Containers/include \
+	-I$(srcdir)/../Message/include
+# v3 -- FIXME
+cxxhops = -I$(srcdir)/../../c_src/mk4util/include \
+	-I$(srcdir)/../../c_src/dfio/include \
+	-I$(srcdir)/../../c_src/vex/include
+AM_CXXFLAGS = $(cxxflags) $(cxxmho) $(cxxhops)
+
 libMHOMK4Interface_la_SOURCES = src/MHOMK4CorelInterface.cc \
 	src/MHOMK4FringeInterface.cc \
 	src/MHOMK4Interface.cc \
 	src/MHOMK4VexInterface.cc
-
 libMHOMK4Interface_la_LDFLAGS = -avoid-version
+
+# v4
+thislib = -L.libs -lMHOMK4Interface
+message = -L../Message/.libs -lMHOMessage
+utilities = -L../Utilities/.libs -lMHOUtilities
+mholibs = $(message) $(utilities)
+# v3 -- FIXME
+hopslibs = -L../../c_src/mk4util -lmk4util \
+	-L../../c_src/dfio -ldfio \
+	-L../../c_src/vex -lvex
+
+TestMK4Import_SOURCES = test/TestMK4Import.cc
+TestMK4Import_LDADD = $(thislib) $(mholibs) $(hopslibs)
+
+TestMK4VexInterface_SOURCES = test/TestMK4VexInterface.cc
+TestMK4VexInterface_LDADD = $(thislib) $(mholibs) $(hopslibs)
 
 EXTRA_DIST =
 
