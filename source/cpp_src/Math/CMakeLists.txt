@@ -29,9 +29,7 @@ set( MATH_SOURCEFILES
 )
 
 #declare header paths ##########################################################
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../Containers/include)
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../Message/include)
+hops_internal_include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 #compile and install library ###################################################
 set(MATH_LIBS MHOMessage)
@@ -49,4 +47,3 @@ hops_install_libraries (MHOMath )
 if (HOPS_ENABLE_TEST)
     add_subdirectory(test)
 endif (HOPS_ENABLE_TEST)
-

@@ -1,5 +1,4 @@
 #list header files #############################################################
-
 set (UTILITIES_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHOMeta.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHONamed.hh
@@ -24,8 +23,7 @@ set( UTILITIES_SOURCEFILES
 )
 
 #declare header paths ##########################################################
-
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
+hops_internal_include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 #compile and install library ###################################################
 
@@ -40,4 +38,3 @@ hops_install_libraries (MHOUtilities)
 if (HOPS_ENABLE_TEST)
     add_subdirectory(test)
 endif (HOPS_ENABLE_TEST)
-

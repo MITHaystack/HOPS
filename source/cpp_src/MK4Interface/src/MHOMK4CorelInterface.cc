@@ -364,7 +364,7 @@ MHOMK4CorelInterface::ExtractCorelFile()
         // std::cout<<"fNChannelsPerPP: "<<fNChannelsPerPP<<std::endl;
         // std::cout<<"fNSpectral: "<<fNSpectral<<std::endl;
 
-        std::size_t bl_dim[NDIM] = {fNPPs, fNAPs, (fNChannelsPerPP*fNSpectral)};
+        std::size_t bl_dim[VIS_NDIM] = {fNPPs, fNAPs, (fNChannelsPerPP*fNSpectral)};
         bl_data = new baseline_data_type(bl_dim);
 
         //first label the pol-product axis
