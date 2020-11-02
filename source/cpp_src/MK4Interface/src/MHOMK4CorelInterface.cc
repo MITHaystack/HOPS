@@ -391,7 +391,7 @@ MHOMK4CorelInterface::ExtractCorelFile()
         for(auto ppit = fPolProducts.begin(); ppit != fPolProducts.end(); ppit++ )
         {
             std::size_t freq_count = 0;
-            std::size_t ch_count = 0;
+            int ch_count = 0;
             double sky_freq, bw;
             char net_sb;
             for(auto it = fPPSortedChannelInfo[*ppit].begin();
@@ -405,9 +405,9 @@ MHOMK4CorelInterface::ExtractCorelFile()
                 (*it)->SetBounds(freq_count, freq_count + fNSpectral);
                 //add a common channel ID, for now this is just an integer
                 //but eventually it could be anything
-                std::stringstream ss;
-                ss << ch_count;
-                (*it)->Insert(std::string("channel"), ss.str());
+                // std::stringstream ss;
+                // ss << ch_count;
+                (*it)->Insert(std::string("channel"), ch_count);
 
                 //if not present, insert a clean channel label on this axis
                 auto indicator = inserted_channel_labels.insert(ch_count);
@@ -417,6 +417,7 @@ MHOMK4CorelInterface::ExtractCorelFile()
                     ch_label.Insert(std::string("sky_freq"), sky_freq);
                     ch_label.Insert(std::string("bandwidth"), bw);
                     ch_label.Insert(std::string("net_sideband"), net_sb);
+                    ch_label.Insert(std::string("channel"), ch_count);
                     ch_label.SetBounds(freq_count, freq_count + fNSpectral);
                     std::get<FREQ_AXIS>(*bl_data).InsertLabel(ch_label);
                 }
@@ -435,23 +436,23 @@ MHOMK4CorelInterface::ExtractCorelFile()
             }
         }
 
-        #ifdef HOPS_ENABLE_DEBUG_MSG
-        //lets print out the pol, time and freq axes now:
-        for(std::size_t i=0; i< std::get<POLPROD_AXIS>(*bl_data).GetSize(); i++)
-        {
-            msg_debug("mk4interface", "pol_axis: "<<i<<" = "<<std::get<POLPROD_AXIS>(*bl_data).at(i)<< eom);
-        }
-
-        for(std::size_t i=0; i< std::get<TIME_AXIS>(*bl_data).GetSize(); i++)
-        {
-            msg_debug("mk4interface", "time_axis: "<<i<<" = "<<std::get<TIME_AXIS>(*bl_data).at(i)<<eom);
-        }
-
-        for(std::size_t i=0; i< std::get<FREQ_AXIS>(*bl_data).GetSize(); i++)
-        {
-            msg_debug("mk4interface", "freq_axis: "<<i<<" = "<<std::get<FREQ_AXIS>(*bl_data).at(i)<<eom);
-        }
-        #endif
+        // #ifdef HOPS_ENABLE_DEBUG_MSG
+        // //lets print out the pol, time and freq axes now:
+        // for(std::size_t i=0; i< std::get<POLPROD_AXIS>(*bl_data).GetSize(); i++)
+        // {
+        //     msg_debug("mk4interface", "pol_axis: "<<i<<" = "<<std::get<POLPROD_AXIS>(*bl_data).at(i)<< eom);
+        // }
+        // 
+        // for(std::size_t i=0; i< std::get<TIME_AXIS>(*bl_data).GetSize(); i++)
+        // {
+        //     msg_debug("mk4interface", "time_axis: "<<i<<" = "<<std::get<TIME_AXIS>(*bl_data).at(i)<<eom);
+        // }
+        // 
+        // for(std::size_t i=0; i< std::get<FREQ_AXIS>(*bl_data).GetSize(); i++)
+        // {
+        //     msg_debug("mk4interface", "freq_axis: "<<i<<" = "<<std::get<FREQ_AXIS>(*bl_data).at(i)<<eom);
+        // }
+        // #endif
 
         //now fill in the actual visibility data
         struct type_101* t101 = nullptr;
@@ -483,9 +484,9 @@ MHOMK4CorelInterface::ExtractCorelFile()
                                 ch_label.Retrieve(std::string("pol_product"), ppkey);
                                 std::size_t pol_index = pp_index_lookup[ppkey];
                                 int nlags = t120->nlags;
-                                msg_debug("mk4interface",
-                                          "Adding freq data for ap: "<<ap
-                                          <<" channel: "<< key << eom);
+                                // msg_debug("mk4interface",
+                                //           "Adding freq data for ap: "<<ap
+                                //           <<" channel: "<< key << eom);
 
                                 //TODO FIXME!!
                                 //Do we need reverse the order of the freq axis for lower-sideband data??!
