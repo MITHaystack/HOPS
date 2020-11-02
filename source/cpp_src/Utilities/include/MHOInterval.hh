@@ -78,6 +78,11 @@ class MHOInterval
             return fUpperBound;
         }
 
+        XIntegerType GetLength() const 
+        {
+            return fUpperBound - fLowerBound;
+        }
+
         //test if this object itersects with an other interval
         bool Intersects(const MHOInterval& other) const
         {

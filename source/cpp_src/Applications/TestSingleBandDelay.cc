@@ -81,16 +81,10 @@ int main(int argc, char** argv)
     auto* y_axis = &(std::get<FREQ_AXIS>(*bl_data));
 
     std::cout<<"trying to find channel 0"<<std::endl;
-    auto channel_vec = y_axis->GetIntervalsWithKeyValue(std::string("channel"), 0);
-    for(auto iter = channel_vec.begin(); iter != channel_vec.end(); iter++)
-    {
-        std::cout<<"label found for interval = ["<<(*iter)->GetLowerBound()<<", "<<(*iter)->GetUpperBound()<<") with key:val pairs = "<<std::endl;
-        (*iter)->DumpMap<char>();
-        (*iter)->DumpMap<std::string>();
-        (*iter)->DumpMap<int>();
-        (*iter)->DumpMap<double>();
-    }
-
+    auto channel0 = y_axis->GetFirstIntervalWithKeyValue(std::string("channel"), 0);
+    size_t low = channel0.GetLowerBound();
+    size_t up = channel0.GetUpperBound();
+    
     
 
 

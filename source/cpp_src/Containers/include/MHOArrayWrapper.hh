@@ -26,6 +26,7 @@ class MHOArrayWrapper
 {
     public:
 
+        //empty constructor, to be configured later
         MHOArrayWrapper()
         {
             //dimensions not known at time of construction
@@ -34,10 +35,25 @@ class MHOArrayWrapper
                 fDimensions[i] = 0;
             }
             fTotalArraySize = 0;
+            fDataPtr = nullptr;
+            fExternallyManaged = false;
+        }
+
+        //data is externally allocated - we take no responsiblity to 
+        //delete the data pointed to by ptr upon destruction
+        MHOArrayWrapper(XValueType* ptr, const std::size_t* dim)
+        {
+            //dimensions not known at time of construction
+            for(std::size_t i=0; i<RANK; i++)
+            {
+                fDimensions[i] = dim[i];
+            }
+            fTotalArraySize = MHOArrayMath::TotalArraySize<RANK>(fDimensions);
+            fDataPtr = ptr;
+            fExternallyManaged = true;
         }
 
         //data is internally allocated
-        //we may want to improve this with an allocator type parameter
         MHOArrayWrapper(const std::size_t* dim)
         {
             for(std::size_t i=0; i<RANK; i++)
@@ -46,6 +62,8 @@ class MHOArrayWrapper
             }
             fTotalArraySize = MHOArrayMath::TotalArraySize<RANK>(fDimensions);
             fData.resize(fTotalArraySize);
+            fDataPtr = &(fData[0]);
+            fExternallyManaged = false;
         }
 
         //copy constructor
@@ -57,11 +75,22 @@ class MHOArrayWrapper
             }
             fTotalArraySize = MHOArrayMath::TotalArraySize<RANK>(fDimensions);
 
-            //understood that if fData in obj exists that we copy its contents
-            fData.resize(fTotalArraySize);
-            if(fTotalArraySize != 0)
+            if(obj.fExternallyManaged)
             {
-                std::copy(obj.fData.begin(), obj.fData.end(), fData.begin() );
+                //cheap copy, just point to externally managed data
+                fDataPtr = obj.fDataPtr;
+                fExternallyManaged = true;
+            }
+            else 
+            {
+                //expensive copy, must allocate new space anc copy contents
+                fExternallyManaged = false;
+            
+                fData.resize(fTotalArraySize);
+                if(fTotalArraySize != 0)
+                {
+                    std::copy(obj.fData.begin(), obj.fData.end(), fData.begin() );
+                }
             }
         }
 
@@ -70,12 +99,24 @@ class MHOArrayWrapper
 
         void Resize(const std::size_t* dim)
         {
+            if(fExternallyManaged)
+            {
+                //we cannot re-size an externally managed array
+                //so instead we issue a warning and reconfigure 
+                //our state to use an internally managed array
+                msg_warn("containers", "Resize operation called on a wrapper to 
+                          an exernally managed array, replacing with internally 
+                          managed memory. This may result in unexpected behavior." << eom);
+            }
+
             for(std::size_t i=0; i<RANK; i++)
             {
                 fDimensions[i] = dim[i];
             }
             fTotalArraySize = MHOArrayMath::TotalArraySize<RANK>(fDimensions);
             fData.resize(fTotalArraySize);
+            fDataPtr = &(fData[0]);
+            fExternallyManaged = false;
         }
 
         //resize function so we can give each dim as an individual std::size_t (rather than array)
@@ -87,13 +128,10 @@ class MHOArrayWrapper
             Resize(&(dim_sizes[0]));
         }
 
-        //in some cases we may need access to the underlying raw array pointer
-        XValueType* GetRawData(){return &(fData[0]);};
-        const XValueType* GetawData() const {return &(fData[0]);};
-
-        //pointer to data vector
-        std::vector<XValueType>* GetData(){return fData;};
-        const std::vector<XValueType>* GetData() const {return fData;};
+        //in some cases we may need access 
+        //to the underlying raw array pointer
+        XValueType* GetData(){return fDataPtr;};
+        const XValueType* GetData() const {return fDataPtr;};
 
         std::size_t GetSize() const {return fTotalArraySize;};
 
@@ -121,16 +159,13 @@ class MHOArrayWrapper
         }
 
 
-        //access operator (,,,) -- no bounds checking
-        //TODO fix narrowing warning on conversion of XIndexTypeS to std::size_t
-        //this will require a recursive template to visit all types in XIndexTypeS and ensure that they are all
-        //std::size_t or convertible to std::size_t
+        //access operator (,,...,) -- no bounds checking
         template <typename ...XIndexTypeS >
         typename std::enable_if< (sizeof...(XIndexTypeS) == RANK), XValueType& >::type //compile-time check that the number of arguments is the same as the rank of the array
         operator()(XIndexTypeS...idx)
         {
             const std::array<std::size_t, RANK> indices = {{static_cast<size_t>(idx)...}}; //convert the arguments to an array
-            return fData[ MHOArrayMath::OffsetFromRowMajorIndex<RANK>(fDimensions, &(indices[0]) ) ]; //compute the offset into the array and return reference to the data
+            return fDataPtr[ MHOArrayMath::OffsetFromRowMajorIndex<RANK>(fDimensions, &(indices[0]) ) ]; //compute the offset into the array and return reference to the data
         }
 
         //const reference access operator()
@@ -139,7 +174,7 @@ class MHOArrayWrapper
         operator()(XIndexTypeS...idx) const
         {
             const std::array<std::size_t, RANK> indices = {{static_cast<size_t>(idx)...}};
-            return fData[  MHOArrayMath::OffsetFromRowMajorIndex<RANK>(fDimensions, &(indices[0]) ) ];
+            return fDataPtr[ MHOArrayMath::OffsetFromRowMajorIndex<RANK>(fDimensions, &(indices[0]) ) ];
         }
 
         //access via at(,,,,) -- same as operator() but with bounds checking
@@ -150,7 +185,7 @@ class MHOArrayWrapper
             const std::array<std::size_t, RANK> indices = {{static_cast<size_t>(idx)...}};
             if( MHOArrayMath::CheckIndexValidity<RANK>( fDimensions, &(indices[0]) ) ) //make sure the indices are valid for the given array dimensions
             {
-                return fData[  MHOArrayMath::OffsetFromRowMajorIndex<RANK>(fDimensions, &(indices[0]) ) ];
+                return fDataPtr[ MHOArrayMath::OffsetFromRowMajorIndex<RANK>(fDimensions, &(indices[0]) ) ];
             }
             else
             {
@@ -166,7 +201,7 @@ class MHOArrayWrapper
             const std::array<std::size_t, RANK> indices = {{static_cast<size_t>(idx)...}};
             if( MHOArrayMath::CheckIndexValidity<RANK>( fDimensions, &(indices[0]) ) )
             {
-                return fData[  MHOArrayMath::OffsetFromRowMajorIndex<RANK>(fDimensions, &(indices[0]) ) ];
+                return fDataPtr[  MHOArrayMath::OffsetFromRowMajorIndex<RANK>(fDimensions, &(indices[0]) ) ];
             }
             else
             {
@@ -175,31 +210,40 @@ class MHOArrayWrapper
         }
 
         //fast access operator by 1-dim index (absolute-position) into the array
-        XValueType& operator[](std::size_t i)
-        {
-            return fData[i];
-        }
-
-        const XValueType& operator[](std::size_t i) const
-        {
-            return fData[i];
-        }
+        XValueType& operator[](std::size_t i){return fDataPtr[i];}
+        const XValueType& operator[](std::size_t i) const {return fDataPtr[i];}
 
         MHOArrayWrapper& operator=(const MHOArrayWrapper& rhs)
         {
             if(this != &rhs)
             {
-                for(std::size_t i=0; i<RANK; i++)
+                if(rhs.fExternallyManaged)
                 {
-                    fDimensions[i] = rhs.fDimensions[i];
-                }
-                fTotalArraySize = MHOArrayMath::TotalArraySize<RANK>(fDimensions);
+                    //cheap copies for externally managed arrays 
+                    //just copy dimensions and ptr
 
-                //understood that if fData in obj exists that we copy its contents
-                fData.resize(fTotalArraySize);
-                if(fTotalArraySize != 0)
+                    for(std::size_t i=0; i<RANK; i++)
+                    {
+                        fDimensions[i] = rhs.fDimensions[i];
+                    }
+                    fTotalArraySize = MHOArrayMath::TotalArraySize<RANK>(fDimensions);
+                    fDataPtr = rhs.fDataPtr;
+                    fExternallyManaged = true;
+
+                    //effectively de-allocate anything we might have had  
+                    std::vector< XValueType >().swap(fData)
+                }
+                else 
                 {
-                    std::copy(rhs.fData.begin(), rhs.fData.end(), fData.begin() );
+                    Resize(rhs.fDimensions);
+                    //understood that if fData in obj exists 
+                    //then we also copy its contents
+                    if(fTotalArraySize != 0)
+                    {
+                        std::copy(rhs.fData.begin(), rhs.fData.end(), fData.begin() );
+                    }
+                    fDataPtr = &(fData[0]);
+                    fExternallyManaged = false;
                 }
             }
         }
@@ -207,15 +251,28 @@ class MHOArrayWrapper
 
     protected:
 
-        //use a vector to simplfy storage of multidimensional array
-        //TODO, evaluate whether or not we want to handle different types of allocators
-        //TODO, evalaute whether or not we want to support arrays with external memory management
-
-        std::vector< XValueType > fData;
+        XValueType fDataPtr; 
+        bool fExternallyManaged;
+        std::vector< XValueType > fData; //used for internally managed data
         std::size_t fDimensions[RANK]; //size of each dimension
         std::size_t fTotalArraySize; //total size of array
 
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 //specialization for a RANK-0 (i.e. a scalar)
@@ -247,9 +304,6 @@ class MHOArrayWrapper<XValueType, 0>
         void SetData(const XValueType& value){fData = value;}
         XValueType GetData(){return fData;};
 
-        XValueType* GetRawData(){return &fData;};
-        const XValueType* GetRawData() const {return &fData;};
-
         std::size_t GetSize() const {return 1;};
 
         MHOArrayWrapper& operator=(const MHOArrayWrapper& rhs)
@@ -265,6 +319,49 @@ class MHOArrayWrapper<XValueType, 0>
         XValueType fData; //single value
         std::size_t fTotalArraySize; //total size of array
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //specialization for a RANK-1 (i.e. a vector)
 template< typename XValueType >
@@ -402,12 +499,12 @@ class MHOArrayWrapper<XValueType, 1>
         //access operator by 1-dim index (absolute-position) into the array
         XValueType& operator[](std::size_t i)
         {
-            return fData[i];
+            return fDataPtr[i];
         }
 
         const XValueType& operator[](std::size_t i) const
         {
-            return fData[i];
+            return fDataPtr[i];
         }
 
         MHOArrayWrapper& operator=(const MHOArrayWrapper& rhs)
@@ -426,7 +523,9 @@ class MHOArrayWrapper<XValueType, 1>
 
     protected:
 
-        std::vector< XValueType > fData;
+        XValueType fDataPtr; 
+        bool fExternallyManaged;
+        std::vector< XValueType > fData; //used for internally managed data
         std::size_t fDimensions[1]; //size of each dimension
         std::size_t fTotalArraySize; //total size of array
 };
