@@ -14,6 +14,12 @@ AC_CONFIG_SRCDIR([README.md])
 AC_CONFIG_HEADERS([mho_config.h])
 AM_INIT_AUTOMAKE([foreign subdir-objects])
 
+# this macro adds a space-delimited list of additional recursive targets
+# hops provides a report on unported code  (hops-local: ...)
+# mho provides a report on new code        (mho-local: ...)
+# reqs provides a report on requirements   (reqs-local: ...)
+AM_EXTRA_RECURSIVE_TARGETS([hops mho reqs])
+
 # user path configuration requires a root directory
 AC_ARG_VAR(MHO_ROOT, [Root directory for the MIT HOPS tools installation])
 AC_MHO_INIT([Configuration summary for mhops version 4.00])
@@ -220,8 +226,8 @@ AM_CONDITIONAL(HAVE_PGPLOT, [$has_cpgplot && $has_pgplot])
 AC_CONFIG_FILES(
     Makefile
     doc/Makefile
-    data/Makefile
     source/Makefile
+    data/Makefile
 )
 
 ### FIXME: revert the 'b' names to the normal names
@@ -252,10 +258,6 @@ AC_CONFIG_FILES(
     source/c_src/fourfit_libs/ffplot/Makefile
     source/c_src/applications/fourfit/Makefile
 )
-# source/c_source makefiles, part 3: new things
-AC_CONFIG_FILES(
-    source/c_src/Bindings/Makefile
-)
 
 # source/cpp_src makefiles
 AC_CONFIG_FILES(
@@ -267,8 +269,12 @@ AC_CONFIG_FILES(
     source/cpp_src/Containers/Makefile
 )
 
-# source/python_src makefiles
-AC_CONFIG_FILES(source/python_src/Makefile)
+# source/python_src: makefiles
+AC_CONFIG_FILES(
+    source/python_src/Makefile
+    source/python_src/Bindings/Makefile
+)
+# this is just a test script
 AC_CONFIG_FILES(source/python_src/scripts/test.py,
     [chmod +x source/python_src/scripts/test.py])
 # need to formulate the plan for this and other pythonic things
