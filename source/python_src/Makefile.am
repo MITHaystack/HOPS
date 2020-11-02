@@ -3,7 +3,7 @@
 # (c) Massachusetts Institute of Technology, 2020
 # The contents of the package Copyright statement apply here.
 #
-#SUBDIRS = # for the moment
+SUBDIRS = Bindings
 
 bin_SCRIPTS = scripts/test.py
 
