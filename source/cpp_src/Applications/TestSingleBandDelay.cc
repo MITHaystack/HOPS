@@ -19,6 +19,7 @@
 #include "TMultiGraph.h"
 #endif
 
+#include "MHOMessage.hh"
 #include "MHOTokenizer.hh"
 #include "MHOMK4VexInterface.hh"
 #include "MHOMK4CorelInterface.hh"
@@ -32,6 +33,9 @@ using namespace hops;
 int main(int argc, char** argv)
 {
     std::string usage = "TestSingleBandDelay -r <root_filename> -f <corel_filename>";
+
+    MHOMessage::GetInstance().AcceptAllKeys();
+    MHOMessage::GetInstance().SetMessageLevel(eDebug);
 
     std::string root_filename;
     std::string corel_filename;
@@ -64,13 +68,31 @@ int main(int argc, char** argv)
         }
     }
 
-    MHOMessage::GetInstance().AcceptAllKeys();
 
     MHOMK4CorelInterface mk4inter;
 
     mk4inter.SetCorelFile(corel_filename);
     mk4inter.SetVexFile(root_filename);
     baseline_data_type* bl_data = mk4inter.ExtractCorelFile();
+
+    //we don't bother normalizing anything, just test ability to search for a delay
+    
+    auto* x_axis = &(std::get<TIME_AXIS>(*bl_data));
+    auto* y_axis = &(std::get<FREQ_AXIS>(*bl_data));
+
+    std::cout<<"trying to find channel 0"<<std::endl;
+    auto channel_vec = y_axis->GetIntervalsWithKeyValue(std::string("channel"), 0);
+    for(auto iter = channel_vec.begin(); iter != channel_vec.end(); iter++)
+    {
+        std::cout<<"label found for interval = ["<<(*iter)->GetLowerBound()<<", "<<(*iter)->GetUpperBound()<<") with key:val pairs = "<<std::endl;
+        (*iter)->DumpMap<char>();
+        (*iter)->DumpMap<std::string>();
+        (*iter)->DumpMap<int>();
+        (*iter)->DumpMap<double>();
+    }
+
+    
+
 
 
 

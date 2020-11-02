@@ -15,6 +15,7 @@
 #include <iostream>
 #include <vector>
 
+#include "MHOMessage.hh"
 #include "MHOIntervalLabel.hh"
 
 namespace hops
@@ -58,6 +59,7 @@ MHOIntervalLabelTree::GetIntervalsWithKeyValue(const std::string& key, const XLa
     XLabelValueType tmp_value;
     //dumb brute force search over all intervals O(n)
     //we may want to make this smarter
+
     for(std::size_t i=0; i<fIntervals.size(); i++)
     {
         if( fIntervals[i]->Retrieve(key,tmp_value) )
@@ -80,6 +82,7 @@ MHOIntervalLabelTree::GetFirstIntervalWithKeyValue(const std::string& key, const
     XLabelValueType tmp_value;
     //dumb brute force search over all intervals O(n)
     //we may want to make this smarter
+
     for(std::size_t i=0; i<fIntervals.size(); i++)
     {
         if( fIntervals[i]->Retrieve(key,tmp_value) )

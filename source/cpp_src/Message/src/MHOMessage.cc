@@ -4,7 +4,6 @@ namespace hops
 {
 
 
-
 //initialization to nullptr
 MHOMessage* MHOMessage::fInstance = nullptr;
 
@@ -29,6 +28,7 @@ MHOMessage::RemoveKey(const std::string& key)
         fKeys.erase(iter);
     }
 }
+
 
 void
 MHOMessage::RemoveKey(const char* key)

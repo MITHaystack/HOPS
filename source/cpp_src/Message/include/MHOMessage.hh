@@ -103,7 +103,13 @@ class MHOMessage
             fCurrentLevel(eInfo),
             fCurrentKeyIsAllowed(false),
             fAcceptAllKeys(false)
-        {};
+        {
+            #ifdef HOPS_ENABLE_DEBUG_MSG
+                std::cout<<"Debug messages enabled"<<std::endl;
+            #else 
+                std::cout<<"NO DEBUG FOR YOU"<<std::endl;
+            #endif
+        };
         virtual ~MHOMessage(){};
 
         bool PassMessage();
@@ -142,13 +148,14 @@ MHOMessage::operator<<(const XStreamableItemType& item)
 #define msg_status(xKEY, xCONTENT) MHOMessage::GetInstance().SendMessage(eStatus,xKEY) << xCONTENT;
 #define msg_info(xKEY, xCONTENT) MHOMessage::GetInstance().SendMessage(eInfo,xKEY) << xCONTENT;
 
-#ifdef HOPS_ENABLE_DEBUG_MSG
+#ifdef HOPS_ENABLE_DEBUG_MSG //this is defined as a compiler flag via build system
 //allow debug messages when debug flag is active
 #define msg_debug(xKEY, xCONTENT) MHOMessage::GetInstance().SendMessage(eDebug,xKEY) << xCONTENT;
 #else
 //debug is not enabled, so we removed them from compilation
 #define msg_debug(xKEY, xCONTENT)
 #endif
+
 
 
 
