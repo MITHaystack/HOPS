@@ -30,6 +30,10 @@ Optional dependencies (these may possibly become required at some point in the f
 (4) `X11` \
 (5) `GFORTRAN`
 
+## Checking the distribution
+Currently HOPS supports the ability to run `make distcheck` from the build directory assuming `make` was used to build the project instead of `cmake`.
+`distcheck` is not currently compatible with `cmake`. `distcheck` checks that the tarball distribution is in working order and all the necessary files are included.
+
 ## Documentation Dependencies
 ### Ubuntu packages
 (1) `texlive-full` \
