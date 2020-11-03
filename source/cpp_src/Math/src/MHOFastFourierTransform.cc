@@ -100,14 +100,14 @@ MHOFastFourierTransform::ExecuteOperation()
         if(fInput != fOutput)
         {
             //the arrays are not identical so copy the input over to the output
-            std::memcpy( (void*) fOutput->GetRawData(), (void*) fInput->GetRawData(), fN*sizeof(std::complex<double>) );
+            std::memcpy( (void*) fOutput->GetData(), (void*) fInput->GetData(), fN*sizeof(std::complex<double>) );
         }
 
 
         //for DFT we conjugate first (NOTE: this matches FFTW3 convention)
         if(fForward)
         {
-            std::complex<double>* data = fOutput->GetRawData();
+            std::complex<double>* data = fOutput->GetData();
             for(unsigned int i=0; i<fN; i++)
             {
                 data[i] = std::conj(data[i]);
@@ -117,19 +117,19 @@ MHOFastFourierTransform::ExecuteOperation()
         if(fSizeIsPowerOfTwo)
         {
             //use radix-2
-            MHOBitReversalPermutation::PermuteArray< std::complex<double> >(fN, fPermutation, fOutput->GetRawData());
-            MHOFastFourierTransformUtilities::FFTRadixTwo_DIT(fN, fOutput->GetRawData(), fTwiddle);
+            MHOBitReversalPermutation::PermuteArray< std::complex<double> >(fN, fPermutation, fOutput->GetData());
+            MHOFastFourierTransformUtilities::FFTRadixTwo_DIT(fN, fOutput->GetData(), fTwiddle);
         }
         else
         {
             //use bluestein algorithm for arbitrary N
-            MHOFastFourierTransformUtilities::FFTBluestein(fN, fM, fOutput->GetRawData(), fTwiddle, fConjugateTwiddle, fScale, fCirculant, fWorkspace);
+            MHOFastFourierTransformUtilities::FFTBluestein(fN, fM, fOutput->GetData(), fTwiddle, fConjugateTwiddle, fScale, fCirculant, fWorkspace);
         }
 
         //for DFT we conjugate again (NOTE: this matches FFTW3 convention)
-        if(fForward) 
+        if(fForward)
         {
-            std::complex<double>* data = fOutput->GetRawData();
+            std::complex<double>* data = fOutput->GetData();
             for(unsigned int i=0; i<fN; i++)
             {
                 data[i] = std::conj(data[i]);

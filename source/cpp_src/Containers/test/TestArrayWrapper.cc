@@ -16,7 +16,7 @@ int main(int /*argc*/, char** /*argv*/)
     std::cout<<"dimension @ 0 ="<<test.GetDimension(0)<<std::endl;
     std::cout<<"total array size = "<<test.GetSize()<<std::endl;
 
-    double* data = test.GetRawData();
+    double* data = test.GetData();
     std::cout<<"ptr to data = "<<data<<std::endl;
 
     for(size_t i=0; i<dim[0]; i++)

@@ -79,7 +79,7 @@ class MHOMultidimensionalFastFourierTransform: public MHOUnaryArrayOperator< std
                 if(this->fInput != this->fOutput)
                 {
                     //the arrays are not identical so copy the input over to the output
-                    std::memcpy( (void*) this->fOutput->GetRawData(), (void*) this->fInput->GetRawData(), total_size*sizeof(std::complex<double>) );
+                    std::memcpy( (void*) this->fOutput->GetData(), (void*) this->fInput->GetData(), total_size*sizeof(std::complex<double>) );
                 }
 
                 size_t index[RANK];

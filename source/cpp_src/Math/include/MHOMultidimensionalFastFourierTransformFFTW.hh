@@ -72,25 +72,25 @@ class MHOMultidimensionalFastFourierTransformFFTW: public MHOUnaryArrayOperator<
             if(fIsValid && fInitialized)
             {
                 //check memory alignment to determine if we can avoid copying the data around
-                if( ( fftw_alignment_of( reinterpret_cast<double*>(this->fInput->GetRawData() ) ) ==
+                if( ( fftw_alignment_of( reinterpret_cast<double*>(this->fInput->GetData() ) ) ==
                       fftw_alignment_of( reinterpret_cast<double*>(fInPtr) ) ) &&
-                    ( fftw_alignment_of( reinterpret_cast<double*>(this->fOutput->GetRawData() ) ) ==
+                    ( fftw_alignment_of( reinterpret_cast<double*>(this->fOutput->GetData() ) ) ==
                       fftw_alignment_of( reinterpret_cast<double*>(fOutPtr) ) ) )
                 {
-                    if( this->fInput->GetRawData() != this->fOutput->GetRawData() )
+                    if( this->fInput->GetData() != this->fOutput->GetData() )
                     {
                         //transform is out-of-place
                         if(fForward)
                         {
                             fftw_execute_dft(fPlanForward,
-                                         reinterpret_cast<fftw_complex*>(this->fInput->GetRawData() ),
-                                         reinterpret_cast<fftw_complex*>(this->fOutput->GetRawData() ) );
+                                         reinterpret_cast<fftw_complex*>(this->fInput->GetData() ),
+                                         reinterpret_cast<fftw_complex*>(this->fOutput->GetData() ) );
                         }
                         else
                         {
                             fftw_execute_dft(fPlanBackward,
-                                         reinterpret_cast<fftw_complex*>(this->fInput->GetRawData() ),
-                                         reinterpret_cast<fftw_complex*>(this->fOutput->GetRawData() ) );
+                                         reinterpret_cast<fftw_complex*>(this->fInput->GetData() ),
+                                         reinterpret_cast<fftw_complex*>(this->fOutput->GetData() ) );
                         }
                     }
                     else
@@ -99,21 +99,21 @@ class MHOMultidimensionalFastFourierTransformFFTW: public MHOUnaryArrayOperator<
                         if(fForward)
                         {
                             fftw_execute_dft(fPlanForwardInPlace,
-                                         reinterpret_cast<fftw_complex*>(this->fInput->GetRawData() ),
-                                         reinterpret_cast<fftw_complex*>(this->fOutput->GetRawData() ) );
+                                         reinterpret_cast<fftw_complex*>(this->fInput->GetData() ),
+                                         reinterpret_cast<fftw_complex*>(this->fOutput->GetData() ) );
                         }
                         else
                         {
                             fftw_execute_dft(fPlanBackwardInPlace,
-                                         reinterpret_cast<fftw_complex*>(this->fInput->GetRawData() ),
-                                         reinterpret_cast<fftw_complex*>(this->fOutput->GetRawData() ) );
+                                         reinterpret_cast<fftw_complex*>(this->fInput->GetData() ),
+                                         reinterpret_cast<fftw_complex*>(this->fOutput->GetData() ) );
                         }
                     }
                 }
                 else
                 {
                     //alignment doesn't match so we need to use memcpy
-                    std::memcpy( fInPtr, this->fInput->GetRawData() , fTotalArraySize*sizeof(fftw_complex) );
+                    std::memcpy( fInPtr, this->fInput->GetData() , fTotalArraySize*sizeof(fftw_complex) );
                     if(fForward)
                     {
                         fftw_execute(fPlanForward);
@@ -122,7 +122,7 @@ class MHOMultidimensionalFastFourierTransformFFTW: public MHOUnaryArrayOperator<
                     {
                         fftw_execute(fPlanBackward);
                     }
-                    std::memcpy(this->fOutput->GetRawData(), fOutPtr, fTotalArraySize*sizeof(fftw_complex) );
+                    std::memcpy(this->fOutput->GetData(), fOutPtr, fTotalArraySize*sizeof(fftw_complex) );
                 }
             }
             else
