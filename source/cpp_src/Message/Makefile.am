@@ -14,7 +14,8 @@ TESTS_ENVIRONMENT = srcdir=$(srcdir)
 TESTS = $(check_PROGRAMS)
 # XFAIL_TESTS =
 
-AM_CXXFLAGS = -I. -I$(srcdir)/include -Wall -Wextra
+defines = -DHOPS_ENABLE_DEBUG_MSG=1
+AM_CXXFLAGS = -I. -I$(srcdir)/include -Wall -Wextra $(defines)
 
 libMHOMessage_la_SOURCES = src/MHOMessage.cc
 libMHOMessage_la_LDFLAGS = -avoid-version
