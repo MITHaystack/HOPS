@@ -80,7 +80,6 @@ int main(int argc, char** argv)
     auto* x_axis = &(std::get<TIME_AXIS>(*bl_data));
     auto* y_axis = &(std::get<FREQ_AXIS>(*bl_data));
 
-    std::cout<<"trying to find channel 0"<<std::endl;
     for(int i=0; i<32; i++)
     {
         auto ch = y_axis->GetFirstIntervalWithKeyValue(std::string("channel"), i);
