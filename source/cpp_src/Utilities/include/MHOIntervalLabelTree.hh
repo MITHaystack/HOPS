@@ -83,6 +83,7 @@ MHOIntervalLabelTree::GetFirstIntervalWithKeyValue(const std::string& key, const
     //dumb brute force search over all intervals O(n)
     //we may want to make this smarter
 
+    std::cout<<"num intervals = "<<fIntervals.size()<<std::endl;
     for(std::size_t i=0; i<fIntervals.size(); i++)
     {
         if( fIntervals[i]->Retrieve(key,tmp_value) )
