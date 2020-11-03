@@ -12,11 +12,26 @@
 # The include/numpy.i interface is obtained from github/numpy
 #
 
-#AM_CXXFLAGS = -I. -I$(srcdir)/include -Wall
-#pkginclude_HEADERS = include/MHOXXX.hh
+pkginclude_HEADERS = include/wrap_msg.h
+
 #pkglib_LTLIBRARIES = libMHOXXX.la
+
+check_PROGRAMS = TestWrapMessage
+
+TESTS_ENVIRONMENT = srcdir=$(srcdir)
+TESTS = $(check_PROGRAMS)
+# XFAIL_TESTS =
+
+defines = -DHOPS_ENABLE_DEBUG_MSG=1
+AM_CXXFLAGS = -I. -I$(srcdir)/include -Wall -Wextra $(defines)
+AM_CPPFLAGS = -I. -I$(srcdir)/include -Wall -Wextra $(defines)
+
 #libMHOXXX_la_SOURCES = src/MHOUXXX.cc
 #libMHOXXX_la_LDFLAGS = -avoid-version
+
+TestWrapMessage_SOURCES = src/wrap_msg.cc test/TestWrapMessage.c
+TestWrapMessage_CXXFLAGS = -I$(srcdir)/../../cpp_src/Message/include
+TestWrapMessage_LDADD = -L../../cpp_src/Message/.libs -lMHOMessage
 
 #pyhops.c: $(srcdir)/include/pyhops.i 
 
@@ -39,10 +54,13 @@ $(srcdir)/include/numpy-LICENSE.txt:
 	wget $(githuburl)/numpy/numpy/master/LICENSE.txt
 	mv LICENSE.txt $(srcdir)/include/numpy-LICENSE.txt
 
-EXTRA_DIST = $(numpy_master_swigs)
-
 clean-local:
 	-rm -rf __pycache__
+
+CLEANFILES = 
+
+EXTRA_DIST = $(numpy_master_swigs)
+
 #
 # eof
 #
