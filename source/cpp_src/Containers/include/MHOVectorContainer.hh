@@ -45,7 +45,6 @@ class MHOVectorContainer: public MHOArrayWrapper< XValueType, 1>, public MHOName
         //have to make base class functions visible
         using MHOArrayWrapper<XValueType,1>::Resize;
         using MHOArrayWrapper<XValueType,1>::GetData;
-        using MHOArrayWrapper<XValueType,1>::GetRawData;
         using MHOArrayWrapper<XValueType,1>::GetSize;
         using MHOArrayWrapper<XValueType,1>::GetDimensions;
         using MHOArrayWrapper<XValueType,1>::GetDimension;

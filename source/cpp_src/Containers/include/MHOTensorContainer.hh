@@ -64,7 +64,6 @@ class MHOTensorContainer: public MHOArrayWrapper< XValueType, XAxisPackType::RAN
 
         //have to make base class functions visible
         using MHOArrayWrapper<XValueType,XAxisPackType::RANK::value>::GetData;
-        using MHOArrayWrapper<XValueType,XAxisPackType::RANK::value>::GetRawData;
         using MHOArrayWrapper<XValueType,XAxisPackType::RANK::value>::GetSize;
         using MHOArrayWrapper<XValueType,XAxisPackType::RANK::value>::GetDimensions;
         using MHOArrayWrapper<XValueType,XAxisPackType::RANK::value>::GetDimension;

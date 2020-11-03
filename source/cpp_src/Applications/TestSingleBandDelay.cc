@@ -76,16 +76,19 @@ int main(int argc, char** argv)
     baseline_data_type* bl_data = mk4inter.ExtractCorelFile();
 
     //we don't bother normalizing anything, just test ability to search for a delay
-    
+
     auto* x_axis = &(std::get<TIME_AXIS>(*bl_data));
     auto* y_axis = &(std::get<FREQ_AXIS>(*bl_data));
 
     std::cout<<"trying to find channel 0"<<std::endl;
-    auto channel0 = y_axis->GetFirstIntervalWithKeyValue(std::string("channel"), 0);
-    size_t low = channel0.GetLowerBound();
-    size_t up = channel0.GetUpperBound();
-    
-    
+    for(int i=0; i<32; i++)
+    {
+        auto ch = y_axis->GetFirstIntervalWithKeyValue(std::string("channel"), i);
+        size_t low = ch->GetLowerBound();
+        size_t up = ch->GetUpperBound();
+        std::cout<<"channel: "<<i<<": "<<low<<", "<<up<<std::endl;
+    }
+
 
 
 
