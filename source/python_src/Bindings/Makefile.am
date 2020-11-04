@@ -22,9 +22,21 @@ TESTS_ENVIRONMENT = srcdir=$(srcdir)
 TESTS = $(check_PROGRAMS)
 # XFAIL_TESTS =
 
-defines = -DHOPS_ENABLE_DEBUG_MSG=1
+# special compilation arrangements for coverage tests, see below
+if DO_COVER
+coververbose = -DCOVERVERB=1 -DSTATIC=extern
+covercompile = --coverage -fkeep-inline-functions -fkeep-static-functions
+coverldflags = -L. --coverage -DSTATIC=extern
+else # DO_COVER
+coververbose = -DCOVERVERB=0 -DSTATIC=static
+covercompile =
+coverldflags = -L. -DSTATIC=static
+endif # DO_COVER
+
+defines = -DHOPS_ENABLE_DEBUG_MSG=1 $(covercompile) $(coververbose)
 AM_CXXFLAGS = -I. -I$(srcdir)/include -Wall -Wextra $(defines)
 AM_CPPFLAGS = -I. -I$(srcdir)/include -Wall -Wextra $(defines)
+AM_LDFLAGS = $(coverldflags)
 
 #libMHOXXX_la_SOURCES = src/MHOUXXX.cc
 #libMHOXXX_la_LDFLAGS = -avoid-version
@@ -35,6 +47,17 @@ TestWrapMessage_LDADD = -L../../cpp_src/Message/.libs -lMHOMessage
 
 #pyhops.c: $(srcdir)/include/pyhops.i 
 
+# coverage processing
+if DO_COVER
+co = -fpm # 'make coverage co= ' to get help on coverep.sh
+covclean = *.gcno *.gcda *.gcov *.log coverage-*.txt
+coverage-local:
+	@$(top_srcdir)/m4/coverep.sh \
+		$(GCOV) $(co) $(abs_srcdir) $(abs_builddir) $(top_srcdir)
+else # DO_COVER
+coverage-local:
+	@echo coverage is disabled, configure with --enable-gcov
+endif # DO_COVER
 
 
 # one-time import rule
@@ -57,7 +80,7 @@ $(srcdir)/include/numpy-LICENSE.txt:
 clean-local:
 	-rm -rf __pycache__
 
-CLEANFILES = 
+CLEANFILES = $(covclean)
 
 EXTRA_DIST = $(numpy_master_swigs)
 
