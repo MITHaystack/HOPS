@@ -28,6 +28,8 @@ Usage: $0 gcov options abssrcdir topblddir topsrcdir
         export GCOV_LOCAL_ONLY=true to limit to local functions
     'see gcov(1) for explanation of gcov options and gcc(1)'
 
+    Details on coverage are found in the individual .gcov files.
+
 This script must be invoked from the Makefile with 5 arguments.
 
 ....EOF
@@ -89,7 +91,7 @@ grep -v '0.00%' coverage-todo.txt |\
 grep 'assuming.not.executed' coverage-report.txt |\
     sed 's/^/  /' >> coverage-summary.txt
 
-[ -s coverage-todo.txt ] && cat coverage-todo.txt
+[ -s coverage-summary.txt ] && cat coverage-summary.txt
 echo \
 '============================================================================'
 
