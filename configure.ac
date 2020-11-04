@@ -15,10 +15,11 @@ AC_CONFIG_HEADERS([mho_config.h])
 AM_INIT_AUTOMAKE([foreign subdir-objects])
 
 # this macro adds a space-delimited list of additional recursive targets
+# coverage allows recursive coverage       (coverage-local: ...)
 # hops provides a report on unported code  (hops-local: ...)
 # mho provides a report on new code        (mho-local: ...)
 # reqs provides a report on requirements   (reqs-local: ...)
-AM_EXTRA_RECURSIVE_TARGETS([hops mho reqs])
+AM_EXTRA_RECURSIVE_TARGETS([coverage hops mho reqs])
 
 # user path configuration requires a root directory
 AC_ARG_VAR(MHO_ROOT, [Root directory for the MIT HOPS tools installation])
@@ -43,6 +44,7 @@ LT_INIT
 #m4_ifset([LT_INIT], [LT_INIT], [AC_PROG_LIBTOOL])
 #m4_ifset([LT_WITH_LTDL], [LT_WITH_LTDL], [AC_LIB_LTDL])
 
+# features are a bit confusing:
 # AC_ARG_ENABLE(FEATURE, HELP-STRING, [ACTION-IF-GIVEN], [ACTION-IF-NOT-GIVEN])
 # ACTION-IF-GIVEN refers to any of these:
 #   --enable-FEATURE=yes or
@@ -58,6 +60,9 @@ AC_ARG_ENABLE(doxygen,
 AC_ARG_ENABLE(sphinx,
     AS_HELP_STRING([--disable-sphinx], [allow sphinx-generated documents]),
     [], [enable_doxy=yes])
+AC_ARG_ENABLE(gcov,
+    AS_HELP_STRING([--enable-gcov], [compile with coverage active]),
+    [], [enable_gcov=no])
 
 # Checks for programs.
 AC_PROG_AWK
@@ -81,12 +86,14 @@ AC_PATH_PROG([PDFLATEX], [pdflatex], [pdflatex-not-found])
 AC_PATH_PROG([DOXYGEN], [doxygen], [doxygen-not-found])
 AC_PATH_PROG([SPHINX], [sphinx], [sphinx-not-found])
 AC_PATH_PROG([PERL], [perl], [perl-not-found])
+AC_PATH_PROG([GCOV], [gcov], [gcov-not-found])
 
-# checks for specific/enable/disable cases
+# simple checks for specific/enable/disable cases
 AM_CONDITIONAL(HAVE_SWIG, [test -x $SWIG])
 AM_CONDITIONAL(WANT_DOCS, [test x$enable_docs = xyes -a -x $PDFLATEX])
 AM_CONDITIONAL(WANT_DOXYGEN, [test x$enable_docs = xyes -a -x $DOXYGEN])
 AM_CONDITIONAL(WANT_SPHINX, [test x$enable_docs = xyes -a -x $SPHINX])
+AM_CONDITIONAL(DO_COVER, [test x$enable_gcov = xyes -a -x $GCOV])
 
 # getting our head around Python, see package section below
 AC_PATH_PROG([PYTHON2], [python2], [python2-not-found])
