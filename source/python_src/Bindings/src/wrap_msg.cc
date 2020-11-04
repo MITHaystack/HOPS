@@ -6,6 +6,8 @@
 //
 extern "C" {
 #include "wrap_msg.h"
+// a prefix on the message with context
+static char wrap_progname[200] = "hops";
 } // extern "C"
 
 #include "MHOMessage.hh"
@@ -15,29 +17,29 @@ using namespace hops;
 
 extern "C" void wrap_message(int verbosity, int severity, char *message)
 {
-    MHOMessage::GetInstance().AddKey("hops");
+    MHOMessage::GetInstance().AddKey(wrap_progname);
     MHOMessage::GetInstance().SetMessageLevel(eDebug);
     switch(6 - severity) {
     case eFatal:    // 0 fatal errors (most important)
-        if (verbosity >= 0) { msg_fatal("hops", message << eom); }
+        if (verbosity >= 0) { msg_fatal(wrap_progname, message << eom); }
         break;
     case eError:    // 1 non-fatal but noteworty
-        if (verbosity >= 1) { msg_error("hops", message << eom); }
+        if (verbosity >= 1) { msg_error(wrap_progname, message << eom); }
         break;
     case eWarning:  // 2 unexpected
-        if (verbosity >= 2) { msg_warn("hops", message << eom); }
+        if (verbosity >= 2) { msg_warn(wrap_progname, message << eom); }
         break;
     case eStatus:   // 3 status info
-        if (verbosity >= 3) { msg_status("hops", message << eom); }
+        if (verbosity >= 3) { msg_status(wrap_progname, message << eom); }
         break;
     case eInfo:     // 4 extra info
-        if (verbosity >= 4) { msg_info("hops", message << eom); }
+        if (verbosity >= 4) { msg_info(wrap_progname, message << eom); }
         break;
     case eDebug:    // 5 debug level (least important)
-        if (verbosity >= 5) { msg_debug("hops", message << eom); }
+        if (verbosity >= 5) { msg_debug(wrap_progname, message << eom); }
         break;
     default:
-        if (verbosity >= 6) { msg_debug("hops", message << eom); }
+        if (verbosity >= 6) { msg_debug(wrap_progname, message << eom); }
     }
 }
 
@@ -51,8 +53,6 @@ extern "C" {
 // The scale is 3 (only see most important)   verbosity 0  severity 6
 //          to -3 (see absolutely everything) verbosity 6  severity 0
 static int wrap_msglev = 0;
-// a prefix on the message with context
-static char wrap_progname[200] = "unknown";
 
 void set_wrap_msglevel(int msglev)
 {
