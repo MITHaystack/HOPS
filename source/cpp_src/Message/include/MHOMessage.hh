@@ -103,13 +103,7 @@ class MHOMessage
             fCurrentLevel(eInfo),
             fCurrentKeyIsAllowed(false),
             fAcceptAllKeys(false)
-        {
-            #ifdef HOPS_ENABLE_DEBUG_MSG
-                std::cout<<"Debug messages enabled"<<std::endl;
-            #else 
-                std::cout<<"NO DEBUG FOR YOU"<<std::endl;
-            #endif
-        };
+        {};
         virtual ~MHOMessage(){};
 
         bool PassMessage();
