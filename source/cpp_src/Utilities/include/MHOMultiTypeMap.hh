@@ -137,6 +137,7 @@ class MHOMultiTypeMap< XKeyType, XValueType, XValueTypeS...>: public MHOMultiTyp
 
         using MHOMultiTypeMap< XKeyType, XValueType >::CopyTo;
         using MHOMultiTypeMap< XKeyType, XValueTypeS... >::CopyTo;
+
 };
 
 

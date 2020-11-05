@@ -33,6 +33,9 @@ class MHOIntervalLabelTree
         std::vector< MHOIntervalLabel* > GetIntervalsWhichIntersect(const std::size_t& idx);
         std::vector< MHOIntervalLabel* > GetIntervalsWhichIntersect(const MHOInterval<std::size_t>* interval);
 
+        std::vector< MHOIntervalLabel* >
+        GetIntervalsWithKey(const std::string& key);
+
         template<typename XLabelValueType>
         std::vector< MHOIntervalLabel* >
         GetIntervalsWithKeyValue(const std::string& key, const XLabelValueType& value);
@@ -49,6 +52,27 @@ class MHOIntervalLabelTree
         std::vector< MHOIntervalLabel* > fIntervals;
 };
 
+
+// std::vector< MHOIntervalLabel* >
+// MHOIntervalLabelTree::GetIntervalsWithKey(const std::string& key)
+// {
+//     std::vector< MHOIntervalLabel* > labels;
+//     XLabelValueType tmp_value;
+//     //dumb brute force search over all intervals O(n)
+//     //we may want to make this smarter
+// 
+//     for(std::size_t i=0; i<fIntervals.size(); i++)
+//     {
+//         if( fIntervals[i]->Retrieve(key,tmp_value) )
+//         {
+//             if(tmp_value == value)
+//             {
+//                 labels.push_back(fIntervals[i]);
+//             }
+//         }
+//     }
+//     return labels;
+// }
 
 
 template<typename XLabelValueType>
@@ -83,7 +107,6 @@ MHOIntervalLabelTree::GetFirstIntervalWithKeyValue(const std::string& key, const
     //dumb brute force search over all intervals O(n)
     //we may want to make this smarter
 
-    std::cout<<"num intervals = "<<fIntervals.size()<<std::endl;
     for(std::size_t i=0; i<fIntervals.size(); i++)
     {
         if( fIntervals[i]->Retrieve(key,tmp_value) )
