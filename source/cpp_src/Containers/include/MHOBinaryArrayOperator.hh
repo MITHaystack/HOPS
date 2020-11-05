@@ -6,7 +6,7 @@
 namespace hops{
 
 template<typename XValueType, std::size_t RANK>
-class MHOBinaryArrayOperator: public MHOArrayOperator<XValueType,RANK>
+class MHOBinaryArrayOperator: public MHOArrayOperator<XValueType>
 {
     public:
         MHOBinaryArrayOperator():fFirstInput(NULL),fSecondInput(NULL),fOutput(NULL){;};
@@ -20,9 +20,9 @@ class MHOBinaryArrayOperator: public MHOArrayOperator<XValueType,RANK>
         virtual MHOArrayWrapper<XValueType,RANK>* GetSecondInput(){return fSecondInput;};
         virtual MHOArrayWrapper<XValueType,RANK>* GetOutput(){return fOutput;};
 
-        virtual void Initialize(){;};
+        virtual bool Initialize(){return true;};
 
-        virtual void ExecuteOperation() = 0;
+        virtual bool ExecuteOperation() = 0;
 
     protected:
 

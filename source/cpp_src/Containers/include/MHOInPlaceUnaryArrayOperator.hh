@@ -6,7 +6,7 @@
 namespace hops{
 
 template< typename XValueType, std::size_t RANK>
-class MHOInPlaceUnaryArrayOperator: public MHOArrayOperator<XValueType,RANK>
+class MHOInPlaceUnaryArrayOperator: public MHOArrayOperator<XValueType>
 {
     public:
         MHOInPlaceUnaryArrayOperator():fOutput(NULL){};
@@ -19,9 +19,9 @@ class MHOInPlaceUnaryArrayOperator: public MHOArrayOperator<XValueType,RANK>
 
         virtual MHOArrayWrapper<XValueType,RANK>* GetOutput(){return fOutput;};
 
-        virtual void Initialize(){};
+        virtual bool Initialize(){return true;};
 
-        virtual void ExecuteOperation() = 0;
+        virtual bool ExecuteOperation() = 0;
 
     protected:
 

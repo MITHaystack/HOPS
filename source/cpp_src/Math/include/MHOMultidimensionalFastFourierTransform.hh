@@ -11,7 +11,7 @@ namespace hops
 {
 
 template<size_t RANK>
-class MHOMultidimensionalFastFourierTransform: public MHOUnaryArrayOperator< std::complex<double>, RANK >
+class MHOMultidimensionalFastFourierTransform: public MHOUnaryArrayOperator< std::complex<double>, RANK, RANK >
 {
     public:
         MHOMultidimensionalFastFourierTransform()
@@ -36,7 +36,7 @@ class MHOMultidimensionalFastFourierTransform: public MHOUnaryArrayOperator< std
         virtual void SetForward(){fForward = true;}
         virtual void SetBackward(){fForward = false;};
 
-        virtual void Initialize() override
+        virtual bool Initialize() override
         {
             if(DoInputOutputDimensionsMatch())
             {
@@ -55,6 +55,7 @@ class MHOMultidimensionalFastFourierTransform: public MHOUnaryArrayOperator< std
 
                 fInitialized = true;
             }
+            return (fInitialized && fIsValid);
         }
 
         virtual void ExecuteOperation() override
@@ -138,11 +139,14 @@ class MHOMultidimensionalFastFourierTransform: public MHOUnaryArrayOperator< std
                         }
                     }
                 }
+                //successful
+                return true;
             }
             else
             {
                 //error
                 msg_error("math", "FFT input/output array dimensions are not valid or intialization failed. Aborting transform." << eom);
+                return false;
             }
         }
 
