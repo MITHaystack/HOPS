@@ -28,6 +28,7 @@ class MHOArrayWrapper
     public:
 
         using value_type = XValueType;
+        typedef std::integral_constant< std::size_t, RANK > rank;
 
         //empty constructor, to be configured later
         MHOArrayWrapper()
@@ -250,6 +251,25 @@ class MHOArrayWrapper
             }
         }
 
+        //set all of the elements in an array to be equal to the object obj
+        void
+        SetArray(const XValueType& obj)
+        {
+            for(std::size_t i=0; i < fTotalArraySize; i++)
+            {
+                fDataPtr = obj;
+            }
+        }
+
+        //set all of the elements in an array to be equal to zero
+        void
+        ZeroArray()
+        {
+            XValueType* ptr = fDataPtr;
+            std::size_t n_bytes = fTotalArraySize*( sizeof(XValueType) );
+            std::memset(ptr, 0, n_bytes);
+        }
+
 
     protected:
 
@@ -269,6 +289,9 @@ template< typename XValueType >
 class MHOArrayWrapper<XValueType, 0>
 {
     public:
+
+        using value_type = XValueType;
+        typedef std::integral_constant< std::size_t, 0 > rank;
 
         MHOArrayWrapper()
         {
@@ -303,6 +326,22 @@ class MHOArrayWrapper<XValueType, 0>
             }
         }
 
+        //set all of the elements in an array to be equal to the object obj
+        void
+        SetArray(const XValueType& obj)
+        {
+            fData = obj;
+        }
+
+        //set all of the elements in an array to be equal to zero
+        void
+        ZeroArray()
+        {
+            XValueType* ptr = fDataPtr;
+            std::size_t n_bytes = fTotalArraySize*( sizeof(XValueType) );
+            std::memset(ptr, 0, n_bytes);
+        }
+
     protected:
 
         XValueType fData; //single value
@@ -316,6 +355,9 @@ template< typename XValueType >
 class MHOArrayWrapper<XValueType, 1>
 {
     public:
+
+        using value_type = XValueType;
+        typedef std::integral_constant< std::size_t, 1 > rank;
 
         MHOArrayWrapper()
         {
@@ -528,6 +570,25 @@ class MHOArrayWrapper<XValueType, 1>
             }
         }
 
+        //set all of the elements in an array to be equal to the object obj
+        void
+        SetArray(const XValueType& obj)
+        {
+            for(std::size_t i=0; i < fTotalArraySize; i++)
+            {
+                fDataPtr = obj;
+            }
+        }
+
+        //set all of the elements in an array to be equal to zero
+        void
+        ZeroArray()
+        {
+            XValueType* ptr = fDataPtr;
+            std::size_t n_bytes = fTotalArraySize*( sizeof(XValueType) );
+            std::memset(ptr, 0, n_bytes);
+        }
+
     protected:
 
         XValueType* fDataPtr;
@@ -536,6 +597,49 @@ class MHOArrayWrapper<XValueType, 1>
         std::size_t fDimensions[1]; //size of each dimension
         std::size_t fTotalArraySize; //total size of array
 };
+
+
+
+
+
+//utilities
+template< class XArrayType1, class XArrayType2 >
+static bool
+HaveSameRank()
+{
+    return ( XArrayType1::rank::value == XArrayType2::rank::value );
+}
+
+template< class XArrayType1, class XArrayType2 >
+static bool
+HaveSameNumberOfElements(const XArrayType1* arr1, const XArrayType2* arr2)
+{
+    return ( arr1->GetSize() == arr2->GetSize() );
+}
+
+template< class XArrayType1, class XArrayType2 >
+static bool
+HaveSameDimensions(const XArrayType1* arr1, const XArrayType2* arr2)
+{
+    std::size_t shape1[XArrayType1::rank::value];
+    std::size_t shape2[XArrayType2::rank::value];
+
+    if( InputOutputHaveSameRank() )
+    {
+        size_t rank = XArrayType1::rank:value;
+        arr1->GetDimensions(shape1);
+        arr2->GetDimensions(shape2);
+
+        for(std::size_t i=0; i<rank; i++)
+        {
+            if(shape1[i] != shape2[i]){return false;}
+        }
+        return true;
+    }
+    return false;
+}
+
+
 
 
 }//end of hops namespace

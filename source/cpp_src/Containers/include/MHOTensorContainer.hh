@@ -26,18 +26,18 @@ namespace hops
 {
 
 template< typename XValueType, typename XAxisPackType >
-class MHOTensorContainer: public MHOArrayWrapper< XValueType, XAxisPackType::RANK::value>, public XAxisPackType, public MHONamed
+class MHOTensorContainer: public MHOArrayWrapper< XValueType, XAxisPackType::NAXES::value>, public XAxisPackType, public MHONamed
 {
     public:
 
         MHOTensorContainer():
-            MHOArrayWrapper<XValueType,XAxisPackType::RANK::value>(),
+            MHOArrayWrapper<XValueType,XAxisPackType::NAXES::value>(),
             XAxisPackType(),
             MHONamed()
         {};
 
         MHOTensorContainer(const std::size_t* dim):
-            MHOArrayWrapper<XValueType,XAxisPackType::RANK::value>(dim),
+            MHOArrayWrapper<XValueType,XAxisPackType::NAXES::value>(dim),
             XAxisPackType(dim),
             MHONamed()
         {};
@@ -52,31 +52,31 @@ class MHOTensorContainer: public MHOArrayWrapper< XValueType, XAxisPackType::RAN
         using XAxisPackType::resize_axis_pack;
         void Resize(const std::size_t* dim)
         {
-            for(std::size_t i=0; i<XAxisPackType::RANK::value; i++)
+            for(std::size_t i=0; i<XAxisPackType::NAXES::value; i++)
             {
                 fDimensions[i] = dim[i];
             }
-            fTotalArraySize = MHOArrayMath::TotalArraySize<XAxisPackType::RANK::value>(fDimensions);
+            fTotalArraySize = MHOArrayMath::TotalArraySize<XAxisPackType::NAXES::value>(fDimensions);
             fData.resize(fTotalArraySize);
 
             resize_axis_pack(dim);
         }
 
         //have to make base class functions visible
-        using MHOArrayWrapper<XValueType,XAxisPackType::RANK::value>::GetData;
-        using MHOArrayWrapper<XValueType,XAxisPackType::RANK::value>::GetSize;
-        using MHOArrayWrapper<XValueType,XAxisPackType::RANK::value>::GetDimensions;
-        using MHOArrayWrapper<XValueType,XAxisPackType::RANK::value>::GetDimension;
-        using MHOArrayWrapper<XValueType,XAxisPackType::RANK::value>::GetOffsetForIndices;
+        using MHOArrayWrapper<XValueType,XAxisPackType::NAXES::value>::GetData;
+        using MHOArrayWrapper<XValueType,XAxisPackType::NAXES::value>::GetSize;
+        using MHOArrayWrapper<XValueType,XAxisPackType::NAXES::value>::GetDimensions;
+        using MHOArrayWrapper<XValueType,XAxisPackType::NAXES::value>::GetDimension;
+        using MHOArrayWrapper<XValueType,XAxisPackType::NAXES::value>::GetOffsetForIndices;
 
-        using MHOArrayWrapper<XValueType,XAxisPackType::RANK::value>::operator();
-        using MHOArrayWrapper<XValueType,XAxisPackType::RANK::value>::operator[];
+        using MHOArrayWrapper<XValueType,XAxisPackType::NAXES::value>::operator();
+        using MHOArrayWrapper<XValueType,XAxisPackType::NAXES::value>::operator[];
 
     protected:
 
-        using MHOArrayWrapper<XValueType,XAxisPackType::RANK::value>::fData;
-        using MHOArrayWrapper<XValueType,XAxisPackType::RANK::value>::fDimensions;
-        using MHOArrayWrapper<XValueType,XAxisPackType::RANK::value>::fTotalArraySize;
+        using MHOArrayWrapper<XValueType,XAxisPackType::NAXES::value>::fData;
+        using MHOArrayWrapper<XValueType,XAxisPackType::NAXES::value>::fDimensions;
+        using MHOArrayWrapper<XValueType,XAxisPackType::NAXES::value>::fTotalArraySize;
 
     public:
 
