@@ -31,7 +31,7 @@ class MHOAxisPack:  public std::tuple< XAxisTypeS... >
 
         virtual ~MHOAxisPack(){};
 
-        typedef std::integral_constant< std::size_t, sizeof...(XAxisTypeS) > RANK;
+        typedef std::integral_constant< std::size_t, sizeof...(XAxisTypeS) > NAXES;
 
     protected:
 
