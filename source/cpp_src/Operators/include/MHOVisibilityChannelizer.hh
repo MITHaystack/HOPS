@@ -11,18 +11,29 @@
 */
 
 #include "MHOArrayWrapper.hh"
-#include "MHOUnaryArrayOperator.hh"
+#include "MHOArrayOperator.hh"
 
 #include "MHOVisibilities.hh"
 #include "MHOChannelizedVisibilities.hh"
 
-class MHOVisibilityChannelizer: public MHOUnaryArrayOperator<>
+namespace hops
+{
+
+class MHOVisibilityChannelizer: public MHOArrayOperator< baseline_data_type, ch_baseline_data_type>
 {
     public:
         MHOVisibilityChannelizer();
         virtual ~MHOVisibilityChannelizer();
+
+        virtual bool Initialize() override;
+        virtual bool ExecuteOperation() override;
+
     private:
 
+        bool fInitialized;
+
 };
+
+}
 
 #endif /* end of include guard: MHOVisibilityChannelizer */
