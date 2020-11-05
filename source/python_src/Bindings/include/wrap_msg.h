@@ -9,6 +9,10 @@
  * ie. ... const char *string ... const char *message ...
  */
 
+#define MIN_SEVERITY    (-3)
+#define MAX_SEVERITY    ( 3)
+#define MAX_VERBOSITY   ( 6)
+
 /* public replacement for msg() call */
 extern void wrap_msg(char *string, int level, ...);
 
