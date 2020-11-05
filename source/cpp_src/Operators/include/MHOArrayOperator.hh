@@ -7,7 +7,7 @@
 namespace hops{
 
  //template parameters must inherit from MHOArrayWrapper
-template<typename XInputArrayType, XOutputArrayType>
+template<class XInputArrayType, class XOutputArrayType>
 class MHOArrayOperator
 {
     public:
@@ -23,7 +23,6 @@ class MHOArrayOperator
         virtual void SetOutput(XOutputArrayType* out){fOutput = out;};
         virtual XInputArrayType* GetInput(){return fInput;};
         virtual XOutputArrayType* GetOutput(){return fOutput;};
-
 
         virtual bool Initialize() = 0;
         virtual bool ExecuteOperation() = 0;

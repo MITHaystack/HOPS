@@ -12,7 +12,9 @@ namespace hops
 {
 
 template<size_t RANK>
-class MHOMultidimensionalFastFourierTransformFFTW: public MHOUnaryArrayOperator< std::complex<double>, RANK, RANK >
+class MHOMultidimensionalFastFourierTransformFFTW:
+    public MHOArrayOperator< MHOArrayWrapper< std::complex<double>, RANK >, 
+                             MHOArrayWrapper< std::complex<double>, RANK > >
 {
     public:
         MHOMultidimensionalFastFourierTransformFFTW()
@@ -46,9 +48,9 @@ class MHOMultidimensionalFastFourierTransformFFTW: public MHOUnaryArrayOperator<
         virtual void SetForward(){fForward = true;}
         virtual void SetBackward(){fForward = false;};
 
-        virtual bool Initialize()
+        virtual bool Initialize() override
         {
-            if(DoInputOutputDimensionsMatch())
+            if( HaveSameDimensions(this->fInput, this->fOutput) )
             {
                 fIsValid = true;
                 this->fInput->GetDimensions(fDimensionSize);
@@ -68,7 +70,7 @@ class MHOMultidimensionalFastFourierTransformFFTW: public MHOUnaryArrayOperator<
             return (fInitialized && fIsValid);
         }
 
-        virtual void ExecuteOperation()
+        virtual bool ExecuteOperation() override
         {
             if(fIsValid && fInitialized)
             {
@@ -194,24 +196,6 @@ class MHOMultidimensionalFastFourierTransformFFTW: public MHOUnaryArrayOperator<
             }
         }
 
-
-        virtual bool DoInputOutputDimensionsMatch()
-        {
-            size_t in[RANK];
-            size_t out[RANK];
-
-            this->fInput->GetDimensions(in);
-            this->fOutput->GetDimensions(out);
-
-            for(size_t i=0; i<RANK; i++)
-            {
-                if(in[i] != out[i])
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
 
         bool fIsValid;
         bool fForward;

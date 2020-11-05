@@ -1,11 +1,10 @@
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../../Message/include)
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../../Containers/include)
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../include)
+#declare header paths ##########################################################
+hops_internal_include_directories()
 
-set (HOPS_TEST_LIBS MHOMessage MHOMath)
+set (HOPS_TEST_LIBS MHOMessage MHOMath MHOOperators)
 
 set(SOURCE_BASENAMES
-    TestFastFourierTransform
+    TestMultidimensionalFastFourierTransform
 )
 
 if(HOPS_USE_FFTW3)
