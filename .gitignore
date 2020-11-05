@@ -69,6 +69,7 @@ install-sh
 ltmain.sh
 missing
 test-driver
+py-compile
 
 # Editor junk
 *.swp
