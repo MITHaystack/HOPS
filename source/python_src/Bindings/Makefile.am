@@ -16,6 +16,7 @@
 pymod = mhops
 # the library name should be related to $(pymod)
 pkgpyexec_LTLIBRARIES = SWIGmhops.la
+pkglib_LTLIBRARIES = libMHOwrap.la
 
 # local machinery
 pkginclude_HEADERS = include/wrap_msg.h
@@ -46,11 +47,19 @@ endif # DO_COVER
 msinc = -I$(srcdir)/../../cpp_src/Message/include
 mslib = -L../../cpp_src/Message/.libs
 defines = -DHOPS_ENABLE_DEBUG_MSG=1 $(covercompile) $(coververbose)
+preproc = -I. -I$(srcdir)/include -Wall -Wextra $(defines)
 
-AM_CXXFLAGS = -I. -I$(srcdir)/include -Wall -Wextra $(defines)
-AM_CPPFLAGS = -I. -I$(srcdir)/include -Wall -Wextra $(defines)
+AM_CXXFLAGS = $(preproc)
+AM_CPPFLAGS = $(preproc)
 AM_LDFLAGS = $(coverldflags)
 
+# as proof of principal we build the wrapper library independently
+# of the module library which we only need for python.
+libMHOwrap_la_SOURCES = src/wrap_msg.cc
+libMHOwrap_la_CXXFLAGS = $(msinc)
+libMHOwrap_la_LIBADD = $(mslib) -lMHOMessage
+
+# this could link to the library
 TestWrapMessage_SOURCES = src/wrap_msg.cc test/TestWrapMessage.c
 TestWrapMessage_CXXFLAGS = $(msinc)
 TestWrapMessage_LDADD = $(mslib) -lMHOMessage
@@ -70,9 +79,6 @@ SWIGmhops_la_CXXFLAGS = $(coververbose) \
 SWIGmhops_la_LDFLAGS = -avoid-version -module $(coverldflags)
 SWIGmhops_la_LIBADD = $(mslib) -lMHOMessage
 
-# this forces C++ linking on the module; note dummy.cxx need not exist.
-# nodist_EXTRA_SWIGmhops_la_SOURCES = dummy.cxx
-
 # generate the SWIG C interface and Python bindings
 # at the moment, there is only one source for the module
 # this rule changes with multiple sources
@@ -90,7 +96,7 @@ _$(pymod).so: $(pkgpyexec_LTLIBRARIES)
 install-exec-hook:
 	chmod +w $(pkgpyexecdir)
 	-rm -f $(pkgpyexecdir)/_$(pymod).so
-	 ln -fs $(pkgpyexecdir)/SWIG$(pymod).so _$(pymod).so
+	ln -fs SWIG$(pymod).so $(pkgpyexecdir)/_$(pymod).so
 
 # coverage processing
 if DO_COVER
