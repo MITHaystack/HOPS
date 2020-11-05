@@ -5,27 +5,27 @@
 
 namespace hops{
 
-template<typename XValueType, std::size_t RANK>
-class MHOUnaryArrayOperator: public MHOArrayOperator<XValueType, RANK>
+template<typename XValueType, std::size_t INPUT_RANK, std::size_t OUTPUT_RANK>
+class MHOUnaryArrayOperator: public MHOArrayOperator<XValueType>
 {
     public:
         MHOUnaryArrayOperator():fInput(NULL),fOutput(NULL){;};
         virtual ~MHOUnaryArrayOperator(){;};
 
-        virtual void SetInput(MHOArrayWrapper<XValueType, RANK>* in){fInput = in;};
-        virtual void SetOutput(MHOArrayWrapper<XValueType, RANK>* out){fOutput = out;};
+        virtual void SetInput(MHOArrayWrapper<XValueType, INPUT_RANK>* in){fInput = in;};
+        virtual void SetOutput(MHOArrayWrapper<XValueType, OUTPUT_RANK>* out){fOutput = out;};
 
-        virtual MHOArrayWrapper<XValueType,RANK>* GetInput(){return fInput;};
-        virtual MHOArrayWrapper<XValueType,RANK>* GetOutput(){return fOutput;};
+        virtual MHOArrayWrapper<XValueType,INPUT_RANK>* GetInput(){return fInput;};
+        virtual MHOArrayWrapper<XValueType,OUTPUT_RANK>* GetOutput(){return fOutput;};
 
-        virtual void Initialize(){;};
+        virtual bool Initialize(){;};
 
-        virtual void ExecuteOperation() = 0;
+        virtual bool ExecuteOperation() = 0;
 
     protected:
 
-        MHOArrayWrapper<XValueType, RANK>* fInput;
-        MHOArrayWrapper<XValueType, RANK>* fOutput;
+        MHOArrayWrapper<XValueType, INPUT_RANK>* fInput;
+        MHOArrayWrapper<XValueType, OUTPUT_RANK>* fOutput;
 };
 
 }//end of namespace

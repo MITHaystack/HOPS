@@ -27,6 +27,8 @@ class MHOArrayWrapper
 {
     public:
 
+        using value_type = XValueType;
+
         //empty constructor, to be configured later
         MHOArrayWrapper()
         {

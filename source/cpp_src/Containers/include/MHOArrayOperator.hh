@@ -6,43 +6,50 @@
 
 namespace hops{
 
-template<typename XValueType, std::size_t RANK>
+template<typename XValueType>
 class MHOArrayOperator
 {
     public:
         MHOArrayOperator(){};
         virtual ~MHOArrayOperator(){};
 
-        virtual void Initialize(){};
-        virtual void ExecuteOperation() = 0;
+        virtual bool Initialize(){};
+        virtual bool ExecuteOperation() = 0;
 
         //utilities
+        template<std::size_t INPUT_RANK, std::size_t OUTPUT_RANK>
         static bool
-        HaveSameNumberOfElements(const MHOArrayWrapper<XValueType,RANK>* arr1, const MHOArrayWrapper<XValueType,RANK>* arr2)
+        HaveSameNumberOfElements(const MHOArrayWrapper<XValueType,INPUT_RANK>* arr1, const MHOArrayWrapper<XValueType,OUTPUT_RANK>* arr2)
         {
             return ( arr1->GetSize() == arr2->GetSize() );
         }
 
+        template<std::size_t INPUT_RANK, std::size_t OUTPUT_RANK>
         static bool
-        HaveSameDimensions(const MHOArrayWrapper<XValueType,RANK>* arr1, const MHOArrayWrapper<XValueType,RANK>* arr2)
+        HaveSameDimensions(const MHOArrayWrapper<XValueType,INPUT_RANK>* arr1, const MHOArrayWrapper<XValueType,OUTPUT_RANK>* arr2)
         {
-            std::size_t shape1[RANK];
-            std::size_t shape2[RANK];
+            std::size_t shape1[INPUT_RANK];
+            std::size_t shape2[OUTPUT_RANK];
 
-            arr1->GetDimensions(shape1);
-            arr2->GetDimensions(shape2);
-
-            for(std::size_t i=0; i<RANK; i++)
+            if(INPUT_RANK == OUTPUT_RANK)
             {
-                if(shape1[i] != shape2[i]){return false;}
-            }
+                arr1->GetDimensions(shape1);
+                arr2->GetDimensions(shape2);
 
-            return true;
+                for(std::size_t i=0; i<RANK; i++)
+                {
+                    if(shape1[i] != shape2[i]){return false;}
+                }
+
+                return true;
+            }
+            return false;
         }
 
         //set all of the elements in an array to be equal to the object obj
+        template<std::size_t ARRAY_RANK>
         static void
-        ResetArray(MHOArrayWrapper<XValueType,RANK>* arr, const XValueType& obj)
+        ResetArray(MHOArrayWrapper<XValueType,ARRAY_RANK>* arr, const XValueType& obj)
         {
             XValueType* ptr = arr->GetData();
             std::size_t n_elem = arr->GetSize();
@@ -53,8 +60,9 @@ class MHOArrayOperator
         }
 
         //set all of the elements in an array to be equal to zero
+        template<std::size_t ARRAY_RANK>
         static void
-        ZeroArray(MHOArrayWrapper<XValueType,RANK>* arr)
+        ZeroArray(MHOArrayWrapper<XValueType,ARRAY_RANK>* arr)
         {
             XValueType* ptr = arr->GetData();
             std::size_t n_bytes = (arr->GetSize() )*( sizeof(XValueType) );
