@@ -108,8 +108,8 @@ class MHOArrayWrapper
                 //we cannot re-size an externally managed array
                 //so instead we issue a warning and reconfigure
                 //our state to use an internally managed array
-                msg_warn("containers", "Resize operation called on a wrapper to " <<
-                          "an exernally managed array, replacing with internally " <<
+                msg_warn("containers", "Resize operation called on a wrapper pointing to " <<
+                          "an exernally managed array will replace it with internally " <<
                           "managed memory. This may result in unexpected behavior." << eom);
             }
 
@@ -377,8 +377,8 @@ class MHOArrayWrapper<XValueType, 1>
                 //we cannot re-size an externally managed array
                 //so instead we issue a warning and reconfigure
                 //our state to use an internally managed array
-                msg_warn("containers", "Resize operation called on a wrapper to " <<
-                          "an exernally managed array, replacing with internally " <<
+                msg_warn("containers", "Resize operation called on a wrapper pointing to " <<
+                          "an exernally managed array will replace it with internally " <<
                           "managed memory. This may result in unexpected behavior." << eom);
             }
 
@@ -396,8 +396,8 @@ class MHOArrayWrapper<XValueType, 1>
                 //we cannot re-size an externally managed array
                 //so instead we issue a warning and reconfigure
                 //our state to use an internally managed array
-                msg_warn("containers", "Resize operation called on a wrapper to " <<
-                          "an exernally managed array, replacing with internally " <<
+                msg_warn("containers", "Resize operation called on a wrapper pointing to " <<
+                          "an exernally managed array will replace it with internally " <<
                           "managed memory. This may result in unexpected behavior." << eom);
             }
 
