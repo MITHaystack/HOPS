@@ -12,6 +12,8 @@
 * externally managed arrays should be a different class
 */
 
+#include <cstring> //for memset
+
 #include <vector>
 #include <array>
 #include <stdexcept>
@@ -337,8 +339,8 @@ class MHOArrayWrapper<XValueType, 0>
         void
         ZeroArray()
         {
-            XValueType* ptr = fDataPtr;
-            std::size_t n_bytes = fTotalArraySize*( sizeof(XValueType) );
+            XValueType* ptr = &fData;
+            std::size_t n_bytes = sizeof(XValueType);
             std::memset(ptr, 0, n_bytes);
         }
 
@@ -605,7 +607,7 @@ class MHOArrayWrapper<XValueType, 1>
 //utilities
 template< class XArrayType1, class XArrayType2 >
 static bool
-HaveSameRank()
+HaveSameRank(const XArrayType1* /*arr1*/, const XArrayType2* /*arr2*/)
 {
     return ( XArrayType1::rank::value == XArrayType2::rank::value );
 }
@@ -624,9 +626,9 @@ HaveSameDimensions(const XArrayType1* arr1, const XArrayType2* arr2)
     std::size_t shape1[XArrayType1::rank::value];
     std::size_t shape2[XArrayType2::rank::value];
 
-    if( InputOutputHaveSameRank() )
+    if( HaveSameRank(arr1, arr2) )
     {
-        size_t rank = XArrayType1::rank:value;
+        size_t rank = XArrayType1::rank::value;
         arr1->GetDimensions(shape1);
         arr2->GetDimensions(shape2);
 

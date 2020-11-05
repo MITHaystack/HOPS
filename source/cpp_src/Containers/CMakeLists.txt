@@ -2,10 +2,6 @@
 set (CONTAINER_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHOArrayMath.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHOArrayWrapper.hh
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHOArrayOperator.hh
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHOInPlaceUnaryArrayOperator.hh
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHOUnaryArrayOperator.hh
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHOBinaryArrayOperator.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHOAxisPack.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHOScalarContainer.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHOVectorContainer.hh

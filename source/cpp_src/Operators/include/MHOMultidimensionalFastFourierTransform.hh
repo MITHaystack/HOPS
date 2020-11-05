@@ -11,7 +11,9 @@ namespace hops
 {
 
 template<size_t RANK>
-class MHOMultidimensionalFastFourierTransform: public MHOUnaryArrayOperator< std::complex<double>, RANK, RANK >
+class MHOMultidimensionalFastFourierTransform: 
+    public MHOArrayOperator< MHOArrayWrapper< std::complex<double>, RANK >, 
+                             MHOArrayWrapper< std::complex<double>, RANK > >
 {
     public:
         MHOMultidimensionalFastFourierTransform()
@@ -38,7 +40,7 @@ class MHOMultidimensionalFastFourierTransform: public MHOUnaryArrayOperator< std
 
         virtual bool Initialize() override
         {
-            if(DoInputOutputDimensionsMatch())
+            if( HaveSameDimensions(this->fInput, this->fOutput) )
             {
                 fIsValid = true;
                 this->fInput->GetDimensions(fDimensionSize);
@@ -80,7 +82,9 @@ class MHOMultidimensionalFastFourierTransform: public MHOUnaryArrayOperator< std
                 if(this->fInput != this->fOutput)
                 {
                     //the arrays are not identical so copy the input over to the output
-                    std::memcpy( (void*) this->fOutput->GetData(), (void*) this->fInput->GetData(), total_size*sizeof(std::complex<double>) );
+                    std::memcpy( (void*) this->fOutput->GetData(), 
+                                 (void*) this->fInput->GetData(), 
+                                 total_size*sizeof(std::complex<double>) );
                 }
 
                 size_t index[RANK];
@@ -173,24 +177,6 @@ class MHOMultidimensionalFastFourierTransform: public MHOUnaryArrayOperator< std
                 delete fWorkspaceWrapper[i]; fWorkspaceWrapper[i] = NULL;
                 delete fTransformCalculator[i]; fTransformCalculator[i] = NULL;
             }
-        }
-
-        virtual bool DoInputOutputDimensionsMatch()
-        {
-            size_t in[RANK];
-            size_t out[RANK];
-
-            this->fInput->GetDimensions(in);
-            this->fOutput->GetDimensions(out);
-
-            for(size_t i=0; i<RANK; i++)
-            {
-                if(in[i] != out[i])
-                {
-                    return false;
-                }
-            }
-            return true;
         }
 
         bool fIsValid;

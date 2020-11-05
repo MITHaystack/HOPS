@@ -4,14 +4,18 @@
 #include <complex>
 
 #include "MHOArrayWrapper.hh"
-#include "MHOUnaryArrayOperator.hh"
+#include "MHOArrayOperator.hh"
 #include "MHOBitReversalPermutation.hh"
 #include "MHOFastFourierTransformUtilities.hh"
 
 namespace hops
 {
 
-class MHOFastFourierTransform: public MHOUnaryArrayOperator< std::complex<double>, 1 >
+typedef MHOArrayWrapper< std::complex<double>, 1> fft_c2c_type;
+
+class MHOFastFourierTransform: 
+    public MHOArrayOperator< MHOArrayWrapper< std::complex<double>, 1>,
+                             MHOArrayWrapper< std::complex<double>, 1> >
 {
     public:
 
@@ -23,9 +27,8 @@ class MHOFastFourierTransform: public MHOUnaryArrayOperator< std::complex<double
         virtual void SetForward();
         virtual void SetBackward();
 
-        virtual void Initialize();
-
-        virtual void ExecuteOperation();
+        virtual bool Initialize() override;
+        virtual bool ExecuteOperation() override;
 
     private:
 

@@ -31,13 +31,13 @@ class MHOTensorContainer: public MHOArrayWrapper< XValueType, XAxisPackType::NAX
     public:
 
         MHOTensorContainer():
-            MHOArrayWrapper<XValueType,XAxisPackType::NAXES::value>(),
+            MHOArrayWrapper<XValueType, XAxisPackType::NAXES::value>(),
             XAxisPackType(),
             MHONamed()
         {};
 
         MHOTensorContainer(const std::size_t* dim):
-            MHOArrayWrapper<XValueType,XAxisPackType::NAXES::value>(dim),
+            MHOArrayWrapper<XValueType, XAxisPackType::NAXES::value>(dim),
             XAxisPackType(dim),
             MHONamed()
         {};

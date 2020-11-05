@@ -11,8 +11,6 @@
 namespace hops
 {
 
-
-
 MHOFastFourierTransform::MHOFastFourierTransform()
 {
     fIsValid = true;
@@ -53,7 +51,7 @@ MHOFastFourierTransform::SetForward(){fForward = true;}
 void
 MHOFastFourierTransform::SetBackward(){fForward = false;}
 
-void
+bool
 MHOFastFourierTransform::Initialize()
 {
     if(fInput->GetSize() != fN || fOutput->GetSize() != fN)
@@ -88,13 +86,15 @@ MHOFastFourierTransform::Initialize()
         fIsValid = true;
         fInitialized = true;
     }
+
+    return (fInitialized && fIsValid);
 }
 
 ///Make a call to execute the FFT plan and perform the transformation
-void
+bool
 MHOFastFourierTransform::ExecuteOperation()
 {
-    if(fIsValid)
+    if(fIsValid && fInitialized)
     {
         //if input and output point to the same array, don't bother copying data over
         if(fInput != fOutput)
@@ -135,11 +135,14 @@ MHOFastFourierTransform::ExecuteOperation()
                 data[i] = std::conj(data[i]);
             }
         }
+
+        return true;
     }
     else
     {
         //error
         msg_error("math", "FFT input/output array dimensions are not valid or intialization failed. Aborting transform." << eom);
+        return false;
     }
 }
 
