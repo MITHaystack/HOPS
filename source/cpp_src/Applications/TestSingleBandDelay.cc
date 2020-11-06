@@ -85,7 +85,14 @@ int main(int argc, char** argv)
     ch_baseline_data_type* ch_bl_data = new ch_baseline_data_type(); //no size specified yet
     channelizer.SetOutput(ch_bl_data);
 
-    channelizer.Initialize();
+    bool init = channelizer.Initialize();
+    bool exe = channelizer.ExecuteOperation();
+
+    if(exe){std::cout<<"channelizer done"<<std::endl;}
+
+    //now that the data has been organized by channel, we can take
+    //each chunk and (fourier) transform it as needed
+
 
 
 
