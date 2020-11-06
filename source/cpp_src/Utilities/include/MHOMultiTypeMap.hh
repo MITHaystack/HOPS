@@ -49,16 +49,15 @@ class MHOSingleTypeMap
             }
         }
 
-        void DumpMap()
+        void DumpMap() const
         {
-            typedef typename std::map< XKeyType, XValueType>::iterator iterType;
-            for(iterType iter = fMap.begin(); iter != fMap.end(); iter++)
+            for(auto iter = fMap.begin(); iter != fMap.end(); iter++)
             {
                 std::cout<<iter->first<<" : "<<iter->second<<std::endl;
             }
         }
 
-        bool ContainsKey(const XKeyType& key)
+        bool ContainsKey(const XKeyType& key) const
         {
             auto iter = fMap.find(key);
             if(iter == fMap.end()){return false;}
@@ -105,15 +104,15 @@ class MHOMultiTypeMap< XKeyType, XValueType >: public MHOSingleTypeMap< XKeyType
         using MHOSingleTypeMap< XKeyType, XValueType >::CopyTo;
 
         template<typename U = XValueType> typename std::enable_if<std::is_same<U,XValueType>::value>::type
-        DumpMap()
+        DumpMap() const
         {
-            static_cast< MHOSingleTypeMap< XKeyType, XValueType >* >( this )->DumpMap();
+            static_cast< const MHOSingleTypeMap< XKeyType, XValueType >* >( this )->DumpMap();
         };
 
         template<typename U = XValueType> typename std::enable_if<std::is_same<U,XValueType>::value, bool>::type
-        ContainsKey(const XKeyType& key)
+        ContainsKey(const XKeyType& key) const
         {
-            return static_cast< MHOSingleTypeMap< XKeyType, XValueType >* >( this )->ContainsKey(key);
+            return static_cast< const MHOSingleTypeMap< XKeyType, XValueType >* >( this )->ContainsKey(key);
         };
 
         template<typename U = XValueType> typename std::enable_if<std::is_same<U,XValueType>::value>::type

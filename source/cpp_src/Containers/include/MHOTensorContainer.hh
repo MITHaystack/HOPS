@@ -50,19 +50,16 @@ class MHOTensorContainer: public MHOArrayWrapper< XValueType, XAxisPackType::NAX
 
         //modify the Resize function to also resize the axes
         using XAxisPackType::resize_axis_pack;
-        void Resize(const std::size_t* dim)
-        {
-            for(std::size_t i=0; i<XAxisPackType::NAXES::value; i++)
-            {
-                fDimensions[i] = dim[i];
-            }
-            fTotalArraySize = MHOArrayMath::TotalArraySize<XAxisPackType::NAXES::value>(fDimensions);
-            fData.resize(fTotalArraySize);
 
+        virtual void Resize(const std::size_t* dim) override
+        {
+            std::cout<<"in derived call"<<std::endl;
+            MHOArrayWrapper< XValueType, XAxisPackType::NAXES::value>::Resize(dim);
             resize_axis_pack(dim);
         }
 
         //have to make base class functions visible
+        using MHOArrayWrapper<XValueType,XAxisPackType::NAXES::value>::Resize;
         using MHOArrayWrapper<XValueType,XAxisPackType::NAXES::value>::GetData;
         using MHOArrayWrapper<XValueType,XAxisPackType::NAXES::value>::GetSize;
         using MHOArrayWrapper<XValueType,XAxisPackType::NAXES::value>::GetDimensions;

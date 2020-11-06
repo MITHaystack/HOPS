@@ -106,7 +106,7 @@ class MHOArrayWrapper
             //external arrays are not managed by this class at all
         };
 
-        void Resize(const std::size_t* dim)
+        virtual void Resize(const std::size_t* dim)
         {
             if(fExternallyManaged)
             {
@@ -120,6 +120,7 @@ class MHOArrayWrapper
 
             for(std::size_t i=0; i<RANK; i++)
             {
+                msg_debug("containers", "resizing dimension: "<<i<<" to: "<<dim[i] << eom );
                 fDimensions[i] = dim[i];
             }
             fTotalArraySize = MHOArrayMath::TotalArraySize<RANK>(fDimensions);

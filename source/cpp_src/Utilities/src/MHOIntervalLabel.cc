@@ -15,6 +15,17 @@ MHOIntervalLabel::MHOIntervalLabel( std::size_t lower_bound, std::size_t upper_b
     MHOIntervalLabelMap()
 {};
 
+bool
+MHOIntervalLabel::HasKey(const std::string& key) const
+{
+    if(this->ContainsKey<char>(key)){return true;}
+    if(this->ContainsKey<bool>(key)){return true;}
+    if(this->ContainsKey<int>(key)){return true;}
+    if(this->ContainsKey<double>(key)){return true;}
+    if(this->ContainsKey<std::string>(key)){return true;}
+    return false;
+}
+
 MHOIntervalLabel::MHOIntervalLabel(const MHOIntervalLabel& copy):
     MHOInterval(copy)
 {
