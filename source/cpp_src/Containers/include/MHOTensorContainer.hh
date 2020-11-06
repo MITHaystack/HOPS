@@ -53,7 +53,6 @@ class MHOTensorContainer: public MHOArrayWrapper< XValueType, XAxisPackType::NAX
 
         virtual void Resize(const std::size_t* dim) override
         {
-            std::cout<<"in derived call"<<std::endl;
             MHOArrayWrapper< XValueType, XAxisPackType::NAXES::value>::Resize(dim);
             resize_axis_pack(dim);
         }
