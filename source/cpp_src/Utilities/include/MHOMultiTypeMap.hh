@@ -11,6 +11,7 @@
 *Description:
 */
 
+#include <set>
 #include <map>
 #include <string>
 #include <iostream>
@@ -57,6 +58,13 @@ class MHOSingleTypeMap
             }
         }
 
+        bool ContainsKey(const XKeyType& key)
+        {
+            auto iter = fMap.find(key);
+            if(iter == fMap.end()){return false;}
+            else{return true;}
+        }
+
         void CopyFrom(const MHOSingleTypeMap<XKeyType, XValueType>& copy_from_obj)
         {
             if(this != &copy_from_obj)
@@ -91,6 +99,7 @@ class MHOMultiTypeMap< XKeyType, XValueType >: public MHOSingleTypeMap< XKeyType
     public:
         using MHOSingleTypeMap< XKeyType, XValueType >::Insert;
         using MHOSingleTypeMap< XKeyType, XValueType >::Retrieve;
+        using MHOSingleTypeMap< XKeyType, XValueType >::ContainsKey;
         using MHOSingleTypeMap< XKeyType, XValueType >::DumpMap;
         using MHOSingleTypeMap< XKeyType, XValueType >::CopyFrom;
         using MHOSingleTypeMap< XKeyType, XValueType >::CopyTo;
@@ -99,6 +108,12 @@ class MHOMultiTypeMap< XKeyType, XValueType >: public MHOSingleTypeMap< XKeyType
         DumpMap()
         {
             static_cast< MHOSingleTypeMap< XKeyType, XValueType >* >( this )->DumpMap();
+        };
+
+        template<typename U = XValueType> typename std::enable_if<std::is_same<U,XValueType>::value, bool>::type
+        ContainsKey(const XKeyType& key)
+        {
+            return static_cast< MHOSingleTypeMap< XKeyType, XValueType >* >( this )->ContainsKey(key);
         };
 
         template<typename U = XValueType> typename std::enable_if<std::is_same<U,XValueType>::value>::type
@@ -128,6 +143,9 @@ class MHOMultiTypeMap< XKeyType, XValueType, XValueTypeS...>: public MHOMultiTyp
 
         using MHOMultiTypeMap< XKeyType, XValueType >::Retrieve;
         using MHOMultiTypeMap< XKeyType, XValueTypeS... >::Retrieve;
+
+        using MHOMultiTypeMap< XKeyType, XValueType >::ContainsKey;
+        using MHOMultiTypeMap< XKeyType, XValueTypeS... >::ContainsKey;
 
         using MHOMultiTypeMap< XKeyType, XValueType >::DumpMap;
         using MHOMultiTypeMap< XKeyType, XValueTypeS... >::DumpMap;
