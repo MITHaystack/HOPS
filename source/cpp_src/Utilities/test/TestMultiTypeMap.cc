@@ -93,5 +93,11 @@ int main(int /*argc*/, char** /*argv*/)
     std::cout<<"-- dumping the map of strings of map after copy -- "<<std::endl;
     myMap.DumpMap<std::string>();
 
+
+    if(myMap.ContainsKey<std::string>(std::string("blah4")))
+    {
+        std::cout<<"my map contains the key"<<std::endl;
+    }
+
     return 0;
 }
