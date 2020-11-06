@@ -25,6 +25,7 @@ endif(HOPS_USE_FFTW3)
 
 set( OPERATOR_SOURCEFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHOFastFourierTransform.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHOVisibilityChannelizer.cc
 )
 
 #declare header paths ##########################################################

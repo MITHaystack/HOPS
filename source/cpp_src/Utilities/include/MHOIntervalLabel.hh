@@ -32,6 +32,8 @@ class MHOIntervalLabel: public MHOInterval< std::size_t >, public MHOIntervalLab
         MHOIntervalLabel(const MHOIntervalLabel& copy);
         virtual ~MHOIntervalLabel();
 
+        bool HasKey(const std::string& key) const;
+
         MHOIntervalLabel& operator=(const MHOIntervalLabel& rhs)
         {
             if(this != &rhs)

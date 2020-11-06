@@ -2,7 +2,6 @@
 
 set (MK4INTERFACE_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHOMK4Interface.hh
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHOMK4Visibility.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHOMK4CorelInterface.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHOMK4VexInterface.hh
 )

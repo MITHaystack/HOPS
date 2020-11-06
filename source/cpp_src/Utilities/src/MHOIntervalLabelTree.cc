@@ -14,13 +14,27 @@ MHOIntervalLabelTree::~MHOIntervalLabelTree(){}
 //     fIntervals.push_back(label);
 // }
 
-void 
+void
 MHOIntervalLabelTree::InsertLabel(const MHOIntervalLabel& label)
 {
     //insert copy of this label as a new object
     fIntervals.push_back( new MHOIntervalLabel(label) );
 }
 
+std::vector< MHOIntervalLabel* >
+MHOIntervalLabelTree::GetIntervalsWithKey(const std::string& key)
+{
+    std::vector< MHOIntervalLabel* > labels;
+    //dumb brute for search over all intervals O(n)
+    for(std::size_t i=0; i<fIntervals.size(); i++)
+    {
+        if(fIntervals[i]->HasKey(key) )
+        {
+            labels.push_back(fIntervals[i]);
+        }
+    }
+    return labels;
+}
 
 std::vector< MHOIntervalLabel* >
 MHOIntervalLabelTree::GetIntervalsWhichIntersect(const std::size_t& idx)

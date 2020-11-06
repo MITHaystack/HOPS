@@ -53,27 +53,6 @@ class MHOIntervalLabelTree
 };
 
 
-// std::vector< MHOIntervalLabel* >
-// MHOIntervalLabelTree::GetIntervalsWithKey(const std::string& key)
-// {
-//     std::vector< MHOIntervalLabel* > labels;
-//     XLabelValueType tmp_value;
-//     //dumb brute force search over all intervals O(n)
-//     //we may want to make this smarter
-// 
-//     for(std::size_t i=0; i<fIntervals.size(); i++)
-//     {
-//         if( fIntervals[i]->Retrieve(key,tmp_value) )
-//         {
-//             if(tmp_value == value)
-//             {
-//                 labels.push_back(fIntervals[i]);
-//             }
-//         }
-//     }
-//     return labels;
-// }
-
 
 template<typename XLabelValueType>
 std::vector< MHOIntervalLabel* >

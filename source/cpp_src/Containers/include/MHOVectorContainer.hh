@@ -13,7 +13,6 @@
 
 #include <string>
 
-#include "MHOUnits.hh"
 #include "MHONamed.hh"
 #include "MHOArrayWrapper.hh"
 
