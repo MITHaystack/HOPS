@@ -16,12 +16,13 @@ $chkn && eko='echo' || eko=''
     Usage: autogen.sh [false|true] [false|true] [false|true]
 
     if true, the first boolean (nuke?) will remove previous built files
-    if true, the second boolean (halt?) will stop the script
-    if true, the third boolean echoes, rather evaluates the commands
+    if true, the second boolean (halt?) will then stop the script
+    if true, the third boolean echoes, rather evaluates configuration commands
 
     by default the script (re)configures the autotools in the source
     directory.  After running this script change to a build directory,
     configure, make, make check and make install as normally.
+    Finally make installcheck verifies the installation.
 
 EOF
 [ "$nuke" = help -o "$nuke" = '--help' ] && exit 0
@@ -64,7 +65,7 @@ cat <<EOF
     cd ../ambld-\$VERSION
     `pwd`/configure
 
-    make all check install
+    make all check install installcheck
 
     for help with configuration use:
 

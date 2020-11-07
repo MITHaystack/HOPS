@@ -9,12 +9,18 @@
 # this library.  Additional src/*.c src/*.cc files supply "glue" to
 # simplify the interface.
 #
+# The SWIG machinery is written so that swig will be used to build the
+# intefaces (which then can be deleted by clean) if present.
+#
 # The include/numpy.i interface is obtained from github/numpy
 #
 
-# module name
+# module name for python
 pymod = mhops
-# the library name should be related to $(pymod)
+# automake equivalent ('_' illegal as first character)
+ammod = SWIGmhops
+
+# $(pymod).la: we use SWIG for '_' which is illegal as a first character
 pkgpyexec_LTLIBRARIES = SWIGmhops.la
 pkglib_LTLIBRARIES = libMHOwrap.la
 
@@ -66,11 +72,18 @@ TestWrapMessage_LDADD = $(mslib) -lMHOMessage
 
 # SWIG machinery
 swigw = -Wno-missing-field-initializers
-swiggage = $(pymod).c $(pymod).py _$(pymod).so ensure_esso.sh
-swig_interfaces = include/wrap_msg.i
 pyinc = -I/usr/include/python$(PYTHON_VERSION)
+swig_exec = $(SWIG) -python -py3 -I$(srcdir)/include
+swig_interfaces = include/wrap_msg.i
+swig_products = $(pymod).c $(pymod).py
+swig_testing = _$(pymod).so ensure_esso.sh
+if HAVE_SWIG
+swig_delete = swig.log $(swig_products) $(swig_testing)
+else # HAVE_SWIG
+swig_delete = swig.log $(swig_testing)
+endif # HAVE_SWIG
 
-# generates the module library
+# generates the module library $(ammod).la
 SWIGmhops_la_SOURCES = $(pymod).c src/wrap_msg.cc
 SWIGmhops_la_CPPFLAGS = $(coververbose) \
 	$(pyinc) $(msinc) $(AM_CPPFLAGS) $(swigw)
@@ -80,23 +93,43 @@ SWIGmhops_la_LDFLAGS = -avoid-version -module $(coverldflags)
 SWIGmhops_la_LIBADD = $(mslib) -lMHOMessage
 
 # generate the SWIG C interface and Python bindings
-# at the moment, there is only one source for the module
-# this rule changes with multiple sources
-$(pymod).c: include/wrap_msg.i
-	$(SWIG) -python -py3 -I$(srcdir)/include -o $@ $< 2>&1 | tee swig.log
-$(pymod).py: $(pymod).c
+# one $(swig_exec) per interface specification produces .c and .py
+# since the $(swig_products) built will be captured in the distribution
+# we create an empty logfile to preserve the dependencies
+if HAVE_SWIG
+swig.log:
+	@rm -f swig.log
+	$(swig_exec) -o $(pymod).c $(srcdir)/include/wrap_msg.i 2>&1 |\
+		tee -a swig.log
+$(pymod).c: $(swig_interfaces) swig.log
+$(pymod).py: $(swig_interfaces) swig.log
+else # HAVE_SWIG
+swig.log:
+	touch swig.log
+endif # HAVE_SWIG
 
-# two rules to make the SWIG library available locally and as installed
-# _$(pymod).so needs to exist locally only for testing
+# this makes _$(pymod).so exist locally (only for testing)
 ensure_esso.sh: _$(pymod).so
-	echo true > $@ ; chmod +x $@
+	@echo '[ ! -s swig.log ]' >> $@ ; chmod +x $@
 _$(pymod).so: $(pkgpyexec_LTLIBRARIES)
 	@[ -f _$(pymod).so -a -f .libs/SWIG$(pymod).so ] || \
 		ln -s .libs/SWIG$(pymod).so _$(pymod).so
+
+# move the installed shared object to the name Python wants
+#	-rm -f $(pkgpyexecdir)/_$(pymod).so
+#	ln -fs SWIG$(pymod).so $(pkgpyexecdir)/_$(pymod).so
+ouch = $(DESTDIR)/$(pkgpyexecdir)
 install-exec-hook:
-	chmod +w $(pkgpyexecdir)
-	-rm -f $(pkgpyexecdir)/_$(pymod).so
-	ln -fs SWIG$(pymod).so $(pkgpyexecdir)/_$(pymod).so
+	[ -w $(ouch) ] || chmod +w $(ouch)
+	rm -f $(ouch)/$(ammod).a $(ouch)/$(ammod).la
+	mv $(ouch)/$(ammod).so $(ouch)/_$(pymod).so
+uninstall-hook:
+	[ -w $(ouch) ] || chmod +w $(ouch)
+	rm -f $(ouch)/_$(pymod).so
+
+# verify the installation
+installcheck-local:
+	@echo nothing yet.
 
 # coverage processing
 if DO_COVER
@@ -111,7 +144,7 @@ coverage-local:
 endif # DO_COVER
 
 
-# one-time import rule
+# one-time import rule to import numpy.i w/README&LICENSE
 githuburl = https://raw.githubusercontent.com
 numpy_master_swigs = \
 	$(srcdir)/include/numpy.i \
@@ -131,9 +164,8 @@ $(srcdir)/include/numpy-LICENSE.txt:
 clean-local:
 	-rm -rf __pycache__
 
-
 # cleanup and distribution
-CLEANFILES = $(covclean) $(swiggage)
+CLEANFILES = $(covclean) $(swig_delete)
 
 EXTRA_DIST = $(numpy_master_swigs) $(swig_interfaces)
 

@@ -12,7 +12,9 @@ AC_PREREQ([2.69])
 AC_INIT([mhops], [4.00], [hops@mit.edu])
 AC_CONFIG_SRCDIR([README.md])
 AC_CONFIG_HEADERS([mho_config.h])
-AM_INIT_AUTOMAKE([foreign subdir-objects])
+
+# this is not a GNU project, preserve tree in build dir, check --help/--version
+AM_INIT_AUTOMAKE([foreign subdir-objects std-options])
 
 # this macro adds a space-delimited list of additional recursive targets
 # coverage allows recursive coverage       (coverage-local: ...)
