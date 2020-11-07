@@ -18,6 +18,11 @@ CLEANFILES = config.summary
 # this turns up with dist or distchheck
 CLEANFILES += mhops-@VERSION@.tar.gz
 
+# these may be produced by autogen.sh
+CLEANFILES += configure.log make.log distcheck.log
+CLEANFILES += $(srcdir)/configure.log $(srcdir)/make.log
+CLEANFILES += $(srcdir)/distcheck.log $(srcdir)/mhops-@VERSION@.tar.gz
+
 # speed this process up by elminating some checking
 AM_DISTCHECK_CONFIGURE_FLAGS = --disable-docs --disable-doxy --disable-sphinx
 

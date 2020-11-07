@@ -70,6 +70,7 @@ ltmain.sh
 missing
 test-driver
 py-compile
+*.tar.gz
 
 # Editor junk
 *.swp
