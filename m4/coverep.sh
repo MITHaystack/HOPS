@@ -23,10 +23,19 @@ Usage: $0 gcov options abssrcdir topblddir topsrcdir
         coverage-todo.txt       a mangled cull from the report
         coverage-summary.txt    a readable version
 
-    Additionally, you can set environment variables:
-        export GCOV_SUMMARY_WIDTH=xx to widen the report
+    See gcov(1) for explanation of gcov options and gcc(1).
+
+    Additionally, you can set environment variables to adjust the
+    appearance of the summary report (doesn't change gcov handling):
+        export GCOV_SUMMARY_WIDTH=xx to widen the width of the report
         export GCOV_LOCAL_ONLY=true to limit to local functions
-    'see gcov(1) for explanation of gcov options and gcc(1)'
+        export GCOV_NO_SWIG=true to skip SWIG functions
+        export GCOV_NO_CPP=true to skip C++ system files
+        export GCOV_NO_PYTHON=true to skip Python system files
+        export GCOV_NO_EXEC=true to skip mention of 'not executed' things
+    Since that is alot to type,
+        export GCOV_SIMPLE=true sets all of those and a width of 34
+                           which might be clearer.
 
     Details on coverage are found in the individual .gcov files.
 
@@ -41,6 +50,17 @@ This script must be invoked from the Makefile with 5 arguments.
 [ -d "$top" ] || { echo no top source dir "'$top'"; exit 5; }
 echo "Generating coverage in $bld"
 echo " from sources found in $src"
+# global knob:
+[ "x$GCOV_SIMPLE" = xtrue ] && {
+    GCOV_SUMMARY_WIDTH=34
+    GCOV_LOCAL_ONLY=true
+    GCOV_NO_SWIG=true
+    GCOV_NO_CPP=true
+    GCOV_NO_PYTHON=true
+    GCOV_NO_EXEC=true
+    echo " Simplified, wide view options in effect"
+}
+
 echo \
 '============================================================================'
 
@@ -75,6 +95,7 @@ egrep '^(Func|File|Lines|No.*lines)' coverage-report.txt |\
         -e "/File/s+.c'+.c.gcov'+" \
         -e "s+$top+(top)+" \
         -e 's+/usr/include/c+(cpp)+' \
+        -e 's+/usr/include/+(usr)/+' \
         > coverage-todo.txt
 
 # it is hard to get the width correct automatically
@@ -83,13 +104,27 @@ egrep '^(Func|File|Lines|No.*lines)' coverage-report.txt |\
     mv coverage-todo.txt coverage-temp.txt
     egrep -v '(\(top\)|\(cpp\))' coverage-temp.txt > coverage-todo.txt
 }
+[ "x$GCOV_NO_SWIG" = xtrue ] && {
+    mv coverage-todo.txt coverage-temp.txt
+    egrep -v 'Function .(SWIG_|Swig)' coverage-temp.txt > coverage-todo.txt
+}
+[ "x$GCOV_NO_CPP" = xtrue ] && {
+    mv coverage-todo.txt coverage-temp.txt
+    grep -v "File '.cpp.++/" coverage-temp.txt > coverage-todo.txt
+}
+[ "x$GCOV_NO_PYTHON" = xtrue ] && {
+    mv coverage-todo.txt coverage-temp.txt
+    grep -v "File '.usr./python" coverage-temp.txt > coverage-todo.txt
+}
 
 # and generate a pretty, readable summary of that.
 grep -v '0.00%' coverage-todo.txt |\
     awk '{printf "%11s %-'$wid' %s %s %s %s\n",$1,$2,$3,$4,$5,$6}' \
         > coverage-summary.txt
-grep 'assuming.not.executed' coverage-report.txt |\
-    sed 's/^/  /' >> coverage-summary.txt
+[ "x$GCOV_NO_EXEC" = xtrue ] || {
+    grep 'assuming.not.executed' coverage-report.txt |\
+        sed 's/^/  /' >> coverage-summary.txt
+}
 
 [ -s coverage-summary.txt ] && cat coverage-summary.txt
 echo \

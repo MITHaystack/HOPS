@@ -9,9 +9,11 @@
  * ie. ... const char *string ... const char *message ...
  */
 
+#ifndef SWIG_NODEFINE
 #define MIN_SEVERITY    (-3)
 #define MAX_SEVERITY    ( 3)
 #define MAX_VERBOSITY   ( 6)
+#endif /* SWIG_NODEFINE */
 
 /* public replacement for msg() call */
 extern void wrap_msg(char *string, int level, ...);

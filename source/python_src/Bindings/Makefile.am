@@ -73,8 +73,8 @@ TestWrapMessage_LDADD = $(mslib) -lMHOMessage
 # SWIG machinery
 swigw = -Wno-missing-field-initializers
 pyinc = -I/usr/include/python$(PYTHON_VERSION)
-swig_exec = $(SWIG) -python -py3 -I$(srcdir)/include
-swig_interfaces = include/wrap_msg.i
+swig_exec = $(SWIG) -python -py3 -I$(srcdir)/include -module $(pymod)
+swig_interfaces = include/$(pymod).i include/wrap_msg.i
 swig_products = $(pymod).c $(pymod).py
 swig_testing = _$(pymod).so ensure_esso.sh
 if HAVE_SWIG
@@ -99,7 +99,7 @@ SWIGmhops_la_LIBADD = $(mslib) -lMHOMessage
 if HAVE_SWIG
 swig.log:
 	@rm -f swig.log
-	$(swig_exec) -o $(pymod).c $(srcdir)/include/wrap_msg.i 2>&1 |\
+	$(swig_exec) -o $(pymod).c $(srcdir)/include/$(pymod).i 2>&1 |\
 		tee -a swig.log
 $(pymod).c: $(swig_interfaces) swig.log
 $(pymod).py: $(swig_interfaces) swig.log
@@ -133,7 +133,7 @@ installcheck-local:
 
 # coverage processing
 if DO_COVER
-co = -fpm # 'make coverage co= ' to get help on coverep.sh
+co = -fmp # 'make coverage co= ' to get help on coverep.sh
 covclean = *.gcno */*.gcno *.gcda */*.gcda *.gcov */*.gcov *.log coverage-*.txt
 coverage-local:
 	@$(top_srcdir)/m4/coverep.sh \
