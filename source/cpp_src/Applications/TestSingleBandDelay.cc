@@ -91,26 +91,30 @@ int main(int argc, char** argv)
     std::size_t data_dims[CH_VIS_NDIM];
     ch_bl_data->GetDimensions(data_dims);
     auto freq_axis_ptr = &(std::get<CH_FREQ_AXIS>( *ch_bl_data ) );
-    double pass_low =  86242e6 - 86226e6;
-    double pass_high = 86242.5e6 - 86226e6;
-    for(std::size_t pp=0; pp<data_dims[CH_POLPROD_AXIS]; pp++)
-    {
-        for(std::size_t ch=0; ch<data_dims[CH_CHANNEL_AXIS]; ch++)
-        {
-            for(std::size_t t=0; t<data_dims[CH_TIME_AXIS]; t++)
-            {
-                for(std::size_t f=0; f<data_dims[CH_FREQ_AXIS]; f++)
-                {
-                    if( freq_axis_ptr->at(f) < pass_low || freq_axis_ptr->at(f) > pass_high )
-                    {
-                        //zero-out data outside of passband
-                        std::cout<<"zeroing out data at:" << freq_axis_ptr->at(f)<<std::endl;
-                        ch_bl_data->at(pp,ch,t,f) = std::complex<double>(0.0, 0.0);
-                    }
-                }
-            }
-        }
-    }
+    auto time_axis_ptr = &(std::get<CH_TIME_AXIS>( *ch_bl_data ) );
+
+
+
+    // double pass_low =  86242e6 - 86226e6;
+    // double pass_high = 86242.5e6 - 86226e6;
+    // for(std::size_t pp=0; pp<data_dims[CH_POLPROD_AXIS]; pp++)
+    // {
+    //     for(std::size_t ch=0; ch<data_dims[CH_CHANNEL_AXIS]; ch++)
+    //     {
+    //         for(std::size_t t=0; t<data_dims[CH_TIME_AXIS]; t++)
+    //         {
+    //             for(std::size_t f=0; f<data_dims[CH_FREQ_AXIS]; f++)
+    //             {
+    //                 if( freq_axis_ptr->at(f) < pass_low || freq_axis_ptr->at(f) > pass_high )
+    //                 {
+    //                     //zero-out data outside of passband
+    //                     std::cout<<"zeroing out data at:" << freq_axis_ptr->at(f)<<std::endl;
+    //                     ch_bl_data->at(pp,ch,t,f) = std::complex<double>(0.0, 0.0);
+    //                 }
+    //             }
+    //         }
+    //     }
+    // }
 
     //now that the data has been organized by channel, we can take
     //each chunk and (fourier) transform it as needed
@@ -137,23 +141,25 @@ int main(int argc, char** argv)
     }
 
     std::cout<<"done with the FFT's"<<std::endl;
-    std::vector< std::vector< std::complex<double> > > sbd;
+    std::vector< std::vector< std::vector< std::complex<double> > > > sbd;
     sbd.resize(data_dims[CH_POLPROD_AXIS]);
 
     //now collapse the time and channel axis (channels only over the first 8 chans --one sampler)
     for(std::size_t pp=0; pp<data_dims[CH_POLPROD_AXIS]; pp++)
     {
-        sbd[pp].resize(data_dims[CH_FREQ_AXIS], std::complex<double>(0.0, 0.0) );
-        for(std::size_t ch=0; ch<data_dims[CH_CHANNEL_AXIS]; ch++)
+        sbd[pp].resize(data_dims[CH_TIME_AXIS]);
+        for(std::size_t t=0; t<data_dims[CH_TIME_AXIS]; t++)
         {
-            for(std::size_t t=0; t<data_dims[CH_TIME_AXIS]; t++)
+            sbd[pp][t].resize(data_dims[CH_FREQ_AXIS], std::complex<double>(0.0, 0.0) );
+            for(std::size_t f=0; f<data_dims[CH_FREQ_AXIS]; f++)
             {
-                for(std::size_t f=0; f<data_dims[CH_FREQ_AXIS]; f++)
+                for(std::size_t ch=0; ch<data_dims[CH_CHANNEL_AXIS]/4; ch++)
                 {
-                    sbd[pp][f] += ch_bl_data->at(pp,ch,t,f);
+                    sbd[pp][t][f] += ch_bl_data->at(pp,ch,t,f);
                 }
             }
         }
+
     }
 
     //now we want determine the 'single band delay' axis
@@ -165,6 +171,16 @@ int main(int argc, char** argv)
         int tmp = f;
         sbd_axis(f) = (tmp - n02)*(1.0/( freq_axis_ptr->at(data_dims[CH_FREQ_AXIS]-1) - freq_axis_ptr->at(0) )  );
         std::cout<<"sbd_axis: "<<f<<" = "<<sbd_axis(f)<<std::endl;
+    }
+
+    MHOArrayWrapper< double, 1> dr_axis(data_dims[CH_TIME_AXIS]);
+    int dn = data_dims[CH_TIME_AXIS];
+    int dn02 = dn/2;
+    for(std::size_t t=0; t<data_dims[CH_TIME_AXIS]; t++)
+    {
+        int tmp = t;
+        dr_axis(t) = (tmp - dn02)*(1.0/( time_axis_ptr->at(data_dims[CH_TIME_AXIS]-1) - time_axis_ptr->at(0) )  );
+        std::cout<<"dr_axis: "<<t<<" = "<<dr_axis(t)<<std::endl;
     }
 
 
@@ -197,10 +213,9 @@ int main(int argc, char** argv)
     myStyle->cd();
     
 
-    TGraph* g_amp[ data_dims[CH_POLPROD_AXIS] ];
+    TGraph2D* g_amp[ data_dims[CH_POLPROD_AXIS] ];
+    TGraph* g_amp1[ data_dims[CH_POLPROD_AXIS] ];
     TCanvas* c[data_dims[CH_POLPROD_AXIS] ];
-
-
     for(std::size_t pp=0; pp<data_dims[CH_POLPROD_AXIS]; pp++)
     {
         std::stringstream ss; 
@@ -208,22 +223,39 @@ int main(int argc, char** argv)
         c[pp] = new TCanvas(ss.str().c_str(),ss.str().c_str(), 50, 50, 950, 850);
         c[pp]->SetFillColor(0);
         c[pp]->SetRightMargin(0.2);
-        g_amp[pp] = new TGraph();
+        g_amp[pp] = new TGraph2D();
+        g_amp1[pp] = new TGraph();
+        std::size_t count = 0;
         for(std::size_t f=0; f<data_dims[CH_FREQ_AXIS]; f++)
         {
-            g_amp[pp]->SetPoint(f, sbd_axis.at(f), std::abs( sbd[pp][f]) );
+            std::complex<double> sum(0,0);
+            for(std::size_t t=0; t<data_dims[CH_TIME_AXIS]; t++)
+            {
+                sum += sbd[pp][t][f];
+                g_amp[pp]->SetPoint(count, sbd_axis(f), dr_axis(t), std::abs( sbd[pp][t][f] ) );
+                count++;
+            }
+            g_amp1[pp]->SetPoint(f, sbd_axis(f), std::abs( sum ) );
         }
-    }
-
-
-    for(std::size_t pp=0; pp<data_dims[CH_POLPROD_AXIS]; pp++)
-    {
         c[pp]->cd();
-        g_amp[pp]->SetMarkerStyle(20);
-        g_amp[pp]->SetMarkerSize(1);
-        g_amp[pp]->Draw("APL");
+        g_amp1[pp]->SetMarkerStyle(20);
+        g_amp1[pp]->SetMarkerSize(1);
+        g_amp1[pp]->Draw("APL");
+        //g_amp[pp]->Draw("COLZ");
         c[pp]->Update();
     }
+
+
+
+
+    // for(std::size_t pp=0; pp<data_dims[CH_POLPROD_AXIS]; pp++)
+    // {
+    //     c[pp]->cd();
+    //     g_amp[pp]->SetMarkerStyle(20);
+    //     g_amp[pp]->SetMarkerSize(1);
+    //     g_amp[pp]->Draw("APL");
+    //     c[pp]->Update();
+    // }
     
     App->Run();
     
