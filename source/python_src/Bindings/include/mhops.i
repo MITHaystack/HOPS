@@ -27,7 +27,7 @@
 /* imports for common machinery for all modules */
 
 /* access SWIG machinery templates for numpy objects */
-/* %import "numpy.i" */
+%import "numpy.i"
 
 /* defines %pointer_{class,funtions,cast} */
 /* %include "cpointer.i" */
