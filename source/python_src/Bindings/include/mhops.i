@@ -22,15 +22,12 @@
 
 %{
 #define SWIG_FILE_WITH_INIT
-/* these may move to the numpy module */
-#define NPY_NO_DEPRECATED_API NPY_1_7_API_VERSION
-#include <numpy/npy_common.h>
-#include <numpy/arrayobject.h>
 %}
 
+/* imports for common machinery for all modules */
+
 /* access SWIG machinery templates for numpy objects */
-/* does include work here */
-%import "numpy.i"
+/* %import "numpy.i" */
 
 /* defines %pointer_{class,funtions,cast} */
 /* %include "cpointer.i" */
@@ -45,20 +42,19 @@
 %array_class(double, doubleArray);
 */
 
+/* include component modules */
+
 /* wrap_msg.h functionalty */
 %include "wrap_msg.i"
 
-
-/* other modules */
-
-/* generate numpy-related interface functions written in C/C++ */
-/* %include "mhoary.i" */
+/* numpy demonstration test code */
+%include "numpy_test.i"
 
 /* generate variant interface functions written in C/C++ */
-/* %include "mho_pyvar.h" */
+/* %include "mhops_pyvar.h" */
 
 /* finally inject any helper functions written in python */
-/* %pythoncode "mho_helpers.py" */
+/* %pythoncode "mhops_helpers.py" */
 
 /*
  * eof

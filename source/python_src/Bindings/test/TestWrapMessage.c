@@ -1,6 +1,7 @@
 /*
  * Test program for message wrapper
  * (c) Massachusetts Institute of Technology, 2020
+ * The contents of the package Copyright statement apply here.
  *
  * This program is for initial testing...
  */

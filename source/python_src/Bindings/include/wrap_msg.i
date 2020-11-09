@@ -27,6 +27,7 @@
 /* expose constants with same name name */
 %constant int MIN_SEVERITY = MIN_SEVERITY;
 %constant int MAX_SEVERITY = MAX_SEVERITY;
+%constant int MIN_VERBOSITY = MIN_VERBOSITY;
 %constant int MAX_VERBOSITY = MAX_VERBOSITY;
 
 #define SWIG_NODEFINE

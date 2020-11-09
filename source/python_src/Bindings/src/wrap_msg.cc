@@ -1,25 +1,24 @@
 //
 // Wrapper for hops msg() function to use Messenger
 // (c) Massachusetts Institute of Technology, 2020
+// The contents of the package Copyright statement apply here.
 //
 // this is for initial testing...
 //
 extern "C" {
 #include "wrap_msg.h"
-// a prefix on the message with context
+// a default prefix on the message with context
 static char wrap_progname[200] = "hops";
 } // extern "C"
 
 #include "MHOMessage.hh"
-
-// is this needed?
 using namespace hops;
 
 extern "C" void wrap_message(int verbosity, int severity, char *message)
 {
     MHOMessage::GetInstance().AddKey(wrap_progname);
     MHOMessage::GetInstance().SetMessageLevel(eDebug);
-    switch(6 - severity) {
+    switch(MAX_VERBOSITY - severity) {
     case eFatal:    // 0 fatal errors (most important)
         if (verbosity >= 0) { msg_fatal(wrap_progname, message << eom); }
         break;
@@ -45,19 +44,26 @@ extern "C" void wrap_message(int verbosity, int severity, char *message)
 
 extern "C" {
 
+#include <assert.h>
 #include <stdarg.h>
 
-// This is a reference "importance" level which the user may set.
-// It is reciprocal to the more common verbosity (-v -v -v ).
-//             -m                             msglevel    codelevel
-// The scale is 3 (only see most important)   verbosity 0  severity 6
-//          to -3 (see absolutely everything) verbosity 6  severity 0
+/*
+ * This is a reference "importance" level which the user may set.
+ * It is reciprocal to the more common verbosity (-v -v -v ).
+ *             -m                             msglevel    codelevel
+ * The scale is 3 (only see most important)   verbosity 0  severity 6
+ *          to -3 (see absolutely everything) verbosity 6  severity 0
+ * MIN/MAX SEVERITY were -3 and 3 in the original HOPS.
+ */
 static int wrap_msglev = 0;
 
 void set_wrap_msglevel(int msglev)
 {
-    if (msglev > 3) msglev = 3;
-    if (msglev < -3) msglev = -3;
+    /* asserts to catch inadvertent changes */
+    assert(MAX_SEVERITY ==  3);
+    assert(MIN_SEVERITY == -3);
+    if (msglev > MAX_SEVERITY) msglev = MAX_SEVERITY;
+    if (msglev < MIN_SEVERITY) msglev = MIN_SEVERITY;
     wrap_msglev = msglev;
 }
 int get_wrap_msglevel(void)
@@ -73,29 +79,27 @@ char *get_wrap_progname(void)
     return(wrap_progname);
 }
 
-// replacement for sub/mk4util::msg()
+/* replacement for sub/mk4util::msg() */
 void wrap_msg (char *fmt, int level, ...)
 {
     char buffer[256];
     int used = 0;
     va_list args;
 
-    // discard uninteresting messages
+    /* discard uninteresting messages */
     if (level < wrap_msglev) return;
 
-    // man stdarg(3) for understanding
+    /* man stdarg(3) for understanding */
     used = snprintf(buffer, sizeof(buffer), "%s: ", wrap_progname);
     va_start(args, level);
     (void)vsnprintf(buffer+used, sizeof(buffer)-used, fmt, args);
     va_end(args);
 
-    // hand-off to the MHOMessage class shifting to verbosity/severity
-    wrap_message(3-wrap_msglev, level + 3, buffer);
+    /* hand-off to the MHOMessage class shifting to verbosity/severity */
+    wrap_message(MAX_SEVERITY-wrap_msglev, level - MIN_SEVERITY, buffer);
 }
 
-
 } // extern "C"
-
 
 //
 // eof

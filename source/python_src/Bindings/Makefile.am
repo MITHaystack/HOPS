@@ -26,13 +26,14 @@ pkglib_LTLIBRARIES = libMHOwrap.la
 
 # local machinery
 pkginclude_HEADERS = include/wrap_msg.h
-noinst_HEADERS =
+noinst_HEADERS = include/numpy_test.h
 
 # bin_PROGRAMS
 pkgpython_PYTHON = $(pymod).py
 
 check_PROGRAMS = TestWrapMessage
-dist_check_SCRIPTS = ensure_esso.sh test/TestSWIG$(pymod).py
+dist_check_SCRIPTS = ensure_esso.sh test/TestSWIG$(pymod).py \
+	test/TestNumpy$(pymod).py
 
 TESTS_ENVIRONMENT = srcdir=$(srcdir)
 TESTS = $(check_PROGRAMS) $(dist_check_SCRIPTS)
@@ -74,7 +75,9 @@ TestWrapMessage_LDADD = $(mslib) -lMHOMessage
 swigw = -Wno-missing-field-initializers
 pyinc = -I/usr/include/python$(PYTHON_VERSION)
 swig_exec = $(SWIG) -python -py3 -I$(srcdir)/include -module $(pymod)
-swig_interfaces = include/$(pymod).i include/wrap_msg.i
+swig_interfaces = include/$(pymod).i
+swig_interfaces += include/wrap_msg.i
+swig_interfaces += include/numpy_test.i
 swig_products = $(pymod).c $(pymod).py
 swig_testing = _$(pymod).so ensure_esso.sh
 if HAVE_SWIG
@@ -84,7 +87,7 @@ swig_delete = swig.log $(swig_testing)
 endif # HAVE_SWIG
 
 # generates the module library $(ammod).la
-SWIGmhops_la_SOURCES = $(pymod).c src/wrap_msg.cc
+SWIGmhops_la_SOURCES = $(pymod).c src/wrap_msg.cc src/numpy_test.cc
 SWIGmhops_la_CPPFLAGS = $(coververbose) \
 	$(pyinc) $(msinc) $(AM_CPPFLAGS) $(swigw)
 SWIGmhops_la_CXXFLAGS = $(coververbose) \
@@ -134,13 +137,14 @@ installcheck-local:
 # coverage processing
 if DO_COVER
 co = -fmp # 'make coverage co= ' to get help on coverep.sh
-covclean = *.gcno */*.gcno *.gcda */*.gcda *.gcov */*.gcov *.log coverage-*.txt
+covclean = *.gcno */*.gcno *.gcda */*.gcda *.gcov */*.gcov *.log
+covclean += coverage-*.txt
 coverage-local:
 	@$(top_srcdir)/m4/coverep.sh \
 		$(GCOV) $(co) $(abs_srcdir) $(abs_builddir) $(top_srcdir)
 else # DO_COVER
 coverage-local:
-	@echo coverage is disabled, configure with --enable-gcov
+	@echo coverage is disabled, configure it with --enable-gcov
 endif # DO_COVER
 
 
