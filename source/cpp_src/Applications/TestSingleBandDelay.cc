@@ -98,18 +98,18 @@ int main(int argc, char** argv)
     channel_wrapper.SetExternalData( &( ch_bl_data->at(0,0,0,0) ) , channel_dims);
 
     //now we run a 2-d FFT on the time and freq axes over each channel's data
-    MHOMultidimensionalFastFourierTransform<2>* fft_engine = new MHOMultidimensionalFastFourierTransform<2>();
+    MHOMultidimensionalFastFourierTransform<2>* fft_engine_2d = new MHOMultidimensionalFastFourierTransform<2>();
     for(std::size_t pp=0; pp<data_dims[CH_POLPROD_AXIS]; pp++)
     {
         for(std::size_t ch=0; ch<data_dims[CH_CHANNEL_AXIS]; ch++)
         {
             //point the wrapper to the appropriate chunk of data
             channel_wrapper.SetExternalData( &( ch_bl_data->at(pp,ch,0,0) ), channel_dims);
-            fft_engine->SetForward();
-            fft_engine->SetInput(&channel_wrapper);
-            fft_engine->SetOutput(&channel_wrapper);
-            fft_engine->Initialize();
-            fft_engine->ExecuteOperation();
+            fft_engine_2d->SetForward();
+            fft_engine_2d->SetInput(&channel_wrapper);
+            fft_engine_2d->SetOutput(&channel_wrapper);
+            fft_engine_2d->Initialize();
+            fft_engine_2d->ExecuteOperation();
         }
     }
 
@@ -118,7 +118,7 @@ int main(int argc, char** argv)
     std::vector< std::vector< std::complex<double> > > sbd;
     sbd.resize(data_dims[CH_POLPROD_AXIS]);
 
-    //now collapse the time and channel axis
+    //now collapse the time and channel axis (channels only over the first 8 chans --one sampler)
     for(std::size_t pp=0; pp<data_dims[CH_POLPROD_AXIS]; pp++)
     {
         sbd[pp].resize(data_dims[CH_FREQ_AXIS], std::complex<double>(0.0, 0.0) );
@@ -134,6 +134,17 @@ int main(int argc, char** argv)
         }
     }
 
+    //now we want determine the 'single band delay' axis
+    auto freq_axis_ptr = &(std::get<CH_FREQ_AXIS>( *ch_bl_data ) );
+    MHOArrayWrapper< double, 1> sbd_axis(data_dims[CH_FREQ_AXIS]);
+    int n = data_dims[CH_FREQ_AXIS];
+    int n02 = n/2;
+    for(std::size_t f=0; f<data_dims[CH_FREQ_AXIS]; f++)
+    {
+        int tmp = f;
+        sbd_axis(f) = (tmp - n02)*(1.0/32e6);
+        std::cout<<"sbd_axis: "<<f<<" = "<<sbd_axis(f)<<std::endl;
+    }
 
 
     #ifdef USE_ROOT
@@ -179,7 +190,7 @@ int main(int argc, char** argv)
         g_amp[pp] = new TGraph();
         for(std::size_t f=0; f<data_dims[CH_FREQ_AXIS]; f++)
         {
-            g_amp[pp]->SetPoint(f, f, std::abs( sbd[pp][f]) );
+            g_amp[pp]->SetPoint(f, sbd_axis.at(f), std::abs( sbd[pp][f]) );
         }
     }
 
