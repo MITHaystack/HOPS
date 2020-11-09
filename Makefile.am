@@ -18,8 +18,15 @@ CLEANFILES = config.summary
 # this turns up with dist or distchheck
 CLEANFILES += mhops-@VERSION@.tar.gz
 
+# one probably wants to force a make for this.:wq
+.PHONY: log errors
+log:
+	-$(MAKE) all check install installcheck > $@ 2>&1
+errors: log
+	$(top_srcdir)/m4/nightlyerr.pl log | tee errors
+
 # these may be produced by autogen.sh
-CLEANFILES += configure.log make.log distcheck.log
+CLEANFILES += configure.log make.log distcheck.log log errors
 CLEANFILES += $(srcdir)/configure.log $(srcdir)/make.log
 CLEANFILES += $(srcdir)/distcheck.log $(srcdir)/mhops-@VERSION@.tar.gz
 
