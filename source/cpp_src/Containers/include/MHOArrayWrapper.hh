@@ -137,6 +137,24 @@ class MHOArrayWrapper
             const std::array<std::size_t, RANK> dim_sizes = {{static_cast<size_t>(dim)...}}; //convert the arguments to an array
             Resize(&(dim_sizes[0]));
         }
+        
+        //set pointer to externally managed array with associated dimensions
+        void SetExternalData(XValueType* ptr, const std::size_t* dim)
+        {
+            for(std::size_t i=0; i<RANK; i++)
+            {
+                fDimensions[i] = dim[i];
+            }
+            fTotalArraySize = MHOArrayMath::TotalArraySize<RANK>(fDimensions);
+
+            if(!fExternallyManaged) //not currently already externally managed
+            {
+                //effectively de-allocate anything we might have had before
+                std::vector< XValueType >().swap(fData);
+            }
+            fDataPtr = ptr;
+            fExternallyManaged = true;
+        }
 
         //in some cases we may need access
         //to the underlying raw array pointer

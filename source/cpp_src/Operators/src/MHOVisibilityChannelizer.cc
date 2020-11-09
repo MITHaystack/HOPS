@@ -14,8 +14,8 @@ class chan_label_freq_predicate
     virtual bool operator()(const MHOIntervalLabel* a, const MHOIntervalLabel* b)
     {
         double a_frq, b_frq;
-        a->Retrieve(std::string("ref_sky_freq"), a_frq);
-        b->Retrieve(std::string("ref_sky_freq"), b_frq);
+        a->Retrieve(std::string("sky_freq"), a_frq);
+        b->Retrieve(std::string("sky_freq"), b_frq);
         return a_frq < b_frq;
     }
 };
@@ -50,6 +50,7 @@ MHOVisibilityChannelizer::Initialize()
             auto* freq_axis = &(std::get<FREQ_AXIS>( *(this->fInput) ) );
             std::vector< MHOIntervalLabel* > channel_labels = freq_axis->GetIntervalsWithKey(std::string("channel"));
             std::size_t num_channels = channel_labels.size();
+            std::cout<<"the number of channels = "<<num_channels<<std::endl;
 
             //make sure the are sorted by sky frequency
             chan_label_freq_predicate sort_pred;
@@ -60,6 +61,9 @@ MHOVisibilityChannelizer::Initialize()
             for(auto iter = channel_labels.begin(); iter != channel_labels.end(); iter++)
             {
                 std::cout<<"inserting channel of size: "<< (*iter)->GetLength()<<std::endl;
+                double sf;
+                (*iter)->Retrieve(std::string("sky_freq"), sf);
+                std::cout<<"with sky freq = "<<sf<<std::endl; 
                 channel_sizes.insert( (*iter)->GetLength() );
             }
 

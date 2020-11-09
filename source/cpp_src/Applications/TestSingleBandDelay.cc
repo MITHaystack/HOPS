@@ -82,18 +82,40 @@ int main(int argc, char** argv)
 
     MHOVisibilityChannelizer channelizer;
     channelizer.SetInput(bl_data);
-    ch_baseline_data_type* ch_bl_data = new ch_baseline_data_type(); //no size specified yet
+    ch_baseline_data_type* ch_bl_data = new ch_baseline_data_type();
     channelizer.SetOutput(ch_bl_data);
-
     bool init = channelizer.Initialize();
     bool exe = channelizer.ExecuteOperation();
-
     if(exe){std::cout<<"channelizer done"<<std::endl;}
 
     //now that the data has been organized by channel, we can take
     //each chunk and (fourier) transform it as needed
+    //to do this we create a 'wrapper' to interface with each data chunk
+    std::size_t data_dims[CH_VIS_NDIM];
+    ch_bl_data->GetDimensions(data_dims);
+    std::size_t channel_dims[2] = {data_dims[CH_TIME_AXIS], data_dims[CH_FREQ_AXIS]};
+    MHOArrayWrapper< std::complex<double>, 2> channel_wrapper(channel_dims); 
+    channel_wrapper.SetExternalData( &( ch_bl_data->at(0,0,0,0) ) , channel_dims);
 
+    //now we run a 2-d FFT on the time and freq axes over each channel's data
+    MHOMultidimensionalFastFourierTransform<2>* fft_engine = new MHOMultidimensionalFastFourierTransform<2>();
+    for(std::size_t pp=0; pp<data_dims[CH_POLPROD_AXIS]; pp++)
+    {
+        for(std::size_t ch=0; ch<data_dims[CH_CHANNEL_AXIS]; ch++)
+        {
+            //point the wrapper to the appropriate chunk of data
+            channel_wrapper.SetExternalData( &( ch_bl_data->at(pp,ch,0,0) ), channel_dims);
+            fft_engine->SetForward();
+            fft_engine->SetInput(&channel_wrapper);
+            fft_engine->SetOutput(&channel_wrapper);
+            fft_engine->Initialize();
+            fft_engine->ExecuteOperation();
+        }
+    }
 
+    std::cout<<"done with the FFT's"<<std::endl;
+
+    
 
 
 
