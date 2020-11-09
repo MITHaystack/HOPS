@@ -88,11 +88,34 @@ int main(int argc, char** argv)
     bool exe = channelizer.ExecuteOperation();
     if(exe){std::cout<<"channelizer done"<<std::endl;}
 
+    std::size_t data_dims[CH_VIS_NDIM];
+    ch_bl_data->GetDimensions(data_dims);
+    auto freq_axis_ptr = &(std::get<CH_FREQ_AXIS>( *ch_bl_data ) );
+    double pass_low =  86242e6 - 86226e6;
+    double pass_high = 86242.5e6 - 86226e6;
+    for(std::size_t pp=0; pp<data_dims[CH_POLPROD_AXIS]; pp++)
+    {
+        for(std::size_t ch=0; ch<data_dims[CH_CHANNEL_AXIS]; ch++)
+        {
+            for(std::size_t t=0; t<data_dims[CH_TIME_AXIS]; t++)
+            {
+                for(std::size_t f=0; f<data_dims[CH_FREQ_AXIS]; f++)
+                {
+                    if( freq_axis_ptr->at(f) < pass_low || freq_axis_ptr->at(f) > pass_high )
+                    {
+                        //zero-out data outside of passband
+                        std::cout<<"zeroing out data at:" << freq_axis_ptr->at(f)<<std::endl;
+                        ch_bl_data->at(pp,ch,t,f) = std::complex<double>(0.0, 0.0);
+                    }
+                }
+            }
+        }
+    }
+
     //now that the data has been organized by channel, we can take
     //each chunk and (fourier) transform it as needed
     //to do this we create a 'wrapper' to interface with each data chunk
-    std::size_t data_dims[CH_VIS_NDIM];
-    ch_bl_data->GetDimensions(data_dims);
+
     std::size_t channel_dims[2] = {data_dims[CH_TIME_AXIS], data_dims[CH_FREQ_AXIS]};
     MHOArrayWrapper< std::complex<double>, 2> channel_wrapper(channel_dims); 
     channel_wrapper.SetExternalData( &( ch_bl_data->at(0,0,0,0) ) , channel_dims);
@@ -114,7 +137,6 @@ int main(int argc, char** argv)
     }
 
     std::cout<<"done with the FFT's"<<std::endl;
-
     std::vector< std::vector< std::complex<double> > > sbd;
     sbd.resize(data_dims[CH_POLPROD_AXIS]);
 
@@ -135,14 +157,13 @@ int main(int argc, char** argv)
     }
 
     //now we want determine the 'single band delay' axis
-    auto freq_axis_ptr = &(std::get<CH_FREQ_AXIS>( *ch_bl_data ) );
     MHOArrayWrapper< double, 1> sbd_axis(data_dims[CH_FREQ_AXIS]);
     int n = data_dims[CH_FREQ_AXIS];
     int n02 = n/2;
     for(std::size_t f=0; f<data_dims[CH_FREQ_AXIS]; f++)
     {
         int tmp = f;
-        sbd_axis(f) = (tmp - n02)*(1.0/32e6);
+        sbd_axis(f) = (tmp - n02)*(1.0/( freq_axis_ptr->at(data_dims[CH_FREQ_AXIS]-1) - freq_axis_ptr->at(0) )  );
         std::cout<<"sbd_axis: "<<f<<" = "<<sbd_axis(f)<<std::endl;
     }
 
