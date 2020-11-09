@@ -9,35 +9,146 @@
 # this library.  Additional src/*.c src/*.cc files supply "glue" to
 # simplify the interface.
 #
+# The SWIG machinery is written so that swig will be used to build the
+# intefaces (which then can be deleted by clean) if present.
+#
 # The include/numpy.i interface is obtained from github/numpy
 #
 
-pkginclude_HEADERS = include/wrap_msg.h
+# module name for python
+pymod = mhops
+# automake equivalent ('_' illegal as first character)
+ammod = SWIGmhops
 
-#pkglib_LTLIBRARIES = libMHOXXX.la
+# $(pymod).la: we use SWIG for '_' which is illegal as a first character
+pkgpyexec_LTLIBRARIES = SWIGmhops.la
+pkglib_LTLIBRARIES = libMHOwrap.la
+
+# local machinery
+pkginclude_HEADERS = include/wrap_msg.h
+noinst_HEADERS = include/numpy_test.h
+
+# bin_PROGRAMS
+pkgpython_PYTHON = $(pymod).py
 
 check_PROGRAMS = TestWrapMessage
+dist_check_SCRIPTS = ensure_esso.sh test/TestSWIG$(pymod).py \
+	test/TestNumpy$(pymod).py
 
 TESTS_ENVIRONMENT = srcdir=$(srcdir)
-TESTS = $(check_PROGRAMS)
+TESTS = $(check_PROGRAMS) $(dist_check_SCRIPTS)
 # XFAIL_TESTS =
 
-defines = -DHOPS_ENABLE_DEBUG_MSG=1
-AM_CXXFLAGS = -I. -I$(srcdir)/include -Wall -Wextra $(defines)
-AM_CPPFLAGS = -I. -I$(srcdir)/include -Wall -Wextra $(defines)
+# special compilation arrangements for coverage tests, see below
+if DO_COVER
+coververbose = -DCOVERVERB=1 -DSTATIC=extern
+covercompile = --coverage -fkeep-inline-functions -fkeep-static-functions
+coverldflags = -L. --coverage -DSTATIC=extern
+else # DO_COVER
+coververbose = -DCOVERVERB=0 -DSTATIC=static
+covercompile =
+coverldflags = -L. -DSTATIC=static
+endif # DO_COVER
 
-#libMHOXXX_la_SOURCES = src/MHOUXXX.cc
-#libMHOXXX_la_LDFLAGS = -avoid-version
+# convenience vars for readabilty
+msinc = -I$(srcdir)/../../cpp_src/Message/include
+mslib = -L../../cpp_src/Message/.libs
+defines = -DHOPS_ENABLE_DEBUG_MSG=1 $(covercompile) $(coververbose)
+preproc = -I. -I$(srcdir)/include -Wall -Wextra $(defines)
 
+AM_CXXFLAGS = $(preproc)
+AM_CPPFLAGS = $(preproc)
+AM_LDFLAGS = $(coverldflags)
+
+# as proof of principal we build the wrapper library independently
+# of the module library which we only need for python.
+libMHOwrap_la_SOURCES = src/wrap_msg.cc
+libMHOwrap_la_CXXFLAGS = $(msinc)
+libMHOwrap_la_LIBADD = $(mslib) -lMHOMessage
+
+# this could link to the library
 TestWrapMessage_SOURCES = src/wrap_msg.cc test/TestWrapMessage.c
-TestWrapMessage_CXXFLAGS = -I$(srcdir)/../../cpp_src/Message/include
-TestWrapMessage_LDADD = -L../../cpp_src/Message/.libs -lMHOMessage
+TestWrapMessage_CXXFLAGS = $(msinc)
+TestWrapMessage_LDADD = $(mslib) -lMHOMessage
 
-#pyhops.c: $(srcdir)/include/pyhops.i 
+# SWIG machinery
+swigw = -Wno-missing-field-initializers
+pyinc = -I/usr/include/python$(PYTHON_VERSION)
+swig_exec = $(SWIG) -python -py3 -I$(srcdir)/include -module $(pymod)
+swig_interfaces = include/$(pymod).i
+swig_interfaces += include/wrap_msg.i
+swig_interfaces += include/numpy_test.i
+swig_products = $(pymod).c $(pymod).py
+swig_testing = _$(pymod).so ensure_esso.sh
+if HAVE_SWIG
+swig_delete = swig.log $(swig_products) $(swig_testing)
+else # HAVE_SWIG
+swig_delete = swig.log $(swig_testing)
+endif # HAVE_SWIG
+
+# generates the module library $(ammod).la
+SWIGmhops_la_SOURCES = $(pymod).c src/wrap_msg.cc src/numpy_test.cc
+SWIGmhops_la_CPPFLAGS = $(coververbose) \
+	$(pyinc) $(msinc) $(AM_CPPFLAGS) $(swigw)
+SWIGmhops_la_CXXFLAGS = $(coververbose) \
+	$(pyinc) $(msinc) $(AM_CXXFLAGS) $(swigw)
+SWIGmhops_la_LDFLAGS = -avoid-version -module $(coverldflags)
+SWIGmhops_la_LIBADD = $(mslib) -lMHOMessage
+
+# generate the SWIG C interface and Python bindings
+# one $(swig_exec) per interface specification produces .c and .py
+# since the $(swig_products) built will be captured in the distribution
+# we create an empty logfile to preserve the dependencies
+if HAVE_SWIG
+swig.log:
+	@rm -f swig.log
+	$(swig_exec) -o $(pymod).c $(srcdir)/include/$(pymod).i 2>&1 |\
+		tee -a swig.log
+$(pymod).c: $(swig_interfaces) swig.log
+$(pymod).py: $(swig_interfaces) swig.log
+else # HAVE_SWIG
+swig.log:
+	touch swig.log
+endif # HAVE_SWIG
+
+# this makes _$(pymod).so exist locally (only for testing)
+ensure_esso.sh: _$(pymod).so
+	@echo '[ ! -s swig.log ]' >> $@ ; chmod +x $@
+_$(pymod).so: $(pkgpyexec_LTLIBRARIES)
+	@[ -f _$(pymod).so -a -f .libs/SWIG$(pymod).so ] || \
+		ln -s .libs/SWIG$(pymod).so _$(pymod).so
+
+# move the installed shared object to the name Python wants
+#	-rm -f $(pkgpyexecdir)/_$(pymod).so
+#	ln -fs SWIG$(pymod).so $(pkgpyexecdir)/_$(pymod).so
+ouch = $(DESTDIR)/$(pkgpyexecdir)
+install-exec-hook:
+	[ -w $(ouch) ] || chmod +w $(ouch)
+	rm -f $(ouch)/$(ammod).a $(ouch)/$(ammod).la
+	mv $(ouch)/$(ammod).so $(ouch)/_$(pymod).so
+uninstall-hook:
+	[ -w $(ouch) ] || chmod +w $(ouch)
+	rm -f $(ouch)/_$(pymod).so
+
+# verify the installation
+installcheck-local:
+	@echo nothing yet.
+
+# coverage processing
+if DO_COVER
+co = -fmp # 'make coverage co= ' to get help on coverep.sh
+covclean = *.gcno */*.gcno *.gcda */*.gcda *.gcov */*.gcov *.log
+covclean += coverage-*.txt
+coverage-local:
+	@$(top_srcdir)/m4/coverep.sh \
+		$(GCOV) $(co) $(abs_srcdir) $(abs_builddir) $(top_srcdir)
+else # DO_COVER
+coverage-local:
+	@echo coverage is disabled, configure it with --enable-gcov
+endif # DO_COVER
 
 
-
-# one-time import rule
+# one-time import rule to import numpy.i w/README&LICENSE
 githuburl = https://raw.githubusercontent.com
 numpy_master_swigs = \
 	$(srcdir)/include/numpy.i \
@@ -57,9 +168,10 @@ $(srcdir)/include/numpy-LICENSE.txt:
 clean-local:
 	-rm -rf __pycache__
 
-CLEANFILES = 
+# cleanup and distribution
+CLEANFILES = $(covclean) $(swig_delete)
 
-EXTRA_DIST = $(numpy_master_swigs)
+EXTRA_DIST = $(numpy_master_swigs) $(swig_interfaces)
 
 #
 # eof

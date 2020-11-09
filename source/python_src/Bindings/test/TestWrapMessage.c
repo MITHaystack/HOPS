@@ -1,10 +1,12 @@
 /*
  * Test program for message wrapper
  * (c) Massachusetts Institute of Technology, 2020
+ * The contents of the package Copyright statement apply here.
  *
  * This program is for initial testing...
  */
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
 #include "wrap_msg.h"
@@ -17,7 +19,7 @@ static struct myopts {
     int     skip;       /* automated test */
     int     nada;
 } opt = {
-    .verb = 0,
+    .verb = COVERVERB,
     .name = "TestWrapMessage",
     .skip = 0,
     .nada = 0
@@ -26,7 +28,8 @@ static int cmdhelp = 0;
 static int option_checks(void)
 {
     /* a place to check for pilot errors */
-    if (opt.verb) printf("verbosity is %d, name is %s\n", opt.verb, opt.name);
+    if (opt.verb)
+        printf("verbosity is %d, logging name is %s\n", opt.verb, opt.name);
     return(0);
 }
 static int usage(char *name)
@@ -70,14 +73,35 @@ static int cmdline(int *argc, char ***argv)
     return(x);
 }
 
+/* getting to 100% coverage can be pretty silly */
+int anal_compulsive(char *me)
+{
+    int er = 0;
+    char cmd[250];
+    printf("#[%d] Running anal_compulsive() tests...\n", er);
+    (void)snprintf(cmd, sizeof(cmd), "%s --help", me);
+    er += system(cmd);
+    printf("#[%d] anal-compulsive option test:\n#  %s\n", er, cmd);
+    (void)snprintf(cmd, sizeof(cmd), "%s --version", me);
+    er += system(cmd);
+    printf("#[%d] anal-compulsive option test:\n#  %s\n", er, cmd);
+    (void)snprintf(cmd, sizeof(cmd), "%s -v -n anal -s -x", me);
+    printf("#[%d] anal-compulsive option test:\n#  %s\n", er, cmd);
+    er += system(cmd) ? 0 : 1;
+    printf("#[%d] Done\n", er);
+    fflush(stdout);
+    return(er);
+}
+
 /* allow the user to try it */
 int commandlinetest(void)
 {
     char *nm;
     int ml, err = 0;
+    if (opt.verb) printf("set_wrap_progname to  %s\n", opt.name);
     set_wrap_progname(opt.name);
     nm = get_wrap_progname();
-    if (opt.verb) printf("set progname to %s\n", nm);
+    if (opt.verb) printf("get_wrap_progname got %s\n", nm);
     err += strcmp(nm, opt.name);
 
     set_wrap_msglevel(3 - opt.verb);
@@ -122,15 +146,22 @@ int main(int argc, char **argv)
 {
     int err = 0;
     int ml;
+    char *me = argv[0];
     if (cmdline(&argc, &argv)) return(!cmdhelp);
 
+    if (COVERVERB) err += anal_compulsive(me);
+    printf("#[%d] After anal_compulsive()\n", err);
+
+    /* a loop over tests could be put here if there are many */
     err += commandlinetest();
+    printf("#[%d] After commandlinetest()\n", err);
     if (opt.skip == 0) {
         for (opt.verb = 0; opt.verb < 6; opt.verb++)
             for (ml = -4; ml < 4; ml++) 
                 err += msgleveltest(ml);
     }
 
+    printf("#[%d] at main return\n", err);
     return(err);
 }
 
