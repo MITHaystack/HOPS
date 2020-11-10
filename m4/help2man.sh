@@ -37,9 +37,9 @@ EOF
 $verb && echo fail is "'$fail'"
 
 # work out section from manpage name provided
-sec=`expr "$man" : '.*\.\([0-9].*\)'`
+sec=`expr "$man" : '.*\.\([0-9].*\)$'`
 [ -z "$sec" ] && sec=1
-tool=`expr "$man" : '\([^.]*\)\..*'`
+tool=`expr "$man" : '\(.*\)\.'$sec'$'`
 
 CMD=DUMMY
 des='dunno'
