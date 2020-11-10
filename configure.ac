@@ -83,12 +83,13 @@ AC_PROG_MAKE_SET
 
 # less trivial checks for programs
 PKG_PROG_PKG_CONFIG
-AC_PATH_PROG([SWIG], [swig], [swig-not-found])
-AC_PATH_PROG([PDFLATEX], [pdflatex], [pdflatex-not-found])
-AC_PATH_PROG([DOXYGEN], [doxygen], [doxygen-not-found])
-AC_PATH_PROG([SPHINX], [sphinx], [sphinx-not-found])
-AC_PATH_PROG([PERL], [perl], [perl-not-found])
-AC_PATH_PROG([GCOV], [gcov], [gcov-not-found])
+AC_PATH_PROG(SWIG, swig, swig-not-found)
+AC_PATH_PROG(PDFLATEX, pdflatex, pdflatex-not-found)
+AC_PATH_PROG(DOXYGEN, doxygen, doxygen-not-found)
+AC_PATH_PROG(SPHINX, sphinx, sphinx-not-found)
+AC_PATH_PROG(PERL, perl, perl-not-found)
+AC_PATH_PROG(GCOV, gcov, gcov-not-found)
+AC_PATH_PROG(HELP2MAN, help2man, help2man-not found)
 
 # simple checks for specific/enable/disable cases
 AM_CONDITIONAL(HAVE_SWIG, [test -x $SWIG])
@@ -96,6 +97,7 @@ AM_CONDITIONAL(WANT_DOCS, [test x$enable_docs = xyes -a -x $PDFLATEX])
 AM_CONDITIONAL(WANT_DOXYGEN, [test x$enable_docs = xyes -a -x $DOXYGEN])
 AM_CONDITIONAL(WANT_SPHINX, [test x$enable_docs = xyes -a -x $SPHINX])
 AM_CONDITIONAL(DO_COVER, [test x$enable_gcov = xyes -a -x $GCOV])
+AM_CONDITIONAL(DO_MANPAGES, [test -x$HELP2MAN])
 
 # getting our head around Python, see package section below
 AC_PATH_PROG([PYTHON2], [python2], [python2-not-found])
