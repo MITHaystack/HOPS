@@ -11,7 +11,7 @@ opt=$2
 src=$3
 bld=$4
 top=$5
-[ $# -ne 5 ] && cat <<....EOF
+[ $# -ne 5 ] && cat <<EOF
 
 Usage: $0 gcov options abssrcdir topblddir topsrcdir
 
@@ -41,7 +41,7 @@ Usage: $0 gcov options abssrcdir topblddir topsrcdir
 
 This script must be invoked from the Makefile with 5 arguments.
 
-....EOF
+EOF
 [ $# -ne 5 ] && exit 0
 
 [ -x "$cov" ] || { echo no coverage executable "'$cov'"; exit 2; }

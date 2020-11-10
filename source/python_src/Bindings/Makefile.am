@@ -35,6 +35,9 @@ check_PROGRAMS = TestWrapMessage
 dist_check_SCRIPTS = ensure_esso.sh test/TestSWIG$(pymod).py \
 	test/TestNumpy$(pymod).py
 
+# man pages
+dist_man_MANS = TestWrapMessage.1 TestNumpymhops.py.1
+
 TESTS_ENVIRONMENT = srcdir=$(srcdir)
 TESTS = $(check_PROGRAMS) $(dist_check_SCRIPTS)
 # XFAIL_TESTS =
@@ -130,9 +133,24 @@ uninstall-hook:
 	[ -w $(ouch) ] || chmod +w $(ouch)
 	rm -f $(ouch)/_$(pymod).so
 
+# man page example -- note that in this case TestWrapMessage
+# is a check function so it needs to be built prior to an install
+# which is why it is listed as a dependency here.
+if DO_MANPAGES
+TestWrapMessage.1: $(srcdir)/test/TestWrapMessage.c TestWrapMessage
+	@$(top_srcdir)/m4/help2man.sh $(HELP2MAN) $@ ./TestWrapMessage $<
+TestNumpymhops.py.1: $(srcdir)/test/TestNumpymhops.py
+	@$(top_srcdir)/m4/help2man.sh $(HELP2MAN) $@ $< $<
+else # DO_MANPAGES
+TestWrapMessage.1: $(srcdir)/doc/TestWrapMessage.1
+	-[ -f $< ] && cp -p $< $@
+TestNumpymhops.py.1: $(srcdir)/doc/TestNumpymhops.py.1
+	-[ -f $< ] && cp -p $< $@
+endif # DO_MANPAGES
+
 # verify the installation
 installcheck-local:
-	@echo nothing yet.
+	[ -f $(man1dir)/TestWrapMessage.1 ]
 
 # coverage processing
 if DO_COVER
@@ -169,7 +187,7 @@ clean-local:
 	-rm -rf __pycache__
 
 # cleanup and distribution
-CLEANFILES = $(covclean) $(swig_delete)
+CLEANFILES = $(covclean) $(swig_delete) $(dist_man_MANS)
 
 EXTRA_DIST = $(numpy_master_swigs) $(swig_interfaces)
 
