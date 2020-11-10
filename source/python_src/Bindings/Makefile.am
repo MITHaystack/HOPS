@@ -133,9 +133,11 @@ uninstall-hook:
 	[ -w $(ouch) ] || chmod +w $(ouch)
 	rm -f $(ouch)/_$(pymod).so
 
-# man page example
+# man page example -- note that in this case TestWrapMessage
+# is a check function so it needs to be built prior to an install
+# which is why it is listed as a dependency here.
 if DO_MANPAGES
-TestWrapMessage.1: $(srcdir)/test/TestWrapMessage.c
+TestWrapMessage.1: $(srcdir)/test/TestWrapMessage.c TestWrapMessage
 	@$(top_srcdir)/m4/help2man.sh $(HELP2MAN) $@ ./TestWrapMessage $<
 else # DO_MANPAGES
 TestWrapMessage.1: $(srcdir)/doc/TestWrapMessage.1
