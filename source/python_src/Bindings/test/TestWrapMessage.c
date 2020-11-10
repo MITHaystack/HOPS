@@ -32,6 +32,11 @@ static int option_checks(void)
         printf("verbosity is %d, logging name is %s\n", opt.verb, opt.name);
     return(0);
 }
+static int description(void)
+{
+    printf("This is a test program for Message wrappers\n");
+    return(cmdhelp = 1);
+}
 static int usage(char *name)
 {
     printf("Usage: %s [options]\n", name);
@@ -45,10 +50,13 @@ static int usage(char *name)
 }
 static int version(char **argv)
 {
+    char version[] = __FILE__ "\t[" __DATE__ " " __TIME__ "]\n", *sp;
     if (!argv[1]) return(0);
-    if (!strcmp(argv[1], "--help"))    return(usage(argv[0]));
-    if ( strcmp(argv[1], "--version")) return(0);
-    printf(__FILE__ "\t[" __DATE__ " " __TIME__ "]\n");
+    if (!strcmp(argv[1], "--description")) return(description());
+    if (!strcmp(argv[1], "--help"))        return(usage(argv[0]));
+    if ( strcmp(argv[1], "--version"))     return(0);
+    sp = strchr(version, '.'); sp[0] = ' '; sp[1] = ' ';    /* nuke .c */
+    printf(version);
     return(cmdhelp = 1);
 }
 static int options(int argc, char **argv)
