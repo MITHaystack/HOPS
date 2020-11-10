@@ -44,7 +44,7 @@ static int usage(char *name)
         "  -v               verbose, may be repeated for more\n"
         "  -n <string>      name of the test program\n"
         "  -s               skip the automated test\n"
-        "\n"
+        "See the code for details\n"
     );
     return(cmdhelp = 1);
 }

@@ -4,6 +4,9 @@
 # it is invoked by automake with
 #   $(top_srcdir)/m4/help2man.sh $(HELP2MAN) 1 $@ ./program $<
 #
+# You can add verbose to the environment to get some commentary.
+#
+[ -n "$verbose" ] && verb=true || verb=false
 h2m=$1
 man=$2
 exe=$3
@@ -31,6 +34,7 @@ EOF
 [ -n "$man" ] || { echo no manpage "'$man'" to create ; exit 0; }
 [ -x "$exe" ] || { echo no executable "'$exe'" to run ; fail=true; }
 [ -f "$dep" ] || { echo no dependency "'$dep'" to examine ; fail=true; }
+$verb && echo fail is "'$fail'"
 
 # work out section from manpage name provided
 sec=`expr "$man" : '.*\.\([0-9].*\)'`
@@ -79,7 +83,9 @@ des=`$exe --description`
 
 # this should cover everything, with the proviso that an executable
 # always needs to be exist in order to generate the basic help page.
-$h2m $exe -I $inc -n "$des" -s "$sec" -S "$src" -N -l > $man
+$verb && echo \
+$h2m \"$exe\" -I \"$inc\" -n \"$des\" -s \"$sec\" -S \"$src\" -N -l \> $man
+$h2m  "$exe"  -I  "$inc"  -n  "$des"  -s  "$sec"  -S  "$src"  -N -l  > $man
 
 #
 # eof
