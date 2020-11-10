@@ -36,7 +36,7 @@ dist_check_SCRIPTS = ensure_esso.sh test/TestSWIG$(pymod).py \
 	test/TestNumpy$(pymod).py
 
 # man pages
-dist_man_MANS = TestWrapMessage.1
+dist_man_MANS = TestWrapMessage.1 TestNumpymhops.py.1
 
 TESTS_ENVIRONMENT = srcdir=$(srcdir)
 TESTS = $(check_PROGRAMS) $(dist_check_SCRIPTS)
@@ -139,8 +139,12 @@ uninstall-hook:
 if DO_MANPAGES
 TestWrapMessage.1: $(srcdir)/test/TestWrapMessage.c TestWrapMessage
 	@$(top_srcdir)/m4/help2man.sh $(HELP2MAN) $@ ./TestWrapMessage $<
+TestNumpymhops.py.1: $(srcdir)/test/TestNumpymhops.py
+	@$(top_srcdir)/m4/help2man.sh $(HELP2MAN) $@ $< $<
 else # DO_MANPAGES
 TestWrapMessage.1: $(srcdir)/doc/TestWrapMessage.1
+	-[ -f $< ] && cp -p $< $@
+TestNumpymhops.py.1: $(srcdir)/doc/TestNumpymhops.py.1
 	-[ -f $< ] && cp -p $< $@
 endif # DO_MANPAGES
 
