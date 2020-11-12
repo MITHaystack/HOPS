@@ -10,6 +10,8 @@
 
 #include "npary_pyvar.h"
 
+/* nothing here yet */
+
 /*
  * eof
  */

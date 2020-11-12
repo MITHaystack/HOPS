@@ -15,6 +15,7 @@
 /* put in some markers for the novice */
 %pythonbegin %{
 # start-up Python material should it be needed
+import numpy as np
 %}
 
 /* similar markers in the SWIG .c code */
