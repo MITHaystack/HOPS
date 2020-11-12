@@ -154,7 +154,7 @@ AM_CONDITIONAL(HAVE_PERL, [test x$perl != xperl-not-found -a -x "$PERL"])
 # PYTHON
 # checking for the module allows us to build C extensions
 AC_ARG_VAR(PYTHON_EXECUTABLE, [force us to use some python executable])
-PKG_CHECK_MODULES(PYTHON, python, [has_python=true], has_python=false])
+PKG_CHECK_MODULES(PYTHON, python3, [has_python=true], [has_python=false])
 if [$has_python] ; then
     AC_DEFINE([HAVE_PYTHON], 1, [Define to 1 when PYTHON is available])
     AC_MHO_NOTICE([PYTHON was found via check modules])
