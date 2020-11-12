@@ -26,7 +26,7 @@ pkglib_LTLIBRARIES = libMHOwrap.la
 
 # local machinery
 pkginclude_HEADERS = include/wrap_msg.h
-noinst_HEADERS = include/numpy_test.h
+noinst_HEADERS = include/npary_demo.h
 
 # bin_PROGRAMS
 pkgpython_PYTHON = $(pymod).py
@@ -69,10 +69,15 @@ libMHOwrap_la_SOURCES = src/wrap_msg.cc
 libMHOwrap_la_CXXFLAGS = $(msinc)
 libMHOwrap_la_LIBADD = $(mslib) -lMHOMessage
 
-# this could link to the library
+# this is a direct test of the library source
 TestWrapMessage_SOURCES = src/wrap_msg.cc test/TestWrapMessage.c
 TestWrapMessage_CXXFLAGS = $(msinc)
 TestWrapMessage_LDADD = $(mslib) -lMHOMessage
+# this tests the same code via the library
+#TestWrapMessage_SOURCES = test/TestWrapMessage.c
+#TestWrapMessage_CXXFLAGS = $(msinc)
+#TestWrapMessage_LDADD = $(mslib) -lMHOMessage -L.libs -lMHOwrap
+
 
 # SWIG machinery
 swigw = -Wno-missing-field-initializers
@@ -80,7 +85,8 @@ pyinc = -I/usr/include/python$(PYTHON_VERSION)
 swig_exec = $(SWIG) -python -py3 -I$(srcdir)/include -module $(pymod)
 swig_interfaces = include/$(pymod).i
 swig_interfaces += include/wrap_msg.i
-swig_interfaces += include/numpy_test.i
+swig_interfaces += include/npary_demo.i
+swig_interfaces += include/npary_helpers.py
 swig_products = $(pymod).c $(pymod).py
 swig_testing = _$(pymod).so ensure_esso.sh
 if HAVE_SWIG
@@ -90,7 +96,7 @@ swig_delete = swig.log $(swig_testing)
 endif # HAVE_SWIG
 
 # generates the module library $(ammod).la
-SWIGmhops_la_SOURCES = $(pymod).c src/wrap_msg.cc src/numpy_test.cc
+SWIGmhops_la_SOURCES = $(pymod).c src/wrap_msg.cc src/npary_demo.cc
 SWIGmhops_la_CPPFLAGS = $(coververbose) \
 	$(pyinc) $(msinc) $(AM_CPPFLAGS) $(swigw)
 SWIGmhops_la_CXXFLAGS = $(coververbose) \
@@ -139,7 +145,7 @@ uninstall-hook:
 if DO_MANPAGES
 TestWrapMessage.1: $(srcdir)/test/TestWrapMessage.c TestWrapMessage
 	@$(top_srcdir)/m4/help2man.sh $(HELP2MAN) $@ ./TestWrapMessage $<
-TestNumpymhops.py.1: $(srcdir)/test/TestNumpymhops.py
+TestNumpymhops.py.1: $(srcdir)/test/TestNumpymhops.py _$(pymod).so
 	@$(top_srcdir)/m4/help2man.sh $(HELP2MAN) $@ $< $<
 else # DO_MANPAGES
 TestWrapMessage.1: $(srcdir)/doc/TestWrapMessage.1
@@ -158,7 +164,7 @@ co = -fmp # 'make coverage co= ' to get help on coverep.sh
 covclean = *.gcno */*.gcno *.gcda */*.gcda *.gcov */*.gcov *.log
 covclean += coverage-*.txt
 coverage-local:
-	@$(top_srcdir)/m4/coverep.sh \
+	@GCOV_SIMPLE=$(GCOV_SIMPLE) $(top_srcdir)/m4/coverep.sh \
 		$(GCOV) $(co) $(abs_srcdir) $(abs_builddir) $(top_srcdir)
 else # DO_COVER
 coverage-local:

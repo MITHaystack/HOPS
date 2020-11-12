@@ -12,6 +12,8 @@
  * FIXME: wrap the extra functionality (Keys) of MHOMessage.
  * FIXME: provide a more Pythonic interface to message.
  */
+#ifndef wrap_msg_h
+#define wrap_msg_h
 
 #ifndef SWIG_NODEFINE
 #define MIN_SEVERITY    (-3)
@@ -34,6 +36,7 @@ extern int get_wrap_msglevel(void);
 extern void set_wrap_progname(const char *name);
 extern char *get_wrap_progname(void);
 
+#endif /* wrap_msg_h */
 /*
  * eof
  */

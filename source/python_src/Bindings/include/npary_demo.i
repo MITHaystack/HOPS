@@ -7,7 +7,7 @@
  */
 
 %{
-#include "numpy_test.h"
+#include "npary_demo.h"
 #define NPY_NO_DEPRECATED_API NPY_1_7_API_VERSION
 #include <numpy/arrayobject.h>
 %}
@@ -56,6 +56,12 @@ void get_np_phases(npy_cdouble *vis, int nvis, npy_double *phs, int nphs);
 %clear npy_double *amp, int namp;
 %clear npy_double *phs, int nphs;
 /* the clears have removed those application rules */
+
+/* generate variant interface functions written in C/C++ */
+%include "npary_pyvar.h"
+
+/* finally inject any helper functions written in python */
+%pythoncode "npary_helpers.py"
 
 /*
  * eof

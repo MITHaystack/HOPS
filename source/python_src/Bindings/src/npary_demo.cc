@@ -1,5 +1,5 @@
 //
-// Wrapper for hops msg() function to use Messenger
+// Demo code to exercise some SWIG interfaces
 // (c) Massachusetts Institute of Technology, 2020
 // The contents of the package Copyright statement apply here.
 //
@@ -11,9 +11,12 @@
 //
 
 extern "C" {
-#include "numpy_test.h"
+#include "npary_demo.h"
 #include <complex.h>
 }
+
+// This is an artificial example, but these are "library" functions
+// that can be directly wrapped by SWIG with only minor effort.
 
 extern "C" void get_np_amps(
     npy_cdouble *vis, int nvis, npy_double *amp, int namp)

@@ -48,13 +48,7 @@
 %include "wrap_msg.i"
 
 /* numpy demonstration test code */
-%include "numpy_test.i"
-
-/* generate variant interface functions written in C/C++ */
-/* %include "mhops_pyvar.h" */
-
-/* finally inject any helper functions written in python */
-/* %pythoncode "mhops_helpers.py" */
+%include "npary_demo.i"
 
 /*
  * eof
