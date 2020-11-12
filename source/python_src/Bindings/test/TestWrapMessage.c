@@ -93,6 +93,9 @@ int anal_compulsive(char *me)
     (void)snprintf(cmd, sizeof(cmd), "%s --version", me);
     er += system(cmd);
     printf("#[%d] anal-compulsive option test:\n#  %s\n", er, cmd);
+    (void)snprintf(cmd, sizeof(cmd), "%s --description", me);
+    er += system(cmd);
+    printf("#[%d] anal-compulsive option test:\n#  %s\n", er, cmd);
     (void)snprintf(cmd, sizeof(cmd), "%s -v -n anal -s -x", me);
     printf("#[%d] anal-compulsive option test:\n#  %s\n", er, cmd);
     er += system(cmd) ? 0 : 1;

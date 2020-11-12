@@ -21,7 +21,7 @@ def var_get_np_amps(vis):
         amps = np.ones(vis.shape[0])
     except:
         raise Exception('argument is not a numpy array')
-    if type(vis[0]) != numpy.complex128:
+    if type(vis[0]) != np.complex128:
         raise Exception('argument is not complex numpy array')
     get_np_amps(vis, amps)
     return amps
@@ -34,7 +34,7 @@ def var_get_np_phases(vis):
         phases = np.ones(vis.shape[0])
     except:
         raise Exception('argument is not a numpy array')
-    if type(vis[0]) != numpy.complex128:
+    if type(vis[0]) != np.complex128:
         raise Exception('argument is not complex numpy array')
     get_np_phases(vis, phases)
     return phases

@@ -7,6 +7,7 @@ Test script to exercise the SWIG numpy python interface
 #
 import argparse
 import sys
+import numpy as np
 
 # add the current (build) directory to the PYTHONPATH to find the wrappers
 sys.path.append('.')
@@ -40,12 +41,13 @@ def parseOptions():
 if __name__ == '__main__':
   error = 0
   o = parseOptions()
-  if o.verb: print('Hello World')
-# print('%d < verbosity < %d' % (mhops.MIN_VERBOSITY, mhops.MAX_VERBOSITY))
-# print('%d < severity < %d' % (mhops.MIN_SEVERITY, mhops.MAX_VERBOSITY))
-# print('default wrap_progname %s' % mhops.get_wrap_progname())
-# print('default wrap_msglevel %d' % mhops.get_wrap_msglevel())
-# mhops.wrap_message(1,2,'hello cruel world')
+  if o.verb: print('Hello World: %s' % np.version.full_version)
+  vis = np.ones(17,dtype=np.complex128)
+  print(vis)
+  amp = mhops.var_get_np_amps(vis)
+  print(amp)
+  phs = mhops.var_get_np_phases(vis)
+  print(phs)
   sys.exit(error)
 #
 # eof

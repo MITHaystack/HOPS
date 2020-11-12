@@ -40,7 +40,7 @@ dist_man_MANS = TestWrapMessage.1 TestNumpymhops.py.1
 
 TESTS_ENVIRONMENT = srcdir=$(srcdir)
 TESTS = $(check_PROGRAMS) $(dist_check_SCRIPTS)
-# XFAIL_TESTS =
+XFAIL_TESTS = test/TestNumpy$(pymod).py
 
 # special compilation arrangements for coverage tests, see below
 if DO_COVER
@@ -70,13 +70,13 @@ libMHOwrap_la_CXXFLAGS = $(msinc)
 libMHOwrap_la_LIBADD = $(mslib) -lMHOMessage
 
 # this is a direct test of the library source
-TestWrapMessage_SOURCES = src/wrap_msg.cc test/TestWrapMessage.c
-TestWrapMessage_CXXFLAGS = $(msinc)
-TestWrapMessage_LDADD = $(mslib) -lMHOMessage
-# this tests the same code via the library
-#TestWrapMessage_SOURCES = test/TestWrapMessage.c
+#TestWrapMessage_SOURCES = src/wrap_msg.cc test/TestWrapMessage.c
 #TestWrapMessage_CXXFLAGS = $(msinc)
-#TestWrapMessage_LDADD = $(mslib) -lMHOMessage -L.libs -lMHOwrap
+#TestWrapMessage_LDADD = $(mslib) -lMHOMessage
+# this tests the same code via the library
+TestWrapMessage_SOURCES = test/TestWrapMessage.c
+TestWrapMessage_CXXFLAGS = $(msinc)
+TestWrapMessage_LDADD = $(mslib) -lMHOMessage -L.libs -lMHOwrap
 
 
 # SWIG machinery
