@@ -1,0 +1,98 @@
+%
+% introductory thoughts
+%
+
+\section{Introduction}
+\label{sec:intro}
+
+The \ac{EHT} has launched a \ac{MSRI} project which looks to develop
+the technologies needed for a second-generation \acs{EHT}. 
+A significant component of the telescope is the software needed to 
+properly operate, reduce and analyze the data taken by the member telescopes.
+This document defines the requirements for the refactoring of the \ac{HOPS} in 
+concert with the \acs{MSRI} proposal. 
+
+The next generation \acs{EHT} is planned to include up to 30 stations and 
+435 baselines, with wider bandwidth (128 Gbps has been mentioned---meaning 
+four dual-polarization, 4 GHz bands) \TBR{}.  Support for greater bit depth is also of 
+interest should recording media be available.  The refactoring
+of \ac{HOPS} shall support the full analysis of ngEHT data within these limits,
+and will be made smarter, more automatic, more robust, and easier to use.
+
+%Furthermore, the \acs{EHT} may elect to operate with a more frequent observing cadence. 
+
+For the needs of the \acs{EHT} Campaigns of 2017 it was decided to augment
+the existing HOPS package with some Python-based packages in order to
+create a pipeline for the initial reduction of data. The new \ac{HOPS} shall
+support independent analyses, using Python or other languages, through
+accessible data formats (e.g. HDF5, JSON, XML, or similar), interactive tools, and 
+conversion to human-readable ASCII files. The current plotting functionality,
+provided by PGPLOT, shall be replaced by Python/Matplotlib.
+
+%In this continued development of HOPS, we shall assume
+%that HOPS alone must be capable of the full analysis; but we should also
+%be mindful that options to move the data to \ac{AIPS} or \ac{CASA} must at some
+%level exist.
+
+The primary development language will be C/C++, with a Python scripting layer
+to provide ease of use. Version control shall be provided by the MIT-hosted github.
+
+Finally, all functionality of the current \acs{HOPS} shall be maintained, with
+backward-compatibility for old data formats. There shall be extensive use of regression
+tests and demonstrated reproducibility of prior results.
+
+This document is intended to be one in a series, with other documents describing:
+\begin{itemize}
+\item Specifications and architectural design
+\item Coverage and test plan
+\item The development plan
+\item The user manual
+\item Requirements specific to geodesy
+\end{itemize}
+
+
+
+
+%This section enumerates specific requirements that we plan to meet by test.
+%Note that there are many untestable ``desires'' or ``goals''; these are
+%discussed in then next section (\Sec~\ref{sec:desires}).  Consequently,
+%potential tests that address such things do not appear in this section.
+%These issues are more fully addressed in the design document (\cite{design}).
+%
+%The itemization and description of thest tests are partitioned into
+%subsections according to how they are likely to be executed.
+%The first section deals with short automated tests
+%(\Sec~\ref{sec:auto}, \ie~these that that may be executed
+%in a nightly build), software tests that may be run at specific
+%juctions (\Sec~\ref{sec:regress}, \ie~regression tests),
+%and tests that are procedural, requiring human interaction
+%(\Sec~\ref{sec:procedure}, \ie~\ac{GUI} tests).%
+%\geomargin{In addition to these requirements, there are a few additional
+%geodetic requirements which are captured outside the ngEHT effort.}
+%Details of the testing process are to be found in the coverage
+%and testing document (\cite{cover}).
+%
+%\acs{HOPS} is currently in the version 3.x series; the new code will
+%begin with the 4.x series, and to distinguish the two flavors, (in code
+%and otherwise) we shall use \acs{MHO} to specifically refer to the latter.
+%
+%The requirements in this document are numbered with a prefix
+%according to the type of test that may be employed:
+%A for automated tests, S for software testable, P for procedural.
+%The desire and goals are prefixed with D for desire and
+%F for future-proofing.
+%
+%\subsection{General Requirements}
+%\label{sec:generalreq}
+%
+%It is anticipated that each of these tests will be captured by a
+%``check'' (shell or Python) script (such as currently supported in
+%the autotools or created to more fully ensure safe development).
+%Existing unit tests within \ac{HOPS} will be ported into the
+%new \ac{MHO} code set.
+
+
+
+%
+% eof
+%
