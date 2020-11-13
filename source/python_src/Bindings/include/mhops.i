@@ -20,11 +20,23 @@
  %module <name> is controlled by Makefile.am
  */
 
+%define DOCSTRING
+"The mhops module contains python interfaces to connect to the MIT HOPS
+library capabilities.  These interfaces are intended to allow convenient
+scripting in Python of more sophisticated analyses than is possible using
+only the native tools."
+%enddef
+%module(docstring=DOCSTRING) defaultname
+/* package=".." is available to organize into packages */
+
+/* set up a docstring default */
+%feature("autodoc","1");
+
 %{
 #define SWIG_FILE_WITH_INIT
 %}
 
-/* imports for common machinery for all modules */
+/* imports/includes for common machinery */
 
 /* access SWIG machinery templates for numpy objects */
 %import "numpy.i"
@@ -35,12 +47,9 @@
 /* access C string methods */
 /* %include "cstring.i" */
 
-/* set up C array methods */
-/*
+/* set up (non-numpy) C array methods with */
 %include "carrays.i"
 %array_class(int, intArray);
-%array_class(double, doubleArray);
-*/
 
 /* include component modules */
 

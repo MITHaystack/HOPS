@@ -40,7 +40,7 @@ dist_man_MANS = TestWrapMessage.1 TestNumpymhops.py.1
 
 TESTS_ENVIRONMENT = srcdir=$(srcdir)
 TESTS = $(check_PROGRAMS) $(dist_check_SCRIPTS)
-XFAIL_TESTS = test/TestNumpy$(pymod).py
+#XFAIL_TESTS = test/TestNumpy$(pymod).py
 
 # special compilation arrangements for coverage tests, see below
 if DO_COVER

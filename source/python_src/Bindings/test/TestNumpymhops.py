@@ -42,12 +42,17 @@ if __name__ == '__main__':
   error = 0
   o = parseOptions()
   if o.verb: print('Hello World: %s' % np.version.full_version)
+  np.set_printoptions(linewidth=80,precision=4)
   vis = np.ones(17,dtype=np.complex128)
-  print(vis)
+  if o.verb: print('input vis:    ',vis)
   amp = mhops.var_get_np_amps(vis)
-  print(amp)
+  ok = np.any(np.array(list(map(lambda x: x==1.0, amp))))
+  if not ok: error += 1
+  if o.verb: print('output amp:   ',amp,ok)
   phs = mhops.var_get_np_phases(vis)
-  print(phs)
+  ok = np.any(np.array(list(map(lambda x: x==0.0, phs))))
+  if not ok: error += 1
+  if o.verb: print('output phase: ',phs,ok)
   sys.exit(error)
 #
 # eof

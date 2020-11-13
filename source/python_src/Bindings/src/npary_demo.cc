@@ -19,7 +19,7 @@ extern "C" {
 // that can be directly wrapped by SWIG with only minor effort.
 
 extern "C" void get_np_amps(
-    npy_cdouble *vis, int nvis, npy_double *amp, int namp)
+    npy_cdouble *vis, long nvis, npy_double *amp, long namp)
 {
     for (int ii = 0; ii < nvis && ii < namp; ii++) {
         amp[ii] = cabs((vis[ii].real + I * vis[ii].imag));
@@ -27,7 +27,7 @@ extern "C" void get_np_amps(
 }
 
 extern "C" void get_np_phases(
-    npy_cdouble *vis, int nvis, npy_double *phs, int nphs)
+    npy_cdouble *vis, long nvis, npy_double *phs, long nphs)
 {
     std::complex<double> temp;
     for (int ii = 0; ii < nvis && ii < nphs; ii++) {

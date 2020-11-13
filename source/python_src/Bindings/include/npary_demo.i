@@ -35,27 +35,32 @@ import_array();
  * npy_cdouble is {double real, imag;}
  * gsl_complex is { double dat[2]; }    (dtype=np.complex128)
  * so these are all bitwise equivalent in C.
+ *
  * However, we only have typemaps for the npy version so we'll build
  * the interfaces with that and provide Python convenience methods to
  * do any other translations at the Python level which is less effort.
+ *
+ * Per https://numpy.org/devdocs/reference/swig.interface-file.html
+ * complex types do not work (completely).  IN_ARRAY and INPLACE_ARRAY
+ * work, ARGOUT appears to work for fixed size arrays (i.e. array[N]).
  */
-%numpy_typemaps(npy_double,  NPY_DOUBLE, int);
-%numpy_typemaps(npy_cdouble, NPY_CDOUBLE, int);
+%numpy_typemaps(npy_double,  NPY_DOUBLE, long);
+%numpy_typemaps(npy_cdouble, NPY_CDOUBLE, long);
 /* %numpy_typemaps(gsl_complex, NPY_CDOUBLE, int); */
 
 /* the interfaces are too complex for SWIG to work out on its own */
 /* apply indicates how to use the templaces from numpy.i */
-%apply (npy_cdouble *IN_ARRAY1, int DIM1)
-    {(npy_cdouble *vis, int nvis)}
-%apply (npy_double *ARGOUT_ARRAY1, int DIM1)
-    {(npy_double *amp, int namp)}
-%apply (npy_double *ARGOUT_ARRAY1, int DIM1)
-    {(npy_double *phs, int nphs)}
-void get_np_amps(npy_cdouble *vis, int nvis, npy_double *amp, int namp);
-void get_np_phases(npy_cdouble *vis, int nvis, npy_double *phs, int nphs);
-%clear npy_cdouble *vis, int nvis;
-%clear npy_double *amp, int namp;
-%clear npy_double *phs, int nphs;
+%apply (npy_cdouble *IN_ARRAY1, long DIM1)
+    {(npy_cdouble *vis, long nvis)}
+%apply (npy_double *INPLACE_ARRAY1, long DIM1)
+    {(npy_double *amp, long namp)}
+%apply (npy_double *INPLACE_ARRAY1, long DIM1)
+    {(npy_double *phs, long nphs)}
+void get_np_amps(npy_cdouble *vis, long nvis, npy_double *amp, long namp);
+void get_np_phases(npy_cdouble *vis, long nvis, npy_double *phs, long nphs);
+%clear npy_cdouble *vis, long nvis;
+%clear npy_double *amp, long namp;
+%clear npy_double *phs, long nphs;
 /* the clears have removed those application rules */
 
 /* generate variant interface functions written in C/C++ */

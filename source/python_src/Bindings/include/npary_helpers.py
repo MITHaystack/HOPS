@@ -18,7 +18,7 @@ def var_get_np_amps(vis):
     Extract amplitudes from a numpy array of visibilities.
     '''
     try: # to create a numpy object for the answer
-        amps = np.ones(vis.shape[0])
+        amps = np.ones(vis.shape[0], dtype=np.double)
     except:
         raise Exception('argument is not a numpy array')
     if type(vis[0]) != np.complex128:
@@ -31,7 +31,7 @@ def var_get_np_phases(vis):
     Extract phases from a numpy array of visibilities.
     '''
     try: # to create a numpy object for the answer
-        phases = np.ones(vis.shape[0])
+        phases = np.ones(vis.shape[0], dtype=np.double)
     except:
         raise Exception('argument is not a numpy array')
     if type(vis[0]) != np.complex128:
