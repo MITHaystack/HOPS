@@ -42,14 +42,15 @@ only the native tools."
 %import "numpy.i"
 
 /* defines %pointer_{class,funtions,cast} */
-/* %include "cpointer.i" */
+%include "cpointer.i"
 
 /* access C string methods */
-/* %include "cstring.i" */
+%include "cstring.i"
 
 /* set up (non-numpy) C array methods with */
 %include "carrays.i"
-%array_class(int, intArray);
+%feature("docstring", "An object holding an array of doubles") doubleArray;
+%array_class(double, doubleArray);
 
 /* include component modules */
 

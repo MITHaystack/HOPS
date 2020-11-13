@@ -39,6 +39,22 @@ def var_get_np_phases(vis):
     get_np_phases(vis, phases)
     return phases
 
+# these duplicate SWIG methods with similar names
+def get_vis_amps(vis):
+    return(doubleArray_frompointer(vis.amps))
+setattr(MyVis, 'get_amps', get_vis_amps)
+
+def get_vis_phas(vis):
+    return(doubleArray_frompointer(vis.phas))
+setattr(MyVis, 'get_phas', get_vis_phas)
+
+def describe_vis(vis):
+    return(describe_one_vis(vis))
+setattr(MyVis, '__str__', describe_vis)
+
+# cannot do this with the MyVisArray, as the length is not available
+# i.e. MyVisArray is essentially a pointer to the first MyVis
+
 #
 # eof
 #

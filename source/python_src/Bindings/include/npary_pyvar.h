@@ -13,12 +13,28 @@
 #ifndef npary_pyvar_h
 #define npary_pyvar_h
 
-//typedef struct myvis {
-//    char    *name;          /* name of something */
-//    double  *amps;          /* pointer to some amplitudes */
-//    double  *phase;         /* pointer to some phases */
-//    int     nvis;           /* length of both arrays */
-//} MyVis;
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+typedef struct myvis {
+    char    *name;          /* name of something */
+    double  *amps;          /* pointer to some amplitudes */
+    double  *phas;          /* pointer to some phases */
+    int     nvis;           /* length of both arrays */
+} MyVis;
+
+/* function that describes one or more MyVis into (created) *buf */
+#ifdef SWIG_INTERFACE
+/* specifies that (char **buf) arguments are released by a free() call */
+%cstring_output_allocate(char **buf, free(*$1));
+/* create pointer methods for the MyVis object */
+%pointer_functions(MyVis, MyVisPtr);
+#endif /* SWIG_INTERFACE */
+extern void describe_one_vis(MyVis *mv, char **buf);
+extern void describe_all_vis(MyVis *mv, long num, char **buf);
+
+/* other support functions */
 
 #endif /* npary_pyvar_h */
 /*

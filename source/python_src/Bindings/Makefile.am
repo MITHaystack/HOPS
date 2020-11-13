@@ -81,6 +81,7 @@ TestWrapMessage_LDADD = $(mslib) -lMHOMessage -L.libs -lMHOwrap
 
 # SWIG machinery
 swigw = -Wno-missing-field-initializers
+swigw += -Wno-unused-parameter
 pyinc = -I/usr/include/python$(PYTHON_VERSION)
 swig_exec = $(SWIG) -python -py3 -I$(srcdir)/include -module $(pymod)
 swig_interfaces = include/$(pymod).i
@@ -96,7 +97,8 @@ swig_delete = swig.log $(swig_testing)
 endif # HAVE_SWIG
 
 # generates the module library $(ammod).la
-SWIGmhops_la_SOURCES = $(pymod).c src/wrap_msg.cc src/npary_demo.cc
+SWIGmhops_la_SOURCES = $(pymod).c src/wrap_msg.cc src/npary_demo.cc \
+	src/npary_pyvar.c
 SWIGmhops_la_CPPFLAGS = $(coververbose) \
 	$(pyinc) $(msinc) $(AM_CPPFLAGS) $(swigw)
 SWIGmhops_la_CXXFLAGS = $(coververbose) \
