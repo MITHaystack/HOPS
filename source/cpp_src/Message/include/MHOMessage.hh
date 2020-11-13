@@ -147,7 +147,7 @@ MHOMessage::operator<<(const XStreamableItemType& item)
 //allow debug messages when debug flag is active
 #define msg_debug(xKEY, xCONTENT) MHOMessage::GetInstance().SendMessage(eDebug,xKEY) << xCONTENT;
 #else
-//debug is not enabled, so we removed them from compilation
+//debug is not enabled, so we remove them from compilation
 #define msg_debug(xKEY, xCONTENT)
 #endif
 
