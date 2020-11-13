@@ -142,7 +142,8 @@ MHOMessage::operator<<(const XStreamableItemType& item)
 #define msg_status(xKEY, xCONTENT) MHOMessage::GetInstance().SendMessage(eStatus,xKEY) << xCONTENT;
 #define msg_info(xKEY, xCONTENT) MHOMessage::GetInstance().SendMessage(eInfo,xKEY) << xCONTENT;
 
-#ifdef HOPS_ENABLE_DEBUG_MSG //this is defined as a compiler flag via build system
+#ifdef HOPS_ENABLE_DEBUG_MSG  //this is defined as a compiler flag via build system
+#warning "HOPS_ENABLE_DEBUG_MSG is defined -- this is not a bug!"
 //allow debug messages when debug flag is active
 #define msg_debug(xKEY, xCONTENT) MHOMessage::GetInstance().SendMessage(eDebug,xKEY) << xCONTENT;
 #else

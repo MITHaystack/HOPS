@@ -20,6 +20,8 @@ alist_LDADD = ../../mk4util/libmk4util.la ../../afio/libafio.la \
 #added manually (should this be configured?)  FIXME: yes
 alist_LDADD += -lm
 
+AM_INSTALLCHECK_STD_OPTIONS_EXEMPT = alist
+
 EXTRA_DIST = 
 
 #

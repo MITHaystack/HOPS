@@ -1,0 +1,49 @@
+@startuml
+
+skinparam class {
+  ArrowColor #A31F34  
+  Bordercolor #8a8b8c
+  BackgroundColor #fffff0
+}
+
+ParentClass <|-- SubClass
+note left #b3e6ff/ffffff: This is a note.
+Book *-- Page
+Car o-- Engine
+SomeClass .. AssociatedClass
+Menu -- Order
+
+class ParentClass { 
+  +name : string
+  #age : integer
+  -socialSecurityNumber : integer
+  rating : integer
+  +parent() 
+  #praise() 
+  ~babysit()
+}
+
+class SubClass {
+  +name : string
+  #maturity : float
+  ~level : integer
+  +complain()
+  #study()
+  ~eat()
+}
+
+class Book {
+  {static} title
+  {abstract} void someAbstractMethod()
+  .. Getter methods ..
+  +getSku()
+  +getGenre()
+  .. setter methods ..
+  +setSku()
+  +setGenre()
+  __ private data __
+  ~getReaderData()
+  
+}
+
+@enduml
