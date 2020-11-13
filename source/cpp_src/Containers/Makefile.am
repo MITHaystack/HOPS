@@ -14,7 +14,8 @@ pkginclude_HEADERS = include/MHOArrayMath.hh \
 	include/MHOScalarContainer.hh \
 	include/MHOTensorContainer.hh \
 	include/MHOUnaryArrayOperator.hh \
-	include/MHOVectorContainer.hh
+	include/MHOVectorContainer.hh \
+	include/MHOVisibilities.hh
 
 #pkglib_LTLIBRARIES = libMHOXXX.la
 

@@ -12,7 +12,16 @@ AC_PREREQ([2.69])
 AC_INIT([mhops], [4.00], [hops@mit.edu])
 AC_CONFIG_SRCDIR([README.md])
 AC_CONFIG_HEADERS([mho_config.h])
-AM_INIT_AUTOMAKE([foreign subdir-objects])
+
+# this is not a GNU project, preserve tree in build dir, check --help/--version
+AM_INIT_AUTOMAKE([foreign subdir-objects std-options])
+
+# this macro adds a space-delimited list of additional recursive targets
+# coverage allows recursive coverage       (coverage-local: ...)
+# hops provides a report on unported code  (hops-local: ...)
+# mho provides a report on new code        (mho-local: ...)
+# reqs provides a report on requirements   (reqs-local: ...)
+AM_EXTRA_RECURSIVE_TARGETS([coverage hops mho reqs])
 
 # user path configuration requires a root directory
 AC_ARG_VAR(MHO_ROOT, [Root directory for the MIT HOPS tools installation])
@@ -37,6 +46,7 @@ LT_INIT
 #m4_ifset([LT_INIT], [LT_INIT], [AC_PROG_LIBTOOL])
 #m4_ifset([LT_WITH_LTDL], [LT_WITH_LTDL], [AC_LIB_LTDL])
 
+# features are a bit confusing:
 # AC_ARG_ENABLE(FEATURE, HELP-STRING, [ACTION-IF-GIVEN], [ACTION-IF-NOT-GIVEN])
 # ACTION-IF-GIVEN refers to any of these:
 #   --enable-FEATURE=yes or
@@ -52,6 +62,9 @@ AC_ARG_ENABLE(doxygen,
 AC_ARG_ENABLE(sphinx,
     AS_HELP_STRING([--disable-sphinx], [allow sphinx-generated documents]),
     [], [enable_doxy=yes])
+AC_ARG_ENABLE(gcov,
+    AS_HELP_STRING([--enable-gcov], [compile with coverage active]),
+    [], [enable_gcov=no])
 
 # Checks for programs.
 AC_PROG_AWK
@@ -70,17 +83,21 @@ AC_PROG_MAKE_SET
 
 # less trivial checks for programs
 PKG_PROG_PKG_CONFIG
-AC_PATH_PROG([SWIG], [swig], [swig-not-found])
-AC_PATH_PROG([PDFLATEX], [pdflatex], [pdflatex-not-found])
-AC_PATH_PROG([DOXYGEN], [doxygen], [doxygen-not-found])
-AC_PATH_PROG([SPHINX], [sphinx], [sphinx-not-found])
-AC_PATH_PROG([PERL], [perl], [perl-not-found])
+AC_PATH_PROG(SWIG, swig, swig-not-found)
+AC_PATH_PROG(PDFLATEX, pdflatex, pdflatex-not-found)
+AC_PATH_PROG(DOXYGEN, doxygen, doxygen-not-found)
+AC_PATH_PROG(SPHINX, sphinx, sphinx-not-found)
+AC_PATH_PROG(PERL, perl, perl-not-found)
+AC_PATH_PROG(GCOV, gcov, gcov-not-found)
+AC_PATH_PROG(HELP2MAN, help2man, help2man-not found)
 
-# checks for specific/enable/disable cases
+# simple checks for specific/enable/disable cases
 AM_CONDITIONAL(HAVE_SWIG, [test -x $SWIG])
 AM_CONDITIONAL(WANT_DOCS, [test x$enable_docs = xyes -a -x $PDFLATEX])
 AM_CONDITIONAL(WANT_DOXYGEN, [test x$enable_docs = xyes -a -x $DOXYGEN])
 AM_CONDITIONAL(WANT_SPHINX, [test x$enable_docs = xyes -a -x $SPHINX])
+AM_CONDITIONAL(DO_COVER, [test x$enable_gcov = xyes -a -x $GCOV])
+AM_CONDITIONAL(DO_MANPAGES, [test -x$HELP2MAN])
 
 # getting our head around Python, see package section below
 AC_PATH_PROG([PYTHON2], [python2], [python2-not-found])
@@ -137,7 +154,7 @@ AM_CONDITIONAL(HAVE_PERL, [test x$perl != xperl-not-found -a -x "$PERL"])
 # PYTHON
 # checking for the module allows us to build C extensions
 AC_ARG_VAR(PYTHON_EXECUTABLE, [force us to use some python executable])
-PKG_CHECK_MODULES(PYTHON, python, [has_python=true], has_python=false])
+PKG_CHECK_MODULES(PYTHON, python3, [has_python=true], [has_python=false])
 if [$has_python] ; then
     AC_DEFINE([HAVE_PYTHON], 1, [Define to 1 when PYTHON is available])
     AC_MHO_NOTICE([PYTHON was found via check modules])
@@ -220,8 +237,8 @@ AM_CONDITIONAL(HAVE_PGPLOT, [$has_cpgplot && $has_pgplot])
 AC_CONFIG_FILES(
     Makefile
     doc/Makefile
-    data/Makefile
     source/Makefile
+    data/Makefile
 )
 
 ### FIXME: revert the 'b' names to the normal names
@@ -252,10 +269,6 @@ AC_CONFIG_FILES(
     source/c_src/fourfit_libs/ffplot/Makefile
     source/c_src/applications/fourfit/Makefile
 )
-# source/c_source makefiles, part 3: new things
-AC_CONFIG_FILES(
-    source/c_src/Bindings/Makefile
-)
 
 # source/cpp_src makefiles
 AC_CONFIG_FILES(
@@ -267,8 +280,12 @@ AC_CONFIG_FILES(
     source/cpp_src/Containers/Makefile
 )
 
-# source/python_src makefiles
-AC_CONFIG_FILES(source/python_src/Makefile)
+# source/python_src: makefiles
+AC_CONFIG_FILES(
+    source/python_src/Makefile
+    source/python_src/Bindings/Makefile
+)
+# this is just a test script
 AC_CONFIG_FILES(source/python_src/scripts/test.py,
     [chmod +x source/python_src/scripts/test.py])
 # need to formulate the plan for this and other pythonic things
