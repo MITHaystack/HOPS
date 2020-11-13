@@ -10,9 +10,9 @@
 
 /* void functions are somewhat easier to work with */
 extern void get_np_amps(
-    npy_cdouble *vis, int nvis, npy_double *amp, int namp);
+    npy_cdouble *vis, long nvis, npy_double *amp, long namp);
 extern void get_np_phases(
-    npy_cdouble *vis, int nvis, npy_double *phs, int nphs);
+    npy_cdouble *vis, long nvis, npy_double *phs, long nphs);
 
 #endif /* npary_demo_h */
 /*
