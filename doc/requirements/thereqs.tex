@@ -7,13 +7,14 @@
 \section{Testable Requirements}
 \label{sec:testable}
 
-This section enumerates specific requirements that we plan to meet by test.
+This section enumerates specific requirements that we plan to meet via explicit
+tests.
 Note that there are many untestable ``desires'' or ``goals''; these are
 discussed in then next section (\Sec~\ref{sec:desires}).  Consequently,
 potential tests that address such things do not appear in this section.
 These issues are more fully addressed in the design document (\cite{design}).
 
-The itemization and description of thest tests are partitioned into
+The itemization and description of these tests are partitioned into
 subsections according to how they are likely to be executed.
 The first section deals with short automated tests
 (\Sec~\ref{sec:auto}, \ie~these that that may be executed
@@ -39,30 +40,36 @@ F for future-proofing.
 \subsection{Automated Testable Requirements}
 \label{sec:auto}
 
-It is anticipated that each of these tests will be captured by a
-``check'' (shell or Python) script (such as currently supported in
-the autotools or created to more fully ensure safe development).
-Existing unit tests within \ac{HOPS} will be ported into the
-new \ac{MHO} code set.
+The following are essential design requirements that shall be validated with a
+``check'' script (shell, Python, or similar). The current \acs{HOPS} 
+incorporates many scripts of this sort, which are used during the compile and
+installation steps to verify the installation was successful, and during nightly 
+builds to verify that daily updates to the code base have not broken any 
+functionality. Existing unit tests within \ac{HOPS} will be ported into the new 
+\ac{MHO} code set.
 
-The following are essential design requirements that should also
-be validated with an automated test.
+In addition to check scripts, unit tests shall be used for all code fragements, 
+and shall cover all code.
+
 
 \begin{description}
 \reqid{A} \ac{MHO} should support up to
     \TBD~30 stations and \TBD~435 baselines.
-  \reqex{\ac{MHO} requires upper bounds merely to verify that
+  \reqex[input required]{\ac{MHO} requires upper bounds merely to verify that
     it supports ``more than enough''}
+    
 \reqid{A} the number of \acsp{channel} may exceed 64 and should
     have no practical limit.
-  \reqex{\ac{MHO} requires an upper bound merely to implement
-    with some sensible \ac{channel} labelling scheme}%
+  \reqex[input required]{\ac{MHO} requires an upper bound merely to implement
+    with some sensible channel labelling scheme}%
     \footnote{using \acs{Unicode} for channel labels would certainly
     be unbounded, but might be challenging for some to type.}
-\reqid{A} Use \acsu{unit} tests for all code.
-  \reqex{every code fragment will have a \texttt{test\_} module}
-\reqid{A} Unit tests should \acsu{cover} all code.
-  \reqex{every code fragment will have a \texttt{test\_} module}
+
+%\reqid{A} Use \acsu{unit} tests for all code.
+%  \reqex{every code fragment will have a \texttt{test\_} module}
+%
+%\reqid{A} Unit tests should \acsu{cover} all code.
+%  \reqex{every code fragment will have a \texttt{test\_} module}
 \end{description}
 
 The following existing tests currently exist in \ac{HOPS}
@@ -77,57 +84,73 @@ The requirements should have ``rationale'', ``explanation'',
 
 \begin{description}
 % ./vex2xml/Makefile.am
-\reqid{A} every program should provide useful
+\reqid{A} every function should provide useful
     \verb+--help+ and \verb+--version+ responses (with zero exit status)
     to behave as conventional \acs{GNU/Linux} applications.
   \reqex{A standard
     argument parsing library should be used and should respond usefully
     on bad command-line usage.}
-\reqid{A} the \acsu{VEX2XML} tool which convert \acs{VEX} to \acs{XML}
-    should continue to work for \acs{VEX} version 1.5.
-    (\texttt{chk\_v2v.sh} is a test that verifies that this tool,
+    
+\reqid{A} \ac{MHO} shall maintain a \acsu{VEX2XML} tool which converts 
+\acs{VEX} to \acs{XML}, for \acs{VEX} version 1.5.
+    \reqex{\texttt{chk\_v2v.sh} is a test that verifies that this tool,
     developed for \acsu{ALMA}, performs against a dozen separate
-    captured \acs{VEX} files.)
+    captured \acs{VEX} files.}
+    
 % ./data/ae_testdata/Makefile.am
-\reqid{A} \ac{aedit} performance consistency on versions 5 and 6
-    on captured data is needed.  (\texttt{chk\_fsumm.sh} currently
-    such a test with captured \ac{A-list} data.)
-\reqid{A} \ac{aedit} performance consistency on version 6 and
+\reqid{A} \ac{MHO} shall maintain \acs{aedit} performance consistency 
+on versions 5 and 6 on captured data.
+	\reqex{Currently, \texttt{chk\_fsumm.sh} performs such a test with captured 
+	\acs{A-list} data.}
+\FIXME[DH: not clear what this means. What do the version numbers here refer to?]
+
+\reqid{A} \acs{aedit} performance consistency on version 6 and
     any version \TBD~7 should be maintained.
     \FIXME[a discussion of a post-6 version should appear in the specification]
+    
 % ./postproc/fourmer/Makefile.am
-\reqid{A} the \acs{fourmer} tool relabels channels when it combines
-    two sub-bands.  A test to assure this continues to be done
-    properly (such as is now done by \texttt{test\_new\_chan\_id})
-    should be maintained.
+\reqid{A} \acs{MHO} shall maintain a test which checks that the \acs{fourmer} 
+tool relabels channels when it combines two sub-bands.
+\reqex{As is now done by \texttt{test\_new\_chan\_id}}
+
 % ./sub/dfio/Makefile.am
-\reqid{A} if \TBD~the non-compressed form of the fringe file used in
-    the \acs{Mk4} file format is to be supported, we require that the
-    fringe plot be the same as that offered by the compressed version.
-    (\texttt{test\_compress} a test of the \ac{PostScript}
-    compression used in the \ac{Mk4} fringe file format.)
+\reqid{A} If the non-compressed form of the \acs{Mk4} fringe file will be 
+supported, we require that the results of fourfit (captured in the fringe plot)
+be identical to results from the compressed version.
+\reqex{\texttt{test\_compress} is an existing (?) test of the \acs{PostScript} 
+compression used in the \acs{Mk4} fringe file format.}
+\FIXME[DH: it sounds like we can run fourfit on either compressed or 
+uncompressed data? Is the default Mk4 format compressed, and we need 
+to choose whether to support an uncompressed format?]
+
 \reqid{A} \FIXME[what does this test test, actually]
     (\texttt{test\_mk4fringe} a test related to the uncompress
-    or compressed storage of \ac{Mk4} fringe files)
+    or compressed storage of \acs{Mk4} fringe files)
+
 \reqid{A} \FIXME[what does this test]
     (\texttt{chk\_baselines.sh})
+
 \reqid{A} the \acs{alist} program should provide valid \acs{A-list}
     files in versions 5, 6 and any version \TBD~7.
     (\texttt{chk\_alist.sh} currently does this for versions 5 and 6.)
+
 \reqid{A} the \acs{adump} program should provide valid ASCII text
     representations of columns of data from an \acs{A-list} of version
     5, 6 or any version \TBD~7.
     (\texttt{chk\_adump.sh} currently does this for versions 5 and 6.)
+
 \reqid{A} the \acs{aedit} program should process versions 5, 6 and
     any version \TBD~7 \acs{A-list} files with respect to flagging,
-    selecting, summarizing and generating new output \acsp{A-list}.
+    selecting, summarizing and generating new output \acs{A-list}.
     (the \texttt{chk\_aedit.sh} currently makes a pass through many
     of these)
+
 \reqid{A} the \acs{Python}ic replacement module for these three current
     applications, is must fulfill the same requirement.
+
 \reqid{A} the \acs{fringex} program should continue to explore and report
     on regions of search space around fringes as it does currently.
-    (the \texttt{chk\_fringex.sh} exists to verify this in \ac{HOPS})
+    (the \texttt{chk\_fringex.sh} exists to verify this in \acs{HOPS})
 
 \reqid{A} the ``average'' capability, implemented by \ac{average}
     used in concert with \ac{fringex} to subdivide explore and average
@@ -168,7 +191,7 @@ The requirements should have ``rationale'', ``explanation'',
     \acsp{AP} with small weights.
   \reqex{When data is poorly recorded, the correlation product is the
     result of less data than it should be, leading to incorrect results.
-    The ability to \ac{flag} such input should not be arduous.  The
+    The ability to flag such input should not be arduous.  The
     \ac{HOPS} script \texttt{chk\_min\_weight.sh} currently tests this
     capability.}
 \reqid{A} \ac{MHO} should have the ability to flag some list of frequency
@@ -188,7 +211,7 @@ The requirements should have ``rationale'', ``explanation'',
 % \reqid{D} Data import/export to/from ASCII. (Export to or import data
 %     from a human readible format.)
 
-\reqid{A} Provide library access to \acs{LSF} methods
+\reqid{A} Provide library access to \ac{LSF} methods
   \reqex{Both \acs{Python} and \acs{GSL} have these.}
 \reqid{A} Implement an algorithm for solving for station-based quantities
     from baseline based quantities as a global fringe fitter.
@@ -327,8 +350,7 @@ e17e11-7-hi-101-0322 e17e11-7-hi-101-0803 e17e11-7-lo-101-0322
 e17e11-7-lo-101-0803 e17e11-7-pc-101-0322 e17e11-7-pc-101-0803
 \end{verbatim}
 ``lo'' and ``hi'' refer to the ``b3'' and ``b4'' sub-bands of the
-64 \acs{Gbps} (2018 and onwards) frequency setup; ``pc'' refers to polconverted,
-rather than the mixed polarization correlation products.
+64 \acs{Gbps} (2018 and onwards) frequency setup; ``pc'' refers to polconverted,rather than the mixed polarization correlation products.
 
 \TBC\FIX[---is this a sufficient set?]
 
@@ -404,8 +426,7 @@ on future-proofing.
   \reqex{\acs{Python} seems a likely solution.}
     % those are both commercial(Like Looker or Tableau?)
 \reqid{D} Implement data visualization tools in Python for \acs{fourfit}
-  \reqex{the \acs{HOPS} version of \acs{fourfit} provides a fixed fringe summary
-    plot.  Often one notes some issue requiring some examination, or at
+\reqex{the \acs{HOPS} version of \acs{fourfit} provides a fixed fringe summary    plot.  Often one notes some issue requiring some examination, or at
     least something that bears viewing with an expanded scale, but there
     is not easy path to such examination at present.}
 
