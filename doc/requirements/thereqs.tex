@@ -149,36 +149,43 @@ to choose whether to support an uncompressed format?]
 \reqid{A} the \acs{Python}ic replacement module for these three current
     applications, is must fulfill the same requirement.
 
-\reqid{A} the \acs{fringex} program should continue to explore and report
-    on regions of search space around fringes as it does currently.
-    (the \texttt{chk\_fringex.sh} exists to verify this in \acs{HOPS})
+\section{Changes to post processing tools for fringe plots.}
+  This section will outline to the components of HOPS that are affected by the HOPS refactoring effort.
 
-\reqid{A} the ``average'' capability, implemented by \ac{average}
-    used in concert with \ac{fringex} to subdivide explore and average
-    fringes shall be preserved in an equivalent implementation.
-    (the \texttt{chk\_average.sh} program does this for the existing
-    \ac{average} application, but the piping mechanism is cumbersome
-    and should be re-implemented in more easily used (and likely more
-    efficient) C/C++ or \ac{Python} application.)
+\begin{description}
+  \reqid{A} the \acs{fringex} program should continue to explore and report
+      on regions of search space around fringes as it does currently.
+      (the \texttt{chk\_fringex.sh} exists to verify this in \acs{HOPS})
 
-\reqid{A}
-    \texttt{chk\_avefix.sh}
-\reqid{A} there should be a test to verify \acs{cofit} functionality
-    (\texttt{chk\_cofit.sh} currently verifies this)
-\reqid{A} there should be a test to verify \acs{search} functionality
-    (\texttt{chk\_search.sh} currently does a search on a captive
-    data set)
-\reqid{A} there should continue to be a functional \acs{fourmer} tool
-    to assemble separately correlated frequency sub-bands.
-    (\texttt{chk\_fourmer.sh} currently does this for a
-    captive two 512-MHz bands.  A test to cover an extension
-    to current \acs{EHT} 2-GHz bands should be build and maintained.)
+  \reqid{A} the ``average'' capability, implemented by \ac{average}
+      used in concert with \ac{fringex} to subdivide explore and average
+      fringes shall be preserved in an equivalent implementation.
+      (the \texttt{chk\_average.sh} program does this for the existing
+      \ac{average} application, but the piping mechanism is cumbersome
+      and should be re-implemented in more easily used (and likely more
+      efficient) C/C++ or \ac{Python} application.)
+
+  \reqid{A}
+      \texttt{chk\_avefix.sh}
+  \reqid{A} there should be a test to verify \acs{cofit} functionality
+      (\texttt{chk\_cofit.sh} currently verifies this)
+  \reqid{A} there should be a test to verify \acs{search} functionality
+      (\texttt{chk\_search.sh} currently does a search on a captive
+      data set)
+  \reqid{A} there should continue to be a functional \acs{fourmer} tool
+      to assemble separately correlated frequency sub-bands.
+      (\texttt{chk\_fourmer.sh} currently does this for a
+      captive two 512-MHz bands.  A test to cover an extension
+      to current \acs{EHT} 2-GHz bands should be build and maintained.)
 \reqid{A} the ability to explore fringes (as is currently done with
     the combination of \ac{fringex}, \ac{average} and search must be
     preserved.  Scripting to make this easier must be available in
     \ac{Python}.
   \reqex{The \texttt{chk\_frmrsrch.sh} script executes such a
     case.}
+
+\end{description}
+
 \reqid{A} the \ac{MHO} suite must provide mechanisms to preserve
     unmolested, the input correlator output data.
   \reqex[explanation]{%
