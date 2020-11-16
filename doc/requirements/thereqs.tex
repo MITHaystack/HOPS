@@ -370,10 +370,12 @@ a challenge to maintain---\acs{PGPLOT} is such an example.  Ideally
 \acs{MHO} should be installable and usable without any dependencies.
 (However, we do not require that full functionality necessarily follows
 from a computer lacking such support.)  The build machinery should test
-for the presence of these packages and make appropriate accomodation.
-Testing this is not something to be done frequently (as it requires
-creating virtual machines without various combinations of dependencies).
-Nevertheless some demonstration of this should be tested.
+for the presence of these packages and make appropriate accomodation for
+the Linux distribution. Note that we will only support three major distributions,
+Ubuntu, Fedora, and NixOS. Testing will be done frequently for only these
+three distributions. There are no plans to officially support other 
+distributions, Mac OSX, or Windows.
+
 %
 % apparently the description environment breaks the math here, so
 % relative math adjustments will be needed if these are reordered
