@@ -121,7 +121,7 @@ int main(int argc, char** argv)
     //to do this we create a 'wrapper' to interface with each data chunk
 
     std::size_t channel_dims[2] = {data_dims[CH_TIME_AXIS], data_dims[CH_FREQ_AXIS]};
-    MHOArrayWrapper< std::complex<double>, 2> channel_wrapper(channel_dims); 
+    MHOArrayWrapper< std::complex<double>, 2> channel_wrapper(channel_dims);
     channel_wrapper.SetExternalData( &( ch_bl_data->at(0,0,0,0) ) , channel_dims);
 
     //now we run a 2-d FFT on the time and freq axes over each channel's data
@@ -185,7 +185,7 @@ int main(int argc, char** argv)
 
 
     #ifdef USE_ROOT
-    
+
     std::cout<<"starting root plotting"<<std::endl;
     //ROOT stuff for plots
     TApplication* App = new TApplication("PowerPlot",&argc,argv);
@@ -211,14 +211,15 @@ int main(int argc, char** argv)
     TColor::CreateGradientColorTable(NRGBs, stops, red, green, blue, NCont);
     myStyle->SetNumberContours(NCont);
     myStyle->cd();
-    
+
 
     TGraph2D* g_amp[ data_dims[CH_POLPROD_AXIS] ];
     TGraph* g_amp1[ data_dims[CH_POLPROD_AXIS] ];
     TCanvas* c[data_dims[CH_POLPROD_AXIS] ];
+    std::vector< std::pair<double,double> > max_sbd_loc; max_sbd_loc.resize(4);
     for(std::size_t pp=0; pp<data_dims[CH_POLPROD_AXIS]; pp++)
     {
-        std::stringstream ss; 
+        std::stringstream ss;
         ss << pp;
         c[pp] = new TCanvas(ss.str().c_str(),ss.str().c_str(), 50, 50, 950, 850);
         c[pp]->SetFillColor(0);
@@ -226,6 +227,10 @@ int main(int argc, char** argv)
         g_amp[pp] = new TGraph2D();
         g_amp1[pp] = new TGraph();
         std::size_t count = 0;
+
+        double sbd_max = 0;
+        double sbd_max_location = 0;
+
         for(std::size_t f=0; f<data_dims[CH_FREQ_AXIS]; f++)
         {
             std::complex<double> sum(0,0);
@@ -236,7 +241,16 @@ int main(int argc, char** argv)
                 count++;
             }
             g_amp1[pp]->SetPoint(f, sbd_axis(f), std::abs( sum ) );
+
+            if( sbd_max < std::abs( sum )
+            {
+                sbd_max = std::abs( sum );
+                sbd_max_location = sbd_axis(f);
+            }
         }
+
+        max_sbd_loc[pp] = std::make_pair(sbd_max, sbd_max_location);
+
         c[pp]->cd();
         g_amp1[pp]->SetMarkerStyle(20);
         g_amp1[pp]->SetMarkerSize(1);
@@ -256,9 +270,9 @@ int main(int argc, char** argv)
     //     g_amp[pp]->Draw("APL");
     //     c[pp]->Update();
     // }
-    
+
     App->Run();
-    
+
     #endif //USE_ROOT
 
 
