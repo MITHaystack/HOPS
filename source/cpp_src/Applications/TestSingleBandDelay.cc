@@ -185,6 +185,7 @@ int main(int argc, char** argv)
 
 
     #ifdef USE_ROOT
+    #ifdef DO_NOT_BUILD
 
     std::cout<<"starting root plotting"<<std::endl;
     //ROOT stuff for plots
@@ -273,7 +274,9 @@ int main(int argc, char** argv)
 
     App->Run();
 
+    #endif
     #endif //USE_ROOT
+
 
 
 

@@ -137,7 +137,7 @@ class MHOArrayWrapper
             const std::array<std::size_t, RANK> dim_sizes = {{static_cast<size_t>(dim)...}}; //convert the arguments to an array
             Resize(&(dim_sizes[0]));
         }
-        
+
         //set pointer to externally managed array with associated dimensions
         void SetExternalData(XValueType* ptr, const std::size_t* dim)
         {
@@ -278,7 +278,7 @@ class MHOArrayWrapper
         {
             for(std::size_t i=0; i < fTotalArraySize; i++)
             {
-                fDataPtr = obj;
+                fDataPtr[i] = obj;
             }
         }
 
