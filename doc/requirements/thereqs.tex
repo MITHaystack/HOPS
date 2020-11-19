@@ -117,6 +117,7 @@ tool relabels channels when it combines two sub-bands.
 \reqid{A} If the non-compressed form of the \acs{Mk4} fringe file will be 
 supported, we require that the results of fourfit (captured in the fringe plot)
 be identical to results from the compressed version.
+    \FIXME{This requirement may dissappear.}
 \reqex{\texttt{test\_compress} is an existing (?) test of the \acs{PostScript} 
 compression used in the \acs{Mk4} fringe file format.}
 \FIXME[DH: it sounds like we can run fourfit on either compressed or 
@@ -148,36 +149,44 @@ to choose whether to support an uncompressed format?]
 \reqid{A} the \acs{Python}ic replacement module for these three current
     applications, is must fulfill the same requirement.
 
-\reqid{A} the \acs{fringex} program should continue to explore and report
-    on regions of search space around fringes as it does currently.
-    (the \texttt{chk\_fringex.sh} exists to verify this in \acs{HOPS})
+\section{Changes to post processing tools for fringe plots.}
+  This section will outline to the components of HOPS that are affected by the HOPS refactoring effort.
 
-\reqid{A} the ``average'' capability, implemented by \acs{average}
-    used in concert with \acs{fringex} to subdivide explore and average
-    fringes shall be preserved in an equivalent implementation.
-    (the \texttt{chk\_average.sh} program does this for the existing
-    \acs{average} application, but the piping mechanism is cumbersome
-    and should be re-implemented in more easily used (and likely more
-    efficient) C/C++ or \acs{Python} application.)
+\begin{description}
+  \reqid{A} the \acs{fringex} program should continue to explore and report
+      on regions of search space around fringes as it does currently.
+      (the \texttt{chk\_fringex.sh} exists to verify this in \acs{HOPS})
 
-\reqid{A}
-    \texttt{chk\_avefix.sh}
-\reqid{A} there should be a test to verify \acs{cofit} functionality
-    (\texttt{chk\_cofit.sh} currently verifies this)
-\reqid{A} there should be a test to verify \acs{search} functionality
-    (\texttt{chk\_search.sh} currently does a search on a captive
-    data set)
-\reqid{A} there should continue to be a functional \acs{fourmer} tool
-    to assemble separately correlated frequency sub-bands.
-    (\texttt{chk\_fourmer.sh} currently does this for a
-    captive two 512-MHz bands.  A test to cover an extension
-    to current \acs{EHT} 2-GHz bands should be build and maintained.)
+  \reqid{A} the ``average'' capability, implemented by \ac{average}
+      used in concert with \ac{fringex} to subdivide explore and average
+      fringes shall be preserved in an equivalent implementation.
+      (the \texttt{chk\_average.sh} program does this for the existing
+      \ac{average} application, but the piping mechanism is cumbersome
+      and should be re-implemented in more easily used (and likely more
+      efficient) C/C++ or \ac{Python} application.)
+
+  \reqid{A}
+      \texttt{chk\_avefix.sh}
+  \reqid{A} there should be a test to verify \acs{cofit} functionality
+      (\texttt{chk\_cofit.sh} currently verifies this)
+  \reqid{A} there should be a test to verify \acs{search} functionality
+      (\texttt{chk\_search.sh} currently does a search on a captive
+      data set)
+  \reqid{A} there should continue to be a functional \acs{fourmer} tool
+      to assemble separately correlated frequency sub-bands.
+      (\texttt{chk\_fourmer.sh} currently does this for a
+      captive two 512-MHz bands.  A test to cover an extension
+      to current \acs{EHT} 2-GHz bands should be build and maintained.)
+
 \reqid{A} the ability to explore fringes (as is currently done with
     the combination of \ac{fringex}, \ac{average} and search must be
     preserved.  Scripting to make this easier must be available in
     \ac{Python}.
   \reqex{The \texttt{chk\_frmrsrch.sh} script executes such a
     case.}
+
+\end{description}
+
 \reqid{A} the \ac{MHO} suite must provide mechanisms to preserve
     unmolested, the input correlator output data.
   \reqex[explanation]{%
@@ -362,10 +371,12 @@ a challenge to maintain---\acs{PGPLOT} is such an example.  Ideally
 \acs{MHO} should be installable and usable without any dependencies.
 (However, we do not require that full functionality necessarily follows
 from a computer lacking such support.)  The build machinery should test
-for the presence of these packages and make appropriate accomodation.
-Testing this is not something to be done frequently (as it requires
-creating virtual machines without various combinations of dependencies).
-Nevertheless some demonstration of this should be tested.
+for the presence of these packages and make appropriate accomodation for
+the Linux distribution. Note that we will only support three major distributions,
+Ubuntu, Fedora, and NixOS. Testing will be done frequently for only these
+three distributions. There are no plans to officially support other 
+distributions, Mac OSX, or Windows.
+
 %
 % apparently the description environment breaks the math here, so
 % relative math adjustments will be needed if these are reordered
