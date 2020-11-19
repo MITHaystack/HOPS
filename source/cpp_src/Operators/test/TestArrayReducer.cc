@@ -1,9 +1,10 @@
 #include "MHOMessage.hh"
-#include "MHOSummationReducer.hh"
+#include "MHOArrayReducer.hh"
 
 #include <cmath>
 #include <iomanip>
 #include <iostream>
+#include <complex>
 
 
 using namespace hops;
@@ -16,10 +17,11 @@ int main(int /*argc*/, char** /*argv*/)
     const size_t dval = 3;
     size_t dim_size[ndim];
     for(std::size_t i=0;i<NDIM;i++){dim_size[i] = i+dval;};
-    MHOArrayWrapper<double, ndim>* input = new MHOArrayWrapper<double, ndim>(dim_size);
-    MHOArrayWrapper<double, ndim>* output = new MHOArrayWrapper<double, ndim>();
+    MHOArrayWrapper<std::complex<double>, ndim>* input = new MHOArrayWrapper<std::complex<double>, ndim>(dim_size);
+    MHOArrayWrapper<std::complex<double>, ndim>* output = new MHOArrayWrapper<std::complex<double>, ndim>();
+    MHOArrayWrapper<std::complex<double>, ndim>* output2 = new MHOArrayWrapper<std::complex<double>, ndim>();
 
-    input->SetArray(1.0);
+    input->SetArray( std::complex<double>(2.0,0.0) );
 
     size_t idim_size[NDIM];
     input->GetDimensions(idim_size);
@@ -42,7 +44,7 @@ int main(int /*argc*/, char** /*argv*/)
 
     std::cout << "--------------------------------------------------------------" << std::endl;
 
-    MHOSummationReducer<double,NDIM>* reducer = new MHOSummationReducer<double,NDIM>();
+    MHOArrayReducer<std::complex<double>, MHOCompoundSum, NDIM>* reducer = new MHOArrayReducer<std::complex<double>, MHOCompoundSum, NDIM>();
     reducer->SetInput(input);
     reducer->SetOutput(output);
     //reducer->ReduceAxis(0);
@@ -50,9 +52,6 @@ int main(int /*argc*/, char** /*argv*/)
     //reducer->ReduceAxis(NDIM-1);
     bool init = reducer->Initialize();
     bool exe = reducer->ExecuteOperation();
-
-    std::cout<<"exe = "<<exe<<std::endl;
-
     size_t odim_size[NDIM];
     output->GetDimensions(odim_size);
 
@@ -75,8 +74,38 @@ int main(int /*argc*/, char** /*argv*/)
         std::cout <<" ***** "<< std::endl;
     }
 
+    std::cout << "--------------------------------------------------------------" << std::endl;
+
+    MHOArrayReducer<std::complex<double>, MHOCompoundMultiply, NDIM>* reducer2 = new MHOArrayReducer<std::complex<double>, MHOCompoundMultiply, NDIM>();
+    reducer2->SetInput(output);
+    reducer2->SetOutput(output2);
+    //reducer->ReduceAxis(0);
+    //reducer->ReduceAxis(NDIM-2);
+    reducer2->ReduceAxis(NDIM-1);
+    bool init2 = reducer2->Initialize();
+    bool exe2 = reducer2->ExecuteOperation();
+    output2->GetDimensions(odim_size);
+
+    for(size_t i=0;i<NDIM;i++)
+    {
+        std::cout<<"out dim @ "<<i<<" = "<<odim_size[i]<<std::endl;
+    }
 
     std::cout << "--------------------------------------------------------------" << std::endl;
+
+    for (size_t i = 0; i < odim_size[0]; i++) {
+        for (size_t j = 0; j < odim_size[1]; j++) {
+            for (size_t k = 0; k < odim_size[2]; k++) {
+                std::cout << (*output2)(i,j,k) << ", ";
+            }
+            std::cout << std::endl;
+        }
+        std::cout <<" ***** "<< std::endl;
+    }
+
+    std::cout << "--------------------------------------------------------------" << std::endl;
+
+
 
     return 0;
 }
