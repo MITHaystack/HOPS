@@ -1,7 +1,7 @@
 #ifndef MHOSummationReducer_HH__
 #define MHOSummationReducer_HH__
 
-#include <array>
+#include <algorithm>
 
 #include "MHOMessage.hh"
 #include "MHOArrayWrapper.hh"
@@ -13,126 +13,117 @@
 *Author: J. Barrett
 *Email: barrettj@mit.edu
 *Date:
-*Description: Reduce the dimensionality of an array by the difference of
-* INPUT_RANK-OUTPUT_RANK, via summation along the (runtime) specified dimensions
+*Description: Reduce a multi-dimensional array via summation along
+the (runtime) specified dimensions. The output array has the same
+dimensionality (i.e. RANK). However, the axes over which reduction occured
+will have a size of 1. The output array will be resized
+as needed.
 */
 
 
 namespace hops
 {
 
-template< typename XItemType, std::size_t INPUT_RANK, std::size_t OUTPUT_RANK>
+template< typename XItemType, std::size_t RANK>
 class MHOSummationReducer:
-    public MHOArrayOperator< MHOArrayWrapper< XItemType, INPUT_RANK>,
-                             MHOArrayWrapper< XItemType, OUTPUT_RANK> >
+    public MHOArrayOperator< MHOArrayWrapper< XItemType, RANK>,
+                             MHOArrayWrapper< XItemType, RANK> >
 {
     public:
 
-        static_assert(OUTPUT_RANK < INPUT_RANK, "Error INPUT_RANK is no less than OUTPUT_RANK");
-
-        typedef std::integral_constant< std::size_t, INPUT_RANK > input_rank;
-        typedef std::integral_constant< std::size_t, OUTPUT_RANK > output_rank;
-        typedef std::integral_constant< std::size_t, INPUT_RANK-OUTPUT_RANK > n_dims_to_reduce;
-
-        MHOSummationReducer()
+        MHOSummationReducer():
+            fInitialized(false)
         {
-            fDimsSet = false;
-            fAllowOutputResize = false;
-            fDimensionIndicesToReduce.fill(0);
+            for(std::size_t i=0;i<RANK;i++){fAxesToReduce[i] = 0;}
         }
 
         virtual ~MHOSummationReducer(){};
 
-        void AllowOutputResize(){fAllowOutputResize = true;}
-        void DisallowOutputResize(){fAllowOutputResize = false;}
-
-        //set the indices over which we run the reduction
-        //must be set before we can initialize/execute
-        template <typename ...XDimSizeTypeS >
-        typename std::enable_if< (sizeof...(XDimSizeTypeS) == INPUT_RANK-OUTPUT_RANK), void >::type
-        SetDimensionIndicesToReduce(XDimSizeTypeS...dim)
+        //set the indices of the axes over which we run the reduction.
+        //This must be set before we can initialize/execute
+        //for example for a 3D array, if we wanted to reduce along the
+        //last axis only we would call this->ReduceAxis(2), or alternatively if we
+        //wanted to reduce along both the first and last axis
+        //we would call this->ReduceAxis(0), this->ReduceAxis(2)
+        void
+        ReduceAxis(std::size_t axis_index)
         {
-            //compile-time check that the number of arguments is the same as the number of dimensions to reduce
-            const std::array<std::size_t, INPUT_RANK-OUTPUT_RANK> dim_loc = {{static_cast<size_t>(dim)...}}; //convert the arguments to an array
-            fDimensionIndicesToReduce = dim_loc;
-            fDimsSet = true;
+            if(axis_index < RANK){fAxesToReduce[axis_index] = 1;}
+            else
+            {
+                msg_error("operators", "Cannot reduce axis with index: " <<
+                          axis_index << "for array with rank: " << RANK << eom);
+            }
+        }
+
+        //de-select all axes
+        void ClearAxisSelection()
+        {
+            for(std::size_t i=0; i<RANK; i++)
+            {
+                fAxesToReduce[i] = 0;
+            }
         }
 
         virtual bool Initialize() override
         {
+            fInitialized = false;
             if(this->fInput != nullptr && this->fOutput != nullptr)
             {
-                std::size_t in_dim[INPUT_RANK];
-                std::size_t out_dim[OUTPUT_RANK];
-                std::size_t expected_out_dim[OUTPUT_RANK];
+                std::size_t in_dim[RANK];
+                std::size_t out_dim[RANK];
                 this->fInput->GetDimensions(in_dim);
-                this->fOutput->GetDimensions(out_dim);
 
                 //first figure out what the remaining dim sizes are to be
                 //after the array is contracted along the specified dimensions
                 std::size_t count = 0;
-                for(std::size_t i=0; i<INPUT_RANK; i++)
+                for(std::size_t i=0; i<RANK; i++)
                 {
-                    bool is_to_be_reduced = false;
-                    for(auto it=fDimensionIndicesToReduce.begin(); it != fDimensionIndicesToReduce.end(); it++)
-                    {
-                        if( i == *it){is_to_be_reduced = true; break;}
-                    }
-
-                    if(!is_to_be_reduced)
-                    {
-                        expected_out_dim[count] = in_dim[i];
-                        count++;
-                    }
+                    if(fAxesToReduce[i]){out_dim[i] = 1;}
+                    else{out_dim[i] = in_dim[i];}
                 }
-
-                bool size_mismatch = false;
-                for(std::size_t j=0; j<OUTPUT_RANK; j++)
-                {
-                    if(expected_out_dim[j] != out_dim[j])
-                    {
-                        size_mismatch = true;
-                        break;
-                    }
-                }
-
-                if(size_mismatch)
-                {
-                    if(fAllowOutputResize)
-                    {
-                        this->fOutput->Resize(expected_out_dim);
-                        fInitialized = true;
-                    }
-                    else
-                    {
-                        msg_warn("operators", "The output array is not of the correct size, but will not be resized.");
-                        fInitialized = false;
-                    }
-                }
-                else
-                {
-                    fInitialized = true;
-                }
-
-                return fInitialized;
-
+                this->fOutput->Resize(out_dim);
+                fInitialized = true;
             }
+            return fInitialized;
         }
 
         virtual bool ExecuteOperation() override
         {
             if(fInitialized)
             {
-                
+                this->fOutput->ZeroArray();
+
+                std::size_t in_dim[RANK];
+                std::size_t out_dim[RANK];
+                this->fInput->GetDimensions(in_dim);
+                this->fOutput->GetDimensions(out_dim);
+
+                std::size_t in_loc[RANK];
+                std::size_t out_loc[RANK];
+
+                std::size_t in_size = this->fInput->GetSize();
+                for(std::size_t n=0; n < in_size; n++)
+                {
+                    //while this is the most general method to contract the array
+                    //the following call to RowMajorIndexFromOffset is expensive,
+                    //and this algorithm probably doesn't have good cache locality
+                    //TODO - find a better way to do this, or optimize for special
+                    //cases (e.g. contract on single dimension, or outermost dimension(s) only)
+                    MHOArrayMath::RowMajorIndexFromOffset<RANK>(n, in_dim, in_loc);
+                    for(std::size_t i=0; i<RANK; i++){out_loc[i] = std::min(in_loc[i], out_dim[i]-1);}
+                    std::size_t m = MHOArrayMath::OffsetFromRowMajorIndex<RANK>(out_dim, out_loc);
+                    (*(this->fOutput))[m] += (*(this->fInput))[n];
+                }
+                return true;
             }
+            return false;
         }
 
     private:
 
-        bool fDimsSet;
-        bool fAllowOutputResize;
         bool fInitialized;
-        std::array<std::size_t, INPUT_RANK-OUTPUT_RANK> fDimensionIndicesToReduce;
+        std::size_t fAxesToReduce[RANK];
 
 };
 
