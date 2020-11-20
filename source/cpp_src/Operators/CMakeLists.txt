@@ -14,7 +14,8 @@ set (OPERATOR_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHOMultidimensionalFastFourierTransform.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHOVisibilityChannelizer.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHOCompoundReductions.hh
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHOArrayReducer.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHOReducer.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHOFunctorBroadcaster.hh
 )
 
 if(HOPS_USE_FFTW3)

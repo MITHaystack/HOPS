@@ -5,7 +5,7 @@ set (HOPS_TEST_LIBS MHOMessage MHOMath MHOUtilities MHOOperators)
 
 set(SOURCE_BASENAMES
     TestMultidimensionalFastFourierTransform
-    TestArrayReducer
+    TestReducer
 )
 
 if(HOPS_USE_FFTW3)

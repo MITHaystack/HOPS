@@ -1,5 +1,5 @@
-#ifndef MHOArrayReducer_HH__
-#define MHOArrayReducer_HH__
+#ifndef MHOReducer_HH__
+#define MHOReducer_HH__
 
 #include <algorithm>
 
@@ -9,8 +9,8 @@
 #include "MHOCompoundReductions.hh" //for operator type definitions
 
 /*
-*File: MHOArrayReducer.hh
-*Class: MHOArrayReducer
+*File: MHOReducer.hh
+*Class: MHOReducer
 *Author: J. Barrett
 *Email: barrettj@mit.edu
 *Date:
@@ -25,19 +25,19 @@ namespace hops
 {
 
 template< typename XItemType, template<typename> class XOperatorType, std::size_t RANK>
-class MHOArrayReducer:
+class MHOReducer:
     public MHOArrayOperator< MHOArrayWrapper< XItemType, RANK>,
                              MHOArrayWrapper< XItemType, RANK> >
 {
     public:
 
-        MHOArrayReducer():
+        MHOReducer():
             fInitialized(false)
         {
             for(std::size_t i=0;i<RANK;i++){fAxesToReduce[i] = 0;}
         }
 
-        virtual ~MHOArrayReducer(){};
+        virtual ~MHOReducer(){};
 
         //set the indices of the axes over which we run the reduction.
         //This must be set before we can initialize/execute
@@ -112,7 +112,6 @@ class MHOArrayReducer:
 
                 const std::size_t* in_loc;
                 std::size_t out_loc[RANK];
-
                 std::size_t in_size = this->fInput->GetSize();
 
                 auto iter_begin = this->fInput->begin();
@@ -156,4 +155,4 @@ class MHOArrayReducer:
 }
 
 
-#endif /* MHOArrayReducer_H__ */
+#endif /* MHOReducer_H__ */

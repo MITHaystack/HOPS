@@ -1,0 +1,102 @@
+#ifndef MHOFunctorBroadcaster_HH__
+#define MHOFunctorBroadcaster_HH__
+
+#include <algorithm>
+
+#include "MHOMessage.hh"
+#include "MHOArrayWrapper.hh"
+#include "MHOArrayOperator.hh"
+#include "MHOArrayFunctor.hh"
+
+
+
+/*
+*File: MHOFunctorBroadcaster.hh
+*Class: MHOFunctorBroadcaster
+*Author: J. Barrett
+*Email: barrettj@mit.edu
+*Date:
+*Description:
+*/
+
+
+namespace hops
+{
+
+template< class XInputArrayType, class XOutputArrayType >
+class MHOFunctorBroadcaster: MHOArrayOperator<XInputArrayType, XOutputArrayType >
+{
+    public:
+
+        MHOFunctorBroadcaster():
+            fInitialized(false),
+            fFunctor(nullptr)
+        {};
+
+        virtual ~MHOFunctorBroadcaster(){};
+
+        void SetFunctor( MHOArrayFunctor<XInputArrayType, XOutputArrayType>* functor){fFunctor = functor;}
+        MHOArrayFunctor<XInputArrayType, XOutputArrayType>* GetFunctor() {return fFunctor;};
+
+
+        virtual bool Initialize() override
+        {
+            fInitialized = false;
+            if(this->fInput != nullptr && this->fOutput != nullptr)
+            {
+                //only need to change output size if in != out and size is different
+                if(this->fInput != this->fOutput)
+                {
+                    std::size_t in_dim[RANK];
+                    std::size_t out_dim[RANK];
+                    this->fInput->GetDimensions(in_dim);
+                    this->fOutput->GetDimensions(out_dim);
+
+                    bool have_to_resize = false;
+                    for(std::size_t i=0; i<RANK; i++)
+                    {
+                        if(out_dim[i] != in_dim[i]){have_to_resize = true; break;}
+                    }
+
+                    if(have_to_resize){this->fOutput->Resize(in_dim);}
+                }
+                //need to have functor set up too
+                if(fFunctor != nullptr)
+                {
+                    fInitialized = true;
+                }
+            }
+            return fInitialized;
+        }
+
+        virtual bool ExecuteOperation() override
+        {
+            if(fInitialized)
+            {
+                auto in_iter =  this->fInput->begin();
+                auto in_iter_end = this->fInput->end();
+                auto out_iter = this->fOutput->begin();
+                auto out_iter_end = this->fOutput->end();
+                while( in_iter != in_iter_end && out_iter != out_iter_end)
+                {
+                    (*fFunctor)(in_iter, out_iter);
+                    ++out_iter;
+                    ++in_iter;
+                }
+                return true;
+            }
+            return false;
+        }
+
+
+    private:
+
+        bool fInitialized;
+        MHOArrayFunctor<XInputArrayType, XOutputArrayType>* fFunctor
+
+};
+
+}
+
+
+#endif /* MHOFunctorBroadcaster_H__ */

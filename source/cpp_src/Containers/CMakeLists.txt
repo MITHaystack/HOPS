@@ -2,6 +2,7 @@
 set (CONTAINER_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHOArrayMath.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHOArrayWrapper.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHOArrayFunctor.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHOAxisPack.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHOScalarContainer.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHOVectorContainer.hh
