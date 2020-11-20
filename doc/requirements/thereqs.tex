@@ -33,8 +33,8 @@
 %Details of the testing process are to be found in the coverage
 %and testing document (\cite{cover}).
 
-The requirements defined in this section are loosely organized by the tools
-or functionality.  Requirements are numbered with a prefix, which labels 
+The requirements defined in this section are loosely organized by functionality.  
+Requirements are numbered with a prefix according to
 the type of test that will be used to validate them.  These prefixes are:
 \begin{description}
 [align=left, labelwidth=0.0cm, leftmargin=1cm]
@@ -47,9 +47,8 @@ functionality. Existing tests within \ac{HOPS} will be ported into the new
 \ac{MHO} code set.
 
 \item[S], for software-testable. These are more complicated tests such as 
-regression tests that may be run at specific junctions in development. It is 
-anticipated  that each of these tests will be captured by a script that may 
-be executed on a regular basis, possibly requiring user intervention.  
+regression tests that may be run at specific points in development. It is 
+anticipated that each of these tests will be implemented by a script.
 
 \item[P], for procedural tests that require human interpretation (e.g. validating
 the display mechanics of a figure). \FIXME[Should a documented report
@@ -65,10 +64,10 @@ generally available GNU/Linux packages) the code should be structured
 so that it is relatively straightforwards to port to a new package with
 similar functionality.
 
+\end{description}
+
 Details of the testing process are to be found in the coverage
 and testing document (\cite{cover}).
-
-\end{description}
 
 \FIXME[Note: many of these requirements were imported from existing check
 scripts and need explicit definitions. The tests need to be reworded into 
@@ -146,7 +145,7 @@ distributions, Mac OSX, or Windows.
   \reqex{At a minimum, \acs{Python}ic equivalents can be constructed.}
 
 \reqid{P} \acs{FFTW3} should not be required
-  \reqex{Not that DFT support to handle the non-power of two channels
+  \reqex{Not that DFT support to handle the non-power-of-two channels
     used in the \acs{EHT} is needed.}
     
 \reqid{P} \acs{GSL} should not be required
@@ -235,19 +234,19 @@ in Python in \acs{MHO}.
 
 \reqid{A} the \acs{alist} program should provide valid \acs{A-list}
     files in versions 5, 6 and any version \TBD~7.
-    (\texttt{chk\_alist.sh} currently does this for versions 5 and 6. Version
-    7 shall provide greater flexibility, with user-defined columns.)
+    \reqex{\texttt{chk\_alist.sh} currently does this for versions 5 and 6. Version
+    7 shall provide greater flexibility, with user-defined columns.}
 
 \reqid{A} the \acs{adump} program shall provide valid ASCII text
     representations of columns of data from an \acs{A-list} of version
     5, 6 or any version \TBD~7.
-    (\texttt{chk\_adump.sh} currently does this for versions 5 and 6.)
+    \reqex{\texttt{chk\_adump.sh} currently does this for versions 5 and 6.}
 
 \reqid{A} the \acs{aedit} program should process versions 5, 6 and
     any version \TBD~7 \acs{A-list} files with respect to flagging,
     selecting, summarizing and generating new output \acs{A-list}.
-    (the \texttt{chk\_aedit.sh} currently makes a pass through many
-    of these)
+    \reqex{the \texttt{chk\_aedit.sh} currently makes a pass through many
+    of these}
 
 %\reqid{A} the \acs{Python}ic replacement module for these three current
 %    applications, is must fulfill the same requirement.
