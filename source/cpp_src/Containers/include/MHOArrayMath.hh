@@ -128,6 +128,60 @@ class MHOArrayMath
             }
         }
 
+        //increment the multi-dimensional indices by 1
+        template<std::size_t RANK> static bool
+        IncrementIndices(const std::size_t* DimSize, std::size_t* Index)
+        {
+            for(std::size_t i=1; i <= RANK; i++)
+            {
+                if(++Index[RANK-i] < DimSize[RANK-i]){return true;}
+                else{Index[RANK-i] = 0;}
+            }
+            //if we have reached here we have overflowed the 0-th dimension
+            return false;
+        }
+
+        //increment the multi-dimensional indices by the amount in diff
+        template<std::size_t RANK> static bool
+        IncrementIndices(const std::size_t* DimSize, std::size_t* Index, std::size_t diff)
+        {
+            std::size_t offset = OffsetFromRowMajorIndex<RANK>(DimSize,Index);
+            offset += diff;
+            if(offset < TotalArraySize<RANK>(DimSize) )
+            {
+                RowMajorIndexFromOffset<RANK>(offset, DimSize, Index);
+                return true;
+            }
+            //cannot increment past the end
+            return false;
+        }
+
+
+        template<std::size_t RANK> static bool
+        DecrementIndices(const std::size_t* DimSize, std::size_t* Index)
+        {
+            for(std::size_t i=1; i <= RANK; i++)
+            {
+                if(Index[RANK-i] > 0){--Index[RANK-i];return true;}
+                else{Index[RANK-i] = DimSize[RANK-i]-1;}
+            }
+            //if we reach here we have underflowed the 0-th dimension
+            return false;
+        }
+
+        template<std::size_t RANK> static bool
+        DecrementIndices(const std::size_t* DimSize, std::size_t* Index, std::size_t diff)
+        {
+            std::size_t offset = OffsetFromRowMajorIndex<RANK>(DimSize,Index);
+            if(diff < offset )
+            {
+                offset -= diff;
+                RowMajorIndexFromOffset<RANK>(offset, DimSize, Index);
+                return true;
+            }
+            //cannot decrement more than the offset from start
+            return false;
+        }
 
 };
 
@@ -145,7 +199,6 @@ struct MHOArrayMath::Divide<numerator, 1>
 {
     enum { value = numerator };
 };
-
 
 
 }//end of namespace

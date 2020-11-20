@@ -31,7 +31,6 @@ class MHOArrayOperator
 
         XInputArrayType* fInput;
         XOutputArrayType* fOutput;
-    
 
 };
 

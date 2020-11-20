@@ -110,24 +110,36 @@ class MHOArrayReducer:
                 this->fInput->GetDimensions(in_dim);
                 this->fOutput->GetDimensions(out_dim);
 
-                std::size_t in_loc[RANK];
+                const std::size_t* in_loc;
                 std::size_t out_loc[RANK];
 
                 std::size_t in_size = this->fInput->GetSize();
-                for(std::size_t n=0; n < in_size; n++)
+
+                auto iter_begin = this->fInput->begin();
+                auto iter_end = this->fInput->end();
+                for(auto iter = iter_begin; iter != iter_end; ++iter)
                 {
-                    //while this is the most general method to contract the array
-                    //the following call to RowMajorIndexFromOffset is expensive,
-                    //and this algorithm probably doesn't have good cache locality
-                    //TODO - find a better way to do this, or provide optimized
-                    //versions for special cases (e.g. contract on single dimension,
-                    //or do the outermost dimension(s) only)
-                    MHOArrayMath::RowMajorIndexFromOffset<RANK>(n, in_dim, in_loc);
+                    in_loc = iter.GetIndices();
                     for(std::size_t i=0; i<RANK; i++){out_loc[i] = std::min(in_loc[i], out_dim[i]-1);}
                     std::size_t m = MHOArrayMath::OffsetFromRowMajorIndex<RANK>(out_dim, out_loc);
                     //execute the reduction operator +=  or *= or user-defined
-                    fReductionOperator((*(this->fOutput))[m], (*(this->fInput))[n]);
+                    fReductionOperator( (*(this->fOutput))[m], *iter);
                 }
+
+                // for(std::size_t n=0; n < in_size; n++)
+                // {
+                //     //while this is the most general method to contract the array
+                //     //the following call to RowMajorIndexFromOffset is expensive,
+                //     //and this algorithm probably doesn't have good cache locality
+                //     //TODO - find a better way to do this, or provide optimized
+                //     //versions for special cases (e.g. contract on single dimension,
+                //     //or do the outermost dimension(s) only)
+                //     MHOArrayMath::RowMajorIndexFromOffset<RANK>(n, in_dim, in_loc);
+                //     for(std::size_t i=0; i<RANK; i++){out_loc[i] = std::min(in_loc[i], out_dim[i]-1);}
+                //     std::size_t m = MHOArrayMath::OffsetFromRowMajorIndex<RANK>(out_dim, out_loc);
+                //     //execute the reduction operator +=  or *= or user-defined
+                //     fReductionOperator((*(this->fOutput))[m], (*(this->fInput))[n]);
+                // }
                 return true;
             }
             return false;
