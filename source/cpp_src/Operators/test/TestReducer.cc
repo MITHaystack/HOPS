@@ -1,5 +1,5 @@
 #include "MHOMessage.hh"
-#include "MHOArrayReducer.hh"
+#include "MHOReducer.hh"
 
 #include <cmath>
 #include <iomanip>
@@ -44,7 +44,7 @@ int main(int /*argc*/, char** /*argv*/)
 
     std::cout << "--------------------------------------------------------------" << std::endl;
 
-    MHOArrayReducer<std::complex<double>, MHOCompoundSum, NDIM>* reducer = new MHOArrayReducer<std::complex<double>, MHOCompoundSum, NDIM>();
+    MHOReducer<std::complex<double>, MHOCompoundSum, NDIM>* reducer = new MHOReducer<std::complex<double>, MHOCompoundSum, NDIM>();
     reducer->SetInput(input);
     reducer->SetOutput(output);
     //reducer->ReduceAxis(0);
@@ -76,7 +76,7 @@ int main(int /*argc*/, char** /*argv*/)
 
     std::cout << "--------------------------------------------------------------" << std::endl;
 
-    MHOArrayReducer<std::complex<double>, MHOCompoundMultiply, NDIM>* reducer2 = new MHOArrayReducer<std::complex<double>, MHOCompoundMultiply, NDIM>();
+    MHOReducer<std::complex<double>, MHOCompoundMultiply, NDIM>* reducer2 = new MHOReducer<std::complex<double>, MHOCompoundMultiply, NDIM>();
     reducer2->SetInput(output);
     reducer2->SetOutput(output2);
     //reducer->ReduceAxis(0);
