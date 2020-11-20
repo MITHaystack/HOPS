@@ -69,5 +69,29 @@ int main(int /*argc*/, char** /*argv*/)
 
     test3.Resize(20,20);
 
+    std::size_t arr_dim[3];
+    arr_dim[0] = 2; arr_dim[1] = 1; arr_dim[2] = 3;
+    std::size_t arr_ind[3];
+
+
+    std::cout<<"iterator increment operation"<<std::endl;
+    arr_ind[0] = 0; arr_ind[1] = 0; arr_ind[2] = 0;
+    do
+    {
+        std::cout<<"index iterator = ("<<arr_ind[0]<<", "<<arr_ind[1]<<", "<<arr_ind[2]<<")"<<std::endl;
+    }
+    while( MHOArrayMath::IncrementIndices<3>(arr_dim, arr_ind));
+
+    std::cout<<"iterator decrement operation"<<std::endl;
+    arr_ind[0] = arr_dim[0]-1; arr_ind[1] = arr_dim[1]-1; arr_ind[2] = arr_dim[2]-1;
+    do
+    {
+        std::cout<<"index iterator = ("<<arr_ind[0]<<", "<<arr_ind[1]<<", "<<arr_ind[2]<<")"<<std::endl;
+    }
+    while( MHOArrayMath::DecrementIndices<3>(arr_dim, arr_ind));
+
+
+
+
     return 0;
 }
