@@ -12,7 +12,6 @@ set (OPERATOR_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHOBinaryArrayOperator.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHOFastFourierTransform.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHOMultidimensionalFastFourierTransform.hh
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHOVisibilityChannelizer.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHOCompoundReductions.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHOReducer.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHOFunctorBroadcaster.hh
@@ -28,7 +27,6 @@ endif(HOPS_USE_FFTW3)
 
 set( OPERATOR_SOURCEFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHOFastFourierTransform.cc
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHOVisibilityChannelizer.cc
 )
 
 #declare header paths ##########################################################
