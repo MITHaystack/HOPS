@@ -8,8 +8,6 @@ set (CONTAINER_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHOVectorContainer.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHOTensorContainer.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHOAxis.hh
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHOVisibilities.hh
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHOChannelizedVisibilities.hh
 )
 
 #declare header paths ##########################################################
