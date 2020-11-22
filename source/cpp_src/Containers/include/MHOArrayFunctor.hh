@@ -25,7 +25,10 @@ class MHOArrayFunctor:
         MHOArrayFunctor(){};
         virtual ~MHOArrayFunctor(){};
 
-        virtual void operator( XInputArrayType::iterator& input, XOutputArrayType::iterator& output) = 0;
+        using input_iterator = XInputArrayType::iterator ;
+        using output_iterator = XOutputArrayType::iterator;
+
+        virtual void operator( input_iterator& input, output_iterator& output) = 0;
 
 };
 
