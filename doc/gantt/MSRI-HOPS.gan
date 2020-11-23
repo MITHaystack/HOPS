@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><project name="MSRI HOP Redevelopment" company="MIT Haystack" webLink="https://github.mit.edu/barrettj/hops-git" view-date="2020-06-01" view-index="0" gantt-divider-location="561" resource-divider-location="300" version="2.8.10" locale="en_US">
+<?xml version="1.0" encoding="UTF-8"?><project name="MSRI HOP Redevelopment" company="MIT Haystack" webLink="https://github.mit.edu/barrettj/hops-git" view-date="2020-10-01" view-index="0" gantt-divider-location="561" resource-divider-location="300" version="2.8.10" locale="en_US">
     <description/>
     <view zooming-state="default:11" id="gantt-chart">
         <field id="tpd3" name="Name" width="387" order="0"/>
@@ -49,7 +49,7 @@
             <task id="216" name="Developer guide" color="#8cb6ce" meeting="false" start="2021-07-30" duration="471" complete="0" thirdDate="2020-11-02" thirdDate-constraint="0" expand="true"/>
             <task id="218" name="User guide" color="#8cb6ce" meeting="false" start="2021-07-30" duration="471" complete="0" thirdDate="2020-11-02" thirdDate-constraint="0" expand="true"/>
         </task>
-        <task id="74" name="Code Developement" meeting="false" start="2020-04-01" duration="804" complete="0" expand="true">
+        <task id="74" name="Code Developement" meeting="false" start="2020-11-02" duration="651" complete="0" expand="true">
             <task id="78" name="Create build system" meeting="false" start="2020-11-02" duration="15" complete="0" expand="true">
                 <task id="80" name="Create and evaluate automake build system" color="#8cb6ce" meeting="false" start="2020-11-02" duration="15" complete="0" thirdDate="2020-11-02" thirdDate-constraint="0" expand="true"/>
                 <task id="82" name="Create and evaluate cmake build system" color="#8cb6ce" meeting="false" start="2020-11-02" duration="15" complete="0" thirdDate="2020-11-02" thirdDate-constraint="0" expand="true"/>
@@ -63,10 +63,11 @@
                 </task>
                 <task id="223" name="Import tests for legacy libraries/execuatables (e.g. fourfit)" color="#8cb6ce" meeting="false" start="2020-11-23" duration="30" complete="0" thirdDate="2020-11-02" thirdDate-constraint="0" expand="true"/>
             </task>
-            <task id="170" name="Develop new data container classes (DCC)" color="#8cb6ce" meeting="false" start="2020-04-01" duration="239" complete="0" thirdDate="2020-11-02" thirdDate-constraint="0" expand="true">
+            <task id="170" name="Develop new data container classes (DCC)" color="#8cb6ce" meeting="false" start="2020-11-02" duration="86" complete="0" thirdDate="2020-11-02" thirdDate-constraint="0" expand="true">
                 <depend id="184" type="2" difference="0" hardness="Strong"/>
                 <depend id="201" type="2" difference="0" hardness="Strong"/>
                 <depend id="241" type="2" difference="0" hardness="Strong"/>
+                <depend id="428" type="2" difference="0" hardness="Strong"/>
                 <task id="171" name="Create data container class definitions" color="#8cb6ce" meeting="false" start="2020-11-02" duration="30" complete="0" thirdDate="2020-11-02" thirdDate-constraint="0" expand="true">
                     <depend id="172" type="2" difference="0" hardness="Strong"/>
                     <depend id="174" type="2" difference="0" hardness="Strong"/>
@@ -79,7 +80,6 @@
                 </task>
                 <task id="175" name="mk4 to DCC conversion executable" color="#8cb6ce" meeting="false" start="2021-01-25" duration="26" complete="0" thirdDate="2020-11-02" thirdDate-constraint="0" expand="true"/>
                 <task id="176" name="DiFX to DCC conversion executable" color="#8cb6ce" meeting="false" start="2020-12-14" duration="56" complete="0" thirdDate="2020-11-02" thirdDate-constraint="0" expand="true"/>
-                <task id="177" name="I/O export utilities (HDF5,UVFITS,etc.)" color="#8cb6ce" meeting="false" start="2020-04-01" duration="1" complete="0" thirdDate="2020-11-02" thirdDate-constraint="0" expand="true"/>
             </task>
             <task id="184" name="Develop VLBI data analysis library and executables" color="#000000" meeting="false" start="2021-03-08" duration="561" complete="0" thirdDate="2020-08-03" thirdDate-constraint="0" expand="true">
                 <task id="186" name="Demonstrate simple single-band-delay search" color="#8cb6ce" meeting="false" start="2021-03-08" duration="14" complete="0" thirdDate="2021-03-08" thirdDate-constraint="0" expand="true">
@@ -111,7 +111,7 @@
                 <task id="330" name="Develop aedit replacement" color="#8cb6ce" meeting="false" start="2021-10-22" duration="240" complete="0" thirdDate="2021-03-08" thirdDate-constraint="0" expand="true"/>
                 <task id="253" name="Experimental multi-baseline fringe-fit?" color="#8cb6ce" meeting="false" start="2022-09-05" duration="171" complete="0" thirdDate="2021-03-08" thirdDate-constraint="0" expand="true"/>
             </task>
-            <task id="188" name="Develop utility libraries" color="#8cb6ce" meeting="false" start="2020-11-02" duration="90" complete="0" thirdDate="2020-11-02" thirdDate-constraint="0" expand="false">
+            <task id="188" name="Develop utility libraries" color="#8cb6ce" meeting="false" start="2020-11-02" duration="90" complete="0" thirdDate="2020-11-02" thirdDate-constraint="0" expand="true">
                 <depend id="184" type="2" difference="0" hardness="Strong"/>
                 <task id="189" name="Develop messaging/logging utility" color="#8cb6ce" meeting="false" start="2020-11-02" duration="15" complete="0" thirdDate="2020-11-02" thirdDate-constraint="0" expand="true"/>
                 <task id="190" name="Develop timer tool for profiling" color="#8cb6ce" meeting="false" start="2020-11-02" duration="15" complete="0" thirdDate="2020-11-02" thirdDate-constraint="0" expand="true"/>
@@ -139,9 +139,10 @@
                 </task>
                 <task id="202" name="Develop python plotting utilities" color="#8cb6ce" meeting="false" start="2020-11-02" duration="120" complete="0" thirdDate="2020-11-02" thirdDate-constraint="0" expand="true"/>
             </task>
-            <task id="228" name="Parallel acceleration" meeting="false" start="2022-09-23" duration="120" complete="0" expand="true">
+            <task id="228" name="Parallel acceleration &amp; Extras" color="#000000" meeting="false" start="2021-03-02" duration="528" complete="0" thirdDate="2022-09-23" thirdDate-constraint="0" expand="true">
                 <task id="229" name="Implement parallel data operators for TBD tasks" color="#8cb6ce" meeting="false" start="2022-09-23" duration="120" complete="0" thirdDate="2020-11-02" thirdDate-constraint="0" expand="true"/>
                 <task id="231" name="Implement MPI executables for TBD tasks" color="#8cb6ce" meeting="false" start="2022-09-23" duration="120" complete="0" thirdDate="2020-11-02" thirdDate-constraint="0" expand="true"/>
+                <task id="428" name="I/O Import/Export executables (HDF5, UVFITS, etc.)" color="#8cb6ce" meeting="false" start="2021-03-02" duration="300" complete="0" thirdDate="2020-01-01" thirdDate-constraint="0" expand="true"/>
             </task>
         </task>
         <task id="236" name="Geodesy Specific Tasks" meeting="false" start="2021-03-02" duration="480" complete="0" expand="true">
