@@ -3,7 +3,7 @@
     <SaveVersion>14</SaveVersion>
     <Title>Project1</Title>
     <ScheduleFromStart>1</ScheduleFromStart>
-    <StartDate>2020-04-01T08:00:00</StartDate>
+    <StartDate>2020-11-02T08:00:00</StartDate>
     <FinishDate>2023-05-19T17:00:00</FinishDate>
     <FYStartDate>1</FYStartDate>
     <CriticalSlackLimit>0</CriticalSlackLimit>
@@ -40,7 +40,7 @@
     <MoveCompletedEndsForward>0</MoveCompletedEndsForward>
     <BaselineForEarnedValue>0</BaselineForEarnedValue>
     <AutoAddNewResourcesAndTasks>1</AutoAddNewResourcesAndTasks>
-    <CurrentDate>2020-11-23T11:37:00</CurrentDate>
+    <CurrentDate>2020-11-23T11:42:00</CurrentDate>
     <MicrosoftProjectServerURL>1</MicrosoftProjectServerURL>
     <Autolink>1</Autolink>
     <NewTaskStartDate>0</NewTaskStartDate>
@@ -147,9 +147,9 @@
             <OutlineNumber>0</OutlineNumber>
             <OutlineLevel>0</OutlineLevel>
             <Priority>500</Priority>
-            <Start>2020-04-01T08:00:00</Start>
+            <Start>2020-11-02T08:00:00</Start>
             <Finish>2023-05-19T17:00:00</Finish>
-            <Duration>PT9152H0M0S</Duration>
+            <Duration>PT7432H0M0S</Duration>
             <DurationFormat>7</DurationFormat>
             <ResumeValid>0</ResumeValid>
             <EffortDriven>0</EffortDriven>
@@ -163,7 +163,7 @@
             <IsSubprojectReadOnly>0</IsSubprojectReadOnly>
             <ExternalTask>0</ExternalTask>
             <FixedCostAccrual>3</FixedCostAccrual>
-            <RemainingDuration>PT9152H0M0S</RemainingDuration>
+            <RemainingDuration>PT7432H0M0S</RemainingDuration>
             <ConstraintType>0</ConstraintType>
             <CalendarUID>-1</CalendarUID>
             <LevelAssignments>0</LevelAssignments>
@@ -559,9 +559,9 @@
             <OutlineNumber>2</OutlineNumber>
             <OutlineLevel>1</OutlineLevel>
             <Priority>500</Priority>
-            <Start>2020-04-01T08:00:00</Start>
+            <Start>2020-11-02T08:00:00</Start>
             <Finish>2023-05-01T17:00:00</Finish>
-            <Duration>PT6432H0M0S</Duration>
+            <Duration>PT5208H0M0S</Duration>
             <DurationFormat>7</DurationFormat>
             <ResumeValid>0</ResumeValid>
             <EffortDriven>0</EffortDriven>
@@ -576,7 +576,7 @@
             <ExternalTask>0</ExternalTask>
             <FixedCostAccrual>3</FixedCostAccrual>
             <PercentComplete>0</PercentComplete>
-            <RemainingDuration>PT6432H0M0S</RemainingDuration>
+            <RemainingDuration>PT5208H0M0S</RemainingDuration>
             <ConstraintType>0</ConstraintType>
             <CalendarUID>-1</CalendarUID>
             <LevelAssignments>0</LevelAssignments>
@@ -588,9 +588,9 @@
             <EarnedValueMethod>0</EarnedValueMethod>
             <Active>1</Active>
             <Manual>1</Manual>
-            <ManualStart>2020-04-01T08:00:00</ManualStart>
+            <ManualStart>2020-11-02T08:00:00</ManualStart>
             <ManualFinish>2023-05-01T17:00:00</ManualFinish>
-            <ManualDuration>PT6432H0M0S</ManualDuration>
+            <ManualDuration>PT5208H0M0S</ManualDuration>
         </Task>
         <Task>
             <UID>78</UID>
@@ -913,9 +913,9 @@
             <OutlineNumber>2.3</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
             <Priority>500</Priority>
-            <Start>2020-04-01T08:00:00</Start>
+            <Start>2020-11-02T08:00:00</Start>
             <Finish>2021-03-01T17:00:00</Finish>
-            <Duration>PT1912H0M0S</Duration>
+            <Duration>PT688H0M0S</Duration>
             <DurationFormat>7</DurationFormat>
             <ResumeValid>0</ResumeValid>
             <EffortDriven>0</EffortDriven>
@@ -930,7 +930,7 @@
             <ExternalTask>0</ExternalTask>
             <FixedCostAccrual>3</FixedCostAccrual>
             <PercentComplete>0</PercentComplete>
-            <RemainingDuration>PT1912H0M0S</RemainingDuration>
+            <RemainingDuration>PT688H0M0S</RemainingDuration>
             <ConstraintType>0</ConstraintType>
             <CalendarUID>-1</CalendarUID>
             <LevelAssignments>0</LevelAssignments>
@@ -942,9 +942,9 @@
             <EarnedValueMethod>0</EarnedValueMethod>
             <Active>1</Active>
             <Manual>1</Manual>
-            <ManualStart>2020-04-01T08:00:00</ManualStart>
+            <ManualStart>2020-11-02T08:00:00</ManualStart>
             <ManualFinish>2021-03-01T17:00:00</ManualFinish>
-            <ManualDuration>PT1912H0M0S</ManualDuration>
+            <ManualDuration>PT688H0M0S</ManualDuration>
         </Task>
         <Task>
             <UID>171</UID>
@@ -1182,51 +1182,8 @@
             <ManualDuration>PT448H0M0S</ManualDuration>
         </Task>
         <Task>
-            <UID>177</UID>
-            <ID>23</ID>
-            <Name>I/O export utilities (HDF5,UVFITS,etc.)</Name>
-            <Type>0</Type>
-            <IsNull>0</IsNull>
-            <WBS>2.3.6</WBS>
-            <OutlineNumber>2.3.6</OutlineNumber>
-            <OutlineLevel>3</OutlineLevel>
-            <Priority>500</Priority>
-            <Start>2020-04-01T08:00:00</Start>
-            <Finish>2020-04-01T17:00:00</Finish>
-            <Duration>PT8H0M0S</Duration>
-            <DurationFormat>7</DurationFormat>
-            <ResumeValid>0</ResumeValid>
-            <EffortDriven>0</EffortDriven>
-            <Recurring>0</Recurring>
-            <OverAllocated>0</OverAllocated>
-            <Estimated>0</Estimated>
-            <Milestone>0</Milestone>
-            <Summary>0</Summary>
-            <Critical>1</Critical>
-            <IsSubproject>0</IsSubproject>
-            <IsSubprojectReadOnly>0</IsSubprojectReadOnly>
-            <ExternalTask>0</ExternalTask>
-            <FixedCostAccrual>3</FixedCostAccrual>
-            <PercentComplete>0</PercentComplete>
-            <RemainingDuration>PT8H0M0S</RemainingDuration>
-            <ConstraintType>0</ConstraintType>
-            <CalendarUID>-1</CalendarUID>
-            <LevelAssignments>0</LevelAssignments>
-            <LevelingCanSplit>0</LevelingCanSplit>
-            <Hyperlink></Hyperlink>
-            <IgnoreResourceCalendar>1</IgnoreResourceCalendar>
-            <HideBar>0</HideBar>
-            <Rollup>0</Rollup>
-            <EarnedValueMethod>0</EarnedValueMethod>
-            <Active>1</Active>
-            <Manual>1</Manual>
-            <ManualStart>2020-04-01T08:00:00</ManualStart>
-            <ManualFinish>2020-04-01T17:00:00</ManualFinish>
-            <ManualDuration>PT8H0M0S</ManualDuration>
-        </Task>
-        <Task>
             <UID>184</UID>
-            <ID>24</ID>
+            <ID>23</ID>
             <Name>Develop VLBI data analysis library and executables</Name>
             <Type>0</Type>
             <IsNull>0</IsNull>
@@ -1284,7 +1241,7 @@
         </Task>
         <Task>
             <UID>186</UID>
-            <ID>25</ID>
+            <ID>24</ID>
             <Name>Demonstrate simple single-band-delay search</Name>
             <Type>0</Type>
             <IsNull>0</IsNull>
@@ -1327,7 +1284,7 @@
         </Task>
         <Task>
             <UID>254</UID>
-            <ID>26</ID>
+            <ID>25</ID>
             <Name>Implement data flagging (time, freq, ad-hoc)</Name>
             <Type>0</Type>
             <IsNull>0</IsNull>
@@ -1370,7 +1327,7 @@
         </Task>
         <Task>
             <UID>246</UID>
-            <ID>27</ID>
+            <ID>26</ID>
             <Name>Implement per-AP/per-channel phase/delay correction/calib.</Name>
             <Type>0</Type>
             <IsNull>0</IsNull>
@@ -1413,7 +1370,7 @@
         </Task>
         <Task>
             <UID>247</UID>
-            <ID>28</ID>
+            <ID>27</ID>
             <Name>Implement per-AP/sub-channel phase/delay correction/cal.</Name>
             <Type>0</Type>
             <IsNull>0</IsNull>
@@ -1456,7 +1413,7 @@
         </Task>
         <Task>
             <UID>251</UID>
-            <ID>29</ID>
+            <ID>28</ID>
             <Name>Implement per-AP/ad-hoc phase/delay correction/calib.</Name>
             <Type>0</Type>
             <IsNull>0</IsNull>
@@ -1499,7 +1456,7 @@
         </Task>
         <Task>
             <UID>185</UID>
-            <ID>30</ID>
+            <ID>29</ID>
             <Name>Demonstrate single-baseline fringe fit with new data containters/operators</Name>
             <Type>0</Type>
             <IsNull>0</IsNull>
@@ -1557,7 +1514,7 @@
         </Task>
         <Task>
             <UID>232</UID>
-            <ID>31</ID>
+            <ID>30</ID>
             <Name>Develop fourfit replacement</Name>
             <Type>0</Type>
             <IsNull>0</IsNull>
@@ -1605,7 +1562,7 @@
         </Task>
         <Task>
             <UID>233</UID>
-            <ID>32</ID>
+            <ID>31</ID>
             <Name>Develop alist replacement</Name>
             <Type>0</Type>
             <IsNull>0</IsNull>
@@ -1653,7 +1610,7 @@
         </Task>
         <Task>
             <UID>330</UID>
-            <ID>33</ID>
+            <ID>32</ID>
             <Name>Develop aedit replacement</Name>
             <Type>0</Type>
             <IsNull>0</IsNull>
@@ -1701,7 +1658,7 @@
         </Task>
         <Task>
             <UID>253</UID>
-            <ID>34</ID>
+            <ID>33</ID>
             <Name>Experimental multi-baseline fringe-fit?</Name>
             <Type>0</Type>
             <IsNull>0</IsNull>
@@ -1744,7 +1701,7 @@
         </Task>
         <Task>
             <UID>188</UID>
-            <ID>35</ID>
+            <ID>34</ID>
             <Name>Develop utility libraries</Name>
             <Type>0</Type>
             <IsNull>0</IsNull>
@@ -1787,7 +1744,7 @@
         </Task>
         <Task>
             <UID>189</UID>
-            <ID>36</ID>
+            <ID>35</ID>
             <Name>Develop messaging/logging utility</Name>
             <Type>0</Type>
             <IsNull>0</IsNull>
@@ -1830,7 +1787,7 @@
         </Task>
         <Task>
             <UID>190</UID>
-            <ID>37</ID>
+            <ID>36</ID>
             <Name>Develop timer tool for profiling</Name>
             <Type>0</Type>
             <IsNull>0</IsNull>
@@ -1873,7 +1830,7 @@
         </Task>
         <Task>
             <UID>191</UID>
-            <ID>38</ID>
+            <ID>37</ID>
             <Name>Develop math library (minimization, interpol., mx solve, etc.)</Name>
             <Type>0</Type>
             <IsNull>0</IsNull>
@@ -1916,7 +1873,7 @@
         </Task>
         <Task>
             <UID>192</UID>
-            <ID>39</ID>
+            <ID>38</ID>
             <Name>Develop data operator library</Name>
             <Type>0</Type>
             <IsNull>0</IsNull>
@@ -1959,7 +1916,7 @@
         </Task>
         <Task>
             <UID>193</UID>
-            <ID>40</ID>
+            <ID>39</ID>
             <Name>Develop basic data operator class definitions</Name>
             <Type>0</Type>
             <IsNull>0</IsNull>
@@ -2007,7 +1964,7 @@
         </Task>
         <Task>
             <UID>194</UID>
-            <ID>41</ID>
+            <ID>40</ID>
             <Name>Functor broadcast operator</Name>
             <Type>0</Type>
             <IsNull>0</IsNull>
@@ -2055,7 +2012,7 @@
         </Task>
         <Task>
             <UID>195</UID>
-            <ID>42</ID>
+            <ID>41</ID>
             <Name>Array reduction operator</Name>
             <Type>0</Type>
             <IsNull>0</IsNull>
@@ -2103,7 +2060,7 @@
         </Task>
         <Task>
             <UID>196</UID>
-            <ID>43</ID>
+            <ID>42</ID>
             <Name>Multidimensional FFT operator</Name>
             <Type>0</Type>
             <IsNull>0</IsNull>
@@ -2151,7 +2108,7 @@
         </Task>
         <Task>
             <UID>198</UID>
-            <ID>44</ID>
+            <ID>43</ID>
             <Name>Develop python bindings/libraries</Name>
             <Type>0</Type>
             <IsNull>0</IsNull>
@@ -2194,7 +2151,7 @@
         </Task>
         <Task>
             <UID>199</UID>
-            <ID>45</ID>
+            <ID>44</ID>
             <Name>Develop python control layer for fringe fitting control</Name>
             <Type>0</Type>
             <IsNull>0</IsNull>
@@ -2252,7 +2209,7 @@
         </Task>
         <Task>
             <UID>200</UID>
-            <ID>46</ID>
+            <ID>45</ID>
             <Name>python bindings to data operators</Name>
             <Type>0</Type>
             <IsNull>0</IsNull>
@@ -2300,7 +2257,7 @@
         </Task>
         <Task>
             <UID>201</UID>
-            <ID>47</ID>
+            <ID>46</ID>
             <Name>Python bindings to DCC</Name>
             <Type>0</Type>
             <IsNull>0</IsNull>
@@ -2348,7 +2305,7 @@
         </Task>
         <Task>
             <UID>202</UID>
-            <ID>48</ID>
+            <ID>47</ID>
             <Name>Develop python plotting utilities</Name>
             <Type>0</Type>
             <IsNull>0</IsNull>
@@ -2391,17 +2348,17 @@
         </Task>
         <Task>
             <UID>228</UID>
-            <ID>49</ID>
-            <Name>Parallel acceleration</Name>
+            <ID>48</ID>
+            <Name>Parallel acceleration &amp; Extras</Name>
             <Type>0</Type>
             <IsNull>0</IsNull>
             <WBS>2.8</WBS>
             <OutlineNumber>2.8</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
             <Priority>500</Priority>
-            <Start>2022-09-23T08:00:00</Start>
+            <Start>2021-03-02T08:00:00</Start>
             <Finish>2023-03-09T17:00:00</Finish>
-            <Duration>PT960H0M0S</Duration>
+            <Duration>PT4224H0M0S</Duration>
             <DurationFormat>7</DurationFormat>
             <ResumeValid>0</ResumeValid>
             <EffortDriven>0</EffortDriven>
@@ -2416,7 +2373,7 @@
             <ExternalTask>0</ExternalTask>
             <FixedCostAccrual>3</FixedCostAccrual>
             <PercentComplete>0</PercentComplete>
-            <RemainingDuration>PT960H0M0S</RemainingDuration>
+            <RemainingDuration>PT4224H0M0S</RemainingDuration>
             <ConstraintType>0</ConstraintType>
             <CalendarUID>-1</CalendarUID>
             <LevelAssignments>0</LevelAssignments>
@@ -2428,13 +2385,13 @@
             <EarnedValueMethod>0</EarnedValueMethod>
             <Active>1</Active>
             <Manual>1</Manual>
-            <ManualStart>2022-09-23T08:00:00</ManualStart>
+            <ManualStart>2021-03-02T08:00:00</ManualStart>
             <ManualFinish>2023-03-09T17:00:00</ManualFinish>
-            <ManualDuration>PT960H0M0S</ManualDuration>
+            <ManualDuration>PT4224H0M0S</ManualDuration>
         </Task>
         <Task>
             <UID>229</UID>
-            <ID>50</ID>
+            <ID>49</ID>
             <Name>Implement parallel data operators for TBD tasks</Name>
             <Type>0</Type>
             <IsNull>0</IsNull>
@@ -2482,7 +2439,7 @@
         </Task>
         <Task>
             <UID>231</UID>
-            <ID>51</ID>
+            <ID>50</ID>
             <Name>Implement MPI executables for TBD tasks</Name>
             <Type>0</Type>
             <IsNull>0</IsNull>
@@ -2527,6 +2484,54 @@
             <ManualStart>2022-09-23T08:00:00</ManualStart>
             <ManualFinish>2023-03-09T17:00:00</ManualFinish>
             <ManualDuration>PT960H0M0S</ManualDuration>
+        </Task>
+        <Task>
+            <UID>428</UID>
+            <ID>51</ID>
+            <Name>I/O Import/Export executables (HDF5, UVFITS, etc.)</Name>
+            <Type>0</Type>
+            <IsNull>0</IsNull>
+            <WBS>2.8.3</WBS>
+            <OutlineNumber>2.8.3</OutlineNumber>
+            <OutlineLevel>3</OutlineLevel>
+            <Priority>500</Priority>
+            <Start>2021-03-02T08:00:00</Start>
+            <Finish>2022-04-25T17:00:00</Finish>
+            <Duration>PT2400H0M0S</Duration>
+            <DurationFormat>7</DurationFormat>
+            <ResumeValid>0</ResumeValid>
+            <EffortDriven>0</EffortDriven>
+            <Recurring>0</Recurring>
+            <OverAllocated>0</OverAllocated>
+            <Estimated>0</Estimated>
+            <Milestone>0</Milestone>
+            <Summary>0</Summary>
+            <Critical>1</Critical>
+            <IsSubproject>0</IsSubproject>
+            <IsSubprojectReadOnly>0</IsSubprojectReadOnly>
+            <ExternalTask>0</ExternalTask>
+            <FixedCostAccrual>3</FixedCostAccrual>
+            <PercentComplete>0</PercentComplete>
+            <RemainingDuration>PT2400H0M0S</RemainingDuration>
+            <ConstraintType>0</ConstraintType>
+            <CalendarUID>-1</CalendarUID>
+            <LevelAssignments>0</LevelAssignments>
+            <LevelingCanSplit>0</LevelingCanSplit>
+            <Hyperlink></Hyperlink>
+            <IgnoreResourceCalendar>1</IgnoreResourceCalendar>
+            <HideBar>0</HideBar>
+            <Rollup>0</Rollup>
+            <EarnedValueMethod>0</EarnedValueMethod>
+            <PredecessorLink>
+                <PredecessorUID>170</PredecessorUID>
+                <Type>1</Type>
+                <CrossProject>0</CrossProject>
+            </PredecessorLink>
+            <Active>1</Active>
+            <Manual>1</Manual>
+            <ManualStart>2021-03-02T08:00:00</ManualStart>
+            <ManualFinish>2022-04-25T17:00:00</ManualFinish>
+            <ManualDuration>PT2400H0M0S</ManualDuration>
         </Task>
         <Task>
             <UID>236</UID>
