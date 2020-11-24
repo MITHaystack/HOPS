@@ -2,13 +2,14 @@
 set (OPERATOR_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHOVisibilities.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHOChannelizedVisibilities.hh
-    #${CMAKE_CURRENT_SOURCE_DIR}/include/MHOVRotationFunctor.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHOChannelizedRotationFunctor.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHOVisibilityChannelizer.hh
 )
 
 #list source files #############################################################
 set( OPERATOR_SOURCEFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHOVisibilityChannelizer.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHOChannelizedRotationFunctor.cc
 )
 
 #declare header paths ##########################################################
@@ -23,6 +24,6 @@ target_link_libraries (MHOVLBI ${VLBI_LIBS})
 hops_install_headers (${OPERATOR_HEADERFILES})
 hops_install_libraries (MHOVLBI )
 
-if (HOPS_ENABLE_TEST)
-    add_subdirectory(test)
-endif (HOPS_ENABLE_TEST)
+# if (HOPS_ENABLE_TEST)
+#     add_subdirectory(test)
+# endif (HOPS_ENABLE_TEST)
