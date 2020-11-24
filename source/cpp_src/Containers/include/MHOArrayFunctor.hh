@@ -18,17 +18,17 @@ namespace hops
 {
 
 template< class XInputArrayType, class XOutputArrayType >
-class MHOArrayFunctor:
+class MHOArrayFunctor
 {
     public:
 
         MHOArrayFunctor(){};
         virtual ~MHOArrayFunctor(){};
 
-        using input_iterator = XInputArrayType::iterator ;
-        using output_iterator = XOutputArrayType::iterator;
+        using input_iterator = typename XInputArrayType::iterator;
+        using output_iterator = typename XOutputArrayType::iterator;
 
-        virtual void operator( input_iterator& input, output_iterator& output) = 0;
+        virtual void operator() ( input_iterator& input, output_iterator& output) = 0;
 
 };
 
