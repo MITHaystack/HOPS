@@ -9,18 +9,18 @@
 
 %This section enumerates specific requirements that we plan to meet via explicit
 %tests.
-%Some 
+%Some
 %Note that there are many untestable ``desires'' or ``goals''; these are
 %discussed in then next section (\Sec~\ref{sec:desires}).  Consequently,
 %potential tests that address such things do not appear in this section.
 %These issues are more fully addressed in the design document (\cite{design}).
 %
-%Requirements shall generally be paired with explicit demonstrations that they 
+%Requirements shall generally be paired with explicit demonstrations that they
 %have been met.
 %
 
 
-%The requirements defined in this section 
+%The requirements defined in this section
 %are partitioned into subsections according to how they are likely to be executed.
 %The first section deals with short automated tests
 %(\Sec~\ref{sec:auto}, \ie~these that that may be executed
@@ -33,34 +33,34 @@
 %Details of the testing process are to be found in the coverage
 %and testing document (\cite{cover}).
 
-The requirements defined in this section are loosely organized by functionality.  
+The requirements defined in this section are loosely organized by functionality.
 Requirements are numbered with a prefix according to
 the type of test that will be used to validate them.  These prefixes are:
 \begin{description}
 [align=left, labelwidth=0.0cm, leftmargin=1cm]
 \item[A], for automated tests. These are requirements
 that shall be validated with a ``check'' script (in shell, Python, or similar).
-These scripts can be executed during installation steps to verify the 
-installation was successful, 
-or in a nightly build to verify that daily updates have not broken any 
-functionality. Existing tests within \ac{HOPS} will be ported into the new 
+These scripts can be executed during installation steps to verify the
+installation was successful,
+or in a nightly build to verify that daily updates have not broken any
+functionality. Existing tests within \ac{HOPS} will be ported into the new
 \ac{MHO} code set.
 
-\item[S], for software-testable. These are more complicated tests such as 
-regression tests that may be run at specific points in development. It is 
+\item[S], for software-testable. These are more complicated tests such as
+regression tests that may be run at specific points in development. It is
 anticipated that each of these tests will be implemented by a script.
 
 \item[P], for procedural tests that require human interpretation (e.g. validating
 the display mechanics of a figure). \FIXME[Should a documented report
 be generated?]
 
-\item[D], for desires. These are general design goals, which are not 
-esential requirements for \acs{MHO} and are not directly testable, 
+\item[D], for desires. These are general design goals, which are not
+esential requirements for \acs{MHO} and are not directly testable,
 but are strongly encouraged.
 
 \item[F], for future-proofing guidelines to ensure \acs{MHO} is useful beyond
-the immediate horizon. For every required package (beyond the historically, 
-generally available GNU/Linux packages) the code should be structured 
+the immediate horizon. For every required package (beyond the historically,
+generally available GNU/Linux packages) the code should be structured
 so that it is relatively straightforwards to port to a new package with
 similar functionality.
 
@@ -70,7 +70,7 @@ Details of the testing process are to be found in the coverage
 and testing document (\cite{cover}).
 
 \FIXME[Note: many of these requirements were imported from existing check
-scripts and need explicit definitions. The tests need to be reworded into 
+scripts and need explicit definitions. The tests need to be reworded into
 ``requirement'' form. The requirements should have ``rationale'', ``explanation'',
 ``comment'' or some other clarification as appropriate]
 
@@ -89,14 +89,14 @@ edits - need to either fix the enumeration, or not rely on it.]
 %\label{sec:auto}
 %
 %The following are essential design requirements that shall be validated with a
-%``check'' script (shell, Python, or similar). The current \acs{HOPS} 
+%``check'' script (shell, Python, or similar). The current \acs{HOPS}
 %incorporates many scripts of this sort, which are used during the compile and
-%installation steps to verify the installation was successful, and during nightly 
-%builds to verify that daily updates to the code base have not broken any 
-%functionality. Existing unit tests within \ac{HOPS} will be ported into the new 
+%installation steps to verify the installation was successful, and during nightly
+%builds to verify that daily updates to the code base have not broken any
+%functionality. Existing unit tests within \ac{HOPS} will be ported into the new
 %\ac{MHO} code set.
 %
-%In addition to check scripts, unit tests shall be used for all code fragements, 
+%In addition to check scripts, unit tests shall be used for all code fragements,
 %and shall cover all code.
 
 
@@ -109,35 +109,33 @@ edits - need to either fix the enumeration, or not rely on it.]
 The following requirements describe essential design features.
 
 \begin{description}
-\reqid{A} \ac{MHO} should support up to
-    \TBD~30 stations and \TBD~435 baselines.
+\reqid{A} \ac{MHO} shall support at least 30 stations and 435 baselines.
   \reqex[input required]{\ac{MHO} requires upper bounds merely to verify that
     it supports ``more than enough''}
-    
-\reqid{A} the number of \acsp{channel} may exceed 64 and should
-    have no practical limit.
+
+\reqid{A} \ac{MHO} shall support at least 256 channels but should not impose a limit on
+data which can be read into computer RAM.
   \reqex[input required]{\ac{MHO} requires an upper bound merely to implement
-    with some sensible channel labelling scheme}%
+    with some sensible channel labelling scheme and verify the requirement is satisfied}%
     %\footnote{using \acs{Unicode} for channel labels would certainly
     %be unbounded, but might be challenging for some to type.}
 
-\reqid{A} Every code fragment shall have a \texttt{test\_} module, and unit 
-tests shall cover all code.
-\reqex{This is a somewhat circular - does a requirement for tests belong in the 
-list of testable requirements?}
+\reqid{A} Every library (C/C++) or module (python) shall have a corresponding \texttt{test\_}
+suite to verify expected functionality, this may include but is not limited to unit tests (for individual classes/functions).
+
 
 \end{description}
 
 The existing package has a number of dependencies which are becoming
 a challenge to maintain---\acs{PGPLOT} is such an example.  Ideally
 \acs{MHO} should be installable and usable without any dependencies.
-(However, we do not require that full functionality necessarily follows
-from a computer lacking such support.)  The build machinery should test
+(However, we do not require that the software provide full functionality
+on a computer lacking such optional dependencies.)  The build machinery should test
 for the presence of these packages and make appropriate accomodation for
 the Linux distribution. Note that we will only support three major distributions,
-Ubuntu, Fedora, and NixOS. Testing will be done frequently for only these
-three distributions. There are no plans to officially support other 
-distributions, Mac OSX, or Windows.
+Debian/Ubuntu, Fedora, and NixOS. Testing will be done frequently for only these
+three distributions. There are no plans to officially support other distributions,
+Mac OSX, or Windows.
 
 \begin{description}
 
@@ -147,20 +145,20 @@ distributions, Mac OSX, or Windows.
 \reqid{P} \acs{FFTW3} should not be required
   \reqex{Not that DFT support to handle the non-power-of-two channels
     used in the \acs{EHT} is needed.}
-    
+
 \reqid{P} \acs{GSL} should not be required
   \reqex{There are slower \acs{Python} library replacements for most
     things.}
-    
+
 \reqid{F} The \acs{PGPLOT} package has long been obsolete, and any replacement
     package could follow the same fate.  Thus all plotting package calls
     need to be managed with an interface that allows porting to equivalent
     packages.
-    
+
 \reqid{F} The \ac{FFT} calls should be wrapped so that packages other than
     \acs{FFTW3} can be used.
   %\reqex{Addressed above as \usebox{\xfftwthree}}
-    
+
 \end{description}
 
     \FIXME[are there other dependencies we forgot to mention here?]
@@ -184,23 +182,23 @@ distributions, Mac OSX, or Windows.
 \reqid{A} every function should provide useful
     \verb+--help+ and \verb+--version+ responses (with zero exit status)
     to behave as conventional \acs{GNU/Linux} applications.
-  \reqex{This should be implemented with a 
+  \reqex{This should be implemented with a
     standard argument parsing library, and should respond helpfully
     on bad command-line syntax. \FIXME[what is the current test for
     this functionality?]}
-    
-\reqid{A} \ac{MHO} shall maintain a \acsu{VEX2XML} tool which converts 
+
+\reqid{A} \ac{MHO} shall maintain a \acsu{VEX2XML} tool which converts
 \acs{VEX} to \acs{XML}, for \acs{VEX} version 1.5.
     \reqex{\texttt{chk\_v2v.sh} is a test that verifies that this tool,
     developed for \acsu{ALMA}, performs against a dozen separate
     captured \acs{VEX} files.}
 
 % ./sub/dfio/Makefile.am
-\reqid{A} If the non-compressed form of the \acs{Mk4} fringe file will be 
+\reqid{A} If the non-compressed form of the \acs{Mk4} fringe file will be
 supported, we require that the results of fourfit (captured in the fringe plot)
 be identical to results from the compressed version.
-\reqex{\texttt{test\_compress} is an existing test of the \acs{PostScript} 
-compression used in the \acs{Mk4} fringe file format. \FIXME[This requirement will likely 
+\reqex{\texttt{test\_compress} is an existing test of the \acs{PostScript}
+compression used in the \acs{Mk4} fringe file format. \FIXME[This requirement will likely
 disappear - we will save plots directly in PDF format, and save data in a
 file. No more parsing postscript files for fringe results!]}
 
@@ -227,7 +225,7 @@ file. No more parsing postscript files for fringe results!]}
 \label{sec:areq}
 
 The following requirements are related to the ``A-suite'' tools alist, aedit,
-and adump.  The command-line interface for these tools shall be wrapped 
+and adump.  The command-line interface for these tools shall be wrapped
 in Python in \acs{MHO}.
 
 \begin{description}
@@ -251,12 +249,12 @@ in Python in \acs{MHO}.
 %\reqid{A} the \acs{Python}ic replacement module for these three current
 %    applications, is must fulfill the same requirement.
 
-                    
+
 % ./data/ae_testdata/Makefile.am
 \reqid{A} \ac{MHO} shall maintain the performance of \acs{aedit} version
-5 (for geodesy) and 6 (for EHT). \TBD~A discussion of post-6 
+5 (for geodesy) and 6 (for EHT). \TBD~A discussion of post-6
 version alist should appear in the specifications document.
-	\reqex{Currently, \texttt{chk\_fsumm.sh} performs such a test with captured 
+	\reqex{Currently, \texttt{chk\_fsumm.sh} performs such a test with captured
 	\acs{A-list} data.}
 
 \reqid{S} \acs{aedit} experiment summary plot test.  This requires a
@@ -275,14 +273,14 @@ version alist should appear in the specifications document.
 
 \reqid{D} Refactor how alist files are handled to make one line
     summaries of every fringe plot but do it in Python.
-    
+
 \reqid{D} Refactor alist, aedit, and fourfit to be compatible with \ac{HOPS}.
 \reqex{\FIXME[need to elaborate on this desire]}
 
 %\reqid{A} \acs{aedit} performance consistency on version 6 and
 %    any version \TBD~7 should be maintained.
 %    \FIXME[a discussion of a post-6 version should appear in the specification]
-    
+
 %\reqid{A} \FIXME[what does this test test, actually]
 %    (\texttt{test\_mk4fringe} a test related to the uncompress
 %    or compressed storage of \acs{Mk4} fringe files)
@@ -300,15 +298,15 @@ version alist should appear in the specifications document.
 %This section will outline to the components of HOPS that are affected by the HOPS refactoring effort.
 The following requirements describe wrappers and tools
  in HOPS for post-processing and examination of the fringe results.
-They shall be maintained in MHO. 
+They shall be maintained in MHO.
 
 
 \begin{description}
 % ./postproc/fourmer/Makefile.am
-\reqid{A} \acs{MHO} shall maintain a test which checks that the \acs{fourmer} 
+\reqid{A} \acs{MHO} shall maintain a test which checks that the \acs{fourmer}
 tool relabels channels when it combines two sub-bands.
 \reqex{This is currently performed by \texttt{test\_new\_chan\_id}.}
-  
+
 \reqid{A} The \acs{fringex} program shall continue to explore and report
       on regions of search space around fringes as it does currently.
       \reqex{The \texttt{chk\_fringex.sh} exists to verify this in \acs{HOPS}).}
@@ -320,18 +318,18 @@ tool relabels channels when it combines two sub-bands.
       \acs{average} application, but the piping mechanism is cumbersome
       and should be re-implemented in more easily used (and likely more
       efficient) C/C++ or \acs{Python} application.}
-      
+
 \reqid{A} There shall be a test to verify \acs{cofit} functionality
       \reqex{\texttt{chk\_cofit.sh} currently verifies this.}
-      
+
 \reqid{A} There should be a test to verify \acs{search} functionality
       \reqex{\texttt{chk\_search.sh} currently does a search on a captive
       data set.}
-      
+
 \reqid{A} There should continue to be a functional \acs{fourmer} tool
       to assemble separately correlated frequency sub-bands.
     \reqex{\texttt{chk\_fourmer.sh} currently does this for a
-      captive two 512-MHz bands.  We will need to build and maintain 
+      captive two 512-MHz bands.  We will need to build and maintain
       a test to cover an extension to current \acs{EHT} 2-GHz bands.}
 
 \reqid{A} The ability to explore fringes (as is currently done with
@@ -342,7 +340,7 @@ tool relabels channels when it combines two sub-bands.
     case.}
 
 \reqid{S} The ghostscript copy-page command should work as expected.
-\reqex{Currently verified with \texttt{fplot\_test}.  This requires 
+\reqex{Currently verified with \texttt{fplot\_test}.  This requires
 a human to verify that \acs{ghostscript} properly display a page.
 \FIXME[Do we need to support ghoscript?]}
 
@@ -352,15 +350,15 @@ a human to verify that \acs{ghostscript} properly display a page.
     by baseline with separate symbols per target.  It is not
     possible, but should be possible to combine several baselines
     into a composity plot.}
-    
+
 \reqid{P} It should be possible to make 3D visualization plots
   \reqex{\acs{search} makes contour plots, but a 3D visualization
     of amplitude with delay and delay-rate would be useful.}
 
 \reqid{D} Implement data visualization tools in Python for \acs{fourfit}
 \reqex{the \acs{HOPS} version of \acs{fourfit} provides a fixed fringe summary
-plot. Often one notes some issue requiring some examination, or at least 
-something that bears viewing with an expanded scale, but there is not easy 
+plot. Often one notes some issue requiring some examination, or at least
+something that bears viewing with an expanded scale, but there is not easy
 path to such examination at present.}
 
 \reqid{D} Replace the existing \acs{fourfit} control file with
@@ -383,7 +381,7 @@ path to such examination at present.}
 
 \begin{description}
 
-\reqid{A} The \ac{MHO} suite must provide mechanisms to preserve the input 
+\reqid{A} The \ac{MHO} suite must provide mechanisms to preserve the input
 correlator output data.
   \reqex{Disk space is cheaper these days; a \acs{PERL} script,
     \texttt{hops\_data\_links.pl} exists to manage symbolic links to
@@ -391,7 +389,7 @@ correlator output data.
     correlator output directory.  A script, \texttt{chk\_hdlinks.sh},
     verified this capability in \ac{HOPS}, and a similar mechanism
     should be provided in \ac{MHO}.}
-    
+
 \reqid{A} It should be possible to automatically discard correlator
     APs with small weights.
   \reqex{When data is poorly recorded, the correlation product is the
@@ -399,16 +397,16 @@ correlator output data.
     The ability to flag such input should not be arduous.  The
     \ac{HOPS} script \texttt{chk\_min\_weight.sh} currently tests this
     capability.}
-    
+
 \reqid{A} \ac{MHO} should have the ability to flag some list of frequency
     intervals.
   \reqex{This is needed when \acs{RFI} or calibration tones signals are
     present.  In \ac{MHO} \texttt{chk\_notches.sh} verifies this.}
-    
+
 \reqid{A} \ac{MHO} should have the ability to automatically flag data
   \reqex{The \ac{HOPS} capability is tested by \texttt{chk\_flagging.sh}}
 
-\reqid{A} Every data type written to disk in \ac{MHO} shall be 
+\reqid{A} Every data type written to disk in \ac{MHO} shall be
     amenable to human-comprehensible examination as is done in \ac{HOPS}
     by the \texttt{\ac{CorAsc2}} program.
   \reqex{For the \acs{HOPS} \acs{fourfit} program, this is verified
@@ -420,7 +418,7 @@ correlator output data.
 
 \reqid{A} Provide library access to \ac{LSF} methods
   \reqex{Both \acs{Python} and \acs{GSL} have these.}
-  
+
 \reqid{A} Implement an algorithm for solving for station-based quantities
     from baseline based quantities as a global fringe fitter.
   \reqex{This is new for \acs{MHO}}
@@ -436,7 +434,7 @@ correlator output data.
     from between \acsp{channel}.  \ac{HOPS} has no amplitude adjustment
     capability.  The desire is for a more flexible
     arrangment that is not limited by channel boundaries.}
-    
+
 \reqid{A} Provide a method to solve for complex bandpass
   \reqex{This method should accept some set of scans and stations and
     solve, using a \acs{LSF} method for per-station bandpass solutions}
@@ -449,8 +447,8 @@ correlator output data.
     provided.
   \reqex{The existing wrappers for the \acs{Mk4} data types in \ac{HOPS}
     do not need to be preserved, although we shall most likley do so.}
-    
-    
+
+
 \reqid{D} Refactor the Single Band Delay,
     Multi Band Delay and Delay Rate algorithm to
     make it more modular (and amenable to variations on the method).
@@ -465,20 +463,20 @@ correlator output data.
 \reqex{The existing \acs{HOPS} package supports a \texttt{account}
     library that does rudimentary profiling.  Introducing \texttt{gprof}
     into some specific build tests, should be straightforward and help
-    to optimize fringing.}          
-    
+    to optimize fringing.}
+
 \reqid{D} Support mm-VLBI work with spectral line sources (narrow sources).
   \reqex{The existing \acs{HOPS} code assumes a continuum.}
 
 \reqid{D} Pulsar folding functionality should be enabled
   \reqex{But is not required}
-  
+
 \reqid{D} Enable multi-threading or multi-processing for batch jobs.
 \reqex{Parallelization is a strong desire, but the exact details of the
 implementation (particularly the requirements of threads vs processes)
 need to be carefully designed.}
-    
-    
+
+
 \end{description}
 
 
