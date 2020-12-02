@@ -109,20 +109,24 @@ edits - need to either fix the enumeration, or not rely on it.]
 The following requirements describe essential design features.
 
 \begin{description}
+
+\reqid{A} \ac{MHO} shall have no practical limit on the number of stations, baselines, channels, or accumulation periods
+other than which is imposed by the memory limitations of the computer hardware on which it is run.
+
 \reqid{A} \ac{MHO} shall support at least 30 stations and 435 baselines.
-  \reqex[input required]{\ac{MHO} requires upper bounds merely to verify that
+  \reqex[input required]{\ac{MHO} requires an upper bound merely to verify that
     it supports ``more than enough''}
 
-\reqid{A} \ac{MHO} shall support at least 256 channels but should not impose a limit on
-data which can be read into computer RAM.
+\reqid{A} \ac{MHO} shall support at least 256 channels but should not impose a
+ limit on the number of channels.
   \reqex[input required]{\ac{MHO} requires an upper bound merely to implement
-    with some sensible channel labelling scheme and verify the requirement is satisfied}%
+    with some sensible channel labelling scheme and verify that the requirement is satisfied.}%
     %\footnote{using \acs{Unicode} for channel labels would certainly
-    %be unbounded, but might be challenging for some to type.}
+    %be unbounded, but might be challenging for some to type. However, there is no real need to limit channel labels to a single-character.}
 
 \reqid{A} Every library (C/C++) or module (python) shall have a corresponding \texttt{test\_}
-suite to verify expected functionality, this may include but is not limited to unit tests (for individual classes/functions).
-
+suite to verify expected functionality, this may include but is not limited to unit
+tests (for individual classes/functions) with the appropriate test cases to be determined.
 
 \end{description}
 
@@ -139,25 +143,18 @@ Mac OSX, or Windows.
 
 \begin{description}
 
-\reqid{P} \acs{PGPLOT} should not be required
-  \reqex{At a minimum, \acs{Python}ic equivalents can be constructed.}
+\reqid{P}  MHO shall operate without loss of functionality in the absence of
+FFTW3, and/or GSL, with the understanding that performance (runtime) might be
+affected. \refex{For example \ac{FFT} calls should be wrapped so that other
+packages or native code may be used instead.}
 
-\reqid{P} \acs{FFTW3} should not be required
-  \reqex{Not that DFT support to handle the non-power-of-two channels
-    used in the \acs{EHT} is needed.}
-
-\reqid{P} \acs{GSL} should not be required
-  \reqex{There are slower \acs{Python} library replacements for most
-    things.}
-
-\reqid{F} The \acs{PGPLOT} package has long been obsolete, and any replacement
-    package could follow the same fate.  Thus all plotting package calls
-    need to be managed with an interface that allows porting to equivalent
-    packages.
-
-\reqid{F} The \ac{FFT} calls should be wrapped so that packages other than
-    \acs{FFTW3} can be used.
-  %\reqex{Addressed above as \usebox{\xfftwthree}}
+\reqid{P} \acs{PGPLOT} shall not be required for basic functionality (fringe-fitting),
+though it may be optionally supported for some plotting/display options.
+The \acs{PGPLOT} package has long been obsolete, and any replacement package
+could follow the same fate. Thus all plotting package calls need to be managed
+within an optional plugin which leaves core functionality unaffected by its presence.
+\reqex{At a minimum, plotting functionality similar to the current fringe-plots
+can be constructed as a set of independent Python tools.}
 
 \end{description}
 
@@ -187,7 +184,7 @@ Mac OSX, or Windows.
     on bad command-line syntax. \FIXME[what is the current test for
     this functionality?]}
 
-\reqid{A} \ac{MHO} shall maintain a \acsu{VEX2XML} tool which converts
+\reqid{A} \ac{MHO} shall provide a \acsu{VEX2XML} tool which converts
 \acs{VEX} to \acs{XML}, for \acs{VEX} version 1.5.
     \reqex{\texttt{chk\_v2v.sh} is a test that verifies that this tool,
     developed for \acsu{ALMA}, performs against a dozen separate
@@ -202,18 +199,12 @@ compression used in the \acs{Mk4} fringe file format. \FIXME[This requirement wi
 disappear - we will save plots directly in PDF format, and save data in a
 file. No more parsing postscript files for fringe results!]}
 
-\reqid{D} The \acs{Mk4} data types are stored \acs{bigendian}; the new types
-    should be stored to \acs{littleendian} to reflect the current processing
-    reality.
-  \reqex{It is unlikely that any processor manufacturer will introduce
-    a bigendian processor in the future---that hardware war is over.}
+\reqid{D} All new data types shall be stored \acs{littleendian}.
 
-\reqid{D} Support \acs{VEX} 2.0 and make it compatible with the
-    \acs{VEX2XML} parser tool.
-  \reqex{it is not clear that \acs{VEX} 2.0 will ever exist, but it does
-    allow the \acs{EHT} to correctly capture its frequency setups and
-    recording allocations.  Such support would need to exist in \acs{DiFX},
-    and it is not clear that any of its developers care to do this work.}
+\reqid(D} A library to interface with the legacy \acs{Mk4} data types
+(stored \acs{bigendian}) shall be supported in their current form
+for testing purposes and in order to access archived data. They will
+not however be required to support any new functionality.
 
 \end{description}
 
@@ -230,10 +221,13 @@ in Python in \acs{MHO}.
 
 \begin{description}
 
-\reqid{A} the \acs{alist} program should provide valid \acs{A-list}
-    files in versions 5, 6 and any version \TBD~7.
-    \reqex{\texttt{chk\_alist.sh} currently does this for versions 5 and 6. Version
-    7 shall provide greater flexibility, with user-defined columns.}
+\reqid{A} the \acs{alist} program shall provide valid \acs{A-list}
+    files in versions 5, 6. \reqex{\texttt{chk\_alist.sh} currently
+    does this for versions 5 and 6.}
+
+\reqid{A} the \acs{alist} program shall provide a new ASCII
+ A-list format (version 7) that will allow the data columns will be user-defined.
+ The full specification of which is TBD.
 
 \reqid{A} the \acs{adump} program shall provide valid ASCII text
     representations of columns of data from an \acs{A-list} of version
@@ -247,39 +241,38 @@ in Python in \acs{MHO}.
     of these}
 
 %\reqid{A} the \acs{Python}ic replacement module for these three current
-%    applications, is must fulfill the same requirement.
-
+%    applications (alist, aedit, adump), must fulfill the same requirements.
 
 % ./data/ae_testdata/Makefile.am
 \reqid{A} \ac{MHO} shall maintain the performance of \acs{aedit} version
-5 (for geodesy) and 6 (for EHT). \TBD~A discussion of post-6
-version alist should appear in the specifications document.
+5 (for geodesy) and 6 (for EHT). \TBD~A discussion of a TBD
+version 7 alist shall appear in the specifications document.
 	\reqex{Currently, \texttt{chk\_fsumm.sh} performs such a test with captured
 	\acs{A-list} data.}
 
-\reqid{S} \acs{aedit} experiment summary plot test.  This requires a
-    human to verify that the summary is displayed, and that clicking
-    on a scan-baseline-pol point produces the appropriate fringe plot.
-\reqex{\FIXME[need to elaborate on the requirement that is being tested]}
-
-\reqid{S} \acs{aedit} quantity with time display plot.  This requires
-    a human to verify that the desired data are shown, and that it
-    is possible to flag (discard) points.
-\reqex{\FIXME[need to elaborate on the requirement that is being tested]}
-
-\reqid{D} Expand the functionality of \acs{alist} to allow for more data
-    analysis/visualization options.
-  \reqex{\acs{Python} seems a likely solution, also Looker or Tableau.}
-
-\reqid{D} Refactor how alist files are handled to make one line
-    summaries of every fringe plot but do it in Python.
+%\reqid{S} \acs{aedit} experiment summary plot test.  This requires a
+%    human to verify that the summary is displayed, and that clicking
+%    on a scan-baseline-pol point produces the appropriate fringe plot.
+%\reqex{\FIXME[need to elaborate on the requirement that is being tested]}
+%
+%\reqid{S} \acs{aedit} quantity with time display plot.  This requires
+%    a human to verify that the desired data are shown, and that it
+%    is possible to flag (discard) points.
+%\reqex{\FIXME[need to elaborate on the requirement that is being tested]}
+%
+%\reqid{D} Expand the functionality of \acs{alist} to allow for more data
+%
+%    analysis/visualization options.
+%  \reqex{\acs{Python} seems a likely solution, also Looker or Tableau.}
+%
+%\reqid{D} Refactor how alist files are handled to make one line
+%    summaries of every fringe plot but do it in Python.
 
 \reqid{D} Refactor alist, aedit, and fourfit to be compatible with \ac{HOPS}.
 \reqex{\FIXME[need to elaborate on this desire]}
 
-%\reqid{A} \acs{aedit} performance consistency on version 6 and
-%    any version \TBD~7 should be maintained.
-%    \FIXME[a discussion of a post-6 version should appear in the specification]
+%\reqid{A} \acs{aedit} backwards compatibility on version 5, 6 and
+%    any version \TBD~7 shall be maintained.
 
 %\reqid{A} \FIXME[what does this test test, actually]
 %    (\texttt{test\_mk4fringe} a test related to the uncompress
@@ -390,24 +383,24 @@ correlator output data.
     verified this capability in \ac{HOPS}, and a similar mechanism
     should be provided in \ac{MHO}.}
 
-\reqid{A} It should be possible to automatically discard correlator
-    APs with small weights.
+\reqid{A} It shall be possible to automatically discard correlator
+    APs with small weights below a given threshold.
   \reqex{When data is poorly recorded, the correlation product is the
     result of less data than it should be, leading to incorrect results.
     The ability to flag such input should not be arduous.  The
     \ac{HOPS} script \texttt{chk\_min\_weight.sh} currently tests this
     capability.}
 
-\reqid{A} \ac{MHO} should have the ability to flag some list of frequency
+\reqid{A} \ac{MHO} shall have the ability to flag some a user supplied list of frequency
     intervals.
   \reqex{This is needed when \acs{RFI} or calibration tones signals are
     present.  In \ac{MHO} \texttt{chk\_notches.sh} verifies this.}
 
-\reqid{A} \ac{MHO} should have the ability to automatically flag data
+\reqid{A} \ac{MHO} shall have the ability to automatically flag data
   \reqex{The \ac{HOPS} capability is tested by \texttt{chk\_flagging.sh}}
 
 \reqid{A} Every data type written to disk in \ac{MHO} shall be
-    amenable to human-comprehensible examination as is done in \ac{HOPS}
+    convertable to form that is amenable to human examination as is done in \ac{HOPS}
     by the \texttt{\ac{CorAsc2}} program.
   \reqex{For the \acs{HOPS} \acs{fourfit} program, this is verified
     by \texttt{chk\_ff\_dump.sh}, for \acs{A-list} data, this is

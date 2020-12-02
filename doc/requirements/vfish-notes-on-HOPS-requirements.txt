@@ -2,7 +2,7 @@ First impressions on the requirements
 
 * Meta-comment: Move the A/S/P/D/F into a different column and simply number
 the requirements.  For the APP, Mike had us number them by tens so that related
-belated requirements could be inserted numerically in the proper places.  
+belated requirements could be inserted numerically in the proper places.
 (That sort of numbering may be unnecessary for this project.)
 
 * A-1: MHO shall support 30 stations and 345 baselines.
@@ -69,8 +69,9 @@ If you want to keep them here, they should be rephrased.
 like too detailed for a requirement.  Ditto S-19
 
 * There isn't enough detail for me to understand D-20 through D-22.
-These desires may impose additional requirements, but they need further thought and distillation.
- For instance, D-21 seems to impose a requirement on language (Python) and on functionality.
+These desires may impose additional requirements, but they need further thought
+and distillation. For instance, D-21 seems to impose a requirement on
+ language (Python) and on functionality.
 
 * A-23: "MHO shall include a program that checks..." is fine as a requirement, provided
 that an explantation of what "fourmer tool relabels channels" is included in the description.
