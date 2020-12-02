@@ -188,11 +188,9 @@ can be constructed as a set of independent Python tools.}
     standard argument parsing library, and should respond helpfully
     on bad command-line syntax.}
 
-\reqid{A} \ac{MHO} shall provide a \acsu{VEX2XML} tool which converts
-\acs{VEX} to \acs{XML}, for \acs{VEX} version 1.5.
-    \reqex{\texttt{chk\_v2v.sh} is a test that verifies that this tool,
-    developed for \acsu{ALMA}, performs against a dozen separate
-    captured \acs{VEX} files.}
+\reqid{A} \ac{MHO} shall support input from \acs{VEX} version 1.5 \footnote{\acs{VEX} 1.5
+is the only extant working file format for VLBI experiment description, however, there does
+exist a VEX 2.0 specification which is not currently in active use.}
 
 \reqid{A} \ac{MHO} Any plotting tools provided will have the ability to save the image
 to a standard graphics format.
@@ -212,7 +210,7 @@ shall be stored \acs{littleendian}.
 \reqid{D} \ac{MHO} shall provide an application to support export of native
 data types to a TBD archival format (e.g HDF5).
 
-\reqid(D} A library to interface with the legacy \acs{Mk4} data types
+\reqid{D} A c-library to interface with the legacy \acs{Mk4} data types
 (stored \acs{bigendian}) shall be supported in their current form
 for testing purposes and in order to access archived data. They will
 not however be required to support any new functionality.
