@@ -145,15 +145,17 @@ Or is it about the particular libraries that will be called?  Is this a requirem
   Wait, is this different from A-44?
 
 * D-46 as currently stated is an implementation detail.
-It could be turned into a requirement if you're saying that you want to add the ability to search
- over a user-selectable subset of the parameters, for instance.
+It could be turned into a requirement if you're saying that you want
+to add the ability to search over a user-selectable subset of the parameters,
+for instance.
 
 * I don't know how to judge sophistication to figure out if we've met D-47.
 "There shall be a tool to do benchmarking and performance analysis" gets part of the way toward a requirement,
  but I don't know enough to know what specifically you'd want to include in that requirement.
 
 * D-48: MHO shall support spectral-line VLBI.
-  Keep it short and simple.  There's a lot of complexity behind the scenes of this---you can't solve for delay on line scans,
+  Keep it short and simple.  There's a lot of complexity behind the scenes of this---you
+ can't solve for delay on line scans,
 the number of spectral channels could be larger, etc.--- but that's for the future.
 
 * D-49: MHO shall support pulsar folding.
