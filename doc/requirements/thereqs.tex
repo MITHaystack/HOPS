@@ -177,13 +177,12 @@ can be constructed as a set of independent Python tools.}
 
 \begin{description}
 % ./vex2xml/Makefile.am
-\reqid{A} every application should provide useful
+\reqid{A} every application should provide
     \verb+--help+ and \verb+--version+ responses (with zero exit status)
     to behave as conventional \acs{GNU/Linux} applications.
   \reqex{This should be implemented with a
     standard argument parsing library, and should respond helpfully
-    on bad command-line syntax. \FIXME[what is the current test for
-    this functionality?]}
+    on bad command-line syntax.}
 
 \reqid{A} \ac{MHO} shall provide a \acsu{VEX2XML} tool which converts
 \acs{VEX} to \acs{XML}, for \acs{VEX} version 1.5.
@@ -192,7 +191,7 @@ can be constructed as a set of independent Python tools.}
     captured \acs{VEX} files.}
 
 \reqid{A} \ac{MHO} Any plotting tools provided will have the ability to save the image
-as either a .pdf or \acs{PostScript} file.
+to a standard graphics format.
 
 % ./sub/dfio/Makefile.am
 %\reqid{A} If the non-compressed form of the \acs{Mk4} fringe file will be
