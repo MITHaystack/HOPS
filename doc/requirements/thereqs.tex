@@ -131,6 +131,7 @@ test suite to verify expected functionality, this may include but is not limited
 to unit tests (for individual classes/functions) with the appropriate test
 cases to be determined.
 
+
 \end{description}
 
 The existing package has a number of dependencies which are becoming
@@ -176,6 +177,9 @@ can be constructed as a set of independent Python tools.}
 \label{sec:ioreq}
 
 \begin{description}
+
+\reqid{A} \ac{MHO} shall be support input from the DiFX correlator (in Swinburne format).
+
 % ./vex2xml/Makefile.am
 \reqid{A} every application should provide
     \verb+--help+ and \verb+--version+ responses (with zero exit status)
@@ -272,8 +276,8 @@ version 7 alist shall appear in the specifications document.
 %\reqid{D} Refactor how alist files are handled to make one line
 %    summaries of every fringe plot but do it in Python.
 
-\reqid{D} Refactor alist, aedit, and fourfit to be compatible with \ac{HOPS}.
-\reqex{\FIXME[need to elaborate on this desire]}
+%\reqid{D} Refactor alist, aedit, and fourfit to be compatible with \ac{HOPS}.
+%\reqex{\FIXME[need to elaborate on this desire]}
 
 %\reqid{A} \acs{aedit} backwards compatibility on version 5, 6 and
 %    any version \TBD~7 shall be maintained.
@@ -380,22 +384,20 @@ correlator output data.
     verified this capability in \ac{HOPS}, and a similar mechanism
     should be provided in \ac{MHO}.}
 
-\reqid{A} It shall be possible to automatically discard correlator
+\reqid{A} \ac{MHO} shall have the ability to automatically flag data based on
+some specified criteria. For example it shall be possible to automatically discard correlator
     APs with small weights below a given threshold.
   \reqex{When data is poorly recorded, the correlation product is the
     result of less data than it should be, leading to incorrect results.
     The ability to flag such input should not be arduous.  The
     \ac{HOPS} script \texttt{chk\_min\_weight.sh} currently tests this
-    capability.}
+    capability. In addition, user supplied ad-hoc flagging capability
+   is tested by \texttt{chk\_flagging.sh}.}
 
-\reqid{A} \ac{MHO} shall have the ability to flag some a user supplied list
+\reqid{A} \ac{MHO} shall have the ability to flag data based on a user supplied list
     of frequency intervals.
   \reqex{This is needed when \acs{RFI} or calibration tones signals are
     present.  In \ac{MHO} \texttt{chk\_notches.sh} verifies this.}
-
-\reqid{A} \ac{MHO} shall have the ability to automatically flag data
-(\FIXME Flagging based on what citeria?)
-  \reqex{The \ac{HOPS} capability is tested by \texttt{chk\_flagging.sh}. }
 
 \reqid{A} Every data type written to disk in \ac{MHO} shall be
     convertable to form that is amenable to human examination
