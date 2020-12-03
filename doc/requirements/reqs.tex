@@ -111,9 +111,14 @@ Note that there is an implicit desire to end up with a suite of software that
 not only meets the stated needs, but which also is easier to maintain, and more
 extensible for the future.  While we might state these desires as requirements,
 it is not possible to test against them, and thus these do not appear formally
-in this document.  Nevertheless, this is a goal we expect to meet and these
-are informally captured (\Sec~\ref{sec:desires}).
+in this document.  
+%Nevertheless, this is a goal we expect to meet and these
+%are informally captured (\Sec~\ref{sec:desires}).
 }
+
+% N.B.: NASA document describing preferred language for enumerating requirements:
+% https://www.nasa.gov/seh/appendix-c-how-to-write-a-good-requirement
+
 
 % \begingroup . . . \endgroup can be used to keep things together
 % and/or an explicit page break and/or adjust spacing as needed so
@@ -123,8 +128,10 @@ are informally captured (\Sec~\ref{sec:desires}).
 %\renewcommand\listfigurename{Figures}
 %\renewcommand\listtablename{Tables}
 %\vspace{24pt}\hrule
+
 \pagebreak
 \tableofcontents
+
 %\vspace{24pt}\hrule
 %\pagebreak
 %\listoffigures
@@ -137,8 +144,13 @@ are informally captured (\Sec~\ref{sec:desires}).
 % document--then changes to each section don't repage everything.
 
 % break document into appropriate portions
+
+\pagebreak
+\input{theintro}
+
 \pagebreak
 \input{thereqs}
+
 
 \pagebreak
 \addtocounter{section}{1}

@@ -10,8 +10,8 @@ TEXSRC=reqs
 
 # everything from $(srcdir) included from $(TEXSRC).tex
 # needs to be listed here with a $(srcdir)/ path prefix
-EXTRA_DIST = $(srcdir)/$(TEXSRC).tex $(srcdir)/thereqs.tex $(srcdir)/hilo.tex \
-	$(srcdir)/obsolete.tex
+EXTRA_DIST = $(srcdir)/$(TEXSRC).tex $(srcdir)/theintro.tex $(srcdir)/thereqs.tex \
+	$(srcdir)/hilo.tex $(srcdir)/obsolete.tex
 
 if WANT_DOCS
 # to be somewhat surgical, this is useful:

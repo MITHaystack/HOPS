@@ -18,7 +18,7 @@ def var_get_np_amps(vis):
     Extract amplitudes from a numpy array of visibilities.
     '''
     try: # to create a numpy object for the answer
-        amps = np.ones(vis.shape[0])
+        amps = np.ones(vis.shape[0], dtype=np.double)
     except:
         raise Exception('argument is not a numpy array')
     if type(vis[0]) != np.complex128:
@@ -31,13 +31,29 @@ def var_get_np_phases(vis):
     Extract phases from a numpy array of visibilities.
     '''
     try: # to create a numpy object for the answer
-        phases = np.ones(vis.shape[0])
+        phases = np.ones(vis.shape[0], dtype=np.double)
     except:
         raise Exception('argument is not a numpy array')
     if type(vis[0]) != np.complex128:
         raise Exception('argument is not complex numpy array')
     get_np_phases(vis, phases)
     return phases
+
+# these duplicate SWIG methods with similar names
+def get_vis_amps(vis):
+    return(doubleArray_frompointer(vis.amps))
+setattr(MyVis, 'get_amps', get_vis_amps)
+
+def get_vis_phas(vis):
+    return(doubleArray_frompointer(vis.phas))
+setattr(MyVis, 'get_phas', get_vis_phas)
+
+def describe_vis(vis):
+    return(describe_one_vis(vis))
+setattr(MyVis, '__str__', describe_vis)
+
+# cannot do this with the MyVisArray, as the length is not available
+# i.e. MyVisArray is essentially a pointer to the first MyVis
 
 #
 # eof
