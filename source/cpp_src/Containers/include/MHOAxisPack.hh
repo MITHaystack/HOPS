@@ -29,6 +29,12 @@ class MHOAxisPack:  public std::tuple< XAxisTypeS... >
             resize_axis_pack(dim);
         };
 
+        //copy constructor
+        MHOAxisPack( const MHOAxisPack& obj ):
+            std::tuple< XAxisTypeS... >(obj)
+        {};
+
+
         virtual ~MHOAxisPack(){};
 
         typedef std::integral_constant< std::size_t, sizeof...(XAxisTypeS) > NAXES;

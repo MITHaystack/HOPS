@@ -35,6 +35,16 @@ class MHOVectorContainer: public MHOArrayWrapper< XValueType, 1>, public MHOName
             MHONamed()
         {};
 
+        //copy constructor
+        MHOVectorContainer(const MHOVectorContainer& obj):
+            MHOArrayWrapper<XValueType,1>(obj),
+            MHONamed(obj)
+        {};
+
+        //clone functionality
+        MHOVectorContainer* Clone(){ return new MHOVectorContainer(*this); }
+
+
         virtual ~MHOVectorContainer(){};
 
         using MHONamed::IsNamed;
