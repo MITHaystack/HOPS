@@ -24,6 +24,7 @@
 #include "MHOMK4VexInterface.hh"
 #include "MHOMK4CorelInterface.hh"
 
+#include "MHOReducer.hh"
 #include "MHOFunctorBroadcaster.hh"
 #include "MHOMultidimensionalFastFourierTransform.hh"
 
@@ -159,7 +160,7 @@ int main(int argc, char** argv)
             sbd[pp][t].resize(data_dims[CH_FREQ_AXIS], std::complex<double>(0.0, 0.0) );
             for(std::size_t f=0; f<data_dims[CH_FREQ_AXIS]; f++)
             {
-                for(std::size_t ch=0; ch<data_dims[CH_CHANNEL_AXIS]/4; ch++)
+                for(std::size_t ch=0; ch<data_dims[CH_CHANNEL_AXIS]; ch++)
                 {
                     sbd[pp][t][f] += ch_bl_data->at(pp,ch,t,f);
                 }
@@ -190,11 +191,31 @@ int main(int argc, char** argv)
     }
 
 
-    MHOFunctorBroadcaster<ch_baseline_data_type, ch_baseline_data_type> broadcaster;
+
     MHOChannelizedRotationFunctor sbd_rotation;
+    sbd_rotation.SetReferenceFrequency(0.0);
+    sbd_rotation.SetReferenceTime(0.0);
+    sbd_rotation.SetDelayRate(0.0);
+    sbd_rotation.SetSingleBandDelay(0.0);
+
     ch_baseline_data_type* rotated_ch_bl_data = new ch_baseline_data_type();
+    MHOFunctorBroadcaster<ch_baseline_data_type, ch_baseline_data_type> broadcaster;
     broadcaster.SetInput(copy_ch_bl_data);
     broadcaster.SetOutput(rotated_ch_bl_data);
+    broadcaster.SetFunctor(&sbd_rotation);
+
+    MHOReducer< ch_baseline_data_type::value_type,
+                MHOCompoundSum<ch_baseline_data_type::value_type>,
+                ch_baseline_data_type::rank::value > summation;
+
+    //sum all the data along every axis except the pol-product axis
+    summation.ReduceAxis(CH_FREQ_AXIS);
+    summation.ReduceAxis(CH_TIME_AXIS);
+    summation.ReduceAxis(CH_CHANNEL_AXIS);
+
+
+
+
 
 
 
