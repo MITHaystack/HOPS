@@ -24,9 +24,11 @@ namespace hops
 {
 
 template< class XInputArrayType, class XOutputArrayType >
-class MHOFunctorBroadcaster: MHOArrayOperator<XInputArrayType, XOutputArrayType >
+class MHOFunctorBroadcaster: public MHOArrayOperator<XInputArrayType, XOutputArrayType >
 {
     public:
+
+        static_assert(XOutputArrayType::rank::value == XInputArrayType::rank::value);
 
         MHOFunctorBroadcaster():
             fInitialized(false),
@@ -38,7 +40,6 @@ class MHOFunctorBroadcaster: MHOArrayOperator<XInputArrayType, XOutputArrayType 
         void SetFunctor( MHOArrayFunctor<XInputArrayType, XOutputArrayType>* functor){fFunctor = functor;}
         MHOArrayFunctor<XInputArrayType, XOutputArrayType>* GetFunctor() {return fFunctor;};
 
-
         virtual bool Initialize() override
         {
             fInitialized = false;
@@ -47,13 +48,13 @@ class MHOFunctorBroadcaster: MHOArrayOperator<XInputArrayType, XOutputArrayType 
                 //only need to change output size if in != out and size is different
                 if(this->fInput != this->fOutput)
                 {
-                    std::size_t in_dim[RANK];
-                    std::size_t out_dim[RANK];
+                    std::size_t in_dim[XInputArrayType::rank::value];
+                    std::size_t out_dim[XOutputArrayType::rank::value];
                     this->fInput->GetDimensions(in_dim);
                     this->fOutput->GetDimensions(out_dim);
 
                     bool have_to_resize = false;
-                    for(std::size_t i=0; i<RANK; i++)
+                    for(std::size_t i=0; i<XInputArrayType::rank::value; i++)
                     {
                         if(out_dim[i] != in_dim[i]){have_to_resize = true; break;}
                     }
@@ -92,7 +93,7 @@ class MHOFunctorBroadcaster: MHOArrayOperator<XInputArrayType, XOutputArrayType 
     private:
 
         bool fInitialized;
-        MHOArrayFunctor<XInputArrayType, XOutputArrayType>* fFunctor
+        MHOArrayFunctor<XInputArrayType, XOutputArrayType>* fFunctor;
 
 };
 

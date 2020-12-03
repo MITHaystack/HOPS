@@ -42,6 +42,16 @@ class MHOTensorContainer: public MHOArrayWrapper< XValueType, XAxisPackType::NAX
             MHONamed()
         {};
 
+        //copy constructor
+        MHOTensorContainer(const MHOTensorContainer& obj):
+            MHOArrayWrapper<XValueType, XAxisPackType::NAXES::value>(obj),
+            XAxisPackType(obj),
+            MHONamed(obj)
+        {};
+
+        //clone functionality
+        MHOTensorContainer* Clone(){ return new MHOTensorContainer(*this); }
+
         virtual ~MHOTensorContainer(){};
 
         using MHONamed::IsNamed;

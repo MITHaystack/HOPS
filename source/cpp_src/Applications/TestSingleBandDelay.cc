@@ -24,11 +24,15 @@
 #include "MHOMK4VexInterface.hh"
 #include "MHOMK4CorelInterface.hh"
 
+#include "MHOFunctorBroadcaster.hh"
+#include "MHOMultidimensionalFastFourierTransform.hh"
+
 #include "MHOVisibilities.hh"
 #include "MHOChannelizedVisibilities.hh"
 #include "MHOVisibilityChannelizer.hh"
+#include "MHOChannelizedRotationFunctor.hh"
 
-#include "MHOMultidimensionalFastFourierTransform.hh"
+
 
 
 using namespace hops;
@@ -88,11 +92,13 @@ int main(int argc, char** argv)
     bool exe = channelizer.ExecuteOperation();
     if(exe){std::cout<<"channelizer done"<<std::endl;}
 
+    //clone the data for later use
+    ch_baseline_data_type* copy_ch_bl_data = ch_bl_data->Clone();
+
     std::size_t data_dims[CH_VIS_NDIM];
     ch_bl_data->GetDimensions(data_dims);
     auto freq_axis_ptr = &(std::get<CH_FREQ_AXIS>( *ch_bl_data ) );
     auto time_axis_ptr = &(std::get<CH_TIME_AXIS>( *ch_bl_data ) );
-
 
 
     // double pass_low =  86242e6 - 86226e6;
@@ -182,6 +188,16 @@ int main(int argc, char** argv)
         dr_axis(t) = (tmp - dn02)*(1.0/( time_axis_ptr->at(data_dims[CH_TIME_AXIS]-1) - time_axis_ptr->at(0) )  );
         std::cout<<"dr_axis: "<<t<<" = "<<dr_axis(t)<<std::endl;
     }
+
+
+    MHOFunctorBroadcaster<ch_baseline_data_type, ch_baseline_data_type> broadcaster;
+    MHOChannelizedRotationFunctor sbd_rotation;
+    ch_baseline_data_type* rotated_ch_bl_data = new ch_baseline_data_type();
+    broadcaster.SetInput(copy_ch_bl_data);
+    broadcaster.SetOutput(rotated_ch_bl_data);
+
+
+
 
 
     #ifdef USE_ROOT
