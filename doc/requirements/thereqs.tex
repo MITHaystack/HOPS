@@ -394,18 +394,7 @@ functionality might only exist in the HOPS4 toolset.}
 \label{sec:miscreq}
 
 \begin{description}
-
-%%% EDIT: changed to D -- either we do or we don't but it's not a test item
-%%% RELOCATE below? (D's tend to follow A's).
-\reqid{D} The HOPS4 suite must provide mechanisms to preserve the correlator 
-output data.
-\reqex{A \acs{PERL} script, \texttt{hops\_data\_links.pl}, exists to manage 
-symbolic links to analysis files in a working directory separate from the original 
-correlator output directory.}
-%A script, \texttt{chk\_hdlinks.sh}, verified this capability 
-%in HOPS3, and a similar mechanism should be provided in HOPS4.}
     
-%%% EDIT: use the acronym
 \reqid{A} It shall be possible to automatically discard correlator 
 \acs{AP} (integrations) with small weights.
 \reqex{When data are poorly recorded, the correlation product is the result 
@@ -435,8 +424,6 @@ quantities from baseline-based quantities as a global fringe fitter.
 % i.e. using sets of three (triangular) baselines to calculate the 
 % delays at each station.
 
-% \reqid{D} Data export to ASCII. (Export data to a human readible format.)
-
 \reqid{A} The HOPS4 \acs{fourfit} shall have the ability to apply complex 
 bandpass correction.
 \reqex{This is a new capability that might well be prototyped in the existing 
@@ -457,7 +444,14 @@ possibly using an \acs{LSF} method, for per-station bandpass solutions}
 \reqex{The existing wrappers for the \acs{Mk4} data types in HOPS3 do not 
 need to be preserved, but it is a capability worth preserving.}
 
-%\EDIT[IT SEEMS TO ME THE FOLLOWING ``SHALLs'' should be ``SHOULDs''.]
+
+\reqid{D} The HOPS4 suite must provide mechanisms to preserve the correlator 
+output data.
+\reqex{A \acs{PERL} script, \texttt{hops\_data\_links.pl}, exists to manage 
+symbolic links to analysis files in a working directory separate from the original 
+correlator output directory.}
+%A script, \texttt{chk\_hdlinks.sh}, verified this capability 
+%in HOPS3, and a similar mechanism should be provided in HOPS4.}
 
 \reqid{D} HOPS4 should preserve the the Single Band Delay, Multi Band Delay 
 and Delay Rate search algorithm in its current form.
