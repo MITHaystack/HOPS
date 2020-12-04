@@ -1,0 +1,171 @@
+First impressions on the requirements
+
+* Meta-comment: Move the A/S/P/D/F into a different column and simply number
+the requirements.  For the APP, Mike had us number them by tens so that related
+belated requirements could be inserted numerically in the proper places.
+(That sort of numbering may be unnecessary for this project.)
+
+* A-1: MHO shall support 30 stations and 345 baselines.
+
+* A-2: MHO shall support 64 channels.
+  Should this really be 128 or 256?
+If we want to fourmer all of the bands together, we would need
+128 channels now and 256 in the ngEHT era.
+
+* MHO shall support input from 8 (16?) independently correlated frequency sub-bands.
+  If we set this parameter here, we won't have to repeat it in A-28.
+
+* MHO shall have no practical limit on the number of stations, baselines, channels, or accumulation periods.
+
+* P-4 through F-8:
+  - PGPLOT, FFTW3, and GSL shall be supported.
+  - MHO shall operate without loss of functionality in the absence of PGPLOT, FFTW3, and/or GSL.
+  (Things could be slower or uglier, of course.)
+
+* A-10: Maybe change "maintain" to "provide"?
+
+* A-11: I think this could simply be a requirement that MHO shall support the
+non-compressed form of the Mk4 fringe file.  (Whether or not we keep this requirement is still under discussion.)
+As to the results being identical, I think that falls under how validate
+(or verify---I can never remember which one is validation and which one is verification)
+the requirement.  Obviously, if you support a different format, you should still
+get the same answer at the end.  If the compressed form is lossless, then the
+answers should be identical.  If the compressed form is lossy (e.g., lower precision),
+then the definition of "identical" will be more complicated.
+
+* D-12: New data types shall be litleendian.
+  Also: The legacy bigendian Mk4 data type shall be supported.
+
+* D-13: As discussed at our meeting on 23 November 2020, we should drop the VEX 2.0 requirement.
+
+* Before A-14: There shall be a new ASCII A-list format (version 7) that ...
+  I'm not sure how to handle this.  The specifications are TBD.
+One known specification is that the columns will be user-defined.
+It is possible that there should be a few requirements on A-list version 7,
+ with everything else left to the specifications document.
+Mike can probably advise on how to proceed.
+
+* A-17 can simply say that MHO will be backward-compatible with A-list versions 5 and 6.
+
+* Then, A-14 through A-16 do not have to refer to version numbers.
+
+* A-14: The alist program shall produce A-list files.
+  One could go even farther in reducing this recommendation and some of the following ones.
+"MHO shall produce A-list files" leaves the details of how it does that
+(via a program called "alist") to the specifications document.
+
+* A-15: The adump program shall produce ASCII output of data columns from an A-list.
+
+* A-16: The aedit program shall process A-list files with respect to flagging,
+selecting, summarizing, and generating new output A-list files.
+
+* S-18 describes a validation test, not a requirement.
+
+* It is possible that S-18 and S-19 should be moved to the
+specifications document rather than the requirements table.
+If you want to keep them here, they should be rephrased.
+ S-18 may be something along the lines of "The aedit program shall be capable
+ of producing a summary plot when a user clicks...", but already that sounds
+like too detailed for a requirement.  Ditto S-19
+
+* There isn't enough detail for me to understand D-20 through D-22.
+These desires may impose additional requirements, but they need further thought
+and distillation. For instance, D-21 seems to impose a requirement on
+ language (Python) and on functionality.
+
+* A-23: "MHO shall include a program that checks..." is fine as a requirement, provided
+that an explantation of what "fourmer tool relabels channels" is included in the description.
+The current phrasing of "maintain a test" sounds more like how you would validate.
+
+* A-24: The fringex program shall retain existing functionality to rotate
+fringes with respect to fourfit fringe solutions.  (or something like that)
+
+* A-25 is similar in principle: The requirement is to keep functionality
+that already exists in HOPS.  Ditto for A-28
+
+* A-26 and A-27 are tests, not requirements.
+Are chk_cofit.sh and the other such tools meant for use by the end user or by developers?
+
+* A-29: MHO shall support Python scripting to aid the user in searching fringe space.
+  A minor detail here: Currently, HOPS bakes in the singleband delay at the fourfit stage.
+I'd like the option of having the sbd be a searchable dimension,
+with selectable constraints on mbd-sbd difference and ambiguity resolution.
+ (Those belong in the specifications document, not here, but I don't want to forget about them.)
+
+* S-30: MHO shall support ghostscript.  (Or not?)
+  I don't know what the "ghostscript copy-page command" is.
+ The end user will want to make fplots, either via the fplot command or through aedit, which calls the same type of routine.
+ If there's going to be a requirement about this, it should be written from the
+ perspective of what the end user needs rather than a developers' choice.
+  Also, if ghostscript will be supported but not optional, it could be included
+with FFTW3, etc., in that requirement.
+
+* P-31: MHO shall support 2D plots of ...
+  I'm not sure how to phrase this.  There are so many combinations of things you can plot in aedit.
+
+* P-32: MHO shall support 3D plotting.
+  Those 3D plots of fringes are indeed pretty.
+
+* D-33: Yes, please give us customization of fringe summary plots!  Maybe this is two requirements in one:
+  - Fringe summary plots shall be user-customizable (with some list of options)
+  - Anything the end user can do from the command line is possible with Python too
+
+* D-34: MHO shall support a Python-based fourfit control file.
+  Or drop "fourfit" if you intend the control file to apply to other programs too.
+
+* Add: MHO shall support the existing fourfit control file format.
+
+* A-35: MHO shall preserve the input correlator-output data unmodified.
+  Also, we should figure out whether to call the suite "The MHO suite", "MHO", or something else entirely.
+
+* A-36: MHO shall support discarding correlator APs with small weights.
+
+* A-37: MHO shall support flagging a list of frequency intervals.
+
+* Add: MHO shall support flagging a list of time intervals.
+
+* Consider adding functionality to the flag table.
+ In some packages, it is possible to flag by time and/or frequency and/or polarization
+(or derived polarization product) and provide a text reason for it.
+ The advantage of having reasons is that you can then "unflag" data points with a specific reason.
+
+* A-38: MHO shall support automatic data flagging.
+But I don't know what this means---will MHO flag low data points?
+How does it know when to do this?  This must be user-customizable, right?
+
+* A-40: MHO shall use LSF methods?
+ Is this saying that all fitting will be done using least-squares methods?
+Or is it about the particular libraries that will be called?  Is this a requirement?
+
+* A-41: MHO shall include an algorithm to derive station-based fringe solutions from baseline-based fits.
+
+* A-43: MHO shall include a utility/method to solve for the complex bandpass.
+
+* A-42 (after A-43): The fourfit program shall have the ability to apply a complex bandpass solution.
+  Wait, is this different from A-44?
+
+* D-46 as currently stated is an implementation detail.
+It could be turned into a requirement if you're saying that you want
+to add the ability to search over a user-selectable subset of the parameters,
+for instance.
+
+* I don't know how to judge sophistication to figure out if we've met D-47.
+"There shall be a tool to do benchmarking and performance analysis" gets part of the way toward a requirement,
+ but I don't know enough to know what specifically you'd want to include in that requirement.
+
+* D-48: MHO shall support spectral-line VLBI.
+  Keep it short and simple.  There's a lot of complexity behind the scenes of this---you
+ can't solve for delay on line scans,
+the number of spectral channels could be larger, etc.--- but that's for the future.
+
+* D-49: MHO shall support pulsar folding.
+  State it as a requirement and then note that this could be descoped.  T
+he note should also provide an explanation of what you're proposing to support.
+Simple folding by a user-specified period may not be sophisticated enough.  Y
+ou may need to support a user-supplied pulsar ephemeris file and blanking.
+It should also probably be noted that this isn't intended for pulsar *searching*, unless
+that's what you intend (and that would be a lot of work to get right).
+
+* D-50: Is this an either-or, or do you intend to support both multi-threading and multi-processing?
+
+* A-51 through P-56 are regression tests, not requirements.
