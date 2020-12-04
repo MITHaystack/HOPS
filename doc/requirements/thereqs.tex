@@ -39,7 +39,7 @@ the type of test that will be used to validate them.  These prefixes are:
 %%% EDIT: \item[A,] etc. to avoid the awkward-looking lonely comma
 \begin{description}
 [align=left, labelwidth=0.0cm, leftmargin=1cm]
-\item[A], for automated tests. These are requirements
+\item[A,] for automated tests. These are requirements
 that shall be validated with a ``check'' script (in shell, Python, or similar).
 These scripts can be executed during installation steps to verify the
 installation was successful,
@@ -47,33 +47,26 @@ or in a nightly build to verify that daily updates have not broken any
 functionality. Existing tests within HOPS3 will be ported into the new
 HOPS4 code set.
 
-\item[S], for software-testable. These are more complicated tests such as
+\item[S,] for software-testable. These are more complicated tests such as
 regression tests that may be run at specific points in development. It is
-anticipated that each of these tests will be implemented by a script
-\EDIT[and a report provided].
+anticipated that each of these tests will be implemented by a script, and a report provided.
 
-\item[P], for procedural tests that require human interpretation (\eg
+\item[P,] for procedural tests that require human interpretation (\eg
 validating the display mechanics of a figure). These tests shall have
 explicit instructions for the user and the results shall be recorded.
 
-\item[D], for desires. These are general design goals
-%%% EDIT: removed:
-%%% EDIT:, which are not
-%%% EDIT: esential requirements for HOPS4 and are not directly testable,
-%%% EDIT: but are strongly encouraged.
-\EDIT[for which testing reports are not required.]
+\item[D,] for desires. These are general design goals for which testing reports are not required.
 
-\item[F], for future-proofing guidelines to ensure HOPS4 is useful beyond
+\item[F,] for future-proofing guidelines to ensure HOPS4 is useful beyond
 the immediate horizon. For every required package (beyond the historically,
 generally available GNU/Linux packages) the code should be structured
 so that it is relatively straightforwards to port to a new package with
-similar functionality.
-\EDIT[Again, no formal test report for these shall be made.]
+similar functionality. Again, no formal test report for these shall be made.
 
 \end{description}
 
 Details of the testing process are to be found in the coverage
-and testing document.%(\cite{cover}).
+and testing document \cite{cover}.
 %%% EDIT: my preference here would be to site the document as
 %%% EDIT: being ``in preparation''.  We know the title and authors.
 
@@ -82,15 +75,7 @@ and testing document.%(\cite{cover}).
 %``requirement'' form. The requirements should have ``rationale'', ``explanation'',
 %``comment'' or some other clarification as appropriate]
 
-%\FIX[Warning: the enumeration of each requirement is going to change with
-%edits - need to either fix the enumeration, or not rely on it.]
 
-
-%The requirements in this document are numbered with a prefix
-%according to the type of test that may be used to validate them:
-%A for automated tests, S for software testable, P for procedural.
-%The desire and goals are prefixed with D for desire and
-%F for future-proofing.
 
 
 %\subsection{Automated Testable Requirements}
@@ -127,7 +112,7 @@ memory limitations of the computer hardware on which it is run.
   \reqex[input required]{HOPS4 requires an upper bound merely to verify that
     it supports ``more than enough''}
 
-\reqid{A} HOPS4 shall support at least \FIX[128] channels \EDIT[and] should not impose a
+\reqid{A} HOPS4 shall support at least \FIX[128] channels and should not impose a
  limit on the number of channels.
   \reqex[input required]{HOPS4 requires an upper bound merely to implement
     with some sensible channel labeling scheme and verify that the requirement is satisfied.}
@@ -135,11 +120,10 @@ memory limitations of the computer hardware on which it is run.
     %be unbounded, but might be challenging for some to type. However,
     %there is no real need to limit channel labels to a single-character.}
 
-%%% EDIT: new
 \reqid{A} HOPS4 shall support a bit depth of \FIX[2] bits.
-  \reqex[input required]{\EDIT[Support for 1-bit is available in HOPS3,
+  \reqex[input required]{Support for 1-bit is available in HOPS3,
     and hooks for other bit depths will be provided.  But the code for other
-    depths will require development.]}
+    depths will require development.}
 
 \reqid{A} Every library (C/C++) or module (python) shall have a corresponding
 test suite to verify expected functionality, this may include but is not limited
@@ -164,17 +148,15 @@ Mac OSX, or Windows.
 
 \reqid{P} HOPS4 shall operate without loss of functionality in the absence of
 FFTW3, and/or GSL, with the understanding that performance (runtime) might be
-affected. \reqex{For example FFT calls should be wrapped so that other
+affected. 
+\reqex{For example FFT calls should be wrapped so that other
 packages or native code may be used instead.}
 
 \reqid{P} \acs{PGPLOT} shall not be required for basic functionality (\eg
 fringe-fitting),
 though it may be optionally supported for some plotting/display options.
-\reqex{The \acs{PGPLOT} package has
-%%% EDIT: long been obsolete,
-\EDIT[out of maintenance for a long time,]
-and any replacement
-package could follow the same fate. Thus all plotting package calls need to be 
+\reqex{The \acs{PGPLOT} package has out of maintenance for a long time,
+and any replacement package could follow the same fate. Thus all plotting package calls need to be 
 managed within an optional plugin which leaves core functionality unaffected by 
 its presence. At a minimum, plotting functionality similar to the current fringe-plots
 can be constructed as a set of independent Python tools.}
@@ -197,23 +179,19 @@ can be constructed as a set of independent Python tools.}
 
 \begin{description}
 
-%%% EDIT: removed ``be''
-\reqid{A} HOPS4 shall support input from the DiFX correlator (in Swinburne format).
+\reqid{A} HOPS4 shall support input from the DiFX \cite{deller2007difx,deller2011difx} correlator (in Swinburne format).
 
 % ./vex2xml/Makefile.am
 \reqid{A} every application should provide
     \verb+--help+ and \verb+--version+ responses (with zero exit status)
     to behave as conventional \acs{GNU/Linux} applications.
-%%% EDIT: replaced ``This''
-  \reqex{\EDIT[Command-line arguments] should be implemented with a
+  \reqex{Command-line arguments should be implemented with a
     standard argument parsing library, and should respond helpfully
     on bad command-line syntax.}
 
 \reqid{A} HOPS4 shall support input from \acs{VEX} version 1.5.\footnote{\acs{VEX} 1.5
 is the only extant working file format for VLBI experiment description, however, there does
-exist a VEX 2.0 specification which is not currently in active use%
-%%% EDIT: added:
-\EDIT[ but may be adopted at any time]}%
+exist a VEX 2.0 specification which is not currently in active use but may be adopted at any time.}
 
 
 \reqid{A} All plotting tools provided in HOPS4 shall have the ability to save the image to 
@@ -228,11 +206,11 @@ a standard graphics format.
 %disappear - we will save plots directly in PDF format, and save data in a
 %file. No more parsing postscript files for fringe results!]}
 
-\reqid{D} All new native data types (to be detailed in the specification)
+\reqid{D} All new native data types (to be detailed in the specification document)
 shall be stored \acs{littleendian}.
 
 \reqid{D} HOPS4 shall provide an application to support export of native
-data types to a \TBD archival format (\eg~HDF5).
+data types to a \TBD~archival format (\eg~HDF5).
 
 \reqid{D} HOPS4 shall incorporate a C-library to interface with the legacy 
 \acs{Mk4} data types (stored \acs{bigendian}) in their current form for 
@@ -251,31 +229,25 @@ testing purposes, and in order to access archived data.
 
 The following requirements are related to the ``A-suite'' tools \acs{alist}, \acs{aedit},
 and \acs{adump}.  The command-line interface for these tools shall be wrapped
-in Python in HOPS4 and shall support alist file version %
-%%% EDIT: dropped 5 -- at this point that is only for geodesy.
-6\footnote{
+in Python in HOPS4 and shall support alist file version 6\footnote{Version 6 is the standard for the \ac{EHT}, and a version 7 format seems
+sensible but not yet required.  If in detailing the specifications
+a version 7 (or 8, \etc) emerges, these requirements transfer
+to the those version(s) as well.]}
+
 %%% EDIT: replaced:
 %%% 5 \& 6 \footnote{%
 %%% If there is an \acs{A-list} version 7, these shall apply to version 7 as well.
 %%% A discussion of a TDB version 7 \acs{alist} shall be included in the
 %%%  specifications document.}.
-\EDIT[
-Version 6 is the standard for the \ac{EHT}, and a version 7 format seems
-sensible but not yet required.  If in detailing the specifications
-a version 7 (or 8, \etc) emerges, these requirements transfer
-to the those version(s) as well.]}
 
-\vspace{12pt} \EDIT[DROPPING ALL MENTION of 5 and geodesy.]
+%\vspace{12pt} \EDIT[DROPPING ALL MENTION of 5 and geodesy.]
 
-%\FIXME[Re-write these as specific requirements, move check script details to the
-%coverage and testing document.]
 
 \begin{description}
 
 \reqid{A} The \acs{alist} program shall generate valid \acs{A-list} files in 
-version
-6.
-%%% s 5, 6. 
+version 6.
+
 %\reqex{\texttt{chk\_alist.sh} currently does this for versions 5 and 6.}
 
 %\reqid{A} the \acs{alist} program shall provide a new ASCII
@@ -283,12 +255,9 @@ version
 
 \reqid{A} The \acs{adump} program shall provide valid ASCII text representations 
 of columns of data from an \acs{A-list} of version 6.
-%%% 5 \& 6.
 %\reqex{\texttt{chk\_adump.sh} currently does this for versions 5 and 6.}
 
-\reqid{A} The \acs{aedit} program shall process version 6
-%%% s5 \& 6
-\acs{A-list} 
+\reqid{A} The \acs{aedit} program shall process version 6 \acs{A-list} 
 files with respect to flagging, selecting, summarizing and generating a new 
 output \acs{A-list}.
 %\reqex{the \texttt{chk\_aedit.sh} currently makes a pass through many of these}
@@ -297,10 +266,13 @@ output \acs{A-list}.
 %    applications (alist, aedit, adump), must fulfill the same requirements.
 
 % ./data/ae_testdata/Makefile.am
+
 %%% EDIT: drop this here:
 %%% \reqid{A} HOPS4 shall maintain the performance of \acs{aedit} version 5 (for 
 %%% geodesy) and 6 (for EHT).
 %%%
+
+
 %\reqex{Currently, \texttt{chk\_fsumm.sh} performs such a test with captured 
 %\acs{A-list} data.}
 
@@ -373,7 +345,7 @@ preserved with equivalent functionality.
 %\reqex{\texttt{chk\_cofit.sh} currently verifies this.}
 
 %%% ``there''
-\reqid{A} \EDIT{The} current functionality of the program \acs{search} shall be 
+\reqid{A} The current functionality of the program \acs{search} shall be 
 preserved.
 %\reqex{\texttt{chk\_search.sh} currently verifies this by performing a search on
 %a captive data set.}
@@ -437,17 +409,13 @@ correlator output directory.}
 \reqid{A} It shall be possible to automatically discard correlator 
 \acs{AP} (integrations) with small weights.
 \reqex{When data are poorly recorded, the correlation product is the result 
-of less data than it should be, leading to incorrect results.
-%%% EDIT revised:
-\EDIT[This is currently done in HOPS3 provided \acs{DiFX} properly notices
-the loss.]}
-%%% The ability to flag 
-%%% such input should not be arduous.} %The HOPS3 script 
+of less data than it should be, leading to incorrect results. This is currently done in HOPS3 provided \acs{DiFX} properly notices the loss.}
+%The HOPS3 script 
 %\texttt{chk\_min\_weight.sh} currently tests this capability. In addition, 
 %user-supplied ad-hoc flagging capability is tested by \texttt{chk\_flagging.sh}.}
 
 \reqid{A} HOPS4 shall have the ability to flag data based on a user-supplied 
-list (\eg~of frequency intervals \EDIT[with time in some]) flag file.
+list (\eg~of frequency intervals with time in some flag file).
 \reqex{This is needed especially when \acs{RFI} or calibration tones signals 
 are present.}%  In HOPS3 \texttt{chk\_notches.sh} verifies this.}
 
@@ -472,8 +440,8 @@ quantities from baseline-based quantities as a global fringe fitter.
 \reqid{A} The HOPS4 \acs{fourfit} shall have the ability to apply complex 
 bandpass correction.
 \reqex{This is a new capability that might well be prototyped in the existing 
-HOPS3 package.  \EDIT[Here] ``complex'' refers to both amplitude and phase variation 
-of the receiver frequency response.  HOPS3 already has rather 
+HOPS3 package. Here ``complex'' refers to both amplitude and phase variation 
+of the receiver frequency response. HOPS3 already has rather 
 sophisticated phase calibration handling. \geomargin{the \acs{EHT} does 
 not use tone generators, so most of that is only useful for geodetic systems 
 which do} The ``manual'' phase calibrations already handle the phase 
@@ -487,23 +455,22 @@ possibly using an \acs{LSF} method, for per-station bandpass solutions}
 
 \reqid{A} Python wrappers for the new HOPS4 data objects shall be provided.
 \reqex{The existing wrappers for the \acs{Mk4} data types in HOPS3 do not 
-need to be preserved,
-%%% EDIT although we shall most likley do so.}
-\EDIT[but it is a capability worth preserving]}.
+need to be preserved, but it is a capability worth preserving.}
 
-\EDIT[IT SEEMS TO ME THE FOLLOWING ``SHALLs'' should be ``SHOULDs''.]
+%\EDIT[IT SEEMS TO ME THE FOLLOWING ``SHALLs'' should be ``SHOULDs''.]
 
-\reqid{D} HOPS4 shall preserve the the Single Band Delay, Multi Band Delay 
+\reqid{D} HOPS4 should preserve the the Single Band Delay, Multi Band Delay 
 and Delay Rate search algorithm in its current form.
-%%% EDIT: However, in addition it will 
-%%% be more modular such that the user may (de)select certain search dimensions.
-%%% EDIT: reworded a bit:
-\reqex{The current loop in \acs{fourfit} includes a loop over \acs{TEC}
-as well \EDIT[which is not needed at \acs{EHT} frequencies], 
-which makes 4 loops.  \EDIT[For spectral line data 
-\acs{MBD} impossible, so there are two loops too many.
+\reqex{Our desire is to make the algorithm modular, such that the user may (de)select search
+dimensions. For example the current loop in in \acs{fourfit} includes a loop over \acs{TEC},
+which is not needed at \acs{EHT} frequencies and could be ignored in \acs{EHT} analysis. 
+Similarly, for spectral line data the multi-band delay is not meaningful.
 The revised implementation should make it easier to develop and
-introduce new algorithms.] }.
+introduce new algorithms.}.
+%The current loop in \acs{fourfit} includes a loop over \acs{TEC}
+%(which is not needed at \acs{EHT} frequencies), which makes 4 loops.  For spectral line data 
+%\acs{MBD} is impossible, so there are two loops too many.
+
 
 
 \reqid{D} Benchmarking and performance analysis should be augmented with 
@@ -512,14 +479,14 @@ a more sophisticated tools.
 rudimentary profiling.  Introducing \texttt{gprof} into some specific build tests, 
 should be straightforward and help to optimize fringing.}
 
-\reqid{D} HOPS4 shall support spectral-line VLBI.
+\reqid{D} HOPS4 should support spectral-line VLBI.
 \reqex{The existing HOPS code assumes a continuum.}
 
-\reqid{D} HOPS4 shall support pulsar folding with a user specified period or
+\reqid{D} HOPS4 should support pulsar folding with a user specified period or
 ephemeris file with blanking.
 %\reqex{This may be descoped.}
 
-\reqid{D} HOPS4 shall enable multi-threading or multi-processing for batch jobs.
+\reqid{D} HOPS4 should enable multi-threading or multi-processing for batch jobs.
 \reqex{Parallelization is a strong desire, but the exact details of the 
 implementation (particularly the requirements of threads vs processes) need to 
 be carefully designed.}
