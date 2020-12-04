@@ -68,7 +68,7 @@
 
 % see common/shortcuts.tex for what is defined in this file
 \input{shortcuts}
-\setboolean{geos}{true}% or false to hide geodetic marginal notations
+\setboolean{geos}{false}% or false to hide geodetic marginal notations
 
 % control options
 \newboolean{skipappendix}
@@ -152,26 +152,26 @@ in this document.
 \input{thereqs}
 
 
-\pagebreak
-\addtocounter{section}{1}
-\renewcommand{\refname}{\thesection. References}
-\addcontentsline{toc}{section}{\thesection. References}
-\bibstyle{plainurl}
-\printbibliography
-\label{sec:references}
+%\pagebreak
+%\addtocounter{section}{1}
+%\renewcommand{\refname}{\thesection. References}
+%\addcontentsline{toc}{section}{\thesection. References}
+%\bibstyle{plainurl}
+%\printbibliography
+%\label{sec:references}
 
 % if skipappendix-is-true then (nothing) else typeset Appendices
 \ifthenelse{\boolean{skipappendix}}{}{%
 \appendix
 
-\pagebreak
-\input{hilo}
+%\pagebreak
+%\input{hilo}
 
-\pagebreak
-\input{obsolete}
+%\pagebreak
+%\input{obsolete}
 
-\pagebreak
-\input{uml-description}
+%\pagebreak
+%\input{uml-description}
 
 \pagebreak
 \section{Acronyms, Commands, and Glossary}
