@@ -43,6 +43,7 @@
 \usepackage[english]{babel}
 \usepackage[backend=biber,style=numeric,sorting=none]{biblatex}
 \addbibresource{hops.bib}
+%\usepackage{natbib}
 % Use the appendix package.
 \usepackage{appendix}
 % context-sensitive quotes
@@ -95,7 +96,7 @@
 \author{%
 \LARGE John Barrett, Geoff Crew, Dan Hoak and Violet Pfeiffer \\
 \Large MIT Haystack Observatory}
-\date{Version \EDIT[1.0], \recdate}
+\date{Version 1.0, \recdate}
 \maketitle
 \normalsize
 
@@ -111,9 +112,7 @@ Note that there is an implicit desire to end up with a suite of software that
 not only meets the stated needs, but which also is easier to maintain, and more
 extensible for the future.  While we might state these desires as requirements,
 it is not possible to test against them, and thus these do not formally appear 
-in this document\EDIT[, and are discussed elsewhere.]
-%Nevertheless, this is a goal we expect to meet and these
-%are informally captured (\Sec~\ref{sec:desires}).
+in this document, and are discussed elsewhere.
 }
 
 % N.B.: NASA document describing preferred language for enumerating requirements:
@@ -151,14 +150,13 @@ in this document\EDIT[, and are discussed elsewhere.]
 \pagebreak
 \input{thereqs}
 
-
-%\pagebreak
-%\addtocounter{section}{1}
-%\renewcommand{\refname}{\thesection. References}
-%\addcontentsline{toc}{section}{\thesection. References}
-%\bibstyle{plainurl}
-%\printbibliography
-%\label{sec:references}
+\pagebreak
+\addtocounter{section}{1}
+\renewcommand{\refname}{\thesection. References}
+\addcontentsline{toc}{section}{\thesection. References}
+\bibstyle{plainurl}
+\printbibliography
+\label{sec:references}
 
 % if skipappendix-is-true then (nothing) else typeset Appendices
 \ifthenelse{\boolean{skipappendix}}{}{%
@@ -166,10 +164,10 @@ in this document\EDIT[, and are discussed elsewhere.]
 
 %\pagebreak
 %\input{hilo}
-
+%
 %\pagebreak
 %\input{obsolete}
-
+%
 %\pagebreak
 %\input{uml-description}
 
