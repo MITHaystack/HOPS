@@ -41,7 +41,7 @@
 % for bibliographies if needed
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
-\usepackage[backend=bibtex,style=numeric,sorting=none]{biblatex}
+\usepackage[backend=biber,style=numeric,sorting=none]{biblatex}
 \addbibresource{hops.bib}
 %\usepackage{natbib}
 % Use the appendix package.
@@ -49,7 +49,8 @@
 % context-sensitive quotes
 \usepackage{csquotes}
 % underline for emphasis: \uline etc
-\usepackage{ulem}
+% -- note this breaks italics on journal names which breaks line wrapping
+% \usepackage{ulem}
 % for generating outlines
 \usepackage{outlines}
 \usepackage{enumitem}

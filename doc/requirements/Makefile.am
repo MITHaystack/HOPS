@@ -43,7 +43,7 @@ force: $(srcdir)/Makefile.am $(EXTRA_DIST)
 	-TEXBIB=$(TEXBIB) biber $(TEXSRC) >$(TEXSRC)-biber.log && echo biber ok
 	touch force
 
-CLEANFILES = $(TEXSRC).* $(TEXPDF).pdf force *.log
+CLEANFILES = $(TEXSRC).* $(TEXPDF).pdf force *.log *-blx.bib
 
 else
 # nothing built, installed or cleaned
