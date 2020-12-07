@@ -33,7 +33,7 @@ four dual-polarization, 4 GHz bands). Support for greater bit depth is
 also of interest should recording media be available.  The refactoring
 of \ac{HOPS} shall support the full analysis of ngEHT data within these limits,
 and will be made smarter, more automatic, more robust, and easier to use. The
-number of channels shall have no practical limit, and shall be tested up to 128.
+number of channels shall have no practical limit, but shall be tested at least to 128.
 %%% EDIT: if we are going beyond 2 bits, that is actually non-trivial work
 %%% EDIT: and we need a requirement for that.
 
@@ -43,7 +43,7 @@ number of channels shall have no practical limit, and shall be tested up to 128.
 For the needs of the \acs{EHT} campaigns of 2017 it was decided to augment
 the existing HOPS package with some Python-based packages in order to
 create a pipeline for the initial reduction of data \cite{blackburn2019eht}.
-The new \ac{HOPS} shall
+The new \ac{HOPS} shall also
 support independent analyses, using Python or other languages, through
 accessible data archive formats (e.g. HDF5, JSON, XML, or similar), interactive 
 tools, and conversion to human-readable ASCII files. 
