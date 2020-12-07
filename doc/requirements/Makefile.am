@@ -10,7 +10,8 @@ TEXSRC=reqs
 
 # everything from $(srcdir) included from $(TEXSRC).tex
 # needs to be listed here with a $(srcdir)/ path prefix
-EXTRA_DIST = $(srcdir)/$(TEXSRC).tex $(srcdir)/theintro.tex $(srcdir)/thereqs.tex \
+EXTRA_DIST = $(srcdir)/$(TEXSRC).tex $(srcdir)/theintro.tex \
+	$(srcdir)/thereqs.tex \
 	$(srcdir)/hilo.tex $(srcdir)/obsolete.tex
 
 if WANT_DOCS
@@ -33,17 +34,25 @@ $(TEXPDF).pdf: $(TEXSRC).pdf
 # TEXINPUTS allows sources to be found on the path
 # insert enough rules for iteration to completion:
 # pdflatex ... ; biber ... ; pdflatex ... ; pdflatex
-$(TEXSRC).pdf: force
+$(TEXSRC).pdf: bibs
 	@echo final iteration
 	-TEXINPUTS=$(TEXINPUTS) pdflatex $(TEXOPT) $(TEXSRC).tex
 
+# see which backend was requested and invoke the appropriate bib agent
+bibs: force
+	@echo biber or biblatex
+	-grep -q backend=biber $(srcdir)/$(TEXSRC).tex && \
+		TEXBIB=$(TEXBIB) biber $(TEXSRC) >$(TEXSRC)-bibs.log || \
+		BIBINPUTS=$(TEXBIB) bibtex $(TEXSRC) >$(TEXSRC)-bibs.log
+	touch bibs
+
+# a first iteration starts the ball rolling
 force: $(srcdir)/Makefile.am $(EXTRA_DIST)
 	@echo first iteration
 	-TEXINPUTS=$(TEXINPUTS) pdflatex $(TEXOPT) $(TEXSRC).tex
-	-TEXBIB=$(TEXBIB) biber $(TEXSRC) >$(TEXSRC)-biber.log && echo biber ok
 	touch force
 
-CLEANFILES = $(TEXSRC).* $(TEXPDF).pdf force *.log *-blx.bib
+CLEANFILES = $(TEXSRC).* $(TEXPDF).pdf force bibs *.log *-blx.bib
 
 else
 # nothing built, installed or cleaned
