@@ -47,9 +47,9 @@ or in a nightly build to verify that daily updates have not broken any
 functionality. Existing tests within HOPS3 will be ported into the new
 HOPS4 code set.
 
-%\item[S,] for software-testable. These are more complicated tests such as
-%regression tests that may be run at specific points in development. It is
-%anticipated that each of these tests will be implemented by a script, and a report provided.
+\item[S,] for software-testable. These are more complicated tests such as
+regression tests that may be run at specific points in development. It is
+anticipated that each of these tests will be implemented by a script, and a report provided.
 
 \item[P,] for procedural tests that require human interpretation (\eg
 validating the display mechanics of a figure). These tests shall have
@@ -103,11 +103,16 @@ The following requirements describe essential design features.
 
 \begin{description}
 
+\reqid{S} HOPS4 shall provide effectively equivalent results for any output that HOPS3 was capable of producing.
+\reqex{A sufficient set of historical DiFX output has been captured and HOPS4 results will 
+be periodically compared to HOPS3 results on observables that HOPS3 supports to ensure consistency.}
+
 \reqid{A} HOPS4 shall have no practical limit on the number of stations,
 baselines, channels, or accumulation periods other than which is imposed by the
 memory limitations of the computer hardware on which it is run.
 
 %%% EDIT: it think it is useful to leave these red
+
 \reqid{A} HOPS4 shall support at least \FIX[30] stations and 435 baselines.
   \reqex[input required]{HOPS4 requires an upper bound merely to verify that
     it supports ``more than enough''}
@@ -122,8 +127,9 @@ memory limitations of the computer hardware on which it is run.
 
 \reqid{A} HOPS4 shall support a (raw station data) bit depth of \FIX[2] bits.
   \reqex[input required]{Support for 1-bit is available in HOPS3,
-    and hooks for other bit depths will be provided.  But the code for other
-    depths will require development.}
+    and hooks for other bit depths will be provided, but the code for other
+    depths will require development in order to ensure proper normalization
+and treatment of noise statistics, etc.}
 
 \reqid{A} Every library (C/C++) or module (python) shall have a corresponding
 test suite to verify expected functionality, this may include but is not limited
