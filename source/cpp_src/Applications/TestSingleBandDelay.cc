@@ -125,7 +125,9 @@ int main(int argc, char** argv)
 
     //now that the data has been organized by channel, we can take
     //each chunk and (fourier) transform it as needed
-    //to do this we create a 'wrapper' to interface with each data chunk
+    //to do this we create a 'wrapper' about each chunk of data
+    //this case, that chunk is the visibilities of a single (channel)
+    //with axes of time-by-freq
 
     std::size_t channel_dims[2] = {data_dims[CH_TIME_AXIS], data_dims[CH_FREQ_AXIS]};
     MHOArrayWrapper< std::complex<double>, 2> channel_wrapper(channel_dims);
@@ -147,29 +149,31 @@ int main(int argc, char** argv)
         }
     }
 
-    std::cout<<"done with the FFT's"<<std::endl;
-    std::vector< std::vector< std::vector< std::complex<double> > > > sbd;
-    sbd.resize(data_dims[CH_POLPROD_AXIS]);
+    // std::cout<<"done with the FFT's"<<std::endl;
+    // std::vector< std::vector< std::vector< std::complex<double> > > > sbd;
+    // sbd.resize(data_dims[CH_POLPROD_AXIS]);
+    // 
+    // //now collapse the time and channel axis (channels only over the first 8 chans --one sampler)
+    // for(std::size_t pp=0; pp<data_dims[CH_POLPROD_AXIS]; pp++)
+    // {
+    //     sbd[pp].resize(data_dims[CH_TIME_AXIS]);
+    //     for(std::size_t t=0; t<data_dims[CH_TIME_AXIS]; t++)
+    //     {
+    //         sbd[pp][t].resize(data_dims[CH_FREQ_AXIS], std::complex<double>(0.0, 0.0) );
+    //         for(std::size_t f=0; f<data_dims[CH_FREQ_AXIS]; f++)
+    //         {
+    //             for(std::size_t ch=0; ch<data_dims[CH_CHANNEL_AXIS]; ch++)
+    //             {
+    //                 sbd[pp][t][f] += ch_bl_data->at(pp,ch,t,f);
+    //             }
+    //         }
+    //     }
+    // 
+    // }
 
-    //now collapse the time and channel axis (channels only over the first 8 chans --one sampler)
-    for(std::size_t pp=0; pp<data_dims[CH_POLPROD_AXIS]; pp++)
-    {
-        sbd[pp].resize(data_dims[CH_TIME_AXIS]);
-        for(std::size_t t=0; t<data_dims[CH_TIME_AXIS]; t++)
-        {
-            sbd[pp][t].resize(data_dims[CH_FREQ_AXIS], std::complex<double>(0.0, 0.0) );
-            for(std::size_t f=0; f<data_dims[CH_FREQ_AXIS]; f++)
-            {
-                for(std::size_t ch=0; ch<data_dims[CH_CHANNEL_AXIS]; ch++)
-                {
-                    sbd[pp][t][f] += ch_bl_data->at(pp,ch,t,f);
-                }
-            }
-        }
-
-    }
-
-    //now we want determine the 'single band delay' axis
+    //TODO FIXME check this calculation
+    //lets compute the values of the transformed (freq) axis --
+    //this ought to give us the values of the 'single band delay' axis
     MHOArrayWrapper< double, 1> sbd_axis(data_dims[CH_FREQ_AXIS]);
     int n = data_dims[CH_FREQ_AXIS];
     int n02 = n/2;
@@ -180,6 +184,9 @@ int main(int argc, char** argv)
         std::cout<<"sbd_axis: "<<f<<" = "<<sbd_axis(f)<<std::endl;
     }
 
+    //TODO FIXME check this calculation
+    //lets compute the values of the transformed (time) axis --
+    //this ought to give us the values of the 'delay-rate' axis
     MHOArrayWrapper< double, 1> dr_axis(data_dims[CH_TIME_AXIS]);
     int dn = data_dims[CH_TIME_AXIS];
     int dn02 = dn/2;
@@ -191,38 +198,42 @@ int main(int argc, char** argv)
     }
 
 
-
-    MHOChannelizedRotationFunctor sbd_rotation;
-    sbd_rotation.SetReferenceFrequency(0.0);
-    sbd_rotation.SetReferenceTime(0.0);
-    sbd_rotation.SetDelayRate(0.0);
-    sbd_rotation.SetSingleBandDelay(0.0);
-
-    ch_baseline_data_type* rotated_ch_bl_data = new ch_baseline_data_type();
-    MHOFunctorBroadcaster<ch_baseline_data_type, ch_baseline_data_type> broadcaster;
-    broadcaster.SetInput(copy_ch_bl_data);
-    broadcaster.SetOutput(rotated_ch_bl_data);
-    broadcaster.SetFunctor(&sbd_rotation);
+    //now we want to reduce (sum) the data along the "channel" axis/dimension
+    //Presumably, once we find the correct delay-rate and delay we can apply 
+    //this (rotate the data of each channel) so that all of the visibilities 
+    //will add coherently
 
     MHOReducer< ch_baseline_data_type::value_type,
                 MHOCompoundSum<ch_baseline_data_type::value_type>,
                 ch_baseline_data_type::rank::value > summation;
-
-    //sum all the data along every axis except the pol-product axis
-    summation.ReduceAxis(CH_FREQ_AXIS);
-    summation.ReduceAxis(CH_TIME_AXIS);
-    summation.ReduceAxis(CH_CHANNEL_AXIS);
+    
+    //sum all the data along the channel axis 
+    summation.ReduceAxis(CH_CHANNEL_AXIS); 
 
 
 
 
+    // MHOChannelizedRotationFunctor sbd_rotation;
+    // sbd_rotation.SetReferenceFrequency(0.0);
+    // sbd_rotation.SetReferenceTime(0.0);
+    // sbd_rotation.SetDelayRate(0.0);
+    // sbd_rotation.SetSingleBandDelay(0.0);
+    // 
+    // ch_baseline_data_type* rotated_ch_bl_data = new ch_baseline_data_type();
+    // MHOFunctorBroadcaster<ch_baseline_data_type, ch_baseline_data_type> broadcaster;
+    // broadcaster.SetInput(copy_ch_bl_data);
+    // broadcaster.SetOutput(rotated_ch_bl_data);
+    // broadcaster.SetFunctor(&sbd_rotation);
+    
 
-
-
+    
+    
+    
+    
 
 
     #ifdef USE_ROOT
-    #ifdef DO_NOT_BUILD
+    //#ifdef DO_NOT_BUILD
 
     std::cout<<"starting root plotting"<<std::endl;
     //ROOT stuff for plots
@@ -280,7 +291,7 @@ int main(int argc, char** argv)
             }
             g_amp1[pp]->SetPoint(f, sbd_axis(f), std::abs( sum ) );
 
-            if( sbd_max < std::abs( sum )
+            if( sbd_max < std::abs( sum ) )
             {
                 sbd_max = std::abs( sum );
                 sbd_max_location = sbd_axis(f);
@@ -288,6 +299,8 @@ int main(int argc, char** argv)
         }
 
         max_sbd_loc[pp] = std::make_pair(sbd_max, sbd_max_location);
+
+        std::cout<<"sbd_max amp, loc = "<<sbd_max<<", "<<sbd_max_location<<std::endl;
 
         c[pp]->cd();
         g_amp1[pp]->SetMarkerStyle(20);
@@ -311,7 +324,7 @@ int main(int argc, char** argv)
 
     App->Run();
 
-    #endif
+    //#endif
     #endif //USE_ROOT
 
 
