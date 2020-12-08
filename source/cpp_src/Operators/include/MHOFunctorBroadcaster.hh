@@ -28,7 +28,7 @@ class MHOFunctorBroadcaster: public MHOArrayOperator<XInputArrayType, XOutputArr
 {
     public:
 
-        static_assert(XOutputArrayType::rank::value == XInputArrayType::rank::value);
+        static_assert(XOutputArrayType::rank::value == XInputArrayType::rank::value, "Input/Output array ranks are not equal.");
 
         MHOFunctorBroadcaster():
             fInitialized(false),
