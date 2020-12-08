@@ -118,8 +118,11 @@ class MHOReducer:
                 auto iter_end = this->fInput->end();
                 for(auto iter = iter_begin; iter != iter_end; ++iter)
                 {
+                    //get the input indices for each dimension
                     in_loc = iter.GetIndices();
+                    //set the output indices to collapse each index of the dimensions under reduction
                     for(std::size_t i=0; i<RANK; i++){out_loc[i] = std::min(in_loc[i], out_dim[i]-1);}
+                    //find offset to location in output array
                     std::size_t m = MHOArrayMath::OffsetFromRowMajorIndex<RANK>(out_dim, out_loc);
                     //execute the reduction operator +=  or *= or user-defined
                     fReductionOperator( (*(this->fOutput))[m], *iter);
