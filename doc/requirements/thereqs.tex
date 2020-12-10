@@ -51,7 +51,7 @@ HOPS4 code set.
 regression tests that may be run at specific points in development. It is
 anticipated that each of these tests will be implemented by a script, and a report provided.
 
-\item[P,] for procedural tests that require human interpretation (\eg
+\item[P,] for procedural tests that require human interpretation (\eg~
 validating the display mechanics of a figure). These tests shall have
 explicit instructions for the user and the results shall be recorded.
 
@@ -106,7 +106,7 @@ The following requirements describe essential design features.
 \begin{description}
 
 \reqid{S} HOPS4 shall provide effectively equivalent results for any output that HOPS3 was capable of producing.
-\reqex{A sufficient set of historical DiFX output has been captured and HOPS4 results will 
+\reqex{A set of historical DiFX output has been captured and HOPS4 results will 
 be periodically compared to HOPS3 results on observables that HOPS3 supports to ensure consistency.}
 
 \reqid{A} HOPS4 shall have no practical limit on the number of stations,
@@ -117,10 +117,10 @@ memory limitations of the computer hardware on which it is run.
 
 \reqid{A} HOPS4 shall support at least \FIX[30] stations and 435 baselines.
   \reqex[input required]{HOPS4 requires an upper bound merely to verify that
-    it supports ``more than enough''}
+    it supports ``more than enough'' stations.}
 
-\reqid{A} HOPS4 shall support at least \FIX[128] channels and should not impose a
- limit on the number of channels.
+\reqid{A} HOPS4 shall explicitly test functionality with at least \FIX[128] 
+channels and shall not impose a limit on the number of channels.
   \reqex[input required]{HOPS4 requires an upper bound merely to implement
     with some sensible channel labeling scheme and verify that the requirement is satisfied.}
     %\footnote{using \acs{Unicode} for channel labels would certainly
@@ -134,8 +134,8 @@ memory limitations of the computer hardware on which it is run.
 and treatment of noise statistics, etc.}
 
 \reqid{A} Every library (C/C++) or module (python) shall have a corresponding
-test suite to verify expected functionality, this may include but is not limited
-to unit tests (for individual classes/functions) with the appropriate test
+test suite to verify expected functionality. This may include, but is not limited
+to, unit tests (for individual classes/functions) with the appropriate test
 cases to be determined.
 
 
@@ -160,14 +160,16 @@ affected.
 \reqex{For example FFT calls should be wrapped so that other
 packages or native code may be used instead.}
 
-\reqid{P} \acs{PGPLOT} shall not be required for basic functionality (\eg
-fringe-fitting),
-though it may be optionally supported for some plotting/display options.
+\reqid{P} \acs{PGPLOT} shall not be required for basic functionality (\eg~
+fringe-fitting). HOPS4 shall include the same plotting functionality as HOPS3, 
+but using standard modern packages (\eg~Python, Matplotlib). The user should 
+be able to substitute their own plotting routines as desired, and \acs{PGPLOT} 
+will be optionally supported for some plotting/display options.
 \reqex{The \acs{PGPLOT} package has been out of maintenance for a long time,
 and any replacement package could follow the same fate. Thus all plotting package calls need to be 
 managed within an optional plugin which leaves core functionality unaffected by 
 its presence. At a minimum, plotting functionality similar to the current fringe-plots
-can be constructed as a set of independent Python tools.}
+shall be constructed with a set of independent Python tools.}
 
 \end{description}
 
@@ -204,6 +206,7 @@ exist a VEX 2.0 specification which is not currently in active use but may be ad
 
 \reqid{A} All plotting tools provided in HOPS4 shall have the ability to save the image to 
 a standard graphics format.
+\reqex{HOPS4 has the desire to support as much plotting flexibility as possible, including plot formats (fonts, panels, etc).}
 
 % ./sub/dfio/Makefile.am
 %\reqid{A} If the non-compressed form of the \acs{Mk4} fringe file will be
@@ -238,7 +241,7 @@ testing purposes, and in order to access archived data.
 The following requirements are related to the ``A-suite'' tools \acs{alist}, \acs{aedit},
 and \acs{adump}.  The command-line interface for these tools shall be wrapped
 in Python in HOPS4 and shall support alist file version 6\footnote{Version 6 is the standard for the \ac{EHT}, and a version 7 format seems
-sensible but not yet required.  If in detailing the specifications
+sensible but is not yet required.  If in detailing the specifications
 a version 7 (or 8, \etc) emerges, these requirements transfer
 to the those version(s) as well.]}.
 
@@ -381,16 +384,16 @@ to combine several baselines into a composite plot.}
 \reqex{\acs{search} makes contour plots, but a 3D visualization of amplitude 
 with delay and delay-rate would be useful.}
 
-\reqid{P} HOPS4 shall implement interactive visualization tools in for \acs{fourfit}.
+\reqid{P} HOPS4 shall implement interactive visualization tools in \acs{fourfit}.
 \reqex{The HOPS3 version of \acs{fourfit} provides a fixed fringe summary
 plot. HOPS4 should have an interactive plotting capability to enable zooming
 and viewing fourfit results with an expanded scale.}
 
 \reqid{D} Replace the existing \acs{fourfit} control file with a 
-\acs{Python}-based control file. Currently existing functionality shall be be 
+\acs{Python}-based control file. Currently existing functionality shall be 
 preserved. 
-\reqex{The existing control file should continue to be supported, but new 
-functionality might only exist in the HOPS4 toolset.}
+\reqex{The existing control file should continue to be supported. The new 
+control file functionality will not likely be back-ported to HOPS3. Details of the control file design will be described in the Specifications document \cite{design}.}
 
 
 \end{description}
@@ -405,8 +408,8 @@ functionality might only exist in the HOPS4 toolset.}
     
 \reqid{A} It shall be possible to automatically discard correlator 
 \acs{AP} (integrations) with small weights.
-\reqex{When data are poorly recorded, the correlation product is the result 
-of less data than it should be, leading to incorrect results. This is currently done in HOPS3 provided \acs{DiFX} properly notices the loss.}
+\reqex{When data are poorly recorded, the correlation product will be the result 
+of less data than it should be, leading to incorrect results. Flagging poorly recorded data segments is currently done in HOPS3 provided \acs{DiFX} properly notices the loss.}
 %The HOPS3 script 
 %\texttt{chk\_min\_weight.sh} currently tests this capability. In addition, 
 %user-supplied ad-hoc flagging capability is tested by \texttt{chk\_flagging.sh}.}
@@ -414,7 +417,7 @@ of less data than it should be, leading to incorrect results. This is currently 
 \reqid{A} HOPS4 shall have the ability to flag data based on a user-supplied 
 list (\eg~of frequency intervals with time in some flag file).
 \reqex{This is needed especially when \acs{RFI} or calibration tones signals 
-are present.}%  In HOPS3 \texttt{chk\_notches.sh} verifies this.}
+are present. Details of the flagging methods will be described in the Specifications document \cite{design}.}%  In HOPS3 \texttt{chk\_notches.sh} verifies this.}
 
 \reqid{A} Every data type written to disk in HOPS4 shall be convertable to 
 form that is amenable to human examination (e.g. ASCII or CSV), as is done in HOPS3 by the 
@@ -442,11 +445,13 @@ not use tone generators, so most of that is only useful for geodetic systems
 which do} The ``manual'' phase calibrations already handle the phase 
 variation from between \acsp{channel}.  HOPS3 has no amplitude adjustment 
 capability.  The desire is for a more flexible arrangment that is not limited
-by channel boundaries.}
+by channel boundaries, and has the ability to correct either phase or amplitude or both.
+Details of the bandpass correction methods will be described in the Specifications \& Design document \cite{design}.}
 
 \reqid{A} HOPS4 shall provide a method to solve for complex bandpass corrections.
 \reqex{This method should accept some set of scans and stations and solve, 
-possibly using an \acs{LSF} method, for per-station bandpass solutions}
+possibly using an \acs{LSF} method, for per-station bandpass solutions. Supporting
+plots will be generated.}
 
 \reqid{A} Python wrappers for the new HOPS4 data objects shall be provided.
 \reqex{The existing wrappers for the \acs{Mk4} data types in HOPS3 do not 
