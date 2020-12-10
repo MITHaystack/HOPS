@@ -41,9 +41,9 @@ message = -L../Message/.libs -lMHOMessage
 utilities = -L../Utilities/.libs -lMHOUtilities
 mholibs = $(message) $(utilities)
 # v3 -- FIXME
-hopslibs = -L../../c_src/mk4util -lmk4util \
-	-L../../c_src/dfio -ldfio \
-	-L../../c_src/vex -lvex
+hopslibs = -L../../c_src/dfio -ldfio \
+	-L../../c_src/vex -lvex \
+  -L../../c_src/mk4util -lmk4util 
 
 TestMK4Import_SOURCES = test/TestMK4Import.cc
 TestMK4Import_LDADD = $(thislib) $(mholibs) $(hopslibs)
