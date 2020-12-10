@@ -354,6 +354,8 @@ external routines which can be insert as a data operator. Real-time interactivit
 The software to be delivered will be presented largely as set of libraries with several executables which utilize them. These libraries will be organized by their primary function and are expected to consist of the following:
 
 \begin{enumerate}
+ \item We have to refactor our dependency management for libraries to be more robust; The dependency management has to take in to account in 
+ Geof's words "smart and stupid" linkers where the order of libraries being imported may matter. See f1d65cb6e7aa87eb40a6f2c1e589770d1490819d.
  \item Core - Common template and abstract base classes, messaging and other utilities.
  \item Math - Common mathematical functions and minimization routines.
  \item Data containers and native I/O - Definitions of the in-memory data objects and a simple binary I/O interface.
