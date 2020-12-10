@@ -41,14 +41,18 @@
 % for bibliographies if needed
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
+%\usepackage[backend=bibtex,style=numeric,sorting=none]{biblatex}
 \usepackage[backend=biber,style=numeric,sorting=none]{biblatex}
+%\bibliographystyle{authortitle}
 \addbibresource{hops.bib}
+%\usepackage{natbib}
 % Use the appendix package.
 \usepackage{appendix}
 % context-sensitive quotes
 \usepackage{csquotes}
 % underline for emphasis: \uline etc
-\usepackage{ulem}
+% -- note this breaks italics on journal names which breaks line wrapping
+% \usepackage{ulem}
 % for generating outlines
 \usepackage{outlines}
 \usepackage{enumitem}
@@ -68,7 +72,7 @@
 
 % see common/shortcuts.tex for what is defined in this file
 \input{shortcuts}
-\setboolean{geos}{true}% or false to hide geodetic marginal notations
+\setboolean{geos}{false}% or false to hide geodetic marginal notations
 
 % control options
 \newboolean{skipappendix}
@@ -95,7 +99,7 @@
 \author{%
 \LARGE John Barrett, Geoff Crew, Dan Hoak and Violet Pfeiffer \\
 \Large MIT Haystack Observatory}
-\date{Version 0.1, \recdate}
+\date{Version 1.0, \recdate}
 \maketitle
 \normalsize
 
@@ -104,16 +108,14 @@
 This document spells out the requirements for the planned re-work of HOPS.
 With a defined set of requirements (\Sec~\ref{sec:testable}),
 we can ensure that the new architecture
-and implementation supports the needs.  And by the conclusion of the project
+and implementation supports the needs of the ngEHT and so that by the conclusion of the project
 a collection of test reports matching results to requirements may be presented.
 
-Note that there is an implicit desire to end up with a suite of software that
+Note that there is also an implicit desire to end up with a suite of software that
 not only meets the stated needs, but which also is easier to maintain, and more
 extensible for the future.  While we might state these desires as requirements,
-it is not possible to test against them, and thus these do not appear formally
-in this document.  
-%Nevertheless, this is a goal we expect to meet and these
-%are informally captured (\Sec~\ref{sec:desires}).
+it is not possible to test against them, and thus these do not formally appear 
+in this document, and are discussed elsewhere.
 }
 
 % N.B.: NASA document describing preferred language for enumerating requirements:
@@ -151,7 +153,6 @@ in this document.
 \pagebreak
 \input{thereqs}
 
-
 \pagebreak
 \addtocounter{section}{1}
 \renewcommand{\refname}{\thesection. References}
@@ -164,16 +165,16 @@ in this document.
 \ifthenelse{\boolean{skipappendix}}{}{%
 \appendix
 
-\pagebreak
-\input{hilo}
+%\pagebreak
+%\input{hilo}
+%
+%\pagebreak
+%\input{obsolete}
+%
+%\pagebreak
+%\input{uml-description}
 
-\pagebreak
-\input{obsolete}
-
-\pagebreak
-\input{uml-description}
-
-\pagebreak
+%\pagebreak
 \section{Acronyms, Commands, and Glossary}
 \input{acronyms}
 }
