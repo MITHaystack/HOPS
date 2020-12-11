@@ -47,14 +47,15 @@ Currently HOPS supports the ability to run `make distcheck` from the build direc
 
 ### Building the documentation
 HOPS supports the ability to build the documentation as well as the code with `make` by doing the following:
-`cd hops-git/`
-`./autogen.sh`
+`cd hops-git/` \
+`./autogen.sh` \
 Copy the output of the configure script that looks something like configure=/some/path
-Paste that in your shell and run it.
-`cd ../`
-`mkdir ambld-4.0`
-`cd ambld-4.0`
-`$configure --enable-devel --enable-docs CC=clang --enable-doxy`
+Paste that in your shell and run it. \
+`cd ../` \
+`mkdir ambld-4.0` \
+`cd ambld-4.0` \
+`$configure --enable-devel --enable-docs CC=clang --enable-doxy` \
 `make all check install`
+
 An equivalent build process using the GNU autotools is also available
 using the script autogen.sh which accepts a --help argument for usage.
