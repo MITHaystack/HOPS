@@ -5,7 +5,7 @@
 #
 
 # $(TEXPDF).pdf is built from $(TEXSRC).tex
-TEXPDF=requirements
+TEXPDF=HOPS4-requirements
 TEXSRC=reqs
 
 # everything from $(srcdir) included from $(TEXSRC).tex
