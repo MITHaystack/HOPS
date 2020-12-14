@@ -97,7 +97,7 @@ AM_CONDITIONAL(WANT_DOCS, [test x$enable_docs = xyes -a -x $PDFLATEX])
 AM_CONDITIONAL(WANT_DOXYGEN, [test x$enable_docs = xyes -a -x $DOXYGEN])
 AM_CONDITIONAL(WANT_SPHINX, [test x$enable_docs = xyes -a -x $SPHINX])
 AM_CONDITIONAL(DO_COVER, [test x$enable_gcov = xyes -a -x $GCOV])
-AM_CONDITIONAL(DO_MANPAGES, [test -x$HELP2MAN])
+AM_CONDITIONAL(DO_MANPAGES, [test -x $HELP2MAN])
 
 # getting our head around Python, see package section below
 AC_PATH_PROG([PYTHON2], [python2], [python2-not-found])
