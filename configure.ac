@@ -86,10 +86,10 @@ PKG_PROG_PKG_CONFIG
 AC_PATH_PROG(SWIG, swig, swig-not-found)
 AC_PATH_PROG(PDFLATEX, pdflatex, pdflatex-not-found)
 AC_PATH_PROG(DOXYGEN, doxygen, doxygen-not-found)
-AC_PATH_PROG(SPHINX, sphinx, sphinx-not-found)
+AC_PATH_PROG(SPHINX, sphinx-build, sphinx-not-found)
 AC_PATH_PROG(PERL, perl, perl-not-found)
 AC_PATH_PROG(GCOV, gcov, gcov-not-found)
-AC_PATH_PROG(HELP2MAN, help2man, help2man-not found)
+AC_PATH_PROG(HELP2MAN, help2man, help2man-not-found)
 
 # simple checks for specific/enable/disable cases
 AM_CONDITIONAL(HAVE_SWIG, [test -x $SWIG])
