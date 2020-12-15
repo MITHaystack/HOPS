@@ -11,16 +11,18 @@ nuke=${1-'false'}
 halt=${2-'false'}
 chkn=${3-'false'}
 vers=${4-'none'}
+mopt=${5-''}
 [ "$nuke" = "--version" ] && echo &&
     echo '  'this script is version-less... && nuke=help
 [ "$nuke" = 'help' -o "$nuke" = '--help' ] && cat <<\EOF
 
-    Usage: autogen.sh [false|true] [false|true] [false|true] [version]
+    Usage: autogen.sh [false|true] [false|true] [false|true] [version] [-k]
 
-    If true, the first boolean (nuke?) will remove previous built files
-    If true, the second boolean (halt?) will then stop the script
+    If true, the first boolean (nuke?) will remove previous built files.
+    If true, the second boolean (halt?) will then stop the script.
     If true, the third boolean (chkn?) only tells you how to proceed.
     If a fourth, "version" argument, is supplied a full build follows.
+    If you have all that, you can add a final make option argument.
 
     For a more complete explanation, do
 
@@ -70,6 +72,9 @@ EOF
         configure.log       output of configure
         config.log          configure's detailed log
         make.log            output from make
+
+    If there is a fifth argument, it is passed as an option to 'make'.
+
 EOF
 [ "$nuke" = help -o "$nuke" = '--help' ] && exit 0
 [ "$nuke" = details ] && exit 0
@@ -137,7 +142,7 @@ $doit || cat <<EOF
     cd ../ambld-\$version
     \$configure \$HOPS_CONFIGURE_ARGS
 
-    make all check install installcheck
+    make $mopt all check install installcheck
 
     for help with configuration use:
 
@@ -153,7 +158,9 @@ $doit && {
     $eko cd ../ambld-$version
     $eko $configure $HOPS_CONFIGURE_ARGS \> configure.log  2\>\&1 
     $eko 
-    $eko make all check install installcheck \> make.log  2\>\&1 
+    $ckkn ||
+    echo make $mopt all check install installcheck \> make.log
+    $eko make $mopt all check install installcheck \> make.log  2\>\&1 
     $dist && {
         rm -f mhops-$VERSION.tar.gz
         logs="configure.log make.log distcheck.log"
