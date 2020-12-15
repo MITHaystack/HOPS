@@ -40,7 +40,7 @@ prefix="$MHO_ROOT/${arch}-$VERSION"
 AC_MHO_SUMMARY([Installation is to $prefix])
 
 # libtool stuff into m4
-AC_CONFIG_MACRO_DIRS([m4])
+AC_CONFIG_MACRO_DIR([m4])
 LT_INIT
 # for pre-2.69 versions:
 #m4_ifset([LT_INIT], [LT_INIT], [AC_PROG_LIBTOOL])
