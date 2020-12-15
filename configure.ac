@@ -99,6 +99,14 @@ AM_CONDITIONAL(WANT_SPHINX, [test x$enable_docs = xyes -a -x $SPHINX])
 AM_CONDITIONAL(DO_COVER, [test x$enable_gcov = xyes -a -x $GCOV])
 AM_CONDITIONAL(DO_MANPAGES, [test -x $HELP2MAN])
 
+# and share the conditionals with the summary
+AC_MHO_NOTICE([%%% $HAVE_SWIG_TRUE HAVE_SWIG])
+AC_MHO_NOTICE([%%% $WANT_DOCS_TRUE WANT_DOCS])
+AC_MHO_NOTICE([%%% $WANT_DOXYGEN_TRUE WANT_DOXYGEN])
+AC_MHO_NOTICE([%%% $WANT_SPHINX_TRUE WANT_SPHINX])
+AC_MHO_NOTICE([%%% $DO_COVER_TRUE DO_COVER])
+AC_MHO_NOTICE([%%% $DO_MANPAGES_TRUE DO_MANPAGES])
+
 # getting our head around Python, see package section below
 AC_PATH_PROG([PYTHON2], [python2], [python2-not-found])
 AC_PATH_PROG([PYTHON3], [python3], [python3-not-found])
@@ -107,6 +115,7 @@ AM_PATH_PYTHON([3.0])
 # sets PYTHON, PYTHON_VERSION, PYTHON_PLATFORM
 # (PYTHON_PREFIX PYTHON_EXEC_PREFIX)
 # pythondir, pkgpythondir, pyexecdir, pkgpyexecdir
+# more PYTHON is below
 
 # Checks for header files.
 AC_FUNC_ALLOCA
@@ -157,16 +166,15 @@ AC_ARG_VAR(PYTHON_EXECUTABLE, [force us to use some python executable])
 PKG_CHECK_MODULES(PYTHON, python3, [has_python=true], [has_python=false])
 if [$has_python] ; then
     AC_DEFINE([HAVE_PYTHON], 1, [Define to 1 when PYTHON is available])
-    AC_MHO_NOTICE([PYTHON was found via check modules])
+    AC_MHO_NOTICE([PYTHON was found via check modules, but...])
 else
     AC_DEFINE([HAVE_PYTHON], 0, [Define to 1 when PYTHON is available])
-    AC_MHO_NOTICE([PYTHON not found via check modules])
+    AC_MHO_NOTICE([PYTHON not found via check modules, but...])
 fi
 # capture for the summary
 AC_MHO_NOTICE([python2 is $PYTHON2])
 AC_MHO_NOTICE([python3 is $PYTHON3])
 AC_MHO_NOTICE([python is $PYTHON])
-AC_MHO_NOTICE([%%% has_python is $has_python (required)])
 # this can get much more elaborate
 if [test -z "$PYTHON_EXECUTABLE"] ; then
    if [test -n "$PYTHON3"] ; then
@@ -181,10 +189,17 @@ if [test -z "$PYTHON_EXECUTABLE"] ; then
 else
    AC_MHO_NOTICE([PYTHON_EXECUTABLE already set to $PYTHON_EXECUTABLE])
 fi
+# finally to wrap it up
+if [test -x $PYTHON_EXECUTABLE] ; then
+    has_python=true
+else
+    has_python=false
+fi
 AC_MHO_NOTICE([PYTHON_EXECUTABLE is $PYTHON_EXECUTABLE])
 AC_SUBST(PYTHON_CFLAGS)
 AC_SUBST(PYTHON_LIBS)
 AM_CONDITIONAL(HAVE_PYTHON, $has_python)
+AC_MHO_NOTICE([%%% has_python is $has_python (required)])
 # finally, for reference
 major=[`$PYTHON_EXECUTABLE -c 'import sys; print(sys.version_info[0])'`]
 minor=[`$PYTHON_EXECUTABLE -c 'import sys; print(sys.version_info[1])'`]
