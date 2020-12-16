@@ -11,7 +11,7 @@ top=`dirname $m4`   #echo note: top is $top >&2
 #
 echo checking for missing texlive packages... >&2
 needit=false
-for x in `ls $top/doc/missing`
+for x in `ls $top/doc/texmiss`
 do
     xp=`kpsepath -w tex $x`
     [ -z "$xp" ] && {
@@ -21,7 +21,7 @@ do
 done
 
 $needit && {
-    echo ":$top/doc/missing:" && echo checking found we need doc/missing >&2 ;
+    echo ":$top/doc/texmiss:" && echo checking found we need doc/texmiss >&2 ;
 } || {
     echo ":" && echo checking found that nothing is missing >&2 ;
 }
