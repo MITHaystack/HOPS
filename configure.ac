@@ -310,7 +310,7 @@ AC_CONFIG_FILES(source/python_src/scripts/test.py,
 # document makefiles
 AC_CONFIG_FILES(
     doc/common/Makefile
-    doc/missing/Makefile
+    doc/texmiss/Makefile
     doc/covertest/Makefile
     doc/develplan/Makefile
     doc/geodetic/Makefile
