@@ -150,7 +150,8 @@ AC_SEARCH_LIBS([floor], [m])
 # or PKG_CHECK_MODULES(gsl) which defines GSL_CBLAS_LIB=-lgslcblas
 
 # Special variables
-if [test -z "$KPSETEXMFPATH"] ; then [KPSETEXMFPATH=':'] ; fi
+#if [test -z "$KPSETEXMFPATH"] ; then [KPSETEXMFPATH=':'] ; fi
+KPSETEXMFPATH=`$srcdir/m4/texlive-missing.sh`
 AC_ARG_VAR(KPSETEXMFPATH, [normally ':' to find installed TeX files])
 
 #
@@ -309,6 +310,7 @@ AC_CONFIG_FILES(source/python_src/scripts/test.py,
 # document makefiles
 AC_CONFIG_FILES(
     doc/common/Makefile
+    doc/missing/Makefile
     doc/covertest/Makefile
     doc/develplan/Makefile
     doc/geodetic/Makefile
