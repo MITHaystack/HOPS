@@ -48,9 +48,10 @@ coververbose = -DCOVERVERB=1 -DSTATIC=extern
 #covercompile = --coverage -fkeep-inline-functions -fkeep-static-functions
 covercompile = --coverage -fkeep-inline-functions @KEEP_STATIC_FUNCTIONS@
 coverldflags = -L. --coverage -DSTATIC=extern
-#coverldlibs = -lgcov
+coverldlibs = -lgcov
 if COVER_HACK
-coverfinal = test/atexit.c
+#coverfinal = test/atexit.c
+coverfinal =
 else # COVER_HACK
 coverfinal =
 endif # COVER_HACK
@@ -58,7 +59,7 @@ else # DO_COVER
 coververbose = -DCOVERVERB=0 -DSTATIC=static
 covercompile =
 coverldflags = -L. -DSTATIC=static
-#coverldlibs =
+coverldlibs =
 coverfinal =
 endif # DO_COVER
 
@@ -74,7 +75,7 @@ AM_LDFLAGS = $(coverldflags)
 
 # as proof of principal we build the wrapper library independently
 # of the module library which we only need for python.
-libMHOwrap_la_SOURCES = src/wrap_msg.cc
+libMHOwrap_la_SOURCES = src/wrap_msg.cc $(coverfinal)
 libMHOwrap_la_CXXFLAGS = $(msinc)
 libMHOwrap_la_LIBADD = $(mslib) -lMHOMessage $(coverldlibs)
 
@@ -83,7 +84,7 @@ libMHOwrap_la_LIBADD = $(mslib) -lMHOMessage $(coverldlibs)
 #TestWrapMessage_CXXFLAGS = $(msinc)
 #TestWrapMessage_LDADD = $(mslib) -lMHOMessage
 # this tests the same code via the library
-TestWrapMessage_SOURCES = test/TestWrapMessage.c $(coverfinal)
+TestWrapMessage_SOURCES = test/TestWrapMessage.c
 TestWrapMessage_CXXFLAGS = $(msinc)
 TestWrapMessage_LDADD = $(mslib) -lMHOMessage -L.libs -lMHOwrap $(coverldlibs)
 
@@ -112,7 +113,7 @@ endif # HAVE_SWIG
 #	src/npary_pyvar.c $(coverfinal)
 # automake v 1.13.4 cannot handle $(pymod).c here
 SWIGmhops_la_SOURCES = mhops.c src/wrap_msg.cc src/npary_demo.cc \
-	src/npary_pyvar.c $(coverfinal)
+	src/npary_pyvar.c
 SWIGmhops_la_CPPFLAGS = $(coververbose) \
 	$(npinc) $(pyinc) $(msinc) $(AM_CPPFLAGS) $(swigw)
 SWIGmhops_la_CXXFLAGS = $(coververbose) \
