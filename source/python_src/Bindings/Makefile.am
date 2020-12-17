@@ -176,7 +176,8 @@ installcheck-local:
 
 # coverage processing
 if DO_COVER
-co = -fmp # 'make coverage co= ' to get help on coverep.sh
+#co = -fmp # 'make coverage co= ' to get help on coverep.sh
+co = -fp # 'make coverage co= ' to get help on coverep.sh
 covclean = *.gcno */*.gcno *.gcda */*.gcda *.gcov */*.gcov *.log
 covclean += coverage-*.txt
 coverage-local:
