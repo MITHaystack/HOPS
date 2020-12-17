@@ -45,12 +45,21 @@ TESTS = $(check_PROGRAMS) $(dist_check_SCRIPTS)
 # special compilation arrangements for coverage tests, see below
 if DO_COVER
 coververbose = -DCOVERVERB=1 -DSTATIC=extern
-covercompile = --coverage -fkeep-inline-functions -fkeep-static-functions
+#covercompile = --coverage -fkeep-inline-functions -fkeep-static-functions
+covercompile = --coverage -fkeep-inline-functions @KEEP_STATIC_FUNCTIONS@
 coverldflags = -L. --coverage -DSTATIC=extern
+#coverldlibs = -lgcov
+if COVER_HACK
+coverfinal = test/atexit.c
+else # COVER_HACK
+coverfinal =
+endif # COVER_HACK
 else # DO_COVER
 coververbose = -DCOVERVERB=0 -DSTATIC=static
 covercompile =
 coverldflags = -L. -DSTATIC=static
+#coverldlibs =
+coverfinal =
 endif # DO_COVER
 
 # convenience vars for readabilty
@@ -67,22 +76,24 @@ AM_LDFLAGS = $(coverldflags)
 # of the module library which we only need for python.
 libMHOwrap_la_SOURCES = src/wrap_msg.cc
 libMHOwrap_la_CXXFLAGS = $(msinc)
-libMHOwrap_la_LIBADD = $(mslib) -lMHOMessage
+libMHOwrap_la_LIBADD = $(mslib) -lMHOMessage $(coverldlibs)
 
 # this is a direct test of the library source
 #TestWrapMessage_SOURCES = src/wrap_msg.cc test/TestWrapMessage.c
 #TestWrapMessage_CXXFLAGS = $(msinc)
 #TestWrapMessage_LDADD = $(mslib) -lMHOMessage
 # this tests the same code via the library
-TestWrapMessage_SOURCES = test/TestWrapMessage.c
+TestWrapMessage_SOURCES = test/TestWrapMessage.c $(coverfinal)
 TestWrapMessage_CXXFLAGS = $(msinc)
-TestWrapMessage_LDADD = $(mslib) -lMHOMessage -L.libs -lMHOwrap
+TestWrapMessage_LDADD = $(mslib) -lMHOMessage -L.libs -lMHOwrap $(coverldlibs)
 
 
 # SWIG machinery
 swigw = -Wno-missing-field-initializers
 swigw += -Wno-unused-parameter
-pyinc = -I/usr/include/python$(PYTHON_VERSION)
+#pyinc = -I/usr/include/python$(PYTHON_VERSION)
+pyinc = @PYTHON_CFLAGS@
+npinc = -I@NUMPY_INCLUDE@
 swig_exec = $(SWIG) -python -py3 -I$(srcdir)/include -module $(pymod)
 swig_interfaces = include/$(pymod).i
 swig_interfaces += include/wrap_msg.i
@@ -97,14 +108,17 @@ swig_delete = swig.log $(swig_testing)
 endif # HAVE_SWIG
 
 # generates the module library $(ammod).la
-SWIGmhops_la_SOURCES = $(pymod).c src/wrap_msg.cc src/npary_demo.cc \
-	src/npary_pyvar.c
+#SWIGmhops_la_SOURCES = $(pymod).c src/wrap_msg.cc src/npary_demo.cc \
+#	src/npary_pyvar.c $(coverfinal)
+# automake v 1.13.4 cannot handle $(pymod).c here
+SWIGmhops_la_SOURCES = mhops.c src/wrap_msg.cc src/npary_demo.cc \
+	src/npary_pyvar.c $(coverfinal)
 SWIGmhops_la_CPPFLAGS = $(coververbose) \
-	$(pyinc) $(msinc) $(AM_CPPFLAGS) $(swigw)
+	$(npinc) $(pyinc) $(msinc) $(AM_CPPFLAGS) $(swigw)
 SWIGmhops_la_CXXFLAGS = $(coververbose) \
-	$(pyinc) $(msinc) $(AM_CXXFLAGS) $(swigw)
-SWIGmhops_la_LDFLAGS = -avoid-version -module $(coverldflags)
-SWIGmhops_la_LIBADD = $(mslib) -lMHOMessage
+	$(npinc) $(pyinc) $(msinc) $(AM_CXXFLAGS) $(swigw)
+SWIGmhops_la_LDFLAGS = -avoid-version -module $(npinc) $(coverldflags)
+SWIGmhops_la_LIBADD = $(mslib) -lMHOMessage $(coverldlibs)
 
 # generate the SWIG C interface and Python bindings
 # one $(swig_exec) per interface specification produces .c and .py

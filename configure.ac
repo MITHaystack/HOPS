@@ -65,6 +65,9 @@ AC_ARG_ENABLE(sphinx,
 AC_ARG_ENABLE(gcov,
     AS_HELP_STRING([--enable-gcov], [compile with coverage active]),
     [], [enable_gcov=no])
+AC_ARG_ENABLE(hack,
+    AS_HELP_STRING([--enable-hack], [activate ugly gcov hack on older gcc]),
+    [], [enable_hack=no])
 
 # Checks for programs.
 AC_PROG_AWK
@@ -80,6 +83,20 @@ AC_PROG_MAKE_SET
 # AC_PROG_F77
 # AC_F77_LIBRARY_LDFLAGS
 # AC_PROG_FC
+
+# checks for compiler options
+# these should move to m4 area
+# -fkeep-static-functions
+mh_cppflags="$CPPFLAGS"
+CPPFLAGS="$mh_cppflags -fkeep-static-functions"
+AC_PREPROC_IFELSE(
+    [AC_LANG_PROGRAM([[const char hw[] = "Hi\n";]],
+                     [[fputs (hw, stdout);]])],
+    [KEEP_STATIC_FUNCTIONS='-fkeep-static-functions'],
+    [KEEP_STATIC_FUNCTIONS=''])
+CPPFLAGS="$mh_cppflags"
+AC_MSG_NOTICE([KEEP_STATIC_FUNCTIONS is "$KEEP_STATIC_FUNCTIONS"])
+AC_SUBST(KEEP_STATIC_FUNCTIONS)
 
 # less trivial checks for programs
 PKG_PROG_PKG_CONFIG
@@ -97,15 +114,18 @@ AM_CONDITIONAL(WANT_DOCS, [test x$enable_docs = xyes -a -x $PDFLATEX])
 AM_CONDITIONAL(WANT_DOXYGEN, [test x$enable_docs = xyes -a -x $DOXYGEN])
 AM_CONDITIONAL(WANT_SPHINX, [test x$enable_docs = xyes -a -x $SPHINX])
 AM_CONDITIONAL(DO_COVER, [test x$enable_gcov = xyes -a -x $GCOV])
+AM_CONDITIONAL(COVER_HACK, [test x$enable_hack = xyes])
 AM_CONDITIONAL(DO_MANPAGES, [test -x $HELP2MAN])
 
+
 # and share the conditionals with the summary
-AC_MHO_NOTICE([%%% $HAVE_SWIG_TRUE HAVE_SWIG])
+AC_MHO_NOTICE([%%% $HAVE_SWIG_TRUE HAVE_SWIG "$SWIG"])
 AC_MHO_NOTICE([%%% $WANT_DOCS_TRUE WANT_DOCS])
 AC_MHO_NOTICE([%%% $WANT_DOXYGEN_TRUE WANT_DOXYGEN])
 AC_MHO_NOTICE([%%% $WANT_SPHINX_TRUE WANT_SPHINX])
 AC_MHO_NOTICE([%%% $DO_COVER_TRUE DO_COVER])
-AC_MHO_NOTICE([%%% $DO_MANPAGES_TRUE DO_MANPAGES])
+AC_MHO_NOTICE([%%% $COVER_HACK_TRUE COVER_HACK])
+AC_MHO_NOTICE([%%% $DO_MANPAGES_TRUE DO_MANPAGES "$HELP2MAN"])
 
 # getting our head around Python, see package section below
 AC_PATH_PROG([PYTHON2], [python2], [python2-not-found])
@@ -164,13 +184,16 @@ AM_CONDITIONAL(HAVE_PERL, [test x$perl != xperl-not-found -a -x "$PERL"])
 # PYTHON
 # checking for the module allows us to build C extensions
 AC_ARG_VAR(PYTHON_EXECUTABLE, [force us to use some python executable])
-PKG_CHECK_MODULES(PYTHON, python3, [has_python=true], [has_python=false])
-if [$has_python] ; then
+#PKG_CHECK_MODULES(PYTHON, python3, [has_python=true], [has_python=false])
+PKG_CHECK_MODULES(PYTHON, python3)
+if [test -n "$PYTHON_VERSION"] ; then
     AC_DEFINE([HAVE_PYTHON], 1, [Define to 1 when PYTHON is available])
     AC_MHO_NOTICE([PYTHON was found via check modules, but...])
+    has_python=true
 else
     AC_DEFINE([HAVE_PYTHON], 0, [Define to 1 when PYTHON is available])
     AC_MHO_NOTICE([PYTHON not found via check modules, but...])
+    has_python=false
 fi
 # capture for the summary
 AC_MHO_NOTICE([python2 is $PYTHON2])
@@ -208,6 +231,10 @@ patch=[`$PYTHON_EXECUTABLE -c 'import sys; print(sys.version_info[2])'`]
 AC_SUBST(MODULE_VERSION_MAJOR, $major)
 AC_SUBST(MODULE_VERSION_MINOR, $minor)
 AC_SUBST(MODULE_VERSION_PATCH, $patch)
+
+# finally numpy includes are not easily found
+NUMPY_INCLUDE=[`$PYTHON3 -c'import numpy; print(numpy.get_include())'`]
+AC_SUBST(NUMPY_INCLUDE)
 
 # FFTW3
 PKG_CHECK_MODULES(FFTW3, fftw3, [has_fftw3=true], [has_fftw3=false])
