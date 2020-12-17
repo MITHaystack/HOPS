@@ -27,8 +27,9 @@
    You should have received a copy of the GNU Lesser General Public
    License along with the GNU C Library; if not, see
    <http://www.gnu.org/licenses/>.  */
-/* #include <stdlib.h> */
+#include <stdlib.h>
 /* #include <dso_handle.h> */
+#define __dso_handle 0
 /* #include "exit.h" */
 /* Register FUNC to be executed by `exit'.  */
 int
@@ -37,6 +38,5 @@ int
 /* #endif */
 atexit (void (*func) (void))
 {
-/* return __cxa_atexit ((void (*) (void *)) func, NULL, __dso_handle); */
-    return(func ? 0 : 0);
+ return __cxa_atexit ((void (*) (void *)) func, NULL, __dso_handle);
 }
