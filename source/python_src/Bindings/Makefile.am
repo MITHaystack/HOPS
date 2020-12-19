@@ -54,11 +54,13 @@ coververbose = -DCOVERVERB=1 -DSTATIC=extern
 covercompile = -fkeep-inline-functions @KEEP_STATIC_FUNCTIONS@ --coverage
 coverldflags = -L. -DSTATIC=extern --coverage
 coverldlibs = --coverage
+coverldadd = -lgcov
 else # DO_COVER
 coververbose = -DCOVERVERB=0 -DSTATIC=static
 covercompile =
 coverldflags = -L. -DSTATIC=static
 coverldlibs =
+coverldadd =
 endif # DO_COVER
 
 # convenience vars for readabilty
@@ -79,6 +81,7 @@ libMHOwrap_la_SOURCES = src/wrap_msg.cc
 libMHOwrap_la_LIBADD = # conditional sources
 libMHOwrap_la_CXXFLAGS = $(msinc)
 libMHOwrap_la_LDFLAGS = $(mslib) -lMHOMessage $(coverldflags)
+libMHOwrap_la_LIBADD = $(coverldadd)
 
 # this is a direct test of the library source
 #TestWrapMessage_SOURCES = src/wrap_msg.cc test/TestWrapMessage.c
@@ -88,7 +91,7 @@ libMHOwrap_la_LDFLAGS = $(mslib) -lMHOMessage $(coverldflags)
 TestWrapMessage_SOURCES = test/TestWrapMessage.c
 TestWrapMessage_LDFLAGS = \
 	$(mslib) -lMHOMessage -L.libs -lMHOwrap $(coverldflags)
-
+TestWrapMessage_LDADD = $(coverldadd)
 
 # SWIG machinery
 swigw = -Wno-missing-field-initializers
@@ -121,6 +124,7 @@ SWIGmhops_la_CXXFLAGS = $(coververbose) \
 	$(swigw) $(npinc) $(pyinc) $(msinc) $(AM_CXXFLAGS)
 SWIGmhops_la_LDFLAGS = \
 	$(mslib) -lMHOMessage -avoid-version -module $(npinc) $(coverldflags)
+SWIGmhops_la_LIBADD = $(coverldadd)
 
 # generate the SWIG C interface and Python bindings
 # one $(swig_exec) per interface specification produces .c and .py
