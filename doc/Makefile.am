@@ -5,7 +5,7 @@
 #
 
 SUBDIRS = covertest develplan geodetic requirements \
-	  specification testreports userman common
+	  specification testreports userman common texmiss
 
 EXTRA_DIST = docs-manifest.txt
 

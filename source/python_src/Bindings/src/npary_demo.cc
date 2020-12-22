@@ -12,8 +12,8 @@
 
 extern "C" {
 #include "npary_demo.h"
-#include <complex.h>
 }
+#include <complex>
 
 // This is an artificial example, but these are "library" functions
 // that can be directly wrapped by SWIG with only minor effort.
@@ -21,8 +21,9 @@ extern "C" {
 extern "C" void get_np_amps(
     npy_cdouble *vis, long nvis, npy_double *amp, long namp)
 {
+    std::complex<double> eye (0.0,1.0);
     for (int ii = 0; ii < nvis && ii < namp; ii++) {
-        amp[ii] = cabs((vis[ii].real + I * vis[ii].imag));
+        amp[ii] = std::abs((vis[ii].real + eye * vis[ii].imag));
     }
 }
 
@@ -30,8 +31,9 @@ extern "C" void get_np_phases(
     npy_cdouble *vis, long nvis, npy_double *phs, long nphs)
 {
     std::complex<double> temp;
+    std::complex<double> eye (0.0,1.0);
     for (int ii = 0; ii < nvis && ii < nphs; ii++) {
-        phs[ii] = carg((vis[ii].real + I * vis[ii].imag));
+        phs[ii] = std::arg((vis[ii].real + eye * vis[ii].imag));
     }
 }
 

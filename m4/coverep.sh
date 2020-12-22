@@ -69,8 +69,11 @@ targets="$targets coverage-files.txt"
 rm -f $targets
 
 # generate a list of files we should be covering
+#[ -f $src/coverage-files.txt ] && cp -p $src/coverage-files.txt . ||
+#    find . -name \*.o | sed 's/.o$//' > coverage-files.txt
+# the above finds objects built for libs
 [ -f $src/coverage-files.txt ] && cp -p $src/coverage-files.txt . ||
-    find . -name \*.o | sed 's/.o$//' > coverage-files.txt
+    find . -name \*.gcda | sed 's/.gcda$//' > coverage-files.txt
 
 # generate the detailed coverage report
 for tt in `cat coverage-files.txt`
