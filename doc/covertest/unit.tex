@@ -1,0 +1,95 @@
+%
+% A starter on coverate and unit testing
+%
+\section{Coverage and Unit Testing}
+\label{sec:coverunit}
+
+this can be words about coverage and unit testing using autotools
+(which we can do now...)
+
+\reqid{A} The \acs{alist} program shall generate valid \acs{A-list} files in 
+versions 5, 6. 
+\reqex{\texttt{chk\_alist.sh} currently does this for versions 5 and 6.}
+
+\reqid{A} The \acs{adump} program shall provide valid ASCII text representations 
+of columns of data from an \acs{A-list} of version 5 \& 6.
+\reqex{\texttt{chk\_adump.sh} currently does this for versions 5 and 6.}
+
+\reqid{A} The \acs{aedit} program shall process versions 5 \& 6 \acs{A-list} 
+files with respect to flagging, selecting, summarizing and generating a new 
+output \acs{A-list}.
+\reqex{the \texttt{chk\_aedit.sh} currently makes a pass through many of these}
+
+\reqid{A} HOPS4 shall maintain the performance of \acs{aedit} version 5 (for 
+geodesy) and 6 (for EHT).
+\reqex{Currently, \texttt{chk\_fsumm.sh} performs such a test with captured 
+\acs{A-list} data.}
+
+\reqid{A} HOPS4 shall maintain the \acs{fourmer} tool, which shall properly 
+relabel channels when it combines two sub-bands.
+\reqex{This is currently performed by \texttt{test\_new\_chan\_id}.}
+
+\reqid{A} The \acs{fringex} program shall retain existing functionality to rotate
+fringes with respect to fourfit fringe solutions.
+\reqex{The \texttt{chk\_fringex.sh} exists to verify this in HOPS3.}
+
+\reqid{A} The ``average'' capability, implemented by \acs{average} used in 
+concert with \acs{fringex} to subdivide explore and average fringes, shall be 
+preserved with equivalent functionality.
+\reqex{The \texttt{chk\_average.sh} program tests this for the existing 
+\acs{average} application, but the piping mechanism is cumbersome and should be
+re-implemented in a more easily used (and likely more efficient) C/C++ or 
+\acs{Python} application.}
+
+\reqid{A} The functionality of the program \acs{cofit} shall be preserved.
+\reqex{\texttt{chk\_cofit.sh} currently verifies this.}
+
+\reqid{A} There current functionality of the program \acs{search} shall be 
+preserved.
+\reqex{\texttt{chk\_search.sh} currently verifies this by performing a search on
+a captive data set.}
+
+\reqid{A} There shall continue to be a functional \acs{fourmer} tool to assemble
+separately correlated frequency sub-bands.
+\reqex{\texttt{chk\_fourmer.sh} currently does this for a captive two 512-MHz 
+bands. We will need to build and maintain a test to cover an extension to 
+current \acs{EHT} 2-GHz bands.}
+
+\reqid{A} The ability to explore fringes (as is currently done with the 
+combination of \acs{fringex}, \acs{average} and search must be preserved. 
+HOPS4 shall support \acs{Python} scripting to aid the user in searching 
+fringe space.
+\reqex{The \texttt{chk\_frmrsrch.sh} script executes such a case.}
+
+\reqid{A} The HOPS4 suite must provide mechanisms to preserve the correlator 
+output data.
+\reqex{A \acs{PERL} script, \texttt{hops\_data\_links.pl}, exists to manage 
+symbolic links toanalysis files in a working directory (separate) from the original 
+correlator output directory.  A script, \texttt{chk\_hdlinks.sh}, verified this capability 
+in HOPS3, and a similar mechanism should be provided in HOPS4.}
+    
+\reqid{A} It shall be possible to automatically discard correlator Acquisition 
+Periods with small weights.
+\reqex{When data are poorly recorded, the correlation product is the result 
+of less data than it should be, leading to incorrect results. The ability to flag 
+such input should not be arduous. The HOPS3 script 
+\texttt{chk\_min\_weight.sh} currently tests this capability. In addition, 
+user-supplied ad-hoc flagging capability is tested by \texttt{chk\_flagging.sh}.}
+
+\reqid{A} HOPS4 shall have the ability to flag data based on a user-supplied 
+list (e.g. of frequency intervals) or a flag file.
+\reqex{This is needed especially when \acs{RFI} or calibration tones signals 
+are present.  In HOPS3 \texttt{chk\_notches.sh} verifies this.}
+
+\reqid{A} Every data type written to disk in HOPS4 shall be convertable to 
+form that is amenable to human examination, as is done in HOPS3 by the 
+\texttt{\ac{CorAsc2}} program.
+\reqex{For the HOPS3 \acs{fourfit} program, this is verified by 
+\texttt{chk\_ff\_dump.sh}; for \acs{A-list} data, this is provided by \acs{adump},
+or some combination of awk, sed and grep.}
+
+
+
+%
+% eof
+%
