@@ -125,17 +125,121 @@ on our testing of the new \ac{HOPS}.  \FIXME[more here]
 % document--then changes to each section don't repage everything.
 
 % break document into appropriate portions
-\pagebreak
-\input{coverunit}
+%
+% CONTENTS OF THE DOCUMENT SHOULD BE THE FOLLOWING:
+% Mention goals, methods, scope, schedule, and expected results.
+% What we are testing.
+% Why we are testing that.
+% Risk assesment and mitigations?
+% Resources (i.e. hardware, software, dev tools, personnel)
+% Documents that will be developed during testing (coverage report)
+% 
+% To do:
+%   Add numbering to sections. 
+%   Correctly reference requirements document.
+%   Replace the data in the tables with real data.
+%
+
+% introductory thoughts %
+\section{Purpose}
+\label{sec:purpose}
+The \ac{EHT} has launched a \ac{MSRI} project with the goal of developing
+the technologies needed for a second-generation \acs{EHT}. 
+This document outlines the test plan for the refactoring of the \ac{HOPS}
+as part of the work package of the \acs{MSRI} proposal. 
+
+\section{Applicability}
+\label{sec:applicability}
+This document is applicable to the HOPS4 redevelopment effort only.
+
+\section{Referenced and Applicable Documents}
+% Mention the requirements document if necessary.
+\label{sec:referenced-docs}
+\begin{table}[h!]
+\centering
+ \begin{tabular}{||c c c c||} 
+ \hline
+ Document & Title & Vers. & Date \\ [0.5ex] 
+ \hline\hline
+ some/path/here/document.tex & A document & 1.0 & date it was sent to who ever \\ [1ex]
+ \hline
+ \end{tabular}
+ \caption{HOPS4 documents referenced by this document}
+ \label{table:1}
+\end{table}
+
+\section{Resources}
+\label{sec:resources}
+% Personnel, hardware, software, dev tools.
+
+%\section{Risk Assesment}
+%\label{sec:risk-assessment}
+% Risks to the project and how we will mitigate them.
+% Hopefully we don't have to do this.
+
+\section{Artifacts}
+\label{sec:artifacts}
+The coverage reports.
+
+\section{Schedule}
+\label{sec:schedule}
+\begin{table}[h!]
+\centering
+ \begin{tabular}{||c c||} 
+ \hline
+ Test type & Frequency \\ [0.5ex] 
+ \hline\hline
+ Regression &  Per commit \\ 
+ Continuous Integration & Daily \\
+ Unit testing & Per Function \\ 
+ Benchmarking & Weekly \\
+ Oracle  & 1 fortnight \\
+ Component & As needed \\ 
+ Manual & As needed \\ [1ex]
+ \hline
+ \end{tabular}
+ \caption{Types of testing planned for HOPS4}
+ \label{table:2}
+\end{table}
+
+\section{Scope}
+\label{sec:scope}
+% What will and will not be tested.
+The scope of this test plan does not include \ac{HOPS} 3. This test plan will test
+all new functionality, libraries, other dependencies, features, and refactoring involved in
+\ac{HOPS}. We will also use specific algorith verification tests, using \ac{HOPS} 3 as a test
+oracle, and regression tests with captive 2017/2018 data scans.
 
 \pagebreak
+\section{Testing Methods}
+\label{sec:testing-methods}
+% Mention that we use Agile so this is our schedule and they need to deal with it.
+
 \input{regress}
 
 \pagebreak
 \input{integration}
+% Handled by Travis CI or something similar. 
 
 \pagebreak
-\input{human}
+\input{unit}
+% Mention testing suite(s) we are using.
+
+\pagebreak
+\input{benchmark}
+% Mention benchmark tool.
+
+\pagebreak
+\input{oracle}
+% Test that data with both HOPS4 and HOPS3 return the same results.
+
+\pagebreak
+\input{component}
+% Test libraries and such.
+
+\pagebreak
+\input{manual}
+%i.e. Geoff tests HOPS 4 by running it as a user would.
 
 \addtocounter{section}{1}
 \renewcommand{\refname}{\thesection. References}
