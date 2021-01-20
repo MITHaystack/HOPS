@@ -3,8 +3,55 @@
 %
 \section{Test Oracle}
 \label{sec:oracle}
+HOPS 3 being the previous release will be used as a test Oracle for HOPS 4. This means that
+results from HOPS 4 will be compared with the results and expected behavior of HOPS 3 using
+the same test data. The interface and otherwise expected functionality of the commandline UI
+and its output will be tested in the same manner. The following requirements will all be tested
+in this manner.
 
 %this can be words about the test oracle with scripts
+
+\subsection{Regression testing to be applied to following requirements}
+\label{sec:oraclereqs}
+
+\begin{description}
+%File I/O and Supported File Types
+\reqid{D} HOPS4 shall incorporate a C-library to interface with the legacy
+  \acs{Mk4} data types (stored \acs{bigendian}) in their current form for
+  testing purposes, and in order to access archived data.
+
+% A-tools
+\reqid{A} The \acs{alist} program shall generate valid \acs{A-list} files in
+  version 6.
+\reqid{A} The \acs{adump} program shall provide valid ASCII text representations
+  of columns of data from an \acs{A-list} of version 6.
+
+% Post Processing and Fringe Plots
+\reqid{A} HOPS4 shall maintain the \acs{fourmer} tool, which shall properly
+  relabel channels when it combines two sub-bands.
+\reqid{A} The \acs{fringex} program shall retain existing functionality to rotate
+  fringes with respect to fourfit fringe solutions.
+\reqid{A} The ``average'' capability, implemented by \acs{average} used in
+  concert with \acs{fringex} to subdivide explore and average fringes, shall be
+  preserved with equivalent functionality.
+\reqid{A} The functionality of the program \acs{cofit} shall be preserved.
+\reqid{A} The current functionality of the program \acs{search} shall be
+  preserved.
+\reqid{A} The ability to explore fringes (as is currently done with the
+  combination of \acs{fringex}, \acs{average} and search must be preserved.
+  HOPS4 shall support \acs{Python} scripting to aid the user in searching
+  fringe space.
+\reqid{P} It should be possible to make 2D plots of the type currently possible
+  within \texttt{\acs{aedit}} of HOPS3.
+\reqex{The HOPS3 version of \acs{fourfit} provides a fixed fringe summary
+  plot. HOPS4 should have an interactive plotting capability to enable zooming
+  and viewing fourfit results with an expanded scale.}
+\reqid{D} Replace the existing \acs{fourfit} control file with a
+  \acs{Python}-based control file. Currently existing functionality shall be
+  preserved.
+\reqex{The existing control file should continue to be supported. The new
+  control file functionality will not likely be back-ported to HOPS3.}
+\end{description}
 
 %
 % eof
