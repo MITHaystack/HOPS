@@ -16,6 +16,59 @@ and make it compatible with HOPS4. The HOPS development team plans to explore th
 of replacing the current nightly automated script with a freely available and widely
 accepted CI tool utilized by the open source development community such as Github Actions. 
 
+% This section should prbably include all of the same requirements mentioned in the integration section.
+\subsection{Regression testing to be applied to following requirements}
+\label{sec:integrationreqs}
+
+\begin{description}
+% Post Processing and Fringe Plots
+\reqid{A} The ability to explore fringes (as is currently done with the
+  combination of \acs{fringex}, \acs{average} and search must be preserved.
+  HOPS4 shall support \acs{Python} scripting to aid the user in searching
+  fringe space.
+\reqid{P} It should be possible to make 3D visualization plots.
+\reqex{\acs{search} makes contour plots, but a 3D visualization of amplitude
+  with delay and delay-rate would be useful.}
+\reqid{P} HOPS4 shall implement interactive visualization tools in \acs{fourfit}.
+\reqex{The HOPS3 version of \acs{fourfit} provides a fixed fringe summary
+  plot. HOPS4 should have an interactive plotting capability to enable zooming
+  and viewing fourfit results with an expanded scale.}
+\reqid{D} Replace the existing \acs{fourfit} control file with a
+  \acs{Python}-based control file. Currently existing functionality shall be
+  preserved.
+\reqex{The existing control file should continue to be supported. The new
+  control file functionality will not likely be back-ported to HOPS3.}
+
+% Miscellaneous Requirements
+\reqid{A} It shall be possible to automatically discard correlator
+  \acs{AP} (integrations) with small weights.
+\reqid{A} HOPS4 shall have the ability to flag data based on a user-supplied
+  list (\eg~of frequency intervals with time in some flag file).
+\reqid{A} Every data type written to disk in HOPS4 shall be convertable to
+  form that is amenable to human examination (e.g. ASCII or CSV), as is done in HOPS3 by the
+  \texttt{\acs{CorAsc2}} program.
+\reqid{A} HOPS4 shall implement an algorithm for solving for station-based
+  quantities from baseline-based quantities as a global fringe fitter.
+\reqid{A} The HOPS4 \acs{fourfit} shall have the ability to apply complex
+  bandpass correction.
+\reqid{A} HOPS4 shall provide a method to solve for complex bandpass corrections.
+\reqid{A} Python wrappers for the new HOPS4 data objects shall be provided.
+\reqex{The existing wrappers for the \acs{Mk4} data types in HOPS3 do not
+  need to be preserved, but it is a capability worth preserving.}
+\reqid{D} The HOPS4 suite must provide mechanisms to preserve the correlator
+  output data.
+\reqid{D} HOPS4 should preserve the the Single Band Delay, Multi Band Delay
+  and Delay Rate search algorithm in its current form.
+\reqex{Our desire is to make the algorithm modular, such that the user may (de)select search
+  dimensions.
+\reqid{D} Benchmarking and performance analysis should be augmented with
+  more sophisticated tools.
+\reqid{D} HOPS4 should support spectral-line VLBI.
+\reqid{D} HOPS4 should support pulsar folding with a user specified period or
+  ephemeris file with blanking.
+\reqid{D} HOPS4 should enable multi-threading or multi-processing for batch jobs.
+\end{description}
+
 
 %
 % eof
