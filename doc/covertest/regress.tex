@@ -105,6 +105,7 @@ segmented at some interval, but it is not clear that this is necessary.
   combination of \acs{fringex}, \acs{average} and search must be preserved.
   HOPS4 shall support \acs{Python} scripting to aid the user in searching
   fringe space.
+    \reqex{Currently \texttt{chk\_fringex.sh} and \texttt{chk\_average.sh} make checks for this in HOPS 3.}
 \reqid{P} It should be possible to make 3D visualization plots.
 \reqex{\acs{search} makes contour plots, but a 3D visualization of amplitude
   with delay and delay-rate would be useful.}
@@ -115,7 +116,7 @@ segmented at some interval, but it is not clear that this is necessary.
 \reqid{D} Replace the existing \acs{fourfit} control file with a
   \acs{Python}-based control file. Currently existing functionality shall be
   preserved.
-\reqex{The existing control file should continue to be supported. The new
+\reqex{This is tested with \texttt{testfourfit.sh}.The existing control file should continue to be supported. The new
   control file functionality will not likely be back-ported to HOPS3.}
 
 % Miscellaneous Requirements
@@ -138,7 +139,7 @@ segmented at some interval, but it is not clear that this is necessary.
   output data.
 \reqid{D} HOPS4 should preserve the the Single Band Delay, Multi Band Delay
   and Delay Rate search algorithm in its current form.
-\reqex{Our desire is to make the algorithm modular, such that the user may (de)select search
+\reqex{Currently \texttt{chk\_search.sh} tests this functionality in HOPS 3. Our desire is to make the algorithm modular, such that the user may (de)select search
   dimensions.
 \reqid{D} Benchmarking and performance analysis should be augmented with
   more sophisticated tools.
