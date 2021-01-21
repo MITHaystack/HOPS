@@ -43,6 +43,7 @@ Manual testing involves a developer running the latest build and testing the use
 
 % Post Processing and Fringe Plots
 \reqid{A} The functionality of the program \acs{cofit} shall be preserved.
+  \reqex{\texttt{chk\_cofit.sh} currently verifies this.}
 \reqid{P} It should be possible to make 2D plots of the type currently possible
   within \texttt{\acs{aedit}} of HOPS3.
 \reqex{These are plots such as \acs{SNR} with time broken out by baseline with
@@ -53,7 +54,7 @@ and viewing fourfit results with an expanded scale.}
 \reqid{D} Replace the existing \acs{fourfit} control file with a
   \acs{Python}-based control file. Currently existing functionality shall be
   preserved.
-\reqex{The existing control file should continue to be supported. The new
+\reqex{This is tested with \texttt{testfourfit.sh}.The existing control file should continue to be supported. The new
   control file functionality will not likely be back-ported to HOPS3.}
 \reqid{A} Every data type written to disk in HOPS4 shall be convertable to
   form that is amenable to human examination (e.g. ASCII or CSV), as is done in HOPS3 by the
