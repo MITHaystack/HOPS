@@ -3,8 +3,8 @@
 #include <cmath>
 #include <sstream>
 
-#include "MHOTableContainer.hh"
-#include "MHOAxis.hh"
+#include "MHO_TableContainer.hh"
+#include "MHO_Axis.hh"
 
 #ifdef USE_ROOT
 #include "TCanvas.h"
@@ -25,7 +25,7 @@ using namespace hops;
 #define XDIM 0
 #define YDIM 1
 #define ZDIM 2
-typedef MHOAxisPack< MHOAxis<double>, MHOAxis<double>, MHOAxis<char> > axis_pack_test;
+typedef MHO_AxisPack< MHO_Axis<double>, MHO_Axis<double>, MHO_Axis<char> > axis_pack_test;
 
 int main(int argc, char** argv)
 {
@@ -35,7 +35,7 @@ int main(int argc, char** argv)
     dim[1] = 256; //y
     dim[2] = 3; // r,g,b
 
-    MHOTableContainer<double, axis_pack_test >* test = new MHOTableContainer<double, axis_pack_test >(dim);
+    MHO_TableContainer<double, axis_pack_test >* test = new MHO_TableContainer<double, axis_pack_test >(dim);
 
     for(size_t i=0; i<NDIM; i++)
     {
@@ -54,7 +54,7 @@ int main(int argc, char** argv)
     size_t chan_width = 32;
     for(size_t i=0; i < x_axis_size/chan_width; i++)
     {
-        MHOIntervalLabel label;
+        MHO_IntervalLabel label;
         label.SetBounds(i*chan_width, (i+1)*chan_width);
         std::stringstream ss;
         ss << "x-chan-" << i;
@@ -73,7 +73,7 @@ int main(int argc, char** argv)
     chan_width = 64;
     for(size_t i=0; i < x_axis_size/chan_width; i++)
     {
-        MHOIntervalLabel label;
+        MHO_IntervalLabel label;
         label.SetBounds(i*chan_width, (i+1)*chan_width);
         std::stringstream ss;
         ss << "y-chan-" << i;

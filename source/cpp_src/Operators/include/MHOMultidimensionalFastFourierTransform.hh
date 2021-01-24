@@ -1,22 +1,22 @@
-#ifndef MHOMultidimensionalFastFourierTransform_HH__
-#define MHOMultidimensionalFastFourierTransform_HH__
+#ifndef MHO_MultidimensionalFastFourierTransform_HH__
+#define MHO_MultidimensionalFastFourierTransform_HH__
 
 #include <cstring>
 
-#include "MHOMessage.hh"
-#include "MHONDArrayWrapper.hh"
-#include "MHOFastFourierTransform.hh"
+#include "MHO_Message.hh"
+#include "MHO_NDArrayWrapper.hh"
+#include "MHO_FastFourierTransform.hh"
 
 namespace hops
 {
 
 template<size_t RANK>
-class MHOMultidimensionalFastFourierTransform: 
-    public MHONDArrayOperator< MHONDArrayWrapper< std::complex<double>, RANK >, 
-                             MHONDArrayWrapper< std::complex<double>, RANK > >
+class MHO_MultidimensionalFastFourierTransform: 
+    public MHO_NDArrayOperator< MHO_NDArrayWrapper< std::complex<double>, RANK >, 
+                             MHO_NDArrayWrapper< std::complex<double>, RANK > >
 {
     public:
-        MHOMultidimensionalFastFourierTransform()
+        MHO_MultidimensionalFastFourierTransform()
         {
             for(size_t i=0; i<RANK; i++)
             {
@@ -30,7 +30,7 @@ class MHOMultidimensionalFastFourierTransform:
             fForward = true;
         };
 
-        virtual ~MHOMultidimensionalFastFourierTransform()
+        virtual ~MHO_MultidimensionalFastFourierTransform()
         {
             DealocateWorkspace();
         };
@@ -114,7 +114,7 @@ class MHOMultidimensionalFastFourierTransform:
                     for(size_t n=0; n<n_fft; n++)
                     {
                         //invert place in list to obtain indices of block in array
-                        MHONDArrayMath::RowMajorIndexFromOffset<RANK-1>(n, non_active_dimension_size, non_active_dimension_value);
+                        MHO_NDArrayMath::RowMajorIndexFromOffset<RANK-1>(n, non_active_dimension_size, non_active_dimension_value);
 
                         //copy the value of the non-active dimensions in to index
                         for(size_t i=0; i<RANK-1; i++)
@@ -127,7 +127,7 @@ class MHOMultidimensionalFastFourierTransform:
                         for(size_t i=0; i<fDimensionSize[d]; i++)
                         {
                             index[d] = i;
-                            data_location = MHONDArrayMath::OffsetFromRowMajorIndex<RANK>(fDimensionSize, index);
+                            data_location = MHO_NDArrayMath::OffsetFromRowMajorIndex<RANK>(fDimensionSize, index);
                             (*(fWorkspaceWrapper[d]))[i] = (*(this->fOutput))[data_location];
                         }
 
@@ -138,7 +138,7 @@ class MHOMultidimensionalFastFourierTransform:
                         for(size_t i=0; i<fDimensionSize[d]; i++)
                         {
                             index[d] = i;
-                            data_location = MHONDArrayMath::OffsetFromRowMajorIndex<RANK>(fDimensionSize, index);
+                            data_location = MHO_NDArrayMath::OffsetFromRowMajorIndex<RANK>(fDimensionSize, index);
                             (*(this->fOutput))[data_location] = (*(fWorkspaceWrapper[d]))[i];
                         }
                     }
@@ -161,8 +161,8 @@ class MHOMultidimensionalFastFourierTransform:
         {
             for(size_t i=0; i<RANK; i++)
             {
-                fWorkspaceWrapper[i] = new MHONDArrayWrapper< std::complex<double>, 1 >(fDimensionSize[i]);
-                fTransformCalculator[i] = new MHOFastFourierTransform();
+                fWorkspaceWrapper[i] = new MHO_NDArrayWrapper< std::complex<double>, 1 >(fDimensionSize[i]);
+                fTransformCalculator[i] = new MHO_FastFourierTransform();
                 fTransformCalculator[i]->SetSize(fDimensionSize[i]);
                 fTransformCalculator[i]->SetInput(fWorkspaceWrapper[i]);
                 fTransformCalculator[i]->SetOutput(fWorkspaceWrapper[i]);
@@ -185,8 +185,8 @@ class MHOMultidimensionalFastFourierTransform:
 
         size_t fDimensionSize[RANK];
 
-        MHOFastFourierTransform* fTransformCalculator[RANK];
-        MHONDArrayWrapper<std::complex<double>, 1>* fWorkspaceWrapper[RANK];
+        MHO_FastFourierTransform* fTransformCalculator[RANK];
+        MHO_NDArrayWrapper<std::complex<double>, 1>* fWorkspaceWrapper[RANK];
 
 
 };
@@ -194,4 +194,4 @@ class MHOMultidimensionalFastFourierTransform:
 
 }
 
-#endif /* MHOMultidimensionalFastFourierTransform_H__ */
+#endif /* MHO_MultidimensionalFastFourierTransform_H__ */

@@ -1,46 +1,46 @@
-#include "MHOTimer.hh"
+#include "MHO_Timer.hh"
 
 namespace hops{
 
-MHOTimer::MHOTimer():fName("generic_timer")
+MHO_Timer::MHO_Timer():fName("generic_timer")
 {
 }
 
-MHOTimer::MHOTimer(std::string name):fName(name)
+MHO_Timer::MHO_Timer(std::string name):fName(name)
 {
 }
 
-MHOTimer::~MHOTimer(){}
+MHO_Timer::~MHO_Timer(){}
 
 //set the clock type used
-void MHOTimer::MeasureWallclockTime()
+void MHO_Timer::MeasureWallclockTime()
 {
     fClockID = CLOCK_REALTIME;
 }
 
-void MHOTimer::MeasureProcessTime()
+void MHO_Timer::MeasureProcessTime()
 {
     fClockID = CLOCK_PROCESS_CPUTIME_ID;
 }
 
-void MHOTimer::MeasureThreadTime()
+void MHO_Timer::MeasureThreadTime()
 {
     fClockID = CLOCK_THREAD_CPUTIME_ID;
 }
 
-void MHOTimer::Start()
+void MHO_Timer::Start()
 {
     clock_gettime(CLOCK_REALTIME, &fStart);
 }
 
-void MHOTimer::Stop()
+void MHO_Timer::Stop()
 {
 	clock_gettime(CLOCK_REALTIME, &fStop);
 }
 
 
 timespec
-MHOTimer::GetTimeDifference(const timespec& start, const timespec& stop) const
+MHO_Timer::GetTimeDifference(const timespec& start, const timespec& stop) const
 {
     timespec ret_val;
     if( (stop.tv_nsec-start.tv_nsec) < 0)
@@ -58,12 +58,12 @@ MHOTimer::GetTimeDifference(const timespec& start, const timespec& stop) const
 
 
 timespec
-MHOTimer::GetDurationAsTimeSpec() const
+MHO_Timer::GetDurationAsTimeSpec() const
 {
     return GetTimeDifference(fStart,fStop);
 }
 
-double MHOTimer::GetDurationAsDouble() const
+double MHO_Timer::GetDurationAsDouble() const
 {
     timespec duration = GetTimeDifference(fStart, fStop);
     double ret_val = duration.tv_sec;

@@ -1,8 +1,8 @@
-#include "MHOMessage.hh"
-#include "MHOFastFourierTransform.hh"
-#include "MHOMultidimensionalFastFourierTransform.hh"
+#include "MHO_Message.hh"
+#include "MHO_FastFourierTransform.hh"
+#include "MHO_MultidimensionalFastFourierTransform.hh"
 #ifdef HOPS_USE_FFTW3
-#include "MHOMultidimensionalFastFourierTransformFFTW.hh"
+#include "MHO_MultidimensionalFastFourierTransformFFTW.hh"
 #endif
 
 #include <cmath>
@@ -11,9 +11,9 @@
 
 //
 // #ifdef HOPS_USE_FFTW3
-// #define FFT_TYPE MHOMultidimensionalFastFourierTransformFFTW<1>
+// #define FFT_TYPE MHO_MultidimensionalFastFourierTransformFFTW<1>
 // #else
-// #define FFT_TYPE MHOMultidimensionalFastFourierTransform<1>
+// #define FFT_TYPE MHO_MultidimensionalFastFourierTransform<1>
 // #endif
 //
 // using namespace hops;
@@ -24,7 +24,7 @@
 //     const size_t dval = 5;
 //     const size_t dim_size[ndim] = {dval};
 //     const size_t total_size = dim_size[0];
-//     MHONDArrayWrapper<std::complex<double>, ndim> input(dim_size[0]);
+//     MHO_NDArrayWrapper<std::complex<double>, ndim> input(dim_size[0]);
 //
 //     //fill up the array with a signal
 //     int count = 0;
@@ -85,9 +85,9 @@
 // 
 // 
 // #ifdef HOPS_USE_FFTW3
-// #define FFT_TYPE MHOMultidimensionalFastFourierTransformFFTW<2>
+// #define FFT_TYPE MHO_MultidimensionalFastFourierTransformFFTW<2>
 // #else
-// #define FFT_TYPE MHOMultidimensionalFastFourierTransform<2>
+// #define FFT_TYPE MHO_MultidimensionalFastFourierTransform<2>
 // #endif
 // 
 // using namespace hops;
@@ -98,8 +98,8 @@
 //     const size_t dval = 4;
 //     const size_t dim_size[ndim] = {dval, dval};
 //     const size_t total_size = dim_size[0] * dim_size[1];
-//     MHONDArrayWrapper<std::complex<double>, ndim> input(dim_size);
-//     MHONDArrayWrapper<std::complex<double>, ndim> output(dim_size);
+//     MHO_NDArrayWrapper<std::complex<double>, ndim> input(dim_size);
+//     MHO_NDArrayWrapper<std::complex<double>, ndim> output(dim_size);
 // 
 //     //fill up the array with a signal
 //     int count = 0;
@@ -208,9 +208,9 @@
 
 
 #ifdef HOPS_USE_FFTW3
-#define FFT_TYPE MHOMultidimensionalFastFourierTransformFFTW<3>
+#define FFT_TYPE MHO_MultidimensionalFastFourierTransformFFTW<3>
 #else
-#define FFT_TYPE MHOMultidimensionalFastFourierTransform<3>
+#define FFT_TYPE MHO_MultidimensionalFastFourierTransform<3>
 #endif
 
 
@@ -226,7 +226,7 @@ int main(int /*argc*/, char** /*argv*/)
     const size_t dval = 5;
     const size_t dim_size[ndim] = {dval, dval, dval};
     const size_t total_size = dim_size[0] * dim_size[1] * dim_size[2];
-    MHONDArrayWrapper<std::complex<double>, ndim> input(dim_size);
+    MHO_NDArrayWrapper<std::complex<double>, ndim> input(dim_size);
 
     //fill up the array with a signal
     int count = 0;

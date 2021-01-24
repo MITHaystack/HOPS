@@ -1,9 +1,9 @@
-#ifndef MHOChannelizedRotationFunctor_HH__
-#define MHOChannelizedRotationFunctor_HH__
+#ifndef MHO_ChannelizedRotationFunctor_HH__
+#define MHO_ChannelizedRotationFunctor_HH__
 
 /*
-*File: MHOChannelizedRotationFunctor.hh
-*Class: MHOChannelizedRotationFunctor
+*File: MHO_ChannelizedRotationFunctor.hh
+*Class: MHO_ChannelizedRotationFunctor
 *Author: J. Barrett
 *Email: barrettj@mit.edu
 *Date:
@@ -14,24 +14,24 @@
 #include <complex>
 
 
-#include "MHONDArrayFunctor.hh"
-#include "MHOTableContainer.hh"
-#include "MHOChannelizedVisibilities.hh"
+#include "MHO_NDArrayFunctor.hh"
+#include "MHO_TableContainer.hh"
+#include "MHO_ChannelizedVisibilities.hh"
 
 namespace hops
 {
 
 
-class MHOChannelizedRotationFunctor: public MHONDArrayFunctor< ch_baseline_data_type, ch_baseline_data_type >
+class MHO_ChannelizedRotationFunctor: public MHO_NDArrayFunctor< ch_baseline_data_type, ch_baseline_data_type >
 {
     public:
 
-        using input_iterator = MHONDArrayFunctor< ch_baseline_data_type, ch_baseline_data_type >::input_iterator;
-        using output_iterator = MHONDArrayFunctor< ch_baseline_data_type, ch_baseline_data_type >::output_iterator;
+        using input_iterator = MHO_NDArrayFunctor< ch_baseline_data_type, ch_baseline_data_type >::input_iterator;
+        using output_iterator = MHO_NDArrayFunctor< ch_baseline_data_type, ch_baseline_data_type >::output_iterator;
 
 
-        MHOChannelizedRotationFunctor();
-        virtual ~MHOChannelizedRotationFunctor();
+        MHO_ChannelizedRotationFunctor();
+        virtual ~MHO_ChannelizedRotationFunctor();
 
         //set time/freq axes for the data
         void SetAxisPack(ch_baseline_axis_pack* axes);
@@ -75,8 +75,8 @@ class MHOChannelizedRotationFunctor: public MHONDArrayFunctor< ch_baseline_data_
         double fDelayRate;
         double fSingleBandDelay;
 
-        MHOAxis<double>* fTimeAxis;
-        MHOAxis<double>* fFreqAxis;
+        MHO_Axis<double>* fTimeAxis;
+        MHO_Axis<double>* fFreqAxis;
 
 
 
@@ -85,4 +85,4 @@ class MHOChannelizedRotationFunctor: public MHONDArrayFunctor< ch_baseline_data_
 
 }//end of hops namespace
 
-#endif /* end of include guard: MHOChannelizedRotationFunctor */
+#endif /* end of include guard: MHO_ChannelizedRotationFunctor */

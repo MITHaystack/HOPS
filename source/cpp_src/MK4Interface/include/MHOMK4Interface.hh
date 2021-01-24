@@ -1,9 +1,9 @@
-#ifndef MHOMK4Interface_HH__
-#define MHOMK4Interface_HH__
+#ifndef MHO_MK4Interface_HH__
+#define MHO_MK4Interface_HH__
 
 /*
-*File: MHOMK4Interface.hh
-*Class: MHOMK4Interface
+*File: MHO_MK4Interface.hh
+*Class: MHO_MK4Interface
 *Author: J. Barrett
 *Email: barrettj@mit.edu
 *Date: 2020-05-19T04:44:32.593Z
@@ -23,12 +23,12 @@ extern "C"
 namespace hops
 {
 
-class MHOMK4Interface
+class MHO_MK4Interface
 {
     public:
 
-        MHOMK4Interface();
-        virtual ~MHOMK4Interface();
+        MHO_MK4Interface();
+        virtual ~MHO_MK4Interface();
 
         void OpenFringeFile(std::string file_path);
 
@@ -41,4 +41,4 @@ class MHOMK4Interface
 
 }//end of hops namespace
 
-#endif /* end of include guard: MHOMK4Interface */
+#endif /* end of include guard: MHO_MK4Interface */

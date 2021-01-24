@@ -1,16 +1,16 @@
-#include "MHOMK4Interface.hh"
+#include "MHO_MK4Interface.hh"
 
 
 namespace hops
 {
 
 
-MHOMK4Interface::MHOMK4Interface(){};
+MHO_MK4Interface::MHO_MK4Interface(){};
 
 
-MHOMK4Interface::~MHOMK4Interface(){};
+MHO_MK4Interface::~MHO_MK4Interface(){};
 
-void MHOMK4Interface::OpenFringeFile(std::string file_path)
+void MHO_MK4Interface::OpenFringeFile(std::string file_path)
 {
 
     struct mk4_fringe fringe;

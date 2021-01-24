@@ -1,9 +1,9 @@
-#ifndef MHOMK4CorelInterface_HH__
-#define MHOMK4CorelInterface_HH__
+#ifndef MHO_MK4CorelInterface_HH__
+#define MHO_MK4CorelInterface_HH__
 
 /*
-*File: MHOMK4CorelInterface.hh
-*Class: MHOMK4CorelInterface
+*File: MHO_MK4CorelInterface.hh
+*Class: MHO_MK4CorelInterface
 *Author: J. Barrett
 *Email: barrettj@mit.edu
 *Date: 2020-05-19T18:54:28.140Z
@@ -17,8 +17,8 @@
 #include <cstring>
 #include <string>
 
-#include "MHOVisibilities.hh"
-#include "MHOMessage.hh"
+#include "MHO_Visibilities.hh"
+#include "MHO_Message.hh"
 
 //forward declaration of mk4_corel and vex structs
 //we do this to keep the mk4 structures from 'leaking' into the new code via includes,
@@ -33,12 +33,12 @@ extern "C"
 namespace hops
 {
 
-class MHOMK4CorelInterface
+class MHO_MK4CorelInterface
 {
     public:
 
-        MHOMK4CorelInterface();
-        virtual ~MHOMK4CorelInterface();
+        MHO_MK4CorelInterface();
+        virtual ~MHO_MK4CorelInterface();
 
         //need both the vex (root) file and corel file to extract the data
         void SetVexFile(const std::string& vex){fVexFile = vex;}
@@ -71,12 +71,12 @@ class MHOMK4CorelInterface
 
 
         //store all channel related data in interval labels for convenience
-        std::map< std::string, MHOIntervalLabel > fAllChannelMap;
+        std::map< std::string, MHO_IntervalLabel > fAllChannelMap;
 
         //this field stores pointers to channel labels on a per-pol product basis
         //the keys are pol-product labels (e.g. XX, RL, YY, etc)
         //the vectors are sorted by sky-frequency
-        std::map< std::string, std::vector< MHOIntervalLabel* > > fPPSortedChannelInfo;
+        std::map< std::string, std::vector< MHO_IntervalLabel* > > fPPSortedChannelInfo;
 
         //helper function to convert raw char arrays to strings
         std::string getstr(const char* char_array, size_t max_size);
@@ -90,4 +90,4 @@ class MHOMK4CorelInterface
 
 }//end of hops namespace
 
-#endif /* end of include guard: MHOMK4CorelInterface */
+#endif /* end of include guard: MHO_MK4CorelInterface */

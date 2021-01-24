@@ -1,17 +1,17 @@
-#include "MHODateTime.hh"
+#include "MHO_DateTime.hh"
 
 namespace hops
 {
 
 
-MHODateTime::MHODateTime()
+MHO_DateTime::MHO_DateTime()
 {
 
 }
 
 //useful for initialization from mk4 date type
 void
-MHODateTime(short year, short day, short hour, short minute, float second)
+MHO_DateTime(short year, short day, short hour, short minute, float second)
 {
 
 //  fDate.tm_year = static_cast<int>(year);
@@ -23,7 +23,7 @@ MHODateTime(short year, short day, short hour, short minute, float second)
 
 }
 
-MHODateTime::~MHODateTime()
+MHO_DateTime::~MHO_DateTime()
 {
 
 }

@@ -1,9 +1,9 @@
-#ifndef MHOIntervalLabel_HH__
-#define MHOIntervalLabel_HH__
+#ifndef MHO_IntervalLabel_HH__
+#define MHO_IntervalLabel_HH__
 
 /*
-*File: MHOIntervalLabel.hh
-*Class: MHOIntervalLabel
+*File: MHO_IntervalLabel.hh
+*Class: MHO_IntervalLabel
 *Author: J. Barrett
 *Email: barrettj@mit.edu
 *Date:
@@ -13,28 +13,28 @@
 #include <string>
 #include <utility>
 
-#include "MHOInterval.hh"
-#include "MHOMultiTypeMap.hh"
+#include "MHO_Interval.hh"
+#include "MHO_MultiTypeMap.hh"
 
 namespace hops
 {
 
 //TODO: Make sure this set of types is complete for data-labelling.
 //Consider what other types might be needed (float? short? dates?)
-typedef MHOMultiTypeMap< std::string, char, bool, int, double, std::string > MHOIntervalLabelMap;
+typedef MHO_MultiTypeMap< std::string, char, bool, int, double, std::string > MHO_IntervalLabelMap;
 
-class MHOIntervalLabel: public MHOInterval< std::size_t >, public MHOIntervalLabelMap
+class MHO_IntervalLabel: public MHO_Interval< std::size_t >, public MHO_IntervalLabelMap
 {
     public:
 
-        MHOIntervalLabel();
-        MHOIntervalLabel( std::size_t lower_bound, std::size_t upper_bound);
-        MHOIntervalLabel(const MHOIntervalLabel& copy);
-        virtual ~MHOIntervalLabel();
+        MHO_IntervalLabel();
+        MHO_IntervalLabel( std::size_t lower_bound, std::size_t upper_bound);
+        MHO_IntervalLabel(const MHO_IntervalLabel& copy);
+        virtual ~MHO_IntervalLabel();
 
         bool HasKey(const std::string& key) const;
 
-        MHOIntervalLabel& operator=(const MHOIntervalLabel& rhs)
+        MHO_IntervalLabel& operator=(const MHO_IntervalLabel& rhs)
         {
             if(this != &rhs)
             {
@@ -56,4 +56,4 @@ class MHOIntervalLabel: public MHOInterval< std::size_t >, public MHOIntervalLab
 
 }
 
-#endif /* end of include guard: MHOIntervalLabel */
+#endif /* end of include guard: MHO_IntervalLabel */

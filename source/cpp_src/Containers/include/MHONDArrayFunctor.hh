@@ -1,12 +1,12 @@
-#ifndef MHONDArrayFunctor_HH__
-#define MHONDArrayFunctor_HH__
+#ifndef MHO_NDArrayFunctor_HH__
+#define MHO_NDArrayFunctor_HH__
 
 #include <algorithm>
-#include "MHONDArrayWrapper.hh"
+#include "MHO_NDArrayWrapper.hh"
 
 /*
-*File: MHONDArrayFunctor.hh
-*Class: MHONDArrayFunctor
+*File: MHO_NDArrayFunctor.hh
+*Class: MHO_NDArrayFunctor
 *Author: J. Barrett
 *Email: barrettj@mit.edu
 *Date:
@@ -18,12 +18,12 @@ namespace hops
 {
 
 template< class XInputArrayType, class XOutputArrayType >
-class MHONDArrayFunctor
+class MHO_NDArrayFunctor
 {
     public:
 
-        MHONDArrayFunctor(){};
-        virtual ~MHONDArrayFunctor(){};
+        MHO_NDArrayFunctor(){};
+        virtual ~MHO_NDArrayFunctor(){};
 
         using input_iterator = typename XInputArrayType::iterator;
         using output_iterator = typename XOutputArrayType::iterator;
@@ -35,4 +35,4 @@ class MHONDArrayFunctor
 }
 
 
-#endif /* MHONDArrayFunctor_H__ */
+#endif /* MHO_NDArrayFunctor_H__ */

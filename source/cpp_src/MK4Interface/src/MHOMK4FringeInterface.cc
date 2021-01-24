@@ -1,6 +1,6 @@
-#include "MHOMK4FringeInterface.hh"
+#include "MHO_MK4FringeInterface.hh"
 
-#include "MHOMultiTypeMap.hh"
+#include "MHO_MultiTypeMap.hh"
 #include <array>
 
 namespace hops
@@ -18,19 +18,19 @@ std::array<XType, N> create_and_fill_array(XType values[N])
 }
 
 
-MHOMK4FringeInterface::MHOMK4FringeInterface():
+MHO_MK4FringeInterface::MHO_MK4FringeInterface():
     fHaveFringe(false)
 {
 
 }
 
-MHOMK4FringeInterface::~MHOMK4FringeInterface()
+MHO_MK4FringeInterface::~MHO_MK4FringeInterface()
 {
     clear_mk4fringe(&fFringe);
 }
 
 void
-MHOMK4FringeInterface::ReadFringeFile(const std::string& filename)
+MHO_MK4FringeInterface::ReadFringeFile(const std::string& filename)
 {
     if(fHaveFringe)
     {
@@ -50,14 +50,14 @@ MHOMK4FringeInterface::ReadFringeFile(const std::string& filename)
 }
 
 void
-MHOMK4FringeInterface::ExportFringeFile()
+MHO_MK4FringeInterface::ExportFringeFile()
 {
     if(fHaveFringe)
     {
         //want to dump the information in the type_200 through type_230 objects
         //for now just do the POD data types
 
-        MHOMultiTypeMap< std::string, int, short, float, double, std::array<double, 4>, std::string> _m;
+        MHO_MultiTypeMap< std::string, int, short, float, double, std::array<double, 4>, std::string> _m;
 
         //type_200
         _m.Insert( std::string("type200.record_id"), std::string(fFringe.t200->record_id) );

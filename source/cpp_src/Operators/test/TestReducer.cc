@@ -1,5 +1,5 @@
-#include "MHOMessage.hh"
-#include "MHOReducer.hh"
+#include "MHO_Message.hh"
+#include "MHO_Reducer.hh"
 
 #include <cmath>
 #include <iomanip>
@@ -17,9 +17,9 @@ int main(int /*argc*/, char** /*argv*/)
     const size_t dval = 3;
     size_t dim_size[ndim];
     for(std::size_t i=0;i<NDIM;i++){dim_size[i] = i+dval;};
-    MHONDArrayWrapper<std::complex<double>, ndim>* input = new MHONDArrayWrapper<std::complex<double>, ndim>(dim_size);
-    MHONDArrayWrapper<std::complex<double>, ndim>* output = new MHONDArrayWrapper<std::complex<double>, ndim>();
-    MHONDArrayWrapper<std::complex<double>, ndim>* output2 = new MHONDArrayWrapper<std::complex<double>, ndim>();
+    MHO_NDArrayWrapper<std::complex<double>, ndim>* input = new MHO_NDArrayWrapper<std::complex<double>, ndim>(dim_size);
+    MHO_NDArrayWrapper<std::complex<double>, ndim>* output = new MHO_NDArrayWrapper<std::complex<double>, ndim>();
+    MHO_NDArrayWrapper<std::complex<double>, ndim>* output2 = new MHO_NDArrayWrapper<std::complex<double>, ndim>();
 
     input->SetArray( std::complex<double>(2.0,0.0) );
 
@@ -44,7 +44,7 @@ int main(int /*argc*/, char** /*argv*/)
 
     std::cout << "--------------------------------------------------------------" << std::endl;
 
-    MHOReducer<std::complex<double>, MHOCompoundSum, NDIM>* reducer = new MHOReducer<std::complex<double>, MHOCompoundSum, NDIM>();
+    MHO_Reducer<std::complex<double>, MHO_CompoundSum, NDIM>* reducer = new MHO_Reducer<std::complex<double>, MHO_CompoundSum, NDIM>();
     reducer->SetInput(input);
     reducer->SetOutput(output);
     //reducer->ReduceAxis(0);
@@ -76,7 +76,7 @@ int main(int /*argc*/, char** /*argv*/)
 
     std::cout << "--------------------------------------------------------------" << std::endl;
 
-    MHOReducer<std::complex<double>, MHOCompoundMultiply, NDIM>* reducer2 = new MHOReducer<std::complex<double>, MHOCompoundMultiply, NDIM>();
+    MHO_Reducer<std::complex<double>, MHO_CompoundMultiply, NDIM>* reducer2 = new MHO_Reducer<std::complex<double>, MHO_CompoundMultiply, NDIM>();
     reducer2->SetInput(output);
     reducer2->SetOutput(output2);
     //reducer->ReduceAxis(0);

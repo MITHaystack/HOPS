@@ -1,9 +1,9 @@
-#ifndef MHOMK4FringeInterface_HH__
-#define MHOMK4FringeInterface_HH__
+#ifndef MHO_MK4FringeInterface_HH__
+#define MHO_MK4FringeInterface_HH__
 
 /*
-*File: MHOMK4FringeInterface.hh
-*Class: MHOMK4FringeInterface
+*File: MHO_MK4FringeInterface.hh
+*Class: MHO_MK4FringeInterface
 *Author: J. Barrett
 *Email: barrettj@mit.edu
 *Date: 2020-05-19T18:54:28.140Z
@@ -21,17 +21,17 @@ extern "C"
     #include "mk4_vex.h"
 }
 
-#include "MHOMultiTypeMap.hh"
+#include "MHO_MultiTypeMap.hh"
 
 namespace hops
 {
 
-class MHOMK4FringeInterface
+class MHO_MK4FringeInterface
 {
     public:
 
-        MHOMK4FringeInterface();
-        virtual ~MHOMK4FringeInterface();
+        MHO_MK4FringeInterface();
+        virtual ~MHO_MK4FringeInterface();
 
         void ReadFringeFile(const std::string& filename);
 
@@ -49,4 +49,4 @@ class MHOMK4FringeInterface
 
 }//end of hops namespace
 
-#endif /* end of include guard: MHOMK4FringeInterface */
+#endif /* end of include guard: MHO_MK4FringeInterface */

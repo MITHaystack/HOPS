@@ -1,9 +1,9 @@
-#ifndef MHOVectorContainer_HH__
-#define MHOVectorContainer_HH__
+#ifndef MHO_VectorContainer_HH__
+#define MHO_VectorContainer_HH__
 
 /*
-*File: MHOVectorContainer.hh
-*Class: MHOVectorContainer
+*File: MHO_VectorContainer.hh
+*Class: MHO_VectorContainer
 *Author: J. Barrett
 *Email: barrettj@mit.edu
 *Date: 2020-05-15T20:22:00.867Z
@@ -13,62 +13,62 @@
 
 #include <string>
 
-#include "MHONamed.hh"
-#include "MHONDArrayWrapper.hh"
+#include "MHO_Named.hh"
+#include "MHO_NDArrayWrapper.hh"
 
 namespace hops
 {
 
 
 template< typename XValueType >
-class MHOVectorContainer: public MHONDArrayWrapper< XValueType, 1>, public MHONamed
+class MHO_VectorContainer: public MHO_NDArrayWrapper< XValueType, 1>, public MHO_Named
 {
     public:
 
-        MHOVectorContainer():
-            MHONDArrayWrapper<XValueType,1>(),
-            MHONamed()
+        MHO_VectorContainer():
+            MHO_NDArrayWrapper<XValueType,1>(),
+            MHO_Named()
         {};
 
-        MHOVectorContainer(std::size_t dim):
-            MHONDArrayWrapper<XValueType,1>(dim),
-            MHONamed()
+        MHO_VectorContainer(std::size_t dim):
+            MHO_NDArrayWrapper<XValueType,1>(dim),
+            MHO_Named()
         {};
 
         //copy constructor
-        MHOVectorContainer(const MHOVectorContainer& obj):
-            MHONDArrayWrapper<XValueType,1>(obj),
-            MHONamed(obj)
+        MHO_VectorContainer(const MHO_VectorContainer& obj):
+            MHO_NDArrayWrapper<XValueType,1>(obj),
+            MHO_Named(obj)
         {};
 
         //clone functionality
-        MHOVectorContainer* Clone(){ return new MHOVectorContainer(*this); }
+        MHO_VectorContainer* Clone(){ return new MHO_VectorContainer(*this); }
 
 
-        virtual ~MHOVectorContainer(){};
+        virtual ~MHO_VectorContainer(){};
 
-        using MHONamed::IsNamed;
-        using MHONamed::GetName;
-        using MHONamed::SetName;
+        using MHO_Named::IsNamed;
+        using MHO_Named::GetName;
+        using MHO_Named::SetName;
 
         //have to make base class functions visible
-        using MHONDArrayWrapper<XValueType,1>::Resize;
-        using MHONDArrayWrapper<XValueType,1>::GetData;
-        using MHONDArrayWrapper<XValueType,1>::GetSize;
-        using MHONDArrayWrapper<XValueType,1>::GetDimensions;
-        using MHONDArrayWrapper<XValueType,1>::GetDimension;
-        using MHONDArrayWrapper<XValueType,1>::GetOffsetForIndices;
-        using MHONDArrayWrapper<XValueType,1>::operator();
-        using MHONDArrayWrapper<XValueType,1>::operator[];
+        using MHO_NDArrayWrapper<XValueType,1>::Resize;
+        using MHO_NDArrayWrapper<XValueType,1>::GetData;
+        using MHO_NDArrayWrapper<XValueType,1>::GetSize;
+        using MHO_NDArrayWrapper<XValueType,1>::GetDimensions;
+        using MHO_NDArrayWrapper<XValueType,1>::GetDimension;
+        using MHO_NDArrayWrapper<XValueType,1>::GetOffsetForIndices;
+        using MHO_NDArrayWrapper<XValueType,1>::operator();
+        using MHO_NDArrayWrapper<XValueType,1>::operator[];
 
     protected:
 
-        using MHONDArrayWrapper<XValueType,1>::fData;
-        using MHONDArrayWrapper<XValueType,1>::fDimensions;
-        using MHONDArrayWrapper<XValueType,1>::fTotalArraySize;
+        using MHO_NDArrayWrapper<XValueType,1>::fData;
+        using MHO_NDArrayWrapper<XValueType,1>::fDimensions;
+        using MHO_NDArrayWrapper<XValueType,1>::fTotalArraySize;
 
 };
 
 }//end of hops namespace
 
-#endif /* end of include guard: MHOVectorContainer_HH__ */
+#endif /* end of include guard: MHO_VectorContainer_HH__ */

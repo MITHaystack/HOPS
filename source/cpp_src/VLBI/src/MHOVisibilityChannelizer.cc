@@ -1,4 +1,4 @@
-#include "MHOVisibilityChannelizer.hh"
+#include "MHO_VisibilityChannelizer.hh"
 
 
 namespace hops
@@ -11,7 +11,7 @@ class chan_label_freq_predicate
         chan_label_freq_predicate(){};
         virtual ~chan_label_freq_predicate(){};
 
-    virtual bool operator()(const MHOIntervalLabel* a, const MHOIntervalLabel* b)
+    virtual bool operator()(const MHO_IntervalLabel* a, const MHO_IntervalLabel* b)
     {
         double a_frq, b_frq;
         a->Retrieve(std::string("sky_freq"), a_frq);
@@ -21,15 +21,15 @@ class chan_label_freq_predicate
 };
 
 
-MHOVisibilityChannelizer::MHOVisibilityChannelizer()
+MHO_VisibilityChannelizer::MHO_VisibilityChannelizer()
 {
     fInitialized = false;
 }
 
-MHOVisibilityChannelizer::~MHOVisibilityChannelizer(){}
+MHO_VisibilityChannelizer::~MHO_VisibilityChannelizer(){}
 
 bool
-MHOVisibilityChannelizer::Initialize()
+MHO_VisibilityChannelizer::Initialize()
 {
     fInitialized = false;
     if(this->fInput != nullptr && this->fOutput != nullptr)
@@ -48,7 +48,7 @@ MHOVisibilityChannelizer::Initialize()
 
             //and determine the number of unique channel labels
             auto* freq_axis = &(std::get<FREQ_AXIS>( *(this->fInput) ) );
-            std::vector< MHOIntervalLabel* > channel_labels = freq_axis->GetIntervalsWithKey(std::string("channel"));
+            std::vector< MHO_IntervalLabel* > channel_labels = freq_axis->GetIntervalsWithKey(std::string("channel"));
             std::size_t num_channels = channel_labels.size();
             std::cout<<"the number of channels = "<<num_channels<<std::endl;
 
@@ -134,7 +134,7 @@ MHOVisibilityChannelizer::Initialize()
 }
 
 bool
-MHOVisibilityChannelizer::ExecuteOperation()
+MHO_VisibilityChannelizer::ExecuteOperation()
 {
     if(fInitialized)
     {
@@ -174,7 +174,7 @@ MHOVisibilityChannelizer::ExecuteOperation()
                 char net_sb;
                 int channel_id;
 
-                MHOIntervalLabel fresh_ch_label;
+                MHO_IntervalLabel fresh_ch_label;
                 ch_label->Retrieve(std::string("sky_freq"), sky_freq);
                 ch_label->Retrieve(std::string("bandwidth"), bw);
                 ch_label->Retrieve(std::string("net_sideband"), net_sb);

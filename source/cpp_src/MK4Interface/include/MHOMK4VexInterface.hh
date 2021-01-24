@@ -1,9 +1,9 @@
-#ifndef MHOMK4VexInterface_HH__
-#define MHOMK4VexInterface_HH__
+#ifndef MHO_MK4VexInterface_HH__
+#define MHO_MK4VexInterface_HH__
 
 /*
-*File: MHOMK4VexInterface.hh
-*Class: MHOMK4VexInterface
+*File: MHO_MK4VexInterface.hh
+*Class: MHO_MK4VexInterface
 *Author: J. Barrett
 *Email: barrettj@mit.edu
 *Date: 2020-05-19T04:44:32.593Z
@@ -23,12 +23,12 @@ extern "C"
 namespace hops
 {
 
-class MHOMK4VexInterface
+class MHO_MK4VexInterface
 {
     public:
 
-        MHOMK4VexInterface();
-        virtual ~MHOMK4VexInterface();
+        MHO_MK4VexInterface();
+        virtual ~MHO_MK4VexInterface();
 
         void OpenVexFile(std::string file_path);
 
@@ -47,4 +47,4 @@ class MHOMK4VexInterface
 
 }//end of hops namespace
 
-#endif /* end of include guard: MHOMK4VexInterface */
+#endif /* end of include guard: MHO_MK4VexInterface */

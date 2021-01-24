@@ -1,41 +1,41 @@
-#ifndef MHOAxisPack_HH__
-#define MHOAxisPack_HH__
+#ifndef MHO_AxisPack_HH__
+#define MHO_AxisPack_HH__
 
 /*
-*File: MHOAxisPack.hh
-*Class: MHOAxisPack
+*File: MHO_AxisPack.hh
+*Class: MHO_AxisPack
 *Author: J. Barrett
 *Email: barrettj@mit.edu
 *Date: 17-08-2020 11:32
-*Description: set of axes (XAxisTypeS are expected to be MHOVectorContainers)
+*Description: set of axes (XAxisTypeS are expected to be MHO_VectorContainers)
 */
 
-#include "MHOMeta.hh"
+#include "MHO_Meta.hh"
 
 namespace hops{
 
 template< typename...XAxisTypeS >
-class MHOAxisPack:  public std::tuple< XAxisTypeS... >
+class MHO_AxisPack:  public std::tuple< XAxisTypeS... >
 {
     public:
 
-        MHOAxisPack():
+        MHO_AxisPack():
             std::tuple< XAxisTypeS... >()
         {};
 
-        MHOAxisPack(const std::size_t* dim):
+        MHO_AxisPack(const std::size_t* dim):
             std::tuple< XAxisTypeS... >()
         {
             resize_axis_pack(dim);
         };
 
         //copy constructor
-        MHOAxisPack( const MHOAxisPack& obj ):
+        MHO_AxisPack( const MHO_AxisPack& obj ):
             std::tuple< XAxisTypeS... >(obj)
         {};
 
 
-        virtual ~MHOAxisPack(){};
+        virtual ~MHO_AxisPack(){};
 
         typedef std::integral_constant< std::size_t, sizeof...(XAxisTypeS) > NAXES;
 
@@ -63,4 +63,4 @@ class MHOAxisPack:  public std::tuple< XAxisTypeS... >
 
 }
 
-#endif /* end of include guard: MHOAxisPack */
+#endif /* end of include guard: MHO_AxisPack */

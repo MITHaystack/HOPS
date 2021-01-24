@@ -1,16 +1,16 @@
-#ifndef MHOReducer_HH__
-#define MHOReducer_HH__
+#ifndef MHO_Reducer_HH__
+#define MHO_Reducer_HH__
 
 #include <algorithm>
 
-#include "MHOMessage.hh"
-#include "MHONDArrayWrapper.hh"
-#include "MHONDArrayOperator.hh"
-#include "MHOCompoundReductions.hh" //for operator type definitions
+#include "MHO_Message.hh"
+#include "MHO_NDArrayWrapper.hh"
+#include "MHO_NDArrayOperator.hh"
+#include "MHO_CompoundReductions.hh" //for operator type definitions
 
 /*
-*File: MHOReducer.hh
-*Class: MHOReducer
+*File: MHO_Reducer.hh
+*Class: MHO_Reducer
 *Author: J. Barrett
 *Email: barrettj@mit.edu
 *Date:
@@ -25,19 +25,19 @@ namespace hops
 {
 
 template< typename XItemType, template<typename> class XOperatorType, std::size_t RANK>
-class MHOReducer:
-    public MHONDArrayOperator< MHONDArrayWrapper< XItemType, RANK>,
-                             MHONDArrayWrapper< XItemType, RANK> >
+class MHO_Reducer:
+    public MHO_NDArrayOperator< MHO_NDArrayWrapper< XItemType, RANK>,
+                             MHO_NDArrayWrapper< XItemType, RANK> >
 {
     public:
 
-        MHOReducer():
+        MHO_Reducer():
             fInitialized(false)
         {
             for(std::size_t i=0;i<RANK;i++){fAxesToReduce[i] = 0;}
         }
 
-        virtual ~MHOReducer(){};
+        virtual ~MHO_Reducer(){};
 
         //set the indices of the axes over which we run the reduction.
         //This must be set before we can initialize/execute
@@ -123,7 +123,7 @@ class MHOReducer:
                     //set the output indices to collapse each index of the dimensions under reduction
                     for(std::size_t i=0; i<RANK; i++){out_loc[i] = std::min(in_loc[i], out_dim[i]-1);}
                     //find offset to location in output array
-                    std::size_t m = MHONDArrayMath::OffsetFromRowMajorIndex<RANK>(out_dim, out_loc);
+                    std::size_t m = MHO_NDArrayMath::OffsetFromRowMajorIndex<RANK>(out_dim, out_loc);
                     //execute the reduction operator +=  or *= or user-defined
                     fReductionOperator( (*(this->fOutput))[m], *iter);
                 }
@@ -144,4 +144,4 @@ class MHOReducer:
 }
 
 
-#endif /* MHOReducer_H__ */
+#endif /* MHO_Reducer_H__ */

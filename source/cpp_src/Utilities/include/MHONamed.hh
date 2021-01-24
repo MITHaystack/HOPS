@@ -1,9 +1,9 @@
-#ifndef MHONamed_HH__
-#define MHONamed_HH__
+#ifndef MHO_Named_HH__
+#define MHO_Named_HH__
 
 /*
-*File: MHONamed.hh
-*Class: MHONamed
+*File: MHO_Named.hh
+*Class: MHO_Named
 *Author: J. Barrett
 *Email: barrettj@mit.edu
 *Date: 2020-05-15T20:21:32.924Z
@@ -15,14 +15,14 @@
 namespace hops
 {
 
-class MHONamed
+class MHO_Named
 {
     public:
 
-        MHONamed():fName(""){};
-        MHONamed(const MHONamed& obj);
-        MHONamed& operator=(const MHONamed& lhs) = default;
-        virtual ~MHONamed() = default;
+        MHO_Named():fName(""){};
+        MHO_Named(const MHO_Named& obj);
+        MHO_Named& operator=(const MHO_Named& lhs) = default;
+        virtual ~MHO_Named() = default;
 
         bool IsNamed(const std::string& name) const;
         const std::string& GetName() const;
@@ -35,4 +35,4 @@ class MHONamed
 
 }  // namespace hops
 
-#endif /* end of include guard: MHONamed */
+#endif /* end of include guard: MHO_Named */

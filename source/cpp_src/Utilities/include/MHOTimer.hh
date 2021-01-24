@@ -1,5 +1,5 @@
-#ifndef MHOTimer_HH__
-#define MHOTimer_HH__
+#ifndef MHO_Timer_HH__
+#define MHO_Timer_HH__
 
 #include <string>
 #include <ctime>
@@ -7,12 +7,12 @@
 namespace hops
 {
 
-class MHOTimer
+class MHO_Timer
 {
     public:
-        MHOTimer();
-        MHOTimer(std::string name);
-        virtual ~MHOTimer();
+        MHO_Timer();
+        MHO_Timer(std::string name);
+        virtual ~MHO_Timer();
 
         void SetName(std::string name){fName = name;};
         std::string GetName() const {return fName;};
@@ -41,4 +41,4 @@ class MHOTimer
 
 }
 
-#endif /* end of include guard: MHOTimer */
+#endif /* end of include guard: MHO_Timer */

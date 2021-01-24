@@ -1,9 +1,9 @@
-#ifndef MHONDArrayWrapper_HH__
-#define MHONDArrayWrapper_HH__
+#ifndef MHO_NDArrayWrapper_HH__
+#define MHO_NDArrayWrapper_HH__
 
 /*
-*File: MHONDArrayWrapper.hh
-*Class: MHONDArrayWrapper
+*File: MHO_NDArrayWrapper.hh
+*Class: MHO_NDArrayWrapper
 *Author: J. Barrett
 *Email: barrettj@mit.edu
 *Date: 2020-05-15T20:22:38.395Z
@@ -22,14 +22,14 @@
 #include <cmath>
 #include <cinttypes>
 
-#include "MHONDArrayMath.hh"
-#include "MHOMessage.hh"
+#include "MHO_NDArrayMath.hh"
+#include "MHO_Message.hh"
 
 namespace hops
 {
 
 template< typename XValueType, std::size_t RANK>
-class MHONDArrayWrapper
+class MHO_NDArrayWrapper
 {
     public:
 
@@ -37,7 +37,7 @@ class MHONDArrayWrapper
         typedef std::integral_constant< std::size_t, RANK > rank;
 
         //empty constructor, to be configured later
-        MHONDArrayWrapper()
+        MHO_NDArrayWrapper()
         {
             //dimensions not known at time of construction
             for(std::size_t i=0; i<RANK; i++)
@@ -51,39 +51,39 @@ class MHONDArrayWrapper
 
         //data is externally allocated - we take no responsiblity to
         //delete the data pointed to by ptr upon destruction
-        MHONDArrayWrapper(XValueType* ptr, const std::size_t* dim)
+        MHO_NDArrayWrapper(XValueType* ptr, const std::size_t* dim)
         {
             //dimensions not known at time of construction
             for(std::size_t i=0; i<RANK; i++)
             {
                 fDimensions[i] = dim[i];
             }
-            fTotalArraySize = MHONDArrayMath::TotalArraySize<RANK>(fDimensions);
+            fTotalArraySize = MHO_NDArrayMath::TotalArraySize<RANK>(fDimensions);
             fDataPtr = ptr;
             fExternallyManaged = true;
         }
 
         //data is internally allocated
-        MHONDArrayWrapper(const std::size_t* dim)
+        MHO_NDArrayWrapper(const std::size_t* dim)
         {
             for(std::size_t i=0; i<RANK; i++)
             {
                 fDimensions[i] = dim[i];
             }
-            fTotalArraySize = MHONDArrayMath::TotalArraySize<RANK>(fDimensions);
+            fTotalArraySize = MHO_NDArrayMath::TotalArraySize<RANK>(fDimensions);
             fData.resize(fTotalArraySize);
             fDataPtr = &(fData[0]);
             fExternallyManaged = false;
         }
 
         //copy constructor
-        MHONDArrayWrapper(const MHONDArrayWrapper& obj)
+        MHO_NDArrayWrapper(const MHO_NDArrayWrapper& obj)
         {
             for(std::size_t i=0; i<RANK; i++)
             {
                 fDimensions[i] = obj.fDimensions[i];
             }
-            fTotalArraySize = MHONDArrayMath::TotalArraySize<RANK>(fDimensions);
+            fTotalArraySize = MHO_NDArrayMath::TotalArraySize<RANK>(fDimensions);
 
             if(obj.fExternallyManaged)
             {
@@ -104,7 +104,7 @@ class MHONDArrayWrapper
             }
         }
 
-        virtual ~MHONDArrayWrapper()
+        virtual ~MHO_NDArrayWrapper()
         {
             //all internal memory management is handled by std::vector
             //external arrays are not managed by this class at all
@@ -127,7 +127,7 @@ class MHONDArrayWrapper
                 msg_debug("containers", "resizing dimension: "<<i<<" to: "<<dim[i] << eom );
                 fDimensions[i] = dim[i];
             }
-            fTotalArraySize = MHONDArrayMath::TotalArraySize<RANK>(fDimensions);
+            fTotalArraySize = MHO_NDArrayMath::TotalArraySize<RANK>(fDimensions);
             fData.resize(fTotalArraySize);
             fDataPtr = &(fData[0]);
             fExternallyManaged = false;
@@ -149,7 +149,7 @@ class MHONDArrayWrapper
             {
                 fDimensions[i] = dim[i];
             }
-            fTotalArraySize = MHONDArrayMath::TotalArraySize<RANK>(fDimensions);
+            fTotalArraySize = MHO_NDArrayMath::TotalArraySize<RANK>(fDimensions);
 
             if(!fExternallyManaged) //not currently already externally managed
             {
@@ -187,7 +187,7 @@ class MHONDArrayWrapper
 
         std::size_t GetOffsetForIndices(const std::size_t* index)
         {
-            return MHONDArrayMath::OffsetFromRowMajorIndex<RANK>(fDimensions, index);
+            return MHO_NDArrayMath::OffsetFromRowMajorIndex<RANK>(fDimensions, index);
         }
 
         //access operator (,,...,) -- no bounds checking
@@ -196,7 +196,7 @@ class MHONDArrayWrapper
         operator()(XIndexTypeS...idx)
         {
             const std::array<std::size_t, RANK> indices = {{static_cast<size_t>(idx)...}}; //convert the arguments to an array
-            return fDataPtr[ MHONDArrayMath::OffsetFromRowMajorIndex<RANK>(fDimensions, &(indices[0]) ) ]; //compute the offset into the array and return reference to the data
+            return fDataPtr[ MHO_NDArrayMath::OffsetFromRowMajorIndex<RANK>(fDimensions, &(indices[0]) ) ]; //compute the offset into the array and return reference to the data
         }
 
         //const reference access operator()
@@ -205,7 +205,7 @@ class MHONDArrayWrapper
         operator()(XIndexTypeS...idx) const
         {
             const std::array<std::size_t, RANK> indices = {{static_cast<size_t>(idx)...}};
-            return fDataPtr[ MHONDArrayMath::OffsetFromRowMajorIndex<RANK>(fDimensions, &(indices[0]) ) ];
+            return fDataPtr[ MHO_NDArrayMath::OffsetFromRowMajorIndex<RANK>(fDimensions, &(indices[0]) ) ];
         }
 
         //access via at(,,,,) -- same as operator() but with bounds checking
@@ -214,13 +214,13 @@ class MHONDArrayWrapper
         at(XIndexTypeS...idx)
         {
             const std::array<std::size_t, RANK> indices = {{static_cast<size_t>(idx)...}};
-            if( MHONDArrayMath::CheckIndexValidity<RANK>( fDimensions, &(indices[0]) ) ) //make sure the indices are valid for the given array dimensions
+            if( MHO_NDArrayMath::CheckIndexValidity<RANK>( fDimensions, &(indices[0]) ) ) //make sure the indices are valid for the given array dimensions
             {
-                return fDataPtr[ MHONDArrayMath::OffsetFromRowMajorIndex<RANK>(fDimensions, &(indices[0]) ) ];
+                return fDataPtr[ MHO_NDArrayMath::OffsetFromRowMajorIndex<RANK>(fDimensions, &(indices[0]) ) ];
             }
             else
             {
-                throw std::out_of_range("MHONDArrayWrapper::at() indices out of range.");
+                throw std::out_of_range("MHO_NDArrayWrapper::at() indices out of range.");
             }
         }
 
@@ -230,13 +230,13 @@ class MHONDArrayWrapper
         at(XIndexTypeS...idx) const
         {
             const std::array<std::size_t, RANK> indices = {{static_cast<size_t>(idx)...}};
-            if( MHONDArrayMath::CheckIndexValidity<RANK>( fDimensions, &(indices[0]) ) )
+            if( MHO_NDArrayMath::CheckIndexValidity<RANK>( fDimensions, &(indices[0]) ) )
             {
-                return fDataPtr[  MHONDArrayMath::OffsetFromRowMajorIndex<RANK>(fDimensions, &(indices[0]) ) ];
+                return fDataPtr[  MHO_NDArrayMath::OffsetFromRowMajorIndex<RANK>(fDimensions, &(indices[0]) ) ];
             }
             else
             {
-                throw std::out_of_range("MHONDArrayWrapper::at() indices out of range.");
+                throw std::out_of_range("MHO_NDArrayWrapper::at() indices out of range.");
             }
         }
 
@@ -244,7 +244,7 @@ class MHONDArrayWrapper
         XValueType& operator[](std::size_t i){return fDataPtr[i];}
         const XValueType& operator[](std::size_t i) const {return fDataPtr[i];}
 
-        MHONDArrayWrapper& operator=(const MHONDArrayWrapper& rhs)
+        MHO_NDArrayWrapper& operator=(const MHO_NDArrayWrapper& rhs)
         {
             if(this != &rhs)
             {
@@ -256,7 +256,7 @@ class MHONDArrayWrapper
                     {
                         fDimensions[i] = rhs.fDimensions[i];
                     }
-                    fTotalArraySize = MHONDArrayMath::TotalArraySize<RANK>(fDimensions);
+                    fTotalArraySize = MHO_NDArrayMath::TotalArraySize<RANK>(fDimensions);
                     fDataPtr = rhs.fDataPtr;
                     fExternallyManaged = true;
                     //effectively de-allocate anything we might have had before
@@ -327,7 +327,7 @@ class MHONDArrayWrapper
                     fDimensions(dim)
                 {
                     //initialize the multi-dim indices
-                    MHONDArrayMath::RowMajorIndexFromOffset<RANK>(offset, fDimensions, &(fIndices[0]) );
+                    MHO_NDArrayMath::RowMajorIndexFromOffset<RANK>(offset, fDimensions, &(fIndices[0]) );
                 };
 
                 iterator(const self_type& copy)
@@ -341,14 +341,14 @@ class MHONDArrayWrapper
                 self_type operator++()
                 {
                     fPtr++;
-                    fValid = MHONDArrayMath::IncrementIndices<RANK>(fDimensions, &(fIndices[0]) );
+                    fValid = MHO_NDArrayMath::IncrementIndices<RANK>(fDimensions, &(fIndices[0]) );
                     return *this;
                 }
 
                 self_type operator--()
                 {
                     fPtr--;
-                    fValid = MHONDArrayMath::DecrementIndices<RANK>(fDimensions, &(fIndices[0]) );
+                    fValid = MHO_NDArrayMath::DecrementIndices<RANK>(fDimensions, &(fIndices[0]) );
                     return *this;
                 }
 
@@ -356,7 +356,7 @@ class MHONDArrayWrapper
                 {
                     self_type ret_val(*this);
                     fPtr++;
-                    fValid = MHONDArrayMath::IncrementIndices<RANK>(fDimensions, &(fIndices[0]) );
+                    fValid = MHO_NDArrayMath::IncrementIndices<RANK>(fDimensions, &(fIndices[0]) );
                     return ret_val;
                 }
 
@@ -364,7 +364,7 @@ class MHONDArrayWrapper
                 {
                     self_type ret_val(*this);
                     fPtr--;
-                    fValid = MHONDArrayMath::DecrementIndices<RANK>(fDimensions, &(fIndices[0]) );
+                    fValid = MHO_NDArrayMath::DecrementIndices<RANK>(fDimensions, &(fIndices[0]) );
                     return ret_val;
                 }
 
@@ -378,11 +378,11 @@ class MHONDArrayWrapper
                     fPtr += diff;
                     if(diff >= 0)
                     {
-                        fValid = MHONDArrayMath::IncrementIndices<RANK>(fDimensions, &(fIndices[0]), (std::size_t)diff );
+                        fValid = MHO_NDArrayMath::IncrementIndices<RANK>(fDimensions, &(fIndices[0]), (std::size_t)diff );
                     }
                     else
                     {
-                        fValid = MHONDArrayMath::DecrementIndices<RANK>(fDimensions, &(fIndices[0]), (std::size_t) std::abs(diff) );
+                        fValid = MHO_NDArrayMath::DecrementIndices<RANK>(fDimensions, &(fIndices[0]), (std::size_t) std::abs(diff) );
                     }
                     return (*this);
                 }
@@ -392,11 +392,11 @@ class MHONDArrayWrapper
                     fPtr -= diff;
                     if(diff >= 0)
                     {
-                        fValid = MHONDArrayMath::DecrementIndices<RANK>(fDimensions, &(fIndices[0]), (std::size_t) diff );
+                        fValid = MHO_NDArrayMath::DecrementIndices<RANK>(fDimensions, &(fIndices[0]), (std::size_t) diff );
                     }
                     else
                     {
-                        fValid = MHONDArrayMath::IncrementIndices<RANK>(fDimensions, &(fIndices[0]), (std::size_t) std::abs(diff) );
+                        fValid = MHO_NDArrayMath::IncrementIndices<RANK>(fDimensions, &(fIndices[0]), (std::size_t) std::abs(diff) );
                     }
                     return (*this);
                 }
@@ -410,11 +410,11 @@ class MHONDArrayWrapper
                     fPtr += diff;
                     if(diff >= 0)
                     {
-                        fValid = MHONDArrayMath::IncrementIndices<RANK>(fDimensions, &(fIndices[0]), (std::size_t)diff );
+                        fValid = MHO_NDArrayMath::IncrementIndices<RANK>(fDimensions, &(fIndices[0]), (std::size_t)diff );
                     }
                     else
                     {
-                        fValid = MHONDArrayMath::DecrementIndices<RANK>(fDimensions, &(fIndices[0]), (std::size_t) std::abs(diff) );
+                        fValid = MHO_NDArrayMath::DecrementIndices<RANK>(fDimensions, &(fIndices[0]), (std::size_t) std::abs(diff) );
                     }
                     self_type temp(*this);
 
@@ -434,11 +434,11 @@ class MHONDArrayWrapper
                     fPtr -= diff;
                     if(diff >= 0)
                     {
-                        fValid = MHONDArrayMath::DecrementIndices<RANK>(fDimensions, &(fIndices[0]), (std::size_t) diff );
+                        fValid = MHO_NDArrayMath::DecrementIndices<RANK>(fDimensions, &(fIndices[0]), (std::size_t) diff );
                     }
                     else
                     {
-                        fValid = MHONDArrayMath::IncrementIndices<RANK>(fDimensions, &(fIndices[0]), (std::size_t) std::abs(diff) );
+                        fValid = MHO_NDArrayMath::IncrementIndices<RANK>(fDimensions, &(fIndices[0]), (std::size_t) std::abs(diff) );
                     }
                     self_type temp(*this);
 
@@ -509,39 +509,39 @@ class MHONDArrayWrapper
 
 //specialization for a RANK-0 (i.e. a scalar)
 template< typename XValueType >
-class MHONDArrayWrapper<XValueType, 0>
+class MHO_NDArrayWrapper<XValueType, 0>
 {
     public:
 
         using value_type = XValueType;
         typedef std::integral_constant< std::size_t, 0 > rank;
 
-        MHONDArrayWrapper()
+        MHO_NDArrayWrapper()
         {
             fTotalArraySize = 1;
         }
 
         //copy constructor
-        MHONDArrayWrapper(const MHONDArrayWrapper& obj)
+        MHO_NDArrayWrapper(const MHO_NDArrayWrapper& obj)
         {
             fTotalArraySize = 1;
             fData = obj.fData;
         }
 
-        MHONDArrayWrapper(const XValueType& data)
+        MHO_NDArrayWrapper(const XValueType& data)
         {
             fData = data;
             fTotalArraySize = 1;
         }
 
-        virtual ~MHONDArrayWrapper(){};
+        virtual ~MHO_NDArrayWrapper(){};
 
         void SetData(const XValueType& value){fData = value;}
         XValueType GetData(){return fData;};
 
         std::size_t GetSize() const {return 1;};
 
-        MHONDArrayWrapper& operator=(const MHONDArrayWrapper& rhs)
+        MHO_NDArrayWrapper& operator=(const MHO_NDArrayWrapper& rhs)
         {
             if(this != &rhs)
             {
@@ -575,14 +575,14 @@ class MHONDArrayWrapper<XValueType, 0>
 
 //specialization for a RANK-1 (i.e. a vector)
 template< typename XValueType >
-class MHONDArrayWrapper<XValueType, 1>
+class MHO_NDArrayWrapper<XValueType, 1>
 {
     public:
 
         using value_type = XValueType;
         typedef std::integral_constant< std::size_t, 1 > rank;
 
-        MHONDArrayWrapper()
+        MHO_NDArrayWrapper()
         {
             //dimensions not known at time of construction
             fDimensions[0] = 0;
@@ -593,7 +593,7 @@ class MHONDArrayWrapper<XValueType, 1>
 
         //data is externally allocated - we take no responsiblity to
         //delete the data pointed to by ptr upon destruction
-        MHONDArrayWrapper(XValueType* ptr, std::size_t dim)
+        MHO_NDArrayWrapper(XValueType* ptr, std::size_t dim)
         {
             //dimensions not known at time of construction
             fDimensions[0] = dim;
@@ -604,7 +604,7 @@ class MHONDArrayWrapper<XValueType, 1>
 
         //data is internally allocated
         //we may want to improve this with an allocator type parameter
-        MHONDArrayWrapper(std::size_t dim)
+        MHO_NDArrayWrapper(std::size_t dim)
         {
             fDimensions[0] = dim;
             fTotalArraySize = dim;
@@ -614,7 +614,7 @@ class MHONDArrayWrapper<XValueType, 1>
         }
 
         //copy constructor
-        MHONDArrayWrapper(const MHONDArrayWrapper& obj)
+        MHO_NDArrayWrapper(const MHO_NDArrayWrapper& obj)
         {
             fDimensions[0] = obj.fDimensions[0];
             fTotalArraySize = obj.fTotalArraySize;
@@ -635,7 +635,7 @@ class MHONDArrayWrapper<XValueType, 1>
             }
         }
 
-        virtual ~MHONDArrayWrapper(){};
+        virtual ~MHO_NDArrayWrapper(){};
 
         void Resize(const std::size_t* dim)
         {
@@ -699,7 +699,7 @@ class MHONDArrayWrapper<XValueType, 1>
 
         std::size_t GetOffsetForIndices(const std::size_t* index)
         {
-            return MHONDArrayMath::OffsetFromRowMajorIndex<1>(fDimensions, index);
+            return MHO_NDArrayMath::OffsetFromRowMajorIndex<1>(fDimensions, index);
         }
 
         //TODO fix narrowing warning on conversion of XIndexTypeS to std::size_t
@@ -727,13 +727,13 @@ class MHONDArrayWrapper<XValueType, 1>
         at(XIndexTypeS...idx)
         {
             const std::array<std::size_t, 1> indices = {{static_cast<size_t>(idx)...}};
-            if( MHONDArrayMath::CheckIndexValidity<1>( fDimensions, &(indices[0]) ) )
+            if( MHO_NDArrayMath::CheckIndexValidity<1>( fDimensions, &(indices[0]) ) )
             {
                 return fDataPtr[ indices[0] ];
             }
             else
             {
-                throw std::out_of_range("MHONDArrayWrapper::at() indices out of range.");
+                throw std::out_of_range("MHO_NDArrayWrapper::at() indices out of range.");
             }
         }
 
@@ -743,13 +743,13 @@ class MHONDArrayWrapper<XValueType, 1>
         at(XIndexTypeS...idx) const
         {
             const std::array<std::size_t, 1> indices = {{static_cast<size_t>(idx)...}};
-            if( MHONDArrayMath::CheckIndexValidity<1>( fDimensions, &(indices[0]) ) )
+            if( MHO_NDArrayMath::CheckIndexValidity<1>( fDimensions, &(indices[0]) ) )
             {
                 return fDataPtr[ indices[0] ];
             }
             else
             {
-                throw std::out_of_range("MHONDArrayWrapper::at() indices out of range.");
+                throw std::out_of_range("MHO_NDArrayWrapper::at() indices out of range.");
             }
         }
 
@@ -764,7 +764,7 @@ class MHONDArrayWrapper<XValueType, 1>
             return fDataPtr[i];
         }
 
-        MHONDArrayWrapper& operator=(const MHONDArrayWrapper& rhs)
+        MHO_NDArrayWrapper& operator=(const MHO_NDArrayWrapper& rhs)
         {
             if(this != &rhs)
             {
@@ -868,4 +868,4 @@ HaveSameDimensions(const XArrayType1* arr1, const XArrayType2* arr2)
 }//end of hops namespace
 
 
-#endif /* MHONDArrayWrapper_HH__ */
+#endif /* MHO_NDArrayWrapper_HH__ */

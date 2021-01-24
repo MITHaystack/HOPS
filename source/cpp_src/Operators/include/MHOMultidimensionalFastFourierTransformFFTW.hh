@@ -1,23 +1,23 @@
-#ifndef MHOMultidimensionalFastFourierTransformFFTW_HH__
-#define MHOMultidimensionalFastFourierTransformFFTW_HH__
+#ifndef MHO_MultidimensionalFastFourierTransformFFTW_HH__
+#define MHO_MultidimensionalFastFourierTransformFFTW_HH__
 
 #include <cstring>
 #include <fftw3.h>
 
-#include "MHOMessage.hh"
-#include "MHONDArrayWrapper.hh"
-#include "MHOFastFourierTransform.hh"
+#include "MHO_Message.hh"
+#include "MHO_NDArrayWrapper.hh"
+#include "MHO_FastFourierTransform.hh"
 
 namespace hops
 {
 
 template<size_t RANK>
-class MHOMultidimensionalFastFourierTransformFFTW:
-    public MHONDArrayOperator< MHONDArrayWrapper< std::complex<double>, RANK >, 
-                             MHONDArrayWrapper< std::complex<double>, RANK > >
+class MHO_MultidimensionalFastFourierTransformFFTW:
+    public MHO_NDArrayOperator< MHO_NDArrayWrapper< std::complex<double>, RANK >, 
+                             MHO_NDArrayWrapper< std::complex<double>, RANK > >
 {
     public:
-        MHOMultidimensionalFastFourierTransformFFTW()
+        MHO_MultidimensionalFastFourierTransformFFTW()
         {
             fTotalArraySize = 0;
             fInPtr = NULL;
@@ -33,7 +33,7 @@ class MHOMultidimensionalFastFourierTransformFFTW:
             fForward = true;
         };
 
-        virtual ~MHOMultidimensionalFastFourierTransformFFTW()
+        virtual ~MHO_MultidimensionalFastFourierTransformFFTW()
         {
             DealocateWorkspace();
             if(fInitialized)
@@ -62,7 +62,7 @@ class MHOMultidimensionalFastFourierTransformFFTW:
 
             if(!fInitialized && fIsValid)
             {
-                fTotalArraySize = MHONDArrayMath::TotalArraySize<RANK>(fDimensionSize);
+                fTotalArraySize = MHO_NDArrayMath::TotalArraySize<RANK>(fDimensionSize);
                 AllocateWorkspace();
                 bool success = ConstructPlan();
                 fInitialized = success;
@@ -164,14 +164,14 @@ class MHOMultidimensionalFastFourierTransformFFTW:
             //but we could implement a batched interface also...
             int howmany_rank = 0; //zero disables more than one x-form
             fHowManyDims.n = 1;
-            fHowManyDims.is = MHONDArrayMath::TotalArraySize<RANK>(fDimensionSize);
-            fHowManyDims.os = MHONDArrayMath::TotalArraySize<RANK>(fDimensionSize);
+            fHowManyDims.is = MHO_NDArrayMath::TotalArraySize<RANK>(fDimensionSize);
+            fHowManyDims.os = MHO_NDArrayMath::TotalArraySize<RANK>(fDimensionSize);
 
             for(size_t i=0; i<RANK; i++)
             {
                 fDims[i].n = fDimensionSize[i];
-                fDims[i].is = MHONDArrayMath::StrideFromRowMajorIndex<RANK>(i,fDimensionSize);
-                fDims[i].os = MHONDArrayMath::StrideFromRowMajorIndex<RANK>(i,fDimensionSize);
+                fDims[i].is = MHO_NDArrayMath::StrideFromRowMajorIndex<RANK>(i,fDimensionSize);
+                fDims[i].os = MHO_NDArrayMath::StrideFromRowMajorIndex<RANK>(i,fDimensionSize);
             }
 
             fPlanForward = fftw_plan_guru_dft(rank, fDims, howmany_rank, &fHowManyDims,
@@ -219,4 +219,4 @@ class MHOMultidimensionalFastFourierTransformFFTW:
 
 }
 
-#endif /* MHOMultidimensionalFastFourierTransformFFTW_H__ */
+#endif /* MHO_MultidimensionalFastFourierTransformFFTW_H__ */
