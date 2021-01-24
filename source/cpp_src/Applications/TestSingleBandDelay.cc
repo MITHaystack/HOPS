@@ -152,7 +152,7 @@ int main(int argc, char** argv)
     // std::cout<<"done with the FFT's"<<std::endl;
     // std::vector< std::vector< std::vector< std::complex<double> > > > sbd;
     // sbd.resize(data_dims[CH_POLPROD_AXIS]);
-    // 
+    //
     // //now collapse the time and channel axis (channels only over the first 8 chans --one sampler)
     // for(std::size_t pp=0; pp<data_dims[CH_POLPROD_AXIS]; pp++)
     // {
@@ -168,7 +168,7 @@ int main(int argc, char** argv)
     //             }
     //         }
     //     }
-    // 
+    //
     // }
 
     //TODO FIXME check this calculation
@@ -199,16 +199,16 @@ int main(int argc, char** argv)
 
 
     //now we want to reduce (sum) the data along the "channel" axis/dimension
-    //Presumably, once we find the correct delay-rate and delay we can apply 
-    //this (rotate the data of each channel) so that all of the visibilities 
+    //Presumably, once we find the correct delay-rate and delay we can apply
+    //this (rotate the data of each channel) so that all of the visibilities
     //will add coherently
 
     MHOReducer< ch_baseline_data_type::value_type,
-                MHOCompoundSum<ch_baseline_data_type::value_type>,
+                MHOCompoundSum,
                 ch_baseline_data_type::rank::value > summation;
-    
-    //sum all the data along the channel axis 
-    summation.ReduceAxis(CH_CHANNEL_AXIS); 
+
+    //sum all the data along the channel axis
+    summation.ReduceAxis(CH_CHANNEL_AXIS);
 
 
 
@@ -218,18 +218,18 @@ int main(int argc, char** argv)
     // sbd_rotation.SetReferenceTime(0.0);
     // sbd_rotation.SetDelayRate(0.0);
     // sbd_rotation.SetSingleBandDelay(0.0);
-    // 
+    //
     // ch_baseline_data_type* rotated_ch_bl_data = new ch_baseline_data_type();
     // MHOFunctorBroadcaster<ch_baseline_data_type, ch_baseline_data_type> broadcaster;
     // broadcaster.SetInput(copy_ch_bl_data);
     // broadcaster.SetOutput(rotated_ch_bl_data);
     // broadcaster.SetFunctor(&sbd_rotation);
-    
 
-    
-    
-    
-    
+
+
+
+
+
 
 
     #ifdef USE_ROOT
