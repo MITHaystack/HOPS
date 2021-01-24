@@ -7,7 +7,7 @@ namespace hops{
 
 
 
- //template parameters must inherit from MHOArrayWrapper
+ //template parameters must inherit from MHONDArrayWrapper
 template<class XInputArrayType1, class XInputArrayType2, class XOutputArrayType>
 class MHOBinaryArrayOperator
 {

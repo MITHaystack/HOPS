@@ -24,7 +24,7 @@
 //     const size_t dval = 5;
 //     const size_t dim_size[ndim] = {dval};
 //     const size_t total_size = dim_size[0];
-//     MHOArrayWrapper<std::complex<double>, ndim> input(dim_size[0]);
+//     MHONDArrayWrapper<std::complex<double>, ndim> input(dim_size[0]);
 //
 //     //fill up the array with a signal
 //     int count = 0;
@@ -98,8 +98,8 @@
 //     const size_t dval = 4;
 //     const size_t dim_size[ndim] = {dval, dval};
 //     const size_t total_size = dim_size[0] * dim_size[1];
-//     MHOArrayWrapper<std::complex<double>, ndim> input(dim_size);
-//     MHOArrayWrapper<std::complex<double>, ndim> output(dim_size);
+//     MHONDArrayWrapper<std::complex<double>, ndim> input(dim_size);
+//     MHONDArrayWrapper<std::complex<double>, ndim> output(dim_size);
 // 
 //     //fill up the array with a signal
 //     int count = 0;
@@ -226,7 +226,7 @@ int main(int /*argc*/, char** /*argv*/)
     const size_t dval = 5;
     const size_t dim_size[ndim] = {dval, dval, dval};
     const size_t total_size = dim_size[0] * dim_size[1] * dim_size[2];
-    MHOArrayWrapper<std::complex<double>, ndim> input(dim_size);
+    MHONDArrayWrapper<std::complex<double>, ndim> input(dim_size);
 
     //fill up the array with a signal
     int count = 0;

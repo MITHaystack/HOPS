@@ -15,7 +15,7 @@
 
 
 #include "MHOArrayFunctor.hh"
-#include "MHOTensorContainer.hh"
+#include "MHOTableContainer.hh"
 #include "MHOChannelizedVisibilities.hh"
 
 namespace hops

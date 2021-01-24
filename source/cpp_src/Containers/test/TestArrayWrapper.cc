@@ -2,7 +2,7 @@
 #include <string>
 
 #include "MHOMessage.hh"
-#include "MHOArrayWrapper.hh"
+#include "MHONDArrayWrapper.hh"
 
 using namespace hops;
 
@@ -14,7 +14,7 @@ int main(int /*argc*/, char** /*argv*/)
 
     size_t dim[2] = {10, 10};
 
-    MHOArrayWrapper<double, 2> test(dim);
+    MHONDArrayWrapper<double, 2> test(dim);
 
     std::cout<<"dimension @ 0 ="<<test.GetDimension(0)<<std::endl;
     std::cout<<"total array size = "<<test.GetSize()<<std::endl;
@@ -30,7 +30,7 @@ int main(int /*argc*/, char** /*argv*/)
         }
     }
 
-    MHOArrayWrapper<double,2> test2(test);
+    MHONDArrayWrapper<double,2> test2(test);
 
     for(size_t i=0; i<dim[0]; i++)
     {
@@ -45,7 +45,7 @@ int main(int /*argc*/, char** /*argv*/)
     //now lets test it on a bit of pre-allocated memory
 
     double* chunk = new double[100];
-    MHOArrayWrapper<double, 2> test3(chunk, dim);
+    MHONDArrayWrapper<double, 2> test3(chunk, dim);
 
     std::cout<<"ptr to data = "<<chunk<<" = "<< test3.GetData()<<std::endl;
 

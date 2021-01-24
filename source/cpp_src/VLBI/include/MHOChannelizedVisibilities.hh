@@ -15,7 +15,7 @@
 
 #include "MHOAxis.hh"
 #include "MHOAxisPack.hh"
-#include "MHOTensorContainer.hh"
+#include "MHOTableContainer.hh"
 
 namespace hops
 {
@@ -34,7 +34,7 @@ using ch_time_axis_type = MHOAxis<double>;
 #define CH_FREQ_AXIS 3
 
 using ch_baseline_axis_pack = MHOAxisPack< ch_polprod_axis_type, ch_channel_axis_type, ch_time_axis_type, ch_frequency_axis_type >;
-using ch_baseline_data_type = MHOTensorContainer< ch_visibility_type, ch_baseline_axis_pack >;
+using ch_baseline_data_type = MHOTableContainer< ch_visibility_type, ch_baseline_axis_pack >;
 
 
 }//end of hops namespaces

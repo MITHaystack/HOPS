@@ -17,9 +17,9 @@ int main(int /*argc*/, char** /*argv*/)
     const size_t dval = 3;
     size_t dim_size[ndim];
     for(std::size_t i=0;i<NDIM;i++){dim_size[i] = i+dval;};
-    MHOArrayWrapper<std::complex<double>, ndim>* input = new MHOArrayWrapper<std::complex<double>, ndim>(dim_size);
-    MHOArrayWrapper<std::complex<double>, ndim>* output = new MHOArrayWrapper<std::complex<double>, ndim>();
-    MHOArrayWrapper<std::complex<double>, ndim>* output2 = new MHOArrayWrapper<std::complex<double>, ndim>();
+    MHONDArrayWrapper<std::complex<double>, ndim>* input = new MHONDArrayWrapper<std::complex<double>, ndim>(dim_size);
+    MHONDArrayWrapper<std::complex<double>, ndim>* output = new MHONDArrayWrapper<std::complex<double>, ndim>();
+    MHONDArrayWrapper<std::complex<double>, ndim>* output2 = new MHONDArrayWrapper<std::complex<double>, ndim>();
 
     input->SetArray( std::complex<double>(2.0,0.0) );
 

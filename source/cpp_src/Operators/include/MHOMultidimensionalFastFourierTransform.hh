@@ -4,7 +4,7 @@
 #include <cstring>
 
 #include "MHOMessage.hh"
-#include "MHOArrayWrapper.hh"
+#include "MHONDArrayWrapper.hh"
 #include "MHOFastFourierTransform.hh"
 
 namespace hops
@@ -12,8 +12,8 @@ namespace hops
 
 template<size_t RANK>
 class MHOMultidimensionalFastFourierTransform: 
-    public MHOArrayOperator< MHOArrayWrapper< std::complex<double>, RANK >, 
-                             MHOArrayWrapper< std::complex<double>, RANK > >
+    public MHOArrayOperator< MHONDArrayWrapper< std::complex<double>, RANK >, 
+                             MHONDArrayWrapper< std::complex<double>, RANK > >
 {
     public:
         MHOMultidimensionalFastFourierTransform()
@@ -161,7 +161,7 @@ class MHOMultidimensionalFastFourierTransform:
         {
             for(size_t i=0; i<RANK; i++)
             {
-                fWorkspaceWrapper[i] = new MHOArrayWrapper< std::complex<double>, 1 >(fDimensionSize[i]);
+                fWorkspaceWrapper[i] = new MHONDArrayWrapper< std::complex<double>, 1 >(fDimensionSize[i]);
                 fTransformCalculator[i] = new MHOFastFourierTransform();
                 fTransformCalculator[i]->SetSize(fDimensionSize[i]);
                 fTransformCalculator[i]->SetInput(fWorkspaceWrapper[i]);
@@ -186,7 +186,7 @@ class MHOMultidimensionalFastFourierTransform:
         size_t fDimensionSize[RANK];
 
         MHOFastFourierTransform* fTransformCalculator[RANK];
-        MHOArrayWrapper<std::complex<double>, 1>* fWorkspaceWrapper[RANK];
+        MHONDArrayWrapper<std::complex<double>, 1>* fWorkspaceWrapper[RANK];
 
 
 };

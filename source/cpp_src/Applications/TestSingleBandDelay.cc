@@ -130,7 +130,7 @@ int main(int argc, char** argv)
     //with axes of time-by-freq
 
     std::size_t channel_dims[2] = {data_dims[CH_TIME_AXIS], data_dims[CH_FREQ_AXIS]};
-    MHOArrayWrapper< std::complex<double>, 2> channel_wrapper(channel_dims);
+    MHONDArrayWrapper< std::complex<double>, 2> channel_wrapper(channel_dims);
     channel_wrapper.SetExternalData( &( ch_bl_data->at(0,0,0,0) ) , channel_dims);
 
     //now we run a 2-d FFT on the time and freq axes over each channel's data
@@ -174,7 +174,7 @@ int main(int argc, char** argv)
     //TODO FIXME check this calculation
     //lets compute the values of the transformed (freq) axis --
     //this ought to give us the values of the 'single band delay' axis
-    MHOArrayWrapper< double, 1> sbd_axis(data_dims[CH_FREQ_AXIS]);
+    MHONDArrayWrapper< double, 1> sbd_axis(data_dims[CH_FREQ_AXIS]);
     int n = data_dims[CH_FREQ_AXIS];
     int n02 = n/2;
     for(std::size_t f=0; f<data_dims[CH_FREQ_AXIS]; f++)
@@ -187,7 +187,7 @@ int main(int argc, char** argv)
     //TODO FIXME check this calculation
     //lets compute the values of the transformed (time) axis --
     //this ought to give us the values of the 'delay-rate' axis
-    MHOArrayWrapper< double, 1> dr_axis(data_dims[CH_TIME_AXIS]);
+    MHONDArrayWrapper< double, 1> dr_axis(data_dims[CH_TIME_AXIS]);
     int dn = data_dims[CH_TIME_AXIS];
     int dn02 = dn/2;
     for(std::size_t t=0; t<data_dims[CH_TIME_AXIS]; t++)
