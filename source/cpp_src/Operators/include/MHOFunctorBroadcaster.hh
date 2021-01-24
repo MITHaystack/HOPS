@@ -1,18 +1,18 @@
-#ifndef MHOFunctorBroadcaster_HH__
-#define MHOFunctorBroadcaster_HH__
+#ifndef MHO_FunctorBroadcaster_HH__
+#define MHO_FunctorBroadcaster_HH__
 
 #include <algorithm>
 
-#include "MHOMessage.hh"
-#include "MHONDArrayWrapper.hh"
-#include "MHONDArrayOperator.hh"
-#include "MHONDArrayFunctor.hh"
+#include "MHO_Message.hh"
+#include "MHO_NDArrayWrapper.hh"
+#include "MHO_NDArrayOperator.hh"
+#include "MHO_NDArrayFunctor.hh"
 
 
 
 /*
-*File: MHOFunctorBroadcaster.hh
-*Class: MHOFunctorBroadcaster
+*File: MHO_FunctorBroadcaster.hh
+*Class: MHO_FunctorBroadcaster
 *Author: J. Barrett
 *Email: barrettj@mit.edu
 *Date:
@@ -24,21 +24,21 @@ namespace hops
 {
 
 template< class XInputArrayType, class XOutputArrayType >
-class MHOFunctorBroadcaster: public MHONDArrayOperator<XInputArrayType, XOutputArrayType >
+class MHO_FunctorBroadcaster: public MHO_NDArrayOperator<XInputArrayType, XOutputArrayType >
 {
     public:
 
         static_assert(XOutputArrayType::rank::value == XInputArrayType::rank::value, "Input/Output array ranks are not equal.");
 
-        MHOFunctorBroadcaster():
+        MHO_FunctorBroadcaster():
             fInitialized(false),
             fFunctor(nullptr)
         {};
 
-        virtual ~MHOFunctorBroadcaster(){};
+        virtual ~MHO_FunctorBroadcaster(){};
 
-        void SetFunctor( MHONDArrayFunctor<XInputArrayType, XOutputArrayType>* functor){fFunctor = functor;}
-        MHONDArrayFunctor<XInputArrayType, XOutputArrayType>* GetFunctor() {return fFunctor;};
+        void SetFunctor( MHO_NDArrayFunctor<XInputArrayType, XOutputArrayType>* functor){fFunctor = functor;}
+        MHO_NDArrayFunctor<XInputArrayType, XOutputArrayType>* GetFunctor() {return fFunctor;};
 
         virtual bool Initialize() override
         {
@@ -93,11 +93,11 @@ class MHOFunctorBroadcaster: public MHONDArrayOperator<XInputArrayType, XOutputA
     private:
 
         bool fInitialized;
-        MHONDArrayFunctor<XInputArrayType, XOutputArrayType>* fFunctor;
+        MHO_NDArrayFunctor<XInputArrayType, XOutputArrayType>* fFunctor;
 
 };
 
 }
 
 
-#endif /* MHOFunctorBroadcaster_H__ */
+#endif /* MHO_FunctorBroadcaster_H__ */

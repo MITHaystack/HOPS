@@ -1,22 +1,22 @@
-#include "MHOIntervalLabel.hh"
+#include "MHO_IntervalLabel.hh"
 
 
 namespace hops
 {
 
 
-MHOIntervalLabel::MHOIntervalLabel():
-    MHOInterval(),
-    MHOIntervalLabelMap()
+MHO_IntervalLabel::MHO_IntervalLabel():
+    MHO_Interval(),
+    MHO_IntervalLabelMap()
 {}
 
-MHOIntervalLabel::MHOIntervalLabel( std::size_t lower_bound, std::size_t upper_bound):
-    MHOInterval(lower_bound,upper_bound),
-    MHOIntervalLabelMap()
+MHO_IntervalLabel::MHO_IntervalLabel( std::size_t lower_bound, std::size_t upper_bound):
+    MHO_Interval(lower_bound,upper_bound),
+    MHO_IntervalLabelMap()
 {};
 
 bool
-MHOIntervalLabel::HasKey(const std::string& key) const
+MHO_IntervalLabel::HasKey(const std::string& key) const
 {
     if(this->ContainsKey<char>(key)){return true;}
     if(this->ContainsKey<bool>(key)){return true;}
@@ -26,8 +26,8 @@ MHOIntervalLabel::HasKey(const std::string& key) const
     return false;
 }
 
-MHOIntervalLabel::MHOIntervalLabel(const MHOIntervalLabel& copy):
-    MHOInterval(copy)
+MHO_IntervalLabel::MHO_IntervalLabel(const MHO_IntervalLabel& copy):
+    MHO_Interval(copy)
 {
     this->CopyFrom<char>(copy);
     this->CopyFrom<bool>(copy);
@@ -36,7 +36,7 @@ MHOIntervalLabel::MHOIntervalLabel(const MHOIntervalLabel& copy):
     this->CopyFrom<std::string>(copy);
 }
 
-MHOIntervalLabel::~MHOIntervalLabel(){};
+MHO_IntervalLabel::~MHO_IntervalLabel(){};
 
 
 }//end of namespace

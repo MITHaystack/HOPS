@@ -1,10 +1,10 @@
-#ifndef MHOMultiTypeMap_HH__
-#define MHOMultiTypeMap_HH__
+#ifndef MHO_MultiTypeMap_HH__
+#define MHO_MultiTypeMap_HH__
 
 
 /*
-*File: MHOMultiTypeMap.hh
-*Class: MHOMultiTypeMap
+*File: MHO_MultiTypeMap.hh
+*Class: MHO_MultiTypeMap
 *Author: J. Barrett
 *Email: barrettj@mit.edu
 *Date: 2020-05-15T20:56:55.583Z
@@ -16,18 +16,18 @@
 #include <string>
 #include <iostream>
 
-#include "MHOMeta.hh"
+#include "MHO_Meta.hh"
 
 namespace hops
 {
 
 template< typename XKeyType, typename XValueType >
-class MHOSingleTypeMap
+class MHO_SingleTypeMap
 {
     public:
 
-        MHOSingleTypeMap(){};
-        virtual ~MHOSingleTypeMap(){};
+        MHO_SingleTypeMap(){};
+        virtual ~MHO_SingleTypeMap(){};
 
         void Insert(const XKeyType& key, const XValueType& value)
         {
@@ -64,7 +64,7 @@ class MHOSingleTypeMap
             else{return true;}
         }
 
-        void CopyFrom(const MHOSingleTypeMap<XKeyType, XValueType>& copy_from_obj)
+        void CopyFrom(const MHO_SingleTypeMap<XKeyType, XValueType>& copy_from_obj)
         {
             if(this != &copy_from_obj)
             {
@@ -73,7 +73,7 @@ class MHOSingleTypeMap
             }
         }
 
-        void CopyTo(MHOSingleTypeMap<XKeyType, XValueType>& copy_to_obj) const
+        void CopyTo(MHO_SingleTypeMap<XKeyType, XValueType>& copy_to_obj) const
         {
             if(this != &copy_to_obj)
             {
@@ -89,75 +89,75 @@ class MHOSingleTypeMap
 
 //declare a multi-type map which takes a key type, and variadic template parameter for the types to be stored
 template <typename XKeyType, typename... XValueTypeS>
-class MHOMultiTypeMap;
+class MHO_MultiTypeMap;
 
 //declare the specialization for the base case of the recursion (in which the parameter XValueType is just a single type)
 template <typename  XKeyType, typename XValueType>
-class MHOMultiTypeMap< XKeyType, XValueType >: public MHOSingleTypeMap< XKeyType, XValueType >
+class MHO_MultiTypeMap< XKeyType, XValueType >: public MHO_SingleTypeMap< XKeyType, XValueType >
 {
     public:
-        using MHOSingleTypeMap< XKeyType, XValueType >::Insert;
-        using MHOSingleTypeMap< XKeyType, XValueType >::Retrieve;
-        using MHOSingleTypeMap< XKeyType, XValueType >::ContainsKey;
-        using MHOSingleTypeMap< XKeyType, XValueType >::DumpMap;
-        using MHOSingleTypeMap< XKeyType, XValueType >::CopyFrom;
-        using MHOSingleTypeMap< XKeyType, XValueType >::CopyTo;
+        using MHO_SingleTypeMap< XKeyType, XValueType >::Insert;
+        using MHO_SingleTypeMap< XKeyType, XValueType >::Retrieve;
+        using MHO_SingleTypeMap< XKeyType, XValueType >::ContainsKey;
+        using MHO_SingleTypeMap< XKeyType, XValueType >::DumpMap;
+        using MHO_SingleTypeMap< XKeyType, XValueType >::CopyFrom;
+        using MHO_SingleTypeMap< XKeyType, XValueType >::CopyTo;
 
         template<typename U = XValueType> typename std::enable_if<std::is_same<U,XValueType>::value>::type
         DumpMap() const
         {
-            static_cast< const MHOSingleTypeMap< XKeyType, XValueType >* >( this )->DumpMap();
+            static_cast< const MHO_SingleTypeMap< XKeyType, XValueType >* >( this )->DumpMap();
         };
 
         template<typename U = XValueType> typename std::enable_if<std::is_same<U,XValueType>::value, bool>::type
         ContainsKey(const XKeyType& key) const
         {
-            return static_cast< const MHOSingleTypeMap< XKeyType, XValueType >* >( this )->ContainsKey(key);
+            return static_cast< const MHO_SingleTypeMap< XKeyType, XValueType >* >( this )->ContainsKey(key);
         };
 
         template<typename U = XValueType> typename std::enable_if<std::is_same<U,XValueType>::value>::type
-        CopyFrom(const MHOMultiTypeMap<XKeyType, XValueType>& copy_from_obj)
+        CopyFrom(const MHO_MultiTypeMap<XKeyType, XValueType>& copy_from_obj)
         {
-            static_cast< MHOSingleTypeMap< XKeyType, XValueType >* >( this )->
-            CopyFrom( *(static_cast< const MHOSingleTypeMap< XKeyType, XValueType >* >(&copy_from_obj)) );
+            static_cast< MHO_SingleTypeMap< XKeyType, XValueType >* >( this )->
+            CopyFrom( *(static_cast< const MHO_SingleTypeMap< XKeyType, XValueType >* >(&copy_from_obj)) );
         };
 
         template<typename U = XValueType> typename std::enable_if<std::is_same<U,XValueType>::value>::type
-        CopyTo(MHOMultiTypeMap<XKeyType, XValueType>& copy_to_obj) const
+        CopyTo(MHO_MultiTypeMap<XKeyType, XValueType>& copy_to_obj) const
         {
-            static_cast< const MHOSingleTypeMap< XKeyType, XValueType >* >( this )->
-            CopyTo( *(static_cast< MHOSingleTypeMap< XKeyType, XValueType >* >(&copy_to_obj)) );
+            static_cast< const MHO_SingleTypeMap< XKeyType, XValueType >* >( this )->
+            CopyTo( *(static_cast< MHO_SingleTypeMap< XKeyType, XValueType >* >(&copy_to_obj)) );
         };
 
 };
 
 //now set up the recursion
 template< typename XKeyType, typename XValueType, typename... XValueTypeS >
-class MHOMultiTypeMap< XKeyType, XValueType, XValueTypeS...>: public MHOMultiTypeMap< XKeyType, XValueType >, public MHOMultiTypeMap< XKeyType, XValueTypeS... >
+class MHO_MultiTypeMap< XKeyType, XValueType, XValueTypeS...>: public MHO_MultiTypeMap< XKeyType, XValueType >, public MHO_MultiTypeMap< XKeyType, XValueTypeS... >
 {
     public:
 
-        using MHOMultiTypeMap< XKeyType, XValueType >::Insert;
-        using MHOMultiTypeMap< XKeyType, XValueTypeS... >::Insert;
+        using MHO_MultiTypeMap< XKeyType, XValueType >::Insert;
+        using MHO_MultiTypeMap< XKeyType, XValueTypeS... >::Insert;
 
-        using MHOMultiTypeMap< XKeyType, XValueType >::Retrieve;
-        using MHOMultiTypeMap< XKeyType, XValueTypeS... >::Retrieve;
+        using MHO_MultiTypeMap< XKeyType, XValueType >::Retrieve;
+        using MHO_MultiTypeMap< XKeyType, XValueTypeS... >::Retrieve;
 
-        using MHOMultiTypeMap< XKeyType, XValueType >::ContainsKey;
-        using MHOMultiTypeMap< XKeyType, XValueTypeS... >::ContainsKey;
+        using MHO_MultiTypeMap< XKeyType, XValueType >::ContainsKey;
+        using MHO_MultiTypeMap< XKeyType, XValueTypeS... >::ContainsKey;
 
-        using MHOMultiTypeMap< XKeyType, XValueType >::DumpMap;
-        using MHOMultiTypeMap< XKeyType, XValueTypeS... >::DumpMap;
+        using MHO_MultiTypeMap< XKeyType, XValueType >::DumpMap;
+        using MHO_MultiTypeMap< XKeyType, XValueTypeS... >::DumpMap;
 
-        using MHOMultiTypeMap< XKeyType, XValueType >::CopyFrom;
-        using MHOMultiTypeMap< XKeyType, XValueTypeS... >::CopyFrom;
+        using MHO_MultiTypeMap< XKeyType, XValueType >::CopyFrom;
+        using MHO_MultiTypeMap< XKeyType, XValueTypeS... >::CopyFrom;
 
-        using MHOMultiTypeMap< XKeyType, XValueType >::CopyTo;
-        using MHOMultiTypeMap< XKeyType, XValueTypeS... >::CopyTo;
+        using MHO_MultiTypeMap< XKeyType, XValueType >::CopyTo;
+        using MHO_MultiTypeMap< XKeyType, XValueTypeS... >::CopyTo;
 
 };
 
 
 }
 
-#endif /* end of include guard: MHOMultiTypeMap_HH__ */
+#endif /* end of include guard: MHO_MultiTypeMap_HH__ */

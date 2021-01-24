@@ -1,9 +1,9 @@
-#ifndef MHOInterval_HH__
-#define MHOInterval_HH__
+#ifndef MHO_Interval_HH__
+#define MHO_Interval_HH__
 
 /*
-*File: MHOInterval.hh
-*Class: MHOInterval
+*File: MHO_Interval.hh
+*Class: MHO_Interval
 *Author: J. Barrett
 *Email: barrettj@mit.edu
 *Date:
@@ -17,29 +17,29 @@ namespace hops
 {
 
 template< typename XIntegerType = std::size_t >
-class MHOInterval
+class MHO_Interval
 {
     public:
 
-        MHOInterval():
+        MHO_Interval():
             fValid(false),
             fLowerBound(0),
             fUpperBound(0)
         {};
 
-        MHOInterval(XIntegerType lower_bound, XIntegerType upper_bound):
+        MHO_Interval(XIntegerType lower_bound, XIntegerType upper_bound):
             fValid(false)
         {
             SetIntervalImpl(lower_bound,upper_bound);
         };
 
-        MHOInterval(const MHOInterval& copy):
+        MHO_Interval(const MHO_Interval& copy):
             fValid(false)
         {
             SetIntervalImpl(copy.fLowerBound, copy.fUpperBound);
         }
 
-        virtual ~MHOInterval(){};
+        virtual ~MHO_Interval(){};
 
         void SetBounds(XIntegerType lower_bound, XIntegerType upper_bound)
         {
@@ -84,7 +84,7 @@ class MHOInterval
         }
 
         //test if this object itersects with an other interval
-        bool Intersects(const MHOInterval& other) const
+        bool Intersects(const MHO_Interval& other) const
         {
             XIntegerType result[2];
             int numIntersections;
@@ -108,9 +108,9 @@ class MHOInterval
 
 
         //returns the union of the two intervals
-        MHOInterval Union(const MHOInterval& other) const
+        MHO_Interval Union(const MHO_Interval& other) const
         {
-            MHOInterval interval;
+            MHO_Interval interval;
             XIntegerType result[2];
             int numIntersections;
             numIntersections = FindIntersection(fLowerBound, fUpperBound, other.GetLowerBound(), other.GetUpperBound(), result);
@@ -126,9 +126,9 @@ class MHOInterval
             return interval;
         }
 
-        MHOInterval Intersection(const MHOInterval& other) const
+        MHO_Interval Intersection(const MHO_Interval& other) const
         {
-            MHOInterval interval;
+            MHO_Interval interval;
             XIntegerType result[2];
             int numIntersections;
             numIntersections = FindIntersection(fLowerBound, fUpperBound, other.GetLowerBound(), other.GetUpperBound(), result);
@@ -139,7 +139,7 @@ class MHOInterval
             return interval;
         }
 
-        MHOInterval& operator=(const MHOInterval& rhs)
+        MHO_Interval& operator=(const MHO_Interval& rhs)
         {
             if(this != &rhs)
             {
@@ -277,4 +277,4 @@ class MHOInterval
 
 } //end of namespace
 
-#endif /* end of include guard: MHOInterval */
+#endif /* end of include guard: MHO_Interval */

@@ -1,9 +1,9 @@
-#ifndef MHODateTime_HH__
-#define MHODateTime_HH__
+#ifndef MHO_DateTime_HH__
+#define MHO_DateTime_HH__
 
 /*
-*File: MHODateTime.hh
-*Class: MHODateTime
+*File: MHO_DateTime.hh
+*Class: MHO_DateTime
 *Author: J. Barrett
 *Email: barrettj@mit.edu
 *Date: 2020-05-28T18:12:09.299Z
@@ -14,19 +14,19 @@
 #include <time.h>
 #include <ctime>
 
-#include "MHOTimeStampConverter.hh"
+#include "MHO_TimeStampConverter.hh"
 
 namespace hops
 {
 
-class MHODateTime
+class MHO_DateTime
 {
     public:
 
-        MHODateTime();
-        MHODateTime(short year, short day, short hour, short minute, float second); //useful for init
+        MHO_DateTime();
+        MHO_DateTime(short year, short day, short hour, short minute, float second); //useful for init
 
-        virtual ~MHODateTime();
+        virtual ~MHO_DateTime();
 
 
     private:
@@ -53,4 +53,4 @@ class MHODateTime
 
 } //end of namespace
 
-#endif /* end of include guard: MHODateTime */
+#endif /* end of include guard: MHO_DateTime */

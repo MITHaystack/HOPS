@@ -1,5 +1,5 @@
-#ifndef MHOTimeStampConverter_HH__
-#define MHOTimeStampConverter_HH__
+#ifndef MHO_TimeStampConverter_HH__
+#define MHO_TimeStampConverter_HH__
 
 #include <string>
 #include <time.h>
@@ -8,11 +8,11 @@
 namespace hops
 {
 
-class MHOTimeStampConverter
+class MHO_TimeStampConverter
 {
     public:
-        MHOTimeStampConverter(){};
-        ~MHOTimeStampConverter(){};
+        MHO_TimeStampConverter(){};
+        ~MHO_TimeStampConverter(){};
 
         //convert a long int epoch second count to a human readable date string in YYYY-MM-DDTHH:MM:SS.(F)Z format
         //fractional_part is rounded to the nearest nano second
@@ -26,4 +26,4 @@ class MHOTimeStampConverter
 
 }//end of namespace
 
-#endif /* end of include guard: MHOTimeStampConverter_HH__ */
+#endif /* end of include guard: MHO_TimeStampConverter_HH__ */

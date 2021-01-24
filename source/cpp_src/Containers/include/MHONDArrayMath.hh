@@ -1,16 +1,16 @@
-#ifndef MHONDArrayMath_HH__
-#define MHONDArrayMath_HH__
+#ifndef MHO_NDArrayMath_HH__
+#define MHO_NDArrayMath_HH__
 
 #include <cmath>
 #include <cstddef>
 
 namespace hops{
 
-class MHONDArrayMath
+class MHO_NDArrayMath
 {
     public:
-        MHONDArrayMath(){};
-        virtual ~MHONDArrayMath(){};
+        MHO_NDArrayMath(){};
+        virtual ~MHO_NDArrayMath(){};
 
         //modulus of two integers
         static std::size_t Modulus(int arg, int n)
@@ -66,12 +66,12 @@ class MHONDArrayMath
 
                 if(d == 0)
                 {
-                    Index[i] = MHONDArrayMath::Modulus(offset, DimSize[i]);
+                    Index[i] = MHO_NDArrayMath::Modulus(offset, DimSize[i]);
                     div[i] = (offset - Index[i])/DimSize[i];
                 }
                 else
                 {
-                    Index[i] = MHONDArrayMath::Modulus(div[i+1], DimSize[i]);
+                    Index[i] = MHO_NDArrayMath::Modulus(div[i+1], DimSize[i]);
                     div[i] = (div[i+1] - Index[i])/DimSize[i];
                 }
             }
@@ -118,13 +118,13 @@ class MHONDArrayMath
         template<std::size_t RANK> static void
         OffsetsForReversedIndices(const std::size_t* DimSize, std::size_t* ReversedIndex)
         {
-            std::size_t total_array_size = MHONDArrayMath::TotalArraySize<RANK>(DimSize);
+            std::size_t total_array_size = MHO_NDArrayMath::TotalArraySize<RANK>(DimSize);
             std::size_t index[RANK];
             for(std::size_t i=0; i<total_array_size; i++)
             {
-                MHONDArrayMath::RowMajorIndexFromOffset<RANK>(i, DimSize, index);
+                MHO_NDArrayMath::RowMajorIndexFromOffset<RANK>(i, DimSize, index);
                 for(std::size_t j=0; j<RANK; j++){ index[j] = (DimSize[j] - index[j])%DimSize[j];};
-                ReversedIndex[i] = MHONDArrayMath::OffsetFromRowMajorIndex<RANK>(DimSize, index);
+                ReversedIndex[i] = MHO_NDArrayMath::OffsetFromRowMajorIndex<RANK>(DimSize, index);
             }
         }
 
@@ -188,14 +188,14 @@ class MHONDArrayMath
 
 //specialization for base case of power of two
 template <>
-struct MHONDArrayMath::PowerOfTwo<0>
+struct MHO_NDArrayMath::PowerOfTwo<0>
 {
     enum { value = 1 };
 };
 
 //specialization for base case of divide
 template <int numerator>
-struct MHONDArrayMath::Divide<numerator, 1>
+struct MHO_NDArrayMath::Divide<numerator, 1>
 {
     enum { value = numerator };
 };
@@ -203,4 +203,4 @@ struct MHONDArrayMath::Divide<numerator, 1>
 
 }//end of namespace
 
-#endif /* MHONDArrayMath_HH__ */
+#endif /* MHO_NDArrayMath_HH__ */

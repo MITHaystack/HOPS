@@ -7,7 +7,7 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/${VEX_RELPATH})
 
 hops_internal_include_directories()
 
-set(HOPS_TEST_LIBS MHOMessage MHOUtilities MHOMath MHOOperators MHOVLBI MHOMK4Interface)
+set(HOPS_TEST_LIBS MHO_Message MHO_Utilities MHO_Math MHO_Operators MHO_VLBI MHO_MK4Interface)
 
 set(SOURCE_BASENAMES
     TestSingleBandDelay

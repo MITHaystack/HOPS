@@ -1,4 +1,4 @@
-#include "MHOMK4StationInterface.hh"
+#include "MHO_MK4StationInterface.hh"
 
 #include <vector>
 #include <cstdlib>
@@ -21,12 +21,12 @@ namespace hops
 {
 
 
-MHOMK4StationInterface::MHOMK4StationInterface()
+MHO_MK4StationInterface::MHO_MK4StationInterface()
 {
 
 }
 
-MHOMK4StationInterface::~MHOMK4StationInterface()
+MHO_MK4StationInterface::~MHO_MK4StationInterface()
 {
 
 }

@@ -1,13 +1,13 @@
 #list header files #############################################################
 set (CONTAINER_HEADERFILES
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHONDArrayMath.hh
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHONDArrayWrapper.hh
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHONDArrayFunctor.hh
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHOAxisPack.hh
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHOScalarContainer.hh
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHOVectorContainer.hh
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHOTableContainer.hh
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHOAxis.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_NDArrayMath.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_NDArrayWrapper.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_NDArrayFunctor.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_AxisPack.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ScalarContainer.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_VectorContainer.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_TableContainer.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_Axis.hh
 )
 
 #declare header paths ##########################################################

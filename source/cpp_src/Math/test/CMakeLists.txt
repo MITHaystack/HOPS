@@ -2,7 +2,7 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../../Message/include)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../../Containers/include)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../include)
 
-set (HOPS_TEST_LIBS MHOMessage MHOMath)
+set (HOPS_TEST_LIBS MHO_Message MHO_Math)
 
 set(SOURCE_BASENAMES
     TestFastFourierTransform

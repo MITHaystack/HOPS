@@ -21,9 +21,9 @@
 #include "TMultiGraph.h"
 #endif
 
-#include "MHOTokenizer.hh"
-#include "MHOMK4VexInterface.hh"
-#include "MHOMK4CorelInterface.hh"
+#include "MHO_Tokenizer.hh"
+#include "MHO_MK4VexInterface.hh"
+#include "MHO_MK4CorelInterface.hh"
 
 
 using namespace hops;
@@ -64,10 +64,10 @@ int main(int argc, char** argv)
         }
     }
 
-    MHOMessage::GetInstance().AcceptAllKeys();
-    MHOMessage::GetInstance().SetMessageLevel(eDebug);
+    MHO_Message::GetInstance().AcceptAllKeys();
+    MHO_Message::GetInstance().SetMessageLevel(eDebug);
 
-    MHOMK4CorelInterface mk4inter;
+    MHO_MK4CorelInterface mk4inter;
 
     mk4inter.SetCorelFile(corel_filename);
     mk4inter.SetVexFile(root_filename);

@@ -1,6 +1,6 @@
-#include "MHOMessage.hh"
-#include "MHOBitReversalPermutation.hh"
-#include "MHOFastFourierTransformUtilities.hh"
+#include "MHO_Message.hh"
+#include "MHO_BitReversalPermutation.hh"
+#include "MHO_FastFourierTransformUtilities.hh"
 
 #include <cmath>
 #include <iomanip>
@@ -20,7 +20,7 @@ int main(int /*argc*/, char** /*argv*/)
     std::cout << "testing DIT followed by DIF (with bit-reversal permutation)" << std::endl;
 
 
-    MHOBitReversalPermutation::ComputeBitReversedIndicesBaseTwo(N, index_arr);
+    MHO_BitReversalPermutation::ComputeBitReversedIndicesBaseTwo(N, index_arr);
     //fill up the array with a signal
     std::cout << "Original array = " << std::endl;
     for (unsigned int i = 0; i < N; i++) {
@@ -30,13 +30,13 @@ int main(int /*argc*/, char** /*argv*/)
     }
 
     //compute twiddle factors
-    MHOFastFourierTransformUtilities::ComputeTwiddleFactors(N, twiddle);
+    MHO_FastFourierTransformUtilities::ComputeTwiddleFactors(N, twiddle);
 
     //scrambles the array in opposite sense of the way the FFT scrambles
-    MHOBitReversalPermutation::PermuteArray<std::complex<double>>(N, index_arr, arr);
+    MHO_BitReversalPermutation::PermuteArray<std::complex<double>>(N, index_arr, arr);
 
     //do the radix-2 FFT decimation in time
-    MHOFastFourierTransformUtilities::FFTRadixTwo_DIT(N, (double*) &(arr[0]), (double*) &(twiddle[0]));
+    MHO_FastFourierTransformUtilities::FFTRadixTwo_DIT(N, (double*) &(arr[0]), (double*) &(twiddle[0]));
 
     std::cout << "(unormalized DFT'd array = " << std::endl;
     for (unsigned int i = 0; i < N; i++) {
@@ -45,11 +45,11 @@ int main(int /*argc*/, char** /*argv*/)
 
     //now we'll do the inverse transform
     //get conjugate twiddle factors
-    MHOFastFourierTransformUtilities::ComputeConjugateTwiddleFactors(N, twiddle);
+    MHO_FastFourierTransformUtilities::ComputeConjugateTwiddleFactors(N, twiddle);
     //do the radix-2 FFT decimation in frequency
-    MHOFastFourierTransformUtilities::FFTRadixTwo_DIF(N, (double*) &(arr[0]), (double*) &(twiddle[0]));
+    MHO_FastFourierTransformUtilities::FFTRadixTwo_DIF(N, (double*) &(arr[0]), (double*) &(twiddle[0]));
     //unscramble the array
-    MHOBitReversalPermutation::PermuteArray<std::complex<double>>(N, index_arr, arr);
+    MHO_BitReversalPermutation::PermuteArray<std::complex<double>>(N, index_arr, arr);
 
     //normalize
     for (unsigned int i = 0; i < N; i++) {
@@ -73,9 +73,9 @@ int main(int /*argc*/, char** /*argv*/)
     }
 
     //compute twiddle factors
-    MHOFastFourierTransformUtilities::ComputeTwiddleFactors(N, twiddle);
+    MHO_FastFourierTransformUtilities::ComputeTwiddleFactors(N, twiddle);
     //do the radix-2 FFT
-    MHOFastFourierTransformUtilities::FFTRadixTwo_DIF(N, (double*) &(arr[0]), (double*) &(twiddle[0]));
+    MHO_FastFourierTransformUtilities::FFTRadixTwo_DIF(N, (double*) &(arr[0]), (double*) &(twiddle[0]));
     std::cout << "unormalized DFT'd array = " << std::endl;
     for (unsigned int i = 0; i < N; i++) {
         std::cout << arr[i] << std::endl;
@@ -87,7 +87,7 @@ int main(int /*argc*/, char** /*argv*/)
         twiddle[i] = std::conj(twiddle[i]);
     }
     //do the radix-2 FFT
-    MHOFastFourierTransformUtilities::FFTRadixTwo_DIT(N, (double*) &(arr[0]), (double*) &(twiddle[0]));
+    MHO_FastFourierTransformUtilities::FFTRadixTwo_DIT(N, (double*) &(arr[0]), (double*) &(twiddle[0]));
     //normalize
     for (unsigned int i = 0; i < N; i++) {
         arr[i] *= 1.0 / ((double) N);

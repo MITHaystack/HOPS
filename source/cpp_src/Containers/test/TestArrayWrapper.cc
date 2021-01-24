@@ -1,20 +1,20 @@
 #include <iostream>
 #include <string>
 
-#include "MHOMessage.hh"
-#include "MHONDArrayWrapper.hh"
+#include "MHO_Message.hh"
+#include "MHO_NDArrayWrapper.hh"
 
 using namespace hops;
 
 
 int main(int /*argc*/, char** /*argv*/)
 {
-    MHOMessage::GetInstance().SetMessageLevel(eDebug);
-    MHOMessage::GetInstance().AcceptAllKeys();
+    MHO_Message::GetInstance().SetMessageLevel(eDebug);
+    MHO_Message::GetInstance().AcceptAllKeys();
 
     size_t dim[2] = {10, 10};
 
-    MHONDArrayWrapper<double, 2> test(dim);
+    MHO_NDArrayWrapper<double, 2> test(dim);
 
     std::cout<<"dimension @ 0 ="<<test.GetDimension(0)<<std::endl;
     std::cout<<"total array size = "<<test.GetSize()<<std::endl;
@@ -30,7 +30,7 @@ int main(int /*argc*/, char** /*argv*/)
         }
     }
 
-    MHONDArrayWrapper<double,2> test2(test);
+    MHO_NDArrayWrapper<double,2> test2(test);
 
     for(size_t i=0; i<dim[0]; i++)
     {
@@ -45,7 +45,7 @@ int main(int /*argc*/, char** /*argv*/)
     //now lets test it on a bit of pre-allocated memory
 
     double* chunk = new double[100];
-    MHONDArrayWrapper<double, 2> test3(chunk, dim);
+    MHO_NDArrayWrapper<double, 2> test3(chunk, dim);
 
     std::cout<<"ptr to data = "<<chunk<<" = "<< test3.GetData()<<std::endl;
 
@@ -80,7 +80,7 @@ int main(int /*argc*/, char** /*argv*/)
     {
         std::cout<<"index iterator = ("<<arr_ind[0]<<", "<<arr_ind[1]<<", "<<arr_ind[2]<<")"<<std::endl;
     }
-    while( MHONDArrayMath::IncrementIndices<3>(arr_dim, arr_ind));
+    while( MHO_NDArrayMath::IncrementIndices<3>(arr_dim, arr_ind));
 
     std::cout<<"iterator decrement operation"<<std::endl;
     arr_ind[0] = arr_dim[0]-1; arr_ind[1] = arr_dim[1]-1; arr_ind[2] = arr_dim[2]-1;
@@ -88,7 +88,7 @@ int main(int /*argc*/, char** /*argv*/)
     {
         std::cout<<"index iterator = ("<<arr_ind[0]<<", "<<arr_ind[1]<<", "<<arr_ind[2]<<")"<<std::endl;
     }
-    while( MHONDArrayMath::DecrementIndices<3>(arr_dim, arr_ind));
+    while( MHO_NDArrayMath::DecrementIndices<3>(arr_dim, arr_ind));
 
 
 

@@ -1,23 +1,23 @@
-#ifndef MHONDArrayOperator_HH__
-#define MHONDArrayOperator_HH__
+#ifndef MHO_NDArrayOperator_HH__
+#define MHO_NDArrayOperator_HH__
 
-#include "MHONDArrayWrapper.hh"
+#include "MHO_NDArrayWrapper.hh"
 #include <cstring>
 
 namespace hops{
 
- //template parameters must inherit from MHONDArrayWrapper
+ //template parameters must inherit from MHO_NDArrayWrapper
 template<class XInputArrayType, class XOutputArrayType>
-class MHONDArrayOperator
+class MHO_NDArrayOperator
 {
     public:
 
-        MHONDArrayOperator():
+        MHO_NDArrayOperator():
             fInput(nullptr),
             fOutput(nullptr)
         {};
 
-        virtual ~MHONDArrayOperator(){};
+        virtual ~MHO_NDArrayOperator(){};
 
         virtual void SetInput(XInputArrayType* in){fInput = in;};
         virtual void SetOutput(XOutputArrayType* out){fOutput = out;};
@@ -37,4 +37,4 @@ class MHONDArrayOperator
 
 }//end of namespace
 
-#endif /* __MHONDArrayOperator_HH__ */
+#endif /* __MHO_NDArrayOperator_HH__ */

@@ -1,30 +1,30 @@
-#include "MHOIntervalLabelTree.hh"
+#include "MHO_IntervalLabelTree.hh"
 
 namespace hops
 {
 
-MHOIntervalLabelTree::MHOIntervalLabelTree(){}
+MHO_IntervalLabelTree::MHO_IntervalLabelTree(){}
 
-MHOIntervalLabelTree::~MHOIntervalLabelTree(){}
+MHO_IntervalLabelTree::~MHO_IntervalLabelTree(){}
 
 // void
-// MHOIntervalLabelTree::InsertLabel(MHOIntervalLabel* label)
+// MHO_IntervalLabelTree::InsertLabel(MHO_IntervalLabel* label)
 // {
 //     //TODO make sure we are not inserting duplicates
 //     fIntervals.push_back(label);
 // }
 
 void
-MHOIntervalLabelTree::InsertLabel(const MHOIntervalLabel& label)
+MHO_IntervalLabelTree::InsertLabel(const MHO_IntervalLabel& label)
 {
     //insert copy of this label as a new object
-    fIntervals.push_back( new MHOIntervalLabel(label) );
+    fIntervals.push_back( new MHO_IntervalLabel(label) );
 }
 
-std::vector< MHOIntervalLabel* >
-MHOIntervalLabelTree::GetIntervalsWithKey(const std::string& key)
+std::vector< MHO_IntervalLabel* >
+MHO_IntervalLabelTree::GetIntervalsWithKey(const std::string& key)
 {
-    std::vector< MHOIntervalLabel* > labels;
+    std::vector< MHO_IntervalLabel* > labels;
     //dumb brute for search over all intervals O(n)
     for(std::size_t i=0; i<fIntervals.size(); i++)
     {
@@ -36,10 +36,10 @@ MHOIntervalLabelTree::GetIntervalsWithKey(const std::string& key)
     return labels;
 }
 
-std::vector< MHOIntervalLabel* >
-MHOIntervalLabelTree::GetIntervalsWhichIntersect(const std::size_t& idx)
+std::vector< MHO_IntervalLabel* >
+MHO_IntervalLabelTree::GetIntervalsWhichIntersect(const std::size_t& idx)
 {
-    std::vector< MHOIntervalLabel* > labels;
+    std::vector< MHO_IntervalLabel* > labels;
     //dumb brute for search over all intervals O(n)
     for(std::size_t i=0; i<fIntervals.size(); i++)
     {
@@ -51,10 +51,10 @@ MHOIntervalLabelTree::GetIntervalsWhichIntersect(const std::size_t& idx)
     return labels;
 }
 
-std::vector< MHOIntervalLabel* >
-MHOIntervalLabelTree::GetIntervalsWhichIntersect(const MHOInterval<std::size_t>* interval)
+std::vector< MHO_IntervalLabel* >
+MHO_IntervalLabelTree::GetIntervalsWhichIntersect(const MHO_Interval<std::size_t>* interval)
 {
-    std::vector< MHOIntervalLabel* > labels;
+    std::vector< MHO_IntervalLabel* > labels;
     //dumb brute for search over all intervals O(n)
     for(std::size_t i=0; i<fIntervals.size(); i++)
     {

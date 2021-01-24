@@ -1,14 +1,14 @@
 #include <cstddef>
 
-#include "MHOMessage.hh"
-#include "MHOBitReversalPermutation.hh"
+#include "MHO_Message.hh"
+#include "MHO_BitReversalPermutation.hh"
 
 namespace hops
 {
 
 
 bool
-MHOBitReversalPermutation::IsPowerOfTwo(unsigned int N)
+MHO_BitReversalPermutation::IsPowerOfTwo(unsigned int N)
 {
     //taken from Bit Twiddling Hacks
     //http://graphics.stanford.edu/~seander/bithacks.html
@@ -17,7 +17,7 @@ MHOBitReversalPermutation::IsPowerOfTwo(unsigned int N)
 
 
 unsigned int
-MHOBitReversalPermutation::LogBaseTwo(unsigned int N)
+MHO_BitReversalPermutation::LogBaseTwo(unsigned int N)
 {
     //taken from Bit Twiddling Hacks
     //http://graphics.stanford.edu/~seander/bithacks.html
@@ -28,7 +28,7 @@ MHOBitReversalPermutation::LogBaseTwo(unsigned int N)
 
 
 unsigned int
-MHOBitReversalPermutation::TwoToThePowerOf(unsigned int N)
+MHO_BitReversalPermutation::TwoToThePowerOf(unsigned int N)
 {
     unsigned int val = 1;
     for(unsigned int i=0; i<N; i++){val *= 2;}
@@ -36,7 +36,7 @@ MHOBitReversalPermutation::TwoToThePowerOf(unsigned int N)
 }
 
 unsigned int
-MHOBitReversalPermutation::NextLowestPowerOfTwo(unsigned int N)
+MHO_BitReversalPermutation::NextLowestPowerOfTwo(unsigned int N)
 {
     if(IsPowerOfTwo(N) ){return N;}
     else
@@ -47,7 +47,7 @@ MHOBitReversalPermutation::NextLowestPowerOfTwo(unsigned int N)
 }
 
 
-bool MHOBitReversalPermutation::IsPowerOfBase(unsigned int N, unsigned int B)
+bool MHO_BitReversalPermutation::IsPowerOfBase(unsigned int N, unsigned int B)
 {
     //check if N is a perfect power of B, this is very slow!!
     if(N < B){return false;}
@@ -60,14 +60,14 @@ bool MHOBitReversalPermutation::IsPowerOfBase(unsigned int N, unsigned int B)
     }
 }
 
-unsigned int MHOBitReversalPermutation::RaiseBaseToThePower(unsigned int B, unsigned int N)
+unsigned int MHO_BitReversalPermutation::RaiseBaseToThePower(unsigned int B, unsigned int N)
 {
     unsigned int val = 1;
     for(unsigned int i=0; i<N; i++){val *= B;}
     return val;
 }
 
-unsigned int MHOBitReversalPermutation::LogBaseB(unsigned int N, unsigned int B)
+unsigned int MHO_BitReversalPermutation::LogBaseB(unsigned int N, unsigned int B)
 {
     //we assume that N is a perfect power of B
     //but if not we return the leading power
@@ -92,7 +92,7 @@ unsigned int MHOBitReversalPermutation::LogBaseB(unsigned int N, unsigned int B)
 }
 
 void
-MHOBitReversalPermutation::ComputeBitReversedIndicesBaseTwo(unsigned int N, unsigned int* index_arr)
+MHO_BitReversalPermutation::ComputeBitReversedIndicesBaseTwo(unsigned int N, unsigned int* index_arr)
 {
     //this function uses the recursive Buneman algorithm to compute
     //the bit reversed permutation of an array of length N = 2^p with entries 0,1,2...N-1
@@ -135,11 +135,11 @@ MHOBitReversalPermutation::ComputeBitReversedIndicesBaseTwo(unsigned int N, unsi
     }
     else
     {
-        msg_error("math", "MHOBitReversalPermutation::ComputeBitReversedIndices: called with non-power of two array size."<< eom );
+        msg_error("math", "MHO_BitReversalPermutation::ComputeBitReversedIndices: called with non-power of two array size."<< eom );
     }
 }
 
-void MHOBitReversalPermutation::ComputeBitReversedIndices(unsigned int N, unsigned int B, unsigned int* index_arr)
+void MHO_BitReversalPermutation::ComputeBitReversedIndices(unsigned int N, unsigned int B, unsigned int* index_arr)
 {
     //this function is the base B extention of the recursive Buneman algorithm to compute
     //the bit reversed permutation of an array of length N
@@ -179,12 +179,12 @@ void MHOBitReversalPermutation::ComputeBitReversedIndices(unsigned int N, unsign
     }
     else
     {
-        msg_error("math", "MHOBitReversalPermutation::ComputeBitReversedIndices: error, called with non-power of " << B << " array size." <<  eom);
+        msg_error("math", "MHO_BitReversalPermutation::ComputeBitReversedIndices: error, called with non-power of " << B << " array size." <<  eom);
     }
 }
 
 bool
-MHOBitReversalPermutation::Factor(unsigned int N, unsigned int n_factors, unsigned int* factors, unsigned int* powers)
+MHO_BitReversalPermutation::Factor(unsigned int N, unsigned int n_factors, unsigned int* factors, unsigned int* powers)
 {
     unsigned int test  = 1;
     for(unsigned int i=0; i<n_factors; i++)

@@ -1,4 +1,4 @@
-#include "MHOMK4CorelInterface.hh"
+#include "MHO_MK4CorelInterface.hh"
 
 #include <vector>
 #include <cstdlib>
@@ -28,7 +28,7 @@ class chan_label_freq_predicate
         chan_label_freq_predicate(){};
         virtual ~chan_label_freq_predicate(){};
 
-    virtual bool operator()(const MHOIntervalLabel* a, const MHOIntervalLabel* b)
+    virtual bool operator()(const MHO_IntervalLabel* a, const MHO_IntervalLabel* b)
     {
         double a_frq, b_frq;
         a->Retrieve(std::string("ref_sky_freq"), a_frq);
@@ -39,7 +39,7 @@ class chan_label_freq_predicate
 
 
 
-MHOMK4CorelInterface::MHOMK4CorelInterface():
+MHO_MK4CorelInterface::MHO_MK4CorelInterface():
     fHaveCorel(false),
     fHaveVex(false),
     fCorel(nullptr),
@@ -57,7 +57,7 @@ MHOMK4CorelInterface::MHOMK4CorelInterface():
     fPPSortedChannelInfo.clear();
 }
 
-MHOMK4CorelInterface::~MHOMK4CorelInterface()
+MHO_MK4CorelInterface::~MHO_MK4CorelInterface()
 {
     clear_mk4corel(fCorel);
     free(fCorel);
@@ -65,7 +65,7 @@ MHOMK4CorelInterface::~MHOMK4CorelInterface()
 }
 
 void
-MHOMK4CorelInterface::ReadCorelFile()
+MHO_MK4CorelInterface::ReadCorelFile()
 {
     if(fHaveCorel)
     {
@@ -92,7 +92,7 @@ MHOMK4CorelInterface::ReadCorelFile()
 
 
 void
-MHOMK4CorelInterface::ReadVexFile()
+MHO_MK4CorelInterface::ReadVexFile()
 {
     if(fHaveVex)
     {
@@ -127,7 +127,7 @@ MHOMK4CorelInterface::ReadVexFile()
 
 
 void
-MHOMK4CorelInterface::DetermineDataDimensions()
+MHO_MK4CorelInterface::DetermineDataDimensions()
 {
     //We need to determine 4 things:
     //(1) number of pol-products (npp)
@@ -179,7 +179,7 @@ MHOMK4CorelInterface::DetermineDataDimensions()
         {
             std::string ref_chan_id = getstr(t101->ref_chan_id,8);
             std::string rem_chan_id = getstr(t101->rem_chan_id,8);
-            MHOIntervalLabel tmp_label;
+            MHO_IntervalLabel tmp_label;
             tmp_label.Insert(std::string("ref_chan_id"), ref_chan_id);
             tmp_label.Insert(std::string("rem_chan_id"), rem_chan_id);
             std::string tmp_key = ref_chan_id + ":" + rem_chan_id;
@@ -293,13 +293,13 @@ MHOMK4CorelInterface::DetermineDataDimensions()
     //for the time being we are implicitly assuming the frequency set-up
     //is the same for each pol-product
     //but we count the number of channels per pol-product to make sure
-    std::map< std::string, std::set< MHOIntervalLabel* > > pp_chan_set_map;
+    std::map< std::string, std::set< MHO_IntervalLabel* > > pp_chan_set_map;
 
     //initialize with empty set/vectors for each pol-product
     for(auto it = fPolProducts.begin(); it != fPolProducts.end(); it++)
     {
-        pp_chan_set_map[*it] = std::set<MHOIntervalLabel*>();
-        fPPSortedChannelInfo[*it] = std::vector< MHOIntervalLabel* >();
+        pp_chan_set_map[*it] = std::set<MHO_IntervalLabel*>();
+        fPPSortedChannelInfo[*it] = std::vector< MHO_IntervalLabel* >();
     }
     //now separate out channel labels by pol-product
     for(auto it = fAllChannelMap.begin(); it != fAllChannelMap.end(); it++)
@@ -345,7 +345,7 @@ MHOMK4CorelInterface::DetermineDataDimensions()
 }
 
 baseline_data_type*
-MHOMK4CorelInterface::ExtractCorelFile()
+MHO_MK4CorelInterface::ExtractCorelFile()
 {
     ReadCorelFile();
     ReadVexFile();
@@ -413,7 +413,7 @@ MHOMK4CorelInterface::ExtractCorelFile()
                 auto indicator = inserted_channel_labels.insert(ch_count);
                 if(indicator.second)
                 {
-                    MHOIntervalLabel ch_label;
+                    MHO_IntervalLabel ch_label;
                     ch_label.Insert(std::string("sky_freq"), sky_freq);
                     ch_label.Insert(std::string("bandwidth"), bw);
                     ch_label.Insert(std::string("net_sideband"), net_sb);
@@ -517,7 +517,7 @@ MHOMK4CorelInterface::ExtractCorelFile()
 
 
 std::string
-MHOMK4CorelInterface::getstr(const char* char_array, std::size_t max_size)
+MHO_MK4CorelInterface::getstr(const char* char_array, std::size_t max_size)
 {
     return std::string( char_array, std::min( strlen(char_array), max_size) );
 }
@@ -525,7 +525,7 @@ MHOMK4CorelInterface::getstr(const char* char_array, std::size_t max_size)
 
 
 bool
-MHOMK4CorelInterface::channel_info_match(double ref_sky_freq, double rem_sky_freq,
+MHO_MK4CorelInterface::channel_info_match(double ref_sky_freq, double rem_sky_freq,
                         double ref_bw, double rem_bw,
                         char ref_net_sb, char rem_net_sb)
 {
@@ -538,7 +538,7 @@ MHOMK4CorelInterface::channel_info_match(double ref_sky_freq, double rem_sky_fre
 
 
 double
-MHOMK4CorelInterface::calc_freq_bin(double sky_freq, double bw, char net_sb, int nlags, int bin_index)
+MHO_MK4CorelInterface::calc_freq_bin(double sky_freq, double bw, char net_sb, int nlags, int bin_index)
 {
     double step_sign = 1.0;
     if(net_sb == 'U'){step_sign = 1.0;}

@@ -1,9 +1,9 @@
-#ifndef MHOMeta_HH__
-#define MHOMeta_HH__
+#ifndef MHO_Meta_HH__
+#define MHO_Meta_HH__
 
 
 /*
-*File: MHOMeta.hh
+*File: MHO_Meta.hh
 *Author: J. Barrett
 *Email: barrettj@mit.edu
 *Date: 2020-05-13T17:43:26.831Z
@@ -19,24 +19,24 @@ namespace hops
 {
 
 //null and empty types
-class MHONullType {};
-struct MHOEmptyType {};
+class MHO_NullType {};
+struct MHO_EmptyType {};
 
 //typelist
-template< typename... T > struct MHOTypelist {};
+template< typename... T > struct MHO_Typelist {};
 
 //typelist size
-template< typename L > struct MHOTypelistSizeImpl;
+template< typename L > struct MHO_TypelistSizeImpl;
 //specialization for typelist
-template< class... T > struct MHOTypelistSizeImpl< MHOTypelist< T... > >
+template< class... T > struct MHO_TypelistSizeImpl< MHO_Typelist< T... > >
 {
     using type = std::integral_constant< size_t, sizeof...(T) >;
 };
-//alias to MHOTypelistSize, retrieve the value itself with ::value (element of std::integral_constant)
-template< class L > using MHOTypelistSize = typename MHOTypelistSizeImpl<L>::type;
+//alias to MHO_TypelistSize, retrieve the value itself with ::value (element of std::integral_constant)
+template< class L > using MHO_TypelistSize = typename MHO_TypelistSizeImpl<L>::type;
 
 
 
 }
 
-#endif /* end of include guard: MHOMeta */
+#endif /* end of include guard: MHO_Meta */

@@ -1,4 +1,4 @@
-#include "MHOTimeStampConverter.hh"
+#include "MHO_TimeStampConverter.hh"
 
 #include <iostream>
 #include <cmath>
@@ -8,7 +8,7 @@
 namespace hops
 {
 
-bool MHOTimeStampConverter::ConvertEpochSecondToTimeStamp(const uint64_t& epoch_sec, const double& fractional_part, std::string& date)
+bool MHO_TimeStampConverter::ConvertEpochSecondToTimeStamp(const uint64_t& epoch_sec, const double& fractional_part, std::string& date)
 {
     if( fractional_part < 0 || fractional_part >= 1.0)
     {
@@ -51,7 +51,7 @@ bool MHOTimeStampConverter::ConvertEpochSecondToTimeStamp(const uint64_t& epoch_
 }
 
 
-bool MHOTimeStampConverter::ConvertTimeStampToEpochSecond(const std::string& date, uint64_t& epoch_sec, double& fractional_part)
+bool MHO_TimeStampConverter::ConvertTimeStampToEpochSecond(const std::string& date, uint64_t& epoch_sec, double& fractional_part)
 {
     //number of digits in the fractional part (F) may vary
     if( date.back() != 'Z' ||  date.size() < 20 || date[10] != 'T')

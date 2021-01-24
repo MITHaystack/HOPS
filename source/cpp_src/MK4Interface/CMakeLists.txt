@@ -1,17 +1,17 @@
 #list header files #############################################################
 
 set (MK4INTERFACE_HEADERFILES
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHOMK4Interface.hh
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHOMK4CorelInterface.hh
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHOMK4VexInterface.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MK4Interface.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MK4CorelInterface.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MK4VexInterface.hh
 )
 
 #list source files #############################################################
 
 set( MK4INTERFACE_SOURCEFILES
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHOMK4Interface.cc
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHOMK4CorelInterface.cc
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHOMK4VexInterface.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_MK4Interface.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_MK4CorelInterface.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_MK4VexInterface.cc
 )
 
 #declare header paths ##########################################################
@@ -26,13 +26,13 @@ hops_internal_include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 #compile and install library ###################################################
 
-set(MK4INTERFACE_LIBS mk4util dfio vex MHOMessage MHOUtilities)
+set(MK4INTERFACE_LIBS mk4util dfio vex MHO_Message MHO_Utilities)
 
-add_library (MHOMK4Interface SHARED ${MK4INTERFACE_SOURCEFILES})
-target_link_libraries (MHOMK4Interface ${MK4INTERFACE_LIBS})
+add_library (MHO_MK4Interface SHARED ${MK4INTERFACE_SOURCEFILES})
+target_link_libraries (MHO_MK4Interface ${MK4INTERFACE_LIBS})
 
 hops_install_headers (${MK4INTERFACE_HEADERFILES})
-hops_install_libraries (MHOMK4Interface)
+hops_install_libraries (MHO_MK4Interface)
 
 if (HOPS_ENABLE_TEST)
     add_subdirectory(test)

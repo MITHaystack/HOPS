@@ -19,19 +19,19 @@
 #include "TMultiGraph.h"
 #endif
 
-#include "MHOMessage.hh"
-#include "MHOTokenizer.hh"
-#include "MHOMK4VexInterface.hh"
-#include "MHOMK4CorelInterface.hh"
+#include "MHO_Message.hh"
+#include "MHO_Tokenizer.hh"
+#include "MHO_MK4VexInterface.hh"
+#include "MHO_MK4CorelInterface.hh"
 
-#include "MHOReducer.hh"
-#include "MHOFunctorBroadcaster.hh"
-#include "MHOMultidimensionalFastFourierTransform.hh"
+#include "MHO_Reducer.hh"
+#include "MHO_FunctorBroadcaster.hh"
+#include "MHO_MultidimensionalFastFourierTransform.hh"
 
-#include "MHOVisibilities.hh"
-#include "MHOChannelizedVisibilities.hh"
-#include "MHOVisibilityChannelizer.hh"
-#include "MHOChannelizedRotationFunctor.hh"
+#include "MHO_Visibilities.hh"
+#include "MHO_ChannelizedVisibilities.hh"
+#include "MHO_VisibilityChannelizer.hh"
+#include "MHO_ChannelizedRotationFunctor.hh"
 
 
 
@@ -43,8 +43,8 @@ int main(int argc, char** argv)
 {
     std::string usage = "TestSingleBandDelay -r <root_filename> -f <corel_filename>";
 
-    MHOMessage::GetInstance().AcceptAllKeys();
-    MHOMessage::GetInstance().SetMessageLevel(eDebug);
+    MHO_Message::GetInstance().AcceptAllKeys();
+    MHO_Message::GetInstance().SetMessageLevel(eDebug);
 
     std::string root_filename;
     std::string corel_filename;
@@ -78,14 +78,14 @@ int main(int argc, char** argv)
     }
 
 
-    MHOMK4CorelInterface mk4inter;
+    MHO_MK4CorelInterface mk4inter;
 
     mk4inter.SetCorelFile(corel_filename);
     mk4inter.SetVexFile(root_filename);
     baseline_data_type* bl_data = mk4inter.ExtractCorelFile();
 
 
-    MHOVisibilityChannelizer channelizer;
+    MHO_VisibilityChannelizer channelizer;
     channelizer.SetInput(bl_data);
     ch_baseline_data_type* ch_bl_data = new ch_baseline_data_type();
     channelizer.SetOutput(ch_bl_data);
@@ -130,11 +130,11 @@ int main(int argc, char** argv)
     //with axes of time-by-freq
 
     std::size_t channel_dims[2] = {data_dims[CH_TIME_AXIS], data_dims[CH_FREQ_AXIS]};
-    MHONDArrayWrapper< std::complex<double>, 2> channel_wrapper(channel_dims);
+    MHO_NDArrayWrapper< std::complex<double>, 2> channel_wrapper(channel_dims);
     channel_wrapper.SetExternalData( &( ch_bl_data->at(0,0,0,0) ) , channel_dims);
 
     //now we run a 2-d FFT on the time and freq axes over each channel's data
-    MHOMultidimensionalFastFourierTransform<2>* fft_engine_2d = new MHOMultidimensionalFastFourierTransform<2>();
+    MHO_MultidimensionalFastFourierTransform<2>* fft_engine_2d = new MHO_MultidimensionalFastFourierTransform<2>();
     for(std::size_t pp=0; pp<data_dims[CH_POLPROD_AXIS]; pp++)
     {
         for(std::size_t ch=0; ch<data_dims[CH_CHANNEL_AXIS]; ch++)
@@ -174,7 +174,7 @@ int main(int argc, char** argv)
     //TODO FIXME check this calculation
     //lets compute the values of the transformed (freq) axis --
     //this ought to give us the values of the 'single band delay' axis
-    MHONDArrayWrapper< double, 1> sbd_axis(data_dims[CH_FREQ_AXIS]);
+    MHO_NDArrayWrapper< double, 1> sbd_axis(data_dims[CH_FREQ_AXIS]);
     int n = data_dims[CH_FREQ_AXIS];
     int n02 = n/2;
     for(std::size_t f=0; f<data_dims[CH_FREQ_AXIS]; f++)
@@ -187,7 +187,7 @@ int main(int argc, char** argv)
     //TODO FIXME check this calculation
     //lets compute the values of the transformed (time) axis --
     //this ought to give us the values of the 'delay-rate' axis
-    MHONDArrayWrapper< double, 1> dr_axis(data_dims[CH_TIME_AXIS]);
+    MHO_NDArrayWrapper< double, 1> dr_axis(data_dims[CH_TIME_AXIS]);
     int dn = data_dims[CH_TIME_AXIS];
     int dn02 = dn/2;
     for(std::size_t t=0; t<data_dims[CH_TIME_AXIS]; t++)
@@ -203,8 +203,8 @@ int main(int argc, char** argv)
     //this (rotate the data of each channel) so that all of the visibilities
     //will add coherently
 
-    MHOReducer< ch_baseline_data_type::value_type,
-                MHOCompoundSum,
+    MHO_Reducer< ch_baseline_data_type::value_type,
+                MHO_CompoundSum,
                 ch_baseline_data_type::rank::value > summation;
 
     //sum all the data along the channel axis
@@ -213,14 +213,14 @@ int main(int argc, char** argv)
 
 
 
-    // MHOChannelizedRotationFunctor sbd_rotation;
+    // MHO_ChannelizedRotationFunctor sbd_rotation;
     // sbd_rotation.SetReferenceFrequency(0.0);
     // sbd_rotation.SetReferenceTime(0.0);
     // sbd_rotation.SetDelayRate(0.0);
     // sbd_rotation.SetSingleBandDelay(0.0);
     //
     // ch_baseline_data_type* rotated_ch_bl_data = new ch_baseline_data_type();
-    // MHOFunctorBroadcaster<ch_baseline_data_type, ch_baseline_data_type> broadcaster;
+    // MHO_FunctorBroadcaster<ch_baseline_data_type, ch_baseline_data_type> broadcaster;
     // broadcaster.SetInput(copy_ch_bl_data);
     // broadcaster.SetOutput(rotated_ch_bl_data);
     // broadcaster.SetFunctor(&sbd_rotation);

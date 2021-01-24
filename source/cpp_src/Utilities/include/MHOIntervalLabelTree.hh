@@ -1,9 +1,9 @@
-#ifndef MHOIntervalLabelTree_HH__
-#define MHOIntervalLabelTree_HH__
+#ifndef MHO_IntervalLabelTree_HH__
+#define MHO_IntervalLabelTree_HH__
 
 /*
-*File: MHOIntervalLabelTree.hh
-*Class: MHOIntervalLabelTree
+*File: MHO_IntervalLabelTree.hh
+*Class: MHO_IntervalLabelTree
 *Author: J. Barrett
 *Email: barrettj@mit.edu
 *Date:
@@ -15,33 +15,33 @@
 #include <iostream>
 #include <vector>
 
-#include "MHOMessage.hh"
-#include "MHOIntervalLabel.hh"
+#include "MHO_Message.hh"
+#include "MHO_IntervalLabel.hh"
 
 namespace hops
 {
 
-class MHOIntervalLabelTree
+class MHO_IntervalLabelTree
 {
     public:
-        MHOIntervalLabelTree();
-        virtual ~MHOIntervalLabelTree();
+        MHO_IntervalLabelTree();
+        virtual ~MHO_IntervalLabelTree();
 
-        //void InsertLabel(MHOIntervalLabel* label);
-        void InsertLabel(const MHOIntervalLabel& label);
+        //void InsertLabel(MHO_IntervalLabel* label);
+        void InsertLabel(const MHO_IntervalLabel& label);
 
-        std::vector< MHOIntervalLabel* > GetIntervalsWhichIntersect(const std::size_t& idx);
-        std::vector< MHOIntervalLabel* > GetIntervalsWhichIntersect(const MHOInterval<std::size_t>* interval);
+        std::vector< MHO_IntervalLabel* > GetIntervalsWhichIntersect(const std::size_t& idx);
+        std::vector< MHO_IntervalLabel* > GetIntervalsWhichIntersect(const MHO_Interval<std::size_t>* interval);
 
-        std::vector< MHOIntervalLabel* >
+        std::vector< MHO_IntervalLabel* >
         GetIntervalsWithKey(const std::string& key);
 
         template<typename XLabelValueType>
-        std::vector< MHOIntervalLabel* >
+        std::vector< MHO_IntervalLabel* >
         GetIntervalsWithKeyValue(const std::string& key, const XLabelValueType& value);
 
         template<typename XLabelValueType>
-        MHOIntervalLabel*
+        MHO_IntervalLabel*
         GetFirstIntervalWithKeyValue(const std::string& key, const XLabelValueType& value);
 
 
@@ -49,16 +49,16 @@ class MHOIntervalLabelTree
 
         //we are storing them all in a vector currently, this needs to to be
         //replaced with a tree data structure
-        std::vector< MHOIntervalLabel* > fIntervals;
+        std::vector< MHO_IntervalLabel* > fIntervals;
 };
 
 
 
 template<typename XLabelValueType>
-std::vector< MHOIntervalLabel* >
-MHOIntervalLabelTree::GetIntervalsWithKeyValue(const std::string& key, const XLabelValueType& value)
+std::vector< MHO_IntervalLabel* >
+MHO_IntervalLabelTree::GetIntervalsWithKeyValue(const std::string& key, const XLabelValueType& value)
 {
-    std::vector< MHOIntervalLabel* > labels;
+    std::vector< MHO_IntervalLabel* > labels;
     XLabelValueType tmp_value;
     //dumb brute force search over all intervals O(n)
     //we may want to make this smarter
@@ -78,10 +78,10 @@ MHOIntervalLabelTree::GetIntervalsWithKeyValue(const std::string& key, const XLa
 
 
 template<typename XLabelValueType>
-MHOIntervalLabel*
-MHOIntervalLabelTree::GetFirstIntervalWithKeyValue(const std::string& key, const XLabelValueType& value)
+MHO_IntervalLabel*
+MHO_IntervalLabelTree::GetFirstIntervalWithKeyValue(const std::string& key, const XLabelValueType& value)
 {
-    MHOIntervalLabel* label = nullptr;
+    MHO_IntervalLabel* label = nullptr;
     XLabelValueType tmp_value;
     //dumb brute force search over all intervals O(n)
     //we may want to make this smarter
@@ -103,4 +103,4 @@ MHOIntervalLabelTree::GetFirstIntervalWithKeyValue(const std::string& key, const
 
 }//end namespace
 
-#endif /* end of include guard: MHOIntervalLabelTree */
+#endif /* end of include guard: MHO_IntervalLabelTree */

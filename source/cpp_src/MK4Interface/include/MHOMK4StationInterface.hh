@@ -1,9 +1,9 @@
-#ifndef MHOMK4StationInterface_HH__
-#define MHOMK4StationInterface_HH__
+#ifndef MHO_MK4StationInterface_HH__
+#define MHO_MK4StationInterface_HH__
 
 /*
-*File: MHOMK4StationInterface.hh
-*Class: MHOMK4StationInterface
+*File: MHO_MK4StationInterface.hh
+*Class: MHO_MK4StationInterface
 *Author: J. Barrett
 *Email: barrettj@mit.edu
 *Date: 2020-05-19T18:54:28.140Z
@@ -17,8 +17,8 @@
 #include <cstring>
 #include <string>
 
-#include "MHOVisibilities.hh"
-#include "MHOMessage.hh"
+#include "MHO_Visibilities.hh"
+#include "MHO_Message.hh"
 
 //forward declaration of mk4_corel and vex structs
 //we do this to keep the mk4 structures from 'leaking' into the new code via includes,
@@ -33,12 +33,12 @@ extern "C"
 namespace hops
 {
 
-class MHOMK4StationInterface
+class MHO_MK4StationInterface
 {
     public:
 
-        MHOMK4StationInterface();
-        virtual ~MHOMK4StationInterface();
+        MHO_MK4StationInterface();
+        virtual ~MHO_MK4StationInterface();
 
         //need both the vex (root) file and corel file to extract the data
         void SetVexFile(const std::string& vex){fVexFile = vex;}
@@ -59,4 +59,4 @@ class MHOMK4StationInterface
 
 }//end of hops namespace
 
-#endif /* end of include guard: MHOMK4StationInterface */
+#endif /* end of include guard: MHO_MK4StationInterface */

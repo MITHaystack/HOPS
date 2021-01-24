@@ -1,9 +1,9 @@
-#ifndef MHOTableContainer_HH__
-#define MHOTableContainer_HH__
+#ifndef MHO_TableContainer_HH__
+#define MHO_TableContainer_HH__
 
 /*
-*File: MHOTableContainer.hh
-*Class: MHOTableContainer
+*File: MHO_TableContainer.hh
+*Class: MHO_TableContainer
 *Author: J. Barrett
 *Email: barrettj@mit.edu
 *Date: 2020-05-15T20:22:00.867Z
@@ -15,48 +15,48 @@
 #include <utility>
 #include <string>
 
-#include "MHOUnits.hh"
-#include "MHOMultiTypeMap.hh"
-#include "MHONDArrayWrapper.hh"
-#include "MHOVectorContainer.hh"
-#include "MHOAxisPack.hh"
+#include "MHO_Units.hh"
+#include "MHO_MultiTypeMap.hh"
+#include "MHO_NDArrayWrapper.hh"
+#include "MHO_VectorContainer.hh"
+#include "MHO_AxisPack.hh"
 
 
 namespace hops
 {
 
 template< typename XValueType, typename XAxisPackType >
-class MHOTableContainer: public MHONDArrayWrapper< XValueType, XAxisPackType::NAXES::value>, public XAxisPackType, public MHONamed
+class MHO_TableContainer: public MHO_NDArrayWrapper< XValueType, XAxisPackType::NAXES::value>, public XAxisPackType, public MHO_Named
 {
     public:
 
-        MHOTableContainer():
-            MHONDArrayWrapper<XValueType, XAxisPackType::NAXES::value>(),
+        MHO_TableContainer():
+            MHO_NDArrayWrapper<XValueType, XAxisPackType::NAXES::value>(),
             XAxisPackType(),
-            MHONamed()
+            MHO_Named()
         {};
 
-        MHOTableContainer(const std::size_t* dim):
-            MHONDArrayWrapper<XValueType, XAxisPackType::NAXES::value>(dim),
+        MHO_TableContainer(const std::size_t* dim):
+            MHO_NDArrayWrapper<XValueType, XAxisPackType::NAXES::value>(dim),
             XAxisPackType(dim),
-            MHONamed()
+            MHO_Named()
         {};
 
         //copy constructor
-        MHOTableContainer(const MHOTableContainer& obj):
-            MHONDArrayWrapper<XValueType, XAxisPackType::NAXES::value>(obj),
+        MHO_TableContainer(const MHO_TableContainer& obj):
+            MHO_NDArrayWrapper<XValueType, XAxisPackType::NAXES::value>(obj),
             XAxisPackType(obj),
-            MHONamed(obj)
+            MHO_Named(obj)
         {};
 
         //clone functionality
-        MHOTableContainer* Clone(){ return new MHOTableContainer(*this); }
+        MHO_TableContainer* Clone(){ return new MHO_TableContainer(*this); }
 
-        virtual ~MHOTableContainer(){};
+        virtual ~MHO_TableContainer(){};
 
-        using MHONamed::IsNamed;
-        using MHONamed::GetName;
-        using MHONamed::SetName;
+        using MHO_Named::IsNamed;
+        using MHO_Named::GetName;
+        using MHO_Named::SetName;
 
 
 
@@ -65,34 +65,34 @@ class MHOTableContainer: public MHONDArrayWrapper< XValueType, XAxisPackType::NA
 
         virtual void Resize(const std::size_t* dim) override
         {
-            MHONDArrayWrapper< XValueType, XAxisPackType::NAXES::value>::Resize(dim);
+            MHO_NDArrayWrapper< XValueType, XAxisPackType::NAXES::value>::Resize(dim);
             resize_axis_pack(dim);
         }
 
         //have to make base class functions visible
-        using MHONDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::Resize;
-        using MHONDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::GetData;
-        using MHONDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::GetSize;
-        using MHONDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::GetDimensions;
-        using MHONDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::GetDimension;
-        using MHONDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::GetOffsetForIndices;
+        using MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::Resize;
+        using MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::GetData;
+        using MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::GetSize;
+        using MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::GetDimensions;
+        using MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::GetDimension;
+        using MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::GetOffsetForIndices;
 
-        using MHONDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::operator();
-        using MHONDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::operator[];
+        using MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::operator();
+        using MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::operator[];
 
     protected:
 
-        using MHONDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::fData;
-        using MHONDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::fDimensions;
-        using MHONDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::fTotalArraySize;
+        using MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::fData;
+        using MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::fDimensions;
+        using MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::fTotalArraySize;
 
     public:
 
         //temporary -- for testing
-        MHOMultiTypeMap< std::string, std::string, int, double > fTags;
+        MHO_MultiTypeMap< std::string, std::string, int, double > fTags;
 
 };
 
 }//end of namespace
 
-#endif /* end of include guard: MHOTableContainer_HH__ */
+#endif /* end of include guard: MHO_TableContainer_HH__ */

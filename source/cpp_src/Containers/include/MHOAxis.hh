@@ -1,34 +1,34 @@
-#ifndef MHOAxis_HH__
-#define MHOAxis_HH__
+#ifndef MHO_Axis_HH__
+#define MHO_Axis_HH__
 
 /*
-*File: MHOAxis.hh
-*Class: MHOAxis
+*File: MHO_Axis.hh
+*Class: MHO_Axis
 *Author: J. Barrett
 *Email: barrettj@mit.edu
 *Date:
 *Description:
 */
 
-#include "MHOVectorContainer.hh"
-#include "MHOInterval.hh"
-#include "MHOIntervalLabel.hh"
-#include "MHOIntervalLabelTree.hh"
+#include "MHO_VectorContainer.hh"
+#include "MHO_Interval.hh"
+#include "MHO_IntervalLabel.hh"
+#include "MHO_IntervalLabelTree.hh"
 
 namespace hops
 {
 
 template< typename XValueType >
-class MHOAxis: public MHOVectorContainer< XValueType >, public MHOIntervalLabelTree
+class MHO_Axis: public MHO_VectorContainer< XValueType >, public MHO_IntervalLabelTree
 {
 
     public:
-        MHOAxis():
-            MHOVectorContainer<XValueType>(),
-            MHOIntervalLabelTree()
+        MHO_Axis():
+            MHO_VectorContainer<XValueType>(),
+            MHO_IntervalLabelTree()
         {};
 
-        virtual ~MHOAxis(){};
+        virtual ~MHO_Axis(){};
 
     private:
 
@@ -36,4 +36,4 @@ class MHOAxis: public MHOVectorContainer< XValueType >, public MHOIntervalLabelT
 
 }
 
-#endif /* end of include guard: MHOAxis */
+#endif /* end of include guard: MHO_Axis */

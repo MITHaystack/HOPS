@@ -3,15 +3,15 @@
 #include <iostream>
 #include <cstddef>
 
-#include "MHOMessage.hh"
-#include "MHOFastFourierTransform.hh"
-#include "MHOBitReversalPermutation.hh"
-#include "MHOFastFourierTransformUtilities.hh"
+#include "MHO_Message.hh"
+#include "MHO_FastFourierTransform.hh"
+#include "MHO_BitReversalPermutation.hh"
+#include "MHO_FastFourierTransformUtilities.hh"
 
 namespace hops
 {
 
-MHOFastFourierTransform::MHOFastFourierTransform()
+MHO_FastFourierTransform::MHO_FastFourierTransform()
 {
     fIsValid = true;
     fForward = true;
@@ -28,31 +28,31 @@ MHOFastFourierTransform::MHOFastFourierTransform()
     fWorkspace = NULL;
 }
 
-MHOFastFourierTransform::~MHOFastFourierTransform()
+MHO_FastFourierTransform::~MHO_FastFourierTransform()
 {
     DealocateWorkspace();
 }
 
 void
-MHOFastFourierTransform::SetSize(unsigned int N)
+MHO_FastFourierTransform::SetSize(unsigned int N)
 {
     if(N != fN)
     {
         fN = N;
-        fSizeIsPowerOfTwo = MHOBitReversalPermutation::IsPowerOfTwo(N);
-        fM = MHOFastFourierTransformUtilities::ComputeBluesteinArraySize(N);
+        fSizeIsPowerOfTwo = MHO_BitReversalPermutation::IsPowerOfTwo(N);
+        fM = MHO_FastFourierTransformUtilities::ComputeBluesteinArraySize(N);
         fInitialized = false;
     }
 }
 
 void
-MHOFastFourierTransform::SetForward(){fForward = true;}
+MHO_FastFourierTransform::SetForward(){fForward = true;}
 
 void
-MHOFastFourierTransform::SetBackward(){fForward = false;}
+MHO_FastFourierTransform::SetBackward(){fForward = false;}
 
 bool
-MHOFastFourierTransform::Initialize()
+MHO_FastFourierTransform::Initialize()
 {
     if(fInput->GetSize() != fN || fOutput->GetSize() != fN)
     {
@@ -69,18 +69,18 @@ MHOFastFourierTransform::Initialize()
         if(fSizeIsPowerOfTwo)
         {
             //use radix-2
-            MHOBitReversalPermutation::ComputeBitReversedIndicesBaseTwo(fN, fPermutation);
-            MHOFastFourierTransformUtilities::ComputeTwiddleFactors(fN, fTwiddle);
-            MHOFastFourierTransformUtilities::ComputeConjugateTwiddleFactors(fN, fConjugateTwiddle);
+            MHO_BitReversalPermutation::ComputeBitReversedIndicesBaseTwo(fN, fPermutation);
+            MHO_FastFourierTransformUtilities::ComputeTwiddleFactors(fN, fTwiddle);
+            MHO_FastFourierTransformUtilities::ComputeConjugateTwiddleFactors(fN, fConjugateTwiddle);
         }
         else
         {
             //use Bluestein algorithm
-            MHOBitReversalPermutation::ComputeBitReversedIndicesBaseTwo(fM, fPermutation);
-            MHOFastFourierTransformUtilities::ComputeTwiddleFactors(fM, fTwiddle);
-            MHOFastFourierTransformUtilities::ComputeConjugateTwiddleFactors(fM, fConjugateTwiddle);
-            MHOFastFourierTransformUtilities::ComputeBluesteinScaleFactors(fN, fScale);
-            MHOFastFourierTransformUtilities::ComputeBluesteinCirculantVector(fN, fM, fTwiddle, fScale, fCirculant);
+            MHO_BitReversalPermutation::ComputeBitReversedIndicesBaseTwo(fM, fPermutation);
+            MHO_FastFourierTransformUtilities::ComputeTwiddleFactors(fM, fTwiddle);
+            MHO_FastFourierTransformUtilities::ComputeConjugateTwiddleFactors(fM, fConjugateTwiddle);
+            MHO_FastFourierTransformUtilities::ComputeBluesteinScaleFactors(fN, fScale);
+            MHO_FastFourierTransformUtilities::ComputeBluesteinCirculantVector(fN, fM, fTwiddle, fScale, fCirculant);
         }
 
         fIsValid = true;
@@ -92,7 +92,7 @@ MHOFastFourierTransform::Initialize()
 
 ///Make a call to execute the FFT plan and perform the transformation
 bool
-MHOFastFourierTransform::ExecuteOperation()
+MHO_FastFourierTransform::ExecuteOperation()
 {
     if(fIsValid && fInitialized)
     {
@@ -117,13 +117,13 @@ MHOFastFourierTransform::ExecuteOperation()
         if(fSizeIsPowerOfTwo)
         {
             //use radix-2
-            MHOBitReversalPermutation::PermuteArray< std::complex<double> >(fN, fPermutation, fOutput->GetData());
-            MHOFastFourierTransformUtilities::FFTRadixTwo_DIT(fN, fOutput->GetData(), fTwiddle);
+            MHO_BitReversalPermutation::PermuteArray< std::complex<double> >(fN, fPermutation, fOutput->GetData());
+            MHO_FastFourierTransformUtilities::FFTRadixTwo_DIT(fN, fOutput->GetData(), fTwiddle);
         }
         else
         {
             //use bluestein algorithm for arbitrary N
-            MHOFastFourierTransformUtilities::FFTBluestein(fN, fM, fOutput->GetData(), fTwiddle, fConjugateTwiddle, fScale, fCirculant, fWorkspace);
+            MHO_FastFourierTransformUtilities::FFTBluestein(fN, fM, fOutput->GetData(), fTwiddle, fConjugateTwiddle, fScale, fCirculant, fWorkspace);
         }
 
         //for DFT we conjugate again (NOTE: this matches FFTW3 convention)
@@ -147,7 +147,7 @@ MHOFastFourierTransform::ExecuteOperation()
 }
 
 void
-MHOFastFourierTransform::AllocateWorkspace()
+MHO_FastFourierTransform::AllocateWorkspace()
 {
     if(!fSizeIsPowerOfTwo)
     {
@@ -170,7 +170,7 @@ MHOFastFourierTransform::AllocateWorkspace()
 }
 
 void
-MHOFastFourierTransform::DealocateWorkspace()
+MHO_FastFourierTransform::DealocateWorkspace()
 {
     delete[] fPermutation; fPermutation = NULL;
     delete[] fTwiddle; fTwiddle = NULL;

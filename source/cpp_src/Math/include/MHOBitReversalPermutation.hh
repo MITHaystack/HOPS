@@ -1,5 +1,5 @@
-#ifndef MHOBitReversalPermutation_HH__
-#define MHOBitReversalPermutation_HH__
+#ifndef MHO_BitReversalPermutation_HH__
+#define MHO_BitReversalPermutation_HH__
 
 #include <cstddef>
 #include <vector>
@@ -7,11 +7,11 @@
 namespace hops
 {
 
-class MHOBitReversalPermutation
+class MHO_BitReversalPermutation
 {
     public:
-        MHOBitReversalPermutation(){};
-        virtual ~MHOBitReversalPermutation(){};
+        MHO_BitReversalPermutation(){};
+        virtual ~MHO_BitReversalPermutation(){};
 
         static bool IsPowerOfTwo(unsigned int N);
         static unsigned int TwoToThePowerOf(unsigned int N); //N must be >= 0
@@ -103,4 +103,4 @@ class MHOBitReversalPermutation
 }
 
 
-#endif /* MHOBitReversalPermutation_H__ */
+#endif /* MHO_BitReversalPermutation_H__ */

@@ -1,8 +1,8 @@
 #include <cstddef>
 #include <cmath>
 
-#include "MHOMessage.hh"
-#include "MHOFastFourierTransformUtilities.hh"
+#include "MHO_Message.hh"
+#include "MHO_FastFourierTransformUtilities.hh"
 
 
 namespace hops
@@ -12,7 +12,7 @@ namespace hops
 //TWIDDLE FACTORS
 
 void
-MHOFastFourierTransformUtilities::ComputeTwiddleFactors(unsigned int N, std::complex<double>* twiddle)
+MHO_FastFourierTransformUtilities::ComputeTwiddleFactors(unsigned int N, std::complex<double>* twiddle)
 {
     //using std::cos and std::sin is more accurate than the recursive method
     //to compute the twiddle factors
@@ -27,7 +27,7 @@ MHOFastFourierTransformUtilities::ComputeTwiddleFactors(unsigned int N, std::com
 
 
 void
-MHOFastFourierTransformUtilities::ComputeConjugateTwiddleFactors(unsigned int N, std::complex<double>* conj_twiddle)
+MHO_FastFourierTransformUtilities::ComputeConjugateTwiddleFactors(unsigned int N, std::complex<double>* conj_twiddle)
 {
     //using std::cos and std::sin is more accurate than the recursive method
     //to compute the twiddle factors
@@ -42,19 +42,19 @@ MHOFastFourierTransformUtilities::ComputeConjugateTwiddleFactors(unsigned int N,
 //RADIX-2
 
 void
-MHOFastFourierTransformUtilities::FFTRadixTwo_DIT(unsigned int N, std::complex<double>* data, std::complex<double>* twiddle)
+MHO_FastFourierTransformUtilities::FFTRadixTwo_DIT(unsigned int N, std::complex<double>* data, std::complex<double>* twiddle)
 {
     FFTRadixTwo_DIT(N, (double*)&(data[0]), (double*) &(twiddle[0]) );
 }
 
 void
-MHOFastFourierTransformUtilities::FFTRadixTwo_DIF(unsigned int N, std::complex<double>* data, std::complex<double>* twiddle)
+MHO_FastFourierTransformUtilities::FFTRadixTwo_DIF(unsigned int N, std::complex<double>* data, std::complex<double>* twiddle)
 {
     FFTRadixTwo_DIF(N, (double*)&(data[0]), (double*) &(twiddle[0]) );
 }
 
 void
-MHOFastFourierTransformUtilities::ButterflyRadixTwo_CooleyTukey(double* H0, double* H1, double* W)
+MHO_FastFourierTransformUtilities::ButterflyRadixTwo_CooleyTukey(double* H0, double* H1, double* W)
 {
     ////////////////////////////////////////////////////////////////////////
     //See page 23
@@ -77,7 +77,7 @@ MHOFastFourierTransformUtilities::ButterflyRadixTwo_CooleyTukey(double* H0, doub
 
 
 void
-MHOFastFourierTransformUtilities::ButterflyRadixTwo_GentlemanSande(double* H0, double* H1, double* W)
+MHO_FastFourierTransformUtilities::ButterflyRadixTwo_GentlemanSande(double* H0, double* H1, double* W)
 {
     ////////////////////////////////////////////////////////////////////////
     //See page 25
@@ -108,16 +108,16 @@ MHOFastFourierTransformUtilities::ButterflyRadixTwo_GentlemanSande(double* H0, d
 }
 
 void
-MHOFastFourierTransformUtilities::FFTRadixTwo_DIT(unsigned int N, double* data, double* twiddle)
+MHO_FastFourierTransformUtilities::FFTRadixTwo_DIT(unsigned int N, double* data, double* twiddle)
 {
     //decimation in time
 
     //input: data array in bit-address permutated order
     //output: fft of data in normal order
 
-    if(MHOBitReversalPermutation::IsPowerOfTwo(N) )
+    if(MHO_BitReversalPermutation::IsPowerOfTwo(N) )
     {
-        unsigned int logN = MHOBitReversalPermutation::LogBaseTwo(N);
+        unsigned int logN = MHO_BitReversalPermutation::LogBaseTwo(N);
 
         unsigned int butterfly_width;
         unsigned int n_butterfly_groups;
@@ -127,7 +127,7 @@ MHOFastFourierTransformUtilities::FFTRadixTwo_DIT(unsigned int N, double* data, 
         for(unsigned int stage = 0; stage < logN; stage++)
         {
             //compute the width of each butterfly
-            butterfly_width = MHOBitReversalPermutation::TwoToThePowerOf(stage);
+            butterfly_width = MHO_BitReversalPermutation::TwoToThePowerOf(stage);
 
             //compute the number of butterfly groups
             n_butterfly_groups = N/(2*butterfly_width);
@@ -151,22 +151,22 @@ MHOFastFourierTransformUtilities::FFTRadixTwo_DIT(unsigned int N, double* data, 
     }
     else
     {
-        msg_error("math", "MHOFastFourierTransformUtilities::FFTRadixTwo_DIT: error, array has length: "<<N<<" which is not an integer power of 2."<<eom);
+        msg_error("math", "MHO_FastFourierTransformUtilities::FFTRadixTwo_DIT: error, array has length: "<<N<<" which is not an integer power of 2."<<eom);
     }
 }
 
 
 void
-MHOFastFourierTransformUtilities::FFTRadixTwo_DIF(unsigned int N, double* data, double* twiddle)
+MHO_FastFourierTransformUtilities::FFTRadixTwo_DIF(unsigned int N, double* data, double* twiddle)
 {
     //decimation in frequency
 
     //input: data array in normal order
     //output: fft of data in bit-address permutated order
 
-    if(MHOBitReversalPermutation::IsPowerOfTwo(N) )
+    if(MHO_BitReversalPermutation::IsPowerOfTwo(N) )
     {
-        unsigned int logN = MHOBitReversalPermutation::LogBaseTwo(N);
+        unsigned int logN = MHO_BitReversalPermutation::LogBaseTwo(N);
 
         unsigned int butterfly_width;
         unsigned int n_butterfly_groups;
@@ -176,7 +176,7 @@ MHOFastFourierTransformUtilities::FFTRadixTwo_DIF(unsigned int N, double* data, 
         for(unsigned int stage = 0; stage < logN; stage++)
         {
             //compute the number of butterfly groups
-            n_butterfly_groups= MHOBitReversalPermutation::TwoToThePowerOf(stage);
+            n_butterfly_groups= MHO_BitReversalPermutation::TwoToThePowerOf(stage);
 
             //compute the width of each butterfly
             butterfly_width =  N/(2*n_butterfly_groups);
@@ -200,7 +200,7 @@ MHOFastFourierTransformUtilities::FFTRadixTwo_DIF(unsigned int N, double* data, 
     }
     else
     {
-        msg_error("math", "MHOFastFourierTransformUtilities::FFTRadixTwo_DIF: error, array has length: "<<N<<" which is not an integer power of 2."<< eom);
+        msg_error("math", "MHO_FastFourierTransformUtilities::FFTRadixTwo_DIF: error, array has length: "<<N<<" which is not an integer power of 2."<< eom);
     }
 
 }
@@ -211,22 +211,22 @@ MHOFastFourierTransformUtilities::FFTRadixTwo_DIF(unsigned int N, double* data, 
 
 
 unsigned int
-MHOFastFourierTransformUtilities::ComputeBluesteinArraySize(unsigned int N)
+MHO_FastFourierTransformUtilities::ComputeBluesteinArraySize(unsigned int N)
 {
     unsigned int M = 2*(N - 1);
-    if( MHOBitReversalPermutation::IsPowerOfTwo(M))
+    if( MHO_BitReversalPermutation::IsPowerOfTwo(M))
     {
         return M;
     }
     else
     {
-        return MHOBitReversalPermutation::NextLowestPowerOfTwo(M);
+        return MHO_BitReversalPermutation::NextLowestPowerOfTwo(M);
     }
 }
 
 
 void
-MHOFastFourierTransformUtilities::ComputeBluesteinScaleFactors(unsigned int N, std::complex<double>* scale)
+MHO_FastFourierTransformUtilities::ComputeBluesteinScaleFactors(unsigned int N, std::complex<double>* scale)
 {
     //STEP A
     double theta = M_PI/((double)N);
@@ -249,7 +249,7 @@ MHOFastFourierTransformUtilities::ComputeBluesteinScaleFactors(unsigned int N, s
 }
 
 void
-MHOFastFourierTransformUtilities::ComputeBluesteinCirculantVector(
+MHO_FastFourierTransformUtilities::ComputeBluesteinCirculantVector(
     unsigned int N,
     unsigned int M,
     std::complex<double>* twiddle, //must be size M
@@ -280,11 +280,11 @@ MHOFastFourierTransformUtilities::ComputeBluesteinCirculantVector(
     //now we perform an in-place DFT on the circulant vector
 
     //expects normal order input, produces bit-address permutated output
-    MHOFastFourierTransformUtilities::FFTRadixTwo_DIF(M, circulant, twiddle);
+    MHO_FastFourierTransformUtilities::FFTRadixTwo_DIF(M, circulant, twiddle);
 }
 
 void
-MHOFastFourierTransformUtilities::FFTBluestein(
+MHO_FastFourierTransformUtilities::FFTBluestein(
     unsigned int N,
     unsigned int M,
     std::complex<double>* data, //must be size N
@@ -311,7 +311,7 @@ MHOFastFourierTransformUtilities::FFTBluestein(
     //STEP E
     //perform the DFT on the workspace
     //do radix-2 FFT w/ decimation in frequency (normal order input, bit-address permutated output)
-    MHOFastFourierTransformUtilities::FFTRadixTwo_DIF(M, (double*)(&(workspace[0])), (double*)(&(twiddle[0])) );
+    MHO_FastFourierTransformUtilities::FFTRadixTwo_DIF(M, (double*)(&(workspace[0])), (double*)(&(twiddle[0])) );
 
     //STEP F
     //now we scale the workspace with the circulant vector
@@ -323,7 +323,7 @@ MHOFastFourierTransformUtilities::FFTBluestein(
     //STEP G
     //now perform the inverse DFT on the workspace
     //do radix-2 FFT w/ decimation in time (bit-address permutated input, normal order output)
-    MHOFastFourierTransformUtilities::FFTRadixTwo_DIT(M, (double*)(&(workspace[0])), (double*)(&(conj_twiddle[0])) );
+    MHO_FastFourierTransformUtilities::FFTRadixTwo_DIT(M, (double*)(&(workspace[0])), (double*)(&(conj_twiddle[0])) );
 
     //STEP H
     //renormalize to complete IDFT, extract and scale at the same time

@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 
-#include "MHOVectorContainer.hh"
+#include "MHO_VectorContainer.hh"
 
 
 using namespace hops;
@@ -12,7 +12,7 @@ int main(int /*argc*/, char** /*argv*/)
 
     size_t dim = 100;
 
-    MHOVectorContainer<double>* test = new MHOVectorContainer<double>(dim);
+    MHO_VectorContainer<double>* test = new MHO_VectorContainer<double>(dim);
 
     std::cout<<"dimension @ 0 ="<<test->GetDimension(0)<<std::endl;
     std::cout<<"total array size = "<<test->GetSize()<<std::endl;

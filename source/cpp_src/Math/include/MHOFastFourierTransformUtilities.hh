@@ -1,18 +1,18 @@
-#ifndef MHOFastFourierTransformUtilities_HH__
-#define MHOFastFourierTransformUtilities_HH__
+#ifndef MHO_FastFourierTransformUtilities_HH__
+#define MHO_FastFourierTransformUtilities_HH__
 
-#include "MHOBitReversalPermutation.hh"
+#include "MHO_BitReversalPermutation.hh"
 #include <complex>
 
 namespace hops
 {
 
 
-class MHOFastFourierTransformUtilities
+class MHO_FastFourierTransformUtilities
 {
     public:
-        MHOFastFourierTransformUtilities(){};
-        virtual ~MHOFastFourierTransformUtilities(){};
+        MHO_FastFourierTransformUtilities(){};
+        virtual ~MHO_FastFourierTransformUtilities(){};
 
 
         ////////////////////////////////////////////////////////////////////////
@@ -71,4 +71,4 @@ class MHOFastFourierTransformUtilities
 }
 
 
-#endif /* MHOFastFourierTransformUtilities_H__ */
+#endif /* MHO_FastFourierTransformUtilities_H__ */
