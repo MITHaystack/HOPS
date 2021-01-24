@@ -4,7 +4,7 @@
 #include <algorithm>
 
 #include "MHOMessage.hh"
-#include "MHOArrayWrapper.hh"
+#include "MHONDArrayWrapper.hh"
 #include "MHOArrayOperator.hh"
 #include "MHOArrayFunctor.hh"
 

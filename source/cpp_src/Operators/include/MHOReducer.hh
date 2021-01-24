@@ -4,7 +4,7 @@
 #include <algorithm>
 
 #include "MHOMessage.hh"
-#include "MHOArrayWrapper.hh"
+#include "MHONDArrayWrapper.hh"
 #include "MHOArrayOperator.hh"
 #include "MHOCompoundReductions.hh" //for operator type definitions
 
@@ -26,8 +26,8 @@ namespace hops
 
 template< typename XItemType, template<typename> class XOperatorType, std::size_t RANK>
 class MHOReducer:
-    public MHOArrayOperator< MHOArrayWrapper< XItemType, RANK>,
-                             MHOArrayWrapper< XItemType, RANK> >
+    public MHOArrayOperator< MHONDArrayWrapper< XItemType, RANK>,
+                             MHONDArrayWrapper< XItemType, RANK> >
 {
     public:
 

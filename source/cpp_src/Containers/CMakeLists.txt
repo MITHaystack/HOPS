@@ -1,12 +1,12 @@
 #list header files #############################################################
 set (CONTAINER_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHOArrayMath.hh
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHOArrayWrapper.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHONDArrayWrapper.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHOArrayFunctor.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHOAxisPack.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHOScalarContainer.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHOVectorContainer.hh
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHOTensorContainer.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHOTableContainer.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHOAxis.hh
 )
 

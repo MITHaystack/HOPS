@@ -3,7 +3,7 @@
 #include <cmath>
 #include <sstream>
 
-#include "MHOTensorContainer.hh"
+#include "MHOTableContainer.hh"
 #include "MHOAxis.hh"
 
 #ifdef USE_ROOT
@@ -35,7 +35,7 @@ int main(int argc, char** argv)
     dim[1] = 256; //y
     dim[2] = 3; // r,g,b
 
-    MHOTensorContainer<double, axis_pack_test >* test = new MHOTensorContainer<double, axis_pack_test >(dim);
+    MHOTableContainer<double, axis_pack_test >* test = new MHOTableContainer<double, axis_pack_test >(dim);
 
     for(size_t i=0; i<NDIM; i++)
     {

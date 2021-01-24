@@ -1,9 +1,9 @@
-#ifndef MHOArrayWrapper_HH__
-#define MHOArrayWrapper_HH__
+#ifndef MHONDArrayWrapper_HH__
+#define MHONDArrayWrapper_HH__
 
 /*
-*File: MHOArrayWrapper.hh
-*Class: MHOArrayWrapper
+*File: MHONDArrayWrapper.hh
+*Class: MHONDArrayWrapper
 *Author: J. Barrett
 *Email: barrettj@mit.edu
 *Date: 2020-05-15T20:22:38.395Z
@@ -29,7 +29,7 @@ namespace hops
 {
 
 template< typename XValueType, std::size_t RANK>
-class MHOArrayWrapper
+class MHONDArrayWrapper
 {
     public:
 
@@ -37,7 +37,7 @@ class MHOArrayWrapper
         typedef std::integral_constant< std::size_t, RANK > rank;
 
         //empty constructor, to be configured later
-        MHOArrayWrapper()
+        MHONDArrayWrapper()
         {
             //dimensions not known at time of construction
             for(std::size_t i=0; i<RANK; i++)
@@ -51,7 +51,7 @@ class MHOArrayWrapper
 
         //data is externally allocated - we take no responsiblity to
         //delete the data pointed to by ptr upon destruction
-        MHOArrayWrapper(XValueType* ptr, const std::size_t* dim)
+        MHONDArrayWrapper(XValueType* ptr, const std::size_t* dim)
         {
             //dimensions not known at time of construction
             for(std::size_t i=0; i<RANK; i++)
@@ -64,7 +64,7 @@ class MHOArrayWrapper
         }
 
         //data is internally allocated
-        MHOArrayWrapper(const std::size_t* dim)
+        MHONDArrayWrapper(const std::size_t* dim)
         {
             for(std::size_t i=0; i<RANK; i++)
             {
@@ -77,7 +77,7 @@ class MHOArrayWrapper
         }
 
         //copy constructor
-        MHOArrayWrapper(const MHOArrayWrapper& obj)
+        MHONDArrayWrapper(const MHONDArrayWrapper& obj)
         {
             for(std::size_t i=0; i<RANK; i++)
             {
@@ -104,7 +104,7 @@ class MHOArrayWrapper
             }
         }
 
-        virtual ~MHOArrayWrapper()
+        virtual ~MHONDArrayWrapper()
         {
             //all internal memory management is handled by std::vector
             //external arrays are not managed by this class at all
@@ -220,7 +220,7 @@ class MHOArrayWrapper
             }
             else
             {
-                throw std::out_of_range("MHOArrayWrapper::at() indices out of range.");
+                throw std::out_of_range("MHONDArrayWrapper::at() indices out of range.");
             }
         }
 
@@ -236,7 +236,7 @@ class MHOArrayWrapper
             }
             else
             {
-                throw std::out_of_range("MHOArrayWrapper::at() indices out of range.");
+                throw std::out_of_range("MHONDArrayWrapper::at() indices out of range.");
             }
         }
 
@@ -244,7 +244,7 @@ class MHOArrayWrapper
         XValueType& operator[](std::size_t i){return fDataPtr[i];}
         const XValueType& operator[](std::size_t i) const {return fDataPtr[i];}
 
-        MHOArrayWrapper& operator=(const MHOArrayWrapper& rhs)
+        MHONDArrayWrapper& operator=(const MHONDArrayWrapper& rhs)
         {
             if(this != &rhs)
             {
@@ -509,39 +509,39 @@ class MHOArrayWrapper
 
 //specialization for a RANK-0 (i.e. a scalar)
 template< typename XValueType >
-class MHOArrayWrapper<XValueType, 0>
+class MHONDArrayWrapper<XValueType, 0>
 {
     public:
 
         using value_type = XValueType;
         typedef std::integral_constant< std::size_t, 0 > rank;
 
-        MHOArrayWrapper()
+        MHONDArrayWrapper()
         {
             fTotalArraySize = 1;
         }
 
         //copy constructor
-        MHOArrayWrapper(const MHOArrayWrapper& obj)
+        MHONDArrayWrapper(const MHONDArrayWrapper& obj)
         {
             fTotalArraySize = 1;
             fData = obj.fData;
         }
 
-        MHOArrayWrapper(const XValueType& data)
+        MHONDArrayWrapper(const XValueType& data)
         {
             fData = data;
             fTotalArraySize = 1;
         }
 
-        virtual ~MHOArrayWrapper(){};
+        virtual ~MHONDArrayWrapper(){};
 
         void SetData(const XValueType& value){fData = value;}
         XValueType GetData(){return fData;};
 
         std::size_t GetSize() const {return 1;};
 
-        MHOArrayWrapper& operator=(const MHOArrayWrapper& rhs)
+        MHONDArrayWrapper& operator=(const MHONDArrayWrapper& rhs)
         {
             if(this != &rhs)
             {
@@ -575,14 +575,14 @@ class MHOArrayWrapper<XValueType, 0>
 
 //specialization for a RANK-1 (i.e. a vector)
 template< typename XValueType >
-class MHOArrayWrapper<XValueType, 1>
+class MHONDArrayWrapper<XValueType, 1>
 {
     public:
 
         using value_type = XValueType;
         typedef std::integral_constant< std::size_t, 1 > rank;
 
-        MHOArrayWrapper()
+        MHONDArrayWrapper()
         {
             //dimensions not known at time of construction
             fDimensions[0] = 0;
@@ -593,7 +593,7 @@ class MHOArrayWrapper<XValueType, 1>
 
         //data is externally allocated - we take no responsiblity to
         //delete the data pointed to by ptr upon destruction
-        MHOArrayWrapper(XValueType* ptr, std::size_t dim)
+        MHONDArrayWrapper(XValueType* ptr, std::size_t dim)
         {
             //dimensions not known at time of construction
             fDimensions[0] = dim;
@@ -604,7 +604,7 @@ class MHOArrayWrapper<XValueType, 1>
 
         //data is internally allocated
         //we may want to improve this with an allocator type parameter
-        MHOArrayWrapper(std::size_t dim)
+        MHONDArrayWrapper(std::size_t dim)
         {
             fDimensions[0] = dim;
             fTotalArraySize = dim;
@@ -614,7 +614,7 @@ class MHOArrayWrapper<XValueType, 1>
         }
 
         //copy constructor
-        MHOArrayWrapper(const MHOArrayWrapper& obj)
+        MHONDArrayWrapper(const MHONDArrayWrapper& obj)
         {
             fDimensions[0] = obj.fDimensions[0];
             fTotalArraySize = obj.fTotalArraySize;
@@ -635,7 +635,7 @@ class MHOArrayWrapper<XValueType, 1>
             }
         }
 
-        virtual ~MHOArrayWrapper(){};
+        virtual ~MHONDArrayWrapper(){};
 
         void Resize(const std::size_t* dim)
         {
@@ -733,7 +733,7 @@ class MHOArrayWrapper<XValueType, 1>
             }
             else
             {
-                throw std::out_of_range("MHOArrayWrapper::at() indices out of range.");
+                throw std::out_of_range("MHONDArrayWrapper::at() indices out of range.");
             }
         }
 
@@ -749,7 +749,7 @@ class MHOArrayWrapper<XValueType, 1>
             }
             else
             {
-                throw std::out_of_range("MHOArrayWrapper::at() indices out of range.");
+                throw std::out_of_range("MHONDArrayWrapper::at() indices out of range.");
             }
         }
 
@@ -764,7 +764,7 @@ class MHOArrayWrapper<XValueType, 1>
             return fDataPtr[i];
         }
 
-        MHOArrayWrapper& operator=(const MHOArrayWrapper& rhs)
+        MHONDArrayWrapper& operator=(const MHONDArrayWrapper& rhs)
         {
             if(this != &rhs)
             {
@@ -868,4 +868,4 @@ HaveSameDimensions(const XArrayType1* arr1, const XArrayType2* arr2)
 }//end of hops namespace
 
 
-#endif /* MHOArrayWrapper_HH__ */
+#endif /* MHONDArrayWrapper_HH__ */

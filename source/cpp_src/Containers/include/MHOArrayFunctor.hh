@@ -2,7 +2,7 @@
 #define MHOArrayFunctor_HH__
 
 #include <algorithm>
-#include "MHOArrayWrapper.hh"
+#include "MHONDArrayWrapper.hh"
 
 /*
 *File: MHOArrayFunctor.hh

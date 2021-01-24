@@ -14,17 +14,17 @@
 #include <string>
 
 #include "MHONamed.hh"
-#include "MHOArrayWrapper.hh"
+#include "MHONDArrayWrapper.hh"
 
 namespace hops
 {
 
 template< typename XValueType >
-class MHOScalarContainer: public MHOArrayWrapper< XValueType, 0>, public MHONamed
+class MHOScalarContainer: public MHONDArrayWrapper< XValueType, 0>, public MHONamed
 {
     public:
         MHOScalarContainer():
-            MHOArrayWrapper<XValueType, 0>(),
+            MHONDArrayWrapper<XValueType, 0>(),
             MHONamed()
         {};
 
@@ -38,14 +38,14 @@ class MHOScalarContainer: public MHOArrayWrapper< XValueType, 0>, public MHOName
         XValueType GetValue(){ return fData;};
 
         //have to make base class functions visible
-        using MHOArrayWrapper<XValueType,0>::SetData;
-        using MHOArrayWrapper<XValueType,0>::GetData;
+        using MHONDArrayWrapper<XValueType,0>::SetData;
+        using MHONDArrayWrapper<XValueType,0>::GetData;
 
         std::size_t GetSize() const {return 1;};
 
     protected:
 
-        using MHOArrayWrapper<XValueType,0>::fData;
+        using MHONDArrayWrapper<XValueType,0>::fData;
 
 };
 

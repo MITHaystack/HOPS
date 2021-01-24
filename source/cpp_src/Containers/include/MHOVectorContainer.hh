@@ -14,30 +14,30 @@
 #include <string>
 
 #include "MHONamed.hh"
-#include "MHOArrayWrapper.hh"
+#include "MHONDArrayWrapper.hh"
 
 namespace hops
 {
 
 
 template< typename XValueType >
-class MHOVectorContainer: public MHOArrayWrapper< XValueType, 1>, public MHONamed
+class MHOVectorContainer: public MHONDArrayWrapper< XValueType, 1>, public MHONamed
 {
     public:
 
         MHOVectorContainer():
-            MHOArrayWrapper<XValueType,1>(),
+            MHONDArrayWrapper<XValueType,1>(),
             MHONamed()
         {};
 
         MHOVectorContainer(std::size_t dim):
-            MHOArrayWrapper<XValueType,1>(dim),
+            MHONDArrayWrapper<XValueType,1>(dim),
             MHONamed()
         {};
 
         //copy constructor
         MHOVectorContainer(const MHOVectorContainer& obj):
-            MHOArrayWrapper<XValueType,1>(obj),
+            MHONDArrayWrapper<XValueType,1>(obj),
             MHONamed(obj)
         {};
 
@@ -52,20 +52,20 @@ class MHOVectorContainer: public MHOArrayWrapper< XValueType, 1>, public MHOName
         using MHONamed::SetName;
 
         //have to make base class functions visible
-        using MHOArrayWrapper<XValueType,1>::Resize;
-        using MHOArrayWrapper<XValueType,1>::GetData;
-        using MHOArrayWrapper<XValueType,1>::GetSize;
-        using MHOArrayWrapper<XValueType,1>::GetDimensions;
-        using MHOArrayWrapper<XValueType,1>::GetDimension;
-        using MHOArrayWrapper<XValueType,1>::GetOffsetForIndices;
-        using MHOArrayWrapper<XValueType,1>::operator();
-        using MHOArrayWrapper<XValueType,1>::operator[];
+        using MHONDArrayWrapper<XValueType,1>::Resize;
+        using MHONDArrayWrapper<XValueType,1>::GetData;
+        using MHONDArrayWrapper<XValueType,1>::GetSize;
+        using MHONDArrayWrapper<XValueType,1>::GetDimensions;
+        using MHONDArrayWrapper<XValueType,1>::GetDimension;
+        using MHONDArrayWrapper<XValueType,1>::GetOffsetForIndices;
+        using MHONDArrayWrapper<XValueType,1>::operator();
+        using MHONDArrayWrapper<XValueType,1>::operator[];
 
     protected:
 
-        using MHOArrayWrapper<XValueType,1>::fData;
-        using MHOArrayWrapper<XValueType,1>::fDimensions;
-        using MHOArrayWrapper<XValueType,1>::fTotalArraySize;
+        using MHONDArrayWrapper<XValueType,1>::fData;
+        using MHONDArrayWrapper<XValueType,1>::fDimensions;
+        using MHONDArrayWrapper<XValueType,1>::fTotalArraySize;
 
 };
 

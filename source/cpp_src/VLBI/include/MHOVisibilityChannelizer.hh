@@ -10,7 +10,7 @@
 *Description:
 */
 
-#include "MHOArrayWrapper.hh"
+#include "MHONDArrayWrapper.hh"
 #include "MHOArrayOperator.hh"
 
 #include "MHOVisibilities.hh"

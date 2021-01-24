@@ -1,12 +1,12 @@
 #ifndef MHOArrayOperator_HH__
 #define MHOArrayOperator_HH__
 
-#include "MHOArrayWrapper.hh"
+#include "MHONDArrayWrapper.hh"
 #include <cstring>
 
 namespace hops{
 
- //template parameters must inherit from MHOArrayWrapper
+ //template parameters must inherit from MHONDArrayWrapper
 template<class XInputArrayType, class XOutputArrayType>
 class MHOArrayOperator
 {
