@@ -14,7 +14,7 @@
 #include <complex>
 
 
-#include "MHOArrayFunctor.hh"
+#include "MHONDArrayFunctor.hh"
 #include "MHOTableContainer.hh"
 #include "MHOChannelizedVisibilities.hh"
 
@@ -22,12 +22,12 @@ namespace hops
 {
 
 
-class MHOChannelizedRotationFunctor: public MHOArrayFunctor< ch_baseline_data_type, ch_baseline_data_type >
+class MHOChannelizedRotationFunctor: public MHONDArrayFunctor< ch_baseline_data_type, ch_baseline_data_type >
 {
     public:
 
-        using input_iterator = MHOArrayFunctor< ch_baseline_data_type, ch_baseline_data_type >::input_iterator;
-        using output_iterator = MHOArrayFunctor< ch_baseline_data_type, ch_baseline_data_type >::output_iterator;
+        using input_iterator = MHONDArrayFunctor< ch_baseline_data_type, ch_baseline_data_type >::input_iterator;
+        using output_iterator = MHONDArrayFunctor< ch_baseline_data_type, ch_baseline_data_type >::output_iterator;
 
 
         MHOChannelizedRotationFunctor();

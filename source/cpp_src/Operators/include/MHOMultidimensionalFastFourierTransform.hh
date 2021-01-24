@@ -12,7 +12,7 @@ namespace hops
 
 template<size_t RANK>
 class MHOMultidimensionalFastFourierTransform: 
-    public MHOArrayOperator< MHONDArrayWrapper< std::complex<double>, RANK >, 
+    public MHONDArrayOperator< MHONDArrayWrapper< std::complex<double>, RANK >, 
                              MHONDArrayWrapper< std::complex<double>, RANK > >
 {
     public:
@@ -114,7 +114,7 @@ class MHOMultidimensionalFastFourierTransform:
                     for(size_t n=0; n<n_fft; n++)
                     {
                         //invert place in list to obtain indices of block in array
-                        MHOArrayMath::RowMajorIndexFromOffset<RANK-1>(n, non_active_dimension_size, non_active_dimension_value);
+                        MHONDArrayMath::RowMajorIndexFromOffset<RANK-1>(n, non_active_dimension_size, non_active_dimension_value);
 
                         //copy the value of the non-active dimensions in to index
                         for(size_t i=0; i<RANK-1; i++)
@@ -127,7 +127,7 @@ class MHOMultidimensionalFastFourierTransform:
                         for(size_t i=0; i<fDimensionSize[d]; i++)
                         {
                             index[d] = i;
-                            data_location = MHOArrayMath::OffsetFromRowMajorIndex<RANK>(fDimensionSize, index);
+                            data_location = MHONDArrayMath::OffsetFromRowMajorIndex<RANK>(fDimensionSize, index);
                             (*(fWorkspaceWrapper[d]))[i] = (*(this->fOutput))[data_location];
                         }
 
@@ -138,7 +138,7 @@ class MHOMultidimensionalFastFourierTransform:
                         for(size_t i=0; i<fDimensionSize[d]; i++)
                         {
                             index[d] = i;
-                            data_location = MHOArrayMath::OffsetFromRowMajorIndex<RANK>(fDimensionSize, index);
+                            data_location = MHONDArrayMath::OffsetFromRowMajorIndex<RANK>(fDimensionSize, index);
                             (*(this->fOutput))[data_location] = (*(fWorkspaceWrapper[d]))[i];
                         }
                     }

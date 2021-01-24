@@ -22,7 +22,7 @@
 #include <cmath>
 #include <cinttypes>
 
-#include "MHOArrayMath.hh"
+#include "MHONDArrayMath.hh"
 #include "MHOMessage.hh"
 
 namespace hops
@@ -58,7 +58,7 @@ class MHONDArrayWrapper
             {
                 fDimensions[i] = dim[i];
             }
-            fTotalArraySize = MHOArrayMath::TotalArraySize<RANK>(fDimensions);
+            fTotalArraySize = MHONDArrayMath::TotalArraySize<RANK>(fDimensions);
             fDataPtr = ptr;
             fExternallyManaged = true;
         }
@@ -70,7 +70,7 @@ class MHONDArrayWrapper
             {
                 fDimensions[i] = dim[i];
             }
-            fTotalArraySize = MHOArrayMath::TotalArraySize<RANK>(fDimensions);
+            fTotalArraySize = MHONDArrayMath::TotalArraySize<RANK>(fDimensions);
             fData.resize(fTotalArraySize);
             fDataPtr = &(fData[0]);
             fExternallyManaged = false;
@@ -83,7 +83,7 @@ class MHONDArrayWrapper
             {
                 fDimensions[i] = obj.fDimensions[i];
             }
-            fTotalArraySize = MHOArrayMath::TotalArraySize<RANK>(fDimensions);
+            fTotalArraySize = MHONDArrayMath::TotalArraySize<RANK>(fDimensions);
 
             if(obj.fExternallyManaged)
             {
@@ -127,7 +127,7 @@ class MHONDArrayWrapper
                 msg_debug("containers", "resizing dimension: "<<i<<" to: "<<dim[i] << eom );
                 fDimensions[i] = dim[i];
             }
-            fTotalArraySize = MHOArrayMath::TotalArraySize<RANK>(fDimensions);
+            fTotalArraySize = MHONDArrayMath::TotalArraySize<RANK>(fDimensions);
             fData.resize(fTotalArraySize);
             fDataPtr = &(fData[0]);
             fExternallyManaged = false;
@@ -149,7 +149,7 @@ class MHONDArrayWrapper
             {
                 fDimensions[i] = dim[i];
             }
-            fTotalArraySize = MHOArrayMath::TotalArraySize<RANK>(fDimensions);
+            fTotalArraySize = MHONDArrayMath::TotalArraySize<RANK>(fDimensions);
 
             if(!fExternallyManaged) //not currently already externally managed
             {
@@ -187,7 +187,7 @@ class MHONDArrayWrapper
 
         std::size_t GetOffsetForIndices(const std::size_t* index)
         {
-            return MHOArrayMath::OffsetFromRowMajorIndex<RANK>(fDimensions, index);
+            return MHONDArrayMath::OffsetFromRowMajorIndex<RANK>(fDimensions, index);
         }
 
         //access operator (,,...,) -- no bounds checking
@@ -196,7 +196,7 @@ class MHONDArrayWrapper
         operator()(XIndexTypeS...idx)
         {
             const std::array<std::size_t, RANK> indices = {{static_cast<size_t>(idx)...}}; //convert the arguments to an array
-            return fDataPtr[ MHOArrayMath::OffsetFromRowMajorIndex<RANK>(fDimensions, &(indices[0]) ) ]; //compute the offset into the array and return reference to the data
+            return fDataPtr[ MHONDArrayMath::OffsetFromRowMajorIndex<RANK>(fDimensions, &(indices[0]) ) ]; //compute the offset into the array and return reference to the data
         }
 
         //const reference access operator()
@@ -205,7 +205,7 @@ class MHONDArrayWrapper
         operator()(XIndexTypeS...idx) const
         {
             const std::array<std::size_t, RANK> indices = {{static_cast<size_t>(idx)...}};
-            return fDataPtr[ MHOArrayMath::OffsetFromRowMajorIndex<RANK>(fDimensions, &(indices[0]) ) ];
+            return fDataPtr[ MHONDArrayMath::OffsetFromRowMajorIndex<RANK>(fDimensions, &(indices[0]) ) ];
         }
 
         //access via at(,,,,) -- same as operator() but with bounds checking
@@ -214,9 +214,9 @@ class MHONDArrayWrapper
         at(XIndexTypeS...idx)
         {
             const std::array<std::size_t, RANK> indices = {{static_cast<size_t>(idx)...}};
-            if( MHOArrayMath::CheckIndexValidity<RANK>( fDimensions, &(indices[0]) ) ) //make sure the indices are valid for the given array dimensions
+            if( MHONDArrayMath::CheckIndexValidity<RANK>( fDimensions, &(indices[0]) ) ) //make sure the indices are valid for the given array dimensions
             {
-                return fDataPtr[ MHOArrayMath::OffsetFromRowMajorIndex<RANK>(fDimensions, &(indices[0]) ) ];
+                return fDataPtr[ MHONDArrayMath::OffsetFromRowMajorIndex<RANK>(fDimensions, &(indices[0]) ) ];
             }
             else
             {
@@ -230,9 +230,9 @@ class MHONDArrayWrapper
         at(XIndexTypeS...idx) const
         {
             const std::array<std::size_t, RANK> indices = {{static_cast<size_t>(idx)...}};
-            if( MHOArrayMath::CheckIndexValidity<RANK>( fDimensions, &(indices[0]) ) )
+            if( MHONDArrayMath::CheckIndexValidity<RANK>( fDimensions, &(indices[0]) ) )
             {
-                return fDataPtr[  MHOArrayMath::OffsetFromRowMajorIndex<RANK>(fDimensions, &(indices[0]) ) ];
+                return fDataPtr[  MHONDArrayMath::OffsetFromRowMajorIndex<RANK>(fDimensions, &(indices[0]) ) ];
             }
             else
             {
@@ -256,7 +256,7 @@ class MHONDArrayWrapper
                     {
                         fDimensions[i] = rhs.fDimensions[i];
                     }
-                    fTotalArraySize = MHOArrayMath::TotalArraySize<RANK>(fDimensions);
+                    fTotalArraySize = MHONDArrayMath::TotalArraySize<RANK>(fDimensions);
                     fDataPtr = rhs.fDataPtr;
                     fExternallyManaged = true;
                     //effectively de-allocate anything we might have had before
@@ -327,7 +327,7 @@ class MHONDArrayWrapper
                     fDimensions(dim)
                 {
                     //initialize the multi-dim indices
-                    MHOArrayMath::RowMajorIndexFromOffset<RANK>(offset, fDimensions, &(fIndices[0]) );
+                    MHONDArrayMath::RowMajorIndexFromOffset<RANK>(offset, fDimensions, &(fIndices[0]) );
                 };
 
                 iterator(const self_type& copy)
@@ -341,14 +341,14 @@ class MHONDArrayWrapper
                 self_type operator++()
                 {
                     fPtr++;
-                    fValid = MHOArrayMath::IncrementIndices<RANK>(fDimensions, &(fIndices[0]) );
+                    fValid = MHONDArrayMath::IncrementIndices<RANK>(fDimensions, &(fIndices[0]) );
                     return *this;
                 }
 
                 self_type operator--()
                 {
                     fPtr--;
-                    fValid = MHOArrayMath::DecrementIndices<RANK>(fDimensions, &(fIndices[0]) );
+                    fValid = MHONDArrayMath::DecrementIndices<RANK>(fDimensions, &(fIndices[0]) );
                     return *this;
                 }
 
@@ -356,7 +356,7 @@ class MHONDArrayWrapper
                 {
                     self_type ret_val(*this);
                     fPtr++;
-                    fValid = MHOArrayMath::IncrementIndices<RANK>(fDimensions, &(fIndices[0]) );
+                    fValid = MHONDArrayMath::IncrementIndices<RANK>(fDimensions, &(fIndices[0]) );
                     return ret_val;
                 }
 
@@ -364,7 +364,7 @@ class MHONDArrayWrapper
                 {
                     self_type ret_val(*this);
                     fPtr--;
-                    fValid = MHOArrayMath::DecrementIndices<RANK>(fDimensions, &(fIndices[0]) );
+                    fValid = MHONDArrayMath::DecrementIndices<RANK>(fDimensions, &(fIndices[0]) );
                     return ret_val;
                 }
 
@@ -378,11 +378,11 @@ class MHONDArrayWrapper
                     fPtr += diff;
                     if(diff >= 0)
                     {
-                        fValid = MHOArrayMath::IncrementIndices<RANK>(fDimensions, &(fIndices[0]), (std::size_t)diff );
+                        fValid = MHONDArrayMath::IncrementIndices<RANK>(fDimensions, &(fIndices[0]), (std::size_t)diff );
                     }
                     else
                     {
-                        fValid = MHOArrayMath::DecrementIndices<RANK>(fDimensions, &(fIndices[0]), (std::size_t) std::abs(diff) );
+                        fValid = MHONDArrayMath::DecrementIndices<RANK>(fDimensions, &(fIndices[0]), (std::size_t) std::abs(diff) );
                     }
                     return (*this);
                 }
@@ -392,11 +392,11 @@ class MHONDArrayWrapper
                     fPtr -= diff;
                     if(diff >= 0)
                     {
-                        fValid = MHOArrayMath::DecrementIndices<RANK>(fDimensions, &(fIndices[0]), (std::size_t) diff );
+                        fValid = MHONDArrayMath::DecrementIndices<RANK>(fDimensions, &(fIndices[0]), (std::size_t) diff );
                     }
                     else
                     {
-                        fValid = MHOArrayMath::IncrementIndices<RANK>(fDimensions, &(fIndices[0]), (std::size_t) std::abs(diff) );
+                        fValid = MHONDArrayMath::IncrementIndices<RANK>(fDimensions, &(fIndices[0]), (std::size_t) std::abs(diff) );
                     }
                     return (*this);
                 }
@@ -410,11 +410,11 @@ class MHONDArrayWrapper
                     fPtr += diff;
                     if(diff >= 0)
                     {
-                        fValid = MHOArrayMath::IncrementIndices<RANK>(fDimensions, &(fIndices[0]), (std::size_t)diff );
+                        fValid = MHONDArrayMath::IncrementIndices<RANK>(fDimensions, &(fIndices[0]), (std::size_t)diff );
                     }
                     else
                     {
-                        fValid = MHOArrayMath::DecrementIndices<RANK>(fDimensions, &(fIndices[0]), (std::size_t) std::abs(diff) );
+                        fValid = MHONDArrayMath::DecrementIndices<RANK>(fDimensions, &(fIndices[0]), (std::size_t) std::abs(diff) );
                     }
                     self_type temp(*this);
 
@@ -434,11 +434,11 @@ class MHONDArrayWrapper
                     fPtr -= diff;
                     if(diff >= 0)
                     {
-                        fValid = MHOArrayMath::DecrementIndices<RANK>(fDimensions, &(fIndices[0]), (std::size_t) diff );
+                        fValid = MHONDArrayMath::DecrementIndices<RANK>(fDimensions, &(fIndices[0]), (std::size_t) diff );
                     }
                     else
                     {
-                        fValid = MHOArrayMath::IncrementIndices<RANK>(fDimensions, &(fIndices[0]), (std::size_t) std::abs(diff) );
+                        fValid = MHONDArrayMath::IncrementIndices<RANK>(fDimensions, &(fIndices[0]), (std::size_t) std::abs(diff) );
                     }
                     self_type temp(*this);
 
@@ -699,7 +699,7 @@ class MHONDArrayWrapper<XValueType, 1>
 
         std::size_t GetOffsetForIndices(const std::size_t* index)
         {
-            return MHOArrayMath::OffsetFromRowMajorIndex<1>(fDimensions, index);
+            return MHONDArrayMath::OffsetFromRowMajorIndex<1>(fDimensions, index);
         }
 
         //TODO fix narrowing warning on conversion of XIndexTypeS to std::size_t
@@ -727,7 +727,7 @@ class MHONDArrayWrapper<XValueType, 1>
         at(XIndexTypeS...idx)
         {
             const std::array<std::size_t, 1> indices = {{static_cast<size_t>(idx)...}};
-            if( MHOArrayMath::CheckIndexValidity<1>( fDimensions, &(indices[0]) ) )
+            if( MHONDArrayMath::CheckIndexValidity<1>( fDimensions, &(indices[0]) ) )
             {
                 return fDataPtr[ indices[0] ];
             }
@@ -743,7 +743,7 @@ class MHONDArrayWrapper<XValueType, 1>
         at(XIndexTypeS...idx) const
         {
             const std::array<std::size_t, 1> indices = {{static_cast<size_t>(idx)...}};
-            if( MHOArrayMath::CheckIndexValidity<1>( fDimensions, &(indices[0]) ) )
+            if( MHONDArrayMath::CheckIndexValidity<1>( fDimensions, &(indices[0]) ) )
             {
                 return fDataPtr[ indices[0] ];
             }

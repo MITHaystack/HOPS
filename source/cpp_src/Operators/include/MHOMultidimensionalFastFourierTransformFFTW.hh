@@ -13,7 +13,7 @@ namespace hops
 
 template<size_t RANK>
 class MHOMultidimensionalFastFourierTransformFFTW:
-    public MHOArrayOperator< MHONDArrayWrapper< std::complex<double>, RANK >, 
+    public MHONDArrayOperator< MHONDArrayWrapper< std::complex<double>, RANK >, 
                              MHONDArrayWrapper< std::complex<double>, RANK > >
 {
     public:
@@ -62,7 +62,7 @@ class MHOMultidimensionalFastFourierTransformFFTW:
 
             if(!fInitialized && fIsValid)
             {
-                fTotalArraySize = MHOArrayMath::TotalArraySize<RANK>(fDimensionSize);
+                fTotalArraySize = MHONDArrayMath::TotalArraySize<RANK>(fDimensionSize);
                 AllocateWorkspace();
                 bool success = ConstructPlan();
                 fInitialized = success;
@@ -164,14 +164,14 @@ class MHOMultidimensionalFastFourierTransformFFTW:
             //but we could implement a batched interface also...
             int howmany_rank = 0; //zero disables more than one x-form
             fHowManyDims.n = 1;
-            fHowManyDims.is = MHOArrayMath::TotalArraySize<RANK>(fDimensionSize);
-            fHowManyDims.os = MHOArrayMath::TotalArraySize<RANK>(fDimensionSize);
+            fHowManyDims.is = MHONDArrayMath::TotalArraySize<RANK>(fDimensionSize);
+            fHowManyDims.os = MHONDArrayMath::TotalArraySize<RANK>(fDimensionSize);
 
             for(size_t i=0; i<RANK; i++)
             {
                 fDims[i].n = fDimensionSize[i];
-                fDims[i].is = MHOArrayMath::StrideFromRowMajorIndex<RANK>(i,fDimensionSize);
-                fDims[i].os = MHOArrayMath::StrideFromRowMajorIndex<RANK>(i,fDimensionSize);
+                fDims[i].is = MHONDArrayMath::StrideFromRowMajorIndex<RANK>(i,fDimensionSize);
+                fDims[i].os = MHONDArrayMath::StrideFromRowMajorIndex<RANK>(i,fDimensionSize);
             }
 
             fPlanForward = fftw_plan_guru_dft(rank, fDims, howmany_rank, &fHowManyDims,

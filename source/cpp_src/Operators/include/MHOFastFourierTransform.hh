@@ -4,7 +4,7 @@
 #include <complex>
 
 #include "MHONDArrayWrapper.hh"
-#include "MHOArrayOperator.hh"
+#include "MHONDArrayOperator.hh"
 #include "MHOBitReversalPermutation.hh"
 #include "MHOFastFourierTransformUtilities.hh"
 
@@ -14,7 +14,7 @@ namespace hops
 typedef MHONDArrayWrapper< std::complex<double>, 1> fft_c2c_type;
 
 class MHOFastFourierTransform: 
-    public MHOArrayOperator< MHONDArrayWrapper< std::complex<double>, 1>,
+    public MHONDArrayOperator< MHONDArrayWrapper< std::complex<double>, 1>,
                              MHONDArrayWrapper< std::complex<double>, 1> >
 {
     public:

@@ -5,7 +5,7 @@
 
 #include "MHOMessage.hh"
 #include "MHONDArrayWrapper.hh"
-#include "MHOArrayOperator.hh"
+#include "MHONDArrayOperator.hh"
 #include "MHOCompoundReductions.hh" //for operator type definitions
 
 /*
@@ -26,7 +26,7 @@ namespace hops
 
 template< typename XItemType, template<typename> class XOperatorType, std::size_t RANK>
 class MHOReducer:
-    public MHOArrayOperator< MHONDArrayWrapper< XItemType, RANK>,
+    public MHONDArrayOperator< MHONDArrayWrapper< XItemType, RANK>,
                              MHONDArrayWrapper< XItemType, RANK> >
 {
     public:
@@ -123,7 +123,7 @@ class MHOReducer:
                     //set the output indices to collapse each index of the dimensions under reduction
                     for(std::size_t i=0; i<RANK; i++){out_loc[i] = std::min(in_loc[i], out_dim[i]-1);}
                     //find offset to location in output array
-                    std::size_t m = MHOArrayMath::OffsetFromRowMajorIndex<RANK>(out_dim, out_loc);
+                    std::size_t m = MHONDArrayMath::OffsetFromRowMajorIndex<RANK>(out_dim, out_loc);
                     //execute the reduction operator +=  or *= or user-defined
                     fReductionOperator( (*(this->fOutput))[m], *iter);
                 }

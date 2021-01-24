@@ -8,8 +8,8 @@ endif (HOPS_USE_FFTW3)
 
 #list header files #############################################################
 set (OPERATOR_HEADERFILES
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHOArrayOperator.hh
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHOBinaryArrayOperator.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHONDArrayOperator.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHOBinaryNDArrayOperator.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHOFastFourierTransform.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHOMultidimensionalFastFourierTransform.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHOCompoundReductions.hh
