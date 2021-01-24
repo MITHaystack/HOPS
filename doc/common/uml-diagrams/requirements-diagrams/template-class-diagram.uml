@@ -1,0 +1,172 @@
+@startuml
+skinparam class {
+  ArrowColor #A31F34  
+  Bordercolor #8a8b8c
+  BackgroundColor #fffff0
+}
+
+' Template classes
+abstract class MHOArrayWrapper {
+  '# fData : vector< XValueType >
+  '# fDimensions[RANK] : size_t
+  '# fTotalArraySize : size_t 
+  '+ MHOArrayWrapper() 
+  '+ MHOArrayWrapper(const std::size_t* dim)
+  '+ MHOArrayWrapper(const MHOArrayWrapper& obj)
+  '+ Resize(const std::size_t* dim)
+  '+ Resize(XDimSizeTypeS...dim)
+  '+ GetRawData()
+  '+ GetData()
+  '+ GetSize()
+  '+ GetDimensions(std::size_t* array_dim)
+  '+ GetDimensions()
+  '+ GetDimension(std::size_t dim_index)
+  '+ GetOffsetForIndices(const std::size_t* index)
+  '.. virtual ..
+  '+ ~MHOArrayWrapper()
+}
+
+abstract class MHOAxis {
+  '+ MHOAxis()
+  '.. Inherits ..
+  '+ MHOVectorContainer<XValueType>()
+  '+ MHOIntervalLabelTree()
+  '.. virtual ..
+  '+ ~MHOAxis()
+}
+
+abstract class MHOInterval {
+  '# fValid : bool
+  '# fLowerBound : XIntegerType 
+  '# fUpperBound : XIntegerType
+  '+ MHOInterval()
+  '+ fValid(false)
+  '+ fLowerBound(0) 
+  '+ fUpperBound(0)
+  '+ MHOInterval(XIntegerType lower_bound, XIntegerType upper_bound)
+  '+ MHOInterval(const MHOInterval& copy)
+  '+ SetBounds(XIntegerType lower_bound, XIntegerType upper_bound)
+  '+ SetBounds(const std::pair<XIntegerType,XIntegerType>& lower_upper)
+  '+ GetInterval()
+  '+ SetLowerBound(XIntegerType low)
+  '+ SetUpperBound(XIntegerType up)
+  '+ GetUpperBound()
+  '+ Intersects(const MHOInterval& other)
+  '+ Intersects(const XIntegerType& idx)
+  '+ MHOInterval Union(const MHOInterval& other)
+  '+ MHOInterval Intersection(const MHOInterval& other)
+  '# SetIntervalImpl(XIntegerType low, XIntegerType up)
+  '# FindIntersection(XIntegerType a, XIntegerType b, XIntegerType c, XIntegerType d, XIntegerType result[2])
+  '.. virtual ..
+  '+ ~MHOInterval()
+}
+
+abstract class MHOIntervalLabel {
+  '+ MHOIntervalLabel() 
+  '+ MHOIntervalLabel( std::size_t lower_bound, std::size_t upper_bound) 
+  '+ MHOIntervalLabel(const MHOIntervalLabel& copy) 
+  '.. virtual ..
+  '+ ~MHOIntervalLabel()
+}
+
+abstract class MHOIntervalLabelMap {
+
+}
+
+abstract class MHOIntervalLableTree {
+  '# fIntervals : vector< MHOIntervalLabel* >
+  '+ MHOIntervalLabelTree()
+  '+ InsertLabel(const MHOIntervalLabel& label)
+  '.. MHO Interval Label ..
+  '+ GetIntervalsWhichIntersect(const std::size_t& idx)
+  '+ GetIntervalsWhichIntersect(const MHOInterval<std::size_t>* interval)
+  '+ GetIntervalsWithKeyValue(const std::string& key, const XLabelValueType& value)
+  '+ GetFirstIntervalWithKeyValue(const std::string& key, const XLabelValueType& value)
+  '.. virtual ..
+  '+ ~MHOIntervalLabelTree()
+}
+
+abstract class MHONamed {
+  '- fName : string
+  '+ MHONamed()
+  '+ MHONamed(const MHONamed& obj)
+  '+ IsNamed(const std::string& name)
+  '+ GetName()
+  '+ SetName(std::string name)
+  '.. virtual ..
+  '+ ~MHONamed() 
+}
+
+' To do: Come back to this template class. 
+' It looks like there were multiple definitions of it in the same file
+abstract class MHOScalarContainer {
+  '+ IsNamed
+  '+ GetName
+  '+ SetName 
+  '+ SetData : MHOArrayWrapper<XValueType,0>
+  '+ GetData : MHOArrayWrapper<XValueType,0>
+  '# fData : MHOArrayWrapper<XValueType,0> 
+  '+ SetValue(const XValueType& value)
+  '+ GetValue()
+  '+ MHOScalarContainer()
+  '+ MHOArrayWrapper<XValueType, 0>()
+  '+ MHONamed()
+  '+ GetSize()
+  '.. virtual ..
+  '+ ~MHOScalarContainer()
+
+}
+
+abstract class MHOTensorContainer {
+  '# fData : <XValueType,XAxisPackType::RANK::value>
+  '# fDimensions : <XValueType,XAxisPackType::RANK::value>
+  '# fTotalArraySize : <XValueType,XAxisPackType::RANK::value>
+  '+ IsNamed
+  '+ GetName
+  '+ SetName
+  '+ GetData : <XValueType,XAxisPackType::RANK::value>
+  '+ GetRawData : <XValueType,XAxisPackType::RANK::value>
+  '+ GetSize : <XValueType,XAxisPackType::RANK::value>
+  '+ GetDimensions : <XValueType,XAxisPackType::RANK::value>
+  '+ GetDimension : <XValueType,XAxisPackType::RANK::value>
+  '+ GetOffsetForIndices : <XValueType,XAxisPackType::RANK::value>
+  '+ fTags : < std::string, std::string, int, double >
+  '+ MHOTensorContainer()
+  '+ MHOTensorContainer(const std::size_t* dim)
+  '+ XAxisPackType()
+  '+ XAxisPackType(dim)
+  '+ MHONamed()
+  '+ Resize(const std::size_t* dim)
+  '.. virtual ..
+  '+ ~MHOTensorContainer()
+}
+
+abstract class MHOVectorContainer {
+  '+ MHOVectorContainer()
+  '+ MHOVectorContainer(std::size_t dim)
+  '.. Inherits ..
+  '+ MHOArrayWrapper<XValueType,1>()
+  '+ MHONamed()
+  '+ MHOArrayWrapper<XValueType,1>(dim)
+  '.. virtual ..
+  '+ ~MHOVectorContainer()
+}
+
+abstract class XAxisPackType {
+
+}
+
+' Inheritance
+MHOVectorContainer <|-- MHOAxis  
+MHOIntervalLableTree <|-- MHOAxis
+MHOArrayWrapper <|-- MHOScalarContainer
+MHONamed <|-- MHOScalarContainer
+MHOArrayWrapper <|-- MHOScalarContainer
+MHONamed <|-- MHOVectorContainer
+MHOArrayWrapper <|-- MHOVectorContainer
+MHONamed <|-- MHOTensorContainer
+MHOArrayWrapper <|-- MHOTensorContainer
+XAxisPackType <|-- MHOTensorContainer
+MHOInterval <|-- MHOIntervalLabel
+MHOIntervalLabelMap <|-- MHOIntervalLabel
+@enduml
