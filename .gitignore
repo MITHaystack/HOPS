@@ -75,4 +75,7 @@ py-compile
 # Editor junk
 *.swp
 
+#automake generated stuff
+mho_config.h.in
+
 # eof

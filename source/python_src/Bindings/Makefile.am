@@ -20,7 +20,8 @@ pymod = mhops
 # automake equivalent ('_' illegal as first character)
 ammod = SWIGmhops
 
-# $(pymod).la: we use SWIG for '_' which is illegal as a first character
+# we use SWIG for '_' which is illegal as a first character
+# that is, ideally this would be _$(pymod).la:
 pkgpyexec_LTLIBRARIES = SWIGmhops.la
 pkglib_LTLIBRARIES = libMHOwrap.la
 
@@ -43,31 +44,44 @@ TESTS = $(check_PROGRAMS) $(dist_check_SCRIPTS)
 #XFAIL_TESTS = test/TestNumpy$(pymod).py
 
 # special compilation arrangements for coverage tests, see below
+# --coverage is apparently a synonym for:
+#  compiling: -fprofile-arcs and -ftest-coverage
+#  linking:   -lgcov
+# note that in some environments link order matters
+# thus and --coverage must appear last in linkage order
 if DO_COVER
 coververbose = -DCOVERVERB=1 -DSTATIC=extern
-covercompile = --coverage -fkeep-inline-functions -fkeep-static-functions
-coverldflags = -L. --coverage -DSTATIC=extern
+covercompile = -fkeep-inline-functions @KEEP_STATIC_FUNCTIONS@ --coverage
+coverldflags = -L. -DSTATIC=extern --coverage
+coverldlibs = --coverage
+coverldadd = -lgcov
 else # DO_COVER
 coververbose = -DCOVERVERB=0 -DSTATIC=static
 covercompile =
 coverldflags = -L. -DSTATIC=static
+coverldlibs =
+coverldadd =
 endif # DO_COVER
 
 # convenience vars for readabilty
 msinc = -I$(srcdir)/../../cpp_src/Message/include
 mslib = -L../../cpp_src/Message/.libs
-defines = -DHOPS_ENABLE_DEBUG_MSG=1 $(covercompile) $(coververbose)
+defines = -DHOPS_ENABLE_DEBUG_MSG=1 $(coververbose) $(covercompile)
 preproc = -I. -I$(srcdir)/include -Wall -Wextra $(defines)
 
 AM_CXXFLAGS = $(preproc)
 AM_CPPFLAGS = $(preproc)
 AM_LDFLAGS = $(coverldflags)
 
+# _LIBADD is for conditional sources
+
 # as proof of principal we build the wrapper library independently
 # of the module library which we only need for python.
 libMHOwrap_la_SOURCES = src/wrap_msg.cc
+libMHOwrap_la_LIBADD = # conditional sources
 libMHOwrap_la_CXXFLAGS = $(msinc)
-libMHOwrap_la_LIBADD = $(mslib) -lMHOMessage
+libMHOwrap_la_LDFLAGS = $(mslib) -lMHOMessage $(coverldflags)
+libMHOwrap_la_LIBADD = $(coverldadd)
 
 # this is a direct test of the library source
 #TestWrapMessage_SOURCES = src/wrap_msg.cc test/TestWrapMessage.c
@@ -75,14 +89,16 @@ libMHOwrap_la_LIBADD = $(mslib) -lMHOMessage
 #TestWrapMessage_LDADD = $(mslib) -lMHOMessage
 # this tests the same code via the library
 TestWrapMessage_SOURCES = test/TestWrapMessage.c
-TestWrapMessage_CXXFLAGS = $(msinc)
-TestWrapMessage_LDADD = $(mslib) -lMHOMessage -L.libs -lMHOwrap
-
+TestWrapMessage_LDFLAGS = \
+	$(mslib) -lMHOMessage -L.libs -lMHOwrap $(coverldflags)
+TestWrapMessage_LDADD = $(coverldadd)
 
 # SWIG machinery
 swigw = -Wno-missing-field-initializers
 swigw += -Wno-unused-parameter
-pyinc = -I/usr/include/python$(PYTHON_VERSION)
+#pyinc = -I/usr/include/python$(PYTHON_VERSION)
+pyinc = @PYTHON_CFLAGS@
+npinc = -I@NUMPY_INCLUDE@
 swig_exec = $(SWIG) -python -py3 -I$(srcdir)/include -module $(pymod)
 swig_interfaces = include/$(pymod).i
 swig_interfaces += include/wrap_msg.i
@@ -97,14 +113,18 @@ swig_delete = swig.log $(swig_testing)
 endif # HAVE_SWIG
 
 # generates the module library $(ammod).la
-SWIGmhops_la_SOURCES = $(pymod).c src/wrap_msg.cc src/npary_demo.cc \
-	src/npary_pyvar.c
+#SWIGmhops_la_SOURCES = $(pymod).c src/wrap_msg.cc src/npary_demo.cc \
+#	src/npary_pyvar.c
+# automake v 1.13.4 cannot handle $(pymod).c here
+SWIGmhops_la_SOURCES = mhops.c \
+	src/wrap_msg.cc src/npary_demo.cc src/npary_pyvar.c
 SWIGmhops_la_CPPFLAGS = $(coververbose) \
-	$(pyinc) $(msinc) $(AM_CPPFLAGS) $(swigw)
+	$(swigw) $(npinc) $(pyinc) $(msinc) $(AM_CPPFLAGS)
 SWIGmhops_la_CXXFLAGS = $(coververbose) \
-	$(pyinc) $(msinc) $(AM_CXXFLAGS) $(swigw)
-SWIGmhops_la_LDFLAGS = -avoid-version -module $(coverldflags)
-SWIGmhops_la_LIBADD = $(mslib) -lMHOMessage
+	$(swigw) $(npinc) $(pyinc) $(msinc) $(AM_CXXFLAGS)
+SWIGmhops_la_LDFLAGS = \
+	$(mslib) -lMHOMessage -avoid-version -module $(npinc) $(coverldflags)
+SWIGmhops_la_LIBADD = $(coverldadd)
 
 # generate the SWIG C interface and Python bindings
 # one $(swig_exec) per interface specification produces .c and .py
@@ -162,9 +182,11 @@ installcheck-local:
 
 # coverage processing
 if DO_COVER
-co = -fmp # 'make coverage co= ' to get help on coverep.sh
-covclean = *.gcno */*.gcno *.gcda */*.gcda *.gcov */*.gcov *.log
-covclean += coverage-*.txt
+#co = -fmp # 'make coverage co= ' to get help on coverep.sh
+co = -fp # 'make coverage co= ' to get help on coverep.sh
+covclean = *.gcno */*.gcno */.*/*.gcno
+covclean += *.gcda */*.gcda */.*/*gcda
+covclean += coverage-*.txt *.gcov *.log
 coverage-local:
 	@GCOV_SIMPLE=$(GCOV_SIMPLE) $(top_srcdir)/m4/coverep.sh \
 		$(GCOV) $(co) $(abs_srcdir) $(abs_builddir) $(top_srcdir)
