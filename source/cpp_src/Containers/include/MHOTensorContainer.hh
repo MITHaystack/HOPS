@@ -58,6 +58,8 @@ class MHOTensorContainer: public MHOArrayWrapper< XValueType, XAxisPackType::NAX
         using MHONamed::GetName;
         using MHONamed::SetName;
 
+
+
         //modify the Resize function to also resize the axes
         using XAxisPackType::resize_axis_pack;
 
