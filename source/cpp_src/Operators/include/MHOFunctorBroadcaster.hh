@@ -5,8 +5,8 @@
 
 #include "MHOMessage.hh"
 #include "MHONDArrayWrapper.hh"
-#include "MHOArrayOperator.hh"
-#include "MHOArrayFunctor.hh"
+#include "MHONDArrayOperator.hh"
+#include "MHONDArrayFunctor.hh"
 
 
 
@@ -24,7 +24,7 @@ namespace hops
 {
 
 template< class XInputArrayType, class XOutputArrayType >
-class MHOFunctorBroadcaster: public MHOArrayOperator<XInputArrayType, XOutputArrayType >
+class MHOFunctorBroadcaster: public MHONDArrayOperator<XInputArrayType, XOutputArrayType >
 {
     public:
 
@@ -37,8 +37,8 @@ class MHOFunctorBroadcaster: public MHOArrayOperator<XInputArrayType, XOutputArr
 
         virtual ~MHOFunctorBroadcaster(){};
 
-        void SetFunctor( MHOArrayFunctor<XInputArrayType, XOutputArrayType>* functor){fFunctor = functor;}
-        MHOArrayFunctor<XInputArrayType, XOutputArrayType>* GetFunctor() {return fFunctor;};
+        void SetFunctor( MHONDArrayFunctor<XInputArrayType, XOutputArrayType>* functor){fFunctor = functor;}
+        MHONDArrayFunctor<XInputArrayType, XOutputArrayType>* GetFunctor() {return fFunctor;};
 
         virtual bool Initialize() override
         {
@@ -93,7 +93,7 @@ class MHOFunctorBroadcaster: public MHOArrayOperator<XInputArrayType, XOutputArr
     private:
 
         bool fInitialized;
-        MHOArrayFunctor<XInputArrayType, XOutputArrayType>* fFunctor;
+        MHONDArrayFunctor<XInputArrayType, XOutputArrayType>* fFunctor;
 
 };
 

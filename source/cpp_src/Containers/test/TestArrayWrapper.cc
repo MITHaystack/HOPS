@@ -80,7 +80,7 @@ int main(int /*argc*/, char** /*argv*/)
     {
         std::cout<<"index iterator = ("<<arr_ind[0]<<", "<<arr_ind[1]<<", "<<arr_ind[2]<<")"<<std::endl;
     }
-    while( MHOArrayMath::IncrementIndices<3>(arr_dim, arr_ind));
+    while( MHONDArrayMath::IncrementIndices<3>(arr_dim, arr_ind));
 
     std::cout<<"iterator decrement operation"<<std::endl;
     arr_ind[0] = arr_dim[0]-1; arr_ind[1] = arr_dim[1]-1; arr_ind[2] = arr_dim[2]-1;
@@ -88,7 +88,7 @@ int main(int /*argc*/, char** /*argv*/)
     {
         std::cout<<"index iterator = ("<<arr_ind[0]<<", "<<arr_ind[1]<<", "<<arr_ind[2]<<")"<<std::endl;
     }
-    while( MHOArrayMath::DecrementIndices<3>(arr_dim, arr_ind));
+    while( MHONDArrayMath::DecrementIndices<3>(arr_dim, arr_ind));
 
 
 

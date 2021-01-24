@@ -11,7 +11,7 @@
 */
 
 #include "MHONDArrayWrapper.hh"
-#include "MHOArrayOperator.hh"
+#include "MHONDArrayOperator.hh"
 
 #include "MHOVisibilities.hh"
 #include "MHOChannelizedVisibilities.hh"
@@ -19,7 +19,7 @@
 namespace hops
 {
 
-class MHOVisibilityChannelizer: public MHOArrayOperator< baseline_data_type, ch_baseline_data_type>
+class MHOVisibilityChannelizer: public MHONDArrayOperator< baseline_data_type, ch_baseline_data_type>
 {
     public:
         MHOVisibilityChannelizer();
