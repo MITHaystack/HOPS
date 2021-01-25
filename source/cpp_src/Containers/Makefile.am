@@ -4,20 +4,20 @@
 # The contents of the package Copyright statement apply here.
 #
 
-pkginclude_HEADERS = include/MHOArrayMath.hh \
-	include/MHOArrayOperator.hh \
-	include/MHOArrayWrapper.hh \
-	include/MHOAxis.hh \
-	include/MHOAxisPack.hh \
-	include/MHOBinaryArrayOperator.hh \
-	include/MHOInPlaceUnaryArrayOperator.hh \
-	include/MHOScalarContainer.hh \
-	include/MHOTensorContainer.hh \
-	include/MHOUnaryArrayOperator.hh \
-	include/MHOVectorContainer.hh \
-	include/MHOVisibilities.hh
+pkginclude_HEADERS = include/MHO_ArrayMath.hh \
+	include/MHO_ArrayOperator.hh \
+	include/MHO_ArrayWrapper.hh \
+	include/MHO_Axis.hh \
+	include/MHO_AxisPack.hh \
+	include/MHO_BinaryArrayOperator.hh \
+	include/MHO_InPlaceUnaryArrayOperator.hh \
+	include/MHO_ScalarContainer.hh \
+	include/MHO_TensorContainer.hh \
+	include/MHO_UnaryArrayOperator.hh \
+	include/MHO_VectorContainer.hh \
+	include/MHO_Visibilities.hh
 
-#pkglib_LTLIBRARIES = libMHOXXX.la
+#pkglib_LTLIBRARIES = libMHO_XXX.la
 
 check_PROGRAMS = TestArrayWrapper TestScalarContainer \
 	TestVectorContainer TestTensorContainer
@@ -31,10 +31,10 @@ cxxmho = -I$(srcdir)/../Containers/include \
 	-I$(srcdir)/../Utilities/include
 AM_CXXFLAGS = $(cxxflags) $(cxxmho)
 
-#libMHOXXX_la_SOURCES = src/MHOUXXX.cc
-#libMHOXXX_la_LDFLAGS = -avoid-version
+#libMHO_XXX_la_SOURCES = src/MHO_UXXX.cc
+#libMHO_XXX_la_LDFLAGS = -avoid-version
 
-utilities = -L../Utilities/.libs -lMHOUtilities
+utilities = -L../Utilities/.libs -lMHO_Utilities
 mholibs = $(utilities)
 TestArrayWrapper_SOURCES = test/TestArrayWrapper.cc
 TestArrayWrapper_LDADD = $(mholibs)
