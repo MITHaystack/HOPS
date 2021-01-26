@@ -5,15 +5,11 @@
 #
 
 pkginclude_HEADERS = include/MHO_BitReversalPermutation.hh \
-	include/MHO_FastFourierTransform.hh \
-	include/MHO_FastFourierTransformUtilities.hh \
-	include/MHO_MultidimensionalFastFourierTransformFFTW.hh \
-	include/MHO_MultidimensionalFastFourierTransform.hh
+	include/MHO_FastFourierTransformUtilities.hh
 
 pkglib_LTLIBRARIES = libMHO_Math.la
 
-check_PROGRAMS = TestFastFourierTransform \
-	TestMultidimensionalFastFourierTransform
+check_PROGRAMS = TestFastFourierTransform
 
 TESTS_ENVIRONMENT = srcdir=$(srcdir)
 TESTS = $(check_PROGRAMS)
@@ -25,8 +21,8 @@ cxxmho = -I$(srcdir)/../Message/include \
 AM_CXXFLAGS = $(cxxflags) $(cxxmho)
 
 libMHO_Math_la_SOURCES = src/MHO_BitReversalPermutation.cc \
-	src/MHO_FastFourierTransform.cc \
 	src/MHO_FastFourierTransformUtilities.cc
+
 libMHO_Math_la_LDFLAGS = -avoid-version
 
 # v4
@@ -36,10 +32,6 @@ mholibs = $(message)
 
 TestFastFourierTransform_SOURCES = test/TestFastFourierTransform.cc
 TestFastFourierTransform_LDADD = $(thislib) $(mholibs)
-TestMultidimensionalFastFourierTransform_SOURCES = \
-	test/TestMultidimensionalFastFourierTransform.cc
-TestMultidimensionalFastFourierTransform_LDADD = $(thislib) $(mholibs)
-
 
 EXTRA_DIST =
 
