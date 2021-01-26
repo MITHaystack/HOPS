@@ -7,11 +7,11 @@ SUBDIRS =
 
 TESTS_ENVIRONMENT = srcdir=$(srcdir)
 
-TESTS = import_check.sh
+TESTS = bootstrap/import_check.sh
 
-dist_bin_SCRIPTS = import_3to4.sh
+dist_bin_SCRIPTS = bootstrap/import_3to4.sh
 
-dist_check_SCRIPTS = import_check.sh
+dist_check_SCRIPTS = bootstrap/import_check.sh
 
 #
 # eof
