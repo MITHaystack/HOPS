@@ -8,12 +8,14 @@
 #include "MHO_NDArrayWrapper.hh"
 #include "MHO_FastFourierTransform.hh"
 
+int fftw_alignment_of(double*) __attribute__((weak));  //avoids "no-args depending on template parameter error"
+
 namespace hops
 {
 
 template<size_t RANK>
 class MHO_MultidimensionalFastFourierTransformFFTW:
-    public MHO_NDArrayOperator< MHO_NDArrayWrapper< std::complex<double>, RANK >, 
+    public MHO_NDArrayOperator< MHO_NDArrayWrapper< std::complex<double>, RANK >,
                              MHO_NDArrayWrapper< std::complex<double>, RANK > >
 {
     public:
