@@ -11,8 +11,10 @@ TEXSRC=dplan
 # everything from $(srcdir) included from $(TEXSRC).tex
 # needs to be listed here with a $(srcdir)/ path prefix
 EXTRA_DIST = $(srcdir)/$(TEXSRC).tex \ 
-	$(srcdir)/introduction.tex $(srcdir)/designoutline.tex \
-	$(srcdir)/detailedtimeline.tex $(srcdir)/proposedplan.tex \
+	$(srcdir)/introduction.tex \
+	$(srcdir)/designoutline.tex \
+	$(srcdir)/detailedtimeline.tex \
+	$(srcdir)/proposedplan.tex \
 	$(srcdir)/MSRI-task-origv3-1.pdf \
 	$(srcdir)/MSRI-task-origv3-2.pdf
 
