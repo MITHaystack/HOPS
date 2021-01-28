@@ -1,85 +1,42 @@
 %
-% A starter on coverage and unit testing
-%
 \section{Regression Testing}
 \label{sec:regress}
 
-this can be words about internal regression testing with autotools
-(which we can do now...)
+Regression tests are tests of exisiting HOPS3 functions on captured datasets, and they verify that the HOPS4 performance is equivalent to HOPS3.  Due to the large size of some datasets, only a few regression tests will be run as part of the build and installation process, on captured data that is packaged with the HOPS repository.  The autotools/automake framework for build and installation currently supports a number of ``check'' scripts.
+
+More intensive regression tests on datasets with greater numbers of baselines or frequency bands may be run with automated nightly scripts, or at regular intervals around significant version changes. These datasets are captured in the \ac{HOPS} development system.  (That is, the tests exist, but the data is not included in the distribution tarball or the project github.)
+
+Regression tests generate automated results that are easily included in reporting spreadsheets.
+
+%\FIX[Regression tests are not tied to particular requirements, since the functionality they check already exists in HOPS3.]
 
 
-\subsection{Regression Tests with Captured Data}
+\subsection{Captured Datasets}
 \label{sec:captdatareq}
 
-% ./data/ff_testdata/Makefile.am
-In addition to the above tests, data from a variety of experiments
-has been captured and are routinely refringed as part of the
-HOPS build ``check'' process.  Data from two of
-these are packaged with the HOPS distribution:
+Data from a variety of experiments have been captured and are routinely refringed as part of the HOPS build ``check'' process.  These are packaged with the current \ac{HOPS} distribution:
+
+% commented experiments are included in the tarball but don't appear to be used by the check scripts?
 
 \begin{description}
-\reqid{A} \texttt{chk\_ff\_2836.sh} a canonical S--X geodetic experiment
-\reqid{A} \texttt{chk\_ff\_3365.sh} an early \ac{EHT} session suitable for
-    testing \ac{fourmer}
+%\item{\textbf{2491}} 
+%\item{\textbf{2611}} 
+\item{\textbf{2836}} is a canonical two-station S--X geodetic experiment. The script \texttt{chk\_ff\_2836.sh} verifies that the SNR (parsed from the postscript file) is within expected bounds.
+\item{\textbf{2843}} is a scan with three stations.
+%\item{\textbf{2849}} 
+%\item{\textbf{2912}} 
+%\item{\textbf{3064}} 
+%\item{\textbf{3262}} 
+\item{\textbf{3365}} is an early \ac{EHT} session. The script \texttt{chk\_fourmer.sh} uses the \texttt{fourmer} command to join two scans, runs \texttt{fourfit}, and checks that the output file size is correct \FIX[check this?]. Most of the check scripts use data from 3365.
+\item{\textbf{3372}} is a scan with the legacy geodetic X-band setup.
+\item{\textbf{3413}} is a single-baseline broadband experiment.
+\item{\textbf{3562}} is a three-baseline broadband experiment.
+\item{\textbf{3571}} is a single-baseline broadband experiment.
+\item{\textbf{2017 and 2018 data samples}} Among the so-called ``golden'' scan data which have been captured for \acs{DiFX} regression testing, there are scans which can be refringed and \acs{A-list} manipulated and compared with previous results.  As set that is sufficient to guarantee consistency with published results is required. \FIX[Not sure which datasets this refers to?]
 \end{description}
-Both of these tests exercise the basic fringe search and reduction
-that \acs{fourfit} was built to do and have been the basis of standard
-regression for HOPS and distribution validation.   Additional tests
-with other captured data sets are discussed in the next section.
+Some datasets overlap with captured data selected for DiFX regression testing. \FIX[Is this important to point out?]  Data from experiments 2491, 2611, 2849, 2912, 3064, and 3262 are included in the HOPS3 tarball but are not used in the existing check scripts.
 
-
-
-%Some additional tests extant in \ac{HOPS} should not be needed in
-%\ac{MHO}; these are listed for reference in \App~\ref{sec:obsolete}.
-
-%\subsection{Software-Testable Requirements}
-%\label{sec:regress}
-
-%It is anticipated that each of these tests will be captured by a
-%script that may be executed on a regular basis, possibly requiring
-%user intervention.  For example, when run in an interactive mode,
-%\ac{fourfit} displays fringe plots which require a human to acknowledge
-%that they have in fact been displayed.  (One can test the generation of
-%the plot without a human, but the display mechanics require visual
-%inspection.)
-
-% ./sub/dfio/copypage/Makefile.am
-
-Additional scans have been captured with fringe tests captured
-in the \ac{HOPS} development system.  (That is, the tests exist,
-but the data is not included in the distribution tarball.)
-
-
-% ./data/ff_testdata/Makefile.am
-\begin{description}
-\reqid{S} verify that experiment 2843 fringes consistently.
-  \reqex{currently done with \texttt{chk\_ff\_2843.sh} in HOPS}
-\reqid{S} verify that experiment 3372 fringes consistently.
-  \reqex{currently done with \texttt{chk\_ff\_3372.sh} in HOPS}
-\reqid{S} verify that experiment 3413 fringes consistently.
-  \reqex{currently done with \texttt{chk\_ff\_3413.sh} in HOPS}
-
-\reqid{P} Regression tests of 2017 or 2018 data samples
-  \reqex{Among the so-called ``golden'' scan data which has been
-    captured for \acs{DiFX} regression testing, there are scans
-    which can be refringed and \acs{A-list} manipulated and compared
-    with previous results.  As set that is sufficient to guarantee
-    consistency with published results is required.  Reprocessing
-    the entire 2017 and 2018 data is not required.}
-
-\end{description}
-
-Additional test data has been captured from the (very) successful
-2017 \ac{EHT} observations.  Fringing of these scans has not yet
-been incorporated into HOPS testing, but shall form the basis
-of regression for HOPS4.
-
-It is anticipated that for these a mechanism shall be provided
-so that they human need merely acknowledge success, failure or
-make a note of issues.
-
-Currently captured for \acs{DiFX} regression testing are the first 20 seconds
-on the following experiment-release-subband-doy-hhmm samples:
+The first 20 seconds of the following experiment-release-subband-doy-hhmm samples are currently captured for \acs{DiFX} regression testing:
 \begin{verbatim}
 e17d05-7-hi-095-0839 e17d05-7-lo-095-0839 e17d05-7-pc-095-0839
 e17b06-7-hi-096-0750 e17b06-7-lo-096-0750 e17b06-7-pc-096-0750
@@ -91,63 +48,168 @@ e17e11-7-lo-101-0803 e17e11-7-pc-101-0322 e17e11-7-pc-101-0803
 ``lo'' and ``hi'' refer to the ``b3'' and ``b4'' sub-bands of the
 64 \acs{Gbps} (2018 and onwards) frequency setup; ``pc'' refers to polconverted,rather than the mixed polarization correlation products.
 
-\TBC\FIX[---is this a sufficient set?]
+\FIX[TBC---is this a sufficient set?]
 
 These or other scans could also be captured for full scan duration and
 segmented at some interval, but it is not clear that this is necessary.
 
-\subsection{Regression testing to be applied to following requirements}
-\label{sec:regressreqs}
+Additional test data has been captured from the 2017 \ac{EHT} observations.  Fringing of these scans has not yet been incorporated into HOPS testing, but shall form the basis of regression for HOPS4.
+
+
+\subsection{Check Scripts from HOPS3}
+\label{sec:regresscheck}
+
+% existing HOPS3 scripts
+
+There are a number of existing ``check'' scripts that run during build/install of HOPS3. The check scripts validate several requirements. Here, we describe the check scripts; below, we describe the requirements that will be validated with regression tests.
+
+%Both of these tests exercise the basic fringe search and reduction
+%that \acs{fourfit} was built to do and have been the basis of standard
+%regression for HOPS and distribution validation.
 
 \begin{description}
+
+\item{\textbf{chk\_adump.sh}} Test of adump, using experiment 2843. Writes SNR and phase to an output file and checks for the expected number of lines. Applicable to requirement \textbf{A-17}.
+\item{\textbf{chk\_aedit.sh}} Test of aedit, using experiment 2843. Writes a simple input file, runs aedit, checks for the expected number of lines. Applicable to requirement \textbf{A-18}, but may need to be expanded.
+\item{\textbf{chk\_alist.sh}} Test of alist, using 2843. Checks for the expected number of lines. Applicable to requirement \textbf{A-16}.
+\item{\textbf{chk\_avefix.sh}} Uses 2843. Checks for correct number of lines in output.
+\item{\textbf{chk\_average.sh}} Uses the 'testdata/average' dataset. Checks for backwards compatibility and then a bug fix. \FIX[Need to check if this script runs.]
+\item{\textbf{chk\_baselines.sh}} Uses 2843. Runs fourfit for each baseline, checks that output is the correct size.
+\item{\textbf{chk\_cofit.sh}} Uses 2843 with the cofit function. Checks the number of lines in the output. Applicable to requirement \textbf{A-22}.
+\item{\textbf{chk\_env.sh}} 
+\item{\textbf{chk\_ff\_2836.sh}} Exercises the basic fringe search and reduction, and verifies that the SNR (parsed from the postscript file) is within expected bounds.
+\item{\textbf{chk\_ff\_2843.sh}} (same as above)
+\item{\textbf{chk\_ff\_3372.sh}} (same as above)
+\item{\textbf{chk\_ff\_3413.sh}} (same as above)
+\item{\textbf{chk\_ff\_3571.sh}} subsumed into chk\_min\_weight
+\item{\textbf{chk\_ff\_display.sh}} not used? gs issue?
+\item{\textbf{chk\_ff\_dump.sh}} Uses 2843. Runs fourfit with a filter to discard low-amplitude segments and checks that the SNR is within expected bounds. Applicable to requirement \textbf{A-31}.
+\item{\textbf{chk\_flagging.sh}} Uses 3372. Flags data segments and checks that the SNR is within expected bounds. Applicable to requirement \textbf{A-30}, particularly the case of user-supplied ad-hoc flags.
+\item{\textbf{chk\_fourmer.sh}} Uses 3365. Joins two scans, runs \texttt{fourfit}, and checks that the output file size is correct. Applicable to requirement \textbf{A-19}.
+\item{\textbf{chk\_fringex.sh}} Uses 2843. Runs fringex and checks the number of lines in the output. Applicable to requirement \textbf{A-20}.
+\item{\textbf{chk\_frmrsrch.sh}} Uses 3365 and the output of chk\_fourmer to run search and verify the output has the correct number of lines. Applicable to requirement \textbf{A-24}.
+\item{\textbf{chk\_fsumm.sh}} Applicable to requirement \textbf{A-18}.
+\item{\textbf{chk\_hdlinks.sh}} Uses 2843. Applicable to requirement \textbf{D-36}.
+\item{\textbf{chk\_min\_weight.sh}} Applicable to requirement \textbf{A-29}.
+\item{\textbf{chk\_notches.sh}} Applicable to requirement \textbf{A-30}.
+\item{\textbf{chk\_ps2pdf.sh}}
+\item{\textbf{chk\_search.sh}} Applicable to requirement \textbf{A-23}.
+%\item{\textbf{tst\_fourfit.sh}}
+  
+\end{description}
+
+
+
+
+The following are requirements that we plan to validate using regression tests. \FIX[Need to add details about the requirement and the test; are the check scripts, where they exist, sufficient? What functionality needs to be verified?]
+
+\begin{description}
+
+\item{\textbf{A-16}} chk\_alist
+\item{\textbf{A-17}} chk\_adump
+\item{\textbf{A-18}} chk\_aedit
+\item{\textbf{A-19}} chk\_fourmer
+\item{\textbf{A-20}} chk\_fringex
+\item{\textbf{A-21}} chk\_average
+\item{\textbf{A-22}} chk\_cofit
+\item{\textbf{A-23}} chk\_search
+\item{\textbf{A-24}} chk\_frmrsrch
+\item{\textbf{P-25}} chk\_aedit
+
+\item{\textbf{D-28}} testfourfit.sh \FIX[Currently in the attic?]
+  
+\item{\textbf{A-29}} chk\_min\_weight  
+\item{\textbf{A-30}} chk\_flagging
+
+\item{\textbf{D-36}} chk\_hdlinks
+
+\end{description}
+  
+
+
+\subsection{Automated Tests that are TBD}
+\label{sec:regress3}
+
+These requirements are largely new for HOPS, and require development. Once the functionality is available, there shall be automated scripts that verify the requirement is met. There will need to be appropriate captured datasets to test each of these requirements.
+
+Some of the tests may be computationally intensive or require large datasets, and the tests will be run infrequently as part of significant version rollovers or with continuous integration tools.
+
+\begin{description}
+
+%\item{\textbf{A-2}} Test with large number of stations, baselines, APs.
+\item{\textbf{A-3}} Test 30 stations and 435 baselines.
+\item{\textbf{A-4}} Test 128 channels.
+\item{\textbf{A-5}} Support bit depth of 2.
+
+\item{\textbf{A-9}} Support Swinburne format for DiFX correlator files.
+\item{\textbf{A-10}} Applications shall behave as conventional GNU/Linux applications.
+\item{\textbf{A-11}} Support VEX version 1.5.
+\item{\textbf{A-12}} Plotting tools support standard formats and user-provided functions.
+  
+  
+
+
+\item{\textbf{A-31}} Data types shall be convertible to human-readable format (ASCII, CSV, etc).
+\item{\textbf{A-32}} Solve for station-based quantities from baseline-based quantities.
+\item{\textbf{A-33}} Apply complex bandpass corrections.
+\item{\textbf{A-34}} Solve for complex bandpass corrections.
+\item{\textbf{A-35}} Use Python wrappers for data products.
+
+\item{\textbf{D-39}} Spectral-line VLBI.
+\item{\textbf{A-40}} Pulsar folding.
+\item{\textbf{A-41}} Multi-threading and/or multi-processing.
+
+\end{description}
+
+
 % Post Processing and Fringe Plots
-\reqid{A} The ability to explore fringes (as is currently done with the
-  combination of \acs{fringex}, \acs{average} and search must be preserved.
-  HOPS4 shall support \acs{Python} scripting to aid the user in searching
-  fringe space.
-    \reqex{Currently \texttt{chk\_fringex.sh} and \texttt{chk\_average.sh} make checks for this in HOPS 3.}
-\reqid{P} It should be possible to make 3D visualization plots.
-\reqex{\acs{search} makes contour plots, but a 3D visualization of amplitude
-  with delay and delay-rate would be useful.}
-\reqid{P} HOPS4 shall implement interactive visualization tools in \acs{fourfit}.
-\reqex{The HOPS3 version of \acs{fourfit} provides a fixed fringe summary
-  plot. HOPS4 should have an interactive plotting capability to enable zooming
-  and viewing fourfit results with an expanded scale.}
-\reqid{D} Replace the existing \acs{fourfit} control file with a
-  \acs{Python}-based control file. Currently existing functionality shall be
-  preserved.
-\reqex{This is tested with \texttt{testfourfit.sh}.The existing control file should continue to be supported. The new
-  control file functionality will not likely be back-ported to HOPS3.}
+%\reqid{A} The ability to explore fringes (as is currently done with the
+%  combination of \acs{fringex}, \acs{average} and search must be preserved.
+%  HOPS4 shall support \acs{Python} scripting to aid the user in searching
+%  fringe space.
+%    \reqex{Currently \texttt{chk\_fringex.sh} and \texttt{chk\_average.sh} make checks for this in HOPS 3.}
+%\reqid{P} It should be possible to make 3D visualization plots.
+%\reqex{\acs{search} makes contour plots, but a 3D visualization of amplitude
+%  with delay and delay-rate would be useful.}
+%\reqid{P} HOPS4 shall implement interactive visualization tools in \acs{fourfit}.
+%\reqex{The HOPS3 version of \acs{fourfit} provides a fixed fringe summary
+%  plot. HOPS4 should have an interactive plotting capability to enable zooming
+%  and viewing fourfit results with an expanded scale.}
+%\reqid{D} Replace the existing \acs{fourfit} control file with a
+%  \acs{Python}-based control file. Currently existing functionality shall be
+%  preserved.
+%\reqex{This is tested with \texttt{testfourfit.sh}.The existing control file should continue to be su%pported. The new
+%  control file functionality will not likely be back-ported to HOPS3.}
 
 % Miscellaneous Requirements
-\reqid{A} It shall be possible to automatically discard correlator
-  \acs{AP} (integrations) with small weights.
-\reqid{A} HOPS4 shall have the ability to flag data based on a user-supplied
-  list (\eg~of frequency intervals with time in some flag file).
-\reqid{A} Every data type written to disk in HOPS4 shall be convertable to
-  form that is amenable to human examination (e.g. ASCII or CSV), as is done in HOPS3 by the
-  \texttt{\acs{CorAsc2}} program.
-\reqid{A} HOPS4 shall implement an algorithm for solving for station-based
-  quantities from baseline-based quantities as a global fringe fitter.
-\reqid{A} The HOPS4 \acs{fourfit} shall have the ability to apply complex
-  bandpass correction.
-\reqid{A} HOPS4 shall provide a method to solve for complex bandpass corrections.
-\reqid{A} Python wrappers for the new HOPS4 data objects shall be provided.
-\reqex{The existing wrappers for the \acs{Mk4} data types in HOPS3 do not
-  need to be preserved, but it is a capability worth preserving.}
-\reqid{D} The HOPS4 suite must provide mechanisms to preserve the correlator
-  output data.
-\reqid{D} HOPS4 should preserve the the Single Band Delay, Multi Band Delay
-  and Delay Rate search algorithm in its current form.
-\reqex{Currently \texttt{chk\_search.sh} tests this functionality in HOPS 3. Our desire is to make the algorithm modular, such that the user may (de)select search
-  dimensions.
-\reqid{D} Benchmarking and performance analysis should be augmented with
-  more sophisticated tools.
-\reqid{D} HOPS4 should support spectral-line VLBI.
-\reqid{D} HOPS4 should support pulsar folding with a user specified period or
-  ephemeris file with blanking.
-\reqid{D} HOPS4 should enable multi-threading or multi-processing for batch jobs.
-\end{description}
+%\reqid{A} It shall be possible to automatically discard correlator
+%  \acs{AP} (integrations) with small weights.
+%\reqid{A} HOPS4 shall have the ability to flag data based on a user-supplied
+%  list (\eg~of frequency intervals with time in some flag file).
+%\reqid{A} Every data type written to disk in HOPS4 shall be convertable to
+%  form that is amenable to human examination (e.g. ASCII or CSV), as is done in HOPS3 by the
+%  \texttt{\acs{CorAsc2}} program.
+%\reqid{A} HOPS4 shall implement an algorithm for solving for station-based
+%  quantities from baseline-based quantities as a global fringe fitter.
+%\reqid{A} The HOPS4 \acs{fourfit} shall have the ability to apply complex
+%  bandpass correction.
+%\reqid{A} HOPS4 shall provide a method to solve for complex bandpass corrections.
+%\reqid{A} Python wrappers for the new HOPS4 data objects shall be provided.
+%\reqex{The existing wrappers for the \acs{Mk4} data types in HOPS3 do not
+%  need to be preserved, but it is a capability worth preserving.}
+%\reqid{D} The HOPS4 suite must provide mechanisms to preserve the correlator
+%  output data.
+%\reqid{D} HOPS4 should preserve the the Single Band Delay, Multi Band Delay
+%  and Delay Rate search algorithm in its current form.
+%\reqex{Currently \texttt{chk\_search.sh} tests this functionality in HOPS 3. Our desire is to make th%e algorithm modular, such that the user may (de)select search
+%  dimensions.
+%\reqid{D} Benchmarking and performance analysis should be augmented with
+%  more sophisticated tools.
+%\reqid{D} HOPS4 should support spectral-line VLBI.
+%\reqid{D} HOPS4 should support pulsar folding with a user specified period or
+%  ephemeris file with blanking.
+%\reqid{D} HOPS4 should enable multi-threading or multi-processing for batch jobs.
+%\end{description}
 
 %
 % eof

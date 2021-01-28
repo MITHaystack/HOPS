@@ -1,65 +1,80 @@
 %
 % A starter on coverate and unit testing
 %
-\section{Human GUI Testing}
+\section{Manual Testing}
 \label{sec:manual}
+
+Manual tests are intended to verify requirements that demand human interpretation, for example a plotting GUI.
 
 %this can be words about procedural testing of the command line
 %and GUI interfaces
 % Not sure if they need as much detail as this. This table would consist of the actual tests that would be run.
-Manual testing involves a developer running the latest build and testing the user interface      
-\begin{table}[h!]
-\centering
- \begin{tabular}{||c c c c||} 
- \hline
- Test ID & Description & Steps & Pass/Fail Criteria \\ [0.5ex] 
- \hline\hline
- 01 & Test if HOPS builds & 1. Run lorem ipsum. 2. ? 3. Profit  & Pass if able to build the project without any errors. 
- 02 & Test if HOPS documentation builds & 1...inf & Pass if able to build the project \LaTeX files without any errors. \\ [1ex]
- \hline
- \end{tabular}
- \caption{HOPS4 documents referenced by this document}
- \label{table:1}
-\end{table}
+%Manual testing involves a developer running the latest build and testing the user interface      
+%\begin{table}[h!]
+%\centering
+% \begin{tabular}{|c c c c|} 
+% \hline
+% Test ID & Description & Steps & Pass/Fail Criteria \\ [0.5ex] 
+% \hline
+% 01 & Test if HOPS builds & 1. Run lorem ipsum. 2. ? 3. Profit  & Pass if able to build the project without any errors. 
+% 02 & Test if HOPS documentation builds & 1...inf & Pass if able to build the project \LaTeX files without any errors. \\ [1ex]
+% \hline
+% \end{tabular}
+ %\caption{HOPS4 documents referenced by this document}
+% \label{table:1}
+%\end{table}
 
 \subsection{Manual testing to be applied to following requirements}
 \label{sec:manreqs}
 
 \begin{description}
+  
+\item{\textbf{P-7}} HOPS shall not require FFTW3 and/or GSL and shall operate without loss of functionality in the absence of these packages.
+\item{\textbf{P-8}} HOPS shall not require PGPLOT for basic functionality.
+\item{\textbf{P-25}} Make 2D plots of the type currently possible within aedit. Currently partially automated with \textbf{chk\_aedit.sh}.
+\item{\textbf{P-26}} Make 3D visualization plots. At first, some human reviewer will need to validate the plots; once the plotting routine is functional there can be an automated script that checks that the plots can be generated from captured data.
+\item{\textbf{P-27}} Implement interactive visualization tools.
+
+\end{description}
+  
+
+
+
+%\begin{description}
 % File I/O and Supported File Types
-\reqid{A} HOPS4 shall support input from the DiFX \cite{deller2007difx,deller2011difx} correlator (in Swinburne format).
-\reqid{A} every application should provide
-  \verb+--help+ and \verb+--version+ responses (with zero exit status)
-  to behave as conventional \acs{GNU/Linux} applications.
-\reqex{Command-line arguments should be implemented with a
-  standard argument parsing library, and should respond helpfully
-  on bad command-line syntax.}
-\reqid{A} HOPS4 shall support input from \acs{VEX} version 1.5.
-\reqid{A} All plotting tools provided in HOPS4 shall have the ability to save the image to
-  a standard graphics format.
-\reqex{HOPS4 has the desire to support as much plotting flexibility as possible, including plot formats (fonts, panels, etc).}
-\reqid{D} HOPS4 shall provide an application to support export of native
-  data types to a \TBD~archival format (\eg~HDF5).
+%\reqid{A} HOPS4 shall support input from the DiFX \cite{deller2007difx,deller2011difx} correlator (in Swinburne format).
+%\reqid{A} every application should provide
+%  \verb+--help+ and \verb+--version+ responses (with zero exit status)
+%  to behave as conventional \acs{GNU/Linux} applications.
+%\reqex{Command-line arguments should be implemented with a
+%  standard argument parsing library, and should respond helpfully
+%  on bad command-line syntax.}
+%\reqid{A} HOPS4 shall support input from \acs{VEX} version 1.5.
+%\reqid{A} All plotting tools provided in HOPS4 shall have the ability to save the image to
+%  a standard graphics format.
+%\reqex{HOPS4 has the desire to support as much plotting flexibility as possible, including plot formats (fonts, panels, etc).}
+%\reqid{D} HOPS4 shall provide an application to support export of native
+%  data types to a \TBD~archival format (\eg~HDF5).
 
 % Post Processing and Fringe Plots
-\reqid{A} The functionality of the program \acs{cofit} shall be preserved.
-  \reqex{\texttt{chk\_cofit.sh} currently verifies this.}
-\reqid{P} It should be possible to make 2D plots of the type currently possible
-  within \texttt{\acs{aedit}} of HOPS3.
-\reqex{These are plots such as \acs{SNR} with time broken out by baseline with
-  separate symbols per target. It is not currently possible, but should be possible
-  to combine several baselines into a composite plot.}
-\reqid{P} HOPS4 shall implement interactive visualization tools in \acs{fourfit}.
-and viewing fourfit results with an expanded scale.}
-\reqid{D} Replace the existing \acs{fourfit} control file with a
-  \acs{Python}-based control file. Currently existing functionality shall be
-  preserved.
-\reqex{This is tested with \texttt{testfourfit.sh}.The existing control file should continue to be supported. The new
-  control file functionality will not likely be back-ported to HOPS3.}
-\reqid{A} Every data type written to disk in HOPS4 shall be convertable to
-  form that is amenable to human examination (e.g. ASCII or CSV), as is done in HOPS3 by the
-  \texttt{\acs{CorAsc2}} program.
-\end{description}
+%\reqid{A} The functionality of the program \acs{cofit} shall be preserved.
+%  \reqex{\texttt{chk\_cofit.sh} currently verifies this.}
+%\reqid{P} It should be possible to make 2D plots of the type currently possible
+%  within \texttt{\acs{aedit}} of HOPS3.
+%\reqex{These are plots such as \acs{SNR} with time broken out by baseline with
+%  separate symbols per target. It is not currently possible, but should be possible
+%  to combine several baselines into a composite plot.}
+%\reqid{P} HOPS4 shall implement interactive visualization tools in \acs{fourfit}.
+%and viewing fourfit results with an expanded scale.}
+%\reqid{D} Replace the existing \acs{fourfit} control file with a
+%  \acs{Python}-based control file. Currently existing functionality shall be
+%  preserved.
+%\reqex{This is tested with \texttt{testfourfit.sh}.The existing control file should continue to be supported. The new
+%  control file functionality will not likely be back-ported to HOPS3.}
+%\reqid{A} Every data type written to disk in HOPS4 shall be convertable to
+%  form that is amenable to human examination (e.g. ASCII or CSV), as is done in HOPS3 by the
+%  \texttt{\acs{CorAsc2}} program.
+%\end{description}
 %
 % eof
 %
