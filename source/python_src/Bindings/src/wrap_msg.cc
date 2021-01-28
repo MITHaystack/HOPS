@@ -11,13 +11,13 @@ extern "C" {
 static char wrap_progname[200] = "hops";
 } // extern "C"
 
-#include "MHOMessage.hh"
+#include "MHO_Message.hh"
 using namespace hops;
 
 extern "C" void wrap_message(int verbosity, int severity, char *message)
 {
-    MHOMessage::GetInstance().AddKey(wrap_progname);
-    MHOMessage::GetInstance().SetMessageLevel(eDebug);
+    MHO_Message::GetInstance().AddKey(wrap_progname);
+    MHO_Message::GetInstance().SetMessageLevel(eDebug);
     switch(MAX_VERBOSITY - severity) {
     case eFatal:    // 0 fatal errors (most important)
         if (verbosity >= 0) { msg_fatal(wrap_progname, message << eom); }
@@ -95,7 +95,7 @@ void wrap_msg (char *fmt, int level, ...)
     (void)vsnprintf(buffer+used, sizeof(buffer)-used, fmt, args);
     va_end(args);
 
-    /* hand-off to the MHOMessage class shifting to verbosity/severity */
+    /* hand-off to the MHO_Message class shifting to verbosity/severity */
     wrap_message(MAX_SEVERITY-wrap_msglev, level - MIN_SEVERITY, buffer);
 }
 

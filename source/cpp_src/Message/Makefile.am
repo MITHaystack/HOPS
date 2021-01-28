@@ -4,9 +4,9 @@
 # The contents of the package Copyright statement apply here.
 #
 
-pkginclude_HEADERS = include/MHOMessage.hh
+pkginclude_HEADERS = include/MHO_Message.hh
 
-pkglib_LTLIBRARIES = libMHOMessage.la
+pkglib_LTLIBRARIES = libMHO_Message.la
 
 check_PROGRAMS = TestMessenger
 
@@ -17,11 +17,11 @@ TESTS = $(check_PROGRAMS)
 defines = -DHOPS_ENABLE_DEBUG_MSG=1
 AM_CXXFLAGS = -I. -I$(srcdir)/include -Wall -Wextra $(defines)
 
-libMHOMessage_la_SOURCES = src/MHOMessage.cc
-libMHOMessage_la_LDFLAGS = -avoid-version
+libMHO_Message_la_SOURCES = src/MHO_Message.cc
+libMHO_Message_la_LDFLAGS = -avoid-version
 
 TestMessenger_SOURCES = test/TestMessenger.cc
-TestMessenger_LDADD = -L.libs -lMHOMessage
+TestMessenger_LDADD = -L.libs -lMHO_Message
 
 EXTRA_DIST =
 

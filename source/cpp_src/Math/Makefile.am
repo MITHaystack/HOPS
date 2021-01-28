@@ -4,16 +4,12 @@
 # The contents of the package Copyright statement apply here.
 #
 
-pkginclude_HEADERS = include/MHOBitReversalPermutation.hh \
-	include/MHOFastFourierTransform.hh \
-	include/MHOFastFourierTransformUtilities.hh \
-	include/MHOMultidimensionalFastFourierTransformFFTW.hh \
-	include/MHOMultidimensionalFastFourierTransform.hh
+pkginclude_HEADERS = include/MHO_BitReversalPermutation.hh \
+	include/MHO_FastFourierTransformUtilities.hh
 
-pkglib_LTLIBRARIES = libMHOMath.la
+pkglib_LTLIBRARIES = libMHO_Math.la
 
-check_PROGRAMS = TestFastFourierTransform \
-	TestMultidimensionalFastFourierTransform
+check_PROGRAMS = TestFastFourierTransform
 
 TESTS_ENVIRONMENT = srcdir=$(srcdir)
 TESTS = $(check_PROGRAMS)
@@ -24,22 +20,18 @@ cxxmho = -I$(srcdir)/../Message/include \
 	-I$(srcdir)/../Containers/include
 AM_CXXFLAGS = $(cxxflags) $(cxxmho)
 
-libMHOMath_la_SOURCES = src/MHOBitReversalPermutation.cc \
-	src/MHOFastFourierTransform.cc \
-	src/MHOFastFourierTransformUtilities.cc
-libMHOMath_la_LDFLAGS = -avoid-version
+libMHO_Math_la_SOURCES = src/MHO_BitReversalPermutation.cc \
+	src/MHO_FastFourierTransformUtilities.cc
+
+libMHO_Math_la_LDFLAGS = -avoid-version
 
 # v4
-thislib = -L.libs -lMHOMath
-message = -L../Message/.libs -lMHOMessage
+thislib = -L.libs -lMHO_Math
+message = -L../Message/.libs -lMHO_Message
 mholibs = $(message)
 
 TestFastFourierTransform_SOURCES = test/TestFastFourierTransform.cc
 TestFastFourierTransform_LDADD = $(thislib) $(mholibs)
-TestMultidimensionalFastFourierTransform_SOURCES = \
-	test/TestMultidimensionalFastFourierTransform.cc
-TestMultidimensionalFastFourierTransform_LDADD = $(thislib) $(mholibs)
-
 
 EXTRA_DIST =
 

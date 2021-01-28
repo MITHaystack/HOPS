@@ -4,13 +4,13 @@
 # The contents of the package Copyright statement apply here.
 #
 
-pkginclude_HEADERS = include/MHOMK4CorelInterface.hh \
-	include/MHOMK4FringeInterface.hh \
-	include/MHOMK4Interface.hh \
-	include/MHOMK4VexInterface.hh \
-	include/MHOMK4Visibility.hh
+pkginclude_HEADERS = include/MHO_MK4CorelInterface.hh \
+	include/MHO_MK4FringeInterface.hh \
+	include/MHO_MK4Interface.hh \
+	include/MHO_MK4VexInterface.hh \
+	include/MHO_MK4Visibility.hh
 
-pkglib_LTLIBRARIES = libMHOMK4Interface.la
+pkglib_LTLIBRARIES = libMHO_MK4Interface.la
 
 check_PROGRAMS = TestMK4Import TestMK4VexInterface
 
@@ -29,16 +29,16 @@ cxxhops = -I$(srcdir)/../../c_src/mk4util/include \
 	-I$(srcdir)/../../c_src/vex/include
 AM_CXXFLAGS = $(cxxflags) $(cxxmho) $(cxxhops)
 
-libMHOMK4Interface_la_SOURCES = src/MHOMK4CorelInterface.cc \
-	src/MHOMK4FringeInterface.cc \
-	src/MHOMK4Interface.cc \
-	src/MHOMK4VexInterface.cc
-libMHOMK4Interface_la_LDFLAGS = -avoid-version
+libMHO_MK4Interface_la_SOURCES = src/MHO_MK4CorelInterface.cc \
+	src/MHO_MK4FringeInterface.cc \
+	src/MHO_MK4Interface.cc \
+	src/MHO_MK4VexInterface.cc
+libMHO_MK4Interface_la_LDFLAGS = -avoid-version
 
 # v4
-thislib = -L.libs -lMHOMK4Interface
-message = -L../Message/.libs -lMHOMessage
-utilities = -L../Utilities/.libs -lMHOUtilities
+thislib = -L.libs -lMHO_MK4Interface
+message = -L../Message/.libs -lMHO_Message
+utilities = -L../Utilities/.libs -lMHO_Utilities
 mholibs = $(message) $(utilities)
 # v3 -- FIXME
 #hopslibs = -L../../c_src/mk4util -lmk4util \

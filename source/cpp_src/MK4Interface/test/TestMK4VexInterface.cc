@@ -2,7 +2,7 @@
 #include <string>
 #include <getopt.h>
 
-#include "MHOMK4VexInterface.hh"
+#include "MHO_MK4VexInterface.hh"
 
 using namespace hops;
 
@@ -39,7 +39,7 @@ int main(int argc, char** argv)
 
     std::cout<<"attempting to open: "<<filename<<std::endl;
 
-    MHOMK4VexInterface mk4inter;
+    MHO_MK4VexInterface mk4inter;
     mk4inter.OpenVexFile(filename);
 
     return 0;
