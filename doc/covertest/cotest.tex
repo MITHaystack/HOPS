@@ -192,15 +192,16 @@ The tests described in this document are grouped into the following categories \
 
 \begin{itemize}
 \item[] \textbf{Unit tests} are defined for discrete functions or sections of code.
-\item[] \textbf{Regression tests} generate quantitative results for specific
-  functions using captured data, and have pre-defined criteria for success (for example, an SNR range for a fringe fit).
+\item[] \textbf{Regression tests} are automated and generate quantitative results for specific
+  functions using captured data. They have pre-defined criteria for success (for example, an SNR range for a fringe fit). Many of these tests are direct comparisons to results from HOPS3.
 \item[] \textbf{Continuous integration tests} check that the latest HOPS4
   codebase successfully compiles in a variety of environments and distributions.
 \item[] \textbf{Benchmarking tests} are used to verify the performance of HOPS4 functions.
-\item[] \textbf{Oracle tests} are direct comparisons between previous, validated
-  code (\eg~HOPS3) and the HOPS4 code
-\item[] \textbf{Manual tests} are tests that require human intervention, for
-  example to verify that a plot is generated with the proper formatting.
+\item[] \textbf{Oracle tests} are direct comparisons between HOPS3 and HOPS4. They are implemented using an ``oracle'', a software package that runs HOPS3 and HOPS4 functions on the same dataset. \FIX[Is this right? How are these different from regression tests?]
+\item[] \textbf{Component tests} are tests of packages and dependencies. 
+%\item[] \textbf{Oracle tests} are direct comparisons between previous, validated
+%  code (\eg~HOPS3) and the HOPS4 code
+\item[] \textbf{Manual tests} are tests that require human interpretation of results, for example to verify that a plot is generated with the proper formatting, or that a GUI is functioning as expected.
 
 \end{itemize}
 
@@ -216,7 +217,7 @@ These tests are executed on different schedules.
  Continuous Integration & Daily \\
  Unit testing & Per Function \\ 
  Benchmarking & Weekly \\
- Oracle  & 1 fortnight \\
+ Oracle  & As needed \\
  Component & As needed \\ 
  Manual & As needed \\ [1ex]
  %\hline
@@ -249,6 +250,7 @@ oracle, and regression tests with captive 2017/2018 data scans.
 % Mention that we use Agile so this is our schedule and they need to deal with it.
 
 \input{regress}
+% Test that data with both HOPS4 and HOPS3 return the same results.
 
 \pagebreak
 \input{integration}
@@ -264,7 +266,6 @@ oracle, and regression tests with captive 2017/2018 data scans.
 
 \pagebreak
 \input{oracle}
-% Test that data with both HOPS4 and HOPS3 return the same results.
 
 \pagebreak
 \input{component}
