@@ -23,7 +23,7 @@ ammod = SWIGmhops
 # we use SWIG for '_' which is illegal as a first character
 # that is, ideally this would be _$(pymod).la:
 pkgpyexec_LTLIBRARIES = SWIGmhops.la
-pkglib_LTLIBRARIES = libMHOwrap.la
+pkglib_LTLIBRARIES = libMHO_wrap.la
 
 # local machinery
 pkginclude_HEADERS = include/wrap_msg.h
@@ -77,20 +77,20 @@ AM_LDFLAGS = $(coverldflags)
 
 # as proof of principal we build the wrapper library independently
 # of the module library which we only need for python.
-libMHOwrap_la_SOURCES = src/wrap_msg.cc
-libMHOwrap_la_LIBADD = # conditional sources
-libMHOwrap_la_CXXFLAGS = $(msinc)
-libMHOwrap_la_LDFLAGS = $(mslib) -lMHOMessage $(coverldflags)
-libMHOwrap_la_LIBADD = $(coverldadd)
+libMHO_wrap_la_SOURCES = src/wrap_msg.cc
+libMHO_wrap_la_LIBADD = # conditional sources
+libMHO_wrap_la_CXXFLAGS = $(msinc)
+libMHO_wrap_la_LDFLAGS = $(mslib) -lMHO_Message $(coverldflags)
+libMHO_wrap_la_LIBADD = $(coverldadd)
 
 # this is a direct test of the library source
 #TestWrapMessage_SOURCES = src/wrap_msg.cc test/TestWrapMessage.c
 #TestWrapMessage_CXXFLAGS = $(msinc)
-#TestWrapMessage_LDADD = $(mslib) -lMHOMessage
+#TestWrapMessage_LDADD = $(mslib) -lMHO_Message
 # this tests the same code via the library
 TestWrapMessage_SOURCES = test/TestWrapMessage.c
 TestWrapMessage_LDFLAGS = \
-	$(mslib) -lMHOMessage -L.libs -lMHOwrap $(coverldflags)
+	$(mslib) -lMHO_Message -L.libs -lMHO_wrap $(coverldflags)
 TestWrapMessage_LDADD = $(coverldadd)
 
 # SWIG machinery
@@ -123,7 +123,7 @@ SWIGmhops_la_CPPFLAGS = $(coververbose) \
 SWIGmhops_la_CXXFLAGS = $(coververbose) \
 	$(swigw) $(npinc) $(pyinc) $(msinc) $(AM_CXXFLAGS)
 SWIGmhops_la_LDFLAGS = \
-	$(mslib) -lMHOMessage -avoid-version -module $(npinc) $(coverldflags)
+	$(mslib) -lMHO_Message -avoid-version -module $(npinc) $(coverldflags)
 SWIGmhops_la_LIBADD = $(coverldadd)
 
 # generate the SWIG C interface and Python bindings

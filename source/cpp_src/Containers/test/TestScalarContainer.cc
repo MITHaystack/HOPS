@@ -1,14 +1,14 @@
 #include <iostream>
 #include <string>
 
-#include "MHOScalarContainer.hh"
+#include "MHO_ScalarContainer.hh"
 
 
 using namespace hops;
 
 
 
-class Test: public MHOScalarContainer< double >
+class Test: public MHO_ScalarContainer< double >
 {
 
     public:

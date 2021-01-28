@@ -130,12 +130,16 @@ There are also sections on other programmatic elements.
 % break document into appropriate portions
 \pagebreak
 \input{introduction}
+% Project Purpose
+% Scope
 
 \pagebreak
 \input{designoutline}
+% Some section ... page 3 etc.
 
 \pagebreak
 \input{detailedtimeline}
+% import John's Gantt chart
 
 \pagebreak
 \addtocounter{section}{1}
@@ -144,6 +148,30 @@ There are also sections on other programmatic elements.
 \bibstyle{plainurl}
 \printbibliography
 \label{sec:references}
+
+\pagebreak
+\input{overview}
+% Describe work to be done?
+% Assumptions and Constraints
+% Deliverables
+% Personnel
+% Personnel roles and responsibilities
+% Cost management
+% Review process
+
+\pagebreak
+\input{projectorganization}
+% requirements and specifications
+% system engineering
+% documentation
+
+\pagebreak
+\input{managementprocess}
+% Risk Management
+% Measures of success
+% Product Assurance
+% Project closeout
+\input{}
 
 % if skipappendix-is-true then (nothing) else typeset Appendices
 \ifthenelse{\boolean{skipappendix}}{}{%

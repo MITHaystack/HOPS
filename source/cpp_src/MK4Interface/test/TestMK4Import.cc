@@ -21,10 +21,9 @@
 #include "TMultiGraph.h"
 #endif
 
-#include "MHOTokenizer.hh"
-
-#include "MHOMK4VexInterface.hh"
-#include "MHOMK4CorelInterface.hh"
+#include "MHO_Tokenizer.hh"
+#include "MHO_MK4VexInterface.hh"
+#include "MHO_MK4CorelInterface.hh"
 
 
 using namespace hops;
@@ -65,9 +64,10 @@ int main(int argc, char** argv)
         }
     }
 
-    MHOMessage::GetInstance().AcceptAllKeys();
+    MHO_Message::GetInstance().AcceptAllKeys();
+    MHO_Message::GetInstance().SetMessageLevel(eDebug);
 
-    MHOMK4CorelInterface mk4inter;
+    MHO_MK4CorelInterface mk4inter;
 
     mk4inter.SetCorelFile(corel_filename);
     mk4inter.SetVexFile(root_filename);
@@ -119,17 +119,18 @@ int main(int argc, char** argv)
     for(size_t j=0; j<y_axis_size; j++)
     {
         std::cout<<j<<", "<<y_axis->at(j)<<std::endl;
-
-        //for(size_t i=0; i<x_axis_size; i++)
-        for(size_t i=0; i<1; i++)
+        std::complex<double> sum = 0.0;
+        for(size_t i=0; i<x_axis_size; i++)
         {
             std::complex<double> vis = bl_data->at(0,i,j);
-//            g->SetPoint(j,y_axis->at(j),std::arg(vis));
-            g->SetPoint(j,j,y_axis->at(j));
+            sum += vis;
+            //g->SetPoint(j,y_axis->at(j),std::arg(vis));
             //gr->SetPoint(count, x_axis->at(i), y_axis->at(j), std::arg(vis) );
             //gb->SetPoint(count, x_axis->at(i), y_axis->at(j), std::abs(vis) );
-            count++;
         }
+        g->SetPoint(j, y_axis->at(j), std::abs(sum));
+        count++;
+
     }
 
     std::string name = "test";
