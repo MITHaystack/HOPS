@@ -1,5 +1,5 @@
 #
-# makefile for the development plan
+# makefile for development plan
 # (c) Massachusetts Institute of Technology, 2020
 # The contents of the package Copyright statement apply here.
 #
@@ -10,7 +10,7 @@ TEXSRC=dplan
 
 # everything from $(srcdir) included from $(TEXSRC).tex
 # needs to be listed here with a $(srcdir)/ path prefix
-EXTRA_DIST = $(srcdir)/$(TEXSRC).tex \ 
+EXTRA_DIST = $(srcdir)/$(TEXSRC).tex \
 	$(srcdir)/introduction.tex \
 	$(srcdir)/designoutline.tex \
 	$(srcdir)/detailedtimeline.tex \
@@ -38,17 +38,24 @@ $(TEXPDF).pdf: $(TEXSRC).pdf
 # TEXINPUTS allows sources to be found on the path
 # insert enough rules for iteration to completion:
 # pdflatex ... ; biber ... ; pdflatex ... ; pdflatex
-$(TEXSRC).pdf: force
+$(TEXSRC).pdf: bibs
 	@echo final iteration
 	-TEXINPUTS=$(TEXINPUTS) pdflatex $(TEXOPT) $(TEXSRC).tex
+
+# see which backend was requested and invoke the appropriate bib agent
+bibs: force
+	@echo biber or biblatex
+	-grep -q backend=biber $(srcdir)/$(TEXSRC).tex && \
+		TEXBIB=$(TEXBIB) biber $(TEXSRC) >$(TEXSRC)-bibs.log || \
+		BIBINPUTS=$(TEXBIB) bibtex $(TEXSRC) >$(TEXSRC)-bibs.log
+	touch bibs
 
 force: $(srcdir)/Makefile.am $(EXTRA_DIST)
 	@echo first iteration
 	-TEXINPUTS=$(TEXINPUTS) pdflatex $(TEXOPT) $(TEXSRC).tex
-	-TEXBIB=$(TEXBIB) biber $(TEXSRC) >$(TEXSRC)-biber.log && echo biber ok
 	touch force
 
-CLEANFILES = $(TEXSRC).* $(TEXPDF).pdf force *.log
+CLEANFILES = $(TEXSRC).* $(TEXPDF).pdf force bibs *.log *-blx.bib
 
 else
 # nothing built, installed or cleaned
