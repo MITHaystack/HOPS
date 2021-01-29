@@ -118,7 +118,7 @@
 
 
 \usepackage{tabularx}
-    \newcolumntype{L}{>{\raggedright\arraybackslash}X}
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
 
 
 \usepackage{tikz}
@@ -127,10 +127,6 @@
 \usetikzlibrary{shapes.geometric, arrows}
 \pgfplotsset{compat=1.11}
 \usepackage[margin=0.9in]{geometry}
-
-
-
-
 
 \newcommand\tikzmark[2]{%
   \tikz[remember picture,overlay]\node[arrow,draw] (#1) {#2};}
@@ -227,7 +223,7 @@ to enable/disable various plotting items.
 
 \begin{figure}[h!]
 \begin{center}
-  \includegraphics[width=0.6\textwidth]{./example-single-baseline-fringe-fitter.png}
+  \includegraphics[width=0.6\textwidth]{example-single-baseline-fringe-fitter.png}
     \caption{Example of simplified control flow for a single-baseline fringe fitter.}
     \label{fig:fringe-fitter}
 \end{center}
@@ -290,7 +286,7 @@ The existing HOPS3 code base relies on a fixed number of \texttt{C} structs to o
 
 In a strictly typed language such as \texttt{C}, flexible data structures have a high degree of code overhead, not only in the management of dynamic memory allocation, but more severely in the conversion of data types and typecasting. To ameliorate this we propose to exploit \texttt{C++11}'s variadic template mechanism, which allows for the transformation of type-agnostic class lists into concrete class types or hierarchies at compile time. This makes it possible to store disparate types (so long as the complete set of types is known at compile time) within in the same object that are indexed and can be retrieved by the same type of key (e.g. a name string). Listing \ref{lst:metaobjects} gives a condensed example of the preliminary version of the template base class for a meta-data container (with detailed functionality removed).
 
-\lstinputlisting[language=C++,label={lst:metaobjects},caption=Meta-data object template classes for multi-type maps.]{./code/metadata_objects.hh}
+\lstinputlisting[language=C++,label={lst:metaobjects},caption=Meta-data object template classes for multi-type maps.]{code/metadata-objects.hh}
 
 To the extent possible, the in-memory meta-data structures should be classes which provide access via a key-value pair mechanism so as to avoid exposing the private internal storage layout to the routines needing access to subsets of the data. This retrieval mechanism also has the benefit of completely decoupling the compile
 time structure of the data containers from the data they need to hold at runtime. A key:value interface is trivially available via the STL std::map template class,
@@ -310,14 +306,14 @@ and (if applicable) the values associated with the axes along each dimension and
 Listing \ref{lst:objects} gives a brief sketch of the preliminary class template implementation for these data container objects, while listing \ref{lst:visib} gives a simple example of what template declaration of an object storing visibility data from an observation over single baselines and polarization products might look like.
 A graphical representation of a TableContainer is shown in figure \ref{fig:table-container}.
 
-\lstinputlisting[language=C++,label={lst:objects},caption=Data object templates]{./code/data_objects.hh}
+\lstinputlisting[language=C++,label={lst:objects},caption=Data object templates]{code/data-objects.hh}
 
-\lstinputlisting[language=C++,label={lst:visib},caption=Visibility object type]{./code/visibilities.hh}
+\lstinputlisting[language=C++,label={lst:visib},caption=Visibility object type]{code/visibilities.hh}
 
 
 \begin{figure}[h!]
 \begin{center}
-  \includegraphics[width=\textwidth]{./data-container-baseline.png}
+  \includegraphics[width=\textwidth]{data-container-baseline.png}
     \caption{A graphical representation of a TableContainer. This class is composed of an N-dimensional array, coupled with axes to provide coordinate values
     along each dimension. The axes themselves allow for arbitrary intervals to be labelled by key:value pairs in order to allow for local look-up of filter data.
     For example, along the frequency axis, the interval labels may be channel or sampler names among other possibilities. Furthermore, the interval and associated
@@ -342,7 +338,7 @@ to define and internal schema, listing the keys and type of the parameters it ne
 In addition, a mechanism for filtering operations (e.g. if station = Xx, then apply this operator) also needs to be established independent of the
 previous control-block structure of HOPS3.
 
-\lstinputlisting[language=C++,label={lst:operators},caption=Data operator template classes.]{./code/data_operators.hh}
+\lstinputlisting[language=C++,label={lst:operators},caption=Data operator template classes.]{code/data-operators.hh}
 
 \section{Parallel processing}
 
@@ -444,7 +440,7 @@ An additional set of plugin libraries will be enabled if the appropriate depende
 
 \begin{figure}[h!]
 \begin{center}
-  \includegraphics[width=0.95\textwidth]{./arch_overview.png}
+  \includegraphics[width=0.95\textwidth]{arch_overview.png}
     \caption{Basic overview of library and executable dependency architecture.}
     \label{fig:lib-arch}
 \end{center}
