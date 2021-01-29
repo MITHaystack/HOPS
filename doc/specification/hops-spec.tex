@@ -190,8 +190,8 @@
 This document is intended to record the design decisions made in specifying how this re-development project undertakes the
 re-design and re-implementation of the VLBI post-processing software HOPS. As this is a software project there is a certain
 degree of continuing flexibility that is needed in order to obtain an optimal result upon completion. Therefore, this 
-document will be updated periodically along with the software as it is built out with an initial focus on components of 
-the design which must be in place in order for further development to progress.
+draft document will be updated periodically along with the software as it is built out with the initial focus on components of 
+the design which must be in place as basic infrastructure needed for further development.
 
 
 \section{General Architecture}
@@ -295,16 +295,13 @@ We propose the following basic set of class templates be used to construct most 
 These template classes are to serve as a simple wrapper around the management of the raw memory needed to store a data item and keep track of its associated unit(s), 
 and (if applicable) the values associated with the axes along each dimension and their units.
 
-The TableContainer class is 
-
 Listing \ref{lst:objects} gives a brief sketch of the preliminary class template implementation for these data container objects, while listing \ref{lst:visib} gives a simple example of what template declaration of an object storing visibility data from an observation over single baselines and polarization products might look like.
 
 \lstinputlisting[language=C++,label={lst:objects},caption=Data object templates]{./code/data_objects.hh}
 
 \lstinputlisting[language=C++,label={lst:visib},caption=Visibility object type]{./code/visibilities.hh}
 
-
-A graphical representation of a TableContainer is shown in figure \ref{fig:table-container}. 
+A graphical representation of a TableContainer is shown in figure \ref{fig:table-container}.
 
 \begin{figure}[h!]
 \begin{center}
@@ -326,7 +323,6 @@ Most unary or binary operations that are to applied to visibility or other data 
 \lstinputlisting[language=C++,label={lst:operators},caption=Data operator templates]{./code/data_operators.hh}
 
 
-
 \section{Parallel processing}
 
 The existing fringe-fitting process is largely a data-parallel process operating on individual baselines with no inter-process
@@ -339,12 +335,12 @@ within the application. To do this we will use a multi-staged approach during th
 
 Initially, the software to be developed under this project will focus on a simple single-threaded implementation, whereupon careful
 profiling will inform us of the largest computational bottlenecks. For example, in the current HOPS code the majority of
-the computation time is spent in a single routine (vrot.c, which is essentially just multiplying two complex numbers) that is applied over
+the computation time is spent in a single routine (vrot.c, which is essentially just evaluating a complex exponentian and multiplying two complex numbers) that is applied over
 a large array of data. This sort of task can easily be parallelized on modern multi-core architectures using the SIMD approach. We propose to use OpenCL
 for this purpose given its support on a wide variety of architectures (mult-core CPUs, GPUS, hardware accelerators, etc.).
 
 
-This type of parallelism exploits vector instructions and/or multiple processors to execute the similar operations over wide swaths of data. while given current experience with the existing HOPS leads us to expect that SIMD parallelism should largely be adequate to accelerate fringe fitting, if during the process of development it is discovered that a thread-based model (MIMD, where each parallel thread follows a semi-independent code pathway) could be more advantageous, then we propose to use OpenMPI framework to implement this. The reason being, that while OpenMPI does have a larger development overhead than most other threading libraries (e.g. pthreads, c++11 threads, etc.) it can be easily scaled beyond a single computer when and if needed. However, it should be noted that by necessity, any OpenMPI implementation must be developed as an independent executable (although it would be able to take advantage of any available libraries and SIMD policies present).
+This type of parallelism exploits vector instructions and/or multiple processors to execute the similar operations over wide swaths of data. while given current experience with the existing HOPS leads us to expect that SIMD parallelism should largely be adequate to accelerate fringe fitting, if during the process of development it is discovered that a thread-based model (MIMD, where each parallel thread follows a semi-independent code pathway) could be more advantageous, then we propose to use OpenMPI framework to implement this. The reason being, that while OpenMPI does have a larger development overhead than most other threading libraries (e.g. pthreads, c++11 threads, etc.) it can be easily scaled beyond a single computer when and if needed. However, it should be noted that by necessity, any OpenMPI implementation must be developed as an independent executable (although it would be able to take advantage of any available libraries and SIMD policies present). 
 
 
 \section{External Package Selection}
@@ -363,14 +359,14 @@ The following table is a preliminary list of which external packages are expecte
 Name & Optional/Required? & Purpose & Fallback option \\ \hline
 C++11 STL & Required & Standard template library & None \\ \hline
 Python &  Required & Scripting language interpreter & None \\ \hline
-pybind11 or boost.Python & Required & C/C++ $\leftrightarrow$ Python interface and bindings & None \\ \hline
+SWIG or pybind11 & Required & C/C++ $\leftrightarrow$ Python interface and bindings & None \\ \hline
 OpenCL & Optional & SIMD parallelism & Single-threaded implementation \\ \hline
 OpenMPI & Optional & MIMD parallelism & Single-threadd implementation \\ \hline
-FFTW3 & Optional & fast Fourier transform acceleration & TBD native code \\ \hline
+FFTW3 & Optional & fast Fourier transform acceleration & native code \\ \hline
 GSL & Optional & Linear algebra and special functions & TBD native code \\ \hline
 HDF5 & Optional & File input/output & TBD native binary format \\ \hline
-PLPlot & Optional & plotting library & None \\ \hline
-difxio & Required & DiFX I/O library - file converter only & None \\ \hline
+matplotlib & Optional & Python plotting library & None \\ \hline
+difxio & Required & DiFX I/O library - needed for file converter only & None \\ \hline
 \end{tabular}
 \end{adjustbox}
 \caption{List of optional/required dependencies.}
@@ -379,33 +375,49 @@ difxio & Required & DiFX I/O library - file converter only & None \\ \hline
 \end{center}
 
 
-
-
 \section{Interactivity definition}
 
-Interactivity with the user will proceed primarily through a python scripting interface. This avoids the need to develop a separate scripting language, as the python interpreter can be embedded in the application. Access to library objects will be exposed via python bindings, so that a user may have direct access to the data containers, and can implement
-external routines which can be insert as a data operator. Real-time interactivity is not planned to be implemented.
+Interactivity with the user will proceed primarily through a python scripting interface. This avoids the need to develop a separate scripting language, 
+as the python interpreter can be embedded in the application. Access to library objects will be exposed via python bindings, so that a user may have direct access 
+to the data containers and operators, and can implement external routines to modify the data. Real-time interactivity via CLI or GUI is 
+not planned to be implemented.
 
 \section{Libraries and executables}
 
 \subsection{Libraries}
 
-The software to be delivered will be presented largely as set of libraries with several executables which utilize them. These libraries will be organized by their primary function and are expected to consist of the following:
 
 \begin{enumerate}
  \item We have to refactor our dependency management for libraries to be more robust; The dependency management has to take in to account in 
  Geof's words smart and stupid linkers where the order of libraries being imported may matter. See f1d65cb6e7aa87eb40a6f2c1e589770d1490819d.
- \item Core - Common template and abstract base classes, messaging and other utilities.
- \item Math - Common mathematical functions and minimization routines.
- \item Data containers and native I/O - Definitions of the in-memory data objects and a simple binary I/O interface.
- \item Data operators - Definitions of data operations
- \item Builders and process management - Provides classes which constructs data operators and the pipeline which organizes them from user input.
+     \item Utilities - Commonly used utilities (e.g. date handling, profile timers, etc.)
+     \item Math - Math routines: linear algebra, minimizers, interface to optional 3rd-party math libraries (FFTW,GSL)
+     \item Message - Controls the topic and verbosity level of application messages/logs to user
+     \item Containers - In-memory data containers of visibility and meta-data and native format I/O
+     \item MK4Interface - Allows for import/export to legacy MK4-types for testing and backwards compatibility
+     \item Operators - Base classes for data manipulation, and generic operations (array reduction, summation, transposition, FFT, etc.)
+     \item VLBI - VLBI task-specific data operators (e.g. band-pass correction, per-channel phase offsets, etc.)
+     \item Bindings - Python interface to C++ data containers and operators. Allows for python script configuration of data operators at initialization, and user-defined direct manipulation of the data
+ 
  \item Plugins:
  \begin{enumerate}
     \item HDF5 I/O - Converts the in-memory data objects to/from an archival HDF5 file.
     \item Plotting - Utilities to generate plots for data exploration (e.g. fringe-plots).
     \item Python interface - Interpreter for user scripts and python bindings to C/C++ objects.
     \item SIMD extensions (OpenCL) - Parallel implementation of some set of data operators
+ \end{enumerate}
+ 
+ \item  Legacy c-libraries (made available for re-use and backwards compatibility and to provide the legacy fourfit application)
+  \begin{enumerate}
+    \item mk4util - utility library for MK4 data types
+    \item dfio - I/O for MK4 data types
+    \item afio - I/O library for alist manipulation
+    \item ffcontrol - parse old-style fourfit control files 
+    \item ffcore - core parameter structures
+    \item ffio - output for fringe file data
+    \item ffmath - trivial math routines used by fourfit
+    \item ffplot - fringe-plot generation library 
+    \item ffsearch - core fringe-search algorithm library (grid-search)
  \end{enumerate}
 \end{enumerate}
 
@@ -418,14 +430,13 @@ named as such):
 \begin{enumerate}
  \item DiFX2Input  - difx2mark4 equivalent, converts correlator (difx) data into native input format.
  \item Station utilities  - converts station calibration data (e.g. ANTAB) files into native input format.
- \item FringeFitter - fourfit-equivalent, accepts a user script for configuration and direction and applies it to the visibility data.
+ \item FringeFitter - fourfit-replacement, accepts a user script (or old-style control file backwards compatibility) for configuration and direction and applies user specified procedures to the visibility data.
  \item FringePlot  - plotting tool, creates fringe-plots and all graphical data exploration.
  \item HDF5Export  - converts any native formats into an HDF5 format for access by external programs.
-  \item DataInspect - data inspection tool, dumps data objects to a human readable format.
+ \item DataInspect - data inspection tool, dumps data objects to a human readable format.
  \item alist - data inspection tool, dumps simple fringe summary data to a human readable format (as in HOPS3).
- \item aedit - data inspection tool, reads alist files and provides simple plots of multple scan data (as in HOPS3).
+ \item aedit - data inspection/visualizatoin tool (re-coded in python), reads alist files and provides simple plots of multple scan data (as in HOPS3).
  \end{enumerate}
-
 
 \begin{figure}[h!]
 \begin{center}
@@ -434,6 +445,7 @@ named as such):
     \label{fig:fringe-fitter}
 \end{center}
 \end{figure}
+
 
 %
 % above to be deleted after merger
