@@ -217,7 +217,7 @@ access and directly modify the data and/or data operators.
 Upon completion of fringe fitting, the calibrated data with fringe solution applied will then be saved in a native binary format with the option to convert to an archival format (e.g. HDF5) via a simple conversion utility. Intermmediate stages (with partial data corrections applied) may also optionally saved to the native format. It is expected that a data flagging table and cummulative band-pass correction
 
 In addition to the fringe fitter itself, a number of other post-fringing data analysis tools will also be provided. Most importantly are
-a fringe plot utility for diagnostic information about the quality of an individual scan-baseline fringe, as well as the equivalent executables to \textit{alist} and \textit{aedit}, which summarize multiple fringe solutions and display condensed information about multiple scans respectively.
+a fringe plot utility for diagnostic information about the quality of an individual fringe, as well as the equivalent executables to \textit{alist} and \textit{aedit}, which summarize multiple fringe solutions and display condensed information about multiple scans respectively.
 We intended to preserved the existing functionality of these executables, but expect to make the fringe-plot more flexible by providing options
 to enable/disable various plotting items.
 
@@ -250,10 +250,10 @@ Further augmenting C/C++ libraries with inter-language communication to Python c
 (ctypes, boost.Python, SWIG, pybind11, etc.), and will increase the ease at which outside users can augment the software without
 needing to have expertise in C/C++/. Since Python 2 is no longer supported, all new development will be Python 3.
 
-The build system for this project will be the automake\urlfootnote{https://www.gnu.org/software/automake/} or CMake build system\urlfootnote{https://cmake.org}, and version control will proceed through a locally hosted (Haystack) git repository. HOPS3 used the automake build system and there is some
+The build system for this project will be automake\urlfootnote{https://www.gnu.org/software/automake/} or CMake\urlfootnote{https://cmake.org}, and version control will proceed through a locally hosted (Haystack) git repository. HOPS3 used the automake build system and there is some
 advantage in re-using that frame work, while the CMake build system is generally easier to maintain than the current automake system when faced with the complexities of a multi-language project. It also allows for a more user-friendly configuration at the time of compilation, as the user can be presented with a menu providing options which are dependent on the available set of tools/libraries that are currently installed and detected on the users system. Initially
-both build systems may be implemented to see which provides an optimal choice. Version control will be handled in a local \textit{git} repository during
-the prime development phase. Eventually a public \textit{git} repository will be made available for releases which will also make it much easier to leverage community contributions if so desired at some point in the future.
+both build systems may be implemented to see which provides an optimal choice. While version control will be handled in a local \textit{git} repository during
+the prime development phase, it is expected that eventually a public \textit{git} repository will be made available for releases which will also make it much easier to leverage community contributions if so desired at some point in the future.
 
 
 \section{Objects specification}
@@ -264,38 +264,62 @@ the prime development phase. Eventually a public \textit{git} repository will be
 Generally speaking the code will be organized around roughly three object type categories involved in the structure of the new HOPS. These are as follows:
 
 \begin{enumerate}
- \item Data Containers: These serve to organize large n-dimensional arrays of a single data type (e.g. visibility data and correction/calibration table data). 
  \item Meta Data Containers: These serve to store small quantities of station and baseline metadata associated with an observation of disparate types.
+ \item Array Containers: These serve to organize large n-dimensional arrays of a single data type (e.g. visibility data and correction/calibration table data). 
  \item Data Operators: These evaluate a function or perform some transformation on a given data container. Their operation is configurable via a set of exeternally defined parameters, while their application to any particular data set can be made conditional by a set of filters.).
 \end{enumerate}
 
 \subsection{Data Containers}
 
-The existing HOPS code base relies on a fixed number of \texttt{C} structs to organize and present the data related to an observation. The strict memory layout of these structures has the advantage of making them cross-machine compatible, which is necessary since these structures are also used as the core components of the Mark-4 I/O library. However, a notable disadvantage of this rigid design is the degree of difficulty encountered in making changes to the existing data structures, or adding new data types in order to accommodate additional information which was not originally envisioned at the time the library was written.
+The existing HOPS3 code base relies on a fixed number of \texttt{C} structs to organize and present the data related to an observation. The strict memory layout of these structures has the advantage of making them cross-machine compatible, which is necessary since these structures are also used as the core components of the Mark-4 I/O library. However, a notable disadvantage of this rigid design is the degree of difficulty encountered in making changes to the existing data structures, or adding new data types in order to accommodate additional information which was not originally envisioned at the time the library was written. To make the data structures more flexible we intend to decouple the in-memory data layout from the file I/O, so they do not necessarily need to be byte-for-byte copies.
 
-To make the data structures more flexible we intend to decouple the in-memory data layout from the file I/O, so they do not necessarily need to be byte-for-byte copies.
-Furthermore, to the extent possible, the in-memory data structures should be classes which provide access via a key-value pair mechanism so as to avoid exposing the private internal storage layout to the routines needing access to subsets of the data.
+\subsubsection{Meta-Data Containers}
 
-In a strictly typed language such as \texttt{C}, flexible data structures have a high degree of code overhead, not only in the management of dynamic memory allocation, but more severely in the conversion of data types and typecasting. To ameliorate this we propose to exploit \texttt{C++11}'s variadic template mechanism, which allows for the transformation of type-agnostic class lists into concrete class types or hierarchies at compile time. This makes it possible to store disparate types (known at compile time) within in the same object that are indexed and can be retrieved by the same type of key (e.g. a name string).
+In a strictly typed language such as \texttt{C}, flexible data structures have a high degree of code overhead, not only in the management of dynamic memory allocation, but more severely in the conversion of data types and typecasting. To ameliorate this we propose to exploit \texttt{C++11}'s variadic template mechanism, which allows for the transformation of type-agnostic class lists into concrete class types or hierarchies at compile time. This makes it possible to store disparate types (known at compile time) within in the same object that are indexed and can be retrieved by the same type of key (e.g. a name string). Listing \ref{lst:metaobjects} gives
+a condensed example of the preliminary version of the template base class for a meta-data container.
 
-We propose the following basic set of class templates be used to construct most in-memory objects used for the manipulation of correlated observation data and its associated metadata:
+\lstinputlisting[language=C++,label={lst:metaobjects},caption=Meta-data object templates]{./code/metadata_objects.hh}
+
+To the extent possible, the in-memory meta-data structures should be classes which provide access via a key-value pair mechanism so as to avoid exposing the private internal storage layout to the routines needing access to subsets of the data. This sort of interface is trivially available via the STL std::map template class.
+Moreover it should also make conversion of these data structures into widely accessible formats such as JSON or python dictionaries possible for data export 
+to external software.
+
+\subsubsection{N-Dimensional Array Containers}
+
+We propose the following basic set of class templates be used to construct most in-memory objects used for the manipulation of correlated observation data and its associated station data:
 \begin{enumerate}
- \item ScalarContainer - encapsulates scalar-like data with associated units
- \item VectorContainer - encapsulates vector-like data with associated units
- \item TableContainer - encapsulates rank-N tensor-like data with associated item and axis (vector) units
- \item HeterogenousContainer - encapsulates any of the above types
+ \item ScalarContainer - encapsulates scalar-like data 
+ \item VectorContainer - encapsulates vector-like data
+ \item TableContainer - encapsulates rank-N tensor-like data with associated axes (vector)
 \end{enumerate}
-These template classes are to serve as a simple wrapper around the management of the raw memory needed to store a data item and keep track of its associated unit(s), and (if applicable) its axis values and their units.
+These template classes are to serve as a simple wrapper around the management of the raw memory needed to store a data item and keep track of its associated unit(s), 
+and (if applicable) the values associated with the axes along each dimension and their units.
 
-Listing \ref{lst:objects} gives a brief sketch (without implementation) of the class templates for these data container objects, while listing \ref{lst:visib} gives a simple example of what template declaration of an object storing visibility data from an observation over multiple baselines and polarization products might look like.
+The TableContainer class is 
+
+Listing \ref{lst:objects} gives a brief sketch of the preliminary class template implementation for these data container objects, while listing \ref{lst:visib} gives a simple example of what template declaration of an object storing visibility data from an observation over single baselines and polarization products might look like.
 
 \lstinputlisting[language=C++,label={lst:objects},caption=Data object templates]{./code/data_objects.hh}
 
 \lstinputlisting[language=C++,label={lst:visib},caption=Visibility object type]{./code/visibilities.hh}
 
+
+A graphical representation of a TableContainer is shown in figure \ref{fig:table-container}. 
+
+\begin{figure}[h!]
+\begin{center}
+  \includegraphics[width=\textwidth]{./data-container-baseline.png}
+    \caption{A graphical representation of a TableContainer. This class is composed of an N-dimensional array, coupled with axes to provide coordinate values
+    along each dimension. The axes themselves allow for arbitrary intervals to be labelled by key:value pairs in order to allow for local look-up of filter data.
+    For example, along the frequency axis, the interval labels may be channel or sampler names among other possibilities. Furthermore, the interval and associated
+    labels will be stored in an interval-tree stucture to allow for fast bi-directional lookup of data indices $\leftrightarrow$ data labels.}
+    \label{fig:table-container}
+\end{center}
+\end{figure}
+
 \subsection{Data operators}
 
-The data operator classes are meant to organize the mathematic manipulations which are to be performed on the data containers. For example, many of the operations performed in the existing HOPS code-base (such as the application of a priori phase calibration) are relatively trivial linear transformations applied to the visibility data. However, they are currently intertwined with a large amount of control logic which obscures the basic data pathway (e.g see postproc/fourfit/norm\_fx.c)
+The data operator classes are meant to organize the mathematic manipulations which are to be performed on the data containers. For example, many of the operations performed in the existing HOPS3 code-base (such as the application of a priori phase calibration) are relatively trivial linear transformations applied to the visibility data. However, they are currently intertwined with a large amount of control logic which obscures the basic data pathway (e.g see postproc/fourfit/norm\_fx.c)
 Most unary or binary operations that are to applied to visibility or other data residing in TableContainers such as scaling, multiplication, transposition, summation, Fourier transformation, etc. will be made available as individual classes inheriting from the same interface. A uniform class interface will allow these data operators to be composed or modified to create more complicated composite operators or strung together to accomplish data pipelines of arbitrary complexity. An additional advantage of encapsulating individual operations is that any SIMD parallel-processing extension used to accelerate data processing can be made opaque to the user. Listing \ref{lst:operators} gives a brief sketch of the class templates generalizing the data operators.
 
 
@@ -326,7 +350,8 @@ This type of parallelism exploits vector instructions and/or multiple processors
 \section{External Package Selection}
 
 To the extent possible the software to be developed in this project should make all external dependencies optional whenever possible. That is to say, that
-while some features may be missing if an optional external package is missing, the core functionality of the software should not be affected. For example, if the fast Fourier transform library FFTW3 is missing, the code should fall back to an internal implementation (which is allowed to be slower), but which produces equivalent output. Likewise, while an effort should be made to support portability of the output data into useful downstream formats (HDF5), this should not preclude the use of a native format capable of storing the same data for development and debugging purposes.
+while some features may be missing if an optional external package is missing, the core functionality of the software should not be affected. For example, if the fast Fourier transform library FFTW3 is missing, the code should fall back to an internal implementation (which is allowed to be slower), but which produces equivalent output. Likewise, while an effort should be made to support portability of the output data into useful downstream formats (HDF5), this should not preclude a
+basic native format capable of storing the same data for fallback, development, and debugging purposes.
 
 The following table is a preliminary list of which external packages are expected to be incorporated as required or optional dependencies. If an optional package is missing on a user's machine the software will default to a fallback option (if available) or disable the features which require that particular package.
 
@@ -394,12 +419,21 @@ named as such):
  \item DiFX2Input  - difx2mark4 equivalent, converts correlator (difx) data into native input format.
  \item Station utilities  - converts station calibration data (e.g. ANTAB) files into native input format.
  \item FringeFitter - fourfit-equivalent, accepts a user script for configuration and direction and applies it to the visibility data.
- \item DataInspect - data inspection tool, dumps data objects to a human readable format.
  \item FringePlot  - plotting tool, creates fringe-plots and all graphical data exploration.
  \item HDF5Export  - converts any native formats into an HDF5 format for access by external programs.
-\end{enumerate}
+  \item DataInspect - data inspection tool, dumps data objects to a human readable format.
+ \item alist - data inspection tool, dumps simple fringe summary data to a human readable format (as in HOPS3).
+ \item aedit - data inspection tool, reads alist files and provides simple plots of multple scan data (as in HOPS3).
+ \end{enumerate}
 
 
+\begin{figure}[h!]
+\begin{center}
+  \includegraphics[width=0.6\textwidth]{./example-single-baseline-fringe-fitter.png}
+    \caption{Example of control flow for single-baseline fringe fitter.}
+    \label{fig:fringe-fitter}
+\end{center}
+\end{figure}
 
 %
 % above to be deleted after merger
