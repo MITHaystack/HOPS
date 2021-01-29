@@ -56,4 +56,13 @@ the name of an expected data file and the associated tarball.
 
 The automake test system may be replicated into cmake some day.
 
+In addition to the regression data, the tarballs area includes a legacy
+subdirectory which includes tarballs of various still-older bits of HOPS
+left over from the HOPS2 to HOPS3 transition.  At that time (2010ish) the
+build system was converted to the autotools and many bits of Mark3 or Mark4
+software used for correlation were abandoned.  The HOPS3 tree also includes
+a number of side projects that were part of the general development effort,
+but strictly speaking, not part of HOPS as an analysis project.  These also
+turn up in the legacy area as they were never part of the HOPS distribution.
+
 eof
