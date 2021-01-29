@@ -190,8 +190,9 @@
 This document is intended to record the design decisions made in specifying how this re-development project undertakes the
 re-design and re-implementation of the VLBI post-processing software HOPS. As this is a software project there is a certain
 degree of continuing flexibility that is needed in order to obtain an optimal result upon completion. Therefore, this 
-draft document will be updated periodically along with the software as it is built out with the initial focus on components of 
-the design which must be in place as basic infrastructure needed for further development.
+draft document will be updated periodically along with the software as it is built out. The initial focus will be to determine
+the of components of the design and their dependencies which must be in place as basic infrastructure before further development
+can take place.
 
 
 \section{General Architecture}
@@ -275,14 +276,13 @@ The existing HOPS3 code base relies on a fixed number of \texttt{C} structs to o
 
 \subsubsection{Meta-Data Containers}
 
-In a strictly typed language such as \texttt{C}, flexible data structures have a high degree of code overhead, not only in the management of dynamic memory allocation, but more severely in the conversion of data types and typecasting. To ameliorate this we propose to exploit \texttt{C++11}'s variadic template mechanism, which allows for the transformation of type-agnostic class lists into concrete class types or hierarchies at compile time. This makes it possible to store disparate types (known at compile time) within in the same object that are indexed and can be retrieved by the same type of key (e.g. a name string). Listing \ref{lst:metaobjects} gives
-a condensed example of the preliminary version of the template base class for a meta-data container.
+In a strictly typed language such as \texttt{C}, flexible data structures have a high degree of code overhead, not only in the management of dynamic memory allocation, but more severely in the conversion of data types and typecasting. To ameliorate this we propose to exploit \texttt{C++11}'s variadic template mechanism, which allows for the transformation of type-agnostic class lists into concrete class types or hierarchies at compile time. This makes it possible to store disparate types (so long as the complete set of types is known at compile time) within in the same object that are indexed and can be retrieved by the same type of key (e.g. a name string). Listing \ref{lst:metaobjects} gives a condensed example of the preliminary version of the template base class for a meta-data container (with detailed functionality removed).
 
-\lstinputlisting[language=C++,label={lst:metaobjects},caption=Meta-data object templates]{./code/metadata_objects.hh}
+\lstinputlisting[language=C++,label={lst:metaobjects},caption=Meta-data object template classes for multi-type maps.]{./code/metadata_objects.hh}
 
-To the extent possible, the in-memory meta-data structures should be classes which provide access via a key-value pair mechanism so as to avoid exposing the private internal storage layout to the routines needing access to subsets of the data. This sort of interface is trivially available via the STL std::map template class.
-Moreover it should also make conversion of these data structures into widely accessible formats such as JSON or python dictionaries possible for data export 
-to external software.
+To the extent possible, the in-memory meta-data structures should be classes which provide access via a key-value pair mechanism so as to avoid exposing the private internal storage layout to the routines needing access to subsets of the data. This retrieval mechanism also has the benefit of completely decoupling the compile
+time structure of the data containers from the data they need to hold at runtime. A key:value interface is trivially available via the STL std::map template class,
+so there is no need to expend effort on a native implementation. Moreover this sort of interface should also make conversion of these data structures into widely accessible formats such as JSON or python dictionaries possible for data export to external software.
 
 \subsubsection{N-Dimensional Array Containers}
 
@@ -317,10 +317,20 @@ A graphical representation of a TableContainer is shown in figure \ref{fig:table
 \subsection{Data operators}
 
 The data operator classes are meant to organize the mathematic manipulations which are to be performed on the data containers. For example, many of the operations performed in the existing HOPS3 code-base (such as the application of a priori phase calibration) are relatively trivial linear transformations applied to the visibility data. However, they are currently intertwined with a large amount of control logic which obscures the basic data pathway (e.g see postproc/fourfit/norm\_fx.c)
-Most unary or binary operations that are to applied to visibility or other data residing in TableContainers such as scaling, multiplication, transposition, summation, Fourier transformation, etc. will be made available as individual classes inheriting from the same interface. A uniform class interface will allow these data operators to be composed or modified to create more complicated composite operators or strung together to accomplish data pipelines of arbitrary complexity. An additional advantage of encapsulating individual operations is that any SIMD parallel-processing extension used to accelerate data processing can be made opaque to the user. Listing \ref{lst:operators} gives a brief sketch of the class templates generalizing the data operators.
+Most unary or binary operations that are to applied to visibility or other data residing in TableContainers such as scaling, multiplication, transposition, summation, Fourier transformation, etc. will be made available as individual classes inheriting from the same interface. A uniform class interface will allow these data operators to be composed or modified to create more complicated composite operators or strung together to accomplish data pipelines of arbitrary complexity. An additional advantage of encapsulating individual operations is that any SIMD parallel-processing extension used to accelerate data processing can be made opaque to the user.
 
+Listing \ref{lst:operators} gives a brief sketch of the class templates generalizing the data operators. The common inheritance from the base class \texttt{MHO\_DataOperator} allows them all to be stored in an common comtainer so that once they are configured and initialized they may be retrieved
+and executed in the appropriate order. It is expected that the vast majority of the data operators will be unary, requiring only their own configuration 
+parameters and the data container upon which they operate as inputs, but we will also support binary operators accepting two data containers, which as
+an example might be needed in order to apply a pre-existing calibration table.
 
-\lstinputlisting[language=C++,label={lst:operators},caption=Data operator templates]{./code/data_operators.hh}
+One aspect of the data operators which is not yet detailed here is a notion of what pieces of meta-data each operator may need in order to complete its function.
+While these meta-data items could be exposed via external setter/getters, a more preferable option which would preserve encapulation would be for each operator
+to define and internal schema, listing the keys and type of the parameters it needs to retrieve from the meta-data multi-type map container. 
+Furthermore, a
+mechanism for filtering operations (e.g. if station = Xx, apply this operator) needs to be
+
+\lstinputlisting[language=C++,label={lst:operators},caption=Data operator template classes.]{./code/data_operators.hh}
 
 
 \section{Parallel processing}
@@ -338,7 +348,6 @@ profiling will inform us of the largest computational bottlenecks. For example, 
 the computation time is spent in a single routine (vrot.c, which is essentially just evaluating a complex exponentian and multiplying two complex numbers) that is applied over
 a large array of data. This sort of task can easily be parallelized on modern multi-core architectures using the SIMD approach. We propose to use OpenCL
 for this purpose given its support on a wide variety of architectures (mult-core CPUs, GPUS, hardware accelerators, etc.).
-
 
 This type of parallelism exploits vector instructions and/or multiple processors to execute the similar operations over wide swaths of data. while given current experience with the existing HOPS leads us to expect that SIMD parallelism should largely be adequate to accelerate fringe fitting, if during the process of development it is discovered that a thread-based model (MIMD, where each parallel thread follows a semi-independent code pathway) could be more advantageous, then we propose to use OpenMPI framework to implement this. The reason being, that while OpenMPI does have a larger development overhead than most other threading libraries (e.g. pthreads, c++11 threads, etc.) it can be easily scaled beyond a single computer when and if needed. However, it should be noted that by necessity, any OpenMPI implementation must be developed as an independent executable (although it would be able to take advantage of any available libraries and SIMD policies present). 
 
@@ -380,31 +389,32 @@ difxio & Required & DiFX I/O library - needed for file converter only & None \\ 
 Interactivity with the user will proceed primarily through a python scripting interface. This avoids the need to develop a separate scripting language, 
 as the python interpreter can be embedded in the application. Access to library objects will be exposed via python bindings, so that a user may have direct access 
 to the data containers and operators, and can implement external routines to modify the data. Real-time interactivity via CLI or GUI is 
-not planned to be implemented.
+not planned to be implemented. We intended to preserve the functionality of the existing \texttt{fourfit} control file input method, however, this
+is primarily for backwards compatibility and regression testing, no new features will be made available via this mechanism.
 
 \section{Libraries and executables}
 
 \subsection{Libraries}
 
+We expect the libraries
 
 \begin{enumerate}
- \item We have to refactor our dependency management for libraries to be more robust; The dependency management has to take in to account in 
- Geof's words smart and stupid linkers where the order of libraries being imported may matter. See f1d65cb6e7aa87eb40a6f2c1e589770d1490819d.
      \item Utilities - Commonly used utilities (e.g. date handling, profile timers, etc.)
-     \item Math - Math routines: linear algebra, minimizers, interface to optional 3rd-party math libraries (FFTW,GSL)
-     \item Message - Controls the topic and verbosity level of application messages/logs to user
-     \item Containers - In-memory data containers of visibility and meta-data and native format I/O
-     \item MK4Interface - Allows for import/export to legacy MK4-types for testing and backwards compatibility
-     \item Operators - Base classes for data manipulation, and generic operations (array reduction, summation, transposition, FFT, etc.)
+     \item Math - Math routines: linear algebra, minimizers, interface to optional 3rd-party math libraries (FFTW,GSL).
+     \item Message - Controls the topic and verbosity level of application messages/logs to user.
+     \item Containers - In-memory data containers of visibility and meta-data and native format I/O.
+     \item MK4Interface - Allows for import/export to legacy MK4-types for testing and backwards compatibility.
+     \item Operators - Base classes for data manipulation, and generic operations (array reduction, summation, transposition, FFT, etc.).
      \item VLBI - VLBI task-specific data operators (e.g. band-pass correction, per-channel phase offsets, etc.)
-     \item Bindings - Python interface to C++ data containers and operators. Allows for python script configuration of data operators at initialization, and user-defined direct manipulation of the data
+     \item Bindings - Python interface to C++ data containers and operators. Allows for python script configuration of data 
+     operators at initialization, and user-defined direct access/manipulation of the data.
  
  \item Plugins:
  \begin{enumerate}
     \item HDF5 I/O - Converts the in-memory data objects to/from an archival HDF5 file.
     \item Plotting - Utilities to generate plots for data exploration (e.g. fringe-plots).
     \item Python interface - Interpreter for user scripts and python bindings to C/C++ objects.
-    \item SIMD extensions (OpenCL) - Parallel implementation of some set of data operators
+    \item SIMD extensions (OpenCL) - Parallel implementation of some set of data operators.
  \end{enumerate}
  
  \item  Legacy c-libraries (made available for re-use and backwards compatibility and to provide the legacy fourfit application)
@@ -450,7 +460,7 @@ named as such):
 \begin{figure}[h!]
 \begin{center}
   \includegraphics[width=0.6\textwidth]{./example-single-baseline-fringe-fitter.png}
-    \caption{Example of control flow for single-baseline fringe fitter.}
+    \caption{Example of control flow for a simplified single-baseline fringe fitter.}
     \label{fig:fringe-fitter}
 \end{center}
 \end{figure}
