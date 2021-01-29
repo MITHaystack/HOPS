@@ -296,12 +296,12 @@ These template classes are to serve as a simple wrapper around the management of
 and (if applicable) the values associated with the axes along each dimension and their units.
 
 Listing \ref{lst:objects} gives a brief sketch of the preliminary class template implementation for these data container objects, while listing \ref{lst:visib} gives a simple example of what template declaration of an object storing visibility data from an observation over single baselines and polarization products might look like.
+A graphical representation of a TableContainer is shown in figure \ref{fig:table-container}.
 
 \lstinputlisting[language=C++,label={lst:objects},caption=Data object templates]{./code/data_objects.hh}
 
 \lstinputlisting[language=C++,label={lst:visib},caption=Visibility object type]{./code/visibilities.hh}
 
-A graphical representation of a TableContainer is shown in figure \ref{fig:table-container}.
 
 \begin{figure}[h!]
 \begin{center}
@@ -327,8 +327,8 @@ an example might be needed in order to apply a pre-existing calibration table.
 One aspect of the data operators which is not yet detailed here is a notion of what pieces of meta-data each operator may need in order to complete its function.
 While these meta-data items could be exposed via external setter/getters, a more preferable option which would preserve encapulation would be for each operator
 to define and internal schema, listing the keys and type of the parameters it needs to retrieve from the meta-data multi-type map container. 
-Furthermore, a
-mechanism for filtering operations (e.g. if station = Xx, apply this operator) needs to be
+In addition, a mechanism for filtering operations (e.g. if station = Xx, then apply this operator) also needs to be established independent of the
+previous control-block structure of HOPS3.
 
 \lstinputlisting[language=C++,label={lst:operators},caption=Data operator template classes.]{./code/data_operators.hh}
 
@@ -434,7 +434,7 @@ We expect the libraries
 
 \begin{figure}[h!]
 \begin{center}
-  \includegraphics[width=0.8\textwidth]{./arch_overview.png}
+  \includegraphics[width=0.95\textwidth]{./arch_overview.png}
     \caption{Basic overview of library and executable dependency architecture.}
     \label{fig:lib-arch}
 \end{center}
