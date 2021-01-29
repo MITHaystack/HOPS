@@ -187,9 +187,9 @@
 %   * New program specification
 \section{Introduction}
 
-This document is intended to record the design decisions made in specifying how this re-development project undertakes the
+This document is intended to record the design decisions made in specifying how the HOPS re-development project undertakes the
 re-design and re-implementation of the VLBI post-processing software HOPS. As this is a software project there is a certain
-degree of continuing flexibility that is needed in order to obtain an optimal result upon completion. Therefore, this 
+degree of ongoing flexibility that is needed in order to obtain an optimal result upon completion. Therefore, this 
 draft document will be updated periodically along with the software as it is built out. The initial focus will be to determine
 the of components of the design and their dependencies which must be in place as basic infrastructure before further development
 can take place.
@@ -213,14 +213,26 @@ other corrections to the data.
 
 Once the data has been converted to the native post-processing format additional manipulation within the fringe-fitter will take place in several stages, such as normalization, data-flagging, a priori phase/delay and band-pass calibration, and finally fringe search. At intervening stages
 both the data objects and data operator objects will be exposed to a python interface and hooks will be provided for external user scripts to 
-access and directly modify the data and/or data operators.
+access and directly modify the data and/or data operators. A extremely simplified diagram of the control flow of such a single-baseline fringe-fitter executable is shown in \ref{fig:fringe-fitter}. A multi-baseline global fringe-fitting algorithm will also be made available, however, the exact nature of this algorithm (e.g. Cotton-Schwab or baseline stacking, etc.) and whether it will best be implemented as a configurable option of a single fringe-fitting executable or as its own separate exectuable needs to be determined
+by code experimentation.
 
-Upon completion of fringe fitting, the calibrated data with fringe solution applied will then be saved in a native binary format with the option to convert to an archival format (e.g. HDF5) via a simple conversion utility. Intermmediate stages (with partial data corrections applied) may also optionally saved to the native format. It is expected that a data flagging table and cummulative band-pass correction
+Upon completion of fringe fitting, the calibrated data with fringe solution applied will then be saved in a native binary format with the option to convert to an archival format (e.g. HDF5) via a simple conversion utility. Intermmediate stages (with partial data corrections applied) may also optionally saved to the native format. It is also desired that
+the export of a data flagging table and band-pass correction table be made possible, such an export tool may initially be implemented via user python script but if a multi-package exchange format is specified this can be made a built-in option.
 
 In addition to the fringe fitter itself, a number of other post-fringing data analysis tools will also be provided. Most importantly are
 a fringe plot utility for diagnostic information about the quality of an individual fringe, as well as the equivalent executables to \textit{alist} and \textit{aedit}, which summarize multiple fringe solutions and display condensed information about multiple scans respectively.
 We intended to preserved the existing functionality of these executables, but expect to make the fringe-plot more flexible by providing options
 to enable/disable various plotting items.
+
+
+\begin{figure}[h!]
+\begin{center}
+  \includegraphics[width=0.6\textwidth]{./example-single-baseline-fringe-fitter.png}
+    \caption{Example of simplified control flow for a single-baseline fringe fitter.}
+    \label{fig:fringe-fitter}
+\end{center}
+\end{figure}
+
 
 
 % Design language choices
@@ -321,8 +333,8 @@ Most unary or binary operations that are to applied to visibility or other data 
 
 Listing \ref{lst:operators} gives a brief sketch of the class templates generalizing the data operators. The common inheritance from the base class \texttt{MHO\_DataOperator} allows them all to be stored in an common comtainer so that once they are configured and initialized they may be retrieved
 and executed in the appropriate order. It is expected that the vast majority of the data operators will be unary, requiring only their own configuration 
-parameters and the data container upon which they operate as inputs, but we will also support binary operators accepting two data containers, which as
-an example might be needed in order to apply a pre-existing calibration table.
+parameters and the data container upon which they operate as inputs, but we will also support binary operators accepting two data containers, an example
+of which is the application of a pre-constructed calibration table to a new data set.
 
 One aspect of the data operators which is not yet detailed here is a notion of what pieces of meta-data each operator may need in order to complete its function.
 While these meta-data items could be exposed via external setter/getters, a more preferable option which would preserve encapulation would be for each operator
@@ -331,7 +343,6 @@ In addition, a mechanism for filtering operations (e.g. if station = Xx, then ap
 previous control-block structure of HOPS3.
 
 \lstinputlisting[language=C++,label={lst:operators},caption=Data operator template classes.]{./code/data_operators.hh}
-
 
 \section{Parallel processing}
 
@@ -383,8 +394,7 @@ difxio & Required & DiFX I/O library - needed for file converter only & None \\ 
 \end{table}
 \end{center}
 
-
-\section{Interactivity definition}
+\section{Interactivity and Interfaces}
 
 Interactivity with the user will proceed primarily through a python scripting interface. This avoids the need to develop a separate scripting language, 
 as the python interpreter can be embedded in the application. Access to library objects will be exposed via python bindings, so that a user may have direct access 
@@ -396,7 +406,7 @@ is primarily for backwards compatibility and regression testing, no new features
 
 \subsection{Libraries}
 
-We expect the libraries
+The libraries of this project are currently broken down by task into the following modules:
 
 \begin{enumerate}
      \item Utilities - Commonly used utilities (e.g. date handling, profile timers, etc.)
@@ -408,28 +418,28 @@ We expect the libraries
      \item VLBI - VLBI task-specific data operators (e.g. band-pass correction, per-channel phase offsets, etc.)
      \item Bindings - Python interface to C++ data containers and operators. Allows for python script configuration of data 
      operators at initialization, and user-defined direct access/manipulation of the data.
- 
- \item Plugins:
- \begin{enumerate}
-    \item HDF5 I/O - Converts the in-memory data objects to/from an archival HDF5 file.
-    \item Plotting - Utilities to generate plots for data exploration (e.g. fringe-plots).
-    \item Python interface - Interpreter for user scripts and python bindings to C/C++ objects.
-    \item SIMD extensions (OpenCL) - Parallel implementation of some set of data operators.
- \end{enumerate}
- 
- \item  Legacy c-libraries (made available for re-use and backwards compatibility and to provide the legacy fourfit application)
-  \begin{enumerate}
-    \item mk4util - utility library for MK4 data types
-    \item dfio - I/O for MK4 data types
-    \item afio - I/O library for alist manipulation
-    \item ffcontrol - parse old-style fourfit control files 
-    \item ffcore - core parameter structures
-    \item ffio - output for fringe file data
-    \item ffmath - trivial math routines used by fourfit
-    \item ffplot - fringe-plot generation library 
-    \item ffsearch - core fringe-search algorithm library (grid-search)
- \end{enumerate}
+    \item  Legacy c-libraries (made available for re-use and backwards compatibility and to provide the legacy fourfit application)
+    \begin{enumerate}
+        \item mk4util - utility library for MK4 data types
+        \item dfio - I/O for MK4 data types
+        \item afio - I/O library for alist manipulation
+        \item ffcontrol - parse old-style fourfit control files 
+        \item ffcore - core parameter structures
+        \item ffio - output for fringe file data
+        \item ffmath - trivial math routines used by fourfit
+        \item ffplot - fringe-plot generation library 
+        \item ffsearch - core fringe-search algorithm library (grid-search)
+    \end{enumerate}
 \end{enumerate}
+
+An additional set of plugin libraries will be enabled if the appropriate dependencies are present at compile time, as follows:
+
+ \begin{enumerate}
+    \item DIFXInterface - depends on difxio and converts the correlator data into the native data container format.
+    \item HDF5 I/O - Converts the native data objects to/from an archival HDF5 file.
+    \item Plotting - Utilities to generate plots for data exploration (e.g. fringe-plots). This will be implemented in python.
+    \item SIMD extensions (OpenCL) - Parallel implementation of some set of the data operators.
+ \end{enumerate}
 
 
 \begin{figure}[h!]
@@ -443,7 +453,7 @@ We expect the libraries
 
 \subsection{Executables}
 
-The executables to be delivered will largely be composed through re-use of the library code and at a minimum will consist of the following (though not necessarily
+The executables to be delivered will largely be composed through the re-use of the library code and at a minimum will consist of the following (though not necessarily
 named as such):
 
 \begin{enumerate}
@@ -457,14 +467,7 @@ named as such):
  \item aedit - data inspection/visualizatoin tool (re-coded in python), reads alist files and provides simple plots of multple scan data (as in HOPS3).
  \end{enumerate}
 
-\begin{figure}[h!]
-\begin{center}
-  \includegraphics[width=0.6\textwidth]{./example-single-baseline-fringe-fitter.png}
-    \caption{Example of control flow for a simplified single-baseline fringe fitter.}
-    \label{fig:fringe-fitter}
-\end{center}
-\end{figure}
-
+ 
 
 %
 % above to be deleted after merger
