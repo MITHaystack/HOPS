@@ -5,13 +5,15 @@
 #
 SUBDIRS = 
 
-TESTS_ENVIRONMENT = srcdir=$(srcdir)
+#TESTS_ENVIRONMENT = srcdir=$(srcdir)
 
-TESTS = bootstrap/import_check.sh
+#TESTS = bootstrap/import_check.sh
 
-dist_bin_SCRIPTS = bootstrap/import_3to4.sh
-
-dist_check_SCRIPTS = bootstrap/import_check.sh
+# this is just to list what is here
+nodist_check_SCRIPTS = \
+	bootstrap/import_check.sh \
+	bootstrap/import_3to4.sh \
+	bootstrap/legacy_tar.sh
 
 #
 # eof

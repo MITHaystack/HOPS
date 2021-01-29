@@ -313,6 +313,10 @@ AC_CONFIG_FILES(
     source/c_src/fourfit_libs/ffplot/Makefile
     source/c_src/applications/fourfit/Makefile
 )
+# source/c_source makefiles, part 3: "legacy"
+AC_CONFIG_FILES(
+    source/c_src/applications/legacy/CorAsc2/Makefile
+)
 
 # source/cpp_src makefiles
 AC_CONFIG_FILES(
