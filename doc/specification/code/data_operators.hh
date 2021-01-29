@@ -1,29 +1,29 @@
-class DataOperator {
+//template parameters must inherit from MHO_NDArrayWrapper
+template<class XInputArrayType, class XOutputArrayType>
+class MHO_NDArrayOperator
 {
-  public:
-    DataOperator(){};
-    virtual ~DataOperator(){};
-    virtual void Initialize(){};
-    virtual void ExecuteOperation() = 0;
+    public:
+       virtual void SetInput(XInputArrayType* in){fInput = in;};
+       virtual void SetOutput(XOutputArrayType* out){fOutput = out;};
+       virtual XInputArrayType* GetInput(){return fInput;};
+       virtual XOutputArrayType* GetOutput(){return fOutput;};
+       virtual bool Initialize() = 0;
+       virtual bool ExecuteOperation() = 0;
+    //...impl...
 };
 
-template< typename XInputType, typename XOutputType >
-class UnaryDataOperator: public DataOperator {
+ //template parameters must inherit from MHO_NDArrayWrapper
+template<class XInputArrayType1, class XInputArrayType2, class XOutputArrayType>
+class MHO_BinaryNDArrayOperator
+{
     public:
-        UnaryDataOperator();
-        virtual ~DataOperator();
-        void SetInput(const XInputType& input );
-        void SetOutput( XOutputType& output);
-    //....impl...
-}
-
-template< typename XFirstInputType, typename XSecondInputType, typename XOutputType >
-class BinaryDataOperator: public DataOperator {
-    public:
-        BinaryDataOperator();
-        virtual ~DataOperator();
-        void SetFirstInput(const XInputType& input1 );
-        void SetSecondInput(const XInputType& input2 );
-        void SetOutput( XOutputType& output);
-    //....impl...
-}
+        virtual void SetFirstInput(XInputArrayType1* in){fInput1 = in;};
+        virtual void SetSecondInput(XInputArrayType2* in){fInput2 = in;};
+        virtual void SetOutput(XOutputArrayType* out){fOutput = out;};
+        virtual XInputArrayType1* GetFirstInput(){return fInput1;};
+        virtual XInputArrayType2* GetSecondInput(){return fInput2;};
+        virtual XOutputArrayType* GetOutput(){return fOutput;};
+        virtual bool Initialize() = 0;
+        virtual bool ExecuteOperation() = 0;
+        //...impl...
+};
