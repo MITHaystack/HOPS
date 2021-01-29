@@ -1,14 +1,10 @@
-//forward delc. unit types
-class CorrelatedFluxUnit;
-class MegaHertzUnit;
-class SecondsUnit;
-class Unitless;
+//definitions of a non-channelized set of single-baseline visbility data
+using visibility_type = std::complex<double>;
 
-typedef VectorContainer<double, SecondsUnit> TimeAxis;
-typedef VectorContainer<double, MegaHertzUnit> FrequencyAxis;
-typedef VectorContainer< std::string, Unitless> PolarizationAxis;
-typedef VectorContainer< std::string, Unitless> BaselineAxis;
+using polprod_axis_type = MHO_Axis<std::string>;
+using frequency_axis_type = MHO_Axis<double>;
+using time_axis_type = MHO_Axis<double>;
 
-class Visibilties: public TensorContainer< std::complex<double>, CorrelatedFluxUnit, 4, TimeAxis, FrequencyAxis, PolarizationAxis, BaselineAxis > {
-//...impl..
-};
+using baseline_axis_pack = MHO_AxisPack< polprod_axis_type, time_axis_type, frequency_axis_type >;
+using baseline_data_type = MHO_TableContainer< visibility_type, baseline_axis_pack >;
+
