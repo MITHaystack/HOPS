@@ -7,7 +7,7 @@ Regression tests are tests of exisiting HOPS3 functions on captured datasets and
 More intensive regression tests on datasets with a greater numbers of baselines or frequency bands will  be run with automated nightly scripts, or at regular intervals around significant version changes. These datasets are captured in the \ac{HOPS} development system but not the code repository.  That is, the test scripts will be maintained along with the code base, but the data will be stored spearately and not included in the distribution tarball or the project github.
 
 These regression tests are typically be limited to an examination of a small set of results and as such can be automated to inssert a pass/fail summary in a report.
-The current set of regression tests in the \ac{HOPS3} code base will be migrated and applied to \ac{HOPS4} as the feature which individual check are enabled. 
+The current set of regression tests in the \textbf{HOPS3} code base will be migrated and applied to \textbf{HOPS4} as the feature which individual check are enabled. 
 
 %\FIX[Regression tests are not tied to particular requirements, since the functionality they check already exists in HOPS3.]
 
@@ -16,7 +16,7 @@ The current set of regression tests in the \ac{HOPS3} code base will be migrated
 \label{sec:captdatareq}
 
 The current set of regression tests use data from a variety of experiments have been captured and are routinely refringed as part of the HOPS build ``check'' process.  
-These are packaged with the current \ac{HOPS3} distribution, and consist of the follow:
+These are packaged with the current \textbf{HOPS3} distribution, and consist of the follow:
 
 % commented experiments are included in the tarball but don't appear to be used by the check scripts?
 
@@ -29,12 +29,12 @@ These are packaged with the current \ac{HOPS3} distribution, and consist of the 
 %\item{\textbf{2912}} 
 %\item{\textbf{3064}} 
 %\item{\textbf{3262}} 
-\item{\textbf{3365}} is an early \ac{EHT} session. The script \texttt{chk\_fourmer.sh} uses the \texttt{fourmer} command to join two scans, runs \texttt{fourfit}, and checks that the output file size is correct \FIX[check this?]. Most of the check scripts use data from 3365.
+\item{\textbf{3365}} is an early \ac{EHT} session. The script \texttt{chk\_fourmer.sh} uses the \texttt{fourmer} command to join two scans, runs \texttt{fourfit}, and checks that the output file size is correct. Many of the check scripts use data from 3365.
 \item{\textbf{3372}} is a scan with the legacy geodetic X-band setup.
 \item{\textbf{3413}} is a single-baseline broadband experiment.
 \item{\textbf{3562}} is a three-baseline broadband experiment.
 \item{\textbf{3571}} is a single-baseline broadband experiment.
-\item{\textbf{2017 and 2018 data samples}} Among the so-called ``golden'' scan data which have been captured for \acs{DiFX} regression testing, there are scans which can be refringed and \acs{A-list} manipulated and compared with previous results.  As set that is sufficient to guarantee consistency with published results is required. \FIX[Not sure which datasets this refers to?]
+\item{\textbf{2017 and 2018 data samples}} Among the so-called ``golden'' scan data which have been captured for \acs{DiFX} regression testing, there are scans which can be refringed and \acs{A-list} manipulated and compared with previous results.  A full set that is sufficient to guarantee consistency with published results is required and must be defined.
 \end{description}
 Some datasets overlap with captured data selected for DiFX regression testing, which is important to alert us to upstream changes which may affect this project.
 
@@ -72,7 +72,7 @@ There are a number of existing ``check'' scripts that run during build/install o
 \item{\textbf{chk\_average.sh}} Uses the 'testdata/average' dataset. Checks for backwards compatibility and then a bug fix. %\FIX[Need to check if this script runs.]
 \item{\textbf{chk\_baselines.sh}} Uses 2843. Runs fourfit for each baseline, checks that output is the correct size.
 \item{\textbf{chk\_cofit.sh}} Uses 2843 with the cofit function. Checks the number of lines in the output. Applicable to requirement \textbf{A-22}.
-\item{\textbf{chk\_env.sh}} 
+\item{\textbf{chk\_env.sh}} Checks that the environmental variables needed to use HOPS are set correctly.
 \item{\textbf{chk\_ff\_2836.sh}} Exercises the basic fringe search and reduction, and verifies that the SNR (parsed from the postscript file) is within expected bounds.
 \item{\textbf{chk\_ff\_2843.sh}} (same as above)
 \item{\textbf{chk\_ff\_3372.sh}} (same as above)
