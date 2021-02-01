@@ -50,6 +50,9 @@
 \usepackage{outlines}
 \usepackage{enumitem}
 
+\usepackage[printwatermark]{xwatermark}
+\newwatermark[pages=1-12,color=gray!25,angle=45,scale=5,xpos=0,ypos=0]{DRAFT}
+
 % for bold math
 \usepackage{bm}
 % for serious math which we may have in a few places (eventually)
@@ -92,7 +95,7 @@
 \author{%
 \LARGE John Barrett, Geoff Crew, Dan Hoak and Violet Pfeiffer \\
 \Large MIT Haystack Observatory}
-\date{Version 0.1, \recdate}
+\date{Rough Draft - Version 0.1, \recdate}
 \maketitle
 \normalsize
 
@@ -188,19 +191,17 @@ This document is applicable to the HOPS4 redevelopment effort only.
 \section{Test Types and Schedule}
 \label{sec:schedule}
 
-The tests described in this document are grouped into the following categories \FIX[NOTE, these are draft descriptions]:
+The tests described in this document are grouped into the following categories.
 
 \begin{itemize}
 \item[] \textbf{Unit tests} are defined for discrete functions or sections of code.
 \item[] \textbf{Regression tests} are automated and generate quantitative results for specific
-  functions using captured data. They have pre-defined criteria for success (for example, an SNR range for a fringe fit). Many of these tests are direct comparisons to results from HOPS3.
-\item[] \textbf{Continuous integration tests} check that the latest HOPS4
-  codebase successfully compiles in a variety of environments and distributions.
+  functions using captured data. They have pre-defined criteria for success (for example, an SNR range for a fringe fit). Many of these tests are direct comparisons to results from HOPS3,
+  and are largely focused on detecting if changes break pre-existing functionality.
+\item[] \textbf{Continuous integration tests} check that the latest HOPS4 codebase successfully compiles in a variety of environments and distributions.
 \item[] \textbf{Benchmarking tests} are used to verify the performance of HOPS4 functions.
-\item[] \textbf{Oracle tests} are direct comparisons between HOPS3 and HOPS4. They are implemented using an ``oracle'', a software package that runs HOPS3 and HOPS4 functions on the same dataset. \FIX[Is this right? How are these different from regression tests?]
-\item[] \textbf{Component tests} are tests of packages and dependencies. 
-%\item[] \textbf{Oracle tests} are direct comparisons between previous, validated
-%  code (\eg~HOPS3) and the HOPS4 code
+\item[] \textbf{Oracle tests} are direct comparisons between HOPS3 and HOPS4. They are implemented using an ``oracle'', a software package that runs HOPS3 to determine a result of interest. Then the necessary sub-set of HOPS4 code is executed on the same dataset to ensure the result is within tolerance of the oracle's result.
+\item[] \textbf{Component tests} are tests of individual components (libraries) and their dependencies. These are somewhat like regression tests, but are more narrowly focused on a sub-set of code. They are designed such that they do not rely on any dependencies beyond what is needed by the component under test. 
 \item[] \textbf{Manual tests} are tests that require human interpretation of results, for example to verify that a plot is generated with the proper formatting, or that a GUI is functioning as expected.
 
 \end{itemize}
@@ -227,11 +228,9 @@ These tests are executed on different schedules.
 \end{table}
 
 
-
-
 \section{Reports}
 \label{sec:reports}
-Tests will generate reports, which are human-readable documents that
+Tests will generate reports, which are human-readable documents that 
 summarize the success and failure of the tests at various stages
 (commit, build, weekly, etc). 
 
@@ -244,7 +243,7 @@ all new functionality, libraries, other dependencies, features, and refactoring 
 \ac{HOPS}. We will also use specific algorithm verification tests, using \ac{HOPS} 3 as a test
 oracle, and regression tests with captive 2017/2018 data scans.
 
-\pagebreak
+%\pagebreak
 %\section{Testing Methods}
 %\label{sec:testing-methods}
 % Mention that we use Agile so this is our schedule and they need to deal with it.
@@ -252,33 +251,33 @@ oracle, and regression tests with captive 2017/2018 data scans.
 \input{regress}
 % Test that data with both HOPS4 and HOPS3 return the same results.
 
-\pagebreak
+%\pagebreak
 \input{integration}
 % Handled by Travis CI or something similar. 
 
-\pagebreak
+%\pagebreak
 \input{unit}
 % Mention testing suite(s) we are using.
 
-\pagebreak
+%\pagebreak
 \input{benchmark}
 % Mention benchmark tool.
 
-\pagebreak
+%\pagebreak
 \input{oracle}
 
-\pagebreak
+%\pagebreak
 \input{component}
 % Test libraries and such.
 
-\pagebreak
+%\pagebreak
 \input{manual}
 %i.e. Geoff tests HOPS 4 by running it as a user would.
 
-\pagebreak
+%\pagebreak
 \input{coverage}
 
-\pagebreak
+%\pagebreak
 \input{reports}
 
 
