@@ -5,35 +5,13 @@
 \label{sec:manual}
 
 Manual tests are intended to verify requirements that demand human interpretation, for example a plotting GUI.
-
-%this can be words about procedural testing of the command line
-%and GUI interfaces
-% Not sure if they need as much detail as this. This table would consist of the actual tests that would be run.
-%Manual testing involves a developer running the latest build and testing the user interface      
-%\begin{table}[h!]
-%\centering
-% \begin{tabular}{|c c c c|} 
-% \hline
-% Test ID & Description & Steps & Pass/Fail Criteria \\ [0.5ex] 
-% \hline
-% 01 & Test if HOPS builds & 1. Run lorem ipsum. 2. ? 3. Profit  & Pass if able to build the project without any errors. 
-% 02 & Test if HOPS documentation builds & 1...inf & Pass if able to build the project \LaTeX files without any errors. \\ [1ex]
-% \hline
-% \end{tabular}
- %\caption{HOPS4 documents referenced by this document}
-% \label{table:1}
-%\end{table}
-
-\subsection{Manual testing to be applied to following requirements}
-\label{sec:manreqs}
+These full scope and nature of these tests is to be determined but would be applied to the following requirements
+in addition to any other interactive tools (largely visualization) developed.
 
 \begin{description}
   
-\item{\textbf{P-7}} HOPS shall not require FFTW3 and/or GSL and shall operate without loss of functionality in the absence of these packages.
-\item{\textbf{P-8}} HOPS shall not require PGPLOT for basic functionality.
 \item{\textbf{P-25}} Make 2D plots of the type currently possible within aedit. Currently partially automated with \textbf{chk\_aedit.sh}.
-\item{\textbf{P-26}} Make 3D visualization plots. At first, some human reviewer will need to validate the plots; once the plotting routine is functional there can be an automated script that checks that the plots can be generated from captured data.
-\item{\textbf{P-27}} Implement interactive visualization tools.
+\item{\textbf{P-26}} Make 3D visualization plots - Initially, some human reviewer will need to validate the plots; once the plotting routine is functional there can be an automated script that checks that the plots can be generated from captured data.
 
 \end{description}
   

@@ -4,9 +4,49 @@
 \section{Component Testing}
 \label{sec:component}
 
-\FIX[TBD - what do we mean by component testing?]
+Component testing is intended to verify functionality of a library or module as a whole and should return a true/false result. Specifically, these will
+be developed in conjuction with the build out of each component/library as new features are completed. They should in all
+cases be functional whether or not external dependencies are present (though some features they test for may only be enabled
+when external dependencies are present). While not a complete or comprehensive list, the currently the existing set of component test are listed below. 
+They are not yet run automatically, but will eventually be incorporated into the continuous integration (CI) test suite.
 
-%Component testing is intended to verify functionality in the presence of different version of dependencies.
+\begin{enumerate}
+ \item Containers:
+ \begin{enumerate}
+      \item  TestArrayWrapper.cc  - Verifies the functionality of N-D array wrapper classes.
+      \item  TestTableContainer.cc - Verifies the functionality of the table container class.
+      \item  TestScalarContainer.cc  - Verifies the functionality of the scalar container class.
+      \item TestVectorContainer.cc - Verifies the functionality of the vector container class.
+\end{enumerate}
+    \item Math:        
+\begin{enumerate}
+ \item     TestFastFourierTransform.cc - Verifies the functionality of the native 1-D FFT code, and if FFTW3 is enabled, the 1-D FFTW3 transformation code.
+\end{enumerate}
+\item Message
+\begin{enumerate}
+ \item TestMessenger.cc - Verifies the functionality of the messaging library.
+\end{enumerate}
+\begin{enumerate}
+ \item  TestMK4Import.cc - Verifies the interface with the legacy dfio library and the functionality of data importation from Mk4 data types to new native data containers.
+ \item TestMK4VexInterface.cc - Verifies the functional of the interface to the legacy vex library.
+\end{enumerate}
+\item Operators:
+\begin{enumerate}
+ \item TestMultidimensionalFastFourierTransform.cc  - Verifies the functionality of the N-D FFT code, and if FFTW3 is enable, the N-D FFTW3 transformation code.
+ \item TestReducer.cc - Verifies that the array reduction operator is functional (e.g. summation along a specified dimension).
+\end{enumerate}
+\item Utilties:
+ \begin{enumerate}
+    \item TestIntervalLabelTree.cc - Verifies the functionality of the axis interval label tree.
+    \item TestTimeStampConverter.cc - Verifies the functionality of the data/time stamp converter class.
+    \item TestMultiTypeMap.cc - Verifies the functionality of the multi-type map class as a meta data container.
+ \end{enumerate}
+\end{enumerate}
+
+
+
+
+in the presence of different version of dependencies.
 
 %this can be words about component testing with scripts
 

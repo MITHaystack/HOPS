@@ -1,18 +1,14 @@
 %
 % A starter on unit testing
 %
-\section{Unit Testing}
+\section{Unit Testing and Coverage}
 \label{sec:unit}
 
-The HOPS4 requirements specify that ``every library or module shall have a corresponding test suite to verify functionality'' (requirement \textbf{A-6}. Unit tests are test code written at the time of development that exercise basic functions of function, classes, libraries, etc., and verify the code is functioning as expected.
+The HOPS4 requirements specify that ``every library or module shall have a corresponding test suite to verify functionality'' (requirement \textbf{A-6}). Unit tests are test code written at the time of development that exercise basic functions of function, classes, libraries, etc., and verify the code is functioning as expected.
 
-Unit tests are designed to catch errors from changes to input data, updates to dependencies, unexpected behavior due to changes in the environment or operating system, incorrect error handling, and so on.
+Unit tests are designed to catch errors from changes to input data, updates to dependencies, unexpected behavior due to changes in the environment or operating system, incorrect error handling, and so on. Integration testing is intended to check if the code compiles and runs as a complete module; unit testing checks that the basic functions operate as expected. Unit tests are isolated tests on specific functions, and provide granular information about functions that are behaving differently than intended.
 
-Integration testing is intended to check if the code compiles; unit testing checks that the basic functions operate as expected. Unit tests are isolated tests on specific functions, and provide granular information about functions that are behaving differently than intended.
-
-\FIX[TBD - this section will define best practices and methods for HOPS unit tests.]
-
-
+We intend to use a coverage analysis tool like \texttt{gcov} to check that we cover a sufficient fraction of the code when testing.
 
 
 %

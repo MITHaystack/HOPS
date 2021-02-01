@@ -32,6 +32,10 @@
 
 \usepackage{placeins}
 
+\usepackage[printwatermark]{xwatermark}
+\newwatermark[pages=1-12,color=gray!25,angle=45,scale=5,xpos=0,ypos=0]{DRAFT}
+
+
 \let\Oldsection\section
 \renewcommand{\section}{\FloatBarrier\Oldsection}
 
