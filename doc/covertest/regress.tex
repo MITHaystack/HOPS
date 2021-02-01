@@ -2,11 +2,11 @@
 \section{Regression Testing}
 \label{sec:regress}
 
-Regression tests are tests of exisiting HOPS3 functions on captured datasets and they will be used to verify that the HOPS4 performance and results are equivalent to HOPS3.  Due to the large size of some datasets, only a limited number of regression tests will be run as part of the build and installation process on captured data that is packaged with the HOPS repository.  The autotools/automake framework for build and installation currently supports a number of ``check'' scripts.
+Regression tests are tests of existing HOPS3 functions on captured datasets and they will be used to verify that the HOPS4 performance and results are equivalent to HOPS3.  Due to the large size of some datasets, only a limited number of regression tests will be run as part of the build and installation process on captured data that is packaged with the HOPS repository.  The autotools/automake framework for build and installation currently supports a number of ``check'' scripts.
 
-More intensive regression tests on datasets with a greater numbers of baselines or frequency bands will  be run with automated nightly scripts, or at regular intervals around significant version changes. These datasets are captured in the \ac{HOPS} development system but not the code repository.  That is, the test scripts will be maintained along with the code base, but the data will be stored spearately and not included in the distribution tarball or the project github.
+More intensive regression tests on datasets with a greater numbers of baselines or frequency bands will  be run with automated nightly scripts, or at regular intervals around significant version changes. These datasets are captured in the \ac{HOPS} development system but not the code repository.  That is, the test scripts will be maintained along with the code base, but the data will be stored separately and not included in the distribution tarball or the project github.
 
-These regression tests are typically be limited to an examination of a small set of results and as such can be automated to inssert a pass/fail summary in a report.
+These regression tests are typically be limited to an examination of a small set of results and as such can be automated to insert a pass/fail summary in a report.
 The current set of regression tests in the \textbf{HOPS3} code base will be migrated and applied to \textbf{HOPS4} as the feature which individual check are enabled. 
 
 %\FIX[Regression tests are not tied to particular requirements, since the functionality they check already exists in HOPS3.]
@@ -50,7 +50,7 @@ e17e11-7-lo-101-0803 e17e11-7-pc-101-0322 e17e11-7-pc-101-0803
 ``lo'' and ``hi'' refer to the ``b3'' and ``b4'' sub-bands of the 64 \acs{Gbps} (2018 and onwards) frequency setup; ``pc'' refers to polconverted,rather than the mixed polarization correlation products.
 
 
-Additional test data has been captured from the 2017 \ac{EHT} observations.  Fringing of these scans has not yet been incorporated into HOPS testing, but shall form the basis of regression for HOPS4. These or other scans could also be captured (full scan duration or segmented at some interval) if do desired. On going re-evaluation of the sufficiency and coverage of these regression tests will be part of monthly risk-assesment and augmented as needed.
+Additional test data has been captured from the 2017 \ac{EHT} observations.  Fringing of these scans has not yet been incorporated into HOPS testing, but shall form the basis of regression for HOPS4. These or other scans could also be captured (full scan duration or segmented at some interval) if do desired. On going re-evaluation of the sufficiency and coverage of these regression tests will be part of monthly risk-assessment and augmented as needed.
 
 \subsection{Check Scripts from HOPS3}
 \label{sec:regresscheck}
@@ -141,7 +141,7 @@ as opposed to continuous integration tools.
 \item{\textbf{A-32}} Solve for station-based quantities from baseline-based quantities.
 \item{\textbf{A-33}} Apply complex bandpass corrections.
 \item{\textbf{A-34}} Solve for complex bandpass corrections.
-\item{\textbf{A-35}} Indteract with data produces with Python wrappers.
+\item{\textbf{A-35}} Interact with data produces with Python wrappers.
 
 \item{\textbf{D-39}} Spectral-line VLBI.
 \item{\textbf{A-40}} Pulsar folding.
