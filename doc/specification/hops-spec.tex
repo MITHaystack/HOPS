@@ -398,6 +398,20 @@ to the data containers and operators, and can implement external routines to mod
 not planned to be implemented. We intended to preserve the functionality of the existing \texttt{fourfit} control file input method, however, this
 is primarily for backwards compatibility and regression testing, no new features will be made available via this mechanism.
 
+
+\section{Plotting Functions}
+
+The fourfit fringe process in HOPS3 is tightly coupled with plotting, which is handled through PGPLOT. Since PGPLOT has been unsupported for many years, it will not be a required dependency in \nuHOPS. In \nuHOPS, fringe-fitting and plotting will be decoupled (fringe results can be generated and saved to file without generating a plot), and the native plotting functions will be replaced with new code. 
+
+\begin{figure}[h!]
+\begin{center}
+  \includegraphics[width=0.7\textwidth]{matplotlib-fringe-plot.pdf}
+    \caption{Example of a fringe plot with Matplotlib.}
+    \label{fig:matplotlib-fringe-plot}
+\end{center}
+\end{figure}
+
+
 \section{Libraries and executables}
 
 \subsection{Libraries}
