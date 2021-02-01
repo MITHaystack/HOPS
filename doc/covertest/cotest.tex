@@ -95,11 +95,11 @@
 \author{%
 \LARGE John Barrett, Geoff Crew, Dan Hoak and Violet Pfeiffer \\
 \Large MIT Haystack Observatory}
-\date{Rough Draft - Version 0.1, \recdate}
+\date{Draft - Version 1.0, \recdate}
 \maketitle
 \normalsize
 
-\renewcommand\abstractname{Executive Summary}
+\renewcommand\abstractname{Summary}
 \abstract{%
 \large
 This document describes the coverage and test plan for the HOPS4
@@ -110,7 +110,7 @@ end users with build-time checks that the installation was successful.
 Additionally, we use coverage tools to demonstrate that the test plan
 executes a satisfactory fraction of the code, and that all required
 functions and cases are exercised by the tests.
-\FIXME[more here]
+
 }
 
 % \begingroup . . . \endgroup can be used to keep things together
@@ -172,7 +172,7 @@ This document is applicable to the HOPS4 redevelopment effort only.
  Title & Vers. & Date \\ [0.5ex]
  \hline%\hline
  HOPS4 Requirements & 1.0 & January 8, 2021 \\ [1ex]
- HOPS4 Specifications & 0.1 & Jaunary 8, 2021 \\
+ HOPS4 Specifications & 0.1 & \recdate \\
  %\hline
  \end{tabular}
  \caption{HOPS4 documents referenced by this document}
@@ -216,8 +216,8 @@ These tests are executed on different schedules.
  \hline%\hline
  Regression &  Per commit \\ 
  Continuous Integration & Daily \\
- Unit testing & Per Function \\ 
- Benchmarking & Weekly \\
+ Unit testing & Per Class/Function \\ 
+ Benchmarking & As needed \\
  Oracle  & As needed \\
  Component & As needed \\ 
  Manual & As needed \\ [1ex]
@@ -273,9 +273,6 @@ oracle, and regression tests with captive 2017/2018 data scans.
 %\pagebreak
 \input{manual}
 %i.e. Geoff tests HOPS 4 by running it as a user would.
-
-%\pagebreak
-\input{coverage}
 
 %\pagebreak
 \input{reports}
