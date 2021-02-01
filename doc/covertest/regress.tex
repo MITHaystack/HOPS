@@ -2,11 +2,12 @@
 \section{Regression Testing}
 \label{sec:regress}
 
-Regression tests are tests of exisiting HOPS3 functions on captured datasets, and they verify that the HOPS4 performance is equivalent to HOPS3.  Due to the large size of some datasets, only a few regression tests will be run as part of the build and installation process, on captured data that is packaged with the HOPS repository.  The autotools/automake framework for build and installation currently supports a number of ``check'' scripts.
+Regression tests are tests of exisiting HOPS3 functions on captured datasets and they will be used to verify that the HOPS4 performance and results are equivalent to HOPS3.  Due to the large size of some datasets, only a limited number of regression tests will be run as part of the build and installation process on captured data that is packaged with the HOPS repository.  The autotools/automake framework for build and installation currently supports a number of ``check'' scripts.
 
-More intensive regression tests on datasets with greater numbers of baselines or frequency bands may be run with automated nightly scripts, or at regular intervals around significant version changes. These datasets are captured in the \ac{HOPS} development system.  (That is, the tests exist, but the data is not included in the distribution tarball or the project github.)
+More intensive regression tests on datasets with a greater numbers of baselines or frequency bands will  be run with automated nightly scripts, or at regular intervals around significant version changes. These datasets are captured in the \ac{HOPS} development system but not the code repository.  That is, the test scripts will be maintained along with the code base, but the data will be stored spearately and not included in the distribution tarball or the project github.
 
-Regression tests generate automated results that are easily included in reporting spreadsheets.
+These regression tests are typically be limited to an examination of a small set of results and as such can be automated to inssert a pass/fail summary in a report.
+The current set of regression tests in the \ac{HOPS3} code base will be migrated and applied to \ac{HOPS4} as the feature which individual check are enabled. 
 
 %\FIX[Regression tests are not tied to particular requirements, since the functionality they check already exists in HOPS3.]
 
@@ -14,7 +15,8 @@ Regression tests generate automated results that are easily included in reportin
 \subsection{Captured Datasets}
 \label{sec:captdatareq}
 
-Data from a variety of experiments have been captured and are routinely refringed as part of the HOPS build ``check'' process.  These are packaged with the current \ac{HOPS} distribution:
+The current set of regression tests use data from a variety of experiments have been captured and are routinely refringed as part of the HOPS build ``check'' process.  
+These are packaged with the current \ac{HOPS3} distribution, and consist of the follow:
 
 % commented experiments are included in the tarball but don't appear to be used by the check scripts?
 
@@ -34,7 +36,7 @@ Data from a variety of experiments have been captured and are routinely refringe
 \item{\textbf{3571}} is a single-baseline broadband experiment.
 \item{\textbf{2017 and 2018 data samples}} Among the so-called ``golden'' scan data which have been captured for \acs{DiFX} regression testing, there are scans which can be refringed and \acs{A-list} manipulated and compared with previous results.  As set that is sufficient to guarantee consistency with published results is required. \FIX[Not sure which datasets this refers to?]
 \end{description}
-Some datasets overlap with captured data selected for DiFX regression testing. \FIX[Is this important to point out?]  Data from experiments 2491, 2611, 2849, 2912, 3064, and 3262 are included in the HOPS3 tarball but are not used in the existing check scripts.
+Some datasets overlap with captured data selected for DiFX regression testing, which is important to alert us to upstream changes which may affect this project.
 
 The first 20 seconds of the following experiment-release-subband-doy-hhmm samples are currently captured for \acs{DiFX} regression testing:
 \begin{verbatim}
@@ -45,23 +47,17 @@ e17a10-7-hi-100-0725 e17a10-7-lo-100-0725 e17a10-7-pc-100-0725
 e17e11-7-hi-101-0322 e17e11-7-hi-101-0803 e17e11-7-lo-101-0322
 e17e11-7-lo-101-0803 e17e11-7-pc-101-0322 e17e11-7-pc-101-0803
 \end{verbatim}
-``lo'' and ``hi'' refer to the ``b3'' and ``b4'' sub-bands of the
-64 \acs{Gbps} (2018 and onwards) frequency setup; ``pc'' refers to polconverted,rather than the mixed polarization correlation products.
+``lo'' and ``hi'' refer to the ``b3'' and ``b4'' sub-bands of the 64 \acs{Gbps} (2018 and onwards) frequency setup; ``pc'' refers to polconverted,rather than the mixed polarization correlation products.
 
-\FIX[TBC---is this a sufficient set?]
 
-These or other scans could also be captured for full scan duration and
-segmented at some interval, but it is not clear that this is necessary.
-
-Additional test data has been captured from the 2017 \ac{EHT} observations.  Fringing of these scans has not yet been incorporated into HOPS testing, but shall form the basis of regression for HOPS4.
-
+Additional test data has been captured from the 2017 \ac{EHT} observations.  Fringing of these scans has not yet been incorporated into HOPS testing, but shall form the basis of regression for HOPS4. These or other scans could also be captured (full scan duration or segmented at some interval) if do desired. On going re-evaluation of the sufficiency and coverage of these regression tests will be part of monthly risk-assesment and augmented as needed.
 
 \subsection{Check Scripts from HOPS3}
 \label{sec:regresscheck}
 
 % existing HOPS3 scripts
 
-There are a number of existing ``check'' scripts that run during build/install of HOPS3. The check scripts validate several requirements. Here, we describe the check scripts; below, we describe the requirements that will be validated with regression tests.
+There are a number of existing ``check'' scripts that run during build/install of HOPS3 to check for software regressions. These check scripts validate several requirements. Here, we describe the check scripts and describe the requirements that will be validated with regression tests.
 
 %Both of these tests exercise the basic fringe search and reduction
 %that \acs{fourfit} was built to do and have been the basis of standard
@@ -73,7 +69,7 @@ There are a number of existing ``check'' scripts that run during build/install o
 \item{\textbf{chk\_aedit.sh}} Test of aedit, using experiment 2843. Writes a simple input file, runs aedit, checks for the expected number of lines. Applicable to requirement \textbf{A-18}, but may need to be expanded.
 \item{\textbf{chk\_alist.sh}} Test of alist, using 2843. Checks for the expected number of lines. Applicable to requirement \textbf{A-16}.
 \item{\textbf{chk\_avefix.sh}} Uses 2843. Checks for correct number of lines in output.
-\item{\textbf{chk\_average.sh}} Uses the 'testdata/average' dataset. Checks for backwards compatibility and then a bug fix. \FIX[Need to check if this script runs.]
+\item{\textbf{chk\_average.sh}} Uses the 'testdata/average' dataset. Checks for backwards compatibility and then a bug fix. %\FIX[Need to check if this script runs.]
 \item{\textbf{chk\_baselines.sh}} Uses 2843. Runs fourfit for each baseline, checks that output is the correct size.
 \item{\textbf{chk\_cofit.sh}} Uses 2843 with the cofit function. Checks the number of lines in the output. Applicable to requirement \textbf{A-22}.
 \item{\textbf{chk\_env.sh}} 
@@ -99,30 +95,22 @@ There are a number of existing ``check'' scripts that run during build/install o
 \end{description}
 
 
-
-
 The following are requirements that we plan to validate using regression tests. \FIX[Need to add details about the requirement and the test; are the check scripts, where they exist, sufficient? What functionality needs to be verified?]
 
 \begin{description}
 
-\item{\textbf{A-16}} chk\_alist
-\item{\textbf{A-17}} chk\_adump
-\item{\textbf{A-18}} chk\_aedit
-\item{\textbf{A-19}} chk\_fourmer
-\item{\textbf{A-20}} chk\_fringex
-\item{\textbf{A-21}} chk\_average
-\item{\textbf{A-22}} chk\_cofit
-\item{\textbf{A-23}} chk\_search
-\item{\textbf{A-24}} chk\_frmrsrch
-\item{\textbf{P-25}} chk\_aedit
-
-\item{\textbf{D-28}} testfourfit.sh \FIX[Currently in the attic?]
-  
-\item{\textbf{A-29}} chk\_min\_weight  
-\item{\textbf{A-30}} chk\_flagging
-
-\item{\textbf{D-36}} chk\_hdlinks
-
+\item{\textbf{A-16}} chk\_alist - Checks that alist produces the appropriately sized summary file form captured data (2843).
+\item{\textbf{A-17}} chk\_adump - Verifies extraction of specified quantities (snr, phase) from captured alist file works
+\item{\textbf{A-18}} chk\_aedit - Verifies that aedit batch mode runs with captured script and alist file and produces postscript file.
+\item{\textbf{A-19}} chk\_fourmer - Verifies that fourmer can join two (high/low) frequency bands from captured data (3365) and fourfit can run on the result.
+\item{\textbf{A-20}} chk\_fringex -  Verifies refringing calculation works.
+\item{\textbf{A-21}} chk\_average - Verifies fringe segmenting manipulation works.
+\item{\textbf{A-22}} chk\_cofit - Verifies that cofit tool can estimate coherence.
+\item{\textbf{A-23}} chk\_search - Verifies that the search tool works for a marginal fringe.
+\item{\textbf{A-24}} chk\_frmrsrch -  Verifies that the search tool works on fourmer'd data.
+\item{\textbf{A-29}} chk\_min\_weight - Tests that fourfit correctly applies min_weight flagging of data.
+\item{\textbf{A-30}} chk\_flagging - Tests functionality of applying ad hoc flagging file in fourfit.
+\item{\textbf{D-36}} chk\_hdlinks - Test that the hops\_data\_links.pl script correctly mirrors data to another directory.
 \end{description}
   
 
@@ -130,9 +118,11 @@ The following are requirements that we plan to validate using regression tests. 
 \subsection{Automated Tests that are TBD}
 \label{sec:regress3}
 
-These requirements are largely new for HOPS, and require development. Once the functionality is available, there shall be automated scripts that verify the requirement is met. There will need to be appropriate captured datasets to test each of these requirements.
+These requirements are largely new for HOPS4, and require development. Once the functionality is available, there will be automated scripts that verify the requirement is met.
+There will be a need to identify appropriate captured datasets to test each of these requirements.
 
-Some of the tests may be computationally intensive or require large datasets, and the tests will be run infrequently as part of significant version rollovers or with continuous integration tools.
+Some of the tests may be computationally intensive or require large datasets, so some tests will be run infrequently or only as part of significant version rollovers 
+as opposed to continuous integration tools.
 
 \begin{description}
 
@@ -145,15 +135,12 @@ Some of the tests may be computationally intensive or require large datasets, an
 \item{\textbf{A-10}} Applications shall behave as conventional GNU/Linux applications.
 \item{\textbf{A-11}} Support VEX version 1.5.
 \item{\textbf{A-12}} Plotting tools support standard formats and user-provided functions.
-  
-  
-
 
 \item{\textbf{A-31}} Data types shall be convertible to human-readable format (ASCII, CSV, etc).
 \item{\textbf{A-32}} Solve for station-based quantities from baseline-based quantities.
 \item{\textbf{A-33}} Apply complex bandpass corrections.
 \item{\textbf{A-34}} Solve for complex bandpass corrections.
-\item{\textbf{A-35}} Use Python wrappers for data products.
+\item{\textbf{A-35}} Indteract with data produces with Python wrappers.
 
 \item{\textbf{D-39}} Spectral-line VLBI.
 \item{\textbf{A-40}} Pulsar folding.
