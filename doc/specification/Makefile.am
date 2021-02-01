@@ -14,7 +14,7 @@ EXTRA_DIST = $(srcdir)/$(TEXSRC).tex \
 	$(srcdir)/srctree.tex $(srcdir)/designdetails.tex \
 	$(srcdir)/example-single-baseline-fringe-fitter.png \
 	$(srcdir)/data-container-baseline.png \
-	$(srcdir)/arch_overview.png
+	$(srcdir)/arch_overview.png $(srcdir)/legacy.tex
 
 if WANT_DOCS
 # to be somewhat surgical, this is useful:
