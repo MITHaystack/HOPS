@@ -39,8 +39,21 @@ trk=$HOPS_ROOT/trunk
 # existing tarballs will be renamed as $name.save.gz
 # so you have one shot at fixing mistakes
 
+# these are the things in "all"
 tars="
 corr
+mk4m
+ompi
+"
+
+# this is what they contain
+thelp="This script manages these legacy tarballs:
+corr    -- the original /correlator (HOPS 2 era) as copied to SVN
+mk4m    -- various migration scripts associated with migration to SVN
+ompi    -- some scripts for testing the software correlator with OpenMPI
+
+The script legacy_nuke.sh can be used to wipe old backup copies of
+previously generated legacy tarballs.
 "
 
 [ "$1" = all ] || set -- $tars
@@ -49,8 +62,11 @@ for t in $tars
 do
     # set source and dest
     case $t in
-    corr)   src=correlator ; dir=$trk    ; name=$src ;;
-    *) echo what is $t \?  ; exit 4                  ;;
+    help)   echo "$thelp" ; exit 0 ;;
+    corr)   src=correlator  ; dir=$trk    ; name=$src ;;
+    mk4m)   src=mk4-migrate ; dir=$trk    ; name=$src ;;
+    ompi)   src=ompi        ; dir=$trk    ; name=$src ;;
+    *) echo what is $t \?  ; exit 4                   ;;
     esac
     tarball=$dest/$name.tar.gz
     listing=$dest/$name.tvf.gz
