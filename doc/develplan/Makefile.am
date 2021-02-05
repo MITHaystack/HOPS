@@ -15,6 +15,8 @@ EXTRA_DIST = $(srcdir)/$(TEXSRC).tex \
 	$(srcdir)/designoutline.tex \
 	$(srcdir)/detailedtimeline.tex \
 	$(srcdir)/proposedplan.tex \
+	$(srcdir)/overview.tex \
+	$(srcdir)/projectorganization.tex \
 	$(srcdir)/MSRI-task-origv3-1.pdf \
 	$(srcdir)/MSRI-task-origv3-2.pdf
 
