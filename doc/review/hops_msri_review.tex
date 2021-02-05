@@ -58,6 +58,10 @@
 
 %set up the logo (you may need to adjust the coordinates to avoid collisions)
 \usepackage{pgf}  
+
+\usepackage{tikz}
+\usetikzlibrary{tikzmark,overlay-beamer-styles,babel}
+
 %use the following to put the logo in the top right corner
 \logo{\pgfputat{\pgfxy(-1.5,7.6)}{\pgfbox[center,overlay,base]{\includegraphics[width=2.2cm]{./logo.png}}}}  
 %use the following to put the logo in the bottom left corner
@@ -143,9 +147,14 @@
 
 % Maybe mention A-tools in the background/scope, and the functionality they provide
 
-\begin{frame}{Quick Snapshot}
+\begin{frame}[fragile]{Quick Snapshot}
 \centering
-\includegraphics[width=\textwidth]{snapshot-schedule.png}
+\tikzmarknode{n1}{} we are here \\ \vspace{0.5cm} 
+\includegraphics[width=\textwidth]{snapshot-schedule.png}\tikzmarknode{snap}{}
+\begin{tikzpicture}[remember picture,overlay]   %% use here too
+\draw[-latex,visible on=<1>] (n1.west) to[out=200,in=135] ([xshift=-6.7cm,yshift=1cm] snap.north east);
+\end{tikzpicture}
+
 \begin{outline}
     \1 Delayed start, but original schedule had plenty of margin
     \1 Largely on track/schedule - dev. plan document under revision
@@ -156,7 +165,10 @@
 
 \begin{frame}{Background}
     
+    HOPS - Haystack Observatory Post-processing System
+    
     \begin{outline}
+      \1 HOPS's primary purpose is to provide post (correlation) data processing utilities for VLBI data. These utilities include fringe-fitting, calibration, data flagging/reduction, and data quality checking.
       \1 HOPS has a multi-decade history as a post-processing/analysis package and as such has evolved gradually over time.
         \2 Current C-code was written in the early 90’s by Colin Lonsdale, Roger Cappallo and Cris Niell. The basic algorithms were adopted from FRNGE, by Alan Rogers in the late 70's
         \2 Efforts in the 00's with tools to optimize SNR and in response to software correlators such as DiFX.
@@ -180,7 +192,7 @@
   \2 Calibration and phase/amplitude correction of data, as well as other manipulation (summing over polarization products, etc.)
   \2 Fringe-fitting (solving for residual phase/delay w.r.t to correlator model) on either a per-baseline or global basis.
   \2 Data quality analysis and visualization on a per-scan and per-experiment basis.
-  \2 Data export to archival and/or imaging formats (example: HDF5/UVFITS).
+  \2 Data export to archival and/or imaging formats (examples: HDF5, UVFITS).
 \end{outline}
     
 \end{frame}
@@ -190,15 +202,15 @@
 % \FIX[DRAFT SLIDE]
 
 \begin{outline}
-    \1 Fine grained details may not be explicitly covered in requirements. Some assumptions are baked into the requirements, examples:
+    \1  Some assumptions are baked into the higher level requirements, low level specification details in work.
         \2 HOPS4 will accept DiFX correlator input (including VEX at current v1.5.1) 
         \2 ngEHT data format will resemble EHT data, except for more stations/baselines/sub-bands.
         \2 General computational performance of \textit{fourfit} in HOPS3 was acceptable for EHT (with SPMD parallelization).
         \2 General software run-time environments will be similar to HOPS3 (unix like)
-    \1 Some details are not known, example:
+    \1 Some ngEHT details have not been provided, example:
         \2 Memory requirements of ngEHT data sets.
         \2 Possible unspecified future use-cases
-    \1 These assumptions entail risks - the assumptions may be wrong, and the code may require modification to meet them -- can discuss in risks section.
+    \1 These assumptions entail risks -- the assumptions may be wrong, and the code may require modification to meet them -- can discuss in risks section.
 \end{outline}
 
 \end{frame}
@@ -286,7 +298,7 @@
     \2 Bindings - Python interface to C++ data containers and operators. Allows for Python script configuration of data operators at initialization, and user-defined direct manipulation of data at pre-defined hooks.
 \end{outline}
 
-* current working names
+* current working names, subject to change
 \end{frame}
 
 \begin{frame}{Software Architecture (Applications)}
@@ -382,7 +394,7 @@ Example of simplified fringe-fitter control flow.
 \begin{frame}{Development Process}
 % slide 21: don't need to describe the test plan (takes time to read); do we need to write this in terms of developers?
     \begin{outline}
-        \1 Agile Development
+        \1 Agile philosophy, adapt to additional input as product takes shape
         \1 Feature additions progress through 5 stages:
             \2 concept - what does this feature need to do?
             \2 prototype implementation - initial code implementation
@@ -418,7 +430,7 @@ Example of simplified fringe-fitter control flow.
     \end{outline}
 \end{frame}
     
-\begin{frame}{Development Plan (component build-out order)}
+\begin{frame}{Dev. Plan Roadmap}
 
 % slide 15: make things verbs: write build system, import HOPS3 libraries, populate data operators, etc
 
@@ -433,7 +445,7 @@ Example of simplified fringe-fitter control flow.
     \end{outline}
 \end{frame}
 
-\begin{frame}{Development Plan cont.}
+\begin{frame}{Dev. Plan Roadmap cont.}
 
 % slide 16: applicable? if we have time? how to evaluate. new framework will allow, but depends on time / option to descope
 %  - fourth bullet "implement a global fringe algorithm"
@@ -469,7 +481,7 @@ Example of simplified fringe-fitter control flow.
         \2 Organizing bases classes of code in task-specific libraries
         \2 Development allows re-use of HOPS3 code in decoupled manner (e.g. MK4Interface makes use of dfio and (new) container library but there is no direct link between the two)
         \2 SWIG build infrastructure has been prototyped, pybind11 will also be explored.
-        \2 Fringe-plot code starting to be prototyped in python/matplotlib.
+        \2 Fringe-plot code starting to be prototyped in Python/Matplotlib.
     \end{outline}
 \end{frame}
 
@@ -534,22 +546,22 @@ Example of a fringe plot made with Matplotlib
 % slide 20: testing step? add step 6 for regression
 %  - remove "as appropriate"
 
-
+Software testing breaks down into following categories:
 
     \begin{outline}
         \1 Unit/Integration - Code changes and new functions/modules will be delivered with appropriate units tests
+         \1 Component - Test the individual task specific libraries/components of HOPS4 functionality as a whole.
         \1 Performance analysis - A profiling tool will be used to compare the time/memory use of computations in HOPS3 with HOPS4, to identify bottlenecks.
-        \1 Manual - Document tests to verify human-in-the-loop functionality (e.g. interactive tools)
-        \1 Regression - Write tests that compare quantitative results of the new code with known results (e.g. from HOPS3) with captured data.
-        \1 CI - A continuous integration server will be configured using Github Actions or be made compatible with our existing automated testing scripts.
-        \1 Component - External dependencies will be tested to ensure continuous compatibility with HOPS4.
+        \1 Regression - Tests that working code behaves consistently with known results (e.g. from HOPS3) given captured data.
         \1 Oracle - Where appropriate, HOPS3 will be used as a test oracle for HOPS4 comparison.
+        \1 CI - A continuous integration server will be configured using Github Actions or be made compatible with our existing automated testing scripts.
+        \1 Manual - Verify human-in-the-loop functionality (e.g. interactive tools)
     \end{outline}
     
 \end{frame}
 
 
-\begin{frame}{Provisional Schedule}
+\begin{frame}{High-level Schedule}
 % 22: reformat plot? or, take out timeline bars, just use begin/end dates
 %  - say we already sent around the schedule, add figure to backup slides
 %  - largely indicated by -> determined by
@@ -564,7 +576,7 @@ Example of a fringe plot made with Matplotlib
         \2 Minimally viable single-baseline fringe fitter $\rightarrow$ complete fringe fitter equivalent to HOPS3 fourfit
         \2 Data reduction utilities (alist, aedit, fringe plot)
         \2 augmented single-baseline fringe fitter 
-        \2 Data export utilities (e.g HDF5).
+        \2 Data export utilities.
         \2 global fringe fitter
     \1 Tasks proceed largely asynchronously
         \2 Can move some tasks in the schedule without affecting others
@@ -586,19 +598,22 @@ Example of a fringe plot made with Matplotlib
 %  - HOPS development doesn't end with the MSRI; ngEHT may have resources to extend the project
 %  - State that our goal is to refactor HOPS and put it in a position where it can be extended without having to rewrite core libraries
 
-
-Comments:
 \begin{outline}
-    \1 Budget is adequate: sufficient margins to complete coding though rebuilt fringe-fitter and utilities:
+    \1 Budget has sufficient margins to complete coding though a rebuilt fringe-fitter and utilities:
         \2 DiFX/Mk4 data import/export
         \2 fourfit equivalent with new architecture
         \2 aedit
         \2 alist
         \2 data export
-    \1 At a minimum HOPS4 will be capable of everything which HOP3 can do now, but be more easily extended by users, and not suffer from artificial bandwidth/AP/station limitations. Goal is to refactor HOPS and position it to be extendable without requiring changes to core libraries.
-    \1 If resources are pressured, will apply best effort to:
-        \2 Implementing prioritized critical features (e.g. solving for stationized band-pass correction vs. global fringe fitting algorithm)
-        \2 Option to de-scope some capabilities (e.g. SIMD or OpenMPI paralleliztaion).
+    \1 Resulting HOPS4 will be capable of everything which HOP3 can do now, but be more easily extended by users, and not suffer from artificial bandwidth/AP/station limitations. 
+    Goal is to refactor HOPS so it is easily extendable without requiring changes to core libraries.
+    \1 If resources are pressured:
+        \2 best effort to:
+            \3 Implementing prioritized critical features, e.g.:
+            \3 solving for stationized band-pass correction
+            \3 global fringe fitting algorithm
+        \2 option to de-scope:
+            \3 SIMD or OpenMPI parallelization
 \end{outline}
 
 \end{frame}
@@ -644,11 +659,10 @@ Comments:
 \begin{frame}{Risk Management}
 
 \begin{outline}
-    \1 Maintain internal prioritized risk-action list, touched on in weekly meetings; any team member can raise issue for review.
-    \1 Since this is a software project, our risks are primarily \emph{schedule} risks (i.e. developers will have to spend time mitigating them). The costs to mitigate are primarily budgetary (\$\$ for developers' time).
+    \1 Maintain internal prioritized risk-action list, reviewed in weekly meetings; any team member can raise issue for review.
+    \1 Our risks are primarily \emph{schedule} risks (i.e. developers will have to spend time mitigating them). The costs to mitigate are primarily budgetary (\$\$ for developers' time).
     \2 Issues which rise beyond internal project scope will be raised to monthly ngEHT risk meeting.
     \2 Minor software risks (bugs) are mitigated by testing and profiling code early, iterative development
-    \1 We don't include generic problems that are common to all projects as risks (loss of personnel, dependency no longer supported, etc).
     \1 Current hi-level risks:
         \2 Requirements are incomplete due to unanticipated ngEHT needs or failure of assumptions.
         \2 Unexpected bug or structural deficit in new code (amplified if discovered late in process).
@@ -738,13 +752,14 @@ Comments:
 \begin{frame}{Risk Details - I}
   
  \begin{outline}
-        \1 Incomplete requirements:
-            \2 Description: The requirement set is incomplete and doesn't cover a critical item needed for ngEHT data analysis or use cases.
-            \2 Preventative Mitigation: Keep code as modular as possible, so extensions/restructuring are limited in scope.
+        \1 Incomplete ngEHT requirements:
+            \2 Description: The ngEHT requirement set is incomplete and as such our requirements list doesn't capture a critical item desired future data analysis or use cases.
+            \2 Preventative Mitigation: Keep code as modular as possible, so extensions/restructuring are limited in scope. Keep specialization out of base level libraries:
+                \3 ngEHT may have heterogeneous bandwidth/channels/pols, so we need to ensure early data structure design can accommodate this.
             \2 Cost if realized: Code needs to be extended, adapted or redesigned to cover the necessary use case. Other features of project may need to be descoped to free up resources, or other alternatives considered (adoption of 3rd party libraries).
             \2 Specific example(s): 
             \3 ngEHT correlator output data format/content is not similar to the EHT and data structures have to be redesigned.
-            \3 ngEHT data sets are too large to fit in commodity computer memory.
+            \3 ngEHT data sets are too large to fit in commodity computer memory, so distributed computing is necessary and OpenMPI extensions need to be written.
     \end{outline}
     
 \end{frame}
@@ -754,10 +769,10 @@ Comments:
     \begin{outline}
             \1 Unexpected bug/deficit:
             \2 Description: A software deficiency or bug is discovered which significant requires developer resources in order to correct.
-            \2 Cost if realized: Developer time must be reallocated to correct issue -- (same as above).
+            \2 Cost if realized: Developer time must be reallocated to correct issue -- (same as last slide).
             \2 Preventative Mitigation: Continuous testing/comparison to working (HOPS3) code and performance evaluation of features as they are completed. Issue a beta release of software to downstream users before project completes. 
             \2 Specific example:
-                \3 Downstream users find that Python plugin interface is too slow.
+                \3 Downstream users find that Python plugin interface is too slow, code must be refactored to reduce data movement.
     \end{outline}
     
 \end{frame}
