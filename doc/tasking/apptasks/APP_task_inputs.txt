@@ -1,0 +1,67 @@
+The current draft work breakdown structure is found in
+
+   alma_phasing_draft_wbs.pdf
+
+The additional files are an attempt to work out a set of tasks
+within each area covered by this draft, based on a variety of
+inputs (i.e. things known at present).  It's very preliminary,
+and the focus has been on identifying tasks and some of their
+dependencies.  In particular, at present most dates are guestimates.
+
+The files in this directory are grouped:
+
+    something.ps    is the plot
+    something.key   is some words to briefly explain the
+                    cryptic terms in the bubbles, and
+    something.task  is all the input used to create the plots
+
+At the moment, the "somethings" are:
+
+    GENERAL  h/s  General Developer Time
+    HW        h   Hardware
+    CARD      h   Phasing Interface Card
+    PREP      s   Pre VLBI Observation Preparation
+    VOM       s   VLBI Observing Mode
+    PHSLOW    s   VLBI Phasing System Slow
+    PHFAST    s   VLBI Phasing System Fast
+    DAS       s   VLBI Data Acquisition System
+    HMASER    s   Hydrogen Maser
+    GUI       s   Graphical User Interface
+    POST      s   Post VLBI Observation Data Analysis
+    TESTA     s   Integration Testing (Software A)
+    TESTB     s   Integration Testing (Software B)
+    TESTH    h/s  Integration Testing (Hardware)
+    TESTO    h/s  Integration Testing (Observations)
+
+and these are either "domains" (topics in the work breakdown structure)
+or "things" (several of which constitute a domain):
+
+  domain = collection of related things (s == software, h == hardware):
+  thing  = some piece of a domain, which is a collection of tasks:
+  task   = something to be done to complete the thing
+  desc   = a more complete description of the domain/thing/task
+  nick   = short name for the domain/thing/task
+
+tasks require the following
+
+  path   = where thing is to be found in the CVS repository (or none)
+  code   = C++,Java,Python,Other,none
+  who    = ,-sep list of workers (worker[:effort]) or institutions
+
+timeline information
+
+  needs  = list of predecessor tasks
+  start  = start date
+  days   = real man-days of FTE effort by pri/sec/men
+  done   = percentage complete
+  derate = multiplier on days to get calendar days
+  done   = percent complete (0-100)
+  stop   = completion date (== 'start' for milestones)
+  allows = list of successor tasks
+
+I started collecting this information with an eye towards the software
+effort, so it is very software-centric, but I've recently added some
+tasks related to various hardware items.
+
+If you have questions, contact Geoff Crew (gbc@haystack.mit.edu).
+
