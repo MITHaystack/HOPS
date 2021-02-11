@@ -3,41 +3,45 @@ domain = HOPS4 Documentation
 desc   = documents that define the HOPS4 project
 nick   = docs
 
-thing  = Requirements document
+thing  = @docs Requirements
 desc   = Define the requirements of the HOPS4 project
 nick   = reqs_doc
 
-thing  = Coverage and testing document
+thing  = @docs Coverage and testing
 desc   = Define the tests that will be used in HOPS4
 nick   = cotest_doc
 
-thing  = Specifications document
+thing  = @docs Specifications
 desc   = Define the technical details of the HOPS4 project
 nick   = specs_doc
 
-thing  = Development plan
+thing  = @docs Development plan
 desc   = Describe the work plan of the HOPS4 project
 nick   = dplan_doc
 
-task   = Write the requirements document
+task   = @reqs_doc draft
+desc   = Write the requirements document
 start  = 12/1/2019
 days   = 365
 predecessor = none
-successor   = cotest_doc, specs_doc
+successor   = cotest_doc, specs_doc, prelim_review
 
-task   = Write the testing document
+task   = @cotest_doc draft
+desc   = Write the testing document
 start  = 12/1/2020
 days   = 30
 predecessor = reqs_doc
-successor   = none
+successor   = prelim_review
 
-task   = Write the specifications document
+task   = @specs_doc draft
+desc   = Write the specifications document
 start  = 12/1/2019
 days   = 365
 predecessor = reqs_doc
-successor   = none
+successor   = prelim_review
 
-task   = Write the development plan
+task   = @dplan_doc draft
+desc   = Write the development plan
 start  = 12/1/2020
 days   = 30
 predecessor = reqs_doc
