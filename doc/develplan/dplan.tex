@@ -37,6 +37,9 @@
 % for handling acronyms
 \usepackage[printonlyused]{acronym}
 
+\usepackage{array}
+%\usepackage{multirow}
+
 % for bibliographies if needed
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
@@ -62,6 +65,8 @@
 
 % to go back to default after \ragged commmands
 \usepackage{ragged2e}
+
+\usepackage[font=small]{caption}
 
 % see common/shortcuts.tex for what is defined in this file
 \input{shortcuts}
@@ -153,13 +158,6 @@ There are also sections on other programmatic elements.
 \input{detailedtimeline}
 % import John's Gantt chart
 
-\pagebreak
-\addtocounter{section}{1}
-\renewcommand{\refname}{\thesection. References}
-\addcontentsline{toc}{section}{\thesection. References}
-\bibstyle{plainurl}
-\printbibliography
-\label{sec:references}
 
 \pagebreak
 \input{projectorganization}
@@ -175,6 +173,9 @@ There are also sections on other programmatic elements.
 % Project closeout
 %\input{}
 
+\pagebreak
+%\input{proposedplan}
+
 % if skipappendix-is-true then (nothing) else typeset Appendices
 \ifthenelse{\boolean{skipappendix}}{}{%
 
@@ -183,8 +184,15 @@ There are also sections on other programmatic elements.
 \section{Acronyms, Commands and Glossary}
 \input{acronyms}
 
-\pagebreak
-\input{proposedplan}
 }
+
+\pagebreak
+\addtocounter{section}{1}
+\renewcommand{\refname}{\thesection. References}
+\addcontentsline{toc}{section}{\thesection. References}
+\bibstyle{plainurl}
+\printbibliography
+\label{sec:references}
+
 \label{page:LastPage}
 \end{document}
