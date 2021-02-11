@@ -2,6 +2,8 @@
 ## MSRI HOPS re-development
 John Barrett, Geoff Crew, Dan Hoak, Violet Pfeiffer
 
+Mailing list: hops-dev@mit.edu
+
 clone from: https://github.mit.edu/barrettj/hops-git.git
 
 To configure with defaults and compile with cmake, run:
