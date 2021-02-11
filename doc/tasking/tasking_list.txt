@@ -1,3 +1,17 @@
+# This is the list of domains/things/tasks for the HOPS4 project.
+
+# The items in this list are trying to capture interconnectedness
+# (through the needs/allows fields) and approximate dates. It's a 
+# living document, changes will be frequent.
+
+# Domains, as of now:
+# 
+
+
+
+
+
+#### Documentation domain
 
 domain = HOPS4 Documentation
 desc   = documents that define the HOPS4 project
@@ -23,28 +37,75 @@ task   = @reqs_doc draft
 desc   = Write the requirements document
 start  = 12/1/2019
 days   = 365
-predecessor = none
-successor   = cotest_doc, specs_doc, prelim_review
+needs  = none
+allows = cotest_doc, specs_doc, prelim_review
 
 task   = @cotest_doc draft
 desc   = Write the testing document
 start  = 12/1/2020
 days   = 30
-predecessor = reqs_doc
-successor   = prelim_review
+needs  = reqs_doc
+allows = prelim_review
 
 task   = @specs_doc draft
 desc   = Write the specifications document
 start  = 12/1/2019
 days   = 365
-predecessor = reqs_doc
-successor   = prelim_review
+needs  = reqs_doc
+allows = prelim_review
 
 task   = @dplan_doc draft
 desc   = Write the development plan
 start  = 12/1/2020
 days   = 30
-predecessor = reqs_doc
-successor   = none
+needs  = reqs_doc
+allows = none
 
+###
+
+
+
+
+
+### Build tools domain (automake, cmake)
+
+
+
+### Prototyping domain (containers, SWIG)
+
+
+
+### HOPS3 to HOPS4 migration domain
+
+
+
+### Fourfit application domain
+
+
+
+### alist/aedit domain (should these be separated?)
+
+
+
+### Algorithms domain
+
+
+
+### Objects domain
+
+
+
+### Interference domain
+
+
+
+### Calibration domain
+
+
+
+### Processing domain
+
+
+
+### Visualization domain
 
