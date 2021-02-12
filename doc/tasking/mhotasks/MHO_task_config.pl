@@ -27,12 +27,16 @@ if (0) {    # useful for debugging
     $edge_allows_clr = 'black';
 }
 
+# dot graph preamble details sw_task_graph.pl::graph_preamble()
+
 #$graph_rankdir = 'LR';
 $graph_rankdir = 'TB';
-
+# orientation dot commands for 'portrait'
 $orientation[0] =  "rotate=0\nsize=\"7.5,10\"\n";
+# orientation dot commands for 'landscape'
 $orientation[1] = "rotate=90\nsize=\"10,7.5\"\n";
-$orientation[2] = "landscape";
+# orientation of legend ('portrait' or 'landscape')
+$orientation[2] = 'portrait';
 
 # if (0) { # landscape for ps
 #     $preamble_stuff = "rotate=0\nsize=\"7.5,10\"\n";

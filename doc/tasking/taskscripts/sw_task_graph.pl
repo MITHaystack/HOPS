@@ -440,7 +440,7 @@ sub make_colorkeys {
     my ($name,$type) = @_;
     open DOT,">$name-legend.dot";
     print DOT "graph legend  {\n";
-    print DOT &graph_preamble('landscape','legend');
+    print DOT &graph_preamble($orientation[2],'legend');
 
     for my $n (sort(keys(%style_preload))) {
         $_ = $n;
