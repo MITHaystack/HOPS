@@ -2,61 +2,181 @@
 
 # The items in this list are trying to capture interconnectedness
 # (through the needs/allows fields) and approximate dates. It's a 
-# living document, changes will be frequent.
+# living document, changes will be frequent.  See MHO_task_inputs.txt
+# for some explanations of this file.  ### is meant to be grepped for
+# structure, and # to be grepped out.
 
-# Domains, as of now:
-# 
+###
+HEAD = task generator starts reading here
 
+### some common abbreviations (saving you typing)
 
+@vlbi   = Very Long Base Interferometry
+@sec    = Section
+@req    = the HOPS4 Requirements document
 
+### some dates of interest (milestones, @t*)
 
+#guesses at the moment
 
-#### Documentation domain
+@tEARLY = 2019-08-15
+@tSTART = 2019-09-01
+@tJPOST = 2020-01-01
+@tJHIRE = 2020-06-01
+@tREQS  = 2020-12-07
+@tSREV  = 2021-02-04
+# ...
+@tFINAL = 2023-08-31
+
+### pool of developers and other people
+@gc     = Geoff Crew
+@jb     = John Barrett
+@vp     = Violet Pfeiffer
+@dh     = Dan Hoak
+# ... add any other names you know...
+# and some groups
+@swdev  = @jb,@vp,@dh,@gc
+# @betas  = ...
+@all    = team
+
+### some common task definitions
+# note that after using these to set default values you can
+# then refine effort &c. with subsequent assignments.
+
+tdefs   = milestask
+path    = none
+code    = none
+days    = 1
+desc    = a planning date assumed to prevent useful work
+who     = @all
+
+tdefs   = gentask
+path    = none
+code    = none
+days    = 1
+desc    = some general work without code or path
+
+tdefs   = ctask
+path    = none
+code    = C
+days    = 1
+desc    = C coding work
+
+tdefs   = cpptask
+path    = none
+code    = C
+days    = 1
+desc    = C++ coding work
+
+tdefs   = ptask
+path    = none
+code    = Python
+days    = 1
+desc    = Python coding work
+
+tdefs   = btask
+path    = none
+code    = Bash
+days    = 1
+desc    = Bash coding work
+
+tdefs   = ttask
+path    = none
+code    = None
+days    = 1
+desc    = testing task
+
+tdefs   = etask
+path    = none
+code    = None
+days    = 1
+desc    = editing or writing task
+
+#
+### Major Domains of activity
+#
 
 domain = HOPS4 Documentation
 desc   = documents that define the HOPS4 project
-nick   = docs
+nick   = DOCS
 
-thing  = @docs Requirements
+domain = Infrastructure Setup
+desc   = everything to create a working environment
+nic    = INFRA
+
+### Build tools things (automake, cmake)
+### Prototyping things (containers, SWIG)
+### HOPS3 to HOPS4 migration thing
+### Fourfit application domain
+### alist/aedit domain (should these be separated?)
+### Algorithms domain
+### Objects domain
+### Interference domain
+### Calibration domain
+### Processing domain
+### Visualization domain
+
+#
+###  Things by Domain
+#
+
+@DOCS
+thing  = Requirements
 desc   = Define the requirements of the HOPS4 project
 nick   = reqs_doc
 
-thing  = @docs Coverage and testing
+thing  = Coverage and Testing
 desc   = Define the tests that will be used in HOPS4
 nick   = cotest_doc
 
-thing  = @docs Specifications
+thing  = Specifications
 desc   = Define the technical details of the HOPS4 project
 nick   = specs_doc
 
-thing  = @docs Development plan
+thing  = Development plan
 desc   = Describe the work plan of the HOPS4 project
 nick   = dplan_doc
 
-task   = @reqs_doc draft
+thing  = Formative Review
+desc   = The end-of-design-phase, start of real work review
+nick   = review
+
+#
+###  Tasks by Thing by Domain
+#
+
+thing  = @reqs_doc
+task   = draft
+@etask
 desc   = Write the requirements document
-start  = 12/1/2019
+start  = 2019-12-01
 days   = 365
 needs  = none
-allows = cotest_doc, specs_doc, prelim_review
+allows = cotest_doc,specs_doc,review
 
-task   = @cotest_doc draft
+thing  = @cotest_doc
+task   = draft
+@etask
 desc   = Write the testing document
-start  = 12/1/2020
+start  = 2020-12-01
 days   = 30
 needs  = reqs_doc
-allows = prelim_review
+allows = review
 
-task   = @specs_doc draft
+thing  = @specs_doc
+task   = draft
+@etask
 desc   = Write the specifications document
-start  = 12/1/2019
+start  = 2019-12-01
 days   = 365
 needs  = reqs_doc
-allows = prelim_review
+allows = review
 
-task   = @dplan_doc draft
+thing  = @dplan_doc
+task   = draft
+@etask
 desc   = Write the development plan
-start  = 12/1/2020
+start  = 2020-12-01
 days   = 30
 needs  = reqs_doc
 allows = none
@@ -67,45 +187,9 @@ allows = none
 
 
 
-### Build tools domain (automake, cmake)
+TAIL = task generator stops reading here
+###
 
-
-
-### Prototyping domain (containers, SWIG)
-
-
-
-### HOPS3 to HOPS4 migration domain
-
-
-
-### Fourfit application domain
-
-
-
-### alist/aedit domain (should these be separated?)
-
-
-
-### Algorithms domain
-
-
-
-### Objects domain
-
-
-
-### Interference domain
-
-
-
-### Calibration domain
-
-
-
-### Processing domain
-
-
-
-### Visualization domain
-
+#
+# eof
+#

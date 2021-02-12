@@ -1,0 +1,105 @@
+The current draft work is described in other documents
+
+    HOPS4-requirements.pdf
+    ...
+
+The 'tasking' machinery attempts to track at a granular level the
+work to be done (in few-day increments) so that the critical path
+through the entire project can be seen and managed.  The build document
+
+    HOPS4-tasking.pdf
+
+should contain various 'bubble' diagrams that hopefully are helpful.
+
+The files in this working directory (fruit, specified in Makefile) are grouped:
+
+    something.{ps,png}  is the plot
+    something.key       is some words to briefly explain the
+                        cryptic terms in the bubbles, and
+    something.task      is all the input used to create the plots
+
+All of this is driven by the primary input file MHO_task.txt.  A new,
+computed version of this is emitted as something.new.
+
+All information in this file is really part of key, value pairings.
+One a key is mentioned (something = ...) the value may grow with
+additional lines until the next keyword, blank line or comment.
+
+At the moment, the "somethings" are:
+
+    DOCS        HOPS4 Documentation
+    INFRA       Infrastructure Setup
+
+and these are either "domains" (topics in the work breakdown structure)
+or "things" (several of which constitute a domain):
+
+  domain = collection of related things
+  thing  = some piece of a domain, which is a collection of tasks
+  task   = something to be done to complete the thing
+  desc   = a more complete description of the domain/thing/task
+  nick   = short name for the domain/thing/task
+
+(other internal variables are derived: type,parent,line).
+
+nick(names) automatically create abbreviations referenced as @....
+You can also create them with @abbr = expansion lines.
+
+tasks require the following (in addition)
+
+  path   = where thing is to be found in the CVS repository (or none)
+  code   = C,C++,Python,Bash,Java,Other,None
+  who    = ,-sep list of workers (worker[:effort]) or institutions
+
+but may also have
+
+  notes  = where more about the thing/task is to be found
+  level  = easy/moderate/difficult
+  issues = open issues relevant to planning
+  orient = portrait/landscape
+
+(and other internal variables are derived: pri,sec,men).
+
+timeline information
+
+  needs  = list of predecessor tasks
+  start  = start date
+  days   = real man-days of FTE effort by pri/sec/men
+  done   = percentage complete
+  derate = multiplier on days to get calendar days
+  done   = percent complete (0-100)
+  stop   = completion date (== 'start' for milestones)
+  allows = list of successor tasks
+
+(and derived internally are: uid,begin,mjds,flex,end,preps,leads).
+
+Note that 'milestones' are captured as tasks with little to do.  ;-)
+
+Dates are YYYY-MM-DD format.  As spaces may be part of things, do
+not put in extra spaces (e.g. in lists).
+
+For convenience, one may assign collections of task key,value pairs
+with the artifical key assignment of the key 'tdefs':
+
+  tdefs = common
+
+Thereafter the following assignments may be accessed as @common (or
+various other nicknames).
+
+Note that 'who' is an indication of who might do the work, but the
+(relatively trivial) computations all are made assuming there is just
+one person doing actual work....  (The logic to juggle multiple-people
+efforts was never implemented, or in the event, needed.)
+
+Missing information is filled in from last relevant information seen.
+Note that a complete task is really a domain/thing/task, but as tasks
+are mentioned, they are assumed to belong to the last mentioned thing
+(which is assumed to belong to the last mentioned domain).
+
+It is helpful to start by mentioning all the top-level things (domains
+and other definitions), then walk through the domains breaking them up
+into things, and then finally to walk through the things and itemizing
+the tasks.
+
+If you have questions, contact Geoff Crew (gbc@haystack.mit.edu).
+
+eof

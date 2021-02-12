@@ -151,12 +151,12 @@ if ($graphs eq 'ALL') {
     for my $d (keys(%domains)) { printf("%10s is %s\n",$wbs{$d}{'nick'},$d); }
     printf("%10s is all of the above, except ALL\n",'all');
 } else {
-    if ($graphs eq 'all') {
-        $graphs = join(',',keys(%domains));
-        $graphs .= ',' . 'TESTA,TESTB,TESTH,TESTO';
-        $graphs .= ',' . 'DevMilestones,IntMilestones';
-    }
-    #$graphs = join(',',keys(%domains)) if ($graphs eq 'all');
+#   if ($graphs eq 'all') {
+#       $graphs = join(',',keys(%domains));
+#       $graphs .= ',' . 'TESTA,TESTB,TESTH,TESTO';
+#       $graphs .= ',' . 'DevMilestones,IntMilestones';
+#   }
+    $graphs = join(',',keys(%domains)) if ($graphs eq 'all');
     &make_the_graph("$output-ALL",$dtype,0,keys(%tasks)) if ($same);
     my @d = split(/,/,$graphs);
     print "Creating graphs for " . join(',',@d) . "\n" if ($verb);
