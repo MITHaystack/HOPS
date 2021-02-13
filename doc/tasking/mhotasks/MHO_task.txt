@@ -25,7 +25,7 @@ HEAD = task generator starts reading here
 @tJHIRE = 2020-06-01
 @tREQS  = 2020-12-07
 @tSREV  = 2021-02-04
-# ...
+@tMREV  = 2022-09-01
 @tFINAL = 2023-08-31
 
 ### pool of developers and other people
@@ -68,25 +68,25 @@ code    = C
 days    = 1
 desc    = C++ coding work
 
-tdefs   = ptask
+tdefs   = pytask
 path    = none
 code    = Python
 days    = 1
 desc    = Python coding work
 
-tdefs   = btask
+tdefs   = shtask
 path    = none
 code    = Bash
 days    = 1
 desc    = Bash coding work
 
-tdefs   = ttask
+tdefs   = testask
 path    = none
 code    = None
 days    = 1
 desc    = testing task
 
-tdefs   = etask
+tdefs   = editask
 path    = none
 code    = None
 days    = 1
@@ -96,92 +96,163 @@ desc    = editing or writing task
 ### Major Domains of activity
 #
 
+domain = General Project Activities
+desc   = this covers things not better captured elsewhere
+nick   = GENERAL
+
+domain = Infrastructure Setup
+desc   = everything to create a working environment
+nick   = INFRA
+
 domain = HOPS4 Documentation
 desc   = documents that define the HOPS4 project
 nick   = DOCS
 
-domain = Infrastructure Setup
-desc   = everything to create a working environment
-nic    = INFRA
+# this is a placeholder
+domain = everything else
+desc   = this domain covers everything not otherwise mentioned
+nick   = STUFF
 
-### Build tools things (automake, cmake)
-### Prototyping things (containers, SWIG)
-### HOPS3 to HOPS4 migration thing
-### Fourfit application domain
-### alist/aedit domain (should these be separated?)
-### Algorithms domain
-### Objects domain
-### Interference domain
-### Calibration domain
-### Processing domain
-### Visualization domain
+### Build tools (automake, cmake)
+### Prototyping (containers, SWIG)
+### HOPS3 to HOPS4 migration 
+### Fourfit application 
+### alist/aedit 
+### Algorithms 
+### Objects 
+### Interference 
+### Calibration 
+### Processing 
+### Visualization 
 
 #
 ###  Things by Domain
 #
+domain = @GENERAL
+thing  = Milestones
+desc   = various dates in the overview timeline
+nick   = Stones
 
-@DOCS
+thing  = Meetings and Other Activities
+desc   = this covers meetins (zoom or otherwise) and
+         various discussions that are not otherwise
+         captured in work-type tasks
+nick   = Meetings
+
+domain = @INFRA
+thing  = one of many
+
+
+domain = @DOCS
 thing  = Requirements
 desc   = Define the requirements of the HOPS4 project
-nick   = reqs_doc
+nick   = ReqsDoc
 
 thing  = Coverage and Testing
 desc   = Define the tests that will be used in HOPS4
-nick   = cotest_doc
+nick   = CotestDoc
 
 thing  = Specifications
 desc   = Define the technical details of the HOPS4 project
-nick   = specs_doc
+nick   = SpecsDoc
 
 thing  = Development plan
 desc   = Describe the work plan of the HOPS4 project
-nick   = dplan_doc
+nick   = DplanDoc
 
-thing  = Formative Review
-desc   = The end-of-design-phase, start of real work review
-nick   = review
+domain = @STUFF
+thing  = ...
 
 #
 ###  Tasks by Thing by Domain
 #
 
-thing  = @reqs_doc
-task   = draft
+#   GENERAL     General Project Activities
+domain = @GENERAL
+thing  = @Milestones
+
+task   = early
+@milestask
+desc   = subcontract award finalization starts
+start  = @tEARLY
+#
+task   = start
+desc   = official start date for project
+start  = @tSTART
+#
+task   = posting
+desc   = hire software developer(s)
+start  = @tJPOST
+#
+task   = hired
+desc   = actually hire software developers
+start  = @tJHIRE
+#
+task   = requirements
+desc   = when the requirements needed for review
+start  = @tREQS
+#
+task   = review
+desc   = software foundational review
+start  = @tSREV
+#
+task   = midpoint
+desc   = midpoint (informal) review
+start  = @tMREV
+#
+task   = finish
+desc   = official completion date for project
+start  = @tFINAL
+
+thing  = @Meetings
+task  = Formative Review
+@gentask
+desc   = The end-of-design-phase, start of real work review
+nick   = Review
+
+#   INFRA       Infrastructure Setup
+
+
+#   DOCS        HOPS4 Documentation
+
+
+domain = @DOCS
+thing  = @ReqsDoc
+task   = draft-reqs
 @etask
 desc   = Write the requirements document
 start  = 2019-12-01
 days   = 365
-needs  = none
-allows = cotest_doc,specs_doc,review
+allows = CotestDoc,SpecsDoc,Review
 
-thing  = @cotest_doc
-task   = draft
+thing  = @CotestDoc
+task   = draft-cotest
 @etask
 desc   = Write the testing document
 start  = 2020-12-01
 days   = 30
-needs  = reqs_doc
-allows = review
+needs  = ReqsDoc
+allows = Review
 
-thing  = @specs_doc
-task   = draft
+thing  = @SpecsDoc
+task   = draft-specs
 @etask
 desc   = Write the specifications document
 start  = 2019-12-01
 days   = 365
-needs  = reqs_doc
-allows = review
+needs  = ReqsDoc
+allows = Review
 
 thing  = @dplan_doc
-task   = draft
+task   = draft-plan
 @etask
 desc   = Write the development plan
 start  = 2020-12-01
 days   = 30
-needs  = reqs_doc
-allows = none
+needs  = ReqsDoc
 
-###
+
+#   STUFF       everything else
 
 
 
@@ -189,6 +260,8 @@ allows = none
 
 TAIL = task generator stops reading here
 ###
+
+# hey look, I found $20!
 
 #
 # eof

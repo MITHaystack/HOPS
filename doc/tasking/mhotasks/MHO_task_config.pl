@@ -57,9 +57,12 @@ $orientation[2] = 'portrait';
 # }
 
 # controls whether peer nodes are fully attributed when sub-plotting
-# which doesn't quite work...
+# which doesn't quite work... (sw_tasks.pl)
 $same = 1;
+# controls whether a legend figure is made (sw_tasks.pl)
 $legend = 1;
+
+# control node labels (sw_task_graph.pl)
 $fullnames = 0;
 
 1;

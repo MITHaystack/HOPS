@@ -25,10 +25,12 @@ All information in this file is really part of key, value pairings.
 One a key is mentioned (something = ...) the value may grow with
 additional lines until the next keyword, blank line or comment.
 
-At the moment, the "somethings" are:
+At the moment, the "somethings" are (by nickname):
 
-    DOCS        HOPS4 Documentation
+    GENERAL     General Project Activities
     INFRA       Infrastructure Setup
+    DOCS        HOPS4 Documentation
+    STUFF       everything else
 
 and these are either "domains" (topics in the work breakdown structure)
 or "things" (several of which constitute a domain):
@@ -72,7 +74,13 @@ timeline information
 
 (and derived internally are: uid,begin,mjds,flex,end,preps,leads).
 
+Use UPPERCASE for Domain nicknames, CamelCase for Thing nicknames
+and all lowercase for tasks.  These all turn into node names in dot,
+so don't go nuts on special characters.  Names of domains should be
+titles, things and tasks should be normal text.
+
 Note that 'milestones' are captured as tasks with little to do.  ;-)
+(At the moment days > 0 is required, I think...I'll have to check.)
 
 Dates are YYYY-MM-DD format.  As spaces may be part of things, do
 not put in extra spaces (e.g. in lists).

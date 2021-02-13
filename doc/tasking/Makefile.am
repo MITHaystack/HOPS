@@ -41,7 +41,7 @@ sync: $(taskingscripts) $(mhoinputs)
 # this builds everything
 mhoarg = -i MHO_task.txt -b MHO_task_bubbles.pl -c MHO_task_config.pl
 fruit:	Makefile sync
-	./sw_tasks.pl -v $(mhoarg) -o fruit/$(mho) -r all
+	./sw_tasks.pl -v $(mhoarg) -o fruit/$(mho) -r all -g all
 	[ -d fruit ]
 
 # this installs the 'new' task file to the srcdir
