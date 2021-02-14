@@ -23,7 +23,7 @@ my @jelly   = ( 'nick', 'start', 'stop', 'days', 'who',
                 'task', 'thing', 'domain', 'desc' );
 my @summary = ( 'desc', 'nick', 'who', 'stop' );
 my @simple  = ( 'desc' );
-my @inputs  = ( 'desc', 'nick', 'path', ,'code', 'notes', 'level',
+my @inputs  = ( 'nick', 'desc', 'path', ,'code', 'notes', 'level',
                 'issues', 'orient',
                 'who', 'needs', 'start', 'days', 'derate', 'done',
                 'stop', 'allows' );

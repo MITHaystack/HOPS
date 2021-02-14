@@ -58,6 +58,10 @@ fruit:
 	mkdir fruit
 endif
 
+tasks:
+	rm -rf fruit
+	$(MAKE) fruit
+
 if WANT_DOCS
 # to be somewhat surgical, this is useful:
 # TEXINPUTS=... kpsewhich -show-path tex "filename"

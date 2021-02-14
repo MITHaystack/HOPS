@@ -63,7 +63,7 @@ $same = 1;
 $legend = 1;
 
 # control node labels (sw_task_graph.pl)
-$fullnames = 0;
+$fullnames = 1;
 
 1;
 #

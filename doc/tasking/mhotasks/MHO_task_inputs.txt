@@ -79,11 +79,22 @@ and all lowercase for tasks.  These all turn into node names in dot,
 so don't go nuts on special characters.  Names of domains should be
 titles, things and tasks should be normal text.
 
+Nicknames need to be unique.  Use thing-task in general, which makes
+it easier to connect tasks in different things that depend on each other.
+The nick(name), needs and allows items work in the same namespace and are
+used to connect the nodes (nick) in the diagrams.  Connections should be
+made only between tasks.  (Things and Domains are collections of tasks that
+could get a box around them.)
+
+Abbreviations get used in descriptions, or in the case of dates, the start
+or stop dates.
+
 Note that 'milestones' are captured as tasks with little to do.  ;-)
 (At the moment days > 0 is required, I think...I'll have to check.)
 
 Dates are YYYY-MM-DD format.  As spaces may be part of things, do
-not put in extra spaces (e.g. in lists).
+not put in extra spaces (e.g. in lists).  Days of effort should not
+include weekends, so a full year is something like 240 days.
 
 For convenience, one may assign collections of task key,value pairs
 with the artifical key assignment of the key 'tdefs':
