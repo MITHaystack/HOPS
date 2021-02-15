@@ -11,6 +11,7 @@ require "sw_task_wbs.pl";
 
 our $bubbles;
 our %style_preload = ();
+our %preamble_stuff = ();
 require $bubbles if (-f $bubbles);
 my $have_preloaded = 0;
 
@@ -27,7 +28,6 @@ our $edge_needs_clr;
 our $edge_allows_clr;
 our $graph_rankdir;
 our $fullnames;
-#our $preamble_stuff;
 our @orientation;
 
 # evens are backgrounds, odds are for fonts
@@ -206,21 +206,22 @@ sub make_it_legal {
 
 #
 # set up general graph attributes
+#  orientation (1 or 0) and plot name
 #
 sub graph_preamble {
-    my ($pl,$k) = @_;
+    my ($pl,$nm) = @_;
     my $stuff = '';
     if (!defined($pl)) { $pl = 1; }
     elsif ($pl eq 'portrait') { $pl = 0; }
     elsif ($pl eq 'landscape') { $pl = 1; }
     else { $pl = 0; }
     $stuff .= "//\n";
-    $stuff .= "// graph_preamble\n";
+    $stuff .= "// graph_preamble $pl for $nm\n";
     $stuff .= "//\n";
     $stuff .= "rankdir=$graph_rankdir;\n";
     $stuff .= "concentrate=$concentrate\n";
-#   $stuff .= $preamble_stuff;
     $stuff .= $orientation[$pl];
+    $stuff .= $preamble_stuff{$nm} if defined($preamble_stuff{$nm});
     $stuff .= "node [style=filled,color=black,fillcolor=lightgray];\n";
     $stuff .= "\n";
     return $stuff;

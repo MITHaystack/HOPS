@@ -1,7 +1,7 @@
 The current draft work is described in other documents
 
     HOPS4-requirements.pdf
-    ...
+    ... you know the list ...
 
 The 'tasking' machinery attempts to track at a granular level the
 work to be done (in few-day increments) so that the critical path
@@ -11,19 +11,27 @@ through the entire project can be seen and managed.  The build document
 
 should contain various 'bubble' diagrams that hopefully are helpful.
 
-The files in this working directory (fruit, specified in Makefile) are grouped:
+The machinery is in  taskscripts and you shouldn't need to change it.
+The original inputs for the ALMA Phasing Project (APP) are in apptasks.
+The MHO-specific stuff is in mhotasks.
 
-    something.{ps,png}  is the plot
-    something.key       is some words to briefly explain the
-                        cryptic terms in the bubbles, and
-    something.task      is all the input used to create the plots
+The files in the output directory (fruit, as specified in Makefile) are
+made with the 'tasks' target, and come in groups:
+
+    mho-something.{ps,png}  is the dot-generated plot
+    mho-something.key       are some words to briefly explain the
+                            cryptic terms in the bubbles, and
+    mho-something.task      is all the input used to create the specific plot
 
 All of this is driven by the primary input file MHO_task.txt.  A new,
-computed version of this is emitted as something.new.
+computed version of this is emitted as fruit/mho.new along with a few
+other global things.
 
-All information in this file is really part of key, value pairings.
-One a key is mentioned (something = ...) the value may grow with
+All information in this file is really part of key=value pairings.
+One a key is mentioned (key = ...) the value assigned will grow with
 additional lines until the next keyword, blank line or comment.
+(Lines beginning with # are comments, # within a line is not yet
+considered as a comment.)
 
 At the moment, the "somethings" are (by nickname):
 
@@ -33,7 +41,8 @@ At the moment, the "somethings" are (by nickname):
     STUFF       everything else
 
 and these are either "domains" (topics in the work breakdown structure)
-or "things" (several of which constitute a domain):
+which contain a number of "things".  Domains are individually plotted.
+(Things are like colored, but may not yet be separately plotted.)
 
   domain = collection of related things
   thing  = some piece of a domain, which is a collection of tasks
@@ -46,20 +55,40 @@ or "things" (several of which constitute a domain):
 nick(names) automatically create abbreviations referenced as @....
 You can also create them with @abbr = expansion lines.
 
-tasks require the following (in addition)
+Anytime you create something (domain, thing or task) immediately
+give it a description and a UNIQUE nickname and be thinking of
+how it might connect (simply) to other things.
+
+Use UPPERCASE for Domain nicknames, CamelCase for Thing nicknames
+and all lowercase for tasks.  These all turn into node names in dot,
+so don't go nuts on special characters.  Names of domains should be
+titles, things and tasks should be normal text.  The desc(ription)
+should not be particularly terse--someone else should understand it.
+
+Nicknames need to be unique:  I've conventionally used 'thing-task',
+which makes it easier to connect tasks in the same thing that depend
+on each other.  Dot goes nuts if there are too many connections, so
+think in terms of the fewest tasks for entry and exit to a thing.
+
+The nick(name), needs (predecessors) and allows (successor) items for
+a task are used to connect the nodes in the diagrams.  Connections should be
+made only between tasks.  (Things and Domains are collections of tasks that
+could get a box around them.)
+
+tasks should also have the following:
 
   path   = where thing is to be found in the CVS repository (or none)
   code   = C,C++,Python,Bash,Java,Other,None
   who    = ,-sep list of workers (worker[:effort]) or institutions
 
-but may also have
+and may also have
 
   notes  = where more about the thing/task is to be found
   level  = easy/moderate/difficult
   issues = open issues relevant to planning
-  orient = portrait/landscape
 
-(and other internal variables are derived: pri,sec,men).
+(and there are other internal variables that are derived: for example,
+who turns into pri[mary],sec[condary],[otherwise]men[tioned].)
 
 timeline information
 
@@ -73,18 +102,6 @@ timeline information
   allows = list of successor tasks
 
 (and derived internally are: uid,begin,mjds,flex,end,preps,leads).
-
-Use UPPERCASE for Domain nicknames, CamelCase for Thing nicknames
-and all lowercase for tasks.  These all turn into node names in dot,
-so don't go nuts on special characters.  Names of domains should be
-titles, things and tasks should be normal text.
-
-Nicknames need to be unique.  Use thing-task in general, which makes
-it easier to connect tasks in different things that depend on each other.
-The nick(name), needs and allows items work in the same namespace and are
-used to connect the nodes (nick) in the diagrams.  Connections should be
-made only between tasks.  (Things and Domains are collections of tasks that
-could get a box around them.)
 
 Abbreviations get used in descriptions, or in the case of dates, the start
 or stop dates.
@@ -107,17 +124,61 @@ various other nicknames).
 Note that 'who' is an indication of who might do the work, but the
 (relatively trivial) computations all are made assuming there is just
 one person doing actual work....  (The logic to juggle multiple-people
-efforts was never implemented, or in the event, needed.)
+efforts was never implemented, or in the event, needed for APP.)
 
 Missing information is filled in from last relevant information seen.
-Note that a complete task is really a domain/thing/task, but as tasks
+Note that a complete task is really a domain/thing/task trio, but as tasks
 are mentioned, they are assumed to belong to the last mentioned thing
 (which is assumed to belong to the last mentioned domain).
 
 It is helpful to start by mentioning all the top-level things (domains
 and other definitions), then walk through the domains breaking them up
 into things, and then finally to walk through the things and itemizing
-the tasks.
+the tasks.  PERL complains with line numbers when parsing source...that
+usually means you have done something that doesn't work....  To get the
+ball rolling, I've been doing
+
+    make DOTDEV=png clean tasks
+
+(make clean tasks DOTDEV=png also works) and looking at the PNGs
+(which are more convenient than PDFs) rather frequently.  The document
+uses the PDFs which are more readable for fine details.  At this stage
+you shouldn't assign efforts or start/stop dates.
+
+Colors are (rather) randomly assigned.  To get persistent colors for
+things, mention them in the MHO_task_bubbles.pl file.  You'll find the
+assignments used output as comments (//) at the end of every *.dot file
+after a 'preload' comment.  Just copy 'Domain%%Thing' => number into
+the %style_preload dictionary in MHO_task_bubbles.pl.  Once you do that,
+the 'legend' file will give you the colors and their current 'domain/thing'
+assigments.  There are 50 color pairs (fill and font) defined in
+sw_task_graph.pl.  More can be added (if we discover we need this.)
+
+Things (domains only, at the moment) have
+  orient = portrait/landscape
+to control how they get plotted.  Other plotting controls are in
+MHO_task_config.pl.
+
+Every thing plotted, has an associated *.task file which tells you
+how all the variables were completed.  In particular start and/or
+stop may be set to 'depends' which means that there is not enough
+information to compute it usefully.  Once the structure of the graphs
+are sensible, you an begin to assign effort levels and start seeing
+computed dates.  (Once 'depends' no longer turns up you have provided
+enough information.)  However, you should also start to see margins
+that show up.  Negative margins means you have too much to do.  ;-)
+
+The dot plots contain the name of the task (color-coded by thing) with
+start, stop and percent completed.  If start or stop is 'depends' it
+means that we don't know yet when this should be.  Likewise, the
+margin will show 0% until it can actually be computed.
+
+Each domain graph may contain tasks from other domains (but not the
+rest of the graph) to show you the external dependencies.
+
+The document built in this directory attempts to capture all the
+information contained and present it in a latex friendly form to
+be ripped off for the other documents.
 
 If you have questions, contact Geoff Crew (gbc@haystack.mit.edu).
 

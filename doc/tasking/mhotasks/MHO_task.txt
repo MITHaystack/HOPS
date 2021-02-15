@@ -18,7 +18,9 @@ HEAD = task generator starts reading here
 ### some dates of interest (milestones, @t*)
 
 # It is useful to collect the timeline in one place where you can see it
-
+# @t... is used canonically to abbreviate dates for later.  As we add
+# internal check-points, they should be defined here which then allows
+# margin calculations for tasks that lead up to that date.
 @tEARLY = 2019-08-15
 @tSTART = 2019-09-01
 @tHILO  = 2019-12-04
@@ -26,8 +28,11 @@ HEAD = task generator starts reading here
 @tJHIRE = 2020-09-14
 @tREQS  = 2020-12-07
 @tSREV  = 2021-02-04
+# now
 @tMREV  = 2022-09-01
+# this one is known
 @tFINAL = 2023-08-31
+# post project one can continue...
 
 ### pool of developers and other people
 @gc     = Geoff Crew
@@ -37,7 +42,10 @@ HEAD = task generator starts reading here
 @vf     = Vincent Fish
 @lm     = Lynn Matthews
 @cr     = Chet Ruszczyk
+@cl     = Colin Lonsdale
 # ... add any other names you know...
+@lb     = Lindy Blackburn
+@ck     = C K Chan
 # and some groups
 @swdev  = @jb,@vp,@dh,@gc
 # @betas  = ...
@@ -51,7 +59,7 @@ HEAD = task generator starts reading here
 tdefs   = milestask
 path    = none
 code    = none
-days    = 1
+days    = 0
 desc    = A planning date assumed to prevent useful work
 who     = @none
 
@@ -215,29 +223,29 @@ desc   = Something to gobble up free time
 domain = @GENERAL
 thing  = @Milestones
 
-task   = Do pre-award things
+task   = Asked to do pre-award things
 nick   = Miles-early
 @milestask
 desc   = Subcontract award finalization starts
 start  = @tEARLY
 
-task   = Get the money, start work
+task   = Now have the money, can start work
 nick   = Miles-start
 desc   = Official start date for project
 start  = @tSTART
 needs  = Miles-early
 
-task   = Have all the requirements
+task   = Now have all the requirements
 nick   = Miles-requirements
 desc   = when the requirements are needed for review
 start  = @tREQS
 needs  = Meetings-ponder
 
-task   = Finish the project
+task   = Declare the project finished
 nick   = Miles-finish
 desc   = official completion date for project
 start  = @tFINAL
-needs  = Margin-dunno
+needs  = Meetings-final
 
 thing  = @Meetings
 

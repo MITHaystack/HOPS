@@ -35,7 +35,8 @@ our %wbs;
 our ($date_pat,$mjd_pat);
 our ($verb,$veryverb);
 
-my ($gBegin,$gEnd) = (55788,57249);     # 2011-08-15 - 2015-08-15
+#my ($gBegin,$gEnd) = (55788,57249);     # 2011-08-15 - 2015-08-15
+our ($gBegin,$gEnd);
 
 #
 # This routine computes begin/end from start/stop

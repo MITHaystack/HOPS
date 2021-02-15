@@ -74,6 +74,9 @@ our $veryverb = $opts{'w'};
 our ($same,$legend);
 $verb = 1 if ($veryverb);
 
+# it is not clear how these must be set
+our ($gBegin,$gEnd) = (50000,70000);
+
 #
 # Main program
 #

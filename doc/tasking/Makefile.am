@@ -39,7 +39,11 @@ sync: $(taskingscripts) $(mhoinputs)
 	touch sync
 
 # this builds everything
-mhoarg = -i MHO_task.txt -b MHO_task_bubbles.pl -c MHO_task_config.pl
+DOTDEV = pdf
+mhoarg = -d ${DOTDEV} \
+	 -i MHO_task.txt \
+	 -b MHO_task_bubbles.pl \
+	 -c MHO_task_config.pl
 fruit:	Makefile sync
 	./sw_tasks.pl -v $(mhoarg) -o fruit/$(mho) -r all -g all
 	[ -d fruit ]
