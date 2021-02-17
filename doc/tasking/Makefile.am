@@ -4,7 +4,7 @@
 # The contents of the package Copyright statement apply here.
 #
 # This makefile runs the tasking machinery to generate a tasking document
-# which provides some materials for, the sdp or the specifications doc.
+# which provides some materials for the SDP or the specifications doc.
 #
 
 # $(TEXPDF).pdf is built from $(TEXSRC).tex

@@ -124,6 +124,20 @@ domain = Infrastructure Setup
 nick   = INFRA
 desc   = Everything to create a working environment
 
+domain = Fourfit application development
+nick   = FOURFIT
+desc   = Build the new fourfit application
+
+domain = Calibration routine development
+nick   = CALI
+desc   = Develop the new calibration routines
+
+domain = Visualization library development
+nick   = VIZ
+desc   = Develop the new plotting and visualization tools
+
+
+
 domain = HOPS4 Documentation
 nick   = DOCS
 desc   = Production of the documents that for the HOPS4 project.
@@ -138,17 +152,13 @@ desc   = This domain covers everything not otherwise mentioned.
          It is useful to have this at the outset as a "sink" for
          all the undefined things.  Eventually it can disappear.
 
-### Build tools (automake, cmake)
-### Prototyping (containers, SWIG)
 ### HOPS3 to HOPS4 migration 
-### Fourfit application 
+
 ### alist/aedit 
 ### Algorithms 
 ### Objects 
-### Interference 
-### Calibration 
-### Processing 
-### Visualization 
+### Interfaces
+### Post-Processing 
 
 #
 ###  Things by Domain
@@ -180,6 +190,18 @@ nick   = ProtoCode
 desc   = This covers targeted experiments on how to do various things.
          There is a fuzzy line between this and actual design work for
          specific tasks...but we shall know when the line is crossed.
+
+
+# FOURFIT       Fourfit application development
+domain = @FOURFIT
+thing  = Fourfit refactoring
+nick   = FourfitRefactor
+desc   = This covers refactoring the fourfit libraries into smaller modules
+
+thing  = Fourfit expand stations channels  
+nick   = FourfitData
+desc   = This covers rewriting the fourfit modules to use the new data containers
+
 
 
 #   DOCS        HOPS4 Documentation
@@ -309,6 +331,100 @@ allows = Miles-finish
 
 #   INFRA       Infrastructure Setup
 domain = @INFRA
+
+thing  = @Repo
+
+task   = Establish github repository
+nick   = Repo-init
+desc   = Initialize a github repo, add the basic elements of HOPS, get team members connected
+start  = @tJHIRE
+needs  = Meetings-hired
+allows = Repo-build
+
+task   = Write build tools
+nick   = Repo-build
+desc   = Write the automake and cmake foundations for the new project and make sure everyone can compile the code
+start  = @tJHIRE
+needs  = Repo-init
+allows = Repo-tests
+
+task   = Import automated tests from HOPS3
+nick   = Repo-tests
+desc   = Build out the check scripts with captured data in the new project
+start  = @tJHIRE
+needs  = Repo-build
+allows = Repo-actions
+
+task   = Get an integration server or nightly test suite running
+nick   = Repo-actions
+desc   = Use something like github actions or a nightly pull/compile/test job to implement tests
+start  = tSREV
+needs  = Repo-tests
+allows =
+
+task   = Import the fourfit application libraries to the new project
+nick   = Repo-4fit
+desc   = Import the HOPS3 fourfit libraries and rebuild the application
+start  = tSREV
+needs  = Repo-build
+
+task   = Refactor the fourfit libraries
+nick   = Repo-4fitrefact
+desc   = Break up the fourfit libraries into modular pieces, to enable rewrite
+start  = tSREV
+needs  = Repo-4fit
+
+
+thing  = @ProtoCode
+
+task   = Build the new data containers
+nick   = ProtoCode-containers
+desc   = Build the cpp classes that define the new data containers
+code   = C
+start  = tSTART
+needs  = Miles-start
+
+task   = Test the performance of the new data containers
+nick   = ProtoCode-containertest
+desc   = Profile the memory performance of the new data containers
+code   = C
+start  = tSREV
+needs  = ProtoCode-containers
+
+task   = Prototype the SWIG bindings
+nick   = ProtoCode-swig
+desc   = Write the compilation steps for the SWIG bindings with the autmake tools
+start  = tJHIRE
+needs  = Repo-build
+
+task   = Test the SWIG bindings
+nick   = ProtoCode-swigtest
+desc   = Check that the SWIG bindings work with the new data containers, move arrays back and forth
+code   = Python
+start  = tSREV
+needs  = ProtoCode-swig,ProtoCode-containers
+
+
+task   = Prototype fringe plot without PGPLOT
+nick   = ProtoCode-fringeplot
+desc   = Demonstrate that we can make a fringe plot with matplotlib
+code   = Python
+start  = tJHIRE
+needs  = Repo-build
+
+task   = Test an interactive plotting GUI
+nick   = ProtoCode-interactivefringeplot
+desc   = Demonstrate interactive plotting tools with matplotlib
+code   = Python
+needs  = ProtoCode-fringeplot
+
+
+
+
+
+
+
+
 
 #   DOCS        HOPS4 Documentation
 domain = @DOCS
