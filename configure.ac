@@ -344,6 +344,7 @@ AC_CONFIG_FILES(
     doc/common/Makefile
     doc/texmiss/Makefile
     doc/covertest/Makefile
+    doc/tasking/Makefile
     doc/develplan/Makefile
     doc/geodetic/Makefile
     doc/requirements/Makefile
@@ -351,11 +352,10 @@ AC_CONFIG_FILES(
     doc/testreports/Makefile
     doc/userman/Makefile
 )
-# still to do:
+# still to do (perhaps):
     # doc/code_outline/Makefile
     # doc/reference/Makefile
     # doc/specification/code/Makefile # ?
-    # doc/developer/Makefile
 
 # data and scripting for system tests
 #AC_CONFIG_FILES()

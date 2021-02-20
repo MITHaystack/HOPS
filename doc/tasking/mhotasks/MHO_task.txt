@@ -1,0 +1,542 @@
+# This is the list of domains/things/tasks for the HOPS4 project.
+
+# The items in this list are trying to capture interconnectedness
+# (through the needs/allows fields) and approximate dates. It's a 
+# living document, changes will be frequent.  See MHO_task_inputs.txt
+# for some explanations of this file.  ### is meant to be grepped for
+# structure, and # to be grepped out.
+
+###
+HEAD = task generator starts reading here
+
+### some common abbreviations (saving you typing)
+
+@vlbi   = Very Long Base Interferometry
+@sec    = Section
+@req    = the HOPS4 Requirements document
+
+### some dates of interest (milestones, @t*)
+
+# It is useful to collect the timeline in one place where you can see it
+# @t... is used canonically to abbreviate dates for later.  As we add
+# internal check-points, they should be defined here which then allows
+# margin calculations for tasks that lead up to that date.
+@tEARLY = 2019-08-15
+@tSTART = 2019-09-01
+@tHILO  = 2019-12-04
+@tJPOST = 2020-02-10
+@tJHIRE = 2020-09-14
+@tREQS  = 2020-12-07
+@tSREV  = 2021-02-04
+# now
+@tMREV  = 2022-09-01
+# this one is known
+@tFINAL = 2023-08-31
+# post project one can continue...
+
+### pool of developers and other people
+@gc     = Geoff Crew
+@jb     = John Barrett
+@vp     = Violet Pfeiffer
+@dh     = Dan Hoak
+@vf     = Vincent Fish
+@lm     = Lynn Matthews
+@cr     = Chet Ruszczyk
+@cl     = Colin Lonsdale
+# ... add any other names you know...
+@lb     = Lindy Blackburn
+@ck     = C K Chan
+# and some groups
+@swdev  = @jb,@vp,@dh,@gc
+# @betas  = ...
+@all    = team
+@none   = not assigned yet
+
+### some common task definitions
+# note that after using these to set default values you can
+# then refine effort &c. with subsequent assignments.
+
+tdefs   = milestask
+path    = none
+code    = none
+days    = 0
+desc    = A planning date assumed to prevent useful work
+who     = @none
+
+tdefs   = gentask
+path    = none
+code    = none
+days    = 1
+desc    = Some general work without any code or path
+who     = @none
+
+tdefs   = ctask
+path    = fixme
+code    = C
+days    = 1
+desc    = C coding work
+who     = @none
+
+tdefs   = cpptask
+path    = fixme
+code    = C
+days    = 1
+desc    = C++ coding work
+who     = @none
+
+tdefs   = pytask
+path    = fixme
+code    = Python
+days    = 1
+desc    = Python coding work
+who     = @none
+
+tdefs   = shtask
+path    = fixme
+code    = Bash
+days    = 1
+desc    = Bash coding work
+who     = @none
+
+tdefs   = testask
+path    = fixme
+code    = None
+days    = 1
+desc    = A testing task
+who     = @none
+
+tdefs   = editask
+path    = fixme
+code    = None
+days    = 1
+desc    = An editing or writing task
+who     = @none
+
+#
+### Major Domains of activity
+#
+
+domain = General Project Activities
+nick   = GENERAL
+desc   = This covers things not better captured elsewhere
+
+domain = Infrastructure Setup
+nick   = INFRA
+desc   = Everything to create a working environment
+
+domain = Fourfit application development
+nick   = FOURFIT
+desc   = Build the new fourfit application
+
+domain = Calibration routine development
+nick   = CALI
+desc   = Develop the new calibration routines
+
+domain = Visualization library development
+nick   = VIZ
+desc   = Develop the new plotting and visualization tools
+
+
+
+domain = HOPS4 Documentation
+nick   = DOCS
+desc   = Production of the documents that for the HOPS4 project.
+         This includes the initial plan, the requirements,
+         the software development plan, the coverage and test
+         plan and later, test reports and man pages and user manuals.
+
+# this is a placeholder
+domain = Everything Else
+nick   = STUFF
+desc   = This domain covers everything not otherwise mentioned.
+         It is useful to have this at the outset as a "sink" for
+         all the undefined things.  Eventually it can disappear.
+
+### HOPS3 to HOPS4 migration 
+
+### alist/aedit 
+### Algorithms 
+### Objects 
+### Interfaces
+### Post-Processing 
+
+#
+###  Things by Domain
+#
+
+#   GENERAL     General Project Activities
+domain = @GENERAL
+thing  = Milestones
+nick   = Miles
+desc   = This contains various dates in the overview timeline
+
+thing  = Meetings and Other Activities
+nick   = Meetings
+desc   = This covers meetings (zoom or otherwise) and
+         various discussions and bureaucracy that are not
+         otherwise captured in work-type tasks but which
+         still eat time
+
+#   INFRA       Infrastructure Setup
+domain = @INFRA
+thing  = Repository related things
+nick   = Repo
+desc   = This covers creation and maintenance of the repository, as
+         well as other things that happen at the repository level such
+         as build systems, filesystem refactoring, &c.
+
+thing  = Prototyping activities
+nick   = ProtoCode
+desc   = This covers targeted experiments on how to do various things.
+         There is a fuzzy line between this and actual design work for
+         specific tasks...but we shall know when the line is crossed.
+
+
+# FOURFIT       Fourfit application development
+domain = @FOURFIT
+
+thing  = Importing and building fourfit
+nick   = FourfitImport
+desc   = This covers importing the HOPS3 libraries and building a
+         working fourfit application in the HOPS4 codebase
+
+thing  = Refactoring fourfit
+nick   = FourfitRefactor
+desc   = This covers refactoring the fourfit librairies into new modules
+         with the new data containers; by the end of this task, we should
+	 have a fourfit that works for unlimited stations/baselines/channels
+
+thing  = Extending fourfit with new functionality
+nick   = FourfitExtend
+desc   = This covers new functions and interfaces to fourfit: new operators,
+         calibration routines, python bindings, flagging, and so on.
+
+
+
+
+
+#   DOCS        HOPS4 Documentation
+domain = @DOCS
+thing  = Project Development Plan
+nick   = ProjPlan
+desc   = This refers to the initial plan drawn up at the outset
+         (before the project started).  Portions of it are later
+         captured in other documents, and the remainder that still
+         applies is in the Software Development Plan
+
+thing  = Requirements
+nick   = ReqsDoc
+desc   = Define the requirements of the HOPS4 project
+
+thing  = Coverage and Testing
+nick   = CoTestDoc
+desc   = Define the tests that will be used in HOPS4
+
+thing  = Specifications
+nick   = SpecsDoc
+desc   = Define the technical details of the HOPS4 project
+
+thing  = Software Development Plan
+nick   = SDPlanDoc
+desc   = Describe the work plan of the HOPS4 project
+
+### more documentation
+
+#   STUFF       everything else
+domain = @STUFF
+thing  = Project Time Margin
+nick   = Margin
+desc   = Something to gobble up free time
+
+#
+###  Tasks by Thing by Domain
+#
+
+#   GENERAL     General Project Activities
+domain = @GENERAL
+thing  = @Milestones
+
+task   = Asked to do pre-award things
+nick   = Miles-early
+@milestask
+desc   = Subcontract award finalization starts
+start  = @tEARLY
+
+task   = Now have the money, can start work
+nick   = Miles-start
+desc   = Official start date for project
+start  = @tSTART
+needs  = Miles-early
+
+task   = Now have all the requirements
+nick   = Miles-requirements
+desc   = when the requirements are needed for review
+start  = @tREQS
+needs  = Meetings-ponder
+
+task   = Declare the project finished
+nick   = Miles-finish
+desc   = official completion date for project
+start  = @tFINAL
+needs  = Meetings-final
+
+thing  = @Meetings
+
+task   = Post for new hires
+@gentask
+nick   = Meetings-posting
+desc   = hire software developer(s)
+start  = @tJPOST
+needs  = Miles-start
+who    = @cr
+
+task   = Interview candidates
+nick   = Meetings-interviews
+desc   = no need to expand on this
+needs  = Meetings-posting
+who    = @cr,@jb,@gc
+
+task   = Complete hiring
+nick   = Meetings-hired
+desc   = actually hire software developers
+start  = @tJHIRE
+needs  = Meetings-interviews
+
+task   = Hilo Presentation
+nick   = Meetings-hilo
+desc   = Present initial plans and hold discussions with
+         EHT software group at the Hilo Meeting
+start  = @tHILO
+needs  = Miles-start
+
+task   = Collect Requirements
+nick   = Meetings-ponder
+desc   = This covers conversations with various people
+         to understand what this rewrite of HOPS is to
+         accomplish
+needs  = Miles-start
+
+task   = Review the project with sponsor
+nick   = Meetings-review
+desc   = The software foundational review
+start  = @tSREV
+needs  = Miles-requirements
+
+task   = Internal progress review
+nick   = Meetings-internal
+desc   = An internal review after document and prototyping completion
+needs  = Meetings-review
+
+task   = Pause for internal-review/reassessment at the midpoint
+nick   = Meetings-midpoint
+desc   = An midpoint (informal) review
+start  = @tMREV
+needs  = Meetings-internal
+
+task   = A review at the end of the project
+nick   = Meetings-final
+desc   = An midpoint (informal) review
+start  = @tMREV
+needs  = Meetings-midpoint
+allows = Miles-finish
+
+#   INFRA       Infrastructure Setup
+domain = @INFRA
+
+# Repository tasks
+thing  = @Repo
+
+task   = Establish github repository
+nick   = Repo-init
+desc   = Initialize a github repo, add the basic elements of HOPS, get team members connected
+start  = @tJHIRE
+needs  = Meetings-hired
+allows = Repo-build
+
+task   = Write build tools
+nick   = Repo-build
+desc   = Write the automake and cmake foundations for the new project and make sure everyone can compile the code
+start  = @tJHIRE
+needs  = Repo-init
+allows = Repo-tests
+
+task   = Import automated tests from HOPS3
+nick   = Repo-tests
+desc   = Build out the check scripts with captured data in the new project
+start  = @tJHIRE
+needs  = Repo-build
+allows = Repo-actions
+
+task   = Get an integration server or nightly test suite running
+nick   = Repo-actions
+desc   = Use something like github actions or a nightly pull/compile/test job to implement tests
+start  = tSREV
+needs  = Repo-tests
+allows =
+
+# Prototyping tasks
+thing  = @ProtoCode
+
+task   = Build the new data containers
+nick   = ProtoCode-containers
+desc   = Build the cpp classes that define the new data containers
+code   = C
+start  = tSTART
+needs  = Miles-start
+
+task   = Test the performance of the new data containers
+nick   = ProtoCode-containertest
+desc   = Profile the memory performance of the new data containers
+code   = C
+start  = tSREV
+needs  = ProtoCode-containers
+
+task   = Prototype the SWIG bindings
+nick   = ProtoCode-swig
+desc   = Write the compilation steps for the SWIG bindings with the autmake tools
+start  = tJHIRE
+needs  = Repo-build
+
+task   = Test the SWIG bindings
+nick   = ProtoCode-swigtest
+desc   = Check that the SWIG bindings work with the new data containers, move arrays back and forth
+code   = Python
+start  = tSREV
+needs  = ProtoCode-swig,ProtoCode-containers
+
+task   = Prototype fringe plot without PGPLOT
+nick   = ProtoCode-fringeplot
+desc   = Demonstrate that we can make a fringe plot with matplotlib
+code   = Python
+start  = tJHIRE
+needs  = Repo-build
+
+task   = Test an interactive plotting GUI
+nick   = ProtoCode-interactivefringeplot
+desc   = Demonstrate interactive plotting tools with matplotlib
+code   = Python
+needs  = ProtoCode-fringeplot
+
+
+#   FOURFIT       Refactoring Fourfit
+domain = @FOURFIT
+
+# Importing tasks
+thing  = @FourfitImport
+
+task   = Import the fourfit application libraries to the new project
+nick   = FourfitImport-libraries
+desc   = Import the HOPS3 fourfit libraries and rebuild the application
+start  = tSREV
+days   = 10
+needs  = Repo-build
+
+# Refactoring tasks
+# Some of these maybe should be promoted to things?
+thing  = FourfitRefactor
+
+task   = Refactor the fourfit libraries
+nick   = FourfitRefactor-refactor
+desc   = Break up the fourfit libraries into modular pieces, to enable rewrite
+start  = 2021-03-01
+days   = 10
+needs  = FourfitImport-libraries
+
+task   = Use new data containers
+nick   = FourfitRefactor-containers
+desc   = Modify fourfit to use the new data containers
+start  = 2021-03-15
+days   = 10
+needs  = FourfitRefactor-refactor,ProtoCode-containers
+
+task   = Regression test
+nick   = FourfitRefactor-regress1
+desc   = Test the new fourfit application with legacy data
+#start  = 2021-03-15
+#days   = 10
+needs  = FourfitRefactor-containers
+
+task   = Write data conversion routines
+nick   = FourfitRefactor-fileconvert
+desc   = Modify the fourfit import/export to convert difx, mk4, formats
+start  = 2021-03-30
+days   = 10
+needs  = FourfitRefactor-containers
+
+task   = Populate data operators
+nick   = FourfitRefactor-operators
+desc   = Add new data operators to fourfit libraries
+#start  = 2021-03-30
+#days   = 10
+needs  = FourfitRefactor-containers
+
+
+
+
+
+
+
+
+
+#   DOCS        HOPS4 Documentation
+domain = @DOCS
+
+thing  = @ReqsDoc
+task   = Create first draft of @ReqsDoc
+nick   = ReqsDoc-draft
+@etask
+desc   = Draft the requirements document
+#start = 2019-12-01
+#days  = 365
+needs  = Meetings-hilo
+allows = Meetings-review
+
+thing  = @CoTestDoc
+task   = Create first draft of @CoTestDoc
+nick   = CoTestDoc-draft
+@etask
+desc   = Draft the testing document
+#start  = 2020-12-01
+#days   = 30
+needs  = ReqsDoc-draft
+allows = Meetings-review
+
+thing  = @SpecsDoc
+task   = Create first draft of @SpecsDocsDoc
+nick   = SpecsDocs-draft
+@etask
+desc   = Write the specifications document
+#start  = 2019-12-01
+#days   = 365
+needs  = ReqsDoc-draft
+allows = Meetings-internal
+
+thing  = @SDPlanDoc
+task   = Create first draft of @SDPlanDocs
+nick   = SDPlanDoc-draft
+@etask
+desc   = Write the development plan
+#start  = 2020-12-01
+days   = 30
+needs  = ReqsDoc-draft
+allows = Meetings-internal
+
+#   STUFF       everything else
+domain = @STUFF
+thing  = @Margin
+
+task   = unspecified
+nick   = Margin-dunno
+@gentask
+desc   = for the moment collect all the time not yet allocated to
+         specific task work
+allows = Meetings-final
+
+TAIL = task generator stops reading here
+###
+
+# hey look, I found $20!
+
+#
+# eof
+#
