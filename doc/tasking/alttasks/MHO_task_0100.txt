@@ -1,0 +1,91 @@
+file   = MHO_task_0100.txt
+
+#   GENERAL     General Project Activities
+domain = @GENERAL
+thing  = @Milestones
+
+task   = Asked to do pre-award things
+nick   = Miles-early
+@milestask
+desc   = Subcontract award finalization starts
+start  = @tEARLY
+
+task   = Now have the money, can start work
+nick   = Miles-start
+desc   = Official start date for project
+start  = @tSTART
+needs  = Miles-early
+
+task   = Now have all the requirements
+nick   = Miles-requirements
+desc   = when the requirements are needed for review
+start  = @tREQS
+needs  = Meetings-ponder
+
+task   = Declare the project finished
+nick   = Miles-finish
+desc   = official completion date for project
+start  = @tFINAL
+needs  = Meetings-final
+
+thing  = @Meetings
+
+task   = Post for new hires
+@gentask
+nick   = Meetings-posting
+desc   = hire software developer(s)
+start  = @tJPOST
+needs  = Miles-start
+who    = @cr
+
+task   = Interview candidates
+nick   = Meetings-interviews
+desc   = no need to expand on this
+needs  = Meetings-posting
+who    = @cr,@jb,@gc
+
+task   = Complete hiring
+nick   = Meetings-hired
+desc   = actually hire software developers
+start  = @tJHIRE
+needs  = Meetings-interviews
+
+task   = Hilo Presentation
+nick   = Meetings-hilo
+desc   = Present initial plans and hold discussions with
+         EHT software group at the Hilo Meeting
+start  = @tHILO
+needs  = Miles-start
+
+task   = Collect Requirements
+nick   = Meetings-ponder
+desc   = This covers conversations with various people
+         to understand what this rewrite of HOPS is to
+         accomplish
+needs  = Miles-start
+
+task   = Review the project with sponsor
+nick   = Meetings-review
+desc   = The software foundational review
+start  = @tSREV
+needs  = Miles-requirements
+
+task   = Internal progress review
+nick   = Meetings-internal
+desc   = An internal review after document and prototyping completion
+needs  = Meetings-review
+
+task   = Pause for internal-review/reassessment at the midpoint
+nick   = Meetings-midpoint
+desc   = An midpoint (informal) review
+start  = @tMREV
+needs  = Meetings-internal
+
+task   = A review at the end of the project
+nick   = Meetings-final
+desc   = An midpoint (informal) review
+start  = @tMREV
+needs  = Meetings-midpoint
+allows = Miles-finish
+
+#   INFRA       Infrastructure Setup
