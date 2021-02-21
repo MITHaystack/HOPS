@@ -14,28 +14,30 @@ TEXSRC=tasks
 # how generated task files get named; change this to capture
 # historical copies at various times with 'make save'
 # mho=alt gets you the alt version
-mho=mho
+mho=alt
+MHO=MHO_task
 
 # everything from $(srcdir) included from $(TEXSRC).tex
 # needs to be listed here with a $(srcdir)/ path prefix
 appsamples = apptasks/APP_task.txt apptasks/APP_task_inputs.txt \
 	apptasks/APP_task_bubbles.pl apptasks/APP_task_config.pl
 # mhoinputs shall be stable for a bit
-mhoinputs = mhotasks/MHO_task.txt mhotasks/MHO_task_inputs.txt \
-	mhotasks/MHO_task_bubbles.pl mhotasks/MHO_task_config.pl
+mhoinputs = mhotasks/$(MHO).txt mhotasks/$(MHO)_inputs.txt \
+	mhotasks/$(MHO)_bubbles.pl mhotasks/$(MHO)_config.pl
 # a hacking around version
-altinputs = alttasks/MHO_task_inputs.txt \
-	alttasks/MHO_task_0000.txt alttasks/MHO_task_ZZZZ.txt \
-	alttasks/MHO_task_0001.txt alttasks/MHO_task_0010.txt \
-	alttasks/MHO_task_0100.txt alttasks/MHO_task_0200.txt \
-	alttasks/MHO_task_0300.txt alttasks/MHO_task_0400.txt \
-	alttasks/MHO_task_0500.txt \
-	alttasks/MHO_task_bubbles.pl alttasks/MHO_task_config.pl
+altinputs = alttasks/$(MHO)_inputs.txt \
+	alttasks/$(MHO)_0000.txt alttasks/$(MHO)_ZZZZ.txt \
+	alttasks/$(MHO)_0001.txt alttasks/$(MHO)_0010.txt \
+	alttasks/$(MHO)_0100.txt alttasks/$(MHO)_0200.txt \
+	alttasks/$(MHO)_0300.txt alttasks/$(MHO)_0400.txt \
+	alttasks/$(MHO)_0500.txt \
+	alttasks/$(MHO)_bubbles.pl alttasks/$(MHO)_config.pl
 
 # the perl scripts that run the task machinery
 taskingscripts = taskscripts/sw_tasks.pl taskscripts/sw_task_graph.pl \
 	taskscripts/sw_task_mjd.pl taskscripts/sw_task_parser.pl \
-	taskscripts/sw_task_timeline.pl taskscripts/sw_task_wbs.pl
+	taskscripts/sw_task_timeline.pl taskscripts/sw_task_wbs.pl \
+	taskscripts/sw_task_split.pl
 
 EXTRA_DIST = $(srcdir)/$(TEXSRC).tex \
 	$(appsamples) $(mhoinputs) $(altinputs) $(taskingscripts)
@@ -53,19 +55,24 @@ sync: $(taskingscripts) $(mhoinputs) $(altinputs)
 # this builds everything
 DOTDEV = png # pdf
 mhoarg = -d ${DOTDEV} \
-	 -i MHO_task.txt \
-	 -b MHO_task_bubbles.pl \
-	 -c MHO_task_config.pl
+	 -i $(MHO).txt \
+	 -b $(MHO)_bubbles.pl \
+	 -c $(MHO)_config.pl
 # additional args
 mhoopt = -t
 fruit:	Makefile sync
-	-[ $(mho) = alt ] && cat MHO_task_[0Z]*.txt > MHO_task.txt
+	-[ $(mho) = alt ] && cat $(MHO)_[0Z]*.txt > $(MHO).txt
 	./sw_tasks.pl -v $(mhoarg) -o fruit/$(mho) -r all -g ALL $(mhoopt)
 	[ -d fruit ]
 
 # this installs the 'new' task file to the srcdir
-new:
-	cp -p fruit/$(mho)*.new $(srcdir)/$(mho)tasks
+#cp -p fruit/$(mho)*.new $(srcdir)/$(mho)tasks
+new:	fruit/split
+	cp -p fruit/$(MHO)_*.txt $(srcdir)/$(mho)tasks
+
+fruit/split:	sync
+	./sw_task_split.pl -i $(MHO).txt -o fruit
+	touch fruit/split
 
 save: fruit
 	tar zcf $(srcdir)/$(mho)tasks/save-$(mho)-`date +%Y%m%d`.tgz \
@@ -122,7 +129,7 @@ force: fruit $(EXTRA_DIST)
 	touch force
 
 CLEANFILES = $(TEXSRC).* $(TEXPDF).pdf force bibs *.log *-blx.bib \
-	sync sw_task* MHO_task* .*.swp
+	sync sw_task* $(MHO)* .*.swp
 
 clean-local:
 	-rm -rf fruit
