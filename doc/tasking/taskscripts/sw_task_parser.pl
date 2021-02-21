@@ -229,7 +229,7 @@ sub really_parse_one_line {
             &set_default_object($kv,$ln,'thing',$current_domain);
             if (defined($wbs{$current_domain}{'nick'})) {
                 ($wbs{$kv}{'nick'} = $wbs{$current_domain}{'nick'} .
-                    ':' . $bits[1]) =~ s/[@ ]//g;
+                    '-' . $bits[1]) =~ s/[@ ]//g;
             }
         }
         $current_task = $current_thing = $kv;
@@ -240,7 +240,7 @@ sub really_parse_one_line {
             &set_default_object($kv,$ln,'task',$current_thing);
             if (defined($wbs{$current_thing}{'nick'})) {
                 ($wbs{$kv}{'nick'} = $wbs{$current_thing}{'nick'} .
-                    ':' . $bits[1]) =~ s/[@ ]//g;
+                    '-' . $bits[1]) =~ s/[@ ]//g;
             }
         }
         $current_task = $kv;
