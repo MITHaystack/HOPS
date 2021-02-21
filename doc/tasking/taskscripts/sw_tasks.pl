@@ -67,7 +67,7 @@ my $config = $opts{'c'};
 my $dtype  = $opts{'d'};
 my $graphs = $opts{'g'};
 my $input  = $opts{'i'};
-my $output = $opts{'o'};
+our $output = $opts{'o'};
 my $report = $opts{'r'};
 our $sort_key = $opts{'s'};
 my $doth2  = $opts{'t'};
@@ -117,7 +117,7 @@ print "Plotting things too\n" if ($doth2);
 # make an interpreted copy
 print "Writing $output.txt\n" if ($veryverb);
 &clone_sw_task_file(">$output.txt") if ($verb);
-&clone_debugging(">$output.dbg") if ($veryverb);
+&clone_debugging(">$output-main.dbg") if ($veryverb);
 
 # fill in some blanks and eliminate commentary defaults
 print "Filling in the blanks\n" if ($verb);
@@ -162,7 +162,7 @@ if ($graphs eq 'ALL') {
     for my $d (keys(%domains)) { printf("%10s is %s\n",$wbs{$d}{'nick'},$d); }
     printf("%10s is all of the above, except ALL\n",'all');
     if ($doth2) {
-        printf("Available domains are:\n");
+        printf("Available domain%%%%things are:\n");
         for my $d (keys(%things)) {printf("%10s is %s\n",$wbs{$d}{'nick'},$d);}
     }
 } else {

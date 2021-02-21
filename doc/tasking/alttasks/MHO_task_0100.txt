@@ -2,7 +2,7 @@ file   = MHO_task_0100.txt
 
 #   GENERAL     General Project Activities
 domain = @GENERAL
-thing  = @Milestones
+thing  = @Miles
 
 task   = Asked to do pre-award things
 nick   = Miles-early

@@ -13,7 +13,7 @@ needs  = Repo-build
 
 # Refactoring tasks
 # Some of these maybe should be promoted to things?
-thing  = FourfitRefactor
+thing  = @FourfitRefactor
 
 task   = Refactor the fourfit libraries
 nick   = FourfitRefactor-refactor

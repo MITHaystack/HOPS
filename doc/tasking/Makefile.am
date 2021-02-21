@@ -51,13 +51,13 @@ sync: $(taskingscripts) $(mhoinputs) $(altinputs)
 	touch sync
 
 # this builds everything
-DOTDEV = pdf
+DOTDEV = png # pdf
 mhoarg = -d ${DOTDEV} \
 	 -i MHO_task.txt \
 	 -b MHO_task_bubbles.pl \
 	 -c MHO_task_config.pl
 # additional args
-mhoopt = 
+mhoopt =
 fruit:	Makefile sync
 	-[ $(mho) = alt ] && cat MHO_task_[0Z]*.txt > MHO_task.txt
 	./sw_tasks.pl -v $(mhoarg) -o fruit/$(mho) -r all -g ALL $(mhoopt)

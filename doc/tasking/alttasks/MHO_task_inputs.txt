@@ -33,12 +33,18 @@ additional lines until the next keyword, blank line or comment.
 (Lines beginning with # are comments, # within a line is not yet
 considered as a comment.)
 
-At the moment, the "somethings" are (by nickname):
+At the moment, the "somethings" are (by nickname, this list comes
+from executing  sw_tasks.pl -g help -i MHO_task.txt):
 
-    GENERAL     General Project Activities
-    INFRA       Infrastructure Setup
-    DOCS        HOPS4 Documentation
-    STUFF       everything else
+       ALL is everything
+     STUFF is Everything Else
+   GENERAL is General Project Activities
+      CALI is Calibration routine development
+     INFRA is Infrastructure Setup
+       VIZ is Visualization library development
+   FOURFIT is Fourfit application development
+      DOCS is HOPS4 Documentation
+       all is all of the above, except ALL
 
 and these are either "domains" (topics in the work breakdown structure)
 which contain a number of "things".  Domains are individually plotted.
@@ -179,6 +185,20 @@ rest of the graph) to show you the external dependencies.
 The document built in this directory attempts to capture all the
 information contained and present it in a latex friendly form to
 be ripped off for the other documents.
+
+Finally, since the main task file will get to be too large to have
+multiple people hacking on it, it can be broken up (arbitrarily) into
+a set of files with names MHO_task_????.txt where ???? are [0-9a-zA-Z]
+which are sorted and concatenated into a single MHO_task.txt to run.
+The pieces should be internally labelled with a 
+
+  file = MHO_task_????.txt
+
+directive at the break point.  0000 is the HEAD material, 0001 the
+list of domains, 0010 is the list of things by domain, and 0?00 is
+the list of tasks by thing, and ZZZZ is the TAIL material.
+(Hopefully 62^4 is enough files.)  MHO_task.txt as used is created
+in the build directory.
 
 If you have questions, contact Geoff Crew (gbc@haystack.mit.edu).
 

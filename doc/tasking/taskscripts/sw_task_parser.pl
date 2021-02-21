@@ -17,6 +17,7 @@ our $sep = '%%';
 # the files in use
 our %files;
 # verbose for feedback, veryverb for debugging
+our $output;
 our $verb;
 our $veryverb;
 
@@ -364,6 +365,7 @@ sub parse_sw_task_file {
     my ($file) = @_;
     my ($ok,$hdr,$guts,$ftr) = (0,'','','');
     $current_file = $file;
+    &dump_open(">$output-parse.dbg") if ($veryverb);
     open(DATA,"<",$file);
     while (<DATA>) {
         chomp;
@@ -373,6 +375,7 @@ sub parse_sw_task_file {
         elsif ( $ok == 2 ) { $ftr .= $_ . "\n"; }
         else  { $guts .= &parse_one_line($_,$.); }
     }
+    &dump_close() if ($veryverb);
     close(DATA);
     return($hdr,$guts,$ftr);
 }
@@ -389,6 +392,12 @@ sub dump_abbrevs {
     for my $td (sort(keys(%abbrevs))) {
         print DEBUG "ABBR: $td = >" . $abbrevs{$td} . "<\n";
     }
+}
+sub dump_open {
+    open(DEBUG,$_[0]);
+}
+sub dump_close {
+    close(DEBUG);
 }
 
 #

@@ -2,7 +2,7 @@ file   = MHO_task_0010.txt
 
 #   GENERAL     General Project Activities
 domain = @GENERAL
-thing  = Milestones
+thing  = Milestones for the project
 nick   = Miles
 desc   = This contains various dates in the overview timeline
 
