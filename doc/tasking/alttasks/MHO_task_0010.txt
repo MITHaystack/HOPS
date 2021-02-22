@@ -1,0 +1,89 @@
+file   = MHO_task_0010.txt
+
+#   GENERAL     General Project Activities
+domain = @GENERAL
+thing  = Milestones for the project
+nick   = Miles
+desc   = This contains various dates in the overview timeline
+
+thing  = Meetings and Other Activities
+nick   = Meetings
+desc   = This covers meetings (zoom or otherwise) and
+         various discussions and bureaucracy that are not
+         otherwise captured in work-type tasks but which
+         still eat time
+
+#   INFRA       Infrastructure Setup
+domain = @INFRA
+thing  = Repository related things
+nick   = Repo
+desc   = This covers creation and maintenance of the repository, as
+         well as other things that happen at the repository level such
+         as build systems, filesystem refactoring, &c.
+
+thing  = Prototyping activities
+nick   = ProtoCode
+desc   = This covers targeted experiments on how to do various things.
+         There is a fuzzy line between this and actual design work for
+         specific tasks...but we shall know when the line is crossed.
+
+
+# FOURFIT       Fourfit application development
+domain = @FOURFIT
+
+thing  = Importing and building fourfit
+nick   = FourfitImport
+desc   = This covers importing the HOPS3 libraries and building a
+         working fourfit application in the HOPS4 codebase
+
+thing  = Refactoring fourfit
+nick   = FourfitRefactor
+desc   = This covers refactoring the fourfit librairies into new modules
+         with the new data containers; by the end of this task, we should
+	 have a fourfit that works for unlimited stations/baselines/channels
+
+thing  = Extending fourfit with new functionality
+nick   = FourfitExtend
+desc   = This covers new functions and interfaces to fourfit: new operators,
+         calibration routines, python bindings, flagging, and so on.
+
+
+
+
+
+#   DOCS        HOPS4 Documentation
+domain = @DOCS
+thing  = Project Development Plan
+nick   = ProjPlan
+desc   = This refers to the initial plan drawn up at the outset
+         (before the project started).  Portions of it are later
+         captured in other documents, and the remainder that still
+         applies is in the Software Development Plan
+
+thing  = Requirements
+nick   = ReqsDoc
+desc   = Define the requirements of the HOPS4 project
+
+thing  = Coverage and Testing
+nick   = CoTestDoc
+desc   = Define the tests that will be used in HOPS4
+
+thing  = Specifications
+nick   = SpecsDoc
+desc   = Define the technical details of the HOPS4 project
+
+thing  = Software Development Plan
+nick   = SDPlanDoc
+desc   = Describe the work plan of the HOPS4 project
+
+### more documentation
+
+#   STUFF       everything else
+domain = @STUFF
+thing  = Project Time Margin
+nick   = Margin
+desc   = Something to gobble up free time
+
+#
+###  Tasks by Thing by Domain
+#

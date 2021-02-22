@@ -1,0 +1,218 @@
+The current draft work is described in other documents
+
+    HOPS4-requirements.pdf
+    ... you know the list ...
+
+The 'tasking' machinery attempts to track at a granular level the
+work to be done (in few-day increments) so that the critical path
+through the entire project can be seen and managed.  The build document
+
+    HOPS4-tasking.pdf
+
+should contain various 'bubble' diagrams that hopefully are helpful.
+
+The machinery is in  taskscripts and you shouldn't need to change it.
+The original inputs for the ALMA Phasing Project (APP) are in apptasks.
+The MHO-specific stuff is in mhotasks.
+
+The files in the output directory (fruit, as specified in Makefile) are
+made with the 'tasks' target, and come in groups:
+
+    mho-something.{ps,png}  is the dot-generated plot
+    mho-something.key       are some words to briefly explain the
+                            cryptic terms in the bubbles, and
+    mho-something.task      is all the input used to create the specific plot
+
+All of this is driven by the primary input file MHO_task.txt.  A new,
+computed version of this is emitted as fruit/mho.new along with a few
+other global things.
+
+All information in this file is really part of key=value pairings.
+One a key is mentioned (key = ...) the value assigned will grow with
+additional lines until the next keyword, blank line or comment.
+(Lines beginning with # are comments, # within a line is not yet
+considered as a comment.)
+
+At the moment, the "somethings" are (by nickname, this list comes
+from executing  sw_tasks.pl -g help -i MHO_task.txt):
+
+       ALL is everything
+     STUFF is Everything Else
+   GENERAL is General Project Activities
+      CALI is Calibration routine development
+     INFRA is Infrastructure Setup
+       VIZ is Visualization library development
+   FOURFIT is Fourfit application development
+      DOCS is HOPS4 Documentation
+       all is all of the above, except ALL
+
+and these are either "domains" (topics in the work breakdown structure)
+which contain a number of "things".  Domains are individually plotted.
+Things are like colored, and may also be plotted with the -t option.
+(sw_tasks.pl -g help -i MHO_task.txt -t gives you the full list.)
+
+  domain = collection of related things
+  thing  = some piece of a domain, which is a collection of tasks
+  task   = something to be done to complete the thing
+  desc   = a more complete description of the domain/thing/task
+  nick   = short name for the domain/thing/task
+
+(other internal variables are derived: type,parent,line).
+
+nick(names) automatically create abbreviations referenced as @....
+You can also create them with @abbr = expansion lines.
+
+Anytime you create something (domain, thing or task) immediately
+give it a description and a UNIQUE nickname and be thinking of
+how it might connect (simply) to other things.  Note that nicknames
+of the form domainnickname-thingnickname-tasknickname are automatically
+generated, so it is not strictly necessary to explicitly create them.
+However, the task files are more readable that way.
+
+Use UPPERCASE for Domain nicknames, CamelCase for Thing nicknames
+and all lowercase for tasks.  These all turn into node names in dot,
+so don't go nuts on special characters.  Names of domains should be
+titles, things and tasks should be normal text.  The desc(ription)
+should not be particularly terse--someone else should understand it.
+
+Nicknames need to be unique:  I've conventionally used 'thing-task',
+which makes it easier to connect tasks in the same thing that depend
+on each other.  Dot goes nuts if there are too many connections, so
+think in terms of the fewest tasks for entry and exit to a thing.
+
+The nick(name), needs (predecessors) and allows (successor) items for
+a task are used to connect the nodes in the diagrams.  Connections should be
+made only between tasks.  (Things and Domains are collections of tasks that
+could get a box around them.)
+
+Do not use '_' in names.  The underlying plotter, dot, uses conventional
+C-type variable names and the '-' in nicknames turns into an '_' and it
+becomes somewhat ambiguous understanding the plots.
+
+Names of Domains and Things should be suitable for titles of plots.
+Thing names should be short enough to be expressed on one line in the bubble.
+(The bubble will be sized to contain it, but wide ellipses make for less
+compact graphs.)
+
+tasks should also have the following:
+
+  path   = where thing is to be found in the CVS repository (or none)
+  code   = C,C++,Python,Bash,Java,Other,None
+  who    = ,-sep list of workers (worker[:effort]) or institutions
+
+and may also have
+
+  notes  = where more about the thing/task is to be found
+  level  = easy/moderate/difficult
+  issues = open issues relevant to planning
+
+(and there are other internal variables that are derived: for example,
+who turns into pri[mary],sec[condary],[otherwise]men[tioned].)
+
+timeline information
+
+  needs  = list of predecessor tasks
+  start  = start date
+  days   = real man-days of FTE effort by pri/sec/men
+  done   = percentage complete
+  derate = multiplier on days to get calendar days
+  done   = percent complete (0-100)
+  stop   = completion date (== 'start' for milestones)
+  allows = list of successor tasks
+
+(and derived internally are: uid,begin,mjds,flex,end,preps,leads).
+
+Abbreviations get used in descriptions, or in the case of dates, the start
+or stop dates.
+
+Note that 'milestones' are captured as tasks with little to do.  ;-)
+(At the moment days > 0 is required, I think...I'll have to check.)
+
+Dates are YYYY-MM-DD format.  As spaces may be part of things, do
+not put in extra spaces (e.g. in lists).  Days of effort should not
+include weekends, so a full year is something like 240 days.
+
+For convenience, one may assign collections of task key,value pairs
+with the artifical key assignment of the key 'tdefs':
+
+  tdefs = common
+
+Thereafter the following assignments may be accessed as @common (or
+various other nicknames).
+
+Note that 'who' is an indication of who might do the work, but the
+(relatively trivial) computations all are made assuming there is just
+one person doing actual work....  (The logic to juggle multiple-people
+efforts was never implemented, or in the event, needed for APP.)
+
+Missing information is filled in from last relevant information seen.
+Note that a complete task is really a domain/thing/task trio, but as tasks
+are mentioned, they are assumed to belong to the last mentioned thing
+(which is assumed to belong to the last mentioned domain).
+
+It is helpful to start by mentioning all the top-level things (domains
+and other definitions), then walk through the domains breaking them up
+into things, and then finally to walk through the things and itemizing
+the tasks.  PERL complains with line numbers when parsing source...that
+usually means you have done something that doesn't work....  To get the
+ball rolling, I've been doing
+
+    make DOTDEV=png clean tasks
+
+(make clean tasks DOTDEV=png also works) and looking at the PNGs
+(which are more convenient than PDFs) rather frequently.  The document
+uses the PDFs which are more readable for fine details.  At this stage
+you shouldn't assign efforts or start/stop dates.
+
+Colors are (rather) randomly assigned.  To get persistent colors for
+things, mention them in the MHO_task_bubbles.pl file.  You'll find the
+assignments used output as comments (//) at the end of every *.dot file
+after a 'preload' comment.  Just copy 'Domain%%Thing' => number into
+the %style_preload dictionary in MHO_task_bubbles.pl.  Once you do that,
+the 'legend' file will give you the colors and their current 'domain/thing'
+assigments.  There are 50 color pairs (fill and font) defined in
+sw_task_graph.pl.  More can be added (if we discover we need this.)
+
+Things (domains only, at the moment) have
+  orient = portrait/landscape
+to control how they get plotted.  Other plotting controls are in
+MHO_task_config.pl.
+
+Every thing plotted, has an associated *.task file which tells you
+how all the variables were completed.  In particular start and/or
+stop may be set to 'depends' which means that there is not enough
+information to compute it usefully.  Once the structure of the graphs
+are sensible, you an begin to assign effort levels and start seeing
+computed dates.  (Once 'depends' no longer turns up you have provided
+enough information.)  However, you should also start to see margins
+that show up.  Negative margins means you have too much to do.  ;-)
+
+The dot plots contain the name of the task (color-coded by thing) with
+start, stop and percent completed.  If start or stop is 'depends' it
+means that we don't know yet when this should be.  Likewise, the
+margin will show 0% until it can actually be computed.
+
+Each domain graph may contain tasks from other domains (but not the
+rest of the graph) to show you the external dependencies.
+
+The document built in this directory attempts to capture all the
+information contained and present it in a latex friendly form to
+be ripped off for the other documents.
+
+Finally, since the main task file will get to be too large to have
+multiple people hacking on it, it can be broken up (arbitrarily) into
+a set of files with names MHO_task_????.txt where ???? are [0-9a-zA-Z]
+which are sorted and concatenated into a single MHO_task.txt to run.
+The pieces should be internally labelled with a 
+
+  file = MHO_task_????.txt
+
+directive at the break point.  0000 is the HEAD material, 0001 the
+list of domains, 0010 is the list of things by domain, and 0?00 is
+the list of tasks by thing, and ZZZZ is the TAIL material.
+(Hopefully 62^4 is enough files.)  MHO_task.txt as used is created
+in the build directory.
+
+If you have questions, contact Geoff Crew (gbc@haystack.mit.edu).
+
+eof

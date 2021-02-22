@@ -14,7 +14,10 @@ our %tasks;
 # the work breakdown structure
 our %wbs;
 our $sep = '%%';
+# the files in use
+our %files;
 # verbose for feedback, veryverb for debugging
+our $output;
 our $verb;
 our $veryverb;
 
@@ -36,7 +39,7 @@ our @keywords = (
     'who', 'pri', 'sec', 'men', 'fte',
     'uid', 'needs', 'start', 'begin', 'days', 'derate',
     'done', 'mjds', 'flex', 'end', 'stop', 'allows',
-    'preps', 'leads'
+    'preps', 'leads', 'file'
 );
 
 my %taskage = (
@@ -83,6 +86,9 @@ my %taskage = (
     'allows' => 'input: ,-sep list of successor nicks',
     'preps'  => 'derived: nick that defines start of this one',
     'leads'  => 'derived: nick that defines stop of this one',
+
+    # for multiple developers
+    'file'   => 'input: source file for the component',
 );
 
 # a hash of task defaults
@@ -96,6 +102,7 @@ my $current_domain = '';
 my $current_thing = '';
 my $current_task = '';
 my $current_item = '';
+my $current_file = 'no-such-file.txt';
 my ($domcntr,$thgcntr,$tskcntr) = (1,1,1);
 
 #
@@ -115,10 +122,12 @@ sub deabbr {
 #
 sub makeabbr {
     #my ($_,$ln,@bits) = @_;
-    local $_; my ($ln,@bits); ($_,$ln,@bits) = @_;
+    local $_; my ($ln,@bits); ($_,$ln) = @_;
+    # toss # through end of line
+    s{#.*}{};
     @bits = split(/=/);
     $bits[0] =~ s{([@]\S+)\s*}{$1};
-    $bits[1] =~ s{\s*(.*)\s*}{$1};
+    $bits[1] =~ s{\s*(.*\S+)\s*}{$1};
     $abbrevs{$bits[0]} = &deabbr($bits[1]);
     print DEBUG "# abbrev  " . $bits[0] . "->" .
             $abbrevs{$bits[0]} . "<\n" if ($veryverb);
@@ -149,6 +158,7 @@ sub set_default_object {
     $wbs{$kv}{'orient'} = 'portrait';
     $wbs{$kv}{'line'} = $ln;
     $wbs{$kv}{'nick'} = $kv;
+    $wbs{$kv}{'file'} = $current_file;
 #   $wbs{$kv}{'uid'} = $uidcntr++;
 #   for my $ii ('domain','thing','task') {
 #       $wbs{$kv}{$ii} = ($ii eq $type) ? 'true' : 'false';
@@ -175,21 +185,28 @@ sub set_default_object {
 }
 
 #
-# Parse one line of the input
+# Parse one line of the input: called with the line ($_) and number ($ln)
 #
 sub really_parse_one_line {
     #my ($_,$ln,$kv,@bits) = @_;
-    local ($_); my ($ln,$kv,@bits); ($_,$ln,$kv,@bits) = @_;
+    #local ($_); my ($ln,$kv,@bits); ($_,$ln,$kv,@bits) = @_;
+    local ($_); my ($ln,$kv,@bits); ($_,$ln) = @_;
+    # toss #.* through the end of the line
+    s{#.*}{};
     @bits = split(/=/);
+    # make sure there is a value, even if empty
     push @bits,'';
-    $bits[1] =~ s{\s*(.*)\s*}{$1};
+    # the value on the line, surrounding white-space removed
+    $bits[1] =~ s{\s*(.*\S+)\s*}{$1};
+    # now with abbreviations expanded
     $kv = &deabbr($bits[1]);
     print DEBUG '## line ' . $ln . ':' . $_ if ($veryverb);
 
-    # $current_item = '';
+    # $current_item is the key with surrounding white-space removed
     $current_item = $bits[0];
     $current_item =~ s{^\s*}{};
     $current_item =~ s{\s*$}{};
+
 
     # tdefs handling
     if ( /^tdefs/ ) {
@@ -198,7 +215,7 @@ sub really_parse_one_line {
     } elsif ( $current_taskdef ne '' ) {
         $taskdefs{$current_taskdef} .= &deabbr($_) . "%%%";
 
-    # what it is
+    # what kind of line is it -- do appropriate processing
     } elsif ( /^domain/ ) {
         if (!defined($domains{$kv})) {
             $domains{$kv} = $ln;
@@ -212,7 +229,7 @@ sub really_parse_one_line {
             &set_default_object($kv,$ln,'thing',$current_domain);
             if (defined($wbs{$current_domain}{'nick'})) {
                 ($wbs{$kv}{'nick'} = $wbs{$current_domain}{'nick'} .
-                    ':' . $bits[1]) =~ s/[@ ]//g;
+                    '-' . $bits[1]) =~ s/[@ ]//g;
             }
         }
         $current_task = $current_thing = $kv;
@@ -223,10 +240,13 @@ sub really_parse_one_line {
             &set_default_object($kv,$ln,'task',$current_thing);
             if (defined($wbs{$current_thing}{'nick'})) {
                 ($wbs{$kv}{'nick'} = $wbs{$current_thing}{'nick'} .
-                    ':' . $bits[1]) =~ s/[@ ]//g;
+                    '-' . $bits[1]) =~ s/[@ ]//g;
             }
         }
         $current_task = $kv;
+    } elsif ( /^file/ ) {
+        $current_file = $kv;
+
     } elsif ( /^line/ or /^parent/ or /^type/ or /^kids/) {
         ; # derived
 
@@ -344,6 +364,8 @@ sub parse_one_line {
 sub parse_sw_task_file {
     my ($file) = @_;
     my ($ok,$hdr,$guts,$ftr) = (0,'','','');
+    $current_file = $file;
+    &dump_open(">$output-parse.dbg") if ($veryverb);
     open(DATA,"<",$file);
     while (<DATA>) {
         chomp;
@@ -353,6 +375,7 @@ sub parse_sw_task_file {
         elsif ( $ok == 2 ) { $ftr .= $_ . "\n"; }
         else  { $guts .= &parse_one_line($_,$.); }
     }
+    &dump_close() if ($veryverb);
     close(DATA);
     return($hdr,$guts,$ftr);
 }
@@ -369,6 +392,12 @@ sub dump_abbrevs {
     for my $td (sort(keys(%abbrevs))) {
         print DEBUG "ABBR: $td = >" . $abbrevs{$td} . "<\n";
     }
+}
+sub dump_open {
+    open(DEBUG,$_[0]);
+}
+sub dump_close {
+    close(DEBUG);
 }
 
 #
