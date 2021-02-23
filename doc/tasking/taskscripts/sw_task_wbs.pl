@@ -26,7 +26,7 @@ my @simple  = ( 'desc' );
 my @inputs  = ( 'nick', 'desc', 'path', ,'code', 'notes', 'level',
                 'issues', 'orient',
                 'who', 'needs', 'start', 'days', 'derate', 'done',
-                'stop', 'allows' );
+                'stop', 'allows', 'file' );
 
 # trying to use forms
 our ($fkey,$fval);

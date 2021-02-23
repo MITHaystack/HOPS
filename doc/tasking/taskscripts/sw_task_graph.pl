@@ -306,6 +306,7 @@ sub new_node {
 
 #
 # Called to make a plot of dependencies
+# arguments are the basename, dot graph type, run dot (1) or not (0), and list of nodes
 #
 sub make_the_graph {
     my ($name,$type,$plot,@nodes) = @_;
@@ -317,6 +318,9 @@ sub make_the_graph {
     $doma = &task_by_nick($nick = $list[1]);
     $orio = $wbs{$doma}{'orient'};
     $doma =~ s/$sep/\\n/;
+
+    # orientation of ALL is a special case
+    $orio = $orientation[3] if ( $name =~ m/.*-ALL/ );
 
     open DOT,">$name.dot";
     print DOT "digraph $nick {\n";

@@ -9,6 +9,11 @@
 ###
 HEAD = task generator starts reading here
 
+#
+### common definitions
+#
+file   = MHO_task_0000.txt
+
 ### some common abbreviations (saving you typing)
 
 @vlbi   = Very Long Base Interferometry
@@ -21,7 +26,7 @@ HEAD = task generator starts reading here
 # @t... is used canonically to abbreviate dates for later.  As we add
 # internal check-points, they should be defined here which then allows
 # margin calculations for tasks that lead up to that date.
-@tEARLY = 2019-08-15
+@tEARLY = 2019-08-15    # this is approximate
 @tSTART = 2019-09-01
 @tHILO  = 2019-12-04
 @tJPOST = 2020-02-10
@@ -56,7 +61,7 @@ HEAD = task generator starts reading here
 # note that after using these to set default values you can
 # then refine effort &c. with subsequent assignments.
 
-tdefs   = milestask
+tdefs   = milestask     # for all milestones
 path    = none
 code    = none
 days    = 0
@@ -115,6 +120,7 @@ who     = @none
 #
 ### Major Domains of activity
 #
+file   = MHO_task_0001.txt
 
 domain = General Project Activities
 nick   = GENERAL
@@ -163,10 +169,11 @@ desc   = This domain covers everything not otherwise mentioned.
 #
 ###  Things by Domain
 #
+file   = MHO_task_0010.txt
 
 #   GENERAL     General Project Activities
 domain = @GENERAL
-thing  = Milestones
+thing  = Milestones for the project
 nick   = Miles
 desc   = This contains various dates in the overview timeline
 
@@ -251,10 +258,11 @@ desc   = Something to gobble up free time
 #
 ###  Tasks by Thing by Domain
 #
+file   = MHO_task_0100.txt
 
 #   GENERAL     General Project Activities
 domain = @GENERAL
-thing  = @Milestones
+thing  = @Miles
 
 task   = Asked to do pre-award things
 nick   = Miles-early
@@ -341,6 +349,7 @@ needs  = Meetings-midpoint
 allows = Miles-finish
 
 #   INFRA       Infrastructure Setup
+file   = MHO_task_0200.txt
 domain = @INFRA
 
 # Repository tasks
@@ -419,6 +428,7 @@ needs  = ProtoCode-fringeplot
 
 
 #   FOURFIT       Refactoring Fourfit
+file   = MHO_task_0300.txt
 domain = @FOURFIT
 
 # Importing tasks
@@ -433,7 +443,7 @@ needs  = Repo-build
 
 # Refactoring tasks
 # Some of these maybe should be promoted to things?
-thing  = FourfitRefactor
+thing  = @FourfitRefactor
 
 task   = Refactor the fourfit libraries
 nick   = FourfitRefactor-refactor
@@ -479,6 +489,7 @@ needs  = FourfitRefactor-containers
 
 
 #   DOCS        HOPS4 Documentation
+file   = MHO_task_0400.txt
 domain = @DOCS
 
 thing  = @ReqsDoc
@@ -522,6 +533,7 @@ needs  = ReqsDoc-draft
 allows = Meetings-internal
 
 #   STUFF       everything else
+file   = MHO_task_0500.txt
 domain = @STUFF
 thing  = @Margin
 
@@ -532,6 +544,7 @@ desc   = for the moment collect all the time not yet allocated to
          specific task work
 allows = Meetings-final
 
+file   = MHO_task_ZZZZ.txt
 TAIL = task generator stops reading here
 ###
 

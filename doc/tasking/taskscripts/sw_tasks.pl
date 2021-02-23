@@ -15,6 +15,7 @@ $opts{'i'} = '-';
 $opts{'o'} = 'tasks';
 $opts{'r'} = 'none';
 $opts{'s'} = 'uid';
+$opts{'t'} = 0;
 $opts{'v'} = 0;
 $opts{'w'} = 0;
 my $VERSION='post-APP';
@@ -31,6 +32,7 @@ Usage: $0 [options]
     -o <file>   output sw task root ($opts{'o'})
     -r <what>   what to dump out ($opts{'r'})
     -s <key>    key for output sort ($opts{'s'})
+    -t          make plots of things ($opts{'t'})
     -v          verbose (for feedback, $opts{'v'})
     -w          very verbose (for debugging, $opts{'w'})
   
@@ -44,10 +46,11 @@ Usage: $0 [options]
   
   Typical usage:
 
-    ./sw_tasks.pl -i tsk.txt -o fruit/pfx -r sum -g SW
+    ./sw_tasks.pl -i tsk.txt -o fruit/pfx -r sum -g ALL
 
   makes a directory fruit (if it does not exist) and fills it
-  with pfx-SW.* files appropriate to the SW domain of work.
+  with pfx-<domain>.* files for all domains.  ALL is absolutely
+  everything, 'all' is short for all domains.
 
   Everything is defined in the input file (tsk.txt in this example)
   except for the -b and -c files.  The uid is a number formed as
@@ -59,14 +62,15 @@ Usage: $0 [options]
 if ( $#ARGV < 0 || $ARGV[0] eq "--help" ) { print "$USAGE"; exit(0); }
 if ( $ARGV[0] eq "--version" ) { print "$VERSION" . "\n"; exit(0); }
 my @args = @ARGV;
-&getopts('b:c:d:g:i:o:r:s:vw', \%opts);
+&getopts('b:c:d:g:i:o:r:s:tvw', \%opts);
 my $config = $opts{'c'};
 my $dtype  = $opts{'d'};
 my $graphs = $opts{'g'};
 my $input  = $opts{'i'};
-my $output = $opts{'o'};
+our $output = $opts{'o'};
 my $report = $opts{'r'};
 our $sort_key = $opts{'s'};
+my $doth2  = $opts{'t'};
 our $bubbles = $opts{'b'};
 # verbose for feedback, veryverb for debugging
 our $verb = $opts{'v'};
@@ -91,6 +95,7 @@ require $config if ( -f $config );
 # the work breakdown structure and ultimate tasks
 our %wbs;
 our %tasks;
+our %things;
 our %domains;
 
 # private parsing variables
@@ -107,10 +112,12 @@ die "Unable to remove $output.dir\n" if ( -d "$output.dir" );
 # scan the input file
 my ($hdr,$guts,$ftr) = &parse_sw_task_file($input);
 
+print "Plotting things too\n" if ($doth2);
+
 # make an interpreted copy
 print "Writing $output.txt\n" if ($veryverb);
 &clone_sw_task_file(">$output.txt") if ($verb);
-&clone_debugging(">$output.dbg") if ($veryverb);
+&clone_debugging(">$output-main.dbg") if ($veryverb);
 
 # fill in some blanks and eliminate commentary defaults
 print "Filling in the blanks\n" if ($verb);
@@ -143,9 +150,10 @@ if ($report ne 'none') {
 
 # make plots of dependencies by domains
 if ($graphs eq 'ALL') {
-    print "Creating all graphs\n" if ($verb);
+    print "Creating absolutely all graphs\n" if ($verb);
     &make_the_graph("$output-ALL",$dtype,1,keys(%tasks));
     &make_domain_graphs($output,$dtype,keys(%domains));
+    &make_domain_graphs($output,$dtype,keys(%things)) if ($doth2);
 } elsif ($graphs eq 'none') {
     print "No graphs requested\n" if ($verb);
     $legend = 0;
@@ -153,14 +161,13 @@ if ($graphs eq 'ALL') {
     printf("Available domains to graph are:\n%10s is everything\n",'ALL');
     for my $d (keys(%domains)) { printf("%10s is %s\n",$wbs{$d}{'nick'},$d); }
     printf("%10s is all of the above, except ALL\n",'all');
+    if ($doth2) {
+        printf("Available domain%%%%things are:\n");
+        for my $d (keys(%things)) {printf("%10s is %s\n",$wbs{$d}{'nick'},$d);}
+    }
 } else {
-#   if ($graphs eq 'all') {
-#       $graphs = join(',',keys(%domains));
-#       $graphs .= ',' . 'TESTA,TESTB,TESTH,TESTO';
-#       $graphs .= ',' . 'DevMilestones,IntMilestones';
-#   }
     $graphs = join(',',keys(%domains)) if ($graphs eq 'all');
-    &make_the_graph("$output-ALL",$dtype,0,keys(%tasks)) if ($same);
+    &make_the_graph("$output-ALL",$dtype,$same,keys(%tasks));
     my @d = split(/,/,$graphs);
     print "Creating graphs for " . join(',',@d) . "\n" if ($verb);
     &make_domain_graphs($output,$dtype,@d);

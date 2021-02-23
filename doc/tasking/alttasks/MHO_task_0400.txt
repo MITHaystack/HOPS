@@ -1,0 +1,44 @@
+file   = MHO_task_0400.txt
+domain = @DOCS
+
+thing  = @ReqsDoc
+task   = Create first draft of @ReqsDoc
+nick   = ReqsDoc-draft
+@etask
+desc   = Draft the requirements document
+#start = 2019-12-01
+#days  = 365
+needs  = Meetings-hilo
+allows = Meetings-review
+
+thing  = @CoTestDoc
+task   = Create first draft of @CoTestDoc
+nick   = CoTestDoc-draft
+@etask
+desc   = Draft the testing document
+#start  = 2020-12-01
+#days   = 30
+needs  = ReqsDoc-draft
+allows = Meetings-review
+
+thing  = @SpecsDoc
+task   = Create first draft of @SpecsDocsDoc
+nick   = SpecsDocs-draft
+@etask
+desc   = Write the specifications document
+#start  = 2019-12-01
+#days   = 365
+needs  = ReqsDoc-draft
+allows = Meetings-internal
+
+thing  = @SDPlanDoc
+task   = Create first draft of @SDPlanDocs
+nick   = SDPlanDoc-draft
+@etask
+desc   = Write the development plan
+#start  = 2020-12-01
+days   = 30
+needs  = ReqsDoc-draft
+allows = Meetings-internal
+
+#   STUFF       everything else

@@ -17,7 +17,11 @@ EXTRA_DIST = $(srcdir)/$(TEXSRC).tex \
 	$(srcdir)/manual.tex \
 	$(srcdir)/oracle.tex \
 	$(srcdir)/regress.tex \
-	$(srcdir)/manual.tex 
+	$(srcdir)/manual.tex \
+	$(srcdir)/coverage.tex \
+	$(srcdir)/reports.tex \
+	$(srcdir)/unit.tex
+
 
 if WANT_DOCS
 # to be somewhat surgical, this is useful:

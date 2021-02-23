@@ -1,0 +1,122 @@
+# This is the list of domains/things/tasks for the HOPS4 project.
+
+# The items in this list are trying to capture interconnectedness
+# (through the needs/allows fields) and approximate dates. It's a 
+# living document, changes will be frequent.  See MHO_task_inputs.txt
+# for some explanations of this file.  ### is meant to be grepped for
+# structure, and # to be grepped out.
+
+###
+HEAD = task generator starts reading here
+
+#
+### common definitions
+#
+file   = MHO_task_0000.txt
+
+### some common abbreviations (saving you typing)
+
+@vlbi   = Very Long Base Interferometry
+@sec    = Section
+@req    = the HOPS4 Requirements document
+
+### some dates of interest (milestones, @t*)
+
+# It is useful to collect the timeline in one place where you can see it
+# @t... is used canonically to abbreviate dates for later.  As we add
+# internal check-points, they should be defined here which then allows
+# margin calculations for tasks that lead up to that date.
+@tEARLY = 2019-08-15    # this is approximate
+@tSTART = 2019-09-01
+@tHILO  = 2019-12-04
+@tJPOST = 2020-02-10
+@tJHIRE = 2020-09-14
+@tREQS  = 2020-12-07
+@tSREV  = 2021-02-04
+# now
+@tMREV  = 2022-09-01
+# this one is known
+@tFINAL = 2023-08-31
+# post project one can continue...
+
+### pool of developers and other people
+@gc     = Geoff Crew
+@jb     = John Barrett
+@vp     = Violet Pfeiffer
+@dh     = Dan Hoak
+@vf     = Vincent Fish
+@lm     = Lynn Matthews
+@cr     = Chet Ruszczyk
+@cl     = Colin Lonsdale
+# ... add any other names you know...
+@lb     = Lindy Blackburn
+@ck     = C K Chan
+# and some groups
+@swdev  = @jb,@vp,@dh,@gc
+# @betas  = ...
+@all    = team
+@none   = not assigned yet
+
+### some common task definitions
+# note that after using these to set default values you can
+# then refine effort &c. with subsequent assignments.
+
+tdefs   = milestask     # for all milestones
+path    = none
+code    = none
+days    = 0
+desc    = A planning date assumed to prevent useful work
+who     = @none
+
+tdefs   = gentask
+path    = none
+code    = none
+days    = 1
+desc    = Some general work without any code or path
+who     = @none
+
+tdefs   = ctask
+path    = fixme
+code    = C
+days    = 1
+desc    = C coding work
+who     = @none
+
+tdefs   = cpptask
+path    = fixme
+code    = C
+days    = 1
+desc    = C++ coding work
+who     = @none
+
+tdefs   = pytask
+path    = fixme
+code    = Python
+days    = 1
+desc    = Python coding work
+who     = @none
+
+tdefs   = shtask
+path    = fixme
+code    = Bash
+days    = 1
+desc    = Bash coding work
+who     = @none
+
+tdefs   = testask
+path    = fixme
+code    = None
+days    = 1
+desc    = A testing task
+who     = @none
+
+tdefs   = editask
+path    = fixme
+code    = None
+days    = 1
+desc    = An editing or writing task
+who     = @none
+
+#
+### Major Domains of activity
+#

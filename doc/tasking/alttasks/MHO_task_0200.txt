@@ -1,0 +1,79 @@
+file   = MHO_task_0200.txt
+domain = @INFRA
+
+# Repository tasks
+thing  = @Repo
+
+task   = Establish github repository
+nick   = Repo-init
+desc   = Initialize a github repo, add the basic elements of HOPS, get team members connected
+start  = @tJHIRE
+needs  = Meetings-hired
+allows = Repo-build
+
+task   = Write build tools
+nick   = Repo-build
+desc   = Write the automake and cmake foundations for the new project and make sure everyone can compile the code
+start  = @tJHIRE
+needs  = Repo-init
+allows = Repo-tests
+
+task   = Import automated tests from HOPS3
+nick   = Repo-tests
+desc   = Build out the check scripts with captured data in the new project
+start  = @tJHIRE
+needs  = Repo-build
+allows = Repo-actions
+
+task   = Get an integration server or nightly test suite running
+nick   = Repo-actions
+desc   = Use something like github actions or a nightly pull/compile/test job to implement tests
+start  = tSREV
+needs  = Repo-tests
+allows =
+
+# Prototyping tasks
+thing  = @ProtoCode
+
+task   = Build the new data containers
+nick   = ProtoCode-containers
+desc   = Build the cpp classes that define the new data containers
+code   = C
+start  = tSTART
+needs  = Miles-start
+
+task   = Test the performance of the new data containers
+nick   = ProtoCode-containertest
+desc   = Profile the memory performance of the new data containers
+code   = C
+start  = tSREV
+needs  = ProtoCode-containers
+
+task   = Prototype the SWIG bindings
+nick   = ProtoCode-swig
+desc   = Write the compilation steps for the SWIG bindings with the autmake tools
+start  = tJHIRE
+needs  = Repo-build
+
+task   = Test the SWIG bindings
+nick   = ProtoCode-swigtest
+desc   = Check that the SWIG bindings work with the new data containers, move arrays back and forth
+code   = Python
+start  = tSREV
+needs  = ProtoCode-swig,ProtoCode-containers
+
+task   = Prototype fringe plot without PGPLOT
+nick   = ProtoCode-fringeplot
+desc   = Demonstrate that we can make a fringe plot with matplotlib
+code   = Python
+start  = tJHIRE
+needs  = Repo-build
+
+task   = Test an interactive plotting GUI
+nick   = ProtoCode-interactivefringeplot
+desc   = Demonstrate interactive plotting tools with matplotlib
+code   = Python
+needs  = ProtoCode-fringeplot
+
+
+#   FOURFIT       Refactoring Fourfit
