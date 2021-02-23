@@ -40,7 +40,8 @@ Currently HOPS supports the ability to run `make distcheck` from the build direc
 ### Ubuntu packages
 (1) `texlive-full` \
 (2) `graphviz` \
-(3) `doxygen`
+(3) `doxygen` \
+(4) `sphinx-common`
 ### Fedora packages
 ### NixOS packages
 (1) `texlive.combined.scheme-full` \

@@ -106,31 +106,32 @@ The following requirements describe essential design features.
 \begin{description}
 
 \reqid{S} HOPS4 shall provide effectively equivalent results for any output that HOPS3 was capable of producing.
+    \reqex[Rationale]{To ensure that HOPS4 replicates the existing functionality of HOPS3 except where otherwise specified. HOPS4 will replace HOPS3}
 \reqex{A set of historical DiFX output has been captured and HOPS4 results will
 be periodically compared to HOPS3 results on observables that HOPS3 supports to ensure consistency.}
-    \reqex{Rationale: To ensure that HOPS4 replicates the existing functionality of HOPS3 except where otherwise specified. HOPS4 will replace HOPS3}
+
 
 \reqid{A} HOPS4 shall have no practical limit on the number of stations,
 baselines, channels, or accumulation periods other than which is imposed by the
 memory limitations of the computer hardware on which it is run.
-    \reqex{Rationale: To adapt to changing specifications in radio science some of which are TBD.} 
+    \reqex[Rationale]{To adapt to changing specifications in radio science some of which are TBD.} 
 
 %%% EDIT: it think it is useful to leave these red
 
 \reqid{A} HOPS4 shall support at least \FIX[30] stations and 435 baselines.
-  \reqex[input required]{Rationale: HOPS4 requires an upper bound merely to verify that
+  \reqex[input required]{HOPS4 requires an upper bound merely to verify that
     it supports ``more than enough'' stations.}
 
 \reqid{A} HOPS4 shall explicitly test functionality with at least \FIX[128]
 channels and shall not impose a limit on the number of channels.
-  \reqex[input required]{Rationale: HOPS4 requires an upper bound merely to implement
+  \reqex[input required]{HOPS4 requires an upper bound merely to implement
     with some sensible channel labeling scheme and verify that the requirement is satisfied.}
     %\footnote{using \acs{Unicode} for channel labels would certainly
     %be unbounded, but might be challenging for some to type. However,
     %there is no real need to limit channel labels to a single-character.}
 
 \reqid{A} HOPS4 shall support a (raw station data) bit depth of \FIX[2] bits.
-  \reqex[input required]{Rationale: Support for 1-bit is available in HOPS3,
+  \reqex[input required]{Support for 1-bit is available in HOPS3,
     and hooks for other bit depths will be provided, but the code for other
     depths will require development in order to ensure proper normalization
 and treatment of noise statistics, etc.}
@@ -139,7 +140,7 @@ and treatment of noise statistics, etc.}
 test suite to verify expected functionality. This may include, but is not limited
 to, unit tests (for individual classes/functions) with the appropriate test
 cases to be determined.
-  \reqex{Rationale: Software development best practices.}
+  \reqex[Rationale]{Software development best practices.}
 
 
 \end{description}
@@ -162,7 +163,7 @@ FFTW3, and/or GSL, with the understanding that performance (runtime) might be
 affected.
 \reqex{For example FFT calls should be wrapped so that other
 packages or native code may be used instead.}
-    \reqex{Rationale: As part of software development best practices it is important to
+    \reqex[Rationale]{As part of software development best practices it is important to
     write software that is modular.}
 
 \reqid{P} \acs{PGPLOT} shall not be required for basic functionality (\eg~
@@ -170,7 +171,7 @@ fringe-fitting). HOPS4 shall include the same plotting functionality as HOPS3,
 but using standard modern packages (\eg~Python, Matplotlib). The user should
 be able to substitute their own plotting routines as desired, and \acs{PGPLOT}
 will be optionally supported for some plotting/display options.
-\reqex{Rationale: \acs{PGPLOT} is a dependency in HOPS3 that has been deprecated considering 
+\reqex[Rationale]{\acs{PGPLOT} is a dependency in HOPS3 that has been deprecated considering 
 the core maintainer stopped supporting it in 2000. It causes build stability issues in HOPS3.
 Thus all plotting package calls need to be managed within an optional plugin which leaves core 
 functionality unaffected by its presence. At a minimum, plotting functionality similar to the 
@@ -200,19 +201,19 @@ current fringe-plots shall be constructed with a set of independent Python tools
 \reqid{A} every application should provide
     \verb+--help+ and \verb+--version+ responses (with zero exit status)
     to behave as conventional \acs{GNU/Linux} applications.
-  \reqex{Rationale: Command-line arguments should be implemented with a
+  \reqex[Rationale]{Command-line arguments should be implemented with a
     standard argument parsing library, and should respond helpfully
     on bad command-line syntax. This aligns with development best practices for Linux applications.}
 
 \reqid{A} HOPS4 shall support input from \acs{VEX} version 1.5.\footnote{\acs{VEX} 1.5
 is the only extant working file format for VLBI experiment description, however, there does
 exist a VEX 2.0 specification which is not currently in active use but may be adopted at any time.}
-    \reqex{Rationale: Whether or not \acs{VEX} V.1.5 is to be deprecated is TBD by the astronomy community.}
+    \reqex[Rationale]{Whether or not \acs{VEX} V.1.5 is to be deprecated is TBD by the astronomy community.}
 
 
 \reqid{A} All plotting tools provided in HOPS4 shall have the ability to save the image to
 a standard graphics format.
-\reqex{Rationale: HOPS4 has the desire to support as much plotting flexibility as possible, including plot formats (fonts, panels, etc).}
+\reqex[Rationale]{HOPS4 has the desire to support as much plotting flexibility as possible, including plot formats (fonts, panels, etc).}
 
 % ./sub/dfio/Makefile.am
 %\reqid{A} If the non-compressed form of the \acs{Mk4} fringe file will be
@@ -225,17 +226,17 @@ a standard graphics format.
 
 \reqid{D} All new native data types (to be detailed in the specification document)
 shall be stored \acs{little-endian}.
-    \reqex{Rationale: Legacy data types are stored using big-endian which has is a practice that has been deprecated and causes compatibility issues with
+    \reqex[Rationale]{Legacy data types are stored using big-endian which has is a practice that has been deprecated and causes compatibility issues with
     modern programming tools, libraries, and some languages.}
 
 \reqid{D} HOPS4 shall provide an application to support export of native
 data types to a \TBD~archival format (\eg~HDF5).
-  \reqex{Rationale: This is to ensure compatibility with the data storage devices we have at our disposal and to ensure and to provide data recovery.}
+  \reqex[Rationale]{This is to ensure compatibility with the data storage devices we have at our disposal and to ensure and to provide data recovery.}
 
 \reqid{D} HOPS4 shall incorporate a C-library to interface with the legacy
 \acs{Mk4} data types (stored \acs{big-endian}) in their current form for
 testing purposes, and in order to access archived data.
-    \reqex{Rationale: To ensure backward compatibility.}
+    \reqex[Rationale]{To ensure backward compatibility.}
 %HOPS4
 %will not, however, be required to support any new functionality.
 
@@ -268,7 +269,10 @@ to the those version(s) as well.}.
 
 \reqid{A} The \acs{alist} program shall generate valid \acs{A-list} files in
 version 6.
-    \reqex{Rationale: \acs{A-list} files are the result of the Fourfit post processing that contain a fringe solution and summary plot for each scan/baseline. Compatibility with this dependency is necessary to be maintained when \acs{A-list} is updated in V.6.}
+\reqex[Rationale]{\acs{A-list} files are the result of the Fourfit post
+  processing that contain a fringe solution and summary plot for each scan/baseline.
+  Compatibility with this dependency is necessary to be maintained when \acs{A-list}
+  is updated in V.6.}
 
 %\reqex{\texttt{chk\_alist.sh} currently does this for versions 5 and 6.}
 
@@ -278,12 +282,13 @@ version 6.
 \reqid{A} The \acs{adump} program shall provide ASCII text representations
 of columns of data from an \acs{A-list} of version 6.
 %\reqex{\texttt{chk\_adump.sh} currently does this for versions 5 and 6.}
-    \reqex{Rationale: The ASCII text representations are necessary to provide a human readable format.}
+    \reqex[Rationale]{The ASCII text representations are necessary to provide a human readable format.}
 
 \reqid{A} The \acs{aedit} program shall process version 6 \acs{A-list}
 files with respect to flagging, selecting, summarizing and generating a new
 output \acs{A-list}.
-    \reqex{Rationale: Compatibility with this dependency is necessary to be maintained when \acs{A-list} is updated in V.6.}
+\reqex[Rationale]{Compatibility with this dependency is necessary to be maintained
+  when \acs{A-list} is updated in V.6.}
 %\reqex{the \texttt{chk\_aedit.sh} currently makes a pass through many of these}
 
 %\reqid{A} the \acs{Python}ic replacement module for these three current
@@ -351,31 +356,31 @@ maintained in HOPS4.
 % ./postproc/fourmer/Makefile.am
 \reqid{A} HOPS4 shall maintain the \acs{fourmer} tool, which shall properly
 relabel channels when it combines two sub-bands.
-    \reqex{Rationale: This dependency must be ported to HOPS4.}
+    \reqex[Rationale]{This dependency must be ported to HOPS4.}
 %\reqex{This is currently performed by \texttt{test\_new\_chan\_id}.}
 
 \reqid{A} The \acs{fringex} program shall retain existing functionality to rotate
 fringes with respect to Fourfit fringe solutions.
-    \reqex{Rationale: This dependency must be ported to HOPS4.}
+    \reqex[Rationale]{This dependency must be ported to HOPS4.}
 %\reqex{The \texttt{chk\_fringex.sh} exists to verify this in HOPS3.}
 
 \reqid{A} The ``average'' capability, implemented by \acs{average} used in
 concert with \acs{fringex} to subdivide explore and average fringes, shall be
 preserved with equivalent functionality.
-    \reqex{Rationale: This dependency must be ported to HOPS4.}
+    \reqex[Rationale]{This dependency must be ported to HOPS4.}
 %\reqex{The \texttt{chk\_average.sh} program tests this for the existing
 %\acs{average} application, but the piping mechanism is cumbersome and should be
 %re-implemented in a more easily used (and likely more efficient) C/C++ or
 %\acs{Python} application.}
 
 \reqid{A} The functionality of the program \acs{cofit} shall be preserved.
-    \reqex{Rationale: This dependency must be ported to HOPS4.}
+    \reqex[Rationale]{This dependency must be ported to HOPS4.}
 %\reqex{\texttt{chk\_cofit.sh} currently verifies this.}
 
 %%% ``there''
 \reqid{A} The current functionality of the program \acs{search} shall be
 preserved.
-    \reqex{Rationale: This dependency must be ported to HOPS4.}
+    \reqex[Rationale]{This dependency must be ported to HOPS4.}
 %\reqex{\texttt{chk\_search.sh} currently verifies this by performing a search on
 %a captive data set.}
 
@@ -390,29 +395,29 @@ preserved.
 combination of \acs{fringex}, \acs{average} and search must be preserved.
 HOPS4 shall support \acs{Python} scripting to aid the user in searching
 fringe space.
-    \reqex{Rationale: This functionality must be improved and ported to HOPS4.}
+    \reqex[Rationale]{This functionality must be improved and ported to HOPS4.}
 
 %\reqex{The \texttt{chk\_frmrsrch.sh} script executes such a case.}
 
 \reqid{P} It should be possible to make 2D plots of the type currently possible
 within \texttt{\acs{aedit}} of HOPS3.
-\reqex{Rationale: These are plots such as \acs{SNR} with time broken out by baseline with
+\reqex[Rationale]{These are plots such as \acs{SNR} with time broken out by baseline with
 separate symbols per target. It is not currently possible, but should be possible
 to combine several baselines into a composite plot.}
 
 \reqid{P} It should be possible to make 3D visualization plots.
-\reqex{Rationale: \acs{search} makes contour plots, but a 3D visualization of amplitude
+\reqex[Rationale]{\acs{search} makes contour plots, but a 3D visualization of amplitude
 with delay and delay-rate would be useful.}
 
 \reqid{P} HOPS4 shall implement interactive visualization tools in \acs{fourfit}.
-\reqex{Rationale: The HOPS3 version of \acs{fourfit} provides a fixed fringe summary
+\reqex[Rationale]{The HOPS3 version of \acs{fourfit} provides a fixed fringe summary
 plot. HOPS4 should have an interactive plotting capability to enable zooming
     and viewing \acs{fourfit} results with an expanded scale; This will be a significant improvement.}
 
 \reqid{D} Replace the existing \acs{fourfit} control file with a
 \acs{Python}-based control file. Currently existing functionality shall be
 preserved.
-\reqex{Rationale: The existing control file should continue to be supported. The new
+\reqex[Rationale]{The existing control file should continue to be supported. The new
 control file functionality will not likely be back-ported to HOPS3. Details of the control file design will be described in the Specifications document \cite{design}.}
 
 
@@ -428,7 +433,7 @@ control file functionality will not likely be back-ported to HOPS3. Details of t
 
 \reqid{A} It shall be possible to automatically discard correlator
 \acs{AP} (integrations) with small weights.
-\reqex{Rationale: When data are poorly recorded, the correlation product will be the result
+\reqex[Rationale]{When data are poorly recorded, the correlation product will be the result
 of less data than it should be, leading to incorrect results. Flagging poorly recorded data segments is currently done in HOPS3 provided \acs{DiFX} properly notices the loss.}
 %The HOPS3 script
 %\texttt{chk\_min\_weight.sh} currently tests this capability. In addition,
@@ -442,14 +447,14 @@ are present. Details of the flagging methods will be described in the Specificat
 \reqid{A} Every data type written to disk in HOPS4 shall be convertable to
 form that is amenable to human examination (e.g. ASCII or CSV), as is done in HOPS3 by the
 \texttt{\acs{CorAsc2}} program.
-    \reqex{Rationale: It is important that an experienced physicist or research staff confer the results of an experiment.}
+    \reqex[Rationale]{It is important that an experienced physicist or research staff confer the results of an experiment.}
 %\reqex{For the HOPS3 \acs{fourfit} program, this is verified by
 %\texttt{chk\_ff\_dump.sh}; for \acs{A-list} data, this is provided by \acs{adump},
 %or some combination of awk, sed and grep.}
 
 \reqid{A} HOPS4 shall implement an algorithm for solving for station-based
 quantities from baseline-based quantities as a global fringe fitter.
-\reqex{Rationale: This is required for converting sets of three (triangular) baselines 
+\reqex[Rationale]{This is required for converting sets of three (triangular) baselines 
     to calculate the delays at individual stations. This is new for HOPS.}
 
 % I (DH) think this refers to converting delays from the basis of
@@ -459,7 +464,7 @@ quantities from baseline-based quantities as a global fringe fitter.
 
 \reqid{A} The HOPS4 \acs{fourfit} shall have the ability to apply complex
 bandpass correction.
-\reqex{Rationale: This is a new capability that might well be prototyped in the existing
+\reqex[Rationale]{This is a new capability that might well be prototyped in the existing
 HOPS3 package. Here ``complex'' refers to both amplitude and phase variation
 of the receiver frequency response. HOPS3 already has rather
 sophisticated phase calibration handling. \geomargin{the \acs{EHT} does
@@ -471,19 +476,19 @@ by channel boundaries, and has the ability to correct either phase or amplitude 
 Details of the bandpass correction methods will be described in the Specifications \& Design document \cite{design}.}
 
 \reqid{A} HOPS4 shall provide a method to solve for complex bandpass corrections.
-\reqex{Rationale: This method should accept some set of scans and stations and solve,
+\reqex[Rationale]{This method should accept some set of scans and stations and solve,
 possibly using an \acs{LSF} method, for per-station bandpass solutions. Supporting
 plots will be generated.}
 
 \reqid{A} Python wrappers for the new HOPS4 data objects shall be provided.
-\reqex{Rationale: This is for backward compatibility. The existing wrappers 
+\reqex[Rationale]{This is for backward compatibility. The existing wrappers 
 for the \acs{Mk4} data types in HOPS3 do not need to be preserved, but it is 
 a capability worth preserving.}
 
 
 \reqid{D} The HOPS4 suite must provide mechanisms to preserve the correlator
 output data.
-\reqex{Rationale: A \acs{PERL} script, \texttt{hops\_data\_links.pl}, exists to manage
+\reqex[Rationale]{A \acs{PERL} script, \texttt{hops\_data\_links.pl}, exists to manage
 symbolic links to analysis files in a working directory separate from the original
 correlator output directory.}
 %A script, \texttt{chk\_hdlinks.sh}, verified this capability
@@ -491,7 +496,7 @@ correlator output directory.}
 
 \reqid{D} HOPS4 should preserve the the Single Band Delay, Multi Band Delay
 and Delay Rate search algorithm in its current form.
-\reqex{Rationale: This functionality must be ported to HOPS4, refactored, have quality of life
+\reqex[Rationale]{This functionality must be ported to HOPS4, refactored, have quality of life
 improvements. Our desire is to make the algorithm modular, such that the user may (de)select search
 dimensions. For example the current loop in \acs{fourfit} includes a loop over \acs{TEC},
 which is not needed at \acs{EHT} frequencies and could be ignored in \acs{EHT} analysis.
@@ -506,21 +511,21 @@ introduce new algorithms.}.
 
 \reqid{D} Benchmarking and performance analysis should be augmented with
 a more sophisticated tools.
-\reqex{Rationale: This is to ensure HOPS4 is optimized as part of development best practices and it
+\reqex[Rationale]{This is to ensure HOPS4 is optimized as part of development best practices and it
 at the very least performs as well as HOPS3. The existing HOPS package supports a \texttt{account} 
 library that does rudimentary profiling. Introducing \texttt{gprof} into some specific build tests,
 should be straightforward and help to optimize fringing.}
 
 \reqid{D} HOPS4 should support spectral-line VLBI.
-\reqex{Rationale: This feature needs to be refactored and improved. The existing HOPS code assumes a continuum.}
+\reqex[Rationale]{This feature needs to be refactored and improved. The existing HOPS code assumes a continuum.}
 
 \reqid{D} HOPS4 should support pulsar folding with a user specified period or
 ephemeris file with blanking.
-\reqex{Rationale: This is a new quality of life feature.}
+\reqex[Rationale]{This is a new quality of life feature.}
 %\reqex{This may be descoped.}
 
 \reqid{D} HOPS4 should enable multi-threading or multi-processing for batch jobs.
-\reqex{Rationale: This is required as part of an optimization effort and to reduce the compute resources required to
+\reqex[Rationale]{This is required as part of an optimization effort and to reduce the compute resources required to
 run the HOPS4 program. Parallelization is a strong desire, but the exact details of the
 implementation (particularly the requirements of threads vs processes) need to
 be carefully designed.}
