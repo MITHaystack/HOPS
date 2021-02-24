@@ -24,12 +24,12 @@ GUI where you may change various parameters.
 An alternate build path is available via the GNU auto build tools (autoconf, automake, etc.).  A top-level build script autogen.sh (which takes --help) can be used to build everything.  As usual with autoconfigured scripts, environment variables may need to be set to get it all to work.  For example:
 
 `$ ./autogen.sh --help` \
-`$ HOPS\_CONFIGURE\_ARGS='CXXFLAGS=-std=c++11 --enable-gcov' \\` \
+`$ HOPS_CONFIGURE_ARGS='CXXFLAGS=-std=c++11 --enable-gcov' \` \
 `  ./autogen.sh true false false centos-7` \
-`$ HOPS\_CONFIGURE\_ARGS='--enable-gcov' \\` \
+`$ HOPS_CONFIGURE_ARGS='--enable-gcov' \` \
 `  ./autogen.sh true false false fedora-33`
 
-(the true/false directives control what the script does, and the last
+(The true/false directives control what the script does, and the last
 argument is appended to the name of the build directory--here we use it
 to indicate what was needed on two Red Hat flavor OSs.)
 
