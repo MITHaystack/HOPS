@@ -19,18 +19,32 @@ need to specify a directory path in order for it to be located, use the command
 line interface ccmake (cmake-curses-gui) in place of cmake. This will open a CLI
 GUI where you may change various parameters.
 
+## Alternate build with Automake
+
+An alternate build path is available via the GNU auto build tools (autoconf, automake, etc.).  A top-level build script autogen.sh (which takes --help) can be used to build everything.  As usual with autoconfigured scripts, environment variables may need to be set to get it all to work.  For example:
+
+`$ ./autogen.sh --help` \
+`$ HOPS\_CONFIGURE\_ARGS='CXXFLAGS=-std=c++11 --enable-gcov' \\` \
+`  ./autogen.sh true false false centos-7` \
+`$ HOPS\_CONFIGURE\_ARGS='--enable-gcov' \\` \
+`  ./autogen.sh true false false fedora-33`
+
+(the true/false directives control what the script does, and the last
+argument is appended to the name of the build directory--here we use it
+to indicate what was needed on two Red Hat flavor OSs.)
+
 ## Current pre-requisites:
 
 (1) cmake, cmake-curses-gui, GNU make, and bash \
 (2) A c++ compiler which supports the C++11 standard (gcc > 4.8, or clang > 3.3)
 
-Optional dependencies (these may possibly become required at some point in the future):
+Optional dependencies (it depends on how much of HOPS you want to build):
 
 (1) `Python 3.x` \
 (2) `FFTW3` \
 (3) `PGPLOT` \
 (4) `X11` \
-(5) `GFORTRAN`
+(5) `GNU Fortran`
 
 ## Checking the distribution
 Currently HOPS supports the ability to run `make distcheck` from the build directory assuming `make` was used to build the project instead of `cmake`.
