@@ -8,9 +8,33 @@ domain = Infrastructure Setup
 nick   = INFRA
 desc   = Everything to create a working environment
 
-domain = Fourfit application development
-nick   = FOURFIT
-desc   = Build the new fourfit application
+domain = Import HOPS3 Fourfit to HOPS4
+nick   = FOURFIT3
+desc   = Import fourfit libraries to HOPS4
+
+domain = Refactor ffcontrol library
+nick   = FFCONTROL
+desc   = Refactor the ffcontrol library
+
+domain = Refactor ffcore library
+nick   = FFCORE
+desc   = Refactor the ffcore library
+
+domain = Refactor ffio library
+nick   = FFIO
+desc   = Refactor the ffio library
+
+domain = Refactor ffmath library
+nick   = FFMATH
+desc   = Refactor the ffmath library
+
+domain = Refactor ffsearch library
+nick   = FFSEARCH
+desc   = Refactor the ffsearch library
+
+domain = Refactor ffplot library
+nick   = FFPLOT
+desc   = Refactor the ffplot library
 
 domain = Calibration routine development
 nick   = CALI
