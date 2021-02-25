@@ -24,16 +24,16 @@ bin_PROGRAMS = fourfit
 
 fourfit_SOURCES = fourfit.c
 
-fourfit_LDADD = ../../mk4util/libmk4util.la \
-	../../afio/libafio.la \
-	../../dfio/libdfio.la \
-	../../vex/libvex.la \
-	../../fourfit_libs/ffcontrol/libffcontrol.la \
-	../../fourfit_libs/ffmath/libffmath.la \
-	../../fourfit_libs/ffcore/libffcore.la \
-	../../fourfit_libs/ffio/libffio.la \
-	../../fourfit_libs/ffsearch/libffsearch.la \
-	../../fourfit_libs/ffplot/libffplot.la
+fourfit_LDADD = ../../fourfit_libs/ffcontrol/libffcontrol.la \
+    ../../fourfit_libs/ffmath/libffmath.la \
+    ../../fourfit_libs/ffcore/libffcore.la \
+    ../../fourfit_libs/ffsearch/libffsearch.la \
+    ../../fourfit_libs/ffplot/libffplot.la \
+    ../../fourfit_libs/ffio/libffio.la \
+    ../../afio/libafio.la \
+    ../../dfio/libdfio.la \
+    ../../vex/libvex.la \
+    ../../mk4util/libmk4util.la
 
 fourfit_LDADD += ${CPGPLOT_LIBS} ${FFTW3_LIBS}
 
