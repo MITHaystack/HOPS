@@ -13,25 +13,21 @@ TEXSRC=tasks
 
 # how generated task files get named; change this to capture
 # historical copies at various times with 'make save'
-# mho=alt gets you the alt version
-mho=alt
+# mho=all gets you the all version.  As needed a copy of alltasks
+# can be made with a copy for other purposes.
+mho=all
 MHO=MHO_task
 
 # everything from $(srcdir) included from $(TEXSRC).tex
 # needs to be listed here with a $(srcdir)/ path prefix
-appsamples = apptasks/APP_task.txt apptasks/APP_task_inputs.txt \
-	apptasks/APP_task_bubbles.pl apptasks/APP_task_config.pl
-# mhoinputs shall be stable for a bit
-mhoinputs = mhotasks/$(MHO).txt mhotasks/$(MHO)_inputs.txt \
-	mhotasks/$(MHO)_bubbles.pl mhotasks/$(MHO)_config.pl
-# a hacking around version
-altinputs = alttasks/$(MHO)_inputs.txt \
-	alttasks/$(MHO)_0000.txt alttasks/$(MHO)_ZZZZ.txt \
-	alttasks/$(MHO)_0001.txt alttasks/$(MHO)_0010.txt \
-	alttasks/$(MHO)_0100.txt alttasks/$(MHO)_0200.txt \
-	alttasks/$(MHO)_0300.txt alttasks/$(MHO)_0400.txt \
-	alttasks/$(MHO)_0500.txt \
-	alttasks/$(MHO)_bubbles.pl alttasks/$(MHO)_config.pl
+# This is the working collection
+allinputs = $(mho)tasks/$(MHO)_inputs.txt \
+	$(mho)tasks/$(MHO)_0000.txt $(mho)tasks/$(MHO)_ZZZZ.txt \
+	$(mho)tasks/$(MHO)_0001.txt $(mho)tasks/$(MHO)_0010.txt \
+	$(mho)tasks/$(MHO)_0100.txt $(mho)tasks/$(MHO)_0200.txt \
+	$(mho)tasks/$(MHO)_0300.txt $(mho)tasks/$(MHO)_0400.txt \
+	$(mho)tasks/$(MHO)_0500.txt \
+	$(mho)tasks/$(MHO)_bubbles.pl $(mho)tasks/$(MHO)_config.pl
 
 # the perl scripts that run the task machinery
 taskingscripts = taskscripts/sw_tasks.pl taskscripts/sw_task_graph.pl \
@@ -40,14 +36,14 @@ taskingscripts = taskscripts/sw_tasks.pl taskscripts/sw_task_graph.pl \
 	taskscripts/sw_task_split.pl
 
 EXTRA_DIST = $(srcdir)/$(TEXSRC).tex \
-	$(appsamples) $(mhoinputs) $(altinputs) $(taskingscripts)
+	$(appsamples) $(mhoinputs) $(allinputs) $(taskingscripts)
 
 if HAVE_PERL
 # this pulls everything in from source dir if we are in build dir
 # note that the dependency is on all possible inputs, but the rsync
 # will only pull in the group selected by $(mho)
 rsopts = -v --exclude '.*.swp'
-sync: $(taskingscripts) $(mhoinputs) $(altinputs)
+sync: $(taskingscripts) $(allinputs)
 	[ -f Makefile.am ] || \
 	rsync -a $(rsopts) $(srcdir)/taskscripts/ $(srcdir)/$(mho)tasks/ .
 	touch sync
@@ -61,7 +57,7 @@ mhoarg = -d ${DOTDEV} \
 # additional args
 mhoopt = -t
 fruit:	Makefile sync
-	-[ $(mho) = alt ] && cat $(MHO)_[0Z]*.txt > $(MHO).txt
+	-[ $(mho) = all ] && cat $(MHO)_[0Z]*.txt > $(MHO).txt
 	./sw_tasks.pl -v $(mhoarg) -o fruit/$(mho) -r all -g ALL $(mhoopt)
 	[ -d fruit ]
 
