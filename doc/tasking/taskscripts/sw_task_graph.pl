@@ -315,7 +315,7 @@ sub make_the_graph {
     return(1) if ($#nodes < 0);
 
     @list = split(/-/,$name);
-    $doma = &task_by_nick($nick = $list[1]);
+    $doma = &task_by_nick($nick = $list[1],'make_the_graph:top');
     $orio = $wbs{$doma}{'orient'};
     $doma =~ s/$sep/\\n/;
 
@@ -346,7 +346,7 @@ sub make_the_graph {
             $peer = &make_it_legal($item);
             print DOT ' ' . $peer .' -> '. $node .";\n";
             $peerage{$peer} = 1;
-            push(@ddid,&task_by_nick($item));
+            push(@ddid,&task_by_nick($item,'make_the_graph:mid'));
         }
 
         @list = split(/,/,$wbs{$key}{'allows'});
@@ -356,7 +356,7 @@ sub make_the_graph {
             $peer = &make_it_legal($item);
             print DOT ' ' . $node .' -> '. $peer .";\n";
             $peerage{$peer} = 1;
-            push(@ddid,&task_by_nick($item));
+            push(@ddid,&task_by_nick($item,'make_the_graph:bot'));
         }
 
     }
@@ -386,7 +386,7 @@ sub tasks_of_domain {
             my @more = split(/,/,$wbs{$thing}{'kids'});
             for my $m (@more) {
                 next if ($m eq '');
-                push(@dtsks,&task_by_nick($m));
+                push(@dtsks,&task_by_nick($m,'tasks_of_domain'));
             }
         }
     }
@@ -416,7 +416,7 @@ sub make_domain_graphs {
             $domnick = $wbs{$domain}{'nick'};
         } else {
             $domnick = $domain;
-            $domain = &task_by_nick($domain);
+            $domain = &task_by_nick($domain,'make_domain_graphs');
             if ($domain eq 'none') {
                 print "'$domnick' -> 'domain' in make_domain_graphs\n";
                 next;
