@@ -6,15 +6,22 @@
 
 # $(TEXPDF).pdf is built from $(TEXSRC).tex
 TEXPDF=specifications
-TEXSRC=hops-spec
+TEXSRC=specs
+#hops-spec
 
 # everything from $(srcdir) included from $(TEXSRC).tex
 # needs to be listed here with a $(srcdir)/ path prefix
 EXTRA_DIST = $(srcdir)/$(TEXSRC).tex \
-	$(srcdir)/srctree.tex $(srcdir)/designdetails.tex \
-	$(srcdir)/example-single-baseline-fringe-fitter.png \
-	$(srcdir)/data-container-baseline.png \
-	$(srcdir)/arch_overview.png $(srcdir)/legacy.tex
+	$(srcdir)/architecture.tex \
+	$(srcdir)/language.tex \
+	$(srcdir)/objects.tex \
+	$(srcdir)/parallel.tex \
+	$(srcdir)/externals.tex \
+	$(srcdir)/interfaces.tex \
+	$(srcdir)/plotting.tex \
+	$(srcdir)/libraries.tex \
+	$(srcdir)/legacy.tex
+
 
 if WANT_DOCS
 # to be somewhat surgical, this is useful:
