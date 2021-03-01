@@ -1,0 +1,34 @@
+
+
+\section{Language, Build and Version Control System}
+\label{sec:language}
+
+Several aspects need to be taken into account when deciding on a choice of programming language for this project. Namely, some of these are:
+\begin{enumerate}
+ \item Availability of software developer expertise.
+ \item The inherent performance attainable with a specific language.
+ \item Availability of high performance open source utility libraries for math, I/O, etc.
+ \item The primary language of the existing code base (C).
+ \item The accessibility and ease of extensibility of the project by users with varying levels of experience
+\end{enumerate}
+
+Obtaining a reasonable balance between these considerations is difficult with a single language. Therefore we
+plan to develop a multi-language project, wherein the base computation layer is handled within C/C++,
+but additional data manipulation can be done via optional Python plugins embedded within the application
+or independently by external Python scripts which have access to some of the underlying application libraries.
+C++ is a good choice given current personnel and developer expertise, and being a super-set of the C language
+it provides the ability to reuse of portions of the existing C code base with little to no change, while also adding modern language features
+(templates, classes and inheritance, const. correctness, function overloading, etc.). A combined C/C++ approach
+allows for much easier memory management (currently handled rather painfully in the existing HOPS code base) and also
+enables the use of a wide variety of open source libraries, not least of which is the built in standard template library
+which provides access to a wide collection of basic data types (strings, vectors, maps, etc) and algorithms (searching, sorting, etc.)
+which will reduce the required amount of maintenance of internal code and reliance on external libraries.
+
+Further augmenting C/C++ libraries with inter-language communication to Python can be done via a wide variety of mature tools
+(ctypes, boost.Python, SWIG, pybind11, etc.), and will increase the ease at which outside users can augment the software without
+needing to have expertise in C/C++/. Since Python 2 is no longer supported, all new development will be Python 3.
+
+The build system for this project will be automake\urlfootnote{https://www.gnu.org/software/automake/} or CMake\urlfootnote{https://cmake.org}, and version control will proceed through a locally hosted (Haystack) git repository. HOPS3 used the automake build system and there is some
+advantage in re-using that frame work, while the CMake build system is generally easier to maintain than the current automake system when faced with the complexities of a multi-language project. It also allows for a more user-friendly configuration at the time of compilation, as the user can be presented with a menu providing options which are dependent on the available set of tools/libraries that are currently installed and detected on the users system. Initialy
+both build systems may be implemented to see which provides an optimal choice. While version control will be handled in a local \textit{git} repository during
+the prime development phase, it is expected that eventually a public \textit{git} repository will be made available for releases which will also make it much easier to leverage community contributions if so desired at some point in the future.
