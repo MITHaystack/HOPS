@@ -1,10 +1,13 @@
-
 @startuml
+
+' Use MIT 
 skinparam class {
   ArrowColor #A31F34  
   Bordercolor #8a8b8c
   BackgroundColor #fffff0
 }
+
+' Create classes
 class 0001 <<Domain>> {
 
 }
@@ -30,6 +33,7 @@ class 0500 <<@STUFF>>{
 
 }
 
+' Show associations
 0001 <|-- 0010
 0010 <|-- 0100
 0010 <|-- 0200
@@ -38,6 +42,7 @@ class 0500 <<@STUFF>>{
 0010 <|-- 0400
 0010 <|-- 0500
 
+' Hide class diagram circles
 hide members
 hide <<Domain>> circle
 hide <<Thing>> circle
