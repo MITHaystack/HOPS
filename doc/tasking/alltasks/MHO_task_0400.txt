@@ -46,7 +46,7 @@ task   = Submit first draft of @CoTestDoc
 nick   = CoTestDoc-submit
 @etask
 desc   = Submit the first revision to the ngEHT
-#start  = 2021-02-10
+#start  = 2021-02-04
 #days   = 1
 needs  = ReqsDoc-draft
 allows = Meetings-review
@@ -71,6 +71,26 @@ desc   = Write the specifications document
 needs  = ReqsDoc-draft
 allows = Meetings-internal
 
+thing  = @SpecsDoc
+task   = Submit first draft of @SpecsDoc
+nick   = SpecsDocs-submit
+@etask
+desc   = Submit the first revision to the ngEHT
+#start  = 2021-02-04
+#days   = 1
+needs  = ReqsDoc-draft
+allows = Meetings-internal
+
+thing  = @SpecsDoc
+task   = Revise the @SpecsDocsDoc
+nick   = SpecsDocs-draft
+@etask
+desc   = Write the specifications document
+#start  = 2021-02-10
+#days   = 7
+needs  = ReqsDoc-draft
+allows = Meetings-internal
+
 thing  = @SDPlanDoc
 task   = Create first draft of @SDPlanDocs
 nick   = SDPlanDoc-draft
@@ -78,6 +98,26 @@ nick   = SDPlanDoc-draft
 desc   = Write the development plan
 #start  = 2020-12-01
 days   = 30
+needs  = ReqsDoc-draft
+allows = Meetings-internal
+
+thing  = @SDPlanDoc
+task   = Submit first draft of @SDPlanDoc
+nick   = SDPlanDoc-submit
+@etask
+desc   = Submit first draft to the ngEHT
+#start  = 2021-03-10
+days   = 1
+needs  = ReqsDoc-draft
+allows = Meetings-internal
+
+thing  = @SDPlanDoc
+task   = Revise the @SDPlanDoc
+nick   = SDPlanDoc-revise
+@etask
+desc   = Revise based on feedback from the ngEHT 
+#start  = 2020-12-01
+days   = 7
 needs  = ReqsDoc-draft
 allows = Meetings-internal
 
