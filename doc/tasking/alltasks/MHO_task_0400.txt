@@ -12,12 +12,22 @@ needs  = Meetings-hilo
 allows = Meetings-review
 
 thing  = @ReqsDoc
-task   = Submit draft to ngEHT 
+task   = Submit first draft of @ReqsDoc to the ngEHT 
 nick   = ReqsDoc-submit
 @etask
 desc   = Submit draft to ngEHT for feedback
-#start = 2020-02-02
-#days  = 3
+#start = 2021-02-10
+#days  = 1
+needs  = Meetings-hilo
+allows = Meetings-review
+
+thing  = @ReqsDoc
+task   = Revise first draft of @ReqsDoc 
+nick   = ReqsDoc-revise
+@etask
+desc   = Revise the first draft based on ngEHT comments  
+#start = 2021-02-04
+#days  = 7
 needs  = Meetings-hilo
 allows = Meetings-review
 
@@ -28,6 +38,26 @@ nick   = CoTestDoc-draft
 desc   = Draft the testing document
 #start  = 2020-12-01
 #days   = 30
+needs  = ReqsDoc-draft
+allows = Meetings-review
+
+thing  = @CoTestDoc
+task   = Submit first draft of @CoTestDoc
+nick   = CoTestDoc-submit
+@etask
+desc   = Submit the first revision to the ngEHT
+#start  = 2021-02-10
+#days   = 1
+needs  = ReqsDoc-draft
+allows = Meetings-review
+
+thing  = @CoTestDoc
+task   = Revise the first draft of @CoTestDoc
+nick   = CoTestDoc-revise
+@etask
+desc   = Revise the testing document
+#start  = 2021-12-01
+#days   = 7
 needs  = ReqsDoc-draft
 allows = Meetings-review
 
