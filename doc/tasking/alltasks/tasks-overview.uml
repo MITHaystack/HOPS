@@ -1,0 +1,50 @@
+
+@startuml
+skinparam class {
+  ArrowColor #A31F34  
+  Bordercolor #8a8b8c
+  BackgroundColor #fffff0
+}
+class 0001 <<Domain>> {
+
+}
+class 0010 <<Thing>> {
+
+}
+class 0100 <<@GENERAL>>{
+
+}
+class 0200 <<@INFRA>>{
+
+}
+class 0300 <<@FOURFIT3>>{
+
+}
+class 0310 <<FFCONTROL>>{
+
+}
+class 0400 <<@DOCS>>{
+
+}
+class 0500 <<@STUFF>>{
+
+}
+
+0001 <|-- 0010
+0010 <|-- 0100
+0010 <|-- 0200
+0010 <|-- 0300
+0010 <|-- 0310
+0010 <|-- 0400
+0010 <|-- 0500
+
+hide members
+hide <<Domain>> circle
+hide <<Thing>> circle
+hide <<@GENERAL>> circle
+hide <<@INFRA>> circle
+hide <<@FOURFIT3>> circle
+hide <<FFCONTROL>> circle
+hide <<@DOCS>> circle
+hide <<@STUFF>> circle
+@enduml
