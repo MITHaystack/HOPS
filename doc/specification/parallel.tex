@@ -1,0 +1,19 @@
+
+\section{Parallel processing}
+\label{sec:parallel}
+
+The existing fringe-fitting process is largely a data-parallel process operating on individual baselines with no inter-process
+communication. This lends itself easily to simple parallelism using multiple independent processes (SPMD), which has been exploited
+\cite{blackburn2019eht} to deal with the EHT data volume. However, this approach eliminates the ability to simultaneously fit for global or station-based
+parameters and requires multiple iterations in order to apply successive calibration/corrections. Therefore, if some calibration tasks are to be
+done simultaneously with fringe-fringe fitting, this will require both a substantial architectural change from the current fitting algorithm, but
+also necessarily reduce the degree of (simple) parallelism available. To accommodate this, some parallel processing will have to be addressed
+within the application. To do this we will use a multi-staged approach during the course of development.
+
+Initially, the software to be developed under this project will focus on a simple single-threaded implementation, whereupon careful
+profiling will inform us of the largest computational bottlenecks. For example, in the current HOPS code the majority of
+the computation time is spent in a single routine (vrot.c, which is essentially just evaluating a complex exponential and multiplying two complex numbers) that is applied over
+a large array of data. This sort of task can easily be parallelized on modern multi-core architectures using the SIMD approach. We propose to use OpenCL
+for this purpose given its support on a wide variety of architectures (multi-core CPUs, GPUS, hardware accelerators, etc.).
+
+This type of parallelism exploits vector instructions and/or multiple processors to execute the similar operations over wide swaths of data. while given current experience with the existing HOPS leads us to expect that SIMD parallelism should largely be adequate to accelerate fringe fitting, if during the process of development it is discovered that a thread-based model (MIMD, where each parallel thread follows a semi-independent code pathway) could be more advantageous, then we propose to use OpenMPI framework to implement this. The reason being, that while OpenMPI does have a larger development overhead than most other threading libraries (e.g. pthreads, c++11 threads, etc.) it can be easily scaled beyond a single computer when and if needed. However, it should be noted that by necessity, any OpenMPI implementation must be developed as an independent executable (although it would be able to take advantage of any available libraries and SIMD policies present). 
