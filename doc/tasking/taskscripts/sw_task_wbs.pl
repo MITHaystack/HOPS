@@ -23,10 +23,11 @@ my @jelly   = ( 'nick', 'start', 'stop', 'days', 'who',
                 'task', 'thing', 'domain', 'desc' );
 my @summary = ( 'desc', 'nick', 'who', 'stop' );
 my @simple  = ( 'desc' );
+# this is for the NEW file, but 'file' must appear first
 my @inputs  = ( 'nick', 'desc', 'path', ,'code', 'notes', 'level',
                 'issues', 'orient',
                 'who', 'needs', 'start', 'days', 'derate', 'done',
-                'stop', 'allows', 'file' );
+                'stop', 'allows' );
 
 # trying to use forms
 our ($fkey,$fval);
@@ -82,6 +83,11 @@ sub write_new_rest {
     my ($key,$k,$kv,@p) = @_;
     @p = split(/$sep/,$key);
     $kv = $p[0];
+    if (defined $wbs{$key}{'file'}) {
+        $fval = $wbs{$key}{'file'};
+        $fkey = 'file';
+        write NEW if ($fval ne '');
+    }
     while ($#p >= 0) {
         $fval = shift(@p);
         $fkey = $wbs{$kv}{'type'};
@@ -196,7 +202,7 @@ sub pred_uids {
     @parts = split(/,/,$list);
     $reply = '';
     for my $need (@parts) {
-        $reply .= "\t" . $wbs{&task_by_nick($need)}{'uid'};
+        $reply .= "\t" . $wbs{&task_by_nick($need,'pred_uids')}{'uid'};
     }
     return($reply);
 }
@@ -232,14 +238,15 @@ sub canonicalize_items {
 # a simple lookup function for use as needed
 #
 sub task_by_nick {
-    my ($nick,$kv) = @_;
+    my ($nick,$caller,$kv) = @_;
+    $caller = 'undefined' if (not defined $caller);
     for $kv (keys(%wbs)) {
         next if (!defined($wbs{$kv}{'nick'}));
         if ($wbs{$kv}{'nick'} eq $nick) {
             return($kv);
         }
     }
-    print "No task for '$nick', returning 'none'.\n" if ($verb);
+    print "No task for '$nick' ($caller), returning 'none'.\n" if ($verb);
     return('none');
 }
 

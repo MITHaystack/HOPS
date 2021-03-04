@@ -28,13 +28,74 @@ desc   = This covers targeted experiments on how to do various things.
          specific tasks...but we shall know when the line is crossed.
 
 
-# FOURFIT       Fourfit application development
-domain = @FOURFIT
+# FOURFIT3      Import Legacy HOPS3 Fourfit to HOPS4
+domain = @FOURFIT3
 
-thing  = Importing and building fourfit
-nick   = FourfitImport
-desc   = This covers importing the HOPS3 libraries and building a
-         working fourfit application in the HOPS4 codebase
+thing  = Importing fourfit
+nick   = Fourfit3Import
+desc   = This covers importing the fourfit legacy C libraries.
+
+thing  = Fourfit build tools
+nick   = Fourfit3Build
+desc   = This covers the build tools for the legacy fourfit libraries
+         in the HOPS4 git repo. Tasks are design/implement/test.
+
+thing  = Fourfit build review
+nick   = Fourfit3Review
+desc   = This covers validation of the fourfit legacy executable in the
+         HOPS4 git repo.
+
+
+# FFCONTROL      Refactor the ffcontrol library
+domain = @FFCONTROL
+
+thing  = Refactor the ffcontrol library
+nick   = FFControlRefactor
+desc   = This covers the refactoring of the ffcontrol library. 
+
+
+# FFCORE         Refactor the ffcore library
+domain = @FFCORE
+
+thing  = Refactor the ffcore library
+nick   = FFCoreRefactor
+desc   = This covers the refactoring of the ffcore library. 
+
+
+# FFIO           Refactor the ffio library
+domain = @FFIO
+
+thing  = Refactor the ffio library
+nick   = FFIORefactor
+desc   = This covers the refactoring of the ffio library. 
+
+
+# FFMATH         Refactor the ffmath library
+domain = @FFMATH
+
+thing  = Refactor the ffmath library
+nick   = FFMathRefactor
+desc   = This covers the refactoring of the ffmath library. 
+
+
+# FFSEARCH       Refactor the ffsearch library
+domain = @FFSEARCH
+
+thing  = Refactor the ffsearch library
+nick   = FFSearchRefactor
+desc   = This covers the refactoring of the ffsearch library. 
+
+
+# FFPLOT         Refactor the ffplot library
+domain = @FFPLOT
+
+thing  = Refactor the ffplot library
+nick   = FFPlotRefactor
+desc   = This covers the refactoring of the ffplot library. 
+
+
+
+
 
 thing  = Refactoring fourfit
 nick   = FourfitRefactor

@@ -11,6 +11,16 @@ desc   = Draft the requirements document
 needs  = Meetings-hilo
 allows = Meetings-review
 
+thing  = @ReqsDoc
+task   = Submit draft to ngEHT 
+nick   = ReqsDoc-submit
+@etask
+desc   = Submit draft to ngEHT for feedback
+#start = 2020-02-02
+#days  = 3
+needs  = Meetings-hilo
+allows = Meetings-review
+
 thing  = @CoTestDoc
 task   = Create first draft of @CoTestDoc
 nick   = CoTestDoc-draft

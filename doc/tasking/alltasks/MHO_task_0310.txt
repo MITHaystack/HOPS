@@ -1,0 +1,154 @@
+file   = MHO_task_0310.txt
+
+domain = @FFCONTROL
+
+# Refactoring the ffcontrol library
+thing  = @FFControlRefactor
+
+task   = Design the refactoring of the ffcontrol library
+nick   = FFControlRefactor-design
+@ctask
+desc   = Design the refactoring of the ffcontrol library
+#start  = tSREV
+needs  = Fourfit3Review-milestone
+
+task   = Implement the refactoring of the ffcontrol library
+nick   = FFControlRefactor-implement
+desc   = Implement the refactoring of the ffcontrol library
+#start  = tSREV
+needs  = FFControlRefactor-design
+
+task   = Test the refactoring of the ffcontrol library
+nick   = FFControlRefactor-test
+desc   = Test the refactoring of the ffcontrol library
+#start  = tSREV
+needs  = FFControlRefactor-implement
+
+
+
+domain = @FFCORE
+
+# Refactoring the FFCore library
+thing  = @FFCoreRefactor
+
+task   = Design the refactoring of the ffcore library
+nick   = FFCoreRefactor-design
+@ctask
+desc   = Design the refactoring of the ffcore library
+#start  = tSREV
+needs  = Fourfit3Review-milestone
+
+task   = Implement the refactoring of the ffcore library
+nick   = FFCoreRefactor-implement
+desc   = Implement the refactoring of the ffcore library
+#start  = tSREV
+needs  = FFCoreRefactor-design
+
+task   = Test the refactoring of the ffcore library
+nick   = FFCoreRefactor-test
+desc   = Test the refactoring of the ffcore library
+#start  = tSREV
+needs  = FFCoreRefactor-implement
+
+
+
+domain = @FFIO
+
+# Refactoring the ffio library
+thing  = @FFIORefactor
+
+task   = Design the refactoring of the ffio library
+nick   = FFIORefactor-design
+@ctask
+desc   = Design the refactoring of the ffio library
+#start  = tSREV
+needs  = Fourfit3Review-milestone
+
+task   = Implement the refactoring of the ffio library
+nick   = FFIORefactor-implement
+desc   = Implement the refactoring of the ffio library
+#start  = tSREV
+needs  = FFIORefactor-design
+
+task   = Test the refactoring of the ffio library
+nick   = FFIORefactor-test
+desc   = Test the refactoring of the ffio library
+#start  = tSREV
+needs  = FFIORefactor-implement
+
+
+
+domain = @FFMATH
+
+# Refactoring the FFMath library
+thing  = @FFMathRefactor
+
+task   = Design the refactoring of the ffmath library
+nick   = FFMathRefactor-design
+@ctask
+desc   = Design the refactoring of the ffmath library
+#start  = tSREV
+needs  = Fourfit3Review-milestone
+
+task   = Implement the refactoring of the ffmath library
+nick   = FFMathRefactor-implement
+desc   = Implement the refactoring of the ffmath library
+#start  = tSREV
+needs  = FFMathRefactor-design
+
+task   = Test the refactoring of the ffmath library
+nick   = FFMathRefactor-test
+desc   = Test the refactoring of the ffmath library
+#start  = tSREV
+needs  = FFMathRefactor-implement
+
+
+
+domain = @FFSEARCH
+
+# Refactoring the FFSearch library
+thing  = @FFSearchRefactor
+
+task   = Design the refactoring of the ffsearch library
+nick   = FFSearchRefactor-design
+@ctask
+desc   = Design the refactoring of the ffsearch library
+#start  = tSREV
+needs  = Fourfit3Review-milestone
+
+task   = Implement the refactoring of the ffsearch library
+nick   = FFSearchRefactor-implement
+desc   = Implement the refactoring of the ffsearch library
+#start  = tSREV
+needs  = FFSearchRefactor-design
+
+task   = Test the refactoring of the ffsearch library
+nick   = FFSearchRefactor-test
+desc   = Test the refactoring of the ffsearch library
+#start  = tSREV
+needs  = FFSearchRefactor-implement
+
+
+domain = @FFPLOT
+
+# Refactoring the FFPlot library
+thing  = @FFPlotRefactor
+
+task   = Design the refactoring of the ffplot library
+nick   = FFPlotRefactor-design
+@ctask
+desc   = Design the refactoring of the ffplot library
+#start  = tSREV
+needs  = Fourfit3Review-milestone
+
+task   = Implement the refactoring of the ffplot library
+nick   = FFPlotRefactor-implement
+desc   = Implement the refactoring of the ffplot library
+#start  = tSREV
+needs  = FFPlotRefactor-design
+
+task   = Test the refactoring of the ffplot library
+nick   = FFPlotRefactor-test
+desc   = Test the refactoring of the ffplot library
+#start  = tSREV
+needs  = FFPlotRefactor-implement

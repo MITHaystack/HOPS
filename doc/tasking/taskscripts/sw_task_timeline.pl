@@ -96,7 +96,7 @@ sub adjust_dates {
         @nicks = split(/,/,$wbs{$kv}{$using});
         $m = $mjdo;
         for $n (@nicks) {
-            $tk = &task_by_nick($n);
+            $tk = &task_by_nick($n,'adjust_dates');
             next if ($tk eq 'none');    # an error, actually
             next if ($wbs{$tk}{$dir} eq 'depends');
             if (($dir eq 'start' and $wbs{$tk}{$what} > $m) or
@@ -123,7 +123,7 @@ sub check_dates {
         next if ($wbs{$k}{'type'} ne 'task');
         @nicks = split(/,/,$wbs{$k}{$using});
         for my $tn (@nicks) {
-            my $n = &task_by_nick($tn);
+            my $n = &task_by_nick($tn,'check_dates');
             #print "Considering $n with " . $wbs{$n}{$yurn} . "\n";
             if ($dir eq 'start' and $wbs{$k}{$mine} < $wbs{$n}{$yurn}) {
                 print $wbs{$k}{'nick'} . " $dir " .
@@ -192,7 +192,7 @@ sub make_needs_or_allows {
                 print "Empty '$n' as $allows of $k\n";
                 next;
             }
-            $t = &task_by_nick($n);
+            $t = &task_by_nick($n,'make_needs_or_allows');
             if ($t eq 'none') {
                 print "Nick for '$n' ($allows) is '$t'\n";
                 next;
