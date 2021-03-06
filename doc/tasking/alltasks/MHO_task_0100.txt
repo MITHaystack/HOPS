@@ -70,22 +70,44 @@ desc   = The software foundational review
 start  = @tSREV
 needs  = Miles-requirements
 
-task   = Internal progress review
+task   = Internal progress review (End of Q07)
 nick   = Meetings-internal
 desc   = An internal review after document and prototyping completion
+start  = @tQ07E
 needs  = Meetings-review
 
-task   = Pause for internal-review/reassessment at the midpoint
+task   = Internal progress (End of Q09)
+nick   = Meetings-end2021
+desc   = internal review to monitor progress at end of Q09
+start  = @tQ09E
+needs  = Meetings-internal
+
+task   = Internal progress (End of Q11)
+nick   = Meetings-mid2022
+desc   = internal review to monitor progress at end of Q11
+start  = @tQ11E
+needs  = Meetings-end2021
+
+task   = Pause for internal-review/reassessment at the midpoint (End of Q12)
 nick   = Meetings-midpoint
 desc   = An midpoint (informal) review
 start  = @tQ12E
-needs  = Meetings-internal
+needs  = Meetings-mid2022
 
-task   = A review at the end of the project
-nick   = Meetings-final
-desc   = An midpoint (informal) review
-start  = @tQ12E
+task   = Internal progress (End of Q14)
+nick   = Meetings-penultimate
+desc   = internal review to monitor progress at end of Q14
+start  = @tQ14E
 needs  = Meetings-midpoint
+
+task   = A review at the end of the project (End of Q15)
+nick   = Meetings-final
+desc   = An midpoint (informal) review.
+         After this date, there are two months to clean up the final
+         delivery, documentation, &c.  All of which should be mechanical
+         at this point.
+start  = @tQ12E
+needs  = Meetings-penultimate
 allows = Miles-finish
 
 #   INFRA       Infrastructure Setup

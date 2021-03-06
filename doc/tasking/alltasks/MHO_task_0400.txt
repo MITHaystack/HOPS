@@ -6,7 +6,7 @@ task   = Create first draft of @ReqsDoc
 nick   = ReqsDoc-draft
 @etask
 desc   = Draft the requirements document
-#start = 2019-12-01
+start  = @tDSTRT
 #days  = 365
 needs  = Meetings-hilo
 allows = Meetings-review
@@ -16,7 +16,7 @@ task   = Submit draft to ngEHT
 nick   = ReqsDoc-submit
 @etask
 desc   = Submit draft to ngEHT for feedback
-#start = 2020-02-02
+start  = @tDSHRE
 #days  = 3
 needs  = Meetings-hilo
 allows = Meetings-review
@@ -26,7 +26,7 @@ task   = Create first draft of @CoTestDoc
 nick   = CoTestDoc-draft
 @etask
 desc   = Draft the testing document
-#start  = 2020-12-01
+start  = @tDETC
 #days   = 30
 needs  = ReqsDoc-draft
 allows = Meetings-review
@@ -36,7 +36,7 @@ task   = Create first draft of @SpecsDocsDoc
 nick   = SpecsDocs-draft
 @etask
 desc   = Write the specifications document
-#start  = 2019-12-01
+start  = @tDETC
 #days   = 365
 needs  = ReqsDoc-draft
 allows = Meetings-internal
@@ -46,9 +46,9 @@ task   = Create first draft of @SDPlanDocs
 nick   = SDPlanDoc-draft
 @etask
 desc   = Write the development plan
-#start  = 2020-12-01
+start  = @tDETC
 days   = 30
 needs  = ReqsDoc-draft
 allows = Meetings-internal
 
-#   STUFF       everything else
+# eof

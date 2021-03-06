@@ -23,6 +23,7 @@ nick   = FFControlRefactor-test
 desc   = Test the refactoring of the ffcontrol library
 #start  = tSREV
 needs  = FFControlRefactor-implement
+allows = Meetings-midpoint
 
 
 
@@ -49,6 +50,7 @@ nick   = FFCoreRefactor-test
 desc   = Test the refactoring of the ffcore library
 #start  = tSREV
 needs  = FFCoreRefactor-implement
+allows = Meetings-midpoint
 
 
 
@@ -75,6 +77,7 @@ nick   = FFIORefactor-test
 desc   = Test the refactoring of the ffio library
 #start  = tSREV
 needs  = FFIORefactor-implement
+allows = Meetings-midpoint
 
 
 
@@ -101,6 +104,7 @@ nick   = FFMathRefactor-test
 desc   = Test the refactoring of the ffmath library
 #start  = tSREV
 needs  = FFMathRefactor-implement
+allows = Meetings-midpoint
 
 
 
@@ -127,6 +131,7 @@ nick   = FFSearchRefactor-test
 desc   = Test the refactoring of the ffsearch library
 #start  = tSREV
 needs  = FFSearchRefactor-implement
+allows = Meetings-midpoint
 
 
 domain = @FFPLOT
@@ -152,3 +157,6 @@ nick   = FFPlotRefactor-test
 desc   = Test the refactoring of the ffplot library
 #start  = tSREV
 needs  = FFPlotRefactor-implement
+allows = Meetings-midpoint
+
+# eof

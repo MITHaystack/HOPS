@@ -81,7 +81,7 @@ thing  = Import Alist, Adump and Aedit
 nick   = ImportA3
 desc   = Import these three executables
 
-thing  = Import Average, Fringex, ...
+thing  = Import Average, Fringex, Search
 nick   = ImportAx
 desc   = Import the other executables.
 
@@ -89,10 +89,13 @@ desc   = Import the other executables.
 # Import HOPS3 Other things to HOPS4
 domain = @OTHER3
 
-thing  = Other stuff from HOPS3 that might as well be usable in HOPS4
-nick   = OtherStuff
-desc   = Look over the SVN and pull in other things
+thing  = Import Other HOPS3 Executables
+nick   = ImportEx
+desc   = Look over the SVN and pull in other executables
 
+thing  = Import Useful HOPS3 Scripts
+nick   = ImportSc
+desc   = Look over the SVN and pull in scripts that are still useful
 
 # FFCONTROL      Refactor the ffcontrol library
 domain = @FFCONTROL
