@@ -1,0 +1,10 @@
+file   = MHO_task_0307.txt
+
+domain = @OTHER3
+
+thing  = @OtherStuff
+
+task   = placeholder
+nick   = OtherStuff-dunno
+@ctask
+desc   = later...

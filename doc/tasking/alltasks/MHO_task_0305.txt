@@ -1,0 +1,29 @@
+file   = MHO_task_0305.txt
+domain = @AEDIT3
+
+thing  = @ImportA3
+
+task   = Import Alist
+nick   = ImportA3-Alist
+@ctask
+desc   = import alist
+
+task   = Import Adump
+nick   = ImportA3-Adump
+desc   = import adump ...
+
+task   = Import Aedit
+nick   = ImportA3-Aedit
+desc   = import aedit ...
+
+
+thing  = @ImportAx
+
+task   = Import Average
+nick   = ImportAx-Average
+desc   = import average ...
+
+task   = Import Fringex
+nick   = ImportAx-Fringex
+desc   = import fringex ...
+

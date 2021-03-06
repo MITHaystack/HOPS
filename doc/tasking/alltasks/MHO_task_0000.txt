@@ -34,10 +34,25 @@ file   = MHO_task_0000.txt
 @tREQS  = 2020-12-07
 @tSREV  = 2021-02-04
 # now
-@tMREV  = 2022-09-01
-# this one is known
+# end of 2020 is end of Q05 on the original clock, so
+# rounding out to thursdays, we have
+@tQ06E  = 2021-04-01
+@tQ07E  = 2021-07-01
+@tQ08E  = 2021-09-30
+@tQ09E  = 2021-12-30
+# 2022
+@tQ10E  = 2022-03-03
+@tQ11E  = 2022-06-02
+@tQ12E  = 2022-09-01
+#tMREV  = 2022-09-01
+@tQ13E  = 2022-12-29
+# 2022
+@tQ14E  = 2022-03-30
+@tQ15E  = 2022-06-29
+# this one is known and is a month shy of end of Q16 ;-)
 @tFINAL = 2023-08-31
 # post project one can continue...
+# please...
 
 ### pool of developers and other people
 @gc     = Geoff Crew

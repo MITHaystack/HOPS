@@ -1,0 +1,4 @@
+file   = MHO_task_0350.txt
+
+domain = @AMACHINERY
+

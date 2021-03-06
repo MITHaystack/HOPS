@@ -78,13 +78,13 @@ needs  = Meetings-review
 task   = Pause for internal-review/reassessment at the midpoint
 nick   = Meetings-midpoint
 desc   = An midpoint (informal) review
-start  = @tMREV
+start  = @tQ12E
 needs  = Meetings-internal
 
 task   = A review at the end of the project
 nick   = Meetings-final
 desc   = An midpoint (informal) review
-start  = @tMREV
+start  = @tQ12E
 needs  = Meetings-midpoint
 allows = Miles-finish
 
