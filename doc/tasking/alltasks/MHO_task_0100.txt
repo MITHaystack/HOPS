@@ -20,7 +20,7 @@ task   = Now have all the requirements
 nick   = Miles-requirements
 desc   = when the requirements are needed for review
 start  = @tREQS
-needs  = Meetings-ponder
+needs  = ReqsDoc-revised
 
 task   = Declare the project finished
 nick   = Miles-finish
@@ -63,30 +63,45 @@ desc   = This covers conversations with various people
          to understand what this rewrite of HOPS is to
          accomplish
 needs  = Miles-start
+allows = ReqsDoc-draft
 
 task   = Review the project with sponsor
 nick   = Meetings-review
 desc   = The software foundational review
 start  = @tSREV
-needs  = Miles-requirements
+
+task   = Internal progress (End of Q06)
+nick   = Meetings-endQ06
+desc   = end of quarter 06
+needs  = Meetings-review
 
 task   = Internal progress review (End of Q07)
 nick   = Meetings-internal
 desc   = An internal review after document and prototyping completion
 start  = @tQ07E
-needs  = Meetings-review
+needs  = Meetings-endQ06
+
+task   = Internal progress (End of Q08)
+nick   = Meetings-endQ08
+desc   = end of quarter 08
+needs  = Meetings-internal
 
 task   = Internal progress (End of Q09)
 nick   = Meetings-end2021
 desc   = internal review to monitor progress at end of Q09
 start  = @tQ09E
-needs  = Meetings-internal
+needs  = Meetings-endQ08
+
+task   = Internal progress (End of Q10)
+nick   = Meetings-endQ10
+desc   = end of quarter 10
+needs  = Meetings-end2021
 
 task   = Internal progress (End of Q11)
 nick   = Meetings-mid2022
 desc   = internal review to monitor progress at end of Q11
 start  = @tQ11E
-needs  = Meetings-end2021
+needs  = Meetings-endQ10
 
 task   = Pause for internal-review/reassessment at the midpoint (End of Q12)
 nick   = Meetings-midpoint
@@ -94,11 +109,16 @@ desc   = An midpoint (informal) review
 start  = @tQ12E
 needs  = Meetings-mid2022
 
+task   = Internal progress (End of Q13)
+nick   = Meetings-endQ13
+desc   = end of quarter 13
+needs  = Meetings-midpoint
+
 task   = Internal progress (End of Q14)
 nick   = Meetings-penultimate
 desc   = internal review to monitor progress at end of Q14
 start  = @tQ14E
-needs  = Meetings-midpoint
+needs  = Meetings-endQ13
 
 task   = A review at the end of the project (End of Q15)
 nick   = Meetings-final
@@ -110,4 +130,4 @@ start  = @tQ12E
 needs  = Meetings-penultimate
 allows = Miles-finish
 
-#   INFRA       Infrastructure Setup
+# eof
