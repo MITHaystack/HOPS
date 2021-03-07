@@ -55,6 +55,34 @@ days   = 30
 needs  = Meetings-review
 allows = Meetings-internal
 
+thing  = @Tasking
+
+task   = Import APP bubble system and de-APPify it
+nick   = Tasking-import
+desc   = remember how the sw_task*pl scripts work and set up a framework
+needs  = Meetings-review
+
+task   = Populate with enough bubbles to get started
+nick   = Tasking-populate
+@gentask
+desc   = This will end up as an on-going task, but we need to get the ball
+         rolling downhill...and then we can just use the tool
+needs  = Tasking-import
+
+task   = Build PlantUML gantt charts from the things
+nick   = Tasking-gantt
+@pytask
+desc   = Capture the timeline, and names and generate gantt charts
+needs  = Tasking-populate
+
+task   = Build a document capturing all of the graphics
+nick   = Tasking-draftdoc
+@shtask
+desc   = This is a few words of tex and the the scripting to build the doc
+         automatically.
+needs  = Tasking-gantt
+allos  = Meetings-endQ06
+
 thing  = @SpecsDoc
 task   = Create first draft of @SpecsDocsDoc
 nick   = SpecsDocs-draft
@@ -64,5 +92,18 @@ start  = @tDETC
 #days   = 365
 needs  = Miles-requirements
 allows = Meetings-internal
+
+thing  = @Manuals
+
+task   = Fourfit User Manual
+nick   = Manuals-fourfit
+@etask
+desc   = write a fourfit user manual
+allows = Meetings-final
+
+task   = Aedit User Manual
+nick   = Manuals-aedit
+desc   = write aedit user manual
+allows = Meetings-final
 
 # eof

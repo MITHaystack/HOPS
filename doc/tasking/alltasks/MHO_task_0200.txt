@@ -113,6 +113,7 @@ desc   = Demonstrate that we can make a fringe plot with matplotlib
 code   = Python
 #start  = tJHIRE
 #needs  = Repo-build
+needs  = Meetings-hired
 
 task   = Test an interactive plotting GUI
 nick   = ProtoCode-interactivefringeplot

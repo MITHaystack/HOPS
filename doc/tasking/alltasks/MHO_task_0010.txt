@@ -196,7 +196,7 @@ desc   = Develop the complex bandpass capability.  In the HOPS3 world,
          (and presentation of results to fourfit) needs to be developed.
 
 thing  = Amplitude Closure
-nick   = Closure
+nick   = AmpClosure
 desc   = Amplitude closure was stubbed out in Aedit, but it is in fact
          in use in the EHTC analyses, so we need to develop those algorithms.
 
@@ -237,6 +237,10 @@ thing  = Specifications
 nick   = SpecsDoc
 desc   = Define the technical details of the HOPS4 project.
          This is the meat of the project, of course.
+
+thing  = Tasking System
+nick   = Tasking
+desc   = This covers the tasking system, which is captured in a document
 
 thing  = Software Development Plan
 nick   = SDPlanDoc

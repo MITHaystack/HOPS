@@ -117,6 +117,13 @@ days    = 1
 desc    = Python coding work
 who     = @none
 
+tdefs   = pltask
+path    = fixme
+code    = PERL
+days    = 1
+desc    = Some PERL work
+who     = @none
+
 tdefs   = shtask
 path    = fixme
 code    = Bash
