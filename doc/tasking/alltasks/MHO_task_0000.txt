@@ -39,6 +39,7 @@ file   = MHO_task_0000.txt
 @tSREV  = 2021-02-04    # Meetings-review
 #
 @tDRESP = 2021-03-04    # approx date of revised Reqs&comments to SAO
+@tDREPO = 2021-03-06    # approx date of working (clean) repo nightly
 # --- now ---
 # end of 2020 is end of Q05 on the original clock, so
 # rounding out to thursdays, we have

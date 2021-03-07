@@ -3,10 +3,15 @@
 #
 
 #
-# preloads of color choices for MHO
+# preloads of color choices for MHO -- this is how you can stabilize the
+# (random) color choices so that you start seeing the same thing  with the
+# same color.  The key here is 'full name of domain%%full name of thing'.
+#
 # grep -h ' => .*[0-9], ' fruit/* | sort | uniq | cut -c3-
 #
 our %style_preload = (
+  'General Project Activities%%Milestones for the project' => 18,
+  'General Project Activities%%Meetings and Other Activities' => 19,
 );
 
 #

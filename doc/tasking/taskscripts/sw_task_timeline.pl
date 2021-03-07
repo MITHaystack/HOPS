@@ -38,6 +38,9 @@ our ($verb,$veryverb);
 #my ($gBegin,$gEnd) = (55788,57249);     # 2011-08-15 - 2015-08-15
 our ($gBegin,$gEnd);
 
+# skip generation of needs / allows
+our $skipneedsallows;
+
 #
 # This routine computes begin/end from start/stop
 # and assigns the time required and margin members.
@@ -174,6 +177,7 @@ sub work_out_timeline {
 #
 sub make_needs_or_allows {
     my ($allows,$needs,$k,$t,$n,$me,@a) = @_;
+    return if ($skipneedsallows > 0);
     for $k (keys(%wbs)) {
         if (!defined($wbs{$k}{'nick'})) {
             # FIXME: why?

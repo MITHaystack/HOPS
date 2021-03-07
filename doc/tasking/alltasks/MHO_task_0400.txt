@@ -8,8 +8,7 @@ nick   = ReqsDoc-draft
 desc   = Draft the requirements document
 start  = @tDSTRT
 #days  = 365
-needs  = Meetings-hilo
-allows = ReqsDoc-submit
+needs  = Meetings-refining
 
 task   = Submit draft to ngEHT 
 nick   = ReqsDoc-submit
@@ -24,7 +23,7 @@ task   = Revise Requirements Document
 nick   = ReqsDoc-revised
 desc   = Respond to review and finalize requirements
 needs  = Meetings-review
-allows = Miles-requirements
+#allows = Miles-requirements
 
 thing  = @CoTestDoc
 task   = Create first draft of @CoTestDoc
@@ -37,13 +36,23 @@ needs  = ReqsDoc-draft
 allows = Meetings-review
 
 thing  = @SDPlanDoc
+
+task   = Create initial development plan
+nick   = SDPlanDoc-initial
+@etask
+desc   = Write and submit the initial pre-award plan
+start  = @tEARLY
+stop   = @tSTART
+needs  = Miles-early
+#allows = Miles-start
+
 task   = Create first draft of @SDPlanDocs
 nick   = SDPlanDoc-draft
 @etask
 desc   = Write the development plan
 start  = @tDETC
 days   = 30
-needs  = ReqsDoc-draft
+needs  = Meetings-review
 allows = Meetings-internal
 
 thing  = @SpecsDoc
@@ -53,7 +62,7 @@ nick   = SpecsDocs-draft
 desc   = Write the specifications document
 start  = @tDETC
 #days   = 365
-needs  = ReqsDoc-draft
+needs  = Miles-requirements
 allows = Meetings-internal
 
 # eof

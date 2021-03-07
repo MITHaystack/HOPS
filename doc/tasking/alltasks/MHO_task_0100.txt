@@ -9,23 +9,37 @@ nick   = Miles-early
 @milestask
 desc   = Subcontract award finalization starts
 start  = @tEARLY
+stop   = @tEARLY
 
 task   = Now have the money, can start work
 nick   = Miles-start
 desc   = Official start date for project
 start  = @tSTART
-needs  = Miles-early
+stop   = @tSTART
+needs  = SDPlanDoc-initial
 
 task   = Now have all the requirements
 nick   = Miles-requirements
 desc   = when the requirements are needed for review
 start  = @tREQS
+stop   = @tREQS
 needs  = ReqsDoc-revised
+
+task   = Now have a working repository
+nick   = Miles-repo
+desc   = This is a milestone to capture that there is a working
+         github repository and that initial setup tasks are complete
+         including some nightly build so that we don't step backwards.
+needs  = Repo-amnightly
+start  = @DREPO
+stop   = @DREPO
+#needs = Repo-cmnightly
 
 task   = Declare the project finished
 nick   = Miles-finish
 desc   = official completion date for project
 start  = @tFINAL
+stop   = @tFINAL
 needs  = Meetings-final
 
 thing  = @Meetings
@@ -48,22 +62,31 @@ task   = Complete hiring
 nick   = Meetings-hired
 desc   = actually hire software developers
 start  = @tJHIRE
+stop   = @tJHIRE
 needs  = Meetings-interviews
+
+task   = Collect Requirements pre-Hilo
+nick   = Meetings-pondering
+desc   = This covers conversations with various people
+         to understand what this rewrite of HOPS is to
+         accomplish prior to discussions in Hilo
+needs  = Miles-start
 
 task   = Hilo Presentation
 nick   = Meetings-hilo
 desc   = Present initial plans and hold discussions with
          EHT software group at the Hilo Meeting
 start  = @tHILO
-needs  = Miles-start
+stop   = @tHILO
+#needs  = Miles-start
+needs  = Meetings-pondering
 
-task   = Collect Requirements
-nick   = Meetings-ponder
+task   = Collect Requirements post-Hilo
+nick   = Meetings-refining
 desc   = This covers conversations with various people
          to understand what this rewrite of HOPS is to
-         accomplish
-needs  = Miles-start
-allows = ReqsDoc-draft
+         accomplish after discussions in Hilo
+needs  = Meetings-hilo
 
 task   = Review the project with sponsor
 nick   = Meetings-review
@@ -73,6 +96,7 @@ start  = @tSREV
 task   = Internal progress (End of Q06)
 nick   = Meetings-endQ06
 desc   = end of quarter 06
+start  = @tQ06E
 needs  = Meetings-review
 
 task   = Internal progress review (End of Q07)
@@ -84,6 +108,7 @@ needs  = Meetings-endQ06
 task   = Internal progress (End of Q08)
 nick   = Meetings-endQ08
 desc   = end of quarter 08
+start  = @tQ08E
 needs  = Meetings-internal
 
 task   = Internal progress (End of Q09)
@@ -95,6 +120,7 @@ needs  = Meetings-endQ08
 task   = Internal progress (End of Q10)
 nick   = Meetings-endQ10
 desc   = end of quarter 10
+start  = @tQ10E
 needs  = Meetings-end2021
 
 task   = Internal progress (End of Q11)
