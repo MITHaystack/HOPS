@@ -66,7 +66,7 @@ needs  = Fourfit3Build-check
 
 
 # Review the legacy fourfit application in HOPS4
-thing  = Fourfit3Review
+thing  = @Fourfit3Review
 
 task   = Check that the fourfit application works.
 nick   = Fourfit3Review-check

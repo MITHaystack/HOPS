@@ -35,18 +35,20 @@ start  = @tDETC
 needs  = ReqsDoc-draft
 allows = Meetings-review
 
-thing  = @SDPlanDoc
+thing  = @ProjPlan
 
-task   = Create initial development plan
-nick   = SDPlanDoc-initial
+task   = Write the pre-award project plan for SAO and NSF.
+nick   = ProjPlan-preaward
 @etask
 desc   = Write and submit the initial pre-award plan
 start  = @tEARLY
 stop   = @tSTART
 needs  = Miles-early
-#allows = Miles-start
 
-task   = Create first draft of @SDPlanDocs
+thing  = @SDPlanDoc
+
+
+task   = Create first draft of @SDPlanDoc
 nick   = SDPlanDoc-draft
 @etask
 desc   = Write the development plan
@@ -81,7 +83,7 @@ nick   = Tasking-draftdoc
 desc   = This is a few words of tex and the the scripting to build the doc
          automatically.
 needs  = Tasking-gantt
-allos  = Meetings-endQ06
+allows = Meetings-endQ06
 
 thing  = @SpecsDoc
 task   = Create first draft of @SpecsDocsDoc
