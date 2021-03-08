@@ -40,9 +40,11 @@ $graph_rankdir = 'TB';
 # orientation dot commands for 'portrait'
 $orientation[0] =  "rotate=0\nsize=\"7.5,10\"\n";
 $orientation[0] =  "rotate=0\nsize=\"22.5,30\"\n";
+$orientation[0] =  "rotate=0\nsize=\"45,60\"\n";
 # orientation dot commands for 'landscape'
 $orientation[1] = "rotate=90\nsize=\"10,7.5\"\n";
 $orientation[1] = "rotate=90\nsize=\"30,22.5\"\n";
+$orientation[1] = "rotate=90\nsize=\"60,45\"\n";
 # orientation of legend ('portrait' or 'landscape')
 $orientation[2] = 'portrait';
 # orientation of ALL plot
