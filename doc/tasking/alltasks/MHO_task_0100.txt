@@ -23,7 +23,7 @@ nick   = Miles-requirements
 desc   = when the requirements are needed for review
 start  = @tREQS
 stop   = @tREQS
-needs  = ReqsDoc-revised
+needs  = ReqsDoc-revise
 
 task   = Now have a working repository
 nick   = Miles-repo
