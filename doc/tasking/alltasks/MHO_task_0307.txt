@@ -1,0 +1,16 @@
+file   = MHO_task_0307.txt
+
+domain = @OTHER3
+
+thing  = @ImportEx
+task   = Identify and import other HOPS3 Executables
+nick   = ImportEx-import
+@ctask
+desc   = to be filled out ...
+allows = Meetings-internal
+
+thing  = @ImportSc
+task   = Identify and import other HOPS3 Scripts
+nick   = ImportSc-scripts
+desc   = to be filled out ...
+allows = Meetings-internal

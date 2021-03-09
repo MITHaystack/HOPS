@@ -25,8 +25,11 @@ allinputs = $(mho)tasks/$(MHO)_inputs.txt \
 	$(mho)tasks/$(MHO)_0000.txt $(mho)tasks/$(MHO)_ZZZZ.txt \
 	$(mho)tasks/$(MHO)_0001.txt $(mho)tasks/$(MHO)_0010.txt \
 	$(mho)tasks/$(MHO)_0100.txt $(mho)tasks/$(MHO)_0200.txt \
-	$(mho)tasks/$(MHO)_0300.txt $(mho)tasks/$(MHO)_0400.txt \
-	$(mho)tasks/$(MHO)_0500.txt \
+	$(mho)tasks/$(MHO)_0300.txt $(mho)tasks/$(MHO)_0305.txt \
+	$(mho)tasks/$(MHO)_0307.txt $(mho)tasks/$(MHO)_0310.txt \
+	$(mho)tasks/$(MHO)_0350.txt $(mho)tasks/$(MHO)_0370.txt \
+	$(mho)tasks/$(MHO)_0380.txt $(mho)tasks/$(MHO)_0390.txt \
+	$(mho)tasks/$(MHO)_0400.txt $(mho)tasks/$(MHO)_0500.txt \
 	$(mho)tasks/$(MHO)_bubbles.pl $(mho)tasks/$(MHO)_config.pl
 
 # the perl scripts that run the task machinery

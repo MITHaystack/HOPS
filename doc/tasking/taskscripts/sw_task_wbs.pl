@@ -246,7 +246,9 @@ sub task_by_nick {
             return($kv);
         }
     }
-    print "No task for '$nick' ($caller), returning 'none'.\n" if ($verb);
+    if ($nick ne 'ALL' and $verb) {
+        print "No task for '$nick' ($caller), returning 'none'.\n";
+    }
     return('none');
 }
 

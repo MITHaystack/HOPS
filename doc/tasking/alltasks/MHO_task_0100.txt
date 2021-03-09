@@ -9,23 +9,37 @@ nick   = Miles-early
 @milestask
 desc   = Subcontract award finalization starts
 start  = @tEARLY
+stop   = @tEARLY
 
 task   = Now have the money, can start work
 nick   = Miles-start
 desc   = Official start date for project
 start  = @tSTART
-needs  = Miles-early
+stop   = @tSTART
+needs  = SDPlanDoc-initial
 
 task   = Now have all the requirements
 nick   = Miles-requirements
 desc   = when the requirements are needed for review
 start  = @tREQS
-needs  = Meetings-ponder
+stop   = @tREQS
+needs  = ReqsDoc-revised
+
+task   = Now have a working repository
+nick   = Miles-repo
+desc   = This is a milestone to capture that there is a working
+         github repository and that initial setup tasks are complete
+         including some nightly build so that we don't step backwards.
+needs  = Repo-amnightly
+start  = @DREPO
+stop   = @DREPO
+#needs = Repo-cmnightly
 
 task   = Declare the project finished
 nick   = Miles-finish
 desc   = official completion date for project
 start  = @tFINAL
+stop   = @tFINAL
 needs  = Meetings-final
 
 thing  = @Meetings
@@ -48,44 +62,98 @@ task   = Complete hiring
 nick   = Meetings-hired
 desc   = actually hire software developers
 start  = @tJHIRE
+stop   = @tJHIRE
 needs  = Meetings-interviews
+
+task   = Collect Requirements pre-Hilo
+nick   = Meetings-pondering
+desc   = This covers conversations with various people
+         to understand what this rewrite of HOPS is to
+         accomplish prior to discussions in Hilo
+needs  = Miles-start
 
 task   = Hilo Presentation
 nick   = Meetings-hilo
 desc   = Present initial plans and hold discussions with
          EHT software group at the Hilo Meeting
 start  = @tHILO
-needs  = Miles-start
+stop   = @tHILO
+#needs  = Miles-start
+needs  = Meetings-pondering
 
-task   = Collect Requirements
-nick   = Meetings-ponder
+task   = Collect Requirements post-Hilo
+nick   = Meetings-refining
 desc   = This covers conversations with various people
          to understand what this rewrite of HOPS is to
-         accomplish
-needs  = Miles-start
+         accomplish after discussions in Hilo
+needs  = Meetings-hilo
 
 task   = Review the project with sponsor
 nick   = Meetings-review
 desc   = The software foundational review
 start  = @tSREV
-needs  = Miles-requirements
 
-task   = Internal progress review
-nick   = Meetings-internal
-desc   = An internal review after document and prototyping completion
+task   = Internal progress (End of Q06)
+nick   = Meetings-endQ06
+desc   = end of quarter 06
+start  = @tQ06E
 needs  = Meetings-review
 
-task   = Pause for internal-review/reassessment at the midpoint
-nick   = Meetings-midpoint
-desc   = An midpoint (informal) review
-start  = @tMREV
+task   = Internal progress review (End of Q07)
+nick   = Meetings-internal
+desc   = An internal review after document and prototyping completion
+start  = @tQ07E
+needs  = Meetings-endQ06
+
+task   = Internal progress (End of Q08)
+nick   = Meetings-endQ08
+desc   = end of quarter 08
+start  = @tQ08E
 needs  = Meetings-internal
 
-task   = A review at the end of the project
-nick   = Meetings-final
+task   = Internal progress (End of Q09)
+nick   = Meetings-end2021
+desc   = internal review to monitor progress at end of Q09
+start  = @tQ09E
+needs  = Meetings-endQ08
+
+task   = Internal progress (End of Q10)
+nick   = Meetings-endQ10
+desc   = end of quarter 10
+start  = @tQ10E
+needs  = Meetings-end2021
+
+task   = Internal progress (End of Q11)
+nick   = Meetings-mid2022
+desc   = internal review to monitor progress at end of Q11
+start  = @tQ11E
+needs  = Meetings-endQ10
+
+task   = Pause for internal-review/reassessment at the midpoint (End of Q12)
+nick   = Meetings-midpoint
 desc   = An midpoint (informal) review
-start  = @tMREV
+start  = @tQ12E
+needs  = Meetings-mid2022
+
+task   = Internal progress (End of Q13)
+nick   = Meetings-endQ13
+desc   = end of quarter 13
 needs  = Meetings-midpoint
+
+task   = Internal progress (End of Q14)
+nick   = Meetings-penultimate
+desc   = internal review to monitor progress at end of Q14
+start  = @tQ14E
+needs  = Meetings-endQ13
+
+task   = A review at the end of the project (End of Q15)
+nick   = Meetings-final
+desc   = An midpoint (informal) review.
+         After this date, there are two months to clean up the final
+         delivery, documentation, &c.  All of which should be mechanical
+         at this point.
+start  = @tQ12E
+needs  = Meetings-penultimate
 allows = Miles-finish
 
-#   INFRA       Infrastructure Setup
+# eof

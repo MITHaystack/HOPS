@@ -75,7 +75,7 @@ our $bubbles = $opts{'b'};
 # verbose for feedback, veryverb for debugging
 our $verb = $opts{'v'};
 our $veryverb = $opts{'w'};
-our ($same,$legend);
+our ($rundot,$legend);
 $verb = 1 if ($veryverb);
 
 # it is not clear how these must be set
@@ -167,7 +167,7 @@ if ($graphs eq 'ALL') {
     }
 } else {
     $graphs = join(',',keys(%domains)) if ($graphs eq 'all');
-    &make_the_graph("$output-ALL",$dtype,$same,keys(%tasks));
+    &make_the_graph("$output-ALL",$dtype,$rundot,keys(%tasks));
     my @d = split(/,/,$graphs);
     print "Creating graphs for " . join(',',@d) . "\n" if ($verb);
     &make_domain_graphs($output,$dtype,@d);

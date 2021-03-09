@@ -316,11 +316,16 @@ sub make_the_graph {
 
     @list = split(/-/,$name);
     $doma = &task_by_nick($nick = $list[1],'make_the_graph:top');
-    $orio = $wbs{$doma}{'orient'};
+    if ($doma =~ m/none/) {
+        $orio = $orientation[3];
+        $doma = "ALL: Absolutely Everything";
+    } else {
+        $orio = $wbs{$doma}{'orient'};
+    }
     $doma =~ s/$sep/\\n/;
 
     # orientation of ALL is a special case
-    $orio = $orientation[3] if ( $name =~ m/.*-ALL/ );
+    # $orio = $orientation[3] if ( $name =~ m/.*-ALL/ );
 
     open DOT,">$name.dot";
     print DOT "digraph $nick {\n";
@@ -430,7 +435,7 @@ sub make_domain_graphs {
         }
 
         if ($#dtsks < 0) {
-            print "Nothing to graph for $domnick\n";
+            print "Nothing to graph (no defined tasks) for $domnick\n";
             next;
         }
         print "Problem with DOT-$domnick ($#dtsks)\n" if (

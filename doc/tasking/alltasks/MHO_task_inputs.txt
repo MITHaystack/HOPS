@@ -176,7 +176,14 @@ sw_task_graph.pl.  More can be added (if we discover we need this.)
 Things (domains only, at the moment) have
   orient = portrait/landscape
 to control how they get plotted.  Other plotting controls are in
-MHO_task_config.pl.
+MHO_task_config.pl:
+    $legend determines whether a legend graphic is generated or not
+    $rundot determines whether to actually make the plots or not
+    $fullnames determines whether the full names appear in the label text
+        this will be more cryptic, but will make smaller bubbles
+    $skipneedsallows bypasses the calculation of double-linkages so
+        that the dot plots contain red or blue arrows based on what
+        was actually specified (not derived)
 
 Every thing plotted, has an associated *.task file which tells you
 how all the variables were completed.  In particular start and/or

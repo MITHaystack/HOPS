@@ -6,32 +6,39 @@ task   = Create first draft of @ReqsDoc
 nick   = ReqsDoc-draft
 @etask
 desc   = Draft the requirements document
-#start = 2019-12-01
+start  = @tDSTRT
 #days  = 365
-needs  = Meetings-hilo
-allows = Meetings-review
+needs  = Meetings-refining
 
-thing  = @ReqsDoc
-task   = Submit first draft of @ReqsDoc to the ngEHT 
+task   = Submit first draft of @ReqsDoc to the ngEHT
 nick   = ReqsDoc-submit
 @etask
 desc   = Submit draft to ngEHT for feedback
-#start = 2021-02-10
-#days  = 1
-needs  = Meetings-hilo
+start  = @tDSHRE
+#days  = 3
+needs  = ReqsDoc-draft
 allows = Meetings-review
 
-thing  = @ReqsDoc
-task   = Revise first draft of @ReqsDoc 
+task   = Revise first draft of @ReqsDoc
 nick   = ReqsDoc-revise
 @etask
-desc   = Revise the first draft based on ngEHT comments  
-#start = 2021-02-04
+desc   = Respond to review and finalize requirements
+#start was removed
 #days  = 7
-needs  = Meetings-hilo
-allows = Meetings-review
+needs  = Meetings-review
+#allows = Miles-requirements
 
 thing  = @CoTestDoc
+
+task   = Create first draft of @CoTestDoc
+nick   = CoTestDoc-draft
+@etask
+desc   = Draft the testing document
+start  = @tDETC
+#days   = 30
+needs  = ReqsDoc-draft
+allows = Meetings-review
+
 task   = Create first draft of @CoTestDoc
 nick   = CoTestDoc-draft
 @etask
@@ -41,7 +48,6 @@ desc   = Draft the testing document
 needs  = ReqsDoc-draft
 allows = Meetings-review
 
-thing  = @CoTestDoc
 task   = Submit first draft of @CoTestDoc
 nick   = CoTestDoc-submit
 @etask
@@ -51,7 +57,6 @@ desc   = Submit the first revision to the ngEHT
 needs  = ReqsDoc-draft
 allows = Meetings-review
 
-thing  = @CoTestDoc
 task   = Revise the first draft of @CoTestDoc
 nick   = CoTestDoc-revise
 @etask
@@ -62,6 +67,7 @@ needs  = ReqsDoc-draft
 allows = Meetings-review
 
 thing  = @SpecsDoc
+
 task   = Create first draft of @SpecsDocsDoc
 nick   = SpecsDocs-draft
 @etask
@@ -71,7 +77,6 @@ desc   = Write the specifications document
 needs  = ReqsDoc-draft
 allows = Meetings-internal
 
-thing  = @SpecsDoc
 task   = Submit first draft of @SpecsDoc
 nick   = SpecsDocs-submit
 @etask
@@ -81,7 +86,6 @@ desc   = Submit the first revision to the ngEHT
 needs  = ReqsDoc-draft
 allows = Meetings-internal
 
-thing  = @SpecsDoc
 task   = Revise the @SpecsDocsDoc
 nick   = SpecsDocs-draft
 @etask
@@ -92,33 +96,110 @@ needs  = ReqsDoc-draft
 allows = Meetings-internal
 
 thing  = @SDPlanDoc
+
+task   = Create first draft of @SDPlanDocs
+nick   = SDPlanDoc-draft
+@etask
+desc   = Submit the first revision to the ngEHT
+start  = @tEARLY
+stop   = @tSTART
+needs  = Miles-early
+#allows = Miles-start
+
 task   = Create first draft of @SDPlanDocs
 nick   = SDPlanDoc-draft
 @etask
 desc   = Write the development plan
 #start  = 2020-12-01
 days   = 30
-needs  = ReqsDoc-draft
-allows = Meetings-internal
+needs  = Miles-early
+#allows = Miles-start
 
-thing  = @SDPlanDoc
 task   = Submit first draft of @SDPlanDoc
 nick   = SDPlanDoc-submit
 @etask
 desc   = Submit first draft to the ngEHT
 #start  = 2021-03-10
 days   = 1
-needs  = ReqsDoc-draft
-allows = Meetings-internal
+needs  = Miles-early
+#allows = Miles-start
 
-thing  = @SDPlanDoc
 task   = Revise the @SDPlanDoc
 nick   = SDPlanDoc-revise
 @etask
-desc   = Revise based on feedback from the ngEHT 
+desc   = Revise based on feedback from the ngEHT
 #start  = 2020-12-01
 days   = 7
+needs  = Miles-early
+#allows = Miles-start
+
+task   = Revise the @SpecsDocsDoc
+nick   = SpecsDocs-draft
+@etask
+desc   = Write the specifications document
+#start  = 2021-02-10
+#days   = 7
 needs  = ReqsDoc-draft
 allows = Meetings-internal
 
-#   STUFF       everything else
+task   = Create first draft of @SDPlanDocs
+nick   = SDPlanDoc-draft
+@etask
+desc   = Write the development plan
+start  = @tDETC
+days   = 30
+needs  = Meetings-review
+allows = Meetings-internal
+
+thing  = @Tasking
+
+task   = Import APP bubble system and de-APPify it
+nick   = Tasking-import
+desc   = remember how the sw_task*pl scripts work and set up a framework
+needs  = Meetings-review
+
+task   = Populate with enough bubbles to get started
+nick   = Tasking-populate
+@gentask
+desc   = This will end up as an on-going task, but we need to get the ball
+         rolling downhill...and then we can just use the tool
+needs  = Tasking-import
+
+task   = Build PlantUML gantt charts from the things
+nick   = Tasking-gantt
+@pytask
+desc   = Capture the timeline, and names and generate gantt charts
+needs  = Tasking-populate
+
+task   = Build a document capturing all of the graphics
+nick   = Tasking-draftdoc
+@shtask
+desc   = This is a few words of tex and the the scripting to build the doc
+         automatically.
+needs  = Tasking-gantt
+allos  = Meetings-endQ06
+
+thing  = @SpecsDoc
+task   = Create first draft of @SpecsDocsDoc
+nick   = SpecsDocs-draft
+@etask
+desc   = Write the specifications document
+start  = @tDETC
+#days   = 365
+needs  = Miles-requirements
+allows = Meetings-internal
+
+thing  = @Manuals
+
+task   = Fourfit User Manual
+nick   = Manuals-fourfit
+@etask
+desc   = write a fourfit user manual
+allows = Meetings-final
+
+task   = Aedit User Manual
+nick   = Manuals-aedit
+desc   = write aedit user manual
+allows = Meetings-final
+
+# eof

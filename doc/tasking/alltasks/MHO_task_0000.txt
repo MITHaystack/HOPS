@@ -28,16 +28,37 @@ file   = MHO_task_0000.txt
 # margin calculations for tasks that lead up to that date.
 @tEARLY = 2019-08-15    # this is approximate
 @tSTART = 2019-09-01
+@tDSTRT = 2019-12-01    # approx date we started writing requirements
 @tHILO  = 2019-12-04
 @tJPOST = 2020-02-10
 @tJHIRE = 2020-09-14
+#
+@TDETC  = 2020-12-01    # approx date we started other documents
 @tREQS  = 2020-12-07
-@tSREV  = 2021-02-04
-# now
-@tMREV  = 2022-09-01
-# this one is known
-@tFINAL = 2023-08-31
+@tDSHRE = 2021-02-02    # approx date we gave Doc Drafts to SAO
+@tSREV  = 2021-02-04    # Meetings-review
+#
+@tDRESP = 2021-03-04    # approx date of revised Reqs&comments to SAO
+@tDREPO = 2021-03-06    # approx date of working (clean) repo nightly
+# --- now ---
+# end of 2020 is end of Q05 on the original clock, so
+# rounding out to thursdays, we have
+@tQ06E  = 2021-04-01    # Meetings-endQ06
+@tQ07E  = 2021-07-01    # Meetings-internal
+@tQ08E  = 2021-09-30    # Meetings-endQ08
+@tQ09E  = 2021-12-30    # Meetings-end2021
+# 2022
+@tQ10E  = 2022-03-03    # Meetings-endQ10
+@tQ11E  = 2022-06-02    # Meetings-mid2022
+@tQ12E  = 2022-09-01    # Meetings-midpoint
+@tQ13E  = 2022-12-29    # Meetings-endQ13
+# 2023
+@tQ14E  = 2023-03-30    # Meetings-penultimate
+@tQ15E  = 2023-06-29    # Meetings-final
+# this one is known and is a month shy of end of Q16 ;-)
+@tFINAL = 2023-08-31    # Miles-finish
 # post project one can continue...
+# please...
 
 ### pool of developers and other people
 @gc     = Geoff Crew
@@ -94,6 +115,13 @@ path    = fixme
 code    = Python
 days    = 1
 desc    = Python coding work
+who     = @none
+
+tdefs   = pltask
+path    = fixme
+code    = PERL
+days    = 1
+desc    = Some PERL work
 who     = @none
 
 tdefs   = shtask
