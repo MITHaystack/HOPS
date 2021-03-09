@@ -12,6 +12,7 @@
 our %style_preload = (
   'General Project Activities%%Milestones for the project' => 18,
   'General Project Activities%%Meetings and Other Activities' => 19,
+  'HOPS4 Documentation%%Project Development Plan' => 20,
 );
 
 #

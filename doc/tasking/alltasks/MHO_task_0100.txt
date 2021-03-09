@@ -18,13 +18,6 @@ start  = @tSTART
 stop   = @tSTART
 needs  = ProjPlan-preaward
 
-task   = Now have all the requirements
-nick   = Miles-requirements
-desc   = when the requirements are needed for review
-start  = @tREQS
-stop   = @tREQS
-needs  = ReqsDoc-revise
-
 task   = Now have a working repository
 nick   = Miles-repo
 desc   = This is a milestone to capture that there is a working
@@ -34,6 +27,22 @@ needs  = Repo-amnightly
 start  = @DREPO
 stop   = @DREPO
 #needs = Repo-cmnightly
+
+task   = Now have all the requirements
+nick   = Miles-requirements
+desc   = when the requirements are needed for review
+start  = @tREQS
+stop   = @tREQS
+needs  = ReqsDoc-revise
+
+task   = Now have all of the foundational documents
+nick   = Miles-docsfinal
+desc   = This is a milestone to capture the state with a completed set
+         of requirements, software development, coverage and test plans.  
+         The specifications document need not be complete at this point
+         but should have substantial maturity.
+needs  = Miles-requirements,CoTestDoc-final,SDPlanDoc-final,SpecsDoc-mature
+allows = Meetings-endQ06
 
 task   = Declare the project finished
 nick   = Miles-finish
@@ -92,12 +101,13 @@ task   = Review the project with sponsor
 nick   = Meetings-review
 desc   = The software foundational review
 start  = @tSREV
+needs  = ReqsDoc-submit,CoTestDoc-submit
 
 task   = Internal progress (End of Q06)
 nick   = Meetings-endQ06
 desc   = end of quarter 06
 start  = @tQ06E
-needs  = Meetings-review
+#needs  = Meetings-review
 
 task   = Internal progress review (End of Q07)
 nick   = Meetings-internal
