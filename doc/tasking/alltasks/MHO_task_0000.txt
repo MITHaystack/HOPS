@@ -87,62 +87,62 @@ path    = none
 code    = none
 days    = 0
 desc    = A planning date assumed to prevent useful work
-who     = @none
+who     = @swdev
 
 tdefs   = gentask
 path    = none
 code    = none
 days    = 1
 desc    = Some general work without any code or path
-who     = @none
+who     = @swdev
 
 tdefs   = ctask
 path    = fixme
 code    = C
-days    = 1
+days    = 5
 desc    = C coding work
-who     = @none
+who     = @swdev
 
 tdefs   = cpptask
 path    = fixme
 code    = C
-days    = 1
+days    = 5
 desc    = C++ coding work
-who     = @none
+who     = @swdev
 
 tdefs   = pytask
 path    = fixme
 code    = Python
-days    = 1
+days    = 5
 desc    = Python coding work
-who     = @none
+who     = @swdev
 
 tdefs   = pltask
 path    = fixme
 code    = PERL
-days    = 1
+days    = 5
 desc    = Some PERL work
-who     = @none
+who     = @swdev
 
 tdefs   = shtask
 path    = fixme
 code    = Bash
-days    = 1
+days    = 3
 desc    = Bash coding work
-who     = @none
+who     = @swdev
 
 tdefs   = testask
 path    = fixme
 code    = None
-days    = 1
+days    = 3
 desc    = A testing task
-who     = @none
+who     = @swdev
 
 tdefs   = editask
 path    = fixme
 code    = None
-days    = 1
+days    = 3
 desc    = An editing or writing task
-who     = @none
+who     = @swdev
 
 # eof
