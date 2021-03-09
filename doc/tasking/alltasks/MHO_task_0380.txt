@@ -8,7 +8,7 @@ task   = Design complex bandpass algorithm in fourfit3
 nick   = CBandPass-ff3design
 @ctask
 desc   = Work out how to import and apply a complex bandpass in fourfit3
-needs  = Fourfit3Review-milestone
+needs  = Meetings-endQ08
 
 task   = Develop script to compute complex bandpass in fourfit3
 nick   = CBandPass-ff3derive

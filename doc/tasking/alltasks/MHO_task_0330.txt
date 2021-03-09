@@ -1,0 +1,190 @@
+file   = MHO_task_0330.txt
+
+
+domain = @UTILS
+
+# Developing the utils library
+thing  = @UtilsDevelop
+
+task   = Design the utils library
+nick   = UtilsDevelop-design
+@cpptask
+desc   = Develop the utils library
+needs  = Meetings-internal
+
+task   = Implement the utils library
+nick   = UtilsDevelop-implement
+desc   = Implement the utils library
+needs  = UtilsDevelop-design
+
+task   = Test the utils library
+nick   = UtilsDevelop-test
+desc   = Test the utils library
+needs  = UtilsDevelop-implement
+allows = Meetings-mid2022
+
+
+
+domain = @MESSAGE
+
+# Developing the message library
+thing  = @MessageDevelop
+
+task   = Design the message library
+nick   = MessageDevelop-design
+@cpptask
+desc   = Develop the message library
+needs  = Meetings-internal
+
+task   = Implement the message library
+nick   = MessageDevelop-implement
+desc   = Implement the message library
+needs  = MessageDevelop-design
+
+task   = Test the message library
+nick   = MessageDevelop-test
+desc   = Test the message library
+needs  = MessageDevelop-implement
+allows = Meetings-mid2022
+
+
+
+domain = @CONTAINERS
+
+# Developing the containers library
+thing  = @ContainersDevelop
+
+task   = Design the containers library
+nick   = ContainersDevelop-design
+@cpptask
+desc   = Design the containers library
+needs  = Meetings-internal
+
+task   = Implement the containers library
+nick   = ContainersDevelop-implement
+desc   = Implement the containers library
+needs  = ContainersDevelop-design
+
+task   = Test the containers library
+nick   = ContainersDevelop-test
+desc   = Test the containers library
+needs  = ContainersDevelop-implement
+#allows = Meetings-mid2022
+
+
+
+domain = @OPERATORS
+
+# Developing the operators library
+thing  = @OperatorsDevelop
+
+task   = Design the operators library
+nick   = OperatorsDevelop-design
+@cpptask
+desc   = Design the operators library
+needs  = Meetings-internal
+
+task   = Implement the operators library
+nick   = OperatorsDevelop-implement
+desc   = Implement the operators library
+needs  = OperatorsDevelop-design
+
+task   = Test the operators library
+nick   = OperatorsDevelop-test
+desc   = Test the operators library
+needs  = OperatorsDevelop-implement
+#allows = Meetings-mid2022
+
+
+
+domain = @MATH
+
+# Developing the math library
+thing  = @MathDevelop
+
+task   = Design the math library
+nick   = MathDevelop-design
+@cpptask
+desc   = Design the math library
+needs  = Meetings-internal
+
+task   = Implement the math library
+nick   = MathDevelop-implement
+desc   = Implement the math library
+needs  = MathDevelop-design
+
+task   = Test the math library
+nick   = MathDevelop-test
+desc   = Test the math library
+needs  = MathDevelop-implement
+#allows = Meetings-mid2022
+
+
+domain = @VCAL
+
+# Developing the VCAL library
+thing  = @VCalDevelop
+
+task   = Design the VCAL library
+nick   = VCalDevelop-design
+@cpptask
+desc   = Design the VCAL library
+needs  = Meetings-internal
+
+task   = Implement the VCAL library
+nick   = VCalDevelop-implement
+desc   = Implement the VCAL library
+needs  = VCalDevelop-design
+
+task   = Test the VCAL library
+nick   = VCalDevelop-test
+desc   = Test the VCAL library
+needs  = VCalDevelop-implement
+#allows = Meetings-mid2022
+
+
+
+domain = @MK4INTER
+
+# Developing the mk4 interface library
+thing  = @Mk4InterDevelop
+
+task   = Design the mk4 interface library
+nick   = Mk4InterDevelop-design
+@cpptask
+desc   = Design the mk4 interface library
+needs  = Meetings-internal
+
+task   = Implement the mk4 interface library
+nick   = Mk4InterDevelop-implement
+desc   = Implement the mk4 interface library
+needs  = Mk4InterDevelop-design
+
+task   = Test the mk4 interface library
+nick   = Mk4InterDevelop-test
+desc   = Test the mk4 interface library
+needs  = Mk4InterDevelop-implement
+#allows = Meetings-mid2022
+
+
+domain = @BINDINGS
+
+# Developing the bindings library
+thing  = @BindingsDevelop
+
+task   = Design the bindings library
+nick   = BindingsDevelop-design
+@cpptask
+desc   = Design the bindings library
+needs  = Meetings-internal
+
+task   = Implement the bindings library
+nick   = BindingsDevelop-implement
+desc   = Implement the bindings library
+needs  = BindingsDevelop-design
+
+task   = Test the bindings library
+nick   = BindingsDevelop-test
+desc   = Test the bindings library
+needs  = BindingsDevelop-implement
+#allows = Meetings-mid2022

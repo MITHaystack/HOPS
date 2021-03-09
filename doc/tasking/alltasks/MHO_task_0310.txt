@@ -9,21 +9,18 @@ task   = Design the refactoring of the ffcontrol library
 nick   = FFControlRefactor-design
 @ctask
 desc   = Design the refactoring of the ffcontrol library
-#start  = tSREV
 needs  = Fourfit3Review-milestone
 
 task   = Implement the refactoring of the ffcontrol library
 nick   = FFControlRefactor-implement
 desc   = Implement the refactoring of the ffcontrol library
-#start  = tSREV
 needs  = FFControlRefactor-design
 
 task   = Test the refactoring of the ffcontrol library
 nick   = FFControlRefactor-test
 desc   = Test the refactoring of the ffcontrol library
-#start  = tSREV
 needs  = FFControlRefactor-implement
-allows = Meetings-midpoint
+allows = FourfitRefactorReview-check
 
 
 
@@ -36,21 +33,18 @@ task   = Design the refactoring of the ffcore library
 nick   = FFCoreRefactor-design
 @ctask
 desc   = Design the refactoring of the ffcore library
-#start  = tSREV
 needs  = Fourfit3Review-milestone
 
 task   = Implement the refactoring of the ffcore library
 nick   = FFCoreRefactor-implement
 desc   = Implement the refactoring of the ffcore library
-#start  = tSREV
 needs  = FFCoreRefactor-design
 
 task   = Test the refactoring of the ffcore library
 nick   = FFCoreRefactor-test
 desc   = Test the refactoring of the ffcore library
-#start  = tSREV
 needs  = FFCoreRefactor-implement
-allows = Meetings-midpoint
+allows = FourfitRefactorReview-check
 
 
 
@@ -63,21 +57,18 @@ task   = Design the refactoring of the ffio library
 nick   = FFIORefactor-design
 @ctask
 desc   = Design the refactoring of the ffio library
-#start  = tSREV
 needs  = Fourfit3Review-milestone
 
 task   = Implement the refactoring of the ffio library
 nick   = FFIORefactor-implement
 desc   = Implement the refactoring of the ffio library
-#start  = tSREV
 needs  = FFIORefactor-design
 
 task   = Test the refactoring of the ffio library
 nick   = FFIORefactor-test
 desc   = Test the refactoring of the ffio library
-#start  = tSREV
 needs  = FFIORefactor-implement
-allows = Meetings-midpoint
+allows = FourfitRefactorReview-check
 
 
 
@@ -90,21 +81,18 @@ task   = Design the refactoring of the ffmath library
 nick   = FFMathRefactor-design
 @ctask
 desc   = Design the refactoring of the ffmath library
-#start  = tSREV
 needs  = Fourfit3Review-milestone
 
 task   = Implement the refactoring of the ffmath library
 nick   = FFMathRefactor-implement
 desc   = Implement the refactoring of the ffmath library
-#start  = tSREV
 needs  = FFMathRefactor-design
 
 task   = Test the refactoring of the ffmath library
 nick   = FFMathRefactor-test
 desc   = Test the refactoring of the ffmath library
-#start  = tSREV
 needs  = FFMathRefactor-implement
-allows = Meetings-midpoint
+allows = FourfitRefactorReview-check
 
 
 
@@ -117,21 +105,18 @@ task   = Design the refactoring of the ffsearch library
 nick   = FFSearchRefactor-design
 @ctask
 desc   = Design the refactoring of the ffsearch library
-#start  = tSREV
 needs  = Fourfit3Review-milestone
 
 task   = Implement the refactoring of the ffsearch library
 nick   = FFSearchRefactor-implement
 desc   = Implement the refactoring of the ffsearch library
-#start  = tSREV
 needs  = FFSearchRefactor-design
 
 task   = Test the refactoring of the ffsearch library
 nick   = FFSearchRefactor-test
 desc   = Test the refactoring of the ffsearch library
-#start  = tSREV
 needs  = FFSearchRefactor-implement
-allows = Meetings-midpoint
+allows = FourfitRefactorReview-check
 
 
 domain = @FFPLOT
@@ -143,21 +128,49 @@ task   = Design the refactoring of the ffplot library
 nick   = FFPlotRefactor-design
 @ctask
 desc   = Design the refactoring of the ffplot library
-#start  = tSREV
 needs  = Fourfit3Review-milestone
 
 task   = Implement the refactoring of the ffplot library
 nick   = FFPlotRefactor-implement
 desc   = Implement the refactoring of the ffplot library
-#start  = tSREV
 needs  = FFPlotRefactor-design
 
 task   = Test the refactoring of the ffplot library
 nick   = FFPlotRefactor-test
 desc   = Test the refactoring of the ffplot library
-#start  = tSREV
 needs  = FFPlotRefactor-implement
+allows = FourfitRefactorReview-check
+
+
+
+domain = @FFREFACTOR
+
+# Generic fourfit refactoring things
+
+thing  = @FourfitRefactorReview
+
+task   = Check the fourfit refactoring
+nick   = FourfitRefactorReview-check
+@gentask
+desc   = Everybody checks that the new versions of the legacy fourfit
+         libraries are sensible. Should allow fourfit to work on
+	 unlimited stations/baselines/channels
+
+
+task   = Lessons from the fourfit refactoring
+nick   = FourfitRefactorReview-lessons
+@gentask
+desc   = Gather lessons from the fourfit refactoring
+needs  = FourfitRefactorReview-check
+
+task   = Internal review of the fourfit refactoring
+nick   = FourfitRefactorReview-milestone
+@gentask
+desc   = Internal team meeting to review fourfit refactoring
+needs  = FourfitRefactorReview-lessons
 allows = Meetings-midpoint
+
+
 
 thing  = @FourfitRefactor
 

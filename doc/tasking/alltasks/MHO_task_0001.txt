@@ -46,6 +46,10 @@ domain = Refactor ffplot library
 nick   = FFPLOT
 desc   = Refactor the ffplot library
 
+domain = Generic fourfit refactoring things
+nick   = FFREFACTOR
+desc   = Generic refactoring of the legacy fourfit libraries
+
 
 domain = Refactor A Machinery
 nick   = AMACHINERY
@@ -63,6 +67,55 @@ desc   = Develop and implement framework for import and
          interface starts with the SWIN products and
          ends with hops correlation products and other
          formats for export.
+
+
+
+
+domain = Utilities library
+nick   = UTILS
+desc   = Develop the new utilities library. This covers commonly-used
+	 functions, like date handling, profiling, toolboxes etc.
+
+domain = Message library
+nick   = MESSAGE
+desc   = Develop the new messaging library. This covers the messages
+	 and logs to the user, with handles for verbosity, topics, etc.
+
+domain = Containers library
+nick   = CONTAINERS
+desc   = Develop the new containers library. This covers the
+	 in-memory data containers of visibility and meta-data,
+	 and native format disk I/O.
+
+domain = Operators library
+nick   = OPERATORS
+desc   = Develop the new operators library. This covers base classes for
+	 data manipulation and generic operations (array reduction, transposition,
+	 FFT, etc.)
+
+domain = Math library
+nick   = MATH
+desc   = Develop the new math library. This covers FFTW, minimizers, interfaces
+	 to optional third-party math libraries, and so on.
+
+domain = VLBI Calibration library
+nick   = VCAL
+desc   = Develop the new library for VLBI-specific operators (bandpass correction,
+	 per-channel phase offsets, etc). Overlap with CALI domain.
+
+domain = Mk4 Interface library
+nick   = MK4INTER
+desc   = Develop the new mk4 interface library, for import/export to legacy Mk4
+	 data types. Allows testing and backwards compatibility. (Note, may be superceded
+	 by the INTERFACES domain?)
+
+
+domain = Bindings
+nick   = BINDINGS
+desc   = Python interfaces to C++ data containers and operators. Allows for Python scripts
+	 for initialization of data containers and operators, and hooks for user-defined
+	 manipulation of data.
+
 
 domain = Calibration routine development
 nick   = CALI

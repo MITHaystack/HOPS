@@ -144,6 +144,14 @@ thing  = Refactor the ffplot library
 nick   = FFPlotRefactor
 desc   = This covers the refactoring of the ffplot library. 
 
+
+# FFREFACTOR
+domain = @FFREFACTOR
+
+thing  = Review the fourfit refactoring
+nick   = FourfitRefactorReview
+desc   = This covers reviewing the fourfit refactoring work
+
 thing  = Refactoring fourfit
 nick   = FourfitRefactor
 desc   = This covers refactoring the fourfit librairies into new modules
@@ -154,6 +162,71 @@ thing  = Extending fourfit with new functionality
 nick   = FourfitExtend
 desc   = This covers new functions and interfaces to fourfit: new operators,
          calibration routines, python bindings, flagging, and so on.
+
+
+
+# UTILS        Develop the utilities library
+domain = @UTILS
+
+thing  = Develop the utilities library
+nick   = UtilsDevelop
+desc   = This covers the development of the new utilities library.
+
+
+# MESSAGE        Develop the messaging library
+domain = @MESSAGE
+
+thing  = Develop the messaging library
+nick   = MessageDevelop
+desc   = This covers the development of the new messaging library.
+
+
+# CONTAINERS        Develop the new containers library
+domain = @CONTAINERS
+
+thing  = Develop the containers library
+nick   = ContainersDevelop
+desc   = This covers the development of the new containers library.
+
+
+# OPERATORS        Develop the operators library
+domain = @OPERATORS
+
+thing  = Develop the operators library
+nick   = OperatorsDevelop
+desc   = This covers the development of the new operators library.
+
+
+# MATH        Develop the math library
+domain = @MATH
+
+thing  = Develop the math library
+nick   = MathDevelop
+desc   = This covers the development of the new math library.
+
+
+# VCAL        Develop the VLBI calibration library
+domain = @VCAL
+
+thing  = Develop the VLBI calibration library
+nick   = VCalDevelop
+desc   = This covers the development of the new VLBI calibration library.
+
+
+# MK4INTER        Develop the mk4 interface library
+domain = @MK4INTER
+
+thing  = Develop the mk4 interface library
+nick   = Mk4InterDevelop
+desc   = This covers the development of the new mk4 interface library.
+
+
+# BINDINGS        Develop the Python bindings to the new libraries
+domain = @BINDINGS
+
+thing  = Develop the Python bindings library
+nick   = BindingsDevelop
+desc   = This covers the development of the new Python bindings.
 
 
 # AMACHINE Refactor A Machinery

@@ -27,6 +27,7 @@ allinputs = $(mho)tasks/$(MHO)_inputs.txt \
 	$(mho)tasks/$(MHO)_0100.txt $(mho)tasks/$(MHO)_0200.txt \
 	$(mho)tasks/$(MHO)_0300.txt $(mho)tasks/$(MHO)_0305.txt \
 	$(mho)tasks/$(MHO)_0307.txt $(mho)tasks/$(MHO)_0310.txt \
+	$(mho)tasks/$(MHO)_0330.txt \
 	$(mho)tasks/$(MHO)_0350.txt $(mho)tasks/$(MHO)_0370.txt \
 	$(mho)tasks/$(MHO)_0380.txt $(mho)tasks/$(MHO)_0390.txt \
 	$(mho)tasks/$(MHO)_0400.txt $(mho)tasks/$(MHO)_0500.txt \
