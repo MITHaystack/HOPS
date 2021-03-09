@@ -17,7 +17,7 @@ desc   = Submit draft to ngEHT for feedback
 start  = @tDSHRE
 #days  = 3
 needs  = ReqsDoc-draft
-allows = Meetings-review
+#allows = Meetings-review
 
 task   = Revise first draft of @ReqsDoc
 nick   = ReqsDoc-revise
