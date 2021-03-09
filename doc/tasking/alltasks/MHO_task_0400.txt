@@ -97,16 +97,18 @@ allows = Meetings-internal
 
 thing  = @SDPlanDoc
 
-task   = Create first draft of @SDPlanDocs
-nick   = SDPlanDoc-draft
+task   = Create initial development plan
+nick   = SDPlanDoc-initial
 @etask
 desc   = Submit the first revision to the ngEHT
 start  = @tEARLY
 stop   = @tSTART
 needs  = Miles-early
-#allows = Miles-start
 
-task   = Create first draft of @SDPlanDocs
+thing  = @SDPlanDoc
+
+
+task   = Create first draft of @SDPlanDoc
 nick   = SDPlanDoc-draft
 @etask
 desc   = Write the development plan
@@ -151,6 +153,17 @@ days   = 30
 needs  = Meetings-review
 allows = Meetings-internal
 
+
+thing  = @ProjPlan
+
+task   = Write the pre-award project plan for SAO and NSF.
+nick   = ProjPlan-preaward
+@etask
+desc   = Write and submit the initial pre-award plan
+start  = @tEARLY
+stop   = @tSTART
+needs  = Miles-early
+
 thing  = @Tasking
 
 task   = Import APP bubble system and de-APPify it
@@ -177,7 +190,7 @@ nick   = Tasking-draftdoc
 desc   = This is a few words of tex and the the scripting to build the doc
          automatically.
 needs  = Tasking-gantt
-allos  = Meetings-endQ06
+allows = Meetings-endQ06
 
 thing  = @SpecsDoc
 task   = Create first draft of @SpecsDocsDoc

@@ -75,7 +75,7 @@ fruit/split:	sync
 
 save: fruit
 	tar zcf $(srcdir)/$(mho)tasks/save-$(mho)-`date +%Y%m%d`.tgz \
-		fruit/$(mho)
+		fruit/$(mho)-* $(MHO)*
 	ls -l $(srcdir)/$(mho)tasks/save-$(mho)-*.tgz
 
 else
@@ -84,8 +84,8 @@ fruit:
 	mkdir fruit
 endif
 
+#rm -rf fruit
 tasks:
-	rm -rf fruit
 	$(MAKE) fruit
 
 if WANT_DOCS

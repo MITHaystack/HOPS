@@ -11,10 +11,13 @@ desc   = import alist
 task   = Import Adump
 nick   = ImportA3-Adump
 desc   = import adump ...
+needs  = ImportA3-Alist
 
 task   = Import Aedit
 nick   = ImportA3-Aedit
 desc   = import aedit ...
+needs  = ImportA3-Adump
+allows = Meetings-internal
 
 
 thing  = @ImportAx
@@ -26,4 +29,7 @@ desc   = import average ...
 task   = Import Fringex
 nick   = ImportAx-Fringex
 desc   = import fringex ...
+needs  = ImportAx-Average
+allows = Meetings-internal
 
+# eof

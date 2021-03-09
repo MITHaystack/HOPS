@@ -90,6 +90,4 @@ desc   = This domain covers everything not otherwise mentioned.
          all the things and tasks in it should migrate upward to
          other domains, things, or tasks.
 
-#
-###  Things by Domain
-#
+# eof

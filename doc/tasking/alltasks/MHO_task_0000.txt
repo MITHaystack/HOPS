@@ -145,6 +145,4 @@ days    = 1
 desc    = An editing or writing task
 who     = @none
 
-#
-### Major Domains of activity
-#
+# eof

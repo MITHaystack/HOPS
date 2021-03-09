@@ -267,6 +267,4 @@ desc   = This is a placeholder to capture things not otherwise mentioned
          phase analysis that Lindy implemented in his pipeline is an
          example.
 
-#
-###  Tasks by Thing by Domain
-#
+# eof

@@ -42,12 +42,14 @@ desc   = Use something like github actions or a nightly pull/compile/test
          comes second
 #start  = tSREV
 needs  = Repo-cmakeinit
+allows = Meetings-end2021
 
 task   = Iterate cmake nightly build to include compilation options
 nick   = Repo-cmoptions
 desc   = Do the work to get the nightly able to build several different
          configurations on multiple hosts, with multiple compilation options
 needs  = Repo-cmakeinit
+allows = Meetings-end2021
 
 task    = Automake/CMake configuration support
 nick    = Repo-config
@@ -61,6 +63,7 @@ nick   = Repo-amoptions
 desc   = Do the work to get the nightly able to build several different
          configurations on multiple hosts, with multiple compilation options
 needs  = Repo-config
+allows = Meetings-endQ08
 
 task    = Automake nightly reporting
 nick    = Repo-amreps
@@ -68,6 +71,7 @@ desc    = Automake check tests should generate PASS/FAIL commentary.
           This task is to add the additional script infrastructure to build
           reports about, e.g. requirements completion
 needs   = Repo-config
+allows = Meetings-endQ08
 
 #task   = Import automated tests from HOPS3
 #nick   = Repo-amcheck
@@ -91,6 +95,7 @@ desc   = Profile the memory performance of the new data containers
 code   = C
 #start  = tSREV
 needs  = ProtoCode-containers
+allows = Meetings-endQ08
 
 task   = Prototype the SWIG bindings
 nick   = ProtoCode-swig
@@ -106,6 +111,7 @@ desc   = Check that the SWIG bindings work with the new data containers,
          and the python
 #start  = tSREV
 needs  = ProtoCode-swig,ProtoCode-containers
+allows = Meetings-endQ08
 
 task   = Prototype fringe plot without PGPLOT
 nick   = ProtoCode-fringeplot
@@ -113,13 +119,29 @@ desc   = Demonstrate that we can make a fringe plot with matplotlib
 code   = Python
 #start  = tJHIRE
 #needs  = Repo-build
-needs  = Meetings-hired
+#needs  = Meetings-hired
 
 task   = Test an interactive plotting GUI
 nick   = ProtoCode-interactivefringeplot
 desc   = Demonstrate interactive plotting tools with matplotlib
 code   = Python
 needs  = ProtoCode-fringeplot
+allows = Meetings-endQ08
 
+thing  = @TestData
 
-#   FOURFIT       Refactoring Fourfit
+task   = deal with test data
+nick   = TestData-tbd
+@gentask
+desc   = tbd
+allows = Meetings-endQ08
+
+thing  = @NoVhelp
+
+task   = deal with HOPS3 help mechanisms
+nick   = NoVhelp-cope
+@gentask
+desc   = tbd
+allows = Meetings-endQ08
+
+# eof

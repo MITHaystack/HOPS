@@ -16,7 +16,7 @@ nick   = Miles-start
 desc   = Official start date for project
 start  = @tSTART
 stop   = @tSTART
-needs  = SDPlanDoc-initial
+needs  = ProjPlan-preaward
 
 task   = Now have all the requirements
 nick   = Miles-requirements
@@ -154,6 +154,26 @@ desc   = An midpoint (informal) review.
          at this point.
 start  = @tQ12E
 needs  = Meetings-penultimate
+allows = Miles-finish
+
+thing  = @CheckReqs
+
+task   = Check requirements in HOPS3
+nick   = CheckReqs-hops3
+@shtask
+desc   = identify requirements that are met in HOPS3
+
+task   = Check requirements in HOPS4
+nick   = CheckReqs-hops4
+@shtask
+desc   = identify requirements that are met in HOPS4
+allows = Miles-finish
+
+task   = Check HOPS3 requirements in HOPS4
+nick   = CheckReqs-kept
+@shtask
+desc   = if met in HOPS3, want to be sure that HOPS4 still satisfies them
+needs  = CheckReqs-hops3
 allows = Miles-finish
 
 # eof

@@ -159,4 +159,20 @@ desc   = Test the refactoring of the ffplot library
 needs  = FFPlotRefactor-implement
 allows = Meetings-midpoint
 
+thing  = @FourfitRefactor
+
+task   = Unspecified Fourfit refactoring work
+nick   = FourfitRefactor-unspecified
+@gentask
+desc   = tbd: design, code, test....
+allows = Meetings-endQ13
+
+thing  = @FourfitExtend
+
+task   = Unspecified Fourfit extension work
+nick   = FourfitExtend
+@gentask
+desc   = tbd: design, code, test....
+allows = Meetings-endQ13
+
 # eof

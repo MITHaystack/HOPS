@@ -21,6 +21,7 @@ nick   = Difx2Hops4-testing
 @shtask
 desc   = Develop a testsuite for it; this description need expansion.
 needs  = Difx2Hops4-implement
+allows = Margin-dunno
 
 
 thing  = @Mk4AndHops
@@ -43,4 +44,6 @@ nick   = Mk4AndHops-testsuite
 @shtask
 desc   = back and forth on some captive samples
 needs  = Mk4AndHops-tomk4,Mk4AndHops-tohops4
+allows = Margin-dunno
 
+# eof

@@ -14,3 +14,5 @@ task   = Identify and import other HOPS3 Scripts
 nick   = ImportSc-scripts
 desc   = to be filled out ...
 allows = Meetings-internal
+
+# eof

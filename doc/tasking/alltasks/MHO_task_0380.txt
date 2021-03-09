@@ -21,12 +21,14 @@ nick   = CBandPass-ff4applyport
 @cpptask
 desc   = migrate the fourfit3 algorithm into HOPS4 framework
 needs  = CBandPass-ff3design
+allows = Margin-dunno
 
 task   = Port complex bandpass reduction script into HOPS4 framework
 nick   = CBandPass-ff4deriveport
 @pytask
 desc   = Adapt the reduction script to work in the HOPS4 framework
 needs  = CBandPass-ff3derive
+allows = Margin-dunno
 
 
 thing  = @AmpClosure
@@ -36,6 +38,7 @@ nick   = AmpClosure-design
 @ctask
 desc   = look at the stubs in Aedit...figure it out...
 needs  = Meetings-endQ10
+allows = Margin-dunno
 
 
 
