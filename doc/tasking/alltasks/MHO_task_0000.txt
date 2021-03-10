@@ -86,6 +86,7 @@ tdefs   = milestask     # for all milestones
 path    = none
 code    = none
 days    = 0
+derate  = 1
 desc    = A planning date assumed to prevent useful work
 who     = @swdev
 
@@ -93,6 +94,7 @@ tdefs   = gentask
 path    = none
 code    = none
 days    = 1
+derate  = 1
 desc    = Some general work without any code or path
 who     = @swdev
 
@@ -100,6 +102,7 @@ tdefs   = ctask
 path    = fixme
 code    = C
 days    = 5
+derate  = 2
 desc    = C coding work
 who     = @swdev
 
@@ -107,6 +110,7 @@ tdefs   = cpptask
 path    = fixme
 code    = C
 days    = 5
+derate  = 2
 desc    = C++ coding work
 who     = @swdev
 
@@ -114,6 +118,7 @@ tdefs   = pytask
 path    = fixme
 code    = Python
 days    = 5
+derate  = 2
 desc    = Python coding work
 who     = @swdev
 
@@ -121,6 +126,7 @@ tdefs   = pltask
 path    = fixme
 code    = PERL
 days    = 5
+derate  = 2
 desc    = Some PERL work
 who     = @swdev
 
@@ -128,6 +134,7 @@ tdefs   = shtask
 path    = fixme
 code    = Bash
 days    = 3
+derate  = 1
 desc    = Bash coding work
 who     = @swdev
 
@@ -135,6 +142,7 @@ tdefs   = testask
 path    = fixme
 code    = None
 days    = 3
+derate  = 1
 desc    = A testing task
 who     = @swdev
 
@@ -142,6 +150,7 @@ tdefs   = editask
 path    = fixme
 code    = None
 days    = 3
+derate  = 1
 desc    = An editing or writing task
 who     = @swdev
 

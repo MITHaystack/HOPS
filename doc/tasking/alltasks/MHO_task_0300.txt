@@ -8,7 +8,7 @@ task   = Identify the low-level libraries
 nick   = Fourfit3Import-lowlibs
 @gentask
 desc   = Identify the low-level code that needs to be imported to the HOPS4 git repo
-start  = tSREV
+#start  = tSREV
 needs  = Repo-init
 
 task   = Build the directory and file structure in HOPS4 for the legacy fourfit libraries

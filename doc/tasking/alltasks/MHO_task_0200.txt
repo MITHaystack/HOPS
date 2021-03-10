@@ -8,7 +8,7 @@ task   = Establish github repository
 nick   = Repo-init
 @gentask
 desc   = Initialize a github repo, add the basic elements of HOPS, get team members connected
-start  = @tJHIRE
+#start  = @tJHIRE
 needs  = Meetings-hired
 #allows = Repo-cmakeinit,Repo-autoinit
 
@@ -17,14 +17,14 @@ nick   = Repo-autoinit
 @shtask
 desc   = Write the automake foundations for the new project and make sure
          everyone can compile some of the code using automake
-start  = @tJHIRE
+#start  = @tJHIRE
 needs  = Repo-init
 
 task   = Write first draft of cmake build tools
 nick   = Repo-cmakeinit
 desc   = Write the automake foundations for the new project and make sure
          everyone can compile some of the code using automake
-start  = @tJHIRE
+#start  = @tJHIRE
 needs  = Repo-init
 
 task   = Get an automake nightly or integration suite running

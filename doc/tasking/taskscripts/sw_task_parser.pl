@@ -35,7 +35,7 @@ our $veryverb;
 our @keywords = (
     'type', 'domain', 'thing', 'task',
     'desc', 'nick', 'parent', 'kids', 'line',
-    'path', ,'code', 'notes', 'level', 'issues', 'orient',
+    'path', ,'code', 'docref', 'notes', 'level', 'issues', 'orient',
     'who', 'pri', 'sec', 'men', 'fte',
     'uid', 'needs', 'start', 'begin', 'days', 'derate',
     'done', 'mjds', 'flex', 'end', 'stop', 'allows',
@@ -58,11 +58,13 @@ my %taskage = (
 
     # yet more detail about the task
     'path'   => 'input: CVS:where',
-    'code'   => 'input: C++/Java/Python',
-    'notes'  => 'input: SVN:local file with more details',
+    'code'   => 'input: Bash/C/C++/Java/Python, &c.',
+    'notes'  => 'input: mention some local file with more details',
+    'docref' => 'input: Documentation reference, doc, section, page, &c',
     'level'  => 'input: easy | moderate | difficult',
     'issues' => 'input: open issues relevant to planning',
     'orient' => 'input: portrait/landscape',
+    'attr'   => 'input: node attributes for dot plots',
 
     # workers associated with task
     'who'    => 'input: list of workers',
@@ -104,6 +106,38 @@ my $current_task = '';
 my $current_item = '';
 my $current_file = 'no-such-file.txt';
 my ($domcntr,$thgcntr,$tskcntr) = (1,1,1);
+
+#
+# This is a function to print out the internal keyword help
+# report is none,all,sum,what,help
+#
+our ($fkey, $fval);
+format = 
+  @>>>>>>>> = ^<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+  $fkey,     $fval
+.
+sub dump_taskage {
+    print "\n";
+    print "The -r report options specify the set of keywords\n";
+    print "that will be dumped to the overall .wbs, .domain, .thing,\n";
+    print ".task or .tsv files.  The choices are:\n";
+    print "  none  you none of these files (the default)\n";
+    print "  what  gets you the description\n";
+    print "  sum   desc, nick, who, and stop\n";
+    print "  bean  sum items, and nick, start, days, task, think and domain\n";
+    print "  all   gets you all known keywords\n";
+    print "\n";
+    print "The complete (sorted) list of keywords follows.  In the\n";
+    print "descriptions, the prefixes 'derived', 'input', or 'either'\n";
+    print "give you some idea of whether the item comes in through the\n";
+    print "input file, or is calculated from other information.\n";
+    for $fkey (sort(keys(%taskage))) {
+        $fval = $taskage{$fkey};
+        write;
+    }
+    print "\n";
+
+}
 
 #
 # Undo abbreviations -- replace @foo by foo's value.

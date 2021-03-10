@@ -12,8 +12,8 @@ desc   = Write and submit the initial pre-award plan.
          arrows, but from this document flows the Requirements, the
          Coverage and Test plan, and the software development plan and
          the specifications (partial and completed).
-start  = @tEARLY
-stop   = @tSTART
+#start  = @tEARLY
+#stop   = @tSTART
 needs  = Miles-early
 
 task   = Capture initial project plan in the new repo
@@ -30,7 +30,7 @@ task   = Create first draft of @ReqsDoc
 nick   = ReqsDoc-draft
 @etask
 desc   = Draft the requirements document
-start  = @tDSTRT
+#start  = @tDSTRT
 #days  = 365
 needs  = Meetings-refining
 

@@ -40,6 +40,8 @@ our ($gBegin,$gEnd);
 
 # skip generation of needs / allows
 our $skipneedsallows;
+# allow debugging of the math
+our ($debugmjdupdates,$output);
 
 #
 # This routine computes begin/end from start/stop
@@ -48,7 +50,8 @@ our $skipneedsallows;
 # for the following adjustment phases.
 #
 sub update_mjd_data {
-    my ($ok,$gap,$mods,$m) = (0,0,0);
+    my ($ok,$gap,$mods,$m,$dr,$dys,$mjs,$cm) = (0,0,0);
+    open(MJDBG,">$output" . '-mjdupdate.dbg') if ($debugmjdupdates);
     for my $kv (keys(%wbs)) {
         $ok = 0;
         if ($wbs{$kv}{'start'} =~ m/$date_pat/) {
@@ -75,12 +78,27 @@ sub update_mjd_data {
             $gap = $wbs{$kv}{'end'} - $wbs{$kv}{'begin'};
             $wbs{$kv}{'mjds'} = $wbs{$kv}{'days'} * $wbs{$kv}{'derate'};
             $wbs{$kv}{'flex'} = $gap - $wbs{$kv}{'mjds'};
+            $dr = $wbs{$kv}{'derate'};
+            $cm = 'ok';
         } elsif ($wbs{$kv}{'days'} eq 0) {    # a milestone
             $wbs{$kv}{'mjds'} = 0;
             $wbs{$kv}{'flex'} = 0;
             $wbs{$kv}{'preps'} = $wbs{$kv}{'leads'} = 'milestone';
+            $dr = 0;
+            $cm = 'milestone';
+        } else {
+            $wbs{$kv}{'mjds'} = 0;
+            $wbs{$kv}{'flex'} = 0;
+            $wbs{$kv}{'preps'} = $wbs{$kv}{'leads'} = 'noconnect';
+            $dr = -1;
+            $cm = 'noconnect';
         }
+        $dys = $wbs{$kv}{'days'};
+        $mjs = $wbs{$kv}{'mjds'};
+        print MJDBG
+            "$kv ok=$ok dr=$dr days=$dys/$mjs $cm\n" if ($debugmjdupdates);
     }
+    close(MJDBG) if ($debugmjdupdates);
     return($mods);
 }
 
@@ -155,18 +173,19 @@ sub work_out_timeline {
     while ($mods) {
         print "# Pass $pass:\t" if ($veryverb);
         $mods = &update_mjd_data();
-        print "$mods " if ($veryverb);
+        print "update: $mods " if ($veryverb);
         $mods += &adjust_dates('start','needs','begin','preps',0);
-        print "$mods " if ($veryverb);
+        print "preps:  $mods " if ($veryverb);
         $mods += &adjust_dates('stop','allows','end','leads',99999);
-        print "$mods\n" if ($veryverb);
+        print "leads:  $mods\n" if ($veryverb);
         $pass ++;
-        last if ($pass > 9);
+        last if ($pass > 19 or $mods eq 0);
     }
     $mods = &update_mjd_data();
-    print "# Final $mods\n" if ($veryverb);
+    print "# Final $mods; checking dates now...\n" if ($veryverb);
     &check_dates('start', 'needs', 'begin', 'end', 'stop');
     &check_dates('stop', 'allows', 'end', 'begin', 'start');
+    print "# Finished checks\n" if ($veryverb);
 }
 
 #

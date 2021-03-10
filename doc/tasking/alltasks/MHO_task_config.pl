@@ -16,6 +16,7 @@ our $rundot;
 our $legend;
 our $fullnames;
 our $skipneedsallows;
+our $debugmjdupdates;
 
 # set this to one to see the needs and allows arrows separately
 # one is sufficient and make it easier to make changes later
@@ -63,7 +64,10 @@ $legend = 1;
 $fullnames = 0;
 
 # skip generated needs/allows (sw_task_graph.pl)
-$skipneedsallows = 1;
+$skipneedsallows = 0;
+
+# this will turn on some MJD data calculation debugging if set
+$debugmjdupdates = 1;
 
 1;
 #

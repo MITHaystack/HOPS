@@ -18,7 +18,7 @@ our $sort_key;
 our $verb;
 our $veryverb;
 
-# some subsets
+# some subsets -- synchronize with help in sw_task_parser.pl
 my @jelly   = ( 'nick', 'start', 'stop', 'days', 'who',
                 'task', 'thing', 'domain', 'desc' );
 my @summary = ( 'desc', 'nick', 'who', 'stop' );

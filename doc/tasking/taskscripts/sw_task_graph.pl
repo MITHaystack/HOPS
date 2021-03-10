@@ -522,6 +522,7 @@ sub make_legend {
         print KEY '      (when) ' .
             $wbs{$task}{'start'} . " - " . $wbs{$task}{'stop'} . ' is ' .
             $wbs{$task}{'done'} . "% complete\n";
+        print KEY '      (who) ' . $wbs{$task}{'who'} . "\n";
         $desc = $wbs{$task}{'desc'};
         write KEY;
         print KEY "\n";

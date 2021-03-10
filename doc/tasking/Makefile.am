@@ -53,16 +53,17 @@ sync: $(taskingscripts) $(allinputs)
 	touch sync
 
 # this builds everything
+REPORT = all
+TARGET = ALL
 DOTDEV = png # pdf
-mhoarg = -d ${DOTDEV} \
-	 -i $(MHO).txt \
-	 -b $(MHO)_bubbles.pl \
-	 -c $(MHO)_config.pl
+VERBOSE = -w # very
+mhoarg = $(VERBOSE) -d ${DOTDEV} -i $(MHO).txt  -b $(MHO)_bubbles.pl \
+	 -c $(MHO)_config.pl -r $(REPORT) -g $(TARGET)
 # additional args
 mhoopt = -t
 fruit:	Makefile sync
 	-[ $(mho) = all ] && cat $(MHO)_[0Z]*.txt > $(MHO).txt
-	./sw_tasks.pl -v $(mhoarg) -o fruit/$(mho) -r all -g ALL $(mhoopt)
+	./sw_tasks.pl $(mhoarg) -o fruit/$(mho) $(mhoopt)
 	[ -d fruit ]
 
 # this installs the 'new' task file to the srcdir

@@ -1,5 +1,10 @@
 #!/usr/bin/perl
 #
+# TTD:
+#   consider using tred (optionally) to apply transitive reduction
+#   make use of attr for node attributes
+#   figure out how to capture edge attributes
+#
 use warnings;           # turns on optional warnings
 use diagnostics;        # and makes them not terse
 use strict;             # makes unsafe constructs illegal
@@ -38,7 +43,7 @@ Usage: $0 [options]
   
   do 'info dot' for the dot graph types (ps,png,...)
   use -g 'help' for list of possible domains to graph
-  choices on -r are: none,all,sum,what
+  choices on -r are: none,all,sum,what,help
   choices on -s are: uid,begin, or one of the task keywords
 
   a calculated version (*.new) is output when verbose.
@@ -97,6 +102,12 @@ our %wbs;
 our %tasks;
 our %things;
 our %domains;
+
+# provide some help about reports and internals
+if ($report eq 'help') {
+    &dump_taskage();
+    exit 0;
+}
 
 # private parsing variables
 
