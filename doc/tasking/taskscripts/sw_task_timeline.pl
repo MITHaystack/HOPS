@@ -140,35 +140,46 @@ sub adjust_dates {
 sub check_dates {
     #   start needs  begin  end stop
     #   stop allows  end  begin start
-    my ($dir,$using,$mine,$yurn,$what,@errs,@nicks) = @_;
+    my ($dir,$using,$mine,$yurn,$what,$relation,@errs,@nicks) = @_;
     if (not $veryverb) { return; }
+    my $na = "needs ";
+    $na = "allows" if ($dir eq 'stop');
     open(CD, ">$output.$dir");
     $errs[1] = $errs[0] = 0;
-    print CD "Checking dates for direction $dir\n\n";
+    print CD "Checking dates for direction $dir ($mine $yurn)\n\n";
     for my $k (keys(%wbs)) {
+        my $kn = $wbs{$k}{'nick'};
         next if ($wbs{$k}{'type'} ne 'task');
         @nicks = split(/,/,$wbs{$k}{$using});
+        if ($#nicks<0) {
+            print CD "No $na  for $kn ...\n";
+        } else {
+            print CD "KN $kn with $na $wbs{$k}{$using}\n";
+        }
         for my $tn (@nicks) {
+            #print CD "  ($tn and $kn)\n";
             my $n = &task_by_nick($tn,'check_dates');
-            print CD "Considering $n with MJD " . $wbs{$n}{$yurn} . "\n";
+            print CD "  Considering $tn with MJD " . $wbs{$n}{$yurn} . "\n";
             if ($dir eq 'start' and $wbs{$k}{$mine} < $wbs{$n}{$yurn}) {
-                print CD " OK: " .
+                print CD "   ERR: " .
                     $wbs{$k}{'nick'} . " $dir " .
                     $wbs{$k}{$mine} ." < ". $wbs{$n}{$yurn} . " " .
                     $wbs{$n}{'nick'} . " $what\n";
-                $errs[0]++;
+                $errs[1]++;
             } elsif ($dir eq 'stop' and $wbs{$k}{$mine} > $wbs{$n}{$yurn}) {
-                print CD " OK: " .
+                print CD "   ERR: " .
                     $wbs{$k}{'nick'} . " $dir " .
                     $wbs{$k}{$mine} ." > ". $wbs{$n}{$yurn} . " " .
                     $wbs{$n}{'nick'} . " $what\n";
-                $errs[0]++;
-            } else {
-                print CD "ERR: " .
-                    $wbs{$k}{'nick'} . " $dir " .
-                    $wbs{$k}{$mine} ." ? ". $wbs{$n}{$yurn} . " " .
-                    $wbs{$n}{'nick'} . " $what\n";
                 $errs[1]++;
+            } else {
+                $relation = '>' if ($dir eq 'start');
+                $relation = '<' if ($dir eq 'stop');
+                print CD "    OK: " .
+                    $wbs{$k}{'nick'} . " $dir " .
+                    $wbs{$k}{$mine} ." $relation ". $wbs{$n}{$yurn} . " " .
+                    $wbs{$n}{'nick'} . " $what\n";
+                $errs[0]++;
             }
         }
     }
