@@ -145,21 +145,26 @@ nick   = FFPlotRefactor
 desc   = This covers the refactoring of the ffplot library. 
 
 
-# FFREFACTOR
-domain = @FFREFACTOR
+# NEWFOURFIT
+domain = @NEWFOURFIT
 
-thing  = Review the fourfit refactoring
-nick   = FourfitRefactorReview
-desc   = This covers reviewing the fourfit refactoring work
+thing  = Review the fourfit refactoring (C libraries)
+nick   = NewFourfitReview
+desc   = This covers reviewing the fourfit refactoring work. Prior to this,
+	 we should have completed the refactoring of the legacy C libraries, 
+	 and fourfit (in HOPS4) should do everything the HOPS3 fourfit could 
+	 do, but with unlimited stations/baselines/channels. This review is 
+	 a milestone to validate progress, collect notes, align tasks for 
+	 the C++ libraries and Python interfaces, etc.
 
 thing  = Refactoring fourfit
-nick   = FourfitRefactor
+nick   = NewFourfitRefactor
 desc   = This covers refactoring the fourfit librairies into new modules
          with the new data containers; by the end of this task, we should
 	 have a fourfit that works for unlimited stations/baselines/channels
 
 thing  = Extending fourfit with new functionality
-nick   = FourfitExtend
+nick   = NewFourfitExtend
 desc   = This covers new functions and interfaces to fourfit: new operators,
          calibration routines, python bindings, flagging, and so on.
 
@@ -227,6 +232,20 @@ domain = @BINDINGS
 thing  = Develop the Python bindings library
 nick   = BindingsDevelop
 desc   = This covers the development of the new Python bindings.
+
+
+# CPPREVIEW        Review the implementation of the C++ libraries
+domain = @CPPREVIEW
+
+thing  = Review the C++ libraries
+nick   = CPPReview
+desc   = This covers the review of the new C++ libraries. Prior to this, we 
+	 shall have completed the baseline design and implementation of the 
+	 C++ code (containers, messaging, bindings, interfaces, etc). This 
+	 milestone is a chance for the full team to test and explore the new
+	 functionality, generate reports, and gather items for further work.
+
+
 
 
 # AMACHINE Refactor A Machinery

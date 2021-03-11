@@ -95,7 +95,7 @@ desc   = Update the @SpecsDoc.  The updates flow from the prototyping
          exercises as well as the steps of building up the infrastructure,
          build machinery, &c.  More detail here... and perhaps more tasks
          listing what is still to be done with it....
-needs  = SpecsDoc-draft
+needs  = SpecsDoc-draft,ProtoCode-review
 
 task   = Maturize the @SpecsDoc
 nick   = SpecsDoc-mature

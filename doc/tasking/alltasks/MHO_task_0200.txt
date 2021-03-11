@@ -95,7 +95,7 @@ desc   = Profile the memory performance of the new data containers
 code   = C
 #start  = tSREV
 needs  = ProtoCode-containers
-allows = Meetings-endQ08
+#allows = Meetings-endQ08
 
 task   = Prototype the SWIG bindings
 nick   = ProtoCode-swig
@@ -111,14 +111,14 @@ desc   = Check that the SWIG bindings work with the new data containers,
          and the python
 #start  = tSREV
 needs  = ProtoCode-swig,ProtoCode-containers
-allows = Meetings-endQ08
+#allows = Meetings-endQ08
 
 task   = Prototype fringe plot without PGPLOT
 nick   = ProtoCode-fringeplot
 desc   = Demonstrate that we can make a fringe plot with matplotlib
 code   = Python
 #start  = tJHIRE
-#needs  = Repo-build
+needs  = Miles-repo
 #needs  = Meetings-hired
 
 task   = Test an interactive plotting GUI
@@ -126,7 +126,17 @@ nick   = ProtoCode-interactivefringeplot
 desc   = Demonstrate interactive plotting tools with matplotlib
 code   = Python
 needs  = ProtoCode-fringeplot
-allows = Meetings-endQ08
+#allows = Meetings-endQ08
+
+
+task   = Review the prototypes of the new functionality
+nick   = ProtoCode-review
+@gentask
+desc   = Milestone to review the code prototypes. By this point we should have measured
+	 the performance of the data containers, understood the binding methods, and
+	 demonstrated new fringeplot tools.
+needs  = ProtoCode-fringeplot,ProtoCode-swigtest,ProtoCode-containertest
+
 
 thing  = @TestData
 

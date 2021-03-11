@@ -47,8 +47,10 @@ nick   = FFPLOT
 desc   = Refactor the ffplot library
 
 domain = Generic fourfit refactoring things
-nick   = FFREFACTOR
-desc   = Generic refactoring of the legacy fourfit libraries
+nick   = NEWFOURFIT
+desc   = Generic domain for refactoring tasks of the fourfit C libraries. Tying up 
+	 loose ends, extending where needed, reviewing the status of the C code, 
+	 tracking what will be needed for interfaces and the C++ libraries.
 
 
 domain = Refactor A Machinery
@@ -115,6 +117,12 @@ nick   = BINDINGS
 desc   = Python interfaces to C++ data containers and operators. Allows for Python scripts
 	 for initialization of data containers and operators, and hooks for user-defined
 	 manipulation of data.
+
+
+
+domain = Review C++ libraries
+nick   = CPPREVIEW
+desc   = This covers the review of the new C++ libraries.
 
 
 domain = Calibration routine development

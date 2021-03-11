@@ -10,7 +10,7 @@ task   = Design the utils library
 nick   = UtilsDevelop-design
 @cpptask
 desc   = Develop the utils library
-needs  = Meetings-internal
+needs  = ProtoCode-review
 
 task   = Implement the utils library
 nick   = UtilsDevelop-implement
@@ -21,7 +21,7 @@ task   = Test the utils library
 nick   = UtilsDevelop-test
 desc   = Test the utils library
 needs  = UtilsDevelop-implement
-allows = Meetings-mid2022
+allows = CPPReview-check
 
 
 
@@ -34,7 +34,7 @@ task   = Design the message library
 nick   = MessageDevelop-design
 @cpptask
 desc   = Develop the message library
-needs  = Meetings-internal
+needs  = ProtoCode-review
 
 task   = Implement the message library
 nick   = MessageDevelop-implement
@@ -45,7 +45,7 @@ task   = Test the message library
 nick   = MessageDevelop-test
 desc   = Test the message library
 needs  = MessageDevelop-implement
-allows = Meetings-mid2022
+allows = CPPReview-check
 
 
 
@@ -58,7 +58,7 @@ task   = Design the containers library
 nick   = ContainersDevelop-design
 @cpptask
 desc   = Design the containers library
-needs  = Meetings-internal
+needs  = ProtoCode-review
 
 task   = Implement the containers library
 nick   = ContainersDevelop-implement
@@ -69,7 +69,7 @@ task   = Test the containers library
 nick   = ContainersDevelop-test
 desc   = Test the containers library
 needs  = ContainersDevelop-implement
-#allows = Meetings-mid2022
+allows = CPPReview-check
 
 
 
@@ -82,7 +82,7 @@ task   = Design the operators library
 nick   = OperatorsDevelop-design
 @cpptask
 desc   = Design the operators library
-needs  = Meetings-internal
+needs  = ProtoCode-review
 
 task   = Implement the operators library
 nick   = OperatorsDevelop-implement
@@ -93,7 +93,7 @@ task   = Test the operators library
 nick   = OperatorsDevelop-test
 desc   = Test the operators library
 needs  = OperatorsDevelop-implement
-#allows = Meetings-mid2022
+allows = CPPReview-check
 
 
 
@@ -106,7 +106,7 @@ task   = Design the math library
 nick   = MathDevelop-design
 @cpptask
 desc   = Design the math library
-needs  = Meetings-internal
+needs  = ProtoCode-review
 
 task   = Implement the math library
 nick   = MathDevelop-implement
@@ -117,7 +117,7 @@ task   = Test the math library
 nick   = MathDevelop-test
 desc   = Test the math library
 needs  = MathDevelop-implement
-#allows = Meetings-mid2022
+allows = CPPReview-check
 
 
 domain = @VCAL
@@ -129,7 +129,7 @@ task   = Design the VCAL library
 nick   = VCalDevelop-design
 @cpptask
 desc   = Design the VCAL library
-needs  = Meetings-internal
+needs  = ProtoCode-review
 
 task   = Implement the VCAL library
 nick   = VCalDevelop-implement
@@ -140,7 +140,7 @@ task   = Test the VCAL library
 nick   = VCalDevelop-test
 desc   = Test the VCAL library
 needs  = VCalDevelop-implement
-#allows = Meetings-mid2022
+allows = CPPReview-check
 
 
 
@@ -153,7 +153,7 @@ task   = Design the mk4 interface library
 nick   = Mk4InterDevelop-design
 @cpptask
 desc   = Design the mk4 interface library
-needs  = Meetings-internal
+needs  = ProtoCode-review
 
 task   = Implement the mk4 interface library
 nick   = Mk4InterDevelop-implement
@@ -164,7 +164,7 @@ task   = Test the mk4 interface library
 nick   = Mk4InterDevelop-test
 desc   = Test the mk4 interface library
 needs  = Mk4InterDevelop-implement
-#allows = Meetings-mid2022
+allows = CPPReview-check
 
 
 domain = @BINDINGS
@@ -176,7 +176,7 @@ task   = Design the bindings library
 nick   = BindingsDevelop-design
 @cpptask
 desc   = Design the bindings library
-needs  = Meetings-internal
+needs  = ProtoCode-review
 
 task   = Implement the bindings library
 nick   = BindingsDevelop-implement
@@ -187,4 +187,29 @@ task   = Test the bindings library
 nick   = BindingsDevelop-test
 desc   = Test the bindings library
 needs  = BindingsDevelop-implement
-#allows = Meetings-mid2022
+allows = CPPReview-check
+
+
+
+domain = @CPPREVIEW
+
+thing  = @CPPReview
+
+task   = Check the implementation of the C++ libraries
+nick   = CPPReview-check
+@gentask
+desc   = Team members check the new C++ libraries
+needs  = BindingsDevelop-test
+
+task   = Collect lessons on the C++ library implementation
+nick   = CPPReview-lessons
+desc   = Collect lessons from the C++ libraries, generate reports,
+         gather to-do items for future development, document, etc.
+needs  = CPPReview-check
+
+task   = Milestone for the C++ libraries
+nick   = CPPReview-milestone
+desc   = Milestone for completing the baseline implementation of the
+         C++ libraries
+needs  = CPPReview-lessons
+allows = Meetings-mid2022
