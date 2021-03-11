@@ -55,7 +55,7 @@ task   = Import the check scripts for fourfit to the HOPS4 repo.
 nick   = Fourfit3Build-check
 desc   = Get the check scripts and their captured data into the HOPS4 repo.
 #start  = tSREV
-needs  = Fourfit3Build-implement
+needs  = Fourfit3Build-test
 
 task   = Integrate fourfit into the nightly job.
 nick   = Fourfit3Build-nightly
@@ -89,6 +89,6 @@ nick   = Fourfit3Review-milestone
 desc   = This is a milestone to mark the fourfit application migration to HOPS4.
 #start  = tSREV
 needs  = Fourfit3Review-lessons
-allows = Meetings-endQ08
+#allows = Meetings-endQ08
 
 # eof

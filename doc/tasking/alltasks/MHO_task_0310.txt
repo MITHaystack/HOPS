@@ -20,7 +20,7 @@ task   = Test the refactoring of the ffcontrol library
 nick   = FFControlRefactor-test
 desc   = Test the refactoring of the ffcontrol library
 needs  = FFControlRefactor-implement
-allows = FourfitRefactorReview-check
+allows = NewFourfitReview-check
 
 
 
@@ -44,7 +44,7 @@ task   = Test the refactoring of the ffcore library
 nick   = FFCoreRefactor-test
 desc   = Test the refactoring of the ffcore library
 needs  = FFCoreRefactor-implement
-allows = FourfitRefactorReview-check
+allows = NewFourfitReview-check
 
 
 
@@ -68,7 +68,7 @@ task   = Test the refactoring of the ffio library
 nick   = FFIORefactor-test
 desc   = Test the refactoring of the ffio library
 needs  = FFIORefactor-implement
-allows = FourfitRefactorReview-check
+allows = NewFourfitReview-check
 
 
 
@@ -92,7 +92,7 @@ task   = Test the refactoring of the ffmath library
 nick   = FFMathRefactor-test
 desc   = Test the refactoring of the ffmath library
 needs  = FFMathRefactor-implement
-allows = FourfitRefactorReview-check
+allows = NewFourfitReview-check
 
 
 
@@ -116,7 +116,7 @@ task   = Test the refactoring of the ffsearch library
 nick   = FFSearchRefactor-test
 desc   = Test the refactoring of the ffsearch library
 needs  = FFSearchRefactor-implement
-allows = FourfitRefactorReview-check
+allows = NewFourfitReview-check
 
 
 domain = @FFPLOT
@@ -139,18 +139,18 @@ task   = Test the refactoring of the ffplot library
 nick   = FFPlotRefactor-test
 desc   = Test the refactoring of the ffplot library
 needs  = FFPlotRefactor-implement
-allows = FourfitRefactorReview-check
+allows = NewFourfitReview-check
 
 
 
-domain = @FFREFACTOR
+domain = @NEWFOURFIT
 
 # Generic fourfit refactoring things
 
-thing  = @FourfitRefactorReview
+thing  = @NewFourfitReview
 
 task   = Check the fourfit refactoring
-nick   = FourfitRefactorReview-check
+nick   = NewFourfitReview-check
 @gentask
 desc   = Everybody checks that the new versions of the legacy fourfit
          libraries are sensible. Should allow fourfit to work on
@@ -158,32 +158,32 @@ desc   = Everybody checks that the new versions of the legacy fourfit
 
 
 task   = Lessons from the fourfit refactoring
-nick   = FourfitRefactorReview-lessons
+nick   = NewFourfitReview-lessons
 @gentask
 desc   = Gather lessons from the fourfit refactoring
-needs  = FourfitRefactorReview-check
+needs  = NewFourfitReview-check
 
 task   = Internal review of the fourfit refactoring
-nick   = FourfitRefactorReview-milestone
+nick   = NewFourfitReview-milestone
 @gentask
 desc   = Internal team meeting to review fourfit refactoring
-needs  = FourfitRefactorReview-lessons
+needs  = NewFourfitReview-lessons
 allows = Meetings-midpoint
 
 
 
-thing  = @FourfitRefactor
+thing  = @NewFourfitRefactor
 
 task   = Unspecified Fourfit refactoring work
-nick   = FourfitRefactor-unspecified
+nick   = NewFourfitRefactor-unspecified
 @gentask
 desc   = tbd: design, code, test....
 allows = Meetings-endQ13
 
-thing  = @FourfitExtend
+thing  = @NewFourfitExtend
 
 task   = Unspecified Fourfit extension work
-nick   = FourfitExtend
+nick   = NewFourfitExtend
 @gentask
 desc   = tbd: design, code, test....
 allows = Meetings-endQ13
