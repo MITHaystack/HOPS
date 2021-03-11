@@ -134,29 +134,46 @@ sub adjust_dates {
 
 #
 # check that dates are properly ordered
-#
-# FIXME: can't check dates yet as they are still too vague.
+#   &check_dates('start', 'needs', 'begin', 'end', 'stop');
+#   &check_dates('stop', 'allows', 'end', 'begin', 'start');
 #
 sub check_dates {
-    my ($dir,$using,$mine,$yurn,$what,@nicks) = @_;
-    if (1) { return; }
+    #   start needs  begin  end stop
+    #   stop allows  end  begin start
+    my ($dir,$using,$mine,$yurn,$what,@errs,@nicks) = @_;
+    if (not $veryverb) { return; }
+    open(CD, ">$output.$dir");
+    $errs[1] = $errs[0] = 0;
+    print CD "Checking dates for direction $dir\n\n";
     for my $k (keys(%wbs)) {
         next if ($wbs{$k}{'type'} ne 'task');
         @nicks = split(/,/,$wbs{$k}{$using});
         for my $tn (@nicks) {
             my $n = &task_by_nick($tn,'check_dates');
-            #print "Considering $n with " . $wbs{$n}{$yurn} . "\n";
+            print CD "Considering $n with MJD " . $wbs{$n}{$yurn} . "\n";
             if ($dir eq 'start' and $wbs{$k}{$mine} < $wbs{$n}{$yurn}) {
-                print $wbs{$k}{'nick'} . " $dir " .
-                      $wbs{$k}{$mine} ." < ". $wbs{$n}{$yurn} .
-                      $wbs{$n}{'nick'} . " $what\n";
+                print CD " OK: " .
+                    $wbs{$k}{'nick'} . " $dir " .
+                    $wbs{$k}{$mine} ." < ". $wbs{$n}{$yurn} . " " .
+                    $wbs{$n}{'nick'} . " $what\n";
+                $errs[0]++;
             } elsif ($dir eq 'stop' and $wbs{$k}{$mine} > $wbs{$n}{$yurn}) {
-                print $wbs{$k}{'nick'} . " $dir " .
-                      $wbs{$k}{$mine} ." > ". $wbs{$n}{$yurn} .
-                      $wbs{$n}{'nick'} . " $what\n";
+                print CD " OK: " .
+                    $wbs{$k}{'nick'} . " $dir " .
+                    $wbs{$k}{$mine} ." > ". $wbs{$n}{$yurn} . " " .
+                    $wbs{$n}{'nick'} . " $what\n";
+                $errs[0]++;
+            } else {
+                print CD "ERR: " .
+                    $wbs{$k}{'nick'} . " $dir " .
+                    $wbs{$k}{$mine} ." ? ". $wbs{$n}{$yurn} . " " .
+                    $wbs{$n}{'nick'} . " $what\n";
+                $errs[1]++;
             }
         }
     }
+    close(CD);
+    return(@errs);
 }
 
 #
@@ -170,6 +187,7 @@ sub check_dates {
 #
 sub work_out_timeline {
     my ($mods,$pass) = (1,0);
+    my (@ers);
     while ($mods) {
         print "# Pass $pass:\t" if ($veryverb);
         $mods = &update_mjd_data();
@@ -183,9 +201,19 @@ sub work_out_timeline {
     }
     $mods = &update_mjd_data();
     print "# Final $mods; checking dates now...\n" if ($veryverb);
-    &check_dates('start', 'needs', 'begin', 'end', 'stop');
-    &check_dates('stop', 'allows', 'end', 'begin', 'start');
+    @ers = &check_dates('start', 'needs', 'begin', 'end', 'stop');
+    print "# start checks found $ers[0] ok and $ers[1] bad\n";
+    @ers = &check_dates('stop', 'allows', 'end', 'begin', 'start');
+    print "# stop  checks found $ers[0] ok and $ers[1] bad\n";
     print "# Finished checks\n" if ($veryverb);
+}
+
+#
+# helper function that adjusts the 'shape' (and possibly other attributes)
+# based on node contents.
+#
+sub assign_node_attributes {
+    print "# Not yet implemented\n" if ($veryverb);
 }
 
 #

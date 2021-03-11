@@ -85,6 +85,7 @@ $verb = 1 if ($veryverb);
 
 # it is not clear how these must be set
 our ($gBegin,$gEnd) = (50000,70000);
+my ($nkids);
 
 #
 # Main program
@@ -139,11 +140,15 @@ print "Filling in the blanks\n" if ($verb);
 # work out the timeline
 print "Working out the timeline\n" if ($verb);
 &work_out_timeline();
+&assign_node_attributes();
 
-# allows per-thing or per-domain reporting/graphing.
+# allows per-thing or per-domain reporting/graphing
+# for when we get to the make_domain_graphs() calls
 print "Making babies\n" if ($verb);
-&make_kids_of_things();
-&make_kids_of_domains();
+$nkids = &make_kids_of_things();
+print "  added $nkids\n" if ($veryverb);
+$nkids = &make_kids_of_domains();
+print "  added $nkids\n" if ($veryverb);
 
 # generate new input
 print "Writing $output.new\n" if ($verb);

@@ -35,9 +35,9 @@ our $veryverb;
 our @keywords = (
     'type', 'domain', 'thing', 'task',
     'desc', 'nick', 'parent', 'kids', 'line',
-    'path', ,'code', 'docref', 'notes', 'level', 'issues', 'orient',
+    'path', ,'code', 'docref', 'notes', 'level', 'issues', 'orient', 'attr',
     'who', 'pri', 'sec', 'men', 'fte',
-    'uid', 'needs', 'start', 'begin', 'days', 'derate',
+    'shape', 'uid', 'needs', 'start', 'begin', 'days', 'derate',
     'done', 'mjds', 'flex', 'end', 'stop', 'allows',
     'preps', 'leads', 'file'
 );
@@ -57,23 +57,24 @@ my %taskage = (
     'line'   => 'derived: line number in original file',
 
     # yet more detail about the task
-    'path'   => 'input: CVS:where',
+    'path'   => 'input: REPO:path-to-source-code',
     'code'   => 'input: Bash/C/C++/Java/Python, &c.',
     'notes'  => 'input: mention some local file with more details',
     'docref' => 'input: Documentation reference, doc, section, page, &c',
     'level'  => 'input: easy | moderate | difficult',
     'issues' => 'input: open issues relevant to planning',
     'orient' => 'input: portrait/landscape',
-    'attr'   => 'input: node attributes for dot plots',
+    'attr'   => 'input: other (forced) attributes for dot nodes',
 
     # workers associated with task
     'who'    => 'input: list of workers',
     'pri'    => 'derived: primary (1st in who)',
     'sec'    => 'derived: secondary (2nd in who)',
-    'men'    => 'derived: everyone else',
+    'men'    => 'derived: everyone else (mentors)',
     'fte'    => 'derived: total fte (.66pri,.33sec,0else)',
 
     # dependencies and timeline
+    'shape'  => 'derived: node shape',
     'uid'    => 'derived: ordinal identifier',
     'needs'  => 'input: ,-sep list of predecessor nicks',
     'start'  => 'either: start date if days=0, else derived',
@@ -309,6 +310,8 @@ sub really_parse_one_line {
         $wbs{$current_task}{'issues'} = $kv;
     } elsif ( /^orient/ ) {
         $wbs{$current_task}{'orient'} = $kv;
+    } elsif ( /^attr/ ) {
+        $wbs{$current_task}{'attr'} = $kv;
 
     } elsif ( /^who/ ) {
         $wbs{$current_task}{'who'} = $kv;
@@ -327,7 +330,8 @@ sub really_parse_one_line {
         $wbs{$current_task}{'stop'} = $kv;
     } elsif ( /^allows/ ) {
         $wbs{$current_task}{'allows'} = $kv;
-    } elsif ( /^uid/ or /^begin/ or /^mjds/ or /^flex/ or /^end/ ) {
+    } elsif ( /^shape/ or /^uid/ or /^begin/ or /^mjds/ or
+              /^flex/ or /^end/ or /^preps/ or /^leads/ ) {
         ; # derived
 
     }

@@ -253,10 +253,12 @@ sub task_by_nick {
 }
 
 #
-# assign kids to every thing and domain
+# assign kids to every thing and domain,
+# using mom or pop as shorthand for parent wbs element.
 #
 sub make_kids_of_things {
-    my ($kv,$nick,$pop);
+    my ($kv,$nick,$pop,$ctr);
+    $ctr = 0;
     for $kv (keys(%tasks)) {
         $nick = $wbs{$kv}{'nick'};
         $pop = $wbs{$kv}{'parent'};
@@ -265,19 +267,24 @@ sub make_kids_of_things {
         } else {
             $wbs{$pop}{'kids'} .= ',' . $nick;
         }
+        $ctr++;
     }
+    return($ctr);
 }
 sub make_kids_of_domains {
-    my ($kv,$nick,$pop);
+    my ($kv,$nick,$mom,$ctr);
+    $ctr = 0;
     for $kv (keys(%things)) {
         $nick = $wbs{$kv}{'nick'};
-        $pop = $wbs{$kv}{'parent'};
-        if ($wbs{$pop}{'kids'} eq '') {
-            $wbs{$pop}{'kids'} = $nick;
+        $mom = $wbs{$kv}{'parent'};
+        if ($wbs{$mom}{'kids'} eq '') {
+            $wbs{$mom}{'kids'} = $nick;
         } else {
-            $wbs{$pop}{'kids'} .= ',' . $nick;
+            $wbs{$mom}{'kids'} .= ',' . $nick;
         }
+        $ctr++;
     }
+    return($ctr);
 }
 
 #
