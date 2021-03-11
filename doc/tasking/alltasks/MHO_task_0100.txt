@@ -101,13 +101,13 @@ task   = Review the project with sponsor
 nick   = Meetings-review
 desc   = The software foundational review
 start  = @tSREV
-needs  = ReqsDoc-submit,CoTestDoc-submit
+needs  = ReqsDoc-submit,CoTestDoc-submit,Meetings-refining
 
 task   = Internal progress (End of Q06)
 nick   = Meetings-endQ06
 desc   = end of quarter 06
 start  = @tQ06E
-#needs  = Meetings-review
+needs  = Meetings-review
 
 task   = Internal progress review (End of Q07)
 nick   = Meetings-internal

@@ -7,6 +7,7 @@ task   = Import Alist
 nick   = ImportA3-Alist
 @ctask
 desc   = import alist
+#needs  = Repo-init
 
 task   = Import Adump
 nick   = ImportA3-Adump
