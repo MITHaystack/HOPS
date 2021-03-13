@@ -72,14 +72,14 @@ my %taskage = (
     'level'  => '# input: easy | moderate | difficult',
     'issues' => '# input: open issues relevant to planning',
     'orient' => '# input: portrait/landscape',
-    'attr'   => '# input: other (forced) attributes for dot nodes',
+    'attr'   => '# input: (NYU) other (forced) attributes for dot nodes',
 
     # workers associated with task
     'who'    => '# input: list of workers',
     'pri'    => '# derived: primary (1st in who)',
     'sec'    => '# derived: secondary (2nd in who)',
     'men'    => '# derived: everyone else (mentors)',
-    'fte'    => '# derived: total fte (.66pri,.33sec,0else)',
+    'fte'    => '# derived: (NYI) fte by people (.66pri,.33sec,0else)',
 
     # dependencies and timeline
     'errors' => '# derived: errors in timing',
@@ -132,16 +132,20 @@ sub dump_taskage {
     print "The -r report options specify the set of keywords\n";
     print "that will be dumped to the overall .wbs, .domain, .thing,\n";
     print ".task or .tsv files.  The choices are:\n";
+    print "\n";
     print "  none  you none of these files (the default)\n";
     print "  what  gets you the description\n";
     print "  sum   desc, nick, who, and stop\n";
     print "  bean  sum items, and nick, start, days, task, think and domain\n";
     print "  all   gets you all known keywords\n";
+    print "  help  gets you what you see here\n";
     print "\n";
     print "The complete (sorted) list of keywords follows.  In the\n";
     print "descriptions, the prefixes 'derived', 'input', or 'either'\n";
     print "give you some idea of whether the item comes in through the\n";
     print "input file, or is calculated from other information.\n";
+    print "NYI = Not Yet Implemented, NYU = Not Yet Used.\n";
+    print "\n";
     for $fkey (sort(keys(%taskage))) {
         $fval = $taskage{$fkey};
         write;

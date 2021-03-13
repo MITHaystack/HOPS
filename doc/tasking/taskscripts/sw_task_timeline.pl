@@ -32,8 +32,8 @@ our ($debugmjdupdates,$output,$maxtimelinepasses,$maxtimelineestimates);
 #
 sub update_mjd_data {
     my ($est) = @_;
-    my ($ok,$gap,$mods,$m,$dr,$dys,$mjs,$cm) = (0,0,0);
-    open(MJDBG,">$output" . '.mjd.dbg') if ($debugmjdupdates);
+    my ($ok,$gap,$mods,$m,$dys,$mjs) = (0,0,0);
+    #open(MJDBG,">$output" . '.mjd.dbg') if ($debugmjdupdates);
     for my $kv (keys(%wbs)) {
         $ok = 0;
         if ($wbs{$kv}{'start'} =~ m/$date_pat/) {
@@ -41,50 +41,32 @@ sub update_mjd_data {
             $mods++ if ($m ne $wbs{$kv}{'begin'});
             $wbs{$kv}{'begin'} = $m;
             $ok++;
-        } else {
+        } elsif ($wbs{$kv}{'start'} ne $depends) {
             $wbs{$kv}{'start'} = $depends;
             $wbs{$kv}{'begin'} = $gBegin;
-            $ok = 0;
         }
         if ($wbs{$kv}{'stop'} =~ m/$date_pat/) {
             $m = &date_to_mjd($wbs{$kv}{'stop'});
             $mods++ if ($m ne $wbs{$kv}{'end'});
             $wbs{$kv}{'end'} = $m;
             $ok++;
-        } else {
+        } elsif ($wbs{$kv}{'stop'} ne $depends) {
             $wbs{$kv}{'stop'} = $depends;
             $wbs{$kv}{'end'} = $gEnd;
-            $ok = 0;
         }
         if (($ok eq 2) and ($wbs{$kv}{'days'} > 0)) {
             $gap = $wbs{$kv}{'end'} - $wbs{$kv}{'begin'};
             $wbs{$kv}{'mjds'} = $wbs{$kv}{'days'} * $wbs{$kv}{'derate'};
             $wbs{$kv}{'flex'} = $gap - $wbs{$kv}{'mjds'};
-            $dr = $wbs{$kv}{'derate'};
-            $cm = 'ok';
-            # FIXME: 'fte'
         } elsif ($wbs{$kv}{'days'} eq 0) {    # a milestone
             $wbs{$kv}{'mjds'} = 0;
             $wbs{$kv}{'flex'} = 0;
-            $wbs{$kv}{'preps'} = $wbs{$kv}{'leads'} = 'milestone';
-            $dr = 0;
-            $cm = 'milestone';
-            # FIXME: 'fte'
         } else {
             $wbs{$kv}{'mjds'} = 0;
             $wbs{$kv}{'flex'} = 0;
-            $wbs{$kv}{'preps'} = $wbs{$kv}{'leads'} = 'noconnect';
-            $dr = -1;
-            $cm = 'noconnect';
-            # FIXME: 'fte'
         }
-        $dys = $wbs{$kv}{'days'};
-        $mjs = $wbs{$kv}{'mjds'};
-        print MJDBG "$wbs{$kv}{'nick'} " . " --- " .
-            "ok=$ok dr=$dr days=$dys/$mjs --- " .
-            "$cm\n" if ($debugmjdupdates);
     }
-    close(MJDBG) if ($debugmjdupdates);
+    #close(MJDBG) if ($debugmjdupdates);
     return($mods);
 }
 
