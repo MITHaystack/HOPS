@@ -38,20 +38,23 @@ our ($verb,$veryverb);
 #my ($gBegin,$gEnd) = (55788,57249);     # 2011-08-15 - 2015-08-15
 our ($gBegin,$gEnd);
 
+# the label used for start/stop times not yet resolved
+our ($depends);
+
 # skip generation of needs / allows
 our $skipneedsallows;
-# allow debugging of the math
-our ($debugmjdupdates,$output);
+# allow debugging of the math to output file and limiting passes
+our ($debugmjdupdates,$output,$maxtimelinepasses);
 
 #
 # This routine computes begin/end from start/stop
 # and assigns the time required and margin members.
-# Undefined start/stop times are canonicalized to 'depends'
+# Undefined start/stop times are canonicalized to $depends.
 # for the following adjustment phases.
 #
 sub update_mjd_data {
     my ($ok,$gap,$mods,$m,$dr,$dys,$mjs,$cm) = (0,0,0);
-    open(MJDBG,">$output" . '-mjdupdate.dbg') if ($debugmjdupdates);
+    open(MJDBG,">$output" . '.mjd.dbg') if ($debugmjdupdates);
     for my $kv (keys(%wbs)) {
         $ok = 0;
         if ($wbs{$kv}{'start'} =~ m/$date_pat/) {
@@ -60,7 +63,7 @@ sub update_mjd_data {
             $wbs{$kv}{'begin'} = $m;
             $ok++;
         } else {
-            $wbs{$kv}{'start'} = 'depends';
+            $wbs{$kv}{'start'} = $depends;
             $wbs{$kv}{'begin'} = $gBegin;
             $ok = 0;
         }
@@ -70,7 +73,7 @@ sub update_mjd_data {
             $wbs{$kv}{'end'} = $m;
             $ok++;
         } else {
-            $wbs{$kv}{'stop'} = 'depends';
+            $wbs{$kv}{'stop'} = $depends;
             $wbs{$kv}{'end'} = $gEnd;
             $ok = 0;
         }
@@ -80,51 +83,64 @@ sub update_mjd_data {
             $wbs{$kv}{'flex'} = $gap - $wbs{$kv}{'mjds'};
             $dr = $wbs{$kv}{'derate'};
             $cm = 'ok';
+            # FIXME: 'fte'
         } elsif ($wbs{$kv}{'days'} eq 0) {    # a milestone
             $wbs{$kv}{'mjds'} = 0;
             $wbs{$kv}{'flex'} = 0;
             $wbs{$kv}{'preps'} = $wbs{$kv}{'leads'} = 'milestone';
             $dr = 0;
             $cm = 'milestone';
+            # FIXME: 'fte'
         } else {
             $wbs{$kv}{'mjds'} = 0;
             $wbs{$kv}{'flex'} = 0;
             $wbs{$kv}{'preps'} = $wbs{$kv}{'leads'} = 'noconnect';
             $dr = -1;
             $cm = 'noconnect';
+            # FIXME: 'fte'
         }
         $dys = $wbs{$kv}{'days'};
         $mjs = $wbs{$kv}{'mjds'};
-        print MJDBG
-            "$kv ok=$ok dr=$dr days=$dys/$mjs $cm\n" if ($debugmjdupdates);
+        print MJDBG "$wbs{$kv}{'nick'} " . " --- " .
+            "ok=$ok dr=$dr days=$dys/$mjs --- " .
+            "$cm\n" if ($debugmjdupdates);
     }
     close(MJDBG) if ($debugmjdupdates);
     return($mods);
 }
 
 #
-# Adjust the start or stop date based on the predecessors or successors
-# for any task that has a 'depends' start/stop time.
-# if start/needs, look for the largest begin
-# if stop/allows, look for the smallest end
+# Adjust the start or stop date based on successors or predecessors
+# for any task that has a $depends on its start/stop time (begin/end).
+# if start/needs is depends, look for the largest (latest) end of needs
+# if stop/allows is depends, look for the smallest (earliest) begin of allows
+# preps and leads are defaulted to milestone (days==0) or noconnect (days<>0)
+# we set these ($side) unconstrained until we have the nickname of who set it.
 #
 sub adjust_dates {
-    my ($dir,$using,$what,$side,$mjdo,$kv,$n,$m,$tk,$mods,@nicks) = @_;
+    # start  needs   end  preps
+    #  stop  allows begin leads
+    my ($dir,$using,$what,$side,$mjdo,$kv,$n,$m,$tk,$mods,$odr,@nicks) = @_;
     $mods = 0;
+    # aha
+    if    ($dir eq 'start') { $odr = 'stop';  $mjdo = 0; }
+    elsif ($dir eq 'stop')  { $odr = 'start'; $mjdo = 99999; }
+    # else { an error that cannot happen... ; }
     for my $kv (keys(%wbs)) {
-        next if ($wbs{$kv}{$dir} ne 'depends');
+        next if ($wbs{$kv}{$dir} ne $depends);
         $wbs{$kv}{$side} = 'unconstrained';
-        @nicks = split(/,/,$wbs{$kv}{$using});
+        @nicks = split(/,/,$wbs{$kv}{$using});  # needs or allows
         $m = $mjdo;
         for $n (@nicks) {
             $tk = &task_by_nick($n,'adjust_dates');
-            next if ($tk eq 'none');    # an error, actually
-            next if ($wbs{$tk}{$dir} eq 'depends');
+            next if ($tk eq 'none');    # an error, that cannot happen ...
+            next if ($wbs{$tk}{$odr} eq $depends); # no information
+            # if later or earlier update
             if (($dir eq 'start' and $wbs{$tk}{$what} > $m) or
                 ($dir eq 'stop'  and $wbs{$tk}{$what} < $m)) {
                 $m = $wbs{$kv}{$what};
                 $wbs{$kv}{$side} = $n;
-                $wbs{$kv}{$dir} = $wbs{$tk}{$dir};
+                $wbs{$kv}{$dir} = $wbs{$tk}{$odr};
                 $mods ++;
             }
         }
@@ -136,23 +152,27 @@ sub adjust_dates {
 # check that dates are properly ordered
 #   &check_dates('start', 'needs', 'begin', 'end', 'stop');
 #   &check_dates('stop', 'allows', 'end', 'begin', 'start');
+# begin and end are the MJD equivalents of start and stop.
 #
 sub check_dates {
     #   start needs  begin  end stop
     #   stop allows  end  begin start
     my ($dir,$using,$mine,$yurn,$what,$relation,@errs,@nicks) = @_;
-    if (not $veryverb) { return; }
+    # if (not $veryverb) { return; }
     my $na = "needs ";
     $na = "allows" if ($dir eq 'stop');
-    open(CD, ">$output.$dir");
-    $errs[1] = $errs[0] = 0;
+    if ($veryverb) { open(CD, ">$output.$dir"); }
+    else {           open(CD, ">/dev/null"); }
+    $errs[2] = $errs[1] = $errs[0] = 0;
     print CD "Checking dates for direction $dir ($mine $yurn)\n\n";
     for my $k (keys(%wbs)) {
         my $kn = $wbs{$k}{'nick'};
+        $wbs{$k}{'errors'} = 0 if (not defined($wbs{$k}{'errors'}));
+        $wbs{$k}{'errors'} = 0 if ($wbs{$k}{'errors'} eq '');
         next if ($wbs{$k}{'type'} ne 'task');
         @nicks = split(/,/,$wbs{$k}{$using});
         if ($#nicks<0) {
-            print CD "No $na  for $kn ...\n";
+            print CD "No $na  for $kn ... '$wbs{$k}{'errors'}'\n";
         } else {
             print CD "KN $kn with $na $wbs{$k}{$using}\n";
         }
@@ -160,18 +180,25 @@ sub check_dates {
             #print CD "  ($tn and $kn)\n";
             my $n = &task_by_nick($tn,'check_dates');
             print CD "  Considering $tn with MJD " . $wbs{$n}{$yurn} . "\n";
-            if ($dir eq 'start' and $wbs{$k}{$mine} < $wbs{$n}{$yurn}) {
+            if ($wbs{$k}{'start'} eq $depends or
+                $wbs{$k}{'stop'} eq $depends) {
+                $errs[2]++;
+                $wbs{$k}{'errors'} = -1;
+                print CD "   Depends case, moving on\n";
+            } elsif ($dir eq 'start' and $wbs{$k}{$mine} < $wbs{$n}{$yurn}) {
                 print CD "   ERR: " .
                     $wbs{$k}{'nick'} . " $dir " .
                     $wbs{$k}{$mine} ." < ". $wbs{$n}{$yurn} . " " .
                     $wbs{$n}{'nick'} . " $what\n";
                 $errs[1]++;
+                $wbs{$k}{'errors'}++;
             } elsif ($dir eq 'stop' and $wbs{$k}{$mine} > $wbs{$n}{$yurn}) {
                 print CD "   ERR: " .
                     $wbs{$k}{'nick'} . " $dir " .
                     $wbs{$k}{$mine} ." > ". $wbs{$n}{$yurn} . " " .
                     $wbs{$n}{'nick'} . " $what\n";
                 $errs[1]++;
+                $wbs{$k}{'errors'}++;
             } else {
                 $relation = '>' if ($dir eq 'start');
                 $relation = '<' if ($dir eq 'stop');
@@ -203,28 +230,36 @@ sub work_out_timeline {
         print "# Pass $pass:\t" if ($veryverb);
         $mods = &update_mjd_data();
         print "update: $mods " if ($veryverb);
-        $mods += &adjust_dates('start','needs','begin','preps',0);
+        $mods += &adjust_dates('start','needs','end','preps');
         print "preps:  $mods " if ($veryverb);
-        $mods += &adjust_dates('stop','allows','end','leads',99999);
+        $mods += &adjust_dates('stop','allows','begin','leads');
         print "leads:  $mods\n" if ($veryverb);
         $pass ++;
-        last if ($pass > 19 or $mods eq 0);
+        last if ($pass >= $maxtimelinepasses or $mods eq 0);
     }
     $mods = &update_mjd_data();
     print "# Final $mods; checking dates now...\n" if ($veryverb);
     @ers = &check_dates('start', 'needs', 'begin', 'end', 'stop');
-    print "# start checks found $ers[0] ok and $ers[1] bad\n";
+    print "# start checks found $ers[0] ok and $ers[1] bad $ers[2] depends\n";
     @ers = &check_dates('stop', 'allows', 'end', 'begin', 'start');
-    print "# stop  checks found $ers[0] ok and $ers[1] bad\n";
+    print "# stop  checks found $ers[0] ok and $ers[1] bad $ers[2] depends\n";
     print "# Finished checks\n" if ($veryverb);
 }
 
 #
 # helper function that adjusts the 'shape' (and possibly other attributes)
-# based on node contents.
+# based on node contents.  Currently it changes the default ellipse to
+# rectangle for tasks with timeline errors.
 #
 sub assign_node_attributes {
-    print "# Not yet implemented\n" if ($veryverb);
+    for my $k (keys(%wbs)) {
+        # my $kn = $wbs{$k}{'nick'};
+        next if ($wbs{$k}{'type'} ne 'task');
+        if ($wbs{$k}{'errors'} eq '') { $wbs{$k}{'shape'} = 'hexagon'; }
+        elsif ($wbs{$k}{'errors'} > 0) { $wbs{$k}{'shape'} = 'rectangle'; }
+        elsif ($wbs{$k}{'errors'} < 0) { $wbs{$k}{'shape'} = 'egg'; }
+        else { $wbs{$k}{'shape'} = 'ellipse'; }
+    }
 }
 
 #
@@ -238,7 +273,6 @@ sub make_needs_or_allows {
     return if ($skipneedsallows > 0);
     for $k (keys(%wbs)) {
         if (!defined($wbs{$k}{'nick'})) {
-            # FIXME: why?
             print "$k has no nick\n";
             next;
         }

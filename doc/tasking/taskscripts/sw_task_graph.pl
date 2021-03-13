@@ -4,9 +4,9 @@ use warnings;           # turns on optional warnings
 use diagnostics;        # and makes them not terse
 use strict;             # makes unsafe constructs illegal
 #
-# make some graphs of what depends on what
+# make some graphs showing how tasks are related
 #
-
+use lib ".";
 require "sw_task_wbs.pl";
 
 our $bubbles;
@@ -219,10 +219,11 @@ sub graph_preamble {
     $stuff .= "// graph_preamble $pl for $nm\n";
     $stuff .= "//\n";
     $stuff .= "rankdir=$graph_rankdir;\n";
-    $stuff .= "concentrate=$concentrate\n";
+    $stuff .= "concentrate=$concentrate;\n";
     $stuff .= $orientation[$pl];
+    $stuff .= "node [style=filled,color=black,fillcolor=lightgray," .
+                    "fontname=HelveticaNarrow,fontsize=14];\n";
     $stuff .= $preamble_stuff{$nm} if defined($preamble_stuff{$nm});
-    $stuff .= "node [style=filled,color=black,fillcolor=lightgray];\n";
     $stuff .= "\n";
     return $stuff;
 }
@@ -278,13 +279,19 @@ sub node_attr {
         $ze_attr{$p} = &next_style_counter();
         $ze_defs .= "// '$p' => " . $ze_attr{$p} . ", \n";
     }
-    $s = $wbs{$k}{'start'} . '\n' . $wbs{$k}{'stop'};
-    $s .= '\n' . $wbs{$k}{'done'} . '%';
+    $s  = $wbs{$k}{'start'} . '\n';
+    $s .= $wbs{$k}{'stop'}  . '\n';
+    $s .= $wbs{$k}{'done'} . '% of ' . $wbs{$k}{'days'};
+    if (defined($wbs{$k}{'shape'})) {
+        $t = 'shape="' . $wbs{$k}{'shape'} . '", ';
+    } else {
+        $t = '';
+    }
     if ($fullnames) {
         my @pt = split(/$sep/,$k);
-        $t = 'label="' . $pt[2] . '\n' . $s . '", ';
+        $t .= 'label="' . $pt[2] . '\n' . $s . '", ';
     } else {
-        $t = 'label="\N\n' . $s . '", ';
+        $t .= 'label="\N\n' . $s . '", ';
     }
     $t .= $node_style[$ze_attr{$p}];
     return($t);
@@ -488,7 +495,7 @@ sub make_legend_keys {
     open NEW, ">$name.task";
     print NEW "HEAD of tasks for: $doma\n\n";
     for my $task (sort { $wbs{$a}{'line'} <=> $wbs{$b}{'line'} } @_) {
-        &write_new_rest($task);
+        &write_new_input($task);
     }
     print NEW "\nTAIL of tasks for: $doma\n";
     close NEW;

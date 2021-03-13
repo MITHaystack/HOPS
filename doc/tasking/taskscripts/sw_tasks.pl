@@ -3,7 +3,9 @@
 # TTD:
 #   consider using tred (optionally) to apply transitive reduction
 #   make use of attr for node attributes
-#   figure out how to capture edge attributes
+#   figure out how to capture and adjust edge attributes
+#   should eventually remove many checks for things that cannot happen
+#   work planning poker into days estimation
 #
 use warnings;           # turns on optional warnings
 use diagnostics;        # and makes them not terse
@@ -87,6 +89,9 @@ $verb = 1 if ($veryverb);
 our ($gBegin,$gEnd) = (50000,70000);
 my ($nkids);
 
+# this shows up in labels, but logic depends on it.
+our $depends = '--depends--';
+
 #
 # Main program
 #
@@ -129,11 +134,11 @@ print "Plotting things too\n" if ($doth2);
 # make an interpreted copy
 print "Writing $output.txt\n" if ($veryverb);
 &clone_sw_task_file(">$output.txt") if ($verb);
-&clone_debugging(">$output-main.dbg") if ($veryverb);
+&clone_debugging(">$output.main.dbg") if ($veryverb);
 
 # fill in some blanks and eliminate commentary defaults
 print "Filling in the blanks\n" if ($verb);
-&canonicalize_items();
+&canonicalize_items(">$output.canon.dbg");
 &make_needs_from_allows();
 &make_allows_from_needs();
 

@@ -79,7 +79,7 @@ sub by_key {
 # helper function; remember that keys are
 #   domain . sep . thing . sep . task
 #
-sub write_new_rest {
+sub write_new_input {
     my ($key,$k,$kv,@p) = @_;
     @p = split(/$sep/,$key);
     $kv = $p[0];
@@ -111,9 +111,9 @@ sub dump_new_input {
     open(NEW,$out);
     print NEW "#\n# Generated from $in\n#\n\n";
     print NEW "HEAD = start reading here\n\n";
-    for $t (keys(%domains)) { &write_new_rest($t); }
-    for $t (keys(%things)) { &write_new_rest($t); }
-    for $t (keys(%tasks)) { &write_new_rest($t); }
+    for $t (keys(%domains)) { &write_new_input($t); }
+    for $t (keys(%things)) { &write_new_input($t); }
+    for $t (keys(%tasks)) { &write_new_input($t); }
     print NEW "\nTAIL = stop reading here\n\n";
     print NEW "#\n# eof\n#\n";
     close(NEW);
@@ -211,15 +211,21 @@ sub pred_uids {
 # go through and nuke entries with any of input: derived: either:
 #
 sub canonicalize_items {
+    my ($dbf,$old,$nck,$typ) = @_;
+    open(CANON,$dbf) if ($veryverb);
     for my $task (keys(%wbs)) {
         for my $key (@keywords) {
             if (not defined($wbs{$task}{$key}) or
-                $wbs{$task}{$key} =~ m/input:.*/ or
-                $wbs{$task}{$key} =~ m/derived:.*/ or
-                $wbs{$task}{$key} =~ m/either:.*/) {
+                $wbs{$task}{$key} =~ m/.*input:.*/ or
+                $wbs{$task}{$key} =~ m/.*derived:.*/ or
+                $wbs{$task}{$key} =~ m/.*either:.*/) {
                 # a few require numerical values
                 if ($key eq 'days') {
+                    $typ = $wbs{$task}{'type'};
+                    $nck = $wbs{$task}{'nick'};
+                    $old = $wbs{$task}{$key};
                     $wbs{$task}{$key} = 0;
+                    print CANON "$typ:$nck days: $old->0\n" if ($veryverb);
                 } elsif ($key eq 'done') {
                     $wbs{$task}{$key} = 0;
                 } elsif ($key eq 'fte') {
@@ -232,6 +238,7 @@ sub canonicalize_items {
             }
         }
     }
+    close(CANON) if ($veryverb);
 }
 
 #

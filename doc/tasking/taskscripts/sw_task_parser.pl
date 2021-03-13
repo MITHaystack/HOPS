@@ -6,6 +6,8 @@ use strict;             # makes unsafe constructs illegal
 #
 # Support script for parsing the sw task data file
 #
+use lib ".";
+require "sw_task_wbs.pl";
 
 # hashes of domains, things, and tasks
 our %domains;
@@ -37,61 +39,68 @@ our @keywords = (
     'desc', 'nick', 'parent', 'kids', 'line',
     'path', ,'code', 'docref', 'notes', 'level', 'issues', 'orient', 'attr',
     'who', 'pri', 'sec', 'men', 'fte',
-    'shape', 'uid', 'needs', 'start', 'begin', 'days', 'derate',
+    'errors', 'shape', 'uid', 'needs', 'start', 'begin', 'days', 'derate',
     'done', 'mjds', 'flex', 'end', 'stop', 'allows',
-    'preps', 'leads', 'file'
+    'preps', 'leads', 'file',
+);
+#
+# list of keywords that will have the last task value entered applied
+# as a default
+our @memories = (
+    'path', 'code', 'days', 'derate', 'desc', 'who', 'pri', 'sec', 'men',
 );
 
 my %taskage = (
     # what it is
-    'type'   => 'derived: one of domain, thing, task',
-    'domain' => 'derived: some domain of activity',
-    'thing'  => 'derived: some thing in domain to be done',
-    'task'   => 'derived: tasks to required complete thing',
+    'type'   => '# derived: one of domain, thing, task',
+    'domain' => '# derived: some domain of activity',
+    'thing'  => '# derived: some thing in domain to be done',
+    'task'   => '# derived: tasks to required complete thing',
 
     # basic detail about the task
-    'desc'   => 'input: short description of task/thing/domain',
-    'nick'   => 'input: nickname for task/thing/domain',
-    'parent' => 'derived: wbs | thing of task | or domain of thing',
-    'kids'   => 'derived: domains or things',
-    'line'   => 'derived: line number in original file',
+    'desc'   => '# input: short description of task/thing/domain',
+    'nick'   => '# input: nickname for task/thing/domain',
+    'parent' => '# derived: wbs | thing of task | or domain of thing',
+    'kids'   => '# derived: domains or things',
+    'line'   => '# derived: line number in original file',
 
     # yet more detail about the task
-    'path'   => 'input: REPO:path-to-source-code',
-    'code'   => 'input: Bash/C/C++/Java/Python, &c.',
-    'notes'  => 'input: mention some local file with more details',
-    'docref' => 'input: Documentation reference, doc, section, page, &c',
-    'level'  => 'input: easy | moderate | difficult',
-    'issues' => 'input: open issues relevant to planning',
-    'orient' => 'input: portrait/landscape',
-    'attr'   => 'input: other (forced) attributes for dot nodes',
+    'path'   => '# input: REPO:path-to-source-code',
+    'code'   => '# input: Bash/C/C++/Java/Python, &c.',
+    'notes'  => '# input: mention some local file with more details',
+    'docref' => '# input: Documentation reference, doc, section, page, &c',
+    'level'  => '# input: easy | moderate | difficult',
+    'issues' => '# input: open issues relevant to planning',
+    'orient' => '# input: portrait/landscape',
+    'attr'   => '# input: other (forced) attributes for dot nodes',
 
     # workers associated with task
-    'who'    => 'input: list of workers',
-    'pri'    => 'derived: primary (1st in who)',
-    'sec'    => 'derived: secondary (2nd in who)',
-    'men'    => 'derived: everyone else (mentors)',
-    'fte'    => 'derived: total fte (.66pri,.33sec,0else)',
+    'who'    => '# input: list of workers',
+    'pri'    => '# derived: primary (1st in who)',
+    'sec'    => '# derived: secondary (2nd in who)',
+    'men'    => '# derived: everyone else (mentors)',
+    'fte'    => '# derived: total fte (.66pri,.33sec,0else)',
 
     # dependencies and timeline
-    'shape'  => 'derived: node shape',
-    'uid'    => 'derived: ordinal identifier',
-    'needs'  => 'input: ,-sep list of predecessor nicks',
-    'start'  => 'either: start date if days=0, else derived',
-    'days'   => 'input: estimate of real man-days of work',
-    'derate' => 'input: multiplier on ftes to get calendar days',
-    'begin'  => 'derived: MJD of start date',
-    'done'   => 'input: percentage done',
-    'mjds'   => 'derived: calendar days required',
-    'flex'   => 'derived: calendar days of margin',
-    'end'    => 'derived: MJD of finish date',
-    'stop'   => 'either: finish date if days=0, else derived',
-    'allows' => 'input: ,-sep list of successor nicks',
-    'preps'  => 'derived: nick that defines start of this one',
-    'leads'  => 'derived: nick that defines stop of this one',
+    'errors' => '# derived: errors in timing',
+    'shape'  => '# derived: node shape',
+    'uid'    => '# derived: ordinal identifier',
+    'needs'  => '# input: ,-sep list of predecessor nicks',
+    'start'  => '# either: start date if days=0, else derived',
+    'days'   => '# input: estimate of real man-days of work',
+    'derate' => '# input: multiplier on ftes to get calendar days',
+    'begin'  => '# derived: MJD of start date',
+    'done'   => '# input: percentage done',
+    'mjds'   => '# derived: calendar days required',
+    'flex'   => '# derived: calendar days of margin',
+    'end'    => '# derived: MJD of finish date',
+    'stop'   => '# either: finish date if days=0, else derived',
+    'allows' => '# input: ,-sep list of successor nicks',
+    'preps'  => '# derived: nick that defines start of this one',
+    'leads'  => '# derived: nick that defines stop of this one',
 
     # for multiple developers
-    'file'   => 'input: source file for the component',
+    'file'   => '# input: source file for the component',
 );
 
 # a hash of task defaults
@@ -107,6 +116,7 @@ my $current_task = '';
 my $current_item = '';
 my $current_file = 'no-such-file.txt';
 my ($domcntr,$thgcntr,$tskcntr) = (1,1,1);
+my %lastvalues = ();
 
 #
 # This is a function to print out the internal keyword help
@@ -179,6 +189,7 @@ sub makeabbr {
 sub create_object {
     my $kv = $_[0];
     $wbs{$kv} = ();
+    # fill every item with a safe dummy value and help
     for my $key (keys(%taskage)) {
         $wbs{$kv}{$key} = $taskage{$key};
     }
@@ -217,6 +228,10 @@ sub set_default_object {
         $wbs{$kv}{'uid'} = $tskcntr++;
         $wbs{$kv}{'uid'} += $wbs{$parent}{'uid'};
     }
+    # load memories
+    for my $mem (@memories) {
+        $wbs{$kv}{$mem} = $lastvalues{$mem} if (defined($lastvalues{$mem}));
+    }
 }
 
 #
@@ -235,7 +250,7 @@ sub really_parse_one_line {
     $bits[1] =~ s{\s*(.*\S+)\s*}{$1};
     # now with abbreviations expanded
     $kv = &deabbr($bits[1]);
-    print DEBUG '## line ' . $ln . ':' . $_ if ($veryverb);
+    print DEBUG '## line ' . $ln . ':' . $_ . "\n" if ($veryverb);
 
     # $current_item is the key with surrounding white-space removed
     $current_item = $bits[0];
@@ -278,6 +293,7 @@ sub really_parse_one_line {
                     '-' . $bits[1]) =~ s/[@ ]//g;
             }
         }
+        &write_new_input($current_task) if ($veryverb); # NEW
         $current_task = $kv;
     } elsif ( /^file/ ) {
         $current_file = $kv;
@@ -286,6 +302,7 @@ sub really_parse_one_line {
         ; # derived
 
     } elsif ( /^desc/ ) {
+        $lastvalues{'desc'} =
         $wbs{$current_task}{'desc'} = $kv;
         # $current_item = 'desc';
     } elsif ( /^nick/ ) {
@@ -295,14 +312,18 @@ sub really_parse_one_line {
         $wbs{$current_task}{'nick'} = $kv;
 
     } elsif ( /^path/ ) {
+        $lastvalues{'path'} =
         $wbs{$current_task}{'path'} = $kv;
     } elsif ( /^code/ ) {
+        $lastvalues{'code'} =
         $wbs{$current_task}{'code'} = $kv;
     } elsif ( /^notes/ ) {
         $wbs{$current_task}{'notes'} = $kv;
     } elsif ( /^days/ ) {
+        $lastvalues{'days'} =
         $wbs{$current_task}{'days'} = $kv;
     } elsif ( /^derate/ ) {
+        $lastvalues{'derate'} =
         $wbs{$current_task}{'derate'} = $kv;
     } elsif ( /^level/ ) {
         $wbs{$current_task}{'level'} = $kv;
@@ -314,10 +335,14 @@ sub really_parse_one_line {
         $wbs{$current_task}{'attr'} = $kv;
 
     } elsif ( /^who/ ) {
+        $lastvalues{'who'} =
         $wbs{$current_task}{'who'} = $kv;
         my @people = split(/,/,$kv,3);
+        $lastvalues{'pri'} =
         $wbs{$current_task}{'pri'} = $people[0];    # first is primary
+        $lastvalues{'sec'} =
         $wbs{$current_task}{'sec'} = $people[1];    # second is secondary
+        $lastvalues{'men'} =
         $wbs{$current_task}{'men'} = $people[2];    # everyone else
 
     } elsif ( /^needs/ ) {
@@ -330,10 +355,9 @@ sub really_parse_one_line {
         $wbs{$current_task}{'stop'} = $kv;
     } elsif ( /^allows/ ) {
         $wbs{$current_task}{'allows'} = $kv;
-    } elsif ( /^shape/ or /^uid/ or /^begin/ or /^mjds/ or
+    } elsif ( /^errors/ or /^shape/ or /^uid/ or /^begin/ or /^mjds/ or
               /^flex/ or /^end/ or /^preps/ or /^leads/ ) {
         ; # derived
-
     }
     return $_ . "\n";
 }
@@ -403,7 +427,7 @@ sub parse_sw_task_file {
     my ($file) = @_;
     my ($ok,$hdr,$guts,$ftr) = (0,'','','');
     $current_file = $file;
-    &dump_open(">$output-parse.dbg") if ($veryverb);
+    &dump_open(">$output") if ($veryverb);
     open(DATA,"<",$file);
     while (<DATA>) {
         chomp;
@@ -420,6 +444,7 @@ sub parse_sw_task_file {
 
 #
 # For debugging, dump the task defs
+# DEBUG is local to this file, NEW is formatted in sw_task_wbs.pl
 #
 sub dump_taskdefs {
     for my $td (sort(keys(%taskdefs))) {
@@ -432,10 +457,12 @@ sub dump_abbrevs {
     }
 }
 sub dump_open {
-    open(DEBUG,$_[0]);
+    open(DEBUG,$_[0] . ".parse.dbg");
+    open(NEW,  $_[0] . ".init.dbg");
 }
 sub dump_close {
     close(DEBUG);
+    close(NEW);
 }
 
 #
