@@ -61,7 +61,7 @@ sub date_to_mjd {
 }
 sub mjd_to_date {
     my ($mjd,$yy,$mm,$dd) = ($_[0],2010,0,1);
-    while ($yy < 2017) {
+    while ($yy < 2053) {
         if ($mjd >= $mjdstart{$yy} and $mjd < $mjdstart{$yy+1}) { last; }
         $yy++;
     }
