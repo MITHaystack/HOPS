@@ -28,7 +28,7 @@ our $veryverb;
 # next mention merely establishes parentage
 # ^@* = value       to define abbreviations (substituted thereafter)
 #                   Note: abbreviations automatically made for nick's.
-# ^tdefs = name     allows @name later to fill out task entries
+# ^tdefs = name     allows @name to subsequently fill out task entries
 #                   definition ends with blank or comment line
 #
 # the keywords define the input language
@@ -41,7 +41,7 @@ our @keywords = (
     'who', 'pri', 'sec', 'men', 'fte',
     'errors', 'shape', 'uid', 'needs', 'start', 'begin', 'days', 'derate',
     'done', 'mjds', 'flex', 'end', 'stop', 'allows',
-    'preps', 'leads', 'file',
+    'preps', 'later', 'file',
 );
 #
 # list of keywords that will have the last task value entered applied
@@ -97,7 +97,7 @@ my %taskage = (
     'stop'   => '# either: finish date if days=0, else derived',
     'allows' => '# input: ,-sep list of successor nicks',
     'preps'  => '# derived: nick that defines start of this one',
-    'leads'  => '# derived: nick that defines stop of this one',
+    'later'  => '# derived: nick that defines stop of this one',
 
     # for multiple developers
     'file'   => '# input: source file for the component',
@@ -360,7 +360,7 @@ sub really_parse_one_line {
     } elsif ( /^allows/ ) {
         $wbs{$current_task}{'allows'} = $kv;
     } elsif ( /^errors/ or /^shape/ or /^uid/ or /^begin/ or /^mjds/ or
-              /^flex/ or /^end/ or /^preps/ or /^leads/ ) {
+              /^flex/ or /^end/ or /^preps/ or /^later/ ) {
         ; # derived
     }
     return $_ . "\n";

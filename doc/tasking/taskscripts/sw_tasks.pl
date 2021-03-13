@@ -6,6 +6,7 @@
 #   figure out how to capture and adjust edge attributes
 #   should eventually remove many checks for things that cannot happen
 #   work planning poker into days estimation
+#   mjd math should work for full date range (1995..2010).
 #
 use warnings;           # turns on optional warnings
 use diagnostics;        # and makes them not terse
