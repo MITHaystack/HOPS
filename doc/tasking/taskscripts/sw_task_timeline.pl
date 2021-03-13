@@ -10,6 +10,8 @@ use strict;             # makes unsafe constructs illegal
 # 2023-02-25     60000
 # 2050-07-13     70000  $gEnd   (set in sw_tasks.pl, override in $config)
 # note these are calendar time dates.
+# require "sw_task_mjd.pl";
+
 our %wbs;
 our ($date_pat,$mjd_pat);
 our ($verb,$veryverb);
@@ -23,16 +25,72 @@ our $skipneedsallows;
 our ($debugmjdupdates,$output,$maxtimelinepasses,$maxtimelineestimates);
 
 #
-# Ok, we are in $est>0 and start or stop is $depends.
-# now what?
+# help function for estimate_start or estimate_stop--we
+# should return 0 if it is safe to update.  Some of the
+# logic is similar to adjust_dates.
+sub check_needs_allows {
+    my ($dir,$kv,$mjd) = @_;
+    my ($odr,$n,$tk,$mjo,$wht,$side,@nicks);
+    $side = 'unconstrained';
+    if ($dir eq 'start') {
+        $odr = 'stop';
+        $wht = 'end';
+        $mjo = 0;
+        @nicks = split(/,/,$wbs{$kv}{'needs'});
+    } else {
+        $odr = 'start';
+        $wht = 'begin';
+        $mjo = 99999;
+        @nicks = split(/,/,$wbs{$kv}{'allows'});
+    }
+    for $n (@nicks) {
+        $tk = &task_by_nick($n,'check_needs_allows');
+        next if ($wbs{$tk}{$odr} eq $depends); # no information
+        # extremal end or begin
+        if (($dir eq 'start' and $wbs{$tk}{$wht} > $mjo) or
+            ($dir eq 'stop'  and $wbs{$tk}{$wht} < $mjo)) {
+            $mjo = $wbs{$tk}{$wht};
+            $side = $n;
+        }
+    }
+    $mjo = $mjd if ($side eq 'unconstrained');
+    if ($dir eq 'start') {  # estimating start of $kv
+        return(1) if ($mjd < $mjo);
+        $wbs{$kv}{'preps'} = $side;
+        $wbs{$kv}{'begin'} = $mjo;
+        $wbs{$kv}{'flex'}  = $mjd - $mjo;
+    } else {                # estimating stop of $kv
+        return(1) if ($mjd > $mjo);
+        $wbs{$kv}{'later'} = $side;
+        $wbs{$kv}{'end'}   = $mjo;
+        $wbs{$kv}{'flex'}  = $mjo - $mjd;
+    }
+    return(0);
+}
+
 #
+# Ok, we are in $est>0 and start or stop is $depends.
+#  to estimate start, we can try to "simply" use stop  - mjd
+#  to estimate stop,  we can try to "simply" use start - mjd
+# but to avoid generating bad solutions, check needs or allows
+# return 1 or 0 according to changes made or not.
 sub estimate_start {
-    my ($kv,$est) = @_;
-    print "+";
+    my ($kv,$est,$beg) = @_;
+    return(0) if ($wbs{$kv}{'end'} == $gEnd);
+    $beg = $wbs{$kv}{'end'} - $wbs{$kv}{'mjds'};
+    return(0) if (&check_needs_allows('start',$kv,$beg));
+    # flex/preps/begin were set--final cleanup--insert cal date
+    $wbs{$kv}{'start'} = &mjd_to_date($wbs{$kv}{'begin'});
+    return(1);
 }
 sub estimate_stop {
-    my ($kv,$est) = @_;
-    print "-";
+    my ($kv,$est,$end) = @_;
+    return(0) if ($wbs{$kv}{'begin'} == $gBegin);
+    $end = $wbs{$kv}{'begin'} + $wbs{$kv}{'mjds'};
+    return(0) if (&check_needs_allows('stop',$kv,$end));
+    # flex/later/end were set--final cleanup--insert cal date
+    $wbs{$kv}{'stop'}  = &mjd_to_date($wbs{$kv}{'end'});
+    return(1);
 }
 
 #
@@ -80,8 +138,11 @@ sub update_mjd_data {
             $wbs{$kv}{'mjds'} = 0;
             $wbs{$kv}{'flex'} = 0;
         } else {
-            &estimate_stop($kv,$est) if ($wbs{$kv}{'stop'} eq $depends);
-            &estimate_start($kv,$est) if ($wbs{$kv}{'start'} eq $depends);
+            $wbs{$kv}{'mjds'} = $wbs{$kv}{'days'} * $wbs{$kv}{'derate'};
+            $mods += &estimate_stop($kv,$est)
+                if ($wbs{$kv}{'stop'} eq $depends);
+            $mods += &estimate_start($kv,$est)
+                if ($wbs{$kv}{'start'} eq $depends);
         }
     }
     #close(MJDBG) if ($debugmjdupdates);
@@ -93,7 +154,7 @@ sub update_mjd_data {
 # for any task that has a $depends on its start/stop time (begin/end).
 # if start/needs is depends, look for the largest (latest) end of needs
 # if stop/allows is depends, look for the smallest (earliest) begin of allows
-# preps and leads are defaulted to milestone (days==0) or noconnect (days<>0)
+# preps and later are defaulted to milestone (days==0) or noconnect (days<>0)
 # we set these ($side) unconstrained until we have the nickname of who set it.
 #
 # If $est is 0 we only propagate start/stop values.
@@ -103,7 +164,7 @@ sub update_mjd_data {
 #
 sub adjust_dates {
     # start  needs   end  preps
-    #  stop  allows begin leads
+    #  stop  allows begin later
     my ($dir,$using,$what,$side) = @_;
     my ($mjdo,$kv,$n,$m,$tk,$mods,$odr,@nicks);
     $mods = 0;
@@ -220,8 +281,8 @@ sub work_out_timeline {
         print "update: $mods " if ($veryverb);
         $mods += &adjust_dates('start','needs','end','preps');
         print "preps:  $mods " if ($veryverb);
-        $mods += &adjust_dates('stop','allows','begin','leads');
-        print "leads:  $mods\n" if ($veryverb);
+        $mods += &adjust_dates('stop','allows','begin','later');
+        print "later:  $mods\n" if ($veryverb);
         $pass ++;
         if ($mods == 0 and $est < $maxest) { $mods = -1; $est++; }
         last if ($pass >= $maxpass or $mods == 0);
