@@ -18,6 +18,7 @@ our $fullnames;
 our $skipneedsallows;
 our $debugmjdupdates;
 our $maxtimelinepasses;
+our $maxtimelineestimates;
 
 # these default to 1995-10-10 and 2050-07-13 which are round numbers for MJD
 our ($gBegin,$gEnd);
@@ -73,9 +74,9 @@ $skipneedsallows = 0;
 # this will turn on some MJD data calculation debugging if set
 $debugmjdupdates = 1;
 
-# this controls then maximum number of iterations to adjust dates
-$maxtimelinepasses = 1;
+# these controls then maximum number of iterations to adjust dates
 $maxtimelinepasses = 20;
+$maxtimelineestimates = 3;
 
 1;
 #

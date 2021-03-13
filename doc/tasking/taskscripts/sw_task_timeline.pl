@@ -4,47 +4,23 @@ use warnings;           # turns on optional warnings
 use diagnostics;        # and makes them not terse
 use strict;             # makes unsafe constructs illegal
 #
-# Support script for computing timeline; with hops_time:
-# $ HOPS_JULIAN_EPOCH=UTC hops_time -q I 56763.0 |cut -dT -f1
-# $ HOPS_JULIAN_EPOCH=UTC hops_time -q M 2014-04-16 |cut -d. -f1|sed 's/$/.0/'
-#
-# Calendar dates are of the form YYYY-MM-DD <=> MJD (5 digits)
-# 1995-10-10                        50000
-# 2011-08-15 when contract awarded  55788
-# 2012-02-29 (leap day)             55986
-# 2016-02-29 (leap day)             57447
-# 2016-08-15 six years afterwards   57615
-# 2023-02-25                        60000
-#
-# With Python3 datetime module gets you a unix timestamp:
-# datetime.datetime.fromisoformat(
-#   '2021-01-01T00:00:00').replace(tzinfo=datetime.timezone.utc).timestamp()
-# = 1609459200.0 unix clock
-#
-# def MJD(isotime):
-#    zulu = 'T00:00:00'
-#    tsn = datetime.datetime.fromisoformat(isotime + zulu).replace(
-#       tzinfo=datetime.timezone.utc).timestamp()
-#    ts0 = datetime.datetime.fromisoformat('1995-10-10' + zulu).replace(
-#       tzinfo=datetime.timezone.utc).timestamp()
-#    return (50000 + int(tsn - ts0)//86400)
-#
-# note that all of the above is calendar time (i.e. ignoring leap seconds)
-
+# Calendar dates are of the form
+# YYYY-MM-DD <=> MJD (5 digits)
+# 1995-10-10     50000  $gBegin (set in sw_tasks.pl, override in $config)
+# 2023-02-25     60000
+# 2050-07-13     70000  $gEnd   (set in sw_tasks.pl, override in $config)
+# note these are calendar time dates.
 our %wbs;
 our ($date_pat,$mjd_pat);
 our ($verb,$veryverb);
-
-#my ($gBegin,$gEnd) = (55788,57249);     # 2011-08-15 - 2015-08-15
 our ($gBegin,$gEnd);
 
 # the label used for start/stop times not yet resolved
 our ($depends);
-
 # skip generation of needs / allows
 our $skipneedsallows;
 # allow debugging of the math to output file and limiting passes
-our ($debugmjdupdates,$output,$maxtimelinepasses);
+our ($debugmjdupdates,$output,$maxtimelinepasses,$maxtimelineestimates);
 
 #
 # This routine computes begin/end from start/stop
@@ -52,7 +28,10 @@ our ($debugmjdupdates,$output,$maxtimelinepasses);
 # Undefined start/stop times are canonicalized to $depends.
 # for the following adjustment phases.
 #
+# When $est is 0 we require ok=2.
+#
 sub update_mjd_data {
+    my ($est) = @_;
     my ($ok,$gap,$mods,$m,$dr,$dys,$mjs,$cm) = (0,0,0);
     open(MJDBG,">$output" . '.mjd.dbg') if ($debugmjdupdates);
     for my $kv (keys(%wbs)) {
@@ -117,10 +96,16 @@ sub update_mjd_data {
 # preps and leads are defaulted to milestone (days==0) or noconnect (days<>0)
 # we set these ($side) unconstrained until we have the nickname of who set it.
 #
+# If $est is 0 we only propagate start/stop values.
+# When non-zero, we start estimating dates based on 'mjds'.
+#
+# Return the number of changes, or <0 if we should just stop.
+#
 sub adjust_dates {
     # start  needs   end  preps
     #  stop  allows begin leads
-    my ($dir,$using,$what,$side,$mjdo,$kv,$n,$m,$tk,$mods,$odr,@nicks) = @_;
+    my ($dir,$using,$what,$side) = @_;
+    my ($mjdo,$kv,$n,$m,$tk,$mods,$odr,@nicks);
     $mods = 0;
     # aha
     if    ($dir eq 'start') { $odr = 'stop';  $mjdo = 0; }
@@ -157,7 +142,8 @@ sub adjust_dates {
 sub check_dates {
     #   start needs  begin  end stop
     #   stop allows  end  begin start
-    my ($dir,$using,$mine,$yurn,$what,$relation,@errs,@nicks) = @_;
+    my ($dir,$using,$mine,$yurn,$what) = @_;
+    my ($relation,@errs,@nicks);
     # if (not $veryverb) { return; }
     my $na = "needs ";
     $na = "allows" if ($dir eq 'stop');
@@ -215,30 +201,33 @@ sub check_dates {
 }
 
 #
-# work out the timeline
-#  enforce partial order so that:
+# work out the timeline; called from top-level.
+#  here we first enforce partial order so that:
 #   needs tasks come before
 #   allows tasks come after
 #  update begin/end MJDs
-#  compute mjds/flex allowances
-#  update start/stop for task
+#  compute mjds/flex allowances for resolved tasks
+#  update start/stop for task with $depends from needs/allows
+# once we have run out of updates, then we allow estimation of start/stop
+#  which is tracked through the $est variable: 0 means not allowed.
 #
 sub work_out_timeline {
-    my ($mods,$pass) = (1,0);
-    my (@ers);
+    my ($mods,$pass,$est) = (1,0,0);
+    my ($maxpass,$maxest, @ers) = ($maxtimelinepasses,$maxtimelineestimates);
     while ($mods) {
-        print "# Pass $pass:\t" if ($veryverb);
-        $mods = &update_mjd_data();
+        print "# Pass $pass/$maxpass; est $est/$maxest:\t" if ($veryverb);
+        $mods = &update_mjd_data($est);
         print "update: $mods " if ($veryverb);
         $mods += &adjust_dates('start','needs','end','preps');
         print "preps:  $mods " if ($veryverb);
         $mods += &adjust_dates('stop','allows','begin','leads');
         print "leads:  $mods\n" if ($veryverb);
         $pass ++;
-        last if ($pass >= $maxtimelinepasses or $mods eq 0);
+        if ($mods == 0 and $est < $maxest) { $mods = -1; $est++; }
+        last if ($pass >= $maxpass or $mods == 0);
     }
-    $mods = &update_mjd_data();
-    print "# Final $mods; checking dates now...\n" if ($veryverb);
+    $mods = &update_mjd_data($est);
+    print "# Final $mods; est $est; checking dates now...\n" if ($veryverb);
     @ers = &check_dates('start', 'needs', 'begin', 'end', 'stop');
     print "# start checks found $ers[0] ok and $ers[1] bad $ers[2] depends\n";
     @ers = &check_dates('stop', 'allows', 'end', 'begin', 'start');
@@ -247,9 +236,10 @@ sub work_out_timeline {
 }
 
 #
-# helper function that adjusts the 'shape' (and possibly other attributes)
-# based on node contents.  Currently it changes the default ellipse to
-# rectangle for tasks with timeline errors.
+# helper function called from top-level that adjusts the 'shape' (and
+# possibly other attributes) based on node contents.  Currently it
+# changes the default ellipse to rectangle for tasks with timeline errors
+# or egg for tasks with start or stop still marked $depends.
 #
 sub assign_node_attributes {
     for my $k (keys(%wbs)) {
@@ -305,10 +295,13 @@ sub make_needs_or_allows {
         }
     }
 }
+
+# called from top-level to populate 'needs' entries based on 'allows'
 sub make_needs_from_allows {
     print "make_needs_from_allows\n" if ($verb);
     &make_needs_or_allows('allows','needs');
 }
+# called from top-level to populate 'allows' entries based on 'needs'
 sub make_allows_from_needs {
     print "make_allows_from_needs\n" if ($verb);
     &make_needs_or_allows('needs','allows');

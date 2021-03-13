@@ -151,9 +151,9 @@ print "Working out the timeline\n" if ($verb);
 # for when we get to the make_domain_graphs() calls
 print "Making babies\n" if ($verb);
 $nkids = &make_kids_of_things();
-print "  added $nkids\n" if ($veryverb);
+print "  added $nkids tasks in things\n" if ($veryverb);
 $nkids = &make_kids_of_domains();
-print "  added $nkids\n" if ($veryverb);
+print "  added $nkids things in domains\n" if ($veryverb);
 
 # generate new input
 print "Writing $output.new\n" if ($verb);
