@@ -54,7 +54,7 @@ needs  = Meetings-final
 thing  = @Meetings
 
 task   = Post for new hires
-@gentask
+@meetask
 nick   = Meetings-posting
 desc   = hire software developer(s)
 start  = @tJPOST
@@ -73,6 +73,7 @@ desc   = actually hire software developers
 start  = @tJHIRE
 stop   = @tJHIRE
 needs  = Meetings-interviews
+who    = @cr,@jb,@gc
 
 task   = Collect Requirements pre-Hilo
 nick   = Meetings-pondering
@@ -80,6 +81,7 @@ desc   = This covers conversations with various people
          to understand what this rewrite of HOPS is to
          accomplish prior to discussions in Hilo
 needs  = Miles-start
+who    = @jb,@gc
 
 task   = Hilo Presentation
 nick   = Meetings-hilo
@@ -89,6 +91,7 @@ start  = @tHILO
 stop   = @tHILO
 #needs  = Miles-start
 needs  = Meetings-pondering
+who    = @jb,@gc
 
 task   = Collect Requirements post-Hilo
 nick   = Meetings-refining
@@ -96,64 +99,77 @@ desc   = This covers conversations with various people
          to understand what this rewrite of HOPS is to
          accomplish after discussions in Hilo
 needs  = Meetings-hilo
+who    = @jb,@gc
 
 task   = Review the project with sponsor
 nick   = Meetings-review
 desc   = The software foundational review
 start  = @tSREV
+stop   = @tSREV
 needs  = ReqsDoc-submit,CoTestDoc-submit,Meetings-refining
+who    = @swdev
 
 task   = Internal progress (End of Q06)
 nick   = Meetings-endQ06
 desc   = end of quarter 06
 start  = @tQ06E
+stop   = @tQ06E
 needs  = Meetings-review
 
 task   = Internal progress review (End of Q07)
 nick   = Meetings-internal
 desc   = An internal review after document and prototyping completion
 start  = @tQ07E
+stop   = @tQ07E
 needs  = Meetings-endQ06
 
 task   = Internal progress (End of Q08)
 nick   = Meetings-endQ08
 desc   = end of quarter 08
 start  = @tQ08E
+stop   = @tQ08E
 needs  = Meetings-internal
 
 task   = Internal progress (End of Q09)
 nick   = Meetings-end2021
 desc   = internal review to monitor progress at end of Q09
 start  = @tQ09E
+stop   = @tQ09E
 needs  = Meetings-endQ08
 
 task   = Internal progress (End of Q10)
 nick   = Meetings-endQ10
 desc   = end of quarter 10
 start  = @tQ10E
+stop   = @tQ10E
 needs  = Meetings-end2021
 
 task   = Internal progress (End of Q11)
 nick   = Meetings-mid2022
 desc   = internal review to monitor progress at end of Q11
 start  = @tQ11E
+stop   = @tQ11E
 needs  = Meetings-endQ10
 
 task   = Pause for internal-review/reassessment at the midpoint (End of Q12)
 nick   = Meetings-midpoint
 desc   = An midpoint (informal) review
 start  = @tQ12E
+stop   = @tQ12E
 needs  = Meetings-mid2022
 
 task   = Internal progress (End of Q13)
 nick   = Meetings-endQ13
 desc   = end of quarter 13
+start  = @tQ13E
+stop   = @tQ13E
 needs  = Meetings-midpoint
 
 task   = Internal progress (End of Q14)
 nick   = Meetings-penultimate
 desc   = internal review to monitor progress at end of Q14
 start  = @tQ14E
+stop   = @tQ14E
 needs  = Meetings-endQ13
 
 task   = A review at the end of the project (End of Q15)
@@ -162,7 +178,8 @@ desc   = An midpoint (informal) review.
          After this date, there are two months to clean up the final
          delivery, documentation, &c.  All of which should be mechanical
          at this point.
-start  = @tQ12E
+start  = @tQ15E
+stop   = @tQ15E
 needs  = Meetings-penultimate
 allows = Miles-finish
 

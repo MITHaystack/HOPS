@@ -281,7 +281,15 @@ sub node_attr {
     }
     $s  = $wbs{$k}{'start'} . '\n';
     $s .= $wbs{$k}{'stop'}  . '\n';
-    $s .= $wbs{$k}{'done'} . '% of ' . $wbs{$k}{'days'};
+    $s .= $wbs{$k}{'done'} . '% done of ';
+    $s .= $wbs{$k}{'days'} . '/' . $wbs{$k}{'mjds'} . '\n';
+    if ($wbs{$k}{'flex'} > 0) {
+        $s .= 'Margin of ' . $wbs{$k}{'flex'} . ' days';
+    } elsif ($wbs{$k}{'flex'} == 0) {
+        $s .= 'No margin here';
+    } else {
+        $s .= 'TASK NEEDS SLIP';
+    }
     if (defined($wbs{$k}{'shape'})) {
         $t = 'shape="' . $wbs{$k}{'shape'} . '", ';
     } else {

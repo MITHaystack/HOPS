@@ -6,7 +6,6 @@ use strict;             # makes unsafe constructs illegal
 #
 # Allows customization of things that are too detailed for the command line.
 #
-
 our $concentrate;
 our $edge_needs_clr;
 our $edge_allows_clr;
@@ -75,8 +74,8 @@ $skipneedsallows = 0;
 $debugmjdupdates = 1;
 
 # these controls then maximum number of iterations to adjust dates
-$maxtimelinepasses = 20;
-$maxtimelineestimates = 3;
+$maxtimelinepasses = 30;
+$maxtimelineestimates = 4;
 
 1;
 #

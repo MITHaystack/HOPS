@@ -87,8 +87,16 @@ tdefs   = milestask     # for all milestones
 path    = none
 code    = none
 days    = 0
-derate  = 1
+derate  = 0
 desc    = A planning date assumed to prevent useful work
+who     = @swdev
+
+tdefs   = meetask
+path    = none
+code    = none
+days    = 0
+derate  = 0
+desc    = Some meeting which we shall assume consumes no time
 who     = @swdev
 
 tdefs   = gentask

@@ -300,7 +300,8 @@ sub work_out_timeline {
 # helper function called from top-level that adjusts the 'shape' (and
 # possibly other attributes) based on node contents.  Currently it
 # changes the default ellipse to rectangle for tasks with timeline errors
-# or egg for tasks with start or stop still marked $depends.
+# egg for tasks with start or stop still marked $depends and
+# octagon for tasks that have negative flex time on them.
 #
 sub assign_node_attributes {
     for my $k (keys(%wbs)) {
@@ -309,6 +310,7 @@ sub assign_node_attributes {
         if ($wbs{$k}{'errors'} eq '') { $wbs{$k}{'shape'} = 'hexagon'; }
         elsif ($wbs{$k}{'errors'} > 0) { $wbs{$k}{'shape'} = 'rectangle'; }
         elsif ($wbs{$k}{'errors'} < 0) { $wbs{$k}{'shape'} = 'egg'; }
+        elsif ($wbs{$k}{'flex'} < 0) { $wbs{$k}{'shape'} = 'octagon'; }
         else { $wbs{$k}{'shape'} = 'ellipse'; }
     }
 }
