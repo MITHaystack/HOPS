@@ -77,7 +77,8 @@ sub mjd_to_date {
     return(sprintf("%04d-%02d-%02d", $yy,$mm,$dd));
 }
 
-# for debugging
+# for debugging:
+# (echo ...) | TEST_MJD=true perl -- sw_task_mjd.pl
 if ($testing) {
   while (<>) {
     chomp;

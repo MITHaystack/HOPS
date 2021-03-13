@@ -23,6 +23,19 @@ our $skipneedsallows;
 our ($debugmjdupdates,$output,$maxtimelinepasses,$maxtimelineestimates);
 
 #
+# Ok, we are in $est>0 and start or stop is $depends.
+# now what?
+#
+sub estimate_start {
+    my ($kv,$est) = @_;
+    print "+";
+}
+sub estimate_stop {
+    my ($kv,$est) = @_;
+    print "-";
+}
+
+#
 # This routine computes begin/end from start/stop
 # and assigns the time required and margin members.
 # Undefined start/stop times are canonicalized to $depends.
@@ -32,7 +45,7 @@ our ($debugmjdupdates,$output,$maxtimelinepasses,$maxtimelineestimates);
 #
 sub update_mjd_data {
     my ($est) = @_;
-    my ($ok,$gap,$mods,$m,$dys,$mjs) = (0,0,0);
+    my ($ok,$gap,$mods,$m) = (0,0,0);
     #open(MJDBG,">$output" . '.mjd.dbg') if ($debugmjdupdates);
     for my $kv (keys(%wbs)) {
         $ok = 0;
@@ -58,12 +71,17 @@ sub update_mjd_data {
             $gap = $wbs{$kv}{'end'} - $wbs{$kv}{'begin'};
             $wbs{$kv}{'mjds'} = $wbs{$kv}{'days'} * $wbs{$kv}{'derate'};
             $wbs{$kv}{'flex'} = $gap - $wbs{$kv}{'mjds'};
-        } elsif ($wbs{$kv}{'days'} eq 0) {    # a milestone
+        } elsif ($wbs{$kv}{'days'} eq 0) {    # a milestone: zero in any case
+            $wbs{$kv}{'mjds'} = 0;
+            $wbs{$kv}{'flex'} = 0;
+        } elsif ($est == 0) {    # $ok < 2 and days > 0
+            print "$ok < 2 and $wbs{$kv}{'days'} > 0 violated\n"
+                if (not ($ok < 2 and $wbs{$kv}{'days'} > 0));
             $wbs{$kv}{'mjds'} = 0;
             $wbs{$kv}{'flex'} = 0;
         } else {
-            $wbs{$kv}{'mjds'} = 0;
-            $wbs{$kv}{'flex'} = 0;
+            &estimate_stop($kv,$est) if ($wbs{$kv}{'stop'} eq $depends);
+            &estimate_start($kv,$est) if ($wbs{$kv}{'start'} eq $depends);
         }
     }
     #close(MJDBG) if ($debugmjdupdates);
