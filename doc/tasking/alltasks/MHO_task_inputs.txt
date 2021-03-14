@@ -122,6 +122,10 @@ timeline information
 
 (and derived internally are: uid,begin,mjds,flex,end,preps,leads).
 
+The uid is a number formed as 100000*domainctr + 1000*thingctr + taskctr
+where domainctr, thinkctr and taskctr are counters assigned as
+the three types are found in the input file.
+
 Abbreviations get used in descriptions, or in the case of dates, the start
 or stop dates.
 

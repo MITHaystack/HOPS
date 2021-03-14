@@ -37,7 +37,8 @@ allinputs = $(mho)tasks/$(MHO)_inputs.txt \
 taskingscripts = taskscripts/sw_tasks.pl taskscripts/sw_task_graph.pl \
 	taskscripts/sw_task_mjd.pl taskscripts/sw_task_parser.pl \
 	taskscripts/sw_task_timeline.pl taskscripts/sw_task_wbs.pl \
-	taskscripts/sw_task_config.pl taskscripts/sw_task_split.pl
+	taskscripts/sw_task_config.pl taskscripts/sw_task_latex.pl \
+	taskscripts/sw_task_split.pl
 
 EXTRA_DIST = $(srcdir)/$(TEXSRC).tex \
 	$(appsamples) $(mhoinputs) $(allinputs) $(taskingscripts)
@@ -56,15 +57,14 @@ sync: $(taskingscripts) $(allinputs)
 REPORT = all
 TARGET = ALL
 DOTDEV = png # pdf
-VERBOSE = -v # very
-mhoarg = $(VERBOSE) -d ${DOTDEV} -i $(MHO).txt  -b $(MHO)_bubbles.pl \
+FLAGS = -v -l -t # very latex things-also
+mhoarg = $(FLAGS) -d ${DOTDEV} -i $(MHO).txt  -b $(MHO)_bubbles.pl \
 	 -c $(MHO)_config.pl -r $(REPORT) -g $(TARGET)
-# additional args
-mhoopt = -t
+# now the target: concatenate inputs and run the beast
 fruit:	Makefile sync
 	-[ $(mho) = all ] && cat $(MHO)_[0Z]*.txt > $(MHO).txt
-	./sw_tasks.pl $(mhoarg) -o fruit/$(mho) $(mhoopt)
-	[ -d fruit ]
+	./sw_tasks.pl $(mhoarg) -o fruit/$(mho)
+	[ -d fruit ] && lines=`ls fruit | wc -l` && [ $$lines -gt 0 ]
 
 # this installs the 'new' task file to the srcdir
 #cp -p fruit/$(mho)*.new $(srcdir)/$(mho)tasks
@@ -94,7 +94,7 @@ if WANT_DOCS
 # to be somewhat surgical, this is useful:
 # TEXINPUTS=... kpsewhich -show-path tex "filename"
 # KPSETEXMFPATH set to : in configure pulls in the rest of TeX
-TEXINPUTS=.:$(srcdir):$(srcdir)/../common//@KPSETEXMFPATH@
+TEXINPUTS=.:fruit:$(srcdir):$(srcdir)/../common//@KPSETEXMFPATH@
 TEXBIB=.:$(srcdir):$(srcdir)/../common//:
 # can be overriden at the make command to see errors
 TEXOPT=-interaction=batchmode

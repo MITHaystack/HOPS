@@ -4,9 +4,25 @@
 #   figure out how to capture and adjust edge attributes
 #   should eventually remove many checks for things that cannot happen
 #   work planning poker into days estimation
+#   partition the work load into fte as a dict? so that any Gantting can
+#       track effort levels
 #   mjd math should work for full date range (1995..2010).
-#   things in $config should all have defaults if not defined.
-#   auto-generate done based on current date....
+#       use gBegin/gEnd (if defined)
+#       add proper perl calculation of MJD
+#   make bubble color specification by things be key or nicks and report
+#       this in the .dot files
+#   add wbs only report
+#   get rid of MHO_task_input.txt and put something into taskscripts
+#       as a help executable, or better, do real docs....
+#
+#   latex support:
+#       domains get sections
+#       things get subsections
+#       plots get a figure wrapper
+#       tasks get a table
+#
+# one last cleanup/review
+#
 
 
 # Support script for computing timeline; with hops_time:

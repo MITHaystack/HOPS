@@ -306,7 +306,7 @@ sub work_out_timeline {
 #
 sub apply_auto_done_rules {
     my ($k,$tasks,$skip,@done);
-    print "# Applying autodone rules\n" if ($veryverb);
+    print "# Applying autodone rules\n" if ($verb);
     $tasks = $skip = $done[0] = $done[1] = $done[2] = 0;
     for $k (keys(%wbs)) {
         # only apply this to tasks
@@ -333,7 +333,8 @@ sub apply_auto_done_rules {
             # keep it sane
             $wbs{$k}{'done'} = 0 if ($wbs{$k}{'done'} < 0);
             $wbs{$k}{'done'} = 100 if ($wbs{$k}{'done'} > 100);
-            print "  $wbs{$k}{'nick'} is $wbs{$k}{'done'}% complete:\n";
+            print "  $wbs{$k}{'nick'} is $wbs{$k}{'done'}% complete:\n"
+                if ($verb);
         }
     }
     print "# saw tasks $tasks did $skip, $done[0] (finished) " .
