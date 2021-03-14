@@ -137,39 +137,100 @@ needs  = SDPlanDoc-update,Tasking-final
 
 
 thing  = @Tasking
+path   = doc/tasking
 
 task   = Import APP bubble system and de-APPify it
 nick   = Tasking-import
-desc   = remember how the sw_task*pl scripts work and set up a framework
+desc   = This task requires Geoff to remember how the sw_task*pl scripts
+         work (as used in APP) and refactor to remove the APP bits and
+         then set up a framework for use with HOPS4.
+start  = @gcBUB0
+code   = PERL
+path   = doc/tasking/taskscripts
+who    = @gc
 needs  = Meetings-review
 
 task   = Populate with enough bubbles to get started
 nick   = Tasking-populate
-@gentask
+@pltask
 desc   = This will end up as an on-going task, but we need to get the ball
-         rolling downhill...and then we can just use the tool
+         rolling downhill...and then we can just use the tool.  This tool
+         refers to the initial creation of a set of input files that covers
+         SOME of the material, and probably not in sufficient detail to do
+         the work.  Some work on the bubble machine in the process is
+         required.
+path   = doc/tasking/allscripts
+who    = @gc,@dh,@vp
 needs  = Tasking-import
 
-task   = Build PlantUML gantt charts from the things
-nick   = Tasking-gantt
-@pytask
-desc   = Capture the timeline, and names and generate gantt charts
+task   = Complete the bubble machinery
+nick   = Tasking-bubbles
+@pltask
+desc   = This task covers the PERL work needed to finish enough of the bubble
+         machinery so that simply changing the input files is sufficient,
+         going forwards.  As of the end date, there are a number of possible
+         development items left, that are captured in some tasks that have no
+         end-point.  (These tasks are perhaps not required.)
+who    = @gc
+stop   = @gcBUB1
 needs  = Tasking-populate
 
 task   = Build a document capturing all of the graphics
 nick   = Tasking-draftdoc
 @shtask
-desc   = This is a few words of tex and the the scripting to build the doc
-         automatically.
-needs  = Tasking-gantt
+desc   = This requires generating a few words of tex and the the scripting to
+         build the doc automatically.  The first step is to adjust the latex
+         document to accept some automatically generated input.  Then the
+         section information needs to be generated, and (optionally) figures,
+         tables, and finally gantt charts (as generated in by the script made
+         in Tasking-gantt).  These will require minimal captions.
+who    = @gc
+needs  = Tasking-bubbles
+
+task   = Build PlantUML gantt charts from the things
+nick   = Tasking-gantt
+@pytask
+desc   = Capture the timeline, and names and generate gantt charts.
+         This should take the form of a script that the doc/tasking/Makefile.am
+         may invoke to generate Gantt charts (using PlantUML) in order to
+         create graphics for every domain or thing.  If the files are named
+         as in the @Tasking-draftdoc plan, then if these are made they
+         can be directly included without further work on the document.
+who    = @vp
+needs  = Tasking-bubbles
 
 task   = Finalize @Tasking
 nick   = Tasking-final
 @etask
 desc   = Final cleanup of the document.  At this point, the automated
          builds should keep it up to date into an "as built" record.
+who    = @gc
 needs  = Tasking-draftdoc
 
+task   = Additional @Tasking Functionality
+nick   = Tasking-addons
+@pltask
+desc   = This covers all the things that might make life easier
+who    = @gc
+notes  = doc/tasking/taskscripts/maintainer-notes.txt
+needs  = Tasking-final
+
+task   = Maintenance of @Tasking Information
+nick   = Tasking-update0
+@etask
+desc   = This task captures the next round of updates.  As subsequent
+         updates are made and closed out, new tasks to capture current
+         changes should be made.
+who    = @swdev
+needs  = Tasking-final
+
+task   = @Tasking Bubble Maintenance
+nick   = Tasking-fixes
+@pltask
+desc   = This task covers the cost of fixing bugs that turn up when 4
+         people start updating content...and stuff needs to be fixed.
+who    = @gc
+needs  = Tasking-final
 
 thing  = @Manuals
 

@@ -26,6 +26,11 @@ file   = MHO_task_0000.txt
 # @t... is used canonically to abbreviate dates for later.  As we add
 # internal check-points, they should be defined here which then allows
 # margin calculations for tasks that lead up to that date.
+#
+# To prevent merging problems, use your initials for dates you want
+# to put on things you worked on in this list...and then reference them
+# in the tasks.  I.e. @gc... is a Geoff date, @vp... is a Violet date.
+# Then all we have to do is keep this list approximately sorted.
 @tEARLY = 2019-08-15    # this is approximate
 @tSTART = 2019-09-01
 @tDSTRT = 2019-12-01    # approx date we started writing requirements
@@ -33,13 +38,15 @@ file   = MHO_task_0000.txt
 @tJPOST = 2020-02-10
 @tJHIRE = 2020-09-14
 #
-@TDETC  = 2020-12-01    # approx date we started other documents
+@tDETC  = 2020-12-01    # approx date we started other documents
 @tREQS  = 2020-12-07
 @tDSHRE = 2021-02-02    # approx date we gave Doc Drafts to SAO
 @tSREV  = 2021-02-04    # Meetings-review
+@gcBUB0 = 2021-02-11    # date of initial Tasking Bubble import
 #
 @tDRESP = 2021-03-04    # approx date of revised Reqs&comments to SAO
 @tDREPO = 2021-03-06    # approx date of working (clean) repo nightly
+@gcBUB1 = 2021-03-14    # date on Tasking Bubble Machine progress
 # --- now ---
 # end of 2020 is end of Q05 on the original clock, so
 # rounding out to thursdays, we have

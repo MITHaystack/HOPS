@@ -60,7 +60,10 @@ sub latex_section {
         } elsif ($#kids == 0) {
             print SECN "It includes one $kidtype, $kids[0]." . "\n";
             $plural = '';
-        } # else no kids
+        } else {
+            # else no kids
+            $plural = '';
+        }
         print SECN "These $kidtype$plural will be described\n";
         print SECN "in subsequent sub\{$section\}$plural.\n";
         print SECN "The general description of the work is as follows:\n";
