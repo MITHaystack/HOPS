@@ -270,6 +270,62 @@ sub next_style_counter {
 }
 
 #
+# Construct a line about the margin
+#
+sub margin_comment {
+    my ($k,$s) = @_;
+    if ($wbs{$k}{'done'} <= 100) {
+        $s .= $wbs{$k}{'done'} . '% done of ';
+        $s .= $wbs{$k}{'days'} . '/' . $wbs{$k}{'mjds'} . '\n';
+        if ($wbs{$k}{'flex'} > 0) {
+            $s .= 'Margin of ' . $wbs{$k}{'flex'} . ' days.';
+        } elsif ($wbs{$k}{'flex'} == 0) {
+            $s .= '(No margin)';
+        } else {
+            $s .= '!NEED SLIP!';
+        }
+    } else {
+        $s .= 'Task Complete';
+    }
+}
+
+#
+# This is called from top level so that shape can be reported in wbs.
+#
+# errors means start/stop are not in proper order
+# flex is how much margin there is
+#
+sub assign_shape_heuristics {
+    for my $k (keys(%wbs)) {
+        next if ($wbs{$k}{'type'} ne 'task');
+        if ($wbs{$k}{'errors'} eq '') { $wbs{$k}{'shape'} = 'hexagon'; }
+        elsif ($wbs{$k}{'errors'} > 0) { $wbs{$k}{'shape'} = 'rectangle'; }
+        elsif ($wbs{$k}{'errors'} < 0) { $wbs{$k}{'shape'} = 'egg'; }
+        elsif ($wbs{$k}{'flex'} < 0) { $wbs{$k}{'shape'} = 'octagon'; }
+        else { $wbs{$k}{'shape'} = 'ellipse'; }
+    }
+}
+
+#
+# encapsulate shape-related things
+#
+sub shape_changer {
+    my ($k,$t) = @_;
+    # these either came from input or assign_shape_heuristics().
+    if (defined($wbs{$k}{'shape'})) {
+        $t = 'shape="' . $wbs{$k}{'shape'} . '", ';
+    } else {    # let the default apply
+        $t = '';
+    }
+    if ($wbs{$k}{'done'} == 100) {
+        $t .= 'peripheries=2,';
+    } elsif ($wbs{$k}{'done'} > 0) {
+        $t .= 'peripheries=4,';
+    }
+    return($t);
+}
+
+#
 # provides attributes for a node based on heritage
 #
 sub node_attr {
@@ -279,28 +335,20 @@ sub node_attr {
         $ze_attr{$p} = &next_style_counter();
         $ze_defs .= "// '$p' => " . $ze_attr{$p} . ", \n";
     }
+    # generate the label
     $s  = $wbs{$k}{'start'} . '\n';
     $s .= $wbs{$k}{'stop'}  . '\n';
-    $s .= $wbs{$k}{'done'} . '% done of ';
-    $s .= $wbs{$k}{'days'} . '/' . $wbs{$k}{'mjds'} . '\n';
-    if ($wbs{$k}{'flex'} > 0) {
-        $s .= 'Margin of ' . $wbs{$k}{'flex'} . ' days';
-    } elsif ($wbs{$k}{'flex'} == 0) {
-        $s .= 'No margin here';
-    } else {
-        $s .= 'TASK NEEDS SLIP';
-    }
-    if (defined($wbs{$k}{'shape'})) {
-        $t = 'shape="' . $wbs{$k}{'shape'} . '", ';
-    } else {
-        $t = '';
-    }
+    $s = &margin_comment($k,$s);
+    # start attributes with adjustments to the shape
+    $t = &shape_changer($k);
+    # insert label into attributes
     if ($fullnames) {
         my @pt = split(/$sep/,$k);
         $t .= 'label="' . $pt[2] . '\n' . $s . '", ';
     } else {
         $t .= 'label="\N\n' . $s . '", ';
     }
+    # final adjustments or overrides
     $t .= $node_style[$ze_attr{$p}];
     return($t);
 }

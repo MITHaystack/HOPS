@@ -1,13 +1,6 @@
 #!/usr/bin/perl
 #
-# TTD:
-#   consider using tred (optionally) to apply transitive reduction
-#   make use of attr for node attributes
-#   figure out how to capture and adjust edge attributes
-#   should eventually remove many checks for things that cannot happen
-#   work planning poker into days estimation
-#   mjd math should work for full date range (1995..2010).
-#   things in $config should all have defaults if not defined.
+# Main script for a lightweight task management tool.
 #
 use warnings;           # turns on optional warnings
 use diagnostics;        # and makes them not terse
@@ -84,20 +77,14 @@ our $bubbles = $opts{'b'};
 # verbose for feedback, veryverb for debugging
 our $verb = $opts{'v'};
 our $veryverb = $opts{'w'};
-our ($rundot,$legend);
+our ($rundot,$makelegend,$allowautodone,$heuristicshapes);
 $verb = 1 if ($veryverb);
-
-# it is not clear how these must be set
-our ($gBegin,$gEnd) = (50000,70000);
-my ($nkids);
-
-# this shows up in labels, but logic depends on it.
-our $depends = '--depends--';
 
 #
 # Main program
 #
 use lib ".";
+require "sw_task_config.pl";
 require "sw_task_parser.pl";
 require "sw_task_wbs.pl";
 require "sw_task_mjd.pl";
@@ -110,6 +97,9 @@ our %wbs;
 our %tasks;
 our %things;
 our %domains;
+our ($now_date,$now_mjd);
+&set_current_date();
+printf("The current date is %s = MJD %d\n", $now_date, $now_mjd) if ($verb);
 
 # provide some help about reports and internals
 if ($report eq 'help') {
@@ -118,6 +108,7 @@ if ($report eq 'help') {
 }
 
 # private parsing variables
+my ($hdr,$guts,$ftr,$nkids);
 
 # sanity checks
 die "No input file $input\n" if ( ! -s $input );
@@ -129,7 +120,7 @@ rmdir("$output.dir");
 die "Unable to remove $output.dir\n" if ( -d "$output.dir" );
 
 # scan the input file
-my ($hdr,$guts,$ftr) = &parse_sw_task_file($input);
+($hdr,$guts,$ftr) = &parse_sw_task_file($input);
 
 print "Plotting things too\n" if ($doth2);
 
@@ -147,31 +138,43 @@ print "Filling in the blanks\n" if ($verb);
 # work out the timeline
 print "Working out the timeline\n" if ($verb);
 &work_out_timeline();
-&assign_node_attributes();
+&apply_auto_done_rules() if ($allowautodone);
+&assign_shape_heuristics() if ($heuristicshapes);
 
 # allows per-thing or per-domain reporting/graphing
 # for when we get to the make_domain_graphs() calls
-print "Making babies\n" if ($verb);
+print "Making babies\n" if ($veryverb);
 $nkids = &make_kids_of_things();
 print "  added $nkids tasks in things\n" if ($veryverb);
 $nkids = &make_kids_of_domains();
 print "  added $nkids things in domains\n" if ($veryverb);
 
-# generate new input
-print "Writing $output.new\n" if ($verb);
+#
+# Dump revised version of input
+#
+print "Writing $output.new (to compare with inputs)\n" if ($verb);
 &dump_new_input(">$output.new","$input") if ($verb);
 
-# some real products
+#
+# WBS products -- not clear how much of this is useful
+#
 if ($report ne 'none') {
     print "Writing reports\n" if ($verb);
     &dump_the_wbs(">$output.wbs", \&by_key, &report_on($report));
+    print "  $output.wbs (full details)\n" if ($verb);
     &dump_the_domains(">$output.domain", \&by_key, &report_on($report) );
+    print "  $output.domain (report)\n" if ($verb);
     &dump_the_things(">$output.thing", \&by_key, &report_on($report));
+    print "  $output.thing (report)\n" if ($verb);
     &dump_the_tasks(">$output.task", \&by_key, &report_on($report));
+    print "  $output.task (report)\n" if ($verb);
     &dump_tsv_tasks(">$output.tsv", \&by_uid, &report_on($report));
+    print "  $output.tsv (tsv file for export)\n" if ($verb);
 }
 
-# make plots of dependencies by domains
+#
+# Make plots of of domains and/or things
+#
 if ($graphs eq 'ALL') {
     print "Creating absolutely all graphs\n" if ($verb);
     &make_the_graph("$output-ALL",$dtype,1,keys(%tasks));
@@ -179,7 +182,7 @@ if ($graphs eq 'ALL') {
     &make_domain_graphs($output,$dtype,keys(%things)) if ($doth2);
 } elsif ($graphs eq 'none') {
     print "No graphs requested\n" if ($verb);
-    $legend = 0;
+    $makelegend = 0;
 } elsif ($graphs eq 'help') {
     printf("Available domains to graph are:\n%10s is everything\n",'ALL');
     for my $d (keys(%domains)) { printf("%10s is %s\n",$wbs{$d}{'nick'},$d); }
@@ -195,7 +198,8 @@ if ($graphs eq 'ALL') {
     print "Creating graphs for " . join(',',@d) . "\n" if ($verb);
     &make_domain_graphs($output,$dtype,@d);
 }
-&make_colorkeys($output,$dtype) if ($legend);
+# and if requested, a legend
+&make_colorkeys($output,$dtype) if ($makelegend);
 
 print "All done.\n" if ($verb);
 exit 0;

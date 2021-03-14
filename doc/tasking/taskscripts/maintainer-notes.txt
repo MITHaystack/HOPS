@@ -1,3 +1,14 @@
+# TTD:
+#   consider using tred (optionally) to apply transitive reduction
+#   make use of attr for node attributes
+#   figure out how to capture and adjust edge attributes
+#   should eventually remove many checks for things that cannot happen
+#   work planning poker into days estimation
+#   mjd math should work for full date range (1995..2010).
+#   things in $config should all have defaults if not defined.
+#   auto-generate done based on current date....
+
+
 # Support script for computing timeline; with hops_time:
 # $ HOPS_JULIAN_EPOCH=UTC hops_time -q I 56763.0 |cut -dT -f1
 # $ HOPS_JULIAN_EPOCH=UTC hops_time -q M 2014-04-16 |cut -d. -f1|sed 's/$/.0/'

@@ -16,6 +16,7 @@ our %wbs;
 our ($date_pat,$mjd_pat);
 our ($verb,$veryverb);
 our ($gBegin,$gEnd);
+our ($now_date,$now_mjd);
 
 # the label used for start/stop times not yet resolved
 our ($depends);
@@ -288,31 +289,55 @@ sub work_out_timeline {
         last if ($pass >= $maxpass or $mods == 0);
     }
     $mods = &update_mjd_data($est);
-    print "# Final $mods; est $est; checking dates now...\n" if ($veryverb);
+    print "# Final $mods; est $est; checking dates now...\n"
+        if ($veryverb);
     @ers = &check_dates('start', 'needs', 'begin', 'end', 'stop');
-    print "# start checks found $ers[0] ok and $ers[1] bad $ers[2] depends\n";
+    print "# start checks found $ers[0] ok and $ers[1] bad $ers[2] depends\n"
+        if ($veryverb);
     @ers = &check_dates('stop', 'allows', 'end', 'begin', 'start');
-    print "# stop  checks found $ers[0] ok and $ers[1] bad $ers[2] depends\n";
-    print "# Finished checks\n" if ($veryverb);
+    print "# stop  checks found $ers[0] ok and $ers[1] bad $ers[2] depends\n"
+        if ($veryverb);
+    print "# Finished checks\n"
+        if ($veryverb);
 }
 
 #
-# helper function called from top-level that adjusts the 'shape' (and
-# possibly other attributes) based on node contents.  Currently it
-# changes the default ellipse to rectangle for tasks with timeline errors
-# egg for tasks with start or stop still marked $depends and
-# octagon for tasks that have negative flex time on them.
+# helper function to automatically adjust the % done values
 #
-sub assign_node_attributes {
-    for my $k (keys(%wbs)) {
-        # my $kn = $wbs{$k}{'nick'};
+sub apply_auto_done_rules {
+    my ($k,$tasks,$skip,@done);
+    print "# Applying autodone rules\n" if ($veryverb);
+    $tasks = $skip = $done[0] = $done[1] = $done[2] = 0;
+    for $k (keys(%wbs)) {
+        # only apply this to tasks
         next if ($wbs{$k}{'type'} ne 'task');
-        if ($wbs{$k}{'errors'} eq '') { $wbs{$k}{'shape'} = 'hexagon'; }
-        elsif ($wbs{$k}{'errors'} > 0) { $wbs{$k}{'shape'} = 'rectangle'; }
-        elsif ($wbs{$k}{'errors'} < 0) { $wbs{$k}{'shape'} = 'egg'; }
-        elsif ($wbs{$k}{'flex'} < 0) { $wbs{$k}{'shape'} = 'octagon'; }
-        else { $wbs{$k}{'shape'} = 'ellipse'; }
+        $tasks++;
+        # and only those that have pegged inputs
+        next if ($wbs{$k}{'done'} > 0.0 and $wbs{$k}{'done'} < 100.0);
+        $skip++;
+        if ($wbs{$k}{'end'} < $now_mjd) {
+            $done[0]++;
+            $wbs{$k}{'done'} = 100;
+        } elsif ($wbs{$k}{'begin'} > $now_mjd) {
+            $done[2]++;
+            $wbs{$k}{'done'} = 0;
+        } else {    # do the math, luke.
+            $done[1]++;
+            if ($wbs{$k}{'mjds'} > 0) {
+                $wbs{$k}{'done'} = int(100 *
+                    ($now_mjd - $wbs{$k}{'begin'}) /
+                    ($wbs{$k}{'end'} - $wbs{$k}{'begin'}));
+            } else {
+                $wbs{$k}{'done'} = 50;
+            }
+            # keep it sane
+            $wbs{$k}{'done'} = 0 if ($wbs{$k}{'done'} < 0);
+            $wbs{$k}{'done'} = 100 if ($wbs{$k}{'done'} > 100);
+            print "  $wbs{$k}{'nick'} is $wbs{$k}{'done'}% complete:\n";
+        }
     }
+    print "# saw tasks $tasks did $skip, $done[0] (finished) " .
+        "$done[1] (in work) $done[2] (to do)\n" if ($veryverb);
 }
 
 #
@@ -361,12 +386,12 @@ sub make_needs_or_allows {
 
 # called from top-level to populate 'needs' entries based on 'allows'
 sub make_needs_from_allows {
-    print "make_needs_from_allows\n" if ($verb);
+    print "Generating 'needs' arrows from 'allows' arrows\n" if ($verb);
     &make_needs_or_allows('allows','needs');
 }
 # called from top-level to populate 'allows' entries based on 'needs'
 sub make_allows_from_needs {
-    print "make_allows_from_needs\n" if ($verb);
+    print "Generating 'allows' arrows from 'needs' arrows\n" if ($verb);
     &make_needs_or_allows('needs','allows');
 }
 

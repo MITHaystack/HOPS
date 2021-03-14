@@ -18,6 +18,7 @@ use strict;             # makes unsafe constructs illegal
 
 our $date_pat = '[0-9]{4}-[0-9]{2}-[0-9]{2}';
 our $mjd_pat  = '[0-9]{5}';
+our ($now_date,$now_mjd);
 
 my $testing = defined($ENV{"TEST_MJD"});
 
@@ -75,6 +76,15 @@ sub mjd_to_date {
     }
     $dd = $mjd;
     return(sprintf("%04d-%02d-%02d", $yy,$mm,$dd));
+}
+
+#
+# convenience function
+#
+sub set_current_date {
+    my ($day, $month, $year) = (localtime)[3,4,5];
+    $now_date = sprintf("%04d-%02d-%02d", $year+1900, $month+1, $day);
+    $now_mjd = &date_to_mjd($now_date);
 }
 
 # for debugging:

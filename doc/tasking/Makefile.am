@@ -37,7 +37,7 @@ allinputs = $(mho)tasks/$(MHO)_inputs.txt \
 taskingscripts = taskscripts/sw_tasks.pl taskscripts/sw_task_graph.pl \
 	taskscripts/sw_task_mjd.pl taskscripts/sw_task_parser.pl \
 	taskscripts/sw_task_timeline.pl taskscripts/sw_task_wbs.pl \
-	taskscripts/sw_task_split.pl
+	taskscripts/sw_task_config.pl taskscripts/sw_task_split.pl
 
 EXTRA_DIST = $(srcdir)/$(TEXSRC).tex \
 	$(appsamples) $(mhoinputs) $(allinputs) $(taskingscripts)
@@ -56,7 +56,7 @@ sync: $(taskingscripts) $(allinputs)
 REPORT = all
 TARGET = ALL
 DOTDEV = png # pdf
-VERBOSE = -w # very
+VERBOSE = -v # very
 mhoarg = $(VERBOSE) -d ${DOTDEV} -i $(MHO).txt  -b $(MHO)_bubbles.pl \
 	 -c $(MHO)_config.pl -r $(REPORT) -g $(TARGET)
 # additional args
@@ -130,7 +130,7 @@ force: fruit $(EXTRA_DIST)
 	touch force
 
 CLEANFILES = $(TEXSRC).* $(TEXPDF).pdf force bibs *.log *-blx.bib \
-	sync sw_task* $(MHO)* .*.swp
+	sync sw_task* $(MHO)* .*.swp save-*tgz tasks-generation* *.txt
 
 clean-local:
 	-rm -rf fruit
