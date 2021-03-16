@@ -1,5 +1,4 @@
 file   = MHO_task_0307.txt
-
 domain = @OTHER3
 
 thing  = @ImportEx

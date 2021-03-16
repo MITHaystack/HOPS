@@ -1,5 +1,4 @@
 file   = MHO_task_0380.txt
-
 domain = @CALI
 
 thing  = @CBandPass
