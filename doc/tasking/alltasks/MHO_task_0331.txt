@@ -1,0 +1,25 @@
+file   = MHO_task_0331.txt
+domain = @MESSAGE
+
+# Developing the message library
+thing  = @MessageDevelop
+
+task   = Design the message library
+nick   = MessageDevelop-design
+@cpptask
+desc   = Develop the message library
+needs  = ProtoCode-review
+
+task   = Implement the message library
+nick   = MessageDevelop-implement
+desc   = Implement the message library
+needs  = MessageDevelop-design
+
+task   = Test the message library
+nick   = MessageDevelop-test
+desc   = Test the message library
+needs  = MessageDevelop-implement
+allows = CPPReview-check
+
+
+# eof

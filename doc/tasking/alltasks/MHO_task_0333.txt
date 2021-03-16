@@ -1,0 +1,25 @@
+file   = MHO_task_0333.txt
+domain = @OPERATORS
+
+# Developing the operators library
+thing  = @OperatorsDevelop
+
+task   = Design the operators library
+nick   = OperatorsDevelop-design
+@cpptask
+desc   = Design the operators library
+needs  = ProtoCode-review
+
+task   = Implement the operators library
+nick   = OperatorsDevelop-implement
+desc   = Implement the operators library
+needs  = OperatorsDevelop-design
+
+task   = Test the operators library
+nick   = OperatorsDevelop-test
+desc   = Test the operators library
+needs  = OperatorsDevelop-implement
+allows = CPPReview-check
+
+
+# eof

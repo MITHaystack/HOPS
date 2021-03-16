@@ -1,0 +1,24 @@
+file   = MHO_task_0311.txt
+domain = @FFCORE
+
+# Refactoring the FFCore library
+thing  = @FFCoreRefactor
+
+task   = Design the refactoring of the ffcore library
+nick   = FFCoreRefactor-design
+@ctask
+desc   = Design the refactoring of the ffcore library
+needs  = Fourfit3Review-milestone
+
+task   = Implement the refactoring of the ffcore library
+nick   = FFCoreRefactor-implement
+desc   = Implement the refactoring of the ffcore library
+needs  = FFCoreRefactor-design
+
+task   = Test the refactoring of the ffcore library
+nick   = FFCoreRefactor-test
+desc   = Test the refactoring of the ffcore library
+needs  = FFCoreRefactor-implement
+allows = NewFourfitReview-check
+
+# eof

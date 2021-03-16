@@ -1,0 +1,25 @@
+file   = MHO_task_0334.txt
+domain = @MATH
+
+# Developing the math library
+thing  = @MathDevelop
+
+task   = Design the math library
+nick   = MathDevelop-design
+@cpptask
+desc   = Design the math library
+needs  = ProtoCode-review
+
+task   = Implement the math library
+nick   = MathDevelop-implement
+desc   = Implement the math library
+needs  = MathDevelop-design
+
+task   = Test the math library
+nick   = MathDevelop-test
+desc   = Test the math library
+needs  = MathDevelop-implement
+allows = CPPReview-check
+
+
+# eof

@@ -1,0 +1,25 @@
+file   = MHO_task_0314.txt
+domain = @FFSEARCH
+
+# Refactoring the FFSearch library
+thing  = @FFSearchRefactor
+
+task   = Design the refactoring of the ffsearch library
+nick   = FFSearchRefactor-design
+@ctask
+desc   = Design the refactoring of the ffsearch library
+needs  = Fourfit3Review-milestone
+
+task   = Implement the refactoring of the ffsearch library
+nick   = FFSearchRefactor-implement
+desc   = Implement the refactoring of the ffsearch library
+needs  = FFSearchRefactor-design
+
+task   = Test the refactoring of the ffsearch library
+nick   = FFSearchRefactor-test
+desc   = Test the refactoring of the ffsearch library
+needs  = FFSearchRefactor-implement
+allows = NewFourfitReview-check
+
+
+# eof

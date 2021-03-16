@@ -27,7 +27,14 @@ allinputs = $(mho)tasks/$(MHO)_inputs.txt \
 	$(mho)tasks/$(MHO)_0100.txt $(mho)tasks/$(MHO)_0200.txt \
 	$(mho)tasks/$(MHO)_0300.txt $(mho)tasks/$(MHO)_0305.txt \
 	$(mho)tasks/$(MHO)_0307.txt $(mho)tasks/$(MHO)_0310.txt \
-	$(mho)tasks/$(MHO)_0330.txt \
+	$(mho)tasks/$(MHO)_0311.txt $(mho)tasks/$(MHO)_0312.txt \
+	$(mho)tasks/$(MHO)_0313.txt $(mho)tasks/$(MHO)_0314.txt \
+	$(mho)tasks/$(MHO)_0315.txt $(mho)tasks/$(MHO)_0316.txt \
+	$(mho)tasks/$(MHO)_0330.txt $(mho)tasks/$(MHO)_0331.txt \
+	$(mho)tasks/$(MHO)_0332.txt $(mho)tasks/$(MHO)_0333.txt \
+	$(mho)tasks/$(MHO)_0334.txt $(mho)tasks/$(MHO)_0335.txt \
+	$(mho)tasks/$(MHO)_0336.txt $(mho)tasks/$(MHO)_0337.txt \
+	$(mho)tasks/$(MHO)_0338.txt \
 	$(mho)tasks/$(MHO)_0350.txt $(mho)tasks/$(MHO)_0370.txt \
 	$(mho)tasks/$(MHO)_0380.txt $(mho)tasks/$(MHO)_0390.txt \
 	$(mho)tasks/$(MHO)_0400.txt $(mho)tasks/$(MHO)_0500.txt \
