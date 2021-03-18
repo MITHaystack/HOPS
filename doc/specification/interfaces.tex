@@ -1,0 +1,9 @@
+
+\section{Interactivity and Interfaces}
+\label{sec:interfaces}
+
+Interactivity with the user will proceed primarily through a python scripting interface. This avoids the need to develop a separate scripting language, 
+as the python interpreter can be embedded in the application. Access to library objects will be exposed via python bindings, so that a user may have direct access 
+to the data containers and operators, and can implement external routines to modify the data. Real-time interactivity via CLI or GUI is 
+not planned to be implemented. We intended to preserve the functionality of the existing \texttt{fourfit} control file input method, however, this
+is primarily for backwards compatibility and regression testing, no new features will be made available via this mechanism.

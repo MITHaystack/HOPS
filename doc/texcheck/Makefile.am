@@ -1,27 +1,16 @@
 #
-# makefile for coverage and test plan
+# makefile for the user manual(s)
 # (c) Massachusetts Institute of Technology, 2020
 # The contents of the package Copyright statement apply here.
 #
 
 # $(TEXPDF).pdf is built from $(TEXSRC).tex
-TEXPDF=coverandtest
-TEXSRC=cotest
+TEXPDF=texcheck
+TEXSRC=check
 
 # everything from $(srcdir) included from $(TEXSRC).tex
 # needs to be listed here with a $(srcdir)/ path prefix
-EXTRA_DIST = $(srcdir)/$(TEXSRC).tex \
-	$(srcdir)/benchmark.tex \
-	$(srcdir)/component.tex \
-	$(srcdir)/integration.tex \
-	$(srcdir)/manual.tex \
-	$(srcdir)/oracle.tex \
-	$(srcdir)/regress.tex \
-	$(srcdir)/manual.tex \
-	$(srcdir)/coverage.tex \
-	$(srcdir)/reports.tex \
-	$(srcdir)/unit.tex
-
+EXTRA_DIST = $(srcdir)/$(TEXSRC).tex
 
 if WANT_DOCS
 # to be somewhat surgical, this is useful:
@@ -61,6 +50,7 @@ force: $(srcdir)/Makefile.am $(EXTRA_DIST)
 	touch force
 
 CLEANFILES = $(TEXSRC).* $(TEXPDF).pdf force bibs *.log *-blx.bib
+
 
 else
 # nothing built, installed or cleaned
