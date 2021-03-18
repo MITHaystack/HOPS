@@ -1,0 +1,48 @@
+file   = MHO_task_0370.txt
+domain = @INTERFACES
+
+thing  = @Difx2Hops4
+
+task   = Design and name difx2mark4 equivalent
+nick   = Difx2Hops4-design
+@gentask
+desc   = Work out how to pull DiFX-correlated data into HOPS4
+needs  = Meetings-endQ08
+
+task   = Implement the difx2mark4 equivalent
+nick   = Difx2Hops4-implement
+@cpptask
+desc   = Write the code; this description need expansion.
+needs  = Difx2Hops4-design
+
+task   = Develop testing for the difx2mark4 equivalent
+nick   = Difx2Hops4-testing
+@shtask
+desc   = Develop a testsuite for it; this description need expansion.
+needs  = Difx2Hops4-implement
+allows = Margin-dunno
+
+
+thing  = @Mk4AndHops
+
+task   = Develop code to convert mk4 filesets into HOPS4 filesets
+nick   = Mk4AndHops-tohops4
+@cpptask
+desc   = this covers the import from mk4 to HOPS4
+needs  = Meetings-end2021
+
+task   = Develop code to convert HOPS4 filesets into mk4 filesets
+nick   = Mk4AndHops-tomk4
+@cpptask
+desc   = this covers export from HOPS4 to mk4.  not that this direction
+         can only succeed if the data is expressible in mk4.
+needs  = Meetings-end2021
+
+task   = Develop a test suite for data exchange between mk4 and HOP4
+nick   = Mk4AndHops-testsuite
+@shtask
+desc   = back and forth on some captive samples
+needs  = Mk4AndHops-tomk4,Mk4AndHops-tohops4
+allows = Margin-dunno
+
+# eof

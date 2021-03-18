@@ -13,48 +13,79 @@ TEXSRC=tasks
 
 # how generated task files get named; change this to capture
 # historical copies at various times with 'make save'
-mho=mho
+# mho=all gets you the all version.  As needed a copy of alltasks
+# can be made with a copy for other purposes.
+mho=all
+MHO=MHO_task
 
 # everything from $(srcdir) included from $(TEXSRC).tex
 # needs to be listed here with a $(srcdir)/ path prefix
-appsamples = apptasks/APP_task.txt apptasks/APP_task_inputs.txt \
-	apptasks/APP_task_bubbles.pl apptasks/APP_task_config.pl
-mhoinputs = mhotasks/MHO_task.txt mhotasks/MHO_task_inputs.txt \
-	mhotasks/MHO_task_bubbles.pl mhotasks/MHO_task_config.pl
+# This is the working collection
+allinputs = $(mho)tasks/$(MHO)_inputs.txt \
+	$(mho)tasks/$(MHO)_0000.txt $(mho)tasks/$(MHO)_ZZZZ.txt \
+	$(mho)tasks/$(MHO)_0001.txt $(mho)tasks/$(MHO)_0010.txt \
+	$(mho)tasks/$(MHO)_0100.txt $(mho)tasks/$(MHO)_0200.txt \
+	$(mho)tasks/$(MHO)_0300.txt $(mho)tasks/$(MHO)_0305.txt \
+	$(mho)tasks/$(MHO)_0307.txt $(mho)tasks/$(MHO)_0310.txt \
+	$(mho)tasks/$(MHO)_0311.txt $(mho)tasks/$(MHO)_0312.txt \
+	$(mho)tasks/$(MHO)_0313.txt $(mho)tasks/$(MHO)_0314.txt \
+	$(mho)tasks/$(MHO)_0315.txt $(mho)tasks/$(MHO)_0316.txt \
+	$(mho)tasks/$(MHO)_0330.txt $(mho)tasks/$(MHO)_0331.txt \
+	$(mho)tasks/$(MHO)_0332.txt $(mho)tasks/$(MHO)_0333.txt \
+	$(mho)tasks/$(MHO)_0334.txt $(mho)tasks/$(MHO)_0335.txt \
+	$(mho)tasks/$(MHO)_0336.txt $(mho)tasks/$(MHO)_0337.txt \
+	$(mho)tasks/$(MHO)_0338.txt \
+	$(mho)tasks/$(MHO)_0350.txt $(mho)tasks/$(MHO)_0370.txt \
+	$(mho)tasks/$(MHO)_0380.txt $(mho)tasks/$(MHO)_0390.txt \
+	$(mho)tasks/$(MHO)_0400.txt $(mho)tasks/$(MHO)_0500.txt \
+	$(mho)tasks/$(MHO)_bubbles.pl $(mho)tasks/$(MHO)_config.pl
 
 # the perl scripts that run the task machinery
 taskingscripts = taskscripts/sw_tasks.pl taskscripts/sw_task_graph.pl \
 	taskscripts/sw_task_mjd.pl taskscripts/sw_task_parser.pl \
-	taskscripts/sw_task_timeline.pl taskscripts/sw_task_wbs.pl
+	taskscripts/sw_task_timeline.pl taskscripts/sw_task_wbs.pl \
+	taskscripts/sw_task_config.pl taskscripts/sw_task_latex.pl \
+	taskscripts/sw_task_split.pl
 
 EXTRA_DIST = $(srcdir)/$(TEXSRC).tex \
-	$(appsamples) $(mhoinputs) $(taskingscripts)
+	$(appsamples) $(mhoinputs) $(allinputs) $(taskingscripts)
 
 if HAVE_PERL
 # this pulls everything in from source dir if we are in build dir
+# note that the dependency is on all possible inputs, but the rsync
+# will only pull in the group selected by $(mho)
 rsopts = -v --exclude '.*.swp'
-sync: $(taskingscripts) $(mhoinputs)
+sync: $(taskingscripts) $(allinputs)
 	[ -f Makefile.am ] || \
-	rsync -a $(rsopts) $(srcdir)/taskscripts/ $(srcdir)/mhotasks/ .
+	rsync -a $(rsopts) $(srcdir)/taskscripts/ $(srcdir)/$(mho)tasks/ .
 	touch sync
 
 # this builds everything
-DOTDEV = pdf
-mhoarg = -d ${DOTDEV} \
-	 -i MHO_task.txt \
-	 -b MHO_task_bubbles.pl \
-	 -c MHO_task_config.pl
+REPORT = all
+TARGET = ALL
+DOTDEV = png # pdf
+FLAGS = -v -l -t # very latex things-also
+mhoarg = $(FLAGS) -d ${DOTDEV} -i $(MHO).txt  -b $(MHO)_bubbles.pl \
+	 -c $(MHO)_config.pl -r $(REPORT) -g $(TARGET)
+# now the target: concatenate inputs and run the beast
 fruit:	Makefile sync
-	./sw_tasks.pl -v $(mhoarg) -o fruit/$(mho) -r all -g all
-	[ -d fruit ]
+	-[ $(mho) = all ] && cat $(MHO)_[0Z]*.txt > $(MHO).txt
+	./sw_tasks.pl $(mhoarg) -o fruit/$(mho)
+	[ -d fruit ] && lines=`ls fruit | wc -l` && [ $$lines -gt 0 ]
 
 # this installs the 'new' task file to the srcdir
-new: fruit/$(mho).new
-	cp -p fruit/$(mho).new $(srcdir)/mhotasks/MHO_task.new
+#cp -p fruit/$(mho)*.new $(srcdir)/$(mho)tasks
+new:	fruit/split
+	cp -p fruit/$(MHO)_*.txt $(srcdir)/$(mho)tasks
+
+fruit/split:	sync
+	./sw_task_split.pl -i $(MHO).txt -o fruit
+	touch fruit/split
 
 save: fruit
-	tar zcf $(srcdir)/mhotasks/save-`date +%Y%m%d`.tgz  fruit
-	ls -l $(srcdir)/mhotasks/save-*.tgz
+	tar zcf $(srcdir)/$(mho)tasks/save-$(mho)-`date +%Y%m%d`.tgz \
+		fruit/$(mho)-* $(MHO)*
+	ls -l $(srcdir)/$(mho)tasks/save-$(mho)-*.tgz
 
 else
 # no task things can be generated
@@ -62,15 +93,15 @@ fruit:
 	mkdir fruit
 endif
 
+#rm -rf fruit
 tasks:
-	rm -rf fruit
 	$(MAKE) fruit
 
 if WANT_DOCS
 # to be somewhat surgical, this is useful:
 # TEXINPUTS=... kpsewhich -show-path tex "filename"
 # KPSETEXMFPATH set to : in configure pulls in the rest of TeX
-TEXINPUTS=.:$(srcdir):$(srcdir)/../common//@KPSETEXMFPATH@
+TEXINPUTS=.:fruit:$(srcdir):$(srcdir)/../common//@KPSETEXMFPATH@
 TEXBIB=.:$(srcdir):$(srcdir)/../common//:
 # can be overriden at the make command to see errors
 TEXOPT=-interaction=batchmode
@@ -106,7 +137,7 @@ force: fruit $(EXTRA_DIST)
 	touch force
 
 CLEANFILES = $(TEXSRC).* $(TEXPDF).pdf force bibs *.log *-blx.bib \
-	sync sw_task* MHO_task* .*.swp
+	sync sw_task* $(MHO)* .*.swp save-*tgz tasks-generation* *.txt
 
 clean-local:
 	-rm -rf fruit

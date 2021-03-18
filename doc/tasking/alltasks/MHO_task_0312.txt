@@ -1,0 +1,25 @@
+file   = MHO_task_0312.txt
+domain = @FFIO
+
+# Refactoring the ffio library
+thing  = @FFIORefactor
+
+task   = Design the refactoring of the ffio library
+nick   = FFIORefactor-design
+@ctask
+desc   = Design the refactoring of the ffio library
+needs  = Fourfit3Review-milestone
+
+task   = Implement the refactoring of the ffio library
+nick   = FFIORefactor-implement
+desc   = Implement the refactoring of the ffio library
+needs  = FFIORefactor-design
+
+task   = Test the refactoring of the ffio library
+nick   = FFIORefactor-test
+desc   = Test the refactoring of the ffio library
+needs  = FFIORefactor-implement
+allows = NewFourfitReview-check
+
+
+# eof

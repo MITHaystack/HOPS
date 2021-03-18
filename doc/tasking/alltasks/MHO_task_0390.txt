@@ -1,0 +1,29 @@
+file   = MHO_task_0390.txt
+domain = @VIZ
+
+thing  = @AeditViz
+
+task   = Study Aedit visualization needs
+nick   = AeditViz-study
+@gentask
+desc   = Aedit can make plots and for some of them interact with the user
+         who can click on things and edit the alist or modify the plot, &c.
+         This task is to understand what exists in HOPS3, identify how it
+         should be expanded/preserved in HOPS4 and fill out the remaining
+         tasks for this...  A significant component of the design is that
+         it should have an interface adaptable to more than one plotting
+         package (i.e. PGPLOT).
+allows = Margin-dunno
+
+thing  = @FplotViz
+
+task   = Study Fplot visualization needs
+nick   = FplotViz-study
+desc   = Fourfit (and Fplot) relies on a fringe plot format.  This task
+         is to study how it is handled in HOPS3 and work out how it should
+         change to meet the expanded needs of HOPS4.  Then an interface
+         needs to be created so that this can be ported to more than one
+         set of display tools (i.e. not just PGPLOT).
+allows = Margin-dunno
+
+# eof

@@ -1,0 +1,25 @@
+file   = MHO_task_0332.txt
+domain = @CONTAINERS
+
+# Developing the containers library
+thing  = @ContainersDevelop
+
+task   = Design the containers library
+nick   = ContainersDevelop-design
+@cpptask
+desc   = Design the containers library
+needs  = ProtoCode-review
+
+task   = Implement the containers library
+nick   = ContainersDevelop-implement
+desc   = Implement the containers library
+needs  = ContainersDevelop-design
+
+task   = Test the containers library
+nick   = ContainersDevelop-test
+desc   = Test the containers library
+needs  = ContainersDevelop-implement
+allows = CPPReview-check
+
+
+# eof

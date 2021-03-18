@@ -1,0 +1,25 @@
+file   = MHO_task_0310.txt
+domain = @FFCONTROL
+
+# Refactoring the ffcontrol library
+thing  = @FFControlRefactor
+
+task   = Design the refactoring of the ffcontrol library
+nick   = FFControlRefactor-design
+@ctask
+desc   = Design the refactoring of the ffcontrol library
+needs  = Fourfit3Review-milestone
+
+task   = Implement the refactoring of the ffcontrol library
+nick   = FFControlRefactor-implement
+desc   = Implement the refactoring of the ffcontrol library
+needs  = FFControlRefactor-design
+
+task   = Test the refactoring of the ffcontrol library
+nick   = FFControlRefactor-test
+desc   = Test the refactoring of the ffcontrol library
+needs  = FFControlRefactor-implement
+allows = NewFourfitReview-check
+
+
+# eof

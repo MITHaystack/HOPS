@@ -351,6 +351,7 @@ AC_CONFIG_FILES(
     doc/specification/Makefile
     doc/testreports/Makefile
     doc/userman/Makefile
+    doc/texcheck/Makefile
 )
 # still to do (perhaps):
     # doc/code_outline/Makefile

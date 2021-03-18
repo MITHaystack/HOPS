@@ -18,11 +18,12 @@ our $sort_key;
 our $verb;
 our $veryverb;
 
-# some subsets
+# some subsets -- synchronize with help in sw_task_parser.pl
 my @jelly   = ( 'nick', 'start', 'stop', 'days', 'who',
                 'task', 'thing', 'domain', 'desc' );
 my @summary = ( 'desc', 'nick', 'who', 'stop' );
 my @simple  = ( 'desc' );
+# this is for the NEW file, but 'file' must appear first
 my @inputs  = ( 'nick', 'desc', 'path', ,'code', 'notes', 'level',
                 'issues', 'orient',
                 'who', 'needs', 'start', 'days', 'derate', 'done',
@@ -78,10 +79,15 @@ sub by_key {
 # helper function; remember that keys are
 #   domain . sep . thing . sep . task
 #
-sub write_new_rest {
+sub write_new_input {
     my ($key,$k,$kv,@p) = @_;
     @p = split(/$sep/,$key);
     $kv = $p[0];
+    if (defined $wbs{$key}{'file'}) {
+        $fval = $wbs{$key}{'file'};
+        $fkey = 'file';
+        write NEW if ($fval ne '');
+    }
     while ($#p >= 0) {
         $fval = shift(@p);
         $fkey = $wbs{$kv}{'type'};
@@ -105,9 +111,9 @@ sub dump_new_input {
     open(NEW,$out);
     print NEW "#\n# Generated from $in\n#\n\n";
     print NEW "HEAD = start reading here\n\n";
-    for $t (keys(%domains)) { &write_new_rest($t); }
-    for $t (keys(%things)) { &write_new_rest($t); }
-    for $t (keys(%tasks)) { &write_new_rest($t); }
+    for $t (keys(%domains)) { &write_new_input($t); }
+    for $t (keys(%things)) { &write_new_input($t); }
+    for $t (keys(%tasks)) { &write_new_input($t); }
     print NEW "\nTAIL = stop reading here\n\n";
     print NEW "#\n# eof\n#\n";
     close(NEW);
@@ -196,7 +202,7 @@ sub pred_uids {
     @parts = split(/,/,$list);
     $reply = '';
     for my $need (@parts) {
-        $reply .= "\t" . $wbs{&task_by_nick($need)}{'uid'};
+        $reply .= "\t" . $wbs{&task_by_nick($need,'pred_uids')}{'uid'};
     }
     return($reply);
 }
@@ -205,15 +211,21 @@ sub pred_uids {
 # go through and nuke entries with any of input: derived: either:
 #
 sub canonicalize_items {
+    my ($dbf,$old,$nck,$typ) = @_;
+    open(CANON,$dbf) if ($veryverb);
     for my $task (keys(%wbs)) {
         for my $key (@keywords) {
             if (not defined($wbs{$task}{$key}) or
-                $wbs{$task}{$key} =~ m/input:.*/ or
-                $wbs{$task}{$key} =~ m/derived:.*/ or
-                $wbs{$task}{$key} =~ m/either:.*/) {
+                $wbs{$task}{$key} =~ m/.*input:.*/ or
+                $wbs{$task}{$key} =~ m/.*derived:.*/ or
+                $wbs{$task}{$key} =~ m/.*either:.*/) {
                 # a few require numerical values
                 if ($key eq 'days') {
+                    $typ = $wbs{$task}{'type'};
+                    $nck = $wbs{$task}{'nick'};
+                    $old = $wbs{$task}{$key};
                     $wbs{$task}{$key} = 0;
+                    print CANON "$typ:$nck days: $old->0\n" if ($veryverb);
                 } elsif ($key eq 'done') {
                     $wbs{$task}{$key} = 0;
                 } elsif ($key eq 'fte') {
@@ -226,28 +238,34 @@ sub canonicalize_items {
             }
         }
     }
+    close(CANON) if ($veryverb);
 }
 
 #
 # a simple lookup function for use as needed
 #
 sub task_by_nick {
-    my ($nick,$kv) = @_;
+    my ($nick,$caller,$kv) = @_;
+    $caller = 'undefined' if (not defined $caller);
     for $kv (keys(%wbs)) {
         next if (!defined($wbs{$kv}{'nick'}));
         if ($wbs{$kv}{'nick'} eq $nick) {
             return($kv);
         }
     }
-    print "No task for '$nick', returning 'none'.\n" if ($verb);
+    if ($nick ne 'ALL' and $verb) {
+        print "No task for '$nick' ($caller), returning 'none'.\n";
+    }
     return('none');
 }
 
 #
-# assign kids to every thing and domain
+# assign kids to every thing and domain,
+# using mom or pop as shorthand for parent wbs element.
 #
 sub make_kids_of_things {
-    my ($kv,$nick,$pop);
+    my ($kv,$nick,$pop,$ctr);
+    $ctr = 0;
     for $kv (keys(%tasks)) {
         $nick = $wbs{$kv}{'nick'};
         $pop = $wbs{$kv}{'parent'};
@@ -256,19 +274,24 @@ sub make_kids_of_things {
         } else {
             $wbs{$pop}{'kids'} .= ',' . $nick;
         }
+        $ctr++;
     }
+    return($ctr);
 }
 sub make_kids_of_domains {
-    my ($kv,$nick,$pop);
+    my ($kv,$nick,$mom,$ctr);
+    $ctr = 0;
     for $kv (keys(%things)) {
         $nick = $wbs{$kv}{'nick'};
-        $pop = $wbs{$kv}{'parent'};
-        if ($wbs{$pop}{'kids'} eq '') {
-            $wbs{$pop}{'kids'} = $nick;
+        $mom = $wbs{$kv}{'parent'};
+        if ($wbs{$mom}{'kids'} eq '') {
+            $wbs{$mom}{'kids'} = $nick;
         } else {
-            $wbs{$pop}{'kids'} .= ',' . $nick;
+            $wbs{$mom}{'kids'} .= ',' . $nick;
         }
+        $ctr++;
     }
+    return($ctr);
 }
 
 #

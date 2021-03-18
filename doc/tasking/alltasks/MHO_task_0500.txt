@@ -1,0 +1,21 @@
+file   = MHO_task_0500.txt
+domain = @STUFF
+
+thing  = @Margin
+
+task   = unspecified
+nick   = Margin-dunno
+@gentask
+desc   = for the moment collect all the time not yet allocated to
+         specific task work
+allows = Meetings-final
+
+thing  = @Algorithms
+
+task   = unspecified algorithmic development
+nick   = Algorithms-unspecified
+desc   = tbd
+allows = Meetings-final
+
+
+# eof

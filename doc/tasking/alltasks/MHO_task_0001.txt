@@ -1,0 +1,154 @@
+file   = MHO_task_0001.txt
+
+domain = General Project Activities
+nick   = GENERAL
+desc   = This covers things not better captured elsewhere
+
+domain = Infrastructure Setup
+nick   = INFRA
+desc   = Everything to create and complete a working environment
+
+domain = Import HOPS3 Fourfit to HOPS4
+nick   = FOURFIT3
+desc   = Import fourfit libraries to HOPS4
+
+domain = Import HOPS3 A-things to HOPS4
+nick   = AEDIT3
+desc   = Import A-things to HOPS4
+         This includes alist, aedit, adump and afio.
+
+domain = Import HOPS3 Other things to HOPS4
+nick   = OTHER3
+desc   = Import other executables and scripts to HOPS4.
+         This includes average, fringex, search, cofit, &c.
+
+domain = Refactor ffcontrol library
+nick   = FFCONTROL
+desc   = Refactor the ffcontrol library
+
+domain = Refactor ffcore library
+nick   = FFCORE
+desc   = Refactor the ffcore library
+
+domain = Refactor ffio library
+nick   = FFIO
+desc   = Refactor the ffio library
+
+domain = Refactor ffmath library
+nick   = FFMATH
+desc   = Refactor the ffmath library
+
+domain = Refactor ffsearch library
+nick   = FFSEARCH
+desc   = Refactor the ffsearch library
+
+domain = Refactor ffplot library
+nick   = FFPLOT
+desc   = Refactor the ffplot library
+
+domain = Generic fourfit refactoring things
+nick   = NEWFOURFIT
+desc   = Generic domain for refactoring tasks of the fourfit C libraries. Tying up 
+	 loose ends, extending where needed, reviewing the status of the C code, 
+	 tracking what will be needed for interfaces and the C++ libraries.
+
+
+domain = Refactor A Machinery
+nick   = AMACHINERY
+desc   = This involves many things, including refactoring Aedit
+         (to not use PGPLOT for starters), but also includes the
+         average and fringex machinery which is critical for
+         mm VLBI analyses.
+
+domain = Import and Export interfaces
+nick   = INTERFACES
+desc   = Develop and implement framework for import and
+         export between the external world and HOPS4.
+         HOPS3 used difx2mark4 and provides alists and
+         the mk4 correlation products.  The new input
+         interface starts with the SWIN products and
+         ends with hops correlation products and other
+         formats for export.
+
+
+
+
+domain = Utilities library
+nick   = UTILS
+desc   = Develop the new utilities library. This covers commonly-used
+	 functions, like date handling, profiling, toolboxes etc.
+
+domain = Message library
+nick   = MESSAGE
+desc   = Develop the new messaging library. This covers the messages
+	 and logs to the user, with handles for verbosity, topics, etc.
+
+domain = Containers library
+nick   = CONTAINERS
+desc   = Develop the new containers library. This covers the
+	 in-memory data containers of visibility and meta-data,
+	 and native format disk I/O.
+
+domain = Operators library
+nick   = OPERATORS
+desc   = Develop the new operators library. This covers base classes for
+	 data manipulation and generic operations (array reduction, transposition,
+	 FFT, etc.)
+
+domain = Math library
+nick   = MATH
+desc   = Develop the new math library. This covers FFTW, minimizers, interfaces
+	 to optional third-party math libraries, and so on.
+
+domain = VLBI Calibration library
+nick   = VCAL
+desc   = Develop the new library for VLBI-specific operators (bandpass correction,
+	 per-channel phase offsets, etc). Overlap with CALI domain.
+
+domain = Mk4 Interface library
+nick   = MK4INTER
+desc   = Develop the new mk4 interface library, for import/export to legacy Mk4
+	 data types. Allows testing and backwards compatibility. (Note, may be superceded
+	 by the INTERFACES domain?)
+
+
+domain = Bindings
+nick   = BINDINGS
+desc   = Python interfaces to C++ data containers and operators. Allows for Python scripts
+	 for initialization of data containers and operators, and hooks for user-defined
+	 manipulation of data.
+
+
+
+domain = Review C++ libraries
+nick   = CPPREVIEW
+desc   = This covers the review of the new C++ libraries.
+
+
+domain = Calibration routine development
+nick   = CALI
+desc   = Develop the new calibration routines
+
+domain = Visualization library development
+nick   = VIZ
+desc   = Develop the new plotting and visualization tools
+
+
+domain = HOPS4 Documentation
+nick   = DOCS
+desc   = Production of the documents that for the HOPS4 project.
+         This includes the initial plan, the requirements,
+         the software development plan, the coverage and test
+         plan and later, test reports and man pages and user manuals.
+
+
+# this is a placeholder
+domain = Everything Else
+nick   = STUFF
+desc   = This domain covers everything not otherwise mentioned.
+         It is useful to have this at the outset as a "sink" for
+         all the undefined things.  Eventually this domain and
+         all the things and tasks in it should migrate upward to
+         other domains, things, or tasks.
+
+# eof

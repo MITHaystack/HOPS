@@ -1,0 +1,9 @@
+file   = MHO_task_ZZZZ.txt
+TAIL = task generator stops reading here
+###
+
+# hey look, I found $20!
+
+#
+# eof
+#

@@ -154,6 +154,7 @@ $doit && {
     echo proceeding to configure and build in ../ambld-$version
     cwd=`pwd`
     $eko configure=\`pwd\`/configure
+    $eko rm -rf ../ambld-$version
     $eko mkdir ../ambld-$version
     $eko cd ../ambld-$version
     $eko $configure $HOPS_CONFIGURE_ARGS \> configure.log  2\>\&1 

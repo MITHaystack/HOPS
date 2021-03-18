@@ -33,16 +33,23 @@ additional lines until the next keyword, blank line or comment.
 (Lines beginning with # are comments, # within a line is not yet
 considered as a comment.)
 
-At the moment, the "somethings" are (by nickname):
+At the moment, the "somethings" are (by nickname, this list comes
+from executing  sw_tasks.pl -g help -i MHO_task.txt):
 
-    GENERAL     General Project Activities
-    INFRA       Infrastructure Setup
-    DOCS        HOPS4 Documentation
-    STUFF       everything else
+       ALL is everything
+     STUFF is Everything Else
+   GENERAL is General Project Activities
+      CALI is Calibration routine development
+     INFRA is Infrastructure Setup
+       VIZ is Visualization library development
+   FOURFIT is Fourfit application development
+      DOCS is HOPS4 Documentation
+       all is all of the above, except ALL
 
 and these are either "domains" (topics in the work breakdown structure)
 which contain a number of "things".  Domains are individually plotted.
-(Things are like colored, but may not yet be separately plotted.)
+Things are like colored, and may also be plotted with the -t option.
+(sw_tasks.pl -g help -i MHO_task.txt -t gives you the full list.)
 
   domain = collection of related things
   thing  = some piece of a domain, which is a collection of tasks
@@ -57,7 +64,10 @@ You can also create them with @abbr = expansion lines.
 
 Anytime you create something (domain, thing or task) immediately
 give it a description and a UNIQUE nickname and be thinking of
-how it might connect (simply) to other things.
+how it might connect (simply) to other things.  Note that nicknames
+of the form domainnickname-thingnickname-tasknickname are automatically
+generated, so it is not strictly necessary to explicitly create them.
+However, the task files are more readable that way.
 
 Use UPPERCASE for Domain nicknames, CamelCase for Thing nicknames
 and all lowercase for tasks.  These all turn into node names in dot,
@@ -74,6 +84,15 @@ The nick(name), needs (predecessors) and allows (successor) items for
 a task are used to connect the nodes in the diagrams.  Connections should be
 made only between tasks.  (Things and Domains are collections of tasks that
 could get a box around them.)
+
+Do not use '_' in names.  The underlying plotter, dot, uses conventional
+C-type variable names and the '-' in nicknames turns into an '_' and it
+becomes somewhat ambiguous understanding the plots.
+
+Names of Domains and Things should be suitable for titles of plots.
+Thing names should be short enough to be expressed on one line in the bubble.
+(The bubble will be sized to contain it, but wide ellipses make for less
+compact graphs.)
 
 tasks should also have the following:
 
@@ -102,6 +121,10 @@ timeline information
   allows = list of successor tasks
 
 (and derived internally are: uid,begin,mjds,flex,end,preps,leads).
+
+The uid is a number formed as 100000*domainctr + 1000*thingctr + taskctr
+where domainctr, thinkctr and taskctr are counters assigned as
+the three types are found in the input file.
 
 Abbreviations get used in descriptions, or in the case of dates, the start
 or stop dates.
@@ -157,7 +180,14 @@ sw_task_graph.pl.  More can be added (if we discover we need this.)
 Things (domains only, at the moment) have
   orient = portrait/landscape
 to control how they get plotted.  Other plotting controls are in
-MHO_task_config.pl.
+MHO_task_config.pl:
+    $legend determines whether a legend graphic is generated or not
+    $rundot determines whether to actually make the plots or not
+    $fullnames determines whether the full names appear in the label text
+        this will be more cryptic, but will make smaller bubbles
+    $skipneedsallows bypasses the calculation of double-linkages so
+        that the dot plots contain red or blue arrows based on what
+        was actually specified (not derived)
 
 Every thing plotted, has an associated *.task file which tells you
 how all the variables were completed.  In particular start and/or
@@ -179,6 +209,20 @@ rest of the graph) to show you the external dependencies.
 The document built in this directory attempts to capture all the
 information contained and present it in a latex friendly form to
 be ripped off for the other documents.
+
+Finally, since the main task file will get to be too large to have
+multiple people hacking on it, it can be broken up (arbitrarily) into
+a set of files with names MHO_task_????.txt where ???? are [0-9a-zA-Z]
+which are sorted and concatenated into a single MHO_task.txt to run.
+The pieces should be internally labelled with a 
+
+  file = MHO_task_????.txt
+
+directive at the break point.  0000 is the HEAD material, 0001 the
+list of domains, 0010 is the list of things by domain, and 0?00 is
+the list of tasks by thing, and ZZZZ is the TAIL material.
+(Hopefully 62^4 is enough files.)  MHO_task.txt as used is created
+in the build directory.
 
 If you have questions, contact Geoff Crew (gbc@haystack.mit.edu).
 

@@ -18,6 +18,7 @@ use strict;             # makes unsafe constructs illegal
 
 our $date_pat = '[0-9]{4}-[0-9]{2}-[0-9]{2}';
 our $mjd_pat  = '[0-9]{5}';
+our ($now_date,$now_mjd);
 
 my $testing = defined($ENV{"TEST_MJD"});
 
@@ -61,7 +62,7 @@ sub date_to_mjd {
 }
 sub mjd_to_date {
     my ($mjd,$yy,$mm,$dd) = ($_[0],2010,0,1);
-    while ($yy < 2017) {
+    while ($yy < 2053) {
         if ($mjd >= $mjdstart{$yy} and $mjd < $mjdstart{$yy+1}) { last; }
         $yy++;
     }
@@ -77,7 +78,17 @@ sub mjd_to_date {
     return(sprintf("%04d-%02d-%02d", $yy,$mm,$dd));
 }
 
-# for debugging
+#
+# convenience function
+#
+sub set_current_date {
+    my ($day, $month, $year) = (localtime)[3,4,5];
+    $now_date = sprintf("%04d-%02d-%02d", $year+1900, $month+1, $day);
+    $now_mjd = &date_to_mjd($now_date);
+}
+
+# for debugging:
+# (echo ...) | TEST_MJD=true perl -- sw_task_mjd.pl
 if ($testing) {
   while (<>) {
     chomp;

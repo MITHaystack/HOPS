@@ -1,0 +1,25 @@
+file   = MHO_task_0337.txt
+domain = @BINDINGS
+
+# Developing the bindings library
+thing  = @BindingsDevelop
+
+task   = Design the bindings library
+nick   = BindingsDevelop-design
+@cpptask
+desc   = Design the bindings library
+needs  = ProtoCode-review
+
+task   = Implement the bindings library
+nick   = BindingsDevelop-implement
+desc   = Implement the bindings library
+needs  = BindingsDevelop-design
+
+task   = Test the bindings library
+nick   = BindingsDevelop-test
+desc   = Test the bindings library
+needs  = BindingsDevelop-implement
+allows = CPPReview-check
+
+
+# eof

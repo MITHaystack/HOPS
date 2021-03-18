@@ -107,7 +107,10 @@
 \abstract{
 This document generates detailed planning graphics to make it possible to
 manage the work.  It is a replacement for other, more traditional management
-tools.
+tools. Really.  Realistically, some of the materials generated in this
+document are meant to be copied out to form the stable Softare Development
+Plan (\ie what is planned).  Thereafter it becomes a living document of state
+should anyone want it.  Not clear why.
 }
 
 % \begingroup . . . \endgroup can be used to keep things together
@@ -122,11 +125,14 @@ tools.
 \pagebreak
 \tableofcontents
 
+\pagebreak
 %\vspace{24pt}\hrule
-%\pagebreak
 \listoffigures
-\vspace{24pt}\hrule
-%\listoftables
+\pagebreak
+
+%\vspace{24pt}\hrule
+\listoftables
+\pagebreak
 %\vspace{24pt}\hrule
 %\endgroup
 
@@ -135,11 +141,8 @@ tools.
 
 % break document into appropriate portions
 
-%\pagebreak
-%\input{theintro}
-
-%\pagebreak
-%\input{thereqs}
+\pagebreak
+\input{taskage}
 
 \pagebreak
 \addtocounter{section}{1}
@@ -152,15 +155,6 @@ tools.
 % if skipappendix-is-true then (nothing) else typeset Appendices
 \ifthenelse{\boolean{skipappendix}}{}{%
 \appendix
-
-%\pagebreak
-%\input{hilo}
-%
-%\pagebreak
-%\input{obsolete}
-%
-%\pagebreak
-%\input{uml-description}
 
 %\pagebreak
 \section{Acronyms, Commands, and Glossary}

@@ -1,0 +1,26 @@
+file   = MHO_task_0338.txt
+domain = @CPPREVIEW
+
+thing  = @CPPReview
+
+task   = Check the implementation of the C++ libraries
+nick   = CPPReview-check
+@gentask
+desc   = Team members check the new C++ libraries
+needs  = BindingsDevelop-test
+
+task   = Collect lessons on the C++ library implementation
+nick   = CPPReview-lessons
+desc   = Collect lessons from the C++ libraries, generate reports,
+         gather to-do items for future development, document, etc.
+needs  = CPPReview-check
+
+task   = Milestone for the C++ libraries
+nick   = CPPReview-milestone
+desc   = Milestone for completing the baseline implementation of the
+         C++ libraries
+needs  = CPPReview-lessons
+allows = Meetings-mid2022
+
+
+# eof

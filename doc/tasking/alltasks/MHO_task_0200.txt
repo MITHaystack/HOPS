@@ -1,0 +1,157 @@
+file   = MHO_task_0200.txt
+domain = @INFRA
+
+# Repository tasks
+thing  = @Repo
+
+task   = Establish github repository
+nick   = Repo-init
+@gentask
+desc   = Initialize a github repo, add the basic elements of HOPS, get team members connected
+#start  = @tJHIRE
+needs  = Meetings-hired
+#allows = Repo-cmakeinit,Repo-autoinit
+
+task   = Write first draft of automake build tools
+nick   = Repo-autoinit
+@shtask
+desc   = Write the automake foundations for the new project and make sure
+         everyone can compile some of the code using automake
+#start  = @tJHIRE
+needs  = Repo-init
+
+task   = Write first draft of cmake build tools
+nick   = Repo-cmakeinit
+desc   = Write the automake foundations for the new project and make sure
+         everyone can compile some of the code using automake
+#start  = @tJHIRE
+needs  = Repo-init
+
+task   = Get an automake nightly or integration suite running
+nick   = Repo-amnightly
+desc   = Use something like github actions or a nightly pull/compile/test
+         job to implement tests; as a practical matter the automake flavor
+         comes first
+#start  = tSREV
+needs  = Repo-autoinit
+
+task   = Get a cmake nightly or integration suite running
+nick   = Repo-cmnightly
+desc   = Use something like github actions or a nightly pull/compile/test
+         job to implement tests; as a practical matter the cmake flavor
+         comes second
+#start  = tSREV
+needs  = Repo-cmakeinit
+allows = Meetings-end2021
+
+task   = Iterate cmake nightly build to include compilation options
+nick   = Repo-cmoptions
+desc   = Do the work to get the nightly able to build several different
+         configurations on multiple hosts, with multiple compilation options
+needs  = Repo-cmakeinit
+allows = Meetings-end2021
+
+task    = Automake/CMake configuration support
+nick    = Repo-config
+desc    = Automake and CMake have different ways of testing what is available
+          on the local machine.  This task is to set up the framework so that
+          they can either share information or at least do the same things.
+needs   = Repo-autoinit,Repo-cmakeinit
+
+task   = Iterate automake nightly build to include compilation options
+nick   = Repo-amoptions
+desc   = Do the work to get the nightly able to build several different
+         configurations on multiple hosts, with multiple compilation options
+needs  = Repo-config
+allows = Meetings-endQ08
+
+task    = Automake nightly reporting
+nick    = Repo-amreps
+desc    = Automake check tests should generate PASS/FAIL commentary.
+          This task is to add the additional script infrastructure to build
+          reports about, e.g. requirements completion
+needs   = Repo-config
+allows = Meetings-endQ08
+
+#task   = Import automated tests from HOPS3
+#nick   = Repo-amcheck
+#desc   = Build out the check scripts with captured data in the new project
+#start  = @tJHIRE
+#needs  = Repo-autoinit
+
+# Prototyping tasks
+thing  = @ProtoCode
+
+task   = Prototype the new data containers
+nick   = ProtoCode-containers
+@cptask
+desc   = Create a set of C++ classes that define the new data containers
+#needs  = SpecsDocs-draft
+needs  = Miles-repo
+
+task   = Test the performance of the new data containers
+nick   = ProtoCode-containertest
+desc   = Profile the memory performance of the new data containers
+code   = C
+#start  = tSREV
+needs  = ProtoCode-containers
+#allows = Meetings-endQ08
+
+task   = Prototype the SWIG bindings
+nick   = ProtoCode-swig
+@ptask
+desc   = Write the compilation steps for the SWIG bindings in the autmake tools
+needs  = Miles-repo
+
+task   = Test the SWIG bindings
+nick   = ProtoCode-swigtest
+@ptask
+desc   = Check that the SWIG bindings work with the new data containers,
+         move arrays information back and forth between the containers
+         and the python
+#start  = tSREV
+needs  = ProtoCode-swig,ProtoCode-containers
+#allows = Meetings-endQ08
+
+task   = Prototype fringe plot without PGPLOT
+nick   = ProtoCode-fringeplot
+desc   = Demonstrate that we can make a fringe plot with matplotlib
+code   = Python
+#start  = tJHIRE
+needs  = Miles-repo
+#needs  = Meetings-hired
+
+task   = Test an interactive plotting GUI
+nick   = ProtoCode-interactivefringeplot
+desc   = Demonstrate interactive plotting tools with matplotlib
+code   = Python
+needs  = ProtoCode-fringeplot
+#allows = Meetings-endQ08
+
+
+task   = Review the prototypes of the new functionality
+nick   = ProtoCode-review
+@gentask
+desc   = Milestone to review the code prototypes. By this point we should have measured
+	 the performance of the data containers, understood the binding methods, and
+	 demonstrated new fringeplot tools.
+needs  = ProtoCode-fringeplot,ProtoCode-swigtest,ProtoCode-containertest
+
+
+thing  = @TestData
+
+task   = deal with test data
+nick   = TestData-tbd
+@gentask
+desc   = tbd
+allows = Meetings-endQ08
+
+thing  = @NoVhelp
+
+task   = deal with HOPS3 help mechanisms
+nick   = NoVhelp-cope
+@gentask
+desc   = tbd
+allows = Meetings-endQ08
+
+# eof
