@@ -21,7 +21,8 @@ In any case, the products of the scripts contained bubbles of activity and
 were perjoratively\footnote{Shep Doeleman, 2012} termed bubble diagrams and
 it's as good a description as any.  The bubbles served their purpose admirably
 in convincing ALMA/NA management that we had a clue about conducting the
-project.  So we shall go with a working title of ``Tasking Bubble Machine''.
+project.  So we shall go with a working title of ``Tasking Bubble Machine''
+(abbreviated \acs{TBM}).
 
 In this scheme, the work of the project is partitioned into a set of large,
 related areas of work called ``domains''.  Each domain is itself composed of
@@ -98,12 +99,33 @@ Things are referenced by nickname.}}
 
 % overview-helper.sh filename(.tex)
 \subsection{Pool of Developers and Other Relevant People}
+
+For convenience, abbreviations for all developers or other people who
+may have input to the design or testing have been created using their
+intials.   (We have few enough, that two letters suffices.)
 \input{devels}
 
 \subsection{Task Definitions}
+
+There are a variety of tasks to be performed.  One of the features
+of the \ac{TBM} is that it carries over assigned values of certain
+keywords into subsequent tasks.  That way, if a set of tasks are to
+be assigned to the same person, the \texttt{who} reference need only
+be made once.  Similarly, if a collection of code is written in one
+language, the \texttt{code} reference can be stated at the outset.
+
+The current definitions are as follows.  The \texttt{tdefs} key
+defines the value to be used to create the abbreviation.  That is,
+the first line here starts the creation of an \texttt{@milestask}
+for milestones.
 \input{taskdefs}
 
 \subsection{Fixed Dates}
+
+Abbreviations can be used to provide specific dates, which allows
+consistent use in multiple places without needing to remember the
+exact day.  These are all short and cryptic and begin with a lower
+case \textit{t}.  This makes for easy grepping through the sources.
 \input{dates}
 
 %
