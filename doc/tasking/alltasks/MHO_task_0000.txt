@@ -15,10 +15,10 @@ HEAD = task generator starts reading here
 file   = MHO_task_0000.txt
 
 ### some common abbreviations (saving you typing)
-
 @vlbi   = Very Long Base Interferometry
 @sec    = Section
 @req    = the HOPS4 Requirements document
+@tbm    = Tasking Bubble Machine
 
 ### some dates of interest (milestones, @t*)
 
@@ -31,22 +31,25 @@ file   = MHO_task_0000.txt
 # to put on things you worked on in this list...and then reference them
 # in the tasks.  I.e. @gc... is a Geoff date, @vp... is a Violet date.
 # Then all we have to do is keep this list approximately sorted.
+#
+### Start of timeline abbreviations
 @tEARLY = 2019-08-15    # this is approximate
-@tSTART = 2019-09-01
+@tSTART = 2019-09-01    # contractual start of the project
 @tDSTRT = 2019-12-01    # approx date we started writing requirements
-@tHILO  = 2019-12-04
-@tJPOST = 2020-02-10
-@tJHIRE = 2020-09-14
+@tHILO  = 2019-12-04    # date of the HOPS presentation at EHTC meeting
+@tJPOST = 2020-02-10    # approx date job posting for s/w developers
+@tJHIRE = 2020-09-14    # approx date new hires (@dh and @vp) started
 #
 @tDETC  = 2020-12-01    # approx date we started other documents
-@tREQS  = 2020-12-07
+@tREQS  = 2020-12-07    # approx date requirements finalized
 @tDSHRE = 2021-02-02    # approx date we gave Doc Drafts to SAO
 @tSREV  = 2021-02-04    # Meetings-review
-@gcBUB0 = 2021-02-11    # date of initial Tasking Bubble import
+@gcBUB0 = 2021-02-11    # date of initial @tbm import
 #
 @tDRESP = 2021-03-04    # approx date of revised Reqs&comments to SAO
 @tDREPO = 2021-03-06    # approx date of working (clean) repo nightly
-@gcBUB1 = 2021-03-14    # date on Tasking Bubble Machine progress
+@gcBUB1 = 2021-03-14    # date @tbm scripts were functional
+@gcBUB2 = 2021-03-25    # date @tbm generated document is to be done
 # --- now ---
 # end of 2020 is end of Q05 on the original clock, so
 # rounding out to thursdays, we have
@@ -63,7 +66,8 @@ file   = MHO_task_0000.txt
 @tQ14E  = 2023-03-30    # Meetings-penultimate
 @tQ15E  = 2023-06-29    # Meetings-final
 # this one is known and is a month shy of end of Q16 ;-)
-@tFINAL = 2023-08-31    # Miles-finish
+@tFINAL = 2023-08-31    # contractual end of the project (Miles-finish)
+
 # post project one can continue...
 # please...
 
@@ -72,11 +76,12 @@ file   = MHO_task_0000.txt
 @jb     = John Barrett
 @vp     = Violet Pfeiffer
 @dh     = Dan Hoak
+# advisors
 @vf     = Vincent Fish
 @lm     = Lynn Matthews
 @cr     = Chet Ruszczyk
 @cl     = Colin Lonsdale
-# ... add any other names you know...
+# these two were active in 2017 CE
 @lb     = Lindy Blackburn
 @ck     = C K Chan
 # and some groups
@@ -90,7 +95,8 @@ file   = MHO_task_0000.txt
 # note that after using these to set default values you can
 # then refine effort &c. with subsequent assignments.
 
-tdefs   = milestask     # for all milestones
+# a milestask sets up defaults for all milestones
+tdefs   = milestask
 path    = none
 code    = none
 days    = 0
@@ -98,6 +104,7 @@ derate  = 0
 desc    = A planning date assumed to prevent useful work
 who     = @swdev
 
+# a meetask sets up defaults for all meeting-like things
 tdefs   = meetask
 path    = none
 code    = none
@@ -106,6 +113,7 @@ derate  = 0
 desc    = Some meeting which we shall assume consumes no time
 who     = @swdev
 
+# a gentask sets up defaults for all general work not otherwise specified
 tdefs   = gentask
 path    = none
 code    = none
@@ -114,6 +122,7 @@ derate  = 1
 desc    = Some general work without any code or path
 who     = @notme
 
+# a ctask sets up defaults for C coding work
 tdefs   = ctask
 path    = fixme
 code    = C
@@ -122,6 +131,7 @@ derate  = 2
 desc    = C coding work
 who     = @notme
 
+# a cpptask sets up defaults for C++ coding work
 tdefs   = cpptask
 path    = fixme
 code    = C
@@ -130,6 +140,7 @@ derate  = 2
 desc    = C++ coding work
 who     = @notme
 
+# a pytask sets up defaults for Python coding work
 tdefs   = pytask
 path    = fixme
 code    = Python
@@ -138,6 +149,7 @@ derate  = 2
 desc    = Python coding work
 who     = @notme
 
+# a pltask sets up defaults for PERL coding work
 tdefs   = pltask
 path    = fixme
 code    = PERL
@@ -146,6 +158,7 @@ derate  = 2
 desc    = Some PERL work
 who     = @notme
 
+# a shtask sets up defaults for shell (Bash) coding work
 tdefs   = shtask
 path    = fixme
 code    = Bash
@@ -154,6 +167,7 @@ derate  = 1
 desc    = Bash coding work
 who     = @notme
 
+# a testask sets up defaults for testing time (execution and review)
 tdefs   = testask
 path    = fixme
 code    = None
@@ -162,6 +176,7 @@ derate  = 1
 desc    = A testing task
 who     = @notme
 
+# an editask sets up defaults for document or other editing
 tdefs   = editask
 path    = fixme
 code    = None

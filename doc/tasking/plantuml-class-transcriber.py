@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 """ 
 Author: violetp 
 Contact: violetp@mit.edu

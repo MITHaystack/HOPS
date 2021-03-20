@@ -47,8 +47,17 @@ taskingscripts = taskscripts/sw_tasks.pl taskscripts/sw_task_graph.pl \
 	taskscripts/sw_task_config.pl taskscripts/sw_task_latex.pl \
 	taskscripts/sw_task_split.pl
 
-EXTRA_DIST = $(srcdir)/$(TEXSRC).tex \
-	$(appsamples) $(mhoinputs) $(allinputs) $(taskingscripts)
+noinst_SCRIPTS = overview-helper.sh plantuml-class-transcriber.py
+latexinputs = $(srcdir)/overview.tex
+
+# inputs to the objects section
+overviewobjects = domainlist.tex devels.tex taskdefs.tex dates.tex
+texincobjects = $(overviewobjects) \
+	plantuml-code.uml plantuml-code.png
+
+EXTRA_DIST = $(srcdir)/$(TEXSRC).tex $(latexinputs) \
+	$(appsamples) $(mhoinputs) $(allinputs) $(taskingscripts) \
+	$(texincobjects)
 
 if HAVE_PERL
 # this pulls everything in from source dir if we are in build dir
@@ -83,9 +92,29 @@ fruit/split:	sync
 	touch fruit/split
 
 save: fruit
-	tar zcf $(srcdir)/$(mho)tasks/save-$(mho)-`date +%Y%m%d`.tgz \
+	tar zcf $(srcdir)/save-$(mho)-`date +%Y%m%d`.tgz \
 		fruit/$(mho)-* $(MHO)*
-	ls -l $(srcdir)/$(mho)tasks/save-$(mho)-*.tgz
+	ls -l $(srcdir)/save-$(mho)-*.tgz
+
+# build objects needed by the document through $(texincobjects)
+$(overviewobjects) : texs
+texs:	$(srcdir)/overview-helper.sh
+	for t in $(overviewobjects);do $(srcdir)/overview-helper.sh $$t;done
+	touch texs
+
+#echo '\begin{verbatim}'                 > $@
+#./sw_tasks.pl -g help -i MHO_task.txt   |\
+#	grep -v 'All.output.appears'    |\
+#	grep -v 'Available domains to'	>> $@
+#echo '\end{verbatim}'                   >> $@
+
+plantuml-code.uml:
+	$(srcdir)/plantuml-class-transcriber.py $?
+	ls -l $@
+
+plantuml-code.png:
+	plantuml $?
+	ls -l $@
 
 else
 # no task things can be generated
@@ -93,10 +122,14 @@ fruit:
 	mkdir fruit
 endif
 
+# this is cleaner, but makes it harder to use display tools that
+# watch files on disks as things disappear.
 #rm -rf fruit
 tasks:
 	$(MAKE) fruit
 
+# FIXME: this is really a maintainer document that
+# perhaps should not be part of the distribution.
 if WANT_DOCS
 # to be somewhat surgical, this is useful:
 # TEXINPUTS=... kpsewhich -show-path tex "filename"
@@ -117,27 +150,29 @@ $(TEXPDF).pdf: $(TEXSRC).pdf
 # TEXINPUTS allows sources to be found on the path
 # insert enough rules for iteration to completion:
 # pdflatex ... ; biber ... ; pdflatex ... ; pdflatex
-$(TEXSRC).pdf: bibs
+#$(TEXSRC).pdf: bibs
+$(TEXSRC).pdf: force
 	@echo final iteration
 	-TEXINPUTS=$(TEXINPUTS) pdflatex $(TEXOPT) $(TEXSRC).tex
 
 # see which backend was requested and invoke the appropriate bib agent
-bibs: force
-	@echo biber or biblatex
-	-grep -q backend=biber $(srcdir)/$(TEXSRC).tex && \
-		TEXBIB=$(TEXBIB) biber $(TEXSRC) >$(TEXSRC)-bibs.log || \
-		BIBINPUTS=$(TEXBIB) bibtex $(TEXSRC) >$(TEXSRC)-bibs.log
-	touch bibs
+#bibs: force
+# @echo biber or biblatex
+# -grep -q backend=biber $(srcdir)/$(TEXSRC).tex && \
+# 	TEXBIB=$(TEXBIB) biber $(TEXSRC) >$(TEXSRC)-bibs.log || \
+# 	BIBINPUTS=$(TEXBIB) bibtex $(TEXSRC) >$(TEXSRC)-bibs.log
+# touch bibs
 
 # a first iteration starts the ball rolling
 #force: $(srcdir)/Makefile.am $(EXTRA_DIST)
-force: fruit $(EXTRA_DIST)
+force: fruit $(EXTRA_DIST) texs
 	@echo first iteration
 	-TEXINPUTS=$(TEXINPUTS) pdflatex $(TEXOPT) $(TEXSRC).tex
 	touch force
 
 CLEANFILES = $(TEXSRC).* $(TEXPDF).pdf force bibs *.log *-blx.bib \
-	sync sw_task* $(MHO)* .*.swp save-*tgz tasks-generation* *.txt
+	sync sw_task* $(MHO)* .*.swp save-*tgz tasks-generation* *.txt \
+	texs *.tex *.uml *.png *.dot
 
 clean-local:
 	-rm -rf fruit
