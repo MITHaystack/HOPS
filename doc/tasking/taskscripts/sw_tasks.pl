@@ -77,7 +77,7 @@ if ( $ARGV[0] eq "--version" ) { print "$VERSION" . "\n"; exit(0); }
 my @args = @ARGV;
 &getopts('b:c:d:g:i:lo:r:s:tvw', \%opts);
 my $config = $opts{'c'};
-my $dtype  = $opts{'d'};
+our $dotdev  = $opts{'d'};
 our $flowcharter = $opts{'f'};
 my $graphs = $opts{'g'};
 my $input  = $opts{'i'};
@@ -203,9 +203,9 @@ if ($report ne 'none') {
 #
 if ($graphs eq 'ALL') {
     print "Creating absolutely all graphs\n" if ($verb);
-    &make_the_graph("$output-ALL",$dtype,1,keys(%tasks));
-    &make_domain_graphs($output,$dtype,keys(%domains));
-    &make_domain_graphs($output,$dtype,keys(%things)) if ($doth2);
+    &make_the_graph("$output-ALL",$dotdev,1,keys(%tasks));
+    &make_domain_graphs($output,$dotdev,keys(%domains));
+    &make_domain_graphs($output,$dotdev,keys(%things)) if ($doth2);
 } elsif ($graphs eq 'none') {
     print "No graphs requested\n" if ($verb);
     $makelegend = 0;
@@ -219,13 +219,13 @@ if ($graphs eq 'ALL') {
     }
 } else {
     $graphs = join(',',keys(%domains)) if ($graphs eq 'all');
-    &make_the_graph("$output-ALL",$dtype,$rundot,keys(%tasks));
+    &make_the_graph("$output-ALL",$dotdev,$rundot,keys(%tasks));
     my @d = split(/,/,$graphs);
     print "Creating graphs for " . join(',',@d) . "\n" if ($verb);
-    &make_domain_graphs($output,$dtype,@d);
+    &make_domain_graphs($output,$dotdev,@d);
 }
 # and if requested, a legend
-&make_colorkeys($output,$dtype) if ($makelegend);
+&make_colorkeys($output,$dotdev) if ($makelegend);
 
 # Finally generate the latex
 &generate_inputs() if ($latex);

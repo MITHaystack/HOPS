@@ -7,7 +7,7 @@ use strict;             # makes unsafe constructs illegal
 # common controls
 our ($verb,$veryverb,$doth2,%wbs);
 # $outputdir is the directory; $output is the directory/prefix
-our ($outputdir,$output);
+our ($outputdir,$output,$dotdev);
 
 # latex support is conditional on these:
 our $latexfigures;      # generate the figures
@@ -26,16 +26,21 @@ my @latexfiles = ();
 # full caption text, graphics file and nickname, return enough latex
 # to generate the float and the text of the label to reference.
 sub create_figure_float {
-    my ($short,$fullcap,$gname) = @_;
-    my $floater = '';
+    my ($short,$fullcap,$gname,$wm,$hm) = @_;
+    my $pcbar = '%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%';
+    my $ref     = 'fig:' . $short;
+    my $gibber  = 'width='.$wm.'\textwidth';
+    $gibber    .= ',height='.$hm.'\textheight' if ($hm > 0);
+    $gibber    .= ',keepaspectratio';
+    my $floater = $pcbar . "\n";
     $floater .= '\begin{figure}[htbp]' . "\n";
     $floater .= '\captionsetup{width=0.6\linewidth}' . "\n";
     $floater .= '\center{\fbox{%' . "\n";
-    $floater .= '\includegraphics[width=0.7\textwidth]{' . $gname . "}}}\n";
+    $floater .= '\includegraphics['.$gibber.']{' . $gname . "}}}\n";
     $floater .= '\caption[' . $short . ']{' . $fullcap . "}\n";
-    my $ref  .= 'fig:' . $short;
     $floater .= '\label{' . $ref . "}\n";
     $floater .= '\end{figure}' . "\n";
+    $floater .= $pcbar . "\n";
     return($ref, $floater);
 }
 
@@ -51,7 +56,7 @@ sub latex_flows {
     $arg = $flowcharterargs;
     $arg =~ s/OUTPUT/$output/;
     $arg =~ s/NICK/$nick/;
-    $arg =~ s/DOTDEV/png/;
+    $arg =~ s/DOTDEV/$dotdev/;
     @args = split(/ /,$arg);
     unshift(@args, "./$flowcharter");
     print FLO "% figure for flow (Gantt) chart for $nick\n";
@@ -59,10 +64,10 @@ sub latex_flows {
     $rc = system(@args);
     print FLO "% via system(" . join(',',@args) . ") = $rc.\n";
     $gname = "$output-$nick-flo";
-    if (-f $gname . ".png") {
+    if (-f $gname . ".$dotdev") {
         $captext = "This is a flow or Gantt chart representing the work\n";
-        $captext .= "to be carried out in this $wbs{$key}{'type'}.\n";
-        ($ref,$fig) = &create_figure_float($nick,$captext,$gname);
+        $captext .= "to be carried out in this $wbs{$key}{'type'}.";
+        ($ref,$fig) = &create_figure_float($nick,$captext,$gname,0.9,0.0);
         print FLO $fig;
     } else {
         $ref = 'fig:failed-flow' . $nick;
@@ -78,6 +83,7 @@ sub latex_flows {
 # include the generated figure graphic in a figure float with caption
 sub latex_figure {
     my ($key,$nick,$legal,$type) = @_;
+    my ($ref,$fig,$captext,$gname);
     my $full = $wbs{$key}{'domain'};
     $full .= ' : ' . $wbs{$key}{'thing'};
     $full .= ' : ' . $wbs{$key}{'task'};
@@ -86,10 +92,18 @@ sub latex_figure {
     push(@latexfiles, "$legal-fig.tex");
     print FIG "% figure for $nick\n";
     print FIG "% $full\n";
-    print FIG "\\FIXME[figure for $nick would go here]\n";
+    $gname = "$output-$nick";
+    if (-f $gname . ".$dotdev") {
+        $captext = "This is the \\ac{TBM} diagram for $type $nick.";
+        ($ref,$fig) = &create_figure_float($nick,$captext,$gname,0.9,0.9);
+        print FIG $fig;
+    } else {
+        print FIG "\\FIXME[figure for $nick would go here]\n";
+    }
     print FIG "\n% eof\n";
     close(FIG);
-    return("Intro to figure for $nick\n");
+    return("The \\ac{TBM} diagram for $type $nick is shown in\n" .
+           "Fig.~\\ref{$ref}.\n");
 }
 
 # tasks get task tabular details
