@@ -12,6 +12,7 @@ my %opts;
 $opts{'b'} = 'sw_task_bubbles.pl';
 $opts{'c'} = 'sw_task_config.pl';
 $opts{'d'} = 'png';
+$opts{'f'} = 'sw_task_flowchart.pl';
 $opts{'g'} = 'ALL';
 $opts{'i'} = '-';
 $opts{'l'} = 0;
@@ -21,7 +22,8 @@ $opts{'s'} = 'uid';
 $opts{'t'} = 0;
 $opts{'v'} = 0;
 $opts{'w'} = 0;
-my $VERSION='post-APP';
+# version 0.0 was APP.
+my $VERSION='Task Bubble Machine, version 0.1 for a new HOPS.';
 my $USAGE="
 Usage: $0 [options]
 
@@ -30,6 +32,7 @@ Usage: $0 [options]
     -b <file>   bubble color file ($opts{'b'})
     -c <file>   configuration file ($opts{'c'})
     -d <type>   dot graph output type ($opts{'d'})
+    -f <file>   flowchart generator file ($opts{'f'})
     -g <dom>    list of domains to graph ($opts{'g'})
     -i <file>   input sw task file ($opts{'i'})
     -l          generate latex ($opts{'l'})
@@ -47,6 +50,8 @@ Usage: $0 [options]
   choices on -r are: none,all,sum,what,help
   choices on -s are: uid,begin, or one of the task keywords
   the -l flag turns on latex figures and tables in the output directory
+  the -f file then provides a script for externally generated figures
+  (e.g. gantt charts, &c.)
 
   a calculated version (*.new) is output when verbose.
   a copy of the input (*.txt) is output when very verbose.
@@ -66,13 +71,14 @@ Usage: $0 [options]
 
   The -b and -c files exist to allow tuning of default behaviors.
 ";
-# some help
+# some help and arg parsing
 if ( $#ARGV < 0 || $ARGV[0] eq "--help" ) { print "$USAGE"; exit(0); }
 if ( $ARGV[0] eq "--version" ) { print "$VERSION" . "\n"; exit(0); }
 my @args = @ARGV;
 &getopts('b:c:d:g:i:lo:r:s:tvw', \%opts);
 my $config = $opts{'c'};
 my $dtype  = $opts{'d'};
+our $flowcharter = $opts{'f'};
 my $graphs = $opts{'g'};
 my $input  = $opts{'i'};
 my $latex  = $opts{'l'};
