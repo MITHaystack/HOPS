@@ -126,6 +126,10 @@ if ($report eq 'help') {
     &dump_taskage();
     exit 0;
 }
+if ($sort_key eq 'help') {
+    &sort_key_help();
+    exit 0;
+}
 
 # sanity checks
 die "No input file $input\n" if ( ! -s $input );
@@ -166,9 +170,9 @@ print "Working out the timeline\n" if ($verb);
 # allows per-thing or per-domain reporting/graphing
 # for when we get to the make_domain_graphs() calls
 print "Making babies\n" if ($veryverb);
-$nkids = &make_kids_of_things();
+$nkids = &make_kids_of_things(\&by_key);
 print "  added $nkids tasks in things\n" if ($veryverb);
-$nkids = &make_kids_of_domains();
+$nkids = &make_kids_of_domains(\&by_key);
 print "  added $nkids things in domains\n" if ($veryverb);
 
 #

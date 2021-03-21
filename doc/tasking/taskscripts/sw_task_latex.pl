@@ -44,9 +44,9 @@ sub latex_flows {
     if (-f "$output-$nick-flo.png") {
         print FLO "\\FIXME[includegraphics...]\n";
     } else {
-        print FLO "\\FIXME[flow (Gantt) chart for $nick failed]\n";
+        print FLO "\\FIXME[flow (Gantt) chart generation for $nick failed]\n";
     }
-    print FLO "% eof\n";
+    print FLO "\n% eof\n";
     close(FLO);
     return("Some words about the flow (Gantt) chart for $nick\n");
 }
@@ -63,9 +63,9 @@ sub latex_figure {
     print FIG "% figure for $nick\n";
     print FIG "% $full\n";
     print FIG "\\FIXME[figure for $nick would go here]\n";
-    print FIG "% eof\n";
+    print FIG "\n% eof\n";
     close(FIG);
-    return("intro to figure for $nick\n");
+    return("Intro to figure for $nick\n");
 }
 
 # tasks get task tabular details
@@ -79,9 +79,39 @@ sub latex_table_task {
     print TAB "% tabular for $nick\n";
     print TAB "% $full\n";
     print TAB "\\FIXME[tabular for $nick would go here]\n";
-    print TAB "% eof\n";
+    print TAB "\n% eof\n";
     close(TAB);
-    return("intro to task table for $nick\n");
+    return("Intro to task table for $nick\n");
+}
+
+#print TAB "\\FIXME[tabular for $nick would go here]\n";
+# generate tabular text for a domain or thing
+sub tabular_domain_thing {
+    my ($key,$nick,$type,$rs,$kid,$kt,$what,$npbrk) = @_;
+    my @kids = split(/,/,$wbs{$key}{'kids'});
+    $type = $wbs{$key}{'type'};
+    if ($type eq 'domain') { $type = 'thing'; }
+    else                   { $type = 'task'; }
+    $rs = "\\begin{tabbing}\n";
+    $rs .= 'YYYY-MM-DD \=';
+    $rs .= 'xxxxxxxxxxxxxxxxx \=';
+    $rs .= 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx';
+    $rs .= "\\kill\n";
+    $what = 'Task' if ($type eq 'task');
+    $what = 'Thing' if ($type eq 'thing');
+    $rs .= "\\textbf{Start} \\> \\textbf{$what Nickname} ";
+    $rs .= " \\> \\textbf{Full Name}";
+    $rs .= "\\nopagebreak\\\\\n";
+    $rs .= "\\rule{0.90\\textwidth}{\\arrayrulewidth}\\nopagebreak\\\\\n";
+    $npbrk = '\nopagebreak';
+    for $kid (@kids) {
+        $kt = &task_by_nick($kid,'tabular_domain');
+        $rs .= $wbs{$kt}{'start'} . '\>' . $kid . '\>' . $wbs{$kt}{$type};
+        $rs .= $npbrk . "\\\\\n";
+        $npbrk = '';    # force header and first line on same page
+    }
+    $rs .= "\\end{tabbing}\n";
+    return($rs);
 }
 
 # domains or things get tabbings of kids
@@ -94,13 +124,15 @@ sub latex_table_kids {
     push(@latexfiles, "$legal-tab.tex");
     print TAB "% tabular for $nick\n";
     print TAB "% $full\n";
-    print TAB "\\FIXME[tabular for $nick would go here]\n";
-    print TAB "% eof\n";
+    print TAB &tabular_domain_thing($key,$nick);
+    print TAB "\n% eof\n";
     close(TAB);
-    return("intro to task table for thing or domain $nick\n");
+
+    return("The $type $nick is more described in detail in the\n" .
+           "following sections. For reference, here is a short list.\n");
 }
 
-# switch table generator based on type
+# switch the table generator based on type
 sub latex_table {
     my ($key,$nick,$legal,$type) = @_;
     return('') if ($latextables == 0);
@@ -115,13 +147,6 @@ sub latex_table {
 #
 # Generate text and (optionally) figures and tables for the section.
 #
-#my $description;
-#format SECN =
-#  @<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-#$description
-#^<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-#$description
-#.
 sub latex_section {
     my ($key,$nick,$legal,$section,$type,$kidtype) = @_;
     my (@kids,$ks,$figtext,$tabtext,$flotext,$plural,$description);
@@ -166,14 +191,14 @@ sub latex_section {
     }
     $tabtext = &latex_table($key,$nick,$legal,$type);
     print SECN "$tabtext\n";
-    print SECN "% eof\n";
+    print SECN "\n% eof\n";
     close(SECN);
 }
 
 # It is easiest to walk the WBS by uid order, making things and putting
 # them on the list to connect up later into the parts of the output doc
-# every call to latex_section, generates the needed files and adds them
-# to @latexfiles
+# every call to latex_section (with a few sugary words), generates the
+# needed files and adds them to @latexfiles.
 sub generate_lists {
     my ($orderef,$item,$nick,$legal) = (\&by_uid);
     for $item (sort($orderef keys(%wbs))) {
@@ -199,8 +224,7 @@ sub empty_latex_input {
     close(EMPTY);
 }
 
-# this walks the list of files and makes the file to be included
-# in some document template
+# Walk the list of files and generate a series of inclusions
 sub full_latex_input {
     print "Generating Populated Latex Main...\n" if ($verb);
     open(LATEX, ">$outputdir/$latexfile");
@@ -210,7 +234,7 @@ sub full_latex_input {
     for my $lf (@latexfiles) {
         print LATEX "\\input\{$lf\}\n";
     }
-    print LATEX "% eof\n";
+    print LATEX "\n% eof\n";
     close(LATEX);
 }
 
