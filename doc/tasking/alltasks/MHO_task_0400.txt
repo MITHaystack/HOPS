@@ -93,7 +93,7 @@ task   = Update draft of @SpecsDoc
 nick   = SpecsDoc-update
 desc   = Update the @SpecsDoc.  The updates flow from the prototyping
          exercises as well as the steps of building up the infrastructure,
-         build machinery, &c.  More detail here... and perhaps more tasks
+         build machinery, etc.  More detail here... and perhaps more tasks
          listing what is still to be done with it....
 needs  = SpecsDoc-draft,ProtoCode-review
 
@@ -108,7 +108,7 @@ needs  = SpecsDoc-update
 task   = Finalize the @SpecsDoc
 nick   = SpecsDoc-final
 desc   = This marks the completion of @SpecsDoc.  After this documentation
-         is done except for the final set (user manuals, &c).
+         is done except for the final set (user manuals, etc).
 needs  = SpecsDoc-mature
 
 thing  = @SDPlanDoc

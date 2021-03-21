@@ -176,7 +176,7 @@ task   = A review at the end of the project (End of Q15)
 nick   = Meetings-final
 desc   = An midpoint (informal) review.
          After this date, there are two months to clean up the final
-         delivery, documentation, &c.  All of which should be mechanical
+         delivery, documentation, etc.  All of which should be mechanical
          at this point.
 start  = @tQ15E
 stop   = @tQ15E

@@ -46,7 +46,7 @@ file   = MHO_task_0000.txt
 @tSREV  = 2021-02-04    # Meetings-review
 @gcBUB0 = 2021-02-11    # date of initial @tbm import
 #
-@tDRESP = 2021-03-04    # approx date of revised Reqs&comments to SAO
+@tDRESP = 2021-03-04    # approx date of revised Reqs and comments to SAO
 @tDREPO = 2021-03-06    # approx date of working (clean) repo nightly
 @gcBUB1 = 2021-03-14    # date @tbm scripts were functional
 @gcBUB2 = 2021-03-25    # date @tbm generated document is to be done
@@ -93,7 +93,7 @@ file   = MHO_task_0000.txt
 
 ### some common task definitions
 # note that after using these to set default values you can
-# then refine effort &c. with subsequent assignments.
+# then refine effort etc. with subsequent assignments.
 
 # a milestask sets up defaults for all milestones
 tdefs   = milestask

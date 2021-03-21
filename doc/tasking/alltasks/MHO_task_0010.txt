@@ -30,7 +30,7 @@ thing  = Repository related things
 nick   = Repo
 desc   = This covers creation and maintenance of the repository, as
          well as other things that happen at the repository level such
-         as build systems, filesystem refactoring, &c.  It also includes
+         as build systems, filesystem refactoring, etc.  It also includes
          developing the configuration tools to allow configuring any build
          of HOPS4 to cover deployment choices.  (I.e. no PGPLOT, no FFTW3,
          no Ionosphere handling, and so forth.)
@@ -41,7 +41,7 @@ desc   = This covers targeted experiments on how to do various things.
          There is a fuzzy line between this and actual design work for
          specific tasks...but we shall know when the line is crossed.
          This includes prototyping objects, i/o methods, import/export
-         methods, regression test methods, &c.
+         methods, regression test methods, etc.
 
 thing  = Regression test data management
 nick   = TestData
@@ -299,7 +299,7 @@ domain = @VIZ
 thing  = Aedit graphics
 nick   = AeditViz
 desc   = Aedit can make plots and for some of them interact with the user
-         who can click on things and edit the alist or modify the plot, &c.
+         who can click on things and edit the alist or modify the plot, etc.
 
 thing  = Fplot graphics
 nick   = FplotViz
