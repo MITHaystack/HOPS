@@ -298,7 +298,7 @@ sub make_kids_of_things {
 sub make_kids_of_domains {
     my ($orderef,$kv,$nick,$mom,$ctr) = @_;
     $ctr = 0;
-    for $kv (sort($orderef keys(%tasks))) {
+    for $kv (sort($orderef keys(%things))) {
         $nick = $wbs{$kv}{'nick'};
         $mom = $wbs{$kv}{'parent'};
         if ($wbs{$mom}{'kids'} eq '') {

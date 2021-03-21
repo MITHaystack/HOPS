@@ -22,9 +22,26 @@ our ($flowcharter,$flowcharterargs);
 # working variables; every domain or thing gets a file in uid sort order
 my @latexfiles = ();
 
+# a generic figure float generator: given short caption title,
+# full caption text, graphics file and nickname, return enough latex
+# to generate the float and the text of the label to reference.
+sub create_figure_float {
+    my ($short,$fullcap,$gname) = @_;
+    my $floater = '';
+    $floater .= '\begin{figure}[htbp]' . "\n";
+    $floater .= '\captionsetup{width=0.6\linewidth}' . "\n";
+    $floater .= '\center{\fbox{%' . "\n";
+    $floater .= '\includegraphics[width=0.7\textwidth]{' . $gname . "}}}\n";
+    $floater .= '\caption[' . $short . ']{' . $fullcap . "}\n";
+    my $ref  .= 'fig:' . $short;
+    $floater .= '\label{' . $ref . "}\n";
+    $floater .= '\end{figure}' . "\n";
+    return($ref, $floater);
+}
+
 sub latex_flows {
     my ($key,$nick,$legal,$type) = @_;
-    my ($rc,$arg,@args);
+    my ($rc,$arg,$captext,$gname,$ref,$fig,@args);
     my $full = $wbs{$key}{'domain'};
     $full .= ' : ' . $wbs{$key}{'thing'};
     $full .= ' : ' . $wbs{$key}{'task'};
@@ -41,14 +58,21 @@ sub latex_flows {
     print FLO "% $full\n";
     $rc = system(@args);
     print FLO "% via system(" . join(',',@args) . ") = $rc.\n";
-    if (-f "$output-$nick-flo.png") {
-        print FLO "\\FIXME[includegraphics...]\n";
+    $gname = "$output-$nick-flo";
+    if (-f $gname . ".png") {
+        $captext = "This is a flow or Gantt chart representing the work\n";
+        $captext .= "to be carried out in this $wbs{$key}{'type'}.\n";
+        ($ref,$fig) = &create_figure_float($nick,$captext,$gname);
+        print FLO $fig;
     } else {
+        $ref = 'fig:failed-flow' . $nick;
         print FLO "\\FIXME[flow (Gantt) chart generation for $nick failed]\n";
     }
     print FLO "\n% eof\n";
     close(FLO);
-    return("Some words about the flow (Gantt) chart for $nick\n");
+    return("The flow (Gantt) chart for $nick is displayed in\n" .
+           "Fig.~\\ref{$ref}.  Dates are calculated assuming\n" .
+           "one FTE of effort.\n");
 }
 
 # include the generated figure graphic in a figure float with caption
@@ -84,33 +108,38 @@ sub latex_table_task {
     return("Intro to task table for $nick\n");
 }
 
-#print TAB "\\FIXME[tabular for $nick would go here]\n";
 # generate tabular text for a domain or thing
+# start dates for domains are not useful, so we skip that column
 sub tabular_domain_thing {
     my ($key,$nick,$type,$rs,$kid,$kt,$what,$npbrk) = @_;
     my @kids = split(/,/,$wbs{$key}{'kids'});
     $type = $wbs{$key}{'type'};
+    # demote $type to be that of the kids.
     if ($type eq 'domain') { $type = 'thing'; }
     else                   { $type = 'task'; }
-    $rs = "\\begin{tabbing}\n";
-    $rs .= 'YYYY-MM-DD \=';
-    $rs .= 'xxxxxxxxxxxxxxxxx \=';
+    $rs .= '\small' . "\n";
+    $rs .= "\\begin{tabbing}\n";
+    $rs .= 'YYYY-MM-DD \=' if ($type eq 'task');
+    $rs .= 'xxxxxxxxxxxxxxxxxxxxxxxx \=';
     $rs .= 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx';
     $rs .= "\\kill\n";
-    $what = 'Task' if ($type eq 'task');
     $what = 'Thing' if ($type eq 'thing');
-    $rs .= "\\textbf{Start} \\> \\textbf{$what Nickname} ";
+    $what = 'Task' if ($type eq 'task');
+    $rs .= "\\textbf{Start} \\>" if ($type eq 'task');
+    $rs .= "\\textbf{$what Nickname} ";
     $rs .= " \\> \\textbf{Full Name}";
     $rs .= "\\nopagebreak\\\\\n";
     $rs .= "\\rule{0.90\\textwidth}{\\arrayrulewidth}\\nopagebreak\\\\\n";
     $npbrk = '\nopagebreak';
     for $kid (@kids) {
         $kt = &task_by_nick($kid,'tabular_domain');
-        $rs .= $wbs{$kt}{'start'} . '\>' . $kid . '\>' . $wbs{$kt}{$type};
+        $rs .= $wbs{$kt}{'start'} . '\>' if ($type eq 'task');
+        $rs .= $kid . '\>' . $wbs{$kt}{$type};
         $rs .= $npbrk . "\\\\\n";
         $npbrk = '';    # force header and first line on same page
     }
     $rs .= "\\end{tabbing}\n";
+    $rs .= '\normalsize' . "\n";
     return($rs);
 }
 
@@ -122,12 +151,11 @@ sub latex_table_kids {
     $full .= ' : ' . $wbs{$key}{'task'};
     open(TAB, ">$outputdir/$legal-tab.tex");
     push(@latexfiles, "$legal-tab.tex");
-    print TAB "% tabular for $nick\n";
+    print TAB "% tabular for $type $nick\n";
     print TAB "% $full\n";
     print TAB &tabular_domain_thing($key,$nick);
     print TAB "\n% eof\n";
     close(TAB);
-
     return("The $type $nick is more described in detail in the\n" .
            "following sections. For reference, here is a short list.\n");
 }
@@ -146,6 +174,7 @@ sub latex_table {
 
 #
 # Generate text and (optionally) figures and tables for the section.
+# Domains get fresh page and a flush of any pending floats.
 #
 sub latex_section {
     my ($key,$nick,$legal,$section,$type,$kidtype) = @_;
@@ -153,6 +182,7 @@ sub latex_section {
     open(SECN, ">$outputdir/$legal.tex");
     push(@latexfiles, $legal);
     print SECN "% Material for $section on $nick\n";
+    print SECN "% clearing floats\n\\clearpage\n" if ($section eq 'section');
     print SECN "\\$section\{$wbs{$key}{$type}\}\n";
     print SECN "This $section covers the $type with nickname ``$nick''\n";
     print SECN "as it was defined beginning with line $wbs{$key}{'line'}\n";
