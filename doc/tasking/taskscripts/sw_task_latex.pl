@@ -119,7 +119,8 @@ sub create_tabular_float {
     $tab .= '\begin{table}' . "\n";
     $tab .= '\small\center{%' . "\n";
 #   $tab .= '\begin{tabular}{|l|p{0.6\textwidth}@{\extracolsep{\fill}}|}'."\n";
-    $tab .= '\begin{tabular}{|l|p{0.6\textwidth}|}'."\n";
+#   $tab .= '\begin{tabular}{|l|p{0.6\textwidth}|}'."\n";
+    $tab .= '\begin{tabular}{|l|l|}}'."\n";
     $tab .= '\hline\\\\' . "\n";
 #   $tab .= '\multicolumn{2}{|c|}{\textbf{'.$wbs{$key}{'task'}.'}}\\'."\n";
 #   $tab .= '\hline\\\\' . "\n";

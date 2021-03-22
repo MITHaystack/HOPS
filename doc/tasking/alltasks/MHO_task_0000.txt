@@ -19,6 +19,8 @@ file   = MHO_task_0000.txt
 @sec    = Section
 @req    = the HOPS4 Requirements document
 @tbm    = Tasking Bubble Machine
+@SVN    = the HOPS3 repo: https://vault.haystack.mit.edu/svn/hops
+@GIT    = the HOPS4 repo: https://github.mit.edu/barrettj/hops-git.git
 
 ### some dates of interest (milestones, @t*)
 

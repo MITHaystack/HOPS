@@ -44,6 +44,19 @@ desc   = This is a milestone to capture the state with a completed set
 needs  = Miles-requirements,CoTestDoc-final,SDPlanDoc-final,SpecsDoc-mature
 allows = Meetings-endQ06
 
+task   = Working HOPS3 in HOPS4
+nick   = Miles-hops3working
+desc   = This milestone captures the state when the HOPS4 repo contains
+         a full, working copy of the HOPS3 "frozen" system.  This satisfies
+         the geodetic commitment to NASA, and also provides legacy code for
+         regression testing.  In addition, from this point, the vendor
+         branch distribution to DiFX no longer requires the SVN repo.
+needs  = Fourfit3Review-milestone,ImportA3-milestone,
+         ImportAx-milestone,ImportEx-done,ImportSc-done
+#needs = last Fourfit3Review task, last ImportA3, last Import Ax,
+#        last ImportEx, last ImportSc
+allows = Meetings-internal
+
 task   = Declare the project finished
 nick   = Miles-finish
 desc   = official completion date for project

@@ -7,7 +7,7 @@ task   = Import Alist
 nick   = ImportA3-Alist
 @ctask
 desc   = import alist
-#needs  = Repo-init
+needs  = Miles-repo
 
 task   = Import Adump
 nick   = ImportA3-Adump
@@ -18,19 +18,35 @@ task   = Import Aedit
 nick   = ImportA3-Aedit
 desc   = import aedit ...
 needs  = ImportA3-Adump
-allows = Meetings-internal
 
+task   = A3 Family is done
+nick   = ImportA3-milestone
+@milestask
+desc   = This marks the completion of the the basic A-list tools.
+needs  = ImportA3-Aedit
 
 thing  = @ImportAx
 
 task   = Import Average
 nick   = ImportAx-Average
 desc   = import average ...
+needs  = Miles-repo
 
 task   = Import Fringex
 nick   = ImportAx-Fringex
 desc   = import fringex ...
 needs  = ImportAx-Average
-allows = Meetings-internal
+
+task   = Import Search
+nick   = ImportAx-Search
+desc   = import search ...
+needs  = ImportAx-Fringex
+
+task   = Average and Fringex done
+nick   = ImportAx-milestone
+@milestask
+desc   = This marks the integration of HOPS3 Average and Fringex completion
+needs  = ImportAx-Search
+
 
 # eof

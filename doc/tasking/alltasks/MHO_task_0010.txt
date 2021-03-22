@@ -276,6 +276,15 @@ desc   = For testing and possibly export to mk4, there needs to be a method
          direction as well.  The exchange with mk4 need not support the
          new features of HOPS4 that are incompatible with HOPS3.
 
+thing  = Vendor Branch to DiFX
+nick   = DifxVendor
+desc   = HOPS3 has traditionally been provided to the DiFX community by
+         a so-called "vendor branch", which is a pruned copy of the version
+         of HOPS3 when it hits a release point (and presumably has undergone
+         some pre-release testing).  The HOPS3-process is documented in the
+         notes file referenenced
+notes  = @SVN/trunk/README.vendor.txt
+
 
 # CALI  Calibration routine development
 domain = @CALI
