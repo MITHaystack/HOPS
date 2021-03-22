@@ -257,6 +257,41 @@ sub canonicalize_items {
 }
 
 #
+# This is a post-parsing step to clean-up simply typographical things
+# that can create chaos later.  This routine returns nonzero if it finds
+# something it cannot quietly fix.  Certain continue items (needs/allows)
+# may end up with spaces...which are bad news in the lists.
+#
+# This is also a place to correct for the 10 characters latex cares about:
+#   # $ % & _ { } ~ ^ \
+# and the input should only contain a-z A-Z 0-9 and punctuations
+#   . : ; , ? ! ` ' ( ) [ ] - / * @
+# (although maybe unicode is more acceptable now?)
+#
+sub post_parser_cleanup {
+    my ($later);
+    for my $task (keys(%wbs)) {
+        # ignore things later fixed by canonicalize_items
+        $later = 0;
+        for my $key ('needs','allows') {
+            if ($wbs{$task}{$key} =~ m/.*input:.*/ or
+                $wbs{$task}{$key} =~ m/.*derived:.*/ or
+                $wbs{$task}{$key} =~ m/.*either:.*/) { $later++; }
+        }
+        if ($later == 0) {
+            if ($wbs{$task}{'needs'} =~ m/\s+/) {
+                $wbs{$task}{'needs'} =~ s/\s+//g;
+                print "Stripped space from $wbs{$task}{'needs'}\n" if ($verb);
+            }
+            if ($wbs{$task}{'allows'} =~ m/\s+/) {
+                $wbs{$task}{'allows'} =~ s/\s+//g;
+                print "Stripped space from $wbs{$task}{'allows'}\n" if ($verb);
+            }
+        }
+    }
+}
+
+#
 # a simple lookup function for use as needed
 #
 sub task_by_nick {

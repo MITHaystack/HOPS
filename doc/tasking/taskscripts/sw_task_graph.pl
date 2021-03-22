@@ -188,8 +188,9 @@ sub preload_attr {
 }
 
 #
-# makes a name a legal identifier for dot -- turn hyphens into
+# Makes a (nick) name a legal identifier for dot -- turn hyphens into
 # underscores, and delete any other offending characters.
+# This turns out to be sufficient for latex files as well.
 #
 sub make_it_legal {
     my $item = $_ = $_[0];

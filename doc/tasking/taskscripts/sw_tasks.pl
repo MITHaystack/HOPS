@@ -146,7 +146,10 @@ printf("The current date is %s = MJD %d\n", $now_date, $now_mjd) if ($verb);
 print "All output appears in '$outputdir'\n";
 
 # scan the input file
+print "Ingesting the input file\n" if ($veryverb);
 ($hdr,$guts,$ftr) = &parse_sw_task_file($input);
+print "Applying some corrections to inputs\n" if ($veryverb);
+die "Problems with input...please fix\n" if (&post_parser_cleanup());
 
 print "Running DOT on things as well as domains.\n" if ($doth2);
 
