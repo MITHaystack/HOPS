@@ -26,9 +26,9 @@ my @latexfiles = ();
 # full caption text, graphics file and nickname, return enough latex
 # to generate the float and the text of the label to reference.
 sub create_figure_float {
-    my ($short,$fullcap,$gname,$wm,$hm) = @_;
+    my ($short,$fullcap,$gname,$wm,$hm,$suf) = @_;
     my $pcbar = '%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%';
-    my $ref     = 'fig:' . $short;
+    my $ref     = 'fig:' . $short . $suf;
     my $gibber  = 'width='.$wm.'\textwidth';
     $gibber    .= ',height='.$hm.'\textheight' if ($hm > 0);
     $gibber    .= ',keepaspectratio';
@@ -67,7 +67,8 @@ sub latex_flows {
     if (-f $gname . ".$dotdev") {
         $captext = "This is a flow or Gantt chart representing the work\n";
         $captext .= "to be carried out in this $wbs{$key}{'type'}.";
-        ($ref,$fig) = &create_figure_float($nick,$captext,$gname,0.9,0.0);
+        ($ref,$fig) =
+            &create_figure_float($nick,$captext,$gname,0.9,0.0,'-flo');
         print FLO $fig;
     } else {
         $ref = 'fig:failed-flow' . $nick;
@@ -95,7 +96,8 @@ sub latex_figure {
     $gname = "$output-$nick";
     if (-f $gname . ".$dotdev") {
         $captext = "This is the \\ac{TBM} diagram for $type $nick.";
-        ($ref,$fig) = &create_figure_float($nick,$captext,$gname,0.9,0.9);
+        ($ref,$fig) =
+            &create_figure_float($nick,$captext,$gname,0.9,0.9,'-dot');
         print FIG $fig;
     } else {
         print FIG "\\FIXME[figure for $nick would go here]\n";
@@ -106,9 +108,37 @@ sub latex_figure {
            "Fig.~\\ref{$ref}.\n");
 }
 
+# generate a floating table for task details
+# print TAB "\\FIXME[tabular for $nick would go here]\n";
+# return the table reference and the latex for the tabular
+sub create_tabular_float {
+    my ($key,$nick) = @_;
+    my $ref = 'tab:' . $nick;
+    my $pcbar = '%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%';
+    my $tab = $pcbar . "\n";
+    $tab .= '\begin{table}' . "\n";
+    $tab .= '\small\center{%' . "\n";
+#   $tab .= '\begin{tabular}{|l|p{0.6\textwidth}@{\extracolsep{\fill}}|}'."\n";
+    $tab .= '\begin{tabular}{|l|p{0.6\textwidth}|}'."\n";
+    $tab .= '\hline\\\\' . "\n";
+#   $tab .= '\multicolumn{2}{|c|}{\textbf{'.$wbs{$key}{'task'}.'}}\\'."\n";
+#   $tab .= '\hline\\\\' . "\n";
+    $tab .= 'Key & Value\\\\' . "\n";
+    $tab .= '\hline\\\\' . "\n";
+    $tab .= 'task &' . $wbs{$key}{'task'} . '\\\\' . "\n";
+    $tab .= '\hline' . "\n";
+    $tab .= '\end{tabular}}' . "\n";
+    $tab .= '\caption{'.$nick.":  ".$wbs{$key}{'task'}."}\n";
+    $tab .= '\label{' . $ref . "}\n";
+    $tab .= '\end{table}' . "\n";
+    $tab .= $pcbar . "\n";
+    return($ref,$tab);
+}
+
 # tasks get task tabular details
 sub latex_table_task {
     my ($key,$nick,$legal,$type) = @_;
+    my ($ref,$tab);
     my $full = $wbs{$key}{'domain'};
     $full .= ' : ' . $wbs{$key}{'thing'};
     $full .= ' : ' . $wbs{$key}{'task'};
@@ -116,10 +146,12 @@ sub latex_table_task {
     push(@latexfiles, "$legal-tab.tex");
     print TAB "% tabular for $nick\n";
     print TAB "% $full\n";
-    print TAB "\\FIXME[tabular for $nick would go here]\n";
+    ($ref,$tab) = &create_tabular_float($key,$nick);
+    print TAB $tab;
     print TAB "\n% eof\n";
     close(TAB);
-    return("Intro to task table for $nick\n");
+    return("Details on this task ($nick) are to be found\n" .
+           "Tab.~\\ref{$ref}.\n");
 }
 
 # generate tabular text for a domain or thing
