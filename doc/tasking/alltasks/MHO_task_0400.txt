@@ -141,7 +141,7 @@ path   = doc/tasking
 
 task   = Import APP bubble system and de-APPify it
 nick   = Tasking-import
-desc   = This task requires Geoff to remember how the sw_task*pl scripts
+desc   = This task requires Geoff to remember how the sw task...pl scripts
          work (as used in APP) and refactor to remove the APP bits and
          then set up a framework for use with HOPS4.
 start  = @gcBUB0

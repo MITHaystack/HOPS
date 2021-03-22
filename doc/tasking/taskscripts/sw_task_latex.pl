@@ -100,6 +100,7 @@ sub latex_figure {
             &create_figure_float($nick,$captext,$gname,0.9,0.9,'-dot');
         print FIG $fig;
     } else {
+        $ref = 'fig:failed-fig' . $nick;
         print FIG "\\FIXME[figure for $nick would go here]\n";
     }
     print FIG "\n% eof\n";
@@ -111,24 +112,36 @@ sub latex_figure {
 # generate a floating table for task details
 # print TAB "\\FIXME[tabular for $nick would go here]\n";
 # return the table reference and the latex for the tabular
+#
+#   $tab .= '\begin{tabular}{|l|p{0.6\textwidth}@{\extracolsep{\fill}}|}'."\n";
+#   $tab .= '\begin{tabular}{|l|p{0.6\textwidth}|}'."\n";
+#   $tab .= '\multicolumn{2}{|c|}{\textbf{'.$wbs{$key}{'task'}.'}}\\'."\n";
 sub create_tabular_float {
-    my ($key,$nick) = @_;
+    my ($key,$nick,$daze,$fref) = @_;
     my $ref = 'tab:' . $nick;
     my $pcbar = '%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%';
     my $tab = $pcbar . "\n";
+    $fref = "\\verb+$wbs{$key}{'file'}:$wbs{$key}{'line'}+";
+    $daze = $wbs{$key}{'days'} . ' days $\times$ ' . $wbs{$key}{'derate'};
     $tab .= '\begin{table}' . "\n";
     $tab .= '\small\center{%' . "\n";
-#   $tab .= '\begin{tabular}{|l|p{0.6\textwidth}@{\extracolsep{\fill}}|}'."\n";
-#   $tab .= '\begin{tabular}{|l|p{0.6\textwidth}|}'."\n";
-    $tab .= '\begin{tabular}{|l|l|}}'."\n";
+    $tab .= '\begin{tabular}{|l|l|}'."\n";
     $tab .= '\hline\\\\' . "\n";
-#   $tab .= '\multicolumn{2}{|c|}{\textbf{'.$wbs{$key}{'task'}.'}}\\'."\n";
-#   $tab .= '\hline\\\\' . "\n";
     $tab .= 'Key & Value\\\\' . "\n";
     $tab .= '\hline\\\\' . "\n";
-    $tab .= 'task &' . $wbs{$key}{'task'} . '\\\\' . "\n";
-    $tab .= '\hline' . "\n";
-    $tab .= '\end{tabular}}' . "\n";
+    $tab .= 'start&' . $wbs{$key}{'start'}. '\\\\' . "\n";
+    $tab .= 'stop &' . $wbs{$key}{'stop'} . '\\\\' . "\n";
+    $tab .= 'code &' . $wbs{$key}{'code'} . '\\\\' . "\n";
+    $tab .= 'path &' . $wbs{$key}{'path'} . '\\\\' . "\n";
+    $tab .= 'pri  &' . $wbs{$key}{'pri'}  . '\\\\' . "\n";
+    $tab .= 'sec  &' . $wbs{$key}{'sec'}  . '\\\\' . "\n";
+    $tab .= 'men  &' . $wbs{$key}{'men'}  . '\\\\' . "\n";
+    $tab .= '\hline\\\\' . "\n";
+    $tab .= 'uid  &' . $wbs{$key}{'uid'}  . '\\\\' . "\n";
+    $tab .= '(ref)&' . $fref              . '\\\\' . "\n";
+    $tab .= '(days)&'. $daze              . '\\\\' . "\n";
+    $tab .= '\hline' . "\n";           # no \\ on last line.
+    $tab .= '\end{tabular}}' . "\n";    # close \center{ above
     $tab .= '\caption{'.$nick.":  ".$wbs{$key}{'task'}."}\n";
     $tab .= '\label{' . $ref . "}\n";
     $tab .= '\end{table}' . "\n";

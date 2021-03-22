@@ -154,6 +154,7 @@ $(TEXPDF).pdf: $(TEXSRC).pdf
 $(TEXSRC).pdf: force
 	@echo final iteration
 	-TEXINPUTS=$(TEXINPUTS) pdflatex $(TEXOPT) $(TEXSRC).tex
+	mv tasks.log tasks-final.log
 
 # see which backend was requested and invoke the appropriate bib agent
 #bibs: force
@@ -168,6 +169,7 @@ $(TEXSRC).pdf: force
 force: fruit $(EXTRA_DIST) texs
 	@echo first iteration
 	-TEXINPUTS=$(TEXINPUTS) pdflatex $(TEXOPT) $(TEXSRC).tex
+	mv tasks.log tasks-force.log
 	touch force
 
 CLEANFILES = $(TEXSRC).* $(TEXPDF).pdf force bibs *.log *-blx.bib \
