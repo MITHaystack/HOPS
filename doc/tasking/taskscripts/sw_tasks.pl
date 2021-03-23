@@ -12,6 +12,7 @@ my %opts;
 $opts{'b'} = 'sw_task_bubbles.pl';
 $opts{'c'} = 'sw_task_config.pl';
 $opts{'d'} = 'png';
+$opts{'f'} = 'sw_task_flowchart.pl';
 $opts{'g'} = 'ALL';
 $opts{'i'} = '-';
 $opts{'l'} = 0;
@@ -21,7 +22,8 @@ $opts{'s'} = 'uid';
 $opts{'t'} = 0;
 $opts{'v'} = 0;
 $opts{'w'} = 0;
-my $VERSION='post-APP';
+# version 0.0 was APP.
+my $VERSION='Task Bubble Machine, version 0.1 for a new HOPS.';
 my $USAGE="
 Usage: $0 [options]
 
@@ -30,6 +32,7 @@ Usage: $0 [options]
     -b <file>   bubble color file ($opts{'b'})
     -c <file>   configuration file ($opts{'c'})
     -d <type>   dot graph output type ($opts{'d'})
+    -f <file>   flowchart generator file ($opts{'f'})
     -g <dom>    list of domains to graph ($opts{'g'})
     -i <file>   input sw task file ($opts{'i'})
     -l          generate latex ($opts{'l'})
@@ -47,6 +50,8 @@ Usage: $0 [options]
   choices on -r are: none,all,sum,what,help
   choices on -s are: uid,begin, or one of the task keywords
   the -l flag turns on latex figures and tables in the output directory
+  the -f file then provides a script for externally generated figures
+  (e.g. gantt charts, &c.)
 
   a calculated version (*.new) is output when verbose.
   a copy of the input (*.txt) is output when very verbose.
@@ -66,13 +71,14 @@ Usage: $0 [options]
 
   The -b and -c files exist to allow tuning of default behaviors.
 ";
-# some help
+# some help and arg parsing
 if ( $#ARGV < 0 || $ARGV[0] eq "--help" ) { print "$USAGE"; exit(0); }
 if ( $ARGV[0] eq "--version" ) { print "$VERSION" . "\n"; exit(0); }
 my @args = @ARGV;
 &getopts('b:c:d:g:i:lo:r:s:tvw', \%opts);
 my $config = $opts{'c'};
-my $dtype  = $opts{'d'};
+our $dotdev  = $opts{'d'};
+our $flowcharter = $opts{'f'};
 my $graphs = $opts{'g'};
 my $input  = $opts{'i'};
 my $latex  = $opts{'l'};
@@ -120,6 +126,10 @@ if ($report eq 'help') {
     &dump_taskage();
     exit 0;
 }
+if ($sort_key eq 'help') {
+    &sort_key_help();
+    exit 0;
+}
 
 # sanity checks
 die "No input file $input\n" if ( ! -s $input );
@@ -136,7 +146,10 @@ printf("The current date is %s = MJD %d\n", $now_date, $now_mjd) if ($verb);
 print "All output appears in '$outputdir'\n";
 
 # scan the input file
+print "Ingesting the input file\n" if ($veryverb);
 ($hdr,$guts,$ftr) = &parse_sw_task_file($input);
+print "Applying some corrections to inputs\n" if ($veryverb);
+die "Problems with input...please fix\n" if (&post_parser_cleanup());
 
 print "Running DOT on things as well as domains.\n" if ($doth2);
 
@@ -160,9 +173,9 @@ print "Working out the timeline\n" if ($verb);
 # allows per-thing or per-domain reporting/graphing
 # for when we get to the make_domain_graphs() calls
 print "Making babies\n" if ($veryverb);
-$nkids = &make_kids_of_things();
+$nkids = &make_kids_of_things(\&by_key);
 print "  added $nkids tasks in things\n" if ($veryverb);
-$nkids = &make_kids_of_domains();
+$nkids = &make_kids_of_domains(\&by_key);
 print "  added $nkids things in domains\n" if ($veryverb);
 
 #
@@ -193,9 +206,9 @@ if ($report ne 'none') {
 #
 if ($graphs eq 'ALL') {
     print "Creating absolutely all graphs\n" if ($verb);
-    &make_the_graph("$output-ALL",$dtype,1,keys(%tasks));
-    &make_domain_graphs($output,$dtype,keys(%domains));
-    &make_domain_graphs($output,$dtype,keys(%things)) if ($doth2);
+    &make_the_graph("$output-ALL",$dotdev,1,keys(%tasks));
+    &make_domain_graphs($output,$dotdev,keys(%domains));
+    &make_domain_graphs($output,$dotdev,keys(%things)) if ($doth2);
 } elsif ($graphs eq 'none') {
     print "No graphs requested\n" if ($verb);
     $makelegend = 0;
@@ -209,13 +222,13 @@ if ($graphs eq 'ALL') {
     }
 } else {
     $graphs = join(',',keys(%domains)) if ($graphs eq 'all');
-    &make_the_graph("$output-ALL",$dtype,$rundot,keys(%tasks));
+    &make_the_graph("$output-ALL",$dotdev,$rundot,keys(%tasks));
     my @d = split(/,/,$graphs);
     print "Creating graphs for " . join(',',@d) . "\n" if ($verb);
-    &make_domain_graphs($output,$dtype,@d);
+    &make_domain_graphs($output,$dotdev,@d);
 }
 # and if requested, a legend
-&make_colorkeys($output,$dtype) if ($makelegend);
+&make_colorkeys($output,$dotdev) if ($makelegend);
 
 # Finally generate the latex
 &generate_inputs() if ($latex);

@@ -41,7 +41,7 @@ our @keywords = (
     'who', 'pri', 'sec', 'men', 'fte',
     'errors', 'shape', 'uid', 'needs', 'start', 'begin', 'days', 'derate',
     'done', 'mjds', 'flex', 'end', 'stop', 'allows',
-    'preps', 'later', 'file',
+    'preps', 'later', 'file', 'fline',
 );
 #
 # list of keywords that will have the last task value entered applied
@@ -101,6 +101,7 @@ my %taskage = (
 
     # for multiple developers
     'file'   => '# input: source file for the component',
+    'fline'  => '# input: line number in source file for the component',
 );
 
 # a hash of task defaults
@@ -117,6 +118,9 @@ my $current_item = '';
 my $current_file = 'no-such-file.txt';
 my ($domcntr,$thgcntr,$tskcntr) = (1,1,1);
 my %lastvalues = ();
+
+# line number of input at file= input
+my $current_fline = 0;
 
 #
 # This is a function to print out the internal keyword help
@@ -209,6 +213,7 @@ sub set_default_object {
     $wbs{$kv}{'line'} = $ln;
     $wbs{$kv}{'nick'} = $kv;
     $wbs{$kv}{'file'} = $current_file;
+    $wbs{$kv}{'fline'} = $ln - $current_fline + 1;
 #   $wbs{$kv}{'uid'} = $uidcntr++;
 #   for my $ii ('domain','thing','task') {
 #       $wbs{$kv}{$ii} = ($ii eq $type) ? 'true' : 'false';
@@ -245,8 +250,8 @@ sub really_parse_one_line {
     #my ($_,$ln,$kv,@bits) = @_;
     #local ($_); my ($ln,$kv,@bits); ($_,$ln,$kv,@bits) = @_;
     local ($_); my ($ln,$kv,@bits); ($_,$ln) = @_;
-    # toss #.* through the end of the line
-    s{#.*}{};
+    # toss (space)#.* through the end of the line
+    s{\s*#.*}{};
     @bits = split(/=/);
     # make sure there is a value, even if empty
     push @bits,'';
@@ -260,7 +265,6 @@ sub really_parse_one_line {
     $current_item = $bits[0];
     $current_item =~ s{^\s*}{};
     $current_item =~ s{\s*$}{};
-
 
     # tdefs handling
     if ( /^tdefs/ ) {
@@ -301,6 +305,7 @@ sub really_parse_one_line {
         $current_task = $kv;
     } elsif ( /^file/ ) {
         $current_file = $kv;
+        $current_fline = $ln;
 
     } elsif ( /^line/ or /^parent/ or /^type/ or /^kids/) {
         ; # derived
@@ -373,6 +378,7 @@ sub continued_item {
     #my ($_,$ln,$strip) = @_;
     local ($_); my ($ln,$strip); ($_,$ln,$strip) = @_;
     $strip = $_;
+    $strip =~ s{\s*#.*}{};
     $strip =~ s/\s*(.*)\s*/$1/;
     $strip = &deabbr($strip);
     if (defined($wbs{$current_task}{$current_item})) {

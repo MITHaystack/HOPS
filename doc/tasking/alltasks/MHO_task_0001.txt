@@ -20,7 +20,7 @@ desc   = Import A-things to HOPS4
 domain = Import HOPS3 Other things to HOPS4
 nick   = OTHER3
 desc   = Import other executables and scripts to HOPS4.
-         This includes average, fringex, search, cofit, &c.
+         This includes average, fringex, search, cofit, etc.
 
 domain = Refactor ffcontrol library
 nick   = FFCONTROL

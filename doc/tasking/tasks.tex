@@ -38,6 +38,9 @@
 % for handling acronyms
 \usepackage[printonlyused]{acronym}
 
+% for control of captions
+\usepackage[font=small]{caption}
+
 % for bibliographies if needed
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
@@ -94,7 +97,7 @@
 \fancyfoot[R]{Page \thepage\ of\ \pageref{page:LastPage}}
 \fancyfoot[L]{\recdate}
 
-\title{ngEHT Tasking for Delivering a new HOPS}
+\title{ngEHT Tasking for Delivery of a new HOPS}
 
 \author{%
 \LARGE John Barrett, Geoff Crew, Dan Hoak and Violet Pfeiffer \\
@@ -142,15 +145,18 @@ should anyone want it.  Not clear why.
 % break document into appropriate portions
 
 \pagebreak
-\input{taskage}
+\input{overview}
 
 \pagebreak
-\addtocounter{section}{1}
-\renewcommand{\refname}{\thesection. References}
-\addcontentsline{toc}{section}{\thesection. References}
-\bibstyle{plainurl}
-\printbibliography
-\label{sec:references}
+\input{taskage}
+
+%\pagebreak
+%\addtocounter{section}{1}
+%\renewcommand{\refname}{\thesection. References}
+%\addcontentsline{toc}{section}{\thesection. References}
+%\bibstyle{plainurl}
+%\printbibliography
+%\label{sec:references}
 
 % if skipappendix-is-true then (nothing) else typeset Appendices
 \ifthenelse{\boolean{skipappendix}}{}{%

@@ -1,4 +1,8 @@
+# this file contains a random list list of things to fix
+
 # TTD:
+#   file line numbers should be in file, not total
+#   Need to sort by dates or uid in some places...
 #   consider using tred (optionally) to apply transitive reduction
 #   make use of attr for node attributes
 #   figure out how to capture and adjust edge attributes

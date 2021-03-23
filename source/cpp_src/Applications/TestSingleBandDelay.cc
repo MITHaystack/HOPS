@@ -232,100 +232,100 @@ int main(int argc, char** argv)
 
 
 
-    #ifdef USE_ROOT
-    //#ifdef DO_NOT_BUILD
-
-    std::cout<<"starting root plotting"<<std::endl;
-    //ROOT stuff for plots
-    TApplication* App = new TApplication("PowerPlot",&argc,argv);
-    TStyle* myStyle = new TStyle("Plain", "Plain");
-    myStyle->SetCanvasBorderMode(0);
-    myStyle->SetPadBorderMode(0);
-    myStyle->SetPadColor(0);
-    myStyle->SetCanvasColor(0);
-    myStyle->SetTitleColor(1);
-    myStyle->SetPalette(1,0);   // nice color scale for z-axis
-    myStyle->SetCanvasBorderMode(0); // gets rid of the stupid raised edge around the canvas
-    myStyle->SetTitleFillColor(0); //turns the default dove-grey background to white
-    myStyle->SetCanvasColor(0);
-    myStyle->SetPadColor(0);
-    myStyle->SetTitleFillColor(0);
-    myStyle->SetStatColor(0); //this one may not work
-    const int NRGBs = 5;
-    const int NCont = 48;
-    double stops[NRGBs] = { 0.00, 0.34, 0.61, 0.84, 1.00 };
-    double red[NRGBs]   = { 0.00, 0.00, 0.87, 1.00, 0.51 };
-    double green[NRGBs] = { 0.00, 0.81, 1.00, 0.20, 0.00 };
-    double blue[NRGBs]  = { 0.51, 1.00, 0.12, 0.00, 0.00 };
-    TColor::CreateGradientColorTable(NRGBs, stops, red, green, blue, NCont);
-    myStyle->SetNumberContours(NCont);
-    myStyle->cd();
-
-
-    TGraph2D* g_amp[ data_dims[CH_POLPROD_AXIS] ];
-    TGraph* g_amp1[ data_dims[CH_POLPROD_AXIS] ];
-    TCanvas* c[data_dims[CH_POLPROD_AXIS] ];
-    std::vector< std::pair<double,double> > max_sbd_loc; max_sbd_loc.resize(4);
-    for(std::size_t pp=0; pp<data_dims[CH_POLPROD_AXIS]; pp++)
-    {
-        std::stringstream ss;
-        ss << pp;
-        c[pp] = new TCanvas(ss.str().c_str(),ss.str().c_str(), 50, 50, 950, 850);
-        c[pp]->SetFillColor(0);
-        c[pp]->SetRightMargin(0.2);
-        g_amp[pp] = new TGraph2D();
-        g_amp1[pp] = new TGraph();
-        std::size_t count = 0;
-
-        double sbd_max = 0;
-        double sbd_max_location = 0;
-
-        for(std::size_t f=0; f<data_dims[CH_FREQ_AXIS]; f++)
-        {
-            std::complex<double> sum(0,0);
-            for(std::size_t t=0; t<data_dims[CH_TIME_AXIS]; t++)
-            {
-                sum += sbd[pp][t][f];
-                g_amp[pp]->SetPoint(count, sbd_axis(f), dr_axis(t), std::abs( sbd[pp][t][f] ) );
-                count++;
-            }
-            g_amp1[pp]->SetPoint(f, sbd_axis(f), std::abs( sum ) );
-
-            if( sbd_max < std::abs( sum ) )
-            {
-                sbd_max = std::abs( sum );
-                sbd_max_location = sbd_axis(f);
-            }
-        }
-
-        max_sbd_loc[pp] = std::make_pair(sbd_max, sbd_max_location);
-
-        std::cout<<"sbd_max amp, loc = "<<sbd_max<<", "<<sbd_max_location<<std::endl;
-
-        c[pp]->cd();
-        g_amp1[pp]->SetMarkerStyle(20);
-        g_amp1[pp]->SetMarkerSize(1);
-        g_amp1[pp]->Draw("APL");
-        //g_amp[pp]->Draw("COLZ");
-        c[pp]->Update();
-    }
-
-
-
-
+    // #ifdef USE_ROOT
+    // //#ifdef DO_NOT_BUILD
+    // 
+    // std::cout<<"starting root plotting"<<std::endl;
+    // //ROOT stuff for plots
+    // TApplication* App = new TApplication("PowerPlot",&argc,argv);
+    // TStyle* myStyle = new TStyle("Plain", "Plain");
+    // myStyle->SetCanvasBorderMode(0);
+    // myStyle->SetPadBorderMode(0);
+    // myStyle->SetPadColor(0);
+    // myStyle->SetCanvasColor(0);
+    // myStyle->SetTitleColor(1);
+    // myStyle->SetPalette(1,0);   // nice color scale for z-axis
+    // myStyle->SetCanvasBorderMode(0); // gets rid of the stupid raised edge around the canvas
+    // myStyle->SetTitleFillColor(0); //turns the default dove-grey background to white
+    // myStyle->SetCanvasColor(0);
+    // myStyle->SetPadColor(0);
+    // myStyle->SetTitleFillColor(0);
+    // myStyle->SetStatColor(0); //this one may not work
+    // const int NRGBs = 5;
+    // const int NCont = 48;
+    // double stops[NRGBs] = { 0.00, 0.34, 0.61, 0.84, 1.00 };
+    // double red[NRGBs]   = { 0.00, 0.00, 0.87, 1.00, 0.51 };
+    // double green[NRGBs] = { 0.00, 0.81, 1.00, 0.20, 0.00 };
+    // double blue[NRGBs]  = { 0.51, 1.00, 0.12, 0.00, 0.00 };
+    // TColor::CreateGradientColorTable(NRGBs, stops, red, green, blue, NCont);
+    // myStyle->SetNumberContours(NCont);
+    // myStyle->cd();
+    // 
+    // 
+    // TGraph2D* g_amp[ data_dims[CH_POLPROD_AXIS] ];
+    // TGraph* g_amp1[ data_dims[CH_POLPROD_AXIS] ];
+    // TCanvas* c[data_dims[CH_POLPROD_AXIS] ];
+    // std::vector< std::pair<double,double> > max_sbd_loc; max_sbd_loc.resize(4);
     // for(std::size_t pp=0; pp<data_dims[CH_POLPROD_AXIS]; pp++)
     // {
+    //     std::stringstream ss;
+    //     ss << pp;
+    //     c[pp] = new TCanvas(ss.str().c_str(),ss.str().c_str(), 50, 50, 950, 850);
+    //     c[pp]->SetFillColor(0);
+    //     c[pp]->SetRightMargin(0.2);
+    //     g_amp[pp] = new TGraph2D();
+    //     g_amp1[pp] = new TGraph();
+    //     std::size_t count = 0;
+    // 
+    //     double sbd_max = 0;
+    //     double sbd_max_location = 0;
+    // 
+    //     for(std::size_t f=0; f<data_dims[CH_FREQ_AXIS]; f++)
+    //     {
+    //         std::complex<double> sum(0,0);
+    //         for(std::size_t t=0; t<data_dims[CH_TIME_AXIS]; t++)
+    //         {
+    //             sum += sbd[pp][t][f];
+    //             g_amp[pp]->SetPoint(count, sbd_axis(f), dr_axis(t), std::abs( sbd[pp][t][f] ) );
+    //             count++;
+    //         }
+    //         g_amp1[pp]->SetPoint(f, sbd_axis(f), std::abs( sum ) );
+    // 
+    //         if( sbd_max < std::abs( sum ) )
+    //         {
+    //             sbd_max = std::abs( sum );
+    //             sbd_max_location = sbd_axis(f);
+    //         }
+    //     }
+    // 
+    //     max_sbd_loc[pp] = std::make_pair(sbd_max, sbd_max_location);
+    // 
+    //     std::cout<<"sbd_max amp, loc = "<<sbd_max<<", "<<sbd_max_location<<std::endl;
+    // 
     //     c[pp]->cd();
-    //     g_amp[pp]->SetMarkerStyle(20);
-    //     g_amp[pp]->SetMarkerSize(1);
-    //     g_amp[pp]->Draw("APL");
+    //     g_amp1[pp]->SetMarkerStyle(20);
+    //     g_amp1[pp]->SetMarkerSize(1);
+    //     g_amp1[pp]->Draw("APL");
+    //     //g_amp[pp]->Draw("COLZ");
     //     c[pp]->Update();
     // }
-
-    App->Run();
-
-    //#endif
-    #endif //USE_ROOT
+    // 
+    // 
+    // 
+    // 
+    // // for(std::size_t pp=0; pp<data_dims[CH_POLPROD_AXIS]; pp++)
+    // // {
+    // //     c[pp]->cd();
+    // //     g_amp[pp]->SetMarkerStyle(20);
+    // //     g_amp[pp]->SetMarkerSize(1);
+    // //     g_amp[pp]->Draw("APL");
+    // //     c[pp]->Update();
+    // // }
+    // 
+    // App->Run();
+    // 
+    // //#endif
+    // #endif //USE_ROOT
 
 
 

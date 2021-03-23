@@ -27,18 +27,31 @@ allows = Manuals-fourfit
 
 thing  = @ReqsDoc
 task   = Create first draft of @ReqsDoc
+nick   = ReqsDoc-start
+@etask
+desc   = Draft the requirements document
+#start  = @tDSTRT
+#days  = 365
+days   = 10
+needs  = Meetings-refining
+
+thing  = @ReqsDoc
+task   = Continued drafting of @ReqsDoc
 nick   = ReqsDoc-draft
 @etask
 desc   = Draft the requirements document
 #start  = @tDSTRT
 #days  = 365
-needs  = Meetings-refining
+days   = 20
+needs  = ReqsDoc-start
 
 task   = Submit first draft of @ReqsDoc to the ngEHT
 nick   = ReqsDoc-submit
 @etask
 desc   = Submit draft to ngEHT for feedback
 needs  = ReqsDoc-draft
+start  = @tREQS
+stop   = @tREQS
 #allows = Meetings-review
 
 task   = Revise first draft of @ReqsDoc
@@ -54,7 +67,7 @@ task   = Create first draft of @CoTestDoc
 nick   = CoTestDoc-draft
 @etask
 desc   = Begin drafting the coverage and testing document
-needs  = ReqsDoc-draft
+needs  = ReqsDoc-start
 
 task   = Submit first draft of @CoTestDoc
 nick   = CoTestDoc-submit
@@ -67,13 +80,16 @@ nick   = CoTestDoc-revise
 desc   = Revise the testing document based on feedback at the
          review (none, essentially) and the maturity of other
          documents and the state of the repository
-needs  = CoTestDoc-submit,SDPlanDoc-draft
+days   = 5
+#needs  = CoTestDoc-submit,SDPlanDoc-draft
+needs  = Meetings-review
 
 task   = Finalize @CoTestDoc
 nick   = CoTestDoc-final
 desc   = Final steps to complete the document and call it done.
          The remainder of coverage and test information is in
          the automatically built reports.
+days   = 5
 needs  = CoTestDoc-revise
 #allows = Miles-docsfinal
 
@@ -93,7 +109,7 @@ task   = Update draft of @SpecsDoc
 nick   = SpecsDoc-update
 desc   = Update the @SpecsDoc.  The updates flow from the prototyping
          exercises as well as the steps of building up the infrastructure,
-         build machinery, &c.  More detail here... and perhaps more tasks
+         build machinery, etc.  More detail here... and perhaps more tasks
          listing what is still to be done with it....
 needs  = SpecsDoc-draft,ProtoCode-review
 
@@ -108,7 +124,7 @@ needs  = SpecsDoc-update
 task   = Finalize the @SpecsDoc
 nick   = SpecsDoc-final
 desc   = This marks the completion of @SpecsDoc.  After this documentation
-         is done except for the final set (user manuals, &c).
+         is done except for the final set (user manuals, etc).
 needs  = SpecsDoc-mature
 
 thing  = @SDPlanDoc
@@ -117,7 +133,8 @@ task   = Create first draft of @SDPlanDoc
 nick   = SDPlanDoc-draft
 @etask
 desc   = Write @SDPlanDoc
-needs  = Meetings-review
+#needs  = Meetings-review
+needs  = Tasking-populate
 
 task   = Update first draft of @SDPlanDoc
 nick   = SDPlanDoc-update
@@ -141,7 +158,7 @@ path   = doc/tasking
 
 task   = Import APP bubble system and de-APPify it
 nick   = Tasking-import
-desc   = This task requires Geoff to remember how the sw_task*pl scripts
+desc   = This task requires Geoff to remember how the sw task...pl scripts
          work (as used in APP) and refactor to remove the APP bits and
          then set up a framework for use with HOPS4.
 start  = @gcBUB0
@@ -161,6 +178,7 @@ desc   = This will end up as an on-going task, but we need to get the ball
          required.
 path   = doc/tasking/allscripts
 who    = @gc,@dh,@vp
+derate = 1
 needs  = Tasking-import
 
 task   = Complete the bubble machinery
@@ -172,6 +190,7 @@ desc   = This task covers the PERL work needed to finish enough of the bubble
          development items left, that are captured in some tasks that have no
          end-point.  (These tasks are perhaps not required.)
 who    = @gc
+derate = 1
 stop   = @gcBUB1
 needs  = Tasking-populate
 
@@ -185,6 +204,7 @@ desc   = This requires generating a few words of tex and the the scripting to
          tables, and finally gantt charts (as generated in by the script made
          in Tasking-gantt).  These will require minimal captions.
 who    = @gc
+derate = 1
 needs  = Tasking-bubbles
 
 task   = Build PlantUML gantt charts from the things
@@ -205,6 +225,8 @@ nick   = Tasking-final
 desc   = Final cleanup of the document.  At this point, the automated
          builds should keep it up to date into an "as built" record.
 who    = @gc
+derate = 1
+stop   = @gcBUB2
 needs  = Tasking-draftdoc
 
 task   = Additional @Tasking Functionality
@@ -218,9 +240,10 @@ needs  = Tasking-final
 task   = Maintenance of @Tasking Information
 nick   = Tasking-update0
 @etask
-desc   = This task captures the next round of updates.  As subsequent
-         updates are made and closed out, new tasks to capture current
-         changes should be made.
+desc   = This task captures the next round of updates to content.
+         As subsequent updates are made and closed out, new tasks to
+         capture current changes should be made.  (That is,
+         Tasking-update[n+1] for n = 0, 1, ....)
 who    = @swdev
 needs  = Tasking-final
 

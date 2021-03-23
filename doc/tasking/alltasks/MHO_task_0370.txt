@@ -45,4 +45,34 @@ desc   = back and forth on some captive samples
 needs  = Mk4AndHops-tomk4,Mk4AndHops-tohops4
 allows = Margin-dunno
 
+
+thing  = @DifxVendor
+
+task   = Create staging nightly build area
+nick   = DifxVendor-staging
+@shtask
+desc   = Repositories are usually owned by one person (in contrast
+         to filesystems that--through group permissions--may be handled
+         by many).  To simply replicate the HOPS3 model, it is sufficient
+         for all HOPS4 developers to have a nightly build area that is a
+         relatively pristine place to stage a DiFX version vend from.
+needs  = Miles-hops3working
+
+task   = Adjust DiFX repository
+nick   = DifxVendor-DiFXrepodesign
+desc   = The DiFX team is in the midst of migration from SVN to GIT.
+         This will most likely be concluded prior to the need to develop
+         a vending process.  Assuming so, the HOPS3 instructions need to
+         be adjusted (svn becomes git for DiFX) and decisions on how this
+         is to be done should be made.  Note that the SVN to GIT migration
+         of DiFX is an external dependency.  (No date yet.)
+needs  = DifxVendor-staging
+
+task   = Develop vending machine
+nick   = DifxVendor-vending
+desc   = Once the design of the DiFX target vendor branch is complete,
+         this task is to create the procedure and/or scripts to make it
+         do-able in a hour or so.
+needs  = DifxVendor-DiFXrepodesign
+
 # eof

@@ -58,6 +58,21 @@ sub report_on {
     return(@simple);
 }
 
+# provide help
+sub sort_key_help {
+    print "\n";
+    print "There are several ways to sort some orders:\n";
+    print "\n";
+    print "  uid    uses an internal (unique) uid which is generated\n";
+    print "         as things are found in the input.  This does\n";
+    print "         respect the domain/thing/task hierarchy.\n";
+    print "  begin  uses the start time (MJD, numerically)\n";
+    print "\n";
+    print "Otherwise, you can do an perl sort (alphabetically) on\n";
+    print "any of the keys.  The default is to use the uid.\n";
+    print "\n";
+}
+
 #
 # a comparison on %wbs for sort
 #
@@ -241,6 +256,62 @@ sub canonicalize_items {
     close(CANON) if ($veryverb);
 }
 
+# This is also a place to correct for the 10 characters latex cares about:
+#   # $ % & _ { } ~ ^ \
+# and the input should only contain a-z A-Z 0-9 and punctuations
+#   . : ; , ? ! ` ' ( ) [ ] - / * @
+# (although maybe unicode is more acceptable now?)
+#
+sub latex_cleanup {
+    my ($task,$key,$message,$nick,$line,$file,$nasty) = @_;
+    if ($wbs{$task}{$key} =~ m/[\$\%\&\_\}\}\~\^\\]/) {
+        $nick = $wbs{$task}{'nick'};
+        $line = $wbs{$task}{'line'};
+        $file = $wbs{$task}{'file'};
+        $nasty = $wbs{$task}{$key};
+        $nasty =~ s/[a-zA-Z0-9]+//g;
+        $nasty =~ s/\s+//g;
+        $nasty =~ s/[.:;,=\$\]\[\(\)\-\+]+//g;
+        $message = "\nYou have one or more illegal characters ";
+        $message.= "{$nasty} in\n(nickname) $nick defined in\n";
+        $message.= "$file near line $line.\n\n";
+        print "$message";
+        die "Stopping now so you can fix it.";
+    }
+}
+
+#
+# This is a post-parsing step to clean-up simply typographical things
+# that can create chaos later.  This routine returns nonzero if it finds
+# something it cannot quietly fix.  Certain continue items (needs/allows)
+# may end up with spaces...which are bad news in the lists.
+#
+sub post_parser_cleanup {
+    my ($later);
+    for my $task (keys(%wbs)) {
+        # ignore things later fixed by canonicalize_items
+        $later = 0;
+        for my $key ('needs','allows') {
+            if ($wbs{$task}{$key} =~ m/.*input:.*/ or
+                $wbs{$task}{$key} =~ m/.*derived:.*/ or
+                $wbs{$task}{$key} =~ m/.*either:.*/) { $later++; }
+        }
+        if ($later == 0) {
+            if ($wbs{$task}{'needs'} =~ m/\s+/) {
+                $wbs{$task}{'needs'} =~ s/\s+//g;
+                print " Stripped space in $wbs{$task}{'needs'}\n" if ($verb);
+            }
+            if ($wbs{$task}{'allows'} =~ m/\s+/) {
+                $wbs{$task}{'allows'} =~ s/\s+//g;
+                print " Stripped space in $wbs{$task}{'allows'}\n" if ($verb);
+            }
+        }
+        for my $key ('desc') {
+            &latex_cleanup($task,$key);
+        }
+    }
+}
+
 #
 # a simple lookup function for use as needed
 #
@@ -262,11 +333,13 @@ sub task_by_nick {
 #
 # assign kids to every thing and domain,
 # using mom or pop as shorthand for parent wbs element.
+# if we sort by the global order reference here, later
+# processing of the kid list will inherit a natural order.
 #
 sub make_kids_of_things {
-    my ($kv,$nick,$pop,$ctr);
+    my ($orderef,$kv,$nick,$pop,$ctr) = @_;
     $ctr = 0;
-    for $kv (keys(%tasks)) {
+    for $kv (sort($orderef keys(%tasks))) {
         $nick = $wbs{$kv}{'nick'};
         $pop = $wbs{$kv}{'parent'};
         if ($wbs{$pop}{'kids'} eq '') {
@@ -279,9 +352,9 @@ sub make_kids_of_things {
     return($ctr);
 }
 sub make_kids_of_domains {
-    my ($kv,$nick,$mom,$ctr);
+    my ($orderef,$kv,$nick,$mom,$ctr) = @_;
     $ctr = 0;
-    for $kv (keys(%things)) {
+    for $kv (sort($orderef keys(%things))) {
         $nick = $wbs{$kv}{'nick'};
         $mom = $wbs{$kv}{'parent'};
         if ($wbs{$mom}{'kids'} eq '') {

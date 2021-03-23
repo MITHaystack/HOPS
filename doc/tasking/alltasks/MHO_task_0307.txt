@@ -1,17 +1,33 @@
 file   = MHO_task_0307.txt
 domain = @OTHER3
 
+
 thing  = @ImportEx
 task   = Identify and import other HOPS3 Executables
 nick   = ImportEx-import
 @ctask
-desc   = to be filled out ...
-allows = Meetings-internal
+desc   = This includes things such as cofit.  Compiling the list is TBD.
+needs  = Miles-repo
+
+task   = Done with other HOPS3 Executables
+nick   = ImportEx-done
+@milestask
+desc   = Marks the end of HOPS3 executable imports.
+needs  = ImportEx-import
+
 
 thing  = @ImportSc
 task   = Identify and import other HOPS3 Scripts
-nick   = ImportSc-scripts
-desc   = to be filled out ...
-allows = Meetings-internal
+@pltask
+nick   = ImportSc-import
+desc   = This includes things such as compare baselines.  Compiling the
+         list is TBD.
+needs  = Miles-repo
+
+task   = Done with other HOPS3 Scripts
+nick   = ImportSc-done
+@milestask
+desc   = Marks the end of HOPS3 script imports.
+needs  = ImportSc-import
 
 # eof
