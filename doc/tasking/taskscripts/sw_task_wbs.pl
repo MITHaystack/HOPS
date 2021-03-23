@@ -256,17 +256,35 @@ sub canonicalize_items {
     close(CANON) if ($veryverb);
 }
 
-#
-# This is a post-parsing step to clean-up simply typographical things
-# that can create chaos later.  This routine returns nonzero if it finds
-# something it cannot quietly fix.  Certain continue items (needs/allows)
-# may end up with spaces...which are bad news in the lists.
-#
 # This is also a place to correct for the 10 characters latex cares about:
 #   # $ % & _ { } ~ ^ \
 # and the input should only contain a-z A-Z 0-9 and punctuations
 #   . : ; , ? ! ` ' ( ) [ ] - / * @
 # (although maybe unicode is more acceptable now?)
+#
+sub latex_cleanup {
+    my ($task,$key,$message,$nick,$line,$file,$nasty) = @_;
+    if ($wbs{$task}{$key} =~ m/[\$\%\&\_\}\}\~\^\\]/) {
+        $nick = $wbs{$task}{'nick'};
+        $line = $wbs{$task}{'line'};
+        $file = $wbs{$task}{'file'};
+        $nasty = $wbs{$task}{$key};
+        $nasty =~ s/[a-zA-Z0-9]+//g;
+        $nasty =~ s/\s+//g;
+        $nasty =~ s/[.:;,=\$\]\[\(\)\-\+]+//g;
+        $message = "\nYou have one or more illegal characters ";
+        $message.= "{$nasty} in\n(nickname) $nick defined in\n";
+        $message.= "$file near line $line.\n\n";
+        print "$message";
+        die "Stopping now so you can fix it.";
+    }
+}
+
+#
+# This is a post-parsing step to clean-up simply typographical things
+# that can create chaos later.  This routine returns nonzero if it finds
+# something it cannot quietly fix.  Certain continue items (needs/allows)
+# may end up with spaces...which are bad news in the lists.
 #
 sub post_parser_cleanup {
     my ($later);
@@ -281,12 +299,15 @@ sub post_parser_cleanup {
         if ($later == 0) {
             if ($wbs{$task}{'needs'} =~ m/\s+/) {
                 $wbs{$task}{'needs'} =~ s/\s+//g;
-                print "Stripped space from $wbs{$task}{'needs'}\n" if ($verb);
+                print " Stripped space in $wbs{$task}{'needs'}\n" if ($verb);
             }
             if ($wbs{$task}{'allows'} =~ m/\s+/) {
                 $wbs{$task}{'allows'} =~ s/\s+//g;
-                print "Stripped space from $wbs{$task}{'allows'}\n" if ($verb);
+                print " Stripped space in $wbs{$task}{'allows'}\n" if ($verb);
             }
+        }
+        for my $key ('desc') {
+            &latex_cleanup($task,$key);
         }
     }
 }

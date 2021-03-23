@@ -121,8 +121,9 @@ sub create_tabular_float {
     my $ref = 'tab:' . $nick;
     my $pcbar = '%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%';
     my $tab = $pcbar . "\n";
-    $fref = "\\verb+$wbs{$key}{'file'}:$wbs{$key}{'line'}+";
-    $daze = $wbs{$key}{'days'} . ' days $\times$ ' . $wbs{$key}{'derate'};
+    $fref = "\\verb+$wbs{$key}{'file'}:line $wbs{$key}{'fline'}+";
+    $daze = $wbs{$key}{'days'} . ' days $\times$ ';
+    $daze .= $wbs{$key}{'derate'} . '(derate)';
     $tab .= '\begin{table}' . "\n";
     $tab .= '\captionsetup{width=0.9\linewidth}' . "\n";
     $tab .= '\small\center{%' . "\n";
@@ -148,7 +149,8 @@ sub create_tabular_float {
     $tab .= '\hline' . "\n";
     $tab .= '\end{tabular}}' . "\n";    # close \center{ above
     $tab .= '\caption['.$nick."]{\n";
-    $tab .= $wbs{$key}{'desc'};
+#   $tab .= $wbs{$key}{'desc'};
+    $tab .= $wbs{$key}{'task'};
     $tab .= '}\label{' . $ref . "}\n";
     $tab .= '\end{table}' . "\n";
     $tab .= $pcbar . "\n";
@@ -252,7 +254,7 @@ sub latex_section {
     print SECN "\\$section\{$wbs{$key}{$type}\}\n";
     print SECN "This $section covers the $type with nickname ``$nick''\n";
     print SECN "as it was defined beginning with line $wbs{$key}{'line'}\n";
-    print SECN "of the input file.\n";
+    print SECN "of the concatenated input file.\n";
     if ($kidtype ne '') {
         @kids = split(/,/,$wbs{$key}{'kids'});
         if ($#kids > 0) {
@@ -270,9 +272,9 @@ sub latex_section {
         }
         print SECN "These $kidtype$plural will be described\n";
         print SECN "in subsequent sub\{$section\}$plural.\n";
-        print SECN "The general description of the work is as follows:\n";
+        print SECN "The general description of the work follows.\n";
     } else {
-        print SECN "This $section covers the work of a task as follows:\n";
+        print SECN "This $section covers the work of the task.\n";
     }
     $description = $wbs{$key}{'desc'};
     print SECN '%desc' . "\n\\textit\{" . $description . ".\}\n";

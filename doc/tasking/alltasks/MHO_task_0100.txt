@@ -31,8 +31,8 @@ stop   = @DREPO
 task   = Now have all the requirements
 nick   = Miles-requirements
 desc   = when the requirements are needed for review
-start  = @tREQS
-stop   = @tREQS
+start  = @tREQS1
+stop   = @tREQS1
 needs  = ReqsDoc-revise
 
 task   = Now have all of the foundational documents
@@ -41,7 +41,8 @@ desc   = This is a milestone to capture the state with a completed set
          of requirements, software development, coverage and test plans.  
          The specifications document need not be complete at this point
          but should have substantial maturity.
-needs  = Miles-requirements,CoTestDoc-final,SDPlanDoc-final,SpecsDoc-mature
+#needs  = Miles-requirements,CoTestDoc-final,SDPlanDoc-final,SpecsDoc-mature
+needs  = CoTestDoc-final,SDPlanDoc-final,SpecsDoc-mature
 allows = Meetings-endQ06
 
 task   = Working HOPS3 in HOPS4
@@ -71,12 +72,14 @@ task   = Post for new hires
 nick   = Meetings-posting
 desc   = hire software developer(s)
 start  = @tJPOST
+days   = 5
 needs  = Miles-start
 who    = @cr
 
 task   = Interview candidates
 nick   = Meetings-interviews
 desc   = no need to expand on this
+days   = 5
 needs  = Meetings-posting
 who    = @cr,@jb,@gc
 
@@ -119,7 +122,7 @@ nick   = Meetings-review
 desc   = The software foundational review
 start  = @tSREV
 stop   = @tSREV
-needs  = ReqsDoc-submit,CoTestDoc-submit,Meetings-refining
+needs  = ReqsDoc-submit,CoTestDoc-submit
 who    = @swdev
 
 task   = Internal progress (End of Q06)
@@ -127,7 +130,7 @@ nick   = Meetings-endQ06
 desc   = end of quarter 06
 start  = @tQ06E
 stop   = @tQ06E
-needs  = Meetings-review
+#needs  = Meetings-review
 
 task   = Internal progress review (End of Q07)
 nick   = Meetings-internal

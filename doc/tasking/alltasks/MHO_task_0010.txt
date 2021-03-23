@@ -341,7 +341,10 @@ desc   = Define the technical details of the HOPS4 project.
 
 thing  = Tasking System
 nick   = Tasking
-desc   = This covers the tasking system, which is captured in a document
+desc   = This covers the tasking system development as well as
+         creating the tasking data which is captured in a document.
+         Once the design is complete, updating the content ingested
+         by the machine is sufficient maintenance to manage the project.
 
 thing  = Software Development Plan
 nick   = SDPlanDoc

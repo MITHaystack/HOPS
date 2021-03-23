@@ -43,15 +43,16 @@ file   = MHO_task_0000.txt
 @tJHIRE = 2020-09-14    # approx date new hires (@dh and @vp) started
 #
 @tDETC  = 2020-12-01    # approx date we started other documents
-@tREQS  = 2020-12-07    # approx date requirements finalized
+@tREQS0 = 2020-12-07    # approx date requirements internally done
 @tDSHRE = 2021-02-02    # approx date we gave Doc Drafts to SAO
 @tSREV  = 2021-02-04    # Meetings-review
 @gcBUB0 = 2021-02-11    # date of initial @tbm import
+@tREQS1 = 2021-02-25    # requirements down to word-smithing
 #
 @tDRESP = 2021-03-04    # approx date of revised Reqs and comments to SAO
 @tDREPO = 2021-03-06    # approx date of working (clean) repo nightly
 @gcBUB1 = 2021-03-14    # date @tbm scripts were functional
-@gcBUB2 = 2021-03-25    # date @tbm generated document is to be done
+@gcBUB2 = 2021-03-23    # date @tbm generated document is done
 # --- now ---
 # end of 2020 is end of Q05 on the original clock, so
 # rounding out to thursdays, we have
