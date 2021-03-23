@@ -68,7 +68,7 @@ def parse_files(files):
 
 if __name__ == "__main__":
     # Files
-    all_files = glob('./*_0[1-9]*.txt')
+    all_files = glob('./alltasks/*_0[1-9]*.txt')
 
     # Get contentse of file
     data = parse_files(all_files)
