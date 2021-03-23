@@ -88,7 +88,7 @@ nick   = Fourfit3Review-milestone
 @milestask
 desc   = This is a milestone to mark the fourfit application migration to HOPS4.
 #start  = tSREV
-needs  = Fourfit3Review-lessons
+needs  = Fourfit3Review-lessons,ImportAx-Fringex,ImportA3-Aedit
 #allows = Meetings-endQ08
 
 # eof

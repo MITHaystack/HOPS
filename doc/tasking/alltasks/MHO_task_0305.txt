@@ -18,7 +18,7 @@ task   = Import Aedit
 nick   = ImportA3-Aedit
 desc   = import aedit ...
 needs  = ImportA3-Adump
-allows = Meetings-internal
+#allows = Meetings-internal
 
 
 thing  = @ImportAx
@@ -31,6 +31,6 @@ task   = Import Fringex
 nick   = ImportAx-Fringex
 desc   = import fringex ...
 needs  = ImportAx-Average
-allows = Meetings-internal
+#allows = Meetings-internal
 
 # eof
