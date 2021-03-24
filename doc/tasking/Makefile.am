@@ -108,11 +108,11 @@ texs:	$(srcdir)/overview-helper.sh
 #	grep -v 'Available domains to'	>> $@
 #echo '\end{verbatim}'                   >> $@
 
-plantuml-code.uml:
-	$(srcdir)/plantuml-class-transcriber.py $?
+plantuml-code.uml: $(srcdir)/plantuml-class-transcriber.py
+	$(srcdir)/plantuml-class-transcriber.py
 	ls -l $@
 
-plantuml-code.png:
+plantuml-code.png: plantuml-code.uml
 	plantuml $?
 	ls -l $@
 
