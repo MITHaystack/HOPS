@@ -4,7 +4,7 @@ domain = @DOCS
 thing  = @ProjPlan
 task   = Write the pre-award project plan for SAO and NSF.
 nick   = ProjPlan-preaward
-@etask
+#@etask
 desc   = Write and submit the initial pre-award plan.
          This document contained first-draft material for all of
          the subsequent documents, but left many decisions left open.
@@ -28,7 +28,7 @@ allows = Manuals-fourfit
 thing  = @ReqsDoc
 task   = Create first draft of @ReqsDoc
 nick   = ReqsDoc-start
-@etask
+#@etask
 desc   = Draft the requirements document
 #start  = @tDSTRT
 #days  = 365
@@ -38,7 +38,7 @@ needs  = Meetings-refining
 thing  = @ReqsDoc
 task   = Continued drafting of @ReqsDoc
 nick   = ReqsDoc-draft
-@etask
+#@etask
 desc   = Draft the requirements document
 #start  = @tDSTRT
 #days  = 365
@@ -47,7 +47,7 @@ needs  = ReqsDoc-start
 
 task   = Submit first draft of @ReqsDoc to the ngEHT
 nick   = ReqsDoc-submit
-@etask
+#@etask
 desc   = Submit draft to ngEHT for feedback
 needs  = ReqsDoc-draft
 start  = @tREQS
@@ -56,7 +56,7 @@ stop   = @tREQS
 
 task   = Revise first draft of @ReqsDoc
 nick   = ReqsDoc-revise
-@etask
+#@etask
 desc   = Respond to review and finalize requirements
 needs  = Meetings-review
 
@@ -65,7 +65,7 @@ thing  = @CoTestDoc
 
 task   = Create first draft of @CoTestDoc
 nick   = CoTestDoc-draft
-@etask
+#@etask
 desc   = Begin drafting the coverage and testing document
 needs  = ReqsDoc-start
 
@@ -98,7 +98,7 @@ thing  = @SpecsDoc
 
 task   = Create first draft of @SpecsDoc
 nick   = SpecsDoc-draft
-@etask
+#@etask
 desc   = Start writing the specifications document.  The first
          part was to gather up the information from the original
          plan and the original specification draft and get it into
@@ -131,14 +131,14 @@ thing  = @SDPlanDoc
 
 task   = Create first draft of @SDPlanDoc
 nick   = SDPlanDoc-draft
-@etask
+#@etask
 desc   = Write @SDPlanDoc
 #needs  = Meetings-review
 needs  = Tasking-populate
 
 task   = Update first draft of @SDPlanDoc
 nick   = SDPlanDoc-update
-@etask
+#@etask
 desc   = This was not submitted for review, but the document should
          be updated and finalized with a goal towards finishing a plan.
          Once the tasking system is able to build Gantt charts, then
@@ -147,7 +147,7 @@ needs  = SDPlanDoc-draft,Tasking-gantt
 
 task   = Finalize @SDPlanDoc
 nick   = SDPlanDoc-final
-@etask
+#@etask
 desc   = Finalize the @SDPlanDoc
 needs  = SDPlanDoc-update,Tasking-final
 #allows = Miles-docsfinal
@@ -217,29 +217,46 @@ desc   = Capture the timeline, and names and generate gantt charts.
          as in the @Tasking-draftdoc plan, then if these are made they
          can be directly included without further work on the document.
 who    = @vp
+start  = 2021-03-18
+days   = 10
 needs  = Tasking-bubbles
 
 task   = Finalize @Tasking
 nick   = Tasking-final
-@etask
+@pltask
 desc   = Final cleanup of the document.  At this point, the automated
          builds should keep it up to date into an "as built" record.
 who    = @gc
 derate = 1
+days   = 5
 stop   = @gcBUB2
 needs  = Tasking-draftdoc
+
+task   = Align dates and durations of task tree (first iteration)
+nick   = Tasking-alignment1
+desc   = Alignment of the dates and durations of tasks. This will
+         involve some planning poker by the team, and will be iterative
+         as we get a better sense of durations.
+who    = @dh
+derate = 1
+start  = 2021-03-22
+days   = 5
+needs  = Tasking-final
+
 
 task   = Additional @Tasking Functionality
 nick   = Tasking-addons
 @pltask
 desc   = This covers all the things that might make life easier
 who    = @gc
+days   = 30
+derate = 1
 notes  = doc/tasking/taskscripts/maintainer-notes.txt
 needs  = Tasking-final
 
 task   = Maintenance of @Tasking Information
 nick   = Tasking-update0
-@etask
+#@etask
 desc   = This task captures the next round of updates to content.
          As subsequent updates are made and closed out, new tasks to
          capture current changes should be made.  (That is,
@@ -254,12 +271,13 @@ desc   = This task covers the cost of fixing bugs that turn up when 4
          people start updating content...and stuff needs to be fixed.
 who    = @gc
 needs  = Tasking-final
+days   = 30
 
 thing  = @Manuals
 
 task   = Fourfit User Manual
 nick   = Manuals-fourfit
-@etask
+#@etask
 desc   = write a fourfit user manual
 allows = Meetings-final
 
