@@ -60,6 +60,7 @@ EXTRA_DIST = $(srcdir)/$(TEXSRC).tex $(latexinputs) \
 	$(texincobjects)
 
 if HAVE_PERL
+if HAVE_DOT
 # this pulls everything in from source dir if we are in build dir
 # note that the dependency is on all possible inputs, but the rsync
 # will only pull in the group selected by $(mho)
@@ -96,37 +97,40 @@ save: fruit
 		fruit/$(mho)-* $(MHO)*
 	ls -l $(srcdir)/save-$(mho)-*.tgz
 
-# build objects needed by the document through $(texincobjects)
-$(overviewobjects) : texs
-texs:	$(srcdir)/overview-helper.sh
-	for t in $(overviewobjects);do $(srcdir)/overview-helper.sh $$t;done
-	touch texs
-
-#echo '\begin{verbatim}'                 > $@
-#./sw_tasks.pl -g help -i MHO_task.txt   |\
-#	grep -v 'All.output.appears'    |\
-#	grep -v 'Available domains to'	>> $@
-#echo '\end{verbatim}'                   >> $@
-
-plantuml-code.uml: $(srcdir)/plantuml-class-transcriber.py
-	$(srcdir)/plantuml-class-transcriber.py
-	ls -l $@
-
-plantuml-code.png: plantuml-code.uml
-	plantuml $?
-	ls -l $@
-
-else
-# no task things can be generated
+else !HAVE_DOT
+# no task things can be generated because we have no 'dot'
 fruit:
 	mkdir fruit
-endif
+	touch fruit/taskage.tex
+endif !HAVE_DOT
+else !HAVE_PERL
+# no task things can be generated because we have no 'perl'
+fruit:
+	mkdir fruit
+	touch fruit/taskage.tex
+endif !HAVE_PERL
 
 # this is cleaner, but makes it harder to use display tools that
 # watch files on disks as things disappear.
 #rm -rf fruit
 tasks:
 	$(MAKE) fruit
+
+# these rules have temporary hacks in them:
+plantuml-code.uml: $(srcdir)/plantuml-class-transcriber.py
+	-$(srcdir)/plantuml-class-transcriber.py
+	[ -f $@ ] || touch $@
+	ls -l $@
+plantuml-code.png: plantuml-code.uml
+	-plantuml $<
+	[ -f plantuml-code.png ] || ln -s $(srcdir)/taskscripts/sw_tasks.png $@
+	ls -l $@
+
+# build objects needed by the document through $(texincobjects)
+$(overviewobjects) : texs
+texs:	$(srcdir)/overview-helper.sh
+	for t in $(overviewobjects);do $(srcdir)/overview-helper.sh $$t;done
+	touch texs
 
 # FIXME: this is really a maintainer document that
 # perhaps should not be part of the distribution.
