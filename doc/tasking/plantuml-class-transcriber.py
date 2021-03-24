@@ -68,33 +68,7 @@ def parse_files(files):
 
 if __name__ == "__main__":
     # Files
-    all_files = ['MHO_task_0100.txt', 
-            'MHO_task_0200.txt', 
-            'MHO_task_0300.txt', 
-            'MHO_task_0305.txt', 
-            'MHO_task_0307.txt', 
-            'MHO_task_0310.txt', 
-            'MHO_task_0311.txt', 
-            'MHO_task_0312.txt', 
-            'MHO_task_0313.txt',
-            'MHO_task_0314.txt',
-            'MHO_task_0315.txt',
-            'MHO_task_0316.txt',
-            'MHO_task_0330.txt',
-            'MHO_task_0331.txt',
-            'MHO_task_0332.txt',
-            'MHO_task_0333.txt',
-            'MHO_task_0334.txt',
-            'MHO_task_0335.txt',
-            'MHO_task_0336.txt',
-            'MHO_task_0337.txt',
-            'MHO_task_0338.txt',
-            'MHO_task_0350.txt', 
-            'MHO_task_0370.txt', 
-            'MHO_task_0380.txt',
-            'MHO_task_0390.txt', 
-            'MHO_task_0400.txt', 
-            'MHO_task_0500.txt']
+    all_files = glob('./alltasks/*_0[1-9]*.txt')
 
     # Get contentse of file
     data = parse_files(all_files)
