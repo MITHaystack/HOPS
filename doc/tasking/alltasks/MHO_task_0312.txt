@@ -19,7 +19,7 @@ task   = Test the refactoring of the ffio library
 nick   = FFIORefactor-test
 desc   = Test the refactoring of the ffio library
 needs  = FFIORefactor-implement
-allows = NewFourfitReview-check
+#allows = NewFourfitReview-check
 
 
 # eof

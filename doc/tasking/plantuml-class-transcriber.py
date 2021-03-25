@@ -12,6 +12,7 @@ For information on plantuml see: https://plantuml.com/
 import textwrap
 import re
 import sys
+import glob
 
 def print_starting_boiler_plate(p_file):
     """Print the plantuml header and class boiler plate to the file."""
@@ -68,7 +69,7 @@ def parse_files(files):
 
 if __name__ == "__main__":
     # Files
-    all_files = glob('./alltasks/*_0[1-9]*.txt')
+    all_files = glob.glob('./alltasks/*_0[1-9]*.txt')
 
     # Get contentse of file
     data = parse_files(all_files)

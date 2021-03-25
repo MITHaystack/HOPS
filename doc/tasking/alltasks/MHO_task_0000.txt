@@ -54,6 +54,9 @@ file   = MHO_task_0000.txt
 @gcBUB1 = 2021-03-14    # date @tbm scripts were functional
 @gcBUB2 = 2021-03-23    # date @tbm generated document is done
 # --- now ---
+@tEHT21 = 2021-04-26    # approx date that EHT work lightens up
+@tTOW21 = 2021-05-10    # end of TOW2021 workshop 
+
 # end of 2020 is end of Q05 on the original clock, so
 # rounding out to thursdays, we have
 @tQ06E  = 2021-04-01    # Meetings-endQ06

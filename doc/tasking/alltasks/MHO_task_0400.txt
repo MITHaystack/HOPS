@@ -23,7 +23,7 @@ desc   = The initial founding document and sources should be captured
          for posterity; probably as a tarball along with the fourfit
          manual that Roger Cappallo wrote and the first thoughts on
          the specifications for a new HOPS.
-allows = Manuals-fourfit
+#allows = Manuals-fourfit
 
 thing  = @ReqsDoc
 task   = Create first draft of @ReqsDoc
@@ -135,6 +135,8 @@ nick   = SDPlanDoc-draft
 desc   = Write @SDPlanDoc
 #needs  = Meetings-review
 needs  = Tasking-populate
+days   = 14
+derate = 1
 
 task   = Update first draft of @SDPlanDoc
 nick   = SDPlanDoc-update
@@ -143,13 +145,16 @@ desc   = This was not submitted for review, but the document should
          be updated and finalized with a goal towards finishing a plan.
          Once the tasking system is able to build Gantt charts, then
          such may be included in @SDPlan to close out the plan.
-needs  = SDPlanDoc-draft,Tasking-gantt
+needs  = SDPlanDoc-draft
+days   = 10
+derate = 1
 
 task   = Finalize @SDPlanDoc
 nick   = SDPlanDoc-final
 #@etask
 desc   = Finalize the @SDPlanDoc
 needs  = SDPlanDoc-update,Tasking-final
+days   = 5
 #allows = Miles-docsfinal
 
 
@@ -190,8 +195,9 @@ desc   = This task covers the PERL work needed to finish enough of the bubble
          development items left, that are captured in some tasks that have no
          end-point.  (These tasks are perhaps not required.)
 who    = @gc
-derate = 1
-stop   = @gcBUB1
+#derate = 1
+#stop   = @gcBUB1
+days   = 5
 needs  = Tasking-populate
 
 task   = Build a document capturing all of the graphics
@@ -217,9 +223,11 @@ desc   = Capture the timeline, and names and generate gantt charts.
          as in the @Tasking-draftdoc plan, then if these are made they
          can be directly included without further work on the document.
 who    = @vp
+needs  = Tasking-bubbles
 start  = 2021-03-18
 days   = 10
-needs  = Tasking-bubbles
+derate = 1
+
 
 task   = Finalize @Tasking
 nick   = Tasking-final
@@ -236,7 +244,9 @@ task   = Align dates and durations of task tree (first iteration)
 nick   = Tasking-alignment1
 desc   = Alignment of the dates and durations of tasks. This will
          involve some planning poker by the team, and will be iterative
-         as we get a better sense of durations.
+         as we get a better sense of durations. At the end, the tasking
+         tree should have reasonable dates for most (all?) tasks, and
+         no need slips.
 who    = @dh
 derate = 1
 start  = 2021-03-22
@@ -263,6 +273,8 @@ desc   = This task captures the next round of updates to content.
          Tasking-update[n+1] for n = 0, 1, ....)
 who    = @swdev
 needs  = Tasking-final
+days   = 30
+derate = 1
 
 task   = @Tasking Bubble Maintenance
 nick   = Tasking-fixes
@@ -272,6 +284,7 @@ desc   = This task covers the cost of fixing bugs that turn up when 4
 who    = @gc
 needs  = Tasking-final
 days   = 30
+derate = 1
 
 thing  = @Manuals
 
@@ -279,11 +292,19 @@ task   = Fourfit User Manual
 nick   = Manuals-fourfit
 #@etask
 desc   = write a fourfit user manual
+who    = @swdev
+days   = 90
+derate = 1
+needs  = NewFourfitReview-milestone
 allows = Meetings-final
+
 
 task   = Aedit User Manual
 nick   = Manuals-aedit
 desc   = write aedit user manual
+days   = 90
+derate = 1
+needs  = AeditSummary-PSplot
 allows = Meetings-final
 
 # eof

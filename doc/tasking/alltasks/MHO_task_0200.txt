@@ -17,14 +17,14 @@ nick   = Repo-autoinit
 @shtask
 desc   = Write the automake foundations for the new project and make sure
          everyone can compile some of the code using automake
-#start  = @tJHIRE
+start  = @tJHIRE
 needs  = Repo-init
 
 task   = Write first draft of cmake build tools
 nick   = Repo-cmakeinit
 desc   = Write the automake foundations for the new project and make sure
          everyone can compile some of the code using automake
-#start  = @tJHIRE
+start  = @tJHIRE
 needs  = Repo-init
 
 task   = Get an automake nightly or integration suite running
@@ -32,8 +32,10 @@ nick   = Repo-amnightly
 desc   = Use something like github actions or a nightly pull/compile/test
          job to implement tests; as a practical matter the automake flavor
          comes first
-#start  = tSREV
 needs  = Repo-autoinit
+start  = tSREV
+days   = 90
+derate = 1
 
 task   = Get a cmake nightly or integration suite running
 nick   = Repo-cmnightly
@@ -84,7 +86,7 @@ thing  = @ProtoCode
 
 task   = Prototype the new data containers
 nick   = ProtoCode-containers
-@cptask
+@cpptask
 desc   = Create a set of C++ classes that define the new data containers
 #needs  = SpecsDocs-draft
 needs  = Miles-repo
@@ -98,19 +100,21 @@ needs  = ProtoCode-containers
 #allows = Meetings-endQ08
 
 task   = Prototype the SWIG bindings
-nick   = ProtoCode-swig
-@ptask
+nick   = ProtoCode-swigexample
+@pytask
 desc   = Write the compilation steps for the SWIG bindings in the autmake tools
 needs  = Miles-repo
 
 task   = Test the SWIG bindings
 nick   = ProtoCode-swigtest
-@ptask
+@pytask
 desc   = Check that the SWIG bindings work with the new data containers,
          move arrays information back and forth between the containers
          and the python
-#start  = tSREV
-needs  = ProtoCode-swig,ProtoCode-containers
+needs  = ProtoCode-swigexample,ProtoCode-containers
+start  = 2021-03-17
+days   = 14
+derate = 1
 #allows = Meetings-endQ08
 
 task   = Prototype fringe plot without PGPLOT
@@ -136,6 +140,10 @@ desc   = Milestone to review the code prototypes. By this point we should have m
 	 the performance of the data containers, understood the binding methods, and
 	 demonstrated new fringeplot tools.
 needs  = ProtoCode-fringeplot,ProtoCode-swigtest,ProtoCode-containertest
+start  = 2021-04-22
+days   = 7
+derate = 1
+
 
 
 thing  = @TestData

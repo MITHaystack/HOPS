@@ -9,17 +9,19 @@ nick   = FFMathRefactor-design
 @ctask
 desc   = Design the refactoring of the ffmath library
 needs  = Fourfit3Review-milestone
+days   = 30
 
 task   = Implement the refactoring of the ffmath library
 nick   = FFMathRefactor-implement
 desc   = Implement the refactoring of the ffmath library
 needs  = FFMathRefactor-design
+days   = 30
 
 task   = Test the refactoring of the ffmath library
 nick   = FFMathRefactor-test
 desc   = Test the refactoring of the ffmath library
 needs  = FFMathRefactor-implement
-allows = NewFourfitReview-check
-
+#allows = NewFourfitReview-check
+days   = 10
 
 # eof

@@ -8,22 +8,23 @@ task   = Identify the low-level libraries
 nick   = Fourfit3Import-lowlibs
 @gentask
 desc   = Identify the low-level code that needs to be imported to the HOPS4 git repo
-#start  = tSREV
 needs  = Repo-init
+days   = 10
 
 task   = Build the directory and file structure in HOPS4 for the legacy fourfit libraries
 nick   = Fourfit3Import-files
 desc   = This covers the design of the directory structure for the legacy fourfit
          libraries, and sketching out where the files live. This probably requires some care
-	 and thought to facilitate the makefiles later.
-#start  = tSREV
+         and thought to facilitate the makefiles later.
 needs  = Fourfit3Import-lowlibs
+days   = 10
+derate = 1
 
 task   = Complete the migration of the legacy fourfit libraries to HOPS4
 nick   = Fourfit3Import-migrate
 desc   = Move the legacy fourfit libraries to the HOPS4 git repo.
-#start  = tSREV
 needs  = Fourfit3Import-files
+days   = 10
 
 
 # Get the make tools working
@@ -32,37 +33,39 @@ thing  = @Fourfit3Build
 task   = Design the build tools for the legacy fourfit application in HOPS4
 nick   = Fourfit3Build-design
 desc   = This covers designing the cmake or automake tools 
-#start  = tSREV
 needs  = Fourfit3Import-migrate
+days   = 10
 
 task   = Implement the build tools for the legacy fourfit application in HOPS4
 nick   = Fourfit3Build-implement
 @shtask
 desc   = This covers the implementation of the make tools for the legacy fourfit in the HOPS4 git repo.
-#start  = tSREV
-days   = 3
 needs  = Fourfit3Build-design
+days   = 3
+derate = 1
+
 
 task   = Test the build tools for the fourfit application 
 nick   = Fourfit3Build-test
 desc   = Kick the tires - make sure the legacy fourfit application compiles and
          runs in the HOPS4 distro. Do the check scripts work? Does the build work
 	 in a variety of environments?
-#start  = tSREV
+start  = @tEHT21
 needs  = Fourfit3Build-implement
+days   = 30
 
 task   = Import the check scripts for fourfit to the HOPS4 repo.
 nick   = Fourfit3Build-check
 desc   = Get the check scripts and their captured data into the HOPS4 repo.
-#start  = tSREV
+#start  = @tDREPO
 needs  = Fourfit3Build-test
+days   = 10
 
 task   = Integrate fourfit into the nightly job.
 nick   = Fourfit3Build-nightly
 desc   = Modify the nightly job to build and check the legacy fourfit application in HOPS4.
-#start  = tSREV
 needs  = Fourfit3Build-check
-
+days   = 10
 
 
 # Review the legacy fourfit application in HOPS4
@@ -74,21 +77,21 @@ nick   = Fourfit3Review-check
 desc   = Does the legacy fourfit application work in the HOPS4 distro? Does it
          work in a variety of environments? This is a moment for all team
 	 members to give it a try.
-#start  = tSREV
 needs  = Fourfit3Build-nightly
+days   = 10
 
 task   = Identify things we learned in the migration process
 nick   = Fourfit3Review-lessons
 desc   = Learn from the process: the next step is to do this for alist/aedit.
-#start  = tSREV
 needs  = Fourfit3Review-check
 
 task   = Fourfit application is working in HOPS4 distro
 nick   = Fourfit3Review-milestone
 @milestask
 desc   = This is a milestone to mark the fourfit application migration to HOPS4.
-#start  = tSREV
 needs  = Fourfit3Review-lessons,ImportAx-Fringex,ImportA3-Aedit
+start  = @tTOW21
+days   = 10
 #allows = Meetings-endQ08
 
 # eof

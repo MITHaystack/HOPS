@@ -24,8 +24,8 @@ desc   = This is a milestone to capture that there is a working
          github repository and that initial setup tasks are complete
          including some nightly build so that we don't step backwards.
 needs  = Repo-amnightly
-start  = @DREPO
-stop   = @DREPO
+start  = @tJHIRE
+stop   = @tDREPO
 #needs = Repo-cmnightly
 
 task   = Now have all the requirements

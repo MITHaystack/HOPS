@@ -9,17 +9,19 @@ nick   = VCalDevelop-design
 @cpptask
 desc   = Design the VCAL library
 needs  = ProtoCode-review
+days   = 30
 
 task   = Implement the VCAL library
 nick   = VCalDevelop-implement
 desc   = Implement the VCAL library
 needs  = VCalDevelop-design
+days   = 30
 
 task   = Test the VCAL library
 nick   = VCalDevelop-test
 desc   = Test the VCAL library
 needs  = VCalDevelop-implement
-allows = CPPReview-check
-
+#allows = CPPReview-check
+days   = 10
 
 # eof

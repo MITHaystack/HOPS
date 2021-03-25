@@ -8,6 +8,9 @@ nick   = ImportEx-import
 @ctask
 desc   = This includes things such as cofit.  Compiling the list is TBD.
 needs  = Miles-repo
+start  = @tEHT21
+days   = 10
+derate = 1
 
 task   = Done with other HOPS3 Executables
 nick   = ImportEx-done
@@ -23,6 +26,9 @@ nick   = ImportSc-import
 desc   = This includes things such as compare baselines.  Compiling the
          list is TBD.
 needs  = Miles-repo
+start  = @tEHT21
+days   = 10
+derate = 1
 
 task   = Done with other HOPS3 Scripts
 nick   = ImportSc-done

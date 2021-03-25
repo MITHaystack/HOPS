@@ -9,17 +9,19 @@ nick   = Mk4InterDevelop-design
 @cpptask
 desc   = Design the mk4 interface library
 needs  = ProtoCode-review
+days   = 30
 
 task   = Implement the mk4 interface library
 nick   = Mk4InterDevelop-implement
 desc   = Implement the mk4 interface library
 needs  = Mk4InterDevelop-design
+days   = 30
 
 task   = Test the mk4 interface library
 nick   = Mk4InterDevelop-test
 desc   = Test the mk4 interface library
 needs  = Mk4InterDevelop-implement
-allows = CPPReview-check
-
+#allows = CPPReview-check
+days   = 10
 
 # eof
