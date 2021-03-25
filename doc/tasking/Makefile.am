@@ -113,7 +113,6 @@ plantuml-code.uml: $(srcdir)/plantuml-class-transcriber.py
 	ls -l $@
 
 plantuml-code.png: plantuml-code.uml
-	plantuml $?
 	ls -l $@
 
 else
