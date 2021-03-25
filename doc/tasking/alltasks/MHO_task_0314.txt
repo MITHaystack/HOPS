@@ -9,17 +9,19 @@ nick   = FFSearchRefactor-design
 @ctask
 desc   = Design the refactoring of the ffsearch library
 needs  = Fourfit3Review-milestone
+days   = 30
 
 task   = Implement the refactoring of the ffsearch library
 nick   = FFSearchRefactor-implement
 desc   = Implement the refactoring of the ffsearch library
 needs  = FFSearchRefactor-design
+days   = 30
 
 task   = Test the refactoring of the ffsearch library
 nick   = FFSearchRefactor-test
 desc   = Test the refactoring of the ffsearch library
 needs  = FFSearchRefactor-implement
-allows = NewFourfitReview-check
-
+#allows = NewFourfitReview-check
+days   = 10
 
 # eof

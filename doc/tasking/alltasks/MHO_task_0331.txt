@@ -9,17 +9,19 @@ nick   = MessageDevelop-design
 @cpptask
 desc   = Develop the message library
 needs  = ProtoCode-review
+days   = 30
 
 task   = Implement the message library
 nick   = MessageDevelop-implement
 desc   = Implement the message library
 needs  = MessageDevelop-design
+days   = 30
 
 task   = Test the message library
 nick   = MessageDevelop-test
 desc   = Test the message library
 needs  = MessageDevelop-implement
-allows = CPPReview-check
-
+#allows = CPPReview-check
+days   = 10
 
 # eof

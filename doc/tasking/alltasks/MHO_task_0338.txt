@@ -8,19 +8,21 @@ nick   = CPPReview-check
 @gentask
 desc   = Team members check the new C++ libraries
 needs  = BindingsDevelop-test
+days   = 10
 
 task   = Collect lessons on the C++ library implementation
 nick   = CPPReview-lessons
 desc   = Collect lessons from the C++ libraries, generate reports,
          gather to-do items for future development, document, etc.
 needs  = CPPReview-check
+days   = 10
 
 task   = Milestone for the C++ libraries
 nick   = CPPReview-milestone
 desc   = Milestone for completing the baseline implementation of the
          C++ libraries
 needs  = CPPReview-lessons
-allows = Meetings-mid2022
-
+#allows = Meetings-mid2022
+days   = 10
 
 # eof
