@@ -52,7 +52,8 @@ desc   = Kick the tires - make sure the legacy fourfit application compiles and
 	 in a variety of environments?
 start  = @tEHT21
 needs  = Fourfit3Build-implement
-days   = 30
+days   = 20
+derate = 1
 
 task   = Import the check scripts for fourfit to the HOPS4 repo.
 nick   = Fourfit3Build-check
@@ -78,7 +79,7 @@ desc   = Does the legacy fourfit application work in the HOPS4 distro? Does it
          work in a variety of environments? This is a moment for all team
 	 members to give it a try.
 needs  = Fourfit3Build-nightly
-days   = 10
+days   = 3
 
 task   = Identify things we learned in the migration process
 nick   = Fourfit3Review-lessons
@@ -89,8 +90,8 @@ task   = Fourfit application is working in HOPS4 distro
 nick   = Fourfit3Review-milestone
 @milestask
 desc   = This is a milestone to mark the fourfit application migration to HOPS4.
-needs  = Fourfit3Review-lessons,ImportAx-Fringex,ImportA3-Aedit
-start  = @tTOW21
+needs  = Fourfit3Review-lessons
+#start  = @tTOW21
 days   = 10
 #allows = Meetings-endQ08
 

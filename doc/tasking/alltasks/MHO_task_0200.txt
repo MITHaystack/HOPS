@@ -33,8 +33,8 @@ desc   = Use something like github actions or a nightly pull/compile/test
          job to implement tests; as a practical matter the automake flavor
          comes first
 needs  = Repo-autoinit
-start  = tSREV
-days   = 90
+#start  = tSREV
+days   = 20
 derate = 1
 
 task   = Get a cmake nightly or integration suite running
