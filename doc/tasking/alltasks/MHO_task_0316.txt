@@ -11,7 +11,7 @@ nick   = NewFourfitReview-check
 desc   = Everybody checks that the new versions of the legacy fourfit
          libraries are sensible. Should allow fourfit to work on
 	 unlimited stations/baselines/channels
-needs  = FFSearchRefactor-test
+needs  = FFSearchRefactor-test,FFMathRefactor-test,FFPlotRefactor-test,FFControlRefactor-test,FFIORefactor-test,FFCoreRefactor-test
 days   = 10
 
 task   = Lessons from the fourfit refactoring

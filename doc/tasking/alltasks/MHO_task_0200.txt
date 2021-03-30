@@ -8,7 +8,7 @@ task   = Establish github repository
 nick   = Repo-init
 @gentask
 desc   = Initialize a github repo, add the basic elements of HOPS, get team members connected
-#start  = @tJHIRE
+start  = @tJHIRE
 needs  = Meetings-hired
 #allows = Repo-cmakeinit,Repo-autoinit
 
@@ -17,15 +17,15 @@ nick   = Repo-autoinit
 @shtask
 desc   = Write the automake foundations for the new project and make sure
          everyone can compile some of the code using automake
-start  = @tJHIRE
+#start  = @tJHIRE
 needs  = Repo-init
 
 task   = Write first draft of cmake build tools
 nick   = Repo-cmakeinit
 desc   = Write the automake foundations for the new project and make sure
          everyone can compile some of the code using automake
-start  = @tJHIRE
-needs  = Repo-init
+#start  = @tJHIRE
+needs  = Meetings-endQ08
 
 task   = Get an automake nightly or integration suite running
 nick   = Repo-amnightly
@@ -58,7 +58,7 @@ nick    = Repo-config
 desc    = Automake and CMake have different ways of testing what is available
           on the local machine.  This task is to set up the framework so that
           they can either share information or at least do the same things.
-needs   = Repo-autoinit,Repo-cmakeinit
+needs   = Miles-hops3working
 
 task   = Iterate automake nightly build to include compilation options
 nick   = Repo-amoptions
@@ -81,78 +81,49 @@ allows = Meetings-endQ08
 #start  = @tJHIRE
 #needs  = Repo-autoinit
 
-# Prototyping tasks
-thing  = @ProtoCode
-
-task   = Prototype the new data containers
-nick   = ProtoCode-containers
-@cpptask
-desc   = Create a set of C++ classes that define the new data containers
-#needs  = SpecsDocs-draft
-needs  = Miles-repo
-
-task   = Test the performance of the new data containers
-nick   = ProtoCode-containertest
-desc   = Profile the memory performance of the new data containers
-code   = C
-#start  = tSREV
-needs  = ProtoCode-containers
-#allows = Meetings-endQ08
-
-task   = Prototype the SWIG bindings
-nick   = ProtoCode-swigexample
-@pytask
-desc   = Write the compilation steps for the SWIG bindings in the autmake tools
-needs  = Miles-repo
-
-task   = Test the SWIG bindings
-nick   = ProtoCode-swigtest
-@pytask
-desc   = Check that the SWIG bindings work with the new data containers,
-         move arrays information back and forth between the containers
-         and the python
-needs  = ProtoCode-swigexample,ProtoCode-containers
-start  = 2021-03-17
-days   = 14
-derate = 1
-#allows = Meetings-endQ08
-
-task   = Prototype fringe plot without PGPLOT
-nick   = ProtoCode-fringeplot
-desc   = Demonstrate that we can make a fringe plot with matplotlib
-code   = Python
-#start  = tJHIRE
-needs  = Miles-repo
-#needs  = Meetings-hired
-
-task   = Test an interactive plotting GUI
-nick   = ProtoCode-interactivefringeplot
-desc   = Demonstrate interactive plotting tools with matplotlib
-code   = Python
-needs  = ProtoCode-fringeplot
-#allows = Meetings-endQ08
-
-
-task   = Review the prototypes of the new functionality
-nick   = ProtoCode-review
-@gentask
-desc   = Milestone to review the code prototypes. By this point we should have measured
-	 the performance of the data containers, understood the binding methods, and
-	 demonstrated new fringeplot tools.
-needs  = ProtoCode-fringeplot,ProtoCode-swigtest,ProtoCode-containertest
-start  = 2021-04-22
-days   = 7
-derate = 1
 
 
 
 thing  = @TestData
 
-task   = deal with test data
-nick   = TestData-tbd
+task   = Identify legacy data used with fourfit check scripts
+nick   = TestData-data
 @gentask
-desc   = tbd
+desc   = The fourfit check scripts need various datasets, figure
+         out where they are and which ones can be shared on a server
+needs  = Repo-amnightly
+days   = 5
+derate = 1
+start  = @tEHT21
+
+task   = Build tarballs of captured data
+nick   = TestData-tarballs
+@shtask
+desc   = Build tarballs of the datasets required for the legacy fourfit
+         check scripts. Write a shell script to wget and upack them
+         as part of make check
+needs  = TestData-data
+days   = 3
+derate = 1
+
+task   = Write a script that finds and unpacks the test data
+nick   = TestData-fetch
+desc   = Write a shell script to wget and upack them as part of 
+         make check. This can be a little clever, should not have
+         to un-tar them more than once on a single machine
+needs  = TestData-tarballs
+days   = 3
+derate = 1
+
+task   = Write a wget script that finds and unpacks the test data
+nick   = TestData-gemini
+desc   = Put the testing dataset on gemini or similar; decide what
+         EHT datasets to use so we don't expose data publicly
+needs  = TestData-fetch
+days   = 3
+derate = 1
 allows = Meetings-endQ08
+
 
 thing  = @NoVhelp
 

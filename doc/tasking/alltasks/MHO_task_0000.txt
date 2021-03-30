@@ -53,13 +53,16 @@ file   = MHO_task_0000.txt
 @tDREPO = 2021-03-06    # approx date of working (clean) repo nightly
 @gcBUB1 = 2021-03-14    # date @tbm scripts were functional
 @gcBUB2 = 2021-03-23    # date @tbm generated document is done
+
 # --- now ---
-@tEHT21 = 2021-04-26    # approx date that EHT work lightens up
-@tTOW21 = 2021-05-10    # end of TOW2021 workshop 
 
 # end of 2020 is end of Q05 on the original clock, so
 # rounding out to thursdays, we have
 @tQ06E  = 2021-04-01    # Meetings-endQ06
+
+@tEHT21 = 2021-04-26    # approx date that EHT work lightens up
+@tTOW21 = 2021-05-10    # end of TOW2021 workshop 
+
 @tQ07E  = 2021-07-01    # Meetings-internal
 @tQ08E  = 2021-09-30    # Meetings-endQ08
 @tQ09E  = 2021-12-30    # Meetings-end2021

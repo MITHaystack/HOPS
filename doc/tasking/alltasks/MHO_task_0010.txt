@@ -35,14 +35,6 @@ desc   = This covers creation and maintenance of the repository, as
          of HOPS4 to cover deployment choices.  (I.e. no PGPLOT, no FFTW3,
          no Ionosphere handling, and so forth.)
 
-thing  = Prototyping activities
-nick   = ProtoCode
-desc   = This covers targeted experiments on how to do various things.
-         There is a fuzzy line between this and actual design work for
-         specific tasks...but we shall know when the line is crossed.
-         This includes prototyping objects, i/o methods, import/export
-         methods, regression test methods, etc.
-
 thing  = Regression test data management
 nick   = TestData
 desc   = This covers the handling of the test data that is used by
@@ -56,6 +48,29 @@ desc   = The HOPS3 documentation was built around a vhelp mechanism.
          To complete the import we shall need some replacement that
          plugs into the existing code without serious refactoring.
          (Otherwise all HOPS3 executables are broken.)
+
+
+
+# PROTO		Prototyping code methods
+domain = @PROTO
+
+thing  = Prototyping activities
+nick   = ProtoCode
+desc   = This covers targeted experiments on how to do various things.
+         There is a fuzzy line between this and actual design work for
+         specific tasks...but we shall know when the line is crossed.
+         This includes prototyping objects, i/o methods, import/export
+         methods, regression test methods, etc.
+
+
+thing  = IOStreamer development
+nick   = IOstream
+desc   = This covers development and testing/demonstration of an I/O
+         streaming library for the native HOPS4 binary file format.
+         Define file headers, byte allocation, import/export to data
+         containers.
+
+
 
 # FOURFIT3      Import Legacy HOPS3 Fourfit to HOPS4
 domain = @FOURFIT3

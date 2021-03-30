@@ -32,7 +32,7 @@ thing  = @Fourfit3Build
 
 task   = Design the build tools for the legacy fourfit application in HOPS4
 nick   = Fourfit3Build-design
-desc   = This covers designing the cmake or automake tools 
+desc   = This covers designing the automake tools 
 needs  = Fourfit3Import-migrate
 days   = 10
 
