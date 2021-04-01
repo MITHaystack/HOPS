@@ -52,11 +52,13 @@ desc   = This milestone captures the state when the HOPS4 repo contains
          the geodetic commitment to NASA, and also provides legacy code for
          regression testing.  In addition, from this point, the vendor
          branch distribution to DiFX no longer requires the SVN repo.
-needs  = Fourfit3Review-milestone,ImportA3-milestone,
-         ImportAx-milestone,ImportEx-done,ImportSc-done
+needs  = Fourfit3Review-milestone,ImportA3-milestone,ImportAx-milestone,ImportEx-done,ImportSc-done
+start  = 2021-06-15
+days   = 1
+derate = 1
 #needs = last Fourfit3Review task, last ImportA3, last Import Ax,
 #        last ImportEx, last ImportSc
-allows = Meetings-internal
+#allows = Meetings-internal
 
 task   = Declare the project finished
 nick   = Miles-finish
@@ -137,7 +139,7 @@ nick   = Meetings-internal
 desc   = An internal review after document and prototyping completion
 start  = @tQ07E
 stop   = @tQ07E
-needs  = Meetings-endQ06
+needs  = Meetings-endQ06,Miles-hops3working
 
 task   = Internal progress (End of Q08)
 nick   = Meetings-endQ08

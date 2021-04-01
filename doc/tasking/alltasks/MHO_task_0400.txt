@@ -104,6 +104,8 @@ desc   = Start writing the specifications document.  The first
          plan and the original specification draft and get it into
          the standard template used by the other docs.
 needs  = Meetings-review
+days   = 60
+derate = 1
 
 task   = Update draft of @SpecsDoc
 nick   = SpecsDoc-update
@@ -112,6 +114,8 @@ desc   = Update the @SpecsDoc.  The updates flow from the prototyping
          build machinery, etc.  More detail here... and perhaps more tasks
          listing what is still to be done with it....
 needs  = SpecsDoc-draft,ProtoCode-review
+days   = 10
+#derate = 1
 
 task   = Maturize the @SpecsDoc
 nick   = SpecsDoc-mature
@@ -119,6 +123,7 @@ desc   = Maturize the @SpecsDoc.  This means going through the document
          and identifying the remaining specifications that are still,
          well, unspecified.
 needs  = SpecsDoc-update
+days   = 5
 #allows = Miles-docsfinal
 
 task   = Finalize the @SpecsDoc
@@ -135,7 +140,7 @@ nick   = SDPlanDoc-draft
 desc   = Write @SDPlanDoc
 #needs  = Meetings-review
 needs  = Tasking-populate
-days   = 14
+days   = 10
 derate = 1
 
 task   = Update first draft of @SDPlanDoc
@@ -146,7 +151,7 @@ desc   = This was not submitted for review, but the document should
          Once the tasking system is able to build Gantt charts, then
          such may be included in @SDPlan to close out the plan.
 needs  = SDPlanDoc-draft
-days   = 10
+days   = 5
 derate = 1
 
 task   = Finalize @SDPlanDoc
@@ -154,7 +159,8 @@ nick   = SDPlanDoc-final
 #@etask
 desc   = Finalize the @SDPlanDoc
 needs  = SDPlanDoc-update,Tasking-final
-days   = 5
+days   = 3
+start  = @tTOW21
 #allows = Miles-docsfinal
 
 
@@ -195,7 +201,7 @@ desc   = This task covers the PERL work needed to finish enough of the bubble
          development items left, that are captured in some tasks that have no
          end-point.  (These tasks are perhaps not required.)
 who    = @gc
-#derate = 1
+derate = 1
 #stop   = @gcBUB1
 days   = 5
 needs  = Tasking-populate
@@ -210,6 +216,7 @@ desc   = This requires generating a few words of tex and the the scripting to
          tables, and finally gantt charts (as generated in by the script made
          in Tasking-gantt).  These will require minimal captions.
 who    = @gc
+days   = 2
 derate = 1
 needs  = Tasking-bubbles
 

@@ -10,6 +10,7 @@ desc   = import alist
 needs  = Miles-repo
 start  = @tEHT21
 days   = 5
+derate = 1
 
 task   = Import Adump
 nick   = ImportA3-Adump
@@ -40,6 +41,7 @@ desc   = import average ...
 needs  = Miles-repo
 start  = @tEHT21
 days   = 5
+derate = 1
 
 task   = Import Fringex
 nick   = ImportAx-Fringex
@@ -47,6 +49,7 @@ desc   = import fringex ...
 needs  = ImportAx-Average
 #allows = Meetings-internal
 days   = 5
+derate = 1
 
 task   = Import Search
 nick   = ImportAx-Search

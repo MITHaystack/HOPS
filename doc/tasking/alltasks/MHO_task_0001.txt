@@ -8,6 +8,10 @@ domain = Infrastructure Setup
 nick   = INFRA
 desc   = Everything to create and complete a working environment
 
+domain = Prototyping and development
+nick   = PROTO
+desc   = Demonstrate methods that will be used in production; study performance of new libraries
+
 domain = Import HOPS3 Fourfit to HOPS4
 nick   = FOURFIT3
 desc   = Import fourfit libraries to HOPS4
