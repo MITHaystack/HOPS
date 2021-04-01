@@ -18,7 +18,7 @@ def print_starting_boiler_plate(p_file):
     """Print the plantuml header and class boiler plate to the file."""
     p_file.write(textwrap.dedent("""
     @startuml
-    ' Use MIT
+    ' Use MIT colors
     skinparam class {
     \t\tArrowColor #A31F34
     \t\tBordercolor #8a8b8c
@@ -59,13 +59,10 @@ def parse_files(files):
         f = open(file, 'r') 
         fst = f.readline()
         snd = f.readline()
-        file_number = (re.split('_([0-9]*)\.', fst))
-        domain = (re.split('@|\n', snd))
-        f_num.append(file_number[1])
-        d.append(domain[1])
+        f_num.append((re.split('_([0-9]*)\.', fst)[1]))
+        d.append((re.split('@|\n', snd)[1]))
         f.close()
-    data = list(zip(f_num, d))
-    return data
+    return list(zip(f_num, d))
 
 if __name__ == "__main__":
     # Files
