@@ -131,8 +131,8 @@ def find_min_and_max_date(data, domain):
         if domain in dictionary['domain']:
             if "depends" not in dictionary['start']:
                 domain_dates.append(dictionary['start'])
-                if "depends" not in dictionary['stop']: # NOTE This statement might have a logical error and may need to be shifted 4 spaces to the left 
-                    domain_dates.append(dictionary['stop'])
+            if "depends" not in dictionary['stop']: 
+                domain_dates.append(dictionary['stop'])
 
     # If there are no dates return default dates
     if len(domain_dates) == 0:
