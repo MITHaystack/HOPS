@@ -23,7 +23,6 @@ import re
 import sys
 from glob import glob
 from datetime import date
-from random import randint
 import argparse
 
 def print_starting_boiler_plate(p_file):
@@ -51,7 +50,8 @@ def parse_files():
     done = []
     stop = []
     data = []
-    f = open('../../../ambld-4.00-new/doc/tasking/fruit/all.wbs', 'r') 
+
+    f = open('../../../ambld-4.00-new/doc/tasking/fruit/all.wbs', 'r')
     # check if line has keyword && ->
     for line in f:
         if "type ->" in line:
@@ -108,11 +108,6 @@ def calculate_percent_complete(data, domain):
 
     percent = ((sum([float(p) for p in percents])/len(percents))*100) # Change percent to different name or change percent in list comprehension to different name
 
-    # If the percent complete is less than or equal to zero, get a percentage at random
-    if int(percent) <= 0:
-        result = str(randint(1,10))
-        return str(result)
-
     return str(percent)
 
 def find_min_and_max_date(data, domain):
@@ -131,7 +126,7 @@ def find_min_and_max_date(data, domain):
         if domain in dictionary['domain']:
             if "depends" not in dictionary['start']:
                 domain_dates.append(dictionary['start'])
-            if "depends" not in dictionary['stop']: 
+            if "depends" not in dictionary['stop']: # NOTE This statement might have a logical error and may need to be shifted 4 spaces to the left 
                 domain_dates.append(dictionary['stop'])
 
     # If there are no dates return default dates
