@@ -17,15 +17,20 @@
 
 #include "MHO_Message.hh"
 #include "MHO_IntervalLabel.hh"
+#include "MHO_Serializable.hh"
+
 
 namespace hops
 {
 
-class MHO_IntervalLabelTree
+class MHO_IntervalLabelTree: virtual public MHO_Serializable
 {
     public:
         MHO_IntervalLabelTree();
         virtual ~MHO_IntervalLabelTree();
+
+        //copy constructor
+        MHO_IntervalLabelTree(const MHO_IntervalLabelTree& obj);
 
         //void InsertLabel(MHO_IntervalLabel* label);
         void InsertLabel(const MHO_IntervalLabel& label);
@@ -47,9 +52,59 @@ class MHO_IntervalLabelTree
 
     protected:
 
-        //we are storing them all in a vector currently, this needs to to be
-        //replaced with a tree data structure
+        //we are storing them all in a vector currently, this probably
+        //fine for storage, but the access interface needs to to be
+        //replaced with a tree-like data structure for faster lookup
         std::vector< MHO_IntervalLabel* > fIntervals;
+
+    public:
+
+        virtual uint64_t GetSerializedSize() const override
+        {
+            uint64_t total_size = 0;
+            total_size += sizeof(MHO_ClassVersion); //version number
+            total_size += sizeof(std::size_t); //number of intervals
+            for(std::size_t i=0; i<fIntervals.size(); i++)
+            {
+                total_size += fIntervals[i]->GetSerializedSize();
+            }
+            return total_size;
+        }
+
+        template<typename XStream> friend XStream& operator>>(XStream& s, MHO_IntervalLabelTree& aData)
+        {
+            MHO_ClassVersion vers;
+            s >> vers;
+            if( vers != aData.GetVersion() )
+            {
+                MHO_ClassIdentity::ClassVersionErrorMsg(aData, vers);
+                //Flag this as an unknown object version so we can skip over this data
+                MHO_ObjectStreamState<XStream>::SetUnknown(s);
+            }
+            else
+            {
+                std::size_t n_labels;
+                s >> n_labels;
+                for(std::size_t i=0; i<n_labels; i++)
+                {
+                    MHO_IntervalLabel tmp;
+                    s >> tmp;
+                    aData.InsertLabel(tmp);
+                }
+            }
+            return s;
+        }
+
+        template<typename XStream> friend XStream& operator<<(XStream& s, const MHO_IntervalLabelTree& aData)
+        {
+            s << aData.GetVersion();
+            s << aData.fIntervals.size();
+            for(std::size_t i=0; i<aData.fIntervals.size(); i++)
+            {
+                s << *( aData.fIntervals[i] );
+            }
+            return s;
+        }
 };
 
 
@@ -99,7 +154,6 @@ MHO_IntervalLabelTree::GetFirstIntervalWithKeyValue(const std::string& key, cons
     }
     return label;
 }
-
 
 }//end namespace
 

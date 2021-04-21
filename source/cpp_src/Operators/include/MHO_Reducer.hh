@@ -78,7 +78,6 @@ class MHO_Reducer:
 
                 //first figure out what the remaining dim sizes are to be
                 //after the array is contracted along the specified dimensions
-                std::size_t count = 0;
                 for(std::size_t i=0; i<RANK; i++)
                 {
                     if(fAxesToReduce[i]){out_dim[i] = 1;}
@@ -112,8 +111,6 @@ class MHO_Reducer:
 
                 const std::size_t* in_loc;
                 std::size_t out_loc[RANK];
-                std::size_t in_size = this->fInput->GetSize();
-
                 auto iter_begin = this->fInput->begin();
                 auto iter_end = this->fInput->end();
                 for(auto iter = iter_begin; iter != iter_end; ++iter)

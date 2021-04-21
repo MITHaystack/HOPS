@@ -2,32 +2,67 @@
 #include <string>
 
 #include "MHO_ScalarContainer.hh"
-
+#include "MHO_BinaryFileStreamer.hh"
+#include "MHO_FileKey.hh"
+#include "MHO_UUIDGenerator.hh"
+#include "MHO_BinaryFileInterface.hh"
 
 using namespace hops;
 
-
-
-class Test: public MHO_ScalarContainer< double >
-{
-
-    public:
-        Test(){}
-        virtual ~Test (){}
-
-};
-
 int main(int /*argc*/, char** /*argv*/)
 {
-    Test* A = new Test();
-    double x = 3.14;
+    MHO_Message::GetInstance().AcceptAllKeys();
+    MHO_Message::GetInstance().SetMessageLevel(eDebug);
 
-    A->SetName("a-test");
+    MHO_ScalarContainer< double >* A = new MHO_ScalarContainer< double >();
+    double x = 1.23423423e30;
+
     A->SetValue(x);
 
-    std::cout<<A->GetName()<<", "<<A->GetValue()<<std::endl;
+    std::cout<<"stored valued =  "<<A->GetValue()<<std::endl;
+
+    std::string filename = "./test.bin";
+
+    MHO_BinaryFileInterface inter;
+    bool status = inter.OpenToWrite(filename);
+
+    if(status)
+    {
+        uint32_t label = 0xFF00FF00;
+        std::cout<<"A label = "<<label<<std::endl;
+        inter.Write(*A, label);
+        inter.Close();
+    }
+    else
+    {
+        std::cout<<"error opening file"<<std::endl;
+    }
+
+    std::cout<<" class name: "<<  MHO_ClassIdentity::ClassName(*A) <<std::endl;
+    std::cout<<" class version: "<< A->GetVersion()<<std::endl;
+
+    inter.Close();
 
     delete A;
+
+    MHO_ScalarContainer< double >* B = new MHO_ScalarContainer< double >();
+
+    status = inter.OpenToRead(filename);
+    if(status)
+    {
+        uint32_t blabel;
+        inter.Read(*B, blabel);
+        std::cout<<"B object label = "<<blabel<<std::endl;
+        std::cout<<"B object value = "<< B->GetValue()<<std::endl;
+    }
+    else
+    {
+        std::cout<<" error opening file to read"<<std::endl;
+    }
+
+    inter.Close();
+
+    delete B;
 
     return 0;
 }
