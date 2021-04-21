@@ -4,6 +4,8 @@ if(ENABLE_DEBUG_MSG)
     hops_add_cxxflag(HOPS_ENABLE_DEBUG_MSG)
 endif(ENABLE_DEBUG_MSG)
 
+hops_require_cpp11()
+
 #source sub directories (in order of dependence...this is important!)
 add_subdirectory(${CPPSOURCE}/Message) #the messaging library
 add_subdirectory(${CPPSOURCE}/Math) #the generic math library

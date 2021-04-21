@@ -8,6 +8,8 @@ set(SOURCE_BASENAMES
     TestArrayWrapper
     TestVectorContainer
     TestScalarContainer
+    TestAxis
+    TestAxisPack
 )
 
 if (HOPS_USE_ROOT)
@@ -16,7 +18,7 @@ if (HOPS_USE_ROOT)
     hops_external_include_directories(${ROOT_INCLUDE_DIRS})
     add_cflag(USE_ROOT)
     list(APPEND HOPS_TEST_LIBS ${ROOT_LIBRARIES})
-    list(APPEND SOURCE_BASENAMES TestTensorContainer)
+    list(APPEND SOURCE_BASENAMES TestTableContainer)
 endif()
 
 

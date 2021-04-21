@@ -13,7 +13,7 @@
 
 #include <string>
 
-#include "MHO_Named.hh"
+#include "MHO_Serializable.hh"
 #include "MHO_NDArrayWrapper.hh"
 
 namespace hops
@@ -21,35 +21,38 @@ namespace hops
 
 
 template< typename XValueType >
-class MHO_VectorContainer: public MHO_NDArrayWrapper< XValueType, 1>, public MHO_Named
+class MHO_VectorContainer:
+    public MHO_NDArrayWrapper< XValueType, 1>,
+    virtual public MHO_Serializable
 {
     public:
 
         MHO_VectorContainer():
-            MHO_NDArrayWrapper<XValueType,1>(),
-            MHO_Named()
+            MHO_NDArrayWrapper<XValueType,1>()
         {};
 
         MHO_VectorContainer(std::size_t dim):
-            MHO_NDArrayWrapper<XValueType,1>(dim),
-            MHO_Named()
+            MHO_NDArrayWrapper<XValueType,1>(dim)
         {};
 
         //copy constructor
         MHO_VectorContainer(const MHO_VectorContainer& obj):
-            MHO_NDArrayWrapper<XValueType,1>(obj),
-            MHO_Named(obj)
+            MHO_NDArrayWrapper<XValueType,1>(obj)
         {};
 
         //clone functionality
         MHO_VectorContainer* Clone(){ return new MHO_VectorContainer(*this); }
 
-
         virtual ~MHO_VectorContainer(){};
 
-        using MHO_Named::IsNamed;
-        using MHO_Named::GetName;
-        using MHO_Named::SetName;
+        virtual uint64_t GetSerializedSize() const override
+        {
+            uint64_t size = 0;
+            size += sizeof(MHO_ClassVersion);
+            size += sizeof(std::size_t);
+            size += fTotalArraySize*sizeof(XValueType);
+            return size;
+        }
 
         //have to make base class functions visible
         using MHO_NDArrayWrapper<XValueType,1>::Resize;
@@ -66,6 +69,41 @@ class MHO_VectorContainer: public MHO_NDArrayWrapper< XValueType, 1>, public MHO
         using MHO_NDArrayWrapper<XValueType,1>::fData;
         using MHO_NDArrayWrapper<XValueType,1>::fDimensions;
         using MHO_NDArrayWrapper<XValueType,1>::fTotalArraySize;
+
+
+    template<typename XStream> friend XStream& operator>>(XStream& s, MHO_VectorContainer& aData)
+    {
+        MHO_ClassVersion vers;
+        s >> vers;
+        if( vers != aData.GetVersion() )
+        {
+            MHO_ClassIdentity::ClassVersionErrorMsg(aData, vers);
+            //Flag this as an unknown object version so we can skip over this data
+            MHO_ObjectStreamState<XStream>::SetUnknown(s);
+        }
+        else
+        {
+            size_t total_size[1];
+            s >> total_size[0];
+            aData.Resize(total_size);
+            for(size_t i=0; i<aData.fTotalArraySize; i++)
+            {
+                s >> aData.fData[i];
+            }
+        }
+        return s;
+    }
+
+    template<typename XStream> friend XStream& operator<<(XStream& s, const MHO_VectorContainer& aData)
+    {
+        s << aData.GetVersion();
+        s << aData.fTotalArraySize;
+        for(size_t i=0; i<aData.fTotalArraySize; i++)
+        {
+            s << aData.fData[i];
+        }
+        return s;
+    }
 
 };
 

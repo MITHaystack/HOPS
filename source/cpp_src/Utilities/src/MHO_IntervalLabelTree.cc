@@ -7,12 +7,14 @@ MHO_IntervalLabelTree::MHO_IntervalLabelTree(){}
 
 MHO_IntervalLabelTree::~MHO_IntervalLabelTree(){}
 
-// void
-// MHO_IntervalLabelTree::InsertLabel(MHO_IntervalLabel* label)
-// {
-//     //TODO make sure we are not inserting duplicates
-//     fIntervals.push_back(label);
-// }
+MHO_IntervalLabelTree::MHO_IntervalLabelTree(const MHO_IntervalLabelTree& obj)
+{
+    fIntervals.clear();
+    for(auto iter = obj.fIntervals.begin(); iter != obj.fIntervals.end(); iter++)
+    {
+        fIntervals.push_back( new MHO_IntervalLabel( *(*iter) ) );
+    }
+}
 
 void
 MHO_IntervalLabelTree::InsertLabel(const MHO_IntervalLabel& label)

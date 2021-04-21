@@ -8,6 +8,7 @@ set(SOURCE_BASENAMES
     TestMultiTypeMap
     TestIntervalLabelTree
     TestTimeStampConverter
+    TestUUIDGenerator
 )
 
 foreach( BASENAME ${SOURCE_BASENAMES} )

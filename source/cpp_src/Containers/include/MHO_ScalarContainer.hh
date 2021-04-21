@@ -13,26 +13,31 @@
 
 #include <string>
 
-#include "MHO_Named.hh"
+#include "MHO_Serializable.hh"
 #include "MHO_NDArrayWrapper.hh"
 
 namespace hops
 {
 
 template< typename XValueType >
-class MHO_ScalarContainer: public MHO_NDArrayWrapper< XValueType, 0>, public MHO_Named
+class MHO_ScalarContainer:
+    public MHO_NDArrayWrapper< XValueType, 0>,
+    virtual public MHO_Serializable
 {
     public:
         MHO_ScalarContainer():
-            MHO_NDArrayWrapper<XValueType, 0>(),
-            MHO_Named()
+            MHO_NDArrayWrapper<XValueType, 0>()
         {};
 
         virtual ~MHO_ScalarContainer(){};
 
-        using MHO_Named::IsNamed;
-        using MHO_Named::GetName;
-        using MHO_Named::SetName;
+        virtual uint64_t GetSerializedSize() const override
+        {
+            uint64_t total_size = 0;
+            total_size += sizeof(MHO_ClassVersion); //version
+            total_size += sizeof(XValueType); //contents
+            return total_size;
+        }
 
         void SetValue(const XValueType& value){fData = value;};
         XValueType GetValue(){ return fData;};
@@ -46,6 +51,30 @@ class MHO_ScalarContainer: public MHO_NDArrayWrapper< XValueType, 0>, public MHO
     protected:
 
         using MHO_NDArrayWrapper<XValueType,0>::fData;
+
+        template<typename XStream> friend XStream& operator>>(XStream& s, MHO_ScalarContainer& aData)
+        {
+                MHO_ClassVersion vers;
+                s >> vers;
+                if( vers != aData.GetVersion() )
+                {
+                    MHO_ClassIdentity::ClassVersionErrorMsg(aData, vers);
+                    //Flag this as an unknown object version so we can skip over this data
+                    MHO_ObjectStreamState<XStream>::SetUnknown(s);
+                }
+                else
+                {
+                    s >> aData.fData;
+                }
+                return s;
+        };
+
+        template<typename XStream> friend XStream& operator<<(XStream& s, const MHO_ScalarContainer& aData)
+        {
+                s << aData.GetVersion();
+                s << aData.fData;
+                return s;
+        };
 
 };
 
