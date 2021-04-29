@@ -152,7 +152,7 @@ class MHO_MD5HashGenerator: public MHO_MD5HashGeneratorBasicTypes
             MHO_UUID uuid;
             for(unsigned int i=0; i<PICOHASH_MD5_DIGEST_LENGTH; i++)
             {
-                uuid.fBytes[i] = fDigest[i];
+                uuid[i] = fDigest[i];
             }
             return uuid;
         }

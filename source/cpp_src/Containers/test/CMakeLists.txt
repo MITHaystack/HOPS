@@ -2,7 +2,7 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../../Message/include)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../../Utilities/include)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../include)
 
-set (HOPS_TEST_LIBS MHO_Message MHO_Utilities)
+set (HOPS_TEST_LIBS MHO_Message MHO_Utilities MHO_Containers)
 
 set(SOURCE_BASENAMES
     TestArrayWrapper

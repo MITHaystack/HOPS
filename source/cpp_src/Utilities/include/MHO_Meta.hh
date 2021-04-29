@@ -38,7 +38,7 @@ template< class L > using MHO_TypelistSize = typename MHO_TypelistSizeImpl<L>::t
 
 
 
-//functions needed to stream tuples
+//functions needed to stream tuples/////////////////////////////////////////////
 template<size_t N = 0, typename XStream, typename... T >
 typename std::enable_if< (N >= sizeof...(T)), XStream& >::type
     ostream_tuple(XStream& s, const std::tuple<T...>&)
@@ -76,6 +76,7 @@ typename std::enable_if< (N < sizeof...(T)), XStream& >::type
     return istream_tuple<N+1>(s, t);
 }
 
+////////////////////////////////////////////////////////////////////////////////
 
 
 }

@@ -25,42 +25,112 @@ class MHO_BinaryFileInterface
 {
     public:
 
-        MHO_BinaryFileInterface(){};
+        MHO_BinaryFileInterface():
+            fCollectKeys(false)
+        {};
+
         virtual ~MHO_BinaryFileInterface(){};
 
-        bool OpenToWrite(const std::string filename)
+        bool OpenToWrite(const std::string& obj_filename, const std::string& index_filename = "")
         {
-            fStreamer.SetFilename(filename);
-            fStreamer.OpenToWrite();
-            return fStreamer.IsOpenForWrite();
+            fObjectStreamer.SetFilename(obj_filename);
+            fObjectStreamer.OpenToWrite();
+
+            if(index_filename != "") //stream keys to a separate index file
+            {
+                fCollectKeys = true;
+                fKeyStreamer.SetFilename(index_filename);
+                fKeyStreamer.OpenToWrite();
+                return fObjectStreamer.IsOpenForWrite() && fKeyStreamer.IsOpenForWrite();
+            }
+
+            return fObjectStreamer.IsOpenForWrite();
         }
 
-        bool OpenToRead(const std::string filename)
+        bool OpenToRead(const std::string& filename)
         {
-            fStreamer.SetFilename(filename);
-            fStreamer.OpenToRead();
-            return fStreamer.IsOpenForRead();
+            fObjectStreamer.SetFilename(filename);
+            fObjectStreamer.OpenToRead();
+            return fObjectStreamer.IsOpenForRead();
+        }
+
+        bool ExtractObjectKeys(const std::string& index_filename, std::vector<MHO_FileKey>& keys)
+        {
+            keys.clear();
+
+            if( fObjectStreamer.IsOpenForRead() || fObjectStreamer.IsOpenForWrite() ||
+                fKeyStreamer.IsOpenForRead() || fKeyStreamer.IsOpenForRead() )
+            {
+                msg_warn("file", "Cannot extract index file keys with active stream. Close open file first." << eom);
+                return false;
+            }
+            else
+            {
+                fKeyStreamer.SetFilename(index_filename);
+                fKeyStreamer.OpenToRead();
+                if( fKeyStreamer.IsOpenForRead() )
+                {
+                    while( fKeyStreamer.GetStream().good() )
+                    {
+                        MHO_FileKey key;
+                        fKeyStreamer >> key;
+                        if(fKeyStreamer.GetStream().good())
+                        {
+                            keys.push_back(key);
+                        }
+                    }
+                    fKeyStreamer.Close();
+                    return true;
+                }
+                else
+                {
+                    msg_error("file", "Failed to read object keys, file not open for reading." << eom);
+                    fKeyStreamer.Close();
+                    return false;
+                }
+            }
         }
 
         void Close()
         {
-            fStreamer.Close();
-            if(!(fStreamer.IsClosed()))
+            fObjectStreamer.Close();
+            if( !( fObjectStreamer.IsClosed() ) )
             {
                 msg_error("file", "Failed to close file." << eom);
             }
+
+            if(fCollectKeys)
+            {
+                fKeyStreamer.Close();
+                if( !( fKeyStreamer.IsClosed() ) )
+                {
+                    msg_error("file", "Failed to close key/index file." << eom);
+                }
+            }
+            fCollectKeys = false;
         }
 
 
         template<class XWriteType> bool Write(const XWriteType& obj, const uint32_t label = 0)
         {
-            if(fStreamer.IsOpenForWrite())
+            if( fObjectStreamer.IsOpenForWrite() )
             {
                 MHO_FileKey key = GenerateObjectFileKey(obj, label);
-                fStreamer << key;
-                fStreamer << obj;
-                if( fStreamer.GetStream().rdstate() & std::ifstream::goodbit ){return true;}
-                else{return false;}
+                fObjectStreamer << key;
+                fObjectStreamer << obj;
+                if( fObjectStreamer.GetStream().good() )
+                {
+                    if(fCollectKeys && fKeyStreamer.IsOpenForWrite())
+                    {
+                        fKeyStreamer << key;
+                    }
+                    return true;
+                }
+                else
+                {
+                    msg_error("file", "Failed to write object, stream state returned: " << fObjectStreamer.GetStream().rdstate() << eom);
+                    return false;
+                }
             }
             else
             {
@@ -72,10 +142,10 @@ class MHO_BinaryFileInterface
 
         template<class XWriteType> bool Read(XWriteType& obj, uint32_t& label)
         {
-            if(fStreamer.IsOpenForRead())
+            if(fObjectStreamer.IsOpenForRead())
             {
                 MHO_FileKey key;
-                fStreamer >> key;
+                fObjectStreamer >> key;
 
                 bool key_ok = true;
                 if( key.fSync != MHO_FileKeySyncWord ){key_ok = false;}
@@ -92,16 +162,16 @@ class MHO_BinaryFileInterface
 
                 if(key_ok)
                 {
-                    fStreamer >> obj;
-                    if( fStreamer.IsObjectUnknown() )
+                    fObjectStreamer >> obj;
+                    if( fObjectStreamer.IsObjectUnknown() )
                     {
                         //object version was not recognized, skip this object's data
                         if(key.fSize > sizeof(MHO_ClassVersion) )
                         {
                             uint64_t skip_size = key.fSize - sizeof(MHO_ClassVersion);
-                            fStreamer.GetStream().seekg(skip_size, std::ios_base::cur);
+                            fObjectStreamer.GetStream().seekg(skip_size, std::ios_base::cur);
                             msg_warn("file", "Encountered and skipped an unrecognized version of object with class name: " << name << "." << eom);
-                            fStreamer.ResetObjectState(); //reset streamer state for next object
+                            fObjectStreamer.ResetObjectState(); //reset streamer state for next object
                             return true; //recoverable error
                         }
                         else
@@ -109,7 +179,6 @@ class MHO_BinaryFileInterface
                             msg_error("file", "Encountered object with wrong/corrupt object size");
                             return false; //non-recoverable error
                         }
-
                     }
                     return true;
                 }
@@ -129,7 +198,8 @@ class MHO_BinaryFileInterface
     private:
 
         //the file streamer
-        MHO_BinaryFileStreamer fStreamer;
+        MHO_BinaryFileStreamer fObjectStreamer;
+        MHO_BinaryFileStreamer fKeyStreamer;
         MHO_UUIDGenerator fUUIDGenerator;
         MHO_MD5HashGenerator fMD5Generator;
 
@@ -147,6 +217,7 @@ class MHO_BinaryFileInterface
             fMD5Generator << name;
             fMD5Generator.Finalize();
             key.fTypeId = fMD5Generator.GetDigestAsUUID(); //type uuid
+
             key.fObjectId = fUUIDGenerator.GenerateUUID(); //random uuid of object id
             key.fSize = obj.GetSerializedSize();
 
@@ -154,7 +225,7 @@ class MHO_BinaryFileInterface
         }
 
         //file object keys, collected as we go
-        std::vector< MHO_FileKey > fKeys;
+        bool fCollectKeys;
 
 };
 

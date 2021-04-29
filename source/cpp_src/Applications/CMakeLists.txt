@@ -11,6 +11,9 @@ set(HOPS_TEST_LIBS MHO_Message MHO_Utilities MHO_Math MHO_Operators MHO_Calibrat
 
 set(SOURCE_BASENAMES
     TestSingleBandDelay
+    TestMultiObjectStreaming
+    TestConvertMk4Visibilities
+    DumpFileObjectKeys
 )
 
 #for testing purposes only -- not intended to be a dependency
