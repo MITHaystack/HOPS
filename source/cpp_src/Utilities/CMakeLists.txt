@@ -5,7 +5,7 @@ set (UTILITIES_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_Meta.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_Serializable.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_FileStreamer.hh
-    # ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_UUID.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_UUID.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_FileKey.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_Units.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_Timer.hh
@@ -19,6 +19,7 @@ set (UTILITIES_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_UUIDGenerator.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MD5HashGenerator.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_BinaryFileInterface.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ClassIdentityMap.hh
 )
 
 #set_source_files_properties(picohash.h PROPERTIES COMPILE_FLAGS -fpermissive)

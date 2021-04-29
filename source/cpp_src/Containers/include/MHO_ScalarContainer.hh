@@ -12,6 +12,7 @@
 
 
 #include <string>
+#include <complex>
 
 #include "MHO_Serializable.hh"
 #include "MHO_NDArrayWrapper.hh"
@@ -77,6 +78,31 @@ class MHO_ScalarContainer:
         };
 
 };
+
+
+////////////////////////////////////////////////////////////////////////////////
+//using declarations for all basic 'plain-old-data' types
+using MHO_ScalarBool = MHO_ScalarContainer<bool>;
+using MHO_ScalarChar = MHO_ScalarContainer<char>;
+using MHO_ScalarUChar = MHO_ScalarContainer<unsigned char>;
+using MHO_ScalarShort = MHO_ScalarContainer<short>;
+using MHO_ScalarUShort = MHO_ScalarContainer<unsigned short>;
+using MHO_ScalarInt = MHO_ScalarContainer<int>;
+using MHO_ScalarUInt = MHO_ScalarContainer<unsigned int>;
+using MHO_ScalarLong = MHO_ScalarContainer<long>;
+using MHO_ScalarULong = MHO_ScalarContainer<unsigned long>;
+using MHO_ScalarLongLong = MHO_ScalarContainer<long long>;
+using MHO_ScalarULongLong = MHO_ScalarContainer<unsigned long long>;
+using MHO_ScalarFloat = MHO_ScalarContainer<float>;
+using MHO_ScalarDouble = MHO_ScalarContainer<double>;
+using MHO_ScalarLongDouble = MHO_ScalarContainer<long double>;
+using MHO_ScalarComplexFloat = MHO_ScalarContainer< std::complex<float> >;
+using MHO_ScalarComplexDouble = MHO_ScalarContainer< std::complex<double> >;
+using MHO_ScalarComplexLongDouble = MHO_ScalarContainer< std::complex<long double> >;
+using MHO_ScalarString = MHO_ScalarContainer< std::string >;
+
+////////////////////////////////////////////////////////////////////////////////
+
 
 }//end of hops namespace
 

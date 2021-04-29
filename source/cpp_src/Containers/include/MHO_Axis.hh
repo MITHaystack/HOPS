@@ -83,6 +83,28 @@ class MHO_Axis:
 
 };
 
+// ////////////////////////////////////////////////////////////////////////////////
+// //using declarations for all basic 'plain-old-data' types
+using MHO_AxisBool = MHO_Axis<bool>;
+using MHO_AxisChar = MHO_Axis<char>;
+using MHO_AxisUChar = MHO_Axis<unsigned char>;
+using MHO_AxisShort = MHO_Axis<short>;
+using MHO_AxisUShort = MHO_Axis<unsigned short>;
+using MHO_AxisInt = MHO_Axis<int>;
+using MHO_AxisUInt = MHO_Axis<unsigned int>;
+using MHO_AxisLong = MHO_Axis<long>;
+using MHO_AxisULong = MHO_Axis<unsigned long>;
+using MHO_AxisLongLong = MHO_Axis<long long>;
+using MHO_AxisULongLong = MHO_Axis<unsigned long long>;
+using MHO_AxisFloat = MHO_Axis<float>;
+using MHO_AxisDouble = MHO_Axis<double>;
+using MHO_AxisLongDouble = MHO_Axis<long double>;
+using MHO_AxisComplexFloat = MHO_Axis< std::complex<float> >;
+using MHO_AxisComplexDouble = MHO_Axis< std::complex<double> >;
+using MHO_AxisComplexLongDouble = MHO_Axis< std::complex<long double> >;
+using MHO_AxisString = MHO_Axis< std::string >;
+// ////////////////////////////////////////////////////////////////////////////////
+
 }
 
 #endif /* end of include guard: MHO_Axis */

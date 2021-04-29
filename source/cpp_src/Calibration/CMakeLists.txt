@@ -1,7 +1,5 @@
 #list header files #############################################################
 set (CALIBRATION_HEADERFILES
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_Visibilities.hh
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ChannelizedVisibilities.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ChannelizedRotationFunctor.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_VisibilityChannelizer.hh
 )
@@ -16,7 +14,7 @@ set( CALIBRATION_SOURCEFILES
 hops_internal_include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 #compile and install library ###################################################
-set(CALIBRATION_LIBS MHO_Message MHO_Math MHO_Operators)
+set(CALIBRATION_LIBS MHO_Message MHO_Math MHO_Operators MHO_Containers)
 
 add_library (MHO_Calibration SHARED ${CALIBRATION_SOURCEFILES})
 target_link_libraries (MHO_Calibration ${CALIBRATION_LIBS})

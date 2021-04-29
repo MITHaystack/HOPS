@@ -31,7 +31,7 @@ MHO_UUID MHO_UUIDGenerator::GenerateUUID()
         if(i == 6){tmp &= 0x0F; tmp |= 0x40;}
         //set 2 MSB bits to 01 for 9th byte
         if(i == 8){tmp &= 0x3F; tmp |= 0x80;}
-        uuid.fBytes[i] = (uint8_t) tmp;
+        uuid[i] = (uint8_t) tmp;
     }
     return uuid;
 }
@@ -40,10 +40,9 @@ std::string
 MHO_UUIDGenerator::ConvertUUIDToString(MHO_UUID& uuid)
 {
     std::stringstream ss;
-    //generate version 4 (128 bit) pseudo-random UUID based on RFC 4122
     for(unsigned int i=0; i<16; i++)
     {
-        uint32_t tmp = uuid.fBytes[i];
+        uint32_t tmp = uuid[i];
         std::stringstream hss;
         hss << std::setw(2) << std::setfill('0') << std::hex << (int)( tmp );
         std::string hexstr = hss.str();
