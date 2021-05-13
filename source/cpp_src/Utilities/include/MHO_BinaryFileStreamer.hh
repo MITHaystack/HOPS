@@ -38,12 +38,14 @@ class MHO_BinaryFileStreamerSingleType
 
         friend inline MHO_BinaryFileStreamer& operator>>(MHO_BinaryFileStreamerSingleType<XValueType>& s, XValueType& obj)
         {
+            //TODO flag this for big-endian machines
             s.GetStream().read(reinterpret_cast<char*>(&obj), sizeof(XValueType));
             return s.Self();
         }
 
         friend inline MHO_BinaryFileStreamer& operator<<(MHO_BinaryFileStreamerSingleType<XValueType>& s, const XValueType& obj)
         {
+            //TODO flag this for big-endian machines
             s.GetStream().write(reinterpret_cast<const char*>(&obj), sizeof(XValueType));
             s.AddBytesWritten(sizeof(XValueType));
             return s.Self();
@@ -68,6 +70,7 @@ template<> class MHO_BinaryFileStreamerSingleType<std::string>
         MHO_BinaryFileStreamerSingleType(){};
         virtual ~MHO_BinaryFileStreamerSingleType(){};
 
+        //read in
         friend inline MHO_BinaryFileStreamer& operator>>(MHO_BinaryFileStreamerSingleType<std::string>& s, std::string& obj)
         {
             uint64_t size;
@@ -77,6 +80,7 @@ template<> class MHO_BinaryFileStreamerSingleType<std::string>
             return s.Self();
         }
 
+        //write out
         friend inline MHO_BinaryFileStreamer& operator<<(MHO_BinaryFileStreamerSingleType<std::string>& s, const std::string& obj)
         {
             uint64_t size = obj.size();
@@ -92,7 +96,7 @@ template<> class MHO_BinaryFileStreamerSingleType<std::string>
 
         virtual void ResetByteCount() = 0;
         virtual void AddBytesWritten(uint64_t) = 0;
-        virtual uint64_t GetNBytesWritten() const = 0; 
+        virtual uint64_t GetNBytesWritten() const = 0;
 
     protected:
 
