@@ -45,10 +45,15 @@ class MHO_BinaryFileStreamerSingleType
         friend inline MHO_BinaryFileStreamer& operator<<(MHO_BinaryFileStreamerSingleType<XValueType>& s, const XValueType& obj)
         {
             s.GetStream().write(reinterpret_cast<const char*>(&obj), sizeof(XValueType));
+            s.AddBytesWritten(sizeof(XValueType));
             return s.Self();
         }
 
         virtual std::fstream& GetStream() = 0;
+
+        virtual void ResetByteCount() = 0;
+        virtual void AddBytesWritten(uint64_t) = 0;
+        virtual uint64_t GetNBytesWritten() const = 0;
 
     protected:
 
@@ -74,13 +79,20 @@ template<> class MHO_BinaryFileStreamerSingleType<std::string>
 
         friend inline MHO_BinaryFileStreamer& operator<<(MHO_BinaryFileStreamerSingleType<std::string>& s, const std::string& obj)
         {
-            const uint64_t size = obj.size();
+            uint64_t size = obj.size();
             s.GetStream().write(reinterpret_cast<const char*>(&size), sizeof(uint64_t));
             s.GetStream().write(obj.c_str(), size);
+
+            s.AddBytesWritten(sizeof(uint64_t));
+            s.AddBytesWritten(size);
             return s.Self();
         }
 
         virtual std::fstream& GetStream() = 0;
+
+        virtual void ResetByteCount() = 0;
+        virtual void AddBytesWritten(uint64_t) = 0;
+        virtual uint64_t GetNBytesWritten() const = 0; 
 
     protected:
 
@@ -127,7 +139,7 @@ class MHO_BinaryFileStreamer: public MHO_FileStreamer, public MHO_BinaryFileStre
 {
     public:
 
-        MHO_BinaryFileStreamer(){};
+        MHO_BinaryFileStreamer(){fNBytesWritten = 0;};
         virtual ~MHO_BinaryFileStreamer(){};
 
         virtual void OpenToRead() override;
@@ -139,8 +151,13 @@ class MHO_BinaryFileStreamer: public MHO_FileStreamer, public MHO_BinaryFileStre
         virtual std::fstream& GetStream() override { return MHO_FileStreamer::GetStream();}
         virtual const std::fstream& GetStream() const override {return MHO_FileStreamer::GetStream();}
 
+        virtual void ResetByteCount() override {fNBytesWritten = 0;}
+        virtual void AddBytesWritten(uint64_t b) override {fNBytesWritten +=b;}
+        virtual uint64_t GetNBytesWritten() const override {return fNBytesWritten;};
 
     protected:
+
+        uint64_t fNBytesWritten;
 
         MHO_BinaryFileStreamer& Self() override {return *this;}
 

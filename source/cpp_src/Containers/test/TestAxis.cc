@@ -63,6 +63,8 @@ int main(int /*argc*/, char** /*argv*/)
     MHO_BinaryFileInterface inter;
     bool status = inter.OpenToWrite(filename);
 
+    std::cout<<"size in bytes of the object: "<<test->GetSerializedSize()<<std::endl;
+
     if(status)
     {
         uint32_t label = 0xFF00FF00;

@@ -59,7 +59,7 @@ class MHO_FileStreamer
         }
 
         //if an unrecognized object is encountered in streaming, flag this object
-        //but changing the 'object' state
+        //by changing the 'object' state
         virtual void SetObjectUnknown(){fObjectState = ObjectState::unknown;}
         virtual void ResetObjectState(){fObjectState = ObjectState::unset;};
         virtual bool IsObjectUnknown(){ return (fObjectState == ObjectState::unknown);};

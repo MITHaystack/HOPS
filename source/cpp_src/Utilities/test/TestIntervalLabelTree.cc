@@ -60,6 +60,8 @@ int main(int /*argc*/, char** /*argv*/)
 
     std::string filename = "./test-label-tree.bin";
 
+    std::cout<<" number of bytes of this object: "<< test.GetSerializedSize()<<std::endl;
+
     MHO_BinaryFileInterface inter;
     bool status = inter.OpenToWrite(filename);
 

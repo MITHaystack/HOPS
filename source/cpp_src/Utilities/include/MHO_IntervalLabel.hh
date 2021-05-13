@@ -21,13 +21,10 @@
 namespace hops
 {
 
-//TODO: Make sure this set of types is complete for data-labelling.
-//Consider what other types might be needed (float? short? dates?)
-typedef MHO_MultiTypeMap< std::string, char, bool, int, double, std::string > MHO_IntervalLabelMap;
 
 class MHO_IntervalLabel:
     public MHO_Interval< std::size_t >,
-    public MHO_IntervalLabelMap,
+    public MHO_CommonLabelMap,
     virtual public MHO_Serializable
 {
     public:
@@ -63,48 +60,58 @@ class MHO_IntervalLabel:
         {
             uint64_t total_size = 0;
             total_size += sizeof(MHO_ClassVersion); //version number
-
             total_size += 2*sizeof(std::size_t); //upper/lower bounds
 
             std::vector< std::string > keys;
             keys = this->DumpKeys< char >();
+            total_size += sizeof(uint64_t); //for the number of keys
             for(std::size_t i=0; i<keys.size(); i++)
             {
+                total_size += sizeof(uint64_t);//every string get streamed with a 'size'
                 total_size += keys[i].size();
                 total_size += sizeof(char);
             }
             keys.clear();
 
             keys = this->DumpKeys<bool>();
+            total_size += sizeof(uint64_t);
             for(std::size_t i=0; i<keys.size(); i++)
             {
+                total_size += sizeof(uint64_t);//every string get streamed with a 'size'
                 total_size += keys[i].size();
                 total_size += sizeof(bool);
             }
             keys.clear();
 
             keys = this->DumpKeys<int>();
+            total_size += sizeof(uint64_t);
             for(std::size_t i=0; i<keys.size(); i++)
             {
+                total_size += sizeof(uint64_t);//every string get streamed with a 'size'
                 total_size += keys[i].size();
                 total_size += sizeof(int);
             }
             keys.clear();
 
             keys = this->DumpKeys<double>();
+            total_size += sizeof(uint64_t);
             for(std::size_t i=0; i<keys.size(); i++)
             {
+                total_size += sizeof(uint64_t);//every string get streamed with a 'size'
                 total_size += keys[i].size();
                 total_size += sizeof(double);
             }
             keys.clear();
 
             keys = this->DumpKeys<std::string>();
+            total_size += sizeof(uint64_t);
             for(std::size_t i=0; i<keys.size(); i++)
             {
                 std::string val;
+                total_size += sizeof(uint64_t);//every string get streamed with a 'size'
                 total_size += keys[i].size();
                 Retrieve(keys[i], val);
+                total_size += sizeof(uint64_t);//every string get streamed with a 'size'
                 total_size += val.size();
             }
             keys.clear();

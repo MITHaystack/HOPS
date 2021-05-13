@@ -10,6 +10,7 @@ set (CONTAINER_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_Axis.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_Visibilities.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ChannelizedVisibilities.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_StationCoordinates.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ContainerDictionary.hh
 )
 

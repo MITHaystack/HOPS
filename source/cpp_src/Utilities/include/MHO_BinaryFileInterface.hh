@@ -116,8 +116,12 @@ class MHO_BinaryFileInterface
             if( fObjectStreamer.IsOpenForWrite() )
             {
                 MHO_FileKey key = GenerateObjectFileKey(obj, label);
+                fObjectStreamer.ResetByteCount();
                 fObjectStreamer << key;
+                msg_debug("file", "wrote object key of size: " << fObjectStreamer.GetNBytesWritten() <<" bytes." << eom);
+                fObjectStreamer.ResetByteCount();
                 fObjectStreamer << obj;
+                msg_debug("file", "wrote object of size: " << fObjectStreamer.GetNBytesWritten() <<" bytes." << eom);
                 if( fObjectStreamer.GetStream().good() )
                 {
                     if(fCollectKeys && fKeyStreamer.IsOpenForWrite())

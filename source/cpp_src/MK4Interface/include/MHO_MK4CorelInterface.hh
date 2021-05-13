@@ -44,8 +44,7 @@ class MHO_MK4CorelInterface
         void SetVexFile(const std::string& vex){fVexFile = vex;}
         void SetCorelFile(const std::string& corel){fCorelFile = corel;}
 
-        //read the vex and corel files and dump into new formatvoid
-
+        //read the vex and corel files and dump into new format
         baseline_data_type* ExtractCorelFile();
 
     private:
