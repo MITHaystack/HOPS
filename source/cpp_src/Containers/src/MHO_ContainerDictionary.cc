@@ -28,11 +28,8 @@ AddClassType< MHO_TableContainer< Complex, MHO_AxisPack_##TYPE1##_##TYPE2##_##TY
 namespace hops
 {
 
-
-
 MHO_ContainerDictionary::MHO_ContainerDictionary()
 {
-
     //add all of the types we define
     AddClassType<MHO_ScalarBool>();
     AddClassType<MHO_ScalarChar>();
@@ -238,51 +235,6 @@ MHO_ContainerDictionary::MHO_ContainerDictionary()
     AddTable4(String, String, String, Int);
     AddTable4(String, String, String, Double);
     AddTable4(String, String, String, String);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 };
 

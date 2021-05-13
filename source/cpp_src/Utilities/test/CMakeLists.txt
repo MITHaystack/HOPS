@@ -9,6 +9,7 @@ set(SOURCE_BASENAMES
     TestIntervalLabelTree
     TestTimeStampConverter
     TestUUIDGenerator
+    TestObjectTags
 )
 
 foreach( BASENAME ${SOURCE_BASENAMES} )

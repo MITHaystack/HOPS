@@ -17,13 +17,13 @@
 #include <cstring>
 #include <string>
 
-#include "MHO_Visibilities.hh"
+#include "MHO_StationCoordinates.hh"
 #include "MHO_Message.hh"
 
 //forward declaration of mk4_corel and vex structs
 //we do this to keep the mk4 structures from 'leaking' into the new code via includes,
 //We want to make sure any interface to the old mk4 IO libraries is kept only
-//within the MK4Interface library.
+//within the MK4Interface library (and primarily in the .cc files).
 extern "C"
 {
     struct mk4_sdata;
@@ -44,6 +44,9 @@ class MHO_MK4StationInterface
         void SetVexFile(const std::string& vex){fVexFile = vex;}
         void SetStationFile(const std::string& station){fStationFile = station;}
 
+        //extract the data
+        station_coord_data_type* ExtractStationFile();
+
     private:
 
         //corel and vex file members
@@ -55,6 +58,14 @@ class MHO_MK4StationInterface
         struct vex* fVex;
         std::string fVexFile;
         std::string fStationFile;
+
+        void DetermineDataDimensions();
+        std::size_t fNCoeffs;
+        std::size_t fNIntervals;
+        std::size_t fNChannels;
+        std::size_t fNCoord;
+
+
 };
 
 }//end of hops namespace

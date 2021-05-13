@@ -75,7 +75,7 @@ class MHO_UUID
         std::string as_string() const
         {
             std::stringstream ss;
-            for(unsigned int i=0; i<16; i++)
+            for(unsigned int i=0; i<MHO_UUID_LENGTH; i++)
             {
                 uint32_t tmp = fBytes[i];
                 std::stringstream hss;
@@ -86,6 +86,10 @@ class MHO_UUID
             return ss.str();
         }
 
+        uint64_t size() const
+        {
+            return MHO_UUID_LENGTH;
+        }
 
     protected:
 

@@ -42,6 +42,7 @@ int main(int /*argc*/, char** /*argv*/)
     {
         uint32_t label = 0xFF00FF00;
         std::cout<<"A label = "<<label<<std::endl;
+        std::cout<<"expected object size = "<<test->GetSerializedSize()<<std::endl;
         inter.Write(*test, label);
         inter.Close();
     }

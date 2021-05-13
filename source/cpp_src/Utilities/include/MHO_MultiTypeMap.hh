@@ -189,6 +189,11 @@ class MHO_MultiTypeMap< XKeyType, XValueType, XValueTypeS...>: public MHO_MultiT
 
 };
 
+//convenience definitions below ////////////////////////////////////////////////
+
+//TODO: Make sure this set of types is complete for data axis labelling needs
+//Consider what other types might be needed (float? short? dates?)
+typedef MHO_MultiTypeMap< std::string, char, bool, int, double, std::string > MHO_CommonLabelMap;
 
 }
 
