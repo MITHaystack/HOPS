@@ -77,5 +77,11 @@ py-compile
 
 #automake generated stuff
 mho_config.h.in
-
+*.Po
+*.Plo
+source/c_src/applications/legacy/CorAsc2/Makefile
+source/cpp_src/Containers/Makefile
+source/cpp_src/MK4Interface/Makefile
+source/cpp_src/Math/Makefile
+source/cpp_src/Utilities/Makefile
 # eof
