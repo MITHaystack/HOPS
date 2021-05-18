@@ -15,6 +15,7 @@
 #include <map>
 #include <string>
 #include <iostream>
+#include <vector>
 
 #include "MHO_Meta.hh"
 
@@ -29,10 +30,11 @@ class MHO_SingleTypeMap
         MHO_SingleTypeMap(){};
         virtual ~MHO_SingleTypeMap(){};
 
+        std::size_t Size() const {return fMap.size(); }
+
         void Insert(const XKeyType& key, const XValueType& value)
         {
             fMap.insert( std::pair<XKeyType, XValueType>(key,value) );
-            //std::cout<<"inserting an element with key: "<<key<<std::endl;
         }
 
         bool Retrieve(const XKeyType& key, XValueType& value) const
@@ -47,6 +49,16 @@ class MHO_SingleTypeMap
                 value = iter->second;
                 return true;
             }
+        }
+
+        std::vector<XKeyType> DumpKeys() const
+        {
+            std::vector< XKeyType > keys;
+            for(auto iter = fMap.begin(); iter != fMap.end(); iter++)
+            {
+                keys.push_back(iter->first);
+            }
+            return keys;
         }
 
         void DumpMap() const
@@ -96,12 +108,26 @@ template <typename  XKeyType, typename XValueType>
 class MHO_MultiTypeMap< XKeyType, XValueType >: public MHO_SingleTypeMap< XKeyType, XValueType >
 {
     public:
+        using MHO_SingleTypeMap< XKeyType, XValueType >::Size;
         using MHO_SingleTypeMap< XKeyType, XValueType >::Insert;
         using MHO_SingleTypeMap< XKeyType, XValueType >::Retrieve;
         using MHO_SingleTypeMap< XKeyType, XValueType >::ContainsKey;
+        using MHO_SingleTypeMap< XKeyType, XValueType >::DumpKeys;
         using MHO_SingleTypeMap< XKeyType, XValueType >::DumpMap;
         using MHO_SingleTypeMap< XKeyType, XValueType >::CopyFrom;
         using MHO_SingleTypeMap< XKeyType, XValueType >::CopyTo;
+
+        template<typename U = XValueType> typename std::enable_if< std::is_same<U,XValueType >::value, std::size_t >::type
+        Size() const
+        {
+            return static_cast< const MHO_SingleTypeMap< XKeyType, XValueType >* >( this )->Size();
+        };
+
+        template<typename U = XValueType> typename std::enable_if< std::is_same<U,XValueType>::value, std::vector<XKeyType> >::type
+        DumpKeys() const
+        {
+            return static_cast< const MHO_SingleTypeMap< XKeyType, XValueType >* >( this )->DumpKeys();
+        };
 
         template<typename U = XValueType> typename std::enable_if<std::is_same<U,XValueType>::value>::type
         DumpMap() const
@@ -137,6 +163,9 @@ class MHO_MultiTypeMap< XKeyType, XValueType, XValueTypeS...>: public MHO_MultiT
 {
     public:
 
+        using MHO_MultiTypeMap< XKeyType, XValueType >::Size;
+        using MHO_MultiTypeMap< XKeyType, XValueTypeS... >::Size;
+
         using MHO_MultiTypeMap< XKeyType, XValueType >::Insert;
         using MHO_MultiTypeMap< XKeyType, XValueTypeS... >::Insert;
 
@@ -145,6 +174,9 @@ class MHO_MultiTypeMap< XKeyType, XValueType, XValueTypeS...>: public MHO_MultiT
 
         using MHO_MultiTypeMap< XKeyType, XValueType >::ContainsKey;
         using MHO_MultiTypeMap< XKeyType, XValueTypeS... >::ContainsKey;
+
+        using MHO_MultiTypeMap< XKeyType, XValueType >::DumpKeys;
+        using MHO_MultiTypeMap< XKeyType, XValueTypeS... >::DumpKeys;
 
         using MHO_MultiTypeMap< XKeyType, XValueType >::DumpMap;
         using MHO_MultiTypeMap< XKeyType, XValueTypeS... >::DumpMap;
@@ -157,6 +189,11 @@ class MHO_MultiTypeMap< XKeyType, XValueType, XValueTypeS...>: public MHO_MultiT
 
 };
 
+//convenience definitions below ////////////////////////////////////////////////
+
+//TODO: Make sure this set of types is complete for data axis labelling needs
+//Consider what other types might be needed (float? short? dates?)
+typedef MHO_MultiTypeMap< std::string, char, bool, int, double, std::string > MHO_CommonLabelMap;
 
 }
 

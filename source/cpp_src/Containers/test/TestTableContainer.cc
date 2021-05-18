@@ -19,6 +19,9 @@
 #endif
 
 
+#include "MHO_BinaryFileStreamer.hh"
+#include "MHO_BinaryFileInterface.hh"
+
 using namespace hops;
 
 #define NDIM 3
@@ -49,7 +52,7 @@ int main(int argc, char** argv)
     {
         x_axis->at(i) = i*(2.0*M_PI/(double)x_axis_size);
     }
-    
+
     //now add some labels to the x_axis
     size_t chan_width = 32;
     for(size_t i=0; i < x_axis_size/chan_width; i++)
@@ -134,6 +137,41 @@ int main(int argc, char** argv)
     }
 
 
+    std::cout<<"Total serializable size of test data = "<<test->GetSerializedSize()<<std::endl;
+
+    std::string filename = "./test-table.bin";
+
+    MHO_BinaryFileInterface inter;
+    bool status = inter.OpenToWrite(filename);
+
+    if(status)
+    {
+        uint32_t label = 0xFF00FF00;
+        std::cout<<"A label = "<<label<<std::endl;
+        inter.Write(*test, label);
+        inter.Close();
+    }
+    else
+    {
+        std::cout<<"error opening file"<<std::endl;
+    }
+
+    inter.Close();
+
+    MHO_TableContainer<double, axis_pack_test >* test2 = new MHO_TableContainer<double, axis_pack_test >(dim);
+
+    status = inter.OpenToRead(filename);
+    if(status)
+    {
+        uint32_t blabel;
+        inter.Read(*test2, blabel);
+        std::cout<<"B object label = "<<blabel<<std::endl;
+        std::cout<<"Total serializable size of (read-back) test data = "<<test2->GetSerializedSize()<<std::endl;
+    }
+    else
+    {
+        std::cout<<" error opening file to read"<<std::endl;
+    }
 
 
     #ifdef USE_ROOT
@@ -166,6 +204,13 @@ int main(int argc, char** argv)
     myStyle->cd();
 
     //plotting objects
+    //set up the axis labels
+    x_axis = &(std::get<XDIM>(*test2));
+    x_axis_size = x_axis->GetDimension(0);
+    y_axis = &(std::get<YDIM>(*test2));
+    y_axis_size = y_axis->GetDimension(0);
+    z_axis = &(std::get<ZDIM>(*test2));
+    z_axis_size = z_axis->GetDimension(0);
 
     TGraph2D *gr = new TGraph2D(x_axis_size*y_axis_size);
     TGraph2D *gg = new TGraph2D(x_axis_size*y_axis_size);
@@ -178,9 +223,9 @@ int main(int argc, char** argv)
         {
             for(size_t k=0; k<z_axis_size; k++)
             {
-                gr->SetPoint(count, x_axis->at(i), y_axis->at(j), (*test)(i,j,0) );
-                gg->SetPoint(count, x_axis->at(i), y_axis->at(j), (*test)(i,j,1) );
-                gb->SetPoint(count, x_axis->at(i), y_axis->at(j), (*test)(i,j,2) );
+                gr->SetPoint(count, x_axis->at(i), y_axis->at(j), (*test2)(i,j,0) );
+                gg->SetPoint(count, x_axis->at(i), y_axis->at(j), (*test2)(i,j,1) );
+                gb->SetPoint(count, x_axis->at(i), y_axis->at(j), (*test2)(i,j,2) );
             }
             count++;
         }
@@ -213,6 +258,7 @@ int main(int argc, char** argv)
     #endif
 
     delete test;
+    delete test2;
     delete dim;
 
     return 0;

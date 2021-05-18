@@ -8,9 +8,9 @@ int main(int /*argc*/, char** /*argv*/)
 {
 
     //add a list of acceptable message categories/keys
+    //this should be done once on a per-application setting basis
     MHO_Message::GetInstance().AddKey("math");
     MHO_Message::GetInstance().AddKey("core");
-
     //set the message level to the lowest possible
     MHO_Message::GetInstance().SetMessageLevel(eDebug);
 

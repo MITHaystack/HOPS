@@ -4,7 +4,7 @@
 # The contents of the package Copyright statement apply here.
 #
 
-SUBDIRS = covertest tasking develplan geodetic requirements \
+SUBDIRS = texcheck covertest tasking develplan geodetic requirements \
 	  specification testreports userman common texmiss
 
 EXTRA_DIST = docs-manifest.txt \
