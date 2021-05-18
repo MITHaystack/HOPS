@@ -1,0 +1,27 @@
+file   = MHO_task_0330.txt
+domain = @UTILS
+
+# Developing the utils library
+thing  = @UtilsDevelop
+
+task   = Design the utils library
+nick   = UtilsDevelop-design
+@cpptask
+desc   = Develop the utils library
+needs  = ProtoCode-review
+days   = 30
+
+task   = Implement the utils library
+nick   = UtilsDevelop-implement
+desc   = Implement the utils library
+needs  = UtilsDevelop-design
+days   = 30
+
+task   = Test the utils library
+nick   = UtilsDevelop-test
+desc   = Test the utils library
+needs  = UtilsDevelop-implement
+#allows = CPPReview-check
+days   = 10
+
+# eof

@@ -4,9 +4,9 @@ use warnings;           # turns on optional warnings
 use diagnostics;        # and makes them not terse
 use strict;             # makes unsafe constructs illegal
 #
-# make some graphs of what depends on what
+# make some graphs showing how tasks are related
 #
-
+use lib ".";
 require "sw_task_wbs.pl";
 
 our $bubbles;
@@ -188,8 +188,9 @@ sub preload_attr {
 }
 
 #
-# makes a name a legal identifier for dot -- turn hyphens into
+# Makes a (nick) name a legal identifier for dot -- turn hyphens into
 # underscores, and delete any other offending characters.
+# This turns out to be sufficient for latex files as well.
 #
 sub make_it_legal {
     my $item = $_ = $_[0];
@@ -219,10 +220,11 @@ sub graph_preamble {
     $stuff .= "// graph_preamble $pl for $nm\n";
     $stuff .= "//\n";
     $stuff .= "rankdir=$graph_rankdir;\n";
-    $stuff .= "concentrate=$concentrate\n";
+    $stuff .= "concentrate=$concentrate;\n";
     $stuff .= $orientation[$pl];
+    $stuff .= "node [style=filled,color=black,fillcolor=lightgray," .
+                    "fontname=HelveticaNarrow,fontsize=14];\n";
     $stuff .= $preamble_stuff{$nm} if defined($preamble_stuff{$nm});
-    $stuff .= "node [style=filled,color=black,fillcolor=lightgray];\n";
     $stuff .= "\n";
     return $stuff;
 }
@@ -269,6 +271,62 @@ sub next_style_counter {
 }
 
 #
+# Construct a line about the margin
+#
+sub margin_comment {
+    my ($k,$s) = @_;
+    if ($wbs{$k}{'done'} <= 100) {
+        $s .= $wbs{$k}{'done'} . '% done of ';
+        $s .= $wbs{$k}{'days'} . '/' . $wbs{$k}{'mjds'} . '\n';
+        if ($wbs{$k}{'flex'} > 0) {
+            $s .= 'Margin of ' . $wbs{$k}{'flex'} . ' days.';
+        } elsif ($wbs{$k}{'flex'} == 0) {
+            $s .= '(No margin)';
+        } else {
+            $s .= '!NEED SLIP!';
+        }
+    } else {
+        $s .= 'Task Complete';
+    }
+}
+
+#
+# This is called from top level so that shape can be reported in wbs.
+#
+# errors means start/stop are not in proper order
+# flex is how much margin there is
+#
+sub assign_shape_heuristics {
+    for my $k (keys(%wbs)) {
+        next if ($wbs{$k}{'type'} ne 'task');
+        if ($wbs{$k}{'errors'} eq '') { $wbs{$k}{'shape'} = 'hexagon'; }
+        elsif ($wbs{$k}{'errors'} > 0) { $wbs{$k}{'shape'} = 'rectangle'; }
+        elsif ($wbs{$k}{'errors'} < 0) { $wbs{$k}{'shape'} = 'egg'; }
+        elsif ($wbs{$k}{'flex'} < 0) { $wbs{$k}{'shape'} = 'octagon'; }
+        else { $wbs{$k}{'shape'} = 'ellipse'; }
+    }
+}
+
+#
+# encapsulate shape-related things
+#
+sub shape_changer {
+    my ($k,$t) = @_;
+    # these either came from input or assign_shape_heuristics().
+    if (defined($wbs{$k}{'shape'})) {
+        $t = 'shape="' . $wbs{$k}{'shape'} . '", ';
+    } else {    # let the default apply
+        $t = '';
+    }
+    if ($wbs{$k}{'done'} == 100) {
+        $t .= 'peripheries=2,';
+    } elsif ($wbs{$k}{'done'} > 0) {
+        $t .= 'peripheries=4,';
+    }
+    return($t);
+}
+
+#
 # provides attributes for a node based on heritage
 #
 sub node_attr {
@@ -278,14 +336,20 @@ sub node_attr {
         $ze_attr{$p} = &next_style_counter();
         $ze_defs .= "// '$p' => " . $ze_attr{$p} . ", \n";
     }
-    $s = $wbs{$k}{'start'} . '\n' . $wbs{$k}{'stop'};
-    $s .= '\n' . $wbs{$k}{'done'} . '%';
+    # generate the label
+    $s  = $wbs{$k}{'start'} . '\n';
+    $s .= $wbs{$k}{'stop'}  . '\n';
+    $s = &margin_comment($k,$s);
+    # start attributes with adjustments to the shape
+    $t = &shape_changer($k);
+    # insert label into attributes
     if ($fullnames) {
         my @pt = split(/$sep/,$k);
-        $t = 'label="' . $pt[2] . '\n' . $s . '", ';
+        $t .= 'label="' . $pt[2] . '\n' . $s . '", ';
     } else {
-        $t = 'label="\N\n' . $s . '", ';
+        $t .= 'label="\N\n' . $s . '", ';
     }
+    # final adjustments or overrides
     $t .= $node_style[$ze_attr{$p}];
     return($t);
 }
@@ -316,11 +380,16 @@ sub make_the_graph {
 
     @list = split(/-/,$name);
     $doma = &task_by_nick($nick = $list[1],'make_the_graph:top');
-    $orio = $wbs{$doma}{'orient'};
+    if ($doma =~ m/none/) {
+        $orio = $orientation[3];
+        $doma = "ALL: Absolutely Everything";
+    } else {
+        $orio = $wbs{$doma}{'orient'};
+    }
     $doma =~ s/$sep/\\n/;
 
     # orientation of ALL is a special case
-    $orio = $orientation[3] if ( $name =~ m/.*-ALL/ );
+    # $orio = $orientation[3] if ( $name =~ m/.*-ALL/ );
 
     open DOT,">$name.dot";
     print DOT "digraph $nick {\n";
@@ -430,7 +499,7 @@ sub make_domain_graphs {
         }
 
         if ($#dtsks < 0) {
-            print "Nothing to graph for $domnick\n";
+            print "Nothing to graph (no defined tasks) for $domnick\n";
             next;
         }
         print "Problem with DOT-$domnick ($#dtsks)\n" if (
@@ -483,7 +552,7 @@ sub make_legend_keys {
     open NEW, ">$name.task";
     print NEW "HEAD of tasks for: $doma\n\n";
     for my $task (sort { $wbs{$a}{'line'} <=> $wbs{$b}{'line'} } @_) {
-        &write_new_rest($task);
+        &write_new_input($task);
     }
     print NEW "\nTAIL of tasks for: $doma\n";
     close NEW;
@@ -517,6 +586,7 @@ sub make_legend {
         print KEY '      (when) ' .
             $wbs{$task}{'start'} . " - " . $wbs{$task}{'stop'} . ' is ' .
             $wbs{$task}{'done'} . "% complete\n";
+        print KEY '      (who) ' . $wbs{$task}{'who'} . "\n";
         $desc = $wbs{$task}{'desc'};
         write KEY;
         print KEY "\n";

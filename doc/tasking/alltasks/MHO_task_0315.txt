@@ -1,0 +1,27 @@
+file   = MHO_task_0315.txt
+domain = @FFPLOT
+
+# Refactoring the FFPlot library
+thing  = @FFPlotRefactor
+
+task   = Design the refactoring of the ffplot library
+nick   = FFPlotRefactor-design
+@ctask
+desc   = Design the refactoring of the ffplot library
+needs  = Fourfit3Review-milestone
+days   = 30
+
+task   = Implement the refactoring of the ffplot library
+nick   = FFPlotRefactor-implement
+desc   = Implement the refactoring of the ffplot library
+needs  = FFPlotRefactor-design
+days   = 30
+
+task   = Test the refactoring of the ffplot library
+nick   = FFPlotRefactor-test
+desc   = Test the refactoring of the ffplot library
+needs  = FFPlotRefactor-implement
+#allows = NewFourfitReview-check
+days   = 10
+
+# eof

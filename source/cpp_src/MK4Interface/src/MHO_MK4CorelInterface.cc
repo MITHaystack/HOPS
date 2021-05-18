@@ -115,7 +115,6 @@ MHO_MK4CorelInterface::ReadVexFile()
     }
     else
     {
-        //do something with the vex object
         fHaveVex = true;
         msg_debug("mk4interface", "Successfully read vex file."<< fVexFile << eom);
     }
@@ -442,12 +441,12 @@ MHO_MK4CorelInterface::ExtractCorelFile()
         // {
         //     msg_debug("mk4interface", "pol_axis: "<<i<<" = "<<std::get<POLPROD_AXIS>(*bl_data).at(i)<< eom);
         // }
-        // 
+        //
         // for(std::size_t i=0; i< std::get<TIME_AXIS>(*bl_data).GetSize(); i++)
         // {
         //     msg_debug("mk4interface", "time_axis: "<<i<<" = "<<std::get<TIME_AXIS>(*bl_data).at(i)<<eom);
         // }
-        // 
+        //
         // for(std::size_t i=0; i< std::get<FREQ_AXIS>(*bl_data).GetSize(); i++)
         // {
         //     msg_debug("mk4interface", "freq_axis: "<<i<<" = "<<std::get<FREQ_AXIS>(*bl_data).at(i)<<eom);

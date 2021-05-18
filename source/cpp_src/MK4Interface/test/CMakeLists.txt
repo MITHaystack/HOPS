@@ -18,6 +18,7 @@ set (HOPS_TEST_LIBS MHO_Message MHO_Utilities MHO_Math MHO_MK4Interface mk4util 
 set(SOURCE_BASENAMES
     TestMK4VexInterface
     TestMK4Import
+    TestMK4StationImport
 )
 
 #for testing purposes only -- not intended to be a dependency

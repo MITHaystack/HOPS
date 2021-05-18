@@ -2,6 +2,7 @@
 #include <string>
 
 #include "MHO_IntervalLabelTree.hh"
+#include "MHO_BinaryFileInterface.hh"
 
 using namespace hops;
 
@@ -53,6 +54,57 @@ int main(int /*argc*/, char** /*argv*/)
         (*iter)->DumpMap<int>();
         (*iter)->DumpMap<double>();
     }
+
+
+
+
+    std::string filename = "./test-label-tree.bin";
+
+    std::cout<<" number of bytes of this object: "<< test.GetSerializedSize()<<std::endl;
+
+    MHO_BinaryFileInterface inter;
+    bool status = inter.OpenToWrite(filename);
+
+    if(status)
+    {
+        uint32_t label = 0xFF00FF00;
+        inter.Write(test, label);
+        inter.Close();
+    }
+    else
+    {
+        std::cout<<"error opening file"<<std::endl;
+    }
+
+    inter.Close();
+
+    std::cout<<"-------- Now testing read back of object --------- "<<std::endl;
+
+    MHO_IntervalLabelTree test2;
+    status = inter.OpenToRead(filename);
+    if(status)
+    {
+        uint32_t blabel;
+        inter.Read(test2, blabel);
+        std::cout<<"object label = "<<blabel<<std::endl;
+
+        auto label_vec1 = test2.GetIntervalsWhichIntersect(5);
+        for(auto iter = label_vec1.begin(); iter != label_vec1.end(); iter++)
+        {
+            std::cout<<"label found for interval = ["<<(*iter)->GetLowerBound()<<", "<<(*iter)->GetUpperBound()<<") with key:val pairs = "<<std::endl;
+            (*iter)->DumpMap<char>();
+            (*iter)->DumpMap<std::string>();
+            (*iter)->DumpMap<int>();
+            (*iter)->DumpMap<double>();
+        }
+    }
+    else
+    {
+        std::cout<<" error opening file to read"<<std::endl;
+    }
+
+    inter.Close();
+
 
     return 0;
 }

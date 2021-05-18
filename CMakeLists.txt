@@ -51,10 +51,15 @@ file(MAKE_DIRECTORY ${SHARE_TEXT_INSTALL_DIR})
 hops_module_paths(Hops)
 
 #compiler flags
-hops_require_cpp11()
-
+#hops_require_cpp11()
+#hops_require_cpp17()
+#
 set( CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -Wextra" )
 set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra" )
+#
+# set( CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fpermissive" )
+# set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fpermissive" )
+
 message(STATUS "Using compiler ${COMPILER_ID} ${COMPILER_VERSION}")
 
 #options for triggering additional dependencies

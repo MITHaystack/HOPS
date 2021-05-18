@@ -1,5 +1,6 @@
 file   = MHO_task_0010.txt
 
+
 #   GENERAL     General Project Activities
 domain = @GENERAL
 thing  = Milestones for the project
@@ -13,19 +14,62 @@ desc   = This covers meetings (zoom or otherwise) and
          otherwise captured in work-type tasks but which
          still eat time
 
+thing  = Satisfaction of Requirements
+nick   = CheckReqs
+desc   = This covers the tracking of the requirements through
+         the schedule.  Requirements are said to be met when
+         there is some automated test that marks it as complete.
+         (Manual-tests can have an automated test that says "done".)
+         After satisfaction, any failure of the the check test is
+         a bug to be fixed rather than a lack of feature.
+
+
 #   INFRA       Infrastructure Setup
 domain = @INFRA
 thing  = Repository related things
 nick   = Repo
 desc   = This covers creation and maintenance of the repository, as
          well as other things that happen at the repository level such
-         as build systems, filesystem refactoring, &c.
+         as build systems, filesystem refactoring, etc.  It also includes
+         developing the configuration tools to allow configuring any build
+         of HOPS4 to cover deployment choices.  (I.e. no PGPLOT, no FFTW3,
+         no Ionosphere handling, and so forth.)
+
+thing  = Regression test data management
+nick   = TestData
+desc   = This covers the handling of the test data that is used by
+         the testing protocols as well as the general script setup
+         to manage the tests.  Note that this (in principal) extends
+         beyond simply HOPS per se, but also includes DiFX testing.
+
+thing  = Replacement for Vhelp
+nick   = NoVhelp
+desc   = The HOPS3 documentation was built around a vhelp mechanism.
+         To complete the import we shall need some replacement that
+         plugs into the existing code without serious refactoring.
+         (Otherwise all HOPS3 executables are broken.)
+
+
+
+# PROTO		Prototyping code methods
+domain = @PROTO
 
 thing  = Prototyping activities
 nick   = ProtoCode
 desc   = This covers targeted experiments on how to do various things.
          There is a fuzzy line between this and actual design work for
          specific tasks...but we shall know when the line is crossed.
+         This includes prototyping objects, i/o methods, import/export
+         methods, regression test methods, etc.
+
+
+thing  = IOStreamer development
+nick   = IOstream
+desc   = This covers development and testing/demonstration of an I/O
+         streaming library for the native HOPS4 binary file format.
+         Define file headers, byte allocation, import/export to data
+         containers.
+
 
 
 # FOURFIT3      Import Legacy HOPS3 Fourfit to HOPS4
@@ -45,6 +89,28 @@ nick   = Fourfit3Review
 desc   = This covers validation of the fourfit legacy executable in the
          HOPS4 git repo.
 
+# Import HOPS3 A-things to HOPS4
+domain = @AEDIT3
+
+thing  = Import Alist, Adump and Aedit
+nick   = ImportA3
+desc   = Import these three executables
+
+thing  = Import Average, Fringex, Search
+nick   = ImportAx
+desc   = Import the other executables.
+
+
+# Import HOPS3 Other things to HOPS4
+domain = @OTHER3
+
+thing  = Import Other HOPS3 Executables
+nick   = ImportEx
+desc   = Look over the SVN and pull in other executables
+
+thing  = Import Useful HOPS3 Scripts
+nick   = ImportSc
+desc   = Look over the SVN and pull in scripts that are still useful
 
 # FFCONTROL      Refactor the ffcontrol library
 domain = @FFCONTROL
@@ -94,23 +160,177 @@ nick   = FFPlotRefactor
 desc   = This covers the refactoring of the ffplot library. 
 
 
+# NEWFOURFIT
+domain = @NEWFOURFIT
 
-
+thing  = Review the fourfit refactoring (C libraries)
+nick   = NewFourfitReview
+desc   = This covers reviewing the fourfit refactoring work. Prior to this,
+	 we should have completed the refactoring of the legacy C libraries, 
+	 and fourfit (in HOPS4) should do everything the HOPS3 fourfit could 
+	 do, but with unlimited stations/baselines/channels. This review is 
+	 a milestone to validate progress, collect notes, align tasks for 
+	 the C++ libraries and Python interfaces, etc.
 
 thing  = Refactoring fourfit
-nick   = FourfitRefactor
+nick   = NewFourfitRefactor
 desc   = This covers refactoring the fourfit librairies into new modules
          with the new data containers; by the end of this task, we should
 	 have a fourfit that works for unlimited stations/baselines/channels
 
 thing  = Extending fourfit with new functionality
-nick   = FourfitExtend
+nick   = NewFourfitExtend
 desc   = This covers new functions and interfaces to fourfit: new operators,
          calibration routines, python bindings, flagging, and so on.
 
 
 
+# UTILS        Develop the utilities library
+domain = @UTILS
 
+thing  = Develop the utilities library
+nick   = UtilsDevelop
+desc   = This covers the development of the new utilities library.
+
+
+# MESSAGE        Develop the messaging library
+domain = @MESSAGE
+
+thing  = Develop the messaging library
+nick   = MessageDevelop
+desc   = This covers the development of the new messaging library.
+
+
+# CONTAINERS        Develop the new containers library
+domain = @CONTAINERS
+
+thing  = Develop the containers library
+nick   = ContainersDevelop
+desc   = This covers the development of the new containers library.
+
+
+# OPERATORS        Develop the operators library
+domain = @OPERATORS
+
+thing  = Develop the operators library
+nick   = OperatorsDevelop
+desc   = This covers the development of the new operators library.
+
+
+# MATH        Develop the math library
+domain = @MATH
+
+thing  = Develop the math library
+nick   = MathDevelop
+desc   = This covers the development of the new math library.
+
+
+# VCAL        Develop the VLBI calibration library
+domain = @VCAL
+
+thing  = Develop the VLBI calibration library
+nick   = VCalDevelop
+desc   = This covers the development of the new VLBI calibration library.
+
+
+# MK4INTER        Develop the mk4 interface library
+domain = @MK4INTER
+
+thing  = Develop the mk4 interface library
+nick   = Mk4InterDevelop
+desc   = This covers the development of the new mk4 interface library.
+
+
+# BINDINGS        Develop the Python bindings to the new libraries
+domain = @BINDINGS
+
+thing  = Develop the Python bindings library
+nick   = BindingsDevelop
+desc   = This covers the development of the new Python bindings.
+
+
+# CPPREVIEW        Review the implementation of the C++ libraries
+domain = @CPPREVIEW
+
+thing  = Review the C++ libraries
+nick   = CPPReview
+desc   = This covers the review of the new C++ libraries. Prior to this, we 
+	 shall have completed the baseline design and implementation of the 
+	 C++ code (containers, messaging, bindings, interfaces, etc). This 
+	 milestone is a chance for the full team to test and explore the new
+	 functionality, generate reports, and gather items for further work.
+
+
+
+
+# AMACHINE Refactor A Machinery
+domain = @AMACHINERY
+
+thing  = Data Summary Plot
+nick   = AeditSummary
+desc   = This refers to a re-implementation of the currently broken psplot
+
+thing  = Aedit TBD
+nick   = AeditTBD
+desc   = As the name implies, there is much more here....
+
+
+# INTERFACE     Import and Export interfaces
+domain = @INTERFACES
+
+thing  = Create difx2mark4 equivalent
+nick   = Difx2Hops4
+desc   = This covers the work required to build a difx2mark4 equivalent
+         that reads the correlator products (SWIN format and setup files)
+         and produces files in the hops format.
+
+thing  = Mk4 to HOPS data exchange libraries.
+nick   = Mk4AndHops
+desc   = For testing and possibly export to mk4, there needs to be a method
+         to convert mk4 filesets into hops filesets and into the reverse
+         direction as well.  The exchange with mk4 need not support the
+         new features of HOPS4 that are incompatible with HOPS3.
+
+thing  = Vendor Branch to DiFX
+nick   = DifxVendor
+desc   = HOPS3 has traditionally been provided to the DiFX community by
+         a so-called "vendor branch", which is a pruned copy of the version
+         of HOPS3 when it hits a release point (and presumably has undergone
+         some pre-release testing).  The HOPS3-process is documented in the
+         notes file referenenced
+notes  = @SVN/trunk/README.vendor.txt
+
+
+# CALI  Calibration routine development
+domain = @CALI
+
+thing  = Complex Bandpass
+nick   = CBandPass
+desc   = Develop the complex bandpass capability.  In the HOPS3 world,
+         there is at least one script to generate manual phase cals from
+         one or more bright scans.  A more general algorithic framework
+         (and presentation of results to fourfit) needs to be developed.
+
+thing  = Amplitude Closure
+nick   = AmpClosure
+desc   = Amplitude closure was stubbed out in Aedit, but it is in fact
+         in use in the EHTC analyses, so we need to develop those algorithms.
+
+
+# VIZ  Visualization library development
+domain = @VIZ
+
+thing  = Aedit graphics
+nick   = AeditViz
+desc   = Aedit can make plots and for some of them interact with the user
+         who can click on things and edit the alist or modify the plot, etc.
+
+thing  = Fplot graphics
+nick   = FplotViz
+desc   = HOPS3 has a very primitive fplot paradigm: the fringe plot is actually
+         pre-made and stored as a gzipped ps file (IIRC).  It also steps
+         through a list of files in one direction.  Improving on this and
+         allowing some interaction with the plots would be useful.
 
 #   DOCS        HOPS4 Documentation
 domain = @DOCS
@@ -123,28 +343,47 @@ desc   = This refers to the initial plan drawn up at the outset
 
 thing  = Requirements
 nick   = ReqsDoc
-desc   = Define the requirements of the HOPS4 project
+desc   = Define and describe the requirements of the HOPS4 project
 
 thing  = Coverage and Testing
 nick   = CoTestDoc
-desc   = Define the tests that will be used in HOPS4
+desc   = Define and describe the tests that will be used in HOPS4
 
 thing  = Specifications
 nick   = SpecsDoc
-desc   = Define the technical details of the HOPS4 project
+desc   = Define the technical details of the HOPS4 project.
+         This is the meat of the project, of course.
+
+thing  = Tasking System
+nick   = Tasking
+desc   = This covers the tasking system development as well as
+         creating the tasking data which is captured in a document.
+         Once the design is complete, updating the content ingested
+         by the machine is sufficient maintenance to manage the project.
 
 thing  = Software Development Plan
 nick   = SDPlanDoc
-desc   = Describe the work plan of the HOPS4 project
+desc   = Describe the work plan of the HOPS4 project.  That is to
+         say, not so much the work in detail, but how it shall
+         be conducted.
 
-### more documentation
+thing  = User and Developer Manuals
+nick   = Manuals
+desc   = One or more user and developer manuals.
+
 
 #   STUFF       everything else
 domain = @STUFF
 thing  = Project Time Margin
 nick   = Margin
-desc   = Something to gobble up free time
+desc   = Something to gobble up free time as well as things not
+         otherwise captured...until such time as it can be deleted.
 
-#
-###  Tasks by Thing by Domain
-#
+thing  = Other Algorithms
+nick   = Algorithms
+desc   = This is a placeholder to capture things not otherwise mentioned
+         until they can be moved to better locations.  The atmospheric
+         phase analysis that Lindy implemented in his pipeline is an
+         example.
+
+# eof

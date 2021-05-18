@@ -1,0 +1,57 @@
+# this file contains a random list list of things to fix
+
+# TTD:
+#   file line numbers should be in file, not total
+#   Need to sort by dates or uid in some places...
+#   consider using tred (optionally) to apply transitive reduction
+#   make use of attr for node attributes
+#   figure out how to capture and adjust edge attributes
+#   should eventually remove many checks for things that cannot happen
+#   work planning poker into days estimation
+#   partition the work load into fte as a dict? so that any Gantting can
+#       track effort levels
+#   mjd math should work for full date range (1995..2010).
+#       use gBegin/gEnd (if defined)
+#       add proper perl calculation of MJD
+#   make bubble color specification by things be key or nicks and report
+#       this in the .dot files
+#   add wbs only report
+#   get rid of MHO_task_input.txt and put something into taskscripts
+#       as a help executable, or better, do real docs....
+#
+#   latex support:
+#       domains get sections
+#       things get subsections
+#       plots get a figure wrapper
+#       tasks get a table
+#
+# one last cleanup/review
+#
+
+
+# Support script for computing timeline; with hops_time:
+# $ HOPS_JULIAN_EPOCH=UTC hops_time -q I 56763.0 |cut -dT -f1
+# $ HOPS_JULIAN_EPOCH=UTC hops_time -q M 2014-04-16 |cut -d. -f1|sed 's/$/.0/'
+#
+# Calendar dates are of the form YYYY-MM-DD <=> MJD (5 digits)
+# 1995-10-10                        50000
+# 2011-08-15 when contract awarded  55788
+# 2012-02-29 (leap day)             55986
+# 2016-02-29 (leap day)             57447
+# 2016-08-15 six years afterwards   57615
+# 2023-02-25                        60000
+#
+# With Python3 datetime module gets you a unix timestamp:
+# datetime.datetime.fromisoformat(
+#   '2021-01-01T00:00:00').replace(tzinfo=datetime.timezone.utc).timestamp()
+# = 1609459200.0 unix clock
+#
+# def MJD(isotime):
+#    zulu = 'T00:00:00'
+#    tsn = datetime.datetime.fromisoformat(isotime + zulu).replace(
+#       tzinfo=datetime.timezone.utc).timestamp()
+#    ts0 = datetime.datetime.fromisoformat('1995-10-10' + zulu).replace(
+#       tzinfo=datetime.timezone.utc).timestamp()
+#    return (50000 + int(tsn - ts0)//86400)
+#
+# note that all of the above is calendar time (i.e. ignoring leap seconds)

@@ -6,74 +6,131 @@ thing  = @Repo
 
 task   = Establish github repository
 nick   = Repo-init
+@gentask
 desc   = Initialize a github repo, add the basic elements of HOPS, get team members connected
 start  = @tJHIRE
 needs  = Meetings-hired
-allows = Repo-build
+#allows = Repo-cmakeinit,Repo-autoinit
 
-task   = Write build tools
-nick   = Repo-build
-desc   = Write the automake and cmake foundations for the new project and make sure everyone can compile the code
-start  = @tJHIRE
+task   = Write first draft of automake build tools
+nick   = Repo-autoinit
+@shtask
+desc   = Write the automake foundations for the new project and make sure
+         everyone can compile some of the code using automake
+#start  = @tJHIRE
 needs  = Repo-init
-allows = Repo-tests
 
-task   = Import automated tests from HOPS3
-nick   = Repo-tests
-desc   = Build out the check scripts with captured data in the new project
-start  = @tJHIRE
-needs  = Repo-build
-allows = Repo-actions
+task   = Write first draft of cmake build tools
+nick   = Repo-cmakeinit
+desc   = Write the automake foundations for the new project and make sure
+         everyone can compile some of the code using automake
+#start  = @tJHIRE
+needs  = Meetings-endQ08
 
-task   = Get an integration server or nightly test suite running
-nick   = Repo-actions
-desc   = Use something like github actions or a nightly pull/compile/test job to implement tests
-start  = tSREV
-needs  = Repo-tests
-allows =
+task   = Get an automake nightly or integration suite running
+nick   = Repo-amnightly
+desc   = Use something like github actions or a nightly pull/compile/test
+         job to implement tests; as a practical matter the automake flavor
+         comes first
+needs  = Repo-autoinit
+#start  = tSREV
+days   = 20
+derate = 1
 
-# Prototyping tasks
-thing  = @ProtoCode
+task   = Get a cmake nightly or integration suite running
+nick   = Repo-cmnightly
+desc   = Use something like github actions or a nightly pull/compile/test
+         job to implement tests; as a practical matter the cmake flavor
+         comes second
+#start  = tSREV
+needs  = Repo-cmakeinit
+allows = Meetings-end2021
 
-task   = Build the new data containers
-nick   = ProtoCode-containers
-desc   = Build the cpp classes that define the new data containers
-code   = C
-start  = tSTART
-needs  = Miles-start
+task   = Iterate cmake nightly build to include compilation options
+nick   = Repo-cmoptions
+desc   = Do the work to get the nightly able to build several different
+         configurations on multiple hosts, with multiple compilation options
+needs  = Repo-cmakeinit
+allows = Meetings-end2021
 
-task   = Test the performance of the new data containers
-nick   = ProtoCode-containertest
-desc   = Profile the memory performance of the new data containers
-code   = C
-start  = tSREV
-needs  = ProtoCode-containers
+task    = Automake/CMake configuration support
+nick    = Repo-config
+desc    = Automake and CMake have different ways of testing what is available
+          on the local machine.  This task is to set up the framework so that
+          they can either share information or at least do the same things.
+needs   = Miles-hops3working
 
-task   = Prototype the SWIG bindings
-nick   = ProtoCode-swig
-desc   = Write the compilation steps for the SWIG bindings with the autmake tools
-start  = tJHIRE
-needs  = Repo-build
+task   = Iterate automake nightly build to include compilation options
+nick   = Repo-amoptions
+desc   = Do the work to get the nightly able to build several different
+         configurations on multiple hosts, with multiple compilation options
+needs  = Repo-config
+allows = Meetings-endQ08
 
-task   = Test the SWIG bindings
-nick   = ProtoCode-swigtest
-desc   = Check that the SWIG bindings work with the new data containers, move arrays back and forth
-code   = Python
-start  = tSREV
-needs  = ProtoCode-swig,ProtoCode-containers
+task    = Automake nightly reporting
+nick    = Repo-amreps
+desc    = Automake check tests should generate PASS/FAIL commentary.
+          This task is to add the additional script infrastructure to build
+          reports about, e.g. requirements completion
+needs   = Repo-config
+allows = Meetings-endQ08
 
-task   = Prototype fringe plot without PGPLOT
-nick   = ProtoCode-fringeplot
-desc   = Demonstrate that we can make a fringe plot with matplotlib
-code   = Python
-start  = tJHIRE
-needs  = Repo-build
-
-task   = Test an interactive plotting GUI
-nick   = ProtoCode-interactivefringeplot
-desc   = Demonstrate interactive plotting tools with matplotlib
-code   = Python
-needs  = ProtoCode-fringeplot
+#task   = Import automated tests from HOPS3
+#nick   = Repo-amcheck
+#desc   = Build out the check scripts with captured data in the new project
+#start  = @tJHIRE
+#needs  = Repo-autoinit
 
 
-#   FOURFIT       Refactoring Fourfit
+
+
+thing  = @TestData
+
+task   = Identify legacy data used with fourfit check scripts
+nick   = TestData-data
+@gentask
+desc   = The fourfit check scripts need various datasets, figure
+         out where they are and which ones can be shared on a server
+needs  = Repo-amnightly
+days   = 5
+derate = 1
+start  = @tEHT21
+
+task   = Build tarballs of captured data
+nick   = TestData-tarballs
+@shtask
+desc   = Build tarballs of the datasets required for the legacy fourfit
+         check scripts. Write a shell script to wget and upack them
+         as part of make check
+needs  = TestData-data
+days   = 3
+derate = 1
+
+task   = Write a script that finds and unpacks the test data
+nick   = TestData-fetch
+desc   = Write a shell script to wget and upack them as part of 
+         make check. This can be a little clever, should not have
+         to un-tar them more than once on a single machine
+needs  = TestData-tarballs
+days   = 3
+derate = 1
+
+task   = Write a wget script that finds and unpacks the test data
+nick   = TestData-gemini
+desc   = Put the testing dataset on gemini or similar; decide what
+         EHT datasets to use so we don't expose data publicly
+needs  = TestData-fetch
+days   = 3
+derate = 1
+allows = Meetings-endQ08
+
+
+thing  = @NoVhelp
+
+task   = deal with HOPS3 help mechanisms
+nick   = NoVhelp-cope
+@gentask
+desc   = tbd
+allows = Meetings-endQ08
+
+# eof

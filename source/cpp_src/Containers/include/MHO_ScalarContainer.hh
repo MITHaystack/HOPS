@@ -12,27 +12,33 @@
 
 
 #include <string>
+#include <complex>
 
-#include "MHO_Named.hh"
+#include "MHO_Serializable.hh"
 #include "MHO_NDArrayWrapper.hh"
 
 namespace hops
 {
 
 template< typename XValueType >
-class MHO_ScalarContainer: public MHO_NDArrayWrapper< XValueType, 0>, public MHO_Named
+class MHO_ScalarContainer:
+    public MHO_NDArrayWrapper< XValueType, 0>,
+    virtual public MHO_Serializable
 {
     public:
         MHO_ScalarContainer():
-            MHO_NDArrayWrapper<XValueType, 0>(),
-            MHO_Named()
+            MHO_NDArrayWrapper<XValueType, 0>()
         {};
 
         virtual ~MHO_ScalarContainer(){};
 
-        using MHO_Named::IsNamed;
-        using MHO_Named::GetName;
-        using MHO_Named::SetName;
+        virtual uint64_t GetSerializedSize() const override
+        {
+            uint64_t total_size = 0;
+            total_size += sizeof(MHO_ClassVersion); //version
+            total_size += sizeof(XValueType); //contents
+            return total_size;
+        }
 
         void SetValue(const XValueType& value){fData = value;};
         XValueType GetValue(){ return fData;};
@@ -47,7 +53,56 @@ class MHO_ScalarContainer: public MHO_NDArrayWrapper< XValueType, 0>, public MHO
 
         using MHO_NDArrayWrapper<XValueType,0>::fData;
 
+        template<typename XStream> friend XStream& operator>>(XStream& s, MHO_ScalarContainer& aData)
+        {
+                MHO_ClassVersion vers;
+                s >> vers;
+                if( vers != aData.GetVersion() )
+                {
+                    MHO_ClassIdentity::ClassVersionErrorMsg(aData, vers);
+                    //Flag this as an unknown object version so we can skip over this data
+                    MHO_ObjectStreamState<XStream>::SetUnknown(s);
+                }
+                else
+                {
+                    s >> aData.fData;
+                }
+                return s;
+        };
+
+        template<typename XStream> friend XStream& operator<<(XStream& s, const MHO_ScalarContainer& aData)
+        {
+                s << aData.GetVersion();
+                s << aData.fData;
+                return s;
+        };
+
 };
+
+
+////////////////////////////////////////////////////////////////////////////////
+//using declarations for all basic 'plain-old-data' types
+using MHO_ScalarBool = MHO_ScalarContainer<bool>;
+using MHO_ScalarChar = MHO_ScalarContainer<char>;
+using MHO_ScalarUChar = MHO_ScalarContainer<unsigned char>;
+using MHO_ScalarShort = MHO_ScalarContainer<short>;
+using MHO_ScalarUShort = MHO_ScalarContainer<unsigned short>;
+using MHO_ScalarInt = MHO_ScalarContainer<int>;
+using MHO_ScalarUInt = MHO_ScalarContainer<unsigned int>;
+using MHO_ScalarLong = MHO_ScalarContainer<long>;
+using MHO_ScalarULong = MHO_ScalarContainer<unsigned long>;
+using MHO_ScalarLongLong = MHO_ScalarContainer<long long>;
+using MHO_ScalarULongLong = MHO_ScalarContainer<unsigned long long>;
+using MHO_ScalarFloat = MHO_ScalarContainer<float>;
+using MHO_ScalarDouble = MHO_ScalarContainer<double>;
+using MHO_ScalarLongDouble = MHO_ScalarContainer<long double>;
+using MHO_ScalarComplexFloat = MHO_ScalarContainer< std::complex<float> >;
+using MHO_ScalarComplexDouble = MHO_ScalarContainer< std::complex<double> >;
+using MHO_ScalarComplexLongDouble = MHO_ScalarContainer< std::complex<long double> >;
+using MHO_ScalarString = MHO_ScalarContainer< std::string >;
+
+////////////////////////////////////////////////////////////////////////////////
+
 
 }//end of hops namespace
 

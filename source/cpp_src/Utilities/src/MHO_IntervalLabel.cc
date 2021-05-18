@@ -7,12 +7,12 @@ namespace hops
 
 MHO_IntervalLabel::MHO_IntervalLabel():
     MHO_Interval(),
-    MHO_IntervalLabelMap()
+    MHO_CommonLabelMap()
 {}
 
 MHO_IntervalLabel::MHO_IntervalLabel( std::size_t lower_bound, std::size_t upper_bound):
     MHO_Interval(lower_bound,upper_bound),
-    MHO_IntervalLabelMap()
+    MHO_CommonLabelMap()
 {};
 
 bool

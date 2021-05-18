@@ -108,6 +108,7 @@ AC_PATH_PROG(SPHINX, sphinx-build, sphinx-not-found)
 AC_PATH_PROG(PERL, perl, perl-not-found)
 AC_PATH_PROG(GCOV, gcov, gcov-not-found)
 AC_PATH_PROG(HELP2MAN, help2man, help2man-not-found)
+AC_PATH_PROG(DOT, dot, dot-not-found)
 
 # simple checks for specific/enable/disable cases
 AM_CONDITIONAL(HAVE_SWIG, [test -x $SWIG])
@@ -117,7 +118,7 @@ AM_CONDITIONAL(WANT_SPHINX, [test x$enable_docs = xyes -a -x $SPHINX])
 AM_CONDITIONAL(DO_COVER, [test x$enable_gcov = xyes -a -x $GCOV])
 #M_CONDITIONAL(COVER_HACK, [test x$enable_hack = xyes])
 AM_CONDITIONAL(DO_MANPAGES, [test -x $HELP2MAN])
-
+AM_CONDITIONAL(HAVE_DOT, [test -x $DOT])
 
 # and share the conditionals with the summary
 AC_MHO_NOTICE([%%% $HAVE_SWIG_TRUE HAVE_SWIG "$SWIG"])
@@ -351,6 +352,7 @@ AC_CONFIG_FILES(
     doc/specification/Makefile
     doc/testreports/Makefile
     doc/userman/Makefile
+    doc/texcheck/Makefile
 )
 # still to do (perhaps):
     # doc/code_outline/Makefile

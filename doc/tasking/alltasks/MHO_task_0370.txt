@@ -1,0 +1,78 @@
+file   = MHO_task_0370.txt
+domain = @INTERFACES
+
+thing  = @Difx2Hops4
+
+task   = Design and name difx2mark4 equivalent
+nick   = Difx2Hops4-design
+@gentask
+desc   = Work out how to pull DiFX-correlated data into HOPS4
+needs  = Meetings-endQ08
+
+task   = Implement the difx2mark4 equivalent
+nick   = Difx2Hops4-implement
+@cpptask
+desc   = Write the code; this description need expansion.
+needs  = Difx2Hops4-design
+
+task   = Develop testing for the difx2mark4 equivalent
+nick   = Difx2Hops4-testing
+@shtask
+desc   = Develop a testsuite for it; this description need expansion.
+needs  = Difx2Hops4-implement
+allows = Margin-dunno
+
+
+thing  = @Mk4AndHops
+
+task   = Develop code to convert mk4 filesets into HOPS4 filesets
+nick   = Mk4AndHops-tohops4
+@cpptask
+desc   = this covers the import from mk4 to HOPS4
+needs  = Meetings-end2021
+
+task   = Develop code to convert HOPS4 filesets into mk4 filesets
+nick   = Mk4AndHops-tomk4
+@cpptask
+desc   = this covers export from HOPS4 to mk4.  not that this direction
+         can only succeed if the data is expressible in mk4.
+needs  = Meetings-end2021
+
+task   = Develop a test suite for data exchange between mk4 and HOP4
+nick   = Mk4AndHops-testsuite
+@shtask
+desc   = back and forth on some captive samples
+needs  = Mk4AndHops-tomk4,Mk4AndHops-tohops4
+allows = Margin-dunno
+
+
+thing  = @DifxVendor
+
+task   = Create staging nightly build area
+nick   = DifxVendor-staging
+@shtask
+desc   = Repositories are usually owned by one person (in contrast
+         to filesystems that--through group permissions--may be handled
+         by many).  To simply replicate the HOPS3 model, it is sufficient
+         for all HOPS4 developers to have a nightly build area that is a
+         relatively pristine place to stage a DiFX version vend from.
+needs  = Miles-hops3working
+
+task   = Adjust DiFX repository
+nick   = DifxVendor-DiFXrepodesign
+desc   = The DiFX team is in the midst of migration from SVN to GIT.
+         This will most likely be concluded prior to the need to develop
+         a vending process.  Assuming so, the HOPS3 instructions need to
+         be adjusted (svn becomes git for DiFX) and decisions on how this
+         is to be done should be made.  Note that the SVN to GIT migration
+         of DiFX is an external dependency.  (No date yet.)
+needs  = DifxVendor-staging
+
+task   = Develop vending machine
+nick   = DifxVendor-vending
+desc   = Once the design of the DiFX target vendor branch is complete,
+         this task is to create the procedure and/or scripts to make it
+         do-able in a hour or so.
+needs  = DifxVendor-DiFXrepodesign
+
+# eof

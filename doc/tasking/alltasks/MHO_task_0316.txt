@@ -1,0 +1,50 @@
+file   = MHO_task_0316.txt
+domain = @NEWFOURFIT
+
+# Generic fourfit refactoring things
+
+thing  = @NewFourfitReview
+
+task   = Check the fourfit refactoring
+nick   = NewFourfitReview-check
+@gentask
+desc   = Everybody checks that the new versions of the legacy fourfit
+         libraries are sensible. Should allow fourfit to work on
+	 unlimited stations/baselines/channels
+needs  = FFSearchRefactor-test,FFMathRefactor-test,FFPlotRefactor-test,FFControlRefactor-test,FFIORefactor-test,FFCoreRefactor-test
+days   = 10
+
+task   = Lessons from the fourfit refactoring
+nick   = NewFourfitReview-lessons
+@gentask
+desc   = Gather lessons from the fourfit refactoring
+needs  = NewFourfitReview-check
+
+task   = Internal review of the fourfit refactoring
+nick   = NewFourfitReview-milestone
+@gentask
+desc   = Internal team meeting to review fourfit refactoring
+needs  = NewFourfitReview-lessons
+allows = Meetings-midpoint
+
+
+
+thing  = @NewFourfitRefactor
+
+task   = Unspecified Fourfit refactoring work
+nick   = NewFourfitRefactor-unspecified
+@gentask
+desc   = tbd: design, code, test....
+allows = Meetings-endQ13
+days   = 10
+
+thing  = @NewFourfitExtend
+
+task   = Unspecified Fourfit extension work
+nick   = NewFourfitExtend
+@gentask
+desc   = tbd: design, code, test....
+allows = Meetings-endQ13
+days   = 30
+
+# eof

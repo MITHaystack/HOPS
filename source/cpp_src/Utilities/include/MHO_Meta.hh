@@ -14,6 +14,7 @@
 */
 
 #include <type_traits>
+#include <tuple>
 
 namespace hops
 {
@@ -35,6 +36,47 @@ template< class... T > struct MHO_TypelistSizeImpl< MHO_Typelist< T... > >
 //alias to MHO_TypelistSize, retrieve the value itself with ::value (element of std::integral_constant)
 template< class L > using MHO_TypelistSize = typename MHO_TypelistSizeImpl<L>::type;
 
+
+
+//functions needed to stream tuples/////////////////////////////////////////////
+template<size_t N = 0, typename XStream, typename... T >
+typename std::enable_if< (N >= sizeof...(T)), XStream& >::type
+    ostream_tuple(XStream& s, const std::tuple<T...>&)
+{
+    //terminating case, do nothing but return s
+    return s;
+}
+
+template <size_t N = 0, typename XStream, typename... T>
+typename std::enable_if< (N < sizeof...(T)), XStream& >::type
+    ostream_tuple(XStream& s, const std::tuple<T...>& t)
+{
+    //dump the element @ N
+    s << std::get<N>(t);
+    //recurse to next
+    return ostream_tuple<N+1>(s, t);
+}
+
+//functions needed to stream tuples
+template<size_t N = 0, typename XStream, typename... T >
+typename std::enable_if< (N >= sizeof...(T)), XStream& >::type
+    istream_tuple(XStream& s, std::tuple<T...>&)
+{
+    //terminating case, do nothing but return s
+    return s;
+}
+
+template <size_t N = 0, typename XStream, typename... T>
+typename std::enable_if< (N < sizeof...(T)), XStream& >::type
+    istream_tuple(XStream& s, std::tuple<T...>& t)
+{
+    //in stream the element @ N
+    s >> std::get<N>(t);
+    //recurse to next
+    return istream_tuple<N+1>(s, t);
+}
+
+////////////////////////////////////////////////////////////////////////////////
 
 
 }

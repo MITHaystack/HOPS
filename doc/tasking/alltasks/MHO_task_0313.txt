@@ -1,0 +1,27 @@
+file   = MHO_task_0313.txt
+domain = @FFMATH
+
+# Refactoring the FFMath library
+thing  = @FFMathRefactor
+
+task   = Design the refactoring of the ffmath library
+nick   = FFMathRefactor-design
+@ctask
+desc   = Design the refactoring of the ffmath library
+needs  = Fourfit3Review-milestone
+days   = 30
+
+task   = Implement the refactoring of the ffmath library
+nick   = FFMathRefactor-implement
+desc   = Implement the refactoring of the ffmath library
+needs  = FFMathRefactor-design
+days   = 30
+
+task   = Test the refactoring of the ffmath library
+nick   = FFMathRefactor-test
+desc   = Test the refactoring of the ffmath library
+needs  = FFMathRefactor-implement
+#allows = NewFourfitReview-check
+days   = 10
+
+# eof

@@ -19,6 +19,7 @@
 #include "MHO_MultiTypeMap.hh"
 #include "MHO_NDArrayWrapper.hh"
 #include "MHO_VectorContainer.hh"
+#include "MHO_Axis.hh"
 #include "MHO_AxisPack.hh"
 
 
@@ -26,27 +27,26 @@ namespace hops
 {
 
 template< typename XValueType, typename XAxisPackType >
-class MHO_TableContainer: public MHO_NDArrayWrapper< XValueType, XAxisPackType::NAXES::value>, public XAxisPackType, public MHO_Named
+class MHO_TableContainer:
+    public MHO_NDArrayWrapper< XValueType, XAxisPackType::NAXES::value>,
+    public XAxisPackType
 {
     public:
 
         MHO_TableContainer():
             MHO_NDArrayWrapper<XValueType, XAxisPackType::NAXES::value>(),
-            XAxisPackType(),
-            MHO_Named()
+            XAxisPackType()
         {};
 
         MHO_TableContainer(const std::size_t* dim):
             MHO_NDArrayWrapper<XValueType, XAxisPackType::NAXES::value>(dim),
-            XAxisPackType(dim),
-            MHO_Named()
+            XAxisPackType(dim)
         {};
 
         //copy constructor
         MHO_TableContainer(const MHO_TableContainer& obj):
             MHO_NDArrayWrapper<XValueType, XAxisPackType::NAXES::value>(obj),
-            XAxisPackType(obj),
-            MHO_Named(obj)
+            XAxisPackType(obj)
         {};
 
         //clone functionality
@@ -54,11 +54,16 @@ class MHO_TableContainer: public MHO_NDArrayWrapper< XValueType, XAxisPackType::
 
         virtual ~MHO_TableContainer(){};
 
-        using MHO_Named::IsNamed;
-        using MHO_Named::GetName;
-        using MHO_Named::SetName;
-
-
+        virtual uint64_t GetSerializedSize() const override
+        {
+            //TODO FIXME
+            uint64_t total_size = 0;
+            total_size += sizeof(MHO_ClassVersion);
+            total_size += XAxisPackType::NAXES::value*sizeof(std::size_t);
+            total_size += XAxisPackType::GetSerializedSize();
+            total_size += (this->fTotalArraySize)*sizeof(XValueType);
+            return total_size;
+        }
 
         //modify the Resize function to also resize the axes
         using XAxisPackType::resize_axis_pack;
@@ -89,9 +94,357 @@ class MHO_TableContainer: public MHO_NDArrayWrapper< XValueType, XAxisPackType::
     public:
 
         //temporary -- for testing
-        MHO_MultiTypeMap< std::string, std::string, int, double > fTags;
+        //MHO_MultiTypeMap< std::string, std::string, int, double > fTags;
+
+        template<typename XStream> friend XStream& operator<<(XStream& s, const MHO_TableContainer& aData)
+        {
+            //first stream version and dimensions
+            s << aData.GetVersion();
+            for(size_t i=0; i < XAxisPackType::NAXES::value; i++)
+            {
+                s << aData.fDimensions[i];
+            }
+            //then dump axes
+            s << static_cast< const XAxisPackType& >(aData);
+            //finally dump the array data
+            for(size_t i=0; i<aData.fTotalArraySize; i++)
+            {
+                s << aData.fData[i];
+            }
+            return s;
+        }
+
+        template<typename XStream> friend XStream& operator>>(XStream& s, MHO_TableContainer& aData)
+        {
+            MHO_ClassVersion vers;
+            s >> vers;
+            if( vers != aData.GetVersion() )
+            {
+                MHO_ClassIdentity::ClassVersionErrorMsg(aData, vers);
+                //Flag this as an unknown object version so we can skip over this data
+                MHO_ObjectStreamState<XStream>::SetUnknown(s);
+            }
+            else
+            {
+                //first stream the axis-pack
+                std::size_t dims[XAxisPackType::NAXES::value];
+                for(size_t i=0; i < XAxisPackType::NAXES::value; i++)
+                {
+                    s >> dims[i];
+                }
+                aData.Resize(dims);
+                //now stream in the axes
+                s >> static_cast< XAxisPackType& >(aData);
+                //now stream the mult-dim array data
+                for(size_t i=0; i<aData.fTotalArraySize; i++)
+                {
+                    s >> aData.fData[i];
+                }
+            }
+            return s;
+        }
 
 };
+
+
+////////////////////////////////////////////////////////////////////////////////
+//enumerate all of the table container types we might possibly use, this is not
+//an exhaustive list and many other basic (POD)-based types are possible, if they
+//are POD-based then additions should be listed here. If there are there are additional
+//table container types which involve complicated classes or structs (which would
+//would require an '#include' in this file, then they should be defined elsewhere.
+//Since we are manily concerned with data (visibility and or cal) we only define
+//tables for the following types:
+
+using Int = int;
+using Double = double;
+using Complex = std::complex<double>;
+
+#define DefTableContainers(TYPE)                                               \
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_Int =                           \
+MHO_TableContainer< TYPE, MHO_AxisPack_Int >;                                  \
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_Double =                        \
+MHO_TableContainer< TYPE, MHO_AxisPack_Double >;                               \
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_String =                        \
+MHO_TableContainer< TYPE, MHO_AxisPack_String >;                               \
+\
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_Int_Int =                       \
+MHO_TableContainer< TYPE, MHO_AxisPack_Int_Int >;                              \
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_Int_Double =                    \
+MHO_TableContainer< TYPE, MHO_AxisPack_Int_Double >;                           \
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_Int_String =                    \
+MHO_TableContainer< TYPE, MHO_AxisPack_Int_String >;                           \
+\
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_Double_Int =                    \
+MHO_TableContainer< TYPE, MHO_AxisPack_Double_Int >;                           \
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_Double_Double =                 \
+MHO_TableContainer< TYPE, MHO_AxisPack_Double_Double >;                        \
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_Double_String =                 \
+MHO_TableContainer< TYPE, MHO_AxisPack_Double_String >;                        \
+\
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_String_Int =                    \
+MHO_TableContainer< TYPE, MHO_AxisPack_String_Int >;                           \
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_String_Double =                 \
+MHO_TableContainer< TYPE, MHO_AxisPack_String_Double >;                        \
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_String_String =                 \
+MHO_TableContainer< TYPE, MHO_AxisPack_String_String >;                        \
+\
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_Int_Int_Int =                       \
+MHO_TableContainer< TYPE, MHO_AxisPack_Int_Int_Int >;                              \
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_Int_Int_Double =                    \
+MHO_TableContainer< TYPE, MHO_AxisPack_Int_Int_Double >;                           \
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_Int_Int_String =                    \
+MHO_TableContainer< TYPE, MHO_AxisPack_Int_Int_String >;                           \
+\
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_Int_Double_Int =                    \
+MHO_TableContainer< TYPE, MHO_AxisPack_Int_Double_Int >;                           \
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_Int_Double_Double =                 \
+MHO_TableContainer< TYPE, MHO_AxisPack_Int_Double_Double >;                        \
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_Int_Double_String =                 \
+MHO_TableContainer< TYPE, MHO_AxisPack_Int_Double_String >;                        \
+\
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_Int_String_Int =                    \
+MHO_TableContainer< TYPE, MHO_AxisPack_Int_String_Int >;                           \
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_Int_String_Double =                 \
+MHO_TableContainer< TYPE, MHO_AxisPack_Int_String_Double >;                        \
+using MHO_TableContainer_##TYPE##_MHO_Int_AxisPack_String_String =                 \
+MHO_TableContainer< TYPE, MHO_AxisPack_Int_String_String >;                        \
+\
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_Double_Int_Int =                       \
+MHO_TableContainer< TYPE, MHO_AxisPack_Double_Int_Int >;                              \
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_Double_Int_Double =                    \
+MHO_TableContainer< TYPE, MHO_AxisPack_Double_Int_Double >;                           \
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_Double_Int_String =                    \
+MHO_TableContainer< TYPE, MHO_AxisPack_Double_Int_String >;                           \
+\
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_Double_Double_Int =                    \
+MHO_TableContainer< TYPE, MHO_AxisPack_Double_Double_Int >;                           \
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_Double_Double_Double =                 \
+MHO_TableContainer< TYPE, MHO_AxisPack_Double_Double_Double >;                        \
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_Double_Double_String =                 \
+MHO_TableContainer< TYPE, MHO_AxisPack_Double_Double_String >;                        \
+\
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_Double_String_Int =                    \
+MHO_TableContainer< TYPE, MHO_AxisPack_Double_String_Int >;                           \
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_Double_String_Double =                 \
+MHO_TableContainer< TYPE, MHO_AxisPack_Double_String_Double >;                        \
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_Double_String_String =                 \
+MHO_TableContainer< TYPE, MHO_AxisPack_Double_String_String >;                        \
+\
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_String_Int_Int =                       \
+MHO_TableContainer< TYPE, MHO_AxisPack_String_Int_Int >;                              \
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_String_Int_Double =                    \
+MHO_TableContainer< TYPE, MHO_AxisPack_String_Int_Double >;                           \
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_String_Int_String =                    \
+MHO_TableContainer< TYPE, MHO_AxisPack_String_Int_String >;                           \
+\
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_String_Double_Int =                    \
+MHO_TableContainer< TYPE, MHO_AxisPack_String_Double_Int >;                           \
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_String_Double_Double =                 \
+MHO_TableContainer< TYPE, MHO_AxisPack_String_Double_Double >;                        \
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_String_Double_String =                 \
+MHO_TableContainer< TYPE, MHO_AxisPack_String_Double_String >;                        \
+\
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_String_String_Int =                    \
+MHO_TableContainer< TYPE, MHO_AxisPack_String_String_Int >;                           \
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_String_String_Double =                 \
+MHO_TableContainer< TYPE, MHO_AxisPack_String_String_Double >;                        \
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_String_String_String =                 \
+MHO_TableContainer< TYPE, MHO_AxisPack_String_String_String >;                        \
+\
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_Int_Int_Int_Int =                       \
+MHO_TableContainer< TYPE, MHO_AxisPack_Int_Int_Int_Int >;                              \
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_Int_Int_Int_Double =                    \
+MHO_TableContainer< TYPE, MHO_AxisPack_Int_Int_Int_Double >;                           \
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_Int_Int_Int_String =                    \
+MHO_TableContainer< TYPE, MHO_AxisPack_Int_Int_Int_String >;                           \
+\
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_Int_Int_Double_Int =                    \
+MHO_TableContainer< TYPE, MHO_AxisPack_Int_Int_Double_Int >;                           \
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_Int_Int_Double_Double =                 \
+MHO_TableContainer< TYPE, MHO_AxisPack_Int_Int_Double_Double >;                        \
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_Int_Int_Double_String =                 \
+MHO_TableContainer< TYPE, MHO_AxisPack_Int_Int_Double_String >;                        \
+\
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_Int_Int_String_Int =                    \
+MHO_TableContainer< TYPE, MHO_AxisPack_Int_Int_String_Int >;                           \
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_Int_Int_String_Double =                 \
+MHO_TableContainer< TYPE, MHO_AxisPack_Int_Int_String_Double >;                        \
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_Int_String_String =                 \
+MHO_TableContainer< TYPE, MHO_AxisPack_Int_Int_String_String >;                        \
+\
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_Int_Double_Int_Int =                       \
+MHO_TableContainer< TYPE, MHO_AxisPack_Int_Double_Int_Int >;                              \
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_Int_Double_Int_Double =                    \
+MHO_TableContainer< TYPE, MHO_AxisPack_Int_Double_Int_Double >;                           \
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_Int_Double_Int_String =                    \
+MHO_TableContainer< TYPE, MHO_AxisPack_Int_Double_Int_String >;                           \
+\
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_Int_Double_Double_Int =                    \
+MHO_TableContainer< TYPE, MHO_AxisPack_Int_Double_Double_Int >;                           \
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_Int_Double_Double_Double =                 \
+MHO_TableContainer< TYPE, MHO_AxisPack_Int_Double_Double_Double >;                        \
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_Int_Double_Double_String =                 \
+MHO_TableContainer< TYPE, MHO_AxisPack_Int_Double_Double_String >;                        \
+\
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_Int_Double_String_Int =                    \
+MHO_TableContainer< TYPE, MHO_AxisPack_Int_Double_String_Int >;                           \
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_Int_Double_String_Double =                 \
+MHO_TableContainer< TYPE, MHO_AxisPack_Int_Double_String_Double >;                        \
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_Int_Double_String_String =                 \
+MHO_TableContainer< TYPE, MHO_AxisPack_Int_Double_String_String >;                        \
+\
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_Int_String_Int_Int =                       \
+MHO_TableContainer< TYPE, MHO_AxisPack_Int_String_Int_Int >;                              \
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_Int_String_Int_Double =                    \
+MHO_TableContainer< TYPE, MHO_AxisPack_Int_String_Int_Double >;                           \
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_Int_String_Int_String =                    \
+MHO_TableContainer< TYPE, MHO_AxisPack_Int_String_Int_String >;                           \
+\
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_Int_String_Double_Int =                    \
+MHO_TableContainer< TYPE, MHO_AxisPack_Int_String_Double_Int >;                           \
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_Int_String_Double_Double =                 \
+MHO_TableContainer< TYPE, MHO_AxisPack_Int_String_Double_Double >;                        \
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_Int_String_Double_String =                 \
+MHO_TableContainer< TYPE, MHO_AxisPack_Int_String_Double_String >;                        \
+\
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_Int_String_String_Int =                    \
+MHO_TableContainer< TYPE, MHO_AxisPack_Int_String_String_Int >;                           \
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_Int_String_String_Double =                 \
+MHO_TableContainer< TYPE, MHO_AxisPack_Int_String_String_Double >;                        \
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_Int_String_String_String =                 \
+MHO_TableContainer< TYPE, MHO_AxisPack_Int_String_String_String >;                        \
+\
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_Double_Int_Int_Int =                       \
+MHO_TableContainer< TYPE, MHO_AxisPack_Double_Int_Int_Int >;                              \
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_Double_Int_Int_Double =                    \
+MHO_TableContainer< TYPE, MHO_AxisPack_Double_Int_Int_Double >;                           \
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_Double_Int_Int_String =                    \
+MHO_TableContainer< TYPE, MHO_AxisPack_Double_Int_Int_String >;                           \
+\
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_Double_Int_Double_Int =                    \
+MHO_TableContainer< TYPE, MHO_AxisPack_Double_Int_Double_Int >;                           \
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_Double_Int_Double_Double =                 \
+MHO_TableContainer< TYPE, MHO_AxisPack_Double_Int_Double_Double >;                        \
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_Double_Int_Double_String =                 \
+MHO_TableContainer< TYPE, MHO_AxisPack_Double_Int_Double_String >;                        \
+\
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_Double_Int_String_Int =                    \
+MHO_TableContainer< TYPE, MHO_AxisPack_Double_Int_String_Int >;                           \
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_Double_Int_String_Double =                 \
+MHO_TableContainer< TYPE, MHO_AxisPack_Double_Int_String_Double >;                        \
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_Double_Int_String_String =                 \
+MHO_TableContainer< TYPE, MHO_AxisPack_Double_Int_String_String >;                        \
+\
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_Double_Double_Int_Int =                       \
+MHO_TableContainer< TYPE, MHO_AxisPack_Double_Double_Int_Int >;                              \
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_Double_Double_Int_Double =                    \
+MHO_TableContainer< TYPE, MHO_AxisPack_Double_Double_Int_Double >;                           \
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_Double_Double_Int_String =                    \
+MHO_TableContainer< TYPE, MHO_AxisPack_Double_Double_Int_String >;                           \
+\
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_Double_Double_Double_Int =                    \
+MHO_TableContainer< TYPE, MHO_AxisPack_Double_Double_Double_Int >;                           \
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_Double_Double_Double_Double =                 \
+MHO_TableContainer< TYPE, MHO_AxisPack_Double_Double_Double_Double >;                        \
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_Double_Double_Double_String =                 \
+MHO_TableContainer< TYPE, MHO_AxisPack_Double_Double_Double_String >;                        \
+\
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_Double_Double_String_Int =                    \
+MHO_TableContainer< TYPE, MHO_AxisPack_Double_Double_String_Int >;                           \
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_Double_Double_String_Double =                 \
+MHO_TableContainer< TYPE, MHO_AxisPack_Double_Double_String_Double >;                        \
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_Double_Double_String_String =                 \
+MHO_TableContainer< TYPE, MHO_AxisPack_Double_Double_String_String >;                        \
+\
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_Double_String_Int_Int =                       \
+MHO_TableContainer< TYPE, MHO_AxisPack_Double_String_Int_Int >;                              \
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_Double_String_Int_Double =                    \
+MHO_TableContainer< TYPE, MHO_AxisPack_Double_String_Int_Double >;                           \
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_Double_String_Int_String =                    \
+MHO_TableContainer< TYPE, MHO_AxisPack_Double_String_Int_String >;                           \
+\
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_Double_String_Double_Int =                    \
+MHO_TableContainer< TYPE, MHO_AxisPack_Double_String_Double_Int >;                           \
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_Double_String_Double_Double =                 \
+MHO_TableContainer< TYPE, MHO_AxisPack_Double_String_Double_Double >;                        \
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_Double_String_Double_String =                 \
+MHO_TableContainer< TYPE, MHO_AxisPack_Double_String_Double_String >;                        \
+\
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_Double_String_String_Int =                    \
+MHO_TableContainer< TYPE, MHO_AxisPack_Double_String_String_Int >;                           \
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_Double_String_String_Double =                 \
+MHO_TableContainer< TYPE, MHO_AxisPack_Double_String_String_Double >;                        \
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_Double_String_String_String =                 \
+MHO_TableContainer< TYPE, MHO_AxisPack_Double_String_String_String >;                        \
+\
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_String_Int_Int_Int =                       \
+MHO_TableContainer< TYPE, MHO_AxisPack_String_Int_Int_Int >;                              \
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_String_Int_Int_Double =                    \
+MHO_TableContainer< TYPE, MHO_AxisPack_String_Int_Int_Double >;                           \
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_String_Int_Int_String =                    \
+MHO_TableContainer< TYPE, MHO_AxisPack_String_Int_Int_String >;                           \
+\
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_String_Int_Double_Int =                    \
+MHO_TableContainer< TYPE, MHO_AxisPack_String_Int_Double_Int >;                           \
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_String_Int_Double_Double =                 \
+MHO_TableContainer< TYPE, MHO_AxisPack_String_Int_Double_Double >;                        \
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_String_Int_Double_String =                 \
+MHO_TableContainer< TYPE, MHO_AxisPack_String_Int_Double_String >;                        \
+\
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_String_Int_String_Int =                    \
+MHO_TableContainer< TYPE, MHO_AxisPack_String_Int_String_Int >;                           \
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_String_Int_String_Double =                 \
+MHO_TableContainer< TYPE, MHO_AxisPack_String_Int_String_Double >;                        \
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_String_Int_String_String =                 \
+MHO_TableContainer< TYPE, MHO_AxisPack_String_Int_String_String >;                        \
+\
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_String_Double_Int_Int =                       \
+MHO_TableContainer< TYPE, MHO_AxisPack_String_Double_Int_Int >;                              \
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_String_Double_Int_Double =                    \
+MHO_TableContainer< TYPE, MHO_AxisPack_String_Double_Int_Double >;                           \
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_String_Double_Int_String =                    \
+MHO_TableContainer< TYPE, MHO_AxisPack_String_Double_Int_String >;                           \
+\
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_String_Double_Double_Int =                    \
+MHO_TableContainer< TYPE, MHO_AxisPack_String_Double_Double_Int >;                           \
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_String_Double_Double_Double =                 \
+MHO_TableContainer< TYPE, MHO_AxisPack_String_Double_Double_Double >;                        \
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_String_Double_Double_String =                 \
+MHO_TableContainer< TYPE, MHO_AxisPack_String_Double_Double_String >;                        \
+\
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_String_Double_String_Int =                    \
+MHO_TableContainer< TYPE, MHO_AxisPack_String_Double_String_Int >;                           \
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_String_Double_String_Double =                 \
+MHO_TableContainer< TYPE, MHO_AxisPack_String_Double_String_Double >;                        \
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_String_Double_String_String =                 \
+MHO_TableContainer< TYPE, MHO_AxisPack_String_Double_String_String >;                        \
+\
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_String_String_Int_Int =                       \
+MHO_TableContainer< TYPE, MHO_AxisPack_String_String_Int_Int >;                              \
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_String_String_Int_Double =                    \
+MHO_TableContainer< TYPE, MHO_AxisPack_String_String_Int_Double >;                           \
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_String_String_Int_String =                    \
+MHO_TableContainer< TYPE, MHO_AxisPack_String_String_Int_String >;                           \
+\
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_String_String_Double_Int =                    \
+MHO_TableContainer< TYPE, MHO_AxisPack_String_String_Double_Int >;                           \
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_String_String_Double_Double =                 \
+MHO_TableContainer< TYPE, MHO_AxisPack_String_String_Double_Double >;                        \
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_String_String_Double_String =                 \
+MHO_TableContainer< TYPE, MHO_AxisPack_String_String_Double_String >;                        \
+\
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_String_String_String_Int =                    \
+MHO_TableContainer< TYPE, MHO_AxisPack_String_String_String_Int >;                           \
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_String_String_String_Double =                 \
+MHO_TableContainer< TYPE, MHO_AxisPack_String_String_String_Double >;                        \
+using MHO_TableContainer_##TYPE##_MHO_AxisPack_String_String_String_String =                 \
+MHO_TableContainer< TYPE, MHO_AxisPack_String_String_String_String >;
+
+DefTableContainers(Int);
+DefTableContainers(Double);
+DefTableContainers(Complex);
+
 
 }//end of namespace
 

@@ -1,54 +1,317 @@
 file   = MHO_task_0400.txt
 domain = @DOCS
 
+thing  = @ProjPlan
+task   = Write the pre-award project plan for SAO and NSF.
+nick   = ProjPlan-preaward
+#@etask
+desc   = Write and submit the initial pre-award plan.
+         This document contained first-draft material for all of
+         the subsequent documents, but left many decisions left open.
+         We shall not follow the formal traceability (a bunch of useless
+         arrows, but from this document flows the Requirements, the
+         Coverage and Test plan, and the software development plan and
+         the specifications (partial and completed).
+#start  = @tEARLY
+#stop   = @tSTART
+needs  = Miles-early
+
+task   = Capture initial project plan in the new repo
+nick   = ProjPlan-capture
+@gentask
+desc   = The initial founding document and sources should be captured
+         for posterity; probably as a tarball along with the fourfit
+         manual that Roger Cappallo wrote and the first thoughts on
+         the specifications for a new HOPS.
+#allows = Manuals-fourfit
+
 thing  = @ReqsDoc
 task   = Create first draft of @ReqsDoc
-nick   = ReqsDoc-draft
-@etask
+nick   = ReqsDoc-start
+#@etask
 desc   = Draft the requirements document
-#start = 2019-12-01
+#start  = @tDSTRT
 #days  = 365
-needs  = Meetings-hilo
-allows = Meetings-review
+days   = 10
+needs  = Meetings-refining
 
 thing  = @ReqsDoc
-task   = Submit draft to ngEHT 
+task   = Continued drafting of @ReqsDoc
+nick   = ReqsDoc-draft
+#@etask
+desc   = Draft the requirements document
+#start  = @tDSTRT
+#days  = 365
+days   = 20
+needs  = ReqsDoc-start
+
+task   = Submit first draft of @ReqsDoc to the ngEHT
 nick   = ReqsDoc-submit
-@etask
+#@etask
 desc   = Submit draft to ngEHT for feedback
-#start = 2020-02-02
-#days  = 3
-needs  = Meetings-hilo
-allows = Meetings-review
+needs  = ReqsDoc-draft
+start  = @tREQS
+stop   = @tREQS
+#allows = Meetings-review
+
+task   = Revise first draft of @ReqsDoc
+nick   = ReqsDoc-revise
+#@etask
+desc   = Respond to review and finalize requirements
+needs  = Meetings-review
+
 
 thing  = @CoTestDoc
+
 task   = Create first draft of @CoTestDoc
 nick   = CoTestDoc-draft
-@etask
-desc   = Draft the testing document
-#start  = 2020-12-01
-#days   = 30
-needs  = ReqsDoc-draft
-allows = Meetings-review
+#@etask
+desc   = Begin drafting the coverage and testing document
+needs  = ReqsDoc-start
+
+task   = Submit first draft of @CoTestDoc
+nick   = CoTestDoc-submit
+desc   = Submit the first revision to the ngEHT
+needs  = CoTestDoc-draft
+#allows = Meetings-review
+
+task   = Revise the first draft of @CoTestDoc
+nick   = CoTestDoc-revise
+desc   = Revise the testing document based on feedback at the
+         review (none, essentially) and the maturity of other
+         documents and the state of the repository
+days   = 5
+#needs  = CoTestDoc-submit,SDPlanDoc-draft
+needs  = Meetings-review
+
+task   = Finalize @CoTestDoc
+nick   = CoTestDoc-final
+desc   = Final steps to complete the document and call it done.
+         The remainder of coverage and test information is in
+         the automatically built reports.
+days   = 5
+needs  = CoTestDoc-revise
+#allows = Miles-docsfinal
+
 
 thing  = @SpecsDoc
-task   = Create first draft of @SpecsDocsDoc
-nick   = SpecsDocs-draft
-@etask
-desc   = Write the specifications document
-#start  = 2019-12-01
-#days   = 365
-needs  = ReqsDoc-draft
-allows = Meetings-internal
+
+task   = Create first draft of @SpecsDoc
+nick   = SpecsDoc-draft
+#@etask
+desc   = Start writing the specifications document.  The first
+         part was to gather up the information from the original
+         plan and the original specification draft and get it into
+         the standard template used by the other docs.
+needs  = Meetings-review
+days   = 60
+derate = 1
+
+task   = Update draft of @SpecsDoc
+nick   = SpecsDoc-update
+desc   = Update the @SpecsDoc.  The updates flow from the prototyping
+         exercises as well as the steps of building up the infrastructure,
+         build machinery, etc.  More detail here... and perhaps more tasks
+         listing what is still to be done with it....
+needs  = SpecsDoc-draft,ProtoCode-review
+days   = 10
+#derate = 1
+
+task   = Maturize the @SpecsDoc
+nick   = SpecsDoc-mature
+desc   = Maturize the @SpecsDoc.  This means going through the document
+         and identifying the remaining specifications that are still,
+         well, unspecified.
+needs  = SpecsDoc-update
+days   = 5
+#allows = Miles-docsfinal
+
+task   = Finalize the @SpecsDoc
+nick   = SpecsDoc-final
+desc   = This marks the completion of @SpecsDoc.  After this documentation
+         is done except for the final set (user manuals, etc).
+needs  = SpecsDoc-mature
 
 thing  = @SDPlanDoc
-task   = Create first draft of @SDPlanDocs
-nick   = SDPlanDoc-draft
-@etask
-desc   = Write the development plan
-#start  = 2020-12-01
-days   = 30
-needs  = ReqsDoc-draft
-allows = Meetings-internal
 
-#   STUFF       everything else
+task   = Create first draft of @SDPlanDoc
+nick   = SDPlanDoc-draft
+#@etask
+desc   = Write @SDPlanDoc
+#needs  = Meetings-review
+needs  = Tasking-populate
+days   = 10
+derate = 1
+
+task   = Update first draft of @SDPlanDoc
+nick   = SDPlanDoc-update
+#@etask
+desc   = This was not submitted for review, but the document should
+         be updated and finalized with a goal towards finishing a plan.
+         Once the tasking system is able to build Gantt charts, then
+         such may be included in @SDPlan to close out the plan.
+needs  = SDPlanDoc-draft
+days   = 5
+derate = 1
+
+task   = Finalize @SDPlanDoc
+nick   = SDPlanDoc-final
+#@etask
+desc   = Finalize the @SDPlanDoc
+needs  = SDPlanDoc-update,Tasking-final
+days   = 3
+start  = @tTOW21
+#allows = Miles-docsfinal
+
+
+thing  = @Tasking
+path   = doc/tasking
+
+task   = Import APP bubble system and de-APPify it
+nick   = Tasking-import
+desc   = This task requires Geoff to remember how the sw task...pl scripts
+         work (as used in APP) and refactor to remove the APP bits and
+         then set up a framework for use with HOPS4.
+start  = @gcBUB0
+code   = PERL
+path   = doc/tasking/taskscripts
+who    = @gc
+needs  = Meetings-review
+
+task   = Populate with enough bubbles to get started
+nick   = Tasking-populate
+@pltask
+desc   = This will end up as an on-going task, but we need to get the ball
+         rolling downhill...and then we can just use the tool.  This tool
+         refers to the initial creation of a set of input files that covers
+         SOME of the material, and probably not in sufficient detail to do
+         the work.  Some work on the bubble machine in the process is
+         required.
+path   = doc/tasking/allscripts
+who    = @gc,@dh,@vp
+derate = 1
+needs  = Tasking-import
+
+task   = Complete the bubble machinery
+nick   = Tasking-bubbles
+@pltask
+desc   = This task covers the PERL work needed to finish enough of the bubble
+         machinery so that simply changing the input files is sufficient,
+         going forwards.  As of the end date, there are a number of possible
+         development items left, that are captured in some tasks that have no
+         end-point.  (These tasks are perhaps not required.)
+who    = @gc
+derate = 1
+#stop   = @gcBUB1
+days   = 5
+needs  = Tasking-populate
+
+task   = Build a document capturing all of the graphics
+nick   = Tasking-draftdoc
+@shtask
+desc   = This requires generating a few words of tex and the the scripting to
+         build the doc automatically.  The first step is to adjust the latex
+         document to accept some automatically generated input.  Then the
+         section information needs to be generated, and (optionally) figures,
+         tables, and finally gantt charts (as generated in by the script made
+         in Tasking-gantt).  These will require minimal captions.
+who    = @gc
+days   = 2
+derate = 1
+needs  = Tasking-bubbles
+
+task   = Build PlantUML gantt charts from the things
+nick   = Tasking-gantt
+@pytask
+desc   = Capture the timeline, and names and generate gantt charts.
+         This should take the form of a script that the doc/tasking/Makefile.am
+         may invoke to generate Gantt charts (using PlantUML) in order to
+         create graphics for every domain or thing.  If the files are named
+         as in the @Tasking-draftdoc plan, then if these are made they
+         can be directly included without further work on the document.
+who    = @vp
+needs  = Tasking-bubbles
+start  = 2021-03-18
+days   = 10
+derate = 1
+
+
+task   = Finalize @Tasking
+nick   = Tasking-final
+@pltask
+desc   = Final cleanup of the document.  At this point, the automated
+         builds should keep it up to date into an "as built" record.
+who    = @gc
+derate = 1
+days   = 5
+stop   = @gcBUB2
+needs  = Tasking-draftdoc
+
+task   = Align dates and durations of task tree (first iteration)
+nick   = Tasking-alignment1
+desc   = Alignment of the dates and durations of tasks. This will
+         involve some planning poker by the team, and will be iterative
+         as we get a better sense of durations. At the end, the tasking
+         tree should have reasonable dates for most (all?) tasks, and
+         no need slips.
+who    = @dh
+derate = 1
+start  = 2021-03-22
+days   = 5
+needs  = Tasking-final
+
+
+task   = Additional @Tasking Functionality
+nick   = Tasking-addons
+@pltask
+desc   = This covers all the things that might make life easier
+who    = @gc
+days   = 30
+derate = 1
+notes  = doc/tasking/taskscripts/maintainer-notes.txt
+needs  = Tasking-final
+
+task   = Maintenance of @Tasking Information
+nick   = Tasking-update0
+#@etask
+desc   = This task captures the next round of updates to content.
+         As subsequent updates are made and closed out, new tasks to
+         capture current changes should be made.  (That is,
+         Tasking-update[n+1] for n = 0, 1, ....)
+who    = @swdev
+needs  = Tasking-final
+days   = 30
+derate = 1
+
+task   = @Tasking Bubble Maintenance
+nick   = Tasking-fixes
+@pltask
+desc   = This task covers the cost of fixing bugs that turn up when 4
+         people start updating content...and stuff needs to be fixed.
+who    = @gc
+needs  = Tasking-final
+days   = 30
+derate = 1
+
+thing  = @Manuals
+
+task   = Fourfit User Manual
+nick   = Manuals-fourfit
+#@etask
+desc   = write a fourfit user manual
+who    = @swdev
+days   = 90
+derate = 1
+needs  = NewFourfitReview-milestone
+allows = Meetings-final
+
+
+task   = Aedit User Manual
+nick   = Manuals-aedit
+desc   = write aedit user manual
+days   = 90
+derate = 1
+needs  = AeditSummary-PSplot
+allows = Meetings-final
+
+# eof
