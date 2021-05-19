@@ -14,6 +14,7 @@ set(SOURCE_BASENAMES
     TestMultiObjectStreaming
     TestConvertMk4Visibilities
     DumpFileObjectKeys
+    ConvertMk4Data
 )
 
 #for testing purposes only -- not intended to be a dependency

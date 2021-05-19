@@ -1,3 +1,5 @@
+hops_require_cpp11()
+
 #list header files #############################################################
 set (UTILITIES_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/picohash.h

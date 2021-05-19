@@ -78,14 +78,14 @@ MHO_MK4CorelInterface::ReadCorelFile()
     //have to copy fCorelFile for const_cast, as mk4 lib doesn't respect const
     std::string fname = fCorelFile;
     int retval = read_mk4corel( const_cast<char*>(fname.c_str()), fCorel );
-    if(retval == 0)
+    if(retval != 0)
     {
-        fHaveCorel = true;
+        fHaveCorel = false;
         msg_debug("mk4interface", "Failed to read corel file: "<< fCorelFile << ", error value: "<< retval << eom);
     }
     else
     {
-        fHaveCorel = false;
+        fHaveCorel = true;
         msg_debug("mk4interface", "Successfully read corel file."<< fCorelFile << eom);
     }
 }
@@ -144,7 +144,7 @@ MHO_MK4CorelInterface::DetermineDataDimensions()
     //create a map of channel-pairs to interval labels
     //to be filled in with channel information
     fAllChannelMap.clear();
-    std::set< int > valid_aps;
+    //std::set< int > valid_aps;
 
     std::string baseline = getstr(fCorel->t100->baseline, 2);
     msg_debug("mk4interface", "Reading data for baseline: " << baseline << eom);
@@ -160,11 +160,12 @@ MHO_MK4CorelInterface::DetermineDataDimensions()
             {
                 if(t120->type == SPECTRAL)
                 {
-                    valid_aps.insert(ap);
+                    //valid_aps.insert(ap);
                     std::size_t nlags = t120->nlags;
                     //this implicitly assumes all channels have the same number
-                    //if spectral points
+                    //of spectral points
                     if(fNSpectral < nlags){fNSpectral = nlags;}
+                    if(ap > 0){ if( fNAPs < (std::size_t)ap ){fNAPs = (std::size_t)ap; }; };
                 }
                 else
                 {
@@ -186,7 +187,8 @@ MHO_MK4CorelInterface::DetermineDataDimensions()
         }
     }
     fNChannels = fAllChannelMap.size();
-    fNAPs = valid_aps.size();
+    fNAPs += 1;
+    //fNAPs = valid_aps.size();
 
     #ifdef  HOPS_ENABLE_DEBUG_MSG
     msg_debug("mk4interface", "Total number of channel pairs = "<< fNChannels << eom );
@@ -355,13 +357,14 @@ MHO_MK4CorelInterface::ExtractCorelFile()
     {
 
         DetermineDataDimensions();
+
         double ap_time_length = fVex->evex->ap_length;
 
         //now we can go ahead an create a container for all the visibilities
-        // std::cout<<"fNPPs: "<<fNPPs<<std::endl;
-        // std::cout<<"fNAPs: "<<fNAPs<<std::endl;
-        // std::cout<<"fNChannelsPerPP: "<<fNChannelsPerPP<<std::endl;
-        // std::cout<<"fNSpectral: "<<fNSpectral<<std::endl;
+        msg_debug("mk4interface", "Number of pol-products = " << fNPPs << eom );
+        msg_debug("mk4interface", "Number of APs = " << fNAPs << eom );
+        msg_debug("mk4interface", "Number of channels per pol-product = " << fNChannelsPerPP << eom);
+        msg_debug("mk4interface", "Number of spectral points = " << fNSpectral << eom);
 
         std::size_t bl_dim[VIS_NDIM] = {fNPPs, fNAPs, (fNChannelsPerPP*fNSpectral)};
         bl_data = new baseline_data_type(bl_dim);
@@ -435,23 +438,23 @@ MHO_MK4CorelInterface::ExtractCorelFile()
             }
         }
 
-        // #ifdef HOPS_ENABLE_DEBUG_MSG
-        // //lets print out the pol, time and freq axes now:
-        // for(std::size_t i=0; i< std::get<POLPROD_AXIS>(*bl_data).GetSize(); i++)
-        // {
-        //     msg_debug("mk4interface", "pol_axis: "<<i<<" = "<<std::get<POLPROD_AXIS>(*bl_data).at(i)<< eom);
-        // }
-        //
-        // for(std::size_t i=0; i< std::get<TIME_AXIS>(*bl_data).GetSize(); i++)
-        // {
-        //     msg_debug("mk4interface", "time_axis: "<<i<<" = "<<std::get<TIME_AXIS>(*bl_data).at(i)<<eom);
-        // }
-        //
-        // for(std::size_t i=0; i< std::get<FREQ_AXIS>(*bl_data).GetSize(); i++)
-        // {
-        //     msg_debug("mk4interface", "freq_axis: "<<i<<" = "<<std::get<FREQ_AXIS>(*bl_data).at(i)<<eom);
-        // }
-        // #endif
+        #ifdef HOPS_ENABLE_DEBUG_MSG
+        //lets print out the pol, time and freq axes now:
+        for(std::size_t i=0; i< std::get<POLPROD_AXIS>(*bl_data).GetSize(); i++)
+        {
+            msg_debug("mk4interface", "pol_axis: "<<i<<" = "<<std::get<POLPROD_AXIS>(*bl_data).at(i)<< eom);
+        }
+
+        for(std::size_t i=0; i< std::get<TIME_AXIS>(*bl_data).GetSize(); i++)
+        {
+            msg_debug("mk4interface", "time_axis: "<<i<<" = "<<std::get<TIME_AXIS>(*bl_data).at(i)<<eom);
+        }
+
+        for(std::size_t i=0; i< std::get<FREQ_AXIS>(*bl_data).GetSize(); i++)
+        {
+            msg_debug("mk4interface", "freq_axis: "<<i<<" = "<<std::get<FREQ_AXIS>(*bl_data).at(i)<<eom);
+        }
+        #endif
 
         //now fill in the actual visibility data
         struct type_101* t101 = nullptr;
@@ -483,9 +486,9 @@ MHO_MK4CorelInterface::ExtractCorelFile()
                                 ch_label.Retrieve(std::string("pol_product"), ppkey);
                                 std::size_t pol_index = pp_index_lookup[ppkey];
                                 int nlags = t120->nlags;
-                                // msg_debug("mk4interface",
-                                //           "Adding freq data for ap: "<<ap
-                                //           <<" channel: "<< key << eom);
+                                msg_debug("mk4interface",
+                                          "Adding freq data for ap: "<<ap
+                                          <<" channel: "<< key << eom);
 
                                 //TODO FIXME!!
                                 //Do we need reverse the order of the freq axis for lower-sideband data??!
@@ -507,6 +510,10 @@ MHO_MK4CorelInterface::ExtractCorelFile()
                 }
             }
         }//end of index loop
+    }
+    else
+    {
+        msg_error("mk4interface", "Failed to ready both corel and vex file." << eom);
     }
 
     return bl_data;

@@ -74,6 +74,12 @@ int main(int argc, char** argv)
     baseline_data_type* bl_data = mk4inter.ExtractCorelFile();
 
 
+    if(bl_data == nullptr)
+    {
+        msg_fatal("main", "Failed to extract mk4corel data." << eom);
+        std::exit(1);
+    }
+
     #ifdef USE_ROOT
 
 

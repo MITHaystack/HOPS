@@ -34,8 +34,6 @@ MHO_VisibilityChannelizer::Initialize()
     fInitialized = false;
     if(this->fInput != nullptr && this->fOutput != nullptr)
     {
-
-        std::cout<<"initializing channelizer"<<std::endl;
         //we want to re-organize the data in the input array (rank = 3)
         //into another array (with rank-4) with the data split up by channel
         std::size_t input_size = this->fInput->GetSize();
@@ -50,7 +48,6 @@ MHO_VisibilityChannelizer::Initialize()
             auto* freq_axis = &(std::get<FREQ_AXIS>( *(this->fInput) ) );
             std::vector< MHO_IntervalLabel* > channel_labels = freq_axis->GetIntervalsWithKey(std::string("channel"));
             std::size_t num_channels = channel_labels.size();
-            std::cout<<"the number of channels = "<<num_channels<<std::endl;
 
             //make sure the are sorted by sky frequency
             chan_label_freq_predicate sort_pred;
@@ -60,16 +57,15 @@ MHO_VisibilityChannelizer::Initialize()
             std::set<std::size_t> channel_sizes;
             for(auto iter = channel_labels.begin(); iter != channel_labels.end(); iter++)
             {
-                std::cout<<"inserting channel of size: "<< (*iter)->GetLength()<<std::endl;
                 double sf;
                 (*iter)->Retrieve(std::string("sky_freq"), sf);
-                std::cout<<"with sky freq = "<<sf<<std::endl; 
+                msg_debug("calibration", "Inserting channel of size: " << (*iter)->GetLength() << "with sky freq: " << sf << eom);
                 channel_sizes.insert( (*iter)->GetLength() );
             }
 
             if(channel_sizes.size() != 1)
             {
-                std::cout<<"Error channel sizes are not the same!"<<std::endl;
+                msg_warn("calibration", "Channel sizes are not a uniform number of spectral points." << eom);
             }
             std::size_t channel_length = *( channel_sizes.begin() );
 
@@ -81,8 +77,6 @@ MHO_VisibilityChannelizer::Initialize()
             output_dim[CH_TIME_AXIS] = input_dim[TIME_AXIS];
             output_dim[CH_FREQ_AXIS] = channel_length;
 
-            std::cout<<"calling resize"<<std::endl;
-            // this->fOutput->Resize(output_dim);
             this->fOutput->Resize(output_dim[0], output_dim[1], output_dim[2], output_dim[3]);
 
             auto* in_pp_axis = &(std::get<POLPROD_AXIS>( *(this->fInput) ) );
@@ -110,7 +104,7 @@ MHO_VisibilityChannelizer::Initialize()
                 }
                 else
                 {
-                    msg_warn("operators", "warning channel id now found in channel label" << eom);
+                    msg_warn("calibration", "Warning channel id: "<< channel_id << " not found in channel labels." << eom);
                 }
             }
 

@@ -15,7 +15,7 @@
 */
 
 template <typename T>
-constexpr auto compiler_func_prefix()
+std::string compiler_func_prefix()
 {
 #if defined(__clang__)
   constexpr const char* compiler_func_prefix   = "[T = ";
@@ -26,11 +26,11 @@ constexpr auto compiler_func_prefix()
 #else
 # error Unsupported compiler
 #endif
-    return compiler_func_prefix;
+    return std::string(compiler_func_prefix);
 }
 
 template <typename T>
-constexpr auto compiler_func_suffix()
+std::string compiler_func_suffix()
 {
 #if defined(__clang__)
   constexpr const char* compiler_func_suffix   = "]";
@@ -41,12 +41,12 @@ constexpr auto compiler_func_suffix()
 #else
 # error Unsupported compiler
 #endif
-    return compiler_func_suffix;
+    return std::string(compiler_func_suffix);
 }
 
 
 template <typename T>
-constexpr auto compiler_func_function()
+std::string compiler_func_function()
 {
 #if defined(__clang__)
   constexpr const char* function = __PRETTY_FUNCTION__;
@@ -57,7 +57,7 @@ constexpr auto compiler_func_function()
 #else
 # error Unsupported compiler
 #endif
-    return function;
+    return std::string(function);
 }
 
 
