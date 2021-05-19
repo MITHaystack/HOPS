@@ -7,18 +7,6 @@
 #include <map>
 #include <getopt.h>
 
-#ifdef USE_ROOT
-#include "TCanvas.h"
-#include "TApplication.h"
-#include "TStyle.h"
-#include "TColor.h"
-#include "TGraph.h"
-#include "TGraph2D.h"
-#include "TH2D.h"
-#include "TMath.h"
-#include "TMultiGraph.h"
-#endif
-
 #include "MHO_Message.hh"
 #include "MHO_Tokenizer.hh"
 #include "MHO_MK4VexInterface.hh"

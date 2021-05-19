@@ -106,7 +106,6 @@ MHO_MK4StationInterface::ExtractStationFile()
 
                         for(std::size_t cf=0; cf<fNCoeffs; cf++)
                         {
-
                             std::get<COEFF_AXIS>(*st_data)[cf] = cf;
                             st_data->at(0, ch, sp, cf) = t301->delay_spline[cf];
                             st_data->at(1, ch, sp, cf) = t302->phase_spline[cf];
