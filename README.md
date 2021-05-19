@@ -56,6 +56,10 @@ Currently HOPS supports the ability to run `make distcheck` from the build direc
 (2) `graphviz` \
 (3) `doxygen` \
 (4) `sphinx-common`
+pkg-config, csh, autoconf, libtool, xorg, openbox, libx11-dev, fftw3, fftw3-dev
+python3-sphinx, python3-dev, python-dev, swig, help2man
+
+
 ### Fedora packages
 ### NixOS packages
 (1) `texlive.combined.scheme-full` \
