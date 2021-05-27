@@ -349,6 +349,36 @@ int main(int argc, char** argv)
     get_root_file(allFiles, root_file);
     std::cout<<"root file = "<<root_file<<std::endl;
 
+    MHO_MK4VexInterface vexInter;
+    vexInter.OpenVexFile(root_file);
+    json ovex;
+    bool ovex_ok = vexInter.ExportVexFileToJSON(ovex);
+    if(ovex_ok)
+    {
+        std::cout<<ovex.dump(2)<<std::endl;
+        //write out to a json file
+        std::string output_file = output_dir + "/" + get_basename(root_file) + ".json";
+
+        //open file for binary writing
+        std::fstream jfile;
+        jfile.open(output_file.c_str(), std::fstream::out);
+        if( !jfile.is_open() || !jfile.good() )
+        {
+            msg_error("file", "Failed to open for writing, file: " << output_file << eom);
+        }
+        else
+        {
+            jfile << std::setw(4) << ovex;
+            jfile.close();
+        }
+    }
+
+    // // write prettified JSON to another file
+    // std::ofstream o("pretty.json");
+    // o << std::setw(4) << j << std::endl;
+
+
+
     get_corel_files(allFiles, corelFiles);
     for(auto it = corelFiles.begin(); it != corelFiles.end(); it++)
     {

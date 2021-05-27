@@ -1,5 +1,7 @@
 #include "MHO_MK4VexInterface.hh"
 
+#include "json_wrapper.hh"
+#include "MHO_ScanStructWrapper.hh"
 
 namespace hops
 {
@@ -47,6 +49,22 @@ MHO_MK4VexInterface::GetVex()
     else
     {
         return nullptr;
+    }
+}
+
+
+bool
+MHO_MK4VexInterface::ExportVexFileToJSON(json& json_obj)
+{
+    if(fHaveVex)
+    {
+        MHO_ScanStructWrapper scan_wrapper(*(fVex->ovex));
+        scan_wrapper.DumpToJSON(json_obj);
+        return true;
+    }
+    else
+    {
+        return false;
     }
 }
 
