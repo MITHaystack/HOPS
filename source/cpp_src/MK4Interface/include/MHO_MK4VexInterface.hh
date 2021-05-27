@@ -10,8 +10,7 @@
 *Description:
 */
 
-#include <iostream>
-#include <string>
+
 
 extern "C"
 {
@@ -19,6 +18,10 @@ extern "C"
     #include "mk4_dfio.h"
     #include "mk4_vex.h"
 }
+
+#include <iostream>
+#include <string>
+#include "json_wrapper.hh"
 
 namespace hops
 {
@@ -34,7 +37,7 @@ class MHO_MK4VexInterface
 
         struct vex* GetVex();
 
-        //void ExportVexFile();
+        bool ExportVexFileToJSON(json& json_obj);
 
     private:
 
