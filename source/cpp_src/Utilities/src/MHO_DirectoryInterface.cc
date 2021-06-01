@@ -137,5 +137,32 @@ MHO_DirectoryInterface::ReadCurrentDirectory()
     }
 }
 
+std::string
+MHO_DirectoryInterface::get_basename(const std::string& filename) const
+{
+    std::string base_filename = filename.substr(filename.find_last_of("/\\") + 1);
+    return base_filename;
+}
+
+void
+MHO_DirectoryInterface::GetFilesMatchingExtention(std::vector< std::string >& aFileList, const std::string& anExt) const
+{
+    //from the current list of files, locate the ones which match the given extension
+    aFileList.clear();
+    for(auto it = fCurrentFileList.begin(); it != fCurrentFileList.end(); it++)
+    {
+        std::string basename = get_basename(*it);
+        std::size_t index = basename.find_last_of(".");
+        if(index != std::string::npos)
+        {
+            //get the extension
+            std::string ext = basename.substr(index);
+            if(ext == anExt)
+            {
+                aFileList.push_back(*it);
+            }
+        }
+    }
+}
 
 }
