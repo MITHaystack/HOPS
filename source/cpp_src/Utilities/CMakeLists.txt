@@ -23,6 +23,7 @@ set (UTILITIES_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_BinaryFileInterface.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ClassIdentityMap.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ObjectTags.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_DirectoryInterface.hh
 )
 
 #set_source_files_properties(picohash.h PROPERTIES COMPILE_FLAGS -fpermissive)
@@ -37,6 +38,7 @@ set( UTILITIES_SOURCEFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_BinaryFileStreamer.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_UUIDGenerator.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ObjectTags.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_DirectoryInterface.cc
 )
 
 #declare header paths ##########################################################
