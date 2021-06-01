@@ -30,12 +30,15 @@ class MHO_DirectoryInterface
         std::string GetCurrentDirectory() const;
 
         void ReadCurrentDirectory();
+
         void GetFileList(std::vector< std::string >& aFileList) const;
         void GetSubDirectoryList(std::vector< std::string >& aSubDirList) const;
 
+        void GetFilesMatchingExtention(std::vector< std::string >& aFileList, const std::string& anExt) const;
+
     private:
 
-
+        std::string get_basename(const std::string& filename) const;
 
         std::string fCurrentDirectoryFullPath;
 
