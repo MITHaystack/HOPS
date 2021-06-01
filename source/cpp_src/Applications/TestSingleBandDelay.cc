@@ -20,9 +20,6 @@
 #endif
 
 #include "MHO_Message.hh"
-#include "MHO_Tokenizer.hh"
-#include "MHO_MK4VexInterface.hh"
-#include "MHO_MK4CorelInterface.hh"
 
 #include "MHO_Reducer.hh"
 #include "MHO_FunctorBroadcaster.hh"
@@ -30,7 +27,6 @@
 
 #include "MHO_Visibilities.hh"
 #include "MHO_ChannelizedVisibilities.hh"
-#include "MHO_VisibilityChannelizer.hh"
 #include "MHO_ChannelizedRotationFunctor.hh"
 
 
@@ -41,19 +37,19 @@ using namespace hops;
 
 int main(int argc, char** argv)
 {
-    std::string usage = "TestSingleBandDelay -r <root_filename> -f <corel_filename>";
+    std::string usage = "TestSingleBandDelay -d <directory> -b <baseline>";
 
     MHO_Message::GetInstance().AcceptAllKeys();
     MHO_Message::GetInstance().SetMessageLevel(eDebug);
 
-    std::string root_filename;
-    std::string corel_filename;
+    std::string directory
+    std::string baseline;
 
     static struct option longOptions[] = {{"help", no_argument, 0, 'h'},
-                                          {"root (vex) file", required_argument, 0, 'r'},
-                                          {"corel file", required_argument, 0, 'f'}};
+                                          {"directory", required_argument, 0, 'd'},
+                                          {"baseline", required_argument, 0, 'b'}};
 
-    static const char* optString = "hr:f:";
+    static const char* optString = "hd:b:";
 
     while(true)
     {
@@ -65,11 +61,11 @@ int main(int argc, char** argv)
             case ('h'):  // help
                 std::cout << usage << std::endl;
                 return 0;
-            case ('r'):
-                root_filename = std::string(optarg);
+            case ('d'):
+                directory = std::string(optarg);
                 break;
-            case ('f'):
-                corel_filename = std::string(optarg);
+            case ('b'):
+                baseline = std::string(optarg);
                 break;
             default:
                 std::cout << usage << std::endl;
@@ -234,7 +230,7 @@ int main(int argc, char** argv)
 
     // #ifdef USE_ROOT
     // //#ifdef DO_NOT_BUILD
-    // 
+    //
     // std::cout<<"starting root plotting"<<std::endl;
     // //ROOT stuff for plots
     // TApplication* App = new TApplication("PowerPlot",&argc,argv);
@@ -260,8 +256,8 @@ int main(int argc, char** argv)
     // TColor::CreateGradientColorTable(NRGBs, stops, red, green, blue, NCont);
     // myStyle->SetNumberContours(NCont);
     // myStyle->cd();
-    // 
-    // 
+    //
+    //
     // TGraph2D* g_amp[ data_dims[CH_POLPROD_AXIS] ];
     // TGraph* g_amp1[ data_dims[CH_POLPROD_AXIS] ];
     // TCanvas* c[data_dims[CH_POLPROD_AXIS] ];
@@ -276,10 +272,10 @@ int main(int argc, char** argv)
     //     g_amp[pp] = new TGraph2D();
     //     g_amp1[pp] = new TGraph();
     //     std::size_t count = 0;
-    // 
+    //
     //     double sbd_max = 0;
     //     double sbd_max_location = 0;
-    // 
+    //
     //     for(std::size_t f=0; f<data_dims[CH_FREQ_AXIS]; f++)
     //     {
     //         std::complex<double> sum(0,0);
@@ -290,18 +286,18 @@ int main(int argc, char** argv)
     //             count++;
     //         }
     //         g_amp1[pp]->SetPoint(f, sbd_axis(f), std::abs( sum ) );
-    // 
+    //
     //         if( sbd_max < std::abs( sum ) )
     //         {
     //             sbd_max = std::abs( sum );
     //             sbd_max_location = sbd_axis(f);
     //         }
     //     }
-    // 
+    //
     //     max_sbd_loc[pp] = std::make_pair(sbd_max, sbd_max_location);
-    // 
+    //
     //     std::cout<<"sbd_max amp, loc = "<<sbd_max<<", "<<sbd_max_location<<std::endl;
-    // 
+    //
     //     c[pp]->cd();
     //     g_amp1[pp]->SetMarkerStyle(20);
     //     g_amp1[pp]->SetMarkerSize(1);
@@ -309,10 +305,10 @@ int main(int argc, char** argv)
     //     //g_amp[pp]->Draw("COLZ");
     //     c[pp]->Update();
     // }
-    // 
-    // 
-    // 
-    // 
+    //
+    //
+    //
+    //
     // // for(std::size_t pp=0; pp<data_dims[CH_POLPROD_AXIS]; pp++)
     // // {
     // //     c[pp]->cd();
@@ -321,9 +317,9 @@ int main(int argc, char** argv)
     // //     g_amp[pp]->Draw("APL");
     // //     c[pp]->Update();
     // // }
-    // 
+    //
     // App->Run();
-    // 
+    //
     // //#endif
     // #endif //USE_ROOT
 
