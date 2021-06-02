@@ -1,4 +1,5 @@
 #include "MHO_DirectoryInterface.hh"
+#include "MHO_Message.hh"
 
 //needed for listing/navigating files/directories on *nix
 #include <dirent.h>
@@ -58,7 +59,7 @@ MHO_DirectoryInterface::CreateDirectory(const std::string& dirname)
     std::string fullpath = GetDirectoryFullPath(dirname);
     //use mkdir to create the directory with owner permissions
     int retval = mkdir(fullpath.c_str(), S_IRWXU);
-    //if -1, failed to create dir -- TBD, do we want to use errno for more specifics?
+    //if -1, failed to create dir -- TBD, do we want to use errno to get more error specifics?
     if(retval == -1){ return false; }
     return true;
 }
@@ -68,6 +69,7 @@ MHO_DirectoryInterface::SetCurrentDirectory(const std::string& dirname)
 {
     //set the directory we want to explore
     fCurrentDirectoryFullPath = GetDirectoryFullPath(dirname);
+    fCurrentParentFullPath = get_prefix(fCurrentDirectoryFullPath);
     fHaveReadDirectory = false;
     fDirectoryIsSet = true;
 }
@@ -123,8 +125,12 @@ MHO_DirectoryInterface::ReadCurrentDirectory()
                         struct stat st;
                         if(stat( fullpath.c_str(), &st) == 0 )
                         {
-                            if( st.st_mode & S_IFDIR ){allDirs.push_back(fullpath);}
                             if( st.st_mode & S_IFREG ){allFiles.push_back(fullpath);}
+                            //we don't want to collect the current/parent directory, only sub-directories
+                            if( fullpath != fCurrentDirectoryFullPath && fullpath != fCurrentParentFullPath)
+                            {
+                                if( st.st_mode & S_IFDIR ){allDirs.push_back(fullpath);}
+                            }
                         }
                     }
                 }
@@ -134,15 +140,53 @@ MHO_DirectoryInterface::ReadCurrentDirectory()
         closedir(dpdf);
         fCurrentFileList = allFiles;
         fCurrentSubDirectoryList = allDirs;
+        fHaveReadDirectory = true;
+    }
+    else
+    {
+        if(fHaveReadDirectory)
+        {
+            msg_warn("utility", "Already read directory: " << fCurrentDirectoryFullPath << eom);
+        }
+        if(!fDirectoryIsSet)
+        {
+            msg_warn("utility", "Attempted to read directory with no path set." << eom);
+        }
     }
 }
 
 std::string
 MHO_DirectoryInterface::get_basename(const std::string& filename) const
 {
-    std::string base_filename = filename.substr(filename.find_last_of("/\\") + 1);
+    std::string base_filename = "";
+    std::size_t index = filename.find_last_of("/\\");
+    if(index != std::string::npos)
+    {
+        base_filename = filename.substr(index + 1);
+    }
+    else
+    {
+        msg_warn("utility", "No file basename associated with path:" << filename << eom);
+    }
     return base_filename;
 }
+
+std::string
+MHO_DirectoryInterface::get_prefix(const std::string& filename) const
+{
+    std::string prefix = "";
+    std::size_t index = filename.find_last_of("/\\");
+    if(index != std::string::npos)
+    {
+        prefix = filename.substr(0,index);
+    }
+    else
+    {
+        msg_warn("utility", "No directory prefix associated with path:" << filename << eom);
+    }
+    return prefix;
+}
+
 
 void
 MHO_DirectoryInterface::GetFilesMatchingExtention(std::vector< std::string >& aFileList, const std::string& anExt) const
@@ -164,5 +208,20 @@ MHO_DirectoryInterface::GetFilesMatchingExtention(std::vector< std::string >& aF
         }
     }
 }
+
+
+std::string
+MHO_DirectoryInterface::GetCurrentDirectory() const
+{
+    return fCurrentParentFullPath;
+}
+
+std::string
+MHO_DirectoryInterface::GetCurrentParentDirectory() const
+{
+    return fCurrentParentFullPath;
+}
+
+
 
 }
