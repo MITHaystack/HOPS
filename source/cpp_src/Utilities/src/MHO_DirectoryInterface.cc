@@ -210,10 +210,31 @@ MHO_DirectoryInterface::GetFilesMatchingExtention(std::vector< std::string >& aF
 }
 
 
+void
+MHO_DirectoryInterface::GetFilesMatchingExtention(std::vector< std::string >& aFileList, const char* anExt) const
+{
+    //from the current list of files, locate the ones which match the given extension
+    aFileList.clear();
+    for(auto it = fCurrentFileList.begin(); it != fCurrentFileList.end(); it++)
+    {
+        std::string basename = get_basename(*it);
+        std::size_t index = basename.find_last_of(".");
+        if(index != std::string::npos)
+        {
+            //get the extension
+            std::string ext = basename.substr(index+1);
+            if(ext == anExt)
+            {
+                aFileList.push_back(*it);
+            }
+        }
+    }
+}
+
 std::string
 MHO_DirectoryInterface::GetCurrentDirectory() const
 {
-    return fCurrentParentFullPath;
+    return fCurrentDirectoryFullPath;
 }
 
 std::string
