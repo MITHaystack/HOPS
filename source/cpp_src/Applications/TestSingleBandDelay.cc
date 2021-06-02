@@ -21,6 +21,8 @@
 
 #include "MHO_Message.hh"
 
+#include "MHO_DirectoryInterface.hh"
+
 #include "MHO_Reducer.hh"
 #include "MHO_FunctorBroadcaster.hh"
 #include "MHO_MultidimensionalFastFourierTransform.hh"
@@ -42,7 +44,7 @@ int main(int argc, char** argv)
     MHO_Message::GetInstance().AcceptAllKeys();
     MHO_Message::GetInstance().SetMessageLevel(eDebug);
 
-    std::string directory
+    std::string directory;
     std::string baseline;
 
     static struct option longOptions[] = {{"help", no_argument, 0, 'h'},
@@ -74,137 +76,183 @@ int main(int argc, char** argv)
     }
 
 
-    MHO_MK4CorelInterface mk4inter;
-
-    mk4inter.SetCorelFile(corel_filename);
-    mk4inter.SetVexFile(root_filename);
-    baseline_data_type* bl_data = mk4inter.ExtractCorelFile();
 
 
-    MHO_VisibilityChannelizer channelizer;
-    channelizer.SetInput(bl_data);
-    ch_baseline_data_type* ch_bl_data = new ch_baseline_data_type();
-    channelizer.SetOutput(ch_bl_data);
-    bool init = channelizer.Initialize();
-    bool exe = channelizer.ExecuteOperation();
-    if(exe){std::cout<<"channelizer done"<<std::endl;}
+    //read the directory file list
+    std::vector< std::string > allFiles;
+    std::vector< std::string > corFiles;
+    std::vector< std::string > staFiles;
+    std::vector< std::string > jsonFiles;
+    MHO_DirectoryInterface dirInterface;
+    dirInterface.SetCurrentDirectory(directory);
+    dirInterface.ReadCurrentDirectory();
 
-    //clone the data for later use
-    ch_baseline_data_type* copy_ch_bl_data = ch_bl_data->Clone();
+    std::cout<<"directory = "<<dirInterface.GetCurrentDirectory()<<std::endl;
 
-    std::size_t data_dims[CH_VIS_NDIM];
-    ch_bl_data->GetDimensions(data_dims);
-    auto freq_axis_ptr = &(std::get<CH_FREQ_AXIS>( *ch_bl_data ) );
-    auto time_axis_ptr = &(std::get<CH_TIME_AXIS>( *ch_bl_data ) );
+    dirInterface.GetFileList(allFiles);
+    dirInterface.GetFilesMatchingExtention(corFiles, "cor");
+    dirInterface.GetFilesMatchingExtention(staFiles, "sta");
+    dirInterface.GetFilesMatchingExtention(jsonFiles, "json");
 
 
-    // double pass_low =  86242e6 - 86226e6;
-    // double pass_high = 86242.5e6 - 86226e6;
+    // for(auto it = allFiles.begin(); it != allFiles.end(); it++)
+    // {
+    //     std::cout<<"file: "<< *it <<std::endl;
+    // }
+
+    for(auto it = corFiles.begin(); it != corFiles.end(); it++)
+    {
+        std::cout<<"cor: "<< *it <<std::endl;
+    }
+
+    for(auto it = staFiles.begin(); it != staFiles.end(); it++)
+    {
+        std::cout<<"sta: "<< *it <<std::endl;
+    }
+
+
+    for(auto it = jsonFiles.begin(); it != jsonFiles.end(); it++)
+    {
+        std::cout<<"json: "<< *it <<std::endl;
+    }
+
+
+
+
+
+
+    //
+    // MHO_MK4CorelInterface mk4inter;
+    //
+    // mk4inter.SetCorelFile(corel_filename);
+    // mk4inter.SetVexFile(root_filename);
+    // baseline_data_type* bl_data = mk4inter.ExtractCorelFile();
+    //
+    //
+    // MHO_VisibilityChannelizer channelizer;
+    // channelizer.SetInput(bl_data);
+    // ch_baseline_data_type* ch_bl_data = new ch_baseline_data_type();
+    // channelizer.SetOutput(ch_bl_data);
+    // bool init = channelizer.Initialize();
+    // bool exe = channelizer.ExecuteOperation();
+    // if(exe){std::cout<<"channelizer done"<<std::endl;}
+    //
+    // //clone the data for later use
+    // ch_baseline_data_type* copy_ch_bl_data = ch_bl_data->Clone();
+    //
+    // std::size_t data_dims[CH_VIS_NDIM];
+    // ch_bl_data->GetDimensions(data_dims);
+    // auto freq_axis_ptr = &(std::get<CH_FREQ_AXIS>( *ch_bl_data ) );
+    // auto time_axis_ptr = &(std::get<CH_TIME_AXIS>( *ch_bl_data ) );
+    //
+    //
+    // // double pass_low =  86242e6 - 86226e6;
+    // // double pass_high = 86242.5e6 - 86226e6;
+    // // for(std::size_t pp=0; pp<data_dims[CH_POLPROD_AXIS]; pp++)
+    // // {
+    // //     for(std::size_t ch=0; ch<data_dims[CH_CHANNEL_AXIS]; ch++)
+    // //     {
+    // //         for(std::size_t t=0; t<data_dims[CH_TIME_AXIS]; t++)
+    // //         {
+    // //             for(std::size_t f=0; f<data_dims[CH_FREQ_AXIS]; f++)
+    // //             {
+    // //                 if( freq_axis_ptr->at(f) < pass_low || freq_axis_ptr->at(f) > pass_high )
+    // //                 {
+    // //                     //zero-out data outside of passband
+    // //                     std::cout<<"zeroing out data at:" << freq_axis_ptr->at(f)<<std::endl;
+    // //                     ch_bl_data->at(pp,ch,t,f) = std::complex<double>(0.0, 0.0);
+    // //                 }
+    // //             }
+    // //         }
+    // //     }
+    // // }
+    //
+    // //now that the data has been organized by channel, we can take
+    // //each chunk and (fourier) transform it as needed
+    // //to do this we create a 'wrapper' about each chunk of data
+    // //this case, that chunk is the visibilities of a single (channel)
+    // //with axes of time-by-freq
+    //
+    // std::size_t channel_dims[2] = {data_dims[CH_TIME_AXIS], data_dims[CH_FREQ_AXIS]};
+    // MHO_NDArrayWrapper< std::complex<double>, 2> channel_wrapper(channel_dims);
+    // channel_wrapper.SetExternalData( &( ch_bl_data->at(0,0,0,0) ) , channel_dims);
+    //
+    // //now we run a 2-d FFT on the time and freq axes over each channel's data
+    // MHO_MultidimensionalFastFourierTransform<2>* fft_engine_2d = new MHO_MultidimensionalFastFourierTransform<2>();
     // for(std::size_t pp=0; pp<data_dims[CH_POLPROD_AXIS]; pp++)
     // {
     //     for(std::size_t ch=0; ch<data_dims[CH_CHANNEL_AXIS]; ch++)
     //     {
-    //         for(std::size_t t=0; t<data_dims[CH_TIME_AXIS]; t++)
-    //         {
-    //             for(std::size_t f=0; f<data_dims[CH_FREQ_AXIS]; f++)
-    //             {
-    //                 if( freq_axis_ptr->at(f) < pass_low || freq_axis_ptr->at(f) > pass_high )
-    //                 {
-    //                     //zero-out data outside of passband
-    //                     std::cout<<"zeroing out data at:" << freq_axis_ptr->at(f)<<std::endl;
-    //                     ch_bl_data->at(pp,ch,t,f) = std::complex<double>(0.0, 0.0);
-    //                 }
-    //             }
-    //         }
+    //         //point the wrapper to the appropriate chunk of data
+    //         channel_wrapper.SetExternalData( &( ch_bl_data->at(pp,ch,0,0) ), channel_dims);
+    //         fft_engine_2d->SetForward();
+    //         fft_engine_2d->SetInput(&channel_wrapper);
+    //         fft_engine_2d->SetOutput(&channel_wrapper);
+    //         fft_engine_2d->Initialize();
+    //         fft_engine_2d->ExecuteOperation();
     //     }
     // }
-
-    //now that the data has been organized by channel, we can take
-    //each chunk and (fourier) transform it as needed
-    //to do this we create a 'wrapper' about each chunk of data
-    //this case, that chunk is the visibilities of a single (channel)
-    //with axes of time-by-freq
-
-    std::size_t channel_dims[2] = {data_dims[CH_TIME_AXIS], data_dims[CH_FREQ_AXIS]};
-    MHO_NDArrayWrapper< std::complex<double>, 2> channel_wrapper(channel_dims);
-    channel_wrapper.SetExternalData( &( ch_bl_data->at(0,0,0,0) ) , channel_dims);
-
-    //now we run a 2-d FFT on the time and freq axes over each channel's data
-    MHO_MultidimensionalFastFourierTransform<2>* fft_engine_2d = new MHO_MultidimensionalFastFourierTransform<2>();
-    for(std::size_t pp=0; pp<data_dims[CH_POLPROD_AXIS]; pp++)
-    {
-        for(std::size_t ch=0; ch<data_dims[CH_CHANNEL_AXIS]; ch++)
-        {
-            //point the wrapper to the appropriate chunk of data
-            channel_wrapper.SetExternalData( &( ch_bl_data->at(pp,ch,0,0) ), channel_dims);
-            fft_engine_2d->SetForward();
-            fft_engine_2d->SetInput(&channel_wrapper);
-            fft_engine_2d->SetOutput(&channel_wrapper);
-            fft_engine_2d->Initialize();
-            fft_engine_2d->ExecuteOperation();
-        }
-    }
-
-    // std::cout<<"done with the FFT's"<<std::endl;
-    // std::vector< std::vector< std::vector< std::complex<double> > > > sbd;
-    // sbd.resize(data_dims[CH_POLPROD_AXIS]);
     //
-    // //now collapse the time and channel axis (channels only over the first 8 chans --one sampler)
-    // for(std::size_t pp=0; pp<data_dims[CH_POLPROD_AXIS]; pp++)
+    // // std::cout<<"done with the FFT's"<<std::endl;
+    // // std::vector< std::vector< std::vector< std::complex<double> > > > sbd;
+    // // sbd.resize(data_dims[CH_POLPROD_AXIS]);
+    // //
+    // // //now collapse the time and channel axis (channels only over the first 8 chans --one sampler)
+    // // for(std::size_t pp=0; pp<data_dims[CH_POLPROD_AXIS]; pp++)
+    // // {
+    // //     sbd[pp].resize(data_dims[CH_TIME_AXIS]);
+    // //     for(std::size_t t=0; t<data_dims[CH_TIME_AXIS]; t++)
+    // //     {
+    // //         sbd[pp][t].resize(data_dims[CH_FREQ_AXIS], std::complex<double>(0.0, 0.0) );
+    // //         for(std::size_t f=0; f<data_dims[CH_FREQ_AXIS]; f++)
+    // //         {
+    // //             for(std::size_t ch=0; ch<data_dims[CH_CHANNEL_AXIS]; ch++)
+    // //             {
+    // //                 sbd[pp][t][f] += ch_bl_data->at(pp,ch,t,f);
+    // //             }
+    // //         }
+    // //     }
+    // //
+    // // }
+    //
+    // //TODO FIXME check this calculation
+    // //lets compute the values of the transformed (freq) axis --
+    // //this ought to give us the values of the 'single band delay' axis
+    // MHO_NDArrayWrapper< double, 1> sbd_axis(data_dims[CH_FREQ_AXIS]);
+    // int n = data_dims[CH_FREQ_AXIS];
+    // int n02 = n/2;
+    // for(std::size_t f=0; f<data_dims[CH_FREQ_AXIS]; f++)
     // {
-    //     sbd[pp].resize(data_dims[CH_TIME_AXIS]);
-    //     for(std::size_t t=0; t<data_dims[CH_TIME_AXIS]; t++)
-    //     {
-    //         sbd[pp][t].resize(data_dims[CH_FREQ_AXIS], std::complex<double>(0.0, 0.0) );
-    //         for(std::size_t f=0; f<data_dims[CH_FREQ_AXIS]; f++)
-    //         {
-    //             for(std::size_t ch=0; ch<data_dims[CH_CHANNEL_AXIS]; ch++)
-    //             {
-    //                 sbd[pp][t][f] += ch_bl_data->at(pp,ch,t,f);
-    //             }
-    //         }
-    //     }
-    //
+    //     int tmp = f;
+    //     sbd_axis(f) = (tmp - n02)*(1.0/( freq_axis_ptr->at(data_dims[CH_FREQ_AXIS]-1) - freq_axis_ptr->at(0) )  );
+    //     std::cout<<"sbd_axis: "<<f<<" = "<<sbd_axis(f)<<std::endl;
     // }
-
-    //TODO FIXME check this calculation
-    //lets compute the values of the transformed (freq) axis --
-    //this ought to give us the values of the 'single band delay' axis
-    MHO_NDArrayWrapper< double, 1> sbd_axis(data_dims[CH_FREQ_AXIS]);
-    int n = data_dims[CH_FREQ_AXIS];
-    int n02 = n/2;
-    for(std::size_t f=0; f<data_dims[CH_FREQ_AXIS]; f++)
-    {
-        int tmp = f;
-        sbd_axis(f) = (tmp - n02)*(1.0/( freq_axis_ptr->at(data_dims[CH_FREQ_AXIS]-1) - freq_axis_ptr->at(0) )  );
-        std::cout<<"sbd_axis: "<<f<<" = "<<sbd_axis(f)<<std::endl;
-    }
-
-    //TODO FIXME check this calculation
-    //lets compute the values of the transformed (time) axis --
-    //this ought to give us the values of the 'delay-rate' axis
-    MHO_NDArrayWrapper< double, 1> dr_axis(data_dims[CH_TIME_AXIS]);
-    int dn = data_dims[CH_TIME_AXIS];
-    int dn02 = dn/2;
-    for(std::size_t t=0; t<data_dims[CH_TIME_AXIS]; t++)
-    {
-        int tmp = t;
-        dr_axis(t) = (tmp - dn02)*(1.0/( time_axis_ptr->at(data_dims[CH_TIME_AXIS]-1) - time_axis_ptr->at(0) )  );
-        std::cout<<"dr_axis: "<<t<<" = "<<dr_axis(t)<<std::endl;
-    }
-
-
-    //now we want to reduce (sum) the data along the "channel" axis/dimension
-    //Presumably, once we find the correct delay-rate and delay we can apply
-    //this (rotate the data of each channel) so that all of the visibilities
-    //will add coherently
-
-    MHO_Reducer< ch_baseline_data_type::value_type,
-                MHO_CompoundSum,
-                ch_baseline_data_type::rank::value > summation;
-
-    //sum all the data along the channel axis
-    summation.ReduceAxis(CH_CHANNEL_AXIS);
+    //
+    // //TODO FIXME check this calculation
+    // //lets compute the values of the transformed (time) axis --
+    // //this ought to give us the values of the 'delay-rate' axis
+    // MHO_NDArrayWrapper< double, 1> dr_axis(data_dims[CH_TIME_AXIS]);
+    // int dn = data_dims[CH_TIME_AXIS];
+    // int dn02 = dn/2;
+    // for(std::size_t t=0; t<data_dims[CH_TIME_AXIS]; t++)
+    // {
+    //     int tmp = t;
+    //     dr_axis(t) = (tmp - dn02)*(1.0/( time_axis_ptr->at(data_dims[CH_TIME_AXIS]-1) - time_axis_ptr->at(0) )  );
+    //     std::cout<<"dr_axis: "<<t<<" = "<<dr_axis(t)<<std::endl;
+    // }
+    //
+    //
+    // //now we want to reduce (sum) the data along the "channel" axis/dimension
+    // //Presumably, once we find the correct delay-rate and delay we can apply
+    // //this (rotate the data of each channel) so that all of the visibilities
+    // //will add coherently
+    //
+    // MHO_Reducer< ch_baseline_data_type::value_type,
+    //             MHO_CompoundSum,
+    //             ch_baseline_data_type::rank::value > summation;
+    //
+    // //sum all the data along the channel axis
+    // summation.ReduceAxis(CH_CHANNEL_AXIS);
 
 
 
