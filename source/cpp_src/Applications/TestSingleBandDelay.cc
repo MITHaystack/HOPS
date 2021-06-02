@@ -22,6 +22,7 @@
 #include "MHO_Message.hh"
 
 #include "MHO_DirectoryInterface.hh"
+#include "MHO_BinaryFileInterface.hh"
 
 #include "MHO_Reducer.hh"
 #include "MHO_FunctorBroadcaster.hh"
@@ -116,56 +117,60 @@ int main(int argc, char** argv)
         std::cout<<"json: "<< *it <<std::endl;
     }
 
+    //check that there is only one json file
+    std::string root_file = "";
+    if(jsonFiles.size() != 1)
+    {
+        msg_fatal("main", "There are: "<<jsonFiles.size()<<" root files." << eom);
+        std::exit(1);
+    }
+    else
+    {
+        root_file = jsonFiles[0];
+    }
+
+    //locate the corel file that contains the baseline of interest
+    std::string corel_file = "";
+    bool found_baseline = false;
+    for(auto it = corFiles.begin(); it != corFiles.end(); it++)
+    {
+        std::size_t index = it->find(baseline);
+        if(index != std::string::npos)
+        {
+            corel_file = *it;
+            found_baseline = true;
+        }
+    }
+
+    if(!found_baseline)
+    {
+        msg_fatal("main", "Could not find a file for baseline: "<< baseline << eom);
+        std::exit(1);
+    }
+
+    std::cout<<"Will use root file: "<<root_file<<std::endl;
+    std::cout<<"Will use corel file: "<<corel_file<<std::endl;
+
+    //now open and read the (channelized) baseline visibility data
+    ch_baseline_data_type* bl_data = new ch_baseline_data_type();
+    MHO_BinaryFileInterface inter;
+    bool status = inter.OpenToRead(corel_file);
+    if(status)
+    {
+        uint32_t blabel;
+        inter.Read(*bl_data, blabel);
+        std::cout<<"baseline object label = "<<blabel<<std::endl;
+        std::cout<<"Total size of baseline data = "<<bl_data->GetSerializedSize()<<std::endl;
+    }
+    else
+    {
+        std::cout<<" error opening file to read"<<std::endl;
+        inter.Close();
+        std::exit(1);
+    }
+    inter.Close();
 
 
-
-
-
-    //
-    // MHO_MK4CorelInterface mk4inter;
-    //
-    // mk4inter.SetCorelFile(corel_filename);
-    // mk4inter.SetVexFile(root_filename);
-    // baseline_data_type* bl_data = mk4inter.ExtractCorelFile();
-    //
-    //
-    // MHO_VisibilityChannelizer channelizer;
-    // channelizer.SetInput(bl_data);
-    // ch_baseline_data_type* ch_bl_data = new ch_baseline_data_type();
-    // channelizer.SetOutput(ch_bl_data);
-    // bool init = channelizer.Initialize();
-    // bool exe = channelizer.ExecuteOperation();
-    // if(exe){std::cout<<"channelizer done"<<std::endl;}
-    //
-    // //clone the data for later use
-    // ch_baseline_data_type* copy_ch_bl_data = ch_bl_data->Clone();
-    //
-    // std::size_t data_dims[CH_VIS_NDIM];
-    // ch_bl_data->GetDimensions(data_dims);
-    // auto freq_axis_ptr = &(std::get<CH_FREQ_AXIS>( *ch_bl_data ) );
-    // auto time_axis_ptr = &(std::get<CH_TIME_AXIS>( *ch_bl_data ) );
-    //
-    //
-    // // double pass_low =  86242e6 - 86226e6;
-    // // double pass_high = 86242.5e6 - 86226e6;
-    // // for(std::size_t pp=0; pp<data_dims[CH_POLPROD_AXIS]; pp++)
-    // // {
-    // //     for(std::size_t ch=0; ch<data_dims[CH_CHANNEL_AXIS]; ch++)
-    // //     {
-    // //         for(std::size_t t=0; t<data_dims[CH_TIME_AXIS]; t++)
-    // //         {
-    // //             for(std::size_t f=0; f<data_dims[CH_FREQ_AXIS]; f++)
-    // //             {
-    // //                 if( freq_axis_ptr->at(f) < pass_low || freq_axis_ptr->at(f) > pass_high )
-    // //                 {
-    // //                     //zero-out data outside of passband
-    // //                     std::cout<<"zeroing out data at:" << freq_axis_ptr->at(f)<<std::endl;
-    // //                     ch_bl_data->at(pp,ch,t,f) = std::complex<double>(0.0, 0.0);
-    // //                 }
-    // //             }
-    // //         }
-    // //     }
-    // // }
     //
     // //now that the data has been organized by channel, we can take
     // //each chunk and (fourier) transform it as needed
