@@ -28,6 +28,7 @@ class MHO_DirectoryInterface
 
         void SetCurrentDirectory(const std::string& dirname);
         std::string GetCurrentDirectory() const;
+        std::string GetCurrentParentDirectory() const;
 
         void ReadCurrentDirectory();
 
@@ -39,8 +40,10 @@ class MHO_DirectoryInterface
     private:
 
         std::string get_basename(const std::string& filename) const;
+        std::string get_prefix(const std::string& filename) const;
 
         std::string fCurrentDirectoryFullPath;
+        std::string fCurrentParentFullPath;
 
         bool fDirectoryIsSet;
         bool fHaveReadDirectory;

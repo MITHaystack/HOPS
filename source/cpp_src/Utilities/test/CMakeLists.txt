@@ -10,6 +10,7 @@ set(SOURCE_BASENAMES
     TestTimeStampConverter
     TestUUIDGenerator
     TestObjectTags
+    TestDirectoryInterface
 )
 
 foreach( BASENAME ${SOURCE_BASENAMES} )
