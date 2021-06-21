@@ -8,6 +8,7 @@ set (CONTAINER_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_VectorContainer.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_TableContainer.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_Axis.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_VisibilityType.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_Visibilities.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ChannelizedVisibilities.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_StationCoordinates.hh

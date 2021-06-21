@@ -11,16 +11,14 @@
 */
 
 #include <string>
-#include <complex>
 
 #include "MHO_Axis.hh"
 #include "MHO_AxisPack.hh"
 #include "MHO_TableContainer.hh"
+#include "MHO_VisibilityType.hh"
 
 namespace hops
 {
-
-using visibility_type = std::complex<double>;
 
 using polprod_axis_type = MHO_Axis<std::string>;
 using frequency_axis_type = MHO_Axis<double>;
