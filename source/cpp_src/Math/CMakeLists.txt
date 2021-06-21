@@ -8,7 +8,6 @@ set (MATH_HEADERFILES
 #list source files #############################################################
 set( MATH_SOURCEFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_BitReversalPermutation.cc
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_FastFourierTransformUtilities.cc
 )
 
 #declare header paths ##########################################################

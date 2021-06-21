@@ -10,10 +10,10 @@
 namespace hops
 {
 
-template<size_t RANK>
+template< typename XFloatType, size_t RANK>
 class MHO_MultidimensionalFastFourierTransform:
-    public MHO_NDArrayOperator< MHO_NDArrayWrapper< std::complex<double>, RANK >,
-                             MHO_NDArrayWrapper< std::complex<double>, RANK > >
+    public MHO_NDArrayOperator< MHO_NDArrayWrapper< std::complex<XFloatType>, RANK >,
+                             MHO_NDArrayWrapper< std::complex<XFloatType>, RANK > >
 {
     public:
         MHO_MultidimensionalFastFourierTransform()
@@ -84,7 +84,7 @@ class MHO_MultidimensionalFastFourierTransform:
                     //the arrays are not identical so copy the input over to the output
                     std::memcpy( (void*) this->fOutput->GetData(),
                                  (void*) this->fInput->GetData(),
-                                 total_size*sizeof(std::complex<double>) );
+                                 total_size*sizeof(std::complex<XFloatType>) );
                 }
 
                 size_t index[RANK];
@@ -161,8 +161,8 @@ class MHO_MultidimensionalFastFourierTransform:
         {
             for(size_t i=0; i<RANK; i++)
             {
-                fWorkspaceWrapper[i] = new MHO_NDArrayWrapper< std::complex<double>, 1 >(fDimensionSize[i]);
-                fTransformCalculator[i] = new MHO_FastFourierTransform();
+                fWorkspaceWrapper[i] = new MHO_NDArrayWrapper< std::complex<XFloatType>, 1 >(fDimensionSize[i]);
+                fTransformCalculator[i] = new MHO_FastFourierTransform<XFloatType>();
                 fTransformCalculator[i]->SetSize(fDimensionSize[i]);
                 fTransformCalculator[i]->SetInput(fWorkspaceWrapper[i]);
                 fTransformCalculator[i]->SetOutput(fWorkspaceWrapper[i]);
@@ -185,8 +185,8 @@ class MHO_MultidimensionalFastFourierTransform:
 
         size_t fDimensionSize[RANK];
 
-        MHO_FastFourierTransform* fTransformCalculator[RANK];
-        MHO_NDArrayWrapper<std::complex<double>, 1>* fWorkspaceWrapper[RANK];
+        MHO_FastFourierTransform<XFloatType>* fTransformCalculator[RANK];
+        MHO_NDArrayWrapper<std::complex<XFloatType>, 1>* fWorkspaceWrapper[RANK];
 
 
 };

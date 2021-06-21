@@ -15,6 +15,7 @@ set (OPERATOR_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_CompoundReductions.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_Reducer.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_FunctorBroadcaster.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_OperatorStub.hh
 )
 
 if(HOPS_USE_FFTW3)
@@ -26,7 +27,7 @@ endif(HOPS_USE_FFTW3)
 #list source files #############################################################
 
 set( OPERATOR_SOURCEFILES
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_FastFourierTransform.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_OperatorStub.cc
 )
 
 #declare header paths ##########################################################
