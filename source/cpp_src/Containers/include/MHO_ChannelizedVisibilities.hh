@@ -11,16 +11,14 @@
 */
 
 #include <string>
-#include <complex>
 
 #include "MHO_Axis.hh"
 #include "MHO_AxisPack.hh"
 #include "MHO_TableContainer.hh"
+#include "MHO_VisibilityType.hh"
 
 namespace hops
 {
-
-using ch_visibility_type = std::complex<double>;
 
 using ch_polprod_axis_type = MHO_Axis<std::string>;
 using ch_channel_axis_type = MHO_Axis<int>; //channels are simply numbered
@@ -34,7 +32,7 @@ using ch_time_axis_type = MHO_Axis<double>;
 #define CH_FREQ_AXIS 3
 
 using ch_baseline_axis_pack = MHO_AxisPack< ch_polprod_axis_type, ch_channel_axis_type, ch_time_axis_type, ch_frequency_axis_type >;
-using ch_baseline_data_type = MHO_TableContainer< ch_visibility_type, ch_baseline_axis_pack >;
+using ch_baseline_data_type = MHO_TableContainer< visibility_type, ch_baseline_axis_pack >;
 
 
 }//end of hops namespaces

@@ -11,8 +11,8 @@ namespace hops
 {
 
 template<size_t RANK>
-class MHO_MultidimensionalFastFourierTransform: 
-    public MHO_NDArrayOperator< MHO_NDArrayWrapper< std::complex<double>, RANK >, 
+class MHO_MultidimensionalFastFourierTransform:
+    public MHO_NDArrayOperator< MHO_NDArrayWrapper< std::complex<double>, RANK >,
                              MHO_NDArrayWrapper< std::complex<double>, RANK > >
 {
     public:
@@ -82,8 +82,8 @@ class MHO_MultidimensionalFastFourierTransform:
                 if(this->fInput != this->fOutput)
                 {
                     //the arrays are not identical so copy the input over to the output
-                    std::memcpy( (void*) this->fOutput->GetData(), 
-                                 (void*) this->fInput->GetData(), 
+                    std::memcpy( (void*) this->fOutput->GetData(),
+                                 (void*) this->fInput->GetData(),
                                  total_size*sizeof(std::complex<double>) );
                 }
 
