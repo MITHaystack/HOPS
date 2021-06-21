@@ -207,20 +207,22 @@
 
 
 
-#ifdef HOPS_USE_FFTW3
-typedef double FP_Type; //FFTW3 must use double
-#define FFT_TYPE MHO_MultidimensionalFastFourierTransformFFTW<3>
-#else
-typedef float FP_type;
-#define FFT_TYPE MHO_MultidimensionalFastFourierTransform<FP_Type,3> 
-#endif
-
-
 
 
 
 
 using namespace hops;
+
+#ifdef HOPS_USE_FFTW3
+typedef double FPTYPE; //FFTW3 must use double
+#define FFT_TYPE MHO_MultidimensionalFastFourierTransformFFTW<3>
+#else
+typedef float FPTYPE;
+#define FFT_TYPE MHO_MultidimensionalFastFourierTransform<FPTYPE,3> 
+#endif
+
+
+
 
 int main(int /*argc*/, char** /*argv*/)
 {
@@ -228,7 +230,7 @@ int main(int /*argc*/, char** /*argv*/)
     const size_t dval = 5;
     const size_t dim_size[ndim] = {dval, dval, dval};
     const size_t total_size = dim_size[0] * dim_size[1] * dim_size[2];
-    MHO_NDArrayWrapper<std::complex<FP_Type>, ndim> input(dim_size);
+    MHO_NDArrayWrapper< std::complex<FPTYPE>, ndim> input(dim_size);
 
     //fill up the array with a signal
     int count = 0;
@@ -236,10 +238,10 @@ int main(int /*argc*/, char** /*argv*/)
     for (size_t i = 0; i < dim_size[0]; i++) {
         for (size_t j = 0; j < dim_size[1]; j++) {
             for (size_t k = 0; k < dim_size[2]; k++) {
-                input(i,j,k) = std::complex<FP_Type>(count % 13, count % 17);
+                input(i,j,k) = std::complex<FPTYPE>(count % 13, count % 17);
                 std::cout << input(i,j,k) << ", ";
                 count++;
-            }
+            } 
             std::cout << std::endl;
         }
         std::cout << std::endl;
@@ -275,14 +277,14 @@ int main(int /*argc*/, char** /*argv*/)
     fft_engine->ExecuteOperation();
 
     std::cout << "IDFT of DFT of data = " << std::endl;
-    FP_Type norm = total_size;
+    FPTYPE norm = total_size;
     count = 0;
-    FP_Type l2_norm = 0;
+    FPTYPE l2_norm = 0;
     for (size_t i = 0; i < dim_size[0]; i++) {
         for (size_t j = 0; j < dim_size[1]; j++) {
             for (size_t k = 0; k < dim_size[2]; k++) {
-                std::complex<FP_Type> del = input(i,j,k) / norm;
-                del -= std::complex<FP_Type>(count % 13, count % 17);
+                std::complex<FPTYPE> del = input(i,j,k) / norm;
+                del -= std::complex<FPTYPE>(count % 13, count % 17);
                 l2_norm += std::real(del) * std::real(del) + std::imag(del) * std::imag(del);
                 count++;
             }
