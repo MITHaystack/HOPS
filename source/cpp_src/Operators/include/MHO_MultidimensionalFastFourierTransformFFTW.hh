@@ -6,12 +6,16 @@
 
 #include "MHO_Message.hh"
 #include "MHO_NDArrayWrapper.hh"
-#include "MHO_FastFourierTransform.hh"
 
 int fftw_alignment_of(double*) __attribute__((weak));  //avoids "no-args depending on template parameter error"
 
 namespace hops
 {
+
+
+
+//transforms using FFTW must use double precision unless FFTW itself has been 
+//compiled to use single precision floats.
 
 template<size_t RANK>
 class MHO_MultidimensionalFastFourierTransformFFTW:
