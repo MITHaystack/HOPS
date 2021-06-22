@@ -22,7 +22,6 @@ if(HOPS_USE_FFTW3)
     list(APPEND OPERATOR_HEADERFILES
         ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_FFTWTypes.hh
         ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MultidimensionalFastFourierTransformFFTW.hh
-        # ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MultidimensionalFastFourierTransformFFTW_float.hh
     )
 endif(HOPS_USE_FFTW3)
 
