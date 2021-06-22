@@ -6,23 +6,20 @@
 
 #include "MHO_Message.hh"
 #include "MHO_NDArrayWrapper.hh"
-
-int fftw_alignment_of(double*) __attribute__((weak));  //avoids "no-args depending on template parameter error"
+#include "MHO_FastFourierTransform.hh"
+#include "MHO_FFTWTypes.hh"
 
 namespace hops
 {
 
 
-
-//transforms using FFTW must use double precision unless FFTW itself has been 
-//compiled to use single precision floats.
-
-template<size_t RANK>
+template< typename XFloatType, size_t RANK>
 class MHO_MultidimensionalFastFourierTransformFFTW:
-    public MHO_NDArrayOperator< MHO_NDArrayWrapper< std::complex<double>, RANK >,
-                             MHO_NDArrayWrapper< std::complex<double>, RANK > >
+    public MHO_NDArrayOperator< MHO_NDArrayWrapper< std::complex<XFloatType>, RANK >,
+                             MHO_NDArrayWrapper< std::complex<XFloatType>, RANK > >
 {
     public:
+
         MHO_MultidimensionalFastFourierTransformFFTW()
         {
             fTotalArraySize = 0;
@@ -44,10 +41,10 @@ class MHO_MultidimensionalFastFourierTransformFFTW:
             DealocateWorkspace();
             if(fInitialized)
             {
-                fftw_destroy_plan(fPlanForward);
-                fftw_destroy_plan(fPlanBackward);
-                fftw_destroy_plan(fPlanForwardInPlace);
-                fftw_destroy_plan(fPlanBackwardInPlace);
+                MHO_FFTWTypes<XFloatType>::destroy_plan_func(fPlanForward);
+                MHO_FFTWTypes<XFloatType>::destroy_plan_func(fPlanBackward);
+                MHO_FFTWTypes<XFloatType>::destroy_plan_func(fPlanForwardInPlace);
+                MHO_FFTWTypes<XFloatType>::destroy_plan_func(fPlanBackwardInPlace);
             }
         };
 
@@ -81,25 +78,25 @@ class MHO_MultidimensionalFastFourierTransformFFTW:
             if(fIsValid && fInitialized)
             {
                 //check memory alignment to determine if we can avoid copying the data around
-                if( ( fftw_alignment_of( reinterpret_cast<double*>(this->fInput->GetData() ) ) ==
-                      fftw_alignment_of( reinterpret_cast<double*>(fInPtr) ) ) &&
-                    ( fftw_alignment_of( reinterpret_cast<double*>(this->fOutput->GetData() ) ) ==
-                      fftw_alignment_of( reinterpret_cast<double*>(fOutPtr) ) ) )
+                if( ( MHO_FFTWTypes<XFloatType>::alignment_of_func( reinterpret_cast<XFloatType*>(this->fInput->GetData() ) ) ==
+                      MHO_FFTWTypes<XFloatType>::alignment_of_func( reinterpret_cast<XFloatType*>(fInPtr) ) ) &&
+                    ( MHO_FFTWTypes<XFloatType>::alignment_of_func( reinterpret_cast<XFloatType*>(this->fOutput->GetData() ) ) ==
+                      MHO_FFTWTypes<XFloatType>::alignment_of_func( reinterpret_cast<XFloatType*>(fOutPtr) ) ) )
                 {
                     if( this->fInput->GetData() != this->fOutput->GetData() )
                     {
                         //transform is out-of-place
                         if(fForward)
                         {
-                            fftw_execute_dft(fPlanForward,
-                                         reinterpret_cast<fftw_complex*>(this->fInput->GetData() ),
-                                         reinterpret_cast<fftw_complex*>(this->fOutput->GetData() ) );
+                            MHO_FFTWTypes<XFloatType>::execute_dft_func(fPlanForward,
+                            reinterpret_cast<typename MHO_FFTWTypes<XFloatType>::fftw_complex_type_ptr>(this->fInput->GetData() ),
+                            reinterpret_cast<typename MHO_FFTWTypes<XFloatType>::fftw_complex_type_ptr>(this->fOutput->GetData() ) );
                         }
                         else
                         {
-                            fftw_execute_dft(fPlanBackward,
-                                         reinterpret_cast<fftw_complex*>(this->fInput->GetData() ),
-                                         reinterpret_cast<fftw_complex*>(this->fOutput->GetData() ) );
+                            MHO_FFTWTypes<XFloatType>::execute_dft_func(fPlanBackward,
+                            reinterpret_cast<typename MHO_FFTWTypes<XFloatType>::fftw_complex_type_ptr>(this->fInput->GetData() ),
+                            reinterpret_cast<typename MHO_FFTWTypes<XFloatType>::fftw_complex_type_ptr>(this->fOutput->GetData() ) );
                         }
                     }
                     else
@@ -107,31 +104,31 @@ class MHO_MultidimensionalFastFourierTransformFFTW:
                         //we have to execute an in-place transform
                         if(fForward)
                         {
-                            fftw_execute_dft(fPlanForwardInPlace,
-                                         reinterpret_cast<fftw_complex*>(this->fInput->GetData() ),
-                                         reinterpret_cast<fftw_complex*>(this->fOutput->GetData() ) );
+                            MHO_FFTWTypes<XFloatType>::execute_dft_func(fPlanForwardInPlace,
+                            reinterpret_cast<typename MHO_FFTWTypes<XFloatType>::fftw_complex_type_ptr>(this->fInput->GetData() ),
+                            reinterpret_cast<typename MHO_FFTWTypes<XFloatType>::fftw_complex_type_ptr>(this->fOutput->GetData() ) );
                         }
                         else
                         {
-                            fftw_execute_dft(fPlanBackwardInPlace,
-                                         reinterpret_cast<fftw_complex*>(this->fInput->GetData() ),
-                                         reinterpret_cast<fftw_complex*>(this->fOutput->GetData() ) );
+                            MHO_FFTWTypes<XFloatType>::execute_dft_func(fPlanBackwardInPlace,
+                            reinterpret_cast<typename MHO_FFTWTypes<XFloatType>::fftw_complex_type_ptr>(this->fInput->GetData() ),
+                            reinterpret_cast<typename MHO_FFTWTypes<XFloatType>::fftw_complex_type_ptr>(this->fOutput->GetData() ) );
                         }
                     }
                 }
                 else
                 {
                     //alignment doesn't match so we need to use memcpy
-                    std::memcpy( fInPtr, this->fInput->GetData() , fTotalArraySize*sizeof(fftw_complex) );
+                    std::memcpy( fInPtr, this->fInput->GetData() , fTotalArraySize*sizeof(typename MHO_FFTWTypes<XFloatType>::fftw_complex_type) );
                     if(fForward)
                     {
-                        fftw_execute(fPlanForward);
+                        MHO_FFTWTypes<XFloatType>::execute_func(fPlanForward);
                     }
                     else
                     {
-                        fftw_execute(fPlanBackward);
+                        MHO_FFTWTypes<XFloatType>::execute_func(fPlanBackward);
                     }
-                    std::memcpy(this->fOutput->GetData(), fOutPtr, fTotalArraySize*sizeof(fftw_complex) );
+                    std::memcpy(this->fOutput->GetData(), fOutPtr, fTotalArraySize*sizeof(typename MHO_FFTWTypes<XFloatType>::fftw_complex_type) );
                 }
                 return true;
             }
@@ -148,16 +145,16 @@ class MHO_MultidimensionalFastFourierTransformFFTW:
 
         virtual void AllocateWorkspace()
         {
-            fInPtr = fftw_alloc_complex(fTotalArraySize);
-            fOutPtr = fftw_alloc_complex(fTotalArraySize);
-            fInPlacePtr = fftw_alloc_complex(fTotalArraySize);
+            fInPtr = MHO_FFTWTypes<XFloatType>::alloc_func(fTotalArraySize);
+            fOutPtr = MHO_FFTWTypes<XFloatType>::alloc_func(fTotalArraySize);
+            fInPlacePtr = MHO_FFTWTypes<XFloatType>::alloc_func(fTotalArraySize);
         }
 
         virtual void DealocateWorkspace()
         {
-            fftw_free(fInPtr);
-            fftw_free(fOutPtr);
-            fftw_free(fInPlacePtr);
+            MHO_FFTWTypes<XFloatType>::free_func(fInPtr);
+            MHO_FFTWTypes<XFloatType>::free_func(fOutPtr);
+            MHO_FFTWTypes<XFloatType>::free_func(fInPlacePtr);
         }
 
 
@@ -180,16 +177,16 @@ class MHO_MultidimensionalFastFourierTransformFFTW:
                 fDims[i].os = MHO_NDArrayMath::StrideFromRowMajorIndex<RANK>(i,fDimensionSize);
             }
 
-            fPlanForward = fftw_plan_guru_dft(rank, fDims, howmany_rank, &fHowManyDims,
+            fPlanForward = MHO_FFTWTypes<XFloatType>::plan_guru_func(rank, fDims, howmany_rank, &fHowManyDims,
                                        fInPtr, fOutPtr, FFTW_FORWARD, FFTW_EXHAUSTIVE);
 
-            fPlanBackward = fftw_plan_guru_dft(rank, fDims, howmany_rank, &fHowManyDims,
+            fPlanBackward = MHO_FFTWTypes<XFloatType>::plan_guru_func(rank, fDims, howmany_rank, &fHowManyDims,
                                        fInPtr, fOutPtr, FFTW_BACKWARD, FFTW_EXHAUSTIVE);
 
-            fPlanForwardInPlace = fftw_plan_guru_dft(rank, fDims, howmany_rank, &fHowManyDims,
+            fPlanForwardInPlace = MHO_FFTWTypes<XFloatType>::plan_guru_func(rank, fDims, howmany_rank, &fHowManyDims,
                                        fInPlacePtr, fInPlacePtr, FFTW_FORWARD, FFTW_EXHAUSTIVE);
 
-            fPlanBackwardInPlace = fftw_plan_guru_dft(rank, fDims, howmany_rank, &fHowManyDims,
+            fPlanBackwardInPlace = MHO_FFTWTypes<XFloatType>::plan_guru_func(rank, fDims, howmany_rank, &fHowManyDims,
                                        fInPlacePtr, fInPlacePtr, FFTW_BACKWARD, FFTW_EXHAUSTIVE);
 
             if(fPlanForward != NULL && fPlanBackward != NULL && fPlanBackwardInPlace != NULL && fPlanForwardInPlace != NULL)
@@ -202,7 +199,6 @@ class MHO_MultidimensionalFastFourierTransformFFTW:
             }
         }
 
-
         bool fIsValid;
         bool fForward;
         bool fInitialized;
@@ -210,16 +206,15 @@ class MHO_MultidimensionalFastFourierTransformFFTW:
         size_t fTotalArraySize;
         size_t fDimensionSize[RANK];
 
-        fftw_iodim fDims[RANK];
-        fftw_iodim fHowManyDims;
-        fftw_plan fPlanForward;
-        fftw_plan fPlanBackward;
-        fftw_plan fPlanForwardInPlace;
-        fftw_plan fPlanBackwardInPlace;
-        fftw_complex* fInPtr;
-        fftw_complex* fOutPtr;
-        fftw_complex* fInPlacePtr;
-
+        typename MHO_FFTWTypes<XFloatType>::iodim_type fDims[RANK];
+        typename MHO_FFTWTypes<XFloatType>::iodim_type fHowManyDims;
+        typename MHO_FFTWTypes<XFloatType>::plan_type fPlanForward;
+        typename MHO_FFTWTypes<XFloatType>::plan_type fPlanBackward;
+        typename MHO_FFTWTypes<XFloatType>::plan_type fPlanForwardInPlace;
+        typename MHO_FFTWTypes<XFloatType>::plan_type fPlanBackwardInPlace;
+        typename MHO_FFTWTypes<XFloatType>::fftw_complex_type_ptr fInPtr;
+        typename MHO_FFTWTypes<XFloatType>::fftw_complex_type_ptr fOutPtr;
+        typename MHO_FFTWTypes<XFloatType>::fftw_complex_type_ptr fInPlacePtr;
 };
 
 
