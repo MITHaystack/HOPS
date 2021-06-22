@@ -12,11 +12,10 @@
 using namespace hops;
 
 #ifdef HOPS_USE_FFTW3
-//#define FFT_TYPE MHO_MultidimensionalFastFourierTransformFFTW<3>
-typedef float FPTYPE;
+typedef long double FPTYPE;
 #define FFT_TYPE MHO_MultidimensionalFastFourierTransformFFTW<FPTYPE,3>
 #else
-typedef float FPTYPE;
+typedef long double FPTYPE;
 #define FFT_TYPE MHO_MultidimensionalFastFourierTransform<FPTYPE,3>
 #endif
 
