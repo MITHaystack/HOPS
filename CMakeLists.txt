@@ -51,7 +51,7 @@ file(MAKE_DIRECTORY ${SHARE_TEXT_INSTALL_DIR})
 hops_module_paths(Hops)
 
 #compiler flags
-#hops_require_cpp11()
+hops_require_cpp11()
 #hops_require_cpp17()
 #
 set( CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -Wextra" )

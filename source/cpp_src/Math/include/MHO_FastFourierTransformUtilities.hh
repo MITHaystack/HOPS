@@ -31,7 +31,7 @@ class MHO_FastFourierTransformUtilities
             for(unsigned int i=0; i<N; i++)
             {
                 di = i;
-                twiddle[i] = std::complex<XFloatType>(std::cos((2.0*M_PI*di)/dN), std::sin((2.0*M_PI*di)/dN));
+                twiddle[i] = std::complex<XFloatType>(cosl((2.0*M_PIl*di)/dN), sinl((2.0*M_PIl*di)/dN));
             }
         }
 
@@ -237,7 +237,7 @@ class MHO_FastFourierTransformUtilities
         static void ComputeBluesteinScaleFactors(unsigned int N, std::complex< XFloatType >* scale)
         {
             //STEP A
-            XFloatType theta = M_PI/((XFloatType)N);
+            XFloatType theta = M_PIl/((XFloatType)N);
             unsigned int i2;
             XFloatType x;
 
@@ -245,7 +245,7 @@ class MHO_FastFourierTransformUtilities
             {
                 i2 = i*i % (2*N); //taking the modulus here results in a more accurate DFT/IDFT
                 x = theta*i2;
-                scale[i] = std::complex<XFloatType>( std::cos(x), std::sin(x) );
+                scale[i] = std::complex<XFloatType>( cosl(x), sinl(x) );
             }
 
             //IMPORTANT NOTE!
