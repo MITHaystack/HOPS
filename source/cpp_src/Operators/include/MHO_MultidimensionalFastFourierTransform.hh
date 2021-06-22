@@ -16,6 +16,7 @@ class MHO_MultidimensionalFastFourierTransform:
                              MHO_NDArrayWrapper< std::complex<XFloatType>, RANK > >
 {
     public:
+
         MHO_MultidimensionalFastFourierTransform()
         {
             for(size_t i=0; i<RANK; i++)

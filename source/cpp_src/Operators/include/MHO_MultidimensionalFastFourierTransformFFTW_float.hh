@@ -1,24 +1,25 @@
-#ifndef MHO_MultidimensionalFastFourierTransformFFTW_HH__
-#define MHO_MultidimensionalFastFourierTransformFFTW_HH__
+#ifndef MHO_MultidimensionalFastFourierTransformFFTW_float_HH__
+#define MHO_MultidimensionalFastFourierTransformFFTW_float_HH__
 
 #include <cstring>
 #include <fftw3.h>
 
 #include "MHO_Message.hh"
 #include "MHO_NDArrayWrapper.hh"
+#include "MHO_FastFourierTransform.hh"
 
-int fftw_alignment_of(double*) __attribute__((weak));  //avoids "no-args depending on template parameter error"
+int fftwf_alignment_of(float*) __attribute__((weak));  //avoids "no-args depending on template parameter error"
 
 namespace hops
 {
 
 template<size_t RANK>
-class MHO_MultidimensionalFastFourierTransformFFTW:
-    public MHO_NDArrayOperator< MHO_NDArrayWrapper< std::complex<double>, RANK >,
-                             MHO_NDArrayWrapper< std::complex<double>, RANK > >
+class MHO_MultidimensionalFastFourierTransformFFTW_float:
+    public MHO_NDArrayOperator< MHO_NDArrayWrapper< std::complex<float>, RANK >,
+                             MHO_NDArrayWrapper< std::complex<float>, RANK > >
 {
     public:
-        MHO_MultidimensionalFastFourierTransformFFTW()
+        MHO_MultidimensionalFastFourierTransformFFTW_float()
         {
             fTotalArraySize = 0;
             fInPtr = NULL;
@@ -34,15 +35,15 @@ class MHO_MultidimensionalFastFourierTransformFFTW:
             fForward = true;
         };
 
-        virtual ~MHO_MultidimensionalFastFourierTransformFFTW()
+        virtual ~MHO_MultidimensionalFastFourierTransformFFTW_float()
         {
             DealocateWorkspace();
             if(fInitialized)
             {
-                fftw_destroy_plan(fPlanForward);
-                fftw_destroy_plan(fPlanBackward);
-                fftw_destroy_plan(fPlanForwardInPlace);
-                fftw_destroy_plan(fPlanBackwardInPlace);
+                fftwf_destroy_plan(fPlanForward);
+                fftwf_destroy_plan(fPlanBackward);
+                fftwf_destroy_plan(fPlanForwardInPlace);
+                fftwf_destroy_plan(fPlanBackwardInPlace);
             }
         };
 
@@ -76,25 +77,25 @@ class MHO_MultidimensionalFastFourierTransformFFTW:
             if(fIsValid && fInitialized)
             {
                 //check memory alignment to determine if we can avoid copying the data around
-                if( ( fftw_alignment_of( reinterpret_cast<double*>(this->fInput->GetData() ) ) ==
-                      fftw_alignment_of( reinterpret_cast<double*>(fInPtr) ) ) &&
-                    ( fftw_alignment_of( reinterpret_cast<double*>(this->fOutput->GetData() ) ) ==
-                      fftw_alignment_of( reinterpret_cast<double*>(fOutPtr) ) ) )
+                if( ( fftwf_alignment_of( reinterpret_cast<float*>(this->fInput->GetData() ) ) ==
+                      fftwf_alignment_of( reinterpret_cast<float*>(fInPtr) ) ) &&
+                    ( fftwf_alignment_of( reinterpret_cast<float*>(this->fOutput->GetData() ) ) ==
+                      fftwf_alignment_of( reinterpret_cast<float*>(fOutPtr) ) ) )
                 {
                     if( this->fInput->GetData() != this->fOutput->GetData() )
                     {
                         //transform is out-of-place
                         if(fForward)
                         {
-                            fftw_execute_dft(fPlanForward,
-                                         reinterpret_cast<fftw_complex*>(this->fInput->GetData() ),
-                                         reinterpret_cast<fftw_complex*>(this->fOutput->GetData() ) );
+                            fftwf_execute_dft(fPlanForward,
+                                         reinterpret_cast<fftwf_complex*>(this->fInput->GetData() ),
+                                         reinterpret_cast<fftwf_complex*>(this->fOutput->GetData() ) );
                         }
                         else
                         {
-                            fftw_execute_dft(fPlanBackward,
-                                         reinterpret_cast<fftw_complex*>(this->fInput->GetData() ),
-                                         reinterpret_cast<fftw_complex*>(this->fOutput->GetData() ) );
+                            fftwf_execute_dft(fPlanBackward,
+                                         reinterpret_cast<fftwf_complex*>(this->fInput->GetData() ),
+                                         reinterpret_cast<fftwf_complex*>(this->fOutput->GetData() ) );
                         }
                     }
                     else
@@ -102,31 +103,31 @@ class MHO_MultidimensionalFastFourierTransformFFTW:
                         //we have to execute an in-place transform
                         if(fForward)
                         {
-                            fftw_execute_dft(fPlanForwardInPlace,
-                                         reinterpret_cast<fftw_complex*>(this->fInput->GetData() ),
-                                         reinterpret_cast<fftw_complex*>(this->fOutput->GetData() ) );
+                            fftwf_execute_dft(fPlanForwardInPlace,
+                                         reinterpret_cast<fftwf_complex*>(this->fInput->GetData() ),
+                                         reinterpret_cast<fftwf_complex*>(this->fOutput->GetData() ) );
                         }
                         else
                         {
-                            fftw_execute_dft(fPlanBackwardInPlace,
-                                         reinterpret_cast<fftw_complex*>(this->fInput->GetData() ),
-                                         reinterpret_cast<fftw_complex*>(this->fOutput->GetData() ) );
+                            fftwf_execute_dft(fPlanBackwardInPlace,
+                                         reinterpret_cast<fftwf_complex*>(this->fInput->GetData() ),
+                                         reinterpret_cast<fftwf_complex*>(this->fOutput->GetData() ) );
                         }
                     }
                 }
                 else
                 {
                     //alignment doesn't match so we need to use memcpy
-                    std::memcpy( fInPtr, this->fInput->GetData() , fTotalArraySize*sizeof(fftw_complex) );
+                    std::memcpy( fInPtr, this->fInput->GetData() , fTotalArraySize*sizeof(fftwf_complex) );
                     if(fForward)
                     {
-                        fftw_execute(fPlanForward);
+                        fftwf_execute(fPlanForward);
                     }
                     else
                     {
-                        fftw_execute(fPlanBackward);
+                        fftwf_execute(fPlanBackward);
                     }
-                    std::memcpy(this->fOutput->GetData(), fOutPtr, fTotalArraySize*sizeof(fftw_complex) );
+                    std::memcpy(this->fOutput->GetData(), fOutPtr, fTotalArraySize*sizeof(fftwf_complex) );
                 }
                 return true;
             }
@@ -143,16 +144,16 @@ class MHO_MultidimensionalFastFourierTransformFFTW:
 
         virtual void AllocateWorkspace()
         {
-            fInPtr = fftw_alloc_complex(fTotalArraySize);
-            fOutPtr = fftw_alloc_complex(fTotalArraySize);
-            fInPlacePtr = fftw_alloc_complex(fTotalArraySize);
+            fInPtr = fftwf_alloc_complex(fTotalArraySize);
+            fOutPtr = fftwf_alloc_complex(fTotalArraySize);
+            fInPlacePtr = fftwf_alloc_complex(fTotalArraySize);
         }
 
         virtual void DealocateWorkspace()
         {
-            fftw_free(fInPtr);
-            fftw_free(fOutPtr);
-            fftw_free(fInPlacePtr);
+            fftwf_free(fInPtr);
+            fftwf_free(fOutPtr);
+            fftwf_free(fInPlacePtr);
         }
 
 
@@ -161,7 +162,7 @@ class MHO_MultidimensionalFastFourierTransformFFTW:
             if(fInPtr == NULL || fOutPtr == NULL || fInPlacePtr == NULL){return false;}
 
             int rank = RANK;
-            //we force fftw to only do one fft at a time
+            //we force fftwf to only do one fft at a time
             //but we could implement a batched interface also...
             int howmany_rank = 0; //zero disables more than one x-form
             fHowManyDims.n = 1;
@@ -175,16 +176,16 @@ class MHO_MultidimensionalFastFourierTransformFFTW:
                 fDims[i].os = MHO_NDArrayMath::StrideFromRowMajorIndex<RANK>(i,fDimensionSize);
             }
 
-            fPlanForward = fftw_plan_guru_dft(rank, fDims, howmany_rank, &fHowManyDims,
+            fPlanForward = fftwf_plan_guru_dft(rank, fDims, howmany_rank, &fHowManyDims,
                                        fInPtr, fOutPtr, FFTW_FORWARD, FFTW_EXHAUSTIVE);
 
-            fPlanBackward = fftw_plan_guru_dft(rank, fDims, howmany_rank, &fHowManyDims,
+            fPlanBackward = fftwf_plan_guru_dft(rank, fDims, howmany_rank, &fHowManyDims,
                                        fInPtr, fOutPtr, FFTW_BACKWARD, FFTW_EXHAUSTIVE);
 
-            fPlanForwardInPlace = fftw_plan_guru_dft(rank, fDims, howmany_rank, &fHowManyDims,
+            fPlanForwardInPlace = fftwf_plan_guru_dft(rank, fDims, howmany_rank, &fHowManyDims,
                                        fInPlacePtr, fInPlacePtr, FFTW_FORWARD, FFTW_EXHAUSTIVE);
 
-            fPlanBackwardInPlace = fftw_plan_guru_dft(rank, fDims, howmany_rank, &fHowManyDims,
+            fPlanBackwardInPlace = fftwf_plan_guru_dft(rank, fDims, howmany_rank, &fHowManyDims,
                                        fInPlacePtr, fInPlacePtr, FFTW_BACKWARD, FFTW_EXHAUSTIVE);
 
             if(fPlanForward != NULL && fPlanBackward != NULL && fPlanBackwardInPlace != NULL && fPlanForwardInPlace != NULL)
@@ -205,19 +206,19 @@ class MHO_MultidimensionalFastFourierTransformFFTW:
         size_t fTotalArraySize;
         size_t fDimensionSize[RANK];
 
-        fftw_iodim fDims[RANK];
-        fftw_iodim fHowManyDims;
-        fftw_plan fPlanForward;
-        fftw_plan fPlanBackward;
-        fftw_plan fPlanForwardInPlace;
-        fftw_plan fPlanBackwardInPlace;
-        fftw_complex* fInPtr;
-        fftw_complex* fOutPtr;
-        fftw_complex* fInPlacePtr;
+        fftwf_iodim fDims[RANK];
+        fftwf_iodim fHowManyDims;
+        fftwf_plan fPlanForward;
+        fftwf_plan fPlanBackward;
+        fftwf_plan fPlanForwardInPlace;
+        fftwf_plan fPlanBackwardInPlace;
+        fftwf_complex* fInPtr;
+        fftwf_complex* fOutPtr;
+        fftwf_complex* fInPlacePtr;
 
 };
 
 
 }
 
-#endif /* MHO_MultidimensionalFastFourierTransformFFTW_H__ */
+#endif /* MHO_MultidimensionalFastFourierTransformFFTW_float_H__ */

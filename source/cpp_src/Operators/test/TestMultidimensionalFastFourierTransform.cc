@@ -3,6 +3,7 @@
 #include "MHO_MultidimensionalFastFourierTransform.hh"
 #ifdef HOPS_USE_FFTW3
 #include "MHO_MultidimensionalFastFourierTransformFFTW.hh"
+#include "MHO_MultidimensionalFastFourierTransformFFTW_float.hh"
 #endif
 
 #include <cmath>
@@ -82,16 +83,16 @@
 
 
 
-// 
-// 
+//
+//
 // #ifdef HOPS_USE_FFTW3
 // #define FFT_TYPE MHO_MultidimensionalFastFourierTransformFFTW<2>
 // #else
 // #define FFT_TYPE MHO_MultidimensionalFastFourierTransform<2>
 // #endif
-// 
+//
 // using namespace hops;
-// 
+//
 // int main(int /*argc*/, char** /*argv*/)
 // {
 //     const size_t ndim = 2;
@@ -100,7 +101,7 @@
 //     const size_t total_size = dim_size[0] * dim_size[1];
 //     MHO_NDArrayWrapper<std::complex<double>, ndim> input(dim_size);
 //     MHO_NDArrayWrapper<std::complex<double>, ndim> output(dim_size);
-// 
+//
 //     //fill up the array with a signal
 //     int count = 0;
 //     std::cout << "original data = " << std::endl;
@@ -112,18 +113,18 @@
 //         }
 //         std::cout << std::endl;
 //     }
-// 
+//
 //     std::cout << "--------------------------------------------------------------" << std::endl;
-// 
+//
 //     FFT_TYPE* fft_engine = new FFT_TYPE();
-// 
+//
 //     //fft_engine->SetBackward();//Forward();
 //     fft_engine->SetForward();
 //     fft_engine->SetInput(&input);
 //     fft_engine->SetOutput(&output);
 //     fft_engine->Initialize();
 //     fft_engine->ExecuteOperation();
-// 
+//
 //     std::cout << "DFT of data = " << std::endl;
 //     for (size_t i = 0; i < dim_size[0]; i++) {
 //         for (size_t j = 0; j < dim_size[1]; j++) {
@@ -131,16 +132,16 @@
 //         }
 //         std::cout << std::endl;
 //     }
-// 
+//
 //     std::cout << "--------------------------------------------------------------" << std::endl;
-// 
+//
 //     fft_engine->SetBackward();
 //     //fft_engine->SetForward();//SetBackward();
 //     fft_engine->SetInput(&output);
 //     fft_engine->SetOutput(&input);
 //     fft_engine->Initialize();
 //     fft_engine->ExecuteOperation();
-// 
+//
 //     std::cout << "IDFT of DFT of data = " << std::endl;
 //     double norm = total_size;
 //     count = 0;
@@ -153,20 +154,20 @@
 //             count++;
 //         }
 //     }
-// 
-// 
+//
+//
 //     std::cout << "L2 norm difference = " << std::sqrt(l2_norm) << std::endl;
-// 
+//
 //     delete fft_engine;
-// 
+//
 //     return 0;
 // }
-// 
-// 
-// 
-// 
-// 
-// 
+//
+//
+//
+//
+//
+//
 
 
 
@@ -214,11 +215,12 @@
 using namespace hops;
 
 #ifdef HOPS_USE_FFTW3
-typedef double FPTYPE; //FFTW3 must use double
-#define FFT_TYPE MHO_MultidimensionalFastFourierTransformFFTW<3>
+//#define FFT_TYPE MHO_MultidimensionalFastFourierTransformFFTW<3>
+typedef float FPTYPE;
+#define FFT_TYPE MHO_MultidimensionalFastFourierTransformFFTW_float<3>
 #else
 typedef float FPTYPE;
-#define FFT_TYPE MHO_MultidimensionalFastFourierTransform<FPTYPE,3> 
+#define FFT_TYPE MHO_MultidimensionalFastFourierTransform<FPTYPE,3>
 #endif
 
 
@@ -241,7 +243,7 @@ int main(int /*argc*/, char** /*argv*/)
                 input(i,j,k) = std::complex<FPTYPE>(count % 13, count % 17);
                 std::cout << input(i,j,k) << ", ";
                 count++;
-            } 
+            }
             std::cout << std::endl;
         }
         std::cout << std::endl;
