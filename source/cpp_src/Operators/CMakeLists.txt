@@ -20,7 +20,9 @@ set (OPERATOR_HEADERFILES
 
 if(HOPS_USE_FFTW3)
     list(APPEND OPERATOR_HEADERFILES
+        ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_FFTWTypes.hh
         ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MultidimensionalFastFourierTransformFFTW.hh
+        # ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MultidimensionalFastFourierTransformFFTW_float.hh
     )
 endif(HOPS_USE_FFTW3)
 
@@ -37,7 +39,7 @@ hops_internal_include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 set(OPERATOR_LIBS MHO_Message MHO_Math)
 
 if(HOPS_USE_FFTW3)
-    list(APPEND OPERATOR_LIBS ${FFTW_LIBRARIES})
+    list(APPEND OPERATOR_LIBS ${FFTW_LIBRARIES} ${FFTW_SINGLE_LIBRARIES})
 endif(HOPS_USE_FFTW3)
 
 add_library (MHO_Operators SHARED ${OPERATOR_SOURCEFILES})
