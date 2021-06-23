@@ -22,18 +22,7 @@ class MHO_FastFourierTransformUtilities
 
         ////////////////////////////////////////////////////////////////////////
         //compute all the twiddle factors e^{i*2*pi/N} for 0 to N-1
-        static void ComputeTwiddleFactors(unsigned int N, std::complex< XFloatType >* twiddle)
-        {
-            //using std::cos and std::sin is more accurate than the recursive method
-            //to compute the twiddle factors
-            XFloatType di, dN;
-            dN = N;
-            for(unsigned int i=0; i<N; i++)
-            {
-                di = i;
-                twiddle[i] = std::complex<XFloatType>(cosl((2.0*M_PIl*di)/dN), sinl((2.0*M_PIl*di)/dN));
-            }
-        }
+        static void ComputeTwiddleFactors(unsigned int N, std::complex< XFloatType >* twiddle);
 
         static void ComputeConjugateTwiddleFactors(unsigned int N, std::complex< XFloatType >* conj_twiddle)
         {
@@ -234,27 +223,7 @@ class MHO_FastFourierTransformUtilities
 
 
         //scale factor array must be length N
-        static void ComputeBluesteinScaleFactors(unsigned int N, std::complex< XFloatType >* scale)
-        {
-            //STEP A
-            XFloatType theta = M_PIl/((XFloatType)N);
-            unsigned int i2;
-            XFloatType x;
-
-            for(unsigned int i=0; i<N; i++)
-            {
-                i2 = i*i % (2*N); //taking the modulus here results in a more accurate DFT/IDFT
-                x = theta*i2;
-                scale[i] = std::complex<XFloatType>( cosl(x), sinl(x) );
-            }
-
-            //IMPORTANT NOTE!
-            //This function computes the CONJUGATE of the scale factors as
-            //defined by equation 13.22, page 127 of
-            //"Inside the FFT Black Box", E. Chu and A. George, Ch. 13, CRC Press, 2000
-            //we do this so we can avoid having to take a complex conjugate of the scale
-            //factors when performing the actual FFT
-        }
+        static void ComputeBluesteinScaleFactors(unsigned int N, std::complex< XFloatType >* scale);
 
         //twiddle and circulant array must be length M = 2^p >= (2N - 2), where N is the data length
         static void ComputeBluesteinCirculantVector(unsigned int N,
@@ -342,6 +311,131 @@ class MHO_FastFourierTransformUtilities
 
 
 };
+
+
+
+////////////////////////////////////////////////////////////////////////////////
+//template specializations for float, double, and long double
+
+template<>
+void
+MHO_FastFourierTransformUtilities<float>::ComputeTwiddleFactors(unsigned int N, std::complex< float >* twiddle)
+{
+    //using std::cos and std::sin is more accurate than the recursive method
+    //to compute the twiddle factors
+    float di, dN;
+    dN = N;
+    for(unsigned int i=0; i<N; i++)
+    {
+        di = i;
+        twiddle[i] = std::complex<float>(std::cos((2.0*M_PI*di)/dN), std::sin((2.0*M_PI*di)/dN));
+    }
+}
+
+
+template<>
+void
+MHO_FastFourierTransformUtilities<double>::ComputeTwiddleFactors(unsigned int N, std::complex< double >* twiddle)
+{
+    //using std::cos and std::sin is more accurate than the recursive method
+    //to compute the twiddle factors
+    double di, dN;
+    dN = N;
+    for(unsigned int i=0; i<N; i++)
+    {
+        di = i;
+        twiddle[i] = std::complex<double>(std::cos((2.0*M_PI*di)/dN), std::sin((2.0*M_PI*di)/dN));
+    }
+}
+
+
+template<>
+void
+MHO_FastFourierTransformUtilities<long double>::ComputeTwiddleFactors(unsigned int N, std::complex< long double >* twiddle)
+{
+    //using std::cos and std::sin is more accurate than the recursive method
+    //to compute the twiddle factors
+    long double di, dN;
+    dN = N;
+    for(unsigned int i=0; i<N; i++)
+    {
+        di = i;
+        twiddle[i] = std::complex<long double>(cosl((2.0*M_PIl*di)/dN), sinl((2.0*M_PIl*di)/dN));
+    }
+}
+
+
+template<>
+void
+MHO_FastFourierTransformUtilities<float>::ComputeBluesteinScaleFactors(unsigned int N, std::complex< float >* scale)
+{
+    //STEP A
+    float theta = M_PI/((float)N);
+    unsigned int i2;
+    float x;
+
+    for(unsigned int i=0; i<N; i++)
+    {
+        i2 = i*i % (2*N); //taking the modulus here results in a more accurate DFT/IDFT
+        x = theta*i2;
+        scale[i] = std::complex<float>( std::cos(x), std::sin(x) );
+    }
+
+    //IMPORTANT NOTE!
+    //This function computes the CONJUGATE of the scale factors as
+    //defined by equation 13.22, page 127 of
+    //"Inside the FFT Black Box", E. Chu and A. George, Ch. 13, CRC Press, 2000
+    //we do this so we can avoid having to take a complex conjugate of the scale
+    //factors when performing the actual FFT
+}
+
+template<>
+void
+MHO_FastFourierTransformUtilities<double>::ComputeBluesteinScaleFactors(unsigned int N, std::complex< double >* scale)
+{
+    //STEP A
+    double theta = M_PI/((double)N);
+    unsigned int i2;
+    double x;
+
+    for(unsigned int i=0; i<N; i++)
+    {
+        i2 = i*i % (2*N); //taking the modulus here results in a more accurate DFT/IDFT
+        x = theta*i2;
+        scale[i] = std::complex<double>( cosl(x), sin(x) );
+    }
+
+    //IMPORTANT NOTE!
+    //This function computes the CONJUGATE of the scale factors as
+    //defined by equation 13.22, page 127 of
+    //"Inside the FFT Black Box", E. Chu and A. George, Ch. 13, CRC Press, 2000
+    //we do this so we can avoid having to take a complex conjugate of the scale
+    //factors when performing the actual FFT
+}
+
+template<>
+void
+MHO_FastFourierTransformUtilities<long double>::ComputeBluesteinScaleFactors(unsigned int N, std::complex< long double >* scale)
+{
+    //STEP A
+    long double theta = M_PIl/((long double)N);
+    unsigned int i2;
+    long double x;
+
+    for(unsigned int i=0; i<N; i++)
+    {
+        i2 = i*i % (2*N); //taking the modulus here results in a more accurate DFT/IDFT
+        x = theta*i2;
+        scale[i] = std::complex<long double>( cosl(x), sinl(x) );
+    }
+
+    //IMPORTANT NOTE!
+    //This function computes the CONJUGATE of the scale factors as
+    //defined by equation 13.22, page 127 of
+    //"Inside the FFT Black Box", E. Chu and A. George, Ch. 13, CRC Press, 2000
+    //we do this so we can avoid having to take a complex conjugate of the scale
+    //factors when performing the actual FFT
+}
 
 
 }

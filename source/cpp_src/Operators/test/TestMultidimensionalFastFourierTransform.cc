@@ -23,7 +23,7 @@ typedef long double FPTYPE;
 int main(int /*argc*/, char** /*argv*/)
 {
     const size_t ndim = 3;
-    const size_t dval = 5;
+    const size_t dval = 19;
     const size_t dim_size[ndim] = {dval, dval, dval};
     const size_t total_size = dim_size[0] * dim_size[1] * dim_size[2];
     MHO_NDArrayWrapper< std::complex<FPTYPE>, ndim> input(dim_size);
