@@ -22,6 +22,7 @@ class MHO_MultidimensionalFastFourierTransform:
             for(size_t i=0; i<RANK; i++)
             {
                 fDimensionSize[i] = 0;
+                fAxesToXForm[i] = true;
                 fWorkspaceWrapper[i] = NULL;
                 fTransformCalculator[i] = NULL;
             }
@@ -38,6 +39,21 @@ class MHO_MultidimensionalFastFourierTransform:
 
         virtual void SetForward(){fForward = true;}
         virtual void SetBackward(){fForward = false;};
+
+        //sometimes we may want to select/deselect particular dimensions of the x-form
+        //default is to transform along every dimension, but that may not always be needed
+        void SelectAllAxes(){for(std::size_t i=0; i<RANK; i++){fAxesToXForm[i] = true;}}
+        void DeselectAllAxes(){for(std::size_t i=0; i<RANK; i++){fAxesToXForm[i] = false;}}
+        void SelectAxis(std::size_t axis_index)
+        {
+            if(axis_index < RANK){fAxesToXForm[axis_index] = true;}
+            else
+            {
+                msg_error("operators", "Cannot transform axis with index: " <<
+                          axis_index << "for array with rank: " << RANK << eom);
+            }
+        }
+
 
         virtual bool Initialize() override
         {
@@ -96,51 +112,54 @@ class MHO_MultidimensionalFastFourierTransform:
                 //select the dimension on which to perform the FFT
                 for(size_t d = 0; d < RANK; d++)
                 {
-                    //now we loop over all dimensions not specified by d
-                    //first compute the number of FFTs to perform
-                    size_t n_fft = 1;
-                    size_t count = 0;
-                    for(size_t i = 0; i < RANK; i++)
+                    if(fAxesToXForm[d])
                     {
-                        if(i != d)
+                        //now we loop over all dimensions not specified by d
+                        //first compute the number of FFTs to perform
+                        size_t n_fft = 1;
+                        size_t count = 0;
+                        for(size_t i = 0; i < RANK; i++)
                         {
-                            n_fft *= fDimensionSize[i];
-                            non_active_dimension_index[count] = i;
-                            non_active_dimension_size[count] = fDimensionSize[i];
-                            count++;
-                        }
-                    }
-
-                    //loop over the number of FFTs to perform
-                    for(size_t n=0; n<n_fft; n++)
-                    {
-                        //invert place in list to obtain indices of block in array
-                        MHO_NDArrayMath::RowMajorIndexFromOffset<RANK-1>(n, non_active_dimension_size, non_active_dimension_value);
-
-                        //copy the value of the non-active dimensions in to index
-                        for(size_t i=0; i<RANK-1; i++)
-                        {
-                            index[ non_active_dimension_index[i] ] = non_active_dimension_value[i];
+                            if(i != d)
+                            {
+                                n_fft *= fDimensionSize[i];
+                                non_active_dimension_index[count] = i;
+                                non_active_dimension_size[count] = fDimensionSize[i];
+                                count++;
+                            }
                         }
 
-                        size_t data_location;
-                        //copy the row selected by the other dimensions
-                        for(size_t i=0; i<fDimensionSize[d]; i++)
+                        //loop over the number of FFTs to perform
+                        for(size_t n=0; n<n_fft; n++)
                         {
-                            index[d] = i;
-                            data_location = MHO_NDArrayMath::OffsetFromRowMajorIndex<RANK>(fDimensionSize, index);
-                            (*(fWorkspaceWrapper[d]))[i] = (*(this->fOutput))[data_location];
-                        }
+                            //invert place in list to obtain indices of block in array
+                            MHO_NDArrayMath::RowMajorIndexFromOffset<RANK-1>(n, non_active_dimension_size, non_active_dimension_value);
 
-                        //compute the FFT of the row selected
-                        fTransformCalculator[d]->ExecuteOperation();
+                            //copy the value of the non-active dimensions in to index
+                            for(size_t i=0; i<RANK-1; i++)
+                            {
+                                index[ non_active_dimension_index[i] ] = non_active_dimension_value[i];
+                            }
 
-                        //copy the row selected back
-                        for(size_t i=0; i<fDimensionSize[d]; i++)
-                        {
-                            index[d] = i;
-                            data_location = MHO_NDArrayMath::OffsetFromRowMajorIndex<RANK>(fDimensionSize, index);
-                            (*(this->fOutput))[data_location] = (*(fWorkspaceWrapper[d]))[i];
+                            size_t data_location;
+                            //copy the row selected by the other dimensions
+                            for(size_t i=0; i<fDimensionSize[d]; i++)
+                            {
+                                index[d] = i;
+                                data_location = MHO_NDArrayMath::OffsetFromRowMajorIndex<RANK>(fDimensionSize, index);
+                                (*(fWorkspaceWrapper[d]))[i] = (*(this->fOutput))[data_location];
+                            }
+
+                            //compute the FFT of the row selected
+                            fTransformCalculator[d]->ExecuteOperation();
+
+                            //copy the row selected back
+                            for(size_t i=0; i<fDimensionSize[d]; i++)
+                            {
+                                index[d] = i;
+                                data_location = MHO_NDArrayMath::OffsetFromRowMajorIndex<RANK>(fDimensionSize, index);
+                                (*(this->fOutput))[data_location] = (*(fWorkspaceWrapper[d]))[i];
+                            }
                         }
                     }
                 }
@@ -185,6 +204,7 @@ class MHO_MultidimensionalFastFourierTransform:
         bool fInitialized;
 
         size_t fDimensionSize[RANK];
+        bool fAxesToXForm[RANK];
 
         MHO_FastFourierTransform<XFloatType>* fTransformCalculator[RANK];
         MHO_NDArrayWrapper<std::complex<XFloatType>, 1>* fWorkspaceWrapper[RANK];
