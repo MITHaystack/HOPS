@@ -10,7 +10,9 @@
 *Author: J. Barrett
 *Email: barrettj@mit.edu
 *Date:
-*Description: template declaration of common FFTW3 types (dependent on floating precision)
+*Description:
+* template declaration of common FFTW3 types (dependent on floating precision)
+* These are necessary to get around partial template specialization in the FFT x-form classes
 */
 
 //avoids "no-args depending on template parameter error"

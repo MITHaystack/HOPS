@@ -158,7 +158,8 @@ class MHO_TableContainer:
 
 using Int = int;
 using Double = double;
-using Complex = std::complex<double>;
+using ComplexD = std::complex<double>;
+using ComplexF = std::complex<float>;
 
 #define DefTableContainers(TYPE)                                               \
 using MHO_TableContainer_##TYPE##_MHO_AxisPack_Int =                           \
@@ -443,7 +444,8 @@ MHO_TableContainer< TYPE, MHO_AxisPack_String_String_String_String >;
 
 DefTableContainers(Int);
 DefTableContainers(Double);
-DefTableContainers(Complex);
+DefTableContainers(ComplexD);
+DefTableContainers(ComplexF);
 
 
 }//end of namespace
