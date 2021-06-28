@@ -12,10 +12,10 @@
 using namespace hops;
 
 #ifdef HOPS_USE_FFTW3
-typedef long double FPTYPE;
+typedef double FPTYPE;
 #define FFT_TYPE MHO_MultidimensionalFastFourierTransformFFTW<FPTYPE,3>
 #else
-typedef long double FPTYPE;
+typedef double FPTYPE;
 #define FFT_TYPE MHO_MultidimensionalFastFourierTransform<FPTYPE,3>
 #endif
 
@@ -50,6 +50,13 @@ int main(int /*argc*/, char** /*argv*/)
     fft_engine->SetForward();
     fft_engine->SetInput(&input);
     fft_engine->SetOutput(&input);
+
+#ifndef HOPS_USE_FFTW3 //test the axis selection feature (not implemented for FFTW)
+    fft_engine->DeselectAllAxes();
+    fft_engine->SelectAxis(0);
+    fft_engine->SelectAxis(2);
+#endif
+
     fft_engine->Initialize();
     fft_engine->ExecuteOperation();
 
@@ -64,11 +71,38 @@ int main(int /*argc*/, char** /*argv*/)
         std::cout << std::endl;
     }
 
+#ifndef HOPS_USE_FFTW3
+    //just do the middle data axis
+    fft_engine->SetForward();
+    fft_engine->SetInput(&input);
+    fft_engine->SetOutput(&input);
+    fft_engine->DeselectAllAxes();
+    fft_engine->SelectAxis(1);
+    fft_engine->Initialize();
+    fft_engine->ExecuteOperation();
+
+    std::cout << "DFT of data = " << std::endl;
+    for (size_t i = 0; i < dim_size[0]; i++) {
+        for (size_t j = 0; j < dim_size[1]; j++) {
+            for (size_t k = 0; k < dim_size[2]; k++) {
+                std::cout << input(i,j,k) << ", ";
+            }
+            std::cout << std::endl;
+        }
+        std::cout << std::endl;
+    }
+#endif
+
+
+
     std::cout << "--------------------------------------------------------------" << std::endl;
 
     fft_engine->SetBackward();
     fft_engine->SetInput(&input);
     fft_engine->SetOutput(&input);
+#ifndef HOPS_USE_FFTW3
+    fft_engine->SelectAllAxes();
+#endif
     fft_engine->Initialize();
     fft_engine->ExecuteOperation();
 

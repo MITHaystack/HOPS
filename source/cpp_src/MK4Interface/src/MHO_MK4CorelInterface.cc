@@ -490,15 +490,18 @@ MHO_MK4CorelInterface::ExtractCorelFile()
                                           "Adding freq data for ap: "<<ap
                                           <<" channel: "<< key << eom);
 
-                                //TODO FIXME!!
-                                //Do we need reverse the order of the freq axis for lower-sideband data??!
+
                                 for(int j=0; j<nlags; j++)
                                 {
                                     int findex = 0;
                                     int low = ch_label.GetLowerBound();
                                     int up = ch_label.GetUpperBound();
-                                    if(net_sb == 'U'){findex = low+j;};
-                                    if(net_sb == 'L'){findex = up-j-1;}
+                                    findex = low+j;
+                                    //TODO FIXME!!
+                                    //Do we need reverse the order of the freq axis for lower-sideband data??!
+                                    //If so do we need to conjugate the data as well?
+                                    // if(net_sb == 'U'){findex = low+j;};
+                                    // if(net_sb == 'L'){findex = up-j-1;}
                                     double re = t120->ld.spec[j].re;
                                     double im = t120->ld.spec[j].im;
                                     std::complex<double> val(re,im);
