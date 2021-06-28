@@ -3,6 +3,7 @@ set (CONTAINER_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_NDArrayMath.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_NDArrayWrapper.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_NDArrayFunctor.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_NDArrayTypeCastFunctor.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_AxisPack.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ScalarContainer.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_VectorContainer.hh

@@ -4,25 +4,29 @@
 AddClassType< MHO_AxisPack_##TYPE1 >();                                        \
 AddClassType< MHO_TableContainer<Int, MHO_AxisPack_##TYPE1 > >();              \
 AddClassType< MHO_TableContainer<Double, MHO_AxisPack_##TYPE1 > >();           \
-AddClassType< MHO_TableContainer<Complex, MHO_AxisPack_##TYPE1 > >();
+AddClassType< MHO_TableContainer<ComplexD, MHO_AxisPack_##TYPE1 > >();         \
+AddClassType< MHO_TableContainer<ComplexF, MHO_AxisPack_##TYPE1 > >();
 
 #define AddTable2(TYPE1,TYPE2)                                                 \
 AddClassType< MHO_AxisPack_##TYPE1##_##TYPE2 >();                              \
 AddClassType< MHO_TableContainer<Int, MHO_AxisPack_##TYPE1##_##TYPE2 > >();    \
 AddClassType< MHO_TableContainer<Double, MHO_AxisPack_##TYPE1##_##TYPE2 > >(); \
-AddClassType< MHO_TableContainer<Complex, MHO_AxisPack_##TYPE1##_##TYPE2 > >();
+AddClassType< MHO_TableContainer<ComplexD, MHO_AxisPack_##TYPE1##_##TYPE2 > >();\
+AddClassType< MHO_TableContainer<ComplexF, MHO_AxisPack_##TYPE1##_##TYPE2 > >();
 
 #define AddTable3(TYPE1, TYPE2, TYPE3)                                         \
 AddClassType< MHO_AxisPack_##TYPE1##_##TYPE2##_##TYPE3 >();                    \
 AddClassType< MHO_TableContainer<Int, MHO_AxisPack_##TYPE1##_##TYPE2##_##TYPE3 > >();\
 AddClassType< MHO_TableContainer<Double, MHO_AxisPack_##TYPE1##_##TYPE2##_##TYPE3 > >();\
-AddClassType< MHO_TableContainer<Complex, MHO_AxisPack_##TYPE1##_##TYPE2##_##TYPE3 > >();
+AddClassType< MHO_TableContainer<ComplexD, MHO_AxisPack_##TYPE1##_##TYPE2##_##TYPE3 > >();\
+AddClassType< MHO_TableContainer<ComplexF, MHO_AxisPack_##TYPE1##_##TYPE2##_##TYPE3 > >();
 
 #define AddTable4(TYPE1,TYPE2,TYPE3,TYPE4)                                     \
 AddClassType< MHO_AxisPack_##TYPE1##_##TYPE2##_##TYPE3##_##TYPE4 >();          \
 AddClassType< MHO_TableContainer< Int, MHO_AxisPack_##TYPE1##_##TYPE2##_##TYPE3##_##TYPE4 > >();\
 AddClassType< MHO_TableContainer< Double, MHO_AxisPack_##TYPE1##_##TYPE2##_##TYPE3##_##TYPE4 > >();\
-AddClassType< MHO_TableContainer< Complex, MHO_AxisPack_##TYPE1##_##TYPE2##_##TYPE3##_##TYPE4 > >();
+AddClassType< MHO_TableContainer< ComplexD, MHO_AxisPack_##TYPE1##_##TYPE2##_##TYPE3##_##TYPE4 > >();\
+AddClassType< MHO_TableContainer< ComplexF, MHO_AxisPack_##TYPE1##_##TYPE2##_##TYPE3##_##TYPE4 > >();
 
 
 namespace hops
