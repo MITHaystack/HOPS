@@ -72,6 +72,7 @@ class MHO_FunctorBroadcaster: public MHO_NDArrayOperator<XInputArrayType, XOutpu
 
         virtual bool ExecuteOperation() override
         {
+            //note: this implicitly assumes both intput/output are the same total size
             if(fInitialized)
             {
                 auto in_iter =  this->fInput->begin();

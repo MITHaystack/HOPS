@@ -170,6 +170,164 @@ int main(int argc, char** argv)
     }
     inter.Close();
 
+    std::size_t bl_dim[CH_VIS_NDIM];
+    bl_data->GetDimensions(bl_dim);
+
+    //create an array with 4x the number of 'lags', for zero padded interpolation
+    std::size_t nbl_dim[CH_VIS_NDIM];
+    bl_data->GetDimensions(nbl_dim);
+    nbl_dim[CH_FREQ_AXIS] = 4*nbl_dim[CH_FREQ_AXIS];
+
+    ch_baseline_data_type* nbl_data = new ch_baseline_data_type();
+    nbl_data->Resize(nbl_dim);
+
+
+
+
+    //now that the data has been organized by channel, we can take
+    //each chunk and (fourier) transform it as needed
+    //to do this we create a 'wrapper' about each chunk of data
+    //this case, that chunk is the visibilities of a single (channel)
+    //with axes of time-by-freq
+
+    // std::size_t channel_dims[2] = {data_dims[CH_TIME_AXIS], data_dims[CH_FREQ_AXIS]};
+    // MHO_NDArrayWrapper< std::complex<double>, 2> channel_wrapper(channel_dims);
+    // channel_wrapper.SetExternalData( &( ch_bl_data->at(0,0,0,0) ) , channel_dims);
+
+    //now we run an FFT on the freq axis only over each channel's data
+    MHO_MultidimensionalFastFourierTransform<VFP_TYPE, CH_VIS_NDIM>* fft_engine =
+        new MHO_MultidimensionalFastFourierTransform<VFP_TYPE, CH_VIS_NDIM>();
+    fft_engine->DeselectAllAxes(); //default is to do all axes, so deselect them
+    fft_engine->SelectAxis(CH_FREQ_AXIS); //only execute FFTs along the freq axis
+    fft_engine->SetForward();
+    fft_engine->SetInput(bl_data);
+    fft_engine->SetOutput(bl_data);
+    fft_engine->Initialize();
+    fft_engine->ExecuteOperation();
+
+
+    std::cout<<"done fft on freq axis per channel"<<std::endl;
+
+    #ifdef USE_ROOT
+    //#ifdef DO_NOT_BUILD
+
+    std::cout<<"starting root plotting"<<std::endl;
+
+    int fake_argc = 0;
+    char** fake_argv = nullptr;
+    //ROOT stuff for plots
+    TApplication* App = new TApplication("test",&fake_argc,fake_argv);
+    TStyle* myStyle = new TStyle("Plain", "Plain");
+    myStyle->SetCanvasBorderMode(0);
+    myStyle->SetPadBorderMode(0);
+    myStyle->SetPadColor(0);
+    myStyle->SetCanvasColor(0);
+    myStyle->SetTitleColor(1);
+    myStyle->SetPalette(1,0);   // nice color scale for z-axis
+    myStyle->SetCanvasBorderMode(0); // gets rid of the stupid raised edge around the canvas
+    myStyle->SetTitleFillColor(0); //turns the default dove-grey background to white
+    myStyle->SetCanvasColor(0);
+    myStyle->SetPadColor(0);
+    myStyle->SetTitleFillColor(0);
+    myStyle->SetStatColor(0); //this one may not work
+    const int NRGBs = 5;
+    const int NCont = 48;
+    double stops[NRGBs] = { 0.00, 0.34, 0.61, 0.84, 1.00 };
+    double red[NRGBs]   = { 0.00, 0.00, 0.87, 1.00, 0.51 };
+    double green[NRGBs] = { 0.00, 0.81, 1.00, 0.20, 0.00 };
+    double blue[NRGBs]  = { 0.51, 1.00, 0.12, 0.00, 0.00 };
+    TColor::CreateGradientColorTable(NRGBs, stops, red, green, blue, NCont);
+    myStyle->SetNumberContours(NCont);
+    myStyle->cd();
+
+
+    //just want to take a look at the single band delay function of one channel
+    //for each AP
+    TMultiGraph* mg = new TMultiGraph();
+    std::vector<TGraph*> graphs;
+    std::size_t pol_prod = 1;
+    std::size_t channel = 0;
+    std::size_t nAPs = bl_dim[CH_TIME_AXIS];
+    std::size_t nLags = bl_dim[CH_FREQ_AXIS];
+    std::vector<double> sum; sum.resize(nLags,0);
+
+    for(std::size_t ap = 0; ap < nAPs; ap++)
+    {
+        std::cout<<"ap = "<<ap<<std::endl;
+        TGraph* g = new TGraph();
+        for(std::size_t lag = 0; lag < nLags; lag++)
+        {
+            visibility_type x = bl_data->at(pol_prod, channel, ap, lag);
+            double mag = abs(x);
+            sum[lag] += mag;
+            g->SetPoint(lag, lag, mag);
+        }
+        mg->Add(g);
+    }
+
+    TGraph* gsum = new TGraph();
+    for(std::size_t lag = 0; lag < nLags; lag++)
+    {
+        gsum->SetPoint(lag,lag, sum[lag]);
+    }
+    gsum->SetLineColor(2);
+    mg->Add(gsum);
+
+    std::string name("test");
+    TCanvas* c = new TCanvas(name.c_str(),name.c_str(), 50, 50, 950, 850);
+    c->SetFillColor(0);
+    c->SetRightMargin(0.2);
+    c->cd();
+
+    mg->Draw("ALP");
+
+
+
+    App->Run();
+
+    //#endif
+    #endif //USE_ROOT
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     //
     // //now that the data has been organized by channel, we can take
