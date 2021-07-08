@@ -274,6 +274,7 @@ class MHO_NDArrayWrapper
                     fExternallyManaged = false;
                 }
             }
+            return *this;
         }
 
         //set all of the elements in an array to be equal to the object obj
@@ -454,7 +455,7 @@ class MHO_NDArrayWrapper
                 reference operator*() { return *fPtr; }
                 pointer operator->() { return fPtr; }
 
-                void operator=(const self_type& rhs)
+                self_type operator=(const self_type& rhs)
                 {
                     if(this != &rhs)
                     {
@@ -463,6 +464,7 @@ class MHO_NDArrayWrapper
                         fDimensions = rhs.fDimensions;
                         fIndices = rhs.fIndices;
                     }
+                    return *this;
                 }
 
                 bool operator==(const self_type& rhs)
@@ -547,6 +549,7 @@ class MHO_NDArrayWrapper<XValueType, 0>
             {
                 fData = rhs.fData;
             }
+            return *this;
         }
 
         //set all of the elements in an array to be equal to the object obj
@@ -791,6 +794,7 @@ class MHO_NDArrayWrapper<XValueType, 1>
                     fExternallyManaged = false;
                 }
             }
+            return *this;
         }
 
         //set all of the elements in an array to be equal to the object obj
