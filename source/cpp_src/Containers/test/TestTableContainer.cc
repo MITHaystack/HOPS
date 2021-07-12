@@ -28,7 +28,7 @@ using namespace hops;
 #define XDIM 0
 #define YDIM 1
 #define ZDIM 2
-typedef MHO_AxisPack< MHO_Axis<double>, MHO_Axis<double>, MHO_Axis<char> > axis_pack_test;
+typedef MHO_AxisPack< MHO_Axis<double>, MHO_Axis<double>, MHO_Axis< std::string > > axis_pack_test;
 
 int main(int argc, char** argv)
 {
@@ -86,9 +86,9 @@ int main(int argc, char** argv)
 
     auto* z_axis = &(std::get<ZDIM>(*test));
     size_t z_axis_size = z_axis->GetDimension(0);
-    z_axis->at(0) = 'r';
-    z_axis->at(1) = 'g';
-    z_axis->at(2) = 'b';
+    z_axis->at(0) = std::string("r");
+    z_axis->at(1) = std::string("g");
+    z_axis->at(2) = std::string("b");
 
     for(size_t i=0; i<x_axis_size; i++)
     {
@@ -140,9 +140,10 @@ int main(int argc, char** argv)
     std::cout<<"Total serializable size of test data = "<<test->GetSerializedSize()<<std::endl;
 
     std::string filename = "./test-table.bin";
+    std::string index_filename = "./test-table.index";
 
     MHO_BinaryFileInterface inter;
-    bool status = inter.OpenToWrite(filename);
+    bool status = inter.OpenToWrite(filename, index_filename);
 
     if(status)
     {
@@ -187,7 +188,7 @@ int main(int argc, char** argv)
     myStyle->SetCanvasColor(0);
     myStyle->SetTitleColor(1);
     myStyle->SetPalette(1,0);   // nice color scale for z-axis
-    myStyle->SetCanvasBorderMode(0); // gets rid of the stupid raised edge around the canvas
+    myStyle->SetCanvasBorderMode(0); // gets rid of the stupid raised edge around the canvas, index_filename);
     myStyle->SetTitleFillColor(0); //turns the default dove-grey background to white
     myStyle->SetCanvasColor(0);
     myStyle->SetPadColor(0);
