@@ -71,8 +71,10 @@ int main(int argc, char** argv)
 
     mk4inter.SetCorelFile(corel_filename);
     mk4inter.SetVexFile(root_filename);
-    baseline_data_type* bl_data = mk4inter.ExtractCorelFile();
+    mk4inter.ExtractCorelFile();
 
+    baseline_data_type* bl_data = mk4inter.GetExtractedVisibilities();
+    baseline_weight_type* bl_wdata = mk4inter.GetExtractedWeights(); 
 
     if(bl_data == nullptr)
     {

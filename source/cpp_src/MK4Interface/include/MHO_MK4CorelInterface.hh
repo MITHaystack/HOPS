@@ -8,7 +8,7 @@
 *Email: barrettj@mit.edu
 *Date: 2020-05-19T18:54:28.140Z
 *Description: This class implicitly assumes that the frequency/channel configuration
-* is shared among all polarization products, we may want to loosen this restriction
+* is shared among all polarization products (i.e. nlags), we may want to loosen this restriction
 * in the future
 */
 
@@ -45,7 +45,17 @@ class MHO_MK4CorelInterface
         void SetCorelFile(const std::string& corel){fCorelFile = corel;}
 
         //read the vex and corel files and dump into new format
-        baseline_data_type* ExtractCorelFile();
+        void ExtractCorelFile();
+
+        //TODO FIXME:
+        //Depending on how the return values are managed by the external caller 
+        //the return values here are a potential memory leak, so we should 
+        //consider replacing the raw ptr return value with smart pointers.
+        //For now we assume the caller will handle clean-up/deletion, so we do
+        //not attempt to delete fExtractedVisibilities/fExtractedWeights in the
+        //destructor of this interface class.
+        baseline_data_type* GetExtractedVisibilities(){return fExtractedVisibilities;};
+        baseline_weight_type* GetExtractedWeights(){return fExtractedWeights;};
 
     private:
 
@@ -84,6 +94,8 @@ class MHO_MK4CorelInterface
                                 char ref_net_sb, char rem_net_sb);
         double calc_freq_bin(double sky_freq, double bw, char net_sb, int nlags, int bin_index);
 
+        baseline_data_type* fExtractedVisibilities;
+        baseline_weight_type* fExtractedWeights;
 
 };
 
