@@ -83,7 +83,7 @@ int main(int /*argc*/, char** /*argv*/)
     {
         uint32_t label = 0xFF00FF00;
         std::cout<<"A label = "<<label<<std::endl;
-        inter.Write(*test, label);
+        inter.Write(*test, "axis-pack", label);
         inter.Close();
     }
     else
@@ -102,9 +102,8 @@ int main(int /*argc*/, char** /*argv*/)
     status = inter.OpenToRead(filename);
     if(status)
     {
-        uint32_t blabel;
-        inter.Read(*test2, blabel);
-        std::cout<<"object label = "<<blabel<<std::endl;
+        MHO_FileKey key;
+        inter.Read(*test2, key);
 
         std::cout<<"pol product axis labels = "<<std::endl;
         std::cout<<std::get<POLPROD_AXIS>(*test2).at(0)<<std::endl;

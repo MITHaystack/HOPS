@@ -157,9 +157,9 @@ int main(int argc, char** argv)
     bool status = inter.OpenToRead(corel_file);
     if(status)
     {
-        uint32_t blabel;
-        inter.Read(*bl_data, blabel);
-        std::cout<<"baseline object label = "<<blabel<<std::endl;
+        MHO_FileKey key;
+        inter.Read(*bl_data, key);
+        //std::cout<<"baseline object label = "<<blabel<<std::endl;
         std::cout<<"Total size of baseline data = "<<bl_data->GetSerializedSize()<<std::endl;
     }
     else

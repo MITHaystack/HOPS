@@ -162,10 +162,10 @@ int main(int argc, char** argv)
     if(status)
     {
         uint32_t label = 0xFFFFFFFF;
-        inter.Write(*cscalar, label);
-        inter.Write(*cvector, label);
-        inter.Write(*ctable, label);
-        inter.Write(*ch_bl_data, label);
+        inter.Write(*cscalar, "scalar1", label);
+        inter.Write(*cvector, "vector2", label);
+        inter.Write(*ctable, "table3", label);
+        inter.Write(*ch_bl_data, "ch_vis", label);
         inter.Close();
     }
     else
@@ -200,10 +200,10 @@ int main(int argc, char** argv)
     status = inter.OpenToRead(filename);
     if(status)
     {
-        uint32_t blabel;
-        inter.Read(*cscalar2, blabel);
-        inter.Read(*cvector2, blabel);
-        inter.Read(*ctable2, blabel);
+        MHO_FileKey key;
+        inter.Read(*cscalar2, key);
+        inter.Read(*cvector2, key);
+        inter.Read(*ctable2, key);
     }
     else
     {

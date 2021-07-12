@@ -211,7 +211,7 @@ void ConvertCorel(const std::string root_file, const std::string& input_file, co
     if(status)
     {
         uint32_t label = 0xFFFFFFFF;
-        inter.Write(*ch_bl_data, label);
+        inter.Write(*ch_bl_data, "vis", label);
         inter.Close();
     }
     else
@@ -245,7 +245,7 @@ void ConvertStation(const std::string root_file, const std::string& input_file, 
     if(status)
     {
         uint32_t label = 0xFFFFFFFF;
-        inter.Write(*st_data, label);
+        inter.Write(*st_data, "sta", label);
         inter.Close();
     }
     else

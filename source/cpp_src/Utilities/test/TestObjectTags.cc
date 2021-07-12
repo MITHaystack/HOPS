@@ -35,7 +35,8 @@ int main(int /*argc*/, char** /*argv*/)
     if(status)
     {
         uint32_t label = 0xFF00FF00;
-        inter.Write(test, label);
+        std::string shortname = "tags";
+        inter.Write(test, shortname, label);
         inter.Close();
     }
     else
@@ -51,9 +52,9 @@ int main(int /*argc*/, char** /*argv*/)
     status = inter.OpenToRead(filename);
     if(status)
     {
-        uint32_t blabel;
-        inter.Read(test2, blabel);
-        std::cout<<"object label = "<<blabel<<std::endl;
+        MHO_FileKey key;
+        inter.Read(test2, key);
+        //std::cout<<"object label = "<<blabel<<std::endl;
 
         std::vector< std::pair<std::string, std::string> > tv_pairs;
         test2.DumpTagValuePairs(tv_pairs);

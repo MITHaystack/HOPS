@@ -110,12 +110,11 @@ class MHO_BinaryFileInterface
             fCollectKeys = false;
         }
 
-
-        template<class XWriteType> bool Write(const XWriteType& obj, const uint32_t label = 0)
+        template<class XWriteType> bool Write(const XWriteType& obj, const std::string& shortname = "", const uint32_t label = 0)
         {
             if( fObjectStreamer.IsOpenForWrite() )
             {
-                MHO_FileKey key = GenerateObjectFileKey(obj, label);
+                MHO_FileKey key = GenerateObjectFileKey(obj, shortname, label);
                 fObjectStreamer.ResetByteCount();
                 fObjectStreamer << key;
                 msg_debug("file", "wrote object key of size: " << fObjectStreamer.GetNBytesWritten() <<" bytes." << eom);
@@ -143,19 +142,26 @@ class MHO_BinaryFileInterface
             }
         }
 
+        //overload for char array name
+        template<class XWriteType> bool Write(const XWriteType& obj, const char* shortname, const uint32_t label = 0)
+        {
+            std::string sshortname(shortname);
+            return this->Write(obj, sshortname, label);
+        }
 
-        template<class XWriteType> bool Read(XWriteType& obj, uint32_t& label)
+        template<class XReadType> bool Read(XReadType& obj, MHO_FileKey& obj_key)
         {
             if(fObjectStreamer.IsOpenForRead())
             {
                 MHO_FileKey key;
                 fObjectStreamer >> key;
+                obj_key = key;
 
+                //first check if the sync word matches, if not then we have
+                //gotten off track and are in unknown territory
                 bool key_ok = true;
                 if( key.fSync != MHO_FileKeySyncWord ){key_ok = false;}
 
-                //TODO determine what we want to do with the labels
-                label = key.fLabel;
 
                 fMD5Generator.Initialize();
                 std::string name = MHO_ClassIdentity::ClassName(obj);
@@ -209,12 +215,13 @@ class MHO_BinaryFileInterface
 
         //generate the file object key
         template<class XWriteType>
-        MHO_FileKey GenerateObjectFileKey(const XWriteType& obj, const uint32_t label)
+        MHO_FileKey GenerateObjectFileKey(const XWriteType& obj, const std::string& shortname, const uint32_t label)
         {
             MHO_FileKey key;
             //set sync word and user label
             key.fSync = MHO_FileKeySyncWord;
             key.fLabel = label;
+            CopyTruncatedString(shortname, key.fName);
 
             fMD5Generator.Initialize();
             std::string name = MHO_ClassIdentity::ClassName(obj);
@@ -227,6 +234,18 @@ class MHO_BinaryFileInterface
 
             return key;
         }
+
+        void CopyTruncatedString(const std::string& s, char* arr)
+        {
+            size_t len = s.size();
+            if(MHO_FileKeyNameLength <= len){len = MHO_FileKeyNameLength;}
+            for(size_t i=0; i<len; i++)
+            {
+                if(i < s.size()){arr[i] = s[i];}
+                else{ arr[i] = '\0'; }
+            }
+        }
+
 
         //file object keys, collected as we go
         bool fCollectKeys;

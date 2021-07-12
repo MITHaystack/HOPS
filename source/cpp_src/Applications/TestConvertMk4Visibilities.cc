@@ -93,7 +93,7 @@ int main(int argc, char** argv)
     if(status)
     {
         uint32_t label = 0xFFFFFFFF;
-        inter.Write(*ch_bl_data, label);
+        inter.Write(*ch_bl_data, "ch_vis", label);
         inter.Close();
     }
     else
