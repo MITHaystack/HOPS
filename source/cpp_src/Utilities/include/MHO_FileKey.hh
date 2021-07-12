@@ -16,15 +16,17 @@
 namespace hops
 {
 
-static constexpr uint32_t MHO_FileKeySyncWord = 0xEFBEADDE;
+static constexpr uint32_t MHO_FileKeySyncWord = 0xEFBEADDE; //DEADBEEF
+static constexpr uint32_t MHO_FikeKeyNameLength = 16;
 
-//total size 384 bits / 48 bytesMHO_UUID_LENGTH
+//total size 384 bits / 64 bytes
 struct MHO_FileKey
 {
     uint32_t fSync; //32 bits for sync word for location of object key
-    uint32_t fLabel; //TBD user/developer assigned labels
+    uint32_t fLabel; //32 bits for user/developer assigned labels
     MHO_UUID fObjectId; //128 bits for random (or otherwise determined) unique object ID
     MHO_UUID fTypeId; //128 bits for full MD5 hash of class-type + version
+    char     fName[MHO_FikeKeyNameLength]; //16 bytes for a (shorthand) name (i.e.probably to replace type_XXX codes)
     uint64_t fSize; //total number of bytes of incoming object (distance in bytes to next key)
 
     bool operator==(const MHO_FileKey& rhs)
@@ -33,6 +35,12 @@ struct MHO_FileKey
         if(fLabel != rhs.fLabel){return false;}
         if(fObjectId != rhs.fObjectId){return false;}
         if(fTypeId != rhs.fTypeId){return false;}
+
+        for(uint32_t i=0; i<MHO_FikeKeyNameLength; i++)
+        {
+            if(fName[i] != rhs.fName[i]){return false;}
+        }
+
         if(fSize != rhs.fSize){return false;}
         return true;
     }
@@ -51,6 +59,10 @@ template<typename XStream> XStream& operator>>(XStream& s, MHO_FileKey& aKey)
     s >> aKey.fLabel;
     s >> aKey.fObjectId;
     s >> aKey.fTypeId;
+    for(uint32_t i=0; i<MHO_FikeKeyNameLength; i++)
+    {
+        s >> aKey.fName[i];
+    }
     s >> aKey.fSize;
     return s;
 }
@@ -61,6 +73,10 @@ template<typename XStream> XStream& operator<<(XStream& s, const MHO_FileKey& aK
     s << aKey.fLabel;
     s << aKey.fObjectId;
     s << aKey.fTypeId;
+    for(uint32_t i=0; i<MHO_FikeKeyNameLength; i++)
+    {
+        s << aKey.fName[i];
+    }
     s << aKey.fSize;
     return s;
 }
