@@ -31,6 +31,7 @@
 #include "MHO_Visibilities.hh"
 #include "MHO_ChannelizedVisibilities.hh"
 #include "MHO_VisibilityChannelizer.hh"
+#include "MHO_WeightChannelizer.hh"
 #include "MHO_StationCoordinates.hh"
 
 #include "MHO_BinaryFileStreamer.hh"
@@ -204,7 +205,16 @@ void ConvertCorel(const std::string root_file, const std::string& input_file, co
     bool init = channelizer.Initialize();
     std::cout<<"initialization done"<<std::endl;
     bool exe = channelizer.ExecuteOperation();
-    if(exe){std::cout<<"channelizer done"<<std::endl;}
+    if(exe){std::cout<<"vis channelizer done"<<std::endl;}
+
+    MHO_WeightChannelizer wchannelizer;
+    wchannelizer.SetInput(bl_wdata);
+    ch_baseline_weight_type* ch_bl_wdata = new ch_baseline_weight_type();
+    wchannelizer.SetOutput(ch_bl_wdata);
+    bool winit = wchannelizer.Initialize();
+    std::cout<<"initialization done"<<std::endl;
+    bool wexe = wchannelizer.ExecuteOperation();
+    if(wexe){std::cout<<"weight channelizer done"<<std::endl;}
 
     //std::string index_file = output_file + ".index";
     //bool status = inter.OpenToWrite(output_file, index_file);
@@ -214,6 +224,7 @@ void ConvertCorel(const std::string root_file, const std::string& input_file, co
     {
         uint32_t label = 0xFFFFFFFF;
         inter.Write(*ch_bl_data, "vis", label);
+        inter.Write(*ch_bl_wdata, "weight", label);
         inter.Close();
     }
     else
