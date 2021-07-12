@@ -29,8 +29,9 @@ int main(int /*argc*/, char** /*argv*/)
     if(status)
     {
         uint32_t label = 0xFF00FF00;
+        std::string shortname = "junk";
         std::cout<<"A label = "<<label<<std::endl;
-        inter.Write(*A, label);
+        inter.Write(*A, shortname, label);
         inter.Close();
     }
     else
@@ -50,9 +51,9 @@ int main(int /*argc*/, char** /*argv*/)
     status = inter.OpenToRead(filename);
     if(status)
     {
-        uint32_t blabel;
-        inter.Read(*B, blabel);
-        std::cout<<"B object label = "<<blabel<<std::endl;
+        MHO_FileKey key;
+        inter.Read(*B, key);
+        //std::cout<<"B object label = "<<blabel<<std::endl;
         std::cout<<"B object value = "<< B->GetValue()<<std::endl;
     }
     else

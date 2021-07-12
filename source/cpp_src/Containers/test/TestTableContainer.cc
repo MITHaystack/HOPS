@@ -148,8 +148,9 @@ int main(int argc, char** argv)
     if(status)
     {
         uint32_t label = 0xFF00FF00;
+        std::string shortname = "junk";
         std::cout<<"A label = "<<label<<std::endl;
-        inter.Write(*test, label);
+        inter.Write(*test, shortname, label);
         inter.Close();
     }
     else
@@ -164,9 +165,9 @@ int main(int argc, char** argv)
     status = inter.OpenToRead(filename);
     if(status)
     {
-        uint32_t blabel;
-        inter.Read(*test2, blabel);
-        std::cout<<"B object label = "<<blabel<<std::endl;
+        MHO_FileKey key;
+        inter.Read(*test2, key);
+        //std::cout<<"B object label = "<<blabel<<std::endl;
         std::cout<<"Total serializable size of (read-back) test data = "<<test2->GetSerializedSize()<<std::endl;
     }
     else

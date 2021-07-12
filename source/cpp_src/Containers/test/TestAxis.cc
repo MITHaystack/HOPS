@@ -69,7 +69,7 @@ int main(int /*argc*/, char** /*argv*/)
     {
         uint32_t label = 0xFF00FF00;
         std::cout<<"A label = "<<label<<std::endl;
-        inter.Write(*test, label);
+        inter.Write(*test, "axis", label);
         inter.Close();
     }
     else
@@ -88,9 +88,9 @@ int main(int /*argc*/, char** /*argv*/)
     status = inter.OpenToRead(filename);
     if(status)
     {
-        uint32_t blabel;
-        inter.Read(*test2, blabel);
-        std::cout<<"object label = "<<blabel<<std::endl;
+        MHO_FileKey key;
+        inter.Read(*test2, key);
+        //std::cout<<"object label = "<<blabel<<std::endl;
         std::cout<<"data @ 3 = "<<(*test2)(3)<<std::endl;
 
         auto label_vec1 = test2->GetIntervalsWhichIntersect(5);
