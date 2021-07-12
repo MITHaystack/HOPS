@@ -20,35 +20,86 @@ static constexpr uint32_t MHO_FileKeySyncWord = 0xEFBEADDE; //DEADBEEF
 static constexpr uint32_t MHO_FikeKeyNameLength = 16;
 
 //total size 384 bits / 64 bytes
-struct MHO_FileKey
+class MHO_FileKey
 {
-    uint32_t fSync; //32 bits for sync word for location of object key
-    uint32_t fLabel; //32 bits for user/developer assigned labels
-    MHO_UUID fObjectId; //128 bits for random (or otherwise determined) unique object ID
-    MHO_UUID fTypeId; //128 bits for full MD5 hash of class-type + version
-    char     fName[MHO_FikeKeyNameLength]; //16 bytes for a (shorthand) name (i.e.probably to replace type_XXX codes)
-    uint64_t fSize; //total number of bytes of incoming object (distance in bytes to next key)
-
-    bool operator==(const MHO_FileKey& rhs)
-    {
-        if(fSync != rhs.fSync){return false;}
-        if(fLabel != rhs.fLabel){return false;}
-        if(fObjectId != rhs.fObjectId){return false;}
-        if(fTypeId != rhs.fTypeId){return false;}
-
-        for(uint32_t i=0; i<MHO_FikeKeyNameLength; i++)
+    public:
+        MHO_FileKey()
         {
-            if(fName[i] != rhs.fName[i]){return false;}
+            fSync = 0;
+            fLabel = 0;
+            for(uint32_t i=0; i<MHO_FikeKeyNameLength; i++)
+            {
+                fName[i] = '\0';
+            }
+            fSize = 0;
         }
 
-        if(fSize != rhs.fSize){return false;}
-        return true;
-    }
+        MHO_FileKey(const MHO_FileKey& copy)
+        {
+            fSync = copy.fSync;
+            fLabel = copy.fLabel;
+            fObjectId = copy.fObjectId;
+            fTypeId = copy.fTypeId;
+            for(uint32_t i=0; i<MHO_FikeKeyNameLength; i++)
+            {
+                fName[i] = copy.fName[i];
+            }
+            fSize = copy.fSize;
+        }
 
-    bool operator!=(const MHO_FileKey& rhs)
-    {
-        return !(*this == rhs);
-    }
+        virtual ~MHO_FileKey(){};
+
+
+        bool operator==(const MHO_FileKey& rhs)
+        {
+            if(fSync != rhs.fSync){return false;}
+            if(fLabel != rhs.fLabel){return false;}
+            if(fObjectId != rhs.fObjectId){return false;}
+            if(fTypeId != rhs.fTypeId){return false;}
+
+            for(uint32_t i=0; i<MHO_FikeKeyNameLength; i++)
+            {
+                if(fName[i] != rhs.fName[i]){return false;}
+            }
+
+            if(fSize != rhs.fSize){return false;}
+            return true;
+        }
+
+        bool operator!=(const MHO_FileKey& rhs)
+        {
+            return !(*this == rhs);
+        }
+
+
+        MHO_FileKey& operator=(const MHO_FileKey& rhs)
+        {
+            if(this != &rhs)
+            {
+                fSync = rhs.fSync;
+                fLabel = rhs.fLabel;
+                fObjectId = rhs.fObjectId;
+                fTypeId = rhs.fTypeId;
+                for(uint32_t i=0; i<MHO_FikeKeyNameLength; i++)
+                {
+                    fName[i] = rhs.fName[i];
+                }
+                fSize = rhs.fSize;
+
+
+            }
+            return *this;
+        }
+
+    //public access to members:
+    
+        uint32_t fSync; //32 bits for sync word for location of object key
+        uint32_t fLabel; //32 bits for user/developer assigned labels
+        MHO_UUID fObjectId; //128 bits for random (or otherwise determined) unique object ID
+        MHO_UUID fTypeId; //128 bits for full MD5 hash of class-type + version
+        char     fName[MHO_FikeKeyNameLength]; //16 bytes for a (shorthand) name (i.e.probably to replace type_XXX codes)
+        uint64_t fSize; //total number of bytes of incoming object (distance in bytes to next key)
+
 
 };
 
