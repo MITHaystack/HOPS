@@ -193,7 +193,9 @@ void ConvertCorel(const std::string root_file, const std::string& input_file, co
     std::cout<<"input_file = "<<input_file<<std::endl;
     mk4inter.SetCorelFile(input_file);
     mk4inter.SetVexFile(root_file);
-    baseline_data_type* bl_data = mk4inter.ExtractCorelFile();
+    mk4inter.ExtractCorelFile();
+    baseline_data_type* bl_data = mk4inter.GetExtractedVisibilities();
+    baseline_weight_type* bl_wdata = mk4inter.GetExtractedWeights();
 
     MHO_VisibilityChannelizer channelizer;
     channelizer.SetInput(bl_data);

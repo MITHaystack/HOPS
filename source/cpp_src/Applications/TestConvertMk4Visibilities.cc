@@ -76,12 +76,16 @@ int main(int argc, char** argv)
 
     mk4inter.SetCorelFile(corel_filename);
     mk4inter.SetVexFile(root_filename);
-    baseline_data_type* bl_data = mk4inter.ExtractCorelFile();
+    mk4inter.ExtractCorelFile();
+    baseline_data_type* bl_data = mk4inter.GetExtractedVisibilities();
+    baseline_weight_type* bl_wdata = mk4inter.GetExtractedWeights(); 
 
     MHO_VisibilityChannelizer channelizer;
     channelizer.SetInput(bl_data);
     ch_baseline_data_type* ch_bl_data = new ch_baseline_data_type();
     channelizer.SetOutput(ch_bl_data);
+
+
     bool init = channelizer.Initialize();
     bool exe = channelizer.ExecuteOperation();
     if(exe){std::cout<<"channelizer done"<<std::endl;}

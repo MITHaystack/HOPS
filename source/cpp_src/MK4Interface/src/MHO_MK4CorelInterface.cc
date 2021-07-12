@@ -43,7 +43,9 @@ MHO_MK4CorelInterface::MHO_MK4CorelInterface():
     fHaveCorel(false),
     fHaveVex(false),
     fCorel(nullptr),
-    fVex(nullptr)
+    fVex(nullptr),
+    fExtractedVisibilities(nullptr),
+    fExtractedWeights(nullptr)
 {
     fVex = (struct vex *) calloc ( 1, sizeof(struct vex) );
     fCorel = (struct mk4_corel *) calloc ( 1, sizeof(struct mk4_corel) );
@@ -345,13 +347,14 @@ MHO_MK4CorelInterface::DetermineDataDimensions()
 
 }
 
-baseline_data_type*
+void
 MHO_MK4CorelInterface::ExtractCorelFile()
 {
     ReadCorelFile();
     ReadVexFile();
 
     baseline_data_type* bl_data = nullptr;
+    baseline_weight_type* bl_wdata = nullptr;
 
     if(fHaveCorel && fHaveVex)
     {
@@ -360,7 +363,8 @@ MHO_MK4CorelInterface::ExtractCorelFile()
 
         double ap_time_length = fVex->evex->ap_length;
 
-        //now we can go ahead an create a container for all the visibilities
+        //now we can go ahead an create containers for all the visibilities and data-weights
+        //the data weights container has the same layout as the visibilities (so axis + label data is stored twice)
         msg_debug("mk4interface", "Number of pol-products = " << fNPPs << eom );
         msg_debug("mk4interface", "Number of APs = " << fNAPs << eom );
         msg_debug("mk4interface", "Number of channels per pol-product = " << fNChannelsPerPP << eom);
@@ -368,6 +372,7 @@ MHO_MK4CorelInterface::ExtractCorelFile()
 
         std::size_t bl_dim[VIS_NDIM] = {fNPPs, fNAPs, (fNChannelsPerPP*fNSpectral)};
         bl_data = new baseline_data_type(bl_dim);
+        bl_wdata = new baseline_weight_type(bl_dim);
 
         //first label the pol-product axis
         std::size_t pp_count = 0;
@@ -376,6 +381,7 @@ MHO_MK4CorelInterface::ExtractCorelFile()
         {
             pp_index_lookup[*it] = pp_count;
             std::get<POLPROD_AXIS>(*bl_data)[pp_count] = *it;
+            std::get<POLPROD_AXIS>(*bl_wdata)[pp_count] = *it;
             pp_count++;
         }
 
@@ -383,6 +389,7 @@ MHO_MK4CorelInterface::ExtractCorelFile()
         for(size_t ap=0; ap<fNAPs; ap++)
         {
             std::get<TIME_AXIS>(*bl_data)[ap] = ap_time_length*ap;
+            std::get<TIME_AXIS>(*bl_wdata)[ap] = ap_time_length*ap;
         }
 
         //finally we need to label the frequency axis
@@ -422,6 +429,7 @@ MHO_MK4CorelInterface::ExtractCorelFile()
                     ch_label.Insert(std::string("channel"), ch_count);
                     ch_label.SetBounds(freq_count, freq_count + fNSpectral);
                     std::get<FREQ_AXIS>(*bl_data).InsertLabel(ch_label);
+                    std::get<FREQ_AXIS>(*bl_wdata).InsertLabel(ch_label);
                 }
 
                 //set up this portion of the frequency axis
@@ -432,6 +440,7 @@ MHO_MK4CorelInterface::ExtractCorelFile()
                     if(net_sb == 'L'){findex = fNSpectral-sp-1;}
                     double freq = calc_freq_bin(sky_freq, bw, net_sb, fNSpectral, findex);
                     std::get<FREQ_AXIS>(*bl_data).at(freq_count) = freq;
+                    std::get<FREQ_AXIS>(*bl_wdata).at(freq_count) = freq;
                     freq_count++;
                 }
                 ch_count++;
@@ -502,10 +511,12 @@ MHO_MK4CorelInterface::ExtractCorelFile()
                                     //If so do we need to conjugate the data as well?
                                     // if(net_sb == 'U'){findex = low+j;};
                                     // if(net_sb == 'L'){findex = up-j-1;}
-                                    double re = t120->ld.spec[j].re;
-                                    double im = t120->ld.spec[j].im;
+                                    VFP_TYPE re = t120->ld.spec[j].re;
+                                    VFP_TYPE im = t120->ld.spec[j].im;
+                                    WFP_TYPE w = t120->fw.weight;
                                     std::complex<double> val(re,im);
                                     bl_data->at(pol_index, ap, findex) = val;
+                                    bl_wdata->at(pol_index, ap, findex) = w;
                                 }
                             }
                         }
@@ -519,7 +530,8 @@ MHO_MK4CorelInterface::ExtractCorelFile()
         msg_error("mk4interface", "Failed to ready both corel and vex file." << eom);
     }
 
-    return bl_data;
+    fExtractedVisibilities = bl_data;
+    fExtractedWeights = bl_wdata;
 }
 
 
