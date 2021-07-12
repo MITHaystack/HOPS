@@ -17,7 +17,7 @@ namespace hops
 {
 
 static constexpr uint32_t MHO_FileKeySyncWord = 0xEFBEADDE; //DEADBEEF
-static constexpr uint32_t MHO_FikeKeyNameLength = 16;
+static constexpr uint32_t MHO_FileKeyNameLength = 16;
 
 //total size 384 bits / 64 bytes
 class MHO_FileKey
@@ -27,7 +27,7 @@ class MHO_FileKey
         {
             fSync = 0;
             fLabel = 0;
-            for(uint32_t i=0; i<MHO_FikeKeyNameLength; i++)
+            for(uint32_t i=0; i<MHO_FileKeyNameLength; i++)
             {
                 fName[i] = '\0';
             }
@@ -40,7 +40,7 @@ class MHO_FileKey
             fLabel = copy.fLabel;
             fObjectId = copy.fObjectId;
             fTypeId = copy.fTypeId;
-            for(uint32_t i=0; i<MHO_FikeKeyNameLength; i++)
+            for(uint32_t i=0; i<MHO_FileKeyNameLength; i++)
             {
                 fName[i] = copy.fName[i];
             }
@@ -57,7 +57,7 @@ class MHO_FileKey
             if(fObjectId != rhs.fObjectId){return false;}
             if(fTypeId != rhs.fTypeId){return false;}
 
-            for(uint32_t i=0; i<MHO_FikeKeyNameLength; i++)
+            for(uint32_t i=0; i<MHO_FileKeyNameLength; i++)
             {
                 if(fName[i] != rhs.fName[i]){return false;}
             }
@@ -80,7 +80,7 @@ class MHO_FileKey
                 fLabel = rhs.fLabel;
                 fObjectId = rhs.fObjectId;
                 fTypeId = rhs.fTypeId;
-                for(uint32_t i=0; i<MHO_FikeKeyNameLength; i++)
+                for(uint32_t i=0; i<MHO_FileKeyNameLength; i++)
                 {
                     fName[i] = rhs.fName[i];
                 }
@@ -97,7 +97,7 @@ class MHO_FileKey
         uint32_t fLabel; //32 bits for user/developer assigned labels
         MHO_UUID fObjectId; //128 bits for random (or otherwise determined) unique object ID
         MHO_UUID fTypeId; //128 bits for full MD5 hash of class-type + version
-        char     fName[MHO_FikeKeyNameLength]; //16 bytes for a (shorthand) name (i.e.probably to replace type_XXX codes)
+        char     fName[MHO_FileKeyNameLength]; //16 bytes for a (shorthand) name (i.e.probably to replace type_XXX codes)
         uint64_t fSize; //total number of bytes of incoming object (distance in bytes to next key)
 
 
@@ -110,7 +110,7 @@ template<typename XStream> XStream& operator>>(XStream& s, MHO_FileKey& aKey)
     s >> aKey.fLabel;
     s >> aKey.fObjectId;
     s >> aKey.fTypeId;
-    for(uint32_t i=0; i<MHO_FikeKeyNameLength; i++)
+    for(uint32_t i=0; i<MHO_FileKeyNameLength; i++)
     {
         s >> aKey.fName[i];
     }
@@ -124,7 +124,7 @@ template<typename XStream> XStream& operator<<(XStream& s, const MHO_FileKey& aK
     s << aKey.fLabel;
     s << aKey.fObjectId;
     s << aKey.fTypeId;
-    for(uint32_t i=0; i<MHO_FikeKeyNameLength; i++)
+    for(uint32_t i=0; i<MHO_FileKeyNameLength; i++)
     {
         s << aKey.fName[i];
     }
