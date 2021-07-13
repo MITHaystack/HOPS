@@ -15,11 +15,28 @@
 
 #include "MHO_TableContainer.hh"
 #include "MHO_ChannelizedVisibilities.hh"
+#include "MHO_BinaryNDArrayOperator.hh"
+
+//dependencies from old hops
+extern "C"
+{
+    #include <stdio.h>
+    #include <math.h>
+    #include <fftw3.h>
+    #include "mk4_data.h"
+    #include "param_struct.h"
+    #include "pass_struct.h"
+}
+
 
 namespace hops
 {
 
-class MHO_NormFX: public MHO_NDArrayOperator< ch_baseline_data_type, ch_baseline_data_type >
+
+class MHO_NormFX: public MHO_BinaryNDArrayOperator<
+    ch_baseline_data_type,
+    ch_baseline_weight_type,
+    ch_baseline_sbd_type >
 {
     public:
         MHO_NormFX();
@@ -29,6 +46,19 @@ class MHO_NormFX: public MHO_NDArrayOperator< ch_baseline_data_type, ch_baseline
         virtual bool ExecuteOperation() override;
 
     private:
+
+
+        //modify the original function to adapt it too the new data
+        //structures, we will also give it 'fake param/status' data
+        //this function version is to keep as close to the orginal
+        //as possible for testing/comparison
+        void norm_fx(struct type_pass *pass, int fr, int ap){};
+
+        //this version of the function will gradually get modified
+        //until we can move functionality out of it entirely and
+        //make it more modular
+        void new_norm_fx(struct type_pass *pass, int fr, int ap){};
+
 };
 
 

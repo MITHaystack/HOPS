@@ -68,12 +68,16 @@ message(STATUS "Using compiler ${COMPILER_ID} ${COMPILER_VERSION}")
 #option( HOPS_USE_OPENCL "Build OpenCL support." OFF)
 option( HOPS_ENABLE_TEST "Build developer tests." ON)
 option( HOPS_USE_ROOT "Build ROOT based utilities." OFF)
+<<<<<<< HEAD
 
 if(HOPS_ENABLE_TEST)
     enable_testing()
 endif(HOPS_ENABLE_TEST)
 
 option( HOPS_DEV_USE_OLD "Allow new C++ code to use old hops/fourfit C-libraries, beyond what is absolutely necessary. "ON)
+=======
+option( HOPS_DEV_USE_OLD "Allow new C++ code to use old hops/fourfit C-libraries, beyond what is absolutely necessary." ON)
+>>>>>>> 80275c1... starting work on overhaul, need to deal with C-complex type
 
 #convenience variables
 set(CSOURCE ${CMAKE_CURRENT_SOURCE_DIR}/source/c_src)
