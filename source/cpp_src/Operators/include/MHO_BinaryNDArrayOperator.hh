@@ -1,7 +1,8 @@
 #ifndef MHO_BinaryNDArrayOperator_HH__
 #define MHO_BinaryNDArrayOperator_HH__
 
-#include "MHO_NDArrayOperator.hh"
+#include "MHO_NDArrayWrapper.hh"
+#include <cstring>
 
 namespace hops{
 
@@ -13,13 +14,13 @@ class MHO_BinaryNDArrayOperator
 {
     public:
 
-        MHO_NDArrayOperator():
+        MHO_BinaryNDArrayOperator():
             fInput1(nullptr),
             fInput2(nullptr),
             fOutput(nullptr)
         {};
 
-        virtual ~MHO_NDArrayOperator(){};
+        virtual ~MHO_BinaryNDArrayOperator(){};
 
         virtual void SetFirstInput(XInputArrayType1* in){fInput1 = in;};
         virtual void SetSecondInput(XInputArrayType2* in){fInput2 = in;};
@@ -37,7 +38,7 @@ class MHO_BinaryNDArrayOperator
         XInputArrayType1* fInput1;
         XInputArrayType2* fInput2;
         XOutputArrayType* fOutput;
-    
+
 
 };
 
