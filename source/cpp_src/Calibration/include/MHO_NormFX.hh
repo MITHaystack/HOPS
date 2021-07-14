@@ -13,10 +13,6 @@
 #include <cmath>
 #include <complex>
 
-#include "MHO_TableContainer.hh"
-#include "MHO_ChannelizedVisibilities.hh"
-#include "MHO_BinaryNDArrayOperator.hh"
-
 //dependencies from old hops
 extern "C"
 {
@@ -28,6 +24,11 @@ extern "C"
     #include "pass_struct.h"
 }
 
+
+#include "MHO_FFTWTypes.hh"
+#include "MHO_TableContainer.hh"
+#include "MHO_ChannelizedVisibilities.hh"
+#include "MHO_BinaryNDArrayOperator.hh"
 
 namespace hops
 {
@@ -52,12 +53,21 @@ class MHO_NormFX: public MHO_BinaryNDArrayOperator<
         //structures, we will also give it 'fake param/status' data
         //this function version is to keep as close to the orginal
         //as possible for testing/comparison
+<<<<<<< HEAD
         void norm_fx(struct type_pass *pass, int fr, int ap){};
 
         //this version of the function will gradually get modified
         //until we can move functionality out of it entirely and
         //make it more modular
         void new_norm_fx(struct type_pass *pass, int fr, int ap){};
+=======
+        //void norm_fx(struct type_pass *pass, int fr, int ap);
+        //
+        // //this version of the function will gradually get modified
+        // //until we can move functionality out of it entirely and
+        // //make it more modular
+        void new_norm_fx(struct type_pass *pass, int fr, int ap);
+>>>>>>> 4966648... creating frankenstein's monster
 
 };
 
