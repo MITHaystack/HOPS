@@ -142,6 +142,5 @@ int main(int /*argc*/, char** /*argv*/)
 
     HOPS_ASSERT_FLOAT_LESS_THAN(sum, tol);
 
-
     return 0;
 }
