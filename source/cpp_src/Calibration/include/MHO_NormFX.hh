@@ -54,6 +54,13 @@ class MHO_NormFX: public MHO_BinaryNDArrayOperator<
         // //make it more modular
         void new_norm_fx(struct type_pass *pass, int fr, int ap);
 
+        //private data structures to store what were 'extern'/globals
+        //in the old code
+        struct type_param param;
+        struct type_status status;
+        fftw_plan fftplan;
+        hops_complex xp_spec[4*MAXLAG];
+        hops_complex xcor[4*MAXLAG], S[4*MAXLAG], xlag[4*MAXLAG];
 
 };
 
