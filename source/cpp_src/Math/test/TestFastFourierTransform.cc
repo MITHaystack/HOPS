@@ -1,6 +1,7 @@
 #include "MHO_Message.hh"
 #include "MHO_BitReversalPermutation.hh"
 #include "MHO_FastFourierTransformUtilities.hh"
+#include "MHO_TestAssertions.hh"
 
 #include <cmath>
 #include <iomanip>

@@ -1,3 +1,8 @@
+
+#install the fourfit.doc file so syntax error doesn't cause it to crash
+hops_install_share_vhelp( ${CMAKE_CURRENT_SOURCE_DIR}/vhelp/fourfit.doc )
+
+
 option(BUILD_DOXYGEN_REF "Build doxygen reference documentation" OFF)
 option(BUILD_LATEX_DOCS "Build latex documentation" OFF)
 

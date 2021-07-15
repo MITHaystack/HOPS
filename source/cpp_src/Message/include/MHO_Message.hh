@@ -8,6 +8,8 @@
 #include <iostream>
 #include <set>
 
+#include "MHO_TestAssertions.hh"
+
 /*
 *File: MHO_Message.hh
 *Class: MHO_Message

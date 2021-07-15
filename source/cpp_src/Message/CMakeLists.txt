@@ -4,6 +4,7 @@ option(ENABLE_DEBUG_MSG "Enable passing of debug messages" OFF)
 
 set (MESSAGE_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_Message.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_TestAssertions.hh
 )
 
 #list source files #############################################################
