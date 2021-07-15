@@ -12,7 +12,7 @@
 
 #include <stdexcept>
 
-#define HOPS_ASSERT                                                 \
+#define HOPS_THROW                                                  \
 {                                                                   \
     throw std::runtime_error(   std::string( __FILE__ )             \
                               + std::string( ":" )                  \
@@ -46,16 +46,16 @@
                               + std::string( " in " )               \
                               + std::string( __PRETTY_FUNCTION__ )  \
                               + std::string( ": " )                 \
-                              + std::to_string(a)                   \
+                              + std::to_string( (a) )               \
                               + std::string( " != " )               \
-                              + std::to_string(b)                   \
+                              + std::to_string( (b) )               \
     );                                                              \
   }                                                                 \
 }
 
 #define HOPS_ASSERT_LESS_THAN( a, b )                               \
 {                                                                   \
-  if( ( a ) < ( b ) )                                               \
+  if( ( a ) > ( b ) )                                               \
   {                                                                 \
     throw std::runtime_error(   std::string( __FILE__ )             \
                               + std::string( ":" )                  \
@@ -63,9 +63,9 @@
                               + std::string( " in " )               \
                               + std::string( __PRETTY_FUNCTION__ )  \
                               + std::string( ": " )                 \
-                              + std::to_string(a)                   \
-                              + std::string( " != " )               \
-                              + std::to_string(b)                   \
+                              + std::to_string( (a) )               \
+                              + std::string( " !< " )               \
+                              + std::to_string( (b) )               \
     );                                                              \
   }                                                                 \
 }
