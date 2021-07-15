@@ -64,6 +64,10 @@ macro(hops_install_share_text)
     install(FILES ${ARGN} DESTINATION ${SHARE_TEXT_INSTALL_DIR})
 endmacro()
 
+macro(hops_install_share_vhelp)
+    install(FILES ${ARGN} DESTINATION ${SHARE_VHELP_INSTALL_DIR})
+endmacro()
+
 # Compiler version check and C++11 support
 if(CMAKE_CXX_COMPILER_ID MATCHES "GNU")
     set(COMPILER_IS_GNU 1)
