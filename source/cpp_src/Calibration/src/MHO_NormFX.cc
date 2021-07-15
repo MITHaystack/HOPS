@@ -82,10 +82,9 @@ MHO_NormFX::new_norm_fx(struct type_pass *pass, int fr, int ap)
     struct freq_corel *fdata;
     struct data_corel *datum;
     int sb, st, i, rev_i, j, l, m;
-    static int nlags = 0;
+    int nlags = 0;
     int ip, ips;
-    static hops_complex xp_spec[4*MAXLAG];
-    static hops_complex xcor[4*MAXLAG], S[4*MAXLAG], xlag[4*MAXLAG];
+
     hops_complex z;
     double factor, mean;
     double diff_delay, deltaf, polcof, polcof_sum, phase_shift, dpar;
@@ -99,10 +98,7 @@ MHO_NormFX::new_norm_fx(struct type_pass *pass, int fr, int ap)
         lastpol[2];                 // last pol index with data present, by sideband
     int datum_uflag, datum_lflag;
     int stnpol[2][4] = {0, 1, 0, 1, 0, 1, 1, 0}; // [stn][pol] = 0:L/X/H, 1:R/Y/V
-    static fftw_plan fftplan;
 
-    struct type_param param;
-    struct type_status status;
 
 
 
