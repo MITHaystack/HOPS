@@ -137,10 +137,10 @@ int main(int /*argc*/, char** /*argv*/)
     std::cout<<"L2_diff = "<<sum<<std::endl;
     std::cout<<"L2_diff/N = "<<sum/N<<std::endl;
 
-    double tol = 1.5e-15; //test for N=256
+    double tol = 1.5e-15; //tested for N=256
     sum /= (double)N;
 
-    HOPS_ASSERT_LESS_THAN(sum, tol);
+    HOPS_ASSERT_FLOAT_LESS_THAN(sum, tol);
 
 
     return 0;

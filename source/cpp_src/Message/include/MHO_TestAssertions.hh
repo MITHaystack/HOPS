@@ -11,6 +11,8 @@
 */
 
 #include <stdexcept>
+#include <string>
+#include <sstream>
 
 #define HOPS_THROW                                                  \
 {                                                                   \
@@ -53,8 +55,11 @@
   }                                                                 \
 }
 
-#define HOPS_ASSERT_LESS_THAN( a, b )                               \
+//to_string is unpredictable for floats/doubles, so this instead
+#define HOPS_ASSERT_FLOAT_LESS_THAN( a, b )                         \
 {                                                                   \
+  std::stringstream ssa; ssa << a;                                  \
+  std::stringstream ssb; ssb << b;                                  \
   if( ( a ) > ( b ) )                                               \
   {                                                                 \
     throw std::runtime_error(   std::string( __FILE__ )             \
@@ -63,9 +68,9 @@
                               + std::string( " in " )               \
                               + std::string( __PRETTY_FUNCTION__ )  \
                               + std::string( ": " )                 \
-                              + std::to_string( (a) )               \
+                              + ssa.str()                           \
                               + std::string( " !< " )               \
-                              + std::to_string( (b) )               \
+                              + ssb.str()                           \
     );                                                              \
   }                                                                 \
 }
