@@ -65,3 +65,7 @@ target_link_libraries (MHO_Calibration ${CALIBRATION_LIBS})
 
 hops_install_headers (${CALIBRATION_HEADERFILES})
 hops_install_libraries (MHO_Calibration )
+
+if (HOPS_ENABLE_TEST)
+    add_subdirectory(test)
+endif (HOPS_ENABLE_TEST)
