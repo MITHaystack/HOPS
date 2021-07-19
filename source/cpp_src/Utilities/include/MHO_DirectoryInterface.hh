@@ -23,8 +23,8 @@ class MHO_DirectoryInterface
         virtual ~MHO_DirectoryInterface();
 
         std::string GetDirectoryFullPath(const std::string& dirname) const;
-        bool DoesDirectoryExist(const std::string& dirname);
-        bool CreateDirectory(const std::string& dirname);
+        bool DoesDirectoryExist(const std::string& dirname) const;
+        bool CreateDirectory(const std::string& dirname) const;
 
         void SetCurrentDirectory(const std::string& dirname);
         std::string GetCurrentDirectory() const;
@@ -38,10 +38,22 @@ class MHO_DirectoryInterface
         void GetFilesMatchingExtention(std::vector< std::string >& aFileList, const std::string& anExt) const;
         void GetFilesMatchingExtention(std::vector< std::string >& aFileList, const char* anExt) const;
 
+        //utility functions for old mk4 format files
+        void GetRootFile(const std::vector<std::string>& files, std::string& root_file) const;
+        void GetCorelFiles(const std::vector<std::string>& files, std::vector<std::string>& corel_files) const;
+        void GetStationFiles(const std::vector<std::string>& files, std::vector<std::string>& station_files) const;
+        void SplitCorelFileBasename(const std::string& corel_basename, std::string& st_pair, std::string& root_code) const;
+        void SplitStationFileBasename(const std::string& station_basename, std::string& st, std::string& root_code) const;
+
+        std::string GetBasename(const std::string& filename) const;
+        std::string GetPrefix(const std::string& filename) const;
+
     private:
 
-        std::string get_basename(const std::string& filename) const;
-        std::string get_prefix(const std::string& filename) const;
+        //number of chars in a string
+        std::size_t count_number_of_matches(const std::string& aString, char elem) const;
+
+
 
         std::string fCurrentDirectoryFullPath;
         std::string fCurrentParentFullPath;
