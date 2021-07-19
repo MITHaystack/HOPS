@@ -8,6 +8,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <unistd.h>
+#include <fstream>
 
 namespace hops
 {
@@ -37,7 +38,7 @@ MHO_DirectoryInterface::GetDirectoryFullPath(const std::string& dirname) const
 
 
 bool
-MHO_DirectoryInterface::DoesDirectoryExist(const std::string& dirname)
+MHO_DirectoryInterface::DoesDirectoryExist(const std::string& dirname) const
 {
     std::string fullpath = GetDirectoryFullPath(dirname);
     //check for directory existence by trying to open it, this is not fool-proof
@@ -54,7 +55,7 @@ MHO_DirectoryInterface::DoesDirectoryExist(const std::string& dirname)
 }
 
 bool
-MHO_DirectoryInterface::CreateDirectory(const std::string& dirname)
+MHO_DirectoryInterface::CreateDirectory(const std::string& dirname) const
 {
     std::string fullpath = GetDirectoryFullPath(dirname);
     //use mkdir to create the directory with owner permissions
@@ -69,7 +70,7 @@ MHO_DirectoryInterface::SetCurrentDirectory(const std::string& dirname)
 {
     //set the directory we want to explore
     fCurrentDirectoryFullPath = GetDirectoryFullPath(dirname);
-    fCurrentParentFullPath = get_prefix(fCurrentDirectoryFullPath);
+    fCurrentParentFullPath = GetPrefix(fCurrentDirectoryFullPath);
     fHaveReadDirectory = false;
     fDirectoryIsSet = true;
 }
@@ -156,7 +157,7 @@ MHO_DirectoryInterface::ReadCurrentDirectory()
 }
 
 std::string
-MHO_DirectoryInterface::get_basename(const std::string& filename) const
+MHO_DirectoryInterface::GetBasename(const std::string& filename) const
 {
     std::string base_filename = "";
     std::size_t index = filename.find_last_of("/\\");
@@ -172,7 +173,7 @@ MHO_DirectoryInterface::get_basename(const std::string& filename) const
 }
 
 std::string
-MHO_DirectoryInterface::get_prefix(const std::string& filename) const
+MHO_DirectoryInterface::GetPrefix(const std::string& filename) const
 {
     std::string prefix = "";
     std::size_t index = filename.find_last_of("/\\");
@@ -195,7 +196,7 @@ MHO_DirectoryInterface::GetFilesMatchingExtention(std::vector< std::string >& aF
     aFileList.clear();
     for(auto it = fCurrentFileList.begin(); it != fCurrentFileList.end(); it++)
     {
-        std::string basename = get_basename(*it);
+        std::string basename = GetBasename(*it);
         std::size_t index = basename.find_last_of(".");
         if(index != std::string::npos)
         {
@@ -217,7 +218,7 @@ MHO_DirectoryInterface::GetFilesMatchingExtention(std::vector< std::string >& aF
     aFileList.clear();
     for(auto it = fCurrentFileList.begin(); it != fCurrentFileList.end(); it++)
     {
-        std::string basename = get_basename(*it);
+        std::string basename = GetBasename(*it);
         std::size_t index = basename.find_last_of(".");
         if(index != std::string::npos)
         {
@@ -241,6 +242,153 @@ std::string
 MHO_DirectoryInterface::GetCurrentParentDirectory() const
 {
     return fCurrentParentFullPath;
+}
+
+void
+MHO_DirectoryInterface::GetRootFile(const std::vector<std::string>& files, std::string& root_file) const
+{
+    //sift through the list of files to find the one which matches the
+    //root (ovex) file characteristics (this is relatively primative)
+    root_file = "";
+    for(auto it = files.begin(); it != files.end(); it++)
+    {
+        std::string base_filename = it->substr(it->find_last_of("/\\") + 1);
+        if(count_number_of_matches(base_filename, '.') == 1) //check that there is one dot in the filename base
+        {
+            //check to make sure we have 6 character 'root code' extension
+            std::string dot(".");
+            std::size_t dotpos = base_filename.find(dot);
+            if(dotpos != std::string::npos)
+            {
+                std::string root_code = base_filename.substr(dotpos+1);
+                if( root_code.size() == 6 )
+                {
+                    //open file and check that "VEX" is present in the first few bytes of the file
+                    std::fstream test_file(it->c_str(), std::ios::in | std::ios::binary);
+                    std::size_t num_bytes = 16;
+                    char data[16];
+                    for(std::size_t i=0; i<num_bytes; i++)
+                    {
+                        test_file.read(&(data[i]),1);
+                    }
+                    data[15] = '\0';
+                    std::string test(data);
+                    std::string vex("VEX");
+                    std::size_t index = test.find(vex);
+                    if( index != std::string::npos)
+                    {
+                        //found an ovex file
+                        //TODO FIXME....what happens if there is more then one ovex file?!
+                        //may need a warning
+                        root_file = *it;
+                        return;
+                    }
+                }
+            }
+
+        }
+    }
+}
+
+
+void
+MHO_DirectoryInterface::GetCorelFiles(const std::vector<std::string>& files, std::vector<std::string>& corel_files) const
+{
+    corel_files.clear();
+    //sift through the list of files to find which ones matche the
+    //corel file characteristics and put them in the corel_files list
+    for(auto it = files.begin(); it != files.end(); it++)
+    {
+        std::string base_filename = GetBasename(*it); // it->substr(it->find_last_of("/\\") + 1);
+        if(count_number_of_matches(base_filename, '.') == 2) //check that there is two dots in the filename base
+        {
+            std::string st_pair, root_code;
+            SplitCorelFileBasename(base_filename, st_pair, root_code);
+
+            //check that the two dots are 'concurrent'
+            std::string dots("..");
+            std::size_t index = base_filename.find(dots);
+            if(st_pair.size() == 2 && root_code.size() == 6 && index != std::string::npos)
+            {
+                corel_files.push_back(*it);
+            }
+        }
+    }
+}
+
+
+void
+MHO_DirectoryInterface::GetStationFiles(const std::vector<std::string>& files, std::vector<std::string>& station_files) const
+{
+    //sift through the list of files to find the ones which match the
+    //station file characteristics
+    station_files.clear();
+    for(auto it = files.begin(); it != files.end(); it++)
+    {
+        std::string base_filename = it->substr(it->find_last_of("/\\") + 1);
+        if(count_number_of_matches(base_filename, '.') == 2) //check that there is two dots in the filename base
+        {
+            //check that the two dots are 'concurrent'
+            std::string dots("..");
+            std::size_t index = base_filename.find(dots);
+            if( index != std::string::npos)
+            {
+                //split the string at the dots into 'station' and 'root code'
+                std::string st = base_filename.substr(0,index);
+                std::string root_code = base_filename.substr(index+dots.size());
+                if(st.size() == 1 && root_code.size() == 6)
+                {
+                    station_files.push_back(*it);
+                }
+            }
+        }
+    }
+}
+
+
+void
+MHO_DirectoryInterface::SplitCorelFileBasename(const std::string& corel_basename, std::string& st_pair, std::string& root_code) const
+{
+    st_pair = "";
+    root_code = "";
+    //check that the two dots are 'concurrent'
+    std::string dots("..");
+    std::size_t index = corel_basename.find(dots);
+    if(index != std::string::npos)
+    {
+        //split the string at the dots into 'station pair' and 'root code'
+        st_pair = corel_basename.substr(0,index);
+        root_code = corel_basename.substr(index+dots.size());
+    }
+}
+
+void
+MHO_DirectoryInterface::SplitStationFileBasename(const std::string& station_basename, std::string& st, std::string& root_code) const
+{
+    st = "";
+    root_code = "";
+    std::string dots("..");
+    std::size_t index = station_basename.find(dots);
+    if(index != std::string::npos)
+    {
+        //split the string at the dots into 'station pair' and 'root code'
+        st = station_basename.substr(0,index);
+        root_code = station_basename.substr(index+dots.size());
+    }
+}
+
+
+
+
+std::size_t
+MHO_DirectoryInterface::count_number_of_matches(const std::string& aString, char elem) const
+{
+    std::size_t n_elem = 0;
+    for(std::size_t i=0; i<aString.size(); i++)
+    {
+        if(aString[i] == elem){n_elem++;}
+    }
+    return n_elem;
 }
 
 
