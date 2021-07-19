@@ -15,6 +15,7 @@ set(SOURCE_BASENAMES
     TestConvertMk4Visibilities
     DumpFileObjectKeys
     ConvertMk4Data
+    TestNormFX
 )
 
 #for testing purposes only -- not intended to be a dependency
