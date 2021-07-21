@@ -21,12 +21,47 @@
 extern "C"
 {
     #include "mk4_data.h"
-    #include "param_struct.h"
+    #include "vex.h"
     #include "pass_struct.h"
+    #include "param_struct.h"
+    #include "write_lock_mechanism.h"
+
+    int
+    organize_data (
+    struct mk4_corel *cdata,
+    struct scan_struct *ovex,
+    struct ivex_struct *ivex,
+    struct mk4_sdata *sdata,
+    struct freq_corel *corel,
+    struct type_param param);
+
+    struct type_param param;
+    struct type_status status;              /* External structure declarations */
+    struct mk4_fringe fringe;
+    struct mk4_corel cdata;
+    struct mk4_sdata sdata[MAXSTATIONS];
+    struct type_plot plot;
+    //struct type_meta meta;
+
+    int baseline, base, ncorel_rec, lo_offset, max_seq_no;
+    int do_only_new = FALSE;
+    int test_mode = FALSE;
+    int write_xpower = FALSE;
+    int do_accounting = FALSE;
+    int do_estimation = FALSE;
+    int refringe = FALSE;
+    int ap_per_seg = 0;
+    int reftime_offset = 0;
+
+    //global variables provided for signal handler clean up of lock files
+    lockfile_data_struct global_lockfile_data;
+
+
 }
 
 
 using namespace hops;
+
 
 
 
@@ -49,6 +84,7 @@ bool GetVex(MHO_DirectoryInterface& dirInterface,
     return ovex_ok;
 }
 ////////////////////////////////////////////////////////////////////////////////
+
 
 
 // read a corel file and fill in old style and new style data containers
@@ -119,10 +155,12 @@ bool GetCorel(MHO_DirectoryInterface& dirInterface,
     return corel_ok;
 }
 ////////////////////////////////////////////////////////////////////////////////
+
+
+
 //note: we normally wouldn't bother passing around two station interfaces, but
 //we need to keep a pointer to the raw mk4 data, so for now keeping the interface
 //classes around is the simplest way to do this with the least work
-
 bool GetStationData(MHO_DirectoryInterface& dirInterface,
                     MHO_MK4StationInterface& refInterface,
                     MHO_MK4StationInterface& remInterface,
@@ -143,13 +181,14 @@ bool GetStationData(MHO_DirectoryInterface& dirInterface,
     bool rem_ok = false;
     for(auto it = stationFiles.begin(); it != stationFiles.end(); it++)
     {
-        std::cout<<"station file: "<< *it <<std::endl;
+
         std::string st, root_code;
         std::string input_basename = dirInterface.GetBasename(*it);
         dirInterface.SplitStationFileBasename(input_basename, st, root_code);
 
         if(st == ref_st)
         {
+            std::cout<<"ref station file: "<< *it <<std::endl;
             refInterface.SetStationFile(*it);
             refInterface.SetVexFile(root_file);
             ref_stdata = refInterface.ExtractStationFile();
@@ -159,12 +198,14 @@ bool GetStationData(MHO_DirectoryInterface& dirInterface,
 
         if(st == rem_st)
         {
+            std::cout<<"rem station file: "<< *it <<std::endl;
             remInterface.SetStationFile(*it);
             remInterface.SetVexFile(root_file);
             rem_stdata = remInterface.ExtractStationFile();
             rem_sdata = remInterface.GetStationData();
             rem_ok = true;
         }
+
         if(ref_ok && rem_ok){break;}
     }
 
@@ -172,10 +213,7 @@ bool GetStationData(MHO_DirectoryInterface& dirInterface,
 
 }
 
-void ConstructParamStruct(struct type_param* param)
-{
-
-}
+////////////////////////////////////////////////////////////////////////////////
 
 
 
@@ -277,12 +315,16 @@ int main(int argc, char** argv)
     MHO_MK4StationInterface refInterface, remInterface;
     struct mk4_sdata* ref_sdata = nullptr;
     struct mk4_sdata* rem_sdata = nullptr;
+    struct mk4_sdata sdata[MAXSTATIONS];
     station_coord_data_type* ref_stdata = nullptr;
     station_coord_data_type* rem_stdata = nullptr;
     bool sta_ok = GetStationData(dirInterface, refInterface, remInterface, baseline, ref_sdata, rem_sdata, ref_stdata, rem_stdata);
+    sdata[0] = *ref_sdata;
+    sdata[1] = *rem_sdata;
 
-
-
+    //struct type_param param;
+    struct freq_corel corel[MAXFREQ];
+    int retval = organize_data(cdata, root->ovex, root->ivex, sdata, corel, param);
 
 
     // //Now make the pass/param structs
