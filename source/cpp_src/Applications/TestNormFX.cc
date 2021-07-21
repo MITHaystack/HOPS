@@ -21,26 +21,6 @@
 using namespace hops;
 
 
-// //get list of all the files (and directories) in directory
-// std::vector< std::string > allFiles;
-// std::vector< std::string > allDirs;
-// dirInterface.GetFileList(allFiles);
-// dirInterface.GetSubDirectoryList(allDirs);
-//
-// //sort files, locate root, corel and station files
-// std::vector< std::string > corelFiles;
-// std::vector< std::string > stationFiles;
-// std::string root_file;
-// dirInterface.GetRootFile(allFiles, root_file);
-// std::cout<<"root file = "<<root_file<<std::endl;
-//
-// //convert root file ovex data to JSON
-// MHO_MK4VexInterface vexInter;
-// vexInter.OpenVexFile(root_file);
-// struct vex* root = vexInter.GetVex();
-// json ovex;
-// bool ovex_ok = vexInter.ExportVexFileToJSON(ovex);
-
 
 //read and fill-in the vex data as json and vex struct objects
 bool GetVex(MHO_DirectoryInterface& dirInterface,
@@ -60,6 +40,7 @@ bool GetVex(MHO_DirectoryInterface& dirInterface,
     root = vexInterface.GetVex();
     return ovex_ok;
 }
+////////////////////////////////////////////////////////////////////////////////
 
 
 // read a corel file and fill in old style and new style data containers
@@ -129,53 +110,45 @@ bool GetCorel(MHO_DirectoryInterface& dirInterface,
     }
     return corel_ok;
 }
+////////////////////////////////////////////////////////////////////////////////
+//note: we normally wouldn't bother passing around two station interfaces, but
+//we need to keep a pointer to the raw mk4 data, so for now keeping the interface
+//classes around is the simplest way to do this we the least work
+
+bool GetStationData(MHO_DirectoryInterface& dirInterface,
+                    MHO_MK4StationInterface& refInterface,
+                    MHO_MK4StationInterface& remInterface,
+                    const std::string& baseline,
+                    struct mk4_sdata*& ref_sdata,
+                    struct mk4_sdata*& rem_sdata,
+                    station_coord_data_type*& ref_stdata,
+                    station_coord_data_type*& rem_stdata)
+{
+    std::string ref_st, rem_st;
+    ref_st = baseline.at(0);
+    rem_st = baseline.at(1);
 
 
-// bool GetStationData(MHO_DirectoryInterface& dirInterface,
-//                     MHO_MK4CorelInterface& corelInterface,
-//                     const std::string& baseline,
-//                     struct mk4_sda*& cdata,
-//                     ch_baseline_data_type*& ch_bl_data,
-//                     ch_baseline_weight_type*& ch_bl_wdata
-//
-//
-
-// ////////////////////////////////////////////////////////////////////////////////
-//
-// //convert a corel file
-// void ConvertCorel(const std::string root_file,
-//                   const std::string& input_file,
-//                   ch_baseline_data_type*& ch_bl_data,
-//                   ch_baseline_weight_type*& ch_bl_wdata
-// )
-// {
-
-// }
-//
-//
-
-// //convert a station data  file
-// void ConvertStation(const std::string root_file, const std::string& input_file, station_coord_data_type*& st_data)
-// {
-//     MHO_MK4StationInterface mk4inter;
-//
-//     std::cout<<"input_file = "<<input_file<<std::endl;
-//     mk4inter.SetStationFile(input_file);
-//     mk4inter.SetVexFile(root_file);
-//     st_data = mk4inter.ExtractStationFile();
-// }
-//
-//
-//
-//
-//
+    // dirInterface.GetStationFiles(allFiles, stationFiles);
+    // for(auto it = stationFiles.begin(); it != stationFiles.end(); it++)
+    // {
+    //     std::cout<<"station file: "<< *it <<std::endl;
+    //     std::string st, root_code;
+    //     std::string input_basename = dirInterface.GetBasename(*it);
+    //     dirInterface.SplitStationFileBasename(input_basename, st, root_code);
+    //     std::string output_file = output_dir + "/" + st + "." + root_code + ".sta";
+    //
+    //     MHO_MK4StationInterface mk4inter;
+    //
+    //     std::cout<<"input_file = "<<input_file<<std::endl;
+    //     mk4inter.SetStationFile(input_file);
+    //     mk4inter.SetVexFile(root_file);
+    //     st_data = mk4inter.ExtractStationFile();
+    //
+    // }
 
 
-
-
-
-
-
+}
 
 
 
@@ -251,7 +224,12 @@ int main(int argc, char** argv)
         }
     }
 
-    //directory interface
+    //split the baseline into reference/remote station IDs
+
+    if(baseline.size() != 2){msg_fatal("main", "Baseline: "<<baseline<<" is not of length 2."<<eom);}
+
+
+    //directory interface, load up the directory information
     MHO_DirectoryInterface dirInterface;
     dirInterface.SetCurrentDirectory(input_dir);
     dirInterface.ReadCurrentDirectory();
@@ -262,6 +240,7 @@ int main(int argc, char** argv)
     struct vex* root = nullptr;
     bool ovex_ok = GetVex(dirInterface, vexInterface, json_vex, root);
 
+    //the corel file information for this baseline
     MHO_MK4CorelInterface corelInterface;
     struct mk4_corel* cdata = nullptr;
     ch_baseline_data_type* ch_bl_data = nullptr;
@@ -269,75 +248,20 @@ int main(int argc, char** argv)
     bool corel_ok = GetCorel(dirInterface, corelInterface, baseline, cdata, ch_bl_data, ch_bl_wdata);
     std::cout<<"data ptrs = "<<cdata<<", "<<ch_bl_data<<", "<<ch_bl_wdata<<std::endl;
 
+    //get the station data information for the ref/rem stations of this baseline
     MHO_MK4StationInterface stationInterface;
     struct mk4_sdata sdata[2];
 
 
 
-/*
-
-    //get list of all the files (and directories) in directory
-    std::vector< std::string > allFiles;
-    std::vector< std::string > allDirs;
-
-    dirInterface.GetFileList(allFiles);
-    dirInterface.GetSubDirectoryList(allDirs);
-
-    //debug
-    for(auto it=allFiles.begin(); it != allFiles.end(); it++)
-    {
-        std::cout<<"file: "<<*it<<std::endl;
-    }
-
-    //sort files, locate root, corel and station files
-    std::vector< std::string > corelFiles;
-    std::vector< std::string > stationFiles;
-    std::string root_file;
-    dirInterface.GetRootFile(allFiles, root_file);
-    std::cout<<"root file = "<<root_file<<std::endl;
-
-    //convert root file ovex data to JSON
-    MHO_MK4VexInterface vexInter;
-    vexInter.OpenVexFile(root_file);
-    json ovex;
-    bool ovex_ok = vexInter.ExportVexFileToJSON(ovex);
-
-    bool corel_ok = false;
-    ch_baseline_data_type* ch_bl_data = nullptr;
-    ch_baseline_weight_type* ch_bl_wdata = nullptr;
-
-    dirInterface.GetCorelFiles(allFiles, corelFiles);
-    for(auto it = corelFiles.begin(); it != corelFiles.end(); it++)
-    {
-        std::cout<<"corel file: "<< *it <<std::endl;
-        std::string st_pair, root_code;
-        std::string input_basename = dirInterface.GetBasename(*it);
-        dirInterface.SplitCorelFileBasename(input_basename, st_pair, root_code);
-        if(st_pair == baseline)
-        {
-            ConvertCorel(root_file, *it, ch_bl_data, ch_bl_wdata);
-            if(ch_bl_data != nullptr && ch_bl_wdata != nullptr){corel_ok = true;}
-            break;
-        }
-    }
-
-    // dirInterface.GetStationFiles(allFiles, stationFiles);
-    // for(auto it = stationFiles.begin(); it != stationFiles.end(); it++)
-    // {
-    //     std::cout<<"station file: "<< *it <<std::endl;
-    //     std::string st, root_code;
-    //     std::string input_basename = dirInterface.GetBasename(*it);
-    //     dirInterface.SplitStationFileBasename(input_basename, st, root_code);
-    //     std::string output_file = output_dir + "/" + st + "." + root_code + ".sta";
-    //     ConvertStation(root_file, *it, output_file);
-    // }
-
-
-    MHO_NormFX normFXCalc;
-
-
-
-
+    // //Now make the pass/param structs
+    // struct type_pass pass;
+    // struct type_param param;
+    // struct type_status status;
+    // ConstructPassStruct(&pass);
+    // ConstructParamStruct(&param);
+    // ConstructStatusStruct(&status);
+    //
 
     return 0;
 }
