@@ -44,6 +44,8 @@ class MHO_MK4StationInterface
         void SetVexFile(const std::string& vex){fVexFile = vex;}
         void SetStationFile(const std::string& station){fStationFile = station;}
 
+        mk4_sdata* GetStationData(){return fStation;};
+
         //extract the data
         station_coord_data_type* ExtractStationFile();
 
