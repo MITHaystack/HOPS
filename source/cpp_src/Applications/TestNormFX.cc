@@ -113,7 +113,7 @@ bool GetCorel(MHO_DirectoryInterface& dirInterface,
 ////////////////////////////////////////////////////////////////////////////////
 //note: we normally wouldn't bother passing around two station interfaces, but
 //we need to keep a pointer to the raw mk4 data, so for now keeping the interface
-//classes around is the simplest way to do this we the least work
+//classes around is the simplest way to do this with the least work
 
 bool GetStationData(MHO_DirectoryInterface& dirInterface,
                     MHO_MK4StationInterface& refInterface,
@@ -124,29 +124,43 @@ bool GetStationData(MHO_DirectoryInterface& dirInterface,
                     station_coord_data_type*& ref_stdata,
                     station_coord_data_type*& rem_stdata)
 {
-    std::string ref_st, rem_st;
+    std::string ref_st, rem_st, root_file;
     ref_st = baseline.at(0);
     rem_st = baseline.at(1);
+    std::vector< std::string > allFiles, stationFiles;
+    dirInterface.GetFileList(allFiles);
+    dirInterface.GetStationFiles(allFiles, stationFiles);
+    dirInterface.GetRootFile(allFiles, root_file);
+    bool ref_ok = false;
+    bool rem_ok = false;
+    for(auto it = stationFiles.begin(); it != stationFiles.end(); it++)
+    {
+        std::cout<<"station file: "<< *it <<std::endl;
+        std::string st, root_code;
+        std::string input_basename = dirInterface.GetBasename(*it);
+        dirInterface.SplitStationFileBasename(input_basename, st, root_code);
 
+        if(st == ref_st)
+        {
+            refInterface.SetStationFile(*it);
+            refInterface.SetVexFile(root_file);
+            ref_stdata = refInterface.ExtractStationFile();
+            ref_sdata = refInterface.GetStationData();
+            ref_ok = true;
+        }
 
-    // dirInterface.GetStationFiles(allFiles, stationFiles);
-    // for(auto it = stationFiles.begin(); it != stationFiles.end(); it++)
-    // {
-    //     std::cout<<"station file: "<< *it <<std::endl;
-    //     std::string st, root_code;
-    //     std::string input_basename = dirInterface.GetBasename(*it);
-    //     dirInterface.SplitStationFileBasename(input_basename, st, root_code);
-    //     std::string output_file = output_dir + "/" + st + "." + root_code + ".sta";
-    //
-    //     MHO_MK4StationInterface mk4inter;
-    //
-    //     std::cout<<"input_file = "<<input_file<<std::endl;
-    //     mk4inter.SetStationFile(input_file);
-    //     mk4inter.SetVexFile(root_file);
-    //     st_data = mk4inter.ExtractStationFile();
-    //
-    // }
+        if(st == rem_st)
+        {
+            remInterface.SetStationFile(*it);
+            remInterface.SetVexFile(root_file);
+            rem_stdata = remInterface.ExtractStationFile();
+            rem_sdata = remInterface.GetStationData();
+            rem_ok = true;
+        }
+        if(ref_ok && rem_ok){break;}
+    }
 
+    return (ref_ok && rem_ok);
 
 }
 
@@ -249,8 +263,14 @@ int main(int argc, char** argv)
     std::cout<<"data ptrs = "<<cdata<<", "<<ch_bl_data<<", "<<ch_bl_wdata<<std::endl;
 
     //get the station data information for the ref/rem stations of this baseline
-    MHO_MK4StationInterface stationInterface;
-    struct mk4_sdata sdata[2];
+    MHO_MK4StationInterface refInterface, remInterface;
+    struct mk4_sdata* ref_sdata = nullptr;
+    struct mk4_sdata* rem_sdata = nullptr;
+    station_coord_data_type* ref_stdata = nullptr;
+    station_coord_data_type* rem_stdata = nullptr;
+    bool sta_ok = GetStationData(dirInterface, refInterface, remInterface, baseline, ref_sdata, rem_sdata, ref_stdata, rem_stdata);
+
+
 
 
 
