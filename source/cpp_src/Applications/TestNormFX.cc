@@ -56,6 +56,7 @@ extern "C"
     //global variables provided for signal handler clean up of lock files
     lockfile_data_struct global_lockfile_data;
 
+    struct c_block *cb_head;
 
 }
 
