@@ -29,6 +29,9 @@ extern "C"
     #include "write_lock_mechanism.h"
 
     int
+    set_defaults();
+
+    int
     organize_data (
     struct mk4_corel *cdata,
     struct scan_struct *ovex,
@@ -59,6 +62,9 @@ extern "C"
     lockfile_data_struct global_lockfile_data;
 
     struct c_block *cb_head;
+
+    int msglev = -5;
+    char progname[] = "test";
 
 }
 
@@ -327,7 +333,7 @@ int main(int argc, char** argv)
     MHO_MK4StationInterface refInterface, remInterface;
     struct mk4_sdata* ref_sdata = nullptr;
     struct mk4_sdata* rem_sdata = nullptr;
-    struct mk4_sdata sdata[2];//[MAXSTATIONS];
+    struct mk4_sdata* sdata = new mk4_sdata[MAXSTATIONS];
     station_coord_data_type* ref_stdata = nullptr;
     station_coord_data_type* rem_stdata = nullptr;
     bool sta_ok = GetStationData(dirInterface, refInterface, remInterface, baseline, ref_sdata, rem_sdata, ref_stdata, rem_stdata);
@@ -335,7 +341,25 @@ int main(int argc, char** argv)
     sdata[1] = *rem_sdata;
 
     struct type_param param;
-    struct freq_corel corel[MAXFREQ];
+    param.acc_period = root->evex->ap_length;
+    param.speedup = root->evex->speedup_factor;
+    param.pol = POL_ALL;
+    param.first_plot = 0;
+    param.nplot_chans = 0;
+
+    struct freq_corel* corel = new freq_corel[MAXFREQ];
+    cdata->nalloc = 0;
+    fringe.nalloc = 0;
+    for (int i=0; i<MAXSTATIONS; i++){sdata[i].nalloc = 0;}
+    for (int i=0; i<MAXFREQ; i++){ corel[i].data_alloc = FALSE;}
+
+
+    std::cout<<"st1 = "<<cdata->t100->baseline[0]<<std::endl;
+    std::cout<<"st2 = "<<cdata->t100->baseline[1]<<std::endl;
+    set_defaults();
+
+
+
     int retval = organize_data(cdata, root->ovex, root->ivex, sdata, corel, param);
 
 
