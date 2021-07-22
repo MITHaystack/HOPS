@@ -31,7 +31,7 @@
 #include "freqlist.h"
 #include "mk4_sizes.h"
 
-int 
+int
 set_pointers (
 struct station_struct *stn1,
 struct station_struct *stn2,
@@ -47,7 +47,7 @@ struct freq_corel *corel)
     char st1, st2;
     struct index_tag *idx;
     struct freqlist flist[MAXFREQ];
-    
+
                                         /* Some initialization */
     for (i=0; i<MAXFREQ; i++) clear_freq_corel (corel+i);
                                         /* Make a list of frequencies in the */
@@ -73,30 +73,33 @@ struct freq_corel *corel)
             if (strcmp (refch->chan_name, t101->ref_chan_id) == 0) st1ch = ch;
             if (strcmp (remch->chan_name, t101->rem_chan_id) == 0) st2ch = ch;
             }
-        
+
         if (st1ch < 0)                  // sanity check
             {
-            msg ("Can't identify ref stn channel in t101: %s does not appear in root", 
+            msg ("Can't identify ref stn channel in t101: %s does not appear in root",
                  2, t101->ref_chan_id);
             return (-1);
             }
         if (st2ch < 0)                  // sanity check, part deux
             {
-            msg ("Can't identify rem stn channel in t101: %s does not appear in root", 
+            msg ("Can't identify rem stn channel in t101: %s does not appear in root",
                  2, t101->rem_chan_id);
             return (-1);
             }
         refch = stn1->channels + st1ch;
         remch = stn2->channels + st2ch;
                                         /* Is it a valid baseline pair? */
+            printf("st1ch = %d and st2ch = %d \n", st1ch, st2ch);
         for (fqno=0; fqno<MAXFREQ; fqno++)
             {
+                printf("fqno = %d, sky_freq = %f \n", fqno, flist[fqno].sky_frequency);
+
             if (flist[fqno].sky_frequency < 0.0) continue;
                                         /* Loop over sideband/pol combos as */
                                         /* set up by make_flist */
-            for (ref=0; ref<4; ref++) 
+            for (ref=0; ref<4; ref++)
                 if (st1ch == flist[fqno].ref_chnos[ref]) break;
-            for (rem=0; rem<4; rem++) 
+            for (rem=0; rem<4; rem++)
                 if (st2ch == flist[fqno].rem_chnos[rem]) break;
             if ((ref < 4) && (rem < 4)) break;
             }
@@ -239,7 +242,7 @@ struct freq_corel *corel)
             }
                                         /* Now ready to set pointers in the */
                                         /* main time/freq array */
-        
+
         for (ap=0; ap<idx->ap_space; ap++)
             {
             if (idx->t120[ap] == NULL) continue;
@@ -247,7 +250,7 @@ struct freq_corel *corel)
                                         /* correlation mode */
                                         /* Due to method of storage, must */
                                         /* replicate lags, hence nlags *= 2 */
-            if (first) 
+            if (first)
                 {
                 param->cormode = idx->t120[ap]->type;
                 if ((param->cormode == AUTO_GLOBAL) || (param->cormode == AUTO_PER_LAG))

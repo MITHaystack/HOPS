@@ -343,7 +343,7 @@ int main(int argc, char** argv)
     struct type_param param;
     param.acc_period = root->evex->ap_length;
     param.speedup = root->evex->speedup_factor;
-    param.pol = POL_ALL;
+    param.pol = POLMASK_RR;// POL_ALL;
     param.first_plot = 0;
     param.nplot_chans = 0;
 
