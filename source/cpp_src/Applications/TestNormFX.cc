@@ -34,7 +34,7 @@ extern "C"
     struct mk4_sdata *sdata,
     struct freq_corel *corel,
     struct type_param param);
-
+    //
     struct type_param param;
     struct type_status status;              /* External structure declarations */
     struct mk4_fringe fringe;
@@ -154,7 +154,7 @@ bool GetCorel(MHO_DirectoryInterface& dirInterface,
         }
     }
     return corel_ok;
-}
+};
 ////////////////////////////////////////////////////////////////////////////////
 
 
@@ -212,7 +212,7 @@ bool GetStationData(MHO_DirectoryInterface& dirInterface,
 
     return (ref_ok && rem_ok);
 
-}
+};
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -230,14 +230,23 @@ bool GetStationData(MHO_DirectoryInterface& dirInterface,
 
 
 
-
-//convert a station data  file
-void ConvertStation(const std::string root_file, const std::string& input_file, station_coord_data_type*& st_data)
-{
-
-}
-
-
+// //in original code PARAM and STATUS structs are global extern variables
+// void ConstructPassStruct(struct type_pass* pass)
+// {
+//
+// }
+//
+// void ConstructParamStruct(struct type_param* param)
+// {
+//
+// }
+//
+// void ConstructStatusStruct(struct type_status* status)
+// {
+//
+// }
+//
+//
 
 
 
@@ -316,14 +325,14 @@ int main(int argc, char** argv)
     MHO_MK4StationInterface refInterface, remInterface;
     struct mk4_sdata* ref_sdata = nullptr;
     struct mk4_sdata* rem_sdata = nullptr;
-    struct mk4_sdata sdata[MAXSTATIONS];
+    struct mk4_sdata sdata[2];//[MAXSTATIONS];
     station_coord_data_type* ref_stdata = nullptr;
     station_coord_data_type* rem_stdata = nullptr;
     bool sta_ok = GetStationData(dirInterface, refInterface, remInterface, baseline, ref_sdata, rem_sdata, ref_stdata, rem_stdata);
     sdata[0] = *ref_sdata;
     sdata[1] = *rem_sdata;
 
-    //struct type_param param;
+    struct type_param param;
     struct freq_corel corel[MAXFREQ];
     int retval = organize_data(cdata, root->ovex, root->ivex, sdata, corel, param);
 
