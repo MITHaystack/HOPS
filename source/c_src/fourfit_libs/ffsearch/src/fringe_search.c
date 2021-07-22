@@ -21,6 +21,8 @@
 #include "pass_struct.h"
 #include "param_struct.h"
 
+#define NO_OUTPUT
+
 int fringe_search ( struct vex* root, struct type_pass* pass)
     {
     int fr, ap, size, oret, rc; 
@@ -109,6 +111,7 @@ int fringe_search ( struct vex* root, struct type_pass* pass)
                                         /* attached, depending on control info */
                                         /* Also, update memory image of root file, */
                                         /* and display a fringe plot, if requested */
+#ifndef NO_OUTPUT
     oret = output (root, pass);
     if (oret > 0)
         {
@@ -122,6 +125,7 @@ int fringe_search ( struct vex* root, struct type_pass* pass)
         free (sbarray);
         return (-2);
         }
+#endif
                                         /* Free allocated memory */
     free (sbarray);
 
