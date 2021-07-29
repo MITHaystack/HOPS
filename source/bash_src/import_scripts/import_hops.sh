@@ -22,15 +22,15 @@ if [ "$HOPS4_SRC_DIR" != "" ] && [ "$HOPS3_SRC_DIR" != "" ]; then
         source ${HOPS4_SRC_DIR}/source/bash_src/import_scripts/import_dfio.sh
         source ${HOPS4_SRC_DIR}/source/bash_src/import_scripts/import_mk4util.sh
         source ${HOPS4_SRC_DIR}/source/bash_src/import_scripts/import_vex.sh
-        source ${HOPS4_SRC_DIR}/source/bash_src/import_scripts/ffcontrol/import_ffcontrol.sh
-        source ${HOPS4_SRC_DIR}/source/bash_src/import_scripts/ffcore/import_ffcore.sh
-        source ${HOPS4_SRC_DIR}/source/bash_src/import_scripts/ffio/import_ffio.sh
-        source ${HOPS4_SRC_DIR}/source/bash_src/import_scripts/ffmath/import_ffmath.sh
-        source ${HOPS4_SRC_DIR}/source/bash_src/import_scripts/ffplot/import_ffplot.sh
-        source ${HOPS4_SRC_DIR}/source/bash_src/import_scripts/ffsearch/import_ffsearch.sh
-        source ${HOPS4_SRC_DIR}/source/bash_src/import_scripts/fourfit/import_fourfit.sh
-        source ${HOPS4_SRC_DIR}/source/bash_src/import_scripts/alist/import_alist.sh
-        source ${HOPS4_SRC_DIR}/source/bash_src/import_scripts/aedit/import_aedit.sh
+        source ${HOPS4_SRC_DIR}/source/bash_src/import_scripts/import_ffcontrol.sh
+        source ${HOPS4_SRC_DIR}/source/bash_src/import_scripts/import_ffcore.sh
+        source ${HOPS4_SRC_DIR}/source/bash_src/import_scripts/import_ffio.sh
+        source ${HOPS4_SRC_DIR}/source/bash_src/import_scripts/import_ffmath.sh
+        source ${HOPS4_SRC_DIR}/source/bash_src/import_scripts/import_ffplot.sh
+        source ${HOPS4_SRC_DIR}/source/bash_src/import_scripts/import_ffsearch.sh
+        source ${HOPS4_SRC_DIR}/source/bash_src/import_scripts/import_fourfit.sh
+        source ${HOPS4_SRC_DIR}/source/bash_src/import_scripts/import_alist.sh
+        source ${HOPS4_SRC_DIR}/source/bash_src/import_scripts/import_aedit.sh
     else
         (source ${HOPS4_SRC_DIR}/source/bash_src/import_scripts/import_afio.sh --checksum-only)
         tmp_val=$?
