@@ -58,6 +58,7 @@ void ion_covariance (struct type_pass *pass)
         if (status.nion)
             {                           // - yes
             msg ("unable to compute ionosphere errors due to singular matrix", 2);
+            //return (-1);
             }
 
     for (i=0; i<3; i++)             // std devs. are sqrt of diag of covariance matrix
