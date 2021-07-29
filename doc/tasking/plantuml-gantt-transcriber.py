@@ -51,7 +51,8 @@ def parse_files():
     stop = []
     data = []
 
-    f = open('../../../ambld-4.00-new/doc/tasking/fruit/all.wbs', 'r')
+    #f = open('../../../ambld-4.00-new/doc/tasking/fruit/all.wbs', 'r')
+    f = open('fruit/all.wbs', 'r')
     # check if line has keyword && ->
     for line in f:
         if "type ->" in line:
@@ -166,7 +167,7 @@ if __name__ == "__main__":
     domains = get_domains(data)
 
     # Open new plantuml file
-    plantuml_file = open("plantuml-code-gantt-chart.uml", 'w')
+    plantuml_file = open("plantuml-code-gantt.uml", 'w')
 
     # Write to the plantuml file
     print_starting_boiler_plate(plantuml_file)
