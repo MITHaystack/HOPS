@@ -10,14 +10,11 @@ fi
 
 ret_val=0
 
-#check for the existence of the directory variable, or if they are unset
-#check if we are running the script from the chops directory
-if [[ -e ./import_hops.sh ]]; then
-    HOPS4_SRC_DIR=$PWD
-    HOPS3_SRC_DIR=${HOPS4_SRC_DIR}/../
-fi
-
 if [ "$HOPS4_SRC_DIR" != "" ] && [ "$HOPS3_SRC_DIR" != "" ]; then
+
+    echo HOPS4_SRC_DIR="$HOPS4_SRC_DIR"
+    echo HOPS3_SRC_DIR="$HOPS3_SRC_DIR"
+
 
     if [ "${CHKSUM}" -eq "0" ]
     then
@@ -127,7 +124,7 @@ if [ "$HOPS4_SRC_DIR" != "" ] && [ "$HOPS3_SRC_DIR" != "" ]; then
 
 else
 
-    echo "Please define the variables HOPS4_SRC_DIR and HOPS3_SRC_DIR or cd into the chops directory before running this script."
+    echo "Please define the variables HOPS4_SRC_DIR and HOPS3_SRC_DIR before running this script."
     ret_val=2
 
 fi
