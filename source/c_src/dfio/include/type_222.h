@@ -16,8 +16,8 @@ struct type_222
     unsigned int    control_hash;            /* Hash of control file contents */
     int    setstring_length;       /* Size of set string in chars */
     int    cf_length;              /* Size of control file in chars */
-
-    /* The following char array is variable length padded to a */
+    
+    /* The following char array is variable length padded to a
     /* multple of 8 bytes, but its always at least 8 bytes long */
     char control_contents[8];  /* Set string and control file contents*/
     };
