@@ -47,13 +47,14 @@ taskingscripts = taskscripts/sw_tasks.pl taskscripts/sw_task_graph.pl \
 	taskscripts/sw_task_config.pl taskscripts/sw_task_latex.pl \
 	taskscripts/sw_task_split.pl
 
-noinst_SCRIPTS = overview-helper.sh plantuml-class-transcriber.py
+noinst_SCRIPTS = overview-helper.sh plantuml-class-transcriber.py plantuml-gantt-transcriber.py
 latexinputs = $(srcdir)/overview.tex
 
 # inputs to the objects section
 overviewobjects = domainlist.tex devels.tex taskdefs.tex dates.tex
 texincobjects = $(overviewobjects) \
-	plantuml-code.uml plantuml-code.png
+	plantuml-code.uml plantuml-code.png \
+	plantuml-code-gantt.uml plantuml-code-gantt.png
 
 EXTRA_DIST = $(srcdir)/$(TEXSRC).tex $(latexinputs) \
 	$(appsamples) $(mhoinputs) $(allinputs) $(taskingscripts) \
@@ -124,6 +125,15 @@ plantuml-code.uml: $(srcdir)/plantuml-class-transcriber.py
 plantuml-code.png: plantuml-code.uml
 	-plantuml $<
 	[ -f plantuml-code.png ] || ln -s $(srcdir)/taskscripts/sw_tasks.png $@
+	ls -l $@
+
+plantuml-code-gantt.uml: $(srcdir)/plantuml-gantt-transcriber.py
+	-$(srcdir)/plantuml-gantt-transcriber.py
+	[ -f $@ ] || touch $@
+	ls -l $@
+plantuml-code-gantt.png: plantuml-code-gantt.uml
+	-plantuml $<
+	[ -f plantuml-code-gantt.png ] || ln -s $(srcdir)/taskscripts/sw_tasks.png $@
 	ls -l $@
 
 # build objects needed by the document through $(texincobjects)
