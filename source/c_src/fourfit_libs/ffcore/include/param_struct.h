@@ -9,7 +9,7 @@
 
 #include "plot_struct.h"
 
-struct type_param 
+struct type_param
     {
                                         /* Filled in by time_range() */
     double      start_nom;              /* nom. scan start time from ovex (sBOY) */
@@ -93,7 +93,7 @@ struct type_param
 #define DIFX   0x02                     // For Adam D
 #define SFXC   0x03                     // For Mark K
 
-struct type_status 
+struct type_status
     {
     double      freq_space;             /* Freq spacing in FFT to MBdelay */
     int         grid_points;            /* # of points in FFT to MBdelay */
@@ -103,7 +103,7 @@ struct type_status
     int         zero_errors;            // # of AP's with zero (some lag count 0) errors
     int         total_ap;               /* Total # of ap's processed (both sb's )*/
     float       total_ap_frac;          /* Same, but with microediting */
-    float       total_usb_frac;         // usb subtotal of total_ap_frac 
+    float       total_usb_frac;         // usb subtotal of total_ap_frac
     float       total_lsb_frac;         // lsb    "      "    "     "
     int         ap_num[2][MAXFREQ];     /* # of aps for each sideband & freq */
     double      ap_frac[2][MAXFREQ];    /* Same, but with microediting */
@@ -151,7 +151,7 @@ struct type_status
     int         win_dr_save[2];         /* Saved delay rate search indices */
     int         win_mb_save[2];         /* Saved multi band search indices */
     int         pts_searched;           /* Number of points searched */
-    complex     fringe[MAXFREQ+1];      /* Fringe phase & amp for each freq */
+    hops_complex     fringe[MAXFREQ+1];      /* Fringe phase & amp for each freq */
     double      sbdbox[MAXFREQ+1];      /* Single band delay box for each freq */
     double      snr;                    /* Signal to Noise ratio */
     double      prob_false;             /* Probability of false detection */
@@ -195,5 +195,5 @@ struct type_status
     int         mb_indx;                // index of max when searching over mb delay
     int         dr_indx;                // index of max when searching over delay rate
     };
-    
+
 #endif

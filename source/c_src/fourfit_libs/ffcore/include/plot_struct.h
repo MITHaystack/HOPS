@@ -4,7 +4,8 @@
 /*  8/7/91      - cmn                  */
 /***************************************/
 
-#include <complex.h>
+#include "hops_complex.h"
+
 #ifndef MAXAP
 #include "mk4_data.h"
 #endif
@@ -21,8 +22,8 @@ struct type_plot {
         double          sb_amp[2*MAXLAG];   /* Single band delay amplitude*/
         double          mb_amp[8192];       /* Multi band delay  amplitude*/
         double          d_rate[MAXAP];      /* Drate spect in max sbd chan */
-        complex         cp_spectrum[2*MAXLAG];   /* Cross power spectrum , phase & mag. */ 
-        complex         phasor[MAXFREQ+1][MAXAP];    /* Fringe phase & mag. */
+        hops_complex         cp_spectrum[2*MAXLAG];   /* Cross power spectrum , phase & mag. */
+        hops_complex         phasor[MAXFREQ+1][MAXAP];    /* Fringe phase & mag. */
                                                /* (last element = total over fr.)  */
         double          weights[MAXFREQ+1][MAXAP];  /* weight of phasor for each ap */
                                                           /* (depends on # sbands) */

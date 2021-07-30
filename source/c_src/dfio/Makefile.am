@@ -18,7 +18,7 @@ pkginclude_HEADERS = include/T1.h include/bytflp.h include/mk4_data.h \
 	include/type_230.h include/type_300.h include/type_301.h \
 	include/type_302.h include/type_303.h include/type_304.h \
 	include/type_305.h include/type_306.h include/type_307.h \
-	include/type_308.h include/type_309.h include/type_comp.h
+	include/type_308.h include/type_309.h
 
 pkglib_LTLIBRARIES = libdfio.la
 

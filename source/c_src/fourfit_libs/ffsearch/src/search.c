@@ -7,7 +7,7 @@
 
 #include <stdio.h>
 #include <math.h>
-#include <complex.h>
+#include "hops_complex.h"
 #include <fftw3.h>
 #include "mk4_data.h"
 #include "param_struct.h"
@@ -19,7 +19,7 @@ int search (struct type_pass *pass)
     {
     fftw_complex *data = NULL; 
     double mb_delay[MBD_GRID_MAX]; 
-    static complex rate_spectrum[MAXFREQ][MAXAP];
+    static hops_complex rate_spectrum[MAXFREQ][MAXAP];
     static double amps[MBD_GRID_MAX][MAXAP], drtemp[MAXAP];
     int cnt, fr, i, j, station, lag, dr_index, mbd_index, ap, newmax;
     int max_mbd_cell, max_dr_cell, max_lag, drlag;

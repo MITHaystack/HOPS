@@ -101,14 +101,14 @@ get_filelist (int argc, char **argv, int type, fstruct **files)
 					/* directory levels until it finds */
                                         /* the correlator files. */
         depth = 0;
-        if (file_status.st_mode & S_IFDIR)
+        if (file_status.st_mode & S_IFDIR) 
             {
-            if (extract_filenames (argv[i], type,
+            if (extract_filenames (argv[i], type, 
                         files, &nalloc, &filenum, &depth) != 0)
                 return (1);
             }
                                         /* An ordinary file */
-        else
+        else 
             {
                                         /* Locate last / so we can deal with */
                                         /* just the filename itself */
