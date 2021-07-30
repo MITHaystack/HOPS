@@ -24,7 +24,7 @@
 /************************************************************************/
 #include <stdio.h>
 #include <math.h>
-#include <complex.h>
+#include "hops_complex.h"
 #include <fftw3.h>
 #include "mk4_data.h"
 #include "param_struct.h"
@@ -35,10 +35,10 @@
 #define TWO_32   4294967296.0
 #define SYSCLK_S 32.e6                  /* number of sysclks / sec */
 
-void norm_xf (struct type_pass *pass, 
-              int fr, 
+void norm_xf (struct type_pass *pass,
+              int fr,
               int ap)
-    { 
+    {
     struct type_120 *t120;
     struct freq_corel *fdata;
     struct data_corel *datum;
@@ -46,9 +46,9 @@ void norm_xf (struct type_pass *pass,
     static int nlags = 0;
     int cosbits, coscor, sinbits, sincor;
     int ip, ips;
-    static complex xp_spec[4*MAXLAG];
-    static complex xcor[4*MAXLAG], S[4*MAXLAG], xlag[4*MAXLAG];
-    complex z;
+    static hops_complex xp_spec[4*MAXLAG];
+    static hops_complex xcor[4*MAXLAG], S[4*MAXLAG], xlag[4*MAXLAG];
+    hops_complex z;
     float  fraction, count_frac;
     unsigned short bitshift;
     double theta, shift, dd, norm_const, fb_fact, fb_amp_ratio();
@@ -76,7 +76,7 @@ void norm_xf (struct type_pass *pass,
         }
     else                                // linear combination of polarizations
         ips = 0;
-        
+
                                         // do fft plan only iff nlags changes
     if (param.nlags != nlags)
         {
@@ -96,7 +96,7 @@ void norm_xf (struct type_pass *pass,
                                         /* Initialize */
     for (i = 0; i < nlags*4; i++)
         S[i] = 0.0;
-        
+
     datum->sband = 0;
                                         /* -1.0 means no data, not zero weight */
     datum->usbfrac = -1.0;
@@ -118,7 +118,7 @@ void norm_xf (struct type_pass *pass,
         }
     datum->sband = usb_present - lsb_present;
                                         /*  sideband # -->  0=upper , 1= lower */
-    for (sb = 0; sb < 2; sb++) 
+    for (sb = 0; sb < 2; sb++)
       {
       for (i = 0; i < nlags*4; i++)     // clear xcor & xp_spec for pol sum into them
           {
@@ -160,9 +160,9 @@ void norm_xf (struct type_pass *pass,
         polcof_sum += polcof;
                                     /* Calculate normalization quantities */
         calc_normalization (sb, pol, datum, pass, &mean, &norm_const);
-    
-                                    /* Loop over lags 
-                                     *  i source index for cross correlation 
+
+                                    /* Loop over lags
+                                     *  i source index for cross correlation
                                      *  m    "     "    "  auto       "
                                      *  l destination index for both */
         for (i = 0; i < nlags; i++)
@@ -230,8 +230,8 @@ void norm_xf (struct type_pass *pass,
                                     // mark this sideband & pol piece of this AP bad
                 datum->flag &= ~(1 << (2 * pol + sb));
                 break;              // break out of loop over lags
-                }            
-                                 
+                }
+
             if ((cosbits < SLIVER) || ((sinbits < SLIVER) && (! pass->autocorr)))
                 {
                 status.sliver_errors++;
@@ -256,8 +256,8 @@ void norm_xf (struct type_pass *pass,
 
                                     /* Check for wild values, zero out and */
                                     /* flag for later accounting */
-            if ((creal (z) > param.cor_limit) || (creal (z) < -param.cor_limit) 
-                || (cimag (z) > param.cor_limit) || (cimag (z) < -param.cor_limit)) 
+            if ((creal (z) > param.cor_limit) || (creal (z) < -param.cor_limit)
+                || (cimag (z) > param.cor_limit) || (cimag (z) < -param.cor_limit))
                 {
                 status.large_errors++;
                                     // mark this sideband & pol piece of this AP bad
@@ -279,23 +279,23 @@ void norm_xf (struct type_pass *pass,
                                     /* Accumulate data fractions */
                                     /* Makes use of fact that cosbits */
                                     /* = sinbits for cross-corr */
-                if (sb) 
+                if (sb)
                     {
-                    if (datum->lsbfrac < 0.0) 
+                    if (datum->lsbfrac < 0.0)
                         datum->lsbfrac = 0.0;
                     datum->lsbfrac += (double) (cosbits)
                                     / (samp_per_ap * nlags);
                     }
-                else 
+                else
                     {
-                    if (datum->usbfrac < 0.0) 
+                    if (datum->usbfrac < 0.0)
                         datum->usbfrac = 0.0;
                     datum->usbfrac += (double) (cosbits)
                                     / (samp_per_ap * nlags);
                     }
                 }
             }                       /* end of loop over i (lags) */
-        
+
                                     /* In case large error zapped this datum ... */
         if ((datum->flag & (1 << (2 * pol + sb))) == 0)
             {
@@ -309,20 +309,20 @@ void norm_xf (struct type_pass *pass,
         status.ap_num[sb][fr]++;
         status.total_ap++;
                                     /* Microedited counts */
-        if (sb) 
+        if (sb)
             {
             status.ap_frac[sb][fr] += datum->lsbfrac;
             status.total_ap_frac   += datum->lsbfrac;
             status.total_lsb_frac  += datum->lsbfrac;
             }
-        else 
+        else
             {
             status.ap_frac[sb][fr] += datum->usbfrac;
             status.total_ap_frac   += datum->usbfrac;
             status.total_usb_frac  += datum->usbfrac;
             }
                                     /* Avg to find center of scan */
-        status.epoch_off_cent += (double)ap;  
+        status.epoch_off_cent += (double)ap;
                                     /* FFT to X-power spectrum  */
         fftw_execute (fftplan_hw);
 
@@ -330,15 +330,15 @@ void norm_xf (struct type_pass *pass,
                                     /* First, decode total bitshift shift */
         shift = fabs (t120->delay_rate / TWO_32 * param.acc_period * SYSCLK_S);
                                     /* Get fractional part */
-        if (param.bocfs_per_ap % 2) // if odd # of cf's/AP must 
+        if (param.bocfs_per_ap % 2) // if odd # of cf's/AP must
                                     // extrapolate fractional delay to cf center
             {
-            fraction = (t120->fr_delay + 
+            fraction = (t120->fr_delay +
                         0.5 * param.bocf_period * t120->delay_rate) / TWO_32;
                                     /* adjust fraction to lie in [-0.5, 0.5] */
             if (fraction > 0.5)
                 fraction -= 1.0;
-            
+
             if (fraction < -0.5)
                 fraction += 1.0;
             }
@@ -355,10 +355,10 @@ void norm_xf (struct type_pass *pass,
             dd = 0.0;
         else if (fraction > 0.0)
             dd = 0.5;
-        else 
+        else
             dd = -0.5;
                                     /* Convert to angle, avoid zero division */
-        if (shift == 0.0) 
+        if (shift == 0.0)
             shift = 1.0;
 
                                     /* switched sign of theta  rjc 99.11.19 */
@@ -399,7 +399,7 @@ void norm_xf (struct type_pass *pass,
                                     // skip 0th spectral pt if DC channel suppressed
       ibegin = (pass->control.dc_block) ? 1 : 0;
       if (sb == 0)
-          { 
+          {
           for (i = ibegin; i < nlags; i++)
               {
               factor = fb_fact * datum->usbfrac;
@@ -413,11 +413,11 @@ void norm_xf (struct type_pass *pass,
               factor = fb_fact * datum->lsbfrac;
                                     // DC+highest goes into middle element of the S array
               sindex = i ? 4 * nlags - i : 2 * nlags;
-              S[sindex] += factor * conj (xp_spec[i] * 
+              S[sindex] += factor * conj (xp_spec[i] *
                   cexp (I * (theta * (double)(i-nlags/2) + status.lsb_phoff[0] - status.lsb_phoff[1])));
               }
           }
-      }                             // bottom of sideband loop 
+      }                             // bottom of sideband loop
 
                                     /* Normalize data fractions
                                        The resulting sbdelay functions which
@@ -435,31 +435,31 @@ void norm_xf (struct type_pass *pass,
         factor += datum->usbfrac;
     if (datum->lsbfrac >= 0.0)
         factor += datum->lsbfrac;
-    if ((datum->usbfrac >= 0.0) && (datum->lsbfrac >= 0.0)) 
+    if ((datum->usbfrac >= 0.0) && (datum->lsbfrac >= 0.0))
         factor /= 4.0;              // x2 factor for sb and for polcof
                                     // correct for multiple pols being added in
     factor *= polcof_sum;
     if (factor > 0.0)
         factor = 1.0 / factor;
-    msg ("usbfrac %f lsbfrac %f polcof_sum %f factor %1f flag %x", -2, 
+    msg ("usbfrac %f lsbfrac %f polcof_sum %f factor %1f flag %x", -2,
             datum->usbfrac, datum->lsbfrac, polcof_sum, factor, datum->flag);
-    for (i=0; i<4*nlags; i++) 
+    for (i=0; i<4*nlags; i++)
         S[i] = S[i] * factor;
 
                                     /* Collect the results */
     if(datum->flag != 0)
         {
-                                    // corrections to phase as fn of freq based upon 
+                                    // corrections to phase as fn of freq based upon
                                     // delay calibrations
                                     // apply delay offset phase ramp
-                                // add in phase effects if multitone delays 
+                                // add in phase effects if multitone delays
                                 // were extracted
-        if (pass->control.nsamplers && param.pc_mode[0] == MULTITONE 
-                                    && param.pc_mode[1] == MULTITONE)      
-            diff_delay = -1e9 * (datum->rem_sdata.mt_delay[stnpol[1][pol]] 
+        if (pass->control.nsamplers && param.pc_mode[0] == MULTITONE
+                                    && param.pc_mode[1] == MULTITONE)
+            diff_delay = -1e9 * (datum->rem_sdata.mt_delay[stnpol[1][pol]]
                               - datum->ref_sdata.mt_delay[stnpol[0][pol]]);
         else
-            diff_delay = pass->control.delay_offs[freq_no].rem 
+            diff_delay = pass->control.delay_offs[freq_no].rem
                        - pass->control.delay_offs[freq_no].ref;
 
         if (diff_delay != 0.0)  // apply only non-zero delay effects
@@ -472,7 +472,7 @@ void norm_xf (struct type_pass *pass,
                 deltaf = 1e-3 * i / (2e6 * param.samp_period * nlags);
                 if (datum->sband)       // refer phase ramp to actual midband
                     deltaf -= 1e-3 * datum->sband / (4e6 * param.samp_period);
-                                // apply phase ramp to spectral points 
+                                // apply phase ramp to spectral points
                 S[i] = S[i] * cexp (-2.0 * M_PI * I * diff_delay * deltaf);
                                 // ditto for LSB
                 S[j] = S[j] * cexp (2.0 * M_PI * I * diff_delay * deltaf);
@@ -485,7 +485,7 @@ void norm_xf (struct type_pass *pass,
             {
                                 /* Translate so i=nlags is central lag */
             j = i - nlags;
-            if (j < 0) 
+            if (j < 0)
                 j += 4 * nlags;
                                 /* re-normalize back to single lag */
                                 /* (property of FFTs) */
@@ -498,7 +498,7 @@ void norm_xf (struct type_pass *pass,
          }
                                     /* No data */
     else
-        for (i = 0; i < nlags*2; i++) 
+        for (i = 0; i < nlags*2; i++)
             datum->sbdelay[i] = 0.0;
     }
 
@@ -511,7 +511,7 @@ void norm_xf (struct type_pass *pass,
 *******************************************************************************/
 double fb_amp_ratio (f,r)
 double f,r;
-    
+
     {
     double fp1,fp2,fp3,
            fm1,fm2,fm3,
@@ -534,4 +534,4 @@ double pi2 = 9.869604401;
       - 4 * fm3 + 6 * ( 2 * f - r) * fm2 - (12 * f2 - 12 * f * r + 3 * r2 - 1) * fm1
       - r * (12 * f2 + r2 - 29.1805));
     return fact;
-    }   
+    }

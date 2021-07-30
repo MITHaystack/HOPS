@@ -98,7 +98,7 @@ void apply_usb_notch(double lo, double hi,
  */
 void apply_notches(int sb, int ap,
                    struct freq_corel *fdata,
-                   complex *xp_spectrum,
+                   hops_complex *xp_spectrum,
                    int npts,
                    struct data_corel *datum)
     {

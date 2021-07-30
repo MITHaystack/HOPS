@@ -8,7 +8,7 @@
 /************************************************************************/
 #include <stdio.h>
 #include <math.h>
-#include <complex.h>
+#include "hops_complex.h"
 #include "param_struct.h"
 #include "pass_struct.h"
 #include "meta_struct.h"
@@ -142,7 +142,7 @@ int generate_graphs (struct scan_struct *root,
                 cpgmove (xmax, 0.5);
                 cpgdraw (param.win_mb[0], 0.5);
                 }
-            else 
+            else
                 {
                 xmin = param.win_mb[0];
                 xmax = param.win_mb[1];
@@ -203,7 +203,7 @@ int generate_graphs (struct scan_struct *root,
                                         // debug print
             msg("TEC %f amp %f", 0, status.dtec[i][0], status.dtec[i][1]);
             }
-         
+
         xmin = status.dtec[0][0];
         xmax = status.dtec[status.nion-1][0];
         cpgswin (xmin, xmax, 0.0, max_amp);
@@ -304,7 +304,7 @@ int generate_graphs (struct scan_struct *root,
     nplots = (limit_plot == 1) ? 1 : limit_plot+1;
     meta.start_plot = start_plot;
     meta.nplots = nplots;
-   
+
     plotwidth = 0.88 / (double)nplots;
     if (nplots == 1) plotwidth = 0.8;
                                         /* Adjust line width to make dots legible */
@@ -332,13 +332,13 @@ int generate_graphs (struct scan_struct *root,
     else {*tickinc = 1.0; majinc = 5.0;}
                                         /* Segment 0 starts at param.minap */
                                         /* Loop over plots */
-    
+
     for (i=start_plot; i<start_plot+nplots; i++)
         {
         np = status.nseg;
         offset = 0.0;
         if ((i == nplots+limit_plot-1) && (nplots != 1)) offset = 0.01;
-        cpgsvp (0.05 + (i-start_plot)*plotwidth + offset, 0.05 + (i+1-start_plot)*plotwidth + offset, 
+        cpgsvp (0.05 + (i-start_plot)*plotwidth + offset, 0.05 + (i+1-start_plot)*plotwidth + offset,
                                                                     0.44, 0.56);
                                         /* Draw tick marks on top edge, in */
                                         /* real seconds/minutes */
@@ -362,7 +362,7 @@ int generate_graphs (struct scan_struct *root,
             ymax = 1.0;
             }
         cpgswin (0.0, (float)pass->num_ap, 0.0, ymax);
-        if (i == start_plot) 
+        if (i == start_plot)
             {
             cpgsch (0.5);
             cpgbox ("BC", 0.0, 0.0, "C", 0.0, 0.0);
@@ -376,7 +376,7 @@ int generate_graphs (struct scan_struct *root,
                                         /* Fourfit freq identifiers */
         cpgsch (0.7);
         if (i == start_plot+nplots-1) cpgmtxt ("T", 0.5, 0.5, 0.5, "All");
-        else 
+        else
             {
             sprintf (buf, "%c", pass->pass_data[i].freq_code);
             cpgmtxt ("T", 0.5, 0.5, 0.5, buf);
@@ -401,11 +401,11 @@ int generate_graphs (struct scan_struct *root,
                 else cpgmove (xr[j], yr[j]);
                 }
             else cpgmove (xr[j], yr[j]);
-            } 
+            }
         cpgsci (1);
                                         /* Phase as red dots */
         cpgswin (0.0, (float)pass->num_ap, -180.0, 180.0);
-        if (i == (start_plot+nplots-1)) 
+        if (i == (start_plot+nplots-1))
             {
             cpgsch (0.5);
             cpgbox ("", 0.0, 0.0, "CMST", 90.0, 3.0);
@@ -482,7 +482,7 @@ int generate_graphs (struct scan_struct *root,
             {
             cpgsci (3);
             maxj = 0;
-            for (j=0; j<np; j++) 
+            for (j=0; j<np; j++)
                 {
                 yr[j] = plot.seg_refbias_usb[i][j];
                 if (yr[j] < -1.0) ;
@@ -491,7 +491,7 @@ int generate_graphs (struct scan_struct *root,
                     cpgmove (xr[j],-.015);
                     cpgdraw (xr[j],-.02);
                     }
-                else if (yr[j] > 0.02) 
+                else if (yr[j] > 0.02)
                     {
                     cpgmove (xr[j],.015);
                     cpgdraw (xr[j],.02);
@@ -505,7 +505,7 @@ int generate_graphs (struct scan_struct *root,
             {
             cpgsci (6);
             maxj = 0;
-            for (j=0; j<np; j++) 
+            for (j=0; j<np; j++)
                 {
                 yr[j] = plot.seg_rembias_usb[i][j];
                 if (yr[j] < -1.0) ;
@@ -514,7 +514,7 @@ int generate_graphs (struct scan_struct *root,
                     cpgmove (xr[j],-.015);
                     cpgdraw (xr[j],-.02);
                     }
-                else if (yr[j] > 0.02) 
+                else if (yr[j] > 0.02)
                     {
                     cpgmove (xr[j],.015);
                     cpgdraw (xr[j],.02);
@@ -538,7 +538,7 @@ int generate_graphs (struct scan_struct *root,
             {
             cpgsci (3);
             maxj = 0;
-            for (j=0; j<np; j++) 
+            for (j=0; j<np; j++)
                 {
                 yr[j] = plot.seg_refbias_lsb[i][j];
                 if (yr[j] < -1.0) ;
@@ -547,7 +547,7 @@ int generate_graphs (struct scan_struct *root,
                     cpgmove (xr[j],-.015);
                     cpgdraw (xr[j],-.02);
                     }
-                else if (yr[j] > 0.02) 
+                else if (yr[j] > 0.02)
                     {
                     cpgmove (xr[j],.015);
                     cpgdraw (xr[j],.02);
@@ -561,7 +561,7 @@ int generate_graphs (struct scan_struct *root,
             {
             cpgsci (6);
             maxj = 0;
-            for (j=0; j<np; j++) 
+            for (j=0; j<np; j++)
                 {
                 yr[j] = plot.seg_rembias_lsb[i][j];
                 if (yr[j] < -1.0) ;
@@ -570,7 +570,7 @@ int generate_graphs (struct scan_struct *root,
                     cpgmove (xr[j],-.015);
                     cpgdraw (xr[j],-.02);
                     }
-                else if (yr[j] > 0.02) 
+                else if (yr[j] > 0.02)
                     {
                     cpgmove (xr[j],.015);
                     cpgdraw (xr[j],.02);
@@ -594,7 +594,7 @@ int generate_graphs (struct scan_struct *root,
                                         /* Ref station blue */
             cpgsci (4);
             maxj = 0;
-            for (j=0; j<np; j++) 
+            for (j=0; j<np; j++)
                 {                           /* Check range of data */
                 yr[j] = plot.seg_refscnt_usb[i][j];
                 if (yr[j] < 0.0) ;
@@ -603,7 +603,7 @@ int generate_graphs (struct scan_struct *root,
                     cpgmove (xr[j],0.56);
                     cpgdraw (xr[j],0.54);
                     }
-                else if (yr[j] > 0.72) 
+                else if (yr[j] > 0.72)
                     {
                     cpgmove (xr[j],0.70);
                     cpgdraw (xr[j],0.72);
@@ -617,7 +617,7 @@ int generate_graphs (struct scan_struct *root,
             {
             cpgsci (2);
             maxj = 0;
-            for (j=0; j<np; j++) 
+            for (j=0; j<np; j++)
                 {                           /* Check range of data */
                 yr[j] = plot.seg_remscnt_usb[i][j];
                 if (yr[j] < 0.0) ;
@@ -626,7 +626,7 @@ int generate_graphs (struct scan_struct *root,
                     cpgmove (xr[j],0.56);
                     cpgdraw (xr[j],0.54);
                     }
-                else if (yr[j] > 0.72) 
+                else if (yr[j] > 0.72)
                     {
                     cpgmove (xr[j],0.70);
                     cpgdraw (xr[j],0.72);
@@ -650,7 +650,7 @@ int generate_graphs (struct scan_struct *root,
             {
             cpgsci (4);
             maxj = 0;
-            for (j=0; j<np; j++) 
+            for (j=0; j<np; j++)
                 {
                 yr[j] = plot.seg_refscnt_lsb[i][j];
                 if (yr[j] < 0.0) ;
@@ -659,7 +659,7 @@ int generate_graphs (struct scan_struct *root,
                     cpgmove (xr[j],0.56);
                     cpgdraw (xr[j],0.54);
                     }
-                else if (yr[j] > 0.72) 
+                else if (yr[j] > 0.72)
                     {
                     cpgmove (xr[j],0.70);
                     cpgdraw (xr[j],0.72);
@@ -673,7 +673,7 @@ int generate_graphs (struct scan_struct *root,
             {
             cpgsci (2);
             maxj = 0;
-            for (j=0; j<np; j++) 
+            for (j=0; j<np; j++)
                 {
                 yr[j] = plot.seg_remscnt_lsb[i][j];
                 if (yr[j] < 0.0) ;
@@ -682,7 +682,7 @@ int generate_graphs (struct scan_struct *root,
                     cpgmove (xr[j],0.56);
                     cpgdraw (xr[j],0.54);
                     }
-                else if (yr[j] > 0.72) 
+                else if (yr[j] > 0.72)
                     {
                     cpgmove (xr[j],0.70);
                     cpgdraw (xr[j],0.72);
@@ -697,7 +697,7 @@ int generate_graphs (struct scan_struct *root,
         cpgsci (1);
         cpgslw (1.0);
         cpgsch (0.5);
-        cpgsvp (0.05 + (i-start_plot)*plotwidth, 0.05 + (i+1-start_plot)*plotwidth, 
+        cpgsvp (0.05 + (i-start_plot)*plotwidth, 0.05 + (i+1-start_plot)*plotwidth,
                 yplace - 0.05, yplace);
         yplace -= 0.065;
                                         /* Draw tick marks on bottom edge, in */
@@ -720,7 +720,7 @@ int generate_graphs (struct scan_struct *root,
                                         /* Ref station green */
         cpgsci (3);
         cpgslw (lwid);
-        for (j=0; j<np; j++) 
+        for (j=0; j<np; j++)
             yr[j] = plot.seg_refpcal[i][j];
         cpgpt (np, xr, yr, -1);
                                         /* Rem station magenta */
@@ -739,7 +739,7 @@ int generate_graphs (struct scan_struct *root,
             cpgmtxt ("L", 1.5, 0.5, 0.5, "pcal \\gh");
             }
                                         /* Right ticks/axis labels */
-        if ((i == nplots-2+start_plot) || (nplots == 1)) 
+        if ((i == nplots-2+start_plot) || (nplots == 1))
             {
             cpgsch (0.35);
             cpgbox ("", 0.0, 0.0, "CMST", 0.0, 0.0);

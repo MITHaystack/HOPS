@@ -18,7 +18,7 @@ extern void   msg (char *, int, ...);
 
 void apply_passband (int sb, int ap,
                      struct freq_corel *fdata,
-                     complex *xp_spectrum,
+                     hops_complex *xp_spectrum,
                      int npts,
                      struct data_corel *datum)
     {
@@ -39,7 +39,7 @@ void apply_passband (int sb, int ap,
     // extern struct type_sumb_tatus status;
 
     dv = (param.corr_type == DIFX) ? 4 : 2 ;
-    
+
                                     /* return immediately if no filtering
                                      * is desired (still set to defaults) */
     if (param.passband[0] == 0.0 && param.passband[1] == 1.0E6)
@@ -77,7 +77,7 @@ void apply_passband (int sb, int ap,
             ibot = (1.0 - (param_passband_1_ - bottom) / bw) * npts /dv + 0.5;
         else
             ibot = -1;
-    
+
         if (param_passband_0_ < bottom)
             itop = npts + 1;
         else if (param_passband_0_ < top)
@@ -99,7 +99,7 @@ void apply_passband (int sb, int ap,
             ibot = (param_passband_0_ - bottom) / bw * npts /dv + 0.5;
         else
             ibot = npts + 1;
-    
+
         if (param_passband_1_ < bottom)
             itop = -1;
         else if (param_passband_1_ < top)

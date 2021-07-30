@@ -14,7 +14,7 @@
 
 extern void   msg (char *, int, ...);
 
-void apply_video_bp (complex *xp_spec,
+void apply_video_bp (hops_complex *xp_spec,
                      int npts,
                      struct type_pass *pass)
     {

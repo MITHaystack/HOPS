@@ -38,7 +38,7 @@
 #define MAXSTATIONS 32
 #define MAXIND 8192
 #define MAXAP 8192                      /* debug!! make larger, but with
-                                           more clever code in plot_data.h
+                                           more clever code in plot_data.h 
                                            rjc 99.8.9                */
 #define MAXLAG 8192
 

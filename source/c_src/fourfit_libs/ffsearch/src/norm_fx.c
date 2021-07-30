@@ -24,7 +24,7 @@
 /************************************************************************/
 #include <stdio.h>
 #include <math.h>
-#include <complex.h>
+#include "hops_complex.h"
 #include <fftw3.h>
 #include "mk4_data.h"
 #include "param_struct.h"
@@ -47,9 +47,9 @@ void norm_fx (struct type_pass *pass,
     int sb, st, i, rev_i, j, l, m;
     static int nlags = 0;
     int ip, ips;
-    static complex xp_spec[4*MAXLAG];
-    static complex xcor[4*MAXLAG], S[4*MAXLAG], xlag[4*MAXLAG];
-    complex z;
+    static hops_complex xp_spec[4*MAXLAG];
+    static hops_complex xcor[4*MAXLAG], S[4*MAXLAG], xlag[4*MAXLAG];
+    hops_complex z;
     double factor, mean;
     double diff_delay, deltaf, polcof, polcof_sum, phase_shift, dpar;
     int freq_no,

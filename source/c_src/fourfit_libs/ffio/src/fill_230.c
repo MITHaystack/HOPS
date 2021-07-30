@@ -8,7 +8,7 @@
 /************************************************************************/
 #include <stdio.h>
 #include <math.h>
-#include <complex.h>
+#include "hops_complex.h"
 #include <fftw3.h>
 #include "mk4_data.h"
 #include "param_struct.h"
@@ -23,8 +23,8 @@ int ap,
 struct type_230 *t230)
     {
     struct data_corel *datum;
-    complex value;
-    static complex work_array[4 * MAXLAG];
+    hops_complex value;
+    static hops_complex work_array[4 * MAXLAG];
     double theta;
     int i, j, lag, nl;
     int stnpol[2][4] = {0, 1, 0, 1, 0, 1, 1, 0}; // [stn][pol] = 0:L, 1:R
