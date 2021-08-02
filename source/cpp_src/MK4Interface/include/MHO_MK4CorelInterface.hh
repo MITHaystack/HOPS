@@ -44,12 +44,15 @@ class MHO_MK4CorelInterface
         void SetVexFile(const std::string& vex){fVexFile = vex;}
         void SetCorelFile(const std::string& corel){fCorelFile = corel;}
 
+        //get raw mk4 corel data
+        struct mk4_corel* GetCorelData(){ return fCorel;};
+
         //read the vex and corel files and dump into new format
         void ExtractCorelFile();
 
         //TODO FIXME:
-        //Depending on how the return values are managed by the external caller 
-        //the return values here are a potential memory leak, so we should 
+        //Depending on how the return values are managed by the external caller
+        //the return values here are a potential memory leak, so we should
         //consider replacing the raw ptr return value with smart pointers.
         //For now we assume the caller will handle clean-up/deletion, so we do
         //not attempt to delete fExtractedVisibilities/fExtractedWeights in the

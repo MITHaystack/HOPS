@@ -18,6 +18,14 @@
 
 #include "MHO_NormFX.hh"
 
+extern "C"
+{
+    #include "mk4_data.h"
+    #include "param_struct.h"
+    #include "pass_struct.h"
+}
+
+
 using namespace hops;
 
 
@@ -164,7 +172,10 @@ bool GetStationData(MHO_DirectoryInterface& dirInterface,
 
 }
 
+void ConstructParamStruct(struct type_param* param)
+{
 
+}
 
 
 
@@ -184,25 +195,25 @@ bool GetStationData(MHO_DirectoryInterface& dirInterface,
 //convert a station data  file
 void ConvertStation(const std::string root_file, const std::string& input_file, station_coord_data_type*& st_data)
 {
-    MHO_MK4StationInterface mk4inter;
 
-    std::cout<<"input_file = "<<input_file<<std::endl;
-    mk4inter.SetStationFile(input_file);
-    mk4inter.SetVexFile(root_file);
-    st_data = mk4inter.ExtractStationFile();
 }
 
 
 
-//in original code PARAM and STATUS structs are global extern variables
-// void ConstructPassStruct();
-// void ConstructParamStruct();
-// void ConstructStatusStruct();
+
+
+
+
+
+
+
+
+
 
 
 int main(int argc, char** argv)
 {
-    std::string usage = "ConvertMk4Data -i <input_directory> -b <baseline>";
+    std::string usage = "TestNormFX -i <input_directory> -b <baseline>";
 
     MHO_Message::GetInstance().AcceptAllKeys();
     MHO_Message::GetInstance().SetMessageLevel(eDebug);

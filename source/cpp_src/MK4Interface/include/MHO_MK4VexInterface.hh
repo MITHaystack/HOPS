@@ -23,6 +23,7 @@ extern "C"
 #include <string>
 #include "json_wrapper.hh"
 
+
 namespace hops
 {
 
@@ -35,6 +36,10 @@ class MHO_MK4VexInterface
 
         void OpenVexFile(std::string file_path);
 
+        // //optional point the vex interface to an external struct
+        // //to where the data will be read into
+        // void SetVex(struct vex* root);
+
         struct vex* GetVex();
 
         bool ExportVexFileToJSON(json& json_obj);
@@ -42,6 +47,7 @@ class MHO_MK4VexInterface
     private:
 
         bool fHaveVex;
+        bool fOwnVex;
         struct vex* fVex;
 
 
