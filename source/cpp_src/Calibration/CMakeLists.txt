@@ -39,7 +39,7 @@ if(HOPS_DEV_USE_OLD)
 
     #include library headers
     foreach(path ${RELPATH_LIST})
-        include_directories(${CMAKE_CURRENT_SOURCE_DIR}/${path}/include)
+        hops_internal_include_directories(${CMAKE_CURRENT_SOURCE_DIR}/${path}/include)
     endforeach(path)
 
 
