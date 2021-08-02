@@ -37,12 +37,10 @@
 #define LIN_MODE 1
 #define MIXED_MODE 2
 
-void norm_fx (struct type_pass* pass,
-              struct type_param* param,
-              struct type_status* status,
-              int fr,
+void norm_fx (struct type_pass *pass, 
+              int fr, 
               int ap)
-    {
+    { 
     struct type_120 *t120;
     struct freq_corel *fdata;
     struct data_corel *datum;
@@ -60,14 +58,14 @@ void norm_fx (struct type_pass* pass,
         pol,
         pols,                       // bit-mapped pols to be processed in this pass
         usb_present, lsb_present,
-        usb_bypol[4],lsb_bypol[4],
+        usb_bypol[4],lsb_bypol[4], 
         lastpol[2];                 // last pol index with data present, by sideband
     int datum_uflag, datum_lflag;
     int stnpol[2][4] = {0, 1, 0, 1, 0, 1, 1, 0}; // [stn][pol] = 0:L/X/H, 1:R/Y/V
     static fftw_plan fftplan;
 
-    // extern struct type_param param;
-    // extern struct type_status status;
+    extern struct type_param param;
+    extern struct type_status status;
 
     //determine if the ref and rem stations are using circular or linear
     //feeds, or it is some combination
@@ -85,13 +83,13 @@ void norm_fx (struct type_pass* pass,
     else                            // linear combination of polarizations
         {
         ips = 0;
-        pols = param->pol;
+        pols = param.pol;
         }
-
+        
                                     // do fft plan only iff nlags changes
-    if (param->nlags != nlags)
+    if (param.nlags != nlags)
         {
-        nlags = param->nlags;
+        nlags = param.nlags;
         fftplan = fftw_plan_dft_1d (4 * nlags, S, xlag, FFTW_FORWARD, FFTW_MEASURE);
         }
     freq_no = fcode(pass->pass_data[fr].freq_code, pass->control.chid);
@@ -101,11 +99,11 @@ void norm_fx (struct type_pass* pass,
                                     /* Convenience pointer */
     datum = fdata->data + ap;
                                     // differenced parallactic angle
-    dpar = param->par_angle[1] - param->par_angle[0];
+    dpar = param.par_angle[1] - param.par_angle[0];
                                         /* Initialize */
     for (i = 0; i < nlags*4; i++)
         S[i] = 0.0;
-
+        
     datum->sband = 0;
                                     /* -1.0 means no data, not zero weight */
     datum->usbfrac = -1.0;
@@ -137,7 +135,7 @@ void norm_fx (struct type_pass* pass,
         }
     datum->sband = usb_present - lsb_present;
                                     /*  sideband # -->  0=upper , 1= lower */
-    for (sb = 0; sb < 2; sb++)
+    for (sb = 0; sb < 2; sb++) 
       {
       for (i = 0; i < nlags*4; i++) // clear xcor & xp_spec for pol sum into them
           {
@@ -147,7 +145,7 @@ void norm_fx (struct type_pass* pass,
                                     // loop over polarization products
       for (ip=ips; ip<pass->pol+1; ip++)
         {
-        if (param->pol)
+        if (param.pol)
             pol = ip;
                                     // If no data for this sb/pol, go on to next
         if ((sb == 0 && usb_bypol[ip] == 0)
@@ -220,8 +218,8 @@ void norm_fx (struct type_pass* pass,
                                     // determine data weights by sideband
         if (ip == lastpol[sb])
             {                       // last included polarization, do totals
-            status->ap_num[sb][fr]++;
-            status->total_ap++;
+            status.ap_num[sb][fr]++;
+            status.total_ap++;
                                     // sum to micro-edited totals
             if (sb)                 // lower sideband
                 {                   // 0 weight encoded by negative 0
@@ -230,9 +228,9 @@ void norm_fx (struct type_pass* pass,
                     datum->lsbfrac = 1.0;
                 else
                     datum->lsbfrac = t120->fw.weight;
-                status->ap_frac[sb][fr] += datum->lsbfrac;
-                status->total_ap_frac   += datum->lsbfrac;
-                status->total_lsb_frac  += datum->lsbfrac;
+                status.ap_frac[sb][fr] += datum->lsbfrac;
+                status.total_ap_frac   += datum->lsbfrac;
+                status.total_lsb_frac  += datum->lsbfrac;
                 }
             else                    // upper sideband
                 {
@@ -240,16 +238,16 @@ void norm_fx (struct type_pass* pass,
                     datum->usbfrac = 1.0;
                 else
                     datum->usbfrac = t120->fw.weight;
-                status->ap_frac[sb][fr] += datum->usbfrac;
-                status->total_ap_frac   += datum->usbfrac;
-                status->total_usb_frac  += datum->usbfrac;
+                status.ap_frac[sb][fr] += datum->usbfrac;
+                status.total_ap_frac   += datum->usbfrac;
+                status.total_usb_frac  += datum->usbfrac;
                 }
             }
 
-                                    // add in phase effects if multitone delays
+                                    // add in phase effects if multitone delays 
                                     // were extracted
-        if (pass->control.nsamplers && param->pc_mode[0] == MULTITONE
-                                    && param->pc_mode[1] == MULTITONE)
+        if (pass->control.nsamplers && param.pc_mode[0] == MULTITONE 
+                                    && param.pc_mode[1] == MULTITONE)      
             diff_delay = +1e9 * (datum->rem_sdata.mt_delay[stnpol[1][pol]]
                                - datum->ref_sdata.mt_delay[stnpol[0][pol]]);
                                     // ##DELAY_OFFS## otherwise assume user has
@@ -266,12 +264,12 @@ void norm_fx (struct type_pass* pass,
             {                       // filter out any nan's, if present
             if (isnan (t120->ld.spec[i].re) || isnan (t120->ld.spec[i].im))
                 {
-                msg ("omitting nan's in visibility for ap %d fr %d lag %i",
+                msg ("omitting nan's in visibility for ap %d fr %d lag %i", 
                       2, ap, fr, i);
                 }
                                     // add in iff this is a requested pol product
-            else if (param->pol & 1<<ip || param->pol == 0)
-                {
+            else if (param.pol & 1<<ip || param.pol == 0)
+                {           
                 z = t120->ld.spec[i].re + I * t120->ld.spec[i].im;
                                     // rotate each pol prod by pcal prior to adding in
                 if (sb==0)
@@ -280,31 +278,31 @@ void norm_fx (struct type_pass* pass,
                     z = z * conj (datum->pc_phasor[ip]);
                                     // scale phasor by polarization coefficient
                 z = z * polcof;
-                                    // corrections to phase as fn of freq based upon
+                                    // corrections to phase as fn of freq based upon 
                                     // delay calibrations
 
-                                    // calculate offset frequency in GHz
+                                    // calculate offset frequency in GHz 
                                     // from DC edge for this spectral point
-                deltaf = -2e-3 * i / (2e6 * param->samp_period * nlags);
+                deltaf = -2e-3 * i / (2e6 * param.samp_period * nlags);
 
                 // One size may not fit all.  The code below is a compromise
                 // between current geodetic practice and current EHT needs.
-                if (param->pc_mode[0] == MANUAL && param->pc_mode[1] == MANUAL)
+                if (param.pc_mode[0] == MANUAL && param.pc_mode[1] == MANUAL)
                     {
                     // the correction had the wrong sign and minor O(1/nlags) error
                     // if one is trying to keep the mean phase of this channel fixed
-                    phase_shift = - 1e-3 * diff_delay / (4e6 * param->samp_period);
+                    phase_shift = - 1e-3 * diff_delay / (4e6 * param.samp_period);
                     phase_shift *= - (double)(nlags - 2) / (double)(nlags);
                     // per-channel phase should now be stable against delay adjustments
                     }
                 else
                     {
                                     // correction to mean phase depends on sideband
-                    phase_shift = - 1e-3 * diff_delay / (4e6 * param->samp_period);
+                    phase_shift = - 1e-3 * diff_delay / (4e6 * param.samp_period);
                     if (sb)
                         phase_shift = -phase_shift;
                     }
-                                    // apply phase ramp to spectral points
+                                    // apply phase ramp to spectral points 
                 z = z * cexp (-2.0 * M_PI * I * (diff_delay * deltaf + phase_shift));
                 xp_spec[i] += z;
                 }
@@ -355,11 +353,11 @@ void norm_fx (struct type_pass* pass,
               factor = datum->lsbfrac;
                                     // DC+highest goes into middle element of the S array
               sindex = i ? 4 * nlags - i : 2 * nlags;
-              S[sindex] += factor * conj (xp_spec[i] *
-                  cexp (I * (status->lsb_phoff[0] - status->lsb_phoff[1])));
+              S[sindex] += factor * conj (xp_spec[i] * 
+                  cexp (I * (status.lsb_phoff[0] - status.lsb_phoff[1])));
               }
           }
-      }                             // bottom of sideband loop
+      }                             // bottom of sideband loop 
 
                                     /* Normalize data fractions
                                        The resulting sbdelay functions which
@@ -377,12 +375,12 @@ void norm_fx (struct type_pass* pass,
         factor += datum->usbfrac;
     if (datum->lsbfrac >= 0.0)
         factor += datum->lsbfrac;
-    if ((datum->usbfrac >= 0.0) && (datum->lsbfrac >= 0.0))
+    if ((datum->usbfrac >= 0.0) && (datum->lsbfrac >= 0.0)) 
         factor /= 4.0;              // x2 factor for sb and for polcof
                                     // correct for multiple pols being added in
 
     //For linear pol IXY fourfitting, make sure that we normalize for the two pols
-    if( param->pol == POL_IXY)
+    if( param.pol == POL_IXY)
         {
         factor *= 2.0;
         }
@@ -393,7 +391,7 @@ void norm_fx (struct type_pass* pass,
 
     //Question:
     //why do we do this check? factor should never be negative (see above)
-    //and if factor == 0, is this an error that should be flagged?
+    //and if factor == 0, is this an error that should be flagged? 
     if (factor > 0.0)
         factor = 1.0 / factor;
     //Answer:
@@ -401,14 +399,14 @@ void norm_fx (struct type_pass* pass,
     //no data was seen and thus the spectral array S is here set to zero.
     //That should result in zero values for datum->sbdelay, but why take chances.
 
-    msg ("usbfrac %f lsbfrac %f polcof_sum %f factor %1f flag %x", -2,
+    msg ("usbfrac %f lsbfrac %f polcof_sum %f factor %1f flag %x", -2, 
             datum->usbfrac, datum->lsbfrac, polcof_sum, factor, datum->flag);
                                     /* Collect the results */
     if(datum->flag != 0 && factor > 0.0)
         {
-        for (i=0; i<4*nlags; i++)
+        for (i=0; i<4*nlags; i++) 
             S[i] = S[i] * factor;
-                                    // corrections to phase as fn of freq based upon
+                                    // corrections to phase as fn of freq based upon 
                                     // delay calibrations
                                     /* FFT to single-band delay */
         fftw_execute (fftplan);
@@ -419,7 +417,7 @@ void norm_fx (struct type_pass* pass,
                                     /* Translate so i=nlags is central lag */
                                     // skip every other (interpolated) lag
             j = 2 * (i - nlags);
-            if (j < 0)
+            if (j < 0) 
                 j += 4 * nlags;
                                     /* re-normalize back to single lag */
                                     /* (property of FFTs) */
@@ -433,7 +431,7 @@ void norm_fx (struct type_pass* pass,
         }
     else                            /* No data */
         {
-        for (i = 0; i < nlags*2; i++)
+        for (i = 0; i < nlags*2; i++) 
             datum->sbdelay[i] = 0.0;
         }
     }
