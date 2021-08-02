@@ -18,8 +18,6 @@
 
 #include "MHO_NormFX.hh"
 
-//#define NO_OUTPUT
-
 extern "C"
 {
     #include "mk4_data.h"
@@ -27,6 +25,13 @@ extern "C"
     #include "pass_struct.h"
     #include "param_struct.h"
     #include "write_lock_mechanism.h"
+
+    /* External structure declarations */
+    struct type_param param;
+    struct type_status status;
+    struct mk4_fringe fringe;
+    struct type_plot plot;
+    struct c_block *cb_head;
 
     int
     default_cblock (struct c_block *cb_ptr);
@@ -41,16 +46,24 @@ extern "C"
     struct ivex_struct *ivex,
     struct mk4_sdata *sdata,
     struct freq_corel *corel,
-    struct type_param param);
-    //
-    struct type_param param;
-    struct type_pass pass;
-    struct type_status status;              /* External structure declarations */
-    struct mk4_fringe fringe;
-    struct mk4_corel cdata;
-    struct mk4_sdata sdata[MAXSTATIONS];
-    struct type_plot plot;
-    //struct type_meta meta;
+    struct type_param* param);
+
+    void
+    norm_fx (
+    struct type_pass* pass,
+    struct type_param* param,
+    struct type_status* status,
+    int fr,
+    int ap);
+
+    int
+    make_passes (
+    struct scan_struct *ovex,
+    struct freq_corel *corel,
+    struct type_param *param,
+    struct type_pass **pass,
+    int *npass);
+
 
     int baseline, base, ncorel_rec, lo_offset, max_seq_no;
     int do_only_new = FALSE;
@@ -65,17 +78,13 @@ extern "C"
     //global variables provided for signal handler clean up of lock files
     lockfile_data_struct global_lockfile_data;
 
-    struct c_block *cb_head;
-
-    int msglev = -5;
+    int msglev = -2;
     char progname[] = "test";
 
 }
 
 
 using namespace hops;
-
-
 
 
 //read and fill-in the vex data as json and vex struct objects
@@ -228,49 +237,6 @@ bool GetStationData(MHO_DirectoryInterface& dirInterface,
 
 ////////////////////////////////////////////////////////////////////////////////
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// //in original code PARAM and STATUS structs are global extern variables
-// void ConstructPassStruct(struct type_pass* pass)
-// {
-//
-// }
-//
-// void ConstructParamStruct(struct type_param* param)
-// {
-//
-// }
-//
-// void ConstructStatusStruct(struct type_status* status)
-// {
-//
-// }
-//
-//
-
-
-
-
-
-
-
-
-
-
-
-
 int main(int argc, char** argv)
 {
     std::string usage = "TestNormFX -i <input_directory> -b <baseline>";
@@ -310,9 +276,7 @@ int main(int argc, char** argv)
     }
 
     //split the baseline into reference/remote station IDs
-
     if(baseline.size() != 2){msg_fatal("main", "Baseline: "<<baseline<<" is not of length 2."<<eom);}
-
 
     //directory interface, load up the directory information
     MHO_DirectoryInterface dirInterface;
@@ -344,41 +308,107 @@ int main(int argc, char** argv)
     sdata[0] = *ref_sdata;
     sdata[1] = *rem_sdata;
 
-    struct type_param param;
+////////////////////////////////////////////////////////////////////////////////
+//now we need to set up the param, pass, and other data org structs
+
+    struct type_pass pass;
+    //global params (defined above as extern for linking reasons)
+    // struct type_param param;
+    // struct c_block *cb_head;
+    // struct type_status status;
+
+    // struct mk4_fringe fringe; //not used
+    // struct type_plot plot; //not used
+
+
     param.acc_period = root->evex->ap_length;
     param.speedup = root->evex->speedup_factor;
-    param.pol = POLMASK_RR;// POL_ALL;
+    param.pol = POLMASK_LL;// POL_ALL;
     param.first_plot = 0;
     param.nplot_chans = 0;
-    param.fmatch_bw_pct = 1.0;
+    param.fmatch_bw_pct = 25.0;
+    param.pc_mode[0] = MANUAL;
+    param.pc_mode[1] = MANUAL;
 
     //control block, default
     cb_head = &(pass.control);
+    cb_head->fmatch_bw_pct = 25.0;
     default_cblock(cb_head);
     set_defaults();
-    cb_head->fmatch_bw_pct = 25.0;
 
-    struct freq_corel* corel = new freq_corel[MAXFREQ];
+    struct type_pass* pass_ptr = &pass;
+    pass_ptr->npols = 1;
+    struct freq_corel* corel = &(pass_ptr->pass_data[0]);
     cdata->nalloc = 0;
     fringe.nalloc = 0;
     for (int i=0; i<MAXSTATIONS; i++){sdata[i].nalloc = 0;}
     for (int i=0; i<MAXFREQ; i++){ corel[i].data_alloc = FALSE;}
 
+    int npass = 0;
+    int retval = organize_data(cdata, root->ovex, root->ivex, sdata, corel, &param);
+    int passretval = make_passes (root->ovex, corel, &param, &pass_ptr, &npass);
+
     std::cout<<"st1 = "<<cdata->t100->baseline[0]<<std::endl;
     std::cout<<"st2 = "<<cdata->t100->baseline[1]<<std::endl;
+    std::cout<<"date = "<< std::string(cdata->id->date,16)<<std::endl;
+    std::cout<<"npass = "<<npass<<std::endl;
+    std::cout<<"nlags = "<<param.nlags<<std::endl;
+    std::cout<<"pass.pol = "<<pass.pol<<std::endl;
+
+    //allocate space for sbdelay
+    struct data_corel *datum;
+    hops_complex *sbarray, *sbptr;
+    int size = 2 * param.nlags * pass_ptr->nfreq * pass_ptr->num_ap;
+    sbarray = (hops_complex *)calloc (size, sizeof (hops_scomplex));
+    if (sbarray == NULL)
+    {
+        std::cout<<"mem alloc failure"<<std::endl;
+        return (-1);
+    }
+    sbptr = sbarray;
+    for (int fr=0; fr<pass_ptr->nfreq; fr++)
+    {
+        for (int ap=0; ap<pass_ptr->num_ap; ap++)
+        {
+            datum = pass_ptr->pass_data[fr].data + ap + pass_ptr->ap_off;
+            datum->sbdelay = sbptr;
+            sbptr += 2*param.nlags;
+            for(int i=0; i<4; i++)
+            {
+                //we don't want to do anything with p-cal right now,
+                //so just set it all to 1.0
+                //(otherwise they default to zero, and nothing gets done)
+                datum->pc_phasor[i] = cexp(0.0);
+            }
+        }
+    }
+
+    for (int fr=0; fr<pass_ptr->nfreq; fr++)
+    {
+        for (int ap=0; ap<pass_ptr->num_ap; ap++)
+        {
+            norm_fx(&pass, &param, &status, fr, ap);
+        }
+    }
+
+    std::cout<<"param.nlags = "<<param.nlags<<std::endl;
+    for (int fr=0; fr<pass_ptr->nfreq; fr++)
+    {
+        for (int ap=0; ap<pass_ptr->num_ap; ap++)
+        {
+            datum = pass_ptr->pass_data[fr].data + ap + pass_ptr->ap_off;
+            for(int i=0; i < 2*param.nlags; i++)
+            {
+                std::cout<<"datum @ "<<i<<" = "<<datum->sbdelay[i]<<std::endl;
+            }
+        }
+    }
 
 
-    int retval = organize_data(cdata, root->ovex, root->ivex, sdata, corel, param);
 
 
-    // //Now make the pass/param structs
-    // struct type_pass pass;
-    // struct type_param param;
-    // struct type_status status;
-    // ConstructPassStruct(&pass);
-    // ConstructParamStruct(&param);
-    // ConstructStatusStruct(&status);
-    //
+
+
 
     return 0;
 }
