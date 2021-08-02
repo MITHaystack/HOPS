@@ -21,11 +21,11 @@
 #include "pass_struct.h"
 #include "param_struct.h"
 
-#define NO_OUTPUT
+//#define NO_OUTPUT
 
 int fringe_search ( struct vex* root, struct type_pass* pass)
     {
-    int fr, ap, size, oret, rc; 
+    int fr, ap, size, oret, rc;
 
     struct data_corel *datum;
     complex *sbarray, *sbptr;
@@ -34,7 +34,7 @@ int fringe_search ( struct vex* root, struct type_pass* pass)
     extern struct type_status status;
     extern struct type_param param;
 
-    msg  ("Baseline %c%c subgroup %c", 1, 
+    msg  ("Baseline %c%c subgroup %c", 1,
            param.baseline[0], param.baseline[1], pass->pass_data[0].fgroup);
 
                                         /* Currently does default filtering */

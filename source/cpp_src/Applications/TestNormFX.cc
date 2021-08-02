@@ -18,6 +18,8 @@
 
 #include "MHO_NormFX.hh"
 
+//#define NO_OUTPUT
+
 extern "C"
 {
     #include "mk4_data.h"
