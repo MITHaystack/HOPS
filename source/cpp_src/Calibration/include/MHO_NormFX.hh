@@ -49,25 +49,11 @@ class MHO_NormFX: public MHO_BinaryNDArrayOperator<
     private:
 
 
-        //modify the original function to adapt it too the new data
-        //structures, we will also give it 'fake param/status' data
-        //this function version is to keep as close to the orginal
-        //as possible for testing/comparison
-<<<<<<< HEAD
-        void norm_fx(struct type_pass *pass, int fr, int ap){};
-
-        //this version of the function will gradually get modified
-        //until we can move functionality out of it entirely and
-        //make it more modular
-        void new_norm_fx(struct type_pass *pass, int fr, int ap){};
-=======
-        //void norm_fx(struct type_pass *pass, int fr, int ap);
-        //
         // //this version of the function will gradually get modified
         // //until we can move functionality out of it entirely and
         // //make it more modular
         void new_norm_fx(struct type_pass *pass, int fr, int ap);
->>>>>>> 4966648... creating frankenstein's monster
+
 
 };
 
