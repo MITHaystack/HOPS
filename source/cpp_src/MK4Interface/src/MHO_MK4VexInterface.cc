@@ -1,7 +1,9 @@
 #include "MHO_MK4VexInterface.hh"
 
 #include "json_wrapper.hh"
+
 #include "MHO_ScanStructWrapper.hh"
+#include "MHO_Message.hh"
 
 namespace hops
 {
@@ -10,13 +12,34 @@ namespace hops
 MHO_MK4VexInterface::MHO_MK4VexInterface()
 {
     fVex = (struct vex *) calloc ( 1, sizeof(struct vex) );
+    fOwnVex = true;
 };
 
 
 MHO_MK4VexInterface::~MHO_MK4VexInterface()
 {
-    free(fVex);
+    if(fOwnVex)
+    {
+        free(fVex);
+    }
 };
+
+
+// void
+// MHO_MK4VexInterface::SetVex(struct vex* root)
+// {
+//     if(fOwnVex)
+//     {
+//         free(fVex);
+//         fVex = root;
+//         fOwnVex = false;
+//     }
+//     else
+//     {
+//         //just update the pointer, assume all memory managment is done externally
+//         fVex = root;
+//     }
+// }
 
 
 void
@@ -28,13 +51,14 @@ MHO_MK4VexInterface::OpenVexFile(std::string file_path)
     if(retval !=0 )
     {
         fHaveVex = false;
-        std::cout<<"Error: "<< retval <<" when reading file: "<<file_path<<std::endl;
+        msg_error("mk4interface", "return value: "<< retval  << " encountered when reading file: " << file_path << eom);
+        // std::cout<<"Error: "<< retval <<" when reading file: "<<file_path<<std::endl;
     }
     else
     {
         //do something with the vex object
         fHaveVex = true;
-        std::cout<<"sucessfully read vex root file"<<std::endl;
+        msg_info("mk4interface", "successfully read vex file: " << file_path << eom);
     }
 
 }
