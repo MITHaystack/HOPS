@@ -29,6 +29,9 @@ extern "C"
     #include "write_lock_mechanism.h"
 
     int
+    default_cblock (struct c_block *cb_ptr);
+
+    int
     set_defaults();
 
     int
@@ -41,6 +44,7 @@ extern "C"
     struct type_param param);
     //
     struct type_param param;
+    struct type_pass pass;
     struct type_status status;              /* External structure declarations */
     struct mk4_fringe fringe;
     struct mk4_corel cdata;
@@ -346,6 +350,13 @@ int main(int argc, char** argv)
     param.pol = POLMASK_RR;// POL_ALL;
     param.first_plot = 0;
     param.nplot_chans = 0;
+    param.fmatch_bw_pct = 1.0;
+
+    //control block, default
+    cb_head = &(pass.control);
+    default_cblock(cb_head);
+    set_defaults();
+    cb_head->fmatch_bw_pct = 25.0;
 
     struct freq_corel* corel = new freq_corel[MAXFREQ];
     cdata->nalloc = 0;
@@ -353,11 +364,8 @@ int main(int argc, char** argv)
     for (int i=0; i<MAXSTATIONS; i++){sdata[i].nalloc = 0;}
     for (int i=0; i<MAXFREQ; i++){ corel[i].data_alloc = FALSE;}
 
-
     std::cout<<"st1 = "<<cdata->t100->baseline[0]<<std::endl;
     std::cout<<"st2 = "<<cdata->t100->baseline[1]<<std::endl;
-    set_defaults();
-
 
 
     int retval = organize_data(cdata, root->ovex, root->ivex, sdata, corel, param);
