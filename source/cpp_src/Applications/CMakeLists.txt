@@ -52,8 +52,14 @@ set(SOURCE_BASENAMES
     TestConvertMk4Visibilities
     DumpFileObjectKeys
     ConvertMk4Data
-    #TestNormFX
 )
+
+#link against old fourfit libraries (temporary measure while we try to debug/transition)
+if(HOPS_DEV_USE_OLD)
+    list(APPEND SOURCE_BASENAMES 
+        TestNormFX
+    )
+endif(HOPS_DEV_USE_OLD)
 
 #for testing purposes only -- not intended to be a dependency
 if (HOPS_USE_ROOT)
