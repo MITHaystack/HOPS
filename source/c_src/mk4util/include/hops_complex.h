@@ -1,7 +1,9 @@
 #ifndef HOPS_COMPLEX_WRAPPER__
 #define HOPS_COMPLEX_WRAPPER__
 
+#ifndef __cplusplus
 #include <complex.h>
+#endif
 
 ////////////////////////////////////////////////////////////////////////////////
 #ifdef __cplusplus
@@ -20,22 +22,12 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 #ifdef __cplusplus
-    #if defined(complex) && defined(I)
-        #undef complex
-        #undef I
-    #endif
     } //end of extern C
 #endif /* __cplusplus */
 ////////////////////////////////////////////////////////////////////////////////
 
-
-#ifndef __cplusplus
-    #define hops_complex hops_complex_impl
-#else
-    #include <complex>
-    #define hops_complex std::complex<double>
-#endif
-
+//alias to the implementation
+#define hops_complex hops_complex_impl
 
 typedef struct hops_complex_tag	/* needed in type_230 */
 {
