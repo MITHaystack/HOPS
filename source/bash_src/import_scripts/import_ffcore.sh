@@ -87,7 +87,7 @@ else
     "wait_for_write_lock.c"
     "clear_pass.c"
     "make_flist.c"
-	"make_passes.c"
+    "make_passes.c"
     "fill_param.c"
     "read_sdata.c"
     "time_range.c"
@@ -99,6 +99,7 @@ else
     "set_pointers.c"
     "generate_cblock.c"
     "vrot.c"
+    "pcal_interp.c"
     )
 
     source_src_dir="${HOPS3_SRC_DIR}/postproc/fourfit"
