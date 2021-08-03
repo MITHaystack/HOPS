@@ -45,6 +45,7 @@ struct type_param param;
 struct type_status status;              /* External structure declarations */
 struct mk4_fringe fringe;
 struct mk4_corel cdata;
+struct mk4_corel* pcdata;
 struct mk4_sdata sdata[MAXSTATIONS];
 struct type_plot plot;
 struct type_meta meta;
@@ -119,6 +120,7 @@ main (int argc, char** argv)
         }
     pexec = argv[0];                    // point to executable name
                                         /* Initialize IO library allocation */
+    pcdata = &cdata;
     cdata.nalloc = 0;
     fringe.nalloc = 0;
     for (i=0; i<MAXSTATIONS; i++)
