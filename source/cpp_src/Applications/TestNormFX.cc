@@ -27,6 +27,7 @@ extern "C"
     #include "write_lock_mechanism.h"
 
     /* External structure declarations */
+    struct mk4_corel cdata;
     struct type_param param;
     struct type_status status;
     struct mk4_fringe fringe;
@@ -113,7 +114,7 @@ bool GetVex(MHO_DirectoryInterface& dirInterface,
 bool GetCorel(MHO_DirectoryInterface& dirInterface,
               MHO_MK4CorelInterface& corelInterface,
               const std::string& baseline,
-              struct mk4_corel*& cdata,
+              struct mk4_corel*& pcdata,
               ch_baseline_data_type*& ch_bl_data,
               ch_baseline_weight_type*& ch_bl_wdata
 )
@@ -168,7 +169,7 @@ bool GetCorel(MHO_DirectoryInterface& dirInterface,
             }
 
             //get the raw mk4 type data
-            cdata = corelInterface.GetCorelData();
+            pcdata = corelInterface.GetCorelData();
 
             if(exe && wexe){corel_ok = true;}
             break;
@@ -291,11 +292,11 @@ int main(int argc, char** argv)
 
     //the corel file information for this baseline
     MHO_MK4CorelInterface corelInterface;
-    struct mk4_corel* cdata = nullptr;
+    struct mk4_corel* pcdata = nullptr;
     ch_baseline_data_type* ch_bl_data = nullptr;
     ch_baseline_weight_type* ch_bl_wdata = nullptr;
-    bool corel_ok = GetCorel(dirInterface, corelInterface, baseline, cdata, ch_bl_data, ch_bl_wdata);
-    std::cout<<"data ptrs = "<<cdata<<", "<<ch_bl_data<<", "<<ch_bl_wdata<<std::endl;
+    bool corel_ok = GetCorel(dirInterface, corelInterface, baseline, pcdata, ch_bl_data, ch_bl_wdata);
+    std::cout<<"data ptrs = "<<pcdata<<", "<<ch_bl_data<<", "<<ch_bl_wdata<<std::endl;
 
     //get the station data information for the ref/rem stations of this baseline
     MHO_MK4StationInterface refInterface, remInterface;
@@ -339,18 +340,18 @@ int main(int argc, char** argv)
     struct type_pass* pass_ptr = &pass;
     pass_ptr->npols = 1;
     struct freq_corel* corel = &(pass_ptr->pass_data[0]);
-    cdata->nalloc = 0;
+    pcdata->nalloc = 0;
     fringe.nalloc = 0;
     for (int i=0; i<MAXSTATIONS; i++){sdata[i].nalloc = 0;}
     for (int i=0; i<MAXFREQ; i++){ corel[i].data_alloc = FALSE;}
 
     int npass = 0;
-    int retval = organize_data(cdata, root->ovex, root->ivex, sdata, corel, &param);
+    int retval = organize_data(pcdata, root->ovex, root->ivex, sdata, corel, &param);
     int passretval = make_passes (root->ovex, corel, &param, &pass_ptr, &npass);
 
-    std::cout<<"st1 = "<<cdata->t100->baseline[0]<<std::endl;
-    std::cout<<"st2 = "<<cdata->t100->baseline[1]<<std::endl;
-    std::cout<<"date = "<< std::string(cdata->id->date,16)<<std::endl;
+    std::cout<<"st1 = "<<pcdata->t100->baseline[0]<<std::endl;
+    std::cout<<"st2 = "<<pcdata->t100->baseline[1]<<std::endl;
+    std::cout<<"date = "<< std::string(pcdata->id->date,16)<<std::endl;
     std::cout<<"npass = "<<npass<<std::endl;
     std::cout<<"nlags = "<<param.nlags<<std::endl;
     std::cout<<"pass.pol = "<<pass.pol<<std::endl;
@@ -378,7 +379,8 @@ int main(int argc, char** argv)
                 //we don't want to do anything with p-cal right now,
                 //so just set it all to 1.0
                 //(otherwise they default to zero, and nothing gets done)
-                datum->pc_phasor[i] = cexp(0.0);
+                datum->pc_phasor[i][0] = 1.0;
+                datum->pc_phasor[i][1] = 0.0;
             }
         }
     }
