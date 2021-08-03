@@ -55,7 +55,7 @@ class MHO_NormFX: public MHO_BinaryNDArrayOperator<
         void new_norm_fx(struct type_pass *pass,
                          struct type_param* param,
                          struct type_status* status,
-                         int fr, int ap);
+                         int fr, int ap){};
 
         //private data structures to store what were 'extern'/globals
         //in the old code
