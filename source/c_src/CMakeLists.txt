@@ -46,11 +46,20 @@ hops_install_headers(${CMAKE_CURRENT_BINARY_DIR}/hops_config.h)
 hops_include_directories(${CMAKE_CURRENT_BINARY_DIR})
 hops_add_cflag(HAVE_CONFIG_H)
 
+
 #old HOPS is littered with implicit function declarations
 #since fixing properly this would require a header for each function 
-#for the time being we are just going to disable this warning
+#for the time being we are just going to disable this warning with:
+#    -Wno-implicit-function-declaration and -Wno-implicit-int
 
-set( CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wno-implicit-function-declaration" )
+#There are also a huge number of string formatting/truncation/overflow errors 
+#due to all the snprintf/sprintf use that need to be fixed, so diable format with:
+# -Wno-format 
+
+option( HOPS3_DISABLE_WARNINGS "Disable specific compiler warnings in HOPS3 c-code." ON)
+if(HOPS3_DISABLE_WARNINGS)
+    set( CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wno-implicit-int -Wno-implicit-function-declaration -Wno-format")
+endif(HOPS3_DISABLE_WARNINGS)
 
 #mk4 and vex c-libraries from old HOPS
 add_subdirectory(mk4util)
