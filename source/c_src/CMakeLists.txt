@@ -46,6 +46,12 @@ hops_install_headers(${CMAKE_CURRENT_BINARY_DIR}/hops_config.h)
 hops_include_directories(${CMAKE_CURRENT_BINARY_DIR})
 hops_add_cflag(HAVE_CONFIG_H)
 
+#old HOPS is littered with implicit function declarations
+#since fixing properly this would require a header for each function 
+#for the time being we are just going to disable this warning
+
+set( CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wno-implicit-function-declaration" )
+
 #mk4 and vex c-libraries from old HOPS
 add_subdirectory(mk4util)
 add_subdirectory(vex)
