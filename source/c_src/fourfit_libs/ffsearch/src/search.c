@@ -6,6 +6,7 @@
 
 
 #include <stdio.h>
+#include <string.h>
 #include <math.h>
 #include "hops_complex.h"
 #include <fftw3.h>
