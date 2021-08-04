@@ -22,7 +22,7 @@ libffplot_la_SOURCES = src/display_fplot.c src/generate_graphs.c \
 	src/generate_text.c src/grid.c src/make_plotdata.c \
 	src/make_postplot.c src/output.c src/plot_complex.c \
 	src/plot_graph.c src/put_char_at.c src/sprint_char_arr.c \
-	src/sprint_date.c src/plot_data_dir.c src/fit_vbp.c
+	src/plot_data_dir.c src/fit_vbp.c
 
 EXTRA_DIST = 
 
