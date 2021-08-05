@@ -26,14 +26,14 @@
 #define MIXED_MODE 2
 
 int fcode (char c, char *codes)
-	{
-	int i;
+{
+    int i;
 
-	for (i = 0; i < MAXFREQ; i++)
-		if (c == codes[i])
+    for (i = 0; i < MAXFREQ; i++)
+    	if (c == codes[i])
             return i;
     return -1;
-	}
+}
 
 
 
@@ -62,14 +62,17 @@ extern "C"
     int
     set_defaults();
 
-    int
+    int 
     organize_data (
     struct mk4_corel *cdata,
     struct scan_struct *ovex,
     struct ivex_struct *ivex,
     struct mk4_sdata *sdata,
     struct freq_corel *corel,
-    struct type_param* param);
+    struct type_param *param,
+    struct type_status *status,
+    struct c_block *cb_head
+    );
 
     void
     norm_fx (
@@ -86,7 +89,6 @@ extern "C"
     struct type_param *param,
     struct type_pass **pass,
     int *npass);
-
 
     int baseline, base, ncorel_rec, lo_offset, max_seq_no;
     int do_only_new = FALSE;
@@ -128,8 +130,8 @@ class MHO_NormFX: public MHO_BinaryNDArrayOperator<
         MHO_NormFX(){}
         virtual ~MHO_NormFX(){};
 
-        virtual bool Initialize() override {}
-        virtual bool ExecuteOperation() override {};
+        virtual bool Initialize() override {return true;}
+        virtual bool ExecuteOperation() override {return true;};
 
     private:
 
@@ -232,7 +234,9 @@ class MHO_NormFX: public MHO_BinaryNDArrayOperator<
             dpar = param->par_angle[1] - param->par_angle[0];
                                                 /* Initialize */
             for (i = 0; i < nlags*4; i++)
-                S[i] = 0.0;
+            {
+            //!    S[i] = 0.0;
+            }
 
             datum->sband = 0;
                                             /* -1.0 means no data, not zero weight */
@@ -294,8 +298,8 @@ class MHO_NormFX: public MHO_BinaryNDArrayOperator<
               {
               for (i = 0; i < nlags*4; i++) // clear xcor & xp_spec for pol sum into them
                   {
-                  xcor[i] = 0.0;
-                  xp_spec[i] = 0.0;
+                  // xcor[i] = 0.0;
+                  // xp_spec[i] = 0.0;
                   }
                                             // loop over polarization products
               for (ip=ips; ip<pass->pol+1; ip++)
@@ -417,22 +421,28 @@ class MHO_NormFX: public MHO_BinaryNDArrayOperator<
                                             // loop over spectral points
                 for (i=0; i<nlags/2; i++)
                     {                       // filter out any nan's, if present
-                    if (isnan (t120->ld.spec[i].re) || isnan (t120->ld.spec[i].im))
+                        //! if (isnan (t120->ld.spec[i].re) || isnan (t120->ld.spec[i].im))
+                        if(false)
                         {
-                        //msg ("omitting nan's in visibility for ap %d fr %d lag %i",
-                        //      2, ap, fr, i);
+                            //msg ("omitting nan's in visibility for ap %d fr %d lag %i",
+                            //      2, ap, fr, i);
                         }
-                                            // add in iff this is a requested pol product
-                    else if (param->pol & 1<<ip || param->pol == 0)
+                        else if (param->pol & 1<<ip || param->pol == 0)
                         {
-                        z = t120->ld.spec[i].re + I * t120->ld.spec[i].im;
+                            // add in iff this is a requested pol product
+
+                            //! z = t120->ld.spec[i].re + I * t120->ld.spec[i].im;
                                             // rotate each pol prod by pcal prior to adding in
                         if (sb==0)
-                            z = z * datum->pc_phasor[ip];
+                        {
+                            //! z = z * datum->pc_phasor[ip];
+                        }
                         else                // use conjugate of usb pcal tone for lsb
-                            z = z * conj (datum->pc_phasor[ip]);
+                        {
+                            //! z = z * conj (datum->pc_phasor[ip]);
+                        }
                                             // scale phasor by polarization coefficient
-                        z = z * polcof;
+                        //! z = z * polcof;
                                             // corrections to phase as fn of freq based upon
                                             // delay calibrations
 
@@ -458,9 +468,9 @@ class MHO_NormFX: public MHO_BinaryNDArrayOperator<
                                 phase_shift = -phase_shift;
                             }
                                             // apply phase ramp to spectral points
-                        std::complex<double> tmp = cexp (-2.0 * M_PI * I * (diff_delay * deltaf + phase_shift));
-                        z = z * tmp;
-                        xp_spec[i] += z;
+                        //! std::complex<double> tmp = cexp (-2.0 * M_PI * I * (diff_delay * deltaf + phase_shift));
+                        //! z = z * tmp;
+                        //! xp_spec[i] += z;
                         }
                     }                       // bottom of lags loop
                 }                           // bottom of polarization loop
@@ -505,7 +515,7 @@ class MHO_NormFX: public MHO_BinaryNDArrayOperator<
                   for (i = ibegin; i < nlags; i++)
                       {
                       factor = datum->usbfrac;
-                      S[i] += factor * xp_spec[i];
+                      //! S[i] += factor * xp_spec[i];
                       }
                   }
               else if (sb == 1 && datum->lsbfrac > 0.0)
@@ -515,8 +525,8 @@ class MHO_NormFX: public MHO_BinaryNDArrayOperator<
                       factor = datum->lsbfrac;
                                             // DC+highest goes into middle element of the S array
                       sindex = i ? 4 * nlags - i : 2 * nlags;
-                      std::complex<double> tmp2 = cexp (I * (status->lsb_phoff[0] - status->lsb_phoff[1]));
-                      S[sindex] += factor * conj (xp_spec[i] * tmp2 );
+                      //! std::complex<double> tmp2 = cexp (I * (status->lsb_phoff[0] - status->lsb_phoff[1]));
+                      //! S[sindex] += factor * conj (xp_spec[i] * tmp2 );
                       }
                   }
               }                             // bottom of sideband loop
@@ -567,7 +577,7 @@ class MHO_NormFX: public MHO_BinaryNDArrayOperator<
             if(datum->flag != 0 && factor > 0.0)
                 {
                 for (i=0; i<4*nlags; i++)
-                    S[i] = S[i] * factor;
+                    //! S[i] = S[i] * factor;
                                             // corrections to phase as fn of freq based upon
                                             // delay calibrations
                                             /* FFT to single-band delay */
@@ -586,15 +596,21 @@ class MHO_NormFX: public MHO_BinaryNDArrayOperator<
                                             // nlags-1 norm. iff zeroed-out DC
                                             // factor of 2 for skipped lags
                     if (pass->control.dc_block)
-                        datum->sbdelay[i] = xlag[j] / (double) (nlags / 2 - 1.0);
+                    {
+                        //! datum->sbdelay[i] = xlag[j] / (double) (nlags / 2 - 1.0);
+                    }
                     else
-                        datum->sbdelay[i] = xlag[j] / (double) (nlags / 2);
+                    {
+                        //! datum->sbdelay[i] = xlag[j] / (double) (nlags / 2);
+                    }
                     }
                 }
             else                            /* No data */
                 {
                 for (i = 0; i < nlags*2; i++)
-                    datum->sbdelay[i] = 0.0;
+                {
+                        //! datum->sbdelay[i] = 0.0;
+                }
                 }
 
 
@@ -607,9 +623,9 @@ class MHO_NormFX: public MHO_BinaryNDArrayOperator<
         fftw_plan fftplan;
         hops_complex xp_spec[4*MAXLAG];
         hops_complex xcor[4*MAXLAG], S[4*MAXLAG], xlag[4*MAXLAG];
-    }
+    };
 
-};
+} //end of hops namespace
 
 
 
@@ -712,8 +728,16 @@ bool GetVex(MHO_DirectoryInterface& dirInterface,
     //get list of all the files (and directories) in directory
     std::vector< std::string > allFiles;
     dirInterface.GetFileList(allFiles);
+
+    for(auto it = allFiles.begin(); it != allFiles.end(); it++)
+    {
+        std::cout<<"file = "<<*it<<std::endl;
+    }
+
     std::string root_file;
     dirInterface.GetRootFile(allFiles, root_file);
+
+    std::cout<<"root file name = "<<root_file<<std::endl;
 
     //convert root file ovex data to JSON, and export root/ovex ptr
     vexInterface.OpenVexFile(root_file);
@@ -809,6 +833,7 @@ bool GetStationData(MHO_DirectoryInterface& dirInterface,
                     station_coord_data_type*& rem_stdata)
 {
     std::string ref_st, rem_st, root_file;
+    std::cout<<"baseline = "<<baseline<<std::endl;
     ref_st = baseline.at(0);
     rem_st = baseline.at(1);
     std::vector< std::string > allFiles, stationFiles;
@@ -894,6 +919,8 @@ int main(int argc, char** argv)
     //split the baseline into reference/remote station IDs
     if(baseline.size() != 2){msg_fatal("main", "Baseline: "<<baseline<<" is not of length 2."<<eom);}
 
+    std::cout<<"baseline = "<<baseline<<std::endl;
+
     //directory interface, load up the directory information
     MHO_DirectoryInterface dirInterface;
     dirInterface.SetCurrentDirectory(input_dir);
@@ -904,6 +931,10 @@ int main(int argc, char** argv)
     json json_vex;
     struct vex* root = nullptr;
     bool ovex_ok = GetVex(dirInterface, vexInterface, json_vex, root);
+    if(!ovex_ok)
+    {
+        msg_fatal("main", "Could not parse vex file." << eom );
+    }
 
     //the corel file information for this baseline
     MHO_MK4CorelInterface corelInterface;
@@ -961,7 +992,7 @@ int main(int argc, char** argv)
     for (int i=0; i<MAXFREQ; i++){ corel[i].data_alloc = FALSE;}
 
     int npass = 0;
-    int retval = organize_data(pcdata, root->ovex, root->ivex, sdata, corel, &param);
+    int retval = organize_data(pcdata, root->ovex, root->ivex, sdata, corel, &param, &status, cb_head);
     int passretval = make_passes (root->ovex, corel, &param, &pass_ptr, &npass);
 
     std::cout<<"st1 = "<<pcdata->t100->baseline[0]<<std::endl;
@@ -1016,7 +1047,7 @@ int main(int argc, char** argv)
             datum = pass_ptr->pass_data[fr].data + ap + pass_ptr->ap_off;
             for(int i=0; i < 2*param.nlags; i++)
             {
-                std::cout<<"datum @ "<<i<<" = "<<datum->sbdelay[i]<<std::endl;
+                std::cout<<"datum @ "<<i<<" = ("<<datum->sbdelay[i][0]<<", "<<datum->sbdelay[i][1]<<")"<<std::endl;
             }
         }
     }
