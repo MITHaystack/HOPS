@@ -45,7 +45,6 @@ struct type_param param;
 struct type_status status;              /* External structure declarations */
 struct mk4_fringe fringe;
 struct mk4_corel cdata;
-struct mk4_corel* pcdata;
 struct mk4_sdata sdata[MAXSTATIONS];
 struct type_plot plot;
 struct type_meta meta;
@@ -120,7 +119,6 @@ main (int argc, char** argv)
         }
     pexec = argv[0];                    // point to executable name
                                         /* Initialize IO library allocation */
-    pcdata = &cdata;
     cdata.nalloc = 0;
     fringe.nalloc = 0;
     for (i=0; i<MAXSTATIONS; i++)
@@ -237,7 +235,7 @@ main (int argc, char** argv)
                                         /* Put data in useful form */
                                         /* Also, interpolate sdata info */
             msg ("Organizing data for file %s", 0, inputname);
-            if (organize_data (&cdata, root.ovex, root.ivex, sdata, corel) != 0)
+            if (organize_data (&cdata, root.ovex, root.ivex, sdata, corel, &param, &status, cb_head) != 0)
                 {
                 msg ("%sError organizing data for file %s, skipping", 2,
                     processmsg, inputname);

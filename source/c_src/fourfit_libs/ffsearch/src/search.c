@@ -105,7 +105,7 @@ int search (struct type_pass *pass)
             if (param.corr_type == MK4HDW)
                 norm_xf (pass, fr, ap);
             else                        // use spectral version
-                norm_fx (pass, fr, ap);
+                norm_fx (pass, &param, &status, fr, ap);
         
         msg ("Freq %d, ap's by sideband through norm = %d, %d", -1,
                 fr, status.ap_num[0][fr], status.ap_num[1][fr]);

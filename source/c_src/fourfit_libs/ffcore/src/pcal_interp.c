@@ -34,7 +34,8 @@ enum {LCP, RCP};
 int pcal_interp (struct mk4_sdata *sd1,
                  struct mk4_sdata *sd2,
                  struct type_param *param,
-                 struct freq_corel *corel)
+                 struct freq_corel *corel,
+                 struct mk4_corel *pcdata)
     {
     int stn, j, pc, ap, ch, f, ipc, ipcmin, ipcmax, i, n,
         pc_index[MAX_CHAN],
@@ -52,7 +53,6 @@ int pcal_interp (struct mk4_sdata *sd1,
     struct type_309 *t309;
     struct interp_sdata *isd;
     extern int do_accounting;
-    extern struct mk4_corel* pcdata;
     
     for (i=0; i<MAX_CHAN; i++)
         pc_index[i] = -1;

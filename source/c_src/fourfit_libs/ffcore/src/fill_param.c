@@ -31,12 +31,12 @@ fill_param (struct scan_struct *ovex,
             struct station_struct *stn1,
             struct station_struct *stn2,
             struct mk4_corel *cdata,
-            struct type_param *param)
+            struct type_param *param,
+            struct c_block *cb_head)
     {
     int i;
     double fact1, fact2, fact3;
     unsigned long ap_in_sysclks;
-    extern struct c_block *cb_head;
     struct c_block *cb_ptr;
                                         /* Record the baseline */
     strncpy (param->baseline, cdata->t100->baseline, 2);
