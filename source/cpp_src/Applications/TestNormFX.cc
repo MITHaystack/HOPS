@@ -16,7 +16,7 @@
 
 #include "MHO_DirectoryInterface.hh"
 
-#include "MHO_NormFX.hh"
+//#include "MHO_NormFX.hh"
 
 extern "C"
 {
@@ -33,6 +33,7 @@ extern "C"
     struct mk4_fringe fringe;
     struct type_plot plot;
     struct c_block *cb_head;
+    struct mk4_sdata sdata[MAXSTATIONS];
 
     int
     default_cblock (struct c_block *cb_ptr);
@@ -75,6 +76,7 @@ extern "C"
     int refringe = FALSE;
     int ap_per_seg = 0;
     int reftime_offset = 0;
+    int version_no = 0;
 
     //global variables provided for signal handler clean up of lock files
     lockfile_data_struct global_lockfile_data;
