@@ -14,11 +14,11 @@ set(HOPS_TEST_LIBS MHO_Message MHO_Utilities MHO_Math MHO_Operators MHO_Calibrat
 if(HOPS_DEV_USE_OLD)
 
     #declare header paths ##########################################################
-    set(FFCONTROL_RELPATH "../../../c_src/fourfit_libs/ffcontrol")
-    set(FFCORE_RELPATH "../../../c_src/fourfit_libs/ffcore")
-    set(FFMATH_RELPATH "../../../c_src/fourfit_libs/ffmath")
-    set(FFIO_RELPATH "../../../c_src/fourfit_libs/ffio")
-    set(FFSEARCH_RELPATH "../../../c_src/fourfit_libs/ffsearch")
+    set(FFCONTROL_RELPATH "../../c_src/fourfit_libs/ffcontrol")
+    set(FFCORE_RELPATH "../../c_src/fourfit_libs/ffcore")
+    set(FFMATH_RELPATH "../../c_src/fourfit_libs/ffmath")
+    set(FFIO_RELPATH "../../c_src/fourfit_libs/ffio")
+    set(FFSEARCH_RELPATH "../../c_src/fourfit_libs/ffsearch")
 
     list(APPEND RELPATH_LIST
         ${FFCONTROL_RELPATH} ${FFCORE_RELPATH} ${FFIO_RELPATH} ${FFMATH_RELPATH} ${FFSEARCH_RELPATH}
@@ -26,12 +26,12 @@ if(HOPS_DEV_USE_OLD)
 
     #include library headers
     foreach(path ${RELPATH_LIST})
-        include_directories(${CMAKE_CURRENT_SOURCE_DIR}/${path}/include)
+        hops_internal_include_directories(${CMAKE_CURRENT_SOURCE_DIR}/${path}/include)
     endforeach(path)
 
 
     #build/link/install library ####################################################
-    list(APPEND HOPS_TEST_LIBS "mk4util"
+    set(OLD_DEV_TEST_LIBS "mk4util"
                         "dfio" "vex"
                         "ffcontrol" "ffcore"
                         "ffio" "ffmath" "ffsearch"
@@ -41,7 +41,7 @@ if(HOPS_DEV_USE_OLD)
     find_package(FFTW REQUIRED)
     hops_external_include_directories (${FFTW_INCLUDE_DIRS})
     hops_add_cxxflag(HOPS_USE_FFTW3)
-    list(APPEND TEST_LIBS ${FFTW_LIBRARIES})
+    list(APPEND OLD_DEV_TEST_LIBS ${FFTW_LIBRARIES})
 
 endif(HOPS_DEV_USE_OLD)
 
@@ -53,13 +53,6 @@ set(SOURCE_BASENAMES
     DumpFileObjectKeys
     ConvertMk4Data
 )
-
-#link against old fourfit libraries (temporary measure while we try to debug/transition)
-if(HOPS_DEV_USE_OLD)
-    list(APPEND SOURCE_BASENAMES 
-        TestNormFX
-    )
-endif(HOPS_DEV_USE_OLD)
 
 #for testing purposes only -- not intended to be a dependency
 if (HOPS_USE_ROOT)
@@ -76,3 +69,21 @@ foreach( BASENAME ${SOURCE_BASENAMES} )
 endforeach( BASENAME )
 
 hops_install_executables( ${SOURCE_BASENAMES} )
+
+#link against old fourfit libraries (temporary measure while we try to debug/transition)
+if(HOPS_DEV_USE_OLD)
+
+    list(APPEND OLD_DEV_SOURCE_BASENAMES 
+        TestNormFX
+    )
+
+foreach( BASENAME ${OLD_DEV_SOURCE_BASENAMES} )
+    add_executable( ${BASENAME} ${BASENAME}.cc )
+    target_link_libraries( ${BASENAME} ${HOPS_TEST_LIBS} ${OLD_DEV_TEST_LIBS})
+endforeach( BASENAME )
+
+hops_install_executables( ${OLD_DEV_SOURCE_BASENAMES} )
+
+endif(HOPS_DEV_USE_OLD)
+
+
