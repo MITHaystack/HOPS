@@ -153,7 +153,8 @@ class MHO_NormFX: public MHO_BinaryNDArrayOperator<
             int nlags = 0;
             int ip, ips;
 
-            hops_complex z;
+            std::complex<double> z;
+            std::complex<double> I_complex(0.0, 1.0);
             double factor, mean;
             double diff_delay, deltaf, polcof, polcof_sum, phase_shift, dpar;
             int freq_no,
@@ -167,16 +168,11 @@ class MHO_NormFX: public MHO_BinaryNDArrayOperator<
             int datum_uflag, datum_lflag;
             int stnpol[2][4] = {0, 1, 0, 1, 0, 1, 1, 0}; // [stn][pol] = 0:L/X/H, 1:R/Y/V
 
-
-
-
-                //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                //From the input data and 'pass' data (read: user config), determine which pol-product
-                //we are going to transform, and whether or not it is linear, circular or mixed
-                //and also if we are computing a linear combination of polarizations
-                //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-
+            //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            //From the input data and 'pass' data (read: user config), determine which pol-product
+            //we are going to transform, and whether or not it is linear, circular or mixed
+            //and also if we are computing a linear combination of polarizations
+            //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 
             //determine if the ref and rem stations are using circular or linear
@@ -235,7 +231,7 @@ class MHO_NormFX: public MHO_BinaryNDArrayOperator<
                                                 /* Initialize */
             for (i = 0; i < nlags*4; i++)
             {
-            //!    S[i] = 0.0;
+                S[i] = 0.0;
             }
 
             datum->sband = 0;
@@ -289,17 +285,13 @@ class MHO_NormFX: public MHO_BinaryNDArrayOperator<
             //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 
-
-
-
-
                                             /*  sideband # -->  0=upper , 1= lower */
             for (sb = 0; sb < 2; sb++)
               {
               for (i = 0; i < nlags*4; i++) // clear xcor & xp_spec for pol sum into them
                   {
-                  // xcor[i] = 0.0;
-                  // xp_spec[i] = 0.0;
+                    xcor[i] = 0.0;
+                    xp_spec[i] = 0.0;
                   }
                                             // loop over polarization products
               for (ip=ips; ip<pass->pol+1; ip++)
@@ -431,18 +423,18 @@ class MHO_NormFX: public MHO_BinaryNDArrayOperator<
                         {
                             // add in iff this is a requested pol product
 
-                            //! z = t120->ld.spec[i].re + I * t120->ld.spec[i].im;
+                            z = (double) t120->ld.spec[i].re + I_complex * (double) t120->ld.spec[i].im;
                                             // rotate each pol prod by pcal prior to adding in
                         if (sb==0)
                         {
-                            //! z = z * datum->pc_phasor[ip];
+                            z = z * std::complex<double>(datum->pc_phasor[ip][0], datum->pc_phasor[ip][1]);
                         }
                         else                // use conjugate of usb pcal tone for lsb
                         {
-                            //! z = z * conj (datum->pc_phasor[ip]);
+                            z = z * conj(std::complex<double>(datum->pc_phasor[ip][0], datum->pc_phasor[ip][1]));
                         }
                                             // scale phasor by polarization coefficient
-                        //! z = z * polcof;
+                        z = z * polcof;
                                             // corrections to phase as fn of freq based upon
                                             // delay calibrations
 
@@ -468,9 +460,9 @@ class MHO_NormFX: public MHO_BinaryNDArrayOperator<
                                 phase_shift = -phase_shift;
                             }
                                             // apply phase ramp to spectral points
-                        //! std::complex<double> tmp = cexp (-2.0 * M_PI * I * (diff_delay * deltaf + phase_shift));
-                        //! z = z * tmp;
-                        //! xp_spec[i] += z;
+                        std::complex<double> tmp = std::exp (-2.0 * M_PI * I_complex * (diff_delay * deltaf + phase_shift));
+                        z = z * tmp;
+                        xp_spec[i] += z;
                         }
                     }                       // bottom of lags loop
                 }                           // bottom of polarization loop
@@ -515,7 +507,7 @@ class MHO_NormFX: public MHO_BinaryNDArrayOperator<
                   for (i = ibegin; i < nlags; i++)
                       {
                       factor = datum->usbfrac;
-                      //! S[i] += factor * xp_spec[i];
+                      S[i] += factor * xp_spec[i];
                       }
                   }
               else if (sb == 1 && datum->lsbfrac > 0.0)
@@ -525,8 +517,8 @@ class MHO_NormFX: public MHO_BinaryNDArrayOperator<
                       factor = datum->lsbfrac;
                                             // DC+highest goes into middle element of the S array
                       sindex = i ? 4 * nlags - i : 2 * nlags;
-                      //! std::complex<double> tmp2 = cexp (I * (status->lsb_phoff[0] - status->lsb_phoff[1]));
-                      //! S[sindex] += factor * conj (xp_spec[i] * tmp2 );
+                      std::complex<double> tmp2 = std::exp (I_complex * (status->lsb_phoff[0] - status->lsb_phoff[1]));
+                      S[sindex] += factor * std::conj (xp_spec[i] * tmp2 );
                       }
                   }
               }                             // bottom of sideband loop
@@ -577,7 +569,7 @@ class MHO_NormFX: public MHO_BinaryNDArrayOperator<
             if(datum->flag != 0 && factor > 0.0)
                 {
                 for (i=0; i<4*nlags; i++)
-                    //! S[i] = S[i] * factor;
+                    S[i] = S[i] * factor;
                                             // corrections to phase as fn of freq based upon
                                             // delay calibrations
                                             /* FFT to single-band delay */
@@ -597,11 +589,13 @@ class MHO_NormFX: public MHO_BinaryNDArrayOperator<
                                             // factor of 2 for skipped lags
                     if (pass->control.dc_block)
                     {
-                        //! datum->sbdelay[i] = xlag[j] / (double) (nlags / 2 - 1.0);
+                        datum->sbdelay[i][0] = xlag[j].real() / (double) (nlags / 2 - 1.0);
+                        datum->sbdelay[i][1] = xlag[j].imag() / (double) (nlags / 2 - 1.0);
                     }
                     else
                     {
-                        //! datum->sbdelay[i] = xlag[j] / (double) (nlags / 2);
+                        datum->sbdelay[i][0] = xlag[j].real() / (double) (nlags / 2);
+                        datum->sbdelay[i][1] = xlag[j].imag() / (double) (nlags / 2);
                     }
                     }
                 }
@@ -609,7 +603,8 @@ class MHO_NormFX: public MHO_BinaryNDArrayOperator<
                 {
                 for (i = 0; i < nlags*2; i++)
                 {
-                        //! datum->sbdelay[i] = 0.0;
+                        datum->sbdelay[i][0] = 0.0;
+                        datum->sbdelay[i][1] = 0.0;
                 }
                 }
 
@@ -621,8 +616,8 @@ class MHO_NormFX: public MHO_BinaryNDArrayOperator<
         //private data structures to store what were 'extern'/globals
         //in the old code
         fftw_plan fftplan;
-        hops_complex xp_spec[4*MAXLAG];
-        hops_complex xcor[4*MAXLAG], S[4*MAXLAG], xlag[4*MAXLAG];
+        std::complex<double> xp_spec[4*MAXLAG];
+        std::complex<double> xcor[4*MAXLAG], S[4*MAXLAG], xlag[4*MAXLAG];
     };
 
 } //end of hops namespace
@@ -1053,7 +1048,7 @@ int main(int argc, char** argv)
     }
 
 
-
+    MHO_NormFX nfxOperator;
 
 
 
