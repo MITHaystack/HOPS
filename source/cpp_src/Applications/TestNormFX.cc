@@ -992,6 +992,8 @@ int main(int argc, char** argv)
     std::cout<<"nlags = "<<param.nlags<<std::endl;
     std::cout<<"pass.pol = "<<pass.pol<<std::endl;
 
+    //pass_ptr->nfreq = 1;
+
     //allocate space for sbdelay
     struct data_corel *datum;
     hops_complex *sbarray, *sbptr;
@@ -1003,7 +1005,10 @@ int main(int argc, char** argv)
         return (-1);
     }
     sbptr = sbarray;
-    for (int fr=0; fr<pass_ptr->nfreq; fr++)
+
+    // int nf = pass_ptr->nfreq;  
+    int nf = 1;// pass_ptr->nfreq;
+    for (int fr=0; fr<nf; fr++)
     {
         for (int ap=0; ap<pass_ptr->num_ap; ap++)
         {
@@ -1021,7 +1026,7 @@ int main(int argc, char** argv)
         }
     }
 
-    for (int fr=0; fr<pass_ptr->nfreq; fr++)
+    for (int fr=0; fr<nf; fr++)
     {
         for (int ap=0; ap<pass_ptr->num_ap; ap++)
         {
@@ -1029,31 +1034,68 @@ int main(int argc, char** argv)
         }
     }
 
-    
-    MHO_NormFX nfxOperator;
-    
-
-    // for (int fr=0; fr<pass_ptr->nfreq; fr++)
-    // {
-    //     for (int ap=0; ap<pass_ptr->num_ap; ap++)
-    //     {
-    //         nfxOperator.cpp_norm_fx(&pass, &param, &status, fr, ap);
-    //     }
-    // }
-
-    std::cout<<"param.nlags = "<<param.nlags<<std::endl;
-    for (int fr=0; fr<pass_ptr->nfreq; fr++)
+    std::vector< std::complex<double> > testVector1;
+    for (int fr=0; fr<nf; fr++)
     {
         for (int ap=0; ap<pass_ptr->num_ap; ap++)
         {
             datum = pass_ptr->pass_data[fr].data + ap + pass_ptr->ap_off;
             for(int i=0; i < 2*param.nlags; i++)
             {
+                testVector1.push_back( std::complex<double>(datum->sbdelay[i][0], datum->sbdelay[i][1]) );
+                std::cout<<"datum @ "<<i<<" = ("<<datum->sbdelay[i][0]<<", "<<datum->sbdelay[i][1]<<")"<<std::endl;
+                //reset just to be safe
+                datum->sbdelay[i][0] = 0.0;
+                datum->sbdelay[i][1] = 0.0;
+            }
+        }
+    }
+
+    //re-run this exercise via the c++ function
+    MHO_NormFX nfxOperator;
+    for (int fr=0; fr<nf; fr++)
+    {
+        for (int ap=0; ap<pass_ptr->num_ap; ap++)
+        {
+            //norm_fx(&pass, &param, &status, fr, ap);
+            nfxOperator.cpp_norm_fx(&pass, &param, &status, fr, ap);
+        }
+    }
+
+    std::vector< std::complex<double> > testVector2;
+    for (int fr=0; fr<nf; fr++)
+    {
+        for (int ap=0; ap<pass_ptr->num_ap; ap++)
+        {
+            datum = pass_ptr->pass_data[fr].data + ap + pass_ptr->ap_off;
+            for(int i=0; i < 2*param.nlags; i++)
+            {
+                testVector2.push_back( std::complex<double>(datum->sbdelay[i][0], datum->sbdelay[i][1]) );
                 std::cout<<"datum @ "<<i<<" = ("<<datum->sbdelay[i][0]<<", "<<datum->sbdelay[i][1]<<")"<<std::endl;
             }
         }
     }
 
+    int ret_val = 0;
+    if(testVector1.size() == testVector2.size() )
+    {
+        double abs_diff = 0.0;
+        for(size_t n=0; n<testVector1.size(); n++)
+        {
+            std::complex<double> delta = testVector1[n] - testVector2[n];
+            std::cout<<"delta @ "<< n <<" : " << testVector1[n].real() <<" - " << testVector2[n].real() << " = " << delta.real() <<std::endl;
+            abs_diff += std::abs(delta);
+        }
+        double mean_diff = abs_diff/(double)testVector1.size();
+        std::cout<<"mean difference between c/c++ paths = "<<mean_diff<<std::endl;
+        ret_val = 0;
+    }
+    else 
+    {
+        ret_val = 1;
+    }
 
-    return 0;
+
+
+    return ret_val;
 }
