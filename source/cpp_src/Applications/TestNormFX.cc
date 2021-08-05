@@ -14,6 +14,9 @@
 #include "MHO_WeightChannelizer.hh"
 #include "MHO_StationCoordinates.hh"
 
+#include "MHO_FFTWTypes.hh"
+#include "MHO_BinaryNDArrayOperator.hh"
+
 #include "MHO_DirectoryInterface.hh"
 
 //#include "MHO_NormFX.hh"
@@ -34,9 +37,6 @@ int fcode (char c, char *codes)
             return i;
     return -1;
 }
-
-
-
 
 
 extern "C"
@@ -112,10 +112,7 @@ extern "C"
 
 
 
-#include "MHO_FFTWTypes.hh"
-#include "MHO_TableContainer.hh"
-#include "MHO_ChannelizedVisibilities.hh"
-#include "MHO_BinaryNDArrayOperator.hh"
+
 
 namespace hops
 {
@@ -133,13 +130,10 @@ class MHO_NormFX: public MHO_BinaryNDArrayOperator<
         virtual bool Initialize() override {return true;}
         virtual bool ExecuteOperation() override {return true;};
 
-    private:
 
-
-        // //this version of the function will gradually get modified
-        // //until we can move functionality out of it entirely and
-        // //make it more modular
-        void new_norm_fx(struct type_pass *pass,
+        //the closest thing we can make in C++ that executes the 
+        //same functionality as norm_fx --- preserve this for future testing
+        void cpp_norm_fx(struct type_pass *pass,
                          struct type_param* param,
                          struct type_status* status,
                          int fr, int ap)
@@ -613,6 +607,7 @@ class MHO_NormFX: public MHO_BinaryNDArrayOperator<
 
         };
 
+    private:
         //private data structures to store what were 'extern'/globals
         //in the old code
         fftw_plan fftplan;
@@ -1034,6 +1029,18 @@ int main(int argc, char** argv)
         }
     }
 
+    
+    MHO_NormFX nfxOperator;
+    
+
+    // for (int fr=0; fr<pass_ptr->nfreq; fr++)
+    // {
+    //     for (int ap=0; ap<pass_ptr->num_ap; ap++)
+    //     {
+    //         nfxOperator.cpp_norm_fx(&pass, &param, &status, fr, ap);
+    //     }
+    // }
+
     std::cout<<"param.nlags = "<<param.nlags<<std::endl;
     for (int fr=0; fr<pass_ptr->nfreq; fr++)
     {
@@ -1046,11 +1053,6 @@ int main(int argc, char** argv)
             }
         }
     }
-
-
-    MHO_NormFX nfxOperator;
-
-
 
 
     return 0;
