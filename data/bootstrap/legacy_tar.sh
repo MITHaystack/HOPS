@@ -4,6 +4,7 @@
 # not part of the distro and perhaps should be saved for
 # spelunkers into the history of HOPS at Haystack....
 #
+[ -z "$save" ] && save=save
 [ $# -eq 0 ] && {
     echo read the script for help
     exit 1
@@ -36,7 +37,7 @@ trk=$HOPS_ROOT/trunk
 # each portion has a $dir(ectory) in $HOPS_ROOT/trunk
 # from which to generate a tar of as $name(.tar.gz)
 #
-# existing tarballs will be renamed as $name.save.gz
+# existing tarballs will be renamed as $name.$save.gz
 # so you have one shot at fixing mistakes
 
 # these are the things in "all"
@@ -53,7 +54,12 @@ mk4m    -- various migration scripts associated with migration to SVN
 ompi    -- some scripts for testing the software correlator with OpenMPI
 
 The script legacy_nuke.sh can be used to wipe old backup copies of
-previously generated legacy tarballs.
+previously generated legacy tarballs.  The default is to remake all
+tarballs.  When tarballs are made, the old copies are saved as
+<name>.\$save.gz where \$save is taken from the environment and defaults
+to save.
+
+Recommended practice might be to save tarballs at every version bump.
 "
 
 [ "$1" = all ] || set -- $tars
@@ -71,12 +77,12 @@ do
     tarball=$dest/$name.tar.gz
     listing=$dest/$name.tvf.gz
     [ -f $tarball ] &&
-        mv $tarball $dest/$name.save.gz &&
-        echo saving $t as $name.save.gz
+        mv $tarball $dest/$name.$save.gz &&
+        echo saving $t as $name.$save.gz
     pushd $dir
     tar zcf $tarball ./$src
     tar ztvf $tarball | gzip > $listing
-    ls -l $tarball
+    ls -l $tarball $dest/$name.$save.gz
     popd
 done
 
