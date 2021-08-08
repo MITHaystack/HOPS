@@ -40,7 +40,10 @@ of the file $MHO_REGRESSION_DATA/switches/test_config.sh.
 
 Note that the GNU automake test-driver looks at the return status of any
 script (or executable) to determine its result: 0 PASS, 77 SKIP, 99 ERROR
-and anything else is a FAIL.
+and anything else is a FAIL.  This is recorded in the ":test-result:" line
+of the .trs file.  (Note that the GNU folks have a general API to allow other
+testrunners; there is considerable documentation at https://www.gnu.org/
+software/automake/manual/html_node/API-for-Custom-Test-Drivers.html.)
 
 A variable MHO_REGRESSION_EXTRACT ( = true or false) controls the handling
 of the tarballs and data directories: true means to extract any tarballs
@@ -91,15 +94,39 @@ Test scripts
 The script switches/template.sh is a template to copy and then modify so
 that all of the test scripts have a common behavior.  See the comments in
 that script.  The tests themselves are then distributed throughout the
-build tree.  (Every makefile should provide $srcdir in the environment
-for any test in case the script needs to reference sources.  In the case
-of the automake system this is provided by an the TESTS_ENVIRONMENT make
-variable.)
+build tree.  Every makefile can provide $srcdir, $abs_top_srcdir or
+$abs_top_builddir in the environment for any test in case the script
+needs to reference sources.  In the case of the automake system this is
+provided by an the TESTS_ENVIRONMENT make variable.  The template script
+verifies that if they are set that they do point to directories.
 
 For convenience, this script accepts an argument which is the "something"
 for a new test.  It then creates chk_something.sh with a reduced set of
 comments so that the tests aren't cluttered with the same set of comments.
-Feel free to edit or even rename to suit your needs.
+Feel free to edit or even rename to suit your needs.  Generally speaking
+after creating a new script, you need to also set the $tarballs and
+$executable variables and (obviously) give the test something to check.
+There are some 'FIXME' tokens left to remind you.
+
+Access to built objects
+
+Historically HOPS3 followed a make all install check order of operations.
+This assumes that the install area is not otherwise used (which in the
+event was not a very good assumption).  A more proper order is to have
+make all check install which means that the install does not happen unless
+the check succeeds.  However, since libraries and executables are located
+in the build directory until installed, this means that scripts using them
+will need to know the relative location of the tools they need.  (This is
+necessary also for the linker flags.)  An alternative would be to have a
+tool at the toplevel which can do the appropriate lookup.  This can be
+handled in the test_config file by setting a variable executables for
+the list of built executables, on exit, this variable would be updated
+by the full paths to these.
+
+This process can be made easier with a lookup command which defaults
+to $MHO_REGRESSION_DATA/switches/lookup.sh but can be overridden by
+setting $MHO_REGRESSION_LOOKUP.  The current mechanism requires that
+$top_abs_builddir be set if you need to use this machinery.
 
 Related things
 

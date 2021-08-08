@@ -3,22 +3,24 @@
 # Configuration file for tests
 #
 
-# initial checking
-[ "x$tarballs" = xFIXME ] && {
-    echo tarballs was not configured ; exit 99;
+# initial checking to catch structural errors
+[ "x$tarballs" = xFIXME -o "x$executables" = xFIXME ] && {
+    echo tarballs or executables was not configured ; exit 99;
 }
 [ -n "$unpack" -o -n "$requirements" -o -n "$status" ] && {
     echo one of these is set: unpack requirements status
     exit 99; }
 
-# if the script something is mentioned in $requirements...
+# so that if the script something is mentioned in $requirements...
 [ -z "$MHO_REGRESSION_REQUIREMENTS" ] &&
-    requirements=MHO_REGRESSION_DATA/bootstrap/requirements.txt ||
+    requirements=$MHO_REGRESSION_DATA/bootstrap/requirements.txt ||
     requirements=$MHO_REGRESSION_REQUIREMENTS
 
-# ...access requirements database and set MHO_REGRESSION_REQ
+# ...we can access requirements database and set MHO_REGRESSION_REQ
 set -- `grep "^$something" $requirements`
 [ $# -eq 0 ] && MHO_REGRESSION_REQ='ok' || MHO_REGRESSION_REQ="$@"
+
+# now to make data available
 
 # unpack the requested data if MHO_REGRESSION_EXTRACT is unset or true
 [ -z "$MHO_REGRESSION_EXTRACT" ] &&
@@ -29,8 +31,9 @@ set -- `grep "^$something" $requirements`
 
 # script to actually do the unpacking work
 unpack=$MHO_REGRESSION_DATA/bootstrap/legacy_unpack.sh
-[ -x "$unpack" ] || { echo $unpack is missing ; exit 99; }
+[ -x "$unpack" ] || { echo unpack script $unpack is missing ; exit 99; }
 
+# loop through the list of tarballs, unpacking and tracking what might is made
 MHO_REGRESSION_NUKE=''
 [ -n "$tarballs" ] && $MHO_REGRESSION_EXTRACT && {
     for dir in $tarballs
@@ -49,6 +52,23 @@ MHO_REGRESSION_NUKE=''
 [ "$MHO_REGRESSION_TIDY" = true -o "$MHO_REGRESSION_TIDY" = false ] ||
     { echo MHO_REGRESSION_TIDY must be true or false; exit 99; }
 $MHO_REGRESSION_TIDY || MHO_REGRESSION_NUKE=''
+
+# track down the lookup script
+[ -z $MHO_REGRESSION_LOOKUP ] &&
+    lookup=$MHO_REGRESSION_DATA/switches/lookup.sh ||
+    lookup=$MHO_REGRESSION_LOOKUP
+[ -x "$lookup" ] || { echo lookup script $lookup is missing ; exit 99; }
+[ "$lookup" = "$MHO_REGRESSION_DATA/switches/lookup.sh" ] &&
+    [ -n "$abs_top_builddir" ] ||
+    { echo abs_top_builddir is not set but needed for lookups ; exit 99; }
+
+# now track down executables
+for exe in $executables
+do
+    eval `$lookup $exe`
+    eval ep=\$$exe
+    [ -x $ep ] || { echo executable $ep for $exe is missing ; exit 99; }
+done
 
 unset unpack requirements status
 
