@@ -24,11 +24,14 @@ Since the test data is binary, and is in any case too large to include in the
 git repository, the tarballs area contains empty files indicating the names
 of the tarballs that should exist.  Likewise, the other directories are
 empty in the repository except for README and test scripts appropriate to
-the particular collection of data.
+the particular collection of data.  Every tar file additionally contains
+an associated listing file (so that surgical extraction is possible, or
+simply to know what is present.  The source tarballs area may also contain
+an associated readme for some tar files to provide some additional comments.
 
 The scripts expect an environment variable MHO_REGRESSION_DATA set to point
 to a directory with the structure of this source directory, but with some or
-all of the tarballs present.  (That is, you can point to the this directory
+all of the tarballs populated.  (That is, you can point to the this directory
 or a copy of it to conduct a SKIP-all-tests test suite.)  Obviously the more
 interesting case is when it points to a directory fully populated with the
 data tarballs.  The switches subdirectory contains a number of files that
