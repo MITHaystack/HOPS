@@ -83,18 +83,35 @@ Recommended practice might be to save tarballs at every version bump.
 
 # some abbreviations to make the case statement below more compact
 ffd=data/ff_testdata/testdata
-aed=data/ae_testdata/testdata
+aed=data/ae_testdata
 
 for t
 do
     # set src (found in $trk) and tarball name (usually $src)
     # this list must be synchronized with boostrap/legacy_unpack.sh
     case $t in
-    help)   echo "$thelp"       ; exit 0                            ;;
-    misc)   src=misc            ; dir=$trk/$ffd         ; name=$src ;;
-    corr)   src=correlator      ; dir=$trk              ; name=$src ;;
-    mk4m)   src=mk4-migrate     ; dir=$trk              ; name=$src ;;
-    ompi)   src=ompi            ; dir=$trk              ; name=$src ;;
+    help)       echo "$thelp"       ; exit 0                            ;;
+    corr)       src=correlator      ; dir=$trk              ; name=$src ;;
+    mk4m)       src=mk4-migrate     ; dir=$trk              ; name=$src ;;
+    ompi)       src=ompi            ; dir=$trk              ; name=$src ;;
+    # ff_testdata subdirs
+    misc)       src=misc            ; dir=$trk/$ffd         ; name=$src ;;
+    2491)       src=$t              ; dir=$trk/$ffd         ; name=$src ;;
+    2611)       src=$t              ; dir=$trk/$ffd         ; name=$src ;;
+    2836)       src=$t              ; dir=$trk/$ffd         ; name=$src ;;
+    2843)       src=$t              ; dir=$trk/$ffd         ; name=$src ;;
+    2849)       src=$t              ; dir=$trk/$ffd         ; name=$src ;;
+    2912)       src=$t              ; dir=$trk/$ffd         ; name=$src ;;
+    3064)       src=$t              ; dir=$trk/$ffd         ; name=$src ;;
+    3262)       src=$t              ; dir=$trk/$ffd         ; name=$src ;;
+    3365)       src=$t              ; dir=$trk/$ffd         ; name=$src ;;
+    3372)       src=$t              ; dir=$trk/$ffd         ; name=$src ;;
+    3413)       src=$t              ; dir=$trk/$ffd         ; name=$src ;;
+    3562)       src=$t              ; dir=$trk/$ffd         ; name=$src ;;
+    3571)       src=$t              ; dir=$trk/$ffd         ; name=$src ;;
+    average)    src=$t              ; dir=$trk/$ffd         ; name=$src ;;
+    # ae_testdata subdirs
+    aetest)     src=testdata        ; dir=$trk/$aed         ; name=aetest ;;
     *) echo what is \'$t\' \? it is not defined...      ; exit 4    ;;
     esac
     tarball=$dest/$name.tar.gz
@@ -105,7 +122,8 @@ do
     pushd $dir
     tar zcf $tarball ./$src
     tar ztvf $tarball | gzip > $listing
-    ls -l $tarball $dest/$name.$save.gz
+    [ -f $dest/$name.$save.gz ] && ls -1 $dest/$name.$save.gz
+    ls -l $tarball
     popd
 done
 

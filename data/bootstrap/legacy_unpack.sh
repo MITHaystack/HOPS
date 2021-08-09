@@ -27,11 +27,28 @@ mae=$MHO_REGRESSION_DATA/ae_testdata
 
 # should be the same list as in bootstrap/legacy_tar.sh
 case $name in
-misc)   src=misc        ;   parent=$mff     ; odr=$src          ;;
-corr)   src=correlator  ;   parent=$mhx     ; odr=$src          ;;
-mk4m)   src=mk4-migrate ;   parent=$mhx     ; odr=$src          ;;
-ompi)   src=ompi        ;   parent=$mhx     ; odr=$src          ;;
-*)      echo $name is not configured here...; exit 2            ;;
+    corr)   src=correlator  ;   parent=$mhx     ; odr=$src          ;;
+    mk4m)   src=mk4-migrate ;   parent=$mhx     ; odr=$src          ;;
+    ompi)   src=ompi        ;   parent=$mhx     ; odr=$src          ;;
+    # ff_testdata subdirs
+    misc)   src=misc        ;   parent=$mff     ; odr=$src          ;;
+    2491)   src=$name       ;   parent=$mff     ; odr=$src          ;;
+    2611)   src=$name       ;   parent=$mff     ; odr=$src          ;;
+    2836)   src=$name       ;   parent=$mff     ; odr=$src          ;;
+    2843)   src=$name       ;   parent=$mff     ; odr=$src          ;;
+    2849)   src=$name       ;   parent=$mff     ; odr=$src          ;;
+    2912)   src=$name       ;   parent=$mff     ; odr=$src          ;;
+    3064)   src=$name       ;   parent=$mff     ; odr=$src          ;;
+    3262)   src=$name       ;   parent=$mff     ; odr=$src          ;;
+    3365)   src=$name       ;   parent=$mff     ; odr=$src          ;;
+    3372)   src=$name       ;   parent=$mff     ; odr=$src          ;;
+    3413)   src=$name       ;   parent=$mff     ; odr=$src          ;;
+    3562)   src=$name       ;   parent=$mff     ; odr=$src          ;;
+    3571)   src=$name       ;   parent=$mff     ; odr=$src          ;;
+    average)src=$name       ;   parent=$mff     ; odr=$src          ;;
+    # ae_testdata subdirs
+    aetest) src=aetest      ;   parent=$mae     ; odir=$src         ;;
+    *)      echo $name is not configured here...; exit 2            ;;
 esac
 
 # for the purposes of testing in the makefile, we want to provide an override
