@@ -138,8 +138,6 @@ class MHO_NormFX: public MHO_BinaryNDArrayOperator<
                          struct type_status* status,
                          int fr, int ap)
         {
-
-
             struct type_120 *t120;
             struct freq_corel *fdata;
             struct data_corel *datum;
@@ -178,14 +176,14 @@ class MHO_NormFX: public MHO_BinaryNDArrayOperator<
 
             if (pass->npols == 1)
             {
-            pol = pass->pol;            // single pol being done per pass
-            ips = pol;
-            pols = 1 << pol;
+                pol = pass->pol;            // single pol being done per pass
+                ips = pol;
+                pols = 1 << pol;
             }
             else                            // linear combination of polarizations
             {
-            ips = 0;
-            pols = param->pol;
+                ips = 0;
+                pols = param->pol;
             }
 
 
@@ -199,11 +197,11 @@ class MHO_NormFX: public MHO_BinaryNDArrayOperator<
             // do fft plan only iff nlags changes
             if (param->nlags != nlags)
             {
-            nlags = param->nlags;
-            fftplan = fftw_plan_dft_1d (4 * nlags,
-            reinterpret_cast<typename MHO_FFTWTypes<double>::fftw_complex_type_ptr>(S),
-            reinterpret_cast<typename MHO_FFTWTypes<double>::fftw_complex_type_ptr>(xlag),
-            FFTW_FORWARD, FFTW_MEASURE);
+                nlags = param->nlags;
+                fftplan = fftw_plan_dft_1d (4 * nlags,
+                reinterpret_cast<typename MHO_FFTWTypes<double>::fftw_complex_type_ptr>(S),
+                reinterpret_cast<typename MHO_FFTWTypes<double>::fftw_complex_type_ptr>(xlag),
+                FFTW_FORWARD, FFTW_MEASURE);
             }
 
             freq_no = fcode(pass->pass_data[fr].freq_code, pass->control.chid);
@@ -225,7 +223,7 @@ class MHO_NormFX: public MHO_BinaryNDArrayOperator<
             /* Initialize */
             for (i = 0; i < nlags*4; i++)
             {
-            S[i] = 0.0;
+                S[i] = 0.0;
             }
 
             datum->sband = 0;
@@ -240,8 +238,6 @@ class MHO_NormFX: public MHO_BinaryNDArrayOperator<
             lastpol[0] = ips;
             lastpol[1] = ips;
 
-
-
             //Disable ad-hoc flagging //////////////////////////////////////////////////////
             //ADHOC_FLAG(&param, datum->flag, fr, ap, &datum_uflag, &datum_lflag);
             datum_lflag = datum->flag;
@@ -249,22 +245,19 @@ class MHO_NormFX: public MHO_BinaryNDArrayOperator<
 
 
             // check sidebands for each pol. for data
-            for (ip=ips; ip<pass->pol+1; ip++)
+            for(ip=ips; ip<pass->pol+1; ip++)
             {
-            usb_bypol[ip] = ((datum_uflag & (USB_FLAG << 2*ip)) != 0)
-            && ((pols & (1 << ip)) != 0);
-            lsb_bypol[ip] = ((datum_lflag & (LSB_FLAG << 2*ip)) != 0)
-            && ((pols & (1 << ip)) != 0);
-            pass->pprods_present[ip] |= usb_bypol[ip] || lsb_bypol[ip];
+                usb_bypol[ip] = ( (datum_uflag & (USB_FLAG << 2*ip)) != 0) && ( (pols & (1 << ip)) != 0);
+                lsb_bypol[ip] = ( (datum_lflag & (LSB_FLAG << 2*ip)) != 0) && ( (pols & (1 << ip)) != 0);
+                pass->pprods_present[ip] |= usb_bypol[ip] || lsb_bypol[ip];
 
-            if (usb_bypol[ip])
-            lastpol[0] = ip;
-            if (lsb_bypol[ip])
-            lastpol[1] = ip;
+                if (usb_bypol[ip]){lastpol[0] = ip;}
+                if (lsb_bypol[ip]){lastpol[1] = ip;}
 
-            usb_present |= usb_bypol[ip];
-            lsb_present |= lsb_bypol[ip];
+                usb_present |= usb_bypol[ip];
+                lsb_present |= lsb_bypol[ip];
             }
+
             datum->sband = usb_present - lsb_present;
 
 
@@ -291,12 +284,10 @@ class MHO_NormFX: public MHO_BinaryNDArrayOperator<
                 // loop over polarization products
                 for (ip=ips; ip<pass->pol+1; ip++)
                 {
-                    if (param->pol)
-                    pol = ip;
+                    if (param->pol){ pol = ip; }
                     // If no data for this sb/pol, go on to next
-                    if ((sb == 0 && usb_bypol[ip] == 0)
-                    || (sb == 1 && lsb_bypol[ip] == 0))
-                    continue;
+                    if( (sb == 0 && usb_bypol[ip] == 0) || (sb == 1 && lsb_bypol[ip] == 0)){ continue;}
+
                     // Pluck out the requested polarization
                     switch (pol)
                     {
@@ -358,8 +349,7 @@ class MHO_NormFX: public MHO_BinaryNDArrayOperator<
                     }
 
                     // note datum->lsbfrac or datum->usbfrac remains at -1.0
-                    if (pass->control.min_weight > 0.0 &&
-                    pass->control.min_weight > t120->fw.weight) continue;
+                    if (pass->control.min_weight > 0.0 && pass->control.min_weight > t120->fw.weight){ continue; }
 
                     // determine data weights by sideband
                     if (ip == lastpol[sb])
@@ -370,40 +360,50 @@ class MHO_NormFX: public MHO_BinaryNDArrayOperator<
                         if (sb)                 // lower sideband
                         {                   // 0 weight encoded by negative 0
                             if (*((unsigned int *)(&(t120->fw.weight))) == 0)
-                            // +0 is backward-compatibility for no weight
-                            datum->lsbfrac = 1.0;
+                            {
+                                // +0 is backward-compatibility for no weight
+                                datum->lsbfrac = 1.0;
+                            }
                             else
-                            datum->lsbfrac = t120->fw.weight;
-                            status->ap_frac[sb][fr] += datum->lsbfrac;
-                            status->total_ap_frac   += datum->lsbfrac;
-                            status->total_lsb_frac  += datum->lsbfrac;
+                            {
+                                datum->lsbfrac = t120->fw.weight;
+                                status->ap_frac[sb][fr] += datum->lsbfrac;
+                                status->total_ap_frac   += datum->lsbfrac;
+                                status->total_lsb_frac  += datum->lsbfrac;
+                            }
                         }
                         else                    // upper sideband
                         {
                             if (*((unsigned int *)(&(t120->fw.weight))) == 0)
-                            datum->usbfrac = 1.0;
+                            {
+                                datum->usbfrac = 1.0;
+                            }
                             else
-                            datum->usbfrac = t120->fw.weight;
-                            status->ap_frac[sb][fr] += datum->usbfrac;
-                            status->total_ap_frac   += datum->usbfrac;
-                            status->total_usb_frac  += datum->usbfrac;
+                            {
+                                datum->usbfrac = t120->fw.weight;
+                                status->ap_frac[sb][fr] += datum->usbfrac;
+                                status->total_ap_frac   += datum->usbfrac;
+                                status->total_usb_frac  += datum->usbfrac;
+                            }
                         }
                     }
 
                     // add in phase effects if multitone delays
                     // were extracted
-                    if (pass->control.nsamplers && param->pc_mode[0] == MULTITONE
-                    && param->pc_mode[1] == MULTITONE)
-                    diff_delay = +1e9 * (datum->rem_sdata.mt_delay[stnpol[1][pol]]
-                    - datum->ref_sdata.mt_delay[stnpol[0][pol]]);
-                    // ##DELAY_OFFS## otherwise assume user has
-                    // used delay_offs or delay_offs_? but not both.
+                    if (pass->control.nsamplers && param->pc_mode[0] == MULTITONE && param->pc_mode[1] == MULTITONE)
+                    {
+                        diff_delay = +1e9 * (datum->rem_sdata.mt_delay[stnpol[1][pol]] - datum->ref_sdata.mt_delay[stnpol[0][pol]]);
+                        // ##DELAY_OFFS## otherwise assume user has
+                        // used delay_offs or delay_offs_? but not both.
+                    }
                     else
-                    diff_delay = pass->control.delay_offs_pol[freq_no][stnpol[1][pol]].rem
-                    + pass->control.delay_offs[freq_no].rem  // ##DELAY_OFFS##
-                    - pass->control.delay_offs[freq_no].ref  // ##DELAY_OFFS##
-                    - pass->control.delay_offs_pol[freq_no][stnpol[0][pol]].ref;
-                    //msg ("ap %d fr %d pol %d diff_delay %f", -2, ap, fr, pol, diff_delay);
+                    {
+                        diff_delay = pass->control.delay_offs_pol[freq_no][stnpol[1][pol]].rem
+                        + pass->control.delay_offs[freq_no].rem  // ##DELAY_OFFS##
+                        - pass->control.delay_offs[freq_no].ref  // ##DELAY_OFFS##
+                        - pass->control.delay_offs_pol[freq_no][stnpol[0][pol]].ref;
+                        //msg ("ap %d fr %d pol %d diff_delay %f", -2, ap, fr, pol, diff_delay);
+                    }
 
                     // loop over spectral points
                     for (i=0; i<nlags/2; i++)
@@ -463,11 +463,9 @@ class MHO_NormFX: public MHO_BinaryNDArrayOperator<
                 }                           // bottom of polarization loop
 
                 // also skip over this next section, if no data
-                if ((sb == 0 && usb_present == 0) || (sb == 1 && lsb_present == 0))
-                continue;
+                if ((sb == 0 && usb_present == 0) || (sb == 1 && lsb_present == 0)){ continue; }
                 // yet another way of saying "no data"
-                if ((sb == 0 && datum->usbfrac < 0) || (sb == 1 && datum->lsbfrac < 0))
-                continue;
+                if ((sb == 0 && datum->usbfrac < 0) || (sb == 1 && datum->lsbfrac < 0)){ continue; }
 
                 ////////////////////////////////////////////////////////////////////////////////
                 //entirely disable these features
@@ -483,8 +481,7 @@ class MHO_NormFX: public MHO_BinaryNDArrayOperator<
                 ////////////////////////////////////////////////////////////////////////////////
 
                 // if data was filtered away...
-                if ((sb == 0 && datum->usbfrac <= 0) || (sb == 1 && datum->lsbfrac <= 0))
-                continue;
+                if ((sb == 0 && datum->usbfrac <= 0) || (sb == 1 && datum->lsbfrac <= 0)){ continue; }
 
                 /* Put sidebands together.  For each sb,
                 the Xpower array, which is the FFT across
@@ -516,7 +513,6 @@ class MHO_NormFX: public MHO_BinaryNDArrayOperator<
                         S[sindex] += factor * std::conj (xp_spec[i] * tmp2 );
                     }
                 }
-
             }                             // bottom of sideband loop
 
             /* Normalize data fractions
@@ -531,12 +527,9 @@ class MHO_NormFX: public MHO_BinaryNDArrayOperator<
             and additional weighting should be done
             using the mean of usbfrac and lsbfrac */
             factor = 0.0;
-            if (datum->usbfrac >= 0.0)
-            factor += datum->usbfrac;
-            if (datum->lsbfrac >= 0.0)
-            factor += datum->lsbfrac;
-            if ((datum->usbfrac >= 0.0) && (datum->lsbfrac >= 0.0))
-            factor /= 4.0;              // x2 factor for sb and for polcof
+            if (datum->usbfrac >= 0.0){factor += datum->usbfrac;}
+            if (datum->lsbfrac >= 0.0){factor += datum->lsbfrac;}
+            if ((datum->usbfrac >= 0.0) && (datum->lsbfrac >= 0.0)){factor /= 4.0;}             // x2 factor for sb and for polcof
             // correct for multiple pols being added in
 
             //For linear pol IXY fourfitting, make sure that we normalize for the two pols
@@ -552,8 +545,7 @@ class MHO_NormFX: public MHO_BinaryNDArrayOperator<
             //Question:
             //why do we do this check? factor should never be negative (see above)
             //and if factor == 0, is this an error that should be flagged?
-            if (factor > 0.0)
-            factor = 1.0 / factor;
+            if (factor > 0.0){factor = 1.0 / factor;}
             //Answer:
             //if neither of usbfrac or lsbfrac was set above the default (-1), then
             //no data was seen and thus the spectral array S is here set to zero.
@@ -564,8 +556,7 @@ class MHO_NormFX: public MHO_BinaryNDArrayOperator<
             /* Collect the results */
             if(datum->flag != 0 && factor > 0.0)
             {
-                for (i=0; i<4*nlags; i++)
-                S[i] = S[i] * factor;
+                for (i=0; i<4*nlags; i++){S[i] = S[i] * factor;}
                 // corrections to phase as fn of freq based upon
                 // delay calibrations
                 /* FFT to single-band delay */
@@ -577,8 +568,7 @@ class MHO_NormFX: public MHO_BinaryNDArrayOperator<
                     /* Translate so i=nlags is central lag */
                     // skip every other (interpolated) lag
                     j = 2 * (i - nlags);
-                    if (j < 0)
-                    j += 4 * nlags;
+                    if (j < 0){j += 4 * nlags;}
                     /* re-normalize back to single lag */
                     /* (property of FFTs) */
                     // nlags-1 norm. iff zeroed-out DC
@@ -603,9 +593,6 @@ class MHO_NormFX: public MHO_BinaryNDArrayOperator<
                     datum->sbdelay[i][1] = 0.0;
                 }
             }
-
-
-
 
         };
 
