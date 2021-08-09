@@ -265,6 +265,26 @@ class MHO_NormFX: public MHO_BinaryNDArrayOperator<
             return polcof;
         }
 
+        double AddDelays()
+        {
+            // // add in phase effects if multitone delays
+            // // were extracted
+            // if (pass->control.nsamplers && param->pc_mode[0] == MULTITONE && param->pc_mode[1] == MULTITONE)
+            // {
+            //     diff_delay = +1e9 * (datum->rem_sdata.mt_delay[stnpol[1][pol]] - datum->ref_sdata.mt_delay[stnpol[0][pol]]);
+            //     // ##DELAY_OFFS## otherwise assume user has
+            //     // used delay_offs or delay_offs_? but not both.
+            // }
+            // else
+            // {
+            //     diff_delay = pass->control.delay_offs_pol[freq_no][stnpol[1][pol]].rem
+            //     + pass->control.delay_offs[freq_no].rem  // ##DELAY_OFFS##
+            //     - pass->control.delay_offs[freq_no].ref  // ##DELAY_OFFS##
+            //     - pass->control.delay_offs_pol[freq_no][stnpol[0][pol]].ref;
+            //     //msg ("ap %d fr %d pol %d diff_delay %f", -2, ap, fr, pol, diff_delay);
+            // }
+            return 0.0;
+        }
 
         //the closest thing we can make in C++ that executes the 
         //same functionality as norm_fx --- preserve this for future testing
@@ -371,11 +391,7 @@ class MHO_NormFX: public MHO_BinaryNDArrayOperator<
                     polcof_sum += fabs( polcof );
 
                     // sanity test
-                    if (t120 -> type != SPECTRAL)
-                    {
-                        //msg ("Conflicting correlation type %d", 2, t120->type);
-                        return;
-                    }
+                    if (t120 -> type != SPECTRAL){return;}
 
                     // note datum->lsbfrac or datum->usbfrac remains at -1.0
                     if (pass->control.min_weight > 0.0 && pass->control.min_weight > t120->fw.weight){ continue; }
@@ -417,34 +433,21 @@ class MHO_NormFX: public MHO_BinaryNDArrayOperator<
                         }
                     }
 
-                    // add in phase effects if multitone delays
-                    // were extracted
-                    if (pass->control.nsamplers && param->pc_mode[0] == MULTITONE && param->pc_mode[1] == MULTITONE)
-                    {
-                        diff_delay = +1e9 * (datum->rem_sdata.mt_delay[stnpol[1][pol]] - datum->ref_sdata.mt_delay[stnpol[0][pol]]);
-                        // ##DELAY_OFFS## otherwise assume user has
-                        // used delay_offs or delay_offs_? but not both.
-                    }
-                    else
-                    {
-                        diff_delay = pass->control.delay_offs_pol[freq_no][stnpol[1][pol]].rem
-                        + pass->control.delay_offs[freq_no].rem  // ##DELAY_OFFS##
-                        - pass->control.delay_offs[freq_no].ref  // ##DELAY_OFFS##
-                        - pass->control.delay_offs_pol[freq_no][stnpol[0][pol]].ref;
-                        //msg ("ap %d fr %d pol %d diff_delay %f", -2, ap, fr, pol, diff_delay);
-                    }
+                    //temporarily disabled (all p-cal delays)
+                    diff_delay = AddDelays();
 
-                    // loop over spectral points
-                    for (i=0; i<nlags/2; i++)
-                    {                       // filter out any nan's, if present
-                        //! if (isnan (t120->ld.spec[i].re) || isnan (t120->ld.spec[i].im))
-                        if(false)
-                        {
-                            //msg ("omitting nan's in visibility for ap %d fr %d lag %i",
-                            //      2, ap, fr, i);
-                        }
-                        else if (param->pol & 1<<ip || param->pol == 0)
-                        {
+                    if (param->pol & 1<<ip || param->pol == 0) //move this IF condition outside of for-loop
+                    {
+                        // loop over spectral points
+                        for (i=0; i<nlags/2; i++)
+                        {                       // filter out any nan's, if present
+                            //! if (isnan (t120->ld.spec[i].re) || isnan (t120->ld.spec[i].im))
+                            if(false)
+                            {
+                                //msg ("omitting nan's in visibility for ap %d fr %d lag %i",
+                                //      2, ap, fr, i);
+                            }
+
                             // add in iff this is a requested pol product
 
                             z = (double) t120->ld.spec[i].re + I_complex * (double) t120->ld.spec[i].im;
@@ -489,6 +492,7 @@ class MHO_NormFX: public MHO_BinaryNDArrayOperator<
                             xp_spec[i] += z;
                         }
                     }                       // bottom of lags loop
+
                 }                           // bottom of polarization loop
 
                 // also skip over this next section, if no data
