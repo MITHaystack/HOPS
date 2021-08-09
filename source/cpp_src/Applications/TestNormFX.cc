@@ -243,8 +243,9 @@ class MHO_NormFX: public MHO_BinaryNDArrayOperator<
 
 
         //Disable ad-hoc flagging //////////////////////////////////////////////////////
-            //ADHOC_FLAG(&param, datum->flag, fr, ap, &datum_uflag, &datum_lflag);
-
+        //ADHOC_FLAG(&param, datum->flag, fr, ap, &datum_uflag, &datum_lflag);
+        datum_lflag = datum->flag;
+        datum_uflag = datum->flag;
 
 
         // check sidebands for each pol. for data
@@ -1025,7 +1026,7 @@ int main(int argc, char** argv)
             }
         }
     }
-
+    
     for (int fr=0; fr<nf; fr++)
     {
         for (int ap=0; ap<pass_ptr->num_ap; ap++)
@@ -1033,7 +1034,7 @@ int main(int argc, char** argv)
             norm_fx(&pass, &param, &status, fr, ap);
         }
     }
-
+    
     std::vector< std::complex<double> > testVector1;
     for (int fr=0; fr<nf; fr++)
     {
@@ -1094,7 +1095,7 @@ int main(int argc, char** argv)
     {
         ret_val = 1;
     }
-
+    
 
 
     return ret_val;
