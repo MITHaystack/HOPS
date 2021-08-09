@@ -23,9 +23,8 @@ set -- `grep "^$something" $requirements`
 # now to make data available
 
 # unpack the requested data if MHO_REGRESSION_EXTRACT is unset or true
-[ -z "$MHO_REGRESSION_EXTRACT" ] &&
-    MHO_REGRESSION_EXTRACT=true ||
-    MHO_REGRESSION_EXTRACT=false
+# the default for extraction is true
+[ -z "$MHO_REGRESSION_EXTRACT" ] && MHO_REGRESSION_EXTRACT=true
 [ "$MHO_REGRESSION_EXTRACT" = true -o "$MHO_REGRESSION_EXTRACT" = false ] ||
     { echo MHO_REGRESSION_EXTRACT must be true or false; exit 99; }
 
@@ -34,24 +33,22 @@ unpack=$MHO_REGRESSION_DATA/bootstrap/legacy_unpack.sh
 [ -x "$unpack" ] || { echo unpack script $unpack is missing ; exit 99; }
 
 # loop through the list of tarballs, unpacking and tracking what might is made
-MHO_REGRESSION_NUKE=''
 [ -n "$tarballs" ] && $MHO_REGRESSION_EXTRACT && {
-    for dir in $tarballs
+    for name in $tarballs
     do
-        $unpack $dir
-        status=$?
-        [ $status -eq 0 ] && MHO_REGRESSION_NUKE="$MHO_REGRESSION_NUKE $dir" ||
-            exit $status
+        dir=`$unpack $name`
+        echo dir is $dir
+        [ $? -eq 0 ] || { echo unable to extract $name ; exit 77; }
+        nukables="$nukables $dir"
     done
 }
 
 # directories to nuke or not is controlled by MHO_REGRESSION_TIDY
-[ -z "$MHO_REGRESSION_TIDY" ] &&
-    MHO_REGRESSION_TIDY=false ||
-    MHO_REGRESSION_TIDY=true
+# the default for tidiness is false
+[ -z "$MHO_REGRESSION_TIDY" ] && MHO_REGRESSION_TIDY=false
 [ "$MHO_REGRESSION_TIDY" = true -o "$MHO_REGRESSION_TIDY" = false ] ||
     { echo MHO_REGRESSION_TIDY must be true or false; exit 99; }
-$MHO_REGRESSION_TIDY || MHO_REGRESSION_NUKE=''
+$MHO_REGRESSION_TIDY || nukables=''
 
 # track down the lookup script
 [ -z $MHO_REGRESSION_LOOKUP ] &&

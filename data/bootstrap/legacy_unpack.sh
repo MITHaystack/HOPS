@@ -1,9 +1,61 @@
 #!/bin/sh
-# FIXME
-## should know how to unpack any tarball built by legacy_tar.sh
-## exit 0 if success (unpacked)
-## or 1 for failure
-## or 77 for no data to unpack (SKIP)
-## or 99 for some configuration ERROR
-##
-exit 0
+#
+# Companion script to unpack tarballs tarball configuration and
+# creation is in bootstrap/legacy_tar.sh -- this script does a
+# lookup on any requested tarball and verifies that it either
+# exists or needs to be unpacked.  MHO_REGRESSION_NUKE will be
+# set to a set of directories to remove if MHO_REGRESSION_TIDY=true
+#
+# At the moment, unpacking is all or nothing, and that may suffice.
+#
+# This script ends by echoing the name of the directory created
+# (and thus something that may be removed) and sets exit status 0.
+#  exit 0 if success (unpacked)
+#  or 1 for failure
+#  or 77 for no data to unpack (SKIP)
+#  or 99 for some configuration ERROR
+name=${1-'help'}
+[ "$name" = 'help' ] && { echo Usage: $0 name -- read script ; exit 1 ; }
+
+# some abbreviations to make the case statement below more compact
+# these are unpack directories
+leg=$MHO_REGRESSION_DATA/tarballs/legacy
+mhx=$MHO_REGRESSION_DATA/historical
+
+mff=$MHO_REGRESSION_DATA/ff_testdata
+mae=$MHO_REGRESSION_DATA/ae_testdata
+
+# should be the same list as in bootstrap/legacy_tar.sh
+case $name in
+misc)   src=misc        ;   parent=$mff     ; odr=$src          ;;
+corr)   src=correlator  ;   parent=$mhx     ; odr=$src          ;;
+mk4m)   src=mk4-migrate ;   parent=$mhx     ; odr=$src          ;;
+ompi)   src=ompi        ;   parent=$mhx     ; odr=$src          ;;
+*)      echo $name is not configured here...; exit 2            ;;
+esac
+
+# for the purposes of testing in the makefile, we want to provide an override
+[ -n "$MHO_REGRESSION_FAKE" ] &&
+    parent=`echo $parent | sed "s,$MHO_REGRESSION_DATA,$MHO_REGRESSION_FAKE,"`
+nukable=$parent/$odr
+
+# successfully found -- we are done
+[ -d "$nukable" ] && echo "$nukable" && exit 0
+
+tgz=$leg/$src.tar.gz
+
+# it is a SKIP if the required tarball is missing
+[ -f "$tgz" ] || { echo source $tgz is missing; exit 77; }
+
+# it might not yet exist
+[ -d "$parent" ] || mkdir -p $parent
+
+cwd=`pwd`
+cd $parent && tar zxf $tgz && cd $cwd
+# successfully unpacked -- we are done
+[ -d "$nukable" ] && echo "$nukable" && exit 0
+
+exit 99
+#
+# eof
+#

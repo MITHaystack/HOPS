@@ -14,7 +14,6 @@
 USAGE="Usage: $0 newscriptname"
 [ $# -eq 1 -a $1 == '--help' ] && { echo "$USAGE"; exit 0; }
 [ $# -eq 1 -a -f "chk_$1.sh" ] && { echo "Error: chk_$1.sh exists"; exit 1; }
-[ $# -eq 0 ] && echo testing the template generator && set -- template
 cat > tmpsed <<EOF
 3s/something/$1/
 /^something=/s/=something/=$1/
@@ -27,7 +26,7 @@ rm tmpsed
 chmod +x chk_$1.sh
 [ -f chk_$1.sh ] && lines=`cat chk_$1.sh | wc -l` || lines=0
 ## echo $lines
-[ "$lines" -eq 43 ] && echo Now edit chk_$1.sh && exit 0 || exit 3
+[ "$lines" -eq 45 ] && echo Now edit chk_$1.sh && exit 0 || exit 3
 ## end of copy machine
 # FIXME: provide some documentation here on what this script tests
 #
@@ -59,6 +58,8 @@ something=something
 tarballs='FIXME'
 # declare the (built) executables that might not be in your path
 executables='FIXME'
+# finally, acquire a list of directories that may need tidying
+nukables=''
 ## now source the config script; it should make the request data
 ## (i.e. what is in some tarball) present within $MHO_REGRESSION_DATA.
 ##
@@ -92,9 +93,9 @@ source "$MHO_REGRESSION_DATA/switches/test_config.sh"
 # second execute some tests and set $passfail appropriately
 # FIXME # however
 
-## MHO_REGRESSION_NUKE is set to directories to remove if
-## MHO_REGRESSION_TIDY was set to tru
-for dir in "MHO_REGRESSION_NUKE" ; do rm -rf $dir ; done
+## nukables is set to directories to remove if
+## MHO_REGRESSION_TIDY was set to true
+for dir in "$nukables" ; do echo nuking $dir ; rm -rf $dir ; done
 ## scripts should exit with 0 if all went well
 [ "$MHO_REGRESSION_REQ" = ok ] || echo $something $MHO_REGRESSION_REQ $passfail
 exit $passfail
