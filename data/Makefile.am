@@ -35,6 +35,7 @@ BUILT_SOURCES = switches/chk_template.sh
 
 switches/chk_template.sh: $(srcdir)/switches/template.sh $(srcdir)/Makefile.am
 	-rm -f $@
+	[ -d switches ] || mkdir switches
 	cd switches && $(srcdir)/switches/template.sh template
 	sed -e '/tarballs=/s/FIXME//' \
 	    -e '/executables=/s/FIXME/true false/' \
