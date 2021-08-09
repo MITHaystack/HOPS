@@ -104,7 +104,7 @@ extern "C"
     //global variables provided for signal handler clean up of lock files
     lockfile_data_struct global_lockfile_data;
 
-    int msglev = -2;
+    int msglev = 3;
     char progname[] = "test";
 
 }
@@ -152,13 +152,13 @@ class MHO_NormFX: public MHO_BinaryNDArrayOperator<
             double factor, mean;
             double diff_delay, deltaf, polcof, polcof_sum, phase_shift, dpar;
             int freq_no,
-                ibegin,
-                sindex,
-                pol,
-                pols,                       // bit-mapped pols to be processed in this pass
-                usb_present, lsb_present,
-                usb_bypol[4],lsb_bypol[4],
-                lastpol[2];                 // last pol index with data present, by sideband
+            ibegin,
+            sindex,
+            pol,
+            pols,                       // bit-mapped pols to be processed in this pass
+            usb_present, lsb_present,
+            usb_bypol[4],lsb_bypol[4],
+            lastpol[2];                 // last pol index with data present, by sideband
             int datum_uflag, datum_lflag;
             int stnpol[2][4] = {0, 1, 0, 1, 0, 1, 1, 0}; // [stn][pol] = 0:L/X/H, 1:R/Y/V
 
@@ -177,59 +177,59 @@ class MHO_NormFX: public MHO_BinaryNDArrayOperator<
             if( pass->linpol[0] != pass->linpol[1] ){station_pol_mode = MIXED_MODE;};
 
             if (pass->npols == 1)
-                {
-                pol = pass->pol;            // single pol being done per pass
-                ips = pol;
-                pols = 1 << pol;
-                }
+            {
+            pol = pass->pol;            // single pol being done per pass
+            ips = pol;
+            pols = 1 << pol;
+            }
             else                            // linear combination of polarizations
-                {
-                ips = 0;
-                pols = param->pol;
-                }
+            {
+            ips = 0;
+            pols = param->pol;
+            }
 
 
 
-                //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                //For the number of 'lags' (e.g. spectral channels) of this pass create an
-                //FFT plan that can transform the data of this size
-                //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            //For the number of 'lags' (e.g. spectral channels) of this pass create an
+            //FFT plan that can transform the data of this size
+            //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 
-                                            // do fft plan only iff nlags changes
+            // do fft plan only iff nlags changes
             if (param->nlags != nlags)
-                {
-                nlags = param->nlags;
-                fftplan = fftw_plan_dft_1d (4 * nlags,
-                    reinterpret_cast<typename MHO_FFTWTypes<double>::fftw_complex_type_ptr>(S),
-                    reinterpret_cast<typename MHO_FFTWTypes<double>::fftw_complex_type_ptr>(xlag),
-                    FFTW_FORWARD, FFTW_MEASURE);
-                }
+            {
+            nlags = param->nlags;
+            fftplan = fftw_plan_dft_1d (4 * nlags,
+            reinterpret_cast<typename MHO_FFTWTypes<double>::fftw_complex_type_ptr>(S),
+            reinterpret_cast<typename MHO_FFTWTypes<double>::fftw_complex_type_ptr>(xlag),
+            FFTW_FORWARD, FFTW_MEASURE);
+            }
 
             freq_no = fcode(pass->pass_data[fr].freq_code, pass->control.chid);
 
-                                            /* Point to current frequency */
+            /* Point to current frequency */
             fdata = pass->pass_data + fr;
-                                            /* Convenience pointer */
+            /* Convenience pointer */
             datum = fdata->data + ap;
 
 
-                //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                //Calculate the differential parallactic angle (only important for lin-pol)
-                //to be used when combining lin-pol producs
-                //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            //Calculate the differential parallactic angle (only important for lin-pol)
+            //to be used when combining lin-pol producs
+            //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 
-                                            // differenced parallactic angle
+            // differenced parallactic angle
             dpar = param->par_angle[1] - param->par_angle[0];
-                                                /* Initialize */
+            /* Initialize */
             for (i = 0; i < nlags*4; i++)
             {
-                S[i] = 0.0;
+            S[i] = 0.0;
             }
 
             datum->sband = 0;
-                                            /* -1.0 means no data, not zero weight */
+            /* -1.0 means no data, not zero weight */
             datum->usbfrac = -1.0;
             datum->lsbfrac = -1.0;
 
@@ -242,29 +242,29 @@ class MHO_NormFX: public MHO_BinaryNDArrayOperator<
 
 
 
-        //Disable ad-hoc flagging //////////////////////////////////////////////////////
-        //ADHOC_FLAG(&param, datum->flag, fr, ap, &datum_uflag, &datum_lflag);
-        datum_lflag = datum->flag;
-        datum_uflag = datum->flag;
+            //Disable ad-hoc flagging //////////////////////////////////////////////////////
+            //ADHOC_FLAG(&param, datum->flag, fr, ap, &datum_uflag, &datum_lflag);
+            datum_lflag = datum->flag;
+            datum_uflag = datum->flag;
 
 
-        // check sidebands for each pol. for data
+            // check sidebands for each pol. for data
             for (ip=ips; ip<pass->pol+1; ip++)
-                {
-                usb_bypol[ip] = ((datum_uflag & (USB_FLAG << 2*ip)) != 0)
-                             && ((pols & (1 << ip)) != 0);
-                lsb_bypol[ip] = ((datum_lflag & (LSB_FLAG << 2*ip)) != 0)
-                             && ((pols & (1 << ip)) != 0);
-                pass->pprods_present[ip] |= usb_bypol[ip] || lsb_bypol[ip];
+            {
+            usb_bypol[ip] = ((datum_uflag & (USB_FLAG << 2*ip)) != 0)
+            && ((pols & (1 << ip)) != 0);
+            lsb_bypol[ip] = ((datum_lflag & (LSB_FLAG << 2*ip)) != 0)
+            && ((pols & (1 << ip)) != 0);
+            pass->pprods_present[ip] |= usb_bypol[ip] || lsb_bypol[ip];
 
-                if (usb_bypol[ip])
-                    lastpol[0] = ip;
-                if (lsb_bypol[ip])
-                    lastpol[1] = ip;
+            if (usb_bypol[ip])
+            lastpol[0] = ip;
+            if (lsb_bypol[ip])
+            lastpol[1] = ip;
 
-                usb_present |= usb_bypol[ip];
-                lsb_present |= lsb_bypol[ip];
-                }
+            usb_present |= usb_bypol[ip];
+            lsb_present |= lsb_bypol[ip];
+            }
             datum->sband = usb_present - lsb_present;
 
 
@@ -280,133 +280,133 @@ class MHO_NormFX: public MHO_BinaryNDArrayOperator<
             //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 
-                                            /*  sideband # -->  0=upper , 1= lower */
+            /*  sideband # -->  0=upper , 1= lower */
             for (sb = 0; sb < 2; sb++)
-              {
-              for (i = 0; i < nlags*4; i++) // clear xcor & xp_spec for pol sum into them
-                  {
+            {
+                for (i = 0; i < nlags*4; i++) // clear xcor & xp_spec for pol sum into them
+                {
                     xcor[i] = 0.0;
                     xp_spec[i] = 0.0;
-                  }
-                                            // loop over polarization products
-              for (ip=ips; ip<pass->pol+1; ip++)
+                }
+                // loop over polarization products
+                for (ip=ips; ip<pass->pol+1; ip++)
                 {
-                if (param->pol)
+                    if (param->pol)
                     pol = ip;
-                                            // If no data for this sb/pol, go on to next
-                if ((sb == 0 && usb_bypol[ip] == 0)
-                 || (sb == 1 && lsb_bypol[ip] == 0))
+                    // If no data for this sb/pol, go on to next
+                    if ((sb == 0 && usb_bypol[ip] == 0)
+                    || (sb == 1 && lsb_bypol[ip] == 0))
                     continue;
-                                            // Pluck out the requested polarization
-                switch (pol)
+                    // Pluck out the requested polarization
+                    switch (pol)
                     {
-                    case POL_LL: t120 = datum->apdata_ll[sb];
-                    if(station_pol_mode == LIN_MODE)  //TODO: check if this correction should also be applied in mixed-mode case
-                    {
-                                 polcof = (pass->npols > 1) ?
-                                     cos (dpar) :
-                                     signum (cos (dpar));
+                        case POL_LL: t120 = datum->apdata_ll[sb];
+                        if(station_pol_mode == LIN_MODE)  //TODO: check if this correction should also be applied in mixed-mode case
+                        {
+                            polcof = (pass->npols > 1) ?
+                            cos (dpar) :
+                            signum (cos (dpar));
+                        }
+                        else
+                        {
+                            polcof = 1;
+                        }
+                        break;
+                        case POL_RR: t120 = datum->apdata_rr[sb];
+                        if(station_pol_mode == LIN_MODE)
+                        {
+                            polcof = (pass->npols > 1) ?
+                            cos (dpar) :
+                            signum (cos (dpar));
+                        }
+                        else
+                        {
+                            polcof = 1;
+                        }
+                        break;
+                        case POL_LR: t120 = datum->apdata_lr[sb];
+                        if(station_pol_mode == LIN_MODE)
+                        {
+                            polcof = (pass->npols > 1) ?
+                            sin (-dpar) :
+                            signum (sin (-dpar));
+                        }
+                        else
+                        {
+                            polcof = 1;
+                        }
+                        break;
+                        case POL_RL: t120 = datum->apdata_rl[sb];
+                        if(station_pol_mode == LIN_MODE)
+                        {
+                            polcof = (pass->npols > 1) ?
+                            sin (dpar) :
+                            signum (sin (dpar));
+                        }
+                        else
+                        {
+                            polcof = 1;
+                        }
+                            break;
                     }
-                    else
+                    polcof_sum += fabs (polcof);
+                    // sanity test
+                    if (t120 -> type != SPECTRAL)
                     {
-                        polcof = 1;
-                    }
-                                 break;
-                    case POL_RR: t120 = datum->apdata_rr[sb];
-                    if(station_pol_mode == LIN_MODE)
-                    {
-                                 polcof = (pass->npols > 1) ?
-                                     cos (dpar) :
-                                     signum (cos (dpar));
-                    }
-                    else
-                    {
-                        polcof = 1;
-                    }
-                                 break;
-                    case POL_LR: t120 = datum->apdata_lr[sb];
-                    if(station_pol_mode == LIN_MODE)
-                    {
-                                 polcof = (pass->npols > 1) ?
-                                     sin (-dpar) :
-                                     signum (sin (-dpar));
-                    }
-                    else
-                    {
-                        polcof = 1;
-                    }
-                                 break;
-                    case POL_RL: t120 = datum->apdata_rl[sb];
-                    if(station_pol_mode == LIN_MODE)
-                    {
-                                 polcof = (pass->npols > 1) ?
-                                     sin (dpar) :
-                                     signum (sin (dpar));
-                    }
-                    else
-                    {
-                        polcof = 1;
-                    }
-                                 break;
-                    }
-                polcof_sum += fabs (polcof);
-                                            // sanity test
-                if (t120 -> type != SPECTRAL)
-                    {
-                    //msg ("Conflicting correlation type %d", 2, t120->type);
-                    return;
+                        //msg ("Conflicting correlation type %d", 2, t120->type);
+                        return;
                     }
 
-                // note datum->lsbfrac or datum->usbfrac remains at -1.0
-                if (pass->control.min_weight > 0.0 &&
+                    // note datum->lsbfrac or datum->usbfrac remains at -1.0
+                    if (pass->control.min_weight > 0.0 &&
                     pass->control.min_weight > t120->fw.weight) continue;
 
-                                            // determine data weights by sideband
-                if (ip == lastpol[sb])
+                    // determine data weights by sideband
+                    if (ip == lastpol[sb])
                     {                       // last included polarization, do totals
-                    status->ap_num[sb][fr]++;
-                    status->total_ap++;
-                                            // sum to micro-edited totals
-                    if (sb)                 // lower sideband
+                        status->ap_num[sb][fr]++;
+                        status->total_ap++;
+                        // sum to micro-edited totals
+                        if (sb)                 // lower sideband
                         {                   // 0 weight encoded by negative 0
-                        if (*((unsigned int *)(&(t120->fw.weight))) == 0)
-                                            // +0 is backward-compatibility for no weight
+                            if (*((unsigned int *)(&(t120->fw.weight))) == 0)
+                            // +0 is backward-compatibility for no weight
                             datum->lsbfrac = 1.0;
-                        else
+                            else
                             datum->lsbfrac = t120->fw.weight;
-                        status->ap_frac[sb][fr] += datum->lsbfrac;
-                        status->total_ap_frac   += datum->lsbfrac;
-                        status->total_lsb_frac  += datum->lsbfrac;
+                            status->ap_frac[sb][fr] += datum->lsbfrac;
+                            status->total_ap_frac   += datum->lsbfrac;
+                            status->total_lsb_frac  += datum->lsbfrac;
                         }
-                    else                    // upper sideband
+                        else                    // upper sideband
                         {
-                        if (*((unsigned int *)(&(t120->fw.weight))) == 0)
+                            if (*((unsigned int *)(&(t120->fw.weight))) == 0)
                             datum->usbfrac = 1.0;
-                        else
+                            else
                             datum->usbfrac = t120->fw.weight;
-                        status->ap_frac[sb][fr] += datum->usbfrac;
-                        status->total_ap_frac   += datum->usbfrac;
-                        status->total_usb_frac  += datum->usbfrac;
+                            status->ap_frac[sb][fr] += datum->usbfrac;
+                            status->total_ap_frac   += datum->usbfrac;
+                            status->total_usb_frac  += datum->usbfrac;
                         }
                     }
 
-                                            // add in phase effects if multitone delays
-                                            // were extracted
-                if (pass->control.nsamplers && param->pc_mode[0] == MULTITONE
-                                            && param->pc_mode[1] == MULTITONE)
+                    // add in phase effects if multitone delays
+                    // were extracted
+                    if (pass->control.nsamplers && param->pc_mode[0] == MULTITONE
+                    && param->pc_mode[1] == MULTITONE)
                     diff_delay = +1e9 * (datum->rem_sdata.mt_delay[stnpol[1][pol]]
-                                       - datum->ref_sdata.mt_delay[stnpol[0][pol]]);
-                                            // ##DELAY_OFFS## otherwise assume user has
-                                            // used delay_offs or delay_offs_? but not both.
-                else
+                    - datum->ref_sdata.mt_delay[stnpol[0][pol]]);
+                    // ##DELAY_OFFS## otherwise assume user has
+                    // used delay_offs or delay_offs_? but not both.
+                    else
                     diff_delay = pass->control.delay_offs_pol[freq_no][stnpol[1][pol]].rem
-                               + pass->control.delay_offs[freq_no].rem  // ##DELAY_OFFS##
-                               - pass->control.delay_offs[freq_no].ref  // ##DELAY_OFFS##
-                               - pass->control.delay_offs_pol[freq_no][stnpol[0][pol]].ref;
-                //msg ("ap %d fr %d pol %d diff_delay %f", -2, ap, fr, pol, diff_delay);
+                    + pass->control.delay_offs[freq_no].rem  // ##DELAY_OFFS##
+                    - pass->control.delay_offs[freq_no].ref  // ##DELAY_OFFS##
+                    - pass->control.delay_offs_pol[freq_no][stnpol[0][pol]].ref;
+                    //msg ("ap %d fr %d pol %d diff_delay %f", -2, ap, fr, pol, diff_delay);
 
-                                            // loop over spectral points
-                for (i=0; i<nlags/2; i++)
+                    // loop over spectral points
+                    for (i=0; i<nlags/2; i++)
                     {                       // filter out any nan's, if present
                         //! if (isnan (t120->ld.spec[i].re) || isnan (t120->ld.spec[i].im))
                         if(false)
@@ -419,140 +419,141 @@ class MHO_NormFX: public MHO_BinaryNDArrayOperator<
                             // add in iff this is a requested pol product
 
                             z = (double) t120->ld.spec[i].re + I_complex * (double) t120->ld.spec[i].im;
-                                            // rotate each pol prod by pcal prior to adding in
-                        if (sb==0)
-                        {
-                            z = z * std::complex<double>(datum->pc_phasor[ip][0], datum->pc_phasor[ip][1]);
-                        }
-                        else                // use conjugate of usb pcal tone for lsb
-                        {
-                            z = z * conj(std::complex<double>(datum->pc_phasor[ip][0], datum->pc_phasor[ip][1]));
-                        }
-                                            // scale phasor by polarization coefficient
-                        z = z * polcof;
-                                            // corrections to phase as fn of freq based upon
-                                            // delay calibrations
-
-                                            // calculate offset frequency in GHz
-                                            // from DC edge for this spectral point
-                        deltaf = -2e-3 * i / (2e6 * param->samp_period * nlags);
-
-                        // One size may not fit all.  The code below is a compromise
-                        // between current geodetic practice and current EHT needs.
-                        if (param->pc_mode[0] == MANUAL && param->pc_mode[1] == MANUAL)
+                            // rotate each pol prod by pcal prior to adding in
+                            if (sb==0)
                             {
-                            // the correction had the wrong sign and minor O(1/nlags) error
-                            // if one is trying to keep the mean phase of this channel fixed
-                            phase_shift = - 1e-3 * diff_delay / (4e6 * param->samp_period);
-                            phase_shift *= - (double)(nlags - 2) / (double)(nlags);
-                            // per-channel phase should now be stable against delay adjustments
+                                z = z * std::complex<double>(datum->pc_phasor[ip][0], datum->pc_phasor[ip][1]);
                             }
-                        else
+                            else                // use conjugate of usb pcal tone for lsb
                             {
-                                            // correction to mean phase depends on sideband
-                            phase_shift = - 1e-3 * diff_delay / (4e6 * param->samp_period);
-                            if (sb)
+                                z = z * conj(std::complex<double>(datum->pc_phasor[ip][0], datum->pc_phasor[ip][1]));
+                            }
+                            // scale phasor by polarization coefficient
+                            z = z * polcof;
+                            // corrections to phase as fn of freq based upon
+                            // delay calibrations
+
+                            // calculate offset frequency in GHz
+                            // from DC edge for this spectral point
+                            deltaf = -2e-3 * i / (2e6 * param->samp_period * nlags);
+
+                            // One size may not fit all.  The code below is a compromise
+                            // between current geodetic practice and current EHT needs.
+                            if (param->pc_mode[0] == MANUAL && param->pc_mode[1] == MANUAL)
+                            {
+                                // the correction had the wrong sign and minor O(1/nlags) error
+                                // if one is trying to keep the mean phase of this channel fixed
+                                phase_shift = - 1e-3 * diff_delay / (4e6 * param->samp_period);
+                                phase_shift *= - (double)(nlags - 2) / (double)(nlags);
+                                // per-channel phase should now be stable against delay adjustments
+                            }
+                            else
+                            {
+                                // correction to mean phase depends on sideband
+                                phase_shift = - 1e-3 * diff_delay / (4e6 * param->samp_period);
+                                if (sb)
                                 phase_shift = -phase_shift;
                             }
-                                            // apply phase ramp to spectral points
-                        std::complex<double> tmp = std::exp (-2.0 * M_PI * I_complex * (diff_delay * deltaf + phase_shift));
-                        z = z * tmp;
-                        xp_spec[i] += z;
+                            // apply phase ramp to spectral points
+                            std::complex<double> tmp = std::exp (-2.0 * M_PI * I_complex * (diff_delay * deltaf + phase_shift));
+                            z = z * tmp;
+                            xp_spec[i] += z;
                         }
                     }                       // bottom of lags loop
                 }                           // bottom of polarization loop
 
-                                            // also skip over this next section, if no data
-              if ((sb == 0 && usb_present == 0) || (sb == 1 && lsb_present == 0))
-                  continue;
-                                            // yet another way of saying "no data"
-              if ((sb == 0 && datum->usbfrac < 0) || (sb == 1 && datum->lsbfrac < 0))
-                  continue;
+                // also skip over this next section, if no data
+                if ((sb == 0 && usb_present == 0) || (sb == 1 && lsb_present == 0))
+                continue;
+                // yet another way of saying "no data"
+                if ((sb == 0 && datum->usbfrac < 0) || (sb == 1 && datum->lsbfrac < 0))
+                continue;
 
-        ////////////////////////////////////////////////////////////////////////////////
-        //entirely disable these features
+                ////////////////////////////////////////////////////////////////////////////////
+                //entirely disable these features
 
-                                            /* apply spectral filter as needed */
-             // apply_passband (sb, ap, fdata, xp_spec, nlags*2, datum);
-             // apply_notches (sb, ap, fdata, xp_spec, nlags*2, datum);
+                /* apply spectral filter as needed */
+                // apply_passband (sb, ap, fdata, xp_spec, nlags*2, datum);
+                // apply_notches (sb, ap, fdata, xp_spec, nlags*2, datum);
 
-                                            // apply video bandpass correction (if so instructed)
-        //      if (pass->control.vbp_correct)
-        //          apply_video_bp (xp_spec, nlags/2, pass);
+                // apply video bandpass correction (if so instructed)
+                //      if (pass->control.vbp_correct)
+                //          apply_video_bp (xp_spec, nlags/2, pass);
 
-        ////////////////////////////////////////////////////////////////////////////////
+                ////////////////////////////////////////////////////////////////////////////////
 
-                                            // if data was filtered away...
-              if ((sb == 0 && datum->usbfrac <= 0) || (sb == 1 && datum->lsbfrac <= 0))
-                  continue;
+                // if data was filtered away...
+                if ((sb == 0 && datum->usbfrac <= 0) || (sb == 1 && datum->lsbfrac <= 0))
+                continue;
 
-                                            /* Put sidebands together.  For each sb,
-                                               the Xpower array, which is the FFT across
-                                               lags, is symmetrical about DC of the
-                                               sampled sideband, and thus contains the
-                                               (filtered out) "other" sideband, which
-                                               consists primarily of noise.  Thus we only
-                                               copy in half of the Xpower array
-                                               Weight each sideband by data fraction */
+                /* Put sidebands together.  For each sb,
+                the Xpower array, which is the FFT across
+                lags, is symmetrical about DC of the
+                sampled sideband, and thus contains the
+                (filtered out) "other" sideband, which
+                consists primarily of noise.  Thus we only
+                copy in half of the Xpower array
+                Weight each sideband by data fraction */
 
-                                            // skip 0th spectral pt if DC channel suppressed
-              ibegin = (pass->control.dc_block) ? 1 : 0;
-              if (sb == 0 && datum->usbfrac > 0.0)
-                  {                         // USB: accumulate xp spec, no phase offset
-                  for (i = ibegin; i < nlags; i++)
-                      {
-                      factor = datum->usbfrac;
-                      S[i] += factor * xp_spec[i];
-                      }
-                  }
-              else if (sb == 1 && datum->lsbfrac > 0.0)
-                  {                         // LSB: accumulate conj(xp spec) with phase offset
-                  for (i = ibegin; i < nlags; i++)
-                      {
-                      factor = datum->lsbfrac;
-                                            // DC+highest goes into middle element of the S array
-                      sindex = i ? 4 * nlags - i : 2 * nlags;
-                      std::complex<double> tmp2 = std::exp (I_complex * (status->lsb_phoff[0] - status->lsb_phoff[1]));
-                      S[sindex] += factor * std::conj (xp_spec[i] * tmp2 );
-                      }
-                  }
-              }                             // bottom of sideband loop
+                // skip 0th spectral pt if DC channel suppressed
+                ibegin = (pass->control.dc_block) ? 1 : 0;
+                if (sb == 0 && datum->usbfrac > 0.0)
+                {                         // USB: accumulate xp spec, no phase offset
+                    for (i = ibegin; i < nlags; i++)
+                    {
+                        factor = datum->usbfrac;
+                        S[i] += factor * xp_spec[i];
+                    }
+                }
+                else if (sb == 1 && datum->lsbfrac > 0.0)
+                {                         // LSB: accumulate conj(xp spec) with phase offset
+                    for (i = ibegin; i < nlags; i++)
+                    {
+                        factor = datum->lsbfrac;
+                        // DC+highest goes into middle element of the S array
+                        sindex = i ? 4 * nlags - i : 2 * nlags;
+                        std::complex<double> tmp2 = std::exp (I_complex * (status->lsb_phoff[0] - status->lsb_phoff[1]));
+                        S[sindex] += factor * std::conj (xp_spec[i] * tmp2 );
+                    }
+                }
 
-                                            /* Normalize data fractions
-                                               The resulting sbdelay functions which
-                                               are attached to each AP from this point
-                                               on reflect twice as much power in the
-                                               double sideband case as in single sideband.
-                                               The usbfrac and lsbfrac numbers determine
-                                               a multiplicative weighting factor to be
-                                               applied.  In the double sideband case, the
-                                               factor of two is inherent in the data values
-                                               and additional weighting should be done
-                                               using the mean of usbfrac and lsbfrac */
+            }                             // bottom of sideband loop
+
+            /* Normalize data fractions
+            The resulting sbdelay functions which
+            are attached to each AP from this point
+            on reflect twice as much power in the
+            double sideband case as in single sideband.
+            The usbfrac and lsbfrac numbers determine
+            a multiplicative weighting factor to be
+            applied.  In the double sideband case, the
+            factor of two is inherent in the data values
+            and additional weighting should be done
+            using the mean of usbfrac and lsbfrac */
             factor = 0.0;
             if (datum->usbfrac >= 0.0)
-                factor += datum->usbfrac;
+            factor += datum->usbfrac;
             if (datum->lsbfrac >= 0.0)
-                factor += datum->lsbfrac;
+            factor += datum->lsbfrac;
             if ((datum->usbfrac >= 0.0) && (datum->lsbfrac >= 0.0))
-                factor /= 4.0;              // x2 factor for sb and for polcof
-                                            // correct for multiple pols being added in
+            factor /= 4.0;              // x2 factor for sb and for polcof
+            // correct for multiple pols being added in
 
             //For linear pol IXY fourfitting, make sure that we normalize for the two pols
             if( param->pol == POL_IXY)
-                {
+            {
                 factor *= 2.0;
-                }
+            }
             else
-                {
+            {
                 factor *= polcof_sum; //should be 1.0 in all other cases, so this isn't really necessary
-                }
+            }
 
             //Question:
             //why do we do this check? factor should never be negative (see above)
             //and if factor == 0, is this an error that should be flagged?
             if (factor > 0.0)
-                factor = 1.0 / factor;
+            factor = 1.0 / factor;
             //Answer:
             //if neither of usbfrac or lsbfrac was set above the default (-1), then
             //no data was seen and thus the spectral array S is here set to zero.
@@ -560,28 +561,28 @@ class MHO_NormFX: public MHO_BinaryNDArrayOperator<
 
             //msg ("usbfrac %f lsbfrac %f polcof_sum %f factor %1f flag %x", -2,
             //        datum->usbfrac, datum->lsbfrac, polcof_sum, factor, datum->flag);
-                                            /* Collect the results */
+            /* Collect the results */
             if(datum->flag != 0 && factor > 0.0)
-                {
+            {
                 for (i=0; i<4*nlags; i++)
-                    S[i] = S[i] * factor;
-                                            // corrections to phase as fn of freq based upon
-                                            // delay calibrations
-                                            /* FFT to single-band delay */
+                S[i] = S[i] * factor;
+                // corrections to phase as fn of freq based upon
+                // delay calibrations
+                /* FFT to single-band delay */
                 fftw_execute (fftplan);
-                                            /* Place SB delay values in data structure */
-                                            // FX correlator - use full xlag range
+                /* Place SB delay values in data structure */
+                // FX correlator - use full xlag range
                 for (i = 0; i < 2*nlags; i++)
-                    {
-                                            /* Translate so i=nlags is central lag */
-                                            // skip every other (interpolated) lag
+                {
+                    /* Translate so i=nlags is central lag */
+                    // skip every other (interpolated) lag
                     j = 2 * (i - nlags);
                     if (j < 0)
-                        j += 4 * nlags;
-                                            /* re-normalize back to single lag */
-                                            /* (property of FFTs) */
-                                            // nlags-1 norm. iff zeroed-out DC
-                                            // factor of 2 for skipped lags
+                    j += 4 * nlags;
+                    /* re-normalize back to single lag */
+                    /* (property of FFTs) */
+                    // nlags-1 norm. iff zeroed-out DC
+                    // factor of 2 for skipped lags
                     if (pass->control.dc_block)
                     {
                         datum->sbdelay[i][0] = xlag[j].real() / (double) (nlags / 2 - 1.0);
@@ -592,16 +593,16 @@ class MHO_NormFX: public MHO_BinaryNDArrayOperator<
                         datum->sbdelay[i][0] = xlag[j].real() / (double) (nlags / 2);
                         datum->sbdelay[i][1] = xlag[j].imag() / (double) (nlags / 2);
                     }
-                    }
                 }
+            }
             else                            /* No data */
-                {
+            {
                 for (i = 0; i < nlags*2; i++)
                 {
-                        datum->sbdelay[i][0] = 0.0;
-                        datum->sbdelay[i][1] = 0.0;
+                    datum->sbdelay[i][0] = 0.0;
+                    datum->sbdelay[i][1] = 0.0;
                 }
-                }
+            }
 
 
 
@@ -1044,7 +1045,7 @@ int main(int argc, char** argv)
             for(int i=0; i < 2*param.nlags; i++)
             {
                 testVector1.push_back( std::complex<double>(datum->sbdelay[i][0], datum->sbdelay[i][1]) );
-                std::cout<<"datum @ "<<i<<" = ("<<datum->sbdelay[i][0]<<", "<<datum->sbdelay[i][1]<<")"<<std::endl;
+                //std::cout<<"datum @ "<<i<<" = ("<<datum->sbdelay[i][0]<<", "<<datum->sbdelay[i][1]<<")"<<std::endl;
                 //reset just to be safe
                 datum->sbdelay[i][0] = 0.0;
                 datum->sbdelay[i][1] = 0.0;
@@ -1072,7 +1073,7 @@ int main(int argc, char** argv)
             for(int i=0; i < 2*param.nlags; i++)
             {
                 testVector2.push_back( std::complex<double>(datum->sbdelay[i][0], datum->sbdelay[i][1]) );
-                std::cout<<"datum @ "<<i<<" = ("<<datum->sbdelay[i][0]<<", "<<datum->sbdelay[i][1]<<")"<<std::endl;
+                //std::cout<<"datum @ "<<i<<" = ("<<datum->sbdelay[i][0]<<", "<<datum->sbdelay[i][1]<<")"<<std::endl;
             }
         }
     }
@@ -1084,7 +1085,7 @@ int main(int argc, char** argv)
         for(size_t n=0; n<testVector1.size(); n++)
         {
             std::complex<double> delta = testVector1[n] - testVector2[n];
-            std::cout<<"delta @ "<< n <<" : " << testVector1[n].real() <<" - " << testVector2[n].real() << " = " << delta.real() <<std::endl;
+            ////std::cout<<"delta @ "<< n <<" : " << testVector1[n].real() <<" - " << testVector2[n].real() << " = " << delta.real() <<std::endl;
             abs_diff += std::abs(delta);
         }
         double mean_diff = abs_diff/(double)testVector1.size();
