@@ -130,6 +130,141 @@ class MHO_NormFX: public MHO_BinaryNDArrayOperator<
         virtual bool Initialize() override {return true;}
         virtual bool ExecuteOperation() override {return true;};
 
+        int DetermineStationPolMode(struct type_pass* pass)
+        {
+            //determine if the ref and rem stations are using circular or linear
+            //feeds, or it is some combination
+            int station_pol_mode = CIRC_MODE;
+            if( pass->linpol[0] == 0 && pass->linpol[1] == 0){station_pol_mode = CIRC_MODE;}
+            if( pass->linpol[0] == 1 && pass->linpol[1] == 1){station_pol_mode = LIN_MODE;}
+            if( pass->linpol[0] != pass->linpol[1] ){station_pol_mode = MIXED_MODE;};
+            return station_pol_mode;
+        };
+
+        double DeltaParallaticAngle(struct type_param* param)
+        {
+            return param->par_angle[1] - param->par_angle[0];
+        };
+
+        void DetermineDatumSideband(struct type_pass* pass, struct type_param* param,
+                                    struct data_corel *datum, 
+                                    int& ips, int& ip, int& pol, int& pols,
+                                    int& datum_lflag, 
+                                    int& datum_uflag,
+                                    int& usb_present,
+                                    int& lsb_present,
+                                    int* usb_bypol,
+                                    int* lsb_bypol, 
+                                    int* lastpol)
+        {
+            if (pass->npols == 1)
+            {
+                pol = pass->pol;            // single pol being done per pass
+                ips = pol;
+                pols = 1 << pol;
+            }
+            else                            // linear combination of polarizations
+            {
+                ips = 0;
+                pols = param->pol;
+            }
+
+            datum->sband = 0;
+            /* -1.0 means no data, not zero weight */
+            datum->usbfrac = -1.0;
+            datum->lsbfrac = -1.0;
+
+            usb_present = FALSE;
+            lsb_present = FALSE;
+            lastpol[0] = ips;
+            lastpol[1] = ips;
+
+            //Disable ad-hoc flagging //////////////////////////////////////////////////////
+            //ADHOC_FLAG(&param, datum->flag, fr, ap, &datum_uflag, &datum_lflag);
+            datum_lflag = datum->flag;
+            datum_uflag = datum->flag;
+
+            // check sidebands for each pol. for data
+            for(ip=ips; ip<pass->pol+1; ip++)
+            {
+                usb_bypol[ip] = ( (datum_uflag & (USB_FLAG << 2*ip)) != 0) && ( (pols & (1 << ip)) != 0);
+                lsb_bypol[ip] = ( (datum_lflag & (LSB_FLAG << 2*ip)) != 0) && ( (pols & (1 << ip)) != 0);
+                pass->pprods_present[ip] |= usb_bypol[ip] || lsb_bypol[ip];
+
+                if (usb_bypol[ip]){lastpol[0] = ip;}
+                if (lsb_bypol[ip]){lastpol[1] = ip;}
+
+                usb_present |= usb_bypol[ip];
+                lsb_present |= lsb_bypol[ip];
+            }
+            datum->sband = usb_present - lsb_present;
+        };
+
+
+        double SelectPolData(struct data_corel* datum, 
+                             double dpar, 
+                             int npols, 
+                             int sb, 
+                             int pol, 
+                             int station_pol_mode, 
+                             struct type_120*& t120)
+        {
+            // Pluck out the requested polarization
+            double polcof = 0.0;
+            switch (pol)
+            {
+                case POL_LL: t120 = datum->apdata_ll[sb];
+                if(station_pol_mode == LIN_MODE)  //TODO: check if this correction should also be applied in mixed-mode case
+                {
+                    polcof = (npols > 1) ?
+                    cos (dpar) :
+                    signum (cos (dpar));
+                }
+                else
+                {
+                    polcof = 1;
+                }
+                break;
+                case POL_RR: t120 = datum->apdata_rr[sb];
+                if(station_pol_mode == LIN_MODE)
+                {
+                    polcof = (npols > 1) ?
+                    cos (dpar) :
+                    signum (cos (dpar));
+                }
+                else
+                {
+                    polcof = 1;
+                }
+                break;
+                case POL_LR: t120 = datum->apdata_lr[sb];
+                if(station_pol_mode == LIN_MODE)
+                {
+                    polcof = (npols > 1) ?
+                    sin (-dpar) :
+                    signum (sin (-dpar));
+                }
+                else
+                {
+                    polcof = 1;
+                }
+                break;
+                case POL_RL: t120 = datum->apdata_rl[sb];
+                if(station_pol_mode == LIN_MODE)
+                {
+                    polcof = (npols > 1) ?
+                    sin (dpar) :
+                    signum (sin (dpar));
+                }
+                else
+                {
+                    polcof = 1;
+                }
+                break;
+            }
+            return polcof;
+        }
+
 
         //the closest thing we can make in C++ that executes the 
         //same functionality as norm_fx --- preserve this for future testing
@@ -161,105 +296,42 @@ class MHO_NormFX: public MHO_BinaryNDArrayOperator<
             int stnpol[2][4] = {0, 1, 0, 1, 0, 1, 1, 0}; // [stn][pol] = 0:L/X/H, 1:R/Y/V
 
             //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            //From the input data and 'pass' data (read: user config), determine which pol-product
-            //we are going to transform, and whether or not it is linear, circular or mixed
-            //and also if we are computing a linear combination of polarizations
-            //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-
-            //determine if the ref and rem stations are using circular or linear
-            //feeds, or it is some combination
-            int station_pol_mode = CIRC_MODE;
-            if( pass->linpol[0] == 0 && pass->linpol[1] == 0){station_pol_mode = CIRC_MODE;}
-            if( pass->linpol[0] == 1 && pass->linpol[1] == 1){station_pol_mode = LIN_MODE;}
-            if( pass->linpol[0] != pass->linpol[1] ){station_pol_mode = MIXED_MODE;};
-
-            if (pass->npols == 1)
-            {
-                pol = pass->pol;            // single pol being done per pass
-                ips = pol;
-                pols = 1 << pol;
-            }
-            else                            // linear combination of polarizations
-            {
-                ips = 0;
-                pols = param->pol;
-            }
-
-
-
-            //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             //For the number of 'lags' (e.g. spectral channels) of this pass create an
             //FFT plan that can transform the data of this size
             //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-
             // do fft plan only iff nlags changes
             if (param->nlags != nlags)
             {
                 nlags = param->nlags;
                 fftplan = fftw_plan_dft_1d (4 * nlags,
                 reinterpret_cast<typename MHO_FFTWTypes<double>::fftw_complex_type_ptr>(S),
-                reinterpret_cast<typename MHO_FFTWTypes<double>::fftw_complex_type_ptr>(xlag),
-                FFTW_FORWARD, FFTW_MEASURE);
+                reinterpret_cast<typename MHO_FFTWTypes<double>::fftw_complex_type_ptr>(xlag),FFTW_FORWARD, FFTW_MEASURE);
             }
+            /* Initialize */
+            for (i = 0; i < nlags*4; i++){S[i] = 0.0;}
 
+            //Point to the correct chunk of data (from freq number and ap)
             freq_no = fcode(pass->pass_data[fr].freq_code, pass->control.chid);
-
             /* Point to current frequency */
             fdata = pass->pass_data + fr;
             /* Convenience pointer */
             datum = fdata->data + ap;
 
-
             //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            //Calculate the differential parallactic angle (only important for lin-pol)
-            //to be used when combining lin-pol producs
+            //From the input data and 'pass' data (read: user config), determine which pol-product
+            //we are going to transform, and whether or not it is linear, circular or mixed
+            //and also if we are computing a linear combination of polarizations
             //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
+            //determine if the ref and rem stations are using circular or linear
+            //feeds, or it is some combination
+            int station_pol_mode = DetermineStationPolMode(pass);
 
-            // differenced parallactic angle
-            dpar = param->par_angle[1] - param->par_angle[0];
-            /* Initialize */
-            for (i = 0; i < nlags*4; i++)
-            {
-                S[i] = 0.0;
-            }
-
-            datum->sband = 0;
-            /* -1.0 means no data, not zero weight */
-            datum->usbfrac = -1.0;
-            datum->lsbfrac = -1.0;
-
-            polcof_sum = 0.0;
-
-            usb_present = FALSE;
-            lsb_present = FALSE;
-            lastpol[0] = ips;
-            lastpol[1] = ips;
-
-            //Disable ad-hoc flagging //////////////////////////////////////////////////////
-            //ADHOC_FLAG(&param, datum->flag, fr, ap, &datum_uflag, &datum_lflag);
-            datum_lflag = datum->flag;
-            datum_uflag = datum->flag;
-
-
-            // check sidebands for each pol. for data
-            for(ip=ips; ip<pass->pol+1; ip++)
-            {
-                usb_bypol[ip] = ( (datum_uflag & (USB_FLAG << 2*ip)) != 0) && ( (pols & (1 << ip)) != 0);
-                lsb_bypol[ip] = ( (datum_lflag & (LSB_FLAG << 2*ip)) != 0) && ( (pols & (1 << ip)) != 0);
-                pass->pprods_present[ip] |= usb_bypol[ip] || lsb_bypol[ip];
-
-                if (usb_bypol[ip]){lastpol[0] = ip;}
-                if (lsb_bypol[ip]){lastpol[1] = ip;}
-
-                usb_present |= usb_bypol[ip];
-                lsb_present |= lsb_bypol[ip];
-            }
-
-            datum->sband = usb_present - lsb_present;
-
+            //this function is also a monstrosity, needs to be broken-up or simplified
+            DetermineDatumSideband(pass, param, datum, ips, ip, pol, pols, datum_lflag, 
+                                        datum_uflag, usb_present, lsb_present,
+                                        usb_bypol, lsb_bypol, lastpol);
+        
 
             //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             //The following monstrosity is looping over both side bands and all pol-products
@@ -272,6 +344,13 @@ class MHO_NormFX: public MHO_BinaryNDArrayOperator<
             //(4) Applying delay-diff correction either from multitone or manuals
             //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
+            // differenced parallactic angle
+            //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            //Calculate the differential parallactic angle (only important for lin-pol)
+            //to be used when combining lin-pol products
+            //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            dpar = DeltaParallaticAngle(param);
+            polcof_sum = 0.0;
 
             /*  sideband # -->  0=upper , 1= lower */
             for (sb = 0; sb < 2; sb++)
@@ -287,60 +366,10 @@ class MHO_NormFX: public MHO_BinaryNDArrayOperator<
                     if (param->pol){ pol = ip; }
                     // If no data for this sb/pol, go on to next
                     if( (sb == 0 && usb_bypol[ip] == 0) || (sb == 1 && lsb_bypol[ip] == 0)){ continue;}
-
                     // Pluck out the requested polarization
-                    switch (pol)
-                    {
-                        case POL_LL: t120 = datum->apdata_ll[sb];
-                        if(station_pol_mode == LIN_MODE)  //TODO: check if this correction should also be applied in mixed-mode case
-                        {
-                            polcof = (pass->npols > 1) ?
-                            cos (dpar) :
-                            signum (cos (dpar));
-                        }
-                        else
-                        {
-                            polcof = 1;
-                        }
-                        break;
-                        case POL_RR: t120 = datum->apdata_rr[sb];
-                        if(station_pol_mode == LIN_MODE)
-                        {
-                            polcof = (pass->npols > 1) ?
-                            cos (dpar) :
-                            signum (cos (dpar));
-                        }
-                        else
-                        {
-                            polcof = 1;
-                        }
-                        break;
-                        case POL_LR: t120 = datum->apdata_lr[sb];
-                        if(station_pol_mode == LIN_MODE)
-                        {
-                            polcof = (pass->npols > 1) ?
-                            sin (-dpar) :
-                            signum (sin (-dpar));
-                        }
-                        else
-                        {
-                            polcof = 1;
-                        }
-                        break;
-                        case POL_RL: t120 = datum->apdata_rl[sb];
-                        if(station_pol_mode == LIN_MODE)
-                        {
-                            polcof = (pass->npols > 1) ?
-                            sin (dpar) :
-                            signum (sin (dpar));
-                        }
-                        else
-                        {
-                            polcof = 1;
-                        }
-                            break;
-                    }
-                    polcof_sum += fabs (polcof);
+                    polcof = SelectPolData(datum, dpar, pass->npols, sb, pol, station_pol_mode, t120);
+                    polcof_sum += fabs( polcof );
+
                     // sanity test
                     if (t120 -> type != SPECTRAL)
                     {
@@ -1072,7 +1101,7 @@ int main(int argc, char** argv)
         for(size_t n=0; n<testVector1.size(); n++)
         {
             std::complex<double> delta = testVector1[n] - testVector2[n];
-            ////std::cout<<"delta @ "<< n <<" : " << testVector1[n].real() <<" - " << testVector2[n].real() << " = " << delta.real() <<std::endl;
+            std::cout<<"delta @ "<< n <<" : " << testVector1[n].real() <<" - " << testVector2[n].real() << " = " << delta.real() <<std::endl;
             abs_diff += std::abs(delta);
         }
         double mean_diff = abs_diff/(double)testVector1.size();
