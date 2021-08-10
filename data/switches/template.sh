@@ -95,7 +95,7 @@ source "$MHO_REGRESSION_DATA/switches/test_config.sh"
 
 ## nukables is set to directories to remove if
 ## MHO_REGRESSION_TIDY was set to true
-for dir in "$nukables" ; do echo nuking $dir ; rm -rf $dir ; done
+for dir in $nukables ; do echo nuking $dir ; rm -rf $dir ; done
 ## scripts should exit with 0 if all went well
 [ "$MHO_REGRESSION_REQ" = ok ] || echo $something $MHO_REGRESSION_REQ $passfail
 exit $passfail

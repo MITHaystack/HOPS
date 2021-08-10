@@ -278,6 +278,11 @@ AC_MHO_NOTICE([%%% has_cpgplot is $has_cpgplot (required)])
 AC_SUBST(CPGPLOT_CFLAGS)
 AC_SUBST(CPGPLOT_LIBS)
 AM_CONDITIONAL(HAVE_PGPLOT, [$has_cpgplot && $has_pgplot])
+# finally PGPLOT support -- for the present, hardwire to system location
+PGPLOT_FONT=/usr/share/pgplot/grfont.dat
+PGPLOT_RGB=/usr/share/pgplot/rgb.txt
+AC_SUBST(PGPLOT_FONT)
+AC_SUBST(PGPLOT_RGB)
 
 # top-level Makefile and primary directories
 AC_CONFIG_FILES(
