@@ -27,7 +27,21 @@ mopt=${5-''}
     For a more complete explanation, do
 
         ./autogen.sh details
+        ./autogen.sh data
 
+EOF
+[ "$nuke" = 'data' ] && cat <<\EOF
+
+    To access data for some of the tests, you need to set several
+    environment variables as described in data/README.txt:
+
+    export MHO_REGRESSION_DATA=path-to-data
+    export MHO_REGRESSION_EXTRACT=true|false
+    export MHO_REGRESSION_TIDY=true|false
+
+    Normally you will want to rsync/wget MHO_REGRESSION_DATA from
+    Haystack and set MHO_REGRESSION_EXTRACT=true (unpack tarballs
+    as needed) and MHO_REGRESSION_TIDY=false (leave them available).
 EOF
 [ "$nuke" = 'details' ] && cat <<\EOF
 
