@@ -8,8 +8,7 @@
 *Email: barrettj@mit.edu
 *Date: 2020-05-15T20:22:38.395Z
 *Description:
-* Thu 13 Aug 2020 02:53:11 PM EDT - simplified so as to handle memory management interally
-* externally managed arrays should be a different class
+* Thu 13 Aug 2020 02:53:11 PM EDT 
 */
 
 #include <cstring> //for memset
