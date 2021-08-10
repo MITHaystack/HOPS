@@ -68,7 +68,7 @@ $verb && echo aok is $aok and "$low < $snr < $high" is expected from: $line
 [ "$aok" -gt 0 ] && passfail=0 || passfail=8
 
 for dir in $nukables ; do echo nuking $dir ; rm -rf $dir ; done
-[ "$MHO_REGRESSION_REQ" = ok ] || echo $something $MHO_REGRESSION_REQ $passfail
+[ "$MHO_REGRESSION_REQ" = ok ] || echo $MHO_REGRESSION_REQ $passfail
 exit $passfail
 #
 # eof
