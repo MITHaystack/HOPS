@@ -8,7 +8,7 @@
 # 'here' file (between <<EOF and EOF)
 #
 exe=${1-'executable-not-found'}
-ABD=$abs_top_builddir
+ABD=${abs_top_builddir-'abs_top_builddir-not-defined'}
 while read exec epath
 do
     [ "$exec" = "$exe" ] && [ -x "$epath/$exe" ] && echo $epath/$exe && exit 0
@@ -17,9 +17,16 @@ done <<EOF
     true        /bin
     false       /bin
     hops.bash   $ABD/source/bash_src
+    alist       $ABD/source/c_src/applications/alist
+    aedit       $ABD/source/c_src/applications/aedit
+    fourfit     $ABD/source/c_src/applications/fourfit
     #add        #...
+    bogus       /no-such-path
 EOF
-echo $exe
+# if not found, return the query in case it is already in the path
+epath=`type -p $exe`
+[ -x "$epath" ] && echo $epath && exit 0
+echo $exe-not-available
 exit 1
 #
 # eof
