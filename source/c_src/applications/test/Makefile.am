@@ -19,11 +19,13 @@ SUBDIRS =
 TESTS_ENVIRONMENT = \
 	abs_top_builddir=$(abs_top_builddir) \
 	abs_top_srcdir=$(abs_top_srcdir) \
-	srcdir=$(srcdir)
+	srcdir=$(srcdir) \
+	PGPLOT_FONT=@PGPLOT_FONT@ \
+	PGPLOT_RGB=@PGPLOT_RGB@
 
 TESTS = chk_2836.sh
 
-CLEANFILES =
+CLEANFILES = ff-2836.ps
 
 clean-local:
 

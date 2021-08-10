@@ -59,15 +59,17 @@ $MHO_REGRESSION_TIDY || nukables=''
     [ -n "$abs_top_builddir" ] ||
     { echo abs_top_builddir is not set but needed for lookups ; exit 99; }
 
-# now track down executables
+# now track down executables: for each exe redefine it to be
+# the full path to the executable, then the user may use $exe
 for exe in $executables
 do
-    eval `$lookup $exe`
-    eval ep=\$$exe
+    ep=`$lookup $exe`
     [ -x $ep ] || { echo executable $ep for $exe is missing ; exit 99; }
+    eval $exe=$ep
 done
 
-unset unpack requirements status
+# unset all working variables to avoid collision with caller
+unset unpack requirements status ep lookup name dir exe
 
 #
 # eof
