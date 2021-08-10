@@ -397,6 +397,9 @@ class MHO_NormFX: public MHO_BinaryNDArrayOperator<
                     if (pass->control.min_weight > 0.0 && pass->control.min_weight > t120->fw.weight){ continue; }
 
                     // determine data weights by sideband
+
+                    // float fww = t120->fw.weight;
+                    float fww = this->fInput2->at(0,fr,ap,0);
                     if (ip == lastpol[sb])
                     {                       // last included polarization, do totals
                         status->ap_num[sb][fr]++;
@@ -404,14 +407,14 @@ class MHO_NormFX: public MHO_BinaryNDArrayOperator<
                         // sum to micro-edited totals
                         if (sb)                 // lower sideband
                         {                   // 0 weight encoded by negative 0
-                            if (*((unsigned int *)(&(t120->fw.weight))) == 0)
+                            if (*((unsigned int *)(&(fww))) == 0)
                             {
                                 // +0 is backward-compatibility for no weight
                                 datum->lsbfrac = 1.0;
                             }
                             else
                             {
-                                datum->lsbfrac = t120->fw.weight;
+                                datum->lsbfrac = fww;
                                 status->ap_frac[sb][fr] += datum->lsbfrac;
                                 status->total_ap_frac   += datum->lsbfrac;
                                 status->total_lsb_frac  += datum->lsbfrac;
@@ -419,13 +422,13 @@ class MHO_NormFX: public MHO_BinaryNDArrayOperator<
                         }
                         else                    // upper sideband
                         {
-                            if (*((unsigned int *)(&(t120->fw.weight))) == 0)
+                            if (*((unsigned int *)(&(fww))) == 0)
                             {
                                 datum->usbfrac = 1.0;
                             }
                             else
                             {
-                                datum->usbfrac = t120->fw.weight;
+                                datum->usbfrac = fww;
                                 status->ap_frac[sb][fr] += datum->usbfrac;
                                 status->total_ap_frac   += datum->usbfrac;
                                 status->total_usb_frac  += datum->usbfrac;
@@ -440,23 +443,12 @@ class MHO_NormFX: public MHO_BinaryNDArrayOperator<
                     {
                         // loop over spectral points
                         for (i=0; i<nlags/2; i++)
-                        {                       // filter out any nan's, if present
-                            //! if (isnan (t120->ld.spec[i].re) || isnan (t120->ld.spec[i].im))
-                            if(false)
-                            {
-                                //msg ("omitting nan's in visibility for ap %d fr %d lag %i",
-                                //      2, ap, fr, i);
-                            }
+                        {
+                            //Should filter out NaNs at some point
 
-                            // add in iff this is a requested pol product
-
-                            // z = (double) t120->ld.spec[i].re + I_complex * (double) t120->ld.spec[i].im;
-
-                            std::cout<<"fr, i, ap = "<<fr<<", "<<i<<", "<<ap<<std::endl;
+                            // add in iff this is a requested pol product (currently hard coded polprod=0)
+                            //HERE WE ARE TAKING THE VISIBILITIES FROM THE NEW DATA CONTAINERS, previous was t120->ld.spec[i]
                             z = this->fInput1->at(0,fr,ap,i);
-
-                            //(double) t120->ld.spec[i].re + I_complex * (double) t120->ld.spec[i].im;
-
 
                             // rotate each pol prod by pcal prior to adding in
                             if (sb==0)
