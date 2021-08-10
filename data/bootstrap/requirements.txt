@@ -11,6 +11,7 @@
 #
 #chk-test requirements
 template
+2836        S-1
 
 #
 # eof

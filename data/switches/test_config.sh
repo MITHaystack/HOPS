@@ -18,7 +18,8 @@
 
 # ...we can access requirements database and set MHO_REGRESSION_REQ
 set -- `grep "^$something" $requirements`
-[ $# -eq 0 ] && MHO_REGRESSION_REQ='ok' || MHO_REGRESSION_REQ="$@"
+[ $# -eq 0 ] && MHO_REGRESSION_REQ='ok' ||
+    MHO_REGRESSION_REQ='REQUIREMENTS: '"$@"
 
 # now to make data available
 
