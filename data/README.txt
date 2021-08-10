@@ -85,7 +85,8 @@ For access to required data, a file switches/provider.sh contains the
 common machinery to process the tarballing manipulations.  Each check
 script can use it by providing it with arguments to indicate the required
 tarballs.  The actual mechanics of creating the tarballs is captured in
-bootstrap/legacy_tar.sh.
+bootstrap/legacy_tar.sh, and for legacy data, bootstrap/legacy_unpack.sh
+does the work.
 
 To maintain some MHO_REGRESSION_DATA area, script bootstrap/legacy_update.sh
 may be used to mirror what is in the GIT repo with a target data directory.

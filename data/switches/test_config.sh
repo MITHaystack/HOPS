@@ -31,6 +31,7 @@ set -- `grep "^$something" $requirements`
 
 # script to actually do the unpacking work
 unpack=$MHO_REGRESSION_DATA/bootstrap/legacy_unpack.sh
+unpack=$MHO_REGRESSION_DATA/switches/provider.sh
 [ -x "$unpack" ] || { echo unpack script $unpack is missing ; exit 99; }
 
 # loop through the list of tarballs, unpacking and tracking what might is made
