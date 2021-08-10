@@ -450,7 +450,14 @@ class MHO_NormFX: public MHO_BinaryNDArrayOperator<
 
                             // add in iff this is a requested pol product
 
-                            z = (double) t120->ld.spec[i].re + I_complex * (double) t120->ld.spec[i].im;
+                            // z = (double) t120->ld.spec[i].re + I_complex * (double) t120->ld.spec[i].im;
+
+                            std::cout<<"fr, i, ap = "<<fr<<", "<<i<<", "<<ap<<std::endl;
+                            z = this->fInput1->at(0,fr,ap,i);
+
+                            //(double) t120->ld.spec[i].re + I_complex * (double) t120->ld.spec[i].im;
+
+
                             // rotate each pol prod by pcal prior to adding in
                             if (sb==0)
                             {
@@ -954,6 +961,12 @@ int main(int argc, char** argv)
     ch_baseline_data_type* ch_bl_data = nullptr;
     ch_baseline_weight_type* ch_bl_wdata = nullptr;
     bool corel_ok = GetCorel(dirInterface, corelInterface, baseline, pcdata, ch_bl_data, ch_bl_wdata);
+
+    //output array
+    ch_baseline_sbd_type* ch_sbd_data = new ch_baseline_sbd_type();
+    ch_sbd_data->Resize(ch_bl_data->GetDimensions());
+
+
     std::cout<<"data ptrs = "<<pcdata<<", "<<ch_bl_data<<", "<<ch_bl_wdata<<std::endl;
 
     //get the station data information for the ref/rem stations of this baseline
@@ -1075,6 +1088,12 @@ int main(int argc, char** argv)
 
     //re-run this exercise via the c++ function
     MHO_NormFX nfxOperator;
+    nfxOperator.SetFirstInput(ch_bl_data);
+    nfxOperator.SetSecondInput(ch_bl_wdata);
+    nfxOperator.SetOutput(ch_sbd_data);
+
+
+
     for (int fr=0; fr<nf; fr++)
     {
         for (int ap=0; ap<pass_ptr->num_ap; ap++)
