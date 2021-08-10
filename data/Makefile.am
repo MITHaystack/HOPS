@@ -18,7 +18,7 @@ TESTS_ENVIRONMENT = \
 	MHO_REGRESSION_TIDY=true \
 	MHO_REGRESSION_FAKE=.
 
-TESTS = template.sh chk_template.sh chk_unpack.sh
+TESTS = template.sh chk_template.sh chk_unpack.sh chk_lookup.sh
 
 check_PROGRAMS = template.sh chk_template.sh chk_unpack.sh
 
