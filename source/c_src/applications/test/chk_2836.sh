@@ -20,7 +20,7 @@ something=2836
 [ $# -gt 0 ] && { echo $something takes no arguments; exit 4; }
 [ -z "$MHO_REGRESSION_DATA" ] && { echo MHO_REGRESSION_DATA not set; exit 77; }
 [ -x "$MHO_REGRESSION_DATA/switches/test_config.sh" ] || {
-    echo "$MHO_REGRESSION_DATA/switches/test_config.sh" not found ; exit 99; }
+    echo "$MHO_REGRESSION_DATA/switches/test_config.sh" not found ; exit 77; }
 
 # declare the tarballs that are needed and make those arrangements
 tarballs='2836'
