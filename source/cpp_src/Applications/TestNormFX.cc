@@ -530,8 +530,7 @@ class MHO_NormFXPrelim: public MHO_BinaryNDArrayOperator<
                 {                         // USB: accumulate xp spec, no phase offset
                     for (i = ibegin; i < nlags; i++)
                     {
-                        //factor = datum->usbfrac;
-                        factor = 1.0; //!!!!!!!!!!!!!!!!!!
+                        factor = datum->usbfrac;
                         S[i] += factor * xp_spec[i];
                     }
                 }
@@ -539,8 +538,7 @@ class MHO_NormFXPrelim: public MHO_BinaryNDArrayOperator<
                 {                         // LSB: accumulate conj(xp spec) with phase offset
                     for (i = ibegin; i < nlags; i++)
                     {
-                        //factor = datum->lsbfrac;
-                        factor = 1.0; //!!!!!!!!!!!!!!!!!!
+                        factor = datum->lsbfrac;
                         // DC+highest goes into middle element of the S array
                         sindex = i ? 4 * nlags - i : 2 * nlags;
                         std::complex<double> tmp2 = std::exp (I_complex * (status->lsb_phoff[0] - status->lsb_phoff[1]));
@@ -588,7 +586,6 @@ class MHO_NormFXPrelim: public MHO_BinaryNDArrayOperator<
             //msg ("usbfrac %f lsbfrac %f polcof_sum %f factor %1f flag %x", -2,
             //        datum->usbfrac, datum->lsbfrac, polcof_sum, factor, datum->flag);
             /* Collect the results */
-            factor = 1.0; //!!!!!!!!!!!!!!!!!!!!
             if(datum->flag != 0 && factor > 0.0)
             {
                 for (i=0; i<4*nlags; i++){S[i] = S[i] * factor;}
@@ -1045,10 +1042,11 @@ int main(int argc, char** argv)
     sbptr = sbarray;
 
     // int nf = pass_ptr->nfreq;  
-    int nf = 1;// pass_ptr->nfreq;
+    int nf =  1;//pass_ptr->nfreq;
+    int naps = 1;//pass_ptr->num_ap;
     for (int fr=0; fr<nf; fr++)
     {
-        for (int ap=0; ap<pass_ptr->num_ap; ap++)
+        for (int ap=0; ap<naps; ap++)
         {
             datum = pass_ptr->pass_data[fr].data + ap + pass_ptr->ap_off;
             datum->sbdelay = sbptr;
@@ -1066,7 +1064,7 @@ int main(int argc, char** argv)
     
     for (int fr=0; fr<nf; fr++)
     {
-        for (int ap=0; ap<pass_ptr->num_ap; ap++)
+        for (int ap=0; ap<naps; ap++)
         {
             norm_fx(&pass, &param, &status, fr, ap);
         }
@@ -1075,7 +1073,7 @@ int main(int argc, char** argv)
     std::vector< std::complex<double> > testVector1;
     for (int fr=0; fr<nf; fr++)
     {
-        for (int ap=0; ap<pass_ptr->num_ap; ap++)
+        for (int ap=0; ap<naps; ap++)
         {
             datum = pass_ptr->pass_data[fr].data + ap + pass_ptr->ap_off;
             for(int i=0; i < 2*param.nlags; i++)
@@ -1098,7 +1096,7 @@ int main(int argc, char** argv)
 
     for (int fr=0; fr<nf; fr++)
     {
-        for (int ap=0; ap<pass_ptr->num_ap; ap++)
+        for (int ap=0; ap<naps; ap++)
         {
             //norm_fx(&pass, &param, &status, fr, ap);
             nfxOperator.cpp_norm_fx(&pass, &param, &status, fr, ap);
@@ -1108,7 +1106,7 @@ int main(int argc, char** argv)
     std::vector< std::complex<double> > testVector2;
     for (int fr=0; fr<nf; fr++)
     {
-        for (int ap=0; ap<pass_ptr->num_ap; ap++)
+        for (int ap=0; ap<naps; ap++)
         {
             datum = pass_ptr->pass_data[fr].data + ap + pass_ptr->ap_off;
             for(int i=0; i < 2*param.nlags; i++)
@@ -1133,7 +1131,7 @@ int main(int argc, char** argv)
     std::cout<<"2nlags = "<< 2*param.nlags<<std::endl;
     for (int fr=0; fr<nf; fr++)
     {
-        for (int ap=0; ap<pass_ptr->num_ap; ap++)
+        for (int ap=0; ap<naps; ap++)
         {
             for(int i=0; i < 2*param.nlags; i++)
             {
@@ -1154,7 +1152,7 @@ int main(int argc, char** argv)
         {
             std::complex<double> delta = testVector1[n] - testVector2[n];
             std::complex<double> delta2 = testVector1[n] - testVector3[n];
-            std::cout<<"delta @ "<< n <<" : " << testVector1[n].real() <<" - " << testVector2[n].real() << " = " << delta.real() <<std::endl;
+            std::cout<<"delta2 @ "<< n <<" : " << testVector1[n].real() <<" - " << testVector3[n].real() << " = " << delta2.real() <<std::endl;
             abs_diff += std::abs(delta);
             abs_diff2 += std::abs(delta2);
         }
