@@ -63,11 +63,15 @@ MHO_NormFX::ExecuteOperation()
     double lsbfrac = 1.0;
     double factor = 1.0;
 
+    //double it
+    nlags *= 2;
     std::complex<double> z;
 
     xp_spec.Resize(4*nlags);
     S.Resize(4*nlags);
     xlag.Resize(4*nlags);
+
+
 
     fFFTEngine.SetInput(&S);
     fFFTEngine.SetOutput(&xlag);
