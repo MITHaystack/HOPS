@@ -26,7 +26,7 @@ rm tmpsed
 chmod +x chk_$1.sh
 [ -f chk_$1.sh ] && lines=`cat chk_$1.sh | wc -l` || lines=0
 ## echo $lines
-[ "$lines" -eq 45 ] && echo Now edit chk_$1.sh && exit 0 || exit 3
+[ "$lines" -eq 46 ] && echo Now edit chk_$1.sh && exit 0 || exit 3
 ## end of copy machine
 # FIXME: provide some documentation here on what this script tests
 #
@@ -68,7 +68,8 @@ nukables=''
 ##
 ## 'unpack' 'requirements' and 'status' are used in this script so
 ## do not set them prior to this point or there will be problems.
-source "$MHO_REGRESSION_DATA/switches/test_config.sh"
+[ -n "$MHO_REGRESSION_CONFIG" ] && source $MHO_REGRESSION_CONFIG ||
+    source "$MHO_REGRESSION_DATA/switches/test_config.sh"
 [ -n "$MHO_REGRESSION_REQ" ] || { echo requirement not set ; exit 99; }
 ## MHO_REGRESSION_REQ will be set to 'ok' if there is no formal
 ## requirement that is being tracked.  The config script may also
