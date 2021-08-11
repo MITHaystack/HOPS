@@ -31,7 +31,7 @@ an associated readme for some tar files to provide some additional comments.
 
 The scripts expect an environment variable MHO_REGRESSION_DATA set to point
 to a directory with the structure of this source directory, but with some or
-all of the tarballs populated.  (That is, you can point to the this directory
+all of the tarballs populated.  (That is, you can point to this directory
 or a copy of it to conduct a SKIP-all-tests test suite.)  Obviously the more
 interesting case is when it points to a directory fully populated with the
 data tarballs.  The switches subdirectory contains a number of files that
