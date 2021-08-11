@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-[ $# -ne 2 ] && {
-    echo USAGE: $0 GIT-dir Data-dir
+[ $# -lt 2 ] && {
+    echo USAGE: $0 GIT-dir Data-dir [rsync options]
     echo
     echo The first argument is the git source directory, the second
     echo is a target MHO_REGRESSION_DATA.  If it exists, git sources
@@ -13,6 +13,7 @@
 [ -d $2 ] || mkdir $2
 git=`cd $1 && pwd`
 dat=`cd $2 && pwd`
+shift 2
 [ "$git" = "$dat" ] && { echo two distinct directories are needed ; exit 2; }
 # check that $git appears sane
 [ -f $git/README.txt ] || { echo GIT does not have README.txt ; exit 3; }
@@ -20,7 +21,9 @@ dat=`cd $2 && pwd`
 [ -d $git/tarballs ] || { echo GIT does not have tarballs ; exit 5; }
 [ -d $git/bootstrap ] || { echo GIT does not have bootstrap ; exit 6; }
 
-rsync -av --exclude Makefile.am --exclude Makefile.in $1/ $2
+echo \
+rsync -av --exclude Makefile.am --exclude Makefile.in "$@" $git/ $dat
+rsync -av --exclude Makefile.am --exclude Makefile.in "$@" $git/ $dat
 
 #
 # eof
