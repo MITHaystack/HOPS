@@ -38,7 +38,7 @@ class MHO_NormFX: public MHO_BinaryNDArrayOperator<
 
     private:
         
-        MHO_MultidimensionalFastFourierTransform<double, CH_VIS_NDIM> fFFTEngine;
+        MHO_MultidimensionalFastFourierTransform<double,1> fFFTEngine;
 
         // //private data structures to store what were 'extern'/globals
         // //in the old code
@@ -46,7 +46,6 @@ class MHO_NormFX: public MHO_BinaryNDArrayOperator<
         // hops_complex xp_spec[4*MAXLAG];
         // hops_complex xcor[4*MAXLAG], S[4*MAXLAG], xlag[4*MAXLAG];
 
-        
 
 
 };
