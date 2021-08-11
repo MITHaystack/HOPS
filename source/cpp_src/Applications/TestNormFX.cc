@@ -1042,8 +1042,8 @@ int main(int argc, char** argv)
     sbptr = sbarray;
 
     // int nf = pass_ptr->nfreq;  
-    int nf =  1;//pass_ptr->nfreq;
-    int naps = 1;//pass_ptr->num_ap;
+    int nf =  pass_ptr->nfreq;
+    int naps = pass_ptr->num_ap;
     for (int fr=0; fr<nf; fr++)
     {
         for (int ap=0; ap<naps; ap++)

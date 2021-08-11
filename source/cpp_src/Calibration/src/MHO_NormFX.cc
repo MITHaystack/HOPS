@@ -82,6 +82,10 @@ MHO_NormFX::ExecuteOperation()
     {
         for(std::size_t ap=0; ap<naps; ap++)
         {
+
+            for (int i=0; i<4*nlags; i++){xp_spec[i] = 0.0;}
+            for (int i=0; i<4*nlags; i++){S[i] = 0.0;}
+
             for(std::size_t pp=0; pp<1; pp++) //loop over pol-products (select and/or add)
             {
                 for (int i=0; i<nlags/2; i++)
