@@ -19,7 +19,7 @@
 
 #include "MHO_DirectoryInterface.hh"
 
-//#include "MHO_NormFX.hh"
+#include "MHO_NormFX.hh"
 
 
 #define signum(a) (a>=0 ? 1.0 : -1.0)
@@ -118,14 +118,14 @@ namespace hops
 {
 
 
-class MHO_NormFX: public MHO_BinaryNDArrayOperator<
+class MHO_NormFXPrelim: public MHO_BinaryNDArrayOperator<
     ch_baseline_data_type,
     ch_baseline_weight_type,
     ch_baseline_sbd_type >
 {
     public:
-        MHO_NormFX(){}
-        virtual ~MHO_NormFX(){};
+        MHO_NormFXPrelim(){}
+        virtual ~MHO_NormFXPrelim(){};
 
         virtual bool Initialize() override {return true;}
         virtual bool ExecuteOperation() override {return true;};
@@ -530,7 +530,8 @@ class MHO_NormFX: public MHO_BinaryNDArrayOperator<
                 {                         // USB: accumulate xp spec, no phase offset
                     for (i = ibegin; i < nlags; i++)
                     {
-                        factor = datum->usbfrac;
+                        //factor = datum->usbfrac;
+                        factor = 1.0; //!!!!!!!!!!!!!!!!!!
                         S[i] += factor * xp_spec[i];
                     }
                 }
@@ -538,7 +539,8 @@ class MHO_NormFX: public MHO_BinaryNDArrayOperator<
                 {                         // LSB: accumulate conj(xp spec) with phase offset
                     for (i = ibegin; i < nlags; i++)
                     {
-                        factor = datum->lsbfrac;
+                        //factor = datum->lsbfrac;
+                        factor = 1.0; //!!!!!!!!!!!!!!!!!!
                         // DC+highest goes into middle element of the S array
                         sindex = i ? 4 * nlags - i : 2 * nlags;
                         std::complex<double> tmp2 = std::exp (I_complex * (status->lsb_phoff[0] - status->lsb_phoff[1]));
@@ -586,6 +588,7 @@ class MHO_NormFX: public MHO_BinaryNDArrayOperator<
             //msg ("usbfrac %f lsbfrac %f polcof_sum %f factor %1f flag %x", -2,
             //        datum->usbfrac, datum->lsbfrac, polcof_sum, factor, datum->flag);
             /* Collect the results */
+            factor = 1.0; //!!!!!!!!!!!!!!!!!!!!
             if(datum->flag != 0 && factor > 0.0)
             {
                 for (i=0; i<4*nlags; i++){S[i] = S[i] * factor;}
@@ -956,7 +959,15 @@ int main(int argc, char** argv)
 
     //output array
     ch_baseline_sbd_type* ch_sbd_data = new ch_baseline_sbd_type();
-    ch_sbd_data->Resize(ch_bl_data->GetDimensions());
+    std::size_t sbd_dims[CH_VIS_NDIM];
+    ch_bl_data->GetDimensions(sbd_dims);
+    sbd_dims[CH_FREQ_AXIS] = 4*sbd_dims[CH_FREQ_AXIS]; //For whatever reason fill params sets nlags  = 2 x nlags, then normfx needs another 2x
+    ch_sbd_data->Resize(sbd_dims);
+
+    for(int q=0; q <CH_VIS_NDIM; q++)
+    {
+        std::cout<<"dim"<<q<<" = "<<sbd_dims[q]<<std::endl;
+    }
 
 
     std::cout<<"data ptrs = "<<pcdata<<", "<<ch_bl_data<<", "<<ch_bl_wdata<<std::endl;
@@ -1078,12 +1089,11 @@ int main(int argc, char** argv)
         }
     }
 
-    //re-run this exercise via the c++ function
-    MHO_NormFX nfxOperator;
+    //re-run this exercise via the (partial) c++ function
+    MHO_NormFXPrelim nfxOperator;
     nfxOperator.SetFirstInput(ch_bl_data);
     nfxOperator.SetSecondInput(ch_bl_wdata);
     nfxOperator.SetOutput(ch_sbd_data);
-
 
 
     for (int fr=0; fr<nf; fr++)
@@ -1109,18 +1119,50 @@ int main(int argc, char** argv)
         }
     }
 
+
+
+    //re-run this exercise via the pure c++ function
+    MHO_NormFX nfxOperator2;
+    nfxOperator2.SetFirstInput(ch_bl_data);
+    nfxOperator2.SetSecondInput(ch_bl_wdata);
+    nfxOperator2.SetOutput(ch_sbd_data);
+    nfxOperator2.Initialize();
+    nfxOperator2.ExecuteOperation();
+
+    std::vector< std::complex<double> > testVector3;
+    std::cout<<"2nlags = "<< 2*param.nlags<<std::endl;
+    for (int fr=0; fr<nf; fr++)
+    {
+        for (int ap=0; ap<pass_ptr->num_ap; ap++)
+        {
+            for(int i=0; i < 2*param.nlags; i++)
+            {
+                std::cout<<"data @ "<<fr<<","<<ap<<","<<i<<" = ";//<< ch_sbd_data->at(0,fr,ap,i)<<std::endl;
+                std::cout<< ch_sbd_data->at(0,fr,ap,i)<<std::endl;
+                testVector3.push_back( ch_sbd_data->at(0,fr,ap,i) );
+                //std::cout<<"datum @ "<<i<<" = ("<<datum->sbdelay[i][0]<<", "<<datum->sbdelay[i][1]<<")"<<std::endl;
+            }
+        }
+    }
+
     int ret_val = 0;
     if(testVector1.size() == testVector2.size() )
     {
         double abs_diff = 0.0;
+        double abs_diff2 = 0.0;
         for(size_t n=0; n<testVector1.size(); n++)
         {
             std::complex<double> delta = testVector1[n] - testVector2[n];
+            std::complex<double> delta2 = testVector1[n] - testVector3[n];
             std::cout<<"delta @ "<< n <<" : " << testVector1[n].real() <<" - " << testVector2[n].real() << " = " << delta.real() <<std::endl;
             abs_diff += std::abs(delta);
+            abs_diff2 += std::abs(delta2);
         }
         double mean_diff = abs_diff/(double)testVector1.size();
-        std::cout<<"mean difference between c/c++ paths = "<<mean_diff<<std::endl;
+        std::cout<<"mean difference between c and c++ paths = "<<mean_diff<<std::endl;
+        double mean_diff2 = abs_diff2/(double)testVector1.size();
+        std::cout<<"mean difference between c (class) c++ paths = "<<mean_diff2<<std::endl;
+
         ret_val = 0;
     }
     else 
@@ -1128,7 +1170,6 @@ int main(int argc, char** argv)
         ret_val = 1;
     }
     
-
 
     return ret_val;
 }
