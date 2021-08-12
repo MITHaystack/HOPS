@@ -51,7 +51,7 @@ MHO_NormFX::ExecuteOperation()
     //for now only select the first polarization
 
 
-
+    bool status;
     std::size_t dims[CH_VIS_NDIM];
     this->fInput1->GetDimensions(dims);
 
@@ -72,7 +72,6 @@ MHO_NormFX::ExecuteOperation()
     S.Resize(4*nlags);
     xlag.Resize(4*nlags);
 
-
     fFFTEngine.SetInput(&S);
     fFFTEngine.SetOutput(&xlag);
     fFFTEngine.SetForward();
@@ -81,14 +80,15 @@ MHO_NormFX::ExecuteOperation()
     //insert a NaN for testing
     //this->fInput1->at(0,0,0,0) = std::complex<double>(1.0, 0.0/0.0);
 
-    //first thing we do is filter out any NaNs 
+    //first thing we do is filter out any NaNs
+    //(ADHOC flagging would likely also be implemented in a similar fashion)
     MHO_NaNMasker<ch_baseline_data_type, ch_baseline_data_type> nanMasker;
     MHO_FunctorBroadcaster<ch_baseline_data_type, ch_baseline_data_type> filterBroadcast;
     filterBroadcast.SetFunctor(&nanMasker);
     filterBroadcast.SetInput(this->fInput1);
     filterBroadcast.SetOutput(this->fInput1);
-    filterBroadcast.Initialize();
-    filterBroadcast.ExecuteOperation();
+    status = filterBroadcast.Initialize();
+    status = filterBroadcast.ExecuteOperation();
 
 
     for(std::size_t fr=0; fr<nchan; fr++)

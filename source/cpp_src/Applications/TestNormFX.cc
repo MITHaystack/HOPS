@@ -785,7 +785,7 @@ bool GetCorel(MHO_DirectoryInterface& dirInterface,
         dirInterface.SplitCorelFileBasename(input_basename, st_pair, root_code);
         if(st_pair == baseline)
         {
-            std::cout<<"found corel file: "<< *it <<std::endl;
+            //std::cout<<"found corel file: "<< *it <<std::endl;
             corelInterface.SetCorelFile(*it);
             corelInterface.SetVexFile(root_file);
             corelInterface.ExtractCorelFile();
@@ -1135,8 +1135,8 @@ int main(int argc, char** argv)
         {
             for(int i=0; i < 2*param.nlags; i++)
             {
-                std::cout<<"data @ "<<fr<<","<<ap<<","<<i<<" = ";//<< ch_sbd_data->at(0,fr,ap,i)<<std::endl;
-                std::cout<< ch_sbd_data->at(0,fr,ap,i)<<std::endl;
+                //std::cout<<"data @ "<<fr<<","<<ap<<","<<i<<" = ";//<< ch_sbd_data->at(0,fr,ap,i)<<std::endl;
+                //std::cout<< ch_sbd_data->at(0,fr,ap,i)<<std::endl;
                 testVector3.push_back( ch_sbd_data->at(0,fr,ap,i) );
                 //std::cout<<"datum @ "<<i<<" = ("<<datum->sbdelay[i][0]<<", "<<datum->sbdelay[i][1]<<")"<<std::endl;
             }
@@ -1152,7 +1152,7 @@ int main(int argc, char** argv)
         {
             std::complex<double> delta = testVector1[n] - testVector2[n];
             std::complex<double> delta2 = testVector1[n] - testVector3[n];
-            std::cout<<"delta2 @ "<< n <<" : " << testVector1[n].real() <<" - " << testVector3[n].real() << " = " << delta2.real() <<std::endl;
+            //std::cout<<"delta2 @ "<< n <<" : " << testVector1[n].real() <<" - " << testVector3[n].real() << " = " << delta2.real() <<std::endl;
             abs_diff += std::abs(delta);
             abs_diff2 += std::abs(delta2);
         }
