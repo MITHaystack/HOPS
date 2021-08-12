@@ -3,6 +3,7 @@ set (CALIBRATION_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ChannelizedRotationFunctor.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_VisibilityChannelizer.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_WeightChannelizer.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_NaNMasker.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_NormFX.hh
 )
 
