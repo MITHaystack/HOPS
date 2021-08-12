@@ -9,7 +9,7 @@
 [ -z "$testverb" ] && testverb=0
 verb=false ; [ -n "$testverb" ] && verb=true
 very=false ; [ -n "$testverb" -a "$testverb" -gt 1 ] && very=true && verb=true
-passfail=0
+passfail=99
 something=2836
 [ -z "$srcdir" -o -d "$srcdir" ] || {
     echo srcdir "$srcdir" not set correctly; exit 1; }
