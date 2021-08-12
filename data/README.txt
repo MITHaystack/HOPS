@@ -58,6 +58,14 @@ the extracted data once the test is complete--leave the data in place or
 wipe it (to save space).  Generally speaking, a 'nightly' build process
 would benefit from MHO_REGRESSION_TIDY=false to speed things up.
 
+Note that MHO_REGRESSION_EXTRACT defaults to true and a directory will be
+considered to have been extracted if it is found.  Thus if you set the
+variable MHO_REGRESSION_TIDY=true you may end up removing directories that
+you did not actually extract.  This is consistent with the variables and
+their definitions...but may not be what you wanted.  If you explicitly
+set MHO_REGRESSION_EXTRACT=false, then you will only remove the directories
+that you extracted.
+
 Tests are generally named chk_something.sh, so "something" should be unique.
 The automake test driver drops test results into files with .trs appended
 (with test output going to a file with .log appended--if you turn on verbosity

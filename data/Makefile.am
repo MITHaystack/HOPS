@@ -49,6 +49,7 @@ chk_template.sh: template.sh $(srcdir)/Makefile.am
 	    -e '/executables=/s/FIXME/true false/' \
 	    -e '/FIXME.*whatever/s+.*+$(assign1)+' \
 	    -e '/FIXME.*however/s+.*+$(assign2)+' \
+	    -e '/passfail=99/s/99/0/' \
 	    $@ > $@.tmp && \
 	mv $@.tmp $@ && chmod +x $@ && grep ok $@
 
@@ -62,6 +63,7 @@ chk_unpack.sh: template.sh $(srcdir)/Makefile.am
 	    -e '/executables=/s/FIXME//' \
 	    -e '/FIXME...whatever/s+.*+$(assign3)+' \
 	    -e '/FIXME...however/s+.*+$(assign4)+' \
+	    -e '/passfail=99/s/99/0/' \
 	    $@ > $@.tmp && \
 	mv $@.tmp $@ && chmod +x $@ && grep pdf $@
 

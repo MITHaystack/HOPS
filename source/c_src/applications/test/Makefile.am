@@ -13,15 +13,16 @@
 
 # create new tests with, e.g:
 #  /home/gbc/HOPS/hops-git/data/switches/template.sh name
+# these may not be needed in TESTS_ENVIRONMENT
+#	PGPLOT_FONT=@PGPLOT_FONT@ \
+#	PGPLOT_RGB=@PGPLOT_RGB@
 
 SUBDIRS =
 
 TESTS_ENVIRONMENT = \
 	abs_top_builddir=$(abs_top_builddir) \
 	abs_top_srcdir=$(abs_top_srcdir) \
-	srcdir=$(srcdir) \
-	PGPLOT_FONT=@PGPLOT_FONT@ \
-	PGPLOT_RGB=@PGPLOT_RGB@
+	srcdir=$(srcdir)
 
 TESTS = chk_2836.sh
 
