@@ -26,7 +26,7 @@ rm tmpsed
 chmod +x chk_$1.sh
 [ -f chk_$1.sh ] && lines=`cat chk_$1.sh | wc -l` || lines=0
 ## echo $lines
-[ "$lines" -eq 46 ] && echo Now edit chk_$1.sh && exit 0 || exit 3
+[ "$lines" -eq 47 ] && echo Now edit chk_$1.sh && exit 0 || exit 3
 ## end of copy machine
 # FIXME: provide some documentation here on what this script tests
 #
@@ -34,15 +34,19 @@ chmod +x chk_$1.sh
 # standard setup follows; comment out what is not needed
 ## allow at least two levels of verbosity
 [ -z "$testverb" ] && testverb=0
-verb=false ; [ -n "$testverb" ] && verb=true
-very=false ; [ -n "$testverb" -a "$testverb" -gt 1 ] && very=true && verb=true
+verb=false ; [ "$testverb" -gt 0 ] && verb=true
+very=false ; [ "$testverb" -gt 1 ] && very=true && verb=true
+## after that make up appropriate variables to suit your tastes
+## if you never set passfail, that will be an ERROR
 passfail=99
+## something is the name of the test in case you need to refer to it
 something=something
 ## these are sometimes useful things to have
 [ -z "$srcdir" -o -d "$srcdir" ] || {
     echo srcdir "$srcdir" not set correctly; exit 1; }
 [ -z "$abs_top_srcdir" -o -d "$abs_top_srcdir" ] || {
     echo abs_top_srcdir "$abs_top_srcdir" not set correctly; exit 2; }
+## this one is required if you lookup executables
 [ -z "$abs_top_builddir" -o -d "$abs_top_builddir" ] || {
     echo abs_top_builddir "$abs_top_builddir" not set correctly; exit 3; }
 ## Test scripts are normally invoked without arguments
@@ -54,11 +58,15 @@ something=something
 [ -x "$MHO_REGRESSION_DATA/switches/test_config.sh" ] || {
     echo "$MHO_REGRESSION_DATA/switches/test_config.sh" not found ; exit 99; }
 
+## you may insert other checks at this point
+
 # declare the tarballs that are needed and make those arrangements
 tarballs='FIXME'
 # declare the (built) executables that might not be in your path
 executables='FIXME'
 # finally, acquire a list of directories that may need tidying
+## this list is augmented by MHO_REGRESSION_DATA dirs that were EXTRACTED
+## but you can also use it for local cleanup of large local directories
 nukables=''
 ## now source the config script; it should make the request data
 ## (i.e. what is in some tarball) present within $MHO_REGRESSION_DATA.
@@ -96,7 +104,7 @@ nukables=''
 
 ## nukables is set to directories to remove if
 ## MHO_REGRESSION_TIDY was set to true
-for dir in $nukables ; do echo nuking $dir ; rm -rf $dir ; done
+eval set -- $nukables ; for dir ; do echo Nuking $dir ; rm -rf $dir ; done
 ## scripts should exit with 0 if all went well
 [ "$MHO_REGRESSION_REQ" = ok ] || echo $MHO_REGRESSION_REQ $passfail
 exit $passfail

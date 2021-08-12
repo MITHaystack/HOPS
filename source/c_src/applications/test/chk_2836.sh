@@ -7,8 +7,8 @@
 
 # standard setup follows; comment out what is not needed
 [ -z "$testverb" ] && testverb=0
-verb=false ; [ -n "$testverb" ] && verb=true
-very=false ; [ -n "$testverb" -a "$testverb" -gt 1 ] && very=true && verb=true
+verb=false ; [ "$testverb" -gt 0 ] && verb=true
+very=false ; [ "$testverb" -gt 1 ] && very=true && verb=true
 passfail=99
 something=2836
 [ -z "$srcdir" -o -d "$srcdir" ] || {
@@ -22,15 +22,28 @@ something=2836
 [ -x "$MHO_REGRESSION_DATA/switches/test_config.sh" ] || {
     echo "$MHO_REGRESSION_DATA/switches/test_config.sh" not found ; exit 99; }
 
+# this is just for some debugging of test_config.sh
+data=$MHO_REGRESSION_DATA/ff_testdata/2836
+ls -ld $data 2>&- || echo $data not found
+
 # declare the tarballs that are needed and make those arrangements
 tarballs='2836'
 # declare the (built) executables that might not be in your path
 executables='fourfit'
 # finally, acquire a list of directories that may need tidying
-nukables=''
+nukables='ff-2836.ps'
 [ -n "$MHO_REGRESSION_CONFIG" ] && source $MHO_REGRESSION_CONFIG ||
     source "$MHO_REGRESSION_DATA/switches/test_config.sh"
 [ -n "$MHO_REGRESSION_REQ" ] || { echo requirement not set ; exit 99; }
+$verb && echo verb is $verb
+
+# this is just for some debugging of test_config.sh
+echo verb: $verb
+echo data: $MHO_REGRESSION_DATA
+echo config: $MHO_REGRESSION_CONFIG
+echo extract: $MHO_REGRESSION_EXTRACT
+echo tidy: $MHO_REGRESSION_TIDY
+echo nukables: $nukables
 
 # first check that everything needed is actually present
 data=$MHO_REGRESSION_DATA/ff_testdata/2836
@@ -68,7 +81,7 @@ aok=$(echo "$snr>$low && $snr<$high" | bc)
 $verb && echo aok is $aok and "$low < $snr < $high" is expected from: $line
 [ "$aok" -gt 0 ] && passfail=0 || passfail=8
 
-for dir in $nukables ; do echo nuking $dir ; rm -rf $dir ; done
+eval set -- $nukables ; for dir ; do echo Nuking $dir ; rm -rf $dir ; done
 [ "$MHO_REGRESSION_REQ" = ok ] || echo $MHO_REGRESSION_REQ $passfail
 exit $passfail
 #
