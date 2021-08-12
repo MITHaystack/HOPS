@@ -1,5 +1,8 @@
 #include "MHO_NormFX.hh"
 
+#include "MHO_NaNMasker.hh"
+#include "MHO_FunctorBroadcaster.hh"
+
 #define signum(a) (a>=0 ? 1.0 : -1.0)
 
 #define CIRC_MODE 0
@@ -47,9 +50,7 @@ MHO_NormFX::ExecuteOperation()
     //sum over all relevant polarization-products and side-bands 
     //for now only select the first polarization
 
-    MHO_NDArrayWrapper< std::complex<double>, 1 > xp_spec;
-    MHO_NDArrayWrapper< std::complex<double>, 1 > S;
-    MHO_NDArrayWrapper< std::complex<double>, 1 > xlag;
+
 
     std::size_t dims[CH_VIS_NDIM];
     this->fInput1->GetDimensions(dims);
@@ -72,11 +73,23 @@ MHO_NormFX::ExecuteOperation()
     xlag.Resize(4*nlags);
 
 
-
     fFFTEngine.SetInput(&S);
     fFFTEngine.SetOutput(&xlag);
     fFFTEngine.SetForward();
     fFFTEngine.Initialize();
+
+    //insert a NaN for testing
+    //this->fInput1->at(0,0,0,0) = std::complex<double>(1.0, 0.0/0.0);
+
+    //first thing we do is filter out any NaNs 
+    MHO_NaNMasker<ch_baseline_data_type, ch_baseline_data_type> nanMasker;
+    MHO_FunctorBroadcaster<ch_baseline_data_type, ch_baseline_data_type> filterBroadcast;
+    filterBroadcast.SetFunctor(&nanMasker);
+    filterBroadcast.SetInput(this->fInput1);
+    filterBroadcast.SetOutput(this->fInput1);
+    filterBroadcast.Initialize();
+    filterBroadcast.ExecuteOperation();
+
 
     for(std::size_t fr=0; fr<nchan; fr++)
     {

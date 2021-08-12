@@ -40,13 +40,9 @@ class MHO_NormFX: public MHO_BinaryNDArrayOperator<
         
         MHO_MultidimensionalFastFourierTransform<double,1> fFFTEngine;
 
-        // //private data structures to store what were 'extern'/globals
-        // //in the old code
-        // fftw_plan fftplan;
-        // hops_complex xp_spec[4*MAXLAG];
-        // hops_complex xcor[4*MAXLAG], S[4*MAXLAG], xlag[4*MAXLAG];
-
-
+        MHO_NDArrayWrapper< std::complex<double>, 1 > xp_spec;
+        MHO_NDArrayWrapper< std::complex<double>, 1 > S;
+        MHO_NDArrayWrapper< std::complex<double>, 1 > xlag;
 
 };
 
