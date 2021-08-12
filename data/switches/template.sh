@@ -36,7 +36,7 @@ chmod +x chk_$1.sh
 [ -z "$testverb" ] && testverb=0
 verb=false ; [ -n "$testverb" ] && verb=true
 very=false ; [ -n "$testverb" -a "$testverb" -gt 1 ] && very=true && verb=true
-passfail=0
+passfail=99
 something=something
 ## these are sometimes useful things to have
 [ -z "$srcdir" -o -d "$srcdir" ] || {
