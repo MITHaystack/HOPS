@@ -5,6 +5,7 @@ set (HOPS_TEST_LIBS MHO_Message MHO_Math MHO_Utilities MHO_Operators)
 
 set(SOURCE_BASENAMES
     TestMultidimensionalFastFourierTransform
+    TestInterpolatedFFT
 #    TestReducer
 )
 
