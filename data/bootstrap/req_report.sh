@@ -1,4 +1,4 @@
-#!/bin/sh -x
+#!/bin/sh
 #
 # Gather information for a report.
 #

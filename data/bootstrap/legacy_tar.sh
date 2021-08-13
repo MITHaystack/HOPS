@@ -8,7 +8,7 @@
 [ $# -eq 0 ] && {
     echo Usage: $0 names
     echo This script makes tarballs of directories found
-    echo in \$HOPS_ROOT/trunk and places them into the
+    echo in "(HOPS3)" \$HOPS_ROOT/trunk and places them into the
     echo \$MHO_REGRESSION_DATA/tarballs/legacy area.
     echo The special name 'help' provides a list of tars,
     echo and the special name 'all' does all of them.
@@ -18,6 +18,8 @@
     echo inserted into the name.  See also legacy_nuke.sh.
     echo You can set 'save' in the environment for some other
     echo save name, e.g. a HOPS version number.
+    echo
+    echo New HOPS4 data is to be managed in some TBD script.
     exit 1
 }
 [ -n "$MHO_REGRESSION_DATA" ] || {
@@ -35,13 +37,13 @@
 
 dest=$MHO_REGRESSION_DATA/tarballs/legacy
 [ -d "$dest" ] || {
-    echo $dest is missing, go fix that
+    echo \$MHO_REGRESSION_DATA/tarballs/legacy $dest is missing, go fix that
     exit 4
 }
 
 trk=$HOPS_ROOT/trunk
 [ -d "$trk" ] || {
-    echo $trk is missing, go fix that
+    echo \$HOPS_ROOT/trunk $trk is missing, go fix that
     exit 5
 }
 
@@ -64,11 +66,19 @@ ompi
 "
 
 # this is what they contain
-thelp="This script manages these legacy tarballs:
-misc    -- a (small) test tarball captured in the source area for testing
-corr    -- the original /correlator (HOPS 2 era) as copied to SVN
-mk4m    -- various migration scripts associated with migration to SVN
-ompi    -- some scripts for testing the software correlator with OpenMPI
+thelp="This script manages legacy tarballs; -s- refers to source
+areas and -d- refers to data areas
+
+corr    -s- the original /correlator (HOPS 2 era) as copied to SVN
+mk4m    -s- various migration scripts associated with migration to SVN
+ompi    -s- some scripts for testing the software correlator with OpenMPI
+
+misc    -d- a (small) test tarball captured in the source area for testing
+fftest  -d- there are individual HOPS experiments that have been captured.
+           use fftest to get a listing.  They are tarballed individually.
+
+v2xsrc  -s- vex2xml sources
+v2xtst  -d- vex2xml testcases
 
 The script legacy_nuke.sh can be used to wipe old backup copies of
 previously generated legacy tarballs.  The default is to remake all
@@ -77,6 +87,21 @@ tarballs.  When tarballs are made, the old copies are saved as
 to save.
 
 Recommended practice might be to save tarballs at every version bump.
+"
+fftest="Tarballs for parts of the following experiments are supported:
+2491    -d- scan 363-200000
+2611    -d- scan 062-094600
+2836    -d- scan scan001 (one of the basic tests)
+2843    -d- scan 321-1701_0552+398 (one of the basic tests)
+2849    -d- scan 297-0311_RCAS
+2912    -d- scan 253-1907
+3064    -d- scan 113-0256
+3262    -d- scan 049-0600
+3365    -d- scans 094-0644_HIGH and 094-0644_LOW (fourmer test)
+3372    -d- scan 193-1757 (one of the basic tests)
+3413    -d- scan 278-1758 (one of the basic tests)
+3562    -d- scan 141-0002
+3571    -d- scan 244-1717
 "
 
 [ "$1" = all ] && set -- $tars
@@ -89,41 +114,58 @@ for t
 do
     # set src (found in $trk) and tarball name (usually $src)
     # this list must be synchronized with boostrap/legacy_unpack.sh
+    name="$t" exc='' src='' dir=''
     case $t in
-    help)       echo "$thelp"       ; exit 0                            ;;
-    corr)       src=correlator      ; dir=$trk              ; name=$src ;;
-    mk4m)       src=mk4-migrate     ; dir=$trk              ; name=$src ;;
-    ompi)       src=ompi            ; dir=$trk              ; name=$src ;;
+    \#*)        continue                                                ;;
+    *help)      echo "$thelp"       ; exit 0                            ;;
+    corr)       src=correlator      ; dir=$trk                          ;;
+    mk4m)       src=mk4-migrate     ; dir=$trk                          ;;
+    ompi)       src=ompi            ; dir=$trk                          ;;
     # ff_testdata subdirs
-    misc)       src=misc            ; dir=$trk/$ffd         ; name=$src ;;
-    2491)       src=$t              ; dir=$trk/$ffd         ; name=$src ;;
-    2611)       src=$t              ; dir=$trk/$ffd         ; name=$src ;;
-    2836)       src=$t              ; dir=$trk/$ffd         ; name=$src ;;
-    2843)       src=$t              ; dir=$trk/$ffd         ; name=$src ;;
-    2849)       src=$t              ; dir=$trk/$ffd         ; name=$src ;;
-    2912)       src=$t              ; dir=$trk/$ffd         ; name=$src ;;
-    3064)       src=$t              ; dir=$trk/$ffd         ; name=$src ;;
-    3262)       src=$t              ; dir=$trk/$ffd         ; name=$src ;;
-    3365)       src=$t              ; dir=$trk/$ffd         ; name=$src ;;
-    3372)       src=$t              ; dir=$trk/$ffd         ; name=$src ;;
-    3413)       src=$t              ; dir=$trk/$ffd         ; name=$src ;;
-    3562)       src=$t              ; dir=$trk/$ffd         ; name=$src ;;
-    3571)       src=$t              ; dir=$trk/$ffd         ; name=$src ;;
-    average)    src=$t              ; dir=$trk/$ffd         ; name=$src ;;
+    fftest)     echo "$fftest"      ; exit 0                            ;;
+    misc)       src=misc            ; dir=$trk/$ffd                     ;;
+    2491)       src=$t              ; dir=$trk/$ffd                     ;;
+    2611)       src=$t              ; dir=$trk/$ffd                     ;;
+    2836)       src=$t              ; dir=$trk/$ffd                     ;;
+    2843)       src=$t              ; dir=$trk/$ffd                     ;;
+    2849)       src=$t              ; dir=$trk/$ffd                     ;;
+    2912)       src=$t              ; dir=$trk/$ffd                     ;;
+    3064)       src=$t              ; dir=$trk/$ffd                     ;;
+    3262)       src=$t              ; dir=$trk/$ffd                     ;;
+    3365)       src=$t              ; dir=$trk/$ffd                     ;;
+    3372)       src=$t              ; dir=$trk/$ffd                     ;;
+    3413)       src=$t              ; dir=$trk/$ffd                     ;;
+    3562)       src=$t              ; dir=$trk/$ffd                     ;;
+    3571)       src=$t              ; dir=$trk/$ffd                     ;;
+    average)    src=$t              ; dir=$trk/$ffd                     ;;
     # ae_testdata subdirs
-    aetest)     src=testdata        ; dir=$trk/$aed         ; name=aetest ;;
+    aetest)     src=testdata        ; dir=$trk/$aed                     ;;
+
+    # vex2xml
+    v2xsrc)     src=vex2xml         ; dir=$trk      ; exc=testcases     ;;
+    v2xtst)     src=vex2xml         ; dir=$trk      ; exc="??? ???4"    ;;
+
     *) echo what is \'$t\' \? it is not defined...      ; exit 4    ;;
     esac
+
+set -x
+    # ok, now do the work...
+    [ -z "$name" -o -z "$dir" ] && { echo $t undefined ; continue ; }
     tarball=$dest/$name.tar.gz
     listing=$dest/$name.tvf.gz
     [ -f $tarball ] &&
         mv $tarball $dest/$name.$save.gz &&
         echo saving $t as $name.$save.gz
     pushd $dir
-    tar zcf $tarball ./$src
-    tar ztvf $tarball | gzip > $listing
+    excludes=''
+    [ -z "$exc" ] || {
+        for e in $exc ; do excludes="--exclude=$e $excludes" ; done
+    }
+    tar $excludes zcf  $tarball ./$src
+    tar $excludes ztvf $tarball | gzip > $listing
     [ -f $dest/$name.$save.gz ] && ls -1 $dest/$name.$save.gz
     ls -l $tarball
+set +x
     popd
 done
 
