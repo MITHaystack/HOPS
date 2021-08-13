@@ -12,9 +12,9 @@
 # and generate a pretty document.
 #
 echo '###############################################################'
-echo '## Requirements status as of '`date -u`' ##'
+echo "## Requirements status $1 ##"
 echo '###############################################################'
-grep ^REQUIREMENTS
+grep '^REQUIREMENTS'
 echo '###############################################################'
 #
 # eof

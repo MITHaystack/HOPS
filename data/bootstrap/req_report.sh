@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/sh -x
 #
 # Gather information for a report.
 #
@@ -24,9 +24,14 @@ rep=${2-'cat'}
     }
 }
 
+# make it pretty
+timest=`date -u +%Y-%m-%d`
+banner="$timest                           "
+
 # look for the canonical check scripts
 find $dir -name chk_*.sh.log -print -exec grep '^REQUIREMENTS:' {} \; |\
-$xrep
+grep -v template |\
+$xrep "$banner"
 
 exit 0
 #
