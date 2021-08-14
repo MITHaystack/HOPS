@@ -9,6 +9,14 @@ set(SOURCE_BASENAMES
 #    TestReducer
 )
 
+if (HOPS_USE_ROOT)
+    include(FindROOT)
+    find_package(ROOT REQUIRED)
+    hops_external_include_directories(${ROOT_INCLUDE_DIRS})
+    add_cflag(USE_ROOT)
+    list(APPEND HOPS_TEST_LIBS ${ROOT_LIBRARIES})
+endif()
+
 if(HOPS_USE_FFTW3)
     find_package(FFTW REQUIRED)
     hops_external_include_directories (${FFTW_INCLUDE_DIRS})
