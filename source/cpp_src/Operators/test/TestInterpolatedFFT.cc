@@ -33,7 +33,7 @@ typedef double FPTYPE;
 #endif
 
 
-int main(int /*argc*/, char** /*argv*/)
+int main(int argc, char** argv)
 {
     const size_t ndim = 1;
     const size_t N = 16;
@@ -137,6 +137,71 @@ int main(int /*argc*/, char** /*argv*/)
         std::cout<<"expanded array2 @ "<<i<<" = "<<expanded_array2[i]<<std::endl;
     }
 
+
+
+    #ifdef USE_ROOT
+    
+    std::cout<<"starting root plotting"<<std::endl;
+
+    //ROOT stuff for plots
+    TApplication* App = new TApplication("Plot",&argc,argv);
+    TStyle* myStyle = new TStyle("Plain", "Plain");
+    myStyle->SetCanvasBorderMode(0);
+    myStyle->SetPadBorderMode(0);
+    myStyle->SetPadColor(0);
+    myStyle->SetCanvasColor(0);
+    myStyle->SetTitleColor(1);
+    myStyle->SetPalette(1,0);   // nice color scale for z-axis
+    myStyle->SetCanvasBorderMode(0); // gets rid of the stupid raised edge around the canvas
+    myStyle->SetTitleFillColor(0); //turns the default dove-grey background to white
+    myStyle->SetCanvasColor(0);
+    myStyle->SetPadColor(0);
+    myStyle->SetTitleFillColor(0);
+    myStyle->SetStatColor(0); //this one may not work
+    const int NRGBs = 5;
+    const int NCont = 48;
+    double stops[NRGBs] = { 0.00, 0.34, 0.61, 0.84, 1.00 };
+    double red[NRGBs]   = { 0.00, 0.00, 0.87, 1.00, 0.51 };
+    double green[NRGBs] = { 0.00, 0.81, 1.00, 0.20, 0.00 };
+    double blue[NRGBs]  = { 0.51, 1.00, 0.12, 0.00, 0.00 };
+    TColor::CreateGradientColorTable(NRGBs, stops, red, green, blue, NCont);
+    myStyle->SetNumberContours(NCont);
+    myStyle->cd();
+
+    TGraph* g = new TGraph();  
+    TGraph* gint = new TGraph();
+    for(size_t i=0; i<N; i++)
+    {
+        g->SetPoint(i,i,array1[i].real());
+    }
+
+    for(size_t i=0; i<NM; i++)
+    {
+        double x = (double)i/2.;
+        gint->SetPoint(i,x,expanded_array2[i].real());
+    }
+    
+    g->SetMarkerColor(1);
+    g->SetMarkerStyle(24);
+    g->SetLineColor(1);
+
+    gint->SetMarkerColor(2);
+    gint->SetMarkerStyle(25);
+    gint->SetLineColor(2);
+
+    std::string name("test");
+    TCanvas* c = new TCanvas(name.c_str(),name.c_str(), 50, 50, 950, 850);
+    c->SetFillColor(0);
+    c->SetRightMargin(0.2);
+    //mg->Draw("ap");
+
+    g->Draw("ALP");
+    gint->Draw("LPSAME");
+
+    App->Run();
+
+
+    #endif 
 
 
     // 
