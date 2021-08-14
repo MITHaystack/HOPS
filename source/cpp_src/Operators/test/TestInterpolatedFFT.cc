@@ -139,8 +139,61 @@ int main(int argc, char** argv)
 
 
 
-    #ifdef USE_ROOT
     
+
+
+    int nlags = 2*N;
+    MHO_NDArrayWrapper< std::complex<FPTYPE>, ndim> xp_spec(4*nlags);
+    MHO_NDArrayWrapper< std::complex<FPTYPE>, ndim> S(4*nlags);
+    MHO_NDArrayWrapper< std::complex<FPTYPE>, ndim> xlag(4*nlags);
+    MHO_NDArrayWrapper< std::complex<FPTYPE>, ndim> output(2*nlags);
+
+    for (int i=0; i<4*nlags; i++){xp_spec[i] = 0.0;}
+    for (int i=0; i<4*nlags; i++){S[i] = 0.0;}
+    for (int i=0; i<4*nlags; i++){xlag[i] = 0.0;}
+    
+    for (int i=0; i<nlags/2; i++)
+    {
+        xp_spec[i] += array2[i];
+    }
+    
+    //lower-sideband data
+    for(int i = 0; i < nlags; i++)
+    {
+        //factor = 1.0;// datum->lsbfrac;
+        // DC+highest goes into middle element of the S array
+        int sindex;
+        if(i){sindex = 4*nlags-i;}
+        else{sindex = 2*nlags;}
+    
+        //sstd::complex<double> tmp2 = std::exp (I_complex * (status->lsb_phoff[0] - status->lsb_phoff[1]));
+        S[sindex] += std::conj (xp_spec[i] );// * tmp2 );
+    }
+    // 
+    // for (int i=0; i<4*nlags; i++){S[i] = S[i] * factor;}
+    // 
+    // fFFTEngine.ExecuteOperation();
+
+    FFT_TYPE* fft_engine3 = new FFT_TYPE();
+    fft_engine3->SetBackward();
+    fft_engine3->SetInput(&S);
+    fft_engine3->SetOutput(&xlag);
+    fft_engine3->Initialize();
+    fft_engine3->ExecuteOperation();
+
+    for (int i = 0; i < 2*nlags; i++)
+    {
+        /* Translate so i=nlags is central lag */
+        // skip every other (interpolated) lag
+        int j = 2 * (i - nlags);
+        if (j < 0){j += 4 * nlags;}
+        /* re-normalize back to single lag */
+        output[i] = xlag[j] / (double) (nlags / 2);
+    }
+
+
+    #ifdef USE_ROOT
+
     std::cout<<"starting root plotting"<<std::endl;
 
     //ROOT stuff for plots
@@ -170,6 +223,7 @@ int main(int argc, char** argv)
 
     TGraph* g = new TGraph();  
     TGraph* gint = new TGraph();
+    TGraph* gunk = new TGraph();
     for(size_t i=0; i<N; i++)
     {
         g->SetPoint(i,i,array1[i].real());
@@ -180,7 +234,15 @@ int main(int argc, char** argv)
         double x = (double)i/2.;
         gint->SetPoint(i,x,expanded_array2[i].real());
     }
-    
+
+    for(size_t i=0; i<2*nlags;i++)
+    {
+        double x=i;
+        x /= 4;
+        std::cout<<xlag[i]<<std::endl;
+        gunk->SetPoint(i,i,xlag[i].real());
+    }
+
     g->SetMarkerColor(1);
     g->SetMarkerStyle(24);
     g->SetLineColor(1);
@@ -189,14 +251,20 @@ int main(int argc, char** argv)
     gint->SetMarkerStyle(25);
     gint->SetLineColor(2);
 
+    gunk->SetMarkerColor(4);
+    gunk->SetMarkerStyle(21);
+    gunk->SetLineColor(4);
+
     std::string name("test");
     TCanvas* c = new TCanvas(name.c_str(),name.c_str(), 50, 50, 950, 850);
     c->SetFillColor(0);
     c->SetRightMargin(0.2);
     //mg->Draw("ap");
 
-    g->Draw("ALP");
+    gunk->Draw("ALP");
+    g->Draw("LPSAME");
     gint->Draw("LPSAME");
+    //gunk->Draw("LPSAME");
 
     App->Run();
 
@@ -204,43 +272,21 @@ int main(int argc, char** argv)
     #endif 
 
 
-    // 
-    // for (int i=0; i<4*nlags; i++){xp_spec[i] = 0.0;}
-    // for (int i=0; i<4*nlags; i++){S[i] = 0.0;}
-    // 
-    // for (int i=0; i<nlags/2; i++)
-    // {
-    //     z = this->fInput1->at(pp,fr,ap,i);
-    //     xp_spec[i] += z;
-    // }
-    // 
-    // //lower-sideband data
-    // for(int i = 0; i < nlags; i++)
-    // {
-    //     factor = 1.0;// datum->lsbfrac;
-    //     // DC+highest goes into middle element of the S array
-    //     int sindex;
-    //     if(i){sindex = 4*nlags-i;}
-    //     else{sindex = 2*nlags;}
-    // 
-    //     //sstd::complex<double> tmp2 = std::exp (I_complex * (status->lsb_phoff[0] - status->lsb_phoff[1]));
-    //     S[sindex] += factor * std::conj (xp_spec[i] );// * tmp2 );
-    // }
-    // 
-    // for (int i=0; i<4*nlags; i++){S[i] = S[i] * factor;}
-    // 
-    // fFFTEngine.ExecuteOperation();
-    // 
-    // for (int i = 0; i < 2*nlags; i++)
-    // {
-    //     /* Translate so i=nlags is central lag */
-    //     // skip every other (interpolated) lag
-    //     int j = 2 * (i - nlags);
-    //     if (j < 0){j += 4 * nlags;}
-    //     /* re-normalize back to single lag */
-    //     this->fOutput->at(0,fr,ap,i) = xlag[j] / (double) (nlags / 2);
-    // }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
 
 
 
