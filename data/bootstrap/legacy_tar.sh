@@ -90,6 +90,7 @@ sublib  #sub
 misc    #data/ff_testdata/testdata/misc
 $fftest #data/ff_testdata/testdata/....
 average #data/ff_testdata/testdata/average
+aetest  #data/ae_testdata/testdata
 
 v2xsrc  #vex2xml-sources
 v2xtst  #vex2xml-testcases
@@ -126,6 +127,7 @@ fftest  -d- there are individual HOPS experiments that have been captured.
             Using fftest gives a listing.  They are tarballed individually
             using the associated 4-digit experiment names.
 average -d- samples of the use of 'average'
+aetest  -d- sample of aedit data
 
 v2xsrc  -s- vex2xml sources
 v2xtst  -d- vex2xml testcases
@@ -200,8 +202,8 @@ do
     doc)        src=doc         ; dir=$trk                          ;;
     h3help)     src=help        ; dir=$trk                          ;;
     include)    src=include     ; dir=$trk                          ;;
-    pphhops3)   src=postproc    ; dir=$trk      ; exc="$pp4"        ;;
-    pphhops4)   src=postproc    ; dir=$trk      ; exc="$pp3"        ;;
+    pphops3)    src=postproc    ; dir=$trk      ; exc="$pp4"        ;;
+    pphops4)    src=postproc    ; dir=$trk      ; exc="$pp3"        ;;
     scripts)    src=scripts     ; dir=$trk                          ;;
     sublib)     src=sub         ; dir=$trk                          ;;
 
@@ -271,6 +273,7 @@ do
         tar ztvf $tarball $excludes | gzip > $listing
         [ -f $dest/$name.$save.gz ] && ls -1 $dest/$name.$save.gz
         ls -l $tarball
+        ls -l $listing
     } || {
         echo Unable to manufacture $tarball
         [ -f $dest/$name.$save.tar.gz ] &&

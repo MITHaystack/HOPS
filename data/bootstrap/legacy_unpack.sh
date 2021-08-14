@@ -21,34 +21,63 @@ name=${1-'help'}
 # these are unpack directories
 leg=$MHO_REGRESSION_DATA/tarballs/legacy
 mhx=$MHO_REGRESSION_DATA/historical
+mhs=$MHO_REGRESSION_DATA/released
+mhr=$MHO_REGRESSION_DATA/reference
 
 mff=$MHO_REGRESSION_DATA/ff_testdata
 mae=$MHO_REGRESSION_DATA/ae_testdata
 
+### FIXME
+
 # should be the same list as in bootstrap/legacy_tar.sh
 case $name in
-    corr)   src=correlator  ;   parent=$mhx     ; odr=$src          ;;
-    mk4m)   src=mk4-migrate ;   parent=$mhx     ; odr=$src          ;;
-    ompi)   src=ompi        ;   parent=$mhx     ; odr=$src          ;;
+    src=$name
+    # various sources not likely to be duplicated in HOPS4
+    corr)       parent=$mhx     ; odr=$src          ;;
+    mk4m)       parent=$mhx     ; odr=$src          ;;
+    ompi)       parent=$mhx     ; odr=$src          ;;
+    difx)       parent=$mhx     ; odr=$src          ;;
+    mark5)      parent=$mhx     ; odr=$src          ;;
+    h3msrc)     parent=$mhx     ; odr=$src          ;;
+    h3mtst)     parent=$mhx     ; odr=$src          ;;
+    readme)     parent=$mhx     ; odr=$src          ;;
+    swcmsc)     parent=$mhx     ; odr=$src          ;;
+    swcmsc)     parent=$mhx     ; odr=$src          ;;
+    tarpub)     parent=$mhs     ; odr=$src          ;;
+    tarprv)     parent=$mhs     ; odr=$src          ;;
+
+    # sources that are re-worked in HOPS4
+    doc)        parent=$mhr     ; odr=$src          ;;
+    h3help)     parent=$mhr     ; odr=$src          ;;
+    include)    parent=$mhr     ; odr=$src          ;;
+    pphops3)    parent=$mhr     ; odr=$src          ;;
+    pphops4)    parent=$mhr     ; odr=$src          ;;
+    scripts)    parent=$mhr     ; odr=$src          ;;
+    sublib)     parent=$mhr     ; odr=$src          ;;
+
     # ff_testdata subdirs
-    misc)   src=misc        ;   parent=$mff     ; odr=$src          ;;
-    2491)   src=$name       ;   parent=$mff     ; odr=$src          ;;
-    2611)   src=$name       ;   parent=$mff     ; odr=$src          ;;
-    2836)   src=$name       ;   parent=$mff     ; odr=$src          ;;
-    2843)   src=$name       ;   parent=$mff     ; odr=$src          ;;
-    2849)   src=$name       ;   parent=$mff     ; odr=$src          ;;
-    2912)   src=$name       ;   parent=$mff     ; odr=$src          ;;
-    3064)   src=$name       ;   parent=$mff     ; odr=$src          ;;
-    3262)   src=$name       ;   parent=$mff     ; odr=$src          ;;
-    3365)   src=$name       ;   parent=$mff     ; odr=$src          ;;
-    3372)   src=$name       ;   parent=$mff     ; odr=$src          ;;
-    3413)   src=$name       ;   parent=$mff     ; odr=$src          ;;
-    3562)   src=$name       ;   parent=$mff     ; odr=$src          ;;
-    3571)   src=$name       ;   parent=$mff     ; odr=$src          ;;
-    average)src=$name       ;   parent=$mff     ; odr=$src          ;;
+    misc)       parent=$mff     ; odr=$src          ;;
+    2491)       parent=$mff     ; odr=$src          ;;
+    2611)       parent=$mff     ; odr=$src          ;;
+    2836)       parent=$mff     ; odr=$src          ;;
+    2843)       parent=$mff     ; odr=$src          ;;
+    2849)       parent=$mff     ; odr=$src          ;;
+    2912)       parent=$mff     ; odr=$src          ;;
+    3064)       parent=$mff     ; odr=$src          ;;
+    3262)       parent=$mff     ; odr=$src          ;;
+    3365)       parent=$mff     ; odr=$src          ;;
+    3372)       parent=$mff     ; odr=$src          ;;
+    3413)       parent=$mff     ; odr=$src          ;;
+    3562)       parent=$mff     ; odr=$src          ;;
+    3571)       parent=$mff     ; odr=$src          ;;
+    average)    parent=$mff     ; odr=$src          ;;
     # ae_testdata subdirs
-    aetest) src=aetest      ;   parent=$mae     ; odir=$src         ;;
-    *)      echo $name is not configured here...; exit 2            ;;
+    aetest)     parent=$mae     ; odr=$src          ;;
+
+    # vex2xml
+    v2xsrc)     parent=$mhr     ; odr=$src          ;;
+    v2xtst)     parent=$mhr     ; odr=$src          ;;
+    *)          echo unconfigured $name ; exit 2    ;;
 esac
 
 # for the purposes of testing in the makefile, we want to provide an override
@@ -67,8 +96,11 @@ tgz=$leg/$src.tar.gz
 # it might not yet exist
 [ -d "$parent" ] || mkdir -p $parent
 
+# ok, actually extract it
 cwd=`pwd`
-cd $parent && tar zxf $tgz && cd $cwd
+cd $parent && tar zxf $tgz
+cd $cwd
+
 # successfully unpacked -- we are done
 [ -d "$nukable" ] && echo "$nukable" && exit 0
 
