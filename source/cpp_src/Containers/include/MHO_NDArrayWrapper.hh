@@ -822,6 +822,227 @@ class MHO_NDArrayWrapper<XValueType, 1>
         std::vector< XValueType > fData; //used for internally managed data
         std::size_t fDimensions[1]; //size of each dimension
         std::size_t fTotalArraySize; //total size of array
+
+
+
+
+
+
+
+        //the iterator definition
+        public:
+
+            //TODO - Do we need a const_iterator class?
+            class iterator
+            {
+                public:
+
+                    typedef iterator self_type;
+                    typedef XValueType value_type;
+                    typedef XValueType& reference;
+                    typedef XValueType* pointer;
+                    typedef std::forward_iterator_tag iterator_category;
+                    typedef int difference_type;
+                    typedef std::array<std::size_t, 1> index_type;
+
+                    iterator(bool valid, pointer ptr, std::size_t* dim, std::size_t offset):
+                        fValid(valid),
+                        fPtr(ptr),
+                        fDimensions(dim)
+                    {
+                        //initialize the multi-dim indices
+                        MHO_NDArrayMath::RowMajorIndexFromOffset<1>(offset, fDimensions, &(fIndices[0]) );
+                    };
+
+                    iterator(const self_type& copy)
+                    {
+                        fValid = copy.fValid;
+                        fPtr = copy.fPtr;
+                        fDimensions = copy.fDimensions;
+                        fIndices = copy.fIndices;
+                    };
+
+                    self_type operator++()
+                    {
+                        fPtr++;
+                        fValid = MHO_NDArrayMath::IncrementIndices<1>(fDimensions, &(fIndices[0]) );
+                        return *this;
+                    }
+
+                    self_type operator--()
+                    {
+                        fPtr--;
+                        fValid = MHO_NDArrayMath::DecrementIndices<1>(fDimensions, &(fIndices[0]) );
+                        return *this;
+                    }
+
+                    self_type operator++(int)
+                    {
+                        self_type ret_val(*this);
+                        fPtr++;
+                        fValid = MHO_NDArrayMath::IncrementIndices<1>(fDimensions, &(fIndices[0]) );
+                        return ret_val;
+                    }
+
+                    self_type operator--(int)
+                    {
+                        self_type ret_val(*this);
+                        fPtr--;
+                        fValid = MHO_NDArrayMath::DecrementIndices<1>(fDimensions, &(fIndices[0]) );
+                        return ret_val;
+                    }
+
+                    std::ptrdiff_t operator-(const self_type& iter)
+                    {
+                        return std::distance(iter.GetPtr(), fPtr);
+                    }
+
+                    self_type operator+=(const std::ptrdiff_t& diff)
+                    {
+                        fPtr += diff;
+                        if(diff >= 0)
+                        {
+                            fValid = MHO_NDArrayMath::IncrementIndices<1>(fDimensions, &(fIndices[0]), (std::size_t)diff );
+                        }
+                        else
+                        {
+                            fValid = MHO_NDArrayMath::DecrementIndices<1>(fDimensions, &(fIndices[0]), (std::size_t) std::abs(diff) );
+                        }
+                        return (*this);
+                    }
+
+                    self_type operator-=(const std::ptrdiff_t& diff)
+                    {
+                        fPtr -= diff;
+                        if(diff >= 0)
+                        {
+                            fValid = MHO_NDArrayMath::DecrementIndices<1>(fDimensions, &(fIndices[0]), (std::size_t) diff );
+                        }
+                        else
+                        {
+                            fValid = MHO_NDArrayMath::IncrementIndices<1>(fDimensions, &(fIndices[0]), (std::size_t) std::abs(diff) );
+                        }
+                        return (*this);
+                    }
+
+                    self_type operator+(const std::ptrdiff_t& diff)
+                    {
+                        pointer oldPtr = fPtr;
+                        index_type oldIndices = fIndices;
+                        bool oldValid = fValid;
+
+                        fPtr += diff;
+                        if(diff >= 0)
+                        {
+                            fValid = MHO_NDArrayMath::IncrementIndices<1>(fDimensions, &(fIndices[0]), (std::size_t)diff );
+                        }
+                        else
+                        {
+                            fValid = MHO_NDArrayMath::DecrementIndices<1>(fDimensions, &(fIndices[0]), (std::size_t) std::abs(diff) );
+                        }
+                        self_type temp(*this);
+
+                        fPtr = oldPtr;
+                        fIndices = oldIndices;
+                        fValid = oldValid;
+
+                        return temp;
+                    }
+
+                    self_type operator-(const std::ptrdiff_t& diff)
+                    {
+                        pointer oldPtr = fPtr;
+                        index_type oldIndices = fIndices;
+                        bool oldValid = fValid;
+
+                        fPtr -= diff;
+                        if(diff >= 0)
+                        {
+                            fValid = MHO_NDArrayMath::DecrementIndices<1>(fDimensions, &(fIndices[0]), (std::size_t) diff );
+                        }
+                        else
+                        {
+                            fValid = MHO_NDArrayMath::IncrementIndices<1>(fDimensions, &(fIndices[0]), (std::size_t) std::abs(diff) );
+                        }
+                        self_type temp(*this);
+
+                        fPtr = oldPtr;
+                        fIndices = oldIndices;
+                        fValid = oldValid;
+
+                        return temp;
+                    }
+
+
+                    //access to underlying array item object
+                    reference operator*() { return *fPtr; }
+                    pointer operator->() { return fPtr; }
+
+                    self_type operator=(const self_type& rhs)
+                    {
+                        if(this != &rhs)
+                        {
+                            fValid = rhs.fValid;
+                            fPtr == rhs.fPtr;
+                            fDimensions = rhs.fDimensions;
+                            fIndices = rhs.fIndices;
+                        }
+                        return *this;
+                    }
+
+                    bool operator==(const self_type& rhs)
+                    {
+                        return fPtr == rhs.fPtr;
+                    }
+
+                    bool operator!=(const self_type& rhs)
+                    {
+                        return fPtr != rhs.fPtr;
+                    }
+
+                    pointer GetPtr(){return fPtr;}
+                    index_type GetIndexObject() const {return fIndices;}
+                    const std::size_t* GetIndices() const {return &(fIndices[0]);}
+                    bool IsValid() const {return fValid;}
+
+                private:
+
+                    bool fValid;
+                    pointer fPtr;
+                    std::size_t* fDimensions;
+                    index_type fIndices;
+            };
+
+
+        public:
+
+            iterator begin()
+            {
+                return iterator(true, this->fDataPtr, this->fDimensions, 0);
+            }
+
+            iterator end()
+            {
+                return iterator(false, this->fDataPtr + this->fTotalArraySize, this->fDimensions, this->fTotalArraySize);
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 };
 
 
