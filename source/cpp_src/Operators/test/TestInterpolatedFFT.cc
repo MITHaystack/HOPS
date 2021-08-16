@@ -35,9 +35,12 @@ typedef double FPTYPE;
 
 int main(int argc, char** argv)
 {
+
+    int option = 1;
+
     const size_t ndim = 1;
     const size_t N = 16;
-    const size_t M = 2;
+    const size_t M = 8;
     const size_t NM = N*M;
 
     MHO_NDArrayWrapper< std::complex<FPTYPE>, ndim> array1(N);
@@ -57,12 +60,24 @@ int main(int argc, char** argv)
         r1 = r2;
     }
 
-    array1[7] = 2.0;
+    if(option == 0)
+    {
+        array1[N/3] = 3.0; //single peak
+    }
+
+    if(option == 1)
+    {
+        //double peak (true peak is mid-way between samples)
+        array1[N/3] = 3.0;
+        array1[N/3+1] = 3.0;
+    }
+
+    //array1[12] = 8.0;
     std::cout << "--------------------------------------------------------------" << std::endl;
 
     //then we execute an FFT to move to frequency space 
     FFT_TYPE* fft_engine = new FFT_TYPE();
-    fft_engine->SetForward();
+    fft_engine->SetBackward();
     fft_engine->SetInput(&array1);
     fft_engine->SetOutput(&array2);
     fft_engine->Initialize();
@@ -82,31 +97,45 @@ int main(int argc, char** argv)
         expanded_array2(i) = std::complex<FPTYPE>(0.0, 0.0);
     }
 
-    //now copy half of the array into the first 1/4 of the expanded array-1 
-    size_t mid = N/2;
-    for(size_t i=0; i<mid; i++)
-    {
-        expanded_array1(i) = array2(i);
-    }
-    //split the middle point 
-    size_t loc1 = N/2;
-    size_t loc2 = NM - N/2;
-    expanded_array1(loc1) = array2(mid)/2.0;
-    expanded_array1(loc2) = array2(mid)/2.0;
-    //now copy the second half of the array into the last 1/4 of the expanded array
-    for(size_t i=0; i<N/2; i++)
-    {
-        expanded_array1(loc2+1+i) = array2(mid+1+i);
-    }
 
-    for(size_t i=0; i<NM; i++)
+    if(false)
     {
-        std::cout<<"expanded array1 @ "<<i<<" = "<<expanded_array1[i]<<std::endl;
+        //now copy the array into the first portion of the expanded array 
+        for(size_t i=0; i<N; i++)
+        {
+            expanded_array1(i) = array2(i);
+        }
+    }
+    else 
+    {
+        //now copy half of the array into the first 1/4 of the expanded array-1 
+        size_t mid = N/2;
+        for(size_t i=0; i<mid; i++)
+        {
+            expanded_array1(i) = array2(i);
+        }
+        //split the middle point 
+        size_t loc1 = N/2;
+        size_t loc2 = NM - N/2;
+        //expanded_array1(loc1) = array2(mid);
+        expanded_array1(loc1) = array2(mid)/2.0;
+        expanded_array1(loc2) = array2(mid)/2.0;
+        //now copy the second half of the array into the last 1/4 of the expanded array
+        for(size_t i=0; i<N/2; i++)
+        {
+            expanded_array1(loc2+1+i) = array2(mid+1+i);
+        }
+        
+        for(size_t i=0; i<NM; i++)
+        {
+            std::cout<<"expanded array1 @ "<<i<<" = "<<expanded_array1[i]<<std::endl;
+        }
+
     }
 
     //then we execute an inverse FFT to bring us back to original do_estimation
     FFT_TYPE* fft_engine2 = new FFT_TYPE();
-    fft_engine2->SetBackward();
+    fft_engine2->SetForward();
     fft_engine2->SetInput(&expanded_array1);
     fft_engine2->SetOutput(&expanded_array2);
     fft_engine2->Initialize();
@@ -182,13 +211,13 @@ int main(int argc, char** argv)
     // fFFTEngine.ExecuteOperation();
 
     FFT_TYPE* fft_engine3 = new FFT_TYPE();
-    fft_engine3->SetBackward();
+    fft_engine3->SetForward();
     fft_engine3->SetInput(&S);
     fft_engine3->SetOutput(&xlag);
     fft_engine3->Initialize();
     fft_engine3->ExecuteOperation();
 
-    for (int i = 0; i < 4*nlags; i++)
+    for (int i = 0; i < 2*nlags; i++)
     {
         /* Translate so i=nlags is central lag */
         // skip every other (interpolated) lag
@@ -233,26 +262,27 @@ int main(int argc, char** argv)
     TGraph* gunk = new TGraph();
     for(size_t i=0; i<N; i++)
     {
-        g->SetPoint(i,i,array1[i].real());
+        g->SetPoint(i,i,std::abs(array1[i]));
     }
 
     for(size_t i=0; i<NM; i++)
     {
-        double x = (double)i/2.;
-        gint->SetPoint(i,x,expanded_array2[i].real());
+        double x = (double)i/(double)M;
+        gint->SetPoint(i,x, std::abs(expanded_array2[i]) );
     }
 
-    for(size_t i=0; i<4*nlags;i++)
+    for(size_t i=0; i<2*nlags;i++)
     {
         double x=i;
         x /= 8;
         std::cout<<xlag[i]<<std::endl;
-        gunk->SetPoint(i,x, xlag[i].real()/(nlags/2.));
+        gunk->SetPoint(i, x, std::abs(xlag[i])/(nlags/2.));
     }
 
     g->SetMarkerColor(1);
     g->SetMarkerStyle(24);
     g->SetLineColor(1);
+    g->SetLineWidth(4);
 
     gint->SetMarkerColor(2);
     gint->SetMarkerStyle(25);
