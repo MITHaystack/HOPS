@@ -101,9 +101,11 @@ class MHO_MultidimensionalPaddedFastFourierTransform:
         {
             if(fIsValid && fInitialized)
             {
+                //XFloatType total_input_size = 1.0;
                 size_t total_size = 1;
                 for(size_t i=0; i<RANK; i++)
                 {
+                    //total_input_size *= fInputDimensionSize[i];
                     total_size *= fOutputDimensionSize[i];
                     if(fForward)
                     {
@@ -124,6 +126,106 @@ class MHO_MultidimensionalPaddedFastFourierTransform:
                 if(fCentered)
                 {
                     msg_error("operators", "error this is not implemented."<<eom);
+                    // 
+                    // //select the dimension on which to perform the FFT
+                    // for(size_t d = 0; d < RANK; d++)
+                    // {
+                    //     if(fAxesToXForm[d])
+                    //     {
+                    //         //now we loop over all dimensions not specified by d
+                    //         //first compute the number of FFTs to perform
+                    //         size_t n_fft = 1;
+                    //         size_t count = 0;
+                    //         for(size_t i = 0; i < RANK; i++)
+                    //         {
+                    //             if(i != d)
+                    //             {
+                    //                 n_fft *= fOutputDimensionSize[i];
+                    //                 non_active_dimension_index[count] = i;
+                    //                 non_active_dimension_size[count] = fOutputDimensionSize[i];
+                    //                 count++;
+                    //             }
+                    //         }
+                    // 
+                    //         //loop over the number of FFTs to perform
+                    //         for(size_t n=0; n<n_fft; n++)
+                    //         {
+                    //             //invert place in list to obtain indices of block in array
+                    //             MHO_NDArrayMath::RowMajorIndexFromOffset<RANK-1>(n, non_active_dimension_size, non_active_dimension_value);
+                    // 
+                    //             //copy the value of the non-active dimensions in to index
+                    //             for(size_t i=0; i<RANK-1; i++)
+                    //             {
+                    //                 index[ non_active_dimension_index[i] ] = non_active_dimension_value[i];
+                    //             }
+                    // 
+                    //             size_t data_location;
+                    //             //copy the selected row 
+                    // 
+                    //             //now copy half of the array into the first 1/4 of the expanded array-1 
+                    //             size_t mid = fInputDimensionSize/2;
+                    //             for(size_t i=0; i<mid; i++)
+                    //             {
+                    //                 index[d] = i;
+                    //                 data_location = MHO_NDArrayMath::OffsetFromRowMajorIndex<RANK>(fOutputDimensionSize, index);
+                    //                 (*(this->fOutput))[data_location] = (*(fWorkspaceWrapper[d]))[i];
+                    //             }
+                    //             //split the middle point 
+                    //             size_t loc1 = N/2;
+                    //             size_t loc2 = NM - N/2;
+                    //             //expanded_array1(loc1) = array2(mid);
+                    //             expanded_array1(loc1) = array2(mid)/2.0;
+                    //             expanded_array1(loc2) = array2(mid)/2.0;
+                    //             //now copy the second half of the array into the last 1/4 of the expanded array
+                    //             for(size_t i=0; i<N/2; i++)
+                    //             {
+                    //                 expanded_array1(loc2+1+i) = array2(mid+1+i);
+                    //             }
+                    // 
+                    //             for(size_t i=0; i<NM; i++)
+                    //             {
+                    //                 std::cout<<"expanded array1 @ "<<i<<" = "<<expanded_array1[i]<<std::endl;
+                    //             }
+                    // 
+                    // 
+                    //             for(size_t i=0; i<fOutputDimensionSize[d]; i++)
+                    //             {
+                    //                 index[d] = i;
+                    //                 data_location = MHO_NDArrayMath::OffsetFromRowMajorIndex<RANK>(fOutputDimensionSize, index);
+                    //                 (*(this->fOutput))[data_location] = (*(fWorkspaceWrapper[d]))[i];
+                    //             }
+                    // 
+                    //             // //normalize the output array 
+                    //             // XFloatType norm = 1.0/total_input_size;
+                    //             // for(size_t i=0; i<total_size; i++){ (*(this->fOutput))[i] *= norm;}
+                    // 
+                    // 
+                    //         }
+                    //     }
+                    // 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
                 }
                 else 
                 {
@@ -195,6 +297,12 @@ class MHO_MultidimensionalPaddedFastFourierTransform:
                                 data_location = MHO_NDArrayMath::OffsetFromRowMajorIndex<RANK>(fOutputDimensionSize, index);
                                 (*(this->fOutput))[data_location] = (*(fWorkspaceWrapper[d]))[i];
                             }
+
+                            // //normalize the output array 
+                            // XFloatType norm = 1.0/total_input_size;
+                            // for(size_t i=0; i<total_size; i++){ (*(this->fOutput))[i] *= norm;}
+
+
                         }
                     }
                 }
