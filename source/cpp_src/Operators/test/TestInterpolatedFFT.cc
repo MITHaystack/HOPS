@@ -57,6 +57,7 @@ int main(int argc, char** argv)
         r1 = r2;
     }
 
+    array1[7] = 2.0;
     std::cout << "--------------------------------------------------------------" << std::endl;
 
     //then we execute an FFT to move to frequency space 
@@ -160,14 +161,20 @@ int main(int argc, char** argv)
     //lower-sideband data
     for(int i = 0; i < nlags; i++)
     {
-        //factor = 1.0;// datum->lsbfrac;
-        // DC+highest goes into middle element of the S array
-        int sindex;
-        if(i){sindex = 4*nlags-i;}
-        else{sindex = 2*nlags;}
-    
+        // //factor = 1.0;// datum->lsbfrac;
+        // // DC+highest goes into middle element of the S array
+        // int sindex;
+        // if(i){sindex = 4*nlags-i;}
+        // else{sindex = 2*nlags;}
+        // 
+        // //sstd::complex<double> tmp2 = std::exp (I_complex * (status->lsb_phoff[0] - status->lsb_phoff[1]));
+        // S[sindex] += std::conj (xp_spec[i] );// * tmp2 );
+
+
         //sstd::complex<double> tmp2 = std::exp (I_complex * (status->lsb_phoff[0] - status->lsb_phoff[1]));
-        S[sindex] += std::conj (xp_spec[i] );// * tmp2 );
+        S[i] += xp_spec[i];
+
+
     }
     // 
     // for (int i=0; i<4*nlags; i++){S[i] = S[i] * factor;}
@@ -181,7 +188,7 @@ int main(int argc, char** argv)
     fft_engine3->Initialize();
     fft_engine3->ExecuteOperation();
 
-    for (int i = 0; i < 2*nlags; i++)
+    for (int i = 0; i < 4*nlags; i++)
     {
         /* Translate so i=nlags is central lag */
         // skip every other (interpolated) lag
@@ -235,12 +242,12 @@ int main(int argc, char** argv)
         gint->SetPoint(i,x,expanded_array2[i].real());
     }
 
-    for(size_t i=0; i<2*nlags;i++)
+    for(size_t i=0; i<4*nlags;i++)
     {
         double x=i;
-        x /= 4;
+        x /= 8;
         std::cout<<xlag[i]<<std::endl;
-        gunk->SetPoint(i,i,xlag[i].real());
+        gunk->SetPoint(i,x, xlag[i].real()/(nlags/2.));
     }
 
     g->SetMarkerColor(1);
