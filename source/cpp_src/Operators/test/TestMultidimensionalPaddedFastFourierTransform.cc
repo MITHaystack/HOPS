@@ -67,8 +67,8 @@ int main(int argc, char** argv)
 
     //first we set up the input data
     const size_t ndim = 1;
-    const size_t N = 64;
-    const size_t M = 2;
+    const size_t N = 16;
+    const size_t M = 4;
     const size_t NM = N*M;
 
     MHO_NDArrayWrapper< std::complex<FPTYPE>, ndim> array1(N);
@@ -90,7 +90,7 @@ int main(int argc, char** argv)
 
     //insert a peak
     array1[N/3]  = 3.0;
-    array1[N/3+1]  = 3.0;
+    //array1[N/3+1]  = 3.0;
 
     //then we execute an FFT to move to frequency space 
     FFT_TYPE* fft_engine = new FFT_TYPE();
@@ -411,18 +411,18 @@ int main(int argc, char** argv)
     c->cd(1);
     //mg->Draw("ap");
 
-    g_real->Draw("ALP");
-    g_real->GetYaxis()->SetTitle("Real");
-    gint_real->Draw("LPSAME");
+    gint_real->Draw("ALP");
+    gint_real->GetYaxis()->SetTitle("Real");
+    g_real->Draw("LPSAME");
     gunk_real->Draw("LPSAME");
 
     c->cd(2);
 
     //gunk->Draw("ALP");
-    g_imag->Draw("ALP");
-    g_imag->GetYaxis()->SetTitle("Imag");
+    gunk_imag->Draw("ALP");
+    gunk_imag->GetYaxis()->SetTitle("Imag");
     gint_imag->Draw("LPSAME");
-    gunk_imag->Draw("LPSAME");
+    g_imag->Draw("LPSAME");
     //gunk->Draw("LPSAME");
 
     App->Run();
