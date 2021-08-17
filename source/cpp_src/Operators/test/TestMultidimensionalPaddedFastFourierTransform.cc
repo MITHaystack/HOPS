@@ -2,9 +2,6 @@
 #include "MHO_FastFourierTransform.hh"
 #include "MHO_MultidimensionalPaddedFastFourierTransform.hh"
 #include "MHO_MultidimensionalFastFourierTransform.hh"
-// #ifdef HOPS_USE_FFTW3
-// #include "MHO_MultidimensionalPaddedFastFourierTransformFFTW.hh"
-// #endif
 
 #include <cmath>
 #include <iomanip>
@@ -170,6 +167,9 @@ int main(int argc, char** argv)
             std::cout<<"zero-padded interpolated array @ "<<i<<" = "<<expanded_array1[i]<<std::endl;
         }
 
+        delete fft_engine2;
+        delete pfft_engine;
+
     }
     else 
     {
@@ -239,7 +239,6 @@ int main(int argc, char** argv)
         //now use the zero-padded (center) fft engine to do the same thing
         bool check;
         PADDED_FFT_TYPE* pfft_engine = new PADDED_FFT_TYPE();
-        
         pfft_engine->SetPaddingFactor(M);
         pfft_engine->SetCenterPadded();
         pfft_engine->SetForward();
@@ -255,9 +254,55 @@ int main(int argc, char** argv)
             std::cout<<"zero-padded interpolated array @ "<<i<<" = "<<expanded_array1[i]<<std::endl;
         }
 
+        delete fft_engine2;
+        delete pfft_engine;
+
     }
 
 
+
+    //now run the same basic code as norm_fx 
+
+    int nlags = 2*N;
+    MHO_NDArrayWrapper< std::complex<FPTYPE>, ndim> xp_spec(4*nlags);
+    MHO_NDArrayWrapper< std::complex<FPTYPE>, ndim> S(4*nlags);
+    MHO_NDArrayWrapper< std::complex<FPTYPE>, ndim> xlag(4*nlags);
+    MHO_NDArrayWrapper< std::complex<FPTYPE>, ndim> output(2*nlags);
+
+    for (int i=0; i<4*nlags; i++){xp_spec[i] = 0.0;}
+    for (int i=0; i<4*nlags; i++){S[i] = 0.0;}
+    for (int i=0; i<4*nlags; i++){xlag[i] = 0.0;}
+    
+    for (int i=0; i<nlags/2; i++)
+    {
+        xp_spec[i] += array2[i];
+    }
+    
+    //upper-sideband data
+    for(int i = 0; i < nlags; i++)
+    {
+        S[i] += xp_spec[i];
+    }
+
+    FFT_TYPE* fft_engine3 = new FFT_TYPE();
+    fft_engine3->SetForward();
+    fft_engine3->SetInput(&S);
+    fft_engine3->SetOutput(&xlag);
+    fft_engine3->Initialize();
+    fft_engine3->ExecuteOperation();
+
+    for (int i = 0; i < 2*nlags; i++)
+    {
+        /* Translate so i=nlags is central lag */
+        // skip every other (interpolated) lag
+        int j = 2 * (i - nlags);
+        if (j < 0){j += 4 * nlags;}
+        /* re-normalize back to single lag */
+        output[i] = xlag[j] / (double) (nlags / 2);
+    }
+
+    delete fft_engine;
+    delete fft_engine3;
 
     #ifdef USE_ROOT
 
@@ -294,6 +339,9 @@ int main(int argc, char** argv)
     TGraph* gint_real = new TGraph();
     TGraph* gint_imag = new TGraph();
 
+    TGraph* gunk_real = new TGraph();
+    TGraph* gunk_imag = new TGraph();
+
     for(size_t i=0; i<N; i++)
     {
         g_real->SetPoint(i,i,array1[i].real() );
@@ -302,28 +350,58 @@ int main(int argc, char** argv)
 
     for(size_t i=0; i<NM; i++)
     {
-        double x = (double)i/(double)M;
+        double x = (double)i/(double)M; //rescale back to original spacing
         gint_real->SetPoint(i,x,expanded_array2[i].real() );
         gint_imag->SetPoint(i,x,expanded_array2[i].imag() );
     }
+
+    //have to do the following in two parts to keep the ordering correct
+    //what purpose does the shift have?
+    size_t count=0;
+    for(size_t i=nlags; i<2*nlags;i++)
+    {
+        double x = (i+nlags)%(2*nlags);
+        x /= 4; //rescale and shift back to original spacing so we can compare
+        std::cout<<output[i].real()<<std::endl;
+        gunk_real->SetPoint(count, x, output[i].real());
+        gunk_imag->SetPoint(count, x, output[i].imag());
+        count++;
+    }
+    for(size_t i=0; i<nlags;i++)
+    {
+        double x = (i+nlags)%(2*nlags);
+        x /= 4; //rescale and shift back to original spacing so we can compare
+        std::cout<<output[i].real()<<std::endl;
+        gunk_real->SetPoint(count, x, output[i].real());
+        gunk_imag->SetPoint(count, x, output[i].imag());
+        count++;
+    }
+
+
+
 
     g_real->SetMarkerColor(1);
     g_real->SetMarkerStyle(24);
     g_real->SetLineColor(1);
     g_real->SetLineWidth(4);
-
-    gint_real->SetMarkerColor(2);
-    gint_real->SetMarkerStyle(25);
-    gint_real->SetLineColor(2);
-
     g_imag->SetMarkerColor(1);
     g_imag->SetMarkerStyle(24);
     g_imag->SetLineColor(1);
     g_imag->SetLineWidth(4);
 
+    gint_real->SetMarkerColor(2);
+    gint_real->SetMarkerStyle(25);
+    gint_real->SetLineColor(2);
     gint_imag->SetMarkerColor(2);
     gint_imag->SetMarkerStyle(25);
     gint_imag->SetLineColor(2);
+
+    gunk_real->SetMarkerColor(4);
+    gunk_real->SetMarkerStyle(26);
+    gunk_real->SetLineColor(4);
+    gunk_imag->SetMarkerColor(4);
+    gunk_imag->SetMarkerStyle(26);
+    gunk_imag->SetLineColor(4);
 
     std::string name("test");
     TCanvas* c = new TCanvas(name.c_str(),name.c_str(), 50, 50, 950, 850);
@@ -334,13 +412,17 @@ int main(int argc, char** argv)
     //mg->Draw("ap");
 
     g_real->Draw("ALP");
+    g_real->GetYaxis()->SetTitle("Real");
     gint_real->Draw("LPSAME");
+    gunk_real->Draw("LPSAME");
 
     c->cd(2);
 
     //gunk->Draw("ALP");
     g_imag->Draw("ALP");
+    g_imag->GetYaxis()->SetTitle("Imag");
     gint_imag->Draw("LPSAME");
+    gunk_imag->Draw("LPSAME");
     //gunk->Draw("LPSAME");
 
     App->Run();
