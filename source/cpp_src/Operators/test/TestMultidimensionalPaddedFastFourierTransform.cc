@@ -109,8 +109,8 @@ int main(int /*argc*/, char** /*argv*/)
     PADDED_FFT_TYPE* pfft_engine = new PADDED_FFT_TYPE();
     
     pfft_engine->SetPaddingFactor(M);
-    pfft_engine->SetEndPadded();
-    //pfft_engine->SetCenterPadded();
+    //pfft_engine->SetEndPadded();
+    pfft_engine->SetCenterPadded();
     pfft_engine->SetForward();
     pfft_engine->SetInput(&array2);
     pfft_engine->SetOutput(&expanded_array1);
