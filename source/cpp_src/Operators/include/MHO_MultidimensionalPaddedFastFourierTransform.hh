@@ -157,7 +157,6 @@ class MHO_MultidimensionalPaddedFastFourierTransform:
                                 {
                                     //split the middle point 
                                     out_index[i].push_back(N/2);
-                                    //TODO FIXME....figure out how to use this split point
                                     out_index[i].push_back(N*M - N/2);
                                 }
                                 else 
@@ -205,7 +204,7 @@ class MHO_MultidimensionalPaddedFastFourierTransform:
                                 index_bitsets.insert( val.to_ulong() );
                             }
 
-                            //now loop over the bisets, inserting a fraction of this point in each place 
+                            //now loop over the bitsets, inserting a fraction of this point in each place 
                             size_t out[RANK];
                             double norm = 1.0/(double)npts;
                             for(auto it = index_bitsets.begin(); it != index_bitsets.end(); it++)
