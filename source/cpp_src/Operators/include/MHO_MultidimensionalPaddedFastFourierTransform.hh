@@ -125,106 +125,69 @@ class MHO_MultidimensionalPaddedFastFourierTransform:
                 //or if it is going to padded at the end (signal up front, zeros following)
                 if(fCentered)
                 {
-                    msg_error("operators", "error this is not implemented."<<eom);
-                    // 
-                    // //select the dimension on which to perform the FFT
-                    // for(size_t d = 0; d < RANK; d++)
-                    // {
-                    //     if(fAxesToXForm[d])
-                    //     {
-                    //         //now we loop over all dimensions not specified by d
-                    //         //first compute the number of FFTs to perform
-                    //         size_t n_fft = 1;
-                    //         size_t count = 0;
-                    //         for(size_t i = 0; i < RANK; i++)
-                    //         {
-                    //             if(i != d)
-                    //             {
-                    //                 n_fft *= fOutputDimensionSize[i];
-                    //                 non_active_dimension_index[count] = i;
-                    //                 non_active_dimension_size[count] = fOutputDimensionSize[i];
-                    //                 count++;
-                    //             }
-                    //         }
-                    // 
-                    //         //loop over the number of FFTs to perform
-                    //         for(size_t n=0; n<n_fft; n++)
-                    //         {
-                    //             //invert place in list to obtain indices of block in array
-                    //             MHO_NDArrayMath::RowMajorIndexFromOffset<RANK-1>(n, non_active_dimension_size, non_active_dimension_value);
-                    // 
-                    //             //copy the value of the non-active dimensions in to index
-                    //             for(size_t i=0; i<RANK-1; i++)
-                    //             {
-                    //                 index[ non_active_dimension_index[i] ] = non_active_dimension_value[i];
-                    //             }
-                    // 
-                    //             size_t data_location;
-                    //             //copy the selected row 
-                    // 
-                    //             //now copy half of the array into the first 1/4 of the expanded array-1 
-                    //             size_t mid = fInputDimensionSize/2;
-                    //             for(size_t i=0; i<mid; i++)
-                    //             {
-                    //                 index[d] = i;
-                    //                 data_location = MHO_NDArrayMath::OffsetFromRowMajorIndex<RANK>(fOutputDimensionSize, index);
-                    //                 (*(this->fOutput))[data_location] = (*(fWorkspaceWrapper[d]))[i];
-                    //             }
-                    //             //split the middle point 
-                    //             size_t loc1 = N/2;
-                    //             size_t loc2 = NM - N/2;
-                    //             //expanded_array1(loc1) = array2(mid);
-                    //             expanded_array1(loc1) = array2(mid)/2.0;
-                    //             expanded_array1(loc2) = array2(mid)/2.0;
-                    //             //now copy the second half of the array into the last 1/4 of the expanded array
-                    //             for(size_t i=0; i<N/2; i++)
-                    //             {
-                    //                 expanded_array1(loc2+1+i) = array2(mid+1+i);
-                    //             }
-                    // 
-                    //             for(size_t i=0; i<NM; i++)
-                    //             {
-                    //                 std::cout<<"expanded array1 @ "<<i<<" = "<<expanded_array1[i]<<std::endl;
-                    //             }
-                    // 
-                    // 
-                    //             for(size_t i=0; i<fOutputDimensionSize[d]; i++)
-                    //             {
-                    //                 index[d] = i;
-                    //                 data_location = MHO_NDArrayMath::OffsetFromRowMajorIndex<RANK>(fOutputDimensionSize, index);
-                    //                 (*(this->fOutput))[data_location] = (*(fWorkspaceWrapper[d]))[i];
-                    //             }
-                    // 
-                    //             // //normalize the output array 
-                    //             // XFloatType norm = 1.0/total_input_size;
-                    //             // for(size_t i=0; i<total_size; i++){ (*(this->fOutput))[i] *= norm;}
-                    // 
-                    // 
-                    //         }
-                    //     }
-                    // 
+                    //zero padding is placed symmetrically in the center of transform
+                    auto in_iter =  this->fInput->begin();
+                    auto in_iter_end = this->fInput->end();
 
+                    //loop over the input array, determining where it should be copied to in 
+                    //the output array. For each index which is at a mid-point, the value should 
+                    //be split in that dimensions (if the point is located at the the mid-point 
+                    //of Q dimensions it will be copied into 2^Q locations in the output).
+                    while( in_iter != in_iter_end)
+                    {
+                        const size_t* in_index;
+                        std::vector< std::vector<size_t> > out_index;
+                        out_index.resize(RANK);
 
+                        in_index = in_iter.GetIndices();
+                        for(size_t i=0; i<RANK; i++)
+                        {
+                            if(fAxesToXForm[i])
+                            {
+                                size_t N = fInputDimensionSize[i];
+                                size_t M = fPaddingFactor;
+                                if(in_index[i] < N/2)
+                                {
+                                    out_index[i].push_back(in_index[i]);
+                                }
+                                else if (in_index[i] == N/2)
+                                {
+                                    //split the middle point 
+                                    out_index[i].push_back(N/2);
+                                    //TODO FIXME....figure out how to use this split point
+                                    //out_index[i].push_back(N*M - N/2);
+                                }
+                                else 
+                                {
+                                    out_index[i].push_back( N*M - N/2 + (in_index[i] - N/2) );
+                                }
+                            }
+                            else 
+                            {
+                                out_index[i].push_back(in_index[i]);
+                            }
+                        }
 
+                        //determine the number of indices over which this input point is split 
+                        size_t npts = 1;
+                        for(size_t i=0; i<RANK; i++){npts *= out_index[i].size();}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
+                        if(npts == 1) //no splits
+                        {
+                            size_t out[RANK];
+                            for(size_t i=0; i<RANK; i++){out[i] = *(out_index[i].begin()); }
+                            //copy the input data to the same 'index' location in the output array 
+                            size_t out_loc = MHO_NDArrayMath::OffsetFromRowMajorIndex<RANK>(fOutputDimensionSize, out);
+                            (*(this->fOutput))[out_loc] = *in_iter;
+                        }
+                        else 
+                        {
+                            //TODO FIXME...we need to computer the cartesian product
+                            //over the list of split indices here, to get the 2^Q locations
+                            //over which to split this point
+                        }
+                        ++in_iter;
+                    }
 
                 }
                 else 
