@@ -2,6 +2,9 @@
 #define MHO_MultidimensionalPaddedFastFourierTransform_HH__
 
 #include <cstring>
+#include <vector>
+#include <bitset>
+#include <set>
 
 #include "MHO_Message.hh"
 #include "MHO_NDArrayWrapper.hh"
@@ -155,7 +158,7 @@ class MHO_MultidimensionalPaddedFastFourierTransform:
                                     //split the middle point 
                                     out_index[i].push_back(N/2);
                                     //TODO FIXME....figure out how to use this split point
-                                    //out_index[i].push_back(N*M - N/2);
+                                    out_index[i].push_back(N*M - N/2);
                                 }
                                 else 
                                 {
@@ -182,9 +185,36 @@ class MHO_MultidimensionalPaddedFastFourierTransform:
                         }
                         else 
                         {
-                            //TODO FIXME...we need to computer the cartesian product
+                            //we need to compute the cartesian product
                             //over the list of split indices here, to get the 2^Q locations
-                            //over which to split this point
+                            //over which to split this point in the output array 
+                            //to do this we construct all of the bit masks for every possible index combination
+                            std::set< size_t > index_bitsets;
+                            std::bitset<RANK> mask;
+                            for(size_t i=0; i<RANK; i++)
+                            {
+                                mask[i] = 1;
+                                if(out_index[i].size() == 1){mask[i] = 0;}
+                            }
+                            //compute all 2^RANK possibilities with mask applied
+                            size_t n_possible = MHO_NDArrayMath::PowerOfTwo<RANK>::value;
+                            for(size_t i=0; i<n_possible; i++)
+                            {
+                                std::bitset<RANK> val(i);
+                                val &= mask; //binary 'and' with the mask
+                                index_bitsets.insert( val.to_ulong() );
+                            }
+
+                            //now loop over the bisets, inserting a fraction of this point in each place 
+                            size_t out[RANK];
+                            double norm = 1.0/(double)npts;
+                            for(auto it = index_bitsets.begin(); it != index_bitsets.end(); it++)
+                            {
+                                std::bitset<RANK> bits(*it);
+                                for(size_t i=0; i<RANK; i++){out[i] = out_index[i][bits[i]];}
+                                size_t out_loc = MHO_NDArrayMath::OffsetFromRowMajorIndex<RANK>(fOutputDimensionSize, out);
+                                (*(this->fOutput))[out_loc] = (*in_iter)*norm;
+                            }
                         }
                         ++in_iter;
                     }
