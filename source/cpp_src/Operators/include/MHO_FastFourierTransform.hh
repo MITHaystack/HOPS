@@ -2,7 +2,6 @@
 #define MHO_FastFourierTransform_HH__
 
 #include <complex>
-#include <iostream>
 
 #include "MHO_NDArrayWrapper.hh"
 #include "MHO_NDArrayOperator.hh"
@@ -202,7 +201,6 @@ MHO_FastFourierTransform<XFloatType>::AllocateWorkspace()
     if(!fSizeIsPowerOfTwo)
     {
         //can't perform an in-place transform, need workspace
-        std::cout<<"fM = "<<fM<<std::endl;
         fPermutation = new unsigned int[fM];
         fTwiddle = new std::complex<XFloatType>[fM];
         fConjugateTwiddle = new std::complex<XFloatType>[fM];

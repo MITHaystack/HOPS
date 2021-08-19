@@ -8,6 +8,7 @@ set(SOURCE_BASENAMES
     TestMultidimensionalPaddedFastFourierTransform
     TestInterpolatedFFT
     TestReducer
+    TestPointwiseAdd
 )
 
 if (HOPS_USE_ROOT)
