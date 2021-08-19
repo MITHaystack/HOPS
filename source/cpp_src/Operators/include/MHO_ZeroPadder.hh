@@ -28,21 +28,22 @@ class MHO_ZeroPadder:
                 fOutputDimensionSize[i] = 0;
                 fAxesToPad[i] = true;
             }
-
             fInitialized = false;
             fCentered = false;
             fFlipped = false; //only relevant for end-padded x-forms
         };
 
-        virtual ~MHO_MultidimensionalPaddedFastFourierTransform(){};
+        virtual ~MHO_ZeroPadder(){};
 
         //factor M by which the new array will be extended (original array, length N, new array length NM)
         //this factor is the same in every dimension that is padded
         virtual void SetPaddingFactor(std::size_t factor){fPaddingFactor = factor;};
+        virtual void SetCenterPadded(){fCentered = true;}; //symmetric zero padding about the center of the array (preserves conj. sym.)
+        virtual void SetEndPadded(){fCentered = false;}; //zero padding from end of signal out to end of the array
 
-        virtual void SetCenterPadded(){fCentered = true; fFlipped = false;}; //symmetric zero padding about the center of the array (preserves conj. sym.)
-        virtual void SetEndPadded(){fCentered = false; fFlipped = false;}; //zero padding from end of signal out to end of the array
-        virtual void SetReverseEndPadded(){fCentered = false; fFlipped = true;}; //place signal at end of array and zero pad out to start
+        //flip the array in axes where padding is performed
+        virtual void SetNoFlip(){fFlipped = false;}
+        virtual void SetFlip(){fFlipped = true;}
 
         //sometimes we may want to select/deselect particular dimensions of the x-form
         //default is to transform along every dimension, but that may not always be needed
@@ -72,7 +73,13 @@ class MHO_ZeroPadder:
                     if(fInputDimensionSize[i]*fPaddingFactor != fOutputDimensionSize[i])
                     {
                         fInitialized = false;
-                        msg_error("operators", "failed to initialize zero-padded FFT, input/output dimension mismatch at index: "<<i<<"."<<eom);
+                        msg_error("operators", "failed to initialize zero-padder, input/output dimension mismatch at index: "<<i<<"."<<eom);
+                    }
+
+                    if(fInputDimensionSize[i]%2 != 0)
+                    {
+                        fInitialized = false;
+                        msg_error("operators", "zero-padding only supported for even length arrays."<<eom);
                     }
                 } 
                 else 
@@ -80,7 +87,7 @@ class MHO_ZeroPadder:
                     if(fInputDimensionSize[i] != fOutputDimensionSize[i])
                     {
                         fInitialized = false;
-                        msg_error("operators", "failed to initialize zero-padded FFT, input/output dimension mismatch at index: "<<i<<"."<<eom);
+                        msg_error("operators", "failed to initialize zero-padder, input/output dimension mismatch at index: "<<i<<"."<<eom);
                     }
                 }
             }
@@ -90,7 +97,7 @@ class MHO_ZeroPadder:
             if(this->fInput == this->fOutput)
             {
                 fInitialized = false;
-                msg_error("operators", "cannot execute a padded FFT in-place." << eom);
+                msg_error("operators", "cannot zero-pad in-place." << eom);
             }
 
             return fInitialized;
@@ -139,11 +146,11 @@ class MHO_ZeroPadder:
                                 {
                                     //split the middle point 
                                     out_index[i].push_back(N/2);
-                                    out_index[i].push_back(N*M - N/2);
+                                    out_index[i].push_back( N*M - N/2);
                                 }
                                 else 
                                 {
-                                    out_index[i].push_back( N*M - N/2 + (in_index[i] - N/2) );
+                                    out_index[i].push_back( N*M - (N/2 +1 ) + (in_index[i] - N/2) );
                                 }
                             }
                             else 
@@ -160,6 +167,18 @@ class MHO_ZeroPadder:
                         {
                             size_t out[RANK];
                             for(size_t i=0; i<RANK; i++){out[i] = *(out_index[i].begin()); }
+    
+                            if(fFlipped)
+                            {
+                                for(size_t i=0; i<RANK; i++)
+                                {
+                                    if(fAxesToPad[i])
+                                    {
+                                        out[i] = (fOutputDimensionSize[i]-1) - out[i]; 
+                                    }
+                                }
+                            }
+
                             //copy the input data to the same 'index' location in the output array 
                             size_t out_loc = MHO_NDArrayMath::OffsetFromRowMajorIndex<RANK>(fOutputDimensionSize, out);
                             (*(this->fOutput))[out_loc] = *in_iter;
@@ -193,6 +212,16 @@ class MHO_ZeroPadder:
                             {
                                 std::bitset<RANK> bits(*it);
                                 for(size_t i=0; i<RANK; i++){out[i] = out_index[i][bits[i]];}
+                                if(fFlipped)
+                                {
+                                    for(size_t i=0; i<RANK; i++)
+                                    {
+                                        if(fAxesToPad[i])
+                                        {
+                                            out[i] = (fOutputDimensionSize[i]-1) - out[i]; 
+                                        }
+                                    }
+                                }
                                 size_t out_loc = MHO_NDArrayMath::OffsetFromRowMajorIndex<RANK>(fOutputDimensionSize, out);
                                 (*(this->fOutput))[out_loc] = (*in_iter)*norm;
                             }
@@ -226,7 +255,7 @@ class MHO_ZeroPadder:
                         while( in_iter != in_iter_end)
                         {
                             //copy the input data to the flipped location in the output array 
-                            in_index = in_iter.GetIndices()
+                            in_index = in_iter.GetIndices();
                             for(size_t i=0; i<RANK; i++)
                             {
                                 out_index[i] = in_index[i];
@@ -241,6 +270,7 @@ class MHO_ZeroPadder:
                         }
                     }
                 }
+                return true;
             }
             else
             {
@@ -256,7 +286,6 @@ class MHO_ZeroPadder:
         bool fInitialized;
         bool fCentered;
         bool fFlipped;
-        bool fInitialized;
 
         size_t fPaddingFactor;
         size_t fInputDimensionSize[RANK];

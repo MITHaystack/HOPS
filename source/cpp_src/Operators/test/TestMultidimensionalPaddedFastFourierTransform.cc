@@ -67,8 +67,8 @@ int main(int argc, char** argv)
 
     //first we set up the input data
     const size_t ndim = 1;
-    const size_t N = 16;
-    const size_t M = 4;
+    const size_t N = 8; //only even N supported 
+    const size_t M = 4; //even or odd M is OK
     const size_t NM = N*M;
 
     MHO_NDArrayWrapper< std::complex<FPTYPE>, ndim> array1(N);
@@ -139,6 +139,15 @@ int main(int argc, char** argv)
         }
 
         std::cout << "--------------------------------------------------------------" << std::endl;
+
+        for(size_t i=0; i<N; i++)
+        {
+            std::cout<<"DFT'd array @ "<<i<<" = "<<array2[i]<<std::endl;
+        }
+
+        std::cout << "--------------------------------------------------------------" << std::endl;
+
+
 
         for(size_t i=0; i<NM; i++)
         {
@@ -228,6 +237,14 @@ int main(int argc, char** argv)
         }
 
         std::cout << "--------------------------------------------------------------" << std::endl;
+
+        std::cout << "--------------------------------------------------------------" << std::endl;
+
+        for(size_t i=0; i<N; i++)
+        {
+            std::cout<<"DFT'd array @ "<<i<<" = "<<array2[i]<<std::endl;
+        }
+
 
         for(size_t i=0; i<NM; i++)
         {
@@ -351,8 +368,8 @@ int main(int argc, char** argv)
     for(size_t i=0; i<NM; i++)
     {
         double x = (double)i/(double)M; //rescale back to original spacing
-        gint_real->SetPoint(i,x,expanded_array2[i].real() );
-        gint_imag->SetPoint(i,x,expanded_array2[i].imag() );
+        gint_real->SetPoint(i,x,expanded_array1[i].real() );
+        gint_imag->SetPoint(i,x,expanded_array1[i].imag() );
     }
 
     //have to do the following in two parts to keep the ordering correct
@@ -362,7 +379,7 @@ int main(int argc, char** argv)
     {
         double x = (i+nlags)%(2*nlags);
         x /= 4; //rescale and shift back to original spacing so we can compare
-        std::cout<<output[i].real()<<std::endl;
+        //std::cout<<output[i].real()<<std::endl;
         gunk_real->SetPoint(count, x, output[i].real());
         gunk_imag->SetPoint(count, x, output[i].imag());
         count++;
@@ -371,7 +388,7 @@ int main(int argc, char** argv)
     {
         double x = (i+nlags)%(2*nlags);
         x /= 4; //rescale and shift back to original spacing so we can compare
-        std::cout<<output[i].real()<<std::endl;
+        //std::cout<<output[i].real()<<std::endl;
         gunk_real->SetPoint(count, x, output[i].real());
         gunk_imag->SetPoint(count, x, output[i].imag());
         count++;

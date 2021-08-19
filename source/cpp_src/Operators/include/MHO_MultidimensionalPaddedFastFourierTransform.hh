@@ -77,10 +77,30 @@ class MHO_MultidimensionalPaddedFastFourierTransform:
             fIsValid = true;
             for(size_t i=0; i<RANK; i++)
             {
-                if(fInputDimensionSize[i]*fPaddingFactor != fOutputDimensionSize[i])
+                if(fAxesToXForm[i])
                 {
-                    fIsValid = false;
-                    msg_error("operators", "failed to initialize zero-padded FFT, input/output dimension mismatch at index: "<<i<<"."<<eom);
+                    if(fInputDimensionSize[i]*fPaddingFactor != fOutputDimensionSize[i])
+                    {
+                        fIsValid = false;
+                        msg_error("operators", "failed to initialize zero-padded FFT, input/output dimension mismatch at index: "<<i<<"."<<eom);
+                    }
+
+                    //for now we only support an implementation for even lengths 
+                    //as described on p. 751 of "Understanding Digital Signal Processing" by R.G. Lyons
+                    //odd-length implementations are possible, by not needed for now
+                    if(fInputDimensionSize[i]%2 != 0)
+                    {
+                        fIsValid = false;
+                        msg_error("operators", "zero-padded FFT is only supported for even length dimensions."<<eom);
+                    }
+                }
+                else 
+                {
+                    if(fInputDimensionSize[i] != fOutputDimensionSize[i])
+                    {
+                        fIsValid = false;
+                        msg_error("operators", "failed to initialize zero-padded FFT, input/output dimension mismatch at index: "<<i<<"."<<eom);
+                    }
                 }
             }
 
@@ -163,7 +183,7 @@ class MHO_MultidimensionalPaddedFastFourierTransform:
                                 }
                                 else 
                                 {
-                                    out_index[i].push_back( N*M - N/2 + (in_index[i] - N/2) );
+                                    out_index[i].push_back( (N*M - N/2 + 1) + (in_index[i] - (N/2+1)) );
                                 }
                             }
                             else 
@@ -329,7 +349,7 @@ class MHO_MultidimensionalPaddedFastFourierTransform:
             else
             {
                 //error
-                msg_error("math", "FFT input/output array dimensions are not valid or intialization failed. Aborting transform." << eom);
+                msg_error("operators", "FFT input/output array dimensions are not valid or intialization failed. Aborting transform." << eom);
                 return false;
             }
         }
