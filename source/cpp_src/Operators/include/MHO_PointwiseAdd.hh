@@ -32,14 +32,10 @@ class MHO_PointwiseAdd: public MHO_BinaryNDArrayOperator<XInputArrayType1, XInpu
         static_assert(XOutputArrayType::rank::value == XInputArrayType1::rank::value, "Input/Output array ranks are not equal.");
 
         MHO_PointwiseAdd():
-            fInitialized(false),
-            fFunctor(nullptr)
+            fInitialized(false)
         {};
 
         virtual ~MHO_PointwiseAdd(){};
-
-        void SetFunctor( MHO_NDArrayFunctor<XInputArrayType, XOutputArrayType>* functor){fFunctor = functor;}
-        MHO_NDArrayFunctor<XInputArrayType, XOutputArrayType>* GetFunctor() {return fFunctor;};
 
         virtual bool Initialize() override
         {

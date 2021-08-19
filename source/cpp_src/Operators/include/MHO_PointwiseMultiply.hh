@@ -32,14 +32,10 @@ class MHO_PointwiseMultiply: public MHO_BinaryNDArrayOperator<XInputArrayType1, 
         static_assert(XOutputArrayType::rank::value == XInputArrayType1::rank::value, "Input/Output array ranks are not equal.");
 
         MHO_PointwiseMultiply():
-            fInitialized(false),
-            fFunctor(nullptr)
+            fInitialized(false)
         {};
 
         virtual ~MHO_PointwiseMultiply(){};
-
-        void SetFunctor( MHO_NDArrayFunctor<XInputArrayType, XOutputArrayType>* functor){fFunctor = functor;}
-        MHO_NDArrayFunctor<XInputArrayType, XOutputArrayType>* GetFunctor() {return fFunctor;};
 
         virtual bool Initialize() override
         {
