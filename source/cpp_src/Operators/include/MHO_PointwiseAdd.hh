@@ -74,12 +74,13 @@ class MHO_PointwiseAdd: public MHO_BinaryNDArrayOperator<XInputArrayType1, XInpu
             {
                 auto in1_iter =  this->fInput1->begin();
                 auto in1_iter_end = this->fInput1->end();
-                auto in2_iter =  this->fInput1->begin();
+                auto in2_iter =  this->fInput2->begin();
                 auto in2_iter_end = this->fInput2->end();
                 auto out_iter = this->fOutput->begin();
                 auto out_iter_end = this->fOutput->end();
                 while( in1_iter != in1_iter_end && in2_iter != in2_iter_end && out_iter != out_iter_end)
                 {
+
                     *out_iter = (*in1_iter) + (*in2_iter);
                     ++out_iter;
                     ++in1_iter;
