@@ -7,6 +7,7 @@ set(SOURCE_BASENAMES
     TestMultidimensionalFastFourierTransform
     TestMultidimensionalPaddedFastFourierTransform
     TestInterpolatedFFT
+    TestZeroPadder
 #    TestReducer
 )
 
