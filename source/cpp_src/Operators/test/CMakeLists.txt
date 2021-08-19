@@ -7,7 +7,7 @@ set(SOURCE_BASENAMES
     TestMultidimensionalFastFourierTransform
     TestMultidimensionalPaddedFastFourierTransform
     TestInterpolatedFFT
-#    TestReducer
+    TestReducer
 )
 
 if (HOPS_USE_ROOT)
