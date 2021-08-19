@@ -27,7 +27,7 @@ namespace hops
 template< typename XItemType, template<typename> class XOperatorType, std::size_t RANK>
 class MHO_Reducer:
     public MHO_NDArrayOperator< MHO_NDArrayWrapper< XItemType, RANK>,
-                             MHO_NDArrayWrapper< XItemType, RANK> >
+                                MHO_NDArrayWrapper< XItemType, RANK> >
 {
     public:
 
