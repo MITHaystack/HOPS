@@ -9,6 +9,7 @@ set(SOURCE_BASENAMES
     TestInterpolatedFFT
     TestReducer
     TestPointwiseAdd
+    TestPointwiseMultiply
 )
 
 if (HOPS_USE_ROOT)
