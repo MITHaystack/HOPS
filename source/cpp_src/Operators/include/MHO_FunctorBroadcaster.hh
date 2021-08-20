@@ -75,17 +75,32 @@ class MHO_FunctorBroadcaster: public MHO_NDArrayOperator<XInputArrayType, XOutpu
             //note: this implicitly assumes both intput/output are the same total size
             if(fInitialized)
             {
-                auto in_iter =  this->fInput->begin();
-                auto in_iter_end = this->fInput->end();
-                auto out_iter = this->fOutput->begin();
-                auto out_iter_end = this->fOutput->end();
-                while( in_iter != in_iter_end && out_iter != out_iter_end)
+                if(this->fInput == this->fOutput) 
                 {
-                    (*fFunctor)(in_iter, out_iter);
-                    ++out_iter;
-                    ++in_iter;
+                    //same array so only increment a single iter
+                    auto in_iter =  this->fInput->begin();
+                    auto in_iter_end = this->fInput->end();
+                    while( in_iter != in_iter_end)
+                    {
+                        (*fFunctor)(in_iter, in_iter);
+                        ++in_iter;
+                    }
+                    return true;
                 }
-                return true;
+                else 
+                {
+                    auto in_iter =  this->fInput->begin();
+                    auto in_iter_end = this->fInput->end();
+                    auto out_iter = this->fOutput->begin();
+                    auto out_iter_end = this->fOutput->end();
+                    while( in_iter != in_iter_end && out_iter != out_iter_end)
+                    {
+                        (*fFunctor)(in_iter, out_iter);
+                        ++out_iter;
+                        ++in_iter;
+                    }
+                    return true;
+                }
             }
             return false;
         }
