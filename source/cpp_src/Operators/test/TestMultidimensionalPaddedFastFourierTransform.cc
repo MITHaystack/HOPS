@@ -26,6 +26,10 @@ typedef double FPTYPE;
 #define PADDED_FFT_TYPE MHO_MultidimensionalPaddedFastFourierTransform<FPTYPE,1>
 #define FFT_TYPE MHO_MultidimensionalFastFourierTransform<FPTYPE,1>
 
+inline int positive_modulo(int i, int n) {
+    return (i % n + n) % n;
+}
+
 int main(int argc, char** argv)
 {
 
@@ -67,7 +71,7 @@ int main(int argc, char** argv)
 
     //first we set up the input data
     const size_t ndim = 1;
-    const size_t N = 8; //only even N supported 
+    const size_t N = 16; //only even N supported 
     const size_t M = 4; //even or odd M is OK
     const size_t NM = N*M;
 
@@ -90,7 +94,8 @@ int main(int argc, char** argv)
 
     //insert a peak
     array1[N/3]  = 3.0;
-    //array1[N/3+1]  = 3.0;
+    array1[N/3+1]  = 1.0;
+    array1[N/3+2]  = 2.0;
 
     //then we execute an FFT to move to frequency space 
     FFT_TYPE* fft_engine = new FFT_TYPE();
@@ -284,7 +289,7 @@ int main(int argc, char** argv)
     MHO_NDArrayWrapper< std::complex<FPTYPE>, ndim> xp_spec(4*nlags);
     MHO_NDArrayWrapper< std::complex<FPTYPE>, ndim> S(4*nlags);
     MHO_NDArrayWrapper< std::complex<FPTYPE>, ndim> xlag(4*nlags);
-    MHO_NDArrayWrapper< std::complex<FPTYPE>, ndim> output(2*nlags);
+    MHO_NDArrayWrapper< std::complex<FPTYPE>, ndim> output(4*nlags);
 
     for (int i=0; i<4*nlags; i++){xp_spec[i] = 0.0;}
     for (int i=0; i<4*nlags; i++){S[i] = 0.0;}
@@ -308,15 +313,56 @@ int main(int argc, char** argv)
     fft_engine3->Initialize();
     fft_engine3->ExecuteOperation();
 
+    //select every-other
+    for (int i = 0; i < 2*nlags; i++)
+    {   
+        output[i] = xlag[2*i];
+    }
+
+    //cyclic shift 2nlags
     for (int i = 0; i < 2*nlags; i++)
     {
-        /* Translate so i=nlags is central lag */
-        // skip every other (interpolated) lag
-        int j = 2 * (i - nlags);
-        if (j < 0){j += 4 * nlags;}
-        /* re-normalize back to single lag */
-        output[i] = xlag[j] / (double) (nlags / 2);
+        int j= positive_modulo(i-nlags, 2*nlags);
+        xlag[i] = output[j];
     }
+    
+
+    
+    //normalize
+    for (int i = 0; i < 2*nlags; i++)
+    {   
+        output[i] = xlag[i] / (double) (nlags / 2);
+    }
+    
+    
+
+
+    // for (int i = 0; i < 2*nlags; i++)
+    // {
+    //     /* Translate so i=nlags is central lag */
+    //     // skip every other (interpolated) lag
+    //     // int j = 2 * (i - nlags);
+    //     // if (j < 0){j += 4 * nlags;}
+    // 
+    //     // int j = MHO_NDArrayMath::Modulus(2 * (i - nlags) , 4*nlags);
+    //     //if (j < 0){j += 4 * nlags;}
+    //     int j = positive_modulo(2 * (i - nlags) , 4*nlags);
+    //     /* re-normalize back to single lag */
+    //     output[i] = xlag[j] / (double) (nlags / 2);
+    // }
+
+
+
+    // for (int i = 0; i < 2*nlags; i++)
+    // {
+    //     /* Translate so i=nlags is central lag */
+    //     // skip every other (interpolated) lag
+    //     int j = 2 * (i - nlags);
+    //     if (j < 0){j += 4 * nlags;}
+    //     /* re-normalize back to single lag */
+    //     output[i] = xlag[j] / (double) (nlags / 2);
+    // }
+    // 
 
     delete fft_engine;
     delete fft_engine3;
@@ -375,24 +421,24 @@ int main(int argc, char** argv)
     //have to do the following in two parts to keep the ordering correct
     //what purpose does the shift have?
     size_t count=0;
-    for(size_t i=nlags; i<2*nlags;i++)
+    for(size_t i=0; i<2*nlags;i++)
     {
-        double x = (i+nlags)%(2*nlags);
-        x /= 4; //rescale and shift back to original spacing so we can compare
+        //double x = (i+nlags)%(2*nlags);
+        double x = (double)i/4.; //rescale and shift back to original spacing so we can compare
         //std::cout<<output[i].real()<<std::endl;
         gunk_real->SetPoint(count, x, output[i].real());
         gunk_imag->SetPoint(count, x, output[i].imag());
         count++;
     }
-    for(size_t i=0; i<nlags;i++)
-    {
-        double x = (i+nlags)%(2*nlags);
-        x /= 4; //rescale and shift back to original spacing so we can compare
-        //std::cout<<output[i].real()<<std::endl;
-        gunk_real->SetPoint(count, x, output[i].real());
-        gunk_imag->SetPoint(count, x, output[i].imag());
-        count++;
-    }
+    // for(size_t i=0; i<nlags;i++)
+    // {
+    //     double x = (i+nlags)%(2*nlags);
+    //     x /= 4; //rescale and shift back to original spacing so we can compare
+    //     //std::cout<<output[i].real()<<std::endl;
+    //     gunk_real->SetPoint(count, x, output[i].real());
+    //     gunk_imag->SetPoint(count, x, output[i].imag());
+    //     count++;
+    // }
 
 
 
