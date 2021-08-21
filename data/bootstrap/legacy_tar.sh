@@ -64,7 +64,7 @@ trk=$HOPS_ROOT/trunk
 #
 # keep the tars, the help and the case statement similarly ordered
 #
-fftest=" 2491 2611 2836 2843 2849 2912 3064 3262 3365 3372 3413 3562 3571 "
+fftest=" 2491 2611 2836 2843 2849 2912 3064 3262 3365 3372 3413 3562 3571 3756"
 tars="
 corr    #correlator
 mk4m    #mk4-migrate
@@ -154,6 +154,7 @@ ffhelp="Tarballs for parts of the following experiments are supported:
 3413    -d- scan 278-1758 (one of the basic tests)
 3562    -d- scan 141-0002
 3571    -d- scan 244-1717
+3756    -d- scan 328-1800
 "
 
 [ "$1" = all ] && set -- $tars
