@@ -305,7 +305,7 @@ class MHO_NDArrayWrapper
         std::size_t fTotalArraySize; //total size of array
 
 
-    //the iterator definition
+    //the iterator definition //////////////////////////////////////////////////
     public:
 
         //TODO - Do we need a const_iterator class?
@@ -490,6 +490,131 @@ class MHO_NDArrayWrapper
         };
 
 
+////////////////////////////////////////////////////////////////////////////////
+
+
+//the strided iterator definition
+public:
+
+    //strided access to the array (useful for iterating along a single dimension)
+    class stride_iterator
+    {
+        public:
+
+            typedef stride_iterator self_type;
+            typedef XValueType value_type;
+            typedef XValueType& reference;
+            typedef XValueType* pointer;
+            typedef std::forward_iterator_tag iterator_category;
+            typedef int difference_type;
+            typedef std::array<std::size_t, RANK> index_type;
+
+            stride_iterator(const iterator& iter, std::size_t stride):
+                fIterator(iter), //initial location
+                fStride(stride) //stride distance by which to access the array 
+            {
+                //TODO FIXME, check we have no overflow issues with (size_t -> ptrdiff_t
+            };
+
+            stride_iterator(const self_type& copy):
+                fIterator(copy.fIterator)
+            {
+                fStride = copy.fStride;
+            };
+
+            self_type operator++()
+            {
+                fIterator += fStride;
+                return *this;
+            }
+
+            self_type operator--()
+            {
+                fIterator -= fStride;
+                return *this;
+            }
+
+            self_type operator++(int)
+            {
+                self_type ret_val(*this);
+                ++(*this);
+                return ret_val;
+            }
+
+            self_type operator--(int)
+            {
+                self_type ret_val(*this);
+                ++(*this);
+                return ret_val;
+            }
+
+            std::ptrdiff_t operator-(const self_type& iter)
+            {
+                return std::distance(iter.GetPtr(), fIterator.GetPtr());
+            }
+
+            self_type operator+=(const std::ptrdiff_t& diff)
+            {
+                fIterator += fStride*diff;
+                return (*this);
+            }
+
+            self_type operator-=(const std::ptrdiff_t& diff)
+            {
+                fIterator -= fStride*diff;
+                return (*this);
+            }
+
+            self_type operator+(const std::ptrdiff_t& diff)
+            {
+                self_type temp(*this);
+                temp += diff;
+                return temp;
+            }
+
+            self_type operator-(const std::ptrdiff_t& diff)
+            {
+                self_type temp(*this);
+                temp -= diff;
+                return temp;
+            }
+
+            //access to underlying array item object
+            reference operator*() { return *(fIterator->GetPtr()); }
+            pointer operator->() { return fIterator->GetPtr(); }
+
+            self_type operator=(const self_type& rhs)
+            {
+                if(this != &rhs)
+                {
+                    fIterator = rhs.fIterator;
+                    fStride = rhs.fStride;
+                }
+                return *this;
+            }
+
+            bool operator==(const self_type& rhs)
+            {
+                return (fIterator == rhs.fIterator && fStride == rhs.fStride);
+            }
+
+            bool operator!=(const self_type& rhs)
+            {
+                return !(*this == rhs);
+            }
+
+            pointer GetPtr(){return fIterator.GetPtr();}
+            index_type GetIndexObject() const {return fIterator.GetIndices();}
+            const std::size_t* GetIndices() const {return fIterator.GetIndices();}
+            bool IsValid() const {return fIterator.IsValid();}
+
+        private:
+
+            iterator fIterator;
+            ptrdiff_t fStride; 
+    };
+
+
     public:
 
         iterator begin()
@@ -500,6 +625,18 @@ class MHO_NDArrayWrapper
         iterator end()
         {
             return iterator(false, this->fDataPtr + this->fTotalArraySize, this->fDimensions, this->fTotalArraySize);
+        }
+
+        stride_iterator stride_begin(std::size_t stride)
+        {
+            iterator tmp(true, this->fDataPtr, this->fDimensions, 0);
+            return stride_iterator(tmp, stride);
+        }
+
+        stride_iterator stride_end(std::size_t stride)
+        {
+            iterator tmp(false, this->fDataPtr + this->fTotalArraySize, this->fDimensions, this->fTotalArraySize);
+            return stride_iterator(tmp, stride);
         }
 
 };

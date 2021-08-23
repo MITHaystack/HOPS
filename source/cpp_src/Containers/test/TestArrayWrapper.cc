@@ -90,7 +90,18 @@ int main(int /*argc*/, char** /*argv*/)
     }
     while( MHO_NDArrayMath::DecrementIndices<3>(arr_dim, arr_ind));
 
+    auto sit = test3.stride_begin(3);
+    auto sit_end = test3.stride_end(3);
 
+    std::cout<<"test strided access"<<std::endl;
+    const std::size_t* idx_ptr;
+    do
+    {
+        idx_ptr  = sit.GetIndices();
+        std::cout<<"index iterator = ("<<idx_ptr[0]<<", "<<idx_ptr[1]<<")"<<std::endl;
+        sit++;
+    } 
+    while(sit != sit_end && sit.IsValid() ); 
 
     return 0;
 }
