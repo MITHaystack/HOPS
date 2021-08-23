@@ -69,7 +69,7 @@ class MHO_PointwiseMultiply: public MHO_BinaryNDArrayOperator<XInputArrayType1, 
 
         virtual bool ExecuteOperation() override
         {
-            //note: this implicitly assumes both intput/output are the same total size
+            //note: this implicitly assumes both input/output are the same total size
             if(fInitialized)
             {
                 auto in1_iter =  this->fInput1->begin();
