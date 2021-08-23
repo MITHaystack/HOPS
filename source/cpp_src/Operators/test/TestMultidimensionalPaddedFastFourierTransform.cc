@@ -326,8 +326,6 @@ int main(int argc, char** argv)
         xlag[i] = output[j];
     }
     
-
-    
     //normalize
     for (int i = 0; i < 2*nlags; i++)
     {   

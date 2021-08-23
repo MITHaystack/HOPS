@@ -70,6 +70,10 @@ class MHO_PointwiseAdd: public MHO_BinaryNDArrayOperator<XInputArrayType1, XInpu
         virtual bool ExecuteOperation() override
         {
             //note: this implicitly assumes both input/output are the same total size
+
+            //TODO FIXME...if input1 or input2 == output, then we need to change 
+            //the way we iterate, otherwise we are double or triple iterating 
+            //(see MHO_FunctorBroadcaster class)
             if(fInitialized)
             {
                 auto in1_iter =  this->fInput1->begin();

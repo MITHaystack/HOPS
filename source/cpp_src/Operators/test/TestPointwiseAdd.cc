@@ -15,6 +15,11 @@ typedef MHO_NDArrayWrapper<std::complex<double>, NDIM> array_type;
 
 int main(int /*argc*/, char** /*argv*/)
 {
+
+    MHO_Message::GetInstance().AcceptAllKeys();
+    MHO_Message::GetInstance().SetMessageLevel(eDebug);
+
+
     const size_t ndim = NDIM;
     const size_t dval = 3;
     size_t dim_size[ndim];

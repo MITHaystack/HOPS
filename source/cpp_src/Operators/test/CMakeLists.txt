@@ -10,6 +10,7 @@ set(SOURCE_BASENAMES
     TestReducer
     TestPointwiseAdd
     TestPointwiseMultiply
+    TestCyclicRotation
 )
 
 if (HOPS_USE_ROOT)
