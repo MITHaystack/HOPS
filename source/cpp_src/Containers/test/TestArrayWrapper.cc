@@ -73,6 +73,8 @@ int main(int /*argc*/, char** /*argv*/)
     arr_dim[0] = 2; arr_dim[1] = 1; arr_dim[2] = 3;
     std::size_t arr_ind[3];
 
+    std::cout<<"stride of dim 0 = "<<test3.GetStride(0)<<std::endl;
+    std::cout<<"stride of dim 1 = "<<test3.GetStride(1)<<std::endl;
 
     std::cout<<"iterator increment operation"<<std::endl;
     arr_ind[0] = 0; arr_ind[1] = 0; arr_ind[2] = 0;
@@ -102,6 +104,14 @@ int main(int /*argc*/, char** /*argv*/)
         sit++;
     } 
     while(sit != sit_end && sit.IsValid() ); 
+
+    std::size_t dim4[5] = {3,4,5,6,7};
+    MHO_NDArrayWrapper<int, 5> test4(dim4);
+    for(std::size_t i=0;i<5;i++)
+    {
+        std::cout<<"stride of dim "<<i<<" = "<<test4.GetStride(i)<<std::endl;
+    }
+
 
     return 0;
 }

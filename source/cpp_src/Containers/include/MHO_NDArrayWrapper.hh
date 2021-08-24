@@ -184,6 +184,32 @@ class MHO_NDArrayWrapper
             return fDimensions[dim_index];
         }
 
+        std::size_t GetStride(std::size_t dim_index) const
+        {
+            //stride for elements of this dimension 
+            std::size_t stride = 1;
+            std::size_t i = RANK-1;
+            while(i > dim_index)
+            {
+                stride *= fDimensions[i];
+                i--;
+            }
+            return stride;
+        }
+
+        void GetStrides(std::size_t* array_stride) const
+        {
+            for(std::size_t i=0; i<RANK; i++){array_stride[i] = 0;}
+            std::size_t stride = 1;
+            std::size_t i = RANK-1;
+            while(i > 0)
+            {
+                array_stride[i] = stride;
+                stride *= fDimensions[i];
+                i--;
+            }
+        }
+
         std::size_t GetOffsetForIndices(const std::size_t* index)
         {
             return MHO_NDArrayMath::OffsetFromRowMajorIndex<RANK>(fDimensions, index);
@@ -627,6 +653,28 @@ public:
             return iterator(false, this->fDataPtr + this->fTotalArraySize, this->fDimensions, this->fTotalArraySize);
         }
 
+        iterator iterator_at(std::size_t offset)
+        {
+            if(offset < this->fTotalArraySize)
+            {
+                return iterator(true, this->fDataPtr + offset, this->fDimensions, 0);
+            }
+            else
+            {
+                return this->end();
+            }
+        }
+
+        // //access via iterator_at(,,,,) -- multiple indices
+        // template <typename ...XIndexTypeS >
+        // typename std::enable_if<(sizeof...(XIndexTypeS) == RANK), iterator >::type
+        // iterator_at(XIndexTypeS...idx)
+        // {
+        //     const std::array<std::size_t, RANK> indices = {{static_cast<size_t>(idx)...}};
+        //     std::size_t offset = MHO_NDArrayMath::OffsetFromRowMajorIndex<RANK>(fDimensions, &(indices[0]) )
+        //     return this->iterator_at(offset);
+        // }
+
         stride_iterator stride_begin(std::size_t stride)
         {
             iterator tmp(true, this->fDataPtr, this->fDimensions, 0);
@@ -637,6 +685,12 @@ public:
         {
             iterator tmp(false, this->fDataPtr + this->fTotalArraySize, this->fDimensions, this->fTotalArraySize);
             return stride_iterator(tmp, stride);
+        }
+
+        stride_iterator stride_iterator_at(std::size_t offset, std::size_t stride)
+        {
+            iterator tmp = this->iterator_at(offset);
+            return stride_iterator(tmp,stride);
         }
 
 };
