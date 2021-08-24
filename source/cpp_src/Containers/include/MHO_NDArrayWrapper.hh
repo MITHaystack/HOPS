@@ -485,7 +485,7 @@ class MHO_NDArrayWrapper
                     if(this != &rhs)
                     {
                         fValid = rhs.fValid;
-                        fPtr == rhs.fPtr;
+                        fPtr = rhs.fPtr;
                         fDimensions = rhs.fDimensions;
                         fIndices = rhs.fIndices;
                     }
@@ -606,8 +606,8 @@ public:
             }
 
             //access to underlying array item object
-            reference operator*() { return *(fIterator->GetPtr()); }
-            pointer operator->() { return fIterator->GetPtr(); }
+            reference operator*() { return *(fIterator.GetPtr()); }
+            pointer operator->() { return fIterator.GetPtr(); }
 
             self_type operator=(const self_type& rhs)
             {

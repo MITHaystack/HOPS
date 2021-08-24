@@ -20,7 +20,7 @@ int main(int /*argc*/, char** /*argv*/)
     MHO_Message::GetInstance().SetMessageLevel(eDebug);
 
     const size_t ndim = NDIM;
-    const size_t dval = 6;
+    const size_t dval = 8;
     size_t dim_size[ndim];
     for(std::size_t i=0;i<NDIM;i++){dim_size[i] = i+dval;};
     array_type* input1 = new array_type(dim_size);
@@ -47,8 +47,8 @@ int main(int /*argc*/, char** /*argv*/)
     std::cout << "--------------------------------------------------------------" << std::endl;
 
     MHO_CyclicRotator<array_type, array_type> crot;
-    crot.SetOffset(0, -1);
-    crot.SetOffset(1, 3);
+    crot.SetOffset(0, 1);
+    crot.SetOffset(1, 1);
     crot.SetInput(input1);
     crot.SetOutput(output);
     bool init = crot.Initialize();
@@ -74,6 +74,20 @@ int main(int /*argc*/, char** /*argv*/)
 
     std::cout << "--------------------------------------------------------------" << std::endl;
 
+    //now undo the previous rotation in-place on the output array 
+    crot.SetOffset(0, 1);
+    crot.SetOffset(1, 1);
+    crot.SetInput(output);
+    crot.SetOutput(output);
+    bool init2 = crot.Initialize();
+    bool exe2 = crot.ExecuteOperation();
+
+    for (size_t i = 0; i < odim_size[0]; i++) {
+        for (size_t j = 0; j < odim_size[1]; j++) {
+                std::cout << (*output)(i,j) << ", ";
+        }
+            std::cout << std::endl;
+    }
 
     return 0;
 }
