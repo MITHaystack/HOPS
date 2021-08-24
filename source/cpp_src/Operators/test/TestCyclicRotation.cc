@@ -47,8 +47,8 @@ int main(int /*argc*/, char** /*argv*/)
     std::cout << "--------------------------------------------------------------" << std::endl;
 
     MHO_CyclicRotator<array_type, array_type> crot;
-    crot.SetOffset(0, 1);
-    crot.SetOffset(1, 1);
+    crot.SetOffset(0, 2);
+    crot.SetOffset(1, -2);
     crot.SetInput(input1);
     crot.SetOutput(output);
     bool init = crot.Initialize();
@@ -75,8 +75,8 @@ int main(int /*argc*/, char** /*argv*/)
     std::cout << "--------------------------------------------------------------" << std::endl;
 
     //now undo the previous rotation in-place on the output array 
-    crot.SetOffset(0, 1);
-    crot.SetOffset(1, 1);
+    crot.SetOffset(0, -2);
+    crot.SetOffset(1, 2);
     crot.SetInput(output);
     crot.SetOutput(output);
     bool init2 = crot.Initialize();

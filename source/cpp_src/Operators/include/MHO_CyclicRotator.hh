@@ -47,7 +47,12 @@ class MHO_CyclicRotator: public MHO_NDArrayOperator<XInputArrayType, XOutputArra
         //set the offset for the cyclic rotation in each dimension (default is zero...do nothing)
         void SetOffset(std::size_t dimension_index, int64_t offset_value)
         {
-            if(dimension_index < XInputArrayType::rank::value){fOffsets[dimension_index] = offset_value;}
+            //A negative offset_value results in a "right" rotation: rot by  1: [0 1 2 3] -> [3 0 1 2]
+            //A positive offset_value results in a "left" rotation: rot by -1: [0 1 2 3] -> [1 2 3 0]
+            if(dimension_index < XInputArrayType::rank::value)
+            {
+                fOffsets[dimension_index] = offset_value;
+            }
             else 
             {
                 msg_error("operators", "error, offset for dimension: "<<dimension_index<<" exceeds array rank." << eom);
@@ -83,10 +88,13 @@ class MHO_CyclicRotator: public MHO_NDArrayOperator<XInputArrayType, XOutputArra
 
         virtual bool ExecuteOperation() override
         {
-            //note: this implicitly assumes both intput/output are the same total size
-            //but not the same array
             if(fInitialized)
             {
+                for(std::size_t i=0; i<XInputArrayType::rank::value; i++)
+                {
+                    fModuloOffsets[i] = positive_modulo(fOffsets[i], fDimensionSize[i]);
+                }
+
                 if(this->fInput == this->fOutput) 
                 {
                     size_t index[XInputArrayType::rank::value];
@@ -134,8 +142,8 @@ class MHO_CyclicRotator: public MHO_NDArrayOperator<XInputArrayType, XOutputArra
 
                                 //now rotate the array by the specified amount
                                 auto it_first = this->fInput->stride_iterator_at(data_location, stride);
-                                auto it_nfirst = it_first + fOffsets[d];
-                                auto it_end = it_first + (fDimensionSize[d]);
+                                auto it_nfirst = it_first + fModuloOffsets[d];
+                                auto it_end = it_first + fDimensionSize[d];
                                 std::rotate(it_first, it_nfirst, it_end);
                             }
                         }
@@ -151,16 +159,14 @@ class MHO_CyclicRotator: public MHO_NDArrayOperator<XInputArrayType, XOutputArra
                     while( in_iter != in_iter_end)
                     {
                         const std::size_t* in_loc = in_iter.GetIndices();
-
                         for(std::size_t i=0; i<XInputArrayType::rank::value;i++)
                         {
-                            fWorkspace[i] = positive_modulo( in_loc[i] + fOffsets[i], out_dim[i]);
+                            fWorkspace[i] = positive_modulo( in_loc[i] - fModuloOffsets[i], out_dim[i]);
                         }
                         std::size_t out_loc = this->fOutput->GetOffsetForIndices(fWorkspace);
                         (*(this->fOutput))[out_loc] = *in_iter;
                         in_iter++;
                     }
-
                     return true;
                 }
             }
@@ -183,6 +189,7 @@ class MHO_CyclicRotator: public MHO_NDArrayOperator<XInputArrayType, XOutputArra
         //offsets to for cyclic rotation
         std::size_t  fDimensionSize[XInputArrayType::rank::value];
         int64_t fOffsets[XInputArrayType::rank::value];
+        int64_t fModuloOffsets[XInputArrayType::rank::value];
         std::size_t fWorkspace[XInputArrayType::rank::value];
 };
 
