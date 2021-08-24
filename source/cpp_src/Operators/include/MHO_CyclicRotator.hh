@@ -55,8 +55,9 @@ class MHO_CyclicRotator: public MHO_NDArrayOperator<XInputArrayType, XOutputArra
             }
             else 
             {
-                msg_error("operators", "error, offset for dimension: "<<dimension_index<<" exceeds array rank." << eom);
+                msg_error("operators", "error, offset for dimension: "<<dimension_index<<", exceeds array rank." << eom);
             }
+            fInitialized = false;
         }
 
         virtual bool Initialize() override
