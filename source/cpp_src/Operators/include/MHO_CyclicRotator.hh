@@ -35,7 +35,11 @@ class MHO_CyclicRotator: public MHO_NDArrayOperator<XInputArrayType, XOutputArra
         MHO_CyclicRotator():
             fInitialized(false)
         {
-            for(std::size_t i=0; i<XInputArrayType::rank::value; i++){fOffsets[i]=0;}
+            for(std::size_t i=0; i<XInputArrayType::rank::value; i++)
+            {
+                fDimensionSize[i] = 0;
+                fOffsets[i]=0;
+            }
         };
 
         virtual ~MHO_CyclicRotator(){};
@@ -55,6 +59,7 @@ class MHO_CyclicRotator: public MHO_NDArrayOperator<XInputArrayType, XOutputArra
             fInitialized = false;
             if(this->fInput != nullptr && this->fOutput != nullptr)
             {
+                this->fInput->GetDimensions(fDimensionSize);
                 //only need to change output size if in != out and size is different
                 if(this->fInput != this->fOutput)
                 {
@@ -70,14 +75,8 @@ class MHO_CyclicRotator: public MHO_NDArrayOperator<XInputArrayType, XOutputArra
                     }
 
                     if(have_to_resize){this->fOutput->Resize(in_dim);}
-                    fInitialized = true;
                 }
-                else 
-                {
-                    msg_warn("operators","In-place cyclic rotation no currently supported." << eom );
-                    fInitialized = false;
-                }
-
+                fInitialized = true;
             }
             return fInitialized;
         }
@@ -90,12 +89,58 @@ class MHO_CyclicRotator: public MHO_NDArrayOperator<XInputArrayType, XOutputArra
             {
                 if(this->fInput == this->fOutput) 
                 {
-                    //have to deal with things differently for an in-place rotation 
-                    //TODO FIXME 
-                    //probably one way to deal with this is to make use of std:rotate
-                    //however to do that we would need to write a strided iterator class for MHO_NDArrayWrapper
-                    //on second though...a strided iterator would be pretty handy
-                    return false;
+                    size_t index[XInputArrayType::rank::value];
+                    size_t non_active_dimension_size[XInputArrayType::rank::value-1];
+                    size_t non_active_dimension_value[XInputArrayType::rank::value-1];
+                    size_t non_active_dimension_index[XInputArrayType::rank::value-1];
+
+                    //select the dimension on which to perform the FFT
+                    for(size_t d = 0; d < XInputArrayType::rank::value; d++)
+                    {
+                        if(fOffsets[d] !=0)
+                        {
+                            //now we loop over all dimensions not specified by d
+                            //first compute the number of arrays we need to rotate
+                            size_t n_rot = 1;
+                            size_t count = 0;
+                            size_t stride = this->fInput->GetStride(d);
+                            for(size_t i = 0; i < XInputArrayType::rank::value; i++)
+                            {
+                                if(i != d)
+                                {
+                                    n_rot *= fDimensionSize[i];
+                                    non_active_dimension_index[count] = i;
+                                    non_active_dimension_size[count] = fDimensionSize[i];
+                                    count++;
+                                }
+                            }
+
+                            //loop over the number of rotations to perform
+                            for(size_t n=0; n<n_rot; n++)
+                            {
+                                //invert place in list to obtain indices of block in array
+                                MHO_NDArrayMath::RowMajorIndexFromOffset<XInputArrayType::rank::value-1>(n, non_active_dimension_size, non_active_dimension_value);
+
+                                //copy the value of the non-active dimensions in to index
+                                for(size_t i=0; i<XInputArrayType::rank::value-1; i++)
+                                {
+                                    index[ non_active_dimension_index[i] ] = non_active_dimension_value[i];
+                                }
+
+                                //locate the start of this row
+                                size_t data_location;
+                                index[d] = 0;
+                                data_location = MHO_NDArrayMath::OffsetFromRowMajorIndex<XInputArrayType::rank::value>(fDimensionSize, index);
+
+                                //now rotate the array by the specified amount
+                                auto it_first = this->fInput->stride_iterator_at(data_location, stride);
+                                auto it_nfirst = it_first + fOffsets[d];
+                                auto it_end = it_first + (fDimensionSize[d]);
+                                std::rotate(it_first, it_nfirst, it_end);
+                            }
+                        }
+                    }
+                    return true;
                 }
                 else 
                 {
@@ -136,6 +181,7 @@ class MHO_CyclicRotator: public MHO_NDArrayOperator<XInputArrayType, XOutputArra
         }
 
         //offsets to for cyclic rotation
+        std::size_t  fDimensionSize[XInputArrayType::rank::value];
         int64_t fOffsets[XInputArrayType::rank::value];
         std::size_t fWorkspace[XInputArrayType::rank::value];
 };
