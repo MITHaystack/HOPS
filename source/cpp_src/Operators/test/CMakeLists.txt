@@ -11,6 +11,7 @@ set(SOURCE_BASENAMES
     TestPointwiseAdd
     TestPointwiseMultiply
     TestCyclicRotation
+    TestSubSample
 )
 
 if (HOPS_USE_ROOT)
