@@ -290,6 +290,7 @@ int main(int argc, char** argv)
     MHO_NDArrayWrapper< std::complex<FPTYPE>, ndim> S(4*nlags);
     MHO_NDArrayWrapper< std::complex<FPTYPE>, ndim> xlag(4*nlags);
     MHO_NDArrayWrapper< std::complex<FPTYPE>, ndim> output(4*nlags);
+    MHO_NDArrayWrapper< std::complex<FPTYPE>, ndim> output2(4*nlags);
 
     for (int i=0; i<4*nlags; i++){xp_spec[i] = 0.0;}
     for (int i=0; i<4*nlags; i++){S[i] = 0.0;}
@@ -313,6 +314,19 @@ int main(int argc, char** argv)
     fft_engine3->Initialize();
     fft_engine3->ExecuteOperation();
 
+
+    for (int i = 0; i < 2*nlags; i++)
+    {
+        /* Translate so i=nlags is central lag */
+        // skip every other (interpolated) lag
+        int j = 2 * (i - nlags);
+        if (j < 0){j += 4 * nlags;}
+        /* re-normalize back to single lag */
+        output2[i] = xlag[j] / (double) (nlags / 2);
+    }
+    
+
+
     //select every-other
     for (int i = 0; i < 2*nlags; i++)
     {   
@@ -322,7 +336,7 @@ int main(int argc, char** argv)
     //cyclic shift 2nlags
     for (int i = 0; i < 2*nlags; i++)
     {
-        int j= positive_modulo(i-nlags, 2*nlags);
+        int j = positive_modulo(i-nlags, 2*nlags);
         xlag[i] = output[j];
     }
     
@@ -334,7 +348,7 @@ int main(int argc, char** argv)
     
     
 
-
+    // 
     // for (int i = 0; i < 2*nlags; i++)
     // {
     //     /* Translate so i=nlags is central lag */
@@ -348,19 +362,10 @@ int main(int argc, char** argv)
     //     /* re-normalize back to single lag */
     //     output[i] = xlag[j] / (double) (nlags / 2);
     // }
-
-
-
-    // for (int i = 0; i < 2*nlags; i++)
-    // {
-    //     /* Translate so i=nlags is central lag */
-    //     // skip every other (interpolated) lag
-    //     int j = 2 * (i - nlags);
-    //     if (j < 0){j += 4 * nlags;}
-    //     /* re-normalize back to single lag */
-    //     output[i] = xlag[j] / (double) (nlags / 2);
-    // }
     // 
+    // 
+    // 
+
 
     delete fft_engine;
     delete fft_engine3;
@@ -403,6 +408,9 @@ int main(int argc, char** argv)
     TGraph* gunk_real = new TGraph();
     TGraph* gunk_imag = new TGraph();
 
+    TGraph* gunk2_real = new TGraph();
+    TGraph* gunk2_imag = new TGraph();
+
     for(size_t i=0; i<N; i++)
     {
         g_real->SetPoint(i,i,array1[i].real() );
@@ -428,15 +436,17 @@ int main(int argc, char** argv)
         gunk_imag->SetPoint(count, x, output[i].imag());
         count++;
     }
-    // for(size_t i=0; i<nlags;i++)
-    // {
-    //     double x = (i+nlags)%(2*nlags);
-    //     x /= 4; //rescale and shift back to original spacing so we can compare
-    //     //std::cout<<output[i].real()<<std::endl;
-    //     gunk_real->SetPoint(count, x, output[i].real());
-    //     gunk_imag->SetPoint(count, x, output[i].imag());
-    //     count++;
-    // }
+
+
+    for(size_t i=0; i<2*nlags;i++)
+    {
+        double x = (double)i/4.;
+        //x /= 4; //rescale and shift back to original spacing so we can compare
+        //std::cout<<output[i].real()<<std::endl;
+        gunk2_real->SetPoint(count, x, output2[i].real());
+        gunk2_imag->SetPoint(count, x, output2[i].imag());
+        count++;
+    }
 
 
 
@@ -458,11 +468,22 @@ int main(int argc, char** argv)
     gint_imag->SetLineColor(2);
 
     gunk_real->SetMarkerColor(4);
-    gunk_real->SetMarkerStyle(26);
+    gunk_real->SetMarkerStyle(29);
     gunk_real->SetLineColor(4);
+    gunk_real->SetLineWidth(5);
+
     gunk_imag->SetMarkerColor(4);
-    gunk_imag->SetMarkerStyle(26);
+    gunk_imag->SetMarkerStyle(29);
     gunk_imag->SetLineColor(4);
+    gunk_imag->SetLineWidth(5);
+
+    gunk2_real->SetMarkerColor(3);
+    gunk2_real->SetMarkerStyle(26);
+    gunk2_real->SetLineColor(3);
+    gunk2_imag->SetMarkerColor(3);
+    gunk2_imag->SetMarkerStyle(26);
+    gunk2_imag->SetLineColor(3);
+
 
     std::string name("test");
     TCanvas* c = new TCanvas(name.c_str(),name.c_str(), 50, 50, 950, 850);
@@ -476,6 +497,7 @@ int main(int argc, char** argv)
     gint_real->GetYaxis()->SetTitle("Real");
     g_real->Draw("LPSAME");
     gunk_real->Draw("LPSAME");
+    gunk2_real->Draw("LPSAME");
 
     c->cd(2);
 
@@ -484,6 +506,7 @@ int main(int argc, char** argv)
     gunk_imag->GetYaxis()->SetTitle("Imag");
     gint_imag->Draw("LPSAME");
     g_imag->Draw("LPSAME");
+    gunk2_imag->Draw("LPSAME");
     //gunk->Draw("LPSAME");
 
     App->Run();

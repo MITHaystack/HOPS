@@ -4,7 +4,10 @@
 #include "MHO_FunctorBroadcaster.hh"
 #include "MHO_ComplexConjugator.hh"
 #include "MHO_ScalarMultiply.hh"
+#include "MHO_CyclicRotator.hh"
+#include "MHO_SubSample.hh"
 #include "MHO_MultidimensionalPaddedFastFourierTransform.hh"
+
 
 #define signum(a) (a>=0 ? 1.0 : -1.0)
 
@@ -70,10 +73,13 @@ MHO_NormFX::ExecuteOperation()
     double lsbfrac = 1.0;
     double factor = 1.0;
 
-
-
     //temp workspace, gahh
     ch_baseline_sbd_type* workspace = this->fOutput->CloneEmpty();
+    std::size_t wrk_dims[CH_VIS_NDIM];
+    this->fOutput->GetDimensions(wrk_dims);
+    wrk_dims[CH_FREQ_AXIS] *= 2;
+    workspace->Resize(wrk_dims);
+    workspace->SetArray(std::complex<double>(0.0,0.0));
 
 
     //double it
@@ -90,6 +96,7 @@ MHO_NormFX::ExecuteOperation()
     fFFTEngine.Initialize();
 
     //insert a NaN for testing
+    //for(size_t i=0; i<nlags/2; i++){this->fInput1->at(0,0,0,i) = 1000.0;};
     //this->fInput1->at(0,0,0,0) = std::complex<double>(1.0, 0.0/0.0);
 
     //first thing we do is filter out any NaNs
@@ -100,9 +107,8 @@ MHO_NormFX::ExecuteOperation()
     broadcaster.SetInput(this->fInput1);
     broadcaster.SetOutput(this->fInput1);
     //TODO FIXME check status below
-    status = broadcaster.Initialize();
-    status = broadcaster.ExecuteOperation();
-
+    status = broadcaster.Initialize(); if(!status){std::cout<<"ERROR1"<<std::endl;}
+    status = broadcaster.ExecuteOperation(); if(!status){std::cout<<"ERROR2"<<std::endl;}
 
     //for lower sideband we complex conjugate the data
     MHO_ComplexConjugator<ch_baseline_data_type, ch_baseline_data_type> conjugator;
@@ -110,26 +116,10 @@ MHO_NormFX::ExecuteOperation()
     broadcaster.SetInput(this->fInput1);
     broadcaster.SetOutput(this->fInput1);
     //TODO FIXME check status below
-    status = broadcaster.Initialize();
-    status = broadcaster.ExecuteOperation();
+    status = broadcaster.Initialize(); if(!status){std::cout<<"ERROR3"<<std::endl;}
+    status = broadcaster.ExecuteOperation();if(!status){std::cout<<"ERROR4"<<std::endl;} 
 
-    MHO_MultidimensionalPaddedFastFourierTransform<VFP_TYPE, CH_VIS_NDIM>* pfft;
-    pfft = new MHO_MultidimensionalPaddedFastFourierTransform<VFP_TYPE, CH_VIS_NDIM>();
-    pfft->SetInput(this->fInput1);
-    pfft->SetOutput(workspace);
-    pfft->DeselectAllAxes();
-    pfft->SelectAxis(CH_FREQ_AXIS); //only perform padded fft on frequency (to lag) axis
-    
-    //for LSB data we flip as well as pad
-    pfft->SetReverseEndPadded();
-    pfft->SetForward();//forward DFT
-    pfft->SetPaddingFactor(8);
-    
-    //TODO FIXME check status below
-    status = pfft->Initialize();
-    status = pfft->ExecuteOperation();
 
-    /*
 
     for(std::size_t fr=0; fr<nchan; fr++)
     {
@@ -137,7 +127,7 @@ MHO_NormFX::ExecuteOperation()
         {
             for (int i=0; i<4*nlags; i++){xp_spec[i] = 0.0;}
             for (int i=0; i<4*nlags; i++){S[i] = 0.0;}
-    
+
             for(std::size_t pp=0; pp<1; pp++) //loop over pol-products (select and/or add)
             {
                 for (int i=0; i<nlags/2; i++)
@@ -147,7 +137,7 @@ MHO_NormFX::ExecuteOperation()
                     xp_spec[i] += z;
                 }
             }
-    
+
             //lower-sideband data
             for(int i = 0; i < nlags; i++)
             {
@@ -162,11 +152,11 @@ MHO_NormFX::ExecuteOperation()
 //                S[sindex] += factor * std::conj (xp_spec[i] );
                 S[sindex] += factor * xp_spec[i];
             }
-    
+
             //for (int i=0; i<4*nlags; i++){S[i] = S[i] * factor;}
-    
+
             fFFTEngine.ExecuteOperation();
-    
+
             // corrections to phase as fn of freq based upon
             // delay calibrations
             // FFT to single-band delay 
@@ -186,12 +176,56 @@ MHO_NormFX::ExecuteOperation()
         }
     }
 
-    */
 
 
+
+
+
+
+
+
+/*
+
+
+
+
+    MHO_MultidimensionalPaddedFastFourierTransform<VFP_TYPE, CH_VIS_NDIM>* pfft;
+    pfft = new MHO_MultidimensionalPaddedFastFourierTransform<VFP_TYPE, CH_VIS_NDIM>();
+    pfft->SetInput(this->fInput1);
+    pfft->SetOutput(workspace);
+    pfft->DeselectAllAxes();
+    pfft->SelectAxis(CH_FREQ_AXIS); //only perform padded fft on frequency (to lag) axis
     
+    //for LSB data we flip as well as pad
+    //pfft->SetEndPadded();
+    pfft->SetReverseEndPadded();
+    pfft->SetForward();//forward DFT
+    pfft->SetPaddingFactor(8);
+    
+    //TODO FIXME check status below
+    status = pfft->Initialize(); if(!status){std::cout<<"ERROR5"<<std::endl;}
+    status = pfft->ExecuteOperation(); if(!status){std::cout<<"ERROR6"<<std::endl;}
 
+    //for(size_t i=0; i<nlags/2; i++){std::cout<<"input = "<< workspace->at(0,0,0,i)<<std::endl;};
+    //std::cout<<workspace->at(0,0,0,5)<<std::endl;
 
+    //then we sub-sample the array by a factor of 2 (effective interpolation by 4)
+    MHO_SubSample<ch_baseline_sbd_type, ch_baseline_sbd_type> sub;
+    sub.SetDimensionStride(CH_FREQ_AXIS, 2);
+    sub.SetInput(workspace);
+    sub.SetOutput(this->fOutput);
+    status = sub.Initialize(); if(!status){std::cout<<"ERROR7"<<std::endl;}
+    status = sub.ExecuteOperation(); if(!status){std::cout<<"ERROR8"<<std::endl;}
+
+    //finally we do a cyclic rotation by nlags 
+    MHO_CyclicRotator<ch_baseline_sbd_type, ch_baseline_sbd_type> crot;
+    crot.SetOffset(CH_FREQ_AXIS, nlags);
+    crot.SetInput(this->fOutput);
+    crot.SetOutput(this->fOutput);
+    status = crot.Initialize(); if(!status){std::cout<<"ERROR9"<<std::endl;}
+    status = crot.ExecuteOperation(); if(!status){std::cout<<"ERROR10"<<std::endl;}
+
+*/
 
     //normalize the array 
     double norm =  1.0/(double)dims[CH_FREQ_AXIS];
@@ -201,8 +235,70 @@ MHO_NormFX::ExecuteOperation()
     broadcaster2.SetFunctor(&scalarMult);
     broadcaster2.SetInput(this->fOutput);
     broadcaster2.SetOutput(this->fOutput);
-    status = broadcaster2.Initialize();
-    status = broadcaster2.ExecuteOperation();
+    status = broadcaster2.Initialize(); if(!status){std::cout<<"ERROR11"<<std::endl;}
+    status = broadcaster2.ExecuteOperation(); if(!status){std::cout<<"ERROR12"<<std::endl;}
+
+    //std::cout<<this->fOutput->at(0,0,0,0)<<std::endl;
+
+    // for(size_t i=0; i<nlags/2; i++){this->fOutput->at(0,0,0,i) = 1000.0;};
+
+/*
+    for(std::size_t fr=0; fr<nchan; fr++)
+    {
+        for(std::size_t ap=0; ap<naps; ap++)
+        {
+            for (int i=0; i<4*nlags; i++){xp_spec[i] = 0.0;}
+            for (int i=0; i<4*nlags; i++){S[i] = 0.0;}
+
+            for(std::size_t pp=0; pp<1; pp++) //loop over pol-products (select and/or add)
+            {
+                for (int i=0; i<nlags/2; i++)
+                {
+                    z = this->fInput1->at(pp,fr,ap,i);
+                    z = z * polcof;
+                    xp_spec[i] += z;
+                }
+            }
+
+            //lower-sideband data
+            for(int i = 0; i < nlags; i++)
+            {
+                factor = 1.0;// datum->lsbfrac;
+                // DC+highest goes into middle element of the S array
+                int sindex = 4*nlags - i;
+                if(i==0){sindex = 2*nlags;}
+                //int sindex = i ? 4 * nlags - i : 2 * nlags;
+                //std::complex<double> tmp2 = std::exp (I_complex * (status->lsb_phoff[0] - status->lsb_phoff[1]));
+                //S[sindex] += factor * std::conj (xp_spec[i] );// * tmp2 );
+
+//                S[sindex] += factor * std::conj (xp_spec[i] );
+                S[sindex] += factor * xp_spec[i];
+            }
+
+            //for (int i=0; i<4*nlags; i++){S[i] = S[i] * factor;}
+
+            fFFTEngine.ExecuteOperation();
+
+            // corrections to phase as fn of freq based upon
+            // delay calibrations
+            // FFT to single-band delay 
+            //fftw_execute (fftplan);
+            // Place SB delay values in data structure 
+            // FX correlator - use full xlag range
+            for (int i = 0; i < 2*nlags; i++)
+            {
+                // Translate so i=nlags is central lag 
+                // skip every other (interpolated) lag
+                int j = 2 * (i - nlags);
+                if (j < 0){j += 4 * nlags;}
+                this->fOutput->at(0,fr,ap,i) = xlag[j] ; // (double) (nlags / 2);
+                //this->fOutput->at(0,fr,ap,i) = xlag[j] / (double) (nlags / 2);
+            }
+
+        }
+    }
+*/
+
 
     return true;
 };
