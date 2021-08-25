@@ -12,6 +12,7 @@ using namespace hops;
 
 #define NDIM 2
 typedef MHO_NDArrayWrapper<std::complex<double>, NDIM> array_type;
+typedef MHO_NDArrayWrapper<std::complex<double>, 1> array_type1d;
 
 int main(int /*argc*/, char** /*argv*/)
 {
@@ -88,6 +89,35 @@ int main(int /*argc*/, char** /*argv*/)
         }
             std::cout << std::endl;
     }
+
+
+    std::cout << std::endl;
+
+    size_t dim_size1d[1];
+    dim_size1d[0] = 8;
+    array_type1d* input1d = new array_type1d(dim_size1d[0]);
+    array_type1d* output1d = new array_type1d();
+
+    for (size_t j = 0; j < dim_size1d[0]; j++) 
+    {
+        (*input1d)[j] = j;
+        std::cout << (*input1d)[j] << ", ";
+    }
+
+    std::cout << std::endl;
+
+    MHO_CyclicRotator<array_type1d, array_type1d> crot1d;
+    crot1d.SetOffset(0, 2);
+    crot1d.SetInput(input1d);
+    crot1d.SetOutput(output1d);
+    bool init3 = crot1d.Initialize();
+    bool exe3 = crot1d.ExecuteOperation();
+
+    for (size_t j = 0; j <dim_size1d[0]; j++) 
+    {
+        std::cout << (*output1d)[j] << ", ";
+    }
+    std::cout << std::endl;
 
     return 0;
 }
