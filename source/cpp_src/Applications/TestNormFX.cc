@@ -1152,7 +1152,7 @@ int main(int argc, char** argv)
         {
             std::complex<double> delta = testVector1[n] - testVector2[n];
             std::complex<double> delta2 = testVector1[n] - testVector3[n];
-            std::cout<<"delta2 @ "<< n <<" : " << testVector1[n].real() <<" - " << testVector3[n].real() << " = " << delta2.real() <<std::endl;
+        //    std::cout<<"delta2 @ "<< n <<" : " << testVector1[n].real() <<" - " << testVector3[n].real() << " = " << delta2.real() <<std::endl;
             abs_diff += std::abs(delta);
             abs_diff2 += std::abs(delta2);
         }

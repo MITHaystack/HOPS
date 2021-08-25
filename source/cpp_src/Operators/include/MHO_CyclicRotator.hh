@@ -183,7 +183,6 @@ class MHO_CyclicRotator: public MHO_NDArrayOperator<XInputArrayType, XOutputArra
         //TODO FIXME...we ought to check for uint64_t -> int64_t overflows!
         inline int64_t positive_modulo(int64_t i, int64_t n)
         {
-            //std::cout<<"i, n, mod = "<<i<<", "<<n<<", "<< (i % n + n) % n <<std::endl;
             return (i % n + n) % n;
         }
 
