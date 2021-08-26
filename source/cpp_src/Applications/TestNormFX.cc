@@ -1004,7 +1004,7 @@ int main(int argc, char** argv)
 
     //control block, default
     cb_head = &(pass.control);
-    cb_head->fmatch_bw_pct = 25.0;
+    //cb_head->fmatch_bw_pct = 25.0;
     default_cblock(cb_head);
     set_defaults();
 
