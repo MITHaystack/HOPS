@@ -9,6 +9,8 @@
 #include "MHO_MultidimensionalPaddedFastFourierTransform.hh"
 
 
+//#define USE_OLD
+
 #define signum(a) (a>=0 ? 1.0 : -1.0)
 
 #define CIRC_MODE 0
@@ -120,6 +122,7 @@ MHO_NormFX::ExecuteOperation()
     status = broadcaster.ExecuteOperation();if(!status){std::cout<<"ERROR4"<<std::endl;} 
 
 
+#ifdef USE_OLD
 
     for(std::size_t fr=0; fr<nchan; fr++)
     {
@@ -177,17 +180,7 @@ MHO_NormFX::ExecuteOperation()
     }
 
 
-
-
-
-
-
-
-
-/*
-
-
-
+#else
 
     MHO_MultidimensionalPaddedFastFourierTransform<VFP_TYPE, CH_VIS_NDIM>* pfft;
     pfft = new MHO_MultidimensionalPaddedFastFourierTransform<VFP_TYPE, CH_VIS_NDIM>();
@@ -209,7 +202,7 @@ MHO_NormFX::ExecuteOperation()
     //for(size_t i=0; i<nlags/2; i++){std::cout<<"input = "<< workspace->at(0,0,0,i)<<std::endl;};
     //std::cout<<workspace->at(0,0,0,5)<<std::endl;
 
-    //then we sub-sample the array by a factor of 2 (effective interpolation by 4)
+    //then we sub-sample the array by a factor of 2 (effectively making this an interpolation by 4)
     MHO_SubSample<ch_baseline_sbd_type, ch_baseline_sbd_type> sub;
     sub.SetDimensionStride(CH_FREQ_AXIS, 2);
     sub.SetInput(workspace);
@@ -225,7 +218,11 @@ MHO_NormFX::ExecuteOperation()
     status = crot.Initialize(); if(!status){std::cout<<"ERROR9"<<std::endl;}
     status = crot.ExecuteOperation(); if(!status){std::cout<<"ERROR10"<<std::endl;}
 
-*/
+
+
+
+#endif
+
 
     //normalize the array 
     double norm =  1.0/(double)dims[CH_FREQ_AXIS];
@@ -238,66 +235,6 @@ MHO_NormFX::ExecuteOperation()
     status = broadcaster2.Initialize(); if(!status){std::cout<<"ERROR11"<<std::endl;}
     status = broadcaster2.ExecuteOperation(); if(!status){std::cout<<"ERROR12"<<std::endl;}
 
-    //std::cout<<this->fOutput->at(0,0,0,0)<<std::endl;
-
-    // for(size_t i=0; i<nlags/2; i++){this->fOutput->at(0,0,0,i) = 1000.0;};
-
-/*
-    for(std::size_t fr=0; fr<nchan; fr++)
-    {
-        for(std::size_t ap=0; ap<naps; ap++)
-        {
-            for (int i=0; i<4*nlags; i++){xp_spec[i] = 0.0;}
-            for (int i=0; i<4*nlags; i++){S[i] = 0.0;}
-
-            for(std::size_t pp=0; pp<1; pp++) //loop over pol-products (select and/or add)
-            {
-                for (int i=0; i<nlags/2; i++)
-                {
-                    z = this->fInput1->at(pp,fr,ap,i);
-                    z = z * polcof;
-                    xp_spec[i] += z;
-                }
-            }
-
-            //lower-sideband data
-            for(int i = 0; i < nlags; i++)
-            {
-                factor = 1.0;// datum->lsbfrac;
-                // DC+highest goes into middle element of the S array
-                int sindex = 4*nlags - i;
-                if(i==0){sindex = 2*nlags;}
-                //int sindex = i ? 4 * nlags - i : 2 * nlags;
-                //std::complex<double> tmp2 = std::exp (I_complex * (status->lsb_phoff[0] - status->lsb_phoff[1]));
-                //S[sindex] += factor * std::conj (xp_spec[i] );// * tmp2 );
-
-//                S[sindex] += factor * std::conj (xp_spec[i] );
-                S[sindex] += factor * xp_spec[i];
-            }
-
-            //for (int i=0; i<4*nlags; i++){S[i] = S[i] * factor;}
-
-            fFFTEngine.ExecuteOperation();
-
-            // corrections to phase as fn of freq based upon
-            // delay calibrations
-            // FFT to single-band delay 
-            //fftw_execute (fftplan);
-            // Place SB delay values in data structure 
-            // FX correlator - use full xlag range
-            for (int i = 0; i < 2*nlags; i++)
-            {
-                // Translate so i=nlags is central lag 
-                // skip every other (interpolated) lag
-                int j = 2 * (i - nlags);
-                if (j < 0){j += 4 * nlags;}
-                this->fOutput->at(0,fr,ap,i) = xlag[j] ; // (double) (nlags / 2);
-                //this->fOutput->at(0,fr,ap,i) = xlag[j] / (double) (nlags / 2);
-            }
-
-        }
-    }
-*/
 
 
     return true;

@@ -269,7 +269,15 @@ class MHO_MultidimensionalPaddedFastFourierTransform:
                             in_index = in_iter.GetIndices();
                             for(size_t i=0; i<RANK; i++)
                             {
-                                out_index[i] = (fOutputDimensionSize[i]-1) - in_index[i]; 
+                                if(fAxesToXForm[i])
+                                {
+                                    if(in_index[i] != 0)
+                                    {
+                                        out_index[i] = (fOutputDimensionSize[i]) - in_index[i];
+                                    }
+                                    else{out_index[i] = fOutputDimensionSize[i]/2;}
+                                }
+                                else{out_index[i] = in_index[i];}
                             }
                             size_t out_loc = MHO_NDArrayMath::OffsetFromRowMajorIndex<RANK>(fOutputDimensionSize, out_index);
                             (*(this->fOutput))[out_loc] = *in_iter;
