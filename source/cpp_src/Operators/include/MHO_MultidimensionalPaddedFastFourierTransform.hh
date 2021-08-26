@@ -271,6 +271,9 @@ class MHO_MultidimensionalPaddedFastFourierTransform:
                             {
                                 if(fAxesToXForm[i])
                                 {
+                                    //The way were are setting the indexes here
+                                    //(with n=0 mapping to N/2 is done for compatibility with norm_fx)
+                                    //TODO FIXME...figure out why it is done this way
                                     if(in_index[i] != 0)
                                     {
                                         out_index[i] = (fOutputDimensionSize[i]) - in_index[i];
