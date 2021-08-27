@@ -13,8 +13,9 @@ AC_INIT([mhops], [4.00], [hops@mit.edu])
 AC_CONFIG_SRCDIR([README.md])
 AC_CONFIG_HEADERS([mho_config.h])
 
-# this is not a GNU project, preserve tree in build dir, check --help/--version
-AM_INIT_AUTOMAKE([foreign subdir-objects std-options])
+# this is not a GNU project, preserve tree in build dir,
+# check --help/--version and finally this no $(EXEEXT) support
+AM_INIT_AUTOMAKE([foreign subdir-objects std-options no-exeext])
 
 # this macro adds a space-delimited list of additional recursive targets
 # coverage allows recursive coverage       (coverage-local: ...)
@@ -277,6 +278,11 @@ AC_MHO_NOTICE([%%% has_cpgplot is $has_cpgplot (required)])
 AC_SUBST(CPGPLOT_CFLAGS)
 AC_SUBST(CPGPLOT_LIBS)
 AM_CONDITIONAL(HAVE_PGPLOT, [$has_cpgplot && $has_pgplot])
+# finally PGPLOT support -- for the present, hardwire to system location
+PGPLOT_FONT=/usr/share/pgplot/grfont.dat
+PGPLOT_RGB=/usr/share/pgplot/rgb.txt
+AC_SUBST(PGPLOT_FONT)
+AC_SUBST(PGPLOT_RGB)
 
 # top-level Makefile and primary directories
 AC_CONFIG_FILES(
@@ -317,6 +323,10 @@ AC_CONFIG_FILES(
 # source/c_source makefiles, part 3: "legacy"
 AC_CONFIG_FILES(
     source/c_src/applications/legacy/CorAsc2/Makefile
+)
+# source/c_source makefiles, part 4: "test"
+AC_CONFIG_FILES(
+    source/c_src/applications/test/Makefile
 )
 
 # source/cpp_src makefiles

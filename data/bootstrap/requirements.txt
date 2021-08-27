@@ -1,0 +1,18 @@
+#
+# File of mappings for tests to formal MSRI requirements
+#
+# The first column should be a chk test name (i.e. "something" as used
+# by the template). The subsequent columns should be requirements
+# references from the MSRI Requirements document.  Lines beginning with
+# a # are ignored.  A test may be relevant to more than one requirement
+# (and it may not be relevant to any requirements).  This information
+# is used to set MHO_REGRESSION_REQ for each named test.  If a test
+# is not mentioned, MHO_REGRESSION_REQ is set to 'ok'.
+#
+#chk-test requirements
+template
+2836        S-1
+
+#
+# eof
+#
