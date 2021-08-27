@@ -91,6 +91,7 @@ nick   = TestData-data
 @gentask
 desc   = The fourfit check scripts need various datasets, figure
          out where they are and which ones can be shared on a server
+docref = data/README.txt
 needs  = Repo-amnightly
 days   = 5
 derate = 1
@@ -100,7 +101,7 @@ task   = Build tarballs of captured data
 nick   = TestData-tarballs
 @shtask
 desc   = Build tarballs of the datasets required for the legacy fourfit
-         check scripts. Write a shell script to wget and upack them
+         check scripts. Write a shell script to unpack them
          as part of make check
 needs  = TestData-data
 days   = 3
@@ -108,17 +109,21 @@ derate = 1
 
 task   = Write a script that finds and unpacks the test data
 nick   = TestData-fetch
-desc   = Write a shell script to wget and upack them as part of 
+desc   = Write a shell script to unpack them as part of 
          make check. This can be a little clever, should not have
-         to un-tar them more than once on a single machine
+         to un-tar them more than once on a single machine.
+         For the moment, a directory of tarballs sits on
+         demi:/data-sc16/MRD-demi
 needs  = TestData-tarballs
 days   = 3
 derate = 1
+stop   = @tMRDX
 
 task   = Write a wget script that finds and unpacks the test data
 nick   = TestData-gemini
 desc   = Put the testing dataset on gemini or similar; decide what
-         EHT datasets to use so we don't expose data publicly
+         EHT datasets to use so we don't expose data publicly.
+         This requires some thought.
 needs  = TestData-fetch
 days   = 3
 derate = 1
