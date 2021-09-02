@@ -63,7 +63,7 @@ case $name in
     2491)       parent=$mff     ; odr=$src          ;;
     2611)       parent=$mff     ; odr=$src          ;;
     2836)       parent=$mff     ; odr=$src/scan001  ;;
-    2843)       parent=$mff     ; odr=$src          ;;
+    2843)       parent=$mff     ; odr=$src/321-1701_0552+398  ;;
     2849)       parent=$mff     ; odr=$src          ;;
     2912)       parent=$mff     ; odr=$src          ;;
     3064)       parent=$mff     ; odr=$src          ;;
