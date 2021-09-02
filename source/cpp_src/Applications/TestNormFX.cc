@@ -1013,7 +1013,7 @@ int main(int argc, char** argv)
     struct freq_corel* corel = &(pass_ptr->pass_data[0]);
     pcdata->nalloc = 0;
     fringe.nalloc = 0;
-    for (int i=2; i<MAXSTATIONS; i++){sdata[i].nalloc = 0;}
+    for (int i=0; i<MAXSTATIONS; i++){sdata[i].nalloc = 0;}
     for (int i=0; i<MAXFREQ; i++){ corel[i].data_alloc = FALSE;}
 
     int npass = 0;
