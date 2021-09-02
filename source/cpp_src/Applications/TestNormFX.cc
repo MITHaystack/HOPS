@@ -62,7 +62,7 @@ extern "C"
     int
     set_defaults();
 
-    int 
+    int
     organize_data (
     struct mk4_corel *cdata,
     struct scan_struct *ovex,
@@ -147,14 +147,14 @@ class MHO_NormFXPrelim: public MHO_BinaryNDArrayOperator<
         };
 
         void DetermineDatumSideband(struct type_pass* pass, struct type_param* param,
-                                    struct data_corel *datum, 
+                                    struct data_corel *datum,
                                     int& ips, int& ip, int& pol, int& pols,
-                                    int& datum_lflag, 
+                                    int& datum_lflag,
                                     int& datum_uflag,
                                     int& usb_present,
                                     int& lsb_present,
                                     int* usb_bypol,
-                                    int* lsb_bypol, 
+                                    int* lsb_bypol,
                                     int* lastpol)
         {
             if (pass->npols == 1)
@@ -201,12 +201,12 @@ class MHO_NormFXPrelim: public MHO_BinaryNDArrayOperator<
         };
 
 
-        double SelectPolData(struct data_corel* datum, 
-                             double dpar, 
-                             int npols, 
-                             int sb, 
-                             int pol, 
-                             int station_pol_mode, 
+        double SelectPolData(struct data_corel* datum,
+                             double dpar,
+                             int npols,
+                             int sb,
+                             int pol,
+                             int station_pol_mode,
                              struct type_120*& t120)
         {
             // Pluck out the requested polarization
@@ -286,7 +286,7 @@ class MHO_NormFXPrelim: public MHO_BinaryNDArrayOperator<
             return 0.0;
         }
 
-        //the closest thing we can make in C++ that executes the 
+        //the closest thing we can make in C++ that executes the
         //same functionality as norm_fx --- preserve this for future testing
         void cpp_norm_fx(struct type_pass *pass,
                          struct type_param* param,
@@ -348,10 +348,10 @@ class MHO_NormFXPrelim: public MHO_BinaryNDArrayOperator<
             int station_pol_mode = DetermineStationPolMode(pass);
 
             //this function is also a monstrosity, needs to be broken-up or simplified
-            DetermineDatumSideband(pass, param, datum, ips, ip, pol, pols, datum_lflag, 
+            DetermineDatumSideband(pass, param, datum, ips, ip, pol, pols, datum_lflag,
                                         datum_uflag, usb_present, lsb_present,
                                         usb_bypol, lsb_bypol, lastpol);
-        
+
 
             //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             //The following monstrosity is looping over both side bands and all pol-products
@@ -1013,7 +1013,7 @@ int main(int argc, char** argv)
     struct freq_corel* corel = &(pass_ptr->pass_data[0]);
     pcdata->nalloc = 0;
     fringe.nalloc = 0;
-    for (int i=0; i<MAXSTATIONS; i++){sdata[i].nalloc = 0;}
+    for (int i=2; i<MAXSTATIONS; i++){sdata[i].nalloc = 0;}
     for (int i=0; i<MAXFREQ; i++){ corel[i].data_alloc = FALSE;}
 
     int npass = 0;
@@ -1041,7 +1041,7 @@ int main(int argc, char** argv)
     }
     sbptr = sbarray;
 
-    // int nf = pass_ptr->nfreq;  
+    // int nf = pass_ptr->nfreq;
     int nf =  1; //pass_ptr->nfreq;
     int naps = 1; //pass_ptr->num_ap;
     for (int fr=0; fr<nf; fr++)
@@ -1061,7 +1061,7 @@ int main(int argc, char** argv)
             }
         }
     }
-    
+
     for (int fr=0; fr<nf; fr++)
     {
         for (int ap=0; ap<naps; ap++)
@@ -1069,7 +1069,7 @@ int main(int argc, char** argv)
             norm_fx(&pass, &param, &status, fr, ap);
         }
     }
-    
+
     std::vector< std::complex<double> > testVector1;
     for (int fr=0; fr<nf; fr++)
     {
@@ -1163,11 +1163,11 @@ int main(int argc, char** argv)
 
         ret_val = 0;
     }
-    else 
+    else
     {
         ret_val = 1;
     }
-    
+
 
     return ret_val;
 }
