@@ -24,9 +24,9 @@ TESTS_ENVIRONMENT = \
 	abs_top_srcdir=$(abs_top_srcdir) \
 	srcdir=$(srcdir)
 
-TESTS = chk_2836.sh
+TESTS = chk_2836.sh chk_2843.sh
 
-CLEANFILES = ff-2836.ps
+CLEANFILES = ff-2836.ps ff-2843.ps
 
 clean-local:
 
