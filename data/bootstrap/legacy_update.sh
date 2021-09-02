@@ -16,7 +16,7 @@ dat=`cd $2 && pwd`
 shift 2
 [ "$git" = "$dat" ] && { echo two distinct directories are needed ; exit 2; }
 # check that $git appears sane
-[ -f $git/README.txt ] || { echo GIT does not have README.txt ; exit 3; }
+[ -f $git/README.md ] || { echo GIT does not have README.md ; exit 3; }
 [ -d $git/switches ] || { echo GIT does not have switches ; exit 4; }
 [ -d $git/tarballs ] || { echo GIT does not have tarballs ; exit 5; }
 [ -d $git/bootstrap ] || { echo GIT does not have bootstrap ; exit 6; }
