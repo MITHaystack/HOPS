@@ -1,5 +1,3 @@
-
-#JUST A TEST EDIT
 # HOPS-4.0
 ## MSRI HOPS re-development
 John Barrett, Geoff Crew, Dan Hoak, Violet Pfeiffer
@@ -82,7 +80,3 @@ Paste that in your shell and run it. \
 
 An equivalent build process using the GNU autotools is also available
 using the script autogen.sh which accepts a --help argument for usage.
-
-
-
-HELLO WORLD
