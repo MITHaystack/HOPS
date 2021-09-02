@@ -13,22 +13,12 @@
 #include <cmath>
 #include <complex>
 
-//dependencies from old hops
-extern "C"
-{
-    #include <stdio.h>
-    #include <math.h>
-    #include <fftw3.h>
-    #include "mk4_data.h"
-    #include "param_struct.h"
-    #include "pass_struct.h"
-}
-
-
 #include "MHO_FFTWTypes.hh"
 #include "MHO_TableContainer.hh"
 #include "MHO_ChannelizedVisibilities.hh"
 #include "MHO_BinaryNDArrayOperator.hh"
+
+#include "MHO_MultidimensionalFastFourierTransform.hh"
 
 namespace hops
 {
@@ -47,21 +37,12 @@ class MHO_NormFX: public MHO_BinaryNDArrayOperator<
         virtual bool ExecuteOperation() override;
 
     private:
+        
+        MHO_MultidimensionalFastFourierTransform<double,1> fFFTEngine;
 
-
-        // //this version of the function will gradually get modified
-        // //until we can move functionality out of it entirely and
-        // //make it more modular
-        void new_norm_fx(struct type_pass *pass,
-                         struct type_param* param,
-                         struct type_status* status,
-                         int fr, int ap){};
-
-        //private data structures to store what were 'extern'/globals
-        //in the old code
-        fftw_plan fftplan;
-        hops_complex xp_spec[4*MAXLAG];
-        hops_complex xcor[4*MAXLAG], S[4*MAXLAG], xlag[4*MAXLAG];
+        MHO_NDArrayWrapper< std::complex<double>, 1 > xp_spec;
+        MHO_NDArrayWrapper< std::complex<double>, 1 > S;
+        MHO_NDArrayWrapper< std::complex<double>, 1 > xlag;
 
 };
 

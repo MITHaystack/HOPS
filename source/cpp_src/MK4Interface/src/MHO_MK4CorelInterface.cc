@@ -516,6 +516,9 @@ MHO_MK4CorelInterface::ExtractCorelFile()
                                     WFP_TYPE w = t120->fw.weight;
                                     std::complex<double> val(re,im);
                                     bl_data->at(pol_index, ap, findex) = val;
+
+                                    //the last dimension for the weights isn't particulary necessary
+                                    //(as all values of findex (spectral points) have the same value)
                                     bl_wdata->at(pol_index, ap, findex) = w;
                                 }
                             }

@@ -3,6 +3,6 @@
 
 namespace hops
 {
-MHO_OperatorStub::MHO_OperatorStub(){};
-MHO_OperatorStub::~MHO_OperatorStub(){};
+    MHO_OperatorStub::MHO_OperatorStub(){};
+    MHO_OperatorStub::~MHO_OperatorStub(){};
 }
