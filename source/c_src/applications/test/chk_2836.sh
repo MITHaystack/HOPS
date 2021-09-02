@@ -32,8 +32,8 @@ tarballs='2836'
 executables='fourfit'
 # finally, acquire a list of directories that may need tidying
 nukables='ff-2836.ps'
-[ -n "$MHO_REGRESSION_CONFIG" ] && source $MHO_REGRESSION_CONFIG ||
-    source "$MHO_REGRESSION_DATA/switches/test_config.sh"
+[ -n "$MHO_REGRESSION_CONFIG" ] && . $MHO_REGRESSION_CONFIG ||
+    . "$MHO_REGRESSION_DATA/switches/test_config.sh"
 [ -n "$MHO_REGRESSION_REQ" ] || { echo requirement not set ; exit 99; }
 $verb && echo verb is $verb
 
