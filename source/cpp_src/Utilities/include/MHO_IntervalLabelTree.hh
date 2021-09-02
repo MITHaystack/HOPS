@@ -42,6 +42,10 @@ class MHO_IntervalLabelTree: virtual public MHO_Serializable
         GetIntervalsWithKey(const std::string& key);
 
         template<typename XLabelValueType>
+        std::size_t
+        GetNIntervalsWithKeyValue(const std::string& key, const XLabelValueType& value);
+
+        template<typename XLabelValueType>
         std::vector< MHO_IntervalLabel* >
         GetIntervalsWithKeyValue(const std::string& key, const XLabelValueType& value);
 
@@ -107,7 +111,21 @@ class MHO_IntervalLabelTree: virtual public MHO_Serializable
         }
 };
 
-
+template<typename XLabelValueType>
+std::size_t
+MHO_IntervalLabelTree::GetNIntervalsWithKeyValue(const std::string& key, const XLabelValueType& value)
+{
+    std::size_t count = 0;
+    XLabelValueType tmp_value;
+    for(std::size_t i=0; i<fIntervals.size(); i++)
+    {
+        if( fIntervals[i]->Retrieve(key,tmp_value) )
+        {
+            if(tmp_value == value){++count;}
+        }
+    }
+    return count;
+}
 
 template<typename XLabelValueType>
 std::vector< MHO_IntervalLabel* >

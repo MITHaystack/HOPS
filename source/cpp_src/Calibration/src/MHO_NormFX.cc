@@ -21,16 +21,19 @@ MHO_NormFX::Initialize()
     if(this->fInput1 != nullptr && this->fInput2 != nullptr && this->fOutput != nullptr)
     {
 
+        bool status = true;
         //figure out if we have USB or LSB data (or a mixture)
         auto* channel_axis = &(std::get<CH_CHANNEL_AXIS>( *(this->fInput1) ) );
-        auto USB_channels = channel_axis->GetIntervalsWithKeyValue(std::string("net_sideband"), 'U');
-        auto LSB_channels = channel_axis->GetIntervalsWithKeyValue(std::string("net_sideband"), 'L');
-        if(USB_channels.size() != 0){fIsUSB = true;}
-        if(LSB_channels.size() != 0){fIsUSB = false;}
-        if(USB_channels.size() != 0 && LSB_channels.size() != 0){std::cout<<"MIXED USB/LSB FATAL ERROR"<<std::endl; std::exit(1);}
+        std::size_t n_usb_chan = channel_axis->GetNIntervalsWithKeyValue(std::string("net_sideband"), 'U');
+        std::size_t n_lsb_chan = channel_axis->GetNIntervalsWithKeyValue(std::string("net_sideband"), 'L');
+        if(n_usb_chan != 0){fIsUSB = true;}
+        if(n_lsb_chan != 0){fIsUSB = false;}
+        if(n_usb_chan != 0 && n_lsb_chan != 0)
+        {
+            msg_error("operators", "Could not initialize MHO_NormFX, mixed USB/LSB data not yet supported." << eom);
+            return false;
+        }
 
-
-        bool status = true;
         this->fInput1->GetDimensions(fInDims);
         this->fOutput->GetDimensions(fOutDims);
 
