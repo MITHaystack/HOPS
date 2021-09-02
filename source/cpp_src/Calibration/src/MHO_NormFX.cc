@@ -3,10 +3,12 @@
 namespace hops
 {
 
+#define USE_OLD
+
 
 MHO_NormFX::MHO_NormFX():
     fInitialized(false),
-    fIsUSB(false)
+    fIsUSB(true)
 {};
 
 MHO_NormFX::~MHO_NormFX(){};
@@ -18,6 +20,16 @@ MHO_NormFX::Initialize()
     fInitialized = false;
     if(this->fInput1 != nullptr && this->fInput2 != nullptr && this->fOutput != nullptr)
     {
+
+        //figure out if we have USB or LSB data (or a mixture)
+        auto* channel_axis = &(std::get<CH_CHANNEL_AXIS>( *(this->fInput1) ) );
+        auto USB_channels = channel_axis->GetIntervalsWithKeyValue(std::string("net_sideband"), 'U');
+        auto LSB_channels = channel_axis->GetIntervalsWithKeyValue(std::string("net_sideband"), 'L');
+        if(USB_channels.size() != 0){fIsUSB = true;}
+        if(LSB_channels.size() != 0){fIsUSB = false;}
+        if(USB_channels.size() != 0 && LSB_channels.size() != 0){std::cout<<"MIXED USB/LSB FATAL ERROR"<<std::endl; std::exit(1);}
+
+
         bool status = true;
         this->fInput1->GetDimensions(fInDims);
         this->fOutput->GetDimensions(fOutDims);
@@ -172,9 +184,24 @@ MHO_NormFX::ExecuteOperation()
                 for(int i = 0; i < nlags; i++)
                 {
                     factor = 1.0;// datum->lsbfrac;
+
+                    //LSB
                     // DC+highest goes into middle element of the S array
-                    int sindex = 4*nlags - i;
-                    if(i==0){sindex = 2*nlags;}
+                    // int sindex = 4*nlags - i;
+                    // if(i==0){sindex = 2*nlags;}
+                    //USB
+                    int sindex;
+
+                    if(fIsUSB)
+                    {
+                        sindex = i;
+                    }
+                    else
+                    {
+                        sindex = 4*nlags - i;
+                        if(i==0){sindex = 2*nlags;}
+                    }
+
                     //int sindex = i ? 4 * nlags - i : 2 * nlags;
                     //std::complex<double> tmp2 = std::exp (I_complex * (status->lsb_phoff[0] - status->lsb_phoff[1]));
                     //S[sindex] += factor * std::conj (xp_spec[i] );// * tmp2 );
@@ -215,11 +242,8 @@ MHO_NormFX::ExecuteOperation()
         status = fSubSampler.ExecuteOperation();
         if(!status){msg_error("operators", "Could not execute sub-sampler in MHO_NormFX." << eom); return false;}
 
-        if(!fIsUSB)
-        {
-            status = fCyclicRotator.ExecuteOperation();
-            if(!status){msg_error("operators", "Could not execute cyclic-rotation MHO_NormFX." << eom); return false;}
-        }
+        status = fCyclicRotator.ExecuteOperation();
+        if(!status){msg_error("operators", "Could not execute cyclic-rotation MHO_NormFX." << eom); return false;}
 
     #endif
 
