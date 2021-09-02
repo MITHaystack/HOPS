@@ -33,7 +33,7 @@ typedef MHO_AxisPack< MHO_Axis<double>, MHO_Axis<double>, MHO_Axis< std::string 
 int main(int argc, char** argv)
 {
 
-    size_t* dim = new size_t[NDIM];
+    size_t dim[NDIM];
     dim[0] = 256; //x
     dim[1] = 256; //y
     dim[2] = 3; // r,g,b
@@ -261,7 +261,6 @@ int main(int argc, char** argv)
 
     delete test;
     delete test2;
-    delete dim;
 
     return 0;
 }

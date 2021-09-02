@@ -39,7 +39,6 @@ class MHO_BinaryNDArrayOperator
         XInputArrayType2* fInput2;
         XOutputArrayType* fOutput;
 
-
 };
 
 

@@ -76,8 +76,8 @@ nukables=''
 ##
 ## 'unpack' 'requirements' and 'status' are used in this script so
 ## do not set them prior to this point or there will be problems.
-[ -n "$MHO_REGRESSION_CONFIG" ] && source $MHO_REGRESSION_CONFIG ||
-    source "$MHO_REGRESSION_DATA/switches/test_config.sh"
+[ -n "$MHO_REGRESSION_CONFIG" ] && . $MHO_REGRESSION_CONFIG ||
+    . "$MHO_REGRESSION_DATA/switches/test_config.sh"
 [ -n "$MHO_REGRESSION_REQ" ] || { echo requirement not set ; exit 99; }
 ## MHO_REGRESSION_REQ will be set to 'ok' if there is no formal
 ## requirement that is being tracked.  The config script may also

@@ -8,8 +8,7 @@
 *Email: barrettj@mit.edu
 *Date: 2020-05-15T20:22:38.395Z
 *Description:
-* Thu 13 Aug 2020 02:53:11 PM EDT - simplified so as to handle memory management interally
-* externally managed arrays should be a different class
+* Thu 13 Aug 2020 02:53:11 PM EDT 
 */
 
 #include <cstring> //for memset
@@ -185,6 +184,32 @@ class MHO_NDArrayWrapper
             return fDimensions[dim_index];
         }
 
+        std::size_t GetStride(std::size_t dim_index) const
+        {
+            //stride for elements of this dimension 
+            std::size_t stride = 1;
+            std::size_t i = RANK-1;
+            while(i > dim_index)
+            {
+                stride *= fDimensions[i];
+                i--;
+            }
+            return stride;
+        }
+
+        void GetStrides(std::size_t* array_stride) const
+        {
+            for(std::size_t i=0; i<RANK; i++){array_stride[i] = 0;}
+            std::size_t stride = 1;
+            std::size_t i = RANK-1;
+            while(i > 0)
+            {
+                array_stride[i] = stride;
+                stride *= fDimensions[i];
+                i--;
+            }
+        }
+
         std::size_t GetOffsetForIndices(const std::size_t* index)
         {
             return MHO_NDArrayMath::OffsetFromRowMajorIndex<RANK>(fDimensions, index);
@@ -306,7 +331,7 @@ class MHO_NDArrayWrapper
         std::size_t fTotalArraySize; //total size of array
 
 
-    //the iterator definition
+    //the iterator definition //////////////////////////////////////////////////
     public:
 
         //TODO - Do we need a const_iterator class?
@@ -460,7 +485,7 @@ class MHO_NDArrayWrapper
                     if(this != &rhs)
                     {
                         fValid = rhs.fValid;
-                        fPtr == rhs.fPtr;
+                        fPtr = rhs.fPtr;
                         fDimensions = rhs.fDimensions;
                         fIndices = rhs.fIndices;
                     }
@@ -491,6 +516,131 @@ class MHO_NDArrayWrapper
         };
 
 
+////////////////////////////////////////////////////////////////////////////////
+
+
+    //the strided iterator definition
+    public:
+
+        //strided access to the array (useful for iterating along a single dimension)
+        class stride_iterator
+        {
+            public:
+
+                typedef stride_iterator self_type;
+                typedef XValueType value_type;
+                typedef XValueType& reference;
+                typedef XValueType* pointer;
+                typedef std::forward_iterator_tag iterator_category;
+                typedef int difference_type;
+                typedef std::array<std::size_t, RANK> index_type;
+
+                stride_iterator(const iterator& iter, std::size_t stride):
+                    fIterator(iter), //initial location
+                    fStride(stride) //stride distance by which to access the array 
+                {
+                    //TODO FIXME, check we have no overflow issues with (size_t -> ptrdiff_t
+                };
+
+                stride_iterator(const self_type& copy):
+                    fIterator(copy.fIterator)
+                {
+                    fStride = copy.fStride;
+                };
+
+                self_type operator++()
+                {
+                    fIterator += fStride;
+                    return *this;
+                }
+
+                self_type operator--()
+                {
+                    fIterator -= fStride;
+                    return *this;
+                }
+
+                self_type operator++(int)
+                {
+                    self_type ret_val(*this);
+                    ++(*this);
+                    return ret_val;
+                }
+
+                self_type operator--(int)
+                {
+                    self_type ret_val(*this);
+                    ++(*this);
+                    return ret_val;
+                }
+
+                std::ptrdiff_t operator-(const self_type& iter)
+                {
+                    return std::distance(iter.GetPtr(), fIterator.GetPtr());
+                }
+
+                self_type operator+=(const std::ptrdiff_t& diff)
+                {
+                    fIterator += fStride*diff;
+                    return (*this);
+                }
+
+                self_type operator-=(const std::ptrdiff_t& diff)
+                {
+                    fIterator -= fStride*diff;
+                    return (*this);
+                }
+
+                self_type operator+(const std::ptrdiff_t& diff)
+                {
+                    self_type temp(*this);
+                    temp += diff;
+                    return temp;
+                }
+
+                self_type operator-(const std::ptrdiff_t& diff)
+                {
+                    self_type temp(*this);
+                    temp -= diff;
+                    return temp;
+                }
+
+                //access to underlying array item object
+                reference operator*() { return *(fIterator.GetPtr()); }
+                pointer operator->() { return fIterator.GetPtr(); }
+
+                self_type operator=(const self_type& rhs)
+                {
+                    if(this != &rhs)
+                    {
+                        fIterator = rhs.fIterator;
+                        fStride = rhs.fStride;
+                    }
+                    return *this;
+                }
+
+                bool operator==(const self_type& rhs)
+                {
+                    return (fIterator == rhs.fIterator && fStride == rhs.fStride);
+                }
+
+                bool operator!=(const self_type& rhs)
+                {
+                    return !(*this == rhs);
+                }
+
+                pointer GetPtr(){return fIterator.GetPtr();}
+                index_type GetIndexObject() const {return fIterator.GetIndices();}
+                const std::size_t* GetIndices() const {return fIterator.GetIndices();}
+                bool IsValid() const {return fIterator.IsValid();}
+
+            private:
+
+                iterator fIterator;
+                ptrdiff_t fStride; 
+        };
+
+
     public:
 
         iterator begin()
@@ -503,7 +653,58 @@ class MHO_NDArrayWrapper
             return iterator(false, this->fDataPtr + this->fTotalArraySize, this->fDimensions, this->fTotalArraySize);
         }
 
+        iterator iterator_at(std::size_t offset)
+        {
+            if(offset < this->fTotalArraySize)
+            {
+                return iterator(true, this->fDataPtr + offset, this->fDimensions, 0);
+            }
+            else
+            {
+                return this->end();
+            }
+        }
+
+        // //access via iterator_at(,,,,) -- multiple indices
+        // template <typename ...XIndexTypeS >
+        // typename std::enable_if<(sizeof...(XIndexTypeS) == RANK), iterator >::type
+        // iterator_at(XIndexTypeS...idx)
+        // {
+        //     const std::array<std::size_t, RANK> indices = {{static_cast<size_t>(idx)...}};
+        //     std::size_t offset = MHO_NDArrayMath::OffsetFromRowMajorIndex<RANK>(fDimensions, &(indices[0]) )
+        //     return this->iterator_at(offset);
+        // }
+
+        stride_iterator stride_begin(std::size_t stride)
+        {
+            iterator tmp(true, this->fDataPtr, this->fDimensions, 0);
+            return stride_iterator(tmp, stride);
+        }
+
+        stride_iterator stride_end(std::size_t stride)
+        {
+            iterator tmp(false, this->fDataPtr + this->fTotalArraySize, this->fDimensions, this->fTotalArraySize);
+            return stride_iterator(tmp, stride);
+        }
+
+        stride_iterator stride_iterator_at(std::size_t offset, std::size_t stride)
+        {
+            iterator tmp = this->iterator_at(offset);
+            return stride_iterator(tmp,stride);
+        }
+
 };
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -573,6 +774,27 @@ class MHO_NDArrayWrapper<XValueType, 0>
         XValueType fData; //single value
         std::size_t fTotalArraySize; //total size of array
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -700,6 +922,17 @@ class MHO_NDArrayWrapper<XValueType, 1>
             return fDimensions[dim_index];
         }
 
+        std::size_t GetStride(std::size_t /*dim_index*/) const
+        {
+            return 1;
+        }
+
+        void GetStrides(std::size_t* array_stride) const
+        {
+            array_stride[0] = 1;
+        }
+
+
         std::size_t GetOffsetForIndices(const std::size_t* index)
         {
             return MHO_NDArrayMath::OffsetFromRowMajorIndex<1>(fDimensions, index);
@@ -823,6 +1056,368 @@ class MHO_NDArrayWrapper<XValueType, 1>
         std::vector< XValueType > fData; //used for internally managed data
         std::size_t fDimensions[1]; //size of each dimension
         std::size_t fTotalArraySize; //total size of array
+
+
+
+        //the iterator definition
+        public:
+
+            //TODO - Do we need a const_iterator class?
+            class iterator
+            {
+                public:
+
+                    typedef iterator self_type;
+                    typedef XValueType value_type;
+                    typedef XValueType& reference;
+                    typedef XValueType* pointer;
+                    typedef std::forward_iterator_tag iterator_category;
+                    typedef int difference_type;
+                    typedef std::array<std::size_t, 1> index_type;
+
+                    iterator(bool valid, pointer ptr, std::size_t* dim, std::size_t offset):
+                        fValid(valid),
+                        fPtr(ptr),
+                        fDimensions(dim)
+                    {
+                        //initialize the multi-dim indices
+                        MHO_NDArrayMath::RowMajorIndexFromOffset<1>(offset, fDimensions, &(fIndices[0]) );
+                    };
+
+                    iterator(const self_type& copy)
+                    {
+                        fValid = copy.fValid;
+                        fPtr = copy.fPtr;
+                        fDimensions = copy.fDimensions;
+                        fIndices = copy.fIndices;
+                    };
+
+                    self_type operator++()
+                    {
+                        fPtr++;
+                        fValid = MHO_NDArrayMath::IncrementIndices<1>(fDimensions, &(fIndices[0]) );
+                        return *this;
+                    }
+
+                    self_type operator--()
+                    {
+                        fPtr--;
+                        fValid = MHO_NDArrayMath::DecrementIndices<1>(fDimensions, &(fIndices[0]) );
+                        return *this;
+                    }
+
+                    self_type operator++(int)
+                    {
+                        self_type ret_val(*this);
+                        fPtr++;
+                        fValid = MHO_NDArrayMath::IncrementIndices<1>(fDimensions, &(fIndices[0]) );
+                        return ret_val;
+                    }
+
+                    self_type operator--(int)
+                    {
+                        self_type ret_val(*this);
+                        fPtr--;
+                        fValid = MHO_NDArrayMath::DecrementIndices<1>(fDimensions, &(fIndices[0]) );
+                        return ret_val;
+                    }
+
+                    std::ptrdiff_t operator-(const self_type& iter)
+                    {
+                        return std::distance(iter.GetPtr(), fPtr);
+                    }
+
+                    self_type operator+=(const std::ptrdiff_t& diff)
+                    {
+                        fPtr += diff;
+                        if(diff >= 0)
+                        {
+                            fValid = MHO_NDArrayMath::IncrementIndices<1>(fDimensions, &(fIndices[0]), (std::size_t)diff );
+                        }
+                        else
+                        {
+                            fValid = MHO_NDArrayMath::DecrementIndices<1>(fDimensions, &(fIndices[0]), (std::size_t) std::abs(diff) );
+                        }
+                        return (*this);
+                    }
+
+                    self_type operator-=(const std::ptrdiff_t& diff)
+                    {
+                        fPtr -= diff;
+                        if(diff >= 0)
+                        {
+                            fValid = MHO_NDArrayMath::DecrementIndices<1>(fDimensions, &(fIndices[0]), (std::size_t) diff );
+                        }
+                        else
+                        {
+                            fValid = MHO_NDArrayMath::IncrementIndices<1>(fDimensions, &(fIndices[0]), (std::size_t) std::abs(diff) );
+                        }
+                        return (*this);
+                    }
+
+                    self_type operator+(const std::ptrdiff_t& diff)
+                    {
+                        pointer oldPtr = fPtr;
+                        index_type oldIndices = fIndices;
+                        bool oldValid = fValid;
+
+                        fPtr += diff;
+                        if(diff >= 0)
+                        {
+                            fValid = MHO_NDArrayMath::IncrementIndices<1>(fDimensions, &(fIndices[0]), (std::size_t)diff );
+                        }
+                        else
+                        {
+                            fValid = MHO_NDArrayMath::DecrementIndices<1>(fDimensions, &(fIndices[0]), (std::size_t) std::abs(diff) );
+                        }
+                        self_type temp(*this);
+
+                        fPtr = oldPtr;
+                        fIndices = oldIndices;
+                        fValid = oldValid;
+
+                        return temp;
+                    }
+
+                    self_type operator-(const std::ptrdiff_t& diff)
+                    {
+                        pointer oldPtr = fPtr;
+                        index_type oldIndices = fIndices;
+                        bool oldValid = fValid;
+
+                        fPtr -= diff;
+                        if(diff >= 0)
+                        {
+                            fValid = MHO_NDArrayMath::DecrementIndices<1>(fDimensions, &(fIndices[0]), (std::size_t) diff );
+                        }
+                        else
+                        {
+                            fValid = MHO_NDArrayMath::IncrementIndices<1>(fDimensions, &(fIndices[0]), (std::size_t) std::abs(diff) );
+                        }
+                        self_type temp(*this);
+
+                        fPtr = oldPtr;
+                        fIndices = oldIndices;
+                        fValid = oldValid;
+
+                        return temp;
+                    }
+
+
+                    //access to underlying array item object
+                    reference operator*() { return *fPtr; }
+                    pointer operator->() { return fPtr; }
+
+                    self_type operator=(const self_type& rhs)
+                    {
+                        if(this != &rhs)
+                        {
+                            fValid = rhs.fValid;
+                            fPtr = rhs.fPtr;
+                            fDimensions = rhs.fDimensions;
+                            fIndices = rhs.fIndices;
+                        }
+                        return *this;
+                    }
+
+                    bool operator==(const self_type& rhs)
+                    {
+                        return fPtr == rhs.fPtr;
+                    }
+
+                    bool operator!=(const self_type& rhs)
+                    {
+                        return fPtr != rhs.fPtr;
+                    }
+
+                    pointer GetPtr(){return fPtr;}
+                    index_type GetIndexObject() const {return fIndices;}
+                    const std::size_t* GetIndices() const {return &(fIndices[0]);}
+                    bool IsValid() const {return fValid;}
+
+                private:
+
+                    bool fValid;
+                    pointer fPtr;
+                    std::size_t* fDimensions;
+                    index_type fIndices;
+            };
+
+
+
+        //the strided iterator definition
+        public:
+
+
+            
+            //strided access to the array (useful for iterating along a single dimension)
+            class stride_iterator
+            {
+                public:
+            
+                    typedef stride_iterator self_type;
+                    typedef XValueType value_type;
+                    typedef XValueType& reference;
+                    typedef XValueType* pointer;
+                    typedef std::forward_iterator_tag iterator_category;
+                    typedef int difference_type;
+                    typedef std::array<std::size_t, 1> index_type;
+            
+                    stride_iterator(const iterator& iter, std::size_t stride):
+                        fIterator(iter), //initial location
+                        fStride(stride) //stride distance by which to access the array 
+                    {
+                        //TODO FIXME, check we have no overflow issues with (size_t -> ptrdiff_t
+                    };
+            
+                    stride_iterator(const self_type& copy):
+                        fIterator(copy.fIterator)
+                    {
+                        fStride = copy.fStride;
+                    };
+            
+                    self_type operator++()
+                    {
+                        fIterator += fStride;
+                        return *this;
+                    }
+            
+                    self_type operator--()
+                    {
+                        fIterator -= fStride;
+                        return *this;
+                    }
+            
+                    self_type operator++(int)
+                    {
+                        self_type ret_val(*this);
+                        ++(*this);
+                        return ret_val;
+                    }
+            
+                    self_type operator--(int)
+                    {
+                        self_type ret_val(*this);
+                        ++(*this);
+                        return ret_val;
+                    }
+            
+                    std::ptrdiff_t operator-(const self_type& iter)
+                    {
+                        return std::distance(iter.GetPtr(), fIterator.GetPtr());
+                    }
+            
+                    self_type operator+=(const std::ptrdiff_t& diff)
+                    {
+                        fIterator += fStride*diff;
+                        return (*this);
+                    }
+            
+                    self_type operator-=(const std::ptrdiff_t& diff)
+                    {
+                        fIterator -= fStride*diff;
+                        return (*this);
+                    }
+            
+                    self_type operator+(const std::ptrdiff_t& diff)
+                    {
+                        self_type temp(*this);
+                        temp += diff;
+                        return temp;
+                    }
+            
+                    self_type operator-(const std::ptrdiff_t& diff)
+                    {
+                        self_type temp(*this);
+                        temp -= diff;
+                        return temp;
+                    }
+            
+                    //access to underlying array item object
+                    reference operator*() { return *(fIterator.GetPtr()); }
+                    pointer operator->() { return fIterator.GetPtr(); }
+            
+                    self_type operator=(const self_type& rhs)
+                    {
+                        if(this != &rhs)
+                        {
+                            fIterator = rhs.fIterator;
+                            fStride = rhs.fStride;
+                        }
+                        return *this;
+                    }
+            
+                    bool operator==(const self_type& rhs)
+                    {
+                        return (fIterator == rhs.fIterator && fStride == rhs.fStride);
+                    }
+            
+                    bool operator!=(const self_type& rhs)
+                    {
+                        return !(*this == rhs);
+                    }
+            
+                    pointer GetPtr(){return fIterator.GetPtr();}
+                    index_type GetIndexObject() const {return fIterator.GetIndices();}
+                    const std::size_t* GetIndices() const {return fIterator.GetIndices();}
+                    bool IsValid() const {return fIterator.IsValid();}
+            
+                private:
+            
+                    iterator fIterator;
+                    ptrdiff_t fStride; 
+            };
+
+        public:
+
+            iterator begin()
+            {
+                return iterator(true, this->fDataPtr, this->fDimensions, 0);
+            }
+
+            iterator end()
+            {
+                return iterator(false, this->fDataPtr + this->fTotalArraySize, this->fDimensions, this->fTotalArraySize);
+            }
+
+            iterator iterator_at(std::size_t offset)
+            {
+                if(offset < this->fTotalArraySize)
+                {
+                    return iterator(true, this->fDataPtr + offset, this->fDimensions, 0);
+                }
+                else
+                {
+                    return this->end();
+                }
+            }
+
+            stride_iterator stride_begin(std::size_t stride)
+            {
+                iterator tmp(true, this->fDataPtr, this->fDimensions, 0);
+                return stride_iterator(tmp, stride);
+            }
+            
+            stride_iterator stride_end(std::size_t stride)
+            {
+                iterator tmp(false, this->fDataPtr + this->fTotalArraySize, this->fDimensions, this->fTotalArraySize);
+                return stride_iterator(tmp, stride);
+            }
+            
+            stride_iterator stride_iterator_at(std::size_t offset, std::size_t stride)
+            {
+                iterator tmp = this->iterator_at(offset);
+                return stride_iterator(tmp,stride);
+            }
+
+
+
+
+
+
+
+
+
 };
 
 

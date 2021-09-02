@@ -59,7 +59,7 @@ MHO_VisibilityChannelizer::Initialize()
             {
                 double sf;
                 (*iter)->Retrieve(std::string("sky_freq"), sf);
-                msg_debug("calibration", "Inserting channel of size: " << (*iter)->GetLength() << "with sky freq: " << sf << eom);
+                msg_debug("calibration", "Inserting channel of size: " << (*iter)->GetLength() << " with sky freq: " << sf << eom);
                 channel_sizes.insert( (*iter)->GetLength() );
             }
 
