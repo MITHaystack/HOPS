@@ -85,7 +85,7 @@ class MHO_MultidimensionalPaddedFastFourierTransform:
                         msg_error("operators", "failed to initialize zero-padded FFT, input/output dimension mismatch at index: "<<i<<"."<<eom);
                     }
 
-                    //for now we only support an implementation for even lengths 
+                    //for now we only support an implementation for even lengths
                     //as described on p. 751 of "Understanding Digital Signal Processing" by R.G. Lyons
                     //odd-length implementations are possible, by not needed for now
                     if(fInputDimensionSize[i]%2 != 0)
@@ -94,7 +94,7 @@ class MHO_MultidimensionalPaddedFastFourierTransform:
                         msg_error("operators", "zero-padded FFT is only supported for even length dimensions."<<eom);
                     }
                 }
-                else 
+                else
                 {
                     if(fInputDimensionSize[i] != fOutputDimensionSize[i])
                     {
@@ -104,8 +104,8 @@ class MHO_MultidimensionalPaddedFastFourierTransform:
                 }
             }
 
-            //make sure input and output are not the same arrays! 
-            //we cannot do this in-place 
+            //make sure input and output are not the same arrays!
+            //we cannot do this in-place
             if(this->fInput == this->fOutput)
             {
                 fIsValid = false;
@@ -145,7 +145,7 @@ class MHO_MultidimensionalPaddedFastFourierTransform:
                 //zero out the output array
                 for(size_t i=0; i<total_size; i++){ (*(this->fOutput))[i] = 0.0;}
 
-                //Here we copy the input data over to the output data array. 
+                //Here we copy the input data over to the output data array.
                 //The way we do this depends on if this array needs to padded symmetrically (with the zeros in the center)
                 //or if it is going to padded at the end (signal up front, zeros following)
                 if(fCentered)
@@ -154,17 +154,17 @@ class MHO_MultidimensionalPaddedFastFourierTransform:
                     auto in_iter =  this->fInput->begin();
                     auto in_iter_end = this->fInput->end();
 
-                    //loop over the input array, determining where it should be copied to in 
-                    //the output array. For each index which is at a mid-point, the value should 
-                    //be split in that dimensions (if the point is located at the the mid-point 
+                    //loop over the input array, determining where it should be copied to in
+                    //the output array. For each index which is at a mid-point, the value should
+                    //be split in that dimensions (if the point is located at the the mid-point
                     //of Q dimensions it will be copied into 2^Q locations in the output).
                     while( in_iter != in_iter_end)
                     {
-                        const size_t* in_index;
+                        std::array<std::size_t, RANK> in_index;
                         std::vector< std::vector<size_t> > out_index;
                         out_index.resize(RANK);
 
-                        in_index = in_iter.GetIndices();
+                        in_index = in_iter.GetIndexObject();
                         for(size_t i=0; i<RANK; i++)
                         {
                             if(fAxesToXForm[i])
@@ -177,22 +177,22 @@ class MHO_MultidimensionalPaddedFastFourierTransform:
                                 }
                                 else if (in_index[i] == N/2)
                                 {
-                                    //split the middle point 
+                                    //split the middle point
                                     out_index[i].push_back(N/2);
                                     out_index[i].push_back(N*M - N/2);
                                 }
-                                else 
+                                else
                                 {
                                     out_index[i].push_back( (N*M - N/2 + 1) + (in_index[i] - (N/2+1)) );
                                 }
                             }
-                            else 
+                            else
                             {
                                 out_index[i].push_back(in_index[i]);
                             }
                         }
 
-                        //determine the number of indices over which this input point is split 
+                        //determine the number of indices over which this input point is split
                         size_t npts = 1;
                         for(size_t i=0; i<RANK; i++){npts *= out_index[i].size();}
 
@@ -200,15 +200,15 @@ class MHO_MultidimensionalPaddedFastFourierTransform:
                         {
                             size_t out[RANK];
                             for(size_t i=0; i<RANK; i++){out[i] = *(out_index[i].begin()); }
-                            //copy the input data to the same 'index' location in the output array 
+                            //copy the input data to the same 'index' location in the output array
                             size_t out_loc = MHO_NDArrayMath::OffsetFromRowMajorIndex<RANK>(fOutputDimensionSize, out);
                             (*(this->fOutput))[out_loc] = *in_iter;
                         }
-                        else 
+                        else
                         {
                             //we need to compute the cartesian product
                             //over the list of split indices here, to get the 2^Q locations
-                            //over which to split this point in the output array 
+                            //over which to split this point in the output array
                             //to do this we construct all of the bit masks for every possible index combination
                             std::set< size_t > index_bitsets;
                             std::bitset<RANK> mask;
@@ -226,7 +226,7 @@ class MHO_MultidimensionalPaddedFastFourierTransform:
                                 index_bitsets.insert( val.to_ulong() );
                             }
 
-                            //now loop over the bitsets, inserting a fraction of this point in each place 
+                            //now loop over the bitsets, inserting a fraction of this point in each place
                             size_t out[RANK];
                             double norm = 1.0/(double)npts;
                             for(auto it = index_bitsets.begin(); it != index_bitsets.end(); it++)
@@ -241,7 +241,7 @@ class MHO_MultidimensionalPaddedFastFourierTransform:
                     }
 
                 }
-                else 
+                else
                 {
                     if(!fFlipped)
                     {
@@ -250,23 +250,24 @@ class MHO_MultidimensionalPaddedFastFourierTransform:
                         auto in_iter_end = this->fInput->end();
                         while( in_iter != in_iter_end)
                         {
-                            //copy the input data to the same 'index' location in the output array 
-                            size_t out_loc = MHO_NDArrayMath::OffsetFromRowMajorIndex<RANK>(fOutputDimensionSize, in_iter.GetIndices());
+                            //copy the input data to the same 'index' location in the output array
+                            std::array<std::size_t, RANK> in_indices = in_iter.GetIndexObject();
+                            size_t out_loc = MHO_NDArrayMath::OffsetFromRowMajorIndex<RANK>(fOutputDimensionSize, &(in_indices[0]) );
                             (*(this->fOutput))[out_loc] = *in_iter;
                             ++in_iter;
                         }
                     }
-                    else 
+                    else
                     {
                         //zero padding is placed at the start of the array
                         auto in_iter =  this->fInput->begin();
                         auto in_iter_end = this->fInput->end();
-                        const size_t* in_index;
+                        std::array<std::size_t, RANK> in_index;
                         size_t out_index[RANK];
                         while( in_iter != in_iter_end)
                         {
-                            //copy the input data to the flipped location in the output array 
-                            in_index = in_iter.GetIndices();
+                            //copy the input data to the flipped location in the output array
+                            in_index = in_iter.GetIndexObject();
                             for(size_t i=0; i<RANK; i++)
                             {
                                 if(fAxesToXForm[i])
@@ -346,7 +347,7 @@ class MHO_MultidimensionalPaddedFastFourierTransform:
                                 (*(this->fOutput))[data_location] = (*(fWorkspaceWrapper[d]))[i];
                             }
 
-                            // //normalize the output array 
+                            // //normalize the output array
                             // XFloatType norm = 1.0/total_input_size;
                             // for(size_t i=0; i<total_size; i++){ (*(this->fOutput))[i] *= norm;}
 

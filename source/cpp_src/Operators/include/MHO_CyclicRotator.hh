@@ -16,8 +16,8 @@
 *Author: J. Barrett
 *Email: barrettj@mit.edu
 *Date:
-*Description: 
-* Applies a cyclic rotation on the contents on a multidimensional array 
+*Description:
+* Applies a cyclic rotation on the contents on a multidimensional array
 * by some specified offset for each dimension.
 */
 
@@ -53,7 +53,7 @@ class MHO_CyclicRotator: public MHO_NDArrayOperator<XInputArrayType, XOutputArra
             {
                 fOffsets[dimension_index] = offset_value;
             }
-            else 
+            else
             {
                 msg_error("operators", "error, offset for dimension: "<<dimension_index<<", exceeds array rank." << eom);
             }
@@ -96,7 +96,7 @@ class MHO_CyclicRotator: public MHO_NDArrayOperator<XInputArrayType, XOutputArra
                     fModuloOffsets[i] = positive_modulo(fOffsets[i], fDimensionSize[i]);
                 }
 
-                if(this->fInput == this->fOutput) 
+                if(this->fInput == this->fOutput)
                 {
                     size_t index[XInputArrayType::rank::value];
                     size_t non_active_dimension_size[XInputArrayType::rank::value-1];
@@ -151,15 +151,16 @@ class MHO_CyclicRotator: public MHO_NDArrayOperator<XInputArrayType, XOutputArra
                     }
                     return true;
                 }
-                else 
+                else
                 {
                     //first get the indices of the input iterator
                     auto in_iter =  this->fInput->begin();
                     auto in_iter_end = this->fInput->end();
                     const std::size_t* out_dim = this->fOutput->GetDimensions();
+                    std::array<std::size_t, XInputArrayType::rank::value > in_loc;
                     while( in_iter != in_iter_end)
                     {
-                        const std::size_t* in_loc = in_iter.GetIndices();
+                        in_loc = in_iter.GetIndexObject();
                         for(std::size_t i=0; i<XInputArrayType::rank::value;i++)
                         {
                             fWorkspace[i] = positive_modulo( in_loc[i] - fModuloOffsets[i], out_dim[i]);
