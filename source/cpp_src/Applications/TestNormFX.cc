@@ -1176,7 +1176,7 @@ int main(int argc, char** argv)
     //now lets run some simple timing tests:
     MHO_Timer timer;
     timer.MeasureWallclockTime();
-    std::size_t n_times = 20;
+    std::size_t n_times = 2;
 
 
     timer.Start();

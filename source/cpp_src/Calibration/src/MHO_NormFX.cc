@@ -52,13 +52,13 @@ MHO_NormFX::Initialize()
         fWorkspace.Resize(fWorkDims);
         fWorkspace.SetArray(std::complex<double>(0.0,0.0));
 
-        fNaNBroadcaster.SetFunctor(&fNaNMasker);
+        //fNaNBroadcaster.SetFunctor(&fNaNMasker);
         fNaNBroadcaster.SetInput(this->fInput1);
         fNaNBroadcaster.SetOutput(this->fInput1);
         status = fNaNBroadcaster.Initialize();
         if(!status){msg_error("operators", "Could not initialize NaN mask broadcast in MHO_NormFX." << eom); return false;}
 
-        fConjBroadcaster.SetFunctor(&fConjugator);
+        //fConjBroadcaster.SetFunctor(&fConjugator);
         fConjBroadcaster.SetInput(this->fInput1);
         fConjBroadcaster.SetOutput(this->fInput1);
         status = fConjBroadcaster.Initialize();
@@ -93,8 +93,9 @@ MHO_NormFX::Initialize()
 
         //normalize the array
         double norm =  1.0/(double)fInDims[CH_FREQ_AXIS];
-        fScalarMultiplier.SetFactor(norm);
-        fNormBroadcaster.SetFunctor(&fScalarMultiplier);
+        //fScalarMultiplier.SetFactor(norm);
+        //fNormBroadcaster.SetFunctor(&fScalarMultiplier);
+        fNormBroadcaster.GetFunctor()->SetFactor(norm);
         fNormBroadcaster.SetInput(this->fOutput);
         fNormBroadcaster.SetOutput(this->fOutput);
         status = fNormBroadcaster.Initialize();
@@ -143,8 +144,8 @@ MHO_NormFX::ExecuteOperation()
         run_old_normfx_core();
     #else
 
-        status = fPaddedFFTEngine.ExecuteOperation();
-        if(!status){msg_error("operators", "Could not execute paddded FFT in MHO_NormFX." << eom); return false;}
+        // status = fPaddedFFTEngine.ExecuteOperation();
+        // if(!status){msg_error("operators", "Could not execute paddded FFT in MHO_NormFX." << eom); return false;}
 
         status = fSubSampler.ExecuteOperation();
         if(!status){msg_error("operators", "Could not execute sub-sampler in MHO_NormFX." << eom); return false;}
