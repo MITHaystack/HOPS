@@ -23,7 +23,7 @@
 namespace hops
 {
 
-template< class XInputArrayType, class XOutputArrayType >
+template< class XInputArrayType, class XOutputArrayType, class XFunctorType >
 class MHO_FunctorBroadcaster: public MHO_NDArrayOperator<XInputArrayType, XOutputArrayType >
 {
     public:
@@ -31,14 +31,15 @@ class MHO_FunctorBroadcaster: public MHO_NDArrayOperator<XInputArrayType, XOutpu
         static_assert(XOutputArrayType::rank::value == XInputArrayType::rank::value, "Input/Output array ranks are not equal.");
 
         MHO_FunctorBroadcaster():
-            fInitialized(false),
-            fFunctor(nullptr)
+            fInitialized(false)
         {};
 
         virtual ~MHO_FunctorBroadcaster(){};
 
-        void SetFunctor( MHO_NDArrayFunctor<XInputArrayType, XOutputArrayType>* functor){fFunctor = functor;}
-        MHO_NDArrayFunctor<XInputArrayType, XOutputArrayType>* GetFunctor() {return fFunctor;};
+        XFunctorType* GetFunctor(){return &fFunctor;};
+
+        // void SetFunctor( MHO_NDArrayFunctor<XInputArrayType, XOutputArrayType>* functor){fFunctor = functor;}
+        //MHO_NDArrayFunctor<XInputArrayType, XOutputArrayType>* GetFunctor() {return fFunctor;};
 
         virtual bool Initialize() override
         {
@@ -61,11 +62,8 @@ class MHO_FunctorBroadcaster: public MHO_NDArrayOperator<XInputArrayType, XOutpu
 
                     if(have_to_resize){this->fOutput->Resize(in_dim);}
                 }
-                //need to have functor set up too
-                if(fFunctor != nullptr)
-                {
-                    fInitialized = true;
-                }
+                fInitialized = true;
+
             }
             return fInitialized;
         }
@@ -75,19 +73,19 @@ class MHO_FunctorBroadcaster: public MHO_NDArrayOperator<XInputArrayType, XOutpu
             //note: this implicitly assumes both intput/output are the same total size
             if(fInitialized)
             {
-                if(this->fInput == this->fOutput) 
+                if(this->fInput == this->fOutput)
                 {
                     //same array so only increment a single iter
                     auto in_iter =  this->fInput->begin();
                     auto in_iter_end = this->fInput->end();
                     while( in_iter != in_iter_end)
                     {
-                        (*fFunctor)(in_iter, in_iter);
+                        fFunctor(in_iter, in_iter);
                         ++in_iter;
                     }
                     return true;
                 }
-                else 
+                else
                 {
                     auto in_iter =  this->fInput->begin();
                     auto in_iter_end = this->fInput->end();
@@ -95,7 +93,7 @@ class MHO_FunctorBroadcaster: public MHO_NDArrayOperator<XInputArrayType, XOutpu
                     auto out_iter_end = this->fOutput->end();
                     while( in_iter != in_iter_end && out_iter != out_iter_end)
                     {
-                        (*fFunctor)(in_iter, out_iter);
+                        fFunctor(in_iter, out_iter);
                         ++out_iter;
                         ++in_iter;
                     }
@@ -109,7 +107,7 @@ class MHO_FunctorBroadcaster: public MHO_NDArrayOperator<XInputArrayType, XOutpu
     private:
 
         bool fInitialized;
-        MHO_NDArrayFunctor<XInputArrayType, XOutputArrayType>* fFunctor;
+        XFunctorType fFunctor;
 
 };
 

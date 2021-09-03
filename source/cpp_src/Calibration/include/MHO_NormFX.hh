@@ -60,18 +60,21 @@ class MHO_NormFX: public MHO_BinaryNDArrayOperator<
         MHO_NDArrayWrapper< std::complex<double>, 1 > S;
         MHO_NDArrayWrapper< std::complex<double>, 1 > xlag;
 
-        //sub operations, eventually should be moved out of this class
-        MHO_NaNMasker<ch_baseline_data_type, ch_baseline_data_type> fNaNMasker; //replace NaNs in data with zero
-        MHO_FunctorBroadcaster<ch_baseline_data_type, ch_baseline_data_type> fNaNBroadcaster;
-        MHO_FunctorBroadcaster<ch_baseline_data_type, ch_baseline_data_type> fConjBroadcaster;
-        MHO_FunctorBroadcaster<ch_baseline_data_type, ch_baseline_data_type> fNormBroadcaster;
-        MHO_ComplexConjugator<ch_baseline_data_type, ch_baseline_data_type> fConjugator; //complex conjugate
+        typedef MHO_NaNMasker<ch_baseline_data_type, ch_baseline_data_type> nanMaskerType;
+        typedef MHO_ComplexConjugator<ch_baseline_data_type, ch_baseline_data_type> conjType;
+        typedef MHO_ScalarMultiply<double, ch_baseline_sbd_type, ch_baseline_sbd_type> scalarMultType;
+
+        //MHO_NaNMasker<ch_baseline_data_type, ch_baseline_data_type> fNaNMasker; //replace NaNs in data with zero
+        MHO_FunctorBroadcaster<ch_baseline_data_type, ch_baseline_data_type, nanMaskerType> fNaNBroadcaster;
+        MHO_FunctorBroadcaster<ch_baseline_data_type, ch_baseline_data_type, conjType> fConjBroadcaster;
+        MHO_FunctorBroadcaster<ch_baseline_data_type, ch_baseline_data_type, scalarMultType> fNormBroadcaster;
+        //MHO_ComplexConjugator<ch_baseline_data_type, ch_baseline_data_type> fConjugator; //complex conjugate
 
         MHO_MultidimensionalPaddedFastFourierTransform<VFP_TYPE, CH_VIS_NDIM> fPaddedFFTEngine;
 
         MHO_SubSample<ch_baseline_sbd_type, ch_baseline_sbd_type> fSubSampler;
         MHO_CyclicRotator<ch_baseline_sbd_type, ch_baseline_sbd_type> fCyclicRotator;
-        MHO_ScalarMultiply<double, ch_baseline_sbd_type, ch_baseline_sbd_type> fScalarMultiplier;
+        //MHO_ScalarMultiply<double, ch_baseline_sbd_type, ch_baseline_sbd_type> fScalarMultiplier;
 
 
         ch_baseline_sbd_type fWorkspace;
