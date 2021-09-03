@@ -48,6 +48,8 @@ class MHO_NormFX: public MHO_BinaryNDArrayOperator<
 
     private:
 
+        void run_old_normfx_core();
+
         std::size_t fInDims[CH_VIS_NDIM];
         std::size_t fWorkDims[CH_VIS_NDIM];
         std::size_t fOutDims[CH_VIS_NDIM];

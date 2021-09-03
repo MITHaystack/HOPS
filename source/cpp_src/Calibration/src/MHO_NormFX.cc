@@ -3,7 +3,7 @@
 namespace hops
 {
 
-#define USE_OLD
+//#define USE_OLD
 
 
 MHO_NormFX::MHO_NormFX():
@@ -140,103 +140,7 @@ MHO_NormFX::ExecuteOperation()
         }
 
     #ifdef USE_OLD
-
-        std::size_t npp = fInDims[CH_POLPROD_AXIS];
-        std::size_t nchan = fInDims[CH_CHANNEL_AXIS];
-        std::size_t naps = fInDims[CH_TIME_AXIS];
-        std::size_t nlags = fInDims[CH_FREQ_AXIS];
-
-
-        double polcof = 1.0;
-        double usbfrac = 0.0;
-        double lsbfrac = 1.0;
-        double factor = 1.0;
-
-        //double it
-        nlags *= 2;
-        std::complex<double> z;
-
-        xp_spec.Resize(4*nlags);
-        S.Resize(4*nlags);
-        xlag.Resize(4*nlags);
-
-        fFFTEngine.SetInput(&S);
-        fFFTEngine.SetOutput(&xlag);
-        fFFTEngine.SetForward();
-        fFFTEngine.Initialize();
-
-
-        for(std::size_t fr=0; fr<nchan; fr++)
-        {
-            for(std::size_t ap=0; ap<naps; ap++)
-            {
-                for (int i=0; i<4*nlags; i++){xp_spec[i] = 0.0;}
-                for (int i=0; i<4*nlags; i++){S[i] = 0.0;}
-
-                for(std::size_t pp=0; pp<1; pp++) //loop over pol-products (select and/or add)
-                {
-                    for (int i=0; i<nlags/2; i++)
-                    {
-                        z = this->fInput1->at(pp,fr,ap,i);
-                        z = z * polcof;
-                        xp_spec[i] += z;
-                    }
-                }
-
-                //lower-sideband data
-                for(int i = 0; i < nlags; i++)
-                {
-                    factor = 1.0;// datum->lsbfrac;
-
-                    //LSB
-                    // DC+highest goes into middle element of the S array
-                    // int sindex = 4*nlags - i;
-                    // if(i==0){sindex = 2*nlags;}
-                    //USB
-                    int sindex;
-
-                    if(fIsUSB)
-                    {
-                        sindex = i;
-                    }
-                    else
-                    {
-                        sindex = 4*nlags - i;
-                        if(i==0){sindex = 2*nlags;}
-                    }
-
-                    //int sindex = i ? 4 * nlags - i : 2 * nlags;
-                    //std::complex<double> tmp2 = std::exp (I_complex * (status->lsb_phoff[0] - status->lsb_phoff[1]));
-                    //S[sindex] += factor * std::conj (xp_spec[i] );// * tmp2 );
-
-    //                S[sindex] += factor * std::conj (xp_spec[i] );
-                    S[sindex] += factor * xp_spec[i];
-                }
-
-                //for (int i=0; i<4*nlags; i++){S[i] = S[i] * factor;}
-
-                fFFTEngine.ExecuteOperation();
-
-                // corrections to phase as fn of freq based upon
-                // delay calibrations
-                // FFT to single-band delay
-                //fftw_execute (fftplan);
-                // Place SB delay values in data structure
-                // FX correlator - use full xlag range
-                for (int i = 0; i < 2*nlags; i++)
-                {
-                    // Translate so i=nlags is central lag
-                    // skip every other (interpolated) lag
-                    int j = 2 * (i - nlags);
-                    if (j < 0){j += 4 * nlags;}
-                    this->fOutput->at(0,fr,ap,i) = xlag[j] ; // (double) (nlags / 2);
-                    //this->fOutput->at(0,fr,ap,i) = xlag[j] / (double) (nlags / 2);
-                }
-
-            }
-        }
-
-
+        run_old_normfx_core();
     #else
 
         status = fPaddedFFTEngine.ExecuteOperation();
@@ -263,9 +167,104 @@ MHO_NormFX::ExecuteOperation()
 
 
 
+void MHO_NormFX::run_old_normfx_core()
+{
+    std::size_t npp = fInDims[CH_POLPROD_AXIS];
+    std::size_t nchan = fInDims[CH_CHANNEL_AXIS];
+    std::size_t naps = fInDims[CH_TIME_AXIS];
+    std::size_t nlags = fInDims[CH_FREQ_AXIS];
 
 
+    double polcof = 1.0;
+    double usbfrac = 0.0;
+    double lsbfrac = 1.0;
+    double factor = 1.0;
 
+    //double it
+    nlags *= 2;
+    std::complex<double> z;
+
+    xp_spec.Resize(4*nlags);
+    S.Resize(4*nlags);
+    xlag.Resize(4*nlags);
+
+    fFFTEngine.SetInput(&S);
+    fFFTEngine.SetOutput(&xlag);
+    fFFTEngine.SetForward();
+    fFFTEngine.Initialize();
+
+    msg_debug("operators", "Using old norm_fx basic code."<<eom);
+
+    for(std::size_t fr=0; fr<nchan; fr++)
+    {
+        for(std::size_t ap=0; ap<naps; ap++)
+        {
+            for (int i=0; i<4*nlags; i++){xp_spec[i] = 0.0;}
+            for (int i=0; i<4*nlags; i++){S[i] = 0.0;}
+
+            for(std::size_t pp=0; pp<1; pp++) //loop over pol-products (select and/or add)
+            {
+                for (int i=0; i<nlags/2; i++)
+                {
+                    z = this->fInput1->at(pp,fr,ap,i);
+                    z = z * polcof;
+                    xp_spec[i] += z;
+                }
+            }
+
+            //lower-sideband data
+            for(int i = 0; i < nlags; i++)
+            {
+                factor = 1.0;// datum->lsbfrac;
+
+                //LSB
+                // DC+highest goes into middle element of the S array
+                // int sindex = 4*nlags - i;
+                // if(i==0){sindex = 2*nlags;}
+                //USB
+                int sindex;
+
+                if(fIsUSB)
+                {
+                    sindex = i;
+                }
+                else
+                {
+                    sindex = 4*nlags - i;
+                    if(i==0){sindex = 2*nlags;}
+                }
+
+                //int sindex = i ? 4 * nlags - i : 2 * nlags;
+                //std::complex<double> tmp2 = std::exp (I_complex * (status->lsb_phoff[0] - status->lsb_phoff[1]));
+                //S[sindex] += factor * std::conj (xp_spec[i] );// * tmp2 );
+
+//                S[sindex] += factor * std::conj (xp_spec[i] );
+                S[sindex] += factor * xp_spec[i];
+            }
+
+            //for (int i=0; i<4*nlags; i++){S[i] = S[i] * factor;}
+
+            fFFTEngine.ExecuteOperation();
+
+            // corrections to phase as fn of freq based upon
+            // delay calibrations
+            // FFT to single-band delay
+            //fftw_execute (fftplan);
+            // Place SB delay values in data structure
+            // FX correlator - use full xlag range
+            for (int i = 0; i < 2*nlags; i++)
+            {
+                // Translate so i=nlags is central lag
+                // skip every other (interpolated) lag
+                int j = 2 * (i - nlags);
+                if (j < 0){j += 4 * nlags;}
+                this->fOutput->at(0,fr,ap,i) = xlag[j] ; // (double) (nlags / 2);
+                //this->fOutput->at(0,fr,ap,i) = xlag[j] / (double) (nlags / 2);
+            }
+
+        }
+    }
+}
 
 
 
