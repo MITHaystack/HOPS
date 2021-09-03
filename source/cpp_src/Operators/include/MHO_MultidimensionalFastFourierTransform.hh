@@ -183,7 +183,6 @@ class MHO_MultidimensionalFastFourierTransform:
             {
                 fWorkspaceWrapper[i] = new MHO_NDArrayWrapper< std::complex<XFloatType>, 1 >(fDimensionSize[i]);
                 fTransformCalculator[i] = new MHO_FastFourierTransform<XFloatType>();
-                fTransformCalculator[i]->SetSize(fDimensionSize[i]);
                 fTransformCalculator[i]->SetInput(fWorkspaceWrapper[i]);
                 fTransformCalculator[i]->SetOutput(fWorkspaceWrapper[i]);
                 fTransformCalculator[i]->Initialize();

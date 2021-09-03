@@ -70,13 +70,22 @@ message(STATUS "Using compiler ${COMPILER_ID} ${COMPILER_VERSION}")
 #options for triggering additional dependencies
 #option( HOPS_USE_OPENCL "Build OpenCL support." OFF)
 option( HOPS_ENABLE_TEST "Build developer tests." ON)
-option( HOPS_USE_ROOT "Build ROOT based utilities." OFF)
-
 if(HOPS_ENABLE_TEST)
     enable_testing()
 endif(HOPS_ENABLE_TEST)
 
+option( HOPS_USE_ROOT "Build ROOT based utilities." OFF)
+
 option(HOPS_DEV_USE_OLD "Allow new C++ code to use old hops/fourfit C-libraries, beyond what is absolutely necessary." OFF)
+
+#add an option on whether or not to use FFTW3
+option (HOPS_USE_FFTW3 "Use FFTW3 for fast fourier transforms" OFF)
+if(HOPS_USE_FFTW3)
+    find_package(FFTW REQUIRED)
+    hops_external_include_directories (${FFTW_INCLUDE_DIRS})
+    hops_add_cxxflag(HOPS_USE_FFTW3)
+endif (HOPS_USE_FFTW3)
+
 
 #convenience variables
 set(CSOURCE ${CMAKE_CURRENT_SOURCE_DIR}/source/c_src)

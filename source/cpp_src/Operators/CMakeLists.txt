@@ -1,10 +1,3 @@
-#add an option on whether or not to use FFTW3
-option (HOPS_USE_FFTW3 "Use FFTW3 for fast fourier transforms" OFF)
-if(HOPS_USE_FFTW3)
-    find_package(FFTW REQUIRED)
-    hops_external_include_directories (${FFTW_INCLUDE_DIRS})
-    hops_add_cxxflag(HOPS_USE_FFTW3)
-endif (HOPS_USE_FFTW3)
 
 #list header files #############################################################
 set (OPERATOR_HEADERFILES

@@ -12,7 +12,7 @@ namespace hops
 {
 
 template< typename XFloatType >
-class MHO_FastFourierTransform: 
+class MHO_FastFourierTransform:
     public MHO_NDArrayOperator< MHO_NDArrayWrapper< std::complex< XFloatType >, 1>,
                              MHO_NDArrayWrapper< std::complex< XFloatType >, 1> >
 {
@@ -20,8 +20,6 @@ class MHO_FastFourierTransform:
 
         MHO_FastFourierTransform();
         virtual ~MHO_FastFourierTransform();
-
-        virtual void SetSize(unsigned int N);
 
         virtual void SetForward();
         virtual void SetBackward();
@@ -78,19 +76,6 @@ MHO_FastFourierTransform<XFloatType>::~MHO_FastFourierTransform()
 
 template< typename XFloatType >
 void
-MHO_FastFourierTransform<XFloatType>::SetSize(unsigned int N)
-{
-    if(N != fN)
-    {
-        fN = N;
-        fSizeIsPowerOfTwo = MHO_BitReversalPermutation::IsPowerOfTwo(N);
-        fM = MHO_FastFourierTransformUtilities<XFloatType>::ComputeBluesteinArraySize(N);
-        fInitialized = false;
-    }
-}
-
-template< typename XFloatType >
-void
 MHO_FastFourierTransform<XFloatType>::SetForward(){fForward = true;}
 
 template< typename XFloatType >
@@ -101,13 +86,19 @@ template< typename XFloatType >
 bool
 MHO_FastFourierTransform<XFloatType>::Initialize()
 {
-    if(this->fInput->GetSize() != fN || this->fOutput->GetSize() != fN)
+    if(this->fInput->GetSize() != this->fOutput->GetSize() )
     {
         fIsValid = false;
     }
 
     if( !fInitialized )
     {
+
+        fN = this->fInput->GetSize();
+        fSizeIsPowerOfTwo = MHO_BitReversalPermutation::IsPowerOfTwo(fN);
+        fM = MHO_FastFourierTransformUtilities<XFloatType>::ComputeBluesteinArraySize(fN);
+        fInitialized = false;
+
         //initialize
         DealocateWorkspace();
         AllocateWorkspace();
