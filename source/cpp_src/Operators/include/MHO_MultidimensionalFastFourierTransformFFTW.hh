@@ -134,7 +134,7 @@ class MHO_MultidimensionalFastFourierTransformFFTW:
             else
             {
                 //error
-                msg_error("math", "FFT input/output array dimensions are not valid or intialization failed. Aborting transform." << eom);
+                msg_error("operators", "FFT input/output array dimensions are not valid or intialization failed. Aborting transform." << eom);
                 return false;
             }
         }
