@@ -18,6 +18,7 @@
 #include "MHO_BinaryNDArrayOperator.hh"
 
 #include "MHO_DirectoryInterface.hh"
+#include "MHO_Timer.hh"
 
 #include "MHO_NormFX.hh"
 
@@ -1044,8 +1045,8 @@ int main(int argc, char** argv)
     sbptr = sbarray;
 
     // int nf = pass_ptr->nfreq;
-    int nf =  1; //pass_ptr->nfreq;
-    int naps = 1; //pass_ptr->num_ap;
+    int nf =  pass_ptr->nfreq;
+    int naps = pass_ptr->num_ap;
     for (int fr=0; fr<nf; fr++)
     {
         for (int ap=0; ap<naps; ap++)
@@ -1170,6 +1171,39 @@ int main(int argc, char** argv)
     {
         ret_val = 1;
     }
+
+
+    //now lets run some simple timing tests:
+    MHO_Timer timer;
+    timer.MeasureWallclockTime();
+    std::size_t n_times = 10;
+
+
+    timer.Start();
+    for(std::size_t instance=0; instance<n_times; instance++)
+    {
+        for (int fr=0; fr<nf; fr++)
+        {
+            for (int ap=0; ap<naps; ap++)
+            {
+                norm_fx(&pass, &param, &status, fr, ap);
+            }
+        }
+    }
+    timer.Stop();
+    double original_time = timer.GetDurationAsDouble();
+    std::cout<<"original norm_fx time per execution = "<<original_time/(double)n_times<<std::endl;
+
+    timer.Start();
+    for(std::size_t instance=0; instance<n_times; instance++)
+    {
+        nfxOperator2.ExecuteOperation();
+    }
+    timer.Stop();
+    double cpp_time = timer.GetDurationAsDouble();
+
+
+    std::cout<<"new norm_fx time per execution = "<<cpp_time/(double)n_times<<std::endl;
 
 
     return ret_val;
