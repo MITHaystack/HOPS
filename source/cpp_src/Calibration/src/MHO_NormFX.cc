@@ -143,8 +143,8 @@ MHO_NormFX::ExecuteOperation()
         run_old_normfx_core();
     #else
 
-        status = fPaddedFFTEngine.ExecuteOperation();
-        if(!status){msg_error("operators", "Could not execute paddded FFT in MHO_NormFX." << eom); return false;}
+        // status = fPaddedFFTEngine.ExecuteOperation();
+        // if(!status){msg_error("operators", "Could not execute paddded FFT in MHO_NormFX." << eom); return false;}
 
         status = fSubSampler.ExecuteOperation();
         if(!status){msg_error("operators", "Could not execute sub-sampler in MHO_NormFX." << eom); return false;}
@@ -193,7 +193,7 @@ void MHO_NormFX::run_old_normfx_core()
     fFFTEngine.SetForward();
     fFFTEngine.Initialize();
 
-    msg_debug("operators", "Using old norm_fx basic code."<<eom);
+    //msg_debug("operators", "Using old norm_fx basic code."<<eom);
 
     for(std::size_t fr=0; fr<nchan; fr++)
     {
@@ -206,7 +206,7 @@ void MHO_NormFX::run_old_normfx_core()
             {
                 for (int i=0; i<nlags/2; i++)
                 {
-                    z = this->fInput1->at(pp,fr,ap,i);
+                    z = (*(this->fInput1))(pp,fr,ap,i);
                     z = z * polcof;
                     xp_spec[i] += z;
                 }
@@ -258,7 +258,7 @@ void MHO_NormFX::run_old_normfx_core()
                 // skip every other (interpolated) lag
                 int j = 2 * (i - nlags);
                 if (j < 0){j += 4 * nlags;}
-                this->fOutput->at(0,fr,ap,i) = xlag[j] ; // (double) (nlags / 2);
+                (*(this->fOutput))(0,fr,ap,i) = xlag[j] ; // (double) (nlags / 2);
                 //this->fOutput->at(0,fr,ap,i) = xlag[j] / (double) (nlags / 2);
             }
 
