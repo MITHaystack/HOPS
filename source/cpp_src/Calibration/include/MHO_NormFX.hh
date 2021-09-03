@@ -28,7 +28,7 @@
 #include "MHO_MultidimensionalPaddedFastFourierTransform.hh"
 
 
-//#define USE_OLD
+
 
 namespace hops
 {

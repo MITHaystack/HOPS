@@ -980,6 +980,8 @@ int main(int argc, char** argv)
     sdata[0] = *ref_sdata;
     sdata[1] = *rem_sdata;
 
+
+
 ////////////////////////////////////////////////////////////////////////////////
 //now we need to set up the param, pass, and other data org structs
 
@@ -1117,7 +1119,7 @@ int main(int argc, char** argv)
         }
     }
 
-
+    int ret_val = 0;
 
     //re-run this exercise via the pure c++ function
     MHO_NormFX nfxOperator2;
@@ -1143,7 +1145,8 @@ int main(int argc, char** argv)
         }
     }
 
-    int ret_val = 0;
+
+
     if(testVector1.size() == testVector2.size() )
     {
         double abs_diff = 0.0;
