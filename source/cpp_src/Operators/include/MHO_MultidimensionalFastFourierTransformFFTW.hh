@@ -6,7 +6,6 @@
 
 #include "MHO_Message.hh"
 #include "MHO_NDArrayWrapper.hh"
-#include "MHO_FastFourierTransform.hh"
 #include "MHO_FFTWTypes.hh"
 
 namespace hops
@@ -178,16 +177,16 @@ class MHO_MultidimensionalFastFourierTransformFFTW:
             }
 
             fPlanForward = MHO_FFTWTypes<XFloatType>::plan_guru_func(rank, fDims, howmany_rank, &fHowManyDims,
-                                       fInPtr, fOutPtr, FFTW_FORWARD, FFTW_EXHAUSTIVE);
+                                       fInPtr, fOutPtr, FFTW_FORWARD, FFTW_MEASURE);
 
             fPlanBackward = MHO_FFTWTypes<XFloatType>::plan_guru_func(rank, fDims, howmany_rank, &fHowManyDims,
-                                       fInPtr, fOutPtr, FFTW_BACKWARD, FFTW_EXHAUSTIVE);
+                                       fInPtr, fOutPtr, FFTW_BACKWARD, FFTW_MEASURE);
 
             fPlanForwardInPlace = MHO_FFTWTypes<XFloatType>::plan_guru_func(rank, fDims, howmany_rank, &fHowManyDims,
-                                       fInPlacePtr, fInPlacePtr, FFTW_FORWARD, FFTW_EXHAUSTIVE);
+                                       fInPlacePtr, fInPlacePtr, FFTW_FORWARD, FFTW_MEASURE);
 
             fPlanBackwardInPlace = MHO_FFTWTypes<XFloatType>::plan_guru_func(rank, fDims, howmany_rank, &fHowManyDims,
-                                       fInPlacePtr, fInPlacePtr, FFTW_BACKWARD, FFTW_EXHAUSTIVE);
+                                       fInPlacePtr, fInPlacePtr, FFTW_BACKWARD, FFTW_MEASURE);
 
             if(fPlanForward != NULL && fPlanBackward != NULL && fPlanBackwardInPlace != NULL && fPlanForwardInPlace != NULL)
             {

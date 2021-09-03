@@ -143,8 +143,8 @@ MHO_NormFX::ExecuteOperation()
         run_old_normfx_core();
     #else
 
-        // status = fPaddedFFTEngine.ExecuteOperation();
-        // if(!status){msg_error("operators", "Could not execute paddded FFT in MHO_NormFX." << eom); return false;}
+        status = fPaddedFFTEngine.ExecuteOperation();
+        if(!status){msg_error("operators", "Could not execute paddded FFT in MHO_NormFX." << eom); return false;}
 
         status = fSubSampler.ExecuteOperation();
         if(!status){msg_error("operators", "Could not execute sub-sampler in MHO_NormFX." << eom); return false;}

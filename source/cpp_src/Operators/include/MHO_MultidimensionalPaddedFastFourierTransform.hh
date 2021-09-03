@@ -8,7 +8,12 @@
 
 #include "MHO_Message.hh"
 #include "MHO_NDArrayWrapper.hh"
-#include "MHO_FastFourierTransform.hh"
+
+#ifdef HOPS_USE_FFTW3
+    #include "MHO_MultidimensionalFastFourierTransformFFTW.hh"
+#else
+    #include "MHO_FastFourierTransform.hh"
+#endif
 
 namespace hops
 {
@@ -374,8 +379,13 @@ class MHO_MultidimensionalPaddedFastFourierTransform:
             for(size_t i=0; i<RANK; i++)
             {
                 fWorkspaceWrapper[i] = new MHO_NDArrayWrapper< std::complex<XFloatType>, 1 >(fOutputDimensionSize[i]);
-                fTransformCalculator[i] = new MHO_FastFourierTransform<XFloatType>();
-                fTransformCalculator[i]->SetSize(fOutputDimensionSize[i]);
+
+                #ifdef HOPS_USE_FFTW3
+                        fTransformCalculator[i] = new MHO_MultidimensionalFastFourierTransformFFTW<XFloatType,1>();
+                #else
+                        fTransformCalculator[i] = new MHO_FastFourierTransform<XFloatType>();
+                #endif
+
                 fTransformCalculator[i]->SetInput(fWorkspaceWrapper[i]);
                 fTransformCalculator[i]->SetOutput(fWorkspaceWrapper[i]);
                 fTransformCalculator[i]->Initialize();
@@ -402,7 +412,11 @@ class MHO_MultidimensionalPaddedFastFourierTransform:
         size_t fOutputDimensionSize[RANK];
         bool fAxesToXForm[RANK];
 
-        MHO_FastFourierTransform<XFloatType>* fTransformCalculator[RANK];
+        #ifdef HOPS_USE_FFTW3
+            MHO_MultidimensionalFastFourierTransformFFTW<XFloatType,1>* fTransformCalculator[RANK];
+        #else
+            MHO_FastFourierTransform<XFloatType>* fTransformCalculator[RANK];
+        #endif
         MHO_NDArrayWrapper<std::complex<XFloatType>, 1>* fWorkspaceWrapper[RANK];
 
 

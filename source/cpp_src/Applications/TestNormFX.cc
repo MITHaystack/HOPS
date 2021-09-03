@@ -1176,7 +1176,7 @@ int main(int argc, char** argv)
     //now lets run some simple timing tests:
     MHO_Timer timer;
     timer.MeasureWallclockTime();
-    std::size_t n_times = 2;
+    std::size_t n_times = 20;
 
 
     timer.Start();
@@ -1186,6 +1186,8 @@ int main(int argc, char** argv)
         {
             for (int ap=0; ap<naps; ap++)
             {
+                //nfxOperator.cpp_norm_fx(&pass, &param, &status, fr, ap);
+                //std::cout<<"fr,ap = "<<fr<<", "<<ap<<std::endl;
                 norm_fx(&pass, &param, &status, fr, ap);
             }
         }
