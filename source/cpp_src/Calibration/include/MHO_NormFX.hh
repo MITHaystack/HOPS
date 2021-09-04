@@ -27,6 +27,13 @@
 #include "MHO_MultidimensionalFastFourierTransform.hh"
 #include "MHO_MultidimensionalPaddedFastFourierTransform.hh"
 
+#ifdef HOPS_USE_FFTW3
+    #include "MHO_MultidimensionalFastFourierTransformFFTW.hh"
+#else
+    #include "MHO_FastFourierTransform.hh"
+#endif
+
+
 
 
 
@@ -55,7 +62,11 @@ class MHO_NormFX: public MHO_BinaryNDArrayOperator<
         std::size_t fOutDims[CH_VIS_NDIM];
 
         //only needed for the old routine
-        MHO_MultidimensionalFastFourierTransform<double,1> fFFTEngine;
+        #ifdef HOPS_USE_FFTW3
+            MHO_MultidimensionalFastFourierTransformFFTW<double,1> fFFTEngine;
+        #else
+            MHO_MultidimensionalFastFourierTransform<double,1> fFFTEngine;
+        #endif
         MHO_NDArrayWrapper< std::complex<double>, 1 > xp_spec;
         MHO_NDArrayWrapper< std::complex<double>, 1 > S;
         MHO_NDArrayWrapper< std::complex<double>, 1 > xlag;
