@@ -97,6 +97,17 @@ MHO_NormFX::Initialize()
         status = fNormBroadcaster.Initialize();
         if(!status){msg_error("operators", "Could not initialize MHO_NormFX." << eom); return false;}
 
+        //double it
+        nlags *= 2;
+        xp_spec.Resize(4*nlags);
+        S.Resize(4*nlags);
+        xlag.Resize(4*nlags);
+
+        fFFTEngine.SetInput(&S);
+        fFFTEngine.SetOutput(&xlag);
+        fFFTEngine.SetForward();
+        fFFTEngine.Initialize();
+
         fInitialized = true;
     }
 
@@ -171,7 +182,6 @@ void MHO_NormFX::run_old_normfx_core()
     std::size_t naps = fInDims[CH_TIME_AXIS];
     std::size_t nlags = fInDims[CH_FREQ_AXIS];
 
-
     double polcof = 1.0;
     double usbfrac = 0.0;
     double lsbfrac = 1.0;
@@ -180,17 +190,6 @@ void MHO_NormFX::run_old_normfx_core()
     //double it
     nlags *= 2;
     std::complex<double> z;
-
-    xp_spec.Resize(4*nlags);
-    S.Resize(4*nlags);
-    xlag.Resize(4*nlags);
-
-    fFFTEngine.SetInput(&S);
-    fFFTEngine.SetOutput(&xlag);
-    fFFTEngine.SetForward();
-    fFFTEngine.Initialize();
-
-    //msg_debug("operators", "Using old norm_fx basic code."<<eom);
 
     for(std::size_t fr=0; fr<nchan; fr++)
     {
