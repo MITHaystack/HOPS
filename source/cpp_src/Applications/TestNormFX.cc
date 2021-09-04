@@ -951,9 +951,35 @@ int main(int argc, char** argv)
     //the corel file information for this baseline
     MHO_MK4CorelInterface corelInterface;
     struct mk4_corel* pcdata = nullptr;
-    ch_baseline_data_type* ch_bl_data = nullptr;
-    ch_baseline_weight_type* ch_bl_wdata = nullptr;
-    bool corel_ok = GetCorel(dirInterface, corelInterface, baseline, pcdata, ch_bl_data, ch_bl_wdata);
+    ch_baseline_data_type* ch_bl_data_prelim = nullptr;
+    ch_baseline_weight_type* ch_bl_wdata_prelim = nullptr;
+    bool corel_ok = GetCorel(dirInterface, corelInterface, baseline, pcdata, ch_bl_data_prelim, ch_bl_wdata_prelim);
+
+    //for the time being...we only want to x-form a single pol-product, so strip down the full array
+    ch_baseline_data_type* ch_bl_data = ch_bl_data_prelim->Clone();
+    ch_baseline_weight_type* ch_bl_wdata = ch_bl_wdata_prelim->Clone();
+
+    std::size_t tmp_dims[CH_VIS_NDIM];
+    ch_bl_data_prelim->GetDimensions(tmp_dims);
+    tmp_dims[CH_POLPROD_AXIS] = 1;
+    ch_bl_data->Resize(tmp_dims);
+    ch_bl_wdata->Resize(tmp_dims);
+
+    //select only first pol product
+    for(std::size_t p=0; p<1; p++)
+    {
+        for(std::size_t i=0; i<tmp_dims[CH_CHANNEL_AXIS]; i++)
+        {
+            for(std::size_t j=0; j<tmp_dims[CH_TIME_AXIS]; j++)
+            {
+                for(std::size_t k=0; k<tmp_dims[CH_FREQ_AXIS]; k++)
+                {
+                    (*ch_bl_data)(0,i,j,k) = (*ch_bl_data_prelim)(p,i,j,k);
+                    (*ch_bl_wdata)(0,i,j,k) = (*ch_bl_wdata_prelim)(p,i,j,k);
+                }
+            }
+        }
+    }
 
     //output array
     ch_baseline_sbd_type* ch_sbd_data = new ch_baseline_sbd_type();
