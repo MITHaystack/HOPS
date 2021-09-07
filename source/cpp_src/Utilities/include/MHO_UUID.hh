@@ -72,6 +72,10 @@ class MHO_UUID
                                                 &(rhs[MHO_UUID_LENGTH-1]));
         }
 
+        /**
+        * Convert the UUID byte array into a string
+        * @return A std::string containing the hexadecimal digits of the UUID.
+        */
         std::string as_string() const
         {
             std::stringstream ss;

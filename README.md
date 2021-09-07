@@ -80,4 +80,3 @@ Paste that in your shell and run it. \
 
 An equivalent build process using the GNU autotools is also available
 using the script autogen.sh which accepts a --help argument for usage.
-

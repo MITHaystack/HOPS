@@ -27,12 +27,14 @@ mhr=$MHO_REGRESSION_DATA/reference
 mff=$MHO_REGRESSION_DATA/ff_testdata
 mae=$MHO_REGRESSION_DATA/ae_testdata
 
+src=$name
+
 ### FIXME 3756 needs to be captured
 ### and need to finish import of sources
 
 # should be the same list as in bootstrap/legacy_tar.sh
 case $name in
-    src=$name
+
     # various sources not likely to be duplicated in HOPS4
     corr)       parent=$mhx     ; odr=$src          ;;
     mk4m)       parent=$mhx     ; odr=$src          ;;
@@ -60,8 +62,8 @@ case $name in
     misc)       parent=$mff     ; odr=$src          ;;
     2491)       parent=$mff     ; odr=$src          ;;
     2611)       parent=$mff     ; odr=$src          ;;
-    2836)       parent=$mff     ; odr=$src          ;;
-    2843)       parent=$mff     ; odr=$src          ;;
+    2836)       parent=$mff     ; odr=$src/scan001  ;;
+    2843)       parent=$mff     ; odr=$src/321-1701_0552+398  ;;
     2849)       parent=$mff     ; odr=$src          ;;
     2912)       parent=$mff     ; odr=$src          ;;
     3064)       parent=$mff     ; odr=$src          ;;
