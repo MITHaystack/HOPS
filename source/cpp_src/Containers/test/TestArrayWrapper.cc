@@ -96,14 +96,13 @@ int main(int /*argc*/, char** /*argv*/)
     auto sit_end = test3.stride_end(3);
 
     std::cout<<"test strided access"<<std::endl;
-    const std::size_t* idx_ptr;
     do
     {
-        idx_ptr  = sit.GetIndices();
+        std::array<std::size_t, 2> idx_ptr  = sit.GetIndexObject();
         std::cout<<"index iterator = ("<<idx_ptr[0]<<", "<<idx_ptr[1]<<")"<<std::endl;
         sit++;
-    } 
-    while(sit != sit_end && sit.IsValid() ); 
+    }
+    while(sit != sit_end && sit.IsValid() );
 
     std::size_t dim4[5] = {3,4,5,6,7};
     MHO_NDArrayWrapper<int, 5> test4(dim4);

@@ -30,7 +30,7 @@
 
 #include "MHO_Visibilities.hh"
 #include "MHO_ChannelizedVisibilities.hh"
-#include "MHO_ChannelizedRotationFunctor.hh"
+//#include "MHO_ChannelizedRotationFunctor.hh"
 
 
 

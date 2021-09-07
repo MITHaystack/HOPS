@@ -18,6 +18,7 @@
 #include "MHO_BinaryNDArrayOperator.hh"
 
 #include "MHO_DirectoryInterface.hh"
+#include "MHO_Timer.hh"
 
 #include "MHO_NormFX.hh"
 
@@ -62,7 +63,7 @@ extern "C"
     int
     set_defaults();
 
-    int 
+    int
     organize_data (
     struct mk4_corel *cdata,
     struct scan_struct *ovex,
@@ -147,14 +148,14 @@ class MHO_NormFXPrelim: public MHO_BinaryNDArrayOperator<
         };
 
         void DetermineDatumSideband(struct type_pass* pass, struct type_param* param,
-                                    struct data_corel *datum, 
+                                    struct data_corel *datum,
                                     int& ips, int& ip, int& pol, int& pols,
-                                    int& datum_lflag, 
+                                    int& datum_lflag,
                                     int& datum_uflag,
                                     int& usb_present,
                                     int& lsb_present,
                                     int* usb_bypol,
-                                    int* lsb_bypol, 
+                                    int* lsb_bypol,
                                     int* lastpol)
         {
             if (pass->npols == 1)
@@ -201,12 +202,12 @@ class MHO_NormFXPrelim: public MHO_BinaryNDArrayOperator<
         };
 
 
-        double SelectPolData(struct data_corel* datum, 
-                             double dpar, 
-                             int npols, 
-                             int sb, 
-                             int pol, 
-                             int station_pol_mode, 
+        double SelectPolData(struct data_corel* datum,
+                             double dpar,
+                             int npols,
+                             int sb,
+                             int pol,
+                             int station_pol_mode,
                              struct type_120*& t120)
         {
             // Pluck out the requested polarization
@@ -286,7 +287,7 @@ class MHO_NormFXPrelim: public MHO_BinaryNDArrayOperator<
             return 0.0;
         }
 
-        //the closest thing we can make in C++ that executes the 
+        //the closest thing we can make in C++ that executes the
         //same functionality as norm_fx --- preserve this for future testing
         void cpp_norm_fx(struct type_pass *pass,
                          struct type_param* param,
@@ -348,10 +349,10 @@ class MHO_NormFXPrelim: public MHO_BinaryNDArrayOperator<
             int station_pol_mode = DetermineStationPolMode(pass);
 
             //this function is also a monstrosity, needs to be broken-up or simplified
-            DetermineDatumSideband(pass, param, datum, ips, ip, pol, pols, datum_lflag, 
+            DetermineDatumSideband(pass, param, datum, ips, ip, pol, pols, datum_lflag,
                                         datum_uflag, usb_present, lsb_present,
                                         usb_bypol, lsb_bypol, lastpol);
-        
+
 
             //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             //The following monstrosity is looping over both side bands and all pol-products
@@ -950,9 +951,35 @@ int main(int argc, char** argv)
     //the corel file information for this baseline
     MHO_MK4CorelInterface corelInterface;
     struct mk4_corel* pcdata = nullptr;
-    ch_baseline_data_type* ch_bl_data = nullptr;
-    ch_baseline_weight_type* ch_bl_wdata = nullptr;
-    bool corel_ok = GetCorel(dirInterface, corelInterface, baseline, pcdata, ch_bl_data, ch_bl_wdata);
+    ch_baseline_data_type* ch_bl_data_prelim = nullptr;
+    ch_baseline_weight_type* ch_bl_wdata_prelim = nullptr;
+    bool corel_ok = GetCorel(dirInterface, corelInterface, baseline, pcdata, ch_bl_data_prelim, ch_bl_wdata_prelim);
+
+    //for the time being...we only want to x-form a single pol-product, so strip down the full array
+    ch_baseline_data_type* ch_bl_data = ch_bl_data_prelim->Clone();
+    ch_baseline_weight_type* ch_bl_wdata = ch_bl_wdata_prelim->Clone();
+
+    std::size_t tmp_dims[CH_VIS_NDIM];
+    ch_bl_data_prelim->GetDimensions(tmp_dims);
+    tmp_dims[CH_POLPROD_AXIS] = 1;
+    ch_bl_data->Resize(tmp_dims);
+    ch_bl_wdata->Resize(tmp_dims);
+
+    //select only first pol product
+    for(std::size_t p=0; p<1; p++)
+    {
+        for(std::size_t i=0; i<tmp_dims[CH_CHANNEL_AXIS]; i++)
+        {
+            for(std::size_t j=0; j<tmp_dims[CH_TIME_AXIS]; j++)
+            {
+                for(std::size_t k=0; k<tmp_dims[CH_FREQ_AXIS]; k++)
+                {
+                    (*ch_bl_data)(0,i,j,k) = (*ch_bl_data_prelim)(p,i,j,k);
+                    (*ch_bl_wdata)(0,i,j,k) = (*ch_bl_wdata_prelim)(p,i,j,k);
+                }
+            }
+        }
+    }
 
     //output array
     ch_baseline_sbd_type* ch_sbd_data = new ch_baseline_sbd_type();
@@ -979,6 +1006,8 @@ int main(int argc, char** argv)
     bool sta_ok = GetStationData(dirInterface, refInterface, remInterface, baseline, ref_sdata, rem_sdata, ref_stdata, rem_stdata);
     sdata[0] = *ref_sdata;
     sdata[1] = *rem_sdata;
+
+
 
 ////////////////////////////////////////////////////////////////////////////////
 //now we need to set up the param, pass, and other data org structs
@@ -1041,9 +1070,9 @@ int main(int argc, char** argv)
     }
     sbptr = sbarray;
 
-    // int nf = pass_ptr->nfreq;  
-    int nf =  1; //pass_ptr->nfreq;
-    int naps = 1; //pass_ptr->num_ap;
+    // int nf = pass_ptr->nfreq;
+    int nf =  pass_ptr->nfreq;
+    int naps = pass_ptr->num_ap;
     for (int fr=0; fr<nf; fr++)
     {
         for (int ap=0; ap<naps; ap++)
@@ -1061,7 +1090,7 @@ int main(int argc, char** argv)
             }
         }
     }
-    
+
     for (int fr=0; fr<nf; fr++)
     {
         for (int ap=0; ap<naps; ap++)
@@ -1069,7 +1098,7 @@ int main(int argc, char** argv)
             norm_fx(&pass, &param, &status, fr, ap);
         }
     }
-    
+
     std::vector< std::complex<double> > testVector1;
     for (int fr=0; fr<nf; fr++)
     {
@@ -1117,7 +1146,7 @@ int main(int argc, char** argv)
         }
     }
 
-
+    int ret_val = 0;
 
     //re-run this exercise via the pure c++ function
     MHO_NormFX nfxOperator2;
@@ -1143,7 +1172,8 @@ int main(int argc, char** argv)
         }
     }
 
-    int ret_val = 0;
+
+
     if(testVector1.size() == testVector2.size() )
     {
         double abs_diff = 0.0;
@@ -1163,11 +1193,46 @@ int main(int argc, char** argv)
 
         ret_val = 0;
     }
-    else 
+    else
     {
         ret_val = 1;
     }
-    
+
+
+    //now lets run some simple timing tests:
+    MHO_Timer timer;
+    timer.MeasureWallclockTime();
+    std::size_t n_times = 2;
+
+
+    timer.Start();
+    for(std::size_t instance=0; instance<n_times; instance++)
+    {
+        for (int fr=0; fr<nf; fr++)
+        {
+            for (int ap=0; ap<naps; ap++)
+            {
+                //nfxOperator.cpp_norm_fx(&pass, &param, &status, fr, ap);
+                //std::cout<<"fr,ap = "<<fr<<", "<<ap<<std::endl;
+                norm_fx(&pass, &param, &status, fr, ap);
+            }
+        }
+    }
+    timer.Stop();
+    double original_time = timer.GetDurationAsDouble();
+    std::cout<<"original norm_fx time per execution = "<<original_time/(double)n_times<<std::endl;
+
+    timer.Start();
+    for(std::size_t instance=0; instance<n_times; instance++)
+    {
+        nfxOperator2.ExecuteOperation();
+    }
+    timer.Stop();
+    double cpp_time = timer.GetDurationAsDouble();
+
+
+    std::cout<<"new norm_fx time per execution = "<<cpp_time/(double)n_times<<std::endl;
+
 
     return ret_val;
 }
