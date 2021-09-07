@@ -1,4 +1,4 @@
-General plan for managing regression test data
+# General plan for managing regression test data
 
 This directory exists to run system-level (rather than unit/coverage tests)
 on potentially large blobs of data.  Generally speaking the data is outside
@@ -6,7 +6,7 @@ of the git repository and scripts contained within this area can pull the
 required data in, or generate a non-fatal test result if not available.
 However, many unit tests may also require substantial blobs of data as well.
 
-The general organization is as follows:
+## The general organization is as follows:
     bootstrap       scripts for the transition from HOPS3 (svn) to HOPS4 (git)
     switches        directory of scripts to configure for tests
     tarballs        a directory with source data tarballs
@@ -101,7 +101,7 @@ may be used to mirror what is in the GIT repo with a target data directory.
 (That is, the target contains all the scripts of the GIT repo together with
 whatever tarballs and/or data that is desired.)
 
-##Test scripts
+## Test scripts
 
 The script `switches/template.sh` is a template to copy and then modify so
 that all of the test scripts have a common behavior.  See the comments in
@@ -120,7 +120,7 @@ after creating a new script, you need to also set the `$tarballs` and
 `$executable` variables and (obviously) give the test something to check.
 There are some 'FIXME' tokens left to remind you.
 
-##Access to built objects
+## Access to built objects
 
 Historically HOPS3 followed a `make all install check` order of operations.
 This assumes that the install area is not otherwise used (which in the
@@ -140,7 +140,7 @@ to `$MHO_REGRESSION_DATA/switches/lookup.sh` but can be overridden by
 setting `$MHO_REGRESSION_LOOKUP`.  The current mechanism requires that
 `$top_abs_builddir` be set if you need to use this machinery.
 
-##Related things
+## Related things
 
 In addition to the regression data, the tarballs area includes a legacy
 subdirectory which includes tarballs of various still-older bits of HOPS
