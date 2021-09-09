@@ -28,57 +28,57 @@ class MHO_Timer
         */
         void SetName(std::string name){fName = name;};
 
-        /* Get the timer name
+        /** Get the timer name
         * @param None
         * @return fName string timer name
         */
         std::string GetName() const {return fName;};
 
         //set the clock type used
-        /* Set the timer's clock ID to that of the linux system wide realtime clock
+        /** Set the timer's clock ID to that of the linux system wide realtime clock
         * @param None
         * @returns None
         */
         void MeasureWallclockTime(); //CLOCK_REALTIME
 
-        /* Get the ID for the process clock
+        /** Get the ID for the process clock
         * @param None
         * @returns None
         */
         void MeasureProcessTime(); //CLOCK_PROCESS_CPUTIME_ID
 
-        /* Get the ID for the thread clock which indicates the time used by all threads in the process
+        /** Get the ID for the thread clock which indicates the time used by all threads in the process
         * @param None
         * @returns None
         */
         void MeasureThreadTime(); //CLOCK_THREAD_CPUTIME_ID
 
-        /* Store the current linux system time as the start time of a timer in a timespec struct
+        /** Store the current linux system time as the start time of a timer in a timespec struct
         * @param None
         * @returns None
         */
         void Start();
 
-        /* Store the current linux system time as the stop time of a timer in a timespec struct
+        /** Store the current linux system time as the stop time of a timer in a timespec struct
         * @param None
         * @returns None
         */
         void Stop();
 
-        /* Call GetTimeDifference and return the result as a timespec struct
+        /** Call GetTimeDifference and return the result as a timespec struct
         * @param None
         * @reurns ret_val timespec which is a struct containing the start and stop time in seconds and nanoseconds as two seperate values
         */
         timespec GetDurationAsTimeSpec() const;
 
-        /* Call GetTimeDifference and return the result as a double
+        /** Call GetTimeDifference and return the result as a double
         * @param None
         * @reurns ret_val double which contains the start and stop time in seconds 
         */
         double GetDurationAsDouble() const;
 
     protected:
-        /* Calculate total compute time spent on a process or thread and store the result in a timespec struct 
+        /** Calculate total compute time spent on a process or thread and store the result in a timespec struct 
         * @param start timespec which is the start time for a process or thread
         * @param stop timespec which is the start time for a process or thread
         * @returns ret_val timespec which contains the time spent on a given process or thread in seconds and nanoseconds
