@@ -22,7 +22,16 @@ class MHO_Timer
         MHO_Timer(std::string name);
         virtual ~MHO_Timer();
 
+        /* Set the timer name
+        * @param name string
+        * @return None
+        */
         void SetName(std::string name){fName = name;};
+
+        /* Get the timer name
+        * @param None
+        * @return fName string timer name
+        */
         std::string GetName() const {return fName;};
 
         //set the clock type used
