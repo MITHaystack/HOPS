@@ -67,13 +67,13 @@ class MHO_Timer
 
         /** Call GetTimeDifference and return the result as a timespec struct
         * @param None
-        * @reurns ret_val timespec which is a struct containing the start and stop time in seconds and nanoseconds as two seperate values
+        * @returns ret_val timespec which is a struct containing the start and stop time in seconds and nanoseconds as two seperate values
         */
         timespec GetDurationAsTimeSpec() const;
 
         /** Call GetTimeDifference and return the result as a double
         * @param None
-        * @reurns ret_val double which contains the start and stop time in seconds 
+        * @returns ret_val double which contains the start and stop time in seconds 
         */
         double GetDurationAsDouble() const;
 
