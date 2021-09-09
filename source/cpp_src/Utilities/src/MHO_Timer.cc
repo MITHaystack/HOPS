@@ -30,12 +30,12 @@ void MHO_Timer::MeasureThreadTime()
 
 void MHO_Timer::Start()
 {
-    clock_gettime(CLOCK_REALTIME, &fStart);
+    clock_gettime(fClockID, &fStart);
 }
 
 void MHO_Timer::Stop()
 {
-	clock_gettime(CLOCK_REALTIME, &fStop);
+	clock_gettime(fClockID, &fStop);
 }
 
 
