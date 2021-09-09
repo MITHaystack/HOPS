@@ -26,36 +26,42 @@ class MHO_Timer
         std::string GetName() const {return fName;};
 
         //set the clock type used
-        /* Get the ID for the linux system wide realtime clock
+        /* Set the timer's clock ID to that of the linux system wide realtime clock
         * @param None
         * @returns None
         */
         void MeasureWallclockTime(); //CLOCK_REALTIME
+
         /* Get the ID for the process clock
         * @param None
         * @returns None
         */
         void MeasureProcessTime(); //CLOCK_PROCESS_CPUTIME_ID
+
         /* Get the ID for the thread clock which indicates the time used by all threads in the process
         * @param None
         * @returns None
         */
         void MeasureThreadTime(); //CLOCK_THREAD_CPUTIME_ID
+
         /* Store the current linux system time as the start time of a timer in a timespec struct
         * @param None
         * @returns None
         */
         void Start();
+
         /* Store the current linux system time as the stop time of a timer in a timespec struct
         * @param None
         * @returns None
         */
         void Stop();
+
         /* Call GetTimeDifference and return the result as a timespec struct
         * @param None
         * @reurns ret_val timespec which is a struct containing the start and stop time in seconds and nanoseconds as two seperate values
         */
         timespec GetDurationAsTimeSpec() const;
+
         /* Call GetTimeDifference and return the result as a double
         * @param None
         * @reurns ret_val double which contains the start and stop time in seconds 
