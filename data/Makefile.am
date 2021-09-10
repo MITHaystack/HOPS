@@ -18,22 +18,24 @@ TESTS_ENVIRONMENT = \
 	MHO_REGRESSION_TIDY=true \
 	MHO_REGRESSION_FAKE=.
 
-TESTS = template.sh chk_template.sh chk_unpack.sh chk_lookup.sh
+TESTS = template.sh chk_template.sh chk_unpack.sh chk_lookup.sh \
+	import_from_hops3.sh
 
 check_PROGRAMS = template.sh chk_template.sh chk_unpack.sh
 
+# import from HOPS3 is managed by scripts in bootstrap/import_scripts
+
 # this is just to list what is here
 nodist_check_SCRIPTS = \
-	bootstrap/import_check.sh \
-	bootstrap/import_3to4.sh \
 	bootstrap/legacy_tar.sh \
 	bootstrap/legacy_nuke.sh \
-	bootstrap/req_report.sh 
+	bootstrap/req_report.sh
 dist_check_SCRIPTS = \
 	bootstrap/legacy_update.sh \
 	bootstrap/legacy_unpack.sh \
 	switches/template.sh \
-	switches/lookup.sh
+	switches/lookup.sh \
+	import_from_hops3.sh
 
 template.sh: $(srcdir)/switches/template.sh $(srcdir)/Makefile.am
 	sed -e '/Error:/s/exit.1/echo disabled/' $< > $@ && \
