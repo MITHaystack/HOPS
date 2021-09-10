@@ -159,4 +159,16 @@ of the HOPS4 project.
 Also in the directory are tarballs of specific tools for reference.  See
 the `readme.txt` files in `tarballs/LGPL` and `tarballs/nonLGPL` for more info.
 
+## Transition from HOPS3 to HOPS4
+
+Since HOPS3 is not yet considered frozen, it is expected that there will
+continue to be changes to HOPS3 that must be imported to HOPS4.  Scripts
+to manage the transition are located in bootstrap/import\_scripts (and
+are placed in bootstrap as they will no longer be needed at some point).
+
+A top-level script import\_from\_hops3.sh may be used to import changes
+from HOPS3 into HOPS4.  If you go the other way, there is currently no
+support.  By default it merely reports if there are differences and exits
+with a failure if there are.
+
 eof
