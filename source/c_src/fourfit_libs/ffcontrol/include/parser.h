@@ -144,7 +144,10 @@ struct token_struct
 #define VBP_FIT_           116
 #define VBP_COEFFS_        117
 #define VBP_FILE_          118
-#define MAX_TOKENS         120   /* Increase to equal or exceed # tokens */
+#define AVXPZOOM_          119
+#define AVXPLOPT_          120
+                                /* add new tokens at the bottom of the list */
+#define MAX_TOKENS         121  /* increase to equal or exceed # tokens */
 
 
         /* Definitions of token categories */

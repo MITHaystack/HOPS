@@ -3,6 +3,11 @@
 #check if we were passed the flag --checksum-only, if so, we only need to
 #compare the files, and return 0 (1) if they are the same (different)
 
+# allow this to be sourced from ./import_hops.sh or executed standalone
+part='import_dfio.sh'
+me=`basename $0 2>&-` || me=sh
+[ "$me" = import_hops.sh ] && return=exit || return=return
+
 CHKSUM=0
 if [ "$1" == "--checksum-only" ]; then
 	CHKSUM=1
@@ -10,13 +15,14 @@ fi
 
 ret_val=0
 
-
 if [ -z ${HOPS3_SRC_DIR} ] && [ -z ${HOPS4_SRC_DIR} ]; then
     echo "Need to set HOPS3_SRC_DIR and HOPS4_SRC_DIR"
-else  
+    ret_val=1
+else
+    [ -z "$bsi" ] && bsi=${HOPS4_SRC_DIR}/data/bootstrap/import_scripts
 
-    #list of header files we want to import from hops
-    declare -a header_list=(
+    #list of header files for dfio
+    declare -a source_list=(
         "bytflp.h"
         "type_000.h"
         "type_100.h"
@@ -55,33 +61,15 @@ else
         "mk4_dfio.h"
     )
 
-    header_src_dir="${HOPS3_SRC_DIR}/include"
-    header_dest_dir="${HOPS4_SRC_DIR}/source/c_src/dfio/include"
-
-    for i in "${header_list[@]}"
-    do
-        if [ -f "${header_src_dir}/${i}" ]
-        then
-            if [ "${CHKSUM}" -eq "0" ]
-            then
-                cp "${header_src_dir}/${i}" "${header_dest_dir}/${i}"
-            else
-                SOURCE_HASH=$( md5sum "${header_src_dir}/${i}" | awk '{print $1}' | tr -d '\n')
-                SOURCE_HASH="${SOURCE_HASH%% *}" 
-                DEST_HASH=$( md5sum "${header_dest_dir}/${i}" | awk '{print $1}' | tr -d '\n')
-                DEST_HASH="${DEST_HASH%% *}" 
-                if [ "${SOURCE_HASH}" != "${DEST_HASH}" ]
-                then
-                    ret_val=1
-                    echo "${header_src_dir}/${i}" " has changed and longer matches " "${header_dest_dir}/${i}"
-                fi
-            fi
-        fi
-    done
+    src_dir="${HOPS3_SRC_DIR}/include"
+    dest_dir="${HOPS4_SRC_DIR}/source/c_src/dfio/include"
+    source $bsi/compare_src_dest.sh
+    ret_val=$(($ret_val + $?))
 
     #The file "alloc_t120_array.c" has not been included 
     #as it doesn't appear to be used anywhere
 
+    # list of sources for dfio
     declare -a source_list=(
         "addr_100.c"
         "addr_101.c"
@@ -191,46 +179,24 @@ else
         "write_record.c"
     )
 
-    source_src_dir="${HOPS3_SRC_DIR}/sub/dfio"
-    source_dest_dir="${HOPS4_SRC_DIR}/source/c_src/dfio/src"
+    src_dir="${HOPS3_SRC_DIR}/sub/dfio"
+    dest_dir="${HOPS4_SRC_DIR}/source/c_src/dfio/src"
+    source $bsi/compare_src_dest.sh
+    ret_val=$(($ret_val + $?))
 
-    for i in "${source_list[@]}"
-    do
-        if [ -f "${source_src_dir}/${i}" ]
-        then
-            if [ "${CHKSUM}" -eq "0" ]
-            then
-                cp "${source_src_dir}/${i}" "${source_dest_dir}/${i}"
-            else
-                SOURCE_HASH=$( md5sum "${source_src_dir}/${i}" | awk '{print $1}' | tr -d '\n')
-                SOURCE_HASH="${SOURCE_HASH%% *}" 
-                DEST_HASH=$( md5sum "${source_dest_dir}/${i}" | awk '{print $1}' | tr -d '\n')
-                DEST_HASH="${DEST_HASH%% *}" 
-                if [ "${SOURCE_HASH}" != "${DEST_HASH}" ]
-                then
-                    ret_val=1
-                    echo "${source_src_dir}/${i}" " has changed and longer matches " "${source_dest_dir}/${i}"
-                fi
-            fi
-        fi
-    done
-
-    #copy bytflip.h
-    if [ "${CHKSUM}" -eq "0" ]
-    then
-        cp "${source_src_dir}/bytflp.h" "${header_dest_dir}/bytflp.h"
-    else
-        SOURCE_HASH=$( md5sum "${source_src_dir}/bytflp.h" | awk '{print $1}' | tr -d '\n')
-        SOURCE_HASH="${SOURCE_HASH%% *}" 
-        DEST_HASH=$( md5sum "${header_dest_dir}/bytflp.h" | awk '{print $1}' | tr -d '\n')
-        DEST_HASH="${DEST_HASH%% *}" 
-        if [ "${SOURCE_HASH}" != "${DEST_HASH}" ]
-        then
-            ret_val=1
-            echo "${source_src_dir}/bytflp.h" " has changed and longer matches " "${header_dest_dir}/bytflp.h"
-        fi
-    fi
+    # include/type_comp.h missing
+    #move  bytflip.h from source to header area ?
+    #   cp "${source_src_dir}/bytflp.h" "${header_dest_dir}/bytflp.h"
+    declare -a source_list=( "bytflp.h" )
+    
+    src_dir="${HOPS3_SRC_DIR}/sub/dfio"
+    dest_dir="${HOPS4_SRC_DIR}/source/c_src/dfio/include"
+    source $bsi/compare_src_dest.sh
+    ret_val=$(($ret_val + $?))
 
 fi
 
-return ${ret_val}
+$return ${ret_val}
+#
+# eof
+#

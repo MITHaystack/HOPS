@@ -13,8 +13,9 @@
 #include "control.h"
 #include "mk4_sizes.h"
 
+#include "ff_misc_if.h"
+
 /* eliminate some messages */
-extern void   msg (char *, int, ...);
 extern int    nullify_cblock (struct c_block *cb_ptr);
 static int append_cblocks (struct c_block **cb_start, struct c_block **cb_end, int num);
 static void parsing_error (int state_num, int ntok);
@@ -68,7 +69,6 @@ int parser (void)
                                                     of a complex IF condition */
                   *cb_ptr,
                   *cb_tail;                 /* points to last cblock in chain */
-   int fcode (char, char *);
 
    if (master_codes[0] == '\0')
        strncpy (master_codes, FCHARS, sizeof (master_codes));
@@ -601,6 +601,56 @@ int parser (void)
                        else
                            cb_ptr -> passband[nv] = float_values[tval];
                        }
+
+                   else if (toknum == AVXPZOOM_)
+                       {
+                       if (nv > 1)
+                           {
+                           msg ("Too many avxpzoom numbers",2);
+                           return (-1);
+                           }
+                       if (tokens[ntok].category == INTEGER)
+                           cb_ptr -> avxpzoom[nv] = tval;
+                       else
+                           cb_ptr -> avxpzoom[nv] = float_values[tval];
+                       /* check for legal values */
+                       if (nv == 1 && (cb_ptr->avxpzoom[0] < 0.0 ||
+                           cb_ptr->avxpzoom[0] > 1.0 ||
+                           cb_ptr->avxpzoom[1] > 1.0))
+                           {
+                           msg ("illegal avxpzoom paramters", 2);
+                           return (-1);
+                           }
+                       }
+
+                   else if (toknum == AVXPLOPT_)
+                       {
+                       if (nv > 1)
+                           {
+                           msg ("Too many avxplopt numbers",2);
+                           return (-1);
+                           }
+                       if (tokens[ntok].category == INTEGER)
+                           {
+                           cb_ptr -> avxplopt[nv] = tval;
+                           }
+                       else
+                           {
+                           msg ("avxplopt numbers must be integers",2);
+                           return (-1);
+                           }
+                       /* check for legal values */
+                       if (nv == 1 && (!(cb_ptr->avxplopt[nv] == -7 ||
+                           cb_ptr->avxplopt[nv] == -1 ||
+                           cb_ptr->avxplopt[nv] == 0 ||
+                           cb_ptr->avxplopt[nv] == 1 ||
+                           cb_ptr->avxplopt[nv] == 7)))
+                           {
+                           msg ("illegal avxplopt values",2);
+                           return (-1);
+                           }
+                       }
+
 
 // ##DELAY_OFFS##  for next clause
                    else if (toknum == DELAY_OFFS_) // is this a channel delay offset?

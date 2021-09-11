@@ -61,6 +61,8 @@ struct type_param
     short       use_sample_cnts;        /* iff true, use sample counts to normalize */
     short       dc_block;               // iff true, zero out DC subchannel in spectrum
     double      passband[2];            /* passband for spectral filtering (MHz) */
+    double      avxpzoom[2];            /* ave XP zoom options for passband */
+    int         avxplopt[2];            /* some plot options on ave XP plot */
     int         gen_cf_record;          /* whether to generate cf record */
     int         nnotches;               /* alternative to passband */
     double      notches[MAXNOTCH][2];   /* alternative to passband */
@@ -194,6 +196,13 @@ struct type_status
     int         sb_indx;                // index of max when searching over sb delay
     int         mb_indx;                // index of max when searching over mb delay
     int         dr_indx;                // index of max when searching over delay rate
+    double      xpnotchpband[2*MAXNOTCH];   // xp sites of notches or passband
+    double      sb_bw_fracs[MAXFREQ+2][2];  // bandwidth reduction factors (0..1) by sb
+    double      sb_bw_origs[MAXFREQ+2][2];  // original values accumulated
+    double      sb_bw_apcnt[MAXFREQ+2][2];  // count of ap/fr/sb involved
+    double      tot_sb_bw_aperr;        // accumulated error in total_ap_frac
+    int         apbyfreq[MAXFREQ];      // counter of APs contributing by freq
+    int         napbyfreq;              // number of freqs actually having usable data
     };
 
 #endif

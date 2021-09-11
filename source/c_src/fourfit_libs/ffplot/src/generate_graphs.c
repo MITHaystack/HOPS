@@ -15,6 +15,8 @@
 #include "ovex.h"
 #include "cpgplot.h"
 
+extern void msg (char *, int, ...);
+
 int generate_graphs (struct scan_struct *root,
                      struct type_pass *pass,
                      char *fringename,
@@ -26,9 +28,9 @@ int generate_graphs (struct scan_struct *root,
     extern struct type_param param;
     extern struct type_status status;
     extern struct type_meta meta;
-    int i, j, maxj;
+    int i, j, maxj, ii;
     int start_plot, limit_plot;
-    char buf[2560], device[256];
+    char buf[2560], device[256], pbfr[2][4];
     double drate, mbd, sbd;
     struct tm *gmtime();
     static float xr[2*MAXMAX], yr[2*MAXMAX], zr[2*MAXMAX];
@@ -37,12 +39,13 @@ int generate_graphs (struct scan_struct *root,
     double max_dr_win, max_sb_win, max_mb_win;
     float max_amp;
     double plotstart, plotdur, plotend, totdur, majinc, ticksize;
-    float plot_time, bandwidth, xstart, xend;
+    float plot_time, bandwidth, xstart, xend, xszm, xezm;
     int nsbd, ncp, np, nplots;
     int totpts, wrap;
     int nlsb, nusb, izero;
     double vwgt;
     int vclr;
+    int notchpass, nnp, nn;
                                         /* Build the proper device string for */
                                         /* vertically oriented color postscript */
     sprintf (device, "%s/VCPS", ps_file);
@@ -54,6 +57,21 @@ int generate_graphs (struct scan_struct *root,
         }
                                         /* Redefine pgplot green to be a bit darker */
     cpgscr (3, 0.0, 0.6, 0.0);
+
+                                        /* Create color for passband/notches warning */
+    cpgscr (8, 0.8, 0.4, 0.0);          // Cf. setdarkorange of generate_text.c
+    notchpass = (param.nnotches > 0 ||
+        param.passband[0] != 0.0 || param.passband[1] != 1.0E6) ? 1 : 0;
+
+    if (param.avxplopt[1] == 7 || param.avxplopt[1] == -7)
+        {   /* overkill, but tastes vary  */
+        extern char *getenv(const char *name);
+        double rr, gg, bb;
+        char *rgbclr = getenv("HOPS_FF_PHASE_CLR"), rgbdfl[]="0.93,0.89,0.99";
+        if (!rgbclr) rgbclr = rgbdfl;
+        (void)sscanf(rgbclr, "%lg,%lg,%lg", &rr, &gg, &bb);
+        cpgscr (7, rr, gg, bb);
+        }
                                         /* Make pgplot compute a bounding */
                                         /* box encompassing the whole page */
     cpgsvp (0.0, 1.0, 0.0, 1.0);
@@ -88,7 +106,7 @@ int generate_graphs (struct scan_struct *root,
                                         /* Draw in search window */
     max_dr_win = 0.5 / (param.acc_period * param.ref_freq);
     if ((param.win_dr[0] > -max_dr_win) || (param.win_dr[1] < max_dr_win))
-        {
+        {   /* draw delay rate red bar */
         cpgsvp (0.05, 0.80, 0.767, 0.768);
         cpgswin (xmin, xmax, 0.0, 1.0);
         xpos = param.win_dr[0] * 1.0e3;
@@ -102,6 +120,8 @@ int generate_graphs (struct scan_struct *root,
         }
     cpgsci (1);
                                         /* Multiband delay resolution function */
+                                        // in some cases the MBDfunc reduces
+                                        // to a flatline at the max amplitude
     if (pass->nfreq > 1)
         {
         xmin = xmax = 0;
@@ -126,7 +146,7 @@ int generate_graphs (struct scan_struct *root,
                                         /* Draw in search window */
         max_mb_win = 0.5 / status.freq_space;
         if ((param.win_mb[0] > -max_mb_win) || (param.win_mb[1] < max_mb_win))
-            {
+            {   /* draw multi-band delay blue bar */
                                         /* This is complicated by wrap possibility */
             wrap = FALSE;
             if (param.win_mb[0] > param.win_mb[1]) wrap = TRUE;
@@ -179,21 +199,9 @@ int generate_graphs (struct scan_struct *root,
     cpgmtxt("B", 2.0, 0.5, 0.5, "singleband delay (\\gms)");
     cpgmtxt("L", 1.5, 0.5, 0.5, "amplitude");
     cpgline (nsbd, xr, yr);
-                                        /* Draw in search window */
-    max_sb_win = 0.5e+06 * param.samp_period;
-    if ((param.win_sb[0] > -max_sb_win) || (param.win_sb[1] < max_sb_win))
-        {
-        cpgsvp (0.05, 0.35, 0.627, 0.628);
-        cpgswin (xmin, xmax, 0.0, 1.0);
-        xpos = param.win_sb[0];
-        cpgmove (xpos, 0.5);
-        xpos = param.win_sb[1];
-        cpgslw (3);
-        cpgdraw (xpos, 0.5);
-        cpgslw (1);
-        }
     cpgsci (1);
-                                        // ionosphere search points (iff present)
+
+                                        // ion. search points (iff present)
     if (status.nion > 0)
         {
         for(i=0; i<status.nion; i++)
@@ -203,7 +211,6 @@ int generate_graphs (struct scan_struct *root,
                                         // debug print
             msg("TEC %f amp %f", 0, status.dtec[i][0], status.dtec[i][1]);
             }
-
         xmin = status.dtec[0][0];
         xmax = status.dtec[status.nion-1][0];
         cpgswin (xmin, xmax, 0.0, max_amp);
@@ -215,6 +222,23 @@ int generate_graphs (struct scan_struct *root,
         cpgline (status.nion, xr, yr);
         cpgsci (1);
         }
+
+                                        /* Draw search window bar */
+    max_sb_win = 0.5e+06 * param.samp_period * 1e+3;
+    if ((param.win_sb[0] > -max_sb_win) || (param.win_sb[1] < max_sb_win))
+        {   /* draw green sbd window */
+        cpgsci (3);
+        cpgsvp (0.05, 0.35, 0.627, 0.628);
+        cpgswin (xmin, xmax, 0.0, 1.0);
+        xpos = param.win_sb[0];
+        cpgmove (xpos, 0.5);
+        xpos = param.win_sb[1];
+        cpgslw (3);
+        cpgdraw (xpos, 0.5);
+        cpgslw (1);
+        }
+    cpgsci (1);
+
 
                                         /* Cross-power spectrum - amplitude */
     nlsb = nusb = 0;                    /* count up total usb & lsb AP's */
@@ -248,6 +272,21 @@ int generate_graphs (struct scan_struct *root,
         izero = param.nlags;
         }
 
+    if (param.avxpzoom[1] == 0.0)
+        {   /* no zoom requested use xstart and xend values for window */
+        xszm = xstart;
+        xezm = xend;
+        }
+    else
+        {   /* set xszm/xezm to zoom[0] -/+ 0.5 zoom[1] in bw units */
+        xezm =
+        xszm = xstart * (1.0 - param.avxpzoom[0]) + xend * param.avxpzoom[0];
+        xszm -= (xend - xstart)*param.avxpzoom[1] / 2.0;
+        xezm += (xend - xstart)*param.avxpzoom[1] / 2.0;
+        if (xszm < xstart) xszm = xstart;
+        if (xezm > xend)   xezm = xend;
+        }
+
     ymax = 0;
     for (i=0; i<ncp; i++)
         {
@@ -257,46 +296,116 @@ int generate_graphs (struct scan_struct *root,
         if (yr[i] > ymax) ymax = yr[i];
         msg ("cp_spectrum[%d] %6.1f %7.1f", -3, i, yr[i], zr[i]);
         }
-    ymin = (param.passband[0] == 0.0 && param.passband[1] == 1.0E6)
-         ? 0 : ymax * 9e-3;                 /* about 3 pixels at 300px/in */
-    for (i=0; i<ncp; i++) if (yr[i] < ymin) zr[i] = 0;
+    /* eliminate the points when param.avxplopt[1] is nonzero -- 300px/in */
+    ymin = (param.avxplopt[1]) ? ymax * 3.3333e-3 * param.avxplopt[0] : 0.0;
+    if (ymin > 0.0) for (i=0; i<ncp; i++)
+        if (yr[i]<ymin) { yr[i] = -1.0 ; zr[i] = NAN; }
+
     ymax *= 1.2;
     if (ymax == 0.0)
         {
         msg ("overriding ymax of 0 in Xpower Spectrum plot; data suspect", 2);
         ymax = 1.0;
         }
+
     cpgsvp (0.43, 0.80, 0.63, 0.74);
-    cpgswin(xstart, xend, 0.0, ymax);
+
+    if (param.avxplopt[1] < 0)  /* revised location */
+        {       /* Cross-power phase first */
+        cpgswin(xszm, xezm, -180.0, 180.0);
+        cpgsci (1);
+        cpgsch (0.5);
+        cpgbox ("", 0.0, 0.0, "CMST", 90.0, 3.0);
+        if (param.avxplopt[1] == 7 || param.avxplopt[1] == -7)
+            {
+            cpgsci (7);
+            cpgline (ncp, xr, zr);
+            }
+        cpgsci (2);
+        cpgslw (5.0);
+        cpgpt (ncp, xr, zr, -1);
+        cpgslw (1.0);
+        cpgsch (0.7);
+        cpgmtxt ("R", 2.0, 0.5, 0.5, "phase (deg)");
+        }
+
+    cpgsci (1);
+    cpgswin(xszm, xezm, 0.0, ymax);
     cpgsch (0.5);
     cpgbox ("BCNST", 0.0, 0.0, "BNST", 0.0, 0.0);
     cpgsch (0.7);
-    cpgmtxt("B", 2.0, 0.5, 0.5, "Avgd. Xpower Spectrum (MHz)");
+    if (notchpass)
+        {
+        cpgsci (8);
+        cpgmtxt("B", 2.0, 0.5, 0.5, "*** Avgd. Xpower Spectrum (MHz) ***");
+        cpgsci (1);
+        }
+    else
+        {
+        cpgmtxt("B", 2.0, 0.5, 0.5, "Avgd. Xpower Spectrum (MHz)");
+        }
     cpgmove (0.0, 0.0);
     cpgdraw (0.0, max_amp);
+
                                         /* Blue dots */
     cpgsci (4);
     cpgslw (5.0);
     cpgpt (ncp, xr, yr, -1);
     cpgslw (1.0);
+
                                         /* Connect dots in cyan */
     cpgsci (5);
     cpgline (ncp, xr, yr);
     cpgsci (4);
     cpgmtxt ("L", 1.5, 0.5, 0.5, "amplitude");
-                                        /* Cross-power phase */
-    cpgswin(xstart, xend, -180.0, 180.0);
-    cpgsci (1);
-    cpgsch (0.5);
-    cpgbox ("", 0.0, 0.0, "CMST", 90.0, 3.0);
-    cpgsch (0.7);
-    cpgsci (2);
-    cpgslw (5.0);
-    cpgpt (ncp, xr, zr, -1);
-    cpgslw (1.0);
-    cpgmtxt ("R", 2.0, 0.5, 0.5, "phase (deg)");
+
+    // drop in tick marks to give the user a hint about passband/notches
+    if (notchpass)
+        {
+        cpgsci (8);
+        cpgslw (1.0);
+        nnp = (param.nnotches > 0) ? 2*param.nnotches : 2;
+        for (nn = 0; nn < nnp; nn++)
+            {
+            xr[0] = xr[1] = status.xpnotchpband[nn];
+            yr[0] = ymax * 0.25;
+            yr[1] = ymax;
+            cpgline (2, xr, yr);
+            }
+        if (param.nnotches == 0)    // passband: label cuts
+            {
+            cpgsch (0.4);
+            for (ii=0; ii<2; ii++)
+                {
+                snprintf(pbfr[ii], 40, "%c%lf%c",
+                    ii?' ':'<', param.passband[ii], ii?'>':' ');
+                xr[ii] = (status.xpnotchpband[ii] - xstart) / (xend - xstart);
+                cpgmtxt ("T", -1.0-ii, xr[ii], ii?1.0:0.0, pbfr[ii]);
+                }
+            }
+        }
+
+    if (param.avxplopt[1] >= 0)         /* original location */
+        {       /* Cross-power phase second */
+        cpgswin(xszm, xezm, -180.0, 180.0);
+        cpgsci (1);
+        cpgsch (0.5);
+        cpgbox ("", 0.0, 0.0, "CMST", 90.0, 3.0);
+        if (param.avxplopt[1] == 7 || param.avxplopt[1] == -7)
+            {
+            cpgsci (7);
+            cpgline (ncp, xr, zr);
+            }
+        cpgsci (2);
+        cpgslw (5.0);
+        cpgpt (ncp, xr, zr, -1);
+        cpgslw (1.0);
+        cpgsch (0.7);
+        cpgmtxt ("R", 2.0, 0.5, 0.5, "phase (deg)");
+        }
+
                                         /* Now set up channel/time plots */
-                                        /* Figure out width of individual plot */
+                                        /* Work out width of individual plot */
     cpgsci (1);
 
     start_plot = (param.first_plot == FALSE) ? 0 : param.first_plot;

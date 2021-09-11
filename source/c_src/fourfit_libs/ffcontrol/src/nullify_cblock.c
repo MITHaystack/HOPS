@@ -94,6 +94,8 @@ nullify_cblock (struct c_block *cb_ptr)
         cb_ptr -> dr_window[i]           = NULLFLOAT;
         cb_ptr -> time_span[i]           = NULLINT;
         cb_ptr -> passband[i]            = NULLFLOAT; 
+        cb_ptr -> avxpzoom[i]            = NULLFLOAT; 
+        cb_ptr -> avxplopt[i]            = NULLINT; 
         cb_ptr -> ion_window[i]          = NULLFLOAT;
         cb_ptr -> adhoc_file[i][0]       = 0; 
         cb_ptr -> adhoc_file_chans[i][0] = 0; 

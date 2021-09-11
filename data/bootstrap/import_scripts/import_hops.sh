@@ -1,132 +1,70 @@
 #!/bin/bash
 
-#check if we were passed the flag --checksum-only, if so, we only need to
-#compare the files, and return 0 (1) if they are the same (different)
+USAGE="$0 --checksum-only|--import [targets]
 
-CHKSUM=0
-if [ "$1" == "--checksum-only" ]; then
-	CHKSUM=1
-fi
+This script checksums files in various directories of the HOPS4 (GIT) tree
+and if checksums are different, it will import the files from HOPS3 (SVN).
+HOPS4_SRC_DIR and HOPS3_SRC_DIR must be defined appropriately.
 
-ret_val=0
+If further arguments are present, only the named area will be affected.
+"
 
-if [ "$HOPS4_SRC_DIR" != "" ] && [ "$HOPS3_SRC_DIR" != "" ]; then
+# allow this to be sourced from ../../import_from_hops3.sh or alone
+part='import_hops.sh'
+myself=`basename $0 2>&-` || myself=sh
+[ "$myself" = $part ] && return=exit || return=return
 
-    echo HOPS4_SRC_DIR="$HOPS4_SRC_DIR"
-    echo HOPS3_SRC_DIR="$HOPS3_SRC_DIR"
+arg=''
+case x${1-'--help'} in
+x--checksum-only)   arg=$1 ; shift ;;
+x--import)          arg=$1 ; shift ;;
+x--help) echo "$USAGE" ; $return 0 ;;
+*)       echo "$USAGE" ; $return 0 ;;
+esac
+[ -z "$arg" ] && { echo Must supply an argument; $return 1; }
 
+# check on various required things and/or try to fill in the blanks
+[ -n "$HOPS4_SRC_DIR" -a -n "$HOPS3_SRC_DIR" ] ||
+    { echo need both HOPS4_SRC_DIR and HOPS3_SRC_DIR defined; $return 2; }
+[ -d "$HOPS4_SRC_DIR" -a -d "$HOPS3_SRC_DIR" ] ||
+    { echo HOPS4_SRC_DIR or HOPS3_SRC_DIR missing; $return 3; }
 
-    if [ "${CHKSUM}" -eq "0" ]
-    then
-        source ${HOPS4_SRC_DIR}/source/bash_src/import_scripts/import_afio.sh
-        source ${HOPS4_SRC_DIR}/source/bash_src/import_scripts/import_dfio.sh
-        source ${HOPS4_SRC_DIR}/source/bash_src/import_scripts/import_mk4util.sh
-        source ${HOPS4_SRC_DIR}/source/bash_src/import_scripts/import_vex.sh
-        source ${HOPS4_SRC_DIR}/source/bash_src/import_scripts/import_ffcontrol.sh
-        source ${HOPS4_SRC_DIR}/source/bash_src/import_scripts/import_ffcore.sh
-        source ${HOPS4_SRC_DIR}/source/bash_src/import_scripts/import_ffio.sh
-        source ${HOPS4_SRC_DIR}/source/bash_src/import_scripts/import_ffmath.sh
-        source ${HOPS4_SRC_DIR}/source/bash_src/import_scripts/import_ffplot.sh
-        source ${HOPS4_SRC_DIR}/source/bash_src/import_scripts/import_ffsearch.sh
-        source ${HOPS4_SRC_DIR}/source/bash_src/import_scripts/import_fourfit.sh
-        source ${HOPS4_SRC_DIR}/source/bash_src/import_scripts/import_alist.sh
-        source ${HOPS4_SRC_DIR}/source/bash_src/import_scripts/import_aedit.sh
-    else
-        (source ${HOPS4_SRC_DIR}/source/bash_src/import_scripts/import_afio.sh --checksum-only)
-        tmp_val=$?
-        if [ $tmp_val ]
-        then
-            ret_val=1
-        fi
-        (source ${HOPS4_SRC_DIR}/source/bash_src/import_scripts/import_afio.sh --checksum-only )
-        tmp_val=$?
-        if [ $tmp_val ]
-        then
-            ret_val=1
-        fi
-        (source ${HOPS4_SRC_DIR}/source/bash_src/import_scripts/import_dfio.sh --checksum-only )
-        tmp_val=$?
-        if [ $tmp_val ]
-        then
-            ret_val=1
-        fi
-        (source ${HOPS4_SRC_DIR}/source/bash_src/import_scripts/import_mk4util.sh --checksum-only )
-        tmp_val=$?
-        if [ $tmp_val ]
-        then
-            ret_val=1
-        fi
-        (source ${HOPS4_SRC_DIR}/source/bash_src/import_scripts/import_vex.sh --checksum-only)
-        tmp_val=$?
-        if [ $tmp_val ]
-        then
-            ret_val=1
-        fi
-        (source ${HOPS4_SRC_DIR}/source/bash_src/import_scripts/import_ffcontrol.sh --checksum-only )
-        tmp_val=$?
-        if [ $tmp_val ]
-        then
-            ret_val=1
-        fi
-        (source ${HOPS4_SRC_DIR}/source/bash_src/import_scripts/import_ffcore.sh --checksum-only )
-        tmp_val=$?
-        if [ $tmp_val ]
-        then
-            ret_val=1
-        fi
-        (source ${HOPS4_SRC_DIR}/source/bash_src/import_scripts/import_ffio.sh --checksum-only )
-        tmp_val=$?
-        if [ $tmp_val ]
-        then
-            ret_val=1
-        fi
-        (source ${HOPS4_SRC_DIR}/source/bash_src/import_scripts/import_ffmath.sh --checksum-only )
-        tmp_val=$?
-        if [ $tmp_val ]
-        then
-            ret_val=1
-        fi
-        (source ${HOPS4_SRC_DIR}/source/bash_src/import_scripts/import_ffplot.sh --checksum-only )
-        tmp_val=$?
-        if [ $tmp_val ]
-        then
-            ret_val=1
-        fi
-        (source ${HOPS4_SRC_DIR}/source/bash_src/import_scripts/import_ffsearch.sh --checksum-only )
-        tmp_val=$?
-        if [ $tmp_val ]
-        then
-            ret_val=1
-        fi
+[ -z "$bsi" -a -n "$HOPS_ROOT" -a -n "GIT" ] &&
+    bsi=$HOPS_ROOT/$GIT/data/bootstrap/import_scripts
+[ -z "$bsi" -a -n "$HOPS4_SRC_DIR" ] &&
+    bsi=$HOPS4_SRC_DIR/data/bootstrap/import_scripts
+[ -z "$bsi" ] && bsi=where-are-the-import-scripts
+[ -d "$bsi" ] || { echo nope, missing scripts: "'$bsi'" ; $return 4; }
 
-        (source ${HOPS4_SRC_DIR}/source/bash_src/import_scripts/import_fourfit.sh --checksum-only )
-        tmp_val=$?
-        if [ $tmp_val ]
-        then
-            ret_val=1
-        fi
+# this list corresponds directly to the set of import scripts
+targets="afio dfio mk4util vex
+    ffcontrol ffcore ffio ffmath ffplot ffsearch
+    fourfit alist aedit
+"
+[ $# -eq 0 ] && set -- $targets
 
-        (source ${HOPS4_SRC_DIR}/source/bash_src/import_scripts/import_alist.sh --checksum-only )
-        tmp_val=$?
-        if [ $tmp_val ]
-        then
-            ret_val=1
-        fi
+echo
+[ $arg == '--import' ] &&
+    echo importing into HOPS4_SRC_DIR="$HOPS4_SRC_DIR" &&
+    echo from directory HOPS3_SRC_DIR="$HOPS3_SRC_DIR" ||
+{   echo checksum of HOPS4_SRC_DIR="$HOPS4_SRC_DIR";
+    echo against the HOPS3_SRC_DIR="$HOPS3_SRC_DIR"; }
+echo
+errors=0
+for targ
+do
+    [ -x $bsi/import_$targ.sh ] || {
+        echo missing or not executable $bsi/import_$targ.sh
+        errors=$(($errors + 1))
+        continue; }
+    source $bsi/import_$targ.sh $arg
+    errs=$?
+    [ "$errs" -gt 0 ] && echo $targ errors: $errs
+    errors=$(($errors + $errs))
+done
 
-        (source ${HOPS4_SRC_DIR}/source/bash_src/import_scripts/import_aedit.sh --checksum-only )
-        tmp_val=$?
-        if [ $tmp_val ]
-        then
-            ret_val=1
-        fi
-
-    fi
-
-else
-
-    echo "Please define the variables HOPS4_SRC_DIR and HOPS3_SRC_DIR before running this script."
-    ret_val=2
-
-fi
-
-return ${ret_val}
+[ "$myself" = 'import_hops.sh' ] && return=exit || return=return
+$return ${errors}
+#
+# eof
+#
