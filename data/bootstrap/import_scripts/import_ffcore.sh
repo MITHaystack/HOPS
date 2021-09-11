@@ -5,6 +5,11 @@
 #check if we were passed the flag --checksum-only, if so, we only need to
 #compare the files, and return 0 (1) if they are the same (different)
 
+# allow this to be sourced from ./import_hops.sh or executed standalone
+part='import_ffcore.sh'
+me=`basename $0 2>&-` || me=sh
+[ "$me" = import_hops.sh ] && return=exit || return=return
+
 CHKSUM=0
 if [ "$1" == "--checksum-only" ]; then
 	CHKSUM=1
@@ -14,10 +19,12 @@ ret_val=0
 
 if [ -z ${HOPS3_SRC_DIR} ] && [ -z ${HOPS4_SRC_DIR} ]; then
     echo "Need to set HOPS3_SRC_DIR and HOPS4_SRC_DIR"
+    ret_val=1
 else
+    [ -z "$bsi" ] && bsi=${HOPS4_SRC_DIR}/data/bootstrap/import_scripts
 
-    #list of header files we want to import from hops
-    declare -a header_list=(
+    #list of core fourfit header files
+    declare -a source_list=(
     "filter.h"
     "freqlist.h"
     "param_struct.h"
@@ -27,60 +34,23 @@ else
     "statistics.h"
     )
 
-    header_src_dir="${HOPS3_SRC_DIR}/postproc/fourfit"
-    header_dest_dir="${HOPS4_SRC_DIR}/source/c_src/fourfit_libs/ffcore/include"
+    src_dir="${HOPS3_SRC_DIR}/postproc/fourfit"
+    dest_dir="${HOPS4_SRC_DIR}/source/c_src/fourfit_libs/ffcore/include"
+    source $bsi/compare_src_dest.sh
+    ret_val=$(($ret_val + $?))
 
-    for i in "${header_list[@]}"
-    do
-        if [ -f "${header_src_dir}/${i}" ]
-        then
-            if [ "${CHKSUM}" -eq "0" ]
-            then
-                cp "${header_src_dir}/${i}" "${header_dest_dir}/${i}"
-            else
-                SOURCE_HASH=$( md5sum "${header_src_dir}/${i}" | awk '{print $1}' | tr -d '\n')
-                SOURCE_HASH="${SOURCE_HASH%% *}"
-                DEST_HASH=$( md5sum "${header_dest_dir}/${i}" | awk '{print $1}' | tr -d '\n')
-                DEST_HASH="${DEST_HASH%% *}"
-                if [ "${SOURCE_HASH}" != "${DEST_HASH}" ]
-                then
-                    ret_val=1
-                    echo "${header_src_dir}/${i}" " has changed and longer matches " "${header_dest_dir}/${i}"
-                fi
-            fi
-        fi
-    done
-
-    #list of header files we want to import from hops
-    declare -a alt_header_list=(
+    #list of core fourfit source files moving from include to ffcore
+    declare -a source_list=(
         "fourfit_signal_handler.h"
         "write_lock_mechanism.h"
     )
 
-    alt_header_src_dir="${HOPS3_SRC_DIR}/include"
-    alt_header_dest_dir="${HOPS4_SRC_DIR}/source/c_src/fourfit_libs/ffcore/include"
+    src_dir="${HOPS3_SRC_DIR}/include"
+    dest_dir="${HOPS4_SRC_DIR}/source/c_src/fourfit_libs/ffcore/include"
+    source $bsi/compare_src_dest.sh
+    ret_val=$(($ret_val + $?))
 
-    for i in "${alt_header_list[@]}"
-    do
-        if [ -f "${alt_header_src_dir}/${i}" ]
-        then
-            if [ "${CHKSUM}" -eq "0" ]
-            then
-                cp "${alt_header_src_dir}/${i}" "${alt_header_dest_dir}/${i}"
-            else
-                SOURCE_HASH=$( md5sum "${alt_header_src_dir}/${i}" | awk '{print $1}' | tr -d '\n')
-                SOURCE_HASH="${SOURCE_HASH%% *}"
-                DEST_HASH=$( md5sum "${alt_header_dest_dir}/${i}" | awk '{print $1}' | tr -d '\n')
-                DEST_HASH="${DEST_HASH%% *}"
-                if [ "${SOURCE_HASH}" != "${DEST_HASH}" ]
-                then
-                    ret_val=1
-                    echo "${alt_header_src_dir}/${i}" " has changed and longer matches " "${alt_header_dest_dir}/${i}"
-                fi
-            fi
-        fi
-    done
-
+    # list of core fourfit source files
     declare -a source_list=(
     "create_lockfile.c"
     "fourfit_signal_handler.c"
@@ -102,30 +72,13 @@ else
     "pcal_interp.c"
     )
 
-    source_src_dir="${HOPS3_SRC_DIR}/postproc/fourfit"
-    source_dest_dir="${HOPS4_SRC_DIR}/source/c_src/fourfit_libs/ffcore/src"
-
-    for i in "${source_list[@]}"
-    do
-        if [ -f "${source_src_dir}/${i}" ]
-        then
-            if [ "${CHKSUM}" -eq "0" ]
-            then
-                cp "${source_src_dir}/${i}" "${source_dest_dir}/${i}"
-            else
-                SOURCE_HASH=$( md5sum "${source_src_dir}/${i}" | awk '{print $1}' | tr -d '\n')
-                SOURCE_HASH="${SOURCE_HASH%% *}"
-                DEST_HASH=$( md5sum "${source_dest_dir}/${i}" | awk '{print $1}' | tr -d '\n')
-                DEST_HASH="${DEST_HASH%% *}"
-                if [ "${SOURCE_HASH}" != "${DEST_HASH}" ]
-                then
-                    ret_val=1
-                    echo "${source_src_dir}/${i}" " has changed and longer matches " "${source_dest_dir}/${i}"
-                fi
-            fi
-        fi
-    done
-
+    src_dir="${HOPS3_SRC_DIR}/postproc/fourfit"
+    dest_dir="${HOPS4_SRC_DIR}/source/c_src/fourfit_libs/ffcore/src"
+    source $bsi/compare_src_dest.sh
+    ret_val=$(($ret_val + $?))
 fi
 
-return ${ret_val}
+$return ${ret_val}
+#
+# eof
+#

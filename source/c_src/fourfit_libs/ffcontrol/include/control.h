@@ -84,6 +84,8 @@ struct c_block                     /* Elemental control block structure */
    char adhoc_flag_files[2][256];  /* file names for ad hoc data flagging */
    char plot_data_dir[2][256];     /* dir name(s) for dumping plot data */
    double passband[2];             /* passband for spectral filtering (MHz) */
+   double avxpzoom[2];             /* ave XP zoom options for passband case */
+   int avxplopt[2];                /* some plot options on ave XP plot */
    int gen_cf_record;              /* whether to general control file record */
    int nnotches;                   /* alternative to passband */
    double notches[MAXNOTCH][2];    /* alternative to passband */

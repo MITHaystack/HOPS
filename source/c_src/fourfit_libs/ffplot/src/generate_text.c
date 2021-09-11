@@ -20,6 +20,8 @@
 #include "ovex.h"
 #include <stdlib.h>
 
+extern void msg (char *, int, ...);
+
 #define pi 3.141592654
                                         // polarization bit masks
 #define LREF 1
@@ -29,6 +31,10 @@
                                         /* Set up some convenient macros */
                                         /* for inserting justified text using */
                                         /* native postscript fonts */
+// SL is {show} def -- i.e. let justified
+// SR is {dup stringwidth neg exch neg exch rmoveto show} def
+// there is no centering command...
+// pplot is the accumulating PS page description
 #define pscat(ps_string) strcat (pplot, ps_string)
 #define psleft(xcoord, ycoord, ps_string)\
              {xval = xcoord * 7570; yval = ycoord * 10500;\
@@ -45,10 +51,12 @@
 #define setblue pscat ("0.0 0.0 1.0 setrgbcolor\n")
 #define setcyan pscat ("0.0 1.0 1.0 setrgbcolor\n")
 #define setorange pscat ("1.0 0.5 0.0 setrgbcolor\n")
+#define setdarkorange pscat ("0.8 0.4 0.0 setrgbcolor\n")
 #define setgreen pscat ("0.0 0.6 0.0 setrgbcolor\n")
 #define setmagenta pscat ("1.0 0.0 1.0 setrgbcolor\n")
 #define setblack pscat ("0.0 0.0 0.0 setrgbcolor\n")
-
+                                        // allow markers in file
+#define pslabel(lab) pscat ("%"  lab  "\n")
 
 
 void generate_text (struct scan_struct *root,
@@ -69,7 +77,7 @@ void generate_text (struct scan_struct *root,
     extern char *sprint_char_arr();
     struct stat xeq_stat;
     int i, j, n, k;
-    int start_plot, limit_plot;
+    int start_plot, limit_plot, notchpass;
     char *rootname;
     char buf[2560], psbuf[2560], output_filename[256];
     char input_filename[256], polstr[13], polstrx[13];
@@ -119,6 +127,10 @@ void generate_text (struct scan_struct *root,
     limit_plot = (param.nplot_chans == FALSE) ? pass->nfreq : param.nplot_chans;
 
     yplace = (status.stc_present) ? 0.275 : 0.345;
+
+                                        // this test occurs a few times
+    notchpass = (param.nnotches > 0 ||
+        param.passband[0] != 0.0 || param.passband[1] != 1.0E6) ? 1 : 0;
 
                                         /* Build up text part of file */
                                         /* Start appending strings */
@@ -748,11 +760,11 @@ void generate_text (struct scan_struct *root,
     pscat ("/Helvetica findfont 95 scalefont setfont\n");
     if (param.mbd_anchor == MODEL)
         {
-        psleft (0.0, ypos, "Group delay (usec)(model)");
+        psleft (0.0, ypos, "Group delay (usec) (MODEL)");
         }
     else
         {
-        psleft (0.0, ypos, "Group delay (usec)(sbd)");
+        psleft (0.0, ypos, "Group delay (usec) (SBD)");
         }
     ypos -= 0.01;
     psleft (0.0, ypos, "Sband delay (usec)"); ypos -= 0.01;
@@ -888,7 +900,8 @@ void generate_text (struct scan_struct *root,
     sprintf (buf, "%.3f", fringe.t208->inc_seg_ampl);
     psleft (0.35, ypos, buf);
 
-    sprintf (buf, "Sample rate(MSamp/s): %d", srate);
+    sprintf (buf, "Data rate(MSamp/s): %d MBpts %d Amb %.3lf us",
+        srate, status.grid_points, 1.0/status.freq_space);
     psleft (0.5, ypos, buf);
     sprintf (buf, "dr window (ns/s)");
     psleft (0.82, ypos, buf);
@@ -937,7 +950,8 @@ void generate_text (struct scan_struct *root,
         sprintf (buf, "iterative interpolator");
     else if (param.interpol == SIMUL)
         sprintf (buf, "simultaneous interpolator");
-    psleft (0.90, ypos, buf);
+    //psleft (0.90, ypos, buf);
+    psright(1.00, ypos, buf);
     ypos -= 0.012;
 
     if (test_mode) strcpy (output_filename, "Suppressed by test mode");
@@ -953,7 +967,7 @@ void generate_text (struct scan_struct *root,
     sprintf (buf, "Control file: %s    Input file: %s    Output file: %s",
              control_filename, input_filename, output_filename);
     psleft (0.00, ypos, buf);
-    ypos -= 0.01;
+    ypos -= 0.012;
                                     // samplers line, possibly
     if (pass->control.nsamplers)
         {
@@ -964,12 +978,54 @@ void generate_text (struct scan_struct *root,
             strcat (buf, buffer);
             }
         psleft (0.00, ypos, buf);
+        ypos -= 0.012;
         }
+
+                                    // warn user about passband/notches
+    if (notchpass)                  // set to 1 above
+        {
+        pscat ("/Helvetica-Bold findfont 95 scalefont setfont\n");
+        setdarkorange;
+        sprintf (buf,
+            "***Warning: XP spectrum is normalized for full band FFT--"
+            "as spectrum is excluded XP amplitude increases.  "
+            "Amp and SNR calculations are approximately correct.***");
+        psleft (0.00, ypos, buf);
+        ypos -= 0.012;
+        pscat ("/Helvetica findfont 95 scalefont setfont\n");
+        setblack;
+        if (param.nnotches > 0)
+            {
+            sprintf (buf, "%d frequency notches from %.6lf to %.6lf",
+                param.nnotches, param.notches[0][0],
+                param.notches[param.nnotches-1][1]);
+            psleft (0.00, ypos, buf);
+            notchpass--;
+            }
+        if (param.passband[0] != 0.0 || param.passband[1] != 1.0E6)
+            {
+            if (param.passband[0] < param.passband[1])
+                sprintf (buf, "Inclusive passband applied from %.6lf to %.6lf",
+                    param.passband[0], param.passband[1]);
+            if (param.passband[1] < param.passband[0])
+                sprintf (buf, "Exclusive passband to %.6lf and after %.6lf",
+                param.passband[0], param.passband[1]);
+            psright (1.00, ypos, buf);
+            notchpass--;
+            }
+        if (notchpass < 0)          // warn about using both
+            {
+            setred;
+            sprintf (buf, "Warning: passband/notches used together!");
+            psleft(0.37, ypos, buf);
+            }
+        ypos -= 0.012;
+        setblack;
+        }
+    pslabel("fourfit done");
     }
 
-
-
-                                        /* Simple little routine to convert dumb */
+                                        /* Simple routine to convert dumb */
                                         /* space-delimited list into minimal */
                                         /* comma-separated one */
 void stripbuf (char *list)

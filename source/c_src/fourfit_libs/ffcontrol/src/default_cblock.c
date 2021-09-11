@@ -50,6 +50,11 @@ default_cblock (struct c_block *cb_ptr)
     cb_ptr -> use_samples   = FALSE;
     cb_ptr -> passband[0]   = 0.0;
     cb_ptr -> passband[1]   = 1.0E6;                     /* wide open (1 THz) */
+    cb_ptr -> avxpzoom[0]   = -1.0;             /* off, position of zoom */
+    cb_ptr -> avxpzoom[1]   = 0.0;              /* bandwidth of zoom */
+    cb_ptr -> avxplopt[0]   = 20;               /* pixels threshold */
+    cb_ptr -> avxplopt[1]   =  0;               /* plotting options */
+
 
     cb_ptr -> gen_cf_record = FALSE;
     cb_ptr -> nnotches = 0;

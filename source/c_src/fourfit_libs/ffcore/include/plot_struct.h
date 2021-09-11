@@ -11,7 +11,9 @@
 #endif
 #include "mk4_sizes.h"
 
-
+#ifndef MBDMXPTS
+#define MBDMXPTS 8192
+#endif /* MBD_GRID_MAX == MBDMXPTS */
 
 struct type_plot {
         int             num_ap;             /* Number of accumulation periods  */
@@ -20,7 +22,7 @@ struct type_plot {
         int             dr_size_max;        /* Size of dr spec in max sbd chan */
         int             num_mb_pts;         // # of multiband plot points
         double          sb_amp[2*MAXLAG];   /* Single band delay amplitude*/
-        double          mb_amp[8192];       /* Multi band delay  amplitude*/
+        double          mb_amp[MBDMXPTS];   /* Multi band delay  amplitude*/
         double          d_rate[MAXAP];      /* Drate spect in max sbd chan */
         hops_complex         cp_spectrum[2*MAXLAG];   /* Cross power spectrum , phase & mag. */
         hops_complex         phasor[MAXFREQ+1][MAXAP];    /* Fringe phase & mag. */

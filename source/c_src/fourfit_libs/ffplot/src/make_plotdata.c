@@ -13,7 +13,18 @@
 #include <math.h>
 #include <stdio.h>
 #include "hops_complex.h"
+#include "apply_funcs.h"
+#include "ff_misc_if.h"
 #include <fftw3.h>
+
+// MAXLAG == 8192 so 4*MAXLAG is 4x MBDMXPTS which is 3x more than needed for MBD.
+// However, Y is re-used with the lagdata and 4*MAXLAG is then needed.
+// +3 is temporarily for slop...
+// assert(plot.num_mb_pts < 8192)
+
+#ifndef GRID_PTS
+#define GRID_PTS 2048
+#endif /* GRID_PTS = MBDMXPTS / MBDMULT */
 
 int make_plotdata(struct type_pass *pass)
     {
@@ -23,7 +34,7 @@ int make_plotdata(struct type_pass *pass)
     struct freq_corel *pdata;
     struct data_corel *datum;
     hops_complex Z, sum;
-    static hops_complex X[2*MAXMAX], Y[4*MAXLAG], sbsp[MAXFREQ][2*MAXLAG], sum_ap[MAXAP];
+    static hops_complex X[2*MAXMAX], Y[4*MAXLAG+3], sbsp[MAXFREQ][2*MAXLAG], sum_ap[MAXAP];
     hops_complex vrot(), sum_all, sum_freq;
     hops_complex wght_phsr;
     int maxchan[MAXFREQ], i, j, np, fr, ap, lag, st, seg, lagbit;
@@ -160,7 +171,9 @@ int make_plotdata(struct type_pass *pass)
 
             X[fr] = X[fr] + Z;
             }                           /* Space frequencies in array for FFT */
-        Y[status.mb_index[fr]] = X[fr];
+        // allow garbage to be ignored
+        if (status.mb_index[fr] < GRID_PTS)
+            Y[status.mb_index[fr]] = X[fr];
         }
                                         /* FFt across freq to mbdelay spectrum */
     fftplan = fftw_plan_dft_1d (plot.num_mb_pts, Y, Y, FFTW_FORWARD, FFTW_ESTIMATE);
@@ -273,6 +286,7 @@ int make_plotdata(struct type_pass *pass)
     status.snr = status.delres_max * param.inv_sigma
             * sqrt((double)status.total_ap_frac * eff_npol)
                        / (1.0E4 * status.amp_corr_fact);
+    status.snr = adjust_snr(pass, &status);
 
     msg ("SNR %8.2f", 1, status.snr);
 
@@ -355,6 +369,7 @@ int make_plotdata(struct type_pass *pass)
     status.inc_avg_amp_freq /= ((1.0 + 1.0/(2.0 * status.snr
                                         * status.snr / pass->nfreq)));
 
+    /* NB: this routine calc plot data by segment in addition to RMS */
     calc_rms (pass);
 
     fftw_destroy_plan (fftplan);

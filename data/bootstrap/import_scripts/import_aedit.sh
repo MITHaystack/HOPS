@@ -3,6 +3,11 @@
 #check if we were passed the flag --checksum-only, if so, we only need to
 #compare the files, and return 0 (1) if they are the same (different)
 
+# allow this to be sourced from ./import_hops.sh or executed standalone
+part='import_aedit.sh'
+me=`basename $0 2>&-` || me=sh
+[ "$me" = import_hops.sh ] && return=exit || return=return
+
 CHKSUM=0
 if [ "$1" == "--checksum-only" ]; then
 	CHKSUM=1
@@ -12,9 +17,12 @@ ret_val=0
 
 if [ -z ${HOPS3_SRC_DIR} ] && [ -z ${HOPS4_SRC_DIR} ]; then
     echo "Need to set HOPS3_SRC_DIR and HOPS4_SRC_DIR"
-else 
+    ret_val=1
+else
+    [ -z "$bsi" ] && bsi=${HOPS4_SRC_DIR}/data/bootstrap/import_scripts
 
-    declare -a header_list=(
+    # aedit include files
+    declare -a source_list=(
         "aedata.h" 
         "aedit.h" 
         "aedit_proto.h" 
@@ -30,30 +38,12 @@ else
         "usearray.h" 
     )
     
-    header_src_dir="${HOPS3_SRC_DIR}/postproc/aedit"
-    header_dest_dir="${HOPS4_SRC_DIR}/source/c_src/applications/aedit/include"
+    src_dir="${HOPS3_SRC_DIR}/postproc/aedit"
+    dest_dir="${HOPS4_SRC_DIR}/source/c_src/applications/aedit/include"
+    source $bsi/compare_src_dest.sh
+    ret_val=$(($ret_val + $?))
 
-    for i in "${header_list[@]}"
-    do
-        if [ -f "${header_src_dir}/${i}" ]
-        then
-            if [ "${CHKSUM}" -eq "0" ]
-            then
-                cp "${header_src_dir}/${i}" "${header_dest_dir}/${i}"
-            else
-                SOURCE_HASH=$( md5sum "${header_src_dir}/${i}" | awk '{print $1}' | tr -d '\n')
-                SOURCE_HASH="${SOURCE_HASH%% *}" 
-                DEST_HASH=$( md5sum "${header_dest_dir}/${i}" | awk '{print $1}' | tr -d '\n')
-                DEST_HASH="${DEST_HASH%% *}" 
-                if [ "${SOURCE_HASH}" != "${DEST_HASH}" ]
-                then
-                    ret_val=1
-                    echo "${header_src_dir}/${i}" " has changed and longer matches " "${header_dest_dir}/${i}"
-                fi
-            fi
-        fi
-    done
-
+    # aedit application sources
     declare -a source_list=(
     "active_filter.c" 
     "add_station.c" 
@@ -202,47 +192,13 @@ else
     "zoom.c" 
     )
     
-
-    source_src_dir="${HOPS3_SRC_DIR}/postproc/aedit"
-    source_dest_dir="${HOPS4_SRC_DIR}/source/c_src/applications/aedit/src"
-
-    for i in "${source_list[@]}"
-    do
-        if [ -f "${source_src_dir}/${i}" ]
-        then
-            if [ "${CHKSUM}" -eq "0" ]
-            then
-                cp "${source_src_dir}/${i}" "${source_dest_dir}/${i}"
-            else
-                SOURCE_HASH=$( md5sum "${source_src_dir}/${i}" | awk '{print $1}' | tr -d '\n')
-                SOURCE_HASH="${SOURCE_HASH%% *}" 
-                DEST_HASH=$( md5sum "${source_dest_dir}/${i}" | awk '{print $1}' | tr -d '\n')
-                DEST_HASH="${DEST_HASH%% *}" 
-                if [ "${SOURCE_HASH}" != "${DEST_HASH}" ]
-                then
-                    ret_val=1
-                    echo "${source_src_dir}/${i}" " has changed and longer matches " "${source_dest_dir}/${i}"
-                fi
-            fi
-        fi
-    done
-
-    #copy aedit.c
-    if [ "${CHKSUM}" -eq "0" ]
-    then
-        cp "${HOPS3_SRC_DIR}/postproc/aedit/aedit.c" "${HOPS4_SRC_DIR}/source/c_src/applications/aedit/aedit.c"
-    else
-        SOURCE_HASH=$( md5sum "${HOPS3_SRC_DIR}/postproc/aedit/aedit.c" | awk '{print $1}' | tr -d '\n')
-        SOURCE_HASH="${SOURCE_HASH%% *}" 
-        DEST_HASH=$( md5sum "${HOPS4_SRC_DIR}/source/c_src/applications/aedit/aedit.c" | awk '{print $1}' | tr -d '\n')
-        DEST_HASH="${DEST_HASH%% *}" 
-        if [ "${SOURCE_HASH}" != "${DEST_HASH}" ]
-        then
-            ret_val=1
-            echo "${HOPS3_SRC_DIR}/postproc/aedit/aedit.c" " has changed and longer matches " "${HOPS4_SRC_DIR}/source/c_src/applications/aedit/aedit.c"
-        fi
-    fi
-
+    src_dir="${HOPS3_SRC_DIR}/postproc/aedit"
+    dest_dir="${HOPS4_SRC_DIR}/source/c_src/applications/aedit/src"
+    source $bsi/compare_src_dest.sh
+    ret_val=$(($ret_val + $?))
 fi
 
-return ${ret_val}
+$return ${ret_val}
+#
+# eof
+#
