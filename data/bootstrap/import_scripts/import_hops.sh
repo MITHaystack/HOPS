@@ -14,6 +14,12 @@ part='import_hops.sh'
 myself=`basename $0 2>&-` || myself=sh
 [ "$myself" = $part ] && return=exit || return=return
 
+# standard setup follows
+[ -z "$testverb" ] && testverb=0
+verb=false ; [ "$testverb" -gt 0 ] && verb=true
+very=false ; [ "$testverb" -gt 1 ] && very=true && verb=true
+wery=false ; [ "$testverb" -gt 2 ] && wery=true && very=true && verb=true
+
 arg=''
 case x${1-'--help'} in
 x--checksum-only)   arg=$1 ; shift ;;
@@ -57,6 +63,7 @@ do
         echo missing or not executable $bsi/import_$targ.sh
         errors=$(($errors + 1))
         continue; }
+    $very && echo \# $bsi/import_$targ.sh $arg
     source $bsi/import_$targ.sh $arg
     errs=$?
     [ "$errs" -gt 0 ] && echo $targ errors: $errs

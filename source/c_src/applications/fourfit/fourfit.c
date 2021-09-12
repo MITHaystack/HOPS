@@ -40,6 +40,7 @@
 #include "fileset.h"
 #include "write_lock_mechanism.h"
 #include "fourfit_signal_handler.h"
+#include "ff_misc_if.h"
 
 struct type_param param;
 struct type_status status;              /* External structure declarations */
@@ -79,7 +80,7 @@ char version_no[] = FF_VER_NO;		// PACKAGE_VERSION from Makefile
 #define FALSE 0
 #define TRUE 1
 
-main (int argc, char** argv)
+int main (int argc, char** argv)
     {
     struct vex root;
     struct freq_corel corel[MAXFREQ];

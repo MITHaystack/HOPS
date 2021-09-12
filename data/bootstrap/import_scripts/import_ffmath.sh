@@ -22,9 +22,9 @@ else
     [ -z "$bsi" ] && bsi=${HOPS4_SRC_DIR}/data/bootstrap/import_scripts
 
     #independent math utilities
+    # "bcd_to_2int.c"
     declare -a source_list=(
     "ap_mean.c"
-    "bcd_to_2int.c"
     "interp555.c"
     "linterp.c"
     "max555.c"

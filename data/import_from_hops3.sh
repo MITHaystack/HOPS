@@ -19,6 +19,12 @@ bsi=$HOPS_ROOT/$GIT/data/bootstrap/import_scripts
 HOPS4_SRC_DIR=$HOPS_ROOT/$GIT
 HOPS3_SRC_DIR=$HOPS_ROOT/$SVN
 
+# standard setup follows
+[ -z "$testverb" ] && testverb=0
+verb=false ; [ "$testverb" -gt 0 ] && verb=true
+very=false ; [ "$testverb" -gt 1 ] && very=true && verb=true
+wery=false ; [ "$testverb" -gt 2 ] && wery=true && very=true && verb=true
+
 source $bsi/import_hops.sh $@
 errors=$?
 echo

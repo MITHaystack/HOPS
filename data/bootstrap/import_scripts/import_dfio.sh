@@ -22,8 +22,9 @@ else
     [ -z "$bsi" ] && bsi=${HOPS4_SRC_DIR}/data/bootstrap/import_scripts
 
     #list of header files for dfio
+    #   "bytflp.h"
+    #   "type_comp.h"
     declare -a source_list=(
-        "bytflp.h"
         "type_000.h"
         "type_100.h"
         "type_101.h"
@@ -54,7 +55,6 @@ else
         "type_307.h"
         "type_308.h"
         "type_309.h"
-        "type_comp.h"
         "T1.h"
         "mk4_records.h"
         "mk4_data.h"

@@ -20,6 +20,7 @@
 #define MD 2
 #define SD 3
 
+// dmin(),dmax(), dwin() are in sub/util/minmax.c
 
 void interp (struct type_pass *pass)
     {
@@ -142,7 +143,6 @@ void interp (struct type_pass *pass)
         else
             mbd_upper = dmin (mbd_upper, param.win_mb[1]);
         }
-
                               /* if wide open, don't alter the tabular points */
     else if (param.win_mb[1] - param.win_mb[0] < 0.9999 / status.freq_space)
         {                            /* otherwise make them fit within window */
@@ -229,6 +229,13 @@ void interp (struct type_pass *pass)
 
         msg ("max555 found amp %f at sbd %f mbd %f dr %e", 1,
               status.delres_max, status.sbd_max, status.mbd_max_global, status.dr_max_global);
+        // MBD is meaningless if there is only one channel
+        if (status.napbyfreq == 1)
+            {
+            msg ("only one data channel, setting MBD(%lf) to SBD(%lf)", 1,
+                status.mbd_max_global, status.sbd_max);
+            status.mbd_max_global = status.sbd_max;
+            }
         }
     else                            // iterative interpolation
         {

@@ -18,7 +18,7 @@
 #include "control.h"
 #include "statistics.h"
 #include "filter.h"
-
+#include "ff_misc_if.h"
 
 int
 compute_qf (
@@ -76,7 +76,9 @@ char *tape_qcode)
                                         /* if/else clause override later codes */
                                         /* A-code means fourfit unable to handle */
                                         /* (probably will never implement) */
-    if (0==1)
+    //if (0==1)
+    // co-opted for passband and notches used together
+    if (param->nnotches > 0 && (param->passband[0] != 0.0 || param->passband[1] != 1.0E6))
         *errcode = 'A';
                                         /* B-code caused by interpolation error, */
                                         /* usually due to fringes at edge of window */

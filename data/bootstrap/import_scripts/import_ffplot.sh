@@ -32,9 +32,10 @@ else
     source $bsi/compare_src_dest.sh
     ret_val=$(($ret_val + $?))
 
-    #"print_at.c"
+    # "print_at.c"
     # "pwrt_left.c"
     # "pwrt_right.c"
+    # "sprint_date.c"
     # list of plotting sources
     declare -a source_list=(
     "put_char_at.c"
@@ -46,7 +47,6 @@ else
     "generate_text.c"
     "grid.c"
     "sprint_char_arr.c"
-    "sprint_date.c"
     "output.c"
     "display_fplot.c"
     "plot_data_dir.c"
