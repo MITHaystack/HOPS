@@ -8,7 +8,8 @@ AM_CPPFLAGS = -I. -I$(srcdir)/include -I$(srcdir)/../../mk4util/include \
 	-I$(srcdir)/../../afio/include -I$(srcdir)/../../dfio/include \
 	-I$(srcdir)/../../vex/include -I$(srcdir)/../ffcontrol/include \
 	-I$(srcdir)/../ffcore/include -I$(srcdir)/../ffio/include \
-	-I$(srcdir)/../ffmath/include  -Wall -Wextra -DHAVE_CONFIG_H
+	-I$(srcdir)/../ffmath/include -I$(srcdir)/../ffsearch/include \
+	-Wall -Wextra -DHAVE_CONFIG_H
 
 AM_CPPFLAGS += ${FFTW3_CFLAGS} ${X_CFLAGS} -I${PGPLOT_DIR}
 

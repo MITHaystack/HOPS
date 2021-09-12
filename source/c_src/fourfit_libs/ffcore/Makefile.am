@@ -12,7 +12,7 @@ AM_CPPFLAGS = -I. -I$(srcdir)/include -I$(srcdir)/../../mk4util/include \
 pkginclude_HEADERS = include/filter.h include/fourfit_signal_handler.h \
 	include/freqlist.h include/param_struct.h include/pass_struct.h \
 	include/plot_struct.h include/refringe.h include/statistics.h \
-	include/write_lock_mechanism.h
+	include/write_lock_mechanism.h include/ff_misc_if.h
 
 pkglib_LTLIBRARIES = libffcore.la
 
