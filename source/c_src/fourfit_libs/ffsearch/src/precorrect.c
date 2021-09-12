@@ -19,10 +19,7 @@
 #include <stdio.h>
 #include <string.h>
 #include "hops_complex.h"
-
-extern void   account (char *);
-extern void   msg (char *, int, ...);
-extern int fcode(char c, char *);
+#include "ff_misc_if.h"
 
 int precorrect (struct scan_struct* ovex, struct type_pass* pass)
     {
@@ -66,6 +63,8 @@ int precorrect (struct scan_struct* ovex, struct type_pass* pass)
         param.win_mb[i] = pass->control.mb_window[i] + delay_offset;
         param.win_dr[i] = pass->control.dr_window[i] + rate_offset;
         param.passband[i] = pass->control.passband[i];
+        param.avxpzoom[i] = pass->control.avxpzoom[i];
+        param.avxplopt[i] = pass->control.avxplopt[i];
                                     // ionosphere window is about differential a priori
                                     // collapses if only 1 pt (i.e. no search)
         param.win_ion[i] = (param.ion_pts > 1) ?

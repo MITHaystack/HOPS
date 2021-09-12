@@ -10,6 +10,8 @@
 //#include "mk4_data.h"
 #include "param_struct.h"
 #include "pass_struct.h"
+#include "apply_funcs.h"
+#include "ff_misc_if.h"
 #include <stdio.h>
 
 extern void   msg (char *, int, ...);

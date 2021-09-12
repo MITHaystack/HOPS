@@ -30,6 +30,7 @@ else
     ret_val=$(($ret_val + $?))
 
     # list of search sources
+    #   "report_actions.c"
     declare -a source_list=(
         "adhoc_flag.c"
         "apply_filter.c"
@@ -51,7 +52,6 @@ else
         "est_pc_manual.c"
         "precorrect.c"
         "pcalibrate.c"
-        "report_actions.c"
         "rotate_pcal.c"
         "sampler_delays.c"
         "search.c"
