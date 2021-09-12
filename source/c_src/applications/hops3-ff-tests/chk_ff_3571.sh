@@ -5,28 +5,25 @@
 # canonical test suite for fourfit
 #
 
-if [ -z "$HOPS_SYS" ]
-then
-    source @CMAKE_INSTALL_PREFIX@/bin/hopsenv.sh
-else
-    echo "env defined"
-fi
-
 verb=false
 [ -n "$testverb" ] && verb=true
 
+[ -d "$srcdir" ] || { echo srcdir not set; exit 1; }
+${HOPS_SETUP-'false'} || . $srcdir/chk_env.sh
+export DATADIR=`cd $srcdir/testdata; pwd`
+
 os=`uname -s` || os=idunno
-grep -v $os @DATADIR@/3571/cf3571_244-1249 > ./cf3571
+grep -v $os $DATADIR/3571/cf3571_244-1249 > ./cf3571
 
 $verb && type fourfit
 $verb && printenv > ff-3571-env.out
 
 rm -f ff-3571.ps
 $verb && echo \
-fourfit -pt -d diskfile:ff-3571.ps -b GE -c ./cf3571 -PI @DATADIR@/3571/244-1717/0727-115.zbgwce
+fourfit -pt -d diskfile:ff-3571.ps -b GE -c ./cf3571 -PI $DATADIR/3571/244-1717/0727-115.zbgwce
 
 #run fourfit
-fourfit -pt -d diskfile:ff-3571.ps -b GE -c ./cf3571 -PI @DATADIR@/3571/244-1717/0727-115.zbgwce
+fourfit -pt -d diskfile:ff-3571.ps -b GE -c ./cf3571 -PI $DATADIR/3571/244-1717/0727-115.zbgwce
 [ -f ./ff-3571.ps ] || { echo ./ff-3571.ps missing && exit 2 ; }
 
 # pluck out line containing the snr and parse it
