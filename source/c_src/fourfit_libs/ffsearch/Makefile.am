@@ -10,7 +10,7 @@ AM_CPPFLAGS = -I. -I$(srcdir)/include -I$(srcdir)/../../mk4util/include \
 	-I$(srcdir)/../ffcore/include -I$(srcdir)/../ffio/include \
 	-I$(srcdir)/../ffmath/include  -Wall -Wextra -DHAVE_CONFIG_H
 
-pkginclude_HEADERS = include/adhoc_flag.h
+pkginclude_HEADERS = include/adhoc_flag.h include/apply_funcs.h
 
 pkglib_LTLIBRARIES = libffsearch.la
 
@@ -25,7 +25,8 @@ libffsearch_la_SOURCES = src/adhoc_flag.c src/apply_filter.c \
 	src/organize_data.c src/parse_cmdline.c src/pcalibrate.c \
 	src/precorrect.c src/report_actions.c src/rotate_pcal.c \
 	src/sampler_delays.c src/search.c src/search_windows.c \
-	src/update.c src/apply_video_bp.c src/ion_covariance.c
+	src/update.c src/apply_video_bp.c src/ion_covariance.c \
+	src/adjust_snr.c src/apply_cmplxbp.c
 
 libffsearch_la_LIBADD = ../../mk4util/libmk4util.la ../../afio/libafio.la \
 	../../dfio/libdfio.la ../../vex/libvex.la \

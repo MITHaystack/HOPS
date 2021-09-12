@@ -22,7 +22,7 @@ else
     [ -z "$bsi" ] && bsi=${HOPS4_SRC_DIR}/data/bootstrap/import_scripts
 
     #list of search header files
-    declare -a source_list=( "adhoc_flag.h")
+    declare -a source_list=( "adhoc_flag.h" "apply_funcs.h" )
 
     src_dir="${HOPS3_SRC_DIR}/postproc/fourfit"
     dest_dir="${HOPS4_SRC_DIR}/source/c_src/fourfit_libs/ffsearch/include"
@@ -33,6 +33,8 @@ else
     #   "report_actions.c"
     declare -a source_list=(
         "adhoc_flag.c"
+        "adjust_snr.c"
+        "apply_cmplxbp.c"
         "apply_filter.c"
         "apply_notches.c"
         "apply_passband.c"

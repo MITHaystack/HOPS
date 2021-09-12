@@ -45,7 +45,7 @@ do
             rm -f "${dest_dir}/${i}" || true ; } &&
         continue
     [ "${DEST_HASH}" = 'no-dest' ] &&
-        echo missing dest "${dest_dir}/${i}" missing--fix "'$part'" &&
+        echo dest "${dest_dir}/${i}" missing, cf "'$part'" &&
         retval=$((retval + 1)) && {
             # fix if enabled:
             [ "$CHKSUM" -eq 0 ] &&

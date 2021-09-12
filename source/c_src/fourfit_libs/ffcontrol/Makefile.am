@@ -5,7 +5,7 @@
 #
 
 AM_CPPFLAGS = -I. -I$(srcdir)/include -I$(srcdir)/../../mk4util/include \
-	-Wall -Wextra -DHAVE_CONFIG_H
+	-I$(srcdir)/../ffcore/include -Wall -Wextra -DHAVE_CONFIG_H
 
 pkginclude_HEADERS = include/control.h include/parser.h
 
