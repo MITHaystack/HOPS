@@ -6,6 +6,8 @@
 # to the initial case statement to configure things to make life
 # easier by setting paths according to where you have SVN and GIT.
 #
+# see bootstrap/import_scripts/import_hops.sh for help.
+#
 arg=${1-'--checksum-only'}
 
 case $USER-`hostname` in
@@ -25,6 +27,8 @@ verb=false ; [ "$testverb" -gt 0 ] && verb=true
 very=false ; [ "$testverb" -gt 1 ] && very=true && verb=true
 wery=false ; [ "$testverb" -gt 2 ] && wery=true && very=true && verb=true
 
+# note that all args are passed, and the first
+# arg needs to be --checksum-only or --import
 source $bsi/import_hops.sh $@
 errors=$?
 echo
