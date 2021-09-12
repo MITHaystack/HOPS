@@ -49,7 +49,7 @@ esac
 # this list corresponds directly to the set of import scripts
 targets="afio dfio mk4util vex
     ffcontrol ffcore ffio ffmath ffplot ffsearch
-    fourfit alist aedit
+    fourfit alist aedit fftest
 "
 [ $# -eq 0 ] && set -- $targets
 
