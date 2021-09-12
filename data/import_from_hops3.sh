@@ -8,7 +8,7 @@
 #
 # see bootstrap/import_scripts/import_hops.sh for help.
 #
-arg=${1-'--checksum-only'}
+[ $# -eq 0 ] && set -- --checksum-only
 
 case $USER-`hostname` in
 gbc-gebeor) HOPS_ROOT=/home/gbc/HOPS    GIT=hops-git    SVN=trunk ;;

@@ -45,7 +45,7 @@ else
     "skip_index.c"
     "skip_data.c"
     )
-    
+
     src_dir="${HOPS3_SRC_DIR}/postproc/fourfit"
     dest_dir="${HOPS4_SRC_DIR}/source/c_src/fourfit_libs/ffcontrol/src"
     source $bsi/compare_src_dest.sh
