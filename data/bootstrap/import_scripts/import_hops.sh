@@ -1,10 +1,13 @@
 #!/bin/bash
 
-USAGE="$0 --checksum-only|--import [targets]
+USAGE="$0 --checksum-only|--import|--list [targets]
 
 This script checksums files in various directories of the HOPS4 (GIT) tree
 and if checksums are different, it will import the files from HOPS3 (SVN).
-HOPS4_SRC_DIR and HOPS3_SRC_DIR must be defined appropriately.
+HOPS4_SRC_DIR and HOPS3_SRC_DIR must be defined appropriately.  The first
+argument (your intent) is mandatory.  Subsequent arguments are areas of
+code to consider if you do not wish to do everything; use --list to get
+the list.
 
 If further arguments are present, only the named area will be affected.
 "
@@ -24,6 +27,7 @@ arg=''
 case x${1-'--help'} in
 x--checksum-only)   arg=$1 ; shift ;;
 x--import)          arg=$1 ; shift ;;
+x--list)            arg=$1 ; shift ;;
 x--help) echo "$USAGE" ; $return 0 ;;
 *)       echo "$USAGE" ; $return 0 ;;
 esac
@@ -55,6 +59,8 @@ echo
     echo from directory HOPS3_SRC_DIR="$HOPS3_SRC_DIR" ||
 {   echo checksum of HOPS4_SRC_DIR="$HOPS4_SRC_DIR";
     echo against the HOPS3_SRC_DIR="$HOPS3_SRC_DIR"; }
+[ $arg == '--list' ] &&
+    echo Targets are these: && echo $targets && $return 0;
 echo
 errors=0
 for targ
