@@ -72,7 +72,7 @@ do
     $very && echo \# $bsi/import_$targ.sh $arg
     source $bsi/import_$targ.sh $arg
     errs=$?
-    [ "$errs" -gt 0 ] && echo $targ errors: $errs
+    { [ "$errs" -gt 0 ] || $verb; } && echo $targ errors: $errs
     errors=$(($errors + $errs))
 done
 

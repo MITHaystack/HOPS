@@ -38,7 +38,7 @@ else
     "fill_230.c"
     "fill_fringe_info.c"
     )
-    
+
     src_dir="${HOPS3_SRC_DIR}/postproc/fourfit"
     dest_dir="${HOPS4_SRC_DIR}/source/c_src/fourfit_libs/ffio/src"
     source $bsi/compare_src_dest.sh

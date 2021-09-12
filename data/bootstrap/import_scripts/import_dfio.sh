@@ -188,12 +188,11 @@ else
     #move  bytflip.h from source to header area ?
     #   cp "${source_src_dir}/bytflp.h" "${header_dest_dir}/bytflp.h"
     declare -a source_list=( "bytflp.h" )
-    
+
     src_dir="${HOPS3_SRC_DIR}/sub/dfio"
     dest_dir="${HOPS4_SRC_DIR}/source/c_src/dfio/include"
     source $bsi/compare_src_dest.sh
     ret_val=$(($ret_val + $?))
-
 fi
 
 $return ${ret_val}

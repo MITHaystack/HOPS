@@ -256,7 +256,7 @@ void norm_fx (struct type_pass *pass,
 // and is what is used in for status.snr and status.prob_false
 // the separation of the two appears to have been started in Oct200 by cjl.
 // status.total_.sb_frac scale the two halves of the xp spectrum plot
-// 
+//
 // where do the MBD numbers come from if there is only one channel?
 // these values appear to be unstable between the 4 cases
 
@@ -428,7 +428,7 @@ void norm_fx (struct type_pass *pass,
       // ... we have a problem since total_ap_frac was already adjusted.
       // we might try to undo it, but the integration time calculation uses that
       // value in conjunction with the number of channels present (not the more detailed
-      // set of sb/fr combinations actually used) to calculate the total integration time.  
+      // set of sb/fr combinations actually used) to calculate the total integration time.
       // Short of refactoring all of this, we'll try to clean it up later with adjust_snr().
       if ((sb == 0 && datum->usbfrac <= 0) || (sb == 1 && datum->lsbfrac <= 0))
           {

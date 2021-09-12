@@ -30,10 +30,10 @@ do
         DEST_HASH="${DEST_HASH%% *}" ||
         DEST_HASH='no-dest'
     # no action case first
-    $very && echo \# H3 .${SOURCE_HASH}. &&
-             echo \# H4 .${DEST_HASH}. $i
     [ "${SOURCE_HASH}" = "${DEST_HASH}" ] &&
         continue
+    $very && echo \# H3 .${SOURCE_HASH}. &&
+             echo \# H4 .${DEST_HASH}. $i
 
     # script errors next
     [ "${SOURCE_HASH}" = 'no-source' ] &&
