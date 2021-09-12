@@ -37,6 +37,7 @@ dist_check_SCRIPTS = \
 	switches/lookup.sh \
 	import_from_hops3.sh
 
+template_sh_SOURCES =
 template.sh: $(srcdir)/switches/template.sh $(srcdir)/Makefile.am
 	sed -e '/Error:/s/exit.1/echo disabled/' $< > $@ && \
 	chmod +x $@
@@ -44,6 +45,7 @@ template.sh: $(srcdir)/switches/template.sh $(srcdir)/Makefile.am
 # use sed to make the generated test into a test of executables
 assign1= $$true \&\& echo true ok ; [ -x $$true ] || passfail=1
 assign2= $$false || echo false ok ; [ -x $$false ] || passfail=2
+chk_template_sh_SOURCES =
 chk_template.sh: template.sh $(srcdir)/Makefile.am
 	rm -f $@ && \
 	./template.sh template && \
@@ -58,6 +60,7 @@ chk_template.sh: template.sh $(srcdir)/Makefile.am
 # use sed to make a test of unpacking, use make macros for clarity
 assign3= pdf=$$MHO_REGRESSION_FAKE/ff_testdata/misc/cmp-2843.pdf
 assign4= [ -f $$pdf ] || { echo $$pdf missing ; passfail=1 ; }
+chk_unpack_sh_SOURCES =
 chk_unpack.sh: template.sh $(srcdir)/Makefile.am
 	rm -f $@ && \
 	./template.sh unpack && \

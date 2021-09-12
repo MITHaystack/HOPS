@@ -4,14 +4,14 @@
 # The contents of the package Copyright statement apply here.
 #
 
-EXTRA_DIST = $(srcdir)/acronyms.tex $(srcdir)/shortcuts.tex \
-	$(srcdir)/hops.bib $(srcdir)/nuHOPStimeline.png \
-	$(srcdir)/arch_overview.dia $(srcdir)/arch_overview.png \
-	$(srcdir)/ffcore.png $(srcdir)/ffsearch.png \
-	$(srcdir)/fourfit.png \
-	$(srcdir)/uml-diagrams/class-diagram-example.png \
-	$(srcdir)/uml-diagrams/uml-description.tex \
-	$(srcdir)/help-with-bib.txt
+EXTRA_DIST = acronyms.tex shortcuts.tex \
+	hops.bib nuHOPStimeline.png \
+	arch_overview.dia arch_overview.png \
+	ffcore.png ffsearch.png \
+	fourfit.png \
+	uml-diagrams/uml-diagram-examples/class-diagram-example.png \
+	uml-diagrams/uml-diagram-examples/uml-description.tex \
+	help-with-bib.txt
 #
 # eof
 #
