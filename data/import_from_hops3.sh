@@ -12,14 +12,39 @@
 
 case $USER-`hostname` in
 gbc-gebeor) HOPS_ROOT=/home/gbc/HOPS    GIT=hops-git    SVN=trunk ;;
-*)          HOPS_ROOT=no-such-dir       BIT=no-git-dir  SVN=no-svn-dir ;;
+gbc-demi)   # two checkouts: nightly and gbc
+    cwd=`pwd` ; parent=`dirname "$cwd"` ; grandparent=`dirname $parent`
+    if [ "$grandparent" = '/home/gbc/HOPS' ] ; then # gbc checkout
+            HOPS_ROOT=/home/gbc/HOPS    GIT=hops-git    SVN=trunk
+    elif [ "$grandparent" = '/swc/HOPS4' ] ; then # gbc nightly checkout
+            HOPS_ROOT=/swc/HOPS4        GIT=hops-git-am SVN=../hops/trunk
+    else
+        echo skipping unconfigured gbc on demi; exit 77;
+    fi
+    ;;
+# add cases here...
+*)          HOPS_ROOT=no-such-dir       GIT=no-git-dir  SVN=no-svn-dir ;;
 esac
 [ "x$HOPS_ROOT" = 'xno-such-dir' ] && { echo skipping; exit 77; }
+
+# only run if current directory has normal relation to GIT
+# this excludes distcheck and similar builds; normal check
+# invocation places us in $HOPS_ROOT/<build>/data with our
+# source in $HOPS_ROOT/$GIT/data, so:
+[ -d ../../$GIT/data ] || { echo abnormal build/GIT relationship; exit 77; }
 
 # top of the food-chain
 bsi=$HOPS_ROOT/$GIT/data/bootstrap/import_scripts
 HOPS4_SRC_DIR=$HOPS_ROOT/$GIT
 HOPS3_SRC_DIR=$HOPS_ROOT/$SVN
+
+# sanity check on configuration
+[ -d "$HOPS4_SRC_DIR" -a -d "$HOPS3_SRC_DIR" ] || {
+    echo missing HOPS4 or HOPS3 source directories
+    echo HOPS4_SRC_DIR=$HOPS_ROOT/$GIT
+    echo HOPS3_SRC_DIR=$HOPS_ROOT/$SVN
+    exit 99
+}
 
 # standard setup follows
 [ -z "$testverb" ] && testverb=0
