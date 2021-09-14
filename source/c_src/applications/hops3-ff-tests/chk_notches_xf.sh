@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# $Id: chk_notches_xf.sh 3332 2021-09-07 18:13:41Z gbc $
+# $Id: chk_notches_xf.sh 3333 2021-09-07 20:30:41Z gbc $
 #
 # Something to check notches using the fourmered data 3365 sample
 #
