@@ -1,4 +1,5 @@
 #include <string>
+#include <iostream>
 
 #ifndef MHO_TemplateTypenameDeduction_HH__
 #define MHO_TemplateTypenameDeduction_HH__
@@ -35,7 +36,7 @@ std::string compiler_func_suffix()
 #if defined(__clang__)
   constexpr const char* compiler_func_suffix   = "]";
 #elif defined(__GNUC__)
-  constexpr const char* compiler_func_suffix   = "]";
+  constexpr const char* compiler_func_suffix   = ";";
 #elif defined(_MSC_VER)
   constexpr const char* compiler_func_suffix   = ">(void)";
 #else
