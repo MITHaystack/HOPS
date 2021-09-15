@@ -24,11 +24,14 @@
 #include "MHO_NDArrayMath.hh"
 #include "MHO_Message.hh"
 
+#include "MHO_ExtensibleElement.hh"
+
 namespace hops
 {
 
 template< typename XValueType, std::size_t RANK>
-class MHO_NDArrayWrapper
+class MHO_NDArrayWrapper:
+    public MHO_ExtensibleElement //any and all extensions are purely a runtime concept and do NOT get streamed for I/O
 {
     public:
 

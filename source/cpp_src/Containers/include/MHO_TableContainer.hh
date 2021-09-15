@@ -48,7 +48,7 @@ class MHO_TableContainer:
             MHO_NDArrayWrapper<XValueType, XAxisPackType::NAXES::value>(obj),
             XAxisPackType(obj)
         {};
-        
+
 
         //clone entire table, contents, axes and all
         MHO_TableContainer* Clone(){ return new MHO_TableContainer(*this); }

@@ -29,6 +29,37 @@ using namespace hops;
 #define YDIM 1
 #define ZDIM 2
 typedef MHO_AxisPack< MHO_Axis<double>, MHO_Axis<double>, MHO_Axis< std::string > > axis_pack_test;
+typedef MHO_TableContainer<double, axis_pack_test > test_table_type;
+
+
+class MHO_NameExtension
+{
+    public:
+        MHO_NameExtension(MHO_ExtensibleElement*){};
+        virtual ~MHO_NameExtension(){};
+        void SetName(std::string name){fName = name;}
+        std::string GetName(){return fName;}
+
+    private:
+        std::string fName;
+};
+
+
+class MHO_NameVisitor:
+    public MHO_ExtendedElement< MHO_NameExtension >::ExtendedVisitor
+{
+    public:
+        MHO_NameVisitor(){};
+        ~MHO_NameVisitor(){};
+
+    public:
+
+        virtual void VisitExtendedElement(MHO_ExtendedElement<MHO_NameExtension>* anElement) override
+        {
+            std::cout<<"visiting an extended element with name:"<<std::endl;
+            std::cout<< anElement->GetName() <<std::endl;
+        }
+};
 
 int main(int argc, char** argv)
 {
@@ -38,7 +69,13 @@ int main(int argc, char** argv)
     dim[1] = 256; //y
     dim[2] = 3; // r,g,b
 
-    MHO_TableContainer<double, axis_pack_test >* test = new MHO_TableContainer<double, axis_pack_test >(dim);
+    test_table_type* test = new test_table_type(dim);
+
+
+    test->MakeExtension< MHO_NameExtension >()->SetName( std::string("myTest") );
+
+    MHO_NameVisitor myVisitor;
+    test->Accept(&myVisitor);
 
     for(size_t i=0; i<NDIM; i++)
     {
@@ -160,7 +197,7 @@ int main(int argc, char** argv)
 
     inter.Close();
 
-    MHO_TableContainer<double, axis_pack_test >* test2 = new MHO_TableContainer<double, axis_pack_test >(dim);
+    test_table_type* test2 = new test_table_type(dim);
 
     status = inter.OpenToRead(filename);
     if(status)

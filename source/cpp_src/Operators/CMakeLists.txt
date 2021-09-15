@@ -2,6 +2,7 @@
 #list header files #############################################################
 set (OPERATOR_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_NDArrayOperator.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_UnaryNDArrayOperator.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_BinaryNDArrayOperator.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_FastFourierTransform.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MultidimensionalFastFourierTransform.hh
