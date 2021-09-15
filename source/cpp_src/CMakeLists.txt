@@ -16,4 +16,5 @@ add_subdirectory(${CPPSOURCE}/Calibration) #VLBI specific data containers and op
 add_subdirectory(${CPPSOURCE}/json) #single header json library
 add_subdirectory(${CPPSOURCE}/vex2json) #library to convert ovex to json
 add_subdirectory(${CPPSOURCE}/MK4Interface) #interface to MK4 data types and import
+add_subdirectory(${CPPSOURCE}/Plugins/OpenCL) #applications
 add_subdirectory(${CPPSOURCE}/Applications) #applications
