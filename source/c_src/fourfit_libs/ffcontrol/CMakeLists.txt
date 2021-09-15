@@ -27,7 +27,8 @@ endforeach( BASENAME )
 
 #declare header paths ##########################################################
 set(MK4UTIL_RELPATH "../../mk4util")
-list(APPEND RELPATH_LIST ${MK4UTIL_RELPATH})
+set(FFCORE_RELPATH "../ffcore") #only for the file ff_misc_if.h --> this is probably not ideal (dep. cycle), include only -- do not link!
+list(APPEND RELPATH_LIST ${MK4UTIL_RELPATH} ${FFCORE_RELPATH})
 
 #include library headers
 foreach(path ${RELPATH_LIST})
