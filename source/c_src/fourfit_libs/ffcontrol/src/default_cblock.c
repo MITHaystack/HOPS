@@ -97,6 +97,7 @@ default_cblock (struct c_block *cb_ptr)
         cb_ptr -> pc_phase_offset[i].ref = 0;
         cb_ptr -> pc_phase_offset[i].rem = 0;
         cb_ptr -> vbp_file[i][0] = 0;
+        cb_ptr -> mount_type[i] = NO_MOUNT_TYPE;
         }
                       
     for (i=0; i<5; i++)

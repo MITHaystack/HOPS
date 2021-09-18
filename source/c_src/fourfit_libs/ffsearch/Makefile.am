@@ -26,7 +26,7 @@ libffsearch_la_SOURCES = src/adhoc_flag.c src/apply_filter.c \
 	src/precorrect.c src/report_actions.c src/rotate_pcal.c \
 	src/sampler_delays.c src/search.c src/search_windows.c \
 	src/update.c src/apply_video_bp.c src/ion_covariance.c \
-	src/adjust_snr.c src/apply_cmplxbp.c
+	src/adjust_snr.c src/apply_cmplxbp.c src/compute_field_rotations.c
 
 libffsearch_la_LIBADD = ../../mk4util/libmk4util.la ../../afio/libafio.la \
 	../../dfio/libdfio.la ../../vex/libvex.la \

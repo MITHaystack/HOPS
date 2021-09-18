@@ -73,6 +73,8 @@ int precorrect (struct scan_struct* ovex, struct type_pass* pass)
                            0.0 : pass->control.ionosphere.rem;
         param.win_ion[i] -= (pass->control.ionosphere.ref == NULLFLOAT) ?
                            0.0 : pass->control.ionosphere.ref;
+        
+        param.mount_type[i] = pass->control.mount_type[i];
         }
     param.nnotches = pass->control.nnotches;
     for (j=0; j<pass->control.nnotches; j++)

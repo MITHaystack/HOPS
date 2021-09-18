@@ -82,6 +82,8 @@ struct type_param
     char*       control_file_buff;      // stripped but unparsed contents of control file
     char*       set_string_buff;        // stripped but unparsed contents of set commands
     int         est_pc_manual;          // estimate pc manual values
+    int         mount_type[2];          // mount types for ref and rem
+    double      elevation[2];           // elevation angle for ref and rem (radians)
     };
 
 #define WIN_EDGE_SBD   0x01             /* masks for status.interp_err */

@@ -101,18 +101,20 @@ static void est_phases(struct type_pass *pass, int first, int final,
     static char buf[720], tmp[80], *pb;
     int ch, ss, pol, nd;
     double inp_phase, est_phase, sbmult, delta_delay, phase_bias;
-    char *epb;
+    char *epb = getenv("HOPS_EST_PC_BIAS");
+    char *epd = getenv("HOPS_EST_PC_DLYM");
 
     *progname = 0;
     msg("*est: phases on %s station", 1, rr ? "ref" : "rem");
 
     /* support for bias operation */
     if (keep) {
-        epb = getenv("HOPS_EST_PC_BIAS");
         phase_bias = (epb) ? atof(epb) : 0.0;
         msg("*est: phase bias %f (mod res phase is %f)", 3,
             phase_bias, status.coh_avg_phase * (180.0 / M_PI));
     }
+    if (epb || epd)
+        msg("*est: HOPS_EST_PC_BIAS %s ..._DLYM %s", 3, epb, epd);
 
     /* header for the section */
     pol = pol_letter(pass->pol, !rr);
@@ -135,6 +137,8 @@ static void est_phases(struct type_pass *pass, int first, int final,
         delta_delay = (param.mbd_anchor == MODEL)
                     ? fringe.t208->resid_mbd
                     : fringe.t208->resid_mbd - fringe.t208->resid_sbd;
+        /* allow this factor to be adjusted */
+        delta_delay *= (epd) ? atof(epd) : 1.0;
         est_phase += sbmult * (carg (status.fringe[ch]) * 180.0 / M_PI
                   + 360.0 * delta_delay *
                     (pass->pass_data[ch].frequency - fringe.t205->ref_freq));
@@ -154,7 +158,7 @@ static void est_phases(struct type_pass *pass, int first, int final,
         if (rr) est_phase = pbranch(est_phase);
         else    est_phase = pbranch(-est_phase);
         snprintf(tmp, sizeof(tmp), " %+8.3f", est_phase);
-        strncat(buf, tmp, sizeof(buf));
+        strncat(buf, tmp, sizeof(buf)-1);
 
         /* eight phases per line for a line length of 73 */
         if (++ss == 8) {
@@ -290,7 +294,7 @@ static void est_delays(struct type_pass *pass,
         esd[ch] += rdy[ch];     /* work relative to input value */
         if (fabs(esd[ch] - rdy[ch]) > 0.01) nd ++;
         snprintf(tmp, sizeof(tmp), " %+8.3f", esd[ch]);
-        strncat(buf, tmp, sizeof(buf));
+        strncat(buf, tmp, sizeof(buf)-1);
   
         /* eight delays per line for a line length of 73 */
         if (++ss == 8) {

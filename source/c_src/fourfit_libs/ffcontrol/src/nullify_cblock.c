@@ -103,7 +103,8 @@ nullify_cblock (struct c_block *cb_ptr)
         cb_ptr -> plot_data_dir[i][0]    = 0;
         cb_ptr -> pc_phase_offset[i].ref = NULLFLOAT;
         cb_ptr -> pc_phase_offset[i].rem = NULLFLOAT;
-        cb_ptr -> vbp_file[i][0]       = 0; 
+        cb_ptr -> vbp_file[i][0]         = 0; 
+        cb_ptr -> mount_type[i]          = NULLINT;
         }
 
     cb_ptr -> gen_cf_record = NULLINT;

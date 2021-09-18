@@ -40,6 +40,7 @@ else
         "apply_passband.c"
         "calc_normalization.c"
         "calc_rms.c"
+        "compute_field_rotations.c"
         "compute_model.c"
         "compute_qf.c"
         "freq_spacing.c"
