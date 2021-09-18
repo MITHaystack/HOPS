@@ -38,6 +38,7 @@
 #define CIRC_MODE 0
 #define LIN_MODE 1
 #define MIXED_MODE 2
+#define CIRC_PAREL 3
 
 void norm_fx (struct type_pass *pass,
               struct type_param *param,
@@ -67,13 +68,29 @@ void norm_fx (struct type_pass *pass,
     int datum_uflag, datum_lflag;
     int stnpol[2][4] = {0, 1, 0, 1, 0, 1, 1, 0}; // [stn][pol] = 0:L/X/H, 1:R/Y/V
     static fftw_plan fftplan;
+    hops_complex cpolrotfac = 1.0;      // default for non CIRC_PAREL
+    hops_complex cpolvalue[4];          // compute these once
+    int station_pol_mode = CIRC_MODE;   // see assignment below
 
     //determine if the ref and rem stations are using circular or linear
     //feeds, or it is some combination
-    int station_pol_mode = CIRC_MODE;
     if( pass->linpol[0] == 0 && pass->linpol[1] == 0){station_pol_mode = CIRC_MODE;}
     if( pass->linpol[0] == 1 && pass->linpol[1] == 1){station_pol_mode = LIN_MODE;}
     if( pass->linpol[0] != pass->linpol[1] ){station_pol_mode = MIXED_MODE;};
+
+    // it is NOT clear how the preceding logic works with POL_IXY
+    // see parallactic-angle-correction.txt for discussion; in any
+    // case these calculations should be done once outside the loops
+    if (station_pol_mode == CIRC_MODE &&
+        (param->mount_type[0] != NO_MOUNT_TYPE ||
+         param->mount_type[1] != NO_MOUNT_TYPE))
+            {
+            station_pol_mode = CIRC_PAREL;
+            compute_field_rotations_fixed(cpolvalue, param->par_angle,
+                param->elevation, param->mount_type);
+            // NYI:
+            // compute_field_rotations_byap(cpolvalue, parangle, elev, mnt, ap);
+            }
 
     if (pass->npols == 1)
         {
@@ -102,6 +119,7 @@ void norm_fx (struct type_pass *pass,
     datum = fdata->data + ap;
                                     // differenced parallactic angle
     dpar = param->par_angle[1] - param->par_angle[0];
+
                                         /* Initialize */
     for (i = 0; i < nlags*4; i++)
         S[i] = 0.0;
@@ -159,59 +177,77 @@ void norm_fx (struct type_pass *pass,
          || (sb == 1 && lsb_bypol[ip] == 0))
             continue;
 
-        // The following bock does a parallactic angle correction in LIN_MODE
-        // Check if this correction should also be applied in mixed-mode case,
+        // The following block does a parallactic angle correction in LIN_MODE
+        // Check if this correction should also be applied in mixed-mode case.
+
+        // However, the above comment was never followed-up, and it is not clear
+        // how useful this LIN_MODE method ultimately was.  Note that this business
+        // of adding polarizations is spawed from parse_cmdline:parse_polar which
+        // allows a general addition of up to 4 polarization types.
+
                                     // Pluck out the requested polarization
         switch (pol)
             {
             case POL_LL: t120 = datum->apdata_ll[sb];
-            if(station_pol_mode == LIN_MODE)
-            {
-                         polcof = (pass->npols > 1) ?
-                             cos (dpar) :
-                             signum (cos (dpar));
-            }
-            else
-            {
-                polcof = 1;
-            }
-                         break;
+                if(station_pol_mode == LIN_MODE)
+                    {
+                    polcof = (pass->npols > 1) ? cos (dpar) : signum (cos (dpar));
+                    }
+                else if (station_pol_mode == CIRC_PAREL)
+                    {
+                    polcof = 1;
+                    cpolrotfac = cpolvalue[pol];
+                    }
+                else
+                    {
+                    polcof = 1;
+                    }
+                break;
             case POL_RR: t120 = datum->apdata_rr[sb];
-            if(station_pol_mode == LIN_MODE)
-            {
-                         polcof = (pass->npols > 1) ?
-                             cos (dpar) :
-                             signum (cos (dpar));
-            }
-            else
-            {
-                polcof = 1;
-            }
-                         break;
+                if(station_pol_mode == LIN_MODE)
+                    {
+                    polcof = (pass->npols > 1) ? cos (dpar) : signum (cos (dpar));
+                    }
+                else if (station_pol_mode == CIRC_PAREL)
+                    {
+                    polcof = 1;
+                    cpolrotfac = cpolvalue[pol];
+                    }
+                else
+                    {
+                    polcof = 1;
+                    }
+                break;
             case POL_LR: t120 = datum->apdata_lr[sb];
-            if(station_pol_mode == LIN_MODE)
-            {
-                         polcof = (pass->npols > 1) ?
-                             sin (-dpar) :
-                             signum (sin (-dpar));
-            }
-            else
-            {
-                polcof = 1;
-            }
-                         break;
+                if(station_pol_mode == LIN_MODE)
+                    {
+                    polcof = (pass->npols > 1) ? sin (-dpar) : signum (sin (-dpar));
+                    }
+                else if (station_pol_mode == CIRC_PAREL)
+                    {
+                    polcof = 1;
+                    cpolrotfac = cpolvalue[pol];
+                    }
+                else
+                    {
+                    polcof = 1;
+                    }
+                break;
             case POL_RL: t120 = datum->apdata_rl[sb];
-            if(station_pol_mode == LIN_MODE)
-            {
-                         polcof = (pass->npols > 1) ?
-                             sin (dpar) :
-                             signum (sin (dpar));
-            }
-            else
-            {
-                polcof = 1;
-            }
-                         break;
+                if(station_pol_mode == LIN_MODE)
+                    {
+                    polcof = (pass->npols > 1) ? sin (dpar) : signum (sin (dpar));
+                    }
+                else if (station_pol_mode == CIRC_PAREL)
+                    {
+                    polcof = 1;
+                    cpolrotfac = cpolvalue[pol];
+                    }
+                else
+                    {
+                    polcof = 1;
+                    }
+                break;
             }                       // end of switch(pol)
         polcof_sum += fabs (polcof);
                                     // sanity test
@@ -331,13 +367,16 @@ void norm_fx (struct type_pass *pass,
                 else                // use conjugate of usb pcal tone for lsb
                     z = z * conj (datum->pc_phasor[ip]);
                                     // scale phasor by polarization coefficient
-                z = z * polcof;
+                                    // cpolrotfac is unity except for CIRC_PAREL
+                z = z * polcof * cpolrotfac;
+
                                     // corrections to phase as fn of freq based upon 
                                     // delay calibrations
 
                                     // calculate offset frequency in GHz 
                                     // from DC edge for this spectral point
                 deltaf = -2e-3 * i / (2e6 * param->samp_period * nlags);
+                                    // but hold that thought until the cexp() below...
 
                 // One size may not fit all.  The code below is a compromise
                 // between current geodetic practice and current EHT needs.

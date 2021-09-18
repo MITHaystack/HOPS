@@ -122,15 +122,34 @@ struct c_block *cb_head
     param->su_number[1] = sd2->t300->SU_number;
                                         // insert appropriate parallactic angles
                                         // FIXME - should evaluate at frt
+    // there are 6 coefficients for the coefficients of
+    // progressively higher powers of dt = now - start of scan
+    // see compute_model.c for sample calculations.
     if (sd1->model[0].t303[0] != NULL)
-        param->par_angle[0] = sd1->model[0].t303[0]->parallactic_angle[0] / 180.0 * M_PI;
+        {
+        param->par_angle[0] =
+            sd1->model[0].t303[0]->parallactic_angle[0] / 180.0 * M_PI;
+        param->elevation[0] =
+            sd1->model[1].t303[0]->elevation[0] / 180.0 * M_PI;
+        }
     else
+        {
         param->par_angle[0] = 0.0;
+        param->elevation[0] = 0.0;
+        }
 
     if (sd2->model[0].t303[0] != NULL)
-        param->par_angle[1] = sd2->model[0].t303[0]->parallactic_angle[0] / 180.0 * M_PI;
+        {
+        param->par_angle[1] =
+            sd2->model[0].t303[0]->parallactic_angle[0] / 180.0 * M_PI;
+        param->elevation[1] =
+            sd2->model[1].t303[0]->elevation[0] / 180.0 * M_PI;
+        }
     else
+        {
         param->par_angle[1] = 0.0;
+        param->elevation[1] = 0.0;
+        }
   
     return(0);
     }

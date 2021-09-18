@@ -300,6 +300,15 @@ int parser (void)
                        cb_ptr -> vbp_correct = tval;
                    else if (toknum == VBP_FIT_)
                        cb_ptr -> vbp_fit = tval;
+
+                   else if (toknum == MOUNT_TYPE_)
+                       {
+                       if (cb_ptr -> baseline[1] == WILDCARD)      // ref station
+                           cb_ptr -> mount_type[0] = tval;
+                       else if (cb_ptr -> baseline[0] == WILDCARD) // rem station
+                           cb_ptr -> mount_type[1] = tval;
+                       }
+
                break;
 
 

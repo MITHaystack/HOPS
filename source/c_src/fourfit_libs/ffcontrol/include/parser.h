@@ -146,8 +146,13 @@ struct token_struct
 #define VBP_FILE_          118
 #define AVXPZOOM_          119
 #define AVXPLOPT_          120
+#define MOUNT_TYPE_        121
+#define NO_MOUNT_TYPE_     122
+#define CASSEGRAIN_        123
+#define NASMYTHLEFT_       124
+#define NASMYTHRIGHT_      125
                                 /* add new tokens at the bottom of the list */
-#define MAX_TOKENS         121  /* increase to equal or exceed # tokens */
+#define MAX_TOKENS         126  /* increase to equal or exceed # tokens */
 
 
         /* Definitions of token categories */

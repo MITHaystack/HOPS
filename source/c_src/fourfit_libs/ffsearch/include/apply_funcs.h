@@ -1,5 +1,5 @@
 /*
- * capture some interfaces to norm_fx
+ * capture some (random) interfaces used by norm_fx()
  */
 
 /* presumes other .h files included first */
@@ -23,6 +23,13 @@ extern void apply_cmplxbp(int sb, struct freq_corel *fdata,
 
 extern double adjust_snr(struct type_pass *pass,
     struct type_status *status);
+
+extern void compute_field_rotations_fixed(hops_complex cpolvalue[4],
+    double *par_angle, double *elevation, int *mount_type);
+
+// NYI
+//extern void compute_field_rotations_byap(hops_complex cpolvalue[4],
+//    double *parangdeg, double *elevdeg, int *mount_type, int ap);
 
 #endif /* APPLY_FUNCS_H_ */
 /*

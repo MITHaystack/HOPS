@@ -227,6 +227,9 @@ copy_cblock_parts ( struct c_block* f, struct c_block* t)
 
         if (f->vbp_file[i][0] != 0)
             strcpy (t->vbp_file[i], f->vbp_file[i]);
+
+        if (f->mount_type[i] != NULLINT)
+            t->mount_type[i] = f->mount_type[i];
         }
 
     if (f->gen_cf_record != NULLINT)

@@ -113,6 +113,7 @@ struct c_block                     /* Elemental control block structure */
    int vbp_fit;                    // iff true, do algebraic model fit for video bandpass
    struct dstats vbp_coeffs[5];    // video bandpass model coeffs (deg)
    char vbp_file[2][256];          // if not null, specifies filename for video bandpass corr.
+   int mount_type[2];              // non-zero implies field-rotation-corrections should be made.
    };
 
           /* Defined values for various structure variables */
@@ -149,6 +150,11 @@ struct c_block                     /* Elemental control block structure */
                                    // mbd anchor choice
 #define MODEL 1
 #define SBD   2
+
+#define NO_MOUNT_TYPE   0          /* mount_type */
+#define CASSEGRAIN      1
+#define NASMYTHLEFT     2
+#define NASMYTHRIGHT    3
 
 #define FCHARS "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789$%"
 #endif

@@ -30,7 +30,7 @@ int generate_graphs (struct scan_struct *root,
     extern struct type_meta meta;
     int i, j, maxj, ii;
     int start_plot, limit_plot;
-    char buf[2560], device[256], pbfr[2][4];
+    char buf[2560], device[256], pbfr[2][44];
     double drate, mbd, sbd;
     struct tm *gmtime();
     static float xr[2*MAXMAX], yr[2*MAXMAX], zr[2*MAXMAX];
