@@ -1,19 +1,6 @@
 #ifndef MHO_UUIDGenerator_HH__
 #define MHO_UUIDGenerator_HH__
 
-/*
-*File: MHO_UUIDGenerator.hh
-*Class: MHO_UUIDGenerator
-*Author: J. Barrett
-*Email: barrettj@mit.edu
-*Date:
-*Description: Class to provide pseudo-randomly generated UUID strings,
-* based on RFC-4122, but with a non-standard 4 byte sync word as a prefix
-*https://tools.ietf.org/html/rfc4122
-*/
-
-
-
 #include <sstream>
 #include <random>
 #include <string>
@@ -22,14 +9,37 @@
 namespace hops
 {
 
+/**
+*@file MHO_UUIDGenerator.hh
+*@class MHO_UUIDGenerator
+*@author J. Barrett - barrettj@mit.edu
+* A class to provide pseudo-randomly generated UUID strings,
+* based on RFC-4122, but with a non-standard 4 byte sync word as a prefix
+* https://tools.ietf.org/html/rfc4122
+*/
+
 class MHO_UUIDGenerator
 {
     public:
         MHO_UUIDGenerator();
         virtual ~MHO_UUIDGenerator();
 
+        /** Generate a 128 bit psuedo-random UUID by following the RFC 4122 standard
+        * @param None
+        * @returns uuid MHO_UUID
+        */
         MHO_UUID GenerateUUID();
+
+        /** Convert the UUID to a string 
+        * @param uuid MHO_UUID& which is a UUID passed by reference 
+        * @returns ss string which is the string version of the UUID
+        */
         std::string ConvertUUIDToString(MHO_UUID& uuid);
+
+        /** Create a MHO_UUID UUID and convert it to a string
+        * @param None
+        * @returns uuid string
+        */
         std::string GenerateUUIDAsString();
 
     private:
