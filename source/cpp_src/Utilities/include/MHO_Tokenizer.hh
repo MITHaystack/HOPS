@@ -7,6 +7,12 @@
 namespace hops
 {
 
+/**
+*@file MHO_Tokenizer.hh 
+*@class MHO_Tokenizer
+*@author J. Barret - barrettj@mit.edu
+* A class reponsible for parsing a string on a given delimiter where the default is a space 
+*/
 
 class MHO_Tokenizer
 {
@@ -19,11 +25,36 @@ class MHO_Tokenizer
         };
         virtual ~MHO_Tokenizer(){;};
 
+        /** Include empty tokens set fIncludeEmptyTokens to true for situations where two delimiters surround a substring which would result in an empty string
+        * @param None
+        * @returns None
+        */
         void SetIncludeEmptyTokensTrue(){fIncludeEmptyTokens = true;};
+
+        /** Do not include empty tokens and set fincludeEmptyTokens to false 
+        * @param None
+        * @returns None
+        */
         void SetIncludeEmptyTokensFalse(){fIncludeEmptyTokens = false;};
 
+      
+        /** Set the string to be parsed 
+        * @param aString string
+        * @returns None 
+        */
         void SetString(const std::string* aString){fString = aString;};
+        
+        
+        /** Set the delimeter to be used to parse the string in SetString 
+        * @param aDelim string a string to be used as a delimiter
+        * @returns None
+        */
         void SetDelimiter(const std::string& aDelim){fDelim = aDelim;};
+
+        /** Parse the string using the tokens 
+        * @param tokens pointer to a vector of strings 
+        * @returns None
+        */
         void GetTokens(std::vector< std::string>* tokens) const
         {
             if(tokens != NULL && fString != NULL)
