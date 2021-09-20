@@ -94,6 +94,7 @@ void generate_text (struct scan_struct *root,
     FILE *popfil;
     char absexec[256], which_command[256];
     char buffer[32], *phost;
+    char mty[2][10];
     static char *pcstr[5]={"","NORMAL","AP BY AP","MANUAL", "MULTITONE"};
     double delta_delay;
     void stripbuf (char *),
@@ -933,14 +934,20 @@ void generate_text (struct scan_struct *root,
     sprintf (buf, "%8.2f %8.2f", param.win_ion[0], param.win_ion[1]);
     psleft (0.92, ypos, buf);
     ypos -= 0.012;
-                                    // az, el, par. angle
-    sprintf (buf, "%c: az %.1f  el %.1f  pa %.1f", param.baseline[0],
+                                    // az, el, par. angle, mty
+    for (i=0;i<2;i++) switch (param.mount_type[i]) {
+    case CASSEGRAIN:    strncpy(mty[i], "[Cass]", 7); break;
+    case NASMYTHLEFT:   strncpy(mty[i], "[NsLf]", 7); break;
+    case NASMYTHRIGHT:  strncpy(mty[i], "[NsRt]", 7); break;
+    default:            strncpy(mty[i], "      ", 7); break;
+    }
+    sprintf (buf, "%c: az %.1f el %.1f pa %.1f %s ", param.baseline[0],
             fringe.t202->ref_az, fringe.t202->ref_elev,
-            param.par_angle[0] * 180 / M_PI);
+            param.par_angle[0] * 180 / M_PI, mty[0]);
     psleft (0.00, ypos, buf);
-    sprintf (buf, "%c: az %.1f  el %.1f  pa %.1f", param.baseline[1],
+    sprintf (buf, "%c: az %.1f el %.1f pa %.1f %s ", param.baseline[1],
             fringe.t202->rem_az, fringe.t202->rem_elev,
-            param.par_angle[1] * 180 / M_PI);
+            param.par_angle[1] * 180 / M_PI, mty[1]);
     psleft (0.20, ypos, buf);
                                     // u and v
     sprintf (buf, "u,v (fr/asec) %.3f  %.3f", fringe.t202->u, fringe.t202->v);
