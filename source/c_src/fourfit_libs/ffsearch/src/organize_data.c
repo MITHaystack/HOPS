@@ -130,7 +130,7 @@ struct c_block *cb_head
         param->par_angle[0] =
             sd1->model[0].t303[0]->parallactic_angle[0] / 180.0 * M_PI;
         param->elevation[0] =
-            sd1->model[1].t303[0]->elevation[0] / 180.0 * M_PI;
+            sd1->model[0].t303[0]->elevation[0] / 180.0 * M_PI;
         }
     else
         {
@@ -143,7 +143,7 @@ struct c_block *cb_head
         param->par_angle[1] =
             sd2->model[0].t303[0]->parallactic_angle[0] / 180.0 * M_PI;
         param->elevation[1] =
-            sd2->model[1].t303[0]->elevation[0] / 180.0 * M_PI;
+            sd2->model[0].t303[0]->elevation[0] / 180.0 * M_PI;
         }
     else
         {
