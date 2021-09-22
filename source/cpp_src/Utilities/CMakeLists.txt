@@ -34,6 +34,7 @@ set (UTILITIES_HEADERFILES
 set( UTILITIES_SOURCEFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_Timer.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_TimeStampConverter.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_Tokenizer.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_IntervalLabel.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_IntervalLabelTree.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_BinaryFileStreamer.cc
