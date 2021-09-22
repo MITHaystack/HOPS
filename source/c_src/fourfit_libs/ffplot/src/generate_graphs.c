@@ -379,7 +379,8 @@ int generate_graphs (struct scan_struct *root,
                 {
                 snprintf(pbfr[ii], 40, "%c%lf%c",
                     ii?' ':'<', param.passband[ii], ii?'>':' ');
-                xr[ii] = (status.xpnotchpband[ii] - xstart) / (xend - xstart);
+                //xr[ii] = (status.xpnotchpband[ii] - xstart) / (xend - xstart);
+                xr[ii] = (status.xpnotchpband[ii] - xszm) / (xezm - xszm);
                 cpgmtxt ("T", -1.0-ii, xr[ii], ii?1.0:0.0, pbfr[ii]);
                 }
             }
