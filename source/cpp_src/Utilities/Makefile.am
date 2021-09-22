@@ -31,7 +31,9 @@ libMHO_Utilities_la_SOURCES = src/MHO_DateTime.cc \
 	src/MHO_IntervalLabelTree.cc \
 	src/MHO_Named.cc \
 	src/MHO_Timer.cc \
-	src/MHO_TimeStampConverter.cc
+	src/MHO_TimeStampConverter.cc \
+  src/MHO_Tokenizer.cc
+
 libMHO_Utilities_la_LDFLAGS = -avoid-version
 
 #v4
