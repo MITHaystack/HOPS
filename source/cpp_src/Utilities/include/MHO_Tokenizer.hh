@@ -4,8 +4,7 @@
 #include <vector>
 #include <string>
 
-namespace hops
-{
+namespace hops {
 
 /**
 *@file MHO_Tokenizer.hh 
@@ -14,99 +13,49 @@ namespace hops
 * A class reponsible for parsing a string on a given delimiter where the default is a space 
 */
 
-class MHO_Tokenizer
-{
+class MHO_Tokenizer{
     public:
-        MHO_Tokenizer()
-        {
-            fDelim = " "; //default delim is space
-            fString = nullptr;
-            fIncludeEmptyTokens = false;
-        };
-        virtual ~MHO_Tokenizer(){;};
+        MHO_Tokenizer(); //TODO ensure this is implemented correctly
+        ~MHO_Tokenizer(); //TODO ensure this is implemented correctly
+
 
         /** Include empty tokens set fIncludeEmptyTokens to true for situations where two delimiters surround a substring which would result in an empty string
         * @param None
         * @returns None
         */
-        void SetIncludeEmptyTokensTrue(){fIncludeEmptyTokens = true;};
+        void SetIncludeEmptyTokensTrue();
 
         /** Do not include empty tokens and set fincludeEmptyTokens to false 
         * @param None
         * @returns None
         */
-        void SetIncludeEmptyTokensFalse(){fIncludeEmptyTokens = false;};
+        void SetIncludeEmptyTokensFalse();
 
-      
         /** Set the string to be parsed 
         * @param aString string
         * @returns None 
         */
-        void SetString(const std::string* aString){fString = aString;};
-        
-        
+        void SetString(const std::string* aString);
+
         /** Set the delimeter to be used to parse the string in SetString 
         * @param aDelim string a string to be used as a delimiter
         * @returns None
         */
-        void SetDelimiter(const std::string& aDelim){fDelim = aDelim;};
-
+        void SetDelimiter(const std::string& aDelim);
+        
         /** Parse the string using the tokens 
         * @param tokens pointer to a vector of strings 
         * @returns None
         */
-        void GetTokens(std::vector< std::string>* tokens) const
-        {
-            if(tokens != NULL && fString != NULL)
-            {
-                tokens->clear();
-                if(fDelim.size() > 0)
-                {
-
-                    size_t start = 0;
-                    size_t end = 0;
-                    size_t length = 0;
-                    while( end != std::string::npos )
-                    {
-                        end = fString->find(fDelim, start);
-
-                        if(end == std::string::npos)
-                        {
-                            length = std::string::npos;
-                        }
-                        else
-                        {
-                            length = end - start;
-                        }
-
-
-                        if( fIncludeEmptyTokens || ( (length > 0 ) && ( start < fString->size() ) ) )
-                        {
-                            tokens->push_back( fString->substr(start,length) );
-                        }
-
-                        if( end > std::string::npos - fDelim.size() )
-                        {
-                            start = std::string::npos;
-                        }
-                        else
-                        {
-                            start = end + fDelim.size();
-                        }
-                    }
-                }
-            }
-        }
-
+        void GetTokens(std::vector< std::string>* tokens);
 
     protected:
 
         bool fIncludeEmptyTokens;
         std::string fDelim;
         const std::string* fString;
-
 };
 
-}
+} // end of hops namespace
 
-#endif /* __HTokenizer_H__ */
+#endif /* end of include guard: MHO_Tokenizer */
