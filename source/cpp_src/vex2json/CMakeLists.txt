@@ -1,4 +1,6 @@
 set (VEX2JSON_HEADERFILES
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_JSONHeaderWrapper.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_JSONOutputObject.hh
     #mk4_typedefs
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_DateStructWrapper.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_SkyCoordStructWrapper.hh
@@ -27,7 +29,7 @@ set(MK4UTIL_RELPATH "../../c_src/mk4util/include")
 set(VEX_RELPATH "../../c_src/vex/include")
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/${MK4UTIL_RELPATH})
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/${VEX_RELPATH})
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../json/include)
+include_directories(${EXTERN_HLIBS}/json/include)
 hops_internal_include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 add_library (vex2json SHARED ${VEX2JSON_SOURCEFILES} ${VEX2JSON_HEADERFILES})

@@ -174,9 +174,16 @@ int main(int argc, char** argv)
         }
     }
 
+
     //directory interface
     MHO_DirectoryInterface dirInterface;
     output_dir = dirInterface.GetDirectoryFullPath(odir);
+    input_dir = dirInterface.GetDirectoryFullPath(input_dir);
+
+    std::cout<<"input dir = "<<input_dir<<std::endl;
+    std::cout<<"output dir = "<<odir<<std::endl;
+
+
     if( !dirInterface.DoesDirectoryExist(output_dir) )
     {
         dirInterface.CreateDirectory(output_dir);
@@ -186,6 +193,8 @@ int main(int argc, char** argv)
     std::vector< std::string > allFiles;
     std::vector< std::string > allDirs;
 
+    dirInterface.SetCurrentDirectory(input_dir);
+    dirInterface.ReadCurrentDirectory();
     dirInterface.GetFileList(allFiles);
     dirInterface.GetSubDirectoryList(allDirs);
 

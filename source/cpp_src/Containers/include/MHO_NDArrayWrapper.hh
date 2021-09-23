@@ -177,6 +177,16 @@ class MHO_NDArrayWrapper:
             }
         }
 
+        std::array<std::size_t, RANK> GetDimensionArray() const
+        {
+            std::array<std::size_t, RANK> array_dim;
+            for(std::size_t i=0; i<RANK; i++)
+            {
+                array_dim[i] = fDimensions[i];
+            }
+            return array_dim;
+        }
+
         const std::size_t* GetDimensions() const
         {
             return fDimensions;
@@ -202,15 +212,26 @@ class MHO_NDArrayWrapper:
 
         void GetStrides(std::size_t* array_stride) const
         {
-            for(std::size_t i=0; i<RANK; i++){array_stride[i] = 0;}
-            std::size_t stride = 1;
-            std::size_t i = RANK-1;
-            while(i > 0)
+            for(std::size_t i=0; i<RANK; i++)
             {
-                array_stride[i] = stride;
-                stride *= fDimensions[i];
-                i--;
+                array_stride[i] = this->GetStride(i);
             }
+        }
+
+
+        std::array<std::size_t, RANK> GetStrides() const
+        {
+            std::array<std::size_t, RANK> array_stride;
+            for(std::size_t i=0; i<RANK; i++){array_stride[i] = this->GetStride(i);}
+            return array_stride;
+        }
+
+
+        std::array<std::size_t, RANK> GetByteStrides() const
+        {
+            std::array<std::size_t, RANK> array_stride = this->GetStrides();
+            for(std::size_t i=0; i<RANK; i++){array_stride[i] *=  sizeof(XValueType);}
+            return array_stride;
         }
 
         std::size_t GetOffsetForIndices(const std::size_t* index)
@@ -674,7 +695,8 @@ class MHO_NDArrayWrapper:
 
 //specialization for a RANK-0 (i.e. a scalar)
 template< typename XValueType >
-class MHO_NDArrayWrapper<XValueType, 0>
+class MHO_NDArrayWrapper<XValueType, 0>:
+    public MHO_ExtensibleElement //any and all extensions are purely a runtime concept and do NOT get streamed for I/O
 {
     public:
 
@@ -762,7 +784,8 @@ class MHO_NDArrayWrapper<XValueType, 0>
 
 //specialization for a RANK-1 (i.e. a vector)
 template< typename XValueType >
-class MHO_NDArrayWrapper<XValueType, 1>
+class MHO_NDArrayWrapper<XValueType, 1>:
+    public MHO_ExtensibleElement //any and all extensions are purely a runtime concept and do NOT get streamed for I/O
 {
     public:
 
@@ -775,19 +798,19 @@ class MHO_NDArrayWrapper<XValueType, 1>
             fDimensions[0] = 0;
             fTotalArraySize = 0;
             fDataPtr = nullptr;
-            fExternallyManaged = false;
+            //fExternallyManaged = false;
         }
 
-        //data is externally allocated - we take no responsiblity to
-        //delete the data pointed to by ptr upon destruction
-        MHO_NDArrayWrapper(XValueType* ptr, std::size_t dim)
-        {
-            //dimensions not known at time of construction
-            fDimensions[0] = dim;
-            fTotalArraySize = fDimensions[0];
-            fDataPtr = ptr;
-            fExternallyManaged = true;
-        }
+        // //data is externally allocated - we take no responsiblity to
+        // //delete the data pointed to by ptr upon destruction
+        // MHO_NDArrayWrapper(XValueType* ptr, std::size_t dim)
+        // {
+        //     //dimensions not known at time of construction
+        //     fDimensions[0] = dim;
+        //     fTotalArraySize = fDimensions[0];
+        //     fDataPtr = ptr;
+        //     fExternallyManaged = true;
+        // }
 
         //data is internally allocated
         //we may want to improve this with an allocator type parameter
@@ -797,7 +820,7 @@ class MHO_NDArrayWrapper<XValueType, 1>
             fTotalArraySize = dim;
             fData.resize(fTotalArraySize);
             fDataPtr = &(fData[0]);
-            fExternallyManaged = false;
+            //fExternallyManaged = false;
         }
 
         //copy constructor
@@ -805,12 +828,12 @@ class MHO_NDArrayWrapper<XValueType, 1>
         {
             fDimensions[0] = obj.fDimensions[0];
             fTotalArraySize = obj.fTotalArraySize;
-            if(obj.fExternallyManaged)
-            {
-                fDataPtr = obj.fDataPtr;
-                fExternallyManaged = true;
-            }
-            else
+            // if(obj.fExternallyManaged)
+            // {
+            //     fDataPtr = obj.fDataPtr;
+            //     fExternallyManaged = true;
+            // }
+            // else
             {
                 fData.resize(fTotalArraySize);
                 if(fTotalArraySize != 0)
@@ -818,7 +841,7 @@ class MHO_NDArrayWrapper<XValueType, 1>
                     std::copy(obj.fData.begin(), obj.fData.end(), fData.begin() );
                 }
                 fDataPtr = &(fData[0]);
-                fExternallyManaged = false;
+                //fExternallyManaged = false;
             }
         }
 
@@ -826,45 +849,48 @@ class MHO_NDArrayWrapper<XValueType, 1>
 
         void Resize(const std::size_t* dim)
         {
-            if(fExternallyManaged)
-            {
-                //we cannot re-size an externally managed array
-                //so instead we issue a warning and reconfigure
-                //our state to use an internally managed array
-                msg_warn("containers", "Resize operation called on a wrapper pointing to " <<
-                          "an exernally managed array will replace it with internally " <<
-                          "managed memory. This may result in unexpected behavior." << eom);
-            }
+            // if(fExternallyManaged)
+            // {
+            //     //we cannot re-size an externally managed array
+            //     //so instead we issue a warning and reconfigure
+            //     //our state to use an internally managed array
+            //     msg_warn("containers", "Resize operation called on a wrapper pointing to " <<
+            //               "an exernally managed array will replace it with internally " <<
+            //               "managed memory. This may result in unexpected behavior." << eom);
+            // }
 
             fDimensions[0] = dim[0];
             fTotalArraySize = fDimensions[0];
             fData.resize(fTotalArraySize);
             fDataPtr = &(fData[0]);
-            fExternallyManaged = false;
+            //fExternallyManaged = false;
         }
 
         void Resize(std::size_t dim)
         {
-            if(fExternallyManaged)
-            {
-                //we cannot re-size an externally managed array
-                //so instead we issue a warning and reconfigure
-                //our state to use an internally managed array
-                msg_warn("containers", "Resize operation called on a wrapper pointing to " <<
-                          "an exernally managed array will replace it with internally " <<
-                          "managed memory. This may result in unexpected behavior." << eom);
-            }
+            // if(fExternallyManaged)
+            // {
+            //     //we cannot re-size an externally managed array
+            //     //so instead we issue a warning and reconfigure
+            //     //our state to use an internally managed array
+            //     msg_warn("containers", "Resize operation called on a wrapper pointing to " <<
+            //               "an exernally managed array will replace it with internally " <<
+            //               "managed memory. This may result in unexpected behavior." << eom);
+            // }
 
             fDimensions[0] = dim;
             fTotalArraySize = fDimensions[0];
             fData.resize(fTotalArraySize);
             fDataPtr = &(fData[0]);
-            fExternallyManaged = false;
+            //fExternallyManaged = false;
         }
 
         //in some cases we may need access to the underlying raw array pointer
         XValueType* GetData(){return fDataPtr;};
         const XValueType* GetData() const {return fDataPtr;};
+
+        std::vector< XValueType >& AsVector() {return fData;};
+        const std::vector< XValueType >& AsVector() const {return fData;};
 
         std::size_t GetSize() const {return fTotalArraySize;};
 
@@ -892,6 +918,20 @@ class MHO_NDArrayWrapper<XValueType, 1>
         void GetStrides(std::size_t* array_stride) const
         {
             array_stride[0] = 1;
+        }
+
+        std::array<std::size_t, 1> GetStrides() const
+        {
+            std::array<std::size_t, 1> array_stride;
+            array_stride[0] = 1;
+            return array_stride;
+        }
+
+        std::array<std::size_t,1> GetByteStrides() const
+        {
+            std::array<std::size_t,1> array_stride;
+            array_stride[0] =  sizeof(XValueType);
+            return array_stride;
         }
 
 
@@ -966,18 +1006,18 @@ class MHO_NDArrayWrapper<XValueType, 1>
         {
             if(this != &rhs)
             {
-                if(rhs.fExternallyManaged)
-                {
-                    //cheap copies for externally managed arrays
-                    //just copy dimensions and ptr
-                    fDimensions[0] = rhs.fDimensions[0];
-                    fTotalArraySize = fDimensions[0];
-                    fDataPtr = rhs.fDataPtr;
-                    fExternallyManaged = true;
-                    //effectively de-allocate anything we might have had before
-                    std::vector< XValueType >().swap(fData);
-                }
-                else
+                // if(rhs.fExternallyManaged)
+                // {
+                //     //cheap copies for externally managed arrays
+                //     //just copy dimensions and ptr
+                //     fDimensions[0] = rhs.fDimensions[0];
+                //     fTotalArraySize = fDimensions[0];
+                //     fDataPtr = rhs.fDataPtr;
+                //     fExternallyManaged = true;
+                //     //effectively de-allocate anything we might have had before
+                //     std::vector< XValueType >().swap(fData);
+                // }
+                // else
                 {
                     Resize(rhs.fDimensions);
                     //also copy its contents of data array
@@ -986,7 +1026,7 @@ class MHO_NDArrayWrapper<XValueType, 1>
                         std::copy(rhs.fData.begin(), rhs.fData.end(), fData.begin() );
                     }
                     fDataPtr = &(fData[0]);
-                    fExternallyManaged = false;
+                    //fExternallyManaged = false;
                 }
             }
             return *this;
@@ -1014,7 +1054,7 @@ class MHO_NDArrayWrapper<XValueType, 1>
     protected:
 
         XValueType* fDataPtr;
-        bool fExternallyManaged;
+        //bool fExternallyManaged;
         std::vector< XValueType > fData; //used for internally managed data
         std::size_t fDimensions[1]; //size of each dimension
         std::size_t fTotalArraySize; //total size of array

@@ -1,7 +1,7 @@
 #ifndef MHO_JSONOutputObject_HH__
 #define MHO_JSONOutputObject_HH__
 
-#include "json_wrapper.hh"
+#include "MHO_JSONHeaderWrapper.hh"
 
 extern "C"
 {

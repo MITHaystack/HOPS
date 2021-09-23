@@ -21,7 +21,7 @@ extern "C"
 
 #include <iostream>
 #include <string>
-#include "json_wrapper.hh"
+#include "MHO_JSONHeaderWrapper.hh"
 
 
 namespace hops

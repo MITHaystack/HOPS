@@ -38,7 +38,9 @@ class MHO_AxisPack:  public std::tuple< XAxisTypeS... >, virtual public MHO_Seri
 
         virtual ~MHO_AxisPack(){};
 
+        //declare some convenience types
         typedef std::integral_constant< std::size_t, sizeof...(XAxisTypeS) > NAXES;
+        typedef std::tuple< XAxisTypeS... > axis_pack_tuple_type;
 
         virtual uint64_t GetSerializedSize() const override
         {

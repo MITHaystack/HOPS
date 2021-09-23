@@ -16,7 +16,7 @@ set (OPERATOR_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ComplexConjugator.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_CyclicRotator.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_SubSample.hh
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_OperatorStub.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_Operator.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MultidimensionalPaddedFastFourierTransform.hh
 )
 
@@ -30,7 +30,7 @@ endif(HOPS_USE_FFTW3)
 #list source files #############################################################
 
 set( OPERATOR_SOURCEFILES
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_OperatorStub.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_Operator.cc
 )
 
 #declare header paths ##########################################################
