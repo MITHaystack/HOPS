@@ -7,7 +7,7 @@ namespace hops
 void
 MHO_BinaryFileStreamer::OpenToRead()
 {
-    //open file for binary rwading
+    //open file for binary reading
     fFile.open(fFilename.c_str(), std::fstream::in | std::ios::binary);
     if( !fFile.is_open() || !fFile.good() )
     {

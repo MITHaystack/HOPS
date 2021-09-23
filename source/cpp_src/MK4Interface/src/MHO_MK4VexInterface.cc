@@ -1,6 +1,6 @@
 #include "MHO_MK4VexInterface.hh"
 
-#include "json_wrapper.hh"
+#include "MHO_JSONHeaderWrapper.hh"
 
 #include "MHO_ScanStructWrapper.hh"
 #include "MHO_Message.hh"

@@ -37,7 +37,6 @@ template< class... T > struct MHO_TypelistSizeImpl< MHO_Typelist< T... > >
 template< class L > using MHO_TypelistSize = typename MHO_TypelistSizeImpl<L>::type;
 
 
-
 //functions needed to stream tuples/////////////////////////////////////////////
 template<size_t N = 0, typename XStream, typename... T >
 typename std::enable_if< (N >= sizeof...(T)), XStream& >::type
@@ -77,6 +76,52 @@ typename std::enable_if< (N < sizeof...(T)), XStream& >::type
 }
 
 ////////////////////////////////////////////////////////////////////////////////
+
+//generic apply functor to tuple (for runtime-indexed access)
+template <size_t NTypes>
+struct apply_to_tuple
+{
+    template <typename XTupleType, typename XFunctorType>
+    static void apply(XTupleType& tup, size_t index, XFunctorType functor)
+    {
+        //if the index matches the current element, apply the functor
+        if(index == NTypes - 1)
+        {
+            functor( std::get<NTypes - 1>(tup) );
+        }
+        else
+        {
+            //else recurse to the next type
+            apply_to_tuple<NTypes - 1>::apply(tup, index, functor);
+        }
+    }
+};
+
+//base case, empty tuple with no elements (should never happen)
+template <>
+struct
+apply_to_tuple<0>
+{
+    template <typename XTupleType, typename XFunctorType>
+    static void apply(XTupleType& tup, size_t index, XFunctorType functor) {}
+};
+
+//const access
+template < typename XTupleType, typename XFunctorType >
+void
+apply_at(const XTupleType& tup, size_t index, XFunctorType functor)
+{
+    apply_to_tuple< std::tuple_size< XTupleType >::value >::apply(tup, index, functor);
+}
+
+//non-const access
+template < typename XTupleType, typename XFunctorType >
+void
+apply_at(XTupleType& tup, size_t index, XFunctorType functor)
+{
+    apply_to_tuple< std::tuple_size< XTupleType >::value >::apply(tup, index, functor);
+}
+
 
 
 }

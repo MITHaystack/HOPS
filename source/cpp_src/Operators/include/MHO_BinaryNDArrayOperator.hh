@@ -1,16 +1,15 @@
 #ifndef MHO_BinaryNDArrayOperator_HH__
 #define MHO_BinaryNDArrayOperator_HH__
 
+#include "MHO_Operator.hh"
 #include "MHO_NDArrayWrapper.hh"
 #include <cstring>
 
 namespace hops{
 
-
-
  //template parameters must inherit from MHO_NDArrayWrapper
 template<class XInputArrayType1, class XInputArrayType2, class XOutputArrayType>
-class MHO_BinaryNDArrayOperator
+class MHO_BinaryNDArrayOperator: public MHO_Operator
 {
     public:
 
@@ -30,8 +29,9 @@ class MHO_BinaryNDArrayOperator
         virtual XInputArrayType2* GetSecondInput(){return fInput2;};
         virtual XOutputArrayType* GetOutput(){return fOutput;};
 
-        virtual bool Initialize() = 0;
-        virtual bool ExecuteOperation() = 0;
+        //inherts these from MHO_Operator
+        // virtual bool Initialize() = 0;
+        // virtual bool ExecuteOperation() = 0;
 
     protected:
 

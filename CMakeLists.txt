@@ -1,14 +1,15 @@
 #cmake_minimum_required(VERSION 3.0)
 cmake_minimum_required(VERSION 2.8)
 
-project(Hops)
-
 # Module version
 set(MODULE_VERSION_MAJOR 4)
 set(MODULE_VERSION_MINOR 0)
 set(MODULE_VERSION_PATCH 0)
 set(MODULE_VERSION "${MODULE_VERSION_MAJOR}.${MODULE_VERSION_MINOR}.${MODULE_VERSION_PATCH}")
 set(MODULE_VERSION_NUMBER "${MODULE_VERSION_MAJOR}.${MODULE_VERSION_MINOR}${MODULE_VERSION_PATCH}")
+
+project(Hops)
+
 
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake )
 include(HopsDefaults)
@@ -62,6 +63,15 @@ hops_require_cpp11()
 set( CMAKE_C_FLAGS "${CMAKE_C_FLAGS}" )
 set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}" )
 
+
+#convenience variables
+set(CSOURCE ${CMAKE_CURRENT_SOURCE_DIR}/source/c_src)
+set(CPPSOURCE ${CMAKE_CURRENT_SOURCE_DIR}/source/cpp_src)
+set(SHSOURCE ${CMAKE_CURRENT_SOURCE_DIR}/source/bash_src)
+set(PYSOURCE ${CMAKE_CURRENT_SOURCE_DIR}/source/python_src)
+set(EXTERN_HLIBS ${CMAKE_CURRENT_SOURCE_DIR}/extern)
+
+
 #set( CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -Wextra" )
 #set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra" )
 #
@@ -81,25 +91,6 @@ option( HOPS_USE_ROOT "Build ROOT based utilities." OFF)
 
 option(HOPS_DEV_USE_OLD "Allow new C++ code to use old hops/fourfit C-libraries, beyond what is absolutely necessary." OFF)
 
-#add an option on whether or not to use FFTW3
-option (HOPS_USE_FFTW3 "Use FFTW3 for fast fourier transforms" OFF)
-if(HOPS_USE_FFTW3)
-    find_package(FFTW REQUIRED)
-    hops_external_include_directories (${FFTW_INCLUDE_DIRS})
-    hops_add_cxxflag(HOPS_USE_FFTW3)
-endif (HOPS_USE_FFTW3)
-
-
-#convenience variables
-set(CSOURCE ${CMAKE_CURRENT_SOURCE_DIR}/source/c_src)
-set(CPPSOURCE ${CMAKE_CURRENT_SOURCE_DIR}/source/cpp_src)
-set(SHSOURCE ${CMAKE_CURRENT_SOURCE_DIR}/source/bash_src)
-set(PYSOURCE ${CMAKE_CURRENT_SOURCE_DIR}/source/python_src)
-
-################################################################################
-add_subdirectory(${CSOURCE})
-add_subdirectory(${CPPSOURCE})
-add_subdirectory(doc)
 
 #python package setup
 find_package(PythonInterp REQUIRED)
@@ -115,10 +106,39 @@ if (PYTHON_EXECUTABLE)
   execute_process(COMMAND ${PYTHON_EXECUTABLE} "${CMAKE_CURRENT_BINARY_DIR}/pypath.py"  WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR} OUTPUT_VARIABLE PYTHON_SITE_PREFIX)
   message(STATUS "Python path = ${PYTHON_SITE_PREFIX}")
 
-  #now add the python source dir
-  add_subdirectory(${PYSOURCE})
+string(STRIP "${PYTHON_SITE_PREFIX}" PYTHON_SITE_PREFIX)
+
+set( PYTHON_MODULE_INSTALL_DIR  "${CMAKE_INSTALL_PREFIX}/${PYTHON_SITE_PREFIX}")
+
+#now add the python source dir
+add_subdirectory(${PYSOURCE})
 
 endif (PYTHON_EXECUTABLE)
+
+option(HOPS_USE_PYBIND11 "Build python bindings with pybind11" OFF)
+if(HOPS_USE_PYBIND11)
+    add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/extern/pybind11)
+endif(HOPS_USE_PYBIND11)
+
+
+#add an option on whether or not to use FFTW3
+option (HOPS_USE_FFTW3 "Use FFTW3 for fast fourier transforms" OFF)
+if(HOPS_USE_FFTW3)
+    find_package(FFTW REQUIRED)
+    hops_external_include_directories (${FFTW_INCLUDE_DIRS})
+    hops_add_cxxflag(HOPS_USE_FFTW3)
+endif (HOPS_USE_FFTW3)
+
+
+
+
+################################################################################
+add_subdirectory(${CSOURCE})
+add_subdirectory(${EXTERN_HLIBS}/json)
+add_subdirectory(${CPPSOURCE})
+
+add_subdirectory(doc)
+
 
 #configure environment set-up script
 configure_file( ${SHSOURCE}/hopsenv.sh.cmake ${CMAKE_CURRENT_BINARY_DIR}/hopsenv.sh @ONLY)

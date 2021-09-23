@@ -1,8 +1,7 @@
 #include <string>
 #include <iostream>
 
-#include "json.hh"
-using nlohmann::json;
+#include "MHO_JSONHeaderWrapper.hh"
 
 extern "C"
 {

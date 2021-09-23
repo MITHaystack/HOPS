@@ -2,6 +2,7 @@
 #include <string>
 #include <sstream>
 
+
 #include "MHO_TimeStampConverter.hh"
 #include "MHO_MultiTypeMap.hh"
 
@@ -9,13 +10,40 @@
 
 using namespace hops;
 
+class
+my_functor
+{
+    public:
+        my_functor(){};
+        ~my_functor(){};
+
+    template< typename XValueType >
+    void operator()(const XValueType& val )
+    {
+        std::cout<<"value = "<<val<<std::endl;
+    }
+};
 
 typedef std::string key_type1;
+typedef std::tuple<double, int, float, bool> myTupleType;
 
 int main(int /*argc*/, char** /*argv*/)
 {
 
     //std::cout<<"size of the typelist is: "<< MHO_TypelistSize< a_typelist >::value <<std::endl;
+    myTupleType mytuple;
+    std::get<0>(mytuple) = 3.14e256;
+    std::get<1>(mytuple) = 10;
+    std::get<2>(mytuple) = 3.14;
+    std::get<3>(mytuple) = true;
+
+    my_functor fobj;
+    for(size_t i=0; i<4; i++)
+    {
+        std::cout<<"testing tuple-runtime extraction, @ index "<<i<<std::endl;
+        apply_at< myTupleType, my_functor >(mytuple, i, fobj);
+    }
+
     MHO_MultiTypeMap< key_type1, int, double, float, std::string > myMap;
     MHO_MultiTypeMap< key_type1, int, double, float, std::string > myMap2;
 

@@ -27,7 +27,7 @@ class MHO_OpenCLNDArrayBuffer
             fDataBufferCL(nullptr)
         {
             fRank = XArrayType::rank::value;
-            fTable = dynamic_cast< XArrayType* >(element);
+            fNDArray = dynamic_cast< XArrayType* >(element);
         };
 
 
@@ -50,7 +50,7 @@ class MHO_OpenCLNDArrayBuffer
         void ConstructDataBuffer()
         {
             //buffer for the data
-            unsigned int n_bytes = (static_cast< unsigned int >( fTable->GetSize() ) )*sizeof( typename MHO_OpenCLTypeMap< typename XArrayType::value_type  >::mapped_type );
+            unsigned int n_bytes = (static_cast< unsigned int >( fNDArray->GetSize() ) )*sizeof( typename MHO_OpenCLTypeMap< typename XArrayType::value_type  >::mapped_type );
             CL_ERROR_TRY
             fDataBufferCL =
             new cl::Buffer(MHO_OpenCLInterface::GetInstance()->GetContext(), CL_MEM_READ_WRITE, n_bytes);
@@ -65,10 +65,9 @@ class MHO_OpenCLNDArrayBuffer
             //writes the dimensions of the array from the host to the device
             cl::CommandQueue& Q = MHO_OpenCLInterface::GetInstance()->GetQueue();
             unsigned int n_bytes = fRank*sizeof(unsigned int);
-            //fDimensions[0] = static_cast< unsigned int >( fTable->GetSize() ); //cast size_t to unsigned int
             for(unsigned int i=0; i<fRank; i++)
             {
-                fDimensions[i] = static_cast< unsigned int >( fTable->GetDimension(i) );
+                fDimensions[i] = static_cast< unsigned int >( fNDArray->GetDimension(i) );
             }
             //we enqueue write the needed constants for this dimension
             CL_ERROR_TRY
@@ -83,9 +82,9 @@ class MHO_OpenCLNDArrayBuffer
         {
             //Writes data from the host to device
             cl::CommandQueue& Q = MHO_OpenCLInterface::GetInstance()->GetQueue();
-            unsigned int n_bytes = (static_cast< unsigned int >( fTable->GetSize() ) )*sizeof( typename MHO_OpenCLTypeMap< typename XArrayType::value_type  >::mapped_type );
+            unsigned int n_bytes = (static_cast< unsigned int >( fNDArray->GetSize() ) )*sizeof( typename MHO_OpenCLTypeMap< typename XArrayType::value_type  >::mapped_type );
             typename MHO_OpenCLTypeMap< typename XArrayType::value_type  >::mapped_type* ptr;
-            ptr = reinterpret_cast< typename MHO_OpenCLTypeMap< typename XArrayType::value_type  >::mapped_type* >(fTable->GetData() );
+            ptr = reinterpret_cast< typename MHO_OpenCLTypeMap< typename XArrayType::value_type  >::mapped_type* >(fNDArray->GetData() );
             CL_ERROR_TRY
             Q.enqueueWriteBuffer(*fDataBufferCL, CL_TRUE, 0, n_bytes, ptr );
             CL_ERROR_CATCH
@@ -99,9 +98,9 @@ class MHO_OpenCLNDArrayBuffer
             //TODO FIXME -- need to make sure  typename XArrayType::value_type   is the same size as equivalent OpenCL type we are mapping to
             //read out data from the GPU to the host memory
             cl::CommandQueue& Q = MHO_OpenCLInterface::GetInstance()->GetQueue();
-            unsigned int n_bytes = (static_cast< unsigned int >( fTable->GetSize() ) )*sizeof( typename MHO_OpenCLTypeMap< typename XArrayType::value_type  >::mapped_type );
+            unsigned int n_bytes = (static_cast< unsigned int >( fNDArray->GetSize() ) )*sizeof( typename MHO_OpenCLTypeMap< typename XArrayType::value_type  >::mapped_type );
             typename MHO_OpenCLTypeMap< typename XArrayType::value_type  >::mapped_type* ptr;
-            ptr = reinterpret_cast< typename MHO_OpenCLTypeMap< typename XArrayType::value_type  >::mapped_type* >(fTable->GetData() );
+            ptr = reinterpret_cast< typename MHO_OpenCLTypeMap< typename XArrayType::value_type  >::mapped_type* >(fNDArray->GetData() );
             CL_ERROR_TRY
             Q.enqueueReadBuffer(*fDataBufferCL, CL_TRUE, 0, n_bytes, ptr);
             CL_ERROR_CATCH
@@ -113,7 +112,7 @@ class MHO_OpenCLNDArrayBuffer
     protected:
 
         MHO_ExtensibleElement* fElement;
-        XArrayType* fTable;
+        XArrayType* fNDArray;
         unsigned int fRank;
 
         //The OpenCL buffers associated with this table are:
