@@ -29,28 +29,33 @@ so there is no need to expend effort on a native implementation. Moreover this s
 
 We propose the following basic set of class templates be used to construct most in-memory objects used for the manipulation of correlated observation data and its associated station data:
 \begin{enumerate}
- \item ScalarContainer - encapsulates scalar-like data
- \item VectorContainer - encapsulates vector-like data
- \item TableContainer - encapsulates rank-N tensor-like data with associated axes (vector)
+ \item \texttt{MHO\_ScalarContainer} - encapsulates scalar-like data
+ \item \texttt{MHO\_VectorContainer} - encapsulates vector-like data
+ \item \texttt{MHO\_TableContainer} - encapsulates rank-N tensor-like data with associated axes (vector)
 \end{enumerate}
 These template classes are to serve as a simple wrapper around the management of the raw memory needed to store a data item and keep track of its associated unit(s), and (if applicable) the values associated with the axes along each dimension and their units.
 
 The three container types listed above represent the majority of the memory intensive data needed within HOPS
-and can largely be derived from a N-dimensional array of some numeric type. Therefore a generic template class for
+and can largely be derived from a N-dimensional array of some numeric or integral type. Therefore a generic template class for
 N-dimensional arrays is needed, listing \ref{lst:ndarray} shows a stub of this class.
-
 \lstinputlisting[language=C++,label={lst:ndarray},caption=N-Dimensional Array Template]{./code/MHO_NDArrayWrapper.hh}
-
 The underlying storage of the N-dimensional array data is done as a single contiguous chunk of memory which can either be a piece of externally or internally managed memory. Indexing into this chunk of memory is done using C-like row-major order, where for an array of rank D, with dimension sizes $\{N_0, N_1, \cdots N_{D-1}\}$, the location of the data specified by the indexes $\{n_0, n_1, \cdots, n_{D-1}\}$ can found at an offset from the start, $z$, that is given by:
 \begin{equation}
  z = \sum_{k=0}^{D-1} \left ( \prod_{j=k+1}^{D-1} N_j \right) n_k
  \end{equation}
 Access to the underlying data stored within a class of this type can then proceed in two main ways. The first is through the aforementioned
 row-major order indexing operation, and the second is through the use of iterators. An example of several of the provided methods is shown for a three dimensional array in listing \ref{lst:array-usage}. Iterators are most commonly utilized for efficient incremental (continuous or strided) access to the array data as they can be computed using pointer arithmetic, while random access is best done via indexes.
-
 \lstinputlisting[language=C++,label={lst:array-usage},caption=N-Dimensional Array access]{./code/array_use.cc}
 
-In addition to the raw data stored in the N-dimensional array, in the case of the TableContainer it is important to associate a coordinate axis with each dimension. For example, in the case of channelized visibilities, the axes of each of the four dimensions would be:
+In addition to the raw data stored in the N-dimensional array, in the case of the \texttt{MHO\_TableContainer} it is important to associate a coordinate axis with each dimension in order to provide various data operators with the ability to look-up the location of a datum beyond a simple integer-index. To enable this,
+we will pair an N-dimensional array with a tuple of axis objects associated with each dimension. Listing \ref{lst:objects} shows the template class structure
+for a TableContainer (along with other) objects.
+\lstinputlisting[language=C++,float=h!,label={lst:objects},caption=Data object templates]{code/data-objects.hh}
+The axis objects themselves also inherit from \texttt{MHO\_IntervalLabelTree}, which provides the ability to associate a pair of indexes with a key value pair of several types. A simple example of this would be tagging a section of the frequency axis with a particular channel ID (e.g \texttt{ [0, 32] } $\leftrightarrow$ \texttt{ \{"channel\_id": "X17LY"\} }). The class \texttt{MHO\_IntervalLabelTree} will support tagging axis intervals with values of at least the following types: char, bool, int, double, and string, using strings as keys, and allow for the bi-directional look up of a key:value pairs with assoiated intervals.
+
+As a concrete example of the \texttt{MHO\_TableContainer} template class, listing \ref{lst:visib} gives a simple example of what template declaration of an object storing channelized visibility data from a single-baseline observation might look like.
+\lstinputlisting[language=C++,float=h!,label={lst:visib},caption=Visibility object type]{code/visibilities.hh}
+For example, in the case of channelized visibilities, the axes of each of the four dimensions would be:
 \begin{enumerate}
 \item Axis 0: Polarization-product axis, labelled by a short string specifying the reference
 and remote stations' polarizations for data associated with that column (e.g ``XX'' or ``RR'' or ``RX'').
@@ -58,36 +63,27 @@ and remote stations' polarizations for data associated with that column (e.g ``X
 \item Axis 2: Time axis, labelled by the time since start of a scan in seconds.
 \item Axis 3: Frequency axis, labelled by the frequency offset from the edge of the channel (MHz).
 \end{enumerate}
-It should be noted that these coordinate axes are there merely to label the data, they are not meant to provide a reverse look-up
+It should be noted that these coordinate axes are there merely to label the data, but are not meant to provide a reverse look-up
 capability, (e.g example inverting the polarization-product code ``LL'' to infer a 0-th index location of 0). For efficiency array
-access is still to be done using unsigned integer values.
-
-Listing \ref{lst:objects} gives a brief sketch of the preliminary template class implementation for these data container objects, while listing \ref{lst:visib} gives a simple example of what template declaration of an object storing visibility data from a single-baseline observation might look like. A graphical representation of a TableContainer is shown in Figure~\ref{fig:table-container}.
-
-
-
-
-\lstinputlisting[language=C++,float=h!,label={lst:objects},caption=Data object templates]{code/data-objects.hh}
-
-\lstinputlisting[language=C++,float=h!,label={lst:visib},caption=Visibility object type]{code/visibilities.hh}
-
+access should still be done using unsigned integer index values. A graphical representation of a \texttt{MHO\_TableContainer} is
+shown in Figure~\ref{fig:table-container}.
 
 \begin{figure}[h!]
   \begin{center}
   \captionsetup{width=0.7\linewidth}
   \includegraphics[width=0.75\textwidth]{fig/data-container-baseline.png}
-    \caption{A graphical representation of a TableContainer. This class is composed of an N-dimensional array, coupled with axes to provide coordinate values
-    along each dimension. The axes themselves allow for arbitrary intervals to be labelled by key:value pairs in order to allow for local look-up of filter data.
-    For example, along the frequency axis, the interval labels may be channel or sampler names among other possibilities. Furthermore, the interval and associated
-    labels will be stored in an interval-tree structure to allow for fast bi-directional lookup of data indices $\leftrightarrow$ data labels.}
+    \caption{A graphical representation of a \texttt{MHO\_TableContainer}. This class is composed of an N-dimensional array, coupled with axes to provide coordinate values along each dimension. The axes themselves allow for arbitrary intervals to be labelled by key:value pairs in order to allow for local look-up of filter data. For example, along the frequency axis, the interval labels may be channel or sampler names among other possibilities. Furthermore, the interval and associated labels will be stored in an interval-tree structure to allow for fast bi-directional lookup of data indices $\leftrightarrow$ data labels.}
     \label{fig:table-container}
 \end{center}
 \end{figure}
 
+
+
 \subsection{Data operators}
 
 The data operator classes are meant to organize the mathematic manipulations which are to be performed on the data containers. For example, many of the operations performed in the existing HOPS3 code-base (such as the application of a priori phase calibration) are relatively trivial linear transformations applied to the visibility data. However, they are currently intertwined with a large amount of control logic which obscures the basic data pathway (e.g see postproc/fourfit/norm\_fx.c)
-Most unary or binary operations that are to applied to visibility or other data residing in TableContainers such as scaling, multiplication, transposition, summation, Fourier transformation, etc. will be made available as individual classes inheriting from the same interface. A uniform class interface will allow these data operators to be composed or modified to create more complicated composite operators or strung together to accomplish data pipelines of arbitrary complexity. An additional advantage of encapsulating individual operations is that any SIMD parallel-processing extension used to accelerate data processing can be made opaque to the user.
+
+Most unary or binary operations that are to applied to visibility or other data residing in TableContainers such as scaling, multiplication, transposition, summation, Fourier transformation, etc. will be made available as individual classes inheriting from the same interface. A uniform class interface will allow these data operators to be composed or modified to create more complicated composite operators or strung together and called in an ordered fashion in order to accomplish data pipelines of arbitrary complexity. An additional advantage of encapsulating individual operations is that (coupled with the data container extensions) any SIMD parallel-processing extension used to accelerate data processing can be made opaque to the user.
 
 Listing \ref{lst:operators} gives a brief sketch of the class templates generalizing the data operators. The common inheritance from the base class \texttt{MHO\_DataOperator} allows them all to be stored in an common container so that once they are configured and initialized they may be retrieved
 and executed in the appropriate order. It is expected that the vast majority of the data operators will be unary, requiring only their own configuration
@@ -100,4 +96,12 @@ to define an internal schema, listing the keys and type of the parameters it nee
 In addition, a mechanism for filtering operations (e.g. if station = Xx, then apply this operator) also needs to be established independent of the
 previous control-block structure of HOPS3.
 
-\lstinputlisting[language=C++,float=h!,label={lst:operators},caption=Data operator template classes.]{code/data-operators.hh}
+\lstinputlisting[language=C++,float=h!,label={lst:operators},caption=Data operator template classes.]{code/MHO_Operator.hh}
+
+
+\subsubsection{Data Container Extensions}
+
+The primary goal of the containers is to provide a relatively simple and efficient representation of commonly used data types that hides the details of
+memory management and array indexing/access from the user. They should not be overburdened with too much extraneous functionality that is specific to a particular operation the must be executed upon them (e.g. the N-dimensional array container should not implement a method to sum two arrays.), as this greatly
+over complicates these classes and makes them brittle. However, there are some cases where this sort of decoupling may induce a performance cost. An example of
+this would the case of GPU acceleration. Often to optimize GPU processing
