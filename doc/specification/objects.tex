@@ -50,9 +50,7 @@ row-major order indexing operation, and the second is through the use of iterato
 
 \lstinputlisting[language=C++,label={lst:array-usage},caption=N-Dimensional Array access]{./code/array_use.cc}
 
-In addition to the raw data stored in the N-dimensional array, it is important to associate a coordinate axis with each dimension. For
-example, in the case of channelized visibilities, the axes of each of the four dimensions would be:
-
+In addition to the raw data stored in the N-dimensional array, in the case of the TableContainer it is important to associate a coordinate axis with each dimension. For example, in the case of channelized visibilities, the axes of each of the four dimensions would be:
 \begin{enumerate}
 \item Axis 0: Polarization-product axis, labelled by a short string specifying the reference
 and remote stations' polarizations for data associated with that column (e.g ``XX'' or ``RR'' or ``RX'').
@@ -60,12 +58,13 @@ and remote stations' polarizations for data associated with that column (e.g ``X
 \item Axis 2: Time axis, labelled by the time since start of a scan in seconds.
 \item Axis 3: Frequency axis, labelled by the frequency offset from the edge of the channel (MHz).
 \end{enumerate}
-
-It should be said that these coordinate axes are there merely to label the data, they are not meant to provide a reverse-look-up
-capability, for example inverting the polarization-product code ``XX'' to infer the 0-th index location of 0. Array access is still
-to be done using unsigned integer values.
+It should be noted that these coordinate axes are there merely to label the data, they are not meant to provide a reverse look-up
+capability, (e.g example inverting the polarization-product code ``LL'' to infer a 0-th index location of 0). For efficiency array
+access is still to be done using unsigned integer values.
 
 Listing \ref{lst:objects} gives a brief sketch of the preliminary template class implementation for these data container objects, while listing \ref{lst:visib} gives a simple example of what template declaration of an object storing visibility data from a single-baseline observation might look like. A graphical representation of a TableContainer is shown in Figure~\ref{fig:table-container}.
+
+
 
 
 \lstinputlisting[language=C++,float=h!,label={lst:objects},caption=Data object templates]{code/data-objects.hh}
@@ -84,12 +83,6 @@ Listing \ref{lst:objects} gives a brief sketch of the preliminary template class
     \label{fig:table-container}
 \end{center}
 \end{figure}
-
-\subsubsection{Data Container Extensions}
-
-
-
-
 
 \subsection{Data operators}
 
