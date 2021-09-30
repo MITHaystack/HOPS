@@ -38,14 +38,14 @@ These template classes are to serve as a simple wrapper around the management of
 The three container types listed above represent the majority of the memory intensive data needed within HOPS
 and can largely be derived from a N-dimensional array of some numeric or integral type. Therefore a generic template class for
 N-dimensional arrays is needed, listing \ref{lst:ndarray} shows a stub of this class.
-\lstinputlisting[language=C++,label={lst:ndarray},caption=N-Dimensional Array Template]{./code/MHO_NDArrayWrapper.hh}
+\lstinputlisting[language=C++,label={lst:ndarray},caption=N-Dimensional Array Template]{code/MHO_NDArrayWrapper.hh}
 The underlying storage of the N-dimensional array data is done as a single contiguous chunk of memory which can either be a piece of externally or internally managed memory. Indexing into this chunk of memory is done using C-like row-major order, where for an array of rank D, with dimension sizes $\{N_0, N_1, \cdots N_{D-1}\}$, the location of the data specified by the indexes $\{n_0, n_1, \cdots, n_{D-1}\}$ can found at an offset from the start, $z$, that is given by:
 \begin{equation}
  z = \sum_{k=0}^{D-1} \left ( \prod_{j=k+1}^{D-1} N_j \right) n_k
  \end{equation}
 Access to the underlying data stored within a class of this type can then proceed in two main ways. The first is through the aforementioned
 row-major order indexing operation, and the second is through the use of iterators. An example of several of the provided methods is shown for a three dimensional array in listing \ref{lst:array-usage}. Iterators are most commonly utilized for efficient incremental (continuous or strided) access to the array data as they can be computed using pointer arithmetic, while random access is best done via indexes.
-\lstinputlisting[language=C++,label={lst:array-usage},caption=N-Dimensional Array access]{./code/array_use.cc}
+\lstinputlisting[language=C++,label={lst:array-usage},caption=N-Dimensional Array access]{code/array_use.cc}
 
 In addition to the raw data stored in the N-dimensional array, in the case of the \texttt{MHO\_TableContainer} it is important to associate a coordinate axis with each dimension in order to provide various data operators with the ability to look-up the location of a datum beyond a simple integer-index. To enable this,
 we will pair an N-dimensional array with a tuple of axis objects associated with each dimension. Listing \ref{lst:objects} shows the template class structure
@@ -83,16 +83,18 @@ shown in Figure~\ref{fig:table-container}.
 
 The data operator classes are meant to organize the mathematic manipulations which are to be performed on the data containers. For example, many of the operations performed in the existing HOPS3 code-base (such as the application of a priori phase calibration) are relatively trivial linear transformations applied to the visibility data. However, they are currently intertwined with a large amount of control logic which obscures the basic data pathway (e.g see postproc/fourfit/norm\_fx.c)
 
-Most unary or binary operations that are to applied to visibility or other data residing in TableContainers such as scaling, multiplication, transposition, summation, Fourier transformation, etc. will be made available as individual classes inheriting from the same interface. A uniform class interface will allow these data operators to be composed or modified to create more complicated composite operators or strung together and called in an ordered fashion in order to accomplish data pipelines of arbitrary complexity. An additional advantage of encapsulating individual operations is that (coupled with the data container extensions) any SIMD parallel-processing extension used to accelerate data processing can be made opaque to the user.
+Most unary or binary operations that are to applied to visibility or other data residing in an \texttt{HO\_TableContainers} such as scaling, multiplication, transposition, summation, Fourier transformation, etc. will be made available as individual classes inheriting from the same interface. A uniform class interface will allow these data operators to be composed or modified to create more complicated composite operators or strung together and called in an ordered fashion in order to accomplish data pipelines of arbitrary complexity. An additional advantage of encapsulating individual operations is that (coupled with the data container extensions) any SIMD parallel-processing extension used to accelerate data processing can be made opaque to the user.
 
-Listing \ref{lst:operators} gives a brief sketch of the class templates generalizing the data operators. The common inheritance from the base class \texttt{MHO\_DataOperator} allows them all to be stored in an common container so that once they are configured and initialized they may be retrieved
-and executed in the appropriate order. It is expected that the vast majority of the data operators will be unary, requiring only their own configuration
-parameters and the data container upon which they operate as inputs, but we will also support binary operators accepting two data containers, an example
-of which is the application of a pre-constructed calibration table to a new data set.
+Listing \ref{lst:operators} gives a brief sketch of the class templates generalizing the data operators. The common inheritance from the base class \texttt{MHO\_DataOperator} allows them all to be stored in an common container (e.g. \texttt{std::vector<MHO\_Operator*>}) so that once they are
+constructed and configured they may be retrieved and intialized/executed in the appropriate order. Listing \ref{lst:operator-use} shows a brief code
+sketch demonstrating how two simple operators would be constructed, assigned arguments and then initialized and executed in order.
+
+\lstinputlisting[language=C++,float=h!,label={lst:operators},caption=Data operator template classes.]{code/operator_use.cc}
+
+It is expected that the vast majority of the data operators will be unary or binary, requiring only their own configuration parameters along with one or two data containers upon which they operate as inputs. However, any number of arguments is possible so long as the underlying implementation provides the appropriate overload.
 
 One aspect of the data operators which is not yet detailed here is a notion of what pieces of meta-data each operator may need in order to complete its function.
-While these meta-data items could be exposed via external setter/getters, a more preferable option which would preserve encapsulation would be for each operator
-to define an internal schema, listing the keys and type of the parameters it needs to retrieve from the meta-data multi-type map container.
+While these meta-data items could be exposed directly via external setter/getters, a possibly preferable option which would preserve encapsulation might be for each operator to define an internal schema, listing the keys and type of the parameters it needs to retrieve from a single meta-data container.
 In addition, a mechanism for filtering operations (e.g. if station = Xx, then apply this operator) also needs to be established independent of the
 previous control-block structure of HOPS3.
 
@@ -102,6 +104,13 @@ previous control-block structure of HOPS3.
 \subsubsection{Data Container Extensions}
 
 The primary goal of the containers is to provide a relatively simple and efficient representation of commonly used data types that hides the details of
-memory management and array indexing/access from the user. They should not be overburdened with too much extraneous functionality that is specific to a particular operation the must be executed upon them (e.g. the N-dimensional array container should not implement a method to sum two arrays.), as this greatly
+memory management and array indexing/access from the user. They should not be overburdened with too much extraneous functionality that is specific to a particular operation that must be executed upon them (e.g. the N-dimensional array container should not implement a method to sum two arrays.), as this greatly
 over complicates these classes and makes them brittle. However, there are some cases where this sort of decoupling may induce a performance cost. An example of
-this would the case of GPU acceleration. Often to optimize GPU processing
+this occurs in the case of SIMD/GPU acceleration. In order to make use of GPU processing the data must be copied to a buffer on the device, processed, and then the results must be passed back to the host. However, if there are several operations to be performed in succession on the GPU, only first and last transfer
+need to occur, with intervening transfers being unecessary as input data is already present on the device. However, in order to eliminate the intermediate transfers a handle to the device buffer must be kept available. While a pointer a device buffer does not belong in something as basic as a data container, it
+is a good candidate for something to be stored in and extension.
+
+In order to provide the ability to append extensions to the data containers, they must all inherit from a base class, \texttt{MHO\_ExtensbleElement}, which
+in turn stores a vector of type-erased\footnote{https://davekilian.com/cpp-type-erasure.html} pointers to the extensions themselves. The extensions are templated on the the class providing the additional functionality and must all inherit from the base class \texttt{MHO\_ExtendedElement} (so they can be stored in the vector owned \texttt{MHO\_ExtensbleElement}) A brief sketch of the code that allows for this is shown in listing \ref{lst:extend}. One draw back of this method is that it requires $N$ \texttt{dynamic\_cast} calls (where $N$ is the number of extensions) every time any particular extension is modified or accessed via the data container. This is an acceptable trade off for infrequent access to expensive (to construct) extensions, but should be used rather sparingly as \texttt{dynamic\_cast} has high overhead.
+
+\lstinputlisting[language=C++,float=h!,label={lst:extend},caption=Data container extension classes.]{code/MHO_ExtensibleElement.hh}
