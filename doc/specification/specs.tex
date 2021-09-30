@@ -25,7 +25,13 @@
 \usepackage[dvipsnames]{xcolor}
 % makes hyperlinks work
 \usepackage{hyperref}
-\hypersetup{colorlinks=true,linkcolor=darkblue,citecolor=darkgreen}
+
+%%%% Delete me:
+\newcommand{\nuHOPS}{HOPS4\xspace}
+
+\hypersetup{colorlinks=true,linkcolor=blue,citecolor=green}
+%%%% \hypersetup{colorlinks=true,linkcolor=darkblue,citecolor=darkgreen}
+
 % for figures; insert [draft] before {...} not to see imgs
 \usepackage{graphicx}
 % for small figures surrounded by text
@@ -65,8 +71,9 @@
 \usepackage{ragged2e}
 
 % see common/shortcuts.tex for what is defined in this file
-\input{shortcuts}
-\setboolean{geos}{true}% or false to hide geodetic marginal notations
+
+%%%%\input{shortcuts}
+%%%%\setboolean{geos}{true}% or false to hide geodetic marginal notations
 
 % control options
 \newboolean{skipappendix}
@@ -303,8 +310,9 @@ can take place.
 
 \pagebreak
 \appendix
+
 \section{Acronyms, Commands and Glossary}
-\input{acronyms}
+%%%%\input{acronyms}
 
 }
 
