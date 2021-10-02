@@ -169,7 +169,9 @@ class MHO_MultidimensionalPaddedFastFourierTransform:
                         std::vector< std::vector<size_t> > out_index;
                         out_index.resize(RANK);
 
-                        in_index = in_iter.GetIndexObject();
+                        //get the input indices for each dimension
+                        MHO_NDArrayMath::RowMajorIndexFromOffset<RANK>(in_iter.GetOffset(), this->fInput->GetDimensions(), &(in_index[0]) );
+
                         for(size_t i=0; i<RANK; i++)
                         {
                             if(fAxesToXForm[i])
@@ -256,7 +258,10 @@ class MHO_MultidimensionalPaddedFastFourierTransform:
                         while( in_iter != in_iter_end)
                         {
                             //copy the input data to the same 'index' location in the output array
-                            std::array<std::size_t, RANK> in_indices = in_iter.GetIndexObject();
+                            std::array<std::size_t, RANK> in_indices;
+                            //get the input indices for each dimension
+                            MHO_NDArrayMath::RowMajorIndexFromOffset<RANK>(in_iter.GetOffset(), this->fInput->GetDimensions(), &(in_indices[0]) );
+
                             size_t out_loc = MHO_NDArrayMath::OffsetFromRowMajorIndex<RANK>(fOutputDimensionSize, &(in_indices[0]) );
                             (*(this->fOutput))[out_loc] = *in_iter;
                             ++in_iter;
@@ -272,7 +277,8 @@ class MHO_MultidimensionalPaddedFastFourierTransform:
                         while( in_iter != in_iter_end)
                         {
                             //copy the input data to the flipped location in the output array
-                            in_index = in_iter.GetIndexObject();
+                            MHO_NDArrayMath::RowMajorIndexFromOffset<RANK>(in_iter.GetOffset(), this->fInput->GetDimensions(), &(in_index[0]) );
+
                             for(size_t i=0; i<RANK; i++)
                             {
                                 if(fAxesToXForm[i])

@@ -98,8 +98,8 @@ int main(int /*argc*/, char** /*argv*/)
     std::cout<<"test strided access"<<std::endl;
     do
     {
-        std::array<std::size_t, 2> idx_ptr  = sit.GetIndexObject();
-        std::cout<<"index iterator = ("<<idx_ptr[0]<<", "<<idx_ptr[1]<<")"<<std::endl;
+        //std::array<std::size_t, 2> idx_ptr  = sit.GetIndexObject();
+        //std::cout<<"index iterator = ("<<idx_ptr[0]<<", "<<idx_ptr[1]<<")"<<std::endl;
         sit++;
     }
     while(sit != sit_end && sit.IsValid() );
