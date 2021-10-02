@@ -51,7 +51,7 @@ class MHO_VectorContainer:
             uint64_t size = 0;
             size += sizeof(MHO_ClassVersion);
             size += sizeof(std::size_t);
-            size += fTotalArraySize*sizeof(XValueType);
+            size += fSize*sizeof(XValueType);
             return size;
         }
 
@@ -68,8 +68,8 @@ class MHO_VectorContainer:
     protected:
 
         using MHO_NDArrayWrapper<XValueType,1>::fData;
-        using MHO_NDArrayWrapper<XValueType,1>::fDimensions;
-        using MHO_NDArrayWrapper<XValueType,1>::fTotalArraySize;
+        using MHO_NDArrayWrapper<XValueType,1>::fDims;
+        using MHO_NDArrayWrapper<XValueType,1>::fSize;
 
 
     template<typename XStream> friend XStream& operator>>(XStream& s, MHO_VectorContainer& aData)
@@ -87,7 +87,7 @@ class MHO_VectorContainer:
             size_t total_size[1];
             s >> total_size[0];
             aData.Resize(total_size);
-            for(size_t i=0; i<aData.fTotalArraySize; i++)
+            for(size_t i=0; i<aData.fSize; i++)
             {
                 s >> aData.fData[i];
             }
@@ -98,8 +98,8 @@ class MHO_VectorContainer:
     template<typename XStream> friend XStream& operator<<(XStream& s, const MHO_VectorContainer& aData)
     {
         s << aData.GetVersion();
-        s << aData.fTotalArraySize;
-        for(size_t i=0; i<aData.fTotalArraySize; i++)
+        s << aData.fSize;
+        for(size_t i=0; i<aData.fSize; i++)
         {
             s << aData.fData[i];
         }

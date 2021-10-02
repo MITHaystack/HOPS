@@ -160,7 +160,9 @@ class MHO_CyclicRotator: public MHO_NDArrayOperator<XInputArrayType, XOutputArra
                     std::array<std::size_t, XInputArrayType::rank::value > in_loc;
                     while( in_iter != in_iter_end)
                     {
-                        in_loc = in_iter.GetIndexObject();
+                        //in_loc = in_iter.GetIndexObject();
+                        MHO_NDArrayMath::RowMajorIndexFromOffset< XInputArrayType::rank::value >(in_iter.GetOffset(), this->fInput->GetDimensions(), &(in_loc[0]) );
+
                         for(std::size_t i=0; i<XInputArrayType::rank::value;i++)
                         {
                             fWorkspace[i] = positive_modulo( in_loc[i] - fModuloOffsets[i], out_dim[i]);
