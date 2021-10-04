@@ -16,7 +16,7 @@
 *Author: J. Barrett
 *Email: barrettj@mit.edu
 *Date:
-*Description: 
+*Description:
 * Sub-samples an array at the specified stride (e.g. select every-other point)
 * Can only be applied to a single-axis at a time.
 */
@@ -51,7 +51,7 @@ class MHO_SubSample: public MHO_NDArrayOperator<XInputArrayType, XOutputArrayTyp
                 fDimIndex = dimension_index;
                 fStride = stride;
             }
-            else 
+            else
             {
                 msg_error("operators", "error, cannot select dimension: "<<dimension_index<<", exceeds array rank." << eom);
             }
@@ -64,7 +64,7 @@ class MHO_SubSample: public MHO_NDArrayOperator<XInputArrayType, XOutputArrayTyp
             if(this->fInput != nullptr && this->fOutput != nullptr)
             {
 
-                //check that the dimension we are sub-sampling is divisable by the stride 
+                //check that the dimension we are sub-sampling is divisable by the stride
                 if(this->fInput->GetDimension(fDimIndex)%fStride != 0)
                 {
                     fInitialized = false;
@@ -87,7 +87,7 @@ class MHO_SubSample: public MHO_NDArrayOperator<XInputArrayType, XOutputArrayTyp
                         {
                             if(out_dim[i] != in_dim[i]/fStride){have_to_resize = true; break;}
                         }
-                        else 
+                        else
                         {
                             if(out_dim[i] != in_dim[i]){have_to_resize = true; break;}
                         }
@@ -96,7 +96,7 @@ class MHO_SubSample: public MHO_NDArrayOperator<XInputArrayType, XOutputArrayTyp
                     if(have_to_resize){this->fOutput->Resize(in_dim);}
                     fInitialized = true;
                 }
-                else 
+                else
                 {
                     msg_error("operators", "cannot execute sub-sample operation in place." << eom );
                 }
@@ -112,7 +112,7 @@ class MHO_SubSample: public MHO_NDArrayOperator<XInputArrayType, XOutputArrayTyp
                 size_t non_active_dimension_size[XInputArrayType::rank::value-1];
                 size_t non_active_dimension_value[XInputArrayType::rank::value-1];
                 size_t non_active_dimension_index[XInputArrayType::rank::value-1];
-        
+
                 std::size_t d = fDimIndex;
                 //now we loop over all dimensions not specified by d
                 //first compute the number of arrays we need to rotate
