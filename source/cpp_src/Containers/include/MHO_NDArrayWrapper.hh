@@ -183,6 +183,59 @@ class MHO_NDArrayWrapper:
             return  MHO_NDArrayWrapper<XValueType, RANK - ( sizeof...(XIndexTypeS) ) >(ptr, &(dim[0]) );
         }
 
+        //simple in-place compound assignment operators (mult/add/sub)//////////
+
+        //in place multiplication by a scalar factor
+        template< typename T>
+        typename std::enable_if< std::is_same<XValueType,T>::value or std::is_integral<T>::value or std::is_floating_point<T>::value, MHO_NDArrayWrapper& >::type
+        inline operator*=(T aScalar)
+        {
+            for(std::size_t i=0; i<fSize; i++){fDataPtr[i] *= aScalar;}
+            return *this;
+        }
+
+        //in place addition by a scalar amount
+        template< typename T>
+        typename std::enable_if< std::is_same<XValueType,T>::value or std::is_integral<T>::value or std::is_floating_point<T>::value, MHO_NDArrayWrapper& >::type
+        inline operator+=(T aScalar)
+        {
+            for(std::size_t i=0; i<fSize; i++){fDataPtr[i] += aScalar;}
+            return *this;
+        }
+
+        //in place subraction by a scalar amount
+        template< typename T>
+        typename std::enable_if< std::is_same<XValueType,T>::value or std::is_integral<T>::value or std::is_floating_point<T>::value, MHO_NDArrayWrapper& >::type
+        inline operator-=(T aScalar)
+        {
+            for(std::size_t i=0; i<fSize; i++){fDataPtr[i] -= aScalar;}
+            return *this;
+        }
+
+        //in place point-wise multiplication by another array
+        inline MHO_NDArrayWrapper& operator*=(const MHO_NDArrayWrapper& anArray)
+        {
+            if(!HaveSameNumberOfElements(this, &anArray)){throw std::out_of_range("MHO_NDArrayWrapper::*= size mismatch.");}
+            for(std::size_t i=0; i<fSize; i++){fDataPtr[i] *= anArray.fDataPtr[i];}
+            return *this;
+        }
+
+        //in place point-wise addition by another array
+        inline MHO_NDArrayWrapper& operator+=(const MHO_NDArrayWrapper& anArray)
+        {
+            if(!HaveSameNumberOfElements(this, &anArray)){throw std::out_of_range("MHO_NDArrayWrapper::+= size mismatch.");}
+            for(std::size_t i=0; i<fSize; i++){fDataPtr[i] += anArray.fDataPtr[i];}
+            return *this;
+        }
+
+        //in place point-wise subtraction of another array
+        inline MHO_NDArrayWrapper& operator-=(const MHO_NDArrayWrapper& anArray)
+        {
+            if(!HaveSameNumberOfElements(this, &anArray)){throw std::out_of_range("MHO_NDArrayWrapper::-= size mismatch.");}
+            for(std::size_t i=0; i<fSize; i++){fDataPtr[i] -= anArray.fDataPtr[i];}
+            return *this;
+        }
+
 
     protected:
 
