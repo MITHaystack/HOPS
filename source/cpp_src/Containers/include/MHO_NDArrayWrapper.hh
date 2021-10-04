@@ -99,8 +99,6 @@ class MHO_NDArrayWrapper:
         index_type GetStrideArray() const {return fStrides;}
         std::size_t GetStride(std::size_t idx) const {return fStrides[idx];}
 
-        //access operators
-
         //access operator (,,...,) -- no bounds checking
         //std::enable_if does a compile-time check that the number of arguments is the same as the rank of the array
         template <typename ...XIndexTypeS >
@@ -296,8 +294,6 @@ HaveSameDimensions(const XArrayType1* arr1, const XArrayType2* arr2)
     }
     return false;
 }
-
-
 
 
 }//end of hops namespace
