@@ -177,10 +177,9 @@ class MHO_NDArrayWrapper:
             for(std::size_t i=0; i<RANK; i++){fTmp[i] = 0;}
             for(std::size_t i=0; i<leading_idx.size(); i++){fTmp[i] = leading_idx[i];}
             std::size_t offset = MHO_NDArrayMath::OffsetFromRowMajorIndex<RANK>(&(fDims[0]), &(fTmp[0]));
-            XValueType* ptr = &(fDataPtr[offset]);
             std::array<std::size_t, RANK - (sizeof...(XIndexTypeS)) > dim;
             for(std::size_t i=0; i<dim.size(); i++){dim[i] = fDims[i + (sizeof...(XIndexTypeS) )];}
-            return  MHO_NDArrayWrapper<XValueType, RANK - ( sizeof...(XIndexTypeS) ) >(ptr, &(dim[0]) );
+            return  MHO_NDArrayWrapper<XValueType, RANK - ( sizeof...(XIndexTypeS) ) >(&(fDataPtr[offset]) , &(dim[0]) );
         }
 
         //simple in-place compound assignment operators (mult/add/sub)//////////
