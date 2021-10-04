@@ -164,6 +164,25 @@ class MHO_NDArrayWrapper:
             return MHO_NDArrayMath::OffsetFromRowMajorIndex<RANK>(&(fDims[0]), index);
         }
 
+        //sub-view of the array (given n < RANK leading indexes), return the remaining
+        //chunk of the array with freely spanning indexes
+        //for example: a ndarray X of RANK=3, and sizes [4,12,32], then SubView(2)
+        //returns an ndarray of RANK=2, and dimensions [12,32] starting at the
+        //location of X(2,0,0). Data of the subview points to data owned by X
+        template <typename ...XIndexTypeS >
+        typename std::enable_if< (sizeof...(XIndexTypeS) < RANK), MHO_NDArrayWrapper<XValueType, RANK - ( sizeof...(XIndexTypeS) ) > >::type
+        SubView(XIndexTypeS...idx)
+        {
+            std::array<std::size_t, sizeof...(XIndexTypeS) > leading_idx = {{static_cast<size_t>(idx)...}};
+            for(std::size_t i=0; i<RANK; i++){fTmp[i] = 0;}
+            for(std::size_t i=0; i<leading_idx.size(); i++){fTmp[i] = leading_idx[i];}
+            std::size_t offset = MHO_NDArrayMath::OffsetFromRowMajorIndex<RANK>(&(fDims[0]), &(fTmp[0]));
+            XValueType* ptr = &(fDataPtr[offset]);
+            std::array<std::size_t, RANK - (sizeof...(XIndexTypeS)) > dim;
+            for(std::size_t i=0; i<dim.size(); i++){dim[i] = fDims[i + (sizeof...(XIndexTypeS) )];}
+            return  MHO_NDArrayWrapper<XValueType, RANK - ( sizeof...(XIndexTypeS) ) >(ptr, &(dim[0]) );
+        }
+
 
     protected:
 

@@ -111,6 +111,10 @@ int main(int /*argc*/, char** /*argv*/)
         std::cout<<"stride of dim "<<i<<" = "<<test4.GetStride(i)<<std::endl;
     }
 
+    auto subview = test4.SubView(1,3);
+    auto arrdim = subview.GetDimensionArray();
+    for(std::size_t i=0; i<arrdim.size(); i++){std::cout<<"subview dim @"<<i<<" = "<<arrdim[i]<<std::endl;}
+
 
     return 0;
 }
