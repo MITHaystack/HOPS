@@ -103,7 +103,7 @@ int main(int argc, char** argv)
     fft_engine->SetInput(&array1);
     fft_engine->SetOutput(&array2);
     fft_engine->Initialize();
-    fft_engine->ExecuteOperation();
+    fft_engine->Execute();
 
     if(option == 0)
     {
@@ -128,7 +128,7 @@ int main(int argc, char** argv)
         fft_engine2->SetInput(&expanded_array1);
         fft_engine2->SetOutput(&expanded_array2);
         fft_engine2->Initialize();
-        fft_engine2->ExecuteOperation();
+        fft_engine2->Execute();
 
         //now normalize the output array 
         double norm = N;
@@ -173,7 +173,7 @@ int main(int argc, char** argv)
         pfft_engine->SetOutput(&expanded_array1);
         pfft_engine->SelectAllAxes();
         check = pfft_engine->Initialize();
-        check = pfft_engine->ExecuteOperation();
+        check = pfft_engine->Execute();
 
         for(size_t i=0; i<NM; i++)
         {
@@ -227,7 +227,7 @@ int main(int argc, char** argv)
         fft_engine2->SetInput(&expanded_array1);
         fft_engine2->SetOutput(&expanded_array2);
         fft_engine2->Initialize();
-        fft_engine2->ExecuteOperation();
+        fft_engine2->Execute();
 
         //now normalized the output array 
         double norm = N;
@@ -268,7 +268,7 @@ int main(int argc, char** argv)
         pfft_engine->SetOutput(&expanded_array1);
         pfft_engine->SelectAllAxes();
         check = pfft_engine->Initialize();
-        check = pfft_engine->ExecuteOperation();
+        check = pfft_engine->Execute();
 
         for(size_t i=0; i<NM; i++)
         {
@@ -312,7 +312,7 @@ int main(int argc, char** argv)
     fft_engine3->SetInput(&S);
     fft_engine3->SetOutput(&xlag);
     fft_engine3->Initialize();
-    fft_engine3->ExecuteOperation();
+    fft_engine3->Execute();
 
 
     for (int i = 0; i < 2*nlags; i++)

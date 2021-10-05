@@ -51,7 +51,7 @@ int main(int /*argc*/, char** /*argv*/)
     reducer->ReduceAxis(NDIM-2);
     //reducer->ReduceAxis(NDIM-1);
     bool init = reducer->Initialize();
-    bool exe = reducer->ExecuteOperation();
+    bool exe = reducer->Execute();
     size_t odim_size[NDIM];
     output->GetDimensions(odim_size);
 
@@ -83,7 +83,7 @@ int main(int /*argc*/, char** /*argv*/)
     //reducer->ReduceAxis(NDIM-2);
     reducer2->ReduceAxis(NDIM-1);
     bool init2 = reducer2->Initialize();
-    bool exe2 = reducer2->ExecuteOperation();
+    bool exe2 = reducer2->Execute();
     output2->GetDimensions(odim_size);
 
     for(size_t i=0;i<NDIM;i++)

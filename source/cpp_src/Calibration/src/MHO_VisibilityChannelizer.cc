@@ -128,7 +128,7 @@ MHO_VisibilityChannelizer::Initialize()
 }
 
 bool
-MHO_VisibilityChannelizer::ExecuteOperation()
+MHO_VisibilityChannelizer::Execute()
 {
     if(fInitialized)
     {

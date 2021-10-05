@@ -87,7 +87,7 @@ class MHO_CyclicRotator: public MHO_NDArrayOperator<XInputArrayType, XOutputArra
             return fInitialized;
         }
 
-        virtual bool ExecuteOperation() override
+        virtual bool Execute() override
         {
             if(fInitialized)
             {

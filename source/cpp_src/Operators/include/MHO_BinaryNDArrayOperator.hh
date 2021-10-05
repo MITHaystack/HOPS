@@ -31,7 +31,7 @@ class MHO_BinaryNDArrayOperator: public MHO_Operator
 
         //inherts these from MHO_Operator
         // virtual bool Initialize() = 0;
-        // virtual bool ExecuteOperation() = 0;
+        // virtual bool Execute() = 0;
 
     protected:
 

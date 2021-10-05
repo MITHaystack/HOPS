@@ -72,7 +72,7 @@ class MHO_MultidimensionalFastFourierTransformFFTW:
             return (fInitialized && fIsValid);
         }
 
-        virtual bool ExecuteOperation() override
+        virtual bool Execute() override
         {
             if(fIsValid && fInitialized)
             {

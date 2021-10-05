@@ -86,7 +86,7 @@ int main(int argc, char** argv)
 
 
     bool init = channelizer.Initialize();
-    bool exe = channelizer.ExecuteOperation();
+    bool exe = channelizer.Execute();
     if(exe){std::cout<<"channelizer done"<<std::endl;}
     std::string index_filename = output_filename + ".index";
 

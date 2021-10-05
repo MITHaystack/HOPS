@@ -119,7 +119,7 @@ MHO_NormFX::Initialize()
 
 
 bool
-MHO_NormFX::ExecuteOperation()
+MHO_NormFX::Execute()
 {
     if(fInitialized)
     {
@@ -137,13 +137,13 @@ MHO_NormFX::ExecuteOperation()
 
         //first thing we do is filter out any NaNs
         //(ADHOC flagging would likely also be implemented in a similar fashion)
-        status = fNaNBroadcaster.ExecuteOperation();
+        status = fNaNBroadcaster.Execute();
         if(!status){msg_error("operators", "Could not execute NaN masker MHO_NormFX." << eom); return false;}
 
         //for lower sideband we complex conjugate the data
         if(!fIsUSB)
         {
-            status = fConjBroadcaster.ExecuteOperation();
+            status = fConjBroadcaster.Execute();
             if(!status){msg_error("operators", "Could not execute complex conjugation in MHO_NormFX." << eom); return false;}
         }
 
@@ -151,18 +151,18 @@ MHO_NormFX::ExecuteOperation()
         run_old_normfx_core();
     #else
 
-        status = fPaddedFFTEngine.ExecuteOperation();
+        status = fPaddedFFTEngine.Execute();
         if(!status){msg_error("operators", "Could not execute paddded FFT in MHO_NormFX." << eom); return false;}
 
-        status = fSubSampler.ExecuteOperation();
+        status = fSubSampler.Execute();
         if(!status){msg_error("operators", "Could not execute sub-sampler in MHO_NormFX." << eom); return false;}
 
-        status = fCyclicRotator.ExecuteOperation();
+        status = fCyclicRotator.Execute();
         if(!status){msg_error("operators", "Could not execute cyclic-rotation MHO_NormFX." << eom); return false;}
 
     #endif
 
-        status = fNormBroadcaster.ExecuteOperation();
+        status = fNormBroadcaster.Execute();
         if(!status){msg_error("operators", "Could not execute normalization in MHO_NormFX." << eom); return false;}
 
 
@@ -240,7 +240,7 @@ void MHO_NormFX::run_old_normfx_core()
 
             //for (int i=0; i<4*nlags; i++){S[i] = S[i] * factor;}
 
-            fFFTEngine.ExecuteOperation();
+            fFFTEngine.Execute();
 
             // corrections to phase as fn of freq based upon
             // delay calibrations

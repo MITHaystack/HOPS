@@ -67,7 +67,7 @@ class MHO_PointwiseMultiply: public MHO_BinaryNDArrayOperator<XInputArrayType1, 
             return fInitialized;
         }
 
-        virtual bool ExecuteOperation() override
+        virtual bool Execute() override
         {
             //note: this implicitly assumes both input/output are the same total size
             if(fInitialized)

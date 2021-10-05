@@ -9,5 +9,5 @@ PYBIND11_MODULE(pyMHO_Operators, m)
     py::class_<MHO_Operator, MHO_PyOperator>(m, "MHO_Operator")
         .def( py::init<>() )
         .def( "Initialize", &MHO_Operator::Initialize)
-        .def( "ExecuteOperation", &MHO_Operator::ExecuteOperation);
+        .def( "Execute", &MHO_Operator::Execute);
 }

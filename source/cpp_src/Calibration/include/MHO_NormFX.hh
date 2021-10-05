@@ -51,7 +51,7 @@ class MHO_NormFX: public MHO_BinaryNDArrayOperator<
         virtual ~MHO_NormFX();
 
         virtual bool Initialize() override;
-        virtual bool ExecuteOperation() override;
+        virtual bool Execute() override;
 
     private:
 

@@ -100,7 +100,7 @@ class MHO_Reducer:
             return fInitialized;
         }
 
-        virtual bool ExecuteOperation() override
+        virtual bool Execute() override
         {
             if(fInitialized)
             {

@@ -104,7 +104,7 @@ class MHO_SubSample: public MHO_NDArrayOperator<XInputArrayType, XOutputArrayTyp
             return fInitialized;
         }
 
-        virtual bool ExecuteOperation() override
+        virtual bool Execute() override
         {
             if(fInitialized)
             {

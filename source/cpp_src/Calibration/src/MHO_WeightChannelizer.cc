@@ -128,7 +128,7 @@ MHO_WeightChannelizer::Initialize()
 }
 
 bool
-MHO_WeightChannelizer::ExecuteOperation()
+MHO_WeightChannelizer::Execute()
 {
     if(fInitialized)
     {

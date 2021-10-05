@@ -68,7 +68,7 @@ class MHO_FunctorBroadcaster: public MHO_NDArrayOperator<XInputArrayType, XOutpu
             return fInitialized;
         }
 
-        virtual bool ExecuteOperation() override
+        virtual bool Execute() override
         {
             //note: this implicitly assumes both intput/output are the same total size
             if(fInitialized)

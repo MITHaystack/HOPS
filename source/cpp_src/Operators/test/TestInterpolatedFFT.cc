@@ -81,7 +81,7 @@ int main(int argc, char** argv)
     fft_engine->SetInput(&array1);
     fft_engine->SetOutput(&array2);
     fft_engine->Initialize();
-    fft_engine->ExecuteOperation();
+    fft_engine->Execute();
 
     // //normalized by length of FFT
     // double norm1 = std::sqrt( (double) N );
@@ -139,7 +139,7 @@ int main(int argc, char** argv)
     fft_engine2->SetInput(&expanded_array1);
     fft_engine2->SetOutput(&expanded_array2);
     fft_engine2->Initialize();
-    fft_engine2->ExecuteOperation();
+    fft_engine2->Execute();
 
     // //normalized by length of FFT
     // double norm2 = std::sqrt( (double) NM );
@@ -208,14 +208,14 @@ int main(int argc, char** argv)
     // 
     // for (int i=0; i<4*nlags; i++){S[i] = S[i] * factor;}
     // 
-    // fFFTEngine.ExecuteOperation();
+    // fFFTEngine.Execute();
 
     FFT_TYPE* fft_engine3 = new FFT_TYPE();
     fft_engine3->SetForward();
     fft_engine3->SetInput(&S);
     fft_engine3->SetOutput(&xlag);
     fft_engine3->Initialize();
-    fft_engine3->ExecuteOperation();
+    fft_engine3->Execute();
 
     for (int i = 0; i < 2*nlags; i++)
     {
