@@ -68,7 +68,7 @@ int main(int /*argc*/, char** /*argv*/)
 #endif
 
     fft_engine->Initialize();
-    fft_engine->ExecuteOperation();
+    fft_engine->Execute();
 
     #ifdef HOPS_ENABLE_DEBUG_MSG
     std::cout << "DFT of data = " << std::endl;
@@ -91,7 +91,7 @@ int main(int /*argc*/, char** /*argv*/)
     fft_engine->DeselectAllAxes();
     fft_engine->SelectAxis(1);
     fft_engine->Initialize();
-    fft_engine->ExecuteOperation();
+    fft_engine->Execute();
 
     #ifdef HOPS_ENABLE_DEBUG_MSG
     std::cout << "DFT of data = " << std::endl;
@@ -119,7 +119,7 @@ int main(int /*argc*/, char** /*argv*/)
     fft_engine->SelectAllAxes();
 #endif
     fft_engine->Initialize();
-    fft_engine->ExecuteOperation();
+    fft_engine->Execute();
 
     #ifdef HOPS_ENABLE_DEBUG_MSG
     std::cout << "IDFT of DFT of data = " << std::endl;

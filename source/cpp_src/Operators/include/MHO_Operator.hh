@@ -20,7 +20,7 @@ class MHO_Operator
         virtual ~MHO_Operator();
 
         virtual bool Initialize() = 0;
-        virtual bool ExecuteOperation() = 0;
+        virtual bool Execute() = 0;
 
     private:
 };

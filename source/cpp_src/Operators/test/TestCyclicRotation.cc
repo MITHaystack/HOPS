@@ -53,7 +53,7 @@ int main(int /*argc*/, char** /*argv*/)
     crot.SetInput(input1);
     crot.SetOutput(output);
     bool init = crot.Initialize();
-    bool exe = crot.ExecuteOperation();
+    bool exe = crot.Execute();
 
     size_t odim_size[NDIM];
     output->GetDimensions(odim_size);
@@ -81,7 +81,7 @@ int main(int /*argc*/, char** /*argv*/)
     crot.SetInput(output);
     crot.SetOutput(output);
     bool init2 = crot.Initialize();
-    bool exe2 = crot.ExecuteOperation();
+    bool exe2 = crot.Execute();
 
     for (size_t i = 0; i < odim_size[0]; i++) {
         for (size_t j = 0; j < odim_size[1]; j++) {
@@ -111,7 +111,7 @@ int main(int /*argc*/, char** /*argv*/)
     crot1d.SetInput(input1d);
     crot1d.SetOutput(output1d);
     bool init3 = crot1d.Initialize();
-    bool exe3 = crot1d.ExecuteOperation();
+    bool exe3 = crot1d.Execute();
 
     for (size_t j = 0; j <dim_size1d[0]; j++) 
     {

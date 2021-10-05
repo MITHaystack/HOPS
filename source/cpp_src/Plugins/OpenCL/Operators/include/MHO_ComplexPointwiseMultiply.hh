@@ -45,7 +45,7 @@ class MHO_OpenCLComplexPointwiseMultiply: public MHO_BinaryNDArrayOperator<
 
         }
 
-        virtual bool ExecuteOperation() override
+        virtual bool Execute() override
         {
 
         }

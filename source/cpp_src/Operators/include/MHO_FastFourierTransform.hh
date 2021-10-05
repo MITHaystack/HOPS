@@ -25,7 +25,7 @@ class MHO_FastFourierTransform:
         virtual void SetBackward();
 
         virtual bool Initialize() override;
-        virtual bool ExecuteOperation() override;
+        virtual bool Execute() override;
 
     private:
 
@@ -131,7 +131,7 @@ MHO_FastFourierTransform<XFloatType>::Initialize()
 ///Make a call to execute the FFT plan and perform the transformation
 template< typename XFloatType >
 bool
-MHO_FastFourierTransform<XFloatType>::ExecuteOperation()
+MHO_FastFourierTransform<XFloatType>::Execute()
 {
     if(fIsValid && fInitialized)
     {

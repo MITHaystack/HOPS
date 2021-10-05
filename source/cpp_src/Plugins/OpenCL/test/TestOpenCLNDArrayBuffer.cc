@@ -63,7 +63,7 @@ int main(int /*argc*/, char** /*argv*/)
     scalarMult.SetWriteTrue();
     scalarMult.SetInput(test);
     scalarMult.Initialize();
-    scalarMult.ExecuteOperation();
+    scalarMult.Execute();
 
     //now lets take a look at the data:
     std::cout<<"**********************"<<std::endl;

@@ -129,7 +129,7 @@ class MHO_NormFXPrelim: public MHO_BinaryNDArrayOperator<
         virtual ~MHO_NormFXPrelim(){};
 
         virtual bool Initialize() override {return true;}
-        virtual bool ExecuteOperation() override {return true;};
+        virtual bool Execute() override {return true;};
 
         int DetermineStationPolMode(struct type_pass* pass)
         {
@@ -802,7 +802,7 @@ bool GetCorel(MHO_DirectoryInterface& dirInterface,
             if(init)
             {
                 std::cout<<"initialization done"<<std::endl;
-                exe = channelizer.ExecuteOperation();
+                exe = channelizer.Execute();
                 if(exe){std::cout<<"vis channelizer done"<<std::endl;}
             }
 
@@ -815,7 +815,7 @@ bool GetCorel(MHO_DirectoryInterface& dirInterface,
             if(winit)
             {
                 std::cout<<"initialization done"<<std::endl;
-                wexe = wchannelizer.ExecuteOperation();
+                wexe = wchannelizer.Execute();
                 if(wexe){std::cout<<"weight channelizer done"<<std::endl;}
             }
 
@@ -1154,7 +1154,7 @@ int main(int argc, char** argv)
     nfxOperator2.SetSecondInput(ch_bl_wdata);
     nfxOperator2.SetOutput(ch_sbd_data);
     nfxOperator2.Initialize();
-    nfxOperator2.ExecuteOperation();
+    nfxOperator2.Execute();
 
     std::vector< std::complex<double> > testVector3;
     std::cout<<"2nlags = "<< 2*param.nlags<<std::endl;
@@ -1225,7 +1225,7 @@ int main(int argc, char** argv)
     timer.Start();
     for(std::size_t instance=0; instance<n_times; instance++)
     {
-        nfxOperator2.ExecuteOperation();
+        nfxOperator2.Execute();
     }
     timer.Stop();
     double cpp_time = timer.GetDurationAsDouble();

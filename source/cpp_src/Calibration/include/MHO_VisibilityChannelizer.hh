@@ -26,7 +26,7 @@ class MHO_VisibilityChannelizer: public MHO_NDArrayOperator< baseline_data_type,
         virtual ~MHO_VisibilityChannelizer();
 
         virtual bool Initialize() override;
-        virtual bool ExecuteOperation() override;
+        virtual bool Execute() override;
 
     private:
 

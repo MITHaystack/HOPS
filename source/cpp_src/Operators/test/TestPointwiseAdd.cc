@@ -76,7 +76,7 @@ int main(int /*argc*/, char** /*argv*/)
     adder->SetOutput(output);
 
     bool init = adder->Initialize();
-    bool exe = adder->ExecuteOperation();
+    bool exe = adder->Execute();
 
     size_t odim_size[NDIM];
     output->GetDimensions(odim_size);

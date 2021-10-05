@@ -29,9 +29,9 @@ class MHO_PyOperator: public MHO_Operator
             PYBIND11_OVERLOAD_PURE(bool, MHO_Operator, Initialize);
         }
 
-        virtual bool ExecuteOperation() override
+        virtual bool Execute() override
         {
-            PYBIND11_OVERLOAD_PURE(bool, MHO_Operator, ExecuteOperation);
+            PYBIND11_OVERLOAD_PURE(bool, MHO_Operator, Execute);
         }
 
     private:

@@ -91,7 +91,7 @@ class MHO_OpenCLScalarMultiply: public MHO_UnaryNDArrayOperator< XInputArrayType
             return false;
         }
 
-        virtual bool ExecuteOperation() override
+        virtual bool Execute() override
         {
             if(fInitialized)
             {

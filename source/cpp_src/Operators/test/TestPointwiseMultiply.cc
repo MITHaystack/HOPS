@@ -75,7 +75,7 @@ int main(int /*argc*/, char** /*argv*/)
     mult->SetOutput(output);
 
     bool init = mult->Initialize();
-    bool exe = mult->ExecuteOperation();
+    bool exe = mult->Execute();
 
     size_t odim_size[NDIM];
     output->GetDimensions(odim_size);

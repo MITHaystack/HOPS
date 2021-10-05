@@ -26,7 +26,7 @@ class MHO_WeightChannelizer: public MHO_NDArrayOperator< baseline_weight_type, c
         virtual ~MHO_WeightChannelizer();
 
         virtual bool Initialize() override;
-        virtual bool ExecuteOperation() override;
+        virtual bool Execute() override;
 
     private:
 

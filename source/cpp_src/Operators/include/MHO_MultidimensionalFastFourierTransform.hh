@@ -77,7 +77,7 @@ class MHO_MultidimensionalFastFourierTransform:
             return (fInitialized && fIsValid);
         }
 
-        virtual bool ExecuteOperation() override
+        virtual bool Execute() override
         {
             if(fIsValid && fInitialized)
             {
@@ -151,7 +151,7 @@ class MHO_MultidimensionalFastFourierTransform:
                             }
 
                             //compute the FFT of the row selected
-                            fTransformCalculator[d]->ExecuteOperation();
+                            fTransformCalculator[d]->Execute();
 
                             //copy the row selected back
                             for(size_t i=0; i<fDimensionSize[d]; i++)

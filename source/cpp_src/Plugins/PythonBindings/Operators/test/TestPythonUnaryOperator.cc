@@ -181,7 +181,7 @@ int main(int argc, char** argv)
     test_op.SetModuleFunctionName(mod_name, op_name);
     test_op.SetInput(bl_data);
     test_op.Initialize();
-    test_op.ExecuteOperation();
+    test_op.Execute();
 
     std::cout<<"*************** contents of array now **************"<<std::endl;
     for(size_t i=0; i<bl_data->GetDimension(CH_TIME_AXIS); i++)

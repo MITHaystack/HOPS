@@ -203,7 +203,7 @@ int main(int argc, char** argv)
     fft_engine->SetInput(bl_data);
     fft_engine->SetOutput(bl_data);
     fft_engine->Initialize();
-    fft_engine->ExecuteOperation();
+    fft_engine->Execute();
 
 
     std::cout<<"done fft on freq axis per channel"<<std::endl;
@@ -352,7 +352,7 @@ int main(int argc, char** argv)
     //         fft_engine_2d->SetInput(&channel_wrapper);
     //         fft_engine_2d->SetOutput(&channel_wrapper);
     //         fft_engine_2d->Initialize();
-    //         fft_engine_2d->ExecuteOperation();
+    //         fft_engine_2d->Execute();
     //     }
     // }
     //

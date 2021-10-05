@@ -51,7 +51,7 @@ int main(int /*argc*/, char** /*argv*/)
     sub.SetInput(input1);
     sub.SetOutput(output);
     bool init = sub.Initialize();
-    bool exe = sub.ExecuteOperation();
+    bool exe = sub.Execute();
 
     size_t odim_size[NDIM];
     output->GetDimensions(odim_size);

@@ -63,7 +63,7 @@ void ConvertCorel(const std::string root_file, const std::string& input_file, co
     if(init)
     {
         std::cout<<"initialization done"<<std::endl;
-        bool exe = channelizer.ExecuteOperation();
+        bool exe = channelizer.Execute();
         if(exe){std::cout<<"vis channelizer done"<<std::endl;}
     }
 
@@ -75,7 +75,7 @@ void ConvertCorel(const std::string root_file, const std::string& input_file, co
     if(winit)
     {
         std::cout<<"initialization done"<<std::endl;
-        bool wexe = wchannelizer.ExecuteOperation();
+        bool wexe = wchannelizer.Execute();
         if(wexe){std::cout<<"weight channelizer done"<<std::endl;}
     }
 
