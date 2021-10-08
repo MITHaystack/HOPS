@@ -4,28 +4,179 @@ import sys
 from PyQt5.QtCore import QSize, Qt, QLine, QPoint
 from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QMainWindow, QCheckBox, QFrame, QSizePolicy
 from PyQt5.QtWidgets import QVBoxLayout, QHBoxLayout, QGridLayout, QTabWidget, QLabel, QLineEdit
-from PyQt5.QtGui import QPalette, QColor, QPainter
+#from PyQt5.QtGui import QPalette, QColor, QPainter, QWindow
 
 from parse_alist import ParseAlist
 
 import numpy as np
 
+# Main Window: tabs, init tab has load button
+# Data Window: tabs
+
+# selection tab selects baselines, sources, etc - summary button?
+# plot tab has plotting parameters, plot button -> picking, rerun fourfit with new parameters, cycle through plots
+# calc tab does closure -> list available triangles? (from stations from each scan?)
+
+# scans go on a different tab - there are usually a lot of them
+
 # parse alist and get baselines, sources, stations, scans
 # build new window with checkboxes for all of these (unique)
 # option to select all, remove autocorr, etc
 # also have snrmin and snrmax options
-# different tab: select plot parameters
+# scan length frequency
+
+# how is frequency reported in the alist? does 'B32' mean band B, 32 channels?
+#
+
+# different tab: select plotting options (axes, limits)
 # collect checkboxes and plot
 
-# picking: open new window with fourfit parameters
+# option to write new afile
+
+# organize plots by baseline? in a list, with a key connection to scroll through them?
+
+# picking: left click, open new window with fourfit plot
+# right click, rerun fourfit, open control file and adjust parameters?
+
 # option to show fourfit plot or rerun fourfit for this scan/baseline?
 
 # build plotting options on case
 # labels, units, range depending on data type
 
 
+# this class is an example of a two-box grid
+class SelectionParamBoxGrid(QWidget):
+
+    def __init__(self, alist_data, orient='col'):
+        super().__init__()
+
+        self.snrmin = np.min(alist_data.snr)
+        self.snrmax = np.max(alist_data.snr)
+        
+        # Create a text entry box
+        snrmin_box_label = QLabel('Min SNR')
+        self.snrmin_box = QLineEdit()
+        self.snrmin_box.setText(str(self.snrmin))
+        self.snrmin_box.setFixedWidth(100)
+
+        snrmax_box_label = QLabel('Max SNR')
+        self.snrmax_box = QLineEdit()
+        self.snrmax_box.setText(str(self.snrmax))
+        self.snrmax_box.setFixedWidth(100)
+
+        # Set up the parameters area
+        self.param_label = QLabel('Parameters')
+        self.params_hbox = QHBoxLayout()
+        self.params_hbox.addWidget(self.param_label)
+        self.params_hbox.addStretch(1)
+
+        self.separator = QFrame()
+        self.separator.setFrameShape(QFrame.HLine)
+        self.separator.setLineWidth(1)
+
+        self.textbox_gridv = QVBoxLayout()
+
+        self.textbox_gridh1 = QHBoxLayout()
+        self.textbox_gridh1.addWidget(snrmin_box_label)
+        self.textbox_gridh1.addWidget(self.snrmin_box)
+        self.textbox_gridh1.addStretch(1)
+        
+        self.textbox_gridh2 = QHBoxLayout()
+        self.textbox_gridh2.addWidget(snrmax_box_label)
+        self.textbox_gridh2.addWidget(self.snrmax_box)
+        self.textbox_gridh2.addStretch(1)
+
+        self.textbox_gridv.addLayout(self.textbox_gridh1)
+        self.textbox_gridv.addLayout(self.textbox_gridh2)
+        self.textbox_gridv.addStretch(1)
+
+    def collectParamVals(self):
+
+        snrrange = [self.snrmin_box.text(), self.snrmax_box.text()]
 
 
+
+
+
+
+# For qcode, we want to list all of them, but grey out the ones that aren't present in the data
+# also, provide the number of records with each qcode
+class QCodeCheckboxGrid(QWidget):
+
+    def __init__(self, qcode_list):
+        super().__init__()
+
+        self.existing_qcodes, self.qcode_counts = np.unique(qcode_list,return_counts=True)
+
+        # not sure if A, N, ? are always used, or are redundant?
+        self.checkbox_items = ['0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F','G','H','N','?']
+        self.num_boxes = len(self.checkbox_items)
+        self.checkboxes = []
+
+        self.checkbox_grid = QGridLayout()
+
+        positions = [(i, j) for i in range(2) for j in range(10)]
+        for position, box_name in zip(positions, self.checkbox_items):
+            if box_name in self.existing_qcodes:
+                idx = self.existing_qcodes.tolist().index(box_name)
+                chkbox = QCheckBox(box_name+' ('+str(self.qcode_counts[idx])+')', self)
+                chkbox.setCheckable(True)
+                self.checkbox_grid.addWidget(chkbox, *position)
+                self.checkboxes.append(chkbox)
+            else:
+                chkbox = QCheckBox(box_name+' (0)', self)
+                chkbox.setCheckable(False)
+                chkbox.setDisabled(True)
+                self.checkbox_grid.addWidget(chkbox, *position)
+                self.checkboxes.append(chkbox)
+                
+        
+        self.grid_label = QLabel('Quality Codes ('+str(len(qcode_list))+' total records)')
+        self.label_hbox = QHBoxLayout()
+        self.label_hbox.addWidget(self.grid_label)
+        self.label_hbox.addStretch(1)
+
+        self.separator = QFrame()
+        self.separator.setFrameShape(QFrame.HLine)
+        self.separator.setLineWidth(1)
+
+        self.selectAllButton = QPushButton("Select All")
+        self.selectAllButton.clicked.connect(self.selectAll)
+        
+        self.deselectAllButton = QPushButton("Deselect All")
+        self.deselectAllButton.clicked.connect(self.deselectAll)
+
+        self.button_hbox = QHBoxLayout()
+        self.button_hbox.addWidget(self.selectAllButton)
+        self.button_hbox.addWidget(self.deselectAllButton)
+        self.button_hbox.addStretch(1)
+        
+        self.selectAll()
+
+        
+    def selectAll(self):
+        for checkbox in self.checkboxes:
+            checkbox.setChecked(True)
+
+            
+    def deselectAll(self):
+        for checkbox in self.checkboxes:
+            checkbox.setChecked(False)
+
+
+    def collectCheckedBoxes(self):
+
+        checked_boxes = []        
+        for checkbox in self.checkboxes:
+            if checkbox.isChecked():
+                checked_boxes.append(checkbox.text().split(' ')[0]) # need to strip away the # of records
+
+        return checked_boxes
+
+        
+        
+# this class is a generic way to build a grid of checkboxes with title and separator line
+# need to add a method to get the checked boxes
 class SelectionCheckboxGrid(QWidget):
 
     def __init__(self, checkbox_items, grid_name, orient='col', autocorr=False):
@@ -106,7 +257,11 @@ class SelectionCheckboxGrid(QWidget):
             self.button_hbox.addWidget(self.deselectAutosButton)
             
             
-        self.button_hbox.addStretch(1)    
+        self.button_hbox.addStretch(1)
+
+        self.selectAll()
+        if autocorr:
+            self.deselectAutos()
 
         
     def selectAll(self):
@@ -127,9 +282,22 @@ class SelectionCheckboxGrid(QWidget):
         for ii in self.auto_idx:
             self.checkboxes[ii].setChecked(False)
 
+    def collectCheckedBoxes(self):
+
+        checked_boxes = []
+        for checkbox in self.checkboxes:
+            if checkbox.isChecked():
+                checked_boxes.append(checkbox.text())
+
+        return checked_boxes
 
 
-class DataSelectWindow(QWidget):
+
+
+    
+# This class sets up the arrangement of checkboxes, textboxes, etc to select the data from the alist file
+# It forms the Selection tab
+class SelectionPanel(QWidget):
 
     # Remember, the init block is only run when the window is created
     def __init__(self, alist_data):
@@ -138,11 +306,16 @@ class DataSelectWindow(QWidget):
         self.alist_data = alist_data
         
         # these need to be public variables (self) so they are callable!
+        self.param_textbox = SelectionParamBoxGrid(alist_data)
+        
         self.baseline_checkboxes = SelectionCheckboxGrid(np.unique(alist_data.baselines), 'Baselines', autocorr=True)
 
+        
+        self.qcode_checkboxes = QCodeCheckboxGrid(alist_data.qcodes)
+        
         self.source_checkboxes = SelectionCheckboxGrid(np.unique(alist_data.sources), 'Sources')
 
-        self.scan_checkboxes = SelectionCheckboxGrid(np.unique(alist_data.scans), 'Scans')
+        #self.scan_checkboxes = SelectionCheckboxGrid(np.unique(alist_data.scans), 'Scans')
 
         self.pol_checkboxes = SelectionCheckboxGrid(np.unique(alist_data.pols), 'Polarizations')
 
@@ -151,16 +324,23 @@ class DataSelectWindow(QWidget):
         # the stretches here do the vertical centering
         # is there a better way to do this with a groupBox?
         select_vbox = QVBoxLayout()
+        select_vbox.addLayout(self.param_textbox.params_hbox)
+        select_vbox.addWidget(self.param_textbox.separator)
+        select_vbox.addLayout(self.param_textbox.textbox_gridv)
         select_vbox.addStretch(1)
         select_vbox.addLayout(self.baseline_checkboxes.label_hbox)
         select_vbox.addWidget(self.baseline_checkboxes.separator)
         select_vbox.addLayout(self.baseline_checkboxes.checkbox_grid)
         select_vbox.addLayout(self.baseline_checkboxes.button_hbox)
         select_vbox.addStretch(1)
-        select_vbox.addLayout(self.scan_checkboxes.label_hbox)
-        select_vbox.addWidget(self.scan_checkboxes.separator)
-        select_vbox.addLayout(self.scan_checkboxes.checkbox_grid)
-        select_vbox.addLayout(self.scan_checkboxes.button_hbox)
+        #select_vbox.addLayout(self.scan_checkboxes.label_hbox)
+        #select_vbox.addWidget(self.scan_checkboxes.separator)
+        #select_vbox.addLayout(self.scan_checkboxes.checkbox_grid)
+        #select_vbox.addLayout(self.scan_checkboxes.button_hbox)
+        select_vbox.addLayout(self.qcode_checkboxes.label_hbox)
+        select_vbox.addWidget(self.qcode_checkboxes.separator)
+        select_vbox.addLayout(self.qcode_checkboxes.checkbox_grid)
+        select_vbox.addLayout(self.qcode_checkboxes.button_hbox)
         select_vbox.addStretch(1)
         select_vbox.addLayout(self.source_checkboxes.label_hbox)
         select_vbox.addWidget(self.source_checkboxes.separator)
@@ -176,21 +356,169 @@ class DataSelectWindow(QWidget):
 
         # add a plot button, connect to a plotting function
 
-        
-        
         self.setLayout(select_vbox)
 
 
+    def CollectDataSelections(self):
+
+        data_selection_dict = {}
+        
+        data_selection_dict['baselines'] = self.baseline_checkboxes.collectCheckedBoxes()
+        data_selection_dict['qcodes'] = self.qcode_checkboxes.collectCheckedBoxes()
+        data_selection_dict['sources'] = self.source_checkboxes.collectCheckedBoxes()
+        #data_selection_dict['scans'] = self.scan_checkboxes.collectCheckedBoxes()
+        data_selection_dict['pols'] = self.pol_checkboxes.collectCheckedBoxes()
+        data_selection_dict['snrrange'] = self.param_textbox.collectParamVals()
+        
+        return data_selection_dict
+
+
+
+
+
+
+# This class sets up the arrangement of checkboxes, textboxes, etc to select the data from the alist file
+# It forms the Selection tab
+class ScanPanel(QWidget):
+
+    # Remember, the init block is only run when the window is created
+    def __init__(self, alist_data):
+        super().__init__()
+
+        self.alist_data = alist_data
+        
+        # these need to be public variables (self) so they are callable!
+        self.scan_checkboxes = SelectionCheckboxGrid(np.unique(alist_data.scans), 'Scans')
+
+        select_vbox = QVBoxLayout()
+        select_vbox.addLayout(self.scan_checkboxes.label_hbox)
+        select_vbox.addWidget(self.scan_checkboxes.separator)
+        select_vbox.addLayout(self.scan_checkboxes.checkbox_grid)
+        select_vbox.addLayout(self.scan_checkboxes.button_hbox)
+        select_vbox.addStretch(1)
+
+        self.setLayout(select_vbox)
+
+
+    def CollectScanSelections(self):
+
+        scan_selection_dict = {}        
+        scan_selection_dict['scans'] = self.scan_checkboxes.collectCheckedBoxes()
+        return scan_selection_dict
+
+    
+
+
+
+
+class PlotPanel(QWidget):
+
+    # Remember, the init block is only run when the window is created
+    def __init__(self, alist_data, SelectionTab, ScanTab):
+        super().__init__()
+
+        self.alist_data = alist_data
+        self.SelectionTab = SelectionTab
+        self.ScanTab = ScanTab
+
+        # Create a text entry box to load the alist
+        plot_label = QLabel('Plot something')
+        self.plot_box = QLineEdit()
+        self.plot_box.setFixedWidth(300)
+
+        # button to load the file; this will run a mess of python parsing code
+        self.plot_button = QPushButton("Plot Data")
+        self.plot_button.clicked.connect(self.PlottingButton)
+        
+        # set up the tab: vertically center an HBox within a VBox
+        plot_hbox = QHBoxLayout()
+        plot_hbox.addWidget(plot_label)
+        plot_hbox.addWidget(self.plot_box)
+        plot_hbox.addStretch(1)
+        plot_hbox.addWidget(self.plot_button)
+
+        # the stretches here do the vertical centering
+        plot_vbox = QVBoxLayout()
+        plot_vbox.addStretch(1)
+        plot_vbox.addLayout(plot_hbox)
+        plot_vbox.addStretch(1)
+        
+        self.setLayout(plot_vbox)
+
+        #self.show()
+
+    
+    def PlottingButton(self, checked):
+
+        # call the plot function from here
 
         
+        data_selection_dict = self.SelectionTab.CollectDataSelections()
+        scan_selection_dict = self.ScanTab.CollectScanSelections()
+
+        print(data_selection_dict['sources'])
+        print(data_selection_dict['qcodes'])
+        print(scan_selection_dict['scans'])
+        
+
+
+
+        
+
+# Class for the Data window
+class DataWindow(QWidget):
+
+    def __init__(self, alist_file, **kwargs):
+        super().__init__()
+
+        self.container = QVBoxLayout(self)
+        
+        self.alist_file = alist_file
+    
+        self.setWindowTitle('Alist Data')
+
+        # Create a tabs widget in this window
+        self.tabs = QTabWidget()
+        self.tabs.setTabPosition(QTabWidget.North)
+        #self.tabs.setMovable(True)
+
+        self.SelectionTab = SelectionPanel(self.alist_file)
+        self.ScanTab = ScanPanel(self.alist_file)
+        self.PlotTab = PlotPanel(self.alist_file, self.SelectionTab, self.ScanTab)
+
+        self.tab1 = self.SelectionTab
+        self.tab2 = self.ScanTab
+        self.tab3 = QWidget() # summary panel
+        self.tab4 = self.PlotTab # plot panel
+        self.tab5 = QWidget() # calc panel
+        self.tab6 = QWidget() # save panel
+
+        
+        # Add tabs, specifying the widget in each tab
+        self.tabs.addTab(self.tab1, 'Select')
+        self.tabs.addTab(self.tab2, 'Scans')
+        self.tabs.addTab(self.tab3, 'Summ')
+        self.tabs.addTab(self.tab4, 'Plot')
+        self.tabs.addTab(self.tab5, 'Calc')
+        self.tabs.addTab(self.tab6, 'Save')
+        
+        #self.setCentralWidget(self.tabs)
+        self.container.addWidget(self.tabs)
+
         # golden aspect ratio
         wsize = 800
         #self.setFixedSize(QSize(wsize,wsize*0.618))
         self.setMinimumSize(QSize(wsize,wsize*1.2))
-        self.setWindowTitle('Alist Data Selection')
+
+        #self.setLayout(self.tabs)
+        
+        #self.show()
 
 
+        
 
+
+        
 
 
 
@@ -239,7 +567,7 @@ class Init_tab(QWidget):
         init_vbox.addLayout(init_hbox)
         init_vbox.addStretch(1)
         
-        self.setLayout(init_vbox)        
+        self.setLayout(init_vbox)
 
 
     def load_button(self, checked):
@@ -251,7 +579,7 @@ class Init_tab(QWidget):
         alist_data = ParseAlist(afilename)
 
         if self.w is None:
-            self.w = DataSelectWindow(alist_data)
+            self.w = DataWindow(alist_data)
         self.w.show()
 
         
@@ -278,15 +606,15 @@ class MainWindow(QMainWindow):
         #self.tabs.setMovable(True)
 
         self.tab1 = Init_tab(self.alist_file)
-        self.tab2 = QWidget()
-        self.tab3 = QWidget()
-        self.tab4 = QWidget()
+        #self.tab2 = QWidget()
+        #self.tab3 = QWidget()
+        #self.tab4 = QWidget()
         
         # Add tabs, specifying the widget in each tab
         self.tabs.addTab(self.tab1, 'Init')
-        self.tabs.addTab(self.tab2, 'Select')
-        self.tabs.addTab(self.tab3, 'Plot')
-        self.tabs.addTab(self.tab4, 'Save')
+        #self.tabs.addTab(self.tab2, 'Select')
+        #self.tabs.addTab(self.tab3, 'Plot')
+        #self.tabs.addTab(self.tab4, 'Save')
         
         self.setCentralWidget(self.tabs)
         
