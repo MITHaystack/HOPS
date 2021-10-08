@@ -1,4 +1,5 @@
 # Functions to support parsing an alist file
+# eventually this will be replaced with a new format??
 import numpy as np
 
 
@@ -16,12 +17,13 @@ class ParseAlist:
         self.times = []
         self.baselines = []
         self.pols = []
-        self.qcode = []
+        self.qcodes = []
         self.snr = []
         self.sbd = []
         self.mbd = []
         self.delay_rate = []
-
+        self.length = []
+        
         
         f = open(afile, 'r')
         lines = f.readlines()
@@ -46,6 +48,7 @@ class ParseAlist:
             #self.sources.append(cols[13][0:5]) # only grab the first five characters of the source name
             self.sources.append(cols[13])
             self.baselines.append(cols[14])
+            self.qcodes.append(cols[15])
             self.pols.append(cols[17])
             self.amplitudes.append(float(cols[19]))
             self.snr.append(float(cols[20]))
@@ -54,7 +57,12 @@ class ParseAlist:
             self.delay_rate.append(float(cols[27]))
             # snr, sbd, mdb, delay_rate
 
-
+        
+        # sanitize qcodes - if there's a letter, just save the letter
+        for ii in range(len(self.qcodes)):
+            if len(self.qcodes[ii])>1:
+                self.qcodes[ii]=self.qcodes[ii][1]
+        codes, counts = np.unique(self.qcodes, return_counts=True)
 
             
     # find the indices of the rows with data from the baseline we want
