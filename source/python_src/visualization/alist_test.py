@@ -8,9 +8,12 @@ from PyQt5.QtWidgets import QVBoxLayout, QHBoxLayout, QGridLayout, QTabWidget, Q
 
 from parse_alist import ParseAlist
 
+import matplotlib.pyplot as plt
+import alist_plot as alist_plt
+
 import numpy as np
 
-# Main Window: tabs, init tab has load button
+# Main Window: load alist file(s)
 # Data Window: tabs
 
 # selection tab selects baselines, sources, etc - summary button?
@@ -23,13 +26,16 @@ import numpy as np
 # build new window with checkboxes for all of these (unique)
 # option to select all, remove autocorr, etc
 # also have snrmin and snrmax options
-# scan length frequency
+# length, frequency
 
 # how is frequency reported in the alist? does 'B32' mean band B, 32 channels?
 #
 
+# clever ways to get indices of alist records to plot with pythons sets, intersections
+
+
+
 # different tab: select plotting options (axes, limits)
-# collect checkboxes and plot
 
 # option to write new afile
 
@@ -310,6 +316,7 @@ class SelectionPanel(QWidget):
         
         self.baseline_checkboxes = SelectionCheckboxGrid(np.unique(alist_data.baselines), 'Baselines', autocorr=True)
 
+        self.station_checkboxes = SelectionCheckboxGrid(alist_data.unique_stations, 'Stations')
         
         self.qcode_checkboxes = QCodeCheckboxGrid(alist_data.qcodes)
         
@@ -333,10 +340,11 @@ class SelectionPanel(QWidget):
         select_vbox.addLayout(self.baseline_checkboxes.checkbox_grid)
         select_vbox.addLayout(self.baseline_checkboxes.button_hbox)
         select_vbox.addStretch(1)
-        #select_vbox.addLayout(self.scan_checkboxes.label_hbox)
-        #select_vbox.addWidget(self.scan_checkboxes.separator)
-        #select_vbox.addLayout(self.scan_checkboxes.checkbox_grid)
-        #select_vbox.addLayout(self.scan_checkboxes.button_hbox)
+        select_vbox.addLayout(self.station_checkboxes.label_hbox)
+        select_vbox.addWidget(self.station_checkboxes.separator)
+        select_vbox.addLayout(self.station_checkboxes.checkbox_grid)
+        select_vbox.addLayout(self.station_checkboxes.button_hbox)
+        select_vbox.addStretch(1)
         select_vbox.addLayout(self.qcode_checkboxes.label_hbox)
         select_vbox.addWidget(self.qcode_checkboxes.separator)
         select_vbox.addLayout(self.qcode_checkboxes.checkbox_grid)
@@ -364,9 +372,9 @@ class SelectionPanel(QWidget):
         data_selection_dict = {}
         
         data_selection_dict['baselines'] = self.baseline_checkboxes.collectCheckedBoxes()
+        data_selection_dict['stations'] = self.station_checkboxes.collectCheckedBoxes()
         data_selection_dict['qcodes'] = self.qcode_checkboxes.collectCheckedBoxes()
-        data_selection_dict['sources'] = self.source_checkboxes.collectCheckedBoxes()
-        #data_selection_dict['scans'] = self.scan_checkboxes.collectCheckedBoxes()
+        data_selection_dict['sources'] = self.source_checkboxes.collectCheckedBoxes()        
         data_selection_dict['pols'] = self.pol_checkboxes.collectCheckedBoxes()
         data_selection_dict['snrrange'] = self.param_textbox.collectParamVals()
         
@@ -456,12 +464,30 @@ class PlotPanel(QWidget):
         data_selection_dict = self.SelectionTab.CollectDataSelections()
         scan_selection_dict = self.ScanTab.CollectScanSelections()
 
-        print(data_selection_dict['sources'])
-        print(data_selection_dict['qcodes'])
-        print(scan_selection_dict['scans'])
+        #print(data_selection_dict['sources'])
+        #print(data_selection_dict['qcodes'])
+        #print(data_selection_dict['baselines'])
+        #print(data_selection_dict['stations'])
+        #print(scan_selection_dict['scans'])
+
+        alist_idx = self.alist_data.get_record_indices(data_selection_dict)
+
+        print(np.unique(np.array(self.alist_data.baselines)[alist_idx]))
+
+        # note, this is not sorted - should we sort it?
+        #print(alist_idx)
+
+
+        # not sure what's the best way to handle the figures
+        # send a list of data and labels, order figures by fignum, plot as needed?
         
 
+        #fignum = np.random.randint(0,1000)
+        fig = alist_plt.plot_alist_data(1, np.array(self.alist_data.times)[alist_idx], np.array(self.alist_data.amplitudes)[alist_idx],
+                                        'Time (UT on day 121-105', 'amplitude (e-4)')
 
+        #plt.figure(fignum)
+        plt.show()
 
         
 
