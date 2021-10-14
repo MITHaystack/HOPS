@@ -56,8 +56,8 @@ class SelectionParamBoxGrid(QWidget):
     def __init__(self, alist_data, orient='col'):
         super().__init__()
 
-        self.snrmin = np.min(alist_data.snr)
-        self.snrmax = np.max(alist_data.snr)
+        self.snrmin = np.min(alist_data.records['snr'])
+        self.snrmax = np.max(alist_data.records['snr'])
         
         # Create a text entry box
         snrmin_box_label = QLabel('Min SNR')
@@ -314,17 +314,15 @@ class SelectionPanel(QWidget):
         # these need to be public variables (self) so they are callable!
         self.param_textbox = SelectionParamBoxGrid(alist_data)
         
-        self.baseline_checkboxes = SelectionCheckboxGrid(np.unique(alist_data.baselines), 'Baselines', autocorr=True)
+        self.baseline_checkboxes = SelectionCheckboxGrid(np.unique(alist_data.records['baseline']), 'Baselines', autocorr=True)
 
         self.station_checkboxes = SelectionCheckboxGrid(alist_data.unique_stations, 'Stations')
         
-        self.qcode_checkboxes = QCodeCheckboxGrid(alist_data.qcodes)
+        self.qcode_checkboxes = QCodeCheckboxGrid(alist_data.records['qcode'])
         
-        self.source_checkboxes = SelectionCheckboxGrid(np.unique(alist_data.sources), 'Sources')
+        self.source_checkboxes = SelectionCheckboxGrid(np.unique(alist_data.records['source']), 'Sources')
 
-        #self.scan_checkboxes = SelectionCheckboxGrid(np.unique(alist_data.scans), 'Scans')
-
-        self.pol_checkboxes = SelectionCheckboxGrid(np.unique(alist_data.pols), 'Polarizations')
+        self.pol_checkboxes = SelectionCheckboxGrid(np.unique(alist_data.records['pols']), 'Polarizations')
 
 
 
@@ -396,7 +394,7 @@ class ScanPanel(QWidget):
         self.alist_data = alist_data
         
         # these need to be public variables (self) so they are callable!
-        self.scan_checkboxes = SelectionCheckboxGrid(np.unique(alist_data.scans), 'Scans')
+        self.scan_checkboxes = SelectionCheckboxGrid(np.unique(alist_data.records['scan']), 'Scans')
 
         select_vbox = QVBoxLayout()
         select_vbox.addLayout(self.scan_checkboxes.label_hbox)
@@ -472,7 +470,7 @@ class PlotPanel(QWidget):
 
         alist_idx = self.alist_data.get_record_indices(data_selection_dict)
 
-        print(np.unique(np.array(self.alist_data.baselines)[alist_idx]))
+        #print(np.unique(np.array(self.alist_data.records['baseline'])[alist_idx]))
 
         # note, this is not sorted - should we sort it?
         #print(alist_idx)
@@ -483,8 +481,9 @@ class PlotPanel(QWidget):
         
 
         #fignum = np.random.randint(0,1000)
-        fig = alist_plt.plot_alist_data(1, np.array(self.alist_data.times)[alist_idx], np.array(self.alist_data.amplitudes)[alist_idx],
-                                        'Time (UT on day 121-105', 'amplitude (e-4)')
+        fig = alist_plt.plot_alist_data(1, np.array(self.alist_data.records['scan_time'])[alist_idx],
+                                        np.array(self.alist_data.records['amplitude'])[alist_idx],
+                                        'Time (Fractional DOY)', 'amplitude (e-4)')
 
         #plt.figure(fignum)
         plt.show()
@@ -608,7 +607,8 @@ class Init_tab(QWidget):
             self.w = DataWindow(alist_data)
         self.w.show()
 
-        
+        #print(alist_data.records.scan_time)
+        #print(np.unique(alist_data.records.scan_time))
 
 
 
