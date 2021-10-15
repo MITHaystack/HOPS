@@ -6,33 +6,65 @@ import numpy as np
 
 # should include some sanity checks and error handling
 
-# methods to get indices of alist records to plot, given lists of selections
-# use python set methods? intersection is simple
 
-# method: given dictionaries of selected parameters, return indices of alist records to plot
-
-# This module makes many assumptions about alist data format! How reliable is this format?
-# Need to store units for each field
 
 # list of dictionary fields for each record in the alist file
-alist_fields = ['source', # phonebook name for the source observed
+alist_fields = ['experiment', # four-digit experiment label?
+                'source', # phonebook name for the source observed
                 'scan', # scan name, eg 105-0347 or 210-1800a (DOY-HHMM[a,b,c])
                 'baseline', # two-letter baseline for each record
                 'stations', # two-element list of single-letter station identifiers
                 'scan_DOY', # scan day of year
+                #'scan_year',
+                #'proc_date',
+                'frequency_band', # band and number of channels?
                 'scan_time', # scan time in fractional DOY format (DOY.1234)
                 'scan_length', # scan length in seconds (different from DUR column)
                 'pols', # two-letter description of polarization combination for this baseline (eg XX, RR, XY, YR, etc)
                 'qcode', # scan quality code (0-9, A-H)
                 'amplitude', # amplitude in units of 1e-4
                 'snr',
+                'phase',
                 'sbd', # single-band delay
                 'mbd', # multi-band delay
                 'delay_rate']
 
                 
+# list of plot fields for drop-down menus
+plot_fields = ['scan_time', 'amplitude', 'snr', 'phase', 'sbd', 'mbd', 'delay_rate']
 
 
+# list of plot labels and units
+plot_labels = {'scan_time':{'label':'Scan time','unit':'(DOY)'},
+               'amplitude':{'label':'Amplitude','unit':'(x10^4)'},
+               'snr':{'label':'SNR','unit':''},
+               'phase':{'label':'Phase','unit':'(deg)'},
+               'sbd':{'label':'Single-band delay','unit':'(usec)'},
+               'mbd':{'label':'Multi-band delay','unit':'(usec)'},
+               'delay_rate':{'label':'Delay rate','unit':'ps/s'}}
+
+               
+
+# helper class that does not always work
+class AfileData:
+
+    def __init__(self, afile):
+        f = open(afile, 'r')
+        self.lines = f.readlines()
+        f.close()
+        
+        self.labels = self.lines[2].rsplit('\n')[0].split()
+        self.units = self.lines[3].rsplit('\n')[0].split()
+        self.d1 = self.lines[4].rsplit('\n')[0].split()
+        
+
+
+
+# not all alist files are formatted the same
+# some have an extra header line (of column numbers?)
+# there can be 40 or 46 columns
+# 40 column files have a truncated units line (only 23)
+# columns in both formats are the same up to col 27 (DRATE)
 
 class ParseAlist:
 
@@ -67,7 +99,7 @@ class ParseAlist:
             #root.append(cols[1])
 
             self.records['scan_length'].append(cols[5])
-
+            self.records['experiment'].append(cols[7])
             self.records['scan'].append(cols[8])
             
             # TIME*TAG column is in DOY-HHMMSS format
@@ -79,9 +111,11 @@ class ParseAlist:
             self.records['source'].append(cols[13])
             self.records['baseline'].append(cols[14])
             self.records['qcode'].append(cols[15])
+            self.records['frequency_band'].append(cols[16])
             self.records['pols'].append(cols[17])
             self.records['amplitude'].append(float(cols[19]))
             self.records['snr'].append(float(cols[20]))
+            self.records['phase'].append(float(cols[21]))
             self.records['sbd'].append(float(cols[24]))
             self.records['mbd'].append(float(cols[25]))
             self.records['delay_rate'].append(float(cols[27]))
@@ -99,7 +133,9 @@ class ParseAlist:
         self.records['stations'] = [[xx[0],xx[1]] for xx in self.records['baseline']]
         self.unique_stations = np.unique(np.concatenate(self.records['stations']).flat)
 
-
+        # keep an array of flag state for each record
+        self.record_flags = np.zeros(len(self.records['snr']))
+        
 
 
 
@@ -110,14 +146,25 @@ class ParseAlist:
 
         baseline_idx = [i for i,x in enumerate(self.records['baseline']) if x in data_selection_dict['baselines']]
 
+        source_idx = [i for i,x in enumerate(self.records['source']) if x in data_selection_dict['sources']]
+
+        qcode_idx = [i for i,x in enumerate(self.records['qcode']) if x in data_selection_dict['qcodes']]
+
+        pols_idx = [i for i,x in enumerate(self.records['pols']) if x in data_selection_dict['pols']]
+
         # stations have to be handled backwards...
         station_idx = []
         for station in data_selection_dict['stations']:
             station_idx.extend([i for i,x in enumerate(self.records['stations']) if station in x])
 
-        #print(np.array(self.baselines)[baseline_idx])
-        #print(np.array(self.stations)[station_idx])
+
+        selected_idx = list(set(baseline_idx) & set(station_idx) & set(source_idx) & set(qcode_idx) & set(pols_idx))
+
+        # set only the selected records to flag=0
+        self.record_flags.fill(1)
+        self.record_flags[selected_idx] = 0
         
-        return list(set(baseline_idx) & set(station_idx))
+        
+        return selected_idx
 
 

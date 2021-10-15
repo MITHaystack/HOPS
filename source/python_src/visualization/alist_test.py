@@ -3,10 +3,10 @@ import sys
 
 from PyQt5.QtCore import QSize, Qt, QLine, QPoint
 from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QMainWindow, QCheckBox, QFrame, QSizePolicy
-from PyQt5.QtWidgets import QVBoxLayout, QHBoxLayout, QGridLayout, QTabWidget, QLabel, QLineEdit
+from PyQt5.QtWidgets import QVBoxLayout, QHBoxLayout, QGridLayout, QTabWidget, QLabel, QLineEdit, QComboBox
 #from PyQt5.QtGui import QPalette, QColor, QPainter, QWindow
 
-from parse_alist import ParseAlist
+import parse_alist as pa
 
 import matplotlib.pyplot as plt
 import alist_plot as alist_plt
@@ -179,7 +179,10 @@ class QCodeCheckboxGrid(QWidget):
 
         return checked_boxes
 
-        
+
+
+
+
         
 # this class is a generic way to build a grid of checkboxes with title and separator line
 # need to add a method to get the checked boxes
@@ -317,6 +320,8 @@ class SelectionPanel(QWidget):
         self.baseline_checkboxes = SelectionCheckboxGrid(np.unique(alist_data.records['baseline']), 'Baselines', autocorr=True)
 
         self.station_checkboxes = SelectionCheckboxGrid(alist_data.unique_stations, 'Stations')
+
+        #self.frequency_checkboxes = SelectionCheckboxGrid(alist_data.records['frequency_band'], 'Frequencies')
         
         self.qcode_checkboxes = QCodeCheckboxGrid(alist_data.records['qcode'])
         
@@ -343,6 +348,11 @@ class SelectionPanel(QWidget):
         select_vbox.addLayout(self.station_checkboxes.checkbox_grid)
         select_vbox.addLayout(self.station_checkboxes.button_hbox)
         select_vbox.addStretch(1)
+        #select_vbox.addLayout(self.frequency_checkboxes.label_hbox)
+        #select_vbox.addWidget(self.frequency_checkboxes.separator)
+        #select_vbox.addLayout(self.frequency_checkboxes.checkbox_grid)
+        #select_vbox.addLayout(self.frequency_checkboxes.button_hbox)
+        #select_vbox.addStretch(1)
         select_vbox.addLayout(self.qcode_checkboxes.label_hbox)
         select_vbox.addWidget(self.qcode_checkboxes.separator)
         select_vbox.addLayout(self.qcode_checkboxes.checkbox_grid)
@@ -427,63 +437,99 @@ class PlotPanel(QWidget):
         self.SelectionTab = SelectionTab
         self.ScanTab = ScanTab
 
-        # Create a text entry box to load the alist
-        plot_label = QLabel('Plot something')
-        self.plot_box = QLineEdit()
-        self.plot_box.setFixedWidth(300)
+        self.xdata = 'scan_time'
+        self.ydata = 'amplitude'
 
-        # button to load the file; this will run a mess of python parsing code
+
+        # Build the X-axis formatting panel
+        self.xname = QLabel('X Axis')
+        self.xname_hbox = QHBoxLayout()
+        self.xname_hbox.addWidget(self.xname)
+        self.xname_hbox.addStretch(1)
+
+        self.separator = QFrame()
+        self.separator.setFrameShape(QFrame.HLine)
+        self.separator.setLineWidth(1)
+
+        self.XcomboBox = QComboBox(self)
+        self.XcomboBox.setFixedWidth(100)
+        self.XcomboBox.addItems(pa.plot_labels.keys())
+        
+        self.xmenu_hbox = QHBoxLayout()
+        self.xmenu_hbox.addWidget(self.XcomboBox)
+        self.xmenu_hbox.addStretch(1)
+
+
+
+        # Build the Y-axis formatting panel
+        self.yname = QLabel('Y Axis')
+        self.yname_hbox = QHBoxLayout()
+        self.yname_hbox.addWidget(self.yname)
+        self.yname_hbox.addStretch(1)
+
+        self.YcomboBox = QComboBox(self)
+        self.YcomboBox.setFixedWidth(100)
+        self.YcomboBox.addItems(pa.plot_labels.keys())
+        
+        self.ymenu_hbox = QHBoxLayout()
+        self.ymenu_hbox.addWidget(self.YcomboBox)
+        self.ymenu_hbox.addStretch(1)
+
+
+
+
+        # plot by baseline? station? color by qcode, amplitude, snr?
+
+        
+        # button to make the plot
         self.plot_button = QPushButton("Plot Data")
         self.plot_button.clicked.connect(self.PlottingButton)
-        
-        # set up the tab: vertically center an HBox within a VBox
         plot_hbox = QHBoxLayout()
-        plot_hbox.addWidget(plot_label)
-        plot_hbox.addWidget(self.plot_box)
         plot_hbox.addStretch(1)
         plot_hbox.addWidget(self.plot_button)
 
+        # build the full panel vertically
         # the stretches here do the vertical centering
         plot_vbox = QVBoxLayout()
+        plot_vbox.addStretch(1)
+        plot_vbox.addLayout(self.xname_hbox)
+        plot_vbox.addWidget(self.separator)
+        plot_vbox.addLayout(self.xmenu_hbox)
+        plot_vbox.addStretch(1)
+        plot_vbox.addLayout(self.yname_hbox)
+        plot_vbox.addWidget(self.separator)
+        plot_vbox.addLayout(self.ymenu_hbox)
         plot_vbox.addStretch(1)
         plot_vbox.addLayout(plot_hbox)
         plot_vbox.addStretch(1)
         
         self.setLayout(plot_vbox)
 
-        #self.show()
 
-    
+        
     def PlottingButton(self, checked):
 
         # call the plot function from here
 
-        
+        # get the data selections, pass to the indexing function in the alist class
         data_selection_dict = self.SelectionTab.CollectDataSelections()
         scan_selection_dict = self.ScanTab.CollectScanSelections()
 
-        #print(data_selection_dict['sources'])
-        #print(data_selection_dict['qcodes'])
-        #print(data_selection_dict['baselines'])
-        #print(data_selection_dict['stations'])
-        #print(scan_selection_dict['scans'])
-
         alist_idx = self.alist_data.get_record_indices(data_selection_dict)
-
-        #print(np.unique(np.array(self.alist_data.records['baseline'])[alist_idx]))
-
         # note, this is not sorted - should we sort it?
-        #print(alist_idx)
 
+        # get the selected x and y axis data for the plot
+        x_data = self.XcomboBox.currentText()
+        y_data = self.YcomboBox.currentText()
 
         # not sure what's the best way to handle the figures
         # send a list of data and labels, order figures by fignum, plot as needed?
         
-
         #fignum = np.random.randint(0,1000)
-        fig = alist_plt.plot_alist_data(1, np.array(self.alist_data.records['scan_time'])[alist_idx],
-                                        np.array(self.alist_data.records['amplitude'])[alist_idx],
-                                        'Time (Fractional DOY)', 'amplitude (e-4)')
+        fig = alist_plt.plot_alist_data(1, np.array(self.alist_data.records[x_data])[alist_idx],
+                                        np.array(self.alist_data.records[y_data])[alist_idx],
+                                        pa.plot_labels[x_data]['label']+' '+pa.plot_labels[x_data]['unit'],
+                                        pa.plot_labels[y_data]['label']+' '+pa.plot_labels[y_data]['unit'])
 
         #plt.figure(fignum)
         plt.show()
@@ -601,7 +647,7 @@ class Init_tab(QWidget):
 
         afilename = self.init_afile_box.text()
         
-        alist_data = ParseAlist(afilename)
+        alist_data = pa.ParseAlist(afilename)
 
         if self.w is None:
             self.w = DataWindow(alist_data)
