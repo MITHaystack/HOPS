@@ -20,8 +20,11 @@
 namespace hops
 {
 
+class MHO_ScalarContainerBase{}; //only needed for SFINAE
+
 template< typename XValueType >
 class MHO_ScalarContainer:
+    public MHO_ScalarContainerBase,
     public MHO_NDArrayWrapper< XValueType, 0>,
     virtual public MHO_Serializable
 {

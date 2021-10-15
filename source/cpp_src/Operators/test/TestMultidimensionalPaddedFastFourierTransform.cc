@@ -71,7 +71,7 @@ int main(int argc, char** argv)
 
     //first we set up the input data
     const size_t ndim = 1;
-    const size_t N = 16; //only even N supported 
+    const size_t N = 16; //only even N supported
     const size_t M = 4; //even or odd M is OK
     const size_t NM = N*M;
 
@@ -84,7 +84,7 @@ int main(int argc, char** argv)
     srand(0);
     double r1 = 0;
     double r2 = 0;
-    for (size_t i = 0; i < N; i++) 
+    for (size_t i = 0; i < N; i++)
     {
         double r2 = (rand()%1024);
         r2 /= 1024.0;
@@ -97,20 +97,19 @@ int main(int argc, char** argv)
     array1[N/3+1]  = 1.0;
     array1[N/3+2]  = 2.0;
 
-    //then we execute an FFT to move to frequency space 
+    //then we execute an FFT to move to frequency space
     FFT_TYPE* fft_engine = new FFT_TYPE();
     fft_engine->SetBackward();
-    fft_engine->SetInput(&array1);
-    fft_engine->SetOutput(&array2);
+    fft_engine->SetArgs(&array1, &array2);
     fft_engine->Initialize();
     fft_engine->Execute();
 
     if(option == 0)
     {
-        //here we run a end-padded fft interpolation 
+        //here we run a end-padded fft interpolation
 
         //zero out the expanded arrays
-        for (size_t i = 0; i < NM; i++) 
+        for (size_t i = 0; i < NM; i++)
         {
             expanded_array1(i) = std::complex<FPTYPE>(0.0, 0.0);
             expanded_array2(i) = std::complex<FPTYPE>(0.0, 0.0);
@@ -122,19 +121,18 @@ int main(int argc, char** argv)
             expanded_array1(i) = array2(i);
         }
 
-        //then we execute an 'inverse' FFT to bring us back to original space 
+        //then we execute an 'inverse' FFT to bring us back to original space
         FFT_TYPE* fft_engine2 = new FFT_TYPE();
         fft_engine2->SetForward();
-        fft_engine2->SetInput(&expanded_array1);
-        fft_engine2->SetOutput(&expanded_array2);
+        fft_engine2->SetArgs(&expanded_array1, &expanded_array2);
         fft_engine2->Initialize();
         fft_engine2->Execute();
 
-        //now normalize the output array 
+        //now normalize the output array
         double norm = N;
         for(size_t i=0; i<NM; i++)
         {
-            expanded_array2[i] /= norm; 
+            expanded_array2[i] /= norm;
         }
 
 
@@ -164,13 +162,14 @@ int main(int argc, char** argv)
         //now use the zero-padded (end) fft engine to do the same thing
         bool check;
         PADDED_FFT_TYPE* pfft_engine = new PADDED_FFT_TYPE();
-        
+
         pfft_engine->SetPaddingFactor(M);
         pfft_engine->SetEndPadded();
         //pfft_engine->SetCenterPadded();
         pfft_engine->SetForward();
-        pfft_engine->SetInput(&array2);
-        pfft_engine->SetOutput(&expanded_array1);
+        pfft_engine->SetArgs(&array2, &expanded_array1);
+        // pfft_engine->SetInput(&array2);
+        // pfft_engine->SetOutput(&expanded_array1);
         pfft_engine->SelectAllAxes();
         check = pfft_engine->Initialize();
         check = pfft_engine->Execute();
@@ -185,26 +184,26 @@ int main(int argc, char** argv)
         delete pfft_engine;
 
     }
-    else 
+    else
     {
 
-        //now do the same process with a center padded array 
+        //now do the same process with a center padded array
 
         //zero out the expanded arrays
-        for (size_t i = 0; i < NM; i++) 
+        for (size_t i = 0; i < NM; i++)
         {
             expanded_array1(i) = std::complex<FPTYPE>(0.0, 0.0);
             expanded_array2(i) = std::complex<FPTYPE>(0.0, 0.0);
         }
 
 
-        //now copy half of the array into the first 1/4 of the expanded array-1 
+        //now copy half of the array into the first 1/4 of the expanded array-1
         size_t mid = N/2;
         for(size_t i=0; i<mid; i++)
         {
             expanded_array1(i) = array2(i);
         }
-        //split the middle point 
+        //split the middle point
         size_t loc1 = N/2;
         size_t loc2 = NM - N/2;
         //expanded_array1(loc1) = array2(mid);
@@ -215,7 +214,7 @@ int main(int argc, char** argv)
         {
             expanded_array1(loc2+1+i) = array2(mid+1+i);
         }
-        
+
         // for(size_t i=0; i<NM; i++)
         // {
         //     std::cout<<"expanded array1 @ "<<i<<" = "<<expanded_array1[i]<<std::endl;
@@ -224,16 +223,15 @@ int main(int argc, char** argv)
         //then we execute an inverse FFT to bring us back to original space
         FFT_TYPE* fft_engine2 = new FFT_TYPE();
         fft_engine2->SetForward();
-        fft_engine2->SetInput(&expanded_array1);
-        fft_engine2->SetOutput(&expanded_array2);
+        fft_engine2->SetArgs(&expanded_array1,&expanded_array2);
         fft_engine2->Initialize();
         fft_engine2->Execute();
 
-        //now normalized the output array 
+        //now normalized the output array
         double norm = N;
         for(size_t i=0; i<NM; i++)
         {
-            expanded_array2[i] /= norm; 
+            expanded_array2[i] /= norm;
         }
 
         for(size_t i=0; i<N; i++)
@@ -264,8 +262,10 @@ int main(int argc, char** argv)
         pfft_engine->SetPaddingFactor(M);
         pfft_engine->SetCenterPadded();
         pfft_engine->SetForward();
-        pfft_engine->SetInput(&array2);
-        pfft_engine->SetOutput(&expanded_array1);
+        pfft_engine->SetArgs(&array2, &expanded_array1);
+        // pfft_engine->SetInput(&array2);
+        // pfft_engine->SetOutput(&expanded_array1);
+
         pfft_engine->SelectAllAxes();
         check = pfft_engine->Initialize();
         check = pfft_engine->Execute();
@@ -283,7 +283,7 @@ int main(int argc, char** argv)
 
 
 
-    //now run the same basic code as norm_fx 
+    //now run the same basic code as norm_fx
 
     int nlags = 2*N;
     MHO_NDArrayWrapper< std::complex<FPTYPE>, ndim> xp_spec(4*nlags);
@@ -295,12 +295,12 @@ int main(int argc, char** argv)
     for (int i=0; i<4*nlags; i++){xp_spec[i] = 0.0;}
     for (int i=0; i<4*nlags; i++){S[i] = 0.0;}
     for (int i=0; i<4*nlags; i++){xlag[i] = 0.0;}
-    
+
     for (int i=0; i<nlags/2; i++)
     {
         xp_spec[i] += array2[i];
     }
-    
+
     //upper-sideband data
     for(int i = 0; i < nlags; i++)
     {
@@ -309,8 +309,7 @@ int main(int argc, char** argv)
 
     FFT_TYPE* fft_engine3 = new FFT_TYPE();
     fft_engine3->SetForward();
-    fft_engine3->SetInput(&S);
-    fft_engine3->SetOutput(&xlag);
+    fft_engine3->SetArgs(&S, &xlag);
     fft_engine3->Initialize();
     fft_engine3->Execute();
 
@@ -324,12 +323,12 @@ int main(int argc, char** argv)
         /* re-normalize back to single lag */
         output2[i] = xlag[j] / (double) (nlags / 2);
     }
-    
+
 
 
     //select every-other
     for (int i = 0; i < 2*nlags; i++)
-    {   
+    {
         output[i] = xlag[2*i];
     }
 
@@ -339,32 +338,32 @@ int main(int argc, char** argv)
         int j = positive_modulo(i-nlags, 2*nlags);
         xlag[i] = output[j];
     }
-    
+
     //normalize
     for (int i = 0; i < 2*nlags; i++)
-    {   
+    {
         output[i] = xlag[i] / (double) (nlags / 2);
     }
-    
-    
 
-    // 
+
+
+    //
     // for (int i = 0; i < 2*nlags; i++)
     // {
     //     /* Translate so i=nlags is central lag */
     //     // skip every other (interpolated) lag
     //     // int j = 2 * (i - nlags);
     //     // if (j < 0){j += 4 * nlags;}
-    // 
+    //
     //     // int j = MHO_NDArrayMath::Modulus(2 * (i - nlags) , 4*nlags);
     //     //if (j < 0){j += 4 * nlags;}
     //     int j = positive_modulo(2 * (i - nlags) , 4*nlags);
     //     /* re-normalize back to single lag */
     //     output[i] = xlag[j] / (double) (nlags / 2);
     // }
-    // 
-    // 
-    // 
+    //
+    //
+    //
 
 
     delete fft_engine;
@@ -399,8 +398,8 @@ int main(int argc, char** argv)
     myStyle->SetNumberContours(NCont);
     myStyle->cd();
 
-    TGraph* g_real = new TGraph();  
-    TGraph* g_imag = new TGraph();  
+    TGraph* g_real = new TGraph();
+    TGraph* g_imag = new TGraph();
 
     TGraph* gint_real = new TGraph();
     TGraph* gint_imag = new TGraph();
@@ -512,7 +511,7 @@ int main(int argc, char** argv)
     App->Run();
 
 
-    #endif 
+    #endif
 
 
 

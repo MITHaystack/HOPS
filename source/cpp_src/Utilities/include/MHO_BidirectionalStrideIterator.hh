@@ -118,12 +118,12 @@ class MHO_BidirectionalStrideIterator
             return *this;
         }
 
-        bool operator==(const self_type& rhs)
+        bool operator==(const self_type& rhs) const
         {
             return fPtr == rhs.fPtr;
         }
 
-        bool operator!=(const self_type& rhs)
+        bool operator!=(const self_type& rhs) const
         {
             return fPtr != rhs.fPtr;
         }

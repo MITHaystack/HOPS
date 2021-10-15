@@ -56,9 +56,10 @@ void ConvertCorel(const std::string root_file, const std::string& input_file, co
     baseline_weight_type* bl_wdata = mk4inter.GetExtractedWeights();
 
     MHO_VisibilityChannelizer channelizer;
-    channelizer.SetInput(bl_data);
     ch_baseline_data_type* ch_bl_data = new ch_baseline_data_type();
-    channelizer.SetOutput(ch_bl_data);
+    channelizer.SetArgs(bl_data, ch_bl_data);
+    // channelizer.SetInput(bl_data);
+    // channelizer.SetOutput(ch_bl_data);
     bool init = channelizer.Initialize();
     if(init)
     {
@@ -68,9 +69,10 @@ void ConvertCorel(const std::string root_file, const std::string& input_file, co
     }
 
     MHO_WeightChannelizer wchannelizer;
-    wchannelizer.SetInput(bl_wdata);
     ch_baseline_weight_type* ch_bl_wdata = new ch_baseline_weight_type();
-    wchannelizer.SetOutput(ch_bl_wdata);
+    wchannelizer.SetArgs(bl_wdata, ch_bl_wdata);
+    // wchannelizer.SetInput(bl_wdata);
+    // wchannelizer.SetOutput(ch_bl_wdata);
     bool winit = wchannelizer.Initialize();
     if(winit)
     {

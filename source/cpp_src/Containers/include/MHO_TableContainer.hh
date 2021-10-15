@@ -26,8 +26,11 @@
 namespace hops
 {
 
+class MHO_TableContainerBase{}; //only needed for SFINAE
+
 template< typename XValueType, typename XAxisPackType >
 class MHO_TableContainer:
+    public MHO_TableContainerBase,
     public MHO_NDArrayWrapper< XValueType, XAxisPackType::NAXES::value>,
     public XAxisPackType
 {
@@ -78,6 +81,10 @@ class MHO_TableContainer:
             resize_axis_pack(dim);
         }
 
+        //access to axis pack type alone
+        XAxisPackType* GetAxisPack() {return this;}
+        const XAxisPackType* GetAxisPack() const {return this;}
+
         //have to make base class functions visible
         using MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::Resize;
         using MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::GetData;
@@ -88,6 +95,16 @@ class MHO_TableContainer:
 
         using MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::operator();
         using MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::operator[];
+
+
+        //expensive copy (as opposed to the assignment operator,
+        //pointers to exernally managed memory are not transfer)
+        virtual void Copy(const MHO_TableContainer& rhs)
+        {
+            //copy the array, then copy the axis pack
+            MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::Copy(rhs);
+            *( this->GetAxisPack() ) = *(rhs.GetAxisPack());
+        }
 
     protected:
 

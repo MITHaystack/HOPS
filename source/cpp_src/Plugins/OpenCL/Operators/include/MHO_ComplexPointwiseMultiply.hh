@@ -5,7 +5,7 @@
 
 #include "MHO_Message.hh"
 #include "MHO_NDArrayWrapper.hh"
-#include "MHO_BinaryNDArrayOperator.hh"
+#include "MHO_BinaryOperator.hh"
 
 
 #include "MHO_OpenCLInterface.hh"
@@ -27,7 +27,7 @@
 namespace hops
 {
 
-class MHO_OpenCLComplexPointwiseMultiply: public MHO_BinaryNDArrayOperator<
+class MHO_OpenCLComplexPointwiseMultiply: public MHO_BinaryOperator<
     MHO_NDArrayWrapper< std::complex<XFloatType>, RANK >,
     MHO_NDArrayWrapper< std::complex<XFloatType>, RANK >,
     MHO_NDArrayWrapper< std::complex<XFloatType>, RANK > >

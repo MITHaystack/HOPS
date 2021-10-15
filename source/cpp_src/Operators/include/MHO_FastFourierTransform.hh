@@ -4,7 +4,7 @@
 #include <complex>
 
 #include "MHO_NDArrayWrapper.hh"
-#include "MHO_NDArrayOperator.hh"
+#include "MHO_UnaryOperator.hh"
 #include "MHO_BitReversalPermutation.hh"
 #include "MHO_FastFourierTransformUtilities.hh"
 
@@ -13,10 +13,11 @@ namespace hops
 
 template< typename XFloatType >
 class MHO_FastFourierTransform:
-    public MHO_NDArrayOperator< MHO_NDArrayWrapper< std::complex< XFloatType >, 1>,
-                             MHO_NDArrayWrapper< std::complex< XFloatType >, 1> >
+    public MHO_UnaryOperator< MHO_NDArrayWrapper< std::complex<XFloatType>, 1> >
 {
     public:
+
+        using XArrayType = MHO_NDArrayWrapper< std::complex< XFloatType>, 1 >;
 
         MHO_FastFourierTransform();
         virtual ~MHO_FastFourierTransform();
@@ -24,18 +25,22 @@ class MHO_FastFourierTransform:
         virtual void SetForward();
         virtual void SetBackward();
 
-        virtual bool Initialize() override;
-        virtual bool Execute() override;
+    protected:
+
+        virtual bool InitializeInPlace(XArrayType* in) override;
+        virtual bool ExecuteInPlace(XArrayType* in) override;
+        virtual bool InitializeOutOfPlace(const XArrayType* in, XArrayType* out) override;
+        virtual bool ExecuteOutOfPlace(const XArrayType* in, XArrayType* out) override;
 
     private:
 
         virtual void AllocateWorkspace();
         virtual void DealocateWorkspace();
 
-        bool fIsValid;
+
         bool fForward;
-        bool fInitialized;
         bool fSizeIsPowerOfTwo;
+        bool fInitialized;
 
         //auxilliary workspace needed for basic 1D transform
         unsigned int fN;
@@ -53,10 +58,9 @@ class MHO_FastFourierTransform:
 template< typename XFloatType >
 MHO_FastFourierTransform<XFloatType>::MHO_FastFourierTransform()
 {
-    fIsValid = true;
     fForward = true;
-    fInitialized = false;
     fSizeIsPowerOfTwo = false;
+    fInitialized = false;
 
     fN = 0;
     fM = 0;
@@ -84,69 +88,65 @@ MHO_FastFourierTransform<XFloatType>::SetBackward(){fForward = false;}
 
 template< typename XFloatType >
 bool
-MHO_FastFourierTransform<XFloatType>::Initialize()
+MHO_FastFourierTransform<XFloatType>::InitializeInPlace(XArrayType* in)
 {
-    if(this->fInput->GetSize() != this->fOutput->GetSize() )
+    if( in != nullptr )
     {
-        fIsValid = false;
+        if( fN != in->GetSize() )
+        {
+            fN = in->GetSize();
+            fSizeIsPowerOfTwo = MHO_BitReversalPermutation::IsPowerOfTwo(fN);
+            fM = MHO_FastFourierTransformUtilities<XFloatType>::ComputeBluesteinArraySize(fN);
+            //initialize the workspace
+            DealocateWorkspace();
+            AllocateWorkspace();
+            fInitialized = true;
+        }
     }
-
-    if( !fInitialized )
+    else
     {
-
-        fN = this->fInput->GetSize();
-        fSizeIsPowerOfTwo = MHO_BitReversalPermutation::IsPowerOfTwo(fN);
-        fM = MHO_FastFourierTransformUtilities<XFloatType>::ComputeBluesteinArraySize(fN);
         fInitialized = false;
-
-        //initialize
-        DealocateWorkspace();
-        AllocateWorkspace();
-
-        //compute the permutation arrays and twiddle factors
-        if(fSizeIsPowerOfTwo)
-        {
-            //use radix-2
-            MHO_BitReversalPermutation::ComputeBitReversedIndicesBaseTwo(fN, fPermutation);
-            MHO_FastFourierTransformUtilities<XFloatType>::ComputeTwiddleFactors(fN, fTwiddle);
-            MHO_FastFourierTransformUtilities<XFloatType>::ComputeConjugateTwiddleFactors(fN, fConjugateTwiddle);
-        }
-        else
-        {
-            //use Bluestein algorithm
-            MHO_BitReversalPermutation::ComputeBitReversedIndicesBaseTwo(fM, fPermutation);
-            MHO_FastFourierTransformUtilities<XFloatType>::ComputeTwiddleFactors(fM, fTwiddle);
-            MHO_FastFourierTransformUtilities<XFloatType>::ComputeConjugateTwiddleFactors(fM, fConjugateTwiddle);
-            MHO_FastFourierTransformUtilities<XFloatType>::ComputeBluesteinScaleFactors(fN, fScale);
-            MHO_FastFourierTransformUtilities<XFloatType>::ComputeBluesteinCirculantVector(fN, fM, fTwiddle, fScale, fCirculant);
-        }
-
-        fIsValid = true;
-        fInitialized = true;
     }
-
-    return (fInitialized && fIsValid);
+    return fInitialized;
 }
+
+
+template< typename XFloatType >
+bool
+MHO_FastFourierTransform<XFloatType>::InitializeOutOfPlace(const XArrayType* in, XArrayType* out)
+{
+    if( (in != nullptr && out != nullptr) && (in->GetSize() == out->GetSize()) )
+    {
+        if( fN != in->GetSize() )
+        {
+            fN = in->GetSize();
+            fSizeIsPowerOfTwo = MHO_BitReversalPermutation::IsPowerOfTwo(fN);
+            fM = MHO_FastFourierTransformUtilities<XFloatType>::ComputeBluesteinArraySize(fN);
+            //initialize the workspace
+            DealocateWorkspace();
+            AllocateWorkspace();
+            fInitialized = true;
+        }
+    }
+    else
+    {
+        fInitialized = false;
+    }
+    return fInitialized;
+}
+
 
 ///Make a call to execute the FFT plan and perform the transformation
 template< typename XFloatType >
 bool
-MHO_FastFourierTransform<XFloatType>::Execute()
+MHO_FastFourierTransform<XFloatType>::ExecuteInPlace(XArrayType* in)
 {
-    if(fIsValid && fInitialized)
+    if(fInitialized)
     {
-        //if input and output point to the same array, don't bother copying data over
-        if(this->fInput != this->fOutput)
-        {
-            //the arrays are not identical so copy the input over to the output
-            std::memcpy( (void*) this->fOutput->GetData(), (void*) this->fInput->GetData(), fN*sizeof(std::complex<XFloatType>) );
-        }
-
-
         //for DFT we conjugate first (NOTE: this matches FFTW3 convention)
         if(fForward)
         {
-            std::complex<XFloatType>* data = this->fOutput->GetData();
+            std::complex<XFloatType>* data = in->GetData();
             for(unsigned int i=0; i<fN; i++)
             {
                 data[i] = std::conj(data[i]);
@@ -156,19 +156,19 @@ MHO_FastFourierTransform<XFloatType>::Execute()
         if(fSizeIsPowerOfTwo)
         {
             //use radix-2
-            MHO_BitReversalPermutation::PermuteArray< std::complex<XFloatType> >(fN, fPermutation, this->fOutput->GetData());
-            MHO_FastFourierTransformUtilities<XFloatType>::FFTRadixTwo_DIT(fN, this->fOutput->GetData(), fTwiddle);
+            MHO_BitReversalPermutation::PermuteArray< std::complex<XFloatType> >(fN, fPermutation, in->GetData());
+            MHO_FastFourierTransformUtilities<XFloatType>::FFTRadixTwo_DIT(fN, in->GetData(), fTwiddle);
         }
         else
         {
             //use bluestein algorithm for arbitrary N
-            MHO_FastFourierTransformUtilities<XFloatType>::FFTBluestein(fN, fM, this->fOutput->GetData(), fTwiddle, fConjugateTwiddle, fScale, fCirculant, fWorkspace);
+            MHO_FastFourierTransformUtilities<XFloatType>::FFTBluestein(fN, fM, in->GetData(), fTwiddle, fConjugateTwiddle, fScale, fCirculant, fWorkspace);
         }
 
         //for DFT we conjugate again (NOTE: this matches FFTW3 convention)
         if(fForward)
         {
-            std::complex<XFloatType>* data = this->fOutput->GetData();
+            std::complex<XFloatType>* data = in->GetData();
             for(unsigned int i=0; i<fN; i++)
             {
                 data[i] = std::conj(data[i]);
@@ -185,6 +185,18 @@ MHO_FastFourierTransform<XFloatType>::Execute()
     }
 }
 
+
+///Make a call to execute the FFT plan and perform the transformation
+template< typename XFloatType >
+bool
+MHO_FastFourierTransform<XFloatType>::ExecuteOutOfPlace(const XArrayType* in, XArrayType* out)
+{
+    //the arrays are not identical so copy the input over to the output
+    std::memcpy( (void*) out->GetData(), (void*) in->GetData(), fN*sizeof(std::complex<XFloatType>) );
+    return ExecuteInPlace(out);
+}
+
+
 template< typename XFloatType >
 void
 MHO_FastFourierTransform<XFloatType>::AllocateWorkspace()
@@ -198,6 +210,12 @@ MHO_FastFourierTransform<XFloatType>::AllocateWorkspace()
         fScale = new std::complex<XFloatType>[fN];
         fCirculant = new std::complex<XFloatType>[fM];
         fWorkspace = new std::complex<XFloatType>[fM];
+        //use Bluestein algorithm
+        MHO_BitReversalPermutation::ComputeBitReversedIndicesBaseTwo(fM, fPermutation);
+        MHO_FastFourierTransformUtilities<XFloatType>::ComputeTwiddleFactors(fM, fTwiddle);
+        MHO_FastFourierTransformUtilities<XFloatType>::ComputeConjugateTwiddleFactors(fM, fConjugateTwiddle);
+        MHO_FastFourierTransformUtilities<XFloatType>::ComputeBluesteinScaleFactors(fN, fScale);
+        MHO_FastFourierTransformUtilities<XFloatType>::ComputeBluesteinCirculantVector(fN, fM, fTwiddle, fScale, fCirculant);
     }
     else
     {
@@ -206,8 +224,13 @@ MHO_FastFourierTransform<XFloatType>::AllocateWorkspace()
         fPermutation = new unsigned int[fN];
         fTwiddle = new std::complex<XFloatType>[fN];
         fConjugateTwiddle = new std::complex<XFloatType>[fN];
+        //use radix-2
+        MHO_BitReversalPermutation::ComputeBitReversedIndicesBaseTwo(fN, fPermutation);
+        MHO_FastFourierTransformUtilities<XFloatType>::ComputeTwiddleFactors(fN, fTwiddle);
+        MHO_FastFourierTransformUtilities<XFloatType>::ComputeConjugateTwiddleFactors(fN, fConjugateTwiddle);
     }
 }
+
 
 template< typename XFloatType >
 void

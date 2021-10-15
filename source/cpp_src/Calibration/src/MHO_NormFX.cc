@@ -15,15 +15,15 @@ MHO_NormFX::~MHO_NormFX(){};
 
 
 bool
-MHO_NormFX::Initialize()
+MHO_NormFX::InitializeImpl(const XArgType1* in1, const XArgType2* in2, XArgType3* out)
 {
     fInitialized = false;
-    if(this->fInput1 != nullptr && this->fInput2 != nullptr && this->fOutput != nullptr)
+    if(in1 != nullptr && in2 != nullptr && out != nullptr)
     {
 
         bool status = true;
         //figure out if we have USB or LSB data (or a mixture)
-        auto* channel_axis = &(std::get<CH_CHANNEL_AXIS>( *(this->fInput1) ) );
+        auto* channel_axis = &(std::get<CH_CHANNEL_AXIS>( *(in1) ) );
         std::size_t n_usb_chan = channel_axis->GetNIntervalsWithKeyValue(std::string("net_sideband"), 'U');
         std::size_t n_lsb_chan = channel_axis->GetNIntervalsWithKeyValue(std::string("net_sideband"), 'L');
         if(n_usb_chan != 0){fIsUSB = true;}
@@ -34,8 +34,8 @@ MHO_NormFX::Initialize()
             return false;
         }
 
-        this->fInput1->GetDimensions(fInDims);
-        this->fOutput->GetDimensions(fOutDims);
+        in1->GetDimensions(fInDims);
+        out->GetDimensions(fOutDims);
 
         //check that the output dimensions are correct
         if(fInDims[CH_POLPROD_AXIS] != fOutDims[CH_POLPROD_AXIS]){status = false;}
@@ -47,23 +47,22 @@ MHO_NormFX::Initialize()
         std::size_t nlags = fInDims[CH_FREQ_AXIS]; //in the original norm_fx, nlags is 2x this number
 
         //temp fWorkspace
-        this->fOutput->GetDimensions(fWorkDims);
+        out->GetDimensions(fWorkDims);
         fWorkDims[CH_FREQ_AXIS] *= 2;
         fWorkspace.Resize(fWorkDims);
         fWorkspace.SetArray(std::complex<double>(0.0,0.0));
 
-        fNaNBroadcaster.SetInput(this->fInput1);
-        fNaNBroadcaster.SetOutput(this->fInput1);
+        #pragma message("TODO FIXME, the following line casts away const-ness:")
+        fNaNBroadcaster.SetArgs( const_cast<XArgType1*>(in1) );
         status = fNaNBroadcaster.Initialize();
         if(!status){msg_error("operators", "Could not initialize NaN mask broadcast in MHO_NormFX." << eom); return false;}
 
-        fConjBroadcaster.SetInput(this->fInput1);
-        fConjBroadcaster.SetOutput(this->fInput1);
+        #pragma message("TODO FIXME, the following line casts away const-ness:")
+        fConjBroadcaster.SetArgs( const_cast<XArgType1*>(in1) );
         status = fConjBroadcaster.Initialize();
         if(!status){msg_error("operators", "Could not initialize complex conjugation broadcast in MHO_NormFX." << eom); return false;}
 
-        fPaddedFFTEngine.SetInput(this->fInput1);
-        fPaddedFFTEngine.SetOutput(&fWorkspace);
+        fPaddedFFTEngine.SetArgs(in1, &fWorkspace);
         fPaddedFFTEngine.DeselectAllAxes();
         fPaddedFFTEngine.SelectAxis(CH_FREQ_AXIS); //only perform padded fft on frequency (to lag) axis
         fPaddedFFTEngine.SetForward();//forward DFT
@@ -77,25 +76,21 @@ MHO_NormFX::Initialize()
         status = fPaddedFFTEngine.Initialize();
         if(!status){msg_error("operators", "Could not initialize padded FFT in MHO_NormFX." << eom); return false;}
 
-        fSubSampler.SetDimensionStride(CH_FREQ_AXIS, 2);
-        fSubSampler.SetInput(&fWorkspace);
-        fSubSampler.SetOutput(this->fOutput);
+        fSubSampler.SetDimensionAndStride(CH_FREQ_AXIS, 2);
+        fSubSampler.SetArgs(&fWorkspace, out);
         status = fSubSampler.Initialize();
         if(!status){msg_error("operators", "Could not initialize sub-sampler in MHO_NormFX." << eom); return false;}
 
         fCyclicRotator.SetOffset(CH_FREQ_AXIS, 2*nlags);
-        fCyclicRotator.SetInput(this->fOutput);
-        fCyclicRotator.SetOutput(this->fOutput);
+        fCyclicRotator.SetArgs(out);
         status = fCyclicRotator.Initialize();
         if(!status){msg_error("operators", "Could not initialize cyclic rotation in MHO_NormFX." << eom); return false;}
 
-        //normalize the array
-        double norm =  1.0/(double)fInDims[CH_FREQ_AXIS];
-        fNormBroadcaster.GetFunctor()->SetFactor(norm);
-        fNormBroadcaster.SetInput(this->fOutput);
-        fNormBroadcaster.SetOutput(this->fOutput);
-        status = fNormBroadcaster.Initialize();
-        if(!status){msg_error("operators", "Could not initialize MHO_NormFX." << eom); return false;}
+        // fNormBroadcaster.GetFunctor()->SetFactor(norm);
+        // fNormBroadcaster.SetInput(out);
+        // fNormBroadcaster.SetOutput(out);
+        // status = fNormBroadcaster.Initialize();
+        // if(!status){msg_error("operators", "Could not initialize MHO_NormFX." << eom); return false;}
 
         //double it
         nlags *= 2;
@@ -103,15 +98,14 @@ MHO_NormFX::Initialize()
         S.Resize(4*nlags);
         xlag.Resize(4*nlags);
 
-        fFFTEngine.SetInput(&S);
-        fFFTEngine.SetOutput(&xlag);
+        fFFTEngine.SetArgs(&S, &xlag);
         fFFTEngine.SetForward();
         fFFTEngine.Initialize();
 
         fInitialized = true;
     }
 
-    return false;
+    return fInitialized;
 
 }
 
@@ -119,7 +113,7 @@ MHO_NormFX::Initialize()
 
 
 bool
-MHO_NormFX::Execute()
+MHO_NormFX::ExecuteImpl(const XArgType1* in1, const XArgType2* in2, XArgType3* out)
 {
     if(fInitialized)
     {
@@ -148,7 +142,7 @@ MHO_NormFX::Execute()
         }
 
     #ifdef USE_OLD
-        run_old_normfx_core();
+        run_old_normfx_core(in1, in2, out);
     #else
 
         status = fPaddedFFTEngine.Execute();
@@ -162,8 +156,12 @@ MHO_NormFX::Execute()
 
     #endif
 
-        status = fNormBroadcaster.Execute();
-        if(!status){msg_error("operators", "Could not execute normalization in MHO_NormFX." << eom); return false;}
+        //normalize the array
+        double norm =  1.0/(double)fInDims[CH_FREQ_AXIS];
+        *(out) *= norm;
+
+        // status = fNormBroadcaster.Execute();
+        // if(!status){msg_error("operators", "Could not execute normalization in MHO_NormFX." << eom); return false;}
 
 
         return true;
@@ -175,7 +173,7 @@ MHO_NormFX::Execute()
 
 
 
-void MHO_NormFX::run_old_normfx_core()
+void MHO_NormFX::run_old_normfx_core(const XArgType1* in1, const XArgType2* in2, XArgType3* out)
 {
     std::size_t npp = fInDims[CH_POLPROD_AXIS];
     std::size_t nchan = fInDims[CH_CHANNEL_AXIS];
@@ -202,7 +200,7 @@ void MHO_NormFX::run_old_normfx_core()
             {
                 for (int i=0; i<nlags/2; i++)
                 {
-                    z = (*(this->fInput1))(pp,fr,ap,i);
+                    z = (*(in1))(pp,fr,ap,i);
                     z = z * polcof;
                     xp_spec[i] += z;
                 }
@@ -254,8 +252,8 @@ void MHO_NormFX::run_old_normfx_core()
                 // skip every other (interpolated) lag
                 int j = 2 * (i - nlags);
                 if (j < 0){j += 4 * nlags;}
-                (*(this->fOutput))(0,fr,ap,i) = xlag[j] ; // (double) (nlags / 2);
-                //this->fOutput->at(0,fr,ap,i) = xlag[j] / (double) (nlags / 2);
+                (*(out))(0,fr,ap,i) = xlag[j] ; // (double) (nlags / 2);
+                //out->at(0,fr,ap,i) = xlag[j] / (double) (nlags / 2);
             }
 
         }
