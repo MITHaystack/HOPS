@@ -5,6 +5,7 @@
 
 #include "MHO_Message.hh"
 #include "MHO_NDArrayWrapper.hh"
+#include "MHO_UnaryOperator.hh"
 #include "MHO_FastFourierTransform.hh"
 
 namespace hops
@@ -12,10 +13,11 @@ namespace hops
 
 template< typename XFloatType, size_t RANK>
 class MHO_MultidimensionalFastFourierTransform:
-    public MHO_NDArrayOperator< MHO_NDArrayWrapper< std::complex<XFloatType>, RANK >,
-                             MHO_NDArrayWrapper< std::complex<XFloatType>, RANK > >
+    public MHO_UnaryOperator< MHO_NDArrayWrapper< std::complex<XFloatType>, RANK > >
 {
     public:
+
+        using XArrayType = MHO_NDArrayWrapper< std::complex< XFloatType>, RANK >;
 
         MHO_MultidimensionalFastFourierTransform()
         {
@@ -54,30 +56,65 @@ class MHO_MultidimensionalFastFourierTransform:
             }
         }
 
+    protected:
 
-        virtual bool Initialize() override
+        virtual bool InitializeInPlace(XArrayType* in) override
         {
-            if( HaveSameDimensions(this->fInput, this->fOutput) )
-            {
-                fIsValid = true;
-                this->fInput->GetDimensions(fDimensionSize);
-            }
-            else
-            {
-                fIsValid = false;
-            }
+            if( in != nullptr ){fIsValid = true;}
+            else{fIsValid = false;}
 
-            if(!fInitialized && fIsValid)
+            if(fIsValid)
             {
-                DealocateWorkspace();
-                AllocateWorkspace();
-
+                //check if the current transform sizes are the same as input
+                bool need_to_resize = false;
+                for(std::size_t i=0; i<RANK; i++)
+                {
+                    if(fDimensionSize[i] != in->GetDimension(i)){need_to_resize = true; break;}
+                }
+                if(need_to_resize)
+                {
+                    in->GetDimensions(fDimensionSize);
+                    DealocateWorkspace();
+                    AllocateWorkspace();
+                }
                 fInitialized = true;
             }
             return (fInitialized && fIsValid);
         }
 
-        virtual bool Execute() override
+        virtual bool InitializeOutOfPlace(const XArrayType* in, XArrayType* out) override
+        {
+            if( in != nullptr && out != nullptr ){fIsValid = true;}
+            else{fIsValid = false;}
+
+            if(fIsValid)
+            {
+                //check if the arrays have the same dimensions
+                if( !HaveSameDimensions(in, out) )
+                {
+                    //resize the output array to match input
+                    out->Resize( in->GetDimensions() );
+                }
+                //check if the current transform sizes are the same as input
+                bool need_to_resize = false;
+                for(std::size_t i=0; i<RANK; i++)
+                {
+                    if(fDimensionSize[i] != in->GetDimension(i)){need_to_resize = true; break;}
+                }
+                if(need_to_resize)
+                {
+                    in->GetDimensions(fDimensionSize);
+                    DealocateWorkspace();
+                    AllocateWorkspace();
+                }
+                fInitialized = true;
+            }
+            return (fInitialized && fIsValid);
+        }
+
+
+
+        virtual bool ExecuteInPlace(XArrayType* in) override
         {
             if(fIsValid && fInitialized)
             {
@@ -93,15 +130,6 @@ class MHO_MultidimensionalFastFourierTransform:
                     {
                         fTransformCalculator[i]->SetBackward();
                     }
-                }
-
-                //if input and output point to the same array, don't bother copying data over
-                if(this->fInput != this->fOutput)
-                {
-                    //the arrays are not identical so copy the input over to the output
-                    std::memcpy( (void*) this->fOutput->GetData(),
-                                 (void*) this->fInput->GetData(),
-                                 total_size*sizeof(std::complex<XFloatType>) );
                 }
 
                 size_t index[RANK];
@@ -147,7 +175,7 @@ class MHO_MultidimensionalFastFourierTransform:
                             {
                                 index[d] = i;
                                 data_location = MHO_NDArrayMath::OffsetFromRowMajorIndex<RANK>(fDimensionSize, index);
-                                (*(fWorkspaceWrapper[d]))[i] = (*(this->fOutput))[data_location];
+                                (*(fWorkspaceWrapper[d]))[i] = (*(in))[data_location];
                             }
 
                             //compute the FFT of the row selected
@@ -158,7 +186,7 @@ class MHO_MultidimensionalFastFourierTransform:
                             {
                                 index[d] = i;
                                 data_location = MHO_NDArrayMath::OffsetFromRowMajorIndex<RANK>(fDimensionSize, index);
-                                (*(this->fOutput))[data_location] = (*(fWorkspaceWrapper[d]))[i];
+                                (*(in))[data_location] = (*(fWorkspaceWrapper[d]))[i];
                             }
                         }
                     }
@@ -175,6 +203,18 @@ class MHO_MultidimensionalFastFourierTransform:
         }
 
 
+        virtual bool ExecuteOutOfPlace(const XArrayType* in, XArrayType* out) override
+        {
+            //if input and output point to the same array, don't bother copying data over
+            if(in != out)
+            {
+                std::memcpy( (void*) out->GetData(),
+                             (void*) in->GetData(),
+                             (in->GetSize() )*sizeof(std::complex<XFloatType>) );
+            }
+            return ExecuteInPlace(out);
+        }
+
     private:
 
         virtual void AllocateWorkspace()
@@ -183,8 +223,7 @@ class MHO_MultidimensionalFastFourierTransform:
             {
                 fWorkspaceWrapper[i] = new MHO_NDArrayWrapper< std::complex<XFloatType>, 1 >(fDimensionSize[i]);
                 fTransformCalculator[i] = new MHO_FastFourierTransform<XFloatType>();
-                fTransformCalculator[i]->SetInput(fWorkspaceWrapper[i]);
-                fTransformCalculator[i]->SetOutput(fWorkspaceWrapper[i]);
+                fTransformCalculator[i]->SetArgs(fWorkspaceWrapper[i]);
                 fTransformCalculator[i]->Initialize();
             }
         }

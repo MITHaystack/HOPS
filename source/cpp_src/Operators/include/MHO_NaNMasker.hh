@@ -14,34 +14,45 @@
 #include <complex>
 #include "MHO_CheckForNaN.hh"
 #include "MHO_Message.hh"
-#include "MHO_NDArrayFunctor.hh"
+#include "MHO_UnaryFunctor.hh"
 
 namespace hops
 {
 
 
-template< class XInputArrayType, class XOutputArrayType >
-class MHO_NaNMasker: public MHO_NDArrayFunctor< XInputArrayType, XOutputArrayType >
+template< class XArrayType>
+class MHO_NaNMasker: public MHO_UnaryFunctor< XArrayType >
 {
     public:
 
         MHO_NaNMasker(){};
         virtual ~MHO_NaNMasker(){};
 
-        using input_iterator = typename MHO_NDArrayFunctor< XInputArrayType, XOutputArrayType >::input_iterator;
-        using output_iterator = typename MHO_NDArrayFunctor< XInputArrayType, XOutputArrayType >::output_iterator;
+        using iterator_type = typename MHO_UnaryFunctor< XArrayType >::iterator_type;
+        using citerator_type = typename MHO_UnaryFunctor< XArrayType >::citerator_type;
 
-        //replaces all NaNs with zero
-        virtual void operator() ( input_iterator& input, output_iterator& output) override
+        virtual void operator() ( iterator_type& input ) override
         {
             //check the value at the input iterator
-            if( MHO_CheckForNaN< typename XInputArrayType::value_type >::isnan(*input) )
+            if( MHO_CheckForNaN< typename XArrayType::value_type >::isnan(*input) )
+            {
+                *input = 0.0; //zero out
+                msg_debug("calibration", "Replacing NaN with 0.0." << eom); //TODO more debug?
+            }
+        }
+
+        virtual void operator() ( citerator_type& input, iterator_type& output) override
+        {
+            //check the value at the input iterator
+            if( MHO_CheckForNaN< typename XArrayType::value_type >::isnan(*input) )
             {
                 *output = 0.0; //zero out
                 msg_debug("calibration", "Replacing NaN with 0.0." << eom); //TODO more debug?
             }
-            else{ *output = *input; } //pass through 
+            else{ *output = *input; } //pass through
         }
+
+
 
 };
 

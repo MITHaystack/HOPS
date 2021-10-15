@@ -20,9 +20,11 @@
 namespace hops
 {
 
+class MHO_VectorContainerBase{}; //only needed for SFINAE
 
 template< typename XValueType >
 class MHO_VectorContainer:
+    public MHO_VectorContainerBase,
     public MHO_NDArrayWrapper< XValueType, 1>,
     virtual public MHO_Serializable
 {
@@ -33,6 +35,10 @@ class MHO_VectorContainer:
         {};
 
         MHO_VectorContainer(std::size_t dim):
+            MHO_NDArrayWrapper<XValueType,1>(dim)
+        {};
+
+        MHO_VectorContainer(std::size_t* dim):
             MHO_NDArrayWrapper<XValueType,1>(dim)
         {};
 

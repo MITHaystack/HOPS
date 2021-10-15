@@ -12,7 +12,7 @@
 *@brief:
 */
 
-#include "MHO_UnaryNDArrayOperator.hh"
+#include "MHO_UnaryOperator.hh"
 #include "MHO_PyTableContainer.hh"
 
 

@@ -50,6 +50,14 @@ class MHO_AxisPack:  public std::tuple< XAxisTypeS... >, virtual public MHO_Seri
             return total_size;
         }
 
+
+        //assignment operator
+        MHO_AxisPack& operator=(const MHO_AxisPack& rhs)
+        {
+            this->copy(rhs);
+            return *this;
+        }
+
     protected:
 
         //inductive access to all elements of the tuple, so we can re-size them from an array
@@ -79,6 +87,19 @@ class MHO_AxisPack:  public std::tuple< XAxisTypeS... >, virtual public MHO_Seri
             total_size += std::get<N>(*this).GetSerializedSize();
             //now run the induction
             compute_total_size<N + 1>(total_size);
+        }
+
+        //for copying the full tuple from one axis pack to another
+        template<std::size_t N = 0>
+        typename std::enable_if< ( N == sizeof...(XAxisTypeS) ), void >::type
+        copy(const MHO_AxisPack&) const {}; //terminating case, do nothing
+
+        template<std::size_t N = 0>
+        typename std::enable_if< ( N < sizeof...(XAxisTypeS) ), void >::type
+        copy(const MHO_AxisPack& rhs)
+        {
+            std::get<N>(*this).Copy( std::get<N>(rhs) );
+            copy<N + 1>(rhs);
         }
 
     public:

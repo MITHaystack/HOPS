@@ -6,7 +6,7 @@
 
 #include "MHO_Message.hh"
 #include "MHO_NDArrayWrapper.hh"
-#include "MHO_NDArrayOperator.hh"
+#include "MHO_UnaryOperator.hh"
 
 
 
@@ -25,17 +25,15 @@
 namespace hops
 {
 
-template< class XInputArrayType, class XOutputArrayType >
-class MHO_CyclicRotator: public MHO_NDArrayOperator<XInputArrayType, XOutputArrayType >
+template< class XArrayType >
+class MHO_CyclicRotator: public MHO_UnaryOperator< XArrayType >
 {
     public:
 
-        static_assert(XOutputArrayType::rank::value == XInputArrayType::rank::value, "Input/Output array ranks are not equal.");
-
-        MHO_CyclicRotator():
-            fInitialized(false)
+        MHO_CyclicRotator()
         {
-            for(std::size_t i=0; i<XInputArrayType::rank::value; i++)
+            fInitialized = false;
+            for(std::size_t i=0; i<XArrayType::rank::value; i++)
             {
                 fDimensionSize[i] = 0;
                 fOffsets[i]=0;
@@ -49,138 +47,164 @@ class MHO_CyclicRotator: public MHO_NDArrayOperator<XInputArrayType, XOutputArra
         {
             //A negative offset_value results in a "right" rotation: rot by  1: [0 1 2 3] -> [3 0 1 2]
             //A positive offset_value results in a "left" rotation: rot by -1: [0 1 2 3] -> [1 2 3 0]
-            if(dimension_index < XInputArrayType::rank::value)
+            if(dimension_index < XArrayType::rank::value)
             {
                 fOffsets[dimension_index] = offset_value;
             }
             else
             {
-                msg_error("operators", "error, offset for dimension: "<<dimension_index<<", exceeds array rank." << eom);
+                msg_error("operators", "error, rotation offset for dimension: "<<dimension_index<<", exceeds array rank." << eom);
             }
             fInitialized = false;
         }
 
-        virtual bool Initialize() override
+
+    protected:
+
+
+        virtual bool InitializeInPlace(XArrayType* in) override
         {
-            fInitialized = false;
-            if(this->fInput != nullptr && this->fOutput != nullptr)
+            if(in != nullptr )
             {
-                this->fInput->GetDimensions(fDimensionSize);
-                //only need to change output size if in != out and size is different
-                if(this->fInput != this->fOutput)
-                {
-                    std::size_t in_dim[XInputArrayType::rank::value];
-                    std::size_t out_dim[XOutputArrayType::rank::value];
-                    this->fInput->GetDimensions(in_dim);
-                    this->fOutput->GetDimensions(out_dim);
-
-                    bool have_to_resize = false;
-                    for(std::size_t i=0; i<XInputArrayType::rank::value; i++)
-                    {
-                        if(out_dim[i] != in_dim[i]){have_to_resize = true; break;}
-                    }
-
-                    if(have_to_resize){this->fOutput->Resize(in_dim);}
-                }
+                in->GetDimensions(fDimensionSize);
                 fInitialized = true;
             }
             return fInitialized;
         }
 
-        virtual bool Execute() override
+        virtual bool ExecuteInPlace(XArrayType* in) override
+        {
+            if(!fInitialized)
+            {
+                return false;
+            }
+            else
+            {
+                for(std::size_t i=0; i<XArrayType::rank::value; i++)
+                {
+                    if(fOffsets[i] != 0)
+                    {
+                        fModuloOffsets[i] = positive_modulo(fOffsets[i], fDimensionSize[i]);
+                    }
+                    else{fModuloOffsets[i] = 0;}
+                }
+
+                size_t index[XArrayType::rank::value];
+                size_t non_active_dimension_size[XArrayType::rank::value-1];
+                size_t non_active_dimension_value[XArrayType::rank::value-1];
+                size_t non_active_dimension_index[XArrayType::rank::value-1];
+
+                //select the dimension on which to perform the FFT
+                for(size_t d = 0; d < XArrayType::rank::value; d++)
+                {
+                    if(fOffsets[d] !=0)
+                    {
+                        //now we loop over all dimensions not specified by d
+                        //first compute the number of arrays we need to rotate
+                        size_t n_rot = 1;
+                        size_t count = 0;
+                        size_t stride = in->GetStride(d);
+                        for(size_t i = 0; i < XArrayType::rank::value; i++)
+                        {
+                            if(i != d)
+                            {
+                                n_rot *= fDimensionSize[i];
+                                non_active_dimension_index[count] = i;
+                                non_active_dimension_size[count] = fDimensionSize[i];
+                                count++;
+                            }
+                        }
+
+                        //loop over the number of rotations to perform
+                        for(size_t n=0; n<n_rot; n++)
+                        {
+                            //invert place in list to obtain indices of block in array
+                            MHO_NDArrayMath::RowMajorIndexFromOffset<XArrayType::rank::value-1>(n, non_active_dimension_size, non_active_dimension_value);
+
+                            //copy the value of the non-active dimensions in to index
+                            for(size_t i=0; i<XArrayType::rank::value-1; i++)
+                            {
+                                index[ non_active_dimension_index[i] ] = non_active_dimension_value[i];
+                            }
+
+                            //locate the start of this row
+                            size_t data_location;
+                            index[d] = 0;
+                            data_location = MHO_NDArrayMath::OffsetFromRowMajorIndex<XArrayType::rank::value>(fDimensionSize, index);
+
+                            //now rotate the array by the specified amount
+                            auto it_first = in->stride_iterator_at(data_location, stride);
+                            auto it_nfirst = it_first + fModuloOffsets[d];
+                            auto it_end = it_first + fDimensionSize[d];
+                            std::rotate(it_first, it_nfirst, it_end);
+                        }
+                    }
+                }
+                return true;
+            }
+
+        }
+
+        virtual bool InitializeOutOfPlace(const XArrayType* in, XArrayType* out) override
+        {
+            if(in != nullptr && out != nullptr)
+            {
+                in->GetDimensions(fDimensionSize);
+                //only need to change output size if in != out and size is different
+                std::size_t in_dim[XArrayType::rank::value];
+                std::size_t out_dim[XArrayType::rank::value];
+                in->GetDimensions(in_dim);
+                out->GetDimensions(out_dim);
+
+                bool have_to_resize = false;
+                for(std::size_t i=0; i<XArrayType::rank::value; i++)
+                {
+                    if(out_dim[i] != in_dim[i]){have_to_resize = true; break;}
+                }
+
+                if(have_to_resize){out->Resize(in_dim);}
+                fInitialized = true;
+            }
+            else{ fInitialized = false; }
+            return fInitialized;
+        }
+
+        virtual bool ExecuteOutOfPlace(const XArrayType* in, XArrayType* out) override
         {
             if(fInitialized)
             {
-                for(std::size_t i=0; i<XInputArrayType::rank::value; i++)
+                for(std::size_t i=0; i<XArrayType::rank::value; i++)
                 {
-                    fModuloOffsets[i] = positive_modulo(fOffsets[i], fDimensionSize[i]);
-                }
-
-                if(this->fInput == this->fOutput)
-                {
-                    size_t index[XInputArrayType::rank::value];
-                    size_t non_active_dimension_size[XInputArrayType::rank::value-1];
-                    size_t non_active_dimension_value[XInputArrayType::rank::value-1];
-                    size_t non_active_dimension_index[XInputArrayType::rank::value-1];
-
-                    //select the dimension on which to perform the FFT
-                    for(size_t d = 0; d < XInputArrayType::rank::value; d++)
+                    if(fOffsets[i] != 0)
                     {
-                        if(fOffsets[d] !=0)
-                        {
-                            //now we loop over all dimensions not specified by d
-                            //first compute the number of arrays we need to rotate
-                            size_t n_rot = 1;
-                            size_t count = 0;
-                            size_t stride = this->fInput->GetStride(d);
-                            for(size_t i = 0; i < XInputArrayType::rank::value; i++)
-                            {
-                                if(i != d)
-                                {
-                                    n_rot *= fDimensionSize[i];
-                                    non_active_dimension_index[count] = i;
-                                    non_active_dimension_size[count] = fDimensionSize[i];
-                                    count++;
-                                }
-                            }
-
-                            //loop over the number of rotations to perform
-                            for(size_t n=0; n<n_rot; n++)
-                            {
-                                //invert place in list to obtain indices of block in array
-                                MHO_NDArrayMath::RowMajorIndexFromOffset<XInputArrayType::rank::value-1>(n, non_active_dimension_size, non_active_dimension_value);
-
-                                //copy the value of the non-active dimensions in to index
-                                for(size_t i=0; i<XInputArrayType::rank::value-1; i++)
-                                {
-                                    index[ non_active_dimension_index[i] ] = non_active_dimension_value[i];
-                                }
-
-                                //locate the start of this row
-                                size_t data_location;
-                                index[d] = 0;
-                                data_location = MHO_NDArrayMath::OffsetFromRowMajorIndex<XInputArrayType::rank::value>(fDimensionSize, index);
-
-                                //now rotate the array by the specified amount
-                                auto it_first = this->fInput->stride_iterator_at(data_location, stride);
-                                auto it_nfirst = it_first + fModuloOffsets[d];
-                                auto it_end = it_first + fDimensionSize[d];
-                                std::rotate(it_first, it_nfirst, it_end);
-                            }
-                        }
+                        fModuloOffsets[i] = positive_modulo(fOffsets[i], fDimensionSize[i]);
                     }
-                    return true;
                 }
-                else
+                //first get the indices of the input iterator
+                auto in_iter =  in->cbegin();
+                auto in_iter_end = in->cend();
+                const std::size_t* out_dim = out->GetDimensions();
+                const std::size_t* in_dim = in->GetDimensions();
+                std::array<std::size_t, XArrayType::rank::value > in_loc;
+                while( in_iter != in_iter_end)
                 {
-                    //first get the indices of the input iterator
-                    auto in_iter =  this->fInput->begin();
-                    auto in_iter_end = this->fInput->end();
-                    const std::size_t* out_dim = this->fOutput->GetDimensions();
-                    std::array<std::size_t, XInputArrayType::rank::value > in_loc;
-                    while( in_iter != in_iter_end)
+                    //in_loc = in_iter.GetIndexObject();
+                    MHO_NDArrayMath::RowMajorIndexFromOffset< XArrayType::rank::value >(in_iter.GetOffset(), in_dim, &(in_loc[0]) );
+                    for(std::size_t i=0; i<XArrayType::rank::value;i++)
                     {
-                        //in_loc = in_iter.GetIndexObject();
-                        MHO_NDArrayMath::RowMajorIndexFromOffset< XInputArrayType::rank::value >(in_iter.GetOffset(), this->fInput->GetDimensions(), &(in_loc[0]) );
-
-                        for(std::size_t i=0; i<XInputArrayType::rank::value;i++)
-                        {
-                            fWorkspace[i] = positive_modulo( in_loc[i] - fModuloOffsets[i], out_dim[i]);
-                        }
-                        std::size_t out_loc = this->fOutput->GetOffsetForIndices(fWorkspace);
-                        (*(this->fOutput))[out_loc] = *in_iter;
-                        in_iter++;
+                        fWorkspace[i] = positive_modulo( in_loc[i] - fModuloOffsets[i], out_dim[i]);
                     }
-                    return true;
+                    std::size_t out_loc = out->GetOffsetForIndices(fWorkspace);
+                    (*(out))[out_loc] = *in_iter;
+                    in_iter++;
                 }
+                return true;
             }
             return false;
         }
 
-
     private:
 
-        bool fInitialized;
 
         //note: using the modulo is a painfully slow to do this
         //TODO FIXME...we ought to check for uint64_t -> int64_t overflows!
@@ -190,10 +214,11 @@ class MHO_CyclicRotator: public MHO_NDArrayOperator<XInputArrayType, XOutputArra
         }
 
         //offsets to for cyclic rotation
-        std::size_t  fDimensionSize[XInputArrayType::rank::value];
-        int64_t fOffsets[XInputArrayType::rank::value];
-        int64_t fModuloOffsets[XInputArrayType::rank::value];
-        std::size_t fWorkspace[XInputArrayType::rank::value];
+        bool fInitialized;
+        std::size_t  fDimensionSize[XArrayType::rank::value];
+        int64_t fOffsets[XArrayType::rank::value];
+        int64_t fModuloOffsets[XArrayType::rank::value];
+        std::size_t fWorkspace[XArrayType::rank::value];
 };
 
 };

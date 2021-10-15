@@ -61,7 +61,7 @@ int main(int /*argc*/, char** /*argv*/)
     scalarMult.SetFactor(factor);
     scalarMult.SetReadTrue();
     scalarMult.SetWriteTrue();
-    scalarMult.SetInput(test);
+    scalarMult.SetArgs(test);
     scalarMult.Initialize();
     scalarMult.Execute();
 

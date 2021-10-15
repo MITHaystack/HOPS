@@ -52,7 +52,7 @@ int main(int argc, char** argv)
     srand(0);
     double r1 = 0;
     double r2 = 0;
-    for (size_t i = 0; i < N; i++) 
+    for (size_t i = 0; i < N; i++)
     {
         double r2 = (rand()%1024);
         r2 /= 1024.0;
@@ -75,11 +75,12 @@ int main(int argc, char** argv)
     //array1[12] = 8.0;
     std::cout << "--------------------------------------------------------------" << std::endl;
 
-    //then we execute an FFT to move to frequency space 
+    //then we execute an FFT to move to frequency space
     FFT_TYPE* fft_engine = new FFT_TYPE();
     fft_engine->SetBackward();
-    fft_engine->SetInput(&array1);
-    fft_engine->SetOutput(&array2);
+    fft_engine->SetArgs(&array1, &array2);
+    // fft_engine->SetInput(&array1);
+    // fft_engine->SetOutput(&array2);
     fft_engine->Initialize();
     fft_engine->Execute();
 
@@ -91,7 +92,7 @@ int main(int argc, char** argv)
     // }
 
     //then we copy the results into an expanded array (with the middle padded by zeros)
-    for (size_t i = 0; i < NM; i++) 
+    for (size_t i = 0; i < NM; i++)
     {
         expanded_array1(i) = std::complex<FPTYPE>(0.0, 0.0);
         expanded_array2(i) = std::complex<FPTYPE>(0.0, 0.0);
@@ -100,21 +101,21 @@ int main(int argc, char** argv)
 
     if(false)
     {
-        //now copy the array into the first portion of the expanded array 
+        //now copy the array into the first portion of the expanded array
         for(size_t i=0; i<N; i++)
         {
             expanded_array1(i) = array2(i);
         }
     }
-    else 
+    else
     {
-        //now copy half of the array into the first 1/4 of the expanded array-1 
+        //now copy half of the array into the first 1/4 of the expanded array-1
         size_t mid = N/2;
         for(size_t i=0; i<mid; i++)
         {
             expanded_array1(i) = array2(i);
         }
-        //split the middle point 
+        //split the middle point
         size_t loc1 = N/2;
         size_t loc2 = NM - N/2;
         //expanded_array1(loc1) = array2(mid);
@@ -125,7 +126,7 @@ int main(int argc, char** argv)
         {
             expanded_array1(loc2+1+i) = array2(mid+1+i);
         }
-        
+
         for(size_t i=0; i<NM; i++)
         {
             std::cout<<"expanded array1 @ "<<i<<" = "<<expanded_array1[i]<<std::endl;
@@ -136,8 +137,9 @@ int main(int argc, char** argv)
     //then we execute an inverse FFT to bring us back to original do_estimation
     FFT_TYPE* fft_engine2 = new FFT_TYPE();
     fft_engine2->SetForward();
-    fft_engine2->SetInput(&expanded_array1);
-    fft_engine2->SetOutput(&expanded_array2);
+    fft_engine2->SetArgs(&expanded_array1, &expanded_array2);
+    // fft_engine2->SetInput(&expanded_array1);
+    // fft_engine2->SetOutput(&expanded_array2);
     fft_engine2->Initialize();
     fft_engine2->Execute();
 
@@ -148,11 +150,11 @@ int main(int argc, char** argv)
     //     expanded_array2[i] /= norm2;
     // }
 
-    //now normalized the output array 
+    //now normalized the output array
     double norm = N;
     for(size_t i=0; i<NM; i++)
     {
-        expanded_array2[i] /= norm; 
+        expanded_array2[i] /= norm;
     }
 
 
@@ -169,7 +171,7 @@ int main(int argc, char** argv)
 
 
 
-    
+
 
 
     int nlags = 2*N;
@@ -181,12 +183,12 @@ int main(int argc, char** argv)
     for (int i=0; i<4*nlags; i++){xp_spec[i] = 0.0;}
     for (int i=0; i<4*nlags; i++){S[i] = 0.0;}
     for (int i=0; i<4*nlags; i++){xlag[i] = 0.0;}
-    
+
     for (int i=0; i<nlags/2; i++)
     {
         xp_spec[i] += array2[i];
     }
-    
+
     //lower-sideband data
     for(int i = 0; i < nlags; i++)
     {
@@ -195,7 +197,7 @@ int main(int argc, char** argv)
         // int sindex;
         // if(i){sindex = 4*nlags-i;}
         // else{sindex = 2*nlags;}
-        // 
+        //
         // //sstd::complex<double> tmp2 = std::exp (I_complex * (status->lsb_phoff[0] - status->lsb_phoff[1]));
         // S[sindex] += std::conj (xp_spec[i] );// * tmp2 );
 
@@ -205,15 +207,16 @@ int main(int argc, char** argv)
 
 
     }
-    // 
+    //
     // for (int i=0; i<4*nlags; i++){S[i] = S[i] * factor;}
-    // 
+    //
     // fFFTEngine.Execute();
 
     FFT_TYPE* fft_engine3 = new FFT_TYPE();
     fft_engine3->SetForward();
-    fft_engine3->SetInput(&S);
-    fft_engine3->SetOutput(&xlag);
+    fft_engine3->SetArgs(&S,&xlag);
+    // fft_engine3->SetInput(&S);
+    // fft_engine3->SetOutput(&xlag);
     fft_engine3->Initialize();
     fft_engine3->Execute();
 
@@ -257,7 +260,7 @@ int main(int argc, char** argv)
     myStyle->SetNumberContours(NCont);
     myStyle->cd();
 
-    TGraph* g = new TGraph();  
+    TGraph* g = new TGraph();
     TGraph* gint = new TGraph();
     TGraph* gunk = new TGraph();
     for(size_t i=0; i<N; i++)
@@ -306,7 +309,7 @@ int main(int argc, char** argv)
     App->Run();
 
 
-    #endif 
+    #endif
 
 
 
@@ -323,7 +326,7 @@ int main(int argc, char** argv)
 
 
 
-    
+
 
 
 

@@ -56,6 +56,9 @@ class MHO_NDArrayWrapper:
         //destructor
         virtual ~MHO_NDArrayWrapper(){};
 
+        //clone functionality
+        MHO_NDArrayWrapper* Clone(){ return new MHO_NDArrayWrapper(*this); }
+
         //resize functions
         virtual void Resize(const std::size_t* dim)
         {
@@ -143,12 +146,12 @@ class MHO_NDArrayWrapper:
             {
                 if(rhs.fExternallyManaged)
                 {
-                    Construct(rhs.fDataPtr, rhs.fDims);
+                    Construct(rhs.fDataPtr, &(rhs.fDims[0]) );
                 }
                 else
                 {
-                    Construct(nullptr, rhs.fDims);
-                    if(fSize != 0){std::copy(rhs.fData.begin(), rhs.fData.end(), rhs.begin() );}
+                    Construct(nullptr,  &(rhs.fDims[0]) );
+                    if(fSize != 0){std::copy(rhs.fData.begin(), rhs.fData.end(), this->fData.begin() );}
                 }
             }
             return *this;
@@ -157,6 +160,17 @@ class MHO_NDArrayWrapper:
         //convenience functions
         void SetArray(const XValueType& obj){ for(std::size_t i=0; i < fSize; i++){fDataPtr[i] = obj; } }
         void ZeroArray(){ std::memset(fDataPtr, 0, fSize*sizeof(XValueType) ); }; //set all elements in the array to zero
+
+        //expensive copy (as opposed to the assignment operator,
+        //pointers to exernally managed memory are not transfer)
+        virtual void Copy(const MHO_NDArrayWrapper& rhs)
+        {
+            if(this != &rhs)
+            {
+                Construct(nullptr,  &(rhs.fDims[0]));
+                if(fSize != 0){std::copy(rhs.fData.begin(), rhs.fData.end(), this->fData.begin() );}
+            }
+        }
 
         //linear offset into the array
         std::size_t GetOffsetForIndices(const std::size_t* index)
@@ -256,6 +270,12 @@ class MHO_NDArrayWrapper:
             return fDataPtr[ MHO_NDArrayMath::OffsetFromRowMajorIndex<RANK>(&(fDims[0]), &(idx[0]) ) ];
         }
 
+        const XValueType& ValueAt(const index_type& idx) const
+        {
+            return fDataPtr[ MHO_NDArrayMath::OffsetFromRowMajorIndex<RANK>(&(fDims[0]), &(idx[0]) ) ];
+        }
+
+
     private:
 
         void Construct(XValueType* ptr, const std::size_t* dim)
@@ -306,9 +326,16 @@ class MHO_NDArrayWrapper:
         using iterator = MHO_BidirectionalIterator<XValueType>;
         using stride_iterator = MHO_BidirectionalStrideIterator<XValueType>;
 
+        using const_iterator = MHO_BidirectionalIterator<XValueType>;
+        using const_stride_iterator = MHO_BidirectionalStrideIterator<XValueType>;
+
         iterator begin(){ return iterator(fDataPtr, fDataPtr, fSize);}
         iterator end(){ return iterator(fDataPtr, fDataPtr + fSize, fSize);}
         iterator iterator_at(std::size_t offset){return iterator(fDataPtr, fDataPtr + std::min(offset, fSize), fSize);}
+
+        const_iterator cbegin() const{ return const_iterator(fDataPtr, fDataPtr, fSize);}
+        const_iterator cend() const { return const_iterator(fDataPtr, fDataPtr + fSize, fSize);}
+        const_iterator citerator_at(std::size_t offset) const {return const_iterator(fDataPtr, fDataPtr + std::min(offset, fSize), fSize);}
 
         stride_iterator stride_begin(std::size_t stride){ return stride_iterator(fDataPtr, fDataPtr, fSize, stride);}
         stride_iterator stride_end(std::size_t stride){ return stride_iterator(fDataPtr, fDataPtr + fSize, fSize, stride);}
@@ -316,6 +343,14 @@ class MHO_NDArrayWrapper:
         {
             return stride_iterator(fDataPtr, fDataPtr + std::min(offset, fSize), fSize, stride);
         }
+
+        const_stride_iterator cstride_begin(std::size_t stride) const { return stride_iterator(fDataPtr, fDataPtr, fSize, stride);}
+        const_stride_iterator cstride_end(std::size_t stride) const { return stride_iterator(fDataPtr, fDataPtr + fSize, fSize, stride);}
+        const_stride_iterator cstride_iterator_at(std::size_t offset, std::size_t stride) const
+        {
+            return stride_iterator(fDataPtr, fDataPtr + std::min(offset, fSize), fSize, stride);
+        }
+
 
 };
 
