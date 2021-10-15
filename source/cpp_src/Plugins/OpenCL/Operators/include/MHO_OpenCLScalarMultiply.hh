@@ -127,7 +127,7 @@ class MHO_OpenCLScalarMultiply: public MHO_UnaryOperator< XArrayType >
         virtual bool InitializeOutOfPlace(const XArrayType* in, XArrayType* out)
         {
             ConditionallyResizeOutput(in->GetDimensionArray(), out);
-            InitializeInPlace(out);
+            return InitializeInPlace(out);
         }
 
 
@@ -137,8 +137,9 @@ class MHO_OpenCLScalarMultiply: public MHO_UnaryOperator< XArrayType >
             out->Copy(*in);
             bool cached_value = fWriteOut;
             fWriteOut = true;
-            ExecuteInPlace(out);
+            bool ret_val = ExecuteInPlace(out);
             fWriteOut = cached_value;
+            return ret_val;
         }
 
 
