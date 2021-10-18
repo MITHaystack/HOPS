@@ -43,7 +43,9 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 #build/link/install library ####################################################
 list(APPEND LIBLIST "mk4util" "dfio")
 
+if(HOPS3_USE_CXX)
 SET_SOURCE_FILES_PROPERTIES(${${LIBNAME}_SOURCEFILES} PROPERTIES LANGUAGE CXX )
+endif(HOPS3_USE_CXX)
 
 add_library (${LIBNAME} SHARED ${${LIBNAME}_SOURCEFILES} ${${LIBNAME}_HEADERFILES})
 
