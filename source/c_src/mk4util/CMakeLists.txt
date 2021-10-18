@@ -33,6 +33,9 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/${INC_RELPATH})
 #TODO what about the other directory locations defined in environment.c ?
 add_definitions(-DPFORMAT_TEXT_DIR="${SHARE_TEXT_INSTALL_DIR}")
 
+SET_SOURCE_FILES_PROPERTIES(${${LIBNAME}_HEADERFILES} PROPERTIES LANGUAGE CXX )
+SET_SOURCE_FILES_PROPERTIES(${${LIBNAME}_SOURCEFILES} PROPERTIES LANGUAGE CXX )
+
 #build/link/install library ####################################################
 add_library (${LIBNAME} SHARED ${${LIBNAME}_SOURCEFILES} ${${LIBNAME}_HEADERFILES})
 
