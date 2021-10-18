@@ -56,10 +56,15 @@ hops_add_cxxflag(HAVE_CONFIG_H)
 #due to all the snprintf/sprintf use that need to be fixed, so diable format with:
 # -Wno-format 
 
+
+option( HOPS3_USE_CXX "Build HOPS3 libraries using the C++ compiler." OFF)
 option( HOPS3_DISABLE_WARNINGS "Disable specific compiler warnings in HOPS3 c-code." ON)
-if(HOPS3_DISABLE_WARNINGS)
-    set( CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wno-implicit-int -Wno-implicit-function-declaration -Wno-format")
-endif(HOPS3_DISABLE_WARNINGS)
+
+if(NOT HOPS3_USE_CXX)
+    if(HOPS3_DISABLE_WARNINGS)
+        set( CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wno-implicit-int -Wno-implicit-function-declaration -Wno-format")
+    endif(HOPS3_DISABLE_WARNINGS)
+endif(NOT HOPS3_USE_CXX)
 
 #mk4 and vex c-libraries from old HOPS
 add_subdirectory(mk4util)

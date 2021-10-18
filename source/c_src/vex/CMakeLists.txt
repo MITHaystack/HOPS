@@ -40,7 +40,9 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 #build/link/install library ####################################################
 list(APPEND LIBLIST "mk4util")
 
+if(HOPS3_USE_CXX)
 SET_SOURCE_FILES_PROPERTIES(${${LIBNAME}_SOURCEFILES} PROPERTIES LANGUAGE CXX )
+endif(HOPS3_USE_CXX)
 
 list(APPEND PROPERTY COMPILE_DEFINITIONS PFORMAT_TEXT_DIR="${SHARE_TEXT_INSTALL_DIR}")
 
