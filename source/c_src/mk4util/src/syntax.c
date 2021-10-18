@@ -40,7 +40,7 @@ void version(char *headurl)
 void syntax(char *headurl)
     {
     extern char progname[];
-    char *evar, *getenv(), docdir[256], helpfile[512], line[256];
+    char *evar, *getenv(const char *), docdir[256], helpfile[512], line[256];
     int len, print;
     FILE *fp;
 					/* Start with a blank line for appearance */
