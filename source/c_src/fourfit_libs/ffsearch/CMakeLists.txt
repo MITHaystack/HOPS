@@ -56,7 +56,7 @@ if( FFTW_FOUND )
 
     if(HOPS_DEV_USE_OLD)
     #add a compiler define to cut link between ffplot and ffsearch in fringe_search (this breaks fourfit)
-    #however it is needed to do testing with the C++ code without pulling in all the 
+    #however it is needed to do testing with the C++ code without pulling in all the
     #plotting libraries (pgplot)
     hops_add_cflag(DISABLE_OUTPUT)
     endif(HOPS_DEV_USE_OLD)
@@ -69,6 +69,9 @@ if( FFTW_FOUND )
                         "ffio" "ffmath"
                         "${FFTW_LIBRARIES}"
         )
+
+        SET_SOURCE_FILES_PROPERTIES(${${LIBNAME}_HEADERFILES} PROPERTIES LANGUAGE CXX )
+        SET_SOURCE_FILES_PROPERTIES(${${LIBNAME}_SOURCEFILES} PROPERTIES LANGUAGE CXX )
 
     add_library (${LIBNAME} SHARED ${${LIBNAME}_SOURCEFILES} ${${LIBNAME}_HEADERFILES})
 
