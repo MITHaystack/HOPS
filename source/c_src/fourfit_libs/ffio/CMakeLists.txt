@@ -46,7 +46,6 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 #build/link/install library ####################################################
 list(APPEND LIBLIST "mk4util" "afio" "dfio" "vex" "ffcontrol" "ffcore")
 
-SET_SOURCE_FILES_PROPERTIES(${${LIBNAME}_HEADERFILES} PROPERTIES LANGUAGE CXX )
 SET_SOURCE_FILES_PROPERTIES(${${LIBNAME}_SOURCEFILES} PROPERTIES LANGUAGE CXX )
 
 add_library (${LIBNAME} SHARED ${${LIBNAME}_SOURCEFILES} ${${LIBNAME}_HEADERFILES})
