@@ -45,7 +45,7 @@ configure_file(${CMAKE_CURRENT_SOURCE_DIR}/hops_config.h.cmake ${CMAKE_CURRENT_B
 hops_install_headers(${CMAKE_CURRENT_BINARY_DIR}/hops_config.h)
 hops_include_directories(${CMAKE_CURRENT_BINARY_DIR})
 hops_add_cflag(HAVE_CONFIG_H)
-
+hops_add_cxxflag(HAVE_CONFIG_H)
 
 #old HOPS is littered with implicit function declarations
 #since fixing properly this would require a header for each function 
