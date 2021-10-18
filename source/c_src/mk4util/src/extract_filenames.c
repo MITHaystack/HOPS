@@ -40,8 +40,8 @@
 int
 extract_filenames (char *directory, int type, fstruct **files, int *nalloc, int *filenum, int *depth)
     {
-    DIR *dp, *opendir();
-    struct dirent *ds, *readdir();
+    DIR *dp, *opendir(const char *);
+    struct dirent *ds, *readdir(DIR *);
     char temp[384], fulnam[384];
     /* char *ptr; */
     struct stat file_status;
@@ -76,11 +76,11 @@ extract_filenames (char *directory, int type, fstruct **files, int *nalloc, int 
                 }
 	    }
 					/* These directory entries must be ignored */
-	if ((strcmp (ds->d_name, ".") == 0) || (strcmp (ds->d_name, "..") == 0)) 
+	if ((strcmp (ds->d_name, ".") == 0) || (strcmp (ds->d_name, "..") == 0))
 	    continue;
 					/* Construct full pathname and stat it */
 	sprintf (fulnam, "%s/%s", directory, ds->d_name);
-	if (stat (fulnam, &file_status) != 0) 
+	if (stat (fulnam, &file_status) != 0)
 	    {
 	    perror (progname);
 	    continue;
@@ -127,4 +127,3 @@ extract_filenames (char *directory, int type, fstruct **files, int *nalloc, int 
     *depth -= 1;
     return (0);
     }
-	

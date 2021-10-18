@@ -29,8 +29,8 @@ fileset(char *rootname, struct fileset *fset)
     {
     int i, nfil, rerc;
     char temp[1024], *ptr, *rootcode;
-    DIR *dp, *opendir();
-    struct dirent *ds, *readdir();
+    DIR *dp, *opendir(const char *);
+    struct dirent *ds, *readdir(DIR *);
     fstruct fstemp;
     regex_t preg;
     regmatch_t pmatch[3];
@@ -141,4 +141,3 @@ fileset(char *rootname, struct fileset *fset)
     closedir (dp);
     return (0);
     }
-
