@@ -26,6 +26,14 @@ foreach( BASENAME ${${LIBNAME}_SOURCE_BASENAMES} )
 endforeach( BASENAME )
 
 #declare header paths ##########################################################
+set(MSG_RELPATH "../msg")
+list(APPEND RELPATH_LIST ${MSG_RELPATH})
+
+#include library headers
+foreach(path ${RELPATH_LIST})
+    include_directories(${CMAKE_CURRENT_SOURCE_DIR}/${path}/include)
+endforeach(path)
+
 set(INC_RELPATH "include")
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/${INC_RELPATH})
 
@@ -38,9 +46,11 @@ SET_SOURCE_FILES_PROPERTIES(${${LIBNAME}_SOURCEFILES} PROPERTIES LANGUAGE CXX )
 endif(HOPS3_USE_CXX)
 
 #build/link/install library ####################################################
+list(APPEND LIBLIST "msg")
+
 add_library (${LIBNAME} SHARED ${${LIBNAME}_SOURCEFILES} ${${LIBNAME}_HEADERFILES})
 
-target_link_libraries (${LIBNAME})
+target_link_libraries (${LIBNAME} ${LIBLIST})
 
 hops_install_headers (${${LIBNAME}_HEADERFILES})
 hops_install_libraries (${LIBNAME})

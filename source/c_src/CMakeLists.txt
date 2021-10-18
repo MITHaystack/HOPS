@@ -67,6 +67,7 @@ if(NOT HOPS3_USE_CXX)
 endif(NOT HOPS3_USE_CXX)
 
 #mk4 and vex c-libraries from old HOPS
+add_subdirectory(msg)
 add_subdirectory(mk4util)
 add_subdirectory(vex)
 add_subdirectory(dfio)
