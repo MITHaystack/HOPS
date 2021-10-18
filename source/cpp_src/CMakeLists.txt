@@ -22,3 +22,6 @@ if(HOPS_USE_PYBIND11)
 endif(HOPS_USE_PYBIND11)
 
 add_subdirectory(${CPPSOURCE}/Applications) #applications
+
+#transitory applications for migration
+add_subdirectory(${CPPSOURCE}/Applications/fourfit)

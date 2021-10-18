@@ -73,7 +73,7 @@ hops_install_executables( ${SOURCE_BASENAMES} )
 #link against old fourfit libraries (temporary measure while we try to debug/transition)
 if(HOPS_DEV_USE_OLD)
 
-    list(APPEND OLD_DEV_SOURCE_BASENAMES 
+    list(APPEND OLD_DEV_SOURCE_BASENAMES
         TestNormFX
     )
 
@@ -85,5 +85,3 @@ endforeach( BASENAME )
 hops_install_executables( ${OLD_DEV_SOURCE_BASENAMES} )
 
 endif(HOPS_DEV_USE_OLD)
-
-
