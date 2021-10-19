@@ -12,8 +12,8 @@
 #include "parser.h"
 #include "control.h"
 #include "mk4_sizes.h"
-
-#include "ff_misc_if.h"
+#include "msg.h"
+//#include "ff_misc_if.h"
 
 /* eliminate some messages */
 extern int    nullify_cblock (struct c_block *cb_ptr);

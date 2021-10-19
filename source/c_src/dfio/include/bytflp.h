@@ -1,4 +1,6 @@
 #include "hops_config.h"
+#include "mk4_util.h"
+
 #ifndef BYTFLP_H
 #define BYTFLP_H
 

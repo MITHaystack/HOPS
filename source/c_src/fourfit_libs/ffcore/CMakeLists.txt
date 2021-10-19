@@ -30,6 +30,7 @@ foreach( BASENAME ${${LIBNAME}_SOURCE_BASENAMES} )
 endforeach( BASENAME )
 
 #declare header paths ##########################################################
+set(MSG_RELPATH "../../msg")
 set(MK4UTIL_RELPATH "../../mk4util")
 set(DFIO_RELPATH "../../dfio")
 set(AFIO_RELPATH "../../afio")
@@ -37,7 +38,7 @@ set(VEX_RELPATH "../../vex")
 set(FFCONTROL_RELPATH "../ffcontrol")
 set(FFMATH_RELPATH "../ffmath")
 
-list(APPEND RELPATH_LIST ${MK4UTIL_RELPATH} ${AFIO_RELPATH} ${DFIO_RELPATH} ${VEX_RELPATH} ${FFCONTROL_RELPATH} ${FFMATH_RELPATH})
+list(APPEND RELPATH_LIST ${MSG_RELPATH} ${MK4UTIL_RELPATH} ${AFIO_RELPATH} ${DFIO_RELPATH} ${VEX_RELPATH} ${FFCONTROL_RELPATH} ${FFMATH_RELPATH})
 
 #include library headers
 foreach(path ${RELPATH_LIST})
