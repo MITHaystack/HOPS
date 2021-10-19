@@ -78,7 +78,7 @@ int read_control_file (char* control_file_name, char** input_string, int* flag)
       {
       if (c == '\n')                         /* newline - keep track of lines */
          {                                       /* for syntax error messages */
-         buf_line = realloc (buf_line, sizeof (int) * (num_line + 1));
+         buf_line = (int*) realloc (buf_line, sizeof (int) * (num_line + 1));
          buf_line[num_line++] = num_chars;
          }
       switch (state)                      /* figure out which state we are in */

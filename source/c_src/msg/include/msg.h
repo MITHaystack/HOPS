@@ -17,8 +17,8 @@
 #include <stdio.h>
 #include <stdarg.h>
 
-char progname[256];
-int msglev;
+extern char progname[256];
+extern int msglev;
 
 void set_progname(char* local_progname);
 void set_msglev(int lev);
