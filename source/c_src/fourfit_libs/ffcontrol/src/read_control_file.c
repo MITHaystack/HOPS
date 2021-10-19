@@ -23,6 +23,7 @@
 #include <stdlib.h>
 #include <ctype.h>
 #include "control.h"
+#include "msg.h"
                                              /* the 3 states of this tiny fsm */
 #define goodstuff 1
 #define white     2

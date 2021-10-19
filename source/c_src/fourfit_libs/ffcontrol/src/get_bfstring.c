@@ -16,6 +16,7 @@
 /************************************************************************/
 #include <stdio.h>
 #include <string.h>
+#include "msg.h"
 
 #define FALSE 0
 #define TRUE 1
