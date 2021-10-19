@@ -22,6 +22,6 @@ int msglev;
 
 void set_progname(char* local_progname);
 void set_msglev(int lev);
-void msg (char *string, int level, ...);
+void msg (const char *string, int level, ...);
 
 #endif

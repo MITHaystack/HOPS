@@ -13,6 +13,7 @@
 *******************************************************************************/
 #include <stdio.h>
 #include <stdlib.h>
+#include "ffcontrol.h"
 #include "parser.h"
 
 #define fsm_table(aa,bb,cc,dd)                                        \
