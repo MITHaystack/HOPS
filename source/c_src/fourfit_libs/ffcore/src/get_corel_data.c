@@ -28,13 +28,14 @@
 #include "vex.h"
 #include "control.h"
 #include "fstruct.h"
+#include "msg.h"
 
 int
 get_corel_data (fstruct* fs, struct scan_struct* ovex, char* filename, struct mk4_corel* cdata)
     {
     int scantime;
     char corelname[256], scandir[256];
-    char *ptr, *strrchr();
+    char *ptr;
                                         /* Strip off source.rootcode from */
                                         /* rootname, and leave directory */
                                         /* only in scandir */
