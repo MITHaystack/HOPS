@@ -8,8 +8,8 @@
 #include <math.h>
 
 int minvert (size_t n,              // matrix size is n x n
-             double a[n][n],        // input matrix
-             double ainv[n][n])     // inverse of the input matrix (returned)
+             double** a,        // input matrix
+             double** ainv)     // inverse of the input matrix (returned)
     {
     int i, 
         j, 
