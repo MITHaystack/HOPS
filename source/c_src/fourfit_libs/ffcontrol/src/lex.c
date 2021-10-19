@@ -8,6 +8,7 @@
 #include "parser.h"
 #include "general.h"
 #include "mk4_sizes.h"
+#include "ffcontrol.h"
 #include "msg.h"
 #include <stdio.h>
 #include <stdlib.h>

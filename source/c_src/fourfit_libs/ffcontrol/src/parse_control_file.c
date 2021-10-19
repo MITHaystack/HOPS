@@ -12,6 +12,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "control.h"
+#include "ffcontrol.h"
 #include "parser.h"
 #include "msg.h"
 

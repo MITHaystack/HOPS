@@ -23,7 +23,7 @@ void set_msglev(int lev)
 }
 
 					/* To understand this, check stdarg man pages */
-void msg (char *string, 
+void msg (const char *string, 
           int level, 
           ...)	
 

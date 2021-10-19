@@ -11,6 +11,7 @@
 #include <stdio.h>
 #include "msg.h"
 #include "control.h"
+#include "ffcontrol.h"
 
 int
 criteria_match (struct c_block* cb_ptr, char base[2], char sour[31], char group, int time)
