@@ -1,4 +1,5 @@
 #include "hops_complex.h"
+#include <math.h>
 
 void zero_complex(hops_complex* val)
 {
