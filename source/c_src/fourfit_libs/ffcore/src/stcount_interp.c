@@ -16,11 +16,13 @@
 /************************************************************************/
 #include <stdio.h>
 #include <string.h>
+#include "msg.h"
 #include "mk4_data.h"
 #include "param_struct.h"
 #include "pass_struct.h"
 #include "math.h"
 #include "mk4_sizes.h"
+#include "ffmath.h"
                                         /* criterion for changes in state
                                          * count ratios implying a slipped
                                          * sync in the SU rjc 2002.7.18 */

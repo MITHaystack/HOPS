@@ -3,22 +3,28 @@
 char progname[256];
 int msglev = 0;
 
-void set_progname(char* local_progname)
+void set_progname(const char* local_progname)
 {
     int i, len;
     for(i=0;i<256;i++){progname[i] = '\0';}
     len = strlen(local_progname);
-    if(len < 256)
+    if(len < 255)
     {
         strncpy(progname, local_progname, len);
+        progname[len+1] = '\0';
     }
     else 
     {
-        //truncate to 256
-        strncpy(progname, local_progname, len);
+        //truncate to 255
+        strncpy(progname, local_progname, 255);
+        progname[255] = '\0';
     }
 }
 
+const char* get_progname()
+{
+    return progname;
+}
 
 void set_msglev(int lev)
 {

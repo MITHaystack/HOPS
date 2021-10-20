@@ -65,9 +65,6 @@ int reftime_offset = 0;
 //global variables provided for signal handler clean up of lock files
 lockfile_data_struct global_lockfile_data;
 
-//char progname[] = "fourfit";            /* extern variables for messages */
-char progname[] = FF_PROGNAME;		// fourfit or fearfit from Makefile
-int msglev = 2;
 char *pexec;                            // ptr to progam executable name
 char version_no[] = FF_VER_NO;		// PACKAGE_VERSION from Makefile
 //char version_no[4] = "3.5";             // Update this with new releases
@@ -94,6 +91,9 @@ int main (int argc, char** argv)
     fstruct *files, *fs;
     struct fileset fset;
     bsgstruct *base_sgrp;
+
+    set_progname(FF_PROGNAME);
+    set_msglev(2);
 
     //init lockfile data struct
     clear_global_lockfile_data();
@@ -157,7 +157,7 @@ int main (int argc, char** argv)
             "The above errors occurred while processing\n"
             "%s: %s\n"
             "%s: the top-level resolution is as follows:",
-                progname, inputname, progname);
+                FF_PROGNAME, inputname, FF_PROGNAME);
         msg ("%s(Starting loop on files)", 0, processmsg);
         //msg ("processing %s fileset", 2, inputname); // -1->2 Hotaka
                                         /* Performs sanity check on requested file */
