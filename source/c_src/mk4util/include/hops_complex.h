@@ -32,6 +32,9 @@ hops_scomplex;
 extern void zero_complex(hops_complex* val);
 extern void set_complex(hops_complex* val, double real, double imag);
 extern double abs_complex(hops_complex* val);
-hops_complex exp_complex(hops_complex val);
+extern double arg_complex(hops_complex* val);
+extern double real_comp(hops_complex* val);
+extern double imag_comp(hops_complex* val);
+extern hops_complex exp_complex(hops_complex val);
 
 #endif /* end of include guard: HOPS_COMPLEX_WRAPPER */
