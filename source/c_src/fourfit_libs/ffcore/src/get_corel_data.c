@@ -26,8 +26,10 @@
 #include <string.h>
 #include "mk4_data.h"
 #include "mk4_util.h"
+#include "mk4_dfio.h"
 #include "vex.h"
 #include "control.h"
+#include "ffcontrol.h"
 #include "fstruct.h"
 #include "msg.h"
 
