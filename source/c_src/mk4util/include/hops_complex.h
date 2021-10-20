@@ -2,30 +2,22 @@
 #define HOPS_COMPLEX_WRAPPER__
 
 #ifndef __cplusplus
-#include <complex.h>
+#define USE_C_COMPLEX
 #endif
 
-////////////////////////////////////////////////////////////////////////////////
-#ifdef __cplusplus
-    extern "C"
-    {
-#endif /* __cplusplus */
-////////////////////////////////////////////////////////////////////////////////
-
-        //if compiling against c++ we dont'want the complex types polluting
-        //the namespace, so we have to alias them and then undef them
-        #if defined(_Complex_I) && defined(complex) && defined(I)
-            #define USE_C_COMPLEX
-            typedef double _Complex hops_complex_impl;
-        #else
-            typedef double hops_complex_impl[2];
-        #endif
-
-////////////////////////////////////////////////////////////////////////////////
-#ifdef __cplusplus
-    } //end of extern C
-#endif /* __cplusplus */
-////////////////////////////////////////////////////////////////////////////////
+#ifdef USE_C_COMPLEX
+    //using c definition of complex 
+    #include <complex.h>
+    #if defined(_Complex_I) && defined(complex) && defined(I)
+        typedef double _Complex hops_complex_impl;
+        #define I cmplx_unit_I;
+    #endif
+#else 
+    //using c++ definition of complex
+    #include <complex>
+    typedef std::complex<double> hops_complex_impl;
+    extern const std::complex<double> cmplx_unit_I; 
+#endif
 
 //alias to the implementation
 #define hops_complex hops_complex_impl
@@ -40,5 +32,6 @@ hops_scomplex;
 extern void zero_complex(hops_complex* val);
 extern void set_complex(hops_complex* val, double real, double imag);
 extern double abs_complex(hops_complex* val);
+hops_complex exp_complex(hops_complex val);
 
 #endif /* end of include guard: HOPS_COMPLEX_WRAPPER */
