@@ -15,6 +15,7 @@
         //if compiling against c++ we dont'want the complex types polluting
         //the namespace, so we have to alias them and then undef them
         #if defined(_Complex_I) && defined(complex) && defined(I)
+            #define USE_C_COMPLEX
             typedef double _Complex hops_complex_impl;
         #else
             typedef double hops_complex_impl[2];
@@ -35,5 +36,9 @@ typedef struct hops_complex_tag	/* needed in type_230 */
    double imag;
 }
 hops_scomplex;
+
+extern void zero_complex(hops_complex* val);
+extern void set_complex(hops_complex* val, double real, double imag);
+extern double abs_complex(hops_complex* val);
 
 #endif /* end of include guard: HOPS_COMPLEX_WRAPPER */

@@ -4,6 +4,7 @@
 /*----------------------------------------------------------------------------*/
 #include <stdarg.h>
 #include <sys/times.h>
+#include "msg.h"
 #include "account.h"
 #include "fileset.h"
 #include "fstruct.h"
@@ -35,7 +36,7 @@ extern int    iwin (int, int, int);
 extern double dmin (double, double);
 extern double dmax (double, double);
 extern double dwin (double, double, double);
-extern void   msg (char *, int, ...);
+// extern void   msg (char *, int, ...);
 extern void   report_wallclock(int, int);
 extern int    report_times (struct time_account *, int, struct tms *, int,
                             double);
