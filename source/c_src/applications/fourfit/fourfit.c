@@ -186,7 +186,7 @@ int main (int argc, char** argv)
         param.acc_period = root.evex->ap_length;
         param.speedup = root.evex->speedup_factor;
                                         /* Find all files belonging to this root */
-        if (fileset (rootname, &fset) != 0)
+        if (get_fileset (rootname, &fset) != 0)
             {
             msg ("%sError getting fileset of '%s'", 2, processmsg, rootname);
             continue;

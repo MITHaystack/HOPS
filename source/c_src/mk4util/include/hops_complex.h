@@ -10,7 +10,7 @@
     #include <complex.h>
     #if defined(_Complex_I) && defined(complex) && defined(I)
         typedef double _Complex hops_complex_impl;
-        #define I cmplx_unit_I;
+        extern const hops_complex_impl cmplx_unit_I;
     #endif
 #else 
     //using c++ definition of complex

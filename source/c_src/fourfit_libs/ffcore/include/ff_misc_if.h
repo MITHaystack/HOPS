@@ -10,8 +10,9 @@
 
 // this file must be included last
 
+#include "msg.h"
 extern int fcode(char c, char *);
-extern void msg (char *, int, ...);
+// extern void msg (char *, int, ...);
 extern char *account (char *);
 
 /* make_plotdata */
