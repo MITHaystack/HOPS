@@ -1,13 +1,16 @@
 #include "hops_complex.h"
 #include <math.h>
 
+#ifndef USE_C_COMPLEX
+    const std::complex<double> cmplx_unit_I = std::complex<double>(0.0,1.0); 
+#endif
+
 void zero_complex(hops_complex* val)
 {
     #ifdef USE_C_COMPLEX
         *val = 0.0;
     #else
-        (*val)[0] = 0.0;
-        (*val)[1] = 0.0;
+        *val = 0.0;
     #endif
 }
 
@@ -17,8 +20,7 @@ void set_complex(hops_complex* val, double real, double imag)
     #ifdef USE_C_COMPLEX
         *val = real + I*imag;
     #else
-        (*val)[0] = real;
-        (*val)[1] = imag;
+        *val = std::complex<double>(real,imag);
     #endif
 }
 
@@ -27,8 +29,16 @@ double abs_complex(hops_complex* val)
     #ifdef USE_C_COMPLEX
         return cabs(*val);
     #else
-        double real = (*val)[0];
-        double imag = (*val)[1];
-        return sqrt(real*real + imag*imag);
+        return std::abs(*val);
+    #endif
+}
+
+hops_complex 
+exp_complex(hops_complex val)
+{
+    #ifdef USE_C_COMPLEX
+        return cexp(val);
+    #else
+        return std::exp(val);
     #endif
 }
