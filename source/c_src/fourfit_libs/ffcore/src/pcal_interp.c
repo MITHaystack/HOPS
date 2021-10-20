@@ -75,8 +75,10 @@ int pcal_interp (struct mk4_sdata *sd1,
             isd = &(fc->data[ap].ref_sdata);
             for (j=0; j<MAX_PCF; j++)
                 {
-                isd->phasecal_lcp[j] = 0.0;
-                isd->phasecal_rcp[j] = 0.0;
+                    zero_complex( &(isd->phasecal_lcp[j]) );
+                    zero_complex( &(isd->phasecal_rcp[j]) );
+                // isd->phasecal_lcp[j] = 0.0;
+                // isd->phasecal_rcp[j] = 0.0;
                 }
             isd->pcweight_lcp = 0.0;
             isd->pcweight_rcp = 0.0;
@@ -84,8 +86,10 @@ int pcal_interp (struct mk4_sdata *sd1,
             isd = &(fc->data[ap].rem_sdata);
             for (j=0; j<MAX_PCF; j++)
                 {
-                isd->phasecal_lcp[j] = 0.0;
-                isd->phasecal_rcp[j] = 0.0;
+                    zero_complex( &(isd->phasecal_lcp[j]) );
+                    zero_complex( &(isd->phasecal_rcp[j]) );
+                // isd->phasecal_lcp[j] = 0.0;
+                // isd->phasecal_rcp[j] = 0.0;
                 }
             isd->pcweight_lcp = 0.0;
             isd->pcweight_rcp = 0.0;
