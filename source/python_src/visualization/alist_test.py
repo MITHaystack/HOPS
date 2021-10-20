@@ -1,19 +1,23 @@
+#!/usr/bin/env python
 
+from __future__ import print_function
 import sys
 
 from PyQt5.QtCore import QSize, Qt, QLine, QPoint
-from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QMainWindow, QCheckBox, QFrame, QSizePolicy
-from PyQt5.QtWidgets import QVBoxLayout, QHBoxLayout, QGridLayout, QTabWidget, QLabel, QLineEdit, QComboBox
+from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QMainWindow, QCheckBox, QFrame#, QSizePolicy
+from PyQt5.QtWidgets import QVBoxLayout, QHBoxLayout, QGridLayout, QTabWidget, QLabel, QLineEdit, QComboBox, QGroupBox, QPlainTextEdit, QTextEdit
 #from PyQt5.QtGui import QPalette, QColor, QPainter, QWindow
 
 import parse_alist as pa
 
-import matplotlib.pyplot as plt
-import alist_plot as alist_plt
+from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
+from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
+
+import matplotlib.pyplot
 
 import numpy as np
 
-# Main Window: load alist file(s)
+# Main Window: load alist file(s) and datadir
 # Data Window: tabs
 
 # selection tab selects baselines, sources, etc - summary button?
@@ -30,10 +34,6 @@ import numpy as np
 
 # how is frequency reported in the alist? does 'B32' mean band B, 32 channels?
 #
-
-# clever ways to get indices of alist records to plot with pythons sets, intersections
-
-
 
 # different tab: select plotting options (axes, limits)
 
@@ -60,7 +60,7 @@ class SelectionParamBoxGrid(QWidget):
         self.snrmax = np.max(alist_data.records['snr'])
         
         # Create a text entry box
-        snrmin_box_label = QLabel('Min SNR')
+        snrmin_box_label = QLabel('Min SNR ')
         self.snrmin_box = QLineEdit()
         self.snrmin_box.setText(str(self.snrmin))
         self.snrmin_box.setFixedWidth(100)
@@ -424,8 +424,130 @@ class ScanPanel(QWidget):
 
     
 
+# class to handle picked fplot
+class PickWindow(QWidget):
+    def __init__(self, filename, ind):
+        super().__init__()
+
+        n = len(ind)
+        if not n:
+            return
+        
+        self.pick_fig = matplotlib.figure.Figure()
+        self.pick_canvas = FigureCanvas(self.pick_fig)
+        self.pick_toolbar = NavigationToolbar(self.pick_canvas, self)
+
+        layout = QVBoxLayout()
+        layout.addWidget(self.pick_toolbar)
+        layout.addWidget(self.pick_canvas)
+        self.setLayout(layout)
+
+        self.pick_fig.clf()
+        axs = self.pick_fig.subplots(n, squeeze=False)
+
+        for dataind, pax in zip(ind, axs.flat):
+            
+            # read in the kludged fourfit plot and plot it
+            image = matplotlib.pyplot.imread(filename)        
+            pax.imshow(image)
+            pax.axis('off')
+            pax.margins(0,0)
+        
+        self.pick_canvas.draw_idle()
+
+        
+    
+
+# aedit plot window
+class PlotWindow(QWidget):
+    def __init__(self, alist_data, x_field, y_field, plot_format_dict):
+        super().__init__()
+
+        # Preliminaries
+        self.alist_data = alist_data
+        self.x_field = x_field
+        self.y_field = y_field
+        self.plot_format_dict = plot_format_dict
+        self.w = None
+        self.counter = 0
+
+        self.figure = matplotlib.figure.Figure() # Initialize a figure
+        self.canvas = FigureCanvas(self.figure)  # Initialize a canvas in the figure
+        self.toolbar = NavigationToolbar(self.canvas, self) # Initialize a toolbar in the figure
+
+        # connect the canvas to the function we want to run on a pick event
+        self.canvas.mpl_connect('pick_event', self.pick_action)
+        self.canvas.mpl_connect('key_press_event', self.key_event)
+
+        # add this figure to the Qt widget layout
+        layout = QVBoxLayout()
+        layout.addWidget(self.toolbar)
+        layout.addWidget(self.canvas)
+        self.setLayout(layout)
+
+        self.canvas.setFocusPolicy( Qt.ClickFocus )
+        self.canvas.setFocus()
+
+        # call the routine that does the plotting
+        self.alist_plot()
 
 
+    def alist_plot(self):
+
+        self.figure.clf()
+        ax = self.figure.add_subplot(111) # add an Axes class to the figure
+
+        # get the indices of the records to plot
+        plot_record_idx = np.where(self.alist_data.record_flags == 0)[0]
+
+        print('Plot function:', len(plot_record_idx))
+        
+        x_data = np.array(self.alist_data.records[self.x_field])[plot_record_idx]
+        y_data = np.array(self.alist_data.records[self.y_field])[plot_record_idx]
+
+        self.alist_data.set_record_colors(self.plot_format_dict)
+        colors = [self.alist_data.record_color[ii] for ii in plot_record_idx]
+
+        x_label = pa.plot_labels[self.x_field]['label']+' '+pa.plot_labels[self.x_field]['unit']
+        y_label = pa.plot_labels[self.y_field]['label']+' '+pa.plot_labels[self.y_field]['unit']
+        
+        line = ax.scatter(x_data, y_data, c=colors, marker='o', s=10., alpha=0.5, picker=5.)
+
+        ax.set_title('AEDIT Demo plot')
+
+        ax.set_xlabel(x_label)
+        ax.set_ylabel(y_label)
+        ax.grid(True, which='both', linestyle=':',alpha=0.8)
+
+        self.canvas.draw_idle()
+
+    
+    def pick_action(self, event):
+
+        # call the plot window; this builds the plot
+        if self.w is None:
+            self.w = PickWindow('KZ_3C279_LR.jpg', event.ind)
+        self.w.show()
+
+        return True
+
+    def key_event(self, event):
+
+        print(event.key)
+        
+        if event.key == 'right':
+            self.counter += 1
+        elif event.key == 'left':
+            self.counter -= 1
+        else:
+            return
+
+        #counter = counter % num_plots
+        print(self.counter)
+
+
+
+        
 
 class PlotPanel(QWidget):
 
@@ -433,54 +555,263 @@ class PlotPanel(QWidget):
     def __init__(self, alist_data, SelectionTab, ScanTab):
         super().__init__()
 
+        # window for plotting
+        self.w = None
+
         self.alist_data = alist_data
         self.SelectionTab = SelectionTab
         self.ScanTab = ScanTab
 
-        self.xdata = 'scan_time'
-        self.ydata = 'amplitude'
-
-
-        # Build the X-axis formatting panel
+        ####### Build the X-axis formatting panel
         self.xname = QLabel('X Axis')
         self.xname_hbox = QHBoxLayout()
         self.xname_hbox.addWidget(self.xname)
         self.xname_hbox.addStretch(1)
 
-        self.separator = QFrame()
-        self.separator.setFrameShape(QFrame.HLine)
-        self.separator.setLineWidth(1)
+        self.xseparator = QFrame()
+        self.xseparator.setFrameShape(QFrame.HLine)
+        self.xseparator.setLineWidth(1)
 
         self.XcomboBox = QComboBox(self)
         self.XcomboBox.setFixedWidth(100)
-        self.XcomboBox.addItems(pa.plot_labels.keys())
-        
+        #self.XcomboBox.addItems(pa.plot_labels.keys())
+        for k in pa.plot_labels.keys():
+            self.XcomboBox.addItem(pa.plot_labels[k]['label'])
+        self.XcomboBox.setCurrentText('Scan Time')
+            
         self.xmenu_hbox = QHBoxLayout()
+        xbox_label = QLabel('X-axis data:')
+        self.xmenu_hbox.addWidget(xbox_label)
         self.xmenu_hbox.addWidget(self.XcomboBox)
         self.xmenu_hbox.addStretch(1)
 
+        # Create a text entry box for the x-axis min and max
+        xmin_box_label = QLabel('xmin ')
+        self.xmin_box = QLineEdit()
+        self.xmin_box.setFixedWidth(100)
+
+        xmax_box_label = QLabel('xmax')
+        self.xmax_box = QLineEdit()
+        self.xmax_box.setFixedWidth(100)
+
+        self.xrange_gridv = QVBoxLayout()
+
+        self.xrange_gridh1 = QHBoxLayout()
+        self.xrange_gridh1.addWidget(xmin_box_label)
+        self.xrange_gridh1.addWidget(self.xmin_box)
+        self.xrange_gridh1.addStretch(1)
+        
+        self.xrange_gridh2 = QHBoxLayout()
+        self.xrange_gridh2.addWidget(xmax_box_label)
+        self.xrange_gridh2.addWidget(self.xmax_box)
+        self.xrange_gridh2.addStretch(1)
+
+        self.xrange_gridv.addLayout(self.xrange_gridh1)
+        self.xrange_gridv.addLayout(self.xrange_gridh2)
 
 
-        # Build the Y-axis formatting panel
+
+        ####### Build the Y-axis formatting panel
         self.yname = QLabel('Y Axis')
         self.yname_hbox = QHBoxLayout()
         self.yname_hbox.addWidget(self.yname)
         self.yname_hbox.addStretch(1)
 
+        self.yseparator = QFrame()
+        self.yseparator.setFrameShape(QFrame.HLine)
+        self.yseparator.setLineWidth(1)
+        
         self.YcomboBox = QComboBox(self)
         self.YcomboBox.setFixedWidth(100)
-        self.YcomboBox.addItems(pa.plot_labels.keys())
+        #self.YcomboBox.addItems(pa.plot_labels.keys())
+        for k in pa.plot_labels.keys():
+            self.YcomboBox.addItem(pa.plot_labels[k]['label'])
+        self.YcomboBox.setCurrentText('SNR')
         
         self.ymenu_hbox = QHBoxLayout()
+        ybox_label = QLabel('Y-axis data:')
+        self.ymenu_hbox.addWidget(ybox_label)
         self.ymenu_hbox.addWidget(self.YcomboBox)
         self.ymenu_hbox.addStretch(1)
 
+        # Create a text entry box for the y-axis min and max
+        ymin_box_label = QLabel('ymin ')
+        self.ymin_box = QLineEdit()
+        self.ymin_box.setFixedWidth(100)
+
+        ymax_box_label = QLabel('ymax')
+        self.ymax_box = QLineEdit()
+        self.ymax_box.setFixedWidth(100)
+
+        self.yrange_gridv = QVBoxLayout()
+
+        self.yrange_gridh1 = QHBoxLayout()
+        self.yrange_gridh1.addWidget(ymin_box_label)
+        self.yrange_gridh1.addWidget(self.ymin_box)
+        self.yrange_gridh1.addStretch(1)
+        
+        self.yrange_gridh2 = QHBoxLayout()
+        self.yrange_gridh2.addWidget(ymax_box_label)
+        self.yrange_gridh2.addWidget(self.ymax_box)
+        self.yrange_gridh2.addStretch(1)
+
+        self.yrange_gridv.addLayout(self.yrange_gridh1)
+        self.yrange_gridv.addLayout(self.yrange_gridh2)
 
 
 
-        # plot by baseline? station? color by qcode, amplitude, snr?
+
+
+        ####### Datapoint style selections and plot sequence
+        self.dseparator = QFrame()
+        self.dseparator.setFrameShape(QFrame.HLine)
+        self.dseparator.setLineWidth(1)
 
         
+        self.markerstyle_chkbox = QCheckBox('Use a single marker style', self)
+        self.markerstyle_chkbox.setCheckable(True)
+        self.markerstyle_chkbox.setChecked(True)
+        
+        marker_style = ['Source','Station','QCode','Polarization','Baseline']
+        self.MarkercomboBox = QComboBox(self)
+        self.MarkercomboBox.setFixedWidth(100)
+        self.MarkercomboBox.addItems(marker_style)
+        self.MarkercomboBox.setEnabled(False)
+        
+        marker_hbox = QHBoxLayout()
+        markerbox_label = QLabel('Marker style according to:')
+        markerbox_label.setEnabled(False)
+        marker_hbox.addWidget(markerbox_label)
+        marker_hbox.addWidget(self.MarkercomboBox)
+        marker_hbox.addStretch(1)
+
+
+        
+        # aedit sets the marker color as: SNR<5.5 red, SNR<6.5 orange, SNR>=6.5 green
+        # change to blue for colorblindness. plot_quality.c and plot_points.c
+        
+        # checkbox / combobox for plotting order
+        self.pointcolor_chkbox = QCheckBox('Datapoint color from SNR?', self)
+        self.pointcolor_chkbox.setCheckable(True)
+        self.pointcolor_chkbox.setChecked(True)
+
+        pointqualty_hbox = QHBoxLayout()
+        pointquality_label1 = QLabel('SNR<')
+        pointquality_label2 = QLabel('SNR<')
+        pointquality_label3 = QLabel('SNR>=')
+        pointquality_label1.setEnabled(True)
+        pointquality_label2.setEnabled(True)
+        pointquality_label3.setEnabled(True)
+        
+        pointquality_label4 = QLabel('red, ')
+        pointquality_label5 = QLabel('orange, ')
+        pointquality_label6 = QLabel('blue')
+        pointquality_label4.setEnabled(True)
+        pointquality_label5.setEnabled(True)
+        pointquality_label6.setEnabled(True)
+
+        self.badsnr_box = QLineEdit()
+        self.badsnr_box.setText('5.5')
+        self.badsnr_box.setFixedWidth(40)
+        self.badsnr_box.setEnabled(True)
+
+        self.suspectsnr_box = QLineEdit()
+        self.suspectsnr_box.setText('6.5')
+        self.suspectsnr_box.setFixedWidth(40)
+        self.suspectsnr_box.setEnabled(True)
+        
+        self.goodsnr_box = QLineEdit()
+        self.goodsnr_box.setText('6.5')
+        self.goodsnr_box.setFixedWidth(40)
+        self.goodsnr_box.setEnabled(True)
+        
+        pointqualty_hbox.addWidget(self.pointcolor_chkbox)
+        pointqualty_hbox.addStretch(1)
+        pointqualty_hbox.addWidget(pointquality_label1)
+        pointqualty_hbox.addWidget(self.badsnr_box)
+        pointqualty_hbox.addWidget(pointquality_label4)
+        pointqualty_hbox.addWidget(pointquality_label2)
+        pointqualty_hbox.addWidget(self.suspectsnr_box)
+        pointqualty_hbox.addWidget(pointquality_label5)
+        pointqualty_hbox.addWidget(pointquality_label3)
+        pointqualty_hbox.addWidget(self.goodsnr_box)
+        pointqualty_hbox.addWidget(pointquality_label6)
+        pointqualty_hbox.addStretch(1)
+        pointqualty_hbox.addStretch(1)
+        
+        # checkbox / combobox for plotting order
+        self.plotall_chkbox = QCheckBox('Plot all data in a single figure', self)
+        self.plotall_chkbox.setCheckable(True)
+        self.plotall_chkbox.setChecked(True)
+        
+        plot_datasets = ['Baseline','Station','Source','Triangle']
+        self.PlotcomboBox = QComboBox(self)
+        self.PlotcomboBox.setFixedWidth(100)
+        self.PlotcomboBox.addItems(plot_datasets)
+        self.PlotcomboBox.setEnabled(False)
+        
+        dataset_hbox = QHBoxLayout()
+        plotbox_label = QLabel('Group data into figures by:')
+        plotbox_label.setEnabled(False)
+        dataset_hbox.addWidget(plotbox_label)
+        dataset_hbox.addWidget(self.PlotcomboBox)
+        dataset_hbox.addStretch(1)
+        
+        dataset_vbox = QVBoxLayout()
+        dataset_vbox.addLayout(pointqualty_hbox)
+        dataset_vbox.addWidget(self.markerstyle_chkbox)
+        dataset_vbox.addLayout(marker_hbox)
+        dataset_vbox.addWidget(self.plotall_chkbox)
+        dataset_vbox.addLayout(dataset_hbox)
+
+
+        # functions for toggling (greying out) different options
+        def toggleFigureBox(state):
+            if state > 0:
+                self.PlotcomboBox.setEnabled(False)
+                plotbox_label.setEnabled(False)
+            else:
+                self.PlotcomboBox.setEnabled(True)
+                plotbox_label.setEnabled(True)
+
+        def toggleMarkerBox(state):
+            if state > 0:
+                self.MarkercomboBox.setEnabled(False)
+                markerbox_label.setEnabled(False)
+            else:
+                self.MarkercomboBox.setEnabled(True)
+                markerbox_label.setEnabled(True)
+                
+                
+        def togglePointQualityBox(state):
+            if state > 0:
+                self.badsnr_box.setEnabled(True)
+                self.suspectsnr_box.setEnabled(True)
+                self.goodsnr_box.setEnabled(True)
+                pointquality_label1.setEnabled(True)
+                pointquality_label2.setEnabled(True)
+                pointquality_label3.setEnabled(True)
+                pointquality_label4.setEnabled(True)
+                pointquality_label5.setEnabled(True)
+                pointquality_label6.setEnabled(True)
+            else:
+                self.badsnr_box.setEnabled(False)
+                self.suspectsnr_box.setEnabled(False)
+                self.goodsnr_box.setEnabled(False)
+                pointquality_label1.setEnabled(False)
+                pointquality_label2.setEnabled(False)
+                pointquality_label3.setEnabled(False)
+                pointquality_label4.setEnabled(False)
+                pointquality_label5.setEnabled(False)
+                pointquality_label6.setEnabled(False)
+
+                
+        self.plotall_chkbox.stateChanged.connect(toggleFigureBox)
+        self.markerstyle_chkbox.stateChanged.connect(toggleMarkerBox)
+        self.pointcolor_chkbox.stateChanged.connect(togglePointQualityBox)
+
+        
+
         # button to make the plot
         self.plot_button = QPushButton("Plot Data")
         self.plot_button.clicked.connect(self.PlottingButton)
@@ -491,17 +822,21 @@ class PlotPanel(QWidget):
         # build the full panel vertically
         # the stretches here do the vertical centering
         plot_vbox = QVBoxLayout()
-        plot_vbox.addStretch(1)
+        #plot_vbox.addStretch(1)
         plot_vbox.addLayout(self.xname_hbox)
-        plot_vbox.addWidget(self.separator)
+        plot_vbox.addWidget(self.xseparator)
         plot_vbox.addLayout(self.xmenu_hbox)
+        plot_vbox.addLayout(self.xrange_gridv)
         plot_vbox.addStretch(1)
         plot_vbox.addLayout(self.yname_hbox)
-        plot_vbox.addWidget(self.separator)
+        plot_vbox.addWidget(self.yseparator)
         plot_vbox.addLayout(self.ymenu_hbox)
+        plot_vbox.addLayout(self.yrange_gridv)
         plot_vbox.addStretch(1)
+        plot_vbox.addWidget(self.dseparator)
+        plot_vbox.addLayout(dataset_vbox)
         plot_vbox.addLayout(plot_hbox)
-        plot_vbox.addStretch(1)
+        #plot_vbox.addStretch(1)
         
         self.setLayout(plot_vbox)
 
@@ -509,33 +844,120 @@ class PlotPanel(QWidget):
         
     def PlottingButton(self, checked):
 
-        # call the plot function from here
+        #if self.w is not None:
+        #    self.w.figure.clf()
+        #    self.w.close()
+            
+        # open the plot window from here
 
         # get the data selections, pass to the indexing function in the alist class
         data_selection_dict = self.SelectionTab.CollectDataSelections()
         scan_selection_dict = self.ScanTab.CollectScanSelections()
 
+        # get the formatting selections
+        plot_format_dict = {}
+        plot_format_dict['axis_range'] = {}
+        plot_format_dict['axis_range']['xrange'] = [self.xmax_box.text(), self.xmax_box.text()]
+        plot_format_dict['axis_range']['yrange'] = [self.ymax_box.text(), self.ymax_box.text()]
+        plot_format_dict['point_color'] = {}
+        plot_format_dict['point_color']['color_by_SNR'] = self.pointcolor_chkbox.isChecked()
+        plot_format_dict['point_color']['bad_threshold'] = float(self.badsnr_box.text())
+        plot_format_dict['point_color']['suspect_threshold'] = float(self.suspectsnr_box.text())
+        plot_format_dict['point_color']['good_threshold'] = float(self.goodsnr_box.text())
+        plot_format_dict['marker_style'] = {}
+        plot_format_dict['marker_style']['single_style'] = self.markerstyle_chkbox.isChecked()
+        plot_format_dict['marker_style']['style_property'] = self.MarkercomboBox.currentText()
+        plot_format_dict['plot_order'] = {}
+        plot_format_dict['plot_order']['single_figure'] = self.plotall_chkbox.isChecked()
+        plot_format_dict['plot_order']['figure_order_property'] = self.PlotcomboBox.currentText()
+
+        
+        # this method returns the indices and updates the flagging, self.alist_data.record_flags
         alist_idx = self.alist_data.get_record_indices(data_selection_dict)
         # note, this is not sorted - should we sort it?
 
         # get the selected x and y axis data for the plot
-        x_data = self.XcomboBox.currentText()
-        y_data = self.YcomboBox.currentText()
+        x_field = list(pa.plot_labels.keys())[self.XcomboBox.currentIndex()]
+        y_field = list(pa.plot_labels.keys())[self.YcomboBox.currentIndex()]
 
-        # not sure what's the best way to handle the figures
-        # send a list of data and labels, order figures by fignum, plot as needed?
-        
-        #fignum = np.random.randint(0,1000)
-        fig = alist_plt.plot_alist_data(1, np.array(self.alist_data.records[x_data])[alist_idx],
-                                        np.array(self.alist_data.records[y_data])[alist_idx],
-                                        pa.plot_labels[x_data]['label']+' '+pa.plot_labels[x_data]['unit'],
-                                        pa.plot_labels[y_data]['label']+' '+pa.plot_labels[y_data]['unit'])
 
-        #plt.figure(fignum)
-        plt.show()
+        # call the plot window; this builds the plot
+        #if self.w is None:
+        print('New plot window')
+        self.w = PlotWindow(self.alist_data, x_field, y_field, plot_format_dict)
+        self.w.show()
+        #else:
+        #    print(self.w)
+        #    return
 
         
+        
 
+
+# Class for the Summary panel
+class SummPanel(QWidget):
+
+    # Remember, the init block is only run when the window is created
+    def __init__(self, alist_data, SelectionTab, ScanTab):
+        super().__init__()
+
+        self.alist_data = alist_data
+
+        self.summ_box = QTextEdit()
+        #self.summ_box.resize(300,400)
+
+        text_string = '\n'
+        text_string += 'Hello here is some text.\n'
+        text_string += '\n'
+        text_string += 'SUMMARY OF UNFLAGGED DATA IN MEMORY\n-----------------------------------\n'
+        text_string += '\n'
+        text_string += 'Total number of unflagged fringe records = 6754\n'
+        text_string += '\n'
+        text_string += 'Earliest scan:       94-015-183000\n'
+        text_string += 'Latest scan:         94-016-181505\n'
+        text_string += 'Earliest procdate:   94-050-1648\n'
+        text_string += 'Latest procdate:     94-055-1044\n'
+        text_string += 'Stations present:    DAKLETV\n'
+        text_string += 'Baselines present:   DA DK DL DE AK AL AE KL KE LE TE AT AV TV EV KT KV DV LV DT LT\n'
+        text_string += 'Frequencies present: XS\n'
+        text_string += 'SNR extrema:         0.000  1069.\n'
+        text_string += 'Experiments present: 2498\n'
+        text_string += 'Sources present:     0048-097 0059+581 0119+041 0229+131 0454-234 0458-020\n'
+        text_string += '        0528+134 0537-441 0552+398 0727-115 0735+178 0804+499 0820+560\n'
+        text_string += '        0823+033 0919-260 0954+658 0955+476 1034-293 1044+719 1053+815\n'
+        text_string += '        1104-445 1128+385 1219+044 1308+326 1334-127 1357+769 1424-418\n'
+        text_string += '        1606+106 1622-253 1726+455 1739+522 1741-038 1749+096 1921-293\n'
+        text_string += '        2145+067 2234+282 2255-282 4C39.25 NRAO512 OJ287 OK290\n'
+        text_string += 'Quality code summary:\n'
+        text_string += '        A B C D   E F  0  1 2  3 4  5  6   7   8   9    ?\n'
+        text_string += '        0 2 0 137 3 93 88 0 46 5 18 60 144 211 851 5096 0\n'
+        text_string += '\n'
+        text_string += 'There are 0 flagged records present\n'
+        text_string += '\n'
+
+        self.summ_box.setPlainText(text_string)
+        self.summ_box.setReadOnly(True)
+
+        self.updateButton = QPushButton('Update Summary')
+
+        updatebutton_hbox = QHBoxLayout()
+        updatebutton_hbox.addStretch(1)
+        updatebutton_hbox.addWidget(self.updateButton)
+        
+        summ_vbox = QVBoxLayout()
+        summ_vbox.addWidget(self.summ_box)
+        summ_vbox.addLayout(updatebutton_hbox)
+        #summ_vbox.addWidget(self.xseparator)
+        #plot_vbox.addLayout(self.xmenu_hbox)
+        #plot_vbox.addLayout(self.xrange_gridv)
+        #plot_vbox.addStretch(1)
+        
+        self.setLayout(summ_vbox)
+
+        
+
+
+        
 # Class for the Data window
 class DataWindow(QWidget):
 
@@ -551,19 +973,19 @@ class DataWindow(QWidget):
         # Create a tabs widget in this window
         self.tabs = QTabWidget()
         self.tabs.setTabPosition(QTabWidget.North)
-        #self.tabs.setMovable(True)
+        self.tabs.setMovable(True)
 
         self.SelectionTab = SelectionPanel(self.alist_file)
         self.ScanTab = ScanPanel(self.alist_file)
         self.PlotTab = PlotPanel(self.alist_file, self.SelectionTab, self.ScanTab)
-
+        self.SummTab = SummPanel(self.alist_file, self.SelectionTab, self.ScanTab)
+        
         self.tab1 = self.SelectionTab
         self.tab2 = self.ScanTab
-        self.tab3 = QWidget() # summary panel
+        self.tab3 = self.SummTab # summary panel
         self.tab4 = self.PlotTab # plot panel
         self.tab5 = QWidget() # calc panel
         self.tab6 = QWidget() # save panel
-
         
         # Add tabs, specifying the widget in each tab
         self.tabs.addTab(self.tab1, 'Select')
@@ -573,7 +995,6 @@ class DataWindow(QWidget):
         self.tabs.addTab(self.tab5, 'Calc')
         self.tabs.addTab(self.tab6, 'Save')
         
-        #self.setCentralWidget(self.tabs)
         self.container.addWidget(self.tabs)
 
         # golden aspect ratio
@@ -581,12 +1002,6 @@ class DataWindow(QWidget):
         #self.setFixedSize(QSize(wsize,wsize*0.618))
         self.setMinimumSize(QSize(wsize,wsize*1.2))
 
-        #self.setLayout(self.tabs)
-        
-        #self.show()
-
-
-        
 
 
         
@@ -613,14 +1028,17 @@ class Init_tab(QWidget):
     def initUI(self):
 
         # Create a text entry box to load the alist
-        init_box_label = QLabel('Alist file')
-        self.init_afile_box = QLineEdit()
+        init_box_label = QLabel('Alist file(s):')
+        self.init_afile_box = QPlainTextEdit()#QLineEdit()
         if self.alist_file is not None:
-            self.init_afile_box.setText(self.alist_file)
+            self.init_afile_box.insertPlainText(self.alist_file)
+            #self.init_afile_box.setText(self.alist_file)
         #else:
         #    self.init_afile_box.setText()
-        self.init_afile_box.setFixedWidth(300)
-
+        #self.init_afile_box.setFixedWidth(300)
+        self.init_afile_box.setMinimumWidth(300)
+        self.init_afile_box.setMinimumHeight(200)
+        
         # button to load the file; this will run a mess of python parsing code
         self.init_button = QPushButton("Load Afile")
         self.init_button.clicked.connect(self.load_button)
@@ -645,16 +1063,14 @@ class Init_tab(QWidget):
 
         # load the alist file, collect data, open new window with data selection options
 
-        afilename = self.init_afile_box.text()
-        
+        #afilename = self.init_afile_box.text()
+        afilename = self.init_afile_box.toPlainText()
+                
         alist_data = pa.ParseAlist(afilename)
 
         if self.w is None:
             self.w = DataWindow(alist_data)
         self.w.show()
-
-        #print(alist_data.records.scan_time)
-        #print(np.unique(alist_data.records.scan_time))
 
 
 

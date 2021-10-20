@@ -135,7 +135,9 @@ class ParseAlist:
 
         # keep an array of flag state for each record
         self.record_flags = np.zeros(len(self.records['snr']))
-        
+
+        # keep an array of colors defined by the SNR of each record
+        self.record_color = ['red']*len(self.records['snr'])
 
 
 
@@ -144,12 +146,11 @@ class ParseAlist:
 
         # baselines, stations, sources, polarizations, qcodes, snrrange
 
+        #print(data_selection_dict)
+
         baseline_idx = [i for i,x in enumerate(self.records['baseline']) if x in data_selection_dict['baselines']]
-
         source_idx = [i for i,x in enumerate(self.records['source']) if x in data_selection_dict['sources']]
-
         qcode_idx = [i for i,x in enumerate(self.records['qcode']) if x in data_selection_dict['qcodes']]
-
         pols_idx = [i for i,x in enumerate(self.records['pols']) if x in data_selection_dict['pols']]
 
         # stations have to be handled backwards...
@@ -157,14 +158,39 @@ class ParseAlist:
         for station in data_selection_dict['stations']:
             station_idx.extend([i for i,x in enumerate(self.records['stations']) if station in x])
 
-
         selected_idx = list(set(baseline_idx) & set(station_idx) & set(source_idx) & set(qcode_idx) & set(pols_idx))
 
         # set only the selected records to flag=0
         self.record_flags.fill(1)
         self.record_flags[selected_idx] = 0
         
-        
         return selected_idx
 
 
+    # method to define a list of colors for plotting
+    def set_record_colors(self, plot_format_dict):
+
+        if plot_format_dict['point_color']['color_by_SNR']:
+
+            good_idx = np.where(np.array(self.records['snr'])>=plot_format_dict['point_color']['good_threshold'])[0]
+            suspect_idx = np.where(np.array(self.records['snr'])<plot_format_dict['point_color']['suspect_threshold'])[0]
+            bad_idx = np.where(np.array(self.records['snr'])<=plot_format_dict['point_color']['bad_threshold'])[0]
+        
+            for jj in suspect_idx:
+                self.record_color[jj] = 'darkorange'
+            for ii in bad_idx:
+                self.record_color[ii] = 'red'
+            for kk in good_idx:
+                self.record_color[kk] = 'royalblue'
+
+            return
+            
+        else:
+
+            return
+            
+        # datapoint style selection
+        # shape and color; station, source, qcode, pol, snr
+
+        # see https://matplotlib.org/stable/api/markers_api.html
+        #markers = ['s', 'o', 'v', 'P', 'X', 'D', '^', '*', 'x', '+', '>', '<', 'd']
