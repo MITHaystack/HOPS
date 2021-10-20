@@ -1,7 +1,9 @@
 #include "hops_complex.h"
 #include <math.h>
 
-#ifndef USE_C_COMPLEX
+#ifdef USE_C_COMPLEX
+    const hops_complex_impl cmplx_unit_I = I;
+#else
     const std::complex<double> cmplx_unit_I = std::complex<double>(0.0,1.0); 
 #endif
 
@@ -57,7 +59,7 @@ exp_complex(hops_complex val)
 extern double real_comp(hops_complex* val)
 {
     #ifdef USE_C_COMPLEX
-        return creal(*val)
+        return creal(*val);
     #else
         return std::real(*val);
     #endif
