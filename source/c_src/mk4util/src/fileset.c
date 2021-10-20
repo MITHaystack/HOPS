@@ -25,7 +25,7 @@
 #include <regex.h>
 
 int
-fileset(char *rootname, struct fileset *fset)
+get_fileset(char *rootname, struct fileset *fset)
     {
     int i, nfil, rerc;
     char temp[1024], *ptr, *rootcode;
