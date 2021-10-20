@@ -33,6 +33,16 @@ double abs_complex(hops_complex* val)
     #endif
 }
 
+
+double arg_complex(hops_complex* val)
+{
+    #ifdef USE_C_COMPLEX
+        return carg(*val);
+    #else
+        return std::arg(*val);
+    #endif
+}
+
 hops_complex 
 exp_complex(hops_complex val)
 {
@@ -40,5 +50,24 @@ exp_complex(hops_complex val)
         return cexp(val);
     #else
         return std::exp(val);
+    #endif
+}
+
+
+extern double real_comp(hops_complex* val)
+{
+    #ifdef USE_C_COMPLEX
+        return creal(*val)
+    #else
+        return std::real(*val);
+    #endif
+}
+
+extern double imag_comp(hops_complex* val)
+{
+    #ifdef USE_C_COMPLEX
+        return cimag(*val);
+    #else
+        return std::imag(*val);
     #endif
 }

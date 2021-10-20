@@ -11,6 +11,7 @@
 #include "hops_complex.h"
 #include <fftw3.h>
 #include "mk4_data.h"
+#include "mk4_dfio.h"
 #include "param_struct.h"
 #include "pass_struct.h"
 
@@ -24,7 +25,7 @@ struct type_230 *t230)
     {
     struct data_corel *datum;
     hops_complex value;
-    static hops_complex work_array[4 * MAXLAG];
+    static fftw_complex work_array[4 * MAXLAG];
     double theta;
     int i, j, lag, nl;
     int stnpol[2][4] = {0, 1, 0, 1, 0, 1, 1, 0}; // [stn][pol] = 0:L, 1:R
@@ -45,7 +46,10 @@ struct type_230 *t230)
         t230->usbweight = t230->lsbweight = -1.0;
 
     for (i = 0; i < 4 * MAXLAG; i++)
-        work_array[i] = 0.0;
+    {
+        work_array[i][0] = 0.0;
+        work_array[i][1] = 0.0;
+    }
                                         /* Fill padded work array */
     nl = param->nlags;
     if (fftsize != 4 * nl)
@@ -64,7 +68,8 @@ struct type_230 *t230)
         // theta = (status.pc_phase[fr][1][stnpol[1][pass->pol]]
         //       - status.pc_phase[fr][0][stnpol[0][pass->pol]]);
         // work_array[j] = c_mult (value, c_exp (theta));
-        work_array[j] = datum->sbdelay[lag];
+        work_array[j][0] = real_comp( &( datum->sbdelay[lag]) );
+        work_array[j][1] = imag_comp( &( datum->sbdelay[lag]) );
         }
                                         /* FFT sband delay to xpower spectrum */
     fftw_execute (fftplan);
@@ -73,8 +78,8 @@ struct type_230 *t230)
        {
        j = nl - i;
        if (j < 0) j += 4*nl;
-       t230->xpower[i].real = creal(work_array[j]);
-       t230->xpower[i].imag = cimag(work_array[j]);
+       t230->xpower[i].real = work_array[j][0];
+       t230->xpower[i].imag = work_array[j][1];
        }
 
     return (0);
