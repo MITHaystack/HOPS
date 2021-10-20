@@ -25,6 +25,7 @@
 #include <stdio.h>
 #include <string.h>
 #include "mk4_data.h"
+#include "mk4_util.h"
 #include "vex.h"
 #include "control.h"
 #include "fstruct.h"
