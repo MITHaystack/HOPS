@@ -41,7 +41,7 @@ void apply_video_bp (hops_complex *xp_spec,
             {
             f = (i + 0.5) * deltaf;
             delphi = a[0]*f*f*f + a[1]*f*f + a[2]*f + a[3] + a[4]/f;
-            xp_spec[i] *= cexp (I * delphi * conrad);
+            xp_spec[i] *= exp_complex (cmplx_unit_I * delphi * conrad);
             }
         }
     }
