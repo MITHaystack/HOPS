@@ -41,9 +41,9 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/${INC_RELPATH})
 #TODO what about the other directory locations defined in environment.c ?
 add_definitions(-DPFORMAT_TEXT_DIR="${SHARE_TEXT_INSTALL_DIR}")
 
-# if(HOPS3_USE_CXX)
-# SET_SOURCE_FILES_PROPERTIES(${${LIBNAME}_SOURCEFILES} PROPERTIES LANGUAGE CXX )
-# endif(HOPS3_USE_CXX)
+if(HOPS3_USE_CXX)
+SET_SOURCE_FILES_PROPERTIES(${${LIBNAME}_SOURCEFILES} PROPERTIES LANGUAGE CXX )
+endif(HOPS3_USE_CXX)
 
 #build/link/install library ####################################################
 list(APPEND LIBLIST "msg")
