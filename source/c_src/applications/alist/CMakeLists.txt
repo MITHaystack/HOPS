@@ -26,11 +26,13 @@ foreach( BASENAME ${${EXENAME}_SOURCE_BASENAMES} )
 endforeach( BASENAME )
 
 #declare relative paths to internal headers/libs ###############################
+set(MSG_RELPATH "../../msg")
 set(MK4UTIL_RELPATH "../../mk4util")
 set(AFIO_RELPATH "../../afio")
 set(DFIO_RELPATH "../../dfio")
 
 list(APPEND RELPATH_LIST
+    ${MSG_RELPATH}
     ${MK4UTIL_RELPATH}
     ${AFIO_RELPATH}
     ${DFIO_RELPATH}

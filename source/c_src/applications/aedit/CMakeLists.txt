@@ -37,6 +37,7 @@ if( PGPLOT_FOUND AND FFTW_FOUND AND X11_FOUND AND GFORTRAN_FOUND )
     list(INSERT AM_${EXENAME}_SOURCEFILES 0 aedit.c)
 
     #declare relative paths to internal headers/libs ###############################
+    set(MSG_RELPATH "../../msg")
     set(MK4UTIL_RELPATH "../../mk4util")
     set(AFIO_RELPATH "../../afio")
     set(DFIO_RELPATH "../../dfio")
@@ -44,6 +45,7 @@ if( PGPLOT_FOUND AND FFTW_FOUND AND X11_FOUND AND GFORTRAN_FOUND )
 
 
     list(APPEND RELPATH_LIST
+        ${MSG_RELPATH}
         ${MK4UTIL_RELPATH}
         ${AFIO_RELPATH}
         ${DFIO_RELPATH}

@@ -20,8 +20,9 @@
 extern char progname[256];
 extern int msglev;
 
-void set_progname(char* local_progname);
-void set_msglev(int lev);
-void msg (const char *string, int level, ...);
+extern void set_progname(const char* local_progname);
+extern const char* get_progname();
+extern void set_msglev(int lev);
+extern void msg (const char *string, int level, ...);
 
 #endif

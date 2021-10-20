@@ -151,7 +151,8 @@ MHO_MK4CorelInterface::DetermineDataDimensions()
     std::string baseline = getstr(fCorel->t100->baseline, 2);
     msg_debug("mk4interface", "Reading data for baseline: " << baseline << eom);
 
-    struct mk4_corel::index_tag* idx;
+    // struct mk4_corel::index_tag* idx;
+    struct index_tag* idx;
     for(int i=0; i<fCorel->index_space; i++)
     {
         idx = fCorel->index + i;
@@ -467,7 +468,8 @@ MHO_MK4CorelInterface::ExtractCorelFile()
 
         //now fill in the actual visibility data
         struct type_101* t101 = nullptr;
-        struct mk4_corel::index_tag* idx = nullptr;
+        //struct mk4_corel::index_tag* idx = nullptr;
+        struct index_tag* idx = nullptr;
         for(int i=0; i<fCorel->index_space; i++)
         {
             idx = fCorel->index + i;

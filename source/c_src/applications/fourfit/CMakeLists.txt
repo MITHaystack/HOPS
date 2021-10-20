@@ -34,6 +34,7 @@ if( PGPLOT_FOUND AND FFTW_FOUND AND X11_FOUND AND GFORTRAN_FOUND )
     endforeach( BASENAME )
 
     #declare relative paths to internal headers/libs ###############################
+    set(MSG_RELPATH "../../msg")
     set(MK4UTIL_RELPATH "../../mk4util")
     set(AFIO_RELPATH "../../afio")
     set(DFIO_RELPATH "../../dfio")
@@ -46,6 +47,7 @@ if( PGPLOT_FOUND AND FFTW_FOUND AND X11_FOUND AND GFORTRAN_FOUND )
     set(FFPLOT_RELPATH "../../fourfit_libs/ffplot")
 
     list(APPEND RELPATH_LIST
+        ${MSG_RELPATH}
         ${MK4UTIL_RELPATH}
         ${AFIO_RELPATH}
         ${DFIO_RELPATH}
