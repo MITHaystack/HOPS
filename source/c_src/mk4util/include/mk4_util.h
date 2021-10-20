@@ -48,6 +48,7 @@ extern int    sort_names (fstruct *, int);
 extern void   short_reverse (short *);
 extern void   unsig_reverse (unsigned short *);
 extern void   int_reverse (int *);
+extern void   uint_reverse (unsigned int *);
 extern void   long_reverse (long *);
 extern void   float_reverse (float *);
 extern void   double_reverse (double *);
