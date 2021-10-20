@@ -20,10 +20,14 @@
 #include <stdio.h>
 #include <math.h>
 #include <string.h>
+#include "msg.h"
 #include "mk4_data.h"
+#include "mk4_util.h"
 #include "param_struct.h"
 #include "pass_struct.h"
 #include "mk4_sizes.h"
+#include "ffmath.h"
+
 
 #define TWO31 2147483648.0
 #define TWO32 4294967296.0
