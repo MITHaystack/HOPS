@@ -117,7 +117,7 @@ void apply_notches(int sb, int ap,
     status->sb_bw_origs[MAXFREQ+1][sb] =  0.0;
     if (param->nnotches <= 0) return;
 
-    if (!(xp_flags = calloc(npts, sizeof(int))))
+    if (!(xp_flags = (int*) calloc(npts, sizeof(int))))
         {
         perror("apply_notches:calloc");
         msg("Calloc failure in apply notches", 3);
