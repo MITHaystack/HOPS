@@ -23,7 +23,7 @@ void set_progname(const char* local_progname)
 
 const char* get_progname()
 {
-    return progname;
+    return &(progname[0]);
 }
 
 void set_msglev(int lev)

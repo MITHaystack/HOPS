@@ -16,6 +16,7 @@
 #include <time.h>
 #include <unistd.h>
 
+#include "msg.h"
 #include "hops_complex.h"
 #define PLOT_DATA_DIR_IMPLEMENTATION 1
 #include "plot_data_dir.h"
@@ -66,7 +67,6 @@
 
 
 #define R2D(RAD) ((RAD) * (M_1_PI * 180.0))
-extern void msg (char *, int, ...);
 extern char control_filename[];
 
 /*

@@ -24,14 +24,16 @@
 /************************************************************************/
 #include <stdio.h>
 #include <math.h>
-#include "hops_complex.h"
 #include <fftw3.h>
+#include "msg.h"
+#include "hops_complex.h"
 #include "mk4_data.h"
 #include "param_struct.h"
 #include "pass_struct.h"
 #include "adhoc_flag.h"
 #include "apply_funcs.h"
-#include "ff_misc_if.h"
+#include "ffcontrol.h"
+//#include "ff_misc_if.h"
                                         /* minimum #bits for an AP to count */
 #define SLIVER   0x1000
 #define TWO_32   4294967296.0
@@ -103,6 +105,14 @@ void norm_xf (struct type_pass *pass,
     int stnpol[2][4] = {0, 1, 0, 1, 0, 1, 1, 0}; // [stn][pol] = 0:L/X/H, 1:R/Y/V
     static fftw_plan fftplan_hw;
     static fftw_plan fftplan;
+
+    extern void calc_normalization (int sb,
+                             int pol,
+                             struct data_corel *datum,
+                             struct type_pass *pass,
+                             double *mean,
+                             double *norm_const);
+
 
     if (pass->npols == 1)
         {

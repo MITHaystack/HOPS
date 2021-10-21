@@ -10,6 +10,7 @@
 #include "pass_struct.h"
 #include <math.h>
 #include <stdio.h>
+#include "ffmath.h"
 #include "hops_complex.h"
 
 void ion_covariance (struct type_pass *pass)
@@ -30,7 +31,7 @@ void ion_covariance (struct type_pass *pass)
     extern struct type_param param;
                                         // function prototypes
     //int minvert (int, double [3*n+3], double[3*n+3]);
-    int minvert (int, double*, double*);
+    //int minvert (int, double*, double*);
 
     for (i=0; i<3; i++)                 // pre-clear the normal matrix
         for (j=0; j<3; j++)

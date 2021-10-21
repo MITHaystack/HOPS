@@ -75,14 +75,21 @@ if( PGPLOT_FOUND AND FFTW_FOUND AND X11_FOUND AND GFORTRAN_FOUND )
     #yes...the number of escapes '\' needed here is ridiculous,
     #but there is no other easier way to pass these flags to automake
     #(this has not been tested on platforms other than bash/linux)
-    set(FF_PROGNAME_DEF "FF_PROGNAME=\\\\\"fourfit\\\\\"")
-    set(FF_VER_NO_DEF "FF_VER_NO=\\\\\"${MODULE_VERSION_NUMBER}\\\\\"")
+    set(FF_PROGNAME_DEF "FF_PROGNAME=\\\"fourfit\\\"")
+    set(FF_VER_NO_DEF "FF_VER_NO=\\\"${MODULE_VERSION_NUMBER}\\\"")
 
-    hops_add_cflag(${FF_PROGNAME_DEF})
-    hops_add_cflag(${FF_VER_NO_DEF})
+    if(HOPS3_USE_CXX)
+        SET_SOURCE_FILES_PROPERTIES(${${EXENAME}_SOURCEFILES} PROPERTIES LANGUAGE CXX )
+        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -D${FF_PROGNAME_DEF}")
+        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -D${FF_VER_NO_DEF}")
+    else()
+        hops_add_cflag(${FF_PROGNAME_DEF})
+        hops_add_cflag(${FF_VER_NO_DEF})
+    endif(HOPS3_USE_CXX)
 
     # set library lists ############################################################
     set(INTERNAL_LIBLIST
+        "msg"
         "mk4util"
         "afio"
         "dfio"
@@ -100,7 +107,10 @@ if( PGPLOT_FOUND AND FFTW_FOUND AND X11_FOUND AND GFORTRAN_FOUND )
         ${PGPLOT_LIBRARIES}
         ${GFORTRAN_LIBRARIES}
         ${X11_LIBRARIES}
+        "m"
     )
+
+
 
     add_executable (${EXENAME} ${${EXENAME}_SOURCEFILES} )
     target_link_libraries (${EXENAME} ${INTERNAL_LIBLIST} ${EXTERNAL_LIBLIST})

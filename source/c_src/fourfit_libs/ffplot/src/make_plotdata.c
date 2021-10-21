@@ -7,14 +7,16 @@
 *  00.10.20 cjl modify for fractional APs          *
 ***************************************************/
 
+#include "msg.h"
 #include "mk4_data.h"
 #include "param_struct.h"
 #include "pass_struct.h"
+#include "ffmath.h"
 #include <math.h>
 #include <stdio.h>
 #include "hops_complex.h"
 #include "apply_funcs.h"
-#include "ff_misc_if.h"
+//#include "ff_misc_if.h"
 #include <fftw3.h>
 
 // MAXLAG == 8192 so 4*MAXLAG is 4x MBDMXPTS which is 3x more than needed for MBD.
@@ -48,8 +50,9 @@ int make_plotdata(struct type_pass *pass)
     int n, ij,
         maxi, npmax, nl;
                                         // function prototypes
-    int minvert (double [3][3], double [3][3]);
+    //int minvert (double [3][3], double [3][3]);
     void ion_covariance (struct type_pass *);
+    extern void calc_rms (struct type_pass* );
 
                                         /* Make sure data will fit */
     if (param.nlags*param.num_ap > MAX_APXLAG)

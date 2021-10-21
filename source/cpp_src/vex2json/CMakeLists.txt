@@ -40,6 +40,6 @@ hops_install_headers (${VEX2JSON_HEADERFILES})
 hops_install_libraries (vex2json)
 
 
-if (HOPS_ENABLE_TEST)
-    add_subdirectory(test)
-endif (HOPS_ENABLE_TEST)
+# if (HOPS_ENABLE_TEST)
+#     add_subdirectory(test)
+# endif (HOPS_ENABLE_TEST)

@@ -21,5 +21,6 @@ static void parsing_error (int state_num, int ntok);
 int read_control_file (char* control_file_name, char** input_string, int* flag);
 int skip_data (int scantime, char* baseline, char* source, char group);
 int skip_index (int ind, struct c_block* cblock);
+int fcode (char c, char *codes);
 
 #endif /* end of include guard: FFCONTROL_H__ */

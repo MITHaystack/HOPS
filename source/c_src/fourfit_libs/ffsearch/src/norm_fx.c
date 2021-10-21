@@ -26,12 +26,14 @@
 #include <math.h>
 #include "hops_complex.h"
 #include <fftw3.h>
+#include "msg.h"
 #include "mk4_data.h"
 #include "param_struct.h"
 #include "pass_struct.h"
 #include "adhoc_flag.h"
 #include "apply_funcs.h"
-#include "ff_misc_if.h"
+#include "ffcontrol.h"
+//#include "ff_misc_if.h"
 
 #define signum(a) (a>=0 ? 1.0 : -1.0)
 

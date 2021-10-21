@@ -64,7 +64,7 @@ if( FFTW_FOUND )
 
 
     #build/link/install library ####################################################
-    list(APPEND LIBLIST "mk4util" "afio"
+    list(APPEND LIBLIST "msg" "mk4util" "afio"
                         "dfio" "vex"
                         "ffcontrol" "ffcore"
                         "ffio" "ffmath"
