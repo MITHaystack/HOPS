@@ -4,6 +4,7 @@
 *  refactor initial code from make_plotdata 2019.9.13 rjc*
 *********************************************************/
 
+#include "msg.h"
 #include "mk4_data.h"
 #include "param_struct.h"
 #include "pass_struct.h"
@@ -39,7 +40,7 @@ void ion_covariance (struct type_pass *pass)
         {
                                         // increment normal equations
         sigma_fr = sqrt ((double)pass->nfreq) * status.delres_max /
-                       (2.0 * M_PI * status.snr * cabs (status.fringe[fr]));
+                       (2.0 * M_PI * status.snr * abs_complex(status.fringe[fr]) );
                                         // coefficient matrix weight
         w = 1.0 / (sigma_fr * sigma_fr);
                                         // convenience variables to match rjc memo

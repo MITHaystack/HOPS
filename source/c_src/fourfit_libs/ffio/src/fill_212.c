@@ -53,8 +53,8 @@ struct type_212 *t212)
             continue;
             }
                                         /* Amplitude and phase */
-        t212->data[ap_212].amp = abs_complex( &(plot.phasor[fr][ap]) ) * status->amp_corr_fact;
-        t212->data[ap_212].phase = arg_complex( &(plot.phasor[fr][ap]) );
+        t212->data[ap_212].amp = abs_complex( plot.phasor[fr][ap] ) * status->amp_corr_fact;
+        t212->data[ap_212].phase = arg_complex( plot.phasor[fr][ap] );
         t212->data[ap_212].weight = plot.weights[fr][ap];
         }
 

@@ -347,7 +347,7 @@ int pcal_interp (struct mk4_sdata *sd1,
                                 {
                                     // if there is DSB data, then don't allow the LSB
                                     // pcal to overwrite what is already there
-                                if (ch == LSB_LCP && abs_complex( &(isd->phasecal_lcp[ipc]) ) != 0.0)
+                                if (ch == LSB_LCP && abs_complex( isd->phasecal_lcp[ipc] ) != 0.0)
                                     break;
                                     // must renormalize to account for fraction of high data
                                     // see rjc's normalization notes from 2006.10.16
@@ -371,7 +371,7 @@ int pcal_interp (struct mk4_sdata *sd1,
                                 {
                                     // if there is DSB data, then don't allow the LSB
                                     // pcal to overwrite what is already there
-                                if (ch == LSB_RCP && abs_complex( &(isd->phasecal_rcp[ipc]) ) != 0.0)
+                                if (ch == LSB_RCP && abs_complex( isd->phasecal_rcp[ipc] ) != 0.0)
                                     break;
                                     // must renormalize to account for fraction of high data
                                     // see rjc's normalization notes from 2006.10.16
