@@ -87,4 +87,10 @@ int fr,
 int ap,
 struct type_230 *t230);
 
+extern int
+fill_fringe_info (
+struct vex *root,
+struct type_pass *pass,
+char *filename);
+
 #endif /* end of include guard: FFIO_H__ */
