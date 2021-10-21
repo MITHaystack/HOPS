@@ -16,6 +16,7 @@
 #include "param_struct.h"
 #include "pass_struct.h"
 #include "control.h"
+#include "ffsearch.h"
 
 #ifndef MBD_GRID_MAX
 #define MBD_GRID_MAX 8192
@@ -39,25 +40,6 @@ int search (struct type_pass *pass)
     extern int do_accounting;
 
     fftw_plan fftplan;
-
-    extern void pcalibrate (struct type_pass *, int);
-    extern void rotate_pcal(struct type_pass *pass);
-    extern void sampler_delays (struct type_pass *pass);
-    extern void norm_fx (struct type_pass*,
-                  struct type_param*,
-                  struct type_status*,
-                  int, int);
-
-    extern void norm_xf (struct type_pass*,
-                  struct type_param*,
-                  struct type_status*,
-                  int, int);
-
-    extern void freq_spacing (struct type_pass*);
-    extern void search_windows(struct type_pass*);
-    extern void delay_rate (struct type_pass*, int, hops_complex rate_spectrum[MAXAP]);
-    extern void update (struct type_pass*, int, double, int, int, int);
-
 
                                         // Initialization
     cnt = 0;
