@@ -32,7 +32,7 @@ extern char display_221 (struct type_221 *, int);
 int 
 display_fplot (struct mk4_fringe *fringe)
     {
-    FILE *fp, *fopen();
+    FILE *fp, *fopen(const char*, const char*);
     char c;
     int i, size, ofs;
     extern int displayopt;
