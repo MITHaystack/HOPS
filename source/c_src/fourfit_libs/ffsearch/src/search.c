@@ -8,9 +8,11 @@
 #include <stdio.h>
 #include <string.h>
 #include <math.h>
-#include "hops_complex.h"
 #include <fftw3.h>
+#include "hops_complex.h"
+#include "msg.h"
 #include "mk4_data.h"
+#include "mk4_util.h"
 #include "param_struct.h"
 #include "pass_struct.h"
 #include "control.h"
@@ -21,7 +23,7 @@
 
 int search (struct type_pass *pass)
     {
-    fftw_complex *data = NULL; 
+    hops_complex *data = NULL; 
     double mb_delay[MBD_GRID_MAX]; 
     static hops_complex rate_spectrum[MAXFREQ][MAXAP];
     static double amps[MBD_GRID_MAX][MAXAP], drtemp[MAXAP];
@@ -38,7 +40,24 @@ int search (struct type_pass *pass)
 
     fftw_plan fftplan;
 
-    void pcalibrate (struct type_pass *, int);
+    extern void pcalibrate (struct type_pass *, int);
+    extern void rotate_pcal(struct type_pass *pass);
+    extern void sampler_delays (struct type_pass *pass);
+    extern void norm_fx (struct type_pass*,
+                  struct type_param*,
+                  struct type_status*,
+                  int, int);
+
+    extern void norm_xf (struct type_pass*,
+                  struct type_param*,
+                  struct type_status*,
+                  int, int);
+
+    extern void freq_spacing (struct type_pass*);
+    extern void search_windows(struct type_pass*);
+    extern void delay_rate (struct type_pass*, int, hops_complex rate_spectrum[MAXAP]);
+    extern void update (struct type_pass*, int, double, int, int, int);
+
 
                                         // Initialization
     cnt = 0;
@@ -56,10 +75,10 @@ int search (struct type_pass *pass)
     status.tot_sb_bw_aperr = 0.0;
                                         // allocate fftw data array
     // +3 is (temporary for slop)
-    data = fftw_malloc (sizeof (fftw_complex) * (MBD_GRID_MAX+3));
+    data = (hops_complex*) fftw_malloc (sizeof (hops_complex) * (MBD_GRID_MAX+3));
     if (data == NULL)
         {
-        msg ("fftw_malloc() failed to allocate memory");
+        msg ("fftw_malloc() failed to allocate memory",0);
         return (-1);
         }
     
@@ -175,7 +194,7 @@ int search (struct type_pass *pass)
                                         /* in make_plotdata() */
     memset (&plot, 0, sizeof (plot));
                                         // set up for later fft's
-    fftplan = fftw_plan_dft_1d (status.grid_points, data, data, FFTW_FORWARD, FFTW_MEASURE);
+    fftplan = fftw_plan_dft_1d (status.grid_points, (fftw_complex*) data, (fftw_complex*) data, FFTW_FORWARD, FFTW_MEASURE);
 
     for (lag = status.win_sb[0]; lag <= status.win_sb[1]; lag++)
         {
@@ -190,8 +209,9 @@ int search (struct type_pass *pass)
             status.dr = dr_index;                       /* Clear data array and */
                                                 /* Fill with delay rate data */
             for (i = 0; i < status.grid_points; i++)
-                data[i] = 0.0;
-                
+            {
+                zero_complex(&(data[i]) );
+            }
             // check that mb_index value is legit
             for (fr = 0; fr < pass->nfreq; fr++)
                 if (status.mb_index[fr] < MBD_GRID_MAX)
@@ -207,7 +227,7 @@ int search (struct type_pass *pass)
                 i = (i+1) % status.grid_points;
                 j = i-status.grid_points/2;
                 if (j < 0) j += status.grid_points;
-                mb_delay[i] = cabs (data[j]); 
+                mb_delay[i] = abs_complex (data[j]); 
                 }
             while (i != status.win_mb[1]);
                                                 /* Normalize delay res. value and store */
