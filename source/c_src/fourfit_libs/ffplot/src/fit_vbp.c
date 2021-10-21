@@ -10,6 +10,7 @@
 #include "mk4_data.h"
 #include "param_struct.h"
 #include "pass_struct.h"
+#include "ffmath.h"
 #include <math.h>
 #include <stdio.h>
 #include "hops_complex.h"
@@ -22,9 +23,9 @@ void fit_vbp (int npts)
            res,                         // freq spacing of xpower spectrum
            sb,                          // sideband usb = 1, lsb = -1
            wgt,                         // least squares weight
-           a[5][5],                     // normal equation matrix
+           a[25],                     // normal equation matrix
            b[5],                        // RHS of normal equations
-           a_inv[5][5],                 // covariance matrix
+           a_inv[25],                 // covariance matrix
            x[5],                        // solution vector
            sigma[5];                    // std error of solution vector
 
@@ -35,13 +36,13 @@ void fit_vbp (int npts)
     extern struct type_plot   plot;
     extern int msglev;
                                         // function prototypes
-    int minvert (int, double [5][5], double[5][5]);
+    // int minvert (int, double [5][5], double[5][5]);
 
     for (i=0; i<5; i++)                 // pre-clear the normal matrix
         {
         b[i] = 0.0;
         for (j=0; j<5; j++)
-            a[i][j] = 0.0;
+            a[i*5+j] = 0.0;
         }
 
     bw = 0.25 / status.sbd_sep;         // video bandwidth
@@ -66,7 +67,7 @@ void fit_vbp (int npts)
         for (i=0; i<5; i++)             // form the normal matrix
             for (j=0; j<5; j++)
                 {
-                a[i][j] += pow (f, 6 - i - j) * wgt;
+                a[i*5+j] += pow (f, 6 - i - j) * wgt;
                                         // also add into the RHS, just once per i & k
                 if (j == 0)
                     b[i] += arg_complex (plot.cp_spectrum[k]) / conrad * pow (f, 3 - i) * sb * wgt;
@@ -82,13 +83,13 @@ void fit_vbp (int npts)
     for (i=0; i<5; i++)
         {
         x[i] = 0.0;
-        sigma[i] = sqrt (a_inv[i][i]);
+        sigma[i] = sqrt (a_inv[i*5+i]);
         for (j=0; j<5; j++)         // matrix multiplication of a_inv * b
-            x[i] += a_inv[i][j] * b[j];
+            x[i] += a_inv[i*5+j] * b[j];
         }
     for (i=0; i<5; i++)             // normalize covariance to get correlation matrix
         for (j=0; j<5; j++)
-            a_inv[i][j] /= (sigma[i] * sigma[j]);
+            a_inv[i*5+j] /= (sigma[i] * sigma[j]);
     msg ("vbp_coeffs %7.3f %7.3f %7.3f %7.3f %7.3f", 2,
          x[0], x[1], x[2], x[3], x[4]);
     msg ("      +/-  %7.3f %7.3f %7.3f %7.3f %7.3f", 2,
@@ -98,6 +99,6 @@ void fit_vbp (int npts)
         msg ("video bandpass correlation matrix:", 2);
         for (i=0; i<5; i++)
             msg ("%7.3f %7.3f %7.3f %7.3f %7.3f", 1,
-                 a_inv[i][0], a_inv[i][1], a_inv[i][2], a_inv[i][3], a_inv[i][4]);
+                 a_inv[i*5+0], a_inv[i*5+1], a_inv[i*5+2], a_inv[i*5+3], a_inv[i*5+4]);
         }
     }

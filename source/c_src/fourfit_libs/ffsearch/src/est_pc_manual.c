@@ -11,11 +11,11 @@
 #include <string.h>
 #include <stdlib.h>
 
+#include "msg.h"
 #include "mk4_data.h"
 #include "param_struct.h"
 #include "pass_struct.h"
 
-extern void msg (char *, int, ...);
 extern char control_filename[];
 extern char progname[];
 extern struct mk4_fringe fringe;

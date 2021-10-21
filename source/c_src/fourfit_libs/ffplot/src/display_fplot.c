@@ -13,9 +13,9 @@
 #include <string.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include "msg.h"
 #include "mk4_data.h"
 
-extern void msg (char *, int, ...);
 extern char display_221 (struct type_221 *, int);
 
 #ifdef P_tmpdir

@@ -19,7 +19,7 @@
 #include "control.h"
 #include "statistics.h"
 #include "filter.h"
-#include "ff_misc_if.h"
+//#include "ff_misc_if.h"
 
 int
 compute_qf (
