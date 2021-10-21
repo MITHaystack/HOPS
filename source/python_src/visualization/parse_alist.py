@@ -9,7 +9,8 @@ import numpy as np
 
 
 # list of dictionary fields for each record in the alist file
-alist_fields = ['experiment', # four-digit experiment label?
+alist_fields = ['index', # unique field to keep track of record
+                'experiment', # four-digit experiment label?
                 'source', # phonebook name for the source observed
                 'scan', # scan name, eg 105-0347 or 210-1800a (DOY-HHMM[a,b,c])
                 'baseline', # two-letter baseline for each record
@@ -94,6 +95,7 @@ class ParseAlist:
         lines = f.readlines()
         f.close()
 
+        counter=0
         for line in lines:
 
             # skip header lines
@@ -104,6 +106,7 @@ class ParseAlist:
             # build lists of the useful columns
             #root.append(cols[1])
 
+            self.records['index'].append(counter)
             self.records['scan_length'].append(cols[5])
             self.records['experiment'].append(cols[7])
             self.records['scan'].append(cols[8])
@@ -126,6 +129,7 @@ class ParseAlist:
             self.records['mbd'].append(float(cols[25]))
             self.records['delay_rate'].append(float(cols[27]))
 
+            counter+=1
 
         # sanitize qcodes - if there's a letter, just save the letter
         for ii in range(len(self.records['qcode'])):

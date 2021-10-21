@@ -504,6 +504,7 @@ class PlotWindow(QWidget):
 
         x_data = np.array(self.alist_data.records[self.x_field])[plot_record_idx]
         y_data = np.array(self.alist_data.records[self.y_field])[plot_record_idx]
+        self.record_idx = np.array(self.alist_data.records['index'])[plot_record_idx]
 
         self.alist_data.set_record_colors(self.plot_format_dict)
         colors = np.array([self.alist_data.record_color[ii] for ii in plot_record_idx])
@@ -511,8 +512,13 @@ class PlotWindow(QWidget):
         x_label = pa.plot_labels[self.x_field]['label']+' '+pa.plot_labels[self.x_field]['unit']
         y_label = pa.plot_labels[self.y_field]['label']+' '+pa.plot_labels[self.y_field]['unit']
 
+
+        self.picking_dict = {} # initialize a dict to keep track of the plotting artists
         if self.plot_format_dict['marker_style']['single_style']:
-            line = ax.scatter(x_data, y_data, c=colors, marker='o', s=40., alpha=0.5, picker=5.)
+            idx = np.array([j for j,n in enumerate(x_data)])
+            scatterplot = ax.scatter(x_data, y_data, c=colors, marker='o', s=40., alpha=0.5, picker=5.)
+            self.picking_dict[scatterplot] = idx
+
             
         else:
 
@@ -534,8 +540,10 @@ class PlotWindow(QWidget):
                 idx = np.array([j for j,n in enumerate(data_marker_property) if n==unique_markers[ii]])
                 
                 scatterplot = ax.scatter(x_data[idx], y_data[idx], c=colors[idx], marker=markers[ii], s=40., alpha=0.5, picker=5., label=unique_markers[ii])
-                
 
+                # we'll have to do something here to enable the picking
+                self.picking_dict[scatterplot] = idx
+                
             # build the legend, set the markers in the legend to black
             ax.legend()
             leg = ax.get_legend()
@@ -554,6 +562,16 @@ class PlotWindow(QWidget):
     
     def pick_action(self, event):
 
+        # work out the record index of the picked data point
+        idx = self.picking_dict[event.artist]
+        ridx = self.record_idx[idx[event.ind]][0]
+        #print(ridx, self.alist_data.records['scan'][ridx],
+        #      self.alist_data.records['source'][ridx],
+        #      self.alist_data.records['baseline'][ridx],
+        #      self.alist_data.records['snr'][ridx],
+        #      self.alist_data.records['pols'][ridx],
+        #      self.alist_data.records['qcode'][ridx])
+        
         # call the plot window; this builds the plot
         if self.w is None:
             self.w = PickWindow('KZ_3C279_LR.jpg', event.ind)
