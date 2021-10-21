@@ -14,6 +14,7 @@ from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
 
 import matplotlib.pyplot
+from matplotlib.lines import Line2D
 
 import numpy as np
 
@@ -485,9 +486,10 @@ class PlotWindow(QWidget):
         layout.addWidget(self.canvas)
         self.setLayout(layout)
 
-        self.canvas.setFocusPolicy( Qt.ClickFocus )
+        # these are necessary for key_events
+        self.canvas.setFocusPolicy(Qt.ClickFocus)
         self.canvas.setFocus()
-
+        
         # call the routine that does the plotting
         self.alist_plot()
 
@@ -500,25 +502,53 @@ class PlotWindow(QWidget):
         # get the indices of the records to plot
         plot_record_idx = np.where(self.alist_data.record_flags == 0)[0]
 
-        print('Plot function:', len(plot_record_idx))
-        
         x_data = np.array(self.alist_data.records[self.x_field])[plot_record_idx]
         y_data = np.array(self.alist_data.records[self.y_field])[plot_record_idx]
 
         self.alist_data.set_record_colors(self.plot_format_dict)
-        colors = [self.alist_data.record_color[ii] for ii in plot_record_idx]
+        colors = np.array([self.alist_data.record_color[ii] for ii in plot_record_idx])
 
         x_label = pa.plot_labels[self.x_field]['label']+' '+pa.plot_labels[self.x_field]['unit']
         y_label = pa.plot_labels[self.y_field]['label']+' '+pa.plot_labels[self.y_field]['unit']
-        
-        line = ax.scatter(x_data, y_data, c=colors, marker='o', s=10., alpha=0.5, picker=5.)
 
+        if self.plot_format_dict['marker_style']['single_style']:
+            line = ax.scatter(x_data, y_data, c=colors, marker='o', s=40., alpha=0.5, picker=5.)
+            
+        else:
+
+            # get an array of the values of the records that we want to use to select marker styles
+            data_marker_property = np.array(self.alist_data.records[self.plot_format_dict['marker_style']['style_property']])[plot_record_idx]
+            unique_markers = np.unique(data_marker_property)
+            #print(unique_markers)
+            
+            markers = ['s', 'o', 'v', 'P', 'X', 'D', '^', '*', 'x', '+', '>', '<', 'd']
+            
+            if len(unique_markers) > len(markers):
+                print('Too many unique datasets to plot! We have run out of markers.')
+                pass
+
+            legend_elements = []
+            for ii in range(len(unique_markers)):
+
+                # get the indices
+                idx = np.array([j for j,n in enumerate(data_marker_property) if n==unique_markers[ii]])
+                
+                scatterplot = ax.scatter(x_data[idx], y_data[idx], c=colors[idx], marker=markers[ii], s=40., alpha=0.5, picker=5., label=unique_markers[ii])
+                
+
+            # build the legend, set the markers in the legend to black
+            ax.legend()
+            leg = ax.get_legend()
+            for ll in range(len(leg.legendHandles)):
+                leg.legendHandles[ll].set_color('black')
+        
         ax.set_title('AEDIT Demo plot')
 
         ax.set_xlabel(x_label)
         ax.set_ylabel(y_label)
         ax.grid(True, which='both', linestyle=':',alpha=0.8)
 
+        self.figure.tight_layout()
         self.canvas.draw_idle()
 
     
@@ -671,11 +701,12 @@ class PlotPanel(QWidget):
         self.markerstyle_chkbox = QCheckBox('Use a single marker style', self)
         self.markerstyle_chkbox.setCheckable(True)
         self.markerstyle_chkbox.setChecked(True)
-        
-        marker_style = ['Source','Station','QCode','Polarization','Baseline']
+
+        # doesn't make sense to have markers based on station since each record has two stations
+        self.marker_style = ['Source','QCode','Polarization','Baseline']
         self.MarkercomboBox = QComboBox(self)
         self.MarkercomboBox.setFixedWidth(100)
-        self.MarkercomboBox.addItems(marker_style)
+        self.MarkercomboBox.addItems(self.marker_style)
         self.MarkercomboBox.setEnabled(False)
         
         marker_hbox = QHBoxLayout()
@@ -744,10 +775,10 @@ class PlotPanel(QWidget):
         self.plotall_chkbox.setCheckable(True)
         self.plotall_chkbox.setChecked(True)
         
-        plot_datasets = ['Baseline','Station','Source','Triangle']
+        self.plot_datasets = ['Baseline','Station','Source','Polarization']
         self.PlotcomboBox = QComboBox(self)
         self.PlotcomboBox.setFixedWidth(100)
-        self.PlotcomboBox.addItems(plot_datasets)
+        self.PlotcomboBox.addItems(self.plot_datasets)
         self.PlotcomboBox.setEnabled(False)
         
         dataset_hbox = QHBoxLayout()
@@ -866,14 +897,14 @@ class PlotPanel(QWidget):
         plot_format_dict['point_color']['good_threshold'] = float(self.goodsnr_box.text())
         plot_format_dict['marker_style'] = {}
         plot_format_dict['marker_style']['single_style'] = self.markerstyle_chkbox.isChecked()
-        plot_format_dict['marker_style']['style_property'] = self.MarkercomboBox.currentText()
+        plot_format_dict['marker_style']['style_property'] = pa.plot_label_convert[self.MarkercomboBox.currentText()]
         plot_format_dict['plot_order'] = {}
         plot_format_dict['plot_order']['single_figure'] = self.plotall_chkbox.isChecked()
-        plot_format_dict['plot_order']['figure_order_property'] = self.PlotcomboBox.currentText()
+        plot_format_dict['plot_order']['figure_order_property'] = pa.plot_label_convert[self.PlotcomboBox.currentText()]
 
         
         # this method returns the indices and updates the flagging, self.alist_data.record_flags
-        alist_idx = self.alist_data.get_record_indices(data_selection_dict)
+        alist_idx = self.alist_data.get_record_indices(data_selection_dict, scan_selection_dict)
         # note, this is not sorted - should we sort it?
 
         # get the selected x and y axis data for the plot
@@ -883,7 +914,7 @@ class PlotPanel(QWidget):
 
         # call the plot window; this builds the plot
         #if self.w is None:
-        print('New plot window')
+        #print('New plot window')
         self.w = PlotWindow(self.alist_data, x_field, y_field, plot_format_dict)
         self.w.show()
         #else:

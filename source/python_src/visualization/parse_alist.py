@@ -43,7 +43,13 @@ plot_labels = {'scan_time':{'label':'Scan time','unit':'(DOY)'},
                'mbd':{'label':'Multi-band delay','unit':'(usec)'},
                'delay_rate':{'label':'Delay rate','unit':'ps/s'}}
 
-               
+# kludge to convert pretty names to the names of fields in the alist records
+plot_label_convert = {'Source':'source',
+                      'Station':'stations',
+                      'QCode':'qcode',
+                      'Polarization':'pols',
+                      'Baseline':'baseline'}
+
 
 # helper class that does not always work
 class AfileData:
@@ -137,12 +143,12 @@ class ParseAlist:
         self.record_flags = np.zeros(len(self.records['snr']))
 
         # keep an array of colors defined by the SNR of each record
-        self.record_color = ['red']*len(self.records['snr'])
+        self.record_color = ['black']*len(self.records['snr'])
 
 
 
     # method to return list of record indices meeting criteria in data_selection_dict
-    def get_record_indices(self, data_selection_dict):
+    def get_record_indices(self, data_selection_dict, scan_selection_dict):
 
         # baselines, stations, sources, polarizations, qcodes, snrrange
 
@@ -153,12 +159,14 @@ class ParseAlist:
         qcode_idx = [i for i,x in enumerate(self.records['qcode']) if x in data_selection_dict['qcodes']]
         pols_idx = [i for i,x in enumerate(self.records['pols']) if x in data_selection_dict['pols']]
 
+        scan_idx = [i for i,x in enumerate(self.records['scan']) if x in scan_selection_dict['scans']]
+        
         # stations have to be handled backwards...
         station_idx = []
         for station in data_selection_dict['stations']:
             station_idx.extend([i for i,x in enumerate(self.records['stations']) if station in x])
 
-        selected_idx = list(set(baseline_idx) & set(station_idx) & set(source_idx) & set(qcode_idx) & set(pols_idx))
+        selected_idx = list(set(baseline_idx) & set(station_idx) & set(source_idx) & set(qcode_idx) & set(pols_idx) & set(scan_idx))
 
         # set only the selected records to flag=0
         self.record_flags.fill(1)
@@ -186,11 +194,7 @@ class ParseAlist:
             return
             
         else:
-
+            # reset all the colors to red
+            self.record_color = ['black']*len(self.records['snr'])
             return
             
-        # datapoint style selection
-        # shape and color; station, source, qcode, pol, snr
-
-        # see https://matplotlib.org/stable/api/markers_api.html
-        #markers = ['s', 'o', 'v', 'P', 'X', 'D', '^', '*', 'x', '+', '>', '<', 'd']
