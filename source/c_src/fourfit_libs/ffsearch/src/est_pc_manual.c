@@ -139,7 +139,7 @@ static void est_phases(struct type_pass *pass, int first, int final,
                     : fringe.t208->resid_mbd - fringe.t208->resid_sbd;
         /* allow this factor to be adjusted */
         delta_delay *= (epd) ? atof(epd) : 1.0;
-        est_phase += sbmult * (arg_complex( &(status.fringe[ch]) ) * 180.0 / M_PI
+        est_phase += sbmult * (arg_complex(status.fringe[ch]) * 180.0 / M_PI
                   + 360.0 * delta_delay *
                     (pass->pass_data[ch].frequency - fringe.t205->ref_freq));
 

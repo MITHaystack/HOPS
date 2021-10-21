@@ -11,6 +11,7 @@
 #include "hops_complex.h"
 #include <fftw3.h>
 #include "mk4_data.h"
+#include "mk4_dfio.h"
 #include "param_struct.h"
 #include "pass_struct.h"
 
@@ -73,8 +74,8 @@ struct type_230 *t230)
        {
        j = nl - i;
        if (j < 0) j += 4*nl;
-       t230->xpower[i].real = real_comp(&(work_array[j]));
-       t230->xpower[i].imag = imag_comp(&(work_array[j]));
+       t230->xpower[i].real = real_comp(work_array[j]);
+       t230->xpower[i].imag = imag_comp(work_array[j]);
        }
 
     return (0);

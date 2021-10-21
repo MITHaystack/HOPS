@@ -52,7 +52,7 @@ char *tape_qcode)
                                            cause a D-code */
         if ((status->ap_num[0][i] == 0) && (status->ap_num[1][i] == 0))
             missing_track = TRUE;
-        if (abs_complex( &(status->fringe[i]) ) < (param->weak_channel * status->inc_avg_amp_freq))
+        if (abs_complex(status->fringe[i]) < (param->weak_channel * status->inc_avg_amp_freq))
             low_chan = TRUE;
                                         /* re-enable the following test;
                                          * change threshold units  rjc 2001.10.25

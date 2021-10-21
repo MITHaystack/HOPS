@@ -32,8 +32,8 @@ struct type_210 *t210)
                                         /* Precalculated in make_plotdata() */
     for (i=0; i<pass->nfreq; i++)
         {
-        t210->amp_phas[i].ampl = (float)abs_complex( &(status->fringe[i] ) ) / 10000.0;
-        t210->amp_phas[i].phase = (float)arg_complex( &(status->fringe[i]) ) * 180.0 / pi;
+        t210->amp_phas[i].ampl = (float)abs_complex( status->fringe[i] ) / 10000.0;
+        t210->amp_phas[i].phase = (float)arg_complex( status->fringe[i] ) * 180.0 / pi;
         }
 
     return (0);
