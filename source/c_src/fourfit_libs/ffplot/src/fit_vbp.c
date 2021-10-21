@@ -6,6 +6,7 @@
 *  initial code from matlab prototype      2019.9.13 rjc *
 *********************************************************/
 
+#include "msg.h"
 #include "mk4_data.h"
 #include "param_struct.h"
 #include "pass_struct.h"
@@ -48,7 +49,7 @@ void fit_vbp (int npts)
 
     for (k=0; k<2*npts; k++)
         {
-        wgt = cabs(plot.cp_spectrum[k]);
+        wgt = abs_complex(plot.cp_spectrum[k]);
         wgt *= wgt;             // weight is square of xpower amplitude
 
         if (k < npts)           // LSB
@@ -68,7 +69,7 @@ void fit_vbp (int npts)
                 a[i][j] += pow (f, 6 - i - j) * wgt;
                                         // also add into the RHS, just once per i & k
                 if (j == 0)
-                    b[i] += carg (plot.cp_spectrum[k]) / conrad * pow (f, 3 - i) * sb * wgt;
+                    b[i] += arg_complex (plot.cp_spectrum[k]) / conrad * pow (f, 3 - i) * sb * wgt;
                 }
         }
 
