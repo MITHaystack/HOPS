@@ -40,7 +40,6 @@
 #include "fileset.h"
 #include "write_lock_mechanism.h"
 #include "fourfit_signal_handler.h"
-#include "ff_misc_if.h"
 
 struct type_param param;
 struct type_status status;              /* External structure declarations */
