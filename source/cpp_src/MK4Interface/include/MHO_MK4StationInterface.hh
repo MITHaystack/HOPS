@@ -24,11 +24,15 @@
 //we do this to keep the mk4 structures from 'leaking' into the new code via includes,
 //We want to make sure any interface to the old mk4 IO libraries is kept only
 //within the MK4Interface library (and primarily in the .cc files).
+#ifndef HOPS3_USE_CXX
 extern "C"
 {
+#endif
     struct mk4_sdata;
     struct vex;
+#ifndef HOPS3_USE_CXX
 }
+#endif
 
 namespace hops
 {
