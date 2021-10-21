@@ -43,7 +43,8 @@
 #include "fileset.h"
 #include "write_lock_mechanism.h"
 #include "fourfit_signal_handler.h"
-//#include "ff_misc_if.h"
+#include "ffsearch.h"
+#include "ffcore.h"
 
 struct type_param param;
 struct type_status status;              /* External structure declarations */
@@ -94,43 +95,6 @@ int main (int argc, char** argv)
     fstruct *files, *fs;
     struct fileset fset;
     bsgstruct *base_sgrp;
-
-    /* extern functions, should be moved to headers!!! */
-    extern int set_defaults();
-    extern int get_vex (char *filename,
-         int vextype,
-         char *key,
-         struct vex *vex);
-    extern int parse_cmdline (
-        int argc,
-        char **argv,
-        fstruct **files,
-        bsgstruct **base_sgrp,
-        struct type_param *param);
-    extern int get_fileset(char *rootname, struct fileset *fset);
-    extern int read_sdata (
-        struct fileset *fset,
-        struct mk4_sdata *sdata);
-    extern int get_corel_data (fstruct* fs, struct scan_struct* ovex, char* filename, struct mk4_corel* cdata);
-    extern int organize_data (
-        struct mk4_corel *cdata,
-        struct scan_struct *ovex,
-        struct ivex_struct *ivex,
-        struct mk4_sdata *sdata,
-        struct freq_corel *corel,
-        struct type_param *param,
-        struct type_status *status,
-        struct c_block *cb_head
-    );
-    extern int make_passes (
-        struct scan_struct *ovex,
-        struct freq_corel *corel,
-        struct type_param *param,
-        struct type_pass **pass,
-        int *npass);
-    extern int fringe_search ( struct vex* root, struct type_pass* pass);
-    extern char* check_rflist ( char* baseline, int files_index, bsgstruct* base_sgrp);
-
 
     set_progname(FF_PROGNAME);
     set_msglev(2);
