@@ -33,7 +33,7 @@
 int
 output (struct vex* root, struct type_pass* pass)
     {
-    char fringe_name[256], *create_fname();
+    char fringe_name[256];
     char sg;
     int i, dret;
     extern int base, test_mode, do_accounting;

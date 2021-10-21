@@ -75,8 +75,13 @@ if( PGPLOT_FOUND AND FFTW_FOUND AND X11_FOUND AND GFORTRAN_FOUND )
     #yes...the number of escapes '\' needed here is ridiculous,
     #but there is no other easier way to pass these flags to automake
     #(this has not been tested on platforms other than bash/linux)
-    set(FF_PROGNAME_DEF "FF_PROGNAME=\\\"fourfit\\\"")
-    set(FF_VER_NO_DEF "FF_VER_NO=\\\"${MODULE_VERSION_NUMBER}\\\"")
+    if(HOPS3_USE_CXX)
+        set(FF_PROGNAME_DEF "FF_PROGNAME=\\\"fourfit\\\"")
+        set(FF_VER_NO_DEF "FF_VER_NO=\\\"${MODULE_VERSION_NUMBER}\\\"")
+    else()
+        set(FF_PROGNAME_DEF "FF_PROGNAME=\\\\\"fourfit\\\\\"")
+        set(FF_VER_NO_DEF "FF_VER_NO=\\\\\"${MODULE_VERSION_NUMBER}\\\\\"")
+    endif(HOPS3_USE_CXX)
 
     if(HOPS3_USE_CXX)
         SET_SOURCE_FILES_PROPERTIES(${${EXENAME}_SOURCEFILES} PROPERTIES LANGUAGE CXX )
