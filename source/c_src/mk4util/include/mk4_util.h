@@ -12,7 +12,7 @@
 #include "mk4_typedefs.h"
 
 /*----------------------------------------------------------------------------*/
-extern char   *account (char *);
+//extern char   *account (const char *);
 extern int    check_name (char *, fstruct *);
 extern void   clear_date (date_struct *);
 extern void   clear_fstruct (fstruct *);
