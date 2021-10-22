@@ -464,14 +464,16 @@ class PickWindow(QWidget):
 
 # aedit plot window
 class PlotWindow(QWidget):
-    def __init__(self, alist_data, x_field, y_field, plot_format_dict):        
+    def __init__(self, alist_data, plot_format_dict):        
         super().__init__()
         
         # Preliminaries
         self.alist_data = alist_data
-        self.x_field = x_field
-        self.y_field = y_field
         self.plot_format_dict = plot_format_dict
+        self.x_field = self.plot_format_dict['x_field']
+        self.y_field = self.plot_format_dict['y_field']
+        self.size_property = self.plot_format_dict['point_size']['pointsize_property']
+        #self.figure_order_property = pa.plot_label_convert[self.plot_format_dict['plot_order']['figure_order_property']]
         self.pw = None # window for picked datapoint
         self.fig_counter = 0 # for scrolling through multiple plots, eg by baseline
         
@@ -523,6 +525,11 @@ class PlotWindow(QWidget):
     def alist_plot(self, figure_ordering=None):
 
         self.figure.clf() # this clears the figure, but it does not erase it
+        #try:
+        #    self.ax.cla()
+        #except:
+        #    pass
+        
         self.ax = self.figure.add_subplot(111) # give the figure an Axes instance
 
         #print(self.unique_figures[self.fig_counter])
@@ -534,6 +541,36 @@ class PlotWindow(QWidget):
         y_data = np.array(self.alist_data.records[self.y_field])[self.figure_record_idx]
         self.record_idx = np.array(self.alist_data.records['index'])[self.figure_record_idx] # get the absolute indices of the selected records, for picking
 
+        # work out the marker size
+        if self.plot_format_dict['point_size']['pointsize']:
+            size_data = np.array(self.alist_data.records[self.size_property])[self.figure_record_idx]
+
+            # scatterplot marker size is in point^2, or area. Scale each property individually so the markersize is sensible
+            if self.size_property == 'amplitude':
+                s_data = np.sqrt(100*np.abs(size_data))
+
+            elif self.size_property == 'snr':
+                s_data = np.sqrt(4*np.abs(size_data))
+
+            elif self.size_property == 'phase':
+                s_data = np.sqrt(10*np.abs(size_data))
+                
+            elif self.size_property == 'sbd':
+                s_data = 100*np.sqrt(np.abs(size_data))
+                
+            elif self.size_property == 'mbd':
+                s_data = 10000*np.abs(size_data)
+                
+            elif self.size_property == 'delay_rate':
+                s_data = 50*np.sqrt(np.abs(size_data))
+                
+            else:
+                print('Marker size selection not supported!')
+                s_data=20.
+                
+        else:
+            s_data=20.
+            
         self.alist_data.set_record_colors(self.plot_format_dict)
         colors = np.array([self.alist_data.record_color[ii] for ii in self.figure_record_idx])
 
@@ -545,7 +582,7 @@ class PlotWindow(QWidget):
         if self.plot_format_dict['marker_style']['single_style']:
             idx = np.array([j for j,n in enumerate(x_data)])
             #scatterplot = self.ax.scatter(x_data, y_data, c=colors, marker='o', facecolors='none', s=40., alpha=0.5, picker=5.)
-            scatterplot = self.ax.scatter(x_data, y_data, edgecolors=colors, marker='o', facecolors='none', s=20., alpha=0.5, picker=5.)
+            scatterplot = self.ax.scatter(x_data, y_data, edgecolors=colors, marker='o', facecolors='none', s=s_data, alpha=0.5, picker=5.)
             self.picking_dict[scatterplot] = idx
             
         else:
@@ -573,7 +610,7 @@ class PlotWindow(QWidget):
                 #scatterplot = self.ax.scatter(x_data[idx], y_data[idx], c=colors[idx], marker=markers[ii],
                 #                         s=40., facecolors='none', alpha=0.5, picker=5., label=unique_markers[ii])
                 scatterplot = self.ax.scatter(x_data[idx], y_data[idx], edgecolors=colors[idx], marker=markers[ii],
-                                         s=20., facecolors='none', alpha=0.5, picker=5., label=unique_markers[ii])
+                                         s=s_data, facecolors='none', alpha=0.5, picker=5., label=unique_markers[ii])
 
                 # we'll have to do something here to enable the picking
                 self.picking_dict[scatterplot] = idx
@@ -583,6 +620,7 @@ class PlotWindow(QWidget):
             leg = self.ax.get_legend()
             for ll in range(len(leg.legendHandles)):
                 leg.legendHandles[ll].set_edgecolor('black') # this will effect the datapoints too? only if it's set_edgecolor?
+                leg.legendHandles[ll]._sizes = [20.]
 
         if figure_ordering is not None:
             self.ax.set_title('AEDIT Plot - '+self.figure_order_property+': '+figure_ordering)
@@ -618,12 +656,14 @@ class PlotWindow(QWidget):
 
     def key_event(self, event):
 
-        
+        # If we only requested a single figure, skip
         if self.plot_format_dict['plot_order']['single_figure']:
-            self.alist_plot()
+            pass
+
+        # otherwise, draw the next plot in the sequence
         else:
             
-            # use the key direction to update the figure order property
+            # use the key direction to update the figure counter
             if event.key == 'right':
                 self.fig_counter += 1
             elif event.key == 'left':
@@ -769,7 +809,7 @@ class PlotPanel(QWidget):
         # doesn't make sense to have markers based on station since each record has two stations
         self.marker_style = ['Source','QCode','Polarization','Baseline']
         self.MarkercomboBox = QComboBox(self)
-        self.MarkercomboBox.setFixedWidth(100)
+        self.MarkercomboBox.setFixedWidth(110)
         self.MarkercomboBox.addItems(self.marker_style)
         self.MarkercomboBox.setEnabled(False)
         
@@ -833,15 +873,33 @@ class PlotPanel(QWidget):
         pointqualty_hbox.addWidget(pointquality_label6)
         pointqualty_hbox.addStretch(1)
         pointqualty_hbox.addStretch(1)
+
+        # property for data point size
+        self.pointsize_chkbox = QCheckBox('Datapoint size from: ', self)
+        self.pointsize_chkbox.setCheckable(True)
+        self.pointsize_chkbox.setChecked(False)
+
+        pointsize_hbox = QHBoxLayout()
+
+        self.size_datasets = ['Scan time','Amplitude','SNR','Phase','Single-band delay', 'Multi-band delay', 'Delay rate']
+        self.SizecomboBox = QComboBox(self)
+        self.SizecomboBox.setFixedWidth(130)
+        self.SizecomboBox.addItems(self.size_datasets)
+        self.SizecomboBox.setEnabled(False)
+
+        pointsize_hbox.addWidget(self.pointsize_chkbox)
+        pointsize_hbox.addWidget(self.SizecomboBox)
+        pointsize_hbox.addStretch(1)
+
         
         # checkbox / combobox for plotting order
         self.plotall_chkbox = QCheckBox('Plot all data in a single figure', self)
         self.plotall_chkbox.setCheckable(True)
         self.plotall_chkbox.setChecked(True)
         
-        self.plot_datasets = ['Baseline','Station','Source','Polarization']
+        self.plot_datasets = ['Baseline','Source','Polarization','QCode']
         self.PlotcomboBox = QComboBox(self)
-        self.PlotcomboBox.setFixedWidth(100)
+        self.PlotcomboBox.setFixedWidth(110)
         self.PlotcomboBox.addItems(self.plot_datasets)
         self.PlotcomboBox.setEnabled(False)
         
@@ -854,6 +912,7 @@ class PlotPanel(QWidget):
         
         dataset_vbox = QVBoxLayout()
         dataset_vbox.addLayout(pointqualty_hbox)
+        dataset_vbox.addLayout(pointsize_hbox)
         dataset_vbox.addWidget(self.markerstyle_chkbox)
         dataset_vbox.addLayout(marker_hbox)
         dataset_vbox.addWidget(self.plotall_chkbox)
@@ -876,7 +935,15 @@ class PlotPanel(QWidget):
             else:
                 self.MarkercomboBox.setEnabled(True)
                 markerbox_label.setEnabled(True)
-                
+
+        def togglePointSizeBox(state):
+            if state > 0:
+                self.SizecomboBox.setEnabled(True)
+                self.pointsize_chkbox.setEnabled(True)
+            else:
+                self.SizecomboBox.setEnabled(False)
+                #self.pointsize_chkbox.setEnabled(False)
+
                 
         def togglePointQualityBox(state):
             if state > 0:
@@ -904,6 +971,7 @@ class PlotPanel(QWidget):
         self.plotall_chkbox.stateChanged.connect(toggleFigureBox)
         self.markerstyle_chkbox.stateChanged.connect(toggleMarkerBox)
         self.pointcolor_chkbox.stateChanged.connect(togglePointQualityBox)
+        self.pointsize_chkbox.stateChanged.connect(togglePointSizeBox)
 
         
 
@@ -951,6 +1019,8 @@ class PlotPanel(QWidget):
 
         # get the formatting selections
         plot_format_dict = {}
+        plot_format_dict['x_field'] = pa.plot_label_convert[self.XcomboBox.currentText()]
+        plot_format_dict['y_field'] = pa.plot_label_convert[self.YcomboBox.currentText()]
         plot_format_dict['axis_range'] = {}
         plot_format_dict['axis_range']['xrange'] = [self.xmax_box.text(), self.xmax_box.text()]
         plot_format_dict['axis_range']['yrange'] = [self.ymax_box.text(), self.ymax_box.text()]
@@ -959,6 +1029,9 @@ class PlotPanel(QWidget):
         plot_format_dict['point_color']['bad_threshold'] = float(self.badsnr_box.text())
         plot_format_dict['point_color']['suspect_threshold'] = float(self.suspectsnr_box.text())
         plot_format_dict['point_color']['good_threshold'] = float(self.goodsnr_box.text())
+        plot_format_dict['point_size'] = {}
+        plot_format_dict['point_size']['pointsize'] = self.pointsize_chkbox.isChecked()
+        plot_format_dict['point_size']['pointsize_property'] = pa.plot_label_convert[self.SizecomboBox.currentText()]
         plot_format_dict['marker_style'] = {}
         plot_format_dict['marker_style']['single_style'] = self.markerstyle_chkbox.isChecked()
         plot_format_dict['marker_style']['style_property'] = pa.plot_label_convert[self.MarkercomboBox.currentText()]
@@ -972,14 +1045,14 @@ class PlotPanel(QWidget):
         # note, this is not sorted - should we sort it?
 
         # get the selected x and y axis data for the plot
-        x_field = list(pa.plot_labels.keys())[self.XcomboBox.currentIndex()]
-        y_field = list(pa.plot_labels.keys())[self.YcomboBox.currentIndex()]
+        #x_field = list(pa.plot_labels.keys())[self.XcomboBox.currentIndex()]
+        #y_field = list(pa.plot_labels.keys())[self.YcomboBox.currentIndex()]
         
 
         # call the plot window; this builds the plot
         #if self.w is None:
         #print('New plot window')
-        self.w = PlotWindow(self.alist_data, x_field, y_field, plot_format_dict)
+        self.w = PlotWindow(self.alist_data, plot_format_dict)
         self.w.show()
         #else:
         #    print(self.w)
