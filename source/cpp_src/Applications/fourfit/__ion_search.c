@@ -8,6 +8,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include "msg.h"
+#include "mk4_util.h"
+#include "ffmath.h"
 #include "pass_struct.h"
 #include "param_struct.h"
                                     // number of points in fine search
@@ -48,15 +51,17 @@ int __ion_search (struct type_pass *pass)
 
     double values[MAX_ION_PTS];
     int parabola (double *, double, double, double *, double *, double *);
-    void __sort_tecs (void);
+    void sort_tecs (void);
+    extern void interp (struct type_pass*);
+    extern int __search (struct type_pass*);
 
 
                                         // prepare for ionospheric search
     center = (param.win_ion[0] + param.win_ion[1]) / 2.0;
                                         // condition total # of points
-    if (param.ion_pts > MAX_ION_PTS - N_MED_PTS - N_FINE_PTS - 1)
+    if (param.ion_pts > MAX_ION_PTS - N_MED_PTS - N_FINE_PTS - 1)   
         {
-        param.ion_pts = MAX_ION_PTS - N_MED_PTS - N_FINE_PTS - 1;
+        param.ion_pts = MAX_ION_PTS - N_MED_PTS - N_FINE_PTS - 1;   
         msg ("limited ion search to %d points", 2, param.ion_pts);
         }
     coarse_spacing = param.win_ion[1] - param.win_ion[0];
@@ -81,7 +86,7 @@ int __ion_search (struct type_pass *pass)
                 if (param.ion_pts == 1)// if no ionospheric search, proceed
                     level = 3;          // immediately to final delay & rate search
                 break;
-            case 1:                     // set up for medium ion search
+            case 1:                     // set up for medium ion search 
                                         // find maximum from coarse search
                                         // should do parabolic interpolation here
                 valmax = -1.0;
@@ -99,7 +104,7 @@ int __ion_search (struct type_pass *pass)
                 if (kmax == 0)          // coarse maximum up against lower edge?
                     center = bottom + (N_MED_PTS - 1) / 2.0 * medium_spacing;
                 else if (kmax == param.ion_pts) // upper edge?
-                    center = bottom + (kmax - 1) * step
+                    center = bottom + (kmax - 1) * step 
                                     - (N_MED_PTS - 1) / 2.0 * medium_spacing;
                 else                    // max was one of the interior points
                     center = bottom + kmax * step;
@@ -109,7 +114,7 @@ int __ion_search (struct type_pass *pass)
                                         // make medium search symmetric about level 0 max
                 bottom = center - (ilmax - 1) / 2.0 * step;
                 break;
-            case 2:                     // set up for fine ion search
+            case 2:                     // set up for fine ion search 
                                         // find maximum from medium search
                                         // should do parabolic interpolation here
                 valmax = -1.0;
@@ -127,7 +132,7 @@ int __ion_search (struct type_pass *pass)
                 if (kmax == 0)          // medium maximum up against lower edge?
                     center = bottom + (N_FINE_PTS - 1) / 2.0 * fine_spacing;
                 else if (kmax == param.ion_pts) // upper edge?
-                    center = bottom + (kmax - 1) * step
+                    center = bottom + (kmax - 1) * step 
                                     - (N_FINE_PTS - 1) / 2.0 * fine_spacing;
                 else                    // max was one of the interior points
                     center = bottom + kmax * step;
@@ -168,9 +173,9 @@ int __ion_search (struct type_pass *pass)
                 rc = parabola (y, -1.0, 1.0, &xmax, &ampmax, q);
 
                 if (rc == 1)
-                    msg ("TEC fine interpolation error; peak out of search range");
+                    msg ("TEC fine interpolation error; peak out of search range",1);
                 else if (rc == 2)
-                    msg ("TEC fine interpolation error; positive curvature");
+                    msg ("TEC fine interpolation error; positive curvature",1);
 
                 center = xlo + (xmax + 1.0) * step;
 
@@ -204,9 +209,9 @@ int __ion_search (struct type_pass *pass)
                                         // interpolate via direct counter-rotation for
                                         // more precise results
             interp (pass);
-            if (do_accounting)
+            if (do_accounting) 
                 account ("Interpolate fringes");
-
+            
                                         // save values for iterative search
             values[ionloop] = status.delres_max;
             msg ("ion search differential TEC %f amp %f",
@@ -219,7 +224,7 @@ int __ion_search (struct type_pass *pass)
         status.dtec[nip][0] = center;
         status.dtec[nip++][1] = values[0];
         status.nion = nip;
-        __sort_tecs ();
+        sort_tecs ();
         }
     else
         status.nion = 0;
@@ -234,7 +239,7 @@ int __ion_search (struct type_pass *pass)
 // the coarse points, then goes immediately to a fine search
 // around the maximum
 
-int __ion_search_smooth (struct type_pass *pass)
+int ion_search_smooth (struct type_pass *pass)
     {
     int i,
         k,
@@ -267,16 +272,17 @@ int __ion_search_smooth (struct type_pass *pass)
     double values[MAX_ION_PTS];
     double smoothed_values[4*MAX_ION_PTS];
     int parabola (double *, double, double, double *, double *, double *);
-    void __sort_tecs (void);
-    void __smoother (double *, double *, double *, int *);
-
+    void sort_tecs (void);
+    void smoother (double *, double *, double *, int *);
+    extern void interp (struct type_pass*);
+    extern int __search (struct type_pass*);
 
                                         // prepare for ionospheric search
     center = (param.win_ion[0] + param.win_ion[1]) / 2.0;
                                         // condition total # of points
-    if (param.ion_pts > MAX_ION_PTS - N_FINE_PTS_SMOOTH - 1)
+    if (param.ion_pts > MAX_ION_PTS - N_FINE_PTS_SMOOTH - 1)   
         {
-        param.ion_pts = MAX_ION_PTS - N_FINE_PTS_SMOOTH - 1;
+        param.ion_pts = MAX_ION_PTS - N_FINE_PTS_SMOOTH - 1;   
         msg ("limited ion search to %d points", 2, param.ion_pts);
         }
     coarse_spacing = param.win_ion[1] - param.win_ion[0];
@@ -301,19 +307,19 @@ int __ion_search_smooth (struct type_pass *pass)
                     level = 3;          // immediately to final delay & rate search
                 break;
 
-            case 1:                     // set up for fine ion search
+            case 1:                     // set up for fine ion search 
                                         // first, store the coarse ionosphere points
                 for (k=0; k<ilmax; k++)
                     {
                     status.dtec[nip][0] = bottom + k * step;
                     status.dtec[nip++][1] = values[k];
-                    msg("__smoother input %d %f", -2, k, values[k]);
+                    msg("smoother input %d %f", -2, k, values[k]);
                     }
                                         // then smooth and interpolate coarse points
-                __smoother (values, smoothed_values, &step, &ilmax);
+                smoother (values, smoothed_values, &step, &ilmax);
                 for (k=0; k<ilmax; k++)
                     {
-                    msg("__smoother output %d %f", -2, k, smoothed_values[k]);
+                    msg("smoother output %d %f", -2, k, smoothed_values[k]);
                     }
                                         // find maximum from smoothed coarse search
                 valmax = -1.0;
@@ -328,7 +334,7 @@ int __ion_search_smooth (struct type_pass *pass)
                 if (kmax == 0)          // coarse maximum up against lower edge?
                     center = bottom + (N_FINE_PTS_SMOOTH - 1) / 2.0 * fine_spacing;
                 else if (kmax == param.ion_pts) // upper edge?
-                    center = bottom + (kmax - 1) * step
+                    center = bottom + (kmax - 1) * step 
                                     - (N_FINE_PTS_SMOOTH - 1) / 2.0 * fine_spacing;
                 else                    // max was one of the interior points
                     center = bottom + kmax * step;
@@ -370,9 +376,9 @@ int __ion_search_smooth (struct type_pass *pass)
                 rc = parabola (y, -1.0, 1.0, &xmax, &ampmax, q);
 
                 if (rc == 1)
-                    msg ("TEC fine interpolation error; peak out of search range");
+                    msg ("TEC fine interpolation error; peak out of search range",1);
                 else if (rc == 2)
-                    msg ("TEC fine interpolation error; positive curvature");
+                    msg ("TEC fine interpolation error; positive curvature",1);
 
                 center = xlo + (xmax + 1.0) * step;
 
@@ -406,9 +412,9 @@ int __ion_search_smooth (struct type_pass *pass)
                                         // interpolate via direct counter-rotation for
                                         // more precise results
             interp (pass);
-            if (do_accounting)
+            if (do_accounting) 
                 account ("Interpolate fringes");
-
+            
                                         // save values for iterative search
             values[ionloop] = status.delres_max;
             msg ("ion search differential TEC %f amp %f",
@@ -421,7 +427,7 @@ int __ion_search_smooth (struct type_pass *pass)
         status.dtec[nip][0] = center;
         status.dtec[nip++][1] = values[0];
         status.nion = nip;
-        __sort_tecs ();
+        sort_tecs ();
         }
     else
         status.nion = 0;
@@ -430,7 +436,7 @@ int __ion_search_smooth (struct type_pass *pass)
     }
 
 // sort tec array
-void __sort_tecs (void)
+void sort_tecs (void)
     {
     int i,
         n,
@@ -439,7 +445,7 @@ void __sort_tecs (void)
     double temp[2];
 
     extern struct type_status status;
-
+  
     while (changed)
         {
         changed = FALSE;
@@ -463,7 +469,7 @@ void __sort_tecs (void)
 // with a half-cycle of a cos curve, properly normalizing
 // the result g
 
-void __smoother (double *f,           // input data array with arbitrary positive length
+void smoother (double *f,           // input data array with arbitrary positive length
                double *g,           // output data array with fourfold interpolation
                double *tec_step,    // grid spacing of f in TEC units
                int *npts)           // pointer to length of input array - modified!
@@ -478,7 +484,7 @@ void __smoother (double *f,           // input data array with arbitrary positiv
     double gwork[4*MAX_ION_PTS],
            shape[4*MAX_ION_PTS],
            ssum;
-
+    
                                     // generate a smoothing curve. The shape of the idealized
                                     // curve for correlation as a function of TEC is dependent
                                     // on frequency distribution, but for a wide range of

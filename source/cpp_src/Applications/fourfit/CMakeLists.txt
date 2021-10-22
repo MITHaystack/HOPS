@@ -34,6 +34,7 @@ if( PGPLOT_FOUND AND FFTW_FOUND AND X11_FOUND AND GFORTRAN_FOUND )
     endforeach( BASENAME )
 
     #declare relative paths to internal headers/libs ###############################
+    set(MSG_RELPATH "../../../c_src/msg")
     set(MK4UTIL_RELPATH "../../../c_src/mk4util")
     set(AFIO_RELPATH "../../../c_src/afio")
     set(DFIO_RELPATH "../../../c_src/dfio")
@@ -46,6 +47,7 @@ if( PGPLOT_FOUND AND FFTW_FOUND AND X11_FOUND AND GFORTRAN_FOUND )
     set(FFPLOT_RELPATH "../../../c_src/fourfit_libs/ffplot")
 
     list(APPEND RELPATH_LIST
+        ${MSG_RELPATH}
         ${MK4UTIL_RELPATH}
         ${AFIO_RELPATH}
         ${DFIO_RELPATH}
@@ -73,14 +75,26 @@ if( PGPLOT_FOUND AND FFTW_FOUND AND X11_FOUND AND GFORTRAN_FOUND )
     #yes...the number of escapes '\' needed here is ridiculous,
     #but there is no other easier way to pass these flags to automake
     #(this has not been tested on platforms other than bash/linux)
-    set(FF_PROGNAME_DEF "FF_PROGNAME=\\\\\"fourfit\\\\\"")
-    set(FF_VER_NO_DEF "FF_VER_NO=\\\\\"${MODULE_VERSION_NUMBER}\\\\\"")
+    if(HOPS3_USE_CXX)
+        set(FF_PROGNAME_DEF "FF_PROGNAME=\\\"fourfit\\\"")
+        set(FF_VER_NO_DEF "FF_VER_NO=\\\"${MODULE_VERSION_NUMBER}\\\"")
+    else()
+        set(FF_PROGNAME_DEF "FF_PROGNAME=\\\\\"fourfit\\\\\"")
+        set(FF_VER_NO_DEF "FF_VER_NO=\\\\\"${MODULE_VERSION_NUMBER}\\\\\"")
+    endif(HOPS3_USE_CXX)
 
-    hops_add_cflag(${FF_PROGNAME_DEF})
-    hops_add_cflag(${FF_VER_NO_DEF})
+    if(HOPS3_USE_CXX)
+        SET_SOURCE_FILES_PROPERTIES(${${EXENAME}_SOURCEFILES} PROPERTIES LANGUAGE CXX )
+        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -D${FF_PROGNAME_DEF}")
+        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -D${FF_VER_NO_DEF}")
+    else()
+        hops_add_cflag(${FF_PROGNAME_DEF})
+        hops_add_cflag(${FF_VER_NO_DEF})
+    endif(HOPS3_USE_CXX)
 
     # set library lists ############################################################
     set(INTERNAL_LIBLIST
+        "msg"
         "mk4util"
         "afio"
         "dfio"
@@ -98,7 +112,7 @@ if( PGPLOT_FOUND AND FFTW_FOUND AND X11_FOUND AND GFORTRAN_FOUND )
         ${PGPLOT_LIBRARIES}
         ${GFORTRAN_LIBRARIES}
         ${X11_LIBRARIES}
-        m
+        "m"
     )
 
     add_executable (${EXENAME} ${${EXENAME}_SOURCEFILES} )
