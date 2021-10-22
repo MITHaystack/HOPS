@@ -46,7 +46,7 @@ int main (int argc, char *argv[])
     corelsum csumm;
     fringesum fsumm;
     fstruct *files;
-    FILE *fp, *open_output();
+    FILE *fp;
                                         /* Initialize.  No fstruct entry with a NULL */
                                         /* filename is valid ... don't need to clear */
                                         /* the whole structure */
