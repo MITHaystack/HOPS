@@ -30,7 +30,10 @@
 #include <signal.h>
 
 #include "vex.h"                        /* Needed for the VEX root file format */
+#include "msg.h"
 #include "mk4_data.h"                   /* Definitions of Mk4 data structures */
+#include "mk4_dfio.h"
+#include "mk4_util.h"
 #include "control.h"                    /* Definition of control structure */
 #include "param_struct.h"               /* Definition of 2 structures (param & status) */
 #include "pass_struct.h"                /* Pass-specific parameters */
@@ -40,6 +43,8 @@
 #include "fileset.h"
 #include "write_lock_mechanism.h"
 #include "fourfit_signal_handler.h"
+#include "ffsearch.h"
+#include "ffcore.h"
 
 struct type_param param;
 struct type_status status;              /* External structure declarations */
@@ -64,9 +69,6 @@ int reftime_offset = 0;
 //global variables provided for signal handler clean up of lock files
 lockfile_data_struct global_lockfile_data;
 
-//char progname[] = "fourfit";            /* extern variables for messages */
-char progname[] = FF_PROGNAME;		// fourfit or fearfit from Makefile
-int msglev = 2;
 char *pexec;                            // ptr to progam executable name
 char version_no[] = FF_VER_NO;		// PACKAGE_VERSION from Makefile
 //char version_no[4] = "3.5";             // Update this with new releases
@@ -85,7 +87,7 @@ int main (int argc, char** argv)
     struct freq_corel corel[MAXFREQ];
     /* msg ("MAXFREQ == %d\n", 0, MAXFREQ); */
     struct type_pass *pass;
-    char *inputname, *check_rflist(), processmsg[512];
+    char *inputname, processmsg[512];
     char oldroot[256], rootname[256];
     int i, j, k, npass, totpass, ret, nbchecked, nbtried, checked, tried;
     int successes, failures, nroots, nc, fno, fs_ret;
@@ -93,6 +95,11 @@ int main (int argc, char** argv)
     fstruct *files, *fs;
     struct fileset fset;
     bsgstruct *base_sgrp;
+
+    extern int __fringe_search ( struct vex* root, struct type_pass* pass);
+
+    set_progname(FF_PROGNAME);
+    set_msglev(2);
 
     //init lockfile data struct
     clear_global_lockfile_data();
@@ -156,7 +163,7 @@ int main (int argc, char** argv)
             "The above errors occurred while processing\n"
             "%s: %s\n"
             "%s: the top-level resolution is as follows:",
-                progname, inputname, progname);
+                FF_PROGNAME, inputname, FF_PROGNAME);
         msg ("%s(Starting loop on files)", 0, processmsg);
         //msg ("processing %s fileset", 2, inputname); // -1->2 Hotaka
                                         /* Performs sanity check on requested file */
@@ -185,7 +192,7 @@ int main (int argc, char** argv)
         param.acc_period = root.evex->ap_length;
         param.speedup = root.evex->speedup_factor;
                                         /* Find all files belonging to this root */
-        if (fileset (rootname, &fset) != 0)
+        if (get_fileset (rootname, &fset) != 0)
             {
             msg ("%sError getting fileset of '%s'", 2, processmsg, rootname);
             continue;
