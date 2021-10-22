@@ -49,7 +49,14 @@ plot_label_convert = {'Source':'source',
                       'Station':'stations',
                       'QCode':'qcode',
                       'Polarization':'pols',
-                      'Baseline':'baseline'}
+                      'Baseline':'baseline',
+                      'Phase':'phase',
+                      'Scan time':'scan_time',
+                      'Amplitude':'amplitude',
+                      'SNR':'snr',
+                      'Single-band delay':'sbd',
+                      'Multi-band delay':'mbd',
+                      'Delay rate':'delay_rate'}
 
 
 # helper class that does not always work
