@@ -28,7 +28,6 @@ endforeach( BASENAME )
 #declare header paths ##########################################################
 set(MSG_RELPATH "../../msg")
 set(MK4UTIL_RELPATH "../../mk4util")
-set(FFCORE_RELPATH "../ffcore") #only for the file ff_misc_if.h --> this is probably not ideal (dep. cycle), include only -- do not link!
 list(APPEND RELPATH_LIST ${MSG_RELPATH} ${MK4UTIL_RELPATH} ${FFCORE_RELPATH})
 
 #include library headers

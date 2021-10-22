@@ -87,7 +87,7 @@ int main (int argc, char** argv)
     struct freq_corel corel[MAXFREQ];
     /* msg ("MAXFREQ == %d\n", 0, MAXFREQ); */
     struct type_pass *pass;
-    char *inputname, *check_rflist(), processmsg[512];
+    char *inputname, processmsg[512];
     char oldroot[256], rootname[256];
     int i, j, k, npass, totpass, ret, nbchecked, nbtried, checked, tried;
     int successes, failures, nroots, nc, fno, fs_ret;
