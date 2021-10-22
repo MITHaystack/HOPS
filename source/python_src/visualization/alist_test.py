@@ -10,11 +10,14 @@ from PyQt5.QtWidgets import QVBoxLayout, QHBoxLayout, QGridLayout, QTabWidget, Q
 
 import parse_alist as pa
 
+#import matplotlib
+#matplotlib.use('Qt5Agg')
+
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
 
 import matplotlib.pyplot
-from matplotlib.lines import Line2D
+#from matplotlib.lines import Line2D
 
 import numpy as np
 
@@ -454,28 +457,29 @@ class PickWindow(QWidget):
             pax.axis('off')
             pax.margins(0,0)
         
-        self.pick_canvas.draw_idle()
+        #self.pick_canvas.draw_idle()
 
         
-    
+
 
 # aedit plot window
 class PlotWindow(QWidget):
-    def __init__(self, alist_data, x_field, y_field, plot_format_dict):
+    def __init__(self, alist_data, x_field, y_field, plot_format_dict):        
         super().__init__()
-
+        
         # Preliminaries
         self.alist_data = alist_data
         self.x_field = x_field
         self.y_field = y_field
         self.plot_format_dict = plot_format_dict
-        self.w = None
-        self.counter = 0
-
+        self.pw = None # window for picked datapoint
+        self.fig_counter = 0 # for scrolling through multiple plots, eg by baseline
+        
+        #matplotlib.style.use('classic')
         self.figure = matplotlib.figure.Figure() # Initialize a figure
         self.canvas = FigureCanvas(self.figure)  # Initialize a canvas in the figure
         self.toolbar = NavigationToolbar(self.canvas, self) # Initialize a toolbar in the figure
-
+        
         # connect the canvas to the function we want to run on a pick event
         self.canvas.mpl_connect('pick_event', self.pick_action)
         self.canvas.mpl_connect('key_press_event', self.key_event)
@@ -489,25 +493,49 @@ class PlotWindow(QWidget):
         # these are necessary for key_events
         self.canvas.setFocusPolicy(Qt.ClickFocus)
         self.canvas.setFocus()
+
+
+        # get the indices of the records that correspond to the selected properties
+        # create a second copy to handle the records for different plots (if only one plot is requested, figure_record_idx won't be modified)
+        self.plot_record_idx = np.where(self.alist_data.record_flags == 0)[0]
+        self.figure_record_idx = np.copy(self.plot_record_idx)
         
         # call the routine that does the plotting
-        self.alist_plot()
+        if self.plot_format_dict['plot_order']['single_figure']:
+            self.alist_plot()
+
+        else:
+            # figure out the order of the figures to scroll through
+            # plot the first one, the key event will handle the navigation between figures
+            self.figure_order_property = pa.plot_label_convert[self.plot_format_dict['plot_order']['figure_order_property']]
+            self.figure_order_elements = np.array(self.alist_data.records[self.figure_order_property])[self.plot_record_idx]
+
+            self.unique_figures = np.unique(self.figure_order_elements)
+            self.num_figures = len(self.unique_figures)
+            
+            # update the indices of the records to plot; we will repeat this in the key_event function below
+            pidx = np.array(self.alist_data.records['index'])[self.plot_record_idx]
+            self.figure_record_idx = np.array([pidx[j] for j,n in enumerate(self.figure_order_elements) if n==self.unique_figures[self.fig_counter]])
+
+            self.alist_plot(figure_ordering=self.unique_figures[0])
 
 
-    def alist_plot(self):
+    def alist_plot(self, figure_ordering=None):
 
-        self.figure.clf()
-        ax = self.figure.add_subplot(111) # add an Axes class to the figure
+        self.figure.clf() # this clears the figure, but it does not erase it
+        self.ax = self.figure.add_subplot(111) # give the figure an Axes instance
 
-        # get the indices of the records to plot
-        plot_record_idx = np.where(self.alist_data.record_flags == 0)[0]
+        #print(self.unique_figures[self.fig_counter])
+        #print(self.figure_order_elements[self.figure_record_idx])
+        #print(np.array(self.alist_data.records[self.figure_order_property])[self.figure_record_idx])
 
-        x_data = np.array(self.alist_data.records[self.x_field])[plot_record_idx]
-        y_data = np.array(self.alist_data.records[self.y_field])[plot_record_idx]
-        self.record_idx = np.array(self.alist_data.records['index'])[plot_record_idx]
+        # get the x- and y-data arrays for the selected alist fields
+        x_data = np.array(self.alist_data.records[self.x_field])[self.figure_record_idx]
+        y_data = np.array(self.alist_data.records[self.y_field])[self.figure_record_idx]
+        self.record_idx = np.array(self.alist_data.records['index'])[self.figure_record_idx] # get the absolute indices of the selected records, for picking
 
         self.alist_data.set_record_colors(self.plot_format_dict)
-        colors = np.array([self.alist_data.record_color[ii] for ii in plot_record_idx])
+        colors = np.array([self.alist_data.record_color[ii] for ii in self.figure_record_idx])
 
         x_label = pa.plot_labels[self.x_field]['label']+' '+pa.plot_labels[self.x_field]['unit']
         y_label = pa.plot_labels[self.y_field]['label']+' '+pa.plot_labels[self.y_field]['unit']
@@ -516,18 +544,21 @@ class PlotWindow(QWidget):
         self.picking_dict = {} # initialize a dict to keep track of the plotting artists
         if self.plot_format_dict['marker_style']['single_style']:
             idx = np.array([j for j,n in enumerate(x_data)])
-            scatterplot = ax.scatter(x_data, y_data, c=colors, marker='o', s=40., alpha=0.5, picker=5.)
+            #scatterplot = self.ax.scatter(x_data, y_data, c=colors, marker='o', facecolors='none', s=40., alpha=0.5, picker=5.)
+            scatterplot = self.ax.scatter(x_data, y_data, edgecolors=colors, marker='o', facecolors='none', s=20., alpha=0.5, picker=5.)
             self.picking_dict[scatterplot] = idx
-
             
         else:
 
             # get an array of the values of the records that we want to use to select marker styles
-            data_marker_property = np.array(self.alist_data.records[self.plot_format_dict['marker_style']['style_property']])[plot_record_idx]
-            unique_markers = np.unique(data_marker_property)
+            data_marker_property = self.plot_format_dict['marker_style']['style_property']
+            data_marker_elements = np.array(self.alist_data.records[data_marker_property])[self.figure_record_idx]
+            unique_markers = np.unique(data_marker_elements)
             #print(unique_markers)
-            
-            markers = ['s', 'o', 'v', 'P', 'X', 'D', '^', '*', 'x', '+', '>', '<', 'd']
+
+            # can't use non-filled markers if facecolors='none'??
+            markers = ['s', 'o', 'v', 'P', 'X', 'D', '^', '*', '>', '<', 'd']
+            #markers = ['x', '+', 's', 'o', 'v', 'P', 'X', 'D', '^', '*', '>', '<', 'd']
             
             if len(unique_markers) > len(markers):
                 print('Too many unique datasets to plot! We have run out of markers.')
@@ -537,27 +568,33 @@ class PlotWindow(QWidget):
             for ii in range(len(unique_markers)):
 
                 # get the indices
-                idx = np.array([j for j,n in enumerate(data_marker_property) if n==unique_markers[ii]])
+                idx = np.array([j for j,n in enumerate(data_marker_elements) if n==unique_markers[ii]])
                 
-                scatterplot = ax.scatter(x_data[idx], y_data[idx], c=colors[idx], marker=markers[ii], s=40., alpha=0.5, picker=5., label=unique_markers[ii])
+                #scatterplot = self.ax.scatter(x_data[idx], y_data[idx], c=colors[idx], marker=markers[ii],
+                #                         s=40., facecolors='none', alpha=0.5, picker=5., label=unique_markers[ii])
+                scatterplot = self.ax.scatter(x_data[idx], y_data[idx], edgecolors=colors[idx], marker=markers[ii],
+                                         s=20., facecolors='none', alpha=0.5, picker=5., label=unique_markers[ii])
 
                 # we'll have to do something here to enable the picking
                 self.picking_dict[scatterplot] = idx
                 
             # build the legend, set the markers in the legend to black
-            ax.legend()
-            leg = ax.get_legend()
+            self.ax.legend()
+            leg = self.ax.get_legend()
             for ll in range(len(leg.legendHandles)):
-                leg.legendHandles[ll].set_color('black')
-        
-        ax.set_title('AEDIT Demo plot')
+                leg.legendHandles[ll].set_edgecolor('black') # this will effect the datapoints too? only if it's set_edgecolor?
 
-        ax.set_xlabel(x_label)
-        ax.set_ylabel(y_label)
-        ax.grid(True, which='both', linestyle=':',alpha=0.8)
+        if figure_ordering is not None:
+            self.ax.set_title('AEDIT Plot - '+self.figure_order_property+': '+figure_ordering)
+        else:
+            self.ax.set_title('AEDIT Demo plot')
+            
+        self.ax.set_xlabel(x_label)
+        self.ax.set_ylabel(y_label)
+        self.ax.grid(True, which='both', linestyle=':',alpha=0.8)
 
         self.figure.tight_layout()
-        self.canvas.draw_idle()
+        self.canvas.draw()
 
     
     def pick_action(self, event):
@@ -565,35 +602,44 @@ class PlotWindow(QWidget):
         # work out the record index of the picked data point
         idx = self.picking_dict[event.artist]
         ridx = self.record_idx[idx[event.ind]][0]
-        #print(ridx, self.alist_data.records['scan'][ridx],
-        #      self.alist_data.records['source'][ridx],
-        #      self.alist_data.records['baseline'][ridx],
-        #      self.alist_data.records['snr'][ridx],
-        #      self.alist_data.records['pols'][ridx],
-        #      self.alist_data.records['qcode'][ridx])
+        print(ridx, self.alist_data.records['scan'][ridx],
+              self.alist_data.records['source'][ridx],
+              self.alist_data.records['baseline'][ridx],
+              self.alist_data.records['snr'][ridx],
+              self.alist_data.records['pols'][ridx],
+              self.alist_data.records['qcode'][ridx])
         
         # call the plot window; this builds the plot
-        if self.w is None:
-            self.w = PickWindow('KZ_3C279_LR.jpg', event.ind)
-        self.w.show()
+        #if self.pw is None:
+        #    self.pw = PickWindow('KZ_3C279_LR.jpg', event.ind)
+        #self.pw.show()
 
         return True
 
     def key_event(self, event):
 
-        print(event.key)
         
-        if event.key == 'right':
-            self.counter += 1
-        elif event.key == 'left':
-            self.counter -= 1
+        if self.plot_format_dict['plot_order']['single_figure']:
+            self.alist_plot()
         else:
-            return
+            
+            # use the key direction to update the figure order property
+            if event.key == 'right':
+                self.fig_counter += 1
+            elif event.key == 'left':
+                self.fig_counter -= 1
+            else:
+                return
 
-        #counter = counter % num_plots
-        print(self.counter)
+            self.fig_counter = self.fig_counter % self.num_figures
+        
+            # update the indices of the records to plot
+            pidx = np.array(self.alist_data.records['index'])[self.plot_record_idx]
+            self.figure_record_idx = np.array([pidx[j] for j,n in enumerate(self.figure_order_elements) if n==self.unique_figures[self.fig_counter]])
 
+            self.alist_plot(figure_ordering=self.unique_figures[self.fig_counter])
 
+        return True
 
         
 
@@ -918,7 +964,7 @@ class PlotPanel(QWidget):
         plot_format_dict['marker_style']['style_property'] = pa.plot_label_convert[self.MarkercomboBox.currentText()]
         plot_format_dict['plot_order'] = {}
         plot_format_dict['plot_order']['single_figure'] = self.plotall_chkbox.isChecked()
-        plot_format_dict['plot_order']['figure_order_property'] = pa.plot_label_convert[self.PlotcomboBox.currentText()]
+        plot_format_dict['plot_order']['figure_order_property'] = self.PlotcomboBox.currentText() # don't convert this one, need it later
 
         
         # this method returns the indices and updates the flagging, self.alist_data.record_flags
@@ -928,7 +974,7 @@ class PlotPanel(QWidget):
         # get the selected x and y axis data for the plot
         x_field = list(pa.plot_labels.keys())[self.XcomboBox.currentIndex()]
         y_field = list(pa.plot_labels.keys())[self.YcomboBox.currentIndex()]
-
+        
 
         # call the plot window; this builds the plot
         #if self.w is None:
@@ -939,7 +985,7 @@ class PlotPanel(QWidget):
         #    print(self.w)
         #    return
 
-        
+
         
 
 

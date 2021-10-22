@@ -198,7 +198,7 @@ class ParseAlist:
             return
             
         else:
-            # reset all the colors to red
+            # reset all the colors
             self.record_color = ['black']*len(self.records['snr'])
             return
             
