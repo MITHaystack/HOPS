@@ -103,17 +103,19 @@ class ParseAlist:
         f.close()
 
         counter=0
+        header_counter = 0 # to keep track of the format for saving a subset of records
         for line in lines:
 
             # skip header lines
             if line[0]=='*':
+                header_counter += 1
                 continue
             cols = line.rsplit('\n')[0].split() # remove the trailing EOL and split on whitespace
 
             # build lists of the useful columns
             #root.append(cols[1])
 
-            self.records['index'].append(counter)
+            self.records['index'].append(counter) # this is useful for the event picking in aedit
             self.records['scan_length'].append(cols[5])
             self.records['experiment'].append(cols[7])
             self.records['scan'].append(cols[8])
@@ -171,13 +173,30 @@ class ParseAlist:
         pols_idx = [i for i,x in enumerate(self.records['pols']) if x in data_selection_dict['pols']]
 
         scan_idx = [i for i,x in enumerate(self.records['scan']) if x in scan_selection_dict['scans']]
-        
-        # stations have to be handled backwards...
-        station_idx = []
-        for station in data_selection_dict['stations']:
-            station_idx.extend([i for i,x in enumerate(self.records['stations']) if station in x])
 
-        selected_idx = list(set(baseline_idx) & set(station_idx) & set(source_idx) & set(qcode_idx) & set(pols_idx) & set(scan_idx))
+        snrmin_idx = [i for i,x in enumerate(self.records['snr']) if x>data_selection_dict['snrrange'][0]]
+        snrmax_idx = [i for i,x in enumerate(self.records['snr']) if x<data_selection_dict['snrrange'][1]]
+        
+        
+        # for now flag records if an un-selected station is present
+        # this means if you select only one station, all records will be flagged...
+        station_idx = list(range(len(self.records['stations'])))
+        for ii in range(len(station_idx)):
+            for station in data_selection_dict['not_stations']:
+                if station in self.records['stations'][ii]:
+                    station_idx.remove(ii)
+                    break
+                else:
+                    pass
+
+
+        # old station selection code
+        #station_idx = []
+        #for station in data_selection_dict['stations']:
+        #    station_idx.extend([i for i,x in enumerate(self.records['stations']) if station in x])
+
+        selected_idx = list(set(baseline_idx) & set(station_idx) & set(source_idx) & set(qcode_idx) & set(pols_idx) & \
+                            set(scan_idx) & set(snrmin_idx) & set(snrmax_idx))
 
         # set only the selected records to flag=0
         self.record_flags.fill(1)
