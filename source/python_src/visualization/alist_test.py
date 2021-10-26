@@ -6,7 +6,7 @@ import sys
 from PyQt5.QtCore import QSize, Qt, QLine, QPoint
 from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QMainWindow, QCheckBox, QFrame#, QSizePolicy
 from PyQt5.QtWidgets import QVBoxLayout, QHBoxLayout, QGridLayout, QTabWidget, QLabel, QLineEdit, QComboBox, QGroupBox, QPlainTextEdit, QTextEdit
-#from PyQt5.QtGui import QPalette, QColor, QPainter, QWindow
+from PyQt5.QtGui import QFont
 
 import parse_alist as pa
 
@@ -102,9 +102,9 @@ class SelectionParamBoxGrid(QWidget):
 
     def collectParamVals(self):
 
-        snrrange = [self.snrmin_box.text(), self.snrmax_box.text()]
+        return [float(self.snrmin_box.text()), float(self.snrmax_box.text())]
 
-
+        
 
 
 
@@ -182,7 +182,6 @@ class QCodeCheckboxGrid(QWidget):
                 checked_boxes.append(checkbox.text().split(' ')[0]) # need to strip away the # of records
 
         return checked_boxes
-
 
 
 
@@ -304,6 +303,20 @@ class SelectionCheckboxGrid(QWidget):
 
         return checked_boxes
 
+    
+    def getUncheckedBoxes(self):
+
+        unchecked_boxes = []        
+        for checkbox in self.checkboxes:
+            if checkbox.isChecked():
+                pass
+            else:
+                unchecked_boxes.append(checkbox.text())
+
+        return unchecked_boxes
+
+    
+
 
 
 
@@ -385,10 +398,15 @@ class SelectionPanel(QWidget):
         
         data_selection_dict['baselines'] = self.baseline_checkboxes.collectCheckedBoxes()
         data_selection_dict['stations'] = self.station_checkboxes.collectCheckedBoxes()
+        data_selection_dict['not_stations'] = self.station_checkboxes.getUncheckedBoxes()
         data_selection_dict['qcodes'] = self.qcode_checkboxes.collectCheckedBoxes()
         data_selection_dict['sources'] = self.source_checkboxes.collectCheckedBoxes()        
         data_selection_dict['pols'] = self.pol_checkboxes.collectCheckedBoxes()
         data_selection_dict['snrrange'] = self.param_textbox.collectParamVals()
+
+        
+        if len(data_selection_dict['stations'])<2:
+            print('WARNING - must choose more than one station!')
         
         return data_selection_dict
 
@@ -1070,44 +1088,21 @@ class SummPanel(QWidget):
         super().__init__()
 
         self.alist_data = alist_data
+        self.SelectionTab = SelectionTab
+        self.ScanTab = ScanTab
 
-        self.summ_box = QTextEdit()
+        font = QFont("Courier", 11)
+        QApplication.setFont(font, "QPlainTextEdit")
+        
+        #QtWidgets.QApplication.setFont(font, "MyText")
+        
+        self.summ_box = QPlainTextEdit()
         #self.summ_box.resize(300,400)
-
-        text_string = '\n'
-        text_string += 'Hello here is some text.\n'
-        text_string += '\n'
-        text_string += 'SUMMARY OF UNFLAGGED DATA IN MEMORY\n-----------------------------------\n'
-        text_string += '\n'
-        text_string += 'Total number of unflagged fringe records = 6754\n'
-        text_string += '\n'
-        text_string += 'Earliest scan:       94-015-183000\n'
-        text_string += 'Latest scan:         94-016-181505\n'
-        text_string += 'Earliest procdate:   94-050-1648\n'
-        text_string += 'Latest procdate:     94-055-1044\n'
-        text_string += 'Stations present:    DAKLETV\n'
-        text_string += 'Baselines present:   DA DK DL DE AK AL AE KL KE LE TE AT AV TV EV KT KV DV LV DT LT\n'
-        text_string += 'Frequencies present: XS\n'
-        text_string += 'SNR extrema:         0.000  1069.\n'
-        text_string += 'Experiments present: 2498\n'
-        text_string += 'Sources present:     0048-097 0059+581 0119+041 0229+131 0454-234 0458-020\n'
-        text_string += '        0528+134 0537-441 0552+398 0727-115 0735+178 0804+499 0820+560\n'
-        text_string += '        0823+033 0919-260 0954+658 0955+476 1034-293 1044+719 1053+815\n'
-        text_string += '        1104-445 1128+385 1219+044 1308+326 1334-127 1357+769 1424-418\n'
-        text_string += '        1606+106 1622-253 1726+455 1739+522 1741-038 1749+096 1921-293\n'
-        text_string += '        2145+067 2234+282 2255-282 4C39.25 NRAO512 OJ287 OK290\n'
-        text_string += 'Quality code summary:\n'
-        text_string += '        A B C D   E F  0  1 2  3 4  5  6   7   8   9    ?\n'
-        text_string += '        0 2 0 137 3 93 88 0 46 5 18 60 144 211 851 5096 0\n'
-        text_string += '\n'
-        text_string += 'There are 0 flagged records present\n'
-        text_string += '\n'
-
-        self.summ_box.setPlainText(text_string)
         self.summ_box.setReadOnly(True)
 
         self.updateButton = QPushButton('Update Summary')
-
+        self.updateButton.clicked.connect(self.UpdateSummary)
+        
         updatebutton_hbox = QHBoxLayout()
         updatebutton_hbox.addStretch(1)
         updatebutton_hbox.addWidget(self.updateButton)
@@ -1115,12 +1110,100 @@ class SummPanel(QWidget):
         summ_vbox = QVBoxLayout()
         summ_vbox.addWidget(self.summ_box)
         summ_vbox.addLayout(updatebutton_hbox)
-        #summ_vbox.addWidget(self.xseparator)
-        #plot_vbox.addLayout(self.xmenu_hbox)
-        #plot_vbox.addLayout(self.xrange_gridv)
-        #plot_vbox.addStretch(1)
         
         self.setLayout(summ_vbox)
+
+
+
+    def UpdateSummary(self):
+
+        # this method returns the indices and updates the flagging, self.alist_data.record_flags
+        data_selection_dict = self.SelectionTab.CollectDataSelections()
+        scan_selection_dict = self.ScanTab.CollectScanSelections()
+
+        alist_idx = self.alist_data.get_record_indices(data_selection_dict, scan_selection_dict)
+
+        tot_unflagged_records_str = str(len(alist_idx))
+        tot_flagged_records_str = str(len(np.where(self.alist_data.record_flags == 1)[0]))
+        
+        # get the unique stations, baselines, frequencies, sources, experiments, SNR extrema, earliest and latest time
+        # work out how to format the quality code summary
+        # count the number of flagged records
+
+        unique_baselines = np.unique(np.array(self.alist_data.records['baseline'])[alist_idx])
+        if len(unique_baselines) > 16:
+            baseline_str = ''
+            for ii in range(len(unique_baselines)):
+                baseline_str += unique_baselines[ii]+' '
+                if ii % 16 == 15:
+                    baseline_str += '\n        '
+        else:
+            baseline_str = ' '.join(unique_baselines)
+
+        unique_sources = np.unique(np.array(self.alist_data.records['source'])[alist_idx])
+        if len(unique_sources)>6:
+            # break up sources into multiple lines
+            source_str = ''
+            for ii in range(len(unique_sources)):
+                source_str += unique_sources[ii]+' '
+                if ii % 7 == 0 and ii>0:
+                    source_str += '\n        '
+        else:
+            source_str = ' '.join(unique_sources)
+            
+        unique_stations = np.unique(np.concatenate(np.array(self.alist_data.records['stations'])[alist_idx]).flat)
+        station_str = ''.join(unique_stations)
+
+        snr_extrema = str(np.round(np.min(np.array(self.alist_data.records['snr'])[alist_idx]),3))+ \
+                      '    '+str(np.round(np.max(np.array(self.alist_data.records['snr'])[alist_idx]),2))
+
+        unique_exper = np.unique(np.array(self.alist_data.records['experiment'])[alist_idx])
+        exper_str = ''.join(unique_exper)
+
+        unique_qcodes, qcode_counts = np.unique(np.array(self.alist_data.records['qcode'])[alist_idx],return_counts=True)
+
+        qcodes = ['A','B','C','D','E','F','G','H','0','1','2','3','4','5','6','7','8','9','N','?']
+
+        qcode_str = ''
+        qcode_count_str = ''
+        for qc in qcodes:
+            if qc in unique_qcodes:
+                ii = list(unique_qcodes).index(qc)
+                qc_str = str(qcode_counts[ii])
+                qcode_str += qc + ' '*len(qc_str)
+                qcode_count_str += qc_str+' '
+            else:
+                qcode_str += qc + ' '
+                qcode_count_str += '0 '
+                
+
+        
+        text_string = '\n'
+        text_string += '                       SUMMARY OF UNFLAGGED DATA IN MEMORY\n'
+        text_string += '                       -----------------------------------\n'
+        text_string += '\n'
+        text_string += 'Total number of unflagged fringe records = '+tot_unflagged_records_str+'\n'
+        text_string += '\n'
+        text_string += 'Earliest scan:       94-015-183000\n'
+        text_string += 'Latest scan:         94-016-181505\n'
+        text_string += 'Earliest procdate:   94-050-1648\n'
+        text_string += 'Latest procdate:     94-055-1044\n'
+        text_string += 'Stations present:    '+station_str+'\n'
+        text_string += 'Baselines present:   '+baseline_str+'\n'
+        text_string += 'Frequencies present: XS\n'
+        text_string += 'SNR extrema:         '+snr_extrema+'\n'
+        text_string += 'Experiments present: '+exper_str+'\n'
+        text_string += 'Sources present:     '+source_str+'\n'
+        text_string += 'Quality code summary:\n'
+        text_string += '        '+qcode_str+'\n'
+        text_string += '        '+qcode_count_str+'\n'
+        text_string += '\n'
+        text_string += 'There are '+tot_flagged_records_str+' flagged records present\n'
+        text_string += '\n'
+
+        self.summ_box.setPlainText(text_string)
+
+
 
         
 
