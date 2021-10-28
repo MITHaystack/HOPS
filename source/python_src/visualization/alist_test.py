@@ -622,12 +622,18 @@ class PlotWindow(QWidget):
             legend_elements = []
             for ii in range(len(unique_markers)):
 
+                # if more entries than markers, loop on markers
+                if ii>=len(markers):
+                    jj = ii%len(markers)
+                else:
+                    jj=ii
+                    
                 # get the indices
                 idx = np.array([j for j,n in enumerate(data_marker_elements) if n==unique_markers[ii]])
                 
                 #scatterplot = self.ax.scatter(x_data[idx], y_data[idx], c=colors[idx], marker=markers[ii],
                 #                         s=40., facecolors='none', alpha=0.5, picker=5., label=unique_markers[ii])
-                scatterplot = self.ax.scatter(x_data[idx], y_data[idx], edgecolors=colors[idx], marker=markers[ii],
+                scatterplot = self.ax.scatter(x_data[idx], y_data[idx], edgecolors=colors[idx], marker=markers[jj],
                                          s=s_data, facecolors='none', alpha=0.5, picker=5., label=unique_markers[ii])
 
                 # we'll have to do something here to enable the picking
@@ -1328,11 +1334,16 @@ class Init_tab(QWidget):
 
         # load the alist file, collect data, open new window with data selection options
 
+        # initialize an alist data object
+        alist_data = pa.ParseAlist()
+        
         #afilename = self.init_afile_box.text()
-        afilename = self.init_afile_box.toPlainText()
-                
-        alist_data = pa.ParseAlist(afilename)
+        afilenames = self.init_afile_box.toPlainText().split('\n')
 
+        for afile in afilenames:
+            alist_data.load_alist_data(afile)
+
+            
         if self.w is None:
             self.w = DataWindow(alist_data)
         self.w.show()
@@ -1346,7 +1357,7 @@ class MainWindow(QMainWindow):
         super().__init__()
 
         if 'alist_file' in kwargs:
-            self.alist_file = kwargs['alist_file']
+            self.alist_file = '\n'.join(kwargs['alist_file'])
         else:
             self.alist_file = None
             
@@ -1384,7 +1395,7 @@ if __name__ == '__main__':
 
     # assume command line argument is an alist filename
     if len(sys.argv)>1:
-        window = MainWindow(alist_file=sys.argv[1])
+        window = MainWindow(alist_file=sys.argv[1:])
     else:
         window = MainWindow()
     
