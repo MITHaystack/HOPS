@@ -1125,41 +1125,45 @@ class SummPanel(QWidget):
 
         tot_unflagged_records_str = str(len(alist_idx))
         tot_flagged_records_str = str(len(np.where(self.alist_data.record_flags == 1)[0]))
-        
-        # get the unique stations, baselines, frequencies, sources, experiments, SNR extrema, earliest and latest time
-        # work out how to format the quality code summary
-        # count the number of flagged records
 
+
+
+        # baselines present in the unflagged records
         unique_baselines = np.unique(np.array(self.alist_data.records['baseline'])[alist_idx])
-        if len(unique_baselines) > 16:
+        if len(unique_baselines) > 18:
             baseline_str = ''
             for ii in range(len(unique_baselines)):
-                baseline_str += unique_baselines[ii]+' '
-                if ii % 16 == 15:
+                if ii % 18 == 00 and ii>0:
                     baseline_str += '\n        '
+                baseline_str += unique_baselines[ii]+' '
         else:
             baseline_str = ' '.join(unique_baselines)
 
+        # sources present in the unflagged records
         unique_sources = np.unique(np.array(self.alist_data.records['source'])[alist_idx])
         if len(unique_sources)>6:
             # break up sources into multiple lines
             source_str = ''
             for ii in range(len(unique_sources)):
+                if ii % 6 == 0 and ii>0:
+                    source_str += '\n                     '
                 source_str += unique_sources[ii]+' '
-                if ii % 7 == 0 and ii>0:
-                    source_str += '\n        '
         else:
             source_str = ' '.join(unique_sources)
-            
+
+        # stations in the unflagged records
         unique_stations = np.unique(np.concatenate(np.array(self.alist_data.records['stations'])[alist_idx]).flat)
         station_str = ''.join(unique_stations)
 
+        # SNR range
         snr_extrema = str(np.round(np.min(np.array(self.alist_data.records['snr'])[alist_idx]),3))+ \
                       '    '+str(np.round(np.max(np.array(self.alist_data.records['snr'])[alist_idx]),2))
 
+        # experiments
         unique_exper = np.unique(np.array(self.alist_data.records['experiment'])[alist_idx])
         exper_str = ''.join(unique_exper)
 
+        # counts for each quality code
         unique_qcodes, qcode_counts = np.unique(np.array(self.alist_data.records['qcode'])[alist_idx],return_counts=True)
 
         qcodes = ['A','B','C','D','E','F','G','H','0','1','2','3','4','5','6','7','8','9','N','?']
@@ -1177,6 +1181,16 @@ class SummPanel(QWidget):
                 qcode_count_str += '0 '
                 
 
+        # earliest and latest scan in the unflagged records
+        early_scan_idx = np.argmin(np.array(self.alist_data.records['scan_time'])[alist_idx])
+        late_scan_idx = np.argmax(np.array(self.alist_data.records['scan_time'])[alist_idx])
+        early_scan = str(np.array(self.alist_data.records['scan_timetag'])[alist_idx][early_scan_idx])
+        late_scan = str(np.array(self.alist_data.records['scan_timetag'])[alist_idx][late_scan_idx])
+
+        # frequencies
+        unique_freqs = np.unique(np.array(self.alist_data.records['frequency_band'])[alist_idx])
+        freq_str = ''.join(unique_freqs)
+                
         
         text_string = '\n'
         text_string += '                       SUMMARY OF UNFLAGGED DATA IN MEMORY\n'
@@ -1184,15 +1198,15 @@ class SummPanel(QWidget):
         text_string += '\n'
         text_string += 'Total number of unflagged fringe records = '+tot_unflagged_records_str+'\n'
         text_string += '\n'
-        text_string += 'Earliest scan:       94-015-183000\n'
-        text_string += 'Latest scan:         94-016-181505\n'
-        text_string += 'Earliest procdate:   94-050-1648\n'
-        text_string += 'Latest procdate:     94-055-1044\n'
+        text_string += 'Earliest scan:       '+early_scan+'\n'
+        text_string += 'Latest scan:         '+late_scan+'\n'
+        #text_string += 'Earliest procdate:   94-050-1648\n'
+        #text_string += 'Latest procdate:     94-055-1044\n'
         text_string += 'Stations present:    '+station_str+'\n'
         text_string += 'Baselines present:   '+baseline_str+'\n'
-        text_string += 'Frequencies present: XS\n'
-        text_string += 'SNR extrema:         '+snr_extrema+'\n'
         text_string += 'Experiments present: '+exper_str+'\n'
+        text_string += 'Frequencies present: '+freq_str+'\n'
+        text_string += 'SNR extrema:         '+snr_extrema+'\n'
         text_string += 'Sources present:     '+source_str+'\n'
         text_string += 'Quality code summary:\n'
         text_string += '        '+qcode_str+'\n'

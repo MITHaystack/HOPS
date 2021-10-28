@@ -19,6 +19,7 @@ alist_fields = ['index', # unique field to keep track of record
                 #'scan_year',
                 #'proc_date',
                 'frequency_band', # band and number of channels?
+                'scan_timetag', # time tag of scan (unparsed string)
                 'scan_time', # scan time in fractional DOY format (DOY.1234)
                 'scan_length', # scan length in seconds (different from DUR column)
                 'pols', # two-letter description of polarization combination for this baseline (eg XX, RR, XY, YR, etc)
@@ -123,13 +124,22 @@ class ParseAlist:
             # TIME*TAG column is in DOY-HHMMSS format
             # reformat into fractional DOY
             timetag = cols[11].split('-')
+            self.records['scan_timetag'].append(cols[11])
             fractional_day = float(timetag[1][0:2])*3600 + float(timetag[1][2:4])*60 + float(timetag[1][4:6])
             self.records['scan_time'].append(int(timetag[0])+fractional_day/86400.)
             
             self.records['source'].append(cols[13])
             self.records['baseline'].append(cols[14])
             self.records['qcode'].append(cols[15])
-            self.records['frequency_band'].append(cols[16])
+
+            # frequency band is often B32 or X32 or similar...if the first character is a letter,
+            # use that
+            freq = cols[16]
+            if freq[0].isalpha():
+                self.records['frequency_band'].append(freq[0])
+            else:
+                self.records['frequency_band'].append(freq)
+                
             self.records['pols'].append(cols[17])
             self.records['amplitude'].append(float(cols[19]))
             self.records['snr'].append(float(cols[20]))
@@ -174,8 +184,8 @@ class ParseAlist:
 
         scan_idx = [i for i,x in enumerate(self.records['scan']) if x in scan_selection_dict['scans']]
 
-        snrmin_idx = [i for i,x in enumerate(self.records['snr']) if x>data_selection_dict['snrrange'][0]]
-        snrmax_idx = [i for i,x in enumerate(self.records['snr']) if x<data_selection_dict['snrrange'][1]]
+        snrmin_idx = [i for i,x in enumerate(self.records['snr']) if x>=data_selection_dict['snrrange'][0]]
+        snrmax_idx = [i for i,x in enumerate(self.records['snr']) if x<=data_selection_dict['snrrange'][1]]
         
         
         # for now flag records if an un-selected station is present
