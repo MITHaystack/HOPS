@@ -29,11 +29,12 @@ alist_fields = ['index', # unique field to keep track of record
                 'phase',
                 'sbd', # single-band delay
                 'mbd', # multi-band delay
-                'delay_rate']
+                'delay_rate',
+                'ambiguity'] # is this always the same for every record?
 
                 
 # list of plot fields for drop-down menus
-plot_fields = ['scan_time', 'amplitude', 'snr', 'phase', 'sbd', 'mbd', 'delay_rate']
+plot_fields = ['scan_time', 'amplitude', 'snr', 'phase', 'sbd', 'mbd', 'delay_rate','ambiguity']
 
 
 # list of plot labels and units
@@ -43,7 +44,8 @@ plot_labels = {'scan_time':{'label':'Scan time','unit':'(DOY)'},
                'phase':{'label':'Phase','unit':'(deg)'},
                'sbd':{'label':'Single-band delay','unit':'(usec)'},
                'mbd':{'label':'Multi-band delay','unit':'(usec)'},
-               'delay_rate':{'label':'Delay rate','unit':'ps/s'}}
+               'delay_rate':{'label':'Delay rate','unit':'ps/s'},
+               'ambiguity':{'label':'Ambiguity','unit':'usec'}}
 
 # kludge to convert pretty names to the names of fields in the alist records
 plot_label_convert = {'Source':'source',
@@ -57,10 +59,11 @@ plot_label_convert = {'Source':'source',
                       'SNR':'snr',
                       'Single-band delay':'sbd',
                       'Multi-band delay':'mbd',
-                      'Delay rate':'delay_rate'}
+                      'Delay rate':'delay_rate',
+                      'Ambiguity':'ambiguity'}
 
 
-# helper class that does not always work
+# helper class that does not always work - some alist files have a varying number of header lines
 class AfileData:
 
     def __init__(self, afile):
@@ -83,8 +86,7 @@ class AfileData:
 
 class ParseAlist:
 
-    def __init__(self, afile):
-
+    def __init__(self):
 
         self.records = dict.fromkeys(alist_fields)
         #self.records = defaultdict(list)
@@ -98,12 +100,15 @@ class ParseAlist:
         
         self.start_day = 0 # for plotting?
 
+        self.counter=0
+
         
+    def load_alist_data(self, afile):
+
         f = open(afile, 'r')
         lines = f.readlines()
         f.close()
-
-        counter=0
+        
         header_counter = 0 # to keep track of the format for saving a subset of records
         for line in lines:
 
@@ -116,7 +121,7 @@ class ParseAlist:
             # build lists of the useful columns
             #root.append(cols[1])
 
-            self.records['index'].append(counter) # this is useful for the event picking in aedit
+            self.records['index'].append(self.counter) # this is useful for the event picking in aedit
             self.records['scan_length'].append(cols[5])
             self.records['experiment'].append(cols[7])
             self.records['scan'].append(cols[8])
@@ -130,10 +135,15 @@ class ParseAlist:
             
             self.records['source'].append(cols[13])
             self.records['baseline'].append(cols[14])
-            self.records['qcode'].append(cols[15])
+            
+            # sanitize qcodes - if there are two characters and the second is a letter, just save the letter
+            qc = cols[15]
+            if len(qc)>1 and qc[1].isalpha():
+                self.records['qcode'].append(qc[1])
+            else:
+                self.records['qcode'].append(qc)
 
-            # frequency band is often B32 or X32 or similar...if the first character is a letter,
-            # use that
+            # frequency band is often B32 or X32 or similar...if the first character is a letter, use that
             freq = cols[16]
             if freq[0].isalpha():
                 self.records['frequency_band'].append(freq[0])
@@ -146,29 +156,34 @@ class ParseAlist:
             self.records['phase'].append(float(cols[21]))
             self.records['sbd'].append(float(cols[24]))
             self.records['mbd'].append(float(cols[25]))
+            self.records['ambiguity'].append(float(cols[26]))
             self.records['delay_rate'].append(float(cols[27]))
 
-            counter+=1
+            #print(cols[8], cols[14], cols[17], cols[26])
+            
+            self.counter+=1
 
-        # sanitize qcodes - if there's a letter, just save the letter
-        for ii in range(len(self.records['qcode'])):
-            if len(self.records['qcode'][ii])>1:
-                self.records['qcode'][ii]=self.records['qcode'][ii][1]
+        
+        #for ii in range(len(self.records['qcode'])):
+        #    if len(self.records['qcode'][ii])>1:
+        #        self.records['qcode'][ii]=self.records['qcode'][ii][1]
 
         # work out the number of each qcode
-        self.unique_qcodes, self.qcode_counts = np.unique(self.records['qcode'], return_counts=True)
+        #self.unique_qcodes, self.qcode_counts = np.unique(self.records['qcode'], return_counts=True)
 
         # work out the list of stations present in the data
         self.records['stations'] = [[xx[0],xx[1]] for xx in self.records['baseline']]
         self.unique_stations = np.unique(np.concatenate(self.records['stations']).flat)
 
         # keep an array of flag state for each record
+        # this will reset the flags, if you are merging new data!
         self.record_flags = np.zeros(len(self.records['snr']))
 
         # keep an array of colors defined by the SNR of each record
         self.record_color = ['black']*len(self.records['snr'])
 
 
+        
 
     # method to return list of record indices meeting criteria in data_selection_dict
     def get_record_indices(self, data_selection_dict, scan_selection_dict):
