@@ -16,7 +16,6 @@
 #include "ff_misc_if.h"
 #include <stdio.h>
 
-extern void   msg (char *, int, ...);
 
 void apply_passband (int sb, int ap,
                      struct freq_corel *fdata,

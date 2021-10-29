@@ -4,7 +4,8 @@
 # The contents of the package Copyright statement apply here.
 #
 
-AM_CPPFLAGS = -I. -I$(srcdir)/include -I$(srcdir)/../../mk4util/include \
+AM_CPPFLAGS = -I. -I$(srcdir)/include -I$(srcdir)/../../msg/include \
+	-I$(srcdir)/../../mk4util/include \
 	-I$(srcdir)/../ffcore/include -Wall -Wextra -DHAVE_CONFIG_H
 
 pkginclude_HEADERS = include/control.h include/parser.h

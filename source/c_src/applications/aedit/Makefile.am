@@ -5,7 +5,8 @@
 #
 if HAVE_PGPLOT
 
-AM_CPPFLAGS = -I. -I$(srcdir)/include -I$(srcdir)/../../mk4util/include \
+AM_CPPFLAGS = -I. -I$(srcdir)/include -I$(srcdir)/../../msg/include \
+	-I$(srcdir)/../../mk4util/include \
 	-I$(srcdir)/../../afio/include -I$(srcdir)/../../dfio/include \
 	-I$(srcdir)/../../vex/include  -Wall -Wextra -DHAVE_CONFIG_H
 
@@ -76,7 +77,8 @@ aedit_SOURCES = aedit.c src/active_filter.c src/add_station.c \
 	src/write_tdata.c src/zoom.c
 
 aedit_LDADD = ../../mk4util/libmk4util.la ../../afio/libafio.la \
-	../../dfio/libdfio.la ../../vex/libvex.la ${CPGPLOT_LIBS} -lm
+	../../dfio/libdfio.la ../../vex/libvex.la ../../msg/libmsg.la \
+	${CPGPLOT_LIBS} -lm
 
 #${PNG_LIB} ${X_FPLOT_LIB} ${X11_LIB} ${FFTW3_LIBS}
 # FIXME: -lm should be configured

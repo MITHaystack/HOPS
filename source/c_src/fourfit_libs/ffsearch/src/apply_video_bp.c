@@ -14,7 +14,6 @@
 #include "ff_misc_if.h"
 #include <stdio.h>
 
-extern void   msg (char *, int, ...);
 
 void apply_video_bp (hops_complex *xp_spec,
                      int npts,

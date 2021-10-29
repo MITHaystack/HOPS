@@ -4,8 +4,8 @@
 # The contents of the package Copyright statement apply here.
 #
 
-AM_CPPFLAGS = -I. -I$(srcdir)/include -I$(srcdir)/../mk4util/include \
-	-Wall -Wextra -DHAVE_CONFIG_H
+AM_CPPFLAGS = -I. -I$(srcdir)/include -I$(srcdir)/../msg/include \
+	-I$(srcdir)/../mk4util/include -Wall -Wextra -DHAVE_CONFIG_H
 
 pkginclude_HEADERS = include/T1.h include/bytflp.h include/mk4_data.h \
 	include/mk4_dfio.h include/mk4_records.h include/type_000.h \

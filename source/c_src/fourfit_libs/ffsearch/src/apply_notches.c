@@ -19,7 +19,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-extern void   msg (char *, int, ...);
 
 void apply_lsb_notch(double lo, double hi,
                      struct freq_corel *fdata,
