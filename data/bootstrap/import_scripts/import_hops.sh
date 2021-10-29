@@ -62,11 +62,12 @@ $dif && {
 [ -d "$bsi" ] || { echo nope, missing scripts: "'$bsi'" ; $return 4; }
 
 # this list corresponds directly to the set of import scripts
-# ordered by: general libraries, application specific libraries, apps, test
+# ordered by: general libraries, application specific libraries, apps
+# fftest brings all of the old integration test suite (data_/??_testdata).
 targets="afio dfio msg mk4util vex
     ffcontrol ffcore ffio ffmath ffplot ffsearch
-    fourfit alist adump aedit average cofit
-    fftest
+    fourfit alist adump aedit average cofit fourmer
+    fplot fringex search snratio fftest
 "
 [ $# -eq 0 ] && set -- $targets
 
