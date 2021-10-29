@@ -40,7 +40,8 @@
 #include "fileset.h"
 #include "write_lock_mechanism.h"
 #include "fourfit_signal_handler.h"
-#include "ff_misc_if.h"
+#include "msg.h"
+// #include "ff_misc_if.h"
 
 struct type_param param;
 struct type_status status;              /* External structure declarations */
@@ -66,8 +67,8 @@ int reftime_offset = 0;
 lockfile_data_struct global_lockfile_data;
 
 //char progname[] = "fourfit";            /* extern variables for messages */
-char progname[] = FF_PROGNAME;		// fourfit or fearfit from Makefile
-int msglev = 2;
+// char progname[] = FF_PROGNAME;		// fourfit or fearfit from Makefile
+// int msglev = 2;
 char *pexec;                            // ptr to progam executable name
 char version_no[] = FF_VER_NO;		// PACKAGE_VERSION from Makefile
 //char version_no[4] = "3.5";             // Update this with new releases
@@ -94,6 +95,9 @@ int main (int argc, char** argv)
     fstruct *files, *fs;
     struct fileset fset;
     bsgstruct *base_sgrp;
+
+    set_progname(FF_PROGNAME);
+    set_msglev(2);
 
     //init lockfile data struct
     clear_global_lockfile_data();
@@ -186,7 +190,7 @@ int main (int argc, char** argv)
         param.acc_period = root.evex->ap_length;
         param.speedup = root.evex->speedup_factor;
                                         /* Find all files belonging to this root */
-        if (fileset (rootname, &fset) != 0)
+        if (get_fileset (rootname, &fset) != 0)
             {
             msg ("%sError getting fileset of '%s'", 2, processmsg, rootname);
             continue;
