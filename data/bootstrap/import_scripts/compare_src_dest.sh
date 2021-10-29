@@ -3,6 +3,9 @@
 # It loops over an array variable source_list and does the hash check
 # and as necessary (if CHKSUM=0) an import cp or rm
 #
+[ `basename $0` = 'compare_src_dest.sh' ] && {
+    echo this script should not be run standalone; exit 1; }
+
 [ -n "$src_dir" -a -d "$src_dir" ] ||
     { echo no src_dir $src_dir; return 1; }
 [ -n "$dest_dir" -a -d "$dest_dir" ] ||
@@ -55,6 +58,7 @@ do
 
     # help the human out
     $wery && diff "${src_dir}/${i}" "${dest_dir}/${i}"
+    $dif && echo $diff "${src_dir}/${i}" \\ && echo "$dnul" "${dest_dir}/${i}"
 
     # finally, hashes differ and we have permission
     [ $CHKSUM -eq 0 ] &&
