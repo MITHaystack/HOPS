@@ -62,7 +62,7 @@ AC_ARG_ENABLE(doxygen,
     [], [enable_doxy=yes])
 AC_ARG_ENABLE(sphinx,
     AS_HELP_STRING([--disable-sphinx], [allow sphinx-generated documents]),
-    [], [enable_doxy=yes])
+    [], [enable_spnx=yes])
 AC_ARG_ENABLE(gcov,
     AS_HELP_STRING([--enable-gcov], [compile with coverage active]),
     [], [enable_gcov=no])
@@ -301,6 +301,7 @@ AC_CONFIG_FILES(source/bash_src/Makefile)
 # source/c_source makefiles, part 1: "sub" and applications
 AC_CONFIG_FILES(
     source/c_src/Makefile
+    source/c_src/msg/Makefile
     source/c_src/mk4util/Makefile
     source/c_src/dfio/Makefile
     source/c_src/afio/Makefile
