@@ -62,7 +62,7 @@ $dif && {
 [ -d "$bsi" ] || { echo nope, missing scripts: "'$bsi'" ; $return 4; }
 
 # this list corresponds directly to the set of import scripts
-targets="afio dfio mk4util vex
+targets="afio dfio msg mk4util vex
     ffcontrol ffcore ffio ffmath ffplot ffsearch
     fourfit alist aedit fftest
 "

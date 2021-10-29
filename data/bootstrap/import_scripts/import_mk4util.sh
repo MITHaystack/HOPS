@@ -30,7 +30,7 @@ else
         "mk4_sizes.h"
         "mk4_typedefs.h"
         "mk4_util.h"
-	"adler32_checksum.h"
+        "adler32_checksum.h"
         "hops_complex.h"
     )
 
@@ -61,7 +61,6 @@ else
         "int_to_time.c"
         "ismk4.c"
         "minmax.c"
-        "msg.c"
         "report_times.c"
         "root_belong.c"
         "root_id.c"
