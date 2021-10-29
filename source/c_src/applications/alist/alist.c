@@ -27,9 +27,10 @@
 #include "mk4_afio.h"
 #include "mk4_dfio.h"
 #include "mk4_util.h"
+#include "msg.h"
 
-char progname[6] = "alist";
-int msglev = 2;
+// char progname[6] = "alist";
+// int msglev = 2;
 int output_version = CURRENT_VERSION;
 
 extern int parse_cmdline (int argc, char **argv,
@@ -56,7 +57,8 @@ int main (int argc, char *argv[])
                                         /* Check for option flags, then fill in the */
                                         /* files structure array, checking the file */
                                         /* type implied by the name in each case */
-
+    set_progname("alist");
+    set_msglev(2);
     environment();			/* Set up directories by env() */
 
     if (parse_cmdline (argc, argv, &files, outfile) != 0)
