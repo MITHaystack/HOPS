@@ -32,6 +32,18 @@ else
 
     # search (library) sources
     declare -a source_list=(
+        "clear_srchdata.c"
+        "fill_grids.c"
+        "fit_peaks.c"
+        "grid_filler.c"
+        "parabola.c"
+        "parse_cmdline.c"
+        "plot_srchdata.c"
+        "read_data.c"
+        "search.c"
+        "sort_data.c"
+        "sorter.c"
+        "write_srchdata.c"
     )
     src_dir="${HOPS3_SRC_DIR}/postproc/search"
     dest_dir="${HOPS4_SRC_DIR}/source/c_src/applications/search/src"
