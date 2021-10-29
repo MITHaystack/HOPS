@@ -43,7 +43,7 @@ else
     source $bsi/compare_src_dest.sh
     ret_val=$(($ret_val + $?))
 
-    # aedit application sources
+    # aedit application (library) sources
     declare -a source_list=(
     "active_filter.c" 
     "add_station.c" 
@@ -194,6 +194,12 @@ else
     
     src_dir="${HOPS3_SRC_DIR}/postproc/aedit"
     dest_dir="${HOPS4_SRC_DIR}/source/c_src/applications/aedit/src"
+    source $bsi/compare_src_dest.sh
+    ret_val=$(($ret_val + $?))
+
+    declare -a source_list=( aedit.c )
+    src_dir="${HOPS3_SRC_DIR}/postproc/aedit"
+    dest_dir="${HOPS4_SRC_DIR}/source/c_src/applications/aedit"
     source $bsi/compare_src_dest.sh
     ret_val=$(($ret_val + $?))
 fi
