@@ -4,8 +4,8 @@
 # The contents of the package Copyright statement apply here.
 #
 
-AM_CPPFLAGS = -I. -I$(srcdir)/include -I$(srcdir)/../mk4util/include \
-	-Wall -Wextra -DHAVE_CONFIG_H
+AM_CPPFLAGS = -I. -I$(srcdir)/include -I$(srcdir)/../msg/include \
+	-I$(srcdir)/../mk4util/include -Wall -Wextra -DHAVE_CONFIG_H
 
 pkginclude_HEADERS = include/adata.h include/afile_structure.h \
 	include/mk4_afio.h

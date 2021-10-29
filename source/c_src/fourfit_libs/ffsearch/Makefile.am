@@ -4,7 +4,8 @@
 # The contents of the package Copyright statement apply here.
 #
 
-AM_CPPFLAGS = -I. -I$(srcdir)/include -I$(srcdir)/../../mk4util/include \
+AM_CPPFLAGS = -I. -I$(srcdir)/include -I$(srcdir)/../../msg/include \
+	-I$(srcdir)/../../mk4util/include \
 	-I$(srcdir)/../../afio/include -I$(srcdir)/../../dfio/include \
 	-I$(srcdir)/../../vex/include -I$(srcdir)/../ffcontrol/include \
 	-I$(srcdir)/../ffcore/include -I$(srcdir)/../ffio/include \

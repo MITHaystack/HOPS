@@ -33,6 +33,7 @@
 #include "aedata.h"
 #include "usearray.h"
 #include "summary.h"
+#include "msg.h"
 
 int rscan, cscan, fscan, tscan, qscan,
     rflag, cflag, fflag, tflag, qflag,
@@ -54,8 +55,8 @@ struct datasumm rsumm, csumm, fsumm, tsumm, qsumm;
 struct usearray user_param;
 
 
-char progname[6] = "aedit";
-int msglev = 1;
+// char progname[6] = "aedit";
+// int msglev = 1;
 
 int main (int argc, char *argv[])
     {
@@ -65,6 +66,9 @@ int main (int argc, char *argv[])
     int file, runfile, c, i, j, n, len, execute(), filelist, ret;
     char run_fname[512], line[512], *eol;
     struct com commands[10];    /* Structure contains parsed command info */
+
+    set_progname("aedit");
+    set_msglev(1);
 
     environment();                      /* Set up directories according to env't */
     check_env();                        /* Aedit-specific ones */

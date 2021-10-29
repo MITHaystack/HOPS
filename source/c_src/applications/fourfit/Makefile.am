@@ -5,6 +5,7 @@
 #
 
 AM_CPPFLAGS = -I. -I$(srcdir)/include \
+	-I$(srcdir)/../../msg/include \
 	-I$(srcdir)/../../mk4util/include \
 	-I$(srcdir)/../../afio/include \
 	-I$(srcdir)/../../dfio/include \
@@ -33,7 +34,8 @@ fourfit_LDADD = ../../fourfit_libs/ffcontrol/libffcontrol.la \
     ../../afio/libafio.la \
     ../../dfio/libdfio.la \
     ../../vex/libvex.la \
-    ../../mk4util/libmk4util.la
+    ../../mk4util/libmk4util.la \
+    ../../msg/libmsg.la
 
 fourfit_LDADD += ${CPGPLOT_LIBS} ${FFTW3_LIBS}
 
