@@ -32,6 +32,23 @@ else
 
     # fringex (library) sources
     declare -a source_list=(
+        "accum_segs.c"
+        "calc_seg.c"
+        "clear_fxp.c"
+        "clear_loops.c"
+        "determine_nsegs.c"
+        "filelist.c"
+        "fill_aline.c"
+        "fringex.c"
+        "init_fxp.c"
+        "model.c"
+        "parse_cmdline.c"
+        "parse_dflag.c"
+        "parse_iflag.c"
+        "read_binaries.c"
+        "realloc_segs.c"
+        "set_loops.c"
+        "set_reffreq.c"
     )
     src_dir="${HOPS3_SRC_DIR}/postproc/fringex"
     dest_dir="${HOPS4_SRC_DIR}/source/c_src/applications/fringex/src"

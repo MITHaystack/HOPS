@@ -32,6 +32,8 @@ else
 
     # fplot (library) sources
     declare -a source_list=(
+        "fplot.c"
+        "parse_cmdline.c"
     )
     src_dir="${HOPS3_SRC_DIR}/postproc/fplot"
     dest_dir="${HOPS4_SRC_DIR}/source/c_src/applications/fplot/src"
