@@ -23,7 +23,6 @@ else
 
     # snratio headers
     declare -a source_list=(
-        "snratio.h"
     )
     src_dir="${HOPS3_SRC_DIR}/postproc/snratio"
     dest_dir="${HOPS4_SRC_DIR}/source/c_src/applications/snratio/include"
