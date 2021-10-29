@@ -62,9 +62,11 @@ $dif && {
 [ -d "$bsi" ] || { echo nope, missing scripts: "'$bsi'" ; $return 4; }
 
 # this list corresponds directly to the set of import scripts
+# ordered by: general libraries, application specific libraries, apps, test
 targets="afio dfio msg mk4util vex
     ffcontrol ffcore ffio ffmath ffplot ffsearch
-    fourfit alist aedit fftest
+    fourfit alist adump aedit
+    fftest
 "
 [ $# -eq 0 ] && set -- $targets
 
