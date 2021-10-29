@@ -4,12 +4,16 @@ the development plan.  This is a starter....
 Copyright: all files should include a current-date MIT copyright and
     a reference to the top-level Copyright file, e.g. in C++ source.
 
-    // (c) Massachusetts Institute of Technology, ????-2020
+    // (c) Massachusetts Institute of Technology, ????-2022
     // The contents of the package Copyright statement apply here.
+    // (authorship)
 
     If other copyrights apply or copyright does not belong to MIT
     (for files brought in from elsewhere) suitable adjustments should
     be made.  This plus a description should appear at the top of the file.
+
+    The third line above should be a line or two on original authorship and
+    overhaul authorship as sensible.  Obviously # instead of // for Python.
 
 Libraries
   Should be buildable either statically or dynamically linked.  The default,
@@ -34,11 +38,11 @@ Modularity
   File level:
     Within a file, functional (functions/methods) should ideally be "visible"
     within a window of at most 80 columns and 45 lines.  This should be
-    violated if there are preformance or other sensible reasons for doing
+    violated if there are performance or other sensible reasons for doing
     so.  The point of this is to allow a develop to "see" what is going on.
     (Material that is off the screen is usually out of mind, and errors may
     easily result from inconsistencies that may result.)
-    Some files (e.g. C++ templates) require a different shape, e.g. as much
+    Some files (e.g. C++ templates) require a different shape, e.g., up to
     as 110 columns, but perhaps fewer lines.
   Variables:
     Should be given short, non-cryptic names when possible, and almost never
