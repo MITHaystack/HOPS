@@ -65,7 +65,7 @@ $dif && {
 # ordered by: general libraries, application specific libraries, apps, test
 targets="afio dfio msg mk4util vex
     ffcontrol ffcore ffio ffmath ffplot ffsearch
-    fourfit alist adump aedit average
+    fourfit alist adump aedit average cofit
     fftest
 "
 [ $# -eq 0 ] && set -- $targets
