@@ -92,8 +92,6 @@ endif # HAVE_PGPLOT
 
 AM_INSTALLCHECK_STD_OPTIONS_EXEMPT = aedit
 
-EXTRA_DIST =
-
 #
 # eof
 #

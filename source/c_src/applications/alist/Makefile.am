@@ -19,8 +19,6 @@ alist_LDADD = ../../mk4util/libmk4util.la ../../afio/libafio.la \
 
 AM_INSTALLCHECK_STD_OPTIONS_EXEMPT = alist
 
-EXTRA_DIST = 
-
 #
 # eof
 #
