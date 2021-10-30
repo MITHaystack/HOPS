@@ -22,15 +22,20 @@ else
     [ -z "$bsi" ] && bsi=${HOPS4_SRC_DIR}/data/bootstrap/import_scripts
 
     # alist sources
+    declare -a source_list=( "alist.c" )
+    src_dir="${HOPS3_SRC_DIR}/postproc/alist"
+    dest_dir="${HOPS4_SRC_DIR}/source/c_src/applications/alist"
+    source $bsi/compare_src_dest.sh
+    ret_val=$(($ret_val + $?))
+
+    # alist (library) sources
     declare -a source_list=(
-        "alist.c"
         "open_output.c"
         "parse_cmdline.c"
         "summarize_mk4fringe.c"
     )
-
     src_dir="${HOPS3_SRC_DIR}/postproc/alist"
-    dest_dir="${HOPS4_SRC_DIR}/source/c_src/applications/alist"
+    dest_dir="${HOPS4_SRC_DIR}/source/c_src/applications/alist/src"
     source $bsi/compare_src_dest.sh
     ret_val=$(($ret_val + $?))
 
