@@ -4,7 +4,7 @@
 # The contents of the package Copyright statement apply here.
 #
 
-AM_CPPFLAGS = -I. -I$(srcdir)/include -I$(srcdir)/../../msg/include \
+AM_CPPFLAGS = -I$(srcdir)/include -I$(srcdir)/../../msg/include \
 	-I$(srcdir)/../../mk4util/include \
 	-I$(srcdir)/../../afio/include -I$(srcdir)/../../dfio/include \
 	-Wall -Wextra -DHAVE_CONFIG_H
