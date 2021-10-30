@@ -22,9 +22,7 @@ else
     [ -z "$bsi" ] && bsi=${HOPS4_SRC_DIR}/data/bootstrap/import_scripts
 
     # adump headers
-    declare -a source_list=(
-        "adump.h"
-    )
+    declare -a source_list=( "adump.h")
     src_dir="${HOPS3_SRC_DIR}/postproc/adump"
     dest_dir="${HOPS4_SRC_DIR}/source/c_src/applications/adump/include"
     source $bsi/compare_src_dest.sh
@@ -32,7 +30,6 @@ else
 
     # adump (library) sources
     declare -a source_list=(
-        "adump.c"
         "parse_bfields.c"
         "parse_cmdline.c"
         "parse_tfields.c"
