@@ -40,7 +40,6 @@ else
         "parse_cmdline.c"
         "plot_srchdata.c"
         "read_data.c"
-        "search.c"
         "sort_data.c"
         "sorter.c"
         "write_srchdata.c"
