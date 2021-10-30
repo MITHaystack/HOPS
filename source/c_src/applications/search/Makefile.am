@@ -9,7 +9,7 @@ TESTS             = soirch chk_ps2pdf.sh
 XFAIL_TESTS       = soirch
 
 AM_CPPFLAGS = -I$(srcdir)/include -I$(srcdir)/../../msg/include \
-	-I$(srcdir)/../../afio/include
+	-I$(srcdir)/../../afio/include -Wall -Wextra -DHAVE_CONFIG_H
 
 noinst_HEADERS = include/search.h
 

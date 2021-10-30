@@ -39,7 +39,6 @@ else
         "determine_nsegs.c"
         "filelist.c"
         "fill_aline.c"
-        "fringex.c"
         "init_fxp.c"
         "model.c"
         "parse_cmdline.c"
