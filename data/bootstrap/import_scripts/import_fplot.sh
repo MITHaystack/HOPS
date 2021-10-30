@@ -22,19 +22,14 @@ else
     [ -z "$bsi" ] && bsi=${HOPS4_SRC_DIR}/data/bootstrap/import_scripts
 
     # fplot headers
-    declare -a source_list=(
-        "fplot.h"
-    )
+    declare -a source_list=( "fplot.h")
     src_dir="${HOPS3_SRC_DIR}/postproc/fplot"
     dest_dir="${HOPS4_SRC_DIR}/source/c_src/applications/fplot/include"
     source $bsi/compare_src_dest.sh
     ret_val=$(($ret_val + $?))
 
     # fplot (library) sources
-    declare -a source_list=(
-        "fplot.c"
-        "parse_cmdline.c"
-    )
+    declare -a source_list=( "parse_cmdline.c")
     src_dir="${HOPS3_SRC_DIR}/postproc/fplot"
     dest_dir="${HOPS4_SRC_DIR}/source/c_src/applications/fplot/src"
     source $bsi/compare_src_dest.sh
