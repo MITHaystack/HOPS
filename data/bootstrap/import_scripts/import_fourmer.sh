@@ -22,9 +22,7 @@ else
     [ -z "$bsi" ] && bsi=${HOPS4_SRC_DIR}/data/bootstrap/import_scripts
 
     # fourmer headers
-    declare -a source_list=(
-        "fourmer.h"
-    )
+    declare -a source_list=( "fourmer.h" )
     src_dir="${HOPS3_SRC_DIR}/postproc/fourmer"
     dest_dir="${HOPS4_SRC_DIR}/source/c_src/applications/fourmer/include"
     source $bsi/compare_src_dest.sh
@@ -34,11 +32,9 @@ else
     declare -a source_list=(
         "append_sdata.c"
         "do_record_merge.c"
-        "fourmer.c"
         "gen_new_chan_id.c"
         "print_cdata_cmp.c"
         "scan_name_edit.c"
-        "test_new_chan_id.c"
     )
     src_dir="${HOPS3_SRC_DIR}/postproc/fourmer"
     dest_dir="${HOPS4_SRC_DIR}/source/c_src/applications/fourmer/src"
@@ -46,7 +42,7 @@ else
     ret_val=$(($ret_val + $?))
 
     # fourmer itself
-    declare -a source_list=( "fourmer.c")
+    declare -a source_list=( "fourmer.c" "test_new_chan_id.c" )
     src_dir="${HOPS3_SRC_DIR}/postproc/fourmer"
     dest_dir="${HOPS4_SRC_DIR}/source/c_src/applications/fourmer"
     source $bsi/compare_src_dest.sh
