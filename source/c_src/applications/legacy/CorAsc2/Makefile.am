@@ -1,5 +1,7 @@
 #
-# $Id: Makefile.am 265 2011-05-20 15:39:47Z gbc $
+# Makefile for legacy CorAsc2 dumper
+# (c) Massachusetts Institute of Technology, 2021
+# The contents of the package Copyright statement apply here.
 #
 
 SUBDIRS = 
@@ -8,11 +10,12 @@ AM_CPPFLAGS = -I$(srcdir)/include \
 	-I$(srcdir)/../../../dfio/include \
 	-I$(srcdir)/../../../mk4util/include
 
-noinst_HEADERS = include/tapeDB.h
+noinst_HEADERS = $(srcdir)/include/tapeDB.h
 
-bin_PROGRAMS = CorAsc2
+bin_PROGRAMS = CorAsc2 CorPrune
 
 CorAsc2_SOURCES = src/CorAsc2.c
+CorPrune_SOURCES = src/CorPrune.c
 
 #
 # eof

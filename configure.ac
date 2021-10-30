@@ -298,7 +298,7 @@ AC_CONFIG_FILES(
 # includes perl scripts as well
 AC_CONFIG_FILES(source/bash_src/Makefile)
 
-# source/c_source makefiles, part 1: "sub" and applications
+# source/c_source makefiles, part 1: "sub"
 AC_CONFIG_FILES(
     source/c_src/Makefile
     source/c_src/msg/Makefile
@@ -306,9 +306,6 @@ AC_CONFIG_FILES(
     source/c_src/dfio/Makefile
     source/c_src/afio/Makefile
     source/c_src/vex/Makefile
-    source/c_src/applications/Makefile
-    source/c_src/applications/alist/Makefile
-    source/c_src/applications/aedit/Makefile
 )
 # source/c_source makefiles, part 2: "fourfit"
 AC_CONFIG_FILES(
@@ -320,12 +317,30 @@ AC_CONFIG_FILES(
     source/c_src/fourfit_libs/ffsearch/Makefile
     source/c_src/fourfit_libs/ffplot/Makefile
     source/c_src/applications/fourfit/Makefile
+    source/c_src/applications/fourmer/Makefile
+    source/c_src/applications/fplot/Makefile
+    source/c_src/applications/fringex/Makefile
 )
-# source/c_source makefiles, part 3: "legacy"
+# source/c_source makefiles, part 3: "aedit family"
 AC_CONFIG_FILES(
+    source/c_src/applications/Makefile
+    source/c_src/applications/aedit/Makefile
+    source/c_src/applications/alist/Makefile
+    source/c_src/applications/adump/Makefile
+)
+# source/c_source makefiles, part 4: "mmvlbi apps"
+AC_CONFIG_FILES(
+    source/c_src/applications/average/Makefile
+    source/c_src/applications/cofit/Makefile
+    source/c_src/applications/search/Makefile
+    source/c_src/applications/snratio/Makefile
+)
+# source/c_source makefiles, part 5: "legacy apps"
+AC_CONFIG_FILES(
+    source/c_src/applications/legacy/Makefile
     source/c_src/applications/legacy/CorAsc2/Makefile
 )
-# source/c_source makefiles, part 4: "test"
+# source/c_source makefiles, part 6: "test"
 AC_CONFIG_FILES(
     source/c_src/applications/test/Makefile
 )

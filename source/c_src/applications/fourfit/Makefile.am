@@ -21,7 +21,11 @@ AM_CPPFLAGS = -I. -I$(srcdir)/include \
 
 AM_CPPFLAGS += ${CPGPLOT_CFLAGS} ${FFTW3_CFLAGS}
 
+if HAVE_FFTW3
 bin_PROGRAMS = fourfit
+else # HAVE_FFTW3
+bin_PROGRAMS =
+endif # HAVE_FFTW3
 
 fourfit_SOURCES = fourfit.c
 
