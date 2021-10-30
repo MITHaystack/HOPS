@@ -45,8 +45,6 @@ fourfit_LDADD += ${CPGPLOT_LIBS} ${FFTW3_LIBS}
 
 AM_INSTALLCHECK_STD_OPTIONS_EXEMPT = fourfit
 
-EXTRA_DIST =
-
 #
 # eof
 #
