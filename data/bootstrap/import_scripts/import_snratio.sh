@@ -21,22 +21,6 @@ if [ -z ${HOPS3_SRC_DIR} ] && [ -z ${HOPS4_SRC_DIR} ]; then
 else
     [ -z "$bsi" ] && bsi=${HOPS4_SRC_DIR}/data/bootstrap/import_scripts
 
-    # snratio headers
-    declare -a source_list=(
-    )
-    src_dir="${HOPS3_SRC_DIR}/postproc/snratio"
-    dest_dir="${HOPS4_SRC_DIR}/source/c_src/applications/snratio/include"
-    source $bsi/compare_src_dest.sh
-    ret_val=$(($ret_val + $?))
-
-    # snratio (library) sources
-    declare -a source_list=(
-    )
-    src_dir="${HOPS3_SRC_DIR}/postproc/snratio"
-    dest_dir="${HOPS4_SRC_DIR}/source/c_src/applications/snratio/src"
-    source $bsi/compare_src_dest.sh
-    ret_val=$(($ret_val + $?))
-
     # snratio itself
     declare -a source_list=( "snratio.c")
     src_dir="${HOPS3_SRC_DIR}/postproc/snratio"
