@@ -4,13 +4,11 @@
 # The contents of the package Copyright statement apply here.
 #
 
-# FIXME: this conditional moves down a layer once we figure
-# out what we should do if FFTW3 isn't available
-if HAVE_FFTW3
-  SUBDIRS = fourfit alist aedit test
-else
-  SUBDIRS = alist aedit
-endif
+FF_FAMILY = fourfit fourmer fplot fringex
+AE_FAMILY = aedit alist adump
+PP_FAMILY = average cofit search snratio
+LEGACY = legacy
+SUBDIRS = $(FF_FAMILY) $(AE_FAMILY) $(PP_FAMILY) $(LEGACY)
 
 #
 # eof
