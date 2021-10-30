@@ -36,7 +36,6 @@ else
     declare -a source_list=(
         "ampf.c"
         "clear_codata.c"
-        "cofit.c"
         "covsrt.c"
         "fit_ampl.c"
         "fit_codata.c"
