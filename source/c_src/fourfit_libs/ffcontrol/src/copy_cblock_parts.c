@@ -7,6 +7,7 @@
 *************************************************************************/
 #include <string.h>
 #include "control.h"
+#include "ffcontrol.h"
 #include "mk4_sizes.h"
 
 // f (from) is source pointer

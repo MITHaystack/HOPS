@@ -55,6 +55,7 @@ else
         "fileset.c"
         "get_abs_path.c"
         "get_filelist.c"
+        "hops_complex.c"
         "hptoie4.c"
         "hptoie8.c"
         "hptoie.c"
