@@ -8,7 +8,7 @@ AM_CPPFLAGS = -I. -I$(srcdir)/include -I$(srcdir)/../../msg/include \
 	-I$(srcdir)/../../mk4util/include \
 	-I$(srcdir)/../../afio/include -I$(srcdir)/../../dfio/include \
 	-I$(srcdir)/../../vex/include -I$(srcdir)/../ffcontrol/include \
-	-Wall -Wextra -DHAVE_CONFIG_H
+	-I$(srcdir)/../ffmath/include -Wall -Wextra -DHAVE_CONFIG_H
 
 pkginclude_HEADERS = include/filter.h include/fourfit_signal_handler.h \
 	include/freqlist.h include/param_struct.h include/pass_struct.h \

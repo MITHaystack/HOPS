@@ -6,6 +6,7 @@
 ******************************************************************************/
 #include "parser.h"
 #include "control.h"
+#include "ffcontrol.h"
 #include <stdio.h>
 
 #define tokenize(aa,bb,cc) {token_string[aa] = bb; token_cat[aa] = cc;}

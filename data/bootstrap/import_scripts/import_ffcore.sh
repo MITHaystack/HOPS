@@ -27,6 +27,7 @@ else
     declare -a source_list=(
     "filter.h"
     "ff_misc_if.h"
+    "ffcore.h"
     "freqlist.h"
     "param_struct.h"
     "pass_struct.h"
