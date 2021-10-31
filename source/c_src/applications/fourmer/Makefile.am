@@ -25,6 +25,8 @@ fourmer_LDADD = ../../mk4util/libmk4util.la ../../dfio/libdfio.la \
 
 test_new_chan_id_SOURCES = test_new_chan_id.c src/gen_new_chan_id.c
 
+AM_INSTALLCHECK_STD_OPTIONS_EXEMPT = fourmer
+
 #
 # eof
 #
