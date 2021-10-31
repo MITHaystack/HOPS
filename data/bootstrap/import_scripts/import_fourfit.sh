@@ -21,9 +21,8 @@ if [ -z ${HOPS3_SRC_DIR} ] && [ -z ${HOPS4_SRC_DIR} ]; then
 else
     [ -z "$bsi" ] && bsi=${HOPS4_SRC_DIR}/data/bootstrap/import_scripts
 
-    #copy fourfit
+    #copy fourfit app
     declare -a source_list=( fourfit.c )
-
     src_dir="${HOPS3_SRC_DIR}/postproc/fourfit"
     dest_dir="${HOPS4_SRC_DIR}/source/c_src/applications/fourfit"
     source $bsi/compare_src_dest.sh
