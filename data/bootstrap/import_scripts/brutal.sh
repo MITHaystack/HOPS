@@ -36,12 +36,14 @@ do
     for nnn in $nf
     do
         [ -d $f -o -d $nnn ] && continue
+        nn=`diff $f $nnn | wc -l`
         cmp $f $nnn >/dev/null ||
-        echo $f $nnn
+        echo $f $nnn \# diff $nn lines
     done
 done |\
 sed -e "s+$HOPS3_SRC_DIR+\$H3+" -e "s+$HOPS4_SRC_DIR+\$H4+"
 
+echo H3=$HOPS3_SRC_DIR H4=$HOPS4_SRC_DIR
 #
 # eof
 #

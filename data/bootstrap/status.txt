@@ -1,0 +1,39 @@
+This is a file to track status on SVN to GIT transition.
+
+The scripts in import_scripts cover portions of the HOPS3(SVN)
+source tree and map files one-to-one to HOP4(GIT) tree, but the
+source tree arrangement is different and thus a straightforward
+rsync does not work.  The scripts use md5sum within a workhorse
+script import_scripts/compare_src_dest.sh to do the actual work.
+Then a top-level import_hops.sh script drives a (long) list of
+import_something.sh scripts.  Note that the organization
+corresponds to destination within the HOPS4 tree
+
+  HOPS3 libraryes (source/c_src)
+    afio dfio msg mk4util vex
+  pieces of fourfit (source/c_src/fourfit_libs)
+    ffcontrol ffcore ffio ffmath ffplot ffsearch
+  the HOPS3 executables (source/c_src/applications)
+    fourfit alist adump aedit average cofit fourmer
+    fplot fringex search snratio
+  other legacy code (source/c_src/applications/legacy)
+    legacy
+  the original set of integration tests (data/various)
+    fftest
+
+A check test in data (import_from_hops3.sh) may be run in the top
+data directory to check on the status of the two trees.  It includes
+a case switch to allow configuration on various machines as needed:
+the switch is on $USER-`hostname` to set variables to the required
+SVN and GIT source directories.  (It just looks at what is present
+and does not do any updates.  Presumably the two trees are both on
+trunk and master rather than development branches.)
+
+Thus between legacy_tar.sh (which makes source tarballs and
+populates the $MHO_REGRESSION_DATA) area and import_hops.sh,
+everything should be covered.  legacy_tar.sh was current as of
+Aug 21 2021.  Updates are required for source tree additions
+and new test data sets.
+
+
+eof

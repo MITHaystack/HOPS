@@ -26,15 +26,17 @@ of the tarballs that should exist.  Likewise, the other directories are
 empty in the repository except for README and test scripts appropriate to
 the particular collection of data.  Every tar file additionally contains
 an associated listing file (so that surgical extraction is possible, or
-simply to know what is present.  The source tarballs area may also contain
+simply to know what is present).  The source tarballs area may also contain
 an associated readme for some tar files to provide some additional comments.
+
+## Some controlling environment variables
 
 The scripts expect an environment variable `MHO_REGRESSION_DATA` set to point
 to a directory with the structure of this source directory, but with some or
-all of the tarballs populated.  (That is, you can point to this directory
-or a copy of it to conduct a SKIP-all-tests test suite.)  Obviously the more
-interesting case is when it points to a directory fully populated with the
-data tarballs.  The switches subdirectory contains a number of files that
+all of the tarballs populated.  (That is, you can point to this GIT directory or
+[even a copy of it] to conduct a SKIP-all-tests test suite.)  Obviously the more
+interesting case is when it points to a directory partially or fully populated with
+the data tarballs.  The switches subdirectory contains a number of files that
 control what will actually happen in the test suite.  If there is a file
 `switches/test_config.sh` then that script is sourced to configure the suite.
 If the file does not exist, the associated tests will have an ERROR.  If
@@ -48,28 +50,32 @@ of the `.trs` file.  (Note that the GNU folks have a general API to allow other
 testrunners; there is considerable documentation at `https://www.gnu.org/
 software/automake/manual/html_node/API-for-Custom-Test-Drivers.html`.)
 
-A variable `MHO_REGRESSION_EXTRACT ( = true or false)` controls the handling
+A variable `MHO_REGRESSION_EXTRACT (= "true" or "false")` controls the handling
 of the tarballs and data directories: `true` means to extract any tarballs
 present into the appropriate data directories (so that the tests may be run);
 `false` means to run only with the data already present.
 
-A variable `MHO_REGRESSION_TIDY ( = true or false)` controls what to do with
+A variable `MHO_REGRESSION_TIDY (= "true" or "false")` controls what to do with
 the extracted data once the test is complete--leave the data in place or
 wipe it (to save space).  Generally speaking, a 'nightly' build process
-would benefit from `MHO_REGRESSION_TIDY=false` to speed things up.
+would benefit from `MHO_REGRESSION_TIDY=false` to speed things up, and
+that is the default if it is not explicitly set.
 
 Note that `MHO_REGRESSION_EXTRACT` defaults to `true` and a directory will be
 considered to have been extracted if it is found.  Thus if you set the
 variable `MHO_REGRESSION_TIDY=true` you may end up removing directories that
 you did not actually extract.  This is consistent with the variables and
-their definitions...but may not be what you wanted.  If you explicitly
-set `MHO_REGRESSION_EXTRACT=false`, then you will only remove the directories
-that you extracted.
+their definitions...but may not be what is wanted.
+
+In addition to data, these mechanisms may also be used for `BUILT SOURCES`
+(in the autotools sense) to try to pull code or tools from the nonLGPL area.
 
 Tests are generally named `chk_something.sh`, so "something" should be unique.
 The `automake` test driver drops test results into files with `.trs` appended
 (with test output going to a file with `.log` appended--if you turn on `verbosity`
 in the scripts that will turn up in the `.log` file).
+
+## Requirements tracking
 
 Since the purpose of some of the tests is to track the satisfaction of
 our formal requirements for the MSRI project, we need a way to associate
@@ -83,6 +89,8 @@ summary report for management purposes.
 You may set an environment variable `MHO_REGRESSION_REQUIREMENTS` to specify
 an alternate path for the requirements file.  (You may want to do this when
 working on the tree to satisfy one set of tests.)
+
+## More details...
 
 The `CMake` version of testing should (eventually) have similar behavior (as
 it should be using the same scripts to do the actual tests; both `automake`
@@ -140,7 +148,7 @@ to `$MHO_REGRESSION_DATA/switches/lookup.sh` but can be overridden by
 setting `$MHO_REGRESSION_LOOKUP`.  The current mechanism requires that
 `$top_abs_builddir` be set if you need to use this machinery.
 
-## Related things
+## Related things and history
 
 In addition to the regression data, the tarballs area includes a legacy
 subdirectory which includes tarballs of various still-older bits of HOPS
@@ -151,10 +159,12 @@ a number of side projects that were part of the general development effort,
 but strictly speaking, not part of HOPS as an analysis project.  These also
 turn up in the legacy area as they were never part of the HOPS distribution.
 
-It is expected that the final few point distributions of HOPS3 (3.23 onwards)
+It is expected that the final few point distributions of HOPS3 (3.2x onwards)
 should be tarballed in this fashion so that when the SVN (supported from
 `vault.haystack.mit.edu`) is decommissioned we retain history to the start
-of the HOPS4 project.
+of the HOPS4 project.  Starting with HOPS 3.23 quite a number of (relatively)
+routine modernization edits were made along with some developmental steps to
+prototype (urgently needed) HOPS4 features.
 
 Also in the directory are tarballs of specific tools for reference.  See
 the `readme.txt` files in `tarballs/LGPL` and `tarballs/nonLGPL` for more info.
