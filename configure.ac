@@ -1,17 +1,59 @@
 #                                               -*- Autoconf -*-
 # Process this file with autoconf to produce a configure script.
-# (c) Massachusetts Institute of Technology, 2020
+# (c) Massachusetts Institute of Technology, 2020-2022
 # The contents of the package Copyright statement apply here.
+#
+# See GENERAL PLAN note below for more information about this script.
+#
+AC_PREREQ([2.69])
+AC_INIT([mhops], [4.00], [hops@mit.edu], [mhops],
+[https://www.haystack.mit.edu/haystack-observatory-postprocessing-system-hops])
+AC_CONFIG_SRCDIR([README.md])
+AC_MHO_INIT([Configuring "$PACKAGE_NAME" version "$PACKAGE_VERSION"])
+# libtool and other macros into m4
+AC_CONFIG_MACRO_DIR([m4])
+LT_INIT
+
+#
+# mho_config.h is the new configure file,
+# but the old tools will only ever include hops_config.h
+AH_TOP(dnl
+[\\
+\\ this can go at the top
+\\ #include "hops_config.h"
+\\
+])
+AC_CONFIG_HEADERS([mho_config.h])
+AH_BOTTOM(dnl
+[\\
+\\ or this can be at the bottom
+\\#include "hops_config.h"
+\\
+])
+# or conversely.  Decisions on how to do this are deferred.
+
+# put summary configuration into an additional file; AC_MHO macros are
+# defined in the m4/mho.m4 and accessed by   aclocal -I m4 # --force
+AC_MHO_NOTICE([Autotools configure scripts are in "$srcdir/m4"]) 
+AC_MHO_NOTICE([CMake configure scripts are in "$srcdir/cmake"]) 
+
+#
+# The GENERAL PLAN is that to the extent possible, tests that can be
+# stuffed into scripts put into m4/something.sh and written to support
+# both autoconf and cmake, should be so written...now or eventually.
+# The directory containing configure is known as $ac_confdir in the script;
+# but config.status seems to only know about srcdir so access to the
+# scripts must be via $srcdir/m4/... or $srcdir/cmake/....
+#
+# Other comments:
+#   [ ] are quotes to m4sugar.
 #
 # FIXME: mhops / hops package name collisions; what's the plan?
 # FIXME: mailman hops@mit.edu mailing list
 #
-# NOTE: [ ] are quotes to m4sugar.
-
-AC_PREREQ([2.69])
-AC_INIT([mhops], [4.00], [hops@mit.edu])
-AC_CONFIG_SRCDIR([README.md])
-AC_CONFIG_HEADERS([mho_config.h])
+# for pre-2.69 versions, LT initialization was done differently:
+#   m4_ifset([LT_INIT], [LT_INIT], [AC_PROG_LIBTOOL])
+#   m4_ifset([LT_WITH_LTDL], [LT_WITH_LTDL], [AC_LIB_LTDL])
 
 # this is not a GNU project, preserve tree in build dir,
 # check --help/--version and finally this no $(EXEEXT) support
@@ -26,7 +68,6 @@ AM_EXTRA_RECURSIVE_TARGETS([coverage hops mho reqs])
 
 # user path configuration requires a root directory
 AC_ARG_VAR(MHO_ROOT, [Root directory for the MIT HOPS tools installation])
-AC_MHO_INIT([Configuration summary for mhops version 4.00])
 # default --prefix to $MHO_ROOT/$arch-$VERSION at make install time
 arch=`uname -m`am
 AC_PREFIX_DEFAULT([${MHO_ROOT-'${MHO_ROOT}'}/${arch}-${VERSION-'${VERSION}'}])
@@ -39,13 +80,6 @@ else
 fi
 prefix="$MHO_ROOT/${arch}-$VERSION"
 AC_MHO_SUMMARY([Installation is to $prefix])
-
-# libtool stuff into m4
-AC_CONFIG_MACRO_DIR([m4])
-LT_INIT
-# for pre-2.69 versions:
-#m4_ifset([LT_INIT], [LT_INIT], [AC_PROG_LIBTOOL])
-#m4_ifset([LT_WITH_LTDL], [LT_WITH_LTDL], [AC_LIB_LTDL])
 
 # features are a bit confusing:
 # AC_ARG_ENABLE(FEATURE, HELP-STRING, [ACTION-IF-GIVEN], [ACTION-IF-NOT-GIVEN])
@@ -397,10 +431,8 @@ AC_CONFIG_FILES(
 AC_CONFIG_FILES(source/bash_src/hops.bash,
     [chmod +x source/bash_src/hops.bash])
 
-# MHO/HOPS compatibility (temporary)
-AC_CONFIG_FILES(hops_config.h,
-    [echo '#define HOPS_SVN_REV 3089' >> hops_config.h;
-     echo "#define PACKAGE_VERSION $VERSION" >> hops_config.h])
+# MHO/HOPS compatibility
+AC_CONFIG_FILES(hops_config.h, [$srcdir/m4/hops_svn_rev.sh])
 
 # this turns into the generator for config.status
 AC_OUTPUT
