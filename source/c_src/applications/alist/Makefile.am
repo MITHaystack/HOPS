@@ -17,6 +17,7 @@ alist_SOURCES = alist.c \
 alist_LDADD = ../../mk4util/libmk4util.la ../../afio/libafio.la \
 	../../dfio/libdfio.la ../../msg/libmsg.la
 
+# FIXME: check and fix
 AM_INSTALLCHECK_STD_OPTIONS_EXEMPT = alist
 
 #

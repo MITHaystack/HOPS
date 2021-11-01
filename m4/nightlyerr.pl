@@ -1,14 +1,16 @@
 #!/usr/bin/perl
-# (c) Massachusetts Institute of Technology, 1994-2020
+# (c) Massachusetts Institute of Technology, 1994-2021
 # The contents of the package Copyright statement apply here.
 #
 # Code originally authored by Jim Francis for HETE-1.
-# (with precious little editing since, by Geoff Crew.)
+# Imported IBEX version (2008-12-31 gbc), HOP3 through 2021
+# adjusted for HOPS4 (2021-11-01 gbc).
+#
 #
 use warnings;           # turns on optional warnings
 use diagnostics;        # and makes them not terse
 #
-my $VERSION='$Id: nightlyerr.pl 3871 2008-12-31 23:53:40Z gbc $';
+my $VERSION='Unified HOPS3/HOPS4 of 2021-11-01';
 # script to find & report errors in the nightly build
 #
 @_=split(/\//,$0); my $ME=pop(@_);
@@ -56,7 +58,8 @@ while(<NIGHTLY>)
 	    next if (/check-am/);
 	    print $sep . '(' . $section . $phase . ")\n";
 	    print "directory = $directory\n";
-	    system "grep '^srcdir[ ]=[ ]' $directory/Makefile";
+	    system "grep '^srcdir[ ]=[ ]' $directory/Makefile" if
+                ($directory ne "top-build-level");;
 	    print ;
 	    print $leadin;
 	    $eqc = 0;
