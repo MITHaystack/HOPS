@@ -17,6 +17,9 @@ bin_PROGRAMS = CorAsc2 CorPrune
 CorAsc2_SOURCES = src/CorAsc2.c
 CorPrune_SOURCES = src/CorPrune.c
 
+# FIXME: check and fix
+AM_INSTALLCHECK_STD_OPTIONS_EXEMPT = CorAsc2 CorPrune
+
 #
 # eof
 #

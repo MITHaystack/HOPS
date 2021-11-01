@@ -27,7 +27,8 @@ fringex_LDADD = ../../mk4util/libmk4util.la ../../dfio/libdfio.la \
     ../../afio/libafio.la ../../vex/libvex.la ../../msg/libmsg.la \
 	${CPGPLOT_LIBS}
 
-SUBDIRS =
+# FIXME: check and fix
+AM_INSTALLCHECK_STD_OPTIONS_EXEMPT = fringex
 
 #
 # eof
