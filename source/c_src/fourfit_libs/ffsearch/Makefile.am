@@ -19,7 +19,7 @@ libffsearch_la_LDFLAGS = -avoid-version
 
 libffsearch_la_SOURCES = src/adhoc_flag.c src/apply_filter.c \
 	src/apply_notches.c src/apply_passband.c src/calc_normalization.c \
-	src/calc_rms.c src/compute_model.c src/compute_qf.c \
+	src/calc_rms.c \
 	src/create_fname.c src/delay_rate.c src/est_pc_manual.c \
 	src/freq_spacing.c src/fringe_search.c src/gate_off.c \
 	src/interp.c src/ion_search.c src/norm_fx.c src/norm_xf.c \

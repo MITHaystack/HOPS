@@ -13,11 +13,12 @@ AM_CPPFLAGS = -I. -I$(srcdir)/include -I$(srcdir)/../../msg/include \
 pkginclude_HEADERS = include/filter.h include/fourfit_signal_handler.h \
 	include/freqlist.h include/param_struct.h include/pass_struct.h \
 	include/plot_struct.h include/refringe.h include/statistics.h \
-	include/write_lock_mechanism.h include/ff_misc_if.h
+	include/write_lock_mechanism.h
 
 pkglib_LTLIBRARIES = libffcore.la
 
 libffcore_la_SOURCES = src/check_rflist.c src/clear_freq_corel.c \
+	src/compute_model.c src/compute_qf.c \
     src/clear_pass.c src/create_lockfile.c src/diff_file_phase.c \
     src/fill_param.c src/fourfit_signal_handler.c src/generate_cblock.c \
     src/get_corel_data.c src/make_flist.c src/make_passes.c \

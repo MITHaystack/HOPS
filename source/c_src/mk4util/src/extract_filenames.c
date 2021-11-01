@@ -31,7 +31,6 @@
 #include <dirent.h>
 #include "fstruct.h"
 #include "mk4_util.h"
-#include "msg.h"
 
 #define MAXDEPTH 2			/* Any deeper and you risk some idiot */
 					/* going to the main data area and typing */
@@ -46,6 +45,7 @@ extract_filenames (char *directory, int type, fstruct **files, int *nalloc, int 
     char temp[384], fulnam[384];
     /* char *ptr; */
     struct stat file_status;
+    extern char progname[];
 
     *depth += 1;
 					/* Open directory ... step 1 */

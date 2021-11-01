@@ -40,8 +40,6 @@ else
         "calc_normalization.c"
         "calc_rms.c"
         "compute_field_rotations.c"
-        "compute_model.c"
-        "compute_qf.c"
         "freq_spacing.c"
         "fringe_search.c"
         "delay_rate.c"

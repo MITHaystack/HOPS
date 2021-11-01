@@ -4,6 +4,9 @@
 # The contents of the package Copyright statement apply here.
 #
 
+# TESTS = test_root_id
+# TESTS_ENVIRONMENT = srcdir=$(srcdir)
+
 AM_CPPFLAGS = -I. -I$(srcdir)/include -I$(srcdir)/../msg/include \
 	-Wall -Wextra -DHAVE_CONFIG_H
 
@@ -22,9 +25,13 @@ libmk4util_la_SOURCES = src/account.c src/check_name.c src/clear_date.c \
 	src/report_times.c src/root_belong.c src/root_id.c \
 	src/sexigesimal2hrdeg.c src/sort_names.c src/swap.c \
 	src/syntax.c src/time_to_double.c src/time_to_int.c \
-	src/adler32_checksum.c src/mk4stub.c
+	src/adler32_checksum.c
 
 libmk4util_la_LDFLAGS = -avoid-version
+
+# check_PROGRAMS = test_root_id
+# test_root_id_SOURCES = root_id_test.c
+# test_root_id_LDADD = -L. -lmk4util
 
 EXTRA_DIST =
 
