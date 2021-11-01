@@ -1,6 +1,6 @@
 #
 # make file for the specifications and architecture document
-# (c) Massachusetts Institute of Technology, 2020
+# (c) Massachusetts Institute of Technology, 2020-2022
 # The contents of the package Copyright statement apply here.
 #
 
