@@ -1,6 +1,6 @@
 #
 # makefile for Tasking machinery
-# (c) Massachusetts Institute of Technology, 2021
+# (c) Massachusetts Institute of Technology, 2021-2022
 # The contents of the package Copyright statement apply here.
 #
 # This makefile runs the tasking machinery to generate a tasking document
@@ -20,7 +20,8 @@ MHO=MHO_task
 
 # everything from $(srcdir) included from $(TEXSRC).tex
 # needs to be listed here with a $(srcdir)/ path prefix
-# This is the working collection
+# This is the working collection; if you adjust the set
+# then you will need to clean the document directory.
 allinputs = $(mho)tasks/$(MHO)_inputs.txt \
 	$(mho)tasks/$(MHO)_0000.txt $(mho)tasks/$(MHO)_ZZZZ.txt \
 	$(mho)tasks/$(MHO)_0001.txt $(mho)tasks/$(MHO)_0010.txt \
@@ -47,7 +48,8 @@ taskingscripts = taskscripts/sw_tasks.pl taskscripts/sw_task_graph.pl \
 	taskscripts/sw_task_config.pl taskscripts/sw_task_latex.pl \
 	taskscripts/sw_task_split.pl
 
-noinst_SCRIPTS = overview-helper.sh plantuml-class-transcriber.py plantuml-gantt-transcriber.py
+noinst_SCRIPTS = overview-helper.sh plantuml-class-transcriber.py \
+	plantuml-gantt-transcriber.py
 latexinputs = $(srcdir)/overview.tex
 
 # inputs to the objects section
@@ -79,7 +81,8 @@ FLAGS = -v -l -t # very latex things-also
 mhoarg = $(FLAGS) -d ${DOTDEV} -i $(MHO).txt  -b $(MHO)_bubbles.pl \
 	 -c $(MHO)_config.pl -r $(REPORT) -g $(TARGET)
 # now the target: concatenate inputs and run the beast
-fruit:	Makefile sync
+# fruit:	Makefile sync
+fruit:	sync
 	-[ $(mho) = all ] && cat $(MHO)_[0Z]*.txt > $(MHO).txt
 	./sw_tasks.pl $(mhoarg) -o fruit/$(mho)
 	[ -d fruit ] && lines=`ls fruit | wc -l` && [ $$lines -gt 0 ]
