@@ -29,6 +29,7 @@ errors: log
 CLEANFILES += configure.log make.log distcheck.log log errors
 CLEANFILES += $(srcdir)/configure.log $(srcdir)/make.log
 CLEANFILES += $(srcdir)/distcheck.log $(srcdir)/mhops-@VERSION@.tar.gz
+CLEANFILES += *.tmp
 
 # speed this process up by elminating some checking
 AM_DISTCHECK_CONFIGURE_FLAGS = --disable-docs --disable-doxy --disable-sphinx

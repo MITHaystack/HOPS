@@ -23,7 +23,7 @@ average_LDADD = ../../mk4util/libmk4util.la ../../afio/libafio.la \
     ../../msg/libmsg.la
 
 # FIXME: check and fix
-AM_INSTALLCHECK_STD_OPTIONS_EXEMPT = alist
+AM_INSTALLCHECK_STD_OPTIONS_EXEMPT = average
 
 #
 # eof

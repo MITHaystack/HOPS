@@ -8,7 +8,7 @@ FF_FAMILY = fourfit fourmer fplot fringex
 AE_FAMILY = aedit alist adump
 PP_FAMILY = average cofit search snratio
 LEGACY = legacy
-SUBDIRS = $(FF_FAMILY) $(AE_FAMILY) $(PP_FAMILY) $(LEGACY)
+SUBDIRS = $(FF_FAMILY) $(AE_FAMILY) $(PP_FAMILY) $(LEGACY) test
 
 #
 # eof

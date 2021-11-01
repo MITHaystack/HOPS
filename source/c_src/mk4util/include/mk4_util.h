@@ -53,6 +53,7 @@ extern void   long_reverse (long *);
 extern void   float_reverse (float *);
 extern void   double_reverse (double *);
 extern void   syntax (char *);
+extern void   version (char *);
 extern double time_to_double (struct date);
 extern int    time_to_int (int, int, int, int, int);
 

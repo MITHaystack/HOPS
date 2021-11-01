@@ -16,6 +16,7 @@
 #include <string.h>
 #include "mk4_util.h"
 #include "hops_config.h"
+#include "msg.h"
 
 #define FALSE 0
 #define TRUE  1
@@ -40,7 +41,6 @@ void version(char *headurl)
 
 void syntax(char *headurl)
     {
-    extern char progname[];
     char *evar, docdir[256], helpfile[512], line[256];
     int len, print;
     FILE *fp;

@@ -59,3 +59,4 @@ struct ptrilist { int present; char triangle[4]; };
 
 #include "aedit_proto.h"
 #include "mk4_util.h"
+#include "msg.h"
