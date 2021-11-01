@@ -26,11 +26,13 @@ foreach( BASENAME ${${EXENAME}_SOURCE_BASENAMES} )
 endforeach( BASENAME )
 
 #declare relative paths to internal headers/libs ###############################
+set(MSG_RELPATH "../../msg")
 set(MK4UTIL_RELPATH "../../mk4util")
 set(AFIO_RELPATH "../../afio")
 set(DFIO_RELPATH "../../dfio")
 
 list(APPEND RELPATH_LIST
+    ${MSG_RELPATH}
     ${MK4UTIL_RELPATH}
     ${AFIO_RELPATH}
     ${DFIO_RELPATH}
@@ -46,13 +48,18 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 # set library lists ############################################################
 set(INTERNAL_LIBLIST
+    "msg"
     "mk4util"
     "afio"
     "dfio"
 )
 
 #math library
-set(EXTERNAL_LIBLIST m )
+set(EXTERNAL_LIBLIST m)
+
+if(HOPS3_USE_CXX)
+    SET_SOURCE_FILES_PROPERTIES(${${EXENAME}_SOURCEFILES} PROPERTIES LANGUAGE CXX )
+endif(HOPS3_USE_CXX)
 
 add_executable (${EXENAME} ${${EXENAME}_SOURCEFILES} )
 target_link_libraries (${EXENAME} ${INTERNAL_LIBLIST} ${EXTERNAL_LIBLIST})

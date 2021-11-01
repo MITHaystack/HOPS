@@ -10,7 +10,6 @@ set( ${LIBNAME}_HEADER_PATH ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 foreach( BASENAME ${${LIBNAME}_HEADER_BASENAMES} )
 	list( APPEND ${LIBNAME}_HEADERFILES ${${LIBNAME}_HEADER_PATH}/${BASENAME} )
-	list( APPEND AM_${LIBNAME}_HEADERFILES "./include/${BASENAME}" )
 endforeach( BASENAME )
 
 #list source files #############################################################
@@ -26,7 +25,9 @@ foreach( BASENAME ${${LIBNAME}_SOURCE_BASENAMES} )
 endforeach( BASENAME )
 
 #declare header paths ##########################################################
+set(MSG_RELPATH "../msg")
 set(MK4UTIL_RELPATH "../mk4util")
+list(APPEND RELPATH_LIST ${MSG_RELPATH})
 list(APPEND RELPATH_LIST ${MK4UTIL_RELPATH})
 
 #include library headers
@@ -38,7 +39,11 @@ endforeach(path)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 #build/link/install library ####################################################
-list(APPEND LIBLIST "mk4util")
+list(APPEND LIBLIST "msg" "mk4util")
+
+if(HOPS3_USE_CXX)
+SET_SOURCE_FILES_PROPERTIES(${${LIBNAME}_SOURCEFILES} PROPERTIES LANGUAGE CXX )
+endif(HOPS3_USE_CXX)
 
 list(APPEND PROPERTY COMPILE_DEFINITIONS PFORMAT_TEXT_DIR="${SHARE_TEXT_INSTALL_DIR}")
 

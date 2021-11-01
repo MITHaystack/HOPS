@@ -35,6 +35,7 @@ if( PGPLOT_FOUND AND FFTW_FOUND AND X11_FOUND AND GFORTRAN_FOUND )
     endforeach( BASENAME )
 
     #declare header paths ##########################################################
+    set(MSG_RELPATH "../../msg")
     set(MK4UTIL_RELPATH "../../mk4util")
     set(AFIO_RELPATH "../../afio")
     set(DFIO_RELPATH "../../dfio")
@@ -45,7 +46,7 @@ if( PGPLOT_FOUND AND FFTW_FOUND AND X11_FOUND AND GFORTRAN_FOUND )
     set(FFIO_RELPATH "../ffio")
     set(FFSEARCH_RELPATH "../ffsearch") #include but do not link!
 
-    list(APPEND RELPATH_LIST ${MK4UTIL_RELPATH} ${AFIO_RELPATH} ${DFIO_RELPATH} ${VEX_RELPATH} ${FFCONTROL_RELPATH} ${FFCORE_RELPATH} ${FFIO_RELPATH} ${FFMATH_RELPATH} ${FFSEARCH_RELPATH})
+    list(APPEND RELPATH_LIST ${MSG_RELPATH} ${MK4UTIL_RELPATH} ${AFIO_RELPATH} ${DFIO_RELPATH} ${VEX_RELPATH} ${FFCONTROL_RELPATH} ${FFCORE_RELPATH} ${FFIO_RELPATH} ${FFMATH_RELPATH} ${FFSEARCH_RELPATH})
 
     #include library headers
     foreach(path ${RELPATH_LIST})
@@ -67,6 +68,11 @@ if( PGPLOT_FOUND AND FFTW_FOUND AND X11_FOUND AND GFORTRAN_FOUND )
                         ${X11_LIBRARIES} ${FFTW_LIBRARIES} ${GFORTRAN_LIBRARIES}
                         ${PGPLOT_LIBRARIES}
         )
+
+
+    if(HOPS3_USE_CXX)
+    SET_SOURCE_FILES_PROPERTIES(${${LIBNAME}_SOURCEFILES} PROPERTIES LANGUAGE CXX )
+    endif(HOPS3_USE_CXX)
 
     add_library (${LIBNAME} SHARED ${${LIBNAME}_SOURCEFILES} ${${LIBNAME}_HEADERFILES})
 

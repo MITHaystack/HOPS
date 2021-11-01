@@ -13,12 +13,16 @@
 #include <iostream>
 #include <string>
 
+#ifndef HOPS3_USE_CXX
 extern "C"
 {
+#endif
     #include "mk4_data.h"
     #include "mk4_dfio.h"
     #include "mk4_vex.h"
+#ifndef HOPS3_USE_CXX
 }
+#endif
 
 namespace hops
 {
