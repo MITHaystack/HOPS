@@ -29,6 +29,13 @@ an associated listing file (so that surgical extraction is possible, or
 simply to know what is present).  The source tarballs area may also contain
 an associated readme for some tar files to provide some additional comments.
 
+The bootstrap directory is designed to hold transitional scripts during the
+migration on the theory that everything in that directory may (some day) be
+safely deleted.  There is a file bootstrap/status.txt that should be consulted
+to monitor progress and for reminders on how things must be done to prevent
+unnecessary work (when things break).  The permanent machinery lives in
+the switches directory.
+
 ## Some controlling environment variables
 
 The scripts expect an environment variable `MHO_REGRESSION_DATA` set to point

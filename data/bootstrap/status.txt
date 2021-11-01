@@ -9,7 +9,7 @@ Then a top-level import_hops.sh script drives a (long) list of
 import_something.sh scripts.  Note that the organization
 corresponds to destination within the HOPS4 tree
 
-  HOPS3 libraryes (source/c_src)
+  original HOPS3 libraries (source/c_src)
     afio dfio msg mk4util vex
   pieces of fourfit (source/c_src/fourfit_libs)
     ffcontrol ffcore ffio ffmath ffplot ffsearch
@@ -20,6 +20,10 @@ corresponds to destination within the HOPS4 tree
     legacy
   the original set of integration tests (data/various)
     fftest
+
+Note that HOPS3 contains a copy of the previous migration effort,
+chops, and it is used by VGOS so there are in effect three areas
+that we need to keep synchronized (see Synchronization Plan, below).
 
 A check test in data (import_from_hops3.sh) may be run in the top
 data directory to check on the status of the two trees.  It includes
@@ -34,6 +38,57 @@ populates the $MHO_REGRESSION_DATA) area and import_hops.sh,
 everything should be covered.  legacy_tar.sh was current as of
 Aug 21 2021.  Updates are required for source tree additions
 and new test data sets.
+
+---------------------------------------------------------------------
+
+Areas that need to stay synchronized:
+  HOPS3 (sources, autotool machinery):
+    trunk/postproc
+    trunk/sub
+    chops
+    (and perhaps other things)
+
+  HOPS4 (sources, CMake and autotool machinery):
+    source/c_src
+    (and perhaps other things)
+
+---------------------------------------------------------------------
+
+Synchronization Plan
+
+If you need to make CHANGES in HOPS3 (bug fixes, feature prototyping):
+
+ .  make your changes in trunk, get it working properly
+ .  synchronize with chops:  (cd trunk/chops ; ./import_hops.sh)
+ .  make sure it all builds, &c and commit trunk after any fixes
+ .  depending on the changes, you may want to see what nightly does
+ .  then proceed with the next block (as you likely need to fix HOPS4)
+
+If you need to make CHANGES in HOPS4 related to HOPS3:
+
+ .  likely you should do this work on a git branch
+ .  find and fix the appropriate bootstrap/import_scripts
+ .  synchronize with HOPS4:  (cd hops-git/data ; ./import_from_hops3.sh)
+ .  find and fix the appropriate CMake or Autotools machinery in HOPS4
+    (the CMake and Autotool machinery has already diverged.)
+ .  make sure it all builds &c and commit
+ .  if on a branch update from master, then merge the branch to master
+
+If you need to make changes in HOPS4 that will eventually impact HOPS3:
+
+ .  you should do this work on a git branch
+ .  do the work and keep track of what is going to need to change on HOPS3
+ .  when you are satisfied with the work, then go up to the CHANGES in HOPS3
+    section and make the changes there
+ .  once HOPS3 is happy, follow through with the 2nd block above
+ .  if you did all that correct HOPS4 master should have some or all
+    of what you need...so either you are done, or
+ .  merge master into your branch, merge the branch back to master
+
+If you need to make changes in HOPS4 unrelated to HOPS3
+
+ .  work on a branch or not, depending on the change
+ .  do the work & commit
 
 
 eof
