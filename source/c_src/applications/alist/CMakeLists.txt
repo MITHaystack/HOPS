@@ -16,7 +16,7 @@ endforeach( BASENAME )
 #list source files #############################################################
 
 file(GLOB ${EXENAME}_SOURCE_BASENAMES RELATIVE "${CMAKE_CURRENT_SOURCE_DIR}"
-  "${CMAKE_CURRENT_SOURCE_DIR}/*.c")
+  "${CMAKE_CURRENT_SOURCE_DIR}/src/*.c")
 
 set( ${EXENAME}_SOURCE_PATH ${CMAKE_CURRENT_SOURCE_DIR})
 
@@ -24,6 +24,27 @@ foreach( BASENAME ${${EXENAME}_SOURCE_BASENAMES} )
 	list( APPEND ${EXENAME}_SOURCEFILES ${${EXENAME}_SOURCE_PATH}/${BASENAME} )
 	list( APPEND AM_${EXENAME}_SOURCEFILES "${BASENAME}" )
 endforeach( BASENAME )
+
+list(INSERT ${EXENAME}_SOURCEFILES 0 ${CMAKE_CURRENT_SOURCE_DIR}/alist.c)
+list(INSERT AM_${EXENAME}_SOURCEFILES 0 alist.c)
+
+
+# file(GLOB ${EXENAME}_SOURCE_BASENAMES RELATIVE "${CMAKE_CURRENT_SOURCE_DIR}"
+#   "${CMAKE_CURRENT_SOURCE_DIR}/*.c")
+# 
+# file(GLOB ${EXENAME}_EXTRA_SOURCE_BASENAMES RELATIVE "${CMAKE_CURRENT_SOURCE_DIR}/src"
+#   "${CMAKE_CURRENT_SOURCE_DIR}/src/*.c")
+# 
+# foreach( BASENAME ${${EXENAME}_EXTRA_SOURCE_BASENAMES} )
+# 	list( APPEND ${EXENAME}_SOURCE_BASENAMES "${BASENAME}" )
+# endforeach( BASENAME )
+# 
+# set( ${EXENAME}_SOURCE_PATH ${CMAKE_CURRENT_SOURCE_DIR})
+# 
+# foreach( BASENAME ${${EXENAME}_SOURCE_BASENAMES} )
+# 	list( APPEND ${EXENAME}_SOURCEFILES ${${EXENAME}_SOURCE_PATH}/${BASENAME} )
+# 	list( APPEND AM_${EXENAME}_SOURCEFILES "${BASENAME}" )
+# endforeach( BASENAME )
 
 #declare relative paths to internal headers/libs ###############################
 set(MSG_RELPATH "../../msg")
