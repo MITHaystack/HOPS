@@ -90,6 +90,7 @@ pkginclude_HEADERS =
 
 endif # HAVE_PGPLOT
 
+# FIXME: check and fix
 AM_INSTALLCHECK_STD_OPTIONS_EXEMPT = aedit
 
 #

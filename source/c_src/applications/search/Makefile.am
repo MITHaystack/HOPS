@@ -32,6 +32,9 @@ soirch_SOURCES = search.c $(search_c)
 soirch_LDADD = ../../mk4util/libmk4util.la ../../dfio/libdfio.la \
 	../../afio/libafio.la ../../msg/libmsg.la ${CPGPLOT_LIBS}
 
+# FIXME: check and fix
+AM_INSTALLCHECK_STD_OPTIONS_EXEMPT = search
+
 #
 # eof
 #
