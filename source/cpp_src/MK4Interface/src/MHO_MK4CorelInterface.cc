@@ -8,13 +8,17 @@
 #include <algorithm>
 
 //mk4 IO library
+#ifndef HOPS3_USE_CXX
 extern "C"
 {
+#endif
     #include "mk4_records.h"
     #include "mk4_data.h"
     #include "mk4_dfio.h"
     #include "mk4_vex.h"
+#ifndef HOPS3_USE_CXX
 }
+#endif
 
 
 namespace hops
@@ -151,7 +155,8 @@ MHO_MK4CorelInterface::DetermineDataDimensions()
     std::string baseline = getstr(fCorel->t100->baseline, 2);
     msg_debug("mk4interface", "Reading data for baseline: " << baseline << eom);
 
-    struct mk4_corel::index_tag* idx;
+    // struct mk4_corel::index_tag* idx;
+    struct index_tag* idx;
     for(int i=0; i<fCorel->index_space; i++)
     {
         idx = fCorel->index + i;
@@ -467,7 +472,8 @@ MHO_MK4CorelInterface::ExtractCorelFile()
 
         //now fill in the actual visibility data
         struct type_101* t101 = nullptr;
-        struct mk4_corel::index_tag* idx = nullptr;
+        //struct mk4_corel::index_tag* idx = nullptr;
+        struct index_tag* idx = nullptr;
         for(int i=0; i<fCorel->index_space; i++)
         {
             idx = fCorel->index + i;

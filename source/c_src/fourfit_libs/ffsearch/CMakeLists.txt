@@ -32,6 +32,7 @@ if( FFTW_FOUND )
     endforeach( BASENAME )
 
     #declare header paths ##########################################################
+    set(MSG_RELPATH "../../msg")
     set(MK4UTIL_RELPATH "../../mk4util")
     set(AFIO_RELPATH "../../afio")
     set(DFIO_RELPATH "../../dfio")
@@ -41,7 +42,7 @@ if( FFTW_FOUND )
     set(FFMATH_RELPATH "../ffmath")
     set(FFIO_RELPATH "../ffio")
 
-    list(APPEND RELPATH_LIST ${MK4UTIL_RELPATH} ${AFIO_RELPATH} ${DFIO_RELPATH} ${VEX_RELPATH} ${FFCONTROL_RELPATH} ${FFCORE_RELPATH} ${FFIO_RELPATH} ${FFMATH_RELPATH})
+    list(APPEND RELPATH_LIST ${MSG_RELPATH} ${MK4UTIL_RELPATH} ${AFIO_RELPATH} ${DFIO_RELPATH} ${VEX_RELPATH} ${FFCONTROL_RELPATH} ${FFCORE_RELPATH} ${FFIO_RELPATH} ${FFMATH_RELPATH})
 
     #include library headers
     foreach(path ${RELPATH_LIST})
@@ -56,19 +57,23 @@ if( FFTW_FOUND )
 
     if(HOPS_DEV_USE_OLD)
     #add a compiler define to cut link between ffplot and ffsearch in fringe_search (this breaks fourfit)
-    #however it is needed to do testing with the C++ code without pulling in all the 
+    #however it is needed to do testing with the C++ code without pulling in all the
     #plotting libraries (pgplot)
     hops_add_cflag(DISABLE_OUTPUT)
     endif(HOPS_DEV_USE_OLD)
 
 
     #build/link/install library ####################################################
-    list(APPEND LIBLIST "mk4util" "afio"
+    list(APPEND LIBLIST "msg" "mk4util" "afio"
                         "dfio" "vex"
                         "ffcontrol" "ffcore"
                         "ffio" "ffmath"
                         "${FFTW_LIBRARIES}"
         )
+
+    if(HOPS3_USE_CXX)
+    SET_SOURCE_FILES_PROPERTIES(${${LIBNAME}_SOURCEFILES} PROPERTIES LANGUAGE CXX )
+    endif(HOPS3_USE_CXX)
 
     add_library (${LIBNAME} SHARED ${${LIBNAME}_SOURCEFILES} ${${LIBNAME}_HEADERFILES})
 

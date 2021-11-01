@@ -21,6 +21,7 @@
 /************************************************************************/
 
 #include <stdio.h>
+#include "msg.h"
 
 int
 report_actions (int roots_specified, int roots_read, int checked, int tried, int successes, int failures)
