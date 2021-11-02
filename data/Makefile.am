@@ -24,18 +24,22 @@ TESTS = template.sh chk_template.sh chk_unpack.sh chk_lookup.sh \
 check_PROGRAMS = template.sh chk_template.sh chk_unpack.sh
 
 # import from HOPS3 is managed by scripts in bootstrap/import_scripts
-
-# this is just to list what is here
-nodist_check_SCRIPTS = \
+# and those do not need distribution.  These should not need dist either.
+# nodist_check_SCRIPTS at some point
+bootstrap = 
 	bootstrap/legacy_tar.sh \
 	bootstrap/legacy_nuke.sh \
 	bootstrap/req_report.sh
+
 dist_check_SCRIPTS = \
 	bootstrap/legacy_update.sh \
 	bootstrap/legacy_unpack.sh \
 	switches/template.sh \
 	switches/lookup.sh \
-	import_from_hops3.sh
+	switches/test_config.sh \
+	switches/provider.sh \
+	chk_lookup.sh \
+	import_from_hops3.sh $(bootstrap)
 
 template_sh_SOURCES =
 template.sh: $(srcdir)/switches/template.sh $(srcdir)/Makefile.am

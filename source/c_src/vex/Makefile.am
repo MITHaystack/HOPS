@@ -1,17 +1,17 @@
 #
-# Makefile for the vex parser (for the mk4 root files and vex flavors)
-# (c) Massachusetts Institute of Technology, 2020
+# Makefile for the vex parser (mk4 root files and other vex flavors)
+# (c) Massachusetts Institute of Technology, 2020-2022
 # The contents of the package Copyright statement apply here.
 #
 
-nobase_dist_pkgdata_DATA = text/blk_stmt.txt text/pformat.txt
-
 AM_CPPFLAGS = -I. -I$(srcdir)/include -I$(srcdir)/../msg/include \
-	-I$(srcdir)/../mk4util/include -Wall -Wextra -DHAVE_CONFIG_H
+	-I$(srcdir)/../mk4util/include $(MHO_CPPFLAGS)
 
 pkginclude_HEADERS = include/cvex.h include/evex.h include/ivex.h \
 	include/lvex.h include/mk4_vex.h include/ovex.h include/svex.h \
 	include/vex.h
+
+nobase_dist_pkgdata_DATA = text/blk_stmt.txt text/pformat.txt
 
 pkglib_LTLIBRARIES = libvex.la
 
@@ -40,7 +40,14 @@ libvex_la_SOURCES = src/block_params.c src/check_intrange.c \
 
 libvex_la_LDFLAGS = -avoid-version
 
-EXTRA_DIST =
+# TESTS =
+# TESTS_ENVIRONMENT = srcdir=$(srcdir)
+# TESTS_ENVIRONMENT += abs_top_srcdir=$(abs_top_srcdir)
+# TESTS_ENVIRONMENT += abs_top_builddir=$(abs_top_builddir)
+
+# check_PROGRAMS = $(TESTS)
+
+EXTRA_DIST = CMakeLists.txt
 
 #
 # eof

@@ -38,15 +38,11 @@ main (int argc, char* argv[])
     int rate_index, delay_index, oldextent, square;
     avg_data *data;
     char oldbl[3], oldroot[7];
-#if BIGGER
     static struct srchsummary srchdata[MAX_BNO];
-#else /* BIGGER */
-    struct srchsummary srchdata[MAX_BNO];
-#endif /* BIGGER */
     fringesum *datum;
     FILE *fpout;
     extern int optind;
-    set_progname("search");
+    set_progname(BIGGER ? "search": "soirch");
     set_msglev(1);
     environment();
 					/* Allocate some space to start */
@@ -60,6 +56,7 @@ main (int argc, char* argv[])
 					/* Interpret command line */
     if (parse_cmdline (argc, argv, &fpout, &plot, &square) != 0) 
 	exit (1);
+    if (BIGGER == 0) exit(0);   /* test code */
 					/* Read in the data */
 					/* After parse_cmdline, optind points */
 					/* at the arguments following command */
