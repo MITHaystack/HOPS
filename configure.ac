@@ -105,6 +105,9 @@ AC_ARG_ENABLE(hack,
     AS_HELP_STRING([--enable-hack], [activate ugly gcov hack on older gcc]),
     [], [enable_hack=no])
 
+# is this an argument to ENABLE for C++ programs?
+# HOPS_ENABLE_DEBUG_MSG defined or not
+
 # Checks for programs.
 AC_PROG_AWK
 AC_PROG_CXX
@@ -120,7 +123,12 @@ AC_PROG_MAKE_SET
 # AC_F77_LIBRARY_LDFLAGS
 # AC_PROG_FC
 
-# checks for compiler options
+# checks, &c. for C compiler options
+mhocppdef="-Wall -Wextra"
+AC_ARG_VAR(MHO_CPPFLAGS, [Warning options for C compiler ($mhocppdef)])
+if test -z ["$MHO_CPPFLAGS"] ; then
+    MHO_CPPFLAGS="-Wall -Wextra"
+fi
 # these should move to m4 area
 # -fkeep-static-functions
 mh_cppflags="$CPPFLAGS"
@@ -133,6 +141,15 @@ AC_PREPROC_IFELSE(
 CPPFLAGS="$mh_cppflags"
 AC_MSG_NOTICE([KEEP_STATIC_FUNCTIONS is "$KEEP_STATIC_FUNCTIONS"])
 AC_SUBST(KEEP_STATIC_FUNCTIONS)
+
+# checks for C++ compiler options
+# it seems coding is to the C11 standard, so -std=c++11 (or -std=gnu++11)
+# g++ (GCC) 10.3.1 default is -std=gnu++14
+mhocxxdef="-Wall -Wextra -std=c++11"
+AC_ARG_VAR(MHO_CXXFLAGS, [Warning options for C++ compiler ($mhocxxdef)])
+if test -z ["$MHO_CXXFLAGS"] ; then
+    MHO_CXXFLAGS="$mhocxxdef"
+fi
 
 # less trivial checks for programs
 PKG_PROG_PKG_CONFIG
@@ -318,6 +335,10 @@ PGPLOT_RGB=/usr/share/pgplot/rgb.txt
 AC_SUBST(PGPLOT_FONT)
 AC_SUBST(PGPLOT_RGB)
 
+#
+# output stage
+#
+
 # top-level Makefile and primary directories
 AC_CONFIG_FILES(
     Makefile
@@ -325,8 +346,6 @@ AC_CONFIG_FILES(
     source/Makefile
     data/Makefile
 )
-
-### FIXME: revert the 'b' names to the normal names
 
 # source/bash_src makefile
 # includes perl scripts as well
@@ -379,15 +398,24 @@ AC_CONFIG_FILES(
     source/c_src/applications/test/Makefile
 )
 
-# source/cpp_src makefiles
+# source/cpp_src makefiles, part 1: "core libraries"
 AC_CONFIG_FILES(
     source/cpp_src/Makefile
     source/cpp_src/Message/Makefile
-    source/cpp_src/Math/Makefile
-    source/cpp_src/Utilities/Makefile
-    source/cpp_src/MK4Interface/Makefile
-    source/cpp_src/Containers/Makefile
 )
+#   source/cpp_src/Math/Makefile
+#   source/cpp_src/Utilities/Makefile
+#   source/cpp_src/MK4Interface/Makefile
+#   source/cpp_src/Containers/Makefile
+#   source/cpp_src/vex2json/Makefile
+#)
+#   source/cpp_src/Applications/Makefile
+#   source/cpp_src/Applications/fourfit/Makefile
+#   source/cpp_src/Calibration/Makefile
+#   source/cpp_src/Operators/Makefile
+#   source/cpp_src/Plugins/Makefile
+#   source/cpp_src/Plugins/OpenCL/Makefile
+#   source/cpp_src/Plugins/PythonBindings/Makefile
 
 # source/python_src: makefiles
 AC_CONFIG_FILES(
@@ -422,9 +450,6 @@ AC_CONFIG_FILES(
 # data and scripting for system tests
 #AC_CONFIG_FILES()
 
-# captive copy of hops3.x
-#AC_CONFIG_FILES()
-
 #
 # Shell setup convenience script
 #
@@ -437,6 +462,7 @@ AC_CONFIG_FILES(hops_config.h, [$srcdir/m4/hops_svn_rev.sh])
 # this turns into the generator for config.status
 AC_OUTPUT
 
+# finally summarize what happened
 AC_MHO_BANNER([Finished with configuration:])
 
 # eof

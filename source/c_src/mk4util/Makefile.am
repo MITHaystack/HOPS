@@ -1,14 +1,11 @@
 #
 # Makefile for the original chops/source/c_src/mk4util
-# (c) Massachusetts Institute of Technology, 2020
+# (c) Massachusetts Institute of Technology, 2020-2022
 # The contents of the package Copyright statement apply here.
 #
 
-# TESTS = test_root_id
-# TESTS_ENVIRONMENT = srcdir=$(srcdir)
-
-AM_CPPFLAGS = -I. -I$(srcdir)/include -I$(srcdir)/../msg/include \
-	-Wall -Wextra -DHAVE_CONFIG_H
+AM_CPPFLAGS = -I$(srcdir)/include -I$(srcdir)/../msg/include \
+	$(MHO_CPPFLAGS)
 
 pkginclude_HEADERS = include/account.h include/fileset.h include/fstruct.h \
 	include/general.h include/mk4_sizes.h include/mk4_typedefs.h \
@@ -29,11 +26,16 @@ libmk4util_la_SOURCES = src/account.c src/check_name.c src/clear_date.c \
 
 libmk4util_la_LDFLAGS = -avoid-version
 
-# check_PROGRAMS = test_root_id
+# TESTS = test_root_id
+# TESTS_ENVIRONMENT = srcdir=$(srcdir)
+# TESTS_ENVIRONMENT += abs_top_srcdir=$(abs_top_srcdir)
+# TESTS_ENVIRONMENT += abs_top_builddir=$(abs_top_builddir)
+
+# check_PROGRAMS = $(TESTS)
 # test_root_id_SOURCES = root_id_test.c
 # test_root_id_LDADD = -L. -lmk4util
 
-EXTRA_DIST =
+EXTRA_DIST = CMakeLists.txt
 
 #
 # eof

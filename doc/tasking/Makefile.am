@@ -48,7 +48,7 @@ taskingscripts = taskscripts/sw_tasks.pl taskscripts/sw_task_graph.pl \
 	taskscripts/sw_task_config.pl taskscripts/sw_task_latex.pl \
 	taskscripts/sw_task_split.pl
 
-noinst_SCRIPTS = overview-helper.sh plantuml-class-transcriber.py \
+dist_noinst_SCRIPTS = overview-helper.sh plantuml-class-transcriber.py \
 	plantuml-gantt-transcriber.py
 latexinputs = $(srcdir)/overview.tex
 
