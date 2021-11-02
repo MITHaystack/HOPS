@@ -54,6 +54,12 @@ Areas that need to stay synchronized:
 
 ---------------------------------------------------------------------
 
+Things that need fixing:
+    cofit uses NR and that is non-LGPL
+    toplevel extern should be unloaded from non-LGPL
+
+---------------------------------------------------------------------
+
 Synchronization Plan
 
 If you need to make CHANGES in HOPS3 (bug fixes, feature prototyping):

@@ -4,7 +4,7 @@
 # The contents of the package Copyright statement apply here.
 #
 
-SUBDIRS = Message # Math Utilities Containers vex2json MK4Interface
+SUBDIRS = Message Math Utilities Containers vex2json MK4Interface
 # these are not yet stable...
 # Applications Calibration Operators Plugins
 # see CMakeLists.txt for order

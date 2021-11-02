@@ -18,6 +18,9 @@ EXTRA_DIST += cmake/MacroCheckPackageLibs.cmake
 EXTRA_DIST += cmake/MacroCheckPackageVersion.cmake
 EXTRA_DIST += cmake/MacroParseArguments.cmake cmake/UseLATEX.cmake
 
+# For the moment, we need to re-distribute an external source
+EXTRA_DIST += extern/json/include/json.hh
+
 pkginclude_HEADERS = mho_config.h hops_config.h
 
 # these is an unexpected (for automake) configure file
