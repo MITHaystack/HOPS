@@ -43,18 +43,17 @@ thislib = -L.libs -lMHO_MK4Interface
 message = -L../Message/.libs -lMHO_Message
 utilities = -L../Utilities/.libs -lMHO_Utilities
 vexables = -L../vex2json/.libs -lvex2json
-mholibs = $(message) $(utilities)
+mholibs = $(message) $(utilities) $(vexables)
 hopslibs = -L../../c_src/dfio -ldfio \
 	-L../../c_src/vex -lvex \
 	-L../../c_src/mk4util -lmk4util \
 	-L../../c_src/msg -lmsg
 TestMK4Import_SOURCES = test/TestMK4Import.cc
-#TestMK4Import_CXXFLAGS =  $(AM_CXXFLAGS)
 TestMK4Import_LDADD = $(thislib) $(mholibs) $(hopslibs)
 TestMK4StationImport_SOURCES = test/TestMK4StationImport.cc
 TestMK4StationImport_LDADD = $(thislib) $(mholibs) $(hopslibs)
 TestMK4VexInterface_SOURCES = test/TestMK4VexInterface.cc
-TestMK4VexInterface_LDADD = $(thislib) $(mholibs) $(vexables) $(hopslibs)
+TestMK4VexInterface_LDADD = $(thislib) $(mholibs) $(hopslibs)
 
 CLEANFILES =
 
