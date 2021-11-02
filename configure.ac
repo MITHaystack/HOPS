@@ -402,13 +402,12 @@ AC_CONFIG_FILES(
 AC_CONFIG_FILES(
     source/cpp_src/Makefile
     source/cpp_src/Message/Makefile
+    source/cpp_src/Math/Makefile
+    source/cpp_src/Utilities/Makefile
+    source/cpp_src/Containers/Makefile
+    source/cpp_src/vex2json/Makefile
+    source/cpp_src/MK4Interface/Makefile
 )
-#   source/cpp_src/Math/Makefile
-#   source/cpp_src/Utilities/Makefile
-#   source/cpp_src/MK4Interface/Makefile
-#   source/cpp_src/Containers/Makefile
-#   source/cpp_src/vex2json/Makefile
-#)
 #   source/cpp_src/Applications/Makefile
 #   source/cpp_src/Applications/fourfit/Makefile
 #   source/cpp_src/Calibration/Makefile

@@ -1,52 +1,63 @@
 #
-# Makefile for C++ Mk4 Interface Class
-# (c) Massachusetts Institute of Technology, 2020
+# Makefile for C++ Container Class
+# (c) Massachusetts Institute of Technology, 2020-2022
 # The contents of the package Copyright statement apply here.
 #
 
-pkginclude_HEADERS = include/MHO_ArrayMath.hh \
-	include/MHO_ArrayOperator.hh \
-	include/MHO_ArrayWrapper.hh \
+cxxmho = -I$(srcdir)/../Message/include -I$(srcdir)/../Utilities/include
+AM_CXXFLAGS = -I$(srcdir)/include $(cxxmho) $(MHO_CXXFLAGS)
+
+pkginclude_HEADERS = \
 	include/MHO_Axis.hh \
 	include/MHO_AxisPack.hh \
-	include/MHO_BinaryArrayOperator.hh \
-	include/MHO_InPlaceUnaryArrayOperator.hh \
+	include/MHO_ChannelizedVisibilities.hh \
+	include/MHO_ContainerDictionary.hh \
+	include/MHO_NDArrayMath.hh \
+	include/MHO_NDArrayTypeCastFunctor.hh \
+	include/MHO_NDArrayWrapper_0.hh \
+	include/MHO_NDArrayWrapper_1.hh \
+	include/MHO_NDArrayWrapper.hh \
 	include/MHO_ScalarContainer.hh \
-	include/MHO_TensorContainer.hh \
-	include/MHO_UnaryArrayOperator.hh \
+	include/MHO_StationCoordinates.hh \
+	include/MHO_TableContainer.hh \
 	include/MHO_VectorContainer.hh \
-	include/MHO_Visibilities.hh
+	include/MHO_Visibilities.hh \
+	include/MHO_VisibilityType.hh
 
-#pkglib_LTLIBRARIES = libMHO_XXX.la
+pkglib_LTLIBRARIES = libMHO_Containers.la
 
-check_PROGRAMS = TestArrayWrapper TestScalarContainer \
-	TestVectorContainer TestTensorContainer
+libMHO_Containers_la_SOURCES = src/MHO_ContainerDictionary.cc
+libMHO_Containers_la_LDFLAGS = -avoid-version
 
+TESTS = TestArrayWrapper TestVectorContainer TestScalarContainer \
+	TestTableContainer TestAxis TestAxisPack
 TESTS_ENVIRONMENT = srcdir=$(srcdir)
-TESTS = $(check_PROGRAMS)
-# XFAIL_TESTS =
+TESTS_ENVIRONMENT += abs_top_srcdir=$(abs_top_srcdir)
+TESTS_ENVIRONMENT += abs_top_builddir=$(abs_top_builddir)
 
-cxxflags = -I. -I$(srcdir)/include -Wall -Wextra
-cxxmho = -I$(srcdir)/../Containers/include \
-	-I$(srcdir)/../Utilities/include
-AM_CXXFLAGS = $(cxxflags) $(cxxmho)
+check_PROGRAMS = $(TESTS)
 
-#libMHO_XXX_la_SOURCES = src/MHO_UXXX.cc
-#libMHO_XXX_la_LDFLAGS = -avoid-version
-
+thislib = -L.libs -lMHO_Containers
+message = -L../Message/.libs -lMHO_Message
 utilities = -L../Utilities/.libs -lMHO_Utilities
-mholibs = $(utilities)
+mholibs = $(thislib) $(message) $(utilities)
 TestArrayWrapper_SOURCES = test/TestArrayWrapper.cc
 TestArrayWrapper_LDADD = $(mholibs)
-TestScalarContainer_SOURCES = test/TestScalarContainer.cc
-TestScalarContainer_LDADD = $(mholibs)
 TestVectorContainer_SOURCES = test/TestVectorContainer.cc
 TestVectorContainer_LDADD = $(mholibs)
-TestTensorContainer_SOURCES = test/TestTensorContainer.cc
-TestTensorContainer_LDADD = $(mholibs)
+TestScalarContainer_SOURCES = test/TestScalarContainer.cc
+TestScalarContainer_LDADD = $(mholibs)
+TestTableContainer_SOURCES = test/TestTableContainer.cc
+TestTableContainer_LDADD = $(mholibs)
+TestAxis_SOURCES = test/TestAxis.cc
+TestAxis_LDADD = $(mholibs)
+TestAxisPack_SOURCES = test/TestAxisPack.cc
+TestAxisPack_LDADD = $(mholibs)
 
+CLEANFILES = test.bin test-table.index test-table.bin test-axis.bin
+CLEANFILES += test-axis-pack.bin
 
-EXTRA_DIST =
+EXTRA_DIST = CMakeLists.txt test/CMakeLists.txt
 
 #
 # eof
