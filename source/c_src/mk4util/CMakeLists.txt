@@ -48,9 +48,12 @@ endif(HOPS3_USE_CXX)
 #build/link/install library ####################################################
 list(APPEND LIBLIST "msg")
 
+#math library
+set(EXTERNAL_LIBLIST m)
+
 add_library (${LIBNAME} SHARED ${${LIBNAME}_SOURCEFILES} ${${LIBNAME}_HEADERFILES})
 
-target_link_libraries (${LIBNAME} ${LIBLIST})
+target_link_libraries (${LIBNAME} ${LIBLIST} ${EXTERNAL_LIBLIST})
 
 hops_install_headers (${${LIBNAME}_HEADERFILES})
 hops_install_libraries (${LIBNAME})
