@@ -26,11 +26,29 @@ if(BASH_PROGRAM)
         set_tests_properties(TESTDATA_UNPACK PROPERTIES DEPENDS TESTDATA_DOWNLOAD)
 
         set(TEST_SCRIPT_BASENAMES
-            chk_ff_2836
+            chk_ff_2836 
             chk_ff_2843
             chk_ff_3372
             chk_ff_3413
-            chk_ff_3571
+            chk_ff_3756
+            #chk_ff_3571
+            chk_baselines
+            chk_alist
+            chk_adump 
+            chk_aedit
+            chk_fringex
+            chk_average
+            chk_avefix
+            chk_cofit 
+            chk_search 
+            chk_fourmer
+            chk_frmrsrch 
+            chk_hdlinks 
+            chk_min_weight
+            chk_passband 
+            chk_notches
+            chk_notches_xf 
+            chk_ff_3772pb
         )
 
         #configure the environment
