@@ -18,7 +18,6 @@ if( PGPLOT_FOUND AND FFTW_FOUND AND X11_FOUND AND GFORTRAN_FOUND )
 
     foreach( BASENAME ${${EXENAME}_HEADER_BASENAMES} )
     	list( APPEND ${EXENAME}_HEADERFILES ${${EXENAME}_HEADER_PATH}/${BASENAME} )
-    	list( APPEND AM_${EXENAME}_HEADERFILES "./include/${BASENAME}" )
     endforeach( BASENAME )
 
     #list source files #############################################################
@@ -30,7 +29,6 @@ if( PGPLOT_FOUND AND FFTW_FOUND AND X11_FOUND AND GFORTRAN_FOUND )
 
     foreach( BASENAME ${${EXENAME}_SOURCE_BASENAMES} )
     	list( APPEND ${EXENAME}_SOURCEFILES ${${EXENAME}_SOURCE_PATH}/${BASENAME} )
-    	list( APPEND AM_${EXENAME}_SOURCEFILES "${BASENAME}" )
     endforeach( BASENAME )
 
     #declare relative paths to internal headers/libs ###############################
@@ -109,13 +107,12 @@ if( PGPLOT_FOUND AND FFTW_FOUND AND X11_FOUND AND GFORTRAN_FOUND )
 
     set(EXTERNAL_LIBLIST
         ${FFTW_LIBRARIES}
+        ${X11_LIBRARIES}
         ${PGPLOT_LIBRARIES}
         ${GFORTRAN_LIBRARIES}
         ${X11_LIBRARIES}
         "m"
     )
-
-
 
     add_executable (${EXENAME} ${${EXENAME}_SOURCEFILES} )
     target_link_libraries (${EXENAME} ${INTERNAL_LIBLIST} ${EXTERNAL_LIBLIST})

@@ -18,7 +18,6 @@ if( PGPLOT_FOUND AND FFTW_FOUND AND X11_FOUND AND GFORTRAN_FOUND )
 
     foreach( BASENAME ${${EXENAME}_HEADER_BASENAMES} )
     	list( APPEND ${EXENAME}_HEADERFILES ${${EXENAME}_HEADER_PATH}/${BASENAME} )
-    	list( APPEND AM_${EXENAME}_HEADERFILES "./include/${BASENAME}" )
     endforeach( BASENAME )
 
     #list source files #############################################################
@@ -30,11 +29,9 @@ if( PGPLOT_FOUND AND FFTW_FOUND AND X11_FOUND AND GFORTRAN_FOUND )
 
     foreach( BASENAME ${${EXENAME}_SOURCE_BASENAMES} )
     	list( APPEND ${EXENAME}_SOURCEFILES ${${EXENAME}_SOURCE_PATH}/${BASENAME} )
-    	list( APPEND AM_${EXENAME}_SOURCEFILES "${BASENAME}" )
     endforeach( BASENAME )
 
     list(INSERT ${EXENAME}_SOURCEFILES 0 ${CMAKE_CURRENT_SOURCE_DIR}/aedit.c)
-    list(INSERT AM_${EXENAME}_SOURCEFILES 0 aedit.c)
 
     #declare relative paths to internal headers/libs ###############################
     set(MSG_RELPATH "../../msg")
