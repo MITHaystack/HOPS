@@ -19,5 +19,5 @@ else()
 endif()
 
 if(HOPS_ENABLE_TEST)
-    add_subdirectory(test)
+    add_subdirectory(hops3-ff-tests)
 endif(HOPS_ENABLE_TEST)
