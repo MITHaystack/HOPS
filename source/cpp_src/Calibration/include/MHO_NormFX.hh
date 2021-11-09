@@ -13,7 +13,6 @@
 #include <cmath>
 #include <complex>
 
-#include "MHO_FFTWTypes.hh"
 #include "MHO_TableContainer.hh"
 #include "MHO_ChannelizedVisibilities.hh"
 #include "MHO_BinaryOperator.hh"
@@ -27,6 +26,7 @@
 #include "MHO_MultidimensionalPaddedFastFourierTransform.hh"
 
 #ifdef HOPS_USE_FFTW3
+    #include "MHO_FFTWTypes.hh"
     #include "MHO_MultidimensionalFastFourierTransformFFTW.hh"
 #else
     #include "MHO_FastFourierTransform.hh"
