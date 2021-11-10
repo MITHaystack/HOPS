@@ -22,8 +22,7 @@ else
     [ -z "$bsi" ] && bsi=${HOPS4_SRC_DIR}/data/bootstrap/import_scripts
 
     #list of search header files
-    declare -a source_list=( "adhoc_flag.h" "apply_funcs.h" )
-
+    declare -a source_list=( "adhoc_flag.h" "apply_funcs.h"  "ffsearch.h" )
     src_dir="${HOPS3_SRC_DIR}/postproc/fourfit"
     dest_dir="${HOPS4_SRC_DIR}/source/c_src/fourfit_libs/ffsearch/include"
     source $bsi/compare_src_dest.sh
@@ -41,8 +40,6 @@ else
         "calc_normalization.c"
         "calc_rms.c"
         "compute_field_rotations.c"
-        "compute_model.c"
-        "compute_qf.c"
         "freq_spacing.c"
         "fringe_search.c"
         "delay_rate.c"

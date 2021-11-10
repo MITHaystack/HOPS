@@ -26,6 +26,7 @@ foreach( BASENAME ${${LIBNAME}_SOURCE_BASENAMES} )
 endforeach( BASENAME )
 
 #declare header paths ##########################################################
+set(MSG_RELPATH "../../msg")
 set(MK4UTIL_RELPATH "../../mk4util")
 set(AFIO_RELPATH "../../afio")
 set(DFIO_RELPATH "../../dfio")
@@ -33,7 +34,7 @@ set(VEX_RELPATH "../../vex")
 set(FFCONTROL_RELPATH "../ffcontrol")
 set(FFCORE_RELPATH "../ffcore")
 
-list(APPEND RELPATH_LIST ${MK4UTIL_RELPATH} ${AFIO_RELPATH} ${DFIO_RELPATH} ${VEX_RELPATH} ${FFCONTROL_RELPATH} ${FFCORE_RELPATH})
+list(APPEND RELPATH_LIST ${MSG_RELPATH} ${MK4UTIL_RELPATH} ${AFIO_RELPATH} ${DFIO_RELPATH} ${VEX_RELPATH} ${FFCONTROL_RELPATH} ${FFCORE_RELPATH})
 
 #include library headers
 foreach(path ${RELPATH_LIST})
@@ -45,6 +46,10 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 #build/link/install library ####################################################
 list(APPEND LIBLIST "mk4util" "afio" "dfio" "vex" "ffcontrol" "ffcore")
+
+if(HOPS3_USE_CXX)
+SET_SOURCE_FILES_PROPERTIES(${${LIBNAME}_SOURCEFILES} PROPERTIES LANGUAGE CXX )
+endif(HOPS3_USE_CXX)
 
 add_library (${LIBNAME} SHARED ${${LIBNAME}_SOURCEFILES} ${${LIBNAME}_HEADERFILES})
 

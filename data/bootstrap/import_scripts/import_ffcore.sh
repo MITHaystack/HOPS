@@ -26,7 +26,7 @@ else
     #list of core fourfit header files
     declare -a source_list=(
     "filter.h"
-    "ff_misc_if.h"
+    "ffcore.h"
     "freqlist.h"
     "param_struct.h"
     "pass_struct.h"
@@ -57,6 +57,8 @@ else
     "fourfit_signal_handler.c"
     "wait_for_write_lock.c"
     "clear_pass.c"
+    "compute_model.c"
+    "compute_qf.c"
     "make_flist.c"
     "make_passes.c"
     "fill_param.c"

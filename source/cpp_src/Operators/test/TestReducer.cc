@@ -11,6 +11,8 @@ using namespace hops;
 
 #define NDIM 3
 
+using array_type = MHO_NDArrayWrapper<std::complex<double>, NDIM>;
+
 int main(int /*argc*/, char** /*argv*/)
 {
     const size_t ndim = NDIM;
@@ -44,14 +46,13 @@ int main(int /*argc*/, char** /*argv*/)
 
     std::cout << "--------------------------------------------------------------" << std::endl;
 
-    MHO_Reducer<std::complex<double>, MHO_CompoundSum, NDIM>* reducer = new MHO_Reducer<std::complex<double>, MHO_CompoundSum, NDIM>();
-    reducer->SetInput(input);
-    reducer->SetOutput(output);
+    MHO_Reducer< array_type, MHO_CompoundSum>* reducer = new MHO_Reducer<array_type, MHO_CompoundSum>();
+    reducer->SetArgs(input, output);
     //reducer->ReduceAxis(0);
     reducer->ReduceAxis(NDIM-2);
     //reducer->ReduceAxis(NDIM-1);
     bool init = reducer->Initialize();
-    bool exe = reducer->ExecuteOperation();
+    bool exe = reducer->Execute();
     size_t odim_size[NDIM];
     output->GetDimensions(odim_size);
 
@@ -76,15 +77,15 @@ int main(int /*argc*/, char** /*argv*/)
 
     std::cout << "--------------------------------------------------------------" << std::endl;
 
-    MHO_Reducer<std::complex<double>, MHO_CompoundMultiply, NDIM>* reducer2 = new MHO_Reducer<std::complex<double>, MHO_CompoundMultiply, NDIM>();
-    reducer2->SetInput(output);
-    reducer2->SetOutput(output2);
+    MHO_Reducer<array_type, MHO_CompoundMultiply>* reducer2 = new MHO_Reducer<array_type, MHO_CompoundMultiply>();
+    reducer2->SetArgs(output, output2);
     //reducer->ReduceAxis(0);
     //reducer->ReduceAxis(NDIM-2);
     reducer2->ReduceAxis(NDIM-1);
     bool init2 = reducer2->Initialize();
-    bool exe2 = reducer2->ExecuteOperation();
+    bool exe2 = reducer2->Execute();
     output2->GetDimensions(odim_size);
+
 
     for(size_t i=0;i<NDIM;i++)
     {

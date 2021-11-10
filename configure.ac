@@ -1,17 +1,59 @@
 #                                               -*- Autoconf -*-
 # Process this file with autoconf to produce a configure script.
-# (c) Massachusetts Institute of Technology, 2020
+# (c) Massachusetts Institute of Technology, 2020-2022
 # The contents of the package Copyright statement apply here.
+#
+# See GENERAL PLAN note below for more information about this script.
+#
+AC_PREREQ([2.69])
+AC_INIT([mhops], [4.00], [hops@mit.edu], [mhops],
+[https://www.haystack.mit.edu/haystack-observatory-postprocessing-system-hops])
+AC_CONFIG_SRCDIR([README.md])
+AC_MHO_INIT([Configuring "$PACKAGE_NAME" version "$PACKAGE_VERSION"])
+# libtool and other macros into m4
+AC_CONFIG_MACRO_DIR([m4])
+LT_INIT
+
+#
+# mho_config.h is the new configure file,
+# but the old tools will only ever include hops_config.h
+AH_TOP(dnl
+[\\
+\\ this can go at the top
+\\ #include "hops_config.h"
+\\
+])
+AC_CONFIG_HEADERS([mho_config.h])
+AH_BOTTOM(dnl
+[\\
+\\ or this can be at the bottom
+\\#include "hops_config.h"
+\\
+])
+# or conversely.  Decisions on how to do this are deferred.
+
+# put summary configuration into an additional file; AC_MHO macros are
+# defined in the m4/mho.m4 and accessed by   aclocal -I m4 # --force
+AC_MHO_NOTICE([Autotools configure scripts are in "$srcdir/m4"]) 
+AC_MHO_NOTICE([CMake configure scripts are in "$srcdir/cmake"]) 
+
+#
+# The GENERAL PLAN is that to the extent possible, tests that can be
+# stuffed into scripts put into m4/something.sh and written to support
+# both autoconf and cmake, should be so written...now or eventually.
+# The directory containing configure is known as $ac_confdir in the script;
+# but config.status seems to only know about srcdir so access to the
+# scripts must be via $srcdir/m4/... or $srcdir/cmake/....
+#
+# Other comments:
+#   [ ] are quotes to m4sugar.
 #
 # FIXME: mhops / hops package name collisions; what's the plan?
 # FIXME: mailman hops@mit.edu mailing list
 #
-# NOTE: [ ] are quotes to m4sugar.
-
-AC_PREREQ([2.69])
-AC_INIT([mhops], [4.00], [hops@mit.edu])
-AC_CONFIG_SRCDIR([README.md])
-AC_CONFIG_HEADERS([mho_config.h])
+# for pre-2.69 versions, LT initialization was done differently:
+#   m4_ifset([LT_INIT], [LT_INIT], [AC_PROG_LIBTOOL])
+#   m4_ifset([LT_WITH_LTDL], [LT_WITH_LTDL], [AC_LIB_LTDL])
 
 # this is not a GNU project, preserve tree in build dir,
 # check --help/--version and finally this no $(EXEEXT) support
@@ -26,7 +68,6 @@ AM_EXTRA_RECURSIVE_TARGETS([coverage hops mho reqs])
 
 # user path configuration requires a root directory
 AC_ARG_VAR(MHO_ROOT, [Root directory for the MIT HOPS tools installation])
-AC_MHO_INIT([Configuration summary for mhops version 4.00])
 # default --prefix to $MHO_ROOT/$arch-$VERSION at make install time
 arch=`uname -m`am
 AC_PREFIX_DEFAULT([${MHO_ROOT-'${MHO_ROOT}'}/${arch}-${VERSION-'${VERSION}'}])
@@ -39,13 +80,6 @@ else
 fi
 prefix="$MHO_ROOT/${arch}-$VERSION"
 AC_MHO_SUMMARY([Installation is to $prefix])
-
-# libtool stuff into m4
-AC_CONFIG_MACRO_DIR([m4])
-LT_INIT
-# for pre-2.69 versions:
-#m4_ifset([LT_INIT], [LT_INIT], [AC_PROG_LIBTOOL])
-#m4_ifset([LT_WITH_LTDL], [LT_WITH_LTDL], [AC_LIB_LTDL])
 
 # features are a bit confusing:
 # AC_ARG_ENABLE(FEATURE, HELP-STRING, [ACTION-IF-GIVEN], [ACTION-IF-NOT-GIVEN])
@@ -62,7 +96,7 @@ AC_ARG_ENABLE(doxygen,
     [], [enable_doxy=yes])
 AC_ARG_ENABLE(sphinx,
     AS_HELP_STRING([--disable-sphinx], [allow sphinx-generated documents]),
-    [], [enable_doxy=yes])
+    [], [enable_spnx=yes])
 AC_ARG_ENABLE(gcov,
     AS_HELP_STRING([--enable-gcov], [compile with coverage active]),
     [], [enable_gcov=no])
@@ -70,6 +104,9 @@ AC_ARG_ENABLE(gcov,
 AC_ARG_ENABLE(hack,
     AS_HELP_STRING([--enable-hack], [activate ugly gcov hack on older gcc]),
     [], [enable_hack=no])
+
+# is this an argument to ENABLE for C++ programs?
+# HOPS_ENABLE_DEBUG_MSG defined or not
 
 # Checks for programs.
 AC_PROG_AWK
@@ -86,7 +123,12 @@ AC_PROG_MAKE_SET
 # AC_F77_LIBRARY_LDFLAGS
 # AC_PROG_FC
 
-# checks for compiler options
+# checks, &c. for C compiler options
+mhocppdef="-Wall -Wextra"
+AC_ARG_VAR(MHO_CPPFLAGS, [Warning options for C compiler ($mhocppdef)])
+if test -z ["$MHO_CPPFLAGS"] ; then
+    MHO_CPPFLAGS="-Wall -Wextra"
+fi
 # these should move to m4 area
 # -fkeep-static-functions
 mh_cppflags="$CPPFLAGS"
@@ -99,6 +141,15 @@ AC_PREPROC_IFELSE(
 CPPFLAGS="$mh_cppflags"
 AC_MSG_NOTICE([KEEP_STATIC_FUNCTIONS is "$KEEP_STATIC_FUNCTIONS"])
 AC_SUBST(KEEP_STATIC_FUNCTIONS)
+
+# checks for C++ compiler options
+# it seems coding is to the C11 standard, so -std=c++11 (or -std=gnu++11)
+# g++ (GCC) 10.3.1 default is -std=gnu++14
+mhocxxdef="-Wall -Wextra -std=c++11"
+AC_ARG_VAR(MHO_CXXFLAGS, [Warning options for C++ compiler ($mhocxxdef)])
+if test -z ["$MHO_CXXFLAGS"] ; then
+    MHO_CXXFLAGS="$mhocxxdef"
+fi
 
 # less trivial checks for programs
 PKG_PROG_PKG_CONFIG
@@ -284,6 +335,10 @@ PGPLOT_RGB=/usr/share/pgplot/rgb.txt
 AC_SUBST(PGPLOT_FONT)
 AC_SUBST(PGPLOT_RGB)
 
+#
+# output stage
+#
+
 # top-level Makefile and primary directories
 AC_CONFIG_FILES(
     Makefile
@@ -292,22 +347,18 @@ AC_CONFIG_FILES(
     data/Makefile
 )
 
-### FIXME: revert the 'b' names to the normal names
-
 # source/bash_src makefile
 # includes perl scripts as well
 AC_CONFIG_FILES(source/bash_src/Makefile)
 
-# source/c_source makefiles, part 1: "sub" and applications
+# source/c_source makefiles, part 1: "sub"
 AC_CONFIG_FILES(
     source/c_src/Makefile
+    source/c_src/msg/Makefile
     source/c_src/mk4util/Makefile
     source/c_src/dfio/Makefile
     source/c_src/afio/Makefile
     source/c_src/vex/Makefile
-    source/c_src/applications/Makefile
-    source/c_src/applications/alist/Makefile
-    source/c_src/applications/aedit/Makefile
 )
 # source/c_source makefiles, part 2: "fourfit"
 AC_CONFIG_FILES(
@@ -319,25 +370,51 @@ AC_CONFIG_FILES(
     source/c_src/fourfit_libs/ffsearch/Makefile
     source/c_src/fourfit_libs/ffplot/Makefile
     source/c_src/applications/fourfit/Makefile
+    source/c_src/applications/fourmer/Makefile
+    source/c_src/applications/fplot/Makefile
+    source/c_src/applications/fringex/Makefile
 )
-# source/c_source makefiles, part 3: "legacy"
+# source/c_source makefiles, part 3: "aedit family"
 AC_CONFIG_FILES(
+    source/c_src/applications/Makefile
+    source/c_src/applications/aedit/Makefile
+    source/c_src/applications/alist/Makefile
+    source/c_src/applications/adump/Makefile
+)
+# source/c_source makefiles, part 4: "mmvlbi apps"
+AC_CONFIG_FILES(
+    source/c_src/applications/average/Makefile
+    source/c_src/applications/cofit/Makefile
+    source/c_src/applications/search/Makefile
+    source/c_src/applications/snratio/Makefile
+)
+# source/c_source makefiles, part 5: "legacy apps"
+AC_CONFIG_FILES(
+    source/c_src/applications/legacy/Makefile
     source/c_src/applications/legacy/CorAsc2/Makefile
 )
-# source/c_source makefiles, part 4: "test"
+# source/c_source makefiles, part 6: "test"
 AC_CONFIG_FILES(
     source/c_src/applications/test/Makefile
 )
 
-# source/cpp_src makefiles
+# source/cpp_src makefiles, part 1: "core libraries"
 AC_CONFIG_FILES(
     source/cpp_src/Makefile
     source/cpp_src/Message/Makefile
     source/cpp_src/Math/Makefile
     source/cpp_src/Utilities/Makefile
-    source/cpp_src/MK4Interface/Makefile
     source/cpp_src/Containers/Makefile
+    source/cpp_src/vex2json/Makefile
+    source/cpp_src/MK4Interface/Makefile
 )
+#   source/cpp_src/Applications/Makefile
+#   source/cpp_src/Applications/fourfit/Makefile
+#   source/cpp_src/Calibration/Makefile
+#   source/cpp_src/Operators/Makefile
+#   source/cpp_src/Plugins/Makefile
+#   source/cpp_src/Plugins/OpenCL/Makefile
+#   source/cpp_src/Plugins/PythonBindings/Makefile
 
 # source/python_src: makefiles
 AC_CONFIG_FILES(
@@ -372,23 +449,19 @@ AC_CONFIG_FILES(
 # data and scripting for system tests
 #AC_CONFIG_FILES()
 
-# captive copy of hops3.x
-#AC_CONFIG_FILES()
-
 #
 # Shell setup convenience script
 #
 AC_CONFIG_FILES(source/bash_src/hops.bash,
     [chmod +x source/bash_src/hops.bash])
 
-# MHO/HOPS compatibility (temporary)
-AC_CONFIG_FILES(hops_config.h,
-    [echo '#define HOPS_SVN_REV 3089' >> hops_config.h;
-     echo "#define PACKAGE_VERSION $VERSION" >> hops_config.h])
+# MHO/HOPS compatibility
+AC_CONFIG_FILES(hops_config.h, [$srcdir/m4/hops_svn_rev.sh])
 
 # this turns into the generator for config.status
 AC_OUTPUT
 
+# finally summarize what happened
 AC_MHO_BANNER([Finished with configuration:])
 
 # eof

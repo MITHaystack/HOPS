@@ -47,13 +47,12 @@ int main(int /*argc*/, char** /*argv*/)
 
     std::cout << "--------------------------------------------------------------" << std::endl;
 
-    MHO_CyclicRotator<array_type, array_type> crot;
+    MHO_CyclicRotator<array_type> crot;
     crot.SetOffset(0, 2);
     crot.SetOffset(1, -2);
-    crot.SetInput(input1);
-    crot.SetOutput(output);
+    crot.SetArgs(input1, output);
     bool init = crot.Initialize();
-    bool exe = crot.ExecuteOperation();
+    bool exe = crot.Execute();
 
     size_t odim_size[NDIM];
     output->GetDimensions(odim_size);
@@ -75,13 +74,12 @@ int main(int /*argc*/, char** /*argv*/)
 
     std::cout << "--------------------------------------------------------------" << std::endl;
 
-    //now undo the previous rotation in-place on the output array 
+    //now undo the previous rotation in-place on the output array
     crot.SetOffset(0, -2);
     crot.SetOffset(1, 2);
-    crot.SetInput(output);
-    crot.SetOutput(output);
+    crot.SetArgs(output);
     bool init2 = crot.Initialize();
-    bool exe2 = crot.ExecuteOperation();
+    bool exe2 = crot.Execute();
 
     for (size_t i = 0; i < odim_size[0]; i++) {
         for (size_t j = 0; j < odim_size[1]; j++) {
@@ -98,7 +96,7 @@ int main(int /*argc*/, char** /*argv*/)
     array_type1d* input1d = new array_type1d(dim_size1d[0]);
     array_type1d* output1d = new array_type1d();
 
-    for (size_t j = 0; j < dim_size1d[0]; j++) 
+    for (size_t j = 0; j < dim_size1d[0]; j++)
     {
         (*input1d)[j] = j;
         std::cout << (*input1d)[j] << ", ";
@@ -106,14 +104,13 @@ int main(int /*argc*/, char** /*argv*/)
 
     std::cout << std::endl;
 
-    MHO_CyclicRotator<array_type1d, array_type1d> crot1d;
+    MHO_CyclicRotator<array_type1d> crot1d;
     crot1d.SetOffset(0, 2);
-    crot1d.SetInput(input1d);
-    crot1d.SetOutput(output1d);
+    crot1d.SetArgs(input1d, output1d);
     bool init3 = crot1d.Initialize();
-    bool exe3 = crot1d.ExecuteOperation();
+    bool exe3 = crot1d.Execute();
 
-    for (size_t j = 0; j <dim_size1d[0]; j++) 
+    for (size_t j = 0; j <dim_size1d[0]; j++)
     {
         std::cout << (*output1d)[j] << ", ";
     }

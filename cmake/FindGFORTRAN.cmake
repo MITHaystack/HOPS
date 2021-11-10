@@ -30,6 +30,34 @@ if(NOT GFORTRAN_LIB)
     )
 endif()
 
+#what we need is the gfortran version which pgplot is linked against
+#look for a versioned copy of the library .so.4
+#on DEMI -- this is libgfortran.so.4 (so check this first)
+if(NOT GFORTRAN_LIB)
+    FIND_LIBRARY(GFORTRAN_LIB
+        NAMES libgfortran.so.4
+        HINTS ${GFORTRAN_PATHS}
+        DOC "gfortran standard library."
+    )
+endif()
+
+#look for a versioned copy of the library .so.5
+if(NOT GFORTRAN_LIB)
+    FIND_LIBRARY(GFORTRAN_LIB
+        NAMES libgfortran.so.5
+        HINTS ${GFORTRAN_PATHS}
+        DOC "gfortran standard library."
+    )
+endif()
+
+#look for a versioned copy of the library .so.3
+if(NOT GFORTRAN_LIB)
+    FIND_LIBRARY(GFORTRAN_LIB
+        NAMES libgfortran.so.3
+        HINTS ${GFORTRAN_PATHS}
+        DOC "gfortran standard library."
+    )
+endif()
 
 set(GFORTRAN_LIBRARIES ${GFORTRAN_LIB})
 

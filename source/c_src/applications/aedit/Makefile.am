@@ -1,32 +1,25 @@
 #
-# Makefile for aedit
-# (c) Massachusetts Institute of Technology, 2020
+# Makefile for C application aedit
+# (c) Massachusetts Institute of Technology, 2020-2022
 # The contents of the package Copyright statement apply here.
 #
 if HAVE_PGPLOT
 
-AM_CPPFLAGS = -I. -I$(srcdir)/include -I$(srcdir)/../../mk4util/include \
+AM_CPPFLAGS = -I. -I$(srcdir)/include -I$(srcdir)/../../msg/include \
+	-I$(srcdir)/../../mk4util/include \
 	-I$(srcdir)/../../afio/include -I$(srcdir)/../../dfio/include \
-	-I$(srcdir)/../../vex/include  -Wall -Wextra -DHAVE_CONFIG_H
+	-I$(srcdir)/../../vex/include $(MHO_CPPFLAGS)
 
-AM_CPPFLAGS += ${FFTW3_CFLAGS} ${X_CFLAGS} -I${PGPLOT_DIR}
+AM_CPPFLAGS += $(CPGPLOT_CFLAGS)
 
 bin_PROGRAMS = aedit
 
-pkginclude_HEADERS = \
-    include/aedata.h \
-    include/aedit.h \
-    include/aedit_proto.h \
-    include/close_flags.h \
-    include/flags.h \
-    include/param_list.h \
-    include/psplot.h \
-    include/pstruct.h \
-    include/sizelimits.h \
-    include/sort.h \
-    include/summary.h \
-    include/tempo.h \
-    include/usearray.h
+pkginclude_HEADERS = include/aedata.h include/aedit.h \
+    include/aedit_proto.h include/close_flags.h \
+    include/flags.h include/param_list.h \
+    include/psplot.h include/pstruct.h \
+    include/sizelimits.h include/sort.h \
+    include/summary.h include/tempo.h include/usearray.h
 
 aedit_SOURCES = aedit.c src/active_filter.c src/add_station.c \
 	src/aeclr_corel.c src/aeclr_fringe.c src/aeclr_quad.c \
@@ -76,10 +69,8 @@ aedit_SOURCES = aedit.c src/active_filter.c src/add_station.c \
 	src/write_tdata.c src/zoom.c
 
 aedit_LDADD = ../../mk4util/libmk4util.la ../../afio/libafio.la \
-	../../dfio/libdfio.la ../../vex/libvex.la ${CPGPLOT_LIBS} -lm
-
-#${PNG_LIB} ${X_FPLOT_LIB} ${X11_LIB} ${FFTW3_LIBS}
-# FIXME: -lm should be configured
+	../../dfio/libdfio.la ../../vex/libvex.la ../../msg/libmsg.la \
+	$(CPGPLOT_LIBS) $(LIBS)
 
 else # HAVE_PGPLOT
 
@@ -88,9 +79,17 @@ pkginclude_HEADERS =
 
 endif # HAVE_PGPLOT
 
-AM_INSTALLCHECK_STD_OPTIONS_EXEMPT = aedit
+# TESTS =
+# TESTS_ENVIRONMENT = srcdir=$(srcdir)
+# TESTS_ENVIRONMENT += abs_top_srcdir=$(abs_top_srcdir)
+# TESTS_ENVIRONMENT += abs_top_builddir=$(abs_top_builddir)
 
-EXTRA_DIST =
+# check_PROGRAMS = $(TESTS)
+
+EXTRA_DIST = CMakeLists.txt
+
+# FIXME: check and fix
+AM_INSTALLCHECK_STD_OPTIONS_EXEMPT = aedit
 
 #
 # eof

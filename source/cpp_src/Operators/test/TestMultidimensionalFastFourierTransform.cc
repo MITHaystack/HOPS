@@ -31,6 +31,10 @@ int main(int /*argc*/, char** /*argv*/)
     //fill up the array with a signal
     int count = 0;
 
+    #ifdef HOPS_USE_FFTW3
+    std::cout<<"using fftw3 for FFTs"<<std::endl;
+    #endif
+
     #ifdef HOPS_ENABLE_DEBUG_MSG
     std::cout << "original data = " << std::endl;
     #endif
@@ -58,8 +62,7 @@ int main(int /*argc*/, char** /*argv*/)
     FFT_TYPE* fft_engine = new FFT_TYPE();
 
     fft_engine->SetForward();
-    fft_engine->SetInput(&input);
-    fft_engine->SetOutput(&input);
+    fft_engine->SetArgs(&input);
 
 #ifndef HOPS_USE_FFTW3 //test the axis selection feature (not implemented for FFTW)
     fft_engine->DeselectAllAxes();
@@ -68,7 +71,7 @@ int main(int /*argc*/, char** /*argv*/)
 #endif
 
     fft_engine->Initialize();
-    fft_engine->ExecuteOperation();
+    fft_engine->Execute();
 
     #ifdef HOPS_ENABLE_DEBUG_MSG
     std::cout << "DFT of data = " << std::endl;
@@ -86,12 +89,11 @@ int main(int /*argc*/, char** /*argv*/)
 #ifndef HOPS_USE_FFTW3
     //just do the middle data axis
     fft_engine->SetForward();
-    fft_engine->SetInput(&input);
-    fft_engine->SetOutput(&input);
+    fft_engine->SetArgs(&input);
     fft_engine->DeselectAllAxes();
     fft_engine->SelectAxis(1);
     fft_engine->Initialize();
-    fft_engine->ExecuteOperation();
+    fft_engine->Execute();
 
     #ifdef HOPS_ENABLE_DEBUG_MSG
     std::cout << "DFT of data = " << std::endl;
@@ -113,13 +115,12 @@ int main(int /*argc*/, char** /*argv*/)
     std::cout << "--------------------------------------------------------------" << std::endl;
 
     fft_engine->SetBackward();
-    fft_engine->SetInput(&input);
-    fft_engine->SetOutput(&input);
+    fft_engine->SetArgs(&input);
 #ifndef HOPS_USE_FFTW3
     fft_engine->SelectAllAxes();
 #endif
     fft_engine->Initialize();
-    fft_engine->ExecuteOperation();
+    fft_engine->Execute();
 
     #ifdef HOPS_ENABLE_DEBUG_MSG
     std::cout << "IDFT of DFT of data = " << std::endl;

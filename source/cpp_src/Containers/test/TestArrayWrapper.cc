@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <complex>
 
 #include "MHO_Message.hh"
 #include "MHO_NDArrayWrapper.hh"
@@ -98,8 +99,8 @@ int main(int /*argc*/, char** /*argv*/)
     std::cout<<"test strided access"<<std::endl;
     do
     {
-        std::array<std::size_t, 2> idx_ptr  = sit.GetIndexObject();
-        std::cout<<"index iterator = ("<<idx_ptr[0]<<", "<<idx_ptr[1]<<")"<<std::endl;
+        //std::array<std::size_t, 2> idx_ptr  = sit.GetIndexObject();
+        //std::cout<<"index iterator = ("<<idx_ptr[0]<<", "<<idx_ptr[1]<<")"<<std::endl;
         sit++;
     }
     while(sit != sit_end && sit.IsValid() );
@@ -110,6 +111,33 @@ int main(int /*argc*/, char** /*argv*/)
     {
         std::cout<<"stride of dim "<<i<<" = "<<test4.GetStride(i)<<std::endl;
     }
+
+    auto subview = test4.SubView(1,3);
+    auto arrdim = subview.GetDimensionArray();
+    for(std::size_t i=0; i<arrdim.size(); i++){std::cout<<"subview dim @"<<i<<" = "<<arrdim[i]<<std::endl;}
+
+    subview += 1;
+    subview *= 4;
+
+    std::cout<<"subview @ (0,1,2) = "<<subview(0,1,2)<<std::endl;
+
+
+
+    std::size_t dim5[3] = {2,3,4};
+    MHO_NDArrayWrapper< std::complex<double>, 3> test5(dim5);
+    for(std::size_t i=0;i<test5.GetSize();i++)
+    {
+        test5[i] = std::complex<double>(1.0, 2.0);
+    }
+
+    test5 += 3.1;
+    test5 *= 2.0;
+
+    std::cout<<"test5(1,1,1) = "<<test5(1,1,1)<<std::endl;
+
+    test5 -= test5;
+
+    std::cout<<"test5(1,1,1) = "<<test5(1,1,1)<<std::endl;
 
 
     return 0;

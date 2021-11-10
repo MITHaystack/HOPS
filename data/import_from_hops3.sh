@@ -52,8 +52,8 @@ verb=false ; [ "$testverb" -gt 0 ] && verb=true
 very=false ; [ "$testverb" -gt 1 ] && very=true && verb=true
 wery=false ; [ "$testverb" -gt 2 ] && wery=true && very=true && verb=true
 
-# note that all args are passed, and the first
-# arg needs to be --checksum-only or --import
+# note that all args are passed, and the first arg
+# must be one of the ones that import_hops.sh accepts.
 source $bsi/import_hops.sh $@
 errors=$?
 echo

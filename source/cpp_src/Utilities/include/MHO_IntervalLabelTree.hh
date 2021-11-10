@@ -41,9 +41,12 @@ class MHO_IntervalLabelTree: virtual public MHO_Serializable
         std::vector< MHO_IntervalLabel* >
         GetIntervalsWithKey(const std::string& key);
 
+        std::vector< const MHO_IntervalLabel* >
+        GetIntervalsWithKey(const std::string& key) const;
+
         template<typename XLabelValueType>
         std::size_t
-        GetNIntervalsWithKeyValue(const std::string& key, const XLabelValueType& value);
+        GetNIntervalsWithKeyValue(const std::string& key, const XLabelValueType& value) const;
 
         template<typename XLabelValueType>
         std::vector< MHO_IntervalLabel* >
@@ -53,6 +56,9 @@ class MHO_IntervalLabelTree: virtual public MHO_Serializable
         MHO_IntervalLabel*
         GetFirstIntervalWithKeyValue(const std::string& key, const XLabelValueType& value);
 
+        template<typename XLabelValueType>
+        const MHO_IntervalLabel*
+        GetFirstIntervalWithKeyValue(const std::string& key, const XLabelValueType& value) const;
 
     protected:
 
@@ -113,7 +119,7 @@ class MHO_IntervalLabelTree: virtual public MHO_Serializable
 
 template<typename XLabelValueType>
 std::size_t
-MHO_IntervalLabelTree::GetNIntervalsWithKeyValue(const std::string& key, const XLabelValueType& value)
+MHO_IntervalLabelTree::GetNIntervalsWithKeyValue(const std::string& key, const XLabelValueType& value) const
 {
     std::size_t count = 0;
     XLabelValueType tmp_value;
@@ -172,6 +178,30 @@ MHO_IntervalLabelTree::GetFirstIntervalWithKeyValue(const std::string& key, cons
     }
     return label;
 }
+
+template<typename XLabelValueType>
+const MHO_IntervalLabel*
+MHO_IntervalLabelTree::GetFirstIntervalWithKeyValue(const std::string& key, const XLabelValueType& value) const
+{
+    const MHO_IntervalLabel* label = nullptr;
+    XLabelValueType tmp_value;
+    //dumb brute force search over all intervals O(n)
+    //we may want to make this smarter
+
+    for(std::size_t i=0; i<fIntervals.size(); i++)
+    {
+        if( fIntervals[i]->Retrieve(key,tmp_value) )
+        {
+            if(tmp_value == value)
+            {
+                label = fIntervals[i];
+                break;
+            }
+        }
+    }
+    return label;
+}
+
 
 }//end namespace
 

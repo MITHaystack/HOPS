@@ -1,6 +1,6 @@
 #
 # Makefile for bash scripts
-# (c) Massachusetts Institute of Technology, 2020
+# (c) Massachusetts Institute of Technology, 2020-2021
 # The contents of the package Copyright statement apply here.
 #
 

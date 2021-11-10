@@ -1,11 +1,11 @@
 #
 # Makefile for the A list library
-# (c) Massachusetts Institute of Technology, 2020
+# (c) Massachusetts Institute of Technology, 2020-2022
 # The contents of the package Copyright statement apply here.
 #
 
-AM_CPPFLAGS = -I. -I$(srcdir)/include -I$(srcdir)/../mk4util/include \
-	-Wall -Wextra -DHAVE_CONFIG_H
+AM_CPPFLAGS = -I. -I$(srcdir)/include -I$(srcdir)/../msg/include \
+	-I$(srcdir)/../mk4util/include $(MHO_CPPFLAGS)
 
 pkginclude_HEADERS = include/adata.h include/afile_structure.h \
 	include/mk4_afio.h
@@ -21,7 +21,14 @@ libafio_la_SOURCES = src/afile_header.c src/aline_id.c src/check_sizes.c \
 
 libafio_la_LDFLAGS = -avoid-version
 
-EXTRA_DIST = 
+# TESTS =
+# TESTS_ENVIRONMENT = srcdir=$(srcdir)
+# TESTS_ENVIRONMENT += abs_top_srcdir=$(abs_top_srcdir)
+# TESTS_ENVIRONMENT += abs_top_builddir=$(abs_top_builddir)
+
+# check_PROGRAMS = $(TESTS)
+
+EXTRA_DIST = CMakeLists.txt
 
 #
 # eof

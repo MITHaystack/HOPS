@@ -15,7 +15,6 @@
 #include "MHO_StationCoordinates.hh"
 
 #include "MHO_FFTWTypes.hh"
-#include "MHO_BinaryNDArrayOperator.hh"
 
 #include "MHO_DirectoryInterface.hh"
 #include "MHO_Timer.hh"
@@ -119,6 +118,40 @@ namespace hops
 {
 
 
+//template parameters must inherit from MHO_NDArrayWrapper
+template<class XInputArrayType1, class XInputArrayType2, class XOutputArrayType>
+class MHO_BinaryNDArrayOperator: public MHO_Operator
+{
+   public:
+
+       MHO_BinaryNDArrayOperator():
+           fInput1(nullptr),
+           fInput2(nullptr),
+           fOutput(nullptr)
+       {};
+
+       virtual ~MHO_BinaryNDArrayOperator(){};
+
+       virtual void SetFirstInput(XInputArrayType1* in){fInput1 = in;};
+       virtual void SetSecondInput(XInputArrayType2* in){fInput2 = in;};
+       virtual void SetOutput(XOutputArrayType* out){fOutput = out;};
+
+       virtual XInputArrayType1* GetFirstInput(){return fInput1;};
+       virtual XInputArrayType2* GetSecondInput(){return fInput2;};
+       virtual XOutputArrayType* GetOutput(){return fOutput;};
+
+       //inherts these from MHO_Operator
+       // virtual bool Initialize() = 0;
+       // virtual bool Execute() = 0;
+
+   protected:
+
+       XInputArrayType1* fInput1;
+       XInputArrayType2* fInput2;
+       XOutputArrayType* fOutput;
+
+};
+
 class MHO_NormFXPrelim: public MHO_BinaryNDArrayOperator<
     ch_baseline_data_type,
     ch_baseline_weight_type,
@@ -129,7 +162,7 @@ class MHO_NormFXPrelim: public MHO_BinaryNDArrayOperator<
         virtual ~MHO_NormFXPrelim(){};
 
         virtual bool Initialize() override {return true;}
-        virtual bool ExecuteOperation() override {return true;};
+        virtual bool Execute() override {return true;};
 
         int DetermineStationPolMode(struct type_pass* pass)
         {
@@ -793,29 +826,27 @@ bool GetCorel(MHO_DirectoryInterface& dirInterface,
             baseline_data_type* bl_data = corelInterface.GetExtractedVisibilities();
             baseline_weight_type* bl_wdata = corelInterface.GetExtractedWeights();
 
-            MHO_VisibilityChannelizer channelizer;
-            channelizer.SetInput(bl_data);
             ch_bl_data = new ch_baseline_data_type();
-            channelizer.SetOutput(ch_bl_data);
+            MHO_VisibilityChannelizer channelizer;
+            channelizer.SetArgs(bl_data, ch_bl_data);
             bool init = channelizer.Initialize();
             bool exe = false;
             if(init)
             {
                 std::cout<<"initialization done"<<std::endl;
-                exe = channelizer.ExecuteOperation();
+                exe = channelizer.Execute();
                 if(exe){std::cout<<"vis channelizer done"<<std::endl;}
             }
 
             MHO_WeightChannelizer wchannelizer;
-            wchannelizer.SetInput(bl_wdata);
             ch_bl_wdata = new ch_baseline_weight_type();
-            wchannelizer.SetOutput(ch_bl_wdata);
+            wchannelizer.SetArgs(bl_wdata, ch_bl_wdata);
             bool winit = wchannelizer.Initialize();
             bool wexe = false;
             if(winit)
             {
                 std::cout<<"initialization done"<<std::endl;
-                wexe = wchannelizer.ExecuteOperation();
+                wexe = wchannelizer.Execute();
                 if(wexe){std::cout<<"weight channelizer done"<<std::endl;}
             }
 
@@ -1150,11 +1181,9 @@ int main(int argc, char** argv)
 
     //re-run this exercise via the pure c++ function
     MHO_NormFX nfxOperator2;
-    nfxOperator2.SetFirstInput(ch_bl_data);
-    nfxOperator2.SetSecondInput(ch_bl_wdata);
-    nfxOperator2.SetOutput(ch_sbd_data);
+    nfxOperator2.SetArgs(ch_bl_data, ch_bl_wdata, ch_sbd_data);
     nfxOperator2.Initialize();
-    nfxOperator2.ExecuteOperation();
+    nfxOperator2.Execute();
 
     std::vector< std::complex<double> > testVector3;
     std::cout<<"2nlags = "<< 2*param.nlags<<std::endl;
@@ -1225,7 +1254,7 @@ int main(int argc, char** argv)
     timer.Start();
     for(std::size_t instance=0; instance<n_times; instance++)
     {
-        nfxOperator2.ExecuteOperation();
+        nfxOperator2.Execute();
     }
     timer.Stop();
     double cpp_time = timer.GetDurationAsDouble();

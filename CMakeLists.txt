@@ -81,7 +81,12 @@ set(EXTERN_HLIBS ${CMAKE_CURRENT_SOURCE_DIR}/extern)
 message(STATUS "Using compiler ${COMPILER_ID} ${COMPILER_VERSION}")
 
 #options for triggering additional dependencies
-#option( HOPS_USE_OPENCL "Build OpenCL support." OFF)
+option(HOPS3_USE_CXX "Build HOPS3 libraries using the C++ compiler." OFF)
+if(HOPS3_USE_CXX)
+    hops_add_cflag(HOPS3_USE_CXX)
+    hops_add_cxxflag(HOPS3_USE_CXX)
+endif()
+
 option( HOPS_ENABLE_TEST "Build developer tests." ON)
 if(HOPS_ENABLE_TEST)
     enable_testing()
@@ -141,5 +146,5 @@ add_subdirectory(doc)
 
 
 #configure environment set-up script
-configure_file( ${SHSOURCE}/hopsenv.sh.cmake ${CMAKE_CURRENT_BINARY_DIR}/hopsenv.sh @ONLY)
-install( PROGRAMS ${CMAKE_CURRENT_BINARY_DIR}/hopsenv.sh DESTINATION ${BIN_INSTALL_DIR} )
+configure_file( ${SHSOURCE}/hopsenv.sh.cmake ${CMAKE_CURRENT_BINARY_DIR}/hops.bash @ONLY)
+install( PROGRAMS ${CMAKE_CURRENT_BINARY_DIR}/hops.bash DESTINATION ${BIN_INSTALL_DIR} )

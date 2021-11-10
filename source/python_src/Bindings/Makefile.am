@@ -1,6 +1,6 @@
 #
-# Makefile for python bindings to C/C++
-# (c) Massachusetts Institute of Technology, 2020
+# Makefile for python (SWIG) bindings to C/C++
+# (c) Massachusetts Institute of Technology, 2020-2022
 # The contents of the package Copyright statement apply here.
 #
 # This directory supports compilation of a SWIG-based interface library
@@ -27,7 +27,7 @@ pkglib_LTLIBRARIES = libMHO_wrap.la
 
 # local machinery
 pkginclude_HEADERS = include/wrap_msg.h
-noinst_HEADERS = include/npary_demo.h
+noinst_HEADERS = include/npary_demo.h include/npary_pyvar.h
 
 # bin_PROGRAMS
 pkgpython_PYTHON = $(pymod).py

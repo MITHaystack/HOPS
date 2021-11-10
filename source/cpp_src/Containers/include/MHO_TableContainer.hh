@@ -26,8 +26,11 @@
 namespace hops
 {
 
+class MHO_TableContainerBase{}; //only needed for SFINAE
+
 template< typename XValueType, typename XAxisPackType >
 class MHO_TableContainer:
+    public MHO_TableContainerBase,
     public MHO_NDArrayWrapper< XValueType, XAxisPackType::NAXES::value>,
     public XAxisPackType
 {
@@ -54,7 +57,7 @@ class MHO_TableContainer:
         MHO_TableContainer* Clone(){ return new MHO_TableContainer(*this); }
 
         //clone table shape, but leave contents/axes empty
-        MHO_TableContainer* CloneEmpty(){ return new MHO_TableContainer( this->fDimensions ); }
+        MHO_TableContainer* CloneEmpty(){ return new MHO_TableContainer( this->fDims ); }
 
         virtual ~MHO_TableContainer(){};
 
@@ -65,7 +68,7 @@ class MHO_TableContainer:
             total_size += sizeof(MHO_ClassVersion);
             total_size += XAxisPackType::NAXES::value*sizeof(std::size_t);
             total_size += XAxisPackType::GetSerializedSize();
-            total_size += (this->fTotalArraySize)*sizeof(XValueType);
+            total_size += (this->fSize)*sizeof(XValueType);
             return total_size;
         }
 
@@ -78,6 +81,10 @@ class MHO_TableContainer:
             resize_axis_pack(dim);
         }
 
+        //access to axis pack type alone
+        XAxisPackType* GetAxisPack() {return this;}
+        const XAxisPackType* GetAxisPack() const {return this;}
+
         //have to make base class functions visible
         using MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::Resize;
         using MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::GetData;
@@ -89,11 +96,21 @@ class MHO_TableContainer:
         using MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::operator();
         using MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::operator[];
 
+
+        //expensive copy (as opposed to the assignment operator,
+        //pointers to exernally managed memory are not transfer)
+        virtual void Copy(const MHO_TableContainer& rhs)
+        {
+            //copy the array, then copy the axis pack
+            MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::Copy(rhs);
+            *( this->GetAxisPack() ) = *(rhs.GetAxisPack());
+        }
+
     protected:
 
         using MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::fData;
-        using MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::fDimensions;
-        using MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::fTotalArraySize;
+        using MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::fDims;
+        using MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::fSize;
 
     public:
 
@@ -106,12 +123,12 @@ class MHO_TableContainer:
             s << aData.GetVersion();
             for(size_t i=0; i < XAxisPackType::NAXES::value; i++)
             {
-                s << aData.fDimensions[i];
+                s << aData.fDims[i];
             }
             //then dump axes
             s << static_cast< const XAxisPackType& >(aData);
             //finally dump the array data
-            for(size_t i=0; i<aData.fTotalArraySize; i++)
+            for(size_t i=0; i<aData.fSize; i++)
             {
                 s << aData.fData[i];
             }
@@ -140,7 +157,7 @@ class MHO_TableContainer:
                 //now stream in the axes
                 s >> static_cast< XAxisPackType& >(aData);
                 //now stream the mult-dim array data
-                for(size_t i=0; i<aData.fTotalArraySize; i++)
+                for(size_t i=0; i<aData.fSize; i++)
                 {
                     s >> aData.fData[i];
                 }

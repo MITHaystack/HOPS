@@ -21,6 +21,13 @@ if [ -z ${HOPS3_SRC_DIR} ] && [ -z ${HOPS4_SRC_DIR} ]; then
 else
     [ -z "$bsi" ] && bsi=${HOPS4_SRC_DIR}/data/bootstrap/import_scripts
 
+    #list of fourfit math file headers
+    declare -a source_list=( "ffmath.h" )
+    src_dir="${HOPS3_SRC_DIR}/postproc/fourfit"
+    dest_dir="${HOPS4_SRC_DIR}/source/c_src/fourfit_libs/ffmath/include"
+    source $bsi/compare_src_dest.sh
+    ret_val=$(($ret_val + $?))
+
     #independent math utilities
     # "bcd_to_2int.c"
     declare -a source_list=(
@@ -31,7 +38,6 @@ else
     "minvert.c"
     "parabola.c"
     )
-
     src_dir="${HOPS3_SRC_DIR}/postproc/fourfit"
     dest_dir="${HOPS4_SRC_DIR}/source/c_src/fourfit_libs/ffmath/src"
     source $bsi/compare_src_dest.sh

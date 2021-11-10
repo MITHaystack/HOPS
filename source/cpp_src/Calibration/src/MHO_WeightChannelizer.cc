@@ -29,24 +29,24 @@ MHO_WeightChannelizer::MHO_WeightChannelizer()
 MHO_WeightChannelizer::~MHO_WeightChannelizer(){}
 
 bool
-MHO_WeightChannelizer::Initialize()
+MHO_WeightChannelizer::InitializeImpl(const baseline_weight_type* in, ch_baseline_weight_type* out)
 {
     fInitialized = false;
-    if(this->fInput != nullptr && this->fOutput != nullptr)
+    if(in != nullptr && out != nullptr)
     {
         //we want to re-organize the data in the input array (rank = 3)
         //into another array (with rank-4) with the data split up by channel
-        std::size_t input_size = this->fInput->GetSize();
+        std::size_t input_size = in->GetSize();
         if(input_size == 0){return false;}
         else
         {
             //now we need figure out the dimensions of the ouput array
             std::size_t input_dim[baseline_weight_type::rank::value];
-            this->fInput->GetDimensions(input_dim);
+            in->GetDimensions(input_dim);
 
             //and determine the number of unique channel labels
-            auto* freq_axis = &(std::get<FREQ_AXIS>( *(this->fInput) ) );
-            std::vector< MHO_IntervalLabel* > channel_labels = freq_axis->GetIntervalsWithKey(std::string("channel"));
+            auto* freq_axis = &(std::get<FREQ_AXIS>( *(in) ) );
+            std::vector< const MHO_IntervalLabel* > channel_labels = freq_axis->GetIntervalsWithKey(std::string("channel"));
             std::size_t num_channels = channel_labels.size();
 
             //make sure the are sorted by sky frequency
@@ -77,16 +77,16 @@ MHO_WeightChannelizer::Initialize()
             output_dim[CH_TIME_AXIS] = input_dim[TIME_AXIS];
             output_dim[CH_FREQ_AXIS] = channel_length;
 
-            this->fOutput->Resize(output_dim[0], output_dim[1], output_dim[2], output_dim[3]);
+            out->Resize(output_dim[0], output_dim[1], output_dim[2], output_dim[3]);
 
-            auto* in_pp_axis = &(std::get<POLPROD_AXIS>( *(this->fInput) ) );
-            auto* in_time_axis = &(std::get<TIME_AXIS>( *(this->fInput) ) );
-            auto* in_freq_axis = &(std::get<FREQ_AXIS>( *(this->fInput) ) );
+            auto* in_pp_axis = &(std::get<POLPROD_AXIS>( *(in) ) );
+            auto* in_time_axis = &(std::get<TIME_AXIS>( *(in) ) );
+            auto* in_freq_axis = &(std::get<FREQ_AXIS>( *(in) ) );
 
-            auto* out_pp_axis = &(std::get<CH_POLPROD_AXIS>( *(this->fOutput) ) );
-            auto* out_channel_axis = &(std::get<CH_CHANNEL_AXIS>( *(this->fOutput) ) );
-            auto* out_time_axis = &(std::get<CH_TIME_AXIS>( *(this->fOutput) ) );
-            auto* out_freq_axis = &(std::get<CH_FREQ_AXIS>( *(this->fOutput) ) );
+            auto* out_pp_axis = &(std::get<CH_POLPROD_AXIS>( *(out) ) );
+            auto* out_channel_axis = &(std::get<CH_CHANNEL_AXIS>( *(out) ) );
+            auto* out_time_axis = &(std::get<CH_TIME_AXIS>( *(out) ) );
+            auto* out_freq_axis = &(std::get<CH_FREQ_AXIS>( *(out) ) );
 
             //label the output array polarization axis
             for(std::size_t pp=0; pp<in_pp_axis->GetSize(); pp++)
@@ -128,19 +128,14 @@ MHO_WeightChannelizer::Initialize()
 }
 
 bool
-MHO_WeightChannelizer::ExecuteOperation()
+MHO_WeightChannelizer::ExecuteImpl(const baseline_weight_type* in, ch_baseline_weight_type* out)
 {
     if(fInitialized)
     {
-        auto* in_pp_axis = &(std::get<POLPROD_AXIS>( *(this->fInput) ) );
-        auto* in_time_axis = &(std::get<TIME_AXIS>( *(this->fInput) ) );
-        auto* in_freq_axis = &(std::get<FREQ_AXIS>( *(this->fInput) ) );
-        auto* out_channel_axis = &(std::get<CH_CHANNEL_AXIS>( *(this->fOutput) ) );
-
-
-        //shorthand
-        auto in = this->fInput;
-        auto out = this->fOutput;
+        auto* in_pp_axis = &(std::get<POLPROD_AXIS>( *(in) ) );
+        auto* in_time_axis = &(std::get<TIME_AXIS>( *(in) ) );
+        auto* in_freq_axis = &(std::get<FREQ_AXIS>( *(in) ) );
+        auto* out_channel_axis = &(std::get<CH_CHANNEL_AXIS>( *(out) ) );
 
         //pack the data into the appropriate place
         for(std::size_t ch=0; ch<out_channel_axis->GetSize(); ch++)

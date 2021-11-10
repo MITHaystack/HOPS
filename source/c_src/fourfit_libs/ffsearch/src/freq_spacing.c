@@ -1,6 +1,7 @@
 /*  frequency channels for FFT to */
 /*  multi-band delay.             */
 
+#include "msg.h"
 #include "mk4_data.h"
 #include "param_struct.h"
 #include "pass_struct.h"
@@ -30,7 +31,7 @@
 
 void freq_spacing (struct type_pass *pass)
     {
-    double frq,min_freq,min_space,avg_freq,spacing,index,space,fabs(),sqrt();
+    double frq,min_freq,min_space,avg_freq,spacing,index,space;
     int fr,i,j,div,grid_pts,spacing_ok;
     extern struct type_param param;
     extern struct type_status status;

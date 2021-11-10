@@ -26,7 +26,7 @@ class MHO_UnaryOperator:
         using MHO_Operator::MHO_Operator;
 
         virtual bool Initialize() override = 0;
-        virtual bool ExecuteOperation() override  = 0;
+        virtual bool Execute() override  = 0;
 
     private:
 };
@@ -43,9 +43,9 @@ class MHO_PyUnaryOperator:
             PYBIND11_OVERLOAD_PURE(bool, MHO_Operator, Initialize);
         }
 
-        virtual bool ExecuteOperation() override
+        virtual bool Execute() override
         {
-            PYBIND11_OVERLOAD_PURE(bool, MHO_Operator, ExecuteOperation);
+            PYBIND11_OVERLOAD_PURE(bool, MHO_Operator, Execute);
         }
 
     private:
