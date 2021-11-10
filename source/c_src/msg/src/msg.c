@@ -1,7 +1,7 @@
 #include "msg.h"
 
 char progname[256];
-int msglev = 0;
+int msglev = 5;
 
 void set_progname(const char* local_progname)
 {
