@@ -1,5 +1,5 @@
 
-\section{Objects specification}
+\section{Object specification}
 \label{sec:objects}
 
 
@@ -85,7 +85,7 @@ The data operator classes are meant to organize the mathematic manipulations whi
 
 Most unary or binary operations that are to applied to visibility or other data residing in an \texttt{HO\_TableContainers} such as scaling, multiplication, transposition, summation, Fourier transformation, etc. will be made available as individual classes inheriting from the same interface. A uniform class interface will allow these data operators to be composed or modified to create more complicated composite operators or strung together and called in an ordered fashion in order to accomplish data pipelines of arbitrary complexity. An additional advantage of encapsulating individual operations is that (coupled with the data container extensions) any SIMD parallel-processing extension used to accelerate data processing can be made opaque to the user.
 
-Listing \ref{lst:operators} gives a brief sketch of the class templates generalizing the data operators. The common inheritance from the base class \texttt{MHO\_DataOperator} allows them all to be stored in an common container (e.g. \texttt{std::vector<MHO\_Operator*>}) so that once they are
+Listing \ref{lst:operators} gives a brief sketch of the class templates generalizing the data operators. The common inheritance from the base class \texttt{MHO\_Operator} allows them all to be stored in an common container (e.g. \texttt{std::vector<MHO\_Operator*>}) so that once they are
 constructed and configured they may be retrieved and intialized/executed in the appropriate order. Listing \ref{lst:operator-use} shows a brief code
 sketch demonstrating how two simple operators would be constructed, assigned arguments and then initialized and executed in order.
 
@@ -98,7 +98,7 @@ While these meta-data items could be exposed directly via external setter/getter
 In addition, a mechanism for filtering operations (e.g. if station = Xx, then apply this operator) also needs to be established independent of the
 previous control-block structure of HOPS3.
 
-\lstinputlisting[language=C++,float=h!,label={lst:operators},caption=Data operator template classes.]{code/MHO_Operator.hh}
+\lstinputlisting[language=C++,float=h!,label={lst:operators},caption=Data operator template classes.]{code/data-operators.hh}
 
 
 \subsubsection{Data Container Extensions}
