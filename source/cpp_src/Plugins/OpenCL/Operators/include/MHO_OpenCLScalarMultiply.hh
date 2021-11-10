@@ -5,7 +5,7 @@
 
 #include "MHO_Message.hh"
 #include "MHO_NDArrayWrapper.hh"
-#include "MHO_UnaryNDArrayOperator.hh"
+#include "MHO_UnaryOperator.hh"
 
 #include "MHO_OpenCLInterface.hh"
 #include "MHO_OpenCLKernelBuilder.hh"
@@ -23,8 +23,8 @@
 namespace hops
 {
 
-template< typename XFactorType, class XInputArrayType >
-class MHO_OpenCLScalarMultiply: public MHO_UnaryNDArrayOperator< XInputArrayType >
+template< typename XFactorType, class XArrayType >
+class MHO_OpenCLScalarMultiply: public MHO_UnaryOperator< XArrayType >
 {
     public:
 
@@ -60,20 +60,24 @@ class MHO_OpenCLScalarMultiply: public MHO_UnaryNDArrayOperator< XInputArrayType
         void SetWriteTrue(){fWriteOut = true;};
         void SetWriteFalse(){fWriteOut = false;};
 
-        virtual bool Initialize() override
+
+    protected:
+
+
+        virtual bool InitializeInPlace(XArrayType* in)
         {
-            if(this->fInput != nullptr)
+            if(in != nullptr)
             {
-                if( this->fInput->template HasExtension< MHO_OpenCLNDArrayBuffer< XInputArrayType > >() )
+                if( in->template HasExtension< MHO_OpenCLNDArrayBuffer< XArrayType > >() )
                 {
-                    fArrayBuffer = this->fInput->template AsExtension< MHO_OpenCLNDArrayBuffer< XInputArrayType > >();
+                    fArrayBuffer = in->template AsExtension< MHO_OpenCLNDArrayBuffer< XArrayType > >();
                 }
                 else
                 {
-                    fArrayBuffer = this->fInput->template MakeExtension< MHO_OpenCLNDArrayBuffer< XInputArrayType > >();
+                    fArrayBuffer = in->template MakeExtension< MHO_OpenCLNDArrayBuffer< XArrayType > >();
                 }
 
-                unsigned int array_size = this->fInput->GetSize();
+                unsigned int array_size = in->GetSize();
 
                 fKernel->setArg(0,array_size);
                 fKernel->setArg(1,fFactor);
@@ -91,7 +95,9 @@ class MHO_OpenCLScalarMultiply: public MHO_UnaryNDArrayOperator< XInputArrayType
             return false;
         }
 
-        virtual bool ExecuteOperation() override
+
+
+        virtual bool ExecuteInPlace(XArrayType* in)
         {
             if(fInitialized)
             {
@@ -115,6 +121,25 @@ class MHO_OpenCLScalarMultiply: public MHO_UnaryNDArrayOperator< XInputArrayType
                 return true;
             }
             return false;
+        }
+
+
+        virtual bool InitializeOutOfPlace(const XArrayType* in, XArrayType* out)
+        {
+            ConditionallyResizeOutput(in->GetDimensionArray(), out);
+            return InitializeInPlace(out);
+        }
+
+
+        virtual bool ExecuteOutOfPlace(const XArrayType* in, XArrayType* out)
+        {
+            //This may not be the most efficient way to do this
+            out->Copy(*in);
+            bool cached_value = fWriteOut;
+            fWriteOut = true;
+            bool ret_val = ExecuteInPlace(out);
+            fWriteOut = cached_value;
+            return ret_val;
         }
 
 
@@ -148,7 +173,7 @@ class MHO_OpenCLScalarMultiply: public MHO_UnaryNDArrayOperator< XInputArrayType
             options << " -I " << MHO_OpenCLInterface::GetInstance()->GetKernelPath();
 
             std::string factor_type = MHO_ClassName< XFactorType >();
-            std::string data_type = MHO_ClassName< typename XInputArrayType::value_type >();
+            std::string data_type = MHO_ClassName< typename XArrayType::value_type >();
 
             //pass flag that we have to do complex multiply
             if( factor_type.find( std::string("complex") ) != std::string::npos &&
@@ -159,10 +184,23 @@ class MHO_OpenCLScalarMultiply: public MHO_UnaryNDArrayOperator< XInputArrayType
 
             //figure out the data type defines to insert in the OpenCL kernel
             options << " -D CL_FACTOR_TYPE=" << MHO_ClassName<  typename MHO_OpenCLTypeMap< XFactorType >::mapped_type >();
-            options << " -D CL_DATA_TYPE=" << MHO_ClassName<  typename MHO_OpenCLTypeMap< typename XInputArrayType::value_type  >::mapped_type >();
+            options << " -D CL_DATA_TYPE=" << MHO_ClassName<  typename MHO_OpenCLTypeMap< typename XArrayType::value_type  >::mapped_type >();
 
             return options.str();
         }
+
+
+        void ConditionallyResizeOutput(const std::array<std::size_t, XArrayType::rank::value>& dims, XArrayType* out)
+        {
+            auto out_dim = out->GetDimensionArray();
+            bool have_to_resize = false;
+            for(std::size_t i=0; i<XArrayType::rank::value; i++)
+            {
+                if(out_dim[i] != dims[i] ){have_to_resize = true;}
+            }
+            if(have_to_resize){ out->Resize( &(dims[0]) );}
+        }
+
 
         bool fInitialized;
         XFactorType fFactor;
@@ -172,7 +210,7 @@ class MHO_OpenCLScalarMultiply: public MHO_UnaryNDArrayOperator< XInputArrayType
         bool fWriteOut;
         bool fReadBack;
 
-        MHO_OpenCLNDArrayBuffer< XInputArrayType >* fArrayBuffer;
+        MHO_OpenCLNDArrayBuffer< XArrayType >* fArrayBuffer;
 
 
 };

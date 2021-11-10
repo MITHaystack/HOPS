@@ -12,8 +12,8 @@ PYBIND11_MODULE(pyMHO_Containers, m)
 
         DeclarePyTableContainer< ch_baseline_data_type >(m, std::string("ch_baseline_data_type") );
 
-        //just for testing
-        DeclarePyNDArrayWrapper< MHO_NDArrayWrapper<double, 2> >(m, std::string("mx") );
+        // //just for testing
+        // DeclarePyNDArrayWrapper< MHO_NDArrayWrapper<double, 2> >(m, std::string("mx") );
 
         py::class_<MHO_PyContainerInterface, std::unique_ptr<MHO_PyContainerInterface, py::nodelete> >(m, "MHO_PyContainerInterface")
             .def(py::init<>())

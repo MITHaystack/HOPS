@@ -149,7 +149,8 @@ $chkn && {
 
 # generate a local version string
 VERSION=`grep AC_INIT configure.ac | tr -d '][,' | cut -d' ' -f2`
-[ x"$vers" = xnone ] || version=$VERSION-$vers
+[ x"$vers" = xnone -o -z "$vers" ] && version=$VERSION ||
+    version=$VERSION-$vers
 
 # finally talk about, or actually build, and a distro too?
 echo
@@ -158,19 +159,16 @@ $doit && [ `expr "x$vers" : "x.*dist.*"` -gt 1 ] && dist=true || dist=false
 $dist && echo making a distribution with $version
 
 $doit || cat <<EOF
-
-    Now continue in a build directory, canonically:
+  Now continue in a build directory, canonically:
 
     version=$version
-
     configure=`pwd`/configure
     mkdir ../ambld-\$version
     cd ../ambld-\$version
     \$configure \$HOPS_CONFIGURE_ARGS
-
     make $mopt all check install installcheck
 
-    for help with configuration use:
+  for help with configuration use:
 
     \$configure --help=short
 EOF

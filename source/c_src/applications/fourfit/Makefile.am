@@ -1,10 +1,11 @@
 #
-# Makefile for the fourfit executable
-# (c) Massachusetts Institute of Technology, 2020
+# Makefile for C application fourfit
+# (c) Massachusetts Institute of Technology, 2021-2022
 # The contents of the package Copyright statement apply here.
 #
 
 AM_CPPFLAGS = -I. -I$(srcdir)/include \
+	-I$(srcdir)/../../msg/include \
 	-I$(srcdir)/../../mk4util/include \
 	-I$(srcdir)/../../afio/include \
 	-I$(srcdir)/../../dfio/include \
@@ -15,12 +16,15 @@ AM_CPPFLAGS = -I. -I$(srcdir)/include \
 	-I$(srcdir)/../../fourfit_libs/ffio/include \
 	-I$(srcdir)/../../fourfit_libs/ffsearch/include \
 	-I$(srcdir)/../../fourfit_libs/ffplot/include \
-	-Wall -Wextra -DHAVE_CONFIG_H -DFF_PROGNAME=\"fourfit\" \
-	-DFF_VER_NO=\"@VERSION@\"
+	$(MHO_CPPFLAGS) -DFF_PROGNAME=\"fourfit\" -DFF_VER_NO=\"@VERSION@\"
 
 AM_CPPFLAGS += ${CPGPLOT_CFLAGS} ${FFTW3_CFLAGS}
 
+if HAVE_FFTW3
 bin_PROGRAMS = fourfit
+else # HAVE_FFTW3
+bin_PROGRAMS =
+endif # HAVE_FFTW3
 
 fourfit_SOURCES = fourfit.c
 
@@ -33,13 +37,20 @@ fourfit_LDADD = ../../fourfit_libs/ffcontrol/libffcontrol.la \
     ../../afio/libafio.la \
     ../../dfio/libdfio.la \
     ../../vex/libvex.la \
-    ../../mk4util/libmk4util.la
-
+    ../../mk4util/libmk4util.la \
+    ../../msg/libmsg.la
 fourfit_LDADD += ${CPGPLOT_LIBS} ${FFTW3_LIBS}
 
-AM_INSTALLCHECK_STD_OPTIONS_EXEMPT = fourfit
+# TESTS =
+# TESTS_ENVIRONMENT = srcdir=$(srcdir)
+# TESTS_ENVIRONMENT += abs_top_srcdir=$(abs_top_srcdir)
+# TESTS_ENVIRONMENT += abs_top_builddir=$(abs_top_builddir)
 
-EXTRA_DIST =
+# check_PROGRAMS = $(TESTS)
+
+EXTRA_DIST = CMakeLists.txt
+
+AM_INSTALLCHECK_STD_OPTIONS_EXEMPT = fourfit
 
 #
 # eof

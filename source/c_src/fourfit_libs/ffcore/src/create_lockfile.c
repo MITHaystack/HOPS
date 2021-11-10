@@ -25,6 +25,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "write_lock_mechanism.h"
+#include "msg.h"
 
 
 void init_lockfile_data(lockfile_data_struct* data)

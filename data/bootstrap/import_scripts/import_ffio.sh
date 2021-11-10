@@ -21,6 +21,13 @@ if [ -z ${HOPS3_SRC_DIR} ] && [ -z ${HOPS4_SRC_DIR} ]; then
 else
     [ -z "$bsi" ] && bsi=${HOPS4_SRC_DIR}/data/bootstrap/import_scripts
 
+    #list of fourfit io file headers
+    declare -a source_list=( "ffio.h" )
+    src_dir="${HOPS3_SRC_DIR}/postproc/fourfit"
+    dest_dir="${HOPS4_SRC_DIR}/source/c_src/fourfit_libs/ffio/include"
+    source $bsi/compare_src_dest.sh
+    ret_val=$(($ret_val + $?))
+
     # fourfit files that write mk4 fringe files
     declare -a source_list=(
     "fill_200.c"

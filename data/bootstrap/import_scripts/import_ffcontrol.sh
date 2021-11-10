@@ -22,8 +22,7 @@ else
     [ -z "$bsi" ] && bsi=${HOPS4_SRC_DIR}/data/bootstrap/import_scripts
 
     #list of fourfit control file headers
-    declare -a source_list=( "control.h" "parser.h")
-
+    declare -a source_list=( "control.h" "parser.h" "ffcontrol.h")
     src_dir="${HOPS3_SRC_DIR}/postproc/fourfit"
     dest_dir="${HOPS4_SRC_DIR}/source/c_src/fourfit_libs/ffcontrol/include"
     source $bsi/compare_src_dest.sh

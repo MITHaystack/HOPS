@@ -21,7 +21,7 @@ if [ -z ${HOPS3_SRC_DIR} ] && [ -z ${HOPS4_SRC_DIR} ]; then
 else
     [ -z "$bsi" ] && bsi=${HOPS4_SRC_DIR}/data/bootstrap/import_scripts
 
-    # aedit include files
+    # aedit headers
     declare -a source_list=(
         "aedata.h" 
         "aedit.h" 
@@ -37,13 +37,12 @@ else
         "tempo.h" 
         "usearray.h" 
     )
-    
     src_dir="${HOPS3_SRC_DIR}/postproc/aedit"
     dest_dir="${HOPS4_SRC_DIR}/source/c_src/applications/aedit/include"
     source $bsi/compare_src_dest.sh
     ret_val=$(($ret_val + $?))
 
-    # aedit application sources
+    # aedit (library) sources
     declare -a source_list=(
     "active_filter.c" 
     "add_station.c" 
@@ -191,9 +190,15 @@ else
     "write_tdata.c" 
     "zoom.c" 
     )
-    
     src_dir="${HOPS3_SRC_DIR}/postproc/aedit"
     dest_dir="${HOPS4_SRC_DIR}/source/c_src/applications/aedit/src"
+    source $bsi/compare_src_dest.sh
+    ret_val=$(($ret_val + $?))
+
+    # finally the application itself
+    declare -a source_list=( aedit.c )
+    src_dir="${HOPS3_SRC_DIR}/postproc/aedit"
+    dest_dir="${HOPS4_SRC_DIR}/source/c_src/applications/aedit"
     source $bsi/compare_src_dest.sh
     ret_val=$(($ret_val + $?))
 fi

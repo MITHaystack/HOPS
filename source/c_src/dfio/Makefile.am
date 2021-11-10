@@ -4,8 +4,8 @@
 # The contents of the package Copyright statement apply here.
 #
 
-AM_CPPFLAGS = -I. -I$(srcdir)/include -I$(srcdir)/../mk4util/include \
-	-Wall -Wextra -DHAVE_CONFIG_H
+AM_CPPFLAGS = -I. -I$(srcdir)/include -I$(srcdir)/../msg/include \
+	-I$(srcdir)/../mk4util/include $(MHO_CPPFLAGS)
 
 pkginclude_HEADERS = include/T1.h include/bytflp.h include/mk4_data.h \
 	include/mk4_dfio.h include/mk4_records.h include/type_000.h \
@@ -48,12 +48,21 @@ libdfio_la_SOURCES = src/addr_100.c src/addr_101.c src/addr_110.c \
 	src/copy_308.c src/copy_309.c src/corel_alloc.c src/display_221.c \
 	src/init_000.c src/open_datafile.c src/read_mk4corel.c \
 	src/read_mk4file.c src/read_mk4fringe.c src/read_mk4sdata.c \
-	src/test_compress.c src/write_err.c src/write_mk4corel.c \
+	src/write_err.c src/write_mk4corel.c \
 	src/write_mk4fringe.c src/write_mk4sdata.c src/write_record.c
 
 libdfio_la_LDFLAGS = -avoid-version
 
-EXTRA_DIST =
+# TESTS = test_compress test_mk4fringe
+# TESTS_ENVIRONMENT = srcdir=$(srcdir)
+# TESTS_ENVIRONMENT += abs_top_srcdir=$(abs_top_srcdir)
+# TESTS_ENVIRONMENT += abs_top_builddir=$(abs_top_builddir)
+#
+# check_PROGRAMS = $(TESTS)
+# test_compress_SOURCES = test_compress.c compress.c
+#
+# test_mk4fringe_SOURCES = mk4fringe_test.c
+# test_mk4fringe_LDADD = -L. -ldfio ..... msg ...
 
 #
 # eof

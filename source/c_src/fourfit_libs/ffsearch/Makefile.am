@@ -1,16 +1,18 @@
 #
 # Makefile for the fourfit search library
-# (c) Massachusetts Institute of Technology, 2020
+# (c) Massachusetts Institute of Technology, 2020-2022
 # The contents of the package Copyright statement apply here.
 #
 
-AM_CPPFLAGS = -I. -I$(srcdir)/include -I$(srcdir)/../../mk4util/include \
+AM_CPPFLAGS = -I. -I$(srcdir)/include -I$(srcdir)/../../msg/include \
+	-I$(srcdir)/../../mk4util/include \
 	-I$(srcdir)/../../afio/include -I$(srcdir)/../../dfio/include \
 	-I$(srcdir)/../../vex/include -I$(srcdir)/../ffcontrol/include \
 	-I$(srcdir)/../ffcore/include -I$(srcdir)/../ffio/include \
-	-I$(srcdir)/../ffmath/include  -Wall -Wextra -DHAVE_CONFIG_H
+	-I$(srcdir)/../ffmath/include $(MHO_CPPFLAGS)
 
-pkginclude_HEADERS = include/adhoc_flag.h include/apply_funcs.h
+pkginclude_HEADERS = include/ffsearch.h \
+	include/adhoc_flag.h include/apply_funcs.h
 
 pkglib_LTLIBRARIES = libffsearch.la
 
@@ -18,7 +20,7 @@ libffsearch_la_LDFLAGS = -avoid-version
 
 libffsearch_la_SOURCES = src/adhoc_flag.c src/apply_filter.c \
 	src/apply_notches.c src/apply_passband.c src/calc_normalization.c \
-	src/calc_rms.c src/compute_model.c src/compute_qf.c \
+	src/calc_rms.c \
 	src/create_fname.c src/delay_rate.c src/est_pc_manual.c \
 	src/freq_spacing.c src/fringe_search.c src/gate_off.c \
 	src/interp.c src/ion_search.c src/norm_fx.c src/norm_xf.c \
@@ -33,7 +35,14 @@ libffsearch_la_LIBADD = ../../mk4util/libmk4util.la ../../afio/libafio.la \
 	../ffcontrol/libffcontrol.la ../ffcore/libffcore.la \
 	../ffio/libffio.la ../ffmath/libffmath.la
 
-EXTRA_DIST = 
+# TESTS =
+# TESTS_ENVIRONMENT = srcdir=$(srcdir)
+# TESTS_ENVIRONMENT += abs_top_srcdir=$(abs_top_srcdir)
+# TESTS_ENVIRONMENT += abs_top_builddir=$(abs_top_builddir)
+
+# check_PROGRAMS = $(TESTS)
+
+EXTRA_DIST = CMakeLists.txt
 
 #
 # eof

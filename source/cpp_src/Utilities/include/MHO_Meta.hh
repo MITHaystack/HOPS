@@ -123,6 +123,57 @@ apply_at(XTupleType& tup, size_t index, XFunctorType functor)
 }
 
 
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+//same thing as above, but apply a two argument functor to two tuples of the same type
+
+
+//generic apply functor to tuple (for runtime-indexed access)
+//XTupleType and XTupleType2 must be the same (except for const)
+template <size_t NTypes>
+struct apply_to_tuple2
+{
+    template <typename XTupleType, typename XTupleType2, typename XFunctorType>
+    static void apply(XTupleType& tup1, XTupleType2& tup2, size_t index, XFunctorType functor)
+    {
+        //if the index matches the current element, apply the functor
+        if(index == NTypes - 1)
+        {
+            functor( std::get<NTypes - 1>(tup1), std::get<NTypes - 1>(tup2) );
+        }
+        else
+        {
+            //else recurse to the next type
+            apply_to_tuple2<NTypes - 1>::apply(tup1, tup2, index, functor);
+        }
+    }
+};
+
+//base case, empty tuple with no elements (should never happen)
+template <>
+struct
+apply_to_tuple2<0>
+{
+    template <typename XTupleType, typename XTupleType2, typename XFunctorType>
+    static void apply(XTupleType& tup1, XTupleType2& tup2, size_t index, XFunctorType functor) {}
+};
+
+//const access on first parameter
+template <typename XTupleType, typename XTupleType2, typename XFunctorType>
+void
+apply_at2(const XTupleType& tup1, XTupleType& tup2, size_t index, XFunctorType functor)
+{
+    apply_to_tuple2< std::tuple_size< XTupleType >::value >::apply(tup1, tup2, index, functor);
+}
+
+//non-const access
+template <typename XTupleType, typename XTupleType2, typename XFunctorType>
+void
+apply_at2(XTupleType& tup1, XTupleType2& tup2, size_t index, XFunctorType functor)
+{
+    apply_to_tuple2< std::tuple_size< XTupleType >::value >::apply(tup1, tup2, index, functor);
+}
+
 
 }
 

@@ -57,10 +57,12 @@ class MHO_PyTableContainer
         */
         py::array_t< typename XTableType::value_type > GetNumpyArray()
         {
+            auto strides = fTable->GetStrideArray();
+            for(std::size_t i=0; i<fRank; i++){strides[i] *= sizeof(typename XTableType::value_type);}
             py::array_t< typename XTableType::value_type > ret_val
             {
                 fTable->GetDimensionArray(),
-                fTable->GetByteStrides(),
+                strides,
                 fTable->GetData(),
                 fDummy //dummy owner, to keep python from taking ownership of this memory
             };

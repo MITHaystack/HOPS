@@ -13,26 +13,31 @@
 #include <cmath>
 #include <complex>
 #include "MHO_Message.hh"
-#include "MHO_NDArrayFunctor.hh"
+#include "MHO_UnaryFunctor.hh"
 
 namespace hops
 {
 
-template< class XInputArrayType, class XOutputArrayType >
-class MHO_ComplexConjugator: public MHO_NDArrayFunctor< XInputArrayType, XOutputArrayType >
+template< class XArrayType >
+class MHO_ComplexConjugator: public MHO_UnaryFunctor< XArrayType >
 {
     public:
 
         MHO_ComplexConjugator(){};
         virtual ~MHO_ComplexConjugator(){};
 
-        using input_iterator = typename MHO_NDArrayFunctor< XInputArrayType, XOutputArrayType >::input_iterator;
-        using output_iterator = typename MHO_NDArrayFunctor< XInputArrayType, XOutputArrayType >::output_iterator;
+        using iterator_type = typename MHO_UnaryFunctor< XArrayType >::iterator_type;
+        using citerator_type = typename MHO_UnaryFunctor< XArrayType >::citerator_type;
 
-        //multiply by the scalar factor 
-        virtual void operator() ( input_iterator& input, output_iterator& output) override
+
+        virtual void operator() ( iterator_type& input ) override
         {
-            *output = std::conj((*input)); 
+            *input = std::conj((*input));
+        }
+
+        virtual void operator() ( citerator_type& input, iterator_type& output) override
+        {
+            *output = std::conj((*input));
         }
 
 };

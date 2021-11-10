@@ -1,22 +1,23 @@
 
 #list header files #############################################################
 set (OPERATOR_HEADERFILES
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_NDArrayOperator.hh
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_UnaryNDArrayOperator.hh
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_BinaryNDArrayOperator.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_Operator.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_UnaryOperator.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_TransformingOperator.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_UnaryFunctor.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_BinaryOperator.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_FastFourierTransform.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MultidimensionalFastFourierTransform.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_CompoundReductions.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_Reducer.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_FunctorBroadcaster.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_NaNMasker.hh
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ScalarMultiply.hh
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_PointwiseMultiply.hh
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_PointwiseAdd.hh
+    #${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ScalarMultiply.hh
+    # ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_PointwiseMultiply.hh
+    # ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_PointwiseAdd.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ComplexConjugator.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_CyclicRotator.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_SubSample.hh
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_Operator.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MultidimensionalPaddedFastFourierTransform.hh
 )
 

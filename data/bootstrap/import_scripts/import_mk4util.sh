@@ -30,10 +30,9 @@ else
         "mk4_sizes.h"
         "mk4_typedefs.h"
         "mk4_util.h"
-	"adler32_checksum.h"
+        "adler32_checksum.h"
         "hops_complex.h"
     )
-
     src_dir="${HOPS3_SRC_DIR}/include"
     dest_dir="${HOPS4_SRC_DIR}/source/c_src/mk4util/include"
     source $bsi/compare_src_dest.sh
@@ -55,13 +54,13 @@ else
         "fileset.c"
         "get_abs_path.c"
         "get_filelist.c"
+        "hops_complex.c"
         "hptoie4.c"
         "hptoie8.c"
         "hptoie.c"
         "int_to_time.c"
         "ismk4.c"
         "minmax.c"
-        "msg.c"
         "report_times.c"
         "root_belong.c"
         "root_id.c"
@@ -72,9 +71,15 @@ else
         "time_to_double.c"
         "time_to_int.c"
     )
-
     src_dir="${HOPS3_SRC_DIR}/sub/util"
     dest_dir="${HOPS4_SRC_DIR}/source/c_src/mk4util/src"
+    source $bsi/compare_src_dest.sh
+    ret_val=$(($ret_val + $?))
+
+    # tests
+    declare -a source_list=( "root_id_test.c" "test_syntax.c" )
+    src_dir="${HOPS3_SRC_DIR}/sub/util"
+    dest_dir="${HOPS4_SRC_DIR}/source/c_src/mk4util/test"
     source $bsi/compare_src_dest.sh
     ret_val=$(($ret_val + $?))
 

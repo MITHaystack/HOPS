@@ -25,7 +25,7 @@ int main()
 
     auto test = mho_test2.attr("TestOperator")();
     test.attr("Initialize")();
-    test.attr("ExecuteOperation")();
+    test.attr("Execute")();
 
 
 

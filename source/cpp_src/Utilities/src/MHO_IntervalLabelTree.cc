@@ -38,6 +38,22 @@ MHO_IntervalLabelTree::GetIntervalsWithKey(const std::string& key)
     return labels;
 }
 
+std::vector< const MHO_IntervalLabel* >
+MHO_IntervalLabelTree::GetIntervalsWithKey(const std::string& key) const
+{
+    std::vector< const MHO_IntervalLabel* > labels;
+    //dumb brute for search over all intervals O(n)
+    for(std::size_t i=0; i<fIntervals.size(); i++)
+    {
+            if(fIntervals[i]->HasKey(key) )
+            {
+                labels.push_back(fIntervals[i]);
+            }
+    }
+    return labels;
+}
+
+
 std::vector< MHO_IntervalLabel* >
 MHO_IntervalLabelTree::GetIntervalsWhichIntersect(const std::size_t& idx)
 {

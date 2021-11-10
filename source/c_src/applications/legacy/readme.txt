@@ -1,2 +1,2 @@
 This directory contains HOPS3 applications that
-do not have direct HOPS4 counterparts.
+are not likely to have direct HOPS4 counterparts.

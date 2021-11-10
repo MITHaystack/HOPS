@@ -12,7 +12,7 @@
 *@brief:
 */
 
-#include "MHO_UnaryNDArrayOperator.hh"
+#include "MHO_UnaryOperator.hh"
 #include "MHO_PyTableContainer.hh"
 
 
@@ -52,7 +52,7 @@ class MHO_PyUnaryTableOperator: public MHO_Operator
         }
 
         //for now this does nothing, as the interpreter lifetime is confined to
-        //the ExecuteOperation function, we may want to re-think this.
+        //the Execute function, we may want to re-think this.
         virtual bool Initialize() override
         {
             if(fHelper != nullptr)
@@ -63,7 +63,7 @@ class MHO_PyUnaryTableOperator: public MHO_Operator
         };
 
 
-        virtual bool ExecuteOperation() override
+        virtual bool Execute() override
         {
             if(fInitialized)
             {

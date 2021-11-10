@@ -1,10 +1,10 @@
 #
 # Makefile for C libraries and applications
-# (c) Massachusetts Institute of Technology, 2020
+# (c) Massachusetts Institute of Technology, 2020-2021
 # The contents of the package Copyright statement apply here.
 #
 
-SUBDIRS = mk4util dfio afio vex fourfit_libs applications
+SUBDIRS = msg mk4util dfio afio vex fourfit_libs applications
 
 #
 # eof
