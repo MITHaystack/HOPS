@@ -77,6 +77,47 @@ shown in Figure~\ref{fig:table-container}.
 \end{center}
 \end{figure}
 
+\subsubsection{Specific data types}
+
+Below is an incomplete table of the various data objects that could be constructed from \texttt{MHO\_TableContainer}, along with their data value type and axis names.
+The exact specification of each type is given in detail on each subsequent page.
+
+\begin{center}
+\resizebox{\textwidth}{!}{
+\begin{tabular}{| c | c | c | c |}
+\hline
+ Name & value type & N-Dim & Axes \\  \hline
+%  Visibilities & \texttt{std::complex<double>} & 3 & (pol. product, time, frequency) \\ \hline
+%  Weights & \texttt{double} & 3 & (pol. product, time, frequency) \\ \hline
+%  Flags & \texttt{uint64\_t} & 3 & (pol. product, time, frequency) \\ \hline
+ Channelized Visibilities & \texttt{std::complex<double>} & 4 & (pol. product, channel, time, frequency) \\ \hline
+ Channelized Weights & \texttt{double} & 4 & (pol. product, channel, time, frequency) \\ \hline
+ Channelized Flags & \texttt{uint64\_t} & 4 & (pol. product, channel, time, frequency) \\ \hline
+ (static) per-Channel phase corrections & \texttt{double} & 2 & (pol. product, channel) \\ \hline
+ Channelized Ad-hoc phases/amplitude corrections  & \texttt{std::complex<double>} & 4 & (pol. product, channel, time, frequency) \\ \hline
+ \end{tabular}
+ }
+\end{center}
+
+\newpage
+
+\subsubsection{Channelized Visibilities}
+
+\newpage 
+
+\subsubsection{Channelized Weights}
+
+\newpage 
+
+\subsection{Channelized Flags}
+
+\newpage 
+
+\subsubsection{Static per-channel phase corrections}
+
+\newpage 
+
+\subsubsection{Channelized ad-hoc phase/amplitude corrections}
 
 
 \subsection{Data operators}
@@ -93,12 +134,16 @@ sketch demonstrating how two simple operators would be constructed, assigned arg
 
 It is expected that the vast majority of the data operators will be unary or binary, requiring only their own configuration parameters along with one or two data containers upon which they operate as inputs. However, any number of arguments is possible so long as the underlying implementation provides the appropriate overload.
 
-One aspect of the data operators which is not yet detailed here is a notion of what pieces of meta-data each operator may need in order to complete its function.
-While these meta-data items could be exposed directly via external setter/getters, a possibly preferable option which would preserve encapsulation might be for each operator to define an internal schema, listing the keys and type of the parameters it needs to retrieve from a single meta-data container.
-In addition, a mechanism for filtering operations (e.g. if station = Xx, then apply this operator) also needs to be established independent of the
-previous control-block structure of HOPS3.
+One aspect of the data operators which is not yet detailed here is a notion of what pieces of meta-data each operator may need in order to complete its function. Some of the more primitive operations (e.g. complex conjugation) may not need any meta-data, while certain 
+specific calibration routines may need station related meta-data (e.g. channel specific phase-cal).
+While some meta-data items could be exposed directly via external setter/getters, a possibly preferable option which would preserve encapsulation might be for each operator to define an internal schema, 
+listing the keys and type of the parameters it needs to retrieve from a single meta-data container (populated from the vex), or what sort of labels it expects to be attached to the data containers on which it operates.
+In addition, a mechanism for filtering operations (e.g. if station = Xx, then apply this operator) also needs to be established independent of the previous control-block structure of HOPS3.
 
 \lstinputlisting[language=C++,float=h!,label={lst:operators},caption=Data operator template classes.]{code/data-operators.hh}
+
+
+
 
 
 \subsubsection{Data Container Extensions}
