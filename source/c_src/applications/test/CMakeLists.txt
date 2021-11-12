@@ -23,7 +23,6 @@ if(BASH_PROGRAM)
             WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
         )
         set_tests_properties(TESTDATA_UNPACK PROPERTIES DEPENDS TESTDATA_DOWNLOAD)
-   endif(HOPS_ENABLE_REMOTE_TEST_DATA)
 
         set(TEST_SCRIPT_BASENAMES
             chk_ff_2836
@@ -39,6 +38,6 @@ if(BASH_PROGRAM)
             set_tests_properties(${BASENAME}_test PROPERTIES DEPENDS TESTDATA_UNPACK)
         endforeach( BASENAME )
 
-#  endif(HOPS_ENABLE_REMOTE_TEST_DATA)
+   endif(HOPS_ENABLE_REMOTE_TEST_DATA)
 
 endif(BASH_PROGRAM)
