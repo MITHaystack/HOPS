@@ -18,7 +18,7 @@ operators.push_back(&mult);
 operators.push_back(&sub);
 
 //chained initialization of the operators
-for(it = operators.begin(); it != operators.end(); it++)
+for(auto it = operators.begin(); it != operators.end(); it++)
 {
     it->Initialize();
 }
@@ -26,7 +26,7 @@ for(it = operators.begin(); it != operators.end(); it++)
 { //some possible outer loop here...
 
     //chained execution of the operators
-    for(it = operators.begin(); it != operators.end(); it++)
+    for(auto it = operators.begin(); it != operators.end(); it++)
     {
         it->Execute();
     }
