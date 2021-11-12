@@ -44,6 +44,8 @@
 *.vrb
 *.snm
 *.synctex*
+*.bbl
+*.blg
 
 # Build and install directories
 *build*
