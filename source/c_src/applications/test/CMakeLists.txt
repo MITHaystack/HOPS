@@ -32,12 +32,30 @@ if(BASH_PROGRAM)
             chk_ff_3571
         )
 
-        foreach( BASENAME ${TEST_SCRIPT_BASENAMES} )
-            configure_file( ${CMAKE_CURRENT_SOURCE_DIR}/${BASENAME}.sh ${CMAKE_CURRENT_BINARY_DIR}/${BASENAME}.sh @ONLY)
-            add_test(NAME ${BASENAME}_test COMMAND  ${BASH_PROGRAM} ${CMAKE_CURRENT_BINARY_DIR}/${BASENAME}.sh )
-            set_tests_properties(${BASENAME}_test PROPERTIES DEPENDS TESTDATA_UNPACK)
-        endforeach( BASENAME )
+    else()
+        set(TEST_SCRIPT_BASENAMES
+            chk_2836
+        )
 
-   endif(HOPS_ENABLE_REMOTE_TEST_DATA)
+    endif(HOPS_ENABLE_REMOTE_TEST_DATA)
+
+    foreach( BASENAME ${TEST_SCRIPT_BASENAMES} )
+        configure_file( ${CMAKE_CURRENT_SOURCE_DIR}/${BASENAME}.sh ${CMAKE_CURRENT_BINARY_DIR}/${BASENAME}.sh @ONLY)
+        add_test(NAME ${BASENAME}_test COMMAND  ${BASH_PROGRAM} ${CMAKE_CURRENT_BINARY_DIR}/${BASENAME}.sh )
+        set_tests_properties(${BASENAME}_test PROPERTIES DEPENDS TESTDATA_UNPACK)
+    endforeach( BASENAME )
 
 endif(BASH_PROGRAM)
+
+# temporary access to the native tests
+
+if(HOPS_ENABLE_TEST)
+    add_subdirectory(hops3-ff-tests)
+endif(HOPS_ENABLE_TEST)
+
+#if(HOPS_ENABLE_TEST)
+#    add_subdirectory(hops3-ae-tests)
+#endif(HOPS_ENABLE_TEST)
+
+# eof
+
