@@ -3,6 +3,7 @@
 # check script 3756
 #
 # run fourfit on the captive data 3756
+# this is a geodetic experiment with one baseline (TEC)
 #
 
 # standard setup follows; comment out what is not needed

@@ -3,6 +3,7 @@
 # check script 2836
 #
 # run fourfit on captive data 2836
+# This was rjc's standard go to for testing: Mk4/hdw
 #
 
 # standard setup follows; comment out what is not needed

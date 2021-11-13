@@ -3,6 +3,7 @@
 # check script 3413
 #
 # run fourfit on the captive data 3413
+# this is a broadband experiment,  Mk4/DiFX
 #
 
 # standard setup follows; comment out what is not needed

@@ -4,6 +4,7 @@
 #
 # Exercises the basic fringe search and reduction, and verifies that the SNR
 # (parsed from the postscript file) is within expected bounds.
+# This is a Mk4/hdw dataset.
 #
 # test_config.sh unpacks the data
 #
