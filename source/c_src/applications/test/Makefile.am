@@ -19,7 +19,7 @@
 #	PGPLOT_FONT=@PGPLOT_FONT@ \
 #	PGPLOT_RGB=@PGPLOT_RGB@
 
-dist_noinst_SCRIPTS = chk_2836.sh chk_2843.sh
+dist_noinst_SCRIPTS = chk_2836.sh chk_2843.sh chk_3372.sh
 
 TESTS = $(dist_noinst_SCRIPTS)
 TESTS_ENVIRONMENT = srcdir=$(srcdir)
