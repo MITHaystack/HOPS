@@ -1,0 +1,26 @@
+HOPS has a long lineage of authors...here's a cheat sheet:
+
+aeer    Alan Rogers         started it all with FRNGE in the late 70's
+cjl     Colin Lonsdale      architected the rewrite in the 90's
+cmn     Cris Niell          supported that rewrite
+rjc     Roger Cappallo      supported that rewrite and continued until ~2019
+kad     Kevin Dudevoir      supported the software from ??? through 2015?
+gbc     Geoff Crew          supported the software 2010-2024
+jb      John Barrett        supported the softare 2016?-...
+dh      Dan Hoak            supported the sofware 2019?-...
+vp      Violet Pfeiffer     supported the sofware 2019?-...
+
+Other players in this game
+
+aw      Alan Whitney
+aen     Arthur Niell
+bec     Brian Corey
+ds      Dan Smythe
+jb      John Ball
+sdd     Sheperd Doeleman
+cr      Chester Ruszczyk
+vf      Vincent Fish
+ldm     Lynn Matthews
+pe      Pedro Elosegui
+
+add anyone found missing should be added...
