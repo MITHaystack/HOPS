@@ -13,7 +13,7 @@
 #	PGPLOT_RGB=@PGPLOT_RGB@
 
 dist_noinst_SCRIPTS = chk_2836.sh chk_2843.sh chk_3372.sh chk_3413.sh \
-	chk_3571.sh
+	chk_3571.sh chk_3756.sh
 
 TESTS = $(dist_noinst_SCRIPTS)
 TESTS_ENVIRONMENT = srcdir=$(srcdir)

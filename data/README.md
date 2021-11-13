@@ -40,15 +40,15 @@ the switches directory.
 
 The scripts expect an environment variable `MHO_REGRESSION_DATA` set to point
 to a directory with the structure of this source directory, but with some or
-all of the tarballs populated.  (That is, you can point to this GIT directory or
-[even a copy of it] to conduct a SKIP-all-tests test suite.)  Obviously the more
-interesting case is when it points to a directory partially or fully populated with
-the data tarballs.  The switches subdirectory contains a number of files that
-control what will actually happen in the test suite.  If there is a file
-`switches/test_config.sh` then that script is sourced to configure the suite.
-If the file does not exist, the associated tests will have an ERROR.  If
-an environment variable `MHO_REGRESSION_CONFIG` is set, that is used in place
-of the file `$MHO_REGRESSION_DATA/switches/test_config.sh.`
+all of the tarballs populated.  (That is, you can point to this GIT directory
+or [even a copy of it] to conduct a SKIP-all-tests test suite.)  Obviously the
+more interesting case is when it points to a directory partially or fully
+populated with the data tarballs.  The switches subdirectory contains a number
+of files that control what will actually happen in the test suite.  If there is
+a file `switches/test_config.sh` then that script is sourced to configure the
+suite.  If the file does not exist, the associated tests will have an ERROR.
+If an environment variable `MHO_REGRESSION_CONFIG` is set, that is used in
+place of the file `$MHO_REGRESSION_DATA/switches/test_config.sh.`
 
 Note that the GNU automake test-driver looks at the return status of any
 script (or executable) to determine its result: 0 PASS, 77 SKIP, 99 ERROR
