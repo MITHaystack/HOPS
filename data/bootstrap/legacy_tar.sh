@@ -64,7 +64,8 @@ trk=$HOPS_ROOT/trunk
 #
 # keep the tars, the help and the case statement similarly ordered
 #
-fftest=" 2491 2611 2836 2843 2849 2912 3064 3262 3365 3372 3413 3562 3571 3756"
+fftest=" 2491 2611 2836 2843 2849 2912 3064 3262 "
+fftest="$fftest 3365 3372 3413 3562 3571 3727 3756 3772"
 tars="
 corr    #correlator
 mk4m    #mk4-migrate
@@ -154,7 +155,9 @@ ffhelp="Tarballs for parts of the following experiments are supported:
 3413    -d- scan 278-1758 (one of the basic tests)
 3562    -d- scan 141-0002
 3571    -d- scan 244-1717
+3727    -d- scan 026-1123 e20z26 ALMA-APEX test
 3756    -d- scan 328-1800
+3772    -d- scan No0001 of c211d
 "
 
 [ "$1" = all ] && set -- $tars
@@ -223,7 +226,9 @@ do
     3413)       src=$t          ; dir=$trk/$ffd                     ;;
     3562)       src=$t          ; dir=$trk/$ffd                     ;;
     3571)       src=$t          ; dir=$trk/$ffd                     ;;
+    3727)       src=$t          ; dir=$trk/$ffd                     ;;
     3756)       src=$t          ; dir=$trk/$ffd                     ;;
+    3772)       src=$t          ; dir=$trk/$ffd                     ;;
     average)    src=$t          ; dir=$trk/$ffd                     ;;
     # ae_testdata subdirs
     aetest)     src=testdata    ; dir=$trk/$aed                     ;;
