@@ -1,9 +1,11 @@
 #!/bin/sh
 #
-# check script 3571
+# check script 3365
 #
-# run fourfit on the captive data 3571
-# another broadband experiment, Mk4/DiFX
+# This uses early HIGH/LOW 512 MHz baseband data; Mk4/hdw data
+#  used by chk_fourmer, chk_frmrsrch, and chk_notches_xf
+# This test does little beyond unpacking the data.
+# S = SMT, O = CSO, P = SMA Phased
 #
 
 # standard setup follows; comment out what is not needed
@@ -11,7 +13,7 @@
 verb=false ; [ "$testverb" -gt 0 ] && verb=true
 very=false ; [ "$testverb" -gt 1 ] && very=true && verb=true
 passfail=99
-something=3571
+something=3365
 [ -z "$srcdir" -o -d "$srcdir" ] || {
     echo srcdir "$srcdir" not set correctly; exit 1; }
 [ -z "$abs_top_srcdir" -o -d "$abs_top_srcdir" ] || {
@@ -25,7 +27,7 @@ something=3571
 
 
 # declare the tarballs that are needed and make those arrangements
-tarballs='3571'
+tarballs='3365'
 # declare the (built) executables that might not be in your path
 executables='fourfit'
 # finally, acquire a list of directories that may need tidying
@@ -35,43 +37,43 @@ nukables=''
 [ -n "$MHO_REGRESSION_REQ" ] || { echo requirement not set ; exit 99; }
 
 # first check that everything needed is actually present
-data=$MHO_REGRESSION_DATA/ff_testdata/3571
+data=$MHO_REGRESSION_DATA/ff_testdata/3365
 [ -d "$data" ] || { echo data not present when it should be ; exit 5; }
-[ -f "$data/cf3571_244-1249" ] || { echo config file missing ; exit 6; }
-os=`uname -s` || os=idunno
-grep -v $os $data/cf3571_244-1249 > ./cf3571
+[ -d "$data/094-0644_HIGH" ] || { echo HIGH data missing ; exit 6; }
+[ -d "$data/094-0644_LOW" ] || { echo LOW data missing ; exit 7; }
 
-# since we rely on this for our test, make sure it is generated
-rm -f ff-3571.ps
+# since we rely on these for our test, make sure it is generated
+rm -f ff-3365-*-?.ps
 
 # FIXME: these lines should go away eventually
 export DEF_CONTROL=/dev/null
 export TEXT=$abs_top_srcdir/source/c_src/vex/text
 
+# FIXME: create man phase cals...
+
 # second execute some tests and set $passfail appropriately
 $verb && echo \
-$fourfit -pt -d diskfile:ff-3571.ps -b GE \\ && echo \
-    -c ./cf3571 -PI $data/244-1717/0727-115.zbgwce
-$fourfit -pt -d diskfile:ff-3571.ps -b GE \
-    -c ./cf3571 -PI $data/244-1717/0727-115.zbgwce
+$fourfit -t -d diskfile:ff-3365-HIGH-%d.ps \\ && echo \
+    $data/094-0644_HIGH/3C273.vmudbk
+$fourfit -t -d diskfile:ff-3365-HIGH-%d.ps \
+    $data/094-0644_HIGH/3C273.vmudbk
+$verb && echo \
+$fourfit -t -d diskfile:ff-3365-LOW-%d.ps \\ && echo \
+    $data/094-0644_LOW/3C273.vlncsf
+$fourfit -t -d diskfile:ff-3365-LOW-%d.ps \
+    $data/094-0644_LOW/3C273.vlncsf
 
-# does the output file exist?
-[ -f ./ff-3571.ps ] || { echo ./ff-3571.ps missing && exit 7 ; }
+# there should be N files, and we explicitly count them below
+ls ff-3365-*-?.ps
 
-# FIXME: grab amp as well
+hc=`ls -1 ff-3365-HIGH*ps | wc -l`
+[ "$hc" -eq 3 ] || { echo missing 3 HIGH files; exit 8; }
+lc=`ls -1 ff-3365-LOW*ps | wc -l`
+[ "$hc" -eq 3 ] || { echo missing 3 LOW files; exit 9; }
 
-# pluck out line containing the snr and parse it
-line=$(grep '7570 9653' ./ff-3571.ps)
-IFS='()'
-read a snr b <<<"$line"
-# snr bounds
-low=395.9
-high=401
-#high=396.3 (this value is from before the change to IXY fourfit amplitudes)
-aok=$(echo "$snr>$low && $snr<$high" | bc)
-$verb && echo aok is $aok and "$low < $snr < $high" is expected from: $line
-#
-[ "$aok" -gt 0 ] && passfail=0 || passfail=8
+# FIXME  with SNR/AMP tests
+
+true && passfail=0 || passfail=10
 
 eval set -- $nukables ; for dir ; do echo Nuking $dir ; rm -rf $dir ; done
 [ "$MHO_REGRESSION_REQ" = ok ] || echo $MHO_REGRESSION_REQ $passfail

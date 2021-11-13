@@ -3,6 +3,9 @@
 # check script 3372
 #
 # run fourfit on the captive data 3372
+# 3372 is a scan with the legacy geodetic X band setup for comparison
+# target_correlator = Haystack; 0529+483.vqbvvf  Mk4/hdw
+# target_correlator = difx;     0529+483.vtqbsq  Mk4/DiFX
 #
 
 # standard setup follows; comment out what is not needed

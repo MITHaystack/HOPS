@@ -13,14 +13,14 @@
 #	PGPLOT_RGB=@PGPLOT_RGB@
 
 dist_noinst_SCRIPTS = chk_2836.sh chk_2843.sh chk_3372.sh chk_3413.sh \
-	chk_3571.sh chk_3756.sh
+	chk_3571.sh chk_3756.sh chk_3365.sh
 
 TESTS = $(dist_noinst_SCRIPTS)
 TESTS_ENVIRONMENT = srcdir=$(srcdir)
 TESTS_ENVIRONMENT += abs_top_srcdir=$(abs_top_srcdir)
 TESTS_ENVIRONMENT += abs_top_builddir=$(abs_top_builddir)
 
-CLEANFILES = ff-2836.ps ff-2843.ps
+CLEANFILES = ff-*.ps cf*
 
 clean-local:
 
