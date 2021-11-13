@@ -5,7 +5,7 @@
 # spelunkers into the history of HOPS at Haystack....
 #
 [ -z "$save" ] && save=save
-[ $# -eq 0 ] && {
+[ $# -eq 0 -o "$1" = '--help' ] && {
     echo Usage: $0 names
     echo This script makes tarballs of directories found
     echo in "(HOPS3)" \$HOPS_ROOT/trunk and places them into the
@@ -223,6 +223,7 @@ do
     3413)       src=$t          ; dir=$trk/$ffd                     ;;
     3562)       src=$t          ; dir=$trk/$ffd                     ;;
     3571)       src=$t          ; dir=$trk/$ffd                     ;;
+    3756)       src=$t          ; dir=$trk/$ffd                     ;;
     average)    src=$t          ; dir=$trk/$ffd                     ;;
     # ae_testdata subdirs
     aetest)     src=testdata    ; dir=$trk/$aed                     ;;
