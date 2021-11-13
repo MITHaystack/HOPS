@@ -25,11 +25,11 @@ if(BASH_PROGRAM)
         set_tests_properties(TESTDATA_UNPACK PROPERTIES DEPENDS TESTDATA_DOWNLOAD)
 
         set(TEST_SCRIPT_BASENAMES
-            chk_ff_2836
-            chk_ff_2843
-            chk_ff_3372
-            chk_ff_3413
-            chk_ff_3571
+            tempreference/chk_ff_2836
+            tempreference/chk_ff_2843
+            tempreference/chk_ff_3372
+            tempreference/chk_ff_3413
+            tempreference/chk_ff_3571
         )
 
         foreach( BASENAME ${TEST_SCRIPT_BASENAMES} )
@@ -41,6 +41,8 @@ if(BASH_PROGRAM)
     else()
         set(TEST_SCRIPT_BASENAMES
             chk_2836
+            chk_2843
+            chk_3372
         )
 
         foreach( BASENAME ${TEST_SCRIPT_BASENAMES} )
