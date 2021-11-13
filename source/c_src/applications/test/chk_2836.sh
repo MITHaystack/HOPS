@@ -22,7 +22,7 @@ something=2836
 [ -x "$MHO_REGRESSION_DATA/switches/test_config.sh" ] || {
     echo "$MHO_REGRESSION_DATA/switches/test_config.sh" not found ; exit 99; }
 
-# this is just for some debugging of test_config.sh
+# FIXME: this is just for some debugging of test_config.sh
 data=$MHO_REGRESSION_DATA/ff_testdata/2836
 ls -ld $data 2>&- || echo $data not found
 
@@ -37,7 +37,7 @@ nukables='ff-2836.ps'
 [ -n "$MHO_REGRESSION_REQ" ] || { echo requirement not set ; exit 99; }
 $verb && echo verb is $verb
 
-# this is just for some debugging of test_config.sh
+# FIXME: this is just for some debugging of test_config.sh
 echo verb: $verb
 echo data: $MHO_REGRESSION_DATA
 echo config: $MHO_REGRESSION_CONFIG
@@ -53,21 +53,21 @@ data=$MHO_REGRESSION_DATA/ff_testdata/2836
 # since we rely on this for our test, make sure it is generated
 rm -f ff-2836.ps
 
-# more of a unit test here
+# FIXME: these lines should go away eventually
 export DEF_CONTROL=/dev/null
 export TEXT=$abs_top_srcdir/source/c_src/vex/text
 
 # second execute some tests and set $passfail appropriately
 $verb && echo \
 $fourfit -t -d diskfile:ff-2836.ps -b AE:X \\ && echo \
-    -c $data/cf2836 \\ && echo \
-    $data/scan001/2145+067.olomfh
+    -c $data/cf2836 $data/scan001/2145+067.olomfh
 $fourfit -t -d diskfile:ff-2836.ps -b AE:X \
-    -c $data/cf2836 \
-    $data/scan001/2145+067.olomfh
+    -c $data/cf2836 $data/scan001/2145+067.olomfh
 
 # output file?
 [ -f ./ff-2836.ps ] || { echo ./ff-2836.ps missing && exit 7; }
+
+# FIXME: grab amp as well
 
 # pluck out line containing the snr and parse it
 line=$(grep '7570 9653' ./ff-2836.ps)
