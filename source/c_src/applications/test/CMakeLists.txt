@@ -43,11 +43,18 @@ if(BASH_PROGRAM)
             chk_2836
             chk_2843
             chk_3372
+            chk_3413
+            chk_3571
         )
+
+# incorrect values here...
 
         foreach( BASENAME ${TEST_SCRIPT_BASENAMES} )
             configure_file( ${CMAKE_CURRENT_SOURCE_DIR}/${BASENAME}.sh ${CMAKE_CURRENT_BINARY_DIR}/${BASENAME}.sh @ONLY)
             add_test(NAME ${BASENAME} COMMAND  ${BASH_PROGRAM} ${CMAKE_CURRENT_BINARY_DIR}/${BASENAME}.sh )
+            set_tests_properties(${BASENAME} PROPERTIES ENVIRONMENT "srcdir=${CMAKE_CURRENT_SOURCE_DIR}")
+            set_tests_properties(${BASENAME} PROPERTIES ENVIRONMENT "abs_top_srcdir=${CMAKE_CURRENT_SOURCE_DIR}")
+            set_tests_properties(${BASENAME} PROPERTIES ENVIRONMENT "abs_top_builddir=${CMAKE_CURRENT_SOURCE_DIR}")
         endforeach( BASENAME )
 
     endif(HOPS_ENABLE_REMOTE_TEST_DATA)
