@@ -79,17 +79,15 @@ shown in Figure~\ref{fig:table-container}.
 
 \subsubsection{Specific data types}
 
-Below is an incomplete table of the various data objects that could be constructed from \texttt{MHO\_TableContainer}, along with their data value type and axis names.
-The exact specification of each type is given in detail on each subsequent page.
-
+Below is an incomplete table of the various data objects that are constructed from \texttt{MHO\_TableContainer}, along with their data value type and axis names.
 \begin{center}
 \resizebox{\textwidth}{!}{
 \begin{tabular}{| c | c | c | c |}
 \hline
  Name & value type & N-Dim & Axes \\  \hline
-%  Visibilities & \texttt{std::complex<double>} & 3 & (pol. product, time, frequency) \\ \hline
-%  Weights & \texttt{double} & 3 & (pol. product, time, frequency) \\ \hline
-%  Flags & \texttt{uint64\_t} & 3 & (pol. product, time, frequency) \\ \hline
+ Visibilities & \texttt{std::complex<double>} & 3 & (pol. product, time, frequency) \\ \hline
+ Weights & \texttt{double} & 3 & (pol. product, time, frequency) \\ \hline
+ Flags & \texttt{uint64\_t} & 3 & (pol. product, time, frequency) \\ \hline
  Channelized Visibilities & \texttt{std::complex<double>} & 4 & (pol. product, channel, time, frequency) \\ \hline
  Channelized Weights & \texttt{double} & 4 & (pol. product, channel, time, frequency) \\ \hline
  Channelized Flags & \texttt{uint64\_t} & 4 & (pol. product, channel, time, frequency) \\ \hline
@@ -98,27 +96,6 @@ The exact specification of each type is given in detail on each subsequent page.
  \end{tabular}
  }
 \end{center}
-
-\newpage
-
-\subsubsection{Channelized Visibilities}
-
-\newpage 
-
-\subsubsection{Channelized Weights}
-
-\newpage 
-
-\subsection{Channelized Flags}
-
-\newpage 
-
-\subsubsection{Static per-channel phase corrections}
-
-\newpage 
-
-\subsubsection{Channelized ad-hoc phase/amplitude corrections}
-
 
 \subsection{Data operators}
 
@@ -132,9 +109,11 @@ sketch demonstrating how two simple operators would be constructed, assigned arg
 
 \lstinputlisting[language=C++,float=h!,label={lst:operators},caption=Data operator template classes.]{code/operator_use.cc}
 
-It is expected that the vast majority of the data operators will be unary or binary, requiring only their own configuration parameters along with one or two data containers upon which they operate as inputs. However, any number of arguments is possible so long as the underlying implementation provides the appropriate overload.
+It is expected that the vast majority of the data operators will be unary or binary, requiring only their own configuration parameters along with one or two data containers upon which they operate as inputs. 
+However, any number of arguments is possible so long as the underlying implementation provides the appropriate overload.
 
-One aspect of the data operators which is not yet detailed here is a notion of what pieces of meta-data each operator may need in order to complete its function. Some of the more primitive operations (e.g. complex conjugation) may not need any meta-data, while certain 
+One aspect of the data operators which is not yet detailed here is a notion of what pieces of meta-data each operator may need in order to complete its function. 
+Some of the more primitive operations (e.g. complex conjugation) may not need any meta-data, while certain 
 specific calibration routines may need station related meta-data (e.g. channel specific phase-cal).
 While some meta-data items could be exposed directly via external setter/getters, a possibly preferable option which would preserve encapsulation might be for each operator to define an internal schema, 
 listing the keys and type of the parameters it needs to retrieve from a single meta-data container (populated from the vex), or what sort of labels it expects to be attached to the data containers on which it operates.
@@ -142,9 +121,32 @@ In addition, a mechanism for filtering operations (e.g. if station = Xx, then ap
 
 \lstinputlisting[language=C++,float=h!,label={lst:operators},caption=Data operator template classes.]{code/data-operators.hh}
 
+\subsubsection{Specific data operations}
 
+Below is an incomplete table of the various data operations. A full description of each operation is specified in the subsequent pages.
+\begin{center}
+\resizebox{\textwidth}{!}{
+\begin{tabular}{| c | c | 4cm | c |}
+\hline
+ Name & Type & Description & Input/Output \\  \hline
+  MHO_ComplexConjugator
+  MHO_CyclicRotator
+  MHO_FastFourierTransform
+  MHO_FunctorBroadcaster
+  MHO_MultidimensionalFastFourierTransformFFTW
+  MHO_MultidimensionalFastFourierTransform
+  MHO_MultidimensionalPaddedFastFourierTransform
+  MHO_NaNMasker
+  MHO_Reducer
+  MHO_SubSample
 
+ 
+ Visibilities & \texttt{std::complex<double>} & 3 & (pol. product, time, frequency) \\ \hline
 
+ Channelized Ad-hoc phases/amplitude corrections  & \texttt{std::complex<double>} & 4 & (pol. product, channel, time, frequency) \\ \hline
+ \end{tabular}
+ }
+\end{center}
 
 \subsubsection{Data Container Extensions}
 
