@@ -123,30 +123,105 @@ In addition, a mechanism for filtering operations (e.g. if station = Xx, then ap
 
 \subsubsection{Specific data operations}
 
-Below is an incomplete table of the various data operations. A full description of each operation is specified in the subsequent pages.
-\begin{center}
-\resizebox{\textwidth}{!}{
-\begin{tabular}{| c | c | 4cm | c |}
-\hline
- Name & Type & Description & Input/Output \\  \hline
-  MHO_ComplexConjugator
-  MHO_CyclicRotator
-  MHO_FastFourierTransform
-  MHO_FunctorBroadcaster
-  MHO_MultidimensionalFastFourierTransformFFTW
-  MHO_MultidimensionalFastFourierTransform
-  MHO_MultidimensionalPaddedFastFourierTransform
-  MHO_NaNMasker
-  MHO_Reducer
-  MHO_SubSample
+Below is an incomplete list of various data operations. A full specification of each operation is detailed in the subsequent pages.
+\begin{enumerate}
+ \item MHO\_ComplexConjugator: Apply a complex conjugation to all elements of an ND-array.
+ \item MHO\_CyclicRotator: Apply a cyclic rotation to the selected axes of an ND-array.
+ \item MHO\_FastFourierTransform: Apply a Fourier transform to a one dimensional array.
+ \item MHO\_FunctorBroadcaster: Apply a specified unary function to each element of an ND-array.
+ \item MHO\_MultidimensionalFastFourierTransform: Apply a Fourier transform to the selected axes of an ND-array using native libary.
+ \item MHO\_MultidimensionalFastFourierTransformFFTW: Apply a Fourier transform to the selected axes of an ND-array using FFTW library.
+ \item MHO\_MultidimensionalPaddedFastFourierTransform: Apply a zero-padded Fourier transform to the selected axes of an ND-array.
+ \item MHO\_Reducer: Apply a reduction (e.g. sum all elements) along the selected axis of an ND-array.
+ \item MHO\_SubSample: Skip select every n-th element of an ND-array for a specified axis of a ND-array.
+\end{enumerate}
 
- 
- Visibilities & \texttt{std::complex<double>} & 3 & (pol. product, time, frequency) \\ \hline
+\newpage
 
- Channelized Ad-hoc phases/amplitude corrections  & \texttt{std::complex<double>} & 4 & (pol. product, channel, time, frequency) \\ \hline
- \end{tabular}
- }
-\end{center}
+\noindent \textbf{Name:} MHO\_ComplexConjugator \\
+\textbf{Type:} Unary, in-place and out-of-place (requires copy). \\
+\textbf{Configuration Parameters:} None\\
+\textbf{Inputs:} An N dimensional array with complex double/float value type \\
+\textbf{Outputs:} An N dimensional array with complex double/float value type \\
+\textbf{Description:} Iterates over all values in an N dimensional array and applies the operation \texttt{std::conj()} to each element. \\
+
+\newpage 
+
+\noindent \textbf{Name:} MHO\_CyclicRotator \\
+\textbf{Type:} Unary, both in-place and out-of-place. \\
+\textbf{Configuration Parameters:} Requires the integer index of the axis to be rotated, and the integer offset specifying the size of the rotation.\\
+\textbf{Inputs:} An N dimensional array with any primitive type \\
+\textbf{Outputs:} An N dimensional array with any primitive type \\
+\textbf{Description:} \\
+
+\newpage 
+
+\noindent \textbf{Name:} MHO\_FastFourierTransform \\
+\textbf{Type:} Unary, both in-place and out-of-place. \\
+\textbf{Configuration Parameters:} None\\
+\textbf{Inputs:} A one dimensional array with complex double/float value type \\
+\textbf{Outputs:} A one dimensional array with complex double/float value type \\
+\textbf{Description:} \\
+
+
+\newpage 
+
+\noindent \textbf{Name:}  MHO\_FunctorBroadcaster \\
+\textbf{Type:} Unary, both in-place and out-of-place. \\
+\textbf{Configuration Parameters:} \\
+\textbf{Inputs:} \\
+\textbf{Outputs:} \\
+\textbf{Description:} \\
+
+
+\newpage 
+
+\noindent \textbf{Name:} MHO\_MultidimensionalFastFourierTransform \\
+\textbf{Type:} Unary, both in-place and out-of-place. \\
+\textbf{Configuration Parameters:} None\\
+\textbf{Inputs:} An N dimensional array with complex double/float value type \\
+\textbf{Outputs:} An N dimensional array with complex double/float value type \\
+\textbf{Description:} \\
+
+\newpage 
+
+\noindent \textbf{Name:} MHO\_MultidimensionalFastFourierTransformFFTW \\
+\textbf{Type:} Unary, both in-place and out-of-place. \\
+\textbf{Configuration Parameters:} None\\
+\textbf{Inputs:} An N dimensional array with complex double/float value type \\
+\textbf{Outputs:} An N dimensional array with complex double/float value type \\
+\textbf{Description:} \\
+
+\newpage 
+
+\noindent \textbf{Name:} MHO\_MultidimensionalPaddedFastFourierTransform \\
+\textbf{Type:} Unary, both in-place and out-of-place. \\
+\textbf{Configuration Parameters:} None\\
+\textbf{Inputs:} An N dimensional array with complex double/float value type \\
+\textbf{Outputs:} An N dimensional array with complex double/float value type \\
+\textbf{Description:} \\
+
+
+\newpage 
+
+\noindent \textbf{Name:} MHO\_Reducer  \\
+\textbf{Type:} Unary, both in-place (requires copy and resize) and out-of-place. \\
+\textbf{Configuration Parameters:} \\
+\textbf{Inputs:} \\
+\textbf{Outputs:} \\
+\textbf{Description:} \\
+
+\newpage 
+
+\noindent \textbf{Name:} MHO\_SubSample  \\
+\textbf{Type:} Unary, both in-place and out-of-place. \\
+\textbf{Configuration Parameters:} \\
+\textbf{Inputs:} \\
+\textbf{Outputs:} \\
+\textbf{Description:} \\
+
+
+
 
 \subsubsection{Data Container Extensions}
 
