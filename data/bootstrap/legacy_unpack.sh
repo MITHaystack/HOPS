@@ -27,6 +27,8 @@ mhr=$MHO_REGRESSION_DATA/reference
 mff=$MHO_REGRESSION_DATA/ff_testdata
 mae=$MHO_REGRESSION_DATA/ae_testdata
 
+mhv=$MHO_REGRESSION_DATA/vgosdata
+
 src=$name
 
 ### and need to finish import of sources
@@ -78,6 +80,7 @@ case $name in
     average)    parent=$mff     ; odr=$src          ;;
     # ae_testdata subdirs
     aetest)     parent=$mae     ; odr=$src          ;;
+    3593)       parent=$mhv     ; odr=$src          ;;
 
     # vex2xml
     v2xsrc)     parent=$mhr     ; odr=$src          ;;
