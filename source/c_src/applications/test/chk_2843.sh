@@ -8,7 +8,6 @@
 #
 # test_config.sh unpacks the data
 #
-[ -n "$cmakesux" ] && eval set -- $cmakesux
 echo =======================================================
 echo args: $* $#
 while [ $# -gt 0 ] ; do eval $1 ; shift ; done

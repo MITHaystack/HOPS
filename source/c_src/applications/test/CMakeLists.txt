@@ -55,8 +55,7 @@ if(BASH_PROGRAM)
                 ${CMAKE_CURRENT_BINARY_DIR}/${BASENAME}.sh @ONLY)
             add_test(NAME ${BASENAME} COMMAND
                 ${BASH_PROGRAM} ${CMAKE_CURRENT_BINARY_DIR}/${BASENAME}.sh )
-            set_tests_properties(${BASENAME} PROPERTIES ENVIRONMENT
-                cmakesux="srcdir=${CMAKE_CURRENT_SOURCE_DIR} abs_top_srcdir=${CMAKE_SOURCE_DIR} abs_top_builddir=${CMAKE_BINARY_DIR}")
+            set_tests_properties(${BASENAME} PROPERTIES ENVIRONMENT "srcdir=${CMAKE_CURRENT_SOURCE_DIR};abs_top_srcdir=${CMAKE_SOURCE_DIR};abs_top_builddir=${CMAKE_BINARY_DIR}")
         endforeach( BASENAME )
 
     endif(HOPS_ENABLE_REMOTE_TEST_DATA)
