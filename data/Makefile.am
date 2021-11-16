@@ -38,6 +38,7 @@ dist_check_SCRIPTS = \
 	switches/lookup.sh \
 	switches/test_config.sh \
 	switches/provider.sh \
+	switches/test_envchk.sh \
 	chk_lookup.sh \
 	import_from_hops3.sh $(bootstrap)
 
