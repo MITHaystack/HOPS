@@ -5,6 +5,11 @@
 # This is a recent snippet of a commissioning test at ALMA, Mk4/DiFX
 #
 
+# for the moment
+echo srcdir: $srcdir
+echo abs_top_srcdir: $abs_top_srcdir
+echo abs_top_builddir: $abs_top_builddir
+
 # standard setup follows; comment out what is not needed
 [ -z "$testverb" ] && testverb=0
 verb=false ; [ "$testverb" -gt 0 ] && verb=true

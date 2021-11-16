@@ -8,13 +8,11 @@
 #
 # test_config.sh unpacks the data
 #
-echo =======================================================
-echo args: $* $#
-while [ $# -gt 0 ] ; do eval $1 ; shift ; done
+
+# for the moment
 echo srcdir: $srcdir
 echo abs_top_srcdir: $abs_top_srcdir
 echo abs_top_builddir: $abs_top_builddir
-echo =======================================================
 
 #
 # standard setup follows; comment out what is not needed
