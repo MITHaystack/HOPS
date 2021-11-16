@@ -7,28 +7,12 @@
 # gemini:/var/ftp/pub/hops/oldhops/hops/sample_data/2491/363-200000
 #
 
-# for the moment
-echo srcdir: $srcdir
-echo abs_top_srcdir: $abs_top_srcdir
-echo abs_top_builddir: $abs_top_builddir
-
-# standard setup follows; comment out what is not needed
-[ -z "$testverb" ] && testverb=0
-verb=false ; [ "$testverb" -gt 0 ] && verb=true
-very=false ; [ "$testverb" -gt 1 ] && very=true && verb=true
+# set final exit status as an ERROR in case you forget to set it
 passfail=99
+# setups for test $something; exit=echo to disable exits 1..4
 something=2491
-[ -z "$srcdir" -o -d "$srcdir" ] || {
-    echo srcdir "$srcdir" not set correctly; exit 1; }
-[ -z "$abs_top_srcdir" -o -d "$abs_top_srcdir" ] || {
-    echo abs_top_srcdir "$abs_top_srcdir" not set correctly; exit 2; }
-[ -z "$abs_top_builddir" -o -d "$abs_top_builddir" ] || {
-    echo abs_top_builddir "$abs_top_builddir" not set correctly; exit 3; }
-[ $# -gt 0 ] && { echo $something takes no arguments; exit 4; }
-[ -z "$MHO_REGRESSION_DATA" ] && { echo MHO_REGRESSION_DATA not set; exit 77; }
-[ -x "$MHO_REGRESSION_DATA/switches/test_config.sh" ] || {
-    echo "$MHO_REGRESSION_DATA/switches/test_config.sh" not found ; exit 99; }
-
+[ -x "$MHO_REGRESSION_DATA/switches/test_envchk.sh" ] &&
+    . "$MHO_REGRESSION_DATA/switches/test_envchk.sh"
 
 # declare the tarballs that are needed and make those arrangements
 tarballs='2491'
@@ -46,8 +30,8 @@ data=$MHO_REGRESSION_DATA/ff_testdata/2491
 [ -f "$data/ff_control.2491" ] || { echo config file missing ; exit 6; }
 
 # FIXME: these lines should go away eventually
-#export DEF_CONTROL=/dev/null
-#export TEXT=$abs_top_srcdir/source/c_src/vex/text
+export DEF_CONTROL=/dev/null
+export TEXT=$abs_top_srcdir/source/c_src/vex/text
 
 # since we rely on this for our test, make sure it is generated
 rm -f ff-2491-?-??.ps
