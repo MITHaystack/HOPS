@@ -6,7 +6,6 @@
 # another broadband experiment, Mk4/DiFX
 #
 
-[ -n "$cmakesux" ] && eval set -- $cmakesux
 echo =======================================================
 echo args: $* $#
 while [ $# -gt 0 ] ; do eval $1 ; shift ; done
