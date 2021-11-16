@@ -34,7 +34,6 @@ grep -v $os $data/cf3571_244-1249 > ./cf3571
 rm -f ff-3571.ps
 
 # FIXME: these lines should go away eventually
-export DEF_CONTROL=/dev/null
 export TEXT=$abs_top_srcdir/source/c_src/vex/text
 
 # second execute some tests and set $passfail appropriately

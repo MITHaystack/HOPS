@@ -30,7 +30,6 @@ data=$MHO_REGRESSION_DATA/ff_testdata/2491
 [ -f "$data/ff_control.2491" ] || { echo config file missing ; exit 6; }
 
 # FIXME: these lines should go away eventually
-export DEF_CONTROL=/dev/null
 export TEXT=$abs_top_srcdir/source/c_src/vex/text
 
 # since we rely on this for our test, make sure it is generated
