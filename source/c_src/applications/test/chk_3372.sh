@@ -8,6 +8,16 @@
 # target_correlator = difx;     0529+483.vtqbsq  Mk4/DiFX
 #
 
+[ -n "$cmakesux" ] && eval set -- $cmakesux
+echo =======================================================
+echo args: $* $#
+while [ $# -gt 0 ] ; do eval $1 ; shift ; done
+echo srcdir: $srcdir
+echo abs_top_srcdir: $abs_top_srcdir
+echo abs_top_builddir: $abs_top_builddir
+echo =======================================================
+
+
 # standard setup follows; comment out what is not needed
 [ -z "$testverb" ] && testverb=0
 verb=false ; [ "$testverb" -gt 0 ] && verb=true
