@@ -22,20 +22,41 @@
 #include <string.h>
 #include "mk4_util.h"
 
-#ifndef PFORMAT_TEXT_DIR
-#define PFORMAT_TEXT_DIR "/correlator/prog/text"
-#endif /* !PFORMAT_TEXT_DIR */
                                         /* Declare these global, to be */
                                         /* initialized here, but used */
                                         /* throughout program */
 char datadir[200];
 char scheddir[200];
 char afiledir[200];
-char textdir[200];
+char textdir[1000];
 char sysvexdir[200];
 char taskdir[200];
 char bindir[200];
 char tmpdir[200];
+
+// /correlator no longer exists, thus this entire file is full of junk.
+// PFORMAT_TEXT_DIR does not appear to have every been defined in HOPS3
+// Here at least we set things so that fourfit will run without an install
+// or later, after an install.
+static char *textdef(void)
+{
+#ifdef HOPS_VEX_TEXT_SRC_DIR
+#   warning "Configured testdir to " HOPS_VEX_TEXT_SRC_DIR
+    static char *textdefault = HOPS_VEX_TEXT_SRC_DIR;
+#else /* HOPS_VEX_TEXT_SRC_DIR */
+#   ifndef PFORMAT_TEXT_DIR
+    #   define PFORMAT_TEXT_DIR "/correlator/prog/text"
+#   endif /* !PFORMAT_TEXT_DIR */
+#   warning "Configured testdir to a useless default"
+    static char *textdefault = PFORMAT_TEXT_DIR;
+#endif /* HOPS_VEX_TEXT_SRC_DIR */
+
+#ifdef HOPS_VEX_TEXT_SHARE_DIR
+#   warning "Configured testdir to " HOPS_VEX_TEXT_SHARE_DIR
+    return(HOPS_VEX_TEXT_SHARE_DIR);
+#endif /* HOPS_VEX_TEXT_SRC_DIR */
+    return(textdefault);
+}
 
 void
 environment(void)
@@ -43,13 +64,11 @@ environment(void)
     static char *datadef = "/correlator/data";
     static char *scheddef = "/correlator/schedules";
     static char *afiledef = "/correlator/afiles";
-    static char *textdef = PFORMAT_TEXT_DIR;
     static char *sysvexdef = "/correlator/sysvex";
     static char *taskdef = "/correlator/task";
     static char *bindef = "/correlator/prog/bin/hppa";
     static char *tmpdef = "/correlator/tmp";
     char *dummy;
-
 
     if ((dummy = getenv ("DATADIR")) != NULL) strcpy (datadir, dummy);
     else if ((dummy = getenv ("CORDATA")) != NULL) strcpy (datadir, dummy);
@@ -61,8 +80,10 @@ environment(void)
     if ((dummy = getenv ("AFILEDIR")) != NULL) strcpy (afiledir, dummy);
     else strcpy (afiledir, afiledef);
 
-    if ((dummy = getenv ("TEXT")) != NULL) strcpy (textdir, dummy);
-    else strcpy (textdir, textdef);
+    // introducing a better name and a testing fallback to vex source
+    if ((dummy = getenv ("HOPS_VEX_DIR")) != NULL) strcpy (textdir, dummy);
+    else if ((dummy = getenv ("TEXT")) != NULL) strcpy (textdir, dummy);
+    else strcpy (textdir, textdef());
 
     if ((dummy = getenv ("SYSVEX")) != NULL) strcpy (sysvexdir, dummy);
     else strcpy (sysvexdir, sysvexdef);
