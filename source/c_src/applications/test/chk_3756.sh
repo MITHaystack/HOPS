@@ -35,7 +35,6 @@ data=$MHO_REGRESSION_DATA/ff_testdata/3756
 rm -f ff-3756*.ps
 
 # FIXME: these lines should go away eventually
-export DEF_CONTROL=/dev/null
 export TEXT=$abs_top_srcdir/source/c_src/vex/text
 
 # second execute some tests and set $passfail appropriately

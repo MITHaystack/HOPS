@@ -32,7 +32,6 @@ grep -v $os $data/cf3413 > ./cf3413
 rm -f ff-3413.ps
 
 # more of a unit test here
-export DEF_CONTROL=/dev/null
 export TEXT=$abs_top_srcdir/source/c_src/vex/text
 
 # second execute some tests and set $passfail appropriately
