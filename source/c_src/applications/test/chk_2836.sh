@@ -6,31 +6,12 @@
 # This was rjc's standard go to for testing: Mk4/hdw
 #
 
-# for the moment
-echo srcdir: $srcdir
-echo abs_top_srcdir: $abs_top_srcdir
-echo abs_top_builddir: $abs_top_builddir
-
-# standard setup follows; comment out what is not needed
-[ -z "$testverb" ] && testverb=0
-verb=false ; [ "$testverb" -gt 0 ] && verb=true
-very=false ; [ "$testverb" -gt 1 ] && very=true && verb=true
+# set final exit status as an ERROR in case you forget to set it
 passfail=99
+# setups for test $something; exit=echo to disable exits 1..4
 something=2836
-[ -z "$srcdir" -o -d "$srcdir" ] || {
-    echo srcdir "$srcdir" not set correctly; exit 1; }
-[ -z "$abs_top_srcdir" -o -d "$abs_top_srcdir" ] || {
-    echo abs_top_srcdir "$abs_top_srcdir" not set correctly; exit 2; }
-[ -z "$abs_top_builddir" -o -d "$abs_top_builddir" ] || {
-    echo abs_top_builddir "$abs_top_builddir" not set correctly; exit 3; }
-[ $# -gt 0 ] && { echo $something takes no arguments; exit 4; }
-[ -z "$MHO_REGRESSION_DATA" ] && { echo MHO_REGRESSION_DATA not set; exit 77; }
-[ -x "$MHO_REGRESSION_DATA/switches/test_config.sh" ] || {
-    echo "$MHO_REGRESSION_DATA/switches/test_config.sh" not found ; exit 99; }
-
-# FIXME: this is just for some debugging of test_config.sh
-data=$MHO_REGRESSION_DATA/ff_testdata/2836
-ls -ld $data 2>&- || echo $data not found
+[ -x "$MHO_REGRESSION_DATA/switches/test_envchk.sh" ] && 
+    . "$MHO_REGRESSION_DATA/switches/test_envchk.sh"
 
 # declare the tarballs that are needed and make those arrangements
 tarballs='2836'
@@ -41,17 +22,8 @@ nukables='ff-2836.ps'
 [ -n "$MHO_REGRESSION_CONFIG" ] && . $MHO_REGRESSION_CONFIG ||
     . "$MHO_REGRESSION_DATA/switches/test_config.sh"
 [ -n "$MHO_REGRESSION_REQ" ] || { echo requirement not set ; exit 99; }
-$verb && echo verb is $verb
 
-# FIXME: this is just for some debugging of test_config.sh
-echo verb: $verb
-echo data: $MHO_REGRESSION_DATA
-echo config: $MHO_REGRESSION_CONFIG
-echo extract: $MHO_REGRESSION_EXTRACT
-echo tidy: $MHO_REGRESSION_TIDY
-echo nukables: $nukables
-
-# first check that everything needed is actually present
+# first, check that everything needed is actually present
 data=$MHO_REGRESSION_DATA/ff_testdata/2836
 [ -d "$data" ] || { echo data not present when it should be ; exit 5; }
 [ -f "$data/cf2836" ] || { echo config file missing ; exit 6; }
@@ -63,7 +35,7 @@ rm -f ff-2836.ps
 export DEF_CONTROL=/dev/null
 export TEXT=$abs_top_srcdir/source/c_src/vex/text
 
-# second execute some tests and set $passfail appropriately
+# second, execute some tests and set $passfail appropriately
 $verb && echo \
 $fourfit -t -d diskfile:ff-2836.ps -b AE:X \\ && echo \
     -c $data/cf2836 $data/scan001/2145+067.olomfh
