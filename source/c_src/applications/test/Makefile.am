@@ -5,12 +5,19 @@
 #
 
 # reference copies of the HOPS3 tests are in the hops3*test directories
+# these will eventually be obliterated....
 
-# create new tests with, e.g:
-#  /home/gbc/HOPS/hops-git/data/switches/template.sh name
-# these may not be needed in TESTS_ENVIRONMENT
-#	PGPLOT_FONT=@PGPLOT_FONT@ \
-#	PGPLOT_RGB=@PGPLOT_RGB@
+# groupings of tests in HOPS3 devel
+# shortlist = chk_ff_2843.sh chk_baselines.sh chk_alist.sh chk_adump.sh
+# shortlist += chk_aedit.sh chk_fringex.sh chk_fourmer.sh chk_hdlinks.sh
+# devellist = chk_ff_2836.sh chk_ff_2843.sh chk_ff_3372.sh chk_ff_3413.sh
+# devellist += chk_ff_3756.sh chk_baselines.sh chk_alist.sh chk_adump.sh
+# devellist += chk_aedit.sh chk_fringex.sh chk_average.sh chk_avefix.sh
+# devellist += chk_search.sh chk_fourmer.sh chk_frmrsrch.sh
+# devellist += chk_hdlinks.sh chk_min_weight.sh chk_passband.sh
+# devellist += chk_notches.sh chk_notches_xf.sh chk_ff_3772pb.sh
+# hsearch = chk_flagging.sh chk_ff_dump.sh chk_ps2pdf.sh chk_ff_ps2pdf.sh
+# cofit = chk_cofit.sh
 
 dist_noinst_SCRIPTS = \
 	chk_2491.sh \

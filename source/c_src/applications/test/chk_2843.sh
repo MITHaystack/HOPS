@@ -6,35 +6,13 @@
 # (parsed from the postscript file) is within expected bounds.
 # This is a Mk4/hdw dataset.
 #
-# test_config.sh unpacks the data
-#
 
-# for the moment
-echo srcdir: $srcdir
-echo abs_top_srcdir: $abs_top_srcdir
-echo abs_top_builddir: $abs_top_builddir
-
-#
-# standard setup follows; comment out what is not needed
-[ -z "$testverb" ] && testverb=0
-verb=false ; [ "$testverb" -gt 0 ] && verb=true
-very=false ; [ "$testverb" -gt 1 ] && very=true && verb=true
+# set final exit status as an ERROR in case you forget to set it
 passfail=99
+# setups for test $something; exit=echo to disable exits 1..4
 something=2843
-[ -z "$srcdir" -o -d "$srcdir" ] || {
-    echo srcdir "$srcdir" not set correctly; exit 1; }
-[ -z "$abs_top_srcdir" -o -d "$abs_top_srcdir" ] || {
-    echo abs_top_srcdir "$abs_top_srcdir" not set correctly; exit 2; }
-[ -z "$abs_top_builddir" -o -d "$abs_top_builddir" ] || {
-    echo abs_top_builddir "$abs_top_builddir" not set correctly; exit 3; }
-[ $# -gt 0 ] && { echo $something takes no arguments; exit 4; }
-[ -z "$MHO_REGRESSION_DATA" ] && { echo MHO_REGRESSION_DATA not set; exit 77; }
-[ -x "$MHO_REGRESSION_DATA/switches/test_config.sh" ] || {
-    echo "$MHO_REGRESSION_DATA/switches/test_config.sh" not found ; exit 99; }
-
-# FIXME: this is just for some debugging of test_config.sh
-data=$MHO_REGRESSION_DATA/ff_testdata/2836
-ls -ld $data 2>&- || echo $data not found 
+[ -x "$MHO_REGRESSION_DATA/switches/test_envchk.sh" ] &&
+    . "$MHO_REGRESSION_DATA/switches/test_envchk.sh"
 
 # declare the tarballs that are needed and make those arrangements
 tarballs='2843'
