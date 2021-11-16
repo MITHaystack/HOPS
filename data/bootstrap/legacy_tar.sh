@@ -92,6 +92,7 @@ misc    #data/ff_testdata/testdata/misc
 $fftest #data/ff_testdata/testdata/....
 average #data/ff_testdata/testdata/average
 aetest  #data/ae_testdata/testdata
+3593    #chops/source/python_src/tests
 
 v2xsrc  #vex2xml-sources
 v2xtst  #vex2xml-testcases
@@ -129,6 +130,7 @@ fftest  -d- there are individual HOPS experiments that have been captured.
             using the associated 4-digit experiment names.
 average -d- samples of the use of 'average'
 aetest  -d- sample of aedit data
+3593    -d- sample of vgos data (already tar'd in HOPS3)
 
 v2xsrc  -s- vex2xml sources
 v2xtst  -d- vex2xml testcases
@@ -171,6 +173,7 @@ reg='swc/scripts/regression'
 pp3='attic bispec calamp coterp fearfit hfold pratio'
 pp4='adump aedit alist average cofit fourfit fourmer'
 pp4="$pp4 fplot fringex search snratio"
+vpy='chops/source/python_src/tests'
 
 # this is a catch-all for random files
 readmefiles="apt-packages.txt autogen.sh capture-log.py ChangeLog.txt
@@ -184,7 +187,8 @@ for t
 do
     # set src (found in $trk) and tarball name (usually $src)
     # this list must be synchronized with boostrap/legacy_unpack.sh
-    name="$t" exc='' src='' dir=''
+    # if asis is true, then we do not tar, merely copy
+    name="$t" exc='' src='' dir='' asis='false'
     case $t in
     \#*)        continue                                            ;;
 
@@ -232,6 +236,7 @@ do
     average)    src=$t          ; dir=$trk/$ffd                     ;;
     # ae_testdata subdirs
     aetest)     src=testdata    ; dir=$trk/$aed                     ;;
+    3593)       asis=true       ; dir=$trk/$vpy                     ;;
 
     # vex2xml
     v2xsrc)     src=vex2xml     ; dir=$trk      ; exc=testcases     ;;
@@ -263,6 +268,24 @@ do
         mv $listing $dest/$name.$save.tvf.gz &&
         echo saving $t listing as $name.$save.tvf.gz
 
+    $asis && {
+        [ -f $dir/$name.tar.gz -a -f $dir/$name.tvf.gz ] &&
+            cp -p $dir/$name.tar.gz $tarball &&
+            cp -p $dir/$name.tvf.gz $listing || {
+            echo Unable to copy as $tarball and $listing
+            [ -f $dest/$name.$save.tar.gz ] &&
+                mv $dest/$name.$save.tar.gz $tarball &&
+                echo restored $tarball
+            [ -f $dest/$name.$save.tvf.gz ] &&
+                mv $dest/$name.$save.tvf.gz $listing &&
+                echo restored $listing
+        }
+        continue
+    }
+
+    #
+    # asis=false: actually create the tarball
+    #
     pushd $dir
 
     created=false
@@ -282,10 +305,13 @@ do
         ls -l $tarball
         ls -l $listing
     } || {
-        echo Unable to manufacture $tarball
+        echo Unable to manufacture $tarball and $listing
         [ -f $dest/$name.$save.tar.gz ] &&
-            mv $dest/$name.$save.tar.gz $dest/$name.tar.gz
-            echo restored $dest/$name.$save.gz
+            mv $dest/$name.$save.tar.gz $tarball &&
+            echo restored $tarball
+        [ -f $dest/$name.$save.tvf.gz ] &&
+            mv $dest/$name.$save.tvf.gz $listing &&
+            echo restored $listing
     }
 
     popd
