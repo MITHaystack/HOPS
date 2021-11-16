@@ -3,9 +3,11 @@
 [ $# -lt 2 ] && {
     echo USAGE: $0 GIT-dir Data-dir [rsync options]
     echo
-    echo The first argument is the git source directory, the second
-    echo is a target MHO_REGRESSION_DATA.  If it exists, git sources
+    echo The first argument is the git data source directory, the second
+    echo is a target MHO_REGRESSION_DATA directory.  If it exists, git sources
     echo are updated with rsync.  If it does not exist, it is created.
+    echo
+    echo Any tarballs in the MHO_REGRESSION_DATA area should be left alone.
     echo
     echo It is an error for GIT-dir Data-dir to be the same dir
     exit 1
