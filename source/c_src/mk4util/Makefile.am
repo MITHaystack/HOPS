@@ -5,6 +5,8 @@
 #
 
 AM_CPPFLAGS = -I$(srcdir)/include -I$(srcdir)/../msg/include \
+	-DHOPS_VEX_TEXT_SHARE_DIR='"$(pkgdatadir)/text"' \
+	-DHOPS_VEX_TEXT_SRC_DIR='"$(abs_top_srcdir)/source/c_src/vex/text"' \
 	$(MHO_CPPFLAGS)
 
 pkginclude_HEADERS = include/account.h include/fileset.h include/fstruct.h \
@@ -26,14 +28,15 @@ libmk4util_la_SOURCES = src/account.c src/check_name.c src/clear_date.c \
 
 libmk4util_la_LDFLAGS = -avoid-version
 
-# TESTS = test_root_id
-# TESTS_ENVIRONMENT = srcdir=$(srcdir)
-# TESTS_ENVIRONMENT += abs_top_srcdir=$(abs_top_srcdir)
-# TESTS_ENVIRONMENT += abs_top_builddir=$(abs_top_builddir)
+TESTS = test_vextext
+# test_root_id test_syntax test_vextext
+TESTS_ENVIRONMENT = srcdir=$(srcdir)
+TESTS_ENVIRONMENT += abs_top_srcdir=$(abs_top_srcdir)
+TESTS_ENVIRONMENT += abs_top_builddir=$(abs_top_builddir)
 
-# check_PROGRAMS = $(TESTS)
-# test_root_id_SOURCES = root_id_test.c
-# test_root_id_LDADD = -L. -lmk4util
+check_PROGRAMS = $(TESTS)
+test_vextext_SOURCES = test/test_vextext.c
+test_vextext_LDADD = -L. -lmk4util -L../msg -lmsg
 
 EXTRA_DIST = CMakeLists.txt
 
