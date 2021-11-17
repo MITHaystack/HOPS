@@ -77,7 +77,7 @@ else
     ret_val=$(($ret_val + $?))
 
     # tests
-    declare -a source_list=( "root_id_test.c" "test_syntax.c" )
+    declare -a source_list=( "root_id_test.c" "test_syntax.c" "test_vextext.c" )
     src_dir="${HOPS3_SRC_DIR}/sub/util"
     dest_dir="${HOPS4_SRC_DIR}/source/c_src/mk4util/test"
     source $bsi/compare_src_dest.sh

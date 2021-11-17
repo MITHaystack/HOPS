@@ -20,6 +20,11 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#ifdef HOPS_VEX_TEXT_SHARE_DIR
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <unistd.h>
+#endif /* HOPS_VEX_TEXT_SHARE_DIR */
 #include "mk4_util.h"
 
                                         /* Declare these global, to be */
@@ -37,7 +42,9 @@ char tmpdir[200];
 // /correlator no longer exists, thus this entire file is full of junk.
 // PFORMAT_TEXT_DIR does not appear to have every been defined in HOPS3
 // Here at least we set things so that fourfit will run without an install
-// or later, after an install.
+// or later, after an install.  If the Makefile supplies both variables,
+// then pre-install, the vex/text source directory can supply the file
+// and after the install, the installed destination should be used.
 static char *textdef(void)
 {
 #ifdef HOPS_VEX_TEXT_SRC_DIR
@@ -52,9 +59,12 @@ static char *textdef(void)
 #endif /* HOPS_VEX_TEXT_SRC_DIR */
 
 #ifdef HOPS_VEX_TEXT_SHARE_DIR
+    struct stat sb;
+    /* see if the directory exists, if so, use it */
 #   warning "Configured testdir to " HOPS_VEX_TEXT_SHARE_DIR
-    return(HOPS_VEX_TEXT_SHARE_DIR);
-#endif /* HOPS_VEX_TEXT_SRC_DIR */
+    if (!stat(HOPS_VEX_TEXT_SHARE_DIR, &sb))
+        return(HOPS_VEX_TEXT_SHARE_DIR);
+#endif /* HOPS_VEX_TEXT_SHARE_DIR */
     return(textdefault);
 }
 
