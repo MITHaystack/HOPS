@@ -150,8 +150,8 @@ Below is an incomplete list of various data operations. A full specification of 
 \begin{algorithm}[h!]
   \caption{Complex conjugation operator.}
     \begin{algorithmic}[1]
-    \Require{Complex array $\mathbf{X}$ of rank $N$, and total size $n$.}
-	\State {\textbf{for} $j=0\ldots n$ \textbf{do} }
+    \Require{Complex array $\mathbf{X}$ of rank $N$, and total size $M$.}
+	\State {\textbf{for} $j=0\ldots M$ \textbf{do} }
 	\State {$\quad \mathbf{X}[j] = \overline{\mathbf{X}[j]}$ }
     \State{\textbf{return}.}
     \Ensure{Conjugate array, $\overline{\mathbf{X}[j]}$.}
@@ -170,8 +170,8 @@ Below is an incomplete list of various data operations. A full specification of 
 \begin{algorithm}[h!]
   \caption{Cyclic rotation operator.}
     \begin{algorithmic}[1]
-    \Require{Array $\mathbf{X}$ of rank $N$, with dimensions of $\{n_1, n_2, \ldots, n_{N-1} \}$ and total size $M$. The integer offsets of each axis to be rotated $m_i$.}
-	\State {\textbf{for} $j=0\ldots n $ \textbf{do} }
+    \Require{Array $\mathbf{X}$ of rank $N$, with dimensions of $\{n_1, n_2, \ldots, n_{N-1} \}$ and total size $M$, and the integer offsets of each axis to be rotated $m_i$.}
+	\State {\textbf{for} $j=0\ldots M $ \textbf{do} }
     \State {$\quad$ Compute the indices $\{k_0, k_1, \ldots, k_{N-1} \}$ associated with location $j$.}
     \State {$\quad$ \textbf{for} $i=0\ldots N-1$ \textbf{do}  $k'_i = k_i + m_i \;\; \mathbf{mod} \;\; n_i$. }
 	\State {$\quad \mathbf{Y}[k'_0, k'_1, \ldots, k'_{N-1} ] = \mathbf{X}[k_0, k_1, \ldots, k_{N-1}]$ }
@@ -245,13 +245,14 @@ Below is an incomplete list of various data operations. A full specification of 
 \subsubsection{Data Container Extensions}
 
 The primary goal of the containers is to provide a relatively simple and efficient representation of commonly used data types that hides the details of
-memory management and array indexing/access from the user. They should not be overburdened with too much extraneous functionality that is specific to a particular operation that must be executed upon them (e.g. the N-dimensional array container should not implement a method to sum two arrays.), as this greatly
-over complicates these classes and makes them brittle. However, there are some cases where this sort of decoupling may induce a performance cost. An example of
-this occurs in the case of SIMD/GPU acceleration. In order to make use of GPU processing the data must be copied to a buffer on the device, processed, and then the results must be passed back to the host. However, if there are several operations to be performed in succession on the GPU, only first and last transfer
-need to occur, with intervening transfers being unecessary as input data is already present on the device. However, in order to eliminate the intermediate transfers a handle to the device buffer must be kept available. While a pointer a device buffer does not belong in something as basic as a data container, it
-is a good candidate for something to be stored in and extension.
+memory management and array indexing/access from the user. They should not be overburdened with too much extraneous functionality that is specific to a particular operation that must be executed upon them as this greatly
+over complicates these classes and makes them brittle. 
+
+However, there are some cases where this sort of decoupling may induce a performance cost. An example of
+this occurs in the case of SIMD/GPU acceleration. In order to make use of GPU processing the data must be copied to a buffer on the device, processed, and then the results must be passed back to the host. However, if there are several operations to be performed in succession on the GPU, only first and last transfer need to occur, with intervening transfers being unecessary as input data is already present on the device. However, in order to eliminate the intermediate transfers a handle to the device buffer must be kept persistent in memory. So the questions arises, where should we keep this device buffer object? Should it be kept as a member of the data operator? That would be a poor choice, since if it is private it will not accesible to other operators to make use of, and if it is public then it will introduce the possibility of tight coupling with other portions of the code making use of the buffer. On the other hand, a pointer to a device buffer is too specific to belong in something as basic as a data container. However, it is a good candidate for something to may be stored in an extension.
 
 In order to provide the ability to append extensions to the data containers, they must all inherit from a base class, \texttt{MHO\_ExtensbleElement}, which
-in turn stores a vector of type-erased\footnote{https://davekilian.com/cpp-type-erasure.html} pointers to the extensions themselves. The extensions are templated on the the class providing the additional functionality and must all inherit from the base class \texttt{MHO\_ExtendedElement} (so they can be stored in the vector owned \texttt{MHO\_ExtensbleElement}) A brief sketch of the code that allows for this is shown in listing \ref{lst:extend}. One draw back of this method is that it requires $N$ \texttt{dynamic\_cast} calls (where $N$ is the number of extensions) every time any particular extension is modified or accessed via the data container. This is an acceptable trade off for infrequent access to expensive (to construct) extensions, but should be used rather sparingly as \texttt{dynamic\_cast} has high overhead.
+in turn stores a vector of type-erased\footnote{https://davekilian.com/cpp-type-erasure.html} pointers to the extensions themselves. The extensions are templated on the the class providing the additional functionality and must all inherit from the base class \texttt{MHO\_ExtendedElement} (so they can be stored in the vector owned \texttt{MHO\_ExtensbleElement}) A brief sketch of the code that allows for this is shown in listing \ref{lst:extend}. One draw back of this method is that requires $N$ \texttt{dynamic\_cast} calls any time a particular extension is modified or accessed via the data container. 
+This is an acceptable trade off for infrequent access to expensive (to construct) extensions, but should be used rather sparingly as \texttt{dynamic\_cast} has high overhead.
 
 \lstinputlisting[language=C++,float=h!,label={lst:extend},caption=Data container extension classes.]{code/MHO_ExtensibleElement.hh}
