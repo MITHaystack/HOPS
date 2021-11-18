@@ -140,31 +140,57 @@ Below is an incomplete list of various data operations. A full specification of 
 
 \noindent \textbf{Name:} MHO\_ComplexConjugator \\
 \textbf{Type:} Unary, in-place and out-of-place (requires copy). \\
-\textbf{Configuration Parameters:} None\\
-\textbf{Inputs:} An N dimensional array with complex double/float value type \\
-\textbf{Outputs:} An N dimensional array with complex double/float value type \\
-\textbf{Description:} Iterates over all values in an N dimensional array and applies the operation \texttt{std::conj()} to each element. \\
+\textbf{Template Parameters:} The specific N dimensional array type.\\
+\textbf{Configuration Parameters:} None.\\
+\textbf{Inputs:} An N dimensional array with complex double/float value type. \\
+\textbf{Outputs:} An N dimensional array with complex double/float value type. \\
+\textbf{Description:} Iterates over all values in an N dimensional array and applies the operation \texttt{std::conj()} to each element, according to algorithm \ref{algo:complex-conjugator}. \\
 
-\newpage 
+
+\begin{algorithm}[h!]
+  \caption{Complex conjugation operator.}
+    \begin{algorithmic}[1]
+    \Require{Complex array $\mathbf{X}$ of rank $N$, and total size $n$.}
+	\State {\textbf{for} $j=0\ldots n$ \textbf{do} }
+	\State {$\quad \mathbf{X}[j] = \overline{\mathbf{X}[j]}$ }
+    \State{\textbf{return}.}
+    \Ensure{Conjugate array, $\overline{\mathbf{X}[j]}$.}
+    \end{algorithmic}
+  \label{algo:complex-conjugator}
+\end{algorithm}
+
 
 \noindent \textbf{Name:} MHO\_CyclicRotator \\
 \textbf{Type:} Unary, both in-place and out-of-place. \\
-\textbf{Configuration Parameters:} Requires the integer index of the axis to be rotated, and the integer offset specifying the size of the rotation.\\
-\textbf{Inputs:} An N dimensional array with any primitive type \\
-\textbf{Outputs:} An N dimensional array with any primitive type \\
-\textbf{Description:} \\
+\textbf{Configuration Parameters:} Requires the integer index of the axis to be rotated, and the integer offset specifying the size of the rotation. A positive value of the rotation offset results in a right shift cyclic rotation, while a negative value results in a left shift cyclic rotation.\\
+\textbf{Inputs:} An N dimensional array with arbitrary trivially copyable type. \\
+\textbf{Outputs:} An N dimensional array with arbitrary trivially copyable type. \\
+\textbf{Description:} Performs cyclic rotation upon the requested axis for the specified offset, according to algorithm \ref{algo:cyclic-rot}.
 
-\newpage 
+\begin{algorithm}[h!]
+  \caption{Cyclic rotation operator.}
+    \begin{algorithmic}[1]
+    \Require{Array $\mathbf{X}$ of rank $N$, with dimensions of $\{n_1, n_2, \ldots, n_{N-1} \}$ and total size $M$. The integer offsets of each axis to be rotated $m_i$.}
+	\State {\textbf{for} $j=0\ldots n $ \textbf{do} }
+    \State {$\quad$ Compute the indices $\{k_0, k_1, \ldots, k_{N-1} \}$ associated with location $j$.}
+    \State {$\quad$ \textbf{for} $i=0\ldots N-1$ \textbf{do}  $k'_i = k_i + m_i \;\; \mathbf{mod} \;\; n_i$. }
+	\State {$\quad \mathbf{Y}[k'_0, k'_1, \ldots, k'_{N-1} ] = \mathbf{X}[k_0, k_1, \ldots, k_{N-1}]$ }
+    \State {\textbf{return}.}
+    \Ensure{The rotated array $\mathbf{Y}$.}
+    \end{algorithmic}
+  \label{algo:cyclic-rot}
+\end{algorithm}
+
+
 
 \noindent \textbf{Name:} MHO\_FastFourierTransform \\
 \textbf{Type:} Unary, both in-place and out-of-place. \\
 \textbf{Configuration Parameters:} None\\
-\textbf{Inputs:} A one dimensional array with complex double/float value type \\
-\textbf{Outputs:} A one dimensional array with complex double/float value type \\
+\textbf{Inputs:} A one dimensional array with complex double/float value type. \\
+\textbf{Outputs:} A one dimensional array with complex double/float value type. \\
 \textbf{Description:} \\
 
 
-\newpage 
 
 \noindent \textbf{Name:}  MHO\_FunctorBroadcaster \\
 \textbf{Type:} Unary, both in-place and out-of-place. \\
@@ -174,8 +200,6 @@ Below is an incomplete list of various data operations. A full specification of 
 \textbf{Description:} \\
 
 
-\newpage 
-
 \noindent \textbf{Name:} MHO\_MultidimensionalFastFourierTransform \\
 \textbf{Type:} Unary, both in-place and out-of-place. \\
 \textbf{Configuration Parameters:} None\\
@@ -183,7 +207,6 @@ Below is an incomplete list of various data operations. A full specification of 
 \textbf{Outputs:} An N dimensional array with complex double/float value type \\
 \textbf{Description:} \\
 
-\newpage 
 
 \noindent \textbf{Name:} MHO\_MultidimensionalFastFourierTransformFFTW \\
 \textbf{Type:} Unary, both in-place and out-of-place. \\
@@ -192,7 +215,6 @@ Below is an incomplete list of various data operations. A full specification of 
 \textbf{Outputs:} An N dimensional array with complex double/float value type \\
 \textbf{Description:} \\
 
-\newpage 
 
 \noindent \textbf{Name:} MHO\_MultidimensionalPaddedFastFourierTransform \\
 \textbf{Type:} Unary, both in-place and out-of-place. \\
@@ -202,8 +224,6 @@ Below is an incomplete list of various data operations. A full specification of 
 \textbf{Description:} \\
 
 
-\newpage 
-
 \noindent \textbf{Name:} MHO\_Reducer  \\
 \textbf{Type:} Unary, both in-place (requires copy and resize) and out-of-place. \\
 \textbf{Configuration Parameters:} \\
@@ -211,7 +231,6 @@ Below is an incomplete list of various data operations. A full specification of 
 \textbf{Outputs:} \\
 \textbf{Description:} \\
 
-\newpage 
 
 \noindent \textbf{Name:} MHO\_SubSample  \\
 \textbf{Type:} Unary, both in-place and out-of-place. \\
