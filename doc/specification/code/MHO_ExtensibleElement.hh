@@ -1,37 +1,24 @@
 #include <vector>
 
 //forward declare these types
-class MHO_Visitor;
 class MHO_Element;
 class MHO_ExtensibleElement;
 template<class XExtensionType> class MHO_ExtendedElement;
 
-class MHO_Element
-{
+class MHO_Element{
     public:
-        MHO_Element(){};
-        virtual ~MHO_Element(){};
+        MHO_Element();
+        virtual ~MHO_Element();
 };
 
-class MHO_ExtensibleElement
-{
+class MHO_ExtensibleElement{
     public:
-        MHO_ExtensibleElement(){};
-        virtual ~MHO_ExtensibleElement()
-        {
-            for(auto it = fExtensions.begin(); it != fExtensions.end(); it++)
-            {
-                delete (*it);
-                (*it) = nullptr;
-            }
-            fExtensions.clear();
-        }
-
+        MHO_ExtensibleElement();
+        virtual ~MHO_ExtensibleElement();
         template<class XExtensionType > MHO_ExtendedElement< XExtensionType >* MakeExtension();
         template<class XExtensionType > MHO_ExtendedElement< XExtensionType >* AsExtension();
 
     protected:
-
         std::vector< MHO_Element* > fExtensions;
 };
 
