@@ -79,7 +79,7 @@ shown in Figure~\ref{fig:table-container}.
 
 \subsubsection{Specific data types}
 
-Below is an incomplete table of the various data objects that are constructed from \texttt{MHO\_TableContainer}, along with their data value type and axis names.
+Below is an incomplete table of the various data objects that are constructed from \texttt{MHO\_TableContainer}, along with their data value type and axis names. These may be subject to change (for example, \texttt{uint64_t} may be unecessarily large for the flags type, and could be reduced).
 \begin{center}
 \resizebox{\textwidth}{!}{
 \begin{tabular}{| c | c | c | c |}
@@ -185,10 +185,10 @@ Below is an incomplete list of various data operations. A full specification of 
 
 \noindent \textbf{Name:} MHO\_FastFourierTransform \\
 \textbf{Type:} Unary, both in-place and out-of-place. \\
-\textbf{Configuration Parameters:} None\\
+\textbf{Configuration Parameters:} Requires the direction of the transform to be specified (forward/backward), the direction follows the convention of FFTW.\\
 \textbf{Inputs:} A one dimensional array with complex double/float value type. \\
 \textbf{Outputs:} A one dimensional array with complex double/float value type. \\
-\textbf{Description:} \\
+\textbf{Description:} This operator performs an Fourier transform (or inverse transform) on the input array using an FFT algorithm. If the array size is a power of two, then either a Cooley-Tukey or Gentleman-Sande radix-2 algorithm will be applied. For all other sizes, the Bluestein/Chirp-Z algorithm is used.\\
 
 
 
@@ -202,18 +202,18 @@ Below is an incomplete list of various data operations. A full specification of 
 
 \noindent \textbf{Name:} MHO\_MultidimensionalFastFourierTransform \\
 \textbf{Type:} Unary, both in-place and out-of-place. \\
-\textbf{Configuration Parameters:} None\\
+\textbf{Configuration Parameters:} Requires the selected dimensions of the array that are to be transformed (default is all), as well as direction of the transform to be specified (forward/backward), the direction follows the convention of FFTW.\\
 \textbf{Inputs:} An N dimensional array with complex double/float value type \\
 \textbf{Outputs:} An N dimensional array with complex double/float value type \\
-\textbf{Description:} \\
+\textbf{Description:} Executes a Fourier transform on the selected dimensions of the array using the native FFT calculator.\\
 
 
 \noindent \textbf{Name:} MHO\_MultidimensionalFastFourierTransformFFTW \\
 \textbf{Type:} Unary, both in-place and out-of-place. \\
-\textbf{Configuration Parameters:} None\\
+\textbf{Configuration Parameters:} Requires the selected dimensions of the array that are to be transformed (default is all), as well as direction of the transform to be specified (forward/backward), the direction follows the convention of FFTW.\\
 \textbf{Inputs:} An N dimensional array with complex double/float value type \\
 \textbf{Outputs:} An N dimensional array with complex double/float value type \\
-\textbf{Description:} \\
+\textbf{Description:} Executes a Fourier transform on the selected dimensions of the array using the FFTW library, the precise algorithm selected is determined by FFTW.\\
 
 
 \noindent \textbf{Name:} MHO\_MultidimensionalPaddedFastFourierTransform \\
