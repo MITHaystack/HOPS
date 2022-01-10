@@ -239,12 +239,30 @@ the padding factor $M$ and the direction of the transform (forward/backward). Th
 \textbf{Outputs:} A N dimensional array with any value type\\
 \textbf{Description:} For a stride value of $k$, and dimension index $j$, the output array will be resized and populated in such a way that only every $k$-th element (along the $j$-th dimension) from the original array will remain.\\
 
+\subsubsection{Compound data operations}
+
+On their own each of the specific data operations listed in the previous section are of limited utility. However, they can be composed to produce more useful manipulations of the data (e.g. \texttt{norm_fx.c}). The advantage of composing complex operations via a series of simple operators is that more fine grained testing can be done at each sub-step to ensure it is operating correctly without involving the much more complicated process.
+
+Let us consider the data manipulation done by the fourfit function \texttt{norm_fx.c}. This function is responsible for a large number of changes to the data, but at its core is largely concerned with transforming the visibility data from frequency-space to delay-space, so that a peak in delay-space can be found. However, in the process of executing this function, several other modifications are introduced to the data, such as: the application of phase and delay calibration corrections, the summation of the visibilities of different polarization-products, the application of delta-parallatic angle corrections, and the excision of data due to low correlator weights or ad-hoc flagging. A brief sketch of the operations performed on the set of visibilties by \texttt{norm_fx.c} is summarized with minimal detail below.
+
+
+\begin{algorithm}[h!]
+  \caption{Application of \texttt{norm_fx.c}}
+    \begin{algorithmic}[1]
+    \Require{Array of channelized visibilities $\mathbf{V}$ (indexed by pol. product, channel, time, and (sub-channel) frequency.) }
+	\State { }
+    \State { }
+    \end{algorithmic}
+  \label{algo:cyclic-rot}
+\end{algorithm}
+
+
+
 
 
 \subsubsection{Data Container Extensions}
 
-The primary goal of the containers is to provide a relatively simple and efficient representation of commonly used data types that hides the details of
-memory management and array indexing/access from the user. They should not be overburdened with too much extraneous functionality that is specific to a particular operation that must be executed upon them as this greatly
+The primary goal of the containers is to provide a relatively simple and efficient representation of commonly used data types that hides the details of memory management and array indexing/access from the user. They should not be overburdened with too much extraneous functionality (beyond simple operator overloads like assignment, scalar multiply, etc. ) that is specific to a particular operation as this greatly
 over complicates these classes and makes them brittle. 
 
 However, there are some cases where this sort of decoupling may induce a performance cost. An example of
