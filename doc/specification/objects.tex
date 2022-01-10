@@ -79,7 +79,7 @@ shown in Figure~\ref{fig:table-container}.
 
 \subsubsection{Specific data types}
 
-Below is an incomplete table of the various data objects that are constructed from \texttt{MHO\_TableContainer}, along with their data value type and axis names. These may be subject to change (for example, \texttt{uint64_t} may be unecessarily large for the flags type, and could be reduced).
+Below is an incomplete table of the various data objects that are constructed from \texttt{MHO\_TableContainer}, along with their data value type and axis names. These may be subject to change (for example, \texttt{uint64\_t} may be unecessarily large for the flags type, and could be reduced).
 \begin{center}
 \resizebox{\textwidth}{!}{
 \begin{tabular}{| c | c | c | c |}
@@ -142,8 +142,8 @@ Below is an incomplete list of various data operations. A full specification of 
 \textbf{Type:} Unary, in-place and out-of-place (requires copy). \\
 \textbf{Template Parameters:} The specific N dimensional array type.\\
 \textbf{Configuration Parameters:} None.\\
-\textbf{Inputs:} An N dimensional array with complex double/float value type. \\
-\textbf{Outputs:} An N dimensional array with complex double/float value type. \\
+\textbf{Inputs:} A N dimensional array with complex double/float value type. \\
+\textbf{Outputs:} A N dimensional array with complex double/float value type. \\
 \textbf{Description:} Iterates over all values in an N dimensional array and applies the operation \texttt{std::conj()} to each element, according to algorithm \ref{algo:complex-conjugator}. \\
 
 
@@ -163,8 +163,8 @@ Below is an incomplete list of various data operations. A full specification of 
 \noindent \textbf{Name:} MHO\_CyclicRotator \\
 \textbf{Type:} Unary, both in-place and out-of-place. \\
 \textbf{Configuration Parameters:} Requires the integer index of the axis to be rotated, and the integer offset specifying the size of the rotation. A positive value of the rotation offset results in a right shift cyclic rotation, while a negative value results in a left shift cyclic rotation.\\
-\textbf{Inputs:} An N dimensional array with arbitrary trivially copyable type. \\
-\textbf{Outputs:} An N dimensional array with arbitrary trivially copyable type. \\
+\textbf{Inputs:} A N dimensional array with arbitrary trivially copyable type. \\
+\textbf{Outputs:} A N dimensional array with arbitrary trivially copyable type. \\
 \textbf{Description:} Performs cyclic rotation upon the requested axis for the specified offset, according to algorithm \ref{algo:cyclic-rot}.
 
 \begin{algorithm}[h!]
@@ -194,51 +194,50 @@ Below is an incomplete list of various data operations. A full specification of 
 
 \noindent \textbf{Name:}  MHO\_FunctorBroadcaster \\
 \textbf{Type:} Unary, both in-place and out-of-place. \\
-\textbf{Configuration Parameters:} \\
-\textbf{Inputs:} \\
-\textbf{Outputs:} \\
-\textbf{Description:} \\
+\textbf{Configuration Parameters:} The unary functor class to be applied to each element of the array (this is a template parameter).\\
+\textbf{Inputs:} A N dimensional array with any value type (must be acceptable to the functor)\\
+\textbf{Outputs:} A N dimensional array with any value type (must be acceptable to the functor)\\
+\textbf{Description:} For every element in the array the functor operation will be applied, in the case of an out-of-place operation a copy will take place.\\
 
 
 \noindent \textbf{Name:} MHO\_MultidimensionalFastFourierTransform \\
 \textbf{Type:} Unary, both in-place and out-of-place. \\
-\textbf{Configuration Parameters:} Requires the selected dimensions of the array that are to be transformed (default is all), as well as direction of the transform to be specified (forward/backward), the direction follows the convention of FFTW.\\
-\textbf{Inputs:} An N dimensional array with complex double/float value type \\
-\textbf{Outputs:} An N dimensional array with complex double/float value type \\
+\textbf{Configuration Parameters:} The indices of the dimensions which are to undergo transformation(default is all), as well as direction of the transform to be specified (forward/backward), the direction follows the convention of FFTW.\\
+\textbf{Inputs:} A N dimensional array with complex double/float value type \\
+\textbf{Outputs:} A N dimensional array with complex double/float value type \\
 \textbf{Description:} Executes a Fourier transform on the selected dimensions of the array using the native FFT calculator.\\
 
 
 \noindent \textbf{Name:} MHO\_MultidimensionalFastFourierTransformFFTW \\
 \textbf{Type:} Unary, both in-place and out-of-place. \\
-\textbf{Configuration Parameters:} Requires the selected dimensions of the array that are to be transformed (default is all), as well as direction of the transform to be specified (forward/backward), the direction follows the convention of FFTW.\\
-\textbf{Inputs:} An N dimensional array with complex double/float value type \\
-\textbf{Outputs:} An N dimensional array with complex double/float value type \\
+\textbf{Configuration Parameters:} The indices of the dimensions which are to undergo transformation (default is all), as well as direction of the transform to be specified (forward/backward), the direction follows the convention of FFTW.\\
+\textbf{Inputs:} A N dimensional array with complex double/float value type \\
+\textbf{Outputs:} A N dimensional array with complex double/float value type \\
 \textbf{Description:} Executes a Fourier transform on the selected dimensions of the array using the FFTW library, the precise algorithm selected is determined by FFTW.\\
 
 
 \noindent \textbf{Name:} MHO\_MultidimensionalPaddedFastFourierTransform \\
 \textbf{Type:} Unary, both in-place and out-of-place. \\
-\textbf{Configuration Parameters:} None\\
-\textbf{Inputs:} An N dimensional array with complex double/float value type \\
-\textbf{Outputs:} An N dimensional array with complex double/float value type \\
-\textbf{Description:} \\
+\textbf{Configuration Parameters:} The indices of the dimensions which are to undergo transformation (default is all),
+the padding factor $M$ and the direction of the transform (forward/backward). The zero padding can be specified as either symmetrically center padded (zeros place in middle of array), or end-padded.\\
+\textbf{Inputs:} A N dimensional array with complex double/float value type with even lengths in each dimension to be transformed. \\
+\textbf{Outputs:} A N dimensional array with complex double/float value type with even lengths in each dimension to be transformed.\\
+\textbf{Description:} For each selected dimension of length $n$, the array will be padded with zeros, such that the new length will be $nM$. The zeros will either be placed in the center of the re-sized array (center-padded), or at the end (end-padded). The resulting padded array will then be transformed using the native FFT calculator. The primary use case of this padded FFT is for interpolation.\\
 
 
 \noindent \textbf{Name:} MHO\_Reducer  \\
 \textbf{Type:} Unary, both in-place (requires copy and resize) and out-of-place. \\
-\textbf{Configuration Parameters:} \\
-\textbf{Inputs:} \\
-\textbf{Outputs:} \\
-\textbf{Description:} \\
-
+\textbf{Configuration Parameters:} The indices of the dimensions which are to undergo reduction, and the operation which is to execute the reduction (addition or multiplication). \\
+\textbf{Inputs:} A N dimensional array with numerical value type\\
+\textbf{Outputs:} A N dimensional array with numerical value type\\
+\textbf{Description:} The input array will be reduced along the selected axes, and depending on the operation (addition or multiplication), the contents will be resized and replaced by the sum or product of the elements along that axis.\\
 
 \noindent \textbf{Name:} MHO\_SubSample  \\
 \textbf{Type:} Unary, both in-place and out-of-place. \\
-\textbf{Configuration Parameters:} \\
-\textbf{Inputs:} \\
-\textbf{Outputs:} \\
-\textbf{Description:} \\
-
+\textbf{Configuration Parameters:} The index of the dimension along which the sub-sampling operation should take place, and the stride at which elements are re-sampled.\\
+\textbf{Inputs:} A N dimensional array with any value type\\
+\textbf{Outputs:} A N dimensional array with any value type\\
+\textbf{Description:} For a stride value of $k$, and dimension index $j$, the output array will be resized and populated in such a way that only every $k$-th element (along the $j$-th dimension) from the original array will remain.\\
 
 
 
