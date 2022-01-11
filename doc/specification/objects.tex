@@ -264,7 +264,7 @@ Let us consider the data manipulation done by the fourfit function \texttt{norm\
 Once \texttt{norm\_fx.c} has been applied to the visibility data, what was originally the frequency axis of the input array, is now the (single-band) delay axis, and a search function to locate the maximum delay value can be executed. Once a maximum is found, an additional interpolation step is executed to fine tune the delay value.
 
 Following the application of \texttt{norm\_fx.c}, the resulting output data can then be Fourier transformed along the time-axis, in order to search
-for the maximum delay rate. 
+for the maximum delay rate. This process is handled by the fourfit function \texttt{delay\_rate.c}.
 
 
 
