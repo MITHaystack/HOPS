@@ -55,7 +55,7 @@ else
     )
 
     src_dir="${HOPS3_SRC_DIR}/data/ff_testdata"
-    dest_dir="${HOPS4_SRC_DIR}/source/c_src/applications/hops3-ff-tests"
+    dest_dir="${HOPS4_SRC_DIR}/source/c_src/applications/test/hops3-ff-tests"
     source $bsi/compare_src_dest.sh
     ret_val=$(($ret_val + $?))
 
@@ -63,7 +63,7 @@ else
     declare -a source_list=( chk_fsumm.sh chk_env.sh )
 
     src_dir="${HOPS3_SRC_DIR}/data/ae_testdata"
-    dest_dir="${HOPS4_SRC_DIR}/source/c_src/applications/hops3-ae-tests"
+    dest_dir="${HOPS4_SRC_DIR}/source/c_src/applications/test/hops3-ae-tests"
     source $bsi/compare_src_dest.sh
     ret_val=$(($ret_val + $?))
 fi

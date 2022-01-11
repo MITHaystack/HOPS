@@ -27,9 +27,10 @@ mhr=$MHO_REGRESSION_DATA/reference
 mff=$MHO_REGRESSION_DATA/ff_testdata
 mae=$MHO_REGRESSION_DATA/ae_testdata
 
+mhv=$MHO_REGRESSION_DATA/vgosdata
+
 src=$name
 
-### FIXME 3756 needs to be captured
 ### and need to finish import of sources
 
 # should be the same list as in bootstrap/legacy_tar.sh
@@ -73,10 +74,13 @@ case $name in
     3413)       parent=$mff     ; odr=$src          ;;
     3562)       parent=$mff     ; odr=$src          ;;
     3571)       parent=$mff     ; odr=$src          ;;
+    3727)       parent=$mff     ; odr=$src          ;;
     3756)       parent=$mff     ; odr=$src          ;;
+    3772)       parent=$mff     ; odr=$src          ;;
     average)    parent=$mff     ; odr=$src          ;;
     # ae_testdata subdirs
     aetest)     parent=$mae     ; odr=$src          ;;
+    3593)       parent=$mhv     ; odr=$src          ;;
 
     # vex2xml
     v2xsrc)     parent=$mhr     ; odr=$src          ;;
