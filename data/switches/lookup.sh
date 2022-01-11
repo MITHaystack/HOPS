@@ -20,6 +20,7 @@ done <<EOF
     alist       $ABD/source/c_src/applications/alist
     aedit       $ABD/source/c_src/applications/aedit
     fourfit     $ABD/source/c_src/applications/fourfit
+    fplot       $ABD/source/c_src/applications/fplot
     #add        #...
     bogus       /no-such-path
 EOF
