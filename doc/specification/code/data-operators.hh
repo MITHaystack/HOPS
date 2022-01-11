@@ -1,39 +1,27 @@
-//template parameters must inherit from MHO_NDArrayWrapper
-class MHO_DataOperator
+class MHO_Operator
 {
     public:
-       virtual bool Initialize() = 0;
-       virtual bool ExecuteOperation() = 0;
-    //...impl...
+        MHO_Operator();
+        virtual ~MHO_Operator();
+        virtual bool Initialize() = 0;
+        virtual bool Execute() = 0;
 };
 
-
-
-template<class XInputArrayType, class XOutputArrayType>
-class MHO_NDArrayOperator: public MHO_DataOperator
+template<class XArgType>
+class MHO_UnaryOperator: public MHO_Operator
 {
     public:
-       virtual void SetInput(XInputArrayType* in){fInput = in;};
-       virtual void SetOutput(XOutputArrayType* out){fOutput = out;};
-       virtual XInputArrayType* GetInput(){return fInput;};
-       virtual XOutputArrayType* GetOutput(){return fOutput;};
-       virtual bool Initialize() override;
-       virtual bool ExecuteOperation() override;
-    //...impl...
+        MHO_UnaryOperator();
+        virtual ~MHO_UnaryOperator();
+        virtual void SetArgs(XArgType* in); //in-place
+        virtual void SetArgs(const XArgType* in, XArgType* out); //out-of-place
 };
 
- //template parameters must inherit from MHO_NDArrayWrapper
-template<class XInputArrayType1, class XInputArrayType2, class XOutputArrayType>
-class MHO_BinaryNDArrayOperator:  public MHO_DataOperator
+template<class XArgType1, class XArgType2 = XArgType1, class XArgType3 = XArgType2>
+class MHO_BinaryOperator: public MHO_Operator
 {
-    public:
-        virtual void SetFirstInput(XInputArrayType1* in){fInput1 = in;};
-        virtual void SetSecondInput(XInputArrayType2* in){fInput2 = in;};
-        virtual void SetOutput(XOutputArrayType* out){fOutput = out;};
-        virtual XInputArrayType1* GetFirstInput(){return fInput1;};
-        virtual XInputArrayType2* GetSecondInput(){return fInput2;};
-        virtual XOutputArrayType* GetOutput(){return fOutput;};
-        virtual bool Initialize() override;
-        virtual bool ExecuteOperation() override;
-        //...impl...
+   public:
+       MHO_BinaryOperator();
+       virtual ~MHO_BinaryOperator();
+       virtual void SetArgs(const XArgType1* in1, const XArgType2* in2, XArgType3* out) //out-of-place
 };
