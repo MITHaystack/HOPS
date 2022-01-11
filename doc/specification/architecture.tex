@@ -24,7 +24,7 @@ access and directly modify the data and/or data operators. A extremely simplifie
 Upon completion of fringe fitting, the calibrated data with fringe solution applied will then be saved in a native binary format with the option to convert to an archival format (e.g. HDF5) via a simple conversion utility. Intermediate stages (with partial data corrections applied) may also optionally saved to the native format. It is also desired that
 the export of a data flagging table and band-pass correction table be made possible, such an export tool may initially be implemented via user python script. If a multi-package (HOPS/AIPS/CASA) exchange format is adopted/specified then this feature could be made a built-in option in the refactored code.
 
-In addition to the fringe fitter itself, a number of other post-fringing data analysis tools will also be provided. Most importantly are
+In addition to the fringe fitter itself, a number of other post-fringing data analysis tools will also be provided. Most important are
 a fringe plot utility for diagnostic information about the quality of an individual fringe, as well as the equivalent executables to \textit{alist} and \textit{aedit}, which summarize multiple fringe solutions and display condensed information about multiple scans respectively.
 We intended to preserved the existing functionality of these executables, but expect to make the fringe-plot more flexible by providing options
 to enable/disable various plotting items.

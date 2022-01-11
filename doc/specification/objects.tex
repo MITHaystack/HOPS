@@ -1,5 +1,5 @@
 
-\section{Objects specification}
+\section{Object specification}
 \label{sec:objects}
 
 
@@ -7,7 +7,7 @@ Generally speaking the code will be organized around roughly three object type c
 
 \begin{enumerate}
  \item Meta Data Containers: These serve to store small quantities of station and baseline metadata associated with an observation of disparate types.
- \item Array Containers: These serve to organize large n-dimensional arrays of a single data type (e.g. visibility data and correction/calibration table data). 
+ \item Array Containers: These serve to organize large n-dimensional arrays of a single data type (e.g. visibility data and correction/calibration table data).
  \item Data Operators: These evaluate a function or perform some transformation on a given data container. Their operation is configurable via a set of externally defined parameters, while their application to any particular data set can be made conditional by a set of filters.).
 \end{enumerate}
 
@@ -29,47 +29,256 @@ so there is no need to expend effort on a native implementation. Moreover this s
 
 We propose the following basic set of class templates be used to construct most in-memory objects used for the manipulation of correlated observation data and its associated station data:
 \begin{enumerate}
- \item ScalarContainer - encapsulates scalar-like data 
- \item VectorContainer - encapsulates vector-like data
- \item TableContainer - encapsulates rank-N tensor-like data with associated axes (vector)
+ \item \texttt{MHO\_ScalarContainer} - encapsulates scalar-like data
+ \item \texttt{MHO\_VectorContainer} - encapsulates vector-like data
+ \item \texttt{MHO\_TableContainer} - encapsulates rank-N tensor-like data with associated axes (vector)
 \end{enumerate}
-These template classes are to serve as a simple wrapper around the management of the raw memory needed to store a data item and keep track of its associated unit(s), 
-and (if applicable) the values associated with the axes along each dimension and their units.
+These template classes are to serve as a simple wrapper around the management of the raw memory needed to store a data item and keep track of its associated unit(s), and (if applicable) the values associated with the axes along each dimension and their units.
 
-Listing \ref{lst:objects} gives a brief sketch of the preliminary class template implementation for these data container objects, while listing \ref{lst:visib} gives a simple example of what template declaration of an object storing visibility data from an observation over single baselines and polarization products might look like.
-A graphical representation of a TableContainer is shown in Figure~\ref{fig:table-container}.
+The three container types listed above represent the majority of the memory intensive data needed within HOPS
+and can largely be derived from a N-dimensional array of some numeric or integral type. Therefore a generic template class for
+N-dimensional arrays is needed, listing \ref{lst:ndarray} shows a stub of this class.
+\lstinputlisting[language=C++,label={lst:ndarray},caption=N-Dimensional Array Template]{code/MHO_NDArrayWrapper.hh}
+The underlying storage of the N-dimensional array data is done as a single contiguous chunk of memory which can either be a piece of externally or internally managed memory. Indexing into this chunk of memory is done using C-like row-major order, where for an array of rank D, with dimension sizes $\{N_0, N_1, \cdots N_{D-1}\}$, the location of the data specified by the indexes $\{n_0, n_1, \cdots, n_{D-1}\}$ can found at an offset from the start, $z$, that is given by:
+\begin{equation}
+ z = \sum_{k=0}^{D-1} \left ( \prod_{j=k+1}^{D-1} N_j \right) n_k
+ \end{equation}
+Access to the underlying data stored within a class of this type can then proceed in two main ways. The first is through the aforementioned
+row-major order indexing operation, and the second is through the use of iterators. An example of several of the provided methods is shown for a three dimensional array in listing \ref{lst:array-usage}. Iterators are most commonly utilized for efficient incremental (continuous or strided) access to the array data as they can be computed using pointer arithmetic, while random access is best done via indexes.
+\lstinputlisting[language=C++,label={lst:array-usage},caption=N-Dimensional Array access]{code/array_use.cc}
 
+In addition to the raw data stored in the N-dimensional array, in the case of the \texttt{MHO\_TableContainer} it is important to associate a coordinate axis with each dimension in order to provide various data operators with the ability to look-up the location of a datum beyond a simple integer-index. To enable this,
+we will pair an N-dimensional array with a tuple of axis objects associated with each dimension. Listing \ref{lst:objects} shows the template class structure
+for a TableContainer (along with other) objects.
 \lstinputlisting[language=C++,float=h!,label={lst:objects},caption=Data object templates]{code/data-objects.hh}
+The axis objects themselves also inherit from \texttt{MHO\_IntervalLabelTree}, which provides the ability to associate a pair of indexes with a key value pair of several types. A simple example of this would be tagging a section of the frequency axis with a particular channel ID (e.g \texttt{ [0, 32] } $\leftrightarrow$ \texttt{ \{"channel\_id": "X17LY"\} }). The class \texttt{MHO\_IntervalLabelTree} will support tagging axis intervals with values of at least the following types: char, bool, int, double, and string, using strings as keys, and allow for the bi-directional look up of a key:value pairs with assoiated intervals.
 
+As a concrete example of the \texttt{MHO\_TableContainer} template class, listing \ref{lst:visib} gives a simple example of what template declaration of an object storing channelized visibility data from a single-baseline observation might look like.
 \lstinputlisting[language=C++,float=h!,label={lst:visib},caption=Visibility object type]{code/visibilities.hh}
-
+For example, in the case of channelized visibilities, the axes of each of the four dimensions would be:
+\begin{enumerate}
+\item Axis 0: Polarization-product axis, labelled by a short string specifying the reference
+and remote stations' polarizations for data associated with that column (e.g ``XX'' or ``RR'' or ``RX'').
+\item Axis 1: Channel axis, labelled by a character or numerical value (e.g. ``A'' or 1).
+\item Axis 2: Time axis, labelled by the time since start of a scan in seconds.
+\item Axis 3: Frequency axis, labelled by the frequency offset from the edge of the channel (MHz).
+\end{enumerate}
+It should be noted that these coordinate axes are there merely to label the data, but are not meant to provide a reverse look-up
+capability, (e.g example inverting the polarization-product code ``LL'' to infer a 0-th index location of 0). For efficiency array
+access should still be done using unsigned integer index values. A graphical representation of a \texttt{MHO\_TableContainer} is
+shown in Figure~\ref{fig:table-container}.
 
 \begin{figure}[h!]
   \begin{center}
   \captionsetup{width=0.7\linewidth}
   \includegraphics[width=0.75\textwidth]{fig/data-container-baseline.png}
-    \caption{A graphical representation of a TableContainer. This class is composed of an N-dimensional array, coupled with axes to provide coordinate values
-    along each dimension. The axes themselves allow for arbitrary intervals to be labelled by key:value pairs in order to allow for local look-up of filter data.
-    For example, along the frequency axis, the interval labels may be channel or sampler names among other possibilities. Furthermore, the interval and associated
-    labels will be stored in an interval-tree structure to allow for fast bi-directional lookup of data indices $\leftrightarrow$ data labels.}
+    \caption{A graphical representation of a \texttt{MHO\_TableContainer}. This class is composed of an N-dimensional array, coupled with axes to provide coordinate values along each dimension. The axes themselves allow for arbitrary intervals to be labelled by key:value pairs in order to allow for local look-up of filter data. For example, along the frequency axis, the interval labels may be channel or sampler names among other possibilities. Furthermore, the interval and associated labels will be stored in an interval-tree structure to allow for fast bi-directional lookup of data indices $\leftrightarrow$ data labels.}
     \label{fig:table-container}
 \end{center}
 \end{figure}
 
+\subsubsection{Specific data types}
+
+Below is an incomplete table of the various data objects that are constructed from \texttt{MHO\_TableContainer}, along with their data value type and axis names. These may be subject to change (for example, \texttt{uint64\_t} may be unecessarily large for the flags type, and could be reduced).
+\begin{center}
+\resizebox{\textwidth}{!}{
+\begin{tabular}{| c | c | c | c |}
+\hline
+ Name & value type & N-Dim & Axes \\  \hline
+ Visibilities & \texttt{std::complex<double>} & 3 & (pol. product, time, frequency) \\ \hline
+ Weights & \texttt{double} & 3 & (pol. product, time, frequency) \\ \hline
+ Flags & \texttt{uint64\_t} & 3 & (pol. product, time, frequency) \\ \hline
+ Channelized Visibilities & \texttt{std::complex<double>} & 4 & (pol. product, channel, time, frequency) \\ \hline
+ Channelized Weights & \texttt{double} & 4 & (pol. product, channel, time, frequency) \\ \hline
+ Channelized Flags & \texttt{uint64\_t} & 4 & (pol. product, channel, time, frequency) \\ \hline
+ (static) per-Channel phase corrections & \texttt{double} & 2 & (pol. product, channel) \\ \hline
+ Channelized Ad-hoc phases/amplitude corrections  & \texttt{std::complex<double>} & 4 & (pol. product, channel, time, frequency) \\ \hline
+ \end{tabular}
+ }
+\end{center}
+
 \subsection{Data operators}
 
 The data operator classes are meant to organize the mathematic manipulations which are to be performed on the data containers. For example, many of the operations performed in the existing HOPS3 code-base (such as the application of a priori phase calibration) are relatively trivial linear transformations applied to the visibility data. However, they are currently intertwined with a large amount of control logic which obscures the basic data pathway (e.g see postproc/fourfit/norm\_fx.c)
-Most unary or binary operations that are to applied to visibility or other data residing in TableContainers such as scaling, multiplication, transposition, summation, Fourier transformation, etc. will be made available as individual classes inheriting from the same interface. A uniform class interface will allow these data operators to be composed or modified to create more complicated composite operators or strung together to accomplish data pipelines of arbitrary complexity. An additional advantage of encapsulating individual operations is that any SIMD parallel-processing extension used to accelerate data processing can be made opaque to the user.
 
-Listing \ref{lst:operators} gives a brief sketch of the class templates generalizing the data operators. The common inheritance from the base class \texttt{MHO\_DataOperator} allows them all to be stored in an common container so that once they are configured and initialized they may be retrieved
-and executed in the appropriate order. It is expected that the vast majority of the data operators will be unary, requiring only their own configuration 
-parameters and the data container upon which they operate as inputs, but we will also support binary operators accepting two data containers, an example
-of which is the application of a pre-constructed calibration table to a new data set.
+Most unary or binary operations that are to applied to visibility or other data residing in an \texttt{HO\_TableContainers} such as scaling, multiplication, transposition, summation, Fourier transformation, etc. will be made available as individual classes inheriting from the same interface. A uniform class interface will allow these data operators to be composed or modified to create more complicated composite operators or strung together and called in an ordered fashion in order to accomplish data pipelines of arbitrary complexity. An additional advantage of encapsulating individual operations is that (coupled with the data container extensions) any SIMD parallel-processing extension used to accelerate data processing can be made opaque to the user.
 
-One aspect of the data operators which is not yet detailed here is a notion of what pieces of meta-data each operator may need in order to complete its function.
-While these meta-data items could be exposed via external setter/getters, a more preferable option which would preserve encapsulation would be for each operator
-to define an internal schema, listing the keys and type of the parameters it needs to retrieve from the meta-data multi-type map container. 
-In addition, a mechanism for filtering operations (e.g. if station = Xx, then apply this operator) also needs to be established independent of the
-previous control-block structure of HOPS3.
+Listing \ref{lst:operators} gives a brief sketch of the class templates generalizing the data operators. The common inheritance from the base class \texttt{MHO\_Operator} allows them all to be stored in an common container (e.g. \texttt{std::vector<MHO\_Operator*>}) so that once they are
+constructed and configured they may be retrieved and intialized/executed in the appropriate order. Listing \ref{lst:operator-use} shows a brief code
+sketch demonstrating how two simple operators would be constructed, assigned arguments and then initialized and executed in order.
+
+\lstinputlisting[language=C++,float=h!,label={lst:operators},caption=Data operator template classes.]{code/operator_use.cc}
+
+It is expected that the vast majority of the data operators will be unary or binary, requiring only their own configuration parameters along with one or two data containers upon which they operate as inputs. 
+However, any number of arguments is possible so long as the underlying implementation provides the appropriate overload.
+
+One aspect of the data operators which is not yet detailed here is a notion of what pieces of meta-data each operator may need in order to complete its function. 
+Some of the more primitive operations (e.g. complex conjugation) may not need any meta-data, while certain 
+specific calibration routines may need station related meta-data (e.g. channel specific phase-cal).
+While some meta-data items could be exposed directly via external setter/getters, a possibly preferable option which would preserve encapsulation might be for each operator to define an internal schema, 
+listing the keys and type of the parameters it needs to retrieve from a single meta-data container (populated from the vex), or what sort of labels it expects to be attached to the data containers on which it operates.
+In addition, a mechanism for filtering operations (e.g. if station = Xx, then apply this operator) also needs to be established independent of the previous control-block structure of HOPS3.
 
 \lstinputlisting[language=C++,float=h!,label={lst:operators},caption=Data operator template classes.]{code/data-operators.hh}
+
+\subsubsection{Specific data operations}
+
+Below is an incomplete list of various data operations. A full specification of each operation is detailed in the subsequent pages.
+\begin{enumerate}
+ \item MHO\_ComplexConjugator: Apply a complex conjugation to all elements of an ND-array.
+ \item MHO\_CyclicRotator: Apply a cyclic rotation to the selected axes of an ND-array.
+ \item MHO\_FastFourierTransform: Apply a Fourier transform to a one dimensional array.
+ \item MHO\_FunctorBroadcaster: Apply a specified unary function to each element of an ND-array.
+ \item MHO\_MultidimensionalFastFourierTransform: Apply a Fourier transform to the selected axes of an ND-array using native libary.
+ \item MHO\_MultidimensionalFastFourierTransformFFTW: Apply a Fourier transform to the selected axes of an ND-array using FFTW library.
+ \item MHO\_MultidimensionalPaddedFastFourierTransform: Apply a zero-padded Fourier transform to the selected axes of an ND-array.
+ \item MHO\_Reducer: Apply a reduction (e.g. sum all elements) along the selected axis of an ND-array.
+ \item MHO\_SubSample: Skip select every n-th element of an ND-array for a specified axis of a ND-array.
+\end{enumerate}
+
+\newpage
+
+\noindent \textbf{Name:} MHO\_ComplexConjugator \\
+\textbf{Type:} Unary, in-place and out-of-place (requires copy). \\
+\textbf{Template Parameters:} The specific N dimensional array type.\\
+\textbf{Configuration Parameters:} None.\\
+\textbf{Inputs:} A N dimensional array with complex double/float value type. \\
+\textbf{Outputs:} A N dimensional array with complex double/float value type. \\
+\textbf{Description:} Iterates over all values in an N dimensional array and applies the operation \texttt{std::conj()} to each element, according to algorithm \ref{algo:complex-conjugator}. \\
+
+
+\begin{algorithm}[h!]
+  \caption{Complex conjugation operator.}
+    \begin{algorithmic}[1]
+    \Require{Complex array $\mathbf{X}$ of rank $N$, and total size $M$.}
+	\State {\textbf{for} $j=0\ldots M$ \textbf{do} }
+	\State {$\quad \mathbf{X}[j] = \overline{\mathbf{X}[j]}$ }
+    \State{\textbf{return}.}
+    \Ensure{Conjugate array, $\overline{\mathbf{X}[j]}$.}
+    \end{algorithmic}
+  \label{algo:complex-conjugator}
+\end{algorithm}
+
+
+\noindent \textbf{Name:} MHO\_CyclicRotator \\
+\textbf{Type:} Unary, both in-place and out-of-place. \\
+\textbf{Configuration Parameters:} Requires the integer index of the axis to be rotated, and the integer offset specifying the size of the rotation. A positive value of the rotation offset results in a right shift cyclic rotation, while a negative value results in a left shift cyclic rotation.\\
+\textbf{Inputs:} A N dimensional array with arbitrary trivially copyable type. \\
+\textbf{Outputs:} A N dimensional array with arbitrary trivially copyable type. \\
+\textbf{Description:} Performs cyclic rotation upon the requested axis for the specified offset, according to algorithm \ref{algo:cyclic-rot}.
+
+\begin{algorithm}[h!]
+  \caption{Cyclic rotation operator.}
+    \begin{algorithmic}[1]
+    \Require{Array $\mathbf{X}$ of rank $N$, with dimensions of $\{n_1, n_2, \ldots, n_{N-1} \}$ and total size $M$, and the integer offsets of each axis to be rotated $m_i$.}
+	\State {\textbf{for} $j=0\ldots M $ \textbf{do} }
+    \State {$\quad$ Compute the indices $\{k_0, k_1, \ldots, k_{N-1} \}$ associated with location $j$.}
+    \State {$\quad$ \textbf{for} $i=0\ldots N-1$ \textbf{do}  $k'_i = k_i + m_i \;\; \mathbf{mod} \;\; n_i$. }
+	\State {$\quad \mathbf{Y}[k'_0, k'_1, \ldots, k'_{N-1} ] = \mathbf{X}[k_0, k_1, \ldots, k_{N-1}]$ }
+    \State {\textbf{return}.}
+    \Ensure{The rotated array $\mathbf{Y}$.}
+    \end{algorithmic}
+  \label{algo:cyclic-rot}
+\end{algorithm}
+
+
+
+\noindent \textbf{Name:} MHO\_FastFourierTransform \\
+\textbf{Type:} Unary, both in-place and out-of-place. \\
+\textbf{Configuration Parameters:} Requires the direction of the transform to be specified (forward/backward), the direction follows the convention of FFTW.\\
+\textbf{Inputs:} A one dimensional array with complex double/float value type. \\
+\textbf{Outputs:} A one dimensional array with complex double/float value type. \\
+\textbf{Description:} This operator performs an Fourier transform (or inverse transform) on the input array using an FFT algorithm. If the array size is a power of two, then either a Cooley-Tukey or Gentleman-Sande radix-2 algorithm will be applied. For all other sizes, the Bluestein/Chirp-Z algorithm is used.\\
+
+
+
+\noindent \textbf{Name:}  MHO\_FunctorBroadcaster \\
+\textbf{Type:} Unary, both in-place and out-of-place. \\
+\textbf{Configuration Parameters:} The unary functor class to be applied to each element of the array (this is a template parameter).\\
+\textbf{Inputs:} A N dimensional array with any value type (must be acceptable to the functor)\\
+\textbf{Outputs:} A N dimensional array with any value type (must be acceptable to the functor)\\
+\textbf{Description:} For every element in the array the functor operation will be applied. In the case of an out-of-place operation a copy will take place.\\
+
+
+\noindent \textbf{Name:} MHO\_MultidimensionalFastFourierTransform \\
+\textbf{Type:} Unary, both in-place and out-of-place. \\
+\textbf{Configuration Parameters:} The indices of the dimensions which are to undergo transformation(default is all), as well as direction of the transform to be specified (forward/backward), the direction follows the convention of FFTW.\\
+\textbf{Inputs:} A N dimensional array with complex double/float value type \\
+\textbf{Outputs:} A N dimensional array with complex double/float value type \\
+\textbf{Description:} Executes a Fourier transform on the selected dimensions of the array using the native FFT calculator.\\
+
+
+\noindent \textbf{Name:} MHO\_MultidimensionalFastFourierTransformFFTW \\
+\textbf{Type:} Unary, both in-place and out-of-place. \\
+\textbf{Configuration Parameters:} The indices of the dimensions which are to undergo transformation (default is all), as well as direction of the transform to be specified (forward/backward), the direction follows the convention of FFTW.\\
+\textbf{Inputs:} A N dimensional array with complex double/float value type \\
+\textbf{Outputs:} A N dimensional array with complex double/float value type \\
+\textbf{Description:} Executes a Fourier transform on the selected dimensions of the array using the FFTW library, the precise algorithm selected is determined by FFTW.\\
+
+
+\noindent \textbf{Name:} MHO\_MultidimensionalPaddedFastFourierTransform \\
+\textbf{Type:} Unary, both in-place and out-of-place. \\
+\textbf{Configuration Parameters:} The indices of the dimensions which are to undergo transformation (default is all),
+the padding factor $M$ and the direction of the transform (forward/backward). The zero padding can be specified as either symmetrically center padded (zeros place in middle of array), or end-padded.\\
+\textbf{Inputs:} A N dimensional array with complex double/float value type with even lengths in each dimension to be transformed. \\
+\textbf{Outputs:} A N dimensional array with complex double/float value type with even lengths in each dimension to be transformed.\\
+\textbf{Description:} For each selected dimension of length $n$, the array will be padded with zeros, such that the new length will be $nM$. The zeros will either be placed in the center of the re-sized array (center-padded), or at the end (end-padded). The resulting padded array will then be transformed using the native FFT calculator. The primary use case of this padded FFT is for interpolation.\\
+
+
+\noindent \textbf{Name:} MHO\_Reducer  \\
+\textbf{Type:} Unary, both in-place (requires copy and resize) and out-of-place. \\
+\textbf{Configuration Parameters:} The indices of the dimensions which are to undergo reduction, and the operation which is to execute the reduction (addition or multiplication). \\
+\textbf{Inputs:} A N dimensional array with numerical value type\\
+\textbf{Outputs:} A N dimensional array with numerical value type\\
+\textbf{Description:} The input array will be reduced along the selected axes, and depending on the operation (addition or multiplication), the contents will be resized and replaced by the sum or product of the elements along that axis.\\
+
+\noindent \textbf{Name:} MHO\_SubSample  \\
+\textbf{Type:} Unary, both in-place and out-of-place. \\
+\textbf{Configuration Parameters:} The index of the dimension along which the sub-sampling operation should take place, and the stride at which elements are re-sampled.\\
+\textbf{Inputs:} A N dimensional array with any value type\\
+\textbf{Outputs:} A N dimensional array with any value type\\
+\textbf{Description:} For a stride value of $k$, and dimension index $j$, the output array will be resized and populated in such a way that only every $k$-th element (along the $j$-th dimension) from the original array will remain.\\
+
+\subsubsection{Compound data operations}
+
+On their own each of the specific data operations listed in the previous section are of limited utility. However, they can be composed to produce more useful manipulations of the data (e.g. \texttt{norm\_fx.c}). The advantage of composing complex operations via a series of simple operators is that more fine grained testing can be done at each sub-step to ensure it is operating correctly without involving the much more complicated process.
+
+Let us consider the data manipulation done by the fourfit function \texttt{norm\_fx.c}. This function is responsible for a large number of changes to the data, but at its core is largely concerned with transforming the visibility data from frequency-space to delay-space, so that a peak in delay-space can be found. However, in the process of executing this function, several other modifications are introduced to the data, such as: the application of phase and delay calibration corrections, the summation of the visibilities of different polarization-products, the application of delta-parallatic angle corrections, and the excision of data due to low correlator weights or ad-hoc flagging. A brief sketch of the operations performed on the set of visibilties by \texttt{norm\_fx.c} is summarized with minimal detail below.
+
+
+\begin{algorithm}[h!]
+  \caption{Application of \texttt{norm\_fx.c}}
+    \begin{algorithmic}[1]
+    \Require{Array of channelized visibilities $\mathbf{V}$ (indexed by pol. product, channel, time, and (sub-channel) frequency.), and phase/delay corrections for each channel.}
+	\State {Apply phase-calibration rotations to the visibilities of each channel.}
+    \State {Apply delay ramp to the visibilities of each channel, such that the center phase of each channel is held fixed.}
+    \State {Apply appropriate parallatic angle correction to each pol. product.}
+    \State {Sum the visibilities of the selected pol. products. into the total visibilities array, weighted by the correlator weights. Lower sideband data must be complex conjugated.}
+    \State {Execute a forward padded (factor of 8x) FFT on the total visbilities array along the frequency axis.}
+    \State {Sub-sample the resulting output array along the frequency axis with a stride of 2.}
+    \State {Perform a cyclic rotation along the frequency axis with an offset of $2N$, where $N$ is the original number of spectral points per channel.} 
+    \end{algorithmic}
+  \label{algo:normfx}
+\end{algorithm}
+
+Once \texttt{norm\_fx.c} has been applied to the visibility data, what was originally the frequency axis of the input array, is now the (single-band) delay axis, and a search function to locate the maximum delay value can be executed. Once a maximum is found, an additional interpolation step is executed to fine tune the delay value.
+
+Following the application of \texttt{norm\_fx.c}, the resulting output data can then be Fourier transformed along the time-axis, in order to search
+for the maximum delay rate. This process is handled by the fourfit function \texttt{delay\_rate.c}.
+
+
+
+
+\subsubsection{Data Container Extensions}
+
+The primary goal of the containers is to provide a relatively simple and efficient representation of commonly used data types that hides the details of memory management and array indexing/access from the user. They should not be overburdened with too much extraneous functionality (beyond simple operator overloads like assignment, scalar multiply, etc. ) that is specific to a particular operation as this greatly
+over complicates these classes and makes them brittle. 
+
+However, there are some cases where this sort of decoupling may induce a performance cost. An example of
+this occurs in the case of SIMD/GPU acceleration. In order to make use of GPU processing the data must be copied to a buffer on the device, processed, and then the results must be passed back to the host. However, if there are several operations to be performed in succession on the GPU, only first and last transfer need to occur, with intervening transfers being unecessary as input data is already present on the device. However, in order to eliminate the intermediate transfers a handle to the device buffer must be kept persistent in memory. So the questions arises, where should we keep this device buffer object? Should it be kept as a member of the data operator? That would be a poor choice, since if it is private it will not accesible to other operators to make use of, and if it is public then it will introduce the possibility of tight coupling with other portions of the code making use of the buffer. On the other hand, a pointer to a device buffer is too specific to belong in something as basic as a data container. However, it is a good candidate for something to may be stored in an extension.
+
+In order to provide the ability to append extensions to the data containers, they must all inherit from a base class, \texttt{MHO\_ExtensbleElement}, which
+in turn stores a vector of type-erased\footnote{https://davekilian.com/cpp-type-erasure.html} pointers to the extensions themselves. The extensions are templated on the the class providing the additional functionality and must all inherit from the base class \texttt{MHO\_ExtendedElement} (so they can be stored in the vector owned \texttt{MHO\_ExtensbleElement}) A brief sketch of the code that allows for this is shown in listing \ref{lst:extend}. One draw back of this method is that requires $N$ \texttt{dynamic\_cast} calls any time a particular extension is modified or accessed via the data container. 
+This is an acceptable trade off for infrequent access to expensive (to construct) extensions, but should be used rather sparingly as \texttt{dynamic\_cast} has high overhead.
+
+\lstinputlisting[language=C++,float=h!,label={lst:extend},caption=Data container extension classes.]{code/MHO_ExtensibleElement.hh}
