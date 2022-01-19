@@ -87,6 +87,14 @@ if(HOPS3_USE_CXX)
     hops_add_cxxflag(HOPS3_USE_CXX)
 endif()
 
+#link against difxio, and build difx2hops 
+option(HOPS_USE_DIFXIO "Link against difxio library to read DiFX files" OFF)
+if(HOPS_USE_DIFXIO)
+    find_package(PkgConfig) # we use pkg-config to 
+    pkg_search_module(DIFXIO REQUIRED difxio)
+endif()
+
+
 option( HOPS_ENABLE_TEST "Build developer tests." ON)
 if(HOPS_ENABLE_TEST)
     enable_testing()

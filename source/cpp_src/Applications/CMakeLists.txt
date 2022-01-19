@@ -54,7 +54,7 @@ set(SOURCE_BASENAMES
     ConvertMk4Data
 )
 
-#for testing purposes only -- not intended to be a dependency
+#for testing purposes only -- ROOT not intended to be a dependency
 if (HOPS_USE_ROOT)
     include(FindROOT)
     find_package(ROOT REQUIRED)
@@ -63,12 +63,15 @@ if (HOPS_USE_ROOT)
     list(APPEND HOPS_TEST_LIBS ${ROOT_LIBRARIES})
 endif()
 
+
 foreach( BASENAME ${SOURCE_BASENAMES} )
     add_executable( ${BASENAME} ${BASENAME}.cc )
     target_link_libraries( ${BASENAME} ${HOPS_TEST_LIBS})
 endforeach( BASENAME )
 
 hops_install_executables( ${SOURCE_BASENAMES} )
+
+
 
 #link against old fourfit libraries (temporary measure while we try to debug/transition)
 if(HOPS_DEV_USE_OLD)
@@ -77,11 +80,34 @@ if(HOPS_DEV_USE_OLD)
         TestNormFX
     )
 
-foreach( BASENAME ${OLD_DEV_SOURCE_BASENAMES} )
-    add_executable( ${BASENAME} ${BASENAME}.cc )
-    target_link_libraries( ${BASENAME} ${HOPS_TEST_LIBS} ${OLD_DEV_TEST_LIBS})
-endforeach( BASENAME )
+    foreach( BASENAME ${OLD_DEV_SOURCE_BASENAMES} )
+        add_executable( ${BASENAME} ${BASENAME}.cc )
+        target_link_libraries( ${BASENAME} ${HOPS_TEST_LIBS} ${OLD_DEV_TEST_LIBS})
+    endforeach( BASENAME )
 
-hops_install_executables( ${OLD_DEV_SOURCE_BASENAMES} )
+    hops_install_executables( ${OLD_DEV_SOURCE_BASENAMES} )
 
-endif(HOPS_DEV_USE_OLD)
+    endif(HOPS_DEV_USE_OLD)
+
+
+if(HOPS_USE_DIFXIO)
+
+    if(HOPS_USE_DIFXIO)
+        find_package(PkgConfig) # we use pkg-config to fin difxio
+        pkg_search_module(DIFXIO REQUIRED difxio)
+    endif()
+
+    hops_external_include_directories (${DIFXIO_INCLUDE_DIRS})
+
+    list(APPEND DIFXIO_DEP_SOURCE_BASENAMES
+        difx2hops
+    )
+
+    foreach( BASENAME ${DIFXIO_DEP_SOURCE_BASENAMES} )
+        add_executable( ${BASENAME} ${BASENAME}.cc )
+        target_link_libraries( ${BASENAME} ${HOPS_TEST_LIBS} ${DIFXIO_LDFLAGS})
+    endforeach( BASENAME )
+
+    hops_install_executables( ${DIFXIO_DEP_SOURCE_BASENAMES} )
+
+endif(HOPS_USE_DIFXIO)
