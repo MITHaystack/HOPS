@@ -93,7 +93,7 @@ if(HOPS_DEV_USE_OLD)
 if(HOPS_USE_DIFXIO)
 
     if(HOPS_USE_DIFXIO)
-        find_package(PkgConfig) # we use pkg-config to fin difxio
+        find_package(PkgConfig) # we use pkg-config to find difxio
         pkg_search_module(DIFXIO REQUIRED difxio)
     endif()
 
