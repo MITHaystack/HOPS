@@ -79,9 +79,11 @@ shown in Figure~\ref{fig:table-container}.
 
 \subsubsection{Specific data types}
 
-Below is an incomplete table of the various data objects that are constructed from \texttt{MHO\_TableContainer}, along with their data value type and axis names. These may be subject to change (for example, \texttt{uint64\_t} may be unecessarily large for the flags type, and could be reduced).
+Below is an incomplete table (\ref{tab:data-types}) of the various data objects that are constructed from \texttt{MHO\_TableContainer}, along with their data value type and axis names. These may be subject to change (for example, \texttt{uint64\_t} may be unecessarily large for the flags type, and could be reduced).
 \begin{center}
 \resizebox{\textwidth}{!}{
+%\begin{table}[ht]
+\captionof{table}{Internal object types \label{tab:data-types}}
 \begin{tabular}{| c | c | c | c |}
 \hline
  Name & value type & N-Dim & Axes \\  \hline
@@ -94,8 +96,47 @@ Below is an incomplete table of the various data objects that are constructed fr
  (static) per-Channel phase corrections & \texttt{double} & 2 & (pol. product, channel) \\ \hline
  Channelized Ad-hoc phases/amplitude corrections  & \texttt{std::complex<double>} & 4 & (pol. product, channel, time, frequency) \\ \hline
  \end{tabular}
+%\end{table}
  }
 \end{center}
+
+\subsection{Output data objects}
+
+The output data types of the fringe-fitter need to be able to summarize all of the information that is currently present in the \texttt{type\_2XX} data types,
+with the option to be extended. The \texttt{type\_2XX}'s are primarily concerned with storing the fringe solution (delay, delay rate, etc.), and a data summary (per-channel phase/amplitudes, data selection/flagging, etc.) along with a subset of station meta data. A table listing the data items that are present
+in the \texttt{type\_2XX}'s which need to be re-mapped onto the new data structure is shown in table \ref{tab:type2xx}.  
+
+
+\begin{center}
+\resizebox{\textwidth}{!}{
+%\begin{table}[ht]
+\captionof{table}{Ouput data summary \label{tab:type2xx}}
+\begin{tabular}{| c | c | c | c |}
+\hline
+ \texttt{type\_2XX} Name & value type (s) & N-Dim & Axes \\  \hline
+  200 & Processing meta-data (var.) & N/A & N/A \\ \hline
+  201 & Source meta-data (var.) & N/A & N/A \\ \hline
+  202 & Station coords and delay model (var.) & N/A & N/A \\ \hline
+  203 & Channel meta-data & 1 & channel \\ \hline
+  204 & control file meta-data & N/A & N/A \\ \hline
+  205 & & & \\ \hline
+  206 & & & \\ \hline
+  207 & & & \\ \hline
+  208 & & & \\ \hline
+  209 & & & \\ \hline
+  210 & & & \\ \hline
+  212 & & & \\ \hline
+  220 & & & \\ \hline
+  221 & & & \\ \hline
+  222 & & & \\ \hline
+  230 & & & \\ \hline
+ \end{tabular}
+
+%\end{table}
+ }
+\end{center}
+
+
 
 \subsection{Data operators}
 
