@@ -1,9 +1,9 @@
-#ifndef MHO_ManualChannelPhaseCorrection_HH__
-#define MHO_ManualChannelPhaseCorrection_HH__
+#ifndef MHO_ManualChannelPhaseCorrection_v1_HH__
+#define MHO_ManualChannelPhaseCorrection_v1_HH__
 
 /*
-*File: MHO_ManualChannelPhaseCorrection.hh
-*Class: MHO_ManualChannelPhaseCorrection
+*File: MHO_ManualChannelPhaseCorrection_v1.hh
+*Class: MHO_ManualChannelPhaseCorrection_v1
 *Author:
 *Email: 
 *Date:
@@ -22,15 +22,16 @@ namespace hops
 {
 
 
-class MHO_ManualChannelPhaseCorrection: public MHO_UnaryOperator< ch_baseline_data_type >
+class MHO_ManualChannelPhaseCorrection_v1: public MHO_UnaryOperator< ch_baseline_data_type >
 {
     public:
 
-        MHO_ManualChannelPhaseCorrection();
-        virtual ~MHO_ManualChannelPhaseCorrection();
+        MHO_ManualChannelPhaseCorrection_v1();
+        virtual ~MHO_ManualChannelPhaseCorrection_v1();
 
         //need function to pass in the per-channel phase corrections (e.g. '0': 90.0, '1': 45.0 ) etc.
-        //how should we associate each channel phase to channel data (name/number/label, etc?)
+        //how should we define it?
+        //how should we associate each channel phase to channel data (name/number/label, etc)?
 
     protected:
 
@@ -53,7 +54,7 @@ class MHO_ManualChannelPhaseCorrection: public MHO_UnaryOperator< ch_baseline_da
 };
 
 
-}
+} //end of namespace
 
 
-#endif /* end of include guard: MHO_ManualChannelPhaseCorrection */
+#endif /* end of include guard: MHO_ManualChannelPhaseCorrection_v1 */

@@ -14,7 +14,8 @@
 #include "MHO_StationCoordinates.hh"
 #include "MHO_FFTWTypes.hh"
 
-#include "MHO_ManualChannelPhaseCorrection.hh"
+#include "MHO_ManualChannelPhaseCorrection_v1.hh"
+#include "MHO_ManualChannelPhaseCorrection_v2.hh"
 
 using namespace hops;
 
@@ -57,6 +58,7 @@ int main(int argc, char** argv)
     }
 
     //read the directory file list
+    bool status = false; 
     std::vector< std::string > allFiles;
     std::vector< std::string > corFiles;
     std::vector< std::string > staFiles;
@@ -71,20 +73,6 @@ int main(int argc, char** argv)
     dirInterface.GetFilesMatchingExtention(corFiles, "cor");
     dirInterface.GetFilesMatchingExtention(staFiles, "sta");
     dirInterface.GetFilesMatchingExtention(jsonFiles, "json");
-
-    // for(auto it = corFiles.begin(); it != corFiles.end(); it++)
-    // {
-    //     std::cout<<"cor: "<< *it <<std::endl;
-    // }
-    // 
-    // for(auto it = staFiles.begin(); it != staFiles.end(); it++)
-    // {
-    //     std::cout<<"sta: "<< *it <<std::endl;
-    // }
-    // for(auto it = jsonFiles.begin(); it != jsonFiles.end(); it++)
-    // {
-    //     std::cout<<"json: "<< *it <<std::endl;
-    // }
 
     //check that there is only one json file
     std::string root_file = "";
@@ -123,7 +111,7 @@ int main(int argc, char** argv)
     //now open and read the (channelized) baseline visibility data
     ch_baseline_data_type* bl_data = new ch_baseline_data_type();
     MHO_BinaryFileInterface inter;
-    bool status = inter.OpenToRead(corel_file);
+    status = inter.OpenToRead(corel_file);
     if(status)
     {
         MHO_FileKey key;
@@ -132,7 +120,7 @@ int main(int argc, char** argv)
     }
     else
     {
-        std::cout<<" error opening file to read"<<std::endl;
+        std::cout<<"Error opening file to read"<<std::endl;
         inter.Close();
         std::exit(1);
     }
@@ -146,22 +134,55 @@ int main(int argc, char** argv)
         std::cout<<"Data dimension: "<<i<<" has size: "<<bl_dim[i]<<std::endl;
     }
 
+
+
+
+
+
+
+
+    //OPTION 1 ////////////////////////////////////////////////////////////////
+    //Unary operator, p-cal data set via custom function
+
     //now construct the manual phase cal operator and apply it to bl_data    
-    MHO_ManualChannelPhaseCorrection phase_corrector;
-    phase_corrector.SetArgs(bl_data);
+    MHO_ManualChannelPhaseCorrection_v1 phase_corrector1;
+    phase_corrector1.SetArgs(bl_data);
 
-    //set the phase corrections here
-
-    phase_corrector.Initialize();
-    phase_corrector.Execute();
+    //set the phase corrections here (need to define a function to do this...)
+    status = phase_corrector1.Initialize();
+    status = phase_corrector1.Execute();
 
     //verify the output
 
+
+
+
+
+
+    //OPTION 2 /////////////////////////////////////////////////////////////////
+    //binary operator, p-cal data is yet another table container
+
+    //table for the pcal corrections
+    ch_pcal_phase_type* pcal_data = new ch_pcal_phase_type();
+    pcal_data->Resize(bl_dim[0], bl_dim[1]); //resize 2d array (polprods x channels)
+
+    //set the phase corrections here (eventually this will be filled in via control file or other routine)
+
+    //now construct the manual phase cal operator and apply it to bl_data
+    MHO_ManualChannelPhaseCorrection_v2 phase_corrector2;
+    phase_corrector2.SetArgs(bl_data, pcal_data, bl_data);
+
+    status = phase_corrector2.Initialize();
+    status = phase_corrector2.Execute();
+
+    //verify the output
+
+
+
     //clean up 
     delete bl_data;
-
+    delete pcal_data;
     return 0;
-
 }
 
 
