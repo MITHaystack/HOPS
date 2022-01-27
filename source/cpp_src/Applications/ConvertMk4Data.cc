@@ -24,10 +24,6 @@
 #include "MHO_MK4CorelInterface.hh"
 #include "MHO_MK4StationInterface.hh"
 
-#include "MHO_Reducer.hh"
-#include "MHO_FunctorBroadcaster.hh"
-#include "MHO_MultidimensionalFastFourierTransform.hh"
-
 #include "MHO_Visibilities.hh"
 #include "MHO_ChannelizedVisibilities.hh"
 #include "MHO_VisibilityChannelizer.hh"
