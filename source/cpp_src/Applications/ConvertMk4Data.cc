@@ -44,7 +44,7 @@ void ConvertCorel(const std::string root_file, const std::string& input_file, co
 {
     MHO_MK4CorelInterface mk4inter;
 
-    std::cout<<"input_file = "<<input_file<<std::endl;
+    msg_info("file", "Converting corel input file: " << input_file << eom);
     mk4inter.SetCorelFile(input_file);
     mk4inter.SetVexFile(root_file);
     mk4inter.ExtractCorelFile();
@@ -59,38 +59,30 @@ void ConvertCorel(const std::string root_file, const std::string& input_file, co
     bool init = channelizer.Initialize();
     if(init)
     {
-        std::cout<<"initialization done"<<std::endl;
         bool exe = channelizer.Execute();
-        if(exe){std::cout<<"vis channelizer done"<<std::endl;}
     }
 
     MHO_WeightChannelizer wchannelizer;
     ch_baseline_weight_type* ch_bl_wdata = new ch_baseline_weight_type();
     wchannelizer.SetArgs(bl_wdata, ch_bl_wdata);
-    // wchannelizer.SetInput(bl_wdata);
-    // wchannelizer.SetOutput(ch_bl_wdata);
     bool winit = wchannelizer.Initialize();
     if(winit)
     {
-        std::cout<<"initialization done"<<std::endl;
         bool wexe = wchannelizer.Execute();
-        if(wexe){std::cout<<"weight channelizer done"<<std::endl;}
     }
 
-    //std::string index_file = output_file + ".index";
-    //bool status = inter.OpenToWrite(output_file, index_file);
     MHO_BinaryFileInterface inter;
     bool status = inter.OpenToWrite(output_file);
     if(status)
     {
-        uint32_t label = 0xFFFFFFFF;
+        uint32_t label = 0xFFFFFFFF; //someday make this mean something
         inter.Write(*ch_bl_data, "vis", label);
         inter.Write(*ch_bl_wdata, "weight", label);
         inter.Close();
     }
     else
     {
-        std::cout<<"error opening file"<<std::endl;
+        msg_error("file", "Error opening corel input file: " << input_file << eom);
     }
 
     inter.Close();
@@ -106,7 +98,7 @@ void ConvertStation(const std::string root_file, const std::string& input_file, 
 {
     MHO_MK4StationInterface mk4inter;
 
-    std::cout<<"input_file = "<<input_file<<std::endl;
+    msg_info("file", "Converting station input file: " << input_file << eom);
     mk4inter.SetStationFile(input_file);
     mk4inter.SetVexFile(root_file);
     station_coord_data_type* st_data = mk4inter.ExtractStationFile();
@@ -124,7 +116,7 @@ void ConvertStation(const std::string root_file, const std::string& input_file, 
     }
     else
     {
-        std::cout<<"error opening file"<<std::endl;
+        msg_error("file", "Error opening station input file: " << input_file << eom);
     }
 
     inter.Close();
@@ -178,9 +170,8 @@ int main(int argc, char** argv)
     output_dir = dirInterface.GetDirectoryFullPath(odir);
     input_dir = dirInterface.GetDirectoryFullPath(input_dir);
 
-    std::cout<<"input dir = "<<input_dir<<std::endl;
-    std::cout<<"output dir = "<<odir<<std::endl;
-
+    msg_info("main", "input directory: " << input_dir << eom);
+    msg_info("main", "output directory: " << output_dir << eom);
 
     if( !dirInterface.DoesDirectoryExist(output_dir) )
     {
@@ -196,18 +187,11 @@ int main(int argc, char** argv)
     dirInterface.GetFileList(allFiles);
     dirInterface.GetSubDirectoryList(allDirs);
 
-    //debug
-    for(auto it=allFiles.begin(); it != allFiles.end(); it++)
-    {
-        std::cout<<"file: "<<*it<<std::endl;
-    }
-
     //sort files, locate root, corel and station files
     std::vector< std::string > corelFiles;
     std::vector< std::string > stationFiles;
     std::string root_file;
     dirInterface.GetRootFile(allFiles, root_file);
-    std::cout<<"root file = "<<root_file<<std::endl;
 
     MHO_MK4VexInterface vexInter;
     vexInter.OpenVexFile(root_file);
@@ -215,7 +199,8 @@ int main(int argc, char** argv)
     bool ovex_ok = vexInter.ExportVexFileToJSON(ovex);
     if(ovex_ok)
     {
-        std::cout<<ovex.dump(2)<<std::endl;
+        //std::cout<<ovex.dump(2)<<std::endl; //dump the json to terminal
+
         //write out to a json file
         std::string output_file = output_dir + "/" + dirInterface.GetBasename(root_file) + ".json";
 
@@ -236,7 +221,6 @@ int main(int argc, char** argv)
     dirInterface.GetCorelFiles(allFiles, corelFiles);
     for(auto it = corelFiles.begin(); it != corelFiles.end(); it++)
     {
-        std::cout<<"corel file: "<< *it <<std::endl;
         std::string st_pair, root_code;
         std::string input_basename = dirInterface.GetBasename(*it);
         dirInterface.SplitCorelFileBasename(input_basename, st_pair, root_code);
@@ -247,7 +231,6 @@ int main(int argc, char** argv)
     dirInterface.GetStationFiles(allFiles, stationFiles);
     for(auto it = stationFiles.begin(); it != stationFiles.end(); it++)
     {
-        std::cout<<"station file: "<< *it <<std::endl;
         std::string st, root_code;
         std::string input_basename = dirInterface.GetBasename(*it);
         dirInterface.SplitStationFileBasename(input_basename, st, root_code);
