@@ -24,16 +24,17 @@ class MHO_DiFXScanFileSet
         virtual ~MHO_DiFXScanFileSet(){};
 
         //direct public access since all we are doing is get/set anyways
-        std::string fBaseDirectory;
-        std::string fScanDirectory;
-        std::string fInputFile;
-        std::string fIMFile;
-        std::string fCalcFile;
-        std::string fFlagFile;
-        std::string fV2DFile;
-        std::string fVexFile;
-        std::vector< std::string > fVisbilityFileList;
-        std::vector< std::string > fPCALFileList;
+        std::string fScanName; //difx scan name
+        std::string fBaseDirectory; //root directory for this experiment
+        std::string fScanDirectory; //.difx directory 
+        std::string fInputFile; //.input file associated with this scan
+        std::string fIMFile; //.im file associated with this scan
+        std::string fCalcFile; //.calc file associated with this scan 
+        std::string fFlagFile; //.flag file associated with this scan
+        std::string fV2DFile; //.v2d file for this experiment 
+        std::string fVexFile; //.vex file for this experiment 
+        std::vector< std::string > fVisbilityFileList; //list of all DIFX_ files under the .difx directory 
+        std::vector< std::string > fPCALFileList; //list of all PCAL_ files under the .difx directory 
 };
 
 }

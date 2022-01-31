@@ -183,11 +183,28 @@ MHO_DirectoryInterface::GetPrefix(const std::string& filename) const
     }
     else
     {
-        msg_warn("utility", "No directory prefix associated with path:" << filename << eom);
+        msg_warn("utility", "No directory prefix associated with path: " << filename << eom);
     }
     return prefix;
 }
 
+
+std::string 
+MHO_DirectoryInterface::StripExtensionFromBasename(const std::string& file_basename) const
+{
+    //assume we have just the basename (not directory prefix)
+    std::string prefix = "";
+    std::size_t index = file_basename.find_last_of(".");
+    if(index != std::string::npos)
+    {
+        prefix = file_basename.substr(0,index);
+    }
+    else
+    {
+        msg_warn("utility", "No extension to strip from: " << file_basename << eom);
+    }
+    return prefix;
+}
 
 void
 MHO_DirectoryInterface::GetFilesMatchingExtention(std::vector< std::string >& aFileList, const std::string& anExt) const

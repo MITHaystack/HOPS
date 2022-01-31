@@ -1,5 +1,6 @@
 #list header files #############################################################
 set (DIFXINTERFACE_HEADERFILES
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_DiFXScanFileSet.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_DiFXInputInterface.hh
 )
 

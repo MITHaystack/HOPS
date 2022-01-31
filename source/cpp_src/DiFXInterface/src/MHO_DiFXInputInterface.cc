@@ -55,9 +55,87 @@ MHO_DiFXInputInterface::Initialize()
         std::cout<<"dir: "<<*it<<std::endl;
     }
 
+    //find the (master) .vex file (should be unique)
+    std::vector< std::string > tmpFiles;
+    fDirInterface.GetFilesMatchingExtention(tmpFiles, "vex");
+    if(tmpFiles.size() != 1)
+    {
+        msg_fatal("difx_interface", tmpFiles.size() << " .vex files found in " << fInputDirectory << eom );
+        std::exit(1);
+    }
+    fVexFile = tmpFiles[0];
+    tmpFiles.clear();
+
+    //find the .v2d file (should be unique)
+    fDirInterface.GetFilesMatchingExtention(tmpFiles, "v2d");
+    if(tmpFiles.size() != 1)
+    {
+        msg_fatal("difx_interface", tmpFiles.size() << " .v2d files found in " << fInputDirectory << eom );
+        std::exit(1);
+    }
+    fV2DFile = tmpFiles[0];
+    tmpFiles.clear();
+
+    //find the .input files
+    std::vector< std::string > inputFiles;
+    fDirInterface.GetFilesMatchingExtention(inputFiles, "input");
+    std::sort(inputFiles.begin(), inputFiles.end());
+
+    //find the DiFX name for each scan (should be unique), derive this from the .input file list 
+    std::vector< std::string > scanNames;
+    for(auto it = inputFiles.begin(); it != inputFiles.end(); it++)
+    {
+        //strip off extension
+        std::string basename = fDirInterface.GetBasename(*it);
+        std::string scan_name =  fDirInterface.StripExtensionFromBasename(basename);
+        if(scan_name.size() != 0){scanNames.push_back(scan_name);}
+    }
+    std::sort(scanNames.begin(), scanNames.end());
+
+    if(scanNames.size() == 0)
+    {
+        msg_fatal("difx_interface", "No scan input found under: " << fInputDirectory << eom );
+        std::exit(1);
+    }
+
+    //find the .im files
+    std::vector< std::string > imFiles;
+    fDirInterface.GetFilesMatchingExtention(imFiles, "im");
+    std::sort(imFiles.begin(), imFiles.end());
+    
+    //find the .calc files
+    std::vector< std::string > calcFiles;
+    fDirInterface.GetFilesMatchingExtention(calcFiles, "calc");
+    std::sort(calcFiles.begin(), calcFiles.end());
+    
+    //find the .flag files
+    std::vector< std::string > flagFiles;
+    fDirInterface.GetFilesMatchingExtention(flagFiles, "flag");
+    std::sort(flagFiles.begin(), flagFiles.end());
+    
     //grab all of the .difx directories 
     std::vector< std::string > difxDirs;
     fDirInterface.GetSubDirectoriesMatchingExtention(difxDirs, "difx");
+    std::sort(difxDirs.begin(), difxDirs.end());
+
+
+    //now construct the scan file sets for each input 
+    for(auto it=scanNames.begin(); it != scanNames.end(); it++)
+    {
+        //debug
+        std::cout<<"scan: "<<*it<<std::endl;
+
+        std::string input_file = fInputDirectory + "/" + *it + ".input";
+        std::string im_file = fInputDirectory + "/" + *it + ".im";
+        std::string calc_file = fInputDirectory + "/" + *it + ".calc";
+        std::string flag_file = fInputDirectory + "/" + *it + ".flag";
+        std::string difx_dir = fInputDirectory + "/" + *it + ".difx";
+
+        //verify 
+        
+    }
+
+
 
     if(difxDirs.size() == 0)
     {
@@ -65,25 +143,28 @@ MHO_DiFXInputInterface::Initialize()
         std::exit(1);
     }
 
-    for(auto it=difxDirs.begin(); it != difxDirs.end(); it++)
-    {
-        std::cout<<"difx sub-dir: "<<*it<<std::endl;
-    }
 
-    //super primitive right now...just assume only a single DIFX_ file 
-    MHO_DirectoryInterface subDirInterface;
-    subDirInterface.SetCurrentDirectory(*(difxDirs.begin()));
-    subDirInterface.ReadCurrentDirectory();
 
-    //locate the visiblity file 
-    std::vector< std::string > visibFiles;
-    subDirInterface.GetFilesMatchingPrefix(visibFiles, "DIFX_");
-    for(auto it=visibFiles.begin(); it != visibFiles.end(); it++)
-    {
-        std::cout<<"visib file: "<<*it<<std::endl;
-    }
 
-    
+    // for(auto it=difxDirs.begin(); it != difxDirs.end(); it++)
+    // {
+    //     std::cout<<"difx sub-dir: "<<*it<<std::endl;
+    // }
+    // 
+    // //super primitive right now...just assume only a single DIFX_ file 
+    // MHO_DirectoryInterface subDirInterface;
+    // subDirInterface.SetCurrentDirectory(*(difxDirs.begin()));
+    // subDirInterface.ReadCurrentDirectory();
+    // 
+    // //locate the visiblity file 
+    // std::vector< std::string > visibFiles;
+    // subDirInterface.GetFilesMatchingPrefix(visibFiles, "DIFX_");
+    // for(auto it=visibFiles.begin(); it != visibFiles.end(); it++)
+    // {
+    //     std::cout<<"visib file: "<<*it<<std::endl;
+    // }
+
+
 }
 
 void 

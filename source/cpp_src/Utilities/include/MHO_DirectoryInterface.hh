@@ -53,6 +53,7 @@ class MHO_DirectoryInterface
 
         std::string GetBasename(const std::string& filename) const;
         std::string GetPrefix(const std::string& filename) const;
+        std::string StripExtensionFromBasename(const std::string& file_basename) const;
 
     private:
 
