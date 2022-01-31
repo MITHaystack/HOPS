@@ -7,18 +7,6 @@
 #include <map>
 #include <getopt.h>
 
-//needed for listing/navigating files/directories on *nix
-#include <dirent.h>
-#include <stdlib.h>
-#include <limits.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <unistd.h>
-#include <fstream>
-
-#include "difxio/difx_input.h"
-#include "difxio/parsevis.h"
-
 #include "MHO_Message.hh"
 #include "MHO_Tokenizer.hh"
 
@@ -33,6 +21,8 @@
 #include "MHO_ClassIdentityMap.hh"
 
 #include "MHO_DirectoryInterface.hh"
+#include "MHO_DiFXInputInterface.hh"
+
 
 using namespace hops;
 
@@ -77,62 +67,11 @@ int main(int argc, char** argv)
         }
     }
 
-
-    //directory interface
-    MHO_DirectoryInterface dirInterface;
-    output_dir = dirInterface.GetDirectoryFullPath(odir);
-    input_dir = dirInterface.GetDirectoryFullPath(input_dir);
-
-    msg_info("main", "input directory: " << input_dir << eom);
-    msg_info("main", "output directory: " << output_dir << eom);
-
-
-    //get list of all the files (and directories) in directory
-    std::vector< std::string > allFiles;
-    std::vector< std::string > allDirs;
-
-    dirInterface.SetCurrentDirectory(input_dir);
-    dirInterface.ReadCurrentDirectory();
-    dirInterface.GetFileList(allFiles);
-    dirInterface.GetSubDirectoryList(allDirs);
-
-    //debug
-    for(auto it=allFiles.begin(); it != allFiles.end(); it++)
-    {
-        std::cout<<"file: "<<*it<<std::endl;
-    }
-
-    //debug
-    for(auto it=allDirs.begin(); it != allDirs.end(); it++)
-    {
-        std::cout<<"dir: "<<*it<<std::endl;
-    }
-
-
-    //grab all of the .difx directories 
-    std::vector< std::string > difxDirs;
-    dirInterface.GetSubDirectoriesMatchingExtention(difxDirs, "difx");
-    for(auto it=difxDirs.begin(); it != difxDirs.end(); it++)
-    {
-        std::cout<<"difx sub-dir: "<<*it<<std::endl;
-    }
-
-    MHO_DirectoryInterface subdirInterface;
-    //loop over the difx sub-directories 
-    for(auto it=difxDirs.begin(); it != difxDirs.end(); it++)
-    {
-        //conver the difx data
-    }
-
-
-
-
-    // //create the output directory if needed
-    // if( !dirInterface.DoesDirectoryExist(output_dir) )
-    // {
-    //     dirInterface.CreateDirectory(output_dir);
-    // }
-
+    MHO_DiFXInputInterface dinterface;
+    dinterface.SetInputDirectory(input_dir);
+    dinterface.SetOutputDirectory(output_dir);
+    
+    dinterface.Initialize();
 
 
     DifxInput* din;
