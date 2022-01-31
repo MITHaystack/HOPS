@@ -232,6 +232,53 @@ MHO_DirectoryInterface::GetFilesMatchingExtention(std::vector< std::string >& aF
     }
 }
 
+
+
+void
+MHO_DirectoryInterface::GetSubDirectoriesMatchingExtention(std::vector< std::string >& aDirList, const std::string& anExt) const
+{
+    //from the current list of files, locate the ones which match the given extension
+    aDirList.clear();
+    for(auto it = fCurrentSubDirectoryList.begin(); it != fCurrentSubDirectoryList.end(); it++)
+    {
+        std::string basename = GetBasename(*it);
+        std::size_t index = basename.find_last_of(".");
+        if(index != std::string::npos)
+        {
+            //get the extension
+            std::string ext = basename.substr(index);
+            if(ext == anExt)
+            {
+                aDirList.push_back(*it);
+            }
+        }
+    }
+}
+
+
+void
+MHO_DirectoryInterface::GetSubDirectoriesMatchingExtention(std::vector< std::string >& aDirList, const char* anExt) const
+{
+    //from the current list of files, locate the ones which match the given extension
+    aDirList.clear();
+    for(auto it = fCurrentSubDirectoryList.begin(); it != fCurrentSubDirectoryList.end(); it++)
+    {
+        std::string basename = GetBasename(*it);
+        std::size_t index = basename.find_last_of(".");
+        if(index != std::string::npos)
+        {
+            //get the extension
+            std::string ext = basename.substr(index+1);
+            if(ext == anExt)
+            {
+                aDirList.push_back(*it);
+            }
+        }
+    }
+}
+
+
+
 std::string
 MHO_DirectoryInterface::GetCurrentDirectory() const
 {
