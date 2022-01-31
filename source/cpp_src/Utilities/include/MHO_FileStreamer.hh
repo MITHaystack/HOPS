@@ -10,6 +10,7 @@
 *Description:
 */
 
+#include "MHO_Message.hh"
 #include <fstream>
 #include <string>
 
@@ -63,6 +64,17 @@ class MHO_FileStreamer
         virtual void SetObjectUnknown(){fObjectState = ObjectState::unknown;}
         virtual void ResetObjectState(){fObjectState = ObjectState::unset;};
         virtual bool IsObjectUnknown(){ return (fObjectState == ObjectState::unknown);};
+
+        virtual void SkipAhead(size_t n_bytes)
+        {
+            msg_debug("file", "Seeking ahead by " << n_bytes << " bytes." <<eom);
+            if(fFileState == FileState::readable)
+            {
+                //fFile.ignore(n_bytes);
+                fObjectState = ObjectState::unset;
+                fFile.seekg(n_bytes, std::ios_base::cur);
+            }
+        }
 
         virtual std::fstream& GetStream() { return fFile;}
         virtual const std::fstream& GetStream() const {return fFile;}

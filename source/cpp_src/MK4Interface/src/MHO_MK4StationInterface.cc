@@ -191,7 +191,7 @@ void
 MHO_MK4StationInterface::DetermineDataDimensions()
 {
     fNIntervals = fStation->t300->nsplines;
-    std::cout<<"number of intervals = "<<fNIntervals<<std::endl;
+    msg_debug("mk4interface", "Number of spline intervals = "<< fNIntervals << eom);
     for(std::size_t i=0; i<MAXFREQ; i++)
     {
         //loop through all the channel id's and count the ones which are unlabelled
