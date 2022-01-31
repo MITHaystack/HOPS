@@ -11,6 +11,8 @@
 */
 
 #include <string>
+#include <vector>
+#include <algorithm>
 
 #include "difxio/difx_input.h"
 #include "difxio/parsevis.h"
@@ -29,6 +31,8 @@
 #include "MHO_ClassIdentityMap.hh"
 
 #include "MHO_DirectoryInterface.hh"
+
+#include "MHO_DiFXScanFileSet.hh"
 
 namespace hops
 {
@@ -55,10 +59,11 @@ class MHO_DiFXInputInterface
         std::string fInputDirectory;
         std::string fOutputDirectory;
 
-        //super primitive right now
-        std::string fVisibilityFile;
-
         MHO_DirectoryInterface fDirInterface;
+
+        std::string fVexFile;
+        std::string fV2DFile;
+        std::vector< MHO_DiFXScanFileSet > fScanFileSetList;
 
 };
 
