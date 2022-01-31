@@ -38,6 +38,9 @@ class MHO_DirectoryInterface
         void GetFilesMatchingExtention(std::vector< std::string >& aFileList, const std::string& anExt) const;
         void GetFilesMatchingExtention(std::vector< std::string >& aFileList, const char* anExt) const;
 
+        void GetFilesMatchingPrefix(std::vector< std::string >& aFileList, const std::string& aPrefix) const;
+        void GetFilesMatchingPrefix(std::vector< std::string >& aFileList, const char* aPrefix) const;
+
         void GetSubDirectoriesMatchingExtention(std::vector< std::string >& aDirList, const std::string& anExt) const;
         void GetSubDirectoriesMatchingExtention(std::vector< std::string >& aDirList, const char* anExt) const;
 

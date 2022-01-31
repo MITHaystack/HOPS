@@ -232,7 +232,28 @@ MHO_DirectoryInterface::GetFilesMatchingExtention(std::vector< std::string >& aF
     }
 }
 
+void 
+MHO_DirectoryInterface::GetFilesMatchingPrefix(std::vector< std::string >& aFileList, const std::string& aPrefix) const
+{
+    //from the current list of files, locate the ones which match the given extension
+    aFileList.clear();
+    for(auto it = fCurrentFileList.begin(); it != fCurrentFileList.end(); it++)
+    {
+        std::string basename = GetBasename(*it);
+        std::size_t index = basename.find(aPrefix);
+        if(index != std::string::npos)
+        {
+            aFileList.push_back(*it);
+        }
+    }
+}
 
+void 
+MHO_DirectoryInterface::GetFilesMatchingPrefix(std::vector< std::string >& aFileList, const char* aPrefix) const
+{
+    std::string prefix(aPrefix);
+    GetFilesMatchingPrefix(aFileList, prefix);
+}
 
 void
 MHO_DirectoryInterface::GetSubDirectoriesMatchingExtention(std::vector< std::string >& aDirList, const std::string& anExt) const
