@@ -54,12 +54,15 @@ class MHO_VectorContainer:
 
         virtual uint64_t GetSerializedSize() const override
         {
-            uint64_t size = 0;
-            size += sizeof(MHO_ClassVersion);
-            size += sizeof(std::size_t);
-            size += fSize*sizeof(XValueType);
-            return size;
+            return ComputeSerializedSize();
         }
+        // {
+        //     uint64_t size = 0;
+        //     size += sizeof(MHO_ClassVersion);
+        //     size += sizeof(std::size_t);
+        //     size += fSize*sizeof(XValueType);
+        //     return size;
+        // }
 
         //have to make base class functions visible
         using MHO_NDArrayWrapper<XValueType,1>::Resize;
@@ -77,42 +80,72 @@ class MHO_VectorContainer:
         using MHO_NDArrayWrapper<XValueType,1>::fDims;
         using MHO_NDArrayWrapper<XValueType,1>::fSize;
 
-
-    template<typename XStream> friend XStream& operator>>(XStream& s, MHO_VectorContainer& aData)
-    {
-        MHO_ClassVersion vers;
-        s >> vers;
-        if( vers != aData.GetVersion() )
+        uint64_t ComputeSerializedSize() const
         {
-            MHO_ClassIdentity::ClassVersionErrorMsg(aData, vers);
-            //Flag this as an unknown object version so we can skip over this data
-            MHO_ObjectStreamState<XStream>::SetUnknown(s);
+            uint64_t size = 0;
+            size += sizeof(MHO_ClassVersion);
+            size += sizeof(uint64_t);
+            size += this->fSize*sizeof(XValueType); //all elements have the same size
+            return size;
         }
-        else
+
+        template<typename XStream> friend XStream& operator>>(XStream& s, MHO_VectorContainer& aData)
         {
-            size_t total_size[1];
-            s >> total_size[0];
-            aData.Resize(total_size);
+            MHO_ClassVersion vers;
+            s >> vers;
+            if( vers != aData.GetVersion() )
+            {
+                MHO_ClassIdentity::ClassVersionErrorMsg(aData, vers);
+                //Flag this as an unknown object version so we can skip over this data
+                MHO_ObjectStreamState<XStream>::SetUnknown(s);
+            }
+            else
+            {
+                size_t total_size[1];
+                s >> total_size[0];
+                aData.Resize(total_size);
+                for(size_t i=0; i<aData.fSize; i++)
+                {
+                    s >> aData.fData[i];
+                }
+            }
+            return s;
+        }
+
+        template<typename XStream> friend XStream& operator<<(XStream& s, const MHO_VectorContainer& aData)
+        {
+            s << aData.GetVersion();
+            s << aData.fSize;
             for(size_t i=0; i<aData.fSize; i++)
             {
-                s >> aData.fData[i];
+                s << aData.fData[i];
             }
+            return s;
         }
-        return s;
-    }
-
-    template<typename XStream> friend XStream& operator<<(XStream& s, const MHO_VectorContainer& aData)
-    {
-        s << aData.GetVersion();
-        s << aData.fSize;
-        for(size_t i=0; i<aData.fSize; i++)
-        {
-            s << aData.fData[i];
-        }
-        return s;
-    }
 
 };
+
+
+//specialization for string elements 
+//(NOTE: we need to use 'inline' to satisfy one-definiton rule, otherwise we have to stash this in a .cc file)
+template<>
+inline uint64_t 
+MHO_VectorContainer<std::string>::ComputeSerializedSize() const
+{
+    uint64_t size = 0;
+    size += sizeof(MHO_ClassVersion);
+    size += sizeof(uint64_t);
+    for(size_t i=0; i<this->fSize; i++)
+    {
+        size += sizeof(uint64_t); //every string get streamed with a size
+        size += this->fData[i].size();
+    }
+    return size;
+}
+
+
+
+
 
 // ////////////////////////////////////////////////////////////////////////////////
 //using declarations for all basic 'plain-old-data' types

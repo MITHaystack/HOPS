@@ -54,7 +54,7 @@ class MHO_BinaryFileInterface
             return fObjectStreamer.IsOpenForRead();
         }
 
-        bool ExtractObjectKeys(const std::string& index_filename, std::vector<MHO_FileKey>& keys)
+        bool ExtractIndexFileObjectKeys(const std::string& index_filename, std::vector<MHO_FileKey>& keys)
         {
             keys.clear();
 
@@ -90,6 +90,59 @@ class MHO_BinaryFileInterface
                 }
             }
         }
+
+        bool ExtractFileObjectKeys(const std::string& filename, std::vector<MHO_FileKey>& keys)
+        {
+            keys.clear();
+
+            if( fObjectStreamer.IsOpenForRead() || fObjectStreamer.IsOpenForWrite() ||
+                fKeyStreamer.IsOpenForRead() || fKeyStreamer.IsOpenForRead() )
+            {
+                msg_warn("file", "Cannot extract file keys with active stream. Close open file first." << eom);
+                return false;
+            }
+            else
+            {
+                fKeyStreamer.SetFilename(filename);
+                fKeyStreamer.OpenToRead();
+                if( fKeyStreamer.IsOpenForRead() )
+                {
+                    while( fKeyStreamer.GetStream().good() )
+                    {
+                        MHO_FileKey key;
+                        fKeyStreamer >> key;
+                        if( fKeyStreamer.GetStream().good() ) //make sure we haven't hit EOF
+                        {
+                            //first check if the sync word matches, if not then we have
+                            //gotten off track and are in unknown territory
+                            bool key_ok = true;
+                            if( key.fSync != MHO_FileKeySyncWord ){key_ok = false; }
+                            if(key_ok)
+                            {
+                                keys.push_back(key);
+                                //now skip ahead by the size of the object
+                                fKeyStreamer.SkipAhead(key.fSize);
+                            }
+                            else
+                            {
+                                msg_error("file", "Failed to read object key, sync word " << key.fSync << " not recognized." << eom);
+                                break;
+                            }
+                        }
+                        else{break;} //EOF
+                    }
+                    fKeyStreamer.Close();
+                    return true;
+                }
+                else
+                {
+                    msg_error("file", "Failed to read key, file not open for reading." << eom);
+                    fKeyStreamer.Close();
+                    return false; //non-recoverable error
+                }
+            }
+        }
+
 
         void Close()
         {

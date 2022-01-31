@@ -257,7 +257,7 @@ class MHO_NDArrayWrapper:
         std::vector< XValueType > fData; //used for internally managed data
         index_type fDims; //size of each dimension
         index_type fStrides; //strides between elements in each dimension
-        std::size_t fSize; //total size of array
+        uint64_t fSize; //total size of array
         mutable index_type fTmp; //temp index workspace
 
         bool CheckIndexValidity(const index_type& idx)
