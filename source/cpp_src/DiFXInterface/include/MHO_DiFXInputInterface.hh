@@ -43,11 +43,20 @@ class MHO_DiFXInputInterface
         void SetOutputDirectory(std::string dir);
         void Initialize();
 
+        void ConstructScanFileLists();
 
     private:
 
+        void ReadDIFX_File(std::string filename);
+        void ReadPCAL_File(std::string filename);
+        void ReadIM_File(std::string filename);
+        void ReadInputFile(std::string filename);
+
         std::string fInputDirectory;
         std::string fOutputDirectory;
+
+        //super primitive right now
+        std::string fVisibilityFile;
 
         MHO_DirectoryInterface fDirInterface;
 
