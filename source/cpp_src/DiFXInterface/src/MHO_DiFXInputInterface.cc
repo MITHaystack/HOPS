@@ -1,6 +1,5 @@
 #include "MHO_DiFXInputInterface.hh"
 
-
 namespace hops
 {
 
@@ -100,26 +99,30 @@ MHO_DiFXInputInterface::Initialize()
 
     //find the .im files
     std::vector< std::string > imFiles;
+    std::map< std::string, bool > imPresent;
     fDirInterface.GetFilesMatchingExtention(imFiles, "im");
-    std::sort(imFiles.begin(), imFiles.end());
+    for(auto it = imFiles.begin(); it != imFiles.end(); it++){imPresent[*it] = true;}
     
     //find the .calc files
     std::vector< std::string > calcFiles;
+    std::map< std::string, bool > calcPresent;
     fDirInterface.GetFilesMatchingExtention(calcFiles, "calc");
-    std::sort(calcFiles.begin(), calcFiles.end());
+    for(auto it = calcFiles.begin(); it != calcFiles.end(); it++){calcPresent[*it] = true;}
     
     //find the .flag files
     std::vector< std::string > flagFiles;
+    std::map< std::string, bool> flagPresent;
     fDirInterface.GetFilesMatchingExtention(flagFiles, "flag");
-    std::sort(flagFiles.begin(), flagFiles.end());
+    for(auto it = flagFiles.begin(); it != flagFiles.end(); it++){flagPresent[*it] = true;}
     
     //grab all of the .difx directories 
     std::vector< std::string > difxDirs;
+    std::map< std::string, bool > difxPresent;
     fDirInterface.GetSubDirectoriesMatchingExtention(difxDirs, "difx");
-    std::sort(difxDirs.begin(), difxDirs.end());
-
+    for(auto it = difxDirs.begin(); it != difxDirs.end(); it++){difxPresent[*it] = true;}
 
     //now construct the scan file sets for each input 
+    fScanFileSetList.clear();
     for(auto it=scanNames.begin(); it != scanNames.end(); it++)
     {
         //debug
@@ -131,40 +134,92 @@ MHO_DiFXInputInterface::Initialize()
         std::string flag_file = fInputDirectory + "/" + *it + ".flag";
         std::string difx_dir = fInputDirectory + "/" + *it + ".difx";
 
-        //verify 
-        
+        std::cout<<"input = "<<input_file<<std::endl;
+        std::cout<<"im = "<<im_file<<std::endl;
+        std::cout<<"calc = "<<calc_file<<std::endl;
+        std::cout<<"flag = "<<flag_file<<std::endl;
+        std::cout<<"difx = "<<difx_dir<<std::endl;
+
+        //verify each is present 
+        bool have_full_set = true;
+        auto im = imPresent.find(im_file); if(im == imPresent.end()){have_full_set = false;std::cout<<"1"<<std::endl;}
+        auto calc = calcPresent.find(calc_file); if(calc == calcPresent.end()){have_full_set = false;std::cout<<"2"<<std::endl;}
+        auto flag = flagPresent.find(flag_file); if(flag == flagPresent.end()){have_full_set = false;std::cout<<"3"<<std::endl;}
+        auto difx = difxPresent.find(difx_dir); if(difx == difxPresent.end()){have_full_set = false;std::cout<<"4"<<std::endl;}
+
+        if(have_full_set)
+        {
+            MHO_DiFXScanFileSet fileSet;
+            
+            fileSet.fScanName = *it;
+            fileSet.fBaseDirectory = fInputDirectory;
+            fileSet.fScanDirectory = difx_dir;
+            fileSet.fInputFile = input_file;
+            fileSet.fIMFile = im_file;
+            fileSet.fCalcFile = calc_file;
+            fileSet.fFlagFile = flag_file;
+            fileSet.fV2DFile = fV2DFile;
+            fileSet.fVexFile = fVexFile;
+
+            fileSet.fVisibilityFileList.clear();
+            fileSet.fPCALFileList.clear();
+
+            //super primitive right now...just assume only a single DIFX_ file 
+            MHO_DirectoryInterface subDirInterface;
+            subDirInterface.SetCurrentDirectory(difx_dir);
+            subDirInterface.ReadCurrentDirectory();
+            
+            //locate the visiblity file 
+            std::vector< std::string > visibFiles;
+            subDirInterface.GetFilesMatchingPrefix(visibFiles, "DIFX_");
+            for(auto it=visibFiles.begin(); it != visibFiles.end(); it++)
+            {
+                std::cout<<"visib file: "<<*it<<std::endl;
+                fileSet.fVisibilityFileList.push_back(*it);
+            }
+
+            //locate the pcal files 
+            std::vector< std::string > pcalFiles;
+            subDirInterface.GetFilesMatchingPrefix(pcalFiles, "PCAL_");
+            for(auto it=pcalFiles.begin(); it != pcalFiles.end(); it++)
+            {
+                std::cout<<"pcal file: "<<*it<<std::endl;
+                fileSet.fPCALFileList.push_back(*it);
+            }
+
+            if(fileSet.fVisibilityFileList.size() != 0)
+            {
+                fScanFileSetList.push_back(fileSet);
+            }
+            else 
+            {
+                msg_warn("difx_interface", "No visibility files found associated with scan: " << *it << eom);
+            }
+        }
+        else 
+        {
+            msg_warn("difx_interface", "Could not find all difx aux files associated with scan: " << *it << eom);
+        }
     }
 
+    std::cout<<"number of scan file sets = "<<fScanFileSetList.size()<<std::endl;
 
-
-    if(difxDirs.size() == 0)
+    if(fScanFileSetList.size() == 0)
     {
-        msg_fatal("difx_interface", "No .difx directories found under: " << fInputDirectory << eom );
+        msg_fatal("difx_interface", "No complete scan input found under: " << fInputDirectory << eom );
         std::exit(1);
     }
 
+    ProcessScan(fScanFileSetList[0]);
+
+}
 
 
-
-    // for(auto it=difxDirs.begin(); it != difxDirs.end(); it++)
-    // {
-    //     std::cout<<"difx sub-dir: "<<*it<<std::endl;
-    // }
-    // 
-    // //super primitive right now...just assume only a single DIFX_ file 
-    // MHO_DirectoryInterface subDirInterface;
-    // subDirInterface.SetCurrentDirectory(*(difxDirs.begin()));
-    // subDirInterface.ReadCurrentDirectory();
-    // 
-    // //locate the visiblity file 
-    // std::vector< std::string > visibFiles;
-    // subDirInterface.GetFilesMatchingPrefix(visibFiles, "DIFX_");
-    // for(auto it=visibFiles.begin(); it != visibFiles.end(); it++)
-    // {
-    //     std::cout<<"visib file: "<<*it<<std::endl;
-    // }
-
-
+void 
+MHO_DiFXInputInterface::ProcessScan(MHO_DiFXScanFileSet& fileSet)
+{
+        //testing
+        ReadDIFX_File(fileSet.fVisibilityFileList[0]);
 }
 
 void 
@@ -172,25 +227,186 @@ MHO_DiFXInputInterface::ReadDIFX_File(std::string filename)
 {
     //read the visibilities and allocate memory to store them as we go
 
+    // typedef struct
+    // {
+    // FILE *infile;			/* file pointer */
+    // DifxParameters *params;		/* structure containing text params */
+    // int nchan;			/* number of channels to expect */
+    // int visnum;			/* counter of number of vis */
+    // int sync;			/* space to store the sync value */
+    // int headerversion;		/* 0=old style, 1=new binary style */
+    // int baseline;			/* The baseline number (256*A1 + A2, 1 indexed) */
+    // int mjd;			/* The MJD integer day */
+    // double seconds;			/* The seconds offset from mjd */
+    // int configindex;		/* The index to the configuration table */
+    // int sourceindex;		/* The index to the source table */
+    // int freqindex;			/* The index to the freq table */
+    // char polpair[3];		/* The polarisation pair */
+    // int pulsarbin;			/* The pulsar bin */
+    // double dataweight;		/* The fractional data weight */
+    // double uvw[3];			/* The u,v,w values in metres */
+    // cplx32f *visdata;		/* pointer to nchan complex values (2x float) */
+    // } DifxVisRecord;
+
+    DifxVisRecord visRecord;
+
+    // #define VISRECORD_SYNC_WORD_DIFX1 //old ascii, unsupported
+    // #define VISRECORD_SYNC_WORD_DIFX2
+
+    std::fstream vFile;
+    //open file for binary reading
+    vFile.open(filename.c_str(), std::fstream::in | std::ios::binary);
+    if( !vFile.is_open() || !vFile.good() )
+    {
+        msg_error("file", "Failed to open visibility file: "  << filename << " for reading." << eom);
+    }
+
+    while(true)
+    {
+        int sync;
+        vFile.read(reinterpret_cast<char*>(&(visRecord.sync) ), sizeof(int) ) ;
+        //visRecord.sync = sync;
+
+        //vFile >> visRecord.sync;
+        if( !(vFile.good() ) )
+        {
+            msg_error("difx_interface", "Could not read input file: " << filename << eom);
+            break;
+        }
+
+        if (visRecord.sync == VISRECORD_SYNC_WORD_DIFX1) //old style ascii header
+        {
+            msg_error("difx_interface", "Cannot read DiFX 1.x data. " << eom );
+            break;
+        }
+
+        if(visRecord.sync == VISRECORD_SYNC_WORD_DIFX2) //new style binary header
+        {
+            msg_info("difx_interface", "Reading a DiFX binary file. " << eom );
+            break;
+        }
+        break;
+    }
+
+    vFile.close();
+
+        //     fread (&pv->version, sizeof (int), 1, vfile);
+        //     if(pv->version == 1) //new style binary header
+        //     {
+        //         fread (&pv->baseline,     sizeof (int),    1, vfile);
+        //         fread (&pv->mjd,          sizeof (int),    1, vfile);
+        //         fread (&pv->iat,          sizeof (double), 1, vfile);
+        //         fread (&pv->config_index, sizeof (int),    1, vfile);
+        //         fread (&pv->source_index, sizeof (int),    1, vfile);
+        //         fread (&pv->freq_index,   sizeof (int),    1, vfile);
+        //         fread (pv->pols,          sizeof (char),   2, vfile);
+        //         fread (&pv->pulsar_bin,   sizeof (int),    1, vfile);
+        //         fread (&pv->weight,       sizeof (double), 1, vfile);
+        //         fread (pv->uvw,           sizeof (double), 3, vfile);
+        // 
+        //         // determine #vis from input tables
+        //         pfr = D->freq + pv->freq_index;
+        //         nvis[nvr] = pfr->nChan / pfr->specAvg;
+        //         // protect from array overrun
+        //         if (nvis[nvr] > MAX_VIS) 
+        //         {
+        //             fprintf (stderr, 
+        //             "fatal error: # visibilities (%d) exceeds array dimension (%d)\n",
+        //             nvis, MAX_VIS);
+        //             return (-7);
+        //         }
+        //         vrsize[nvr] = sizeof (vis_record) - sizeof (pv->comp)
+        //         + nvis[nvr] * 2 * sizeof (float);
+        //         fread (pv->comp,          sizeof (float),  2*nvis[nvr], vfile);
+        // 
+        //         // if baseline not in fblock - skip over data record
+        //         ipfb = get_pfb_index (pv->baseline, pv->freq_index, pfb);
+        //         if (ipfb < 0)
+        //         {
+        //             if (opts->verbose > 2)
+        //             fprintf (stderr, "Skipping data for index %d of baseline %d\n",
+        //             pv->freq_index, pv->baseline);
+        //             nskip++;
+        //             continue;
+        //         }   
+        //         if (opts->verbose > 2)
+        //         fprintf (stderr, "valid read bl %x time %d %13.6f %p config %d source %d "
+        //         "freq %d, pol %c%c pb %d\n",
+        //         pv->baseline, pv->mjd, pv->iat, &(pv->iat),pv->config_index,
+        //         pv->source_index, pv->freq_index, pv->pols[0], pv->pols[1], pv->pulsar_bin);
+        //     }
+        //     else
+        //     {
+        //         fprintf(stderr, "Error parsing Swinburne header: got a sync of %x and version"
+        //         " of %d in record %d\n", pv->sync, pv->version, nvr);
+        //         return -4;
+        //     }
+        // }
+        // else
+        // {
+        //     fprintf (stderr, "Error parsing Swinburne header: got an unrecognized sync"
+        //     " of %x in record %d\n", pv->sync, nvr);
+        //     return -5;
+        // }
+        // 
+        // vrsize_tot += vrsize[nvr];
+        // nvr += 1;                   // bump the record counter
+        // // protect from visibility array overruns
+        // if (nvr > NVRMAX) 
+        // {
+        //     fprintf (stderr, 
+        //     "fatal error: # visibility records (%d) exceeds array dimension (%d)\n",
+        //     nvr, NVRMAX);
+        //     return (-8);
+        // }
+        // // point to next record
+        // pch = (char *) *vrec + vrsize_tot;
+        // pv = (vis_record *) pch;
+        // // if necessary, get another chunk's worth of ram
+        // // trigger realloc when less than half of the
+        // // current chunk remains
+        // if (allocated_tot - vrsize_tot < 0.5 * CHUNK)
+        // {
+        //     if (opts->verbose > 1)
+        //     printf ("realloc another mem chunk for visibilities, nvr %d size %d bytes\n",
+        //     nvr, (int) CHUNK);
+        // 
+        //     allocated_tot += CHUNK;
+        //     *vrec = realloc (*vrec, (size_t) allocated_tot);
+        //     if (*vrec == NULL)
+        //     {
+        //         printf ("error reallocating memory for %d records, requested %zu bytes\n",
+        //         nvr, allocated_tot);
+        //         return -2;
+        //     }
+        //     // recalculate pointers based on reallocated memory
+        //     pch = (char *) *vrec + vrsize_tot;
+        //     pv = (vis_record *) pch;
+        // }
+    // }
+    // if (opts->verbose > 1 && nskip > 0)
+    // fprintf (stderr, "total Swinburne records skipped %d\n", nskip);
+
+
 }
 
-void 
-MHO_DiFXInputInterface::ReadPCAL_File(std::string filename)
-{
-    //TODO 
-}
-
-void 
-MHO_DiFXInputInterface::ReadIM_File(std::string filename)
-{
-    //TODO
-}
-
-void 
-MHO_DiFXInputInterface::ReadInputFile(std::string filename)
-{
-    //TODO
-}
+// void 
+// MHO_DiFXInputInterface::ReadPCAL_File(std::string filename)
+// {
+//     //TODO 
+// }
+// 
+// void 
+// MHO_DiFXInputInterface::ReadIM_File(std::string filename)
+// {
+//     //TODO
+// }
+// 
+// void 
+// MHO_DiFXInputInterface::ReadInputFile(std::string filename)
+// {
+//     //TODO
+// }
 
 
 
