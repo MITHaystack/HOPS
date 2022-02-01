@@ -13,6 +13,8 @@
 #include <string>
 #include <vector>
 #include <algorithm>
+#include <map>
+
 
 #include "difxio/difx_input.h"
 #include "difxio/parsevis.h"
@@ -51,10 +53,12 @@ class MHO_DiFXInputInterface
 
     private:
 
+        void ProcessScan(MHO_DiFXScanFileSet& fileSet);
+
         void ReadDIFX_File(std::string filename);
-        void ReadPCAL_File(std::string filename);
-        void ReadIM_File(std::string filename);
-        void ReadInputFile(std::string filename);
+        // void ReadPCAL_File(std::string filename);
+        // void ReadIM_File(std::string filename);
+        // void ReadInputFile(std::string filename);
 
         std::string fInputDirectory;
         std::string fOutputDirectory;

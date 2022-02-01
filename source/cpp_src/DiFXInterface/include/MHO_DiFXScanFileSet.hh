@@ -33,7 +33,7 @@ class MHO_DiFXScanFileSet
         std::string fFlagFile; //.flag file associated with this scan
         std::string fV2DFile; //.v2d file for this experiment 
         std::string fVexFile; //.vex file for this experiment 
-        std::vector< std::string > fVisbilityFileList; //list of all DIFX_ files under the .difx directory 
+        std::vector< std::string > fVisibilityFileList; //list of all DIFX_ files under the .difx directory 
         std::vector< std::string > fPCALFileList; //list of all PCAL_ files under the .difx directory 
 };
 
