@@ -263,7 +263,7 @@ MHO_DiFXInputInterface::ReadDIFX_File(std::string filename)
 
     while(true)
     {
-        vFile.read(&(visRecord.sync) ), sizeof(int) ) ;
+        vFile.read( reinterpret_cast<char*>( &(visRecord.sync) ), sizeof(int) ) ;
 
         if( !(vFile.good() ) )
         {
@@ -281,27 +281,32 @@ MHO_DiFXInputInterface::ReadDIFX_File(std::string filename)
         {
             msg_info("difx_interface", "Reading a DiFX binary file. " << eom );
             
-            vFile.read(&(visRecord.version) ), sizeof(int) ) ;
+            vFile.read( reinterpret_cast<char*>(&(visRecord.headerversion) ), sizeof(int) );
             //fread (&visRecord.version, sizeof (int), 1, vfile);
-            if(visRecord.version == 1) //new style binary header
+            if(visRecord.headerversion == 1) //new style binary header
             {
-                vFile.read(&visRecord.baseline,     sizeof(int) );
-                vFile.read(&visRecord.mjd,          sizeof(int) );
-                vFile.read(&visRecord.iat,          sizeof(double) );
-                vFile.read(&visRecord.config_index, sizeof(int) );
-                vFile.read(&visRecord.source_index, sizeof(int) );
-                vFile.read(&visRecord.freq_index,   sizeof(int) ); 
-                vFile.read(visRecord.pols,          3*sizeof(char) );
-                vFile.read(&visRecord.pulsar_bin,   sizeof(int) ); 
-                vFile.read(&visRecord.weight,       sizeof(double) );
-                vFile.read(visRecord.uvw,           3*sizeof(double) );
+                vFile.read( reinterpret_cast<char*>(&visRecord.baseline), sizeof(int) );
+                vFile.read( reinterpret_cast<char*>(&visRecord.mjd), sizeof(int) );
+                vFile.read( reinterpret_cast<char*>(&visRecord.seconds), sizeof(double) );
+                vFile.read( reinterpret_cast<char*>( &visRecord.configindex), sizeof(int) );
+                vFile.read( reinterpret_cast<char*>(&visRecord.sourceindex), sizeof(int) );
+                vFile.read( reinterpret_cast<char*>(&visRecord.freqindex), sizeof(int) ); 
+                vFile.read( reinterpret_cast<char*>(visRecord.polpair), 3*sizeof(char) );
+                vFile.read( reinterpret_cast<char*>(&visRecord.pulsarbin), sizeof(int) ); 
+                vFile.read( reinterpret_cast<char*>(&visRecord.dataweight), sizeof(double) );
+                vFile.read( reinterpret_cast<char*>(visRecord.uvw), 3*sizeof(double) );
 
+
+                std::cout<<visRecord.baseline<<std::endl;
+                std::cout<<visRecord.mjd<<std::endl;
+                std::cout<<visRecord.seconds<<std::endl;
+                std::cout<<visRecord.configindex<<std::endl;
 
                 std::size_t nchans = 1;
                 //figure out the number of values here
 
 
-                vFile.read(&(visRecord.visdata), nchans*sizeof(cplx32f) );
+                //vFile.read(&(visRecord.visdata), nchans*sizeof(cplx32f) );
 
 
 
@@ -328,7 +333,7 @@ MHO_DiFXInputInterface::ReadDIFX_File(std::string filename)
             //     " of %d in record %d\n", visRecord.sync, visRecord.version, nvr);
             //     return -4;
             //         //     }
-
+            }
 
         }
         break;
