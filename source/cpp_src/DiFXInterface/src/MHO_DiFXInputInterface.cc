@@ -263,49 +263,95 @@ MHO_DiFXInputInterface::ReadDIFX_File(std::string filename)
 
     while(true)
     {
-        int sync;
-        vFile.read(reinterpret_cast<char*>(&(visRecord.sync) ), sizeof(int) ) ;
-        //visRecord.sync = sync;
+        vFile.read(&(visRecord.sync) ), sizeof(int) ) ;
 
-        //vFile >> visRecord.sync;
         if( !(vFile.good() ) )
         {
             msg_error("difx_interface", "Could not read input file: " << filename << eom);
             break;
         }
 
-        if (visRecord.sync == VISRECORD_SYNC_WORD_DIFX1) //old style ascii header
+        if (visRecord.sync == VISRECORD_SYNC_WORD_DIFX1) //old style ascii header, bad
         {
             msg_error("difx_interface", "Cannot read DiFX 1.x data. " << eom );
             break;
         }
 
-        if(visRecord.sync == VISRECORD_SYNC_WORD_DIFX2) //new style binary header
+        if(visRecord.sync == VISRECORD_SYNC_WORD_DIFX2) //new style binary header, ok
         {
             msg_info("difx_interface", "Reading a DiFX binary file. " << eom );
-            break;
+            
+            vFile.read(&(visRecord.version) ), sizeof(int) ) ;
+            //fread (&visRecord.version, sizeof (int), 1, vfile);
+            if(visRecord.version == 1) //new style binary header
+            {
+                vFile.read(&visRecord.baseline,     sizeof(int) );
+                vFile.read(&visRecord.mjd,          sizeof(int) );
+                vFile.read(&visRecord.iat,          sizeof(double) );
+                vFile.read(&visRecord.config_index, sizeof(int) );
+                vFile.read(&visRecord.source_index, sizeof(int) );
+                vFile.read(&visRecord.freq_index,   sizeof(int) ); 
+                vFile.read(visRecord.pols,          3*sizeof(char) );
+                vFile.read(&visRecord.pulsar_bin,   sizeof(int) ); 
+                vFile.read(&visRecord.weight,       sizeof(double) );
+                vFile.read(visRecord.uvw,           3*sizeof(double) );
+
+
+                std::size_t nchans = 1;
+                //figure out the number of values here
+
+
+                vFile.read(&(visRecord.visdata), nchans*sizeof(cplx32f) );
+
+
+
+                // // if baseline not in fblock - skip over data record
+                // ipfb = get_pfb_index (visRecord.baseline, visRecord.freq_index, pfb);
+                // if (ipfb < 0)
+                // {
+                //     if (opts->verbose > 2)
+                //     fprintf (stderr, "Skipping data for index %d of baseline %d\n",
+                //     visRecord.freq_index, visRecord.baseline);
+                //     nskip++;
+                //     continue;
+                // }   
+
+                // if (opts->verbose > 2)
+                // fprintf (stderr, "valid read bl %x time %d %13.6f %p config %d source %d "
+                // "freq %d, pol %c%c pb %d\n",
+                // visRecord.baseline, visRecord.mjd, visRecord.iat, &(visRecord.iat),visRecord.config_index,
+                // visRecord.source_index, visRecord.freq_index, visRecord.pols[0], visRecord.pols[1], visRecord.pulsar_bin);
+            // }
+            // else
+            // {
+            //     fprintf(stderr, "Error parsing Swinburne header: got a sync of %x and version"
+            //     " of %d in record %d\n", visRecord.sync, visRecord.version, nvr);
+            //     return -4;
+            //         //     }
+
+
         }
         break;
     }
 
     vFile.close();
 
-        //     fread (&pv->version, sizeof (int), 1, vfile);
-        //     if(pv->version == 1) //new style binary header
+        //     fread (&visRecord.version, sizeof (int), 1, vfile);
+        //     if(visRecord.version == 1) //new style binary header
         //     {
-        //         fread (&pv->baseline,     sizeof (int),    1, vfile);
-        //         fread (&pv->mjd,          sizeof (int),    1, vfile);
-        //         fread (&pv->iat,          sizeof (double), 1, vfile);
-        //         fread (&pv->config_index, sizeof (int),    1, vfile);
-        //         fread (&pv->source_index, sizeof (int),    1, vfile);
-        //         fread (&pv->freq_index,   sizeof (int),    1, vfile);
-        //         fread (pv->pols,          sizeof (char),   2, vfile);
-        //         fread (&pv->pulsar_bin,   sizeof (int),    1, vfile);
-        //         fread (&pv->weight,       sizeof (double), 1, vfile);
-        //         fread (pv->uvw,           sizeof (double), 3, vfile);
+        //         fread (&visRecord.baseline,     sizeof (int),    1, vfile);
+        //         fread (&visRecord.mjd,          sizeof (int),    1, vfile);
+        //         fread (&visRecord.iat,          sizeof (double), 1, vfile);
+        //         fread (&visRecord.config_index, sizeof (int),    1, vfile);
+        //         fread (&visRecord.source_index, sizeof (int),    1, vfile);
+        //         fread (&visRecord.freq_index,   sizeof (int),    1, vfile);
+        //         fread (visRecord.pols,          sizeof (char),   2, vfile);
+        //         fread (&visRecord.pulsar_bin,   sizeof (int),    1, vfile);
+        //         fread (&visRecord.weight,       sizeof (double), 1, vfile);
+        //         fread (visRecord.uvw,           sizeof (double), 3, vfile);
         // 
         //         // determine #vis from input tables
-        //         pfr = D->freq + pv->freq_index;
+        //         pfr = D->freq + visRecord.freq_index;
         //         nvis[nvr] = pfr->nChan / pfr->specAvg;
         //         // protect from array overrun
         //         if (nvis[nvr] > MAX_VIS) 
@@ -315,37 +361,37 @@ MHO_DiFXInputInterface::ReadDIFX_File(std::string filename)
         //             nvis, MAX_VIS);
         //             return (-7);
         //         }
-        //         vrsize[nvr] = sizeof (vis_record) - sizeof (pv->comp)
+        //         vrsize[nvr] = sizeof (vis_record) - sizeof (visRecord.comp)
         //         + nvis[nvr] * 2 * sizeof (float);
-        //         fread (pv->comp,          sizeof (float),  2*nvis[nvr], vfile);
+        //         fread (visRecord.comp,          sizeof (float),  2*nvis[nvr], vfile);
         // 
         //         // if baseline not in fblock - skip over data record
-        //         ipfb = get_pfb_index (pv->baseline, pv->freq_index, pfb);
+        //         ipfb = get_pfb_index (visRecord.baseline, visRecord.freq_index, pfb);
         //         if (ipfb < 0)
         //         {
         //             if (opts->verbose > 2)
         //             fprintf (stderr, "Skipping data for index %d of baseline %d\n",
-        //             pv->freq_index, pv->baseline);
+        //             visRecord.freq_index, visRecord.baseline);
         //             nskip++;
         //             continue;
         //         }   
         //         if (opts->verbose > 2)
         //         fprintf (stderr, "valid read bl %x time %d %13.6f %p config %d source %d "
         //         "freq %d, pol %c%c pb %d\n",
-        //         pv->baseline, pv->mjd, pv->iat, &(pv->iat),pv->config_index,
-        //         pv->source_index, pv->freq_index, pv->pols[0], pv->pols[1], pv->pulsar_bin);
+        //         visRecord.baseline, visRecord.mjd, visRecord.iat, &(visRecord.iat),visRecord.config_index,
+        //         visRecord.source_index, visRecord.freq_index, visRecord.pols[0], visRecord.pols[1], visRecord.pulsar_bin);
         //     }
         //     else
         //     {
         //         fprintf(stderr, "Error parsing Swinburne header: got a sync of %x and version"
-        //         " of %d in record %d\n", pv->sync, pv->version, nvr);
+        //         " of %d in record %d\n", visRecord.sync, visRecord.version, nvr);
         //         return -4;
         //     }
         // }
         // else
         // {
         //     fprintf (stderr, "Error parsing Swinburne header: got an unrecognized sync"
-        //     " of %x in record %d\n", pv->sync, nvr);
+        //     " of %x in record %d\n", visRecord.sync, nvr);
         //     return -5;
         // }
         // 
@@ -482,7 +528,7 @@ MHO_DiFXInputInterface::ReadDIFX_File(std::string filename)
 //         {
 //                                     // read a header from the input file
 //                                     // first read sync word to identify header version
-//         vfile_status = fread (&pv->sync, sizeof (int), 1, vfile);
+//         vfile_status = fread (&visRecord.sync, sizeof (int), 1, vfile);
 //         if (vfile_status != 1)
 //             {
 //             if (feof (vfile))
@@ -504,29 +550,29 @@ MHO_DiFXInputInterface::ReadDIFX_File(std::string filename)
 //                 }
 //             }
 // 
-//         if (pv->sync == VISRECORD_SYNC_WORD_DIFX1) //old style ascii header
+//         if (visRecord.sync == VISRECORD_SYNC_WORD_DIFX1) //old style ascii header
 //             {
 //             fprintf(stderr, "Error: difx2mark4 will not work with DiFX 1.x data\n");
 //             return -3;
 //             }
-//         else if (pv->sync == VISRECORD_SYNC_WORD_DIFX2) //new style binary header
+//         else if (visRecord.sync == VISRECORD_SYNC_WORD_DIFX2) //new style binary header
 //             {
-//             fread (&pv->version, sizeof (int), 1, vfile);
-//             if(pv->version == 1) //new style binary header
+//             fread (&visRecord.version, sizeof (int), 1, vfile);
+//             if(visRecord.version == 1) //new style binary header
 //                 {
-//                 fread (&pv->baseline,     sizeof (int),    1, vfile);
-//                 fread (&pv->mjd,          sizeof (int),    1, vfile);
-//                 fread (&pv->iat,          sizeof (double), 1, vfile);
-//                 fread (&pv->config_index, sizeof (int),    1, vfile);
-//                 fread (&pv->source_index, sizeof (int),    1, vfile);
-//                 fread (&pv->freq_index,   sizeof (int),    1, vfile);
-//                 fread (pv->pols,          sizeof (char),   2, vfile);
-//                 fread (&pv->pulsar_bin,   sizeof (int),    1, vfile);
-//                 fread (&pv->weight,       sizeof (double), 1, vfile);
-//                 fread (pv->uvw,           sizeof (double), 3, vfile);
+//                 fread (&visRecord.baseline,     sizeof (int),    1, vfile);
+//                 fread (&visRecord.mjd,          sizeof (int),    1, vfile);
+//                 fread (&visRecord.iat,          sizeof (double), 1, vfile);
+//                 fread (&visRecord.config_index, sizeof (int),    1, vfile);
+//                 fread (&visRecord.source_index, sizeof (int),    1, vfile);
+//                 fread (&visRecord.freq_index,   sizeof (int),    1, vfile);
+//                 fread (visRecord.pols,          sizeof (char),   2, vfile);
+//                 fread (&visRecord.pulsar_bin,   sizeof (int),    1, vfile);
+//                 fread (&visRecord.weight,       sizeof (double), 1, vfile);
+//                 fread (visRecord.uvw,           sizeof (double), 3, vfile);
 // 
 //                                     // determine #vis from input tables
-//                 pfr = D->freq + pv->freq_index;
+//                 pfr = D->freq + visRecord.freq_index;
 //                 nvis[nvr] = pfr->nChan / pfr->specAvg;
 //                                     // protect from array overrun
 //                 if (nvis[nvr] > MAX_VIS) 
@@ -536,37 +582,37 @@ MHO_DiFXInputInterface::ReadDIFX_File(std::string filename)
 //                     nvis, MAX_VIS);
 //                     return (-7);
 //                     }
-//                 vrsize[nvr] = sizeof (vis_record) - sizeof (pv->comp)
+//                 vrsize[nvr] = sizeof (vis_record) - sizeof (visRecord.comp)
 //                                  + nvis[nvr] * 2 * sizeof (float);
-//                 fread (pv->comp,          sizeof (float),  2*nvis[nvr], vfile);
+//                 fread (visRecord.comp,          sizeof (float),  2*nvis[nvr], vfile);
 // 
 //                                     // if baseline not in fblock - skip over data record
-//                 ipfb = get_pfb_index (pv->baseline, pv->freq_index, pfb);
+//                 ipfb = get_pfb_index (visRecord.baseline, visRecord.freq_index, pfb);
 //                 if (ipfb < 0)
 //                     {
 //                     if (opts->verbose > 2)
 //                         fprintf (stderr, "Skipping data for index %d of baseline %d\n",
-//                                   pv->freq_index, pv->baseline);
+//                                   visRecord.freq_index, visRecord.baseline);
 //                     nskip++;
 //                     continue;
 //                     }   
 //                 if (opts->verbose > 2)
 //                     fprintf (stderr, "valid read bl %x time %d %13.6f %p config %d source %d "
 //                                      "freq %d, pol %c%c pb %d\n",
-//                     pv->baseline, pv->mjd, pv->iat, &(pv->iat),pv->config_index,
-//                     pv->source_index, pv->freq_index, pv->pols[0], pv->pols[1], pv->pulsar_bin);
+//                     visRecord.baseline, visRecord.mjd, visRecord.iat, &(visRecord.iat),visRecord.config_index,
+//                     visRecord.source_index, visRecord.freq_index, visRecord.pols[0], visRecord.pols[1], visRecord.pulsar_bin);
 //                 }
 //             else
 //                 {
 //                 fprintf(stderr, "Error parsing Swinburne header: got a sync of %x and version"
-//                         " of %d in record %d\n", pv->sync, pv->version, nvr);
+//                         " of %d in record %d\n", visRecord.sync, visRecord.version, nvr);
 //                 return -4;
 //                 }
 //             }
 //         else
 //             {
 //             fprintf (stderr, "Error parsing Swinburne header: got an unrecognized sync"
-//                     " of %x in record %d\n", pv->sync, nvr);
+//                     " of %x in record %d\n", visRecord.sync, nvr);
 //             return -5;
 //             }
 // 
