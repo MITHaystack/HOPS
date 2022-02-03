@@ -48,30 +48,50 @@ class MHO_DiFXInputInterface
 
         void SetInputDirectory(std::string dir);
         void SetOutputDirectory(std::string dir);
-        void Initialize();
 
-        void ConstructScanFileLists();
+        void Initialize(); //read the directory and construct the scan file-lists 
+        void ProcessScans(); //convert the scans 
 
     private:
 
         void ProcessScan(MHO_DiFXScanFileSet& fileSet);
+        void OrganizeBaseline(int baseline);
 
         void ReadDIFX_File(std::string filename);
         // void ReadPCAL_File(std::string filename);
         // void ReadIM_File(std::string filename);
-        // void ReadInputFile(std::string filename);
+        void ReadInputFile(std::string filename);
 
         std::string fInputDirectory;
         std::string fOutputDirectory;
-
         MHO_DirectoryInterface fDirInterface;
 
         std::string fVexFile;
         std::string fV2DFile;
         std::vector< MHO_DiFXScanFileSet > fScanFileSetList;
 
-        std::map< int, std::vector<MHO_DiFXVisibilityRecord> > fBaselineVisibilities;
+        ////////////////////////////////////////////////////////////////////////
+        //members for dealing with a single (current) scan of data /////////////
+        //maps DiFX baseline index to vector of all associated visibility records 
+        std::map<int, std::vector<MHO_DiFXVisibilityRecord> > fBaselineVisibilities;
+        //maps freqindex to vector of associated visiblity records
+        std::map<int, std::vector<MHO_DiFXVisibilityRecord> > fChannels;
+        
 
+        ////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////
+
+
+        //comparison predicate for time-sorting data
+        typedef struct 
+        {
+            bool operator()(MHO_DiFXVisibilityRecord& a, MHO_DiFXVisibilityRecord& b) const 
+            {
+                if(a.mjd == b.mjd){return a.seconds < b.seconds;}
+                else{return a.mjd < b.mjd;}
+            }
+        } VisRecordTimeLess;
+        VisRecordTimeLess fTimePredicate;
 
 };
 
