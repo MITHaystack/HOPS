@@ -209,52 +209,43 @@ MHO_DiFXInputInterface::Initialize()
         msg_fatal("difx_interface", "No complete scan input found under: " << fInputDirectory << eom );
         std::exit(1);
     }
-
-    ProcessScan(fScanFileSetList[0]);
-
 }
 
+void 
+MHO_DiFXInputInterface::ProcessScans()
+{
+        for(auto it = fScanFileSetList.begin(); it != fScanFileSetList.end(); it++)
+        {
+            ProcessScan(*it);
+        }
+}
 
 void 
 MHO_DiFXInputInterface::ProcessScan(MHO_DiFXScanFileSet& fileSet)
 {
-        //testing
+        //read the input file
+        ReadInputFile(fileSet.fInputFile);
+
+        //organize each baseline --- TESTING!! 
+        //read the Swinburne file (just one for now)
         ReadDIFX_File(fileSet.fVisibilityFileList[0]);
+        for(auto it = fBaselineVisibilities.begin(); it != fBaselineVisibilities.end(); it++)
+        {
+            OrganizeBaseline(it->first);
+        }
+
+
 }
 
 void 
 MHO_DiFXInputInterface::ReadDIFX_File(std::string filename)
 {
     //read the visibilities and allocate memory to store them as we go
-
-    // typedef struct
-    // {
-    // FILE *infile;			/* file pointer */
-    // DifxParameters *params;		/* structure containing text params */
-    // int nchan;			/* number of channels to expect */
-    // int visnum;			/* counter of number of vis */
-    // int sync;			/* space to store the sync value */
-    // int headerversion;		/* 0=old style, 1=new binary style */
-    // int baseline;			/* The baseline number (256*A1 + A2, 1 indexed) */
-    // int mjd;			/* The MJD integer day */
-    // double seconds;			/* The seconds offset from mjd */
-    // int configindex;		/* The index to the configuration table */
-    // int sourceindex;		/* The index to the source table */
-    // int freqindex;			/* The index to the freq table */
-    // char polpair[3];		/* The polarisation pair */
-    // int pulsarbin;			/* The pulsar bin */
-    // double dataweight;		/* The fractional data weight */
-    // double uvw[3];			/* The u,v,w values in metres */
-    // cplx32f *visdata;		/* pointer to nchan complex values (2x float) */
-    // } DifxVisRecord;
-
+    fBaselineVisibilities.clear();
     MHO_DiFXVisibilityRecord visRecord;
 
-    // #define VISRECORD_SYNC_WORD_DIFX1 //old ascii, unsupported
-    // #define VISRECORD_SYNC_WORD_DIFX2
-
-    std::fstream vFile;
     //open file for binary reading
+    std::fstream vFile;
     vFile.open(filename.c_str(), std::fstream::in | std::ios::binary);
     if( !vFile.is_open() || !vFile.good() )
     {
@@ -266,27 +257,23 @@ MHO_DiFXInputInterface::ReadDIFX_File(std::string filename)
     while(keep_reading && vFile.good())
     {
         visRecord.Reset();
-
         vFile.read( reinterpret_cast<char*>( &(visRecord.sync) ), sizeof(int) );
 
         if( !(vFile.good() ) )
         {
-            msg_error("difx_interface", "Could not read input file: " << filename << eom);
+            msg_error("difx_interface", "Could not read Swinburne file: " << filename << eom);
             break;
         }
 
         if (visRecord.sync == VISRECORD_SYNC_WORD_DIFX1) //old style ascii header, bad
         {
-            msg_error("difx_interface", "Cannot read DiFX 1.x data. " << eom );
+            msg_error("difx_interface", "Cannot read DiFX 1.x data." << eom );
             break;
         }
 
         if(visRecord.sync == VISRECORD_SYNC_WORD_DIFX2) //new style binary header, ok
         {
-            //msg_info("difx_interface", "Reading a DiFX binary file. " << eom );
-            
             vFile.read( reinterpret_cast<char*>(&(visRecord.headerversion) ), sizeof(int) );
-            //fread (&visRecord.version, sizeof (int), 1, vfile);
             if(visRecord.headerversion == 1) //new style binary header
             {
                 vFile.read( reinterpret_cast<char*>(&visRecord.baseline), sizeof(int) );
@@ -312,8 +299,8 @@ MHO_DiFXInputInterface::ReadDIFX_File(std::string filename)
                 // std::cout<<visRecord.uvw[0]<<", "<<visRecord.uvw[1]<<", "<<visRecord.uvw[2]<<std::endl;
                 // std::cout<<"visbilities: "<<std::endl;
 
-                //parsel out the visibilities one at a time (for now)
-                std::size_t nchans = 0;
+                //parcel out the visibilities one at a time (for now)
+                std::size_t npoints = 0;
                 while(true)
                 {
                     MHO_VisibilityChunk chunk;
@@ -321,11 +308,9 @@ MHO_DiFXInputInterface::ReadDIFX_File(std::string filename)
                     //verify we haven't smacked into the sync word 
                     if(vFile.good())
                     {
-                        if( chunk.sync_test[0] != VISRECORD_SYNC_WORD_DIFX2  && chunk.sync_test[1] != VISRECORD_SYNC_WORD_DIFX2  ) //got a good one
+                        if(chunk.sync_test[0] != VISRECORD_SYNC_WORD_DIFX2 )
                         {
-                            //std::cout << std::hex;
-                            //std::cout << chunk.sync_test[0] <<std::endl;
-                            nchans++;
+                            npoints++;
                             visRecord.visdata.push_back( std::complex<float>(chunk.values[0], chunk.values[1] ) );
                         }
                         else
@@ -335,17 +320,12 @@ MHO_DiFXInputInterface::ReadDIFX_File(std::string filename)
                             break;
                         }
                     }
-                    else 
-                    {
-                        //hit the end of the file, break off here
-                        keep_reading = false;
-                        break;
-                    }
+                    else{ keep_reading = false; break;} //hit EOF
                 }
-                visRecord.nchan = nchans;
-                fBaselineVisibilities[visRecord.baseline].push_back(visRecord);
                 n_records++;
-                if(n_records%1000 == 0){std::cout<<"read "<<n_records<<" records with "<< nchans <<" chans"<<std::endl;}
+                visRecord.nchan = npoints;
+                fBaselineVisibilities[visRecord.baseline].push_back(visRecord);
+                if(n_records%1000 == 0){std::cout<<"read "<<n_records<<" records with "<< npoints <<" spectral points"<<std::endl;}
             }
         }
     }
@@ -358,9 +338,35 @@ MHO_DiFXInputInterface::ReadDIFX_File(std::string filename)
 
     //close the Swinburne file
     vFile.close();
+}
 
+void 
+MHO_DiFXInputInterface::OrganizeBaseline(int baseline)
+{
+    //organize all of the visibility records of this baseline by time and frequency
+    fChannels.clear();
+
+    //sort the visibility records into the appropriate channel 
+    std::cout<<"sorting vis records into channels"<<std::endl;
+    for(auto it = fBaselineVisibilities[baseline].begin(); it != fBaselineVisibilities[baseline].end(); it++)
+    {
+        //note we are copying each record around
+        //we could be more memory efficient if we just used ptrs
+        fChannels[it->freqindex].push_back(*it); 
+    }
+    std::cout<<"there are "<<fChannels.size()<<" channels "<<std::endl;
+    
+    //sort the visibility records by time (ascending order) with the timestamp predicate
+    VisRecordTimeLess pred;
+    for(auto it = fChannels.begin(); it != fChannels.end(); it++)
+    {
+        std::sort( it->second.begin(), it->second.end(), fTimePredicate);
+        std::cout<<"sorting channel data of length: "<< it->second.size()<<std::endl;
+    }
+    std::cout<<"done sorting all channels"<<std::endl;
 
 }
+
 
 // void 
 // MHO_DiFXInputInterface::ReadPCAL_File(std::string filename)
@@ -374,11 +380,14 @@ MHO_DiFXInputInterface::ReadDIFX_File(std::string filename)
 //     //TODO
 // }
 // 
-// void 
-// MHO_DiFXInputInterface::ReadInputFile(std::string filename)
-// {
-//     //TODO
-// }
+void 
+MHO_DiFXInputInterface::ReadInputFile(std::string filename)
+{
+    DifxInput* din = loadDifxInput(filename.c_str());
+    printDifxInput(din); //debug
+
+    deleteDifxInput(din);
+}
 
 
 

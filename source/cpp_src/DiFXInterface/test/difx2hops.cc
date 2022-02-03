@@ -72,6 +72,7 @@ int main(int argc, char** argv)
     dinterface.SetOutputDirectory(output_dir);
     
     dinterface.Initialize();
+    dinterface.ProcessScans();
 
 
     DifxInput* din;
