@@ -35,6 +35,7 @@
 #include "MHO_DirectoryInterface.hh"
 
 #include "MHO_DiFXScanFileSet.hh"
+#include "MHO_DiFXVisibilityRecord.hh"
 
 namespace hops
 {
@@ -68,6 +69,9 @@ class MHO_DiFXInputInterface
         std::string fVexFile;
         std::string fV2DFile;
         std::vector< MHO_DiFXScanFileSet > fScanFileSetList;
+
+        std::map< int, std::vector<MHO_DiFXVisibilityRecord> > fBaselineVisibilities;
+
 
 };
 
