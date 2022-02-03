@@ -75,7 +75,7 @@ int main(int argc, char** argv)
     dinterface.ProcessScans();
 
 
-    DifxInput* din;
+
 
     return 0;
 }

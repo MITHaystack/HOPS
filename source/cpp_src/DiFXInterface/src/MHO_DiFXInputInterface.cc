@@ -223,16 +223,16 @@ MHO_DiFXInputInterface::ProcessScans()
 void 
 MHO_DiFXInputInterface::ProcessScan(MHO_DiFXScanFileSet& fileSet)
 {
-        //read the input file
-        ReadInputFile(fileSet.fInputFile);
+    //read the input file
+    ReadInputFile(fileSet.fInputFile);
 
-        //organize each baseline --- TESTING!! 
-        //read the Swinburne file (just one for now)
-        ReadDIFX_File(fileSet.fVisibilityFileList[0]);
-        for(auto it = fBaselineVisibilities.begin(); it != fBaselineVisibilities.end(); it++)
-        {
-            OrganizeBaseline(it->first);
-        }
+    //organize each baseline --- TESTING!! 
+    //read the Swinburne file (just one for now)
+    ReadDIFX_File(fileSet.fVisibilityFileList[0]);
+    for(auto it = fBaselineVisibilities.begin(); it != fBaselineVisibilities.end(); it++)
+    {
+        OrganizeBaseline(it->first);
+    }
 
 
 }
@@ -300,6 +300,8 @@ MHO_DiFXInputInterface::ReadDIFX_File(std::string filename)
                 // std::cout<<"visbilities: "<<std::endl;
 
                 //parcel out the visibilities one at a time (for now)
+                //we may want to cache the npoint associated with each baseline+frequency in a map
+                //so we can just grab them all at once someday if we think that may speed things up
                 std::size_t npoints = 0;
                 while(true)
                 {
@@ -351,7 +353,7 @@ MHO_DiFXInputInterface::OrganizeBaseline(int baseline)
     for(auto it = fBaselineVisibilities[baseline].begin(); it != fBaselineVisibilities[baseline].end(); it++)
     {
         //note we are copying each record around
-        //we could be more memory efficient if we just used ptrs
+        //we could be more memory efficient if we just used pointers
         fChannels[it->freqindex].push_back(*it); 
     }
     std::cout<<"there are "<<fChannels.size()<<" channels "<<std::endl;
@@ -361,7 +363,7 @@ MHO_DiFXInputInterface::OrganizeBaseline(int baseline)
     for(auto it = fChannels.begin(); it != fChannels.end(); it++)
     {
         std::sort( it->second.begin(), it->second.end(), fTimePredicate);
-        std::cout<<"sorting channel data of length: "<< it->second.size()<<std::endl;
+        std::cout<<"sorting channel: "<<it->first<<" with "<< (*(it->second.begin())).visdata.size() <<" spectral points and time length: "<< it->second.size()<<std::endl;
     }
     std::cout<<"done sorting all channels"<<std::endl;
 
@@ -379,12 +381,22 @@ MHO_DiFXInputInterface::OrganizeBaseline(int baseline)
 // {
 //     //TODO
 // }
-// 
+
+
 void 
 MHO_DiFXInputInterface::ReadInputFile(std::string filename)
 {
     DifxInput* din = loadDifxInput(filename.c_str());
     printDifxInput(din); //debug
+
+    std::cout<<"-----------------------------------"<<std::endl;
+    for(int i=0; i<din->nFreq; i++)
+    {
+        std::cout<<"channel position: "<<i<<std::endl;
+        printDifxFreq( &(din->freq[i]) );
+
+    }
+
 
     deleteDifxInput(din);
 }
