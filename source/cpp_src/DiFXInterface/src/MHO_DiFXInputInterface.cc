@@ -248,7 +248,7 @@ MHO_DiFXInputInterface::ReadDIFX_File(std::string filename)
     // cplx32f *visdata;		/* pointer to nchan complex values (2x float) */
     // } DifxVisRecord;
 
-    DifxVisRecord visRecord;
+    MHO_DiFXVisibilityRecord visRecord;
 
     // #define VISRECORD_SYNC_WORD_DIFX1 //old ascii, unsupported
     // #define VISRECORD_SYNC_WORD_DIFX2
@@ -261,9 +261,13 @@ MHO_DiFXInputInterface::ReadDIFX_File(std::string filename)
         msg_error("file", "Failed to open visibility file: "  << filename << " for reading." << eom);
     }
 
-    while(true)
+    std::size_t n_records = 0;
+    bool keep_reading = true;
+    while(keep_reading && vFile.good())
     {
-        vFile.read( reinterpret_cast<char*>( &(visRecord.sync) ), sizeof(int) ) ;
+        visRecord.Reset();
+
+        vFile.read( reinterpret_cast<char*>( &(visRecord.sync) ), sizeof(int) );
 
         if( !(vFile.good() ) )
         {
@@ -279,7 +283,7 @@ MHO_DiFXInputInterface::ReadDIFX_File(std::string filename)
 
         if(visRecord.sync == VISRECORD_SYNC_WORD_DIFX2) //new style binary header, ok
         {
-            msg_info("difx_interface", "Reading a DiFX binary file. " << eom );
+            //msg_info("difx_interface", "Reading a DiFX binary file. " << eom );
             
             vFile.read( reinterpret_cast<char*>(&(visRecord.headerversion) ), sizeof(int) );
             //fread (&visRecord.version, sizeof (int), 1, vfile);
@@ -291,152 +295,69 @@ MHO_DiFXInputInterface::ReadDIFX_File(std::string filename)
                 vFile.read( reinterpret_cast<char*>( &visRecord.configindex), sizeof(int) );
                 vFile.read( reinterpret_cast<char*>(&visRecord.sourceindex), sizeof(int) );
                 vFile.read( reinterpret_cast<char*>(&visRecord.freqindex), sizeof(int) ); 
-                vFile.read( reinterpret_cast<char*>(visRecord.polpair), 3*sizeof(char) );
+                vFile.read( reinterpret_cast<char*>(visRecord.polpair), 2*sizeof(char) );
                 vFile.read( reinterpret_cast<char*>(&visRecord.pulsarbin), sizeof(int) ); 
                 vFile.read( reinterpret_cast<char*>(&visRecord.dataweight), sizeof(double) );
                 vFile.read( reinterpret_cast<char*>(visRecord.uvw), 3*sizeof(double) );
 
+                // std::cout<<visRecord.headerversion<<std::endl;
+                // std::cout<<visRecord.baseline<<std::endl;
+                // std::cout<<visRecord.mjd<<std::endl;
+                // std::cout<<visRecord.seconds<<std::endl;
+                // std::cout<<visRecord.configindex<<std::endl;
+                // std::cout<<visRecord.freqindex<<std::endl;
+                // std::cout<<visRecord.polpair[0]<<visRecord.polpair[1]<<std::endl;
+                // std::cout<<visRecord.pulsarbin<<std::endl;
+                // std::cout<<visRecord.dataweight<<std::endl;
+                // std::cout<<visRecord.uvw[0]<<", "<<visRecord.uvw[1]<<", "<<visRecord.uvw[2]<<std::endl;
+                // std::cout<<"visbilities: "<<std::endl;
 
-                std::cout<<visRecord.baseline<<std::endl;
-                std::cout<<visRecord.mjd<<std::endl;
-                std::cout<<visRecord.seconds<<std::endl;
-                std::cout<<visRecord.configindex<<std::endl;
-
-                std::size_t nchans = 1;
-                //figure out the number of values here
-
-
-                //vFile.read(&(visRecord.visdata), nchans*sizeof(cplx32f) );
-
-
-
-                // // if baseline not in fblock - skip over data record
-                // ipfb = get_pfb_index (visRecord.baseline, visRecord.freq_index, pfb);
-                // if (ipfb < 0)
-                // {
-                //     if (opts->verbose > 2)
-                //     fprintf (stderr, "Skipping data for index %d of baseline %d\n",
-                //     visRecord.freq_index, visRecord.baseline);
-                //     nskip++;
-                //     continue;
-                // }   
-
-                // if (opts->verbose > 2)
-                // fprintf (stderr, "valid read bl %x time %d %13.6f %p config %d source %d "
-                // "freq %d, pol %c%c pb %d\n",
-                // visRecord.baseline, visRecord.mjd, visRecord.iat, &(visRecord.iat),visRecord.config_index,
-                // visRecord.source_index, visRecord.freq_index, visRecord.pols[0], visRecord.pols[1], visRecord.pulsar_bin);
-            // }
-            // else
-            // {
-            //     fprintf(stderr, "Error parsing Swinburne header: got a sync of %x and version"
-            //     " of %d in record %d\n", visRecord.sync, visRecord.version, nvr);
-            //     return -4;
-            //         //     }
+                //parsel out the visibilities one at a time (for now)
+                std::size_t nchans = 0;
+                while(true)
+                {
+                    MHO_VisibilityChunk chunk;
+                    vFile.read( reinterpret_cast<char*>(&chunk), sizeof(MHO_VisibilityChunk) );
+                    //verify we haven't smacked into the sync word 
+                    if(vFile.good())
+                    {
+                        if( chunk.sync_test[0] != VISRECORD_SYNC_WORD_DIFX2  && chunk.sync_test[1] != VISRECORD_SYNC_WORD_DIFX2  ) //got a good one
+                        {
+                            //std::cout << std::hex;
+                            //std::cout << chunk.sync_test[0] <<std::endl;
+                            nchans++;
+                            visRecord.visdata.push_back( std::complex<float>(chunk.values[0], chunk.values[1] ) );
+                        }
+                        else
+                        {
+                            //"Lemme back up a minute..."
+                            vFile.seekg( -1*sizeof(MHO_VisibilityChunk), std::ios_base::cur);
+                            break;
+                        }
+                    }
+                    else 
+                    {
+                        //hit the end of the file, break off here
+                        keep_reading = false;
+                        break;
+                    }
+                }
+                visRecord.nchan = nchans;
+                fBaselineVisibilities[visRecord.baseline].push_back(visRecord);
+                n_records++;
+                if(n_records%1000 == 0){std::cout<<"read "<<n_records<<" records with "<< nchans <<" chans"<<std::endl;}
             }
-
         }
-        break;
     }
 
-    vFile.close();
+    std::cout<<"read data from "<<fBaselineVisibilities.size()<<" baselines "<<std::endl;
+    for(auto it = fBaselineVisibilities.begin(); it != fBaselineVisibilities.end(); it++)
+    {
+        std::cout<<" baseline: "<< it->first <<" has: "<< it->second.size()<<" records"<<std::endl;
+    }
 
-        //     fread (&visRecord.version, sizeof (int), 1, vfile);
-        //     if(visRecord.version == 1) //new style binary header
-        //     {
-        //         fread (&visRecord.baseline,     sizeof (int),    1, vfile);
-        //         fread (&visRecord.mjd,          sizeof (int),    1, vfile);
-        //         fread (&visRecord.iat,          sizeof (double), 1, vfile);
-        //         fread (&visRecord.config_index, sizeof (int),    1, vfile);
-        //         fread (&visRecord.source_index, sizeof (int),    1, vfile);
-        //         fread (&visRecord.freq_index,   sizeof (int),    1, vfile);
-        //         fread (visRecord.pols,          sizeof (char),   2, vfile);
-        //         fread (&visRecord.pulsar_bin,   sizeof (int),    1, vfile);
-        //         fread (&visRecord.weight,       sizeof (double), 1, vfile);
-        //         fread (visRecord.uvw,           sizeof (double), 3, vfile);
-        // 
-        //         // determine #vis from input tables
-        //         pfr = D->freq + visRecord.freq_index;
-        //         nvis[nvr] = pfr->nChan / pfr->specAvg;
-        //         // protect from array overrun
-        //         if (nvis[nvr] > MAX_VIS) 
-        //         {
-        //             fprintf (stderr, 
-        //             "fatal error: # visibilities (%d) exceeds array dimension (%d)\n",
-        //             nvis, MAX_VIS);
-        //             return (-7);
-        //         }
-        //         vrsize[nvr] = sizeof (vis_record) - sizeof (visRecord.comp)
-        //         + nvis[nvr] * 2 * sizeof (float);
-        //         fread (visRecord.comp,          sizeof (float),  2*nvis[nvr], vfile);
-        // 
-        //         // if baseline not in fblock - skip over data record
-        //         ipfb = get_pfb_index (visRecord.baseline, visRecord.freq_index, pfb);
-        //         if (ipfb < 0)
-        //         {
-        //             if (opts->verbose > 2)
-        //             fprintf (stderr, "Skipping data for index %d of baseline %d\n",
-        //             visRecord.freq_index, visRecord.baseline);
-        //             nskip++;
-        //             continue;
-        //         }   
-        //         if (opts->verbose > 2)
-        //         fprintf (stderr, "valid read bl %x time %d %13.6f %p config %d source %d "
-        //         "freq %d, pol %c%c pb %d\n",
-        //         visRecord.baseline, visRecord.mjd, visRecord.iat, &(visRecord.iat),visRecord.config_index,
-        //         visRecord.source_index, visRecord.freq_index, visRecord.pols[0], visRecord.pols[1], visRecord.pulsar_bin);
-        //     }
-        //     else
-        //     {
-        //         fprintf(stderr, "Error parsing Swinburne header: got a sync of %x and version"
-        //         " of %d in record %d\n", visRecord.sync, visRecord.version, nvr);
-        //         return -4;
-        //     }
-        // }
-        // else
-        // {
-        //     fprintf (stderr, "Error parsing Swinburne header: got an unrecognized sync"
-        //     " of %x in record %d\n", visRecord.sync, nvr);
-        //     return -5;
-        // }
-        // 
-        // vrsize_tot += vrsize[nvr];
-        // nvr += 1;                   // bump the record counter
-        // // protect from visibility array overruns
-        // if (nvr > NVRMAX) 
-        // {
-        //     fprintf (stderr, 
-        //     "fatal error: # visibility records (%d) exceeds array dimension (%d)\n",
-        //     nvr, NVRMAX);
-        //     return (-8);
-        // }
-        // // point to next record
-        // pch = (char *) *vrec + vrsize_tot;
-        // pv = (vis_record *) pch;
-        // // if necessary, get another chunk's worth of ram
-        // // trigger realloc when less than half of the
-        // // current chunk remains
-        // if (allocated_tot - vrsize_tot < 0.5 * CHUNK)
-        // {
-        //     if (opts->verbose > 1)
-        //     printf ("realloc another mem chunk for visibilities, nvr %d size %d bytes\n",
-        //     nvr, (int) CHUNK);
-        // 
-        //     allocated_tot += CHUNK;
-        //     *vrec = realloc (*vrec, (size_t) allocated_tot);
-        //     if (*vrec == NULL)
-        //     {
-        //         printf ("error reallocating memory for %d records, requested %zu bytes\n",
-        //         nvr, allocated_tot);
-        //         return -2;
-        //     }
-        //     // recalculate pointers based on reallocated memory
-        //     pch = (char *) *vrec + vrsize_tot;
-        //     pv = (vis_record *) pch;
-        // }
-    // }
-    // if (opts->verbose > 1 && nskip > 0)
-    // fprintf (stderr, "total Swinburne records skipped %d\n", nskip);
+    //close the Swinburne file
+    vFile.close();
 
 
 }
@@ -458,209 +379,6 @@ MHO_DiFXInputInterface::ReadDIFX_File(std::string filename)
 // {
 //     //TODO
 // }
-
-
-
-
-
-
-
-
-
-
-// 
-// 
-// int get_vis (DifxInput *D,                    // ptr to difx input file data
-//              char *vf_name,                   // name of input file
-//              struct CommandLineOptions *opts, // ptr to input options
-//              int *nvrtot,                     // total number of vis. records read
-//              int *nvis,                       // array of #vis per record
-//              int *vrsize,                     // array of size of vis records in bytes
-//              vis_record **vrec,               // ptr to malloced array of vis. recs as read
-//              char *corrdate,                  // modification date of input file
-//              struct fblock_tag *pfb)          // ptr to filled-in fblock table
-//     {
-//     int err,
-//         vfile_status,
-//         nskip=0,
-//         nvr,
-//         ipfb;
-//     size_t vrsize_tot,
-//         allocated_tot;
-// 
-//     FILE *vfile;
-//     struct tm *mod_time;
-//     struct stat attrib;
-//     vis_record *pv;                 // convenience pointers
-//     char *pch;
-//     DifxFreq *pfr;
-//                                     // local function prototypes
-//     int get_pfb_index (int, int, struct fblock_tag *);
-// 
-//     vfile = fopen (vf_name, "r");
-//     if (vfile == NULL)
-//         {
-//         perror (vf_name);
-//         fprintf (stderr, "fatal error opening input data file %s\n", vf_name);
-//         return (-1);
-//         }
-// 
-//     printf ("      opened input file %s\n", vf_name);
-//     err = stat (vf_name, &attrib);
-//     if (err)
-//         {
-//         fprintf (stderr, "Warning: error stating file %s\n", vf_name);
-//         fprintf (stderr, "         t000.date will be set to 2000001-000000\n");
-//         sprintf (corrdate, "2000001-000000");
-//         }
-//     else
-//         {
-//         mod_time = gmtime (&(attrib.st_mtime));
-//         snprintf (corrdate, 16, "%4d%03d-%02d%02d%02d", 
-//                  mod_time->tm_year+1900,
-//                  mod_time->tm_yday+1, mod_time->tm_hour,
-//                  mod_time->tm_min,  mod_time->tm_sec);
-//         }
-// 
-//     *vrec = malloc (CHUNK);
-//     allocated_tot = CHUNK;          // total amount of memory allocated
-//     pv = *vrec;
-//     pch = (char *) pv;
-//     nvr = 0;
-//     vrsize_tot = 0;
-//                                     // loop over all records in file
-//     while (TRUE)
-//         {
-//                                     // read a header from the input file
-//                                     // first read sync word to identify header version
-//         vfile_status = fread (&visRecord.sync, sizeof (int), 1, vfile);
-//         if (vfile_status != 1)
-//             {
-//             if (feof (vfile))
-//                 {
-//                                     //EOF in .difx file
-//                 if (opts->verbose > 0)
-//                     printf ("        EOF in input file\n");
-//                 fclose (vfile);
-//                 *nvrtot = nvr;
-//                 return -1;
-//                 }
-//             else 
-//                 {
-//                 fprintf (stderr, "unreadable input file %s status %d\n",
-//                          vf_name, vfile_status);
-//                                     //unreadable .difx file
-//                 fclose (vfile);
-//                 return -2;
-//                 }
-//             }
-// 
-//         if (visRecord.sync == VISRECORD_SYNC_WORD_DIFX1) //old style ascii header
-//             {
-//             fprintf(stderr, "Error: difx2mark4 will not work with DiFX 1.x data\n");
-//             return -3;
-//             }
-//         else if (visRecord.sync == VISRECORD_SYNC_WORD_DIFX2) //new style binary header
-//             {
-//             fread (&visRecord.version, sizeof (int), 1, vfile);
-//             if(visRecord.version == 1) //new style binary header
-//                 {
-//                 fread (&visRecord.baseline,     sizeof (int),    1, vfile);
-//                 fread (&visRecord.mjd,          sizeof (int),    1, vfile);
-//                 fread (&visRecord.iat,          sizeof (double), 1, vfile);
-//                 fread (&visRecord.config_index, sizeof (int),    1, vfile);
-//                 fread (&visRecord.source_index, sizeof (int),    1, vfile);
-//                 fread (&visRecord.freq_index,   sizeof (int),    1, vfile);
-//                 fread (visRecord.pols,          sizeof (char),   2, vfile);
-//                 fread (&visRecord.pulsar_bin,   sizeof (int),    1, vfile);
-//                 fread (&visRecord.weight,       sizeof (double), 1, vfile);
-//                 fread (visRecord.uvw,           sizeof (double), 3, vfile);
-// 
-//                                     // determine #vis from input tables
-//                 pfr = D->freq + visRecord.freq_index;
-//                 nvis[nvr] = pfr->nChan / pfr->specAvg;
-//                                     // protect from array overrun
-//                 if (nvis[nvr] > MAX_VIS) 
-//                     {
-//                     fprintf (stderr, 
-//                     "fatal error: # visibilities (%d) exceeds array dimension (%d)\n",
-//                     nvis, MAX_VIS);
-//                     return (-7);
-//                     }
-//                 vrsize[nvr] = sizeof (vis_record) - sizeof (visRecord.comp)
-//                                  + nvis[nvr] * 2 * sizeof (float);
-//                 fread (visRecord.comp,          sizeof (float),  2*nvis[nvr], vfile);
-// 
-//                                     // if baseline not in fblock - skip over data record
-//                 ipfb = get_pfb_index (visRecord.baseline, visRecord.freq_index, pfb);
-//                 if (ipfb < 0)
-//                     {
-//                     if (opts->verbose > 2)
-//                         fprintf (stderr, "Skipping data for index %d of baseline %d\n",
-//                                   visRecord.freq_index, visRecord.baseline);
-//                     nskip++;
-//                     continue;
-//                     }   
-//                 if (opts->verbose > 2)
-//                     fprintf (stderr, "valid read bl %x time %d %13.6f %p config %d source %d "
-//                                      "freq %d, pol %c%c pb %d\n",
-//                     visRecord.baseline, visRecord.mjd, visRecord.iat, &(visRecord.iat),visRecord.config_index,
-//                     visRecord.source_index, visRecord.freq_index, visRecord.pols[0], visRecord.pols[1], visRecord.pulsar_bin);
-//                 }
-//             else
-//                 {
-//                 fprintf(stderr, "Error parsing Swinburne header: got a sync of %x and version"
-//                         " of %d in record %d\n", visRecord.sync, visRecord.version, nvr);
-//                 return -4;
-//                 }
-//             }
-//         else
-//             {
-//             fprintf (stderr, "Error parsing Swinburne header: got an unrecognized sync"
-//                     " of %x in record %d\n", visRecord.sync, nvr);
-//             return -5;
-//             }
-// 
-//         vrsize_tot += vrsize[nvr];
-//         nvr += 1;                   // bump the record counter
-//                                     // protect from visibility array overruns
-//         if (nvr > NVRMAX) 
-//             {
-//             fprintf (stderr, 
-//             "fatal error: # visibility records (%d) exceeds array dimension (%d)\n",
-//             nvr, NVRMAX);
-//             return (-8);
-//             }
-//                                     // point to next record
-//         pch = (char *) *vrec + vrsize_tot;
-//         pv = (vis_record *) pch;
-//                                     // if necessary, get another chunk's worth of ram
-//                                     // trigger realloc when less than half of the
-//                                     // current chunk remains
-//         if (allocated_tot - vrsize_tot < 0.5 * CHUNK)
-//             {
-//             if (opts->verbose > 1)
-//                 printf ("realloc another mem chunk for visibilities, nvr %d size %d bytes\n",
-//                         nvr, (int) CHUNK);
-// 
-//             allocated_tot += CHUNK;
-//             *vrec = realloc (*vrec, (size_t) allocated_tot);
-//             if (*vrec == NULL)
-//                 {
-//                 printf ("error reallocating memory for %d records, requested %zu bytes\n",
-//                         nvr, allocated_tot);
-//                 return -2;
-//                 }
-//                                     // recalculate pointers based on reallocated memory
-//             pch = (char *) *vrec + vrsize_tot;
-//             pv = (vis_record *) pch;
-//             }
-//         }
-//         if (opts->verbose > 1 && nskip > 0)
-//             fprintf (stderr, "total Swinburne records skipped %d\n", nskip);
-//     }                               // return path is always through 
-// 
-// 
 
 
 
