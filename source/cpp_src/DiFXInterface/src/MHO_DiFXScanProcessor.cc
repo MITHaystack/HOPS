@@ -18,6 +18,7 @@ MHO_DiFXScanProcessor::ProcessScan(MHO_DiFXScanFileSet& fileSet)
     std::cout<<"PROCESSING FIRST SCAN ONLY"<<std::endl;
     ReadDIFX_File(fileSet.fVisibilityFileList[0]);
 
+    fVisibilities.clear();
     for(auto it = fAllBaselineVisibilities.begin(); it != fAllBaselineVisibilities.end(); it++)
     {
         OrganizeBaseline(it->first);
@@ -28,7 +29,7 @@ MHO_DiFXScanProcessor::ProcessScan(MHO_DiFXScanFileSet& fileSet)
     ConstructVisiblityFileObjects();
     WriteScanObjects();
 
-    //clear up an reset for next scan
+    //clear up and reset for next scan
     //deleteDifxInput(fDInput);
     //fDInput = nullptr;
 }
@@ -84,7 +85,7 @@ MHO_DiFXScanProcessor::ReadDIFX_File(std::string filename)
                 vFile.read( reinterpret_cast<char*>(visRecord.uvw), 3*sizeof(double) );
 
                 //parcel out the visibilities one at a time (for now)
-                //we may want to cache the npoint associated with each baseline+frequency in a map
+                //we may want to cache the npoints associated with each baseline+frequency in a map
                 //so we can just grab them all at once someday if we think that may speed things up
                 std::size_t npoints = 0;
                 while(true)
@@ -146,38 +147,49 @@ MHO_DiFXScanProcessor::ReadDIFX_File(std::string filename)
 void 
 MHO_DiFXScanProcessor::OrganizeBaseline(int baseline)
 {
-    //organize all of the visibility records of this baseline by time and frequency
-    //fChannels.clear();
-    fVisibilities.clear();
+    if(fAllBaselineVisibilities[baseline].size() == 0)
+    {
+        msg_warn("difx_interface", "no visiblity records available for baseline: " << baseline << eom);
+        return;
+    }
+
     fBaselineFreqs.clear(); 
+    fPolPairSet.clear();
+    fFreqIndexSet.clear();
+    fAPSet.clear();
+    fSpecPointSet.clear();
 
-    std::set<int> freqIndexSet;
+    fNPolPairs = 0;
+    fNChannels = 0;
+    fNAPs = 0;
+    fNSpectralPoints = 0;
 
-/*
-    //sort the visibility records into the appropriate channel 
-    std::cout<<"sorting vis records into channels"<<std::endl;
+    //sort the visibility records of this baseline by pols and freqs (channels)
+    //also keeping track of the set of frequencies available on this baseline
     for(auto it = fAllBaselineVisibilities[baseline].begin(); it != fAllBaselineVisibilities[baseline].end(); it++)
     {
-        int freqindex = it->freqindex;
-        fChannels[freqindex].push_back(*it); //we could be more memory efficient if we just used pointers to the vis records
-        auto freq = fAllFreqTable.find(freqindex);
+        std::string pp( (*it)->polpair, 2);
+        int freqidx = (*it)->freqindex;
+        int points = (*it)->nchan;
+        fFreqIndexSet.insert(freqidx);
+        fPolPairSet.insert(pp);
+        fSpecPointSet.insert(points);
+        fVisibilities[pp][freqidx].push_back(*it);
+    }
+
+    fNPolPairs = fPolPairSet.size();
+    if(fNPolPairs > 4){msg_warn("difx_interface", "More than 4 pol-products detected (" << fNPolPairs <<") on baseline: " << baseline << eom) ;}
+    fNChannels = fFreqIndexSet.size();
+
+    //construct the table of frequencies for this baseline and sort in asscending order
+    for(auto it = fFreqIndexSet.begin(); it != fFreqIndexSet.end(); it++)
+    {
+        auto freq = fAllFreqTable.find(*it);
         if(freq != fAllFreqTable.end() )
         {
-            auto check = freqIndexSet.find(freqindex); //check if it is already present (due to another polpair)
-            if(check == freqIndexSet.end())
-            {
-                fBaselineFreqs.push_back( std::make_pair(it->freqindex, freq->second ) );
-                freqIndexSet.insert(it->freqindex);
-            }
-        }
-        else
-        {
-            msg_error("difx_interface", "Could not locate frequency with index: " <<  it->freqindex << eom);
+            fBaselineFreqs.push_back( std::make_pair(*it, freq->second ) );
         }
     }
-    std::cout<<"there are "<<fChannels.size()<<" channels "<<std::endl;
-
-
     std::sort(fBaselineFreqs.begin(), fBaselineFreqs.end(), fFreqPredicate);
     for(auto it = fBaselineFreqs.begin(); it != fBaselineFreqs.end(); it++)
     {
@@ -185,21 +197,87 @@ MHO_DiFXScanProcessor::OrganizeBaseline(int baseline)
         printDifxFreq(it->second);
     }
 
-
-    //sort the visibility records by time (ascending order) with the timestamp predicate
-    VisRecordTimeLess pred;
-    for(auto it = fChannels.begin(); it != fChannels.end(); it++)
+    //sort the individual visiblity records in time order 
+    for(auto ppit = fPolPairSet.begin(); ppit != fPolPairSet.end(); ppit++)
     {
-        std::sort( it->second.begin(), it->second.end(), fTimePredicate);
-        std::cout<<"sorting channel: "<<it->first<<" with "<< (*(it->second.begin())).visdata.size() <<" spectral points and time length: "<< it->second.size()<<std::endl;
+        std::string pp = *ppit;
+        for(auto fqit = fBaselineFreqs.begin(); fqit != fBaselineFreqs.end(); fqit++)
+        {
+            int freqidx = fqit->first;
+            std::sort( fVisibilities[pp][freqidx].begin(), fVisibilities[pp][freqidx].end(), fTimePredicate);
+            fAPSet.insert( fVisibilities[pp][freqidx].size() );
+        }
     }
-    std::cout<<"done sorting all channels"<<std::endl;
+
+    //determine the number of APs
+    if(!fAPSet.empty())
+    {
+        fNAPs = *(fAPSet.rbegin());//grab the max
+    }
+    if(fAPSet.size() > 1 )
+    {
+        msg_error("difx_interface", "Channels do not have same number of APs on baseline: " << baseline << eom);
+    }
 
 
-    std::cout<<"We have: "<<fUniquePolPairs.size()<<" pol pairs as follows:" <<std::endl;
-    for(auto it = fUniquePolPairs.begin(); it != fUniquePolPairs.end(); it++){std::cout<<*it<<std::endl;}
+    //determine the number of spectral points per channel
+    if(!fSpecPointSet.empty())
+    {
+        fNSpectralPoints = *(fSpecPointSet.rbegin());//grab the max
+    }
+    if(fSpecPointSet.size() > 1 )
+    {
+        msg_error("difx_interface", "Channels do not have same number of spectral points on baseline: " << baseline << eom);
+    }
 
-*/
+
+
+
+
+
+    // //sort the visibility records into the appropriate pols and channels 
+    // std::cout<<"sorting vis records into channels"<<std::endl;
+    // for(auto it = fAllBaselineVisibilities[baseline].begin(); it != fAllBaselineVisibilities[baseline].end(); it++)
+    // {
+    //     int freqindex = it->freqindex;
+    //     fChannels[freqindex].push_back(*it); //we could be more memory efficient if we just used pointers to the vis records
+    //     auto freq = fAllFreqTable.find(freqindex);
+    // 
+    //     if(freq != fAllFreqTable.end() )
+    //     {
+    //         auto check = fFreqIndexSet.find(freqindex); //check if it is already present (due to another polpair)
+    //         if(check == fFreqIndexSet.end())
+    //         {
+    //             fBaselineFreqs.push_back( std::make_pair(it->freqindex, freq->second ) );
+    //             fFreqIndexSet.insert(it->freqindex);
+    //         }
+    //     }
+    //     else
+    //     {
+    //         msg_error("difx_interface", "Could not locate frequency with index: " <<  it->freqindex << eom);
+    //     }
+    // }
+    // std::cout<<"there are "<<fChannels.size()<<" channels "<<std::endl;
+
+    // 
+    // std::sort(fBaselineFreqs.begin(), fBaselineFreqs.end(), fFreqPredicate);
+    // 
+    // 
+    // 
+    // //sort the visibility records by time (ascending order) with the timestamp predicate
+    // VisRecordTimeLess pred;
+    // for(auto it = fChannels.begin(); it != fChannels.end(); it++)
+    // {
+    //     std::sort( it->second.begin(), it->second.end(), fTimePredicate);
+    //     std::cout<<"sorting channel: "<<it->first<<" with "<< (*(it->second.begin())).visdata.size() <<" spectral points and time length: "<< it->second.size()<<std::endl;
+    // }
+    // std::cout<<"done sorting all channels"<<std::endl;
+    // 
+    // 
+    // std::cout<<"We have: "<<fUniquePolPairs.size()<<" pol pairs as follows:" <<std::endl;
+    // for(auto it = fUniquePolPairs.begin(); it != fUniquePolPairs.end(); it++){std::cout<<*it<<std::endl;}
+
+
 }
 
 
@@ -246,16 +324,13 @@ MHO_DiFXScanProcessor::OrganizeBaseline(int baseline)
 void 
 MHO_DiFXScanProcessor::LoadInputFile(std::string filename)
 {
-    //TODO FIXME - Why does this sometimes fail when the .threads file is missing??
+    //TODO FIXME - Why does this sometimes fail for DiFX versions <2.6 
+    //when the .threads file is missing??
     DifxInput* fDInput = loadDifxInput(filename.c_str());
 
     //lets build the freq table 
     fAllFreqTable.clear();
     for(int i=0; i<fDInput->nFreq; i++){fAllFreqTable[i] = &(fDInput->freq[i]);}
-
-    // printDifxInput(fDInput); //debug
-    // 
-    // std::cout<<"-----------------------------------"<<std::endl;
 }
 
 
