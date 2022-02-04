@@ -11,11 +11,8 @@ MHO_DiFXScanProcessor::~MHO_DiFXScanProcessor(){};
 void 
 MHO_DiFXScanProcessor::ProcessScan(MHO_DiFXScanFileSet& fileSet)
 {
-    //read the input file and construct freq table
-    LoadInputFile(fileSet.fInputFile);
-
-    //read the Swinburne file (just one for now)
-    ReadDIFX_File(fileSet.fVisibilityFileList[0]);
+    LoadInputFile(fileSet.fInputFile); //read .input file and build freq table
+    ReadDIFX_File(fileSet.fVisibilityFileList[0]); //read the first Swinburne file
 
     ConstructRootFileObject();
 
@@ -26,12 +23,11 @@ MHO_DiFXScanProcessor::ProcessScan(MHO_DiFXScanFileSet& fileSet)
     }
 
     ConstructStationFileObjects();
-
     WriteScanObjects();
 
     //clear up and reset for next scan
-    //deleteDifxInput(fDInput);
-    //fDInput = nullptr;
+    deleteDifxInput(fDInput);
+    fDInput = nullptr;
 }
 
 void 
@@ -117,12 +113,7 @@ MHO_DiFXScanProcessor::ReadDIFX_File(std::string filename)
         }
     }
 
-    msg_debug("difx_interface", "read " << n_records << " visibility records from " <<fAllBaselineVisibilities.size()<<" baselines." << eom);
-
-    for(auto it = fAllBaselineVisibilities.begin(); it != fAllBaselineVisibilities.end(); it++)
-    {
-        std::cout<<" baseline: "<< it->first <<" has: "<< it->second.size()<<" records"<<std::endl;
-    }
+    msg_debug("difx_interface", "read " << n_records << " visibility records from " <<fAllBaselineVisibilities.size()<<" baselines, from: " << filename << eom);
 
     //close the Swinburne file
     vFile.close();
@@ -149,6 +140,12 @@ MHO_DiFXScanProcessor::OrganizeBaseline(int baseline)
     fNChannels = 0;
     fNAPs = 0;
     fNSpectralPoints = 0;
+
+    //only have to pad APs if they are unequal across channels
+    fPadAPs = false;
+
+    //can only use channelized visibilities if every channel has the same number of spectral points
+    fCanChannelize = true;
 
     //sort the visibility records of this baseline by pols and freqs (channels)
     //also keeping track of the set of frequencies available on this baseline
@@ -177,16 +174,12 @@ MHO_DiFXScanProcessor::OrganizeBaseline(int baseline)
         }
     }
     std::sort(fBaselineFreqs.begin(), fBaselineFreqs.end(), fFreqPredicate);
-    // for(auto it = fBaselineFreqs.begin(); it != fBaselineFreqs.end(); it++)
-    // {
-    //     std::cout<<"baseline frequency with index: "<< it->first<<std::endl;
-    //     printDifxFreq(it->second);
-    // }
 
     //sort the individual visiblity records in time order 
     for(auto ppit = fPolPairSet.begin(); ppit != fPolPairSet.end(); ppit++)
     {
         std::string pp = *ppit;
+        std::cout<<"pp = "<<pp<<std::endl;
         for(auto fqit = fBaselineFreqs.begin(); fqit != fBaselineFreqs.end(); fqit++)
         {
             int freqidx = fqit->first;
@@ -200,8 +193,10 @@ MHO_DiFXScanProcessor::OrganizeBaseline(int baseline)
     {
         fNAPs = *(fAPSet.rbegin());//grab the max
     }
+
     if(fAPSet.size() > 1 )
     {
+        fPadAPs = true;
         msg_error("difx_interface", "Channels do not have same number of APs on baseline: " << baseline << eom);
     }
 
@@ -210,8 +205,10 @@ MHO_DiFXScanProcessor::OrganizeBaseline(int baseline)
     {
         fNSpectralPoints = *(fSpecPointSet.rbegin());//grab the max
     }
+
     if(fSpecPointSet.size() > 1 )
     {
+        fCanChannelize = false;
         msg_error("difx_interface", "Channels do not have same number of spectral points on baseline: " << baseline << eom);
     }
 
@@ -221,7 +218,111 @@ MHO_DiFXScanProcessor::OrganizeBaseline(int baseline)
 }
 
 
+void 
+MHO_DiFXScanProcessor::ConstructVisibilityFileObjects()
+{
+	//fBaselineFreqs contains the ordered (ascending) list of channel frequencies 
+	//fChannels contains the time sorted visibilities 
 
+	//loop through baseline freqs in order, grabbing the associated channel
+	//and populating the visibility container 
+
+	//TODO verify that the channels all have the same number of spectral points!
+	//if not then we need to use the flag visibility container 
+
+    if(fCanChannelize)
+    {
+    	//first construct a channelized visibility container
+        ch_baseline_data_type* vis = new ch_baseline_data_type(); 
+
+        std::cout<<"resizing to = "<<fNPolPairs<<", "<<fNChannels<<", "<<fNAPs<<", "<<fNSpectralPoints<<std::endl;
+        vis->Resize(fNPolPairs, fNChannels, fNAPs, fNSpectralPoints);
+        vis->ZeroArray();
+
+        // /* Straight from DiFX frequency table */
+        // typedef struct
+        // {
+        // 	double freq;		/* (MHz) */
+        // 	double bw;		/* (MHz) */
+        // 	char sideband;		/* U or L -- net sideband */
+        // 	int nChan;
+        // 	int specAvg;		/* This is averaging within mpifxcorr  */
+        // 	int overSamp;
+        // 	int decimation;
+        // 	int nTone;		/* Number of pulse cal tones */
+        // 	int *tone;		/* Array of tone indices */
+        // 	char rxName[DIFXIO_RX_NAME_LENGTH];
+        // } DifxFreq;
+
+        std::cout<<"size of pol pair set = "<<fPolPairSet.size();
+
+        int ppidx = 0;
+        for(auto ppit = fPolPairSet.begin(); ppit != fPolPairSet.end(); ppit++)
+        {
+            std::string pp = *ppit;
+            //std::cout<<"pol = "<<pp<<std::endl;
+            auto* polprod_axis = &(std::get<CH_POLPROD_AXIS>(*vis));
+            polprod_axis->at(ppidx) = pp;
+            int chidx = 0;
+            for(auto fqit = fBaselineFreqs.begin(); fqit != fBaselineFreqs.end(); fqit++)
+            {
+                int freqidx = fqit->first;
+                DifxFreq* dfreq = fqit->second;
+                double sky_freq = dfreq->freq;
+                double bw = dfreq->bw; 
+                char sideband = dfreq->sideband;
+
+                //std::cout<<"sky freq = "<<sky_freq<<std::endl;
+                MHO_IntervalLabel ch_label(chidx,chidx);
+                ch_label.Insert(std::string("sky_freq"), sky_freq);
+                ch_label.Insert(std::string("bandwidth"), bw);
+                ch_label.Insert(std::string("net_sideband"), std::string(sideband,1) );
+                ch_label.Insert(std::string("channel"), freqidx); //probably ought to be more systematic about creating channel names
+
+                auto* ch_axis = &(std::get<CH_CHANNEL_AXIS>(*vis));
+                ch_axis->at(chidx) = chidx;
+                ch_axis->InsertLabel(ch_label);
+                for(std::size_t ap = 0; ap<fVisibilities[pp][freqidx].size(); ap++)
+                {
+                    auto* ap_axis = &(std::get<CH_TIME_AXIS>(*vis));
+                    ap_axis->at(ap) = 0.0; //TODO FIXME -- compute ap*ap_length
+
+                    MHO_DiFXVisibilityRecord* visRec = fVisibilities[pp][freqidx][ap];
+                    for(std::size_t sp = 0; sp<fNSpectralPoints; sp++)
+                    {
+                        auto* sp_axis = &(std::get<CH_FREQ_AXIS>(*vis));
+                        sp_axis->at(sp) = sp*(bw/fNSpectralPoints); //frequency offset from edge of channel
+                        if(sideband == 'L')
+                        {
+                            //flip axis and conjugate (why?) //TODO VERIFY
+                            std::complex<double> tmp =  visRec->visdata[fNSpectralPoints-1-sp];
+                            (*vis)(ppidx,chidx,ap,sp) = std::conj(tmp);
+                            //std::cout<<ppidx<<", "<<chidx<<", "<<ap<<", "<<sp<<" = "<<(*vis)(ppidx,chidx,ap,sp)<<std::endl;
+                        }
+                        else
+                        {
+                            //treat as upper sideband
+                            (*vis)(ppidx,chidx,ap,sp) = visRec->visdata[sp];
+                            std::cout<<(*vis)(ppidx,chidx,ap,sp)<<std::endl;
+                        }
+
+                    }
+                }
+                chidx++;
+            }
+            ppidx++;
+        }
+
+        //just delete for now 
+        std::cout<<"filled ch_vis records"<<std::endl;
+        delete vis;
+    }
+    else 
+    {
+        std::cout<<"cant channelize"<<std::endl;
+    }
+
+};
 
 
 
@@ -286,42 +387,7 @@ MHO_DiFXScanProcessor::ConstructStationFileObjects()
 
 };
 
-void 
-MHO_DiFXScanProcessor::ConstructVisibilityFileObjects()
-{
-	//fBaselineFreqs contains the ordered (ascending) list of channel frequencies 
-	//fChannels contains the time sorted visibilities 
 
-	//loop through baseline freqs in order, grabbing the associated channel
-	//and populating the visibility container 
-
-	//TODO verify that the channels all have the same number of spectral points!
-	//if not then we need to use the flag visibility container 
-
-
-	//first construct a channelized visibility container 
-/*
-	ch_baseline_data_type* vis = new ch_baseline_data_type();
-        vis.Resize(fUniquePolPairs.size(), NCHANS, NAPS, NSPECPTS);	
-
-
-	//now loop and fill it up
-	for(auto it = fBaselineFreqs.begin(); it != fBaselineFreqs.end(); it++)
-	{
-		int index = it->first;
-		DifxFreq* freq = it->second;
-		
-
-
-	}
-    std::map<int, std::vector<MHO_DiFXVisibilityRecord> > fChannels;
-        //maps freqindex to the difx frequency description
-        std::map<int, DifxFreq*> fAllFreqTable;
-        //list of channel frequencies for this baseline, sorted in ascending order (freq)
-        std::vector< std::pair<int, DifxFreq*> > fBaselineFreqs;
-*/
-
-};
 
 void 
 MHO_DiFXScanProcessor::WriteScanObjects()
