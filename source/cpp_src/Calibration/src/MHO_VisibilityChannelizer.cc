@@ -163,7 +163,7 @@ MHO_VisibilityChannelizer::ExecuteImpl(const baseline_data_type* in, ch_baseline
                 char net_sb;
                 int channel_id;
 
-                MHO_IntervalLabel fresh_ch_label;
+                MHO_IntervalLabel fresh_ch_label(ch,ch);
                 ch_label->Retrieve(std::string("sky_freq"), sky_freq);
                 ch_label->Retrieve(std::string("bandwidth"), bw);
                 ch_label->Retrieve(std::string("net_sideband"), net_sb);

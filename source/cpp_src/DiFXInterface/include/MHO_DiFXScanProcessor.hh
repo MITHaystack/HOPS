@@ -94,11 +94,13 @@ class MHO_DiFXScanProcessor
         std::size_t fNChannels;
         std::size_t fNAPs;
         std::size_t fNSpectralPoints;
+
+        bool fPadAPs; //true if NAPS is not the same for all channels
+        bool fCanChannelize; //false if n-spectral points is not the same for all channels
     
 
         ////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////
-
 
         //comparison predicate for time-sorting visibility record data
         typedef struct 
@@ -110,7 +112,6 @@ class MHO_DiFXScanProcessor
             }
         } VisRecordTimeLess;
         VisRecordTimeLess fTimePredicate;
-
 
         //comparison predicate for sorting index-frequency record pairs
         typedef struct 
