@@ -14,6 +14,7 @@
 #include <vector>
 #include <algorithm>
 #include <map>
+#include <set>
 
 
 #include "difxio/difx_input.h"
@@ -84,7 +85,7 @@ class MHO_DiFXInputInterface
         std::map<int, DifxFreq*> fFreqTable;
         //list of channel frequencies for this baseline, sorted in ascending order (freq)
         std::vector< std::pair<int, DifxFreq*> > fBaselineFreqs;
-
+        std::set< std::string > fUniquePolPairs;
 
         ////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////
