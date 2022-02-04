@@ -25,7 +25,8 @@ class MHO_DiFXScanFileSet
 
         //direct public access since all we are doing is get/set anyways
         std::string fScanName; //difx scan name
-        std::string fBaseDirectory; //root directory for this experiment
+        std::string fInputBaseDirectory; //root input directory for this experiment
+        std::string fOutputBaseDirectory; //root output directory for this experiment
         std::string fScanDirectory; //.difx directory 
         std::string fInputFile; //.input file associated with this scan
         std::string fIMFile; //.im file associated with this scan

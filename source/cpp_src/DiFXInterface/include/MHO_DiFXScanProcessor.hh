@@ -1,14 +1,15 @@
-#ifndef MHO_DiFXInputInterface_HH__
-#define MHO_DiFXInputInterface_HH__
+#ifndef MHO_DiFXScanProcessor_HH__
+#define MHO_DiFXScanProcessor_HH__
 
 /*
-*@file: MHO_DiFXInputInterface.hh
-*@class: MHO_DiFXInputInterface
+*@file: MHO_DiFXScanProcessor.hh
+*@class: MHO_DiFXScanProcessor
 *@author: J. Barrett
 *@email: barrettj@mit.edu
 *@date:
 *@brief:
 */
+
 
 #include <string>
 #include <vector>
@@ -21,7 +22,6 @@
 #include "difxio/parsevis.h"
 
 #include "MHO_Message.hh"
-#include "MHO_Tokenizer.hh"
 
 #include "MHO_Visibilities.hh"
 #include "MHO_ChannelizedVisibilities.hh"
@@ -33,38 +33,25 @@
 #include "MHO_BinaryFileInterface.hh"
 #include "MHO_ClassIdentityMap.hh"
 
-#include "MHO_DirectoryInterface.hh"
-
 #include "MHO_DiFXScanFileSet.hh"
 #include "MHO_DiFXVisibilityRecord.hh"
 
-namespace hops
+namespace hops 
 {
 
-class MHO_DiFXInputInterface
+class MHO_DiFXScanProcessor
 {
     public:
-        MHO_DiFXInputInterface();
-        virtual ~MHO_DiFXInputInterface();
+        MHO_DiFXScanProcessor();
+        virtual ~MHO_DiFXScanProcessor();
 
-        void SetInputDirectory(std::string dir);
-        void SetOutputDirectory(std::string dir);
-
-        void Initialize(); //read the directory and construct the scan file-lists 
-        void ProcessScans(); //convert the scans 
+        void ProcessScan(MHO_DiFXScanFileSet& fileSet);
 
     private:
 
-        std::string fInputDirectory;
-        std::string fOutputDirectory;
-        MHO_DirectoryInterface fDirInterface;
-        std::string fVexFile;
-        std::string fV2DFile;
-        std::vector< MHO_DiFXScanFileSet > fScanFileSetList;
-
         ////////////////////////////////////////////////////////////////////////
         //members for dealing with a single (current) scan of data /////////////
-        void ProcessScan(MHO_DiFXScanFileSet& fileSet);
+
         void LoadInputFile(std::string filename);
         void ReadDIFX_File(std::string filename);
         void OrganizeBaseline(int baseline);
@@ -78,14 +65,27 @@ class MHO_DiFXInputInterface
         //the DiFX input file structure 
         DifxInput* fDInput;
         //maps DiFX baseline index to vector of all associated visibility records 
-        std::map<int, std::vector<MHO_DiFXVisibilityRecord> > fBaselineVisibilities;
+        std::map<int, std::vector< MHO_DiFXVisibilityRecord* > > fAllBaselineVisibilities;
+        //maps all freqindex's to the difx frequency description
+        std::map<int, DifxFreq*> fAllFreqTable;
+
+        //for a single baseline, maps pol-pair, then freqindex to visiblity records 
+        std::map< std::string, std::map<int, std::vector<MHO_DiFXVisibilityRecord> > > fVisibilities;
+
         //maps freqindex to vector of associated visiblity records
-        std::map<int, std::vector<MHO_DiFXVisibilityRecord> > fChannels;
-        //maps freqindex to the difx frequency description
-        std::map<int, DifxFreq*> fFreqTable;
+        //std::map<int, std::vector<MHO_DiFXVisibilityRecord> > fChannels;
+
         //list of channel frequencies for this baseline, sorted in ascending order (freq)
         std::vector< std::pair<int, DifxFreq*> > fBaselineFreqs;
-        std::set< std::string > fUniquePolPairs;
+        //set of pol-pairs present on this baseline
+        std::map< int, std::set< std::string >  > fBaselineUniquePolPairs;
+
+        //determines the size of the (channelized) visibilities
+        std::size_t fNPolPairs;
+        std::size_t fNChannels;
+        std::size_t fNAPs;
+        std::size_t fNSpectralPoints;
+    
 
         ////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////
@@ -113,8 +113,9 @@ class MHO_DiFXInputInterface
         } FreqIndexPairLess;
         FreqIndexPairLess fFreqPredicate;
 
+
 };
 
-}//end of namespace
+}//end of hops namespace
 
-#endif /* end of include guard: MHO_DiFXInputInterface */
+#endif /* end of include guard: MHO_DiFXScanProcessor */
