@@ -13,6 +13,7 @@
 #include <cstdint>
 #include <vector>
 #include <complex>
+#include <cstring>
 
 #include "difxio/parsevis.h"
 
@@ -22,7 +23,27 @@ namespace hops
 class MHO_DiFXVisibilityRecord
 {
     public:
-        MHO_DiFXVisibilityRecord(){};
+        MHO_DiFXVisibilityRecord(){Reset();}
+
+        MHO_DiFXVisibilityRecord(const MHO_DiFXVisibilityRecord& copy)
+        {
+            nchan = copy.nchan;
+            visnum = copy.visnum;   
+            sync = copy.sync;
+            headerversion = copy.headerversion;  
+            baseline = copy.baseline;   
+            mjd = copy.mjd;     
+            seconds = copy.seconds;
+            configindex = copy.configindex;
+            sourceindex = copy.sourceindex;
+            freqindex = copy.freqindex;
+            memcpy(polpair, copy.polpair, 3);
+            pulsarbin = copy.pulsarbin;
+            dataweight = copy.dataweight;
+            memcpy(uvw, copy.uvw, 3*sizeof(double));
+            visdata = copy.visdata;
+        };
+
         virtual ~MHO_DiFXVisibilityRecord(){};
 
         void Reset()
@@ -48,7 +69,7 @@ class MHO_DiFXVisibilityRecord
             visdata.clear();
         }
 
-        //public members  --- taken from directly from DifxVisRecord;
+        //we leave the members public  --- taken from directly from DifxVisRecord;
 
         int nchan;          /* number of channels to expect */
         int visnum;         /* counter of number of vis */
@@ -67,7 +88,8 @@ class MHO_DiFXVisibilityRecord
         std::vector< std::complex<float> > visdata; /* nchan complex values (2x float) */
 };
 
-
+//helper union used for reading in visibility records
+//to catch over-runs with sync word 
 typedef union 
 {
     float values[2];
