@@ -54,44 +54,63 @@ class MHO_DiFXInputInterface
 
     private:
 
-        void ProcessScan(MHO_DiFXScanFileSet& fileSet);
-        void OrganizeBaseline(int baseline);
-
-        void ReadDIFX_File(std::string filename);
-        // void ReadPCAL_File(std::string filename);
-        // void ReadIM_File(std::string filename);
-        void ReadInputFile(std::string filename);
-
         std::string fInputDirectory;
         std::string fOutputDirectory;
         MHO_DirectoryInterface fDirInterface;
-
         std::string fVexFile;
         std::string fV2DFile;
         std::vector< MHO_DiFXScanFileSet > fScanFileSetList;
 
         ////////////////////////////////////////////////////////////////////////
         //members for dealing with a single (current) scan of data /////////////
+        void ProcessScan(MHO_DiFXScanFileSet& fileSet);
+        void LoadInputFile(std::string filename);
+        void ReadDIFX_File(std::string filename);
+        void OrganizeBaseline(int baseline);
+        // void ReadPCAL_File(std::string filename);
+        // void ReadIM_File(std::string filename);
+        void ConstructRootFileObject();
+        void ConstructStationFileObjects();
+        void ConstructVisiblityFileObjects();
+        void WriteScanObjects();
+
+        //the DiFX input file structure 
+        DifxInput* fDInput;
         //maps DiFX baseline index to vector of all associated visibility records 
         std::map<int, std::vector<MHO_DiFXVisibilityRecord> > fBaselineVisibilities;
         //maps freqindex to vector of associated visiblity records
         std::map<int, std::vector<MHO_DiFXVisibilityRecord> > fChannels;
-        
+        //maps freqindex to the difx frequency description
+        std::map<int, DifxFreq*> fFreqTable;
+        //list of channel frequencies for this baseline, sorted in ascending order (freq)
+        std::vector< std::pair<int, DifxFreq*> > fBaselineFreqs;
+
 
         ////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////
 
 
-        //comparison predicate for time-sorting data
+        //comparison predicate for time-sorting visibility record data
         typedef struct 
         {
-            bool operator()(MHO_DiFXVisibilityRecord& a, MHO_DiFXVisibilityRecord& b) const 
+            bool operator()(const MHO_DiFXVisibilityRecord& a, const MHO_DiFXVisibilityRecord& b) const 
             {
                 if(a.mjd == b.mjd){return a.seconds < b.seconds;}
                 else{return a.mjd < b.mjd;}
             }
         } VisRecordTimeLess;
         VisRecordTimeLess fTimePredicate;
+
+
+        //comparison predicate for sorting index-frequency record pairs
+        typedef struct 
+        {
+            bool operator()(const std::pair<int, DifxFreq*>& a, const std::pair<int, DifxFreq*>& b) const 
+            {
+                return a.second->freq < b.second->freq;
+            }
+        } FreqIndexPairLess;
+        FreqIndexPairLess fFreqPredicate;
 
 };
 

@@ -142,10 +142,10 @@ MHO_DiFXInputInterface::Initialize()
 
         //verify each is present 
         bool have_full_set = true;
-        auto im = imPresent.find(im_file); if(im == imPresent.end()){have_full_set = false;std::cout<<"1"<<std::endl;}
-        auto calc = calcPresent.find(calc_file); if(calc == calcPresent.end()){have_full_set = false;std::cout<<"2"<<std::endl;}
-        auto flag = flagPresent.find(flag_file); if(flag == flagPresent.end()){have_full_set = false;std::cout<<"3"<<std::endl;}
-        auto difx = difxPresent.find(difx_dir); if(difx == difxPresent.end()){have_full_set = false;std::cout<<"4"<<std::endl;}
+        auto im = imPresent.find(im_file); if(im == imPresent.end()){have_full_set = false;}
+        auto calc = calcPresent.find(calc_file); if(calc == calcPresent.end()){have_full_set = false;}
+        auto flag = flagPresent.find(flag_file); if(flag == flagPresent.end()){have_full_set = false;}
+        auto difx = difxPresent.find(difx_dir); if(difx == difxPresent.end()){have_full_set = false;}
 
         if(have_full_set)
         {
@@ -164,12 +164,11 @@ MHO_DiFXInputInterface::Initialize()
             fileSet.fVisibilityFileList.clear();
             fileSet.fPCALFileList.clear();
 
-            //super primitive right now...just assume only a single DIFX_ file 
             MHO_DirectoryInterface subDirInterface;
             subDirInterface.SetCurrentDirectory(difx_dir);
             subDirInterface.ReadCurrentDirectory();
             
-            //locate the visiblity file 
+            //locate Swinburne file
             std::vector< std::string > visibFiles;
             subDirInterface.GetFilesMatchingPrefix(visibFiles, "DIFX_");
             for(auto it=visibFiles.begin(); it != visibFiles.end(); it++)
@@ -193,12 +192,12 @@ MHO_DiFXInputInterface::Initialize()
             }
             else 
             {
-                msg_warn("difx_interface", "No visibility files found associated with scan: " << *it << eom);
+                msg_warn("difx_interface", "No visibility files found associated with scan: " << *it << " will not process." << eom);
             }
         }
         else 
         {
-            msg_warn("difx_interface", "Could not find all difx aux files associated with scan: " << *it << eom);
+            msg_warn("difx_interface", "Could not find all difx files associated with scan: " << *it << " will not process." << eom);
         }
     }
 
@@ -214,19 +213,19 @@ MHO_DiFXInputInterface::Initialize()
 void 
 MHO_DiFXInputInterface::ProcessScans()
 {
-        for(auto it = fScanFileSetList.begin(); it != fScanFileSetList.end(); it++)
-        {
-            ProcessScan(*it);
-        }
+    for(auto it = fScanFileSetList.begin(); it != fScanFileSetList.end(); it++)
+    {
+        ProcessScan(*it);
+    }
 }
 
 void 
 MHO_DiFXInputInterface::ProcessScan(MHO_DiFXScanFileSet& fileSet)
 {
-    //read the input file
-    ReadInputFile(fileSet.fInputFile);
+    //read the input file and construct freq table
+    LoadInputFile(fileSet.fInputFile);
 
-    //organize each baseline --- TESTING!! 
+    //organize each baseline --- UNDER TESTING!! 
     //read the Swinburne file (just one for now)
     ReadDIFX_File(fileSet.fVisibilityFileList[0]);
     for(auto it = fBaselineVisibilities.begin(); it != fBaselineVisibilities.end(); it++)
@@ -234,7 +233,14 @@ MHO_DiFXInputInterface::ProcessScan(MHO_DiFXScanFileSet& fileSet)
         OrganizeBaseline(it->first);
     }
 
+    ConstructRootFileObject();
+    ConstructStationFileObjects();
+    ConstructVisiblityFileObjects();
+    WriteScanObjects();
 
+    //clear up an reset for next scan
+    deleteDifxInput(fDInput);
+    fDInput = nullptr;
 }
 
 void 
@@ -317,7 +323,7 @@ MHO_DiFXInputInterface::ReadDIFX_File(std::string filename)
                         }
                         else
                         {
-                            //"Lemme back up a minute..."
+                            //"Wait! Lemme back up a minute..."
                             vFile.seekg( -1*sizeof(MHO_VisibilityChunk), std::ios_base::cur);
                             break;
                         }
@@ -347,6 +353,7 @@ MHO_DiFXInputInterface::OrganizeBaseline(int baseline)
 {
     //organize all of the visibility records of this baseline by time and frequency
     fChannels.clear();
+    fBaselineFreqs.clear(); 
 
     //sort the visibility records into the appropriate channel 
     std::cout<<"sorting vis records into channels"<<std::endl;
@@ -355,9 +362,20 @@ MHO_DiFXInputInterface::OrganizeBaseline(int baseline)
         //note we are copying each record around
         //we could be more memory efficient if we just used pointers
         fChannels[it->freqindex].push_back(*it); 
+        auto freq = fFreqTable.find(it->freqindex);
+        if(freq != fFreqTable.end())
+        {
+            fBaselineFreqs.push_back( std::make_pair(it->freqindex, freq->second ) );
+        }
+        else
+        {
+            msg_error("difx_interface", "Could not locate frequency with index: " <<  it->freqindex << eom);
+        }
     }
     std::cout<<"there are "<<fChannels.size()<<" channels "<<std::endl;
-    
+
+    std::sort(fBaselineFreqs.begin(), fBaselineFreqs.end(), fFreqPredicate);
+
     //sort the visibility records by time (ascending order) with the timestamp predicate
     VisRecordTimeLess pred;
     for(auto it = fChannels.begin(); it != fChannels.end(); it++)
@@ -384,23 +402,43 @@ MHO_DiFXInputInterface::OrganizeBaseline(int baseline)
 
 
 void 
-MHO_DiFXInputInterface::ReadInputFile(std::string filename)
+MHO_DiFXInputInterface::LoadInputFile(std::string filename)
 {
-    DifxInput* din = loadDifxInput(filename.c_str());
-    printDifxInput(din); //debug
+    DifxInput* fDInput = loadDifxInput(filename.c_str());
 
-    std::cout<<"-----------------------------------"<<std::endl;
-    for(int i=0; i<din->nFreq; i++)
-    {
-        std::cout<<"channel position: "<<i<<std::endl;
-        printDifxFreq( &(din->freq[i]) );
+    //lets build the freq table 
+    fFreqTable.clear();
+    for(int i=0; i<fDInput->nFreq; i++){fFreqTable[i] = &(fDInput->freq[i]);}
 
-    }
-
-
-    deleteDifxInput(din);
+    // printDifxInput(fDInput); //debug
+    // 
+    // std::cout<<"-----------------------------------"<<std::endl;
 }
 
+
+void 
+MHO_DiFXInputInterface::ConstructRootFileObject()
+{
+
+};
+
+void 
+MHO_DiFXInputInterface::ConstructStationFileObjects()
+{
+
+};
+
+void 
+MHO_DiFXInputInterface::ConstructVisiblityFileObjects()
+{
+
+};
+
+void 
+MHO_DiFXInputInterface::WriteScanObjects()
+{
+
+};
 
 
 }//end of namespace
