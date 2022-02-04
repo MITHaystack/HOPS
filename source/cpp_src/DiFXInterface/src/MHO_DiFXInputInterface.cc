@@ -355,17 +355,20 @@ MHO_DiFXInputInterface::OrganizeBaseline(int baseline)
     fChannels.clear();
     fBaselineFreqs.clear(); 
 
+    std::set<int> freqIndexSet;
+
     //sort the visibility records into the appropriate channel 
     std::cout<<"sorting vis records into channels"<<std::endl;
     for(auto it = fBaselineVisibilities[baseline].begin(); it != fBaselineVisibilities[baseline].end(); it++)
     {
-        //note we are copying each record around
-        //we could be more memory efficient if we just used pointers
-        fChannels[it->freqindex].push_back(*it); 
-        auto freq = fFreqTable.find(it->freqindex);
-        if(freq != fFreqTable.end())
+        int freqindex = it->freqindex;
+        fChannels[freqindex].push_back(*it); //we could be more memory efficient if we just used pointers to the vis records
+        auto freq = fFreqTable.find(freqindex);
+        auto check = freqIndexSet.find(freqindex); //check if it is already present
+        if(freq != fFreqTable.end() && check == freqIndexSet.end() )
         {
             fBaselineFreqs.push_back( std::make_pair(it->freqindex, freq->second ) );
+            freqIndexSet.insert(it->freqindex);
         }
         else
         {
