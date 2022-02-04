@@ -54,7 +54,10 @@ class MHO_DiFXScanProcessor
 
         void LoadInputFile(std::string filename);
         void ReadDIFX_File(std::string filename);
+
+        //organize all of the visibility records of this baseline by time and frequency
         void OrganizeBaseline(int baseline);
+
         // void ReadPCAL_File(std::string filename);
         // void ReadIM_File(std::string filename);
         void ConstructRootFileObject();
@@ -64,23 +67,28 @@ class MHO_DiFXScanProcessor
 
         //the DiFX input file structure 
         DifxInput* fDInput;
-        //maps DiFX baseline index to vector of all associated visibility records 
-        std::map<int, std::vector< MHO_DiFXVisibilityRecord* > > fAllBaselineVisibilities;
         //maps all freqindex's to the difx frequency description
         std::map<int, DifxFreq*> fAllFreqTable;
+        //maps DiFX baseline index to vector of all associated visibility records 
+        std::map<int, std::vector< MHO_DiFXVisibilityRecord* > > fAllBaselineVisibilities;
+        //tracks the set of pol-pairs present on each baseline
+        std::map< int, std::set< std::string > > fBaselineUniquePolPairs;
 
         //for a single baseline, maps pol-pair, then freqindex to visiblity records 
-        std::map< std::string, std::map<int, std::vector<MHO_DiFXVisibilityRecord> > > fVisibilities;
+        //needed to recorganized the visibilities into tables 
+        std::map< std::string, std::map<int, std::vector<MHO_DiFXVisibilityRecord* > > > fVisibilities;
 
         //maps freqindex to vector of associated visiblity records
         //std::map<int, std::vector<MHO_DiFXVisibilityRecord> > fChannels;
 
         //list of channel frequencies for this baseline, sorted in ascending order (freq)
         std::vector< std::pair<int, DifxFreq*> > fBaselineFreqs;
-        //set of pol-pairs present on this baseline
-        std::map< int, std::set< std::string >  > fBaselineUniquePolPairs;
 
         //determines the size of the (channelized) visibilities
+        std::set<std::string> fPolPairSet;
+        std::set<int> fFreqIndexSet;
+        std::set<int> fAPSet;
+        std::set<int> fSpecPointSet;
         std::size_t fNPolPairs;
         std::size_t fNChannels;
         std::size_t fNAPs;
@@ -94,10 +102,10 @@ class MHO_DiFXScanProcessor
         //comparison predicate for time-sorting visibility record data
         typedef struct 
         {
-            bool operator()(const MHO_DiFXVisibilityRecord& a, const MHO_DiFXVisibilityRecord& b) const 
+            bool operator()(const MHO_DiFXVisibilityRecord* a, const MHO_DiFXVisibilityRecord* b) const 
             {
-                if(a.mjd == b.mjd){return a.seconds < b.seconds;}
-                else{return a.mjd < b.mjd;}
+                if(a->mjd == b->mjd){return a->seconds < b->seconds;}
+                else{return a->mjd < b->mjd;}
             }
         } VisRecordTimeLess;
         VisRecordTimeLess fTimePredicate;
