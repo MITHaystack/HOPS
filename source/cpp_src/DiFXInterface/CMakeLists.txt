@@ -2,12 +2,14 @@
 set (DIFXINTERFACE_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_DiFXScanFileSet.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_DiFXVisibilityRecord.hh
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_DiFXInputInterface.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_DiFXInterface.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_DiFXScanProcessor.hh
 )
 
 #list source files #############################################################
 set( DIFXINTERFACE_SOURCEFILES
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_DiFXInputInterface.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_DiFXInterface.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_DiFXScanProcessor.cc
 )
 
 #declare header paths ##########################################################

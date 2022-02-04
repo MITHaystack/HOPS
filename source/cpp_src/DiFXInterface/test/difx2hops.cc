@@ -21,7 +21,8 @@
 #include "MHO_ClassIdentityMap.hh"
 
 #include "MHO_DirectoryInterface.hh"
-#include "MHO_DiFXInputInterface.hh"
+#include "MHO_DiFXInterface.hh"
+
 
 
 using namespace hops;
@@ -67,7 +68,7 @@ int main(int argc, char** argv)
         }
     }
 
-    MHO_DiFXInputInterface dinterface;
+    MHO_DiFXInterface dinterface;
     dinterface.SetInputDirectory(input_dir);
     dinterface.SetOutputDirectory(output_dir);
     
