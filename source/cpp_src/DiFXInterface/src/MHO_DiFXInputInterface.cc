@@ -239,8 +239,8 @@ MHO_DiFXInputInterface::ProcessScan(MHO_DiFXScanFileSet& fileSet)
     WriteScanObjects();
 
     //clear up an reset for next scan
-    deleteDifxInput(fDInput);
-    fDInput = nullptr;
+    //deleteDifxInput(fDInput);
+    //fDInput = nullptr;
 }
 
 void 
@@ -375,6 +375,12 @@ MHO_DiFXInputInterface::OrganizeBaseline(int baseline)
     std::cout<<"there are "<<fChannels.size()<<" channels "<<std::endl;
 
     std::sort(fBaselineFreqs.begin(), fBaselineFreqs.end(), fFreqPredicate);
+    for(auto it = fBaselineFreqs.begin(); it != fBaselineFreqs.end(); it++)
+    {
+        std::cout<<"baseline frequency with index: "<< it->first<<std::endl;
+        printDifxFreq(it->second);
+    }
+
 
     //sort the visibility records by time (ascending order) with the timestamp predicate
     VisRecordTimeLess pred;
