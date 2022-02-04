@@ -15,18 +15,18 @@ MHO_DiFXScanProcessor::ProcessScan(MHO_DiFXScanFileSet& fileSet)
     LoadInputFile(fileSet.fInputFile);
 
     //read the Swinburne file (just one for now)
-    std::cout<<"PROCESSING FIRST SCAN ONLY"<<std::endl;
     ReadDIFX_File(fileSet.fVisibilityFileList[0]);
 
-    fVisibilities.clear();
+    ConstructRootFileObject();
+
     for(auto it = fAllBaselineVisibilities.begin(); it != fAllBaselineVisibilities.end(); it++)
     {
         OrganizeBaseline(it->first);
+        ConstructVisibilityFileObjects();
     }
 
-    ConstructRootFileObject();
     ConstructStationFileObjects();
-    ConstructVisiblityFileObjects();
+
     WriteScanObjects();
 
     //clear up and reset for next scan
@@ -37,8 +37,8 @@ MHO_DiFXScanProcessor::ProcessScan(MHO_DiFXScanFileSet& fileSet)
 void 
 MHO_DiFXScanProcessor::ReadDIFX_File(std::string filename)
 {
-    //read the visibilities and allocate memory to store them as we go
-    fAllBaselineVisibilities.clear();
+
+    ClearVisibilityRecords();
     MHO_DiFXVisibilityRecord visRecord;
 
     //open file for binary reading
@@ -113,13 +113,12 @@ MHO_DiFXScanProcessor::ReadDIFX_File(std::string filename)
                 visRecord.nchan = npoints;
                 fAllBaselineVisibilities[visRecord.baseline].push_back( new MHO_DiFXVisibilityRecord(visRecord) );
                 fBaselineUniquePolPairs[visRecord.baseline].insert( std::string(visRecord.polpair,2) ); //keep track of the polpairs
-
-                if(n_records%1000 == 0){std::cout<<"read "<<n_records<<" records with "<< npoints <<" spectral points"<<std::endl;}
             }
         }
     }
 
-    std::cout<<"read data from "<<fAllBaselineVisibilities.size()<<" baselines "<<std::endl;
+    msg_debug("difx_interface", "read " << n_records << " visibility records from " <<fAllBaselineVisibilities.size()<<" baselines." << eom);
+
     for(auto it = fAllBaselineVisibilities.begin(); it != fAllBaselineVisibilities.end(); it++)
     {
         std::cout<<" baseline: "<< it->first <<" has: "<< it->second.size()<<" records"<<std::endl;
@@ -128,20 +127,6 @@ MHO_DiFXScanProcessor::ReadDIFX_File(std::string filename)
     //close the Swinburne file
     vFile.close();
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 void 
@@ -153,6 +138,7 @@ MHO_DiFXScanProcessor::OrganizeBaseline(int baseline)
         return;
     }
 
+    fVisibilities.clear();
     fBaselineFreqs.clear(); 
     fPolPairSet.clear();
     fFreqIndexSet.clear();
@@ -191,11 +177,11 @@ MHO_DiFXScanProcessor::OrganizeBaseline(int baseline)
         }
     }
     std::sort(fBaselineFreqs.begin(), fBaselineFreqs.end(), fFreqPredicate);
-    for(auto it = fBaselineFreqs.begin(); it != fBaselineFreqs.end(); it++)
-    {
-        std::cout<<"baseline frequency with index: "<< it->first<<std::endl;
-        printDifxFreq(it->second);
-    }
+    // for(auto it = fBaselineFreqs.begin(); it != fBaselineFreqs.end(); it++)
+    // {
+    //     std::cout<<"baseline frequency with index: "<< it->first<<std::endl;
+    //     printDifxFreq(it->second);
+    // }
 
     //sort the individual visiblity records in time order 
     for(auto ppit = fPolPairSet.begin(); ppit != fPolPairSet.end(); ppit++)
@@ -219,7 +205,6 @@ MHO_DiFXScanProcessor::OrganizeBaseline(int baseline)
         msg_error("difx_interface", "Channels do not have same number of APs on baseline: " << baseline << eom);
     }
 
-
     //determine the number of spectral points per channel
     if(!fSpecPointSet.empty())
     {
@@ -230,54 +215,9 @@ MHO_DiFXScanProcessor::OrganizeBaseline(int baseline)
         msg_error("difx_interface", "Channels do not have same number of spectral points on baseline: " << baseline << eom);
     }
 
-
-
-
-
-
-    // //sort the visibility records into the appropriate pols and channels 
-    // std::cout<<"sorting vis records into channels"<<std::endl;
-    // for(auto it = fAllBaselineVisibilities[baseline].begin(); it != fAllBaselineVisibilities[baseline].end(); it++)
-    // {
-    //     int freqindex = it->freqindex;
-    //     fChannels[freqindex].push_back(*it); //we could be more memory efficient if we just used pointers to the vis records
-    //     auto freq = fAllFreqTable.find(freqindex);
-    // 
-    //     if(freq != fAllFreqTable.end() )
-    //     {
-    //         auto check = fFreqIndexSet.find(freqindex); //check if it is already present (due to another polpair)
-    //         if(check == fFreqIndexSet.end())
-    //         {
-    //             fBaselineFreqs.push_back( std::make_pair(it->freqindex, freq->second ) );
-    //             fFreqIndexSet.insert(it->freqindex);
-    //         }
-    //     }
-    //     else
-    //     {
-    //         msg_error("difx_interface", "Could not locate frequency with index: " <<  it->freqindex << eom);
-    //     }
-    // }
-    // std::cout<<"there are "<<fChannels.size()<<" channels "<<std::endl;
-
-    // 
-    // std::sort(fBaselineFreqs.begin(), fBaselineFreqs.end(), fFreqPredicate);
-    // 
-    // 
-    // 
-    // //sort the visibility records by time (ascending order) with the timestamp predicate
-    // VisRecordTimeLess pred;
-    // for(auto it = fChannels.begin(); it != fChannels.end(); it++)
-    // {
-    //     std::sort( it->second.begin(), it->second.end(), fTimePredicate);
-    //     std::cout<<"sorting channel: "<<it->first<<" with "<< (*(it->second.begin())).visdata.size() <<" spectral points and time length: "<< it->second.size()<<std::endl;
-    // }
-    // std::cout<<"done sorting all channels"<<std::endl;
-    // 
-    // 
-    // std::cout<<"We have: "<<fUniquePolPairs.size()<<" pol pairs as follows:" <<std::endl;
-    // for(auto it = fUniquePolPairs.begin(); it != fUniquePolPairs.end(); it++){std::cout<<*it<<std::endl;}
-
-
+    msg_debug("difx_interface", "data dimension of baseline: "<< 
+              baseline <<" are (" << fNPolPairs << ", " << fNChannels 
+              << ", " << fNAPs << ", " << fNSpectralPoints <<")" << eom);
 }
 
 
@@ -347,7 +287,7 @@ MHO_DiFXScanProcessor::ConstructStationFileObjects()
 };
 
 void 
-MHO_DiFXScanProcessor::ConstructVisiblityFileObjects()
+MHO_DiFXScanProcessor::ConstructVisibilityFileObjects()
 {
 	//fBaselineFreqs contains the ordered (ascending) list of channel frequencies 
 	//fChannels contains the time sorted visibilities 
@@ -388,5 +328,21 @@ MHO_DiFXScanProcessor::WriteScanObjects()
 {
 
 };
+
+
+void 
+MHO_DiFXScanProcessor::ClearVisibilityRecords()
+{
+    for(auto it = fAllBaselineVisibilities.begin(); it != fAllBaselineVisibilities.end(); it++)
+    {
+        for(std::size_t i = 0; i < it->second.size(); i++)
+        {
+            MHO_DiFXVisibilityRecord* ptr = it->second[i];
+            delete ptr;
+        }
+    }
+    fAllBaselineVisibilities.clear();
+}
+
 
 }
