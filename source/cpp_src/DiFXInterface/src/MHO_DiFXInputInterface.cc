@@ -227,6 +227,7 @@ MHO_DiFXInputInterface::ProcessScan(MHO_DiFXScanFileSet& fileSet)
 
     //organize each baseline --- UNDER TESTING!! 
     //read the Swinburne file (just one for now)
+    std::cout<<"PROCESSING FIRST SCAN ONLY"<<std::endl;
     ReadDIFX_File(fileSet.fVisibilityFileList[0]);
     for(auto it = fBaselineVisibilities.begin(); it != fBaselineVisibilities.end(); it++)
     {
@@ -292,18 +293,6 @@ MHO_DiFXInputInterface::ReadDIFX_File(std::string filename)
                 vFile.read( reinterpret_cast<char*>(&visRecord.pulsarbin), sizeof(int) ); 
                 vFile.read( reinterpret_cast<char*>(&visRecord.dataweight), sizeof(double) );
                 vFile.read( reinterpret_cast<char*>(visRecord.uvw), 3*sizeof(double) );
-
-                // std::cout<<visRecord.headerversion<<std::endl;
-                // std::cout<<visRecord.baseline<<std::endl;
-                // std::cout<<visRecord.mjd<<std::endl;
-                // std::cout<<visRecord.seconds<<std::endl;
-                // std::cout<<visRecord.configindex<<std::endl;
-                // std::cout<<visRecord.freqindex<<std::endl;
-                // std::cout<<visRecord.polpair[0]<<visRecord.polpair[1]<<std::endl;
-                // std::cout<<visRecord.pulsarbin<<std::endl;
-                // std::cout<<visRecord.dataweight<<std::endl;
-                // std::cout<<visRecord.uvw[0]<<", "<<visRecord.uvw[1]<<", "<<visRecord.uvw[2]<<std::endl;
-                // std::cout<<"visbilities: "<<std::endl;
 
                 //parcel out the visibilities one at a time (for now)
                 //we may want to cache the npoint associated with each baseline+frequency in a map
@@ -416,6 +405,7 @@ MHO_DiFXInputInterface::OrganizeBaseline(int baseline)
 void 
 MHO_DiFXInputInterface::LoadInputFile(std::string filename)
 {
+    //TODO FIXME - Why does this sometimes fail when the .threads file is missing??
     DifxInput* fDInput = loadDifxInput(filename.c_str());
 
     //lets build the freq table 
