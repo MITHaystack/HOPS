@@ -51,8 +51,9 @@ class MHO_DiFXScanProcessor
 
         ////////////////////////////////////////////////////////////////////////
         //members for dealing with a single (current) scan of data /////////////
-
         void LoadInputFile(std::string filename);
+
+        //read the visibilities from Swinburne file and allocate memory to store them as we go
         void ReadDIFX_File(std::string filename);
 
         //organize all of the visibility records of this baseline by time and frequency
@@ -62,7 +63,7 @@ class MHO_DiFXScanProcessor
         // void ReadIM_File(std::string filename);
         void ConstructRootFileObject();
         void ConstructStationFileObjects();
-        void ConstructVisiblityFileObjects();
+        void ConstructVisibilityFileObjects();
         void WriteScanObjects();
 
         //the DiFX input file structure 
@@ -121,6 +122,10 @@ class MHO_DiFXScanProcessor
         } FreqIndexPairLess;
         FreqIndexPairLess fFreqPredicate;
 
+
+        ////////////////////////////////////////////////////////////////////////
+
+        void ClearVisibilityRecords();
 
 };
 
