@@ -364,11 +364,14 @@ MHO_DiFXInputInterface::OrganizeBaseline(int baseline)
         int freqindex = it->freqindex;
         fChannels[freqindex].push_back(*it); //we could be more memory efficient if we just used pointers to the vis records
         auto freq = fFreqTable.find(freqindex);
-        auto check = freqIndexSet.find(freqindex); //check if it is already present
-        if(freq != fFreqTable.end() && check == freqIndexSet.end() )
+        if(freq != fFreqTable.end() )
         {
-            fBaselineFreqs.push_back( std::make_pair(it->freqindex, freq->second ) );
-            freqIndexSet.insert(it->freqindex);
+            auto check = freqIndexSet.find(freqindex); //check if it is already present (due to another polpair)
+            if(check == freqIndexSet.end())
+            {
+                fBaselineFreqs.push_back( std::make_pair(it->freqindex, freq->second ) );
+                freqIndexSet.insert(it->freqindex);
+            }
         }
         else
         {
