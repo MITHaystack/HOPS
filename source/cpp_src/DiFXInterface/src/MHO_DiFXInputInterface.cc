@@ -102,7 +102,7 @@ MHO_DiFXInputInterface::Initialize()
     std::map< std::string, bool > imPresent;
     fDirInterface.GetFilesMatchingExtention(imFiles, "im");
     for(auto it = imFiles.begin(); it != imFiles.end(); it++){imPresent[*it] = true;}
-    
+
     //find the .calc files
     std::vector< std::string > calcFiles;
     std::map< std::string, bool > calcPresent;
@@ -386,6 +386,20 @@ MHO_DiFXInputInterface::OrganizeBaseline(int baseline)
     }
     std::cout<<"done sorting all channels"<<std::endl;
 
+    //now we need to determine the number of unique polarization products on this baseline 
+    fUniquePolPairs.clear();
+    for(auto it = fChannels.begin(); it != fChannels.end(); it++)
+    {
+	for(auto vis_it = it->second.begin(); vis_it != it->second.end(); vis_it++)
+	{
+		std::string pp(vis_it->polpair, 2);
+		fUniquePolPairs.insert(pp);
+	}
+    }
+
+    std::cout<<"We have: "<<fUniquePolPairs.size()<<" pol pairs as follows:" <<std::endl;
+    for(auto it = fUniquePolPairs.begin(); it != fUniquePolPairs.end(); it++){std::cout<<*it<<std::endl;}
+
 }
 
 
@@ -433,6 +447,37 @@ MHO_DiFXInputInterface::ConstructStationFileObjects()
 void 
 MHO_DiFXInputInterface::ConstructVisiblityFileObjects()
 {
+	//fBaselineFreqs contains the ordered (ascending) list of channel frequencies 
+	//fChannels contains the time sorted visibilities 
+
+	//loop through baseline freqs in order, grabbing the associated channel
+	//and populating the visibility container 
+
+	//TODO verify that the channels all have the same number of spectral points!
+	//if not then we need to use the flag visibility container 
+
+
+	//first construct a channelized visibility container 
+/*
+	ch_baseline_data_type* vis = new ch_baseline_data_type();
+        vis.Resize(fUniquePolPairs.size(), NCHANS, NAPS, NSPECPTS);	
+
+
+	//now loop and fill it up
+	for(auto it = fBaselineFreqs.begin(); it != fBaselineFreqs.end(); it++)
+	{
+		int index = it->first;
+		DifxFreq* freq = it->second;
+		
+
+
+	}
+    std::map<int, std::vector<MHO_DiFXVisibilityRecord> > fChannels;
+        //maps freqindex to the difx frequency description
+        std::map<int, DifxFreq*> fFreqTable;
+        //list of channel frequencies for this baseline, sorted in ascending order (freq)
+        std::vector< std::pair<int, DifxFreq*> > fBaselineFreqs;
+*/
 
 };
 
