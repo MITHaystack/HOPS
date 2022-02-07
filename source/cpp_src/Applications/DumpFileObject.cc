@@ -64,7 +64,11 @@ int main(int argc, char** argv)
     std::string ch_vis_classname = cdict.GetClassNameFromObject(ch_vis);
     MHO_UUID ch_vis_classuuid = cdict.GetUUIDFromClassName(ch_vis_classname);
 
-    MHO_UUID classuuid = ch_vis_classuuid; //should convert this from the type string passed in from user
+    MHO_UUID classuuid;
+    bool success = classuuid.from_string(type);
+    if(!success){std::cout<<"type uuid could not be converted"<<std::endl;}
+
+    std::cout<<"type uuids: "<<classuuid.as_string()<<", "<<ch_vis_classuuid.as_string()<<", "<<type<<std::endl;
 
     //pull the file object keys for inspection 
     std::vector< MHO_FileKey > ikeys;

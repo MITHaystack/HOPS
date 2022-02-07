@@ -11,10 +11,12 @@
 */
 
 #include <cstdint>
+#include <cstdlib>
 #include <string>
 #include <sstream>
 #include <iomanip>
 #include <algorithm>
+#include "MHO_Message.hh"
 
 namespace hops
 {
@@ -97,15 +99,24 @@ class MHO_UUID
         */
         bool from_string(const std::string& uuid_str)
         {
-            return false; //TODO IMPLEMENT
-            // if(uuid_str.size() != 2*MHO_UUID_LENGTH)
-            // {
-            // 
-            // }
-            // else 
-            // {
-            //     msg_error("utility", "could not convert string to uuid, lenght is incorrect" << eom );
-            // }
+            if(uuid_str.size() == 2*MHO_UUID_LENGTH)
+            {
+                for(int i=0; i<MHO_UUID_LENGTH; i++)
+                {
+                    //one byte at a time
+                    std::stringstream ss;
+                    ss << uuid_str[2*i];
+                    ss << uuid_str[2*i+1];
+                    uint32_t val = std::strtoul(ss.str().c_str(), 0, 16);
+                    fBytes[i] = val;
+                }
+                return true;
+            }
+            else 
+            {
+                msg_error("utility", "could not convert string to uuid, length of " << uuid_str.size() << " != " <<2*MHO_UUID_LENGTH << " is incorrect" << eom );
+                return false; 
+            }
             // // std::stringstream ss;
             // // for(unsigned int i=0; i<MHO_UUID_LENGTH; i++)
             // // {
