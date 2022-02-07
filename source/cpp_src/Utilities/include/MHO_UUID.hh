@@ -90,6 +90,34 @@ class MHO_UUID
             return ss.str();
         }
 
+
+        /**
+        * Convert a formatted string into a UUID byte array and fill this object
+        * @return update the uuid object from std::string containing the hexadecimal digits of the UUID.
+        */
+        bool from_string(const std::string& uuid_str)
+        {
+            return false; //TODO IMPLEMENT
+            // if(uuid_str.size() != 2*MHO_UUID_LENGTH)
+            // {
+            // 
+            // }
+            // else 
+            // {
+            //     msg_error("utility", "could not convert string to uuid, lenght is incorrect" << eom );
+            // }
+            // // std::stringstream ss;
+            // // for(unsigned int i=0; i<MHO_UUID_LENGTH; i++)
+            // // {
+            // //     uint32_t tmp = fBytes[i];
+            // //     std::stringstream hss;
+            // //     hss << std::setw(2) << std::setfill('0') << std::hex << (int)( tmp );
+            // //     std::string hexstr = hss.str();
+            // //     ss << hexstr;
+            // // }
+            // // return ss.str();
+        }
+
         uint64_t size() const
         {
             return MHO_UUID_LENGTH;
