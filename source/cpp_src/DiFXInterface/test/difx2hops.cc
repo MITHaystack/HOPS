@@ -38,7 +38,7 @@ int main(int argc, char** argv)
     MHO_Message::GetInstance().SetMessageLevel(eDebug);
 
     std::string input_dir;
-    std::string output_dir, odir;
+    std::string output_dir;
 
     static struct option longOptions[] = {{"help", no_argument, 0, 'h'},
                                           {"input_directory", required_argument, 0, 'i'},
@@ -60,7 +60,7 @@ int main(int argc, char** argv)
                 input_dir = std::string(optarg);
                 break;
             case ('o'):
-                odir = std::string(optarg);
+                output_dir = std::string(optarg);
                 break;
             default:
                 std::cout << usage << std::endl;

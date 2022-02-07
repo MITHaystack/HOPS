@@ -82,7 +82,7 @@ void ConvertCorel(const std::string root_file, const std::string& input_file, co
     }
     else
     {
-        msg_error("file", "Error opening corel input file: " << input_file << eom);
+        msg_error("file", "Error opening corel output file: " << output_file << eom);
     }
 
     inter.Close();
@@ -116,7 +116,7 @@ void ConvertStation(const std::string root_file, const std::string& input_file, 
     }
     else
     {
-        msg_error("file", "Error opening station input file: " << input_file << eom);
+        msg_error("file", "Error opening station output file: " << output_file << eom);
     }
 
     inter.Close();
