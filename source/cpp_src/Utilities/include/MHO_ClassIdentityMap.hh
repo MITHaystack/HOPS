@@ -49,6 +49,14 @@ class MHO_ClassIdentityMap
             AddToMap(type_uuid, name);
         };
 
+
+        template<typename XClassType>
+        std::string GetClassNameFromObject(const XClassType& obj)
+        {
+            std::string name = MHO_ClassIdentity::ClassName(obj);
+            return name;
+        };
+
         std::string GetClassNameFromUUID(const MHO_UUID& uuid) const
         {
             // const auto it = fUUID2ClassName.cend();

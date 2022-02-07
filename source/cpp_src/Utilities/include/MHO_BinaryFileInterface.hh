@@ -54,6 +54,15 @@ class MHO_BinaryFileInterface
             return fObjectStreamer.IsOpenForRead();
         }
 
+        bool OpenToReadAtOffset(const std::string& filename, uint64_t offset_bytes)
+        {
+            fObjectStreamer.SetFilename(filename);
+            fObjectStreamer.OpenToRead();
+            fObjectStreamer.GetStream().seekg(offset_bytes, std::ios_base::cur);
+            return fObjectStreamer.IsOpenForRead();
+        }
+
+
         bool ExtractIndexFileObjectKeys(const std::string& index_filename, std::vector<MHO_FileKey>& keys)
         {
             keys.clear();
