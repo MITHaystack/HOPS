@@ -51,6 +51,8 @@ class MHO_DiFXScanProcessor
 
         ////////////////////////////////////////////////////////////////////////
         //members for dealing with a single (current) scan of data /////////////
+        MHO_DiFXScanFileSet* fFileSet;
+
         void LoadInputFile(std::string filename);
 
         //read the visibilities from Swinburne file and allocate memory to store them as we go
@@ -64,10 +66,11 @@ class MHO_DiFXScanProcessor
         void ConstructRootFileObject();
         void ConstructStationFileObjects();
         void ConstructVisibilityFileObjects();
-        void WriteScanObjects();
+        void WriteVisibilityObjects();
 
         //the DiFX input file structure 
         DifxInput* fDInput;
+        int fCurrentBaselineIndex;
         //maps all freqindex's to the difx frequency description
         std::map<int, DifxFreq*> fAllFreqTable;
         //maps DiFX baseline index to vector of all associated visibility records 
@@ -84,6 +87,10 @@ class MHO_DiFXScanProcessor
 
         //list of channel frequencies for this baseline, sorted in ascending order (freq)
         std::vector< std::pair<int, DifxFreq*> > fBaselineFreqs;
+
+        //the baseline data (created and destroyed for each baseline processed)
+        ch_baseline_weight_type* fW;
+        ch_baseline_data_type* fV;
 
         //determines the size of the (channelized) visibilities
         std::set<std::string> fPolPairSet;

@@ -3,14 +3,24 @@
 namespace hops 
 {
 
-MHO_DiFXScanProcessor::MHO_DiFXScanProcessor(){};
+MHO_DiFXScanProcessor::MHO_DiFXScanProcessor():
+    fV(nullptr),
+    fW(nullptr)
+{};
 
-MHO_DiFXScanProcessor::~MHO_DiFXScanProcessor(){};
+MHO_DiFXScanProcessor::~MHO_DiFXScanProcessor()
+{
+    if(fV){delete fV;}
+    if(fW){delete fW;}
+    if(fDInput){deleteDifxInput(fDInput);}
+};
 
 
 void 
 MHO_DiFXScanProcessor::ProcessScan(MHO_DiFXScanFileSet& fileSet)
 {
+    fFileSet = &fileSet;
+
     LoadInputFile(fileSet.fInputFile); //read .input file and build freq table
     ReadDIFX_File(fileSet.fVisibilityFileList[0]); //read the first Swinburne file
 
@@ -19,11 +29,13 @@ MHO_DiFXScanProcessor::ProcessScan(MHO_DiFXScanFileSet& fileSet)
     for(auto it = fAllBaselineVisibilities.begin(); it != fAllBaselineVisibilities.end(); it++)
     {
         OrganizeBaseline(it->first);
+        fCurrentBaselineIndex = it->first;
         ConstructVisibilityFileObjects();
+        WriteVisibilityObjects();
     }
 
     ConstructStationFileObjects();
-    WriteScanObjects();
+
 
     //clear up and reset for next scan
     deleteDifxInput(fDInput);
@@ -233,11 +245,18 @@ MHO_DiFXScanProcessor::ConstructVisibilityFileObjects()
     if(fCanChannelize)
     {
     	//first construct a channelized visibility container
-        ch_baseline_data_type* vis = new ch_baseline_data_type(); 
+        if(fV){delete fV; fV = nullptr;}
+        if(fW){delete fW; fW = nullptr;}
+
+        fV = new ch_baseline_data_type(); 
+        fW = new ch_baseline_weight_type();
 
         std::cout<<"resizing to = "<<fNPolPairs<<", "<<fNChannels<<", "<<fNAPs<<", "<<fNSpectralPoints<<std::endl;
-        vis->Resize(fNPolPairs, fNChannels, fNAPs, fNSpectralPoints);
-        vis->ZeroArray();
+        fV->Resize(fNPolPairs, fNChannels, fNAPs, fNSpectralPoints);
+        fV->ZeroArray();
+
+        fW->Resize(fNPolPairs, fNChannels, fNAPs, fNSpectralPoints);
+        fW->ZeroArray();
 
         // /* Straight from DiFX frequency table */
         // typedef struct
@@ -261,8 +280,10 @@ MHO_DiFXScanProcessor::ConstructVisibilityFileObjects()
         {
             std::string pp = *ppit;
             //std::cout<<"pol = "<<pp<<std::endl;
-            auto* polprod_axis = &(std::get<CH_POLPROD_AXIS>(*vis));
+            auto* polprod_axis = &(std::get<CH_POLPROD_AXIS>(*fV));
+            auto* wpolprod_axis = &(std::get<CH_POLPROD_AXIS>(*fW));
             polprod_axis->at(ppidx) = pp;
+            wpolprod_axis->at(ppidx) = pp;
             int chidx = 0;
             for(auto fqit = fBaselineFreqs.begin(); fqit != fBaselineFreqs.end(); fqit++)
             {
@@ -279,31 +300,39 @@ MHO_DiFXScanProcessor::ConstructVisibilityFileObjects()
                 ch_label.Insert(std::string("net_sideband"), std::string(sideband,1) );
                 ch_label.Insert(std::string("channel"), freqidx); //probably ought to be more systematic about creating channel names
 
-                auto* ch_axis = &(std::get<CH_CHANNEL_AXIS>(*vis));
+                auto* ch_axis = &(std::get<CH_CHANNEL_AXIS>(*fV));
+                auto* wch_axis = &(std::get<CH_CHANNEL_AXIS>(*fW));
                 ch_axis->at(chidx) = chidx;
+                wch_axis->at(chidx) = chidx;
                 ch_axis->InsertLabel(ch_label);
+                wch_axis->InsertLabel(ch_label);
                 for(std::size_t ap = 0; ap<fVisibilities[pp][freqidx].size(); ap++)
                 {
-                    auto* ap_axis = &(std::get<CH_TIME_AXIS>(*vis));
+                    auto* ap_axis = &(std::get<CH_TIME_AXIS>(*fV));
+                    auto* wap_axis = &(std::get<CH_TIME_AXIS>(*fW));
                     ap_axis->at(ap) = 0.0; //TODO FIXME -- compute ap*ap_length
+                    wap_axis->at(ap) = 0.0; 
 
                     MHO_DiFXVisibilityRecord* visRec = fVisibilities[pp][freqidx][ap];
                     for(std::size_t sp = 0; sp<fNSpectralPoints; sp++)
                     {
-                        auto* sp_axis = &(std::get<CH_FREQ_AXIS>(*vis));
+                        auto* sp_axis = &(std::get<CH_FREQ_AXIS>(*fV));
+                        auto* wsp_axis = &(std::get<CH_FREQ_AXIS>(*fW));
                         sp_axis->at(sp) = sp*(bw/fNSpectralPoints); //frequency offset from edge of channel
+                        wsp_axis->at(sp) = sp*(bw/fNSpectralPoints);
+                        (*fW)(ppidx,chidx,ap,sp) = visRec->dataweight; //data weights don't need spectral point weighting?
                         if(sideband == 'L')
                         {
                             //flip axis and conjugate (why?) //TODO VERIFY
                             std::complex<double> tmp =  visRec->visdata[fNSpectralPoints-1-sp];
-                            (*vis)(ppidx,chidx,ap,sp) = std::conj(tmp);
+                            (*fV)(ppidx,chidx,ap,sp) = std::conj(tmp);
                             //std::cout<<ppidx<<", "<<chidx<<", "<<ap<<", "<<sp<<" = "<<(*vis)(ppidx,chidx,ap,sp)<<std::endl;
                         }
                         else
                         {
                             //treat as upper sideband
-                            (*vis)(ppidx,chidx,ap,sp) = visRec->visdata[sp];
-                            std::cout<<(*vis)(ppidx,chidx,ap,sp)<<std::endl;
+                            (*fV)(ppidx,chidx,ap,sp) = visRec->visdata[sp];
+                            std::cout<<(*fV)(ppidx,chidx,ap,sp)<<std::endl;
                         }
 
                     }
@@ -314,8 +343,7 @@ MHO_DiFXScanProcessor::ConstructVisibilityFileObjects()
         }
 
         //just delete for now 
-        std::cout<<"filled ch_vis records"<<std::endl;
-        delete vis;
+        std::cout<<"filled ch_vis and weight records"<<std::endl;
     }
     else 
     {
@@ -387,12 +415,33 @@ MHO_DiFXScanProcessor::ConstructStationFileObjects()
 
 };
 
-
-
 void 
-MHO_DiFXScanProcessor::WriteScanObjects()
+MHO_DiFXScanProcessor::WriteVisibilityObjects()
 {
+    //construct output file name (eventually figure out how to construct the baseline name)
+    std::stringstream ss;
+    ss << fCurrentBaselineIndex;
+    std::string root_code = "dummy";
+    std::string output_file = fFileSet->fOutputBaseDirectory + "/" + ss.str() + "." + root_code + ".cor";
 
+    MHO_BinaryFileInterface inter;
+    bool status = inter.OpenToWrite(output_file);
+    if(status)
+    {
+        uint32_t label = 0xFFFFFFFF; //someday make this mean something
+        inter.Write(*fV, "vis", label);
+        inter.Write(*fW, "weight", label);
+        inter.Close();
+    }
+    else
+    {
+        msg_error("file", "Error opening corel output file: " << output_file << eom);
+    }
+
+    inter.Close();
+
+    delete fV; fV = nullptr;
+    delete fW; fW = nullptr;
 };
 
 
