@@ -26,5 +26,5 @@ def write_to_data():
 
 
 if __name__ == "__main__":
-    #print_data()
+    print_data()
     write_to_data()
