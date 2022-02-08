@@ -165,7 +165,7 @@ int main(int argc, char** argv)
     {
         if( it->fTypeId.as_string() == classuuid.as_string() )
         {
-            msg_info("main", "found a visibility object with:")
+            //msg_info("main", "found a visibility object with:")
             // std::cout<<"key:"<<std::endl;
             // std::stringstream ss1; 
             // ss1 << std::hex << it->fSync;
