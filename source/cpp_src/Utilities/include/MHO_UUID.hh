@@ -117,16 +117,6 @@ class MHO_UUID
                 msg_error("utility", "could not convert string to uuid, length of " << uuid_str.size() << " != " <<2*MHO_UUID_LENGTH << " is incorrect" << eom );
                 return false; 
             }
-            // // std::stringstream ss;
-            // // for(unsigned int i=0; i<MHO_UUID_LENGTH; i++)
-            // // {
-            // //     uint32_t tmp = fBytes[i];
-            // //     std::stringstream hss;
-            // //     hss << std::setw(2) << std::setfill('0') << std::hex << (int)( tmp );
-            // //     std::string hexstr = hss.str();
-            // //     ss << hexstr;
-            // // }
-            // // return ss.str();
         }
 
         uint64_t size() const
