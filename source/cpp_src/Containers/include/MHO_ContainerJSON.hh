@@ -28,7 +28,8 @@ class MHO_ContainerJSON
         {
             fContainer = dynamic_cast< XContainerType* >(element);
             ConstructJSONRepresentation(fContainer);
-        };
+        }
+
         virtual ~MHO_ContainerJSON(){}
 
         json* GetJSON(){return &fJSON;}
@@ -50,7 +51,7 @@ class MHO_ContainerJSON
             json stride_array = container->GetStrideArray();
             fJSON["dimensions"] = dim_array;
             fJSON["strides"] = stride_array;
-            //data goes out flat packed into 1-d array
+            //data goes out flat-packed into 1-d array
             json data;
             for(auto it = container->cbegin(); it != container->cend(); it++)
             {
@@ -61,12 +62,14 @@ class MHO_ContainerJSON
             //std::cout<<fJSON.dump(2)<<std::endl; //dump the json to terminal
         };
 
+        //generic data insertion
         template< typename XValueType >
         void InsertElement(const XValueType& value, json& data)
         {
             data.push_back(value);
         }
 
+        //complex<> element data insertion
         void InsertElement(const std::complex<double>& value, json& data)
         {
             data.push_back( {value.real(), value.imag()} );
@@ -77,7 +80,6 @@ class MHO_ContainerJSON
             data.push_back( {value.real(), value.imag()} );
         }
 
-        MHO_ExtensibleElement* fElement;
         XContainerType* fContainer;
         json fJSON;
 
