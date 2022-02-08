@@ -6,73 +6,84 @@
 #include "MHO_ChannelizedVisibilities.hh"
 #include "MHO_Visibilities.hh"
 #include "MHO_JSONHeaderWrapper.hh"
+#include "MHO_ContainerJSON.hh"
 
 
 using namespace hops;
 
 
-void DumpToJSON(const ch_baseline_data_type& ch_vis, const MHO_FileKey& key, json& json_obj)
+void DumpToJSON(ch_baseline_data_type& ch_vis, MHO_FileKey& key, json& json_obj)
 {
-    json_obj["name"] = key.fName; 
-    std::stringstream ss2;
-    ss2 << std::hex << key.fLabel;
-    json_obj["label"] = ss2.str();
-    json_obj["type_uuid"] = key.fTypeId.as_string(); 
-    json_obj["object_uuid"] = key.fObjectId.as_string(); 
-    json_obj["size_bytes"] = key.fSize; 
-    json_obj["rank"] = ch_vis.GetRank();
-    json_obj["total_size"] = ch_vis.GetSize();
-    json dim_array = ch_vis.GetDimensionArray();
-    json stride_array = ch_vis.GetStrideArray();
-    json_obj["dimensions"] = dim_array;
-    json_obj["strides"] = stride_array;
-    
-    json ax0;
-    auto polprod_axis = &(std::get<CH_POLPROD_AXIS>(ch_vis));
-    for(auto it = polprod_axis->cbegin(); it != polprod_axis->cend(); it++)
-    {
-        ax0.push_back(*it);
-    }
-    json_obj["axis_0"] = ax0;
+
+    MHO_ContainerJSON< ch_baseline_data_type > converter(&ch_vis);
+
+    json* obj = converter.GetJSON();
+
+    // //should we dump file-key information??
+    // json_obj["name"] = key.fName; 
+    // std::stringstream ss2;
+    // ss2 << std::hex << key.fLabel;
+    // json_obj["label"] = ss2.str();
+    // json_obj["type_uuid"] = key.fTypeId.as_string(); 
+    // json_obj["object_uuid"] = key.fObjectId.as_string(); 
+    // json_obj["size_bytes"] = key.fSize; 
+    // 
+    // 
+    // 
+    // //object data
+    // json_obj["rank"] = ch_vis.GetRank();
+    // json_obj["total_size"] = ch_vis.GetSize();
+    // json dim_array = ch_vis.GetDimensionArray();
+    // json stride_array = ch_vis.GetStrideArray();
+    // json_obj["dimensions"] = dim_array;
+    // json_obj["strides"] = stride_array;
+    // 
+    // json ax0;
+    // auto polprod_axis = &(std::get<CH_POLPROD_AXIS>(ch_vis));
+    // for(auto it = polprod_axis->cbegin(); it != polprod_axis->cend(); it++)
+    // {
+    //     ax0.push_back(*it);
+    // }
+    // json_obj["axis_0"] = ax0;
+    // 
+    // 
+    // json ax1;
+    // auto ch_axis = &(std::get<CH_CHANNEL_AXIS>(ch_vis));
+    // for(auto it = ch_axis->cbegin(); it != ch_axis->cend(); it++)
+    // {
+    //     ax1.push_back(*it);
+    // }
+    // json_obj["axis_1"] = ax1;
+    // 
+    // 
+    // json ax2;
+    // auto ap_axis = &(std::get<CH_TIME_AXIS>(ch_vis));
+    // for(auto it = ap_axis->cbegin(); it != ap_axis->cend(); it++)
+    // {
+    //     ax2.push_back(*it);
+    // }
+    // json_obj["axis_2"] = ax2;
+    // 
+    // 
+    // json ax3;
+    // auto sp_axis = &(std::get<CH_FREQ_AXIS>(ch_vis));
+    // for(auto it = sp_axis->cbegin(); it != sp_axis->cend(); it++)
+    // {
+    //     ax3.push_back(*it);
+    // }
+    // json_obj["axis_3"] = ax3;
+    // 
+    // 
+    // json ch_vis_data;
+    // for(auto it = ch_vis.cbegin(); it != ch_vis.cend(); it++)
+    // {
+    // 
+    //     ch_vis_data.push_back({it->real(), it->imag()});
+    // }
+    // json_obj["data"] = ch_vis_data;
 
 
-    json ax1;
-    auto ch_axis = &(std::get<CH_CHANNEL_AXIS>(ch_vis));
-    for(auto it = ch_axis->cbegin(); it != ch_axis->cend(); it++)
-    {
-        ax1.push_back(*it);
-    }
-    json_obj["axis_1"] = ax1;
-
-
-    json ax2;
-    auto ap_axis = &(std::get<CH_TIME_AXIS>(ch_vis));
-    for(auto it = ap_axis->cbegin(); it != ap_axis->cend(); it++)
-    {
-        ax2.push_back(*it);
-    }
-    json_obj["axis_2"] = ax2;
-
-
-    json ax3;
-    auto sp_axis = &(std::get<CH_FREQ_AXIS>(ch_vis));
-    for(auto it = sp_axis->cbegin(); it != sp_axis->cend(); it++)
-    {
-        ax3.push_back(*it);
-    }
-    json_obj["axis_3"] = ax3;
-
-
-    json ch_vis_data;
-    for(auto it = ch_vis.cbegin(); it != ch_vis.cend(); it++)
-    {
-        
-        ch_vis_data.push_back({it->real(), it->imag()});
-    }
-    json_obj["data"] = ch_vis_data;
-
-
-    std::cout<<json_obj.dump(2)<<std::endl; //dump the json to terminal
+    std::cout<<obj->dump(2)<<std::endl; //dump the json to terminal
 
 }
 
