@@ -7,7 +7,7 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/${VEX_RELPATH})
 
 hops_internal_include_directories()
 
-set(HOPS_TEST_LIBS MHO_Message MHO_Utilities MHO_Math MHO_Operators MHO_Calibration MHO_MK4Interface)
+set(HOPS_TEST_LIBS MHO_Message MHO_Utilities vex2json MHO_Math MHO_Operators MHO_Calibration MHO_MK4Interface)
 
 
 #link against old fourfit libraries (temporary measure while we try to debug/transition)
