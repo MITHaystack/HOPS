@@ -95,7 +95,7 @@ int main(int argc, char** argv)
     std::string usage = "DumpFileObject -f <file> -t <type> -u <uuid>";
 
     MHO_Message::GetInstance().AcceptAllKeys();
-    MHO_Message::GetInstance().SetMessageLevel(eDebug);
+    MHO_Message::GetInstance().SetMessageLevel(eWarning);
 
     //TODO extend this to other container types
     msg_warn("main", "currenly only implemented for the visibility container type." << eom);
@@ -149,7 +149,7 @@ int main(int argc, char** argv)
     bool success = classuuid.from_string(type);
     if(!success){std::cout<<"type uuid could not be converted"<<std::endl;}
 
-    std::cout<<"type uuids: "<<classuuid.as_string()<<", "<<ch_vis_classuuid.as_string()<<", "<<type<<std::endl;
+    //std::cout<<"type uuids: "<<classuuid.as_string()<<", "<<ch_vis_classuuid.as_string()<<", "<<type<<std::endl;
 
     //pull the file object keys for inspection 
     std::vector< MHO_FileKey > ikeys;
@@ -166,19 +166,19 @@ int main(int argc, char** argv)
         if( it->fTypeId.as_string() == classuuid.as_string() )
         {
             msg_info("main", "found a visibility object with:")
-            std::cout<<"key:"<<std::endl;
-            std::stringstream ss1; 
-            ss1 << std::hex << it->fSync;
-            std::cout<<"    sync: "<<ss1.str()<<std::endl;
-            std::stringstream ss2;
-            ss2 << std::hex << it->fLabel;
-            std::cout<<"    label: "<<ss2.str()<<std::endl;
-            std::cout<<"    object uuid: "<<it->fObjectId.as_string()<<std::endl;
-            std::cout<<"    type uuid: "<<it->fTypeId.as_string()<<std::endl;
-            std::string class_name = cdict.GetClassNameFromUUID(it->fTypeId);
-            std::cout<<"    class name: "<<class_name<<std::endl;
-            std::cout<<"    object name: "<<it->fName<<std::endl;
-            std::cout<<"    size (bytes): "<<it->fSize<<std::endl;
+            // std::cout<<"key:"<<std::endl;
+            // std::stringstream ss1; 
+            // ss1 << std::hex << it->fSync;
+            // std::cout<<"    sync: "<<ss1.str()<<std::endl;
+            // std::stringstream ss2;
+            // ss2 << std::hex << it->fLabel;
+            // std::cout<<"    label: "<<ss2.str()<<std::endl;
+            // std::cout<<"    object uuid: "<<it->fObjectId.as_string()<<std::endl;
+            // std::cout<<"    type uuid: "<<it->fTypeId.as_string()<<std::endl;
+            // std::string class_name = cdict.GetClassNameFromUUID(it->fTypeId);
+            // std::cout<<"    class name: "<<class_name<<std::endl;
+            // std::cout<<"    object name: "<<it->fName<<std::endl;
+            // std::cout<<"    size (bytes): "<<it->fSize<<std::endl;
             found_obj = true;
             break;
         }
@@ -200,9 +200,12 @@ int main(int argc, char** argv)
         {
             MHO_FileKey key;
             inter.Read(ch_vis, key);
-            std::cout<<"Total size of baseline data = "<<ch_vis.GetSerializedSize()<<std::endl;
+            //std::cout<<"Total size of baseline data = "<<ch_vis.GetSerializedSize()<<std::endl;
             json json_obj;
-            DumpToJSON(ch_vis, key, json_obj);
+            MHO_ContainerJSON< ch_baseline_data_type > converter(&ch_vis);
+            json* obj = converter.GetJSON();
+            std::cout<<obj->dump(2)<<std::endl; //dump the json to terminal
+            //DumpToJSON(ch_vis, key, json_obj);
         }
         else
         {
