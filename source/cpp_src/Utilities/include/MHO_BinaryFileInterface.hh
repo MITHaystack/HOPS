@@ -257,6 +257,7 @@ class MHO_BinaryFileInterface
                 else
                 {
                     msg_error("file", "Failed to read object, object type/key mismatch for object of type: " << name << "." << eom);
+                    msg_error("file", "Object uuid: " << type_uuid.as_string() << " file key uuid: "<< key.fTypeId.as_string() << "." << eom);
                     return false; //non-recoverable error
                 }
             }
