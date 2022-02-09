@@ -29,7 +29,7 @@ void ReadAndDump(MHO_FileKey& object_key, uint64_t offset, std::string filename)
         json_obj = obj.template AsExtension< MHO_ContainerJSON< XObjectType > >()->GetJSON();
 
         //dump the json to terminal -- TODO, replace this with a visitor which can handle multiple verbosity levels
-        if(json_obj){std::cout<<json_obj->dump(2)<<std::endl; }
+        //if(json_obj){std::cout<<json_obj->dump(2)<<std::endl; }
     }
     else
     {
@@ -133,7 +133,7 @@ int main(int argc, char** argv)
     std::string usage = "DumpFileObject -f <file> -t <type> -u <uuid>";
 
     MHO_Message::GetInstance().AcceptAllKeys();
-    MHO_Message::GetInstance().SetMessageLevel(eWarning);
+    MHO_Message::GetInstance().SetMessageLevel(eDebug);
 
     // //TODO extend this to other container types
     // msg_warn("main", "currenly only implemented for the visibility container type." << eom);
@@ -177,7 +177,7 @@ int main(int argc, char** argv)
 
     MHO_UUID classuuid;
     bool success = classuuid.from_string(type);
-    if(!success){msg_error("main", "could not convert object (-u) string to uuid" << eom);}
+    if(!success){msg_error("main", "could not convert object type string (-t) to uuid" << eom);}
 
     //pull the file object keys for inspection 
     std::vector< MHO_FileKey > ikeys;
@@ -192,15 +192,16 @@ int main(int argc, char** argv)
     auto it = ikeys.begin();
     for(it = ikeys.begin(); it != ikeys.end(); it++)
     {
+        std::cout<<"comparing: "<<it->fTypeId.as_string()<<" to "<< classuuid.as_string()<<std::endl;
         if( it->fTypeId.as_string() == classuuid.as_string() )
         {
             //if no object uuid given, just grab the first one
-            if(uuid == "" || it->fObjectId.as_string() == uuid ) 
-            {
+            // if(uuid == "" || it->fObjectId.as_string() == uuid ) 
+            // {
                 found_obj = true;
                 object_key = *it;
                 break;
-            }
+            // }
         }
     }
 
