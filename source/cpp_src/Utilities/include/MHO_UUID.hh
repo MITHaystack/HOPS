@@ -86,6 +86,22 @@ class MHO_UUID
             else{return b2i.uint_values[1];}
         }
 
+
+        /**
+        * Split the UUID byte array into two halves conver to uint64_t and return the sum
+        * @return A uint64_t composed of the sum of the two halves of the uuid
+        */
+        uint64_t as_long() const
+        {
+            //stone knives and bear skins...
+            byte2ints b2i;
+            for(std::size_t i=0; i<MHO_UUID_LENGTH; i++){b2i.byte_values[i] = fBytes[i];}
+            uint64_t result = b2i.uint_values[0];
+            result += b2i.uint_values[1];
+            return result;
+        }
+
+
         /**
         * Convert the UUID byte array into a string
         * @return A std::string containing the hexadecimal digits of the UUID.
