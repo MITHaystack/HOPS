@@ -29,7 +29,7 @@ void ReadAndDump(MHO_FileKey& object_key, uint64_t offset, std::string filename)
         json_obj = obj.template AsExtension< MHO_ContainerJSON< XObjectType > >()->GetJSON();
 
         //dump the json to terminal -- TODO, replace this with a visitor which can handle multiple verbosity levels
-        //if(json_obj){std::cout<<json_obj->dump(2)<<std::endl; }
+        if(json_obj){std::cout<<json_obj->dump(2)<<std::endl; }
     }
     else
     {
@@ -215,7 +215,7 @@ int main(int argc, char** argv)
     uint64_t offset = 0;
     for(auto it2 = ikeys.begin(); it2 != it; it2++)
     {
-        offset += sizeof(MHO_FileKey);
+        offset += MHO_FileKey::ByteSize(); //DO NOT USE sizeof(MHO_FileKey);
         offset += it2->fSize;
     }
 
