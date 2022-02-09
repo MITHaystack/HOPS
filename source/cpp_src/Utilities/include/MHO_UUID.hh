@@ -75,6 +75,18 @@ class MHO_UUID
         }
 
         /**
+        * Truncate the UUID byte array to the first (last) 8 bytes and convert into a 64 bit int
+        * @return A uint64_t composed of the first or last 8 bytes of the UUID
+        */
+        uint64_t as_truncated_long(bool first_half=true) const
+        {
+            byte2ints b2i;
+            for(std::size_t i=0; i<MHO_UUID_LENGTH; i++){b2i.byte_values[i] = fBytes[i];}
+            if(first_half){return b2i.uint_values[0];}
+            else{return b2i.uint_values[1];}
+        }
+
+        /**
         * Convert the UUID byte array into a string
         * @return A std::string containing the hexadecimal digits of the UUID.
         */
@@ -126,7 +138,15 @@ class MHO_UUID
 
     protected:
 
+        typedef union 
+        {
+            uint8_t byte_values[MHO_UUID_LENGTH];
+            uint64_t uint_values[2];
+        }
+        byte2ints;
+
         uint8_t fBytes[MHO_UUID_LENGTH];
+
 
 };
 

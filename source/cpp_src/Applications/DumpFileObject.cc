@@ -11,13 +11,12 @@
 
 using namespace hops;
 
-
-void DumpToJSON(ch_baseline_data_type& ch_vis, MHO_FileKey& key, json& json_obj)
+/*
+void DumpToJSON(MHO_FileKey& object_key, uint64_t offset)
 {
+MHO_BinaryFileInterface inter;
+    ch_baseline_data_type ch_vis;
 
-    MHO_ContainerJSON< ch_baseline_data_type > converter(&ch_vis);
-
-    json* obj = converter.GetJSON();
 
     // //should we dump file-key information??
     // json_obj["name"] = key.fName; 
@@ -88,7 +87,7 @@ void DumpToJSON(ch_baseline_data_type& ch_vis, MHO_FileKey& key, json& json_obj)
 }
 
 
-
+*/
 
 int main(int argc, char** argv)
 {
@@ -100,9 +99,9 @@ int main(int argc, char** argv)
     //TODO extend this to other container types
     msg_warn("main", "currenly only implemented for the visibility container type." << eom);
 
-    std::string filename;
-    std::string uuid;
-    std::string type;
+    std::string filename = "";
+    std::string uuid = "";
+    std::string type = "";
 
     static struct option longOptions[] = {{"help", no_argument, 0, 'h'},
                                           {"file", required_argument, 0, 'f'},
@@ -153,6 +152,7 @@ int main(int argc, char** argv)
 
     //pull the file object keys for inspection 
     std::vector< MHO_FileKey > ikeys;
+    MHO_FileKey object_key;
 
     MHO_BinaryFileInterface inter;
     bool result = false;
@@ -165,60 +165,47 @@ int main(int argc, char** argv)
     {
         if( it->fTypeId.as_string() == classuuid.as_string() )
         {
-            //msg_info("main", "found a visibility object with:")
-            // std::cout<<"key:"<<std::endl;
-            // std::stringstream ss1; 
-            // ss1 << std::hex << it->fSync;
-            // std::cout<<"    sync: "<<ss1.str()<<std::endl;
-            // std::stringstream ss2;
-            // ss2 << std::hex << it->fLabel;
-            // std::cout<<"    label: "<<ss2.str()<<std::endl;
-            // std::cout<<"    object uuid: "<<it->fObjectId.as_string()<<std::endl;
-            // std::cout<<"    type uuid: "<<it->fTypeId.as_string()<<std::endl;
-            // std::string class_name = cdict.GetClassNameFromUUID(it->fTypeId);
-            // std::cout<<"    class name: "<<class_name<<std::endl;
-            // std::cout<<"    object name: "<<it->fName<<std::endl;
-            // std::cout<<"    size (bytes): "<<it->fSize<<std::endl;
-            found_obj = true;
-            break;
+            //if no object uuid given, just grab the first one
+            if(uuid == "" || it->fObjectId.as_string() == uuid ) 
+            {
+                found_obj = true;
+                object_key = *it;
+                break;
+            }
         }
     }
 
-    if(found_obj)
-    {
-        //now compute the offset to this object
-        uint64_t offset = 0;
-        for(auto it2 = ikeys.begin(); it2 != it; it2++)
-        {
-            offset += sizeof(MHO_FileKey);
-            offset += it2->fSize;
-        }
-
-        //now open and read the (channelized) baseline visibility data
-        bool status = inter.OpenToReadAtOffset(filename, offset);
-        if(status)
-        {
-            MHO_FileKey key;
-            inter.Read(ch_vis, key);
-            //std::cout<<"Total size of baseline data = "<<ch_vis.GetSerializedSize()<<std::endl;
-            json json_obj;
-            MHO_ContainerJSON< ch_baseline_data_type > converter(&ch_vis);
-            json* obj = converter.GetJSON();
-            std::cout<<obj->dump(2)<<std::endl; //dump the json to terminal
-            //DumpToJSON(ch_vis, key, json_obj);
-        }
-        else
-        {
-            std::cout<<" error opening file to read"<<std::endl;
-            inter.Close();
-            std::exit(1);
-        }
-        inter.Close();
-    }
-    else 
+    if(!found_obj) 
     {
         msg_error("main", "could not locate object with class type uuid: " << uuid << eom );
+        return 1;
     }
+
+
+    //now compute the offset to this object
+    uint64_t offset = 0;
+    for(auto it2 = ikeys.begin(); it2 != it; it2++)
+    {
+        offset += sizeof(MHO_FileKey);
+        offset += it2->fSize;
+    }
+
+    //now open skip ahead to the object we want
+    bool status = inter.OpenToReadAtOffset(filename, offset);
+    if(status)
+    {
+        ch_baseline_data_type chv;
+        MHO_FileKey read_key;
+        inter.Read(chv, read_key);
+        chv.MakeExtension< MHO_ContainerJSON< ch_baseline_data_type > >();
+        json* obj = chv.AsExtension< MHO_ContainerJSON< ch_baseline_data_type > >()->GetJSON();
+        std::cout<<obj->dump(2)<<std::endl; //dump the json to terminal
+    }
+    else
+    {
+        msg_error("main", "error opening file with byte offset: " << offset << eom );
+    }
+    inter.Close();
 
     return 0;
 }
