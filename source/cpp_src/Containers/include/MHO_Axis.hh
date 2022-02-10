@@ -18,6 +18,8 @@
 namespace hops
 {
 
+//TODO FIXME --- we should add a 'name' and 'units' parameter for axes
+
 template< typename XValueType >
 class MHO_Axis:
     public MHO_VectorContainer< XValueType >,
