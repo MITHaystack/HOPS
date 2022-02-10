@@ -14,7 +14,16 @@
 
 #include "MHO_JSONHeaderWrapper.hh"
 #include "MHO_ExtensibleElement.hh"
+
+#include "MHO_Axis.hh"
+#include "MHO_AxisPack.hh"
+#include "MHO_ScalarContainer.hh"
+#include "MHO_VectorContainer.hh"
+#include "MHO_TableContainer.hh"
+
 #include "MHO_ContainerDictionary.hh"
+
+
 
 namespace hops
 {
@@ -59,7 +68,7 @@ class MHO_ContainerJSON
             }
             fJSON["data"] = data;
 
-            //std::cout<<fJSON.dump(2)<<std::endl; //dump the json to terminal
+            IfTableDumpAxes(container, &fJSON);
         };
 
         //generic data insertion
@@ -80,10 +89,71 @@ class MHO_ContainerJSON
             data.push_back( {value.real(), value.imag()} );
         }
 
+
+        ////////////////////////////////////////////////////////////////////////
+        //SFINAE specializations for various container types 
+        ////////////////////////////////////////////////////////////////////////
+
+        //default...does nothing
+        template< typename XCheckType = XContainerType >
+        typename std::enable_if< !std::is_base_of<MHO_TableContainerBase, XCheckType>::value, void >::type
+        IfTableDumpAxes(const XContainerType* /*in*/, json* /*out*/){};
+
+        //use SFINAE to generate specialization for MHO_TableContainer types
+        template< typename XCheckType = XContainerType >
+        typename std::enable_if< std::is_base_of<MHO_TableContainerBase, XCheckType>::value, void >::type
+        IfTableDumpAxes(const XContainerType* in, json* out)
+        {
+            AxisDumper axis_dumper(out);
+            for(std::size_t idx=0; idx < in->GetRank(); idx++)
+            {
+                axis_dumper.SetIndex(idx);
+                apply_at< typename XContainerType::axis_pack_tuple_type, AxisDumper>(*in, idx, axis_dumper);
+            }
+        }
+
+        class AxisDumper
+        {
+            public:
+                AxisDumper(json* json_ptr):
+                    fAxisJSON(json_ptr),
+                    fIndex(0)
+                {};
+                ~AxisDumper(){};
+
+                void SetIndex(std::size_t idx){fIndex = idx;}
+
+                template< typename XAxisType >
+                void operator()(const XAxisType& axis)
+                {
+                    json j;
+                    j["total_size"] = axis.GetSize();
+                    //data goes out flat-packed into 1-d array
+                    json data;
+                    for(auto it = axis.cbegin(); it != axis.cend(); it++)
+                    {
+                        data.push_back(*it);
+                    }
+                    j["data"] = data;
+                    std::stringstream ss;
+                    ss << "axis_" << fIndex;
+                    (*fAxisJSON)[ss.str().c_str()] = j;
+
+                    //TODO FIXME --- we need to dump the axis labels too!
+                }
+
+            private:
+
+                json* fAxisJSON;
+                std::size_t fIndex;
+        };
+
+    private:
         XContainerType* fContainer;
         json fJSON;
 
 };
+
 
 
 }//end of hops namespace
