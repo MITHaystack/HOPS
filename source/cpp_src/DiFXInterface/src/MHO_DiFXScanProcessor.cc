@@ -293,19 +293,22 @@ MHO_DiFXScanProcessor::ConstructVisibilityFileObjects()
                 double bw = dfreq->bw; 
                 char sideband = dfreq->sideband;
 
-                //std::cout<<"sky freq = "<<sky_freq<<std::endl;
-                MHO_IntervalLabel ch_label(chidx,chidx);
-                ch_label.Insert(std::string("sky_freq"), sky_freq);
-                ch_label.Insert(std::string("bandwidth"), bw);
-                ch_label.Insert(std::string("net_sideband"), std::string(&sideband,1) );
-                ch_label.Insert(std::string("channel"), freqidx); //probably ought to be more systematic about creating channel names
-
                 auto* ch_axis = &(std::get<CH_CHANNEL_AXIS>(*fV));
                 auto* wch_axis = &(std::get<CH_CHANNEL_AXIS>(*fW));
-                ch_axis->at(chidx) = chidx;
-                wch_axis->at(chidx) = chidx;
-                ch_axis->InsertLabel(ch_label);
-                wch_axis->InsertLabel(ch_label);
+                if(ppidx == 0) //only one label needed for each channel
+                {
+                    MHO_IntervalLabel ch_label(chidx,chidx);
+                    ch_label.Insert(std::string("sky_freq"), sky_freq);
+                    ch_label.Insert(std::string("bandwidth"), bw);
+                    ch_label.Insert(std::string("net_sideband"), std::string(&sideband,1) );
+                    ch_label.Insert(std::string("channel"), freqidx); //probably ought to be more systematic about creating channel names
+
+                    ch_axis->at(chidx) = chidx;
+                    wch_axis->at(chidx) = chidx;
+                    ch_axis->InsertLabel(ch_label);
+                    wch_axis->InsertLabel(ch_label);
+                }
+
                 for(std::size_t ap = 0; ap<fVisibilities[pp][freqidx].size(); ap++)
                 {
                     auto* ap_axis = &(std::get<CH_TIME_AXIS>(*fV));

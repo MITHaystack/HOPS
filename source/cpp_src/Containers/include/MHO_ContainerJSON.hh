@@ -9,7 +9,7 @@
 *Date:
 *Description: Converts a given ndarray-based container into a JSON representation 
 * this isn't really intended for data transport/storage, but only as
-* conversion to an ascii-like representation for human inspection
+* conversion to an ascii-like representation for human inspection/debugging
 */
 
 #include "MHO_JSONHeaderWrapper.hh"
@@ -28,6 +28,27 @@
 namespace hops
 {
 
+enum
+MHO_ContainerJSONLevel: int
+{
+    eJSONBasicLevel = 0, //basic quantities (name, rank, dimensions, etc.)
+    eJSONAxesLevel = 1, //basic quantities plus the axes
+    eJSONAxesWithLabelsLevel = 2, //basic quantities plus axes with interval labels
+    eJSONAllLevel = 3 //everything including the main data array
+};
+
+//short hand aliases
+static const MHO_ContainerJSONLevel eJSONBasic = MHO_ContainerJSONLevel::eJSONBasicLevel;
+static const MHO_ContainerJSONLevel eJSONWithAxes = MHO_ContainerJSONLevel::eJSONAxesLevel;
+static const MHO_ContainerJSONLevel eJSONWithLabels = MHO_ContainerJSONLevel::eJSONAxesWithLabelsLevel;
+static const MHO_ContainerJSONLevel eJSONAll = MHO_ContainerJSONLevel::eJSONAllLevel;
+
+
+using hops::eJSONBasic;
+using hops::eJSONWithAxes;
+using hops::eJSONWithLabels;
+using hops::eJSONAll;
+
 template< typename XContainerType > 
 class MHO_ContainerJSON
 {
@@ -35,41 +56,53 @@ class MHO_ContainerJSON
 
         MHO_ContainerJSON(MHO_ExtensibleElement* element)
         {
+            fLOD = 0;
             fContainer = dynamic_cast< XContainerType* >(element);
-            ConstructJSONRepresentation(fContainer);
         }
 
         virtual ~MHO_ContainerJSON(){}
 
+        void SetLevelOfDetail(int level){fLOD = level;};
+
         json* GetJSON(){return &fJSON;}
 
-    protected:
-
-        void ConstructJSONRepresentation(XContainerType* container)
+        void ConstructJSONRepresentation()
         {
             MHO_ContainerDictionary cdict;
-            std::string class_name = cdict.GetClassNameFromObject(*container);
+            std::string class_name = cdict.GetClassNameFromObject(*fContainer);
             std::string class_uuid = (cdict.GetUUIDFromClassName(class_name)).as_string();
 
             //container must inherit from MHO_NDArrayWrapper
-            fJSON["class_name"] = class_name;
-            fJSON["class_uuid"] = class_uuid;
-            fJSON["rank"] = container->GetRank();
-            fJSON["total_size"] = container->GetSize();
-            json dim_array = container->GetDimensionArray();
-            json stride_array = container->GetStrideArray();
-            fJSON["dimensions"] = dim_array;
-            fJSON["strides"] = stride_array;
-            //data goes out flat-packed into 1-d array
-            json data;
-            for(auto it = container->cbegin(); it != container->cend(); it++)
+            if(fLOD >= eJSONBasic)
             {
-                InsertElement(*it, data);
+                fJSON["class_name"] = class_name;
+                fJSON["class_uuid"] = class_uuid;
+                fJSON["rank"] = fContainer->GetRank();
+                fJSON["total_size"] = fContainer->GetSize();
+                json dim_array = fContainer->GetDimensionArray();
+                json stride_array = fContainer->GetStrideArray();
+                fJSON["dimensions"] = dim_array;
+                fJSON["strides"] = stride_array;
             }
-            fJSON["data"] = data;
 
-            IfTableDumpAxes(container, &fJSON);
+            //data goes out flat-packed into 1-d array
+            if(fLOD >= eJSONAll)
+            {
+                json data;
+                for(auto it = fContainer->cbegin(); it != fContainer->cend(); it++)
+                {
+                    InsertElement(*it, data);
+                }
+                fJSON["data"] = data;
+            }
+
+            if(fLOD >= eJSONWithAxes)
+            {
+                IfTableDumpAxes(fContainer, &fJSON);
+            }
         };
+
+    protected:
 
         //generic data insertion
         template< typename XValueType >
@@ -104,7 +137,7 @@ class MHO_ContainerJSON
         typename std::enable_if< std::is_base_of<MHO_TableContainerBase, XCheckType>::value, void >::type
         IfTableDumpAxes(const XContainerType* in, json* out)
         {
-            AxisDumper axis_dumper(out);
+            AxisDumper axis_dumper(out,fLOD);
             for(std::size_t idx=0; idx < in->GetRank(); idx++)
             {
                 axis_dumper.SetIndex(idx);
@@ -115,9 +148,10 @@ class MHO_ContainerJSON
         class AxisDumper
         {
             public:
-                AxisDumper(json* json_ptr):
+                AxisDumper(json* json_ptr, int level):
                     fAxisJSON(json_ptr),
-                    fIndex(0)
+                    fIndex(0),
+                    fLOD(level)
                 {};
                 ~AxisDumper(){};
 
@@ -137,50 +171,51 @@ class MHO_ContainerJSON
                     j["data"] = data;
 
 
-                    //TODO FIXME --- we need to dump the axis labels too!
-                    json jilabels;
-                    MHO_Interval<std::size_t> all(0, axis.GetSize() ); 
-                    std::vector< const MHO_IntervalLabel* > labels = axis.GetIntervalsWhichIntersect(&all);
-                    for(auto it = labels.begin(); it != labels.end(); it++)
+                    if(fLOD >= eJSONWithLabels)
                     {
-                        json label_obj;
-                        label_obj["lower_bound"] = (*it)->GetLowerBound();
-                        label_obj["upper_bound"] = (*it)->GetUpperBound();
+                        //dump the axis labels too
+                        json jilabels;
+                        MHO_Interval<std::size_t> all(0, axis.GetSize() ); 
+                        std::vector< const MHO_IntervalLabel* > labels = axis.GetIntervalsWhichIntersect(&all);
+                        for(auto it = labels.begin(); it != labels.end(); it++)
+                        {
+                            json label_obj;
+                            label_obj["lower_bound"] = (*it)->GetLowerBound();
+                            label_obj["upper_bound"] = (*it)->GetUpperBound();
 
-                        bool ok;
-                        std::vector< std::string > keys; 
-                        //only do the types in the "MHO_CommonLabelMap"
-                        keys = (*it)->DumpKeys<char>();
-                        for(auto k = keys.begin(); k != keys.end(); k++)
-                        {
-                            char c; ok = (*it)->Retrieve(*k, c); 
-                            if(ok){label_obj[*k] = std::string(&c,1);}
+                            bool ok;
+                            std::vector< std::string > keys; 
+                            //only do the types in the "MHO_CommonLabelMap"
+                            keys = (*it)->DumpKeys<char>();
+                            for(auto k = keys.begin(); k != keys.end(); k++)
+                            {
+                                char c; ok = (*it)->Retrieve(*k, c); 
+                                if(ok){label_obj[*k] = std::string(&c,1);}
+                            }
+                            keys = (*it)->DumpKeys<bool>();
+                            for(auto k = keys.begin(); k != keys.end(); k++)
+                            {
+                                bool b; ok = (*it)->Retrieve(*k, b); if(ok){label_obj[*k] = b;}
+                            }
+                            keys = (*it)->DumpKeys<int>();
+                            for(auto k = keys.begin(); k != keys.end(); k++)
+                            {
+                                int i; ok = (*it)->Retrieve(*k, i); if(ok){label_obj[*k] = i;}
+                            }
+                            keys = (*it)->DumpKeys<double>();
+                            for(auto k = keys.begin(); k != keys.end(); k++)
+                            {
+                                double d; ok = (*it)->Retrieve(*k, d); if(ok){label_obj[*k] = d;}
+                            }
+                            keys = (*it)->DumpKeys<std::string>();
+                            for(auto k = keys.begin(); k != keys.end(); k++)
+                            {
+                                std::string s; ok = (*it)->Retrieve(*k, s); if(ok){label_obj[*k] = s;}
+                            }
+                            jilabels.push_back(label_obj);
                         }
-                        keys = (*it)->DumpKeys<bool>();
-                        for(auto k = keys.begin(); k != keys.end(); k++)
-                        {
-                            bool b; ok = (*it)->Retrieve(*k, b); if(ok){label_obj[*k] = b;}
-                        }
-                        keys = (*it)->DumpKeys<int>();
-                        for(auto k = keys.begin(); k != keys.end(); k++)
-                        {
-                            int i; ok = (*it)->Retrieve(*k, i); if(ok){label_obj[*k] = i;}
-                        }
-                        keys = (*it)->DumpKeys<double>();
-                        for(auto k = keys.begin(); k != keys.end(); k++)
-                        {
-                            double d; ok = (*it)->Retrieve(*k, d); if(ok){label_obj[*k] = d;}
-                        }
-                        keys = (*it)->DumpKeys<std::string>();
-                        for(auto k = keys.begin(); k != keys.end(); k++)
-                        {
-                            std::string s; ok = (*it)->Retrieve(*k, s); if(ok){label_obj[*k] = s;}
-                        }
-
-
-                        jilabels.push_back(label_obj);
+                        j["labels"] = jilabels;
                     }
-                    j["labels"] = jilabels;
 
                     std::stringstream ss;
                     ss << "axis_" << fIndex;
@@ -193,9 +228,12 @@ class MHO_ContainerJSON
 
                 json* fAxisJSON;
                 std::size_t fIndex;
+                int fLOD;
         };
 
     private:
+
+        int fLOD;
         XContainerType* fContainer;
         json fJSON;
 
