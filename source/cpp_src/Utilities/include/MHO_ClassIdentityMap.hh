@@ -16,6 +16,7 @@
 #include <map>
 #include <string>
 #include <iostream>
+#include <functional>
 
 namespace hops
 {
@@ -36,6 +37,8 @@ class MHO_ClassIdentityMap
             fMD5Generator.Finalize();
             MHO_UUID type_uuid = fMD5Generator.GetDigestAsUUID();
             AddToMap(type_uuid, name);
+            //add a factory lambda
+            //fFactoryMap.emplace(type_uuid, []{ return new XClassType(); } );
         };
 
         template<typename XClassType>
@@ -47,6 +50,8 @@ class MHO_ClassIdentityMap
             fMD5Generator.Finalize();
             MHO_UUID type_uuid = fMD5Generator.GetDigestAsUUID();
             AddToMap(type_uuid, name);
+            //add a factory lambda
+            //fFactoryMap.emplace(type_uuid, []{ return new XClassType(); } );
         };
 
 
@@ -83,6 +88,27 @@ class MHO_ClassIdentityMap
             return tmp;
         };
 
+        template<typename XClassType>
+        MHO_UUID GetUUIDFor() const
+        {
+            std::string name = MHO_ClassIdentity::ClassName<XClassType>();
+            return GetUUIDFromClassName(name);
+        }
+
+        // //returns a ptr to base class MHO_Serializable, but the underlying type 
+        // //is that which is associated with the uuid, if the uuid is not in the
+        // //factory map then nullptr is returned, memory managment is delegated to
+        // //the caller
+        // MHO_Serializable* GenerateContainerFromUUID(const MHO_UUID& uuid)
+        // {
+        //     auto it = fFactoryMap.find(uuid);
+        //     if( it != fFactoryMap.end() )
+        //     {
+        //         return fFactoryMap[uuid]();
+        //     }
+        //     else{return nullptr;}
+        // }
+
 
     protected:
 
@@ -95,6 +121,7 @@ class MHO_ClassIdentityMap
         MHO_MD5HashGenerator fMD5Generator;
         std::map< MHO_UUID, std::string > fUUID2ClassName;
         std::map< std::string, MHO_UUID > fClassName2UUID;
+        //std::map< MHO_UUID, std::function< MHO_Serializable* > > fFactoryMap;
 
 
 };

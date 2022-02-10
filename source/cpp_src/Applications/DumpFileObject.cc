@@ -11,11 +11,56 @@
 
 using namespace hops;
 
-/*
-void DumpToJSON(MHO_FileKey& object_key, uint64_t offset)
+
+template< typename XObjectType>
+void ReadAndDump(MHO_FileKey& object_key, uint64_t offset, std::string filename)
 {
-MHO_BinaryFileInterface inter;
-    ch_baseline_data_type ch_vis;
+    MHO_BinaryFileInterface inter;
+    json* json_obj = nullptr;
+    //now open skip ahead to the object we want
+    bool status = inter.OpenToReadAtOffset(filename, offset);
+    if(status)
+    {
+        XObjectType obj;
+        MHO_FileKey read_key;
+        inter.Read(obj, read_key);
+        //TODO -- figure out what rule in the c++ spec demands we use the 'template' keyword here
+        obj.template MakeExtension< MHO_ContainerJSON< XObjectType > >();
+        json_obj = obj.template AsExtension< MHO_ContainerJSON< XObjectType > >()->GetJSON();
+
+        //dump the json to terminal -- TODO, replace this with a visitor which can handle multiple verbosity levels
+        if(json_obj){std::cout<<json_obj->dump(2)<<std::endl; }
+    }
+    else
+    {
+        msg_error("main", "error opening file with byte offset: " << offset << eom );
+    }
+    inter.Close();
+}
+
+
+void DumpToJSON(MHO_FileKey& object_key, uint64_t offset, std::string filename)
+{
+    MHO_ContainerDictionary cdict;
+    //switch off of the type id and cast to the underlying type 
+    uint64_t tid = object_key.fTypeId.as_long();
+
+    if(tid == cdict.GetUUIDFor<ch_baseline_data_type>().as_long() )
+    {
+        ReadAndDump<ch_baseline_data_type>(object_key, offset, filename);
+        return;
+    }
+
+    if(tid == cdict.GetUUIDFor<ch_baseline_weight_type>().as_long() )
+    {
+        ReadAndDump<ch_baseline_weight_type>(object_key, offset, filename);
+        return;
+    }
+
+    msg_error("main", "cannot identify an object with type id: "<< object_key.fTypeId.as_string() << eom);
+
+}
+
 
 
     // //should we dump file-key information??
@@ -82,22 +127,16 @@ MHO_BinaryFileInterface inter;
     // json_obj["data"] = ch_vis_data;
 
 
-    std::cout<<obj->dump(2)<<std::endl; //dump the json to terminal
-
-}
-
-
-*/
 
 int main(int argc, char** argv)
 {
     std::string usage = "DumpFileObject -f <file> -t <type> -u <uuid>";
 
     MHO_Message::GetInstance().AcceptAllKeys();
-    MHO_Message::GetInstance().SetMessageLevel(eWarning);
+    MHO_Message::GetInstance().SetMessageLevel(eDebug);
 
-    //TODO extend this to other container types
-    msg_warn("main", "currenly only implemented for the visibility container type." << eom);
+    // //TODO extend this to other container types
+    // msg_warn("main", "currenly only implemented for the visibility container type." << eom);
 
     std::string filename = "";
     std::string uuid = "";
@@ -136,19 +175,9 @@ int main(int argc, char** argv)
         }
     }
 
-    //the container dictionay lets us look up the names of (known) file objects
-    MHO_ContainerDictionary cdict;
-
-    //only support for 
-    ch_baseline_data_type ch_vis;
-    std::string ch_vis_classname = cdict.GetClassNameFromObject(ch_vis);
-    MHO_UUID ch_vis_classuuid = cdict.GetUUIDFromClassName(ch_vis_classname);
-
     MHO_UUID classuuid;
     bool success = classuuid.from_string(type);
-    if(!success){std::cout<<"type uuid could not be converted"<<std::endl;}
-
-    //std::cout<<"type uuids: "<<classuuid.as_string()<<", "<<ch_vis_classuuid.as_string()<<", "<<type<<std::endl;
+    if(!success){msg_error("main", "could not convert object type string (-t) to uuid" << eom);}
 
     //pull the file object keys for inspection 
     std::vector< MHO_FileKey > ikeys;
@@ -163,15 +192,16 @@ int main(int argc, char** argv)
     auto it = ikeys.begin();
     for(it = ikeys.begin(); it != ikeys.end(); it++)
     {
+        std::cout<<"comparing: "<<it->fTypeId.as_string()<<" to "<< classuuid.as_string()<<std::endl;
         if( it->fTypeId.as_string() == classuuid.as_string() )
         {
             //if no object uuid given, just grab the first one
-            if(uuid == "" || it->fObjectId.as_string() == uuid ) 
-            {
+            // if(uuid == "" || it->fObjectId.as_string() == uuid ) 
+            // {
                 found_obj = true;
                 object_key = *it;
                 break;
-            }
+            // }
         }
     }
 
@@ -181,31 +211,17 @@ int main(int argc, char** argv)
         return 1;
     }
 
-
     //now compute the offset to this object
     uint64_t offset = 0;
     for(auto it2 = ikeys.begin(); it2 != it; it2++)
     {
-        offset += sizeof(MHO_FileKey);
+        offset += MHO_FileKey::ByteSize(); //DO NOT USE sizeof(MHO_FileKey);
         offset += it2->fSize;
     }
 
-    //now open skip ahead to the object we want
-    bool status = inter.OpenToReadAtOffset(filename, offset);
-    if(status)
-    {
-        ch_baseline_data_type chv;
-        MHO_FileKey read_key;
-        inter.Read(chv, read_key);
-        chv.MakeExtension< MHO_ContainerJSON< ch_baseline_data_type > >();
-        json* obj = chv.AsExtension< MHO_ContainerJSON< ch_baseline_data_type > >()->GetJSON();
-        std::cout<<obj->dump(2)<<std::endl; //dump the json to terminal
-    }
-    else
-    {
-        msg_error("main", "error opening file with byte offset: " << offset << eom );
-    }
-    inter.Close();
+    std::cout<<"offset of size: "<<offset<<std::endl;
+
+    DumpToJSON(object_key, offset, filename);
 
     return 0;
 }

@@ -31,7 +31,7 @@ These can be converted to the new format with the ConvertMk4Data command::
 
 ConvertMk4Data -i ./No0043 -o ./new-No0043
 
-This will produce a print-out to the terminal as:
+This will produce a print-out to the terminal as::
 
 ConvertMk4Data -i ./No0043/ -o ./new-No0043
 INFO[main] input directory: /home/barrettj/work/projects/hops-test-data/8000/No0043
@@ -43,7 +43,7 @@ INFO[file] Converting corel input file: /home/barrettj/work/projects/hops-test-d
 INFO[file] Converting station input file: /home/barrettj/work/projects/hops-test-data/8000/No0043/O..1E9W4X
 INFO[file] Converting station input file: /home/barrettj/work/projects/hops-test-data/8000/No0043/A..1E9W4X
  
-and will create a new directory ./new-No0043 with the contents:
+and will create a new directory ./new-No0043 with the contents::
 
 A.1E9W4X.sta  AA.1E9W4X.cor  AO.1E9W4X.cor  O.1E9W4X.sta  OO.1E9W4X.cor  WXPSC.1E9W4X.json
 
@@ -97,6 +97,23 @@ key:
     object name: sta
     size (bytes): 1851
 
+DumpFileObject
+--------------
+
+In order to generate a "human readable" representation of the objects stored in
+a file there is a utility called DumpFileObject with the usage as follows::
+
+DumpFileObject -f <file> -t <type> -u <uuid>
+
+Which for the file example above, could be used to generate an json (ascii) dump 
+of the visibility object using the command as follows:
+
+DumpFileObjectKeys -f ./AO.1E9W4X.cor -t 5eded62539d1fd31e63cee324ca65674 -u 00000000f3eb4a2f82a8f68af7d44de0
+
+The print-out of this file object is too long to show here, but is a well-formed 
+json string which could be used for (very slow) conversion into other formats. This 
+tool is akin to CorAsc2 for the new data containers, and is primarily intended as
+a data inspection and debugging tool.
 
 
 
