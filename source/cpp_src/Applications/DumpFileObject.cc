@@ -11,9 +11,8 @@
 
 using namespace hops;
 
-
 template< typename XObjectType>
-void ReadAndDump(MHO_FileKey& object_key, uint64_t offset, std::string filename)
+void ReadAndDump(MHO_FileKey& object_key, uint64_t offset, std::string filename, int detail)
 {
     MHO_BinaryFileInterface inter;
     json* json_obj = nullptr;
@@ -26,8 +25,9 @@ void ReadAndDump(MHO_FileKey& object_key, uint64_t offset, std::string filename)
         inter.Read(obj, read_key);
         //TODO -- figure out what rule in the c++ spec demands we use the 'template' keyword here
         obj.template MakeExtension< MHO_ContainerJSON< XObjectType > >();
+        obj.template AsExtension< MHO_ContainerJSON< XObjectType > >()->SetLevelOfDetail(detail);
+        obj.template AsExtension< MHO_ContainerJSON< XObjectType > >()->ConstructJSONRepresentation();
         json_obj = obj.template AsExtension< MHO_ContainerJSON< XObjectType > >()->GetJSON();
-
         //dump the json to terminal -- TODO, replace this with a visitor which can handle multiple verbosity levels
         if(json_obj){std::cout<<json_obj->dump(2)<<std::endl; }
     }
@@ -39,7 +39,7 @@ void ReadAndDump(MHO_FileKey& object_key, uint64_t offset, std::string filename)
 }
 
 
-void DumpToJSON(MHO_FileKey& object_key, uint64_t offset, std::string filename)
+void DumpToJSON(MHO_FileKey& object_key, uint64_t offset, std::string filename, int detail)
 {
     MHO_ContainerDictionary cdict;
     //switch off of the type id and cast to the underlying type 
@@ -47,90 +47,28 @@ void DumpToJSON(MHO_FileKey& object_key, uint64_t offset, std::string filename)
 
     if(tid == cdict.GetUUIDFor<ch_baseline_data_type>().as_long() )
     {
-        ReadAndDump<ch_baseline_data_type>(object_key, offset, filename);
+        ReadAndDump<ch_baseline_data_type>(object_key, offset, filename, detail);
         return;
     }
 
     if(tid == cdict.GetUUIDFor<ch_baseline_weight_type>().as_long() )
     {
-        ReadAndDump<ch_baseline_weight_type>(object_key, offset, filename);
+        ReadAndDump<ch_baseline_weight_type>(object_key, offset, filename, detail);
         return;
     }
+
+    ////////////////////////////////////////////////////////////////////////////
+    //TODO FIXME -- ADD IF() statements for the rest of the data container types
+    ////////////////////////////////////////////////////////////////////////////
 
     msg_error("main", "cannot identify an object with type id: "<< object_key.fTypeId.as_string() << eom);
 
 }
 
 
-
-    // //should we dump file-key information??
-    // json_obj["name"] = key.fName; 
-    // std::stringstream ss2;
-    // ss2 << std::hex << key.fLabel;
-    // json_obj["label"] = ss2.str();
-    // json_obj["type_uuid"] = key.fTypeId.as_string(); 
-    // json_obj["object_uuid"] = key.fObjectId.as_string(); 
-    // json_obj["size_bytes"] = key.fSize; 
-    // 
-    // 
-    // 
-    // //object data
-    // json_obj["rank"] = ch_vis.GetRank();
-    // json_obj["total_size"] = ch_vis.GetSize();
-    // json dim_array = ch_vis.GetDimensionArray();
-    // json stride_array = ch_vis.GetStrideArray();
-    // json_obj["dimensions"] = dim_array;
-    // json_obj["strides"] = stride_array;
-    // 
-    // json ax0;
-    // auto polprod_axis = &(std::get<CH_POLPROD_AXIS>(ch_vis));
-    // for(auto it = polprod_axis->cbegin(); it != polprod_axis->cend(); it++)
-    // {
-    //     ax0.push_back(*it);
-    // }
-    // json_obj["axis_0"] = ax0;
-    // 
-    // 
-    // json ax1;
-    // auto ch_axis = &(std::get<CH_CHANNEL_AXIS>(ch_vis));
-    // for(auto it = ch_axis->cbegin(); it != ch_axis->cend(); it++)
-    // {
-    //     ax1.push_back(*it);
-    // }
-    // json_obj["axis_1"] = ax1;
-    // 
-    // 
-    // json ax2;
-    // auto ap_axis = &(std::get<CH_TIME_AXIS>(ch_vis));
-    // for(auto it = ap_axis->cbegin(); it != ap_axis->cend(); it++)
-    // {
-    //     ax2.push_back(*it);
-    // }
-    // json_obj["axis_2"] = ax2;
-    // 
-    // 
-    // json ax3;
-    // auto sp_axis = &(std::get<CH_FREQ_AXIS>(ch_vis));
-    // for(auto it = sp_axis->cbegin(); it != sp_axis->cend(); it++)
-    // {
-    //     ax3.push_back(*it);
-    // }
-    // json_obj["axis_3"] = ax3;
-    // 
-    // 
-    // json ch_vis_data;
-    // for(auto it = ch_vis.cbegin(); it != ch_vis.cend(); it++)
-    // {
-    // 
-    //     ch_vis_data.push_back({it->real(), it->imag()});
-    // }
-    // json_obj["data"] = ch_vis_data;
-
-
-
 int main(int argc, char** argv)
 {
-    std::string usage = "DumpFileObject -f <file> -t <type> -u <uuid>";
+    std::string usage = "DumpFileObject -f <file> -t <type> -u <uuid> -d <detail level 0-3>";
 
     MHO_Message::GetInstance().AcceptAllKeys();
     MHO_Message::GetInstance().SetMessageLevel(eDebug);
@@ -141,14 +79,16 @@ int main(int argc, char** argv)
     std::string filename = "";
     std::string uuid = "";
     std::string type = "";
+    int detail = eJSONAll;
 
     static struct option longOptions[] = {{"help", no_argument, 0, 'h'},
                                           {"file", required_argument, 0, 'f'},
                                           {"type", required_argument, 0, 't'},
-                                          {"uuid", required_argument, 0, 'u'}
+                                          {"uuid", required_argument, 0, 'u'},
+                                          {"detail", required_argument, 0, 'd'}
     };
 
-    static const char* optString = "hf:t:u:";
+    static const char* optString = "hf:t:u:d:";
 
     while(true)
     {
@@ -168,6 +108,9 @@ int main(int argc, char** argv)
                 break;
             case ('t'):
                 type = std::string(optarg);
+                break;
+            case ('d'):
+                detail = std::atoi(optarg);
                 break;
             default:
                 std::cout << usage << std::endl;
@@ -196,12 +139,12 @@ int main(int argc, char** argv)
         if( it->fTypeId.as_string() == classuuid.as_string() )
         {
             //if no object uuid given, just grab the first one
-            // if(uuid == "" || it->fObjectId.as_string() == uuid ) 
-            // {
+            if(uuid == "" || it->fObjectId.as_string() == uuid ) 
+            {
                 found_obj = true;
                 object_key = *it;
                 break;
-            // }
+            }
         }
     }
 
@@ -221,7 +164,7 @@ int main(int argc, char** argv)
 
     std::cout<<"offset of size: "<<offset<<std::endl;
 
-    DumpToJSON(object_key, offset, filename);
+    DumpToJSON(object_key, offset, filename, detail);
 
     return 0;
 }
