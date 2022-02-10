@@ -19,7 +19,7 @@ namespace hops
 static constexpr uint32_t MHO_FileKeySyncWord = 0xEFBEADDE; //DEADBEEF
 static constexpr uint32_t MHO_FileKeyNameLength = 16;
 
-//total size 384 bits / 64 bytes
+//total size 512 bits / 64 bytes
 class MHO_FileKey
 {
     public:
@@ -90,6 +90,11 @@ class MHO_FileKey
             }
             return *this;
         }
+
+        //this is the size of a MHO_FileKey on disk
+        //DO NOT USE sizeof(), as that is the size of the object in memory --
+        //including compiler dependent padding!!
+        static uint64_t ByteSize(){return 64;};
 
     //public access to members:
     
