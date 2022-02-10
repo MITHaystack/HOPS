@@ -297,7 +297,7 @@ MHO_DiFXScanProcessor::ConstructVisibilityFileObjects()
                 MHO_IntervalLabel ch_label(chidx,chidx);
                 ch_label.Insert(std::string("sky_freq"), sky_freq);
                 ch_label.Insert(std::string("bandwidth"), bw);
-                ch_label.Insert(std::string("net_sideband"), std::string(sideband,1) );
+                ch_label.Insert(std::string("net_sideband"), std::string(&sideband,1) );
                 ch_label.Insert(std::string("channel"), freqidx); //probably ought to be more systematic about creating channel names
 
                 auto* ch_axis = &(std::get<CH_CHANNEL_AXIS>(*fV));

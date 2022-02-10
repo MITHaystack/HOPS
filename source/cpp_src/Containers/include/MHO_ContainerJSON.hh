@@ -7,7 +7,7 @@
 *Author: J. Barrett
 *Email: barrettj@mit.edu
 *Date:
-*Description: Converts a given ndarray into a JSON representation 
+*Description: Converts a given ndarray-based container into a JSON representation 
 * this isn't really intended for data transport/storage, but only as
 * conversion to an ascii-like representation for human inspection
 */
@@ -135,11 +135,58 @@ class MHO_ContainerJSON
                         data.push_back(*it);
                     }
                     j["data"] = data;
+
+
+                    //TODO FIXME --- we need to dump the axis labels too!
+                    json jilabels;
+                    MHO_Interval<std::size_t> all(0, axis.GetSize() ); 
+                    std::vector< const MHO_IntervalLabel* > labels = axis.GetIntervalsWhichIntersect(&all);
+                    for(auto it = labels.begin(); it != labels.end(); it++)
+                    {
+                        json label_obj;
+                        label_obj["lower_bound"] = (*it)->GetLowerBound();
+                        label_obj["upper_bound"] = (*it)->GetUpperBound();
+
+                        bool ok;
+                        std::vector< std::string > keys; 
+                        //only do the types in the "MHO_CommonLabelMap"
+                        keys = (*it)->DumpKeys<char>();
+                        for(auto k = keys.begin(); k != keys.end(); k++)
+                        {
+                            char c; ok = (*it)->Retrieve(*k, c); 
+                            if(ok){label_obj[*k] = std::string(&c,1);}
+                        }
+                        keys = (*it)->DumpKeys<bool>();
+                        for(auto k = keys.begin(); k != keys.end(); k++)
+                        {
+                            bool b; ok = (*it)->Retrieve(*k, b); if(ok){label_obj[*k] = b;}
+                        }
+                        keys = (*it)->DumpKeys<int>();
+                        for(auto k = keys.begin(); k != keys.end(); k++)
+                        {
+                            int i; ok = (*it)->Retrieve(*k, i); if(ok){label_obj[*k] = i;}
+                        }
+                        keys = (*it)->DumpKeys<double>();
+                        for(auto k = keys.begin(); k != keys.end(); k++)
+                        {
+                            double d; ok = (*it)->Retrieve(*k, d); if(ok){label_obj[*k] = d;}
+                        }
+                        keys = (*it)->DumpKeys<std::string>();
+                        for(auto k = keys.begin(); k != keys.end(); k++)
+                        {
+                            std::string s; ok = (*it)->Retrieve(*k, s); if(ok){label_obj[*k] = s;}
+                        }
+
+
+                        jilabels.push_back(label_obj);
+                    }
+                    j["labels"] = jilabels;
+
                     std::stringstream ss;
                     ss << "axis_" << fIndex;
                     (*fAxisJSON)[ss.str().c_str()] = j;
 
-                    //TODO FIXME --- we need to dump the axis labels too!
+                    //TODO FIXME --- we should add a 'name' and 'units' parameter for axes
                 }
 
             private:
