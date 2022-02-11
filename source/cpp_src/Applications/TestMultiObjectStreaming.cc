@@ -78,6 +78,9 @@ int main(int argc, char** argv)
     MHO_VectorContainer< int >* cvector = new MHO_VectorContainer< int >(vdim);
     for(std::size_t i=0; i<vdim; i++){cvector->at(i) = i;};
 
+    cvector->SetName(std::string("test-vector-here"));
+    cvector->SetUnits(std::string("m/s"));
+
     size_t* dim = new size_t[NDIM];
     dim[0] = 256; //x
     dim[1] = 256; //y
@@ -90,6 +93,8 @@ int main(int argc, char** argv)
     {
         x_axis->at(i) = i*(2.0*M_PI/(double)x_axis_size);
     }
+    ctable->SetName(std::string("test-table"));
+    ctable->SetUnits(std::string("kg"));
 
     //now add some labels to the x_axis
     size_t chan_width = 32;

@@ -52,17 +52,15 @@ class MHO_VectorContainer:
 
         virtual ~MHO_VectorContainer(){};
 
+        using MHO_NDArrayWrapper< XValueType, 1>::SetName;
+        using MHO_NDArrayWrapper< XValueType, 1>::GetName;
+        using MHO_NDArrayWrapper< XValueType, 1>::SetUnits;
+        using MHO_NDArrayWrapper< XValueType, 1>::GetUnits;
+
         virtual uint64_t GetSerializedSize() const override
         {
             return ComputeSerializedSize();
         }
-        // {
-        //     uint64_t size = 0;
-        //     size += sizeof(MHO_ClassVersion);
-        //     size += sizeof(std::size_t);
-        //     size += fSize*sizeof(XValueType);
-        //     return size;
-        // }
 
         //have to make base class functions visible
         using MHO_NDArrayWrapper<XValueType,1>::Resize;
@@ -76,17 +74,21 @@ class MHO_VectorContainer:
 
     protected:
 
+        using MHO_NDArrayWrapper<XValueType,1>::fName;
+        using MHO_NDArrayWrapper<XValueType,1>::fUnits;
         using MHO_NDArrayWrapper<XValueType,1>::fData;
         using MHO_NDArrayWrapper<XValueType,1>::fDims;
         using MHO_NDArrayWrapper<XValueType,1>::fSize;
 
         uint64_t ComputeSerializedSize() const
         {
-            uint64_t size = 0;
-            size += sizeof(MHO_ClassVersion);
-            size += sizeof(uint64_t);
-            size += this->fSize*sizeof(XValueType); //all elements have the same size
-            return size;
+            uint64_t total_size = 0;
+            total_size += sizeof(MHO_ClassVersion);
+            total_size += sizeof(uint64_t); total_size += fName.size();
+            total_size += sizeof(uint64_t); total_size += fUnits.size();
+            total_size += sizeof(uint64_t);
+            total_size += this->fSize*sizeof(XValueType); //all elements have the same size
+            return total_size;
         }
 
         template<typename XStream> friend XStream& operator>>(XStream& s, MHO_VectorContainer& aData)
@@ -101,6 +103,8 @@ class MHO_VectorContainer:
             }
             else
             {
+                s >> aData.fName;
+                s >> aData.fUnits;
                 size_t total_size[1];
                 s >> total_size[0];
                 aData.Resize(total_size);
@@ -115,6 +119,8 @@ class MHO_VectorContainer:
         template<typename XStream> friend XStream& operator<<(XStream& s, const MHO_VectorContainer& aData)
         {
             s << aData.GetVersion();
+            s << aData.fName;
+            s << aData.fUnits;
             s << aData.fSize;
             for(size_t i=0; i<aData.fSize; i++)
             {
