@@ -77,6 +77,8 @@ class MHO_ContainerJSON
             {
                 fJSON["class_name"] = class_name;
                 fJSON["class_uuid"] = class_uuid;
+                fJSON["name"] = fContainer->GetName();
+                fJSON["units"] = fContainer->GetUnits();
                 fJSON["rank"] = fContainer->GetRank();
                 fJSON["total_size"] = fContainer->GetSize();
                 json dim_array = fContainer->GetDimensionArray();
@@ -161,7 +163,20 @@ class MHO_ContainerJSON
                 void operator()(const XAxisType& axis)
                 {
                     json j;
-                    j["total_size"] = axis.GetSize();
+                    //container must inherit from MHO_NDArrayWrapper
+                    MHO_ContainerDictionary cdict;
+                    std::string class_name = cdict.GetClassNameFromObject(axis);
+                    std::string class_uuid = (cdict.GetUUIDFromClassName(class_name)).as_string();
+                    if(fLOD >= eJSONBasic)
+                    {
+                        j["class_name"] = class_name;
+                        j["class_uuid"] = class_uuid;
+                        j["name"] = axis.GetName();
+                        j["units"] = axis.GetUnits();
+                        j["rank"] = axis.GetRank();
+                        j["total_size"] = axis.GetSize();
+                    }
+
                     //data goes out flat-packed into 1-d array
                     json data;
                     for(auto it = axis.cbegin(); it != axis.cend(); it++)
@@ -169,7 +184,6 @@ class MHO_ContainerJSON
                         data.push_back(*it);
                     }
                     j["data"] = data;
-
 
                     if(fLOD >= eJSONWithLabels)
                     {
@@ -220,8 +234,6 @@ class MHO_ContainerJSON
                     std::stringstream ss;
                     ss << "axis_" << fIndex;
                     (*fAxisJSON)[ss.str().c_str()] = j;
-
-                    //TODO FIXME --- we should add a 'name' and 'units' parameter for axes
                 }
 
             private:
