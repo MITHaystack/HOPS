@@ -12,6 +12,7 @@
 */
 
 #include <cstring> //for memset
+#include <string>
 #include <vector>
 #include <array>
 #include <stdexcept>
@@ -51,6 +52,8 @@ class MHO_NDArrayWrapper:
                 Construct(nullptr, &(obj.fDims[0]) );
                 if(fSize != 0){std::copy(obj.fData.begin(), obj.fData.end(), fData.begin() );}
             }
+            fName = obj.fName;
+            fUnits = obj.fUnits;
         }
 
         //destructor
@@ -59,11 +62,11 @@ class MHO_NDArrayWrapper:
         //clone functionality
         MHO_NDArrayWrapper* Clone(){ return new MHO_NDArrayWrapper(*this); }
 
-        // //meta data
-        // void SetCoordinateName(std::string coord){fCoordinateName = coord};
-        // std::string GetCoordinateName() const {return fCoordinateName;};
-        // void SetUnits(std::string units){fUnits = units;}
-        // std::string GetUnits() const {return fUnits;}
+        //meta data
+        void SetName(std::string name){fName = name;};
+        std::string GetName() const {return fName;};
+        void SetUnits(std::string units){fUnits = units;}
+        std::string GetUnits() const {return fUnits;}
 
         //resize functions
         virtual void Resize(const std::size_t* dim)
@@ -159,6 +162,8 @@ class MHO_NDArrayWrapper:
                     Construct(nullptr,  &(rhs.fDims[0]) );
                     if(fSize != 0){std::copy(rhs.fData.begin(), rhs.fData.end(), this->fData.begin() );}
                 }
+                fName = rhs.fName;
+                fUnits = rhs.fUnits;
             }
             return *this;
         }
@@ -176,6 +181,8 @@ class MHO_NDArrayWrapper:
                 Construct(nullptr,  &(rhs.fDims[0]));
                 if(fSize != 0){std::copy(rhs.fData.begin(), rhs.fData.end(), this->fData.begin() );}
             }
+            fName = rhs.fName;
+            fUnits = rhs.fUnits;
         }
 
         //linear offset into the array
@@ -258,11 +265,11 @@ class MHO_NDArrayWrapper:
 
     protected:
 
-        // //only meta-data types we store are a name, and unit type
-        // std::string fName;
-        // //until we develop a proper units/dimensions type, 
-        // //we just store units as a string
-        // std::string fUnits;
+        //only meta-data types we store are a name, and unit type
+        std::string fName;
+        //until we develop a proper units/dimensions type, 
+        //we just store units as a string (the units class must be able to convert to <-> from a string)
+        std::string fUnits;
 
         XValueType* fDataPtr;
         bool fExternallyManaged;

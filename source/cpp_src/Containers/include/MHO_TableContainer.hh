@@ -61,12 +61,19 @@ class MHO_TableContainer:
 
         virtual ~MHO_TableContainer(){};
 
+        using MHO_NDArrayWrapper< XValueType, XAxisPackType::NAXES::value>::SetName;
+        using MHO_NDArrayWrapper< XValueType, XAxisPackType::NAXES::value>::GetName;
+        using MHO_NDArrayWrapper< XValueType, XAxisPackType::NAXES::value>::SetUnits;
+        using MHO_NDArrayWrapper< XValueType, XAxisPackType::NAXES::value>::GetUnits;
+
         virtual uint64_t GetSerializedSize() const override
         {
             //TODO FIXME
             uint64_t total_size = 0;
             total_size += sizeof(MHO_ClassVersion);
-            total_size += XAxisPackType::NAXES::value*sizeof(std::size_t);
+            total_size += XAxisPackType::NAXES::value*sizeof(uint64_t);
+            total_size += sizeof(uint64_t); total_size += fName.size();
+            total_size += sizeof(uint64_t); total_size += fUnits.size();
             total_size += XAxisPackType::GetSerializedSize();
             total_size += (this->fSize)*sizeof(XValueType);
             return total_size;
@@ -108,19 +115,20 @@ class MHO_TableContainer:
 
     protected:
 
+        using MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::fName;
+        using MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::fUnits;
         using MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::fData;
         using MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::fDims;
         using MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::fSize;
 
     public:
 
-        //temporary -- for testing
-        //MHO_MultiTypeMap< std::string, std::string, int, double > fTags;
-
         template<typename XStream> friend XStream& operator<<(XStream& s, const MHO_TableContainer& aData)
         {
             //first stream version and dimensions
             s << aData.GetVersion();
+            s << aData.fName;
+            s << aData.fUnits;
             for(size_t i=0; i < XAxisPackType::NAXES::value; i++)
             {
                 s << aData.fDims[i];
@@ -147,7 +155,11 @@ class MHO_TableContainer:
             }
             else
             {
-                //first stream the axis-pack
+                //first stream name/units
+                s >> aData.fName;
+                s >> aData.fUnits;
+
+                //next stream the axis-pack
                 std::size_t dims[XAxisPackType::NAXES::value];
                 for(size_t i=0; i < XAxisPackType::NAXES::value; i++)
                 {
