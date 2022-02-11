@@ -47,7 +47,6 @@ class MHO_Axis:
 
         virtual ~MHO_Axis(){};
 
-
         virtual uint64_t GetSerializedSize() const override
         {
             uint64_t total_size = 0;
@@ -82,6 +81,8 @@ class MHO_Axis:
             s << static_cast< const MHO_IntervalLabelTree& >(aData);
             return s;
         }
+
+    protected:
 
 };
 
