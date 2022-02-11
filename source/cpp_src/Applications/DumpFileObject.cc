@@ -5,6 +5,8 @@
 #include "MHO_ContainerDictionary.hh"
 #include "MHO_ChannelizedVisibilities.hh"
 #include "MHO_Visibilities.hh"
+#include "MHO_StationCoordinates.hh"
+
 #include "MHO_JSONHeaderWrapper.hh"
 #include "MHO_ContainerJSON.hh"
 
@@ -23,12 +25,11 @@ void ReadAndDump(MHO_FileKey& object_key, uint64_t offset, std::string filename,
         XObjectType obj;
         MHO_FileKey read_key;
         inter.Read(obj, read_key);
-        //TODO -- figure out what rule in the c++ spec demands we use the 'template' keyword here
         obj.template MakeExtension< MHO_ContainerJSON< XObjectType > >();
         obj.template AsExtension< MHO_ContainerJSON< XObjectType > >()->SetLevelOfDetail(detail);
         obj.template AsExtension< MHO_ContainerJSON< XObjectType > >()->ConstructJSONRepresentation();
         json_obj = obj.template AsExtension< MHO_ContainerJSON< XObjectType > >()->GetJSON();
-        //dump the json to terminal -- TODO, replace this with a visitor which can handle multiple verbosity levels
+        //dump the json to terminal
         if(json_obj){std::cout<<json_obj->dump(2)<<std::endl; }
     }
     else
@@ -42,18 +43,23 @@ void ReadAndDump(MHO_FileKey& object_key, uint64_t offset, std::string filename,
 void DumpToJSON(MHO_FileKey& object_key, uint64_t offset, std::string filename, int detail)
 {
     MHO_ContainerDictionary cdict;
-    //switch off of the type id and cast to the underlying type 
-    uint64_t tid = object_key.fTypeId.as_long();
+    MHO_UUID tid = object_key.fTypeId;
 
-    if(tid == cdict.GetUUIDFor<ch_baseline_data_type>().as_long() )
+    if(tid == cdict.GetUUIDFor<ch_baseline_data_type>())
     {
         ReadAndDump<ch_baseline_data_type>(object_key, offset, filename, detail);
         return;
     }
 
-    if(tid == cdict.GetUUIDFor<ch_baseline_weight_type>().as_long() )
+    if(tid == cdict.GetUUIDFor<ch_baseline_weight_type>())
     {
         ReadAndDump<ch_baseline_weight_type>(object_key, offset, filename, detail);
+        return;
+    }
+
+    if(tid == cdict.GetUUIDFor<station_coord_data_type>())
+    {
+        ReadAndDump<station_coord_data_type>(object_key, offset, filename, detail);
         return;
     }
 
@@ -135,7 +141,6 @@ int main(int argc, char** argv)
     auto it = ikeys.begin();
     for(it = ikeys.begin(); it != ikeys.end(); it++)
     {
-        std::cout<<"comparing: "<<it->fTypeId.as_string()<<" to "<< classuuid.as_string()<<std::endl;
         if( it->fTypeId.as_string() == classuuid.as_string() )
         {
             //if no object uuid given, just grab the first one
@@ -161,8 +166,6 @@ int main(int argc, char** argv)
         offset += MHO_FileKey::ByteSize(); //DO NOT USE sizeof(MHO_FileKey);
         offset += it2->fSize;
     }
-
-    std::cout<<"offset of size: "<<offset<<std::endl;
 
     DumpToJSON(object_key, offset, filename, detail);
 

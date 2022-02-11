@@ -191,7 +191,6 @@ MHO_DiFXScanProcessor::OrganizeBaseline(int baseline)
     for(auto ppit = fPolPairSet.begin(); ppit != fPolPairSet.end(); ppit++)
     {
         std::string pp = *ppit;
-        std::cout<<"pp = "<<pp<<std::endl;
         for(auto fqit = fBaselineFreqs.begin(); fqit != fBaselineFreqs.end(); fqit++)
         {
             int freqidx = fqit->first;
@@ -251,7 +250,6 @@ MHO_DiFXScanProcessor::ConstructVisibilityFileObjects()
         fV = new ch_baseline_data_type(); 
         fW = new ch_baseline_weight_type();
 
-        std::cout<<"resizing to = "<<fNPolPairs<<", "<<fNChannels<<", "<<fNAPs<<", "<<fNSpectralPoints<<std::endl;
         fV->Resize(fNPolPairs, fNChannels, fNAPs, fNSpectralPoints);
         fV->ZeroArray();
 
@@ -272,8 +270,6 @@ MHO_DiFXScanProcessor::ConstructVisibilityFileObjects()
         // 	int *tone;		/* Array of tone indices */
         // 	char rxName[DIFXIO_RX_NAME_LENGTH];
         // } DifxFreq;
-
-        std::cout<<"size of pol pair set = "<<fPolPairSet.size();
 
         int ppidx = 0;
         for(auto ppit = fPolPairSet.begin(); ppit != fPolPairSet.end(); ppit++)
@@ -326,10 +322,9 @@ MHO_DiFXScanProcessor::ConstructVisibilityFileObjects()
                         (*fW)(ppidx,chidx,ap,sp) = visRec->dataweight; //data weights don't need spectral point weighting?
                         if(sideband == 'L')
                         {
-                            //flip axis and conjugate (why?) //TODO VERIFY
+                            //flip axis and conjugate (why?...difx2mark4 does this, but then fourfit inverts it?) //TODO VERIFY
                             std::complex<double> tmp =  visRec->visdata[fNSpectralPoints-1-sp];
                             (*fV)(ppidx,chidx,ap,sp) = std::conj(tmp);
-                            //std::cout<<ppidx<<", "<<chidx<<", "<<ap<<", "<<sp<<" = "<<(*vis)(ppidx,chidx,ap,sp)<<std::endl;
                         }
                         else
                         {
@@ -344,13 +339,10 @@ MHO_DiFXScanProcessor::ConstructVisibilityFileObjects()
             }
             ppidx++;
         }
-
-        //just delete for now 
-        std::cout<<"filled ch_vis and weight records"<<std::endl;
     }
     else 
     {
-        std::cout<<"cant channelize"<<std::endl;
+        msg_error("difx_interface", "cannot channelize visibility data, as not all channels are equal lenght. Feature not yet supported" << eom );
     }
 
 };
@@ -424,7 +416,7 @@ MHO_DiFXScanProcessor::WriteVisibilityObjects()
     //construct output file name (eventually figure out how to construct the baseline name)
     std::stringstream ss;
     ss << fCurrentBaselineIndex;
-    std::string root_code = "dummy";
+    std::string root_code = "dummy"; //TODO replace with actual 'root' code
     std::string output_file = fFileSet->fOutputBaseDirectory + "/" + ss.str() + "." + root_code + ".cor";
 
     MHO_BinaryFileInterface inter;
