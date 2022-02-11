@@ -17,7 +17,6 @@
 #include <map>
 #include <set>
 
-
 #include "difxio/difx_input.h"
 #include "difxio/parsevis.h"
 
@@ -35,6 +34,7 @@
 
 #include "MHO_DiFXScanFileSet.hh"
 #include "MHO_DiFXVisibilityRecord.hh"
+#include "MHO_DiFXVisibilityProcessor.hh"
 
 namespace hops 
 {
@@ -55,9 +55,6 @@ class MHO_DiFXScanProcessor
 
         void LoadInputFile(std::string filename);
 
-        //read the visibilities from Swinburne file and allocate memory to store them as we go
-        void ReadDIFX_File(std::string filename);
-
         //organize all of the visibility records of this baseline by time and frequency
         void OrganizeBaseline(int baseline);
 
@@ -73,10 +70,12 @@ class MHO_DiFXScanProcessor
         int fCurrentBaselineIndex;
         //maps all freqindex's to the difx frequency description
         std::map<int, DifxFreq*> fAllFreqTable;
+
+
         //maps DiFX baseline index to vector of all associated visibility records 
         std::map<int, std::vector< MHO_DiFXVisibilityRecord* > > fAllBaselineVisibilities;
         //tracks the set of pol-pairs present on each baseline
-        std::map< int, std::set< std::string > > fBaselineUniquePolPairs;
+        std::map< int, std::set< std::string > > fAllBaselineUniquePolPairs;
 
         //for a single baseline, maps pol-pair, then freqindex to visiblity records 
         //needed to recorganized the visibilities into tables 

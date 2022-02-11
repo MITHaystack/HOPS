@@ -22,7 +22,12 @@ MHO_DiFXScanProcessor::ProcessScan(MHO_DiFXScanFileSet& fileSet)
     fFileSet = &fileSet;
 
     LoadInputFile(fileSet.fInputFile); //read .input file and build freq table
-    ReadDIFX_File(fileSet.fVisibilityFileList[0]); //read the first Swinburne file
+
+    //load the visibilities
+    ClearVisibilityRecords();
+    MHO_DiFXVisibilityProcessor visProcessor;
+    visProcessor.SetFilename(fileSet.fVisibilityFileList[0]);
+    visProcessor.ReadDIFX_File(fAllBaselineVisibilities, fAllBaselineUniquePolPairs);
 
     ConstructRootFileObject();
 
@@ -40,95 +45,6 @@ MHO_DiFXScanProcessor::ProcessScan(MHO_DiFXScanFileSet& fileSet)
     //clear up and reset for next scan
     deleteDifxInput(fDInput);
     fDInput = nullptr;
-}
-
-void 
-MHO_DiFXScanProcessor::ReadDIFX_File(std::string filename)
-{
-
-    ClearVisibilityRecords();
-    MHO_DiFXVisibilityRecord visRecord;
-
-    //open file for binary reading
-    std::fstream vFile;
-    vFile.open(filename.c_str(), std::fstream::in | std::ios::binary);
-    if( !vFile.is_open() || !vFile.good() )
-    {
-        msg_error("file", "Failed to open visibility file: "  << filename << " for reading." << eom);
-    }
-
-    std::size_t n_records = 0;
-    bool keep_reading = true;
-    while(keep_reading && vFile.good())
-    {
-        visRecord.Reset();
-        vFile.read( reinterpret_cast<char*>( &(visRecord.sync) ), sizeof(int) );
-
-        if( !(vFile.good() ) )
-        {
-            msg_error("difx_interface", "Could not read Swinburne file: " << filename << eom);
-            break;
-        }
-
-        if (visRecord.sync == VISRECORD_SYNC_WORD_DIFX1) //old style ascii header, bad
-        {
-            msg_error("difx_interface", "Cannot read DiFX 1.x data." << eom );
-            break;
-        }
-
-        if(visRecord.sync == VISRECORD_SYNC_WORD_DIFX2) //new style binary header, ok
-        {
-            vFile.read( reinterpret_cast<char*>(&(visRecord.headerversion) ), sizeof(int) );
-            if(visRecord.headerversion == 1) //new style binary header
-            {
-                vFile.read( reinterpret_cast<char*>(&visRecord.baseline), sizeof(int) );
-                vFile.read( reinterpret_cast<char*>(&visRecord.mjd), sizeof(int) );
-                vFile.read( reinterpret_cast<char*>(&visRecord.seconds), sizeof(double) );
-                vFile.read( reinterpret_cast<char*>( &visRecord.configindex), sizeof(int) );
-                vFile.read( reinterpret_cast<char*>(&visRecord.sourceindex), sizeof(int) );
-                vFile.read( reinterpret_cast<char*>(&visRecord.freqindex), sizeof(int) ); 
-                vFile.read( reinterpret_cast<char*>(visRecord.polpair), 2*sizeof(char) );
-                vFile.read( reinterpret_cast<char*>(&visRecord.pulsarbin), sizeof(int) ); 
-                vFile.read( reinterpret_cast<char*>(&visRecord.dataweight), sizeof(double) );
-                vFile.read( reinterpret_cast<char*>(visRecord.uvw), 3*sizeof(double) );
-
-                //parcel out the visibilities one at a time (for now)
-                //we may want to cache the npoints associated with each baseline+frequency in a map
-                //so we can just grab them all at once someday if we think that may speed things up
-                std::size_t npoints = 0;
-                while(true)
-                {
-                    MHO_VisibilityChunk chunk;
-                    vFile.read( reinterpret_cast<char*>(&chunk), sizeof(MHO_VisibilityChunk) );
-                    //verify we haven't smacked into the sync word 
-                    if(vFile.good())
-                    {
-                        if(chunk.sync_test[0] != VISRECORD_SYNC_WORD_DIFX2 )
-                        {
-                            npoints++;
-                            visRecord.visdata.push_back( std::complex<float>(chunk.values[0], chunk.values[1] ) );
-                        }
-                        else
-                        {
-                            //"Wait! Lemme back up a minute..."
-                            vFile.seekg( -1*sizeof(MHO_VisibilityChunk), std::ios_base::cur);
-                            break;
-                        }
-                    }
-                    else{ keep_reading = false; break;} //hit EOF
-                }
-                n_records++;
-                visRecord.nchan = npoints;
-                fAllBaselineVisibilities[visRecord.baseline].push_back( new MHO_DiFXVisibilityRecord(visRecord) );
-                fBaselineUniquePolPairs[visRecord.baseline].insert( std::string(visRecord.polpair,2) ); //keep track of the polpairs
-            }
-        }
-    }
-
-    msg_debug("difx_interface", "read " << n_records << " visibility records from " <<fAllBaselineVisibilities.size()<<" baselines, from: " << filename << eom);
-
-    //close the Swinburne file
-    vFile.close();
 }
 
 
@@ -155,7 +71,6 @@ MHO_DiFXScanProcessor::OrganizeBaseline(int baseline)
 
     //only have to pad APs if they are unequal across channels
     fPadAPs = false;
-
     //can only use channelized visibilities if every channel has the same number of spectral points
     fCanChannelize = true;
 
@@ -202,7 +117,8 @@ MHO_DiFXScanProcessor::OrganizeBaseline(int baseline)
     //determine the number of APs
     if(!fAPSet.empty())
     {
-        fNAPs = *(fAPSet.rbegin());//grab the max
+        //sets are sorted in ascending order, so grab the max from end
+        fNAPs = *(fAPSet.rbegin());
     }
 
     if(fAPSet.size() > 1 )
@@ -452,6 +368,7 @@ MHO_DiFXScanProcessor::ClearVisibilityRecords()
         }
     }
     fAllBaselineVisibilities.clear();
+    fAllBaselineUniquePolPairs.clear();
 }
 
 

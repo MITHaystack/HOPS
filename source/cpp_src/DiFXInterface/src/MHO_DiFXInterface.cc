@@ -42,17 +42,17 @@ MHO_DiFXInterface::Initialize()
     fDirInterface.GetFileList(allFiles);
     fDirInterface.GetSubDirectoryList(allSubDirs);
 
-    //debug
-    for(auto it=allFiles.begin(); it != allFiles.end(); it++)
-    {
-        std::cout<<"file: "<<*it<<std::endl;
-    }
-
-    //debug
-    for(auto it=allSubDirs.begin(); it != allSubDirs.end(); it++)
-    {
-        std::cout<<"dir: "<<*it<<std::endl;
-    }
+    // //debug
+    // for(auto it=allFiles.begin(); it != allFiles.end(); it++)
+    // {
+    //     std::cout<<"file: "<<*it<<std::endl;
+    // }
+    // 
+    // //debug
+    // for(auto it=allSubDirs.begin(); it != allSubDirs.end(); it++)
+    // {
+    //     std::cout<<"dir: "<<*it<<std::endl;
+    // }
 
     //find the (master) .vex file (should be unique)
     std::vector< std::string > tmpFiles;
@@ -126,7 +126,7 @@ MHO_DiFXInterface::Initialize()
     for(auto it=scanNames.begin(); it != scanNames.end(); it++)
     {
         //debug
-        std::cout<<"scan: "<<*it<<std::endl;
+        msg_debug("difx_interface", "constructing file-set for scan: " << *it << eom);
 
         std::string input_file = fInputDirectory + "/" + *it + ".input";
         std::string im_file = fInputDirectory + "/" + *it + ".im";
@@ -134,11 +134,11 @@ MHO_DiFXInterface::Initialize()
         std::string flag_file = fInputDirectory + "/" + *it + ".flag";
         std::string difx_dir = fInputDirectory + "/" + *it + ".difx";
 
-        std::cout<<"input = "<<input_file<<std::endl;
-        std::cout<<"im = "<<im_file<<std::endl;
-        std::cout<<"calc = "<<calc_file<<std::endl;
-        std::cout<<"flag = "<<flag_file<<std::endl;
-        std::cout<<"difx = "<<difx_dir<<std::endl;
+        // std::cout<<"input = "<<input_file<<std::endl;
+        // std::cout<<"im = "<<im_file<<std::endl;
+        // std::cout<<"calc = "<<calc_file<<std::endl;
+        // std::cout<<"flag = "<<flag_file<<std::endl;
+        // std::cout<<"difx = "<<difx_dir<<std::endl;
 
         //verify each is present 
         bool have_full_set = true;
@@ -174,7 +174,6 @@ MHO_DiFXInterface::Initialize()
             subDirInterface.GetFilesMatchingPrefix(visibFiles, "DIFX_");
             for(auto it=visibFiles.begin(); it != visibFiles.end(); it++)
             {
-                std::cout<<"visib file: "<<*it<<std::endl;
                 fileSet.fVisibilityFileList.push_back(*it);
             }
 
@@ -183,7 +182,6 @@ MHO_DiFXInterface::Initialize()
             subDirInterface.GetFilesMatchingPrefix(pcalFiles, "PCAL_");
             for(auto it=pcalFiles.begin(); it != pcalFiles.end(); it++)
             {
-                std::cout<<"pcal file: "<<*it<<std::endl;
                 fileSet.fPCALFileList.push_back(*it);
             }
 
@@ -202,8 +200,6 @@ MHO_DiFXInterface::Initialize()
         }
     }
 
-    std::cout<<"number of scan file sets = "<<fScanFileSetList.size()<<std::endl;
-
     if(fScanFileSetList.size() == 0)
     {
         msg_fatal("difx_interface", "No complete scan input found under: " << fInputDirectory << eom );
@@ -217,6 +213,7 @@ MHO_DiFXInterface::ProcessScans()
     for(auto it = fScanFileSetList.begin(); it != fScanFileSetList.end(); it++)
     {
         fScanProcessor.ProcessScan(*it);
+        std::cout<<"REMINDER...Only processing one scan while debugging" <<std::endl;
         //only doing one scan for now --- UNDER TESTING!! 
         break;
     }
