@@ -187,13 +187,37 @@ MHO_DiFXScanProcessor::ConstructVisibilityFileObjects()
         // 	char rxName[DIFXIO_RX_NAME_LENGTH];
         // } DifxFreq;
 
+        auto* polprod_axis = &(std::get<CH_POLPROD_AXIS>(*fV));
+        auto* wpolprod_axis = &(std::get<CH_POLPROD_AXIS>(*fW));
+        polprod_axis->SetName("polarization_product");
+        wpolprod_axis->SetName("polarization_product");
+
+        auto* ch_axis = &(std::get<CH_CHANNEL_AXIS>(*fV));
+        auto* wch_axis = &(std::get<CH_CHANNEL_AXIS>(*fW));
+        ch_axis->SetName("channel");
+        wch_axis->SetName("channel");
+
+        auto* ap_axis = &(std::get<CH_TIME_AXIS>(*fV));
+        auto* wap_axis = &(std::get<CH_TIME_AXIS>(*fW));
+        ap_axis->SetName("time");
+        wap_axis->SetName("time");
+        ap_axis->SetUnits("s");
+        wap_axis->SetUnits("s");
+
+        auto* sp_axis = &(std::get<CH_FREQ_AXIS>(*fV));
+        auto* wsp_axis = &(std::get<CH_FREQ_AXIS>(*fW));
+        sp_axis->SetName("frequency");
+        wsp_axis->SetName("frequency");
+        sp_axis->SetUnits("MHz");
+        wsp_axis->SetUnits("MHz");
+
+
         int ppidx = 0;
         for(auto ppit = fPolPairSet.begin(); ppit != fPolPairSet.end(); ppit++)
         {
             std::string pp = *ppit;
             //std::cout<<"pol = "<<pp<<std::endl;
-            auto* polprod_axis = &(std::get<CH_POLPROD_AXIS>(*fV));
-            auto* wpolprod_axis = &(std::get<CH_POLPROD_AXIS>(*fW));
+
             polprod_axis->at(ppidx) = pp;
             wpolprod_axis->at(ppidx) = pp;
             int chidx = 0;
@@ -205,8 +229,6 @@ MHO_DiFXScanProcessor::ConstructVisibilityFileObjects()
                 double bw = dfreq->bw; 
                 char sideband = dfreq->sideband;
 
-                auto* ch_axis = &(std::get<CH_CHANNEL_AXIS>(*fV));
-                auto* wch_axis = &(std::get<CH_CHANNEL_AXIS>(*fW));
                 if(ppidx == 0) //only one label needed for each channel
                 {
                     MHO_IntervalLabel ch_label(chidx,chidx);
@@ -223,16 +245,11 @@ MHO_DiFXScanProcessor::ConstructVisibilityFileObjects()
 
                 for(std::size_t ap = 0; ap<fVisibilities[pp][freqidx].size(); ap++)
                 {
-                    auto* ap_axis = &(std::get<CH_TIME_AXIS>(*fV));
-                    auto* wap_axis = &(std::get<CH_TIME_AXIS>(*fW));
                     ap_axis->at(ap) = 0.0; //TODO FIXME -- compute ap*ap_length
                     wap_axis->at(ap) = 0.0; 
-
                     MHO_DiFXVisibilityRecord* visRec = fVisibilities[pp][freqidx][ap];
                     for(std::size_t sp = 0; sp<fNSpectralPoints; sp++)
                     {
-                        auto* sp_axis = &(std::get<CH_FREQ_AXIS>(*fV));
-                        auto* wsp_axis = &(std::get<CH_FREQ_AXIS>(*fW));
                         sp_axis->at(sp) = sp*(bw/fNSpectralPoints); //frequency offset from edge of channel
                         wsp_axis->at(sp) = sp*(bw/fNSpectralPoints);
                         (*fW)(ppidx,chidx,ap,sp) = visRec->dataweight; //data weights don't need spectral point weighting?
