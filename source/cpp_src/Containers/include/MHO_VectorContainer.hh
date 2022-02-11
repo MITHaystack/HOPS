@@ -138,15 +138,17 @@ template<>
 inline uint64_t 
 MHO_VectorContainer<std::string>::ComputeSerializedSize() const
 {
-    uint64_t size = 0;
-    size += sizeof(MHO_ClassVersion);
-    size += sizeof(uint64_t);
+    uint64_t total_size = 0;
+    total_size += sizeof(MHO_ClassVersion);
+    total_size += sizeof(uint64_t);
+    total_size += sizeof(uint64_t); total_size += this->fName.size();
+    total_size += sizeof(uint64_t); total_size += this->fUnits.size();
     for(size_t i=0; i<this->fSize; i++)
     {
-        size += sizeof(uint64_t); //every string get streamed with a size
-        size += this->fData[i].size();
+        total_size += sizeof(uint64_t); //every string get streamed with a size
+        total_size += this->fData[i].size();
     }
-    return size;
+    return total_size;
 }
 
 
