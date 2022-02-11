@@ -59,6 +59,12 @@ class MHO_NDArrayWrapper:
         //clone functionality
         MHO_NDArrayWrapper* Clone(){ return new MHO_NDArrayWrapper(*this); }
 
+        // //meta data
+        // void SetCoordinateName(std::string coord){fCoordinateName = coord};
+        // std::string GetCoordinateName() const {return fCoordinateName;};
+        // void SetUnits(std::string units){fUnits = units;}
+        // std::string GetUnits() const {return fUnits;}
+
         //resize functions
         virtual void Resize(const std::size_t* dim)
         {
@@ -252,6 +258,12 @@ class MHO_NDArrayWrapper:
 
     protected:
 
+        // //only meta-data types we store are a name, and unit type
+        // std::string fName;
+        // //until we develop a proper units/dimensions type, 
+        // //we just store units as a string
+        // std::string fUnits;
+
         XValueType* fDataPtr;
         bool fExternallyManaged;
         std::vector< XValueType > fData; //used for internally managed data
@@ -274,6 +286,8 @@ class MHO_NDArrayWrapper:
         {
             return fDataPtr[ MHO_NDArrayMath::OffsetFromRowMajorIndex<RANK>(&(fDims[0]), &(idx[0]) ) ];
         }
+
+
 
 
     private:
