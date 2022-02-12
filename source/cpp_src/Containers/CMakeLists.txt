@@ -17,10 +17,12 @@ set (CONTAINER_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_StationCoordinates.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ContainerDictionary.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ContainerJSON.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ContainerLibrary.hh
 )
 
 set( CONTAINER_SOURCEFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ContainerDictionary.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ContainerLibrary.cc
 )
 
 #declare header paths ##########################################################
