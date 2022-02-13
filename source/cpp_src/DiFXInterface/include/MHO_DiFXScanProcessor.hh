@@ -109,24 +109,26 @@ class MHO_DiFXScanProcessor
         ////////////////////////////////////////////////////////////////////////
 
         //comparison predicate for time-sorting visibility record data
-        typedef struct 
+        struct VisRecordTimeLess
         {
             bool operator()(const MHO_DiFXVisibilityRecord* a, const MHO_DiFXVisibilityRecord* b) const 
             {
                 if(a->mjd == b->mjd){return a->seconds < b->seconds;}
                 else{return a->mjd < b->mjd;}
             }
-        } VisRecordTimeLess;
+        };
+
         VisRecordTimeLess fTimePredicate;
 
         //comparison predicate for sorting index-frequency record pairs
-        typedef struct 
+        struct FreqIndexPairLess
         {
             bool operator()(const std::pair<int, DifxFreq*>& a, const std::pair<int, DifxFreq*>& b) const 
             {
                 return a.second->freq < b.second->freq;
             }
-        } FreqIndexPairLess;
+        };
+
         FreqIndexPairLess fFreqPredicate;
 
 

@@ -54,7 +54,7 @@ MHO_ContainerDictionary::MHO_ContainerDictionary()
     AddClassType<MHO_ScalarComplexLongDouble>();
     AddClassType<MHO_ScalarString>();
 
-    AddClassType<MHO_VectorBool>();
+    //AddClassType<MHO_VectorBool>(); //boolean vectors are a problem (see MHO_NDArrayWrapper_1.hh line 195)
     AddClassType<MHO_VectorChar>();
     AddClassType<MHO_VectorUChar>();
     AddClassType<MHO_VectorShort>();
@@ -73,7 +73,7 @@ MHO_ContainerDictionary::MHO_ContainerDictionary()
     AddClassType<MHO_VectorComplexLongDouble>();
     AddClassType<MHO_VectorString>();
 
-    AddClassType<MHO_AxisBool>();
+    //AddClassType<MHO_AxisBool>();
     AddClassType<MHO_AxisChar>();
     AddClassType<MHO_AxisUChar>();
     AddClassType<MHO_AxisShort>();

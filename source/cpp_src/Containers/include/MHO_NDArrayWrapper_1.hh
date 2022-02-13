@@ -192,6 +192,10 @@ class MHO_NDArrayWrapper<XValueType, 1>:
             else //use internally managed memory
             {
                 fData.resize(fSize);
+                //this concept does not work with std::vector<bool>, as 
+                //boolean vectors use packed bitsets, while bool variables are 
+                //the size of a char, should write a specialization for boolean
+                //containers, but at the moment they aren't needed
                 fDataPtr = &(fData[0]);
                 fExternallyManaged = false;
             }

@@ -12,6 +12,8 @@
 
 #include "MHO_ClassIdentity.hh"
 #include "MHO_MD5HashGenerator.hh"
+#include "MHO_UUID.hh"
+#include "MHO_BinaryFileInterface.hh"
 
 #include <map>
 #include <string>
@@ -20,6 +22,7 @@
 
 namespace hops
 {
+
 
 class MHO_ClassIdentityMap
 {
@@ -38,7 +41,8 @@ class MHO_ClassIdentityMap
             MHO_UUID type_uuid = fMD5Generator.GetDigestAsUUID();
             AddToMap(type_uuid, name);
             //add a factory lambda
-            //fFactoryMap.emplace(type_uuid, []{ return new XClassType(); } );
+            fFactoryMap.emplace(type_uuid, []{ return new XClassType(); } );
+            fFactoryMap.emplace(type_uuid, []{ return new XClassType(); } );
         };
 
         template<typename XClassType>
@@ -51,7 +55,7 @@ class MHO_ClassIdentityMap
             MHO_UUID type_uuid = fMD5Generator.GetDigestAsUUID();
             AddToMap(type_uuid, name);
             //add a factory lambda
-            //fFactoryMap.emplace(type_uuid, []{ return new XClassType(); } );
+            fFactoryMap.emplace(type_uuid, []{ return new XClassType(); } );
         };
 
 
@@ -64,8 +68,6 @@ class MHO_ClassIdentityMap
 
         std::string GetClassNameFromUUID(const MHO_UUID& uuid) const
         {
-            // const auto it = fUUID2ClassName.cend();
-
             std::map< MHO_UUID, std::string >::const_iterator it = fUUID2ClassName.find(uuid);
             if( it != fUUID2ClassName.end() )
             {
@@ -95,19 +97,26 @@ class MHO_ClassIdentityMap
             return GetUUIDFromClassName(name);
         }
 
-        // //returns a ptr to base class MHO_Serializable, but the underlying type 
-        // //is that which is associated with the uuid, if the uuid is not in the
-        // //factory map then nullptr is returned, memory managment is delegated to
-        // //the caller
-        // MHO_Serializable* GenerateContainerFromUUID(const MHO_UUID& uuid)
-        // {
-        //     auto it = fFactoryMap.find(uuid);
-        //     if( it != fFactoryMap.end() )
-        //     {
-        //         return fFactoryMap[uuid]();
-        //     }
-        //     else{return nullptr;}
-        // }
+        bool IsTypePresent(const MHO_UUID& uuid) const
+        {
+            auto it = fUUID2ClassName.find(uuid);
+            if(it != fUUID2ClassName.end()){return true;}
+            return false;
+        }
+
+        //returns a ptr to base class MHO_Serializable, but the underlying type 
+        //is that which is associated with the uuid, if the uuid is not in the
+        //factory map then nullptr is returned, memory managment is delegated to
+        //the caller
+        MHO_Serializable* GenerateContainerFromUUID(const MHO_UUID& uuid)
+        {
+            auto it = fFactoryMap.find(uuid);
+            if( it != fFactoryMap.end() )
+            {
+                return fFactoryMap[uuid]();
+            }
+            else{return nullptr;}
+        }
 
 
     protected:
@@ -116,12 +125,26 @@ class MHO_ClassIdentityMap
         {
             fUUID2ClassName[type_uuid] = name;
             fClassName2UUID[name] = type_uuid;
-        }
+        };
+
+        
+        template< typename XClassType >
+        struct GenerateFromFile
+        {
+            MHO_Serializable* operator()(MHO_BinaryFileInterface& inter, const MHO_UUID& key)
+            {
+                XClassType* obj = new XClassType();
+                bool ok = inter.Read(*obj, key);
+                if(ok){return obj;}
+                else{ delete obj; return nullptr;}
+            }
+        };
 
         MHO_MD5HashGenerator fMD5Generator;
         std::map< MHO_UUID, std::string > fUUID2ClassName;
         std::map< std::string, MHO_UUID > fClassName2UUID;
-        //std::map< MHO_UUID, std::function< MHO_Serializable* > > fFactoryMap;
+        std::map< MHO_UUID, std::function< MHO_Serializable*() > > fFactoryMap;
+        //std::map< MHO_UUID, std::function< MHO_Serializable*(MHO_BinaryFileInterface& inter, const MHO_UUID& key) > > fFileReaderMap;
 
 
 };
