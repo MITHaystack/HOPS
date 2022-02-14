@@ -66,7 +66,7 @@ MHO_ContainerFileInterface::PopulateLibraryFromFile(MHO_ContainerLibrary& lib)
             }
             else 
             {
-                msg_warn("container", "factory failed to build object from file with type: "<< fUUID2ClassName[type_id] << eom );
+                msg_warn("containers", "factory failed to build object from file with type: "<< fUUID2ClassName[type_id] << eom );
             }
         }
         else 
