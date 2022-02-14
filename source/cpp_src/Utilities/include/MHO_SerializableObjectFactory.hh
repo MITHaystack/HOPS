@@ -29,8 +29,8 @@ class MHO_SerializableObjectFactory
 
         virtual bool WriteToFileInterface(MHO_BinaryFileInterface& /*inter*/, 
                                           const MHO_Serializable* /*object*/,
-                                          const std::string& /*shortname*/, 
-                                          const uint32_t /*label*/)
+                                          const std::string& shortname = "", 
+                                          const uint32_t label = 0)
         {
             return false;
         };

@@ -94,28 +94,29 @@ MHO_ContainerFileInterface::WriteLibraryToFile(MHO_ContainerLibrary& lib)
         if(!ok){msg_error("containers", "could not open file: " <<fFilename << " to write." << eom); return;}
     }
 
-    // for(auto it = ikeys.begin(); it != ikeys.end(); it++)
-    // {
-    //     MHO_FileKey key = *it;
-    //     MHO_UUID type_id = key.fTypeId;
-    //     auto factory = fFactoryMap.find(type_id);
-    //     if(factory != fFactoryMap.end())
-    //     {
-    //         MHO_Serializable* obj = factory->second->BuildFromFileInterface(fFileInterface);
-    //         if(obj != nullptr)
-    //         {
-    //             lib.AddContainerObject(obj,key);
-    //         }
-    //         else 
-    //         {
-    //             msg_warn("container", "factory failed to build object from file with type: "<< fUUID2ClassName[type_id] << eom );
-    //         }
-    //     }
-    //     else 
-    //     {
-    //         msg_warn("containers", "unrecognized object in file with type uuid: " << type_id.as_string() << eom );
-    //     }
-    // }
+
+    std::vector< MHO_UUID > type_ids;
+    lib.GetAllTypeUUIDs(type_ids);
+
+    for(auto it = type_ids.begin(); it != type_ids.end(); it++)
+    {
+        std::vector< MHO_UUID > obj_ids;
+        lib.GetAllObjectUUIDsOfType(*it, obj_ids);
+        for(auto it2 = obj_ids.begin(); it2 != obj_ids.end(); it2++)
+        {
+            auto factory = fFactoryMap.find(*it);
+            if(factory != fFactoryMap.end())
+            {
+                MHO_Serializable* obj = lib.RetrieveObject(*it, *it2);
+                bool ok = factory->second->WriteToFileInterface(fFileInterface, obj);
+                if(!ok)
+                {
+                    msg_warn("containers", "factory failed to write object to file with type: "<< fUUID2ClassName[*it] << eom );
+                }
+            }
+        }
+
+    }
 
     fFileInterface.Close();
 }
