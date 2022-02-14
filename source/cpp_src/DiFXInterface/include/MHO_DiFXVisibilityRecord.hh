@@ -15,8 +15,6 @@
 #include <complex>
 #include <cstring>
 
-#include "difxio/parsevis.h"
-
 namespace hops 
 {
 
