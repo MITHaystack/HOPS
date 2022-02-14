@@ -12,6 +12,7 @@
 */
 
 #include <map>
+#include <vector>
 
 #include "MHO_Message.hh"
 #include "MHO_Serializable.hh"
@@ -48,7 +49,11 @@ class MHO_ContainerLibrary
         MHO_Serializable* RetrieveFirstObjectMatchingType(const std::string& type_uuid);
         MHO_Serializable* RetrieveFirstObjectMatchingType(const MHO_UUID& type_uuid);
 
-        std::size_t GetNObjects();
+        std::size_t GetNObjects() const;
+        std::size_t GetNObjectsOfType(const MHO_UUID& type_id) const;
+        void GetAllTypeUUIDs(std::vector<MHO_UUID>& type_ids) const;
+        void GetAllObjectUUIDsOfType(const MHO_UUID& type_id, std::vector<MHO_UUID>& obj_ids) const;
+
 
     protected:
 
