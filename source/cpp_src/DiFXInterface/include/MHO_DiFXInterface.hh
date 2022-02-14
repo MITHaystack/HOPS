@@ -16,10 +16,6 @@
 #include <map>
 #include <set>
 
-
-#include "difxio/difx_input.h"
-#include "difxio/parsevis.h"
-
 #include "MHO_Message.hh"
 #include "MHO_Tokenizer.hh"
 #include "MHO_DirectoryInterface.hh"

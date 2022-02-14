@@ -1,5 +1,7 @@
 #include "MHO_DiFXVisibilityProcessor.hh"
 
+#include "difxio/parsevis.h"
+
 namespace hops
 {
 
