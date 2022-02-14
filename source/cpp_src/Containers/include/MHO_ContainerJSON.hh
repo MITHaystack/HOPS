@@ -75,7 +75,7 @@ class MHO_ContainerJSON
             //container must inherit from MHO_NDArrayWrapper
             if(fLOD >= eJSONBasic)
             {
-                fJSON["class_name"] = class_name;
+                fJSON["class_name"] =  class_name;
                 fJSON["class_uuid"] = class_uuid;
                 fJSON["name"] = fContainer->GetName();
                 fJSON["units"] = fContainer->GetUnits();
