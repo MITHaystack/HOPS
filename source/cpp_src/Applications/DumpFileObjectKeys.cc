@@ -16,7 +16,7 @@ int main(int argc, char** argv)
     MHO_Message::GetInstance().AcceptAllKeys();
     MHO_Message::GetInstance().SetMessageLevel(eDebug);
 
-    std::string filename;
+    std::string filename = "";
 
     static struct option longOptions[] = {{"help", no_argument, 0, 'h'},
                                           {"file", required_argument, 0, 'f'}};
@@ -41,6 +41,8 @@ int main(int argc, char** argv)
                 return 1;
         }
     }
+
+    if(filename == ""){msg_fatal("main", "filename not set" << eom);}
 
     //the container dictionay lets us look the names of (known) file objects
     MHO_ContainerDictionary cdict;
