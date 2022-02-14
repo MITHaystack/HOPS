@@ -12,6 +12,7 @@
 * conversion to an ascii-like representation for human inspection/debugging
 */
 
+#include "MHO_ClassIdentity.hh"
 #include "MHO_JSONHeaderWrapper.hh"
 #include "MHO_ExtensibleElement.hh"
 
@@ -20,10 +21,6 @@
 #include "MHO_ScalarContainer.hh"
 #include "MHO_VectorContainer.hh"
 #include "MHO_TableContainer.hh"
-
-#include "MHO_ContainerDictionary.hh"
-
-
 
 namespace hops
 {
@@ -68,10 +65,8 @@ class MHO_ContainerJSON
 
         void ConstructJSONRepresentation()
         {
-            MHO_ContainerDictionary cdict;
-            std::string class_name = cdict.GetClassNameFromObject(*fContainer);
-            std::string class_uuid = (cdict.GetUUIDFromClassName(class_name)).as_string();
-
+            std::string class_name = MHO_ClassIdentity::ClassName<XContainerType>();
+            std::string class_uuid = MHO_ClassIdentity::GetUUIDFromClass<XContainerType>().as_string();
             //container must inherit from MHO_NDArrayWrapper
             if(fLOD >= eJSONBasic)
             {
@@ -163,10 +158,8 @@ class MHO_ContainerJSON
                 void operator()(const XAxisType& axis)
                 {
                     json j;
-                    //container must inherit from MHO_NDArrayWrapper
-                    MHO_ContainerDictionary cdict;
-                    std::string class_name = cdict.GetClassNameFromObject(axis);
-                    std::string class_uuid = (cdict.GetUUIDFromClassName(class_name)).as_string();
+                    std::string class_name = MHO_ClassIdentity::ClassName<XContainerType>();
+                    std::string class_uuid = MHO_ClassIdentity::GetUUIDFromClass<XContainerType>().as_string();
                     if(fLOD >= eJSONBasic)
                     {
                         j["class_name"] = class_name;
