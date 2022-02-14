@@ -39,7 +39,7 @@ class MHO_ContainerFileInterface: public MHO_ContainerDictionary
         void SetFilename(std::string filename);
 
         //optional, if we don't have an index file, the regular file will be
-        //read to extract the keys
+        //read to extract the keys first, before extracting the objects
         void SetIndexFileName(std::string index_filename);
 
         void PopulateLibraryFromFile(MHO_ContainerLibrary& lib);
@@ -49,9 +49,6 @@ class MHO_ContainerFileInterface: public MHO_ContainerDictionary
         std::string fFilename;
         std::string fIndexFilename;
         MHO_BinaryFileInterface fFileInterface;
-
-
-        MHO_Serializable* AttemptToRead()
 
 };
 
