@@ -154,5 +154,20 @@ MHO_ContainerLibrary::RetrieveFirstObjectMatchingType(const MHO_UUID& type_uuid)
 }
 
 
+std::size_t 
+MHO_ContainerLibrary::GetNObjects()
+{
+    std::size_t count = 0;
+    for(auto it = fObjects.begin(); it != fObjects.end(); it++)
+    {
+        for(auto it2 = it->second.begin(); it2 != it->second.end(); it2++)
+        {
+            count++;
+        }
+    }
+    return count;
+}
+
+
 
 }

@@ -48,6 +48,8 @@ class MHO_ContainerLibrary
         MHO_Serializable* RetrieveFirstObjectMatchingType(const std::string& type_uuid);
         MHO_Serializable* RetrieveFirstObjectMatchingType(const MHO_UUID& type_uuid);
 
+        std::size_t GetNObjects();
+
     protected:
 
         //first uuid key is for the object type, second uuid key is for the object itself
