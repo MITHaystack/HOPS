@@ -55,42 +55,27 @@ MHO_ContainerFileInterface::PopulateLibraryFromFile(MHO_ContainerLibrary& lib)
     for(auto it = ikeys.begin(); it != ikeys.end(); it++)
     {
         MHO_FileKey key = *it;
-        MHO_Serializable* tmp = AttemptToRead(key);
-        if(tmp != nullptr)
+        MHO_UUID type_id = key.fTypeId;
+        auto factory = fFactoryMap.find(type_id);
+        if(factory != fFactoryMap.end())
         {
-            lib.AddContainerObject(tmp,key);
+            MHO_Serializable* obj = factory->second->BuildFromFileInterface(fFileInterface, key);
+            if(obj != nullptr)
+            {
+                lib.AddContainerObject(obj,key);
+            }
+            else 
+            {
+                msg_error("container", "factory failed to build object from file with type: "<< fUUID2ClassName[type_id] << eom );
+            }
+        }
+        else 
+        {
+            msg_error("containers", "unrecognized object in file with type uuid: " << type_id.as_string() << eom );
         }
     }
 
     fFileInterface.Close();
 };
-
-MHO_Serializable*
-MHO_ContainerFileInterface::AttemptToRead(MHO_FileKey& object_key)
-{
-        MHO_UUID type_uuid = object_key.fTypeId;
-        MHO_Serializable* obj = fFactoryMap[type_uuid]();
-        MHO_FileKey read_key;
-        //must figure out what object type we should attempt to read
-        fFileInterface.Read(obj, read_key);
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }//end namespace

@@ -14,11 +14,11 @@
 #include "MHO_MD5HashGenerator.hh"
 #include "MHO_UUID.hh"
 #include "MHO_BinaryFileInterface.hh"
+#include "MHO_SerializableObjectFactory.hh"
 
 #include <map>
 #include <string>
 #include <iostream>
-#include <functional>
 
 namespace hops
 {
@@ -40,9 +40,12 @@ class MHO_ClassIdentityMap
             fMD5Generator.Finalize();
             MHO_UUID type_uuid = fMD5Generator.GetDigestAsUUID();
             AddToMap(type_uuid, name);
-            //add a factory lambda
-            fFactoryMap.emplace(type_uuid, []{ return new XClassType(); } );
-            fFactoryMap.emplace(type_uuid, []{ return new XClassType(); } );
+            //add a factory for these types of objects
+            auto it = fFactoryMap.find(type_uuid);
+            if( it == fFactoryMap.end())
+            {
+                fFactoryMap.emplace(type_uuid, new MHO_SerializableObjectFactorySpecific<XClassType>() );
+            }
         };
 
         template<typename XClassType>
@@ -54,8 +57,12 @@ class MHO_ClassIdentityMap
             fMD5Generator.Finalize();
             MHO_UUID type_uuid = fMD5Generator.GetDigestAsUUID();
             AddToMap(type_uuid, name);
-            //add a factory lambda
-            fFactoryMap.emplace(type_uuid, []{ return new XClassType(); } );
+            //add a factory for these types of objects
+            auto it = fFactoryMap.find(type_uuid);
+            if( it == fFactoryMap.end())
+            {
+                fFactoryMap.emplace(type_uuid, new MHO_SerializableObjectFactorySpecific<XClassType>() );
+            }
         };
 
 
@@ -113,7 +120,7 @@ class MHO_ClassIdentityMap
             auto it = fFactoryMap.find(uuid);
             if( it != fFactoryMap.end() )
             {
-                return fFactoryMap[uuid]();
+                return fFactoryMap[uuid]->Build();
             }
             else{return nullptr;}
         }
@@ -127,25 +134,10 @@ class MHO_ClassIdentityMap
             fClassName2UUID[name] = type_uuid;
         };
 
-        
-        template< typename XClassType >
-        struct GenerateFromFile
-        {
-            MHO_Serializable* operator()(MHO_BinaryFileInterface& inter, const MHO_UUID& key)
-            {
-                XClassType* obj = new XClassType();
-                bool ok = inter.Read(*obj, key);
-                if(ok){return obj;}
-                else{ delete obj; return nullptr;}
-            }
-        };
-
         MHO_MD5HashGenerator fMD5Generator;
         std::map< MHO_UUID, std::string > fUUID2ClassName;
         std::map< std::string, MHO_UUID > fClassName2UUID;
-        std::map< MHO_UUID, std::function< MHO_Serializable*() > > fFactoryMap;
-        //std::map< MHO_UUID, std::function< MHO_Serializable*(MHO_BinaryFileInterface& inter, const MHO_UUID& key) > > fFileReaderMap;
-
+        std::map< MHO_UUID, MHO_SerializableObjectFactory* > fFactoryMap;
 
 };
 
