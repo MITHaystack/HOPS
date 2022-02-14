@@ -13,16 +13,18 @@
 
 using namespace hops;
 
+
 template< typename XObjectType>
-void ReadAndDump(MHO_FileKey& object_key, uint64_t offset, std::string filename, int detail)
+void ReadAndDump(MHO_FileKey& object_key, uint64_t offset, std::string filename, int detail, std::string output_file)
 {
+    XObjectType obj;
+
     MHO_BinaryFileInterface inter;
     json* json_obj = nullptr;
     //now open skip ahead to the object we want
     bool status = inter.OpenToReadAtOffset(filename, offset);
     if(status)
     {
-        XObjectType obj;
         MHO_FileKey read_key;
         inter.Read(obj, read_key);
         obj.template MakeExtension< MHO_ContainerJSON< XObjectType > >();
@@ -30,7 +32,17 @@ void ReadAndDump(MHO_FileKey& object_key, uint64_t offset, std::string filename,
         obj.template AsExtension< MHO_ContainerJSON< XObjectType > >()->ConstructJSONRepresentation();
         json_obj = obj.template AsExtension< MHO_ContainerJSON< XObjectType > >()->GetJSON();
         //dump the json to terminal
-        if(json_obj){std::cout<<json_obj->dump(2)<<std::endl; }
+        if(output_file == "")
+        {
+            if(json_obj){std::cout<<json_obj->dump(2)<<std::endl; }
+        }
+        else 
+        {
+            //open and dump to file 
+            std::ofstream outFile(output_file.c_str(), std::ofstream::out);
+            outFile << *json_obj;
+            outFile.close();
+        }
     }
     else
     {
@@ -40,26 +52,26 @@ void ReadAndDump(MHO_FileKey& object_key, uint64_t offset, std::string filename,
 }
 
 
-void DumpToJSON(MHO_FileKey& object_key, uint64_t offset, std::string filename, int detail)
+void DumpToJSON(MHO_FileKey& object_key, uint64_t offset, std::string filename, int detail, std::string output_file)
 {
     MHO_ContainerDictionary cdict;
     MHO_UUID tid = object_key.fTypeId;
 
     if(tid == cdict.GetUUIDFor<ch_baseline_data_type>())
     {
-        ReadAndDump<ch_baseline_data_type>(object_key, offset, filename, detail);
+        ReadAndDump<ch_baseline_data_type>(object_key, offset, filename, detail, output_file);
         return;
     }
 
     if(tid == cdict.GetUUIDFor<ch_baseline_weight_type>())
     {
-        ReadAndDump<ch_baseline_weight_type>(object_key, offset, filename, detail);
+        ReadAndDump<ch_baseline_weight_type>(object_key, offset, filename, detail, output_file);
         return;
     }
 
     if(tid == cdict.GetUUIDFor<station_coord_data_type>())
     {
-        ReadAndDump<station_coord_data_type>(object_key, offset, filename, detail);
+        ReadAndDump<station_coord_data_type>(object_key, offset, filename, detail, output_file);
         return;
     }
 
@@ -74,7 +86,7 @@ void DumpToJSON(MHO_FileKey& object_key, uint64_t offset, std::string filename, 
 
 int main(int argc, char** argv)
 {
-    std::string usage = "DumpFileObject -f <file> -t <type> -u <uuid> -d <detail level 0-3>";
+    std::string usage = "DumpFileObject -f <file> -t <type> -u <uuid> -d <detail level 0-3> -o <output_file>";
 
     MHO_Message::GetInstance().AcceptAllKeys();
     MHO_Message::GetInstance().SetMessageLevel(eDebug);
@@ -85,16 +97,18 @@ int main(int argc, char** argv)
     std::string filename = "";
     std::string uuid = "";
     std::string type = "";
+    std::string output_file = "";
     int detail = eJSONAll;
 
     static struct option longOptions[] = {{"help", no_argument, 0, 'h'},
                                           {"file", required_argument, 0, 'f'},
                                           {"type", required_argument, 0, 't'},
                                           {"uuid", required_argument, 0, 'u'},
-                                          {"detail", required_argument, 0, 'd'}
+                                          {"detail", required_argument, 0, 'd'},
+                                          {"output", required_argument, 0, 'o'}
     };
 
-    static const char* optString = "hf:t:u:d:";
+    static const char* optString = "hf:t:u:d:o:";
 
     while(true)
     {
@@ -117,6 +131,9 @@ int main(int argc, char** argv)
                 break;
             case ('d'):
                 detail = std::atoi(optarg);
+                break;
+            case ('o'):
+                output_file = std::string(optarg);
                 break;
             default:
                 std::cout << usage << std::endl;
@@ -167,7 +184,7 @@ int main(int argc, char** argv)
         offset += it2->fSize;
     }
 
-    DumpToJSON(object_key, offset, filename, detail);
+    DumpToJSON(object_key, offset, filename, detail, output_file);
 
     return 0;
 }
