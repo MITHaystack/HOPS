@@ -38,11 +38,14 @@ class MHO_ContainerFileInterface: public MHO_ContainerDictionary
 
         void SetFilename(std::string filename);
 
-        //optional, if we don't have an index file, the regular file will be
-        //read to extract the keys first, before extracting the objects
+        //index file optional, if we don't have an index file, the regular file will be
+        //read in 2-passes, first to extract the keys, then to extract the objects
+        //likewise, when writing a library to file, if there is no index file specified, none will be created
         void SetIndexFileName(std::string index_filename);
 
         void PopulateLibraryFromFile(MHO_ContainerLibrary& lib);
+
+        void WriteLibraryToFile(MHO_ContainerLibrary& lib);
 
     private:
 

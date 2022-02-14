@@ -59,23 +59,67 @@ MHO_ContainerFileInterface::PopulateLibraryFromFile(MHO_ContainerLibrary& lib)
         auto factory = fFactoryMap.find(type_id);
         if(factory != fFactoryMap.end())
         {
-            MHO_Serializable* obj = factory->second->BuildFromFileInterface(fFileInterface, key);
+            MHO_Serializable* obj = factory->second->BuildFromFileInterface(fFileInterface);
             if(obj != nullptr)
             {
                 lib.AddContainerObject(obj,key);
             }
             else 
             {
-                msg_error("container", "factory failed to build object from file with type: "<< fUUID2ClassName[type_id] << eom );
+                msg_warn("container", "factory failed to build object from file with type: "<< fUUID2ClassName[type_id] << eom );
             }
         }
         else 
         {
-            msg_error("containers", "unrecognized object in file with type uuid: " << type_id.as_string() << eom );
+            msg_warn("containers", "unrecognized object in file with type uuid: " << type_id.as_string() << eom );
         }
     }
 
     fFileInterface.Close();
 };
+
+void 
+MHO_ContainerFileInterface::WriteLibraryToFile(MHO_ContainerLibrary& lib)
+{
+    bool ok = false;
+    //open up the file we want to write to
+    if(fIndexFilename != "" )
+    {
+        ok = fFileInterface.OpenToWrite(fFilename,fIndexFilename);
+        if(!ok){msg_error("containers", "could not open file: " <<fFilename << " to write." << eom); return;}
+    }
+    else 
+    {
+        ok = fFileInterface.OpenToWrite(fFilename);
+        if(!ok){msg_error("containers", "could not open file: " <<fFilename << " to write." << eom); return;}
+    }
+
+    // for(auto it = ikeys.begin(); it != ikeys.end(); it++)
+    // {
+    //     MHO_FileKey key = *it;
+    //     MHO_UUID type_id = key.fTypeId;
+    //     auto factory = fFactoryMap.find(type_id);
+    //     if(factory != fFactoryMap.end())
+    //     {
+    //         MHO_Serializable* obj = factory->second->BuildFromFileInterface(fFileInterface);
+    //         if(obj != nullptr)
+    //         {
+    //             lib.AddContainerObject(obj,key);
+    //         }
+    //         else 
+    //         {
+    //             msg_warn("container", "factory failed to build object from file with type: "<< fUUID2ClassName[type_id] << eom );
+    //         }
+    //     }
+    //     else 
+    //     {
+    //         msg_warn("containers", "unrecognized object in file with type uuid: " << type_id.as_string() << eom );
+    //     }
+    // }
+
+    fFileInterface.Close();
+}
+
+
 
 }//end namespace

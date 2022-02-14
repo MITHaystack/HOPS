@@ -155,7 +155,7 @@ MHO_ContainerLibrary::RetrieveFirstObjectMatchingType(const MHO_UUID& type_uuid)
 
 
 std::size_t 
-MHO_ContainerLibrary::GetNObjects()
+MHO_ContainerLibrary::GetNObjects() const
 {
     std::size_t count = 0;
     for(auto it = fObjects.begin(); it != fObjects.end(); it++)
@@ -168,6 +168,44 @@ MHO_ContainerLibrary::GetNObjects()
     return count;
 }
 
-
-
+std::size_t 
+MHO_ContainerLibrary::GetNObjectsOfType(const MHO_UUID& type_id) const
+{
+    std::size_t count = 0;
+    auto it = fObjects.find(type_id);
+    if(it != fObjects.end())
+    {
+        for(auto it2 = it->second.begin(); it2 != it->second.end(); it2++)
+        {
+            count++;
+        }
+    }
+    return count;
 }
+
+void 
+MHO_ContainerLibrary::GetAllTypeUUIDs(std::vector<MHO_UUID>& type_ids) const
+{
+    type_ids.clear();
+    for(auto it = fObjects.begin(); it != fObjects.end(); it++)
+    {
+        type_ids.push_back(it->first);
+    }
+}
+
+void 
+MHO_ContainerLibrary::GetAllObjectUUIDsOfType(const MHO_UUID& type_id, std::vector<MHO_UUID>& obj_ids) const
+{
+    obj_ids.clear();
+    auto it = fObjects.find(type_id);
+    if(it != fObjects.end())
+    {
+        for(auto it2 = it->second.begin(); it2 != it->second.end(); it2++)
+        {
+            obj_ids.push_back(it->first);
+        }
+    }
+}
+
+
+} //end of namespace

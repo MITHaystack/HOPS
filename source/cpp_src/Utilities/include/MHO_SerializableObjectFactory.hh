@@ -10,6 +10,7 @@
 *@brief:
 */
 
+#include "MHO_Message.hh"
 #include "MHO_Serializable.hh"
 
 
@@ -24,7 +25,15 @@ class MHO_SerializableObjectFactory
         virtual ~MHO_SerializableObjectFactory(){};
 
         virtual MHO_Serializable* Build(){return nullptr;}
-        virtual MHO_Serializable* BuildFromFileInterface(MHO_BinaryFileInterface& /*inter*/, const MHO_FileKey& /*key*/){return nullptr;}
+        virtual MHO_Serializable* BuildFromFileInterface(MHO_BinaryFileInterface& /*inter*/){return nullptr;}
+
+        virtual bool WriteToFileInterface(MHO_BinaryFileInterface& /*inter*/, 
+                                          const MHO_Serializable* /*object*/,
+                                          const std::string& /*shortname*/, 
+                                          const uint32_t /*label*/)
+        {
+            return false;
+        };
 
     private:
 };
@@ -43,13 +52,42 @@ class MHO_SerializableObjectFactorySpecific: public MHO_SerializableObjectFactor
             return obj;
         }
 
-        virtual MHO_Serializable* BuildFromFileInterface(MHO_BinaryFileInterface& inter, const MHO_FileKey& key)
+        virtual MHO_Serializable* BuildFromFileInterface(MHO_BinaryFileInterface& inter)
         {
-            XClassType* obj = new XClassType();
+            XClassType* obj = nullptr;
             MHO_FileKey read_key;
-            bool ok = inter.Read(*obj, read_key);
-            if(ok){return obj;}
-            else{ delete obj; return nullptr;}
+            if(inter.IsOpenForRead())
+            {
+                obj = new XClassType();
+                bool ok = inter.Read(*obj, read_key);
+                if(ok){return obj;}
+                else 
+                {
+                    msg_debug("file", "failed to build object from file." << eom);
+                    delete obj; 
+                    obj = nullptr;
+                }
+            }
+            else 
+            {
+                msg_debug("file", "failed to build object from file, interface not open." << eom);
+            }
+            return obj;
+        }
+
+        virtual bool WriteToFileInterface(MHO_BinaryFileInterface& inter, 
+                                          const MHO_Serializable* object,
+                                          const std::string& shortname = "", 
+                                          const uint32_t label = 0)
+        {
+            const XClassType* obj = dynamic_cast<const XClassType*>(object);
+            bool ok = true;
+            if(obj != nullptr && inter.IsOpenForWrite() )
+            {
+                ok = inter.Write(*obj, shortname, label);
+            }
+            if(!ok){msg_debug("file", "failed to write object to file." << eom);}
+            return ok;
         }
 
     private:

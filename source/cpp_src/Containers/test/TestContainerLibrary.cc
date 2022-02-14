@@ -63,6 +63,7 @@ int main(int argc, char** argv)
             /* we can now do some data manipulation with the vis object... */
         }
     }
+    delete generic; 
 
     return 0;
 }

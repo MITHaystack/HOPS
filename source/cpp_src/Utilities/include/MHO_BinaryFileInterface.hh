@@ -31,6 +31,9 @@ class MHO_BinaryFileInterface
 
         virtual ~MHO_BinaryFileInterface(){};
 
+        bool IsOpenForWrite(){return (fObjectStreamer.IsOpenForWrite() && fKeyStreamer.IsOpenForWrite() );}
+        bool IsOpenForRead(){return (fObjectStreamer.IsOpenForRead() && fKeyStreamer.IsOpenForRead() );}
+
         bool OpenToWrite(const std::string& obj_filename, const std::string& index_filename = "")
         {
             fObjectStreamer.SetFilename(obj_filename);
