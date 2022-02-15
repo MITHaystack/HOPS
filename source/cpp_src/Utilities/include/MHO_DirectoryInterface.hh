@@ -38,6 +38,12 @@ class MHO_DirectoryInterface
         void GetFilesMatchingExtention(std::vector< std::string >& aFileList, const std::string& anExt) const;
         void GetFilesMatchingExtention(std::vector< std::string >& aFileList, const char* anExt) const;
 
+        void GetFilesMatchingPrefix(std::vector< std::string >& aFileList, const std::string& aPrefix) const;
+        void GetFilesMatchingPrefix(std::vector< std::string >& aFileList, const char* aPrefix) const;
+
+        void GetSubDirectoriesMatchingExtention(std::vector< std::string >& aDirList, const std::string& anExt) const;
+        void GetSubDirectoriesMatchingExtention(std::vector< std::string >& aDirList, const char* anExt) const;
+
         //utility functions for old mk4 format files
         void GetRootFile(const std::vector<std::string>& files, std::string& root_file) const;
         void GetCorelFiles(const std::vector<std::string>& files, std::vector<std::string>& corel_files) const;
@@ -47,6 +53,7 @@ class MHO_DirectoryInterface
 
         std::string GetBasename(const std::string& filename) const;
         std::string GetPrefix(const std::string& filename) const;
+        std::string StripExtensionFromBasename(const std::string& file_basename) const;
 
     private:
 

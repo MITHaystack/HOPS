@@ -40,6 +40,15 @@ MHO_ObjectTags::GetObjectUUIDAsString() const {return fObjectUUID.as_string();};
 void
 MHO_ObjectTags::SetObjectUUID(const MHO_UUID& uuid){ fObjectUUID = uuid;};
 
+//TODO, from string can fail if 
+void
+MHO_ObjectTags::SetObjectUUIDFromString(std::string uuid)
+{
+    MHO_UUID tmp;
+    bool ok = tmp.from_string(uuid);
+    if(ok){fObjectUUID = tmp;}
+};
+
 //set/get a name for the associated object
 std::string
 MHO_ObjectTags::GetObjectName() const
@@ -86,11 +95,18 @@ MHO_ObjectTags::SetTag(const char* tag_name, const char* tag_value)
 
 //check if a tag with the given name is present
 bool
-MHO_ObjectTags::IsTagPresent(const std::string& tag_name)
+MHO_ObjectTags::IsTagPresent(const std::string& tag_name) const
 {
     auto iter = fTags.find(tag_name);
     if(iter != fTags.end()){return true;}
     return false;
+}
+
+bool 
+MHO_ObjectTags::IsTagPresent(const char* tag_name) const
+{
+    std::string tmp(tag_name);
+    return IsTagPresent(tmp);
 }
 
 //retrieve the value of a given tag

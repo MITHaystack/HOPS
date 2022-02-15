@@ -74,6 +74,11 @@ int main(int argc, char** argv)
 
     test->MakeExtension< MHO_NameExtension >()->SetName( std::string("myTest") );
 
+    std::string tname = "MyTestName";
+    std::string units = "kg";
+    test->SetName(tname);
+    test->SetUnits(units);
+
     MHO_NameVisitor myVisitor;
     test->Accept(&myVisitor);
 

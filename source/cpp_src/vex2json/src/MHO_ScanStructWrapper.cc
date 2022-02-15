@@ -98,9 +98,7 @@ MHO_ScanStructWrapper::DumpToJSON(json& json_obj)
     json_obj["nst"] = fScanStruct.nst;
 
     std::vector<json> stations;
-    //skipping station_struct
-    // for( int i=0; i< fScanStruct.nst; i++)
-    for( int i=0; i<2; i++)
+    for( int i=0; i< fScanStruct.nst; i++)
     {
         json tmp;
         MHO_StationStructWrapper station(fScanStruct.st[i]);

@@ -12,6 +12,9 @@
 
 #include "MHO_ClassIdentity.hh"
 #include "MHO_MD5HashGenerator.hh"
+#include "MHO_UUID.hh"
+#include "MHO_BinaryFileInterface.hh"
+#include "MHO_SerializableObjectFactory.hh"
 
 #include <map>
 #include <string>
@@ -19,6 +22,7 @@
 
 namespace hops
 {
+
 
 class MHO_ClassIdentityMap
 {
@@ -36,6 +40,12 @@ class MHO_ClassIdentityMap
             fMD5Generator.Finalize();
             MHO_UUID type_uuid = fMD5Generator.GetDigestAsUUID();
             AddToMap(type_uuid, name);
+            //add a factory for these types of objects
+            auto it = fFactoryMap.find(type_uuid);
+            if( it == fFactoryMap.end())
+            {
+                fFactoryMap.emplace(type_uuid, new MHO_SerializableObjectFactorySpecific<XClassType>() );
+            }
         };
 
         template<typename XClassType>
@@ -47,12 +57,24 @@ class MHO_ClassIdentityMap
             fMD5Generator.Finalize();
             MHO_UUID type_uuid = fMD5Generator.GetDigestAsUUID();
             AddToMap(type_uuid, name);
+            //add a factory for these types of objects
+            auto it = fFactoryMap.find(type_uuid);
+            if( it == fFactoryMap.end())
+            {
+                fFactoryMap.emplace(type_uuid, new MHO_SerializableObjectFactorySpecific<XClassType>() );
+            }
+        };
+
+
+        template<typename XClassType>
+        std::string GetClassNameFromObject(const XClassType& obj)
+        {
+            std::string name = MHO_ClassIdentity::ClassName(obj);
+            return name;
         };
 
         std::string GetClassNameFromUUID(const MHO_UUID& uuid) const
         {
-            // const auto it = fUUID2ClassName.cend();
-
             std::map< MHO_UUID, std::string >::const_iterator it = fUUID2ClassName.find(uuid);
             if( it != fUUID2ClassName.end() )
             {
@@ -75,6 +97,34 @@ class MHO_ClassIdentityMap
             return tmp;
         };
 
+        template<typename XClassType>
+        MHO_UUID GetUUIDFor() const
+        {
+            std::string name = MHO_ClassIdentity::ClassName<XClassType>();
+            return GetUUIDFromClassName(name);
+        }
+
+        bool IsTypePresent(const MHO_UUID& uuid) const
+        {
+            auto it = fUUID2ClassName.find(uuid);
+            if(it != fUUID2ClassName.end()){return true;}
+            return false;
+        }
+
+        //returns a ptr to base class MHO_Serializable, but the underlying type 
+        //is that which is associated with the uuid, if the uuid is not in the
+        //factory map then nullptr is returned, memory managment is delegated to
+        //the caller
+        MHO_Serializable* GenerateContainerFromUUID(const MHO_UUID& uuid)
+        {
+            auto it = fFactoryMap.find(uuid);
+            if( it != fFactoryMap.end() )
+            {
+                return fFactoryMap[uuid]->Build();
+            }
+            else{return nullptr;}
+        }
+
 
     protected:
 
@@ -82,12 +132,12 @@ class MHO_ClassIdentityMap
         {
             fUUID2ClassName[type_uuid] = name;
             fClassName2UUID[name] = type_uuid;
-        }
+        };
 
         MHO_MD5HashGenerator fMD5Generator;
         std::map< MHO_UUID, std::string > fUUID2ClassName;
         std::map< std::string, MHO_UUID > fClassName2UUID;
-
+        std::map< MHO_UUID, MHO_SerializableObjectFactory* > fFactoryMap;
 
 };
 

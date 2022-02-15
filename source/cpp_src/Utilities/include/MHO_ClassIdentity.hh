@@ -14,6 +14,8 @@
 #include <string>
 #include "MHO_TemplateTypenameDeduction.hh"
 #include "MHO_Message.hh"
+#include "MHO_UUID.hh"
+#include "MHO_MD5HashGenerator.hh"
 
 namespace hops
 {
@@ -27,6 +29,30 @@ struct MHO_ClassIdentity
 
     template<typename XClassType>
     static std::string ClassName(const XClassType&){ return MHO_ClassName<XClassType>(); };
+
+    template<typename XClassType>
+    static MHO_UUID GetUUIDFromClass()
+    {
+        std::string name = ClassName<XClassType>();
+        return GetUUIDFromClassName(ClassName<XClassType>());
+    }
+
+    template<typename XClassType>
+    static MHO_UUID GetUUIDFromClass(const XClassType&)
+    {
+        std::string name = ClassName<XClassType>();
+        return GetUUIDFromClassName(ClassName<XClassType>());
+    }
+
+    static MHO_UUID GetUUIDFromClassName(std::string name)
+    {
+        MHO_MD5HashGenerator gen;
+        gen.Initialize();
+        gen << name;
+        gen.Finalize();
+        MHO_UUID type_uuid = gen.GetDigestAsUUID();
+        return type_uuid;
+    }
 
     //unknown version error for when an unknown or unsupported class version
     //is encountered

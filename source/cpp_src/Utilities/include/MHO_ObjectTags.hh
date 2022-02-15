@@ -30,8 +30,9 @@ class MHO_ObjectTags: virtual public MHO_Serializable
 
         //set/get the unique id for the associated object
         MHO_UUID GetObjectUUID() const;
-        std::string GetObjectUUIDAsString() const;
         void SetObjectUUID(const MHO_UUID& uuid);
+        std::string GetObjectUUIDAsString() const;
+        void SetObjectUUIDFromString(std::string uuid);
 
         //set/get a name for the associated object
         std::string GetObjectName() const;
@@ -46,14 +47,15 @@ class MHO_ObjectTags: virtual public MHO_Serializable
         void SetTag(const std::string& tag_name, const std::string& tag_value);
 
         //check if a tag with the given name is present
-        bool IsTagPresent(const std::string& tag_name);
+        bool IsTagPresent(const std::string& tag_name) const;
+        bool IsTagPresent(const char* tag_name) const;
 
         //retrieve the value of a given tag
         bool GetTagValue(const std::string& tag_name, std::string& tag_value);
         bool GetTagValue(const char* tag_name, std::string& tag_value);
 
         //collect all of the present tag names
-        void DumpTags(std::vector< std::string>& tag_names) const;
+        void DumpTags(std::vector< std::string >& tag_names) const;
 
         //collect all of the preset tag/value pairs
         void DumpTagValuePairs(std::vector< std::pair<std::string, std::string> >& tag_value_pairs) const;

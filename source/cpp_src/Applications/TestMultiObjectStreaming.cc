@@ -34,7 +34,7 @@ using namespace hops;
 #define XDIM 0
 #define YDIM 1
 #define ZDIM 2
-typedef MHO_AxisPack< MHO_Axis<double>, MHO_Axis<double>, MHO_Axis<char> > axis_pack_test;
+typedef MHO_AxisPack< MHO_Axis<double>, MHO_Axis<double>, MHO_Axis<std::string> > axis_pack_test;
 
 
 int main(int argc, char** argv)
@@ -78,6 +78,9 @@ int main(int argc, char** argv)
     MHO_VectorContainer< int >* cvector = new MHO_VectorContainer< int >(vdim);
     for(std::size_t i=0; i<vdim; i++){cvector->at(i) = i;};
 
+    cvector->SetName(std::string("test-vector-here"));
+    cvector->SetUnits(std::string("m/s"));
+
     size_t* dim = new size_t[NDIM];
     dim[0] = 256; //x
     dim[1] = 256; //y
@@ -90,6 +93,8 @@ int main(int argc, char** argv)
     {
         x_axis->at(i) = i*(2.0*M_PI/(double)x_axis_size);
     }
+    ctable->SetName(std::string("test-table"));
+    ctable->SetUnits(std::string("kg"));
 
     //now add some labels to the x_axis
     size_t chan_width = 32;
@@ -124,9 +129,9 @@ int main(int argc, char** argv)
 
     auto* z_axis = &(std::get<ZDIM>(*ctable));
     size_t z_axis_size = z_axis->GetDimension(0);
-    z_axis->at(0) = 'r';
-    z_axis->at(1) = 'g';
-    z_axis->at(2) = 'b';
+    z_axis->at(0) = std::string("ar");
+    z_axis->at(1) = std::string("bg");
+    z_axis->at(2) = std::string("cb");
 
     for(size_t i=0; i<x_axis_size; i++)
     {
@@ -176,21 +181,58 @@ int main(int argc, char** argv)
     inter.Close();
 
 
-    //lets extract all of the object keys in the index file just for inspection
+    std::cout<<"Keys from object file:"<<std::endl;
+
+    //lets extract all of the object keys in the object file just for inspection
     std::vector< MHO_FileKey > ikeys;
-    bool result = inter.ExtractObjectKeys(index_filename, ikeys);
+    bool result = inter.ExtractFileObjectKeys(filename, ikeys);
 
     for(auto it = ikeys.begin(); it != ikeys.end(); it++)
     {
         std::cout<<"key:"<<std::endl;
-        std::cout<<"sync: "<<it->fSync<<std::endl;
-        std::cout<<"label: "<<it->fLabel<<std::endl;
+
+        std::stringstream ss1; 
+        ss1 << std::hex << it->fSync;
+        std::cout<<"sync: "<<ss1.str()<<std::endl;
+
+        std::stringstream ss2;
+        ss2 << std::hex << it->fLabel;
+        std::cout<<"label: "<<ss2.str()<<std::endl;
+
         std::cout<<"object uuid: "<<it->fObjectId.as_string()<<std::endl;
         std::cout<<"type uuid: "<<it->fTypeId.as_string()<<std::endl;
         std::string class_name = cid_map.GetClassNameFromUUID(it->fTypeId);
         std::cout<<"class name = "<<class_name<<std::endl;
         std::cout<<"size (bytes): "<<it->fSize<<std::endl;
-        std::cout<<"----"<<std::endl;
+        std::cout<<"------------------------------------------------------------"<<std::endl;
+    }
+
+    ikeys.clear();
+    inter.Close();
+
+    std::cout<<"Keys from index file:"<<std::endl;
+
+    //lets extract all of the object keys in the index file just for inspection
+    //std::vector< MHO_FileKey > ikeys;
+    result = inter.ExtractIndexFileObjectKeys(index_filename, ikeys);
+    for(auto it = ikeys.begin(); it != ikeys.end(); it++)
+    {
+        std::cout<<"key:"<<std::endl;
+
+        std::stringstream ss1; 
+        ss1 << std::hex << it->fSync;
+        std::cout<<"sync: "<<ss1.str()<<std::endl;
+
+        std::stringstream ss2;
+        ss2 << std::hex << it->fLabel;
+        std::cout<<"label: "<<ss2.str()<<std::endl;
+
+        std::cout<<"object uuid: "<<it->fObjectId.as_string()<<std::endl;
+        std::cout<<"type uuid: "<<it->fTypeId.as_string()<<std::endl;
+        std::string class_name = cid_map.GetClassNameFromUUID(it->fTypeId);
+        std::cout<<"class name = "<<class_name<<std::endl;
+        std::cout<<"size (bytes): "<<it->fSize<<std::endl;
+        std::cout<<"------------------------------------------------------------"<<std::endl;
     }
 
     MHO_ScalarContainer< double >* cscalar2 = new MHO_ScalarContainer< double >();
