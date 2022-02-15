@@ -35,10 +35,17 @@ class MHO_ScalarContainer:
 
         virtual ~MHO_ScalarContainer(){};
 
+        using MHO_NDArrayWrapper< XValueType, 0>::SetName;
+        using MHO_NDArrayWrapper< XValueType, 0>::GetName;
+        using MHO_NDArrayWrapper< XValueType, 0>::SetUnits;
+        using MHO_NDArrayWrapper< XValueType, 0>::GetUnits;
+
         virtual uint64_t GetSerializedSize() const override
         {
             uint64_t total_size = 0;
             total_size += sizeof(MHO_ClassVersion); //version
+            total_size += sizeof(uint64_t); total_size += fName.size();
+            total_size += sizeof(uint64_t); total_size += fUnits.size();
             total_size += sizeof(XValueType); //contents
             return total_size;
         }
@@ -54,30 +61,36 @@ class MHO_ScalarContainer:
 
     protected:
 
+        using MHO_NDArrayWrapper<XValueType,0>::fName;
+        using MHO_NDArrayWrapper<XValueType,0>::fUnits;
         using MHO_NDArrayWrapper<XValueType,0>::fData;
 
         template<typename XStream> friend XStream& operator>>(XStream& s, MHO_ScalarContainer& aData)
         {
-                MHO_ClassVersion vers;
-                s >> vers;
-                if( vers != aData.GetVersion() )
-                {
-                    MHO_ClassIdentity::ClassVersionErrorMsg(aData, vers);
-                    //Flag this as an unknown object version so we can skip over this data
-                    MHO_ObjectStreamState<XStream>::SetUnknown(s);
-                }
-                else
-                {
-                    s >> aData.fData;
-                }
-                return s;
+            MHO_ClassVersion vers;
+            s >> vers;
+            if( vers != aData.GetVersion() )
+            {
+                MHO_ClassIdentity::ClassVersionErrorMsg(aData, vers);
+                //Flag this as an unknown object version so we can skip over this data
+                MHO_ObjectStreamState<XStream>::SetUnknown(s);
+            }
+            else
+            {
+                s >> aData.fName;
+                s >> aData.fUnits;
+                s >> aData.fData;
+            }
+            return s;
         };
 
         template<typename XStream> friend XStream& operator<<(XStream& s, const MHO_ScalarContainer& aData)
         {
-                s << aData.GetVersion();
-                s << aData.fData;
-                return s;
+            s << aData.GetVersion();
+            s << aData.fName;
+            s << aData.fUnits;
+            s << aData.fData;
+            return s;
         };
 
 };

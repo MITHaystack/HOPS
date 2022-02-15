@@ -37,6 +37,7 @@ class MHO_IntervalLabelTree: virtual public MHO_Serializable
 
         std::vector< MHO_IntervalLabel* > GetIntervalsWhichIntersect(const std::size_t& idx);
         std::vector< MHO_IntervalLabel* > GetIntervalsWhichIntersect(const MHO_Interval<std::size_t>* interval);
+        std::vector< const MHO_IntervalLabel* > GetIntervalsWhichIntersect(const MHO_Interval<std::size_t>* interval) const;
 
         std::vector< MHO_IntervalLabel* >
         GetIntervalsWithKey(const std::string& key);
@@ -162,6 +163,7 @@ MHO_IntervalLabelTree::GetFirstIntervalWithKeyValue(const std::string& key, cons
 {
     MHO_IntervalLabel* label = nullptr;
     XLabelValueType tmp_value;
+    //TODO FIXME -- use an actual interval tree
     //dumb brute force search over all intervals O(n)
     //we may want to make this smarter
 
@@ -185,6 +187,7 @@ MHO_IntervalLabelTree::GetFirstIntervalWithKeyValue(const std::string& key, cons
 {
     const MHO_IntervalLabel* label = nullptr;
     XLabelValueType tmp_value;
+    //TODO FIXME -- use an actual interval tree
     //dumb brute force search over all intervals O(n)
     //we may want to make this smarter
 

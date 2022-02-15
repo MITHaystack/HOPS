@@ -31,6 +31,9 @@ class MHO_BinaryFileInterface
 
         virtual ~MHO_BinaryFileInterface(){};
 
+        bool IsOpenForWrite(){return (fObjectStreamer.IsOpenForWrite() && fKeyStreamer.IsOpenForWrite() );}
+        bool IsOpenForRead(){return (fObjectStreamer.IsOpenForRead() && fKeyStreamer.IsOpenForRead() );}
+
         bool OpenToWrite(const std::string& obj_filename, const std::string& index_filename = "")
         {
             fObjectStreamer.SetFilename(obj_filename);
@@ -54,7 +57,16 @@ class MHO_BinaryFileInterface
             return fObjectStreamer.IsOpenForRead();
         }
 
-        bool ExtractObjectKeys(const std::string& index_filename, std::vector<MHO_FileKey>& keys)
+        bool OpenToReadAtOffset(const std::string& filename, uint64_t offset_bytes)
+        {
+            fObjectStreamer.SetFilename(filename);
+            fObjectStreamer.OpenToRead();
+            fObjectStreamer.GetStream().seekg(offset_bytes, std::ios_base::cur);
+            return fObjectStreamer.IsOpenForRead();
+        }
+
+
+        bool ExtractIndexFileObjectKeys(const std::string& index_filename, std::vector<MHO_FileKey>& keys)
         {
             keys.clear();
 
@@ -90,6 +102,59 @@ class MHO_BinaryFileInterface
                 }
             }
         }
+
+        bool ExtractFileObjectKeys(const std::string& filename, std::vector<MHO_FileKey>& keys)
+        {
+            keys.clear();
+
+            if( fObjectStreamer.IsOpenForRead() || fObjectStreamer.IsOpenForWrite() ||
+                fKeyStreamer.IsOpenForRead() || fKeyStreamer.IsOpenForRead() )
+            {
+                msg_warn("file", "Cannot extract file keys with active stream. Close open file first." << eom);
+                return false;
+            }
+            else
+            {
+                fKeyStreamer.SetFilename(filename);
+                fKeyStreamer.OpenToRead();
+                if( fKeyStreamer.IsOpenForRead() )
+                {
+                    while( fKeyStreamer.GetStream().good() )
+                    {
+                        MHO_FileKey key;
+                        fKeyStreamer >> key;
+                        if( fKeyStreamer.GetStream().good() ) //make sure we haven't hit EOF
+                        {
+                            //first check if the sync word matches, if not then we have
+                            //gotten off track and are in unknown territory
+                            bool key_ok = true;
+                            if( key.fSync != MHO_FileKeySyncWord ){key_ok = false; }
+                            if(key_ok)
+                            {
+                                keys.push_back(key);
+                                //now skip ahead by the size of the object
+                                fKeyStreamer.SkipAhead(key.fSize);
+                            }
+                            else
+                            {
+                                msg_error("file", "Failed to read object key, sync word " << key.fSync << " not recognized." << eom);
+                                break;
+                            }
+                        }
+                        else{break;} //EOF
+                    }
+                    fKeyStreamer.Close();
+                    return true;
+                }
+                else
+                {
+                    msg_error("file", "Failed to read key, file not open for reading." << eom);
+                    fKeyStreamer.Close();
+                    return false; //non-recoverable error
+                }
+            }
+        }
+
 
         void Close()
         {
@@ -195,6 +260,7 @@ class MHO_BinaryFileInterface
                 else
                 {
                     msg_error("file", "Failed to read object, object type/key mismatch for object of type: " << name << "." << eom);
+                    msg_error("file", "Object uuid: " << type_uuid.as_string() << " file key uuid: "<< key.fTypeId.as_string() << "." << eom);
                     return false; //non-recoverable error
                 }
             }

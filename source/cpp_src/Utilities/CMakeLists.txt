@@ -21,10 +21,11 @@ set (UTILITIES_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_UUIDGenerator.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MD5HashGenerator.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_BinaryFileInterface.hh
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ClassIdentityMap.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ObjectTags.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_DirectoryInterface.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ExtensibleElement.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_JSONHeaderWrapper.hh
+
 )
 
 #set_source_files_properties(picohash.h PROPERTIES COMPILE_FLAGS -fpermissive)
