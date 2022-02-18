@@ -15,18 +15,19 @@
 #include <complex>
 
 #include "MHO_Serializable.hh"
+#include "MHO_Taggable.hh"
 #include "MHO_NDArrayWrapper.hh"
 
 namespace hops
 {
 
-class MHO_VectorContainerBase{}; //only needed for SFINAE
+class MHO_VectorContainerBase{};  //only needed for dependent template specializations
 
 template< typename XValueType >
 class MHO_VectorContainer:
     public MHO_VectorContainerBase,
     public MHO_NDArrayWrapper< XValueType, 1>,
-    virtual public MHO_Serializable
+    public MHO_Taggable
 {
     public:
 
@@ -52,10 +53,7 @@ class MHO_VectorContainer:
 
         virtual ~MHO_VectorContainer(){};
 
-        using MHO_NDArrayWrapper< XValueType, 1>::SetName;
-        using MHO_NDArrayWrapper< XValueType, 1>::GetName;
-        using MHO_NDArrayWrapper< XValueType, 1>::SetUnits;
-        using MHO_NDArrayWrapper< XValueType, 1>::GetUnits;
+        virtual MHO_ClassVersion GetVersion() const override {return 0;};
 
         virtual uint64_t GetSerializedSize() const override
         {
@@ -74,8 +72,6 @@ class MHO_VectorContainer:
 
     protected:
 
-        using MHO_NDArrayWrapper<XValueType,1>::fName;
-        using MHO_NDArrayWrapper<XValueType,1>::fUnits;
         using MHO_NDArrayWrapper<XValueType,1>::fData;
         using MHO_NDArrayWrapper<XValueType,1>::fDims;
         using MHO_NDArrayWrapper<XValueType,1>::fSize;
@@ -84,8 +80,7 @@ class MHO_VectorContainer:
         {
             uint64_t total_size = 0;
             total_size += sizeof(MHO_ClassVersion);
-            total_size += sizeof(uint64_t); total_size += fName.size();
-            total_size += sizeof(uint64_t); total_size += fUnits.size();
+            total_size += MHO_Taggable::GetSerializedSize();
             total_size += sizeof(uint64_t);
             total_size += this->fSize*sizeof(XValueType); //all elements have the same size
             return total_size;
@@ -103,8 +98,7 @@ class MHO_VectorContainer:
             }
             else
             {
-                s >> aData.fName;
-                s >> aData.fUnits;
+                s >> static_cast< MHO_Taggable& >(aData);
                 size_t total_size[1];
                 s >> total_size[0];
                 aData.Resize(total_size);
@@ -119,8 +113,7 @@ class MHO_VectorContainer:
         template<typename XStream> friend XStream& operator<<(XStream& s, const MHO_VectorContainer& aData)
         {
             s << aData.GetVersion();
-            s << aData.fName;
-            s << aData.fUnits;
+            s << static_cast<const MHO_Taggable& >(aData);
             s << aData.fSize;
             for(size_t i=0; i<aData.fSize; i++)
             {
@@ -140,9 +133,8 @@ MHO_VectorContainer<std::string>::ComputeSerializedSize() const
 {
     uint64_t total_size = 0;
     total_size += sizeof(MHO_ClassVersion);
+    total_size += MHO_Taggable::GetSerializedSize();
     total_size += sizeof(uint64_t);
-    total_size += sizeof(uint64_t); total_size += this->fName.size();
-    total_size += sizeof(uint64_t); total_size += this->fUnits.size();
     for(size_t i=0; i<this->fSize; i++)
     {
         total_size += sizeof(uint64_t); //every string get streamed with a size
@@ -156,8 +148,7 @@ MHO_VectorContainer<std::string>::ComputeSerializedSize() const
 
 
 // ////////////////////////////////////////////////////////////////////////////////
-//using declarations for all basic 'plain-old-data' types
-using MHO_VectorBool = MHO_VectorContainer<bool>;
+//using declarations for all basic 'plain-old-data' types (except bool!)
 using MHO_VectorChar = MHO_VectorContainer<char>;
 using MHO_VectorUChar = MHO_VectorContainer<unsigned char>;
 using MHO_VectorShort = MHO_VectorContainer<short>;

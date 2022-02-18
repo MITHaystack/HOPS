@@ -52,7 +52,8 @@ set(SOURCE_BASENAMES
     TestConvertMk4Visibilities
     DumpFileObjectKeys
     ConvertMk4Data
-    DumpFileObject
+    DumpFileObjectToJSON
+    ConvertFileToJSON
 )
 
 #for testing purposes only -- ROOT not intended to be a dependency

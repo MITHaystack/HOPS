@@ -11,7 +11,8 @@ set(SOURCE_BASENAMES
     TestAxis
     TestAxisPack
     TestTableContainer
-    TestContainerLibrary
+    TestContainerStore
+    TestContainerNames
 )
 
 if (HOPS_USE_ROOT)
