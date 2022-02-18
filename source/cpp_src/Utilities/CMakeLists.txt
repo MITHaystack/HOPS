@@ -3,7 +3,6 @@ hops_require_cpp11()
 #list header files #############################################################
 set (UTILITIES_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/picohash.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/mho_string.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_TemplateTypenameDeduction.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_Meta.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_Serializable.hh
