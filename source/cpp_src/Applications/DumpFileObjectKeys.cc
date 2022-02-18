@@ -6,8 +6,11 @@
 #include "MHO_ChannelizedVisibilities.hh"
 #include "MHO_Visibilities.hh"
 
+#include "mho_string.hh"
 
 using namespace hops;
+
+
 
 int main(int argc, char** argv)
 {

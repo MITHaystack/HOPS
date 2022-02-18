@@ -80,11 +80,15 @@ class MHO_SerializableObjectFactorySpecific: public MHO_SerializableObjectFactor
                                           const std::string& shortname = "", 
                                           const uint32_t label = 0)
         {
+
             const XClassType* obj = dynamic_cast<const XClassType*>(object);
-            bool ok = true;
-            if(obj != nullptr && inter.IsOpenForWrite() )
+            bool ok = false;
+            if(obj != nullptr )
             {
-                ok = inter.Write(*obj, shortname, label);
+                if(inter.IsOpenForWrite())
+                {
+                    ok = inter.Write(*obj, shortname, label);
+                }
             }
             if(!ok){msg_debug("file", "failed to write object to file." << eom);}
             return ok;

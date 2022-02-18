@@ -34,6 +34,13 @@ namespace hops
 
 MHO_ContainerDictionary::MHO_ContainerDictionary()
 {
+    //NOTE: Most of the different types below are not needed or used anywhere 
+    //so we could easily trim this long list down to a much more focused set of 
+    //objects. However, having a wide variety defined already lets us handle stuff 
+    //which may fit into these objects but which has not been defined yet, and 
+    //demonstrate how to add support for new types
+
+
     //add all of the types we define
     AddClassType<MHO_ScalarBool>();
     AddClassType<MHO_ScalarChar>();
@@ -54,7 +61,8 @@ MHO_ContainerDictionary::MHO_ContainerDictionary()
     AddClassType<MHO_ScalarComplexLongDouble>();
     AddClassType<MHO_ScalarString>();
 
-    //AddClassType<MHO_VectorBool>(); //boolean vectors are a problem (see MHO_NDArrayWrapper_1.hh line 195)
+    //boolean vectors are a problem due underlying impl of std::vector<bool (see MHO_NDArrayWrapper_1.hh line 195)
+    //AddClassType<MHO_VectorBool>(); 
     AddClassType<MHO_VectorChar>();
     AddClassType<MHO_VectorUChar>();
     AddClassType<MHO_VectorShort>();
@@ -73,7 +81,7 @@ MHO_ContainerDictionary::MHO_ContainerDictionary()
     AddClassType<MHO_VectorComplexLongDouble>();
     AddClassType<MHO_VectorString>();
 
-    //AddClassType<MHO_AxisBool>();
+    //AddClassType<MHO_AxisBool>(); //no bools
     AddClassType<MHO_AxisChar>();
     AddClassType<MHO_AxisUChar>();
     AddClassType<MHO_AxisShort>();

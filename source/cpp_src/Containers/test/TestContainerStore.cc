@@ -2,14 +2,14 @@
 #include "MHO_Message.hh"
 
 #include "MHO_ContainerDictionary.hh"
-#include "MHO_ContainerLibrary.hh"
+#include "MHO_ContainerStore.hh"
 #include "MHO_ContainerFileInterface.hh"
 
 using namespace hops;
 
 int main(int argc, char** argv)
 {
-    std::string usage = "TestContainerLibrary -f <file>";
+    std::string usage = "TestContainerStore -f <file>";
 
     MHO_Message::GetInstance().AcceptAllKeys();
     MHO_Message::GetInstance().SetMessageLevel(eDebug);
@@ -42,18 +42,18 @@ int main(int argc, char** argv)
     }
 
     MHO_ContainerDictionary conDict;
-    MHO_ContainerLibrary conLib;
+    MHO_ContainerStore conStore;
     MHO_ContainerFileInterface conInter;
     conInter.SetFilename(filename);
-    conInter.PopulateLibraryFromFile(conLib); //reads in all the objects in a file
+    conInter.PopulateStoreFromFile(conStore); //reads in all the objects in a file
 
     //all file objects are now in memory
-    std::cout<<"library has: "<<conLib.GetNObjects()<<" objects."<<std::endl;
+    std::cout<<"library has: "<<conStore.GetNObjects()<<" objects."<<std::endl;
 
     //here's how we would retrieve a 'visibility' object from the library
     std::string vis_classname = MHO_ClassIdentity::ClassName<ch_baseline_data_type>();
     MHO_UUID vis_id = conDict.GetUUIDFromClassName(vis_classname);
-    MHO_Serializable* generic = conLib.RetrieveFirstObjectMatchingType(vis_id);
+    MHO_Serializable* generic = conStore.RetrieveFirstObjectMatchingType(vis_id);
     if(generic != nullptr)
     {
         ch_baseline_data_type* vis = dynamic_cast<ch_baseline_data_type*>(generic);
@@ -63,7 +63,12 @@ int main(int argc, char** argv)
             /* we can now do some data manipulation with the vis object... */
         }
     }
-    delete generic; 
+
+    //convert the entire store to json 
+    json root;
+    conInter.ConvertStoreToJSON(conStore,root,eJSONTags);
+
+    std::cout<< root.dump(2) <<std::endl;
 
     return 0;
 }

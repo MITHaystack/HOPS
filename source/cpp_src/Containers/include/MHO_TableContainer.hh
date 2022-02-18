@@ -26,13 +26,14 @@
 namespace hops
 {
 
-class MHO_TableContainerBase{}; //only needed for SFINAE
+class MHO_TableContainerBase{}; //only needed for dependent template specializations
 
 template< typename XValueType, typename XAxisPackType >
 class MHO_TableContainer:
     public MHO_TableContainerBase,
     public MHO_NDArrayWrapper< XValueType, XAxisPackType::NAXES::value>,
-    public XAxisPackType
+    public XAxisPackType,
+    public MHO_Taggable
 {
     public:
 
@@ -61,10 +62,7 @@ class MHO_TableContainer:
 
         virtual ~MHO_TableContainer(){};
 
-        using MHO_NDArrayWrapper< XValueType, XAxisPackType::NAXES::value>::SetName;
-        using MHO_NDArrayWrapper< XValueType, XAxisPackType::NAXES::value>::GetName;
-        using MHO_NDArrayWrapper< XValueType, XAxisPackType::NAXES::value>::SetUnits;
-        using MHO_NDArrayWrapper< XValueType, XAxisPackType::NAXES::value>::GetUnits;
+        virtual MHO_ClassVersion GetVersion() const override {return 0;};
 
         virtual uint64_t GetSerializedSize() const override
         {
@@ -72,9 +70,8 @@ class MHO_TableContainer:
             uint64_t total_size = 0;
             total_size += sizeof(MHO_ClassVersion);
             total_size += XAxisPackType::NAXES::value*sizeof(uint64_t);
-            total_size += sizeof(uint64_t); total_size += fName.size();
-            total_size += sizeof(uint64_t); total_size += fUnits.size();
             total_size += XAxisPackType::GetSerializedSize();
+            total_size += MHO_Taggable::GetSerializedSize();
             total_size += (this->fSize)*sizeof(XValueType);
             return total_size;
         }
@@ -115,8 +112,6 @@ class MHO_TableContainer:
 
     protected:
 
-        using MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::fName;
-        using MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::fUnits;
         using MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::fData;
         using MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::fDims;
         using MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::fSize;
@@ -127,8 +122,7 @@ class MHO_TableContainer:
         {
             //first stream version and dimensions
             s << aData.GetVersion();
-            s << aData.fName;
-            s << aData.fUnits;
+            s << static_cast< const MHO_Taggable& >(aData);
             for(size_t i=0; i < XAxisPackType::NAXES::value; i++)
             {
                 s << aData.fDims[i];
@@ -155,9 +149,7 @@ class MHO_TableContainer:
             }
             else
             {
-                //first stream name/units
-                s >> aData.fName;
-                s >> aData.fUnits;
+                s >> static_cast< MHO_Taggable& >(aData);
 
                 //next stream the axis-pack
                 std::size_t dims[XAxisPackType::NAXES::value];

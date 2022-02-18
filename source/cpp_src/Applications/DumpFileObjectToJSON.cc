@@ -8,7 +8,8 @@
 #include "MHO_StationCoordinates.hh"
 
 #include "MHO_JSONHeaderWrapper.hh"
-#include "MHO_ContainerJSON.hh"
+// #include "MHO_ContainerJSONConverter.hh"
+#include "MHO_ContainerJSONConverter.hh"
 
 
 using namespace hops;
@@ -27,10 +28,10 @@ void ReadAndDump(MHO_FileKey& object_key, uint64_t offset, std::string filename,
     {
         MHO_FileKey read_key;
         inter.Read(obj, read_key);
-        obj.template MakeExtension< MHO_ContainerJSON< XObjectType > >();
-        obj.template AsExtension< MHO_ContainerJSON< XObjectType > >()->SetLevelOfDetail(detail);
-        obj.template AsExtension< MHO_ContainerJSON< XObjectType > >()->ConstructJSONRepresentation();
-        json_obj = obj.template AsExtension< MHO_ContainerJSON< XObjectType > >()->GetJSON();
+        obj.template MakeExtension< MHO_ContainerJSONConverter< XObjectType > >();
+        obj.template AsExtension< MHO_ContainerJSONConverter< XObjectType > >()->SetLevelOfDetail(detail);
+        obj.template AsExtension< MHO_ContainerJSONConverter< XObjectType > >()->ConstructJSONRepresentation();
+        json_obj = obj.template AsExtension< MHO_ContainerJSONConverter< XObjectType > >()->GetJSON();
         //dump the json to terminal
         if(output_file == "")
         {
@@ -86,7 +87,7 @@ void DumpToJSON(MHO_FileKey& object_key, uint64_t offset, std::string filename, 
 
 int main(int argc, char** argv)
 {
-    std::string usage = "DumpFileObject -f <file> -t <type> -u <uuid> -d <detail level 0-3> -o <output_file>";
+    std::string usage = "DumpFileObjectToJSON -f <file> -t <type> -u <uuid> -d <detail level 0-3> -o <output_file>";
 
     MHO_Message::GetInstance().AcceptAllKeys();
     MHO_Message::GetInstance().SetMessageLevel(eDebug);
