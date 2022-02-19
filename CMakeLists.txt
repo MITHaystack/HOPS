@@ -1,9 +1,15 @@
-cmake_minimum_required(VERSION 3.0)
-#cmake_minimum_required(VERSION 2.8)
+#cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 2.8)
 
 cmake_policy(SET CMP0048 NEW)
 
-project(Hops VERSION "4.0.0")
+set(HOPS_VERSION_NUMBER "4.0.0")
+
+if(${CMAKE_VERSION} VERSION_GREATER "3.0.0")
+cmake_policy(SET CMP0048 NEW)
+endif()
+
+project(Hops VERSION ${HOPS_VERSION_NUMBER})
 
 # project version
 
@@ -18,8 +24,9 @@ if(${CMAKE_VERSION} VERSION_GREATER "3.11.0")
 cmake_policy(SET CMP0074 OLD)
 endif()
 
+
 message(STATUS "Architecture is ${CMAKE_SYSTEM_PROCESSOR}")
-set( DEFAULT_INSTALL_DIR  "${CMAKE_CURRENT_BINARY_DIR}/../${CMAKE_SYSTEM_PROCESSOR}-${MODULE_VERSION_NUMBER}" )
+set( DEFAULT_INSTALL_DIR  "${CMAKE_CURRENT_BINARY_DIR}/../${CMAKE_SYSTEM_PROCESSOR}-${HOPS_VERSION_NUMBER}" )
 get_filename_component(ABS_DEFAULT_INSTALL_DIR ${DEFAULT_INSTALL_DIR} ABSOLUTE)
 
 if (CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
