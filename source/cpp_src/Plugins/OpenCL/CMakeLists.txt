@@ -61,6 +61,8 @@ endif (HOPS_ENFORCE_CLFINISH)
 option (HOPS_USE_OPENCL "Use OpenCL via C++ wrapper API." OFF)
 if (HOPS_USE_OPENCL)
 
+    message(STATUS "Looking for OpenCL enabled devices ...")
+
     find_package (OpenCL REQUIRED)
 
     hops_external_include_directories(${OPENCL_INCLUDE_DIRS})
@@ -89,7 +91,13 @@ if (HOPS_USE_OPENCL)
         ${HOPS_OPENCL_CFLAGS}
         ${CMAKE_CURRENT_SOURCE_DIR}/Core/src/GenerateOpenCLHeader.cc
         -L${OPENCL_LIBDIR} ${OPENCL_LIB_FLAG}
-        WORKING_DIRECTORY ${CMAKE_BINARY_DIR})
+        WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+        RESULT_VARIABLE CL_STATUS_OK
+        ERROR_VARIABLE NOT_USED)
+
+        if(CL_STATUS_OK AND NOT CL_STATUS_OK EQUAL 0)
+          message(FATAL_ERROR "Could not build the OpenCL header generator." )
+        endif()
 
     execute_process(COMMAND ./GenerateOpenCLHeader
         OUTPUT_FILE ${CMAKE_BINARY_DIR}/hopsocl_defines.h

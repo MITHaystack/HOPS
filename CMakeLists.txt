@@ -1,15 +1,11 @@
-#cmake_minimum_required(VERSION 3.0)
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 3.0)
+#cmake_minimum_required(VERSION 2.8)
 
-# Module version
-set(MODULE_VERSION_MAJOR 4)
-set(MODULE_VERSION_MINOR 0)
-set(MODULE_VERSION_PATCH 0)
-set(MODULE_VERSION "${MODULE_VERSION_MAJOR}.${MODULE_VERSION_MINOR}.${MODULE_VERSION_PATCH}")
-set(MODULE_VERSION_NUMBER "${MODULE_VERSION_MAJOR}.${MODULE_VERSION_MINOR}${MODULE_VERSION_PATCH}")
+cmake_policy(SET CMP0048 NEW)
 
-project(Hops)
+project(Hops VERSION "4.0.0")
 
+# project version
 
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake )
 include(HopsDefaults)

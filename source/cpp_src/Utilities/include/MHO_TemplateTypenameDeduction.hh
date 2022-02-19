@@ -149,9 +149,9 @@ std::string MHO_TupleElementNameWithoutSpaces()
 };
 
 
-//this is clas is what we use to determine the name of class throughout the 
+//this template class is what we use to determine the name of class throughout the 
 //rest of the code, it does some string processing to make sure std::string 
-//comes out with a sensible name
+//comes out with a sensible name whenever it appears
 template<typename XClassType>
 std::string MHO_ClassName()
 {
