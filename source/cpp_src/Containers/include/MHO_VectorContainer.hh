@@ -45,7 +45,8 @@ class MHO_VectorContainer:
 
         //copy constructor
         MHO_VectorContainer(const MHO_VectorContainer& obj):
-            MHO_NDArrayWrapper<XValueType,1>(obj)
+            MHO_NDArrayWrapper<XValueType,1>(obj),
+            MHO_Taggable(obj)
         {};
 
         //clone functionality

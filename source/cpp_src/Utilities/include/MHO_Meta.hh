@@ -7,10 +7,7 @@
 *Author: J. Barrett
 *Email: barrettj@mit.edu
 *Date: 2020-05-13T17:43:26.831Z
-*Description: template meta-programming helper functions
-*some from A. Alexandrescu Modern C++ Design and
-*updated with P. Dimov's Simple C++11 metaprogramming to take advantage
-*of variadic template parameters
+*Description: template meta-programming helper functions, mostly tuple access/modification
 */
 
 #include <type_traits>
