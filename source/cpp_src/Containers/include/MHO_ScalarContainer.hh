@@ -36,6 +36,11 @@ class MHO_ScalarContainer:
 
         virtual ~MHO_ScalarContainer(){};
 
+        MHO_ScalarContainer(MHO_ScalarContainer& obj):
+            MHO_NDArrayWrapper<XValueType, 0>(obj),
+            MHO_Taggable(obj)
+        {};
+
         virtual MHO_ClassVersion GetVersion() const override {return 0;};
 
         virtual uint64_t GetSerializedSize() const override

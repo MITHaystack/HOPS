@@ -59,7 +59,7 @@ struct MHO_ClassIdentity
     template<typename XClassType>
     static void ClassVersionErrorMsg(const XClassType& obj, MHO_ClassVersion version)
     {
-        msg_error("io", "Failed to stream object data for: " <<
+        msg_error("file", "Failed to stream object data for: " <<
                    MHO_ClassIdentity::ClassName(obj) <<
                    ", version: " << version << " is not recognized." << eom);
     };

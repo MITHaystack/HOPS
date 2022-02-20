@@ -50,7 +50,8 @@ class MHO_TableContainer:
         //copy constructor
         MHO_TableContainer(const MHO_TableContainer& obj):
             MHO_NDArrayWrapper<XValueType, XAxisPackType::NAXES::value>(obj),
-            XAxisPackType(obj)
+            XAxisPackType(obj),
+            MHO_Taggable(obj)
         {};
 
 
