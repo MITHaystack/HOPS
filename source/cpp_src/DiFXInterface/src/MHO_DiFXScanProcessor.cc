@@ -41,7 +41,6 @@ MHO_DiFXScanProcessor::ProcessScan(MHO_DiFXScanFileSet& fileSet)
 
     ConstructStationFileObjects();
 
-
     //clear up and reset for next scan
     deleteDifxInput(fDInput);
     fDInput = nullptr;
@@ -239,7 +238,7 @@ MHO_DiFXScanProcessor::ConstructVisibilityFileObjects()
                     ch_label.Insert(std::string("sky_freq"), sky_freq);
                     ch_label.Insert(std::string("bandwidth"), bw);
                     ch_label.Insert(std::string("net_sideband"), std::string(&sideband,1) );
-                    ch_label.Insert(std::string("channel"), freqidx); //probably ought to be more systematic about creating channel names
+                    ch_label.Insert(std::string("difx_freqindex"), freqidx); //probably ought to be more systematic about creating channel names
 
                     ch_axis->at(chidx) = chidx;
                     wch_axis->at(chidx) = chidx;
@@ -327,7 +326,7 @@ MHO_DiFXScanProcessor::LoadInputFile(std::string filename)
 {
     //TODO FIXME - Why does this sometimes fail for DiFX versions <2.6 
     //when the .threads file is missing??
-    DifxInput* fDInput = loadDifxInput(filename.c_str());
+    fDInput = loadDifxInput(filename.c_str());
 
     //lets build the freq table 
     fAllFreqTable.clear();
