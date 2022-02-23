@@ -19,6 +19,7 @@ set(SOURCE_BASENAMES
     TestMK4VexInterface
     TestMK4Import
     TestMK4StationImport
+    TestMK4Type200Convert
 )
 
 #for testing purposes only -- not intended to be a dependency
