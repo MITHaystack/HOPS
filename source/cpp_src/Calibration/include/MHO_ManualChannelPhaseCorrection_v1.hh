@@ -50,6 +50,7 @@ class MHO_ManualChannelPhaseCorrection_v1: public MHO_UnaryOperator< ch_baseline
 
         //need private space to store the phase corrections for each channel
 
+	//map here...
 
 };
 
