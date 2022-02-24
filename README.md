@@ -17,7 +17,38 @@ To configure with defaults and compile with cmake, run:
 To change the default options or if a library is not automatically found and you
 need to specify a directory path in order for it to be located, use the command
 line interface ccmake (cmake-curses-gui) in place of cmake. This will open a CLI
-GUI where you may change various parameters.
+GUI where you may change various parameters. An example of this (with some optional
+dependencies turned on, e.g. OpenCL) is shown below:
+'''
+ BASH_PROGRAM                     /usr/bin/bash                                                                                                                                                           
+ BUILD_DOXYGEN_REF                OFF                                                                                                                                                                     
+ BUILD_LATEX_DOCS                 OFF                                                                                                                                                                     
+ CMAKE_BUILD_TYPE                                                                                                                                                                                         
+ CMAKE_INSTALL_PREFIX             /home/barrettj/work/projects/hops-git/x86_64-4.0.0                                                                                                                      
+ CPGPLOT_LIBRARY                  /usr/local/pgplot/libcpgplot.a                                                                                                                                          
+ ENABLE_DEBUG_MSG                 OFF                                                                                                                                                                     
+ GFORTRAN_LIB                     /usr/lib/gcc/x86_64-linux-gnu/9/libgfortran.so                                                                                                                          
+ HOPS3_DISABLE_WARNINGS           ON                                                                                                                                                                      
+ HOPS3_USE_CXX                    ON                                                                                                                                                                      
+ HOPS_DEV_USE_OLD                 OFF                                                                                                                                                                     
+ HOPS_ENABLE_REMOTE_TEST_DATA     OFF                                                                                                                                                                     
+ HOPS_ENABLE_TEST                 ON                                                                                                                                                                      
+ HOPS_USE_DIFXIO                  OFF                                                                                                                                                                     
+ HOPS_USE_FFTW3                   ON                                                                                                                                                                      
+ HOPS_USE_OPENCL                  ON                                                                                                                                                                      
+ HOPS_USE_PYBIND11                OFF                                                                                                                                                                     
+ HOPS_USE_ROOT                    OFF                                                                                                                                                                     
+ LATEX_DEFAULT_BUILD              pdf                                                                                                                                                                     
+ LATEX_OUTPUT_PATH                                                                                                                                                                                        
+ LATEX_SMALL_IMAGES               OFF                                                                                                                                                                     
+ LATEX_USE_SYNCTEX                OFF                                                                                                                                                                     
+ OPENCL_LIBRARIES                 /usr/lib/x86_64-linux-gnu/libOpenCL.so                                                                                                                                  
+ TAR_PROGRAM                      /usr/bin/tar                                                                                                                                                            
+ WGET_PROGRAM                     /usr/bin/wget                                                                                                                                                           
+ _OPENCL_CPP_INCLUDE_DIRS         /usr/include    
+'''
+
+
 
 ## Alternate build with Automake
 
