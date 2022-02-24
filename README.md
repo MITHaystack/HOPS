@@ -19,7 +19,7 @@ need to specify a directory path in order for it to be located, use the command
 line interface ccmake (cmake-curses-gui) in place of cmake. This will open a CLI
 GUI where you may change various parameters. An example of this (with some optional
 dependencies turned on, e.g. OpenCL) is shown below:
-'''
+```
  BASH_PROGRAM                     /usr/bin/bash                                                                                                                                                           
  BUILD_DOXYGEN_REF                OFF                                                                                                                                                                     
  BUILD_LATEX_DOCS                 OFF                                                                                                                                                                     
@@ -46,7 +46,7 @@ dependencies turned on, e.g. OpenCL) is shown below:
  TAR_PROGRAM                      /usr/bin/tar                                                                                                                                                            
  WGET_PROGRAM                     /usr/bin/wget                                                                                                                                                           
  _OPENCL_CPP_INCLUDE_DIRS         /usr/include    
-'''
+```
 
 
 
