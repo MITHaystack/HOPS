@@ -3,6 +3,7 @@ set (DIFXINTERFACE_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_DiFXScanFileSet.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_DiFXVisibilityRecord.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_DiFXInterface.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_DiFXInputProcessor.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_DiFXScanProcessor.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_DiFXVisibilityProcessor.hh
 )
@@ -11,6 +12,7 @@ set (DIFXINTERFACE_HEADERFILES
 set( DIFXINTERFACE_SOURCEFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_DiFXInterface.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_DiFXScanProcessor.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_DiFXInputProcessor.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_DiFXVisibilityProcessor.cc
 )
 

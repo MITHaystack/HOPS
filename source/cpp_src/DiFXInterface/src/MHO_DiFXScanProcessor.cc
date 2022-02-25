@@ -331,6 +331,16 @@ MHO_DiFXScanProcessor::LoadInputFile(std::string filename)
     //lets build the freq table 
     fAllFreqTable.clear();
     for(int i=0; i<fDInput->nFreq; i++){fAllFreqTable[i] = &(fDInput->freq[i]);}
+
+    //conver the input to json 
+    json input;
+    MHO_DiFXInputProcessor input_proc;
+    input_proc.LoadDiFXInputFile(filename);
+    input_proc.ConvertToJSON(input);
+
+    std::cout<< input.dump(2)<<std::endl;
+
+
 }
 
 
