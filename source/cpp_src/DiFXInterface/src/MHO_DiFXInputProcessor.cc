@@ -5,12 +5,12 @@ namespace hops
 
 
 MHO_DiFXInputProcessor::MHO_DiFXInputProcessor():
-    fDInput(nullptr)
+    fD(nullptr)
 {};
 
 MHO_DiFXInputProcessor::~MHO_DiFXInputProcessor()
 {
-    if(fDInput){deleteDifxInput(fDInput);}
+    if(fD){deleteDifxInput(fD);}
 };
 
 void 
@@ -46,7 +46,7 @@ MHO_DiFXInputProcessor::ConvertToJSON(json& input)
     //loop over jobs -- do we need these?
 
     //loop over the config
-    for(int i=0; i<fD.nConfig; i++)
+    for(int i=0; i<fD->nConfig; i++)
     {
         input["config"].push_back( ExtractConfigQuantities(i) );
     }
@@ -54,7 +54,7 @@ MHO_DiFXInputProcessor::ConvertToJSON(json& input)
     //difx rules? -- ignore for now
 
     //loop over the freqs 
-    for(int i=0; i<fD.nFreq; i++)
+    for(int i=0; i<fD->nFreq; i++)
     {
         input["freq"].push_back( ExtractFreqQuantities(i) );
     }
@@ -62,38 +62,48 @@ MHO_DiFXInputProcessor::ConvertToJSON(json& input)
     //freqSet? --seems to be DiFX2Fits specific, ignore for now 
 
     //loop over antennas 
-    for(int i=0; i<fD.nAntenna; i++)
+    for(int i=0; i<fD->nAntenna; i++)
     {
         input["antenna"].push_back( ExtractAntennaQuantities(i) );
     }
 
+    //loop over scans
+    for(int i=0; i<fD->nScan; i++)
+    {
+        input["scan"].push_back( ExtractScanQuantities(i) );
+    }
 
+    //loop over sources
+    for(int i=0; i<fD->nSource; i++)
+    {
+        input["source"].push_back( ExtractSourceQuantities(i) );
+    }
 }
 
 void 
 MHO_DiFXInputProcessor::ExtractBaseStructQuantities(json& input)
 {
     //just copy these struct quantities in
-    input["fracSecondStartTime"] = fD.fracSecondStartTime;
-    input["mjdStart"] = fD.mjdStart;
-    input["mjdStop"] = fD.mjdStop;
-    input["refFreq"] = fD.refFreq;
-    input["nAntenna"] = fD.nAntenna;
-    input["nConfig"] = fD.nConfig;
-    input["nRule"] = fD.nRule;
-    input["nFreq"] = fD.nFreq;
-    input["nFreqSet"] = fD.nFreqSet;
-    input["nScan"] = fD.nScan;
-    input["nSource"] = fD.nSource;
-    input["nEOP"] = fD.nEOP;
-    input["nFlag"] = fD.nFlag;
-    input["nDatastream"] = fD.nDatastream;
-    input["nBaseline"] = fD.nBaseline;
-    input["nSpacecraft"] = fD.nSpacecraft;
-    input["nPulsar"] = nPulsar;
-    input["nPhasedArray"] = nPhasedArray;
-    input["nJob"] = nJob;
-    input["quantBits"] = fD.quantBits;
+    input["fracSecondStartTime"] = fD->fracSecondStartTime;
+    input["mjdStart"] = fD->mjdStart;
+    input["mjdStop"] = fD->mjdStop;
+    input["refFreq"] = fD->refFreq;
+    input["nAntenna"] = fD->nAntenna;
+    input["nConfig"] = fD->nConfig;
+    input["nRule"] = fD->nRule;
+    input["nFreq"] = fD->nFreq;
+    input["nFreqSet"] = fD->nFreqSet;
+    input["nScan"] = fD->nScan;
+    input["nSource"] = fD->nSource;
+    input["nEOP"] = fD->nEOP;
+    input["nFlag"] = fD->nFlag;
+    input["nDatastream"] = fD->nDatastream;
+    input["nBaseline"] = fD->nBaseline;
+    input["nSpacecraft"] = fD->nSpacecraft;
+    input["nPulsar"] = fD->nPulsar;
+    input["nPhasedArray"] = fD->nPhasedArray;
+    input["nJob"] = fD->nJob;
+    input["quantBits"] = fD->quantBits;
     //there are more items in fD, but most are difx specific 
     //and we probably don't need them for now
 }
@@ -101,12 +111,12 @@ MHO_DiFXInputProcessor::ExtractBaseStructQuantities(json& input)
 json 
 MHO_DiFXInputProcessor::ExtractConfigQuantities(int n)
 {
-    DifxConfig* c = &(fD.config[n]);
+    DifxConfig* c = &(fD->config[n]);
     json config;
 
     if(c != nullptr)
     {
-        config["name"] = std::string(c->name, DIFXIO_NAME_LENGTH);
+        config["name"] = std::string(c->name, DIFXIO_NAME_LENGTH).c_str();
         config["tInt"] = c->tInt;
         config["subintNS"] = c->subintNS;
         config["fringeRotOrder"] = c->fringeRotOrder;
@@ -137,25 +147,25 @@ MHO_DiFXInputProcessor::ExtractConfigQuantities(int n)
 json 
 MHO_DiFXInputProcessor::ExtractFreqQuantities(int n)
 {
-    DifxFreq* f = &(fD.freq[n]);
+    DifxFreq* f = &(fD->freq[n]);
     json freq;
     if(f != nullptr)
     {
         freq["freq"] = f->freq;
         freq["bw"] = f->bw;
-        freq["sideband"] = std::string(f->sideband,1);
+        freq["sideband"] = std::string( &(f->sideband),1).c_str();
         freq["nChan"] = f->nChan; //num spectral points 
         freq["specAvg"] = f->specAvg; //not clear we need this 
         freq["overSamp"] = f->overSamp;
         freq["decimation"] = f->decimation;
         freq["nTone"] = f->nTone;
-        std::vector<int> tone_ids
+        std::vector<int> tone_ids;
         for(int i=0; i<f->nTone; i++)
         {
             tone_ids.push_back(f->tone[i]);
         }
         freq["tone"] = tone_ids;
-        freq["rxName"] = std::string(f->rxName, DIFXIO_RX_NAME_LENGTH);
+        freq["rxName"] = std::string(f->rxName, DIFXIO_RX_NAME_LENGTH).c_str();
     }
     return freq;
 }
@@ -165,94 +175,123 @@ MHO_DiFXInputProcessor::ExtractFreqQuantities(int n)
 json 
 MHO_DiFXInputProcessor::ExtractAntennaQuantities(int n)
 {
-
-    //from difx_antenna.c
-    // /* These names must match what calcserver expects */
-    // const char antennaMountTypeNames[][MAX_ANTENNA_MOUNT_NAME_LENGTH] =
-    // {
-    // 	"AZEL",
-    // 	"EQUA",
-    // 	"SPACE",	/* spacecraft */
-    // 	"XYEW",
-    // 	"NASR",		/* note: this will correctly fall back to AZEL in calcserver */
-    // 	"NASL",		/* note: this will correctly fall back to AZEL in calcserver */
-    // 	"XYNS",		/* note: no FITS-IDI support */
-    // 	"OTHER"		/* don't expect the right parallactic angle or delay model! */
-    // };
-    // 
-    // /* These names must match what VEX expects */
-    // const char antennaSiteTypeNames[][MAX_ANTENNA_SITE_NAME_LENGTH] =
-    // {
-    // 	"fixed",
-    // 	"earth_orbit",
-    // 	"OTHER"
-    // };
-    // 
-
-
-    // from difx_input.c
-    // /* keep this current with antennaMountTypeNames in difx_antenna.c */
-    // /* Note that the numbering scheme is based on the FITS-IDI defs, but with XYNS added at end */
-    // /* See AIPS memo 114 for the list of mount types */
-    // enum AntennaMountType
-    // {
-    // 	AntennaMountAltAz = 0,
-    // 	AntennaMountEquatorial = 1,
-    // 	AntennaMountOrbiting = 2,	/* note: uncertain calc support */
-    // 	AntennaMountXYEW = 3,		/* Hobart is the prime example */
-    // 	AntennaMountNasmythR = 4,	/* note: in calcserver, falls back to azel as is appropriate */
-    // 	AntennaMountNasmythL = 5,	/* note: in calcserver, falls back to azel as is appropriate */
-    // 	AntennaMountXYNS = 6,		/* note: no FITS-IDI/AIPS support */
-    // 	AntennaMountOther = 7,		/* set to this if different from the others */
-    // 	NumAntennaMounts		/* must remain as last entry */
-    // };
-    // 
-    // /* keep this current with antennaSiteTypeNames in difx_antenna.c */
-    // enum AntennaSiteType
-    // {
-    // 	AntennaSiteFixed = 0,
-    // 	AntennaSiteEarth_Orbiting = 1,
-    // 	AntennaSiteOther = 2,
-    // 	NumAntennaSiteTypes		/* must remain as last entry */
-    // };
-    // 
-    // extern const char antennaSiteTypeNames[][MAX_ANTENNA_SITE_NAME_LENGTH];
-    // 
-    // enum OutputFormatType
-    // {
-    // 	OutputFormatDIFX = 0,
-    // 	OutputFormatASCII = 1,
-    // 	NumOutputFormat			/* must remain as last entry */
-    // };
-    // 
-    // extern const char antennaMountTypeNames[][MAX_ANTENNA_MOUNT_NAME_LENGTH];
-
-
-
-    // typedef struct
-    // {
-    // 	char name[DIFXIO_NAME_LENGTH];		/* null terminated */
-    // 	int origId;		/* antennaId before a sort */
-    // 	double clockrefmjd;	/* Reference time for clock polynomial */
-    // 	int clockorder;		/* Polynomial order of the clock model */
-    // 	double clockcoeff[MAX_MODEL_ORDER+1];	/* clock polynomial coefficients (us, us/s, us/s^2... */
-    // 	enum AntennaMountType mount;
-    // 	enum AntennaSiteType siteType;
-    // 	double offset[3];	/* axis offset, (m) */
-    // 	double X, Y, Z;		/* telescope position, (m) */
-    // 	double dX, dY, dZ;	/* telescope position derivative, (m/s) */
-    // 	int spacecraftId;	/* -1 if not a spacecraft */
-    // 	char shelf[DIFXIO_SHELF_LENGTH];  /* shelf location of module; really this should not be here! */
-    // } DifxAntenna;
-
-
-    DifxFreq* a = &(fD.antenna[n]);
-    json ant
+    DifxAntenna* a = &(fD->antenna[n]);
+    json ant;
     if(a != nullptr)
     {
-        
+        ant["name"] = std::string(a->name, DIFXIO_NAME_LENGTH).c_str();
+        ant["origId"] = a->origId; //not clear we need this 
+        ant["clockrefmjd"] = a->clockrefmjd;
+        ant["clockorder"] = a->clockorder;
+
+        for(int i=0; i <= a->clockorder; i++)
+        {
+            ant["clockcoeff"].push_back(a->clockcoeff[i]);
+        }
+
+        //encode a string for the mount type 
+        ant["mount"] = GetAntennaMountTypeString(a->mount);
+        //encode a string for the site type 
+        ant["siteType"] = GetAntennaSiteTypeString(a->siteType);
+
+        std::vector<double> ax_off;
+        ax_off.push_back(a->offset[0]);
+        ax_off.push_back(a->offset[1]);
+        ax_off.push_back(a->offset[2]);
+        ant["offset"] = ax_off;
+
+        std::vector<double> pos;
+        pos.push_back(a->X);
+        pos.push_back(a->Y);
+        pos.push_back(a->Z);
+        ant["position"] = pos;
+
+        std::vector<double> vel;
+        vel.push_back(a->dX);
+        vel.push_back(a->dY);
+        vel.push_back(a->dZ);
+        ant["velocity"] = vel;
+
+        ant["spacecraftId"] = a->spacecraftId;
+        //lets leave the 'shelf' parameter out
     }
     return ant;
 }
 
+
+std::string 
+MHO_DiFXInputProcessor::GetAntennaMountTypeString(AntennaMountType type)
+{
+    // extern const char antennaMountTypeNames[][MAX_ANTENNA_MOUNT_NAME_LENGTH];
+    std::string mount_type = std::string( antennaMountTypeNames[type], MAX_ANTENNA_MOUNT_NAME_LENGTH).c_str();
+    return mount_type;
 }
+
+std::string 
+MHO_DiFXInputProcessor::GetAntennaSiteTypeString(AntennaSiteType type)
+{
+    // extern const char antennaSiteTypeNames[][MAX_ANTENNA_SITE_NAME_LENGTH];
+    std::string site_type = std::string(antennaSiteTypeNames[type], MAX_ANTENNA_SITE_NAME_LENGTH).c_str();
+    return site_type;
+}
+
+json 
+MHO_DiFXInputProcessor::ExtractScanQuantities(int n)
+{
+    DifxScan* s = &(fD->scan[n]);
+    json scan;
+    if(s != nullptr)
+    {
+        scan["mjdStart"] = s->mjdStart;
+        scan["mjdEnd"] = s->mjdEnd;
+        scan["startSeconds"] = s->startSeconds;
+        scan["durSeconds"] = s->durSeconds;
+        scan["identifier"] = std::string(s->identifier, DIFXIO_NAME_LENGTH).c_str();
+        scan["obsModeName"] = std::string(s->obsModeName, DIFXIO_NAME_LENGTH).c_str();
+        scan["maxNSBetweenUVShifts"] = s->maxNSBetweenUVShifts;
+        scan["maxNSBetweenACAvg"] = s->maxNSBetweenACAvg;
+        scan["pointingCentreSrc"] = s->pointingCentreSrc;
+        scan["nPhaseCentres"] = s->nPhaseCentres;
+        for(int i=0; i<s->nPhaseCentres;i++)
+        {
+            scan["phsCentreSrcs"].push_back(s->phsCentreSrcs[i]);
+        }
+        //od we need origjobPhsCenterSrcs??
+
+        scan["DifxPolyModel"] = "FIXME!";
+
+        scan["nAntenna"] = s->nAntenna;
+        scan["nPoly"] = s->nPoly;
+    }
+    return scan;
+
+}
+
+
+json 
+MHO_DiFXInputProcessor::ExtractSourceQuantities(int n)
+{
+    DifxSource* s = &(fD->source[n]);
+    json source;
+    if(s != nullptr)
+    {
+        //how should we store the units of some of these quantities 
+        source["ra"] = s->ra; //radians
+        source["dec"] = s->dec; //radians
+        source["name"] = std::string(s->name, DIFXIO_NAME_LENGTH).c_str();
+        source["calCode"] = std::string(s->calCode, DIFXIO_CALCODE_LENGTH).c_str();
+        source["qual"] = s->qual;
+        source["spacecraftId"] = s->spacecraftId;
+        
+        //do we need numFitsSourceIds ro fitsSourceIds??
+        
+        source["pmRA"] = s->pmRA; /* arcsec/year */
+        source["pmDec"] = s->pmDec; /* arcsec/year */
+        source["parallax"] = s->parallax; /* arcsec/year */
+        source["pmEpoch"] = s->pmEpoch; //MJD
+    }
+    return source;
+}
+
+
+}//end namespace

@@ -35,6 +35,7 @@
 #include "MHO_DiFXScanFileSet.hh"
 #include "MHO_DiFXVisibilityRecord.hh"
 #include "MHO_DiFXVisibilityProcessor.hh"
+#include "MHO_DiFXInputProcessor.hh"
 
 namespace hops 
 {

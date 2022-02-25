@@ -14,6 +14,7 @@
 
 #include "difxio/difx_input.h"
 
+
 namespace hops 
 {
 
@@ -31,6 +32,14 @@ class MHO_DiFXInputProcessor
 
         void ExtractBaseStructQuantities(json& input);
         json ExtractConfigQuantities(int n);
+        json ExtractFreqQuantities(int n);
+        json ExtractAntennaQuantities(int n);
+        json ExtractScanQuantities(int n);
+        json ExtractSourceQuantities(int n);
+
+        std::string GetAntennaMountTypeString(AntennaMountType type);
+        std::string GetAntennaSiteTypeString(AntennaSiteType type);
+
 
         DifxInput* fD;
 
