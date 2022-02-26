@@ -158,7 +158,7 @@ std::string MHO_ClassName()
     std::string class_name = MHO_RawCompilerNameWithoutSpaces<XClassType>();
     std::string string_tuple_name = MHO_TupleElementNameWithoutSpaces<std::string>();
     std::string string_name = MHO_RawCompilerNameWithoutSpaces<std::string>();
-    std::string new_string_name = "std::string";
+    std::string new_string_name = "string"; //could use std::string, but that is too verbose
 
     //first strip out the any tuple dependent std::string name, and replace with std::string
     std::string tmp = class_name;
