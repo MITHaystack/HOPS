@@ -97,6 +97,7 @@ class MHO_TableContainer:
         using MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::GetDimensions;
         using MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::GetDimension;
         using MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::GetOffsetForIndices;
+        using MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::SubView;
 
         using MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::operator();
         using MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::operator[];
