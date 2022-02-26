@@ -36,6 +36,9 @@ class MHO_DiFXInputProcessor
         json ExtractAntennaQuantities(int n);
         json ExtractScanQuantities(int n);
         json ExtractSourceQuantities(int n);
+        json ExtractEOPQuantities(int n);
+        json ExtractDatastreamQuantities(int n);
+        json ExtractBaselineQuantities(int n);
 
         std::string GetAntennaMountTypeString(AntennaMountType type);
         std::string GetAntennaSiteTypeString(AntennaSiteType type);

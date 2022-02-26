@@ -78,6 +78,25 @@ MHO_DiFXInputProcessor::ConvertToJSON(json& input)
     {
         input["source"].push_back( ExtractSourceQuantities(i) );
     }
+
+    //loop over EOPs 
+    for(int i=0; i<fD->nSource; i++)
+    {
+        input["eop"].push_back( ExtractEOPQuantities(i) );
+    }
+
+    //loop over datastreams 
+    for(int i=0; i<fD->nDatastream; i++)
+    {
+        input["datastream"].push_back( ExtractDatastreamQuantities(i) );
+    }
+
+    //loop over baselines 
+    for(int i=0; i<fD->nBaseline; i++)
+    {
+        input["baseline"].push_back( ExtractBaselineQuantities(i) );
+    }
+    
 }
 
 void 
@@ -258,7 +277,7 @@ MHO_DiFXInputProcessor::ExtractScanQuantities(int n)
         }
         //od we need origjobPhsCenterSrcs??
 
-        scan["DifxPolyModel"] = "FIXME!";
+        scan["DifxPolyModel"] = "FIXME-2d-array";
 
         scan["nAntenna"] = s->nAntenna;
         scan["nPoly"] = s->nPoly;
@@ -292,6 +311,127 @@ MHO_DiFXInputProcessor::ExtractSourceQuantities(int n)
     }
     return source;
 }
+
+
+json 
+MHO_DiFXInputProcessor::ExtractEOPQuantities(int n)
+{
+
+    // typedef struct
+    // {
+    // 	int mjd;		/* (day) */
+    // 	int tai_utc;		/* (sec) */
+    // 	double ut1_utc;		/* (sec) */
+    // 	double xPole, yPole;	/* (arcsec) */
+    // } DifxEOP;
+    // 
+
+    DifxEOP* e = &(fD->eop[n]);
+    json eop;
+    if(e != nullptr)
+    {
+        eop["mjd"] = e->mjd;
+        eop["tai_utc"] = e->tai_utc;
+        eop["ut1_utc"] = e->ut1_utc;
+        eop["xPole"] = e->xPole;
+        eop["yPole"] = e->yPole;
+    }
+    return eop;
+}
+
+
+
+json 
+MHO_DiFXInputProcessor::ExtractDatastreamQuantities(int n)
+{
+
+    // typedef struct
+    // {
+    // 	int antennaId;		/* index to D->antenna */
+    // 	float tSys;		/* 0.0 for VLBA DiFX */
+    // 	char dataFormat[DIFXIO_FORMAT_LENGTH];   /* e.g., VLBA, MKIV, ... */
+    // 
+    // 	enum SamplingType dataSampling; /* REAL or COMPLEX */
+    // 	int nFile;              /* number of files */
+    //         char **file;            /* list of files to correlate (if not VSN) */
+    // 	char networkPort[DIFXIO_ETH_DEV_SIZE]; /* eVLBI port for this datastream */
+    // 	int windowSize;         /* eVLBI TCP window size */
+    // 	int quantBits;		/* quantization bits */
+    // 	int dataFrameSize;	/* (bytes) size of formatted data frame */
+    // 	enum DataSource dataSource;	/* MODULE, FILE, NET, other? */
+    // 
+    // 	float phaseCalIntervalMHz;/* 0 if no phase cal extraction, otherwise extract every tone and retain tones selected elsewhere */
+    // 	float phaseCalBaseMHz;	/* propagated from VEX1.5 but unused for now */
+    // 	int tcalFrequency;	/* 0 if no switched power extraction to be done.  =80 for VLBA */
+    // 	int nRecTone;     /* number of pcal tones in the *recorded* baseband*/
+    // 	int *recToneFreq; /* Frequency of each pcal tone in the *recorded* baseband in MHz */
+    // 	int *recToneOut;  /* bool Recorded pcal written out?*/
+    // 
+    // 	double *clockOffset;	/* (us) [freq] */
+    // 	double *clockOffsetDelta; /* (us) [freq] */
+    // 	double *phaseOffset;	/* (degrees) [freq] */
+    // 	double *freqOffset;	/* Freq offsets for each frequency in Hz */
+    // 
+    // 	int nRecFreq;		/* number of freqs recorded in this datastream */
+    // 	int nRecBand;		/* number of base band channels recorded */
+    // 	int *nRecPol;		/* [recfreq] */
+    // 	int *recFreqId;		/* [recfreq] index to DifxFreq table */
+    // 	int *recBandFreqId;	/* [recband] index to recFreqId[] */
+    // 	char *recBandPolName;	/* [recband] Polarization name (R, L, X or Y) */
+    // 
+    //         int nZoomFreq;		/* number of "zoom" freqs (within recorded freqs) for this datastream */
+    // 	int nZoomBand;		/* number of zoom subbands */
+    // 	int *nZoomPol;		/* [zoomfreq] */
+    // 	int *zoomFreqId;	/* [zoomfreq] index to DifxFreq table */
+    // 	int *zoomBandFreqId;	/* [zoomband] index to zoomfreqId[] */
+    // 	char *zoomBandPolName;	/* [zoomband] Polarization name (R, L, X or Y) */
+    // } DifxDatastream;
+
+
+
+    DifxDatastream* d = &(fD->baseline[n]);
+    json ds;
+    if(d != nullptr)
+    {
+
+    }
+    return ds;
+}
+
+
+json 
+MHO_DiFXInputProcessor::ExtractBaselineQuantities(int n)
+{
+    // typedef struct
+    // {
+    // 	int dsA, dsB;		/* indices to datastream table */
+    // 	int nFreq;
+    // 	int *nPolProd;		/* [freq] */
+    // 
+    // 	/* note: band in excess of nRecBand are assumed to be zoom bands */
+    // 	int **bandA;		/* [freq][productIndex] */
+    // 	int **bandB;		/* [freq][productIndex] */
+    // } DifxBaseline;
+
+    DifxBaseline* b = &(fD->baseline[n]);
+    json base;
+    if(b != nullptr)
+    {
+        base["dsA"] = b->dsA;
+        base["dsB"] = b->dsB;
+        base["nFreq"] = b->nFreq;
+        for(int i=0; i < b->nFreq; i++)
+        {
+            base["nPolProd"].push_back(b->nPolProd[n]);
+        }
+
+        base["bandA"] = "FIXME-2D-array";
+        base["bandB"] = "FIXME-2D-array";
+    }
+    return base;
+}
+
+
 
 
 }//end namespace
