@@ -13,6 +13,7 @@ set(SOURCE_BASENAMES
     TestTableContainer
     TestContainerStore
     TestContainerNames
+    TestTableContainerAccess
 )
 
 if (HOPS_USE_ROOT)
