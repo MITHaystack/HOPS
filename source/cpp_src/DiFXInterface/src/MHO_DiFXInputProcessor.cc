@@ -389,7 +389,7 @@ MHO_DiFXInputProcessor::ExtractDatastreamQuantities(int n)
 
 
 
-    DifxDatastream* d = &(fD->baseline[n]);
+    DifxDatastream* d = &(fD->datastream[n]);
     json ds;
     if(d != nullptr)
     {
