@@ -26,19 +26,21 @@ MHO_DiFXInputProcessor::ConvertToJSON(json& input)
 {
 
     // DifxJob		*job;
-	// DifxConfig	*config;
-	// DifxRule        *rule;
-	// DifxFreq	*freq;
-	// DifxFreqSet	*freqSet;
-	// DifxAntenna	*antenna;
-	// DifxScan	*scan;		/* assumed in time order */
-	// DifxSource	*source;
-	// DifxEOP		*eop;		/* assumed one per day, optional */
-	// DifxDatastream	*datastream;
-	// DifxBaseline    *baseline;
-	// DifxSpacecraft	*spacecraft;	/* optional table */
-	// DifxPulsar	*pulsar;	/* optional table */
-	// DifxPhasedArray	*phasedarray;	/* optional table */
+    // DifxConfig	*config;
+    // DifxRule        *rule;
+    // DifxFreq	*freq;
+    // DifxFreqSet	*freqSet;
+    // DifxAntenna	*antenna;
+    // DifxScan	*scan;		/* assumed in time order */
+    // DifxSource	*source;
+    // DifxEOP		*eop;		/* assumed one per day, optional */
+    // DifxDatastream	*datastream;
+    // DifxBaseline    *baseline;
+    
+    /****** SKIP THESE OPTIONAL TABLES FOR NOW ******/
+    // DifxSpacecraft	*spacecraft;	/* optional table */
+    // DifxPulsar	*pulsar;	/* optional table */
+    // DifxPhasedArray	*phasedarray;	/* optional table */
 
     //extract the quantities at the top level of the difx input struct 
     ExtractBaseStructQuantities(input);
@@ -275,12 +277,39 @@ MHO_DiFXInputProcessor::ExtractScanQuantities(int n)
         {
             scan["phsCentreSrcs"].push_back(s->phsCentreSrcs[i]);
         }
-        //od we need origjobPhsCenterSrcs??
-
-        scan["DifxPolyModel"] = "FIXME-2d-array";
+        //do we need origjobPhsCenterSrcs??...probably not, skip for now
 
         scan["nAntenna"] = s->nAntenna;
         scan["nPoly"] = s->nPoly;
+
+        //DifxPolyModel ***im;	/* indexed by [ant][src][poly] */
+        /* ant is index of antenna in .input file */
+        /*   src ranges over [0...nPhaseCentres] */
+        /*   poly ranges over [0 .. nPoly-1] */
+        /* NOTE : im[ant] can be zero -> no data */
+
+        //TODO FIXME: WE NEED TO RELATE THE UNITS SOMEHOW
+        std::vector< std::vector< std::vector< json > > > polys;
+        for(int i=0; i < s->nAntenna; i++)
+        {
+            std::vector< std::vector< json > > pj;
+            for(int j=0; j <= s->nPhaseCentres; j++)
+            {
+                std::vector< json > pk;
+                for(int k=0; k < s->nPoly; k++)
+                {
+                    pk.push_back( ExtractDifxPolyModel( &(s->im[i][j][k]) ) );
+                }
+                pj.push_back(pk);
+            }
+            polys.push_back(pj);
+        }
+        scan["DifxPolyModel"] = polys;
+
+        //skip these parameters
+        //DifxPolyModelLMExtension ***imLM;	/* Experimental feature; not usually used */
+        //DifxPolyModelXYZExtension ***imXYZ;	/* Experimental feature; not usually used */
+
     }
     return scan;
 
@@ -429,6 +458,52 @@ MHO_DiFXInputProcessor::ExtractBaselineQuantities(int n)
         base["bandB"] = "FIXME-2D-array";
     }
     return base;
+}
+
+
+json 
+MHO_DiFXInputProcessor::ExtractDifxPolyModel(DifxPolyModel* m)
+{
+    // typedef struct
+    // {
+    //     int mjd;		/* day of start of polynomial validity */
+    //     int sec;		/* time (sec) of start of validity */
+    //     int order;		/* order of polynomial -> order+1 terms! */
+    //     int validDuration;	/* (seconds), from mjd, sec */
+    //     double delay[MAX_MODEL_ORDER+1];	/* (us/sec^n); n=[0, order] */
+    //     double dry[MAX_MODEL_ORDER+1];		/* (us/sec^n) */
+    //     double wet[MAX_MODEL_ORDER+1];		/* (us/sec^n) */
+    //     double az[MAX_MODEL_ORDER+1];		/* azimuth (deg) */
+    //     double elcorr[MAX_MODEL_ORDER+1];	/* el (corrected for refraction; i.e., the one used for pointing) (deg) */
+    //     double elgeom[MAX_MODEL_ORDER+1];	/* el (uncorrected for refraction) (deg) */
+    //     double parangle[MAX_MODEL_ORDER+1];	/* parallactic angle (deg) */
+    //     double u[MAX_MODEL_ORDER+1];		/* (m/sec^n) */
+    //     double v[MAX_MODEL_ORDER+1];		/* (m/sec^n) */
+    //     double w[MAX_MODEL_ORDER+1];		/* (m/sec^n) */
+    // } DifxPolyModel;
+
+    json poly;
+    if(m != nullptr)
+    {
+        poly["mjd"] = m->mjd;
+        poly["sec"] = m->sec;
+        poly["order"] = m->order;
+        poly["validDuration"] = m->validDuration;
+        for(int i=0; i <= m->order; i++)
+        {
+            poly["delay"].push_back(m->delay[i]);
+            poly["dry"].push_back(m->dry[i]);
+            poly["wet"].push_back(m->wet[i]);
+            poly["az"].push_back(m->az[i]);
+            poly["elcorr"].push_back(m->elcorr[i]);
+            poly["elgeom"].push_back(m->elgeom[i]);
+            poly["parangle"].push_back(m->parangle[i]);
+            poly["u"].push_back(m->u[i]);
+            poly["v"].push_back(m->v[i]);
+            poly["w"].push_back(m->w[i]);
+        }
+    }
+    return poly;
 }
 
 
