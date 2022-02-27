@@ -82,7 +82,7 @@ set(EXTERN_HLIBS ${CMAKE_CURRENT_SOURCE_DIR}/extern)
 message(STATUS "Using compiler ${COMPILER_ID} ${COMPILER_VERSION}")
 
 #options for triggering additional dependencies
-option(HOPS3_USE_CXX "Build HOPS3 libraries using the C++ compiler." ON)
+option(HOPS3_USE_CXX "Build HOPS3 libraries using the C++ compiler." OFF)
 if(HOPS3_USE_CXX)
     hops_add_cflag(HOPS3_USE_CXX)
     hops_add_cxxflag(HOPS3_USE_CXX)
