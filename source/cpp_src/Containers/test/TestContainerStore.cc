@@ -14,7 +14,7 @@ int main(int argc, char** argv)
     MHO_Message::GetInstance().AcceptAllKeys();
     MHO_Message::GetInstance().SetMessageLevel(eDebug);
 
-    std::string filename = "";
+    std::string filename = "./test-container-names.bin";
 
     static struct option longOptions[] = {{"help", no_argument, 0, 'h'},
                                           {"file", required_argument, 0, 'f'}

@@ -11,8 +11,8 @@ set(SOURCE_BASENAMES
     TestAxis
     TestAxisPack
     TestTableContainer
-    TestContainerStore
     TestContainerNames
+    TestContainerStore
     TestTableContainerAccess
 )
 
