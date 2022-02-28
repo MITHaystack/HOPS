@@ -17,14 +17,14 @@ set (CONTAINER_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_SerializableObjectFactory.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ClassIdentityMap.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ContainerDictionary.hh
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ContainerJSON.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ContainerJSONConverter.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ContainerFileInterface.hh
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ContainerLibrary.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ContainerStore.hh
 )
 
 set( CONTAINER_SOURCEFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ContainerDictionary.cc
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ContainerLibrary.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ContainerStore.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ContainerFileInterface.cc
 )
 

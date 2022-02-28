@@ -25,6 +25,10 @@ int main(int /*argc*/, char** /*argv*/)
     label3.Insert(std::string("bandwidth"), 32.0e6);
     label4.Insert(std::string("channel"), 'd');
     label4.Insert(std::string("bandwidth"), 32.0e6);
+
+    double bw;
+    label4.Retrieve(std::string("bandwidth"), bw);
+
     label5.Insert(std::string("sampler"), std::string("r2dbe-1"));
     label6.Insert(std::string("sampler"), std::string("r2dbe-2"));
 

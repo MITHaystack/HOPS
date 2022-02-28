@@ -5,7 +5,13 @@ namespace hops
 
 MHO_IntervalLabelTree::MHO_IntervalLabelTree(){}
 
-MHO_IntervalLabelTree::~MHO_IntervalLabelTree(){}
+MHO_IntervalLabelTree::~MHO_IntervalLabelTree()
+{
+    for(auto it = fIntervals.begin(); it != fIntervals.end(); it++)
+    {
+        delete *it;
+    }
+}
 
 MHO_IntervalLabelTree::MHO_IntervalLabelTree(const MHO_IntervalLabelTree& obj)
 {

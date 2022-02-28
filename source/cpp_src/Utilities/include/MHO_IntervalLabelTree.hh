@@ -9,7 +9,6 @@
 *Date:
 *Description: Inteval-tree stucture, to allow for fast location of an interval
 * currently un-implemented...just does a dumb brute force O(n) search.
-* TODO: consider use of smart pointers for interval label objects
 */
 
 #include <iostream>

@@ -34,18 +34,10 @@ class MHO_NDArrayWrapper<XValueType, 1>:
                 Construct(nullptr, &(obj.fDims[0]) );
                 if(fSize != 0){std::copy(obj.fData.begin(), obj.fData.end(), fData.begin() );}
             }
-            fName = obj.fName;
-            fUnits = obj.fUnits;
         }
 
         //destructor
         virtual ~MHO_NDArrayWrapper(){};
-
-        //meta data
-        void SetName(std::string name){fName = name;};
-        std::string GetName() const {return fName;};
-        void SetUnits(std::string units){fUnits = units;}
-        std::string GetUnits() const {return fUnits;}
 
         //resize functions
         virtual void Resize(const std::size_t* dim)
@@ -125,8 +117,6 @@ class MHO_NDArrayWrapper<XValueType, 1>:
                     Construct(nullptr,  &(rhs.fDims[0]));
                     if(fSize != 0){std::copy(rhs.fData.begin(), rhs.fData.end(), this->fData.begin() );}
                 }
-                fName = rhs.fName;
-                fUnits = rhs.fUnits;
             }
             return *this;
         }
@@ -144,28 +134,35 @@ class MHO_NDArrayWrapper<XValueType, 1>:
                 Construct(nullptr,  &(rhs.fDims[0]));
                 if(fSize != 0){std::copy(rhs.fData.begin(), rhs.fData.end(), this->fData.begin() );}
             }
-            fName = rhs.fName;
-            fUnits = rhs.fName;
         }
 
 
         //linear offset into the array -- no real utility in 1-d case
         std::size_t GetOffsetForIndices(const std::size_t* index){return index[0];}
 
+        //here mainly so table containers with dimension 1 still work, in this case a sub-view just gets you a scalar 
+        template <typename ...XIndexTypeS >
+        typename std::enable_if< (sizeof...(XIndexTypeS) < 1), MHO_NDArrayWrapper<XValueType, 1 - ( sizeof...(XIndexTypeS) ) > >::type
+        SubView(XIndexTypeS...idx)
+        {
+            std::array<std::size_t, sizeof...(XIndexTypeS) > leading_idx = {{static_cast<size_t>(idx)...}};
+            for(std::size_t i=0; i<1; i++){fTmp[i] = 0;}
+            for(std::size_t i=0; i<leading_idx.size(); i++){fTmp[i] = leading_idx[i];}
+            std::size_t offset = MHO_NDArrayMath::OffsetFromRowMajorIndex<1>(&(fDims[0]), &(fTmp[0]));
+            std::array<std::size_t, 1 - (sizeof...(XIndexTypeS)) > dim;
+            for(std::size_t i=0; i<dim.size(); i++){dim[i] = fDims[i + (sizeof...(XIndexTypeS) )];}
+            return  MHO_NDArrayWrapper<XValueType, 1 - ( sizeof...(XIndexTypeS) ) >(&(fDataPtr[offset]) , &(dim[0]) );
+        }
+
+
     protected:
-
-
-        //only meta-data types we store are a name, and unit type
-        std::string fName;
-        //until we develop a proper units/dimensions type, 
-        //we just store units as a string (the units class must be able to convert to <-> from a string)
-        std::string fUnits;
 
         XValueType* fDataPtr;
         bool fExternallyManaged;
         std::vector< XValueType > fData; //used for internally managed data
         index_type fDims; //size of each dimension
         index_type fStrides; //strides between elements in each dimension
+        mutable index_type fTmp; //temp index workspace
         std::size_t fSize; //total size of array
 
     private:

@@ -15,6 +15,7 @@
 #include "MHO_UUID.hh"
 #include "MHO_BinaryFileInterface.hh"
 #include "MHO_SerializableObjectFactory.hh"
+#include "MHO_ContainerJSONConverter.hh"
 
 #include <map>
 #include <string>
@@ -29,7 +30,19 @@ class MHO_ClassIdentityMap
     public:
 
         MHO_ClassIdentityMap(){};
-        virtual ~MHO_ClassIdentityMap(){};
+
+        virtual ~MHO_ClassIdentityMap()
+        {
+            for(auto it = fFactoryMap.begin(); it != fFactoryMap.end(); it++)
+            {
+                delete it->second;
+            }
+
+            for(auto it = fJSONConverterMap.begin(); it != fJSONConverterMap.end(); it++)
+            {
+                delete it->second;
+            }
+        };
 
         template<typename XClassType>
         void AddClassType()
@@ -45,6 +58,12 @@ class MHO_ClassIdentityMap
             if( it == fFactoryMap.end())
             {
                 fFactoryMap.emplace(type_uuid, new MHO_SerializableObjectFactorySpecific<XClassType>() );
+            }
+
+            auto it2 = fJSONConverterMap.find(type_uuid);
+            if( it2 == fJSONConverterMap.end())
+            {
+                fJSONConverterMap.emplace(type_uuid, new MHO_ContainerJSONConverter<XClassType>() );
             }
         };
 
@@ -62,6 +81,12 @@ class MHO_ClassIdentityMap
             if( it == fFactoryMap.end())
             {
                 fFactoryMap.emplace(type_uuid, new MHO_SerializableObjectFactorySpecific<XClassType>() );
+            }
+
+            auto it2 = fJSONConverterMap.find(type_uuid);
+            if( it2 == fJSONConverterMap.end())
+            {
+                fJSONConverterMap.emplace(type_uuid, new MHO_ContainerJSONConverter<XClassType>() );
             }
         };
 
@@ -138,6 +163,7 @@ class MHO_ClassIdentityMap
         std::map< MHO_UUID, std::string > fUUID2ClassName;
         std::map< std::string, MHO_UUID > fClassName2UUID;
         std::map< MHO_UUID, MHO_SerializableObjectFactory* > fFactoryMap;
+        std::map< MHO_UUID, MHO_JSONConverter* > fJSONConverterMap;
 
 };
 

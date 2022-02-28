@@ -18,7 +18,7 @@
 #include "MHO_StationCoordinates.hh"
 #include "MHO_Visibilities.hh"
 
-#include "MHO_ContainerLibrary.hh"
+#include "MHO_ContainerStore.hh"
 
 
 //space saving macros
@@ -40,12 +40,13 @@ class MHO_ContainerFileInterface: public MHO_ContainerDictionary
 
         //index file optional, if we don't have an index file, the regular file will be
         //read in 2-passes, first to extract the keys, then to extract the objects
-        //likewise, when writing a library to file, if there is no index file specified, none will be created
+        //likewise, when writing a storerary to file, if there is no index file specified, none will be created
         void SetIndexFileName(std::string index_filename);
 
-        void PopulateLibraryFromFile(MHO_ContainerLibrary& lib);
+        void PopulateStoreFromFile(MHO_ContainerStore& store);
+        void WriteStoreToFile(MHO_ContainerStore& store);
 
-        void WriteLibraryToFile(MHO_ContainerLibrary& lib);
+        void ConvertStoreToJSON(MHO_ContainerStore& store, json& json_obj, int level_of_detail=eJSONBasic);
 
     private:
 

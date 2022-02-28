@@ -74,11 +74,6 @@ int main(int argc, char** argv)
 
     test->MakeExtension< MHO_NameExtension >()->SetName( std::string("myTest") );
 
-    std::string tname = "MyTestName";
-    std::string units = "kg";
-    test->SetName(tname);
-    test->SetUnits(units);
-
     MHO_NameVisitor myVisitor;
     test->Accept(&myVisitor);
 
@@ -128,9 +123,9 @@ int main(int argc, char** argv)
 
     auto* z_axis = &(std::get<ZDIM>(*test));
     size_t z_axis_size = z_axis->GetDimension(0);
-    z_axis->at(0) = std::string("r");
-    z_axis->at(1) = std::string("g");
-    z_axis->at(2) = std::string("b");
+    z_axis->at(0) = "r";
+    z_axis->at(1) = "g";
+    z_axis->at(2) = "b";
 
     for(size_t i=0; i<x_axis_size; i++)
     {
