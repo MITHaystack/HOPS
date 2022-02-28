@@ -45,7 +45,8 @@ MHO_DiFXInputProcessor::ConvertToJSON(json& input)
     //extract the quantities at the top level of the difx input struct 
     ExtractBaseStructQuantities(input);
 
-    //loop over jobs -- do we need these?
+    //loop over jobs? -- ignore for now
+    // DifxJob		*job;
 
     //loop over the config
     for(int i=0; i<fD->nConfig; i++)
@@ -505,6 +506,8 @@ MHO_DiFXInputProcessor::ExtractDifxPolyModel(DifxPolyModel* m)
     }
     return poly;
 }
+
+
 
 
 
