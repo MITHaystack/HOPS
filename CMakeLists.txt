@@ -3,6 +3,10 @@ cmake_minimum_required(VERSION 2.8)
 
 set(HOPS_VERSION_NUMBER "4.00")
 
+if(${CMAKE_VERSION} VERSION_GREATER "3.11.0")
+cmake_policy(SET CMP0074 OLD)
+endif()
+
 if(${CMAKE_VERSION} VERSION_GREATER "3.0.0")
 cmake_policy(SET CMP0048 NEW)
 endif()
@@ -17,11 +21,6 @@ include(CMakeDependentOption)
 include(FindGFORTRAN)
 include(FindPGPLOT)
 include(UseLATEX)
-
-if(${CMAKE_VERSION} VERSION_GREATER "3.11.0")
-cmake_policy(SET CMP0074 OLD)
-endif()
-
 
 message(STATUS "Architecture is ${CMAKE_SYSTEM_PROCESSOR}")
 set( DEFAULT_INSTALL_DIR  "${CMAKE_CURRENT_BINARY_DIR}/../${CMAKE_SYSTEM_PROCESSOR}-${HOPS_VERSION_NUMBER}" )
