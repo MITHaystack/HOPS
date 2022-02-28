@@ -160,6 +160,6 @@ init_tokens ()
     tokenize (NASMYTHRIGHT_,  "nasmythright", INT_CONST + NASMYTHRIGHT)
 
     //return value needed to correct function signature (value is not used, this function should be void)
-    //if this return is no present, fourfit segfaults when compiled as C++...how interesting
+    //if this return value is not present, fourfit segfaults when compiled as C++...how interesting
     return 0; 
     }
