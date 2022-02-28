@@ -41,7 +41,6 @@ MHO_DiFXScanProcessor::ProcessScan(MHO_DiFXScanFileSet& fileSet)
 
     ConstructStationFileObjects();
 
-
     //clear up and reset for next scan
     deleteDifxInput(fDInput);
     fDInput = nullptr;
@@ -168,9 +167,13 @@ MHO_DiFXScanProcessor::ConstructVisibilityFileObjects()
 
         fV->Resize(fNPolPairs, fNChannels, fNAPs, fNSpectralPoints);
         fV->ZeroArray();
+        fV->Insert(std::string("name"), std::string("visibilities"));
+        fV->Insert(std::string("difx_baseline_index"), fCurrentBaselineIndex);
 
         fW->Resize(fNPolPairs, fNChannels, fNAPs, fNSpectralPoints);
         fW->ZeroArray();
+        fV->Insert(std::string("name"), std::string("weights"));
+        fV->Insert(std::string("difx_baseline_index"), fCurrentBaselineIndex);
 
         // /* Straight from DiFX frequency table */
         // typedef struct
@@ -189,27 +192,27 @@ MHO_DiFXScanProcessor::ConstructVisibilityFileObjects()
 
         auto* polprod_axis = &(std::get<CH_POLPROD_AXIS>(*fV));
         auto* wpolprod_axis = &(std::get<CH_POLPROD_AXIS>(*fW));
-        polprod_axis->SetName("polarization_product");
-        wpolprod_axis->SetName("polarization_product");
+        polprod_axis->Insert(std::string("name"), std::string("polarization_product") );
+        wpolprod_axis->Insert(std::string("name"), std::string("polarization_product") );
 
         auto* ch_axis = &(std::get<CH_CHANNEL_AXIS>(*fV));
         auto* wch_axis = &(std::get<CH_CHANNEL_AXIS>(*fW));
-        ch_axis->SetName("channel");
-        wch_axis->SetName("channel");
+        ch_axis->Insert(std::string("name"), std::string("channel") );
+        wch_axis->Insert(std::string("name"), std::string("channel") );
 
         auto* ap_axis = &(std::get<CH_TIME_AXIS>(*fV));
         auto* wap_axis = &(std::get<CH_TIME_AXIS>(*fW));
-        ap_axis->SetName("time");
-        wap_axis->SetName("time");
-        ap_axis->SetUnits("s");
-        wap_axis->SetUnits("s");
+        ap_axis->Insert(std::string("name"), std::string("time") );
+        wap_axis->Insert(std::string("name"), std::string("time") );
+        ap_axis->Insert(std::string("units"), std::string("s") );
+        wap_axis->Insert(std::string("units"), std::string("s") );
 
         auto* sp_axis = &(std::get<CH_FREQ_AXIS>(*fV));
         auto* wsp_axis = &(std::get<CH_FREQ_AXIS>(*fW));
-        sp_axis->SetName("frequency");
-        wsp_axis->SetName("frequency");
-        sp_axis->SetUnits("MHz");
-        wsp_axis->SetUnits("MHz");
+        sp_axis->Insert(std::string("name"), std::string("frequency") );
+        wsp_axis->Insert(std::string("name"), std::string("frequency") );
+        sp_axis->Insert(std::string("units"), std::string("MHz") );
+        wsp_axis->Insert(std::string("units"), std::string("MHz") );
 
 
         int ppidx = 0;
@@ -235,7 +238,7 @@ MHO_DiFXScanProcessor::ConstructVisibilityFileObjects()
                     ch_label.Insert(std::string("sky_freq"), sky_freq);
                     ch_label.Insert(std::string("bandwidth"), bw);
                     ch_label.Insert(std::string("net_sideband"), std::string(&sideband,1) );
-                    ch_label.Insert(std::string("channel"), freqidx); //probably ought to be more systematic about creating channel names
+                    ch_label.Insert(std::string("difx_freqindex"), freqidx); //probably ought to be more systematic about creating channel names
 
                     ch_axis->at(chidx) = chidx;
                     wch_axis->at(chidx) = chidx;
@@ -323,11 +326,21 @@ MHO_DiFXScanProcessor::LoadInputFile(std::string filename)
 {
     //TODO FIXME - Why does this sometimes fail for DiFX versions <2.6 
     //when the .threads file is missing??
-    DifxInput* fDInput = loadDifxInput(filename.c_str());
+    fDInput = loadDifxInput(filename.c_str());
 
     //lets build the freq table 
     fAllFreqTable.clear();
     for(int i=0; i<fDInput->nFreq; i++){fAllFreqTable[i] = &(fDInput->freq[i]);}
+
+    //conver the input to json 
+    json input;
+    MHO_DiFXInputProcessor input_proc;
+    input_proc.LoadDiFXInputFile(filename);
+    input_proc.ConvertToJSON(input);
+
+    std::cout<< input.dump(2)<<std::endl;
+
+
 }
 
 

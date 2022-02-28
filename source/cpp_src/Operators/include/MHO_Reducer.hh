@@ -144,7 +144,7 @@ class MHO_Reducer: public MHO_UnaryOperator<XArrayType>
 
                 for(std::size_t i=0; i<XArrayType::rank::value; i++)
                 {
-                    if(fAxesToReduce[i] = 1){IfTableReduceAxis(in, out, i);}
+                    if(fAxesToReduce[i] == 1){IfTableReduceAxis(in, out, i);}
                 }
 
                 return true;

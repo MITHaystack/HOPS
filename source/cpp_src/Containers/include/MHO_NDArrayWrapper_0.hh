@@ -26,17 +26,9 @@ class MHO_NDArrayWrapper<XValueType, 0>:
         MHO_NDArrayWrapper(const MHO_NDArrayWrapper& obj)
         {
             fData = obj.fData;
-            fName = obj.fName;
-            fUnits = obj.fUnits;
         }
 
         virtual ~MHO_NDArrayWrapper(){};
-
-        //meta data
-        void SetName(std::string name){fName = name;};
-        std::string GetName() const {return fName;};
-        void SetUnits(std::string units){fUnits = units;}
-        std::string GetUnits() const {return fUnits;}
 
         //directly set/get the only value
         void SetData(const XValueType& value){fData = value;}
@@ -50,8 +42,6 @@ class MHO_NDArrayWrapper<XValueType, 0>:
             if(this != &rhs)
             {
                 fData = rhs.fData;
-                fName = rhs.fName;
-                fUnits = rhs.fUnits;
             }
             return *this;
         }
@@ -60,12 +50,6 @@ class MHO_NDArrayWrapper<XValueType, 0>:
         void ZeroArray(){std::memset(&fData, 0, sizeof(XValueType) );}
 
     protected:
-
-        //only meta-data types we store are a name, and unit type
-        std::string fName;
-        //until we develop a proper units/dimensions type, 
-        //we just store units as a string (the units class must be able to convert to <-> from a string)
-        std::string fUnits;
 
         XValueType fData; //single value
 };

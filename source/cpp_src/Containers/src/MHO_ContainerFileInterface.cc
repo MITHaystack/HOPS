@@ -23,9 +23,9 @@ MHO_ContainerFileInterface::SetIndexFileName(std::string index_filename)
 }
 
 void 
-MHO_ContainerFileInterface::PopulateLibraryFromFile(MHO_ContainerLibrary& lib)
+MHO_ContainerFileInterface::PopulateStoreFromFile(MHO_ContainerStore& store)
 {
-    lib.Clear();
+    store.Clear();
     bool ok = false;
 
     //pull the file object keys for inspection 
@@ -44,10 +44,11 @@ MHO_ContainerFileInterface::PopulateLibraryFromFile(MHO_ContainerLibrary& lib)
         if(!ok){msg_error("containers", "could not extract file object keys" << eom); return;}
     }
 
-    //open file and read each object, and stuff it in the library
+    //open file and read each object, and stuff it in the storerary
     ok = fFileInterface.OpenToRead(fFilename);
     if(!ok)
     {
+        msg_error("containers", "failed to open file interface to read: "<<fFilename<<eom);
         fFileInterface.Close();
         return;
     }
@@ -62,7 +63,7 @@ MHO_ContainerFileInterface::PopulateLibraryFromFile(MHO_ContainerLibrary& lib)
             MHO_Serializable* obj = factory->second->BuildFromFileInterface(fFileInterface);
             if(obj != nullptr)
             {
-                lib.AddContainerObject(obj,key);
+                store.AddContainerObject(obj,key);
             }
             else 
             {
@@ -79,7 +80,7 @@ MHO_ContainerFileInterface::PopulateLibraryFromFile(MHO_ContainerLibrary& lib)
 };
 
 void 
-MHO_ContainerFileInterface::WriteLibraryToFile(MHO_ContainerLibrary& lib)
+MHO_ContainerFileInterface::WriteStoreToFile(MHO_ContainerStore& store)
 {
     bool ok = false;
     //open up the file we want to write to
@@ -94,33 +95,62 @@ MHO_ContainerFileInterface::WriteLibraryToFile(MHO_ContainerLibrary& lib)
         if(!ok){msg_error("containers", "could not open file: " <<fFilename << " to write." << eom); return;}
     }
 
-
     std::vector< MHO_UUID > type_ids;
-    lib.GetAllTypeUUIDs(type_ids);
+    store.GetAllTypeUUIDs(type_ids);
 
     for(auto it = type_ids.begin(); it != type_ids.end(); it++)
     {
-        std::vector< MHO_UUID > obj_ids;
-        lib.GetAllObjectUUIDsOfType(*it, obj_ids);
-        for(auto it2 = obj_ids.begin(); it2 != obj_ids.end(); it2++)
+        auto factory = fFactoryMap.find(*it);
+        if(factory != fFactoryMap.end())
         {
-            auto factory = fFactoryMap.find(*it);
-            if(factory != fFactoryMap.end())
+            std::vector< MHO_UUID > obj_ids;
+            store.GetAllObjectUUIDsOfType(*it, obj_ids);
+            for(auto it2 = obj_ids.begin(); it2 != obj_ids.end(); it2++)
             {
-                MHO_Serializable* obj = lib.RetrieveObject(*it, *it2);
-                bool ok = factory->second->WriteToFileInterface(fFileInterface, obj);
+                MHO_Serializable* obj = store.RetrieveObject(*it, *it2);
+                std::pair<std::string, uint32_t> name_label = store.GetObjectNameLabel(*it,*it2);
+                bool ok = factory->second->WriteToFileInterface(fFileInterface, obj, name_label.first, name_label.second);
                 if(!ok)
                 {
                     msg_warn("containers", "factory failed to write object to file with type: "<< fUUID2ClassName[*it] << eom );
                 }
             }
         }
-
     }
 
     fFileInterface.Close();
 }
 
+
+void 
+MHO_ContainerFileInterface::ConvertStoreToJSON(MHO_ContainerStore& store, json& json_obj, int level_of_detail)
+{
+    std::vector< MHO_UUID > type_ids;
+    store.GetAllTypeUUIDs(type_ids);
+
+    for(auto it = type_ids.begin(); it != type_ids.end(); it++)
+    {
+        auto converter = fJSONConverterMap.find(*it);
+        if(converter != fJSONConverterMap.end())
+        {
+            std::vector< MHO_UUID > obj_ids;
+            store.GetAllObjectUUIDsOfType(*it, obj_ids);
+            for(auto it2 = obj_ids.begin(); it2 != obj_ids.end(); it2++)
+            {
+                MHO_Serializable* obj = store.RetrieveObject(*it, *it2);
+                if(obj != nullptr)
+                {
+                    converter->second->SetObjectToConvert(obj);
+                    converter->second->SetLevelOfDetail(level_of_detail);
+                    converter->second->ConstructJSONRepresentation();
+                    json j = *(converter->second->GetJSON());
+                    std::string object_uuid = it2->as_string();
+                    json_obj[object_uuid] = j;
+                }
+            }
+        }
+    }
+};
 
 
 }//end namespace

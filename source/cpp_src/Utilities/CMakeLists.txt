@@ -17,6 +17,7 @@ set (UTILITIES_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_Interval.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_IntervalLabel.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_IntervalLabelTree.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_Taggable.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_BinaryFileStreamer.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_UUIDGenerator.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MD5HashGenerator.hh
