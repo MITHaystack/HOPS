@@ -202,7 +202,7 @@ char *tape_qcode)
 /*     t1000_index = (baseline - 1) / 8; */
 /*     btable_index = (baseline - 1) % 8; */
 /*     dur = root->t1000[t1000_index].barray[btable_index].bduration; */
-/*     if (dur == 0) dur = root->t1000[0].duration;   /* duration same on all baselines */
+/*     if (dur == 0) dur = root->t1000[0].duration;   duration same on all baselines */
 /*     intg_time = status->total_ap * param->acc_period / pass->channels; */
 /*     fract = 10.0 * intg_time / dur; */
 /*     if (fract == 10.0) fract = 9.9; */

@@ -6,6 +6,7 @@
 #include "param_struct.h"
 #include "pass_struct.h"
 #include <stdio.h>
+#include <math.h>
 
 #ifndef MBDMXPTS
 #define MBDMXPTS 8192

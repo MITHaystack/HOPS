@@ -177,8 +177,8 @@ void norm_xf (struct type_pass *pass,
         if (param->pol)
             pol = ip;
                                         // If no data for this sb/pol, go on to next
-        if (sb == 0 && usb_bypol[ip] == 0
-         || sb == 1 && lsb_bypol[ip] == 0)
+        if ( (sb == 0 && usb_bypol[ip] == 0) 
+         || (sb == 1 && lsb_bypol[ip] == 0) )
             continue;
                                         /* Pluck out the requested polarization */
         switch (pol)
@@ -434,8 +434,8 @@ void norm_xf (struct type_pass *pass,
         }                           // bottom of polarization loop
 
                                     // also skip over this next section, if no data
-      if (sb == 0 && usb_present == 0
-       || sb == 1 && lsb_present == 0)
+      if ( (sb == 0 && usb_present == 0)
+       || (sb == 1 && lsb_present == 0) )
           continue;
 
                                     /* apply spectral filter as needed */

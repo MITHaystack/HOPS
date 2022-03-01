@@ -227,7 +227,7 @@ int lex (char* input_string)
         tokens = (struct token_struct *) 
                   realloc (tokens, (itok + 1) * sizeof (struct token_struct));
 
-        if (n = is_keyword (next_token))         /* see if token is a keyword */
+        if ( (n = is_keyword (next_token)) )         /* see if token is a keyword */
             {
             if (token_cat[n] < INT_CONST)     
                 tokens[itok].symbol = n;             /* just a normal keyword */
