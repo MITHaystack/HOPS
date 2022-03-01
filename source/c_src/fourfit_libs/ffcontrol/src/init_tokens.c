@@ -12,7 +12,7 @@
 #define tokenize(aa,bb,cc) {token_string[aa] = bb; token_cat[aa] = cc;}
 
 //could use the below lines to actually allocate memory for the strings instead (would need to be freed)
-//since the currenct implementation compiled under c++ renders:
+//since the current implementation compiled under c++ renders:
 //warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
  
 //#include <string.h>

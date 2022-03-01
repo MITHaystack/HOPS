@@ -3,6 +3,10 @@ cmake_minimum_required(VERSION 2.8)
 
 set(HOPS_VERSION_NUMBER "4.00")
 
+if(${CMAKE_VERSION} VERSION_GREATER "3.11.0")
+cmake_policy(SET CMP0074 OLD)
+endif()
+
 if(${CMAKE_VERSION} VERSION_GREATER "3.0.0")
 cmake_policy(SET CMP0048 NEW)
 endif()
@@ -17,11 +21,6 @@ include(CMakeDependentOption)
 include(FindGFORTRAN)
 include(FindPGPLOT)
 include(UseLATEX)
-
-if(${CMAKE_VERSION} VERSION_GREATER "3.11.0")
-cmake_policy(SET CMP0074 OLD)
-endif()
-
 
 message(STATUS "Architecture is ${CMAKE_SYSTEM_PROCESSOR}")
 set( DEFAULT_INSTALL_DIR  "${CMAKE_CURRENT_BINARY_DIR}/../${CMAKE_SYSTEM_PROCESSOR}-${HOPS_VERSION_NUMBER}" )
@@ -59,11 +58,17 @@ hops_module_paths(Hops)
 
 #compiler flags
 hops_require_cpp11()
-#hops_require_cpp17()
 
-set( CMAKE_C_FLAGS "${CMAKE_C_FLAGS}" )
-set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}" )
-
+option(EXTRA_WARNINGS "Turn on extra compiler warnings." OFF)
+if(EXTRA_WARNINGS)
+    set( CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -Wextra" )
+    set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra" )
+else()
+    #someday we will reduce the number of warnings down to a point where 
+    #we can turn on -Wall -Wextra by default, but not today...
+    set( CMAKE_C_FLAGS "${CMAKE_C_FLAGS}" )
+    set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}" )
+endif()
 
 #convenience variables
 set(CSOURCE ${CMAKE_CURRENT_SOURCE_DIR}/source/c_src)
@@ -71,13 +76,6 @@ set(CPPSOURCE ${CMAKE_CURRENT_SOURCE_DIR}/source/cpp_src)
 set(SHSOURCE ${CMAKE_CURRENT_SOURCE_DIR}/source/bash_src)
 set(PYSOURCE ${CMAKE_CURRENT_SOURCE_DIR}/source/python_src)
 set(EXTERN_HLIBS ${CMAKE_CURRENT_SOURCE_DIR}/extern)
-
-
-#set( CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -Wextra" )
-#set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra" )
-#
-# set( CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fpermissive" )
-# set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fpermissive" )
 
 message(STATUS "Using compiler ${COMPILER_ID} ${COMPILER_VERSION}")
 
