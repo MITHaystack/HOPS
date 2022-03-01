@@ -20,8 +20,7 @@
 //     };
 
 
-namespace hops
-{
+namespace hops {
 
 //boiler-plate constructor/destructors
 MHO_MKType200Converter::MHO_MKType200Converter():
@@ -39,8 +38,7 @@ void MHO_MKType200Converter::ConvertToJSON() {
     fJSON.clear();
 
     //better check that our type_200 pointer is not null 
-    if(fPtr != nullptr)
-    {
+    if(fPtr != nullptr) {
         //go ahead and do the import of the struct members
 
         //first one is a string (converted from a char array of length 3)
