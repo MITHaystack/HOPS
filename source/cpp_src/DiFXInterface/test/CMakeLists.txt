@@ -17,7 +17,7 @@ difx2hops
 
 foreach( BASENAME ${DIFXIO_DEP_SOURCE_BASENAMES} )
     add_executable( ${BASENAME} ${BASENAME}.cc )
-    target_link_libraries( ${BASENAME} ${HOPS_TEST_LIBS} ${DIFXIO_LDFLAGS})
+    target_link_libraries( ${BASENAME} ${HOPS_TEST_LIBS} PkgConfig::DIFXIO)
 endforeach( BASENAME )
 
 hops_install_executables( ${DIFXIO_DEP_SOURCE_BASENAMES} )
