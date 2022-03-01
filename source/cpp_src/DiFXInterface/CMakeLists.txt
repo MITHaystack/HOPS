@@ -66,11 +66,6 @@ install(FILES ${CMAKE_CURRENT_BINARY_DIR}/libMHO_DiFXInterface.so DESTINATION ${
 # 	libdifxio.so.0 => not found
 #   ....
 
-
-
-if (HOPS_ENABLE_TEST)
-    add_subdirectory(test)
-endif (HOPS_ENABLE_TEST)
+add_subdirectory(applications)
 
 hops_install_executables( ${DIFXIO_DEP_SOURCE_BASENAMES} )
-
