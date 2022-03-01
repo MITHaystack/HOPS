@@ -1,4 +1,5 @@
 #include "MHO_MK4Type200Converter.hh"
+#define TYPE_200_FILES_PATH "../../../c_src/dfio/include"
 
 // struct type_200
 //     {
