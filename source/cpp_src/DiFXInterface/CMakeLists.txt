@@ -40,7 +40,7 @@ add_library (MHO_DiFXInterface SHARED ${DIFXINTERFACE_SOURCEFILES})
 message(STATUS "DIFXIO LDFLAGS = ${DIFXIO_LDFLAGS}")
 message(STATUS "DIFXIO LIBS = ${DIFIO_LINK_LIBRARIES}")
 
-target_link_libraries( MHO_DiFXInterface ${DIFXINTERFACE_LIBS} PkgConfig::DIFXIO)
+target_link_libraries(MHO_DiFXInterface ${DIFXINTERFACE_LIBS} PkgConfig::DIFXIO)
 
 hops_install_headers (${DIFXINTERFACE_HEADERFILES})
 
@@ -68,27 +68,9 @@ install(FILES ${CMAKE_CURRENT_BINARY_DIR}/libMHO_DiFXInterface.so DESTINATION ${
 
 
 
-
-
-
-
-
-
-
-
 if (HOPS_ENABLE_TEST)
     add_subdirectory(test)
 endif (HOPS_ENABLE_TEST)
-
-
-# list(APPEND DIFXIO_DEP_SOURCE_BASENAMES
-#     difx2hops
-# )
-# 
-# foreach( BASENAME ${DIFXIO_DEP_SOURCE_BASENAMES} )
-#     add_executable( ${BASENAME} ${BASENAME}.cc )
-#     target_link_libraries( ${BASENAME} ${HOPS_TEST_LIBS} ${DIFXIO_LDFLAGS})
-# endforeach( BASENAME )
 
 hops_install_executables( ${DIFXIO_DEP_SOURCE_BASENAMES} )
 
