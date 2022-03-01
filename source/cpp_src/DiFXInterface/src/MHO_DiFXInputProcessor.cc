@@ -37,10 +37,11 @@ MHO_DiFXInputProcessor::ConvertToJSON(json& input)
     // DifxDatastream	*datastream;
     // DifxBaseline    *baseline;
     
-    /****** SKIP THESE OPTIONAL TABLES FOR NOW ******/
+    /****** SKIP THESE OPTIONAL TABLES FOR NOW ********************************/
     // DifxSpacecraft	*spacecraft;	/* optional table */
     // DifxPulsar	*pulsar;	/* optional table */
     // DifxPhasedArray	*phasedarray;	/* optional table */
+    /**************************************************************************/
 
     //extract the quantities at the top level of the difx input struct 
     ExtractBaseStructQuantities(input);
@@ -289,7 +290,7 @@ MHO_DiFXInputProcessor::ExtractScanQuantities(int n)
         /*   poly ranges over [0 .. nPoly-1] */
         /* NOTE : im[ant] can be zero -> no data */
 
-        //TODO FIXME: WE NEED TO RELATE THE UNITS SOMEHOW
+        //TODO FIXME: WE NEED TO RELATE THE UNITS OF THE POLYMODEL SOMEHOW
         std::vector< std::vector< std::vector< json > > > polys;
         for(int i=0; i < s->nAntenna; i++)
         {
@@ -332,7 +333,7 @@ MHO_DiFXInputProcessor::ExtractSourceQuantities(int n)
         source["qual"] = s->qual;
         source["spacecraftId"] = s->spacecraftId;
         
-        //do we need numFitsSourceIds ro fitsSourceIds??
+        //do we need numFitsSourceIds and fitsSourceIds??
         
         source["pmRA"] = s->pmRA; /* arcsec/year */
         source["pmDec"] = s->pmDec; /* arcsec/year */
@@ -346,16 +347,6 @@ MHO_DiFXInputProcessor::ExtractSourceQuantities(int n)
 json 
 MHO_DiFXInputProcessor::ExtractEOPQuantities(int n)
 {
-
-    // typedef struct
-    // {
-    // 	int mjd;		/* (day) */
-    // 	int tai_utc;		/* (sec) */
-    // 	double ut1_utc;		/* (sec) */
-    // 	double xPole, yPole;	/* (arcsec) */
-    // } DifxEOP;
-    // 
-
     DifxEOP* e = &(fD->eop[n]);
     json eop;
     if(e != nullptr)
@@ -455,8 +446,24 @@ MHO_DiFXInputProcessor::ExtractBaselineQuantities(int n)
             base["nPolProd"].push_back(b->nPolProd[n]);
         }
 
-        base["bandA"] = "FIXME-2D-array";
-        base["bandB"] = "FIXME-2D-array";
+
+        //TODO FIXME: WE NEED TO RELATE THE UNITS SOMEHOW
+        std::vector< std::vector< int > > banda;
+        std::vector< std::vector< int > > bandb;
+        for(int i=0; i < b->nFreq; i++)
+        {
+            std::vector< int > idxa;
+            std::vector< int > idxb;
+            for(int j=0; j <= b->nPolProd[i]; j++)
+            {
+                idxa.push_back(b->bandA[i][j]);
+                idxb.push_back(b->bandB[i][j]);
+            }
+            banda.push_back(idxa);
+            bandb.push_back(idxb);
+        }
+        base["bandA"] = banda;
+        base["bandB"] = bandb;
     }
     return base;
 }
