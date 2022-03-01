@@ -48,7 +48,7 @@ fstruct **files,
 bsgstruct **base_sgrp,
 struct type_param *param)
     {
-    char c, base_freq[21], *bf_string();
+    char c, base_freq[21];
     int i, set, cslen, filenum;
     struct stat file_status;
     extern char *optarg;

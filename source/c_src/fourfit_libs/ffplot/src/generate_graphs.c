@@ -8,6 +8,7 @@
 /************************************************************************/
 #include <stdio.h>
 #include <math.h>
+#include <time.h>
 #include "msg.h"
 #include "hops_complex.h"
 #include "param_struct.h"
@@ -31,7 +32,6 @@ int generate_graphs (struct scan_struct *root,
     int start_plot, limit_plot;
     char buf[2560], device[256], pbfr[2][44];
     double drate, mbd, sbd;
-    struct tm *gmtime();
     static float xr[2*MAXMAX], yr[2*MAXMAX], zr[2*MAXMAX];
     float xmin, xmax, ymin, ymax, plotwidth;
     float xpos, offset, lwid, yplace;

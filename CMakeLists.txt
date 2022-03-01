@@ -58,10 +58,16 @@ hops_module_paths(Hops)
 
 #compiler flags
 hops_require_cpp11()
-#hops_require_cpp17()
 
+set( HOPS3_CXX_WARNINGS_TO_REMOVE "-Wno-write-strings -Wno-deprecated-register -Wno-format-security ")
+message(STATUS "C++ compiler warnings disabled for: ${HOPS3_CXX_WARNINGS_TO_REMOVE}" )
 set( CMAKE_C_FLAGS "${CMAKE_C_FLAGS}" )
-set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}" )
+set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${HOPS3_CXX_WARNINGS_TO_REMOVE}" )
+
+#someday we will reduce the number of warnings down to a point where 
+#we can turn on -Wall -Wextra, but not today...
+#set( CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -Wextra" )
+#set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra" )
 
 
 #convenience variables
@@ -72,11 +78,6 @@ set(PYSOURCE ${CMAKE_CURRENT_SOURCE_DIR}/source/python_src)
 set(EXTERN_HLIBS ${CMAKE_CURRENT_SOURCE_DIR}/extern)
 
 
-#set( CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -Wextra" )
-#set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra" )
-#
-# set( CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fpermissive" )
-# set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fpermissive" )
 
 message(STATUS "Using compiler ${COMPILER_ID} ${COMPILER_VERSION}")
 
