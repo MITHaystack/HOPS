@@ -452,7 +452,7 @@ MHO_DiFXInputProcessor::ExtractBaselineQuantities(int n)
         {
             std::vector< int > idxa;
             std::vector< int > idxb;
-            for(int j=0; j <= b->nPolProd[i]; j++)
+            for(int j=0; j < b->nPolProd[i]; j++)
             {
                 idxa.push_back(b->bandA[i][j]);
                 idxb.push_back(b->bandB[i][j]);
