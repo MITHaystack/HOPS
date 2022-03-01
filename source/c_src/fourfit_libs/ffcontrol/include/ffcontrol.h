@@ -1,6 +1,8 @@
 #ifndef FFCONTROL_H__
 #define FFCONTROL_H__
 
+#include "control.h"
+
 int copy_cblock_parts ( struct c_block* f, struct c_block* t);
 int create_fsm();
 int criteria_match (struct c_block* cb_ptr, char base[2], char sour[31], char group, int time);
