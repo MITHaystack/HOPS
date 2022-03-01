@@ -408,8 +408,6 @@ MHO_DiFXInputProcessor::ExtractDatastreamQuantities(int n)
     // 	char *zoomBandPolName;	/* [zoomband] Polarization name (R, L, X or Y) */
     // } DifxDatastream;
 
-
-
     DifxDatastream* d = &(fD->datastream[n]);
     json ds;
     if(d != nullptr)
