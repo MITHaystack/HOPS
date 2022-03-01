@@ -18,6 +18,8 @@ difx2hops
 foreach( BASENAME ${DIFXIO_DEP_SOURCE_BASENAMES} )
     add_executable( ${BASENAME} ${BASENAME}.cc )
     target_link_libraries( ${BASENAME} ${HOPS_TEST_LIBS} PkgConfig::DIFXIO)
+    install(PROGRAMS ${CMAKE_CURRENT_BINARY_DIR}/${BASENAME} DESTINATION ${BIN_INSTALL_DIR})
 endforeach( BASENAME )
 
-hops_install_executables( ${DIFXIO_DEP_SOURCE_BASENAMES} )
+#hops_install_executables( ${DIFXIO_DEP_SOURCE_BASENAMES} )
+
