@@ -59,10 +59,8 @@ hops_module_paths(Hops)
 #compiler flags
 hops_require_cpp11()
 
-set( HOPS3_CXX_WARNINGS_TO_REMOVE "-Wno-write-strings -Wno-deprecated-register -Wno-format-security ")
-message(STATUS "C++ compiler warnings disabled for: ${HOPS3_CXX_WARNINGS_TO_REMOVE}" )
 set( CMAKE_C_FLAGS "${CMAKE_C_FLAGS}" )
-set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${HOPS3_CXX_WARNINGS_TO_REMOVE}" )
+set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}" )
 
 #someday we will reduce the number of warnings down to a point where 
 #we can turn on -Wall -Wextra, but not today...

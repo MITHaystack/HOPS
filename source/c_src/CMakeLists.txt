@@ -58,9 +58,12 @@ hops_add_cxxflag(HAVE_CONFIG_H)
 
 option( HOPS3_DISABLE_WARNINGS "Disable specific compiler warnings in HOPS3 c-code." ON)
 
+set( HOPS3_CXX_WARNINGS_TO_REMOVE "-Wno-write-strings -Wno-deprecated-register -Wno-format-security -Wno-implicit-int -Wno-implicit-function-declaration -Wno-format")
+
 if(NOT HOPS3_USE_CXX)
     if(HOPS3_DISABLE_WARNINGS)
-        set( CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wno-implicit-int -Wno-implicit-function-declaration -Wno-format")
+        message(STATUS "C++ compiler warnings disabled for: ${HOPS3_CXX_WARNINGS_TO_REMOVE}" )
+        set( CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${HOPS3_CXX_WARNINGS_TO_REMOVE}")
     endif(HOPS3_DISABLE_WARNINGS)
 endif(NOT HOPS3_USE_CXX)
 
