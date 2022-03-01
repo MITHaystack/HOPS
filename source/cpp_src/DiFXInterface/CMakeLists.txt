@@ -31,14 +31,50 @@ set(DIFXINTERFACE_LIBS vex mk4util vex2json MHO_Message MHO_Utilities MHO_Contai
 
 # we use pkg-config to find difxio
 find_package(PkgConfig) 
-pkg_search_module(DIFXIO REQUIRED difxio)
+pkg_search_module(DIFXIO REQUIRED difxio IMPORTED_TARGET)
 hops_external_include_directories (${DIFXIO_INCLUDE_DIRS})
 
+# list(APPEND DIFXINTERFACE_LIBS ${DIFXIO_LDFLAGS})
+
 add_library (MHO_DiFXInterface SHARED ${DIFXINTERFACE_SOURCEFILES})
-target_link_libraries (MHO_DiFXInterface ${DIFXINTERFACE_LIBS} ${DIFXIO_LDFLAGS})
+message(STATUS "DIFXIO LDFLAGS = ${DIFXIO_LDFLAGS}")
+message(STATUS "DIFXIO LIBS = ${DIFIO_LINK_LIBRARIES}")
+
+target_link_libraries( MHO_DiFXInterface ${DIFXINTERFACE_LIBS} PkgConfig::DIFXIO)
 
 hops_install_headers (${DIFXINTERFACE_HEADERFILES})
-hops_install_libraries (MHO_DiFXInterface)
+
+
+#FIXME WHAT IS GOING ON HERE?
+#WHY DO WE NEED TO INSTALL THE LIBRARY AS A FILE IN ORDER 
+#TO PRESERVE THE INTERNAL LINK SYMBOLS TO DIFXIO? 
+#FOR EXAMPLE THE FOLLOWING COMMAND:
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/libMHO_DiFXInterface.so DESTINATION ${LIB_INSTALL_DIR})
+#PRODUCES:
+# ldd ./libMHO_DiFXInterface.so 
+#    linux-vdso.so.1 (0x00007fffdcc97000)
+#    libMHO_Utilities.so => /home/barrettj/work/projects/hops-git/x86_64-4.00/lib/libMHO_Utilities.so (0x00007f233da06000)
+#    ....
+#    libdifxio.so.0 => /home/barrettj/software/difx-2.6.2/lib/libdifxio.so.0 (0x00007f233d9c5000)
+#    ....
+#BUT USING hops_install_libraries(), OR ANY OTHER CMAKE install(TARGETS...) COMMAND:
+#PRODUCES:
+# ldd ./libMHO_DiFXInterface.so 
+# 	linux-vdso.so.1 (0x00007ffd155f9000)
+# 	libMHO_Utilities.so => /home/barrettj/work/projects/hops-git/x86_64-4.00/lib/libMHO_Utilities.so (0x00007f3c369de000)
+# 	....
+# 	libdifxio.so.0 => not found
+#   ....
+
+
+
+
+
+
+
+
+
+
 
 if (HOPS_ENABLE_TEST)
     add_subdirectory(test)
