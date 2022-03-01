@@ -30,15 +30,11 @@ MHO_MKType200Converter::MHO_MKType200Converter():
 
 MHO_MKType200Converter::~MHO_MKType200Converter(){};
 
-void 
-MHO_MKType200Converter::SetType200(type_200* type200ptr)
-{
+void MHO_MKType200Converter::SetType200(type_200* type200ptr) {
     fPtr = type200ptr;
 };
 
-void 
-MHO_MKType200Converter::ConvertToJSON()
-{
+void MHO_MKType200Converter::ConvertToJSON() {
     //first we make sure the JSON object is empty by clearing it 
     fJSON.clear();
 
@@ -54,9 +50,7 @@ MHO_MKType200Converter::ConvertToJSON()
     }
 }
 
-json 
-MHO_MKType200Converter::GetJSON()
-{
+json MHO_MKType200Converter::GetJSON() {
     return fJSON;
 }
 
