@@ -59,14 +59,16 @@ hops_module_paths(Hops)
 #compiler flags
 hops_require_cpp11()
 
-set( CMAKE_C_FLAGS "${CMAKE_C_FLAGS}" )
-set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}" )
-
-#someday we will reduce the number of warnings down to a point where 
-#we can turn on -Wall -Wextra, but not today...
-#set( CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -Wextra" )
-#set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra" )
-
+option(EXTRA_WARNINGS "Turn on extra compiler warnings." OFF)
+if(EXTRA_WARNINGS)
+    set( CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -Wextra" )
+    set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra" )
+else()
+    #someday we will reduce the number of warnings down to a point where 
+    #we can turn on -Wall -Wextra by default, but not today...
+    set( CMAKE_C_FLAGS "${CMAKE_C_FLAGS}" )
+    set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}" )
+endif()
 
 #convenience variables
 set(CSOURCE ${CMAKE_CURRENT_SOURCE_DIR}/source/c_src)
@@ -74,8 +76,6 @@ set(CPPSOURCE ${CMAKE_CURRENT_SOURCE_DIR}/source/cpp_src)
 set(SHSOURCE ${CMAKE_CURRENT_SOURCE_DIR}/source/bash_src)
 set(PYSOURCE ${CMAKE_CURRENT_SOURCE_DIR}/source/python_src)
 set(EXTERN_HLIBS ${CMAKE_CURRENT_SOURCE_DIR}/extern)
-
-
 
 message(STATUS "Using compiler ${COMPILER_ID} ${COMPILER_VERSION}")
 
