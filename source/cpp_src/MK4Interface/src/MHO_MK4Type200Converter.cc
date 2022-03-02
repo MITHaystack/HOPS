@@ -19,7 +19,6 @@
 //     struct date         frt;                    /* Fourfit reference time */
 //     };
 
-
 namespace hops {
 
 //boiler-plate constructor/destructors
@@ -37,11 +36,10 @@ void MHO_MKType200Converter::ConvertToJSON() {
     //first we make sure the JSON object is empty by clearing it 
     fJSON.clear();
 
-    //better check that our type_200 pointer is not null 
+    //check that our type_200 pointer is not null 
     if(fPtr != nullptr) {
         //go ahead and do the import of the struct members
 
-        //first one is a string (converted from a char array of length 3)
         fJSON["record_id"] = std::string(fPtr->record_id, 3); 
 	fJSON["version_no"] = std::string(fPtr->version_no, 2);
 	fJSON["unused1"] = std::string(fPtr->unused1, 3);
@@ -64,7 +62,5 @@ void MHO_MKType200Converter::ConvertToJSON() {
 json MHO_MKType200Converter::GetJSON() {
     return fJSON;
 }
-
-
 
 }
