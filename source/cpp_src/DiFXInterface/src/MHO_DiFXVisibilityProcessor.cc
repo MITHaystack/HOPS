@@ -6,8 +6,7 @@ namespace hops
 {
 
 void 
-MHO_DiFXVisibilityProcessor::ReadDIFX_File(std::map< int, std::vector< MHO_DiFXVisibilityRecord* > >& allBaselineVisibilities,
-                                           std::map< int, std::set< std::string > >& allBaselineUniquePolPairs)
+MHO_DiFXVisibilityProcessor::ReadDIFX_File(std::map< int, MHO_DiFXBaselineProcessor >& allBaselineVisibilities)
 {
     //assume allBaselineVis and allBaselineUniquePolPairs are empty to start
     MHO_DiFXVisibilityRecord visRecord;
@@ -94,9 +93,8 @@ MHO_DiFXVisibilityProcessor::ReadDIFX_File(std::map< int, std::vector< MHO_DiFXV
                     //so we can just grab them all at once on the next encounter
                     fNChannelsMap[ std::make_pair(visRecord.baseline, visRecord.freqindex) ] = visRecord.nchan; 
                 }
-
-                allBaselineVisibilities[visRecord.baseline].push_back( new MHO_DiFXVisibilityRecord(visRecord) );
-                allBaselineUniquePolPairs[visRecord.baseline].insert( std::string(visRecord.polpair,2) ); //keep track of the polpairs
+                //add the record to the appropriate baseline
+                allBaselineVisibilities[visRecord.baseline].AddRecord( new MHO_DiFXVisibilityRecord(visRecord) );
             }
         }
     }
