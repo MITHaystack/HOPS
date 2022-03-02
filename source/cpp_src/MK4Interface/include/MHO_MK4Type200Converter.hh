@@ -29,7 +29,7 @@ namespace hops
 *@class MHO_MK4Type200Converter
 *@author J. Barrett - barrettj@mit.edu, V. Pfeiffer - violetp@mit.edu
 * A class that accepts the data from a type 200 file in the form of a struct and converts it to a JSON object.
-**/
+*/
 
 class MHO_MKType200Converter
 {

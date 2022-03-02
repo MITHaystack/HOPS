@@ -43,8 +43,21 @@ void MHO_MKType200Converter::ConvertToJSON() {
 
         //first one is a string (converted from a char array of length 3)
         fJSON["record_id"] = std::string(fPtr->record_id, 3); 
-
-        //do the rest here... (skip the dates for now)
+	fJSON["version_no"] = std::string(fPtr->version_no, 2);
+	fJSON["unused1"] = std::string(fPtr->unused1, 3);
+	fJSON["software_rev"] = std::string(fPtr->software_rev, 10);
+	fJSON["expt_no"] = std::string(fPtr->expt_no);
+	fJSON["exper_name"] = std::string(fPtr->exper_name, 32);
+	fJSON["scan_name"] = std::string(fPtr->scan_name, 32);
+	fJSON["correlator"] = std::string(fPtr->correlator, 8);
+	fJSON["start_offset"] = std::string(fPtr->start_offset);
+	fJSON["stop_offset"] = std::string(fPtr->stop_offset);
+	
+	//make the dates null for now due to the date unit of measurement requirement being uknown
+	fJSON["scantime"] = "null";
+	fJSON["corr_date"] = "null";
+	fJSON["fourfit_date"] = "null";
+	fJSON["frt"] = "null";
     }
 }
 
