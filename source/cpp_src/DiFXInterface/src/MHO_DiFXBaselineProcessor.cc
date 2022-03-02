@@ -61,8 +61,8 @@ MHO_DiFXBaselineProcessor::Organize()
     fBaselineName = fRefStation + ":" + fRemStation;
     fBaselineShortName = fBaselineName; //TODO FIXME - need to map station names to single character ids like difx2mark4
 
-    //get the AP length
-    fAPLength = (*fInput)["config"]["tInt"];
+    //get the AP length (which config should we use if there is more than one?)
+    fAPLength = (*fInput)["config"][0]["tInt"];
 
     //check number of polpairs
     fNPolPairs = fPolPairSet.size();
