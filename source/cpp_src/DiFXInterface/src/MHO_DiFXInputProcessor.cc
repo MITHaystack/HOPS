@@ -373,7 +373,7 @@ MHO_DiFXInputProcessor::ExtractDatastreamQuantities(int n)
         // 	enum DataSource dataSource;	/* MODULE, FILE, NET, other? */
 
         ds["phaseCalIntervalMHz"] = d->phaseCalIntervalMHz;
-        ds["phaseCalBaseMHz"] = d->phaseCalBaseMHz;
+        //ds["phaseCalBaseMHz"] = d->phaseCalBaseMHz;
         ds["tcalFrequency"] = d->tcalFrequency;
         ds["nRecTone"] = d->nRecTone;
         for(int i=0;i<d->nRecTone;i++){ds["recToneFreq"].push_back(d->recToneFreq[i]);}
