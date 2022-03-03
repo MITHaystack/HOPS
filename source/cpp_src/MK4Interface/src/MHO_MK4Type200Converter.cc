@@ -51,6 +51,11 @@ void MHO_MKType200Converter::ConvertToJSON() {
 	fJSON["start_offset"] = fPtr->start_offset;
 	fJSON["stop_offset"] = fPtr->stop_offset;
 	
+	//handle short
+	for(int i=0; i<10; i++) { 
+	   fJSON["software_rev"].push_back(fPtr->software_rev[i]);
+	}
+
 	//make the dates null for now due to the date unit of measurement requirement being uknown
 	fJSON["scantime"] = "null";
 	fJSON["corr_date"] = "null";
