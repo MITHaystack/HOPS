@@ -49,6 +49,25 @@ class MHO_FileKey
 
         virtual ~MHO_FileKey(){};
 
+        bool IsEmpty()
+        {
+            if(fSync){return false;}
+            if(fLabel){return false;}
+            for(uint32_t i=0; i<MHO_FileKeyNameLength; i++)
+            {
+                if(fName[i] != '\0'){return false;};
+            }
+            for(std::size_t i=0; i<MHO_UUID_LENGTH; i++)
+            {
+                if(fObjectId[i] != 0){return false;}
+            }
+            for(std::size_t i=0; i<MHO_UUID_LENGTH; i++)
+            {
+                if(fTypeId[i] != 0){return false;}
+            }
+            if(fSize){return false;}
+            return true;
+        }
 
         bool operator==(const MHO_FileKey& rhs)
         {

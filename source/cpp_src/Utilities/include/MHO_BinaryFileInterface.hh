@@ -181,7 +181,8 @@ class MHO_BinaryFileInterface
             fCollectKeys = false;
         }
 
-        template<class XWriteType> bool Write(const XWriteType& obj, const std::string& shortname = "", const uint32_t label = 0)
+        template<class XWriteType> MHO_FileKey 
+        Write(const XWriteType& obj, const std::string& shortname = "", const uint32_t label = 0)
         {
             if( fObjectStreamer.IsOpenForWrite() )
             {
@@ -198,29 +199,31 @@ class MHO_BinaryFileInterface
                     {
                         fKeyStreamer << key;
                     }
-                    return true;
+                    return key;
                 }
                 else
                 {
                     msg_error("file", "Failed to write object, stream state returned: " << fObjectStreamer.GetStream().rdstate() << eom);
-                    return false;
+                    return fNullKey;
                 }
             }
             else
             {
-                return false;
                 msg_error("file", "Failed to write object, file not open for writing." << eom);
+                return fNullKey;
             }
         }
 
         //overload for char array name
-        template<class XWriteType> bool Write(const XWriteType& obj, const char* shortname, const uint32_t label = 0)
+        template<class XWriteType> MHO_FileKey
+        Write(const XWriteType& obj, const char* shortname, const uint32_t label = 0)
         {
             std::string sshortname(shortname);
             return this->Write(obj, sshortname, label);
         }
 
-        template<class XReadType> bool Read(XReadType& obj, MHO_FileKey& obj_key)
+        template<class XReadType> bool 
+        Read(XReadType& obj, MHO_FileKey& obj_key)
         {
             if(fObjectStreamer.IsOpenForRead())
             {
@@ -284,6 +287,8 @@ class MHO_BinaryFileInterface
         MHO_BinaryFileStreamer fKeyStreamer;
         MHO_UUIDGenerator fUUIDGenerator;
         MHO_MD5HashGenerator fMD5Generator;
+
+        MHO_FileKey fNullKey;
 
         //generate the file object key
         template<class XWriteType>
