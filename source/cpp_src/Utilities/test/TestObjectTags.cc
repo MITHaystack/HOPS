@@ -62,7 +62,8 @@ int main(int /*argc*/, char** /*argv*/)
         for(auto it = keys.begin(); it != keys.end(); it++)
         {
             std::cout<<"key = "<<*it<<std::endl;
-            std::cout<<"key value type: "<< test2.GetTagValueType(*it) << std::endl;
+            std::cout<<"key value type = "<< test2.GetTagValueType(*it) << std::endl;
+            std::cout<<"key value = "<<test2.GetTagValueAsString(*it) <<std::endl;
         }
     }
     else{std::cout<<" error opening file to read"<<std::endl; }

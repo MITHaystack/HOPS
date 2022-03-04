@@ -14,14 +14,16 @@
 #include <set>
 #include <string>
 #include <vector>
+#include <sstream>
 
 #include "MHO_UUID.hh"
 #include "MHO_Taggable.hh"
+#include "MHO_ExtensibleElement.hh"
 
 namespace hops{
 
 
-class MHO_ObjectTags: public MHO_Serializable
+class MHO_ObjectTags: public MHO_Taggable, public MHO_ExtensibleElement
 {
     public:
 
@@ -39,7 +41,7 @@ class MHO_ObjectTags: public MHO_Serializable
         //insert a uuid for an object to be associated with our tag collection
         void AddObjectUUID(const MHO_UUID& uuid)
         {
-            if( !IsObjectUUIDPresent(uuid) ){fObjectUUIDSet.insert(uuid);}
+            fObjectUUIDSet.insert(uuid);
         }
 
         void RemoveObjectUUID(const MHO_UUID& uuid)
@@ -65,18 +67,18 @@ class MHO_ObjectTags: public MHO_Serializable
         std::size_t GetNTags() const
         {
             std::size_t n = 0;
-            n += fTags.Size<char>();
-            n += fTags.Size<bool>();
-            n += fTags.Size<int>();
-            n += fTags.Size<double>();
-            n += fTags.Size<std::string>();
+            n += this->Size<char>();
+            n += this->Size<bool>();
+            n += this->Size<int>();
+            n += this->Size<double>();
+            n += this->Size<std::string>();
             return n;
         }
 
         //check if a tag with the given name is present
         bool IsTagPresent(const std::string& tag_name) const
         {   
-            return fTags.HasKey(tag_name);
+            return this->HasKey(tag_name);
         }
 
 
@@ -97,7 +99,7 @@ class MHO_ObjectTags: public MHO_Serializable
         template<typename XValueType>
         void SetTagValue(const std::string& tag_name, const XValueType& tag_value)
         {
-            fTags.Insert(tag_name, tag_value);
+            this->Insert(tag_name, tag_value);
         }
 
         template<typename XValueType>
@@ -111,31 +113,81 @@ class MHO_ObjectTags: public MHO_Serializable
         template<typename XValueType>
         bool GetTagValue(const std::string& tag_name, XValueType& tag_value)
         {
-            return fTags.Retrieve(tag_name, tag_value);
+            return this->Retrieve(tag_name, tag_value);
         }
 
         //get the number of tags present
         std::string GetTagValueType(const std::string& tag_name) const
         {
             //TODO FIXME, what if key is not unique among types?
-            if(fTags.ContainsKey<char>(tag_name)){return std::string("char");}
-            if(fTags.ContainsKey<bool>(tag_name)){return std::string("bool");}
-            if(fTags.ContainsKey<int>(tag_name)){return std::string("int");}
-            if(fTags.ContainsKey<double>(tag_name)){return std::string("double");}
-            if(fTags.ContainsKey<std::string>(tag_name)){return std::string("string");}
+            if(this->ContainsKey<char>(tag_name)){return std::string("char");}
+            if(this->ContainsKey<bool>(tag_name)){return std::string("bool");}
+            if(this->ContainsKey<int>(tag_name)){return std::string("int");}
+            if(this->ContainsKey<double>(tag_name)){return std::string("double");}
+            if(this->ContainsKey<std::string>(tag_name)){return std::string("string");}
             return std::string("");
         }
+
+        //get the number of tags present
+        std::string GetTagValueAsString(const std::string& tag_name) const
+        {
+            std::stringstream ss;
+            //TODO FIXME, what if key is not unique among types?
+            if(this->ContainsKey<char>(tag_name))
+            {
+                char value;
+                this->Retrieve(tag_name,value);
+                ss << value;
+                return ss.str();
+            }
+
+            if(this->ContainsKey<bool>(tag_name))
+            {
+                bool value;
+                this->Retrieve(tag_name,value);
+                ss << value;
+                return ss.str();
+            }
+            
+            if(this->ContainsKey<int>(tag_name))
+            {
+                int value;
+                this->Retrieve(tag_name,value);
+                ss << value;
+                return ss.str();
+            }
+
+            if(this->ContainsKey<double>(tag_name))
+            {
+                double value;
+                this->Retrieve(tag_name,value);
+                ss << value;
+                return ss.str();
+            }
+
+            if(this->ContainsKey<std::string>(tag_name))
+            {
+                std::string value;
+                this->Retrieve(tag_name,value);
+                return value;
+            }
+
+            //return nothing
+            return std::string("");
+
+        }
+
 
         //collect all of the present tag names
         void DumpTags(std::vector< std::string >& tag_names) const
         {
             tag_names.clear();
             std::vector<std::string> keys;
-            keys = fTags.DumpKeys<char>(); tag_names.insert(tag_names.end(), keys.begin(), keys.end());
-            keys = fTags.DumpKeys<bool>(); tag_names.insert(tag_names.end(), keys.begin(), keys.end());
-            keys = fTags.DumpKeys<int>(); tag_names.insert(tag_names.end(), keys.begin(), keys.end());
-            keys = fTags.DumpKeys<double>(); tag_names.insert(tag_names.end(), keys.begin(), keys.end());
-            keys = fTags.DumpKeys<std::string>(); tag_names.insert(tag_names.end(), keys.begin(), keys.end());
+            keys = this->DumpKeys<char>(); tag_names.insert(tag_names.end(), keys.begin(), keys.end());
+            keys = this->DumpKeys<bool>(); tag_names.insert(tag_names.end(), keys.begin(), keys.end());
+            keys = this->DumpKeys<int>(); tag_names.insert(tag_names.end(), keys.begin(), keys.end());
+            keys = this->DumpKeys<double>(); tag_names.insert(tag_names.end(), keys.begin(), keys.end());
+            keys = this->DumpKeys<std::string>(); tag_names.insert(tag_names.end(), keys.begin(), keys.end());
         }
 
     protected:
@@ -144,7 +196,7 @@ class MHO_ObjectTags: public MHO_Serializable
         std::set< MHO_UUID > fObjectUUIDSet;
     
         //tag dictionary 
-        MHO_Taggable fTags;
+        //MHO_Taggable fTags;
 
 
     public:
@@ -154,8 +206,8 @@ class MHO_ObjectTags: public MHO_Serializable
             uint64_t total_size = 0;
             total_size += sizeof(MHO_ClassVersion); //version number
             total_size += sizeof(uint64_t); //number of uuids 
-            total_size += sizeof(MHO_UUID)*(fObjectUUIDSet.size());
-            total_size += fTags.GetSerializedSize();
+            total_size += MHO_UUID::ByteSize()*(fObjectUUIDSet.size());
+            total_size += MHO_Taggable::GetSerializedSize();
             return total_size;
         }
 
@@ -184,7 +236,7 @@ class MHO_ObjectTags: public MHO_Serializable
                     aData.AddObjectUUID(tmp_uuid);
                 }
                 //now do the taggable element;
-                s >> aData.fTags;
+                s >> static_cast< MHO_Taggable& >(aData);
             }
             return s;
         };
@@ -202,7 +254,7 @@ class MHO_ObjectTags: public MHO_Serializable
                 s << *it;
             }
             //now do the taggable element;
-            s << aData.fTags;
+            s << static_cast< const MHO_Taggable& >(aData);
 
             return s;
         };
