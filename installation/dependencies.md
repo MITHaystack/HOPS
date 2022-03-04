@@ -10,3 +10,10 @@
 | fftw3      | 3       | No       | Yes       | libfftw3-3     |                |               |                                    |
 | gfortran   | 9.3.0+  | No       | Yes       | gfortran       |                |               |                                    |
 | PGPLOT     | 5.2     | No       | Yes       |                |                |               | Recommended to compile from source |
+| doxygen    |         |          | Yes       | doxygen        |                |               | Used for documentation             |
+| help2man   |         |          | Yes       | help2man       |  		|		| 				     |
+| sphinx     |         |          | Yes       | python3-sphinx |       		| 		|				     |
+| swig	     |         |          | Yes       |                |                |               |    				     |
+| pybind11   |	       |	  | Yes	      |		       |		|		|				     |
+| LaTeX	     |         |          | Yes       | texlive-full   |		|		|				     |
+
