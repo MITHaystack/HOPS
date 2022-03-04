@@ -20,12 +20,12 @@ int main(int /*argc*/, char** /*argv*/)
     test.AddObjectUUID(a_test_uuid);
     test.AddObjectUUID(a_test_uuid2);
 
-    test.SetTagValue("tag1", "val1");
+    test.SetTagValue("tag1", std::string("val1") );
     test.SetTagValue("tag2", 1);
     test.SetTagValue("tag3", 3.14);
     test.SetTagValue("tag4", 'U');
     test.SetTagValue("tag5", true);
-    test.SetTagValue("tag1", "val1-1"); //reset tag1
+    test.SetTagValue("tag1", std::string("val1-1")); //reset tag1
 
     std::string filename = "./test-tags.bin";
 
@@ -56,18 +56,16 @@ int main(int /*argc*/, char** /*argv*/)
     {
         MHO_FileKey key;
         inter.Read(test2, key);
-        // 
-        // std::vector< std::pair<std::string, std::string> > tv_pairs;
-        // test2.DumpTagValuePairs(tv_pairs);
-        // for(auto it = tv_pairs.begin(); it != tv_pairs.end(); it++)
-        // {
-        //     std::cout<<"tag:value = "<<it->first<<" : "<<it->second<<std::endl;
-        // }
+        
+        std::vector< std::string > keys;
+        test2.DumpTags(keys);
+        for(auto it = keys.begin(); it != keys.end(); it++)
+        {
+            std::cout<<"key = "<<*it<<std::endl;
+            std::cout<<"key value type: "<< test2.GetTagValueType(*it) << std::endl;
+        }
     }
-    else
-    {
-        std::cout<<" error opening file to read"<<std::endl;
-    }
+    else{std::cout<<" error opening file to read"<<std::endl; }
 
     inter.Close();
 
