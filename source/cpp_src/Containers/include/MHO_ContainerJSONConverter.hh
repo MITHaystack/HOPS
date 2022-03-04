@@ -23,6 +23,7 @@
 #include "MHO_ScalarContainer.hh"
 #include "MHO_VectorContainer.hh"
 #include "MHO_TableContainer.hh"
+#include "MHO_ObjectTags.hh"
 
 namespace hops
 {
@@ -119,6 +120,8 @@ class MHO_JSONConverter
         json fJSON;
 
 };
+
+
 
 
 
@@ -396,6 +399,59 @@ class MHO_ContainerJSONConverter: public MHO_JSONConverter
 
         };
 
+};
+
+
+
+template<> 
+class MHO_ContainerJSONConverter<MHO_ObjectTags>: public MHO_JSONConverter
+{
+    public:
+
+        MHO_ContainerJSONConverter():MHO_JSONConverter()
+        {
+            fContainer = nullptr;
+        }
+
+        MHO_ContainerJSONConverter(MHO_ExtensibleElement* element):MHO_JSONConverter()
+        {
+            fContainer = dynamic_cast< MHO_ObjectTags* >(element);
+        }
+
+        virtual ~MHO_ContainerJSONConverter(){}
+
+        virtual void SetObjectToConvert(MHO_Serializable* obj)
+        {
+            fContainer = dynamic_cast< MHO_ObjectTags* >(obj);
+        };
+
+        virtual void ConstructJSONRepresentation()
+        {
+            if(fContainer != nullptr){ ConstructJSON(fContainer);} 
+        }
+
+    private:
+
+        void ConstructJSON(MHO_ObjectTags* obj)
+        {
+            fJSON.clear();
+            std::string class_name = MHO_ClassIdentity::ClassName<MHO_ObjectTags>();
+            std::string class_uuid = MHO_ClassIdentity::GetUUIDFromClass<MHO_ObjectTags>().as_string();
+            fJSON["class_name"] =  class_name;
+            fJSON["class_uuid"] = class_uuid;
+
+            std::vector< MHO_UUID > obj_uuids = obj->GetAllObjectUUIDs();
+            for(std::size_t i=0; i<obj_uuids.size(); i++)
+            {
+                fJSON["object_uuids"].push_back(obj_uuids[i].as_string());
+            }
+
+            json jtags;
+            FillJSONFromCommonMap(obj, jtags);
+            fJSON["tags"] = jtags;
+        };
+
+        MHO_ObjectTags* fContainer;
 };
 
 

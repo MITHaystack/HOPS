@@ -40,12 +40,13 @@ namespace hops
 
 MHO_ContainerDictionary::MHO_ContainerDictionary()
 {
+    AddClassType<MHO_ObjectTags>();
+
     //NOTE: Most of the different types below are not needed or used anywhere 
     //so we could easily trim this long list down to a much more focused set of 
     //objects. However, having a wide variety defined already lets us handle stuff 
     //which may fit into these objects but which has not been defined yet, and 
     //demonstrate how to add support for new types
-
 
     #ifndef ADD_EXTRA_CONTAINERS
 
@@ -57,6 +58,7 @@ MHO_ContainerDictionary::MHO_ContainerDictionary()
     AddClassType<ch_baseline_axis_pack>();
     AddClassType<ch_baseline_data_type>(); 
     AddClassType<ch_baseline_weight_type>(); 
+
     //don't need sbd type, as it is the same as visibility type
 
     #else
