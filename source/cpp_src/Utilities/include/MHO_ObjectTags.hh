@@ -114,6 +114,18 @@ class MHO_ObjectTags: public MHO_Serializable
             return fTags.Retrieve(tag_name, tag_value);
         }
 
+        //get the number of tags present
+        std::string GetTagValueType(const std::string& tag_name) const
+        {
+            //TODO FIXME, what if key is not unique among types?
+            if(fTags.ContainsKey<char>(tag_name)){return std::string("char");}
+            if(fTags.ContainsKey<bool>(tag_name)){return std::string("bool");}
+            if(fTags.ContainsKey<int>(tag_name)){return std::string("int");}
+            if(fTags.ContainsKey<double>(tag_name)){return std::string("double");}
+            if(fTags.ContainsKey<std::string>(tag_name)){return std::string("string");}
+            return std::string("");
+        }
+
         //collect all of the present tag names
         void DumpTags(std::vector< std::string >& tag_names) const
         {
