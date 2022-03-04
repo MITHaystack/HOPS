@@ -14,17 +14,19 @@ int main(int /*argc*/, char** /*argv*/)
     MHO_ObjectTags test;
 
     MHO_UUIDGenerator ugen;
-    MHO_UUID a_test_uuid;
-    a_test_uuid = ugen.GenerateUUID();
+    MHO_UUID a_test_uuid = ugen.GenerateUUID();
+    MHO_UUID a_test_uuid2 = ugen.GenerateUUID();
 
-    test.SetObjectUUID(a_test_uuid);
-    test.SetTag("tag1", "val1");
-    test.SetTag("tag2", "val2");
-    test.SetTag("tag3", "val3");
-    test.SetTag("tag4", "val4");
-    test.SetTag("tag5", "val5");
-    test.SetTag("tag1", "val1-1"); //reset tag1
-    test.SetObjectName("test");
+    test.AddObjectUUID(a_test_uuid);
+    test.AddObjectUUID(a_test_uuid2);
+
+    test.SetTagValue("tag1", "val1");
+    test.SetTagValue("tag2", 1);
+    test.SetTagValue("tag3", 3.14);
+    test.SetTagValue("tag4", 'U');
+    test.SetTagValue("tag5", true);
+    test.SetTagValue("tag1", "val1-1"); //reset tag1
+
     std::string filename = "./test-tags.bin";
 
     std::cout<<" number of bytes of this object: "<< test.GetSerializedSize()<<std::endl;
@@ -54,14 +56,13 @@ int main(int /*argc*/, char** /*argv*/)
     {
         MHO_FileKey key;
         inter.Read(test2, key);
-        //std::cout<<"object label = "<<blabel<<std::endl;
-
-        std::vector< std::pair<std::string, std::string> > tv_pairs;
-        test2.DumpTagValuePairs(tv_pairs);
-        for(auto it = tv_pairs.begin(); it != tv_pairs.end(); it++)
-        {
-            std::cout<<"tag:value = "<<it->first<<" : "<<it->second<<std::endl;
-        }
+        // 
+        // std::vector< std::pair<std::string, std::string> > tv_pairs;
+        // test2.DumpTagValuePairs(tv_pairs);
+        // for(auto it = tv_pairs.begin(); it != tv_pairs.end(); it++)
+        // {
+        //     std::cout<<"tag:value = "<<it->first<<" : "<<it->second<<std::endl;
+        // }
     }
     else
     {
