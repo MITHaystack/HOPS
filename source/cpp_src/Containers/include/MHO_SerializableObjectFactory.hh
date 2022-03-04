@@ -27,13 +27,10 @@ class MHO_SerializableObjectFactory
         virtual MHO_Serializable* Build(){return nullptr;}
         virtual MHO_Serializable* BuildFromFileInterface(MHO_BinaryFileInterface& /*inter*/){return nullptr;}
 
-        virtual bool WriteToFileInterface(MHO_BinaryFileInterface& /*inter*/, 
+        virtual MHO_FileKey WriteToFileInterface(MHO_BinaryFileInterface& /*inter*/, 
                                           const MHO_Serializable* /*object*/,
                                           const std::string& shortname = "", 
-                                          const uint32_t label = 0)
-        {
-            return false;
-        };
+                                          const uint32_t label = 0) = 0;
 
     private:
 };
@@ -63,35 +60,35 @@ class MHO_SerializableObjectFactorySpecific: public MHO_SerializableObjectFactor
                 if(ok){return obj;}
                 else 
                 {
-                    msg_debug("file", "failed to build object from file." << eom);
+                    msg_warn("file", "failed to build object from file." << eom);
                     delete obj; 
                     obj = nullptr;
                 }
             }
             else 
             {
-                msg_debug("file", "failed to build object from file, interface not open." << eom);
+                msg_warn("file", "failed to build object from file, interface not open." << eom);
             }
             return obj;
         }
 
-        virtual bool WriteToFileInterface(MHO_BinaryFileInterface& inter, 
+        virtual MHO_FileKey WriteToFileInterface(MHO_BinaryFileInterface& inter, 
                                           const MHO_Serializable* object,
                                           const std::string& shortname = "", 
                                           const uint32_t label = 0)
         {
 
             const XClassType* obj = dynamic_cast<const XClassType*>(object);
-            bool ok = false;
+            MHO_FileKey write_key;
             if(obj != nullptr )
             {
                 if(inter.IsOpenForWrite())
                 {
-                    ok = inter.Write(*obj, shortname, label);
+                    write_key = inter.Write(*obj, shortname, label);
                 }
             }
-            if(!ok){msg_debug("file", "failed to write object to file." << eom);}
-            return ok;
+            if(write_key.IsEmpty()){msg_warn("file", "failed to write object to file." << eom);}
+            return write_key;
         }
 
     private:
