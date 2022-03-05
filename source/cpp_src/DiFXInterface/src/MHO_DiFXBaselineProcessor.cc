@@ -264,16 +264,15 @@ MHO_DiFXBaselineProcessor::WriteVisibilityObjects(std::string output_dir)
     bool status = inter.OpenToWrite(output_file);
     if(status)
     {
+
         uint32_t label = 0xFFFFFFFF; //someday make this mean something
-        MHO_FileKey v_key = inter.Write(*fV, "vis", label);
-        MHO_FileKey w_key = inter.Write(*fW, "weight", label);
 
-        fTags.AddObjectUUID(v_key.fObjectId);
-        fTags.AddObjectUUID(w_key.fObjectId);
-
+        fTags.AddObjectUUID(fV->GetObjectUUID());
+        fTags.AddObjectUUID(fW->GetObjectUUID());
         inter.Write(fTags, "tags", label);
 
-
+        inter.Write(*fV, "vis", label);
+        inter.Write(*fW, "weight", label);
         inter.Close();
     }
     else
