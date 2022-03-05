@@ -109,8 +109,8 @@ MHO_ContainerFileInterface::WriteStoreToFile(MHO_ContainerStore& store)
             {
                 MHO_Serializable* obj = store.RetrieveObject(*it, *it2);
                 std::pair<std::string, uint32_t> name_label = store.GetObjectNameLabel(*it,*it2);
-                MHO_FileKey key = factory->second->WriteToFileInterface(fFileInterface, obj, name_label.first, name_label.second);
-                if(key.IsEmpty())
+                bool ok = factory->second->WriteToFileInterface(fFileInterface, obj, name_label.first, name_label.second);
+                if(!ok)
                 {
                     msg_warn("containers", "factory failed to write object to file with type: "<< fUUID2ClassName[*it] << eom );
                 }
