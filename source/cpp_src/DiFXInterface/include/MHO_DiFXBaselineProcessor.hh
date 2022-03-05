@@ -20,6 +20,7 @@
 #include "MHO_ChannelizedVisibilities.hh"
 #include "MHO_VisibilityChannelizer.hh"
 #include "MHO_WeightChannelizer.hh"
+#include "MHO_ObjectTags.hh"
 
 #include "MHO_JSONHeaderWrapper.hh"
 
@@ -74,6 +75,7 @@ class MHO_DiFXBaselineProcessor
         //the baseline data in hops data containers
         ch_baseline_weight_type* fW;
         ch_baseline_data_type* fV;
+        MHO_ObjectTags fTags;
 
         //comparison predicate for time-sorting visibility record data
         struct VisRecordTimeLess

@@ -116,6 +116,7 @@ class MHO_FileKey
         static uint64_t ByteSize(){return 64;};
 
     //public access to members:
+    public:
     
         uint32_t fSync; //32 bits for sync word for location of object key
         uint32_t fLabel; //32 bits for user/developer assigned labels

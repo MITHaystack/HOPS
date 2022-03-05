@@ -129,6 +129,12 @@ MHO_DiFXBaselineProcessor::ConstructVisibilityFileObjects()
 
     if(fCanChannelize && fInput != nullptr)
     {
+
+        //insert the difx input data as a json string
+        std::stringstream jss;
+        jss << *fInput;
+        fTags.SetTagValue("difx_input_json", jss.str());
+
     	//first construct a channelized visibility container
         if(fV){delete fV; fV = nullptr;}
         if(fW){delete fW; fW = nullptr;}
@@ -259,8 +265,15 @@ MHO_DiFXBaselineProcessor::WriteVisibilityObjects(std::string output_dir)
     if(status)
     {
         uint32_t label = 0xFFFFFFFF; //someday make this mean something
-        inter.Write(*fV, "vis", label);
-        inter.Write(*fW, "weight", label);
+        MHO_FileKey v_key = inter.Write(*fV, "vis", label);
+        MHO_FileKey w_key = inter.Write(*fW, "weight", label);
+
+        fTags.AddObjectUUID(v_key.fObjectId);
+        fTags.AddObjectUUID(w_key.fObjectId);
+
+        inter.Write(fTags, "tags", label);
+
+
         inter.Close();
     }
     else
