@@ -10,7 +10,7 @@ using namespace hops;
 
 int main(int argc, char** argv)
 {
-    std::string usage = "DumpFileToJSON -f <file> -d <detail level 0-3> -o <output_file>";
+    std::string usage = "DumpFileObjectToJSON -f <file> -d <detail level 0-3> -o <output_file>";
 
     MHO_Message::GetInstance().AcceptAllKeys();
     MHO_Message::GetInstance().SetMessageLevel(eDebug);
@@ -81,8 +81,6 @@ int main(int argc, char** argv)
     std::ofstream outFile(output_file.c_str(), std::ofstream::out);
     outFile << obj_json;
     outFile.close();
-
-    std::cout<<"Done."<<std::endl;
 
     return 0;
 }
