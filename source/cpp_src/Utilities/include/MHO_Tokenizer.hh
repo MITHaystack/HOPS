@@ -15,9 +15,8 @@ namespace hops {
 
 class MHO_Tokenizer{
     public:
-        MHO_Tokenizer(); //TODO ensure this is implemented correctly
-        ~MHO_Tokenizer(); //TODO ensure this is implemented correctly
-
+        MHO_Tokenizer(); 
+        ~MHO_Tokenizer();
 
         /** Include empty tokens set fIncludeEmptyTokens to true for situations where two delimiters surround a substring which would result in an empty string
         * @param None
