@@ -22,7 +22,7 @@ MHO_DiFXScanProcessor::ProcessScan(MHO_DiFXScanFileSet& fileSet)
     //load the visibilities
     MHO_DiFXVisibilityProcessor visProcessor;
     visProcessor.SetFilename(fileSet.fVisibilityFileList[0]);
-    visProcessor.ReadDIFX_File(fAllBaselineVisibilities);
+    visProcessor.ReadDIFXFile(fAllBaselineVisibilities);
 
     ConstructRootFileObject();
 
@@ -42,13 +42,13 @@ MHO_DiFXScanProcessor::ProcessScan(MHO_DiFXScanFileSet& fileSet)
 
 
 // void 
-// MHO_DiFXScanProcessor::ReadPCAL_File(std::string filename)
+// MHO_DiFXScanProcessor::ReadPCALFile(std::string filename)
 // {
 //     //TODO 
 // }
 // 
 // void 
-// MHO_DiFXScanProcessor::ReadIM_File(std::string filename)
+// MHO_DiFXScanProcessor::ReadIMFile(std::string filename)
 // {
 //     //TODO
 // }

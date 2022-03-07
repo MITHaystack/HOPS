@@ -53,8 +53,8 @@ class MHO_DiFXScanProcessor
 
         void LoadInputFile(std::string filename);
 
-        // void ReadPCAL_File(std::string filename);
-        // void ReadIM_File(std::string filename);
+        // void ReadPCALFile(std::string filename);
+        // void ReadIMFile(std::string filename);
         void ConstructRootFileObject();
         void ConstructStationFileObjects();
 
