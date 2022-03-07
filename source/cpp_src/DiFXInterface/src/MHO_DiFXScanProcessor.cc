@@ -33,6 +33,13 @@ MHO_DiFXScanProcessor::ProcessScan(MHO_DiFXScanFileSet& fileSet)
         it->second.WriteVisibilityObjects(fFileSet->fOutputBaseDirectory);
     }
 
+    //process pcal files (if they exist)
+    for(auto it = fileSet.fPCALFileList.begin(); it != fileSet.fPCALFileList.end(); it++)
+    {
+        fPCalProcessor.SetFilename(*it);
+        fPCalProcessor.ReadPCalFile();
+    }
+
     ConstructStationFileObjects();
 
     //clear up and reset for next scan
