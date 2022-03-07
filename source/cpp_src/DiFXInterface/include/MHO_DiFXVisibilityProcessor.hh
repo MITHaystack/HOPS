@@ -38,7 +38,7 @@ class MHO_DiFXVisibilityProcessor
 
         //read the visibilities from Swinburne file and allocate memory to store them as we go
         //memory management of the visibility records is delegated to the caller
-        void ReadDIFX_File(std::map< int, MHO_DiFXBaselineProcessor >& allBaselineVisibilities);
+        void ReadDIFXFile(std::map< int, MHO_DiFXBaselineProcessor >& allBaselineVisibilities);
 
     private:
 

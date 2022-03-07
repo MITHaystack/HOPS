@@ -6,7 +6,7 @@ namespace hops
 {
 
 void 
-MHO_DiFXVisibilityProcessor::ReadDIFX_File(std::map< int, MHO_DiFXBaselineProcessor >& allBaselineVisibilities)
+MHO_DiFXVisibilityProcessor::ReadDIFXFile(std::map< int, MHO_DiFXBaselineProcessor >& allBaselineVisibilities)
 {
     //assume allBaselineVis and allBaselineUniquePolPairs are empty to start
     MHO_DiFXVisibilityRecord visRecord;
