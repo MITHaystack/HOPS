@@ -32,6 +32,7 @@
 #include "MHO_DiFXVisibilityRecord.hh"
 #include "MHO_DiFXVisibilityProcessor.hh"
 #include "MHO_DiFXInputProcessor.hh"
+#include "MHO_DiFXPCalProcessor.hh"
 #include "MHO_JSONHeaderWrapper.hh"
 
 namespace hops 
@@ -63,7 +64,7 @@ class MHO_DiFXScanProcessor
         json fInput;
 
         std::map< int, MHO_DiFXBaselineProcessor > fAllBaselineVisibilities;
-
+        MHO_DiFXPCalProcessor fPCalProcessor;
 
 };
 

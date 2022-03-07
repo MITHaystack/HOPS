@@ -13,6 +13,7 @@
 #include <string>
 #include <vector>
 #include <complex>
+#include <utility>
 
 #include "MHO_Tokenizer.hh"
 
@@ -40,20 +41,24 @@ class MHO_DiFXPCalProcessor
         MHO_Tokenizer fTokenizer;
         std::vector< std::string > fTokens;
 
-
         struct pcal_period
         {
-            double mjd_time;
-            double mjd_ap;
+            std::string station;
+            double mjd_start;
+            double mjd_period;
             //what other things do we need?
         };
 
         struct pcal_phasor 
         {
-            char pol;
+            std::string pol;
             double tone_freq;
-            std::complex<float> phasor;
+            std::complex<double> phasor;
         };
+
+        //PCAL data
+        std::vector< std::pair< pcal_period, std::vector< pcal_phasor > > > fPCalData;
+
 
 };
 
