@@ -3,7 +3,7 @@
 #include <fstream>
 #include <cstdlib>
 
-#include <iostream>
+//#include <iostream>
 
 namespace hops 
 {
@@ -25,8 +25,8 @@ MHO_DiFXPCalProcessor::ReadPCalFile()
     if(fFilename != "")
     {
         //open file
+        
         std::ifstream file(fFilename.c_str());
-
         if(file.is_open())
         {
             //read lines until end 
@@ -35,7 +35,7 @@ MHO_DiFXPCalProcessor::ReadPCalFile()
                 if(fLine.size() != 0)
                 {
                     //parse line and covert tokens into data points 
-                    std::cout<<"line = "<<fLine<<std::endl;
+                    //std::cout<<"line = "<<fLine<<std::endl;
                     if(!IsComment())
                     {
                         
@@ -94,7 +94,8 @@ MHO_DiFXPCalProcessor::ProcessTokens()
         pp.station = sta;
         pp.mjd_start = mjd;
         pp.mjd_period = period;
-
+        fMJDTimes.insert(mjd);
+        
         //now loop through the rest of the p-cal phasor data (4 tokens at a time)
         int itone = 0;
         while(itone >= 0) //last pcal entry in line should start with -1
@@ -110,6 +111,18 @@ MHO_DiFXPCalProcessor::ProcessTokens()
         }
         fPCalData.push_back( std::make_pair(pp, tone_phasors) );
     }
+    //ensure 
+}
+
+
+void 
+MHO_DiFXPCalProcessor::Organize()
+{
+    //we need to run through all of the p-cal data and merge tone/phasor data 
+    //from the same time period (can happen w/ multiple datastream-correlation)
+    //then stash them in a table container
+
+    
 
 }
 

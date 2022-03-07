@@ -16,6 +16,8 @@
 #include <utility>
 
 #include "MHO_Tokenizer.hh"
+#include "MHO_Visibilities.hh"
+#include "MHO_ChannelizedVisibilities.hh"
 
 namespace hops 
 {
@@ -29,6 +31,7 @@ class MHO_DiFXPCalProcessor
         void SetFilename(std::string filename){fFilename = filename;}
 
         void ReadPCalFile();
+        void Organize();
 
     private:
 
@@ -58,7 +61,7 @@ class MHO_DiFXPCalProcessor
 
         //PCAL data
         std::vector< std::pair< pcal_period, std::vector< pcal_phasor > > > fPCalData;
-
+        std::set< double > fMJDTimes;
 
 };
 

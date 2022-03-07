@@ -17,6 +17,10 @@ using visibility_type = std::complex<VFP_TYPE>;
 typedef double WFP_TYPE;
 using weight_type = WFP_TYPE;
 
+
+typedef double PCAL_TYPE;
+using pcal_type = std::complex<PCAL_TYPE>;
+
 }
 
 #endif /* end of include guard: MHO_VisibilityType_H__ */

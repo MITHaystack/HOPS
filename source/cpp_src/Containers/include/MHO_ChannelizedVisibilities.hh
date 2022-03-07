@@ -21,6 +21,7 @@ namespace hops
 {
 
 using ch_polprod_axis_type = MHO_Axis<std::string>;
+using ch_pol_axis_type = MHO_Axis<std::string>;
 using ch_channel_axis_type = MHO_Axis<int>; //channels are simply numbered
 using ch_frequency_axis_type = MHO_Axis<double>;
 using ch_time_axis_type = MHO_Axis<double>;
@@ -35,6 +36,11 @@ using ch_baseline_axis_pack = MHO_AxisPack< ch_polprod_axis_type, ch_channel_axi
 using ch_baseline_data_type = MHO_TableContainer< visibility_type, ch_baseline_axis_pack >;
 using ch_baseline_weight_type = MHO_TableContainer< weight_type, ch_baseline_axis_pack >;
 using ch_baseline_sbd_type = MHO_TableContainer< visibility_type, ch_baseline_axis_pack >;
+
+//phase cal data extracted by the correlator
+using ch_pcal_axis_pack = MHO_AxisPack< ch_pol_axis_type, ch_time_axis_type, ch_frequency_axis_type >;
+using ch_pcal_phasor_type = MHO_TableContainer< pcal_type, ch_pcal_axis_pack >; 
+
 
 }//end of hops namespaces
 
