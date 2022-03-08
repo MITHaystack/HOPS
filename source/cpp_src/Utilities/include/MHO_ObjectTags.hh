@@ -7,68 +7,209 @@
 *Author: J. Barrett
 *Email: barrettj@mit.edu
 *Date:
-*Description: container for tag/value meta-data to be attached to an object UUID
-* could also be used to cross-reference objects via their UUID
+*Description: container for tag/value meta-data to be attached to objects 
+*via association with their UUID
 */
 
-#include <map>
+#include <set>
 #include <string>
 #include <vector>
-#include <utility>
+#include <sstream>
 
-#include "MHO_Serializable.hh"
 #include "MHO_UUID.hh"
+#include "MHO_Taggable.hh"
+#include "MHO_ExtensibleElement.hh"
 
 namespace hops{
 
 
-class MHO_ObjectTags: virtual public MHO_Serializable
+class MHO_ObjectTags: public MHO_Taggable, public MHO_ExtensibleElement
 {
     public:
-        MHO_ObjectTags();
-        virtual ~MHO_ObjectTags();
 
-        //set/get the unique id for the associated object
-        MHO_UUID GetObjectUUID() const;
-        void SetObjectUUID(const MHO_UUID& uuid);
-        std::string GetObjectUUIDAsString() const;
-        void SetObjectUUIDFromString(std::string uuid);
+        MHO_ObjectTags(){}
+        virtual ~MHO_ObjectTags(){};
 
-        //set/get a name for the associated object
-        std::string GetObjectName() const;
-        void SetObjectName(const std::string& obj_name);
-        void SetObjectName(const char* obj_name);
+        //check if a uuid is in the collection
+        bool IsObjectUUIDPresent(const MHO_UUID& uuid) const
+        {
+            auto it = fObjectUUIDSet.find(uuid);
+            if( it != fObjectUUIDSet.end() ){return true;}
+            return false;
+        }
 
-        //get the number of present tags
-        std::size_t GetNTags() const;
+        //insert a uuid for an object to be associated with our tag collection
+        void AddObjectUUID(const MHO_UUID& uuid)
+        {
+            fObjectUUIDSet.insert(uuid);
+        }
 
-        //set a tag/value pair
-        void SetTag(const char* tag_name, const char* tag_value);
-        void SetTag(const std::string& tag_name, const std::string& tag_value);
+        void RemoveObjectUUID(const MHO_UUID& uuid)
+        {
+            auto it = fObjectUUIDSet.find(uuid);
+            if( it != fObjectUUIDSet.end() ){fObjectUUIDSet.erase(it);}
+        };
+
+        std::size_t GetNObjectUUIDs() const {return fObjectUUIDSet.size();}
+
+        //grab all object uuids at once
+        std::vector< MHO_UUID > GetAllObjectUUIDs() const 
+        {
+            std::vector<MHO_UUID> obj_uuids;
+            for(auto it = fObjectUUIDSet.begin(); it != fObjectUUIDSet.end(); it++)
+            {
+                obj_uuids.push_back(*it);
+            }
+            return obj_uuids;
+        }
+
+        //get the number of tags present
+        std::size_t GetNTags() const
+        {
+            std::size_t n = 0;
+            n += this->Size<char>();
+            n += this->Size<bool>();
+            n += this->Size<int>();
+            n += this->Size<double>();
+            n += this->Size<std::string>();
+            return n;
+        }
 
         //check if a tag with the given name is present
-        bool IsTagPresent(const std::string& tag_name) const;
-        bool IsTagPresent(const char* tag_name) const;
+        bool IsTagPresent(const std::string& tag_name) const
+        {   
+            return this->HasKey(tag_name);
+        }
+
+
+        bool IsTagPresent(const char* tag_name) const
+        {
+            std::string tmp(tag_name);
+            return IsTagPresent(tmp);
+        }
+
+        //set a tag/value pair
+        template<typename XValueType>
+        void SetTagValue(const char* tag_name, const XValueType& tag_value)
+        {
+            std::string tmp(tag_name);
+            SetTagValue(tmp, tag_value);
+        }
+
+        template<typename XValueType>
+        void SetTagValue(const std::string& tag_name, const XValueType& tag_value)
+        {
+            this->Insert(tag_name, tag_value);
+        }
+
+        template<typename XValueType>
+        bool GetTagValue(const char* tag_name, XValueType& tag_value)
+        {
+            std::string tmp;
+            return GetTagValue(tmp, tag_value);
+        }
 
         //retrieve the value of a given tag
-        bool GetTagValue(const std::string& tag_name, std::string& tag_value);
-        bool GetTagValue(const char* tag_name, std::string& tag_value);
+        template<typename XValueType>
+        bool GetTagValue(const std::string& tag_name, XValueType& tag_value)
+        {
+            return this->Retrieve(tag_name, tag_value);
+        }
+
+        //get the number of tags present
+        std::string GetTagValueType(const std::string& tag_name) const
+        {
+            //TODO FIXME, what if key is not unique among types?
+            if(this->ContainsKey<char>(tag_name)){return std::string("char");}
+            if(this->ContainsKey<bool>(tag_name)){return std::string("bool");}
+            if(this->ContainsKey<int>(tag_name)){return std::string("int");}
+            if(this->ContainsKey<double>(tag_name)){return std::string("double");}
+            if(this->ContainsKey<std::string>(tag_name)){return std::string("string");}
+            return std::string("");
+        }
+
+        //get the number of tags present
+        std::string GetTagValueAsString(const std::string& tag_name) const
+        {
+            std::stringstream ss;
+            //TODO FIXME, what if key is not unique among types?
+            if(this->ContainsKey<char>(tag_name))
+            {
+                char value;
+                this->Retrieve(tag_name,value);
+                ss << value;
+                return ss.str();
+            }
+
+            if(this->ContainsKey<bool>(tag_name))
+            {
+                bool value;
+                this->Retrieve(tag_name,value);
+                ss << value;
+                return ss.str();
+            }
+            
+            if(this->ContainsKey<int>(tag_name))
+            {
+                int value;
+                this->Retrieve(tag_name,value);
+                ss << value;
+                return ss.str();
+            }
+
+            if(this->ContainsKey<double>(tag_name))
+            {
+                double value;
+                this->Retrieve(tag_name,value);
+                ss << value;
+                return ss.str();
+            }
+
+            if(this->ContainsKey<std::string>(tag_name))
+            {
+                std::string value;
+                this->Retrieve(tag_name,value);
+                return value;
+            }
+
+            //return nothing
+            return std::string("");
+
+        }
+
 
         //collect all of the present tag names
-        void DumpTags(std::vector< std::string >& tag_names) const;
-
-        //collect all of the preset tag/value pairs
-        void DumpTagValuePairs(std::vector< std::pair<std::string, std::string> >& tag_value_pairs) const;
+        void DumpTags(std::vector< std::string >& tag_names) const
+        {
+            tag_names.clear();
+            std::vector<std::string> keys;
+            keys = this->DumpKeys<char>(); tag_names.insert(tag_names.end(), keys.begin(), keys.end());
+            keys = this->DumpKeys<bool>(); tag_names.insert(tag_names.end(), keys.begin(), keys.end());
+            keys = this->DumpKeys<int>(); tag_names.insert(tag_names.end(), keys.begin(), keys.end());
+            keys = this->DumpKeys<double>(); tag_names.insert(tag_names.end(), keys.begin(), keys.end());
+            keys = this->DumpKeys<std::string>(); tag_names.insert(tag_names.end(), keys.begin(), keys.end());
+        }
 
     protected:
 
-        MHO_UUID fObjectUUID; //uuid of the object
-        std::map< std::string, std::string> fTags;
-        static const std::string fNameTag;
+        //all object UUIDs which are associated with the tags 
+        std::set< MHO_UUID > fObjectUUIDSet;
+    
+        //tag dictionary 
+        //MHO_Taggable fTags;
+
 
     public:
 
-        virtual uint64_t GetSerializedSize() const override;
+        virtual uint64_t GetSerializedSize() const override
+        {
+            uint64_t total_size = 0;
+            total_size += sizeof(MHO_ClassVersion); //version number
+            total_size += sizeof(uint64_t); //number of uuids 
+            total_size += MHO_UUID::ByteSize()*(fObjectUUIDSet.size());
+            total_size += MHO_Taggable::GetSerializedSize();
+            return total_size;
+        }
 
         template<typename XStream> friend XStream& operator>>(XStream& s, MHO_ObjectTags& aData)
         {
@@ -84,42 +225,37 @@ class MHO_ObjectTags: virtual public MHO_Serializable
             }
             else
             {
-                //now grab uuid
-                s >> aData.fObjectUUID;
-                //now number of items in the tag map
-                uint64_t n_elem;
-                s >> n_elem;
-                for(std::size_t i=0; i<n_elem; i++)
+                //then do the number of object uuids 
+                uint64_t n_uuids = 0;
+                s >> n_uuids;
+                //then do object uuids
+                for(uint64_t i=0; i<n_uuids; i++)
                 {
-                    std::string key;
-                    std::string val;
-                    s >> key;
-                    s >> val;
-
-                    aData.fTags[key] = val;
+                    MHO_UUID tmp_uuid;
+                    s >> tmp_uuid;
+                    aData.AddObjectUUID(tmp_uuid);
                 }
+                //now do the taggable element;
+                s >> static_cast< MHO_Taggable& >(aData);
             }
             return s;
         };
-
+        
         template<typename XStream> friend XStream& operator<<(XStream& s, const MHO_ObjectTags& aData)
         {
             //first item to stream is always the version number
             s << aData.GetVersion();
-            //then do object uuid
-            s << aData.fObjectUUID;
-            //no number of tags
-            uint64_t n_elem = aData.GetNTags();
-            s << n_elem;
-
-            std::vector< std::pair< std::string, std::string> > tv_pairs;
-            aData.DumpTagValuePairs(tv_pairs);
-
-            for(auto it = tv_pairs.begin(); it != tv_pairs.end(); it++)
+            //then do the number of object uuids 
+            uint64_t n_uuids = aData.fObjectUUIDSet.size();
+            s << n_uuids;
+            //then do object uuids
+            for(auto it= aData.fObjectUUIDSet.begin(); it != aData.fObjectUUIDSet.end(); it++)
             {
-                s << it->first;
-                s << it->second;
+                s << *it;
             }
+            //now do the taggable element;
+            s << static_cast< const MHO_Taggable& >(aData);
+
             return s;
         };
 

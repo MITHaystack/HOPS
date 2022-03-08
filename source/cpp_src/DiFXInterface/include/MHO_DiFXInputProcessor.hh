@@ -44,7 +44,6 @@ class MHO_DiFXInputProcessor
         std::string GetAntennaMountTypeString(AntennaMountType type);
         std::string GetAntennaSiteTypeString(AntennaSiteType type);
 
-
         DifxInput* fD;
 
 

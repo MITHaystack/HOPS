@@ -16,6 +16,7 @@
 #include "MHO_ScalarContainer.hh"
 #include "MHO_VectorContainer.hh"
 #include "MHO_TableContainer.hh"
+#include "MHO_ObjectTags.hh"
 
 #include "MHO_ClassIdentityMap.hh"
 

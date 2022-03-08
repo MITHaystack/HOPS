@@ -41,7 +41,7 @@ set( UTILITIES_SOURCEFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_IntervalLabelTree.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_BinaryFileStreamer.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_UUIDGenerator.cc
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ObjectTags.cc
+    # ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ObjectTags.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_DirectoryInterface.cc
 )
 
