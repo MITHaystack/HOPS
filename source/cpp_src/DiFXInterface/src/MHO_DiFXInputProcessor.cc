@@ -1,5 +1,5 @@
 #include "MHO_DiFXInputProcessor.hh"
-
+#include <iostream>
 namespace hops 
 {
 
@@ -24,24 +24,6 @@ MHO_DiFXInputProcessor::LoadDiFXInputFile(std::string filename)
 void 
 MHO_DiFXInputProcessor::ConvertToJSON(json& input)
 {
-
-    // DifxJob		*job;
-    // DifxConfig	*config;
-    // DifxRule        *rule;
-    // DifxFreq	*freq;
-    // DifxFreqSet	*freqSet;
-    // DifxAntenna	*antenna;
-    // DifxScan	*scan;		/* assumed in time order */
-    // DifxSource	*source;
-    // DifxEOP		*eop;		/* assumed one per day, optional */
-    // DifxDatastream	*datastream;
-    // DifxBaseline    *baseline;
-    
-    /****** SKIP THESE OPTIONAL TABLES FOR NOW ******/
-    // DifxSpacecraft	*spacecraft;	/* optional table */
-    // DifxPulsar	*pulsar;	/* optional table */
-    // DifxPhasedArray	*phasedarray;	/* optional table */
-
     //extract the quantities at the top level of the difx input struct 
     ExtractBaseStructQuantities(input);
 
@@ -100,6 +82,13 @@ MHO_DiFXInputProcessor::ConvertToJSON(json& input)
         input["baseline"].push_back( ExtractBaselineQuantities(i) );
     }
     
+
+    /****** SKIP THESE OPTIONAL TABLES FOR NOW ********************************/
+    // DifxSpacecraft	*spacecraft;	/* optional table */
+    // DifxPulsar	*pulsar;	/* optional table */
+    // DifxPhasedArray	*phasedarray;	/* optional table */
+    /**************************************************************************/
+
 }
 
 void 
@@ -289,7 +278,7 @@ MHO_DiFXInputProcessor::ExtractScanQuantities(int n)
         /*   poly ranges over [0 .. nPoly-1] */
         /* NOTE : im[ant] can be zero -> no data */
 
-        //TODO FIXME: WE NEED TO RELATE THE UNITS SOMEHOW
+        //TODO FIXME: WE NEED TO RELATE THE UNITS OF THE POLYMODEL SOMEHOW
         std::vector< std::vector< std::vector< json > > > polys;
         for(int i=0; i < s->nAntenna; i++)
         {
@@ -332,7 +321,7 @@ MHO_DiFXInputProcessor::ExtractSourceQuantities(int n)
         source["qual"] = s->qual;
         source["spacecraftId"] = s->spacecraftId;
         
-        //do we need numFitsSourceIds ro fitsSourceIds??
+        //do we need numFitsSourceIds and fitsSourceIds??
         
         source["pmRA"] = s->pmRA; /* arcsec/year */
         source["pmDec"] = s->pmDec; /* arcsec/year */
@@ -346,16 +335,6 @@ MHO_DiFXInputProcessor::ExtractSourceQuantities(int n)
 json 
 MHO_DiFXInputProcessor::ExtractEOPQuantities(int n)
 {
-
-    // typedef struct
-    // {
-    // 	int mjd;		/* (day) */
-    // 	int tai_utc;		/* (sec) */
-    // 	double ut1_utc;		/* (sec) */
-    // 	double xPole, yPole;	/* (arcsec) */
-    // } DifxEOP;
-    // 
-
     DifxEOP* e = &(fD->eop[n]);
     json eop;
     if(e != nullptr)
@@ -374,56 +353,50 @@ MHO_DiFXInputProcessor::ExtractEOPQuantities(int n)
 json 
 MHO_DiFXInputProcessor::ExtractDatastreamQuantities(int n)
 {
-
-    // typedef struct
-    // {
-    // 	int antennaId;		/* index to D->antenna */
-    // 	float tSys;		/* 0.0 for VLBA DiFX */
-    // 	char dataFormat[DIFXIO_FORMAT_LENGTH];   /* e.g., VLBA, MKIV, ... */
-    // 
-    // 	enum SamplingType dataSampling; /* REAL or COMPLEX */
-    // 	int nFile;              /* number of files */
-    //         char **file;            /* list of files to correlate (if not VSN) */
-    // 	char networkPort[DIFXIO_ETH_DEV_SIZE]; /* eVLBI port for this datastream */
-    // 	int windowSize;         /* eVLBI TCP window size */
-    // 	int quantBits;		/* quantization bits */
-    // 	int dataFrameSize;	/* (bytes) size of formatted data frame */
-    // 	enum DataSource dataSource;	/* MODULE, FILE, NET, other? */
-    // 
-    // 	float phaseCalIntervalMHz;/* 0 if no phase cal extraction, otherwise extract every tone and retain tones selected elsewhere */
-    // 	float phaseCalBaseMHz;	/* propagated from VEX1.5 but unused for now */
-    // 	int tcalFrequency;	/* 0 if no switched power extraction to be done.  =80 for VLBA */
-    // 	int nRecTone;     /* number of pcal tones in the *recorded* baseband*/
-    // 	int *recToneFreq; /* Frequency of each pcal tone in the *recorded* baseband in MHz */
-    // 	int *recToneOut;  /* bool Recorded pcal written out?*/
-    // 
-    // 	double *clockOffset;	/* (us) [freq] */
-    // 	double *clockOffsetDelta; /* (us) [freq] */
-    // 	double *phaseOffset;	/* (degrees) [freq] */
-    // 	double *freqOffset;	/* Freq offsets for each frequency in Hz */
-    // 
-    // 	int nRecFreq;		/* number of freqs recorded in this datastream */
-    // 	int nRecBand;		/* number of base band channels recorded */
-    // 	int *nRecPol;		/* [recfreq] */
-    // 	int *recFreqId;		/* [recfreq] index to DifxFreq table */
-    // 	int *recBandFreqId;	/* [recband] index to recFreqId[] */
-    // 	char *recBandPolName;	/* [recband] Polarization name (R, L, X or Y) */
-    // 
-    //         int nZoomFreq;		/* number of "zoom" freqs (within recorded freqs) for this datastream */
-    // 	int nZoomBand;		/* number of zoom subbands */
-    // 	int *nZoomPol;		/* [zoomfreq] */
-    // 	int *zoomFreqId;	/* [zoomfreq] index to DifxFreq table */
-    // 	int *zoomBandFreqId;	/* [zoomband] index to zoomfreqId[] */
-    // 	char *zoomBandPolName;	/* [zoomband] Polarization name (R, L, X or Y) */
-    // } DifxDatastream;
-
-
-
     DifxDatastream* d = &(fD->datastream[n]);
     json ds;
+    std::cout<<"datastream: "<<d<<std::endl;
     if(d != nullptr)
     {
+        ds["antennaId"] = d->antennaId;
+        ds["tSys"] = d->tSys;
+        ds["dataFormat"] = std::string(d->dataFormat, DIFXIO_FORMAT_LENGTH).c_str();
+        ds["dataSampling"] = std::string( &(samplingTypeNames[d->dataSampling][0]), MAX_SAMPLING_NAME_LENGTH).c_str();
+        
+        //do we need all these file descriptors? skip some for now
+        ds["nFile"] = d->nFile;
+        //         char **file;            /* list of files to correlate (if not VSN) */
+        // 	char networkPort[DIFXIO_ETH_DEV_SIZE]; /* eVLBI port for this datastream */
+        // 	int windowSize;         /* eVLBI TCP window size */
+        ds["quantBits"] = d->quantBits;
+        ds["dataFrameSize"] = d->dataFrameSize;
+        // 	enum DataSource dataSource;	/* MODULE, FILE, NET, other? */
 
+        ds["phaseCalIntervalMHz"] = d->phaseCalIntervalMHz;
+        //ds["phaseCalBaseMHz"] = d->phaseCalBaseMHz;
+        ds["tcalFrequency"] = d->tcalFrequency;
+        ds["nRecTone"] = d->nRecTone;
+        for(int i=0;i<d->nRecTone;i++){ds["recToneFreq"].push_back(d->recToneFreq[i]);}
+        for(int i=0;i<d->nRecTone;i++){ds["recToneOut"].push_back(d->recToneOut[i]);}
+
+        ds["nRecFreq"] = d->nRecFreq;
+        ds["nRecBand"] = d->nRecBand;
+        for(int i=0;i<d->nRecFreq;i++){ds["nRecPol"].push_back(d->nRecPol[i]);}
+        for(int i=0;i<d->nRecFreq;i++){ds["recFreqId"].push_back(d->recFreqId[i]);}
+        for(int i=0;i<d->nRecBand;i++){ds["recBandFreqId"].push_back(d->recBandFreqId[i]);}
+        for(int i=0;i<d->nRecBand;i++){ds["recBandPolName"].push_back(std::string( &(d->recBandPolName[i]),1).c_str());}
+
+        for(int i=0;i<d->nRecFreq;i++){ds["clockOffset"].push_back(d->clockOffset[i]);}
+        for(int i=0;i<d->nRecFreq;i++){ds["clockOffsetDelta"].push_back(d->clockOffsetDelta[i]);}
+        for(int i=0;i<d->nRecFreq;i++){ds["phaseOffset"].push_back(d->phaseOffset[i]);}
+        for(int i=0;i<d->nRecFreq;i++){ds["freqOffset"].push_back(d->freqOffset[i]);}
+
+        ds["nZoomFreq"] = d->nZoomFreq;
+        ds["nZoomBand"] = d->nZoomBand;
+        for(int i=0;i<d->nZoomFreq;i++){ds["nZoomPol"].push_back(d->nZoomPol[i]);}
+        for(int i=0;i<d->nZoomFreq;i++){ds["zoomFreqId"].push_back(d->zoomFreqId[i]);}
+        for(int i=0;i<d->nZoomBand;i++){ds["zoomBandFreqId"].push_back(d->zoomBandFreqId[i]);}
+        for(int i=0;i<d->nZoomBand;i++){ds["zoomBandPolName"].push_back( std::string(&(d->zoomBandPolName[i]),1).c_str());}
     }
     return ds;
 }
@@ -432,17 +405,6 @@ MHO_DiFXInputProcessor::ExtractDatastreamQuantities(int n)
 json 
 MHO_DiFXInputProcessor::ExtractBaselineQuantities(int n)
 {
-    // typedef struct
-    // {
-    // 	int dsA, dsB;		/* indices to datastream table */
-    // 	int nFreq;
-    // 	int *nPolProd;		/* [freq] */
-    // 
-    // 	/* note: band in excess of nRecBand are assumed to be zoom bands */
-    // 	int **bandA;		/* [freq][productIndex] */
-    // 	int **bandB;		/* [freq][productIndex] */
-    // } DifxBaseline;
-
     DifxBaseline* b = &(fD->baseline[n]);
     json base;
     if(b != nullptr)
@@ -455,8 +417,22 @@ MHO_DiFXInputProcessor::ExtractBaselineQuantities(int n)
             base["nPolProd"].push_back(b->nPolProd[n]);
         }
 
-        base["bandA"] = "FIXME-2D-array";
-        base["bandB"] = "FIXME-2D-array";
+        std::vector< std::vector< int > > banda;
+        std::vector< std::vector< int > > bandb;
+        for(int i=0; i < b->nFreq; i++)
+        {
+            std::vector< int > idxa;
+            std::vector< int > idxb;
+            for(int j=0; j < b->nPolProd[i]; j++)
+            {
+                idxa.push_back(b->bandA[i][j]);
+                idxb.push_back(b->bandB[i][j]);
+            }
+            banda.push_back(idxa);
+            bandb.push_back(idxb);
+        }
+        base["bandA"] = banda;
+        base["bandB"] = bandb;
     }
     return base;
 }
@@ -465,24 +441,7 @@ MHO_DiFXInputProcessor::ExtractBaselineQuantities(int n)
 json 
 MHO_DiFXInputProcessor::ExtractDifxPolyModel(DifxPolyModel* m)
 {
-    // typedef struct
-    // {
-    //     int mjd;		/* day of start of polynomial validity */
-    //     int sec;		/* time (sec) of start of validity */
-    //     int order;		/* order of polynomial -> order+1 terms! */
-    //     int validDuration;	/* (seconds), from mjd, sec */
-    //     double delay[MAX_MODEL_ORDER+1];	/* (us/sec^n); n=[0, order] */
-    //     double dry[MAX_MODEL_ORDER+1];		/* (us/sec^n) */
-    //     double wet[MAX_MODEL_ORDER+1];		/* (us/sec^n) */
-    //     double az[MAX_MODEL_ORDER+1];		/* azimuth (deg) */
-    //     double elcorr[MAX_MODEL_ORDER+1];	/* el (corrected for refraction; i.e., the one used for pointing) (deg) */
-    //     double elgeom[MAX_MODEL_ORDER+1];	/* el (uncorrected for refraction) (deg) */
-    //     double parangle[MAX_MODEL_ORDER+1];	/* parallactic angle (deg) */
-    //     double u[MAX_MODEL_ORDER+1];		/* (m/sec^n) */
-    //     double v[MAX_MODEL_ORDER+1];		/* (m/sec^n) */
-    //     double w[MAX_MODEL_ORDER+1];		/* (m/sec^n) */
-    // } DifxPolyModel;
-
+    //TODO FIXME -- WE NEED TO EXPORT THE UNITS OF THE POLYNOMIAL COEFF IN SOME WAY
     json poly;
     if(m != nullptr)
     {

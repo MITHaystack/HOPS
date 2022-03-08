@@ -152,6 +152,8 @@ class MHO_UUID
             return MHO_UUID_LENGTH;
         }
 
+        static uint64_t ByteSize(){return MHO_UUID_LENGTH*sizeof(uint8_t);};
+
     protected:
 
         typedef union 
