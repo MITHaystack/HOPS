@@ -38,7 +38,6 @@ MHO_DiFXPCalProcessor::ReadPCalFile()
                     //std::cout<<"line = "<<fLine<<std::endl;
                     if(!IsComment())
                     {
-                        
                         TokenizeLine();
                         ProcessTokens();
                     }
@@ -83,19 +82,16 @@ MHO_DiFXPCalProcessor::ProcessTokens()
         std::size_t n = 0;
         //break down stuff like:
         //GS 58588.7508738 0.0000116 0 64 7 3480 X  5.16470e-03  3.28259e-02 3475 X  6.48234e-02 -3.06304e-02
-        std::string sta = fTokens[n++];
-        double mjd = std::atof(fTokens[n++].c_str());
-        double period = std::atof(fTokens[n++].c_str());
+        pcal_period pp;
+        pp.station = fTokens[n++];
+        pp.mjd = std::atof(fTokens[n++].c_str());
+        pp.mjd_period = std::atof(fTokens[n++].c_str());
         int place_holder1 = std::atoi(fTokens[n++].c_str()); //TODO FIXE ME -- WHAT IS THIS?
         int place_holder2 = std::atoi(fTokens[n++].c_str()); //TODO FIXE ME -- WHAT IS THIS?
         int place_holder3 = std::atoi(fTokens[n++].c_str()); //TODO FIXE ME -- WHAT IS THIS?
         
-        pcal_period pp;
-        pp.station = sta;
-        pp.mjd_start = mjd;
-        pp.mjd_period = period;
-        fMJDTimes.insert(mjd);
-        
+        fMJDTimeSet.insert(mjd);
+
         //now loop through the rest of the p-cal phasor data (4 tokens at a time)
         int itone = 0;
         while(itone >= 0) //last pcal entry in line should start with -1
@@ -104,6 +100,7 @@ MHO_DiFXPCalProcessor::ProcessTokens()
             pcal_phasor ph;
             ph.tone_freq = std::atof(fTokens[n++].c_str());
             ph.pol = fTokens[n++];
+            fPolSet.insert(ph.pol);
             double real = std::atof(fTokens[n++].c_str());
             double imag = std::atof(fTokens[n++].c_str());
             ph.phasor = std::complex<double>(real,imag);
@@ -111,7 +108,6 @@ MHO_DiFXPCalProcessor::ProcessTokens()
         }
         fPCalData.push_back( std::make_pair(pp, tone_phasors) );
     }
-    //ensure 
 }
 
 

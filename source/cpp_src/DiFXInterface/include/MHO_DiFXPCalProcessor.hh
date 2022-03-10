@@ -61,7 +61,8 @@ class MHO_DiFXPCalProcessor
 
         //PCAL data
         std::vector< std::pair< pcal_period, std::vector< pcal_phasor > > > fPCalData;
-        std::set< double > fMJDTimes;
+        // std::set<  > fMJDTimeSet;
+        std::set< std::string> fPolSet;
 
 };
 
