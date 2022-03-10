@@ -37,9 +37,6 @@ using ch_baseline_data_type = MHO_TableContainer< visibility_type, ch_baseline_a
 using ch_baseline_weight_type = MHO_TableContainer< weight_type, ch_baseline_axis_pack >;
 using ch_baseline_sbd_type = MHO_TableContainer< visibility_type, ch_baseline_axis_pack >;
 
-//phase cal data extracted by the correlator
-using ch_pcal_axis_pack = MHO_AxisPack< ch_pol_axis_type, ch_time_axis_type, ch_frequency_axis_type >;
-using ch_pcal_phasor_type = MHO_TableContainer< pcal_type, ch_pcal_axis_pack >; 
 
 
 }//end of hops namespaces
