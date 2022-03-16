@@ -8,7 +8,7 @@ clone from: https://github.mit.edu/barrettj/hops-git.git
 
 To configure with defaults and compile with cmake, run:
 
-`$ cd ./chops` \
+`$ cd <hops-git>` \
 `$ mkdir build` \
 `$ cd ./build` \
 `$ cmake ../` \
