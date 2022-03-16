@@ -103,7 +103,7 @@ if(HOPS_ENABLE_TEST)
     enable_testing()
 endif(HOPS_ENABLE_TEST)
 
-option( HOPS_USE_ROOT "Build ROOT based utilities." OFF)
+# option( HOPS_USE_ROOT "Build ROOT based utilities." OFF)
 
 option(HOPS_DEV_USE_OLD "Allow new C++ code to use old hops/fourfit C-libraries, beyond what is absolutely necessary." OFF)
 
