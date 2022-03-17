@@ -38,7 +38,7 @@ using namespace hops;
 #define YDIM 1
 #define ZDIM 2
 typedef MHO_AxisPack< MHO_Axis<double>, MHO_Axis<double>, MHO_Axis<std::string> > axis_pack_test;
-
+typedef MHO_AxisPack< MHO_Axis<double>, MHO_Axis<double> > axis_pack_test2;
 
 int main(int argc, char** argv)
 {
@@ -273,35 +273,38 @@ int main(int argc, char** argv)
     TApplication* App = new TApplication("test",&argc,argv);
 
     MHO_RootCanvasManager cMan;
-    MHO_RootGraphManager gMan;
-
     auto c = cMan.CreateCanvas(std::string("test"), 800, 800);
     c->Divide(1,3);
+    
+    MHO_TableContainer<double, axis_pack_test2> r_slice; r_slice.Resize(dim[0], dim[1]);
+    std::get<XDIM>(r_slice) = std::get<XDIM>(*ctable);
+    std::get<YDIM>(r_slice) = std::get<YDIM>(*ctable);
 
-    //plotting objects
-    //set up the axis labels
-    x_axis = &(std::get<XDIM>(*ctable2));
-    x_axis_size = x_axis->GetDimension(0);
-    y_axis = &(std::get<YDIM>(*ctable2));
-    y_axis_size = y_axis->GetDimension(0);
-    z_axis = &(std::get<ZDIM>(*ctable2));
-    z_axis_size = z_axis->GetDimension(0);
+    MHO_TableContainer<double, axis_pack_test2> g_slice; g_slice.Resize(dim[0], dim[1]);
+    std::get<XDIM>(g_slice) = std::get<XDIM>(*ctable);
+    std::get<YDIM>(g_slice) = std::get<YDIM>(*ctable);
 
-    TGraph2D *gr = new TGraph2D(x_axis_size*y_axis_size);
-    TGraph2D *gg = new TGraph2D(x_axis_size*y_axis_size);
-    TGraph2D *gb = new TGraph2D(x_axis_size*y_axis_size);
-
-    size_t count = 0;
+    MHO_TableContainer<double, axis_pack_test2> b_slice; b_slice.Resize(dim[0], dim[1]);
+    std::get<XDIM>(b_slice) = std::get<XDIM>(*ctable);
+    std::get<YDIM>(b_slice) = std::get<YDIM>(*ctable);
+    
     for(size_t i=0; i<x_axis_size; i++)
     {
         for(size_t j=0; j<y_axis_size; j++)
         {
-            gr->SetPoint(count, x_axis->at(i), y_axis->at(j), (*ctable2)(i,j,0) );
-            gg->SetPoint(count, x_axis->at(i), y_axis->at(j), (*ctable2)(i,j,1) );
-            gb->SetPoint(count, x_axis->at(i), y_axis->at(j), (*ctable2)(i,j,2) );
-            count++;
+            for(size_t k=0; k<z_axis_size; k++)
+            {
+                r_slice(i,j) = ctable->at(i,j,0);                
+                g_slice(i,j) = ctable->at(i,j,1);
+                b_slice(i,j) = ctable->at(i,j,2);
+            }
         }
     }
+
+    MHO_RootGraphManager gMan;
+    auto gr = gMan.GenerateGraph2D(std::string("r"), &r_slice);
+    auto gg = gMan.GenerateGraph2D(std::string("g"), &g_slice);
+    auto gb = gMan.GenerateGraph2D(std::string("b"), &b_slice);
 
     c->cd(1);
     gr->Draw("PCOL");
