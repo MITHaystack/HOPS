@@ -7,15 +7,18 @@
 #include "MHO_TableContainer.hh"
 
 #ifdef USE_ROOT
-    #include "TCanvas.h"
+
     #include "TApplication.h"
-    #include "TStyle.h"
-    #include "TColor.h"
-    #include "TGraph.h"
-    #include "TGraph2D.h"
-    #include "TH2D.h"
-    #include "TMath.h"
-    #include "TMultiGraph.h"
+    #include "MHO_RootCanvasManager.hh"
+    #include "MHO_RootGraphManager.hh"
+    // #include "TCanvas.h"
+    // #include "TStyle.h"
+    // #include "TColor.h"
+    // #include "TGraph.h"
+    // #include "TGraph2D.h"
+    // #include "TH2D.h"
+    // #include "TMath.h"
+    // #include "TMultiGraph.h"
 #endif
 
 
@@ -266,29 +269,14 @@ int main(int argc, char** argv)
     std::cout<<"starting root plotting"<<std::endl;
 
     //ROOT stuff for plots
-    TApplication* App = new TApplication("PowerPlot",&argc,argv);
-    TStyle* myStyle = new TStyle("Plain", "Plain");
-    myStyle->SetCanvasBorderMode(0);
-    myStyle->SetPadBorderMode(0);
-    myStyle->SetPadColor(0);
-    myStyle->SetCanvasColor(0);
-    myStyle->SetTitleColor(1);
-    myStyle->SetPalette(1,0);   // nice color scale for z-axis
-    myStyle->SetCanvasBorderMode(0); // gets rid of the stupid raised edge around the canvas
-    myStyle->SetTitleFillColor(0); //turns the default dove-grey background to white
-    myStyle->SetCanvasColor(0);
-    myStyle->SetPadColor(0);
-    myStyle->SetTitleFillColor(0);
-    myStyle->SetStatColor(0); //this one may not work
-    const int NRGBs = 5;
-    const int NCont = 48;
-    double stops[NRGBs] = { 0.00, 0.34, 0.61, 0.84, 1.00 };
-    double red[NRGBs]   = { 0.00, 0.00, 0.87, 1.00, 0.51 };
-    double green[NRGBs] = { 0.00, 0.81, 1.00, 0.20, 0.00 };
-    double blue[NRGBs]  = { 0.51, 1.00, 0.12, 0.00, 0.00 };
-    TColor::CreateGradientColorTable(NRGBs, stops, red, green, blue, NCont);
-    myStyle->SetNumberContours(NCont);
-    myStyle->cd();
+
+    TApplication* App = new TApplication("test",&argc,argv);
+
+    MHO_RootCanvasManager cMan;
+    MHO_RootGraphManager gMan;
+
+    auto c = cMan.CreateCanvas(std::string("test"), 800, 800);
+    c->Divide(1,3);
 
     //plotting objects
     //set up the axis labels
@@ -308,21 +296,13 @@ int main(int argc, char** argv)
     {
         for(size_t j=0; j<y_axis_size; j++)
         {
-            for(size_t k=0; k<z_axis_size; k++)
-            {
-                gr->SetPoint(count, x_axis->at(i), y_axis->at(j), (*ctable2)(i,j,0) );
-                gg->SetPoint(count, x_axis->at(i), y_axis->at(j), (*ctable2)(i,j,1) );
-                gb->SetPoint(count, x_axis->at(i), y_axis->at(j), (*ctable2)(i,j,2) );
-            }
+            gr->SetPoint(count, x_axis->at(i), y_axis->at(j), (*ctable2)(i,j,0) );
+            gg->SetPoint(count, x_axis->at(i), y_axis->at(j), (*ctable2)(i,j,1) );
+            gb->SetPoint(count, x_axis->at(i), y_axis->at(j), (*ctable2)(i,j,2) );
             count++;
         }
     }
 
-    std::string name("test");
-    TCanvas* c = new TCanvas(name.c_str(),name.c_str(), 50, 50, 950, 850);
-    c->SetFillColor(0);
-    c->SetRightMargin(0.2);
-    c->Divide(1,3);
     c->cd(1);
     gr->Draw("PCOL");
     c->Update();
