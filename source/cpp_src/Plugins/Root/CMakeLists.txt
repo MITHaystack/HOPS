@@ -10,6 +10,8 @@ add_cflag(USE_ROOT)
 #list header files #############################################################
 set (ROOTPLUGIN_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_RootCanvasManager.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_RootHistogramManager.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_RootGraphManager.hh
 )
 
 #list source files #############################################################

@@ -30,10 +30,10 @@ class MHO_RootCanvasManager
         MHO_RootCanvasManager();
         virtual ~MHO_RootCanvasManager();
 
-        void CreateCanvas(std::string name, unsigned int width = 500, unsigned int height = 500);
+        TCanvas* CreateCanvas(std::string name, unsigned int width = 500, unsigned int height = 500);
 
         TCanvas* SelectCanvasByName(std::string name);
-        TCanvas* GetCurrentCanvas(){return fCanvasList.back();}
+        TCanvas* GetCurrentCanvas(){return fCurrentCanvas;}
 
     private:
 
@@ -41,6 +41,7 @@ class MHO_RootCanvasManager
         void DestroyCanvasList();
 
         TStyle* fStyle;
+        TCanvas* fCurrentCanvas;
         std::vector< TCanvas* > fCanvasList;
 };
 

@@ -5,6 +5,7 @@ namespace hops
 
 MHO_RootCanvasManager::MHO_RootCanvasManager()
 {
+    fCurrentCanvas = nullptr;
     ConfigureStyle();
 }
 
@@ -41,13 +42,16 @@ void MHO_RootCanvasManager::ConfigureStyle()
 }
 
 
-
-void 
-MHO_RootCanvasManager::CreateCanvas(std::string name, unsigned int width = 500, unsigned int height = 500)
+TCanvas*
+MHO_RootCanvasManager::CreateCanvas(std::string name, unsigned int width, unsigned int height)
 {
     TCanvas* c = new TCanvas(name.c_str(), name.c_str(), 0, 0, width, height);
+    c->SetFillColor(0);
+    //c->SetRightMargin(0.2);
     c->cd();
+    fCurrentCanvas = c;
     fCanvasList.push_back(c);
+    return fCurrentCanvas;
 }
 
 
@@ -60,9 +64,11 @@ MHO_RootCanvasManager::SelectCanvasByName(std::string name)
         if(tmp == name)
         {
             fCanvasList[i]->cd();
-            return fCanvasList[i];
+            fCurrentCanvas = fCanvasList[i];
+            return fCurrentCanvas;
         }
     }
+    return nullptr;
 }
 
 void 

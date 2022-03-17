@@ -1,0 +1,97 @@
+#ifndef MHO_RootGraphManager_HH__
+#define MHO_RootGraphManager_HH__
+
+#include "TGraph.h"
+#include "TGraph2D.h"
+#include "TMultiGraph.h"
+
+
+#include "MHO_Message.hh"
+#include "MHO_TestAssertions.hh"
+
+/*
+*@file: MHO_RootGraphManager.hh
+*@class: MHO_RootGraphManager
+*@author: J. Barrett
+*@email: barrettj@mit.edu
+*@date:
+*@brief:
+*/
+
+namespace hops 
+{
+
+class MHO_RootGraphManager
+{
+    public:
+
+        MHO_RootGraphManager(){};
+
+        virtual ~MHO_RootGraphManager()
+        {
+            for(unsigned int i=0; i<f1DGraph.size(); i++){delete f1DGraph[i];}
+            for(unsigned int i=0; i<f2DGraph.size(); i++){delete f2DGraph[i];}
+        }
+
+        template< typename XTableType >
+        TGraph* GenerateGraph1D(XTableType* table)
+        {
+            //assert that this is a 1d table 
+            HOPS_ASSERT_EQUAL( table->GetRank(), 1 );
+
+            //assume axis is labeled by doubles 
+            auto x_axis = (std::get<0>(*table));
+            std::size_t nxbins = table->GetDimension(0);
+
+            TGraph* h = new TGraph();
+
+            //now fill the histogram
+            for(std::size_t i=0; i<nxbins; i++)
+            {
+                h->SetPoint(x_axis(i), table->at(i) );
+            }
+
+            f1DGraph.push_back(h);
+            return h;
+        }
+
+        template< typename XTableType >
+        TGraph2D* GenerateGraph2D(std::string name, XTableType* table)
+        {
+            HOPS_ASSERT_EQUAL( table->GetRank(), 2 ); 
+
+            //assume axes are labeled by doubles 
+            auto x_axis = (std::get<0>(*table));
+            std::size_t nxbins = table->GetDimension(0);
+
+            auto y_axis = (std::get<1>(*table));
+            std::size_t nybins = table->GetDimension(1);
+
+            TGraph2D* h = new TGraph2D();
+
+            //now fill the histogram
+            std::size_t count = 0;
+            for(std::size_t i=0; i<nxbins; i++)
+            {
+                for(std::size_t j=0; j<nybins; j++)
+                {
+                    h->SetPoint(count, x_axis(i), y_axis(j), table->at(i,j) );
+                    count++;
+                }
+            }
+
+            f2DGraph.push_back(h);
+            return h;
+        }
+
+    private:
+
+        std::vector<TGraph*> f1DGraph;
+        std::vector<TGraph2D*> f2DGraph;
+
+};
+
+
+}//end of namespace
+
+#endif /* end of include guard: MHO_RootGraphManager */
