@@ -28,6 +28,7 @@ int main(int argc, char** argv)
     uint64_t MB = 1024*1024;
 
     std::complex<double> val(1.0, 0.0);
+    std::complex<double> i_unit(0.0, 1.0);
 
     MHO_Timer timer;
     timer.MeasureWallclockTime();
@@ -137,6 +138,17 @@ int main(int argc, char** argv)
     delta = timer.GetDurationAsDouble();
     tdeltas.push_back(delta);
     std::cout<<"time to fill array with 1st dimension SubView and (,,) operator: "<<delta<< " seconds "<<std::endl;
+
+    //check the scalar-complex multiplication routine 
+    vis *= i_unit;
+    std::cout<<"checking scalar multiplication by complex number: "<<vis.at(0,0,0,0)<<std::endl;
+    
+
+    //check the scalar multiplication routine 
+    vis *= 2.0;
+    std::cout<<"checking scalar multiplication by real number: "<<vis.at(0,0,0,0)<<std::endl;
+
+
 
     //figure out the maximum fraction difference between the access methods 
     double dmax = 0.0;
