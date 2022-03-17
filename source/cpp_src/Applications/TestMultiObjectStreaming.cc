@@ -1,26 +1,9 @@
 #include <getopt.h>
 #include "MHO_Message.hh"
 
-
 #include "MHO_ScalarContainer.hh"
 #include "MHO_VectorContainer.hh"
 #include "MHO_TableContainer.hh"
-
-#ifdef USE_ROOT
-
-    #include "TApplication.h"
-    #include "MHO_RootCanvasManager.hh"
-    #include "MHO_RootGraphManager.hh"
-    // #include "TCanvas.h"
-    // #include "TStyle.h"
-    // #include "TColor.h"
-    // #include "TGraph.h"
-    // #include "TGraph2D.h"
-    // #include "TH2D.h"
-    // #include "TMath.h"
-    // #include "TMultiGraph.h"
-#endif
-
 
 #include "MHO_BinaryFileStreamer.hh"
 #include "MHO_BinaryFileInterface.hh"
@@ -29,6 +12,11 @@
 #include "MHO_Visibilities.hh"
 #include "MHO_ChannelizedVisibilities.hh"
 
+#ifdef USE_ROOT
+    #include "TApplication.h"
+    #include "MHO_RootCanvasManager.hh"
+    #include "MHO_RootGraphManager.hh"
+#endif
 
 using namespace hops;
 
