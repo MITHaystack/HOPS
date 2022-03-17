@@ -22,10 +22,12 @@ int main(int argc, char** argv)
     my200.version_no[0] = '0'; 
     my200.version_no[1] = '0';
 
-    my200.software_rev[0] = 1; //I have no idea what this field is actually used for
+    for(int i=0; i<10; i++) {
+        my200.software_rev[i] = 1; //I have no idea what this field is actually used for
+    }
     my200.expt_no = 1234;
-    my200.exper_name[0] = 'a';
-    my200.scan_name[0] = 'b';
+    my200.exper_name[0] = 'a'; 
+    my200.scan_name[0] = 'b';  
     my200.correlator[0] = 'c';
     my200.start_offset = 0;
     my200.stop_offset = 1;
