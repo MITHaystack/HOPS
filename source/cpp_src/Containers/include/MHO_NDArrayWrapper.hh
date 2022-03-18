@@ -274,12 +274,14 @@ class MHO_NDArrayWrapper:
 
         XValueType& ValueAt(const index_type& idx)
         {
-            return fDataPtr[ MHO_NDArrayMath::OffsetFromRowMajorIndex<RANK>(&(fDims[0]), &(idx[0]) ) ];
+            return fDataPtr[ MHO_NDArrayMath::OffsetFromStrideIndex<RANK>(&(fStrides[0]), &(idx[0]) ) ];
+            //return fDataPtr[ MHO_NDArrayMath::OffsetFromRowMajorIndex<RANK>(&(fDims[0]), &(idx[0]) ) ];
         }
 
         const XValueType& ValueAt(const index_type& idx) const
         {
-            return fDataPtr[ MHO_NDArrayMath::OffsetFromRowMajorIndex<RANK>(&(fDims[0]), &(idx[0]) ) ];
+            return fDataPtr[ MHO_NDArrayMath::OffsetFromStrideIndex<RANK>(&(fStrides[0]), &(idx[0]) ) ];
+            //return fDataPtr[ MHO_NDArrayMath::OffsetFromRowMajorIndex<RANK>(&(fDims[0]), &(idx[0]) ) ];
         }
 
 

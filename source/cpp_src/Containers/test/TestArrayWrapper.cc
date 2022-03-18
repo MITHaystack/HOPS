@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <complex>
+#include <array>
 
 #include "MHO_Message.hh"
 #include "MHO_NDArrayWrapper.hh"
@@ -107,6 +108,22 @@ int main(int /*argc*/, char** /*argv*/)
 
     std::size_t dim4[5] = {3,4,5,6,7};
     MHO_NDArrayWrapper<int, 5> test4(dim4);
+
+    auto test4_strides = test4.GetStrideArray();
+    std::size_t test4_idx[5] = {1, 0, 3, 4, 2};
+    
+    std::size_t offset_method1 = MHO_NDArrayMath::OffsetFromRowMajorIndex<5>(dim4, test4_idx );
+    std::size_t offset_method2 = MHO_NDArrayMath::OffsetFromStrideIndex<5>(&(test4_strides[0]), test4_idx );
+    
+    std::cout<<"offset from row-major, stride index access = "<<offset_method1 <<", "<< offset_method2<<std::endl;
+
+
+    std::size_t test4_idx2[5] = {2, 3, 1, 5, 0};
+    offset_method1 = MHO_NDArrayMath::OffsetFromRowMajorIndex<5>(dim4, test4_idx2 );
+    offset_method2 = MHO_NDArrayMath::OffsetFromStrideIndex<5>(&(test4_strides[0]), test4_idx2 );
+
+    std::cout<<"offset from row-major, stride index access = "<<offset_method1 <<", "<< offset_method2<<std::endl;
+
     for(std::size_t i=0;i<5;i++)
     {
         std::cout<<"stride of dim "<<i<<" = "<<test4.GetStride(i)<<std::endl;
