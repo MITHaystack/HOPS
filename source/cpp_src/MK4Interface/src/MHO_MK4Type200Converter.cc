@@ -1,4 +1,5 @@
 #include "MHO_MK4Type200Converter.hh"
+#include <iostream>
 #define TYPE_200_FILES_PATH "../../../c_src/dfio/include"
 
 // struct type_200
@@ -40,12 +41,15 @@ void MHO_MKType200Converter::ConvertToJSON() {
     if(fPtr != nullptr) {
         //go ahead and do the import of the struct members
 
-        fJSON["record_id"] = std::string(*fPtr->record_id, 3); 
-	fJSON["version_no"] = std::string(*fPtr->version_no, 2);
+        fJSON["record_id"] = std::string(fPtr->record_id, 3); 
+	fJSON["version_no"] = std::string(fPtr->version_no, 2);
 	fJSON["expt_no"] = fPtr->expt_no;
-	fJSON["exper_name"] = std::string(*fPtr->exper_name, 32);
-	fJSON["scan_name"] = std::string(*fPtr->scan_name, 32);
-	fJSON["correlator"] = std::string(*fPtr->correlator, 8);
+	std::cout << "exper_name is: " << fPtr->exper_name << "\n";
+	std::cout << "scan_name is: " << fPtr->scan_name << "\n";
+	std::cout << "correlator is: " << fPtr->correlator << "\n";
+	//fJSON["exper_name"] = std::string(fPtr->exper_name, 32);
+	//fJSON["scan_name"] = std::string(fPtr->scan_name, 32);
+	//fJSON["correlator"] = std::string(fPtr->correlator, 8);
 	fJSON["start_offset"] = fPtr->start_offset;
 	fJSON["stop_offset"] = fPtr->stop_offset;
 	

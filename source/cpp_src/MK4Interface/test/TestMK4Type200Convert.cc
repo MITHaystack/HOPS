@@ -26,9 +26,10 @@ int main(int argc, char** argv)
         my200.software_rev[i] = 1; //I have no idea what this field is actually used for
     }
     my200.expt_no = 1234;
-    my200.exper_name[0] = 'a'; 
-    my200.scan_name[0] = 'b';  
-    my200.correlator[0] = 'c';
+    strcpy(my200.exper_name, "abba"); 
+    strcpy(my200.scan_name, "baab");  
+    strcpy(my200.correlator, "caab");
+
     my200.start_offset = 0;
     my200.stop_offset = 1;
 
