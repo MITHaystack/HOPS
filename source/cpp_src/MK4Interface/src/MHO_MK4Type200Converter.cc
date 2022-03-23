@@ -39,17 +39,14 @@ void MHO_MKType200Converter::ConvertToJSON() {
 
     //check that our type_200 pointer is not null 
     if(fPtr != nullptr) {
-        //go ahead and do the import of the struct members
 
         fJSON["record_id"] = std::string(fPtr->record_id, 3); 
 	fJSON["version_no"] = std::string(fPtr->version_no, 2);
 	fJSON["expt_no"] = fPtr->expt_no;
-	fJSON["exper_name"] = json(fPtr->exper_name);
-	fJSON["scan_name"] = json(fPtr->scan_name);
-	fJSON["correlator"] = json(fPtr->correlator);
+	fJSON["exper_name"] = std::string(fPtr->exper_name, 32).c_str();
+	fJSON["correlator"] = std::string(fPtr->correlator, 32).c_str();
 	fJSON["start_offset"] = fPtr->start_offset;
 	fJSON["stop_offset"] = fPtr->stop_offset;
-	
 	//handle short
 	for(int i=0; i<10; i++) { 
 	   fJSON["software_rev"].push_back(fPtr->software_rev[i]);
