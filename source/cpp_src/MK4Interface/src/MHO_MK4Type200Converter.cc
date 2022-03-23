@@ -36,6 +36,9 @@ void MHO_MKType200Converter::SetType200(type_200* type200ptr) {
 void MHO_MKType200Converter::ConvertToJSON() {
     //first we make sure the JSON object is empty by clearing it 
     fJSON.clear();
+    json exper_name = fPtr->exper_name;
+    json scan_name = fPtr->scan_name;
+    json correlator = fPtr->correlator;
 
     //check that our type_200 pointer is not null 
     if(fPtr != nullptr) {
@@ -44,12 +47,9 @@ void MHO_MKType200Converter::ConvertToJSON() {
         fJSON["record_id"] = std::string(fPtr->record_id, 3); 
 	fJSON["version_no"] = std::string(fPtr->version_no, 2);
 	fJSON["expt_no"] = fPtr->expt_no;
-	std::cout << "exper_name is: " << fPtr->exper_name << "\n";
-	std::cout << "scan_name is: " << fPtr->scan_name << "\n";
-	std::cout << "correlator is: " << fPtr->correlator << "\n";
-	//fJSON["exper_name"] = std::string(fPtr->exper_name, 32);
-	//fJSON["scan_name"] = std::string(fPtr->scan_name, 32);
-	//fJSON["correlator"] = std::string(fPtr->correlator, 8);
+	fJSON["exper_name"] = exper_name;
+	fJSON["scan_name"] = scan_name;
+	fJSON["correlator"] = correlator;
 	fJSON["start_offset"] = fPtr->start_offset;
 	fJSON["stop_offset"] = fPtr->stop_offset;
 	
