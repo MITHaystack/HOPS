@@ -157,5 +157,8 @@ int main(int /*argc*/, char** /*argv*/)
     std::cout<<"test5(1,1,1) = "<<test5(1,1,1)<<std::endl;
 
 
+    //test the slice functionality 
+    auto slice = test4.SliceView(":", 1, 3, ":", 5);
+
     return 0;
 }

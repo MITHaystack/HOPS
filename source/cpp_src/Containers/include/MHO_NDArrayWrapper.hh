@@ -21,6 +21,7 @@
 #include <cinttypes>
 #include <algorithm>
 
+#include "MHO_Meta.hh"
 #include "MHO_Message.hh"
 #include "MHO_NDArrayMath.hh"
 #include "MHO_BidirectionalIterator.hh"
@@ -197,51 +198,50 @@ class MHO_NDArrayWrapper:
             return  MHO_NDArrayWrapper<XValueType, RANK - ( sizeof...(XIndexTypeS) ) >(&(fDataPtr[offset]) , &(dim[0]) );
         }
 
-/*
+////////////////////////////////////////////////////////////////////////////////
+
         //slice-view of the array (given n < RANK indexes), return the remaining
-        //chunk of the array with freely spanning indexes
-        //for example: a ndarray X of RANK=3, and sizes [4,12,32], then SliceView(':',3,':')
+        //chunk of the array with freely spanning indexes 
+        //the placeholder for the free-spanning indexes is the char ":"
+        //for example: a ndarray X of RANK=3, and sizes [4,12,32], then SliceView(":",3,":")
         //returns an ndarray of RANK=2, and dimensions [4,32] starting at the
-        //location of X(0,3,0), and spanning the data covered by X(:,3,:)
+        //location of X(0,3,0), and spanning the data covered by X(":",3,":")
         //Data of the slice-view points to data owned by original array X
         template <typename ...XIndexTypeS >
         typename std::enable_if< (sizeof...(XIndexTypeS) == RANK), 
-        MHO_NDArrayWrapper<XValueType, RANK - count_instances_of_type<sizeof...(XIndexTypeS)-1, index_type, XIndexTypeS>::value > >::type
+        MHO_NDArrayWrapper< XValueType, count_instances_of_type< const char*, sizeof...(XIndexTypeS)-1, XIndexTypeS... >::value > >::type
         SliceView(XIndexTypeS...idx)
         {
-            class idx_filler
+            typedef std::integral_constant< std::size_t, count_instances_of_type< const char*, sizeof...(XIndexTypeS)-1, XIndexTypeS... >::value > nfree_t;
+            typedef std::integral_constant< std::size_t, RANK - count_instances_of_type< const char*, sizeof...(XIndexTypeS)-1, XIndexTypeS... >::value > nfixed_t;
+
+            struct idx_filler
             {
-                idx_filler():count(0){};
-                virtual ~idx_filler(){};
+                std::array<std::size_t, RANK > full_idx; //list the index values of the start of the slice
+                std::vector<std::size_t> fixed_idx; //list the indexes which are fixed
+                std::vector<std::size_t> free_idx; //list the indexs which are free to vary
 
-                std::array<std::size_t, sizeof...(XIndexTypeS) > full_idx;
-                template< typename XElementType >
-                void operator()(XElementType value)
-                {
-                    
-                }
-            }
-    
+                //placeholder sets index to zero
+                void operator()(std::size_t i, const char* /*value*/){full_idx[i] = 0; free_idx.push_back(i);}
 
+                //index types pass along their value
+                void operator()(std::size_t i, std::size_t value){full_idx[i] = value; fixed_idx.push_back(i);}
+            };
 
-            std::array<std::size_t, sizeof...(XIndexTypeS) > full_idx;
-            std::array<std::size_t, count_instances_of_type<sizeof...(XIndexTypeS)-1, index_type, XIndexTypeS>::value > fixed_idx;
-            std::array<std::size_t, RANK - count_instances_of_type<sizeof...(XIndexTypeS)-1, index_type, XIndexTypeS>::value > free_idx;
-            
-            
+            idx_filler filler;    
+            std::tuple< XIndexTypeS... > input_idx = std::make_tuple( idx... );
+            indexed_tuple_visit<RANK>::visit(input_idx, filler);
+            std::sort(filler.free_idx.begin(), filler.free_idx.end() ); //make sure they are in increasing order
 
+            std::size_t offset = MHO_NDArrayMath::OffsetFromRowMajorIndex<RANK>(&(fDims[0]), &( filler.full_idx[0]));
 
-
-
-            for(std::size_t i=0; i<RANK; i++){fTmp[i] = 0;}
-            for(std::size_t i=0; i<leading_idx.size(); i++){fTmp[i] = leading_idx[i];}
-            std::size_t offset = MHO_NDArrayMath::OffsetFromRowMajorIndex<RANK>(&(fDims[0]), &(fTmp[0]));
-            std::array<std::size_t, RANK - count_instances_of_type<sizeof...(XIndexTypeS)-1, index_type, XIndexTypeS>::value > dim;
-            for(std::size_t i=0; i<dim.size(); i++){dim[i] = fDims[i + (sizeof...(XIndexTypeS) )];}
-            return  MHO_NDArrayWrapper<XValueType, RANK - ( sizeof...(XIndexTypeS) ) >(&(fDataPtr[offset]) , &(dim[0]) );
+            //TODO FIXME ....wrong strides!!
+            std::array<std::size_t, nfree_t::value > dim;
+            for(std::size_t i=0; i<dim.size(); i++){dim[i] = fDims[ filler.free_idx[i] ];}
+            return  MHO_NDArrayWrapper<XValueType, nfree_t::value >(&(fDataPtr[offset]) , &(dim[0]) );
         }
 
-*/
+////////////////////////////////////////////////////////////////////////////////
 
         //simple in-place compound assignment operators (mult/add/sub)//////////
 
