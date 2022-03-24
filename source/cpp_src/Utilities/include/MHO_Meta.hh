@@ -110,9 +110,40 @@ typename std::enable_if< (N < sizeof...(T)), XStream& >::type
     return istream_tuple<N+1>(s, t);
 }
 
+
 ////////////////////////////////////////////////////////////////////////////////
 
-//generic apply functor to tuple (for runtime-indexed access)
+//generic apply functor (which takes and index value!) to all elements of a tuple
+template <size_t NTypes>
+struct indexed_tuple_visit
+{
+    template <typename XTupleType, typename XFunctorType>
+    static void visit(XTupleType& tup, XFunctorType functor)
+    {
+        //apply here and then recurse to the next type
+        functor(NTypes-1, std::get<NTypes-1>(tup) );
+        indexed_tuple_visit<NTypes - 1>::visit(tup, functor);
+    }
+};
+
+//base case, terminates the recursion
+template <>
+struct
+indexed_tuple_visit<0>
+{
+    template <typename XTupleType, typename XFunctorType>
+    static void visit(XTupleType& tup, XFunctorType functor){}
+};
+
+
+
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////
+
+//generic apply functor to tuple element (for runtime-indexed access)
 template <size_t NTypes>
 struct apply_to_tuple
 {
