@@ -197,6 +197,52 @@ class MHO_NDArrayWrapper:
             return  MHO_NDArrayWrapper<XValueType, RANK - ( sizeof...(XIndexTypeS) ) >(&(fDataPtr[offset]) , &(dim[0]) );
         }
 
+/*
+        //slice-view of the array (given n < RANK indexes), return the remaining
+        //chunk of the array with freely spanning indexes
+        //for example: a ndarray X of RANK=3, and sizes [4,12,32], then SliceView(':',3,':')
+        //returns an ndarray of RANK=2, and dimensions [4,32] starting at the
+        //location of X(0,3,0), and spanning the data covered by X(:,3,:)
+        //Data of the slice-view points to data owned by original array X
+        template <typename ...XIndexTypeS >
+        typename std::enable_if< (sizeof...(XIndexTypeS) == RANK), 
+        MHO_NDArrayWrapper<XValueType, RANK - count_instances_of_type<sizeof...(XIndexTypeS)-1, index_type, XIndexTypeS>::value > >::type
+        SliceView(XIndexTypeS...idx)
+        {
+            class idx_filler
+            {
+                idx_filler():count(0){};
+                virtual ~idx_filler(){};
+
+                std::array<std::size_t, sizeof...(XIndexTypeS) > full_idx;
+                template< typename XElementType >
+                void operator()(XElementType value)
+                {
+                    
+                }
+            }
+    
+
+
+            std::array<std::size_t, sizeof...(XIndexTypeS) > full_idx;
+            std::array<std::size_t, count_instances_of_type<sizeof...(XIndexTypeS)-1, index_type, XIndexTypeS>::value > fixed_idx;
+            std::array<std::size_t, RANK - count_instances_of_type<sizeof...(XIndexTypeS)-1, index_type, XIndexTypeS>::value > free_idx;
+            
+            
+
+
+
+
+            for(std::size_t i=0; i<RANK; i++){fTmp[i] = 0;}
+            for(std::size_t i=0; i<leading_idx.size(); i++){fTmp[i] = leading_idx[i];}
+            std::size_t offset = MHO_NDArrayMath::OffsetFromRowMajorIndex<RANK>(&(fDims[0]), &(fTmp[0]));
+            std::array<std::size_t, RANK - count_instances_of_type<sizeof...(XIndexTypeS)-1, index_type, XIndexTypeS>::value > dim;
+            for(std::size_t i=0; i<dim.size(); i++){dim[i] = fDims[i + (sizeof...(XIndexTypeS) )];}
+            return  MHO_NDArrayWrapper<XValueType, RANK - ( sizeof...(XIndexTypeS) ) >(&(fDataPtr[offset]) , &(dim[0]) );
+        }
+
+*/
+
         //simple in-place compound assignment operators (mult/add/sub)//////////
 
         //in place multiplication by a scalar factor
