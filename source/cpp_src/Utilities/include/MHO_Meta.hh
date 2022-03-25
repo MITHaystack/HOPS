@@ -118,7 +118,7 @@ template <size_t NTypes>
 struct indexed_tuple_visit
 {
     template <typename XTupleType, typename XFunctorType>
-    static void visit(XTupleType& tup, XFunctorType functor)
+    static void visit(XTupleType& tup, XFunctorType& functor)
     {
         //apply here and then recurse to the next type
         functor(NTypes-1, std::get<NTypes-1>(tup) );
@@ -132,7 +132,7 @@ struct
 indexed_tuple_visit<0>
 {
     template <typename XTupleType, typename XFunctorType>
-    static void visit(XTupleType& tup, XFunctorType functor){}
+    static void visit(XTupleType& tup, XFunctorType& functor){}
 };
 
 
@@ -148,7 +148,7 @@ template <size_t NTypes>
 struct apply_to_tuple
 {
     template <typename XTupleType, typename XFunctorType>
-    static void apply(XTupleType& tup, size_t index, XFunctorType functor)
+    static void apply(XTupleType& tup, size_t index, XFunctorType& functor)
     {
         //if the index matches the current element, apply the functor
         if(index == NTypes - 1)
@@ -169,13 +169,13 @@ struct
 apply_to_tuple<0>
 {
     template <typename XTupleType, typename XFunctorType>
-    static void apply(XTupleType& tup, size_t index, XFunctorType functor) {}
+    static void apply(XTupleType& tup, size_t index, XFunctorType& functor) {}
 };
 
 //const access
 template < typename XTupleType, typename XFunctorType >
 void
-apply_at(const XTupleType& tup, size_t index, XFunctorType functor)
+apply_at(const XTupleType& tup, size_t index, XFunctorType& functor)
 {
     apply_to_tuple< std::tuple_size< XTupleType >::value >::apply(tup, index, functor);
 }
@@ -183,7 +183,7 @@ apply_at(const XTupleType& tup, size_t index, XFunctorType functor)
 //non-const access
 template < typename XTupleType, typename XFunctorType >
 void
-apply_at(XTupleType& tup, size_t index, XFunctorType functor)
+apply_at(XTupleType& tup, size_t index, XFunctorType& functor)
 {
     apply_to_tuple< std::tuple_size< XTupleType >::value >::apply(tup, index, functor);
 }
@@ -200,7 +200,7 @@ template <size_t NTypes>
 struct apply_to_tuple2
 {
     template <typename XTupleType, typename XTupleType2, typename XFunctorType>
-    static void apply(XTupleType& tup1, XTupleType2& tup2, size_t index, XFunctorType functor)
+    static void apply(XTupleType& tup1, XTupleType2& tup2, size_t index, XFunctorType& functor)
     {
         //if the index matches the current element, apply the functor
         if(index == NTypes - 1)
@@ -221,13 +221,13 @@ struct
 apply_to_tuple2<0>
 {
     template <typename XTupleType, typename XTupleType2, typename XFunctorType>
-    static void apply(XTupleType& tup1, XTupleType2& tup2, size_t index, XFunctorType functor) {}
+    static void apply(XTupleType& tup1, XTupleType2& tup2, size_t index, XFunctorType& functor) {}
 };
 
 //const access on first parameter
 template <typename XTupleType, typename XTupleType2, typename XFunctorType>
 void
-apply_at2(const XTupleType& tup1, XTupleType& tup2, size_t index, XFunctorType functor)
+apply_at2(const XTupleType& tup1, XTupleType& tup2, size_t index, XFunctorType& functor)
 {
     apply_to_tuple2< std::tuple_size< XTupleType >::value >::apply(tup1, tup2, index, functor);
 }
@@ -235,7 +235,7 @@ apply_at2(const XTupleType& tup1, XTupleType& tup2, size_t index, XFunctorType f
 //non-const access
 template <typename XTupleType, typename XTupleType2, typename XFunctorType>
 void
-apply_at2(XTupleType& tup1, XTupleType2& tup2, size_t index, XFunctorType functor)
+apply_at2(XTupleType& tup1, XTupleType2& tup2, size_t index, XFunctorType& functor)
 {
     apply_to_tuple2< std::tuple_size< XTupleType >::value >::apply(tup1, tup2, index, functor);
 }
