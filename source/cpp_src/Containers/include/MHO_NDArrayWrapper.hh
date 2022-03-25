@@ -88,10 +88,9 @@ class MHO_NDArrayWrapper:
 
         //set pointer to externally managed array with associated dimensions
         void SetExternalData(XValueType* ptr, const std::size_t* dim){Construct(ptr, dim);}
-
-        //access to underlying raw array pointer
-        XValueType* GetData(){return fDataPtr;};
-        const XValueType* GetData() const {return fDataPtr;};
+        
+        bool IsExternallyManaged() const {return fExternallyManaged;}
+        bool IsSlice() const {return fIsSlice;}
 
         //get the total size of the array
         std::size_t GetRank() const {return RANK;}
@@ -142,7 +141,13 @@ class MHO_NDArrayWrapper:
             else{ throw std::out_of_range("MHO_NDArrayWrapper::at() indices out of range.");}
         }
 
+        //access to underlying data pointer, this can be used unsafely
+        XValueType* GetData(){return fDataPtr;};
+        const XValueType* GetData() const {return fDataPtr;};
+
         //fast access operator by 1-dim index (absolute-position) into the array
+        //this assumes the data is contiguous in memory, which may not be true 
+        //if the array wrapper is a slice of a larger array
         XValueType& operator[](std::size_t i){return fDataPtr[i];}
         const XValueType& operator[](std::size_t i) const {return fDataPtr[i];}
 
@@ -153,7 +158,8 @@ class MHO_NDArrayWrapper:
             {
                 if(rhs.fExternallyManaged)
                 {
-                    Construct(rhs.fDataPtr, &(rhs.fDims[0]) );
+                    if(rhs.fIsSlice){ Construct(rhs.fDataPtr, &(rhs.fDims[0]), &(rhs.fStrides[0]) ); }
+                    else{ Construct(rhs.fDataPtr, &(rhs.fDims[0]) ); }
                 }
                 else
                 {
@@ -164,9 +170,19 @@ class MHO_NDArrayWrapper:
             return *this;
         }
 
-        //convenience functions
-        void SetArray(const XValueType& obj){ for(std::size_t i=0; i < fSize; i++){fDataPtr[i] = obj; } }
-        void ZeroArray(){ std::memset(fDataPtr, 0, fSize*sizeof(XValueType) ); }; //set all elements in the array to zero
+        //set all elements in the array to a certain value
+        void SetArray(const XValueType& obj)
+        {
+            if(!fIsSlice){for(std::size_t i=0; i < fSize; i++){fDataPtr[i] = obj; } }
+            else{ msg_debug("containers", "warning not yet implemented"); }
+        }
+
+        //set all elements in the array to zero
+        void ZeroArray()
+        { 
+            if(!fIsSlice){std::memset(fDataPtr, 0, fSize*sizeof(XValueType) ); }
+            else{ msg_debug("containers", "warning not yet implemented"); }
+        }
 
         //expensive copy (as opposed to the assignment operator,
         //pointers to exernally managed memory are not transfer)
@@ -174,15 +190,26 @@ class MHO_NDArrayWrapper:
         {
             if(this != &rhs)
             {
-                Construct(nullptr,  &(rhs.fDims[0]));
-                if(fSize != 0){std::copy(rhs.fData.begin(), rhs.fData.end(), this->fData.begin() );}
+                if(rhs.IsSlice())
+                {
+                    Construct(nullptr,  &(rhs.fDims[0]));
+                    if(fSize != 0)
+                    {
+                        msg_debug("containers", "warning not yet implemented");
+                    }
+                }
+                else 
+                {
+                    Construct(nullptr,  &(rhs.fDims[0]));
+                    if(fSize != 0){std::copy(rhs.fData.begin(), rhs.fData.end(), this->fData.begin() );}
+                }
             }
         }
 
         //linear offset into the array
         std::size_t GetOffsetForIndices(const std::size_t* index)
         {
-            return MHO_NDArrayMath::OffsetFromRowMajorIndex<RANK>(&(fDims[0]), index);
+            return MHO_NDArrayMath::OffsetFromStrideIndex<RANK>(&(fStrides[0]), index);
         }
 
         //sub-view of the array (given n < RANK leading indexes), return the remaining
@@ -200,10 +227,20 @@ class MHO_NDArrayWrapper:
             std::array<std::size_t, sizeof...(XIndexTypeS) > leading_idx = {{static_cast<size_t>(idx)...}};
             for(std::size_t i=0; i<RANK; i++){fTmp[i] = 0;}
             for(std::size_t i=0; i<leading_idx.size(); i++){fTmp[i] = leading_idx[i];}
-            std::size_t offset = MHO_NDArrayMath::OffsetFromRowMajorIndex<RANK>(&(fDims[0]), &(fTmp[0]));
+            std::size_t offset = MHO_NDArrayMath::OffsetFromStrideIndex<RANK>(&(fStrides[0]), &(fTmp[0]));
             std::array<std::size_t, RANK - (sizeof...(XIndexTypeS)) > dim;
             for(std::size_t i=0; i<dim.size(); i++){dim[i] = fDims[i + (sizeof...(XIndexTypeS) )];}
-            return  MHO_NDArrayWrapper<XValueType, RANK - ( sizeof...(XIndexTypeS) ) >(&(fDataPtr[offset]) , &(dim[0]) );
+
+            if(!fIsSlice)
+            {
+                return  MHO_NDArrayWrapper<XValueType, RANK - ( sizeof...(XIndexTypeS) ) >(&(fDataPtr[offset]) , &(dim[0]) );
+            }
+            else 
+            {
+                std::array<std::size_t, RANK - (sizeof...(XIndexTypeS)) > strides;
+                for(std::size_t i=0; i<strides.size(); i++){strides[i] = fStrides[i + (sizeof...(XIndexTypeS) )];}
+                return  MHO_NDArrayWrapper<XValueType, RANK - ( sizeof...(XIndexTypeS) ) >(&(fDataPtr[offset]), &(dim[0]), &(strides[0]) );
+            }
         }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -258,31 +295,13 @@ class MHO_NDArrayWrapper:
             indexed_tuple_visit<RANK>::visit(input_idx, filler);
             filler.reorder();
 
-            std::cout<<"filler sizes = "<<filler.full_idx.size()<<", "<<filler.free_idx.size()<<", "<<filler.fixed_idx.size()<<std::endl;
-
             std::size_t offset = MHO_NDArrayMath::OffsetFromRowMajorIndex<RANK>(&(fDims[0]), &( filler.full_idx[0]));
-
-            for(std::size_t i=0; i<filler.full_idx.size(); i++)
-            {
-                std::cout<<"full "<<i<<", "<<filler.full_idx[i]<<std::endl;
-            }
-            
-            for(std::size_t i=0; i<filler.free_idx.size(); i++)
-            {
-                std::cout<<"free "<<i<<", "<<filler.free_idx[i]<<std::endl;
-            }
-            
-            for(std::size_t i=0; i<filler.fixed_idx.size(); i++)
-            {
-                std::cout<<"fixed "<<i<<", "<<filler.fixed_idx[i]<<std::endl;
-            }
 
             //TODO FIXME ....wrong strides!!
             std::array<std::size_t, nfree_t::value > dim;
             std::array<std::size_t, nfree_t::value > strides;
             for(std::size_t i=0; i<dim.size(); i++)
             {
-                std::cout<<i<<", "<<filler.free_idx[i]<<","<< fDims[ filler.free_idx[i] ]<<"," <<fStrides[ filler.free_idx[i] ] <<std::endl;
                 dim[i] = fDims[ filler.free_idx[i] ];
                 strides[i] = fStrides[ filler.free_idx[i] ];
             }
@@ -298,7 +317,8 @@ class MHO_NDArrayWrapper:
         typename std::enable_if< std::is_same<XValueType,T>::value or std::is_integral<T>::value or std::is_floating_point<T>::value, MHO_NDArrayWrapper& >::type
         inline operator*=(T aScalar)
         {
-            for(std::size_t i=0; i<fSize; i++){fDataPtr[i] *= aScalar;}
+            if(!fIsSlice){for(std::size_t i=0; i<fSize; i++){fDataPtr[i] *= aScalar;}}
+            else{msg_debug("containers", "warning not yet implemented");};
             return *this;
         }
 
@@ -307,7 +327,8 @@ class MHO_NDArrayWrapper:
         typename std::enable_if< std::is_same<XValueType,T>::value or std::is_integral<T>::value or std::is_floating_point<T>::value, MHO_NDArrayWrapper& >::type
         inline operator+=(T aScalar)
         {
-            for(std::size_t i=0; i<fSize; i++){fDataPtr[i] += aScalar;}
+            if(!fIsSlice){for(std::size_t i=0; i<fSize; i++){fDataPtr[i] += aScalar;}}
+            else{msg_debug("containers", "warning not yet implemented");}
             return *this;
         }
 
@@ -316,7 +337,8 @@ class MHO_NDArrayWrapper:
         typename std::enable_if< std::is_same<XValueType,T>::value or std::is_integral<T>::value or std::is_floating_point<T>::value, MHO_NDArrayWrapper& >::type
         inline operator-=(T aScalar)
         {
-            for(std::size_t i=0; i<fSize; i++){fDataPtr[i] -= aScalar;}
+            if(!fIsSlice){for(std::size_t i=0; i<fSize; i++){fDataPtr[i] -= aScalar;}}
+            else{msg_debug("containers", "warning not yet implemented");}
             return *this;
         }
 
@@ -324,7 +346,8 @@ class MHO_NDArrayWrapper:
         inline MHO_NDArrayWrapper& operator*=(const MHO_NDArrayWrapper& anArray)
         {
             if(!HaveSameNumberOfElements(this, &anArray)){throw std::out_of_range("MHO_NDArrayWrapper::*= size mismatch.");}
-            for(std::size_t i=0; i<fSize; i++){fDataPtr[i] *= anArray.fDataPtr[i];}
+            if(!fIsSlice && !anArray.IsSlice()){for(std::size_t i=0; i<fSize; i++){fDataPtr[i] *= anArray.fDataPtr[i];}}
+            else{msg_debug("containers", "warning not yet implemented");}
             return *this;
         }
 
@@ -332,7 +355,8 @@ class MHO_NDArrayWrapper:
         inline MHO_NDArrayWrapper& operator+=(const MHO_NDArrayWrapper& anArray)
         {
             if(!HaveSameNumberOfElements(this, &anArray)){throw std::out_of_range("MHO_NDArrayWrapper::+= size mismatch.");}
-            for(std::size_t i=0; i<fSize; i++){fDataPtr[i] += anArray.fDataPtr[i];}
+            if(!fIsSlice && !anArray.IsSlice()){for(std::size_t i=0; i<fSize; i++){fDataPtr[i] += anArray.fDataPtr[i];}}
+            else{msg_debug("containers", "warning not yet implemented");}
             return *this;
         }
 
@@ -340,7 +364,8 @@ class MHO_NDArrayWrapper:
         inline MHO_NDArrayWrapper& operator-=(const MHO_NDArrayWrapper& anArray)
         {
             if(!HaveSameNumberOfElements(this, &anArray)){throw std::out_of_range("MHO_NDArrayWrapper::-= size mismatch.");}
-            for(std::size_t i=0; i<fSize; i++){fDataPtr[i] -= anArray.fDataPtr[i];}
+            if(!fIsSlice && !anArray.IsSlice()){for(std::size_t i=0; i<fSize; i++){fDataPtr[i] -= anArray.fDataPtr[i];}}
+            else{msg_debug("containers", "warning not yet implemented");}
             return *this;
         }
 
@@ -354,7 +379,8 @@ class MHO_NDArrayWrapper:
         // std::string fUnits;
 
         XValueType* fDataPtr;
-        bool fExternallyManaged;
+        bool fExternallyManaged; //if true, fDataPtr points to memory handled by an external object
+        bool fIsSlice; //if true, this array wrapper is just a slice of a larger array
         std::vector< XValueType > fData; //used for internally managed data
         index_type fDims; //size of each dimension
         index_type fStrides; //strides between elements in each dimension
@@ -369,16 +395,12 @@ class MHO_NDArrayWrapper:
         XValueType& ValueAt(const index_type& idx)
         {
             return fDataPtr[ MHO_NDArrayMath::OffsetFromStrideIndex<RANK>(&(fStrides[0]), &(idx[0]) ) ];
-            //return fDataPtr[ MHO_NDArrayMath::OffsetFromRowMajorIndex<RANK>(&(fDims[0]), &(idx[0]) ) ];
         }
 
         const XValueType& ValueAt(const index_type& idx) const
         {
             return fDataPtr[ MHO_NDArrayMath::OffsetFromStrideIndex<RANK>(&(fStrides[0]), &(idx[0]) ) ];
-            //return fDataPtr[ MHO_NDArrayMath::OffsetFromRowMajorIndex<RANK>(&(fDims[0]), &(idx[0]) ) ];
         }
-
-
 
 
     private:
@@ -390,6 +412,7 @@ class MHO_NDArrayWrapper:
             fSize = 0;
             fDataPtr = nullptr;
             fExternallyManaged = false;
+            fIsSlice = false;
             if(ptr == nullptr && dim == nullptr){return;}
 
             //dimensions known
@@ -421,6 +444,7 @@ class MHO_NDArrayWrapper:
             fSize = 0;
             fDataPtr = nullptr;
             fExternallyManaged = false;
+            fIsSlice = false;
             if(ptr == nullptr || dim == nullptr || strides == nullptr)
             {
                 msg_error("containers", "Cannot construct array slice." << eom);
@@ -429,6 +453,7 @@ class MHO_NDArrayWrapper:
 
             fDataPtr = ptr;
             fExternallyManaged = true;
+            fIsSlice = true;
             //set the dimensions, and the strides directly
             for(std::size_t i=0; i<RANK; i++){fDims[i] = dim[i]; fStrides[i] = strides[i];}
             fSize = MHO_NDArrayMath::TotalArraySize<RANK>(&(fDims[0]));
@@ -477,7 +502,6 @@ class MHO_NDArrayWrapper:
         {
             return stride_iterator(fDataPtr, fDataPtr + std::min(offset, fSize), fSize, stride);
         }
-
 
 };
 
