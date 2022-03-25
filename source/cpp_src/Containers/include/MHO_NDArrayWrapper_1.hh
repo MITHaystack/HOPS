@@ -25,10 +25,15 @@ class MHO_NDArrayWrapper<XValueType, 1>:
         MHO_NDArrayWrapper(XValueType* ptr, const std::size_t* dim){Construct(ptr,dim);}; //data is externally allocated/managed
         MHO_NDArrayWrapper(std::size_t dim){Construct(nullptr, &dim);}; //data is internally allocated
         MHO_NDArrayWrapper(XValueType* ptr, std::size_t dim){Construct(ptr,&dim);}; //data is externally allocated/managed
+        //only use this constrctor within 'SliceView' routine
+        MHO_NDArrayWrapper(XValueType* ptr, const std::size_t* dim, const std::size_t* strides){Construct(ptr,dim,strides);};
+
 
         MHO_NDArrayWrapper(const MHO_NDArrayWrapper& obj)
         {
-            if(obj.fExternallyManaged){Construct(obj.fDataPtr, &(obj.fDims[0]) );}
+            std::cout<<"copy cons"<<std::endl;
+            //if(obj.fExternallyManaged){Construct(obj.fDataPtr, &(obj.fDims[0]) );}
+            if(obj.fExternallyManaged){Construct(obj.fDataPtr, &(obj.fDims[0]), &(obj.fStrides[0]) );}
             else
             {
                 Construct(nullptr, &(obj.fDims[0]) );
@@ -80,26 +85,26 @@ class MHO_NDArrayWrapper<XValueType, 1>:
         //access operators
 
         //access operator () -- no bounds checking
-        XValueType& operator()(std::size_t idx) {return fDataPtr[idx];}
-        const XValueType& operator()(std::size_t idx) const {return fDataPtr[idx];}
+        XValueType& operator()(std::size_t idx) { std::cout<<fStrides[0]<<std::endl; return fDataPtr[idx*fStrides[0]];}
+        const XValueType& operator()(std::size_t idx) const {return fDataPtr[idx*fStrides[0]];}
 
         //access via at() -- same as operator() but with bounds checking
         XValueType& at(std::size_t idx)
         {
-            if( idx < fSize ){ return fDataPtr[idx]; }
+            if( idx < fSize ){ return fDataPtr[idx*fStrides[0]]; }
             else{ throw std::out_of_range("MHO_NDArrayWrapper::at() indices out of range.");}
         }
 
         //const at()
         const XValueType& at(std::size_t idx) const
         {
-            if( idx < fSize ){ return fDataPtr[idx]; }
+            if( idx < fSize ){ return fDataPtr[idx*fStrides[0]]; }
             else{ throw std::out_of_range("MHO_NDArrayWrapper::at() indices out of range.");}
         }
 
         //in 1-d case, operator[] is same as operator()
-        XValueType& operator[](std::size_t i){return fDataPtr[i];}
-        const XValueType& operator[](std::size_t i) const {return fDataPtr[i];}
+        XValueType& operator[](std::size_t i){return fDataPtr[i*fStrides[0]];}
+        const XValueType& operator[](std::size_t i) const {return fDataPtr[i*fStrides[0]];}
 
         //assignment operator
         MHO_NDArrayWrapper& operator=(const MHO_NDArrayWrapper& rhs)
@@ -122,8 +127,29 @@ class MHO_NDArrayWrapper<XValueType, 1>:
         }
 
         //convenience functions
-        void SetArray(const XValueType& obj){ for(std::size_t i=0; i < fSize; i++){fDataPtr[i] = obj; } }
-        void ZeroArray(){ std::memset(fDataPtr, 0, fSize*sizeof(XValueType) ); }; //set all elements in the array to zero
+        void SetArray(const XValueType& obj)
+        {
+            if(fStrides[0] != 1)
+            {
+                for(std::size_t i=0; i < fSize; i++){fDataPtr[i*fStrides[0]] = obj; } 
+            }
+            else 
+            {
+                for(std::size_t i=0; i < fSize; i++){fDataPtr[i] = obj; } 
+            }
+        }
+        void ZeroArray()
+        {
+            if(fStrides[0] == 1)
+            {
+                std::memset(fDataPtr, 0, fSize*sizeof(XValueType) ); 
+            }
+            else 
+            {
+                SetArray(0);
+            }
+
+        }; //set all elements in the array to zero
 
         //expensive copy (as opposed to the assignment operator,
         //pointers to exernally managed memory are not transfer)
@@ -196,6 +222,29 @@ class MHO_NDArrayWrapper<XValueType, 1>:
                 fDataPtr = &(fData[0]);
                 fExternallyManaged = false;
             }
+        }
+
+        //special constructor for when strides are pre-determined (not from array dimensions)
+        //this is only called with building a 'SliceView'
+        void Construct(XValueType* ptr, const std::size_t* dim, const std::size_t* strides)
+        {
+            //default construction (empty)
+            fDims[0] = 0; fStrides[0] = 0;
+            fSize = 0;
+            fDataPtr = nullptr;
+            fExternallyManaged = false;
+            if(ptr == nullptr || dim == nullptr || strides == nullptr)
+            {
+                msg_error("containers", "Cannot construct array slice." << eom);
+                return;
+            }
+
+            fDataPtr = ptr;
+            fExternallyManaged = true;
+            //set the dimensions, and the strides directly
+            fDims[0] = dim[0]; fStrides[0] = strides[0];
+            std::cout<<"1d cons dim, stride = "<<fDims[0]<<","<<fStrides[0]<<std::endl;
+            fSize = fDims[0];
         }
 
         void ComputeStrides(){fStrides[0] = 1;}
