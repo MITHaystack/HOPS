@@ -45,15 +45,20 @@ class MHO_NDArrayWrapper:
         MHO_NDArrayWrapper(){Construct(nullptr, nullptr);}; //empty constructor, to be configured later
         MHO_NDArrayWrapper(const std::size_t* dim){Construct(nullptr, dim);}; //data is internally allocated
         MHO_NDArrayWrapper(XValueType* ptr, const std::size_t* dim){Construct(ptr,dim);}; //data is externally allocated/managed
+        //only use this constrctor within 'SliceView' routine
+        MHO_NDArrayWrapper(XValueType* ptr, const std::size_t* dim, const std::size_t* strides){Construct(ptr,dim,strides);};
+
         MHO_NDArrayWrapper(const MHO_NDArrayWrapper& obj)
         {
-            if(obj.fExternallyManaged){Construct(obj.fDataPtr, &(obj.fDims[0]) );}
+            if(obj.fExternallyManaged){Construct(obj.fDataPtr, &(obj.fDims[0]), &(obj.fStrides[0]) );}
             else
             {
                 Construct(nullptr, &(obj.fDims[0]) );
                 if(fSize != 0){std::copy(obj.fData.begin(), obj.fData.end(), fData.begin() );}
             }
         }
+
+    public:
 
         //destructor
         virtual ~MHO_NDArrayWrapper(){};
@@ -186,7 +191,10 @@ class MHO_NDArrayWrapper:
         //returns an ndarray of RANK=2, and dimensions [12,32] starting at the
         //location of X(2,0,0). Data of the subview points to data owned by X
         template <typename ...XIndexTypeS >
-        typename std::enable_if< (sizeof...(XIndexTypeS) < RANK), MHO_NDArrayWrapper<XValueType, RANK - ( sizeof...(XIndexTypeS) ) > >::type
+        typename std::enable_if<
+            (sizeof...(XIndexTypeS) < RANK),
+            MHO_NDArrayWrapper<XValueType, RANK - ( sizeof...(XIndexTypeS) ) > 
+        >::type
         SubView(XIndexTypeS...idx)
         {
             std::array<std::size_t, sizeof...(XIndexTypeS) > leading_idx = {{static_cast<size_t>(idx)...}};
@@ -208,67 +216,77 @@ class MHO_NDArrayWrapper:
         //location of X(0,3,0), and spanning the data covered by X(":",3,":")
         //Data of the slice-view points to data owned by original array X
         template <typename ...XIndexTypeS >
-        typename std::enable_if< (sizeof...(XIndexTypeS) == RANK), 
-        MHO_NDArrayWrapper< XValueType, count_instances_of_type< const char*, sizeof...(XIndexTypeS)-1, XIndexTypeS... >::value > >::type
+        typename std::enable_if< 
+            (sizeof...(XIndexTypeS) == RANK), 
+            MHO_NDArrayWrapper< XValueType, count_instances_of_type< const char*, sizeof...(XIndexTypeS)-1, XIndexTypeS... >::value >
+        >::type
         SliceView(XIndexTypeS...idx)
         {
             typedef std::integral_constant< std::size_t, count_instances_of_type< const char*, sizeof...(XIndexTypeS)-1, XIndexTypeS... >::value > nfree_t;
             typedef std::integral_constant< std::size_t, RANK - count_instances_of_type< const char*, sizeof...(XIndexTypeS)-1, XIndexTypeS... >::value > nfixed_t;
 
-            class idx_filler
+            class index_filler
             {
                 public:
-                    idx_filler()
+                    index_filler()
                     {
                         for(std::size_t i=0; i<RANK; i++){full_idx[i] = 0;}
                         fixed_idx.clear();
                         free_idx.clear();
                     }
-                    ~idx_filler(){};
+                    ~index_filler(){};
 
                     std::array<std::size_t, RANK > full_idx; //list the index values of the start of the slice
                     std::vector<std::size_t> fixed_idx; //list the indexes which are fixed
                     std::vector<std::size_t> free_idx; //list the indexs which are free to vary
 
-                    //placeholder types sets index to zero
-                    void operator()(std::size_t i, const char* value){full_idx[i] = 0; free_idx.push_back(i);}
-
+                    //placeholder type sets index to zero
+                    void operator()(std::size_t i, const char* /*value*/){full_idx[i] = 0; free_idx.push_back(i);}
                     //index types pass along their value
                     void operator()(std::size_t i, std::size_t value){full_idx[i] = value; fixed_idx.push_back(i);}
+
+                    //make sure the indexes are listed in increasing order
+                    void reorder()
+                    {
+                        std::sort(free_idx.begin(), free_idx.end() ); 
+                        std::sort(fixed_idx.begin(), fixed_idx.end() ); //make sure they are in increasing order
+                    }
             };
 
-            idx_filler filler;    
+            index_filler filler;    
             std::tuple< XIndexTypeS... > input_idx = std::make_tuple( idx... );
             indexed_tuple_visit<RANK>::visit(input_idx, filler);
+            filler.reorder();
 
-            //std::cout<<"filler sizes = "<<filler.full_idx.size()<<", "<<filler.free_idx.size()<<", "<<filler.fixed_idx.size()<<std::endl;
-            std::sort(filler.free_idx.begin(), filler.free_idx.end() ); //make sure they are in increasing order
+            std::cout<<"filler sizes = "<<filler.full_idx.size()<<", "<<filler.free_idx.size()<<", "<<filler.fixed_idx.size()<<std::endl;
 
             std::size_t offset = MHO_NDArrayMath::OffsetFromRowMajorIndex<RANK>(&(fDims[0]), &( filler.full_idx[0]));
 
-            // for(std::size_t i=0; i<filler.full_idx.size(); i++)
-            // {
-            //     std::cout<<"full "<<i<<", "<<filler.full_idx[i]<<std::endl;
-            // }
-            // 
-            // for(std::size_t i=0; i<filler.free_idx.size(); i++)
-            // {
-            //     std::cout<<"free "<<i<<", "<<filler.free_idx[i]<<std::endl;
-            // }
-            // 
-            // for(std::size_t i=0; i<filler.fixed_idx.size(); i++)
-            // {
-            //     std::cout<<"fixed "<<i<<", "<<filler.fixed_idx[i]<<std::endl;
-            // }
+            for(std::size_t i=0; i<filler.full_idx.size(); i++)
+            {
+                std::cout<<"full "<<i<<", "<<filler.full_idx[i]<<std::endl;
+            }
+            
+            for(std::size_t i=0; i<filler.free_idx.size(); i++)
+            {
+                std::cout<<"free "<<i<<", "<<filler.free_idx[i]<<std::endl;
+            }
+            
+            for(std::size_t i=0; i<filler.fixed_idx.size(); i++)
+            {
+                std::cout<<"fixed "<<i<<", "<<filler.fixed_idx[i]<<std::endl;
+            }
 
             //TODO FIXME ....wrong strides!!
             std::array<std::size_t, nfree_t::value > dim;
+            std::array<std::size_t, nfree_t::value > strides;
             for(std::size_t i=0; i<dim.size(); i++)
             {
-                //std::cout<<i<<", "<<filler.free_idx[i]<<","<< fDims[ filler.free_idx[i] ] <<std::endl;
+                std::cout<<i<<", "<<filler.free_idx[i]<<","<< fDims[ filler.free_idx[i] ]<<"," <<fStrides[ filler.free_idx[i] ] <<std::endl;
                 dim[i] = fDims[ filler.free_idx[i] ];
+                strides[i] = fStrides[ filler.free_idx[i] ];
             }
-            return  MHO_NDArrayWrapper<XValueType, nfree_t::value >(&(fDataPtr[offset]) , &(dim[0]) );
+            return  MHO_NDArrayWrapper<XValueType, nfree_t::value >(&(fDataPtr[offset]) , &(dim[0]), &(strides[0]) );
         }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -392,6 +410,28 @@ class MHO_NDArrayWrapper:
                 fDataPtr = &(fData[0]);
                 fExternallyManaged = false;
             }
+        }
+
+        //special constructor for when strides are pre-determined (not from array dimensions)
+        //this is only called with building a 'SliceView'
+        void Construct(XValueType* ptr, const std::size_t* dim, const std::size_t* strides)
+        {
+            //default construction (empty)
+            for(std::size_t i=0; i<RANK; i++){fDims[i] = 0; fStrides[i] = 0;}
+            fSize = 0;
+            fDataPtr = nullptr;
+            fExternallyManaged = false;
+            if(ptr == nullptr || dim == nullptr || strides == nullptr)
+            {
+                msg_error("containers", "Cannot construct array slice." << eom);
+                return;
+            }
+
+            fDataPtr = ptr;
+            fExternallyManaged = true;
+            //set the dimensions, and the strides directly
+            for(std::size_t i=0; i<RANK; i++){fDims[i] = dim[i]; fStrides[i] = strides[i];}
+            fSize = MHO_NDArrayMath::TotalArraySize<RANK>(&(fDims[0]));
         }
 
         void ComputeStrides()
