@@ -215,29 +215,59 @@ class MHO_NDArrayWrapper:
             typedef std::integral_constant< std::size_t, count_instances_of_type< const char*, sizeof...(XIndexTypeS)-1, XIndexTypeS... >::value > nfree_t;
             typedef std::integral_constant< std::size_t, RANK - count_instances_of_type< const char*, sizeof...(XIndexTypeS)-1, XIndexTypeS... >::value > nfixed_t;
 
-            struct idx_filler
+            class idx_filler
             {
-                std::array<std::size_t, RANK > full_idx; //list the index values of the start of the slice
-                std::vector<std::size_t> fixed_idx; //list the indexes which are fixed
-                std::vector<std::size_t> free_idx; //list the indexs which are free to vary
+                public:
+                    idx_filler()
+                    {
+                        for(std::size_t i=0; i<RANK; i++){full_idx[i] = 0;}
+                        fixed_idx.clear();
+                        free_idx.clear();
+                    }
+                    ~idx_filler(){};
 
-                //placeholder sets index to zero
-                void operator()(std::size_t i, const char* /*value*/){full_idx[i] = 0; free_idx.push_back(i);}
+                    std::array<std::size_t, RANK > full_idx; //list the index values of the start of the slice
+                    std::vector<std::size_t> fixed_idx; //list the indexes which are fixed
+                    std::vector<std::size_t> free_idx; //list the indexs which are free to vary
 
-                //index types pass along their value
-                void operator()(std::size_t i, std::size_t value){full_idx[i] = value; fixed_idx.push_back(i);}
+                    //placeholder types sets index to zero
+                    void operator()(std::size_t i, const char* value){full_idx[i] = 0; free_idx.push_back(i);}
+
+                    //index types pass along their value
+                    void operator()(std::size_t i, std::size_t value){full_idx[i] = value; fixed_idx.push_back(i);}
             };
 
             idx_filler filler;    
             std::tuple< XIndexTypeS... > input_idx = std::make_tuple( idx... );
             indexed_tuple_visit<RANK>::visit(input_idx, filler);
+
+            //std::cout<<"filler sizes = "<<filler.full_idx.size()<<", "<<filler.free_idx.size()<<", "<<filler.fixed_idx.size()<<std::endl;
             std::sort(filler.free_idx.begin(), filler.free_idx.end() ); //make sure they are in increasing order
 
             std::size_t offset = MHO_NDArrayMath::OffsetFromRowMajorIndex<RANK>(&(fDims[0]), &( filler.full_idx[0]));
 
+            // for(std::size_t i=0; i<filler.full_idx.size(); i++)
+            // {
+            //     std::cout<<"full "<<i<<", "<<filler.full_idx[i]<<std::endl;
+            // }
+            // 
+            // for(std::size_t i=0; i<filler.free_idx.size(); i++)
+            // {
+            //     std::cout<<"free "<<i<<", "<<filler.free_idx[i]<<std::endl;
+            // }
+            // 
+            // for(std::size_t i=0; i<filler.fixed_idx.size(); i++)
+            // {
+            //     std::cout<<"fixed "<<i<<", "<<filler.fixed_idx[i]<<std::endl;
+            // }
+
             //TODO FIXME ....wrong strides!!
             std::array<std::size_t, nfree_t::value > dim;
-            for(std::size_t i=0; i<dim.size(); i++){dim[i] = fDims[ filler.free_idx[i] ];}
+            for(std::size_t i=0; i<dim.size(); i++)
+            {
+                //std::cout<<i<<", "<<filler.free_idx[i]<<","<< fDims[ filler.free_idx[i] ] <<std::endl;
+                dim[i] = fDims[ filler.free_idx[i] ];
+            }
             return  MHO_NDArrayWrapper<XValueType, nfree_t::value >(&(fDataPtr[offset]) , &(dim[0]) );
         }
 
