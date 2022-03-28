@@ -26,14 +26,12 @@
 #include "MHO_NDArrayMath.hh"
 #include "MHO_BidirectionalIterator.hh"
 #include "MHO_BidirectionalStrideIterator.hh"
-#include "MHO_ExtensibleElement.hh"
 
 namespace hops
 {
 
 template< typename XValueType, std::size_t RANK>
-class MHO_NDArrayView:
-    public MHO_ExtensibleElement //any and all extensions are purely a runtime concept and do NOT get streamed for I/O
+class MHO_NDArrayView
 {
     public:
 
@@ -41,15 +39,9 @@ class MHO_NDArrayView:
         using index_type = std::array<std::size_t, RANK>;
         typedef std::integral_constant< std::size_t, RANK > rank;
 
-        //constructor
+        //constructors
         MHO_NDArrayView(XValueType* ptr, const std::size_t* dim, const std::size_t* strides){Construct(ptr,dim,strides);};
-
-        MHO_NDArrayView(const MHO_NDArrayView& obj)
-        {
-            Construct(obj.fDataPtr, &(obj.fDims[0]), &(obj.fStrides[0]) );
-        }
-
-    public:
+        MHO_NDArrayView(const MHO_NDArrayView& obj){Construct(obj.fDataPtr, &(obj.fDims[0]), &(obj.fStrides[0]) );}
 
         //destructor
         virtual ~MHO_NDArrayView(){};
@@ -119,37 +111,15 @@ class MHO_NDArrayView:
         //set all elements in the array to a certain value
         void SetArray(const XValueType& obj)
         {
-            if(!fIsSlice){for(std::size_t i=0; i < fSize; i++){fDataPtr[i] = obj; } }
-            else{ msg_debug("containers", "warning not yet implemented"); }
+            // if(!fIsSlice){for(std::size_t i=0; i < fSize; i++){fDataPtr[i] = obj; } }
+            msg_debug("containers", "warning not yet implemented");
         }
 
         //set all elements in the array to zero
         void ZeroArray()
         { 
-            if(!fIsSlice){std::memset(fDataPtr, 0, fSize*sizeof(XValueType) ); }
-            else{ msg_debug("containers", "warning not yet implemented"); }
-        }
-
-        //expensive copy (as opposed to the assignment operator,
-        //pointers to exernally managed memory are not transfer)
-        virtual void Copy(const MHO_NDArrayView& rhs)
-        {
-            if(this != &rhs)
-            {
-                if(rhs.IsSlice())
-                {
-                    Construct(nullptr,  &(rhs.fDims[0]));
-                    if(fSize != 0)
-                    {
-                        msg_debug("containers", "warning not yet implemented");
-                    }
-                }
-                else 
-                {
-                    Construct(nullptr,  &(rhs.fDims[0]));
-                    if(fSize != 0){std::copy(rhs.fData.begin(), rhs.fData.end(), this->fData.begin() );}
-                }
-            }
+            //if(!fIsSlice){std::memset(fDataPtr, 0, fSize*sizeof(XValueType) ); }
+            msg_debug("containers", "warning not yet implemented");
         }
 
         //linear offset into the array
@@ -157,8 +127,6 @@ class MHO_NDArrayView:
         {
             return MHO_NDArrayMath::OffsetFromStrideIndex<RANK>(&(fStrides[0]), index);
         }
-
-
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -169,8 +137,8 @@ class MHO_NDArrayView:
         typename std::enable_if< std::is_same<XValueType,T>::value or std::is_integral<T>::value or std::is_floating_point<T>::value, MHO_NDArrayView& >::type
         inline operator*=(T aScalar)
         {
-            if(!fIsSlice){for(std::size_t i=0; i<fSize; i++){fDataPtr[i] *= aScalar;}}
-            else{msg_debug("containers", "warning not yet implemented");};
+            //if(!fIsSlice){for(std::size_t i=0; i<fSize; i++){fDataPtr[i] *= aScalar;}}
+            msg_debug("containers", "warning not yet implemented");
             return *this;
         }
 
@@ -179,8 +147,8 @@ class MHO_NDArrayView:
         typename std::enable_if< std::is_same<XValueType,T>::value or std::is_integral<T>::value or std::is_floating_point<T>::value, MHO_NDArrayView& >::type
         inline operator+=(T aScalar)
         {
-            if(!fIsSlice){for(std::size_t i=0; i<fSize; i++){fDataPtr[i] += aScalar;}}
-            else{msg_debug("containers", "warning not yet implemented");}
+            //if(!fIsSlice){for(std::size_t i=0; i<fSize; i++){fDataPtr[i] += aScalar;}}
+            msg_debug("containers", "warning not yet implemented");
             return *this;
         }
 
@@ -189,8 +157,8 @@ class MHO_NDArrayView:
         typename std::enable_if< std::is_same<XValueType,T>::value or std::is_integral<T>::value or std::is_floating_point<T>::value, MHO_NDArrayView& >::type
         inline operator-=(T aScalar)
         {
-            if(!fIsSlice){for(std::size_t i=0; i<fSize; i++){fDataPtr[i] -= aScalar;}}
-            else{msg_debug("containers", "warning not yet implemented");}
+            //if(!fIsSlice){for(std::size_t i=0; i<fSize; i++){fDataPtr[i] -= aScalar;}}
+            msg_debug("containers", "warning not yet implemented");
             return *this;
         }
 
@@ -198,8 +166,8 @@ class MHO_NDArrayView:
         inline MHO_NDArrayView& operator*=(const MHO_NDArrayView& anArray)
         {
             if(!HaveSameNumberOfElements(this, &anArray)){throw std::out_of_range("MHO_NDArrayView::*= size mismatch.");}
-            if(!fIsSlice && !anArray.IsSlice()){for(std::size_t i=0; i<fSize; i++){fDataPtr[i] *= anArray.fDataPtr[i];}}
-            else{msg_debug("containers", "warning not yet implemented");}
+            //if(!fIsSlice && !anArray.IsSlice()){for(std::size_t i=0; i<fSize; i++){fDataPtr[i] *= anArray.fDataPtr[i];}}
+            msg_debug("containers", "warning not yet implemented");
             return *this;
         }
 
@@ -207,8 +175,8 @@ class MHO_NDArrayView:
         inline MHO_NDArrayView& operator+=(const MHO_NDArrayView& anArray)
         {
             if(!HaveSameNumberOfElements(this, &anArray)){throw std::out_of_range("MHO_NDArrayView::+= size mismatch.");}
-            if(!fIsSlice && !anArray.IsSlice()){for(std::size_t i=0; i<fSize; i++){fDataPtr[i] += anArray.fDataPtr[i];}}
-            else{msg_debug("containers", "warning not yet implemented");}
+            //if(!fIsSlice && !anArray.IsSlice()){for(std::size_t i=0; i<fSize; i++){fDataPtr[i] += anArray.fDataPtr[i];}}
+            msg_debug("containers", "warning not yet implemented");
             return *this;
         }
 
@@ -216,8 +184,8 @@ class MHO_NDArrayView:
         inline MHO_NDArrayView& operator-=(const MHO_NDArrayView& anArray)
         {
             if(!HaveSameNumberOfElements(this, &anArray)){throw std::out_of_range("MHO_NDArrayView::-= size mismatch.");}
-            if(!fIsSlice && !anArray.IsSlice()){for(std::size_t i=0; i<fSize; i++){fDataPtr[i] -= anArray.fDataPtr[i];}}
-            else{msg_debug("containers", "warning not yet implemented");}
+            //if(!fIsSlice && !anArray.IsSlice()){for(std::size_t i=0; i<fSize; i++){fDataPtr[i] -= anArray.fDataPtr[i];}}
+            msg_debug("containers", "warning not yet implemented");
             return *this;
         }
 
