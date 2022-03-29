@@ -26,27 +26,18 @@ int main(int argc, char** argv)
         my200.software_rev[i] = 1; //I have no idea what this field is actually used for
     }
     my200.expt_no = 1234;
-    strcpy(my200.exper_name, "abba"); 
-    strcpy(my200.scan_name, "baab");  
-    strcpy(my200.correlator, "caab");
+    strcpy(my200.exper_name, "WYQXVxN4Ci6FAU7by7wQLPOnhGFlPGSx"); 
+    strcpy(my200.scan_name, "NQxu5N642mOyC49l");  
+    strcpy(my200.correlator, "baab");
 
     my200.start_offset = 0;
     my200.stop_offset = 1;
 
-    //all of the date objects (scantime, corr_date, fourfit_date, frt) are also structs...skip for now
-    //so we should figure out what we want to do with these later
 
+    json obj = convertToJSON(my200);
 
-    MHO_MKType200Converter myConverter;
-    myConverter.SetType200(&my200);
-    myConverter.ConvertToJSON();
-    
-    json obj = myConverter.GetJSON();
+    std::cout << obj.dump(2) << std::endl;
 
-    //now print to screen 
-
-    std::cout<< obj.dump(2) << std::endl;
-    
 
     return 0;
 }

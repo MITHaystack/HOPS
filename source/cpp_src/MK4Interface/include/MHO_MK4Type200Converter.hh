@@ -28,36 +28,10 @@ namespace hops
 *@file MHO_MK4Type200Converter.hh
 *@class MHO_MK4Type200Converter
 *@author J. Barrett - barrettj@mit.edu, V. Pfeiffer - violetp@mit.edu
-* A class that accepts the data from a type 200 file in the form of a struct and converts it to a JSON object.
+* A function that accepts the data from a type 200 file in the form of a struct and converts it to a JSON string.
 */
 
-class MHO_MKType200Converter
-{
-    public:
-
-        //boilerplate constructors/destructors
-        MHO_MKType200Converter();
-        virtual ~MHO_MKType200Converter();
-
-        //sets the pointer to the type_200 object we want to convert
-        void SetType200(type_200* type200ptr);
-
-        //does the actual 'work' of extracting the information from the type_200 struct
-        void ConvertToJSON();
-
-        //returns a copy of the internal json object (filled from the type_200)
-        //NOTE: we could also return a pointer instead (to save on the copy)
-        //but for the time being we won't worry about that sort of optimization
-        json GetJSON();
-
-    private:
-
-        //a pointer to an external type_200 structure we're going to convert
-        type_200* fPtr;
-
-        //a json object which we'll fill
-        json fJSON;
-};
+json convertToJSON(const type_200& t);
 
 }
 

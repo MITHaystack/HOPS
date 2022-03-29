@@ -1,6 +1,5 @@
 #include "MHO_MK4Type200Converter.hh"
 #include <iostream>
-#define TYPE_200_FILES_PATH "../../../c_src/dfio/include"
 
 // struct type_200
 //     {
@@ -22,46 +21,26 @@
 
 namespace hops {
 
-//boiler-plate constructor/destructors
-MHO_MKType200Converter::MHO_MKType200Converter():
-    fPtr(nullptr) //initialize out type_200 pointer to null
-{};
+    json convertToJSON(const type_200& t) {
+        return {
+	    {"record_id", t.record_id},
+	    {"version_no", t.version_no},
+	    {"expt_no", t.expt_no},
+	    // logic to handle edge cases where the exper_name and scan_name are 32 chars 
+	    // this is a holdover from the previous fortran code and is an issue upstream with the c code
+	    // a 32 char array without null termination could be passed to this function and cause a memory overflow
+	    {"exper_name", std::string(t.exper_name, 32).c_str()},
+	    {"scan_name", std::string(t.scan_name, 32).c_str()},
+	    {"correlator", t.correlator},
+	    {"start_offset", t.start_offset},
+	    {"stop_offset", t.stop_offset},
+	    {"software_rev", t.software_rev},
 
-MHO_MKType200Converter::~MHO_MKType200Converter(){};
-
-void MHO_MKType200Converter::SetType200(type_200* type200ptr) {
-    fPtr = type200ptr;
-};
-
-void MHO_MKType200Converter::ConvertToJSON() {
-    //first we make sure the JSON object is empty by clearing it 
-    fJSON.clear();
-
-    //check that our type_200 pointer is not null 
-    if(fPtr != nullptr) {
-
-        fJSON["record_id"] = std::string(fPtr->record_id, 3); 
-	fJSON["version_no"] = std::string(fPtr->version_no, 2);
-	fJSON["expt_no"] = fPtr->expt_no;
-	fJSON["exper_name"] = std::string(fPtr->exper_name, 32).c_str();
-	fJSON["correlator"] = std::string(fPtr->correlator, 32).c_str();
-	fJSON["start_offset"] = fPtr->start_offset;
-	fJSON["stop_offset"] = fPtr->stop_offset;
-	//handle short
-	for(int i=0; i<10; i++) { 
-	   fJSON["software_rev"].push_back(fPtr->software_rev[i]);
-	}
-
-	//make the dates null for now due to the date unit of measurement requirement being uknown
-	fJSON["scantime"] = "null";
-	fJSON["corr_date"] = "null";
-	fJSON["fourfit_date"] = "null";
-	fJSON["frt"] = "null";
+	    // The date unit of measurement requirement are currently unknown
+	    {"scantime", "null"},
+	    {"corr_date", "null"},
+	    {"fourfit_date", "null"},
+	    {"frt", "null"}
+        };
     }
-}
-
-json MHO_MKType200Converter::GetJSON() {
-    return fJSON;
-}
-
 }
