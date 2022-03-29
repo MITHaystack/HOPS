@@ -272,7 +272,6 @@ class MHO_NDArrayWrapper:
 
             std::size_t offset = MHO_NDArrayMath::OffsetFromRowMajorIndex<RANK>(&(fDims[0]), &( filler.full_idx[0]));
 
-            //TODO FIXME ....wrong strides!!
             std::array<std::size_t, nfree_t::value > dim;
             std::array<std::size_t, nfree_t::value > strides;
             for(std::size_t i=0; i<dim.size(); i++)
