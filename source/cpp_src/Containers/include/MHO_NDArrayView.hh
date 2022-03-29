@@ -24,8 +24,7 @@
 #include "MHO_Meta.hh"
 #include "MHO_Message.hh"
 #include "MHO_NDArrayMath.hh"
-#include "MHO_BidirectionalIterator.hh"
-#include "MHO_BidirectionalStrideIterator.hh"
+#include "MHO_BidirectionalIndexedIterator.hh"
 
 namespace hops
 {
@@ -240,33 +239,20 @@ class MHO_NDArrayView
     //the iterator definitions //////////////////////////////////////////////////
     public:
 
-        // using iterator = MHO_BidirectionalIterator<XValueType>;
-        // using stride_iterator = MHO_BidirectionalStrideIterator<XValueType>;
-        // 
-        // using const_iterator = MHO_BidirectionalIterator<XValueType>;
-        // using const_stride_iterator = MHO_BidirectionalStrideIterator<XValueType>;
-        // 
-        // iterator begin(){ return iterator(fDataPtr, fDataPtr, fSize);}
-        // iterator end(){ return iterator(fDataPtr, fDataPtr + fSize, fSize);}
-        // iterator iterator_at(std::size_t offset){return iterator(fDataPtr, fDataPtr + std::min(offset, fSize), fSize);}
-        // 
-        // const_iterator cbegin() const{ return const_iterator(fDataPtr, fDataPtr, fSize);}
-        // const_iterator cend() const { return const_iterator(fDataPtr, fDataPtr + fSize, fSize);}
-        // const_iterator citerator_at(std::size_t offset) const {return const_iterator(fDataPtr, fDataPtr + std::min(offset, fSize), fSize);}
-        // 
-        // stride_iterator stride_begin(std::size_t stride){ return stride_iterator(fDataPtr, fDataPtr, fSize, stride);}
-        // stride_iterator stride_end(std::size_t stride){ return stride_iterator(fDataPtr, fDataPtr + fSize, fSize, stride);}
-        // stride_iterator stride_iterator_at(std::size_t offset, std::size_t stride)
-        // {
-        //     return stride_iterator(fDataPtr, fDataPtr + std::min(offset, fSize), fSize, stride);
-        // }
-        // 
-        // const_stride_iterator cstride_begin(std::size_t stride) const { return stride_iterator(fDataPtr, fDataPtr, fSize, stride);}
-        // const_stride_iterator cstride_end(std::size_t stride) const { return stride_iterator(fDataPtr, fDataPtr + fSize, fSize, stride);}
-        // const_stride_iterator cstride_iterator_at(std::size_t offset, std::size_t stride) const
-        // {
-        //     return stride_iterator(fDataPtr, fDataPtr + std::min(offset, fSize), fSize, stride);
-        // }
+        using iterator = MHO_BidirectionalIndexedIterator<XValueType,RANK>;
+        using const_iterator = MHO_BidirectionalIndexedIterator<XValueType,RANK>;
+
+        iterator begin(){ return iterator(fDataPtr, 0, &(fDims[0]), &(fStrides[0]) );}
+        iterator end()
+        {
+            
+            return iterator(fDataPtr, fSize, &(fDims[0]), &(fStrides[0]) );
+        }
+        //iterator iterator_at(std::size_t offset){return iterator(fDataPtr, fDataPtr + std::min(offset, fSize), std::min(offset, fSize), &(fDims[0]), &(fStrides[0]) );}
+
+        // const_iterator cbegin() const { return const_iterator(fDataPtr, fDataPtr, 0, &(fDims[0]), &(fStrides[0]));}
+        // const_iterator cend() const { return const_iterator(fDataPtr, fDataPtr + fSize, fSize, &(fDims[0]), &(fStrides[0]));}
+        // const_iterator citerator_at(std::size_t offset) const {return const_iterator(fDataPtr, fDataPtr + std::min(offset, fSize), std::min(offset, fSize), &(fDims[0]), &(fStrides[0]));}
 
 };
 

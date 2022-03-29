@@ -184,8 +184,38 @@ int main(int /*argc*/, char** /*argv*/)
 
     std::cout<<"stride of slice1 = "<<slice1.GetStride(0)<<std::endl;
 
-    for(std::size_t i = 0; i< slice1.GetSize(); i++){ slice1(i) = 1;}
-    for(std::size_t i = 0; i< slice2.GetSize(); i++){ slice2.at(i) = 1;}
+    //for(std::size_t i = 0; i< slice1.GetSize(); i++){ slice1(i) = 1;}
+
+    // auto s1 = slice1.begin();
+    // *s1 = 2;
+    // ++s1;
+    // *s1 = 2;
+    // ++s1;
+    // *s1 = 2;
+    // ++s1;
+    // *s1 = 2;
+    // ++s1;
+    // *s1 = 2;
+    // ++s1;
+    // // *s1 = 2;
+    // // ++s1;
+    // auto s2 = slice1.end();
+    // 
+    // bool val = (s1 != s2);
+    // std::cout<<"val = "<<val<<std::endl;
+    // 
+
+    std::cout<<"begin"<<std::endl;
+    auto bitr = slice1.begin();
+    std::cout<<"-----------"<<std::endl;
+    std::cout<<"end"<<std::endl;
+    auto eitr = slice1.end();
+    std::cout<<"-----------"<<std::endl;
+
+
+    for(auto itr = bitr; itr != eitr; ++itr){*itr = 3;}
+
+    //for(std::size_t i = 0; i< slice2.GetSize(); i++){ slice2.at(i) = 1;}
 
     std::cout<<"-----------"<<std::endl;
 
