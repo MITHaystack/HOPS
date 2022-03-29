@@ -6,6 +6,7 @@ set (MK4INTERFACE_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MK4VexInterface.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MK4StationInterface.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MK4Type200Converter.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MK4Type201Converter.hh
 )
 
 #list source files #############################################################
@@ -16,6 +17,7 @@ set( MK4INTERFACE_SOURCEFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_MK4VexInterface.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_MK4StationInterface.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_MK4Type200Converter.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_MK4Type201Converter.cc
 )
 
 #declare header paths ##########################################################
