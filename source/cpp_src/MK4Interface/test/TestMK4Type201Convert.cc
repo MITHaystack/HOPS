@@ -31,7 +31,7 @@ int main(int argc, char** argv)
     my201.coord.dec_secs = 1;
     my201.epoch = 2;
     for(int i=0; i<4; i++) {
-        my200.pulsar_phase[i] = 1;
+        my201.pulsar_phase[i] = 1;
     }
     my201.pulsar_epoch = 2;
     my201.dispersion = 2;
