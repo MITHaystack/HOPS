@@ -196,7 +196,7 @@ class MHO_BidirectionalIndexedIterator
                 //clamp to the end of the array + 1 (the 'end')
                 fPositionOffset = fLength-1;
                 MHO_NDArrayMath::RowMajorIndexFromOffset<RANK>(fPositionOffset, &(fDimensions[0]), &(fIdx[0]) );
-                fIdx[RANK-1] += 1; //this inde is now out of range (1 past the end)
+                fIdx[RANK-1] += 1; //this index is now out of range (1 past the end)
                 fMemoryOffset = MHO_NDArrayMath::OffsetFromStrideIndex<RANK>(&(fStrides[0]), &(fIdx[0]) );
                 fPositionOffset = fLength;
             }
