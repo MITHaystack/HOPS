@@ -110,15 +110,17 @@ class MHO_NDArrayView
         //set all elements in the array to a certain value
         void SetArray(const XValueType& obj)
         {
-            // if(!fIsSlice){for(std::size_t i=0; i < fSize; i++){fDataPtr[i] = obj; } }
-            msg_debug("containers", "warning not yet implemented");
+            auto bit = this->begin();
+            auto eit = this->end();
+            for(auto it = bit; it != eit; ++it){*it = obj; }
         }
 
         //set all elements in the array to zero
         void ZeroArray()
         { 
-            //if(!fIsSlice){std::memset(fDataPtr, 0, fSize*sizeof(XValueType) ); }
-            msg_debug("containers", "warning not yet implemented");
+            auto bit = this->begin();
+            auto eit = this->end();
+            for(auto it = bit; it != eit; ++it){*it = 0; }
         }
 
         //linear offset into the array
