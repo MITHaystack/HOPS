@@ -161,75 +161,54 @@ int main(int /*argc*/, char** /*argv*/)
     auto slice = test4.SliceView(":", 1, 3, ":", 5);
 
 
-    std::size_t dim6[2] = {5,5};
-    MHO_NDArrayWrapper< int, 2> test6(dim6);
+    std::size_t dim6[3] = {5,5,5};
+    MHO_NDArrayWrapper< int, 3> test6(dim6);
     test6.ZeroArray();
 
-    std::cout<<"-----------"<<std::endl;
+    std::cout<<"=============="<<std::endl;
 
     for(int i=0; i<dim6[0]; i++)
     {
-        for(int j=0; j<dim6[0]; j++)
+        for(int j=0; j<dim6[1]; j++)
         {
-            std::cout<<test6(i,j)<<",";
+            for(int k=0; k<dim6[2]; k++)
+            {
+                std::cout<<test6(i,j,k)<<",";
+            }
+            std::cout<<std::endl;
         }
         std::cout<<std::endl;
+        std::cout<<"-----------"<<std::endl;
     }
     std::cout<<std::endl;
 
-    std::cout<<"-----------"<<std::endl;
-
-    auto slice1 = test6.SliceView(":", 2);
-    auto slice2 = test6.SliceView(2, ":");
-
-    std::cout<<"stride of slice1 = "<<slice1.GetStride(0)<<std::endl;
-
-    //for(std::size_t i = 0; i< slice1.GetSize(); i++){ slice1(i) = 1;}
-
-    // auto s1 = slice1.begin();
-    // *s1 = 2;
-    // ++s1;
-    // *s1 = 2;
-    // ++s1;
-    // *s1 = 2;
-    // ++s1;
-    // *s1 = 2;
-    // ++s1;
-    // *s1 = 2;
-    // ++s1;
-    // // *s1 = 2;
-    // // ++s1;
-    // auto s2 = slice1.end();
-    // 
-    // bool val = (s1 != s2);
-    // std::cout<<"val = "<<val<<std::endl;
-    // 
-
-    std::cout<<"begin"<<std::endl;
-    auto bitr = slice1.begin();
-    std::cout<<"-----------"<<std::endl;
-    std::cout<<"end"<<std::endl;
-    auto eitr = slice1.end();
-    std::cout<<"-----------"<<std::endl;
+    std::cout<<"=============="<<std::endl;
 
 
-    for(auto itr = bitr; itr != eitr; ++itr){*itr = 3;}
+    auto slice1 = test6.SliceView(":", 2, 2);
+    auto slice2 = test6.SliceView(2, ":", ":");
 
-    //for(std::size_t i = 0; i< slice2.GetSize(); i++){ slice2.at(i) = 1;}
+    for(auto itr = slice2.begin(); itr != slice2.end(); itr++){*itr = 2;}
+    for(auto itr = slice1.begin(); itr != slice1.end(); itr++){*itr = 1;}
 
-    std::cout<<"-----------"<<std::endl;
+    std::cout<<"=============="<<std::endl;
 
     for(int i=0; i<dim6[0]; i++)
     {
-        for(int j=0; j<dim6[0]; j++)
+        for(int j=0; j<dim6[1]; j++)
         {
-            std::cout<<test6(i,j)<<",";
+            for(int k=0; k<dim6[2]; k++)
+            {
+                std::cout<<test6(i,j,k)<<",";
+            }
+            std::cout<<std::endl;
         }
         std::cout<<std::endl;
+        std::cout<<"-----------"<<std::endl;
     }
     std::cout<<std::endl;
 
-    std::cout<<"-----------"<<std::endl;
+    std::cout<<"=============="<<std::endl;
 
     return 0;
 }
