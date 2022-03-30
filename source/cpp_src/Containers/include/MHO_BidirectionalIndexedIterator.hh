@@ -48,10 +48,15 @@ class MHO_BidirectionalIndexedIterator
             fBegin(copy.fBegin),
             fPositionOffset(copy.fPositionOffset)
         {
-            for(std::size_t i=0; i<RANK; i++){fDimensions[i] = copy.fDimensions[i]; fStrides[i] = copy.fStrides[i];}
-            fLength = MHO_NDArrayMath::TotalArraySize<RANK>(&(fDimensions[0])); //determine size of array 
-            CalculateOffsets();
-            fPtr = fBegin + fMemoryOffset;
+            for(std::size_t i=0; i<RANK; i++)
+            {
+                fDimensions[i] = copy.fDimensions[i]; 
+                fStrides[i] = copy.fStrides[i];
+                fIdx[i] = copy.fIdx[i];
+            }
+            fLength = copy.fLength; 
+            fMemoryOffset = copy.fMemoryOffset;
+            fPtr = copy.fPtr;
         }
 
 
@@ -60,15 +65,31 @@ class MHO_BidirectionalIndexedIterator
         self_type operator++()
         {
             fPositionOffset++;
-            CalculateOffsets();
+            if(fPositionOffset < fLength)
+            {
+                MHO_NDArrayMath::IncrementIndices<RANK>(&(fDimensions[0]), &(fIdx[0]));
+            }
+            else{CalculateOffsets();}
+
+            fMemoryOffset = MHO_NDArrayMath::OffsetFromStrideIndex<RANK>(&(fStrides[0]), &(fIdx[0]) );
             fPtr = fBegin + fMemoryOffset;
             return *this;
         }
 
         self_type operator--()
         {
-            fPositionOffset--;
-            CalculateOffsets();
+            if(fPositionOffset > 0)
+            {
+                fPositionOffset--;
+                MHO_NDArrayMath::DecrementIndices<RANK>(&(fDimensions[0]), &(fIdx[0]));
+            }
+            else
+            {
+                fPositionOffset = 0;
+                CalculateOffsets();
+            }
+
+            fMemoryOffset = MHO_NDArrayMath::OffsetFromStrideIndex<RANK>(&(fStrides[0]), &(fIdx[0]) );
             fPtr = fBegin + fMemoryOffset;
             return *this;
         }
@@ -133,10 +154,16 @@ class MHO_BidirectionalIndexedIterator
             if(this != &rhs)
             {
                 fBegin = rhs.fBegin;
-                fPtr = rhs.fPtr;
                 fPositionOffset = rhs.fPositionOffset;
-                for(std::size_t i=0; i<RANK; i++){fDimensions[i] = rhs.fDimensions[i]; fStrides[i] = rhs.fStrides[i];}
-                CalculateOffsets();
+                for(std::size_t i=0; i<RANK; i++)
+                {
+                    fDimensions[i] = rhs.fDimensions[i]; 
+                    fStrides[i] = rhs.fStrides[i];
+                    fIdx[i] = rhs.fIdx[i];
+                }
+                fLength = rhs.fLength; 
+                fMemoryOffset = rhs.fMemoryOffset;
+                fPtr = rhs.fPtr;
             }
             return *this;
         }
