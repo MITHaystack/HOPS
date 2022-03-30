@@ -20,6 +20,7 @@ set(SOURCE_BASENAMES
     TestMK4Import
     TestMK4StationImport
     TestMK4Type200Convert
+    TestMK4Type201Convert
 )
 
 #for testing purposes only -- not intended to be a dependency
