@@ -243,16 +243,12 @@ class MHO_NDArrayView
         using const_iterator = MHO_BidirectionalIndexedIterator<XValueType,RANK>;
 
         iterator begin(){ return iterator(fDataPtr, 0, &(fDims[0]), &(fStrides[0]) );}
-        iterator end()
-        {
-            
-            return iterator(fDataPtr, fSize, &(fDims[0]), &(fStrides[0]) );
-        }
-        //iterator iterator_at(std::size_t offset){return iterator(fDataPtr, fDataPtr + std::min(offset, fSize), std::min(offset, fSize), &(fDims[0]), &(fStrides[0]) );}
+        iterator end(){ return iterator(fDataPtr, fSize, &(fDims[0]), &(fStrides[0]) );}
+        iterator iterator_at(std::size_t offset){return iterator(fDataPtr, std::min(offset, fSize), &(fDims[0]), &(fStrides[0]) );}
 
-        // const_iterator cbegin() const { return const_iterator(fDataPtr, fDataPtr, 0, &(fDims[0]), &(fStrides[0]));}
-        // const_iterator cend() const { return const_iterator(fDataPtr, fDataPtr + fSize, fSize, &(fDims[0]), &(fStrides[0]));}
-        // const_iterator citerator_at(std::size_t offset) const {return const_iterator(fDataPtr, fDataPtr + std::min(offset, fSize), std::min(offset, fSize), &(fDims[0]), &(fStrides[0]));}
+        const_iterator cbegin() const { return const_iterator(fDataPtr, 0, &(fDims[0]), &(fStrides[0]));}
+        const_iterator cend() const { return const_iterator(fDataPtr, fSize, &(fDims[0]), &(fStrides[0]));}
+        const_iterator citerator_at(std::size_t offset) const {return const_iterator(fDataPtr, std::min(offset, fSize), &(fDims[0]), &(fStrides[0]));}
 
 };
 
