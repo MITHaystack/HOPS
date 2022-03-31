@@ -191,6 +191,8 @@ int main(int /*argc*/, char** /*argv*/)
     for(auto itr = slice2.begin(); itr != slice2.end(); itr++){*itr = 2;}
     for(auto itr = slice1.begin(); itr != slice1.end(); itr++){*itr = 1;}
 
+    slice1 *= 4.0;
+
     std::cout<<"=============="<<std::endl;
 
     for(int i=0; i<dim6[0]; i++)
