@@ -188,7 +188,7 @@ int main(int argc, char** argv)
     std::cout<<"largest percent difference in access time between each access method is: "<<dmax*100.0<< "\%"<<std::endl;
 
     //threshold for percent difference in access times
-    double threshold = 5.0;
+    double threshold = 50.0;
     if(dmax*100 >= threshold)
     {
         std::cout<<"largest percent difference in access time exceeds threshold of: "<< threshold << "\% "<<std::endl;
