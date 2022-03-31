@@ -138,8 +138,9 @@ class MHO_NDArrayView
         typename std::enable_if< std::is_same<XValueType,T>::value or std::is_integral<T>::value or std::is_floating_point<T>::value, MHO_NDArrayView& >::type
         inline operator*=(T aScalar)
         {
-            //if(!fIsSlice){for(std::size_t i=0; i<fSize; i++){fDataPtr[i] *= aScalar;}}
-            msg_debug("containers", "warning not yet implemented");
+            auto bit = this->begin();
+            auto eit = this->end();
+            for(auto it = bit; it != eit; ++it){ (*it) *= aScalar; }
             return *this;
         }
 
@@ -148,8 +149,9 @@ class MHO_NDArrayView
         typename std::enable_if< std::is_same<XValueType,T>::value or std::is_integral<T>::value or std::is_floating_point<T>::value, MHO_NDArrayView& >::type
         inline operator+=(T aScalar)
         {
-            //if(!fIsSlice){for(std::size_t i=0; i<fSize; i++){fDataPtr[i] += aScalar;}}
-            msg_debug("containers", "warning not yet implemented");
+            auto bit = this->begin();
+            auto eit = this->end();
+            for(auto it = bit; it != eit; ++it){ (*it) += aScalar; }
             return *this;
         }
 
@@ -158,8 +160,9 @@ class MHO_NDArrayView
         typename std::enable_if< std::is_same<XValueType,T>::value or std::is_integral<T>::value or std::is_floating_point<T>::value, MHO_NDArrayView& >::type
         inline operator-=(T aScalar)
         {
-            //if(!fIsSlice){for(std::size_t i=0; i<fSize; i++){fDataPtr[i] -= aScalar;}}
-            msg_debug("containers", "warning not yet implemented");
+            auto bit = this->begin();
+            auto eit = this->end();
+            for(auto it = bit; it != eit; ++it){ (*it) -= aScalar; }
             return *this;
         }
 
@@ -167,29 +170,52 @@ class MHO_NDArrayView
         inline MHO_NDArrayView& operator*=(const MHO_NDArrayView& anArray)
         {
             if(!HaveSameNumberOfElements(this, &anArray)){throw std::out_of_range("MHO_NDArrayView::*= size mismatch.");}
-            //if(!fIsSlice && !anArray.IsSlice()){for(std::size_t i=0; i<fSize; i++){fDataPtr[i] *= anArray.fDataPtr[i];}}
-            msg_debug("containers", "warning not yet implemented");
+            auto bit1 = this->begin();
+            auto bit2 = anArray.begin();
+            auto it1 = bit1;
+            auto it2 = bit2;
+            for(std::size_t i=0; i<fSize; i++)
+            {
+                (*it1) *= (*it2); 
+                ++it1;
+                ++it2;
+            }
             return *this;
         }
 
         //in place point-wise addition by another array
         inline MHO_NDArrayView& operator+=(const MHO_NDArrayView& anArray)
         {
-            if(!HaveSameNumberOfElements(this, &anArray)){throw std::out_of_range("MHO_NDArrayView::+= size mismatch.");}
-            //if(!fIsSlice && !anArray.IsSlice()){for(std::size_t i=0; i<fSize; i++){fDataPtr[i] += anArray.fDataPtr[i];}}
-            msg_debug("containers", "warning not yet implemented");
+            if(!HaveSameNumberOfElements(this, &anArray)){throw std::out_of_range("MHO_NDArrayView::*= size mismatch.");}
+            auto bit1 = this->begin();
+            auto bit2 = anArray.begin();
+            auto it1 = bit1;
+            auto it2 = bit2;
+            for(std::size_t i=0; i<fSize; i++)
+            {
+                (*it1) += (*it2); 
+                ++it1;
+                ++it2;
+            }
             return *this;
         }
 
         //in place point-wise subtraction of another array
         inline MHO_NDArrayView& operator-=(const MHO_NDArrayView& anArray)
         {
-            if(!HaveSameNumberOfElements(this, &anArray)){throw std::out_of_range("MHO_NDArrayView::-= size mismatch.");}
-            //if(!fIsSlice && !anArray.IsSlice()){for(std::size_t i=0; i<fSize; i++){fDataPtr[i] -= anArray.fDataPtr[i];}}
-            msg_debug("containers", "warning not yet implemented");
+            if(!HaveSameNumberOfElements(this, &anArray)){throw std::out_of_range("MHO_NDArrayView::*= size mismatch.");}
+            auto bit1 = this->begin();
+            auto bit2 = anArray.begin();
+            auto it1 = bit1;
+            auto it2 = bit2;
+            for(std::size_t i=0; i<fSize; i++)
+            {
+                (*it1) -= (*it2); 
+                ++it1;
+                ++it2;
+            }
             return *this;
         }
-
 
     protected:
 
