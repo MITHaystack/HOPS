@@ -9,7 +9,20 @@
 
 using namespace hops;
 
-#define SCALE_FACTOR 2 //value of 2 should make a table 4gb in size
+#define SCALE_FACTOR 2 //value of 2 should make a table 8gb in size
+
+
+void slice_iterate(ch_baseline_data_type& vis)
+{
+    std::complex<double> val(0,1);
+    auto slice = vis.SliceView(":", ":", ":", ":");
+    auto it_begin = slice.begin();
+    auto it_end = slice.end();
+    for(auto it = it_begin; it != it_end; ++it)
+    {
+        *it = val;
+    }
+}
 
 int main(int argc, char** argv)
 {
@@ -36,6 +49,7 @@ int main(int argc, char** argv)
     std::vector<double> tdeltas;
 
     std::cout<<"container size = "<< (sizeof(std::complex<double>)*total_size)/MB <<" MB." <<std::endl;
+
 
     //time how long it takes to zero the array 
     timer.Start();
@@ -139,6 +153,18 @@ int main(int argc, char** argv)
     tdeltas.push_back(delta);
     std::cout<<"time to fill array with 1st dimension SubView and (,,) operator: "<<delta<< " seconds "<<std::endl;
 
+
+    //time how long it takes to iterate the array using SliceView (over whole array)
+    timer.Start();
+
+    slice_iterate(vis);
+
+    timer.Stop();
+    delta = timer.GetDurationAsDouble();
+    tdeltas.push_back(delta);
+    std::cout<<"time to fill array full array slice view: "<<delta<< " seconds "<<std::endl;
+
+
     //check the scalar-complex multiplication routine 
     vis *= i_unit;
     std::cout<<"checking scalar multiplication by complex number: "<<vis.at(0,0,0,0)<<std::endl;
@@ -147,8 +173,6 @@ int main(int argc, char** argv)
     //check the scalar multiplication routine 
     vis *= 2.0;
     std::cout<<"checking scalar multiplication by real number: "<<vis.at(0,0,0,0)<<std::endl;
-
-
 
     //figure out the maximum fraction difference between the access methods 
     double dmax = 0.0;
@@ -164,12 +188,13 @@ int main(int argc, char** argv)
     std::cout<<"largest percent difference in access time between each access method is: "<<dmax*100.0<< "\%"<<std::endl;
 
     //threshold for percent difference in access times
-    double threshold = 5.0;
+    double threshold = 50.0;
     if(dmax*100 >= threshold)
     {
         std::cout<<"largest percent difference in access time exceeds threshold of: "<< threshold << "\% "<<std::endl;
         return 1;
     }
+
 
     return 0;
 }

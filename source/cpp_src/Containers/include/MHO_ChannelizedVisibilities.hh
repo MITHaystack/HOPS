@@ -38,6 +38,11 @@ using ch_baseline_weight_type = MHO_TableContainer< weight_type, ch_baseline_axi
 using ch_baseline_sbd_type = MHO_TableContainer< visibility_type, ch_baseline_axis_pack >;
 
 
+//other auxilliary data types (perhaps we should have a 'MHO_ChannelizedQuantities' wrapper header for all of this )
+//this is for per-channel manual pcal
+using ch_pcal_axis_pack = MHO_AxisPack< ch_polprod_axis_type, ch_channel_axis_type>;
+using ch_pcal_phase_type = MHO_TableContainer< double, ch_pcal_axis_pack >;  //(here we are storing pcal as a rotation in 'degrees', should/could we use phasor instead?)
+
 
 }//end of hops namespaces
 

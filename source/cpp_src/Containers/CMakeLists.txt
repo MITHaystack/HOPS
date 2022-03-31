@@ -1,6 +1,8 @@
 #list header files #############################################################
 set (CONTAINER_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_NDArrayMath.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_NDArrayView.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_BidirectionalIndexedIterator.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_NDArrayWrapper.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_NDArrayWrapper_0.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_NDArrayWrapper_1.hh
