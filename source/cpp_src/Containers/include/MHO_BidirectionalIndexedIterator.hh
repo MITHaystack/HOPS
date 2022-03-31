@@ -34,7 +34,7 @@ class MHO_BidirectionalIndexedIterator
         typedef std::ptrdiff_t difference_type;
         typedef std::array<std::size_t, RANK> index_type;
 
-        MHO_BidirectionalIndexedIterator(pointer begin_ptr, std::size_t position_offset, std::size_t* dims, std::size_t* strides):
+        MHO_BidirectionalIndexedIterator(pointer begin_ptr, std::size_t position_offset, const std::size_t* dims, const std::size_t* strides):
             fBegin(begin_ptr),
             fPositionOffset(position_offset)
         {

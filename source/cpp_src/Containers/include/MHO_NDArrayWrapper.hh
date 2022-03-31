@@ -191,6 +191,23 @@ class MHO_NDArrayWrapper:
             }
         }
 
+        //expensive copy (as opposed to the assignment operator,
+        //pointers to exernally managed memory are not transfer)
+        virtual void Copy(const MHO_NDArrayView<XValueType,RANK>& rhs)
+        {
+            auto dims = rhs.GetDimensionArray();
+            Construct(nullptr,  &(dims[0]));
+            // auto bit = rhs.cbegin();
+            // auto rhs_it = bit;
+            // for(std::size_t i=0; i<fSize; i++)
+            // {
+            //     this->fData[i] = *rhs_it;
+            //     ++rhs_it;
+            // }
+            if(fSize != 0){std::copy(rhs.cbegin(), rhs.cend(), this->fData.begin() );}
+        }
+
+
         //linear offset into the array
         std::size_t GetOffsetForIndices(const std::size_t* index)
         {
