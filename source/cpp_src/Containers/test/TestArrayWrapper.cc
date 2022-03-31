@@ -188,6 +188,10 @@ int main(int /*argc*/, char** /*argv*/)
     auto slice1 = test6.SliceView(":", 2, 2);
     auto slice2 = test6.SliceView(2, ":", ":");
 
+    MHO_NDArrayWrapper<int, 2> tmp_copy;
+    tmp_copy.Copy(slice2);
+
+
     for(auto itr = slice2.begin(); itr != slice2.end(); itr++){*itr = 2;}
     for(auto itr = slice1.begin(); itr != slice1.end(); itr++){*itr = 1;}
 

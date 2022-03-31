@@ -100,6 +100,7 @@ class MHO_TableContainer:
         using MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::SubView;
         using MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::SliceView;
 
+        using MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::at;
         using MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::operator();
         using MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::operator[];
 
