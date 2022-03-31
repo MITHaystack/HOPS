@@ -264,35 +264,14 @@ int main(int argc, char** argv)
     auto c = cMan.CreateCanvas(std::string("test"), 800, 800);
     c->Divide(1,3);
     
-    MHO_TableContainer<double, axis_pack_test2> r_slice; r_slice.Resize(dim[0], dim[1]);
-    std::get<XDIM>(r_slice) = std::get<XDIM>(*ctable);
-    std::get<YDIM>(r_slice) = std::get<YDIM>(*ctable);
-
-    MHO_TableContainer<double, axis_pack_test2> g_slice; g_slice.Resize(dim[0], dim[1]);
-    std::get<XDIM>(g_slice) = std::get<XDIM>(*ctable);
-    std::get<YDIM>(g_slice) = std::get<YDIM>(*ctable);
-
-    MHO_TableContainer<double, axis_pack_test2> b_slice; b_slice.Resize(dim[0], dim[1]);
-    std::get<XDIM>(b_slice) = std::get<XDIM>(*ctable);
-    std::get<YDIM>(b_slice) = std::get<YDIM>(*ctable);
-    
-    for(size_t i=0; i<x_axis_size; i++)
-    {
-        for(size_t j=0; j<y_axis_size; j++)
-        {
-            for(size_t k=0; k<z_axis_size; k++)
-            {
-                r_slice(i,j) = ctable->at(i,j,0);                
-                g_slice(i,j) = ctable->at(i,j,1);
-                b_slice(i,j) = ctable->at(i,j,2);
-            }
-        }
-    }
+    auto r_slice = ctable->SliceView(":", ":", 0);
+    auto g_slice = ctable->SliceView(":", ":", 1);
+    auto b_slice = ctable->SliceView(":", ":", 2);
 
     MHO_RootGraphManager gMan;
-    auto gr = gMan.GenerateGraph2D(std::string("r"), &r_slice);
-    auto gg = gMan.GenerateGraph2D(std::string("g"), &g_slice);
-    auto gb = gMan.GenerateGraph2D(std::string("b"), &b_slice);
+    auto gr = gMan.GenerateGraph2D(r_slice, std::get<0>(*ctable), std::get<1>(*ctable) );
+    auto gg = gMan.GenerateGraph2D(g_slice, std::get<0>(*ctable), std::get<1>(*ctable) );
+    auto gb = gMan.GenerateGraph2D(b_slice, std::get<0>(*ctable), std::get<1>(*ctable) );
 
     c->cd(1);
     gr->Draw("PCOL");
