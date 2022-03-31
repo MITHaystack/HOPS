@@ -11,15 +11,9 @@
 #include <iostream>
 
 #ifdef USE_ROOT
-    #include "TCanvas.h"
     #include "TApplication.h"
-    #include "TStyle.h"
-    #include "TColor.h"
-    #include "TGraph.h"
-    #include "TGraph2D.h"
-    #include "TH2D.h"
-    #include "TMath.h"
-    #include "TMultiGraph.h"
+    #include "MHO_RootCanvasManager.hh"
+    #include "MHO_RootGraphManager.hh"
 #endif
 
 using namespace hops;
@@ -237,28 +231,9 @@ int main(int argc, char** argv)
 
     //ROOT stuff for plots
     TApplication* App = new TApplication("Plot",&argc,argv);
-    TStyle* myStyle = new TStyle("Plain", "Plain");
-    myStyle->SetCanvasBorderMode(0);
-    myStyle->SetPadBorderMode(0);
-    myStyle->SetPadColor(0);
-    myStyle->SetCanvasColor(0);
-    myStyle->SetTitleColor(1);
-    myStyle->SetPalette(1,0);   // nice color scale for z-axis
-    myStyle->SetCanvasBorderMode(0); // gets rid of the stupid raised edge around the canvas
-    myStyle->SetTitleFillColor(0); //turns the default dove-grey background to white
-    myStyle->SetCanvasColor(0);
-    myStyle->SetPadColor(0);
-    myStyle->SetTitleFillColor(0);
-    myStyle->SetStatColor(0); //this one may not work
-    const int NRGBs = 5;
-    const int NCont = 48;
-    double stops[NRGBs] = { 0.00, 0.34, 0.61, 0.84, 1.00 };
-    double red[NRGBs]   = { 0.00, 0.00, 0.87, 1.00, 0.51 };
-    double green[NRGBs] = { 0.00, 0.81, 1.00, 0.20, 0.00 };
-    double blue[NRGBs]  = { 0.51, 1.00, 0.12, 0.00, 0.00 };
-    TColor::CreateGradientColorTable(NRGBs, stops, red, green, blue, NCont);
-    myStyle->SetNumberContours(NCont);
-    myStyle->cd();
+
+    MHO_RootCanvasManager cMan;
+    auto c = cMan.CreateCanvas(std::string("test"), 800, 800);
 
     TGraph* g = new TGraph();
     TGraph* gint = new TGraph();
@@ -294,12 +269,6 @@ int main(int argc, char** argv)
     gunk->SetMarkerColor(4);
     gunk->SetMarkerStyle(21);
     gunk->SetLineColor(4);
-
-    std::string name("test");
-    TCanvas* c = new TCanvas(name.c_str(),name.c_str(), 50, 50, 950, 850);
-    c->SetFillColor(0);
-    c->SetRightMargin(0.2);
-    //mg->Draw("ap");
 
     gunk->Draw("ALP");
     g->Draw("LPSAME");

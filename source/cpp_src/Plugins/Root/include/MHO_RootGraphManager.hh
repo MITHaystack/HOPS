@@ -1,6 +1,7 @@
 #ifndef MHO_RootGraphManager_HH__
 #define MHO_RootGraphManager_HH__
 
+#include "TAxis.h"
 #include "TGraph.h"
 #include "TGraph2D.h"
 #include "TMultiGraph.h"
