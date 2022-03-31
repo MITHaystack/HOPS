@@ -47,6 +47,7 @@ set( UTILITIES_SOURCEFILES
 
 #declare header paths ##########################################################
 hops_internal_include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
+hops_internal_include_directories(${EXTERN_HLIBS}/json/include)
 
 #compile and install library ###################################################
 

@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <complex>
+#include <array>
 
 #include "MHO_Message.hh"
 #include "MHO_NDArrayWrapper.hh"
@@ -107,6 +108,22 @@ int main(int /*argc*/, char** /*argv*/)
 
     std::size_t dim4[5] = {3,4,5,6,7};
     MHO_NDArrayWrapper<int, 5> test4(dim4);
+
+    auto test4_strides = test4.GetStrideArray();
+    std::size_t test4_idx[5] = {1, 0, 3, 4, 2};
+    
+    std::size_t offset_method1 = MHO_NDArrayMath::OffsetFromRowMajorIndex<5>(dim4, test4_idx );
+    std::size_t offset_method2 = MHO_NDArrayMath::OffsetFromStrideIndex<5>(&(test4_strides[0]), test4_idx );
+    
+    std::cout<<"offset from row-major, stride index access = "<<offset_method1 <<", "<< offset_method2<<std::endl;
+
+
+    std::size_t test4_idx2[5] = {2, 3, 1, 5, 0};
+    offset_method1 = MHO_NDArrayMath::OffsetFromRowMajorIndex<5>(dim4, test4_idx2 );
+    offset_method2 = MHO_NDArrayMath::OffsetFromStrideIndex<5>(&(test4_strides[0]), test4_idx2 );
+
+    std::cout<<"offset from row-major, stride index access = "<<offset_method1 <<", "<< offset_method2<<std::endl;
+
     for(std::size_t i=0;i<5;i++)
     {
         std::cout<<"stride of dim "<<i<<" = "<<test4.GetStride(i)<<std::endl;
@@ -139,6 +156,65 @@ int main(int /*argc*/, char** /*argv*/)
 
     std::cout<<"test5(1,1,1) = "<<test5(1,1,1)<<std::endl;
 
+
+    //test the slice functionality 
+    auto slice = test4.SliceView(":", 1, 3, ":", 5);
+
+
+    std::size_t dim6[3] = {5,5,5};
+    MHO_NDArrayWrapper< int, 3> test6(dim6);
+    test6.ZeroArray();
+
+    std::cout<<"=============="<<std::endl;
+
+    for(int i=0; i<dim6[0]; i++)
+    {
+        for(int j=0; j<dim6[1]; j++)
+        {
+            for(int k=0; k<dim6[2]; k++)
+            {
+                std::cout<<test6(i,j,k)<<",";
+            }
+            std::cout<<std::endl;
+        }
+        std::cout<<std::endl;
+        std::cout<<"-----------"<<std::endl;
+    }
+    std::cout<<std::endl;
+
+    std::cout<<"=============="<<std::endl;
+
+
+    auto slice1 = test6.SliceView(":", 2, 2);
+    auto slice2 = test6.SliceView(2, ":", ":");
+
+    MHO_NDArrayWrapper<int, 2> tmp_copy;
+    tmp_copy.Copy(slice2);
+
+
+    for(auto itr = slice2.begin(); itr != slice2.end(); itr++){*itr = 2;}
+    for(auto itr = slice1.begin(); itr != slice1.end(); itr++){*itr = 1;}
+
+    slice1 *= 4.0;
+
+    std::cout<<"=============="<<std::endl;
+
+    for(int i=0; i<dim6[0]; i++)
+    {
+        for(int j=0; j<dim6[1]; j++)
+        {
+            for(int k=0; k<dim6[2]; k++)
+            {
+                std::cout<<test6(i,j,k)<<",";
+            }
+            std::cout<<std::endl;
+        }
+        std::cout<<std::endl;
+        std::cout<<"-----------"<<std::endl;
+    }
+    std::cout<<std::endl;
+
+    std::cout<<"=============="<<std::endl;
 
     return 0;
 }

@@ -25,6 +25,9 @@ if(HOPS_USE_PYBIND11)
     add_subdirectory(${CPPSOURCE}/Plugins/PythonBindings) #python bindings
 endif(HOPS_USE_PYBIND11)
 
+add_subdirectory(${CPPSOURCE}/Plugins/Root) #CERN ROOT plugins
+
+
 add_subdirectory(${CPPSOURCE}/Applications) #applications
 
 #transitory applications for migration
