@@ -14,13 +14,16 @@ set(SOURCE_BASENAMES
     TestSubSample
 )
 
+#for testing purposes only -- ROOT not intended to be a dependency
 if (HOPS_USE_ROOT)
     include(FindROOT)
     find_package(ROOT REQUIRED)
+    hops_internal_include_directories(../../Plugins/Root/include)
     hops_external_include_directories(${ROOT_INCLUDE_DIRS})
     add_cflag(USE_ROOT)
-    list(APPEND HOPS_TEST_LIBS ${ROOT_LIBRARIES})
+    list(APPEND HOPS_TEST_LIBS MHO_RootPlugin ${ROOT_LIBRARIES})
 endif()
+
 
 if(HOPS_USE_FFTW3)
     find_package(FFTW REQUIRED)
