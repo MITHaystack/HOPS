@@ -26,7 +26,6 @@ using namespace hops;
 #define YDIM 1
 #define ZDIM 2
 typedef MHO_AxisPack< MHO_Axis<double>, MHO_Axis<double>, MHO_Axis<std::string> > axis_pack_test;
-typedef MHO_AxisPack< MHO_Axis<double>, MHO_Axis<double> > axis_pack_test2;
 
 int main(int argc, char** argv)
 {
