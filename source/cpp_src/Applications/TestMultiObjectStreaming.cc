@@ -1,23 +1,9 @@
 #include <getopt.h>
 #include "MHO_Message.hh"
 
-
 #include "MHO_ScalarContainer.hh"
 #include "MHO_VectorContainer.hh"
 #include "MHO_TableContainer.hh"
-
-#ifdef USE_ROOT
-    #include "TCanvas.h"
-    #include "TApplication.h"
-    #include "TStyle.h"
-    #include "TColor.h"
-    #include "TGraph.h"
-    #include "TGraph2D.h"
-    #include "TH2D.h"
-    #include "TMath.h"
-    #include "TMultiGraph.h"
-#endif
-
 
 #include "MHO_BinaryFileStreamer.hh"
 #include "MHO_BinaryFileInterface.hh"
@@ -26,6 +12,11 @@
 #include "MHO_Visibilities.hh"
 #include "MHO_ChannelizedVisibilities.hh"
 
+#ifdef USE_ROOT
+    #include "TApplication.h"
+    #include "MHO_RootCanvasManager.hh"
+    #include "MHO_RootGraphManager.hh"
+#endif
 
 using namespace hops;
 
@@ -35,7 +26,6 @@ using namespace hops;
 #define YDIM 1
 #define ZDIM 2
 typedef MHO_AxisPack< MHO_Axis<double>, MHO_Axis<double>, MHO_Axis<std::string> > axis_pack_test;
-
 
 int main(int argc, char** argv)
 {
@@ -266,63 +256,22 @@ int main(int argc, char** argv)
     std::cout<<"starting root plotting"<<std::endl;
 
     //ROOT stuff for plots
-    TApplication* App = new TApplication("PowerPlot",&argc,argv);
-    TStyle* myStyle = new TStyle("Plain", "Plain");
-    myStyle->SetCanvasBorderMode(0);
-    myStyle->SetPadBorderMode(0);
-    myStyle->SetPadColor(0);
-    myStyle->SetCanvasColor(0);
-    myStyle->SetTitleColor(1);
-    myStyle->SetPalette(1,0);   // nice color scale for z-axis
-    myStyle->SetCanvasBorderMode(0); // gets rid of the stupid raised edge around the canvas
-    myStyle->SetTitleFillColor(0); //turns the default dove-grey background to white
-    myStyle->SetCanvasColor(0);
-    myStyle->SetPadColor(0);
-    myStyle->SetTitleFillColor(0);
-    myStyle->SetStatColor(0); //this one may not work
-    const int NRGBs = 5;
-    const int NCont = 48;
-    double stops[NRGBs] = { 0.00, 0.34, 0.61, 0.84, 1.00 };
-    double red[NRGBs]   = { 0.00, 0.00, 0.87, 1.00, 0.51 };
-    double green[NRGBs] = { 0.00, 0.81, 1.00, 0.20, 0.00 };
-    double blue[NRGBs]  = { 0.51, 1.00, 0.12, 0.00, 0.00 };
-    TColor::CreateGradientColorTable(NRGBs, stops, red, green, blue, NCont);
-    myStyle->SetNumberContours(NCont);
-    myStyle->cd();
 
-    //plotting objects
-    //set up the axis labels
-    x_axis = &(std::get<XDIM>(*ctable2));
-    x_axis_size = x_axis->GetDimension(0);
-    y_axis = &(std::get<YDIM>(*ctable2));
-    y_axis_size = y_axis->GetDimension(0);
-    z_axis = &(std::get<ZDIM>(*ctable2));
-    z_axis_size = z_axis->GetDimension(0);
+    TApplication* App = new TApplication("test",&argc,argv);
 
-    TGraph2D *gr = new TGraph2D(x_axis_size*y_axis_size);
-    TGraph2D *gg = new TGraph2D(x_axis_size*y_axis_size);
-    TGraph2D *gb = new TGraph2D(x_axis_size*y_axis_size);
-
-    size_t count = 0;
-    for(size_t i=0; i<x_axis_size; i++)
-    {
-        for(size_t j=0; j<y_axis_size; j++)
-        {
-            for(size_t k=0; k<z_axis_size; k++)
-            {
-                gr->SetPoint(count, x_axis->at(i), y_axis->at(j), (*ctable2)(i,j,0) );
-                gg->SetPoint(count, x_axis->at(i), y_axis->at(j), (*ctable2)(i,j,1) );
-                gb->SetPoint(count, x_axis->at(i), y_axis->at(j), (*ctable2)(i,j,2) );
-            }
-            count++;
-        }
-    }
-
-    std::string name("test");
-    TCanvas* c = new TCanvas(name.c_str(),name.c_str(), 50, 50, 950, 850);
-    c->SetFillColor(0);
-    c->SetRightMargin(0.2);
+    MHO_RootCanvasManager cMan;
+    auto c = cMan.CreateCanvas(std::string("test"), 800, 800);
     c->Divide(1,3);
+    
+    auto r_slice = ctable->SliceView(":", ":", 0);
+    auto g_slice = ctable->SliceView(":", ":", 1);
+    auto b_slice = ctable->SliceView(":", ":", 2);
+
+    MHO_RootGraphManager gMan;
+    auto gr = gMan.GenerateGraph2D(r_slice, std::get<0>(*ctable), std::get<1>(*ctable) );
+    auto gg = gMan.GenerateGraph2D(g_slice, std::get<0>(*ctable), std::get<1>(*ctable) );
+    auto gb = gMan.GenerateGraph2D(b_slice, std::get<0>(*ctable), std::get<1>(*ctable) );
+
     c->cd(1);
     gr->Draw("PCOL");
     c->Update();
