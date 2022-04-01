@@ -38,6 +38,7 @@ MHO_DiFXScanProcessor::ProcessScan(MHO_DiFXScanFileSet& fileSet)
     {
         fPCalProcessor.SetFilename(*it);
         fPCalProcessor.ReadPCalFile();
+        fPCalProcessor.Organize();
     }
 
     ConstructStationFileObjects();
