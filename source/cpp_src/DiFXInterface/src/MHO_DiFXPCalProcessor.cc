@@ -85,12 +85,11 @@ MHO_DiFXPCalProcessor::ProcessTokens()
         pp.station = fTokens[n++];
         pp.mjd = std::atof(fTokens[n++].c_str());
         pp.mjd_period = std::atof(fTokens[n++].c_str());
-        int place_holder1 = std::atoi(fTokens[n++].c_str()); //TODO FIXE ME -- WHAT IS THIS?
-        int place_holder2 = std::atoi(fTokens[n++].c_str()); //TODO FIXE ME -- WHAT IS THIS?
-        int place_holder3 = std::atoi(fTokens[n++].c_str()); //TODO FIXE ME -- WHAT IS THIS?
+        int place_holder1 = std::atoi(fTokens[n++].c_str()); //TODO FIXE ME -- WHAT IS THIS PAR?
+        int place_holder2 = std::atoi(fTokens[n++].c_str()); //TODO FIXE ME -- WHAT IS THIS PAR?
+        int place_holder3 = std::atoi(fTokens[n++].c_str()); //TODO FIXE ME -- WHAT IS THIS PAR?
         pp.polmapped_pcal_phasors.clear();
 
-        fMJDTimeSet.insert(mjd);
 
         //now loop through the rest of the p-cal phasor data (4 tokens at a time)
         int itone = 0;
@@ -116,7 +115,6 @@ void
 MHO_DiFXPCalProcessor::Organize()
 {
     fSortedPCalData.clear();
-    std::size_t npols == fPolSet.size();
     //we need to run through all of the p-cal data and merge tone/phasor data 
     //from the same time period (can happen w/ multiple datastream-correlation)
     //then stash them in a table container
@@ -126,7 +124,7 @@ MHO_DiFXPCalProcessor::Organize()
     for(auto it = fPCalData.begin(); it != fPCalData.end(); ++it)
     {
         double ap_time = it->mjd;
-        if(ap_time < first_ap){first_ap = ap_time}
+        if(ap_time < first_ap){first_ap = ap_time;}
     }
 
     //then figure out the AP associated with each pcal accumulation
@@ -150,19 +148,19 @@ MHO_DiFXPCalProcessor::Organize()
         int ap = *ap_it;
         for(std::size_t idx = 0; idx < fPCalData.size(); ++idx) 
         {
-            if(it->ap == ap){ aps_to_merge[ap].push_back(idx);}
+            if(fPCalData[idx].ap == ap){ aps_to_merge[ap].push_back(idx);}
         }
     }
 
     //now merge the pcal data from each ap, and stash in the sorted vector
-    for(auto elem = aps_to_merge.being(); elem != aps_to_merge.end(); elem++)
+    for(auto elem = aps_to_merge.begin(); elem != aps_to_merge.end(); elem++)
     {
-        int ap = elem.first;
-        std::vector<std::size_t> idx_set = elem.second;
+        int ap = elem->first;
+        std::vector<std::size_t> idx_set = elem->second;
 
         pcal_period pp;
         std::vector< pcal_phasor > ap_pcal;
-        for(std::size_t i=0; i<idx_set.size(); i++
+        for(std::size_t i=0; i<idx_set.size(); i++)
         {
             if(i==0)
             {
@@ -173,7 +171,7 @@ MHO_DiFXPCalProcessor::Organize()
                 pp.polmapped_pcal_phasors.clear();
             }
 
-            for(ppit = fPolSet.begin(); ppit != fPolSet.end(); ppit++)
+            for(auto ppit = fPolSet.begin(); ppit != fPolSet.end(); ppit++)
             {
                 std::string pol = *ppit;
                 pp.polmapped_pcal_phasors[pol].insert( pp.polmapped_pcal_phasors[pol].end(),
@@ -182,7 +180,7 @@ MHO_DiFXPCalProcessor::Organize()
             }
         }
 
-        for(ppit = fPolSet.begin(); ppit != fPolSet.end(); ppit++)
+        for(auto ppit = fPolSet.begin(); ppit != fPolSet.end(); ppit++)
         {
             std::string pol = *ppit;
             std::sort( pp.polmapped_pcal_phasors[pol].begin(), pp.polmapped_pcal_phasors[pol].end(), fPhasorToneComp); 
