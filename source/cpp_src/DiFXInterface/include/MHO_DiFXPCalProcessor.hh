@@ -44,25 +44,47 @@ class MHO_DiFXPCalProcessor
         MHO_Tokenizer fTokenizer;
         std::vector< std::string > fTokens;
 
-        struct pcal_period
-        {
-            std::string station;
-            double mjd_start;
-            double mjd_period;
-            //what other things do we need?
-        };
-
         struct pcal_phasor 
         {
-            std::string pol;
+            //std::string pol;
             double tone_freq;
             std::complex<double> phasor;
         };
 
+        struct pcal_period
+        {
+            std::string station;
+            double mjd;
+            double mjd_period;
+            int ap;
+            std::map< std::string, std::vector< pcal_phasor > > polmapped_pcal_phasors; 
+        };
+
+
         //PCAL data
-        std::vector< std::pair< pcal_period, std::vector< pcal_phasor > > > fPCalData;
-        // std::set<  > fMJDTimeSet;
+        std::vector< pcal_period > fPCalData;
+        std::vector< pcal_period > fSortedPCalData;
         std::set< std::string> fPolSet;
+
+        struct ToneFreqLess
+        {
+            bool operator()(const pcal_phasor& a, const pcal_phasor& b) const 
+            {
+                return (a.tone_freq < b.tone_freq);
+            }
+        };
+        ToneFreqLess fPhasorToneComp;
+
+        struct APIndexLess
+        {
+            bool operator()(const pcal_period& a, const pcal_period& b) const 
+            {
+                return (a.ap < b.ap);
+            }
+        };
+        APIndexLess fAPIndexComp;
+
+
 
 };
 
