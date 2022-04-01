@@ -2,6 +2,7 @@
 
 #include <fstream>
 #include <cstdlib>
+#include <cmath>
 
 //#include <iostream>
 
@@ -93,27 +94,36 @@ MHO_DiFXPCalProcessor::ProcessTokens()
 
         //now loop through the rest of the p-cal phasor data (4 tokens at a time)
         int itone = 0;
-        while(itone >= 0) //last pcal entry in line should start with -1
+        while(n < fTokens.size()-4 )
         {
             itone = std::atoi(fTokens[n].c_str());
-            if(itone < 0){break;}
             pcal_phasor ph;
             ph.tone_freq = std::atof(fTokens[n++].c_str());
             std::string pol = fTokens[n++];
-            fPolSet.insert(pol);
             double real = std::atof(fTokens[n++].c_str());
             double imag = std::atof(fTokens[n++].c_str());
             ph.phasor = std::complex<double>(real,imag);
-            pp.polmapped_pcal_phasors[pol].push_back(ph);
+            if(itone > 0 && pol != "0")
+            {
+                fPolSet.insert(pol);
+                pp.polmapped_pcal_phasors[pol].push_back(ph);
+            }
         }
         fPCalData.push_back(pp);
     }
+
 }
 
 
 void 
 MHO_DiFXPCalProcessor::Organize()
 {
+
+    for(auto ppit = fPolSet.begin(); ppit != fPolSet.end(); ppit++)
+    {
+        std::cout<<"POL = "<<*ppit<<std::endl;
+    }
+
     fSortedPCalData.clear();
     //we need to run through all of the p-cal data and merge tone/phasor data 
     //from the same time period (can happen w/ multiple datastream-correlation)
@@ -135,7 +145,7 @@ MHO_DiFXPCalProcessor::Organize()
     {
         double ap_time = it->mjd;
         double delta = ap_time - first_ap;
-        int ap = delta/(it->mjd_period);
+        int ap = std::round(delta/(it->mjd_period));
         it->ap = ap;
         ap_set.insert(ap);
     }
@@ -191,6 +201,20 @@ MHO_DiFXPCalProcessor::Organize()
 
     //finally sort by AP 
     std::sort(fSortedPCalData.begin(), fSortedPCalData.end(), fAPIndexComp);
+
+    //DEBUG PRINT OUT
+
+    std::cout<<std::setprecision(14)<<std::endl;
+    for(auto it = fSortedPCalData.begin(); it != fSortedPCalData.end(); it++)
+    {
+        std::cout<<"ap, mjd = "<<it->ap<<", "<<it->mjd<<std::endl;
+        for(auto ppit = it->polmapped_pcal_phasors.begin(); ppit != it->polmapped_pcal_phasors.end(); ppit++)
+        {
+            std::cout<<"pol["<<ppit->first<<"], n-tones = "<<ppit->second.size()<<
+            " first tone: "<<ppit->second[0].tone_freq<<" last tone: "<<ppit->second.back().tone_freq<<std::endl;
+        }
+    }
+    
 
 
 }
