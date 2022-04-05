@@ -29,6 +29,7 @@ class MHO_DiFXPCalProcessor
         virtual ~MHO_DiFXPCalProcessor();
 
         void SetFilename(std::string filename){fFilename = filename;}
+        void SetAccumulationPeriod(double ap_sec){fAPLength = ap_sec;}
 
         void ReadPCalFile();
         void Organize();
@@ -43,6 +44,12 @@ class MHO_DiFXPCalProcessor
         std::string fLine;
         MHO_Tokenizer fTokenizer;
         std::vector< std::string > fTokens;
+        double fAPLength;
+
+        //TODO this constant isn't used directly for conversion 
+        //(just a tolerance check), but we should put this somewhere sensible
+        double fSecondsPerDay;
+        double fTolerance;
 
         struct pcal_phasor 
         {
@@ -61,10 +68,13 @@ class MHO_DiFXPCalProcessor
         };
 
 
-        //PCAL data
+        //pcal data in various forms to get it organized
         std::vector< pcal_period > fPCalData;
         std::vector< pcal_period > fSortedPCalData;
         std::set< std::string> fPolSet;
+
+        //organized pcal data 
+        multitone_pcal_type fPCal;
 
         struct ToneFreqLess
         {

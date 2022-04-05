@@ -33,6 +33,8 @@ using baseline_axis_pack = MHO_AxisPack< polprod_axis_type, time_axis_type, freq
 using baseline_data_type = MHO_TableContainer< visibility_type, baseline_axis_pack >;
 using baseline_weight_type = MHO_TableContainer< weight_type, baseline_axis_pack >;
 
+using multitone_pcal_type = MHO_TableContainer< pcal_phasor_type, baseline_axis_pack >;
+
 
 }//end of hops namespaces
 
