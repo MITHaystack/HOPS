@@ -37,6 +37,8 @@ MHO_DiFXScanProcessor::ProcessScan(MHO_DiFXScanFileSet& fileSet)
     for(auto it = fileSet.fPCALFileList.begin(); it != fileSet.fPCALFileList.end(); it++)
     {
         fPCalProcessor.SetFilename(*it);
+        double ap_length = fInput["config"]["tInt"];
+        fPCalProcessor.SetAccumulationPeriod(ap_length);
         fPCalProcessor.ReadPCalFile();
         fPCalProcessor.Organize();
     }

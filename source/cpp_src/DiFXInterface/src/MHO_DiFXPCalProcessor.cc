@@ -104,7 +104,7 @@ MHO_DiFXPCalProcessor::ProcessTokens()
             std::string pol = fTokens[n++];
             double real = std::atof(fTokens[n++].c_str());
             double imag = std::atof(fTokens[n++].c_str());
-            ph.phasor = std::complex<double>(real,imag);
+            ph.phasor = pcal_phasor_type(real,imag);
             if(itone > 0 && pol != "0")
             {
                 fPolSet.insert(pol);
@@ -145,8 +145,7 @@ MHO_DiFXPCalProcessor::Organize()
     std::set<int> ap_set;
     for(auto it = fPCalData.begin(); it != fPCalData.end(); ++it)
     {
-
-        //check to make sure each pcal AP is the same as the specified AP
+        //check to make sure each pcal AP is the same as the correlation specified AP
         double current_ap_length_sec = fSecondsPerDay*(it->mjd_period);
         if(std::fabs(fAPLength - current_ap_length_sec)/fAPLength > fTolerance )
         {
@@ -209,9 +208,8 @@ MHO_DiFXPCalProcessor::Organize()
         fSortedPCalData.push_back(pp);
     }
 
-    //finally sort by AP 
+    //finally sort all by AP 
     std::sort(fSortedPCalData.begin(), fSortedPCalData.end(), fAPIndexComp);
-
 
     std::cout<<std::setprecision(14)<<std::endl;
     for(auto it = fSortedPCalData.begin(); it != fSortedPCalData.end(); it++)
@@ -234,7 +232,7 @@ MHO_DiFXPCalProcessor::Organize()
     {
         for(auto ppit = it->polmapped_pcal_phasors.begin(); ppit != it->polmapped_pcal_phasors.end(); ppit++)
         {
-            std::size_t current_ntones = ppit->size();
+            std::size_t current_ntones = ppit->second.size();
             if(current_ntones > ntones){ntones = current_ntones;}
             ntone_set.insert(current_ntones);
         }
@@ -255,7 +253,7 @@ MHO_DiFXPCalProcessor::Organize()
     for(auto pol_iter = fPolSet.begin(); pol_iter != fPolSet.end(); pol_iter++)
     {
         std::string pol = *pol_iter;
-        std::get<POLPROD_AXIS>(fPCal)->at(pol_idx) = pol;
+        std::get<POLPROD_AXIS>(fPCal).at(pol_idx) = pol;
         pol_idx++;
     }
 
@@ -263,46 +261,33 @@ MHO_DiFXPCalProcessor::Organize()
     for(auto it = fSortedPCalData.begin(); it != fSortedPCalData.end(); it++)
     {
         int ap = it->ap;
-        std::get<TIME_AXIS>(fPCal)->at(time_idx) = ap*fAPLength;
+        std::get<TIME_AXIS>(fPCal).at(time_idx) = ap*fAPLength;
         time_idx++;
     }
 
-    
-
-            for(auto it = fSortedPCalData.begin(); it != fSortedPCalData.end(); it++)
-            {
-                int ap = it->ap;
-                for(auto phit = it->polmapped_pcal_phasors[pol].begin(); phit != it->polmapped_pcal_phasors[pol].end(); phit++)
-                {
-                    std::cout<<"pol["<<ppit->first<<"], n-tones = "<<ppit->second.size()<<
-                    " first tone: "<<ppit->second[0].tone_freq<<" last tone: "<<ppit->second.back().tone_freq<<std::endl;
-                }
-            }
-
-            std::string pol = *ppit;
-            std::sort( pp.polmapped_pcal_phasors[pol].begin(), pp.polmapped_pcal_phasors[pol].end(), fPhasorToneComp); 
-        }
-
-
-
-    for(auto pol_iter = fPolSet.begin(); pol_iter != fPolSet.end(); pol_iter++)
+    std::size_t tone_idx = 0;
+    auto bit = fSortedPCalData[0].polmapped_pcal_phasors[*(fPolSet.begin())].begin();
+    auto eit = fSortedPCalData[0].polmapped_pcal_phasors[*(fPolSet.begin())].end();
+    for(auto it = bit; it != eit; it++)
     {
-        std::string pol = *pol_iter;
-        for(auto it = fSortedPCalData.begin(); it != fSortedPCalData.end(); it++)
-        {
-            int ap = it->ap;
-            for(auto phit = it->polmapped_pcal_phasors[pol].begin(); phit != it->polmapped_pcal_phasors[pol].end(); phit++)
-            {
-                std::cout<<"pol["<<ppit->first<<"], n-tones = "<<ppit->second.size()<<
-                " first tone: "<<ppit->second[0].tone_freq<<" last tone: "<<ppit->second.back().tone_freq<<std::endl;
-            }
-        }
-
-        std::string pol = *ppit;
-        std::sort( pp.polmapped_pcal_phasors[pol].begin(), pp.polmapped_pcal_phasors[pol].end(), fPhasorToneComp); 
+        std::get<FREQ_AXIS>(fPCal).at(tone_idx) = it->tone_freq;
+        tone_idx++;
     }
 
+    for(pol_idx = 0; pol_idx<npol; pol_idx++)
+    {
+        std::string pol = std::get<POLPROD_AXIS>(fPCal).at(pol_idx);
+        for(time_idx = 0; time_idx<naps; time_idx++)
+        {
+            for(tone_idx = 0; tone_idx<ntones; tone_idx++)
+            {
+                pcal_phasor ph = fSortedPCalData[time_idx].polmapped_pcal_phasors[pol][tone_idx];
+                fPCal(pol_idx, time_idx, tone_idx) = ph.phasor;
+            }
+        }
+    }
 
+    std::cout << fPCal << std::endl;
 
 }
 

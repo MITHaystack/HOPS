@@ -55,7 +55,7 @@ class MHO_DiFXPCalProcessor
         {
             //std::string pol;
             double tone_freq;
-            std::complex<double> phasor;
+            pcal_phasor_type phasor;
         };
 
         struct pcal_period
