@@ -41,13 +41,27 @@ MHO_DiFXScanProcessor::ProcessScan(MHO_DiFXScanFileSet& fileSet)
         fPCalProcessor.SetAccumulationPeriod(ap_length);
         fPCalProcessor.ReadPCalFile();
         fPCalProcessor.Organize();
+
+        std::string station_code = fPCalProcessor.GetStationCode();
+        multitone_pcal_type* pcal = fPCalProcessor.GetPCalData()->Clone();
+        fStationCode2PCal[station_code] = pcal;
     }
 
+    //this is going to combine the station specific information in the DiFX input file,
+    //together with the p-cal data
     ConstructStationFileObjects();
 
     //clear up and reset for next scan
     deleteDifxInput(fDInput);
     fDInput = nullptr;
+
+    //now iterate through the pcal map and delete the objects we cloned 
+    for(auto it = fStationCode2PCal.begin(); it != fStationCode2PCal.end(); it++)
+    {
+        multitone_pcal_type* ptr = it->second;
+        delete ptr;
+    }
+    fStationCode2PCal.clear();
 }
 
 

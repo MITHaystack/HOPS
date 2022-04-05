@@ -28,11 +28,13 @@ class MHO_DiFXPCalProcessor
         MHO_DiFXPCalProcessor();
         virtual ~MHO_DiFXPCalProcessor();
 
-        void SetFilename(std::string filename){fFilename = filename;}
+        void SetFilename(std::string filename);
         void SetAccumulationPeriod(double ap_sec){fAPLength = ap_sec;}
+        std::string GetStationCode() const {return fStationCode;}
 
         void ReadPCalFile();
         void Organize();
+        multitone_pcal_type* GetPCalData(){return &fPCal;}
 
     private:
 
@@ -45,6 +47,13 @@ class MHO_DiFXPCalProcessor
         MHO_Tokenizer fTokenizer;
         std::vector< std::string > fTokens;
         double fAPLength;
+        bool fValid;
+
+        std::string fType;
+        std::string fMJD_day;
+        std::string fMJD_frac;
+        std::string fStationCode;
+
 
         //TODO this constant isn't used directly for conversion 
         //(just a tolerance check), but we should put this somewhere sensible
