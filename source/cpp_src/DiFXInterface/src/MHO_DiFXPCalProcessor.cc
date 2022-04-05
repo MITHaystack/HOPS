@@ -16,42 +16,72 @@ MHO_DiFXPCalProcessor::MHO_DiFXPCalProcessor()
     fTokenizer.SetIncludeEmptyTokensFalse();
     fSecondsPerDay = 86400.0;
     fTolerance = 0.01;
+    fValid = false;
 }
 
 
 MHO_DiFXPCalProcessor::~MHO_DiFXPCalProcessor(){}
 
+
+void 
+MHO_DiFXPCalProcessor::SetFilename(std::string filename)
+{
+    fValid = false;
+    //tokenize the file name, and verify it is a 'PCAL' file
+    //also extract the station 2-character code 
+    fTokenizer.SetDelimiter("_");
+    fTokens.clear();
+    fTokenizer.SetString(&filename);
+    fTokenizer.GetTokens(&fTokens);
+
+    if(fTokens.size() == 4)
+    {
+        fType = fTokens[0];
+        fMJD_day = fTokens[1];
+        fMJD_frac = fTokens[2];
+        fStationCode = fTokens[3];
+        fFilename = filename;
+        fValid = true;
+    }
+
+    //reset the tokenizer delim back to the default
+    fTokenizer.SetDelimiter(" ");
+}
+
 void 
 MHO_DiFXPCalProcessor::ReadPCalFile()
 {
-    fPCalData.clear();
-    if(fFilename != "")
+    if(fValid)
     {
-        //open file
-        std::ifstream file(fFilename.c_str());
-        if(file.is_open())
+        fPCalData.clear();
+        fSortedPCalData.clear();
+        fPCal.ZeroArray();
+        if(fFilename != "")
         {
-            //read lines until end 
-            while( getline(file,fLine) )
+            //open file
+            std::ifstream file(fFilename.c_str());
+            if(file.is_open())
             {
-                if(fLine.size() != 0)
+                //read lines until end 
+                while( getline(file,fLine) )
                 {
-                    //parse line and covert tokens into data points 
-                    //std::cout<<"line = "<<fLine<<std::endl;
-                    if(!IsComment())
+                    if(fLine.size() != 0)
                     {
-                        TokenizeLine();
-                        ProcessTokens();
+                        //parse line and covert tokens into data points 
+                        //std::cout<<"line = "<<fLine<<std::endl;
+                        if(!IsComment())
+                        {
+                            TokenizeLine();
+                            ProcessTokens();
+                        }
                     }
                 }
+                file.close();
             }
-            file.close();
         }
+        //print out the dimensions of the pcal data
+        std::cout<<"pcal data size for file: "<<fFilename<<", "<<fPCalData.size()<<std::endl; 
     }
-
-    //print out the dimensions of the pcal data
-    std::cout<<"pcal data size for file: "<<fFilename<<", "<<fPCalData.size()<<std::endl; 
-
 }
 
 
@@ -92,7 +122,6 @@ MHO_DiFXPCalProcessor::ProcessTokens()
         int place_holder2 = std::atoi(fTokens[n++].c_str()); //TODO FIXE ME -- WHAT IS THIS PAR?
         int place_holder3 = std::atoi(fTokens[n++].c_str()); //TODO FIXE ME -- WHAT IS THIS PAR?
         pp.polmapped_pcal_phasors.clear();
-
 
         //now loop through the rest of the p-cal phasor data (4 tokens at a time)
         int itone = 0;
@@ -287,7 +316,11 @@ MHO_DiFXPCalProcessor::Organize()
         }
     }
 
-    std::cout << fPCal << std::endl;
+    //add some helpful tags to the fPCal data;
+    fPCal.Insert("station_code", fStationCode);
+    fPCal.Insert("start_time_mjd", first_ap);
+
+    //std::cout << fPCal << std::endl;
 
 }
 
