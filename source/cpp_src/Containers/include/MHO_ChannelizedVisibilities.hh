@@ -44,6 +44,8 @@ using ch_pcal_axis_pack = MHO_AxisPack< ch_polprod_axis_type, ch_channel_axis_ty
 using ch_pcal_phase_type = MHO_TableContainer< double, ch_pcal_axis_pack >;  //(here we are storing pcal as a rotation in 'degrees', should/could we use phasor instead?)
 
 
+
+
 }//end of hops namespaces
 
 #endif /* end of include guard: MHO_ChannelizedVisibilities */

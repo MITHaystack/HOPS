@@ -14,6 +14,8 @@ MHO_DiFXPCalProcessor::MHO_DiFXPCalProcessor()
 {
     fTokenizer.SetDelimiter(" ");
     fTokenizer.SetIncludeEmptyTokensFalse();
+    fSecondsPerDay = 86400.0;
+    fTolerance = 0.01;
 }
 
 
@@ -143,6 +145,14 @@ MHO_DiFXPCalProcessor::Organize()
     std::set<int> ap_set;
     for(auto it = fPCalData.begin(); it != fPCalData.end(); ++it)
     {
+
+        //check to make sure each pcal AP is the same as the specified AP
+        double current_ap_length_sec = fSecondsPerDay*(it->mjd_period);
+        if(std::fabs(fAPLength - current_ap_length_sec)/fAPLength > fTolerance )
+        {
+            msg_warn("difx_interface", "pcal accumulation period ("<<fAPLength<<") does not appear to match correlation accumulation period ("<<current_ap_length_sec<<")." << eom );
+        }
+
         double ap_time = it->mjd;
         double delta = ap_time - first_ap;
         int ap = std::round(delta/(it->mjd_period));
@@ -202,7 +212,6 @@ MHO_DiFXPCalProcessor::Organize()
     //finally sort by AP 
     std::sort(fSortedPCalData.begin(), fSortedPCalData.end(), fAPIndexComp);
 
-    //DEBUG PRINT OUT
 
     std::cout<<std::setprecision(14)<<std::endl;
     for(auto it = fSortedPCalData.begin(); it != fSortedPCalData.end(); it++)
@@ -215,6 +224,84 @@ MHO_DiFXPCalProcessor::Organize()
         }
     }
     
+    //determine the data dimensions 
+    std::size_t npol = fPolSet.size();
+    std::size_t naps = fSortedPCalData.size();
+    //find the max number of tones
+    std::size_t ntones = 0;
+    std::set<std::size_t> ntone_set;
+    for(auto it = fSortedPCalData.begin(); it != fSortedPCalData.end(); it++)
+    {
+        for(auto ppit = it->polmapped_pcal_phasors.begin(); ppit != it->polmapped_pcal_phasors.end(); ppit++)
+        {
+            std::size_t current_ntones = ppit->size();
+            if(current_ntones > ntones){ntones = current_ntones;}
+            ntone_set.insert(current_ntones);
+        }
+    }
+
+    if(ntone_set.size() != 1)
+    {
+        msg_error("difx_interface", "number of p-cal tones is inconsistent over polarizations/APs." << eom);
+        std::exit(1); //exit out for now -- TODO figure out how to handle this possible case
+    }
+
+    //now we can go ahead and create/resize the organized pcal data-table 
+    fPCal.Resize(npol, naps, ntones);
+    fPCal.ZeroArray();
+
+    //next we set the axes
+    std::size_t pol_idx = 0;
+    for(auto pol_iter = fPolSet.begin(); pol_iter != fPolSet.end(); pol_iter++)
+    {
+        std::string pol = *pol_iter;
+        std::get<POLPROD_AXIS>(fPCal)->at(pol_idx) = pol;
+        pol_idx++;
+    }
+
+    std::size_t time_idx = 0;
+    for(auto it = fSortedPCalData.begin(); it != fSortedPCalData.end(); it++)
+    {
+        int ap = it->ap;
+        std::get<TIME_AXIS>(fPCal)->at(time_idx) = ap*fAPLength;
+        time_idx++;
+    }
+
+    
+
+            for(auto it = fSortedPCalData.begin(); it != fSortedPCalData.end(); it++)
+            {
+                int ap = it->ap;
+                for(auto phit = it->polmapped_pcal_phasors[pol].begin(); phit != it->polmapped_pcal_phasors[pol].end(); phit++)
+                {
+                    std::cout<<"pol["<<ppit->first<<"], n-tones = "<<ppit->second.size()<<
+                    " first tone: "<<ppit->second[0].tone_freq<<" last tone: "<<ppit->second.back().tone_freq<<std::endl;
+                }
+            }
+
+            std::string pol = *ppit;
+            std::sort( pp.polmapped_pcal_phasors[pol].begin(), pp.polmapped_pcal_phasors[pol].end(), fPhasorToneComp); 
+        }
+
+
+
+    for(auto pol_iter = fPolSet.begin(); pol_iter != fPolSet.end(); pol_iter++)
+    {
+        std::string pol = *pol_iter;
+        for(auto it = fSortedPCalData.begin(); it != fSortedPCalData.end(); it++)
+        {
+            int ap = it->ap;
+            for(auto phit = it->polmapped_pcal_phasors[pol].begin(); phit != it->polmapped_pcal_phasors[pol].end(); phit++)
+            {
+                std::cout<<"pol["<<ppit->first<<"], n-tones = "<<ppit->second.size()<<
+                " first tone: "<<ppit->second[0].tone_freq<<" last tone: "<<ppit->second.back().tone_freq<<std::endl;
+            }
+        }
+
+        std::string pol = *ppit;
+        std::sort( pp.polmapped_pcal_phasors[pol].begin(), pp.polmapped_pcal_phasors[pol].end(), fPhasorToneComp); 
+    }
+
 
 
 }
