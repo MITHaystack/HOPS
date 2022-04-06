@@ -61,6 +61,7 @@ MHO_DiFXScanProcessor::ConvertStationFileObjects()
     //first process pcal files (if they exist)
     for(auto it = fFileSet->fPCALFileList.begin(); it != fFileSet->fPCALFileList.end(); it++)
     {
+        std::cout<<"pcal name = "<<*it<<std::endl;
         fPCalProcessor.SetFilename(*it);
         double ap_length = fInput["config"][0]["tInt"]; //config is a list element, grab the first
         fPCalProcessor.SetAccumulationPeriod(ap_length);
@@ -94,7 +95,7 @@ MHO_DiFXScanProcessor::ConvertStationFileObjects()
         }
         else
         {
-            msg_error("file", "Error opening pcal output file: " << output_file << eom);
+            msg_error("file", "error opening pcal output file: " << output_file << eom);
         }
         inter.Close();
     }
@@ -127,8 +128,9 @@ MHO_DiFXScanProcessor::LoadInputFile()
     input_proc.LoadDiFXInputFile(fFileSet->fInputFile);
     input_proc.ConvertToJSON(fInput);
 
+    msg_debug("difx_interface", "difx .input file: " << fFileSet->fInputFile <<" converted to json." << eom);
     //debug -- remove me TODO FIXME
-    std::cout<< fInput.dump(2)<<std::endl;
+    //std::cout<< fInput.dump(2)<<std::endl;
 }
 
 

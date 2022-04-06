@@ -16,7 +16,7 @@ MHO_DiFXVisibilityProcessor::ReadDIFXFile(std::map< int, MHO_DiFXBaselineProcess
     vFile.open(fFilename.c_str(), std::fstream::in | std::ios::binary);
     if( !vFile.is_open() || !vFile.good() )
     {
-        msg_error("file", "Failed to open visibility file: "  << fFilename << " for reading." << eom);
+        msg_error("file", "failed to open visibility file: "  << fFilename << " for reading." << eom);
     }
 
     std::size_t n_records = 0;
@@ -28,13 +28,13 @@ MHO_DiFXVisibilityProcessor::ReadDIFXFile(std::map< int, MHO_DiFXBaselineProcess
 
         if( !(vFile.good() ) )
         {
-            msg_error("difx_interface", "Could not read Swinburne file: " << fFilename << eom);
+            msg_debug("difx_interface", "could no longer read Swinburne file: " << fFilename << " after "<<n_records<<" records."<< eom);
             break;
         }
 
         if (visRecord.sync == VISRECORD_SYNC_WORD_DIFX1) //old style ascii header, bad
         {
-            msg_error("difx_interface", "Cannot read DiFX 1.x data." << eom );
+            msg_error("difx_interface", "cannot read DiFX 1.x data." << eom );
             break;
         }
 

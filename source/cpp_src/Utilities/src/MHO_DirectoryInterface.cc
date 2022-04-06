@@ -157,7 +157,7 @@ MHO_DirectoryInterface::ReadCurrentDirectory()
 }
 
 std::string
-MHO_DirectoryInterface::GetBasename(const std::string& filename) const
+MHO_DirectoryInterface::GetBasename(const std::string& filename)
 {
     std::string base_filename = "";
     std::size_t index = filename.find_last_of("/\\");
@@ -173,7 +173,7 @@ MHO_DirectoryInterface::GetBasename(const std::string& filename) const
 }
 
 std::string
-MHO_DirectoryInterface::GetPrefix(const std::string& filename) const
+MHO_DirectoryInterface::GetPrefix(const std::string& filename)
 {
     std::string prefix = "";
     std::size_t index = filename.find_last_of("/\\");
@@ -190,7 +190,7 @@ MHO_DirectoryInterface::GetPrefix(const std::string& filename) const
 
 
 std::string 
-MHO_DirectoryInterface::StripExtensionFromBasename(const std::string& file_basename) const
+MHO_DirectoryInterface::StripExtensionFromBasename(const std::string& file_basename)
 {
     //assume we have just the basename (not directory prefix)
     std::string prefix = "";
