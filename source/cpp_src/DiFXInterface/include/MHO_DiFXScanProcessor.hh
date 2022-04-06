@@ -52,15 +52,16 @@ class MHO_DiFXScanProcessor
         //members for dealing with a single (current) scan of data /////////////
         MHO_DiFXScanFileSet* fFileSet;
 
-        void LoadInputFile(std::string filename);
+        void LoadInputFile();
 
         // void ReadPCALFile(std::string filename);
         // void ReadIMFile(std::string filename);
-        void ConstructRootFileObject();
-        void ConstructStationFileObjects();
+        void ConvertRootFileObject();
+        void ConvertVisibilityFileObjects();
+        void ConvertStationFileObjects();
+        void CleanUp();
 
         //the DiFX input file structure 
-        DifxInput* fDInput;
         json fInput;
 
         std::map< int, MHO_DiFXBaselineProcessor > fAllBaselineVisibilities;
