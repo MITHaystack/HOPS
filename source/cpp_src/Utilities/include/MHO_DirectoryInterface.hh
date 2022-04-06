@@ -51,9 +51,9 @@ class MHO_DirectoryInterface
         void SplitCorelFileBasename(const std::string& corel_basename, std::string& st_pair, std::string& root_code) const;
         void SplitStationFileBasename(const std::string& station_basename, std::string& st, std::string& root_code) const;
 
-        std::string GetBasename(const std::string& filename) const;
-        std::string GetPrefix(const std::string& filename) const;
-        std::string StripExtensionFromBasename(const std::string& file_basename) const;
+        static std::string GetBasename(const std::string& filename);
+        static std::string GetPrefix(const std::string& filename);
+        static std::string StripExtensionFromBasename(const std::string& file_basename);
 
     private:
 

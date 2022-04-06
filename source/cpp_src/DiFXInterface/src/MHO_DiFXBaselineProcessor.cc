@@ -66,7 +66,7 @@ MHO_DiFXBaselineProcessor::Organize()
 
     //check number of polpairs
     fNPolPairs = fPolPairSet.size();
-    if(fNPolPairs > 4){msg_warn("difx_interface", "More than 4 pol-products, detected (" << fNPolPairs <<") on baseline: " << fBaselineName << eom) ;}
+    if(fNPolPairs > 4){msg_warn("difx_interface", "more than 4 pol-products, detected (" << fNPolPairs <<") on baseline: " << fBaselineName << eom) ;}
     fNChannels = fFreqIndexSet.size();
 
     //check if the number of spectral points is the same for every channel correlated
@@ -77,7 +77,7 @@ MHO_DiFXBaselineProcessor::Organize()
     if(fSpecPointSet.size() > 1 )
     {
         fCanChannelize = false;
-        msg_error("difx_interface", "Channels do not have same number of spectral points on baseline: " << fBaselineName << eom);
+        msg_error("difx_interface", "channels do not have same number of spectral points on baseline: " << fBaselineName << eom);
     }
 
     //sort the individual visiblity records in time order
@@ -98,7 +98,7 @@ MHO_DiFXBaselineProcessor::Organize()
     if(!fAPSet.empty()){fNAPs = *(fAPSet.rbegin());} //sets are sorted in ascending order, so grab the max from end
     if(fAPSet.size() > 1 )
     {
-        msg_error("difx_interface", "Channels do not have same number of APs on baseline: " << fBaselineName <<" will pad-out to max AP: "<< fNAPs << "."<< eom);
+        msg_error("difx_interface", "channels do not have same number of APs on baseline: " << fBaselineName <<" will pad-out to max AP: "<< fNAPs << "."<< eom);
     }
 
     //construct the table of frequencies for this baseline and sort in asscending order
@@ -277,7 +277,7 @@ MHO_DiFXBaselineProcessor::WriteVisibilityObjects(std::string output_dir)
     }
     else
     {
-        msg_error("file", "Error opening corel output file: " << output_file << eom);
+        msg_error("file", "error opening corel output file: " << output_file << eom);
     }
 
     inter.Close();
