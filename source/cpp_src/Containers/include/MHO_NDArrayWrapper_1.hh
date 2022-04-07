@@ -161,6 +161,20 @@ class MHO_NDArrayWrapper<XValueType, 1>:
         }
 
 
+        template <typename ...XIndexTypeS >
+        typename std::enable_if< 
+            (sizeof...(XIndexTypeS) == 1), 
+            MHO_NDArrayView< XValueType, count_instances_of_type< const char*, sizeof...(XIndexTypeS)-1, XIndexTypeS... >::value >
+        >::type
+        SliceView(XIndexTypeS...idx)
+        {
+            typedef std::integral_constant< std::size_t, count_instances_of_type< const char*, sizeof...(XIndexTypeS)-1, XIndexTypeS... >::value > nfree_t;
+            typedef std::integral_constant< std::size_t, 1 - count_instances_of_type< const char*, sizeof...(XIndexTypeS)-1, XIndexTypeS... >::value > nfixed_t;
+            HOPS_ASSERT_EQUAL(nfree_t::value, 1);
+            return  MHO_NDArrayView<XValueType, 1>(&(fDataPtr[0]), &(fDims[0]), &(fStrides[0]) );
+        }
+
+
     protected:
 
         XValueType* fDataPtr;

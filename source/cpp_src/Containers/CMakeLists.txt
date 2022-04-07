@@ -1,3 +1,9 @@
+option (HOPS_BUILD_EXTRA_CONTAINERS "Build extended support of a large variety of extra data container types." OFF)
+
+if(HOPS_BUILD_EXTRA_CONTAINERS)
+    hops_add_cxxflag(HOPS_BUILD_EXTRA_CONTAINERS)
+endif()
+
 #list header files #############################################################
 set (CONTAINER_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_NDArrayMath.hh
