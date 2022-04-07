@@ -69,7 +69,7 @@ MHO_ContainerDictionary::MHO_ContainerDictionary()
 
     #else
 
-    #pragma message("building extra containers")
+    #pragma message("Building extra data containers types.")
 
 
     //add all of the types we define
