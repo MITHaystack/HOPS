@@ -160,18 +160,14 @@ class MHO_NDArrayWrapper<XValueType, 1>:
             return MHO_NDArrayWrapper<XValueType, 1 - ( sizeof...(XIndexTypeS) ) >(&(fDataPtr[offset]) , &(dim[0]) );
         }
 
-
         //this function is mainly here to allow for 1-d table containers, there's not much utility 
-        //of a 'slice view' of a 1-d array (you'd either get a scalar, or the same array back)
-        //in the below case, the assertion statement will cause a compiler error if the user 
-        //attempts a slice view on a 1-d array (just use regular index access)
+        //of a 'slice view' of a 1-d array (you just get the same array back...)
         MHO_NDArrayView< XValueType, 1>
-        SliceView()
+        SliceView(const char* /* unused_arg */) 
         {
             //just return a 1d array view of this 1-d array
             return  MHO_NDArrayView<XValueType, 1>(&(fDataPtr[0]), &(fDims[0]), &(fStrides[0]) );
         }
-
 
     protected:
 

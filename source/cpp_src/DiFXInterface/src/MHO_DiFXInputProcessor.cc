@@ -355,7 +355,6 @@ MHO_DiFXInputProcessor::ExtractDatastreamQuantities(int n)
 {
     DifxDatastream* d = &(fD->datastream[n]);
     json ds;
-    std::cout<<"datastream: "<<d<<std::endl;
     if(d != nullptr)
     {
         ds["antennaId"] = d->antennaId;
