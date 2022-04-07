@@ -157,20 +157,18 @@ class MHO_NDArrayWrapper<XValueType, 1>:
             std::size_t offset = MHO_NDArrayMath::OffsetFromRowMajorIndex<1>(&(fDims[0]), &(fTmp[0]));
             std::array<std::size_t, 1 - (sizeof...(XIndexTypeS)) > dim;
             for(std::size_t i=0; i<dim.size(); i++){dim[i] = fDims[i + (sizeof...(XIndexTypeS) )];}
-            return  MHO_NDArrayWrapper<XValueType, 1 - ( sizeof...(XIndexTypeS) ) >(&(fDataPtr[offset]) , &(dim[0]) );
+            return MHO_NDArrayWrapper<XValueType, 1 - ( sizeof...(XIndexTypeS) ) >(&(fDataPtr[offset]) , &(dim[0]) );
         }
 
 
-        template <typename ...XIndexTypeS >
-        typename std::enable_if< 
-            (sizeof...(XIndexTypeS) == 1), 
-            MHO_NDArrayView< XValueType, count_instances_of_type< const char*, sizeof...(XIndexTypeS)-1, XIndexTypeS... >::value >
-        >::type
-        SliceView(XIndexTypeS...idx)
+        //this function is mainly here to allow for 1-d table containers, there's not much utility 
+        //of a 'slice view' of a 1-d array (you'd either get a scalar, or the same array back)
+        //in the below case, the assertion statement will cause a compiler error if the user 
+        //attempts a slice view on a 1-d array (just use regular index access)
+        MHO_NDArrayView< XValueType, 1>
+        SliceView()
         {
-            typedef std::integral_constant< std::size_t, count_instances_of_type< const char*, sizeof...(XIndexTypeS)-1, XIndexTypeS... >::value > nfree_t;
-            typedef std::integral_constant< std::size_t, 1 - count_instances_of_type< const char*, sizeof...(XIndexTypeS)-1, XIndexTypeS... >::value > nfixed_t;
-            HOPS_ASSERT_EQUAL(nfree_t::value, 1);
+            //just return a 1d array view of this 1-d array
             return  MHO_NDArrayView<XValueType, 1>(&(fDataPtr[0]), &(fDims[0]), &(fStrides[0]) );
         }
 
