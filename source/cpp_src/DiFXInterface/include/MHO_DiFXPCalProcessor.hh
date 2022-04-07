@@ -73,7 +73,7 @@ class MHO_DiFXPCalProcessor
             double mjd;
             double mjd_period;
             int ap;
-            std::map< std::string, std::vector< pcal_phasor > > polmapped_pcal_phasors; 
+            std::map< std::string, std::vector< pcal_phasor > > pc_phasors; 
         };
 
 

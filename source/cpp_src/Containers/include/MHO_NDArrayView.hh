@@ -186,7 +186,7 @@ class MHO_NDArrayView
         //in place point-wise addition by another array
         inline MHO_NDArrayView& operator+=(const MHO_NDArrayView& anArray)
         {
-            if(!HaveSameNumberOfElements(this, &anArray)){throw std::out_of_range("MHO_NDArrayView::*= size mismatch.");}
+            if(!HaveSameNumberOfElements(this, &anArray)){throw std::out_of_range("MHO_NDArrayView::+= size mismatch.");}
             auto bit1 = this->begin();
             auto bit2 = anArray.begin();
             auto it1 = bit1;
@@ -203,7 +203,7 @@ class MHO_NDArrayView
         //in place point-wise subtraction of another array
         inline MHO_NDArrayView& operator-=(const MHO_NDArrayView& anArray)
         {
-            if(!HaveSameNumberOfElements(this, &anArray)){throw std::out_of_range("MHO_NDArrayView::*= size mismatch.");}
+            if(!HaveSameNumberOfElements(this, &anArray)){throw std::out_of_range("MHO_NDArrayView::-= size mismatch.");}
             auto bit1 = this->begin();
             auto bit2 = anArray.begin();
             auto it1 = bit1;
@@ -253,7 +253,7 @@ class MHO_NDArrayView
             fDataPtr = nullptr;
             if(ptr == nullptr || dim == nullptr || strides == nullptr)
             {
-                msg_error("containers", "Cannot construct array slice." << eom);
+                msg_error("containers", "cannot construct array slice." << eom);
                 return;
             }
 

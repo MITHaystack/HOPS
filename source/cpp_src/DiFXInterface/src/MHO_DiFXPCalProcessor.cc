@@ -2,6 +2,7 @@
 #include "MHO_DirectoryInterface.hh"
 
 #include <fstream>
+#include <sstream>
 #include <cstdlib>
 #include <cmath>
 
@@ -87,8 +88,6 @@ MHO_DiFXPCalProcessor::ReadPCalFile()
                 file.close();
             }
         }
-        //print out the dimensions of the pcal data
-        std::cout<<"pcal data size for file: "<<fFilename<<", "<<fPCalData.size()<<std::endl; 
     }
     else 
     {
@@ -133,11 +132,11 @@ MHO_DiFXPCalProcessor::ProcessTokens()
         int place_holder1 = std::atoi(fTokens[n++].c_str()); //TODO FIXE ME -- WHAT IS THIS PAR?
         int place_holder2 = std::atoi(fTokens[n++].c_str()); //TODO FIXE ME -- WHAT IS THIS PAR?
         int place_holder3 = std::atoi(fTokens[n++].c_str()); //TODO FIXE ME -- WHAT IS THIS PAR?
-        pp.polmapped_pcal_phasors.clear();
+        pp.pc_phasors.clear();
 
         //now loop through the rest of the p-cal phasor data (4 tokens at a time)
         int itone = 0;
-        while(n < fTokens.size()-4 )
+        while(n < fTokens.size() )
         {
             itone = std::atoi(fTokens[n].c_str());
             pcal_phasor ph;
@@ -149,7 +148,7 @@ MHO_DiFXPCalProcessor::ProcessTokens()
             if(itone > 0 && pol != "0")
             {
                 fPolSet.insert(pol);
-                pp.polmapped_pcal_phasors[pol].push_back(ph);
+                pp.pc_phasors[pol].push_back(ph);
             }
         }
         fPCalData.push_back(pp);
@@ -163,10 +162,14 @@ MHO_DiFXPCalProcessor::Organize()
 {
     if(fValid)
     {
+        std::stringstream ss;
+        ss << "has polarizations: ";
         for(auto ppit = fPolSet.begin(); ppit != fPolSet.end(); ppit++)
         {
-            std::cout<<"POL = "<<*ppit<<std::endl;
+            ss << *ppit << " ";
         }
+
+        msg_debug("difx_interface", "pcal for station: "<< fStationCode << ss.str() << eom);
 
         fSortedPCalData.clear();
         //we need to run through all of the p-cal data and merge tone/phasor data 
@@ -229,22 +232,22 @@ MHO_DiFXPCalProcessor::Organize()
                     pp.mjd = fPCalData[idx_set[i]].mjd;
                     pp.mjd_period = fPCalData[idx_set[i]].mjd_period;
                     pp.ap = fPCalData[idx_set[i]].ap;
-                    pp.polmapped_pcal_phasors.clear();
+                    pp.pc_phasors.clear();
                 }
 
                 for(auto ppit = fPolSet.begin(); ppit != fPolSet.end(); ppit++)
                 {
                     std::string pol = *ppit;
-                    pp.polmapped_pcal_phasors[pol].insert( pp.polmapped_pcal_phasors[pol].end(),
-                                                           fPCalData[idx_set[i]].polmapped_pcal_phasors[pol].begin(),
-                                                           fPCalData[idx_set[i]].polmapped_pcal_phasors[pol].end() );
+                    pp.pc_phasors[pol].insert( pp.pc_phasors[pol].end(),
+                                                           fPCalData[idx_set[i]].pc_phasors[pol].begin(),
+                                                           fPCalData[idx_set[i]].pc_phasors[pol].end() );
                 }
             }
 
             for(auto ppit = fPolSet.begin(); ppit != fPolSet.end(); ppit++)
             {
                 std::string pol = *ppit;
-                std::sort( pp.polmapped_pcal_phasors[pol].begin(), pp.polmapped_pcal_phasors[pol].end(), fPhasorToneComp); 
+                std::sort( pp.pc_phasors[pol].begin(), pp.pc_phasors[pol].end(), fPhasorToneComp); 
             }
 
             fSortedPCalData.push_back(pp);
@@ -253,41 +256,48 @@ MHO_DiFXPCalProcessor::Organize()
         //finally sort all by AP 
         std::sort(fSortedPCalData.begin(), fSortedPCalData.end(), fAPIndexComp);
 
+        /* debug print out
         std::cout<<std::setprecision(14)<<std::endl;
         for(auto it = fSortedPCalData.begin(); it != fSortedPCalData.end(); it++)
         {
             std::cout<<"ap, mjd = "<<it->ap<<", "<<it->mjd<<std::endl;
-            for(auto ppit = it->polmapped_pcal_phasors.begin(); ppit != it->polmapped_pcal_phasors.end(); ppit++)
+            for(auto ppit = it->pc_phasors.begin(); ppit != it->pc_phasors.end(); ppit++)
             {
-                std::cout<<"pol["<<ppit->first<<"], n-tones = "<<ppit->second.size()<<
-                " first tone: "<<ppit->second[0].tone_freq<<" last tone: "<<ppit->second.back().tone_freq<<std::endl;
+                std::cout<<"pol["<<ppit->first<<"], n-tones = "<<ppit->second.size()<<std::endl;
+                if(ppit->second.size() != 0)
+                {
+                    std::cout<<"first tone: "<<ppit->second.begin()->tone_freq<<" last tone: "<<ppit->second.back().tone_freq<<std::endl;
+                }
             }
         }
-        
+        */
+    
         //determine the data dimensions 
         std::size_t npol = fPolSet.size();
         std::size_t naps = fSortedPCalData.size();
         //find the max number of tones
-        std::size_t ntones = 0;
+        std::size_t max_ntones = 0;
         std::set<std::size_t> ntone_set;
         for(auto it = fSortedPCalData.begin(); it != fSortedPCalData.end(); it++)
         {
-            for(auto ppit = it->polmapped_pcal_phasors.begin(); ppit != it->polmapped_pcal_phasors.end(); ppit++)
+            for(auto ppit = it->pc_phasors.begin(); ppit != it->pc_phasors.end(); ppit++)
             {
                 std::size_t current_ntones = ppit->second.size();
-                if(current_ntones > ntones){ntones = current_ntones;}
+                if(current_ntones > max_ntones){max_ntones = current_ntones;}
                 ntone_set.insert(current_ntones);
             }
         }
 
         if(ntone_set.size() != 1)
         {
-            msg_error("difx_interface", "number of p-cal tones ("<<ntone_set.size()<<") is inconsistent over polarizations/APs." << eom);
+            std::stringstream sset;
+            for(auto it = ntone_set.begin(); it != ntone_set.end(); it++){ sset << *it << ", "; }
+            msg_warn("difx_interface", "set of total number of p-cal tones {"<<sset.str()<<"} is inconsistent over polarizations/APs. Incomplete APs will be zero." << eom);
             //std::exit(1); //exit out for now -- TODO figure out how to handle this possible case
         }
 
         //now we can go ahead and create/resize the organized pcal data-table 
-        fPCal.Resize(npol, naps, ntones);
+        fPCal.Resize(npol, naps, max_ntones);
         fPCal.ZeroArray();
 
         //next we set the axes
@@ -308,8 +318,8 @@ MHO_DiFXPCalProcessor::Organize()
         }
 
         std::size_t tone_idx = 0;
-        auto bit = fSortedPCalData[0].polmapped_pcal_phasors[*(fPolSet.begin())].begin();
-        auto eit = fSortedPCalData[0].polmapped_pcal_phasors[*(fPolSet.begin())].end();
+        auto bit = fSortedPCalData[0].pc_phasors[*(fPolSet.begin())].begin();
+        auto eit = fSortedPCalData[0].pc_phasors[*(fPolSet.begin())].end();
         for(auto it = bit; it != eit; it++)
         {
             std::get<FREQ_AXIS>(fPCal).at(tone_idx) = it->tone_freq;
@@ -321,10 +331,21 @@ MHO_DiFXPCalProcessor::Organize()
             std::string pol = std::get<POLPROD_AXIS>(fPCal).at(pol_idx);
             for(time_idx = 0; time_idx<naps; time_idx++)
             {
-                for(tone_idx = 0; tone_idx<ntones; tone_idx++)
+                auto phasor_vec = &( fSortedPCalData[time_idx].pc_phasors[pol] );
+
+                //We need to check that the phasor vector has the same maximal size,
+                //if it is not, we cannot guarantee we have the same set of tones 
+                //e.g. if we are missing band S, but have band X, the X-band tones
+                //will get shifted into the S-band slots.
+                //If we wanted to get fancy we could make a map of tone-value to tone index, 
+                //which would let us recover partial Pols/APs. However, given that encountering 
+                //partial data is a pretty non-standard situation (or upstream bug), discarding it seems sane.
+                if(phasor_vec->size() == max_ntones)
                 {
-                    pcal_phasor ph = fSortedPCalData[time_idx].polmapped_pcal_phasors[pol][tone_idx];
-                    fPCal(pol_idx, time_idx, tone_idx) = ph.phasor;
+                    for(tone_idx=0; tone_idx < max_ntones; tone_idx++)
+                    {
+                        fPCal(pol_idx, time_idx, tone_idx) = phasor_vec->at(tone_idx).phasor;
+                    }
                 }
             }
         }

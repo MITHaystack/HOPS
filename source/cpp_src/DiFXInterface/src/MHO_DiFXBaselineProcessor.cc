@@ -78,6 +78,8 @@ MHO_DiFXBaselineProcessor::Organize()
     {
         fCanChannelize = false;
         msg_error("difx_interface", "channels do not have same number of spectral points on baseline: " << fBaselineName << eom);
+        msg_fatal("difx_interface", "un-channelized data not yet supported" << eom );
+        std::exit(1);
     }
 
     //sort the individual visiblity records in time order
@@ -98,7 +100,7 @@ MHO_DiFXBaselineProcessor::Organize()
     if(!fAPSet.empty()){fNAPs = *(fAPSet.rbegin());} //sets are sorted in ascending order, so grab the max from end
     if(fAPSet.size() > 1 )
     {
-        msg_error("difx_interface", "channels do not have same number of APs on baseline: " << fBaselineName <<" will pad-out to max AP: "<< fNAPs << "."<< eom);
+        msg_error("difx_interface", "channels do not have same number of APs on baseline: " << fBaselineName <<" will zero pad-out to max AP: "<< fNAPs << "."<< eom);
     }
 
     //construct the table of frequencies for this baseline and sort in asscending order

@@ -61,7 +61,6 @@ MHO_DiFXScanProcessor::ConvertStationFileObjects()
     //first process pcal files (if they exist)
     for(auto it = fFileSet->fPCALFileList.begin(); it != fFileSet->fPCALFileList.end(); it++)
     {
-        std::cout<<"pcal name = "<<*it<<std::endl;
         fPCalProcessor.SetFilename(*it);
         double ap_length = fInput["config"][0]["tInt"]; //config is a list element, grab the first
         fPCalProcessor.SetAccumulationPeriod(ap_length);
