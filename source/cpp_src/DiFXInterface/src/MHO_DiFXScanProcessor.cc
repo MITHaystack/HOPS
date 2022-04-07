@@ -72,6 +72,7 @@ MHO_DiFXScanProcessor::ConvertStationFileObjects()
         fStationCode2PCal[station_code] = pcal;
     }
 
+
     //DEBUG, lets write out the PCAL stuff 
     for(auto it = fStationCode2PCal.begin(); it != fStationCode2PCal.end(); it++)
     {
@@ -100,7 +101,7 @@ MHO_DiFXScanProcessor::ConvertStationFileObjects()
     }
 
     //next we need to extract the station specific data from fInput
-    //(e.g. the coordinates, and delay spline info, etc.)
+    //(e.g. the coordinates, and delay spline info, etc. for each station)
 
 }
 
@@ -116,6 +117,15 @@ MHO_DiFXScanProcessor::CleanUp()
         delete ptr;
     }
     fStationCode2PCal.clear();
+
+    //clear out station coords
+    for(auto it = fStationCode2Coords.begin(); it != fStationCode2Coords.end(); it++)
+    {
+        station_coord_data_type* ptr = it->second;
+        delete ptr;
+    }
+    fStationCode2Coords.clear();
+
 }
 
 
@@ -128,11 +138,7 @@ MHO_DiFXScanProcessor::LoadInputFile()
     input_proc.ConvertToJSON(fInput);
 
     msg_debug("difx_interface", "difx .input file: " << fFileSet->fInputFile <<" converted to json." << eom);
-    //debug -- remove me TODO FIXME
-    //std::cout<< fInput.dump(2)<<std::endl;
 }
-
-
 
 
 
