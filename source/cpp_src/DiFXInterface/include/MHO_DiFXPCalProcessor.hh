@@ -54,19 +54,19 @@ class MHO_DiFXPCalProcessor
         std::string fMJD_frac;
         std::string fStationCode;
 
-
         //TODO this constant isn't used directly for conversion 
         //(just a tolerance check), but we should put this somewhere sensible
         double fSecondsPerDay;
         double fTolerance;
 
+        //single pcal tone
         struct pcal_phasor 
         {
-            //std::string pol;
             double tone_freq;
             pcal_phasor_type phasor;
         };
 
+        //container for pcal data from a single AP
         struct pcal_period
         {
             std::string station;
@@ -77,14 +77,15 @@ class MHO_DiFXPCalProcessor
         };
 
 
-        //pcal data in various forms to get it organized
+        //pcal data in various forms on the way to getting it organized
         std::vector< pcal_period > fPCalData;
         std::vector< pcal_period > fSortedPCalData;
         std::set< std::string> fPolSet;
 
-        //organized pcal data 
+        //fully organized pcal data 
         multitone_pcal_type fPCal;
 
+        //for sorting phasors by tone frequency
         struct ToneFreqLess
         {
             bool operator()(const pcal_phasor& a, const pcal_phasor& b) const 
@@ -94,6 +95,7 @@ class MHO_DiFXPCalProcessor
         };
         ToneFreqLess fPhasorToneComp;
 
+        //for sorting APs by time
         struct APIndexLess
         {
             bool operator()(const pcal_period& a, const pcal_period& b) const 
