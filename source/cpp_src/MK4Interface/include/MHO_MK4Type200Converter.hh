@@ -30,6 +30,10 @@ namespace hops
 * A function that accepts the data from a type 200 file in the form of a struct and converts it to a JSON string.
 */
 
+/* convert struct to JSON string
+* @param t pointer
+* @return JSON string
+*/
 json convertToJSON(const type_200& t);
 
 }

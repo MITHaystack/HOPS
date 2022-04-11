@@ -122,8 +122,14 @@ class MHO_NDArrayWrapper<XValueType, 1>:
         }
 
         //convenience functions
-        void SetArray(const XValueType& obj){ for(std::size_t i=0; i < fSize; i++){fDataPtr[i] = obj; } }
-        void ZeroArray(){ std::memset(fDataPtr, 0, fSize*sizeof(XValueType) ); }; //set all elements in the array to zero
+        void SetArray(const XValueType& obj)
+        {
+            for(std::size_t i=0; i < fSize; i++){fDataPtr[i] = obj; } 
+        }
+        void ZeroArray()
+        {
+            std::memset(fDataPtr, 0, fSize*sizeof(XValueType) );
+        };
 
         //expensive copy (as opposed to the assignment operator,
         //pointers to exernally managed memory are not transfer)
@@ -140,7 +146,7 @@ class MHO_NDArrayWrapper<XValueType, 1>:
         //linear offset into the array -- no real utility in 1-d case
         std::size_t GetOffsetForIndices(const std::size_t* index){return index[0];}
 
-        //here mainly so table containers with dimension 1 still work, in this case a sub-view just gets you a scalar 
+        //here mainly so table containers with rank 1 still work, in this case a sub-view just gets you a scalar 
         template <typename ...XIndexTypeS >
         typename std::enable_if< (sizeof...(XIndexTypeS) < 1), MHO_NDArrayWrapper<XValueType, 1 - ( sizeof...(XIndexTypeS) ) > >::type
         SubView(XIndexTypeS...idx)
@@ -179,7 +185,7 @@ class MHO_NDArrayWrapper<XValueType, 1>:
             //dimensions known
             if(dim != nullptr){fDims[0] = dim[0];}
             fSize = fDims[0];
-            ComputeStrides();
+            fStrides[0] = 1;
 
             if(ptr != nullptr) //using externally managed memory
             {
@@ -197,8 +203,6 @@ class MHO_NDArrayWrapper<XValueType, 1>:
                 fExternallyManaged = false;
             }
         }
-
-        void ComputeStrides(){fStrides[0] = 1;}
 
     //the iterator definitions //////////////////////////////////////////////////
     public:
