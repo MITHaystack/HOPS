@@ -36,6 +36,18 @@ class MHO_NDArrayMath
         }
 
         //for a multidimensional array (using row major indexing) which has the
+        //strides specified in Strides, this function computes the offset from
+        //the first element given the indices in the array Index
+        template<std::size_t RANK> inline static std::size_t
+        OffsetFromStrideIndex(const std::size_t* Strides, const std::size_t* Index)
+        {
+            std::size_t val = 0;
+            for(std::size_t i=0; i<RANK; i++){val += Index[i]*Strides[i];}
+            return val;
+        }
+
+
+        //for a multidimensional array (using row major indexing) which has the
         //dimensions specified in DimSize, this function computes the stride between
         //consecutive elements in the selected dimension given that the other indices are fixed
         //the first element given the indices in the array Index
