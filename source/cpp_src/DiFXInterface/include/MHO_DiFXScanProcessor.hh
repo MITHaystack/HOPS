@@ -59,6 +59,8 @@ class MHO_DiFXScanProcessor
         void ConvertRootFileObject();
         void ConvertVisibilityFileObjects();
         void ConvertStationFileObjects();
+
+        void ExtractStationCoords();
         void CleanUp();
 
         //the DiFX input file structure 
