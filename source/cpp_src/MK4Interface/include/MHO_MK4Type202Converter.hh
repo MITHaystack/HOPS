@@ -1,5 +1,5 @@
-#ifndef MHO_MKType200Converter_HH__
-#define MHO_MKType200Converter_HH__
+#ifndef MHO_MKType202Converter_HH__
+#define MHO_MKType202Converter_HH__
 
 //include the mk4 IO library
 //The messy ifndef guards around the brackets are needed because the dfio library
