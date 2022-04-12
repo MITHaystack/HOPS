@@ -10,11 +10,9 @@
 #include "MHO_Message.hh"
 #include "MHO_Tokenizer.hh"
 
-#include "MHO_Visibilities.hh"
-#include "MHO_ChannelizedVisibilities.hh"
+#include "MHO_ContainerDefinitions.hh"
 #include "MHO_VisibilityChannelizer.hh"
 #include "MHO_WeightChannelizer.hh"
-#include "MHO_StationCoordinates.hh"
 
 #include "MHO_BinaryFileStreamer.hh"
 #include "MHO_BinaryFileInterface.hh"

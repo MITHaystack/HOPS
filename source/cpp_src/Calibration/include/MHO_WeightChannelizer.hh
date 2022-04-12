@@ -13,14 +13,13 @@
 #include "MHO_NDArrayWrapper.hh"
 #include "MHO_TransformingOperator.hh"
 
-#include "MHO_Visibilities.hh"
-#include "MHO_ChannelizedVisibilities.hh"
+#include "MHO_ContainerDefinitions.hh"
 
 namespace hops
 {
 
 
-class MHO_WeightChannelizer: public MHO_TransformingOperator< baseline_weight_type, ch_baseline_weight_type>
+class MHO_WeightChannelizer: public MHO_TransformingOperator< weight_type, ch_weight_type>
 {
     public:
         MHO_WeightChannelizer();
@@ -28,8 +27,8 @@ class MHO_WeightChannelizer: public MHO_TransformingOperator< baseline_weight_ty
 
     private:
 
-        virtual bool InitializeImpl(const baseline_weight_type* in, ch_baseline_weight_type* out);
-        virtual bool ExecuteImpl(const baseline_weight_type* in, ch_baseline_weight_type* out);
+        virtual bool InitializeImpl(const weight_type* in, ch_weight_type* out);
+        virtual bool ExecuteImpl(const weight_type* in, ch_weight_type* out);
 
         bool fInitialized;
 

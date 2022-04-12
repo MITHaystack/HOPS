@@ -10,7 +10,7 @@ PYBIND11_MODULE(pyMHO_Containers, m)
 {
         m.doc() = "module to interact with MHO_Containers"; // optional module docstring
 
-        DeclarePyTableContainer< ch_baseline_data_type >(m, std::string("ch_baseline_data_type") );
+        DeclarePyTableContainer< ch_visibility_type >(m, std::string("ch_visibility_type") );
 
         // //just for testing
         // DeclarePyNDArrayWrapper< MHO_NDArrayWrapper<double, 2> >(m, std::string("mx") );

@@ -9,7 +9,7 @@
 
 #include "MHO_Tokenizer.hh"
 #include "MHO_MK4VexInterface.hh"
-#include "MHO_StationCoordinates.hh"
+#include "MHO_ContainerDefinitions.hh"
 #include "MHO_MK4StationInterface.hh"
 
 
@@ -58,7 +58,7 @@ int main(int argc, char** argv)
 
     mk4inter.SetStationFile(station_filename);
     mk4inter.SetVexFile(root_filename);
-    station_coord_data_type* st_data = mk4inter.ExtractStationFile();
+    station_coord_type* st_data = mk4inter.ExtractStationFile();
 
     std::size_t dim[STATION_NDIM];
     st_data->GetDimensions(dim);

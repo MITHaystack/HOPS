@@ -17,7 +17,8 @@
 #include <cstring>
 #include <string>
 
-#include "MHO_Visibilities.hh"
+#include "MHO_ContainerDefinitions.hh"
+
 #include "MHO_Message.hh"
 
 //forward declaration of mk4_corel and vex structs

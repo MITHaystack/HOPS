@@ -141,8 +141,8 @@ MHO_DiFXBaselineProcessor::ConstructVisibilityFileObjects()
         if(fV){delete fV; fV = nullptr;}
         if(fW){delete fW; fW = nullptr;}
 
-        fV = new ch_baseline_data_type(); 
-        fW = new ch_baseline_weight_type();
+        fV = new ch_visibility_type(); 
+        fW = new ch_weight_type();
 
         //tags for the visibilities
         fV->Resize(fNPolPairs, fNChannels, fNAPs, fNSpectralPoints);

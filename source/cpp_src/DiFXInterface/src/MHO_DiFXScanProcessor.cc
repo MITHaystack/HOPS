@@ -121,7 +121,7 @@ MHO_DiFXScanProcessor::CleanUp()
     //clear out station coords
     for(auto it = fStationCode2Coords.begin(); it != fStationCode2Coords.end(); it++)
     {
-        station_coord_data_type* ptr = it->second;
+        station_coord_type* ptr = it->second;
         delete ptr;
     }
     fStationCode2Coords.clear();
@@ -143,15 +143,28 @@ MHO_DiFXScanProcessor::LoadInputFile()
 
 void MHO_DiFXScanProcessor::ExtractStationCoords()
 {
+/*
     //populate fStationCode2Coords with each station present in fInput 
     //(e.g. the station name/codes, coordinates, and delay spline info, etc. for each station)
+    //first thing we have to do is figure out the data dimensions
+    //the items we what to store here are equivalent to what is stored in the following type_3XXs
+    //(1) delay spline polynomial coeff (type_301)
+    //(2) phase spline polynomial coeff (type_302)
+    //(3) parallatic angle spline coeff (type_303)
+    //(4) uvw-coords spline coeff (type_303)
+    //(5) phase-cal data (type_309)
+
+    //Note: with the exception of the phase-spline polynomial, all of these other quantities 
+    //do not depend on the channel/frequency. However, the type_3xxs
+
+
 
     std::size_t nAntenna = fInput["scan"][0]["nAntenna"];
     std::size_t phase_center = 0; //TODO FIXME, currently only one phase-center supported
 
     for(std::size_t n=0; n<nAntenna; n++)
     {
-        station_coord_data_type* st_coord = new station_coord_data_type();
+        station_coord_type* st_coord = new station_coord_type();
         json antenna_poly = fInput["scan"][0]["DifxPolyModel"][n][phase_center];
 
         std::size_t n_poly = antenna_poly.size(); //aka nsplines in d2m4
@@ -172,14 +185,8 @@ void MHO_DiFXScanProcessor::ExtractStationCoords()
 
 
 
+*/
 
-        //first thing we have to do is figure out the data dimensions
-        //the items stored in the mk4sdata objects are mainly:
-        //(1) delay spline polynomial coeff (type_301)
-        //(2) phase spline polynomial coeff (type_302)
-        //(3) parallatic angle spline coeff (type_303)
-        //(4) uvw-coords spline coeff (type_303)
-        //(5) phase-cal data (type_309)
 
         //We need to determine 4 things:
         //the number of channels
@@ -192,7 +199,7 @@ void MHO_DiFXScanProcessor::ExtractStationCoords()
     //     DetermineDataDimensions();
     // 
     //     std::size_t st_dim[STATION_NDIM] = {fNCoord, fNChannels, fNIntervals, fNCoeffs};
-    //     st_data = new station_coord_data_type(st_dim);
+    //     st_data = new station_coord_type(st_dim);
     // 
     //     std::get<COORD_AXIS>(*st_data)[0] = std::string("delay");
     //     std::get<COORD_AXIS>(*st_data)[1] = std::string("phase");

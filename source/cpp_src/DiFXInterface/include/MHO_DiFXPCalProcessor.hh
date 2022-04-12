@@ -16,8 +16,7 @@
 #include <utility>
 
 #include "MHO_Tokenizer.hh"
-#include "MHO_Visibilities.hh"
-#include "MHO_ChannelizedVisibilities.hh"
+#include "MHO_ContainerDefinitions.hh"
 
 namespace hops 
 {
