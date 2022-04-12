@@ -22,7 +22,7 @@
 
 #include "MHO_Message.hh"
 
-#include "MHO_StationCoordinates.hh"
+#include "MHO_ContainerDefinitions.hh"
 
 #include "MHO_BinaryFileStreamer.hh"
 #include "MHO_BinaryFileInterface.hh"
@@ -69,7 +69,7 @@ class MHO_DiFXScanProcessor
         std::map< int, MHO_DiFXBaselineProcessor > fAllBaselineVisibilities;
         MHO_DiFXPCalProcessor fPCalProcessor;
         std::map< std::string, multitone_pcal_type* > fStationCode2PCal;
-        std::map< std::string, station_coord_data_type* > fStationCode2Coords;
+        std::map< std::string, station_coord_type* > fStationCode2Coords;
 
 };
 

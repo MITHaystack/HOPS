@@ -14,9 +14,9 @@
 #include <complex>
 
 #include "MHO_TableContainer.hh"
-#include "MHO_ChannelizedVisibilities.hh"
-#include "MHO_BinaryOperator.hh"
+#include "MHO_ContainerDefinitions.hh"
 
+#include "MHO_BinaryOperator.hh"
 #include "MHO_NaNMasker.hh"
 #include "MHO_FunctorBroadcaster.hh"
 #include "MHO_ComplexConjugator.hh"
@@ -41,9 +41,9 @@ namespace hops
 
 
 class MHO_NormFX: public MHO_BinaryOperator<
-    ch_baseline_data_type,
-    ch_baseline_weight_type,
-    ch_baseline_sbd_type >
+    ch_visibility_type,
+    ch_weight_type,
+    ch_sbd_type >
 {
     public:
         MHO_NormFX();
@@ -51,9 +51,9 @@ class MHO_NormFX: public MHO_BinaryOperator<
 
     protected:
 
-        using XArgType1 = ch_baseline_data_type;
-        using XArgType2 = ch_baseline_weight_type;
-        using XArgType3 = ch_baseline_sbd_type;
+        using XArgType1 = ch_visibility_type;
+        using XArgType2 = ch_weight_type;
+        using XArgType3 = ch_sbd_type;
 
         virtual bool InitializeImpl(const XArgType1* in1, const XArgType2* in2, XArgType3* out) override;
         virtual bool ExecuteImpl(const XArgType1* in1, const XArgType2* in2, XArgType3* out) override;
@@ -76,18 +76,18 @@ class MHO_NormFX: public MHO_BinaryOperator<
         MHO_NDArrayWrapper< std::complex<double>, 1 > S;
         MHO_NDArrayWrapper< std::complex<double>, 1 > xlag;
 
-        typedef MHO_NaNMasker<ch_baseline_data_type> nanMaskerType;
-        typedef MHO_ComplexConjugator<ch_baseline_data_type> conjType;
+        typedef MHO_NaNMasker<ch_visibility_type> nanMaskerType;
+        typedef MHO_ComplexConjugator<ch_visibility_type> conjType;
 
-        MHO_FunctorBroadcaster<ch_baseline_data_type, nanMaskerType> fNaNBroadcaster;
-        MHO_FunctorBroadcaster<ch_baseline_data_type, conjType> fConjBroadcaster;
+        MHO_FunctorBroadcaster<ch_visibility_type, nanMaskerType> fNaNBroadcaster;
+        MHO_FunctorBroadcaster<ch_visibility_type, conjType> fConjBroadcaster;
 
         MHO_MultidimensionalPaddedFastFourierTransform<VFP_TYPE, CH_VIS_NDIM> fPaddedFFTEngine;
 
-        MHO_SubSample<ch_baseline_sbd_type> fSubSampler;
-        MHO_CyclicRotator<ch_baseline_sbd_type> fCyclicRotator;
+        MHO_SubSample<ch_sbd_type> fSubSampler;
+        MHO_CyclicRotator<ch_sbd_type> fCyclicRotator;
 
-        ch_baseline_sbd_type fWorkspace;
+        ch_sbd_type fWorkspace;
         bool fInitialized;
         bool fIsUSB;
 

@@ -16,8 +16,7 @@
 #include <map>
 
 #include "MHO_DiFXVisibilityRecord.hh"
-#include "MHO_Visibilities.hh"
-#include "MHO_ChannelizedVisibilities.hh"
+#include "MHO_ContainerDefinitions.hh"
 #include "MHO_VisibilityChannelizer.hh"
 #include "MHO_WeightChannelizer.hh"
 #include "MHO_ObjectTags.hh"
@@ -73,8 +72,8 @@ class MHO_DiFXBaselineProcessor
         std::vector< std::pair<int, json> > fBaselineFreqs;
 
         //the baseline data in hops data containers
-        ch_baseline_weight_type* fW;
-        ch_baseline_data_type* fV;
+        ch_weight_type* fW;
+        ch_visibility_type* fV;
         MHO_ObjectTags fTags;
 
         //comparison predicate for time-sorting visibility record data

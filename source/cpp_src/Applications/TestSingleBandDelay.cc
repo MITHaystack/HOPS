@@ -22,8 +22,7 @@
 #include "MHO_FunctorBroadcaster.hh"
 #include "MHO_MultidimensionalFastFourierTransform.hh"
 
-#include "MHO_Visibilities.hh"
-#include "MHO_ChannelizedVisibilities.hh"
+#include "MHO_ContainerDefinitions.hh"
 //#include "MHO_ChannelizedRotationFunctor.hh"
 
 
@@ -146,7 +145,7 @@ int main(int argc, char** argv)
     std::cout<<"Will use corel file: "<<corel_file<<std::endl;
 
     //now open and read the (channelized) baseline visibility data
-    ch_baseline_data_type* bl_data = new ch_baseline_data_type();
+    ch_visibility_type* bl_data = new ch_visibility_type();
     MHO_BinaryFileInterface inter;
     bool status = inter.OpenToRead(corel_file);
     if(status)
@@ -172,7 +171,7 @@ int main(int argc, char** argv)
     bl_data->GetDimensions(nbl_dim);
     nbl_dim[CH_FREQ_AXIS] = 4*nbl_dim[CH_FREQ_AXIS];
 
-    ch_baseline_data_type* nbl_data = new ch_baseline_data_type();
+    ch_visibility_type* nbl_data = new ch_visibility_type();
     nbl_data->Resize(nbl_dim);
 
 
@@ -405,9 +404,9 @@ int main(int argc, char** argv)
     // //this (rotate the data of each channel) so that all of the visibilities
     // //will add coherently
     //
-    // MHO_Reducer< ch_baseline_data_type::value_type,
+    // MHO_Reducer< ch_visibility_type::value_type,
     //             MHO_CompoundSum,
-    //             ch_baseline_data_type::rank::value > summation;
+    //             ch_visibility_type::rank::value > summation;
     //
     // //sum all the data along the channel axis
     // summation.ReduceAxis(CH_CHANNEL_AXIS);
@@ -421,8 +420,8 @@ int main(int argc, char** argv)
     // sbd_rotation.SetDelayRate(0.0);
     // sbd_rotation.SetSingleBandDelay(0.0);
     //
-    // ch_baseline_data_type* rotated_ch_bl_data = new ch_baseline_data_type();
-    // MHO_FunctorBroadcaster<ch_baseline_data_type, ch_baseline_data_type> broadcaster;
+    // ch_visibility_type* rotated_ch_bl_data = new ch_visibility_type();
+    // MHO_FunctorBroadcaster<ch_visibility_type, ch_visibility_type> broadcaster;
     // broadcaster.SetInput(copy_ch_bl_data);
     // broadcaster.SetOutput(rotated_ch_bl_data);
     // broadcaster.SetFunctor(&sbd_rotation);

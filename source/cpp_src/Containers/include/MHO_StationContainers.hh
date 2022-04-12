@@ -19,7 +19,7 @@ namespace hops
 #define NCOORD 8
 #define NCOEFF 6
 
-using station_coord_axis_pack = MHO_AxisPack< coord_axis_type, channel_axis_type, interval_axis_type, coeff_axis_type>;
+using station_coord_axis_pack = MHO_AxisPack< coord_axis_type, channel_id_axis_type, interval_axis_type, coeff_axis_type>;
 using station_coord_type = MHO_TableContainer< spline_coeff_type, station_coord_axis_pack >;
 
 //multi-tone pcal data

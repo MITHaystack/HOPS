@@ -47,14 +47,14 @@ MHO_MK4StationInterface::~MHO_MK4StationInterface()
     free(fVex);
 }
 
-station_coord_data_type*
+station_coord_type*
 MHO_MK4StationInterface::ExtractStationFile()
 {
 
     ReadStationFile();
     ReadVexFile();
 
-    station_coord_data_type* st_data = nullptr;
+    station_coord_type* st_data = nullptr;
 
     if(fHaveStation && fHaveVex)
     {
@@ -77,7 +77,7 @@ MHO_MK4StationInterface::ExtractStationFile()
         DetermineDataDimensions();
 
         std::size_t st_dim[STATION_NDIM] = {fNCoord, fNChannels, fNIntervals, fNCoeffs};
-        st_data = new station_coord_data_type(st_dim);
+        st_data = new station_coord_type(st_dim);
 
         std::get<COORD_AXIS>(*st_data)[0] = std::string("delay");
         std::get<COORD_AXIS>(*st_data)[1] = std::string("phase");
