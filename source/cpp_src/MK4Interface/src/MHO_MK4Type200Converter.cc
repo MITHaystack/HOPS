@@ -23,8 +23,8 @@ namespace hops {
 
     json convertToJSON(const type_200& t) {
         return {
-	    {"record_id", t.record_id},
-	    {"version_no", t.version_no},
+	    {"record_id", std::string(t.record_id, 3).c_str()},
+	    {"version_no", std::string(t.version_no, 2).c_str()},
 	    {"expt_no", t.expt_no},
 	    // logic to handle edge cases where the exper_name and scan_name are 32 chars and correlator is 8 chars
 	    // this is a holdover from the previous fortran code and is an issue upstream with the c code
