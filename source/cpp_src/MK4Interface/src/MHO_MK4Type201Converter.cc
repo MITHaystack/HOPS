@@ -33,11 +33,11 @@ namespace hops {
 
     json convertToJSON(const type_201& t) {
         return {
-	    {"record_id", std::string(t.record_id, 3).c_str()},
-	    {"version_no", std::string(t.version_no, 2).c_str()},
 	    // logic to handle edge cases where the source is 32 chars 
 	    // this is a holdover from the previous fortran code and is an issue upstream with the c code
 	    // a 32 char array without null termination could be passed to this function and cause a memory overflow
+	    {"record_id", std::string(t.record_id, 3).c_str()},
+	    {"version_no", std::string(t.version_no, 2).c_str()},
 	    {"source", std::string(t.source, 32).c_str()},
 	    {"coord ra_hrs", t.coord.ra_hrs}, 
 	    {"coord ra_mins", t.coord.ra_mins},
