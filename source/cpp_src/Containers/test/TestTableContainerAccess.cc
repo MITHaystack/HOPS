@@ -5,14 +5,15 @@
 
 #include "MHO_Timer.hh"
 #include "MHO_TableContainer.hh"
-#include "MHO_ChannelizedVisibilities.hh"
+
+#include "MHO_ContainerDefinitions.hh"
 
 using namespace hops;
 
 #define SCALE_FACTOR 2 //value of 2 should make a table 8gb in size
 
 
-void slice_iterate(ch_baseline_data_type& vis)
+void slice_iterate(ch_visibility_type& vis)
 {
     std::complex<double> val(0,1);
     auto slice = vis.SliceView(":", ":", ":", ":");
@@ -35,7 +36,7 @@ int main(int argc, char** argv)
     dim[CH_TIME_AXIS] = 256*SCALE_FACTOR;
     dim[CH_FREQ_AXIS] = 256*SCALE_FACTOR;
 
-    ch_baseline_data_type vis;
+    ch_visibility_type vis;
     vis.Resize(dim);
     uint64_t total_size = vis.GetSize();
     uint64_t MB = 1024*1024;

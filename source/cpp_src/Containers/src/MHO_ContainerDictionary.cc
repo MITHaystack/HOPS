@@ -1,11 +1,5 @@
 #include "MHO_ContainerDictionary.hh"
-
-#include "MHO_StationCoordinates.hh"
-#include "MHO_ChannelizedVisibilities.hh"
-#include "MHO_Visibilities.hh"
-
-//#define HOPS_BUILD_EXTRA_CONTAINERS
-
+#include "MHO_ContainerDefinitions.hh"
 
 #define AddTable1(TYPE1)                                                       \
 AddClassType< MHO_AxisPack_##TYPE1 >();                                        \
@@ -54,13 +48,13 @@ MHO_ContainerDictionary::MHO_ContainerDictionary()
 
     //only add the bare minimum types here
     AddClassType<baseline_axis_pack>();
-    AddClassType<baseline_data_type>();
-    AddClassType<baseline_weight_type>();
+    AddClassType<visibility_type>();
+    AddClassType<weight_type>();
     AddClassType<multitone_pcal_type>();
 
     AddClassType<ch_baseline_axis_pack>();
-    AddClassType<ch_baseline_data_type>(); 
-    AddClassType<ch_baseline_weight_type>(); 
+    AddClassType<ch_visibility_type>(); 
+    AddClassType<ch_weight_type>(); 
 
     AddClassType<station_coord_axis_pack>();
     AddClassType<station_coord_data_type>();
