@@ -42,14 +42,11 @@ namespace hops {
 
     json convertToJSON(const type_202& t) {
         return {
+	    // logic to handle edge cases where the following strings are longer than expected 
+	    // this is a holdover from the previous fortran code and is an issue upstream with the c code
+	    // i.e. a 32 char or 8 char array without null termination could be passed to these functions and cause a memory overflow
 	    {"record_id", std::string(t.record_id, 3).c_str()},
 	    {"version_no", std::string(t.version_no, 2).c_str()},
-	
-	    //{"record_id", t.record_id},
-	    //{"version_no", t.version_no},
-	    // logic to handle edge cases where the exper_name and scan_name are 32 chars and correlator is 8 chars
-	    // this is a holdover from the previous fortran code and is an issue upstream with the c code
-	    // a 32 char or 8 char array without null termination could be passed to this function and cause a memory overflow
 	    {"baseline", std::string(t.baseline, 2).c_str()},
 	    {"ref_intl_id", std::string(t.ref_intl_id, 2).c_str()},
 	    {"rem_intl_id", std::string(t.rem_intl_id, 2).c_str()},
