@@ -69,7 +69,7 @@ class MHO_DiFXScanProcessor
         std::map< int, MHO_DiFXBaselineProcessor > fAllBaselineVisibilities;
         MHO_DiFXPCalProcessor fPCalProcessor;
         std::map< std::string, multitone_pcal_type* > fStationCode2PCal;
-        std::map< std::string, station_coord_type* > fStationCode2Coords;
+        std::map< std::string, station_coord_type2* > fStationCode2Coords;
 
 };
 

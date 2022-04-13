@@ -57,7 +57,7 @@ MHO_ContainerDictionary::MHO_ContainerDictionary()
     AddClassType<ch_weight_type>(); 
 
     AddClassType<station_coord_axis_pack>();
-    AddClassType<station_coord_data_type>();
+    AddClassType<station_coord_type>();
 
     //don't need sbd type, as it is the same as visibility type
 
