@@ -66,10 +66,8 @@ class MHO_MK4StationInterface
         std::string fVexFile;
         std::string fStationFile;
 
-        void DetermineDataDimensions();
         std::size_t fNCoeffs;
         std::size_t fNIntervals;
-        std::size_t fNChannels;
         std::size_t fNCoord;
 
 
