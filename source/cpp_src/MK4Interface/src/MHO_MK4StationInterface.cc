@@ -76,14 +76,13 @@ MHO_MK4StationInterface::ExtractStationFile()
         st_data->Resize(fNCoord, fNIntervals, fNCoeffs);
         st_data->ZeroArray();
 
-        auto coord_ax = std::get<COORD_AXIS>(*st_data);
-        coord_ax(0) = "delay";
-        coord_ax(1) = "azimuth";
-        coord_ax(2) = "elevation";
-        coord_ax(3) = "parallactic_angle";
-        coord_ax(4) = "u";
-        coord_ax(5) = "v";
-        coord_ax(6) = "w";
+        std::get<COORD_AXIS>(*st_data)[0] = std::string("delay");
+        std::get<COORD_AXIS>(*st_data)[1] = "azimuth";
+        std::get<COORD_AXIS>(*st_data)[2] = "elevation";
+        std::get<COORD_AXIS>(*st_data)[3] = "parallactic_angle";
+        std::get<COORD_AXIS>(*st_data)[4] = "u";
+        std::get<COORD_AXIS>(*st_data)[5] = "v";
+        std::get<COORD_AXIS>(*st_data)[6] = "w";
 
         //extract some basics from the type_300 
         type_300* t300 = fStation->t300;
