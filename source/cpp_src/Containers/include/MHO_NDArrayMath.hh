@@ -15,7 +15,7 @@ class MHO_NDArrayMath
         //modulus of two integers
         static std::size_t Modulus(int arg, int n)
         {
-            //returns arg mod n;
+            //returns positive arg mod n, may want to optimize this for speed
             double div = ( (double)arg )/( (double) n);
             return (std::size_t)(std::fabs( (double)arg - std::floor(div)*((double)n) ) );
         }

@@ -11,19 +11,14 @@ namespace hops
 
 #define STATION_NDIM 4
 #define COORD_AXIS 0
-#define CHAN_AXIS 1
-#define INTERVAL_AXIS 2
-#define COEFF_AXIS 3
+#define INTERVAL_AXIS 1
+#define COEFF_AXIS 2
 
-//these are hard-coded in the mk4 library
-#define NCOORD 8
-#define NCOEFF 6
+#define NCOORD 7 //delay, az, el, par-angle, u, v, w
+#define NCOEFF 6 //hard coded in mk4 library, but can be flexible
 
-using station_coord_axis_pack = MHO_AxisPack< coord_axis_type, channel_id_axis_type, interval_axis_type, coeff_axis_type>;
+using station_coord_axis_pack = MHO_AxisPack< coord_axis_type, time_axis_type, coeff_axis_type>;
 using station_coord_type = MHO_TableContainer< spline_coeff_type, station_coord_axis_pack >;
-
-using station_coord_axis_pack2 = MHO_AxisPack< coord_axis_type, interval_axis_type, coeff_axis_type>;
-using station_coord_type2 = MHO_TableContainer< spline_coeff_type, station_coord_axis_pack2 >;
 
 //multi-tone pcal data
 using multitone_pcal_axis_type = MHO_AxisPack< pol_axis_type, time_axis_type, frequency_axis_type >;

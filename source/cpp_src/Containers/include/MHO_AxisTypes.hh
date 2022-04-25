@@ -20,8 +20,6 @@ using time_axis_type = MHO_Axis<double>; //time and/or AP axis
 
 //station coordinate specific quantities
 using coord_axis_type = MHO_Axis<std::string>; //coordinate name (delay, phase, parallatic_angle, az, el, u, v, w)
-using channel_id_axis_type = MHO_Axis<std::string>; //channel id
-using interval_axis_type = MHO_Axis<int>; //time interval for spline index (could make this double??)
 using coeff_axis_type = MHO_Axis<int>; //spline coefficient index 0,1,2...6(max)
 
 }

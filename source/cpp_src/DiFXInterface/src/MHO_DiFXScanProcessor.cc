@@ -121,7 +121,7 @@ MHO_DiFXScanProcessor::CleanUp()
     //clear out station coords
     for(auto it = fStationCode2Coords.begin(); it != fStationCode2Coords.end(); it++)
     {
-        station_coord_type2* ptr = it->second;
+        station_coord_type* ptr = it->second;
         delete ptr;
     }
     fStationCode2Coords.clear();
@@ -155,10 +155,8 @@ MHO_DiFXScanProcessor::ExtractStationCoords()
     //(4) uvw-coords spline coeff (type_303)
     //(5) phase-cal data (type_309)
 
-    //Note: with the exception of the phase-spline polynomial, all of these other quantities 
+    //Note: with the exception of the phase-spline polynomial (type_302), all of these other quantities 
     //do not depend on the channel/frequency.
-
-
 
     std::size_t nAntenna = fInput["scan"][0]["nAntenna"];
     std::size_t phase_center = 0; //TODO FIXME?, currently only one phase-center supported
@@ -167,30 +165,55 @@ MHO_DiFXScanProcessor::ExtractStationCoords()
     {
         //first get antenna name for an ID (later we need to map this to the 2 char code)
         std::string antenna_name = fInput["antenna"][n]["name"];
-        station_coord_type2* st_coord = new station_coord_type2();
+        station_coord_type* st_coord = new station_coord_type();
         fStationCode2Coords[antenna_name] = st_coord;
 
+        //get the spline model for the stations quantities 
         json antenna_poly = fInput["scan"][0]["DifxPolyModel"][n][phase_center];
 
-        std::size_t n_coord = NCOORD-1; //currently 1 less because we are not converting the phase-spline
-        std::size_t n_poly = antenna_poly.size(); //aka nsplines in d2m4
-        std::size_t n_order = antenna_poly["order"];
-        
-        st_coord->Resize(n_coord, n_poly, n_order);
+        //figure out the start time of this polynomial 
+        //TODO FIXME! we need to convert this data struct to a cannonical date/time-stamp class
+        int mjd = antenna_poly["mjd"];//start mjd 
+        int sec = antenna_poly["sec"];//start second 
 
+        //length of time each spline is valid
+        double duration = antenna_poly["validDuration"]; 
+
+        //figure out the data dimensions
+        std::size_t n_order = antenna_poly["order"];
+        std::size_t n_coord = NCOORD; //note we do not manufacture a phase-spline (e.g. type_302)
+        std::size_t n_poly = antenna_poly.size(); //aka nspline intervals in d2m4
+
+        st_coord->Resize(n_coord, n_poly, n_order+1); //p = n_order is included!
+
+        //label the coordinate axis
         auto coord_ax = std::get<COORD_AXIS>(*st_coord);
         coord_ax(0) = "delay";
-        coord_ax(1) = "az";
-        coord_ax(2) = "el";
-        coord_ax(3) = "parangle";
+        coord_ax(1) = "azimuth";
+        coord_ax(2) = "elevation";
+        coord_ax(3) = "parallactic_angle";
         coord_ax(4) = "u";
         coord_ax(5) = "v";
         coord_ax(6) = "w";
 
+        //label the spline interval axis
+        auto interval_ax = std::get<INTERVAL_AXIS>(*st_coord);
+        for(std::size_t i=0; i<n_poly; i++)
+        {
+            interval_ax(i) = i*duration;
+        }
+
+        //label polynomial order axis
+        auto poly_ax = std::get<COEFF_AXIS>(*st_coord);
+        for(std::size_t i=0; i<=n_order; i++)
+        {
+            poly_ax(i) = i;
+        }
+
         for(std::size_t i=0; i<n_poly; i++)
         {
             json poly_interval = antenna_poly[i];
-            for(std::size_t p=0; p<=n_order; p++)
+            for(std::size_t p=0; p<=n_order; p++) 
             {
                 st_coord->at(0,i,p) = poly_interval["delay"][p];
                 st_coord->at(1,i,p) = poly_interval["az"][p];
