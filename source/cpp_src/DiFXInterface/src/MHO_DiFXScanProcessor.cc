@@ -187,14 +187,13 @@ MHO_DiFXScanProcessor::ExtractStationCoords()
         st_coord->Resize(n_coord, n_poly, n_order+1); //p = n_order is included!
 
         //label the coordinate axis
-        auto coord_ax = std::get<COORD_AXIS>(*st_coord);
-        coord_ax(0) = "delay";
-        coord_ax(1) = "azimuth";
-        coord_ax(2) = "elevation";
-        coord_ax(3) = "parallactic_angle";
-        coord_ax(4) = "u";
-        coord_ax(5) = "v";
-        coord_ax(6) = "w";
+        std::get<COORD_AXIS>(*st_coord)[0] = std::string("delay");
+        std::get<COORD_AXIS>(*st_coord)[1] = "azimuth";
+        std::get<COORD_AXIS>(*st_coord)[2] = "elevation";
+        std::get<COORD_AXIS>(*st_coord)[3] = "parallactic_angle";
+        std::get<COORD_AXIS>(*st_coord)[4] = "u";
+        std::get<COORD_AXIS>(*st_coord)[5] = "v";
+        std::get<COORD_AXIS>(*st_coord)[6] = "w";
 
         //label the spline interval axis
         auto interval_ax = std::get<INTERVAL_AXIS>(*st_coord);
