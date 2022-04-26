@@ -21,6 +21,8 @@
 #include "MHO_DirectoryInterface.hh"
 #include "MHO_DiFXInterface.hh"
 
+#include "MHO_StationCodeReader.hh"
+
 
 
 using namespace hops;
@@ -30,19 +32,21 @@ using namespace hops;
 
 int main(int argc, char** argv)
 {
-    std::string usage = "difx2hops -i <input_directory> -o <output_directory>";
+    std::string usage = "difx2hops -i <input_directory> -c <station_codes_file> -o <output_directory>";
 
     MHO_Message::GetInstance().AcceptAllKeys();
     MHO_Message::GetInstance().SetMessageLevel(eDebug);
 
-    std::string input_dir;
-    std::string output_dir;
+    std::string input_dir = "./";
+    std::string output_dir = "./";
+    std::string station_codes_file = "";
 
     static struct option longOptions[] = {{"help", no_argument, 0, 'h'},
                                           {"input_directory", required_argument, 0, 'i'},
+                                          {"station_codes", required_argument, 0, 'c'},
                                           {"output_directory", required_argument, 0, 'o'}};
 
-    static const char* optString = "hi:o:";
+    static const char* optString = "hi:c:o:";
 
     while(true)
     {
@@ -57,6 +61,9 @@ int main(int argc, char** argv)
             case ('i'):
                 input_dir = std::string(optarg);
                 break;
+            case ('c'):
+                station_codes_file = std::string(optarg);
+                break;
             case ('o'):
                 output_dir = std::string(optarg);
                 break;
@@ -66,15 +73,20 @@ int main(int argc, char** argv)
         }
     }
 
+    MHO_StationCodeReader stcode_reader;
+    if(station_codes_file != "")
+    {
+        //read and populate the station codes
+        stcode_reader.ReadStationCodes(station_codes_file);
+    }
+
     MHO_DiFXInterface dinterface;
     dinterface.SetInputDirectory(input_dir);
     dinterface.SetOutputDirectory(output_dir);
-    
+    dinterface.SetStationCodes( stcode_reader.GetStationCodeMap() );
+
     dinterface.Initialize();
     dinterface.ProcessScans();
-
-
-
 
     return 0;
 }

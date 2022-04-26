@@ -36,6 +36,8 @@ class MHO_DiFXInterface
         void SetInputDirectory(std::string dir);
         void SetOutputDirectory(std::string dir);
 
+        void SetStationCodes(std::map<std::string, std::string> code_map);
+
         void Initialize(); //read the directory and construct the scan file-lists 
         void ProcessScans(); //convert the scans 
 

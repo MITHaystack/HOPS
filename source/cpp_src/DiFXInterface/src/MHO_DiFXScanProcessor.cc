@@ -11,6 +11,12 @@ MHO_DiFXScanProcessor::~MHO_DiFXScanProcessor()
 
 
 void 
+MHO_DiFXScanProcessor::SetStationCodes(std::map<std::string, std::string> code_map)
+{
+    fStationCodeMap = code_map;
+}
+
+void 
 MHO_DiFXScanProcessor::ProcessScan(MHO_DiFXScanFileSet& fileSet)
 {
     fFileSet = &fileSet;
@@ -59,7 +65,10 @@ MHO_DiFXScanProcessor::ConvertVisibilityFileObjects()
 void 
 MHO_DiFXScanProcessor::ConvertStationFileObjects()
 {
-    //first process pcal files (if they exist)
+    //first extract the station coordinate quantities from the difx input
+    ExtractStationCoords();
+
+    //then process pcal files (if they exist)
     for(auto it = fFileSet->fPCALFileList.begin(); it != fFileSet->fPCALFileList.end(); it++)
     {
         fPCalProcessor.SetFilename(*it);
@@ -72,6 +81,8 @@ MHO_DiFXScanProcessor::ConvertStationFileObjects()
         multitone_pcal_type* pcal = fPCalProcessor.GetPCalData()->Clone();
         fStationCode2PCal[station_code] = pcal;
     }
+
+    //now we need to map the staition name, 2-char code, and single char code 
 
 
     //DEBUG, lets write out the PCAL stuff 
@@ -154,12 +165,19 @@ MHO_DiFXScanProcessor::ExtractStationCoords()
     //(3) parallatic angle spline coeff (type_303)
     //(4) uvw-coords spline coeff (type_303)
     //(5) phase-cal data (type_309)
-
     //Note: with the exception of the phase-spline polynomial (type_302), all of these other quantities 
     //do not depend on the channel/frequency.
 
-    std::size_t nAntenna = fInput["scan"][0]["nAntenna"];
-    std::size_t phase_center = 0; //TODO FIXME?, currently only one phase-center supported
+
+    std::size_t scan_index = 0;
+    std::size_t nAntenna = fInput["scan"][scan_index]["nAntenna"];
+
+    std::size_t nPhaseCenters = fInput["scan"][scan_index]["nPhaseCentres"];
+    std::size_t phase_center = 0; // currently only one phase-center supported
+    if(nPhaseCenters > 1)
+    {
+        msg_warn("difx_interface", "more than one phase center is not supported, using the first. " << eom);
+    }
 
     for(std::size_t n=0; n<nAntenna; n++)
     {
