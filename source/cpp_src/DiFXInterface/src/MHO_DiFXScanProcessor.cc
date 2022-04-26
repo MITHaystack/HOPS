@@ -187,7 +187,7 @@ MHO_DiFXScanProcessor::ExtractStationCoords()
         st_coord->Resize(n_coord, n_poly, n_order+1); //p = n_order is included!
 
         //label the coordinate axis
-        std::get<COORD_AXIS>(*st_coord)[0] = std::string("delay");
+        std::get<COORD_AXIS>(*st_coord)[0] = "delay";
         std::get<COORD_AXIS>(*st_coord)[1] = "azimuth";
         std::get<COORD_AXIS>(*st_coord)[2] = "elevation";
         std::get<COORD_AXIS>(*st_coord)[3] = "parallactic_angle";
