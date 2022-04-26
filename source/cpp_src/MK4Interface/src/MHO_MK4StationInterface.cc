@@ -76,7 +76,7 @@ MHO_MK4StationInterface::ExtractStationFile()
         st_data->Resize(fNCoord, fNIntervals, fNCoeffs);
         st_data->ZeroArray();
 
-        std::get<COORD_AXIS>(*st_data)[0] = std::string("delay");
+        std::get<COORD_AXIS>(*st_data)[0] = "delay";
         std::get<COORD_AXIS>(*st_data)[1] = "azimuth";
         std::get<COORD_AXIS>(*st_data)[2] = "elevation";
         std::get<COORD_AXIS>(*st_data)[3] = "parallactic_angle";
