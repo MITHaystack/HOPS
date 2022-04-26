@@ -41,12 +41,17 @@ namespace hops
 class MHO_DiFXScanProcessor
 {
     public:
+
         MHO_DiFXScanProcessor();
         virtual ~MHO_DiFXScanProcessor();
 
+        void SetStationCodes(std::map<std::string, std::string> code_map);
         void ProcessScan(MHO_DiFXScanFileSet& fileSet);
 
     private:
+
+        //the station codes 
+        std::map< std::string, std::string> fStationCodeMap;
 
         ////////////////////////////////////////////////////////////////////////
         //members for dealing with a single (current) scan of data /////////////

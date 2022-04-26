@@ -16,8 +16,6 @@ MHO_DiFXInputProcessor::~MHO_DiFXInputProcessor()
 void 
 MHO_DiFXInputProcessor::LoadDiFXInputFile(std::string filename)
 {
-    //TODO FIXME - Why does this sometimes fail/segfault for DiFX versions <2.6 
-    //when the .threads file is missing??
     fD = loadDifxInput(filename.c_str());
 }
 
