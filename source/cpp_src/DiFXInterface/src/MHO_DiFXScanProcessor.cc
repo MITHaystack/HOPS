@@ -172,7 +172,7 @@ MHO_DiFXScanProcessor::ExtractStationCoords()
         json antenna_poly = fInput["scan"][0]["DifxPolyModel"][n][phase_center];
 
         //figure out the start time of this polynomial 
-        //TODO FIXME! we need to convert this data struct to a cannonical date/time-stamp class
+        //TODO FIXME! we need to convert this date information to a cannonical date/time-stamp class
         int mjd = antenna_poly["mjd"];//start mjd 
         int sec = antenna_poly["sec"];//start second 
 
@@ -196,17 +196,15 @@ MHO_DiFXScanProcessor::ExtractStationCoords()
         std::get<COORD_AXIS>(*st_coord)[6] = "w";
 
         //label the spline interval axis
-        auto interval_ax = std::get<INTERVAL_AXIS>(*st_coord);
         for(std::size_t i=0; i<n_poly; i++)
         {
-            interval_ax(i) = i*duration;
+            std::get<INTERVAL_AXIS>(*st_coord)[i] = i*duration;
         }
 
         //label polynomial order axis
-        auto poly_ax = std::get<COEFF_AXIS>(*st_coord);
         for(std::size_t i=0; i<=n_order; i++)
         {
-            poly_ax(i) = i;
+            std::get<COEFF_AXIS>(*st_coord)[i] = i;
         }
 
         for(std::size_t i=0; i<n_poly; i++)
