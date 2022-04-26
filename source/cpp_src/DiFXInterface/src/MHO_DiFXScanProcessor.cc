@@ -69,21 +69,12 @@ MHO_DiFXScanProcessor::ConvertStationFileObjects()
     ExtractStationCoords();
 
     //then process pcal files (if they exist)
-    for(auto it = fFileSet->fPCALFileList.begin(); it != fFileSet->fPCALFileList.end(); it++)
-    {
-        fPCalProcessor.SetFilename(*it);
-        double ap_length = fInput["config"][0]["tInt"]; //config is a list element, grab the first
-        fPCalProcessor.SetAccumulationPeriod(ap_length);
-        fPCalProcessor.ReadPCalFile();
-        fPCalProcessor.Organize();
+    ExtractPCalData();
 
-        std::string station_code = fPCalProcessor.GetStationCode();
-        multitone_pcal_type* pcal = fPCalProcessor.GetPCalData()->Clone();
-        fStationCode2PCal[station_code] = pcal;
-    }
+    //now we need to map the station name and 2-char code, and single char code 
 
-    //now we need to map the staition name, 2-char code, and single char code 
 
+    //finally write out the station coordinate and pcal (if available) data to a single file.
 
     //DEBUG, lets write out the PCAL stuff 
     for(auto it = fStationCode2PCal.begin(); it != fStationCode2PCal.end(); it++)
@@ -153,6 +144,27 @@ MHO_DiFXScanProcessor::LoadInputFile()
 
 
 void 
+MHO_DiFXScanProcessor::ExtractPCalData()
+{
+    for(auto it = fFileSet->fPCALFileList.begin(); it != fFileSet->fPCALFileList.end(); it++)
+    {
+        fPCalProcessor.SetFilename(*it);
+        double ap_length = fInput["config"][0]["tInt"]; //config is a list element, grab the first item
+        fPCalProcessor.SetAccumulationPeriod(ap_length);
+        fPCalProcessor.ReadPCalFile();
+        fPCalProcessor.Organize();
+
+        std::string station_code = fPCalProcessor.GetStationCode();
+        multitone_pcal_type* pcal = fPCalProcessor.GetPCalData()->Clone();
+
+        std::cout<<"station_code: "<<station_code<<std::endl;
+
+        fStationCode2PCal[station_code] = pcal;
+    }
+}
+
+
+void 
 MHO_DiFXScanProcessor::ExtractStationCoords()
 {
 
@@ -183,22 +195,23 @@ MHO_DiFXScanProcessor::ExtractStationCoords()
     {
         //first get antenna name for an ID (later we need to map this to the 2 char code)
         std::string antenna_name = fInput["antenna"][n]["name"];
+        std::cout<<"adding antenna: "<<antenna_name<<std::endl;
         station_coord_type* st_coord = new station_coord_type();
         fStationCode2Coords[antenna_name] = st_coord;
 
         //get the spline model for the stations quantities 
-        json antenna_poly = fInput["scan"][0]["DifxPolyModel"][n][phase_center];
+        json antenna_poly = fInput["scan"][scan_index]["DifxPolyModel"][n][phase_center];
 
         //figure out the start time of this polynomial 
         //TODO FIXME! we need to convert this date information to a cannonical date/time-stamp class
-        int mjd = antenna_poly["mjd"];//start mjd 
-        int sec = antenna_poly["sec"];//start second 
+        int mjd = antenna_poly[0]["mjd"];//start mjd 
+        int sec = antenna_poly[0]["sec"];//start second 
 
         //length of time each spline is valid
-        double duration = antenna_poly["validDuration"]; 
+        double duration = antenna_poly[0]["validDuration"]; 
 
         //figure out the data dimensions
-        std::size_t n_order = antenna_poly["order"];
+        std::size_t n_order = antenna_poly[0]["order"];
         std::size_t n_coord = NCOORD; //note we do not manufacture a phase-spline (e.g. type_302)
         std::size_t n_poly = antenna_poly.size(); //aka nspline intervals in d2m4
 

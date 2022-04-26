@@ -50,7 +50,7 @@ class MHO_DiFXScanProcessor
 
     private:
 
-        //the station codes 
+        //the station 2-char to 1-char code map (user specified)
         std::map< std::string, std::string> fStationCodeMap;
 
         ////////////////////////////////////////////////////////////////////////
@@ -65,6 +65,7 @@ class MHO_DiFXScanProcessor
         void ConvertVisibilityFileObjects();
         void ConvertStationFileObjects();
 
+        void ExtractPCalData();
         void ExtractStationCoords();
         void CleanUp();
 
@@ -73,6 +74,7 @@ class MHO_DiFXScanProcessor
 
         std::map< int, MHO_DiFXBaselineProcessor > fAllBaselineVisibilities;
         MHO_DiFXPCalProcessor fPCalProcessor;
+
         std::map< std::string, multitone_pcal_type* > fStationCode2PCal;
         std::map< std::string, station_coord_type* > fStationCode2Coords;
 
