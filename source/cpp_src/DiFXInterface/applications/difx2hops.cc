@@ -73,6 +73,12 @@ int main(int argc, char** argv)
         }
     }
 
+    //TODO...we need to pre-pass this directory to get a list of all stations we will encounter 
+    //so we can allow for a default (generic) station code mapping (Aa -> a), etc.
+    //when the 2-char to 1-char map is not specified. 
+    //Alternatively, we could just fall back to using 2-char codes everywhere,
+    //but that may break downstream things that expect 1-char station codes.
+
     MHO_StationCodeReader stcode_reader;
     if(station_codes_file != "")
     {
@@ -81,10 +87,7 @@ int main(int argc, char** argv)
     }
     else
     {
-        //TODO FIXME -- We need to allow for a default (generic) station mapping (Aa -> a), etc.
-        //when the 2-char to 1-char map is not specified. Alternatively, we could just fall 
-        //back to using 2-char codes everywhere, but that may break downstream things expected 1-char station codes.
-        msg_fatal("difx_interface", "must specify 2-char to 1-char station code map, unspecified station mapping not yet supported." << eom);
+        msg_fatal("difx_interface", "must specify the complete 2-char to 1-char station code map, unspecified station mapping not yet supported." << eom);
         std::exit(1);
     }
 
