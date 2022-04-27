@@ -32,8 +32,10 @@ class MHO_DiFXBaselineProcessor
         MHO_DiFXBaselineProcessor();
         virtual ~MHO_DiFXBaselineProcessor();
 
+
         int GetBaselineID() const {return fBaselineID;};
         void SetDiFXInputData(const json* input){fInput = input;}
+        void SetRootCode(std::string rcode){fRootCode = rcode;}
 
         void AddRecord(MHO_DiFXVisibilityRecord* record);
 
@@ -46,6 +48,7 @@ class MHO_DiFXBaselineProcessor
         void Organize();
         void Clear();
 
+        std::string fRootCode;
         int fBaselineID;
         std::string fRefStation;
         std::string fRemStation;

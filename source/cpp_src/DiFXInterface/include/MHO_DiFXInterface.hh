@@ -19,6 +19,7 @@
 #include "MHO_Message.hh"
 #include "MHO_Tokenizer.hh"
 #include "MHO_DirectoryInterface.hh"
+#include "MHO_LegacyRootCodeGenerator.hh"
 
 #include "MHO_DiFXScanFileSet.hh"
 #include "MHO_DiFXScanProcessor.hh"

@@ -4,7 +4,9 @@ namespace hops
 {
 
 MHO_DiFXScanProcessor::MHO_DiFXScanProcessor()
-{};
+{
+    fRootCode = "uknown";
+};
 
 MHO_DiFXScanProcessor::~MHO_DiFXScanProcessor()
 {};
@@ -55,6 +57,7 @@ MHO_DiFXScanProcessor::ConvertVisibilityFileObjects()
 
     for(auto it = fAllBaselineVisibilities.begin(); it != fAllBaselineVisibilities.end(); it++)
     {
+        it->second.SetRootCode(fRootCode);
         it->second.SetStationCodes(fStationCodeMap);
         it->second.SetDiFXInputData(&fInput);
         it->second.ConstructVisibilityFileObjects();
@@ -81,9 +84,10 @@ MHO_DiFXScanProcessor::ConvertStationFileObjects()
     for(auto it = fStationCode2PCal.begin(); it != fStationCode2PCal.end(); it++)
     {
         std::string station_code = it->first;
+        std::string station_mk4id = fStationCodeMap[station_code];
         //construct output file name (eventually figure out how to construct the baseline name)
-        std::string root_code = "dummy"; //TODO replace with actual 'root' code
-        std::string output_file = fFileSet->fOutputBaseDirectory + "/" + station_code + "." + root_code + ".pcal";
+        std::string root_code = fRootCode;
+        std::string output_file = fFileSet->fOutputBaseDirectory + "/" + station_mk4id + "." + root_code + ".pcal";
 
         MHO_BinaryFileInterface inter;
         bool status = inter.OpenToWrite(output_file);
