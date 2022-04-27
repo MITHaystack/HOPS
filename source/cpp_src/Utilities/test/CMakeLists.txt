@@ -11,6 +11,7 @@ set(SOURCE_BASENAMES
     TestUUIDGenerator
     TestObjectTags
     TestDirectoryInterface
+    TestLegacyRootCodeGenerator
     TestTemplateTypenameDeduction
 )
 
