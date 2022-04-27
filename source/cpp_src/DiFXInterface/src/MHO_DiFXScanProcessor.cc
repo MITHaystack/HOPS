@@ -55,6 +55,7 @@ MHO_DiFXScanProcessor::ConvertVisibilityFileObjects()
 
     for(auto it = fAllBaselineVisibilities.begin(); it != fAllBaselineVisibilities.end(); it++)
     {
+        it->second.SetStationCodes(fStationCodeMap);
         it->second.SetDiFXInputData(&fInput);
         it->second.ConstructVisibilityFileObjects();
         it->second.WriteVisibilityObjects(fFileSet->fOutputBaseDirectory);
@@ -72,7 +73,7 @@ MHO_DiFXScanProcessor::ConvertStationFileObjects()
     ExtractPCalData();
 
     //now we need to map the station name and 2-char code, and single char code 
-
+        
 
     //finally write out the station coordinate and pcal (if available) data to a single file.
 
@@ -194,10 +195,10 @@ MHO_DiFXScanProcessor::ExtractStationCoords()
     for(std::size_t n=0; n<nAntenna; n++)
     {
         //first get antenna name for an ID (later we need to map this to the 2 char code)
-        std::string antenna_name = fInput["antenna"][n]["name"];
-        std::cout<<"adding antenna: "<<antenna_name<<std::endl;
+        std::string station_code = fInput["antenna"][n]["name"];
+        std::cout<<"adding antenna: "<<station_code<<std::endl;
         station_coord_type* st_coord = new station_coord_type();
-        fStationCode2Coords[antenna_name] = st_coord;
+        fStationCode2Coords[station_code] = st_coord;
 
         //get the spline model for the stations quantities 
         json antenna_poly = fInput["scan"][scan_index]["DifxPolyModel"][n][phase_center];

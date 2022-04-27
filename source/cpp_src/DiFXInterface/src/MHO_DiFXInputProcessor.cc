@@ -231,7 +231,6 @@ MHO_DiFXInputProcessor::ExtractAntennaQuantities(int n)
 std::string 
 MHO_DiFXInputProcessor::GetAntennaMountTypeString(AntennaMountType type)
 {
-    // extern const char antennaMountTypeNames[][MAX_ANTENNA_MOUNT_NAME_LENGTH];
     std::string mount_type = std::string( antennaMountTypeNames[type], MAX_ANTENNA_MOUNT_NAME_LENGTH).c_str();
     return mount_type;
 }
@@ -239,7 +238,6 @@ MHO_DiFXInputProcessor::GetAntennaMountTypeString(AntennaMountType type)
 std::string 
 MHO_DiFXInputProcessor::GetAntennaSiteTypeString(AntennaSiteType type)
 {
-    // extern const char antennaSiteTypeNames[][MAX_ANTENNA_SITE_NAME_LENGTH];
     std::string site_type = std::string(antennaSiteTypeNames[type], MAX_ANTENNA_SITE_NAME_LENGTH).c_str();
     return site_type;
 }

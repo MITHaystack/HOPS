@@ -12,7 +12,9 @@
 
 #include <string>
 #include <map>
+#include <set>
 
+#include "MHO_Message.hh"
 #include "MHO_Tokenizer.hh"
 
 namespace hops 
@@ -29,10 +31,14 @@ class MHO_StationCodeReader
 
     private:
 
+        std::string ToUpperCase(std::string token);
+
         std::string fLine;
         MHO_Tokenizer fTokenizer;
         std::vector< std::string > fTokens;
 
+        std::set<std::string> fStationCodes;
+        std::set<std::string> fMk4Ids;
         std::map<std::string, std::string> fMap;
 };
 

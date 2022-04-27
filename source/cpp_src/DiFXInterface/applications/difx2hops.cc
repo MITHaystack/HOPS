@@ -79,6 +79,14 @@ int main(int argc, char** argv)
         //read and populate the station codes
         stcode_reader.ReadStationCodes(station_codes_file);
     }
+    else
+    {
+        //TODO FIXME -- We need to allow for a default (generic) station mapping (Aa -> a), etc.
+        //when the 2-char to 1-char map is not specified. Alternatively, we could just fall 
+        //back to using 2-char codes everywhere, but that may break downstream things expected 1-char station codes.
+        msg_fatal("difx_interface", "must specify 2-char to 1-char station code map, unspecified station mapping not yet supported." << eom);
+        std::exit(1);
+    }
 
     MHO_DiFXInterface dinterface;
     dinterface.SetInputDirectory(input_dir);
