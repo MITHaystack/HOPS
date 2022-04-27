@@ -224,9 +224,6 @@ MHO_DiFXInterface::ProcessScans()
     {
         fScanProcessor.SetRootCode(scan_codes[i]);
         fScanProcessor.ProcessScan(fScanFileSetList[i]);
-        std::cout<<"REMINDER...Only processing one scan while debugging" <<std::endl;
-        //only doing one scan for now --- UNDER TESTING!! 
-        break;
     }
 }
 

@@ -43,10 +43,11 @@ class MHO_DiFXBaselineProcessor
         void ConstructVisibilityFileObjects();
         void WriteVisibilityObjects(std::string output_dir);
 
+        void Clear();
+
     private:
 
         void Organize();
-        void Clear();
 
         std::string fRootCode;
         int fBaselineID;

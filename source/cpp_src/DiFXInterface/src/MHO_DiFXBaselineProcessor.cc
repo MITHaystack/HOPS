@@ -44,7 +44,7 @@ MHO_DiFXBaselineProcessor::Organize()
 {
     if(fRecords.size() == 0)
     {
-        msg_warn("difx_interface", "no visiblity records available for baseline: " << fBaselineID << eom);
+        msg_debug("difx_interface", "no visiblity records available for baseline: " << fBaselineID << eom);
         return;
     }
 
@@ -313,10 +313,12 @@ MHO_DiFXBaselineProcessor::Clear()
     {
         delete fRecords[i];
     }
+    fRecords.clear();
     fPolPairSet.clear();
     fFreqIndexSet.clear();
     fSpecPointSet.clear();
     fVisibilities.clear();
+    fBaselineFreqs.clear();
     if(fV){delete fV; fV = nullptr;}
     if(fW){delete fW; fW = nullptr;}
 }
