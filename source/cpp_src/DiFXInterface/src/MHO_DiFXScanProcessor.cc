@@ -169,8 +169,6 @@ MHO_DiFXScanProcessor::ExtractPCalData()
         std::string station_code = fPCalProcessor.GetStationCode();
         multitone_pcal_type* pcal = fPCalProcessor.GetPCalData()->Clone();
 
-        std::cout<<"station_code: "<<station_code<<std::endl;
-
         fStationCode2PCal[station_code] = pcal;
     }
 }
@@ -207,7 +205,6 @@ MHO_DiFXScanProcessor::ExtractStationCoords()
     {
         //first get antenna name for an ID (later we need to map this to the 2 char code)
         std::string station_code = fInput["antenna"][n]["name"];
-        std::cout<<"adding antenna: "<<station_code<<std::endl;
         station_coord_type* st_coord = new station_coord_type();
         fStationCode2Coords[station_code] = st_coord;
 
