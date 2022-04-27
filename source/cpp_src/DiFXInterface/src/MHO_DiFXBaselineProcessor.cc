@@ -59,7 +59,10 @@ MHO_DiFXBaselineProcessor::Organize()
     fRefStation = (*fInput)["antenna"][ant1]["name"];
     fRemStation = (*fInput)["antenna"][ant2]["name"];
     fBaselineName = fRefStation + ":" + fRemStation;
-    fBaselineShortName = fBaselineName; //TODO FIXME - need to map station names to single character ids like difx2mark4
+
+    fRefStationMk4Id = fStationCodeMap[fRefStation];
+    fRemStationMk4Id = fStationCodeMap[fRemStation];
+    fBaselineShortName = fRefStationMk4Id + fRefStationMk4Id;
 
     //get the AP length (which config should we use if there is more than one?)
     fAPLength = (*fInput)["config"][0]["tInt"];
@@ -119,6 +122,11 @@ MHO_DiFXBaselineProcessor::Organize()
 }
 
 
+void 
+MHO_DiFXBaselineProcessor::SetStationCodes(std::map<std::string, std::string> code_map)
+{
+    fStationCodeMap = code_map;
+}
 
 
 
@@ -150,8 +158,11 @@ MHO_DiFXBaselineProcessor::ConstructVisibilityFileObjects()
         fV->Insert(std::string("name"), std::string("visibilities"));
         fV->Insert(std::string("difx_baseline_index"), fBaselineID);
         fV->Insert(std::string("baseline"), fBaselineName);
+        fV->Insert(std::string("baseline_shortname"), fBaselineShortName);
         fV->Insert(std::string("reference_station"), fRefStation);
         fV->Insert(std::string("remote_station"), fRemStation);
+        fV->Insert(std::string("reference_station_mk4id"), fRefStationMk4Id);
+        fV->Insert(std::string("remote_station_mk4id"), fRemStationMk4Id);
 
         //tags for the weights
         fW->Resize(fNPolPairs, fNChannels, fNAPs, fNSpectralPoints);
@@ -159,8 +170,11 @@ MHO_DiFXBaselineProcessor::ConstructVisibilityFileObjects()
         fW->Insert(std::string("name"), std::string("weights"));
         fW->Insert(std::string("difx_baseline_index"), fBaselineID);
         fW->Insert(std::string("baseline"), fBaselineName);
+        fW->Insert(std::string("baseline_shortname"), fBaselineShortName);
         fW->Insert(std::string("reference_station"), fRefStation);
         fW->Insert(std::string("remote_station"), fRemStation);
+        fW->Insert(std::string("reference_station_mk4id"), fRefStationMk4Id);
+        fW->Insert(std::string("remote_station_mk4id"), fRemStationMk4Id);
 
         //polarization product axis
         auto* polprod_axis = &(std::get<CH_POLPROD_AXIS>(*fV));

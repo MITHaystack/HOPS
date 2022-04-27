@@ -37,6 +37,7 @@ class MHO_DiFXBaselineProcessor
 
         void AddRecord(MHO_DiFXVisibilityRecord* record);
 
+        void SetStationCodes(std::map<std::string, std::string> code_map);
         void ConstructVisibilityFileObjects();
         void WriteVisibilityObjects(std::string output_dir);
 
@@ -48,9 +49,14 @@ class MHO_DiFXBaselineProcessor
         int fBaselineID;
         std::string fRefStation;
         std::string fRemStation;
+        std::string fRefStationMk4Id;
+        std::string fRemStationMk4Id;
         std::string fBaselineName;
         std::string fBaselineShortName;
         double fAPLength;
+
+        //the station 2-char to 1-char code map (user specified)
+        std::map< std::string, std::string> fStationCodeMap;
 
         const json* fInput;
         std::vector< MHO_DiFXVisibilityRecord* > fRecords;
