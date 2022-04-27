@@ -216,9 +216,14 @@ MHO_DiFXInterface::Initialize()
 void 
 MHO_DiFXInterface::ProcessScans()
 {
-    for(auto it = fScanFileSetList.begin(); it != fScanFileSetList.end(); it++)
+    //generate all of the root codes for the incoming scans  
+    MHO_LegacyRootCodeGenerator rcode_gen;
+    std::vector< std::string > scan_codes = rcode_gen.GetCodes( fScanFileSetList.size() );
+
+    for(std::size_t i=0; i<fScanFileSetList.size(); i++)
     {
-        fScanProcessor.ProcessScan(*it);
+        fScanProcessor.SetRootCode(scan_codes[i]);
+        fScanProcessor.ProcessScan(fScanFileSetList[i]);
         std::cout<<"REMINDER...Only processing one scan while debugging" <<std::endl;
         //only doing one scan for now --- UNDER TESTING!! 
         break;

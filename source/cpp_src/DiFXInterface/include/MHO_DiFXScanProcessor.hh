@@ -45,6 +45,7 @@ class MHO_DiFXScanProcessor
         MHO_DiFXScanProcessor();
         virtual ~MHO_DiFXScanProcessor();
 
+        void SetRootCode(std::string rcode){fRootCode = rcode;}
         void SetStationCodes(std::map<std::string, std::string> code_map);
         void ProcessScan(MHO_DiFXScanFileSet& fileSet);
 
@@ -71,6 +72,9 @@ class MHO_DiFXScanProcessor
 
         //the DiFX input file structure 
         json fInput;
+
+        //the root code assigned to this scan 
+        std::string fRootCode;
 
         std::map< int, MHO_DiFXBaselineProcessor > fAllBaselineVisibilities;
         MHO_DiFXPCalProcessor fPCalProcessor;

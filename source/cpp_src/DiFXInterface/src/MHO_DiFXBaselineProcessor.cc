@@ -11,7 +11,9 @@ MHO_DiFXBaselineProcessor::MHO_DiFXBaselineProcessor():
     fInput(nullptr),
     fV(nullptr),
     fW(nullptr)
-{};
+{
+    fRootCode = "unknown";
+};
 
 MHO_DiFXBaselineProcessor::~MHO_DiFXBaselineProcessor()
 {
@@ -62,7 +64,7 @@ MHO_DiFXBaselineProcessor::Organize()
 
     fRefStationMk4Id = fStationCodeMap[fRefStation];
     fRemStationMk4Id = fStationCodeMap[fRemStation];
-    fBaselineShortName = fRefStationMk4Id + fRefStationMk4Id;
+    fBaselineShortName = fRefStationMk4Id + fRemStationMk4Id;
 
     //get the AP length (which config should we use if there is more than one?)
     fAPLength = (*fInput)["config"][0]["tInt"];
@@ -272,8 +274,8 @@ MHO_DiFXBaselineProcessor::ConstructVisibilityFileObjects()
 void 
 MHO_DiFXBaselineProcessor::WriteVisibilityObjects(std::string output_dir)
 {
-    //construct output file name (eventually figure out how to construct the baseline name)
-    std::string root_code = "dummy"; //TODO replace with actual 'root' code
+    //construct output file name
+    std::string root_code = fRootCode;
     std::string output_file = output_dir + "/" + fBaselineShortName + "." + root_code + ".cor";
 
     MHO_BinaryFileInterface inter;
