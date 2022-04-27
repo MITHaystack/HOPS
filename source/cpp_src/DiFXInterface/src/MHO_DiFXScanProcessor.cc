@@ -63,6 +63,13 @@ MHO_DiFXScanProcessor::ConvertVisibilityFileObjects()
         it->second.ConstructVisibilityFileObjects();
         it->second.WriteVisibilityObjects(fFileSet->fOutputBaseDirectory);
     }
+    
+    //clear out the baseline visbility containers for the next scan
+    for(auto it = fAllBaselineVisibilities.begin(); it != fAllBaselineVisibilities.end(); it++)
+    {
+        it->second.Clear();
+    }
+
 
 }
 

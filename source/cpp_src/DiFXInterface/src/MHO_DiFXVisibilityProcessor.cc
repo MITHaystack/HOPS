@@ -8,7 +8,7 @@ namespace hops
 void 
 MHO_DiFXVisibilityProcessor::ReadDIFXFile(std::map< int, MHO_DiFXBaselineProcessor >& allBaselineVisibilities)
 {
-    //assume allBaselineVis and allBaselineUniquePolPairs are empty to start
+    //assume allBaselineVisibilities and allBaselineUniquePolPairs are empty to start
     MHO_DiFXVisibilityRecord visRecord;
 
     //open file for binary reading
