@@ -73,12 +73,12 @@ void MHO_StationCodeReader::ReadStationCodes(std::string station_codes_file)
         }
     }
 
-
-    //dump the station code map 
-    for(auto it = fMap.begin(); it != fMap.end(); it++)
-    {
-        std::cout<<"station: "<<it->first<<", "<<it->second<<std::endl;
-    }
+    // 
+    // //dump the station code map 
+    // for(auto it = fMap.begin(); it != fMap.end(); it++)
+    // {
+    //     std::cout<<"station: "<<it->first<<", "<<it->second<<std::endl;
+    // }
 
 }
 
