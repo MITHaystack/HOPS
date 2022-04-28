@@ -172,6 +172,7 @@ void MHO_StationCodeMap::Initialize()
 void MHO_StationCodeMap::AddLegacyCodeMap()
 {
     //This is the legacy default set of station codes inherited from difx2mark4
+    //some of which are no even valid, e.g [y Y ]??
     char code_table[52][5] =
     {"A Ai", "B Bd", "C Sh", "D 13", "E Wf", "F Eb", "G Gb", "H Ho", "I Ma",
      "J Cc", "K Kk", "L xx", "M Mc", "N Ny", "O Kb", "P Oh", "Q Tc", "R Zc",
