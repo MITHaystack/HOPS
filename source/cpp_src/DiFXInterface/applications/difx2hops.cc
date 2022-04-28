@@ -73,16 +73,27 @@ int main(int argc, char** argv)
         }
     }
 
-    MHO_StationCodeMap stcode_map; //TODO add option to enable/disable legacy code map 
+    //if the output directory doesn't exist, then create it
+    MHO_DirectoryInterface dirInterface;
+    std::string output_directory = dirInterface.GetDirectoryFullPath(output_dir);
+    bool ok = dirInterface.DoesDirectoryExist(output_directory);
+    if(!ok){ ok = dirInterface.CreateDirectory(output_directory);}
+    if(!ok)
+    {
+        msg_error("difx_interface", "Could not locate or create output directory: "<< output_directory << eom);
+        std::exit(1);
+    }
+
+    MHO_StationCodeMap stcode_map; //TODO add option to enable/disable legacy code map (disabled by default)
     stcode_map.InitializeStationCodes(station_codes_file);
 
-    MHO_DiFXInterface dinterface;
-    dinterface.SetInputDirectory(input_dir);
-    dinterface.SetOutputDirectory(output_dir);
-    dinterface.SetStationCodes(&stcode_map);
+    MHO_DiFXInterface difxInterface;
+    difxInterface.SetInputDirectory(input_dir);
+    difxInterface.SetOutputDirectory(output_directory);
+    difxInterface.SetStationCodes(&stcode_map);
 
-    dinterface.Initialize();
-    dinterface.ProcessScans();
+    difxInterface.Initialize();
+    difxInterface.ProcessScans();
 
     return 0;
 }
