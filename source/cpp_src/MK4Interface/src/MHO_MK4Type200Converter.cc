@@ -26,12 +26,12 @@ namespace hops {
 	    {"record_id", t.record_id},
 	    {"version_no", t.version_no},
 	    {"expt_no", t.expt_no},
-	    // logic to handle edge cases where the exper_name and scan_name are 32 chars 
+	    // logic to handle edge cases where the exper_name and scan_name are 32 chars and correlator is 8 chars
 	    // this is a holdover from the previous fortran code and is an issue upstream with the c code
-	    // a 32 char array without null termination could be passed to this function and cause a memory overflow
+	    // a 32 char or 8 char array without null termination could be passed to this function and cause a memory overflow
 	    {"exper_name", std::string(t.exper_name, 32).c_str()},
 	    {"scan_name", std::string(t.scan_name, 32).c_str()},
-	    {"correlator", t.correlator},
+	    {"correlator", std::string(t.correlator, 8).c_str()},
 	    {"start_offset", t.start_offset},
 	    {"stop_offset", t.stop_offset},
 	    {"software_rev", t.software_rev},
