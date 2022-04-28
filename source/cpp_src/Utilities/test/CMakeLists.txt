@@ -13,6 +13,7 @@ set(SOURCE_BASENAMES
     TestDirectoryInterface
     TestLegacyRootCodeGenerator
     TestTemplateTypenameDeduction
+    TestStationCodeMap
 )
 
 foreach( BASENAME ${SOURCE_BASENAMES} )

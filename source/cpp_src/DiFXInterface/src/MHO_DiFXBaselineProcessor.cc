@@ -10,7 +10,8 @@ namespace hops
 MHO_DiFXBaselineProcessor::MHO_DiFXBaselineProcessor():
     fInput(nullptr),
     fV(nullptr),
-    fW(nullptr)
+    fW(nullptr),
+    fStationCodeMap(nullptr)
 {
     fRootCode = "unknown";
 };
@@ -62,8 +63,8 @@ MHO_DiFXBaselineProcessor::Organize()
     fRemStation = (*fInput)["antenna"][ant2]["name"];
     fBaselineName = fRefStation + ":" + fRemStation;
 
-    fRefStationMk4Id = fStationCodeMap[fRefStation];
-    fRemStationMk4Id = fStationCodeMap[fRemStation];
+    fRefStationMk4Id = fStationCodeMap->GetMk4IdFromStationCode(fRefStation);
+    fRemStationMk4Id = fStationCodeMap->GetMk4IdFromStationCode(fRemStation);
     fBaselineShortName = fRefStationMk4Id + fRemStationMk4Id;
 
     //get the AP length (which config should we use if there is more than one?)
@@ -125,7 +126,7 @@ MHO_DiFXBaselineProcessor::Organize()
 
 
 void 
-MHO_DiFXBaselineProcessor::SetStationCodes(std::map<std::string, std::string> code_map)
+MHO_DiFXBaselineProcessor::SetStationCodes(MHO_StationCodeMap* code_map)
 {
     fStationCodeMap = code_map;
 }
