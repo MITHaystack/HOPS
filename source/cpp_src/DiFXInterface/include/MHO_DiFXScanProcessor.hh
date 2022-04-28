@@ -17,9 +17,6 @@
 #include <map>
 #include <set>
 
-#include "difxio/difx_input.h"
-#include "difxio/parsevis.h"
-
 #include "MHO_Message.hh"
 
 #include "MHO_ContainerDefinitions.hh"
@@ -61,8 +58,6 @@ class MHO_DiFXScanProcessor
 
         void LoadInputFile();
 
-        // void ReadPCALFile(std::string filename);
-        // void ReadIMFile(std::string filename);
         void ConvertRootFileObject();
         void ConvertVisibilityFileObjects();
         void ConvertStationFileObjects();
