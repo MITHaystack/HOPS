@@ -34,6 +34,7 @@
 #include "MHO_DiFXInputProcessor.hh"
 #include "MHO_DiFXPCalProcessor.hh"
 #include "MHO_JSONHeaderWrapper.hh"
+#include "MHO_StationCodeMap.hh"
 
 namespace hops 
 {
@@ -46,13 +47,13 @@ class MHO_DiFXScanProcessor
         virtual ~MHO_DiFXScanProcessor();
 
         void SetRootCode(std::string rcode){fRootCode = rcode;}
-        void SetStationCodes(std::map<std::string, std::string> code_map);
+        void SetStationCodes(MHO_StationCodeMap* code_map);
         void ProcessScan(MHO_DiFXScanFileSet& fileSet);
 
     private:
 
         //the station 2-char to 1-char code map (user specified)
-        std::map< std::string, std::string> fStationCodeMap;
+        MHO_StationCodeMap* fStationCodeMap;
 
         ////////////////////////////////////////////////////////////////////////
         //members for dealing with a single (current) scan of data /////////////

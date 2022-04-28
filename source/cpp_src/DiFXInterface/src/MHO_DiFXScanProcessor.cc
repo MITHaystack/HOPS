@@ -6,6 +6,7 @@ namespace hops
 MHO_DiFXScanProcessor::MHO_DiFXScanProcessor()
 {
     fRootCode = "uknown";
+    fStationCodeMap = nullptr;
 };
 
 MHO_DiFXScanProcessor::~MHO_DiFXScanProcessor()
@@ -13,7 +14,7 @@ MHO_DiFXScanProcessor::~MHO_DiFXScanProcessor()
 
 
 void 
-MHO_DiFXScanProcessor::SetStationCodes(std::map<std::string, std::string> code_map)
+MHO_DiFXScanProcessor::SetStationCodes(MHO_StationCodeMap* code_map)
 {
     fStationCodeMap = code_map;
 }
@@ -91,7 +92,7 @@ MHO_DiFXScanProcessor::ConvertStationFileObjects()
     for(auto it = fStationCode2PCal.begin(); it != fStationCode2PCal.end(); it++)
     {
         std::string station_code = it->first;
-        std::string station_mk4id = fStationCodeMap[station_code];
+        std::string station_mk4id = fStationCodeMap->GetMk4IdFromStationCode(station_code);
         //construct output file name (eventually figure out how to construct the baseline name)
         std::string root_code = fRootCode;
         std::string output_file = fFileSet->fOutputBaseDirectory + "/" + station_mk4id + "." + root_code + ".pcal";

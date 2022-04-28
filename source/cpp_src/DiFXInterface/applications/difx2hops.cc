@@ -21,7 +21,7 @@
 #include "MHO_DirectoryInterface.hh"
 #include "MHO_DiFXInterface.hh"
 
-#include "MHO_StationCodeReader.hh"
+#include "MHO_StationCodeMap.hh"
 
 
 
@@ -73,28 +73,13 @@ int main(int argc, char** argv)
         }
     }
 
-    //TODO...we need to pre-pass this directory to get a list of all stations we will encounter 
-    //so we can allow for a default (generic) station code mapping (Aa -> a), etc.
-    //when the 2-char to 1-char map is not specified. 
-    //Alternatively, we could just fall back to using 2-char codes everywhere,
-    //but that may break downstream things that expect 1-char station codes.
-
-    MHO_StationCodeReader stcode_reader;
-    if(station_codes_file != "")
-    {
-        //read and populate the station codes
-        stcode_reader.ReadStationCodes(station_codes_file);
-    }
-    else
-    {
-        msg_fatal("difx_interface", "must specify the complete 2-char to 1-char station code map, unspecified station mapping not yet supported." << eom);
-        std::exit(1);
-    }
+    MHO_StationCodeMap stcode_map; //TODO add option to enable/disable legacy code map 
+    stcode_map.InitializeStationCodes(station_codes_file);
 
     MHO_DiFXInterface dinterface;
     dinterface.SetInputDirectory(input_dir);
     dinterface.SetOutputDirectory(output_dir);
-    dinterface.SetStationCodes( stcode_reader.GetStationCodeMap() );
+    dinterface.SetStationCodes(&stcode_map);
 
     dinterface.Initialize();
     dinterface.ProcessScans();

@@ -22,7 +22,7 @@ MHO_DiFXInterface::SetOutputDirectory(std::string dir)
     fOutputDirectory = fDirInterface.GetDirectoryFullPath(dir);
 }
 
-void MHO_DiFXInterface::SetStationCodes(std::map<std::string, std::string> code_map)
+void MHO_DiFXInterface::SetStationCodes(MHO_StationCodeMap* code_map)
 {
     fScanProcessor.SetStationCodes(code_map);
 };

@@ -20,7 +20,7 @@
 #include "MHO_VisibilityChannelizer.hh"
 #include "MHO_WeightChannelizer.hh"
 #include "MHO_ObjectTags.hh"
-
+#include "MHO_StationCodeMap.hh"
 #include "MHO_JSONHeaderWrapper.hh"
 
 namespace hops 
@@ -39,7 +39,7 @@ class MHO_DiFXBaselineProcessor
 
         void AddRecord(MHO_DiFXVisibilityRecord* record);
 
-        void SetStationCodes(std::map<std::string, std::string> code_map);
+        void SetStationCodes(MHO_StationCodeMap* code_map);
         void ConstructVisibilityFileObjects();
         void WriteVisibilityObjects(std::string output_dir);
 
@@ -60,7 +60,7 @@ class MHO_DiFXBaselineProcessor
         double fAPLength;
 
         //the station 2-char to 1-char code map (user specified)
-        std::map< std::string, std::string> fStationCodeMap;
+        MHO_StationCodeMap* fStationCodeMap;
 
         const json* fInput;
         std::vector< MHO_DiFXVisibilityRecord* > fRecords;
