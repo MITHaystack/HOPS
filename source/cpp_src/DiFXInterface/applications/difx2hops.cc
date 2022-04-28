@@ -80,7 +80,7 @@ int main(int argc, char** argv)
     if(!ok){ ok = dirInterface.CreateDirectory(output_directory);}
     if(!ok)
     {
-        msg_error("difx_interface", "Could not locate or create output directory: "<< output_directory << eom);
+        msg_fatal("difx_interface", "Could not locate or create output directory: "<< output_directory << eom);
         std::exit(1);
     }
 

@@ -23,13 +23,37 @@ void
 MHO_DiFXScanProcessor::ProcessScan(MHO_DiFXScanFileSet& fileSet)
 {
     fFileSet = &fileSet;
-    LoadInputFile(); //read .input file and build freq table
-    ConvertRootFileObject(); //create the equivalent to the Mk4 'ovex' root file
-    ConvertVisibilityFileObjects(); //convert visibilities and data weights 
-    ConvertStationFileObjects(); //convert the station splines, and pcal data 
+    bool ok = CreateScanOutputDirectory();
+    if(ok)
+    {
+        LoadInputFile(); //read .input file and build freq table
+        ConvertRootFileObject(); //create the equivalent to the Mk4 'ovex' root file
+        ConvertVisibilityFileObjects(); //convert visibilities and data weights 
+        ConvertStationFileObjects(); //convert the station splines, and pcal data 
+    }
+    else 
+    {
+        msg_error("difx_interface", "could not locate or create scan output directory: "<< fOutputDirectory <<", skipping." << eom);
+    }
     CleanUp(); //delete workspace and prep for next scan
 }
 
+
+bool
+MHO_DiFXScanProcessor::CreateScanOutputDirectory()
+{
+    //currently we just use the DiFX scan name, but we should add the option 
+    //to use the scan time e.g. (031-1020)
+
+    MHO_DirectoryInterface dirInterface;
+
+    std::string output_dir = fFileSet->fOutputBaseDirectory + "/" + fFileSet->fScanName;
+    fOutputDirectory = dirInterface.GetDirectoryFullPath(output_dir);
+
+    bool ok = dirInterface.DoesDirectoryExist(fOutputDirectory);
+    if(!ok){ ok = dirInterface.CreateDirectory(fOutputDirectory);}
+    return ok;
+}
 
 void 
 MHO_DiFXScanProcessor::ConvertRootFileObject()
@@ -62,7 +86,7 @@ MHO_DiFXScanProcessor::ConvertVisibilityFileObjects()
         it->second.SetStationCodes(fStationCodeMap);
         it->second.SetDiFXInputData(&fInput);
         it->second.ConstructVisibilityFileObjects();
-        it->second.WriteVisibilityObjects(fFileSet->fOutputBaseDirectory);
+        it->second.WriteVisibilityObjects(fOutputDirectory);
     }
     
     //clear out the baseline visbility containers for the next scan
@@ -95,7 +119,7 @@ MHO_DiFXScanProcessor::ConvertStationFileObjects()
         std::string station_mk4id = fStationCodeMap->GetMk4IdFromStationCode(station_code);
         //construct output file name (eventually figure out how to construct the baseline name)
         std::string root_code = fRootCode;
-        std::string output_file = fFileSet->fOutputBaseDirectory + "/" + station_mk4id + "." + root_code + ".pcal";
+        std::string output_file = fOutputDirectory + "/" + station_mk4id + "." + root_code + ".pcal";
 
         MHO_BinaryFileInterface inter;
         bool status = inter.OpenToWrite(output_file);
@@ -140,7 +164,7 @@ MHO_DiFXScanProcessor::CleanUp()
         delete ptr;
     }
     fStationCode2Coords.clear();
-
+    fOutputDirectory = "";
 }
 
 

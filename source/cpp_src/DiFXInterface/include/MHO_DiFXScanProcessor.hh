@@ -32,6 +32,7 @@
 #include "MHO_DiFXPCalProcessor.hh"
 #include "MHO_JSONHeaderWrapper.hh"
 #include "MHO_StationCodeMap.hh"
+#include "MHO_DirectoryInterface.hh"
 
 namespace hops 
 {
@@ -56,8 +57,8 @@ class MHO_DiFXScanProcessor
         //members for dealing with a single (current) scan of data /////////////
         MHO_DiFXScanFileSet* fFileSet;
 
+        bool CreateScanOutputDirectory();
         void LoadInputFile();
-
         void ConvertRootFileObject();
         void ConvertVisibilityFileObjects();
         void ConvertStationFileObjects();
@@ -71,6 +72,9 @@ class MHO_DiFXScanProcessor
 
         //the root code assigned to this scan 
         std::string fRootCode;
+
+        //the output directory for this scan 
+        std::string fOutputDirectory;
 
         std::map< int, MHO_DiFXBaselineProcessor > fAllBaselineVisibilities;
         MHO_DiFXPCalProcessor fPCalProcessor;
