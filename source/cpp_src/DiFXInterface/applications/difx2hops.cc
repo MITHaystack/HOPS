@@ -9,6 +9,7 @@
 
 #include "MHO_Message.hh"
 #include "MHO_Tokenizer.hh"
+#include "MHO_StationCodeMap.hh"
 
 #include "MHO_ContainerDefinitions.hh"
 #include "MHO_VisibilityChannelizer.hh"
@@ -21,14 +22,7 @@
 #include "MHO_DirectoryInterface.hh"
 #include "MHO_DiFXInterface.hh"
 
-#include "MHO_StationCodeMap.hh"
-
-
-
 using namespace hops;
-
-
-
 
 int main(int argc, char** argv)
 {
@@ -84,7 +78,8 @@ int main(int argc, char** argv)
         std::exit(1);
     }
 
-    MHO_StationCodeMap stcode_map; //TODO add option to enable/disable legacy code map (disabled by default)
+    //TODO add option to enable/disable legacy code map (disabled by default)
+    MHO_StationCodeMap stcode_map;
     stcode_map.InitializeStationCodes(station_codes_file);
 
     MHO_DiFXInterface difxInterface;
