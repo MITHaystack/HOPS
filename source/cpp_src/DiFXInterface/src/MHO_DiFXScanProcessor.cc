@@ -95,7 +95,6 @@ MHO_DiFXScanProcessor::ConvertVisibilityFileObjects()
         it->second.Clear();
     }
 
-
 }
 
 void 
@@ -107,41 +106,43 @@ MHO_DiFXScanProcessor::ConvertStationFileObjects()
     //then process pcal files (if they exist)
     ExtractPCalData();
 
-    //now we need to map the station name and 2-char code, and single char code 
-        
-
-    //finally write out the station coordinate and pcal (if available) data to a single file.
-
-    //DEBUG, lets write out the PCAL stuff 
-    for(auto it = fStationCode2PCal.begin(); it != fStationCode2PCal.end(); it++)
+    //loop over all stations and write out coords and pcal data
+    for(auto it = fStationCode2Coords.begin(); it != fStationCode2Coords.end(); it++)
     {
+        //grab the station coordinate data
         std::string station_code = it->first;
+        station_coord_type* station_coord_data_ptr = it->second;
+
+        //if there is pcal data, make sure we grab it too
+        multitone_pcal_type* pcal_data_ptr = nullptr;
+        auto pcal_it = fStationCode2PCal.find(station_code);
+        if(pcal_it != fStationCode2PCal.end()){pcal_data_ptr = pcal_it->second;}
+
+        //figure out the output file name
         std::string station_mk4id = fStationCodeMap->GetMk4IdFromStationCode(station_code);
-        //construct output file name (eventually figure out how to construct the baseline name)
         std::string root_code = fRootCode;
-        std::string output_file = fOutputDirectory + "/" + station_mk4id + "." + root_code + ".pcal";
+        std::string output_file = fOutputDirectory + "/" + station_mk4id + "." + root_code + ".sta";
 
         MHO_BinaryFileInterface inter;
         bool status = inter.OpenToWrite(output_file);
         MHO_ObjectTags tags;
+        tags.AddObjectUUID(station_coord_data_ptr->GetObjectUUID());
+        if(pcal_data_ptr){tags.AddObjectUUID(pcal_data_ptr->GetObjectUUID());}
 
         if(status)
         {
             uint32_t label = 0xFFFFFFFF; //someday make this mean something
-            tags.AddObjectUUID(it->second->GetObjectUUID());
             inter.Write(tags, "tags", label);
-            inter.Write( *(it->second), "pcal", label);
+            inter.Write( *station_coord_data_ptr, "coords", label);
+            if(pcal_data_ptr){ inter.Write( *pcal_data_ptr, "pcal", label); }
             inter.Close();
         }
         else
         {
-            msg_error("file", "error opening pcal output file: " << output_file << eom);
+            msg_error("file", "error opening station data output file: " << output_file << eom);
         }
         inter.Close();
     }
-
-
-
 }
 
 
