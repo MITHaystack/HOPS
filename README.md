@@ -97,6 +97,23 @@ python3-sphinx, python3-dev, python-dev, swig, help2man
 (2) `graphviz` \
 (3) `doxygen` 
 
+### Testing
+```
+cd hops-git
+mkdir build
+cd build
+```
+If this is the first time you are running tests you will need to turn `HOPS_ENABLE_TEST` on using `ccmake ../`.
+```
+cmake ../
+make && make build
+source ../x86_64-4.00/bin/hops.bash
+```
+To run an individual test:
+`TestFile`
+To run all tests:
+`make test`
+
 ### Building the documentation
 HOPS supports the ability to build the documentation as well as the code with `make` by doing the following:
 `cd hops-git/` \
