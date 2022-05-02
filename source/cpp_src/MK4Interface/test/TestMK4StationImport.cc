@@ -9,7 +9,7 @@
 
 #include "MHO_Tokenizer.hh"
 #include "MHO_MK4VexInterface.hh"
-#include "MHO_StationCoordinates.hh"
+#include "MHO_ContainerDefinitions.hh"
 #include "MHO_MK4StationInterface.hh"
 
 
@@ -58,7 +58,7 @@ int main(int argc, char** argv)
 
     mk4inter.SetStationFile(station_filename);
     mk4inter.SetVexFile(root_filename);
-    station_coord_data_type* st_data = mk4inter.ExtractStationFile();
+    station_coord_type* st_data = mk4inter.ExtractStationFile();
 
     std::size_t dim[STATION_NDIM];
     st_data->GetDimensions(dim);
@@ -66,11 +66,9 @@ int main(int argc, char** argv)
     std::cout<<"dimensions = "<<dim[0]<<", "<<dim[1]<<", "<<dim[2]<<", "<<dim[3]<<std::endl;
 
     auto* coord_axis = &(std::get<COORD_AXIS>(*st_data));
-    auto* chan_axis = &(std::get<CHAN_AXIS>(*st_data));
     auto* int_axis = &(std::get<INTERVAL_AXIS>(*st_data));
     auto* coeff_axis = &(std::get<COEFF_AXIS>(*st_data));
     size_t coord_axis_size = coord_axis->GetSize();
-    size_t chan_axis_size = chan_axis->GetSize();
     size_t int_axis_size = int_axis->GetSize();
     size_t coeff_axis_size = coeff_axis->GetSize();
 
@@ -79,14 +77,6 @@ int main(int argc, char** argv)
     for(std::size_t i=0; i<coord_axis_size; i++)
     {
         std::cout<<coord_axis->at(i)<<", ";
-    }
-    std::cout<<std::endl;
-
-    //lets print out the axis labels
-    std::cout<<"chan axis labels = "<<std::endl;
-    for(std::size_t i=0; i<chan_axis_size; i++)
-    {
-        std::cout<<chan_axis->at(i)<<", ";
     }
     std::cout<<std::endl;
 

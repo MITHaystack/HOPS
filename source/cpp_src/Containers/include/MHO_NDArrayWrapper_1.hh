@@ -157,9 +157,17 @@ class MHO_NDArrayWrapper<XValueType, 1>:
             std::size_t offset = MHO_NDArrayMath::OffsetFromRowMajorIndex<1>(&(fDims[0]), &(fTmp[0]));
             std::array<std::size_t, 1 - (sizeof...(XIndexTypeS)) > dim;
             for(std::size_t i=0; i<dim.size(); i++){dim[i] = fDims[i + (sizeof...(XIndexTypeS) )];}
-            return  MHO_NDArrayWrapper<XValueType, 1 - ( sizeof...(XIndexTypeS) ) >(&(fDataPtr[offset]) , &(dim[0]) );
+            return MHO_NDArrayWrapper<XValueType, 1 - ( sizeof...(XIndexTypeS) ) >(&(fDataPtr[offset]) , &(dim[0]) );
         }
 
+        //this function is mainly here to allow for 1-d table containers, there's not much utility 
+        //of a 'slice view' of a 1-d array (you just get the same array back...)
+        MHO_NDArrayView< XValueType, 1>
+        SliceView(const char* /* unused_arg */) 
+        {
+            //just return a 1d array view of this 1-d array
+            return  MHO_NDArrayView<XValueType, 1>(&(fDataPtr[0]), &(fDims[0]), &(fStrides[0]) );
+        }
 
     protected:
 

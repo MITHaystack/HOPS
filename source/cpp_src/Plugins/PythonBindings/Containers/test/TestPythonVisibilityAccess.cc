@@ -129,7 +129,7 @@ int main(int argc, char** argv)
     std::cout<<"Will use corel file: "<<corel_file<<std::endl;
 
     //now open and read the (channelized) baseline visibility data
-    ch_baseline_data_type* bl_data = new ch_baseline_data_type();
+    ch_visibility_type* bl_data = new ch_visibility_type();
     MHO_BinaryFileInterface inter;
     bool status = inter.OpenToRead(corel_file);
     if(status)

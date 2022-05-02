@@ -22,6 +22,12 @@ MHO_DiFXInterface::SetOutputDirectory(std::string dir)
     fOutputDirectory = fDirInterface.GetDirectoryFullPath(dir);
 }
 
+void MHO_DiFXInterface::SetStationCodes(MHO_StationCodeMap* code_map)
+{
+    fScanProcessor.SetStationCodes(code_map);
+};
+
+
 void 
 MHO_DiFXInterface::Initialize()
 {
@@ -210,12 +216,14 @@ MHO_DiFXInterface::Initialize()
 void 
 MHO_DiFXInterface::ProcessScans()
 {
-    for(auto it = fScanFileSetList.begin(); it != fScanFileSetList.end(); it++)
+    //generate all of the root codes for the incoming scans  
+    MHO_LegacyRootCodeGenerator rcode_gen;
+    std::vector< std::string > scan_codes = rcode_gen.GetCodes( fScanFileSetList.size() );
+
+    for(std::size_t i=0; i<fScanFileSetList.size(); i++)
     {
-        fScanProcessor.ProcessScan(*it);
-        std::cout<<"REMINDER...Only processing one scan while debugging" <<std::endl;
-        //only doing one scan for now --- UNDER TESTING!! 
-        break;
+        fScanProcessor.SetRootCode(scan_codes[i]);
+        fScanProcessor.ProcessScan(fScanFileSetList[i]);
     }
 }
 

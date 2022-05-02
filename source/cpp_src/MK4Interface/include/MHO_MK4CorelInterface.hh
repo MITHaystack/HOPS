@@ -17,7 +17,8 @@
 #include <cstring>
 #include <string>
 
-#include "MHO_Visibilities.hh"
+#include "MHO_ContainerDefinitions.hh"
+
 #include "MHO_Message.hh"
 
 //forward declaration of mk4_corel and vex structs
@@ -63,8 +64,8 @@ class MHO_MK4CorelInterface
         //For now we assume the caller will handle clean-up/deletion, so we do
         //not attempt to delete fExtractedVisibilities/fExtractedWeights in the
         //destructor of this interface class.
-        baseline_data_type* GetExtractedVisibilities(){return fExtractedVisibilities;};
-        baseline_weight_type* GetExtractedWeights(){return fExtractedWeights;};
+        visibility_type* GetExtractedVisibilities(){return fExtractedVisibilities;};
+        weight_type* GetExtractedWeights(){return fExtractedWeights;};
 
     private:
 
@@ -103,8 +104,8 @@ class MHO_MK4CorelInterface
                                 char ref_net_sb, char rem_net_sb);
         double calc_freq_bin(double sky_freq, double bw, char net_sb, int nlags, int bin_index);
 
-        baseline_data_type* fExtractedVisibilities;
-        baseline_weight_type* fExtractedWeights;
+        visibility_type* fExtractedVisibilities;
+        weight_type* fExtractedWeights;
 
 };
 

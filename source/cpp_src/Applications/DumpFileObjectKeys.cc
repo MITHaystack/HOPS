@@ -3,8 +3,7 @@
 
 #include "MHO_BinaryFileInterface.hh"
 #include "MHO_ContainerDictionary.hh"
-#include "MHO_ChannelizedVisibilities.hh"
-#include "MHO_Visibilities.hh"
+#include "MHO_ContainerDefinitions.hh"
 
 using namespace hops;
 

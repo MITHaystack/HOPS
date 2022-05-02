@@ -153,4 +153,41 @@ MHO_ContainerFileInterface::ConvertStoreToJSON(MHO_ContainerStore& store, json& 
 };
 
 
+void 
+MHO_ContainerFileInterface::ConvertObjectInStoreToJSON(MHO_ContainerStore& store,
+                                                       const MHO_UUID& obj_uuid,
+                                                       json& json_obj, 
+                                                       int level_of_detail)
+{
+    std::vector< MHO_UUID > type_ids;
+    store.GetAllTypeUUIDs(type_ids);
+    for(auto it = type_ids.begin(); it != type_ids.end(); it++)
+    {
+        auto converter = fJSONConverterMap.find(*it);
+        if(converter != fJSONConverterMap.end())
+        {
+            std::vector< MHO_UUID > obj_ids;
+            store.GetAllObjectUUIDsOfType(*it, obj_ids);
+            for(auto it2 = obj_ids.begin(); it2 != obj_ids.end(); it2++)
+            {
+                if(obj_uuid == *it2)
+                {
+                    MHO_Serializable* obj = store.RetrieveObject(*it, *it2);
+                    if(obj != nullptr)
+                    {
+                        converter->second->SetObjectToConvert(obj);
+                        converter->second->SetLevelOfDetail(level_of_detail);
+                        converter->second->ConstructJSONRepresentation();
+                        json j = *(converter->second->GetJSON());
+                        std::string object_uuid = it2->as_string();
+                        json_obj[object_uuid] = j;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+
 }//end namespace
