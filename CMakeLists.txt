@@ -60,7 +60,7 @@ file(MAKE_DIRECTORY ${SHARE_TEXT_INSTALL_DIR})
 file(MAKE_DIRECTORY ${SHARE_VHELP_INSTALL_DIR})
 ################################################################################
 
-#compiler flags
+#compiler flags (use c++11 standard)
 hops_require_cpp11()
 
 option(EXTRA_WARNINGS "Turn on extra compiler warnings." OFF)
@@ -75,14 +75,8 @@ else()
 endif()
 
 message(STATUS "Using compiler ${COMPILER_ID} ${COMPILER_VERSION}")
-################################################################################
 
-#convenience variables
-set(CSOURCE ${CMAKE_CURRENT_SOURCE_DIR}/source/c_src)
-set(CPPSOURCE ${CMAKE_CURRENT_SOURCE_DIR}/source/cpp_src)
-set(SHSOURCE ${CMAKE_CURRENT_SOURCE_DIR}/source/bash_src)
-set(PYSOURCE ${CMAKE_CURRENT_SOURCE_DIR}/source/python_src)
-set(EXTERN_HLIBS ${CMAKE_CURRENT_SOURCE_DIR}/extern)
+################################################################################
 
 #options for triggering additional dependencies
 option(HOPS_ENABLE_TEST "Build developer tests." ON)
@@ -92,6 +86,15 @@ option(HOPS_USE_FFTW3 "Use FFTW3 for fast fourier transforms" OFF)
 option(HOPS_USE_DIFXIO "Link against difxio library to read DiFX files" OFF)
 option(HOPS_USE_PYBIND11 "Build python bindings with pybind11" OFF)
 option(HOPS_USE_ROOT "Use CERN ROOT libraries to enable plugin tools for plotting/debug/analysis." OFF)
+
+
+#convenience variables
+set(CSOURCE ${CMAKE_CURRENT_SOURCE_DIR}/source/c_src)
+set(CPPSOURCE ${CMAKE_CURRENT_SOURCE_DIR}/source/cpp_src)
+set(SHSOURCE ${CMAKE_CURRENT_SOURCE_DIR}/source/bash_src)
+set(PYSOURCE ${CMAKE_CURRENT_SOURCE_DIR}/source/python_src)
+set(EXTERN_HLIBS ${CMAKE_CURRENT_SOURCE_DIR}/extern)
+
 
 if(HOPS_ENABLE_TEST)
     enable_testing()
@@ -113,10 +116,6 @@ if(HOPS_USE_DIFXIO)
     find_package(PkgConfig) # we use pkg-config to find difxio
     pkg_search_module(DIFXIO REQUIRED difxio)
 endif()
-
-if(HOPS_USE_PYBIND11)
-    add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/extern/pybind11)
-endif(HOPS_USE_PYBIND11)
 
 ################################################################################
 
@@ -150,8 +149,7 @@ install( PROGRAMS ${CMAKE_CURRENT_BINARY_DIR}/hops.bash DESTINATION ${BIN_INSTAL
 
 ################################################################################
 #call build in the subdirectories
-
+add_subdirectory(${EXTERN_HLIBS}) #external (mostly header-only) dependencies, but date (tz) library must be built
 add_subdirectory(${CSOURCE})
-add_subdirectory(${EXTERN_HLIBS}/json)
 add_subdirectory(${CPPSOURCE})
 add_subdirectory(doc)
