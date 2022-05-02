@@ -13,13 +13,12 @@
 #include "MHO_NDArrayWrapper.hh"
 #include "MHO_TransformingOperator.hh"
 
-#include "MHO_Visibilities.hh"
-#include "MHO_ChannelizedVisibilities.hh"
+#include "MHO_ContainerDefinitions.hh"
 
 namespace hops
 {
 
-class MHO_VisibilityChannelizer: public MHO_TransformingOperator< baseline_data_type, ch_baseline_data_type>
+class MHO_VisibilityChannelizer: public MHO_TransformingOperator< visibility_type, ch_visibility_type>
 {
     public:
         MHO_VisibilityChannelizer();
@@ -27,8 +26,8 @@ class MHO_VisibilityChannelizer: public MHO_TransformingOperator< baseline_data_
 
     protected:
 
-        virtual bool InitializeImpl(const baseline_data_type* in, ch_baseline_data_type* out);
-        virtual bool ExecuteImpl(const baseline_data_type* in, ch_baseline_data_type* out);
+        virtual bool InitializeImpl(const visibility_type* in, ch_visibility_type* out);
+        virtual bool ExecuteImpl(const visibility_type* in, ch_visibility_type* out);
 
     private:
 

@@ -14,7 +14,7 @@
 #include <complex>
 
 #include "MHO_TableContainer.hh"
-#include "MHO_ChannelizedVisibilities.hh"
+#include "MHO_ContainerDefinitions.hh"
 #include "MHO_BinaryOperator.hh"
 
 
@@ -23,18 +23,18 @@ namespace hops
 
 
 class MHO_ManualChannelPhaseCorrection_v2: public MHO_BinaryOperator<
-    ch_baseline_data_type,
+    ch_visibility_type,
     ch_pcal_phase_type,
-    ch_baseline_data_type >
+    ch_visibility_type >
 {
     public:
 
         MHO_ManualChannelPhaseCorrection_v2();
         virtual ~MHO_ManualChannelPhaseCorrection_v2();
 
-        using XArgType1 = ch_baseline_data_type;
+        using XArgType1 = ch_visibility_type;
         using XArgType2 = ch_pcal_phase_type;
-        using XArgType3 = ch_baseline_data_type;
+        using XArgType3 = ch_visibility_type;
 
         virtual bool InitializeImpl(const XArgType1* in1, const XArgType2* in2, XArgType3* out) override;
         virtual bool ExecuteImpl(const XArgType1* in1, const XArgType2* in2, XArgType3* out) override;

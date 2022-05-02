@@ -26,6 +26,8 @@ set (UTILITIES_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_DirectoryInterface.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ExtensibleElement.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_JSONHeaderWrapper.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_LegacyRootCodeGenerator.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_StationCodeMap.hh
 
 )
 
@@ -41,8 +43,9 @@ set( UTILITIES_SOURCEFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_IntervalLabelTree.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_BinaryFileStreamer.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_UUIDGenerator.cc
-    # ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ObjectTags.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_DirectoryInterface.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_LegacyRootCodeGenerator.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_StationCodeMap.cc
 )
 
 #declare header paths ##########################################################
