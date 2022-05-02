@@ -117,6 +117,7 @@ To run all tests:
 ```
 make test
 ```
+Note: If you've enabled `HOPS_ENABLE_REMOTE_TEST_DATA` then it will try to download the test data tarball from gemini.
 
 ### Building the documentation
 HOPS supports the ability to build the documentation as well as the code with `make` by doing the following:
