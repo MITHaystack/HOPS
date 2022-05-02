@@ -110,9 +110,13 @@ make && make build
 source ../x86_64-4.00/bin/hops.bash
 ```
 To run an individual test:
-`TestFile`
+```
+TestFile
+```
 To run all tests:
-`make test`
+```
+make test
+```
 
 ### Building the documentation
 HOPS supports the ability to build the documentation as well as the code with `make` by doing the following:
