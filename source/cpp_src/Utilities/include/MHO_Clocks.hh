@@ -6,7 +6,8 @@
 *@class: MHO_ClockEpoch
 *@author: J. Barrett
 *@email: barrettj@mit.edu
-*@date:
+*@date: a clock for hops-time stamps, measures time in (UTC) nanoseconds since J2000 epoch.
+*Functionality modelled on the gps_clock from the 'date' library (requires the timezone tz library too).
 *@brief:
 */
 
@@ -16,34 +17,12 @@
 #include "date/date.h"
 #include "date/tz.h"
 
-// using MHO_UTCClock = date::utc_clock;
-// using MHO_TAIClock = date::tai_clock;
-// using MHO_GPSClock = date::gps_clock; 
-
-// struct MHO_UTCJ2000Clock
-// {
-//     typedef std::chrono::nanoseconds duration;
-//     typedef duration::rep rep;
-//     typedef duration::period period;
-//     typedef std::chrono::time_point<MHO_UTCJ2000Clock> time_point;
-// 
-//     static const bool is_steady = date::utc_clock::is_steady; //false
-// 
-//     static time_point now() noexcept
-//     {
-//         using namespace date;
-//         using namespace std::chrono;
-//         date::utc_clock::time_point hops_epoch_start = date::utc_clock::from_sys( sys_days{January/1/2000} );
-//         duration time_since_utc_epoch = duration_cast<duration>( date::utc_clock::now().time_since_epoch() );
-//         duration time_between_utc_and_hops_epoch = duration_cast<duration>(hops_epoch_start.time_since_epoch() );
-//         return time_point(time_since_utc_epoch - time_between_utc_and_hops_epoch);
-//     }
-// 
-// };
-
+#define J2000_TAI_EPOCH "2000-01-01 11:59:27.816"
 
 namespace hops 
 {
+
+
 
 class hops_clock
 {
@@ -83,7 +62,7 @@ class hops_clock
         static date::utc_time< std::chrono::nanoseconds > get_hops_epoch()
         {
             std::string frmt = "%F %T";
-            std::string j2000 = "2000-01-01 11:59:27.816";
+            std::string j2000 = J2000_TAI_EPOCH;
             date::tai_time<std::chrono::nanoseconds> j2000_tai_epoch;
             std::istringstream ss(j2000);
             std::istream stream(ss.rdbuf());
@@ -107,8 +86,8 @@ hops_clock::to_utc(const hops_time<Duration>& t) NOEXCEPT
 {
 
     using CD = typename std::common_type<Duration, std::chrono::nanoseconds>::type;
-    date::utc_time< std::chrono::nanoseconds > fHOPSEpochStart = get_hops_epoch();
-    return utc_time<CD>(t.time_since_epoch() + fHOPSEpochStart.time_since_epoch());
+    date::utc_time< std::chrono::nanoseconds > hops_epoch_start = get_hops_epoch();
+    return utc_time<CD>(t.time_since_epoch() + hops_epoch_start.time_since_epoch());
 }
 
 template <class Duration>
@@ -117,11 +96,9 @@ hops_time<typename std::common_type<Duration, std::chrono::nanoseconds>::type>
 hops_clock::from_utc(const utc_time<Duration>& t) NOEXCEPT
 {
     using CD = typename std::common_type<Duration, std::chrono::nanoseconds>::type;
-    date::utc_time< std::chrono::nanoseconds > fHOPSEpochStart = get_hops_epoch();
-    return hops_time<CD>(t.time_since_epoch() - fHOPSEpochStart.time_since_epoch());
+    date::utc_time< std::chrono::nanoseconds > hops_epoch_start = get_hops_epoch();
+    return hops_time<CD>(t.time_since_epoch() - hops_epoch_start.time_since_epoch());
 }
-
-
 
 inline
 hops_clock::time_point
@@ -130,16 +107,14 @@ hops_clock::now()
     return from_utc(utc_clock::now());
 }
 
-
-
 template <class Duration>
 inline
 local_time<typename std::common_type<Duration, std::chrono::nanoseconds>::type>
 hops_clock::to_local(const hops_time<Duration>& t) NOEXCEPT
 {
     using CD = typename std::common_type<Duration, std::chrono::nanoseconds>::type;
-    date::utc_time<CD> fHOPSEpochStart = std::chrono::time_point_cast<CD>( get_hops_epoch() );
-    date::utc_time<CD> ut_time{t.time_since_epoch() + std::chrono::time_point_cast<Duration>(fHOPSEpochStart).time_since_epoch()};
+    date::utc_time<CD> hops_epoch_start = std::chrono::time_point_cast<CD>( get_hops_epoch() );
+    date::utc_time<CD> ut_time{t.time_since_epoch() + std::chrono::time_point_cast<Duration>(hops_epoch_start).time_since_epoch()};
     return utc_clock::to_local(ut_time);
 }
 
@@ -150,8 +125,8 @@ hops_clock::from_local(const local_time<Duration>& t) NOEXCEPT
 {
     using CD = typename std::common_type<Duration, std::chrono::nanoseconds>::type;
     date::utc_time<CD> t2 = utc_clock::from_local(t);
-    date::utc_time<CD> fHOPSEpochStart = std::chrono::time_point_cast<CD>( get_hops_epoch() );
-    return hops_time<CD>{t2.time_since_epoch() - std::chrono::time_point_cast<Duration>(fHOPSEpochStart).time_since_epoch()};
+    date::utc_time<CD> hops_epoch_start = std::chrono::time_point_cast<CD>( get_hops_epoch() );
+    return hops_time<CD>{t2.time_since_epoch() - std::chrono::time_point_cast<Duration>(hops_epoch_start).time_since_epoch()};
 }
 
 template <class CharT, class Traits, class Duration>
