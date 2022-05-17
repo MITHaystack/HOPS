@@ -15,7 +15,7 @@ using namespace std::chrono;
 
 // hops_clock
 
-/*
+
 
 
 class hops_clock
@@ -28,35 +28,47 @@ class hops_clock
         using time_point                = std::chrono::time_point<hops_clock>;
         static const bool is_steady     = false;
 
-        hops_clock()
-        {
-            std::string frmt = "%Y %m %d %T";
-            std::string j2000 = "2000 01 01 11:59:27.816";
-            date::tai_time<std::chrono::seconds> j2000_tai_epoch;
-            std::istringstream ss(j2000);
-            std::istream stream(ss.rdbuf());
-            date::from_stream(stream, frmt.c_str(), j2000_tai_epoch);
-            fHOPSEpochStart = std::chrono::time_point_cast<std::chrono::nanoseconds>( date::tai_clock::to_utc( j2000_tai_tp ) );
-        }
-
-        virtual ~hops_clock(){};
+        // hops_clock()
+        // {
+        //     std::string frmt = "%F %T";
+        //     std::string j2000 = "2000-01-01 11:59:27.816";
+        //     date::tai_time<std::chrono::nanoseconds> j2000_tai_epoch;
+        //     std::istringstream ss(j2000);
+        //     std::istream stream(ss.rdbuf());
+        //     date::from_stream(stream, frmt.c_str(), j2000_tai_epoch);
+        //     fHOPSEpochStart = std::chrono::time_point_cast<std::chrono::nanoseconds>( date::tai_clock::to_utc( j2000_tai_epoch ) );
+        // }
+        // 
+        // virtual ~hops_clock(){};
 
 
         static time_point now();
 
         template<typename Duration>
         static
-        std::chrono::time_point<utc_clock, typename std::common_type<Duration, std::chrono::seconds>::type>
+        std::chrono::time_point<utc_clock, typename std::common_type<Duration, std::chrono::nanoseconds>::type>
         to_utc(const std::chrono::time_point<hops_clock, Duration>&) NOEXCEPT;
 
         template<typename Duration>
         static
-        std::chrono::time_point<hops_clock, typename std::common_type<Duration, std::chrono::seconds>::type>
+        std::chrono::time_point<hops_clock, typename std::common_type<Duration, std::chrono::nanoseconds>::type>
         from_utc(const std::chrono::time_point<utc_clock, Duration>&) NOEXCEPT;
+
+        /*
+        template<typename Duration>
+        static
+        std::chrono::time_point<local_t, typename std::common_type<Duration, date::days>::type>
+        to_local(const std::chrono::time_point<hops_clock, Duration>&) NOEXCEPT;
+
+        template<typename Duration>
+        static
+        std::chrono::time_point<hops_clock, typename std::common_type<Duration, date::days>::type>
+        from_local(const std::chrono::time_point<local_t, Duration>&) NOEXCEPT;
+        */
 
     private:
 
-        date::utc_clock::time_point< duration> 
+        //date::utc_time< std::chrono::nanoseconds > fHOPSEpochStart; 
 
 };
 
@@ -69,32 +81,37 @@ using hops_seconds = hops_time<std::chrono::seconds>;
 
 template <class Duration>
 inline
-utc_time<typename std::common_type<Duration, std::chrono::seconds>::type>
+utc_time<typename std::common_type<Duration, std::chrono::nanoseconds>::type>
 hops_clock::to_utc(const hops_time<Duration>& t) NOEXCEPT
 {
-    using std::chrono::seconds;
-    using CD = typename std::common_type<Duration, seconds>::type;
+    std::string frmt = "%F %T";
+    std::string j2000 = "2000-01-01 11:59:27.816";
+    date::tai_time<std::chrono::nanoseconds> j2000_tai_epoch;
+    std::istringstream ss(j2000);
+    std::istream stream(ss.rdbuf());
+    date::from_stream(stream, frmt.c_str(), j2000_tai_epoch);
+    date::utc_time< std::chrono::nanoseconds > fHOPSEpochStart = std::chrono::time_point_cast<std::chrono::nanoseconds>( date::tai_clock::to_utc( j2000_tai_epoch ) );
 
-
-
-
-    return utc_time<CD>{t.time_since_epoch()} +
-            (sys_days(year{1980}/January/Sunday[1]) - sys_days(year{1970}/January/1) +
-             seconds{9});
+    using CD = typename std::common_type<Duration, std::chrono::nanoseconds>::type;
+    return utc_time<CD>(t.time_since_epoch() + fHOPSEpochStart.time_since_epoch());
 }
 
 template <class Duration>
 inline
-hops_time<typename std::common_type<Duration, std::chrono::seconds>::type>
+hops_time<typename std::common_type<Duration, std::chrono::nanoseconds>::type>
 hops_clock::from_utc(const utc_time<Duration>& t) NOEXCEPT
 {
-    using std::chrono::seconds;
-    using CD = typename std::common_type<Duration, seconds>::type;
-    return hops_time<CD>{t.time_since_epoch()} -
-            (sys_days(year{1980}/January/Sunday[1]) - sys_days(year{1970}/January/1) +
-             seconds{9});
-}
+    std::string frmt = "%F %T";
+    std::string j2000 = "2000-01-01 11:59:27.816";
+    date::tai_time<std::chrono::nanoseconds> j2000_tai_epoch;
+    std::istringstream ss(j2000);
+    std::istream stream(ss.rdbuf());
+    date::from_stream(stream, frmt.c_str(), j2000_tai_epoch);
+    date::utc_time< std::chrono::nanoseconds > fHOPSEpochStart = std::chrono::time_point_cast<std::chrono::nanoseconds>( date::tai_clock::to_utc( j2000_tai_epoch ) );
 
+    using CD = typename std::common_type<Duration, std::chrono::nanoseconds>::type;
+    return hops_time<CD>(t.time_since_epoch() - fHOPSEpochStart.time_since_epoch());
+}
 
 
 
@@ -106,12 +123,33 @@ hops_clock::now()
 }
 
 
+/*
+
+
+template <class Duration>
+inline
+local_time<typename std::common_type<Duration, date::days>::type>
+hops_clock::to_local(const gps_time<Duration>& t) NOEXCEPT
+{
+    using CD = typename std::common_type<Duration, date::days>::type;
+    return local_time<CD>{t.time_since_epoch() + std::chrono::time_point_cast<Duration>(fHOPSEpochStart).time_since_epoch()};
+}
+
+template <class Duration>
+inline
+hops_time<typename std::common_type<Duration, date::days>::type>
+hops_clock::from_local(const local_time<Duration>& t) NOEXCEPT
+{
+    using CD = typename std::common_type<Duration, date::days>::type;
+    return hops_time<CD>{t.time_since_epoch() - std::chrono::time_point_cast<Duration>(fHOPSEpochStart).time_since_epoch()};
+}
+
 template <class CharT, class Traits, class Duration>
 std::basic_ostream<CharT, Traits>&
 to_stream(std::basic_ostream<CharT, Traits>& os, const CharT* fmt,
           const hops_time<Duration>& t)
 {
-    const std::string abbrev("GPS");
+    const std::string abbrev("HOPS");
     CONSTDATA std::chrono::seconds offset{0};
     return to_stream(os, fmt, hops_clock::to_local(t), &abbrev, &offset);
 }
@@ -216,10 +254,10 @@ int main(int /*argc*/, char** /*argv*/)
     // std::cout << ymd << ' ' << time << '\n';
 
     // std::string hops_epoch_start = {"20000101 12:00:00"};
-    std::string hops_epoch_start = {"19700101 00:00:00"};
+    std::string hops_epoch_start = {"1970-01-01 00:00:00.000001"};
     std::chrono::system_clock::time_point hops_epoch_start_tp;
     std::istringstream ss{ hops_epoch_start };
-    std::string frmt = "%Y%m%d %T";
+    std::string frmt = "%F %T";
     ss >> date::parse(frmt, hops_epoch_start_tp);
 
     // std::istringstream utcss{ hops_epoch_start };
@@ -233,14 +271,20 @@ int main(int /*argc*/, char** /*argv*/)
     std::cout<<"hops epoch nanoseconds from system utc epoch start = "<<utc_hops_epoch_start.time_since_epoch().count()<<std::endl;
     std::cout<<"hops epoch nanoseconds from system gps epoch start = "<<gps_hops_epoch_start.time_since_epoch().count()<<std::endl;
 
-    std::string j2000 = "20000101 12:00:00";
-    date::tai_time<std::chrono::seconds> j2000_tai_tp;
+    //std::string j2000 = "2000-01-01 12:00:00.0";
+    std::string j2000 = "2000-01-01 11:59:27.816";
+    frmt = "%F %T";
+    date::tai_time<std::chrono::nanoseconds> j2000_tai_tp;
     std::istringstream ss2(j2000);
     std::istream stream(ss2.rdbuf());
     date::from_stream(stream, frmt.c_str(), j2000_tai_tp);
     auto j2000_utc_tp =  std::chrono::time_point_cast<std::chrono::nanoseconds>( date::tai_clock::to_utc( j2000_tai_tp ) );
     std::cout<<"J2000 utc, ns since epoch = "<< j2000_utc_tp.time_since_epoch().count() <<std::endl;
     std::cout<<"J2000 tai, ns since epoch = "<< j2000_tai_tp.time_since_epoch().count() <<std::endl;
+
+
+    auto hops_tp = hops_clock::from_utc(j2000_utc_tp);
+    std::cout<<"J2000 hops, ns since epoch "<<hops_tp.time_since_epoch().count()<<std::endl;
 
 
     return 0;
