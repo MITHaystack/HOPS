@@ -130,18 +130,6 @@ class hops_clock
             return std::chrono::time_point_cast<std::chrono::nanoseconds>( date::tai_clock::to_utc( j2000_tai_epoch ) );
         }
 
-        static date::tai_time< std::chrono::nanoseconds > get_hops_epoch_tai()
-        {
-            std::string frmt = ISO8601_UTC_FORMAT;
-            std::string j2000 = J2000_TAI_EPOCH;
-            date::tai_time<std::chrono::nanoseconds> j2000_tai_epoch;
-            std::istringstream ss(j2000);
-            std::istream stream(ss.rdbuf());
-            date::from_stream(stream, frmt.c_str(), j2000_tai_epoch);
-            return j2000_tai_epoch;
-        }
-
-
     private:
 
         static
@@ -170,99 +158,10 @@ class hops_clock
         };
 
         static
-        vex_date extract_vex_date(const std::string& timestamp)
-        {
-            //TODO FIXME -- issue errors if there is a problem when parsing
-            MHO_Tokenizer tokenizer;
-            std::vector<std::string> tokens;
-            std::stringstream ss;
-            std::string rest;
-            std::string syear, sord_day, shour, smin, ssec;
-            vex_date vdate;
-
-            tokenizer.SetDelimiter(std::string("y"));
-            tokenizer.SetString(&timestamp);
-            tokenizer.GetTokens(&tokens);
-
-            syear = tokens[0];
-            ss << syear;
-            ss >> vdate.year;
-            rest = tokens[1];
-
-            tokenizer.SetDelimiter(std::string("d"));
-            tokenizer.SetString(&rest);
-            tokenizer.GetTokens(&tokens);
-
-            sord_day = tokens[0];
-            ss.str(std::string());
-            ss.clear();
-            ss << sord_day;
-            ss >> vdate.day_of_year;
-            rest = tokens[1];
-
-            tokenizer.SetDelimiter(std::string("h"));
-            tokenizer.SetString(&rest);
-            tokenizer.GetTokens(&tokens);
-
-            shour = tokens[0];
-            ss.str(std::string());
-            ss.clear();
-            ss << shour;
-            ss >> vdate.hours;
-            rest = tokens[1];
-
-            tokenizer.SetDelimiter(std::string("m"));
-            tokenizer.SetString(&rest);
-            tokenizer.GetTokens(&tokens);
-
-            smin = tokens[0];
-            ss.str(std::string());
-            ss.clear();
-            ss << smin;
-            ss >> vdate.minutes;
-            rest = tokens[1];
-
-            tokenizer.SetDelimiter(std::string("s"));
-            tokenizer.SetString(&rest);
-            tokenizer.GetTokens(&tokens);
-
-            ssec = tokens[0];
-            ss.str(std::string());
-            ss.clear();
-            ss << ssec;
-            ss >> vdate.seconds;
-
-            return vdate;
-        }
-
+        vex_date extract_vex_date(const std::string& timestamp);
+        
         static
-        std::string vex_date_to_iso8601_string(vex_date vdate)
-        {
-            std::stringstream ss;
-            ss << vdate.year;
-            ss << "-";
-
-            date::year y(vdate.year);
-            date::days ord_day(vdate.day_of_year);
-            date::sys_days ymd = get_year_month_day(y,ord_day);
-
-            //convert day-of-year to month-day
-            auto month = year_month_day{ymd}.month();
-            auto mday = year_month_day{ymd}.day();
-            ss << std::setfill('0') << std::setw(2) << (unsigned) month;
-            ss << "-";
-            ss << std::setfill('0') << std::setw(2) << (unsigned) mday;
-
-            ss << "T";
-            ss << vdate.hours;
-            ss << ":";
-            ss << vdate.minutes;
-            ss << ":";
-            ss << vdate.seconds;
-            ss << "Z";
-            return ss.str();
-        }
-
+        std::string vex_date_to_iso8601_string(vex_date vdate);
 };
 
 
@@ -531,6 +430,105 @@ hops_clock::to_vex_format(const std::chrono::time_point<hops_clock, std::chrono:
 
     return ss.str();
 }
+
+
+
+inline
+hops_clock::vex_date 
+hops_clock::extract_vex_date(const std::string& timestamp)
+{
+    //TODO FIXME -- issue errors if there is a problem when parsing
+    MHO_Tokenizer tokenizer;
+    std::vector<std::string> tokens;
+    std::stringstream ss;
+    std::string rest;
+    std::string syear, sord_day, shour, smin, ssec;
+    vex_date vdate;
+
+    tokenizer.SetDelimiter(std::string("y"));
+    tokenizer.SetString(&timestamp);
+    tokenizer.GetTokens(&tokens);
+
+    syear = tokens[0];
+    ss << syear;
+    ss >> vdate.year;
+    rest = tokens[1];
+
+    tokenizer.SetDelimiter(std::string("d"));
+    tokenizer.SetString(&rest);
+    tokenizer.GetTokens(&tokens);
+
+    sord_day = tokens[0];
+    ss.str(std::string());
+    ss.clear();
+    ss << sord_day;
+    ss >> vdate.day_of_year;
+    rest = tokens[1];
+
+    tokenizer.SetDelimiter(std::string("h"));
+    tokenizer.SetString(&rest);
+    tokenizer.GetTokens(&tokens);
+
+    shour = tokens[0];
+    ss.str(std::string());
+    ss.clear();
+    ss << shour;
+    ss >> vdate.hours;
+    rest = tokens[1];
+
+    tokenizer.SetDelimiter(std::string("m"));
+    tokenizer.SetString(&rest);
+    tokenizer.GetTokens(&tokens);
+
+    smin = tokens[0];
+    ss.str(std::string());
+    ss.clear();
+    ss << smin;
+    ss >> vdate.minutes;
+    rest = tokens[1];
+
+    tokenizer.SetDelimiter(std::string("s"));
+    tokenizer.SetString(&rest);
+    tokenizer.GetTokens(&tokens);
+
+    ssec = tokens[0];
+    ss.str(std::string());
+    ss.clear();
+    ss << ssec;
+    ss >> vdate.seconds;
+
+    return vdate;
+}
+
+inline
+std::string 
+hops_clock::vex_date_to_iso8601_string(hops_clock::vex_date vdate)
+{
+    std::stringstream ss;
+    ss << vdate.year;
+    ss << "-";
+
+    date::year y(vdate.year);
+    date::days ord_day(vdate.day_of_year);
+    date::sys_days ymd = get_year_month_day(y,ord_day);
+
+    //convert day-of-year to month-day
+    auto month = year_month_day{ymd}.month();
+    auto mday = year_month_day{ymd}.day();
+    ss << std::setfill('0') << std::setw(2) << (unsigned) month;
+    ss << "-";
+    ss << std::setfill('0') << std::setw(2) << (unsigned) mday;
+
+    ss << "T";
+    ss << vdate.hours;
+    ss << ":";
+    ss << vdate.minutes;
+    ss << ":";
+    ss << vdate.seconds;
+    ss << "Z";
+    return ss.str();
+}
+
 
 
 }//end of namespace
