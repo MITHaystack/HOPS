@@ -34,7 +34,7 @@ int main(int /*argc*/, char** /*argv*/)
     std::cout<<"ticks since hops clock epoch = "<<hops_now.time_since_epoch().count()<<std::endl;
 
     auto hops_epoch_start_utc = hops_clock::get_hops_epoch_utc();
-    auto hops_epoch_start_tai = hops_clock::get_hops_epoch_tai();
+    auto hops_epoch_start_tai = tai_clock::from_utc(hops_epoch_start_utc);
 
     std::cout<<"hops clock epoch start as UTC date/time = "<<hops_epoch_start_utc<<std::endl;
     std::cout<<"hops clock epoch start as TAI date/time = "<<hops_epoch_start_tai<<std::endl;
@@ -69,6 +69,12 @@ int main(int /*argc*/, char** /*argv*/)
     auto hops_tp4 = hops_clock::from_vex_format(vex_str); 
 
     std::cout<<"hops time-point converted back from vex string = "<<hops_tp4<<std::endl;
+
+    std::string vtest = "2020y63d12h08m04s";
+
+    std::cout<<"converting the following vex date/time: "<<vtest<<std::endl;
+
+    std::cout<<"to hops date in iso-8601 format: "<<hops_clock::to_iso8601_format( hops_clock::from_vex_format(vtest) )<<std::endl;
 
     return 0;
 }
