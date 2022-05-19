@@ -23,7 +23,7 @@
 #include "MHO_Tokenizer.hh"
 #include "MHO_Message.hh"
 
-#define J2000_TAI_EPOCH "2000-01-01T11:59:27.816Z"
+#define J2000_TAI_EPOCH "2000-01-01 11:59:27.816"
 #define ISO8601_UTC_FORMAT "%FT%TZ"
 #define HOPS_TIMESTAMP_PREFIX "HOPS-J2000"
 #define HOPS_TIME_DELIM "|"
@@ -121,7 +121,7 @@ class hops_clock
 
         static date::utc_time< std::chrono::nanoseconds > get_hops_epoch_utc()
         {
-            std::string frmt = ISO8601_UTC_FORMAT;
+            std::string frmt = "%F %T";
             std::string j2000 = J2000_TAI_EPOCH;
             date::tai_time<std::chrono::nanoseconds> j2000_tai_epoch;
             std::istringstream ss(j2000);
@@ -162,6 +162,15 @@ class hops_clock
         
         static
         std::string vex_date_to_iso8601_string(vex_date vdate);
+
+        static 
+        std::string remove_trailing_zeros(std::string value)
+        {
+            std::string ret_val = value;
+            ret_val.erase(ret_val.find_last_not_of('0') + 1, std::string::npos);
+            return ret_val;
+        }
+
 };
 
 
@@ -323,8 +332,6 @@ hops_clock::to_iso8601_format(const std::chrono::time_point<hops_clock, std::chr
     return ss.str();
 }
 
-
-
 inline
 std::chrono::time_point<hops_clock, std::chrono::nanoseconds >
 hops_clock::from_hops_raw_format(const string& timestamp)
@@ -421,10 +428,8 @@ hops_clock::to_vex_format(const std::chrono::time_point<hops_clock, std::chrono:
         nss << std::setfill('0') << std::setw(9) << nanos.count();
         std::string snano_sec;
         nss >> snano_sec;
-        //removing trailing zeros
-        snano_sec.erase(snano_sec.find_last_not_of('0') + 1, std::string::npos);
         ss << ".";
-        ss << snano_sec;
+        ss << remove_trailing_zeros(snano_sec);
     }
     ss << "s";
 
@@ -494,7 +499,7 @@ hops_clock::extract_vex_date(const std::string& timestamp)
     ssec = tokens[0];
     ss.str(std::string());
     ss.clear();
-    ss << ssec;
+    ss << std::setprecision(15) << ssec;
     ss >> vdate.seconds;
 
     return vdate;
@@ -524,7 +529,11 @@ hops_clock::vex_date_to_iso8601_string(hops_clock::vex_date vdate)
     ss << ":";
     ss << vdate.minutes;
     ss << ":";
-    ss << vdate.seconds;
+
+    std::stringstream nss;
+    nss << std::setprecision(9) << vdate.seconds;
+    std::string seconds_value = nss.str();
+    ss << remove_trailing_zeros(seconds_value);
     ss << "Z";
     return ss.str();
 }

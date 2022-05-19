@@ -4,7 +4,6 @@
 
 
 #include "date/date.h"
-#include "date/julian.h"
 #include "date/tz.h"
 
 using namespace date;
@@ -13,6 +12,19 @@ using namespace std::chrono;
 
 
 #include "MHO_Clock.hh"
+
+
+/*
+From wikipedia -- TODO: find an actual source for this!!
+
+The currently-used standard epoch "J2000" is defined by international agreement to be equivalent to:
+
+The Gregorian date January 1, 2000, at 12:00 TT (Terrestrial Time).
+The Julian date 2451545.0 TT (Terrestrial Time).[9]
+January 1, 2000, 11:59:27.816 TAI (International Atomic Time).[10]
+January 1, 2000, 11:58:55.816 UTC (Coordinated Universal Time).[b]
+
+*/
 
 using namespace hops;
 
