@@ -12,8 +12,7 @@
 #include "MHO_DirectoryInterface.hh"
 #include "MHO_BinaryFileInterface.hh"
 
-#include "MHO_Visibilities.hh"
-#include "MHO_ChannelizedVisibilities.hh"
+#include "MHO_ContainerDefinitions.hh"
 
 #include <pybind11/pybind11.h>
 #include <pybind11/embed.h>

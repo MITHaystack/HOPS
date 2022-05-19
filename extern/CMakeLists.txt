@@ -1,7 +1,7 @@
 add_subdirectory(json)
 
 if(HOPS_USE_PYBIND11)
-    add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/extern/pybind11)
+    add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/pybind11)
 endif(HOPS_USE_PYBIND11)
 
 
