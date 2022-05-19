@@ -21,12 +21,12 @@
 #include "date/tz.h"
 
 #include "MHO_Tokenizer.hh"
+#include "MHO_Message.hh"
 
 #define J2000_TAI_EPOCH "2000-01-01T11:59:27.816Z"
 #define ISO8601_UTC_FORMAT "%FT%TZ"
 #define HOPS_TIMESTAMP_PREFIX "HOPS-J2000"
 #define HOPS_TIME_DELIM "|"
-#define HOPS_REF_FRAME "UTC"
 #define HOPS_TIME_UNIT "ns"
 
 namespace hops 
@@ -119,7 +119,7 @@ class hops_clock
         std::string
         to_vex_format(const std::chrono::time_point<hops_clock, std::chrono::nanoseconds >& tp, bool truncate_to_nearest_second = false);
 
-        static date::utc_time< std::chrono::nanoseconds > get_hops_epoch()
+        static date::utc_time< std::chrono::nanoseconds > get_hops_epoch_utc()
         {
             std::string frmt = ISO8601_UTC_FORMAT;
             std::string j2000 = J2000_TAI_EPOCH;
@@ -129,6 +129,18 @@ class hops_clock
             date::from_stream(stream, frmt.c_str(), j2000_tai_epoch);
             return std::chrono::time_point_cast<std::chrono::nanoseconds>( date::tai_clock::to_utc( j2000_tai_epoch ) );
         }
+
+        static date::tai_time< std::chrono::nanoseconds > get_hops_epoch_tai()
+        {
+            std::string frmt = ISO8601_UTC_FORMAT;
+            std::string j2000 = J2000_TAI_EPOCH;
+            date::tai_time<std::chrono::nanoseconds> j2000_tai_epoch;
+            std::istringstream ss(j2000);
+            std::istream stream(ss.rdbuf());
+            date::from_stream(stream, frmt.c_str(), j2000_tai_epoch);
+            return j2000_tai_epoch;
+        }
+
 
     private:
 
@@ -140,7 +152,116 @@ class hops_clock
             return sd - sys_days{y/jan/0};
         }
 
+        static
+        date::sys_days 
+        get_year_month_day(date::year y, date::days ord_day)
+        {
+            return sys_days{y/jan/0} + ord_day;
+        }
 
+
+        struct vex_date 
+        {
+            int year;
+            int day_of_year;
+            int hours;
+            int minutes;
+            double seconds;
+        };
+
+        static
+        vex_date extract_vex_date(const std::string& timestamp)
+        {
+            //TODO FIXME -- issue errors if there is a problem when parsing
+            MHO_Tokenizer tokenizer;
+            std::vector<std::string> tokens;
+            std::stringstream ss;
+            std::string rest;
+            std::string syear, sord_day, shour, smin, ssec;
+            vex_date vdate;
+
+            tokenizer.SetDelimiter(std::string("y"));
+            tokenizer.SetString(&timestamp);
+            tokenizer.GetTokens(&tokens);
+
+            syear = tokens[0];
+            ss << syear;
+            ss >> vdate.year;
+            rest = tokens[1];
+
+            tokenizer.SetDelimiter(std::string("d"));
+            tokenizer.SetString(&rest);
+            tokenizer.GetTokens(&tokens);
+
+            sord_day = tokens[0];
+            ss.str(std::string());
+            ss.clear();
+            ss << sord_day;
+            ss >> vdate.day_of_year;
+            rest = tokens[1];
+
+            tokenizer.SetDelimiter(std::string("h"));
+            tokenizer.SetString(&rest);
+            tokenizer.GetTokens(&tokens);
+
+            shour = tokens[0];
+            ss.str(std::string());
+            ss.clear();
+            ss << shour;
+            ss >> vdate.hours;
+            rest = tokens[1];
+
+            tokenizer.SetDelimiter(std::string("m"));
+            tokenizer.SetString(&rest);
+            tokenizer.GetTokens(&tokens);
+
+            smin = tokens[0];
+            ss.str(std::string());
+            ss.clear();
+            ss << smin;
+            ss >> vdate.minutes;
+            rest = tokens[1];
+
+            tokenizer.SetDelimiter(std::string("s"));
+            tokenizer.SetString(&rest);
+            tokenizer.GetTokens(&tokens);
+
+            ssec = tokens[0];
+            ss.str(std::string());
+            ss.clear();
+            ss << ssec;
+            ss >> vdate.seconds;
+
+            return vdate;
+        }
+
+        static
+        std::string vex_date_to_iso8601_string(vex_date vdate)
+        {
+            std::stringstream ss;
+            ss << vdate.year;
+            ss << "-";
+
+            date::year y(vdate.year);
+            date::days ord_day(vdate.day_of_year);
+            date::sys_days ymd = get_year_month_day(y,ord_day);
+
+            //convert day-of-year to month-day
+            auto month = year_month_day{ymd}.month();
+            auto mday = year_month_day{ymd}.day();
+            ss << std::setfill('0') << std::setw(2) << (unsigned) month;
+            ss << "-";
+            ss << std::setfill('0') << std::setw(2) << (unsigned) mday;
+
+            ss << "T";
+            ss << vdate.hours;
+            ss << ":";
+            ss << vdate.minutes;
+            ss << ":";
+            ss << vdate.seconds;
+            ss << "Z";
+            return ss.str();
+        }
 
 };
 
@@ -156,7 +277,7 @@ hops_clock::to_utc(const hops_time<Duration>& t) NOEXCEPT
 {
 
     using CD = typename std::common_type<Duration, std::chrono::nanoseconds>::type;
-    date::utc_time< std::chrono::nanoseconds > hops_epoch_start = get_hops_epoch();
+    date::utc_time< std::chrono::nanoseconds > hops_epoch_start = get_hops_epoch_utc();
     return utc_time<CD>(t.time_since_epoch() + hops_epoch_start.time_since_epoch());
 }
 
@@ -166,7 +287,7 @@ hops_time<typename std::common_type<Duration, std::chrono::nanoseconds>::type>
 hops_clock::from_utc(const utc_time<Duration>& t) NOEXCEPT
 {
     using CD = typename std::common_type<Duration, std::chrono::nanoseconds>::type;
-    date::utc_time< std::chrono::nanoseconds > hops_epoch_start = get_hops_epoch();
+    date::utc_time< std::chrono::nanoseconds > hops_epoch_start = get_hops_epoch_utc();
     return hops_time<CD>(t.time_since_epoch() - hops_epoch_start.time_since_epoch());
 }
 
@@ -234,7 +355,7 @@ local_time<typename std::common_type<Duration, std::chrono::nanoseconds>::type>
 hops_clock::to_local(const hops_time<Duration>& t) NOEXCEPT
 {
     using CD = typename std::common_type<Duration, std::chrono::nanoseconds>::type;
-    date::utc_time<CD> hops_epoch_start = std::chrono::time_point_cast<CD>( get_hops_epoch() );
+    date::utc_time<CD> hops_epoch_start = std::chrono::time_point_cast<CD>( get_hops_epoch_utc() );
     date::utc_time<CD> ut_time{t.time_since_epoch() + std::chrono::time_point_cast<Duration>(hops_epoch_start).time_since_epoch()};
     return utc_clock::to_local(ut_time);
 }
@@ -246,7 +367,7 @@ hops_clock::from_local(const local_time<Duration>& t) NOEXCEPT
 {
     using CD = typename std::common_type<Duration, std::chrono::nanoseconds>::type;
     date::utc_time<CD> t2 = utc_clock::from_local(t);
-    date::utc_time<CD> hops_epoch_start = std::chrono::time_point_cast<CD>( get_hops_epoch() );
+    date::utc_time<CD> hops_epoch_start = std::chrono::time_point_cast<CD>( get_hops_epoch_utc() );
     return hops_time<CD>{t2.time_since_epoch() - std::chrono::time_point_cast<Duration>(hops_epoch_start).time_since_epoch()};
 }
 
@@ -303,15 +424,6 @@ hops_clock::to_iso8601_format(const std::chrono::time_point<hops_clock, std::chr
     return ss.str();
 }
 
-inline
-std::chrono::time_point<hops_clock, std::chrono::nanoseconds >
-hops_clock::from_vex_format(const string& timestamp)
-{
-    //TODO FIXME !! 
-    std::cout<<"NO IMPL!"<<std::endl;
-    hops_time<std::chrono::nanoseconds> hops_tp;
-    return hops_tp;
-}
 
 
 inline
@@ -323,23 +435,23 @@ hops_clock::from_hops_raw_format(const string& timestamp)
     std::vector<std::string> tokens;
     tokenizer.SetString(&timestamp);
     tokenizer.GetTokens(&tokens);
+    if(tokens.size() == 3 )
+    {
+        std::string hops_prefix = tokens[0];
+        std::string unit = tokens[1];
+        std::string nanosecond_count = tokens[2];
+        if( hops_prefix == std::string(HOPS_TIMESTAMP_PREFIX) && unit == std::string(HOPS_TIME_UNIT) )
+        {
+            std::stringstream ss;
+            ss << nanosecond_count;
+            int64_t ns;
+            ss >> ns;
+            return std::chrono::time_point<hops_clock, std::chrono::nanoseconds >( std::chrono::nanoseconds(ns) );
+        }
+    }
+    msg_error("utility", "hops timestamp string not understood or supported, returning epoch start. "<< eom);
+    return std::chrono::time_point<hops_clock, std::chrono::nanoseconds >( std::chrono::nanoseconds(0) );
 
-    //std::cout<<"ntokens = "<<tokens.size()<<std::endl;
-
-    //TODO FIXME -- CHECK hops_prefix, ref_frame, unit, etc for validity!
-    std::string hops_prefix = tokens[0];
-    std::string ref_frame = tokens[1]; //eventually we may also want to support TAI in addition to UTC
-    std::string unit = tokens[2];
-    std::string nanosecond_count = tokens[3];
-
-    //std::cout<<"# nanoseconds = "<<nanosecond_count<<std::endl;
-
-    std::stringstream ss;
-    ss << nanosecond_count;
-    int64_t ns;
-    ss >> ns;
-    return std::chrono::time_point<hops_clock, std::chrono::nanoseconds >( std::chrono::nanoseconds(ns) );
-    //return hops_tp;
 }
 
 inline
@@ -349,8 +461,6 @@ hops_clock::to_hops_raw_format(const std::chrono::time_point<hops_clock, std::ch
     std::stringstream ss;
     ss << HOPS_TIMESTAMP_PREFIX;
     ss << HOPS_TIME_DELIM;
-    ss << HOPS_REF_FRAME;
-    ss << HOPS_TIME_DELIM;
     ss << HOPS_TIME_UNIT;
     ss << HOPS_TIME_DELIM;
     ss << tp.time_since_epoch().count();
@@ -358,10 +468,20 @@ hops_clock::to_hops_raw_format(const std::chrono::time_point<hops_clock, std::ch
 }
 
 inline
+std::chrono::time_point<hops_clock, std::chrono::nanoseconds >
+hops_clock::from_vex_format(const string& timestamp)
+{
+    vex_date vdate = hops_clock::extract_vex_date(timestamp);
+    //convert the vex date info to an ISO-8601-style year-month-day type format 
+    std::string vex_as_iso8601 = vex_date_to_iso8601_string(vdate);
+    return hops_clock::from_iso8601_format(vex_as_iso8601);
+}
+
+
+inline
 std::string
 hops_clock::to_vex_format(const std::chrono::time_point<hops_clock, std::chrono::nanoseconds >& tp, bool truncate_to_nearest_second)
 {
-
     //convert the time point to sys time, and extract the date
     auto sys_tp = hops_clock::to_sys(tp);
     auto dp = sys_days( floor<date::days>( sys_tp ) );
