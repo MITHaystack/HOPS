@@ -1,4 +1,5 @@
 #include "MHO_ContainerDictionary.hh"
+#include "MHO_ContainerDefinitions.hh"
 
 #define AddTable1(TYPE1)                                                       \
 AddClassType< MHO_AxisPack_##TYPE1 >();                                        \
@@ -34,6 +35,37 @@ namespace hops
 
 MHO_ContainerDictionary::MHO_ContainerDictionary()
 {
+    AddClassType<MHO_ObjectTags>();
+
+    //NOTE: Most of the different types below are not needed or used anywhere 
+    //so we could easily trim this long list down to a much more focused set of 
+    //objects. However, having a wide variety defined already lets us handle stuff 
+    //which may fit into these objects but which has not been defined yet, and 
+    //demonstrate how to add support for new types
+
+    #ifndef HOPS_BUILD_EXTRA_CONTAINERS
+
+
+    //only add the bare minimum types here
+    AddClassType<baseline_axis_pack>();
+    AddClassType<visibility_type>();
+    AddClassType<weight_type>();
+    AddClassType<multitone_pcal_type>();
+
+    AddClassType<ch_baseline_axis_pack>();
+    AddClassType<ch_visibility_type>(); 
+    AddClassType<ch_weight_type>(); 
+
+    AddClassType<station_coord_axis_pack>();
+    AddClassType<station_coord_type>();
+
+    //don't need sbd type, as it is the same as visibility type
+
+    #else
+
+    #pragma message("Building extra data containers types.")
+
+
     //add all of the types we define
     AddClassType<MHO_ScalarBool>();
     AddClassType<MHO_ScalarChar>();
@@ -54,7 +86,8 @@ MHO_ContainerDictionary::MHO_ContainerDictionary()
     AddClassType<MHO_ScalarComplexLongDouble>();
     AddClassType<MHO_ScalarString>();
 
-    AddClassType<MHO_VectorBool>();
+    //boolean vectors are a problem due underlying impl of std::vector<bool (see MHO_NDArrayWrapper_1.hh line 195)
+    //AddClassType<MHO_VectorBool>(); 
     AddClassType<MHO_VectorChar>();
     AddClassType<MHO_VectorUChar>();
     AddClassType<MHO_VectorShort>();
@@ -73,7 +106,7 @@ MHO_ContainerDictionary::MHO_ContainerDictionary()
     AddClassType<MHO_VectorComplexLongDouble>();
     AddClassType<MHO_VectorString>();
 
-    AddClassType<MHO_AxisBool>();
+    //AddClassType<MHO_AxisBool>(); //no bools
     AddClassType<MHO_AxisChar>();
     AddClassType<MHO_AxisUChar>();
     AddClassType<MHO_AxisShort>();
@@ -93,8 +126,6 @@ MHO_ContainerDictionary::MHO_ContainerDictionary()
     AddClassType<MHO_AxisString>();
 
     ////////////////////////////////////////////////////////////////////////////////
-    //TODO FIXME -- find a way to loop over macro arguments so we don't need so
-    //many macro calls (easier said than done)
 
     AddTable1(Int);
     AddTable1(Double);
@@ -239,6 +270,8 @@ MHO_ContainerDictionary::MHO_ContainerDictionary()
     AddTable4(String, String, String, Int);
     AddTable4(String, String, String, Double);
     AddTable4(String, String, String, String);
+
+    #endif
 
 };
 

@@ -23,7 +23,10 @@ class MHO_NDArrayWrapper<XValueType, 0>:
 
         MHO_NDArrayWrapper(){};
         MHO_NDArrayWrapper(const XValueType& data){fData = data;}
-        MHO_NDArrayWrapper(const MHO_NDArrayWrapper& obj){fData = obj.fData;}
+        MHO_NDArrayWrapper(const MHO_NDArrayWrapper& obj)
+        {
+            fData = obj.fData;
+        }
 
         virtual ~MHO_NDArrayWrapper(){};
 
@@ -36,7 +39,10 @@ class MHO_NDArrayWrapper<XValueType, 0>:
 
         MHO_NDArrayWrapper& operator=(const MHO_NDArrayWrapper& rhs)
         {
-            if(this != &rhs){fData = rhs.fData;}
+            if(this != &rhs)
+            {
+                fData = rhs.fData;
+            }
             return *this;
         }
 

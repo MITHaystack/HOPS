@@ -12,8 +12,7 @@
 #include "MHO_DirectoryInterface.hh"
 #include "MHO_BinaryFileInterface.hh"
 
-#include "MHO_Visibilities.hh"
-#include "MHO_ChannelizedVisibilities.hh"
+#include "MHO_ContainerDefinitions.hh"
 
 #include <pybind11/pybind11.h>
 #include <pybind11/embed.h>
@@ -130,7 +129,7 @@ int main(int argc, char** argv)
     std::cout<<"Will use corel file: "<<corel_file<<std::endl;
 
     //now open and read the (channelized) baseline visibility data
-    ch_baseline_data_type* bl_data = new ch_baseline_data_type();
+    ch_visibility_type* bl_data = new ch_visibility_type();
     MHO_BinaryFileInterface inter;
     bool status = inter.OpenToRead(corel_file);
     if(status)

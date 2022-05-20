@@ -1,31 +1,21 @@
 #include <getopt.h>
 #include "MHO_Message.hh"
 
-
 #include "MHO_ScalarContainer.hh"
 #include "MHO_VectorContainer.hh"
 #include "MHO_TableContainer.hh"
-
-#ifdef USE_ROOT
-    #include "TCanvas.h"
-    #include "TApplication.h"
-    #include "TStyle.h"
-    #include "TColor.h"
-    #include "TGraph.h"
-    #include "TGraph2D.h"
-    #include "TH2D.h"
-    #include "TMath.h"
-    #include "TMultiGraph.h"
-#endif
-
 
 #include "MHO_BinaryFileStreamer.hh"
 #include "MHO_BinaryFileInterface.hh"
 #include "MHO_ClassIdentityMap.hh"
 
-#include "MHO_Visibilities.hh"
-#include "MHO_ChannelizedVisibilities.hh"
+#include "MHO_ContainerDefinitions.hh"
 
+#ifdef USE_ROOT
+    #include "TApplication.h"
+    #include "MHO_RootCanvasManager.hh"
+    #include "MHO_RootGraphManager.hh"
+#endif
 
 using namespace hops;
 
@@ -34,8 +24,7 @@ using namespace hops;
 #define XDIM 0
 #define YDIM 1
 #define ZDIM 2
-typedef MHO_AxisPack< MHO_Axis<double>, MHO_Axis<double>, MHO_Axis<char> > axis_pack_test;
-
+typedef MHO_AxisPack< MHO_Axis<double>, MHO_Axis<double>, MHO_Axis<std::string> > axis_pack_test;
 
 int main(int argc, char** argv)
 {
@@ -73,10 +62,18 @@ int main(int argc, char** argv)
     //construct the set of objects we want to stream in/out
     MHO_ScalarContainer< double >* cscalar = new MHO_ScalarContainer< double >();
     cscalar->SetValue(3.14159);
+    std::string csname = "pi";
+    cscalar->Insert(std::string("name"), csname);
+    cscalar->Insert(std::string("units"), std::string("radians"));
+    cscalar->Insert(std::string("test"), 1);
+
 
     size_t vdim = 100;
     MHO_VectorContainer< int >* cvector = new MHO_VectorContainer< int >(vdim);
     for(std::size_t i=0; i<vdim; i++){cvector->at(i) = i;};
+
+    // cvector->SetName(std::string("test-vector-here"));
+    // cvector->SetUnits(std::string("m/s"));
 
     size_t* dim = new size_t[NDIM];
     dim[0] = 256; //x
@@ -90,6 +87,8 @@ int main(int argc, char** argv)
     {
         x_axis->at(i) = i*(2.0*M_PI/(double)x_axis_size);
     }
+    // ctable->SetName(std::string("test-table"));
+    // ctable->SetUnits(std::string("kg"));
 
     //now add some labels to the x_axis
     size_t chan_width = 32;
@@ -124,9 +123,9 @@ int main(int argc, char** argv)
 
     auto* z_axis = &(std::get<ZDIM>(*ctable));
     size_t z_axis_size = z_axis->GetDimension(0);
-    z_axis->at(0) = 'r';
-    z_axis->at(1) = 'g';
-    z_axis->at(2) = 'b';
+    z_axis->at(0) = std::string("ar");
+    z_axis->at(1) = std::string("bg");
+    z_axis->at(2) = std::string("cb");
 
     for(size_t i=0; i<x_axis_size; i++)
     {
@@ -141,7 +140,7 @@ int main(int argc, char** argv)
     }
 
 
-    ch_baseline_data_type* ch_bl_data = new ch_baseline_data_type();
+    ch_visibility_type* ch_bl_data = new ch_visibility_type();
 
     MHO_ClassIdentityMap cid_map;
     cid_map.AddClassType(*cscalar);
@@ -176,21 +175,58 @@ int main(int argc, char** argv)
     inter.Close();
 
 
-    //lets extract all of the object keys in the index file just for inspection
+    std::cout<<"Keys from object file:"<<std::endl;
+
+    //lets extract all of the object keys in the object file just for inspection
     std::vector< MHO_FileKey > ikeys;
-    bool result = inter.ExtractObjectKeys(index_filename, ikeys);
+    bool result = inter.ExtractFileObjectKeys(filename, ikeys);
 
     for(auto it = ikeys.begin(); it != ikeys.end(); it++)
     {
         std::cout<<"key:"<<std::endl;
-        std::cout<<"sync: "<<it->fSync<<std::endl;
-        std::cout<<"label: "<<it->fLabel<<std::endl;
+
+        std::stringstream ss1; 
+        ss1 << std::hex << it->fSync;
+        std::cout<<"sync: "<<ss1.str()<<std::endl;
+
+        std::stringstream ss2;
+        ss2 << std::hex << it->fLabel;
+        std::cout<<"label: "<<ss2.str()<<std::endl;
+
         std::cout<<"object uuid: "<<it->fObjectId.as_string()<<std::endl;
         std::cout<<"type uuid: "<<it->fTypeId.as_string()<<std::endl;
         std::string class_name = cid_map.GetClassNameFromUUID(it->fTypeId);
         std::cout<<"class name = "<<class_name<<std::endl;
         std::cout<<"size (bytes): "<<it->fSize<<std::endl;
-        std::cout<<"----"<<std::endl;
+        std::cout<<"------------------------------------------------------------"<<std::endl;
+    }
+
+    ikeys.clear();
+    inter.Close();
+
+    std::cout<<"Keys from index file:"<<std::endl;
+
+    //lets extract all of the object keys in the index file just for inspection
+    //std::vector< MHO_FileKey > ikeys;
+    result = inter.ExtractIndexFileObjectKeys(index_filename, ikeys);
+    for(auto it = ikeys.begin(); it != ikeys.end(); it++)
+    {
+        std::cout<<"key:"<<std::endl;
+
+        std::stringstream ss1; 
+        ss1 << std::hex << it->fSync;
+        std::cout<<"sync: "<<ss1.str()<<std::endl;
+
+        std::stringstream ss2;
+        ss2 << std::hex << it->fLabel;
+        std::cout<<"label: "<<ss2.str()<<std::endl;
+
+        std::cout<<"object uuid: "<<it->fObjectId.as_string()<<std::endl;
+        std::cout<<"type uuid: "<<it->fTypeId.as_string()<<std::endl;
+        std::string class_name = cid_map.GetClassNameFromUUID(it->fTypeId);
+        std::cout<<"class name = "<<class_name<<std::endl;
+        std::cout<<"size (bytes): "<<it->fSize<<std::endl;
+        std::cout<<"------------------------------------------------------------"<<std::endl;
     }
 
     MHO_ScalarContainer< double >* cscalar2 = new MHO_ScalarContainer< double >();
@@ -219,63 +255,22 @@ int main(int argc, char** argv)
     std::cout<<"starting root plotting"<<std::endl;
 
     //ROOT stuff for plots
-    TApplication* App = new TApplication("PowerPlot",&argc,argv);
-    TStyle* myStyle = new TStyle("Plain", "Plain");
-    myStyle->SetCanvasBorderMode(0);
-    myStyle->SetPadBorderMode(0);
-    myStyle->SetPadColor(0);
-    myStyle->SetCanvasColor(0);
-    myStyle->SetTitleColor(1);
-    myStyle->SetPalette(1,0);   // nice color scale for z-axis
-    myStyle->SetCanvasBorderMode(0); // gets rid of the stupid raised edge around the canvas
-    myStyle->SetTitleFillColor(0); //turns the default dove-grey background to white
-    myStyle->SetCanvasColor(0);
-    myStyle->SetPadColor(0);
-    myStyle->SetTitleFillColor(0);
-    myStyle->SetStatColor(0); //this one may not work
-    const int NRGBs = 5;
-    const int NCont = 48;
-    double stops[NRGBs] = { 0.00, 0.34, 0.61, 0.84, 1.00 };
-    double red[NRGBs]   = { 0.00, 0.00, 0.87, 1.00, 0.51 };
-    double green[NRGBs] = { 0.00, 0.81, 1.00, 0.20, 0.00 };
-    double blue[NRGBs]  = { 0.51, 1.00, 0.12, 0.00, 0.00 };
-    TColor::CreateGradientColorTable(NRGBs, stops, red, green, blue, NCont);
-    myStyle->SetNumberContours(NCont);
-    myStyle->cd();
 
-    //plotting objects
-    //set up the axis labels
-    x_axis = &(std::get<XDIM>(*ctable2));
-    x_axis_size = x_axis->GetDimension(0);
-    y_axis = &(std::get<YDIM>(*ctable2));
-    y_axis_size = y_axis->GetDimension(0);
-    z_axis = &(std::get<ZDIM>(*ctable2));
-    z_axis_size = z_axis->GetDimension(0);
+    TApplication* App = new TApplication("test",&argc,argv);
 
-    TGraph2D *gr = new TGraph2D(x_axis_size*y_axis_size);
-    TGraph2D *gg = new TGraph2D(x_axis_size*y_axis_size);
-    TGraph2D *gb = new TGraph2D(x_axis_size*y_axis_size);
-
-    size_t count = 0;
-    for(size_t i=0; i<x_axis_size; i++)
-    {
-        for(size_t j=0; j<y_axis_size; j++)
-        {
-            for(size_t k=0; k<z_axis_size; k++)
-            {
-                gr->SetPoint(count, x_axis->at(i), y_axis->at(j), (*ctable2)(i,j,0) );
-                gg->SetPoint(count, x_axis->at(i), y_axis->at(j), (*ctable2)(i,j,1) );
-                gb->SetPoint(count, x_axis->at(i), y_axis->at(j), (*ctable2)(i,j,2) );
-            }
-            count++;
-        }
-    }
-
-    std::string name("test");
-    TCanvas* c = new TCanvas(name.c_str(),name.c_str(), 50, 50, 950, 850);
-    c->SetFillColor(0);
-    c->SetRightMargin(0.2);
+    MHO_RootCanvasManager cMan;
+    auto c = cMan.CreateCanvas(std::string("test"), 800, 800);
     c->Divide(1,3);
+    
+    auto r_slice = ctable->SliceView(":", ":", 0);
+    auto g_slice = ctable->SliceView(":", ":", 1);
+    auto b_slice = ctable->SliceView(":", ":", 2);
+
+    MHO_RootGraphManager gMan;
+    auto gr = gMan.GenerateGraph2D(r_slice, std::get<0>(*ctable), std::get<1>(*ctable) );
+    auto gg = gMan.GenerateGraph2D(g_slice, std::get<0>(*ctable), std::get<1>(*ctable) );
+    auto gb = gMan.GenerateGraph2D(b_slice, std::get<0>(*ctable), std::get<1>(*ctable) );
+
     c->cd(1);
     gr->Draw("PCOL");
     c->Update();

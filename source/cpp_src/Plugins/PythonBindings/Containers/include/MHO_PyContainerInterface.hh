@@ -2,7 +2,7 @@
 #define MHO_PyContainerInterface_HH__
 
 
-#include "MHO_ChannelizedVisibilities.hh"
+#include "MHO_ContainerDefinitions.hh"
 #include "MHO_PyTableContainer.hh"
 
 #include <pybind11/pybind11.h>
@@ -30,18 +30,18 @@ class MHO_PyContainerInterface
         virtual ~MHO_PyContainerInterface(){};
 
         //single access point to visiblity object
-        void SetVisibilities(ch_baseline_data_type* vis){fVisibilities = vis;};
-        ch_baseline_data_type& GetVisibilities(){return *fVisibilities;}
+        void SetVisibilities(ch_visibility_type* vis){fVisibilities = vis;};
+        ch_visibility_type& GetVisibilities(){return *fVisibilities;}
 
-        MHO_PyTableContainer< ch_baseline_data_type >& GetVisibilityTable()
+        MHO_PyTableContainer< ch_visibility_type >& GetVisibilityTable()
         {
-            if( fVisibilities->HasExtension< MHO_PyTableContainer< ch_baseline_data_type > >() )
+            if( fVisibilities->HasExtension< MHO_PyTableContainer< ch_visibility_type > >() )
             {
-                return *( fVisibilities->AsExtension< MHO_PyTableContainer< ch_baseline_data_type > >() );
+                return *( fVisibilities->AsExtension< MHO_PyTableContainer< ch_visibility_type > >() );
             }
             else
             {
-                return *(fVisibilities->MakeExtension< MHO_PyTableContainer< ch_baseline_data_type > >() );
+                return *(fVisibilities->MakeExtension< MHO_PyTableContainer< ch_visibility_type > >() );
             }
         }
 
@@ -49,7 +49,7 @@ class MHO_PyContainerInterface
     private:
 
         //pointers to objects which have been registered
-        ch_baseline_data_type* fVisibilities;
+        ch_visibility_type* fVisibilities;
 
 };
 

@@ -18,8 +18,12 @@
 namespace hops
 {
 
+class MHO_AxisBase{};
+
+
 template< typename XValueType >
 class MHO_Axis:
+    public MHO_AxisBase,
     public MHO_VectorContainer< XValueType >,
     public MHO_IntervalLabelTree
 {
@@ -44,7 +48,6 @@ class MHO_Axis:
 
 
         virtual ~MHO_Axis(){};
-
 
         virtual uint64_t GetSerializedSize() const override
         {
@@ -81,11 +84,12 @@ class MHO_Axis:
             return s;
         }
 
+    protected:
+
 };
 
 // ////////////////////////////////////////////////////////////////////////////////
-// //using declarations for all basic 'plain-old-data' types
-using MHO_AxisBool = MHO_Axis<bool>;
+// //using declarations for all basic 'plain-old-data' types (except bool!)
 using MHO_AxisChar = MHO_Axis<char>;
 using MHO_AxisUChar = MHO_Axis<unsigned char>;
 using MHO_AxisShort = MHO_Axis<short>;

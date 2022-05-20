@@ -11,7 +11,7 @@
 */
 
 
-//TODO implement an actual compile-time unit mechanism
+//TODO implement an actual unit mechanism
 struct MHO_EmptyUnit {};
 
 #endif /* end of include guard: MHO_Units */

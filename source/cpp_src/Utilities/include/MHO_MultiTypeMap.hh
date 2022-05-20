@@ -34,7 +34,8 @@ class MHO_SingleTypeMap
 
         void Insert(const XKeyType& key, const XValueType& value)
         {
-            fMap.insert( std::pair<XKeyType, XValueType>(key,value) );
+            fMap[key] = value;//allow replacement of values (as opposed to line below)
+            //fMap.insert( std::pair<XKeyType, XValueType>(key,value) );
         }
 
         bool Retrieve(const XKeyType& key, XValueType& value) const

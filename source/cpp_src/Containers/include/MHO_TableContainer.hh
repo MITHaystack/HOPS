@@ -26,13 +26,14 @@
 namespace hops
 {
 
-class MHO_TableContainerBase{}; //only needed for SFINAE
+class MHO_TableContainerBase{}; //only needed for dependent template specializations
 
 template< typename XValueType, typename XAxisPackType >
 class MHO_TableContainer:
     public MHO_TableContainerBase,
     public MHO_NDArrayWrapper< XValueType, XAxisPackType::NAXES::value>,
-    public XAxisPackType
+    public XAxisPackType,
+    public MHO_Taggable
 {
     public:
 
@@ -49,7 +50,8 @@ class MHO_TableContainer:
         //copy constructor
         MHO_TableContainer(const MHO_TableContainer& obj):
             MHO_NDArrayWrapper<XValueType, XAxisPackType::NAXES::value>(obj),
-            XAxisPackType(obj)
+            XAxisPackType(obj),
+            MHO_Taggable(obj)
         {};
 
 
@@ -61,13 +63,16 @@ class MHO_TableContainer:
 
         virtual ~MHO_TableContainer(){};
 
+        virtual MHO_ClassVersion GetVersion() const override {return 0;};
+
         virtual uint64_t GetSerializedSize() const override
         {
             //TODO FIXME
             uint64_t total_size = 0;
             total_size += sizeof(MHO_ClassVersion);
-            total_size += XAxisPackType::NAXES::value*sizeof(std::size_t);
+            total_size += XAxisPackType::NAXES::value*sizeof(uint64_t);
             total_size += XAxisPackType::GetSerializedSize();
+            total_size += MHO_Taggable::GetSerializedSize();
             total_size += (this->fSize)*sizeof(XValueType);
             return total_size;
         }
@@ -92,7 +97,10 @@ class MHO_TableContainer:
         using MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::GetDimensions;
         using MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::GetDimension;
         using MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::GetOffsetForIndices;
+        using MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::SubView;
+        using MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::SliceView;
 
+        using MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::at;
         using MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::operator();
         using MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::operator[];
 
@@ -114,13 +122,11 @@ class MHO_TableContainer:
 
     public:
 
-        //temporary -- for testing
-        //MHO_MultiTypeMap< std::string, std::string, int, double > fTags;
-
         template<typename XStream> friend XStream& operator<<(XStream& s, const MHO_TableContainer& aData)
         {
             //first stream version and dimensions
             s << aData.GetVersion();
+            s << static_cast< const MHO_Taggable& >(aData);
             for(size_t i=0; i < XAxisPackType::NAXES::value; i++)
             {
                 s << aData.fDims[i];
@@ -147,7 +153,9 @@ class MHO_TableContainer:
             }
             else
             {
-                //first stream the axis-pack
+                s >> static_cast< MHO_Taggable& >(aData);
+
+                //next stream the axis-pack
                 std::size_t dims[XAxisPackType::NAXES::value];
                 for(size_t i=0; i < XAxisPackType::NAXES::value; i++)
                 {

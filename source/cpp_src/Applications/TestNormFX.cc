@@ -153,8 +153,8 @@ class MHO_BinaryNDArrayOperator: public MHO_Operator
 };
 
 class MHO_NormFXPrelim: public MHO_BinaryNDArrayOperator<
-    ch_baseline_data_type,
-    ch_baseline_weight_type,
+    ch_visibility_type,
+    ch_weight_type,
     ch_baseline_sbd_type >
 {
     public:
@@ -799,13 +799,13 @@ bool GetCorel(MHO_DirectoryInterface& dirInterface,
               MHO_MK4CorelInterface& corelInterface,
               const std::string& baseline,
               struct mk4_corel*& pcdata,
-              ch_baseline_data_type*& ch_bl_data,
-              ch_baseline_weight_type*& ch_bl_wdata
+              ch_visibility_type*& ch_bl_data,
+              ch_weight_type*& ch_bl_wdata
 )
 {
     bool corel_ok = false;
-    // ch_baseline_data_type* ch_bl_data = nullptr;
-    // ch_baseline_weight_type* ch_bl_wdata = nullptr;
+    // ch_visibility_type* ch_bl_data = nullptr;
+    // ch_weight_type* ch_bl_wdata = nullptr;
     std::string root_file;
     std::vector< std::string > allFiles, corelFiles;
     dirInterface.GetFileList(allFiles);
@@ -823,10 +823,10 @@ bool GetCorel(MHO_DirectoryInterface& dirInterface,
             corelInterface.SetCorelFile(*it);
             corelInterface.SetVexFile(root_file);
             corelInterface.ExtractCorelFile();
-            baseline_data_type* bl_data = corelInterface.GetExtractedVisibilities();
-            baseline_weight_type* bl_wdata = corelInterface.GetExtractedWeights();
+            visibility_type* bl_data = corelInterface.GetExtractedVisibilities();
+            weight_type* bl_wdata = corelInterface.GetExtractedWeights();
 
-            ch_bl_data = new ch_baseline_data_type();
+            ch_bl_data = new ch_visibility_type();
             MHO_VisibilityChannelizer channelizer;
             channelizer.SetArgs(bl_data, ch_bl_data);
             bool init = channelizer.Initialize();
@@ -839,7 +839,7 @@ bool GetCorel(MHO_DirectoryInterface& dirInterface,
             }
 
             MHO_WeightChannelizer wchannelizer;
-            ch_bl_wdata = new ch_baseline_weight_type();
+            ch_bl_wdata = new ch_weight_type();
             wchannelizer.SetArgs(bl_wdata, ch_bl_wdata);
             bool winit = wchannelizer.Initialize();
             bool wexe = false;
@@ -982,13 +982,13 @@ int main(int argc, char** argv)
     //the corel file information for this baseline
     MHO_MK4CorelInterface corelInterface;
     struct mk4_corel* pcdata = nullptr;
-    ch_baseline_data_type* ch_bl_data_prelim = nullptr;
-    ch_baseline_weight_type* ch_bl_wdata_prelim = nullptr;
+    ch_visibility_type* ch_bl_data_prelim = nullptr;
+    ch_weight_type* ch_bl_wdata_prelim = nullptr;
     bool corel_ok = GetCorel(dirInterface, corelInterface, baseline, pcdata, ch_bl_data_prelim, ch_bl_wdata_prelim);
 
     //for the time being...we only want to x-form a single pol-product, so strip down the full array
-    ch_baseline_data_type* ch_bl_data = ch_bl_data_prelim->Clone();
-    ch_baseline_weight_type* ch_bl_wdata = ch_bl_wdata_prelim->Clone();
+    ch_visibility_type* ch_bl_data = ch_bl_data_prelim->Clone();
+    ch_weight_type* ch_bl_wdata = ch_bl_wdata_prelim->Clone();
 
     std::size_t tmp_dims[CH_VIS_NDIM];
     ch_bl_data_prelim->GetDimensions(tmp_dims);

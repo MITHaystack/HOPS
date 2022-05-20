@@ -37,7 +37,6 @@ int make_postplot (struct scan_struct *root,
     {
     extern char *sprint_char_arr();
     struct stat file_status;
-    struct tm *gmtime();
     int fd;
     size_t nb, size, filesize;
     int rc;

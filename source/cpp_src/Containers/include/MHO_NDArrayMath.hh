@@ -15,7 +15,7 @@ class MHO_NDArrayMath
         //modulus of two integers
         static std::size_t Modulus(int arg, int n)
         {
-            //returns arg mod n;
+            //returns positive arg mod n, may want to optimize this for speed
             double div = ( (double)arg )/( (double) n);
             return (std::size_t)(std::fabs( (double)arg - std::floor(div)*((double)n) ) );
         }
@@ -34,6 +34,18 @@ class MHO_NDArrayMath
             }
             return val;
         }
+
+        //for a multidimensional array (using row major indexing) which has the
+        //strides specified in Strides, this function computes the offset from
+        //the first element given the indices in the array Index
+        template<std::size_t RANK> inline static std::size_t
+        OffsetFromStrideIndex(const std::size_t* Strides, const std::size_t* Index)
+        {
+            std::size_t val = 0;
+            for(std::size_t i=0; i<RANK; i++){val += Index[i]*Strides[i];}
+            return val;
+        }
+
 
         //for a multidimensional array (using row major indexing) which has the
         //dimensions specified in DimSize, this function computes the stride between

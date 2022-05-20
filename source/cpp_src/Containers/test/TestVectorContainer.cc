@@ -63,7 +63,6 @@ int main(int /*argc*/, char** /*argv*/)
     {
         MHO_FileKey key;
         inter.Read(*test2, key);
-        //std::cout<<"B object label = "<<blabel<<std::endl;
         std::cout<<"data @ 3 = "<<(*test2)(3)<<std::endl;
     }
     else
@@ -74,37 +73,6 @@ int main(int /*argc*/, char** /*argv*/)
     inter.Close();
 
     delete test2;
-
-
-    //
-    // size_t dim = 100;
-    //
-    // MHO_VectorContainer<double>* test = new MHO_VectorContainer<double>(dim);
-    //
-    // std::cout<<"dimension @ 0 ="<<test->GetDimension(0)<<std::endl;
-    // std::cout<<"total array size = "<<test->GetSize()<<std::endl;
-    //
-    // double* data = test->GetData();
-    //
-    // for(unsigned int i=0; i<dim; i++)
-    // {
-    //     data[i] = i;
-    // }
-    //
-    // std::cout<<"data @ 23 = "<<data[23]<<std::endl;
-    // std::cout<<"data @ 3 = "<<(*test)(3)<<std::endl;
-    //
-    // std::string filename = "./test-vec.bin";
-    //
-    // MHO_BinaryFileStreamer streamer;
-    // streamer.SetFilename(filename);
-    // streamer.OpenToWrite();
-    //
-    // streamer << *test;
-    //
-    // streamer.Close();
-    //
-    // delete test;
 
     return 0;
 }

@@ -1,30 +1,3 @@
-macro( hops_module_paths PATH )
-
-    set( ${PROJECT_NAME}_INCLUDE_INSTALL_DIR ${INCLUDE_INSTALL_DIR} )
-    set( ${PROJECT_NAME}_LIB_INSTALL_DIR ${LIB_INSTALL_DIR} )
-    set( ${PROJECT_NAME}_BIN_INSTALL_DIR ${BIN_INSTALL_DIR} )
-    set( ${PROJECT_NAME}_CONFIG_INSTALL_DIR ${CONFIG_INSTALL_DIR}/${PATH} )
-    set( ${PROJECT_NAME}_DATA_INSTALL_DIR ${DATA_INSTALL_DIR}/${PATH} )
-    # set( ${PROJECT_NAME}_SHARE_INSTALL_DIR ${SHARE_INSTALL_DIR}/${PATH} )
-
-    #don't need these defines at the moment
-    #add_definitions( -D${PROJECT_NAME}_INSTALL_DIR=${CMAKE_INSTALL_PREFIX} )
-    #add_definitions( -D${PROJECT_NAME}_INCLUDE_INSTALL_DIR=${${PROJECT_NAME}_INCLUDE_INSTALL_DIR} )
-    install(CODE "file(MAKE_DIRECTORY \"${${PROJECT_NAME}_INCLUDE_INSTALL_DIR}\")" )
-    #add_definitions( -D${PROJECT_NAME}_LIB_INSTALL_DIR=${${PROJECT_NAME}_LIB_INSTALL_DIR} )
-    install(CODE "file(MAKE_DIRECTORY \"${${PROJECT_NAME}_LIB_INSTALL_DIR}\")" )
-    #add_definitions( -D${PROJECT_NAME}_BIN_INSTALL_DIR=${${PROJECT_NAME}_BIN_INSTALL_DIR} )
-    install(CODE "file(MAKE_DIRECTORY \"${${PROJECT_NAME}_BIN_INSTALL_DIR}\")" )
-    #add_definitions( -D${PROJECT_NAME}_CONFIG_INSTALL_DIR=${${PROJECT_NAME}_CONFIG_INSTALL_DIR} )
-    install(CODE "file(MAKE_DIRECTORY \"${${PROJECT_NAME}_CONFIG_INSTALL_DIR}\")" )
-    #add_definitions( -D${PROJECT_NAME}_DATA_INSTALL_DIR=${${PROJECT_NAME}_DATA_INSTALL_DIR} )
-    install(CODE "file(MAKE_DIRECTORY \"${${PROJECT_NAME}_DATA_INSTALL_DIR}\")" )
-    #add_definitions( -D${PROJECT_NAME}_SHARE_INSTALL_DIR=${${PROJECT_NAME}_DATA_INSTALL_DIR} )
-    # install(CODE "file(MAKE_DIRECTORY \"${${PROJECT_NAME}_SHARE_INSTALL_DIR}\")" )
-
-endmacro()
-
-
 macro(hops_install_headers)
     install(FILES ${ARGN} DESTINATION ${INCLUDE_INSTALL_DIR})
 endmacro()
@@ -66,6 +39,11 @@ endmacro()
 
 macro(hops_install_share_vhelp)
     install(FILES ${ARGN} DESTINATION ${SHARE_VHELP_INSTALL_DIR})
+endmacro()
+
+#for explicitly setting options for extern submodules
+macro(set_option OPT VAL)
+  set("${OPT}" "${VAL}" CACHE INTERNAL "Setting ${OPT}" FORCE)
 endmacro()
 
 # Compiler version check and C++11 support
@@ -145,6 +123,7 @@ macro(hops_require_cpp11)
         endif()
         SET_PROPERTY(GLOBAL PROPERTY CXX11_FLAG ${CXX11_FLAG})
     endif()
+    set_option(CMAKE_CXX_STANDARD 11)
 endmacro()
 
 macro(hops_require_cpp17)
@@ -161,6 +140,8 @@ macro(hops_require_cpp17)
         endif()
         SET_PROPERTY(GLOBAL PROPERTY CXX17_FLAG ${CXX17_FLAG})
     endif()
+
+    set_option(CMAKE_CXX_STANDARD 17)
 endmacro()
 
 macro( hops_include_directories )
@@ -289,3 +270,4 @@ macro (add_cflag CFLAG)
     set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -D${CFLAG}")
     set (CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} PARENT_SCOPE)
 endmacro()
+
