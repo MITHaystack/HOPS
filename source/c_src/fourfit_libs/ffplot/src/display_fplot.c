@@ -59,7 +59,7 @@ display_fplot (struct mk4_fringe *fringe)
         return (0);
 
     i = 0;
-    while (c = temp[i++]) 
+    while ( (c = temp[i++]) ) 
         if (isupper(c)) temp[i-1] = tolower(c);
     for (i=0; i<noptions; i++)
 	if (strncmp (options[i], temp, 6) == 0) break;

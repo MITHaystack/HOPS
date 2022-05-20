@@ -1,8 +1,9 @@
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../../Message/include)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../../Containers/include)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../include)
+include_directories(${EXTERN_HLIBS}/date/include)
 
-set (HOPS_TEST_LIBS MHO_Message MHO_Utilities)
+set (HOPS_TEST_LIBS MHO_Message MHO_Utilities date-tz)
 
 set(SOURCE_BASENAMES
     TestMultiTypeMap
@@ -11,6 +12,10 @@ set(SOURCE_BASENAMES
     TestUUIDGenerator
     TestObjectTags
     TestDirectoryInterface
+    TestLegacyRootCodeGenerator
+    TestTemplateTypenameDeduction
+    TestStationCodeMap
+    TestDateLibraryUsage
 )
 
 foreach( BASENAME ${SOURCE_BASENAMES} )

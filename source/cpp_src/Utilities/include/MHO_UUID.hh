@@ -11,10 +11,12 @@
 */
 
 #include <cstdint>
+#include <cstdlib>
 #include <string>
 #include <sstream>
 #include <iomanip>
 #include <algorithm>
+#include "MHO_Message.hh"
 
 namespace hops
 {
@@ -73,6 +75,34 @@ class MHO_UUID
         }
 
         /**
+        * Truncate the UUID byte array to the first (last) 8 bytes and convert into a 64 bit int
+        * @return A uint64_t composed of the first or last 8 bytes of the UUID
+        */
+        uint64_t as_truncated_long(bool first_half=true) const
+        {
+            byte2ints b2i;
+            for(std::size_t i=0; i<MHO_UUID_LENGTH; i++){b2i.byte_values[i] = fBytes[i];}
+            if(first_half){return b2i.uint_values[0];}
+            else{return b2i.uint_values[1];}
+        }
+
+
+        /**
+        * Split the UUID byte array into two halves conver to uint64_t and return the sum
+        * @return A uint64_t composed of the sum of the two halves of the uuid
+        */
+        uint64_t as_long() const
+        {
+            //stone knives and bear skins...
+            byte2ints b2i;
+            for(std::size_t i=0; i<MHO_UUID_LENGTH; i++){b2i.byte_values[i] = fBytes[i];}
+            uint64_t result = b2i.uint_values[0];
+            result += b2i.uint_values[1];
+            return result;
+        }
+
+
+        /**
         * Convert the UUID byte array into a string
         * @return A std::string containing the hexadecimal digits of the UUID.
         */
@@ -90,14 +120,51 @@ class MHO_UUID
             return ss.str();
         }
 
+
+        /**
+        * Convert a formatted string into a UUID byte array and fill this object
+        * @return update the uuid object from std::string containing the hexadecimal digits of the UUID.
+        */
+        bool from_string(const std::string& uuid_str)
+        {
+            if(uuid_str.size() == 2*MHO_UUID_LENGTH)
+            {
+                for(int i=0; i<MHO_UUID_LENGTH; i++)
+                {
+                    //one byte at a time
+                    std::stringstream ss;
+                    ss << uuid_str[2*i];
+                    ss << uuid_str[2*i+1];
+                    uint32_t val = std::strtoul(ss.str().c_str(), 0, 16);
+                    fBytes[i] = val;
+                }
+                return true;
+            }
+            else 
+            {
+                msg_error("utility", "could not convert string to uuid, length of " << uuid_str.size() << " != " <<2*MHO_UUID_LENGTH << " is incorrect" << eom );
+                return false; 
+            }
+        }
+
         uint64_t size() const
         {
             return MHO_UUID_LENGTH;
         }
 
+        static uint64_t ByteSize(){return MHO_UUID_LENGTH*sizeof(uint8_t);};
+
     protected:
 
+        typedef union 
+        {
+            uint8_t byte_values[MHO_UUID_LENGTH];
+            uint64_t uint_values[2];
+        }
+        byte2ints;
+
         uint8_t fBytes[MHO_UUID_LENGTH];
+
 
 };
 

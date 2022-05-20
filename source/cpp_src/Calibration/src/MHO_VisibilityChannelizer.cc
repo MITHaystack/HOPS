@@ -29,7 +29,7 @@ MHO_VisibilityChannelizer::MHO_VisibilityChannelizer()
 MHO_VisibilityChannelizer::~MHO_VisibilityChannelizer(){}
 
 bool
-MHO_VisibilityChannelizer::InitializeImpl(const baseline_data_type* in, ch_baseline_data_type* out)
+MHO_VisibilityChannelizer::InitializeImpl(const visibility_type* in, ch_visibility_type* out)
 {
     fInitialized = false;
     if(in != nullptr && out != nullptr)
@@ -41,7 +41,7 @@ MHO_VisibilityChannelizer::InitializeImpl(const baseline_data_type* in, ch_basel
         else
         {
             //now we need figure out the dimensions of the ouput array
-            std::size_t input_dim[baseline_data_type::rank::value];
+            std::size_t input_dim[visibility_type::rank::value];
             in->GetDimensions(input_dim);
 
             //and determine the number of unique channel labels
@@ -71,7 +71,7 @@ MHO_VisibilityChannelizer::InitializeImpl(const baseline_data_type* in, ch_basel
 
             //finally we can re-size the output array so that it is ready
             //to recieve data from each channel
-            std::size_t output_dim[ch_baseline_data_type::rank::value];
+            std::size_t output_dim[ch_visibility_type::rank::value];
             output_dim[CH_POLPROD_AXIS] = input_dim[POLPROD_AXIS];
             output_dim[CH_CHANNEL_AXIS] = num_channels;
             output_dim[CH_TIME_AXIS] = input_dim[TIME_AXIS];
@@ -128,7 +128,7 @@ MHO_VisibilityChannelizer::InitializeImpl(const baseline_data_type* in, ch_basel
 }
 
 bool
-MHO_VisibilityChannelizer::ExecuteImpl(const baseline_data_type* in, ch_baseline_data_type* out)
+MHO_VisibilityChannelizer::ExecuteImpl(const visibility_type* in, ch_visibility_type* out)
 {
     if(fInitialized)
     {
@@ -163,7 +163,7 @@ MHO_VisibilityChannelizer::ExecuteImpl(const baseline_data_type* in, ch_baseline
                 char net_sb;
                 int channel_id;
 
-                MHO_IntervalLabel fresh_ch_label;
+                MHO_IntervalLabel fresh_ch_label(ch,ch);
                 ch_label->Retrieve(std::string("sky_freq"), sky_freq);
                 ch_label->Retrieve(std::string("bandwidth"), bw);
                 ch_label->Retrieve(std::string("net_sideband"), net_sb);

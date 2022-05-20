@@ -15,18 +15,19 @@
 #include <complex>
 
 #include "MHO_Serializable.hh"
+#include "MHO_Taggable.hh"
 #include "MHO_NDArrayWrapper.hh"
 
 namespace hops
 {
 
-class MHO_ScalarContainerBase{}; //only needed for SFINAE
+class MHO_ScalarContainerBase{}; //only needed for dependent template specializations
 
 template< typename XValueType >
 class MHO_ScalarContainer:
     public MHO_ScalarContainerBase,
     public MHO_NDArrayWrapper< XValueType, 0>,
-    virtual public MHO_Serializable
+    public MHO_Taggable
 {
     public:
         MHO_ScalarContainer():
@@ -35,11 +36,24 @@ class MHO_ScalarContainer:
 
         virtual ~MHO_ScalarContainer(){};
 
+        MHO_ScalarContainer(MHO_ScalarContainer& obj):
+            MHO_NDArrayWrapper<XValueType, 0>(obj),
+            MHO_Taggable(obj)
+        {};
+
+        virtual MHO_ClassVersion GetVersion() const override {return 0;};
+
         virtual uint64_t GetSerializedSize() const override
+        {
+            return ComputeSerializedSize();
+        }
+
+        uint64_t ComputeSerializedSize() const
         {
             uint64_t total_size = 0;
             total_size += sizeof(MHO_ClassVersion); //version
             total_size += sizeof(XValueType); //contents
+            total_size += MHO_Taggable::GetSerializedSize();
             return total_size;
         }
 
@@ -58,30 +72,45 @@ class MHO_ScalarContainer:
 
         template<typename XStream> friend XStream& operator>>(XStream& s, MHO_ScalarContainer& aData)
         {
-                MHO_ClassVersion vers;
-                s >> vers;
-                if( vers != aData.GetVersion() )
-                {
-                    MHO_ClassIdentity::ClassVersionErrorMsg(aData, vers);
-                    //Flag this as an unknown object version so we can skip over this data
-                    MHO_ObjectStreamState<XStream>::SetUnknown(s);
-                }
-                else
-                {
-                    s >> aData.fData;
-                }
-                return s;
+            MHO_ClassVersion vers;
+            s >> vers;
+            if( vers != aData.GetVersion() )
+            {
+                MHO_ClassIdentity::ClassVersionErrorMsg(aData, vers);
+                //Flag this as an unknown object version so we can skip over this data
+                MHO_ObjectStreamState<XStream>::SetUnknown(s);
+            }
+            else
+            {
+                s >> aData.fData;
+                s >> static_cast< MHO_Taggable& >(aData);
+            }
+            return s;
         };
 
         template<typename XStream> friend XStream& operator<<(XStream& s, const MHO_ScalarContainer& aData)
         {
-                s << aData.GetVersion();
-                s << aData.fData;
-                return s;
+            s << aData.GetVersion();
+            s << aData.fData;
+            s << static_cast< const MHO_Taggable& >(aData);
+            return s;
         };
 
 };
 
+//specialization for string elements 
+//(NOTE: we need to use 'inline' to satisfy one-definiton rule, otherwise we have to stash this in a .cc file)
+template<>
+inline uint64_t
+MHO_ScalarContainer<std::string>::ComputeSerializedSize() const
+{
+    uint64_t total_size = 0;
+    total_size += sizeof(MHO_ClassVersion); //version
+    total_size += sizeof(uint64_t); //string size parameter
+    total_size += fData.size(); //size of the string
+    total_size += MHO_Taggable::GetSerializedSize();
+    return total_size;
+}
 
 ////////////////////////////////////////////////////////////////////////////////
 //using declarations for all basic 'plain-old-data' types

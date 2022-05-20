@@ -1,0 +1,29 @@
+#ifndef MHO_StationCoordinates_HH__
+#define MHO_StationCoordinates_HH__
+
+//this include file should not be used directly
+#ifndef MHO_ContainerDefinitions_HH__
+#error "Do not include MHO_StationContainers.hh directly; use MHO_ContainerDefinitions.hh instead."
+#endif
+
+namespace hops
+{
+
+#define STATION_NDIM 4
+#define COORD_AXIS 0
+#define INTERVAL_AXIS 1
+#define COEFF_AXIS 2
+
+#define NCOORD 7 //delay, az, el, par-angle, u, v, w
+#define NCOEFF 6 //hard coded in mk4 library, but can be flexible
+
+using station_coord_axis_pack = MHO_AxisPack< coord_axis_type, time_axis_type, coeff_axis_type>;
+using station_coord_type = MHO_TableContainer< spline_coeff_type, station_coord_axis_pack >;
+
+//multi-tone pcal data
+using multitone_pcal_axis_type = MHO_AxisPack< pol_axis_type, time_axis_type, frequency_axis_type >;
+using multitone_pcal_type = MHO_TableContainer< pcal_phasor_type, multitone_pcal_axis_type >;
+
+}//end of hops namespaces
+
+#endif /* end of include guard: MHO_StationCoordinates */

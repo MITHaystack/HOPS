@@ -1,5 +1,7 @@
 hops_require_cpp11()
 
+include_directories(${EXTERN_HLIBS}/date/include)
+
 #list header files #############################################################
 set (UTILITIES_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/picohash.h
@@ -17,14 +19,18 @@ set (UTILITIES_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_Interval.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_IntervalLabel.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_IntervalLabelTree.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_Taggable.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_BinaryFileStreamer.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_UUIDGenerator.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MD5HashGenerator.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_BinaryFileInterface.hh
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ClassIdentityMap.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ObjectTags.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_DirectoryInterface.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ExtensibleElement.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_JSONHeaderWrapper.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_LegacyRootCodeGenerator.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_StationCodeMap.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_Clock.hh
 )
 
 #set_source_files_properties(picohash.h PROPERTIES COMPILE_FLAGS -fpermissive)
@@ -39,12 +45,14 @@ set( UTILITIES_SOURCEFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_IntervalLabelTree.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_BinaryFileStreamer.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_UUIDGenerator.cc
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ObjectTags.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_DirectoryInterface.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_LegacyRootCodeGenerator.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_StationCodeMap.cc
 )
 
 #declare header paths ##########################################################
 hops_internal_include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
+hops_internal_include_directories(${EXTERN_HLIBS}/json/include)
 
 #compile and install library ###################################################
 

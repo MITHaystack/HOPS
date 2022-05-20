@@ -16,8 +16,7 @@
 #include "MHO_FunctorBroadcaster.hh"
 #include "MHO_MultidimensionalFastFourierTransform.hh"
 
-#include "MHO_Visibilities.hh"
-#include "MHO_ChannelizedVisibilities.hh"
+#include "MHO_ContainerDefinitions.hh"
 #include "MHO_VisibilityChannelizer.hh"
 
 #include "MHO_BinaryFileStreamer.hh"
@@ -76,10 +75,10 @@ int main(int argc, char** argv)
     mk4inter.SetCorelFile(corel_filename);
     mk4inter.SetVexFile(root_filename);
     mk4inter.ExtractCorelFile();
-    baseline_data_type* bl_data = mk4inter.GetExtractedVisibilities();
-    baseline_weight_type* bl_wdata = mk4inter.GetExtractedWeights();
+    visibility_type* bl_data = mk4inter.GetExtractedVisibilities();
+    weight_type* bl_wdata = mk4inter.GetExtractedWeights();
 
-    ch_baseline_data_type* ch_bl_data = new ch_baseline_data_type();
+    ch_visibility_type* ch_bl_data = new ch_visibility_type();
     MHO_VisibilityChannelizer channelizer;
     channelizer.SetArgs(bl_data, ch_bl_data);
     // channelizer.SetInput(bl_data);

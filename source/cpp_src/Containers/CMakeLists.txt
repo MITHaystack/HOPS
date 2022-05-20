@@ -1,25 +1,44 @@
+option (HOPS_BUILD_EXTRA_CONTAINERS "Build extended support of a large variety of extra data container types." OFF)
+
+if(HOPS_BUILD_EXTRA_CONTAINERS)
+    hops_add_cxxflag(HOPS_BUILD_EXTRA_CONTAINERS)
+endif()
+
 #list header files #############################################################
 set (CONTAINER_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_NDArrayMath.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_NDArrayView.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_BidirectionalIndexedIterator.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_NDArrayWrapper.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_NDArrayWrapper_0.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_NDArrayWrapper_1.hh
-    #${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_UnaryFunctor.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_NDArrayTypeCastFunctor.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_AxisPack.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ScalarContainer.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_VectorContainer.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_TableContainer.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_Axis.hh
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_VisibilityType.hh
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_Visibilities.hh
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ChannelizedVisibilities.hh
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_StationCoordinates.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ElementTypes.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_AxisTypes.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_BaselineContainers.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_StationContainers.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ContainerDefinitions.hh
+    #${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_VisibilityType.hh
+    #${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_Visibilities.hh
+    #${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ChannelizedVisibilities.hh
+    #${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_StationCoordinates.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_SerializableObjectFactory.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ClassIdentityMap.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ContainerDictionary.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ContainerJSONConverter.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ContainerFileInterface.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ContainerStore.hh
 )
 
 set( CONTAINER_SOURCEFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ContainerDictionary.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ContainerStore.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ContainerFileInterface.cc
 )
 
 #declare header paths ##########################################################

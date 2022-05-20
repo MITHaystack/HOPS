@@ -101,7 +101,7 @@ class MHO_BidirectionalIterator
         //access to underlying array item object
         reference operator*() { return *fPtr; }
         pointer operator->() { return fPtr; }
-        const reference operator*() const { return *fPtr; }
+        reference operator*() const { return *fPtr; }
         const pointer operator->() const { return fPtr; }
 
         self_type operator=(const self_type& rhs)

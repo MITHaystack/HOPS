@@ -15,18 +15,19 @@
 #include <complex>
 
 #include "MHO_Serializable.hh"
+#include "MHO_Taggable.hh"
 #include "MHO_NDArrayWrapper.hh"
 
 namespace hops
 {
 
-class MHO_VectorContainerBase{}; //only needed for SFINAE
+class MHO_VectorContainerBase{};  //only needed for dependent template specializations
 
 template< typename XValueType >
 class MHO_VectorContainer:
     public MHO_VectorContainerBase,
     public MHO_NDArrayWrapper< XValueType, 1>,
-    virtual public MHO_Serializable
+    public MHO_Taggable
 {
     public:
 
@@ -44,7 +45,8 @@ class MHO_VectorContainer:
 
         //copy constructor
         MHO_VectorContainer(const MHO_VectorContainer& obj):
-            MHO_NDArrayWrapper<XValueType,1>(obj)
+            MHO_NDArrayWrapper<XValueType,1>(obj),
+            MHO_Taggable(obj)
         {};
 
         //clone functionality
@@ -52,13 +54,11 @@ class MHO_VectorContainer:
 
         virtual ~MHO_VectorContainer(){};
 
+        virtual MHO_ClassVersion GetVersion() const override {return 0;};
+
         virtual uint64_t GetSerializedSize() const override
         {
-            uint64_t size = 0;
-            size += sizeof(MHO_ClassVersion);
-            size += sizeof(std::size_t);
-            size += fSize*sizeof(XValueType);
-            return size;
+            return ComputeSerializedSize();
         }
 
         //have to make base class functions visible
@@ -77,46 +77,79 @@ class MHO_VectorContainer:
         using MHO_NDArrayWrapper<XValueType,1>::fDims;
         using MHO_NDArrayWrapper<XValueType,1>::fSize;
 
-
-    template<typename XStream> friend XStream& operator>>(XStream& s, MHO_VectorContainer& aData)
-    {
-        MHO_ClassVersion vers;
-        s >> vers;
-        if( vers != aData.GetVersion() )
+        uint64_t ComputeSerializedSize() const
         {
-            MHO_ClassIdentity::ClassVersionErrorMsg(aData, vers);
-            //Flag this as an unknown object version so we can skip over this data
-            MHO_ObjectStreamState<XStream>::SetUnknown(s);
+            uint64_t total_size = 0;
+            total_size += sizeof(MHO_ClassVersion);
+            total_size += MHO_Taggable::GetSerializedSize();
+            total_size += sizeof(uint64_t);
+            total_size += this->fSize*sizeof(XValueType); //all elements have the same size
+            return total_size;
         }
-        else
+
+        template<typename XStream> friend XStream& operator>>(XStream& s, MHO_VectorContainer& aData)
         {
-            size_t total_size[1];
-            s >> total_size[0];
-            aData.Resize(total_size);
+            MHO_ClassVersion vers;
+            s >> vers;
+            if( vers != aData.GetVersion() )
+            {
+                MHO_ClassIdentity::ClassVersionErrorMsg(aData, vers);
+                //Flag this as an unknown object version so we can skip over this data
+                MHO_ObjectStreamState<XStream>::SetUnknown(s);
+            }
+            else
+            {
+                s >> static_cast< MHO_Taggable& >(aData);
+                size_t total_size[1];
+                s >> total_size[0];
+                aData.Resize(total_size);
+                for(size_t i=0; i<aData.fSize; i++)
+                {
+                    s >> aData.fData[i];
+                }
+            }
+            return s;
+        }
+
+        template<typename XStream> friend XStream& operator<<(XStream& s, const MHO_VectorContainer& aData)
+        {
+            s << aData.GetVersion();
+            s << static_cast<const MHO_Taggable& >(aData);
+            s << aData.fSize;
             for(size_t i=0; i<aData.fSize; i++)
             {
-                s >> aData.fData[i];
+                s << aData.fData[i];
             }
+            return s;
         }
-        return s;
-    }
-
-    template<typename XStream> friend XStream& operator<<(XStream& s, const MHO_VectorContainer& aData)
-    {
-        s << aData.GetVersion();
-        s << aData.fSize;
-        for(size_t i=0; i<aData.fSize; i++)
-        {
-            s << aData.fData[i];
-        }
-        return s;
-    }
 
 };
 
+
+//specialization for string elements 
+//(NOTE: we need to use 'inline' to satisfy one-definiton rule, otherwise we have to stash this in a .cc file)
+template<>
+inline uint64_t 
+MHO_VectorContainer<std::string>::ComputeSerializedSize() const
+{
+    uint64_t total_size = 0;
+    total_size += sizeof(MHO_ClassVersion);
+    total_size += MHO_Taggable::GetSerializedSize();
+    total_size += sizeof(uint64_t);
+    for(size_t i=0; i<this->fSize; i++)
+    {
+        total_size += sizeof(uint64_t); //every string get streamed with a size
+        total_size += this->fData[i].size();
+    }
+    return total_size;
+}
+
+
+
+
+
 // ////////////////////////////////////////////////////////////////////////////////
-//using declarations for all basic 'plain-old-data' types
-using MHO_VectorBool = MHO_VectorContainer<bool>;
+//using declarations for all basic 'plain-old-data' types (except bool!)
 using MHO_VectorChar = MHO_VectorContainer<char>;
 using MHO_VectorUChar = MHO_VectorContainer<unsigned char>;
 using MHO_VectorShort = MHO_VectorContainer<short>;

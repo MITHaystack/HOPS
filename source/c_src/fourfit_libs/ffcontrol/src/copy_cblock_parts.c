@@ -176,11 +176,17 @@ copy_cblock_parts ( struct c_block* f, struct c_block* t)
             t->vbp_coeffs[i].rem = f->vbp_coeffs[i].rem;
 
     if (f->adhoc_poly[0] != NULLFLOAT)
+    {
         for (i=0; i<6; i++)
             if (f->adhoc_poly[i] != NULLFLOAT)
+                {
                 t->adhoc_poly[i] = f->adhoc_poly[i];
+                }
             else                    // pad extant poly. with high order zero terms
+                {
                 t->adhoc_poly[i] = 0.0;
+                }
+    }
 
     for (i=0; i<2; i++)
         {

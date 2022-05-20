@@ -23,7 +23,7 @@ namespace py = pybind11;
 #include "MHO_NDArrayWrapper.hh"
 #include "MHO_ExtensibleElement.hh"
 #include "MHO_TemplateTypenameDeduction.hh"
-#include "MHO_ChannelizedVisibilities.hh"
+#include "MHO_ContainerDefinitions.hh"
 
 namespace hops
 {

@@ -60,7 +60,16 @@ option( HOPS3_DISABLE_WARNINGS "Disable specific compiler warnings in HOPS3 c-co
 
 if(NOT HOPS3_USE_CXX)
     if(HOPS3_DISABLE_WARNINGS)
-        set( CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wno-implicit-int -Wno-implicit-function-declaration -Wno-format")
+        set( HOPS3_C_WARNINGS_TO_REMOVE "-Wno-implicit-int -Wno-implicit-function-declaration -Wno-format")
+        message(STATUS "HOPS3 C compiler warnings disabled for: ${HOPS3_C_WARNINGS_TO_REMOVE}" )
+        set( CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${HOPS3_C_WARNINGS_TO_REMOVE}")
+    endif(HOPS3_DISABLE_WARNINGS)
+else()
+    if(HOPS3_DISABLE_WARNINGS)
+        # Do we also need -Wno-deprecated-register ??
+        set( HOPS3_CXX_WARNINGS_TO_REMOVE "-Wno-write-strings -Wno-format-security -Wno-format")
+        message(STATUS "HOPS3 C++ compiler warnings disabled for: ${HOPS3_CXX_WARNINGS_TO_REMOVE}" )
+        set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${HOPS3_CXX_WARNINGS_TO_REMOVE}")
     endif(HOPS3_DISABLE_WARNINGS)
 endif(NOT HOPS3_USE_CXX)
 

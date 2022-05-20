@@ -2,7 +2,7 @@
 /*                                                                      */
 /*  Fills in a type_205 record                                          */
 /*                                                                      */
-/*      Inputs:         
+/*      Inputs:                                                         */
 /*                                                                      */
 /*      Output:         t205        Filled in type_205 record           */
 /*                                                                      */

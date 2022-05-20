@@ -17,7 +17,8 @@
 #include <cstring>
 #include <string>
 
-#include "MHO_StationCoordinates.hh"
+#include "MHO_ContainerDefinitions.hh"
+
 #include "MHO_Message.hh"
 
 //forward declaration of mk4_corel and vex structs
@@ -51,7 +52,7 @@ class MHO_MK4StationInterface
         mk4_sdata* GetStationData(){return fStation;};
 
         //extract the data
-        station_coord_data_type* ExtractStationFile();
+        station_coord_type* ExtractStationFile();
 
     private:
 
@@ -65,10 +66,8 @@ class MHO_MK4StationInterface
         std::string fVexFile;
         std::string fStationFile;
 
-        void DetermineDataDimensions();
         std::size_t fNCoeffs;
         std::size_t fNIntervals;
-        std::size_t fNChannels;
         std::size_t fNCoord;
 
 
