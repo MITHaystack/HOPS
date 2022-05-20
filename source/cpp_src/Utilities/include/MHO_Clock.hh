@@ -28,10 +28,20 @@
 #define HOPS_TIMESTAMP_PREFIX "HOPS-J2000"
 #define HOPS_TIME_DELIM "|"
 #define HOPS_TIME_UNIT "ns"
+#define NANOSEC_TO_SEC 1e-9
 
 namespace hops 
 {
 
+//struct compatible with the legacy hops date format
+struct legacy_hops_date
+{
+    short   year;
+    short   day;
+    short   hour;
+    short   minute;
+    float   second;
+};
 
 class hops_clock
 {
@@ -105,11 +115,19 @@ class hops_clock
 
         static
         std::chrono::time_point<hops_clock, std::chrono::nanoseconds >
-        from_hops_raw_format(const string& timestamp);
+        from_hops_format(const string& timestamp);
 
         static
         std::string
-        to_hops_raw_format(const std::chrono::time_point<hops_clock, std::chrono::nanoseconds >& tp);
+        to_hops_format(const std::chrono::time_point<hops_clock, std::chrono::nanoseconds >& tp);
+
+        static
+        std::chrono::time_point<hops_clock, std::chrono::nanoseconds >
+        from_legacy_hops_date(legacy_hops_date& ldate);
+
+        static
+        legacy_hops_date
+        to_legacy_hops_date(const std::chrono::time_point<hops_clock, std::chrono::nanoseconds >& tp);
 
         static
         std::chrono::time_point<hops_clock, std::chrono::nanoseconds >
@@ -147,7 +165,6 @@ class hops_clock
             return sys_days{y/jan/0} + ord_day;
         }
 
-
         struct vex_date 
         {
             int year;
@@ -162,6 +179,9 @@ class hops_clock
         
         static
         std::string vex_date_to_iso8601_string(vex_date vdate);
+
+        static
+        vex_date vex_date_from_legacy(const legacy_hops_date& legacy_date);
 
         static 
         std::string remove_trailing_zeros(std::string value)
@@ -334,7 +354,7 @@ hops_clock::to_iso8601_format(const std::chrono::time_point<hops_clock, std::chr
 
 inline
 std::chrono::time_point<hops_clock, std::chrono::nanoseconds >
-hops_clock::from_hops_raw_format(const string& timestamp)
+hops_clock::from_hops_format(const string& timestamp)
 {
     MHO_Tokenizer tokenizer;
     tokenizer.SetDelimiter(std::string(HOPS_TIME_DELIM));
@@ -362,7 +382,7 @@ hops_clock::from_hops_raw_format(const string& timestamp)
 
 inline
 std::string
-hops_clock::to_hops_raw_format(const std::chrono::time_point<hops_clock, std::chrono::nanoseconds >& tp)
+hops_clock::to_hops_format(const std::chrono::time_point<hops_clock, std::chrono::nanoseconds >& tp)
 {
     std::stringstream ss;
     ss << HOPS_TIMESTAMP_PREFIX;
@@ -372,6 +392,51 @@ hops_clock::to_hops_raw_format(const std::chrono::time_point<hops_clock, std::ch
     ss << tp.time_since_epoch().count();
     return ss.str();
 }
+
+inline
+std::chrono::time_point<hops_clock, std::chrono::nanoseconds >
+hops_clock::from_legacy_hops_date(legacy_hops_date& ldate)
+{
+    vex_date vdate = vex_date_from_legacy(ldate);
+    std::string vex_as_iso8601 = vex_date_to_iso8601_string(vdate);
+    return hops_clock::from_iso8601_format(vex_as_iso8601);
+}
+
+inline
+legacy_hops_date
+hops_clock::to_legacy_hops_date(const std::chrono::time_point<hops_clock, std::chrono::nanoseconds >& tp)
+{
+    //convert the time point to sys time, and extract the date
+    auto sys_tp = hops_clock::to_sys(tp);
+    auto dp = sys_days( floor<date::days>( sys_tp ) );
+
+    //get all of the date information
+    year_month_day ymd{dp};
+    auto year = ymd.year();
+    auto month = ymd.month();
+    auto day = ymd.day();
+
+    //get the ordinal day of the year
+    auto ordinal_day = day_of_year(dp);
+
+    //get the time
+    hh_mm_ss< std::chrono::nanoseconds> time{floor< std::chrono::nanoseconds>( sys_tp-dp) };
+    auto hours = time.hours();
+    auto mins = time.minutes();
+    auto secs = time.seconds();
+    auto nanos = time.subseconds();
+
+    legacy_hops_date ldate;
+    ldate.year = (int) year;
+    ldate.day = ordinal_day.count();
+    ldate.hour = hours.count();
+    ldate.minute = mins.count();
+    //note there may be loss of precision when converting from seconds/nanoseconds to legacy float
+    ldate.second = (float) secs.count() + ( (float) (nanos.count() ) )*NANOSEC_TO_SEC;
+
+    return ldate;
+}
+
 
 inline
 std::chrono::time_point<hops_clock, std::chrono::nanoseconds >
@@ -442,7 +507,6 @@ inline
 hops_clock::vex_date 
 hops_clock::extract_vex_date(const std::string& timestamp)
 {
-    //TODO FIXME -- issue errors if there is a problem when parsing
     MHO_Tokenizer tokenizer;
     std::vector<std::string> tokens;
     std::stringstream ss;
@@ -538,6 +602,19 @@ hops_clock::vex_date_to_iso8601_string(hops_clock::vex_date vdate)
     return ss.str();
 }
 
+
+inline
+hops_clock::vex_date 
+hops_clock::vex_date_from_legacy(const legacy_hops_date& legacy_date)
+{
+    hops_clock::vex_date vdate;
+    vdate.year = legacy_date.year;
+    vdate.day_of_year = legacy_date.day;
+    vdate.hours = legacy_date.hour;
+    vdate.minutes = legacy_date.minute;
+    vdate.seconds = legacy_date.second;
+    return vdate;
+}
 
 
 }//end of namespace

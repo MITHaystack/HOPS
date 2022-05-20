@@ -70,11 +70,11 @@ int main(int /*argc*/, char** /*argv*/)
 
     std::cout<<"hops test time-point in vex format = "<<vex_str<<std::endl;
 
-    std::string hops_str = hops_clock::to_hops_raw_format(hops_tp2);
+    std::string hops_str = hops_clock::to_hops_format(hops_tp2);
 
     std::cout<<"hops-formated time-point string = "<<hops_str<<std::endl;
 
-    auto hops_tp3 = hops_clock::from_hops_raw_format(hops_str);
+    auto hops_tp3 = hops_clock::from_hops_format(hops_str);
 
     std::cout<<"hops time-point converted back from hops-formatted string = "<<hops_tp3<<std::endl;
 
@@ -82,11 +82,23 @@ int main(int /*argc*/, char** /*argv*/)
 
     std::cout<<"hops time-point converted back from vex string = "<<hops_tp4<<std::endl;
 
+    legacy_hops_date ldate = hops_clock::to_legacy_hops_date( hops_tp4 );
+
+    std::cout<<"hops time-point converted to legacy hops-date-struct: "<<std::endl;
+    std::cout<<"year = "<<ldate.year<<std::endl;
+    std::cout<<"date = "<<ldate.day<<std::endl;
+    std::cout<<"hour = "<<ldate.hour<<std::endl;
+    std::cout<<"mins = "<<ldate.minute<<std::endl;
+    std::cout<<"secs = "<< std::setprecision(9) <<ldate.second<<std::endl;
+
     std::string vtest = "2020y63d12h08m04s";
 
     std::cout<<"converting the following vex date/time: "<<vtest<<std::endl;
 
     std::cout<<"to hops date in iso-8601 format: "<<hops_clock::to_iso8601_format( hops_clock::from_vex_format(vtest) )<<std::endl;
+
+
+
 
     return 0;
 }
