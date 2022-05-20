@@ -16,12 +16,14 @@ The following table is a preliminary list of which external packages are expecte
 Name & Optional/Required? & Purpose & Fallback option \\ \hline
 C++11 STL & Required & Standard template library & None \\ \hline
 Python &  Required & Scripting language interpreter & None \\ \hline
+date &  Required & time and date handling & None - future c++20 standard \\ \hline
+json &  Required & meta-data handling in json format & None - single header library \\ \hline
 SWIG or pybind11 & Required & C/C++ $\leftrightarrow$ Python interface and bindings & None \\ \hline
 OpenCL & Optional & SIMD parallelism & Single-threaded implementation \\ \hline
 OpenMPI & Optional & MIMD parallelism & Single-thread implementation \\ \hline
 FFTW3 & Optional & fast Fourier transform acceleration & native code \\ \hline
 GSL & Optional & Linear algebra and special functions & TBD native code \\ \hline
-HDF5 & Optional & File input/output & TBD native binary format \\ \hline
+HDF5 & Optional & File input/output & native binary format \\ \hline
 matplotlib & Optional & Python plotting library & None \\ \hline
 difxio & Required & DiFX I/O library - needed for file converter only & None \\ \hline
 \end{tabular}
