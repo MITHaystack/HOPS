@@ -41,7 +41,7 @@ to enable/disable various plotting items.
 
 \section{The Visibility Data}
 
-As mentioned in the previous section the primary output of the correlator are the ``visibilities'', which are essentially a two-dimensional array of complex values in time and frequency space. However, there are two details which were ignored in the preceeding section which are of importance in treating real data. 
+The primary output of the correlator are the ``visibilities'', which are essentially a two-dimensional array of complex values in time and frequency space. However, there are some additional details which are of importance in treating real-world data. 
 
 The first detail is that most modern antennas record both electric field polarizations at once, producing four possible cross-correlation ``polarization-products'' for each baseline. Further complicating this is that the signals at each antenna may be recorded in a linear or circularly polarized basis, and so the ``polarization-products'' may be linear-linear, circular-circular or a mixed combination. Clearly delineating the polariation-product associated with the data is important, as a 
 time-dependent phase and amplitude modulation can be introduced dpending on the telescope mount type and parallactic angle. We will leave a full discussion of this topic aside for the moment, but suffice to say that our single-baseline data set is extended in an additional ``polarization-product'' dimension.
