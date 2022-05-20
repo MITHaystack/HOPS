@@ -1,0 +1,121 @@
+.\"
+.\" $Id: htime.3 80 2007-05-11 16:10:54Z gbc $
+.\"
+.TH HTIME 3 "01 Jun 1999
+.SH NAME
+htime, Ht_\* \- hete time library
+.SH SYNOPSIS
+.nf
+.ft
+#include "htime.h"
+.LP
+.RB "GTime " Ht_HTC_to_GPS "(HTime ht, HtErr *err)"
+.LP
+.RB "HTime " Ht_GPS_to_HTC "(GTime gt, HtErr *err)"
+.LP
+.RB "UTime " Ht_HTC_to_UTC "(HTime ht, HtErr *err)"
+.LP
+.RB "UTime " Ht_GPS_to_UTC "(GTime gt, HtErr *err)"
+.LP
+.RB "HTime " Ht_UTC_to_HTC "(UTime ut, HtErr *err)"
+.LP
+.RB "GTime " Ht_UTC_to_GPS "(UTime ut, HtErr *err)"
+.LP
+.RB "GTime " Ht_now_GPS "(HtErr *err)"
+.LP
+.RB "UTime " Ht_now_UTC "(HtErr *err)"
+.LP
+.RB "HTime " Ht_now_HTC "(HtErr *err)"
+.LP
+.\".RB "GTime " Ht_IPP_to_GPS "(IPP_header *hdr, HtErr *err)"
+.\".LP
+.RB "HTime " Ht_string_to_HTC "(char *s, HtErr *err)"
+.LP
+.RB "GTime " Ht_string_to_GPS "(char *s, HtErr *err)"
+.LP
+.RB "UTime " Ht_string_to_UTC "(char *s, HtErr *err)"
+.LP
+.RB "char " *Ht_HTC_to_string "(HTime ht, int style)"
+.LP
+.RB "char " *Ht_UTC_to_string "(UTime ut, int style)"
+.LP
+.RB "char " *Ht_GPS_to_string "(GTime gt, int style)"
+.LP
+.RB "double " Ht_HTC_to_secs "(HTime ht)"
+.LP
+.RB "HTime " Ht_secs_to_HTC "(double s)"
+.LP
+.SH DESCRIPTION
+.LP
+These routines are borrowed from the HETE timekeeping system and
+are included (at the moment, anyway) for testing.  For backward
+compatibility in testing, the original HETE environment variables
+are also recognized, and the s/c time treatment switches based on
+the epoch (0x003X for IBEX, 0x001X for HETE).
+.LP
+These routines are intended to support ground timekeeping requirements
+in a uniform fashion.  There are three approaches to time here, and the
+library allows one to make the transformations between them with an
+estimate of the errors involved.
+.TP 20
+.B HTime
+.IB i.e. " time_code"
+is the time determined on the satellite or pizza box and is based on
+the digital watch at time of boot, together with the HUB clock for
+micro-second ticks thereafter.
+.TP 20
+.B GTime
+.IB i.e. " double"
+seconds in the GPS epoch is the underlying time standard.
+.TP 20
+.B UTime
+.IB i.e. " struct timeval"
+is civilian UTC as available through the UNIX time libraries.
+
+.LP
+In order to function properly, the environment variable
+.B IBEX_TIME_EPOCH
+must be set to the upper word of the spacecraft timecode
+.IR e.g. " 30"
+for the actual flight hardware and the environment variable
+.B IBEX_OPS
+must point to an ops directory hierarchy containing the lifetime
+records for that particular epoch.  Note that this latter file
+must be as up-to-date as the data being analyzed.
+
+.LP
+More to come; just look at
+.B htime.h
+for now or bother Geoff.
+
+.SH FILES
+.LP
+.PD 0
+The time calculations are built upon calibration files maintained
+under \$IBEX_OPS:
+.TP 20
+.B \$IBEX_OPS/\$IBEX_DATACALSC/DigitalWatch
+The digital watch database.
+.TP 20
+.B \$IBEX_OPS/\$IBEX_DATACALSC/tai-utc.dat
+Leap seconds; copied from
+.BR http://tycho.usno.navy.mil .
+.TP 20
+.B \$IBEX_OPS/\$IBEX_DATACALSC/gps-sc?.dat
+Lifetime records for IBEX (0) and FlatSat (1).
+.\" .B \$IBEX_OPS/\$Ht_DATACALSC/gps-dw?.dat
+.\" Lifetime records for the individual digital watches.
+.SH BUGS
+None known--extensively tested on HETE.
+
+.SH SEE ALSO
+.LP
+.\"euridice(1), console(3), ops(3), gettimeofday(2), ctime(3)
+isocops(3)
+
+.SH AUTHORS
+.LP
+gbc@space.mit.edu
+.\"
+.\" End of Man Page
+.\"
