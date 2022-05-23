@@ -206,14 +206,13 @@ void MHO_DiFXStripVex::ExtractScan()
 
 void MHO_DiFXStripVex::ExtractAntenna()
 {
-    if (strncmp (pst[0], "axis_offset", 11) == 0
-     && strstr (line, "el:") == 0)
-        {
+    if (strncmp (pst[0], "axis_offset", 11) == 0 && strstr (line, "el:") == 0)
+    {
         strcpy (buff, line);
         pchar = strchr (line, '=') + 2;
         strcpy (pchar, "el:");
         strcpy (pchar + 3, strchr (buff, '=') + 1);
-        }
+    }
     else if (strncmp (pst[0], "antenna_motion", 14) == 0) 
         line[0] = '*';  // comment out antenna motion command,
                         // as it causes problems with vex parser
@@ -222,32 +221,32 @@ void MHO_DiFXStripVex::ExtractAntenna()
 void MHO_DiFXStripVex::ExtractExper()
 {
     if (strcmp (pst[0], "target_correlator") == 0)
-        {
+    {
         strcpy (line, "    target_correlator = difx;\n");
         tarco = TRUE;
-        }
+    }
     if (strcmp (pst[0], "exper_num") == 0)
-        {
+    {
         sprintf (line, "    exper_num = %s;\n", node_name);
         exper_num = TRUE;
-        }
+    }
     else if (strncmp (pst[0], "enddef", 6) == 0)
-        {
+    {
         strcpy (line, "");
         if (tarco == FALSE)
-            {
+        {
             strcpy (buff, "    target_correlator = difx;\n");
             strcat (line, buff);
             tarco = TRUE;
-            }
+        }
         if (exper_num == FALSE)
-            {
+        {
             sprintf (buff, "    exper_num = %s;\n", node_name);
             strcat (line, buff);
             exper_num = TRUE;
-            }
-        strcat (line, "  enddef;\n");
         }
+        strcat (line, "  enddef;\n");
+    }
     break;
 }
 
@@ -260,41 +259,48 @@ void MHO_DiFXStripVex::ExtractGlobal()
         strcat (line, D->job[jobId].inputFile);
         strcat (line, "\n    ref $EOP = EOP_DIFX_INPUT;\n"); 
     }
-    else if (strncmp (pst[0], "ref", 3) == 0 
-    && strncmp (pst[1], "$SCHEDULING_PARAMS", 18) == 0)
-    line[0] = '*';  // comment out ref to deleted section 
-    else if (strncmp (pst[0], "ref", 3) == 0 
-    && strncmp (pst[1], "$EOP", 4) == 0)
-    line[0] = '*';  // comment out ref to real EOP section
-
+    else if (strncmp (pst[0], "ref", 3) == 0 && strncmp (pst[1], "$SCHEDULING_PARAMS", 18) == 0)
+    {
+        line[0] = '*';  // comment out ref to deleted section 
+    }
+    else if (strncmp (pst[0], "ref", 3) == 0 && strncmp (pst[1], "$EOP", 4) == 0)
+    {
+        line[0] = '*';  // comment out ref to real EOP section
+    }
 }
 
 void MHO_DiFXStripVex::ExtractMode()
 {
     if (strncmp (pst[0], "def", 3) == 0  && strncmp (pst[1], D->scan[scanId].obsModeName, 30) != 0)
-    delete_mode = TRUE;
+    {
+        delete_mode = TRUE;
+    }
 
     if (delete_mode)
     {
         line[0] = 0;
         // exit delete mode at enddef
         if (strncmp (pst[0], "enddef", 6) == 0)
-        delete_mode = FALSE;
+        {
+            delete_mode = FALSE;
+        }
     }
     else                // mode is currently active
     {
         if (strncmp (pst[0], "ref", 3) == 0)
         {
-        if (strncmp (pst[1], "$BBC", 4) == 0
-        || strncmp (pst[1], "$FREQ", 5) == 0
-        || strncmp (pst[1], "$IF", 3) == 0
-        || strncmp (pst[1], "$TRACKS", 7) == 0
-        || strncmp (pst[1], "$PHASE_CAL_DETECT", 17) == 0
-        || strncmp (pst[1], "$PROCEDURES", 11) == 0
-        || strncmp (pst[1], "$ROLL", 5) == 0
-        || strncmp (pst[1], "$HEAD_POS", 9) == 0
-        || strncmp (pst[1], "$PASS_ORDER", 11) == 0)
-        line[0] = 0; // delete original mode lines
+            if (strncmp (pst[1], "$BBC", 4) == 0
+            || strncmp (pst[1], "$FREQ", 5) == 0
+            || strncmp (pst[1], "$IF", 3) == 0
+            || strncmp (pst[1], "$TRACKS", 7) == 0
+            || strncmp (pst[1], "$PHASE_CAL_DETECT", 17) == 0
+            || strncmp (pst[1], "$PROCEDURES", 11) == 0
+            || strncmp (pst[1], "$ROLL", 5) == 0
+            || strncmp (pst[1], "$HEAD_POS", 9) == 0
+            || strncmp (pst[1], "$PASS_ORDER", 11) == 0)
+            {
+                line[0] = 0; // delete original mode lines
+            }
         }
         // synthesize new ref's at end of MODE
         else if (strncmp (pst[0], "enddef", 6) == 0)
@@ -308,48 +314,57 @@ void MHO_DiFXStripVex::ExtractMode()
             for (dstr=0; dstr<D->job[jobId].activeDatastreams; dstr++)
             {
                 if ((D->job[jobId]).datastreamIdRemap)
-                redstr = *((D->job[jobId]).datastreamIdRemap + dstr);
+                {
+                    redstr = *((D->job[jobId]).datastreamIdRemap + dstr);
+                }
                 else
-                redstr = dstr;
-                if (redstr < 0) continue;       // not assigned this job
-                pdds = D->datastream + redstr;
-                if ((size_t)(pdds->antennaId) >= sizeof(antbits)/sizeof(antbits[0]))
-                printf("      Programmer error: antenna Id %d exceeds hardcoded array size %zu\n", pdds->antennaId, sizeof(antbits)/sizeof(antbits[0])); // let segfault
-                antbits[pdds->antennaId] = pdds->quantBits;
+                {
+                    redstr = dstr;
+                    if (redstr < 0) continue;       // not assigned this job
+                    pdds = D->datastream + redstr;
+                    if ((size_t)(pdds->antennaId) >= sizeof(antbits)/sizeof(antbits[0]))
+                    printf("      Programmer error: antenna Id %d exceeds hardcoded array size %zu\n", pdds->antennaId, sizeof(antbits)/sizeof(antbits[0])); // let segfault
+                    antbits[pdds->antennaId] = pdds->quantBits;
+                }
             }
 
             // insert one freq line per used antenna
             for (n = 0; n < D->nAntenna; n++)
-            if (D->scan[scanId].im != NULL 
-            && D->scan[scanId].im[n] != 0)
             {
-                // FIXME - generate antenna name from station
-                sprintf (antnam, ":%c%c", D->antenna[n].name[0], 
-                     tolower (D->antenna[n].name[1]));
-                fprintf (fout, "    ref $FREQ = ant%02d%s;\n", n, antnam);
-                // add antenna to appropriate trax statement
-                if (antbits[n] == 1)
+                if (D->scan[scanId].im != NULL && D->scan[scanId].im[n] != 0)
                 {
-                    strcat (trax1b, antnam);
-                    trax1b_used = TRUE;
-                }
-                else if (antbits[n] == 2)
-                {
-                    strcat (trax2b, antnam);
-                    trax2b_used = TRUE;
-                }
-                else
-                {
-                    printf ("        Warning, no quant bits for %s\n", antnam);
+                    // FIXME - generate antenna name from station
+                    sprintf (antnam, ":%c%c", D->antenna[n].name[0], tolower (D->antenna[n].name[1]));
+                    fprintf (fout, "    ref $FREQ = ant%02d%s;\n", n, antnam);
+                    // add antenna to appropriate trax statement
+                    if (antbits[n] == 1)
+                    {
+                        strcat (trax1b, antnam);
+                        trax1b_used = TRUE;
+                    }
+                    else if (antbits[n] == 2)
+                    {
+                        strcat (trax2b, antnam);
+                        trax2b_used = TRUE;
+                    }
+                    else
+                    {
+                        printf ("        Warning, no quant bits for %s\n", antnam);
+                    }
                 }
             }
             fprintf (fout, "    ref $BBC = bbcs;\n");
             fprintf (fout, "    ref $IF = ifs;\n");
             // only print references that are actually used
             if (trax1b_used)
-            fprintf (fout, "%s;\n", trax1b);
+            {
+                fprintf (fout, "%s;\n", trax1b);
+            }
+
             if (trax2b_used)
-            fprintf (fout, "%s;\n", trax2b);
+            {
+                fprintf (fout, "%s;\n", trax2b);
+            }
         }
     }
 }
@@ -357,10 +372,8 @@ void MHO_DiFXStripVex::ExtractMode()
 void MHO_DiFXStripVex::ExtractSched()
 {
     // don't change $SCHED line
-    if (strncmp (pst[0], "$SCHED", 6) == 0)
-    break;
-    // skip line copy if we're within the wrong scan
-    else if (strcmp (current_scan, D->scan[scanId].identifier) != 0) 
+    if (strncmp (pst[0], "$SCHED", 6) == 0){break;}
+    else if (strcmp (current_scan, D->scan[scanId].identifier) != 0)      // skip line copy if we're within the wrong scan
     {
         line[0] = 0;
         continue;
@@ -380,16 +393,19 @@ void MHO_DiFXStripVex::ExtractSched()
         pchar = strchr (line, ':');
         itime = atoi (pchar+1);
         if (itime > latest_start)
-        latest_start = itime;
-        pchar = strchr (pchar+1, ':');
-        itime = atoi (pchar+1);
-        if (itime < earliest_stop)
-        earliest_stop = itime;
+        {
+            latest_start = itime;
+            pchar = strchr (pchar+1, ':');
+            itime = atoi (pchar+1);
+            if (itime < earliest_stop){earliest_stop = itime;}
+        }
 
         i = isValidAntenna(D, pst[2], scanId);
         if(i < 0)
-        line[0] = 0;
-        // this station participates, use difx start
+        {
+            line[0] = 0;
+            // this station participates, use difx start
+        }
         else 
         {
             nant++;
@@ -519,10 +535,10 @@ void MHO_DiFXStripVex::ExtractSite()
 void MHO_DiFXStripVex::ExtractStation()
 {
         // delete vex's clock and das
-    if (strncmp (pst[1], "$CLOCK", 6) == 0
-    || strncmp (pst[1], "$DAS", 4) == 0)
-    line[0] = 0;
-
+    if (strncmp (pst[1], "$CLOCK", 6) == 0 || strncmp (pst[1], "$DAS", 4) == 0)
+    {
+        line[0] = 0;
+    }
     else if (strncmp (pst[0], "enddef", 6) == 0)
     {
         strcpy (buff, "    ref $CLOCK = ");
