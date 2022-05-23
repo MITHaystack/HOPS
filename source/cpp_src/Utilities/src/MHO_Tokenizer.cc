@@ -35,7 +35,7 @@ void MHO_Tokenizer::GetTokens(std::vector< std::string>* tokens)
             size_t length = 0;
             while( end != std::string::npos )
             {
-                end = fString->find(fDelim, start);
+                end = fString->find_first_of(fDelim, start);
 
                 if(end == std::string::npos)
                 {
