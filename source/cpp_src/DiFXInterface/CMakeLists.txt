@@ -8,6 +8,7 @@ set (DIFXINTERFACE_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_DiFXVisibilityProcessor.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_DiFXBaselineProcessor.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_DiFXPCalProcessor.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_DiFXVexStripper.hh
 )
 
 #list source files #############################################################
@@ -18,20 +19,15 @@ set( DIFXINTERFACE_SOURCEFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_DiFXVisibilityProcessor.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_DiFXBaselineProcessor.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_DiFXPCalProcessor.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_DiFXVexStripper.cc
 )
 
 #declare header paths ##########################################################
-set(VEX_RELPATH "../../c_src/vex/include")
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/${VEX_RELPATH})
-
-set(MK4UTIL_RELPATH "../../c_src/mk4util/include")
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/${MK4UTIL_RELPATH})
-
 hops_internal_include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 #compile and install library ###################################################
 
-set(DIFXINTERFACE_LIBS vex mk4util vex2json MHO_Message MHO_Utilities MHO_Containers)
+set(DIFXINTERFACE_LIBS MHO_Message MHO_Utilities MHO_Containers)
 
 # we use pkg-config to find difxio
 find_package(PkgConfig) 

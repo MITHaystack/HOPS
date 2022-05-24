@@ -4,6 +4,7 @@ set(HOPS_DIFXAPP_LIBS MHO_Message MHO_Utilities MHO_Math MHO_Operators MHO_Calib
 
 set(SOURCE_BASENAMES
     difx2hops
+    TestVexStripper
 )
 
 find_package(PkgConfig) # we use pkg-config to find difxio
