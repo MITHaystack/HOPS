@@ -1,16 +1,23 @@
-#include "MHO_DiFXStripVex.hh"
+#include "MHO_DiFXVexStripper.hh"
 
 namespace hops 
 {
 
-MHO_DiFXStripVex::MHO_DiFXStripVex(){};
-MHO_DiFXStripVex::~MHO_DiFXStripVex(){};
+MHO_DiFXVexStripper::MHO_DiFXVexStripper(){};
+MHO_DiFXVexStripper::~MHO_DiFXVexStripper(){};
 
-void MHO_DiFXStripVex::SetSessionVexFile(std::string filename){fVexFile = filename;}
-void MHO_DiFXStripVex::SetOutputFileName(std::string output_filename){fOutputFile = output_filename;}
+void MHO_DiFXVexStripper::SetSessionVexFile(std::string filename){fVexFile = filename;}
+void MHO_DiFXVexStripper::SetOutputFileName(std::string output_filename){fOutputFile = output_filename;}
 
-void MHO_DiFXStripVex::ExtractScan()
+void MHO_DiFXVexStripper::ExtractScan()
 {
+
+};
+
+/*
+{
+
+
     // initialize memory as necessary
     current_def[0] = 0;
     current_scan[0] = 0;
@@ -204,7 +211,7 @@ void MHO_DiFXStripVex::ExtractScan()
 }
 
 
-void MHO_DiFXStripVex::ExtractAntenna()
+void MHO_DiFXVexStripper::ExtractAntenna()
 {
     if (strncmp (pst[0], "axis_offset", 11) == 0 && strstr (line, "el:") == 0)
     {
@@ -218,7 +225,7 @@ void MHO_DiFXStripVex::ExtractAntenna()
                         // as it causes problems with vex parser
 }
 
-void MHO_DiFXStripVex::ExtractExper()
+void MHO_DiFXVexStripper::ExtractExper()
 {
     if (strcmp (pst[0], "target_correlator") == 0)
     {
@@ -250,7 +257,7 @@ void MHO_DiFXStripVex::ExtractExper()
     break;
 }
 
-void MHO_DiFXStripVex::ExtractGlobal()
+void MHO_DiFXVexStripper::ExtractGlobal()
 {
     // insert a dummy EOP ref (which is fine for fourfit)
     if (strncmp (pst[0], "$GLOBAL", 7) == 0)
@@ -269,7 +276,7 @@ void MHO_DiFXStripVex::ExtractGlobal()
     }
 }
 
-void MHO_DiFXStripVex::ExtractMode()
+void MHO_DiFXVexStripper::ExtractMode()
 {
     if (strncmp (pst[0], "def", 3) == 0  && strncmp (pst[1], D->scan[scanId].obsModeName, 30) != 0)
     {
@@ -369,7 +376,7 @@ void MHO_DiFXStripVex::ExtractMode()
     }
 }
 
-void MHO_DiFXStripVex::ExtractSched()
+void MHO_DiFXVexStripper::ExtractSched()
 {
     // don't change $SCHED line
     if (strncmp (pst[0], "$SCHED", 6) == 0){break;}
@@ -473,7 +480,7 @@ void MHO_DiFXStripVex::ExtractSched()
     // the .v2d file.
 }
 
-void MHO_DiFXStripVex::ExtractSite()
+void MHO_DiFXVexStripper::ExtractSite()
 {
         // and filter out unused sites
     if (strncmp (pst[0], "def", 6) == 0)
@@ -532,7 +539,7 @@ void MHO_DiFXStripVex::ExtractSite()
     }
 }
 
-void MHO_DiFXStripVex::ExtractStation()
+void MHO_DiFXVexStripper::ExtractStation()
 {
         // delete vex's clock and das
     if (strncmp (pst[1], "$CLOCK", 6) == 0 || strncmp (pst[1], "$DAS", 4) == 0)
@@ -549,5 +556,6 @@ void MHO_DiFXStripVex::ExtractStation()
     }
 }
 
+*/
 
 }//end namespace
