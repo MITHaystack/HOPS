@@ -30,6 +30,10 @@ class MHO_Tokenizer{
         */
         void SetIncludeEmptyTokensFalse();
 
+        void SetUseMulticharacterDelimiterTrue();
+
+        void SetUseMulticharacterDelimiterFalse();
+
         /** Set the string to be parsed 
         * @param aString string
         * @returns None 
@@ -51,6 +55,7 @@ class MHO_Tokenizer{
     protected:
 
         bool fIncludeEmptyTokens;
+        bool fMultiCharDelimiter;
         std::string fDelim;
         const std::string* fString;
 };
