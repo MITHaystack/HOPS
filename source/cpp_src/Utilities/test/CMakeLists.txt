@@ -16,6 +16,7 @@ set(SOURCE_BASENAMES
     TestTemplateTypenameDeduction
     TestStationCodeMap
     TestDateLibraryUsage
+    TestTokenizer
 )
 
 foreach( BASENAME ${SOURCE_BASENAMES} )
