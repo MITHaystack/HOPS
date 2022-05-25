@@ -233,7 +233,6 @@ class MHO_BinaryFileInterface
                 bool key_ok = true;
                 if( key.fSync != MHO_FileKeySyncWord ){key_ok = false;}
 
-
                 fMD5Generator.Initialize();
                 std::string name = MHO_ClassIdentity::ClassName(obj);
                 fMD5Generator << name;
@@ -243,6 +242,7 @@ class MHO_BinaryFileInterface
 
                 if(key_ok)
                 {
+                    obj.SetObjectUUID(obj_key.fObjectId);
                     fObjectStreamer >> obj;
                     if( fObjectStreamer.IsObjectUnknown() )
                     {
@@ -301,7 +301,8 @@ class MHO_BinaryFileInterface
             fMD5Generator.Finalize();
             key.fTypeId = fMD5Generator.GetDigestAsUUID(); //type uuid
 
-            key.fObjectId = fUUIDGenerator.GenerateUUID(); //random uuid of object id
+            key.fObjectId = obj.GetObjectUUID();
+            //key.fObjectId = fUUIDGenerator.GenerateUUID(); //random uuid of object id
             key.fSize = obj.GetSerializedSize();
 
             return key;

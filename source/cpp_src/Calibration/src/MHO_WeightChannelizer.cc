@@ -29,7 +29,7 @@ MHO_WeightChannelizer::MHO_WeightChannelizer()
 MHO_WeightChannelizer::~MHO_WeightChannelizer(){}
 
 bool
-MHO_WeightChannelizer::InitializeImpl(const baseline_weight_type* in, ch_baseline_weight_type* out)
+MHO_WeightChannelizer::InitializeImpl(const weight_type* in, ch_weight_type* out)
 {
     fInitialized = false;
     if(in != nullptr && out != nullptr)
@@ -41,7 +41,7 @@ MHO_WeightChannelizer::InitializeImpl(const baseline_weight_type* in, ch_baselin
         else
         {
             //now we need figure out the dimensions of the ouput array
-            std::size_t input_dim[baseline_weight_type::rank::value];
+            std::size_t input_dim[weight_type::rank::value];
             in->GetDimensions(input_dim);
 
             //and determine the number of unique channel labels
@@ -71,7 +71,7 @@ MHO_WeightChannelizer::InitializeImpl(const baseline_weight_type* in, ch_baselin
 
             //finally we can re-size the output array so that it is ready
             //to recieve data from each channel
-            std::size_t output_dim[ch_baseline_weight_type::rank::value];
+            std::size_t output_dim[ch_weight_type::rank::value];
             output_dim[CH_POLPROD_AXIS] = input_dim[POLPROD_AXIS];
             output_dim[CH_CHANNEL_AXIS] = num_channels;
             output_dim[CH_TIME_AXIS] = input_dim[TIME_AXIS];
@@ -128,7 +128,7 @@ MHO_WeightChannelizer::InitializeImpl(const baseline_weight_type* in, ch_baselin
 }
 
 bool
-MHO_WeightChannelizer::ExecuteImpl(const baseline_weight_type* in, ch_baseline_weight_type* out)
+MHO_WeightChannelizer::ExecuteImpl(const weight_type* in, ch_weight_type* out)
 {
     if(fInitialized)
     {

@@ -7,11 +7,10 @@
 #include "MHO_DirectoryInterface.hh"
 #include "MHO_BinaryFileInterface.hh"
 
-#include "MHO_Visibilities.hh"
-#include "MHO_ChannelizedVisibilities.hh"
+#include "MHO_ContainerDefinitions.hh"
+
 #include "MHO_VisibilityChannelizer.hh"
 #include "MHO_WeightChannelizer.hh"
-#include "MHO_StationCoordinates.hh"
 #include "MHO_FFTWTypes.hh"
 
 #include "MHO_ManualChannelPhaseCorrection_v1.hh"
@@ -109,7 +108,7 @@ int main(int argc, char** argv)
     std::cout<<"Will use corel file: "<<corel_file<<std::endl;
 
     //now open and read the (channelized) baseline visibility data
-    ch_baseline_data_type* bl_data = new ch_baseline_data_type();
+    ch_visibility_type* bl_data = new ch_visibility_type();
     MHO_BinaryFileInterface inter;
     status = inter.OpenToRead(corel_file);
     if(status)

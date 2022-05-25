@@ -22,12 +22,12 @@ namespace hops
 {
 
 
-class MHO_ChannelizedRotationFunctor: public MHO_NDArrayFunctor< ch_baseline_data_type, ch_baseline_data_type >
+class MHO_ChannelizedRotationFunctor: public MHO_NDArrayFunctor< ch_visibility_type, ch_visibility_type >
 {
     public:
 
-        using input_iterator = MHO_NDArrayFunctor< ch_baseline_data_type, ch_baseline_data_type >::input_iterator;
-        using output_iterator = MHO_NDArrayFunctor< ch_baseline_data_type, ch_baseline_data_type >::output_iterator;
+        using input_iterator = MHO_NDArrayFunctor< ch_visibility_type, ch_visibility_type >::input_iterator;
+        using output_iterator = MHO_NDArrayFunctor< ch_visibility_type, ch_visibility_type >::output_iterator;
 
 
         MHO_ChannelizedRotationFunctor();

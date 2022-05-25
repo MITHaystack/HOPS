@@ -10,8 +10,11 @@ namespace hops
 MHO_DiFXBaselineProcessor::MHO_DiFXBaselineProcessor():
     fInput(nullptr),
     fV(nullptr),
-    fW(nullptr)
-{};
+    fW(nullptr),
+    fStationCodeMap(nullptr)
+{
+    fRootCode = "unknown";
+};
 
 MHO_DiFXBaselineProcessor::~MHO_DiFXBaselineProcessor()
 {
@@ -42,7 +45,7 @@ MHO_DiFXBaselineProcessor::Organize()
 {
     if(fRecords.size() == 0)
     {
-        msg_warn("difx_interface", "no visiblity records available for baseline: " << fBaselineID << eom);
+        msg_debug("difx_interface", "no visiblity records available for baseline: " << fBaselineID << eom);
         return;
     }
 
@@ -59,14 +62,17 @@ MHO_DiFXBaselineProcessor::Organize()
     fRefStation = (*fInput)["antenna"][ant1]["name"];
     fRemStation = (*fInput)["antenna"][ant2]["name"];
     fBaselineName = fRefStation + ":" + fRemStation;
-    fBaselineShortName = fBaselineName; //TODO FIXME - need to map station names to single character ids like difx2mark4
+
+    fRefStationMk4Id = fStationCodeMap->GetMk4IdFromStationCode(fRefStation);
+    fRemStationMk4Id = fStationCodeMap->GetMk4IdFromStationCode(fRemStation);
+    fBaselineShortName = fRefStationMk4Id + fRemStationMk4Id;
 
     //get the AP length (which config should we use if there is more than one?)
     fAPLength = (*fInput)["config"][0]["tInt"];
 
     //check number of polpairs
     fNPolPairs = fPolPairSet.size();
-    if(fNPolPairs > 4){msg_warn("difx_interface", "More than 4 pol-products, detected (" << fNPolPairs <<") on baseline: " << fBaselineName << eom) ;}
+    if(fNPolPairs > 4){msg_warn("difx_interface", "more than 4 pol-products, detected (" << fNPolPairs <<") on baseline: " << fBaselineName << eom) ;}
     fNChannels = fFreqIndexSet.size();
 
     //check if the number of spectral points is the same for every channel correlated
@@ -77,7 +83,9 @@ MHO_DiFXBaselineProcessor::Organize()
     if(fSpecPointSet.size() > 1 )
     {
         fCanChannelize = false;
-        msg_error("difx_interface", "Channels do not have same number of spectral points on baseline: " << fBaselineName << eom);
+        msg_error("difx_interface", "channels do not have same number of spectral points on baseline: " << fBaselineName << eom);
+        msg_fatal("difx_interface", "un-channelized data not yet supported" << eom );
+        std::exit(1);
     }
 
     //sort the individual visiblity records in time order
@@ -98,7 +106,7 @@ MHO_DiFXBaselineProcessor::Organize()
     if(!fAPSet.empty()){fNAPs = *(fAPSet.rbegin());} //sets are sorted in ascending order, so grab the max from end
     if(fAPSet.size() > 1 )
     {
-        msg_error("difx_interface", "Channels do not have same number of APs on baseline: " << fBaselineName <<" will pad-out to max AP: "<< fNAPs << "."<< eom);
+        msg_error("difx_interface", "channels do not have same number of APs on baseline: " << fBaselineName <<" will zero pad-out to max AP: "<< fNAPs << "."<< eom);
     }
 
     //construct the table of frequencies for this baseline and sort in asscending order
@@ -117,6 +125,11 @@ MHO_DiFXBaselineProcessor::Organize()
 }
 
 
+void 
+MHO_DiFXBaselineProcessor::SetStationCodes(MHO_StationCodeMap* code_map)
+{
+    fStationCodeMap = code_map;
+}
 
 
 
@@ -129,12 +142,18 @@ MHO_DiFXBaselineProcessor::ConstructVisibilityFileObjects()
 
     if(fCanChannelize && fInput != nullptr)
     {
+
+        //insert the difx input data as a json string
+        std::stringstream jss;
+        jss << *fInput;
+        fTags.SetTagValue("difx_input_json", jss.str());
+
     	//first construct a channelized visibility container
         if(fV){delete fV; fV = nullptr;}
         if(fW){delete fW; fW = nullptr;}
 
-        fV = new ch_baseline_data_type(); 
-        fW = new ch_baseline_weight_type();
+        fV = new ch_visibility_type(); 
+        fW = new ch_weight_type();
 
         //tags for the visibilities
         fV->Resize(fNPolPairs, fNChannels, fNAPs, fNSpectralPoints);
@@ -142,8 +161,11 @@ MHO_DiFXBaselineProcessor::ConstructVisibilityFileObjects()
         fV->Insert(std::string("name"), std::string("visibilities"));
         fV->Insert(std::string("difx_baseline_index"), fBaselineID);
         fV->Insert(std::string("baseline"), fBaselineName);
+        fV->Insert(std::string("baseline_shortname"), fBaselineShortName);
         fV->Insert(std::string("reference_station"), fRefStation);
         fV->Insert(std::string("remote_station"), fRemStation);
+        fV->Insert(std::string("reference_station_mk4id"), fRefStationMk4Id);
+        fV->Insert(std::string("remote_station_mk4id"), fRemStationMk4Id);
 
         //tags for the weights
         fW->Resize(fNPolPairs, fNChannels, fNAPs, fNSpectralPoints);
@@ -151,8 +173,11 @@ MHO_DiFXBaselineProcessor::ConstructVisibilityFileObjects()
         fW->Insert(std::string("name"), std::string("weights"));
         fW->Insert(std::string("difx_baseline_index"), fBaselineID);
         fW->Insert(std::string("baseline"), fBaselineName);
+        fW->Insert(std::string("baseline_shortname"), fBaselineShortName);
         fW->Insert(std::string("reference_station"), fRefStation);
         fW->Insert(std::string("remote_station"), fRemStation);
+        fW->Insert(std::string("reference_station_mk4id"), fRefStationMk4Id);
+        fW->Insert(std::string("remote_station_mk4id"), fRemStationMk4Id);
 
         //polarization product axis
         auto* polprod_axis = &(std::get<CH_POLPROD_AXIS>(*fV));
@@ -250,22 +275,28 @@ MHO_DiFXBaselineProcessor::ConstructVisibilityFileObjects()
 void 
 MHO_DiFXBaselineProcessor::WriteVisibilityObjects(std::string output_dir)
 {
-    //construct output file name (eventually figure out how to construct the baseline name)
-    std::string root_code = "dummy"; //TODO replace with actual 'root' code
+    //construct output file name
+    std::string root_code = fRootCode;
     std::string output_file = output_dir + "/" + fBaselineShortName + "." + root_code + ".cor";
 
     MHO_BinaryFileInterface inter;
     bool status = inter.OpenToWrite(output_file);
     if(status)
     {
+
         uint32_t label = 0xFFFFFFFF; //someday make this mean something
+
+        fTags.AddObjectUUID(fV->GetObjectUUID());
+        fTags.AddObjectUUID(fW->GetObjectUUID());
+        inter.Write(fTags, "tags", label);
+
         inter.Write(*fV, "vis", label);
         inter.Write(*fW, "weight", label);
         inter.Close();
     }
     else
     {
-        msg_error("file", "Error opening corel output file: " << output_file << eom);
+        msg_error("file", "error opening corel output file: " << output_file << eom);
     }
 
     inter.Close();
@@ -283,10 +314,12 @@ MHO_DiFXBaselineProcessor::Clear()
     {
         delete fRecords[i];
     }
+    fRecords.clear();
     fPolPairSet.clear();
     fFreqIndexSet.clear();
     fSpecPointSet.clear();
     fVisibilities.clear();
+    fBaselineFreqs.clear();
     if(fV){delete fV; fV = nullptr;}
     if(fW){delete fW; fW = nullptr;}
 }
