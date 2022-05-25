@@ -9,8 +9,7 @@
 #include "MHO_BinaryFileInterface.hh"
 #include "MHO_ClassIdentityMap.hh"
 
-#include "MHO_Visibilities.hh"
-#include "MHO_ChannelizedVisibilities.hh"
+#include "MHO_ContainerDefinitions.hh"
 
 #ifdef USE_ROOT
     #include "TApplication.h"
@@ -141,7 +140,7 @@ int main(int argc, char** argv)
     }
 
 
-    ch_baseline_data_type* ch_bl_data = new ch_baseline_data_type();
+    ch_visibility_type* ch_bl_data = new ch_visibility_type();
 
     MHO_ClassIdentityMap cid_map;
     cid_map.AddClassType(*cscalar);

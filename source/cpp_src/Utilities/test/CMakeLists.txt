@@ -11,7 +11,9 @@ set(SOURCE_BASENAMES
     TestUUIDGenerator
     TestObjectTags
     TestDirectoryInterface
+    TestLegacyRootCodeGenerator
     TestTemplateTypenameDeduction
+    TestStationCodeMap
 )
 
 foreach( BASENAME ${SOURCE_BASENAMES} )

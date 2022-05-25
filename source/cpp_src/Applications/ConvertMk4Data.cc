@@ -24,11 +24,11 @@
 #include "MHO_MK4CorelInterface.hh"
 #include "MHO_MK4StationInterface.hh"
 
-#include "MHO_Visibilities.hh"
-#include "MHO_ChannelizedVisibilities.hh"
+#include "MHO_ContainerDefinitions.hh"
+
 #include "MHO_VisibilityChannelizer.hh"
 #include "MHO_WeightChannelizer.hh"
-#include "MHO_StationCoordinates.hh"
+
 
 #include "MHO_BinaryFileStreamer.hh"
 #include "MHO_BinaryFileInterface.hh"
@@ -48,11 +48,11 @@ void ConvertCorel(const std::string root_file, const std::string& input_file, co
     mk4inter.SetCorelFile(input_file);
     mk4inter.SetVexFile(root_file);
     mk4inter.ExtractCorelFile();
-    baseline_data_type* bl_data = mk4inter.GetExtractedVisibilities();
-    baseline_weight_type* bl_wdata = mk4inter.GetExtractedWeights();
+    visibility_type* bl_data = mk4inter.GetExtractedVisibilities();
+    weight_type* bl_wdata = mk4inter.GetExtractedWeights();
 
     MHO_VisibilityChannelizer channelizer;
-    ch_baseline_data_type* ch_bl_data = new ch_baseline_data_type();
+    ch_visibility_type* ch_bl_data = new ch_visibility_type();
     channelizer.SetArgs(bl_data, ch_bl_data);
     // channelizer.SetInput(bl_data);
     // channelizer.SetOutput(ch_bl_data);
@@ -63,7 +63,7 @@ void ConvertCorel(const std::string root_file, const std::string& input_file, co
     }
 
     MHO_WeightChannelizer wchannelizer;
-    ch_baseline_weight_type* ch_bl_wdata = new ch_baseline_weight_type();
+    ch_weight_type* ch_bl_wdata = new ch_weight_type();
     wchannelizer.SetArgs(bl_wdata, ch_bl_wdata);
     bool winit = wchannelizer.Initialize();
     if(winit)
@@ -101,7 +101,7 @@ void ConvertStation(const std::string root_file, const std::string& input_file, 
     msg_info("file", "Converting station input file: " << input_file << eom);
     mk4inter.SetStationFile(input_file);
     mk4inter.SetVexFile(root_file);
-    station_coord_data_type* st_data = mk4inter.ExtractStationFile();
+    station_coord_type* st_data = mk4inter.ExtractStationFile();
 
     MHO_BinaryFileInterface inter;
     //std::string index_file = output_file + ".index";

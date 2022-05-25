@@ -34,11 +34,11 @@ class MHO_DiFXVisibilityProcessor
         MHO_DiFXVisibilityProcessor(){};
         virtual ~MHO_DiFXVisibilityProcessor(){};
 
-        void SetFilename(std::string filename){fFilename = filename;}
+        void SetFilename(std::string filename){fFilename = filename.c_str();}
 
         //read the visibilities from Swinburne file and allocate memory to store them as we go
         //memory management of the visibility records is delegated to the caller
-        void ReadDIFX_File(std::map< int, MHO_DiFXBaselineProcessor >& allBaselineVisibilities);
+        void ReadDIFXFile(std::map< int, MHO_DiFXBaselineProcessor >& allBaselineVisibilities);
 
     private:
 

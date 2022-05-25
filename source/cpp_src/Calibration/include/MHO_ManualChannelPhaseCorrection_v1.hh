@@ -14,7 +14,7 @@
 #include <complex>
 
 #include "MHO_TableContainer.hh"
-#include "MHO_ChannelizedVisibilities.hh"
+#include "MHO_ContainerDefinitions.hh"
 #include "MHO_UnaryOperator.hh"
 
 
@@ -22,7 +22,7 @@ namespace hops
 {
 
 
-class MHO_ManualChannelPhaseCorrection_v1: public MHO_UnaryOperator< ch_baseline_data_type >
+class MHO_ManualChannelPhaseCorrection_v1: public MHO_UnaryOperator< ch_visibility_type >
 {
     public:
 
@@ -35,7 +35,7 @@ class MHO_ManualChannelPhaseCorrection_v1: public MHO_UnaryOperator< ch_baseline
 
     protected:
 
-        using XArrayType = ch_baseline_data_type;
+        using XArrayType = ch_visibility_type;
 
         virtual bool InitializeInPlace(XArrayType* in) override;
         virtual bool ExecuteInPlace(XArrayType* in) override;

@@ -19,6 +19,8 @@
 #include "MHO_Message.hh"
 #include "MHO_Tokenizer.hh"
 #include "MHO_DirectoryInterface.hh"
+#include "MHO_LegacyRootCodeGenerator.hh"
+#include "MHO_StationCodeMap.hh"
 
 #include "MHO_DiFXScanFileSet.hh"
 #include "MHO_DiFXScanProcessor.hh"
@@ -35,6 +37,8 @@ class MHO_DiFXInterface
 
         void SetInputDirectory(std::string dir);
         void SetOutputDirectory(std::string dir);
+
+        void SetStationCodes(MHO_StationCodeMap* code_map);
 
         void Initialize(); //read the directory and construct the scan file-lists 
         void ProcessScans(); //convert the scans 
