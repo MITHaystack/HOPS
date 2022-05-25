@@ -3,12 +3,13 @@
 
 extern "C"
 {
+    #include "msg.h"
     #include "vex.h"
     #include "mk4_vex.h"
 }
 
-extern int msglev = 1;
-extern char progname[] = "TestParseVex";
+// extern int msglev = 1;
+// extern char progname[] = "TestParseVex";
 
 int main(int argc, char** argv)
 {
