@@ -28,16 +28,34 @@ class MHO_DiFXVexStripper
         void SetSessionVexFile(std::string filename);
         void SetOutputFileName(std::string output_filename);
         
+        void SetSourceName(std::string src_name);
+
         void ExtractScan();
         
     private:
 
+        bool IsComment();
+        bool IsBlockStatement();
+
+        //modify the current vex line before output to the 'ovex' file
+        void ProcessLine();
+
+        void SpaceDelimitEqualsSign(std::string& string_to_modify);
+
+
         std::string fVexFile;
         std::string fOutputFile;
+        std::string fSourceName;
 
+        std::string fLine; //the line from the input vex file 
+        std::string fOutputLine; //the modified line to the outgoing ovex file
+        std::vector< std::string > fTokens;
+        MHO_Tokenizer fTokenizer;
+        std::string fVexDelim;
+        std::string fWhitespace;
 
-        // void ExtractAntenna();
-        // void ExtractExper();
+        //void ExtractAntenna();
+        void ExtractExper();
         //void ExtractGlobal();
         // void ExtractMode();
         // void ExtractSched();
