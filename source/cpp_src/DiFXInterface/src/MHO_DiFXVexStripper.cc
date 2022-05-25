@@ -1,18 +1,223 @@
 #include "MHO_DiFXVexStripper.hh"
 
+#include <fstream>
+
 namespace hops 
 {
 
-MHO_DiFXVexStripper::MHO_DiFXVexStripper(){};
+MHO_DiFXVexStripper::MHO_DiFXVexStripper()
+{
+    fVexDelim = " :;\t\r\n";
+    fWhitespace = " \t\r\n";
+    fTokenizer.SetDelimiter(fVexDelim);
+};
+
 MHO_DiFXVexStripper::~MHO_DiFXVexStripper(){};
 
 void MHO_DiFXVexStripper::SetSessionVexFile(std::string filename){fVexFile = filename;}
 void MHO_DiFXVexStripper::SetOutputFileName(std::string output_filename){fOutputFile = output_filename;}
+void MHO_DiFXVexStripper::SetSourceName(std::string src_name){fSourceName = src_name;}
 
 void MHO_DiFXVexStripper::ExtractScan()
 {
+    if(fVexFile != "" && fOutputFile != "")
+    {
+        //open input/output files
+        std::ifstream vfile(fVexFile.c_str(), std::ifstream::in);
+        std::ofstream ovfile(fOutputFile.c_str(), std::ofstream::out);
+
+        bool dump_to_output = false;
+        if(vfile.is_open() && ovfile.is_open())
+        {
+            //read lines until end, process each one based on context
+            //and modify if needed before dumping to output
+            while( getline(vfile,fLine) )
+            {
+                dump_to_output = false;
+                if(fLine.size() != 0 && !IsComment() ){dump_to_output = ProcessLine();}
+                if(dump_to_output){ovfile << fOutputLine;}
+            }
+            vfile.close();
+        }
+    }
+
+
+    while (fgets (line, 256, fin) != NULL)
+        {
+                                    // get all fields of this line
+        strcpy (s, line);           // make a copy for (destructive) parsing
+        //fprintf(stderr, "%s\n", line);
+
+        //                             // space-delimit any = sign
+        // if ((pchar = strchr (s, '=')) != NULL)
+        //     {
+        //     n = pchar - s;
+        //     strcpy (pchar, " = ");
+        //     strcpy (pchar+3, line+n+1);
+        //     }
+
+
+        for (i=0; i<50; i++)
+            {
+            pst[i] = strtok ((i>0) ? (char *) NULL : s, " :;\t\r\n");
+            if (pst[i] == NULL)
+                break;
+            }
+                                    // ensure that pointers are valid
+        for (j=i; j<50; j++)
+            pst[j] = "";
+
+                                    // see if this is a block stmt
+        match = FALSE;
+        i = -1;
+        while (strcmp (blocks[++i], "END_LIST"))
+            if (strncmp (pst[0], blocks[i], strlen (blocks[i])) == 0)
+                {
+                match = TRUE;       // found it
+                // if (opts->verbose > 0)
+                //     printf ("      processing %s block\n", blocks[i]);
+                break;
+                }
+
+        if (match)                  // yes, it was found, change current block
+            current_block = i;
+
+        if (strncmp ("def", pst[0], strlen (pst[0])) == 0)
+            strncpy (current_def, pst[1], 32);
+
+        if (strncmp ("scan", pst[0], strlen (pst[0])) == 0)
+            {
+            strncpy (current_scan, pst[1], 32);
+            //fprintf(stderr, "scan=%s\n", current_scan);
+            }
+                                    // remember the site ID for later
+        if (strncmp (pst[0], "site_ID", 7) == 0)
+            {
+            strncpy (current_site, pst[2], 3);
+            //fprintf(stderr, "site=%s\n", current_site);
+            }
+
+                                    // switch to proper context for current block
+        switch (current_block)
+
 
 };
+
+
+void MHO_DiFXVexStripper::ExtractExper()
+{
+    if (strcmp (pst[0], "target_correlator") == 0)
+    {
+        strcpy (line, "    target_correlator = difx;\n");
+        tarco = TRUE;
+    }
+    if (strcmp (pst[0], "exper_num") == 0)
+    {
+        sprintf (line, "    exper_num = %s;\n", node_name);
+        exper_num = TRUE;
+    }
+    else if (strncmp (pst[0], "enddef", 6) == 0)
+    {
+        strcpy (line, "");
+        if (tarco == FALSE)
+        {
+            strcpy (buff, "    target_correlator = difx;\n");
+            strcat (line, buff);
+            tarco = TRUE;
+        }
+        if (exper_num == FALSE)
+        {
+            sprintf (buff, "    exper_num = %s;\n", node_name);
+            strcat (line, buff);
+            exper_num = TRUE;
+        }
+        strcat (line, "  enddef;\n");
+    }
+    break;
+}
+
+
+bool 
+MHO_DiFXVexStripper::IsComment()
+{
+    //TODO FIX ME -- ALLOW FOR PRECEDING WHITESPACE 
+    //we are working under the assumption that the header lines have '*' as first char
+    if(fLine[0] == '*'){return true;}
+    return false;
+}
+
+void 
+MHO_DiFXVexStripper::SpaceDelimitEqualsSign(std::string& string_to_modify)
+{
+    //locates all "=" in the input string and replaces with " = "
+
+}
+
+bool 
+MHO_DiFXVexStripper::IsBlockStatement(const std::string& line)
+{
+
+        // see if this is a block stmt
+    match = FALSE;
+    i = -1;
+    while (strcmp (blocks[++i], "END_LIST"))
+    if (strncmp (pst[0], blocks[i], strlen (blocks[i])) == 0)
+    {
+    match = TRUE;       // found it
+    // if (opts->verbose > 0)
+    //     printf ("      processing %s block\n", blocks[i]);
+    break;
+    }
+
+    //checks if this line is the begining of a new block statement
+    if (strncmp ("def", pst[0], strlen (pst[0])) == 0)
+        strncpy (current_def, pst[1], 32);
+
+    if (strncmp ("scan", pst[0], strlen (pst[0])) == 0)
+        {
+        strncpy (current_scan, pst[1], 32);
+        //fprintf(stderr, "scan=%s\n", current_scan);
+        }
+                                // remember the site ID for later
+    if (strncmp (pst[0], "site_ID", 7) == 0)
+        {
+        strncpy (current_site, pst[2], 3);
+        //fprintf(stderr, "site=%s\n", current_site);
+        }
+
+}
+
+
+void 
+MHO_DiFXVexStripper::ProcessLine()
+{
+
+    //check if this is a new vex block, and if so update the 'current block code'
+    bool isBlockStatement = IsBlockStatement(fLine);
+    SpaceDelimitEqualsSign(fLine);
+
+    GenerateOuputLine();
+
+    ovfile 
+
+
+    TokenizeLine();
+    ProcessTokens();
+}
+
+// void MHO_DiFXVexStripper::ExtractAntenna()
+// {
+//     if (strncmp (pst[0], "axis_offset", 11) == 0 && strstr (line, "el:") == 0)
+//     {
+//         strcpy (buff, line);
+//         pchar = strchr (line, '=') + 2;
+//         strcpy (pchar, "el:");
+//         strcpy (pchar + 3, strchr (buff, '=') + 1);
+//     }
+//     else if (strncmp (pst[0], "antenna_motion", 14) == 0) 
+//         line[0] = '*';  // comment out antenna motion command,
+//                         // as it causes problems with vex parser
+// }
 
 /*
 {
@@ -211,19 +416,7 @@ void MHO_DiFXVexStripper::ExtractScan()
 }
 
 
-void MHO_DiFXVexStripper::ExtractAntenna()
-{
-    if (strncmp (pst[0], "axis_offset", 11) == 0 && strstr (line, "el:") == 0)
-    {
-        strcpy (buff, line);
-        pchar = strchr (line, '=') + 2;
-        strcpy (pchar, "el:");
-        strcpy (pchar + 3, strchr (buff, '=') + 1);
-    }
-    else if (strncmp (pst[0], "antenna_motion", 14) == 0) 
-        line[0] = '*';  // comment out antenna motion command,
-                        // as it causes problems with vex parser
-}
+
 
 void MHO_DiFXVexStripper::ExtractExper()
 {
