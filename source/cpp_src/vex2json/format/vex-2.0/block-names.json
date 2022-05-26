@@ -1,0 +1,29 @@
+{
+    "version": "2.0",
+    "block_names": 
+    [
+        "$GLOBAL",
+        "$STATION",
+        "$MODE",
+        "$SCHED",
+        "$ANTENNA",
+        "$BBC",
+        "$BITSTREAMS",
+        "$CLOCK",
+        "$DAS",
+        "$DATASTREAMS",
+        "$EOP",
+        "$EXPER",
+        "$EXTENSIONS",
+        "$FREQ",
+        "$IF",
+        "$PHASE_CAL_DETECT",
+        "$PROCEDURES",
+        "$SCHEDULING_PARAMS",
+        "$SEFD",
+        "$SITE",
+        "$SOURCE",
+        "$TAPELOG_OBS",
+        "$TRACKS"
+    ]
+}

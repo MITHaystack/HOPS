@@ -17,6 +17,7 @@
 
 #include "MHO_Message.hh"
 #include "MHO_Tokenizer.hh"
+#include "MHO_JSONHeaderWrapper.hh"
 
 namespace hops 
 {
@@ -27,10 +28,16 @@ class MHO_VexParser
         MHO_VexParser();
         virtual ~MHO_VexParser();
 
+
+
         void SetVexFile(std::string filename);
         void ReadFile();
         void RemoveComments();
         void ParseVex();
+
+        void SetVexVersion(std::string version);
+        void SetVexVersion(const char* version);
+        std::string GetFormatDirectory();
 
         //testing only!! TODO REMOVE ME
         std::list< std::string >* GetLines(){return &fLines;};
@@ -49,6 +56,10 @@ class MHO_VexParser
         std::string fLine; //the line from the input vex file 
         std::list< std::string > fLines;
         std::vector< std::string > fTokens;
+
+        //format definition 
+        std::string fFormatDirectory;
+        std::string fVexVersion;
 
 };
 
