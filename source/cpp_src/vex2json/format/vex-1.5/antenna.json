@@ -1,0 +1,19 @@
+{
+    "block_name": "$ANTENNA",
+    "parameters" :
+    {
+        "antenna_diam" : {"type": "real", "dimension": "length"},
+        "antenna_name" : {"type" : "string"},
+        "axis_type" : {"type": "string"},
+        "axis_offset" : {"type" : "real", "dimension" : "length"},
+        "antenna_motion" : {"type": null},
+        "pointing_sector" : {"type": null}
+    },
+    "required": 
+    [
+        "antenna_diam",
+        "antenna_name",
+        "axis_type",
+        "axis_offset"
+    ]
+}

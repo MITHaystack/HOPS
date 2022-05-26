@@ -37,6 +37,11 @@ include_directories(${EXTERN_HLIBS}/json/include)
 
 hops_internal_include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
+
+set_property( SOURCE ${VEX2JSON_SOURCEFILES}
+    APPEND PROPERTY COMPILE_DEFINITIONS VEX_FORMAT_DIR="${DATA_INSTALL_DIR}"
+)
+
 add_library (vex2json SHARED ${VEX2JSON_SOURCEFILES} ${VEX2JSON_HEADERFILES})
 
 target_link_libraries (vex2json vex mk4util MHO_Utilities)
@@ -44,6 +49,8 @@ target_link_libraries (vex2json vex mk4util MHO_Utilities)
 hops_install_headers (${VEX2JSON_HEADERFILES})
 hops_install_libraries (vex2json)
 
+#install vex format specification
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/format)
 
 if (HOPS_ENABLE_TEST)
     add_subdirectory(test)

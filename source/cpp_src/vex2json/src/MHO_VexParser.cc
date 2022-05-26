@@ -11,6 +11,8 @@ MHO_VexParser::MHO_VexParser()
     fVexDelim = " :;\t\r\n";
     fWhitespace = " \t\r\n";
     fCommentFlag = "*";
+    fVexVersion = "1.5";
+    fFormatDirectory = VEX_FORMAT_DIR;
 }
 
 
@@ -68,5 +70,40 @@ MHO_VexParser::ParseVex()
 
 }
 
+
+void 
+MHO_VexParser::SetVexVersion(std::string version)
+{
+    fVexVersion = "1.5";
+    if(version == "1.5")
+    {
+        fVexVersion = version;
+        return;
+    }
+
+    if(version == "2.0")
+    {
+        fVexVersion = version;
+        return;
+    }
+
+    msg_error("vex", "version string: "<< version << "not understood, defaulting to vex version 1.5." << eom );
+
+}
+
+void 
+MHO_VexParser::SetVexVersion(const char* version)
+{
+    std::string vers(version);
+    SetVexVersion(vers);
+}
+
+std::string 
+MHO_VexParser::GetFormatDirectory()
+{
+    std::string format_dir = VEX_FORMAT_DIR;
+    format_dir += "/vex-" + fVexVersion + "/";
+    return format_dir;
+}
 
 }

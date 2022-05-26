@@ -1,0 +1,7 @@
+#install vex 1.5 format description files
+install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/vex-1.5/block-names.json" DESTINATION "${DATA_INSTALL_DIR}/vex-1.5")
+install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/vex-1.5/antenna.json" DESTINATION "${DATA_INSTALL_DIR}/vex-1.5")
+
+
+#install the vex 2.0 format description files
+install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/vex-2.0/block-names.json" DESTINATION "${DATA_INSTALL_DIR}/vex-2.0")
