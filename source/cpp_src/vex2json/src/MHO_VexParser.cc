@@ -119,35 +119,38 @@ MHO_VexParser::MarkBlocks()
     //now figure out where each block ends (at the start of the following block)
     for(auto blk_it = fBlockNames.begin(); blk_it != fBlockNames.end(); blk_it++)
     {
-        auto line_it = fBlockStartLines[*blk_it];
-        std::size_t line_no = line_it->fLineNumber;
-        std::string next_blk = "";
-        std::size_t min_diff = fLines.size();
-
-        for(auto blk_it2 = fBlockNames.begin(); blk_it2 != fBlockNames.end(); blk_it2++)
+        if(fBlockStartLines.count(*blk_it) != 0) //only work with blocks that have been encountered
         {
-            auto line_it2 = fBlockStartLines[*blk_it2];
-            std::size_t line_no2 = line_it2->fLineNumber;
-            if(line_no < line_no2)
+            auto line_it = fBlockStartLines[*blk_it];
+            std::size_t line_no = line_it->fLineNumber;
+            std::string next_blk = "";
+            std::size_t min_diff = fLines.size();
+
+            for(auto blk_it2 = fBlockNames.begin(); blk_it2 != fBlockNames.end(); blk_it2++)
             {
-                std::size_t diff = line_no2 - line_no;
-                if(diff < min_diff)
+                auto line_it2 = fBlockStartLines[*blk_it2];
+                std::size_t line_no2 = line_it2->fLineNumber;
+                if(line_no < line_no2)
                 {
-                    min_diff = diff;
-                    next_blk = *blk_it2;
+                    std::size_t diff = line_no2 - line_no;
+                    if(diff < min_diff)
+                    {
+                        min_diff = diff;
+                        next_blk = *blk_it2;
+                    }
                 }
             }
-        }
 
-        if(next_blk != "")
-        {
-            fBlockStopLines[*blk_it] = fBlockStartLines[next_blk];
-            fBlockStopLines[*blk_it]--; //decrement iterator (--), to point to line just before the next block
-        }
-        else 
-        {
-            fBlockStopLines[*blk_it] = fLines.end();
-            fBlockStopLines[*blk_it]--; //decrement iterator (--), to point to line just before the next block
+            if(next_blk != "")
+            {
+                fBlockStopLines[*blk_it] = fBlockStartLines[next_blk];
+                //fBlockStopLines[*blk_it]--; //decrement iterator (--), to point to line just before the next block
+            }
+            else 
+            {
+                fBlockStopLines[*blk_it] = fLines.end();
+                //fBlockStopLines[*blk_it]--; //decrement iterator (--), to point to line just before the next block
+            }
         }
     }
 
@@ -160,11 +163,50 @@ MHO_VexParser::MarkBlocks()
 
 }
 
-// void 
-// MHO_VexParser::ParseVex()
-// {
-// 
-// }
+void 
+MHO_VexParser::ParseVex()
+{
+    ReadFile();
+    std::cout<<"removing comments"<<std::endl;
+    RemoveComments();
+    std::cout<<"flagging blocks"<<std::endl;
+    MarkBlocks();
+
+    ProcessBlocks();
+}
+
+void 
+MHO_VexParser::ProcessBlocks()
+{
+    for(auto blk_it = fBlockNames.begin(); blk_it != fBlockNames.end(); blk_it++)
+    {
+        if(fBlockStartLines.count(*blk_it) != 0) //only process blocks with data
+        {
+            std::vector< MHO_VexLine > block_data = CollectBlockLines(*blk_it);
+            //now have the block parse deal with the data
+
+            // std::cout<<" ------------------ " << *blk_it <<" ---------------------- "<<std::endl;
+            // for(auto d = block_data.begin(); d != block_data.end(); d++)
+            // {
+            //     std::cout<< d->fContents <<std::endl;
+            // }
+        }
+    }
+}
+
+
+std::vector< MHO_VexLine >
+MHO_VexParser::CollectBlockLines(std::string block_name)
+{
+    std::vector< MHO_VexLine > lines;
+    auto start_it = fBlockStartLines[block_name];
+    auto stop_it = fBlockStopLines[block_name];
+    for(auto it = start_it; it != stop_it; it++)
+    {
+        lines.push_back(*it);
+    }
+    return lines;
+}
 
 bool 
 MHO_VexParser::IsPotentialBlockStart(std::string line)
