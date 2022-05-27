@@ -139,13 +139,15 @@ MHO_VexParser::MarkBlocks()
             }
         }
 
-        if(min_diff != fLines.size() )
+        if(next_blk != "")
         {
             fBlockStopLines[*blk_it] = fBlockStartLines[next_blk];
+            fBlockStopLines[*blk_it]--; //decrement iterator (--), to point to line just before the next block
         }
         else 
         {
             fBlockStopLines[*blk_it] = fLines.end();
+            fBlockStopLines[*blk_it]--; //decrement iterator (--), to point to line just before the next block
         }
     }
 
