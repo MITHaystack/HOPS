@@ -85,6 +85,7 @@ MHO_VexParser::MarkBlocks()
 {
     //brute force search for block start tags
     fBlockStartLines.clear();
+    fBlockStopLines.clear();
     fFoundBlocks.clear();
     for(auto it = fLines.begin(); it != fLines.end(); it++)
     {
@@ -117,40 +118,37 @@ MHO_VexParser::MarkBlocks()
     }
 
     //now figure out where each block ends (at the start of the following block)
-    for(auto blk_it = fBlockNames.begin(); blk_it != fBlockNames.end(); blk_it++)
+    for(auto blk_it = fFoundBlocks.begin(); blk_it != fFoundBlocks.end(); blk_it++)
     {
-        if(fBlockStartLines.count(*blk_it) != 0) //only work with blocks that have been encountered
-        {
-            auto line_it = fBlockStartLines[*blk_it];
-            std::size_t line_no = line_it->fLineNumber;
-            std::string next_blk = "";
-            std::size_t min_diff = fLines.size();
+        auto line_it = fBlockStartLines[*blk_it];
+        std::size_t line_no = line_it->fLineNumber;
+        std::string next_blk = "";
+        std::size_t min_diff = fLines.size();
 
-            for(auto blk_it2 = fBlockNames.begin(); blk_it2 != fBlockNames.end(); blk_it2++)
+        for(auto blk_it2 = fFoundBlocks.begin(); blk_it2 != fFoundBlocks.end(); blk_it2++)
+        {
+            auto line_it2 = fBlockStartLines[*blk_it2];
+            std::size_t line_no2 = line_it2->fLineNumber;
+            if(blk_it != blk_it2 && line_no < line_no2)
             {
-                auto line_it2 = fBlockStartLines[*blk_it2];
-                std::size_t line_no2 = line_it2->fLineNumber;
-                if(line_no < line_no2)
+                std::size_t diff = line_no2 - line_no;
+                if(diff < min_diff)
                 {
-                    std::size_t diff = line_no2 - line_no;
-                    if(diff < min_diff)
-                    {
-                        min_diff = diff;
-                        next_blk = *blk_it2;
-                    }
+                    min_diff = diff;
+                    next_blk = *blk_it2;
                 }
             }
+        }
 
-            if(next_blk != "")
-            {
-                fBlockStopLines[*blk_it] = fBlockStartLines[next_blk];
-                //fBlockStopLines[*blk_it]--; //decrement iterator (--), to point to line just before the next block
-            }
-            else 
-            {
-                fBlockStopLines[*blk_it] = fLines.end();
-                //fBlockStopLines[*blk_it]--; //decrement iterator (--), to point to line just before the next block
-            }
+        if(next_blk != "")
+        {
+            fBlockStopLines[*blk_it] = fBlockStartLines[next_blk];
+            //fBlockStopLines[*blk_it]--; //decrement iterator (--), to point to line just before the next block
+        }
+        else 
+        {
+            fBlockStopLines[*blk_it] = fLines.end();
+            //fBlockStopLines[*blk_it]--; //decrement iterator (--), to point to line just before the next block
         }
     }
 
@@ -178,11 +176,11 @@ MHO_VexParser::ParseVex()
 void 
 MHO_VexParser::ProcessBlocks()
 {
-    for(auto blk_it = fBlockNames.begin(); blk_it != fBlockNames.end(); blk_it++)
+    for(auto blk_it = fFoundBlocks.begin(); blk_it != fFoundBlocks.end(); blk_it++)
     {
-        if(fBlockStartLines.count(*blk_it) != 0) //only process blocks with data
-        {
-            std::vector< MHO_VexLine > block_data = CollectBlockLines(*blk_it);
+        std::vector< MHO_VexLine > block_data = CollectBlockLines(*blk_it);
+        fBlockParser.SetBlockLines(*blk_it, &block_data);
+        fBlockParser.ParseBlock();
             //now have the block parse deal with the data
 
             // std::cout<<" ------------------ " << *blk_it <<" ---------------------- "<<std::endl;
@@ -190,7 +188,6 @@ MHO_VexParser::ProcessBlocks()
             // {
             //     std::cout<< d->fContents <<std::endl;
             // }
-        }
     }
 }
 
@@ -261,6 +258,7 @@ MHO_VexParser::SetVexVersion(std::string version)
     }
 
     std::string format_dir = GetFormatDirectory();
+    fBlockParser.SetFormatDirectory(format_dir);
     std::string bnames_file = format_dir + "block-names.json";
 
     std::cout<<bnames_file<<std::endl;
