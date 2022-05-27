@@ -18,7 +18,9 @@
 #include "MHO_Message.hh"
 #include "MHO_Tokenizer.hh"
 #include "MHO_JSONHeaderWrapper.hh"
+#include "MHO_DirectoryInterface.hh"
 
+#include "MHO_VexLine.hh"
 
 namespace hops 
 {
@@ -30,18 +32,21 @@ class MHO_VexBlockParser
         MHO_VexBlockParser();
         virtual ~MHO_VexBlockParser();
 
-        void SetBlockFormat(mho_json block_def);
-        void SetBlockLines(std::string block_name, const std::vector< std::string >* block_lines);
+        void SetFormatDirectory(std::string fdir){fFormatDirectory = fdir;}
+        void SetBlockLines(std::string block_name, const std::vector< MHO_VexLine >* block_lines);
         
         void ParseBlock();
 
     private:
 
+        void LoadBlockFormat(std::string block_name);
+        std::string GetBlockFormatFileName(std::string block_name);
+
+        bool fBlockFormatLoaded;
         mho_json fBlockFormat;
-        const std::vector< std::string >* fBlockLines;
-
+        std::string fFormatDirectory;
+        const std::vector< MHO_VexLine >* fBlockLines;
         
-
         std::string fStartTag;
         std::string fStopTag;
 

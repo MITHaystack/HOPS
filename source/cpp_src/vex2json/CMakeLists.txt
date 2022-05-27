@@ -10,7 +10,7 @@ set (VEX2JSON_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ScanStructWrapper.hh
     #new stuff
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_VexLine.hh
-    #${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_VexBlockNames.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_VexBlockParser.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_VexParser.hh
 )
 
@@ -27,6 +27,7 @@ set (VEX2JSON_SOURCEFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ScanStructWrapper.cc
     #new stuff 
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_VexParser.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_VexBlockParser.cc
 )
 
 #declare header paths ##########################################################

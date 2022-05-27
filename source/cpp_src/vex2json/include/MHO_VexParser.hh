@@ -21,6 +21,7 @@
 #include "MHO_JSONHeaderWrapper.hh"
 
 #include "MHO_VexLine.hh"
+#include "MHO_VexBlockParser.hh"
 
 namespace hops 
 {
@@ -53,8 +54,7 @@ class MHO_VexParser
 
         std::string fVexFileName;
 
-        //tokenizer
-        MHO_Tokenizer fTokenizer;
+        //token/delimiter definitions
         std::string fVexDelim;
         std::string fWhitespace;
         std::string fCommentFlag;
@@ -65,9 +65,7 @@ class MHO_VexParser
         //workspace
         std::string fLine; //the line from the input vex file 
         std::list< MHO_VexLine > fLines;
-    
         using line_itr = std::list< MHO_VexLine >::iterator;
-
         std::set< std::string > fFoundBlocks; 
         std::map< std::string, line_itr > fBlockStartLines;
         std::map< std::string, line_itr > fBlockStopLines;
@@ -76,6 +74,9 @@ class MHO_VexParser
         std::string fFormatDirectory;
         std::string fVexVersion;
         std::vector< std::string > fBlockNames;
+
+        //block parser 
+        MHO_VexBlockParser fBlockParser;
 
 };
 
