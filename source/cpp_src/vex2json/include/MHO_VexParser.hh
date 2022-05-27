@@ -32,19 +32,19 @@ class MHO_VexParser
         virtual ~MHO_VexParser();
 
         void SetVexFile(std::string filename);
-        void ReadFile();
-        void RemoveComments();
-
         void SetVexVersion(std::string version);
         void SetVexVersion(const char* version);
 
-        void MarkBlocks();
-        //void ParseVex();
-
-        //testing only!! TODO REMOVE ME
-        //std::list< std::string >* GetLines(){return &fLines;};
+        void ParseVex();
         
     private:
+
+        void ReadFile();
+        void RemoveComments();
+        void MarkBlocks();
+        std::vector< MHO_VexLine > CollectBlockLines(std::string block_name);
+        void ProcessBlocks();
+
 
         std::string GetFormatDirectory();
 
