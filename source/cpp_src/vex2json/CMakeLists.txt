@@ -9,7 +9,8 @@ set (VEX2JSON_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_StationStructWrapper.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ScanStructWrapper.hh
     #new stuff
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_VexBlockNames.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_VexLine.hh
+    #${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_VexBlockNames.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_VexParser.hh
 )
 

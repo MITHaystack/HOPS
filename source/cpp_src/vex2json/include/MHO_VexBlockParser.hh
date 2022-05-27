@@ -40,6 +40,8 @@ class MHO_VexBlockParser
         mho_json fBlockFormat;
         const std::vector< std::string >* fBlockLines;
 
+        
+
         std::string fStartTag;
         std::string fStopTag;
 
