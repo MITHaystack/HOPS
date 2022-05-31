@@ -14,6 +14,8 @@
 #include <list>
 #include <string>
 #include <sstream>
+#include <stack>
+
 
 #include "MHO_Message.hh"
 #include "MHO_Tokenizer.hh"
@@ -33,18 +35,19 @@ class MHO_VexBlockParser
         virtual ~MHO_VexBlockParser();
 
         void SetFormatDirectory(std::string fdir){fFormatDirectory = fdir;}
-        void ParseBlockLines(std::string block_name, const std::vector< MHO_VexLine >* block_lines);
-
-
+        mho_json ParseBlockLines(std::string block_name, const std::vector< MHO_VexLine >* block_lines);
 
     private:
 
-        void ParseBlock();
+        mho_json ParseBlock();
+        bool ValidateNode( mho_json& data, mho_json& format);
         void LoadBlockFormat(std::string block_name);
         std::string GetBlockFormatFileName(std::string block_name);
+        std::string CollapsePath( std::stack< std::string >& path );
 
         bool fBlockFormatLoaded;
         mho_json fBlockFormat;
+        std::string fBlockName;
         std::string fFormatDirectory;
         const std::vector< MHO_VexLine >* fBlockLines;
         
