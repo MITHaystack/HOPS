@@ -3,6 +3,7 @@
 #include <fstream>
 #include <cctype>
 #include <algorithm>
+#include <stack>
 
 namespace hops 
 {
@@ -21,7 +22,7 @@ MHO_VexBlockParser::MHO_VexBlockParser()
 
 MHO_VexBlockParser::~MHO_VexBlockParser(){};
 
-void 
+mho_json
 MHO_VexBlockParser::ParseBlockLines(std::string block_name, const std::vector< MHO_VexLine >* block_lines)
 {
     //retrieve the block format 
@@ -29,22 +30,28 @@ MHO_VexBlockParser::ParseBlockLines(std::string block_name, const std::vector< M
     LoadBlockFormat(block_name);
     fBlockLines = block_lines;
 
-    if(fBlockFormatLoaded)
-    {
-        //parses the block according to the format rules
-        ParseBlock();
-    }
+    if(fBlockFormatLoaded){ return ParseBlock();}
     else 
     {
+        mho_json empty;
         msg_error("vex", "parser error, could not load format file for: "<<block_name<<" block."<<eom);
+        return empty;
     }
 }
 
-void 
+mho_json
 MHO_VexBlockParser::ParseBlock()
 {
-    mho_json block; //place to stash the data 
+    mho_json root;
     std::vector< std::string > tokens;
+
+    std::stack< std::string > path;
+    std::stack< mho_json > file_node;
+    std::stack< mho_json > format_node;
+
+    path.push( fBlockFormat["block_name"] );
+    file_node.push( root[path.top()] );
+
     if(fBlockLines != nullptr)
     {
         for(auto it = fBlockLines->begin(); it != fBlockLines->end(); it++)
@@ -52,13 +59,37 @@ MHO_VexBlockParser::ParseBlock()
             fTokenizer.SetString( &(it->fContents) );
             fTokenizer.GetTokens(&tokens);
 
-            for(auto tmp = tokens.begin(); tmp != tokens.end(); tmp++)
+            if(tokens.size() > 0)
             {
-                std::cout<<*tmp<<"|";
+                if(tokens.size() >= 2 && tokens[0] == fStartTag)
+                {
+                    path.push( tokens[1] );
+                    file_node.push( (file_node.top())[ path.top() ] );
+                    format_node.push( fBlockFormat["parameters"] );
+                }
+
+                if(tokens[0] == fStopTag)
+                {
+                    if( !ValidateNode( file_node.top(), format_node.top() ) )
+                    { 
+                        std::string file_path = CollapsePath(path);
+                        msg_warn("vex", "error parsing file, line: "<< it->fLineNumber<<" element: "<< file_path << eom );   
+                    }
+                    path.pop();
+                    file_node.pop();
+                    format_node.pop();
+                }
             }
-            std::cout<<std::endl;
+            
+            // for(auto tmp = tokens.begin(); tmp != tokens.end(); tmp++)
+            // {
+            //     std::cout<<*tmp<<"|";
+            // }
+            // std::cout<<std::endl;
         }
     }
+
+    return root;
 }
 
 void 
@@ -83,6 +114,7 @@ MHO_VexBlockParser::LoadBlockFormat(std::string block_name)
     bf_ifs.close();
 
     fBlockFormat = bformat;
+    fBlockName = block_name;
 }
 
 std::string 
@@ -96,5 +128,23 @@ MHO_VexBlockParser::GetBlockFormatFileName(std::string block_name)
 }
 
 
-
+std::string 
+MHO_VexBlockParser::CollapsePath( std::stack< std::string >& path )
+{
+    std::string ret_val;
+    while( path.size() != 0)
+    {
+        ret_val =  path.top() + "/" + ret_val;
+        path.pop();
+    }
+    return ret_val;
 }
+
+
+bool 
+MHO_VexBlockParser::ValidateNode( mho_json& data, mho_json& format)
+{
+    return false;
+}
+
+}//end namespace

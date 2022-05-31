@@ -179,7 +179,10 @@ MHO_VexParser::ProcessBlocks()
     for(auto blk_it = fFoundBlocks.begin(); blk_it != fFoundBlocks.end(); blk_it++)
     {
         std::vector< MHO_VexLine > block_data = CollectBlockLines(*blk_it);
-        fBlockParser.ParseBlockLines(*blk_it, &block_data);
+        mho_json block = fBlockParser.ParseBlockLines(*blk_it, &block_data);
+
+        std::cout<<"block: "<<*blk_it<<std::endl;
+        std::cout<<block.dump(2)<<std::endl;
         //fBlockParser.ParseBlock();
             //now have the block parse deal with the data
 
