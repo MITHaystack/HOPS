@@ -4,6 +4,8 @@
 #include <vector>
 #include <string>
 
+#include "MHO_Message.hh"
+
 namespace hops {
 
 /**
@@ -31,8 +33,10 @@ class MHO_Tokenizer{
         void SetIncludeEmptyTokensFalse();
 
         void SetUseMulticharacterDelimiterTrue();
-
         void SetUseMulticharacterDelimiterFalse();
+
+        void SetPreserveQuotesTrue();
+        void SetPreserveQuotesFalse();
 
         /** Set the string to be parsed 
         * @param aString string
@@ -54,10 +58,18 @@ class MHO_Tokenizer{
 
     protected:
 
+        void MultiCharTokenize(std::vector< std::string>* tokens);
+        void SingleCharTokenize(std::vector< std::string>* tokens);
+
+        std::size_t IndexQuoteInstances(const std::string* aString, std::vector< std::pair< std::size_t, std::size_t>  >* quotes);
+
         bool fIncludeEmptyTokens;
         bool fMultiCharDelimiter;
+        bool fPreserveQuotes;
         std::string fDelim;
         const std::string* fString;
+        const std::string* fCurrentString;
+        std::vector< std::pair< std::size_t, std::size_t>  > fQuotePairIndexes;
 };
 
 } // end of hops namespace
