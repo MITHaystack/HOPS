@@ -13,6 +13,8 @@ MHO_VexBlockParser::MHO_VexBlockParser()
     fBlockLines = nullptr;
     fStartTag = "def";
     fStopTag = "enddef";
+    fRefTag = "ref";
+    fAssignmentTag = "=";
     fVexDelim = " :;\t\r\n";
     fTokenizer.SetDelimiter(fVexDelim);
     fTokenizer.SetUseMulticharacterDelimiterFalse();
@@ -46,15 +48,15 @@ MHO_VexBlockParser::ParseBlock()
     std::vector< std::string > tokens;
 
     std::stack< std::string > path;
-    std::stack< mho_json > file_node;
+    std::stack< mho_json* > file_node;
     std::stack< mho_json > format_node;
 
     path.push( fBlockFormat["block_name"] );
-    file_node.push( root[path.top()] );
+    file_node.push( &root );
 
     if(fBlockLines != nullptr)
     {
-        for(auto it = fBlockLines->begin(); it != fBlockLines->end(); it++)
+        for(auto it = ++(fBlockLines->begin()); it != fBlockLines->end(); it++)
         {
             fTokenizer.SetString( &(it->fContents) );
             fTokenizer.GetTokens(&tokens);
@@ -63,29 +65,37 @@ MHO_VexBlockParser::ParseBlock()
             {
                 if(tokens.size() >= 2 && tokens[0] == fStartTag)
                 {
+                    //open a new block
+                    std::cout<<"new block element with name: "<<tokens[1]<<std::endl;
                     path.push( tokens[1] );
-                    file_node.push( (file_node.top())[ path.top() ] );
+                    file_node.push( new mho_json() );
                     format_node.push( fBlockFormat["parameters"] );
                 }
-
-                if(tokens[0] == fStopTag)
+                else if(tokens[0] == fStopTag)
                 {
-                    if( !ValidateNode( file_node.top(), format_node.top() ) )
-                    { 
-                        std::string file_path = CollapsePath(path);
-                        msg_warn("vex", "error parsing file, line: "<< it->fLineNumber<<" element: "<< file_path << eom );   
-                    }
-                    path.pop();
+                    std::cout<<"closing block element: "<<path.top()<<std::endl;
+                    //close the existing block
+                    // std::string file_path = fBlockName + "/" + CollapsePath(path);
+                    // if( !ValidateNode( file_node.top(), format_node.top() ) )
+                    // { 
+                    //     msg_warn("vex", "could not process file element ending on line: "<< it->fLineNumber<<", path: "<< file_path << eom );   
+                    // }
+
+                    mho_json* last_obj = file_node.top();
+                    std::string last_obj_name = path.top();
                     file_node.pop();
+                    path.pop();
                     format_node.pop();
+                    (*(file_node.top()))[last_obj_name] = *last_obj;
+                    delete last_obj;
+                }
+                else 
+                {
+                    //process parameters for the existing block
+                    bool success = ProcessTokens( file_node.top(), format_node.top(), tokens);
+                    if(!success){msg_warn("vex", "failed to process tokens on line: "<< it->fLineNumber << eom);}
                 }
             }
-            
-            // for(auto tmp = tokens.begin(); tmp != tokens.end(); tmp++)
-            // {
-            //     std::cout<<*tmp<<"|";
-            // }
-            // std::cout<<std::endl;
         }
     }
 
@@ -132,7 +142,7 @@ std::string
 MHO_VexBlockParser::CollapsePath( std::stack< std::string >& path )
 {
     std::string ret_val;
-    while( path.size() != 0)
+    while( path.size() > 1)
     {
         ret_val =  path.top() + "/" + ret_val;
         path.pop();
@@ -144,7 +154,73 @@ MHO_VexBlockParser::CollapsePath( std::stack< std::string >& path )
 bool 
 MHO_VexBlockParser::ValidateNode( mho_json& data, mho_json& format)
 {
+    return true;
+}
+
+bool 
+MHO_VexBlockParser::ProcessTokens( mho_json* data, mho_json& format, std::vector< std::string >& tokens)
+{
+    if(tokens[0] == fRefTag)
+    {
+        msg_error("vex", "error ref keyword not yet implmented." << eom);
+        return false;
+    }
+
+    //check that we have an assignement statement 
+    if(tokens.size() >= 2 && tokens[1] == fAssignmentTag)
+    {
+        std::string key = tokens[0];
+        bool key_is_present = false;
+        for(auto& it : format.items())
+        {
+            if(key == it.key()){key_is_present = true; break;}
+        }
+
+        if(key_is_present)
+        {
+            std::cout<<"got a key:"<<key<<std::endl;
+            // //we have 3 main types to deal with (compound, list, and primitive)
+            // if(format[key]["type"] == "compound" )
+            // {
+            //     return false;
+            // }
+            // else if( format[key]["type"] == "list" )
+            // {
+            //     return false;
+            // }
+            // else //primitive type (number, string, etc) 
+            // {
+                if( format[key]["type"] == "string" )
+                {
+                    (*data)[key] = tokens[2];
+                    return true;
+                }
+
+                if( format[key]["type"] == "real" )
+                {
+                    std::cout<<"value = "<<tokens[2]<<std::endl;
+                    (*data)[key] = std::atof(tokens[2].c_str());
+                    return true;
+                }
+
+                if( format[key]["type"] == "int" )
+                {
+                    (*data)[key] = std::atoi(tokens[2].c_str());
+                    return true;
+                }
+        //    }
+
+            // // for(auto tmp = tokens.begin(); tmp != tokens.end(); tmp++)
+            // // {
+            // //     std::cout<<*tmp<<"|";
+            // // }
+            // // std::cout<<std::endl;
+            // return true;
+        }
+    }
+
     return false;
 }
+
 
 }//end namespace
