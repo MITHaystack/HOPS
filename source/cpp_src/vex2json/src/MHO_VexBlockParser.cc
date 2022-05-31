@@ -12,14 +12,20 @@ MHO_VexBlockParser::MHO_VexBlockParser()
     fBlockLines = nullptr;
     fStartTag = "def";
     fStopTag = "enddef";
+    fVexDelim = " :;\t\r\n";
+    fTokenizer.SetDelimiter(fVexDelim);
+    fTokenizer.SetUseMulticharacterDelimiterFalse();
+    fTokenizer.SetIncludeEmptyTokensFalse();
+    fTokenizer.SetPreserveQuotesTrue();
 };
 
 MHO_VexBlockParser::~MHO_VexBlockParser(){};
 
 void 
-MHO_VexBlockParser::SetBlockLines(std::string block_name, const std::vector< MHO_VexLine >* block_lines)
+MHO_VexBlockParser::ParseBlockLines(std::string block_name, const std::vector< MHO_VexLine >* block_lines)
 {
     //retrieve the block format 
+    fBlockFormatLoaded = false;
     LoadBlockFormat(block_name);
     fBlockLines = block_lines;
 
@@ -37,11 +43,21 @@ MHO_VexBlockParser::SetBlockLines(std::string block_name, const std::vector< MHO
 void 
 MHO_VexBlockParser::ParseBlock()
 {
-    mho_json block; //place to stash the data
+    mho_json block; //place to stash the data 
+    std::vector< std::string > tokens;
     if(fBlockLines != nullptr)
     {
-        
-    
+        for(auto it = fBlockLines->begin(); it != fBlockLines->end(); it++)
+        {
+            fTokenizer.SetString( &(it->fContents) );
+            fTokenizer.GetTokens(&tokens);
+
+            for(auto tmp = tokens.begin(); tmp != tokens.end(); tmp++)
+            {
+                std::cout<<*tmp<<"|";
+            }
+            std::cout<<std::endl;
+        }
     }
 }
 

@@ -33,12 +33,13 @@ class MHO_VexBlockParser
         virtual ~MHO_VexBlockParser();
 
         void SetFormatDirectory(std::string fdir){fFormatDirectory = fdir;}
-        void SetBlockLines(std::string block_name, const std::vector< MHO_VexLine >* block_lines);
-        
-        void ParseBlock();
+        void ParseBlockLines(std::string block_name, const std::vector< MHO_VexLine >* block_lines);
+
+
 
     private:
 
+        void ParseBlock();
         void LoadBlockFormat(std::string block_name);
         std::string GetBlockFormatFileName(std::string block_name);
 
@@ -49,6 +50,7 @@ class MHO_VexBlockParser
         
         std::string fStartTag;
         std::string fStopTag;
+        std::string fVexDelim;
         MHO_Tokenizer fTokenizer;
     
 

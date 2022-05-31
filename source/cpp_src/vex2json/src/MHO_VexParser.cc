@@ -179,8 +179,8 @@ MHO_VexParser::ProcessBlocks()
     for(auto blk_it = fFoundBlocks.begin(); blk_it != fFoundBlocks.end(); blk_it++)
     {
         std::vector< MHO_VexLine > block_data = CollectBlockLines(*blk_it);
-        fBlockParser.SetBlockLines(*blk_it, &block_data);
-        fBlockParser.ParseBlock();
+        fBlockParser.ParseBlockLines(*blk_it, &block_data);
+        //fBlockParser.ParseBlock();
             //now have the block parse deal with the data
 
             // std::cout<<" ------------------ " << *blk_it <<" ---------------------- "<<std::endl;
