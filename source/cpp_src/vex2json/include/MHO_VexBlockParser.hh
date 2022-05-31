@@ -41,6 +41,7 @@ class MHO_VexBlockParser
 
         mho_json ParseBlock();
         bool ValidateNode( mho_json& data, mho_json& format);
+        bool ProcessTokens( mho_json* data, mho_json& format, std::vector< std::string >& tokens);
         void LoadBlockFormat(std::string block_name);
         std::string GetBlockFormatFileName(std::string block_name);
         std::string CollapsePath( std::stack< std::string >& path );
@@ -53,6 +54,8 @@ class MHO_VexBlockParser
         
         std::string fStartTag;
         std::string fStopTag;
+        std::string fRefTag;
+        std::string fAssignmentTag;
         std::string fVexDelim;
         MHO_Tokenizer fTokenizer;
     
