@@ -25,27 +25,19 @@ MHO_VexBlockParser::SetBlockLines(std::string block_name, const std::vector< MHO
 
     if(fBlockFormatLoaded)
     {
-        //pares the block according to the format rules
+        //parses the block according to the format rules
+        ParseBlock();
     }
     else 
     {
         msg_error("vex", "parser error, could not load format file for: "<<block_name<<" block."<<eom);
     }
-
-    // fBlockLines = nullptr;
-    // if(fBlockName == block_name)
-    // {
-    //     fBlockLines = block_lines;
-    // }
-    // else 
-    // {
-    //     msg_error("vex", "parser error, block name: " <<block_name<<" does not match currently set block format: "<<fBlockName<<eom);
-    // }
 }
 
 void 
 MHO_VexBlockParser::ParseBlock()
 {
+    mho_json block; //place to stash the data
     if(fBlockLines != nullptr)
     {
         
@@ -56,6 +48,7 @@ MHO_VexBlockParser::ParseBlock()
 void 
 MHO_VexBlockParser::LoadBlockFormat(std::string block_name)
 {
+    fBlockFormatLoaded = false;
     std::string block_format_file = GetBlockFormatFileName(block_name);
     std::string format_file = fFormatDirectory + block_format_file;
 
@@ -63,12 +56,11 @@ MHO_VexBlockParser::LoadBlockFormat(std::string block_name)
 
     std::ifstream bf_ifs;
     bf_ifs.open( format_file.c_str(), std::ifstream::in );
-    
-    fBlockFormatLoaded = false;
+
     mho_json bformat;
     if(bf_ifs.is_open())
     {
-        bformat = mho_ordered_json::parse(bf_ifs);
+        bformat = mho_json::parse(bf_ifs);
         std::cout<< bformat.dump(2) << std::endl;
         fBlockFormatLoaded = true;
     }

@@ -49,6 +49,8 @@ class MHO_VexBlockParser
         
         std::string fStartTag;
         std::string fStopTag;
+        MHO_Tokenizer fTokenizer;
+    
 
 };
 

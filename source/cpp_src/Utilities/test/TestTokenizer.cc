@@ -18,6 +18,8 @@ int main(int /*argc*/, char** /*argv*/)
     std::string test3 = "This \t is a\tstring|separated by a\nmix.";
     std::string test4 = "This<d>is<d>a<d>string<d>separated<d>by<d>a<d>multi-character<d>delimiter.";
 
+    std::string test5 = "This is a string that \"contains   quoted   text\". ";
+
     std::string delim1 = " ";
     std::string delim2 = "|";
     std::string delim3 = "| \t\r\n";
@@ -27,6 +29,7 @@ int main(int /*argc*/, char** /*argv*/)
     std::vector<std::string> tok2;
     std::vector<std::string> tok3;
     std::vector<std::string> tok4;
+    std::vector<std::string> tok5;
 
     tokenizer.SetDelimiter(delim1);
     tokenizer.SetString(&test1);
@@ -45,6 +48,11 @@ int main(int /*argc*/, char** /*argv*/)
     tokenizer.SetString(&test4);
     tokenizer.GetTokens(&tok4);
 
+    tokenizer.SetDelimiter(delim1);
+    tokenizer.SetPreserveQuotesTrue();
+    tokenizer.SetString(&test5);
+    tokenizer.GetTokens(&tok5);
+
     for(std::size_t i=0; i<tok1.size(); i++){std::cout<<tok1[i]<<" ";} 
     std::cout<<std::endl;
     for(std::size_t i=0; i<tok2.size(); i++){std::cout<<tok2[i]<<" ";}
@@ -52,6 +60,8 @@ int main(int /*argc*/, char** /*argv*/)
     for(std::size_t i=0; i<tok3.size(); i++){std::cout<<tok3[i]<<" ";}
     std::cout<<std::endl;
     for(std::size_t i=0; i<tok4.size(); i++){std::cout<<tok4[i]<<" ";}
+    std::cout<<std::endl;
+    for(std::size_t i=0; i<tok5.size(); i++){std::cout<<tok5[i]<<" ";}
     std::cout<<std::endl;
 
     return 0;
