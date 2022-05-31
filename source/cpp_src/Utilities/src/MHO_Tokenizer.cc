@@ -52,19 +52,19 @@ MHO_Tokenizer::GetTokens(std::vector< std::string>* tokens)
             std::size_t prev = 0;
             for(std::size_t i=0; i<n_quote; i++)
             {
-                std::string sec = fString->substr(prev, fQuotePairIndexes[i].first);
-                std::string quote = fString->substr(fQuotePairIndexes[i].first, fQuotePairIndexes[i].second);
+                std::string sec = fString->substr(prev, fQuotePairIndexes[i].first - prev);
+                std::string quote = fString->substr(fQuotePairIndexes[i].first, fQuotePairIndexes[i].second - fQuotePairIndexes[i].first );
                 prev = fQuotePairIndexes[i].second;
                 sections.push_back( std::make_pair(false, sec) );
                 sections.push_back( std::make_pair(true, quote) );
             }
-            sections.push_back( std::make_pair(false, fString->substr(prev) ) );
+            sections.push_back( std::make_pair(false, fString->substr(prev) ) ); //catch any trailing portion
 
             for(std::size_t i=0; i<sections.size(); i++)
             {
                 if(sections[i].first == true)
                 {
-                    tokens->push_back(sections[i].second); //treat quoted section as token
+                    tokens->push_back(sections[i].second); //treat quoted section as a single token
                 }
                 else 
                 {
