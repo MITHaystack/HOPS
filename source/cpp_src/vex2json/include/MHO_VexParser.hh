@@ -42,6 +42,7 @@ class MHO_VexParser
 
         void ReadFile();
         void RemoveComments();
+        void JoinLines();
         void MarkBlocks();
         std::vector< MHO_VexLine > CollectBlockLines(std::string block_name);
         void ProcessBlocks();

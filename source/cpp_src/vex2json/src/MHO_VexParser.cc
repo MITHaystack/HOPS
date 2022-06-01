@@ -80,6 +80,18 @@ MHO_VexParser::RemoveComments()
     }
 }
 
+void
+MHO_VexParser::JoinLines()
+{
+    //TODO FIXME - implement this 
+    msg_warn("vex", "multi-line vex statements currently not supported." << eom);
+    //The vex standard explicitly allows for a single vex-statement to be split across multiple lines,
+    //so long as it is terminated by a ';'. However, due to the way in which the file was read in (getline)
+    //and the fact that trailing comments need to be removed on a per-line basis, we need to implement 
+    //the ability to re-join a vex statment spread over multiple-lines into a single ';' terminated string,
+    //so that it can be tokenized and parsed more easily.
+}
+
 void 
 MHO_VexParser::MarkBlocks()
 {
@@ -167,6 +179,9 @@ MHO_VexParser::ParseVex()
     ReadFile();
     std::cout<<"removing comments"<<std::endl;
     RemoveComments();
+
+    JoinLines();
+
     std::cout<<"flagging blocks"<<std::endl;
     MarkBlocks();
 

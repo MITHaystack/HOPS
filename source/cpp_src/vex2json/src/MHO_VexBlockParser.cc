@@ -15,7 +15,8 @@ MHO_VexBlockParser::MHO_VexBlockParser()
     fStopTag = "enddef";
     fRefTag = "ref";
     fAssignmentTag = "=";
-    fVexDelim = " :;\t\r\n";
+    //fVexDelim = " :;\t\r\n";
+    fVexDelim = ":;";
     fTokenizer.SetDelimiter(fVexDelim);
     fTokenizer.SetUseMulticharacterDelimiterFalse();
     fTokenizer.SetIncludeEmptyTokensFalse();
@@ -51,55 +52,78 @@ MHO_VexBlockParser::ParseBlock()
     std::stack< mho_json* > file_node;
     std::stack< mho_json > format_node;
 
-    path.push( fBlockFormat["block_name"] );
+    path.push(fBlockName);
     file_node.push( &root );
 
     if(fBlockLines != nullptr)
     {
         for(auto it = ++(fBlockLines->begin()); it != fBlockLines->end(); it++)
         {
-            fTokenizer.SetString( &(it->fContents) );
-            fTokenizer.GetTokens(&tokens);
-
-            if(tokens.size() > 0)
+            if( IsStartTag(*it) )
             {
-                if(tokens.size() >= 2 && tokens[0] == fStartTag)
-                {
-                    //open a new block
-                    std::cout<<"new block element with name: "<<tokens[1]<<std::endl;
-                    path.push( tokens[1] );
-                    file_node.push( new mho_json() );
-                    format_node.push( fBlockFormat["parameters"] );
-                }
-                else if(tokens[0] == fStopTag)
-                {
-                    std::cout<<"closing block element: "<<path.top()<<std::endl;
-                    //close the existing block
-                    // std::string file_path = fBlockName + "/" + CollapsePath(path);
-                    // if( !ValidateNode( file_node.top(), format_node.top() ) )
-                    // { 
-                    //     msg_warn("vex", "could not process file element ending on line: "<< it->fLineNumber<<", path: "<< file_path << eom );   
-                    // }
-
-                    mho_json* last_obj = file_node.top();
-                    std::string last_obj_name = path.top();
-                    file_node.pop();
-                    path.pop();
-                    format_node.pop();
-                    (*(file_node.top()))[last_obj_name] = *last_obj;
-                    delete last_obj;
-                }
-                else 
-                {
-                    //process parameters for the existing block
-                    bool success = ProcessTokens( file_node.top(), format_node.top(), tokens);
-                    if(!success){msg_warn("vex", "failed to process tokens on line: "<< it->fLineNumber << eom);}
-                }
+                //open a new block
+                std::cout<<"new block element with name: "<<tokens[1]<<std::endl;
+                path.push( tokens[1] );
+                file_node.push( new mho_json() );
+                format_node.push( fBlockFormat["parameters"] );
             }
+            else if( IsStopTag(*it) )
+            {
+                std::cout<<"closing block element: "<<path.top()<<std::endl;
+                //close the existing block
+                // std::string file_path = fBlockName + "/" + CollapsePath(path);
+                // if( !ValidateNode( file_node.top(), format_node.top() ) )
+                // { 
+                //     msg_warn("vex", "could not process file element ending on line: "<< it->fLineNumber<<", path: "<< file_path << eom );   
+                // }
+
+                mho_json* last_obj = file_node.top();
+                std::string last_obj_name = path.top();
+                file_node.pop();
+                path.pop();
+                format_node.pop();
+                (*(file_node.top()))[last_obj_name] = *last_obj;
+                delete last_obj;
+            }
+            else 
+            {
+                //process parameters for the existing block
+                bool success = ProcessTokens( file_node.top(), format_node.top(), tokens);
+                if(!success){msg_warn("vex", "failed to process tokens on line: "<< it->fLineNumber << eom);}
+            }
+    
+            // // fTokenizer.SetString( &(it->fContents) );
+            // // fTokenizer.GetTokens(&tokens);
+            // 
+            // if(tokens.size() > 0)
+            // {
+            //     if(tokens.size() >= 2 && tokens[0] == fStartTag)
+            //     {
+            // 
+            //     }
+            //     else if(tokens[0] == fStopTag)
+            //     {
+            // 
+            //     }
+            //     else 
+            //     {
+            // 
+            //     }
+            // }
         }
     }
 
     return root;
+}
+
+bool IsStartTag(MHO_VexLine& line)
+{
+
+}
+
+bool IsStopTag(MHO_VexLine& line)
+{
+
 }
 
 void 
@@ -125,6 +149,9 @@ MHO_VexBlockParser::LoadBlockFormat(std::string block_name)
 
     fBlockFormat = bformat;
     fBlockName = block_name;
+    fStartTag = fBlockFormat["start_tag"].get<std::string>();
+    fStopTag = fBlockFormat["stop_tag"].get<std::string>();
+
 }
 
 std::string 
