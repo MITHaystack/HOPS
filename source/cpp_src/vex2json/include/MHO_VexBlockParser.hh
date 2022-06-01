@@ -40,6 +40,8 @@ class MHO_VexBlockParser
     private:
 
         mho_json ParseBlock();
+        bool IsStartTag(MHO_VexLine& line);
+        bool IsStopTag(MHO_VexLine& line);
         bool ValidateNode( mho_json& data, mho_json& format);
         bool ProcessTokens( mho_json* data, mho_json& format, std::vector< std::string >& tokens);
         void LoadBlockFormat(std::string block_name);
@@ -57,6 +59,7 @@ class MHO_VexBlockParser
         std::string fRefTag;
         std::string fAssignmentTag;
         std::string fVexDelim;
+
         MHO_Tokenizer fTokenizer;
     
 
