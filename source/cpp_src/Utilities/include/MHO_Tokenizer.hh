@@ -38,6 +38,9 @@ class MHO_Tokenizer{
         void SetPreserveQuotesTrue();
         void SetPreserveQuotesFalse();
 
+        void SetRemoveLeadingTrailingWhitespaceTrue();
+        void SetRemoveLeadingTrailingWhitespaceFalse();
+
         /** Set the string to be parsed 
         * @param aString string
         * @returns None 
@@ -62,10 +65,12 @@ class MHO_Tokenizer{
         void SingleCharTokenize(std::vector< std::string>* tokens);
 
         std::size_t IndexQuoteInstances(const std::string* aString, std::vector< std::pair< std::size_t, std::size_t>  >* quotes);
+        std::string TrimLeadingAndTrailingWhitespace(const std::string& value) const;
 
         bool fIncludeEmptyTokens;
         bool fMultiCharDelimiter;
         bool fPreserveQuotes;
+        bool fRemoveLeadingTrailingWhitespace;
         std::string fDelim;
         const std::string* fString;
         const std::string* fCurrentString;

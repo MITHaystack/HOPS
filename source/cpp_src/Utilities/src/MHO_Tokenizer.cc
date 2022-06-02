@@ -14,11 +14,11 @@ MHO_Tokenizer::MHO_Tokenizer()
     fIncludeEmptyTokens = false;
     fMultiCharDelimiter = false;
     fPreserveQuotes = false;
+    fRemoveLeadingTrailingWhitespace = false;
 };
 MHO_Tokenizer::~MHO_Tokenizer(){;};
 
 void MHO_Tokenizer::SetIncludeEmptyTokensTrue(){fIncludeEmptyTokens = true;};
-
 void MHO_Tokenizer::SetIncludeEmptyTokensFalse(){fIncludeEmptyTokens = false;};
 
 void MHO_Tokenizer::SetUseMulticharacterDelimiterTrue(){fMultiCharDelimiter = true;};
@@ -26,6 +26,9 @@ void MHO_Tokenizer::SetUseMulticharacterDelimiterFalse(){fMultiCharDelimiter = f
 
 void MHO_Tokenizer::SetPreserveQuotesTrue(){fPreserveQuotes = true;};
 void MHO_Tokenizer::SetPreserveQuotesFalse(){fPreserveQuotes = false;};
+
+void MHO_Tokenizer::SetRemoveLeadingTrailingWhitespaceTrue(){fRemoveLeadingTrailingWhitespace = true;};
+void MHO_Tokenizer::SetRemoveLeadingTrailingWhitespaceFalse(){fRemoveLeadingTrailingWhitespace = false;};
 
 void MHO_Tokenizer::SetString(const std::string* aString){fString = aString;};
 
@@ -73,6 +76,14 @@ MHO_Tokenizer::GetTokens(std::vector< std::string>* tokens)
                     else{MultiCharTokenize(tokens);}
                 }
             }
+        }
+    }
+
+    if(fRemoveLeadingTrailingWhitespace)
+    {
+        for(std::size_t  i=0; i<tokens->size(); i++)
+        {
+            (*tokens)[i] = TrimLeadingAndTrailingWhitespace( (*tokens)[i]);
         }
     }
 }
@@ -154,9 +165,20 @@ MHO_Tokenizer::IndexQuoteInstances(const std::string* aString, std::vector< std:
         //error we have an unmatched quote
         msg_warn("utility", "tokenizer unable to reliably parse a string with un-matched quotes, treating as unquoted text." << eom);
     }
-
     return quotes->size();
+}
 
+std::string 
+MHO_Tokenizer::TrimLeadingAndTrailingWhitespace(const std::string& value) const
+{
+    std::string ret_val = "";
+    std::string whitespace = " \t";
+    auto start = value.find_first_not_of(whitespace);
+    if(start == std::string::npos){return ret_val;}
+    auto stop = value.find_last_not_of(whitespace);
+    std::size_t length = stop - start + 1;
+    ret_val = value.substr(start, length);
+    return ret_val;
 }
 
 }//end namespace 

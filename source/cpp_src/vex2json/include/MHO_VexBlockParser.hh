@@ -40,13 +40,32 @@ class MHO_VexBlockParser
     private:
 
         mho_json ParseBlock();
-        bool IsStartTag(MHO_VexLine& line);
-        bool IsStopTag(MHO_VexLine& line);
-        bool ValidateNode( mho_json& data, mho_json& format);
-        bool ProcessTokens( mho_json* data, mho_json& format, std::vector< std::string >& tokens);
+
+        bool IsStartTag(const MHO_VexLine& line);
+        bool IsStopTag(const MHO_VexLine& line);
+
+        // bool ValidateNode( mho_json& data, mho_json& format);
+        // std::string CollapsePath( std::stack< std::string >& path );
+
+        bool ProcessStartTag(const MHO_VexLine& line, 
+                             std::stack< std::string >& path,
+                             std::stack< mho_json* >& file_node,
+                             std::stack< mho_json >& format_node);
+
+         bool ProcessStopTag(const MHO_VexLine& line, 
+                              std::stack< std::string >& path,
+                              std::stack< mho_json* >& file_node,
+                              std::stack< mho_json >& format_node);
+
+        bool ProcessLine(const MHO_VexLine& line, 
+                         std::stack< std::string >& path,
+                         mho_json* file_node,
+                         mho_json& format_node);
+
+        mho_json ProcessTokens(mho_json&format, std::vector< std::string >& tokens);
+
         void LoadBlockFormat(std::string block_name);
         std::string GetBlockFormatFileName(std::string block_name);
-        std::string CollapsePath( std::stack< std::string >& path );
 
         bool fBlockFormatLoaded;
         mho_json fBlockFormat;
@@ -57,11 +76,23 @@ class MHO_VexBlockParser
         std::string fStartTag;
         std::string fStopTag;
         std::string fRefTag;
-        std::string fAssignmentTag;
         std::string fVexDelim;
+        std::string fStartTagDelim;
+        std::string fAssignmentDelim;
+        std::string fWhitespaceDelim;
 
         MHO_Tokenizer fTokenizer;
+
+        enum vex_element_type
+        {
+            vex_int_type,
+            vex_real_type,
+            vex_string_type,
+            vex_compound_type,
+            vex_unknown_type
+        };
     
+        vex_element_type DetermineType(std::string etype);
 
 };
 
