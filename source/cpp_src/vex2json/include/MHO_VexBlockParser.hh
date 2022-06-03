@@ -89,10 +89,12 @@ class MHO_VexBlockParser
             vex_real_type,
             vex_string_type,
             vex_compound_type,
+            vex_link_type,
             vex_unknown_type
         };
     
         vex_element_type DetermineType(std::string etype);
+        bool ContainsWhitespace(std::string value);
 
 };
 

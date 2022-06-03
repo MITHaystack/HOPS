@@ -211,81 +211,57 @@ MHO_VexBlockParser::ProcessTokens(mho_json& format, std::vector< std::string >& 
     {
         case vex_int_type:
             element_data["value"] = std::atoi(tokens[0].c_str());
-        //                 return true;
         break;
         case vex_real_type:
-          element_data["value"] = 1.0;// std::atoi(tokens[0].c_str());
-                        // std::cout<<"value = "<<tokens[2]<<std::endl;
-                        // (*data)[key] = std::atof(tokens[2].c_str());
-                        // return true;
+            //if the value has units (we need to parse them out)
+            if( ContainsWhitespace(tokens[0]) )
+            {
+                std::vector< std::string > tmp_tok;
+                fTokenizer.SetString(&(tokens[0]));
+                fTokenizer.SetDelimiter(fWhitespaceDelim);
+                fTokenizer.SetUseMulticharacterDelimiterFalse();
+                fTokenizer.SetIncludeEmptyTokensFalse();
+                fTokenizer.GetTokens(&tmp_tok);
+                if(tmp_tok.size() == 1)
+                {
+                    element_data["value"] = std::atof(tokens[0].c_str());
+                }
+                else if(tmp_tok.size() == 2)
+                {
+                    element_data["value"] = std::atof(tmp_tok[0].c_str());
+                    element_data["units"] = tmp_tok[1];
+                }
+                else 
+                {
+                    msg_error("vex", "could not parse parameter (numerical) value from: {"<<tokens[0]<<"}."<<eom);
+                }
+            }
+            else 
+            {
+                element_data["value"] = std::atof(tokens[0].c_str());
+            }
         break;
         case vex_string_type:
             element_data["value"] = tokens[0];
-        //                 (*data)[key] = tokens[2];
-        //                 return true;
+        break;
+        case vex_link_type:
+            element_data["value"] = tokens[0];
         break;
         case vex_compound_type:
+            mho_json fields = format["fields"];
+
+            std::size_t n_tokens = tokens.size()
+            std::size_t n_fields = fields.size();
+            
+            for(auto it = format["fields"].begin(); it != format 
+
+
         break;
         default:
         break;
     }
 
     return element_data;
-
-    // //check that we have an assignement statement 
-    // if(tokens.size() >= 2 && tokens[1] == fAssignmentDelim)
-    // {
-    //     std::string key = tokens[0];
-    //     bool key_is_present = false;
-    //     for(auto& it : format.items())
-    //     {
-    //         if(key == it.key()){key_is_present = true; break;}
-    //     }
-    // 
-    //     if(key_is_present)
-    //     {
-    //         std::cout<<"got a key:"<<key<<std::endl;
-    //         // //we have 3 main types to deal with (compound, list, and primitive)
-    //         // if(format[key]["type"] == "compound" )
-    //         // {
-    //         //     return false;
-    //         // }
-    //         // else if( format[key]["type"] == "list" )
-    //         // {
-    //         //     return false;
-    //         // }
-    //         // else //primitive type (number, string, etc) 
-    //         // {
-    //             if( format[key]["type"] == "string" )
-    //             {
-    //                 (*data)[key] = tokens[2];
-    //                 return true;
-    //             }
-    // 
-    //             if( format[key]["type"] == "real" )
-    //             {
-    //                 std::cout<<"value = "<<tokens[2]<<std::endl;
-    //                 (*data)[key] = std::atof(tokens[2].c_str());
-    //                 return true;
-    //             }
-    // 
-    //             if( format[key]["type"] == "int" )
-    //             {
-    //                 (*data)[key] = std::atoi(tokens[2].c_str());
-    //                 return true;
-    //             }
-    //     //    }
-    // 
-    //         // // for(auto tmp = tokens.begin(); tmp != tokens.end(); tmp++)
-    //         // // {
-    //         // //     std::cout<<*tmp<<"|";
-    //         // // }
-    //         // // std::cout<<std::endl;
-    //         // return true;
-    //     }
-    // }
-    // 
-    // return false;
 }
 
 
@@ -296,6 +272,7 @@ MHO_VexBlockParser::DetermineType(std::string etype)
     if(etype == "real"){return vex_real_type;}
     if(etype == "string"){return vex_string_type;}
     if(etype == "compound"){return vex_compound_type;}
+    if(etype == "link"){return vex_link_type;}
     return vex_unknown_type;
 }
 
@@ -337,6 +314,14 @@ MHO_VexBlockParser::GetBlockFormatFileName(std::string block_name)
     std::transform(file_name.begin(), file_name.end(), file_name.begin(), ::tolower);
     file_name += ".json";
     return file_name;
+}
+
+bool 
+MHO_VexBlockParser::ContainsWhitespace(std::string value)
+{
+    auto start = value.find_first_not_of(fWhitespaceDelim);
+    if(start == std::string::npos){return false;}
+    return true;
 }
 
 
