@@ -1,0 +1,45 @@
+{
+    "block_name": "$SITE",
+    "start_tag": "def",
+    "stop_tag": "enddef",
+    "type" : "compound",
+    "parameters" :
+    {
+        "BBC_assign":
+        {
+            "type": "list_compound",
+            "parameters":
+            {
+                "logical_bbc_id": {"type": "link"},
+                "physical_bbc_id": {"type": "int"},
+                "logical_if": {"type": "link"}
+            },
+            "fields": ["logical_bbc_id", "physical_bbc_id", "logical_if"]
+        }
+    },
+    "fields": 
+    [
+        "site_type",
+        "site_name",
+        "site_id",
+        "site_position",
+        "site_position_epoch",
+        "site_position_ref",
+        "site_position_frame",
+        "site_velocity",
+        "horizon_map_az",
+        "horizon_map_el",
+        "zen_atmos",
+        "ocean_load_vert",
+        "ocean_load_horiz",
+        "occupation_code",
+        "inclination",
+        "eccentricity",
+        "arg_perigee",
+        "ascending_node",
+        "mean_anomaly",
+        "semi-major_axis",
+        "mean_motion",
+        "orbit_epoch"
+    ]
+}
