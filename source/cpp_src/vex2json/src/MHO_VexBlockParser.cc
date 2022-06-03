@@ -4,6 +4,7 @@
 #include <cctype>
 #include <algorithm>
 #include <stack>
+#include <regex>
 
 namespace hops 
 {
@@ -189,8 +190,17 @@ MHO_VexBlockParser::ProcessLine(const MHO_VexLine& line,
         fTokenizer.SetString(&data);
         fTokenizer.GetTokens(&tokens);
 
-        mho_json element = ProcessTokens(format[element_name], tokens);
-        (*obj_node)[element_name] = element; 
+        vex_element_type etype = DetermineType( format[element_name]["type"].get<std::string>() );
+        mho_json element = ProcessTokens(element_name, format[element_name], tokens);
+
+        if( etype == vex_list_compound_type)
+        {
+            (*obj_node)[element_name].push_back( element ); 
+        }
+        else 
+        {
+            (*obj_node)[element_name] = element; 
+        }
         return true;
     }
     else 
@@ -202,7 +212,7 @@ MHO_VexBlockParser::ProcessLine(const MHO_VexLine& line,
 }
 
 mho_json 
-MHO_VexBlockParser::ProcessTokens(mho_json& format, std::vector< std::string >& tokens)
+MHO_VexBlockParser::ProcessTokens(const std::string& element_name, mho_json& format, std::vector< std::string >& tokens)
 {
     vex_element_type etype = DetermineType( format["type"].get<std::string>() );
     mho_json element_data;
@@ -210,7 +220,7 @@ MHO_VexBlockParser::ProcessTokens(mho_json& format, std::vector< std::string >& 
     switch(etype)
     {
         case vex_int_type:
-            element_data["value"] = std::atoi(tokens[0].c_str());
+            element_data = std::atoi(tokens[0].c_str());
         break;
         case vex_real_type:
             //if the value has units (we need to parse them out)
@@ -233,7 +243,7 @@ MHO_VexBlockParser::ProcessTokens(mho_json& format, std::vector< std::string >& 
                 }
                 else 
                 {
-                    msg_error("vex", "could not parse parameter (numerical) value from: {"<<tokens[0]<<"}."<<eom);
+                    msg_error("vex", "could not parse parameter: "<<element_name<<", as (numerical) value from: <"<<tokens[0]<<">."<<eom);
                 }
             }
             else 
@@ -242,21 +252,73 @@ MHO_VexBlockParser::ProcessTokens(mho_json& format, std::vector< std::string >& 
             }
         break;
         case vex_string_type:
-            element_data["value"] = tokens[0];
+            element_data = tokens[0];
         break;
         case vex_link_type:
-            element_data["value"] = tokens[0];
+            element_data = tokens[0];
         break;
         case vex_compound_type:
-            mho_json fields = format["fields"];
+            {
+                mho_json fields = format["fields"]; 
+                std::size_t n_tokens = tokens.size();
+                std::size_t n_all_fields = fields.size();
 
-            std::size_t n_tokens = tokens.size()
-            std::size_t n_fields = fields.size();
-            
-            for(auto it = format["fields"].begin(); it != format 
+                for(auto it = tokens.begin(); it != tokens.end(); it++)
+                {
+                    std::cout<< *it <<", ";
+                }
+                std::cout<<std::endl;
 
-
+                std::size_t token_idx = 0;
+                std::string hash = "#";
+                std::string nothing = "";
+                for(auto it = fields.begin(); it != fields.end(); it++)
+                {
+                    if( tokens[token_idx] != "" )
+                    {
+                        std::vector< std::string > tmp_tokens;
+                        tmp_tokens.push_back(tokens[token_idx]);
+                        std::string tmp = it->get<std::string>();
+                        std::string field_name = std::regex_replace(tmp,std::regex(hash),nothing);
+                        std::cout<<"field_name = "<<field_name<<std::endl;
+                        element_data[field_name] = ProcessTokens(field_name, format["parameters"][field_name], tmp_tokens);
+                        token_idx++;
+                    }
+                }
+            }
         break;
+        case vex_list_compound_type:
+            {
+                mho_json fields = format["fields"]; 
+                std::size_t n_tokens = tokens.size();
+                std::size_t n_all_fields = fields.size();
+
+                for(auto it = tokens.begin(); it != tokens.end(); it++)
+                {
+                    std::cout<< *it <<", ";
+                }
+                std::cout<<std::endl;
+
+                std::size_t token_idx = 0;
+                std::string hash = "#";
+                std::string nothing = "";
+                for(auto it = fields.begin(); it != fields.end(); it++)
+                {
+                    if( tokens[token_idx] != "" )
+                    {
+                        std::vector< std::string > tmp_tokens;
+                        tmp_tokens.push_back(tokens[token_idx]);
+                        std::string tmp = it->get<std::string>();
+                        std::string field_name = std::regex_replace(tmp,std::regex(hash),nothing);
+                        std::cout<<"field_name = "<<field_name<<std::endl;
+                        element_data[field_name] = ProcessTokens(field_name, format["parameters"][field_name], tmp_tokens);
+                        token_idx++;
+                    }
+                }
+            }
+        break;
+
+
         default:
         break;
     }
@@ -272,6 +334,7 @@ MHO_VexBlockParser::DetermineType(std::string etype)
     if(etype == "real"){return vex_real_type;}
     if(etype == "string"){return vex_string_type;}
     if(etype == "compound"){return vex_compound_type;}
+    if(etype == "list_compound"){return vex_list_compound_type;}
     if(etype == "link"){return vex_link_type;}
     return vex_unknown_type;
 }
@@ -319,7 +382,7 @@ MHO_VexBlockParser::GetBlockFormatFileName(std::string block_name)
 bool 
 MHO_VexBlockParser::ContainsWhitespace(std::string value)
 {
-    auto start = value.find_first_not_of(fWhitespaceDelim);
+    auto start = value.find_first_of(fWhitespaceDelim);
     if(start == std::string::npos){return false;}
     return true;
 }
