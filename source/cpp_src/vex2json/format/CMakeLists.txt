@@ -6,3 +6,4 @@ install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/vex-1.5/antenna.json" DESTINATION "${
 #install the vex 2.0 format description files
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/vex-2.0/block-names.json" DESTINATION "${DATA_INSTALL_DIR}/vex-2.0")
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/vex-2.0/antenna.json" DESTINATION "${DATA_INSTALL_DIR}/vex-2.0")
+install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/vex-2.0/bbc.json" DESTINATION "${DATA_INSTALL_DIR}/vex-2.0")

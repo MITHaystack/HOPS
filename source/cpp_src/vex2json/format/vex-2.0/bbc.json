@@ -1,0 +1,24 @@
+{
+    "block_name": "$BBC",
+    "start_tag": "def",
+    "stop_tag": "enddef",
+    "type" : "compound",
+    "parameters" :
+    {
+        "BBC_assign":
+        {
+            "type": "list_compound",
+            "parameters":
+            {
+                "logical_bbc_id": {"type": "link"},
+                "physical_bbc_id": {"type": "int"},
+                "logical_if": {"type": "link"}
+            },
+            "fields": ["logical_bbc_id", "physical_bbc_id", "logical_if"]
+        }
+    },
+    "fields": 
+    [
+        "BBC_assign"
+    ]
+}

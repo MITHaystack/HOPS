@@ -257,36 +257,7 @@ MHO_VexBlockParser::ProcessTokens(const std::string& element_name, mho_json& for
         case vex_link_type:
             element_data = tokens[0];
         break;
-        case vex_compound_type:
-            {
-                mho_json fields = format["fields"]; 
-                std::size_t n_tokens = tokens.size();
-                std::size_t n_all_fields = fields.size();
-
-                for(auto it = tokens.begin(); it != tokens.end(); it++)
-                {
-                    std::cout<< *it <<", ";
-                }
-                std::cout<<std::endl;
-
-                std::size_t token_idx = 0;
-                std::string hash = "#";
-                std::string nothing = "";
-                for(auto it = fields.begin(); it != fields.end(); it++)
-                {
-                    if( tokens[token_idx] != "" )
-                    {
-                        std::vector< std::string > tmp_tokens;
-                        tmp_tokens.push_back(tokens[token_idx]);
-                        std::string tmp = it->get<std::string>();
-                        std::string field_name = std::regex_replace(tmp,std::regex(hash),nothing);
-                        std::cout<<"field_name = "<<field_name<<std::endl;
-                        element_data[field_name] = ProcessTokens(field_name, format["parameters"][field_name], tmp_tokens);
-                        token_idx++;
-                    }
-                }
-            }
-        break;
+        case vex_compound_type: //all compound types treated the same way
         case vex_list_compound_type:
             {
                 mho_json fields = format["fields"]; 
@@ -310,15 +281,13 @@ MHO_VexBlockParser::ProcessTokens(const std::string& element_name, mho_json& for
                         tmp_tokens.push_back(tokens[token_idx]);
                         std::string tmp = it->get<std::string>();
                         std::string field_name = std::regex_replace(tmp,std::regex(hash),nothing);
-                        std::cout<<"field_name = "<<field_name<<std::endl;
+                        //std::cout<<"field_name = "<<field_name<<std::endl;
                         element_data[field_name] = ProcessTokens(field_name, format["parameters"][field_name], tmp_tokens);
                         token_idx++;
                     }
                 }
             }
         break;
-
-
         default:
         break;
     }
