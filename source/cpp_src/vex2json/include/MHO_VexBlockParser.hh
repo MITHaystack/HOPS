@@ -62,7 +62,7 @@ class MHO_VexBlockParser
                          mho_json* file_node,
                          mho_json& format_node);
 
-        mho_json ProcessTokens(mho_json&format, std::vector< std::string >& tokens);
+        mho_json ProcessTokens(const std::string& element_name, mho_json&format, std::vector< std::string >& tokens);
 
         void LoadBlockFormat(std::string block_name);
         std::string GetBlockFormatFileName(std::string block_name);
@@ -89,12 +89,15 @@ class MHO_VexBlockParser
             vex_real_type,
             vex_string_type,
             vex_compound_type,
+            vex_list_compound_type,
             vex_link_type,
             vex_unknown_type
         };
     
         vex_element_type DetermineType(std::string etype);
         bool ContainsWhitespace(std::string value);
+
+        
 
 };
 
