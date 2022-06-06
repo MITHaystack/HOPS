@@ -15,10 +15,10 @@ MHO_VexBlockParser::MHO_VexBlockParser()
     fStartTag = "def";
     fStopTag = "enddef";
     fRefTag = "ref";
-    fAssignmentDelim = "=";
+    fAssignmentDelim = "=;";
     //fVexDelim = " :;\t\r\n";
     fWhitespaceDelim = " \t\r\n";
-    fVexDelim = ":;";
+    fVexDelim = ":";
     fStartTagDelim = fWhitespaceDelim + ";";
     fTokenizer.SetDelimiter(fVexDelim);
     fTokenizer.SetUseMulticharacterDelimiterFalse();
@@ -158,7 +158,7 @@ MHO_VexBlockParser::ProcessLine(const MHO_VexLine& line,
     fTokenizer.SetDelimiter(fAssignmentDelim);
     fTokenizer.SetUseMulticharacterDelimiterFalse();
     fTokenizer.SetRemoveLeadingTrailingWhitespaceTrue();
-    fTokenizer.SetIncludeEmptyTokensTrue();
+    fTokenizer.SetIncludeEmptyTokensFalse();
 
     std::vector< std::string > tokens;
     fTokenizer.SetString(&(line.fContents));
@@ -168,7 +168,7 @@ MHO_VexBlockParser::ProcessLine(const MHO_VexLine& line,
     if(tokens.size() == 2)
     {
         std::string element_name = tokens[0];
-
+        std::cout<<"element  name = "<<tokens[0]<<std::endl;
         //verify that the element name is present in the current format node 
         bool key_is_present = false;
         for(auto& it : format.items()){if(element_name == it.key()){key_is_present = true; break;}}
@@ -185,8 +185,10 @@ MHO_VexBlockParser::ProcessLine(const MHO_VexLine& line,
         //fTokenizer.SetPreserveQuotesFalse();
 
         //data exists to the right of '=', before the ';'
-        std::string data = tokens[1]; //statements to the right of the assignment '='
+        std::string data = tokens[1]; //everything between '=' and ";"
         fTokenizer.SetDelimiter(fVexDelim);
+        fTokenizer.SetIncludeEmptyTokensTrue();
+        fTokenizer.SetRemoveLeadingTrailingWhitespaceTrue();
         fTokenizer.SetString(&data);
         fTokenizer.GetTokens(&tokens);
 
@@ -205,8 +207,8 @@ MHO_VexBlockParser::ProcessLine(const MHO_VexLine& line,
     }
     else 
     {
+        msg_error("vex", "expected assignment, but could not determine how to parse "<<tokens.size()<<" tokens from: <"<<line.fContents<<">."<<eom);
         return false;
-        msg_error("vex", "expected assignment, but could not determine how to parse."<<eom);
     }
 
 }
@@ -220,80 +222,152 @@ MHO_VexBlockParser::ProcessTokens(const std::string& element_name, mho_json& for
     switch(etype)
     {
         case vex_int_type:
-            element_data = std::atoi(tokens[0].c_str());
+            element_data = ProcessInt(element_name, format, tokens);
         break;
         case vex_real_type:
-            //if the value has units (we need to parse them out)
-            if( ContainsWhitespace(tokens[0]) )
-            {
-                std::vector< std::string > tmp_tok;
-                fTokenizer.SetString(&(tokens[0]));
-                fTokenizer.SetDelimiter(fWhitespaceDelim);
-                fTokenizer.SetUseMulticharacterDelimiterFalse();
-                fTokenizer.SetIncludeEmptyTokensFalse();
-                fTokenizer.GetTokens(&tmp_tok);
-                if(tmp_tok.size() == 1)
-                {
-                    element_data["value"] = std::atof(tokens[0].c_str());
-                }
-                else if(tmp_tok.size() == 2)
-                {
-                    element_data["value"] = std::atof(tmp_tok[0].c_str());
-                    element_data["units"] = tmp_tok[1];
-                }
-                else 
-                {
-                    msg_error("vex", "could not parse parameter: "<<element_name<<", as (numerical) value from: <"<<tokens[0]<<">."<<eom);
-                }
-            }
-            else 
-            {
-                element_data["value"] = std::atof(tokens[0].c_str());
-            }
+            element_data = ProcessReal(element_name, format, tokens);
+        break;
+        case vex_list_real_type:
+            element_data = ProcessListReal(element_name, format, tokens);
         break;
         case vex_string_type:
+            std::cout<<"processing a string: "<<tokens[0]<<std::endl;
+            element_data = tokens[0];
+        break;
+        case vex_epoch_type:
             element_data = tokens[0];
         break;
         case vex_link_type:
             element_data = tokens[0];
         break;
         case vex_compound_type: //all compound types treated the same way
+            element_data = ProcessCompound(element_name, format, tokens);
         case vex_list_compound_type:
-            {
-                mho_json fields = format["fields"]; 
-                std::size_t n_tokens = tokens.size();
-                std::size_t n_all_fields = fields.size();
-
-                for(auto it = tokens.begin(); it != tokens.end(); it++)
-                {
-                    std::cout<< *it <<", ";
-                }
-                std::cout<<std::endl;
-
-                std::size_t token_idx = 0;
-                std::string hash = "#";
-                std::string nothing = "";
-                for(auto it = fields.begin(); it != fields.end(); it++)
-                {
-                    if( tokens[token_idx] != "" )
-                    {
-                        std::vector< std::string > tmp_tokens;
-                        tmp_tokens.push_back(tokens[token_idx]);
-                        std::string tmp = it->get<std::string>();
-                        std::string field_name = std::regex_replace(tmp,std::regex(hash),nothing);
-                        //std::cout<<"field_name = "<<field_name<<std::endl;
-                        element_data[field_name] = ProcessTokens(field_name, format["parameters"][field_name], tmp_tokens);
-                        token_idx++;
-                    }
-                }
-            }
+            element_data = ProcessCompound(element_name, format, tokens);
         break;
         default:
         break;
     }
-
     return element_data;
 }
+
+mho_json 
+MHO_VexBlockParser::ProcessInt(const std::string& element_name, mho_json&format, std::vector< std::string >& tokens)
+{
+    mho_json element_data = std::atoi(tokens[0].c_str());
+    return element_data;
+}
+
+mho_json 
+MHO_VexBlockParser::ProcessReal(const std::string& element_name, mho_json&format, std::vector< std::string >& tokens)
+{
+    mho_json element_data;
+
+    std::cout<<"real value = "<<tokens[0]<<std::endl;
+    //std::cout<<"element_name     = "<<element_name<<std::endl;
+
+    if( ContainsWhitespace(tokens[0]) )  //if the value has units (we need to parse them out)
+    {
+        std::vector< std::string > tmp_tok;
+        fTokenizer.SetString(&(tokens[0]));
+        fTokenizer.SetDelimiter(fWhitespaceDelim);
+        fTokenizer.SetUseMulticharacterDelimiterFalse();
+        fTokenizer.SetIncludeEmptyTokensFalse();
+        fTokenizer.GetTokens(&tmp_tok);
+        if(tmp_tok.size() == 1)
+        {
+            element_data["value"] = std::atof(tmp_tok[0].c_str());
+        }
+        else if(tmp_tok.size() == 2)
+        {
+            element_data["value"] = std::atof(tmp_tok[0].c_str());
+            element_data["units"] = tmp_tok[1];
+        }
+        else 
+        {
+            msg_error("vex", "could not parse parameter: "<<element_name<<", as (numerical) value from: <"<<tokens[0]<<">."<<eom);
+        }
+    }
+    else 
+    {
+        element_data["value"] = std::atof(tokens[0].c_str());
+    }
+    return element_data;
+}
+
+mho_json 
+MHO_VexBlockParser::ProcessListReal(const std::string& element_name, mho_json&format, std::vector< std::string >& tokens)
+{
+    mho_json element_data;
+    std::vector< double > values; 
+    for(std::size_t i=0; i<tokens.size(); i++)
+    {
+        if( ContainsWhitespace(tokens[i]) )  //if the value has units (we need to parse them out)
+        {
+            std::vector< std::string > tmp_tok;
+            fTokenizer.SetString(&(tokens[i]));
+            fTokenizer.SetDelimiter(fWhitespaceDelim);
+            fTokenizer.SetUseMulticharacterDelimiterFalse();
+            fTokenizer.SetIncludeEmptyTokensFalse();
+            fTokenizer.GetTokens(&tmp_tok);
+            if(tmp_tok.size() == 1)
+            {
+                values.push_back( std::atof(tokens[i].c_str() ) );
+            }
+            else if(tmp_tok.size() == 2)
+            {
+                values.push_back( std::atof(tokens[i].c_str() ) );
+                element_data["units"] = tmp_tok[1];
+            }
+            else 
+            {
+                msg_error("vex", "could not parse parameter: "<<element_name<<", as (numerical) value from: <"<<tokens[i]<<">."<<eom);
+            }
+        }
+        else 
+        {
+            values.push_back( std::atof(tokens[i].c_str() ) );
+        }
+    }
+    element_data["values"] = values;
+    return element_data;
+}
+
+mho_json 
+MHO_VexBlockParser::ProcessCompound(const std::string& element_name, mho_json&format, std::vector< std::string >& tokens)
+{
+    mho_json element_data;
+    mho_json fields = format["fields"]; 
+    std::size_t n_tokens = tokens.size();
+    std::size_t n_all_fields = fields.size();
+
+    for(auto it = tokens.begin(); it != tokens.end(); it++)
+    {
+        std::cout<< *it <<", ";
+    }
+    std::cout<<std::endl;
+
+    std::size_t token_idx = 0;
+    std::string hash = "#";
+    std::string nothing = "";
+    for(auto it = fields.begin(); it != fields.end(); it++)
+    {
+        if(token_idx < tokens.size() && tokens[token_idx] != nothing )
+        {
+            std::cout<<" --- --- "<<tokens[token_idx]<<std::endl;
+            std::vector< std::string > tmp_tokens;
+            tmp_tokens.push_back(tokens[token_idx]);
+            std::string tmp = it->get<std::string>();
+            std::string field_name = std::regex_replace(tmp,std::regex(hash),nothing);
+            std::cout<<"field_name = "<<field_name<<std::endl;
+            mho_json next_format =  format["parameters"][field_name];
+            element_data[field_name] = ProcessTokens(field_name, next_format, tmp_tokens);
+            token_idx++;
+        }
+    }
+    return element_data;
+}
+
 
 
 MHO_VexBlockParser::vex_element_type 
@@ -301,6 +375,8 @@ MHO_VexBlockParser::DetermineType(std::string etype)
 {
     if(etype == "int"){return vex_int_type;}
     if(etype == "real"){return vex_real_type;}
+    if(etype == "list_real"){return vex_list_real_type;}
+    if(etype == "epoch"){return vex_epoch_type;}
     if(etype == "string"){return vex_string_type;}
     if(etype == "compound"){return vex_compound_type;}
     if(etype == "list_compound"){return vex_list_compound_type;}
@@ -355,6 +431,5 @@ MHO_VexBlockParser::ContainsWhitespace(std::string value)
     if(start == std::string::npos){return false;}
     return true;
 }
-
 
 }//end namespace

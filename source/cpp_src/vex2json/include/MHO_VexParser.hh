@@ -36,7 +36,7 @@ class MHO_VexParser
         void SetVexVersion(std::string version);
         void SetVexVersion(const char* version);
 
-        void ParseVex();
+        mho_json ParseVex();
         
     private:
 
@@ -45,7 +45,7 @@ class MHO_VexParser
         void JoinLines();
         void MarkBlocks();
         std::vector< MHO_VexLine > CollectBlockLines(std::string block_name);
-        void ProcessBlocks();
+        void ProcessBlocks(mho_json& root);
 
 
         std::string GetFormatDirectory();
