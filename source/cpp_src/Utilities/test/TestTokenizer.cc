@@ -75,5 +75,20 @@ int main(int /*argc*/, char** /*argv*/)
     for(std::size_t i=0; i<tok6.size(); i++){std::cout<<tok6[i]<<" ";}
     std::cout<<std::endl;
 
+
+    std::string val = "    mean_motion = 0.; ";
+    std::string fAssignmentDelim = "=;";
+    tokenizer.SetDelimiter(fAssignmentDelim);
+    tokenizer.SetUseMulticharacterDelimiterFalse();
+    tokenizer.SetRemoveLeadingTrailingWhitespaceTrue();
+    tokenizer.SetIncludeEmptyTokensFalse();
+
+    std::vector< std::string > tok7;
+    tokenizer.SetString(&val);
+    tokenizer.GetTokens(&tok7);
+
+    for(std::size_t i=0; i<tok7.size(); i++){std::cout<<tok7[i]<<"|";}
+    std::cout<<std::endl;
+
     return 0;
 }

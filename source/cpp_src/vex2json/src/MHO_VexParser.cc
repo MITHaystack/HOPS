@@ -173,7 +173,7 @@ MHO_VexParser::MarkBlocks()
 
 }
 
-void 
+mho_json
 MHO_VexParser::ParseVex()
 {
     ReadFile();
@@ -185,18 +185,22 @@ MHO_VexParser::ParseVex()
     std::cout<<"flagging blocks"<<std::endl;
     MarkBlocks();
 
-    ProcessBlocks();
+    mho_json root;
+    ProcessBlocks(root);
+
+    return root;
 }
 
 void 
-MHO_VexParser::ProcessBlocks()
+MHO_VexParser::ProcessBlocks(mho_json& root)
 {
     for(auto blk_it = fFoundBlocks.begin(); blk_it != fFoundBlocks.end(); blk_it++)
     {
-        std::vector< MHO_VexLine > block_data = CollectBlockLines(*blk_it);
-        mho_json block = fBlockParser.ParseBlockLines(*blk_it, &block_data);
-
-        std::cout<<"block: "<<*blk_it<<std::endl;
+        std::string block_name = *blk_it;
+        std::vector< MHO_VexLine > block_data = CollectBlockLines(block_name);
+        mho_json block = fBlockParser.ParseBlockLines(block_name, &block_data);
+        root[block_name] = block;
+        std::cout<<"block: "<<block_name<<std::endl;
         std::cout<<block.dump(2)<<std::endl;
         //fBlockParser.ParseBlock();
             //now have the block parse deal with the data

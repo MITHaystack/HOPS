@@ -64,6 +64,12 @@ class MHO_VexBlockParser
 
         mho_json ProcessTokens(const std::string& element_name, mho_json&format, std::vector< std::string >& tokens);
 
+
+        mho_json ProcessInt(const std::string& element_name, mho_json&format, std::vector< std::string >& tokens);
+        mho_json ProcessReal(const std::string& element_name, mho_json&format, std::vector< std::string >& tokens);
+        mho_json ProcessListReal(const std::string& element_name, mho_json&format, std::vector< std::string >& tokens);
+        mho_json ProcessCompound(const std::string& element_name, mho_json&format, std::vector< std::string >& tokens);
+
         void LoadBlockFormat(std::string block_name);
         std::string GetBlockFormatFileName(std::string block_name);
 
@@ -88,6 +94,8 @@ class MHO_VexBlockParser
             vex_int_type,
             vex_real_type,
             vex_string_type,
+            vex_epoch_type,
+            vex_list_real_type,
             vex_compound_type,
             vex_list_compound_type,
             vex_link_type,

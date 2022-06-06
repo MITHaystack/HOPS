@@ -78,14 +78,6 @@ MHO_Tokenizer::GetTokens(std::vector< std::string>* tokens)
             }
         }
     }
-
-    if(fRemoveLeadingTrailingWhitespace)
-    {
-        for(std::size_t  i=0; i<tokens->size(); i++)
-        {
-            (*tokens)[i] = TrimLeadingAndTrailingWhitespace( (*tokens)[i]);
-        }
-    }
 }
 
 
@@ -105,7 +97,15 @@ MHO_Tokenizer::MultiCharTokenize(std::vector< std::string>* tokens)
 
         if( fIncludeEmptyTokens || ( (length > 0 ) && ( start < fCurrentString->size() ) ) )
         {
-            tokens->push_back( fCurrentString->substr(start,length) );
+            if(fRemoveLeadingTrailingWhitespace)
+            {
+                std::string val = TrimLeadingAndTrailingWhitespace( fCurrentString->substr(start,length) );
+                if(val.size() > 0){ tokens->push_back( val ); }
+            }
+            else 
+            {
+                tokens->push_back( fCurrentString->substr(start,length) );
+            }
         }
 
         if( end > std::string::npos - fDelim.size() ){ start = std::string::npos;}
@@ -130,7 +130,15 @@ MHO_Tokenizer::SingleCharTokenize(std::vector< std::string>* tokens)
 
             if( fIncludeEmptyTokens || ( (length > 0 ) && ( start < fCurrentString->size() ) ) )
             {
-                tokens->push_back( fCurrentString->substr(start,length) );
+                if(fRemoveLeadingTrailingWhitespace)
+                {
+                    std::string val = TrimLeadingAndTrailingWhitespace( fCurrentString->substr(start,length) );
+                    if(val.size() > 0){ tokens->push_back( val ); }
+                }
+                else 
+                {
+                    tokens->push_back( fCurrentString->substr(start,length) );
+                }
             }
 
             if( end > std::string::npos - 1 ){ start = std::string::npos;}
