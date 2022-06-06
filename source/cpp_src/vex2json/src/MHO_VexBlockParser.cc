@@ -14,6 +14,7 @@ MHO_VexBlockParser::MHO_VexBlockParser()
     fBlockLines = nullptr;
     fStartTag = "def";
     fStopTag = "enddef";
+    fChanDefTag = "chan_def";
     fRefTag = "ref";
     fAssignmentDelim = "=;";
     //fVexDelim = " :;\t\r\n";
@@ -90,6 +91,7 @@ bool
 MHO_VexBlockParser::IsStartTag(const MHO_VexLine& line)
 {
     if(line.fContents.find(fStopTag) != std::string::npos){return false;}
+    if(line.fContents.find(fChanDefTag) != std::string::npos){return false;}
     if(line.fContents.find(fStartTag)!= std::string::npos){return true;}
     return false;
 }
@@ -361,8 +363,17 @@ MHO_VexBlockParser::ProcessCompound(const std::string& element_name, mho_json&fo
             std::string field_name = std::regex_replace(tmp,std::regex(hash),nothing);
             std::cout<<"field_name = "<<field_name<<std::endl;
             mho_json next_format =  format["parameters"][field_name];
-            element_data[field_name] = ProcessTokens(field_name, next_format, tmp_tokens);
-            token_idx++;
+            std::string type_name = next_format["type"].get<std::string>();
+            if( MatchesType( tokens[token_idx], type_name ) )
+            {
+                element_data[field_name] = ProcessTokens(field_name, next_format, tmp_tokens);
+                token_idx++;
+            }
+            else 
+            {
+                msg_warn("vex", "could not parse <"<<tokens[token_idx]<<">  as type: "<<type_name<< eom);
+            }
+            
         }
     }
     return element_data;
@@ -383,6 +394,73 @@ MHO_VexBlockParser::DetermineType(std::string etype)
     if(etype == "link"){return vex_link_type;}
     return vex_unknown_type;
 }
+
+bool 
+MHO_VexBlockParser::MatchesType(const std::string& token, const std::string& type_name)
+{
+    vex_element_type etype = DetermineType(type_name);
+    switch(etype)
+    {
+        case vex_int_type:
+            {
+                std::string tmp = token; //needed for negative and explicitly positive integers
+                if(token[0] == '-' || token[0] == '+'){tmp = token.substr(1);}
+                if(tmp.find_first_not_of("0123456789") == std::string::npos)
+                {
+                    return true;
+                }
+                return false;
+            }
+        break;
+        case vex_real_type:
+            {
+                std::string tmp = token;
+                std::vector< std::string > tmp_tok;
+                if( ContainsWhitespace(token) )  //if the value has units (we need to parse them out)
+                {
+
+                    fTokenizer.SetString(&token);
+                    fTokenizer.SetDelimiter(fWhitespaceDelim);
+                    fTokenizer.SetUseMulticharacterDelimiterFalse();
+                    fTokenizer.SetIncludeEmptyTokensFalse();
+                    fTokenizer.GetTokens(&tmp_tok);
+                    if(tmp_tok.size() == 1 || tmp_tok.size() == 2){tmp = tmp_tok[0];}
+                }
+                 //needed for negative and explicitly positive floats
+                std::string tmp2 = tmp;
+                if(tmp[0] == '-' || tmp[0] == '+'){tmp2 = tmp.substr(1);}
+                if(tmp2.find_first_not_of("0123456789.") == std::string::npos)
+                {
+                    return true;
+                }
+                return false;
+            }
+        break;
+        case vex_list_real_type:
+            return true;//check for float list with or without units
+        break;
+        case vex_string_type:
+            return true; //always convertable to a string
+        break;
+        case vex_epoch_type:
+            return true; //treated like a string -- TODO MAKE THIS MORE STRICT?
+        break;
+        case vex_link_type:
+            if(token.find_first_of("&") == std::string::npos){return false;}
+            else{return true;}
+        break;
+        case vex_compound_type: 
+            return true; //return true until we recurse to a simpler type
+        case vex_list_compound_type:
+            return true; //return true until we recurse to a simpler type
+        break;
+        default:
+        break;
+    }
+    return false;
+}
+
+
 
 void 
 MHO_VexBlockParser::LoadBlockFormat(std::string block_name)

@@ -52,7 +52,7 @@ class MHO_VexBlockParser
                              std::stack< mho_json* >& file_node,
                              std::stack< mho_json >& format_node);
 
-         bool ProcessStopTag(const MHO_VexLine& line, 
+        bool ProcessStopTag(const MHO_VexLine& line, 
                               std::stack< std::string >& path,
                               std::stack< mho_json* >& file_node,
                               std::stack< mho_json >& format_node);
@@ -73,6 +73,8 @@ class MHO_VexBlockParser
         void LoadBlockFormat(std::string block_name);
         std::string GetBlockFormatFileName(std::string block_name);
 
+        bool MatchesType(const std::string& token, const std::string& type_name);
+
         bool fBlockFormatLoaded;
         mho_json fBlockFormat;
         std::string fBlockName;
@@ -81,6 +83,7 @@ class MHO_VexBlockParser
         
         std::string fStartTag;
         std::string fStopTag;
+        std::string fChanDefTag;
         std::string fRefTag;
         std::string fVexDelim;
         std::string fStartTagDelim;
