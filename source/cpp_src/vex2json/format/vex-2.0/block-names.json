@@ -24,6 +24,7 @@
         "$SITE",
         "$SOURCE",
         "$TAPELOG_OBS",
-        "$TRACKS"
+        "$TRACKS",
+        "$HEAD_POS"
     ]
 }
