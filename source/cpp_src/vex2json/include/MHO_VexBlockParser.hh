@@ -66,6 +66,8 @@ class MHO_VexBlockParser
 
 
         mho_json ProcessInt(const std::string& element_name, mho_json&format, std::vector< std::string >& tokens);
+        mho_json ProcessListInt(const std::string& element_name, mho_json&format, std::vector< std::string >& tokens);
+        mho_json ProcessListString(const std::string& element_name, mho_json&format, std::vector< std::string >& tokens);
         mho_json ProcessReal(const std::string& element_name, mho_json&format, std::vector< std::string >& tokens);
         mho_json ProcessListReal(const std::string& element_name, mho_json&format, std::vector< std::string >& tokens);
         mho_json ProcessCompound(const std::string& element_name, mho_json&format, std::vector< std::string >& tokens);
@@ -84,6 +86,7 @@ class MHO_VexBlockParser
         std::string fStartTag;
         std::string fStopTag;
         std::string fChanDefTag;
+        std::string fIFDefTag;
         std::string fRefTag;
         std::string fVexDelim;
         std::string fStartTagDelim;
@@ -95,8 +98,10 @@ class MHO_VexBlockParser
         enum vex_element_type
         {
             vex_int_type,
+            vex_list_int_type,
             vex_real_type,
             vex_string_type,
+            vex_list_string_type,
             vex_epoch_type,
             vex_list_real_type,
             vex_compound_type,
