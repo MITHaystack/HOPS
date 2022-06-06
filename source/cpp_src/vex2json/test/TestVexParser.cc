@@ -21,7 +21,7 @@ int main(int argc, char** argv)
     mho_json vex = vparser.ParseVex();
 
     //open and dump to file 
-    std::string output_file("text_vex.json");
+    std::string output_file("test_vex.json");
     std::ofstream outFile(output_file.c_str(), std::ofstream::out);
     outFile << vex;
     outFile.close();
