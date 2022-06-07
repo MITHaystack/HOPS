@@ -19,8 +19,8 @@
         "source_name": {"type": "string"},
         "IAU_name": {"type": "string"},
         "source_position_ref": {"type": "string"},
-        "ra" : {"type": "RA"},
-        "dec": {"type": "Dec"},
+        "ra" : {"type": "string"},
+        "dec": {"type": "string"},
         "ref_coord_frame": {"type": "string"},
         "ra_rate": {"type": "real", "dimension": "angle/time"},
         "dec_rate": {"type": "real", "dimension": "angle/time"},
@@ -37,7 +37,7 @@
                 "axis_ratio": {"type": "real", "dimension": "NA"},
                 "position_angle":  {"type": "real", "dimension": "angle"},
                 "ra_offset":  {"type": "real", "dimension": "angle"},
-                "dec_offset":  {"type": "real", "dimension": "angle"},
+                "dec_offset":  {"type": "real", "dimension": "angle"}
             },
             "fields": 
             [
@@ -66,12 +66,12 @@
         "tle2": {"type": "string"},
         "datum":
         {
-            "type": "compound",
+            "type": "list_compound",
             "parameters":
             {
                 "time": {"type": "epoch"},
-                "ra" : {"type": "RA"},
-                "dec": {"type": "Dec"},
+                "ra" : {"type": "string"},
+                "dec": {"type": "string"},
                 "ra_rate": {"type": "real", "dimension": "angle/time"},
                 "dec_rate": {"type": "real", "dimension": "angle/time"},
                 "ref_coord_frame": {"type": "string"}
@@ -81,9 +81,9 @@
                 "time",
                 "ra",
                 "dec",
-                "ra_rate",
-                "dec_rate",
-                "ref_coord_frame"
+                "#ra_rate",
+                "#dec_rate",
+                "#ref_coord_frame"
             ]
         }
     },
