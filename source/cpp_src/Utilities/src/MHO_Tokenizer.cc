@@ -100,7 +100,7 @@ MHO_Tokenizer::MultiCharTokenize(std::vector< std::string>* tokens)
             if(fRemoveLeadingTrailingWhitespace)
             {
                 std::string val = TrimLeadingAndTrailingWhitespace( fCurrentString->substr(start,length) );
-                if(val.size() > 0){ tokens->push_back( val ); }
+                if(val.size() > 0 || fIncludeEmptyTokens){ tokens->push_back( val ); }
             }
             else 
             {
@@ -133,7 +133,7 @@ MHO_Tokenizer::SingleCharTokenize(std::vector< std::string>* tokens)
                 if(fRemoveLeadingTrailingWhitespace)
                 {
                     std::string val = TrimLeadingAndTrailingWhitespace( fCurrentString->substr(start,length) );
-                    if(val.size() > 0){ tokens->push_back( val ); }
+                    if(val.size() > 0 || fIncludeEmptyTokens){ tokens->push_back( val ); }
                 }
                 else 
                 {
