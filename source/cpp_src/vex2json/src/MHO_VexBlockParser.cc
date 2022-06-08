@@ -210,6 +210,13 @@ MHO_VexBlockParser::ProcessLine(const MHO_VexLine& line,
         fTokenizer.SetString(&data);
         fTokenizer.GetTokens(&tokens);
 
+        std::cout<<"**** tokens **** "<<std::endl;
+        for(auto it = tokens.begin(); it != tokens.end(); it++)
+        {
+            std::cout<<"| "<< *it << "|";
+        }
+        std::cout<<std::endl;
+
         vex_element_type etype = DetermineType( format[element_name]["type"].get<std::string>() );
         mho_json element = ProcessTokens(element_name, format[element_name], tokens);
 
@@ -438,7 +445,7 @@ MHO_VexBlockParser::ProcessCompound(const std::string& element_name, mho_json&fo
                     //then an optional element has been omitted in the vex file
                     //so don't increment the token index, and see if we can process it as 
                     //the next expected field
-                    msg_debug("vex", "could not parse <"<<tokens[token_idx]<<">  as type: "<<type_name<< eom);
+                    msg_debug("vex", "could not parse <"<<tokens[token_idx]<<">  as type: "<<type_name<<" for field: "<<field_name<< eom);
                 }
             }
         }
@@ -495,10 +502,7 @@ MHO_VexBlockParser::MatchesType(const std::string& token, const std::string& typ
                     fTokenizer.GetTokens(&tmp_tok);
                     if(tmp_tok.size() == 1 || tmp_tok.size() == 2){tmp = tmp_tok[0];}
                 }
-                 //needed for negative and explicitly positive floats
-                std::string tmp2 = tmp;
-                if(tmp[0] == '-' || tmp[0] == '+'){tmp2 = tmp.substr(1);}
-                if(tmp2.find_first_not_of("0123456789.") == std::string::npos)
+                if(tmp.find_first_not_of("0123456789.e+-") == std::string::npos)
                 {
                     return true;
                 }
@@ -512,7 +516,13 @@ MHO_VexBlockParser::MatchesType(const std::string& token, const std::string& typ
             return true; //always convertable to a string
         break;
         case vex_epoch_type:
-            return true; //treated like a string -- TODO MAKE THIS MORE STRICT?
+            //any epoch we encounter must at the very least include a 'year'
+            //TODO FIXME -- should we make this more strict and check for day/hour etc?
+            if(token.find_first_of("y") == std::string::npos)
+            {
+                return false;
+            }
+            return true;
         break;
         case vex_link_type:
             if(token.find_first_of("&") == std::string::npos){return false;}
