@@ -33,8 +33,8 @@ MHO_UUID MHO_UUIDGenerator::GenerateUUID()
     //     if(i == 8){tmp &= 0x3F; tmp |= 0x80;}
     //     uuid[i] = (uint8_t) tmp;
     // }
-    //generate the rest of the bits according to version-4
-    //(128 bit) pseudo-random UUID based on RFC 4122
+
+    //use all bytes
     for(unsigned int i=0; i<MHO_UUID_LENGTH; i++)
     {
         //get a random 32 bit uint between 0 and 255
