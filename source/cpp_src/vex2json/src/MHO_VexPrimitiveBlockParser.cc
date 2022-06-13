@@ -1,4 +1,4 @@
-#include "MHO_VexBlockParser.hh"
+#include "MHO_VexPrimitiveBlockParser.hh"
 
 #include <fstream>
 #include <cctype>
@@ -9,7 +9,7 @@
 namespace hops 
 {
 
-MHO_VexBlockParser::MHO_VexBlockParser()
+MHO_VexPrimitiveBlockParser::MHO_VexPrimitiveBlockParser()
 {
     fBlockLines = nullptr;
     fStartTag = "def";
@@ -29,10 +29,10 @@ MHO_VexBlockParser::MHO_VexBlockParser()
     fTokenizer.SetPreserveQuotesTrue();
 };
 
-MHO_VexBlockParser::~MHO_VexBlockParser(){};
+MHO_VexPrimitiveBlockParser::~MHO_VexPrimitiveBlockParser(){};
 
 mho_json
-MHO_VexBlockParser::ParseBlockLines(std::string block_name, const std::vector< MHO_VexLine >* block_lines)
+MHO_VexPrimitiveBlockParser::ParseBlockLines(std::string block_name, const std::vector< MHO_VexLine >* block_lines)
 {
     //retrieve the block format 
     fBlockFormatLoaded = false;
@@ -49,16 +49,16 @@ MHO_VexBlockParser::ParseBlockLines(std::string block_name, const std::vector< M
 }
 
 mho_json
-MHO_VexBlockParser::ParseBlock()
+MHO_VexPrimitiveBlockParser::ParseBlock()
 {
-    mho_json root;
+    mho_json block_root;
 
     std::stack< std::string > path;
     std::stack< mho_json* > file_node;
     std::stack< mho_json > format_node;
 
     path.push(fBlockName);
-    file_node.push( &root );
+    file_node.push( &block_root );
 
     if(fBlockLines != nullptr)
     {
@@ -85,11 +85,11 @@ MHO_VexBlockParser::ParseBlock()
         msg_error("vex", "failed to parse block, no lines to process."<< eom);
     }
 
-    return root;
+    return block_root;
 }
 
 bool
-MHO_VexBlockParser::IsStartTag(const MHO_VexLine& line)
+MHO_VexPrimitiveBlockParser::IsStartTag(const MHO_VexLine& line)
 {
     std::vector< std::string > tokens;
     fTokenizer.SetDelimiter(fStartTagDelim);
@@ -113,14 +113,14 @@ MHO_VexBlockParser::IsStartTag(const MHO_VexLine& line)
 }
 
 bool 
-MHO_VexBlockParser::IsStopTag(const MHO_VexLine& line)
+MHO_VexPrimitiveBlockParser::IsStopTag(const MHO_VexLine& line)
 {
     if(line.fContents.find(fStopTag) != std::string::npos){return true;}
     return false;
 }
 
 bool 
-MHO_VexBlockParser::ProcessStartTag(const MHO_VexLine& line, 
+MHO_VexPrimitiveBlockParser::ProcessStartTag(const MHO_VexLine& line, 
                      std::stack< std::string >& path,
                      std::stack< mho_json* >& file_node,
                      std::stack< mho_json >& format_node)
@@ -149,7 +149,7 @@ MHO_VexBlockParser::ProcessStartTag(const MHO_VexLine& line,
 }
 
 bool 
-MHO_VexBlockParser::ProcessStopTag(const MHO_VexLine& line, 
+MHO_VexPrimitiveBlockParser::ProcessStopTag(const MHO_VexLine& line, 
                       std::stack< std::string >& path,
                       std::stack< mho_json* >& file_node,
                       std::stack< mho_json >& format_node)
@@ -168,7 +168,7 @@ MHO_VexBlockParser::ProcessStopTag(const MHO_VexLine& line,
 }
 
 bool 
-MHO_VexBlockParser::ProcessLine(const MHO_VexLine& line, 
+MHO_VexPrimitiveBlockParser::ProcessLine(const MHO_VexLine& line, 
                  std::stack< std::string >& path,
                  mho_json* obj_node,
                  mho_json& format)
@@ -239,7 +239,7 @@ MHO_VexBlockParser::ProcessLine(const MHO_VexLine& line,
 }
 
 mho_json 
-MHO_VexBlockParser::ProcessTokens(const std::string& element_name, mho_json& format, std::vector< std::string >& tokens)
+MHO_VexPrimitiveBlockParser::ProcessTokens(const std::string& element_name, mho_json& format, std::vector< std::string >& tokens)
 {
     vex_element_type etype = DetermineType( format["type"].get<std::string>() );
     mho_json element_data;
@@ -283,14 +283,14 @@ MHO_VexBlockParser::ProcessTokens(const std::string& element_name, mho_json& for
 }
 
 mho_json 
-MHO_VexBlockParser::ProcessInt(const std::string& element_name, mho_json&format, std::vector< std::string >& tokens)
+MHO_VexPrimitiveBlockParser::ProcessInt(const std::string& element_name, mho_json&format, std::vector< std::string >& tokens)
 {
     mho_json element_data = std::atoi(tokens[0].c_str());
     return element_data;
 }
 
 mho_json 
-MHO_VexBlockParser::ProcessListInt(const std::string& element_name, mho_json&format, std::vector< std::string >& tokens)
+MHO_VexPrimitiveBlockParser::ProcessListInt(const std::string& element_name, mho_json&format, std::vector< std::string >& tokens)
 {
     mho_json element_data;
     std::vector< int > values; 
@@ -304,7 +304,7 @@ MHO_VexBlockParser::ProcessListInt(const std::string& element_name, mho_json&for
 
 
 mho_json 
-MHO_VexBlockParser::ProcessListString(const std::string& element_name, mho_json&format, std::vector< std::string >& tokens)
+MHO_VexPrimitiveBlockParser::ProcessListString(const std::string& element_name, mho_json&format, std::vector< std::string >& tokens)
 {
     mho_json element_data;
     std::vector< std::string > values; 
@@ -318,7 +318,7 @@ MHO_VexBlockParser::ProcessListString(const std::string& element_name, mho_json&
 
 
 mho_json 
-MHO_VexBlockParser::ProcessReal(const std::string& element_name, mho_json&format, std::vector< std::string >& tokens)
+MHO_VexPrimitiveBlockParser::ProcessReal(const std::string& element_name, mho_json&format, std::vector< std::string >& tokens)
 {
     mho_json element_data;
 
@@ -355,7 +355,7 @@ MHO_VexBlockParser::ProcessReal(const std::string& element_name, mho_json&format
 }
 
 mho_json 
-MHO_VexBlockParser::ProcessListReal(const std::string& element_name, mho_json&format, std::vector< std::string >& tokens)
+MHO_VexPrimitiveBlockParser::ProcessListReal(const std::string& element_name, mho_json&format, std::vector< std::string >& tokens)
 {
     mho_json element_data;
     std::vector< double > values; 
@@ -393,7 +393,7 @@ MHO_VexBlockParser::ProcessListReal(const std::string& element_name, mho_json&fo
 }
 
 mho_json 
-MHO_VexBlockParser::ProcessCompound(const std::string& element_name, mho_json&format, std::vector< std::string >& tokens)
+MHO_VexPrimitiveBlockParser::ProcessCompound(const std::string& element_name, mho_json&format, std::vector< std::string >& tokens)
 {
     mho_json element_data;
     mho_json fields = format["fields"]; 
@@ -455,8 +455,8 @@ MHO_VexBlockParser::ProcessCompound(const std::string& element_name, mho_json&fo
 
 
 
-MHO_VexBlockParser::vex_element_type 
-MHO_VexBlockParser::DetermineType(std::string etype)
+MHO_VexPrimitiveBlockParser::vex_element_type 
+MHO_VexPrimitiveBlockParser::DetermineType(std::string etype)
 {
     if(etype == "int"){return vex_int_type;}
     if(etype == "list_int"){return vex_list_int_type;}
@@ -472,7 +472,7 @@ MHO_VexBlockParser::DetermineType(std::string etype)
 }
 
 bool 
-MHO_VexBlockParser::MatchesType(const std::string& token, const std::string& type_name)
+MHO_VexPrimitiveBlockParser::MatchesType(const std::string& token, const std::string& type_name)
 {
     vex_element_type etype = DetermineType(type_name);
     switch(etype)
@@ -542,7 +542,7 @@ MHO_VexBlockParser::MatchesType(const std::string& token, const std::string& typ
 
 
 void 
-MHO_VexBlockParser::LoadBlockFormat(std::string block_name)
+MHO_VexPrimitiveBlockParser::LoadBlockFormat(std::string block_name)
 {
     fBlockFormatLoaded = false;
     std::string block_format_file = GetBlockFormatFileName(block_name);
@@ -572,7 +572,7 @@ MHO_VexBlockParser::LoadBlockFormat(std::string block_name)
 }
 
 std::string 
-MHO_VexBlockParser::GetBlockFormatFileName(std::string block_name)
+MHO_VexPrimitiveBlockParser::GetBlockFormatFileName(std::string block_name)
 {
     //remove '$', and convert to lower-case
     std::string file_name = block_name.substr(1);
@@ -582,7 +582,7 @@ MHO_VexBlockParser::GetBlockFormatFileName(std::string block_name)
 }
 
 bool 
-MHO_VexBlockParser::ContainsWhitespace(std::string value)
+MHO_VexPrimitiveBlockParser::ContainsWhitespace(std::string value)
 {
     auto start = value.find_first_of(fWhitespaceDelim);
     if(start == std::string::npos){return false;}
