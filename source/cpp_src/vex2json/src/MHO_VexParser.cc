@@ -164,12 +164,12 @@ MHO_VexParser::MarkBlocks()
         }
     }
 
-    for(auto blk_it = fBlockNames.begin(); blk_it != fBlockNames.end(); blk_it++)
-    {
-        std::cout<<"block: "<<*blk_it<<" starts on line: "<<
-        fBlockStartLines[*blk_it]->fLineNumber << " and ends on line: "<<
-        fBlockStopLines[*blk_it]->fLineNumber << std::endl;
-    }
+    // for(auto blk_it = fBlockNames.begin(); blk_it != fBlockNames.end(); blk_it++)
+    // {
+    //     std::cout<<"block: "<<*blk_it<<" starts on line: "<<
+    //     fBlockStartLines[*blk_it]->fLineNumber << " and ends on line: "<<
+    //     fBlockStopLines[*blk_it]->fLineNumber << std::endl;
+    // }
 
 }
 
