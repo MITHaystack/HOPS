@@ -108,6 +108,7 @@ class MHO_VexBlockParser
             vex_list_compound_type,
             vex_link_type,
             vex_unknown_type
+            //TODO FIXME -- add type for RA and Dec, to handle special treatment of "
         };
     
         vex_element_type DetermineType(std::string etype);
