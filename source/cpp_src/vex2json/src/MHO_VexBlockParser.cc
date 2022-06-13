@@ -362,6 +362,9 @@ MHO_VexBlockParser::ProcessTokens(const std::string& element_name, mho_json& for
         case vex_list_real_type:
             element_data = ProcessListReal(element_name, format, tokens);
         break;
+        case vex_keyword_type:
+            element_data = tokens[0];
+        break;
         case vex_string_type:
             element_data = tokens[0];
         break;
@@ -556,6 +559,7 @@ MHO_VexBlockParser::DetermineType(std::string etype)
     if(etype == "list_string"){return vex_list_string_type;}
     if(etype == "compound"){return vex_compound_type;}
     if(etype == "list_compound"){return vex_list_compound_type;}
+    if(etype == "keyword"){return vex_keyword_type;}
     if(etype == "reference"){return vex_reference_type;}
     if(etype == "link"){return vex_link_type;}
     return vex_unknown_type;
@@ -603,6 +607,8 @@ MHO_VexBlockParser::MatchesType(const std::string& token, const std::string& typ
             return true;//check for float list with or without units
         break;
         case vex_string_type:
+            return true; //always convertable to a string
+        case vex_keyword_type:
             return true; //always convertable to a string
         break;
         case vex_epoch_type:
