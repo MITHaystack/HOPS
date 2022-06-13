@@ -303,33 +303,6 @@ MHO_VexBlockParser::ProcessReference(const MHO_VexLine& line,
             }
         }
 
-        // //before we add this particular element, we check to see if an object with the same 
-        // //keyword is already present, if it is, we just extend the 'qualifiers', rather than inserting 
-        // //an additional copy  
-        // 
-        // bool append_existing = false;
-        // mho_json current_list = (*file_node)[element_block_name];
-        // std::cout<<"wondering what to do about "<<element_block_name<<std::endl;
-        // for(auto it = current_list.begin(); it != current_list.end(); ++it)
-        // {
-        //     std::cout<<"looking at: "<<(*it)["keyword"]<<" =? "<<element["keyword"]<<std::endl;
-        //     if( (*it)["keyword"] == element["keyword"] )
-        //     {
-        // 
-        //         append_existing = true;
-        //         for(auto it2 = element["qualifiers"].begin(); it2 != element["qualifiers"].end(); ++it2)
-        //         {
-        //             std::cout<<"adding qualifier: "<< *it2 <<std::endl;
-        //             (*it)["qualifiers"].push_back( *it2 );
-        //         }
-        //     }
-        // }
-        // // 
-        // // if(!append_existing)
-        // // {
-
-        //}
-
         (*file_node)[element_block_name].push_back( element ); 
         return true;
     }
