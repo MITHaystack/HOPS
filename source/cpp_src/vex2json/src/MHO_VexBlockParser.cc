@@ -38,7 +38,11 @@ MHO_VexBlockParser::ParseBlockLines(std::string block_name, const std::vector< M
     LoadBlockFormat(block_name);
     fBlockLines = block_lines;
 
-    if(fBlockFormatLoaded){ return ParseBlock();}
+    if(fBlockFormatLoaded)
+    {
+        if(block_name == "$GLOBAL"){ return ParseGlobalBlock();} //global block is "special"
+        else{ return ParseBlock();} //otherwise parse any of the other supported blocks
+    }
     else 
     {
         mho_json empty;
@@ -91,6 +95,44 @@ MHO_VexBlockParser::ParseBlock()
     return block_root;
 }
 
+
+mho_json 
+MHO_VexBlockParser::ParseGlobalBlock()
+{
+    mho_json block_root;
+
+    std::stack< std::string > path;
+    std::stack< mho_json* > file_node;
+    std::stack< mho_json > format_node;
+
+    path.push(fBlockName);
+    file_node.push( &block_root );
+    format_node.push( fBlockFormat["parameters"] ); //TODO FIXME -- check that 'parameters' exists!
+
+    if(fBlockLines != nullptr)
+    {
+        for(auto it = ++(fBlockLines->begin()); it != fBlockLines->end(); it++)
+        {
+            bool success = false;
+            if( IsReferenceTag(*it) )
+            {
+                success = ProcessReference(*it, path, file_node.top(), format_node.top() );
+            }
+            if(!success){msg_error("vex", "failed to process line: "<< it->fLineNumber << eom);}
+        }
+    }
+    else
+    {
+        msg_error("vex", "failed to parse block, no lines to process."<< eom);
+    }
+
+    path.pop();
+    format_node.pop();
+
+    return block_root;
+}
+
+
 bool
 MHO_VexBlockParser::IsStartTag(const MHO_VexLine& line)
 {
@@ -119,7 +161,22 @@ MHO_VexBlockParser::IsStopTag(const MHO_VexLine& line)
 bool 
 MHO_VexBlockParser::IsReferenceTag(const MHO_VexLine& line)
 {
-    if(line.fContents.find(fRefTag) != std::string::npos){return true;}
+    if(line.fContents.find(fRefTag) != std::string::npos)
+    {
+        std::vector< std::string > tokens;
+        fTokenizer.SetDelimiter(fStartTagDelim);
+        fTokenizer.SetUseMulticharacterDelimiterFalse();
+        fTokenizer.SetIncludeEmptyTokensFalse();
+        fTokenizer.SetPreserveQuotesFalse();
+        fTokenizer.SetRemoveLeadingTrailingWhitespaceTrue();
+        fTokenizer.SetString(&(line.fContents));
+        fTokenizer.GetTokens(&tokens);
+        if(tokens.size() > 1)
+        {
+            if(tokens[0] == fRefTag){return true;}
+        }
+        return false;
+    }
     return false;
 }
 
@@ -206,6 +263,8 @@ MHO_VexBlockParser::ProcessLine(const MHO_VexLine& line,
         //for very specific lines (i.e. source coordinates) we may need to set this to false
         fTokenizer.SetPreserveQuotesTrue();
 
+        std::cout<<"parse: "<<tokens[0]<<"! = !"<<tokens[1]<<std::endl;
+
         //data exists to the right of '=', before the ';'
         std::string data = tokens[1]; //everything between '=' and ";"
         fTokenizer.SetDelimiter(fVexDelim);
@@ -267,6 +326,7 @@ MHO_VexBlockParser::ProcessReference(const MHO_VexLine& line,
             if(ref_tokens[0] == fRefTag)
             {
                 element_block_name = ref_tokens[1];
+                std::cout<<"looking for element block name of:"<<element_block_name<<std::endl;
                 bool key_is_present = false;
                 for(auto& it : format_node.items()){if(element_block_name == it.key()){key_is_present = true; break;}}
                 if(!key_is_present)

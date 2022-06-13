@@ -18,8 +18,6 @@ install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/vex-2.0/clock.json" DESTINATION "${DA
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/vex-2.0/sched.json" DESTINATION "${DATA_INSTALL_DIR}/vex-2.0")
 
 #high-level block files
+install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/vex-2.0/global.json" DESTINATION "${DATA_INSTALL_DIR}/vex-2.0")
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/vex-2.0/station.json" DESTINATION "${DATA_INSTALL_DIR}/vex-2.0")
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/vex-2.0/mode.json" DESTINATION "${DATA_INSTALL_DIR}/vex-2.0")
-
-
-#install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/vex-2.0/global.json" DESTINATION "${DATA_INSTALL_DIR}/vex-2.0")

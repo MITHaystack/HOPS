@@ -39,6 +39,7 @@ class MHO_VexBlockParser
     private:
 
         mho_json ParseBlock();
+        mho_json ParseGlobalBlock();
 
         bool IsStartTag(const MHO_VexLine& line);
         bool IsStopTag(const MHO_VexLine& line);
