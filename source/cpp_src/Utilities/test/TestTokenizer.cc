@@ -19,7 +19,7 @@ int main(int /*argc*/, char** /*argv*/)
     std::string test3 = "This \t is a\tstring|separated by a\nmix.";
     std::string test4 = "This<d>is<d>a<d>string<d>separated<d>by<d>a<d>multi-character<d>delimiter.";
 
-    std::string test5 = "This is a string that \"contains \t quoted \t text\". ";
+    std::string test5 = "This is a string that \"contains \t quoted \t text\".";
 
     std::string delim1 = " ";
     std::string delim2 = "|";

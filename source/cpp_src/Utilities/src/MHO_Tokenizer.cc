@@ -58,7 +58,7 @@ MHO_Tokenizer::GetTokens(std::vector< std::string>* tokens)
                 std::string sec = fString->substr(prev, fQuotePairIndexes[i].first - prev);
                 std::string quote = fString->substr(fQuotePairIndexes[i].first, fQuotePairIndexes[i].second - fQuotePairIndexes[i].first );
                 prev = fQuotePairIndexes[i].second;
-                sections.push_back( std::make_pair(false, sec) );
+                if(sec.size() != 0){sections.push_back( std::make_pair(false, sec) );}
                 sections.push_back( std::make_pair(true, quote) );
             }
             sections.push_back( std::make_pair(false, fString->substr(prev) ) ); //catch any trailing portion
@@ -67,6 +67,7 @@ MHO_Tokenizer::GetTokens(std::vector< std::string>* tokens)
             {
                 if(sections[i].first == true)
                 {
+                    std::cout<<" quoted string: "<< sections[i].second<<std::endl;
                     tokens->push_back(sections[i].second); //treat quoted section as a single token
                 }
                 else 
@@ -164,7 +165,7 @@ MHO_Tokenizer::IndexQuoteInstances(const std::string* aString, std::vector< std:
         {
             std::pair< std::size_t, std::size_t > q;
             q.first = positions[2*j];
-            q.second = positions[2*j + 1];
+            q.second = positions[2*j + 1]+1;
             quotes->push_back(q);
         }
     }
