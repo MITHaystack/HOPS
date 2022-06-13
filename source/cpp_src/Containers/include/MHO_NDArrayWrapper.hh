@@ -192,7 +192,7 @@ class MHO_NDArrayWrapper:
         }
 
         //expensive copy (as opposed to the assignment operator,
-        //pointers to exernally managed memory are not transfer)
+        //pointers to exernally managed memory are not transferred)
         virtual void Copy(const MHO_NDArrayView<XValueType,RANK>& rhs)
         {
             auto dims = rhs.GetDimensionArray();

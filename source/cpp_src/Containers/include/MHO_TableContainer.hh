@@ -67,7 +67,6 @@ class MHO_TableContainer:
 
         virtual uint64_t GetSerializedSize() const override
         {
-            //TODO FIXME
             uint64_t total_size = 0;
             total_size += sizeof(MHO_ClassVersion);
             total_size += XAxisPackType::NAXES::value*sizeof(uint64_t);
