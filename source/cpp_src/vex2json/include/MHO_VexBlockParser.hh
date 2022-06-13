@@ -110,6 +110,7 @@ class MHO_VexBlockParser
             vex_compound_type,
             vex_list_compound_type,
             vex_link_type,
+            vex_keyword_type,
             vex_reference_type,
             vex_unknown_type
             //TODO FIXME -- add type for RA and Dec, to handle special treatment of "
