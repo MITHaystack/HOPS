@@ -21,7 +21,7 @@
 #include "MHO_JSONHeaderWrapper.hh"
 
 #include "MHO_VexLine.hh"
-#include "MHO_VexPrimitiveBlockParser.hh"
+#include "MHO_VexBlockParser.hh"
 
 namespace hops 
 {
@@ -77,7 +77,7 @@ class MHO_VexParser
         std::vector< std::string > fBlockNames;
 
         //block parser 
-        MHO_VexPrimitiveBlockParser fBlockParser;
+        MHO_VexBlockParser fBlockParser;
 
 };
 

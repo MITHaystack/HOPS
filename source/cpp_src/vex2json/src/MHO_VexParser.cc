@@ -200,8 +200,8 @@ MHO_VexParser::ProcessBlocks(mho_json& root)
         std::vector< MHO_VexLine > block_data = CollectBlockLines(block_name);
         mho_json block = fBlockParser.ParseBlockLines(block_name, &block_data);
         root[block_name] = block;
-        std::cout<<"block: "<<block_name<<std::endl;
-        std::cout<<block.dump(2)<<std::endl;
+        //std::cout<<"block: "<<block_name<<std::endl;
+        //std::cout<<block.dump(2)<<std::endl;
         //fBlockParser.ParseBlock();
             //now have the block parse deal with the data
 

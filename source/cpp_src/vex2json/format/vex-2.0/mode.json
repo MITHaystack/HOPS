@@ -1,10 +1,10 @@
 {
-    "block_name": "$GLOBAL",
-    "start_tag": "ref",
-    "stop_tag": "",
+    "block_name": "$MODE",
+    "start_tag": "def",
+    "stop_tag": "enddef",
     "type" : "compound",
     "block_type": "high_level",
-    "parameters" :
+    "parameters":
     {
         "$ANTENNA":{"type": "reference"},
         "$BBC":{"type": "reference"},
