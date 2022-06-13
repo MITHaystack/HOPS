@@ -4,6 +4,8 @@ install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/vex-1.5/antenna.json" DESTINATION "${
 
 
 #install the vex 2.0 format description files
+
+#primitive block files
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/vex-2.0/block-names.json" DESTINATION "${DATA_INSTALL_DIR}/vex-2.0")
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/vex-2.0/antenna.json" DESTINATION "${DATA_INSTALL_DIR}/vex-2.0")
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/vex-2.0/bbc.json" DESTINATION "${DATA_INSTALL_DIR}/vex-2.0")
@@ -13,3 +15,10 @@ install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/vex-2.0/freq.json" DESTINATION "${DAT
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/vex-2.0/if.json" DESTINATION "${DATA_INSTALL_DIR}/vex-2.0")
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/vex-2.0/source.json" DESTINATION "${DATA_INSTALL_DIR}/vex-2.0")
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/vex-2.0/clock.json" DESTINATION "${DATA_INSTALL_DIR}/vex-2.0")
+
+#high-level block files
+install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/vex-2.0/station.json" DESTINATION "${DATA_INSTALL_DIR}/vex-2.0")
+install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/vex-2.0/mode.json" DESTINATION "${DATA_INSTALL_DIR}/vex-2.0")
+
+
+#install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/vex-2.0/global.json" DESTINATION "${DATA_INSTALL_DIR}/vex-2.0")

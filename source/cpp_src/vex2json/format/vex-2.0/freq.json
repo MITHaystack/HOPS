@@ -3,6 +3,7 @@
     "start_tag": "def",
     "stop_tag": "enddef",
     "type" : "compound",
+    "block_type": "primitive",
     "parameters" :
     {
         "chan_def":
