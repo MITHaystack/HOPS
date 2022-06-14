@@ -28,10 +28,13 @@ install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/vex-2.0/tapelog_obs.json" DESTINATION
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/vex-2.0/phase_cal_detect.json" DESTINATION "${DATA_INSTALL_DIR}/vex-2.0")
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/vex-2.0/procedures.json" DESTINATION "${DATA_INSTALL_DIR}/vex-2.0")
 
-
-
-
 #high-level block files
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/vex-2.0/global.json" DESTINATION "${DATA_INSTALL_DIR}/vex-2.0")
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/vex-2.0/station.json" DESTINATION "${DATA_INSTALL_DIR}/vex-2.0")
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/vex-2.0/mode.json" DESTINATION "${DATA_INSTALL_DIR}/vex-2.0")
+
+#unsupported dummy files 
+install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/vex-2.0/head_pos.json" DESTINATION "${DATA_INSTALL_DIR}/vex-2.0")
+install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/vex-2.0/pass_order.json" DESTINATION "${DATA_INSTALL_DIR}/vex-2.0")
+install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/vex-2.0/roll.json" DESTINATION "${DATA_INSTALL_DIR}/vex-2.0")
+

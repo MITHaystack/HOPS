@@ -24,6 +24,7 @@
         "$SOURCE":{"type": "reference"},
         "$TAPELOG_OBS":{"type": "reference"},
         "$TRACKS":{"type": "reference"},
+        "$ROLL":{"type": "reference"},
         "$HEAD_POS":{"type": "reference"},
         "$PASS_ORDER":{"type": "reference"}
     }
