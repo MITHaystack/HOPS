@@ -1,0 +1,93 @@
+{
+    "block_name": "$DATASTREAMS",
+    "start_tag": "def",
+    "stop_tag": "enddef",
+    "type" : "compound",
+    "block_type": "primitive",
+    "parameters" :
+    {
+        "datastream":
+        {
+            "type": "list_compound",
+            "parameters":
+            {
+                "datastream_link": {"type": "link"},
+                "datastream_format": {"type": "string"},
+                "datastream_label": {"type": "string"}
+            },
+            "fields": 
+            [
+                "datastream_link",
+                "datastream_format",
+                "#datastream_label"
+            ]
+        },
+        "thread":
+        {
+            "type": "list_compound",
+            "parameters":
+            {
+                "datastream_link": {"type": "link"},
+                "thread_link": {"type": "link"},
+                "thread_number": {"type": "int"},
+                "number_of_channels": {"type": "int"},
+                "sample_rate": {"type": "real", "dimension": "sample_rate"},
+                "bits_per_sample":{"type": "int"},
+                "sample_type": {"type": "string"},
+                "bytes_per_packet":{"type":"int"}
+            },
+            "fields": 
+            [
+                "datastream_link",
+                "thread_link",
+                "thread_number",
+                "number_of_channels",
+                "sample_rate",
+                "bits_per_sample",
+                "sample_type",
+                "bytes_per_packet"
+            ]
+        },
+        "channel":
+        {
+            "type": "list_compound",
+            "parameters":
+            {
+                "datastream_link": {"type": "link"},
+                "thread_link": {"type": "link"},
+                "channel_link": {"type": "link"},
+                "channel_number": {"type": "int"}
+            },
+            "fields": 
+            [
+                "datastream_link",
+                "thread_link",
+                "channel_link",
+                "channel_number"
+            ]
+        },
+        "merged_datastream":
+        {
+            "type": "list_compound",
+            "parameters":
+            {
+                "merged_datastream_link": {"type": "link"},
+                "merged_datastream_label": {"type": "string"},
+                "constituent_datastreams": {"type": "list_string"}
+            },
+            "fields": 
+            [
+                "merged_datastream_link",
+                "merged_datastream_label",
+                "constituent_datastreams"
+            ]
+        }
+    },
+    "fields": 
+    [
+        "datastream",
+        "thread",
+        "channel",
+        "merged_datastream"
+    ]
+}
