@@ -84,23 +84,18 @@ MHO_VexParser::RemoveComments()
 void 
 MHO_VexParser::MarkLiterals()
 {
+    //primitive search for start/end literal statements
     auto it = fLines.begin();
     while(it != fLines.end())
     {
         std::size_t start_lit_pos = it->fContents.find(fStartLiteralFlag);
         if(start_lit_pos != std::string::npos)
         {
-            //std::cout<<"found start literal here: "<<it->fContents<<std::endl;
-            //look for the end literal
             bool found_end = false;
             while( !found_end && it != fLines.end() )
             {
                 std::size_t end_lit_pos = it->fContents.find(fEndLiteralFlag);
-                if(end_lit_pos != std::string::npos)
-                {
-                    found_end = true;
-                    //std::cout<<"found end literal here: "<<it->fContents<<std::endl;
-                }
+                if(end_lit_pos != std::string::npos){found_end = true;}
                 it->fIsLiteral = true;
                 ++it;
             }

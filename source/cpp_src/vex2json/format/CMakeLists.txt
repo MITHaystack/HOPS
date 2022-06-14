@@ -23,6 +23,7 @@ install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/vex-2.0/sefd.json" DESTINATION "${DAT
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/vex-2.0/das.json" DESTINATION "${DATA_INSTALL_DIR}/vex-2.0")
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/vex-2.0/tracks.json" DESTINATION "${DATA_INSTALL_DIR}/vex-2.0")
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/vex-2.0/scheduling_params.json" DESTINATION "${DATA_INSTALL_DIR}/vex-2.0")
+install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/vex-2.0/extensions.json" DESTINATION "${DATA_INSTALL_DIR}/vex-2.0")
 
 
 
