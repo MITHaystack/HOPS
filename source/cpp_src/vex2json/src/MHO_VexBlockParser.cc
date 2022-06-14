@@ -67,24 +67,27 @@ MHO_VexBlockParser::ParseBlock()
     {
         for(auto it = ++(fBlockLines->begin()); it != fBlockLines->end(); it++)
         {
-            bool success = false;
-            if( IsStartTag(*it) )
+            if( !(it->fIsLiteral) ) //skip all literals
             {
-                success = ProcessStartTag(*it, path, file_node, format_node);
+                bool success = false;
+                if( IsStartTag(*it) )
+                {
+                    success = ProcessStartTag(*it, path, file_node, format_node);
+                }
+                else if( IsStopTag(*it) )
+                {
+                    success = ProcessStopTag(*it, path, file_node, format_node);
+                }
+                else if( IsReferenceTag(*it) )
+                {
+                    success = ProcessReference(*it, path, file_node.top(), format_node.top() );
+                }
+                else 
+                {
+                    success = ProcessLine(*it, path, file_node.top(), format_node.top());
+                }
+                if(!success){msg_warn("vex", "failed to process line: "<< it->fLineNumber << eom);}
             }
-            else if( IsStopTag(*it) )
-            {
-                success = ProcessStopTag(*it, path, file_node, format_node);
-            }
-            else if( IsReferenceTag(*it) )
-            {
-                success = ProcessReference(*it, path, file_node.top(), format_node.top() );
-            }
-            else 
-            {
-                success = ProcessLine(*it, path, file_node.top(), format_node.top());
-            }
-            if(!success){msg_warn("vex", "failed to process line: "<< it->fLineNumber << eom);}
         }
     }
     else

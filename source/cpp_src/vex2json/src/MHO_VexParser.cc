@@ -16,6 +16,8 @@ MHO_VexParser::MHO_VexParser()
     fVexVersion = "1.5";
     fStatementEndFlag = ";";
     fFormatDirectory = VEX_FORMAT_DIR;
+    fStartLiteralFlag = "start_literal";
+    fEndLiteralFlag = "end_literal";
     SetVexVersion(fVexVersion);
 }
 
@@ -42,6 +44,7 @@ MHO_VexParser::ReadFile()
                 MHO_VexLine current_line;
                 current_line.fLineNumber = line_count;
                 current_line.fContents = contents;
+                current_line.fIsLiteral = false;
                 fLines.push_back(current_line);
                 line_count++;
             }
@@ -75,6 +78,34 @@ MHO_VexParser::RemoveComments()
             }
         }
         else{it++;}
+    }
+}
+
+void 
+MHO_VexParser::MarkLiterals()
+{
+    auto it = fLines.begin();
+    while(it != fLines.end())
+    {
+        std::size_t start_lit_pos = it->fContents.find(fStartLiteralFlag);
+        if(start_lit_pos != std::string::npos)
+        {
+            //std::cout<<"found start literal here: "<<it->fContents<<std::endl;
+            //look for the end literal
+            bool found_end = false;
+            while( !found_end && it != fLines.end() )
+            {
+                std::size_t end_lit_pos = it->fContents.find(fEndLiteralFlag);
+                if(end_lit_pos != std::string::npos)
+                {
+                    found_end = true;
+                    //std::cout<<"found end literal here: "<<it->fContents<<std::endl;
+                }
+                it->fIsLiteral = true;
+                ++it;
+            }
+        }
+        else{ ++it; }
     }
 }
 
@@ -176,6 +207,7 @@ MHO_VexParser::ParseVex()
 {
     ReadFile();
     RemoveComments();
+    MarkLiterals();
     JoinLines();
     MarkBlocks();
 
@@ -194,16 +226,6 @@ MHO_VexParser::ProcessBlocks(mho_json& root)
         std::vector< MHO_VexLine > block_data = CollectBlockLines(block_name);
         mho_json block = fBlockParser.ParseBlockLines(block_name, &block_data);
         root[block_name] = block;
-        //std::cout<<"block: "<<block_name<<std::endl;
-        //std::cout<<block.dump(2)<<std::endl;
-        //fBlockParser.ParseBlock();
-            //now have the block parse deal with the data
-
-            // std::cout<<" ------------------ " << *blk_it <<" ---------------------- "<<std::endl;
-            // for(auto d = block_data.begin(); d != block_data.end(); d++)
-            // {
-            //     std::cout<< d->fContents <<std::endl;
-            // }
     }
 }
 

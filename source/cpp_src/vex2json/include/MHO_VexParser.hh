@@ -42,6 +42,7 @@ class MHO_VexParser
 
         void ReadFile();
         void RemoveComments();
+        void MarkLiterals();
         void JoinLines();
         void MarkBlocks();
         std::vector< MHO_VexLine > CollectBlockLines(std::string block_name);
@@ -62,6 +63,9 @@ class MHO_VexParser
         std::string fBlockStartFlag;
         std::string fStatementEndFlag;
         std::string fRefFlag;
+
+        std::string fStartLiteralFlag;
+        std::string fEndLiteralFlag;
 
         //workspace
         std::string fLine; //the line from the input vex file 
