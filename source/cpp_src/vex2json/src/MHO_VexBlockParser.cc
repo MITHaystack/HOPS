@@ -209,7 +209,7 @@ MHO_VexBlockParser::ProcessStartTag(const MHO_VexLine& line,
     }
 
     //open a new block
-    msg_debug("vex", "opening a new block element with name: "<<tokens[1]<<eom);
+    //msg_debug("vex", "opening a new block element with name: "<<tokens[1]<<eom);
     path.push( tokens[1] );
     file_node.push( new mho_json() );
 
@@ -236,7 +236,7 @@ MHO_VexBlockParser::ProcessStopTag(const MHO_VexLine& line,
     //insert this object into output json structure
     (*(file_node.top()))[last_obj_name] = *last_obj; 
     delete last_obj;
-    msg_debug("vex", "closed a block element with name: "<<last_obj_name<<eom);
+    //msg_debug("vex", "closed a block element with name: "<<last_obj_name<<eom);
     return true;
 }
 
@@ -265,9 +265,20 @@ MHO_VexBlockParser::ProcessLine(const MHO_VexLine& line,
             msg_error("vex", "could not locate element with name: "<<element_name<<" under current format block."<<eom);
             return false;
         }
+        vex_element_type etype = DetermineType( format[element_name]["type"].get<std::string>() );
 
-        //for very specific lines (i.e. source coordinates) we may need to set this to false
+
         fTokenizer.SetPreserveQuotesTrue();
+        //One infuriating feature of vex is that single/double quotes are not 
+        //only used to encapsulate strings which must preserved, but are also
+        //used to indicate minutes/seconds of arc in RA/DEC so for very specific
+        //lines (i.e. source coordinates) we need to set this to false
+
+        if(fBlockName == "$SOURCE")
+        {
+            if(etype == vex_radec_type ){fTokenizer.SetPreserveQuotesFalse();}
+            if(element_name == "datum"){fTokenizer.SetPreserveQuotesFalse();}
+        }
 
         // std::cout<<"parse: "<<tokens[0]<<"! = !"<<tokens[1]<<std::endl;
 
@@ -279,9 +290,9 @@ MHO_VexBlockParser::ProcessLine(const MHO_VexLine& line,
         fTokenizer.SetString(&data);
         fTokenizer.GetTokens(&tokens);
 
-        vex_element_type etype = DetermineType( format[element_name]["type"].get<std::string>() );
         mho_json element = ProcessTokens(element_name, format[element_name], tokens);
 
+        //if we are processing a list of compound elements, insert them one at a time
         if( etype == vex_list_compound_type)
         {
             (*obj_node)[element_name].push_back( element ); 
@@ -407,6 +418,9 @@ MHO_VexBlockParser::ProcessTokens(const std::string& element_name, mho_json& for
         case vex_epoch_type:
             element_data = tokens[0];
         break;
+        case vex_radec_type:
+            element_data = tokens[0]; //TODO FIXME -- do we want to convert source coordinates?
+        break;
         case vex_link_type:
             element_data = tokens[0];
         break;
@@ -481,6 +495,8 @@ MHO_VexBlockParser::DetermineType(std::string etype)
     if(etype == "real"){return vex_real_type;}
     if(etype == "list_real"){return vex_list_real_type;}
     if(etype == "epoch"){return vex_epoch_type;}
+    if(etype == "ra"){return vex_radec_type;}
+    if(etype == "dec"){return vex_radec_type;}
     if(etype == "string"){return vex_string_type;}
     if(etype == "list_string"){return vex_list_string_type;}
     if(etype == "compound"){return vex_compound_type;}
@@ -534,6 +550,9 @@ MHO_VexBlockParser::MatchesType(const std::string& token, const std::string& typ
         case vex_string_type:
             return true; //always convertable to a string
         case vex_keyword_type:
+            return true; //always convertable to a string
+        break;
+        case vex_radec_type:
             return true; //always convertable to a string
         break;
         case vex_epoch_type:

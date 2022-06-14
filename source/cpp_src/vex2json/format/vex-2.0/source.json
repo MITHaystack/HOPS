@@ -20,8 +20,8 @@
         "source_name": {"type": "string"},
         "IAU_name": {"type": "string"},
         "source_position_ref": {"type": "string"},
-        "ra" : {"type": "string"},
-        "dec": {"type": "string"},
+        "ra" : {"type": "ra"},
+        "dec": {"type": "dec"},
         "ref_coord_frame": {"type": "string"},
         "ra_rate": {"type": "real", "dimension": "angle/time"},
         "dec_rate": {"type": "real", "dimension": "angle/time"},
@@ -71,8 +71,8 @@
             "parameters":
             {
                 "time": {"type": "epoch"},
-                "ra" : {"type": "string"},
-                "dec": {"type": "string"},
+                "ra" : {"type": "ra"},
+                "dec": {"type": "dec"},
                 "ra_rate": {"type": "real", "dimension": "angle/time"},
                 "dec_rate": {"type": "real", "dimension": "angle/time"},
                 "ref_coord_frame": {"type": "string"}
