@@ -1,6 +1,6 @@
 {
     "block_name": "$GLOBAL",
-    "start_tag": "ref",
+    "start_tag": "",
     "stop_tag": "",
     "type" : "compound",
     "block_type": "high_level",

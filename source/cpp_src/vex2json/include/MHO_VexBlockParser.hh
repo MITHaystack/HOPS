@@ -22,6 +22,7 @@
 #include "MHO_DirectoryInterface.hh"
 
 #include "MHO_VexLine.hh"
+#include "MHO_VexTokenProcessor.hh"
 
 namespace hops 
 {
@@ -66,15 +67,8 @@ class MHO_VexBlockParser
                          mho_json& format_node);
 
 
-        mho_json ProcessTokens(const std::string& element_name, mho_json&format, std::vector< std::string >& tokens);
-
-
-        mho_json ProcessInt(const std::string& element_name, mho_json&format, std::vector< std::string >& tokens);
-        mho_json ProcessListInt(const std::string& element_name, mho_json&format, std::vector< std::string >& tokens);
-        mho_json ProcessListString(const std::string& element_name, mho_json&format, std::vector< std::string >& tokens);
-        mho_json ProcessReal(const std::string& element_name, mho_json&format, std::vector< std::string >& tokens);
-        mho_json ProcessListReal(const std::string& element_name, mho_json&format, std::vector< std::string >& tokens);
-        mho_json ProcessCompound(const std::string& element_name, mho_json&format, std::vector< std::string >& tokens);
+        mho_json ProcessTokens(const std::string& element_name, mho_json& format, std::vector< std::string >& tokens);
+        mho_json ProcessCompound(const std::string& element_name, mho_json& format, std::vector< std::string >& tokens);
 
         void LoadBlockFormat(std::string block_name);
         std::string GetBlockFormatFileName(std::string block_name);
@@ -98,6 +92,7 @@ class MHO_VexBlockParser
         std::string fWhitespaceDelim;
 
         MHO_Tokenizer fTokenizer;
+        MHO_VexTokenProcessor fTokenProcessor;
 
         enum vex_element_type
         {
@@ -118,9 +113,7 @@ class MHO_VexBlockParser
         };
     
         vex_element_type DetermineType(std::string etype);
-        bool ContainsWhitespace(std::string value);
 
-        
 
 };
 
