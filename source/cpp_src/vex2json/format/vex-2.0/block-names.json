@@ -26,6 +26,7 @@
         "$TAPELOG_OBS",
         "$TRACKS",
         "$HEAD_POS",
-        "$PASS_ORDER"
+        "$PASS_ORDER",
+        "$ROLL"
     ]
 }
