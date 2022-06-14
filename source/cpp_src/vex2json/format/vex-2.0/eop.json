@@ -1,0 +1,55 @@
+{
+    "block_name": "$EOP",
+    "start_tag": "def",
+    "stop_tag": "enddef",
+    "type" : "compound",
+    "block_type": "primitive",
+    "parameters" :
+    {
+        "TAI-UTC": {"type": "real", "dimension": "time"},
+        "A1-TAI": {"type": "real", "dimension": "time"},
+        "eop_ref_epoch" : {"type":"epoch"},
+        "num_eop_points" :{"type": "int"},
+        "eop_interval": {"type": "real", "dimension": "time"},
+        "ut1-utc": {"type":"list_real", "dimension": "time"},
+        "x_wobble": {"type":"list_real", "dimension": "angle"},
+        "y_wobble": {"type":"list_real", "dimension": "angle"},
+        "eop_origin":
+        {
+            "type": "compound",
+            "parameters":
+            {
+                "eop_info_type": {"type": "string"},
+                "date": {"type": "epoch"},
+                "info_source_version": {"type": "string"}
+            },
+            "fields": ["eop_info_type", "#date", "#info_source_version"]
+        },
+        "nut_ref_epoch" : {"type":"epoch"},
+        "num_nut_points": {"type": "int"},
+        "nut_interval": {"type": "real", "dimension": "time"},
+        "delta_x_nut": {"type":"list_real", "dimension": "angle"},
+        "delta_y_nut": {"type":"list_real", "dimension": "angle"},
+        "nut_model": {"type":"string"},
+        "nut_origin": {"type":"string"}
+    },
+    "fields": 
+    [
+        "TAI-UTC",
+        "A1-TAI",
+        "eop_ref_epoch",
+        "num_eop_points",
+        "eop_interval",
+        "ut1-utc",
+        "x_wobble",
+        "y_wobble",
+        "eop_origin",
+        "nut_ref_epoch", 
+        "num_nut_points",
+        "nut_interval",
+        "delta_x_nut",
+        "delta_y_nut",
+        "nut_model",
+        "nut_origin"
+    ]
+}
