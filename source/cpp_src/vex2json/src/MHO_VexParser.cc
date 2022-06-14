@@ -28,7 +28,6 @@ MHO_VexParser::SetVexFile(std::string filename){fVexFileName = filename;}
 void 
 MHO_VexParser::ReadFile()
 {
-    std::cout<<"vex file = "<<fVexFileName<<std::endl;
     //nothing special, just read in the entire file line by line and stash in memory
     if(fVexFileName != "")
     {
@@ -40,7 +39,6 @@ MHO_VexParser::ReadFile()
             std::string contents;
             while( getline(vfile, contents) )
             {
-                //std::cout<<contents<<std::endl;
                 MHO_VexLine current_line;
                 current_line.fLineNumber = line_count;
                 current_line.fContents = contents;
@@ -177,12 +175,8 @@ mho_json
 MHO_VexParser::ParseVex()
 {
     ReadFile();
-    std::cout<<"removing comments"<<std::endl;
     RemoveComments();
-
     JoinLines();
-
-    std::cout<<"flagging blocks"<<std::endl;
     MarkBlocks();
 
     mho_json root;

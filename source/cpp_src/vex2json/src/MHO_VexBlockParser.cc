@@ -84,7 +84,7 @@ MHO_VexBlockParser::ParseBlock()
             {
                 success = ProcessLine(*it, path, file_node.top(), format_node.top());
             }
-            if(!success){msg_error("vex", "failed to process line: "<< it->fLineNumber << eom);}
+            if(!success){msg_warn("vex", "failed to process line: "<< it->fLineNumber << eom);}
         }
     }
     else
@@ -262,7 +262,7 @@ MHO_VexBlockParser::ProcessLine(const MHO_VexLine& line,
         //verify that the element name is present in the current format node 
         if(!(format.contains(element_name)))
         {
-            msg_error("vex", "could not locate element with name: "<<element_name<<" under current format block."<<eom);
+            msg_warn("vex", "could not locate element with name: "<<element_name<<" under "<<fBlockName<< " block format."<<eom);
             return false;
         }
         vex_element_type etype = DetermineType( format[element_name]["type"].get<std::string>() );
@@ -281,6 +281,7 @@ MHO_VexBlockParser::ProcessLine(const MHO_VexLine& line,
         }
 
         // std::cout<<"parse: "<<tokens[0]<<"! = !"<<tokens[1]<<std::endl;
+        // std::cout<<"element_name = "<<element_name<<std::endl;
 
         //data exists to the right of '=', before the ';'
         std::string data = tokens[1]; //everything between '=' and ";"
@@ -345,7 +346,7 @@ MHO_VexBlockParser::ProcessReference(const MHO_VexLine& line,
                 element_block_name = ref_tokens[1];
                 if(!(format_node.contains(element_block_name)))
                 {
-                    msg_error("vex", "could not locate element with name: "<<element_block_name<<" under current format block."<<eom);
+                    msg_warn("vex", "could not locate element with name: "<<element_block_name<<" under "<<fBlockName<< " block format."<<eom);
                     return false;
                 }
 
