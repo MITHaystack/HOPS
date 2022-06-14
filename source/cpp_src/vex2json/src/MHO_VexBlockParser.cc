@@ -41,12 +41,24 @@ MHO_VexBlockParser::ParseBlockLines(std::string block_name, const std::vector< M
     if(fBlockFormatLoaded)
     {
         if(block_name == "$GLOBAL"){ return ParseGlobalBlock();} //global block is "special"
-        else{ return ParseBlock();} //otherwise parse any of the other supported blocks
+        else
+        {
+            if(fBlockFormat["block_type"].get<std::string>() == "unsupported")
+            {
+                msg_warn("vex", "block type: "<<block_name<<" not supported, skipping."<<eom);
+                mho_json empty;
+                return empty;
+            }
+            else 
+            {
+                return ParseBlock(); //otherwise parse any of the other supported blocks
+            }
+        } 
     }
     else 
     {
+        msg_error("vex", "parser error, could not load format file for: "<<block_name<<" block, skipping."<<eom);
         mho_json empty;
-        msg_error("vex", "parser error, could not load format file for: "<<block_name<<" block."<<eom);
         return empty;
     }
 }

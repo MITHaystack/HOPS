@@ -1,0 +1,9 @@
+{
+    "block_name": "$HEAD_POS",
+    "start_tag": "def",
+    "stop_tag": "enddef",
+    "type" : "unsupported",
+    "block_type": "unsupported",
+    "parameters" : {},
+    "fields": []
+}
