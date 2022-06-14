@@ -102,6 +102,7 @@ class MHO_VexBlockParser
             vex_string_type,
             vex_list_string_type,
             vex_epoch_type,
+            vex_radec_type,
             vex_list_real_type,
             vex_compound_type,
             vex_list_compound_type,

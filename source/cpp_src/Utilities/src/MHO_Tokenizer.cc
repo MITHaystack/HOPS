@@ -41,8 +41,7 @@ MHO_Tokenizer::GetTokens(std::vector< std::string>* tokens)
     {
         tokens->clear();
         fQuotePairIndexes.clear();
-        std::size_t n_quote = IndexQuoteInstances(fString, &fQuotePairIndexes);
-        if(!fPreserveQuotes || n_quote == 0)
+        if(!fPreserveQuotes)
         {
             fCurrentString = fString;
             if(!fMultiCharDelimiter){SingleCharTokenize(tokens);}
@@ -50,31 +49,40 @@ MHO_Tokenizer::GetTokens(std::vector< std::string>* tokens)
         }
         else 
         {
-            //locate quotes, and only tokenize the portions which are outside of a closed pair 
-            std::vector< std::pair< bool, std::string > > sections;
-            std::size_t prev = 0;
-            for(std::size_t i=0; i<n_quote; i++)
+            std::size_t n_quote = IndexQuoteInstances(fString, &fQuotePairIndexes);
+            if(n_quote == 0)
             {
-                std::string sec = fString->substr(prev, fQuotePairIndexes[i].first - prev);
-                std::string quote = fString->substr(fQuotePairIndexes[i].first, fQuotePairIndexes[i].second - fQuotePairIndexes[i].first );
-                prev = fQuotePairIndexes[i].second;
-                if(sec.size() != 0){sections.push_back( std::make_pair(false, sec) );}
-                sections.push_back( std::make_pair(true, quote) );
+                fCurrentString = fString;
+                if(!fMultiCharDelimiter){SingleCharTokenize(tokens);}
+                else{MultiCharTokenize(tokens);}
             }
-            sections.push_back( std::make_pair(false, fString->substr(prev) ) ); //catch any trailing portion
-
-            for(std::size_t i=0; i<sections.size(); i++)
+            else 
             {
-                if(sections[i].first == true)
+                //locate quotes, and only tokenize the portions which are outside of a closed pair 
+                std::vector< std::pair< bool, std::string > > sections;
+                std::size_t prev = 0;
+                for(std::size_t i=0; i<n_quote; i++)
                 {
-                    std::cout<<" quoted string: "<< sections[i].second<<std::endl;
-                    tokens->push_back(sections[i].second); //treat quoted section as a single token
+                    std::string sec = fString->substr(prev, fQuotePairIndexes[i].first - prev);
+                    std::string quote = fString->substr(fQuotePairIndexes[i].first, fQuotePairIndexes[i].second - fQuotePairIndexes[i].first );
+                    prev = fQuotePairIndexes[i].second;
+                    if(sec.size() != 0){sections.push_back( std::make_pair(false, sec) );}
+                    sections.push_back( std::make_pair(true, quote) );
                 }
-                else 
+                sections.push_back( std::make_pair(false, fString->substr(prev) ) ); //catch any trailing portion
+
+                for(std::size_t i=0; i<sections.size(); i++)
                 {
-                    fCurrentString = &(sections[i].second);
-                    if(!fMultiCharDelimiter){SingleCharTokenize(tokens);}
-                    else{MultiCharTokenize(tokens);}
+                    if(sections[i].first == true)
+                    {
+                        tokens->push_back(sections[i].second); //treat quoted section as a single token
+                    }
+                    else 
+                    {
+                        fCurrentString = &(sections[i].second);
+                        if(!fMultiCharDelimiter){SingleCharTokenize(tokens);}
+                        else{MultiCharTokenize(tokens);}
+                    }
                 }
             }
         }
