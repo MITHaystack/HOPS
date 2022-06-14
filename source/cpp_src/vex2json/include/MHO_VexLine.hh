@@ -19,6 +19,7 @@ struct MHO_VexLine
 {
     std::size_t fLineNumber;
     std::string fContents;
+    bool fIsLiteral;
 };
 
 }
