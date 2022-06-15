@@ -13,10 +13,9 @@
             "parameters":
             {
                 "physical_type": {"type": "string"},
-                "experiment_type": {"type": "string"},
-                "coordinate_system": {"type": "string"}
+                "experiment_type": {"type": "string"}
             },
-            "fields": ["physical_type", "#experiment_type", "#coordinate_system"]
+            "fields": ["physical_type", "experiment_type"]
         },
         "source_name": {"type": "string"},
         "IAU_name": {"type": "string"},
@@ -61,33 +60,6 @@
         "semi-major_axis":  {"type": "real", "dimension":"length"},
         "mean_motion":  {"type": "real", "dimension":"NA"},
         "orbit_epoch": {"type": "epoch"},
-        "bsp_file_name": {"type": "string"},
-        "bsp_object_id": {"type": "string"},
-        "tle0": {"type": "string"},
-        "tle1": {"type": "string"},
-        "tle2": {"type": "string"},
-        "datum":
-        {
-            "type": "list_compound",
-            "parameters":
-            {
-                "time": {"type": "epoch"},
-                "ra" : {"type": "ra"},
-                "dec": {"type": "dec"},
-                "ra_rate": {"type": "real", "dimension": "angle/time"},
-                "dec_rate": {"type": "real", "dimension": "angle/time"},
-                "ref_coord_frame": {"type": "string"}
-            },
-            "fields": 
-            [
-                "time",
-                "ra",
-                "dec",
-                "#ra_rate",
-                "#dec_rate",
-                "#ref_coord_frame"
-            ]
-        }
     },
     "fields": 
     [
@@ -109,12 +81,6 @@
         "mean_anomaly",
         "semi-major_axis",
         "mean_motion",
-        "orbit_epoch",
-        "bsp_file_name",
-        "bsp_object_id",
-        "tle0",
-        "tle1",
-        "tle2",
-        "datum"
+        "orbit_epoch"
     ]
 }
