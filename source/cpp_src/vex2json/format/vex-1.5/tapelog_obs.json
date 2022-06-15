@@ -15,16 +15,14 @@
                 "recorder_number": {"type": "int"},
                 "serial_number": {"type": "string"},
                 "start_time": {"type": "epoch"},
-                "stop_time": {"type": "epoch"},
-                "stream_links": {"type": "list_string"}
+                "stop_time": {"type": "epoch"}
             },
             "fields": 
             [
                 "recorder_number", 
                 "serial_number", 
                 "start_time",
-                "stop_time",
-                "#stream_links"
+                "stop_time"
             ]
         }
     },
