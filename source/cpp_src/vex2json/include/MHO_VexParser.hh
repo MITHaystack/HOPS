@@ -40,6 +40,7 @@ class MHO_VexParser
         
     private:
 
+        void DetermineFileVersion();
         void ReadFile();
         void RemoveComments();
         void MarkLiterals();
@@ -57,6 +58,7 @@ class MHO_VexParser
         std::string fVexFileName;
 
         //token/delimiter definitions
+        std::string fVexRevisionFlag;
         std::string fVexDelim;
         std::string fWhitespace;
         std::string fCommentFlag;

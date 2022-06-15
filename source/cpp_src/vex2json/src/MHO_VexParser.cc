@@ -8,6 +8,7 @@ namespace hops
 
 MHO_VexParser::MHO_VexParser()
 {
+    fVexRevisionFlag = "VEX_rev";
     fVexDelim = " :;\t\r\n";
     fWhitespace = " \t\r\n";
     fCommentFlag = "*";
@@ -25,7 +26,54 @@ MHO_VexParser::MHO_VexParser()
 MHO_VexParser::~MHO_VexParser(){};
 
 void 
-MHO_VexParser::SetVexFile(std::string filename){fVexFileName = filename;}
+MHO_VexParser::SetVexFile(std::string filename)
+{
+    fVexFileName = filename;
+    DetermineFileVersion();
+}
+
+void 
+MHO_VexParser::DetermineFileVersion()
+{
+    //read the first line to determine the vex revision
+    //vex standard states the revision statement must start at 1st char of 1st line
+    bool determined_rev = false;
+    if(fVexFileName != "")
+    {
+        //open input/output files
+        std::ifstream vfile(fVexFileName.c_str(), std::ifstream::in);
+        if(vfile.is_open() )
+        {
+            std::size_t line_count = 1;
+            std::string contents;
+            getline(vfile, contents);
+            std::size_t rev_pos = contents.find(fVexRevisionFlag);
+            std::cout<<"REV CONTENTS = "<<contents<<std::endl;
+            if(rev_pos != std::string::npos)
+            {
+                std::size_t start_pos = contents.find_first_of("=");
+                std::size_t end_pos = contents.find_first_of(";");
+                if(start_pos != std::string::npos && end_pos != std::string::npos)
+                {
+                    std::string rev = contents.substr(start_pos, end_pos-start_pos);
+                    std::string revision = MHO_Tokenizer::TrimLeadingAndTrailingWhitespace(rev);
+                    SetVexVersion(revision);
+                    determined_rev = true;
+                }
+            }
+            vfile.close();
+        }
+        else 
+        {
+            msg_error("vex", "could not open file: "<<fVexFileName<<eom);
+        }
+    }
+
+    if(!determined_rev)
+    {
+        msg_error("vex", "could not determine vex revision, defaulting to version: "<< fVexVersion << eom);
+    }
+}
 
 void 
 MHO_VexParser::ReadFile()
@@ -283,8 +331,8 @@ void
 MHO_VexParser::SetVexVersion(std::string version)
 {
     fVexVersion = "1.5";
-    if(version == "1.5"){fVexVersion = version;}
-    else if(version == "2.0"){fVexVersion = version;}
+    if(version.find("1.5") != std::string::npos ){fVexVersion = "1.5";}
+    else if(version.find("2.0") != std::string::npos ){fVexVersion = "2.0";}
     else 
     {
         msg_error("vex", "version string: "<< version << "not understood, defaulting to vex version 1.5." << eom );
@@ -293,9 +341,7 @@ MHO_VexParser::SetVexVersion(std::string version)
     std::string format_dir = GetFormatDirectory();
     fBlockParser.SetFormatDirectory(format_dir);
     std::string bnames_file = format_dir + "block-names.json";
-
-    std::cout<<bnames_file<<std::endl;
-    msg_info("vex", "block name file is: "<< bnames_file << eom);
+    msg_debug("vex", "block name file is: "<< bnames_file << eom);
 
     std::ifstream bn_ifs;
     bn_ifs.open( bnames_file.c_str(), std::ifstream::in );
@@ -304,7 +350,6 @@ MHO_VexParser::SetVexVersion(std::string version)
     if(bn_ifs.is_open())
     {
         bnames = mho_ordered_json::parse(bn_ifs);
-        std::cout<< bnames.dump(2) << std::endl;
     }
     bn_ifs.close();
 
@@ -312,11 +357,6 @@ MHO_VexParser::SetVexVersion(std::string version)
     for(auto it = bnames["block_names"].begin(); it != bnames["block_names"].end(); it++)
     {
         fBlockNames.push_back(*it);
-    }
-
-    for(auto it = fBlockNames.begin(); it != fBlockNames.end(); it++)
-    {
-        std::cout<<"block names = "<<*it<<std::endl;
     }
 }
 

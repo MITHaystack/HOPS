@@ -186,7 +186,7 @@ MHO_Tokenizer::IndexQuoteInstances(const std::string* aString, std::vector< std:
 }
 
 std::string 
-MHO_Tokenizer::TrimLeadingAndTrailingWhitespace(const std::string& value) const
+MHO_Tokenizer::TrimLeadingAndTrailingWhitespace(const std::string& value)
 {
     std::string ret_val = "";
     std::string whitespace = " \t";

@@ -16,7 +16,7 @@ int main(int argc, char** argv)
     std::string vexfile(argv[1]);
 
     MHO_VexParser vparser;
-    vparser.SetVexVersion("2.0");
+    //vparser.SetVexVersion("2.0");
     vparser.SetVexFile(vexfile);
     mho_json vex = vparser.ParseVex();
 
