@@ -1,5 +1,6 @@
 {
     "block_name": "$ANTENNA",
+    "version": "2.0",
     "start_tag": "def",
     "stop_tag": "enddef",
     "type" : "compound",

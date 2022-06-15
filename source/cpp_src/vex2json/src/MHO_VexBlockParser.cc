@@ -45,7 +45,8 @@ MHO_VexBlockParser::ParseBlockLines(std::string block_name, const std::vector< M
         {
             if(fBlockFormat["block_type"].get<std::string>() == "unsupported")
             {
-                msg_warn("vex", "block type: "<<block_name<<" not supported, skipping."<<eom);
+                std::string version = fBlockFormat["version"].get<std::string>();
+                msg_warn("vex", "block type: "<<block_name<<" is not supported in vex version: "<< version<< ", skipping."<<eom);
                 mho_json empty;
                 return empty;
             }

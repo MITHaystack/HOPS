@@ -1,11 +1,11 @@
 {
-    "block_name": "$GLOBAL",
-    "version": "2.0",
-    "start_tag": "",
-    "stop_tag": "",
+    "block_name": "$STATION",
+    "version": "1.5c",
+    "start_tag": "def",
+    "stop_tag": "enddef",
     "type" : "compound",
     "block_type": "high_level",
-    "parameters" :
+    "parameters":
     {
         "$ANTENNA":{"type": "reference"},
         "$BBC":{"type": "reference"},

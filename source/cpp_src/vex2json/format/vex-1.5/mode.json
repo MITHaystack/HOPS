@@ -1,11 +1,11 @@
 {
-    "block_name": "$GLOBAL",
-    "version": "2.0",
-    "start_tag": "",
-    "stop_tag": "",
+    "block_name": "$MODE",
+    "version": "1.5c",
+    "start_tag": "def",
+    "stop_tag": "enddef",
     "type" : "compound",
     "block_type": "high_level",
-    "parameters" :
+    "parameters":
     {
         "$ANTENNA":{"type": "reference"},
         "$BBC":{"type": "reference"},
@@ -25,6 +25,7 @@
         "$SOURCE":{"type": "reference"},
         "$TAPELOG_OBS":{"type": "reference"},
         "$TRACKS":{"type": "reference"},
+        "$ROLL":{"type": "reference"},
         "$HEAD_POS":{"type": "reference"},
         "$PASS_ORDER":{"type": "reference"}
     }
