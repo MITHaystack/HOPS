@@ -23,7 +23,7 @@
             },
             "fields": 
             [
-                "#subpass_id",
+                "subpass_id",
                 "chan_id",
                 "sign_or_magnitude",
                 "headstack_number",
@@ -38,16 +38,16 @@
             "type": "list_compound",
             "parameters":
             {
-                "subpass_number": {"type": "int"},
+                "subpass_number": {"type": "string"},
                 "headstack_number": {"type": "int"},
                 "track_number": {"type": "int"},
-                "chan_id1": {"type": "link"},
+                "chan_id1": {"type": "string"},
                 "sign_or_magnitude1": {"type": "string"},
-                "chan_id2": {"type": "link"},
+                "chan_id2": {"type": "string"},
                 "sign_or_magnitude2": {"type": "string"},
-                "chan_id3": {"type": "link"},
+                "chan_id3": {"type": "string"},
                 "sign_or_magnitude3": {"type": "string"},
-                "chan_id4": {"type": "link"},
+                "chan_id4": {"type": "string"},
                 "sign_or_magnitude24": {"type": "string"}
             },
             "fields": 
@@ -57,12 +57,12 @@
                 "track_number",
                 "chan_id1",
                 "sign_or_magnitude1",
-                "chan_id2",
-                "sign_or_magnitude2",
-                "chan_id3",
-                "sign_or_magnitude3",
-                "chan_id4",
-                "sign_or_magnitude4"
+                "#chan_id2",
+                "#sign_or_magnitude2",
+                "#chan_id3",
+                "#sign_or_magnitude3",
+                "#chan_id4",
+                "3sign_or_magnitude4"
             ]
         },
         "track_frame_format": {"type": "string"},
@@ -78,7 +78,7 @@
             },
             "fields": 
             [
-                "track_number",
+                "formatter_track_number",
                 "data_type",
                 "track_info"
             ]

@@ -59,7 +59,7 @@
         "mean_anomaly":  {"type": "real", "dimension":"angle"},
         "semi-major_axis":  {"type": "real", "dimension":"length"},
         "mean_motion":  {"type": "real", "dimension":"NA"},
-        "orbit_epoch": {"type": "epoch"},
+        "orbit_epoch": {"type": "epoch"}
     },
     "fields": 
     [
