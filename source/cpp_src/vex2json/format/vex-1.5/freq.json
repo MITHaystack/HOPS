@@ -19,7 +19,6 @@
                 "channel_id": {"type": "link"},
                 "bbc_id": {"type": "link"},
                 "phase_cal_id": {"type": "link"},
-                "channel_name": {"type": "string"},
                 "freq_state": {"type": "list_int"}
             },
             "fields": 
@@ -28,10 +27,9 @@
                 "sky_frequency",
                 "net_sideband",
                 "bandwidth",
-                "#channel_id",
+                "channel_id",
                 "bbc_id",
-                "#phase_cal_id",
-                "#channel_name",
+                "phase_cal_id",
                 "#freq_state"
             ]
         },
@@ -41,20 +39,20 @@
             "parameters":
             {
                 "phasing": {"type": "string"},
-                "state1_period": {"type": "real", "dimension": "time"},
-                "state2_period":  {"type": "real", "dimension": "time"}
+                "state_periods": {"type": "list_real", "dimension": "time"}
             },
             "fields": 
             [
                 "phasing",
-                "state1_period",
-                "state2_period"
+                "state_periods"
             ]
-        }
+        },
+        "sample_rate": {"type": "real", "dimension": "sample_rate"}
     },
     "fields": 
     [
         "chan_def",
-        "switching_cycle"
+        "switching_cycle",
+        "sample_rate"
     ]
 }

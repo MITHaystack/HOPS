@@ -41,14 +41,12 @@
             "parameters":
             {
                 "phasing": {"type": "string"},
-                "state1_period": {"type": "real", "dimension": "time"},
-                "state2_period":  {"type": "real", "dimension": "time"}
+                "state_periods": {"type": "list_real", "dimension": "time"}
             },
             "fields": 
             [
                 "phasing",
-                "state1_period",
-                "state2_period"
+                "states_periods"
             ]
         }
     },
