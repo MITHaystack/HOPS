@@ -59,13 +59,16 @@ class MHO_Tokenizer{
         */
         void GetTokens(std::vector< std::string>* tokens);
 
+        static std::string 
+        TrimLeadingAndTrailingWhitespace(const std::string& value);
+
     protected:
 
         void MultiCharTokenize(std::vector< std::string>* tokens);
         void SingleCharTokenize(std::vector< std::string>* tokens);
 
         std::size_t IndexQuoteInstances(const std::string* aString, std::vector< std::pair< std::size_t, std::size_t>  >* quotes);
-        std::string TrimLeadingAndTrailingWhitespace(const std::string& value) const;
+
 
         bool fIncludeEmptyTokens;
         bool fMultiCharDelimiter;

@@ -17,7 +17,7 @@
         "contact_email": {"type": "string"},
         "scheduler_name": {"type": "string"},
         "scheduler_email": {"type": "string"},
-        "target_correlator": {"type": "string"},
+        "target_correlator": {"type": "string"}
     },
     "fields": 
     [
