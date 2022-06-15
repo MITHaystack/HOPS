@@ -7,84 +7,72 @@
     "block_type": "primitive",
     "parameters" :
     {
-        "equip":
+        "record_transport_type":
         {
             "type": "list_compound",
             "parameters":
             {
-                "equipment_type": {"type": "string"},
-                "device": {"type": "string"},
-                "equipment_link":{"type": "link"},
-                "label": {"type": "string"}
+                "transport_type": {"type": "string"},
+                "revision_level": {"type": "string"}
             },
-            "fields": ["equipment_type", "device", "equipment_link", "#label"]
+            "fields": ["transport_type", "#revision_level"]
         },
-        "composite_equip":
+        "electronics_rack_type": {"type": "string"},
+        "number_drives": {"type": "int"},
+        "headstack":
         {
             "type": "list_compound",
             "parameters":
             {
-                "equipment_link": {"type": "link"},
-                "sub_equipment_links": {"type": "list_string"}
+                "headstack_number": {"type": "int"},
+                "headstack_function": {"type": "string"},
+                "drive_number_offset": {"type": "int"}
             },
-            "fields": ["equipment_link", "sub_equipment_links"]
+            "fields": ["headstack_number", "headstack_function", "drive_number_offset"]
         },
-        "equip_set":
+        "record_density": {"type": "int"},
+        "tape_length":
         {
             "type": "list_compound",
             "parameters":
             {
-                "equipment_link": {"type": "link"},
-                "function": {"type": "string"},
-                "settings": {"type": "list_string"}
+                "tape_length": {"type": "real", "dimension": "time"},
+                "s2_tape_speed": {"type": "string"},
+                "s2_n_cassettes": {"type": "int"}
             },
-            "fields": ["equipment_link", "function", "#settings"]
+            "fields": ["tape_length", "#s2_tape_speed", "#s2_n_cassettes"]
         },
-        "equip_info":
+        "recording_system_ID": {"type": "int"},
+        "record_transport_name": {"type": "string"},
+        "electronics_rack_ID": {"type": "int"},
+        "electronics_rack_name": {"type": "string"},
+        "tape_motion":
         {
             "type": "list_compound",
             "parameters":
             {
-                "equipment_link": {"type": "link"},
-                "name": {"type": "string"},
-                "values": {"type": "list_string"}
-            },
-            "fields": ["equipment_link", "name", "#values"]
-        },
-        "connection":
-        {
-            "type": "list_compound",
-            "parameters":
-            {
-                "signal_link": {"type": "link"},
-                "equipment_link": {"type": "link"},
-                "label": {"type": "string"},
-                "direction": {"type": "string"},
-                "type": {"type": "string"}
-            },
-            "fields": ["signal_link", "equipment_link", "label", "#direction", "#type"]
-        },
-        "record_method":
-        {
-            "type": "list_compound",
-            "parameters":
-            {
-                "recording_pattern": {"type": "string"},
-                "early_start": {"type": "real", "dimension": "time"},
+                "tape_motion": {"type": "string"},
+                "early_start_time": {"type": "real", "dimension":"time"},
+                "late_stop_time": {"type": "real", "dimension":"time"},
                 "minimum_gap": {"type": "real", "dimension": "time"}
             },
-            "fields": ["recording_pattern", "early_start", "minimum_gap"]
+            "fields": ["tape_motion", "early_start_time", "#late_stop_time", "#minimum_gap"]
         },
-        "record_control": {"type": "int"}
+        "tape_control": {"type":"string"}
     },
     "fields": 
     [
-        "equip",
-        "composite_equip",
-        "equip_set",
-        "equip_info",
-        "connection",
-        "record_method",
-        "record_control"
+        "record_transport_type",
+        "electronics_rack_type",
+        "number_drives",
+        "headstack",
+        "record_density",
+        "tape_length",
+        "recording_system_ID",
+        "record_transport_name",
+        "electronics_rack_ID",
+        "electronics_rack_name",
+        "tape_motion",
+        "tape_control"
     ]
 }

@@ -7,16 +7,7 @@
     "block_type": "primitive",
     "parameters" :
     {
-        "sched_program":
-        {
-            "type": "compound",
-            "parameters":
-            {
-                "name": {"type": "string"},
-                "revision": {"type": "string"}
-            },
-            "fields": ["name", "revision"]
-        },
+        "sched_program": {"type": "string"},
         "default_scan_length": {"type": "real", "dimension":"time"},
         "lookahead": {"type": "real", "dimension":"time"},
         "min_scan_length": {"type": "real", "dimension":"time"},

@@ -15,20 +15,14 @@
                 "start_validity_epoch":{"type" : "epoch"},
                 "clock_early_offset":{"type": "real", "dimension": "time"},
                 "origin_epoch":{"type" : "epoch"},
-                "clock_rate":{"type": "real", "dimension": "time/time"},
-                "second_order_coeff":{"type": "real", "dimension": "time/time^2"},
-                "third_order_coeff":{"type": "real", "dimension": "time/time^3"},
-                "fmout2gps":{"type": "real", "dimension": "time"}
+                "clock_rate":{"type": "real", "dimension": "time/time"}
             },
             "fields": 
             [
                 "#start_validity_epoch", 
                 "clock_early_offset", 
                 "#origin_epoch",
-                "#clock_rate",
-                "#second_order_coeff",
-                "#third_order_coeff",
-                "#fmout2gps"
+                "#clock_rate"
             ]
         }
     },

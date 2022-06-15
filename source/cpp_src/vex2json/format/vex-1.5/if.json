@@ -13,13 +13,12 @@
             "parameters":
             {
                 "if_id": {"type": "link"},
-                "physical_if_id": {"type": "null"},
+                "physical_if_id": {"type": "string"},
                 "polarization": {"type": "string"},
                 "effective_LO": {"type": "real", "dimension": "frequency"},
                 "net_sideband": {"type": "string"},
                 "phase_cal_interval": {"type": "real", "dimension": "frequency"},
-                "phase_cal_base": {"type": "real", "dimension": "frequency"},
-                "if_sample_rate": {"type": "real", "dimension": "frequency"}
+                "phase_cal_base": {"type": "real", "dimension": "frequency"}
             },
             "fields": 
             [
@@ -29,58 +28,12 @@
                 "effective_LO",
                 "net_sideband",
                 "#phase_cal_interval",
-                "#phase_cal_base",
-                "#if_sample_rate"
+                "#phase_cal_base"
             ]
-        },
-        "receiver_name":
-        {
-            "type": "list_compound",
-            "parameters":
-            {
-                "if_id": {"type": "link"},
-                "name": {"type": "string"}
-            },
-            "fields": ["if_id", "name"]
-        },
-        "sub_lo_frequencies":
-        {
-            "type": "list_compound",
-            "parameters":
-            {
-                "if_id": {"type": "link"},
-                "frequencies": {"type": "list_real", "dimension": "frequency"}
-            },
-            "fields": ["if_id", "frequencies"]
-        },
-        "sub_lo_sidebands":
-        {
-            "type": "list_compound",
-            "parameters":
-            {
-                "if_id": {"type": "link"},
-                "sidebands": {"type": "list_string"}
-            },
-            "fields": ["if_id", "sidebands"]
-        },
-        "switched_power":
-        {
-            "type": "list_compound",
-            "parameters":
-            {
-                "if_id": {"type": "link"},
-                "amplitude": {"type": "string"},
-                "switching_frequency": {"type": "real", "dimension": "frequency"}
-            },
-            "fields": ["if_id", "amplitude", "#switching_frequency"]
         }
     },
     "fields": 
     [
-        "if_def",
-        "receiver_name",
-        "sub_lo_frequencies",
-        "sub_lo_sidebands",
-        "switched_power"
+        "if_def"
     ]
 }

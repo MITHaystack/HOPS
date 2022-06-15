@@ -3,8 +3,33 @@
     "version": "1.5c",
     "start_tag": "def",
     "stop_tag": "enddef",
-    "type" : "unsupported",
-    "block_type": "unsupported",
-    "parameters" : {},
-    "fields": []
+    "type" : "compound",
+    "block_type": "primitive",
+    "parameters" :
+    {
+        "headstack_pos":
+        {
+            "type": "list_compound",
+            "parameters":
+            {
+                "position_ref_number": {"type": "int"},
+                "headstack1_position": {"type": "real", "dimension":"length"},
+                "headstack2_position": {"type": "real", "dimension":"length"},
+                "headstack3_position": {"type": "real", "dimension":"length"},
+                "headstack4_position": {"type": "real", "dimension":"length"},
+            },
+            "fields": 
+            [
+                "position_ref_number", 
+                "headstack1_position", 
+                "#headstack2_position",
+                "#headstack3_position",
+                "#headstack4_position"
+            ]
+        }
+    },
+    "fields": 
+    [
+        "headstack_pos"
+    ]
 }

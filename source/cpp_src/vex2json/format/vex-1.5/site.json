@@ -9,16 +9,7 @@
     {
         "site_type": {"type": "string"},
         "site_name": {"type": "string"},
-        "site_ID":
-        {
-            "type": "compound",
-            "parameters":
-            {
-                "standard": {"type": "string"},
-                "ad_hoc": {"type": "string"}
-            },
-            "fields": ["standard", "#ad_hoc"]
-        },
+        "site_ID": {"type": "string"},
         "site_position":
         {
             "type": "compound",
@@ -32,7 +23,6 @@
         },
         "site_position_epoch": {"type": "epoch"},
         "site_position_ref": {"type": "string"},
-        "site_position_frame": {"type": "string"},
         "site_velocity":
         {
             "type": "compound",
@@ -67,7 +57,6 @@
         "site_position",
         "site_position_epoch",
         "site_position_ref",
-        "site_position_frame",
         "site_velocity",
         "horizon_map_az",
         "horizon_map_el",
