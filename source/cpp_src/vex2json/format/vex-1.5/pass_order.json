@@ -12,16 +12,16 @@
             "type": "list_compound",
             "parameters":
             {
-                "pass_ids": {"type": "list_string"},
+                "pass_ids": {"type": "list_string"}
             },
             "fields": [ "pass_ids" ]
-        }
+        },
         "S2_group_order": 
         {
             "type": "list_compound",
             "parameters":
             {
-                "group_numbers": {"type": "list_int"},
+                "group_numbers": {"type": "list_int"}
             },
             "fields": [ "group_numbers" ]
         }

@@ -16,7 +16,7 @@
                 "headstack1_position": {"type": "real", "dimension":"length"},
                 "headstack2_position": {"type": "real", "dimension":"length"},
                 "headstack3_position": {"type": "real", "dimension":"length"},
-                "headstack4_position": {"type": "real", "dimension":"length"},
+                "headstack4_position": {"type": "real", "dimension":"length"}
             },
             "fields": 
             [
