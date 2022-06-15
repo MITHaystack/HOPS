@@ -1,6 +1,6 @@
 {
     "block_name": "$HEAD_POS",
-    "version": "2.0",
+    "version": "1.5c",
     "start_tag": "def",
     "stop_tag": "enddef",
     "type" : "unsupported",

@@ -1,10 +1,10 @@
 {
-    "block_name": "$HEAD_POS",
-    "version": "2.0",
+    "block_name": "$PASS_ORDER",
+    "version": "1.5c",
     "start_tag": "def",
     "stop_tag": "enddef",
     "type" : "unsupported",
-    "block_type": "unsupported",
+    "block_type": "primitive",
     "parameters" : {},
     "fields": []
 }
