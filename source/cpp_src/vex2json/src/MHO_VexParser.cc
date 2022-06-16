@@ -338,9 +338,9 @@ MHO_VexParser::SetVexVersion(std::string version)
         msg_error("vex", "version string: "<< version << "not understood, defaulting to vex version 1.5." << eom );
     }
 
-    std::string format_dir = GetFormatDirectory();
-    fBlockParser.SetFormatDirectory(format_dir);
-    std::string bnames_file = format_dir + "block-names.json";
+    fFormatDirectory = GetFormatDirectory();
+    fBlockParser.SetFormatDirectory(fFormatDirectory);
+    std::string bnames_file = fFormatDirectory + "block-names.json";
     msg_debug("vex", "block name file is: "<< bnames_file << eom);
 
     std::ifstream bn_ifs;
@@ -361,7 +361,7 @@ MHO_VexParser::SetVexVersion(std::string version)
 }
 
 std::string 
-MHO_VexParser::GetFormatDirectory()
+MHO_VexParser::GetFormatDirectory() const
 {
     std::string format_dir = VEX_FORMAT_DIR;
     format_dir += "/vex-" + fVexVersion + "/";

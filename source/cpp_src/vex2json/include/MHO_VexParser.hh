@@ -50,7 +50,7 @@ class MHO_VexParser
         void ProcessBlocks(mho_json& root);
 
 
-        std::string GetFormatDirectory();
+        std::string GetFormatDirectory() const;
 
         bool IsPotentialBlockStart(std::string line);
         bool IsBlockStart(std::string line, std::string blk_name);

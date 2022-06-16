@@ -21,6 +21,7 @@ set(SOURCE_BASENAMES
     TestJson
     TestJson2
     TestVexParser
+    TestJson2Vex
 )
 
 foreach( BASENAME ${SOURCE_BASENAMES} )
