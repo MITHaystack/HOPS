@@ -36,7 +36,7 @@ class MHO_VexElementLineGenerator
         std::string GenerateEpoch(std::string element_name, mho_json& obj);
         std::string GenerateRaDec(std::string element_name, mho_json& obj);
         std::string GenerateLink(std::string element_name, mho_json& obj);
-        std::string GenerateCompound(std::string element_name, mho_json& obj);
+        std::string GenerateCompound(std::string element_name, mho_json& element, mho_json& format);
 
     private:
 
