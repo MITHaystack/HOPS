@@ -40,6 +40,9 @@ class MHO_VexElementLineGenerator
 
     private:
 
+        bool IsOptionalField(std::string& field_name);
+        bool IsTrailingOptionalField(std::string field_name, mho_json& fields);
+
         enum vex_element_type
         {
             vex_int_type,
