@@ -250,6 +250,12 @@ MHO_VexElementLineGenerator::GenerateCompound(std::string element_name, mho_json
             //std::cout<<"appending "<<ret_val<<std::endl;
             components.push_back(ret_val);
         }
+        else if( IsOptionalField(raw_field_name) && !IsTrailingOptionalField(raw_field_name, format["fields"]) )
+        {
+            //add and empty place holder for optional fields which are not trailing elements
+            std::string ret_val = " ";
+            components.push_back(ret_val);
+        }
     }
 
     std::string line;
@@ -281,5 +287,30 @@ MHO_VexElementLineGenerator::DetermineType(std::string etype)
     return vex_unknown_type;
 }
 
+
+bool
+MHO_VexElementLineGenerator::IsOptionalField(std::string& field_name)
+{
+    if( field_name.find_first_of("#") != std::string::npos){return true;}
+    return false;
+}
+
+bool 
+MHO_VexElementLineGenerator::IsTrailingOptionalField(std::string field_name, mho_json& fields)
+{
+    std::size_t start_idx = 0;
+    for(std::size_t i=0; i<fields.size(); i++)
+    {
+        if( fields[i].get<std::string>() == field_name){start_idx = i; break;}
+    }
+
+    bool ret_val = true;
+    for(std::size_t i=start_idx; i<fields.size(); i++)
+    {
+        std::string tmp_name = fields[i].get<std::string>();
+        if( !IsOptionalField(tmp_name) ){ret_val = false;}
+    }
+    return ret_val;
+}
 
 }
