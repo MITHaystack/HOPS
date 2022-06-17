@@ -41,6 +41,8 @@ class MHO_VexGenerator
 
         std::string fFilename;
 
+
+
         bool fBlockFormatLoaded;
         mho_json fBlockFormat;
         void LoadBlockFormat(std::string block_name);
@@ -52,6 +54,7 @@ class MHO_VexGenerator
         //format definition 
         std::string GetFormatDirectory() const;
         std::string fFormatDirectory;
+        std::string fVexRevisionFlag;
         std::string fVexVersion;
         std::vector< std::string > fBlockNames;
 

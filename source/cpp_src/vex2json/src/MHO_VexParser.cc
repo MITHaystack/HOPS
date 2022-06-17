@@ -255,6 +255,7 @@ MHO_VexParser::ParseVex()
     MarkBlocks();
 
     mho_json root;
+    root[fVexRevisionFlag] = fVexVersion;
     ProcessBlocks(root);
 
     return root;
