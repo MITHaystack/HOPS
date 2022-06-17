@@ -46,7 +46,7 @@ class MHO_VexGenerator
         std::string GetBlockFormatFileName(std::string block_name);
 
         void ConstructBlockLines(mho_json& root, std::string block_name, std::vector< std::string >& lines);
-        //void ConstructElementLines(mho_json& element, std::vector< std::string >& lines);
+        void ConstructElementLines(mho_json& element, std::vector< std::string >& lines);
 
         //format definition 
         std::string GetFormatDirectory() const;
