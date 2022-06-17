@@ -191,9 +191,9 @@ MHO_VexElementLineGenerator::GenerateLink(std::string element_name, mho_json& ob
 std::string 
 MHO_VexElementLineGenerator::GenerateCompound(std::string element_name, mho_json& element, mho_json& format)
 {
-    std::cout<<"working on compound element name:" <<element_name<<std::endl;
-    std::cout<<"elem = "<<element<<std::endl;
-    std::cout<<"fields = "<<format["fields"]<<std::endl;
+    //std::cout<<"working on compound element name:" <<element_name<<std::endl;
+    //std::cout<<"elem = "<<element<<std::endl;
+    //std::cout<<"fields = "<<format["fields"]<<std::endl;
     std::vector< std::string > components;
     //loop over items in format, and extract from element
     std::string hash = "#";
@@ -208,7 +208,7 @@ MHO_VexElementLineGenerator::GenerateCompound(std::string element_name, mho_json
         if(element.contains(field_name))
         {
             std::string par_type = format["parameters"][field_name]["type"].get<std::string>();
-            std::cout<<"with field/par = "<<field_name<<" "<<par_type<<std::endl;
+            //std::cout<<"with field/par = "<<field_name<<" "<<par_type<<std::endl;
 
             vex_element_type etype = DetermineType(par_type);
             std::string ret_val;
@@ -247,7 +247,7 @@ MHO_VexElementLineGenerator::GenerateCompound(std::string element_name, mho_json
                 default:
                 break;
             }
-            std::cout<<"appending "<<ret_val<<std::endl;
+            //std::cout<<"appending "<<ret_val<<std::endl;
             components.push_back(ret_val);
         }
     }
