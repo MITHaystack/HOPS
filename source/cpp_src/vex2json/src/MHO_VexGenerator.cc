@@ -6,7 +6,10 @@ namespace hops
 {
     
 
-MHO_VexGenerator::MHO_VexGenerator(){}
+MHO_VexGenerator::MHO_VexGenerator()
+{
+    fVexRevisionFlag = "VEX_rev";
+}
 MHO_VexGenerator::~MHO_VexGenerator(){};
 
 void MHO_VexGenerator::SetFilename(std::string filename)
@@ -18,6 +21,10 @@ void MHO_VexGenerator::GenerateVex(mho_json& root)
 {
     std::vector< std::string > all_lines;
     
+    //first line is always version line 
+    std::string vers = root[fVexRevisionFlag].get<std::string>();
+    std::string version_line = fVexRevisionFlag + " = " + vers + ";\n";
+    all_lines.push_back(version_line);
     //open block-names file for this version 
 
     //loop over blocks, and extract the data from from the root and append them
