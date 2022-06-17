@@ -19,6 +19,7 @@
 #include "MHO_Message.hh"
 #include "MHO_Tokenizer.hh"
 #include "MHO_JSONHeaderWrapper.hh"
+#include "MHO_VexElementLineGenerator.hh"
 
 
 namespace hops 
@@ -53,6 +54,8 @@ class MHO_VexGenerator
         std::string fFormatDirectory;
         std::string fVexVersion;
         std::vector< std::string > fBlockNames;
+
+        MHO_VexElementLineGenerator fLineGen;
 
 };
 

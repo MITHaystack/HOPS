@@ -7,26 +7,28 @@ MHO_VexElementLineGenerator::MHO_VexElementLineGenerator(){};
 MHO_VexElementLineGenerator::~MHO_VexElementLineGenerator(){};
 
 std::string 
-MHO_VexElementLineGenerator::ConstructElementLine(std::string element_name, mho_json& element, mho_json& format, std::vector< std::string >& lines)
+MHO_VexElementLineGenerator::ConstructElementLine(std::string element_name, mho_json& element, mho_json& format)
 {
 
     std::string element_typename = format["type"].get<std::string>();
     vex_element_type etype = DetermineType(element_typename);
+    std::string line = element_name + " = ";
+
     std::string ret_val;
-        
+
     switch(etype)
     {
         case vex_int_type:
             ret_val = GenerateInt(element_name, element);
         break;
         case vex_list_int_type:
-            ret_val = GenerateListInt(element_name, element);
+            //ret_val = GenerateListInt(element_name, element);
         break;
         case vex_real_type:
             ret_val = GenerateReal(element_name, element);
         break;
         case vex_list_real_type:
-            ret_val = GenerateListReal(element_name, element);
+            // = GenerateListReal(element_name, element);
         break;
         case vex_keyword_type:
             ret_val = GenerateKeyword(element_name, element);
@@ -35,7 +37,7 @@ MHO_VexElementLineGenerator::ConstructElementLine(std::string element_name, mho_
             ret_val = GenerateString(element_name, element);
         break;
         case vex_list_string_type:
-            ret_val = GenerateListString(element_name, element);
+            //ret_val = GenerateListString(element_name, element);
         break;
         case vex_epoch_type:
             ret_val = GenerateEpoch(element_name, element);
@@ -54,7 +56,8 @@ MHO_VexElementLineGenerator::ConstructElementLine(std::string element_name, mho_
         default:
         break;
     }
-    return ret_val;
+    line += ret_val + ";\n";
+    return line;
 }
 
 
@@ -77,6 +80,9 @@ MHO_VexElementLineGenerator::GenerateListInt(std::string element_name, mho_json&
         if( i != (obj.size()-1) ){ val << ":"; }
     }
     return val.str();
+
+    // std::string val;
+    // return val;
 }
 
 std::string 
@@ -126,13 +132,16 @@ MHO_VexElementLineGenerator::GenerateListReal(std::string element_name, mho_json
         msg_error("vex", "could not form valid vex string from json list_real element: "<< element_name << eom)
     }
     return val.str();
+    // 
+    // std::string val;
+    // return val;
 }
 
 std::string 
 MHO_VexElementLineGenerator::GenerateKeyword(std::string element_name, mho_json& obj)
 {
     std::stringstream val;
-    val << " " << obj.get<std::string>() << " ";
+    val << " " << obj;//.get<std::string>() << " ";
     return val.str();
 }
 
@@ -140,48 +149,53 @@ std::string
 MHO_VexElementLineGenerator::GenerateString(std::string element_name, mho_json& obj)
 {
     std::stringstream val;
-    val << " " << obj.get<std::string>() << " ";
+    val << " " << obj;//.get<std::string>() << " ";
     return val.str();
 }
 
 std::string 
 MHO_VexElementLineGenerator::GenerateListString(std::string element_name, mho_json& obj)
 {
-    std::stringstream val;
-    for(std::size_t i=0; i<obj.size(); i++)
-    {
-        val << " " << obj[i].get<std::string>() << " ";
-        if( i != (obj.size()-1) ){ val << ":"; }
-    }
-    return val.str();
+    // std::stringstream val;
+    // for(std::size_t i=0; i<obj.size(); i++)
+    // {
+    //     val << " " << obj[i].get<std::string>() << " ";
+    //     if( i != (obj.size()-1) ){ val << ":"; }
+    // }
+    // return val.str();
+
+    std::string val;
+    return val;
 }
 
 std::string 
 MHO_VexElementLineGenerator::GenerateEpoch(std::string element_name, mho_json& obj)
 {
     std::stringstream val;
-    val << " " << obj.get<std::string>() << " ";
+    val << " " << obj;//.get<std::string>() << " ";
     return val.str();
 }
 
 std::string 
 MHO_VexElementLineGenerator::GenerateRaDec(std::string element_name, mho_json& obj)
 {
-
+    std::string val;
+    return val;
 }
 
 std::string 
 MHO_VexElementLineGenerator::GenerateLink(std::string element_name, mho_json& obj)
 {
     std::stringstream val;
-    val << " " << obj.get<std::string>() << " ";
+    val << " " << obj;//.get<std::string>() << " ";
     return val.str();
 }
 
 std::string 
 MHO_VexElementLineGenerator::GenerateCompound(std::string element_name, mho_json& obj)
 {
-
+    std::string val;
+    return val;
 }
 
 MHO_VexElementLineGenerator::vex_element_type 
