@@ -14,6 +14,7 @@ set (VEX2JSON_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_VexBlockParser.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_VexParser.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_VexGenerator.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_VexElementLineGenerator.hh
 )
 
 ##################################################
@@ -32,6 +33,7 @@ set (VEX2JSON_SOURCEFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_VexTokenProcessor.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_VexBlockParser.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_VexGenerator.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_VexElementLineGenerator.cc
 )
 
 #declare header paths ##########################################################

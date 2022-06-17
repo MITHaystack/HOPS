@@ -10,6 +10,11 @@
 *@brief:
 */
 
+#include <string>
+#include <sstream>
+#include "MHO_JSONHeaderWrapper.hh"
+#include "MHO_Message.hh"
+
 namespace hops 
 {
 
@@ -19,11 +24,21 @@ class MHO_VexElementLineGenerator
         MHO_VexElementLineGenerator();
         virtual ~MHO_VexElementLineGenerator();
 
-        std::string ConstructElementLine(mho_json& element, mho_json& format, std::vector< std::string >& lines);
+        std::string ConstructElementLine(std::string element_name, mho_json& element, mho_json& format, std::vector< std::string >& lines);
+
+        std::string GenerateInt(std::string element_name, mho_json& obj);
+        std::string GenerateListInt(std::string element_name, mho_json& obj);
+        std::string GenerateReal(std::string element_name, mho_json& obj);
+        std::string GenerateListReal(std::string element_name, mho_json& obj);
+        std::string GenerateKeyword(std::string element_name, mho_json& obj);
+        std::string GenerateString(std::string element_name, mho_json& obj);
+        std::string GenerateListString(std::string element_name, mho_json& obj);
+        std::string GenerateEpoch(std::string element_name, mho_json& obj);
+        std::string GenerateRaDec(std::string element_name, mho_json& obj);
+        std::string GenerateLink(std::string element_name, mho_json& obj);
+        std::string GenerateCompound(std::string element_name, mho_json& obj);
 
     private:
-
-        vex_element_type DetermineType(std::string etype);
 
         enum vex_element_type
         {
@@ -43,6 +58,10 @@ class MHO_VexElementLineGenerator
             vex_unknown_type
             //TODO FIXME -- add type for RA and Dec, to handle special treatment of "
         };
+
+        vex_element_type DetermineType(std::string etype);
+
+
 };
 
 }
