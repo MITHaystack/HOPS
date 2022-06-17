@@ -24,7 +24,7 @@ class MHO_VexElementLineGenerator
         MHO_VexElementLineGenerator();
         virtual ~MHO_VexElementLineGenerator();
 
-        std::string ConstructElementLine(std::string element_name, mho_json& element, mho_json& format, std::vector< std::string >& lines);
+        std::string ConstructElementLine(std::string element_name, mho_json& element, mho_json& format);
 
         std::string GenerateInt(std::string element_name, mho_json& obj);
         std::string GenerateListInt(std::string element_name, mho_json& obj);

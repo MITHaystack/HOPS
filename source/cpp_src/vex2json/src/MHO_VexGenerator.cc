@@ -89,46 +89,15 @@ MHO_VexGenerator::ConstructElementLines(mho_json& element, std::vector< std::str
             {
                 //this is a list of compound elements
             }
-            else if (par_type.find("list") != std::string::npos)
-            {
-                //this is a list element
-            }
             else if (par_type.find("compound") != std::string::npos)
             {
                 //this is a compound element
             }
             else 
             {
-                if(par_type.find("list_real") != std::string::npos)
-                {
-                    // std::stringstream val;
-                    // mho_json obj = element[field_name];
-                    // val << field_name << " = " << obj << ";\n";
-                    // lines.push_back(val.str());
-                }
-                if(par_type.find("real") != std::string::npos)
-                {
-                    std::stringstream val;
-                    mho_json obj = element[field_name];
-                    if(obj.contains("units"))
-                    {
-                        val << field_name << " = " << obj["value"].get<double>() << " " << obj["units"].get<std::string>() << ";\n";
-                    }
-                    else
-                    {
-                        val << field_name << " = " << obj["value"].get<double>() << ";\n";
-                    }
-                    lines.push_back(val.str());
-                }
-                else
-                {
-                    std::stringstream val;
-                    mho_json obj = element[field_name];
-                    val << field_name << " = " << obj << ";\n";
-                    lines.push_back(val.str());
-                }
+                std::string line = fLineGen.ConstructElementLine(field_name, element[field_name], fBlockFormat["parameters"][field_name]);
+                if(line.size() != 0){lines.push_back(line);}
             }
-
         }
         //std::cout<<field_name<<std::endl;
     }
