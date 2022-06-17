@@ -95,18 +95,18 @@ MHO_VexGenerator::ConstructElementLines(mho_json& element, std::vector< std::str
             }
             else if (par_type.find("compound") != std::string::npos)
             {
-                //std::cout<<"par_type = "<<par_type<<std::endl;
+                ////std::cout<<"par_type = "<<par_type<<std::endl;
                 std::string line = fLineGen.ConstructElementLine(field_name, element[field_name], fBlockFormat["parameters"][field_name]);
                 if(line.size() != 0){lines.push_back(line);}
             }
             else 
             {
-                //std::cout<<"par_type = "<<par_type<<std::endl;
+                ////std::cout<<"par_type = "<<par_type<<std::endl;
                 std::string line = fLineGen.ConstructElementLine(field_name, element[field_name], fBlockFormat["parameters"][field_name]);
                 if(line.size() != 0){lines.push_back(line);}
             }
         }
-        //std::cout<<field_name<<std::endl;
+        ////std::cout<<field_name<<std::endl;
     }
 }
 
