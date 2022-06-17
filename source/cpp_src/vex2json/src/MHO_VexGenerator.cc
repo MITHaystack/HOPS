@@ -1,5 +1,6 @@
 #include "MHO_VexGenerator.hh"
 #include <fstream>
+#include <regex>
 
 namespace hops 
 {
@@ -55,12 +56,12 @@ MHO_VexGenerator::ConstructBlockLines(mho_json& root, std::string block_name, st
         if( root.contains(block_name) )
         {
             mho_json block = root[block_name];
-            for(auto& element : block.items())
+            for(auto element : block.items())
             {
                 std::string element_key = element.key();
                 std::string start_line = start_tag + " " + element_key + ";\n";
                 lines.push_back(start_line);
-                //ConstructElementLines(element, lines);
+                ConstructElementLines(root[block_name][element.key()], lines);
                 std::string stop_line = stop_tag + ";\n";
                 lines.push_back(stop_line);
             }
@@ -70,12 +71,68 @@ MHO_VexGenerator::ConstructBlockLines(mho_json& root, std::string block_name, st
 
 
 
-// void 
-// MHO_VexGenerator::ConstructElementLines(mho_json& element, std::vector< std::string >& lines)
-// {
-//     //loop over items in format, and extract from element
-// 
-// }
+void 
+MHO_VexGenerator::ConstructElementLines(mho_json& element, std::vector< std::string >& lines)
+{
+    //loop over items in format, and extract from element
+    std::string hash = "#";
+    std::string nothing = "";
+    for(auto field: fBlockFormat["fields"].items())
+    {
+        std::string raw_field_name = field.value().get<std::string>();
+        //remove # prefix indicating optional elements 
+        std::string field_name = std::regex_replace(raw_field_name,std::regex(hash),nothing);
+        if(element.contains(field_name))
+        {
+            std::string par_type = fBlockFormat["parameters"][field_name]["type"].get<std::string>();
+            if(par_type.find("list_compound") != std::string::npos)
+            {
+                //this is a list of compound elements
+            }
+            else if (par_type.find("list") != std::string::npos)
+            {
+                //this is a list element
+            }
+            else if (par_type.find("compound") != std::string::npos)
+            {
+                //this is a compound element
+            }
+            else 
+            {
+                if(par_type.find("list_real") != std::string::npos)
+                {
+                    // std::stringstream val;
+                    // mho_json obj = element[field_name];
+                    // val << field_name << " = " << obj << ";\n";
+                    // lines.push_back(val.str());
+                }
+                if(par_type.find("real") != std::string::npos)
+                {
+                    std::stringstream val;
+                    mho_json obj = element[field_name];
+                    if(obj.contains("units"))
+                    {
+                        val << field_name << " = " << obj["value"].get<double>() << " " << obj["units"].get<std::string>() << ";\n";
+                    }
+                    else
+                    {
+                        val << field_name << " = " << obj["value"].get<double>() << ";\n";
+                    }
+                    lines.push_back(val.str());
+                }
+                else
+                {
+                    std::stringstream val;
+                    mho_json obj = element[field_name];
+                    val << field_name << " = " << obj << ";\n";
+                    lines.push_back(val.str());
+                }
+            }
+
+        }
+        //std::cout<<field_name<<std::endl;
+    }
+}
 
 
 void 
