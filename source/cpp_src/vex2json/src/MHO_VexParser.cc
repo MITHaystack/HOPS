@@ -48,7 +48,6 @@ MHO_VexParser::DetermineFileVersion()
             std::string contents;
             getline(vfile, contents);
             std::size_t rev_pos = contents.find(fVexRevisionFlag);
-            std::cout<<"REV CONTENTS = "<<contents<<std::endl;
             if(rev_pos != std::string::npos)
             {
                 std::size_t start_pos = contents.find_first_of("=");
