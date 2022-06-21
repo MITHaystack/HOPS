@@ -22,6 +22,7 @@
 
 #include "MHO_VexLine.hh"
 #include "MHO_VexBlockParser.hh"
+#include "MHO_VexDefinitions.hh"
 
 namespace hops 
 {
@@ -50,7 +51,7 @@ class MHO_VexParser
         void ProcessBlocks(mho_json& root);
 
 
-        std::string GetFormatDirectory() const;
+        // std::string GetFormatDirectory() const;
 
         bool IsPotentialBlockStart(std::string line);
         bool IsBlockStart(std::string line, std::string blk_name);
@@ -58,10 +59,11 @@ class MHO_VexParser
         std::string fVexFileName;
 
         //token/delimiter definitions
+        MHO_VexDefinitions fVexDef;
+
         std::string fVexRevisionFlag;
         std::string fVexDelim;
         std::string fWhitespace;
-        std::string fCommentFlag;
         std::string fBlockStartFlag;
         std::string fStatementEndFlag;
         std::string fRefFlag;
