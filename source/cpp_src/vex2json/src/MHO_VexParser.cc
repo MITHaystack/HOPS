@@ -44,7 +44,15 @@ MHO_VexParser::DetermineFileVersion()
                 if(start_pos != std::string::npos && end_pos != std::string::npos)
                 {
                     std::string rev = contents.substr(start_pos+1, end_pos-start_pos-1);
-                    std::string revision = MHO_Tokenizer::TrimLeadingAndTrailingWhitespace(rev);
+                    rev = MHO_Tokenizer::TrimLeadingAndTrailingWhitespace(rev);
+                    std::string revision = rev;
+                    //sanitize the version statment (only pass 1.5 or 2.0)
+                    if(rev.find("1.5") != std::string::npos ){revision = "1.5";}
+                    else if(rev.find("2.0") != std::string::npos ){revision = "2.0";}
+                    else 
+                    {
+                        msg_error("vex", "version string: "<< revision << "not understood, defaulting to vex version 1.5." << eom );
+                    }
                     SetVexVersion(revision);
                     determined_rev = true;
                 }

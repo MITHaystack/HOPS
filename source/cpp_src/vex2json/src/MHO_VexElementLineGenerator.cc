@@ -12,7 +12,7 @@ MHO_VexElementLineGenerator::ConstructElementLine(std::string element_name, mho_
 {
 
     std::string element_typename = format["type"].get<std::string>();
-    vex_element_type etype = DetermineType(element_typename);
+    vex_element_type etype = MHO_VexDefinitions::DetermineType(element_typename);
     std::string line = element_name + " = ";
 
     std::string ret_val;
@@ -126,7 +126,7 @@ MHO_VexElementLineGenerator::GenerateListReal(std::string element_name, mho_json
     }
     else if(obj.contains("values"))
     {
-        for(std::size_t i=0; i<obj.size(); i++)
+        for(std::size_t i=0; i<obj["values"].size(); i++)
         {
             val << " " << obj["values"][i].get<double>() << " ";
             if( i != (obj["values"].size()-1) ){ val << ":"; }
@@ -194,9 +194,6 @@ MHO_VexElementLineGenerator::GenerateLink(std::string element_name, mho_json& ob
 std::string 
 MHO_VexElementLineGenerator::GenerateCompound(std::string element_name, mho_json& element, mho_json& format)
 {
-    //std::cout<<"working on compound element name:" <<element_name<<std::endl;
-    //std::cout<<"elem = "<<element<<std::endl;
-    //std::cout<<"fields = "<<format["fields"]<<std::endl;
     std::vector< std::string > components;
     //loop over items in format, and extract from element
     std::string hash = "#";
@@ -211,10 +208,9 @@ MHO_VexElementLineGenerator::GenerateCompound(std::string element_name, mho_json
         if(element.contains(field_name))
         {
             std::string par_type = format["parameters"][field_name]["type"].get<std::string>();
-            //std::cout<<"with field/par = "<<field_name<<" "<<par_type<<std::endl;
-
-            vex_element_type etype = DetermineType(par_type);
+            vex_element_type etype = MHO_VexDefinitions::DetermineType(par_type);
             std::string ret_val;
+
             switch(etype)
             {
                 case vex_int_type:
@@ -250,13 +246,12 @@ MHO_VexElementLineGenerator::GenerateCompound(std::string element_name, mho_json
                 default:
                 break;
             }
-            //std::cout<<"appending "<<ret_val<<std::endl;
             components.push_back(ret_val);
         }
         else if( IsOptionalField(raw_field_name) && !IsTrailingOptionalField(raw_field_name, format["fields"]) )
         {
             //add and empty place holder for optional fields which are not trailing elements
-            std::string ret_val = " ";
+            std::string ret_val = "";
             components.push_back(ret_val);
         }
     }
@@ -265,29 +260,9 @@ MHO_VexElementLineGenerator::GenerateCompound(std::string element_name, mho_json
     for(std::size_t j=0; j<components.size(); j++)
     {
         line += components[j];
-        if(j < components.size() - 1){ line += ":";}
+        if(j < components.size() - 1){ line += " : ";}
     }
     return line;
-}
-
-MHO_VexElementLineGenerator::vex_element_type 
-MHO_VexElementLineGenerator::DetermineType(std::string etype)
-{
-    if(etype == "int"){return vex_int_type;}
-    if(etype == "list_int"){return vex_list_int_type;}
-    if(etype == "real"){return vex_real_type;}
-    if(etype == "list_real"){return vex_list_real_type;}
-    if(etype == "epoch"){return vex_epoch_type;}
-    if(etype == "ra"){return vex_radec_type;}
-    if(etype == "dec"){return vex_radec_type;}
-    if(etype == "string"){return vex_string_type;}
-    if(etype == "list_string"){return vex_list_string_type;}
-    if(etype == "compound"){return vex_compound_type;}
-    if(etype == "list_compound"){return vex_list_compound_type;}
-    if(etype == "keyword"){return vex_keyword_type;}
-    if(etype == "reference"){return vex_reference_type;}
-    if(etype == "link"){return vex_link_type;}
-    return vex_unknown_type;
 }
 
 

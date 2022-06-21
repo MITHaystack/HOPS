@@ -12,8 +12,9 @@
 
 #include <string>
 #include <sstream>
-#include "MHO_JSONHeaderWrapper.hh"
 #include "MHO_Message.hh"
+#include "MHO_JSONHeaderWrapper.hh"
+#include "MHO_VexDefinitions.hh"
 
 namespace hops 
 {
@@ -42,28 +43,6 @@ class MHO_VexElementLineGenerator
 
         bool IsOptionalField(std::string& field_name);
         bool IsTrailingOptionalField(std::string field_name, mho_json& fields);
-
-        enum vex_element_type
-        {
-            vex_int_type,
-            vex_list_int_type,
-            vex_real_type,
-            vex_string_type,
-            vex_list_string_type,
-            vex_epoch_type,
-            vex_radec_type,
-            vex_list_real_type,
-            vex_compound_type,
-            vex_list_compound_type,
-            vex_link_type,
-            vex_keyword_type,
-            vex_reference_type,
-            vex_unknown_type
-            //TODO FIXME -- add type for RA and Dec, to handle special treatment of "
-        };
-
-        vex_element_type DetermineType(std::string etype);
-
 
 };
 
