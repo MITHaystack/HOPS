@@ -81,6 +81,4 @@ MHO_VexDefinitions::DetermineType(std::string etype)
     return vex_unknown_type;
 }
 
-
-
 }

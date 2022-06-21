@@ -40,6 +40,9 @@ class MHO_VexBlockParser
 
     private:
 
+        void LoadBlockFormat(std::string block_name);
+        std::string GetBlockFormatFileName(std::string block_name);
+
         mho_json ParseBlock();
         mho_json ParseGlobalBlock();
 
@@ -71,9 +74,6 @@ class MHO_VexBlockParser
         mho_json ProcessTokens(const std::string& element_name, mho_json& format, std::vector< std::string >& tokens);
         mho_json ProcessCompound(const std::string& element_name, mho_json& format, std::vector< std::string >& tokens);
 
-        void LoadBlockFormat(std::string block_name);
-        std::string GetBlockFormatFileName(std::string block_name);
-
         bool MatchesType(const std::string& token, const std::string& type_name);
 
         bool fBlockFormatLoaded;
@@ -84,39 +84,9 @@ class MHO_VexBlockParser
         
         std::string fStartTag;
         std::string fStopTag;
-        std::string fChanDefTag;
-        std::string fIFDefTag;
-        std::string fRefTag;
-        std::string fVexDelim;
-        std::string fStartTagDelim;
-        std::string fAssignmentDelim;
-        std::string fWhitespaceDelim;
 
         MHO_Tokenizer fTokenizer;
         MHO_VexTokenProcessor fTokenProcessor;
-
-        // enum vex_element_type
-        // {
-        //     vex_int_type,
-        //     vex_list_int_type,
-        //     vex_real_type,
-        //     vex_string_type,
-        //     vex_list_string_type,
-        //     vex_epoch_type,
-        //     vex_radec_type,
-        //     vex_list_real_type,
-        //     vex_compound_type,
-        //     vex_list_compound_type,
-        //     vex_link_type,
-        //     vex_keyword_type,
-        //     vex_reference_type,
-        //     vex_unknown_type
-        //     //TODO FIXME -- add type for RA and Dec, to handle special treatment of "
-        // };
-        // 
-        // vex_element_type DetermineType(std::string etype);
-
-
 };
 
 
