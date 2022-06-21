@@ -20,6 +20,7 @@
 #include "MHO_Tokenizer.hh"
 #include "MHO_JSONHeaderWrapper.hh"
 #include "MHO_VexElementLineGenerator.hh"
+#include "MHO_VexDefinitions.hh"
 
 
 namespace hops 

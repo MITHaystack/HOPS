@@ -80,5 +80,15 @@
             },
             "fields": ["#station", "coord1", "offset1", "coord2", "offset2"]
         }
-    }
+    },
+    "fields":
+    [
+        "start",
+        "mode", 
+        "source",
+        "station",
+        "data_transfer",
+        "intent",
+        "pointing_offset"
+    ]
 }
