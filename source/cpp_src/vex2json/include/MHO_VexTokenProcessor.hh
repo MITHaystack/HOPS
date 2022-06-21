@@ -33,7 +33,6 @@ class MHO_VexTokenProcessor
         mho_json ProcessListString(const std::string& element_name, mho_json& format, std::vector< std::string >& tokens);
         mho_json ProcessReal(const std::string& element_name, mho_json& format, std::vector< std::string >& tokens);
         mho_json ProcessListReal(const std::string& element_name, mho_json& format, std::vector< std::string >& tokens);
-        mho_json ProcessCompound(const std::string& element_name, mho_json& format, std::vector< std::string >& tokens);
 
         bool ContainsWhitespace(std::string value);
 

@@ -35,7 +35,7 @@ class MHO_VexParser
 
         void SetVexFile(std::string filename);
         void SetVexVersion(std::string version);
-        void SetVexVersion(const char* version);
+        void SetVexVersion(const char* version){ SetVexVersion( std::string(version) );};
 
         mho_json ParseVex();
         

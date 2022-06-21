@@ -281,7 +281,7 @@ MHO_VexBlockParser::ProcessLine(const MHO_VexLine& line,
             msg_warn("vex", "could not locate element with name: "<<element_name<<" under "<<fBlockName<< " block format."<<eom);
             return false;
         }
-        vex_element_type etype = DetermineType( format[element_name]["type"].get<std::string>() );
+        vex_element_type etype = MHO_VexDefinitions::DetermineType( format[element_name]["type"].get<std::string>() );
 
 
         fTokenizer.SetPreserveQuotesTrue();
@@ -406,7 +406,7 @@ MHO_VexBlockParser::ProcessReference(const MHO_VexLine& line,
 mho_json 
 MHO_VexBlockParser::ProcessTokens(const std::string& element_name, mho_json& format, std::vector< std::string >& tokens)
 {
-    vex_element_type etype = DetermineType( format["type"].get<std::string>() );
+    vex_element_type etype = MHO_VexDefinitions::DetermineType( format["type"].get<std::string>() );
     mho_json element_data;
 
     switch(etype)
@@ -503,31 +503,31 @@ MHO_VexBlockParser::ProcessCompound(const std::string& element_name, mho_json&fo
     return element_data;
 }
 
-
-MHO_VexBlockParser::vex_element_type 
-MHO_VexBlockParser::DetermineType(std::string etype)
-{
-    if(etype == "int"){return vex_int_type;}
-    if(etype == "list_int"){return vex_list_int_type;}
-    if(etype == "real"){return vex_real_type;}
-    if(etype == "list_real"){return vex_list_real_type;}
-    if(etype == "epoch"){return vex_epoch_type;}
-    if(etype == "ra"){return vex_radec_type;}
-    if(etype == "dec"){return vex_radec_type;}
-    if(etype == "string"){return vex_string_type;}
-    if(etype == "list_string"){return vex_list_string_type;}
-    if(etype == "compound"){return vex_compound_type;}
-    if(etype == "list_compound"){return vex_list_compound_type;}
-    if(etype == "keyword"){return vex_keyword_type;}
-    if(etype == "reference"){return vex_reference_type;}
-    if(etype == "link"){return vex_link_type;}
-    return vex_unknown_type;
-}
+// 
+// MHO_VexBlockParser::vex_element_type 
+// MHO_VexBlockParser::DetermineType(std::string etype)
+// {
+//     if(etype == "int"){return vex_int_type;}
+//     if(etype == "list_int"){return vex_list_int_type;}
+//     if(etype == "real"){return vex_real_type;}
+//     if(etype == "list_real"){return vex_list_real_type;}
+//     if(etype == "epoch"){return vex_epoch_type;}
+//     if(etype == "ra"){return vex_radec_type;}
+//     if(etype == "dec"){return vex_radec_type;}
+//     if(etype == "string"){return vex_string_type;}
+//     if(etype == "list_string"){return vex_list_string_type;}
+//     if(etype == "compound"){return vex_compound_type;}
+//     if(etype == "list_compound"){return vex_list_compound_type;}
+//     if(etype == "keyword"){return vex_keyword_type;}
+//     if(etype == "reference"){return vex_reference_type;}
+//     if(etype == "link"){return vex_link_type;}
+//     return vex_unknown_type;
+// }
 
 bool 
 MHO_VexBlockParser::MatchesType(const std::string& token, const std::string& type_name)
 {
-    vex_element_type etype = DetermineType(type_name);
+    vex_element_type etype = MHO_VexDefinitions::DetermineType(type_name);
     switch(etype)
     {
         case vex_int_type:
