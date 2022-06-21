@@ -8,7 +8,7 @@ namespace hops
 
 MHO_VexGenerator::MHO_VexGenerator()
 {
-    fVexRevisionFlag = "VEX_rev";
+    fVexRevisionFlag = MHO_VexDefinitions::VexRevisionFlag();
 }
 MHO_VexGenerator::~MHO_VexGenerator(){};
 
@@ -23,7 +23,7 @@ void MHO_VexGenerator::GenerateVex(mho_json& root)
     
     //first line is always version line 
     std::string vers = root[fVexRevisionFlag].get<std::string>();
-    std::string version_line = fVexRevisionFlag + " = " + vers + ";\n";
+    std::string version_line = fVexRevisionFlag + MHO_VexDefinitions::AssignmentOp() + vers + MHO_VexDefinitions::StatementLineEnd();
     all_lines.push_back(version_line);
     //open block-names file for this version 
 
@@ -33,7 +33,7 @@ void MHO_VexGenerator::GenerateVex(mho_json& root)
         std::string block_name = *blk_it;
         std::vector< std::string > block_lines;
         ConstructBlockLines(root, block_name, block_lines);
-        std::string block_opening = block_name + ";\n";
+        std::string block_opening = block_name + MHO_VexDefinitions::StatementLineEnd();
         all_lines.push_back(block_opening);
         all_lines.insert(all_lines.end(), block_lines.begin(), block_lines.end());
     }
@@ -66,10 +66,10 @@ MHO_VexGenerator::ConstructBlockLines(mho_json& root, std::string block_name, st
             for(auto element : block.items())
             {
                 std::string element_key = element.key();
-                std::string start_line = start_tag + " " + element_key + ";\n";
+                std::string start_line = start_tag + " " + element_key + MHO_VexDefinitions::StatementLineEnd();
                 lines.push_back(start_line);
                 ConstructElementLines(root[block_name][element.key()], lines);
-                std::string stop_line = stop_tag + ";\n";
+                std::string stop_line = stop_tag + MHO_VexDefinitions::StatementLineEnd();
                 lines.push_back(stop_line);
             }
         }
