@@ -23,6 +23,7 @@ void MHO_VexGenerator::GenerateVex(mho_json& root)
     
     //first line is always version line 
     std::string vers = root[fVexRevisionFlag].get<std::string>();
+    SetVexVersion(vers);
     std::string version_line = fVexRevisionFlag + MHO_VexDefinitions::AssignmentOp() + vers + MHO_VexDefinitions::StatementLineEnd();
     all_lines.push_back(version_line);
     //open block-names file for this version 
@@ -55,7 +56,7 @@ MHO_VexGenerator::ConstructBlockLines(mho_json& root, std::string block_name, st
 {
     lines.clear();
     LoadBlockFormat(block_name);
-    if( fBlockFormat["block_type"].get<std::string>() == "primitive" ) //only do primitive blocks for now
+    if( fBlockFormat["block_type"].get<std::string>() == "primitive" )
     {
         std::string start_tag = fBlockFormat["start_tag"].get<std::string>();
         std::string stop_tag = fBlockFormat["stop_tag"].get<std::string>();
@@ -74,6 +75,10 @@ MHO_VexGenerator::ConstructBlockLines(mho_json& root, std::string block_name, st
             }
         }
     }
+    else if( fBlockFormat["block_type"].get<std::string>() == "high_level" )
+    {
+
+    }
 }
 
 
@@ -82,7 +87,7 @@ void
 MHO_VexGenerator::ConstructElementLines(mho_json& element, std::vector< std::string >& lines)
 {
     //loop over items in format, and extract from element
-    std::string hash = "#";
+    std::string hash = MHO_VexDefinitions::OptionalFlag();
     std::string nothing = "";
     for(auto field: fBlockFormat["fields"].items())
     {
@@ -121,52 +126,11 @@ MHO_VexGenerator::ConstructElementLines(mho_json& element, std::vector< std::str
 void 
 MHO_VexGenerator::SetVexVersion(std::string version)
 {
-    fVexVersion = "1.5";
-    if(version.find("1.5") != std::string::npos ){fVexVersion = "1.5";}
-    else if(version.find("2.0") != std::string::npos ){fVexVersion = "2.0";}
-    else 
-    {
-        msg_error("vex", "version string: "<< version << "not understood, defaulting to vex version 1.5." << eom );
-    }
-
-    fFormatDirectory = GetFormatDirectory();
-    std::string bnames_file = fFormatDirectory + "block-names.json";
-    msg_debug("vex", "block name file is: "<< bnames_file << eom);
-
-    std::ifstream bn_ifs;
-    bn_ifs.open( bnames_file.c_str(), std::ifstream::in );
-
-    json bnames;
-    if(bn_ifs.is_open())
-    {
-        bnames = mho_ordered_json::parse(bn_ifs);
-    }
-    bn_ifs.close();
-
-    fBlockNames.clear();
-    for(auto it = bnames["block_names"].begin(); it != bnames["block_names"].end(); it++)
-    {
-        fBlockNames.push_back(*it);
-    }
+    fVexVersion = version;
+    fVexDef.SetVexVersion(fVexVersion);
+    fBlockNames = fVexDef.GetBlockNames();
+    fFormatDirectory = fVexDef.GetFormatDirectory();
 }
-
-void 
-MHO_VexGenerator::SetVexVersion(const char* version)
-{
-    std::string vers(version);
-    SetVexVersion(vers);
-}
-
-
-std::string 
-MHO_VexGenerator::GetFormatDirectory() const
-{
-    std::string format_dir = VEX_FORMAT_DIR;
-    format_dir += "/vex-" + fVexVersion + "/";
-    return format_dir;
-}
-
-
 
 void 
 MHO_VexGenerator::LoadBlockFormat(std::string block_name)
