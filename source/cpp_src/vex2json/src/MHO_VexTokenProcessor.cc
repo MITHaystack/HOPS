@@ -5,7 +5,7 @@ namespace hops
 
 MHO_VexTokenProcessor::MHO_VexTokenProcessor()
 {
-    fWhitespaceDelim = " \t\r\n";
+    fWhitespaceDelim = MHO_VexDefinitions::WhitespaceDelim();
 };
 
 MHO_VexTokenProcessor::~MHO_VexTokenProcessor(){};

@@ -47,51 +47,33 @@ class MHO_VexDefinitions
 
         std::string GetFormatDirectory() const;
 
-        vex_element_type DetermineType(std::string etype) const;
-
         std::vector< std::string > GetBlockNames() const {return fBlockNames;}
 
-        std::string StartTag() const {return fStartTag;};
-        std::string StopTag() const {return fStopTag;};
-        std::string BlockStartFlag() const {return fBlockStartFlag;};
-        std::string ChanDefTag() const {return fChanDefTag;};
-        std::string IFDefTag() const {return fIFDefTag;};
-        std::string RefTag() const {return fRefTag;}
-        std::string VexDelim() const {return fVexDelim;};
-        std::string StartTagDelim() const {return fStartTagDelim;};
-        std::string AssignmentDelim() const {return fAssignmentDelim;};
-        std::string WhitespaceDelim() const {return fWhitespaceDelim;};
-        std::string VexRevisionFlag() const {return fVexRevisionFlag;};
-        std::string StartLiteralFlag() const {return fStartLiteralFlag;};
-        std::string EndLiteralFlag() const {return fEndLiteralFlag;};
-        std::string CommentFlag() const {return fCommentFlag;};
-        std::string StatementEndFlag() const {return fStatementEndFlag;};
+        static std::string StartTag() {return std::string("def");};
+        static std::string StopTag() {return std::string("enddef");};
+        static std::string BlockStartFlag() {return std::string("$");};
+        static std::string ChanDefTag() {return std::string("chan_def");};
+        static std::string IFDefTag() {return std::string("if_def");};
+        static std::string RefTag() {return std::string("ref");}
+        static std::string WhitespaceDelim() {return std::string(" \t\r\n");};
+        static std::string AssignmentDelim() {return std::string("=;");};
+        static std::string StartTagDelim() {return std::string(" \t\r\n;");};
+        static std::string ElementDelim() {return ":";};
+
+        static std::string VexRevisionFlag() {return std::string("VEX_rev");};
+        static std::string StartLiteralFlag() {return std::string("start_literal");};
+        static std::string EndLiteralFlag() {return std::string("end_literal");};
+        static std::string CommentFlag() {return std::string("*");};
+        static std::string StatementEndFlag() {return std::string(";");};
+
+        static vex_element_type DetermineType(std::string etype);
+
 
     private:
 
         std::string fFormatDirectory;
         std::string fVexVersion;
         std::vector< std::string > fBlockNames;
-
-        std::string fStartTag;
-        std::string fStopTag;
-        std::string fBlockStartFlag;
-        std::string fChanDefTag;
-        std::string fIFDefTag;
-        std::string fRefTag;
-        std::string fVexDelim;
-        std::string fStartTagDelim;
-        std::string fStatementEndFlag;
-        std::string fAssignmentDelim;
-        std::string fWhitespaceDelim;
-        std::string fVexRevisionFlag;
-        std::string fStartLiteralFlag;
-        std::string fEndLiteralFlag;
-
-        std::string fWhitespace;
-        std::string fCommentFlag;
-
-
 
 };
 

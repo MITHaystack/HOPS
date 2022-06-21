@@ -16,6 +16,7 @@
 #include "MHO_DirectoryInterface.hh"
 
 #include "MHO_VexLine.hh"
+#include "MHO_VexDefinitions.hh"
 
 
 namespace hops
