@@ -8,21 +8,6 @@ namespace hops
 
 MHO_VexDefinitions::MHO_VexDefinitions()
 {
-    fStartTag = "def";
-    fStopTag = "enddef";
-    fBlockStartFlag = "$";
-    fChanDefTag = "chan_def";
-    fIFDefTag = "if_def";
-    fRefTag = "ref";
-    fAssignmentDelim = "=;";
-    fWhitespaceDelim = " \t\r\n";
-    fVexDelim = ":";
-    fStatementEndFlag = ";";
-    fVexRevisionFlag = "VEX_rev";
-    fStartTagDelim = fWhitespaceDelim + ";";
-    fStartLiteralFlag = "start_literal";
-    fEndLiteralFlag = "end_literal";
-    fCommentFlag = "*";
     //default set-up: vex-1.5
     SetVexVersion("1.5");
 
@@ -77,7 +62,7 @@ MHO_VexDefinitions::GetFormatDirectory() const
 }
 
 vex_element_type 
-MHO_VexDefinitions::DetermineType(std::string etype) const
+MHO_VexDefinitions::DetermineType(std::string etype)
 {
     if(etype == "int"){return vex_int_type;}
     if(etype == "list_int"){return vex_list_int_type;}

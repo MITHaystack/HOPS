@@ -23,6 +23,7 @@
 
 #include "MHO_VexLine.hh"
 #include "MHO_VexTokenProcessor.hh"
+#include "MHO_VexDefinitions.hh"
 
 namespace hops 
 {
