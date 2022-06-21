@@ -88,6 +88,7 @@ std::string
 MHO_VexElementLineGenerator::GenerateReal(std::string element_name, mho_json& obj)
 {
     std::stringstream val;
+    val << std::setprecision(std::numeric_limits<double>::digits10 + 1);
     if(obj.contains("units") && obj.contains("value"))
     {
         val << " " << obj["value"].get<double>() << " " << obj["units"].get<std::string>() << " ";// << ";\n";
@@ -107,6 +108,7 @@ std::string
 MHO_VexElementLineGenerator::GenerateListReal(std::string element_name, mho_json& obj)
 {
     std::stringstream val;
+    val << std::setprecision(std::numeric_limits<double>::digits10 + 1);
     if(obj.contains("units") && obj.contains("values"))
     {
         for(std::size_t i=0; i<obj["values"].size(); i++)
@@ -176,8 +178,9 @@ MHO_VexElementLineGenerator::GenerateEpoch(std::string element_name, mho_json& o
 std::string 
 MHO_VexElementLineGenerator::GenerateRaDec(std::string element_name, mho_json& obj)
 {
-    std::string val;
-    return val;
+    std::stringstream val;
+    val << " " << obj.get<std::string>() << " ";
+    return val.str();
 }
 
 std::string 
@@ -298,19 +301,23 @@ MHO_VexElementLineGenerator::IsOptionalField(std::string& field_name)
 bool 
 MHO_VexElementLineGenerator::IsTrailingOptionalField(std::string field_name, mho_json& fields)
 {
-    std::size_t start_idx = 0;
-    for(std::size_t i=0; i<fields.size(); i++)
+    if(IsOptionalField(field_name))
     {
-        if( fields[i].get<std::string>() == field_name){start_idx = i; break;}
-    }
+        std::size_t start_idx = 0;
+        for(std::size_t i=0; i<fields.size(); i++)
+        {
+            if( fields[i].get<std::string>() == field_name){start_idx = i; break;}
+        }
 
-    bool ret_val = true;
-    for(std::size_t i=start_idx; i<fields.size(); i++)
-    {
-        std::string tmp_name = fields[i].get<std::string>();
-        if( !IsOptionalField(tmp_name) ){ret_val = false;}
+        bool ret_val = true;
+        for(std::size_t i=start_idx; i<fields.size(); i++)
+        {
+            std::string tmp_name = fields[i].get<std::string>();
+            if( !IsOptionalField(tmp_name) ){ret_val = false;}
+        }
+        return ret_val;
     }
-    return ret_val;
+    return false;
 }
 
 }

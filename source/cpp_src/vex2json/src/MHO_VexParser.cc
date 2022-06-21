@@ -8,18 +8,7 @@ namespace hops
 
 MHO_VexParser::MHO_VexParser()
 {
-    fVexRevisionFlag = "VEX_rev";
-    fVexDelim = " :;\t\r\n";
-    fWhitespace = " \t\r\n";
-    fCommentFlag = "*";
-    fBlockStartFlag = "$";
-    fRefFlag = "ref";
-    fVexVersion = "1.5";
-    fStatementEndFlag = ";";
-    fFormatDirectory = VEX_FORMAT_DIR;
-    fStartLiteralFlag = "start_literal";
-    fEndLiteralFlag = "end_literal";
-    SetVexVersion(fVexVersion);
+    SetVexVersion("1.5");
 }
 
 
@@ -107,9 +96,10 @@ MHO_VexParser::ReadFile()
 void 
 MHO_VexParser::RemoveComments()
 {
+    std::string flag = fVexDef.CommentFlag();
     for(auto it = fLines.begin(); it != fLines.end();)
     {
-        std::size_t com_pos = it->fContents.find_first_of(fCommentFlag);
+        std::size_t com_pos = it->fContents.find_first_of(flag);
         if(com_pos != std::string::npos)
         {
             if(com_pos == 0){it = fLines.erase(it);} //this entire line is a comment
@@ -132,16 +122,18 @@ void
 MHO_VexParser::MarkLiterals()
 {
     //primitive search for start/end literal statements
+    std::string start_flag = fVexDef.StartLiteralFlag();
+    std::string end_flag = fVexDef.EndLiteralFlag();
     auto it = fLines.begin();
     while(it != fLines.end())
     {
-        std::size_t start_lit_pos = it->fContents.find(fStartLiteralFlag);
+        std::size_t start_lit_pos = it->fContents.find(start_flag);
         if(start_lit_pos != std::string::npos)
         {
             bool found_end = false;
             while( !found_end && it != fLines.end() )
             {
-                std::size_t end_lit_pos = it->fContents.find(fEndLiteralFlag);
+                std::size_t end_lit_pos = it->fContents.find(end_flag);
                 if(end_lit_pos != std::string::npos){found_end = true;}
                 it->fIsLiteral = true;
                 ++it;
@@ -158,9 +150,9 @@ MHO_VexParser::JoinLines()
     msg_warn("vex", "multi-line vex statements currently not supported." << eom);
     //The vex standard explicitly allows for a single vex-statement to be split across multiple lines,
     //so long as it is terminated by a ';'. However, due to the way in which the file was read in (getline)
-    //and the fact that trailing comments need to be removed on a per-line basis, we need to implement 
-    //the ability to re-join a vex statment spread over multiple-lines into a single ';' terminated string,
-    //so that it can be tokenized and parsed more easily.
+    //and the fact that trailing comments need to be removed on a per-line basis (as per standard), we need to implement 
+    //the ability to re-join a vex statment that is spread over multiple-lines into a single ';' terminated string,
+    //so that it can be tokenized and parsed.
 }
 
 void 
@@ -226,22 +218,12 @@ MHO_VexParser::MarkBlocks()
         if(next_blk != "")
         {
             fBlockStopLines[*blk_it] = fBlockStartLines[next_blk];
-            //fBlockStopLines[*blk_it]--; //decrement iterator (--), to point to line just before the next block
         }
         else 
         {
             fBlockStopLines[*blk_it] = fLines.end();
-            //fBlockStopLines[*blk_it]--; //decrement iterator (--), to point to line just before the next block
         }
     }
-
-    // for(auto blk_it = fBlockNames.begin(); blk_it != fBlockNames.end(); blk_it++)
-    // {
-    //     std::cout<<"block: "<<*blk_it<<" starts on line: "<<
-    //     fBlockStartLines[*blk_it]->fLineNumber << " and ends on line: "<<
-    //     fBlockStopLines[*blk_it]->fLineNumber << std::endl;
-    // }
-
 }
 
 mho_json
@@ -254,7 +236,7 @@ MHO_VexParser::ParseVex()
     MarkBlocks();
 
     mho_json root;
-    root[fVexRevisionFlag] = fVexVersion;
+    root[fVexDef.VexRevisionFlag()] = fVexVersion;
     ProcessBlocks(root);
 
     return root;
@@ -290,11 +272,14 @@ bool
 MHO_VexParser::IsPotentialBlockStart(std::string line)
 {
     //first determine if a "$" is on this line
-    auto loc = line.find(fBlockStartFlag); 
+    std::string block_start_flag = fVexDef.BlockStartFlag();
+    std::string ref_flag = fVexDef.RefTag();
+
+    auto loc = line.find(block_start_flag); 
     if(loc != std::string::npos)
     {
         //make sure "ref" is not on this line 
-        auto ref_loc = line.find(fRefFlag);
+        auto ref_loc = line.find(ref_flag);
         if(ref_loc == std::string::npos)
         {
             return true;
@@ -311,8 +296,8 @@ MHO_VexParser::IsBlockStart(std::string line, std::string blk_name)
     {
         //blk_name exists on this line...but is it an exact match?
         //this check is mainly needed to resolve $SCHED and $SCHEDULING_PARAMS
-        auto start = line.find(fBlockStartFlag);
-        auto stop = line.find(fStatementEndFlag);
+        auto start = line.find(fVexDef.BlockStartFlag());
+        auto stop = line.find(fVexDef.StatementEndFlag());
         std::string sub = line.substr(start, stop);
         if(sub == blk_name){return true;}
         return false;
@@ -330,42 +315,8 @@ MHO_VexParser::SetVexVersion(const char* version)
 void 
 MHO_VexParser::SetVexVersion(std::string version)
 {
-    fVexVersion = "1.5";
-    if(version.find("1.5") != std::string::npos ){fVexVersion = "1.5";}
-    else if(version.find("2.0") != std::string::npos ){fVexVersion = "2.0";}
-    else 
-    {
-        msg_error("vex", "version string: "<< version << "not understood, defaulting to vex version 1.5." << eom );
-    }
-
-    fFormatDirectory = GetFormatDirectory();
-    fBlockParser.SetFormatDirectory(fFormatDirectory);
-    std::string bnames_file = fFormatDirectory + "block-names.json";
-    msg_debug("vex", "block name file is: "<< bnames_file << eom);
-
-    std::ifstream bn_ifs;
-    bn_ifs.open( bnames_file.c_str(), std::ifstream::in );
-
-    json bnames;
-    if(bn_ifs.is_open())
-    {
-        bnames = mho_ordered_json::parse(bn_ifs);
-    }
-    bn_ifs.close();
-
-    fBlockNames.clear();
-    for(auto it = bnames["block_names"].begin(); it != bnames["block_names"].end(); it++)
-    {
-        fBlockNames.push_back(*it);
-    }
-}
-
-std::string 
-MHO_VexParser::GetFormatDirectory() const
-{
-    std::string format_dir = VEX_FORMAT_DIR;
-    format_dir += "/vex-" + fVexVersion + "/";
-    return format_dir;
+    fVexDef.SetVexVersion(version);
+    fBlockNames = fVexDef.GetBlockNames();
 }
 
 }
