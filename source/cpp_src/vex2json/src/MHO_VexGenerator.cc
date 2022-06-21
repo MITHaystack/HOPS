@@ -8,6 +8,7 @@ namespace hops
 
 MHO_VexGenerator::MHO_VexGenerator()
 {
+    fSpace = " ";
     fVexRevisionFlag = MHO_VexDefinitions::VexRevisionFlag();
 }
 MHO_VexGenerator::~MHO_VexGenerator(){};
@@ -55,11 +56,15 @@ MHO_VexGenerator::ConstructBlockLines(mho_json& root, std::string block_name, st
 {
     lines.clear();
     LoadBlockFormat(block_name);
-    if( fBlockFormat["block_type"].get<std::string>() == "primitive" )
+
+    if(block_name == "$GLOBAL") //global block is special
+    {
+
+    }
+    else if( fBlockFormat["block_type"].get<std::string>() == "primitive" )
     {
         std::string start_tag = fBlockFormat["start_tag"].get<std::string>();
         std::string stop_tag = fBlockFormat["stop_tag"].get<std::string>();
-
         if( root.contains(block_name) )
         {
             mho_json block = root[block_name];
@@ -76,7 +81,25 @@ MHO_VexGenerator::ConstructBlockLines(mho_json& root, std::string block_name, st
     }
     else if( fBlockFormat["block_type"].get<std::string>() == "high_level" )
     {
+        std::string start_tag = fBlockFormat["start_tag"].get<std::string>();
+        std::string stop_tag = fBlockFormat["stop_tag"].get<std::string>();
+        if( root.contains(block_name) )
+        {
+            mho_json block = root[block_name];
+            for(auto element : block.items())
+            {
+                std::string element_key = element.key();
+    
+                //std::cout<<block_name<<" -- ref element = "<<element_key<< " element size = "<<element.value().size()<<std::endl;
+                std::string start_line = start_tag + " " + element_key + MHO_VexDefinitions::StatementLineEnd();
+                lines.push_back(start_line);
 
+                //std::cout<< root[block_name][element.key()] <<std::endl;
+                ConstructReferenceLines(root[block_name][element.key()], lines);
+                std::string stop_line = stop_tag + MHO_VexDefinitions::StatementLineEnd();
+                lines.push_back(stop_line);
+            }
+        }
     }
 }
 
@@ -115,6 +138,50 @@ MHO_VexGenerator::ConstructElementLines(mho_json& element, std::vector< std::str
                 ////std::cout<<"par_type = "<<par_type<<std::endl;
                 std::string line = fLineGen.ConstructElementLine(field_name, element[field_name], fBlockFormat["parameters"][field_name]);
                 if(line.size() != 0){lines.push_back(line);}
+            }
+        }
+        ////std::cout<<field_name<<std::endl;
+    }
+}
+
+
+void 
+MHO_VexGenerator::ConstructReferenceLines(mho_json& element, std::vector< std::string >& lines)
+{
+    //loop over items in format, and extract from element
+    // std::string hash = MHO_VexDefinitions::OptionalFlag();
+    // std::string nothing = "";
+    //std::cout<<fBlockFormat<<std::endl;
+    //std::cout<<fBlockFormat["block_name"]<<" "<<fBlockFormat["fields"]<<std::endl;
+    for(auto field: fBlockFormat["fields"].items())
+    {
+        //std::string raw_field_name 
+        std::string field_name = field.value().get<std::string>();
+        //remove # prefix indicating optional elements 
+        //std::string field_name = std::regex_replace(raw_field_name,std::regex(hash),nothing);
+        if(element.contains(field_name))
+        {
+            std::string par_type = fBlockFormat["parameters"][field_name]["type"].get<std::string>();
+            std::cout<<"par type = "<<par_type<<std::endl;
+            if(par_type.find("reference") != std::string::npos)
+            {
+                for(std::size_t j=0; j<element[field_name].size(); j++)
+                {
+                    std::string line = MHO_VexDefinitions::RefTag() + fSpace + field_name + fSpace + MHO_VexDefinitions::AssignmentOp() + fSpace;
+                    line += element[field_name][j]["keyword"].get<std::string>();
+
+                    if(element[field_name][j].contains("qualifiers"))
+                    {
+                        for(std::size_t k=0; k<element[field_name][j]["qualifiers"].size(); k++)
+                        {
+                            line += MHO_VexDefinitions::ElementDelim() + element[field_name][j]["qualifiers"][k].get<std::string>();
+                        }
+                    }
+                    line += MHO_VexDefinitions::StatementLineEnd();
+                    //std::cout<<line<<std::endl;
+                    //std::string line = fLineGen.ConstructElementLine(field_name, element[field_name][j], fBlockFormat["parameters"][field_name]);
+                    if(line.size() != 0){lines.push_back(line);}
+                }
             }
         }
         ////std::cout<<field_name<<std::endl;

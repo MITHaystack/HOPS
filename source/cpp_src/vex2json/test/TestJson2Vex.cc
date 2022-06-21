@@ -32,11 +32,6 @@ int main(int argc, char** argv)
 
     gen.GenerateVex(root);
 
-    // //open and dump to file 
-    // 
-    // std::ofstream outFile(output_file.c_str(), std::ofstream::out);
-    // outFile << vex;
-    // outFile.close();
 
     return 0;
 }
