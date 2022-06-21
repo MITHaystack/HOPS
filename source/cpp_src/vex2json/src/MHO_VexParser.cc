@@ -43,7 +43,7 @@ MHO_VexParser::DetermineFileVersion()
                 std::size_t end_pos = contents.find_first_of(";");
                 if(start_pos != std::string::npos && end_pos != std::string::npos)
                 {
-                    std::string rev = contents.substr(start_pos, end_pos-start_pos);
+                    std::string rev = contents.substr(start_pos+1, end_pos-start_pos-1);
                     std::string revision = MHO_Tokenizer::TrimLeadingAndTrailingWhitespace(rev);
                     SetVexVersion(revision);
                     determined_rev = true;
@@ -305,18 +305,14 @@ MHO_VexParser::IsBlockStart(std::string line, std::string blk_name)
     return false;
 }
 
-void 
-MHO_VexParser::SetVexVersion(const char* version)
-{
-    std::string vers(version);
-    SetVexVersion(vers);
-}
 
 void 
 MHO_VexParser::SetVexVersion(std::string version)
 {
-    fVexDef.SetVexVersion(version);
+    fVexVersion = version;
+    fVexDef.SetVexVersion(fVexVersion);
     fBlockNames = fVexDef.GetBlockNames();
+    fBlockParser.SetFormatDirectory(fVexDef.GetFormatDirectory());
 }
 
 }
