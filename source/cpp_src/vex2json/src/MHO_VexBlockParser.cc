@@ -12,23 +12,50 @@ namespace hops
 MHO_VexBlockParser::MHO_VexBlockParser()
 {
     fBlockLines = nullptr;
+    //defaults, but stop/start tags vary by block
     fStartTag = "def";
     fStopTag = "enddef";
-    fChanDefTag = "chan_def";
-    fIFDefTag = "if_def";
-    fRefTag = "ref";
-    fAssignmentDelim = "=;";
-    fWhitespaceDelim = " \t\r\n";
-    fVexDelim = ":";
-    fStartTagDelim = fWhitespaceDelim + ";";
-    fTokenizer.SetDelimiter(fVexDelim);
-    fTokenizer.SetUseMulticharacterDelimiterFalse();
-    fTokenizer.SetIncludeEmptyTokensFalse();
-    fTokenizer.SetRemoveLeadingTrailingWhitespaceFalse();
-    fTokenizer.SetPreserveQuotesTrue();
 };
 
 MHO_VexBlockParser::~MHO_VexBlockParser(){};
+
+
+void 
+MHO_VexBlockParser::LoadBlockFormat(std::string block_name)
+{
+    fBlockFormatLoaded = false;
+    std::string block_format_file = GetBlockFormatFileName(block_name);
+    std::string format_file = fFormatDirectory + block_format_file;
+
+    std::ifstream bf_ifs;
+    bf_ifs.open( format_file.c_str(), std::ifstream::in );
+
+    mho_json bformat;
+    if(bf_ifs.is_open())
+    {
+        bformat = mho_json::parse(bf_ifs);
+        fBlockFormatLoaded = true;
+    }
+    bf_ifs.close();
+
+    if(fBlockFormatLoaded)
+    {
+        fBlockFormat = bformat;
+        fBlockName = block_name;
+        fStartTag = fBlockFormat["start_tag"].get<std::string>();
+        fStopTag = fBlockFormat["stop_tag"].get<std::string>();
+    }
+}
+
+std::string 
+MHO_VexBlockParser::GetBlockFormatFileName(std::string block_name)
+{
+    //remove '$', and convert to lower-case
+    std::string file_name = block_name.substr(1);
+    std::transform(file_name.begin(), file_name.end(), file_name.begin(), ::tolower);
+    file_name += ".json";
+    return file_name;
+}
 
 mho_json
 MHO_VexBlockParser::ParseBlockLines(std::string block_name, const std::vector< MHO_VexLine >* block_lines)
@@ -158,7 +185,7 @@ bool
 MHO_VexBlockParser::IsStartTag(const MHO_VexLine& line)
 {
     std::vector< std::string > tokens;
-    fTokenizer.SetDelimiter(fStartTagDelim);
+    fTokenizer.SetDelimiter( MHO_VexDefinitions::StartTagDelim() );
     fTokenizer.SetUseMulticharacterDelimiterFalse();
     fTokenizer.SetIncludeEmptyTokensFalse();
     fTokenizer.SetPreserveQuotesFalse();
@@ -167,7 +194,7 @@ MHO_VexBlockParser::IsStartTag(const MHO_VexLine& line)
     fTokenizer.GetTokens(&tokens);
     if(tokens.size() > 1)
     {
-        if(tokens[0] == fStartTag){return true;}
+        if(tokens[0] == fStartTag ){return true;}
     }
     return false;
 }
@@ -175,17 +202,17 @@ MHO_VexBlockParser::IsStartTag(const MHO_VexLine& line)
 bool 
 MHO_VexBlockParser::IsStopTag(const MHO_VexLine& line)
 {
-    if(line.fContents.find(fStopTag) != std::string::npos){return true;}
+    if(line.fContents.find( fStopTag ) != std::string::npos){return true;}
     return false;
 }
 
 bool 
 MHO_VexBlockParser::IsReferenceTag(const MHO_VexLine& line)
 {
-    if(line.fContents.find(fRefTag) != std::string::npos)
+    if(line.fContents.find( MHO_VexDefinitions::RefTag() ) != std::string::npos)
     {
         std::vector< std::string > tokens;
-        fTokenizer.SetDelimiter(fStartTagDelim);
+        fTokenizer.SetDelimiter( MHO_VexDefinitions::StartTagDelim() );
         fTokenizer.SetUseMulticharacterDelimiterFalse();
         fTokenizer.SetIncludeEmptyTokensFalse();
         fTokenizer.SetPreserveQuotesFalse();
@@ -194,7 +221,7 @@ MHO_VexBlockParser::IsReferenceTag(const MHO_VexLine& line)
         fTokenizer.GetTokens(&tokens);
         if(tokens.size() > 1)
         {
-            if(tokens[0] == fRefTag){return true;}
+            if(tokens[0] == MHO_VexDefinitions::RefTag() ){return true;}
         }
         return false;
     }
@@ -209,7 +236,7 @@ MHO_VexBlockParser::ProcessStartTag(const MHO_VexLine& line,
                      std::stack< mho_json* >& file_node,
                      std::stack< mho_json >& format_node)
 {
-    fTokenizer.SetDelimiter(fStartTagDelim);
+    fTokenizer.SetDelimiter( MHO_VexDefinitions::StartTagDelim() );
     fTokenizer.SetUseMulticharacterDelimiterFalse();
     fTokenizer.SetIncludeEmptyTokensFalse();
     fTokenizer.SetPreserveQuotesFalse();
@@ -262,7 +289,7 @@ MHO_VexBlockParser::ProcessLine(const MHO_VexLine& line,
                  mho_json* obj_node,
                  mho_json& format)
 {
-    fTokenizer.SetDelimiter(fAssignmentDelim);
+    fTokenizer.SetDelimiter(MHO_VexDefinitions::AssignmentDelim());
     fTokenizer.SetUseMulticharacterDelimiterFalse();
     fTokenizer.SetRemoveLeadingTrailingWhitespaceTrue();
     fTokenizer.SetIncludeEmptyTokensFalse();
@@ -289,19 +316,15 @@ MHO_VexBlockParser::ProcessLine(const MHO_VexLine& line,
         //only used to encapsulate strings which must preserved, but are also
         //used to indicate minutes/seconds of arc in RA/DEC so for very specific
         //lines (i.e. source coordinates) we need to set this to false
-
         if(fBlockName == "$SOURCE")
         {
             if(etype == vex_radec_type ){fTokenizer.SetPreserveQuotesFalse();}
             if(element_name == "datum"){fTokenizer.SetPreserveQuotesFalse();}
         }
 
-        // std::cout<<"parse: "<<tokens[0]<<"! = !"<<tokens[1]<<std::endl;
-        // std::cout<<"element_name = "<<element_name<<std::endl;
-
         //data exists to the right of '=', before the ';'
         std::string data = tokens[1]; //everything between '=' and ";"
-        fTokenizer.SetDelimiter(fVexDelim);
+        fTokenizer.SetDelimiter( MHO_VexDefinitions::ElementDelim() );
         fTokenizer.SetIncludeEmptyTokensTrue();
         fTokenizer.SetRemoveLeadingTrailingWhitespaceTrue();
         fTokenizer.SetString(&data);
@@ -334,7 +357,7 @@ MHO_VexBlockParser::ProcessReference(const MHO_VexLine& line,
                                      mho_json* file_node,
                                      mho_json& format_node)
 {
-    fTokenizer.SetDelimiter(fAssignmentDelim);
+    fTokenizer.SetDelimiter(MHO_VexDefinitions::AssignmentDelim());
     fTokenizer.SetUseMulticharacterDelimiterFalse();
     fTokenizer.SetRemoveLeadingTrailingWhitespaceTrue();
     fTokenizer.SetIncludeEmptyTokensFalse();
@@ -350,14 +373,14 @@ MHO_VexBlockParser::ProcessReference(const MHO_VexLine& line,
     {
         //split first token on whitespace, verify 'ref' is present and extract the block name 
         std::vector< std::string > ref_tokens; 
-        fTokenizer.SetDelimiter(fWhitespaceDelim);
+        fTokenizer.SetDelimiter(MHO_VexDefinitions::WhitespaceDelim());
         fTokenizer.SetIncludeEmptyTokensFalse();
         fTokenizer.SetRemoveLeadingTrailingWhitespaceTrue();
         fTokenizer.SetString(&(tokens[0]));
         fTokenizer.GetTokens(&ref_tokens);
         if(ref_tokens.size() == 2)
         {
-            if(ref_tokens[0] == fRefTag)
+            if(ref_tokens[0] == MHO_VexDefinitions::RefTag() )
             {
                 element_block_name = ref_tokens[1];
                 if(!(format_node.contains(element_block_name)))
@@ -368,7 +391,7 @@ MHO_VexBlockParser::ProcessReference(const MHO_VexLine& line,
 
                 //split second token on ':' for parsable elements
                 std::vector< std::string > kq_tokens; 
-                fTokenizer.SetDelimiter(fVexDelim);
+                fTokenizer.SetDelimiter( MHO_VexDefinitions::ElementDelim() );
                 fTokenizer.SetIncludeEmptyTokensFalse();
                 fTokenizer.SetRemoveLeadingTrailingWhitespaceTrue();
                 fTokenizer.SetString(&(tokens[1]));
@@ -436,7 +459,7 @@ MHO_VexBlockParser::ProcessTokens(const std::string& element_name, mho_json& for
             element_data = tokens[0];
         break;
         case vex_radec_type:
-            element_data = tokens[0]; //TODO FIXME -- do we want to convert source coordinates?
+            element_data = tokens[0]; //leave source coordinates as strings, can convert later
         break;
         case vex_link_type:
             element_data = tokens[0];
@@ -461,7 +484,7 @@ MHO_VexBlockParser::ProcessCompound(const std::string& element_name, mho_json&fo
     std::size_t n_all_fields = fields.size();
 
     std::size_t token_idx = 0;
-    std::string hash = "#";
+    std::string hash = MHO_VexDefinitions::OptionalFlag();
     std::string nothing = "";
     for(auto it = fields.begin(); it != fields.end(); it++)
     {
@@ -503,26 +526,6 @@ MHO_VexBlockParser::ProcessCompound(const std::string& element_name, mho_json&fo
     return element_data;
 }
 
-// 
-// MHO_VexBlockParser::vex_element_type 
-// MHO_VexBlockParser::DetermineType(std::string etype)
-// {
-//     if(etype == "int"){return vex_int_type;}
-//     if(etype == "list_int"){return vex_list_int_type;}
-//     if(etype == "real"){return vex_real_type;}
-//     if(etype == "list_real"){return vex_list_real_type;}
-//     if(etype == "epoch"){return vex_epoch_type;}
-//     if(etype == "ra"){return vex_radec_type;}
-//     if(etype == "dec"){return vex_radec_type;}
-//     if(etype == "string"){return vex_string_type;}
-//     if(etype == "list_string"){return vex_list_string_type;}
-//     if(etype == "compound"){return vex_compound_type;}
-//     if(etype == "list_compound"){return vex_list_compound_type;}
-//     if(etype == "keyword"){return vex_keyword_type;}
-//     if(etype == "reference"){return vex_reference_type;}
-//     if(etype == "link"){return vex_link_type;}
-//     return vex_unknown_type;
-// }
 
 bool 
 MHO_VexBlockParser::MatchesType(const std::string& token, const std::string& type_name)
@@ -548,7 +551,7 @@ MHO_VexBlockParser::MatchesType(const std::string& token, const std::string& typ
                 if( fTokenProcessor.ContainsWhitespace(token) )  //if the value has units (we need to parse them out)
                 {
                     fTokenizer.SetString(&token);
-                    fTokenizer.SetDelimiter(fWhitespaceDelim);
+                    fTokenizer.SetDelimiter( MHO_VexDefinitions::WhitespaceDelim() );
                     fTokenizer.SetUseMulticharacterDelimiterFalse();
                     fTokenizer.SetIncludeEmptyTokensFalse();
                     fTokenizer.GetTokens(&tmp_tok);
@@ -598,41 +601,5 @@ MHO_VexBlockParser::MatchesType(const std::string& token, const std::string& typ
 
 
 
-void 
-MHO_VexBlockParser::LoadBlockFormat(std::string block_name)
-{
-    fBlockFormatLoaded = false;
-    std::string block_format_file = GetBlockFormatFileName(block_name);
-    std::string format_file = fFormatDirectory + block_format_file;
-
-    std::ifstream bf_ifs;
-    bf_ifs.open( format_file.c_str(), std::ifstream::in );
-
-    mho_json bformat;
-    if(bf_ifs.is_open())
-    {
-        bformat = mho_json::parse(bf_ifs);
-        fBlockFormatLoaded = true;
-    }
-    bf_ifs.close();
-
-    if(fBlockFormatLoaded)
-    {
-        fBlockFormat = bformat;
-        fBlockName = block_name;
-        fStartTag = fBlockFormat["start_tag"].get<std::string>();
-        fStopTag = fBlockFormat["stop_tag"].get<std::string>();
-    }
-}
-
-std::string 
-MHO_VexBlockParser::GetBlockFormatFileName(std::string block_name)
-{
-    //remove '$', and convert to lower-case
-    std::string file_name = block_name.substr(1);
-    std::transform(file_name.begin(), file_name.end(), file_name.begin(), ::tolower);
-    file_name += ".json";
-    return file_name;
-}
 
 }//end namespace

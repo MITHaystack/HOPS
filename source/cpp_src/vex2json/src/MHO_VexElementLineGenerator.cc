@@ -4,7 +4,11 @@
 namespace hops 
 {
 
-MHO_VexElementLineGenerator::MHO_VexElementLineGenerator(){};
+MHO_VexElementLineGenerator::MHO_VexElementLineGenerator()
+{
+    fSpace = " ";
+};
+
 MHO_VexElementLineGenerator::~MHO_VexElementLineGenerator(){};
 
 std::string 
@@ -13,7 +17,7 @@ MHO_VexElementLineGenerator::ConstructElementLine(std::string element_name, mho_
 
     std::string element_typename = format["type"].get<std::string>();
     vex_element_type etype = MHO_VexDefinitions::DetermineType(element_typename);
-    std::string line = element_name + " = ";
+    std::string line = element_name + fSpace + MHO_VexDefinitions::AssignmentOp() + fSpace;
 
     std::string ret_val;
 
@@ -58,7 +62,7 @@ MHO_VexElementLineGenerator::ConstructElementLine(std::string element_name, mho_
         default:
         break;
     }
-    line += ret_val + ";\n";
+    line += ret_val + MHO_VexDefinitions::StatementLineEnd();
     return line;
 }
 
@@ -68,7 +72,7 @@ std::string
 MHO_VexElementLineGenerator::GenerateInt(std::string element_name, mho_json& obj)
 {
     std::stringstream val;
-    val << " " << obj.get<int>() <<" ";
+    val << fSpace << obj.get<int>() <<fSpace;
     return val.str();
 }
 
@@ -78,8 +82,8 @@ MHO_VexElementLineGenerator::GenerateListInt(std::string element_name, mho_json&
     std::stringstream val;
     for(std::size_t i=0; i<obj.size(); i++)
     {
-        val << " " << obj[i].get<double>() << " ";
-        if( i != (obj.size()-1) ){ val << ":"; }
+        val << fSpace << obj[i].get<double>() << fSpace;
+        if( i != (obj.size()-1) ){ val << MHO_VexDefinitions::ElementDelim(); }
     }
     return val.str();
 }
@@ -91,11 +95,11 @@ MHO_VexElementLineGenerator::GenerateReal(std::string element_name, mho_json& ob
     val << std::setprecision(std::numeric_limits<double>::digits10 + 1);
     if(obj.contains("units") && obj.contains("value"))
     {
-        val << " " << obj["value"].get<double>() << " " << obj["units"].get<std::string>() << " ";// << ";\n";
+        val << fSpace << obj["value"].get<double>() << fSpace << obj["units"].get<std::string>() << fSpace;
     }
     else if(obj.contains("value"))
     {
-        val << " " << obj["value"].get<double>() << " ";// << ";\n";
+        val << fSpace << obj["value"].get<double>() << fSpace;
     }
     else
     {
@@ -115,21 +119,21 @@ MHO_VexElementLineGenerator::GenerateListReal(std::string element_name, mho_json
         {
             if(i == 0)
             {
-                val << " " << obj["values"][i].get<double>() << " " << obj["units"].get<std::string>() << " ";
+                val << fSpace << obj["values"][i].get<double>() << fSpace << obj["units"].get<std::string>() << fSpace;
             }
             else 
             {
-                val << " " << obj["values"][i].get<double>() << " ";
+                val << fSpace << obj["values"][i].get<double>() << fSpace;
             }
-            if( i != (obj["values"].size()-1) ){ val << ":"; }
+            if( i != (obj["values"].size()-1) ){ val << MHO_VexDefinitions::ElementDelim(); }
         }
     }
     else if(obj.contains("values"))
     {
         for(std::size_t i=0; i<obj["values"].size(); i++)
         {
-            val << " " << obj["values"][i].get<double>() << " ";
-            if( i != (obj["values"].size()-1) ){ val << ":"; }
+            val << fSpace << obj["values"][i].get<double>() << fSpace;
+            if( i != (obj["values"].size()-1) ){ val << MHO_VexDefinitions::ElementDelim(); }
         }
     }
     else
@@ -143,7 +147,7 @@ std::string
 MHO_VexElementLineGenerator::GenerateKeyword(std::string element_name, mho_json& obj)
 {
     std::stringstream val;
-    val << " " << obj.get<std::string>() << " ";
+    val << fSpace << obj.get<std::string>() << fSpace;
     return val.str();
 }
 
@@ -151,7 +155,7 @@ std::string
 MHO_VexElementLineGenerator::GenerateString(std::string element_name, mho_json& obj)
 {
     std::stringstream val;
-    val << " " << obj.get<std::string>() << " ";
+    val << fSpace << obj.get<std::string>() << fSpace;
     return val.str();
 }
 
@@ -161,8 +165,8 @@ MHO_VexElementLineGenerator::GenerateListString(std::string element_name, mho_js
     std::stringstream val;
     for(std::size_t i=0; i<obj.size(); i++)
     {
-        val << " " << obj[i].get<std::string>() << " ";
-        if( i != (obj.size()-1) ){ val << ":"; }
+        val << fSpace << obj[i].get<std::string>() << fSpace;
+        if( i != (obj.size()-1) ){ val << MHO_VexDefinitions::ElementDelim(); }
     }
     return val.str();
 }
@@ -171,7 +175,7 @@ std::string
 MHO_VexElementLineGenerator::GenerateEpoch(std::string element_name, mho_json& obj)
 {
     std::stringstream val;
-    val << " " << obj.get<std::string>() << " ";
+    val << fSpace << obj.get<std::string>() << fSpace;
     return val.str();
 }
 
@@ -179,7 +183,7 @@ std::string
 MHO_VexElementLineGenerator::GenerateRaDec(std::string element_name, mho_json& obj)
 {
     std::stringstream val;
-    val << " " << obj.get<std::string>() << " ";
+    val << fSpace << obj.get<std::string>() << fSpace;
     return val.str();
 }
 
@@ -187,7 +191,7 @@ std::string
 MHO_VexElementLineGenerator::GenerateLink(std::string element_name, mho_json& obj)
 {
     std::stringstream val;
-    val << " " << obj.get<std::string>() << " ";
+    val << fSpace << obj.get<std::string>() << fSpace;
     return val.str();
 }
 
@@ -196,7 +200,7 @@ MHO_VexElementLineGenerator::GenerateCompound(std::string element_name, mho_json
 {
     std::vector< std::string > components;
     //loop over items in format, and extract from element
-    std::string hash = "#";
+    std::string hash = MHO_VexDefinitions::OptionalFlag();
     std::string nothing = "";
 
     for(std::size_t i=0; i<format["fields"].size(); i++)
@@ -260,7 +264,7 @@ MHO_VexElementLineGenerator::GenerateCompound(std::string element_name, mho_json
     for(std::size_t j=0; j<components.size(); j++)
     {
         line += components[j];
-        if(j < components.size() - 1){ line += " : ";}
+        if(j < components.size() - 1){ line += fSpace + MHO_VexDefinitions::ElementDelim() + fSpace;}
     }
     return line;
 }
@@ -269,7 +273,7 @@ MHO_VexElementLineGenerator::GenerateCompound(std::string element_name, mho_json
 bool
 MHO_VexElementLineGenerator::IsOptionalField(std::string& field_name)
 {
-    if( field_name.find_first_of("#") != std::string::npos){return true;}
+    if( field_name.find_first_of( MHO_VexDefinitions::OptionalFlag() ) != std::string::npos){return true;}
     return false;
 }
 

@@ -7,7 +7,7 @@
 *@author: J. Barrett
 *@email: barrettj@mit.edu
 *@date:
-*@brief:
+*@brief: Basic definitions of various tokens and utilities
 */
 
 #include <string>
@@ -49,13 +49,10 @@ class MHO_VexDefinitions
 
         std::vector< std::string > GetBlockNames() const {return fBlockNames;}
 
-        static std::string StartTag() {return std::string("def");};
-        static std::string StopTag() {return std::string("enddef");};
         static std::string BlockStartFlag() {return std::string("$");};
-        static std::string ChanDefTag() {return std::string("chan_def");};
-        static std::string IFDefTag() {return std::string("if_def");};
         static std::string RefTag() {return std::string("ref");}
         static std::string WhitespaceDelim() {return std::string(" \t\r\n");};
+        static std::string AssignmentOp() {return std::string("=");};
         static std::string AssignmentDelim() {return std::string("=;");};
         static std::string StartTagDelim() {return std::string(" \t\r\n;");};
         static std::string ElementDelim() {return ":";};
@@ -65,9 +62,11 @@ class MHO_VexDefinitions
         static std::string EndLiteralFlag() {return std::string("end_literal");};
         static std::string CommentFlag() {return std::string("*");};
         static std::string StatementEndFlag() {return std::string(";");};
+        static std::string StatementLineEnd() {return std::string(";\n");};
+
+        static std::string OptionalFlag() {return std::string("#");};
 
         static vex_element_type DetermineType(std::string etype);
-
 
     private:
 
