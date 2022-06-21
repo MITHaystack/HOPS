@@ -39,6 +39,7 @@ class MHO_VexGenerator
         std::string fFilename;
 
         //format definition 
+        std::string fSpace;
         MHO_VexDefinitions fVexDef;
         std::string fFormatDirectory;
         std::string fVexRevisionFlag;
@@ -54,6 +55,7 @@ class MHO_VexGenerator
 
         void ConstructBlockLines(mho_json& root, std::string block_name, std::vector< std::string >& lines);
         void ConstructElementLines(mho_json& element, std::vector< std::string >& lines);
+        void ConstructReferenceLines(mho_json& element, std::vector< std::string >& lines);
 
         MHO_VexElementLineGenerator fLineGen;
 
