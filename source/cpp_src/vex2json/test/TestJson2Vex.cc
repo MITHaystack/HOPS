@@ -27,7 +27,6 @@ int main(int argc, char** argv)
     ifs.close();
     
     MHO_VexGenerator gen;
-    gen.SetVexVersion("2.0");
     std::string output_file("./test.vex");
     gen.SetFilename(output_file);
 

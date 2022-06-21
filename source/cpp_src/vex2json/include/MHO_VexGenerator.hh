@@ -22,7 +22,6 @@
 #include "MHO_VexElementLineGenerator.hh"
 #include "MHO_VexDefinitions.hh"
 
-
 namespace hops 
 {
 
@@ -32,9 +31,6 @@ class MHO_VexGenerator
         MHO_VexGenerator();
         virtual ~MHO_VexGenerator();
 
-        void SetVexVersion(std::string version);
-        void SetVexVersion(const char* version);
-
         void SetFilename(std::string filename);
         void GenerateVex(mho_json& root);
 
@@ -42,7 +38,14 @@ class MHO_VexGenerator
 
         std::string fFilename;
 
-
+        //format definition 
+        MHO_VexDefinitions fVexDef;
+        std::string fFormatDirectory;
+        std::string fVexRevisionFlag;
+        std::string fVexVersion;
+        std::vector< std::string > fBlockNames;
+        void SetVexVersion(std::string version);
+        void SetVexVersion(const char* version){ SetVexVersion( std::string(version) );};
 
         bool fBlockFormatLoaded;
         mho_json fBlockFormat;
@@ -51,13 +54,6 @@ class MHO_VexGenerator
 
         void ConstructBlockLines(mho_json& root, std::string block_name, std::vector< std::string >& lines);
         void ConstructElementLines(mho_json& element, std::vector< std::string >& lines);
-
-        //format definition 
-        std::string GetFormatDirectory() const;
-        std::string fFormatDirectory;
-        std::string fVexRevisionFlag;
-        std::string fVexVersion;
-        std::vector< std::string > fBlockNames;
 
         MHO_VexElementLineGenerator fLineGen;
 
