@@ -39,15 +39,14 @@ void MHO_VexGenerator::GenerateVex(mho_json& root)
         all_lines.insert(all_lines.end(), block_lines.begin(), block_lines.end());
     }
 
-    //open file and write out lines 
+    //open and dump to file 
+    std::ofstream outFile(fFilename.c_str(), std::ofstream::out);
+    if(outFile.is_open())
     for(auto lit = all_lines.begin(); lit != all_lines.end(); lit++)
     {
-        std::cout<< *lit ;
+        outFile << *lit ;
     }
-
-
-    //close file
-
+    outFile.close();
 }
 
 
