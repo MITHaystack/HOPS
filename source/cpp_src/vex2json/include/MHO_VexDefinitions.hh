@@ -68,6 +68,8 @@ class MHO_VexDefinitions
 
         static vex_element_type DetermineType(std::string etype);
 
+        static bool IsOptionalField(std::string& field_name);
+
     private:
 
         std::string fFormatDirectory;

@@ -43,7 +43,6 @@ class MHO_VexElementLineGenerator
 
         std::string fSpace;
 
-        bool IsOptionalField(std::string& field_name);
         bool IsTrailingOptionalField(std::string field_name, mho_json& fields);
 
 };
