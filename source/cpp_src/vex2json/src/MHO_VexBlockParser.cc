@@ -506,6 +506,23 @@ MHO_VexBlockParser::ProcessCompound(const std::string& element_name, mho_json&fo
                     element_data[field_name] = ProcessTokens(field_name, next_format, tmp_tokens);
                     token_idx = tokens.size();
                 }
+                else if (element_name == "chan_def" && field_name == "channel_name" )
+                {
+                    //Deal with the stupid vex 2.0 case where there is no "optional" "channel_name" field in 
+                    //in the channel defintion but there is a list of "freq_state" elements following it.
+                    //Normally any valid text can be converted to a string, but in this case the only
+                    //way to tell whether the current token is the optional channel_name element or the leading integer 
+                    //in the frequency sequence is to explicitly check that this token is/isn't an integer.
+                    //If someone decides to specify a channel_name which is an integer value (1, 3, etc), then
+                    //the vex standard leaves this case undefined -- but we will (mis)interpret it as the leading index 
+                    //of the freq_state list.
+                    if( !MatchesType( tokens[token_idx], std::string("int") ) )
+                    {
+                        tmp_tokens.push_back(tokens[token_idx]);
+                        element_data[field_name] = ProcessTokens(field_name, next_format, tmp_tokens);
+                        token_idx++;
+                    }
+                }
                 else if( MatchesType( tokens[token_idx], type_name ) )
                 {
                     tmp_tokens.push_back(tokens[token_idx]);

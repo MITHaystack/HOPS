@@ -82,7 +82,7 @@ MHO_VexElementLineGenerator::GenerateListInt(std::string element_name, mho_json&
     std::stringstream val;
     for(std::size_t i=0; i<obj.size(); i++)
     {
-        val << fSpace << obj[i].get<double>() << fSpace;
+        val << fSpace << obj[i].get<int>() << fSpace;
         if( i != (obj.size()-1) ){ val << MHO_VexDefinitions::ElementDelim(); }
     }
     return val.str();
@@ -254,8 +254,8 @@ MHO_VexElementLineGenerator::GenerateCompound(std::string element_name, mho_json
         }
         else if( IsOptionalField(raw_field_name) && !IsTrailingOptionalField(raw_field_name, format["fields"]) )
         {
-            //add and empty place holder for optional fields which are not trailing elements
-            std::string ret_val = "";
+            //add and empty space for optional fields which are not trailing elements
+            std::string ret_val = fSpace;
             components.push_back(ret_val);
         }
     }
@@ -264,7 +264,7 @@ MHO_VexElementLineGenerator::GenerateCompound(std::string element_name, mho_json
     for(std::size_t j=0; j<components.size(); j++)
     {
         line += components[j];
-        if(j < components.size() - 1){ line += fSpace + MHO_VexDefinitions::ElementDelim() + fSpace;}
+        if(j < components.size() - 1){ line += MHO_VexDefinitions::ElementDelim();}
     }
     return line;
 }
