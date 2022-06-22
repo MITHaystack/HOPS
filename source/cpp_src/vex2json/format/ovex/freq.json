@@ -1,0 +1,58 @@
+{
+    "block_name": "$FREQ",
+    "version": "1.5c",
+    "start_tag": "def",
+    "stop_tag": "enddef",
+    "type" : "compound",
+    "block_type": "primitive",
+    "parameters" :
+    {
+        "chan_def":
+        {
+            "type": "list_compound",
+            "parameters":
+            {
+                "band_id": {"type": "link"},
+                "sky_frequency": {"type": "real", "dimension": "frequency"},
+                "net_sideband": {"type": "string"},
+                "bandwidth": {"type": "real", "dimension": "frequency"},
+                "channel_id": {"type": "link"},
+                "bbc_id": {"type": "link"},
+                "phase_cal_id": {"type": "link"},
+                "freq_state": {"type": "list_int"}
+            },
+            "fields": 
+            [
+                "#band_id",
+                "sky_frequency",
+                "net_sideband",
+                "bandwidth",
+                "channel_id",
+                "bbc_id",
+                "phase_cal_id",
+                "#freq_state"
+            ]
+        },
+        "switching_cycle":
+        {
+            "type": "list_compound",
+            "parameters":
+            {
+                "phasing": {"type": "string"},
+                "state_periods": {"type": "list_real", "dimension": "time"}
+            },
+            "fields": 
+            [
+                "phasing",
+                "state_periods"
+            ]
+        },
+        "sample_rate": {"type": "real", "dimension": "sample_rate"}
+    },
+    "fields": 
+    [
+        "chan_def",
+        "switching_cycle",
+        "sample_rate"
+    ]
+}

@@ -1,0 +1,33 @@
+{
+    "block_name": "$CLOCK",
+    "version": "1.5c",
+    "start_tag": "def",
+    "stop_tag": "enddef",
+    "type" : "compound",
+    "block_type": "primitive",
+    "parameters" :
+    {
+        "clock_early":
+        {
+            "type": "list_compound",
+            "parameters":
+            {
+                "start_validity_epoch":{"type" : "epoch"},
+                "clock_early_offset":{"type": "real", "dimension": "time"},
+                "origin_epoch":{"type" : "epoch"},
+                "clock_rate":{"type": "real", "dimension": "time/time"}
+            },
+            "fields": 
+            [
+                "#start_validity_epoch", 
+                "clock_early_offset", 
+                "#origin_epoch",
+                "#clock_rate"
+            ]
+        }
+    },
+    "fields": 
+    [
+        "clock_early"
+    ]
+}
