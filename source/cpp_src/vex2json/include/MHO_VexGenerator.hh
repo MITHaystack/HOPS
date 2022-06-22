@@ -34,6 +34,8 @@ class MHO_VexGenerator
         void SetFilename(std::string filename);
         void GenerateVex(mho_json& root);
 
+        void SetIndentPadding(std::string indent_pad){fIndentPad = indent_pad;}
+
     private:
 
         std::string fFilename;
@@ -48,15 +50,16 @@ class MHO_VexGenerator
         void SetVexVersion(std::string version);
         void SetVexVersion(const char* version){ SetVexVersion( std::string(version) );};
 
+        //for constructing the vex lines
+        std::string fPad; //indentation level for lines
+        std::string fIndentPad; //indentation "character"
         bool fBlockFormatLoaded;
         mho_json fBlockFormat;
         void LoadBlockFormat(std::string block_name);
         std::string GetBlockFormatFileName(std::string block_name);
-
         void ConstructBlockLines(mho_json& root, std::string block_name, std::vector< std::string >& lines);
         void ConstructElementLines(mho_json& element, std::vector< std::string >& lines);
         void ConstructReferenceLines(mho_json& element, std::vector< std::string >& lines);
-
         MHO_VexElementLineGenerator fLineGen;
 
 };
