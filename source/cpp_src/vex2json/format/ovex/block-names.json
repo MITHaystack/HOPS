@@ -1,0 +1,30 @@
+{
+    "version": "1.5c",
+    "block_names": 
+    [
+        "$OVEX_REV",
+        "$GLOBAL",
+        "$STATION",
+        "$MODE",
+        "$SCHED",
+        "$ANTENNA",
+        "$BBC",
+        "$CLOCK",
+        "$DAS",
+        "$EOP",
+        "$EXPER",
+        "$FREQ",
+        "$HEAD_POS",
+        "$IF",
+        "$PASS_ORDER",
+        "$PHASE_CAL_DETECT",
+        "$PROCEDURES",
+        "$ROLL",
+        "$SEFD",
+        "$SITE",
+        "$SOURCE",
+        "$TAPELOG_OBS",
+        "$TRACKS"
+    ]
+}
+
