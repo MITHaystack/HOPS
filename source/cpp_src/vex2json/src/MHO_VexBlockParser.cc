@@ -541,11 +541,11 @@ MHO_VexBlockParser::ProcessCompound(const std::string& element_name, mho_json&fo
                     //the next expected field
                     if( MHO_VexDefinitions::IsOptionalField(raw_field_name))
                     {
-                        msg_debug("vex", "could not parse <"<<tokens[token_idx]<<">  as type: "<<type_name<<", assuming optional field: "<< field_name << " is skipped." << eom);
+                        msg_debug("vex", "could not parse <"<<tokens[token_idx]<<"> as type: "<<type_name<<", assuming optional field: "<< field_name << " is skipped." << eom);
                     }
                     else 
                     {
-                        msg_warn("vex", "could not parse <"<<tokens[token_idx]<<">  as type: "<<type_name<<", for field: "<< field_name << ", skipping." << eom);
+                        msg_warn("vex", "could not parse <"<<tokens[token_idx]<<"> as type: "<<type_name<<", for field: "<< field_name << ", skipping." << eom);
                     }
                 }
             }
