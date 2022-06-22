@@ -82,24 +82,5 @@
         "semi-major_axis",
         "mean_motion",
         "orbit_epoch"
-        source_type
-        source_name
-        IAU_name
-        source_position_ref
-        ra
-        dec
-        ref_coord_frame
-        ra_rate
-        dec_rate
-        source_position_epoch
-        source_model
-        inclination
-        eccentricity
-        arg_perigee
-        ascending_node
-        mean_anomaly
-        semi_major_axis
-        mean_motion
-        orbit_epoch
     ]
 }

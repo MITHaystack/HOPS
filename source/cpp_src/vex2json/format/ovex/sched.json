@@ -41,44 +41,6 @@
                 "record_flag": {"type": "int"}
             },
             "fields": ["station", "data_good", "data_stop", "#media_position", "#pass", "#wrap_id", "#record_flag"]
-        },
-        "data_transfer":
-        {
-            "type":"list_compound",
-            "parameters":
-            {
-                "station": {"type": "keyword"},
-                "method": {"type": "string"},
-                "destination": {"type": "string"},
-                "data_start": {"type": "real", "dimension": "time"},
-                "data_stop": {"type": "real", "dimension":"NA"},
-                "options": {"type": "string"}
-            },
-            "fields": ["station", "method", "destination", "data_start", "data_stop", "options"]
-        },
-        "intent":
-        {
-            "type": "list_compound",
-            "parameters": 
-            {
-                "source": {"type": "keyword"},
-                "identifier": {"type": "string"},
-                "value": {"type":"string"}
-            },
-            "fields": ["source", "identifier", "value"]
-        },
-        "pointing_offset":
-        {
-            "type": "list_compound",
-            "parameters":
-            {
-                "station": {"type": "keyword"},
-                "coord1": {"type": "string"},
-                "offset1": {"type": "real", "dimension": "angle"},
-                "coord2": {"type": "string"},
-                "offset2":  {"type": "real", "dimension": "angle"}
-            },
-            "fields": ["#station", "coord1", "offset1", "coord2", "offset2"]
         }
     },
     "fields":
@@ -87,13 +49,6 @@
         "mode", 
         "source",
         "station",
-        "data_transfer",
-        "intent",
-        "pointing_offset"
-        start
-        mode
-        source
-        station
-        fourfit_reftime
+        "fourfit_reftime"
     ]
 }

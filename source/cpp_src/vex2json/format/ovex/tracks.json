@@ -66,6 +66,7 @@
             ]
         },
         "track_frame_format": {"type": "string"},
+        "bits_per_sample": {"type": "int"},
         "data_modulation": {"type": "string"},
         "VLBA_frmtr_sys_trk":
         {
@@ -122,20 +123,12 @@
         "fanout_def",
         "fanin_def",
         "track_frame_format",
+        "bits_per_sample",
+        "multiplex_ratio",
         "data_modulation",
         "VLBA_frmtr_sys_trk",
         "VLBA_trnsprt_sys_trk",
         "S2_recording_mode",
         "S2_data_source"
-        fanout_def
-        fanin_def
-        track_frame_format
-        data_modulation
-        bits/sample
-        multiplex_ratio
-        VLBA_frmtr_sys_trk
-        VLBA_trnsprt_sys_trk
-        S2_recording_mode
-        S2_data_source
     ]
 }

@@ -21,7 +21,6 @@
             },
             "fields": ["x", "y", "z"]
         },
-        "site_position_epoch": {"type": "epoch"},
         "site_position_ref": {"type": "string"},
         "site_velocity":
         {
@@ -47,7 +46,8 @@
         "mean_anomaly":  {"type": "real", "dimension":"angle"},
         "semi-major_axis":  {"type": "real", "dimension":"length"},
         "mean_motion":  {"type": "real", "dimension":"NA"},
-        "orbit_epoch": {"type": "epoch"}
+        "orbit_epoch": {"type": "epoch"},
+        "mk4_site_ID": {"type": "string"}
     },
     "fields": 
     [
@@ -55,7 +55,6 @@
         "site_name",
         "site_id",
         "site_position",
-        "site_position_epoch",
         "site_position_ref",
         "site_velocity",
         "horizon_map_az",
@@ -71,27 +70,7 @@
         "mean_anomaly",
         "semi-major_axis",
         "mean_motion",
-        "orbit_epoch"
-        site_type
-        site_name
-        site_ID
-        site_position
-        site_position_ref
-        site_velocity
-        horizon_map_az
-        horizon_map_el
-        zen_atmos
-        ocean_load_vert
-        ocean_load_horiz
-        occupation_code
-        inclination
-        eccentricity
-        arg_perigee
-        ascending_node
-        mean_anomaly
-        semi_major_axis
-        mean_motion
-        orbit_epoch
-        mk4_site_ID
+        "orbit_epoch",
+        "mk4_site_ID"
     ]
 }
