@@ -81,6 +81,7 @@ class MHO_VexBlockParser
         std::string fBlockName;
         std::string fFormatDirectory;
         const std::vector< MHO_VexLine >* fBlockLines;
+        std::size_t fCurrentLineNumber;
         
         std::string fStartTag;
         std::string fStopTag;

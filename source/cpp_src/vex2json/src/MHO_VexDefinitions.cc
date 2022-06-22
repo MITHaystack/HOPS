@@ -81,4 +81,11 @@ MHO_VexDefinitions::DetermineType(std::string etype)
     return vex_unknown_type;
 }
 
+bool
+MHO_VexDefinitions::IsOptionalField(std::string& field_name)
+{
+    if( field_name.find_first_of( OptionalFlag() ) != std::string::npos){return true;}
+    return false;
+}
+
 }

@@ -252,7 +252,7 @@ MHO_VexElementLineGenerator::GenerateCompound(std::string element_name, mho_json
             }
             components.push_back(ret_val);
         }
-        else if( IsOptionalField(raw_field_name) && !IsTrailingOptionalField(raw_field_name, format["fields"]) )
+        else if( MHO_VexDefinitions::IsOptionalField(raw_field_name) && !IsTrailingOptionalField(raw_field_name, format["fields"]) )
         {
             //add and empty space for optional fields which are not trailing elements
             std::string ret_val = fSpace;
@@ -270,17 +270,10 @@ MHO_VexElementLineGenerator::GenerateCompound(std::string element_name, mho_json
 }
 
 
-bool
-MHO_VexElementLineGenerator::IsOptionalField(std::string& field_name)
-{
-    if( field_name.find_first_of( MHO_VexDefinitions::OptionalFlag() ) != std::string::npos){return true;}
-    return false;
-}
-
 bool 
 MHO_VexElementLineGenerator::IsTrailingOptionalField(std::string field_name, mho_json& fields)
 {
-    if(IsOptionalField(field_name))
+    if(MHO_VexDefinitions::IsOptionalField(field_name))
     {
         std::size_t start_idx = 0;
         for(std::size_t i=0; i<fields.size(); i++)
@@ -292,7 +285,7 @@ MHO_VexElementLineGenerator::IsTrailingOptionalField(std::string field_name, mho
         for(std::size_t i=start_idx; i<fields.size(); i++)
         {
             std::string tmp_name = fields[i].get<std::string>();
-            if( !IsOptionalField(tmp_name) ){ret_val = false;}
+            if( !MHO_VexDefinitions::IsOptionalField(tmp_name) ){ret_val = false;}
         }
         return ret_val;
     }
