@@ -8,6 +8,7 @@
     "parameters" :
     {
         "antenna_diam" : {"type": "real", "dimension": "length"},
+        "antenna_name" : {"type": "string"},
         "axis_type" : 
         {
             "type": "compound",
@@ -69,15 +70,10 @@
     "fields": 
     [
         "antenna_diam",
+        "antenna_name",
         "axis_type",
         "axis_offset",
         "#antenna_motion",
         "#pointing_sector"
-        antenna_diam
-        antenna_name
-        axis_type
-        axis_offset
-        antenna_motion
-        pointing_sector
     ]
 }

@@ -86,16 +86,5 @@
         "midob_cal",
         "postob_cal",
         "procedure_name_prefix"
-        tape_change
-        headstack_motion
-        new_source_command
-        new_tape_setup
-        setup_always
-        parity_check
-        tape_prepass
-        preob_cal
-        midob_cal
-        postob_cal
-        procedure_name_prefix
     ]
 }

@@ -74,17 +74,5 @@
         "electronics_rack_name",
         "tape_motion",
         "tape_control"
-        record_transport_type
-        electronics_rack_type
-        number_drives
-        headstack
-        record_density
-        tape_length
-        recording_system_ID
-        record_transport_name
-        electronics_rack_ID
-        electronics_rack_name
-        tape_motion
-        tape_control
     ]
 }
