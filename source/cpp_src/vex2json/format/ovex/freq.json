@@ -12,6 +12,7 @@
             "type": "list_compound",
             "parameters":
             {
+                "channel_name": {"type": "string"},
                 "band_id": {"type": "link"},
                 "sky_frequency": {"type": "real", "dimension": "frequency"},
                 "net_sideband": {"type": "string"},
@@ -23,6 +24,7 @@
             },
             "fields": 
             [
+                "channel_name",
                 "#band_id",
                 "sky_frequency",
                 "net_sideband",

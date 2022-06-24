@@ -1,0 +1,10 @@
+{
+    "block_name": "$LOG",
+    "version": "1.5c",
+    "start_tag": "def",
+    "stop_tag": "enddef",
+    "type" : "unsupported",
+    "block_type": "unsupported",
+    "parameters" : {},
+    "fields": []
+}

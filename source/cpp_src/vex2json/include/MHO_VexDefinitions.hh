@@ -46,8 +46,9 @@ class MHO_VexDefinitions
         void SetVexVersion(const char* version);
 
         std::string GetFormatDirectory() const;
-
         std::vector< std::string > GetBlockNames() const {return fBlockNames;}
+
+        static std::string DetermineFileVersion(std::string filename);
 
         static std::string BlockStartFlag() {return std::string("$");};
         static std::string RefTag() {return std::string("ref");}
@@ -58,6 +59,7 @@ class MHO_VexDefinitions
         static std::string ElementDelim() {return ":";};
 
         static std::string VexRevisionFlag() {return std::string("VEX_rev");};
+        static std::string OVexRevisionFlag() {return std::string("$OVEX_REV");};
         static std::string StartLiteralFlag() {return std::string("start_literal");};
         static std::string EndLiteralFlag() {return std::string("end_literal");};
         static std::string CommentFlag() {return std::string("*");};
