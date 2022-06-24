@@ -24,51 +24,8 @@ MHO_VexParser::SetVexFile(std::string filename)
 void 
 MHO_VexParser::DetermineFileVersion()
 {
-    //read the first line to determine the vex revision
-    //vex standard states the revision statement must start at 1st char of 1st line
-    bool determined_rev = false;
-    if(fVexFileName != "")
-    {
-        //open input/output files
-        std::ifstream vfile(fVexFileName.c_str(), std::ifstream::in);
-        if(vfile.is_open() )
-        {
-            std::size_t line_count = 1;
-            std::string contents;
-            getline(vfile, contents);
-            std::size_t rev_pos = contents.find(fVexRevisionFlag);
-            if(rev_pos != std::string::npos)
-            {
-                std::size_t start_pos = contents.find_first_of("=");
-                std::size_t end_pos = contents.find_first_of(";");
-                if(start_pos != std::string::npos && end_pos != std::string::npos)
-                {
-                    std::string rev = contents.substr(start_pos+1, end_pos-start_pos-1);
-                    rev = MHO_Tokenizer::TrimLeadingAndTrailingWhitespace(rev);
-                    std::string revision = rev;
-                    //sanitize the version statment (only pass 1.5 or 2.0)
-                    if(rev.find("1.5") != std::string::npos ){revision = "1.5";}
-                    else if(rev.find("2.0") != std::string::npos ){revision = "2.0";}
-                    else 
-                    {
-                        msg_error("vex", "version string: "<< revision << "not understood, defaulting to vex version 1.5." << eom );
-                    }
-                    SetVexVersion(revision);
-                    determined_rev = true;
-                }
-            }
-            vfile.close();
-        }
-        else 
-        {
-            msg_error("vex", "could not open file: "<<fVexFileName<<eom);
-        }
-    }
-
-    if(!determined_rev)
-    {
-        msg_error("vex", "could not determine vex revision, defaulting to version: "<< fVexVersion << eom);
-    }
+    std::string rev = MHO_VexDefinitions::DetermineFileVersion(fVexFileName);
+    SetVexVersion(rev);
 }
 
 void 
@@ -108,7 +65,7 @@ MHO_VexParser::RemoveComments()
     for(auto it = fLines.begin(); it != fLines.end();)
     {
         std::size_t com_pos = it->fContents.find_first_of(flag);
-        if(com_pos != std::string::npos)
+        if(com_pos != std::string::npos || it->fContents.size() == 0)
         {
             if(com_pos == 0){it = fLines.erase(it);} //this entire line is a comment
             else
@@ -148,6 +105,64 @@ MHO_VexParser::MarkLiterals()
             }
         }
         else{ ++it; }
+    }
+}
+
+void
+MHO_VexParser::SplitStatements()
+{
+    //primitive search for start/end literal statements
+    std::string statement_end = fVexDef.StatementEndFlag();
+    auto it = fLines.begin();
+    while(it != fLines.end())
+    {
+        std::size_t n_stmt = std::count( it->fContents.begin(), it->fContents.end(), statement_end[0]);
+        if(n_stmt != 1)
+        {
+            //split this statement into multiple 'lines'
+            std::vector< std::size_t > positions;
+            std::vector< MHO_VexLine > split_lines;
+            for(std::size_t i=0; i<it->fContents.size(); i++)
+            {
+                if( it->fContents[i] == ';')
+                {
+                    positions.push_back(i);
+                    split_lines.push_back(*it);
+                }
+            }
+
+            std::size_t start = 0;
+            std::size_t length = 0;
+            for(std::size_t i=0; i<split_lines.size(); i++)
+            {
+                length = positions[i] + 1 - start;
+                split_lines[i].fContents = it->fContents.substr(start,length);
+                start = positions[i]+1;
+            }
+
+            it = fLines.erase(it);
+            if(it != fLines.begin()){--it;};
+            std::cout<<"inserting split lines:"<<std::endl;
+            for(std::size_t i=0; i<split_lines.size(); i++)
+            {
+                std::cout<<" ---- "<<split_lines[i].fContents<<std::endl;
+            }
+            fLines.insert(it, split_lines.begin(), split_lines.end());
+        }
+        else{++it;};
+    }
+}
+
+void
+MHO_VexParser::IndexStatements()
+{
+    std::size_t statement_idx = 0;
+    auto it = fLines.begin();
+    while(it != fLines.end())
+    {
+        it->fStatementNumber = statement_idx;
+        ++statement_idx;
+        ++it;
     }
 }
 
@@ -204,15 +219,15 @@ MHO_VexParser::MarkBlocks()
     for(auto blk_it = fFoundBlocks.begin(); blk_it != fFoundBlocks.end(); blk_it++)
     {
         auto line_it = fBlockStartLines[*blk_it];
-        std::size_t line_no = line_it->fLineNumber;
+        std::size_t line_no = line_it->fStatementNumber;
         std::string next_blk = "";
         std::size_t min_diff = fLines.size();
 
         for(auto blk_it2 = fFoundBlocks.begin(); blk_it2 != fFoundBlocks.end(); blk_it2++)
         {
             auto line_it2 = fBlockStartLines[*blk_it2];
-            std::size_t line_no2 = line_it2->fLineNumber;
-            if(blk_it != blk_it2 && line_no < line_no2)
+            std::size_t line_no2 = line_it2->fStatementNumber;
+            if(blk_it != blk_it2 && line_no <= line_no2)
             {
                 std::size_t diff = line_no2 - line_no;
                 if(diff < min_diff)
@@ -225,6 +240,7 @@ MHO_VexParser::MarkBlocks()
 
         if(next_blk != "")
         {
+            std::cout<<"next block after: "<< *blk_it <<" is "<< next_blk <<std::endl;
             fBlockStopLines[*blk_it] = fBlockStartLines[next_blk];
         }
         else 
@@ -237,11 +253,13 @@ MHO_VexParser::MarkBlocks()
 mho_json
 MHO_VexParser::ParseVex()
 {
-    ReadFile();
-    RemoveComments();
-    MarkLiterals();
-    JoinLines();
-    MarkBlocks();
+    ReadFile(); //read file into memory
+    RemoveComments(); //excise all comments
+    MarkLiterals(); //excise all 'literal' sections
+    SplitStatements(); //split multiple ";" on one line into many
+    IndexStatements();
+    JoinLines(); //not implemented -- join multiple lines into a single statement
+    MarkBlocks(); //mark the major parsable sections
 
     mho_json root;
     root[fVexDef.VexRevisionFlag()] = fVexVersion;
@@ -256,6 +274,7 @@ MHO_VexParser::ProcessBlocks(mho_json& root)
     for(auto blk_it = fFoundBlocks.begin(); blk_it != fFoundBlocks.end(); blk_it++)
     {
         std::string block_name = *blk_it;
+        msg_debug("vex", "processing block: "<<block_name<<eom);
         std::vector< MHO_VexLine > block_data = CollectBlockLines(block_name);
         mho_json block = fBlockParser.ParseBlockLines(block_name, &block_data);
         root[block_name] = block;

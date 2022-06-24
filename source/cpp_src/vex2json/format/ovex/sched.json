@@ -41,7 +41,8 @@
                 "record_flag": {"type": "int"}
             },
             "fields": ["station", "data_good", "data_stop", "#media_position", "#pass", "#wrap_id", "#record_flag"]
-        }
+        },
+        "fourfit_reftime": {"type": "epoch"}
     },
     "fields":
     [

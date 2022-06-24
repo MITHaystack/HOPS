@@ -24,7 +24,14 @@
         "$SITE",
         "$SOURCE",
         "$TAPELOG_OBS",
-        "$TRACKS"
+        "$TRACKS",
+        "$EVEX_REV",
+        "$EVEX",
+        "$IVEX_REV",
+        "$CORR_INIT",
+        "$PBS_INIT",
+        "$LVEX_REV",
+        "$LOG"
     ]
 }
 

@@ -66,7 +66,7 @@
             ]
         },
         "track_frame_format": {"type": "string"},
-        "bits_per_sample": {"type": "int"},
+        "bits/sample": {"type": "int"},
         "data_modulation": {"type": "string"},
         "VLBA_frmtr_sys_trk":
         {
@@ -123,7 +123,7 @@
         "fanout_def",
         "fanin_def",
         "track_frame_format",
-        "bits_per_sample",
+        "bitssample",
         "multiplex_ratio",
         "data_modulation",
         "VLBA_frmtr_sys_trk",
