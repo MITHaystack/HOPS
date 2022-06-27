@@ -35,6 +35,7 @@ namespace hops
 * @return JSON string
 */
 json convertToJSON(const type_203& t);
+json convertChStructToJSON (const ch_struct& t); 
 
 }
 
