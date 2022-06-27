@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <stdlib.h>
 
 #include "MHO_MK4Type203Converter.hh"
 
@@ -9,19 +10,28 @@ using namespace hops;
 
 int main(int argc, char** argv)
 {
+    srand (time(NULL));
 
     //create and fill in a type_203 struct with some dummy data 
     struct type_203 my203;
+    //struct type_203 my203 = {"202", "000", "unu", {{2, 20.0, "a", "b", "c", 10.0, 20.0, "foo", "bar"}, 
+    //                                                { 2, 20.0, "a", "b", "c", 10.0, 20.0, "foo", "bar"}};
+    for (int i = 0; i < 512; i++){
+        my203.channels[i].index = rand() % 20 + 1;
+        my203.channels[i].sample_rate = rand() % 20 + 1;
+        my203.channels[i].refsb = 'a' + rand() % 26;
+        my203.channels[i].remsb = 'a' + rand() % 26;
+        my203.channels[i].rempol = 'a' + rand() % 26;
+        my203.channels[i].ref_freq = rand() % 20 + 1 + .5;
+        my203.channels[i].rem_freq = rand() % 20 + 1 + .5;
+        strcpy(my203.channels[i].ref_chan_id, "foo");
+        strcpy(my203.channels[i].rem_chan_id, "bar");
+    }
 
-    strcpy(my203.record_id, "202"); 
-    strcpy(my203.version_no, "000"); 
-    strcpy(my203.ref_name, "abcdefgh"); 
-    strcpy(my203.rem_name, "jklmnopq"); 
-    strcpy(my203.ref_tape, "jklmnopq"); 
-    strcpy(my203.rem_tape, "jklmnopq"); 
+    //std::cout << "Channels are " << my203.channels << "\n";
+    //std::cout << my203.channels[0].index << "\n";
 
     json obj = convertToJSON(my203);
-
     std::cout << obj.dump(2) << std::endl;
 
 
