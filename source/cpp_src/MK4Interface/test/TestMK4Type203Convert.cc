@@ -17,7 +17,7 @@ int main(int argc, char** argv)
     //struct type_203 my203 = {"202", "000", "unu", {{2, 20.0, "a", "b", "c", 10.0, 20.0, "foo", "bar"}, 
     //                                                { 2, 20.0, "a", "b", "c", 10.0, 20.0, "foo", "bar"}...};
     for (int i = 0; i < 512; i++){
-        if (i == 2 || i = 511){
+        if (i == 2 || i == 511){
             // set to null    
             my203.channels[i].index = 0;
             my203.channels[i].sample_rate = 0;
