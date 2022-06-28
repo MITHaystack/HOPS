@@ -15,17 +15,31 @@ int main(int argc, char** argv)
     //create and fill in a type_203 struct with some dummy data 
     struct type_203 my203;
     //struct type_203 my203 = {"202", "000", "unu", {{2, 20.0, "a", "b", "c", 10.0, 20.0, "foo", "bar"}, 
-    //                                                { 2, 20.0, "a", "b", "c", 10.0, 20.0, "foo", "bar"}};
+    //                                                { 2, 20.0, "a", "b", "c", 10.0, 20.0, "foo", "bar"}...};
     for (int i = 0; i < 512; i++){
-        my203.channels[i].index = rand() % 20 + 1;
-        my203.channels[i].sample_rate = rand() % 20 + 1;
-        my203.channels[i].refsb = 'a' + rand() % 26;
-        my203.channels[i].remsb = 'a' + rand() % 26;
-        my203.channels[i].rempol = 'a' + rand() % 26;
-        my203.channels[i].ref_freq = rand() % 20 + 1 + .5;
-        my203.channels[i].rem_freq = rand() % 20 + 1 + .5;
-        strcpy(my203.channels[i].ref_chan_id, "foo");
-        strcpy(my203.channels[i].rem_chan_id, "bar");
+        if (i == 2 || i = 511){
+            // set to null    
+            my203.channels[i].index = 0;
+            my203.channels[i].sample_rate = 0;
+            my203.channels[i].refsb = 'z';
+            my203.channels[i].remsb = 'z';
+            my203.channels[i].rempol = 'z';
+            my203.channels[i].ref_freq = 0;
+            my203.channels[i].rem_freq = 0;
+            strcpy(my203.channels[i].ref_chan_id, "zzz");
+            strcpy(my203.channels[i].rem_chan_id, "zzz");
+
+        } else {
+            my203.channels[i].index = rand() % 20 + 1;
+            my203.channels[i].sample_rate = rand() % 20 + 1;
+            my203.channels[i].refsb = 'a' + rand() % 26;
+            my203.channels[i].remsb = 'a' + rand() % 26;
+            my203.channels[i].rempol = 'a' + rand() % 26;
+            my203.channels[i].ref_freq = rand() % 20 + 1 + .5;
+            my203.channels[i].rem_freq = rand() % 20 + 1 + .5;
+            strcpy(my203.channels[i].ref_chan_id, "foo");
+            strcpy(my203.channels[i].rem_chan_id, "bar");
+        }
     }
 
     //std::cout << "Channels are " << my203.channels << "\n";
@@ -33,7 +47,6 @@ int main(int argc, char** argv)
 
     json obj = convertToJSON(my203);
     std::cout << obj.dump(2) << std::endl;
-
 
     return 0;
 }
