@@ -1,9 +1,6 @@
 #include "MHO_MK4Type203Converter.hh"
-//#include "sizelimits.h"
 #include "../../../c_src/applications/aedit/include/sizelimits.h"
 #include <iostream>
-//path to include
-//source/c_src/applications/aedit/include/sizelimits.h
 
 const int numberOfChannels = 8*MAXFREQ;
 
