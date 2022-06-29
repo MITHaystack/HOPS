@@ -34,8 +34,11 @@ namespace hops
 * @param t pointer
 * @return JSON string
 */
+
 json convertToJSON(const type_203& t);
-json convertChStructToJSON (const ch_struct& t); 
+json convertChannelArrayToJSON (const type_203 &t);
+json convertChannelToJSON (const type_203 &t, int channel);
+void printChannelArray (const type_203 &t);
 
 }
 
