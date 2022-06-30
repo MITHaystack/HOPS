@@ -12,10 +12,9 @@ int main(int argc, char** argv)
 {
     srand (time(NULL));
 
-    //create and fill in a type_203 struct with some dummy data 
     struct type_203 my203;
-    //struct type_203 my203 = {"202", "000", "unu", {{2, 20.0, "a", "b", "c", 10.0, 20.0, "foo", "bar"}, 
-    //                                                { 2, 20.0, "a", "b", "c", 10.0, 20.0, "foo", "bar"}...};
+
+    //create and fill in a type_203 struct with some dummy data 
     strcpy(my203.record_id, "202"); 
     strcpy(my203.version_no, "000"); 
 
@@ -33,9 +32,6 @@ int main(int argc, char** argv)
             strcpy(my203.channels[i].rem_chan_id, "bar");
         } 
     }
-
-    //std::cout << "Channels are " << my203.channels << "\n";
-    //std::cout << my203.channels[0].index << "\n";
 
     json obj = convertToJSON(my203);
     std::cout << obj.dump(2) << std::endl;
