@@ -38,19 +38,7 @@ const int numberOfChannels = 8*MAXFREQ;
 namespace hops {
 
     json convertToJSON(const type_203& t) {
-	    // use a for loop to loop over the channels
-	    // use a seperate function that just processes a channel struct
-	    // return a json object for those channel and push in to a list
-	    // stop when channel struct is no longer populated
-	    // figure out what to do with garbage later
-	    //get each channel
-      // pass array of channel structs to function
-      //json jsonChannels = convertChannelArrayToJSON(t);
-        //pass array back to JSON library
         return {
-          // logic to handle edge cases where the record_id and version_no are 32 chars and correlator is 8 chars
-          // this is a holdover from the previous fortran code and is an issue upstream with the c code
-          // a 32 char or 8 char array without null termination could be passed to this function and cause a memory overflow
           {"record_id", std::string(t.record_id, 3).c_str()},
           {"version_no", std::string(t.version_no, 2).c_str()},
 	
@@ -58,16 +46,12 @@ namespace hops {
 	      };
     }
 
-    // 1. have a function that turns ONE channel in JSON
-    // 2. map the channels in to JSON
-    // 3. set field in parent JSON object to the JSON object that contains an array of channels in JSON
     json convertChannelArrayToJSON (const type_203 &t) {
       int channel;
       json JSONChannels[512];
     
 	      for (channel = 0; channel < numberOfChannels; channel++) {
-          //check if channel is valid (initialized or empty)
-          //append to array here...
+          // Note: this does not check if channel is valid (initialized or empty)
           JSONChannels[channel] = convertChannelToJSON(t, channel);
 
         }
@@ -90,7 +74,6 @@ namespace hops {
 
     }
 
-    //json convertChannelArrayToJSON (const type_203 &t) {
     void printChannelArray (const type_203 &t) {
       int channel;
 
@@ -98,11 +81,6 @@ namespace hops {
 	      for (channel = 0; channel < numberOfChannels; channel++) {
             std::cout << "Channel index " << channel << ": " << t.channels[channel].index << "\n";
             std::cout << "Channel refsb " << channel << ": " << t.channels[channel].refsb << "\n";
-            //get each channel
-            //check if valid channel (make helper function isValid() check if first char is "" empty string or index is -1)
-            //json result = convertChannelStructToJSON(t.channels[channel]);
-            // pushback to array
-
 	      }
 
     }
