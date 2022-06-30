@@ -36,11 +36,11 @@ namespace hops {
 	    {"stop_offset", t.stop_offset},
 	    {"software_rev", t.software_rev},
 
-	    // The date unit of measurement requirement are currently unknown
-	    {"scantime", "null"},
-	    {"corr_date", "null"},
-	    {"fourfit_date", "null"},
-	    {"frt", "null"}
+	    // the date unit of measurement requirement is currently unknown
+	    {"scantime",nlohmann::detail::value_t::null},
+	    {"corr_date", nlohmann::detail::value_t::null},
+	    {"fourfit_date", nlohmann::detail::value_t::null},
+	    {"frt", nlohmann::detail::value_t::null}
         };
     }
 }
