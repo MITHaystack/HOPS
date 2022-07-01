@@ -37,7 +37,7 @@ namespace hops
 
 json convertToJSON(const type_203& t);
 json convertChannelArrayToJSON (const type_203 &t);
-json convertChannelToJSON (const type_203 &t, int channel);
+json convertChannelToJSON (const ch_struct &t);
 void printChannelArray (const type_203 &t);
 
 }

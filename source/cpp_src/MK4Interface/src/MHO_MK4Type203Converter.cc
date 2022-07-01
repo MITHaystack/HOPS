@@ -42,7 +42,7 @@ namespace hops {
           {"record_id", std::string(t.record_id, 3).c_str()},
           {"version_no", std::string(t.version_no, 2).c_str()},
 	
-          {"channels", convertChannelArrayToJSON(t) }
+          {"channels", convertChannelArrayToJSON(t) } // change this to pass in only the ch_struct
 	      };
     }
 
@@ -52,23 +52,23 @@ namespace hops {
     
 	      for (channel = 0; channel < numberOfChannels; channel++) {
           // Note: this does not check if channel is valid (initialized or empty)
-          JSONChannels[channel] = convertChannelToJSON(t, channel);
+          JSONChannels[channel] = convertChannelToJSON(t.channels[channel]);
 
         }
         return JSONChannels;
     }
 
-    json convertChannelToJSON (const type_203 &t, int channel) {
+    json convertChannelToJSON (const ch_struct &t){
       return {
-        {"index", t.channels[channel].index},
-        {"sample_rate", t.channels[channel].sample_rate},
-        {"refsb", t.channels[channel].refsb},
-        {"remsb", t.channels[channel].remsb},
-        {"rempol", t.channels[channel].rempol},
-        {"ref_freq", t.channels[channel].ref_freq},
-        {"rem_freq", t.channels[channel].rem_freq},
-        {"ref_chan_id", t.channels[channel].rem_freq},
-        {"rem_chan_id", t.channels[channel].rem_chan_id}
+        {"index", t.index}, // once the function definition uses ch_struct, remove channels from the following
+        {"sample_rate", t.sample_rate},
+        {"refsb", t.refsb},
+        {"remsb", t.remsb},
+        {"rempol", t.rempol},
+        {"ref_freq", t.ref_freq},
+        {"rem_freq", t.rem_freq},
+        {"ref_chan_id", t.rem_freq},
+        {"rem_chan_id", t.rem_chan_id}
 
       };
 
