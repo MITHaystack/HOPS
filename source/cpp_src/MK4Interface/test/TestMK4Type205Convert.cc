@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include "MHO_MK4Type205Converter.hh"
 
-const int numberOfFfitChan = 16;
+const int NUMBEROFFFITCHAN = 16;
 
 using namespace hops;
 
@@ -50,7 +50,7 @@ int main(int argc, char** argv)
     my205.stop.minute = 33;
     my205.stop.second = 33;
     my205.ref_freq = 2;
-    for (int i = 0; i < numberOfFfitChan; i++){
+    for (int i = 0; i < NUMBEROFFFITCHAN; i++){
         my205.ffit_chan[i].ffit_chan_id = 'a';
         my205.ffit_chan[i].unused = 'u';
         my205.ffit_chan[i].channels[0] = 0;
