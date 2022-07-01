@@ -29,10 +29,28 @@ int main(int argc, char** argv)
     strcpy(my200.exper_name, "WYQXVxN4Ci6FAU7by7wQLPOnhGFlPGSx"); 
     strcpy(my200.scan_name, "NQxu5N642mOyC49l");  
     strcpy(my200.correlator, "baab");
-
+    my200.scantime.year = 2022;
+    my200.scantime.day = 22;
+    my200.scantime.hour = 22;
+    my200.scantime.minute = 22;
+    my200.scantime.second = 22;
     my200.start_offset = 0;
     my200.stop_offset = 1;
-
+    my200.corr_date.year = 2022;
+    my200.corr_date.day = 22;
+    my200.corr_date.hour = 22;
+    my200.corr_date.minute = 22;
+    my200.corr_date.second = 22;
+    my200.fourfit_date.year = 2022;
+    my200.fourfit_date.day = 22;
+    my200.fourfit_date.hour = 22;
+    my200.fourfit_date.minute = 22;
+    my200.fourfit_date.second = 22;
+    my200.frt.year = 2022;
+    my200.frt.day = 22;
+    my200.frt.hour = 22;
+    my200.frt.minute = 22;
+    my200.frt.second = 22;
 
     json obj = convertToJSON(my200);
 

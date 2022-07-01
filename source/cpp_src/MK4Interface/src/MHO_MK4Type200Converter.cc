@@ -1,5 +1,6 @@
 #include "MHO_MK4Type200Converter.hh"
 #include <iostream>
+#include "MHO_MK4JSONDateConverter.hh"
 
 // struct type_200
 //     {
@@ -19,6 +20,15 @@
 //     struct date         frt;                    /* Fourfit reference time */
 //     };
 
+//typedef struct date
+//    {   
+//    short year;
+//    short day;
+//    short hour;
+//    short minute;
+//    float second;
+//    } date_struct;
+
 namespace hops {
 
     json convertToJSON(const type_200& t) {
@@ -28,19 +38,19 @@ namespace hops {
 	    // a 32 char or 8 char array without null termination could be passed to this function and cause a memory overflow
 	    {"record_id", std::string(t.record_id, 3).c_str()},
 	    {"version_no", std::string(t.version_no, 2).c_str()},
+	    {"software_rev", t.software_rev},
 	    {"expt_no", t.expt_no},
 	    {"exper_name", std::string(t.exper_name, 32).c_str()},
 	    {"scan_name", std::string(t.scan_name, 32).c_str()},
 	    {"correlator", std::string(t.correlator, 8).c_str()},
+      {"scantime", convertDateToJSON(t.scantime)},
 	    {"start_offset", t.start_offset},
 	    {"stop_offset", t.stop_offset},
-	    {"software_rev", t.software_rev},
+      {"corr_date", convertDateToJSON(t.corr_date)},
+      {"fourfit_date", convertDateToJSON(t.fourfit_date)},
+      {"frt", convertDateToJSON(t.frt)}
 
 	    // the date unit of measurement requirement is currently unknown
-	    {"scantime",nlohmann::detail::value_t::null},
-	    {"corr_date", nlohmann::detail::value_t::null},
-	    {"fourfit_date", nlohmann::detail::value_t::null},
-	    {"frt", nlohmann::detail::value_t::null}
         };
     }
 }

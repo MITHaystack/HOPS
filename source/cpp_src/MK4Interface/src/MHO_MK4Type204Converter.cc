@@ -1,5 +1,15 @@
 #include "MHO_MK4Type204Converter.hh"
 #include <iostream>
+#include "MHO_MK4JSONDateConverter.hh"
+
+//typedef struct date
+//    {   
+//    short year;
+//    short day;
+//    short hour;
+//    short minute;
+//    float second;
+//    } date_struct;
 
 //struct type_204 
 //    {
@@ -25,11 +35,7 @@ namespace hops {
 
           // the date unit of measurement requirent is currently uknown
           // ffcf_date data
-          {"year", nlohmann::detail::value_t::null},
-          {"day", nlohmann::detail::value_t::null},
-          {"hour", nlohmann::detail::value_t::null},
-          {"minute", nlohmann::detail::value_t::null},
-          {"second", nlohmann::detail::value_t::null},
+          {"ffcf_date", convertDateToJSON(t.ffcf_date)},
 
           {"overrid", std::string(t.override, 128).c_str()}
 	
