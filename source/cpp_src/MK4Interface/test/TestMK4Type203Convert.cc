@@ -14,7 +14,7 @@ int main(int argc, char** argv)
 
     struct type_203 my203;
 
-    //create and fill in a type_203 struct with some dummy data 
+    // create and fill in a type_203 struct with some dummy data 
     strcpy(my203.record_id, "202"); 
     strcpy(my203.version_no, "000"); 
 
