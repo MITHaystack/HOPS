@@ -60,12 +60,28 @@ namespace hops {
         {"usb", t.usb}
       };
     }
-    json convertSidebandsArrayToJSON(const sidebands t[64]) { //this needs to be array of sidebands?
+    json convertSidebandsArrayToJSON(const sidebands t[64]) { 
       int i;
       json JSONsidebandsArray[REASONSARRAYSIZE];
  
       for (i = 0; i < REASONSARRAYSIZE; i++){
-        //JSONsidebandsArray[REASONSARRAYSIZE] = convertSidebandsToJSON(t);
+        JSONsidebandsArray[REASONSARRAYSIZE] = convertSidebandsToJSON(t[i]);
+      }
+      return JSONsidebandsArray;
+    }
+
+    json convertSidebandsToJSON(const sbweights &t){
+      return {
+        {"lsb", t.lsb},
+        {"usb", t.usb}
+      };
+    }
+
+    json convertSidebandsWeightArrayToJSON(const sbweights t[64]) {
+      int i;
+      json JSONsidebandsArray[REASONSARRAYSIZE];
+
+      for (i = 0; i < REASONSARRAYSIZE; i++){
         JSONsidebandsArray[REASONSARRAYSIZE] = convertSidebandsToJSON(t[i]);
       }
       return JSONsidebandsArray;
@@ -82,6 +98,7 @@ namespace hops {
           {"last_ap", t.last_ap},
           {"accepted", convertSidebandsArrayToJSON(t.accepted)},
           // add weights here
+          {"weights", convertSidebandsWeightArrayToJSON(t.weights)},
           {"intg_time", t.intg_time},
           {"accept_ratio", t.accept_ratio},
           {"discard", t.discard},
