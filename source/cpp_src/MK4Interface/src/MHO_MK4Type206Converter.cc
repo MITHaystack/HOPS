@@ -54,35 +54,36 @@ const int NUMBEROFREASONARRAYS = 8;
 //    };
 
 namespace hops {
-    json convertSidebandsToJSON(const sidebands &t){
+    json sidebandsToJSON(const sidebands &t){
       return {
         {"lsb", t.lsb},
         {"usb", t.usb}
       };
     }
-    json convertSidebandsArrayToJSON(const sidebands t[64]) { 
+
+    json sidebandsArrayToJSON(const sidebands t[64]) { 
       int i;
       json JSONsidebandsArray[REASONSARRAYSIZE];
  
       for (i = 0; i < REASONSARRAYSIZE; i++){
-        JSONsidebandsArray[REASONSARRAYSIZE] = convertSidebandsToJSON(t[i]);
+        JSONsidebandsArray[i] = sidebandsToJSON(t[i]);
       }
       return JSONsidebandsArray;
     }
 
-    json convertSidebandsToJSON(const sbweights &t){
+    json sbweightsToJSON(const sbweights &t){
       return {
         {"lsb", t.lsb},
         {"usb", t.usb}
       };
     }
 
-    json convertSidebandsWeightArrayToJSON(const sbweights t[64]) {
+    json sbweightsArrayToJSON(const sbweights t[64]) {
       int i;
       json JSONsidebandsArray[REASONSARRAYSIZE];
 
       for (i = 0; i < REASONSARRAYSIZE; i++){
-        JSONsidebandsArray[REASONSARRAYSIZE] = convertSidebandsToJSON(t[i]);
+        JSONsidebandsArray[i] = sbweightsToJSON(t[i]);
       }
       return JSONsidebandsArray;
     }
@@ -96,26 +97,24 @@ namespace hops {
           {"first_ap", t.first_ap},
           {"last_ap", t.last_ap},
           {"last_ap", t.last_ap},
-          {"accepted", convertSidebandsArrayToJSON(t.accepted)},
-          // add weights here
-          {"weights", convertSidebandsWeightArrayToJSON(t.weights)},
+          {"accepted", sidebandsArrayToJSON(t.accepted)},
+          {"weights", sbweightsArrayToJSON(t.weights)},
           {"intg_time", t.intg_time},
           {"accept_ratio", t.accept_ratio},
           {"discard", t.discard},
-          {"reason1", convertSidebandsArrayToJSON(t.reason1)},
-          {"reason2", convertSidebandsArrayToJSON(t.reason2)},
-          {"reason3", convertSidebandsArrayToJSON(t.reason3)},
-          {"reason4", convertSidebandsArrayToJSON(t.reason4)},
-          {"reason5", convertSidebandsArrayToJSON(t.reason5)},
-          {"reason6", convertSidebandsArrayToJSON(t.reason6)},
-          {"reason7", convertSidebandsArrayToJSON(t.reason7)},
-          {"reason8", convertSidebandsArrayToJSON(t.reason8)},
+          {"reason1", sidebandsArrayToJSON(t.reason1)},
+          {"reason2", sidebandsArrayToJSON(t.reason2)},
+          {"reason3", sidebandsArrayToJSON(t.reason3)},
+          {"reason4", sidebandsArrayToJSON(t.reason4)},
+          {"reason5", sidebandsArrayToJSON(t.reason5)},
+          {"reason6", sidebandsArrayToJSON(t.reason6)},
+          {"reason7", sidebandsArrayToJSON(t.reason7)},
+          {"reason8", sidebandsArrayToJSON(t.reason8)},
           {"ratesize", t.ratesize},
           {"mbdsize", t.mbdsize},
           {"sbdsize", t.sbdsize},
           {"unused2", std::string(t.unused2, 6).c_str()},
 	      };
     }
-
     
 }
