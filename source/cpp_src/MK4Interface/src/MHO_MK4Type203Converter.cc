@@ -2,7 +2,7 @@
 #include "../../../c_src/applications/aedit/include/sizelimits.h"
 #include <iostream>
 
-const int numberOfChannels = 8*MAXFREQ;
+const int NUMBEROFCHANNELS = 8*MAXFREQ;
 
 //struct ch_struct
 //    {
@@ -41,16 +41,15 @@ namespace hops {
         return {
           {"record_id", std::string(t.record_id, 3).c_str()},
           {"version_no", std::string(t.version_no, 2).c_str()},
-	
-          {"channels", convertChannelArrayToJSON(t) } // change this to pass in only the ch_struct
+          {"channels", convertChannelArrayToJSON(t)} 
 	      };
     }
 
     json convertChannelArrayToJSON (const type_203 &t) {
       int channel;
-      json JSONChannels[512];
+      json JSONChannels[NUMBEROFCHANNELS];
     
-	      for (channel = 0; channel < numberOfChannels; channel++) {
+	      for (channel = 0; channel < NUMBEROFCHANNELS; channel++) {
           // Note: this does not check if channel is valid (initialized or empty)
           JSONChannels[channel] = convertChannelToJSON(t.channels[channel]);
 
@@ -78,7 +77,7 @@ namespace hops {
       int channel;
 
       std::cout << "converting channels" << std::endl;
-	      for (channel = 0; channel < numberOfChannels; channel++) {
+	      for (channel = 0; channel < NUMBEROFCHANNELS; channel++) {
             std::cout << "Channel index " << channel << ": " << t.channels[channel].index << "\n";
             std::cout << "Channel refsb " << channel << ": " << t.channels[channel].refsb << "\n";
 	      }
