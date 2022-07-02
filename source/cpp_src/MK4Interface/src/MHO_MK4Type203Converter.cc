@@ -59,7 +59,7 @@ namespace hops {
 
     json convertChannelToJSON (const ch_struct &t){
       return {
-        {"index", t.index}, // once the function definition uses ch_struct, remove channels from the following
+        {"index", t.index},
         {"sample_rate", t.sample_rate},
         {"refsb", t.refsb},
         {"remsb", t.remsb},
