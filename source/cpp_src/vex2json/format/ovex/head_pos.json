@@ -1,6 +1,6 @@
 {
     "block_name": "$HEAD_POS",
-    "version": "1.5c",
+    "version": "1.5",
     "start_tag": "def",
     "stop_tag": "enddef",
     "type" : "compound",
