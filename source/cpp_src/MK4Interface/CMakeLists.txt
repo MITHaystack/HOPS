@@ -13,6 +13,7 @@ set (MK4INTERFACE_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MK4Type205Converter.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MK4Type206Converter.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MK4Type207Converter.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MK4Type208Converter.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MK4JSONDateConverter.hh
 )
 
@@ -31,6 +32,7 @@ set( MK4INTERFACE_SOURCEFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_MK4Type205Converter.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_MK4Type206Converter.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_MK4Type207Converter.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_MK4Type208Converter.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_MK4JSONDateConverter.cc
 )
 
