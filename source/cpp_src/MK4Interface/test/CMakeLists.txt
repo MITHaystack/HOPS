@@ -28,6 +28,8 @@ set(SOURCE_BASENAMES
     TestMK4Type206Convert
     TestMK4Type207Convert
     TestMK4Type208Convert
+    TestMK4Type210Convert
+    TestMK4Type212Convert
 )
 
 foreach( BASENAME ${SOURCE_BASENAMES} )
