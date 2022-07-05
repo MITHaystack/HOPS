@@ -22,6 +22,7 @@ void MHO_VexDefinitions::SetVexVersion(std::string version)
     if(version.find("1.5") != std::string::npos ){fVexVersion = "1.5";}
     else if(version.find("2.0") != std::string::npos ){fVexVersion = "2.0";}
     else if(version.find("ovex") != std::string::npos){fVexVersion = "ovex";}
+    else
     {
         msg_error("vex", "version string: "<< version << " not understood, defaulting to vex version 1.5." << eom );
     }

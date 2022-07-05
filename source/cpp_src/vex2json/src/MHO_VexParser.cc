@@ -233,7 +233,6 @@ MHO_VexParser::MarkBlocks()
 
         if(next_blk != "")
         {
-            std::cout<<"next block after: "<< *blk_it <<" is "<< next_blk <<std::endl;
             fBlockStopLines[*blk_it] = fBlockStartLines[next_blk];
         }
         else 
