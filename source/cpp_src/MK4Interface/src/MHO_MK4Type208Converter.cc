@@ -38,9 +38,8 @@
 
 namespace hops {
 
-    json convertToJSON(const type_208& t) {
-        return {
-          {"record_id", std::string(t.record_id, 3).c_str()},
+json convertToJSON(const type_208 &t) {
+  return {{"record_id", std::string(t.record_id, 3).c_str()},
           {"version_no", std::string(t.version_no, 2).c_str()},
           {"unused1", std::string(t.unused1, 2).c_str()},
           {"quality", std::string(t.quality, 2).c_str()},
@@ -70,8 +69,7 @@ namespace hops {
           {"totphase", t.totphase},
           {"totphase_ref", t.totphase_ref},
           {"resphase", t.resphase},
-          {"tec_error", t.tec_error}
-	      };
-    }
-    
+          {"tec_error", t.tec_error}};
 }
+
+} // namespace hops
