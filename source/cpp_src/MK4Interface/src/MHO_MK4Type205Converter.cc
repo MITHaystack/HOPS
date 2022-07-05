@@ -44,8 +44,8 @@ namespace hops {
 
        // because ffit_can is an unnamed struct, we can't pass it to functions easily so the following had to be done
        for (ffitChannel = 0; ffitChannel < NUMBEROFFFITCHAN; ffitChannel++){
-          JSONFfitChannels[ffitChannel] = {{"unused", t.ffit_chan[ffitChannel].unused}, 
-                              {"ffit_chan_id", t.ffit_chan[ffitChannel].ffit_chan_id},      
+          JSONFfitChannels[ffitChannel] = {{"unused", std::string(&(t.ffit_chan[ffitChannel].unused), 1).c_str()}, 
+                              {"ffit_chan_id", std::string(&(t.ffit_chan[ffitChannel].ffit_chan_id), 1).c_str()},      
                               {"channels", t.ffit_chan[ffitChannel].channels}
                             };
        }
