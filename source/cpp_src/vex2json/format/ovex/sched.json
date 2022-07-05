@@ -1,6 +1,6 @@
 {
     "block_name": "$SCHED",
-    "version": "1.5c",
+    "version": "1.5",
     "start_tag": "scan",
     "stop_tag": "endscan",
     "type" : "compound",

@@ -139,13 +139,7 @@ MHO_VexParser::SplitStatements()
                 split_lines[i].fContents = it->fContents.substr(start,length);
                 start = positions[i]+1;
             }
-
             it = fLines.erase(it);
-            std::cout<<"inserting split lines:"<<std::endl;
-            for(std::size_t i=0; i<split_lines.size(); i++)
-            {
-                std::cout<<" ---- "<<split_lines[i].fContents<<std::endl;
-            }
             fLines.insert(it, split_lines.begin(), split_lines.end());
         }
         else{++it;};
