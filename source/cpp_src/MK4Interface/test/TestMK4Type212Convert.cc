@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include "MHO_MK4Type212Converter.hh"
 
-const int DATASIZE = 64;
+const int DATASIZE = 1;
 
 using namespace hops;
 
