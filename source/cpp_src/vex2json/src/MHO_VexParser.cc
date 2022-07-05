@@ -141,7 +141,6 @@ MHO_VexParser::SplitStatements()
             }
 
             it = fLines.erase(it);
-            if(it != fLines.begin()){--it;};
             std::cout<<"inserting split lines:"<<std::endl;
             for(std::size_t i=0; i<split_lines.size(); i++)
             {
