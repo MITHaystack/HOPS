@@ -24,6 +24,7 @@ class MHO_DiFXScanFileSet
         virtual ~MHO_DiFXScanFileSet(){};
 
         //direct public access since all we are doing is get/set anyways
+        std::size_t fIndex; //numerical index
         std::string fScanName; //difx scan name
         std::string fInputBaseDirectory; //root input directory for this experiment
         std::string fOutputBaseDirectory; //root output directory for this experiment

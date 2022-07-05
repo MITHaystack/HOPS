@@ -1,12 +1,16 @@
 #include "MHO_DiFXScanProcessor.hh"
+#include "MHO_VexParser.hh"
+#include "MHO_VexGenerator.hh"
+
 
 namespace hops 
 {
 
 MHO_DiFXScanProcessor::MHO_DiFXScanProcessor()
 {
-    fRootCode = "uknown";
+    fRootCode = "unknown";
     fStationCodeMap = nullptr;
+    fPreserveDiFXScanNames = false;
 };
 
 MHO_DiFXScanProcessor::~MHO_DiFXScanProcessor()
@@ -23,13 +27,13 @@ void
 MHO_DiFXScanProcessor::ProcessScan(MHO_DiFXScanFileSet& fileSet)
 {
     fFileSet = &fileSet;
+    LoadInputFile(); //read .input file
     bool ok = CreateScanOutputDirectory();
     if(ok)
     {
-        LoadInputFile(); //read .input file and build freq table
-        ConvertRootFileObject(); //create the equivalent to the Mk4 'ovex' root file
         ConvertVisibilityFileObjects(); //convert visibilities and data weights 
         ConvertStationFileObjects(); //convert the station splines, and pcal data 
+        ConvertRootFileObject(fileSet.fVexFile); //create the equivalent to the Mk4 'ovex' root file
     }
     else 
     {
@@ -47,7 +51,16 @@ MHO_DiFXScanProcessor::CreateScanOutputDirectory()
 
     MHO_DirectoryInterface dirInterface;
 
-    std::string output_dir = fFileSet->fOutputBaseDirectory + "/" + fFileSet->fScanName;
+    std::string output_dir  = fFileSet->fOutputBaseDirectory + "/";
+    if(fPreserveDiFXScanNames)
+    {
+        output_dir += fFileSet->fScanName;
+    }
+    else 
+    {
+        std::string scan_id = fInput["scan"][fFileSet->fIndex]["identifier"];
+        output_dir += scan_id;
+    }
     fOutputDirectory = dirInterface.GetDirectoryFullPath(output_dir);
 
     bool ok = dirInterface.DoesDirectoryExist(fOutputDirectory);
@@ -56,8 +69,67 @@ MHO_DiFXScanProcessor::CreateScanOutputDirectory()
 }
 
 void 
-MHO_DiFXScanProcessor::ConvertRootFileObject()
+MHO_DiFXScanProcessor::ConvertRootFileObject(std::string vexfile)
 {
+    
+    MHO_VexParser vparser;
+    vparser.SetVexFile(vexfile);
+    mho_json vex_root = vparser.ParseVex();
+
+    //now convert to 'ovex' (with subset of information)
+    vex_root[ MHO_VexDefinitions::VexRevisionFlag() ] = "ovex";
+    std::string scan_id = fInput["scan"][fFileSet->fIndex]["identifier"];
+    std::vector< std::string > source_ids;
+
+    //first rip out all scans but this one
+    mho_json sched;
+    mho_json sched_copy = vex_root["$SCHED"];
+    for(auto it = sched_copy.begin(); it != sched_copy.end(); ++it)
+    {
+        if(it.key() == scan_id)
+        {
+            std::cout<<*it<<std::endl;
+            for(std::size_t n = 0; n < (*it)["source"][0].size(); n++)
+            {
+                source_ids.push_back( (*it)["source"][n]["source"] );
+            }
+            (*it)["fourfit_reftime"] = "dummy"; //add the fourfit reference time
+            sched[it.key()] = it.value();
+            break;
+        }
+    }
+    vex_root.erase("$SCHED");
+    vex_root["$SCHED"] = sched;
+
+    //rip out all sources but the one specified for this scan
+    mho_json src;
+    mho_json src_copy = vex_root["$SOURCE"];
+    for(auto it = src_copy.begin(); it != src_copy.end(); ++it)
+    {
+        for(std::size_t n = 0; n < source_ids.size(); n++)
+        {
+            if(it.key() == source_ids[n])
+            {
+                std::cout<<*it<<std::endl;
+                src[it.key()] = it.value();
+                break;
+            }
+        }
+    }
+    vex_root.erase("$SOURCE");
+    vex_root["$SOURCE"] = src;
+
+
+    //std::string scan_id = fInput["scan"][fFileSet->fIndex]["identifier"];
+    std::cout<<"difx scan name = "<<fFileSet->fScanName<<" = "<<scan_id<<std::endl;
+
+    //remove all sources but the current scan's source
+
+    MHO_VexGenerator gen;
+    std::string output_file = fOutputDirectory + "/" + "test.vex";
+    gen.SetFilename(output_file);
+    gen.GenerateVex(vex_root);
+
     //TODO FILL ME IN ...need to populate the 'ovex' structure that we typically use 
     //then convert that to the json representation (as we do in the Mk4Inteface)
     //Is this strictly necessary? We've already converted the DiFX input information into json 

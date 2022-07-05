@@ -48,6 +48,10 @@ class MHO_DiFXScanProcessor
         void SetStationCodes(MHO_StationCodeMap* code_map);
         void ProcessScan(MHO_DiFXScanFileSet& fileSet);
 
+        void SetPreserveDiFXScanNamesTrue(){fPreserveDiFXScanNames = true;}
+        void SetPreserveDiFXScanNamesFalse(){fPreserveDiFXScanNames = false;};
+
+
     private:
 
         //the station 2-char to 1-char code map (user specified)
@@ -59,7 +63,7 @@ class MHO_DiFXScanProcessor
 
         bool CreateScanOutputDirectory();
         void LoadInputFile();
-        void ConvertRootFileObject();
+        void ConvertRootFileObject(std::string vexfile);
         void ConvertVisibilityFileObjects();
         void ConvertStationFileObjects();
 
@@ -81,6 +85,8 @@ class MHO_DiFXScanProcessor
 
         std::map< std::string, multitone_pcal_type* > fStationCode2PCal;
         std::map< std::string, station_coord_type* > fStationCode2Coords;
+
+        bool fPreserveDiFXScanNames;
 
 };
 
