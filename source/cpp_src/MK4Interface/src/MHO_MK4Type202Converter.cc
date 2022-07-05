@@ -47,6 +47,7 @@ namespace hops {
 	    // i.e. a 32 char or 8 char array without null termination could be passed to these functions and cause a memory overflow
 	    {"record_id", std::string(t.record_id, 3).c_str()},
 	    {"version_no", std::string(t.version_no, 2).c_str()},
+	    {"unused1", std::string(t.unused1, 3).c_str()},
 	    {"baseline", std::string(t.baseline, 2).c_str()},
 	    {"ref_intl_id", std::string(t.ref_intl_id, 2).c_str()},
 	    {"rem_intl_id", std::string(t.rem_intl_id, 2).c_str()},
@@ -57,10 +58,14 @@ namespace hops {
 	    {"nlags", t.nlags},
 	    {"ref_xpos", t.ref_xpos},
 	    {"rem_xpos", t.rem_xpos},
+	    {"rem_ypos", t.rem_ypos},
+	    {"rem_ypos", t.ref_ypos},
 	    {"ref_zpos", t.ref_zpos},
 	    {"rem_zpos", t.rem_zpos},
-	    {"rem_ypos", t.rem_ypos},
-	    {"rem_zpos", t.rem_zpos},
+      {"u", t.u},
+      {"v", t.v},
+      {"uf", t.uf},
+      {"vf", t.vf},
 	    {"ref_clock", t.ref_clock},
 	    {"rem_clock", t.rem_clock},
 	    {"ref_clockrate", t.ref_clockrate},
@@ -72,12 +77,7 @@ namespace hops {
 	    {"ref_elev", t.ref_elev},
 	    {"rem_elev", t.rem_elev},
 	    {"ref_az", t.ref_az},
-	    {"rem_az", t.rem_az},
-	    {"u", t.u},
-	    {"v", t.v},
-	    {"uf", t.uf},
-	    {"vf", t.vf},
-
-        };
+	    {"rem_az", t.rem_az}
+      };
     }
 }

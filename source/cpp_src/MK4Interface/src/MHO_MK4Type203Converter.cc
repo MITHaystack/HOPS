@@ -50,7 +50,6 @@ namespace hops {
       json JSONChannels[NUMBEROFCHANNELS];
     
 	      for (channel = 0; channel < NUMBEROFCHANNELS; channel++) {
-          // Note: this does not check if channel is valid (initialized or empty)
           JSONChannels[channel] = convertChannelToJSON(t.channels[channel]);
 
         }
@@ -63,6 +62,7 @@ namespace hops {
         {"sample_rate", t.sample_rate},
         {"refsb", t.refsb},
         {"remsb", t.remsb},
+        {"refpol", t.refpol},
         {"rempol", t.rempol},
         {"ref_freq", t.ref_freq},
         {"rem_freq", t.rem_freq},
@@ -70,17 +70,5 @@ namespace hops {
         {"rem_chan_id", t.rem_chan_id}
 
       };
-
-    }
-
-    void printChannelArray (const type_203 &t) {
-      int channel;
-
-      std::cout << "converting channels" << std::endl;
-	      for (channel = 0; channel < NUMBEROFCHANNELS; channel++) {
-            std::cout << "Channel index " << channel << ": " << t.channels[channel].index << "\n";
-            std::cout << "Channel refsb " << channel << ": " << t.channels[channel].refsb << "\n";
-	      }
-
     }
 }

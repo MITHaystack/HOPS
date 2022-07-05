@@ -50,7 +50,6 @@ namespace hops {
       return JSONsidebandsArray;
     }
 
-    //json floatToJSON (const float t[REFANDREMSIZE]) {
     json floatToJSON (const float t[REFANDREMSIZE]) {
       int i;
       json errate;
