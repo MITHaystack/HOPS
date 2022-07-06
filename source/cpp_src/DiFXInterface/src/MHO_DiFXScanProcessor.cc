@@ -1,6 +1,9 @@
 #include "MHO_DiFXScanProcessor.hh"
 #include "MHO_VexParser.hh"
 #include "MHO_VexGenerator.hh"
+#include "MHO_Clock.hh"
+
+#include <math.h> 
 
 
 namespace hops 
@@ -33,7 +36,7 @@ MHO_DiFXScanProcessor::ProcessScan(MHO_DiFXScanFileSet& fileSet)
     {
         ConvertVisibilityFileObjects(); //convert visibilities and data weights 
         ConvertStationFileObjects(); //convert the station splines, and pcal data 
-        ConvertRootFileObject(fileSet.fVexFile); //create the equivalent to the Mk4 'ovex' root file
+        CreateRootFileObject(fileSet.fVexFile); //create the equivalent to the Mk4 'ovex' root file
     }
     else 
     {
@@ -69,9 +72,8 @@ MHO_DiFXScanProcessor::CreateScanOutputDirectory()
 }
 
 void 
-MHO_DiFXScanProcessor::ConvertRootFileObject(std::string vexfile)
+MHO_DiFXScanProcessor::CreateRootFileObject(std::string vexfile)
 {
-    
     MHO_VexParser vparser;
     vparser.SetVexFile(vexfile);
     mho_json vex_root = vparser.ParseVex();
@@ -81,7 +83,7 @@ MHO_DiFXScanProcessor::ConvertRootFileObject(std::string vexfile)
     std::string scan_id = fInput["scan"][fFileSet->fIndex]["identifier"];
     std::vector< std::string > source_ids;
 
-    //first rip out all scans but this one
+    //first rip out all scans but the one we are processing
     mho_json sched;
     mho_json sched_copy = vex_root["$SCHED"];
     for(auto it = sched_copy.begin(); it != sched_copy.end(); ++it)
@@ -93,8 +95,10 @@ MHO_DiFXScanProcessor::ConvertRootFileObject(std::string vexfile)
             {
                 source_ids.push_back( (*it)["source"][n]["source"] );
             }
-            (*it)["fourfit_reftime"] = "dummy"; //add the fourfit reference time
-            sched[it.key()] = it.value();
+            std::string fourfit_reftime_epoch = get_fourfit_reftime_for_scan(*it);
+            std::cout<<"frt!! = "<<fourfit_reftime_epoch<<std::endl;
+            (*it)["fourfit_reftime"] = fourfit_reftime_epoch; //add the fourfit reference time
+            sched[it.key()] = it.value(); //add this scan to the schedule section
             break;
         }
     }
@@ -129,6 +133,9 @@ MHO_DiFXScanProcessor::ConvertRootFileObject(std::string vexfile)
     std::string output_file = fOutputDirectory + "/" + "test.vex";
     gen.SetFilename(output_file);
     gen.GenerateVex(vex_root);
+
+
+
 
     //TODO FILL ME IN ...need to populate the 'ovex' structure that we typically use 
     //then convert that to the json representation (as we do in the Mk4Inteface)
@@ -360,6 +367,41 @@ MHO_DiFXScanProcessor::ExtractStationCoords()
             }
         }
     }
+}
+
+
+
+
+
+std::string 
+MHO_DiFXScanProcessor::get_fourfit_reftime_for_scan(mho_json scan_obj)
+{
+    //this function tries to follow d2m4 method of computing fourfit reference
+    //time, but rather than using the DiFX MJD, uses the vex-file epoch with hops_clock 
+
+    //loop over all the stations in this scan and determine the latest start 
+    //and earliest stop times   
+    double latest_start = -1.0;
+    double earliest_stop = 1e30;
+    for(std::size_t n = 0; n < scan_obj["station"].size(); n++)
+    {
+        //assuming for the time being the units are seconds
+        double start = scan_obj["station"][n]["data_good"]["value"].get<double>();
+        double stop = scan_obj["station"][n]["data_stop"]["value"].get<double>();
+        if(start > latest_start){latest_start = start;};
+        if(stop < earliest_stop){earliest_stop = stop;}
+    }
+
+    //truncate midpoint to integer second
+    int itime =  itime = (latest_start + earliest_stop) / 2;
+    std::string start_epoch = scan_obj["start"].get<std::string>();
+    std::cout<<"start epoch = "<<start_epoch<<std::endl;
+    auto start_tp = hops_clock::from_vex_format(start_epoch); 
+    auto frt_tp = start_tp + std::chrono::seconds(itime);
+
+    std::string frt = hops_clock::to_vex_format(frt_tp);
+
+    return frt;
 }
 
 

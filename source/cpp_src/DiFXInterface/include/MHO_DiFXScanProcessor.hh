@@ -51,6 +51,8 @@ class MHO_DiFXScanProcessor
         void SetPreserveDiFXScanNamesTrue(){fPreserveDiFXScanNames = true;}
         void SetPreserveDiFXScanNamesFalse(){fPreserveDiFXScanNames = false;};
 
+        //use json representation of vex-scan information to return epoch string of frt
+        std::string get_fourfit_reftime_for_scan(mho_json scan_obj);
 
     private:
 
@@ -63,7 +65,7 @@ class MHO_DiFXScanProcessor
 
         bool CreateScanOutputDirectory();
         void LoadInputFile();
-        void ConvertRootFileObject(std::string vexfile);
+        void CreateRootFileObject(std::string vexfile);
         void ConvertVisibilityFileObjects();
         void ConvertStationFileObjects();
 
