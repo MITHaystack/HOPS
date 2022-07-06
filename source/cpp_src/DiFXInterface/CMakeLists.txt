@@ -1,3 +1,5 @@
+include_directories(${EXTERN_HLIBS}/date/include)
+
 #list header files #############################################################
 set (DIFXINTERFACE_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_DiFXScanFileSet.hh
@@ -25,7 +27,7 @@ hops_internal_include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 #compile and install library ###################################################
 
-set(DIFXINTERFACE_LIBS MHO_Message MHO_Utilities vex2json MHO_Containers)
+set(DIFXINTERFACE_LIBS MHO_Message MHO_Utilities vex2json MHO_Containers date-tz)
 
 # we use pkg-config to find difxio
 find_package(PkgConfig) 
