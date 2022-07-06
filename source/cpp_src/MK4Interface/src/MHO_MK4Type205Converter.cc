@@ -1,8 +1,8 @@
 #include "MHO_MK4Type205Converter.hh"
-#include <iostream>
 #include "MHO_MK4JSONDateConverter.hh"
+#include <iostream>
 
-const int NUMBEROFFFITCHAN = 16; //capitalize this later
+const int NUMBEROFFFITCHAN = 16;
 
 //struct type_205_v0
 //    {
@@ -35,22 +35,22 @@ const int NUMBEROFFFITCHAN = 16; //capitalize this later
 //    float second;
 //    } date_struct;
 
-
 namespace hops {
 
-    json convertToJSON(const type_205& t) {
-       int ffitChannel;
-       json JSONFfitChannels[NUMBEROFFFITCHAN]; 
+json convertToJSON(const type_205 &t) {
+  int ffitChannel;
+  json JSONFfitChannels[NUMBEROFFFITCHAN];
 
-       // because ffit_can is an unnamed struct, we can't pass it to functions easily so the following had to be done
-       for (ffitChannel = 0; ffitChannel < NUMBEROFFFITCHAN; ffitChannel++){
-          JSONFfitChannels[ffitChannel] = {{"unused", std::string(&(t.ffit_chan[ffitChannel].unused), 1).c_str()}, 
-                              {"ffit_chan_id", std::string(&(t.ffit_chan[ffitChannel].ffit_chan_id), 1).c_str()},      
-                              {"channels", t.ffit_chan[ffitChannel].channels}
-                            };
-       }
-        return {
-          {"record_id", std::string(t.record_id, 3).c_str()},
+  // because ffit_can is an unnamed struct, we can't pass it to functions easily
+  // so the following had to be done
+  for (ffitChannel = 0; ffitChannel < NUMBEROFFFITCHAN; ffitChannel++) {
+    JSONFfitChannels[ffitChannel] = {
+        {"unused", std::string(&(t.ffit_chan[ffitChannel].unused), 1).c_str()},
+        {"ffit_chan_id",
+         std::string(&(t.ffit_chan[ffitChannel].ffit_chan_id), 1).c_str()},
+        {"channels", t.ffit_chan[ffitChannel].channels}};
+  }
+  return {{"record_id", std::string(t.record_id, 3).c_str()},
           {"version_no", std::string(t.version_no, 2).c_str()},
           {"unused1", std::string(t.unused1, 2).c_str()},
           {"utc_central", convertDateToJSON(t.utc_central)},
@@ -61,9 +61,7 @@ namespace hops {
           {"start", convertDateToJSON(t.start)},
           {"stop", convertDateToJSON(t.stop)},
           {"ref_freq", t.ref_freq},
-          {"ffit_chan", JSONFfitChannels}
-	      };
-    }
-
+          {"ffit_chan", JSONFfitChannels}};
 }
 
+} // namespace hops

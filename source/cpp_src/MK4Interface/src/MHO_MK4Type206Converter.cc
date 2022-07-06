@@ -1,6 +1,6 @@
 #include "MHO_MK4Type206Converter.hh"
-#include <iostream>
 #include "MHO_MK4JSONDateConverter.hh"
+#include <iostream>
 
 const int REASONSARRAYSIZE = 64;
 const int NUMBEROFREASONARRAYS = 8;
@@ -54,67 +54,61 @@ const int NUMBEROFREASONARRAYS = 8;
 //    };
 
 namespace hops {
-    json sidebandsToJSON(const sidebands &t){
-      return {
-        {"lsb", t.lsb},
-        {"usb", t.usb}
-      };
-    }
-
-    json sidebandsArrayToJSON(const sidebands t[64]) { 
-      int i;
-      json JSONsidebandsArray[REASONSARRAYSIZE];
- 
-      for (i = 0; i < REASONSARRAYSIZE; i++){
-        JSONsidebandsArray[i] = sidebandsToJSON(t[i]);
-      }
-      return JSONsidebandsArray;
-    }
-
-    json sbweightsToJSON(const sbweights &t){
-      return {
-        {"lsb", t.lsb},
-        {"usb", t.usb}
-      };
-    }
-
-    json sbweightsArrayToJSON(const sbweights t[64]) {
-      int i;
-      json JSONsidebandsArray[REASONSARRAYSIZE];
-
-      for (i = 0; i < REASONSARRAYSIZE; i++){
-        JSONsidebandsArray[i] = sbweightsToJSON(t[i]);
-      }
-      return JSONsidebandsArray;
-    }
-
-    json convertToJSON(const type_206& t) {
-        return {
-          {"record_id", std::string(t.record_id, 3).c_str()},
-          {"version_no", std::string(t.version_no, 2).c_str()},
-          {"unused1", std::string(t.unused1, 3).c_str()},
-          {"start", convertDateToJSON(t.start)},
-          {"first_ap", t.first_ap},
-          {"last_ap", t.last_ap},
-          {"last_ap", t.last_ap},
-          {"accepted", sidebandsArrayToJSON(t.accepted)},
-          {"weights", sbweightsArrayToJSON(t.weights)},
-          {"intg_time", t.intg_time},
-          {"accept_ratio", t.accept_ratio},
-          {"discard", t.discard},
-          {"reason1", sidebandsArrayToJSON(t.reason1)},
-          {"reason2", sidebandsArrayToJSON(t.reason2)},
-          {"reason3", sidebandsArrayToJSON(t.reason3)},
-          {"reason4", sidebandsArrayToJSON(t.reason4)},
-          {"reason5", sidebandsArrayToJSON(t.reason5)},
-          {"reason6", sidebandsArrayToJSON(t.reason6)},
-          {"reason7", sidebandsArrayToJSON(t.reason7)},
-          {"reason8", sidebandsArrayToJSON(t.reason8)},
-          {"ratesize", t.ratesize},
-          {"mbdsize", t.mbdsize},
-          {"sbdsize", t.sbdsize},
-          {"unused2", std::string(t.unused2, 6).c_str()},
-	      };
-    }
-    
+json sidebandsToJSON(const sidebands &t) {
+  return {{"lsb", t.lsb}, {"usb", t.usb}};
 }
+
+json sidebandsArrayToJSON(const sidebands t[64]) {
+  int i;
+  json JSONsidebandsArray[REASONSARRAYSIZE];
+
+  for (i = 0; i < REASONSARRAYSIZE; i++) {
+    JSONsidebandsArray[i] = sidebandsToJSON(t[i]);
+  }
+  return JSONsidebandsArray;
+}
+
+json sbweightsToJSON(const sbweights &t) {
+  return {{"lsb", t.lsb}, {"usb", t.usb}};
+}
+
+json sbweightsArrayToJSON(const sbweights t[64]) {
+  int i;
+  json JSONsidebandsArray[REASONSARRAYSIZE];
+
+  for (i = 0; i < REASONSARRAYSIZE; i++) {
+    JSONsidebandsArray[i] = sbweightsToJSON(t[i]);
+  }
+  return JSONsidebandsArray;
+}
+
+json convertToJSON(const type_206 &t) {
+  return {
+      {"record_id", std::string(t.record_id, 3).c_str()},
+      {"version_no", std::string(t.version_no, 2).c_str()},
+      {"unused1", std::string(t.unused1, 3).c_str()},
+      {"start", convertDateToJSON(t.start)},
+      {"first_ap", t.first_ap},
+      {"last_ap", t.last_ap},
+      {"last_ap", t.last_ap},
+      {"accepted", sidebandsArrayToJSON(t.accepted)},
+      {"weights", sbweightsArrayToJSON(t.weights)},
+      {"intg_time", t.intg_time},
+      {"accept_ratio", t.accept_ratio},
+      {"discard", t.discard},
+      {"reason1", sidebandsArrayToJSON(t.reason1)},
+      {"reason2", sidebandsArrayToJSON(t.reason2)},
+      {"reason3", sidebandsArrayToJSON(t.reason3)},
+      {"reason4", sidebandsArrayToJSON(t.reason4)},
+      {"reason5", sidebandsArrayToJSON(t.reason5)},
+      {"reason6", sidebandsArrayToJSON(t.reason6)},
+      {"reason7", sidebandsArrayToJSON(t.reason7)},
+      {"reason8", sidebandsArrayToJSON(t.reason8)},
+      {"ratesize", t.ratesize},
+      {"mbdsize", t.mbdsize},
+      {"sbdsize", t.sbdsize},
+      {"unused2", std::string(t.unused2, 6).c_str()},
+  };
+}
+
+} // namespace hops

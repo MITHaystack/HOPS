@@ -1,6 +1,6 @@
 #include "MHO_MK4Type212Converter.hh"
-#include <iostream>
 #include "MHO_MK4JSONDateConverter.hh"
+#include <iostream>
 
 const int DATASIZE = 1;
 
@@ -26,27 +26,22 @@ const int DATASIZE = 1;
 
 namespace hops {
 
-    json newphasorToJSON(const newphasor &t){
-      return {
-        {"amp", t.amp},
-        {"phase", t.phase},
-        {"weight", t.weight}
-      };
-    }
+json newphasorToJSON(const newphasor &t) {
+  return {{"amp", t.amp}, {"phase", t.phase}, {"weight", t.weight}};
+}
 
-    json dataToJSON(const newphasor t[DATASIZE]) { 
-      int i;
-      json JSONArray[DATASIZE];
- 
-      for (i = 0; i < DATASIZE; i++){
-        JSONArray[i] = newphasorToJSON(t[i]);
-      }
-      return JSONArray;
-    }
+json dataToJSON(const newphasor t[DATASIZE]) {
+  int i;
+  json JSONArray[DATASIZE];
 
-    json convertToJSON(const type_212& t) {
-        return {
-          {"record_id", std::string(t.record_id, 3).c_str()},
+  for (i = 0; i < DATASIZE; i++) {
+    JSONArray[i] = newphasorToJSON(t[i]);
+  }
+  return JSONArray;
+}
+
+json convertToJSON(const type_212 &t) {
+  return {{"record_id", std::string(t.record_id, 3).c_str()},
           {"version_no", std::string(t.version_no, 2).c_str()},
           {"unused", std::string(&(t.unused), 1).c_str()},
           {"nap", t.nap},
@@ -54,8 +49,7 @@ namespace hops {
           {"channel", t.channel},
           {"sbd_chan", t.sbd_chan},
           {"unused2", std::string(t.unused2, 2).c_str()},
-          {"data", dataToJSON(t.data)}
-	      };
-    }
-    
+          {"data", dataToJSON(t.data)}};
 }
+
+} // namespace hops

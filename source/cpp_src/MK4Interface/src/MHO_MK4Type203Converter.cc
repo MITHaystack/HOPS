@@ -2,7 +2,7 @@
 #include "../../../c_src/applications/aedit/include/sizelimits.h"
 #include <iostream>
 
-const int NUMBEROFCHANNELS = 8*MAXFREQ;
+const int NUMBEROFCHANNELS = 8 * MAXFREQ;
 
 //struct ch_struct
 //    {
@@ -34,41 +34,36 @@ const int NUMBEROFCHANNELS = 8*MAXFREQ;
 //    struct ch_struct    channels[8*MAXFREQ];    /* channel-by-channel info 512*/
 //    };
 
-
 namespace hops {
 
-    json convertToJSON(const type_203& t) {
-        return {
-          {"record_id", std::string(t.record_id, 3).c_str()},
+json convertToJSON(const type_203 &t) {
+  return {{"record_id", std::string(t.record_id, 3).c_str()},
           {"version_no", std::string(t.version_no, 2).c_str()},
-          {"channels", convertChannelArrayToJSON(t)} 
-	      };
-    }
-
-    json convertChannelArrayToJSON (const type_203 &t) {
-      int channel;
-      json JSONChannels[NUMBEROFCHANNELS];
-    
-	      for (channel = 0; channel < NUMBEROFCHANNELS; channel++) {
-          JSONChannels[channel] = convertChannelToJSON(t.channels[channel]);
-
-        }
-        return JSONChannels;
-    }
-
-    json convertChannelToJSON (const ch_struct &t){
-      return {
-        {"index", t.index},
-        {"sample_rate", t.sample_rate},
-        {"refsb", t.refsb},
-        {"remsb", t.remsb},
-        {"refpol", t.refpol},
-        {"rempol", t.rempol},
-        {"ref_freq", t.ref_freq},
-        {"rem_freq", t.rem_freq},
-        {"ref_chan_id", t.rem_freq},
-        {"rem_chan_id", t.rem_chan_id}
-
-      };
-    }
+          {"channels", convertChannelArrayToJSON(t)}};
 }
+
+json convertChannelArrayToJSON(const type_203 &t) {
+  int channel;
+  json JSONChannels[NUMBEROFCHANNELS];
+
+  for (channel = 0; channel < NUMBEROFCHANNELS; channel++) {
+    JSONChannels[channel] = convertChannelToJSON(t.channels[channel]);
+  }
+  return JSONChannels;
+}
+
+json convertChannelToJSON(const ch_struct &t) {
+  return {{"index", t.index},
+          {"sample_rate", t.sample_rate},
+          {"refsb", t.refsb},
+          {"remsb", t.remsb},
+          {"refpol", t.refpol},
+          {"rempol", t.rempol},
+          {"ref_freq", t.ref_freq},
+          {"rem_freq", t.rem_freq},
+          {"ref_chan_id", t.rem_freq},
+          {"rem_chan_id", t.rem_chan_id}
+
+  };
+}
+} // namespace hops
