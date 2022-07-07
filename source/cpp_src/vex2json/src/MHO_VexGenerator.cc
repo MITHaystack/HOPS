@@ -25,8 +25,11 @@ void MHO_VexGenerator::GenerateVex(mho_json& root)
     //first line is always version line 
     std::string vers = root[fVexRevisionFlag].get<std::string>();
     SetVexVersion(vers);
-    std::string version_line = fVexRevisionFlag + MHO_VexDefinitions::AssignmentOp() + vers + MHO_VexDefinitions::StatementLineEnd();
-    all_lines.push_back(version_line);
+    if(vers != "ovex") //only output this line for vex not ovex
+    {
+        std::string version_line = fVexRevisionFlag + MHO_VexDefinitions::AssignmentOp() + vers + MHO_VexDefinitions::StatementLineEnd();
+        all_lines.push_back(version_line);
+    }
     //open block-names file for this version 
 
     //loop over blocks, and extract the data from from the root and append them

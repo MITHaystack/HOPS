@@ -129,6 +129,7 @@ MHO_DiFXInterface::Initialize()
 
     //now construct the scan file sets for each input 
     fScanFileSetList.clear();
+    std::size_t scan_count = 0;
     for(auto it=scanNames.begin(); it != scanNames.end(); it++)
     {
         //debug
@@ -157,6 +158,7 @@ MHO_DiFXInterface::Initialize()
         {
             MHO_DiFXScanFileSet fileSet;
             
+            fileSet.fIndex = scan_count;
             fileSet.fScanName = *it;
             fileSet.fInputBaseDirectory = fInputDirectory;
             fileSet.fOutputBaseDirectory = fOutputDirectory;
@@ -204,6 +206,7 @@ MHO_DiFXInterface::Initialize()
         {
             msg_warn("difx_interface", "Could not find all difx files associated with scan: " << *it << " will not process." << eom);
         }
+        scan_count++;
     }
 
     if(fScanFileSetList.size() == 0)
@@ -222,6 +225,7 @@ MHO_DiFXInterface::ProcessScans()
 
     for(std::size_t i=0; i<fScanFileSetList.size(); i++)
     {
+        fScanProcessor.SetExperimentNumber(fExperNum);
         fScanProcessor.SetRootCode(scan_codes[i]);
         fScanProcessor.ProcessScan(fScanFileSetList[i]);
     }

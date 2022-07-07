@@ -1,12 +1,19 @@
 #include "MHO_DiFXScanProcessor.hh"
+#include "MHO_VexParser.hh"
+#include "MHO_VexGenerator.hh"
+#include "MHO_Clock.hh"
+
+#include <math.h> 
+
 
 namespace hops 
 {
 
 MHO_DiFXScanProcessor::MHO_DiFXScanProcessor()
 {
-    fRootCode = "uknown";
+    fRootCode = "unknown";
     fStationCodeMap = nullptr;
+    fPreserveDiFXScanNames = false;
 };
 
 MHO_DiFXScanProcessor::~MHO_DiFXScanProcessor()
@@ -23,13 +30,13 @@ void
 MHO_DiFXScanProcessor::ProcessScan(MHO_DiFXScanFileSet& fileSet)
 {
     fFileSet = &fileSet;
+    LoadInputFile(); //read .input file
     bool ok = CreateScanOutputDirectory();
     if(ok)
     {
-        LoadInputFile(); //read .input file and build freq table
-        ConvertRootFileObject(); //create the equivalent to the Mk4 'ovex' root file
         ConvertVisibilityFileObjects(); //convert visibilities and data weights 
         ConvertStationFileObjects(); //convert the station splines, and pcal data 
+        CreateRootFileObject(fileSet.fVexFile); //create the equivalent to the Mk4 'ovex' root file
     }
     else 
     {
@@ -47,7 +54,16 @@ MHO_DiFXScanProcessor::CreateScanOutputDirectory()
 
     MHO_DirectoryInterface dirInterface;
 
-    std::string output_dir = fFileSet->fOutputBaseDirectory + "/" + fFileSet->fScanName;
+    std::string output_dir  = fFileSet->fOutputBaseDirectory + "/";
+    if(fPreserveDiFXScanNames)
+    {
+        output_dir += fFileSet->fScanName;
+    }
+    else 
+    {
+        std::string scan_id = fInput["scan"][fFileSet->fIndex]["identifier"];
+        output_dir += scan_id;
+    }
     fOutputDirectory = dirInterface.GetDirectoryFullPath(output_dir);
 
     bool ok = dirInterface.DoesDirectoryExist(fOutputDirectory);
@@ -56,13 +72,81 @@ MHO_DiFXScanProcessor::CreateScanOutputDirectory()
 }
 
 void 
-MHO_DiFXScanProcessor::ConvertRootFileObject()
+MHO_DiFXScanProcessor::CreateRootFileObject(std::string vexfile)
 {
-    //TODO FILL ME IN ...need to populate the 'ovex' structure that we typically use 
-    //then convert that to the json representation (as we do in the Mk4Inteface)
-    //Is this strictly necessary? We've already converted the DiFX input information into json 
-    //so we could probably skip the ovex step...but we do need to make sure we cover the 
-    //same set of information, so filling the ovex structures may be the simplest thing to do for now
+    MHO_VexParser vparser;
+    vparser.SetVexFile(vexfile);
+    mho_json vex_root = vparser.ParseVex();
+
+    //now convert the 'vex' to 'ovex' (using only subset of information)
+    vex_root[ MHO_VexDefinitions::VexRevisionFlag() ] = "ovex";
+
+    //add the experiment number 
+    vex_root["$EXPER"]["exper_num"] = fExperNum;
+
+    std::string scan_id = fInput["scan"][fFileSet->fIndex]["identifier"];
+    std::vector< std::string > source_ids;
+
+    //rip out all scans but the one we are processing
+    mho_json sched;
+    mho_json sched_copy = vex_root["$SCHED"];
+    for(auto it = sched_copy.begin(); it != sched_copy.end(); ++it)
+    {
+        if(it.key() == scan_id)
+        {
+            for(std::size_t n = 0; n < (*it)["source"][0].size(); n++)
+            {
+                source_ids.push_back( (*it)["source"][n]["source"] );
+            }
+            (*it)["fourfit_reftime"] = get_fourfit_reftime_for_scan(*it); //add the fourfit reference time
+            sched[it.key()] = it.value(); //add this scan to the schedule section
+            break;
+        }
+    }
+    vex_root.erase("$SCHED");
+    vex_root["$SCHED"] = sched;
+
+    //rip out all sources but the one specified for this scan
+    std::string src_name = "unknown";
+    mho_json src;
+    mho_json src_copy = vex_root["$SOURCE"];
+    for(auto it = src_copy.begin(); it != src_copy.end(); ++it)
+    {
+        for(std::size_t n = 0; n < source_ids.size(); n++)
+        {
+            if(it.key() == source_ids[n])
+            {
+                src[it.key()] = it.value();
+                src_name = (it.value())["source_name"];
+                break;
+            }
+        }
+    }
+    vex_root.erase("$SOURCE");
+    vex_root["$SOURCE"] = src;
+
+    //make sure the mk4_site_id single-character codes are specified for each site 
+    for(auto it = vex_root["$SITE"].begin(); it != vex_root["$SITE"].end(); ++it)
+    {
+        std::string station_code = (*it)["site_ID"];
+        (*it)["mk4_site_ID"] = fStationCodeMap->GetMk4IdFromStationCode(station_code);
+    }
+
+    //lastly we need to insert the traditional mk4 channel names for each frequency
+    //and/or adapt the channel defintions to deal with zoom bands
+    ModifyFreqTable(vex_root);
+
+    MHO_VexGenerator gen;
+    std::string output_file = fOutputDirectory + "/" + src_name + "." + fRootCode;
+    gen.SetFilename(output_file);
+    gen.GenerateVex(vex_root);
+
+    //we also write out the 'ovex'/'vex' json object as a json file
+    output_file = fOutputDirectory + "/" + src_name + "." + fRootCode + ".json";
+    //open and dump to file 
+    std::ofstream outFile(output_file.c_str(), std::ofstream::out);
+    outFile << vex_root.dump(2);
+    outFile.close();
 }
 
 void 
@@ -288,6 +372,58 @@ MHO_DiFXScanProcessor::ExtractStationCoords()
             }
         }
     }
+}
+
+
+
+
+
+std::string 
+MHO_DiFXScanProcessor::get_fourfit_reftime_for_scan(mho_json scan_obj)
+{
+    //this function tries to follow d2m4 method of computing fourfit reference
+    //time, but rather than using the DiFX MJD value, uses the vex-file
+    //specified epoch along with hops_clock for the converion.
+
+    //loop over all the stations in this scan and determine the latest start 
+    //and earliest stop times   
+    double latest_start = -1.0;
+    double earliest_stop = 1e30;
+    for(std::size_t n = 0; n < scan_obj["station"].size(); n++)
+    {
+        //assuming for the time being the units are seconds
+        double start = scan_obj["station"][n]["data_good"]["value"].get<double>();
+        double stop = scan_obj["station"][n]["data_stop"]["value"].get<double>();
+        if(start > latest_start){latest_start = start;};
+        if(stop < earliest_stop){earliest_stop = stop;}
+    }
+
+    //truncate midpoint to integer second -- this is how difx2mark4 does it
+    int itime =  itime = (latest_start + earliest_stop) / 2;
+    std::string start_epoch = scan_obj["start"].get<std::string>();
+    auto start_tp = hops_clock::from_vex_format(start_epoch); 
+    auto frt_tp = start_tp + std::chrono::seconds(itime);
+    std::string frt = hops_clock::to_vex_format(frt_tp);
+
+    return frt;
+}
+
+void 
+MHO_DiFXScanProcessor::ModifyFreqTable(mho_json vex_root)
+{
+    //loop through freq table, looking up BBC/IF for each channel so
+    //we can identify the polarization 
+
+    //create names which follow the convention, ABBCD where:
+    //A is the band id
+    //BB is sequency number (in order of increasing sky frequency)
+    //C is the (net) sideband 
+    //D is the polarization
+
+
+
+
+
 }
 
 

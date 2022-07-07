@@ -26,7 +26,7 @@ using namespace hops;
 
 int main(int argc, char** argv)
 {
-    std::string usage = "difx2hops -i <input_directory> -c <station_codes_file> -o <output_directory>";
+    std::string usage = "difx2hops -e <exp. number> -i <input_directory> -c <station_codes_file> -o <output_directory>";
 
     MHO_Message::GetInstance().AcceptAllKeys();
     MHO_Message::GetInstance().SetMessageLevel(eDebug);
@@ -34,13 +34,15 @@ int main(int argc, char** argv)
     std::string input_dir = "./";
     std::string output_dir = "./";
     std::string station_codes_file = "";
+    int exper_num = 1234;
 
     static struct option longOptions[] = {{"help", no_argument, 0, 'h'},
                                           {"input_directory", required_argument, 0, 'i'},
                                           {"station_codes", required_argument, 0, 'c'},
+                                          {"experiment_number", required_argument, 0, 'e'},
                                           {"output_directory", required_argument, 0, 'o'}};
 
-    static const char* optString = "hi:c:o:";
+    static const char* optString = "hi:c:e:o:";
 
     while(true)
     {
@@ -57,6 +59,9 @@ int main(int argc, char** argv)
                 break;
             case ('c'):
                 station_codes_file = std::string(optarg);
+                break;
+            case ('e'):
+                exper_num = std::atoi(optarg);
                 break;
             case ('o'):
                 output_dir = std::string(optarg);
@@ -86,6 +91,7 @@ int main(int argc, char** argv)
     difxInterface.SetInputDirectory(input_dir);
     difxInterface.SetOutputDirectory(output_directory);
     difxInterface.SetStationCodes(&stcode_map);
+    difxInterface.SetExperimentNumber(exper_num);
 
     difxInterface.Initialize();
     difxInterface.ProcessScans();
