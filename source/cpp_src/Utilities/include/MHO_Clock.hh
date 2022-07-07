@@ -15,6 +15,7 @@
 #include <sstream>
 #include <chrono>
 #include <iomanip>
+#include <math.h>
 
 //these can someday be replaced with STL versions in C++20
 #include "date/date.h"
@@ -29,6 +30,9 @@
 #define HOPS_TIME_DELIM "|"
 #define HOPS_TIME_UNIT "ns"
 #define NANOSEC_TO_SEC 1e-9
+#define SEC_TO_NANOSEC 1000000000
+
+//using namespace date;
 
 namespace hops 
 {
@@ -57,57 +61,57 @@ class hops_clock
 
         template<typename Duration>
         static
-        std::chrono::time_point<utc_clock, typename std::common_type<Duration, std::chrono::nanoseconds>::type>
+        std::chrono::time_point<date::utc_clock, typename std::common_type<Duration, std::chrono::nanoseconds>::type>
         to_utc(const std::chrono::time_point<hops_clock, Duration>&) NOEXCEPT;
 
         template<typename Duration>
         static
         std::chrono::time_point<hops_clock, typename std::common_type<Duration, std::chrono::nanoseconds>::type>
-        from_utc(const std::chrono::time_point<utc_clock, Duration>&) NOEXCEPT;
+        from_utc(const std::chrono::time_point<date::utc_clock, Duration>&) NOEXCEPT;
 
         template<typename Duration>
         static
-        std::chrono::time_point<tai_clock, typename std::common_type<Duration, std::chrono::nanoseconds>::type>
+        std::chrono::time_point<date::tai_clock, typename std::common_type<Duration, std::chrono::nanoseconds>::type>
         to_tai(const std::chrono::time_point<hops_clock, Duration>&) NOEXCEPT;
 
         template<typename Duration>
         static
         std::chrono::time_point<hops_clock, typename std::common_type<Duration, std::chrono::nanoseconds>::type>
-        from_tai(const std::chrono::time_point<tai_clock, Duration>&) NOEXCEPT;
+        from_tai(const std::chrono::time_point<date::tai_clock, Duration>&) NOEXCEPT;
 
         template<typename Duration>
         static
-        std::chrono::time_point<gps_clock, typename std::common_type<Duration, std::chrono::nanoseconds>::type>
+        std::chrono::time_point<date::gps_clock, typename std::common_type<Duration, std::chrono::nanoseconds>::type>
         to_gps(const std::chrono::time_point<hops_clock, Duration>&) NOEXCEPT;
 
         template<typename Duration>
         static
         std::chrono::time_point<hops_clock, typename std::common_type<Duration, std::chrono::nanoseconds>::type>
-        from_gps(const std::chrono::time_point<gps_clock, Duration>&) NOEXCEPT;
+        from_gps(const std::chrono::time_point<date::gps_clock, Duration>&) NOEXCEPT;
 
         template<typename Duration>
         static
-        std::chrono::time_point<system_clock, typename std::common_type<Duration, std::chrono::nanoseconds>::type>
+        std::chrono::time_point<std::chrono::system_clock, typename std::common_type<Duration, std::chrono::nanoseconds>::type>
         to_sys(const std::chrono::time_point<hops_clock, Duration>&) NOEXCEPT;
 
         template<typename Duration>
         static
         std::chrono::time_point<hops_clock, typename std::common_type<Duration, std::chrono::nanoseconds>::type>
-        from_sys(const std::chrono::time_point<system_clock, Duration>&) NOEXCEPT;
+        from_sys(const std::chrono::time_point<std::chrono::system_clock, Duration>&) NOEXCEPT;
 
         template<typename Duration>
         static
-        std::chrono::time_point<local_t, typename std::common_type<Duration, std::chrono::nanoseconds>::type>
+        std::chrono::time_point<date::local_t, typename std::common_type<Duration, std::chrono::nanoseconds>::type>
         to_local(const std::chrono::time_point<hops_clock, Duration>&) NOEXCEPT;
 
         template<typename Duration>
         static
         std::chrono::time_point<hops_clock, typename std::common_type<Duration, std::chrono::nanoseconds>::type>
-        from_local(const std::chrono::time_point<local_t, Duration>&) NOEXCEPT;
+        from_local(const std::chrono::time_point<date::local_t, Duration>&) NOEXCEPT;
         
         static
         std::chrono::time_point<hops_clock, std::chrono::nanoseconds >
-        from_iso8601_format(const string& timestamp);
+        from_iso8601_format(const std::string& timestamp);
 
         static
         std::string
@@ -115,7 +119,7 @@ class hops_clock
 
         static
         std::chrono::time_point<hops_clock, std::chrono::nanoseconds >
-        from_hops_format(const string& timestamp);
+        from_hops_format(const std::string& timestamp);
 
         static
         std::string
@@ -131,7 +135,7 @@ class hops_clock
 
         static
         std::chrono::time_point<hops_clock, std::chrono::nanoseconds >
-        from_vex_format(const string& timestamp);
+        from_vex_format(const std::string& timestamp);
 
         static
         std::string
@@ -154,15 +158,17 @@ class hops_clock
         date::days
         day_of_year(date::sys_days sd)
         {
-            auto y = year_month_day{sd}.year();
-            return sd - sys_days{y/jan/0};
+            using namespace date;
+            auto y = date::year_month_day{sd}.year();
+            return sd - date::sys_days{y/jan/0};
         }
 
         static
         date::sys_days 
         get_year_month_day(date::year y, date::days ord_day)
         {
-            return sys_days{y/jan/0} + ord_day;
+            using namespace date;
+            return date::sys_days{y/jan/0} + ord_day;
         }
 
         struct vex_date 
@@ -186,8 +192,18 @@ class hops_clock
         static 
         std::string remove_trailing_zeros(std::string value)
         {
-            std::string ret_val = value;
-            ret_val.erase(ret_val.find_last_not_of('0') + 1, std::string::npos);
+            std::size_t nzeros_on_end = 0;
+            for(auto rit = value.rbegin(); rit != value.rend(); rit++)
+            {
+                if( *rit != '0'){break;}
+                nzeros_on_end++;
+            }
+            std::size_t useful_length = value.size() - nzeros_on_end;
+            std::string ret_val;
+            for(std::size_t i=0; i<useful_length; i++)
+            {
+                ret_val.push_back(value[i]);
+            } 
             return ret_val;
         }
 
@@ -200,19 +216,19 @@ using hops_time = std::chrono::time_point<hops_clock, Duration>;
 
 template <class Duration>
 inline
-utc_time<typename std::common_type<Duration, std::chrono::nanoseconds>::type>
+date::utc_time<typename std::common_type<Duration, std::chrono::nanoseconds>::type>
 hops_clock::to_utc(const hops_time<Duration>& t) NOEXCEPT
 {
 
     using CD = typename std::common_type<Duration, std::chrono::nanoseconds>::type;
     date::utc_time< std::chrono::nanoseconds > hops_epoch_start = get_hops_epoch_utc();
-    return utc_time<CD>(t.time_since_epoch() + hops_epoch_start.time_since_epoch());
+    return date::utc_time<CD>(t.time_since_epoch() + hops_epoch_start.time_since_epoch());
 }
 
 template <class Duration>
 inline
 hops_time<typename std::common_type<Duration, std::chrono::nanoseconds>::type>
-hops_clock::from_utc(const utc_time<Duration>& t) NOEXCEPT
+hops_clock::from_utc(const date::utc_time<Duration>& t) NOEXCEPT
 {
     using CD = typename std::common_type<Duration, std::chrono::nanoseconds>::type;
     date::utc_time< std::chrono::nanoseconds > hops_epoch_start = get_hops_epoch_utc();
@@ -221,52 +237,52 @@ hops_clock::from_utc(const utc_time<Duration>& t) NOEXCEPT
 
 template <class Duration>
 inline
-tai_time<typename std::common_type<Duration, std::chrono::nanoseconds>::type>
+date::tai_time<typename std::common_type<Duration, std::chrono::nanoseconds>::type>
 hops_clock::to_tai(const hops_time<Duration>& t) NOEXCEPT
 {
-    return tai_clock::from_utc( to_utc(t) );
+    return date::tai_clock::from_utc( to_utc(t) );
 }
 
 template <class Duration>
 inline
 hops_time<typename std::common_type<Duration, std::chrono::nanoseconds>::type>
-hops_clock::from_tai(const tai_time<Duration>& t) NOEXCEPT
+hops_clock::from_tai(const date::tai_time<Duration>& t) NOEXCEPT
 {
-    return from_utc( tai_clock::to_utc(t) );
+    return from_utc( date::tai_clock::to_utc(t) );
 }
 
 
 template <class Duration>
 inline
-gps_time<typename std::common_type<Duration, std::chrono::nanoseconds>::type>
+date::gps_time<typename std::common_type<Duration, std::chrono::nanoseconds>::type>
 hops_clock::to_gps(const hops_time<Duration>& t) NOEXCEPT
 {
-    return gps_clock::from_utc( to_utc(t) );
+    return date::gps_clock::from_utc( to_utc(t) );
 }
 
 template <class Duration>
 inline
 hops_time<typename std::common_type<Duration, std::chrono::nanoseconds>::type>
-hops_clock::from_gps(const gps_time<Duration>& t) NOEXCEPT
+hops_clock::from_gps(const date::gps_time<Duration>& t) NOEXCEPT
 {
-    return from_utc( gps_clock::to_utc(t) );
+    return from_utc( date::gps_clock::to_utc(t) );
 }
 
 
 template <class Duration>
 inline
-sys_time<typename std::common_type<Duration, std::chrono::nanoseconds>::type>
+date::sys_time<typename std::common_type<Duration, std::chrono::nanoseconds>::type>
 hops_clock::to_sys(const hops_time<Duration>& t) NOEXCEPT
 {
-    return utc_clock::to_sys( to_utc(t) );
+    return date::utc_clock::to_sys( to_utc(t) );
 }
 
 template <class Duration>
 inline
 hops_time<typename std::common_type<Duration, std::chrono::nanoseconds>::type>
-hops_clock::from_sys(const sys_time<Duration>& t) NOEXCEPT
+hops_clock::from_sys(const date::sys_time<Duration>& t) NOEXCEPT
 {
-    return from_utc( utc_clock::from_sys(t) );
+    return from_utc( date::utc_clock::from_sys(t) );
 }
 
 
@@ -274,27 +290,27 @@ inline
 hops_clock::time_point
 hops_clock::now()
 {
-    return from_utc(utc_clock::now());
+    return from_utc(date::utc_clock::now());
 }
 
 template <class Duration>
 inline
-local_time<typename std::common_type<Duration, std::chrono::nanoseconds>::type>
+date::local_time<typename std::common_type<Duration, std::chrono::nanoseconds>::type>
 hops_clock::to_local(const hops_time<Duration>& t) NOEXCEPT
 {
     using CD = typename std::common_type<Duration, std::chrono::nanoseconds>::type;
     date::utc_time<CD> hops_epoch_start = std::chrono::time_point_cast<CD>( get_hops_epoch_utc() );
     date::utc_time<CD> ut_time{t.time_since_epoch() + std::chrono::time_point_cast<Duration>(hops_epoch_start).time_since_epoch()};
-    return utc_clock::to_local(ut_time);
+    return date::utc_clock::to_local(ut_time);
 }
 
 template <class Duration>
 inline
 hops_time<typename std::common_type<Duration, std::chrono::nanoseconds>::type>
-hops_clock::from_local(const local_time<Duration>& t) NOEXCEPT
+hops_clock::from_local(const date::local_time<Duration>& t) NOEXCEPT
 {
     using CD = typename std::common_type<Duration, std::chrono::nanoseconds>::type;
-    date::utc_time<CD> t2 = utc_clock::from_local(t);
+    date::utc_time<CD> t2 = date::utc_clock::from_local(t);
     date::utc_time<CD> hops_epoch_start = std::chrono::time_point_cast<CD>( get_hops_epoch_utc() );
     return hops_time<CD>{t2.time_since_epoch() - std::chrono::time_point_cast<Duration>(hops_epoch_start).time_since_epoch()};
 }
@@ -316,7 +332,7 @@ from_stream(std::basic_istream<CharT, Traits>& is, const CharT* fmt,
             std::basic_string<CharT, Traits, Alloc>* abbrev = nullptr,
             std::chrono::minutes* offset = nullptr)
 {
-    local_time<Duration> lp;
+    date::local_time<Duration> lp;
     from_stream(is, fmt, lp, abbrev, offset);
     if (!is.fail())
         tp = hops_clock::from_local(lp);
@@ -333,8 +349,10 @@ operator<<(std::basic_ostream<CharT, Traits>& os, const hops_time<Duration>& t)
 
 inline
 std::chrono::time_point<hops_clock, std::chrono::nanoseconds >
-hops_clock::from_iso8601_format(const string& timestamp)
+hops_clock::from_iso8601_format(const std::string& timestamp)
 {
+    using namespace date;
+    using namespace std::chrono;
     std::string frmt = ISO8601_UTC_FORMAT;
     std::istringstream ss(timestamp);
     std::istream tmp_stream(ss.rdbuf());
@@ -354,8 +372,11 @@ hops_clock::to_iso8601_format(const std::chrono::time_point<hops_clock, std::chr
 
 inline
 std::chrono::time_point<hops_clock, std::chrono::nanoseconds >
-hops_clock::from_hops_format(const string& timestamp)
+hops_clock::from_hops_format(const std::string& timestamp)
 {
+    using namespace date;
+    using namespace std::chrono;
+
     MHO_Tokenizer tokenizer;
     tokenizer.SetDelimiter(std::string(HOPS_TIME_DELIM));
     std::vector<std::string> tokens;
@@ -406,12 +427,15 @@ inline
 legacy_hops_date
 hops_clock::to_legacy_hops_date(const std::chrono::time_point<hops_clock, std::chrono::nanoseconds >& tp)
 {
+    using namespace date;
+    using namespace std::chrono;
+
     //convert the time point to sys time, and extract the date
     auto sys_tp = hops_clock::to_sys(tp);
-    auto dp = sys_days( floor<date::days>( sys_tp ) );
+    auto dp = date::sys_days( floor<date::days>( sys_tp ) );
 
     //get all of the date information
-    year_month_day ymd{dp};
+    date::year_month_day ymd{dp};
     auto year = ymd.year();
     auto month = ymd.month();
     auto day = ymd.day();
@@ -420,7 +444,7 @@ hops_clock::to_legacy_hops_date(const std::chrono::time_point<hops_clock, std::c
     auto ordinal_day = day_of_year(dp);
 
     //get the time
-    hh_mm_ss< std::chrono::nanoseconds> time{floor< std::chrono::nanoseconds>( sys_tp-dp) };
+    date::hh_mm_ss< std::chrono::nanoseconds> time{floor< std::chrono::nanoseconds>( sys_tp-dp) };
     auto hours = time.hours();
     auto mins = time.minutes();
     auto secs = time.seconds();
@@ -440,7 +464,7 @@ hops_clock::to_legacy_hops_date(const std::chrono::time_point<hops_clock, std::c
 
 inline
 std::chrono::time_point<hops_clock, std::chrono::nanoseconds >
-hops_clock::from_vex_format(const string& timestamp)
+hops_clock::from_vex_format(const std::string& timestamp)
 {
     vex_date vdate = hops_clock::extract_vex_date(timestamp);
     //convert the vex date info to an ISO-8601-style year-month-day type format 
@@ -453,6 +477,9 @@ inline
 std::string
 hops_clock::to_vex_format(const std::chrono::time_point<hops_clock, std::chrono::nanoseconds >& tp, bool truncate_to_nearest_second)
 {
+    using namespace date;
+    using namespace std::chrono;
+
     //convert the time point to sys time, and extract the date
     auto sys_tp = hops_clock::to_sys(tp);
     auto dp = sys_days( floor<date::days>( sys_tp ) );
@@ -493,8 +520,12 @@ hops_clock::to_vex_format(const std::chrono::time_point<hops_clock, std::chrono:
         nss << std::setfill('0') << std::setw(9) << nanos.count();
         std::string snano_sec;
         nss >> snano_sec;
-        ss << ".";
-        ss << remove_trailing_zeros(snano_sec);
+        std::string trimmed_nanosec = remove_trailing_zeros(snano_sec);
+        if(trimmed_nanosec.size() != 0)
+        { 
+            ss << ".";
+            ss << trimmed_nanosec; 
+        }
     }
     ss << "s";
 
@@ -573,6 +604,9 @@ inline
 std::string 
 hops_clock::vex_date_to_iso8601_string(hops_clock::vex_date vdate)
 {
+    using namespace date;
+    using namespace std::chrono;
+
     std::stringstream ss;
     ss << vdate.year;
     ss << "-";
@@ -582,22 +616,38 @@ hops_clock::vex_date_to_iso8601_string(hops_clock::vex_date vdate)
     date::sys_days ymd = get_year_month_day(y,ord_day);
 
     //convert day-of-year to month-day
-    auto month = year_month_day{ymd}.month();
-    auto mday = year_month_day{ymd}.day();
+    auto month = date::year_month_day{ymd}.month();
+    auto mday = date::year_month_day{ymd}.day();
     ss << std::setfill('0') << std::setw(2) << (unsigned) month;
     ss << "-";
     ss << std::setfill('0') << std::setw(2) << (unsigned) mday;
 
     ss << "T";
-    ss << vdate.hours;
+    ss << std::setfill('0') << std::setw(2) << vdate.hours;
     ss << ":";
-    ss << vdate.minutes;
+    ss << std::setfill('0') << std::setw(2) << vdate.minutes;
     ss << ":";
 
+
+    //nss << std::setprecision(9) << vdate.seconds;
+
+    double intpart;
+    double frac = modf(vdate.seconds, &intpart);
+    int integer_sec = intpart;
+
+    ss << std::setfill('0') << std::setw(2) << integer_sec;
+
+    //now convert the fraction part into integer nano seconds 
+    int integer_nanosec = frac*SEC_TO_NANOSEC;
     std::stringstream nss;
-    nss << std::setprecision(9) << vdate.seconds;
-    std::string seconds_value = nss.str();
-    ss << remove_trailing_zeros(seconds_value);
+    nss << integer_nanosec;
+    std::string nanoseconds_value = nss.str();
+    std::string trimmed_int_nanosec = remove_trailing_zeros(nanoseconds_value);
+    if(trimmed_int_nanosec.size() != 0)
+    {
+        ss << ".";
+        ss << trimmed_int_nanosec;
+    }
     ss << "Z";
     return ss.str();
 }

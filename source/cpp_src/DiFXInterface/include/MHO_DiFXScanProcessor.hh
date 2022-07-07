@@ -45,8 +45,16 @@ class MHO_DiFXScanProcessor
         virtual ~MHO_DiFXScanProcessor();
 
         void SetRootCode(std::string rcode){fRootCode = rcode;}
+        void SetExperimentNumber(int num){fExperNum = num;}
         void SetStationCodes(MHO_StationCodeMap* code_map);
         void ProcessScan(MHO_DiFXScanFileSet& fileSet);
+
+
+        void SetPreserveDiFXScanNamesTrue(){fPreserveDiFXScanNames = true;}
+        void SetPreserveDiFXScanNamesFalse(){fPreserveDiFXScanNames = false;};
+
+        //use json representation of vex-scan information to return epoch string of frt
+        std::string get_fourfit_reftime_for_scan(mho_json scan_obj);
 
     private:
 
@@ -59,19 +67,23 @@ class MHO_DiFXScanProcessor
 
         bool CreateScanOutputDirectory();
         void LoadInputFile();
-        void ConvertRootFileObject();
+        void CreateRootFileObject(std::string vexfile);
         void ConvertVisibilityFileObjects();
         void ConvertStationFileObjects();
 
         void ExtractPCalData();
         void ExtractStationCoords();
         void CleanUp();
+        void ModifyFreqTable(mho_json vex_root);
 
         //the DiFX input file structure 
         json fInput;
 
         //the root code assigned to this scan 
         std::string fRootCode;
+
+        //integer experiment number 
+        int fExperNum;
 
         //the output directory for this scan 
         std::string fOutputDirectory;
@@ -81,6 +93,8 @@ class MHO_DiFXScanProcessor
 
         std::map< std::string, multitone_pcal_type* > fStationCode2PCal;
         std::map< std::string, station_coord_type* > fStationCode2Coords;
+
+        bool fPreserveDiFXScanNames;
 
 };
 

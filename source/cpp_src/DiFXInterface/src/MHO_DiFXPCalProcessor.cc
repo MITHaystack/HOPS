@@ -163,7 +163,7 @@ MHO_DiFXPCalProcessor::Organize()
     if(fValid)
     {
         std::stringstream ss;
-        ss << "has polarizations: ";
+        ss << " has polarizations: ";
         for(auto ppit = fPolSet.begin(); ppit != fPolSet.end(); ppit++)
         {
             ss << *ppit << " ";

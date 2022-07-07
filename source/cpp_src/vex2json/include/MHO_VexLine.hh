@@ -18,6 +18,7 @@ namespace hops
 struct MHO_VexLine
 {
     std::size_t fLineNumber;
+    std::size_t fStatementNumber;
     std::string fContents;
     bool fIsLiteral;
 };
