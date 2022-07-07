@@ -74,6 +74,7 @@ class MHO_DiFXScanProcessor
         void ExtractPCalData();
         void ExtractStationCoords();
         void CleanUp();
+        void ModifyFreqTable(mho_json vex_root);
 
         //the DiFX input file structure 
         json fInput;
