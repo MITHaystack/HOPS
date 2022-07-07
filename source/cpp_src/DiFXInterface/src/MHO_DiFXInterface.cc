@@ -225,6 +225,7 @@ MHO_DiFXInterface::ProcessScans()
 
     for(std::size_t i=0; i<fScanFileSetList.size(); i++)
     {
+        fScanProcessor.SetExperimentNumber(fExperNum);
         fScanProcessor.SetRootCode(scan_codes[i]);
         fScanProcessor.ProcessScan(fScanFileSetList[i]);
     }
