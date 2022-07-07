@@ -133,19 +133,20 @@ MHO_DiFXScanProcessor::CreateRootFileObject(std::string vexfile)
     }
 
     //lastly we need to insert the traditional mk4 channel names for each frequency
+    //and/or adapt the channel defintions to deal with zoom bands
+    ModifyFreqTable(vex_root);
 
     MHO_VexGenerator gen;
     std::string output_file = fOutputDirectory + "/" + src_name + "." + fRootCode;
     gen.SetFilename(output_file);
     gen.GenerateVex(vex_root);
 
-
-
-    //TODO FILL ME IN ...need to populate the 'ovex' structure that we typically use 
-    //then convert that to the json representation (as we do in the Mk4Inteface)
-    //Is this strictly necessary? We've already converted the DiFX input information into json 
-    //so we could probably skip the ovex step...but we do need to make sure we cover the 
-    //same set of information, so filling the ovex structures may be the simplest thing to do for now
+    //we also write out the 'ovex'/'vex' json object as a json file
+    output_file = fOutputDirectory + "/" + src_name + "." + fRootCode + ".json";
+    //open and dump to file 
+    std::ofstream outFile(output_file.c_str(), std::ofstream::out);
+    outFile << vex_root.dump(2);
+    outFile.close();
 }
 
 void 
@@ -405,6 +406,24 @@ MHO_DiFXScanProcessor::get_fourfit_reftime_for_scan(mho_json scan_obj)
     std::string frt = hops_clock::to_vex_format(frt_tp);
 
     return frt;
+}
+
+void 
+MHO_DiFXScanProcessor::ModifyFreqTable(mho_json vex_root)
+{
+    //loop through freq table, looking up BBC/IF for each channel so
+    //we can identify the polarization 
+
+    //create names which follow the convention, ABBCD where:
+    //A is the band id
+    //BB is sequency number (in order of increasing sky frequency)
+    //C is the (net) sideband 
+    //D is the polarization
+
+
+
+
+
 }
 
 
