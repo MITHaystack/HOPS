@@ -98,8 +98,7 @@ MHO_DiFXScanProcessor::CreateRootFileObject(std::string vexfile)
             {
                 source_ids.push_back( (*it)["source"][n]["source"] );
             }
-            std::string fourfit_reftime_epoch = get_fourfit_reftime_for_scan(*it);
-            (*it)["fourfit_reftime"] = fourfit_reftime_epoch; //add the fourfit reference time
+            (*it)["fourfit_reftime"] = get_fourfit_reftime_for_scan(*it); //add the fourfit reference time
             sched[it.key()] = it.value(); //add this scan to the schedule section
             break;
         }
@@ -108,6 +107,7 @@ MHO_DiFXScanProcessor::CreateRootFileObject(std::string vexfile)
     vex_root["$SCHED"] = sched;
 
     //rip out all sources but the one specified for this scan
+    std::string src_name = "unknown";
     mho_json src;
     mho_json src_copy = vex_root["$SOURCE"];
     for(auto it = src_copy.begin(); it != src_copy.end(); ++it)
@@ -117,6 +117,7 @@ MHO_DiFXScanProcessor::CreateRootFileObject(std::string vexfile)
             if(it.key() == source_ids[n])
             {
                 src[it.key()] = it.value();
+                src_name = (it.value())["source_name"];
                 break;
             }
         }
@@ -133,16 +134,10 @@ MHO_DiFXScanProcessor::CreateRootFileObject(std::string vexfile)
 
     //lastly we need to insert the traditional mk4 channel names for each frequency
 
-    //std::string scan_id = fInput["scan"][fFileSet->fIndex]["identifier"];
-    // std::cout<<"difx scan name = "<<fFileSet->fScanName<<" = "<<scan_id<<std::endl;
-
-    //remove all sources but the current scan's source
-
     MHO_VexGenerator gen;
-    std::string output_file = fOutputDirectory + "/" + "test.vex";
+    std::string output_file = fOutputDirectory + "/" + src_name + "." + fRootCode;
     gen.SetFilename(output_file);
     gen.GenerateVex(vex_root);
-
 
 
 
