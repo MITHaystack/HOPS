@@ -33,9 +33,9 @@ MHO_VexParser::ParseVex()
 {
     ReadFile(); //read file into memory
     RemoveComments(); //excise all comments
+    SplitStatements(); //split multiple ";" on one line into as many statements as needed
     JoinLines(); //join statements split across multiple lines
     MarkLiterals(); //excise all 'literal' sections
-    SplitStatements(); //split multiple ";" on one line into as many statements as needed
     IndexStatements();
     MarkBlocks(); //mark the major parsable sections
 
@@ -134,8 +134,35 @@ MHO_VexParser::SplitStatements()
     auto it = fLines.begin();
     while(it != fLines.end())
     {
+        bool must_split = false;
         std::size_t n_stmt = std::count( it->fContents.begin(), it->fContents.end(), statement_end[0]);
-        if(n_stmt != 1)
+        if(n_stmt > 1){must_split = true;}
+
+        //another condition for splitting the line would be if we have some messy like
+        //the following (still legal according to the standard):
+        //def K2; VSN = 1 : HOB+0093 : 
+        //2019y133d00h00m : 2019y134d23h59m 
+        //; enddef;
+        //to detect this we need to check if there are any non white space characters 
+        //after the presence of a ';'
+        
+        std::string whitespace_chars = MHO_VexDefinitions::WhitespaceDelim();
+        if(n_stmt >= 1)
+        {
+            std::size_t last_flag_pos = it->fContents.find_last_of(statement_end);
+            for(std::size_t ch = last_flag_pos; ch < it->fContents.size(); ch++)
+            {
+                if( whitespace_chars.find( it->fContents[ch] ) == std::string::npos)
+                {
+                    //there is a non-whitespace character here, so we must split this line at the ';'
+                    must_split = true;
+                    break;
+                }
+            }
+        }
+
+
+        if(must_split)
         {
             //split this statement into multiple 'lines'
             std::vector< std::size_t > positions;
