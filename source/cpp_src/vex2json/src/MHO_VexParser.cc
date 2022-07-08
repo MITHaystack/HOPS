@@ -28,6 +28,24 @@ MHO_VexParser::DetermineFileVersion()
     SetVexVersion(rev);
 }
 
+mho_json
+MHO_VexParser::ParseVex()
+{
+    ReadFile(); //read file into memory
+    RemoveComments(); //excise all comments
+    JoinLines(); //join statements split across multiple lines
+    MarkLiterals(); //excise all 'literal' sections
+    SplitStatements(); //split multiple ";" on one line into as many statements as needed
+    IndexStatements();
+    MarkBlocks(); //mark the major parsable sections
+
+    mho_json root;
+    root[fVexDef.VexRevisionFlag()] = fVexVersion;
+    ProcessBlocks(root);
+
+    return root;
+}
+
 void 
 MHO_VexParser::ReadFile()
 {
@@ -266,23 +284,6 @@ MHO_VexParser::MarkBlocks()
     }
 }
 
-mho_json
-MHO_VexParser::ParseVex()
-{
-    ReadFile(); //read file into memory
-    RemoveComments(); //excise all comments
-    JoinLines(); //join statements split across multiple lines
-    MarkLiterals(); //excise all 'literal' sections
-    SplitStatements(); //split multiple ";" on one line into as many statements as needed
-    IndexStatements();
-    MarkBlocks(); //mark the major parsable sections
-
-    mho_json root;
-    root[fVexDef.VexRevisionFlag()] = fVexVersion;
-    ProcessBlocks(root);
-
-    return root;
-}
 
 void 
 MHO_VexParser::ProcessBlocks(mho_json& root)
