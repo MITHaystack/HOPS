@@ -8,7 +8,8 @@ namespace hops
 
 MHO_VexParser::MHO_VexParser()
 {
-    SetVexVersion("1.5");
+    //default to vex 1.5 -- though the file should tell us
+    SetVexVersion("1.5"); 
 }
 
 
@@ -34,7 +35,7 @@ MHO_VexParser::ParseVex()
     ReadFile(); //read file into memory
     RemoveComments(); //excise all comments
     SplitStatements(); //split multiple ";" on one line into as many statements as needed
-    JoinLines(); //join statements split across multiple lines
+    JoinLines(); //join incomplete segments split across multiple lines into a single statement
     MarkLiterals(); //excise all 'literal' sections
     IndexStatements();
     MarkBlocks(); //mark the major parsable sections
@@ -138,13 +139,13 @@ MHO_VexParser::SplitStatements()
         std::size_t n_stmt = std::count( it->fContents.begin(), it->fContents.end(), statement_end[0]);
         if(n_stmt > 1){must_split = true;}
 
-        //another condition for splitting the line would be if we have some messy like
-        //the following (still legal according to the standard):
-        //def K2; VSN = 1 : HOB+0093 : 
-        //2019y133d00h00m : 2019y134d23h59m 
-        //; enddef;
+        //another condition for splitting the line would be if we have something 
+        //messy like the following (still legal according to the standard):
+        //    def K2; VSN = 1 : HOB+0093 : 
+        //    2019y133d00h00m : 2019y134d23h59m 
+        //    ; enddef;
         //to detect this we need to check if there are any non white space characters 
-        //after the presence of a ';'
+        //after the presence of a ';' (comments should be stripped at this point)
         
         std::string whitespace_chars = MHO_VexDefinitions::WhitespaceDelim();
         if(n_stmt >= 1)
