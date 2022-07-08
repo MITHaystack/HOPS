@@ -461,9 +461,15 @@ MHO_DiFXInputProcessor::ExtractDifxPolyModel(DifxPolyModel* m)
     return poly;
 }
 
-
-
-
-
+void 
+MHO_DiFXInputProcessor::FillFrequencyTable()
+{
+    struct CommandLineOptions opts;
+    opts.verbose = 2;
+    for(int i=0; i<16; i++){opts.fgroups[i] = '\0';}
+    for(int i=0; i<8; i++){opts.bandwidth[i] = '\0';}
+    struct fblock_tag fblock[MAX_FPPAIRS];
+    int val = fill_fblock (fD, &opts, &(fblock[0]));
+}
 
 }//end namespace
