@@ -162,13 +162,37 @@ MHO_VexParser::IndexStatements()
 void
 MHO_VexParser::JoinLines()
 {
-    //TODO FIXME - implement this 
-    msg_warn("vex", "multi-line vex statements currently not supported." << eom);
-    //The vex standard explicitly allows for a single vex-statement to be split across multiple lines,
-    //so long as it is terminated by a ';'. However, due to the way in which the file was read in (getline)
-    //and the fact that trailing comments need to be removed on a per-line basis (as per standard), we need to implement 
-    //the ability to re-join a vex statment that is spread over multiple-lines into a single ';' terminated string,
-    //so that it can be tokenized and parsed.
+    //every line/statement should be terminated with a ";"
+    //so we concatenate lines which are missing a ";"
+    std::string statement_end = MHO_VexDefinitions::StatementEndFlag();
+    std::vector< MHO_VexLine > prepend_statements;
+    auto it = fLines.begin();
+    while(it != fLines.end())
+    {
+        if( it->fContents.find(statement_end) == std::string::npos )
+        {
+            //this line is missing a statement end ";"
+            prepend_statements.push_back(*it);
+            it = fLines.erase(it); //remove this line as a separate entity
+        }
+        else
+        {
+            if(prepend_statements.size() != 0 )
+            {
+                //concatenate all of the prepending statements and insert 
+                //them at the front of this line
+                std::string full_statement;
+                for(std::size_t i=0; i<prepend_statements.size(); i++)
+                {
+                    full_statement += prepend_statements[i].fContents + " ";
+                }
+                std::string current_contents = it->fContents;
+                it->fContents = full_statement + current_contents;
+                prepend_statements.clear();
+            }
+            ++it;
+        }
+    }
 }
 
 void 
@@ -247,10 +271,10 @@ MHO_VexParser::ParseVex()
 {
     ReadFile(); //read file into memory
     RemoveComments(); //excise all comments
+    JoinLines(); //join statements split across multiple lines
     MarkLiterals(); //excise all 'literal' sections
-    SplitStatements(); //split multiple ";" on one line into many
+    SplitStatements(); //split multiple ";" on one line into as many statements as needed
     IndexStatements();
-    JoinLines(); //not implemented -- join multiple lines into a single statement
     MarkBlocks(); //mark the major parsable sections
 
     mho_json root;
