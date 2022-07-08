@@ -14,6 +14,8 @@
 
 #include "difxio/difx_input.h"
 
+#include "fill_fblock.hh"
+
 
 namespace hops 
 {
@@ -27,6 +29,7 @@ class MHO_DiFXInputProcessor
 
         void LoadDiFXInputFile(std::string filename);
         void ConvertToJSON(json& input);
+        void FillFrequencyTable();
 
     private:
 

@@ -260,6 +260,7 @@ MHO_DiFXScanProcessor::LoadInputFile()
     MHO_DiFXInputProcessor input_proc;
     input_proc.LoadDiFXInputFile(fFileSet->fInputFile);
     input_proc.ConvertToJSON(fInput);
+    input_proc.FillFrequencyTable();
 
     msg_debug("difx_interface", "difx .input file: " << fFileSet->fInputFile <<" converted to json." << eom);
 }
@@ -411,6 +412,9 @@ MHO_DiFXScanProcessor::get_fourfit_reftime_for_scan(mho_json scan_obj)
 void 
 MHO_DiFXScanProcessor::ModifyFreqTable(mho_json vex_root)
 {
+    //first check for zoom-bands
+
+
     //loop through freq table, looking up BBC/IF for each channel so
     //we can identify the polarization 
 
