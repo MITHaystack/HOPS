@@ -48,7 +48,7 @@ MHO_MK4VexInterface::OpenVexFile(std::string file_path)
 {
     MHO_VexParser vparser;
     vparser.SetVexFile(file_path);
-    mho_json fVex = vparser.ParseVex();
+    fVex = vparser.ParseVex();
     fHaveVex = true;
     // std::string tmp_key(""); //use empty key for now
     // int retval = get_vex( const_cast<char*>(file_path.c_str() ),  OVEX | EVEX | IVEX | LVEX , const_cast<char*>(tmp_key.c_str() ), fVex);
