@@ -211,8 +211,17 @@ MHO_MK4CorelInterface::DetermineDataDimensions()
     }
     #endif
 
+    //should only have a single 'scan' element under the schedule section, so find it
+    auto sched = fVex["$SCHED"];
+    if(sched.size() != 1)
+    {
+        msg_error("mk4interface", "OVEX file schedule section contains more than one scan."<<eom);
+    }
+    auto scan = sched.begin().value();
+    std::string mode_key = scan["mode"].get<std::string>();
+
     //now we need to fill in the channel labels with information from the vex
-    int nst = fVex["$STATION"].size(); // nst;
+    int nst = scan["station"].size(); // nst;
     char ref_st = baseline[0];
     char rem_st = baseline[1];
     double ref_sky_freq, ref_bw, rem_sky_freq, rem_bw;
@@ -230,6 +239,16 @@ MHO_MK4CorelInterface::DetermineDataDimensions()
         found_rem = false;
         for(int ist = 0; ist<nst; ist++)
         {
+            //find the frequency table for this station 
+            //first locate the mode info 
+            auto mode = fVex["$MODE"][mode_key];
+            std::string freq_key;
+            for(auto it = mode["$FREQ"].begin(); it != mode["$FREQ"].end(); ++it)
+            {
+                
+            }
+
+
             std::string site_key = fVex["$STATION"][ist]["$SITE"]["keyword"].get<std::string>();
             auto site = fVex["$SITE"][site_key];
             std::string site_mk4_id = site["mk4_site_id"].get<std::string>();
