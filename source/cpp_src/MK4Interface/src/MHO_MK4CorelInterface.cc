@@ -15,7 +15,7 @@ extern "C"
     #include "mk4_records.h"
     #include "mk4_data.h"
     #include "mk4_dfio.h"
-    #include "mk4_vex.h"
+    // #include "mk4_vex.h"
 #ifndef HOPS3_USE_CXX
 }
 #endif
@@ -47,11 +47,11 @@ MHO_MK4CorelInterface::MHO_MK4CorelInterface():
     fHaveCorel(false),
     fHaveVex(false),
     fCorel(nullptr),
-    fVex(nullptr),
+    // fVex(nullptr),
     fExtractedVisibilities(nullptr),
     fExtractedWeights(nullptr)
 {
-    fVex = (struct vex *) calloc ( 1, sizeof(struct vex) );
+    // fVex = (struct vex *) calloc ( 1, sizeof(struct vex) );
     fCorel = (struct mk4_corel *) calloc ( 1, sizeof(struct mk4_corel) );
     fNPPs = 0;
     fNAPs = 0;
@@ -67,7 +67,7 @@ MHO_MK4CorelInterface::~MHO_MK4CorelInterface()
 {
     clear_mk4corel(fCorel);
     free(fCorel);
-    free(fVex);
+    // free(fVex);
 }
 
 void
@@ -100,30 +100,36 @@ MHO_MK4CorelInterface::ReadCorelFile()
 void
 MHO_MK4CorelInterface::ReadVexFile()
 {
-    if(fHaveVex)
-    {
-        msg_debug("mk4interface", "Clearing a previously exisiting vex struct."<< eom);
-        free(fVex);
-        fVex = (struct vex *) calloc ( 1, sizeof(struct vex) );
-        fHaveVex = false;
-    }
+    // if(fHaveVex)
+    // {
+    fHaveVex = false;
+    MHO_MK4VexInterface vinter;
+    vinter.OpenVexFile(fVexFile);
+    fVex = vinter.GetVex();
+    if( fVex.contains("$OVEX_REV") ){fHaveVex = true;}
 
-    std::string tmp_key(""); //use empty key for now
-    std::string fname = fVexFile;
-    int retval = get_vex( const_cast<char*>(fname.c_str() ),
-                          OVEX | EVEX | IVEX | LVEX ,
-                          const_cast<char*>(tmp_key.c_str() ), fVex);
+        // msg_debug("mk4interface", "Clearing a previously exisiting vex struct."<< eom);
+        // free(fVex);
+        // fVex = (struct vex *) calloc ( 1, sizeof(struct vex) );
+        // fHaveVex = false;
+    //}
 
-    if(retval !=0 )
-    {
-        fHaveVex = false;
-        msg_debug("mk4interface", "Failed to read vex file: " << fVexFile << ", error value: "<< retval << eom);
-    }
-    else
-    {
-        fHaveVex = true;
-        msg_debug("mk4interface", "Successfully read vex file."<< fVexFile << eom);
-    }
+    // std::string tmp_key(""); //use empty key for now
+    // std::string fname = fVexFile;
+    // int retval = get_vex( const_cast<char*>(fname.c_str() ),
+    //                       OVEX | EVEX | IVEX | LVEX ,
+    //                       const_cast<char*>(tmp_key.c_str() ), fVex);
+    // 
+    // if(retval !=0 )
+    // {
+    //     fHaveVex = false;
+    //     msg_debug("mk4interface", "Failed to read vex file: " << fVexFile << ", error value: "<< retval << eom);
+    // }
+    // else
+    // {
+    //     fHaveVex = true;
+    //     msg_debug("mk4interface", "Successfully read vex file."<< fVexFile << eom);
+    // }
 
 }
 
@@ -133,7 +139,7 @@ MHO_MK4CorelInterface::ReadVexFile()
 
 void
 MHO_MK4CorelInterface::DetermineDataDimensions()
-{
+{   
     //We need to determine 4 things:
     //(1) number of pol-products (npp)
     //(2) number of APs (nap)
@@ -206,7 +212,7 @@ MHO_MK4CorelInterface::DetermineDataDimensions()
     #endif
 
     //now we need to fill in the channel labels with information from the vex
-    int nst = fVex->ovex->nst;
+    int nst = fVex["$STATION"].size(); // nst;
     char ref_st = baseline[0];
     char rem_st = baseline[1];
     double ref_sky_freq, ref_bw, rem_sky_freq, rem_bw;
@@ -224,11 +230,16 @@ MHO_MK4CorelInterface::DetermineDataDimensions()
         found_rem = false;
         for(int ist = 0; ist<nst; ist++)
         {
-            if(ref_st == fVex->ovex->st[ist].mk4_site_id && !found_ref)
+            std::string site_key = fVex["$STATION"][ist]["$SITE"]["keyword"].get<std::string>();
+            auto site = fVex["$SITE"][site_key];
+            std::string site_mk4_id = site["mk4_site_id"].get<std::string>();
+
+            if(ref_st == site_mk4_id && !found_ref)
             {
                 //get the channel information of the reference station
                 for(size_t nch=0; nch<MAX_CHAN; nch++)
                 {
+                    fVex["$SITE"][site_key]
                     std::string chan_name = getstr( fVex->ovex->st[ist].channels[nch].chan_name,32);
                     if(chan_name == ref_chan_id)
                     {

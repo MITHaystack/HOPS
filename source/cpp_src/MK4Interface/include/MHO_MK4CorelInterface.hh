@@ -18,6 +18,7 @@
 #include <string>
 
 #include "MHO_ContainerDefinitions.hh"
+#include "MHO_MK4VexInterface.hh"
 
 #include "MHO_Message.hh"
 
@@ -31,7 +32,7 @@ extern "C"
 #endif
 
     struct mk4_corel;
-    struct vex;
+    //struct vex;
 
 #ifndef HOPS3_USE_CXX
 }
@@ -75,7 +76,8 @@ class MHO_MK4CorelInterface
         bool fHaveCorel;
         bool fHaveVex;
         struct mk4_corel* fCorel;
-        struct vex* fVex;
+        // struct vex* fVex;
+        mho_json fVex;
         std::string fVexFile;
         std::string fCorelFile;
 
