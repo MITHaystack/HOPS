@@ -12,8 +12,8 @@ int main(int argc, char **argv) {
   struct type_203 my203;
 
   // create and fill in a type_203 struct with some dummy data
-  strcpy(my203.record_id, "202");
-  strcpy(my203.version_no, "000");
+  strncpy(my203.record_id, "202000000", sizeof(my203.record_id));
+  strncpy(my203.version_no, "000000", sizeof(my203.version_no));
 
   for (int i = 0; i < 512; i++) {
     // initialize all channels except the last one
@@ -25,8 +25,8 @@ int main(int argc, char **argv) {
       my203.channels[i].rempol = 'a' + rand() % 26;
       my203.channels[i].ref_freq = rand() % 20 + 1 + .5;
       my203.channels[i].rem_freq = rand() % 20 + 1 + .5;
-      strcpy(my203.channels[i].ref_chan_id, "foo");
-      strcpy(my203.channels[i].rem_chan_id, "bar");
+      strncpy(my203.channels[i].ref_chan_id, "foobarfoo", sizeof(my203.channels[i].ref_chan_id));
+      strncpy(my203.channels[i].rem_chan_id, "barfoo", sizeof(my203.channels[i].rem_chan_id));
     }
   }
 

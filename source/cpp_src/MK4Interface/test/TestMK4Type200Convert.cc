@@ -15,15 +15,15 @@ int main(int argc, char **argv) {
   my200.record_id[2] = '0';
   my200.version_no[0] = '0';
   my200.version_no[1] = '0';
-  strcpy(my200.unused1, "foo");
+  strncpy(my200.unused1, "fooo", sizeof(my200.unused1));
   for (int i = 0; i < 10; i++) {
     my200.software_rev[i] =
         1; // i have no idea what this field is actually used for
   }
   my200.expt_no = 1234;
-  strcpy(my200.exper_name, "WYQXVxN4Ci6FAU7by7wQLPOnhGFlPGSx");
-  strcpy(my200.scan_name, "NQxu5N642mOyC49l");
-  strcpy(my200.correlator, "baab");
+  strncpy(my200.exper_name, "WYQXVxN4Ci6FAU7by7wQLPOnhGFlPGSx", sizeof(my200.exper_name));
+  strncpy(my200.scan_name, "NQxu5N642mOyC49l", sizeof(my200.scan_name));
+  strncpy(my200.correlator, "baab", sizeof(my200.correlator));
   my200.scantime.year = 2022;
   my200.scantime.day = 22;
   my200.scantime.hour = 22;

@@ -13,16 +13,16 @@ int main(int argc, char **argv) {
   struct type_205 my205;
 
   // create and fill in a type_205 struct with some dummy data
-  strcpy(my205.record_id, "202");
-  strcpy(my205.version_no, "000");
-  strcpy(my205.unused1, "i'm unused1");
+  strncpy(my205.record_id, "202", sizeof(my205.record_id));
+  strncpy(my205.version_no, "000", sizeof(my205.version_no));
+  strncpy(my205.unused1, "i'm unused1", sizeof(my205.unused1));
   my205.utc_central.year = 2022;
   my205.utc_central.day = 11;
   my205.utc_central.hour = 16;
   my205.utc_central.minute = 0;
   my205.utc_central.second = 0;
   my205.offset = 2;
-  strcpy(my205.ffmode, "a mode");
+  strncpy(my205.ffmode, "a mode", sizeof(my205.ffmode));
   my205.search[0] = 1;
   my205.search[1] = 1;
   my205.search[2] = 1;

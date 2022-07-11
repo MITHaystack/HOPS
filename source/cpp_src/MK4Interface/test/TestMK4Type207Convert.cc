@@ -11,9 +11,9 @@ int main(int argc, char **argv) {
   struct type_207 my207;
 
   // create and fill in a type_207 struct with some dummy data
-  strcpy(my207.record_id, "202");
-  strcpy(my207.version_no, "2");
-  strcpy(my207.unused1, "unused...");
+  strncpy(my207.record_id, "202", sizeof(my207.record_id));
+  strncpy(my207.version_no, "2", sizeof(my207.version_no));
+  strncpy(my207.unused1, "unused...", sizeof(my207.unused1));
   my207.pcal_mode = 2;
   my207.unused2 = 2;
   for (int i = 0; i < REFANDREMSIZE; i++) {

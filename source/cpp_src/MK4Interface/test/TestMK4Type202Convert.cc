@@ -10,16 +10,16 @@ int main(int argc, char **argv) {
   // create and fill in a type_202 struct with some dummy data
   struct type_202 my202;
 
-  strcpy(my202.record_id, "202");
-  strcpy(my202.version_no, "000");
-  strcpy(my202.unused1, "foo");
-  strcpy(my202.baseline, "aa");
-  strcpy(my202.ref_intl_id, "bb");
-  strcpy(my202.rem_intl_id, "cc");
-  strcpy(my202.ref_name, "abcdefgh");
-  strcpy(my202.rem_name, "jklmnopq");
-  strcpy(my202.ref_tape, "jklmnopq");
-  strcpy(my202.rem_tape, "jklmnopq");
+  strncpy(my202.record_id, "202", sizeof(my202.record_id));
+  strncpy(my202.version_no, "000", sizeof(my202.version_no));
+  strncpy(my202.unused1, "foo", sizeof(my202.unused1));
+  strncpy(my202.baseline, "aa", sizeof(my202.baseline));
+  strncpy(my202.ref_intl_id, "bb", sizeof(my202.ref_intl_id));
+  strncpy(my202.rem_intl_id, "cc", sizeof(my202.rem_intl_id));
+  strncpy(my202.ref_name, "abcdefgh", sizeof(my202.ref_name));
+  strncpy(my202.rem_name, "jklmnopq", sizeof(my202.rem_name));
+  strncpy(my202.ref_tape, "jklmnopq", sizeof(my202.ref_tape));
+  strncpy(my202.rem_tape, "jklmnopq", sizeof(my202.rem_tape));
   my202.nlags = 2;
   my202.ref_ypos = 2;
   my202.rem_ypos = 2;

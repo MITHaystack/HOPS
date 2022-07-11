@@ -11,9 +11,9 @@ int main(int argc, char **argv) {
   struct type_210 my210;
 
   // create and fill in a type_210 struct with some dummy data
-  strcpy(my210.record_id, "202");
-  strcpy(my210.version_no, "2");
-  strcpy(my210.unused1, "unused...");
+  strncpy(my210.record_id, "202", sizeof(my210.record_id));
+  strncpy(my210.version_no, "2", sizeof(my210.version_no));
+  strncpy(my210.unused1, "unused...", sizeof(my210.unused1));
   for (int i = 0; i < AMPPHASE; i++) {
     my210.amp_phas[i].ampl = 22.22;
     my210.amp_phas[i].phase = 22.22;

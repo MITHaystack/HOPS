@@ -8,13 +8,15 @@ using namespace hops;
 int main(int argc, char **argv) {
   struct type_208 my208;
 
+  // create a string that is NOT null terminated.
+  // use that as a test case with strcat
   // create and fill in a type_208 struct with some dummy data
-  strcpy(my208.record_id, "202");
-  strcpy(my208.version_no, "2");
-  strcpy(my208.unused1, "unused...");
+  strncpy(my208.record_id, "202777777777777777777", sizeof(my208.record_id));
+  strncpy(my208.version_no, "2", sizeof(my208.version_no));
+  strncpy(my208.unused1, "unused...", sizeof(my208.unused1));
   my208.quality = 'q';
   my208.errcode = 'e';
-  strcpy(my208.tape_qcode, "xxxxxx");
+  strncpy(my208.tape_qcode, "xxxxxx", sizeof(my208.tape_qcode));
   my208.adelay = 2;
   my208.arate = 2;
   my208.aaccel = 2;

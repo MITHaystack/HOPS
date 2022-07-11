@@ -15,8 +15,8 @@ int main(int argc, char **argv) {
   my201.record_id[2] = '1';
   my201.version_no[0] = '0';
   my201.version_no[1] = '0';
-  strcpy(my201.unused1, "foo");
-  strcpy(my201.source, "WYQXVxN4Ci6FAU7by7wQLPOnhGFlPGSx");
+  strncpy(my201.unused1, "foo", sizeof(my201.unused1));
+  strncpy(my201.source, "WYQXVxN4Ci6FAU7by7wQLPOnhGFlPGSx", sizeof(my201.source));
   my201.coord.ra_hrs = 1;
   my201.coord.ra_mins = 1;
   my201.coord.ra_secs = 1;
@@ -27,7 +27,7 @@ int main(int argc, char **argv) {
   for (int i = 0; i < 4; i++) {
     my201.pulsar_phase[i] = 1;
   }
-  strcpy(my201.unused2, "bar");
+  strncpy(my201.unused2, "bar", sizeof(my201.unused2));
   my201.ra_rate = 2;
   my201.dec_rate = 2;
   my201.pulsar_epoch = 2;
