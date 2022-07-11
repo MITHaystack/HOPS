@@ -22,6 +22,7 @@ set(SOURCE_BASENAMES
     TestJson2
     TestVexParser
     TestJson2Vex
+    TestExtractFreqTable
 )
 
 foreach( BASENAME ${SOURCE_BASENAMES} )
