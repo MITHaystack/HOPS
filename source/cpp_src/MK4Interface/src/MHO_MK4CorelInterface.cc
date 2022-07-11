@@ -211,6 +211,10 @@ MHO_MK4CorelInterface::DetermineDataDimensions()
     }
     #endif
 
+
+
+
+    //assume we now have all ovex/vex in the fVex object, and that we only have a single scan
     //should only have a single 'scan' element under the schedule section, so find it
     auto sched = fVex["$SCHED"];
     if(sched.size() != 1)
@@ -220,12 +224,70 @@ MHO_MK4CorelInterface::DetermineDataDimensions()
     auto scan = sched.begin().value();
     std::string mode_key = scan["mode"].get<std::string>();
 
-    //now we need to fill in the channel labels with information from the vex
+    std::cout<<"mode key = "<<mode_key<<std::endl;
+
+
     int nst = scan["station"].size(); // nst;
-    char ref_st = baseline[0];
-    char rem_st = baseline[1];
+
+    std::cout<<"number of stations = "<<nst<<std::endl;
+    //maps to resolve links
+    std::map< std::string, std::string > fStationCodeToSiteID;
+    std::map< std::string, std::string > fStationCodeToMk4ID;
+    std::map< std::string, std::string > fStationCodeToFreqTableName;
+    std::map< std::string, std::string > fMk4IDToFreqTableName;  
+
+    for(int ist = 0; ist<nst; ist++)
+    {
+        //find the frequency table for this station 
+        //first locate the mode info 
+        auto mode = fVex["$MODE"][mode_key];
+        std::string freq_key;
+        for(auto it = mode["$FREQ"].begin(); it != mode["$FREQ"].end(); ++it)
+        {
+            std::string keyword = (*it)["keyword"].get<std::string>();
+            std::size_t n_qual = (*it)["qualifiers"].size();
+            
+            std::cout<<"freq setup keyword = "<<keyword<<std::endl;
+            for(std::size_t q=0; q<n_qual; q++)
+            {
+                std::string station_code = (*it)["qualifiers"][q].get<std::string>();
+                fStationCodeToFreqTableName[station_code] = keyword;
+                std::cout<<"qualifier @"<<q<<" = "<<(*it)["qualifiers"][q].get<std::string>()<<std::endl;
+
+                //std::string site_key = 
+                std::string site_key = fVex["$STATION"][station_code]["$SITE"][0]["keyword"].get<std::string>();
+                std::string mk4_id = fVex["$SITE"][site_key]["mk4_site_ID"].get<std::string>();
+                fMk4IDToFreqTableName[mk4_id] = keyword;
+                
+                std::cout<<keyword<<" : "<<mk4_id<<" : "<<site_key<<std::endl;
+            }
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+    // //should only have a single 'scan' element under the schedule section, so find it
+    // auto sched = fVex["$SCHED"];
+    // if(sched.size() != 1)
+    // {
+    //     msg_error("mk4interface", "OVEX file schedule section contains more than one scan."<<eom);
+    // }
+    // auto scan = sched.begin().value();
+    // std::string mode_key = scan["mode"].get<std::string>();
+
+    // //now we need to fill in the channel labels with information from the vex
+    // int nst = scan["station"].size(); // nst;
+    std::string ref_st = std::string(baseline[0],1);
+    std::string rem_st = std::string(baseline[1],1);
     double ref_sky_freq, ref_bw, rem_sky_freq, rem_bw;
-    char ref_net_sb, rem_net_sb, ref_pol, rem_pol;
+    std::string ref_net_sb, rem_net_sb, ref_pol, rem_pol;
     bool found_ref = false;
     bool found_rem = false;
     fPolProducts.clear();
@@ -237,62 +299,95 @@ MHO_MK4CorelInterface::DetermineDataDimensions()
         ch->second.Retrieve(std::string("rem_chan_id"), rem_chan_id);
         found_ref = false;
         found_rem = false;
-        for(int ist = 0; ist<nst; ist++)
+
+        std::string ref_freq_table = fMk4IDToFreqTableName[ref_st];
+        std::string rem_freq_table = fMk4IDToFreqTableName[rem_st];
+
+        //get the channel information of the reference station
+        for(std::size_t nch=0; nch < fVex["$FREQ"][ref_freq_table]["chan_def"].size(); nch++)
         {
-            //find the frequency table for this station 
-            //first locate the mode info 
-            auto mode = fVex["$MODE"][mode_key];
-            std::string freq_key;
-            for(auto it = mode["$FREQ"].begin(); it != mode["$FREQ"].end(); ++it)
+            std::string chan_name = fVex["$FREQ"][ref_freq_table]["chan_def"]["channel_name"].get<std::string>();
+            if(chan_name == ref_chan_id)
             {
-                
-            }
-
-
-            std::string site_key = fVex["$STATION"][ist]["$SITE"]["keyword"].get<std::string>();
-            auto site = fVex["$SITE"][site_key];
-            std::string site_mk4_id = site["mk4_site_id"].get<std::string>();
-
-            if(ref_st == site_mk4_id && !found_ref)
-            {
-                //get the channel information of the reference station
-                for(size_t nch=0; nch<MAX_CHAN; nch++)
-                {
-                    fVex["$SITE"][site_key]
-                    std::string chan_name = getstr( fVex->ovex->st[ist].channels[nch].chan_name,32);
-                    if(chan_name == ref_chan_id)
-                    {
-                        ref_sky_freq = fVex->ovex->st[ist].channels[nch].sky_frequency;
-                        ref_bw = fVex->ovex->st[ist].channels[nch].bandwidth;
-                        ref_net_sb = fVex->ovex->st[ist].channels[nch].net_sideband;
-                        ref_pol = fVex->ovex->st[ist].channels[nch].polarization;
-                        found_ref = true;
-                    }
-                }
-            }
-
-            if(rem_st == fVex->ovex->st[ist].mk4_site_id && !found_rem)
-            {
-                for(size_t nch=0; nch<MAX_CHAN; nch++)
-                {
-                    std::string chan_name = getstr( fVex->ovex->st[ist].channels[nch].chan_name,32);
-                    if(chan_name == rem_chan_id)
-                    {
-                        rem_sky_freq = fVex->ovex->st[ist].channels[nch].sky_frequency;
-                        rem_bw = fVex->ovex->st[ist].channels[nch].bandwidth;
-                        rem_net_sb = fVex->ovex->st[ist].channels[nch].net_sideband;
-                        rem_pol = fVex->ovex->st[ist].channels[nch].polarization;
-                        found_rem = true;
-                    }
-                }
+                ref_sky_freq = fVex["$FREQ"][ref_freq_table]["chan_def"]["sky_frequency"]["value"].get<double>();
+                ref_bw = fVex["$FREQ"][ref_freq_table]["chan_def"]["bandwidth"]["value"].get<double>();
+                ref_net_sb = fVex["$FREQ"][ref_freq_table]["chan_def"]["net_sideband"].get<std::string>();
+                ref_pol = fVex["$FREQ"][ref_freq_table]["chan_def"]["polarization"].get<std::string>();
+                found_ref = true;
             }
         }
+
+
+        for(std::size_t nch=0; nch < fVex["$FREQ"][rem_freq_table]["chan_def"].size(); nch++)
+        {
+            std::string chan_name = fVex["$FREQ"][rem_freq_table]["chan_def"]["channel_name"].get<std::string>();
+            if(chan_name == rem_chan_id)
+            {
+                rem_sky_freq = fVex["$FREQ"][rem_freq_table]["chan_def"]["sky_frequency"]["value"].get<double>();
+                rem_bw = fVex["$FREQ"][rem_freq_table]["chan_def"]["bandwidth"]["value"].get<double>();
+                rem_net_sb = fVex["$FREQ"][rem_freq_table]["chan_def"]["net_sideband"].get<std::string>();
+                rem_pol = fVex["$FREQ"][rem_freq_table]["chan_def"]["polarization"].get<std::string>();
+                found_ref = true;
+            }
+        }
+
+
+        // for(int ist = 0; ist<nst; ist++)
+        // {
+            // //find the frequency table for this station 
+            // //first locate the mode info 
+            // auto mode = fVex["$MODE"][mode_key];
+            // std::string freq_key;
+            // for(auto it = mode["$FREQ"].begin(); it != mode["$FREQ"].end(); ++it)
+            // {
+            // 
+            // }
+
+
+            // std::string site_key = fVex["$STATION"][ist]["$SITE"]["keyword"].get<std::string>();
+            // auto site = fVex["$SITE"][site_key];
+            // std::string site_mk4_id = site["mk4_site_id"].get<std::string>();
+            // 
+            // if(ref_st == site_mk4_id && !found_ref)
+            // {
+            //     //get the channel information of the reference station
+            //     for(size_t nch=0; nch<MAX_CHAN; nch++)
+            //     {
+            //         fVex["$SITE"][site_key]
+            //         std::string chan_name = getstr( fVex->ovex->st[ist].channels[nch].chan_name,32);
+            //         if(chan_name == ref_chan_id)
+            //         {
+            //             ref_sky_freq = fVex->ovex->st[ist].channels[nch].sky_frequency;
+            //             ref_bw = fVex->ovex->st[ist].channels[nch].bandwidth;
+            //             ref_net_sb = fVex->ovex->st[ist].channels[nch].net_sideband;
+            //             ref_pol = fVex->ovex->st[ist].channels[nch].polarization;
+            //             found_ref = true;
+            //         }
+            //     }
+            // }
+
+            // if(rem_st == fVex->ovex->st[ist].mk4_site_id && !found_rem)
+            // {
+            //     for(size_t nch=0; nch<MAX_CHAN; nch++)
+            //     {
+            //         std::string chan_name = getstr( fVex->ovex->st[ist].channels[nch].chan_name,32);
+            //         if(chan_name == rem_chan_id)
+            //         {
+            //             rem_sky_freq = fVex->ovex->st[ist].channels[nch].sky_frequency;
+            //             rem_bw = fVex->ovex->st[ist].channels[nch].bandwidth;
+            //             rem_net_sb = fVex->ovex->st[ist].channels[nch].net_sideband;
+            //             rem_pol = fVex->ovex->st[ist].channels[nch].polarization;
+            //             found_rem = true;
+            //         }
+            //     }
+            // }
+        
 
         if(found_ref && found_rem)
         {
             std::string pp;
-            pp.append(1,ref_pol);
-            pp.append(1,rem_pol);
+            pp.append(1,ref_pol[0]);
+            pp.append(1,rem_pol[0]);
             fPolProducts.insert(pp);
 
             ch->second.Insert(std::string("ref_sky_freq"), ref_sky_freq);
@@ -396,7 +491,8 @@ MHO_MK4CorelInterface::ExtractCorelFile()
 
         DetermineDataDimensions();
 
-        double ap_time_length = fVex->evex->ap_length;
+        // double ap_time_length = fVex->evex->ap_length;
+        double ap_time_length = fVex["$EVEX"]["AP_length"]["value"].get<double>();
 
         //now we can go ahead an create containers for all the visibilities and data-weights
         //the data weights container has the same layout as the visibilities (so axis + label data is stored twice)
@@ -437,7 +533,7 @@ MHO_MK4CorelInterface::ExtractCorelFile()
             std::size_t freq_count = 0;
             int ch_count = 0;
             double sky_freq, bw;
-            char net_sb;
+            std::string net_sb;
             for(auto it = fPPSortedChannelInfo[*ppit].begin();
                 it != fPPSortedChannelInfo[*ppit].end();
                 it++)
@@ -471,8 +567,8 @@ MHO_MK4CorelInterface::ExtractCorelFile()
                 for(std::size_t sp=0; sp<fNSpectral; sp++)
                 {
                     int findex = 0;
-                    if(net_sb == 'U'){findex = sp;};
-                    if(net_sb == 'L'){findex = fNSpectral-sp-1;}
+                    if(net_sb == "U"){findex = sp;};
+                    if(net_sb == "L"){findex = fNSpectral-sp-1;}
                     double freq = calc_freq_bin(sky_freq, bw, net_sb, fNSpectral, findex);
                     std::get<FREQ_AXIS>(*bl_data).at(freq_count) = freq;
                     std::get<FREQ_AXIS>(*bl_wdata).at(freq_count) = freq;
@@ -587,7 +683,7 @@ MHO_MK4CorelInterface::getstr(const char* char_array, std::size_t max_size)
 bool
 MHO_MK4CorelInterface::channel_info_match(double ref_sky_freq, double rem_sky_freq,
                         double ref_bw, double rem_bw,
-                        char ref_net_sb, char rem_net_sb)
+                        std::string ref_net_sb, std::string rem_net_sb)
 {
     //perhaps we ought to consider some floating point tolerance?
     if(ref_sky_freq != rem_sky_freq){return false;}
@@ -598,11 +694,11 @@ MHO_MK4CorelInterface::channel_info_match(double ref_sky_freq, double rem_sky_fr
 
 
 double
-MHO_MK4CorelInterface::calc_freq_bin(double sky_freq, double bw, char net_sb, int nlags, int bin_index)
+MHO_MK4CorelInterface::calc_freq_bin(double sky_freq, double bw, std::string net_sb, int nlags, int bin_index)
 {
     double step_sign = 1.0;
-    if(net_sb == 'U'){step_sign = 1.0;}
-    if(net_sb == 'L'){step_sign = -1.0;}
+    if(net_sb == "U"){step_sign = 1.0;}
+    if(net_sb == "L"){step_sign = -1.0;}
     double freq = sky_freq + bin_index*step_sign*(bw/nlags);
     return freq;
 }
