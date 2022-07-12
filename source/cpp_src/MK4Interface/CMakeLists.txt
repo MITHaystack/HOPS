@@ -1,7 +1,6 @@
 #list header files #############################################################
 
 set (MK4INTERFACE_HEADERFILES
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MK4Interface.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MK4CorelInterface.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MK4VexInterface.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MK4StationInterface.hh
@@ -11,7 +10,6 @@ set (MK4INTERFACE_HEADERFILES
 #list source files #############################################################
 
 set( MK4INTERFACE_SOURCEFILES
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_MK4Interface.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_MK4CorelInterface.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_MK4VexInterface.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_MK4StationInterface.cc
