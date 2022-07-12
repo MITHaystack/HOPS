@@ -22,7 +22,7 @@
 
 #include "MHO_Message.hh"
 
-//forward declaration of mk4_corel and vex structs
+//forward declaration of mk4_corel structs
 //we do this to keep the mk4 structures from 'leaking' into the new code via includes,
 //We want to make sure any interface to the old mk4 IO libraries is kept only
 //within the MK4Interface library.
@@ -31,8 +31,7 @@ extern "C"
 {
 #endif
 
-    struct mk4_corel;
-    //struct vex;
+struct mk4_corel;
 
 #ifndef HOPS3_USE_CXX
 }
@@ -76,7 +75,6 @@ class MHO_MK4CorelInterface
         bool fHaveCorel;
         bool fHaveVex;
         struct mk4_corel* fCorel;
-        // struct vex* fVex;
         mho_json fVex;
         std::string fVexFile;
         std::string fCorelFile;

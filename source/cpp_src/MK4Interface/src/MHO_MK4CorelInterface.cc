@@ -15,7 +15,6 @@ extern "C"
     #include "mk4_records.h"
     #include "mk4_data.h"
     #include "mk4_dfio.h"
-    // #include "mk4_vex.h"
 #ifndef HOPS3_USE_CXX
 }
 #endif
@@ -47,11 +46,9 @@ MHO_MK4CorelInterface::MHO_MK4CorelInterface():
     fHaveCorel(false),
     fHaveVex(false),
     fCorel(nullptr),
-    // fVex(nullptr),
     fExtractedVisibilities(nullptr),
     fExtractedWeights(nullptr)
 {
-    // fVex = (struct vex *) calloc ( 1, sizeof(struct vex) );
     fCorel = (struct mk4_corel *) calloc ( 1, sizeof(struct mk4_corel) );
     fNPPs = 0;
     fNAPs = 0;
@@ -67,7 +64,6 @@ MHO_MK4CorelInterface::~MHO_MK4CorelInterface()
 {
     clear_mk4corel(fCorel);
     free(fCorel);
-    // free(fVex);
 }
 
 void
@@ -100,37 +96,15 @@ MHO_MK4CorelInterface::ReadCorelFile()
 void
 MHO_MK4CorelInterface::ReadVexFile()
 {
-    // if(fHaveVex)
-    // {
     fHaveVex = false;
     MHO_MK4VexInterface vinter;
     vinter.OpenVexFile(fVexFile);
     fVex = vinter.GetVex();
     if( fVex.contains("$OVEX_REV") ){fHaveVex = true;}
-
-        // msg_debug("mk4interface", "Clearing a previously exisiting vex struct."<< eom);
-        // free(fVex);
-        // fVex = (struct vex *) calloc ( 1, sizeof(struct vex) );
-        // fHaveVex = false;
-    //}
-
-    // std::string tmp_key(""); //use empty key for now
-    // std::string fname = fVexFile;
-    // int retval = get_vex( const_cast<char*>(fname.c_str() ),
-    //                       OVEX | EVEX | IVEX | LVEX ,
-    //                       const_cast<char*>(tmp_key.c_str() ), fVex);
-    // 
-    // if(retval !=0 )
-    // {
-    //     fHaveVex = false;
-    //     msg_debug("mk4interface", "Failed to read vex file: " << fVexFile << ", error value: "<< retval << eom);
-    // }
-    // else
-    // {
-    //     fHaveVex = true;
-    //     msg_debug("mk4interface", "Successfully read vex file."<< fVexFile << eom);
-    // }
-
+    else 
+    {
+        msg_debug("mk4interface", "Failed to read root (ovex) file: " << fVexFile << eom);
+    }
 }
 
 
@@ -212,8 +186,6 @@ MHO_MK4CorelInterface::DetermineDataDimensions()
     #endif
 
 
-
-
     //assume we now have all ovex/vex in the fVex object, and that we only have a single scan
     //should only have a single 'scan' element under the schedule section, so find it
     auto sched = fVex["$SCHED"];
@@ -222,14 +194,12 @@ MHO_MK4CorelInterface::DetermineDataDimensions()
         msg_error("mk4interface", "OVEX file schedule section contains more than one scan."<<eom);
     }
     auto scan = sched.begin().value();
+
+    //TODO FIXME --for complicated schedules, different stations may have different modes
     std::string mode_key = scan["mode"].get<std::string>();
 
-    std::cout<<"mode key = "<<mode_key<<std::endl;
+    int nst = scan["station"].size(); // number of stations;
 
-
-    int nst = scan["station"].size(); // nst;
-
-    std::cout<<"number of stations = "<<nst<<std::endl;
     //maps to resolve links
     std::map< std::string, std::string > fStationCodeToSiteID;
     std::map< std::string, std::string > fStationCodeToMk4ID;
@@ -237,6 +207,7 @@ MHO_MK4CorelInterface::DetermineDataDimensions()
     std::map< std::string, std::string > fMk4IDToFreqTableName;  
 
     auto mode = fVex["$MODE"][mode_key];
+    //TODO FIXME -- this is incorrect if there are multple BBC/IFs defined
     std::string bbc_name = fVex["$MODE"][mode_key]["$BBC"][0]["keyword"].get<std::string>(); //TODO FIXME if stations have different bbcs
     std::string if_name = fVex["$MODE"][mode_key]["$IF"][0]["keyword"].get<std::string>(); //TODO FIXME if stations have different ifs
 
@@ -249,44 +220,22 @@ MHO_MK4CorelInterface::DetermineDataDimensions()
         {
             std::string keyword = (*it)["keyword"].get<std::string>();
             std::size_t n_qual = (*it)["qualifiers"].size();
-            
-            std::cout<<"freq setup keyword = "<<keyword<<std::endl;
             for(std::size_t q=0; q<n_qual; q++)
             {
                 std::string station_code = (*it)["qualifiers"][q].get<std::string>();
                 fStationCodeToFreqTableName[station_code] = keyword;
-                std::cout<<"qualifier @"<<q<<" = "<<(*it)["qualifiers"][q].get<std::string>()<<std::endl;
-
                 //std::string site_key = 
                 std::string site_key = fVex["$STATION"][station_code]["$SITE"][0]["keyword"].get<std::string>();
                 std::string mk4_id = fVex["$SITE"][site_key]["mk4_site_ID"].get<std::string>();
                 fMk4IDToFreqTableName[mk4_id] = keyword;
-                std::cout<<"map: "<<mk4_id<<" = "<<     fMk4IDToFreqTableName[mk4_id] <<std::endl;
-                std::cout<<keyword<<" : "<<mk4_id<<" : "<<site_key<<std::endl;
             }
         }
     }
 
-
-
-
-
-
-
-
-
-
-    // //should only have a single 'scan' element under the schedule section, so find it
-    // auto sched = fVex["$SCHED"];
-    // if(sched.size() != 1)
-    // {
-    //     msg_error("mk4interface", "OVEX file schedule section contains more than one scan."<<eom);
-    // }
-    // auto scan = sched.begin().value();
-    // std::string mode_key = scan["mode"].get<std::string>();
-
     // //now we need to fill in the channel labels with information from the vex
-    // int nst = scan["station"].size(); // nst;
+    // TODO FIXME -- refactor the following section --
+    //the ovex data retrieval (just to get the channel polariztaion!!!) is rather convoluted
+    // we may want to add a feature to resolve vex link-words to json objects or json paths
     std::string ref_st = std::string(&(baseline[0]),1);
     std::string rem_st = std::string(&(baseline[1]),1);
     double ref_sky_freq, ref_bw, rem_sky_freq, rem_bw;
@@ -306,37 +255,22 @@ MHO_MK4CorelInterface::DetermineDataDimensions()
         std::string ref_freq_table = fMk4IDToFreqTableName[ref_st];
         std::string rem_freq_table = fMk4IDToFreqTableName[rem_st];
 
-        std::cout<<ref_st<<" === "<<rem_st<<std::endl;
-        std::cout<<"table names = "<<ref_freq_table<<" "<<rem_freq_table<<std::endl;
-        std::cout<<"ref table size = "<<fVex["$FREQ"][ref_freq_table]["chan_def"].size()<<std::endl;
-
-        std::cout<<"chan id "<<ref_chan_id<<std::endl;
         //get the channel information of the reference station
         for(std::size_t nch=0; nch < fVex["$FREQ"][ref_freq_table]["chan_def"].size(); nch++)
         {
             std::string chan_name = fVex["$FREQ"][ref_freq_table]["chan_def"][nch]["channel_name"].get<std::string>();
-            std::cout<<"chan_name = "<<chan_name<<std::endl;
             if(chan_name == ref_chan_id)
             {
                 ref_sky_freq = fVex["$FREQ"][ref_freq_table]["chan_def"][nch]["sky_frequency"]["value"].get<double>();
                 ref_bw = fVex["$FREQ"][ref_freq_table]["chan_def"][nch]["bandwidth"]["value"].get<double>();
                 ref_net_sb = fVex["$FREQ"][ref_freq_table]["chan_def"][nch]["net_sideband"].get<std::string>();
-                //ref_pol = fVex["$FREQ"][ref_freq_table]["chan_def"][nch]["polarization"].get<std::string>();
                 std::string bbc_id = fVex["$FREQ"][ref_freq_table]["chan_def"][nch]["bbc_id"].get<std::string>();
-                
-                std::cout<<" bcc id = "<<bbc_id<<std::endl;
-
-                std::cout<<fVex["$BBC"][bbc_name]<<std::endl;
-            
                 for(std::size_t nbbc=0; nbbc< fVex["$BBC"][bbc_name]["BBC_assign"].size(); nbbc++)
                 {
-                    std::cout<<fVex["$BBC"][bbc_name]["BBC_assign"][nbbc]<<std::endl; ;//["logical_bbc_id"].get<std::string>()<<std::endl;
                     if( fVex["$BBC"][bbc_name]["BBC_assign"][nbbc]["logical_bbc_id"].get<std::string>() == bbc_id )
                     {
                         std::string if_id = fVex["$BBC"][bbc_name]["BBC_assign"][nbbc]["logical_if"].get<std::string>();
-                        std::cout<<" heyy = "<<if_id<<std::endl;
                         //finally retrieve the polarization 
-                        std::cout<<fVex["$IF"][if_name]["if_def"]<<std::endl;
                         for(std::size_t nif = 0; nif < fVex["$IF"][if_name]["if_def"].size(); nif++)
                         {
                             if(fVex["$IF"][if_name]["if_def"][nif]["if_id"].get<std::string>() == if_id)
@@ -348,10 +282,6 @@ MHO_MK4CorelInterface::DetermineDataDimensions()
                         break;
                     }
                 }
-
-                std::cout<<"ref pol = "<<ref_pol<<std::endl;
-            
-
                 found_ref = true;
                 break;
             }
@@ -375,10 +305,8 @@ MHO_MK4CorelInterface::DetermineDataDimensions()
                     {
                         std::string if_id = fVex["$BBC"][bbc_name]["BBC_assign"][nbbc]["logical_if"].get<std::string>();
                         //finally retrieve the polarization 
-                        std::cout<<fVex["$IF"][if_name]["if_def"]<<std::endl;
                         for(std::size_t nif = 0; nif < fVex["$IF"][if_name]["if_def"].size(); nif++)
                         {
-
                             if(fVex["$IF"][if_name]["if_def"][nif]["if_id"].get<std::string>() == if_id)
                             {
                                 rem_pol = fVex["$IF"][if_name]["if_def"][nif]["polarization"].get<std::string>();
@@ -388,84 +316,11 @@ MHO_MK4CorelInterface::DetermineDataDimensions()
                         break;
                     }
                 }
-
-                std::cout<<"rem pol = "<<rem_pol<<std::endl;
-            
-                // for(std::size_t nbbc=0; nbbc< fVex["$BBC"].size(); nbbc++)
-                // {
-                //     if( fVex["$BBC"][nbbc]["logical_bbc_id"].get<std::string>() == bbc_id )
-                //     {
-                //         if_id = fVex["$BBC"][nbbc]["if_id"].get<std::string>();
-                //         //finally retrieve the polarization 
-                //         for(std::size_t nif = 0; nif < fVex["$IF"].size(); nif++)
-                //         {
-                //             if(fVex["$IF"][nif]["if_id"].get<std::string>() == if_id)
-                //             {
-                //                 rem_pol = fVex["$IF"][nif]["polarization"].get<std::string>();
-                //                 break;
-                //             }
-                //         }
-                //         break;
-                //     }
-                // }
-                //fVex["$FREQ"][rem_freq_table]["chan_def"][nch]["bbc_id"].get<std::string>();
-    
-                //rem_pol = fVex["$FREQ"][rem_freq_table]["chan_def"][nch]["polarization"].get<std::string>();
                 found_rem = true;
                 break;
             }
         }
 
-
-        // for(int ist = 0; ist<nst; ist++)
-        // {
-            // //find the frequency table for this station 
-            // //first locate the mode info 
-            // auto mode = fVex["$MODE"][mode_key];
-            // std::string freq_key;
-            // for(auto it = mode["$FREQ"].begin(); it != mode["$FREQ"].end(); ++it)
-            // {
-            // 
-            // }
-
-
-            // std::string site_key = fVex["$STATION"][ist]["$SITE"]["keyword"].get<std::string>();
-            // auto site = fVex["$SITE"][site_key];
-            // std::string site_mk4_id = site["mk4_site_id"].get<std::string>();
-            // 
-            // if(ref_st == site_mk4_id && !found_ref)
-            // {
-            //     //get the channel information of the reference station
-            //     for(size_t nch=0; nch<MAX_CHAN; nch++)
-            //     {
-            //         fVex["$SITE"][site_key]
-            //         std::string chan_name = getstr( fVex->ovex->st[ist].channels[nch].chan_name,32);
-            //         if(chan_name == ref_chan_id)
-            //         {
-            //             ref_sky_freq = fVex->ovex->st[ist].channels[nch].sky_frequency;
-            //             ref_bw = fVex->ovex->st[ist].channels[nch].bandwidth;
-            //             ref_net_sb = fVex->ovex->st[ist].channels[nch].net_sideband;
-            //             ref_pol = fVex->ovex->st[ist].channels[nch].polarization;
-            //             found_ref = true;
-            //         }
-            //     }
-            // }
-
-            // if(rem_st == fVex->ovex->st[ist].mk4_site_id && !found_rem)
-            // {
-            //     for(size_t nch=0; nch<MAX_CHAN; nch++)
-            //     {
-            //         std::string chan_name = getstr( fVex->ovex->st[ist].channels[nch].chan_name,32);
-            //         if(chan_name == rem_chan_id)
-            //         {
-            //             rem_sky_freq = fVex->ovex->st[ist].channels[nch].sky_frequency;
-            //             rem_bw = fVex->ovex->st[ist].channels[nch].bandwidth;
-            //             rem_net_sb = fVex->ovex->st[ist].channels[nch].net_sideband;
-            //             rem_pol = fVex->ovex->st[ist].channels[nch].polarization;
-            //             found_rem = true;
-            //         }
-            //     }
-            // }
         
 
         if(found_ref && found_rem)
@@ -505,7 +360,6 @@ MHO_MK4CorelInterface::DetermineDataDimensions()
             // ch->second.DumpMap<int>();
             // #endif
         }
-        else{std::cout<<"wrong"<<std::endl;}
     }
 
     fNPPs = fPolProducts.size();
@@ -577,15 +431,15 @@ MHO_MK4CorelInterface::ExtractCorelFile()
 
         DetermineDataDimensions();
 
-        // double ap_time_length = fVex->evex->ap_length;
-        double ap_time_length = 1.0;
+        double ap_time_length = 1.0; //defaults to 1 sec
         if(fVex.contains("$EVEX") && fVex["$EVEX"].size() == 1)
         {
             double ap_time_length = (fVex["$EVEX"].begin().value())["AP_length"]["value"].get<double>();
         }
-        //std::cout<<"ap len = "<< (fVex["$EVEX"].begin().value())["AP_length"]["value"].get<double>() <<std::endl;;//["value"].get<double>();
-        
-
+        else 
+        {
+            msg_warn("mk4interface", "warning, could not find AP_length information root (ovex) file."<<eom);
+        }
 
         //now we can go ahead an create containers for all the visibilities and data-weights
         //the data weights container has the same layout as the visibilities (so axis + label data is stored twice)
@@ -671,26 +525,23 @@ MHO_MK4CorelInterface::ExtractCorelFile()
             }
         }
 
-
-
-
-        // #ifdef HOPS_ENABLE_DEBUG_MSG
-        // //lets print out the pol, time and freq axes now:
-        // for(std::size_t i=0; i< std::get<POLPROD_AXIS>(*bl_data).GetSize(); i++)
-        // {
-        //     msg_debug("mk4interface", "pol_axis: "<<i<<" = "<<std::get<POLPROD_AXIS>(*bl_data).at(i)<< eom);
-        // }
-        // 
-        // for(std::size_t i=0; i< std::get<TIME_AXIS>(*bl_data).GetSize(); i++)
-        // {
-        //     msg_debug("mk4interface", "time_axis: "<<i<<" = "<<std::get<TIME_AXIS>(*bl_data).at(i)<<eom);
-        // }
-        // 
-        // for(std::size_t i=0; i< std::get<FREQ_AXIS>(*bl_data).GetSize(); i++)
-        // {
-        //     msg_debug("mk4interface", "freq_axis: "<<i<<" = "<<std::get<FREQ_AXIS>(*bl_data).at(i)<<eom);
-        // }
-        // #endif
+        #ifdef HOPS_ENABLE_DEBUG_MSG
+        //lets print out the pol, time and freq axes now:
+        for(std::size_t i=0; i< std::get<POLPROD_AXIS>(*bl_data).GetSize(); i++)
+        {
+            msg_debug("mk4interface", "pol_axis: "<<i<<" = "<<std::get<POLPROD_AXIS>(*bl_data).at(i)<< eom);
+        }
+        
+        for(std::size_t i=0; i< std::get<TIME_AXIS>(*bl_data).GetSize(); i++)
+        {
+            msg_debug("mk4interface", "time_axis: "<<i<<" = "<<std::get<TIME_AXIS>(*bl_data).at(i)<<eom);
+        }
+        
+        for(std::size_t i=0; i< std::get<FREQ_AXIS>(*bl_data).GetSize(); i++)
+        {
+            msg_debug("mk4interface", "freq_axis: "<<i<<" = "<<std::get<FREQ_AXIS>(*bl_data).at(i)<<eom);
+        }
+        #endif
 
         //now fill in the actual visibility data
         struct type_101* t101 = nullptr;
