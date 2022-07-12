@@ -30,6 +30,7 @@
 #include "MHO_DiFXVisibilityProcessor.hh"
 #include "MHO_DiFXInputProcessor.hh"
 #include "MHO_DiFXPCalProcessor.hh"
+#include "MHO_DiFXChannelNameConstructor.hh"
 #include "MHO_JSONHeaderWrapper.hh"
 #include "MHO_StationCodeMap.hh"
 #include "MHO_DirectoryInterface.hh"
@@ -74,7 +75,6 @@ class MHO_DiFXScanProcessor
         void ExtractPCalData();
         void ExtractStationCoords();
         void CleanUp();
-        void ModifyFreqTable(mho_json vex_root);
 
         //the DiFX input file structure 
         json fInput;
@@ -93,6 +93,10 @@ class MHO_DiFXScanProcessor
 
         std::map< std::string, multitone_pcal_type* > fStationCode2PCal;
         std::map< std::string, station_coord_type* > fStationCode2Coords;
+
+        //generates the channel names (zoom bands not yet supported)
+        //TODO -- allow band <-> freq range to be set externally
+        MHO_DiFXChannelNameConstructor fChanNameConstructor;
 
         bool fPreserveDiFXScanNames;
 

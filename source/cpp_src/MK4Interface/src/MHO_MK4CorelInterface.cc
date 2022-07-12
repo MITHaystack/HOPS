@@ -201,10 +201,10 @@ MHO_MK4CorelInterface::DetermineDataDimensions()
     int nst = scan["station"].size(); // number of stations;
 
     //maps to resolve links
-    std::map< std::string, std::string > fStationCodeToSiteID;
-    std::map< std::string, std::string > fStationCodeToMk4ID;
-    std::map< std::string, std::string > fStationCodeToFreqTableName;
-    std::map< std::string, std::string > fMk4IDToFreqTableName;  
+    std::map< std::string, std::string > stationCodeToSiteID;
+    std::map< std::string, std::string > stationCodeToMk4ID;
+    std::map< std::string, std::string > stationCodeToFreqTableName;
+    std::map< std::string, std::string > mk4IDToFreqTableName;  
 
     auto mode = fVex["$MODE"][mode_key];
     //TODO FIXME -- this is incorrect if there are multple BBC/IFs defined
@@ -223,11 +223,11 @@ MHO_MK4CorelInterface::DetermineDataDimensions()
             for(std::size_t q=0; q<n_qual; q++)
             {
                 std::string station_code = (*it)["qualifiers"][q].get<std::string>();
-                fStationCodeToFreqTableName[station_code] = keyword;
+                stationCodeToFreqTableName[station_code] = keyword;
                 //std::string site_key = 
                 std::string site_key = fVex["$STATION"][station_code]["$SITE"][0]["keyword"].get<std::string>();
                 std::string mk4_id = fVex["$SITE"][site_key]["mk4_site_ID"].get<std::string>();
-                fMk4IDToFreqTableName[mk4_id] = keyword;
+                mk4IDToFreqTableName[mk4_id] = keyword;
             }
         }
     }
@@ -252,8 +252,8 @@ MHO_MK4CorelInterface::DetermineDataDimensions()
         found_ref = false;
         found_rem = false;
 
-        std::string ref_freq_table = fMk4IDToFreqTableName[ref_st];
-        std::string rem_freq_table = fMk4IDToFreqTableName[rem_st];
+        std::string ref_freq_table = mk4IDToFreqTableName[ref_st];
+        std::string rem_freq_table = mk4IDToFreqTableName[rem_st];
 
         //get the channel information of the reference station
         for(std::size_t nch=0; nch < fVex["$FREQ"][ref_freq_table]["chan_def"].size(); nch++)

@@ -10,6 +10,7 @@ set (DIFXINTERFACE_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_DiFXVisibilityProcessor.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_DiFXBaselineProcessor.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_DiFXPCalProcessor.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_DiFXChannelNameConstructor.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/fill_fblock.hh
 )
 
@@ -21,6 +22,7 @@ set( DIFXINTERFACE_SOURCEFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_DiFXVisibilityProcessor.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_DiFXBaselineProcessor.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_DiFXPCalProcessor.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_DiFXChannelNameConstructor.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/fill_fblock.cc
 )
 
