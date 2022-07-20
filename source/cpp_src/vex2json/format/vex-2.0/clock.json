@@ -1,0 +1,39 @@
+{
+    "block_name": "$CLOCK",
+    "version": "2.0",
+    "start_tag": "def",
+    "stop_tag": "enddef",
+    "type" : "compound",
+    "block_type": "primitive",
+    "parameters" :
+    {
+        "clock_early":
+        {
+            "type": "list_compound",
+            "parameters":
+            {
+                "start_validity_epoch":{"type" : "epoch"},
+                "clock_early_offset":{"type": "real", "dimension": "time"},
+                "origin_epoch":{"type" : "epoch"},
+                "clock_rate":{"type": "real", "dimension": "time/time"},
+                "second_order_coeff":{"type": "real", "dimension": "time/time^2"},
+                "third_order_coeff":{"type": "real", "dimension": "time/time^3"},
+                "fmout2gps":{"type": "real", "dimension": "time"}
+            },
+            "fields": 
+            [
+                "#start_validity_epoch", 
+                "clock_early_offset", 
+                "#origin_epoch",
+                "#clock_rate",
+                "#second_order_coeff",
+                "#third_order_coeff",
+                "#fmout2gps"
+            ]
+        }
+    },
+    "fields": 
+    [
+        "clock_early"
+    ]
+}

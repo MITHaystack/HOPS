@@ -3,7 +3,7 @@
 
 //this include file should not be used directly
 #ifndef MHO_ContainerDefinitions_HH__
-#error "Do not include MHO_FloatType.hh directly; use MHO_ContainerDefinitions.hh instead."
+#error "Do not include MHO_BaselineContainers.hh directly; use MHO_ContainerDefinitions.hh instead."
 #endif
 
 

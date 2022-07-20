@@ -1,0 +1,10 @@
+{
+    "block_name": "$CORR_INIT",
+    "version": "1.5",
+    "start_tag": "def",
+    "stop_tag": "enddef",
+    "type" : "unsupported",
+    "block_type": "unsupported",
+    "parameters" : {},
+    "fields": []
+}

@@ -41,6 +41,11 @@ macro(hops_install_share_vhelp)
     install(FILES ${ARGN} DESTINATION ${SHARE_VHELP_INSTALL_DIR})
 endmacro()
 
+#for explicitly setting options for extern submodules
+macro(set_option OPT VAL)
+  set("${OPT}" "${VAL}" CACHE INTERNAL "Setting ${OPT}" FORCE)
+endmacro()
+
 # Compiler version check and C++11 support
 if(CMAKE_CXX_COMPILER_ID MATCHES "GNU")
     set(COMPILER_IS_GNU 1)
@@ -118,6 +123,7 @@ macro(hops_require_cpp11)
         endif()
         SET_PROPERTY(GLOBAL PROPERTY CXX11_FLAG ${CXX11_FLAG})
     endif()
+    set_option(CMAKE_CXX_STANDARD 11)
 endmacro()
 
 macro(hops_require_cpp17)
@@ -134,6 +140,8 @@ macro(hops_require_cpp17)
         endif()
         SET_PROPERTY(GLOBAL PROPERTY CXX17_FLAG ${CXX17_FLAG})
     endif()
+
+    set_option(CMAKE_CXX_STANDARD 17)
 endmacro()
 
 macro( hops_include_directories )
@@ -262,3 +270,4 @@ macro (add_cflag CFLAG)
     set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -D${CFLAG}")
     set (CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} PARENT_SCOPE)
 endmacro()
+

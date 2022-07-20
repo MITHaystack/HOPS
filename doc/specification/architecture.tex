@@ -37,3 +37,20 @@ to enable/disable various plotting items.
     \label{fig:fringe-fitter}
 \end{center}
 \end{figure}
+
+
+\section{The Visibility Data}
+
+The primary output of the correlator are the ``visibilities'', which are essentially a two-dimensional array of complex values in time and frequency space. However, there are some additional details which are of importance in treating real-world data. 
+
+The first detail is that most modern antennas record both electric field polarizations at once, producing four possible cross-correlation ``polarization-products'' for each baseline. Further complicating this is that the signals at each antenna may be recorded in a linear or circularly polarized basis, and so the ``polarization-products'' may be linear-linear, circular-circular or a mixed combination. Clearly delineating the polariation-product associated with the data is important, as a 
+time-dependent phase and amplitude modulation can be introduced dpending on the telescope mount type and parallactic angle. We will leave a full discussion of this topic aside for the moment, but suffice to say that our single-baseline data set is extended in an additional ``polarization-product'' dimension.
+
+The second complication is that we almost never deal with a single continuous chunk of bandwidth (i.e. a channel), but often have many channels distributed over a wider range of frequency. This done for several practical reasons. The first reason being that it is difficult to design RF systems that have a perfectly linear phase and amplitude response over a wide bandwidth. However, for narrow channels a linear phase/amplitude response is a perfectly reasonable approximation, and so linear corrections applied in a piecewise manner to several channels can be combined to simulat a flat bandpass over the full frequency range. The second reason (primarily of interest for geodesy) is that for a given recorded bandwidth, a better residual delay estimate can be obtained by spacing the recorded channels further apart in frequency than if they were entirely adjacent. Finally, channelized data
+is also useful for RFI mitigation, since a narrow band RFI signal (provided it doesn't entirely saturate the frontend)
+confined to a few channels can be easily deleted without having to edit the visibilities directly. While strictly speaking, a ``channel'' is simply shorthand for a frequency offset and thus not truly a separate dimension, for algorithmic considerations it is often convenient to treat this as if it were another independent axis over which the visibilities extend.
+
+Therefore in order to accommodate multiple polarizations and channelization, our single-baseline visibility data generally is most easily represented as a uniform four dimensional array, indexed by polarization-product, channel, time (AP), and frequency (spectral point within a channel). This structure demands that each channel ought to contain the same number of spectral points,
+and that each polariation-product ought to contain data for each channel and AP observed. It should be noted that this arrangement does come with some trade-offs between the overall memory usage and in efficiency of indexing across the data array. Ragged arrays would certainly be the most compact memory-wise, however they make random access very inefficient and are unlikely to be the most common use case and so are not considered as a general purpose container. In the occasional instances where channels may not share the same number of spectral points, it is expected that the deficient channels can be padded in order to maintain uniform spacing, or a non-channelized array 
+can be used.
+

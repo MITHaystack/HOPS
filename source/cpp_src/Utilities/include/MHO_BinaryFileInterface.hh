@@ -302,6 +302,7 @@ class MHO_BinaryFileInterface
             key.fTypeId = fMD5Generator.GetDigestAsUUID(); //type uuid
 
             key.fObjectId = obj.GetObjectUUID();
+            msg_debug("file", "constructing a file key with object uuid of: "<< key.fObjectId.as_string() << eom);
             //key.fObjectId = fUUIDGenerator.GenerateUUID(); //random uuid of object id
             key.fSize = obj.GetSerializedSize();
 

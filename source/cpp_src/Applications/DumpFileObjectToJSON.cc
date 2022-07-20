@@ -10,7 +10,7 @@ using namespace hops;
 
 int main(int argc, char** argv)
 {
-    std::string usage = "DumpFileObjectToJSON -f <file> -d <detail level 0-3> -o <output_file>";
+    std::string usage = "DumpFileObjectToJSON -f <file> -u <object_uuid> -d <detail level 0-4> -o <output_file>";
 
     MHO_Message::GetInstance().AcceptAllKeys();
     MHO_Message::GetInstance().SetMessageLevel(eDebug);
@@ -62,8 +62,12 @@ int main(int argc, char** argv)
     bool ok = obj_uuid.from_string(uuid_string);
     if(!ok)
     {
-        msg_fatal("main", "Could not convert given string into UUID key: " << uuid_string << eom);
+        msg_fatal("main", "could not convert given string into UUID key: " << uuid_string << eom);
         return 1;
+    }
+    else 
+    {
+        msg_debug("main", "looking for object with uuid key: "<< obj_uuid.as_string() << eom );
     }
 
     MHO_ContainerStore conStore;

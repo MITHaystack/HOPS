@@ -4,6 +4,8 @@
 #include <vector>
 #include <string>
 
+#include "MHO_Message.hh"
+
 namespace hops {
 
 /**
@@ -30,6 +32,15 @@ class MHO_Tokenizer{
         */
         void SetIncludeEmptyTokensFalse();
 
+        void SetUseMulticharacterDelimiterTrue();
+        void SetUseMulticharacterDelimiterFalse();
+
+        void SetPreserveQuotesTrue();
+        void SetPreserveQuotesFalse();
+
+        void SetRemoveLeadingTrailingWhitespaceTrue();
+        void SetRemoveLeadingTrailingWhitespaceFalse();
+
         /** Set the string to be parsed 
         * @param aString string
         * @returns None 
@@ -48,11 +59,25 @@ class MHO_Tokenizer{
         */
         void GetTokens(std::vector< std::string>* tokens);
 
+        static std::string 
+        TrimLeadingAndTrailingWhitespace(const std::string& value);
+
     protected:
 
+        void MultiCharTokenize(std::vector< std::string>* tokens);
+        void SingleCharTokenize(std::vector< std::string>* tokens);
+
+        std::size_t IndexQuoteInstances(const std::string* aString, std::vector< std::pair< std::size_t, std::size_t>  >* quotes);
+
+
         bool fIncludeEmptyTokens;
+        bool fMultiCharDelimiter;
+        bool fPreserveQuotes;
+        bool fRemoveLeadingTrailingWhitespace;
         std::string fDelim;
         const std::string* fString;
+        const std::string* fCurrentString;
+        std::vector< std::pair< std::size_t, std::size_t>  > fQuotePairIndexes;
 };
 
 } // end of hops namespace

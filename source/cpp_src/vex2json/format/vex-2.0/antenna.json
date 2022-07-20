@@ -1,0 +1,94 @@
+{
+    "block_name": "$ANTENNA",
+    "version": "2.0",
+    "start_tag": "def",
+    "stop_tag": "enddef",
+    "type" : "compound",
+    "block_type": "primitive",
+    "parameters" :
+    {
+        "antenna_diam" : {"type": "real", "dimension": "length"},
+        "axis_type" : 
+        {
+            "type": "compound",
+            "parameters":
+            {
+                "primary_axis": {"type": "string"},
+                "secondary_axis": {"type": "string"},
+                "secondary_axis_az": {"type": "real", "dimension": "angle"},
+                "secondary_axis_el": {"type": "real", "dimension": "angle"}
+            },
+            "fields":
+            [
+                "primary_axis",
+                "#secondary_axis",
+                "#secondary_axis_az",
+                "#secondary_axis_el"
+            ]
+        },
+        "axis_offset" : {"type" : "real", "dimension" : "length"},
+        "antenna_motion" : 
+        {
+            "type": "list_compound",
+            "parameters" :
+            {
+                "axis_type": {"type": "string"},
+                "slew_rate": {"type": "real", "dimension" : "angle/time"},
+                "constant":  {"type": "real", "dimension" : "time"},
+                "acceleration": {"type": "real", "dimension" : "angle/time^2"}
+            },
+            "fields":
+            [
+                "axis_type",
+                "slew_rate",
+                "constant",
+                "#acceleration"
+            ]
+        },
+        "pointing_sector" : 
+        {
+            "type": "list_compound",
+            "parameters" :
+            {
+                "sector_id": {"type": "link"},
+                "axis1_type": {"type": "string"},
+                "axis1_lower_limit": {"type": "real", "dimension": "angle"},
+                "axis1_upper_limit": {"type": "real", "dimension": "angle"},
+                "axis2_type": {"type": "string"},
+                "axis2_lower_limit": {"type": "real", "dimension": "angle"},
+                "axis2_upper_limit": {"type": "real", "dimension": "angle"},
+                "sector_name": {"type": "string"}
+            },
+            "fields":
+            [
+                "sector_id",
+                "axis1_type",
+                "axis1_lower_limit",
+                "axis1_upper_limit",
+                "#axis2_type",
+                "#axis2_lower_limit",
+                "#axis2_upper_limit",
+                "sector_name"
+            ]
+        },
+        "nasmyth":
+        {
+            "type": "compound",
+            "parameters":
+            {
+                "band_link": {"type": "link"},
+                "platform": {"type": "string"}
+            },
+            "fields": ["band_link", "platform"]
+        }
+    },
+    "fields": 
+    [
+        "antenna_diam",
+        "axis_type",
+        "axis_offset",
+        "#antenna_motion",
+        "#pointing_sector",
+        "nasmyth"
+    ]
+}

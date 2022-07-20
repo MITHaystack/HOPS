@@ -1,0 +1,28 @@
+{
+    "block_name": "$SEFD",
+    "version": "1.5c",
+    "start_tag": "def",
+    "stop_tag": "enddef",
+    "type" : "compound",
+    "block_type": "primitive",
+    "parameters" :
+    {
+        "sefd_model": {"type": "string"},
+        "sefd" :
+        {
+            "type": "list_compound",
+            "parameters":
+            {
+                "if_id": {"type": "link"},
+                "zenith_sefd": {"type": "real", "dimension": "flux"},
+                "model_parameters": {"type": "list_real"}
+            },
+            "fields": ["if_id", "zenith_sefd", "model_parameters"]
+        }
+    },
+    "fields": 
+    [
+        "sefd_model",
+        "sefd"
+    ]
+}

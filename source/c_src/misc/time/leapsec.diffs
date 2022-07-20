@@ -1,0 +1,71 @@
+Index: leapsec.c
+===================================================================
+--- leapsec.c	(revision 630)
++++ leapsec.c	(working copy)
+@@ -10,6 +10,7 @@
+ #include "htime.h"
+ #include <stdio.h>
+ #include <stdlib.h>
++#include <assert.h>
+ 
+ #ifndef TAI_GPS_DELTA
+ #define TAI_GPS_DELTA	19/*seconds*/
+@@ -29,6 +30,7 @@
+ 	double	gps_start, gps_end, julian_day; int unix_secs;
+ } leapsecs[] = {
+ 
++ /* GPS before   GPS after     Julian      Unix after  tai-utc calendar date */
+  { -252892810.0, -252892809.0, 2441317.5,  63072000 }, /*Jan  1 00:00:00 1972*/
+  { -237168009.0, -237168008.0, 2441499.5,  78796800 }, /*Jul  1 00:00:00 1972*/
+  { -221270408.0, -221270407.0, 2441683.5,  94694400 }, /*Jan  1 00:00:00 1973*/
+@@ -54,15 +56,28 @@
+  {  599184012.0,  599184013.0, 2451179.5, 915148800 }, /*Jan  1 00:00:00 1999*/
+  {  820108813.0,  820108814.0, 2453736.5,1136073600 }, /*Jan  1 00:00:00 2006*/
+  {  914803214.0,  914803215.0, 2454832.5,1230768000 }, /*Jan  1 00:00:00 2009*/
++ { 1025136015.0, 1025136016.0, 2456109.5,1341100800 }, /*Jul  1 00:00:00 2012*/
+ 
++/*
++ * when adding new entries, bump DEFAULT_LEAP_CNT, grab the Julian time
++ * from tai-utc.dat, update the comment appropriately and fill out the
++ * other three columns...e.g.
++ * HOPS_JULIAN_EPOCH=UTC hops_time -q G 20081231_235959.000000
++ * => 914803213.000000 (add one to get 235960 for GPS before
++ * HOPS_JULIAN_EPOCH=UTC hops_time -q G 20090101_000000.000000
++ * => 914803215.000000 (once entered this is GPS after)
++ * HOPS_JULIAN_EPOCH=UTC hops_time -q K 20090101_000000.000000
++ * => 1230768000 (once entered, this is Unix after)
++ */
++
+ };
+-/* count the lines */
+-#define DEFAULT_LEAP_CNT    25
+-#if DEFAULT_LEAP_CNT != 25
++/* count the lines: grep 00:00:00 leapsec.c | wc -l */
++#define DEFAULT_LEAP_CNT    26
++#if DEFAULT_LEAP_CNT != 26
+ # error "The compiled leapsecs table is misconfigured."
+ #endif /* leap_cnt */
+ 
+-static int leap_cnt = DEFAULT_LEAP_CNT;
++static int leap_cnt = sizeof(leapsecs)/sizeof(LeapTableEntry);
+ static int tai_utc_wanted = 1;
+ 
+ /*
+@@ -78,6 +93,8 @@
+ 	double	delta;
+ 	int	i, mjd;
+ 
++        assert(leap_cnt == DEFAULT_LEAP_CNT);
++
+ 	if (Ht_tz_unset) {
+ 		putenv("TZ=GMT");
+ 		Ht_tz_unset = 0;
+Index: tai-utc.dat
+===================================================================
+--- tai-utc.dat	(revision 630)
++++ tai-utc.dat	(working copy)
+@@ -36,3 +36,4 @@
+  1999 JAN  1 =JD 2451179.5  TAI-UTC=  32.0       S + (MJD - 41317.) X 0.0      S
+  2006 JAN  1 =JD 2453736.5  TAI-UTC=  33.0       S + (MJD - 41317.) X 0.0      S
+  2009 JAN  1 =JD 2454832.5  TAI-UTC=  34.0       S + (MJD - 41317.) X 0.0      S
++ 2012 JUL  1 =JD 2456109.5  TAI-UTC=  35.0       S + (MJD - 41317.) X 0.0      S

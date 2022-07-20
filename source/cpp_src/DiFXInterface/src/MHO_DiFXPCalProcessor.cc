@@ -77,7 +77,6 @@ MHO_DiFXPCalProcessor::ReadPCalFile()
                     if(fLine.size() != 0)
                     {
                         //parse line and covert tokens into data points 
-                        //std::cout<<"line = "<<fLine<<std::endl;
                         if(!IsComment())
                         {
                             TokenizeLine();
@@ -163,7 +162,7 @@ MHO_DiFXPCalProcessor::Organize()
     if(fValid)
     {
         std::stringstream ss;
-        ss << "has polarizations: ";
+        ss << " has polarizations: ";
         for(auto ppit = fPolSet.begin(); ppit != fPolSet.end(); ppit++)
         {
             ss << *ppit << " ";
@@ -293,7 +292,7 @@ MHO_DiFXPCalProcessor::Organize()
             std::stringstream sset;
             for(auto it = ntone_set.begin(); it != ntone_set.end(); it++){ sset << *it << ", "; }
             msg_warn("difx_interface", "set of total number of p-cal tones {"<<sset.str()<<"} is inconsistent over polarizations/APs. Incomplete APs will be zero." << eom);
-            //std::exit(1); //exit out for now -- TODO figure out how to handle this possible case
+            //TODO figure out how to handle this possible case
         }
 
         //now we can go ahead and create/resize the organized pcal data-table 
@@ -359,7 +358,6 @@ MHO_DiFXPCalProcessor::Organize()
     {
         msg_warn("difx_interface", "cannot organize pcal data while in invalid state." << eom);
     }
-    //std::cout << fPCal << std::endl;
 
 }
 

@@ -1,4 +1,9 @@
-[submodule "extern/pybind11"]
-	path = extern/pybind11
+[submodule "extern/submodules/date"]
+	path = extern/submodules/date
+	url = git@github.com:HowardHinnant/date.git
+[submodule "extern/submodules/pybind11"]
+	path = extern/submodules/pybind11
 	url = https://github.com/pybind/pybind11.git
-	branch = stable
+[submodule "extern/submodules/json"]
+	path = extern/submodules/json
+	url = https://github.com/nlohmann/json.git

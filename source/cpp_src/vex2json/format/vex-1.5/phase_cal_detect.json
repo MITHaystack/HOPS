@@ -1,0 +1,25 @@
+{
+    "block_name": "$PHASE_CAL_DETECT",
+    "version": "1.5c",
+    "start_tag": "def",
+    "stop_tag": "enddef",
+    "type" : "compound",
+    "block_type": "primitive",
+    "parameters" :
+    {
+        "phase_cal_detect":
+        {
+            "type": "list_compound",
+            "parameters":
+            {
+                "pcal_id": {"type": "link"},
+                "tone_numbers": {"type": "list_int"}
+            },
+            "fields": ["pcal_id", "tone_numbers"]
+        }
+    },
+    "fields": 
+    [
+        "phase_cal_detect"
+    ]
+}
