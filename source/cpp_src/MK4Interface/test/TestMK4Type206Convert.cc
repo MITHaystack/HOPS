@@ -11,9 +11,9 @@ int main(int argc, char **argv) {
   struct type_206 my206;
 
   // create and fill in a type_206 struct with some dummy data
-  strcpy(my206.record_id, "202");
-  strcpy(my206.version_no, "2");
-  strcpy(my206.unused1, "unused...");
+  strncpy(my206.record_id, "202", sizeof(my206.record_id));
+  strncpy(my206.version_no, "2", sizeof(my206.version_no));
+  strncpy(my206.unused1, "unused...", sizeof(my206.unused1));
   my206.start.year = 3033;
   my206.start.day = 33;
   my206.start.hour = 33;
@@ -67,7 +67,7 @@ int main(int argc, char **argv) {
   my206.ratesize = 2;
   my206.mbdsize = 2;
   my206.sbdsize = 2;
-  strcpy(my206.unused2, "unuse");
+  strncpy(my206.unused2, "unuse", sizeof(my206.unused2));
 
   json obj = convertToJSON(my206);
   std::cout << obj.dump(2) << std::endl;
