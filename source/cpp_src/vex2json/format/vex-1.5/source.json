@@ -1,0 +1,86 @@
+{
+    "block_name": "$SOURCE",
+    "version": "1.5c",
+    "start_tag": "def",
+    "stop_tag": "enddef",
+    "type" : "compound",
+    "block_type": "primitive",
+    "parameters" :
+    {
+        "source_type":
+        {
+            "type": "compound",
+            "parameters":
+            {
+                "physical_type": {"type": "string"},
+                "experiment_type": {"type": "string"}
+            },
+            "fields": ["physical_type", "experiment_type"]
+        },
+        "source_name": {"type": "string"},
+        "IAU_name": {"type": "string"},
+        "source_position_ref": {"type": "string"},
+        "ra" : {"type": "ra"},
+        "dec": {"type": "dec"},
+        "ref_coord_frame": {"type": "string"},
+        "ra_rate": {"type": "real", "dimension": "angle/time"},
+        "dec_rate": {"type": "real", "dimension": "angle/time"},
+        "source_position_epoch": {"type": "epoch"},
+        "source_model": 
+        {
+            "type": "list_compound",
+            "parameters":
+            {
+                "component_number": {"type": "int"},
+                "band_id": {"type": "link"},
+                "flux_density": {"type": "real", "dimension": "flux-density"},
+                "major_axis": {"type": "real", "dimension": "angle"},
+                "axis_ratio": {"type": "real", "dimension": "NA"},
+                "position_angle":  {"type": "real", "dimension": "angle"},
+                "ra_offset":  {"type": "real", "dimension": "angle"},
+                "dec_offset":  {"type": "real", "dimension": "angle"}
+            },
+            "fields": 
+            [
+                "component_number",
+                "band_id",
+                "flux_density",
+                "major_axis",
+                "axis_ratio",
+                "position_angle",
+                "ra_offset",
+                "dec_offset"
+            ]
+        },
+        "inclination": {"type": "real", "dimension":"angle"},
+        "eccentricity":  {"type": "real", "dimension":"NA"},
+        "arg_perigee":  {"type": "real", "dimension":"angle"},
+        "ascending_node":  {"type": "real", "dimension":"angle"},
+        "mean_anomaly":  {"type": "real", "dimension":"angle"},
+        "semi-major_axis":  {"type": "real", "dimension":"length"},
+        "mean_motion":  {"type": "real", "dimension":"NA"},
+        "orbit_epoch": {"type": "epoch"}
+    },
+    "fields": 
+    [
+        "source_type",
+        "source_name",
+        "IAU_name",
+        "source_position_ref",
+        "ra",
+        "dec",
+        "ref_coord_frame",
+        "ra_rate",
+        "dec_rate",
+        "source_position_epoch",
+        "source_model",
+        "inclination",
+        "eccentricity",
+        "arg_perigee",
+        "ascending_node",
+        "mean_anomaly",
+        "semi-major_axis",
+        "mean_motion",
+        "orbit_epoch"
+    ]
+}

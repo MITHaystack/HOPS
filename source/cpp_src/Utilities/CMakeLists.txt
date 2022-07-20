@@ -1,5 +1,7 @@
 hops_require_cpp11()
 
+include_directories(${EXTERN_HLIBS}/date/include)
+
 #list header files #############################################################
 set (UTILITIES_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/picohash.h
@@ -28,7 +30,7 @@ set (UTILITIES_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_JSONHeaderWrapper.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_LegacyRootCodeGenerator.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_StationCodeMap.hh
-
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_Clock.hh
 )
 
 #set_source_files_properties(picohash.h PROPERTIES COMPILE_FLAGS -fpermissive)

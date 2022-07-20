@@ -90,38 +90,30 @@ bool MHO_TimeStampConverter::ConvertTimeStampToEpochSecond(const std::string& da
         ss.str(std::string()); ss.clear();
         ss << syear;
         ss >> year;
-        std::cout<<"year = "<<year<<std::endl;
         if(year < 1970 || year > 3000 ){epoch_sec = 0; return false;}
         ss.str(std::string()); ss.clear();
         ss << smonth;
         ss >> month;
-        std::cout<<"month = "<<smonth<<std::endl;
-        std::cout<<"month = "<<month<<std::endl;
         if(month < 1 || month > 12 ){epoch_sec = 0; return false;}
         ss.str(std::string()); ss.clear();
         ss << sday;
         ss >> day;
-        std::cout<<"day = "<<day<<std::endl;
         if(day < 1 || day > 31 ){epoch_sec = 0; return false;}
         ss.str(std::string()); ss.clear();
         ss << shour;
         ss >> hour;
-        std::cout<<"hour = "<<hour<<std::endl;
         if(hour < 0 || hour > 23 ){epoch_sec = 0; return false;}
         ss.str(std::string()); ss.clear();
         ss << smin;
         ss >> min;
-        std::cout<<"min = "<<min<<std::endl;
         if(min < 0 || min > 59 ){epoch_sec = 0; return false;}
         ss.str(std::string()); ss.clear();
         ss << ssec;
         ss >> sec;
-        std::cout<<"sec = "<<sec<<std::endl;
         if( sec < 0 || sec > 61 ){epoch_sec = 0; return false;}
         ss.str(std::string()); ss.clear();
         ss << sfrac;
         ss >> frac;
-        std::cout<<"frac = "<<frac<<std::endl;
         if( frac < 0.0 || frac > 1.0 ){epoch_sec = 0; return false;}
 
         // tm_sec	int	seconds after the minute	0-61*

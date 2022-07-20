@@ -2,7 +2,7 @@
 #define MHO_PyContainerInterface_HH__
 
 
-#include "MHO_ChannelizedVisibilities.hh"
+#include "MHO_ContainerDefinitions.hh"
 #include "MHO_PyTableContainer.hh"
 
 #include <pybind11/pybind11.h>

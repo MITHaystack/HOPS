@@ -18,10 +18,11 @@
 #include <string>
 
 #include "MHO_ContainerDefinitions.hh"
+#include "MHO_MK4VexInterface.hh"
 
 #include "MHO_Message.hh"
 
-//forward declaration of mk4_corel and vex structs
+//forward declaration of mk4_corel structs
 //we do this to keep the mk4 structures from 'leaking' into the new code via includes,
 //We want to make sure any interface to the old mk4 IO libraries is kept only
 //within the MK4Interface library.
@@ -30,8 +31,7 @@ extern "C"
 {
 #endif
 
-    struct mk4_corel;
-    struct vex;
+struct mk4_corel;
 
 #ifndef HOPS3_USE_CXX
 }
@@ -75,7 +75,7 @@ class MHO_MK4CorelInterface
         bool fHaveCorel;
         bool fHaveVex;
         struct mk4_corel* fCorel;
-        struct vex* fVex;
+        mho_json fVex;
         std::string fVexFile;
         std::string fCorelFile;
 
@@ -101,8 +101,8 @@ class MHO_MK4CorelInterface
         std::string getstr(const char* char_array, size_t max_size);
         bool channel_info_match(double ref_sky_freq, double rem_sky_freq,
                                 double ref_bw, double rem_bw,
-                                char ref_net_sb, char rem_net_sb);
-        double calc_freq_bin(double sky_freq, double bw, char net_sb, int nlags, int bin_index);
+                                std::string ref_net_sb, std::string rem_net_sb);
+        double calc_freq_bin(double sky_freq, double bw, std::string net_sb, int nlags, int bin_index);
 
         visibility_type* fExtractedVisibilities;
         weight_type* fExtractedWeights;

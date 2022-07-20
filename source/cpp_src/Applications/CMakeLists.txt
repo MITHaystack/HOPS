@@ -54,6 +54,7 @@ set(SOURCE_BASENAMES
     ConvertMk4Data
     DumpFileObjectToJSON
     ConvertFileToJSON
+    ConvertVexToJSON
 )
 
 #for testing purposes only -- ROOT not intended to be a dependency

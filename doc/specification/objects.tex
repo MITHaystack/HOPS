@@ -79,23 +79,108 @@ shown in Figure~\ref{fig:table-container}.
 
 \subsubsection{Specific data types}
 
-Below is an incomplete table of the various data objects that are constructed from \texttt{MHO\_TableContainer}, along with their data value type and axis names. These may be subject to change (for example, \texttt{uint64\_t} may be unecessarily large for the flags type, and could be reduced).
+Below is an incomplete table (\ref{tab:data-types}) of the various data objects that are constructed from \texttt{MHO\_TableContainer}, along with their data value type and axis names. These may be subject to change.
+
 \begin{center}
-\resizebox{\textwidth}{!}{
+%\begin{table}[ht]
+\captionof{table}{Internal object types \label{tab:data-types}}
+\noindent\adjustbox{max width=\textwidth}{%
 \begin{tabular}{| c | c | c | c |}
 \hline
  Name & value type & N-Dim & Axes \\  \hline
  Visibilities & \texttt{std::complex<double>} & 3 & (pol. product, time, frequency) \\ \hline
  Weights & \texttt{double} & 3 & (pol. product, time, frequency) \\ \hline
- Flags & \texttt{uint64\_t} & 3 & (pol. product, time, frequency) \\ \hline
+ Flags & \texttt{char} & 3 & (pol. product, time, frequency) \\ \hline
  Channelized Visibilities & \texttt{std::complex<double>} & 4 & (pol. product, channel, time, frequency) \\ \hline
  Channelized Weights & \texttt{double} & 4 & (pol. product, channel, time, frequency) \\ \hline
- Channelized Flags & \texttt{uint64\_t} & 4 & (pol. product, channel, time, frequency) \\ \hline
+ Channelized Flags & \texttt{char} & 4 & (pol. product, channel, time, frequency) \\ \hline
  (static) per-Channel phase corrections & \texttt{double} & 2 & (pol. product, channel) \\ \hline
  Channelized Ad-hoc phases/amplitude corrections  & \texttt{std::complex<double>} & 4 & (pol. product, channel, time, frequency) \\ \hline
  \end{tabular}
- }
+%\end{table}
+}
 \end{center}
+
+
+\subsection{Date and time handling}
+
+The date and time labelling of visibility and other data is an important component of the hops object specification. Within a scan, the time axis of any 
+data container will be labelled with a \texttt{double} precision float specifying the number of seconds since the scan epoch. Nominally the scan epoch
+is the start of the scan as described in the VEX schedule and thus the first element on the time axis will typically have $t=0.0$. However, this is not a requirement, and any positive or negative time offset representable in \texttt{double} precision is allowed.
+
+The time point representing the date/time of the scan epoch will have an internal representation within HOPS as a 64-bit integer (\texttt{int64\_t} count of the number of UTC nanoseconds since the J2000 epoch. This provides nanosecond accurate precision for scan-epoch time stamps until 2292. For in-memory manipulation of time and dates, time points will be representated by:
+\begin{lstlisting}
+ std::chrono::time_point<hops_clock>;
+\end{lstlisting}
+where the \texttt{hops\_clock} is a UTC based clock with a start epoch of (January 1, 2000, 11:58:55.816 UTC). When a time point is stored as a object tag (either in memory, or on disk) for a data container, the time point class will be converted to a string representation. There will be a limited 
+number of supported representations. These are described in the following table (subject to change).
+\begin{center}
+\captionof{table}{Supported time representations \label{tab:time-types}}
+\noindent\adjustbox{max width=\textwidth}{%
+\begin{tabular}{| c | c | c | c |}
+\hline
+ Name & value type & Example & Description \\  \hline
+ HOPS-J2000 & nanoseconds & HOPS-J2000|ns|662688016194916000 & Count of nanoseconds since J2000 epoch. \\ \hline
+ UTC-ISO8601 & UTC date & 2020-12-31T11:59:07.010916000Z & Date in ISO-8601 format according to the UTC clock \\ \hline
+ VEX & date in VEX format & 2020y366d11h59m07.010916s & UTC date in VEX format: YYYYyDDDdHHhMMmSS.Fs \\ \hline
+ \end{tabular}
+}
+\end{center}
+For ease of use, \texttt{hops\_clock} will also support the conversion of time points into TAI and GPS time. To do this, HOPS will make use of the 
+STL chrono library and the \texttt{date} library. As the date library has been adopted into the C++20 standard, eventually this library will be eliminated
+in favor of the compiler implementation. In addition conversion to and from the legacy HOPS date struct:
+\begin{lstlisting}
+typedef struct date
+{
+    short	year;
+    short	day;
+    short	hour;
+    short	minute;
+    float	second;
+} date_struct;
+\end{lstlisting}
+will also be supported to the degree of prececision that the legacy format allows.
+
+
+
+\subsection{Output data objects}
+
+The output data types of the fringe-fitter need to be able to summarize all of the information that is currently present in the \texttt{type\_2XX} data types,
+with the option to be extended. The \texttt{type\_2XX}'s are primarily concerned with storing the fringe solution (delay, delay rate, etc.), and a data summary (per-channel phase/amplitudes, data selection/flagging, etc.) along with a subset of station meta data. A table listing the data items that are present
+in the \texttt{type\_2XX}'s which need to be re-mapped onto the new data structure is shown in table \ref{tab:type2xx}.  
+
+
+\begin{center}
+
+%\begin{table}[ht]
+\captionof{table}{Ouput data summary \label{tab:type2xx}}
+\adjustbox{max width=\textwidth}{
+\begin{tabular}{| c | c | c | c |}
+\hline
+ \texttt{type\_2XX} Name & value type (s) & N-Dim & Axes \\  \hline
+  200 & Processing meta-data (var.) & N/A & N/A \\ \hline
+  201 & Source meta-data (var.) & N/A & N/A \\ \hline
+  202 & Station coords and delay model (var.) & N/A & N/A \\ \hline
+  203 & Channel meta-data & 1 & channel \\ \hline
+  204 & control file meta-data & N/A & N/A \\ \hline
+  205 & & & \\ \hline
+  206 & & & \\ \hline
+  207 & & & \\ \hline
+  208 & & & \\ \hline
+  209 & & & \\ \hline
+  210 & & & \\ \hline
+  212 & & & \\ \hline
+  220 & & & \\ \hline
+  221 & & & \\ \hline
+  222 & & & \\ \hline
+  230 & & & \\ \hline
+ \end{tabular}
+
+%\end{table}
+}
+\end{center}
+
+
 
 \subsection{Data operators}
 

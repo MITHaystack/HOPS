@@ -1,0 +1,48 @@
+{
+    "block_name": "$GLOBAL",
+    "version": "1.5",
+    "start_tag": "",
+    "stop_tag": "",
+    "type" : "compound",
+    "block_type": "high_level",
+    "parameters" :
+    {
+        "$ANTENNA":{"type": "reference"},
+        "$BBC":{"type": "reference"},
+        "$CLOCK":{"type": "reference"},
+        "$DAS":{"type": "reference"},
+        "$EOP":{"type": "reference"},
+        "$EXPER":{"type": "reference"},
+        "$FREQ":{"type": "reference"},
+        "$IF":{"type": "reference"},
+        "$PHASE_CAL_DETECT":{"type": "reference"},
+        "$PROCEDURES":{"type": "reference"},
+        "$SEFD":{"type": "reference"},
+        "$SITE":{"type": "reference"},
+        "$SOURCE":{"type": "reference"},
+        "$TAPELOG_OBS":{"type": "reference"},
+        "$TRACKS":{"type": "reference"},
+        "$HEAD_POS":{"type": "reference"},
+        "$PASS_ORDER":{"type": "reference"}
+    },
+    "fields":
+    [
+        "$ANTENNA",
+        "$BBC",
+        "$CLOCK",
+        "$DAS",
+        "$EOP",
+        "$EXPER",
+        "$FREQ",
+        "$IF",
+        "$PHASE_CAL_DETECT",
+        "$PROCEDURES",
+        "$SEFD",
+        "$SITE",
+        "$SOURCE",
+        "$TAPELOG_OBS",
+        "$TRACKS",
+        "$HEAD_POS",
+        "$PASS_ORDER"
+    ]
+}
