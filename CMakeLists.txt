@@ -25,7 +25,6 @@ include(HopsDefaults)
 include(CMakeDependentOption)
 include(FindGFORTRAN)
 include(FindPGPLOT)
-include(UseLATEX)
 
 #install prefix
 message(STATUS "Architecture is ${CMAKE_SYSTEM_PROCESSOR}")
@@ -68,7 +67,7 @@ if(EXTRA_WARNINGS)
     set( CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -Wextra" )
     set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra" )
 else()
-    #someday we will reduce the number of warnings down to a point where 
+    #someday we will reduce the number of warnings down to a point where
     #we can turn on -Wall -Wextra by default, but not today...
     set( CMAKE_C_FLAGS "${CMAKE_C_FLAGS}" )
     set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}" )
@@ -111,7 +110,7 @@ if(HOPS_USE_FFTW3)
     hops_add_cxxflag(HOPS_USE_FFTW3)
 endif (HOPS_USE_FFTW3)
 
-#link against difxio, and build difx2hops 
+#link against difxio, and build difx2hops
 if(HOPS_USE_DIFXIO)
     find_package(PkgConfig) # we use pkg-config to find difxio
     pkg_search_module(DIFXIO REQUIRED difxio)
