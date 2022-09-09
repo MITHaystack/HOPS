@@ -1,0 +1,147 @@
+#include <iostream>
+#include <string>
+#include <vector>
+#include <algorithm>
+#include <set>
+#include <utility>
+#include <map>
+#include <getopt.h>
+
+#include "MHO_Message.hh"
+#include "MHO_VexParser.hh"
+
+#include "MHO_DirectoryInterface.hh"
+#include "MHO_BinaryFileInterface.hh"
+
+// #include "MHO_Reducer.hh"
+// #include "MHO_FunctorBroadcaster.hh"
+// #include "MHO_MultidimensionalFastFourierTransform.hh"
+
+#include "MHO_ContainerDefinitions.hh"
+//#include "MHO_ChannelizedRotationFunctor.hh"
+
+
+
+
+using namespace hops;
+
+
+int main(int argc, char** argv)
+{
+    std::string usage = "SimpleFringeSearch -d <directory> -b <baseline> -p <pol. product>";
+
+    MHO_Message::GetInstance().AcceptAllKeys();
+    MHO_Message::GetInstance().SetMessageLevel(eDebug);
+
+    std::string directory;
+    std::string baseline;
+    std::string polprod;
+
+    static struct option longOptions[] = {{"help", no_argument, 0, 'h'},
+                                          {"directory", required_argument, 0, 'd'},
+                                          {"baseline", required_argument, 0, 'b'},
+                                          {"polarization-product", required_argument, 0, 'p'}};
+
+    static const char* optString = "hd:b:p:";
+
+    while(true)
+    {
+        char optId = getopt_long(argc, argv, optString, longOptions, NULL);
+        if (optId == -1)
+            break;
+        switch(optId)
+        {
+            case ('h'):  // help
+                std::cout << usage << std::endl;
+                return 0;
+            case ('d'):
+                directory = std::string(optarg);
+                break;
+            case ('b'):
+                baseline = std::string(optarg);
+                break;
+            case ('p'):
+                polprod = std::string(optarg);
+                break;
+            default:
+                std::cout << usage << std::endl;
+                return 1;
+        }
+    }
+
+    //read the directory file list
+    std::vector< std::string > allFiles;
+    std::vector< std::string > corFiles;
+    std::vector< std::string > staFiles;
+    std::vector< std::string > jsonFiles;
+    MHO_DirectoryInterface dirInterface;
+    dirInterface.SetCurrentDirectory(directory);
+    dirInterface.ReadCurrentDirectory();
+
+
+    dirInterface.GetFileList(allFiles);
+    dirInterface.GetFilesMatchingExtention(corFiles, "cor");
+    dirInterface.GetFilesMatchingExtention(staFiles, "sta");
+    dirInterface.GetFilesMatchingExtention(jsonFiles, "json");
+
+    //check that there is only one json file
+    std::string root_file = "";
+    if(jsonFiles.size() != 1)
+    {
+        msg_fatal("main", "There are "<<jsonFiles.size()<<" root files." << eom);
+        std::exit(1);
+    }
+    else
+    {
+        root_file = jsonFiles[0];
+    }
+
+    //open the root (vex) file
+    MHO_VexParser vparser;
+    vparser.SetVexFile(root_file);
+    mho_json vexInfo = vparser.ParseVex();
+
+    //locate the corel file that contains the baseline of interest
+    std::string corel_file = "";
+    bool found_baseline = false;
+    for(auto it = corFiles.begin(); it != corFiles.end(); it++)
+    {
+        std::size_t index = it->find(baseline);
+        if(index != std::string::npos)
+        {
+            corel_file = *it;
+            found_baseline = true;
+        }
+    }
+
+    if(!found_baseline)
+    {
+        msg_fatal("main", "Could not find a file for baseline: "<< baseline << eom);
+        std::exit(1);
+    }
+
+    //now open and read the (channelized) baseline visibility data
+    ch_visibility_type* bl_data = new ch_visibility_type();
+    MHO_BinaryFileInterface inter;
+    bool status = inter.OpenToRead(corel_file);
+    if(status)
+    {
+        MHO_FileKey key;
+        inter.Read(*bl_data, key);
+    }
+    else
+    {
+        msg_fatal("main", "Could not open file for visibility data." << eom);
+        inter.Close();
+        std::exit(1);
+    }
+    inter.Close();
+
+    std::size_t bl_dim[CH_VIS_NDIM];
+    bl_data->GetDimensions(bl_dim);
+
+
+
+
+    return 0;
+}
