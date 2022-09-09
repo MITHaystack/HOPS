@@ -55,6 +55,7 @@ set(SOURCE_BASENAMES
     DumpFileObjectToJSON
     ConvertFileToJSON
     ConvertVexToJSON
+    SimpleFringeSearch
 )
 
 #for testing purposes only -- ROOT not intended to be a dependency
