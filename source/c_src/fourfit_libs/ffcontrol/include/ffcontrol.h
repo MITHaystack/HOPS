@@ -25,4 +25,6 @@ int skip_data (int scantime, char* baseline, char* source, char group);
 int skip_index (int ind, struct c_block* cblock);
 int fcode (char c, char *codes);
 
+int construct_cblock (char* filename, struct c_block* cb_out, char baseline[2], char source[31], char fgroup, int time);
+
 #endif /* end of include guard: FFCONTROL_H__ */

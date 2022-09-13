@@ -7,6 +7,10 @@
 #include <map>
 #include <getopt.h>
 
+
+#include "ffcontrol.h"
+struct c_block* cb_head; //kludge for extern variable
+
 #include "MHO_Message.hh"
 #include "MHO_VexParser.hh"
 
@@ -28,21 +32,23 @@ using namespace hops;
 
 int main(int argc, char** argv)
 {
-    std::string usage = "SimpleFringeSearch -d <directory> -b <baseline> -p <pol. product>";
+    std::string usage = "SimpleFringeSearch -d <directory> -c <control file> -b <baseline> -p <pol. product>";
 
     MHO_Message::GetInstance().AcceptAllKeys();
     MHO_Message::GetInstance().SetMessageLevel(eDebug);
 
     std::string directory;
+    std::string control_file;
     std::string baseline;
     std::string polprod;
 
     static struct option longOptions[] = {{"help", no_argument, 0, 'h'},
                                           {"directory", required_argument, 0, 'd'},
+                                          {"control", required_argument, 0, 'c'},
                                           {"baseline", required_argument, 0, 'b'},
                                           {"polarization-product", required_argument, 0, 'p'}};
 
-    static const char* optString = "hd:b:p:";
+    static const char* optString = "hd:c:b:p:";
 
     while(true)
     {
@@ -57,6 +63,9 @@ int main(int argc, char** argv)
             case ('d'):
                 directory = std::string(optarg);
                 break;
+            case ('c'):
+                control_file = std::string(optarg);
+                break;
             case ('b'):
                 baseline = std::string(optarg);
                 break;
@@ -68,6 +77,18 @@ int main(int argc, char** argv)
                 return 1;
         }
     }
+
+    //parse the control file
+    cb_head = (struct c_block *) malloc (sizeof (struct c_block) );
+    struct c_block* cb_out = (struct c_block *) malloc (sizeof (struct c_block) );
+    nullify_cblock (cb_head);     default_cblock( cb_head );
+    nullify_cblock (cb_out);
+    char bl[2]; bl[0] = baseline[0]; bl[1] = baseline[1];
+    char src[31]; src[0] = 0;
+    char fgroup = 0;
+    int time = 0;
+
+    int retval = construct_cblock(const_cast<char*>(control_file.c_str()), cb_out, bl, src, fgroup, time);
 
     //read the directory file list
     std::vector< std::string > allFiles;
