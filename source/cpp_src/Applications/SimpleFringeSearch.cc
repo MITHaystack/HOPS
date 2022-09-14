@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include <string>
 #include <vector>
 #include <algorithm>
@@ -89,6 +90,7 @@ int main(int argc, char** argv)
     int time = 0;
 
     int retval = construct_cblock(const_cast<char*>(control_file.c_str()), cb_out, bl, src, fgroup, time);
+    std::cout<<"c block retval = "<<retval<<std::endl;
 
     //read the directory file list
     std::vector< std::string > allFiles;
@@ -117,10 +119,13 @@ int main(int argc, char** argv)
         root_file = jsonFiles[0];
     }
 
-    //open the root (vex) file
-    MHO_VexParser vparser;
-    vparser.SetVexFile(root_file);
-    mho_json vexInfo = vparser.ParseVex();
+    //open the root (json version of the vex) file
+    // MHO_VexParser vparser;
+    // vparser.SetVexFile(root_file);
+    // mho_json vexInfo = vparser.ParseVex();
+
+    std::ifstream ifs(root_file);
+    mho_json vexInfo = json::parse(ifs);
 
     //locate the corel file that contains the baseline of interest
     std::string corel_file = "";
