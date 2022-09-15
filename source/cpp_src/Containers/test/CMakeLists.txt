@@ -14,6 +14,7 @@ set(SOURCE_BASENAMES
     TestContainerNames
     TestContainerStore
     TestTableContainerAccess
+    TestTableContainerMultiplication
 )
 
 

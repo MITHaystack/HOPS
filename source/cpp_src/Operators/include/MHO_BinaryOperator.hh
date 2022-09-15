@@ -7,7 +7,6 @@
 
 namespace hops{
 
- //template parameters must inherit from MHO_NDArrayWrapper
 template<class XArgType1, class XArgType2 = XArgType1, class XArgType3 = XArgType2>
 class MHO_BinaryOperator: public MHO_Operator
 {

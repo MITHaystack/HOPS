@@ -7,7 +7,6 @@
 
 namespace hops{
 
-//template parameters must inherit from MHO_NDArrayWrapper
 //only operates on a single array, input = ouput
 template<class XArgType>
 class MHO_UnaryOperator: public MHO_Operator
