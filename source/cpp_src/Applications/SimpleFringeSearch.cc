@@ -10,7 +10,8 @@
 
 
 #include "ffcontrol.h"
-struct c_block* cb_head; //kludge for extern variable
+#include "msg.h"
+struct c_block* cb_head; //global extern kludge
 
 #include "MHO_Message.hh"
 #include "MHO_VexParser.hh"
@@ -33,6 +34,10 @@ using namespace hops;
 
 int main(int argc, char** argv)
 {
+
+    set_progname("blah");
+    set_msglev(-4);
+
     std::string usage = "SimpleFringeSearch -d <directory> -c <control file> -b <baseline> -p <pol. product>";
 
     MHO_Message::GetInstance().AcceptAllKeys();
@@ -82,15 +87,35 @@ int main(int argc, char** argv)
     //parse the control file
     cb_head = (struct c_block *) malloc (sizeof (struct c_block) );
     struct c_block* cb_out = (struct c_block *) malloc (sizeof (struct c_block) );
-    nullify_cblock (cb_head);     default_cblock( cb_head );
+    nullify_cblock (cb_head);     
+    default_cblock( cb_head );
     nullify_cblock (cb_out);
+    default_cblock(cb_out);
     char bl[2]; bl[0] = baseline[0]; bl[1] = baseline[1];
-    char src[31]; src[0] = 0;
-    char fgroup = 0;
+    std::string src = " ";
+    char fgroup = 'X';
     int time = 0;
 
-    int retval = construct_cblock(const_cast<char*>(control_file.c_str()), cb_out, bl, src, fgroup, time);
+    std::cout<<control_file<<std::endl;
+    std::cout<<bl[0]<<bl[1]<<" "<<fgroup<<std::endl;
+
+    int retval = construct_cblock(const_cast<char*>(control_file.c_str()), cb_head, cb_out, bl, const_cast<char*>(src.c_str()), fgroup, time);
     std::cout<<"c block retval = "<<retval<<std::endl;
+
+    //print pc_phases 
+
+    // struct dstats pc_phase_offset[2];// manual phase offset applied to all channels, by pol 
+    // struct dstats pc_phase[MAXFREQ][2];/* phase cal phases by channel and pol 
+    //                                           for manual or additive pcal */
+
+    for(unsigned int p=0; p<2; p++)
+    {
+        for(std::size_t ch=0; ch<MAXFREQ; ch++)
+        {
+            std::cout<<"chan: "<< ch <<" ref-pc: "<< cb_out->pc_phase[ch][p].ref << " rem-pc: " << cb_out->pc_phase[ch][p].rem << std::endl;
+        }
+    }
+
 
     //read the directory file list
     std::vector< std::string > allFiles;
@@ -100,7 +125,6 @@ int main(int argc, char** argv)
     MHO_DirectoryInterface dirInterface;
     dirInterface.SetCurrentDirectory(directory);
     dirInterface.ReadCurrentDirectory();
-
 
     dirInterface.GetFileList(allFiles);
     dirInterface.GetFilesMatchingExtention(corFiles, "cor");
