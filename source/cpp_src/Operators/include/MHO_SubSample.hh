@@ -25,9 +25,6 @@
 namespace hops
 {
 
-//use of the parameter XEnableFlag flag is to allow for templace specialization
-//for specific types (namely, classes derived from MHO_TableContainer)
-//below is the generic case (for all ndarray like objects)
 template< class XArrayType>
 class MHO_SubSample:
     public MHO_UnaryOperator< XArrayType >
@@ -45,11 +42,9 @@ class MHO_SubSample:
 
         virtual ~MHO_SubSample(){};
 
-        //set the offset for the cyclic rotation in each dimension (default is zero...do nothing)
+        //set the axis to sub sample, and the stride at which samples are selected
         void SetDimensionAndStride(std::size_t dimension_index, std::size_t stride)
         {
-            //A negative offset_value results in a "right" rotation: rot by  1: [0 1 2 3] -> [3 0 1 2]
-            //A positive offset_value results in a "left" rotation: rot by -1: [0 1 2 3] -> [1 2 3 0]
             if(dimension_index < XArrayType::rank::value)
             {
                 fDimIndex = dimension_index;
