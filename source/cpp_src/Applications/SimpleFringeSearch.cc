@@ -35,7 +35,7 @@ using namespace hops;
 int main(int argc, char** argv)
 {
 
-    set_progname("blah");
+    set_progname("SimpleFringeSearch");
     set_msglev(-4);
 
     std::string usage = "SimpleFringeSearch -d <directory> -c <control file> -b <baseline> -p <pol. product>";
