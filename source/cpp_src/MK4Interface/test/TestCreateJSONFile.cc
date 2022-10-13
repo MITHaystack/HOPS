@@ -17,7 +17,9 @@ int main(int argc, char **argv) {
   // store in my200s
 
   // dump to file
-  std::cout << obj.dump(2) << std::endl;
+  std::ofstream outputFile(type200-dump.js);
+  outputFile << std::setw(4) << my200s << std::endl;
+  outputFile.close()
 
   return 0;
 }
