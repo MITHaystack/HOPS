@@ -30,6 +30,7 @@ set(SOURCE_BASENAMES
     TestMK4Type208Convert
     TestMK4Type210Convert
     TestMK4Type212Convert
+    TestCreateJSONFile
 )
 
 foreach( BASENAME ${SOURCE_BASENAMES} )
