@@ -59,21 +59,32 @@ MHO_MK4FringeInterface::ExportFringeFile()
 
         MHO_MultiTypeMap< std::string, int, short, float, double, std::array<double, 4>, std::string> _m;
 
-        //type_200
-        _m.Insert( std::string("type200.record_id"), std::string(fFringe.t200->record_id) );
-        _m.Insert( std::string("type200.version_no"), std::string(fFringe.t200->version_no) );
-        _m.Insert( std::string("type200.unused1"), std::string(fFringe.t200->unused1) );
-        //_m.Insert( std::string("type200.software_rev"), std::string(fFringe.t200->software_rev) );
-        _m.Insert( std::string("type200.expt_no"), fFringe.t200->expt_no );
-        _m.Insert( std::string("type200.exper_name"), std::string(fFringe.t200->exper_name) );
-        _m.Insert( std::string("type200.scan_name"), std::string(fFringe.t200->scan_name) );
-        _m.Insert( std::string("type200.correlator"), std::string(fFringe.t200->correlator) );
-        //_m.Insert( std::string("type200.scantime"), std::string(fFringe.t200->scantime) );
-        _m.Insert( std::string("type200.start_offset"), fFringe.t200->start_offset );
-        _m.Insert( std::string("type200.stop_offset"), fFringe.t200->stop_offset );
-        //_m.Insert( std::string("type200.corr_date"), std::string(fFringe.t200->corr_date) );
-        //_m.Insert( std::string("type200.fourfit_date"), std::string(fFringe.t200->fourfit_date) );
-        //_m.Insert( std::string("type200.frt"), std::string(fFringe.t200->frt) );
+        // type_200
+        _m.Insert( std::string("type200.record_id"), std::string(fFringe.t200->record_id));
+        _m.Insert( std::string("type200.version_no"), std::string(fFringe.t200->version_no));
+        _m.Insert( std::string("type200.unused1"), std::string(fFringe.t200->unused1));
+        _m.Insert( std::string("type200.software_rev"), fFringe.t200->software_rev);
+        _m.Insert( std::string("type200.expt_no"), fFringe.t200->expt_no);
+        _m.Insert( std::string("type200.exper_name"), std::string(fFringe.t200->exper_name));
+        _m.Insert( std::string("type200.scan_name"), std::string(fFringe.t200->scan_name));
+        _m.Insert( std::string("type200.correlator"), std::string(fFringe.t200->correlator));
+        _m.Insert( std::string("type200.scantime.year"), fFringe.t200.scantime->year);
+        _m.Insert( std::string("type200.scantime.day"), fFringe.t200.scantime->day);
+        _m.Insert( std::string("type200.scantime.hour"), fFringe.t200.scantime->hour);
+        _m.Insert( std::string("type200.scantime.minute"), fFringe.t200.scantime->minute);
+        _m.Insert( std::string("type200.scantime.second"), fFringe.t200.scantime->second);
+        _m.Insert( std::string("type200.start_offset"), fFringe.t200->start_offset);
+        _m.Insert( std::string("type200.stop_offset"), fFringe.t200->stop_offset);
+        _m.Insert( std::string("type200.corr_date.year"), fFringe.t200.corr_date->year);
+        _m.Insert( std::string("type200.corr_date.day"), fFringe.t200.corr_date->day);
+        _m.Insert( std::string("type200.corr_date.hour"), fFringe.t200.corr_date->hour);
+        _m.Insert( std::string("type200.corr_date.minute"), fFringe.t200.corr_date->minute);
+        _m.Insert( std::string("type200.corr_date.second"), fFringe.t200.corr_date->second);
+        _m.Insert( std::string("type200.fourfit_date.year"), fFringe.t200.fourfit_date->year);
+        _m.Insert( std::string("type200.fourfit_date.day"), fFringe.t200.fourfit_date->day);
+        _m.Insert( std::string("type200.fourfit_date.hour"), fFringe.t200.fourfit_date->hour);
+        _m.Insert( std::string("type200.fourfit_date.minute"), fFringe.t200.fourfit_date->minute);
+        _m.Insert( std::string("type200.fourfit_date.second"), fFringe.t200.fourfit_date->second);
 
         //type 201
         _m.Insert( std::string("type201.record_id"), std::string(fFringe.t201->record_id) );
@@ -92,6 +103,15 @@ MHO_MK4FringeInterface::ExportFringeFile()
 
 
     }
+}
+
+void MHO_MK4FringeInterface::ExportFringeFileToJSON(){
+    // Call typ200 functions here
+
+    // Print out fringe file data
+    cout << fFringe;
+
+    //  
 }
 
 
