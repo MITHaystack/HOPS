@@ -86,15 +86,24 @@ MHO_MK4FringeInterface::ExportFringeFile()
         _m.Insert( std::string("type200.fourfit_date.minute"), fFringe.t200.fourfit_date->minute);
         _m.Insert( std::string("type200.fourfit_date.second"), fFringe.t200.fourfit_date->second);
 
-        //type 201
-        _m.Insert( std::string("type201.record_id"), std::string(fFringe.t201->record_id) );
-        _m.Insert( std::string("type201.version_no"), std::string(fFringe.t201->version_no) );
-        _m.Insert( std::string("type201.unused1"), std::string(fFringe.t201->unused1) );
-        _m.Insert( std::string("type201.source"), std::string(fFringe.t201->source) );
-        //_m.Insert( std::string("type201.coord"), fFringe.t201->coord );
+        // type_201 data
+        _m.Insert( std::string("type201.record_id"), std::string(fFringe.t201->record_id));
+        _m.Insert( std::string("type201.version_no"), std::string(fFringe.t201->version_no));
+        _m.Insert( std::string("type201.unused1"), std::string(fFringe.t201->unused1));
+        _m.Insert( std::string("type201.source"), std::string(fFringe.t201->source));
+        _m.Insert( std::string("type201.coord.ra_hrs"), fFringe.t201.coord->ra_hrs);
+        _m.Insert( std::string("type201.coord.ra_mins"), fFringe.t201.coord->ra_mins);
+        _m.Insert( std::string("type201.coord.ra_secs"), fFringe.t201.coord->ra_secs);
+        _m.Insert( std::string("type201.coord.dec_degs"), fFringe.t201.coord->dec_degs);
+        _m.Insert( std::string("type201.coord.dec_mins"), fFringe.t201.coord->dec_mins);
+        _m.Insert( std::string("type201.coord.dec_secs"), fFringe.t201.coord->dec_secs);
         _m.Insert( std::string("type201.epoch"), fFringe.t201->epoch );
         _m.Insert( std::string("type201.unused2"), std::string(fFringe.t201->unused2) );
-        //_m.Insert( std::string("type201.coord_date"), std::string(fFringe.t201->coord_date) );
+        _m.Insert( std::string("type200.coord_date.year"), fFringe.t200.coord_date->year);
+        _m.Insert( std::string("type200.coord_date.day"), fFringe.t200.coord_date->day);
+        _m.Insert( std::string("type200.coord_date.hour"), fFringe.t200.coord_date->hour);
+        _m.Insert( std::string("type200.coord_date.minute"), fFringe.t200.coord_date->minute);
+        _m.Insert( std::string("type200.coord_date.second"), fFringe.t200.coord_date->second);
         _m.Insert( std::string("type201.ra_rate"), fFringe.t201->ra_rate );
         _m.Insert( std::string("type201.dec_rate"), fFringe.t201->dec_rate );
         _m.Insert( std::string("type201.pulsar_phase"), create_and_fill_array<double, 4>(fFringe.t201->pulsar_phase) );
