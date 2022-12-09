@@ -163,7 +163,18 @@ MHO_MK4FringeInterface::ExportFringeFile()
             _m.Insert( std::string(std::format("type203.channels[{}].rem_chan_id", i)),  std::string(fFringe.t203.channels[i]->rem_chan_id));
         }
 
-
+        // type_204 data
+        _m.Insert( std::string("type204.record_id"), std::string(fFringe.t204->record_id));
+        _m.Insert( std::string("type204.version_no"), std::string(fFringe.t204->version_no));
+        _m.Insert( std::string("type204.ff_version"), create_and_fill_array<short, 2>(fFringe.t204->ff_version) );
+        _m.Insert( std::string("type204.platform"), std::string(fFringe.t204->platform));
+        _m.Insert( std::string("type204.control_file"), std::string(fFringe.t204->control_file));
+        _m.Insert( std::string("type204.ffcf_date.year"), fFringe.t204.ffcf_date->year);
+        _m.Insert( std::string("type204.ffcf_date.day"), fFringe.t204.ffcf_date->day);
+        _m.Insert( std::string("type204.ffcf_date.hour"), fFringe.t204.ffcf_date->hour);
+        _m.Insert( std::string("type204.ffcf_date.minute"), fFringe.t204.ffcf_date->minute);
+        _m.Insert( std::string("type204.ffcf_date.second"), fFringe.t204.ffcf_date->second);
+        _m.Insert( std::string("type204.override"), std::string(fFringe.t204->override));
     }
 }
 
