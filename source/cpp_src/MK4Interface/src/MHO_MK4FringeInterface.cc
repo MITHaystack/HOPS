@@ -1,7 +1,9 @@
 #include "MHO_MK4FringeInterface.hh"
+#include "MHO_MK4Type203Converter.hh"
 
 #include "MHO_MultiTypeMap.hh"
 #include <array>
+#include <string>
 
 namespace hops
 {
@@ -56,6 +58,7 @@ MHO_MK4FringeInterface::ExportFringeFile()
     {
         //want to dump the information in the type_200 through type_230 objects
         //for now just do the POD data types
+        const int NUMBEROFCHANNELS = 8 * MAXFREQ;
 
         MHO_MultiTypeMap< std::string, int, short, float, double, std::array<double, 4>, std::string> _m;
 
@@ -145,6 +148,20 @@ MHO_MK4FringeInterface::ExportFringeFile()
         _m.Insert( std::string("type202.ref_az"), fFringe.t202->ref_az);
         _m.Insert( std::string("type202.rem_az"), fFringe.t202->rem_az);
 
+        // type_203 data
+        _m.Insert( std::string("type203.record_id"), std::string(fFringe.t203->record_id));
+        _m.Insert( std::string("type203.version_no"), std::string(fFringe.t203->version_no));
+        for (int i = 0; i < NUMBEROFCHANNELS; i++) {
+            _m.Insert( std::string(std::format("type203.channels[{}].index", i)), fFringe.t203.channels[i]->index);
+            _m.Insert( std::string(std::format("type203.channels[{}].sample_rate", i)), fFringe.t203.channels[i]->sample_rate);
+            _m.Insert( std::string(std::format("type203.channels[{}].refsb ", i)), fFringe.t203.channels[i]->refsb);
+            _m.Insert( std::string(std::format("type203.channels[{}].remsb", i)), fFringe.t203.channels[i]->remsb);
+            _m.Insert( std::string(std::format("type203.channels[{}].rempol", i)), fFringe.t203.channels[i]->rempol);
+            _m.Insert( std::string(std::format("type203.channels[{}].ref_freq", i)), fFringe.t203.channels[i]->ref_freq);
+            _m.Insert( std::string(std::format("type203.channels[{}].rem_freq", i)), fFringe.t203.channels[i]->rem_freq);
+            _m.Insert( std::string(std::format("type203.channels[{}].ref_chan_id", i)),  std::string(fFringe.t203.channels[i]->ref_chan_id));
+            _m.Insert( std::string(std::format("type203.channels[{}].rem_chan_id", i)),  std::string(fFringe.t203.channels[i]->rem_chan_id));
+        }
 
 
     }
