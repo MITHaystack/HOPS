@@ -62,7 +62,7 @@ MHO_MK4FringeInterface::ExportFringeFile()
 
         MHO_MultiTypeMap< std::string, int, short, float, double, std::array<double, 4>, std::string> _m;
 
-        // type_200
+        // convert type_200 data to struct
         _m.Insert( std::string("type200.record_id"), std::string(fFringe.t200->record_id));
         _m.Insert( std::string("type200.version_no"), std::string(fFringe.t200->version_no));
         _m.Insert( std::string("type200.unused1"), std::string(fFringe.t200->unused1));
@@ -89,7 +89,7 @@ MHO_MK4FringeInterface::ExportFringeFile()
         _m.Insert( std::string("type200.fourfit_date.minute"), fFringe.t200.fourfit_date->minute);
         _m.Insert( std::string("type200.fourfit_date.second"), fFringe.t200.fourfit_date->second);
 
-        // type_201 data
+        // convert type_201 data to struct
         _m.Insert( std::string("type201.record_id"), std::string(fFringe.t201->record_id));
         _m.Insert( std::string("type201.version_no"), std::string(fFringe.t201->version_no));
         _m.Insert( std::string("type201.unused1"), std::string(fFringe.t201->unused1));
@@ -113,7 +113,7 @@ MHO_MK4FringeInterface::ExportFringeFile()
         _m.Insert( std::string("type201.pulsar_epoch"), fFringe.t201->pulsar_epoch );
         _m.Insert( std::string("type201.dispersion"), fFringe.t201->dispersion );
 
-        // type_202 data
+        // convert type_202 data to struct
         _m.Insert( std::string("type202.record_id"), std::string(fFringe.t202->record_id));
         _m.Insert( std::string("type202.version_no"), std::string(fFringe.t202->version_no));
         _m.Insert( std::string("type202.unused1"), std::string(fFringe.t202->unused1));
@@ -148,7 +148,7 @@ MHO_MK4FringeInterface::ExportFringeFile()
         _m.Insert( std::string("type202.ref_az"), fFringe.t202->ref_az);
         _m.Insert( std::string("type202.rem_az"), fFringe.t202->rem_az);
 
-        // type_203 data
+        // convert type_203 data to struct
         _m.Insert( std::string("type203.record_id"), std::string(fFringe.t203->record_id));
         _m.Insert( std::string("type203.version_no"), std::string(fFringe.t203->version_no));
         for (int i = 0; i < NUMBEROFCHANNELS; i++) {
@@ -163,7 +163,7 @@ MHO_MK4FringeInterface::ExportFringeFile()
             _m.Insert( std::string(std::format("type203.channels[{}].rem_chan_id", i)),  std::string(fFringe.t203.channels[i]->rem_chan_id));
         }
 
-        // type_204 data
+        // convert type_204 data to struct
         _m.Insert( std::string("type204.record_id"), std::string(fFringe.t204->record_id));
         _m.Insert( std::string("type204.version_no"), std::string(fFringe.t204->version_no));
         _m.Insert( std::string("type204.ff_version"), create_and_fill_array<short, 2>(fFringe.t204->ff_version) );
@@ -176,7 +176,7 @@ MHO_MK4FringeInterface::ExportFringeFile()
         _m.Insert( std::string("type204.ffcf_date.second"), fFringe.t204.ffcf_date->second);
         _m.Insert( std::string("type204.override"), std::string(fFringe.t204->override));
 
-        // type_205 data
+        // convert type_205 data to struct
         _m.Insert( std::string("type205.record_id"), std::string(fFringe.t205->record_id));
         _m.Insert( std::string("type205.version_no"), std::string(fFringe.t205->version_no));
         _m.Insert( std::string("type205.unused1"), std::string(fFringe.t205->unused1));
@@ -206,7 +206,7 @@ MHO_MK4FringeInterface::ExportFringeFile()
             _m.Insert( std::string("type205.ffit_chan[{}].channels"), create_and_fill_array<short, 4>(fFringe.t205->channels));
         }
 
-        // type_206
+        // convert type_206 data to struct
         _m.Insert( std::string("type206.record_id"), std::string(fFringe.t206->record_id));
         _m.Insert( std::string("type206.version_no"), std::string(fFringe.t206->version_no));
         _m.Insert( std::string("type206.unused1"), std::string(fFringe.t206->unused1));
@@ -264,6 +264,8 @@ MHO_MK4FringeInterface::ExportFringeFile()
         _m.Insert( std::string("type206.mbdsize"), fFringe.t206->mbdsize);
         _m.Insert( std::string("type206.sbdsize"), fFringe.t206->sbdsize);
         _m.Insert( std::string("type206.unused2"), std::string(fFringe.t206->unused2));
+
+        // convet type_207 data to struct
     }
 }
 
