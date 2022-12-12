@@ -205,6 +205,65 @@ MHO_MK4FringeInterface::ExportFringeFile()
             _m.Insert( std::string(std::format("type205.ffit_chan[{}].unused ", i)), std::string(fFringe.t205.ffit_chan[i]->unused));
             _m.Insert( std::string("type205.ffit_chan[{}].channels"), create_and_fill_array<short, 4>(fFringe.t205->channels));
         }
+
+        // type_206
+        _m.Insert( std::string("type206.record_id"), std::string(fFringe.t206->record_id));
+        _m.Insert( std::string("type206.version_no"), std::string(fFringe.t206->version_no));
+        _m.Insert( std::string("type206.unused1"), std::string(fFringe.t206->unused1));
+        _m.Insert( std::string("type206.start.year"), fFringe.t206.start->year);
+        _m.Insert( std::string("type206.start.day"), fFringe.t206.start->day);
+        _m.Insert( std::string("type206.start.hour"), fFringe.t206.start->hour);
+        _m.Insert( std::string("type206.start.minute"), fFringe.t206.start->minute);
+        _m.Insert( std::string("type206.start.second"), fFringe.t206.start->second);
+        _m.Insert( std::string("type206.first_ap"), fFringe.t206->first_ap);
+        _m.Insert( std::string("type206.last_ap"), fFringe.t206->last_ap);
+        for (int i = 0; i < NUMBEROFSIDEBANDSANDSBWEIGHTS; i++) {
+            _m.Insert( std::string(std::format("type206.accepted[{}].lsb", i)), fFringe.t206.accepted[i]->lsb);
+            _m.Insert( std::string(std::format("type206.accepted[{}].usb", i)), fFringe.t206.accepted[i]->usb);
+        }
+        for (int i = 0; i < NUMBEROFSIDEBANDSANDSBWEIGHTS; i++) {
+            _m.Insert( std::string(std::format("type206.weights[{}].lsb", i)), fFringe.t206.weights[i]->lsb);
+            _m.Insert( std::string(std::format("type206.weights[{}].usb", i)), fFringe.t206.weights[i]->usb);
+        }
+        _m.Insert( std::string("type206.intg_time"), fFringe.t206->intg_time);
+        _m.Insert( std::string("type206.accept_ratio"), fFringe.t206->accept_ratio);
+        _m.Insert( std::string("type206.discard"), fFringe.t206->discard);
+        for (int i = 0; i < NUMBEROFSIDEBANDSANDSBWEIGHTS; i++) {
+            _m.Insert( std::string(std::format("type206.reason1[{}].lsb", i)), fFringe.t206.reason1[i]->lsb);
+            _m.Insert( std::string(std::format("type206.reason1[{}].usb", i)), fFringe.t206.reason1[i]->usb);
+        }
+        for (int i = 0; i < NUMBEROFSIDEBANDSANDSBWEIGHTS; i++) {
+            _m.Insert( std::string(std::format("type206.reason2[{}].lsb", i)), fFringe.t206.reason2[i]->lsb);
+            _m.Insert( std::string(std::format("type206.reason2[{}].usb", i)), fFringe.t206.reason2[i]->usb);
+        }
+        for (int i = 0; i < NUMBEROFSIDEBANDSANDSBWEIGHTS; i++) {
+            _m.Insert( std::string(std::format("type206.reason3[{}].lsb", i)), fFringe.t206.reason3[i]->lsb);
+            _m.Insert( std::string(std::format("type206.reason3[{}].usb", i)), fFringe.t206.reason3[i]->usb);
+        }
+        for (int i = 0; i < NUMBEROFSIDEBANDSANDSBWEIGHTS; i++) {
+            _m.Insert( std::string(std::format("type206.reason4[{}].lsb", i)), fFringe.t206.reason4[i]->lsb);
+            _m.Insert( std::string(std::format("type206.reason4[{}].usb", i)), fFringe.t206.reason4[i]->usb);
+        }
+        for (int i = 0; i < NUMBEROFSIDEBANDSANDSBWEIGHTS; i++) {
+            _m.Insert( std::string(std::format("type206.reason5[{}].lsb", i)), fFringe.t206.reason5[i]->lsb);
+            _m.Insert( std::string(std::format("type206.reason5[{}].usb", i)), fFringe.t206.reason5[i]->usb);
+        }
+        for (int i = 0; i < NUMBEROFSIDEBANDSANDSBWEIGHTS; i++) {
+            _m.Insert( std::string(std::format("type206.reason6[{}].lsb", i)), fFringe.t206.reason6[i]->lsb);
+            _m.Insert( std::string(std::format("type206.reason6[{}].usb", i)), fFringe.t206.reason6[i]->usb);
+        }
+        for (int i = 0; i < NUMBEROFSIDEBANDSANDSBWEIGHTS; i++) {
+            _m.Insert( std::string(std::format("type206.reason7[{}].lsb", i)), fFringe.t206.reason7[i]->lsb);
+            _m.Insert( std::string(std::format("type206.reason7[{}].usb", i)), fFringe.t206.reason7[i]->usb);
+        }
+        for (int i = 0; i < NUMBEROFSIDEBANDSANDSBWEIGHTS; i++) {
+            _m.Insert( std::string(std::format("type206.reason8[{}].lsb", i)), fFringe.t206.reason8[i]->lsb);
+            _m.Insert( std::string(std::format("type206.reason8[{}].usb", i)), fFringe.t206.reason8[i]->usb);
+        }
+        _m.Insert( std::string("type206.ratesize"), fFringe.t206->ratesize);
+        _m.Insert( std::string("type206.mbdsize"), fFringe.t206->mbdsize);
+        _m.Insert( std::string("type206.sbdsize"), fFringe.t206->sbdsize);
+        _m.Insert( std::string("type206.unused2"), std::string(fFringe.t206->unused2));
     }
 }
 
