@@ -43,10 +43,10 @@ int main(int argc, char** argv)
     MHO_Message::GetInstance().AcceptAllKeys();
     MHO_Message::GetInstance().SetMessageLevel(eDebug);
 
-    std::string directory;
-    std::string control_file;
-    std::string baseline;
-    std::string polprod;
+    std::string directory = "";
+    std::string control_file = "";
+    std::string baseline = "";
+    std::string polprod = "";
 
     static struct option longOptions[] = {{"help", no_argument, 0, 'h'},
                                           {"directory", required_argument, 0, 'd'},
@@ -82,6 +82,12 @@ int main(int argc, char** argv)
                 std::cout << usage << std::endl;
                 return 1;
         }
+    }
+
+    if( directory == "" || baseline == "" || polprod == "" || control_file == "") 
+    {
+        std::cout << usage << std::endl;
+        return 1;
     }
 
     //parse the control file
