@@ -8,7 +8,6 @@
 #include <map>
 #include <getopt.h>
 
-
 #include "ffcontrol.h"
 #include "msg.h"
 struct c_block* cb_head; //global extern kludge
@@ -24,6 +23,8 @@ struct c_block* cb_head; //global extern kludge
 // #include "MHO_MultidimensionalFastFourierTransform.hh"
 
 #include "MHO_ContainerDefinitions.hh"
+#include "MHO_ContainerStore.hh"
+#include "MHO_ContainerFileInterface.hh"
 //#include "MHO_ChannelizedRotationFunctor.hh"
 
 
@@ -176,26 +177,33 @@ int main(int argc, char** argv)
         std::exit(1);
     }
 
-    //now open and read the (channelized) baseline visibility data
-    ch_visibility_type* bl_data = new ch_visibility_type();
-    MHO_BinaryFileInterface inter;
-    bool status = inter.OpenToRead(corel_file);
-    if(status)
-    {
-        MHO_FileKey key;
-        inter.Read(*bl_data, key);
-    }
-    else
-    {
-        msg_fatal("main", "Could not open file for visibility data." << eom);
-        inter.Close();
-        std::exit(1);
-    }
-    inter.Close();
+    //read the entire file into memory (obviously we will want to optimize this in the future)
+    MHO_ContainerStore conStore;
+    MHO_ContainerFileInterface conInter;
+    conInter.SetFilename(corel_file);
+    conInter.PopulateStoreFromFile(conStore); //reads in all the objects in a file
 
-    std::size_t bl_dim[CH_VIS_NDIM];
-    bl_data->GetDimensions(bl_dim);
 
+    // //now open and read the (channelized) baseline visibility data
+    // ch_visibility_type* bl_data = new ch_visibility_type();
+    // MHO_BinaryFileInterface inter;
+    // bool status = inter.OpenToRead(corel_file);
+    // if(status)
+    // {
+    //     MHO_FileKey key;
+    //     inter.Read(*bl_data, key);
+    // }
+    // else
+    // {
+    //     msg_fatal("main", "Could not open file for visibility data." << eom);
+    //     inter.Close();
+    //     std::exit(1);
+    // }
+    // inter.Close();
+    // 
+    // std::size_t bl_dim[CH_VIS_NDIM];
+    // bl_data->GetDimensions(bl_dim);
+    // 
 
 
 
