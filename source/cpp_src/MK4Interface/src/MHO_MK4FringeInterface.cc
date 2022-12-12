@@ -266,6 +266,47 @@ MHO_MK4FringeInterface::ExportFringeFile()
         _m.Insert( std::string("type206.unused2"), std::string(fFringe.t206->unused2));
 
         // convet type_207 data to struct
+        _m.Insert( std::string("type207.record_id"), std::string(fFringe.t207->record_id));
+        _m.Insert( std::string("type207.version_no"), std::string(fFringe.t207->version_no));
+        _m.Insert( std::string("type207.unused1"), std::string(fFringe.t207->unused1));
+        _m.Insert( std::string("type207.pcal_mode"), fFringe.t207->pcal_mode);
+        _m.Insert( std::string("type207.unused2"), fFringe.t207->unused2);
+        for (int i = 0; i < REFANDREMSIZE; i++) {
+            _m.Insert( std::string(std::format("type207.ref_pcamp[{}].lsb", i)), fFringe.t207.ref_pcamp[i]->lsb);
+            _m.Insert( std::string(std::format("type207.ref_pcamp[{}].usb", i)), fFringe.t207.ref_pcamp[i]->usb);
+        }
+        for (int i = 0; i < REFANDREMSIZE; i++) {
+            _m.Insert( std::string(std::format("type207.rem_pcamp[{}].lsb", i)), fFringe.t207.rem_pcamp[i]->lsb);
+            _m.Insert( std::string(std::format("type207.rem_pcamp[{}].usb", i)), fFringe.t207.rem_pcamp[i]->usb);
+        }
+        for (int i = 0; i < REFANDREMSIZE; i++) {
+            _m.Insert( std::string(std::format("type207.ref_pcphase[{}].lsb", i)), fFringe.t207.ref_pcphase[i]->lsb);
+            _m.Insert( std::string(std::format("type207.ref_pcphase[{}].usb", i)), fFringe.t207.ref_pcphase[i]->usb);
+        }
+        for (int i = 0; i < REFANDREMSIZE; i++) {
+            _m.Insert( std::string(std::format("type207.rem_pcphase[{}].lsb", i)), fFringe.t207.rem_pcphase[i]->lsb);
+            _m.Insert( std::string(std::format("type207.rem_pcphase[{}].usb", i)), fFringe.t207.rem_pcphase[i]->usb);
+        }
+        for (int i = 0; i < REFANDREMSIZE; i++) {
+            _m.Insert( std::string(std::format("type207.ref_pcoffset[{}].lsb", i)), fFringe.t207.ref_pcoffset[i]->lsb);
+            _m.Insert( std::string(std::format("type207.ref_pcoffset[{}].usb", i)), fFringe.t207.ref_pcoffset[i]->usb);
+        }
+        for (int i = 0; i < REFANDREMSIZE; i++) {
+            _m.Insert( std::string(std::format("type207.rem_pcoffset[{}].lsb", i)), fFringe.t207.rem_pcoffset[i]->lsb);
+            _m.Insert( std::string(std::format("type207.rem_pcoffset[{}].usb", i)), fFringe.t207.rem_pcoffset[i]->usb);
+        }
+        for (int i = 0; i < REFANDREMSIZE; i++) {
+            _m.Insert( std::string(std::format("type207.rem_pcfreq[{}].lsb", i)), fFringe.t207.rem_pcfreq[i]->lsb);
+            _m.Insert( std::string(std::format("type207.rem_pcfreq[{}].usb", i)), fFringe.t207.rem_pcfreq[i]->usb);
+        }
+        _m.Insert( std::string("type207.rem_pcrate"), fFringe.t207->rem_pcrate);
+        _m.Insert( std::string("type207.ref_pcrate"), fFringe.t207->ref_pcrate);
+        for (int i = 0; i < REFANDREMSIZE; i++) {
+            _m.Insert( std::string(std::format("type207.ref_errate[{}]", i)), fFringe.t207->ref_errate[i]);
+        }
+        for (int i = 0; i < REFANDREMSIZE; i++) {
+            _m.Insert( std::string(std::format("type207.rem_errate[{}]", i)), fFringe.t207->rem_errate[i]);
+        }
     }
 }
 
