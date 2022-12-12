@@ -1,5 +1,6 @@
 #include "MHO_MK4FringeInterface.hh"
 #include "MHO_MK4Type203Converter.hh"
+#include "MHO_MK4Type205Converter.hh"
 
 #include "MHO_MultiTypeMap.hh"
 #include <array>
@@ -58,7 +59,6 @@ MHO_MK4FringeInterface::ExportFringeFile()
     {
         //want to dump the information in the type_200 through type_230 objects
         //for now just do the POD data types
-        const int NUMBEROFCHANNELS = 8 * MAXFREQ;
 
         MHO_MultiTypeMap< std::string, int, short, float, double, std::array<double, 4>, std::string> _m;
 
@@ -175,6 +175,36 @@ MHO_MK4FringeInterface::ExportFringeFile()
         _m.Insert( std::string("type204.ffcf_date.minute"), fFringe.t204.ffcf_date->minute);
         _m.Insert( std::string("type204.ffcf_date.second"), fFringe.t204.ffcf_date->second);
         _m.Insert( std::string("type204.override"), std::string(fFringe.t204->override));
+
+        // type_205 data
+        _m.Insert( std::string("type205.record_id"), std::string(fFringe.t205->record_id));
+        _m.Insert( std::string("type205.version_no"), std::string(fFringe.t205->version_no));
+        _m.Insert( std::string("type205.unused1"), std::string(fFringe.t205->unused1));
+        _m.Insert( std::string("type205.utc_central.year"), fFringe.t205.utc_central->year);
+        _m.Insert( std::string("type205.utc_central.day"), fFringe.t205.utc_central->day);
+        _m.Insert( std::string("type205.utc_central.hour"), fFringe.t205.utc_central->hour);
+        _m.Insert( std::string("type205.utc_central.minute"), fFringe.t205.utc_central->minute);
+        _m.Insert( std::string("type205.utc_central.second"), fFringe.t205.utc_central->second);
+        _m.Insert( std::string("type205.offset"), fFringe.t205->offset);
+        _m.Insert( std::string("type205.ffmode"), std::string(fFringe.t205->ffmode));
+        _m.Insert( std::string("type205.search"), create_and_fill_array<float, 6>(fFringe.t205->search));
+        _m.Insert( std::string("type205.filter"), create_and_fill_array<float, 8>(fFringe.t205->filter));
+        _m.Insert( std::string("type205.start.year"), fFringe.t205.start->year);
+        _m.Insert( std::string("type205.start.day"), fFringe.t205.start->day);
+        _m.Insert( std::string("type205.start.hour"), fFringe.t205.start->hour);
+        _m.Insert( std::string("type205.start.minute"), fFringe.t205.start->minute);
+        _m.Insert( std::string("type205.start.second"), fFringe.t205.start->second);
+        _m.Insert( std::string("type205.stop.year"), fFringe.t205.stop->year);
+        _m.Insert( std::string("type205.stop.day"), fFringe.t205.stop->day);
+        _m.Insert( std::string("type205.stop.hour"), fFringe.t205.stop->hour);
+        _m.Insert( std::string("type205.stop.minute"), fFringe.t205.stop->minute);
+        _m.Insert( std::string("type205.stop.second"), fFringe.t205.stop->second);
+        _m.Insert( std::string("type205.ref_freq"), fFringe.t205->ref_freq);
+        for (int i = 0; i < NUMBEROFFFITCHAN; i++) {
+            _m.Insert( std::string(std::format("type205.ffit_chan[{}].index", i)), std::string(fFringe.t205.ffit_chan[i]->ffit_chan_id));
+            _m.Insert( std::string(std::format("type205.ffit_chan[{}].unused ", i)), std::string(fFringe.t205.ffit_chan[i]->unused));
+            _m.Insert( std::string("type205.ffit_chan[{}].channels"), create_and_fill_array<short, 4>(fFringe.t205->channels));
+        }
     }
 }
 
