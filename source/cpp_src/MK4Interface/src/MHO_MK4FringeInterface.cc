@@ -367,6 +367,18 @@ MHO_MK4FringeInterface::ExportFringeFile()
 
 void MHO_MK4FringeInterface::ExportFringeFileToJSON(){
     // Call typ200 functions here
+    json jsonDump = {{"type_200", MHO_MK4Type200Converter::convertToJSON(fFringe->t200)},
+                    {"type_201", MHO_MK4Type201Converter::convertToJSON(fFringe->t201)},
+                    {"type_202", MHO_MK4Type202Converter::convertToJSON(fFringe->t202)},
+                    {"type_203", MHO_MK4Type203Converter::convertToJSON(fFringe->t203)},
+                    {"type_204", MHO_MK4Type204Converter::convertToJSON(fFringe->t204)},
+                    {"type_205", MHO_MK4Type205Converter::convertToJSON(fFringe->t205)},
+                    {"type_206", MHO_MK4Type206Converter::convertToJSON(fFringe->t206)},
+                    {"type_207", MHO_MK4Type207Converter::convertToJSON(fFringe->t207)},
+                    {"type_208", MHO_MK4Type208Converter::convertToJSON(fFringe->t208)},
+                    {"type_210", MHO_MK4Type210Converter::convertToJSON(fFringe->t210)},
+                    {"type_212", MHO_MK4Type212Converter::convertToJSON(fFringe->t212)},
+    }
 
     // Print out fringe file data
     cout << fFringe;
