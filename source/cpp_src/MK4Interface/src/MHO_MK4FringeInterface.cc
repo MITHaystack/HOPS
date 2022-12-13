@@ -336,7 +336,17 @@ MHO_MK4FringeInterface::ExportFringeFile()
         _m.Insert( std::string("type208.prob_false"), fFringe.t208->prob_false);
         _m.Insert( std::string("type208.totphase"), fFringe.t208->totphase);
         _m.Insert( std::string("type208.totphase_ref"), fFringe.t208->totphase_ref);
+        _m.Insert( std::string("type208.resphase"), fFringe.t208->resphase);
         _m.Insert( std::string("type208.tec_error"), fFringe.t208->tec_error);
+
+        // convert type_210 data to struct
+        _m.Insert( std::string("type210.record_id"), std::string(fFringe.t210->record_id));
+        _m.Insert( std::string("type210.version_no"), std::string(fFringe.t210->version_no));
+        _m.Insert( std::string("type210.unused1"), std::string(fFringe.t210->unused1));
+        for (int i = 0; i < AMPPHASE; i++) {
+            _m.Insert( std::string(std::format("type210.amp_phas[{}].ampl", i)), fFringe.t210.amp_phas[i]->ampl);
+            _m.Insert( std::string(std::format("type210.amp_phas[{}].phase", i)), fFringe.t210.amp_phas[i]->phase);
+        }
     }
 }
 
