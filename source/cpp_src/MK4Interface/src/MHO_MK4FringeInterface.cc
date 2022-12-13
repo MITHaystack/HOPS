@@ -265,7 +265,7 @@ MHO_MK4FringeInterface::ExportFringeFile()
         _m.Insert( std::string("type206.sbdsize"), fFringe.t206->sbdsize);
         _m.Insert( std::string("type206.unused2"), std::string(fFringe.t206->unused2));
 
-        // convet type_207 data to struct
+        // convert type_207 data to struct
         _m.Insert( std::string("type207.record_id"), std::string(fFringe.t207->record_id));
         _m.Insert( std::string("type207.version_no"), std::string(fFringe.t207->version_no));
         _m.Insert( std::string("type207.unused1"), std::string(fFringe.t207->unused1));
