@@ -307,6 +307,36 @@ MHO_MK4FringeInterface::ExportFringeFile()
         for (int i = 0; i < REFANDREMSIZE; i++) {
             _m.Insert( std::string(std::format("type207.rem_errate[{}]", i)), fFringe.t207->rem_errate[i]);
         }
+
+        // convert type_208 data to struct
+        _m.Insert( std::string("type208.record_id"), std::string(fFringe.t208->record_id));
+        _m.Insert( std::string("type208.version_no"), std::string(fFringe.t208->version_no));
+        _m.Insert( std::string("type208.unused1"), std::string(fFringe.t208->unused1));
+        _m.Insert( std::string("type208.quality"), std::string(fFringe.t208->quality));
+        _m.Insert( std::string("type208.errcode"), std::string(fFringe.t208->errcode));
+        _m.Insert( std::string("type208.tape_qcode"), std::string(fFringe.t208->tape_qcode));
+        _m.Insert( std::string("type208.adelay"), fFringe.t208->adelay);
+        _m.Insert( std::string("type208.arate"), fFringe.t208->arate);
+        _m.Insert( std::string("type208.aaccel"), fFringe.t208->aaccel);
+        _m.Insert( std::string("type208.tot_mbd"), fFringe.t208->tot_mbd);
+        _m.Insert( std::string("type208.tot_sbd"), fFringe.t208->tot_sbd);
+        _m.Insert( std::string("type208.tot_rate"), fFringe.t208->tot_rate);
+        _m.Insert( std::string("type208.tot_mbd_ref"), fFringe.t208->tot_mbd_ref);
+        _m.Insert( std::string("type208.resid_mbd"), fFringe.t208->resid_mbd);
+        _m.Insert( std::string("type208.resid_sbd"), fFringe.t208->resid_sbd);
+        _m.Insert( std::string("type208.resid_rate"), fFringe.t208->resid_rate);
+        _m.Insert( std::string("type208.mbd_error "), fFringe.t208->mbd_error);
+        _m.Insert( std::string("type208.sbd_error"), fFringe.t208->sbd_error);
+        _m.Insert( std::string("type208.rate_error"), fFringe.t208->rate_error);
+        _m.Insert( std::string("type208.ambiguity"), fFringe.t208->ambiguity);
+        _m.Insert( std::string("type208.amplitude"), fFringe.t208->amplitude);
+        _m.Insert( std::string("type208.inc_seg_ampl"), fFringe.t208->inc_seg_ampl);
+        _m.Insert( std::string("type208.inc_chan_ampl"), fFringe.t208->inc_chan_ampl);
+        _m.Insert( std::string("type208.snr"), fFringe.t208->snr);
+        _m.Insert( std::string("type208.prob_false"), fFringe.t208->prob_false);
+        _m.Insert( std::string("type208.totphase"), fFringe.t208->totphase);
+        _m.Insert( std::string("type208.totphase_ref"), fFringe.t208->totphase_ref);
+        _m.Insert( std::string("type208.tec_error"), fFringe.t208->tec_error);
     }
 }
 
