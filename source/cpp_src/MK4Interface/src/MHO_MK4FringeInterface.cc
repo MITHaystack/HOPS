@@ -347,6 +347,21 @@ MHO_MK4FringeInterface::ExportFringeFile()
             _m.Insert( std::string(std::format("type210.amp_phas[{}].ampl", i)), fFringe.t210.amp_phas[i]->ampl);
             _m.Insert( std::string(std::format("type210.amp_phas[{}].phase", i)), fFringe.t210.amp_phas[i]->phase);
         }
+
+        // convert type_212 data to struct
+        _m.Insert( std::string("type212.record_id"), std::string(fFringe.t212->record_id));
+        _m.Insert( std::string("type212.version_no"), std::string(fFringe.t212->version_no));
+        _m.Insert( std::string("type212.unused"), std::string(fFringe.t212->unused));
+        _m.Insert( std::string("type212.nap"), fFringe.t212->nap);
+        _m.Insert( std::string("type212.first_ap"), fFringe.t212->first_ap);
+        _m.Insert( std::string("type212.channel"), fFringe.t212->channel);
+        _m.Insert( std::string("type212.sbd_chan"), fFringe.t212->sbd_chan);
+        _m.Insert( std::string("type212.unused2"), std::string(fFringe.t212->unused2));
+        for (int i = 0; i < DATASIZE; i++) {
+            _m.Insert( std::string(std::format("type212.data[{}].amp", i)), fFringe.t212.data[i]->amp);
+            _m.Insert( std::string(std::format("type212.data[{}].phase", i)), fFringe.t212.data[i]->phase);
+            _m.Insert( std::string(std::format("type212.data[{}].weight", i)), fFringe.t212.data[i]->weight);
+        }
     }
 }
 
