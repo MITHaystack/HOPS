@@ -381,7 +381,9 @@ void MHO_MK4FringeInterface::ExportFringeFileToJSON(){
     }
 
     // Print out fringe file data
-    cout << fFringe;
+    //cout << fFringe;
+    std::ofstream o("type-200s-dump.json");
+    o << std::setw(4) << jsonDump << std::endl;
 
     //  
 }
