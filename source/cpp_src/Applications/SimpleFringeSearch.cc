@@ -12,21 +12,21 @@
 #include "msg.h"
 struct c_block* cb_head; //global extern kludge
 
+//global messaging util
 #include "MHO_Message.hh"
+
+//needed for reading the vex file (json format)
 #include "MHO_VexParser.hh"
 
+//handles reading directories, listing files etc.
 #include "MHO_DirectoryInterface.hh"
-#include "MHO_BinaryFileInterface.hh"
 
-// #include "MHO_Reducer.hh"
-// #include "MHO_FunctorBroadcaster.hh"
-// #include "MHO_MultidimensionalFastFourierTransform.hh"
-
+//needed to read hops files and extract objects
 #include "MHO_ContainerDefinitions.hh"
 #include "MHO_ContainerStore.hh"
 #include "MHO_ContainerDictionary.hh"
 #include "MHO_ContainerFileInterface.hh"
-//#include "MHO_ChannelizedRotationFunctor.hh"
+
 
 
 
@@ -38,7 +38,8 @@ int main(int argc, char** argv)
 {
 
     set_progname("SimpleFringeSearch");
-    set_msglev(-4);
+    set_msglev(3);
+    // set_msglev(-4);
 
     std::string usage = "SimpleFringeSearch -d <directory> -c <control file> -b <baseline> -p <pol. product>";
 
@@ -185,7 +186,7 @@ int main(int argc, char** argv)
     conInter.SetFilename(corel_file);
     conInter.PopulateStoreFromFile(conStore); //reads in all the objects in a file
 
-    //retrieve the visibility and weight objects
+    //retrieve the visibility and weight objects (currently assuming there is only one object per type)
     ch_visibility_type* bl_data = nullptr;
     ch_weight_type* wt_data = nullptr;
     std::string ch_vis_uuid = conDict.GetUUIDFor<ch_visibility_type>().as_string();
@@ -195,9 +196,6 @@ int main(int argc, char** argv)
     bl_data = dynamic_cast<ch_visibility_type*>(vis_ser_obj);
     wt_data = dynamic_cast<ch_weight_type*>(wt_ser_obj);
     std::cout<<bl_data<<" "<<wt_data<<std::endl;
-
-    // //now open and read the (channelized) baseline visibility data
-
 
     std::size_t bl_dim[ch_visibility_type::rank::value];
     bl_data->GetDimensions(bl_dim);
