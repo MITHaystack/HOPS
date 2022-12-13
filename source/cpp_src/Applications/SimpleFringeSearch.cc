@@ -24,6 +24,7 @@ struct c_block* cb_head; //global extern kludge
 
 #include "MHO_ContainerDefinitions.hh"
 #include "MHO_ContainerStore.hh"
+#include "MHO_ContainerDictionary.hh"
 #include "MHO_ContainerFileInterface.hh"
 //#include "MHO_ChannelizedRotationFunctor.hh"
 
@@ -179,31 +180,43 @@ int main(int argc, char** argv)
 
     //read the entire file into memory (obviously we will want to optimize this in the future)
     MHO_ContainerStore conStore;
+    MHO_ContainerDictionary conDict;
     MHO_ContainerFileInterface conInter;
     conInter.SetFilename(corel_file);
     conInter.PopulateStoreFromFile(conStore); //reads in all the objects in a file
 
+    //retrieve the visibility and weight objects
+    ch_visibility_type* bl_data = nullptr;
+    ch_weight_type* wt_data = nullptr;
+    std::string ch_vis_uuid = conDict.GetUUIDFor<ch_visibility_type>().as_string();
+    std::string ch_wt_uuid = conDict.GetUUIDFor<ch_weight_type>().as_string();
+    MHO_Serializable* vis_ser_obj = conStore.RetrieveFirstObjectMatchingType(ch_vis_uuid);
+    MHO_Serializable* wt_ser_obj = conStore.RetrieveFirstObjectMatchingType(ch_wt_uuid);
+    bl_data = dynamic_cast<ch_visibility_type*>(vis_ser_obj);
+    wt_data = dynamic_cast<ch_weight_type*>(wt_ser_obj);
+    std::cout<<bl_data<<" "<<wt_data<<std::endl;
 
     // //now open and read the (channelized) baseline visibility data
-    // ch_visibility_type* bl_data = new ch_visibility_type();
-    // MHO_BinaryFileInterface inter;
-    // bool status = inter.OpenToRead(corel_file);
-    // if(status)
-    // {
-    //     MHO_FileKey key;
-    //     inter.Read(*bl_data, key);
-    // }
-    // else
-    // {
-    //     msg_fatal("main", "Could not open file for visibility data." << eom);
-    //     inter.Close();
-    //     std::exit(1);
-    // }
-    // inter.Close();
-    // 
-    // std::size_t bl_dim[CH_VIS_NDIM];
-    // bl_data->GetDimensions(bl_dim);
-    // 
+
+
+    std::size_t bl_dim[ch_visibility_type::rank::value];
+    bl_data->GetDimensions(bl_dim);
+
+    for(std::size_t i=0; i<ch_visibility_type::rank::value; i++)
+    {
+        std::cout<<"vis size in dim: "<<i<<" = "<<bl_dim[i]<<std::endl;
+    }
+
+
+
+    std::size_t wt_dim[ch_weight_type::rank::value];
+    wt_data->GetDimensions(wt_dim);
+
+    for(std::size_t i=0; i<ch_weight_type::rank::value; i++)
+    {
+        std::cout<<"weight size in dim: "<<i<<" = "<<wt_dim[i]<<std::endl;
+    }
+
 
 
 
