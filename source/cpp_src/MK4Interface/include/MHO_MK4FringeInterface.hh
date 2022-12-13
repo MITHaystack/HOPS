@@ -40,6 +40,8 @@ class MHO_MK4FringeInterface
 
         void ExportFringeFile();
 
+        void ExportFringeFileToJSON();
+
     private:
 
         bool fHaveFringe;
