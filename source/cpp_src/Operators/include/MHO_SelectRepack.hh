@@ -149,7 +149,7 @@ class MHO_SelectRepack:
                     }
                 }
 
-                IfTableSubSampleAxes(in,out);
+                IfTableSelectOnAxes(in,out);
 
                 return true;
             }
@@ -161,69 +161,66 @@ class MHO_SelectRepack:
 
     private:
 
-        std::array<std::size_t, XArrayType::rank::value> DetermineOutputDimensions(const XArrayType* in)
-        {
-            auto in_dim = in->GetDimensionArray();
-            in_dim[fDimIndex] /= fStride;
-            return in_dim;
-        }
-
-        void ConditionallyResizeOutput(const std::array<std::size_t, XArrayType::rank::value>& dims, XArrayType* out)
-        {
-            auto out_dim = out->GetDimensionArray();
-            bool have_to_resize = false;
-            for(std::size_t i=0; i<XArrayType::rank::value; i++)
-            {
-                if(out_dim[i] != dims[i] ){have_to_resize = true;}
-            }
-            if(have_to_resize){ out->Resize( &(dims[0]) );}
-        }
+        // std::array<std::size_t, XArrayType::rank::value> DetermineOutputDimensions(const XArrayType* in)
+        // {
+        //     auto in_dim = in->GetDimensionArray();
+        //     in_dim[fDimIndex] /= fStride;
+        //     return in_dim;
+        // }
+        // 
+        // void ConditionallyResizeOutput(const std::array<std::size_t, XArrayType::rank::value>& dims, XArrayType* out)
+        // {
+        //     auto out_dim = out->GetDimensionArray();
+        //     bool have_to_resize = false;
+        //     for(std::size_t i=0; i<XArrayType::rank::value; i++)
+        //     {
+        //         if(out_dim[i] != dims[i] ){have_to_resize = true;}
+        //     }
+        //     if(have_to_resize){ out->Resize( &(dims[0]) );}
+        // }
 
         //default...does nothing
         template< typename XCheckType = XArrayType >
         typename std::enable_if< !std::is_base_of<MHO_TableContainerBase, XCheckType>::value, void >::type
-        IfTableSubSampleAxis(const XArrayType* /*in*/, XArrayType* /*out*/){};
+        IfTableSelectOnAxes(const XArrayType* /*in*/, XArrayType* /*out*/){};
 
         //use SFINAE to generate specialization for MHO_TableContainer types
         template< typename XCheckType = XArrayType >
         typename std::enable_if< std::is_base_of<MHO_TableContainerBase, XCheckType>::value, void >::type
-        IfTableSubSampleAxis(const XArrayType* in, XArrayType* out)
+        IfTableSelectOnAxes(const XArrayType* in, XArrayType* out)
         {
-            SubSampleAxis axis_sub_sampler(fStride);
-            apply_at2< typename XArrayType::axis_pack_tuple_type, SubSampleAxis >( *in, *out, fDimIndex, axis_sub_sampler);
+            for(std::size_t a=0; a<XArgType::rank::value; a++)
+            {
+                SelectOnAxis axis_sub_sampler( fAxisSelectionMap[a] );
+                apply_at2< typename XArrayType::axis_pack_tuple_type, SelectOnAxis >( *in, *out, a, axis_sub_sampler);
+            }
         }
 
 
-        class SubSampleAxis
+        class SelectOnAxis
         {
             public:
-                SubSampleAxis(std::size_t stride):
-                    fStride(stride)
+                SelectOnAxis(std::vector< std::size_t > selection):
+                    fSelection(selection)
                 {};
-                ~SubSampleAxis(){};
+                ~SelectOnAxis(){};
 
                 template< typename XAxisType >
                 void operator()(const XAxisType& axis1, XAxisType& axis2)
                 {
-                    //at this point axis2 should already be re-sized appropriately
-                    auto it1 = axis1.cstride_begin(fStride);
-                    auto end1 = axis1.cstride_end(fStride);
-                    auto it2 = axis2.begin();
-                    auto end2 = axis2.end();
-                    while(it1 != end1 && it2 != end2)
+                    for(std::size_t i=0; i<fSelection.size();i++)
                     {
-                        *it2++ = *it1++;
+                        axis2(i) = axis1( fSelection[i] );
                     }
                 }
 
             private:
-                std::size_t fStride;
+                std::vector< std::size_t > fSelection;
+
         };
 
 
         bool fInitialized;
-        std::size_t fDimIndex;
-        std::size_t fStride;
         XArrayType fWorkspace;
 
         //map which holds the indexes selected from each axis
