@@ -31,8 +31,6 @@ class MHO_SubSample:
 {
     public:
 
-        static_assert(XArrayType::rank::value == XArrayType::rank::value, "Input/Output array ranks are not equal.");
-
         MHO_SubSample()
         {
             fInitialized = false;
@@ -98,15 +96,15 @@ class MHO_SubSample:
 
             std::size_t d = fDimIndex;
             //now we loop over all dimensions not specified by d
-            //first compute the number of arrays we need to rotate
-            size_t n_rot = 1;
+            //first compute the number of arrays we need to sub-sample
+            size_t n_srow = 1;
             size_t count = 0;
             size_t in_stride = in->GetStride(d);
             for(size_t i = 0; i < XArrayType::rank::value; i++)
             {
                 if(i != d)
                 {
-                    n_rot *= in->GetDimension(i);
+                    n_srow *= in->GetDimension(i);
                     non_active_dimension_index[count] = i;
                     non_active_dimension_size[count] = in->GetDimension(i);
                     count++;
@@ -114,7 +112,7 @@ class MHO_SubSample:
             }
 
             //loop over the number of rows we need to sub-sample
-            for(size_t n=0; n<n_rot; n++)
+            for(size_t n=0; n<n_srow; n++)
             {
                 //invert place in list to obtain indices of block in array
                 MHO_NDArrayMath::RowMajorIndexFromOffset<XArrayType::rank::value-1>(n, non_active_dimension_size, non_active_dimension_value);
@@ -134,7 +132,7 @@ class MHO_SubSample:
                 size_t out_data_location;
                 out_data_location = MHO_NDArrayMath::OffsetFromRowMajorIndex<XArrayType::rank::value>(out->GetDimensions(), index);
 
-                //now rotate the array by the specified amount
+                //now sample the array by the specified amount
                 auto in_iter = in->cstride_iterator_at(in_data_location, fStride*in_stride);
                 auto out_iter = out->stride_iterator_at(out_data_location, out->GetStride(d));
                 auto in_end = in_iter + in->GetDimension(d);
