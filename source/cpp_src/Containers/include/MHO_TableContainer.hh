@@ -103,9 +103,11 @@ class MHO_TableContainer:
         using MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::operator();
         using MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::operator[];
 
+        using MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::ValueAt;
+
 
         //expensive copy (as opposed to the assignment operator,
-        //pointers to exernally managed memory are not transfer)
+        //pointers to exernally managed memory are not transferred)
         virtual void Copy(const MHO_TableContainer& rhs)
         {
             //copy the array, then copy the axis pack

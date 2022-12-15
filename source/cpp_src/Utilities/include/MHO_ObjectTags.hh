@@ -67,11 +67,11 @@ class MHO_ObjectTags: public MHO_Taggable, public MHO_ExtensibleElement
         std::size_t GetNTags() const
         {
             std::size_t n = 0;
-            n += this->Size<char>();
-            n += this->Size<bool>();
-            n += this->Size<int>();
-            n += this->Size<double>();
-            n += this->Size<std::string>();
+            n += this->MapSize<char>();
+            n += this->MapSize<bool>();
+            n += this->MapSize<int>();
+            n += this->MapSize<double>();
+            n += this->MapSize<std::string>();
             return n;
         }
 

@@ -197,13 +197,6 @@ class MHO_NDArrayWrapper:
         {
             auto dims = rhs.GetDimensionArray();
             Construct(nullptr,  &(dims[0]));
-            // auto bit = rhs.cbegin();
-            // auto rhs_it = bit;
-            // for(std::size_t i=0; i<fSize; i++)
-            // {
-            //     this->fData[i] = *rhs_it;
-            //     ++rhs_it;
-            // }
             if(fSize != 0){std::copy(rhs.cbegin(), rhs.cend(), this->fData.begin() );}
         }
 
@@ -354,6 +347,20 @@ class MHO_NDArrayWrapper:
             return *this;
         }
 
+        bool CheckIndexValidity(const index_type& idx)
+        {
+            return MHO_NDArrayMath::CheckIndexValidity<RANK>(&(fDims[0]), &(idx[0]) );
+        }
+
+        XValueType& ValueAt(const index_type& idx)
+        {
+            return fDataPtr[ MHO_NDArrayMath::OffsetFromStrideIndex<RANK>(&(fStrides[0]), &(idx[0]) ) ];
+        }
+
+        const XValueType& ValueAt(const index_type& idx) const
+        {
+            return fDataPtr[ MHO_NDArrayMath::OffsetFromStrideIndex<RANK>(&(fStrides[0]), &(idx[0]) ) ];
+        }
 
     protected:
 
@@ -371,20 +378,6 @@ class MHO_NDArrayWrapper:
         uint64_t fSize; //total size of array
         mutable index_type fTmp; //temp index workspace
 
-        bool CheckIndexValidity(const index_type& idx)
-        {
-            return MHO_NDArrayMath::CheckIndexValidity<RANK>(&(fDims[0]), &(idx[0]) );
-        }
-
-        XValueType& ValueAt(const index_type& idx)
-        {
-            return fDataPtr[ MHO_NDArrayMath::OffsetFromStrideIndex<RANK>(&(fStrides[0]), &(idx[0]) ) ];
-        }
-
-        const XValueType& ValueAt(const index_type& idx) const
-        {
-            return fDataPtr[ MHO_NDArrayMath::OffsetFromStrideIndex<RANK>(&(fStrides[0]), &(idx[0]) ) ];
-        }
 
 
     private:
