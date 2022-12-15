@@ -19,6 +19,7 @@
 #include "MHO_Serializable.hh"
 #include "MHO_FileKey.hh"
 #include "MHO_UUID.hh"
+#include "MHO_ContainerDictionary.hh"
 
 namespace hops 
 {
@@ -56,6 +57,10 @@ class MHO_ContainerStore
         MHO_Serializable* RetrieveObject(const std::string& type_uuid, const std::string& object_uuid);
         MHO_Serializable* RetrieveObject(const MHO_UUID& type_uuid, const MHO_UUID& object_uuid);
 
+        template < typename XRetrieveClassType > 
+        XRetrieveClassType* RetrieveObject(std::string object_uuid = "");
+    
+        //just grab the first object of a specific type, nullptr on fail
         MHO_Serializable* RetrieveFirstObjectMatchingType(const MHO_FileKey& key);
         MHO_Serializable* RetrieveFirstObjectMatchingType(const std::string& type_uuid);
         MHO_Serializable* RetrieveFirstObjectMatchingType(const MHO_UUID& type_uuid);
@@ -71,6 +76,11 @@ class MHO_ContainerStore
 
     protected:
 
+        //object dictionary...currently we only have one dictionary implementation
+        //however, we may in the future want to allow the use to pass a custom dictionary implementation 
+        //if they have additional classes they want to serialize which are not already supported 
+        MHO_ContainerDictionary fDictionary;
+
         //first uuid key is for the object type, second uuid key is for the object itself
         std::map< MHO_UUID, std::map< MHO_UUID, MHO_Serializable* >  > fObjects;
 
@@ -78,6 +88,36 @@ class MHO_ContainerStore
         std::map< MHO_UUID, std::map< MHO_UUID, std::pair<std::string, uint32_t> > > fObjectsNameLabels;
 
 };
+
+
+template < typename XRetrieveClassType > 
+XRetrieveClassType* 
+MHO_ContainerStore::RetrieveObject(std::string object_uuid)
+{
+    //get the type id for this object 
+    std::string type_uuid = fDictionary.GetUUIDFor<XRetrieveClassType>().as_string();
+    MHO_Serializable* ser_obj = nullptr;
+    XRetrieveClassType* obj = nullptr;
+
+    if(object_uuid != "")
+    {
+        ser_obj = RetrieveObject(type_uuid, object_uuid);
+    }
+    else 
+    {
+        //no specific uuid given, just grab the ;first object of this type
+        ser_obj = RetrieveFirstObjectMatchingType(type_uuid);
+    }
+
+    if(ser_obj)
+    {
+        obj = dynamic_cast<XRetrieveClassType*>(ser_obj);
+    }
+    
+    return obj;
+}
+
+
 
 } //end namespace
 
