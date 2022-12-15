@@ -59,7 +59,7 @@ class MHO_TableContainer:
         MHO_TableContainer* Clone(){ return new MHO_TableContainer(*this); }
 
         //clone table shape, but leave contents/axes empty
-        MHO_TableContainer* CloneEmpty(){ return new MHO_TableContainer( this->fDims ); }
+        MHO_TableContainer* CloneEmpty(){ return new MHO_TableContainer( &(this->fDims[0]) ); }
 
         virtual ~MHO_TableContainer(){};
 

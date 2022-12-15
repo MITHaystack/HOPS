@@ -24,7 +24,8 @@ struct c_block* cb_head; //global extern kludge
 #include "MHO_ContainerDictionary.hh"
 #include "MHO_ContainerFileInterface.hh"
 
-
+//norm fx 
+#include "MHO_NormFX.hh"
 
 
 
@@ -182,16 +183,10 @@ int main(int argc, char** argv)
     ch_weight_type* wt_data = nullptr;
     MHO_ObjectTags* tags = nullptr;
 
-    bl_data = conStore.RetrieveObject<ch_visibility_type>();
+    all_bl_data = conStore.RetrieveObject<ch_visibility_type>();
     wt_data = conStore.RetrieveObject<ch_weight_type>();
     tags = conStore.RetrieveObject<MHO_ObjectTags>();
 
-    // std::string ch_vis_uuid = conDict.GetUUIDFor<ch_visibility_type>().as_string();
-    // std::string ch_wt_uuid = conDict.GetUUIDFor<ch_weight_type>().as_string();
-    // MHO_Serializable* vis_ser_obj = conStore.RetrieveFirstObjectMatchingType(ch_vis_uuid);
-    // MHO_Serializable* wt_ser_obj = conStore.RetrieveFirstObjectMatchingType(ch_wt_uuid);
-    // bl_data = dynamic_cast<ch_visibility_type*>(vis_ser_obj);
-    // wt_data = dynamic_cast<ch_weight_type*>(wt_ser_obj);
     std::cout<<bl_data<<" "<<wt_data<<std::endl;
 
     std::size_t bl_dim[ch_visibility_type::rank::value];
@@ -210,8 +205,16 @@ int main(int argc, char** argv)
         std::cout<<"weight size in dim: "<<i<<" = "<<wt_dim[i]<<std::endl;
     }
 
+    //output for the delay 
+    ch_visibility_type* sbd_data = bl_data->CloneEmpty();
+    bl_dim[CH_FREQ_AXIS] *= 4; //normfx implementation demands this
+    sbd_data->Resize(bl_dim);
 
-
+    //re-run this exercise via the pure c++ function
+    MHO_NormFX nfxOp;
+    nfxOp.SetArgs(bl_data, wt_data, sbd_data);
+    nfxOp.Initialize();
+    nfxOp.Execute();
 
     return 0;
 }

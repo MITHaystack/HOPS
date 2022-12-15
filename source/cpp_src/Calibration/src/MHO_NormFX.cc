@@ -115,9 +115,12 @@ MHO_NormFX::InitializeImpl(const XArgType1* in1, const XArgType2* in2, XArgType3
 bool
 MHO_NormFX::ExecuteImpl(const XArgType1* in1, const XArgType2* in2, XArgType3* out)
 {
+
     if(fInitialized)
     {
 
+
+        std::cout<<"in norm fx"<<std::endl;
         //apply phase-cal corrections to each channel (manuals only)
         //for now do nothing
 
@@ -163,6 +166,7 @@ MHO_NormFX::ExecuteImpl(const XArgType1* in1, const XArgType2* in2, XArgType3* o
         // status = fNormBroadcaster.Execute();
         // if(!status){msg_error("operators", "Could not execute normalization in MHO_NormFX." << eom); return false;}
 
+        std::cout<<"done"<<std::endl;
 
         return true;
     }
