@@ -30,7 +30,7 @@ class MHO_SingleTypeMap
         MHO_SingleTypeMap(){};
         virtual ~MHO_SingleTypeMap(){};
 
-        std::size_t Size() const {return fMap.size(); }
+        std::size_t MapSize() const {return fMap.size(); }
 
         void Insert(const XKeyType& key, const XValueType& value)
         {
@@ -109,7 +109,7 @@ template <typename  XKeyType, typename XValueType>
 class MHO_MultiTypeMap< XKeyType, XValueType >: public MHO_SingleTypeMap< XKeyType, XValueType >
 {
     public:
-        using MHO_SingleTypeMap< XKeyType, XValueType >::Size;
+        using MHO_SingleTypeMap< XKeyType, XValueType >::MapSize;
         using MHO_SingleTypeMap< XKeyType, XValueType >::Insert;
         using MHO_SingleTypeMap< XKeyType, XValueType >::Retrieve;
         using MHO_SingleTypeMap< XKeyType, XValueType >::ContainsKey;
@@ -119,9 +119,9 @@ class MHO_MultiTypeMap< XKeyType, XValueType >: public MHO_SingleTypeMap< XKeyTy
         using MHO_SingleTypeMap< XKeyType, XValueType >::CopyTo;
 
         template<typename U = XValueType> typename std::enable_if< std::is_same<U,XValueType >::value, std::size_t >::type
-        Size() const
+        MapSize() const
         {
-            return static_cast< const MHO_SingleTypeMap< XKeyType, XValueType >* >( this )->Size();
+            return static_cast< const MHO_SingleTypeMap< XKeyType, XValueType >* >( this )->MapSize();
         };
 
         template<typename U = XValueType> typename std::enable_if< std::is_same<U,XValueType>::value, std::vector<XKeyType> >::type
@@ -164,8 +164,8 @@ class MHO_MultiTypeMap< XKeyType, XValueType, XValueTypeS...>: public MHO_MultiT
 {
     public:
 
-        using MHO_MultiTypeMap< XKeyType, XValueType >::Size;
-        using MHO_MultiTypeMap< XKeyType, XValueTypeS... >::Size;
+        using MHO_MultiTypeMap< XKeyType, XValueType >::MapSize;
+        using MHO_MultiTypeMap< XKeyType, XValueTypeS... >::MapSize;
 
         using MHO_MultiTypeMap< XKeyType, XValueType >::Insert;
         using MHO_MultiTypeMap< XKeyType, XValueTypeS... >::Insert;

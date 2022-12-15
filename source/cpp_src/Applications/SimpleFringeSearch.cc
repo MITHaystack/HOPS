@@ -183,11 +183,40 @@ int main(int argc, char** argv)
     ch_weight_type* wt_data = nullptr;
     MHO_ObjectTags* tags = nullptr;
 
-    all_bl_data = conStore.RetrieveObject<ch_visibility_type>();
+    bl_data = conStore.RetrieveObject<ch_visibility_type>();
     wt_data = conStore.RetrieveObject<ch_weight_type>();
     tags = conStore.RetrieveObject<MHO_ObjectTags>();
 
     std::cout<<bl_data<<" "<<wt_data<<std::endl;
+
+
+
+    std::size_t wt_dim[ch_weight_type::rank::value];
+    wt_data->GetDimensions(wt_dim);
+
+    for(std::size_t i=0; i<ch_weight_type::rank::value; i++)
+    {
+        std::cout<<"weight size in dim: "<<i<<" = "<<wt_dim[i]<<std::endl;
+    }
+
+    //temporary testing...we want to pull out only the specified pol-product (e.g. XX)
+    //so for now we crudely create a copy from a slice view 
+
+    //first find the index which corresponds to the specified pol product 
+    std::size_t pp_index = 0;
+    auto* pp_axis = &(std::get<CH_POLPROD_AXIS>(*bl_data));
+    for(std::size_t pi = 0; pi < pp_axis->GetSize(); pi++)
+    {
+        std::cout<<pi<<" = "<< (*pp_axis)[pi] << std::endl;
+        if( (*pp_axis)[pi] == polprod )
+        {
+            pp_index = pi;
+        }
+    }
+
+    // auto bl_slice = bl_data->SliceView(pp_index, ":", ":", ":");
+    // ch_visibility_type* selected_bl_data = new ch_visibility_type();
+    // selected_bl_data->Copy(bl_slice);
 
     std::size_t bl_dim[ch_visibility_type::rank::value];
     bl_data->GetDimensions(bl_dim);
@@ -197,13 +226,6 @@ int main(int argc, char** argv)
         std::cout<<"vis size in dim: "<<i<<" = "<<bl_dim[i]<<std::endl;
     }
 
-    std::size_t wt_dim[ch_weight_type::rank::value];
-    wt_data->GetDimensions(wt_dim);
-
-    for(std::size_t i=0; i<ch_weight_type::rank::value; i++)
-    {
-        std::cout<<"weight size in dim: "<<i<<" = "<<wt_dim[i]<<std::endl;
-    }
 
     //output for the delay 
     ch_visibility_type* sbd_data = bl_data->CloneEmpty();
