@@ -12,12 +12,14 @@ set (OPERATOR_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_Reducer.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_FunctorBroadcaster.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_NaNMasker.hh
+
     #${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ScalarMultiply.hh
     # ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_PointwiseMultiply.hh
     # ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_PointwiseAdd.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ComplexConjugator.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_CyclicRotator.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_SubSample.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_SelectRepack.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MultidimensionalPaddedFastFourierTransform.hh
 )
 
