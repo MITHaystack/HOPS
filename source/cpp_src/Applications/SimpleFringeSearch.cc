@@ -15,9 +15,6 @@ struct c_block* cb_head; //global extern kludge
 //global messaging util
 #include "MHO_Message.hh"
 
-//needed for reading the vex file (json format)
-#include "MHO_VexParser.hh"
-
 //handles reading directories, listing files etc.
 #include "MHO_DirectoryInterface.hh"
 
@@ -152,15 +149,10 @@ int main(int argc, char** argv)
         root_file = jsonFiles[0];
     }
 
-    //open the root (json version of the vex) file
-    // MHO_VexParser vparser;
-    // vparser.SetVexFile(root_file);
-    // mho_json vexInfo = vparser.ParseVex();
-
     std::ifstream ifs(root_file);
     mho_json vexInfo = json::parse(ifs);
 
-    //locate the corel file that contains the baseline of interest
+    //locate the corel file that contains the baseline of interest (this is primitive)
     std::string corel_file = "";
     bool found_baseline = false;
     for(auto it = corFiles.begin(); it != corFiles.end(); it++)
@@ -181,20 +173,25 @@ int main(int argc, char** argv)
 
     //read the entire file into memory (obviously we will want to optimize this in the future)
     MHO_ContainerStore conStore;
-    MHO_ContainerDictionary conDict;
     MHO_ContainerFileInterface conInter;
     conInter.SetFilename(corel_file);
     conInter.PopulateStoreFromFile(conStore); //reads in all the objects in a file
 
-    //retrieve the visibility and weight objects (currently assuming there is only one object per type)
+    //retrieve the (first) visibility and weight objects (currently assuming there is only one object per type)
     ch_visibility_type* bl_data = nullptr;
     ch_weight_type* wt_data = nullptr;
-    std::string ch_vis_uuid = conDict.GetUUIDFor<ch_visibility_type>().as_string();
-    std::string ch_wt_uuid = conDict.GetUUIDFor<ch_weight_type>().as_string();
-    MHO_Serializable* vis_ser_obj = conStore.RetrieveFirstObjectMatchingType(ch_vis_uuid);
-    MHO_Serializable* wt_ser_obj = conStore.RetrieveFirstObjectMatchingType(ch_wt_uuid);
-    bl_data = dynamic_cast<ch_visibility_type*>(vis_ser_obj);
-    wt_data = dynamic_cast<ch_weight_type*>(wt_ser_obj);
+    MHO_ObjectTags* tags = nullptr;
+
+    bl_data = conStore.RetrieveObject<ch_visibility_type>();
+    wt_data = conStore.RetrieveObject<ch_weight_type>();
+    tags = conStore.RetrieveObject<MHO_ObjectTags>();
+
+    // std::string ch_vis_uuid = conDict.GetUUIDFor<ch_visibility_type>().as_string();
+    // std::string ch_wt_uuid = conDict.GetUUIDFor<ch_weight_type>().as_string();
+    // MHO_Serializable* vis_ser_obj = conStore.RetrieveFirstObjectMatchingType(ch_vis_uuid);
+    // MHO_Serializable* wt_ser_obj = conStore.RetrieveFirstObjectMatchingType(ch_wt_uuid);
+    // bl_data = dynamic_cast<ch_visibility_type*>(vis_ser_obj);
+    // wt_data = dynamic_cast<ch_weight_type*>(wt_ser_obj);
     std::cout<<bl_data<<" "<<wt_data<<std::endl;
 
     std::size_t bl_dim[ch_visibility_type::rank::value];
@@ -204,8 +201,6 @@ int main(int argc, char** argv)
     {
         std::cout<<"vis size in dim: "<<i<<" = "<<bl_dim[i]<<std::endl;
     }
-
-
 
     std::size_t wt_dim[ch_weight_type::rank::value];
     wt_data->GetDimensions(wt_dim);

@@ -32,10 +32,14 @@ class MHO_ContainerFileInterface: public MHO_ContainerDictionary
 
         //index file optional, if we don't have an index file, the regular file will be
         //read in 2-passes, first to extract the keys, then to extract the objects
-        //likewise, when writing a storerary to file, if there is no index file specified, none will be created
+        //likewise, when writing a store to file, if there is no index file specified, none will be created
         void SetIndexFileName(std::string index_filename);
 
+        //currently this function reads the file keys and then the all the file objects
+        //we may want to split this functionality so we can inspect the file first 
+        //and then only read the objects of interest
         void PopulateStoreFromFile(MHO_ContainerStore& store);
+
         void WriteStoreToFile(MHO_ContainerStore& store);
 
         void ConvertStoreToJSON(MHO_ContainerStore& store, json& json_obj, int level_of_detail=eJSONBasic);

@@ -467,7 +467,7 @@ class MHO_NDArrayWrapper:
 
 }//end of namespace
 
-//include the partial specializations for RANK=0 and RANL=1
+//include the partial specializations for RANK=0 and RANK=1
 #include "MHO_NDArrayWrapper_0.hh"
 #include "MHO_NDArrayWrapper_1.hh"
 
