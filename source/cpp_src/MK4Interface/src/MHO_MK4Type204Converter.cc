@@ -32,7 +32,7 @@ json convertToJSON(const type_204 &t) {
           {"platform", std::string(t.platform, 8).c_str()},
           {"control_file", std::string(t.control_file, 96).c_str()},
           {"ffcf_date", convertDateToJSON(t.ffcf_date)},
-          {"overrid", std::string(t.override, 128).c_str()}
+          {"override", std::string(t.override, 128).c_str()}
 
   };
 }
