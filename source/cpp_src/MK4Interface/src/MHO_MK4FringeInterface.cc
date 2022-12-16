@@ -53,7 +53,7 @@ MHO_MK4FringeInterface::ReadFringeFile(const std::string& filename)
 }
 
 void
-MHO_MK4FringeInterface::ExportFringeFile()
+MHO_MK4FringeInterface::ExportFringeFilesToStructs()
 {
     if(fHaveFringe)
     {

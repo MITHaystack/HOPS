@@ -38,7 +38,7 @@ class MHO_MK4FringeInterface
 
         void ReadFringeFile(const std::string& filename);
 
-        void ExportFringeFile();
+        void ExportFringeFilesToStructs();
 
         void ExportFringeFileToJSON();
 
