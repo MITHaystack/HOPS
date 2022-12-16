@@ -61,7 +61,7 @@ json convertToJSON(const type_202 &t) {
           {"ref_xpos", t.ref_xpos},
           {"rem_xpos", t.rem_xpos},
           {"rem_ypos", t.rem_ypos},
-          {"rem_ypos", t.ref_ypos},
+          {"ref_ypos", t.ref_ypos},
           {"ref_zpos", t.ref_zpos},
           {"rem_zpos", t.rem_zpos},
           {"u", t.u},
