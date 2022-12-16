@@ -33,6 +33,7 @@ int main(int /*argc*/, char** /*argv*/)
     std::vector<std::size_t> ax2_idx;
     ax2_idx.push_back(0); 
     ax2_idx.push_back(1);
+    ax2_idx.push_back(3);
 
     MHO_SelectRepack<ch_visibility_type> spack;
     spack.SelectAxisItems(0,ax0_idx);

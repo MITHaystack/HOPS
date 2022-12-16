@@ -24,8 +24,9 @@ struct c_block* cb_head; //global extern kludge
 #include "MHO_ContainerDictionary.hh"
 #include "MHO_ContainerFileInterface.hh"
 
-//norm fx 
+//operators
 #include "MHO_NormFX.hh"
+#include "MHO_SelectRepack.hh"
 
 
 
@@ -204,6 +205,7 @@ int main(int argc, char** argv)
 
     //first find the index which corresponds to the specified pol product 
     std::size_t pp_index = 0;
+    std::vector<std::size_t> selected_pp;
     auto* pp_axis = &(std::get<CH_POLPROD_AXIS>(*bl_data));
     for(std::size_t pi = 0; pi < pp_axis->GetSize(); pi++)
     {
@@ -211,8 +213,37 @@ int main(int argc, char** argv)
         if( (*pp_axis)[pi] == polprod )
         {
             pp_index = pi;
+            selected_pp.push_back(pi);
         }
     }
+
+    //select data only from this polprod, and repack
+    MHO_SelectRepack<ch_visibility_type> spack;
+    ch_visibility_type alt_data;
+    spack.SelectAxisItems(0,selected_pp);
+    spack.SetArgs(bl_data, &alt_data);
+    spack.Initialize();
+    spack.Execute();
+
+    //DEBUG dump this to json
+    MHO_ContainerStore conStore2;
+    MHO_UUIDGenerator gen;
+    MHO_ContainerDictionary conDict;
+    MHO_UUID type_uuid = conDict.GetUUIDFor<ch_visibility_type>();
+    MHO_UUID object_uuid = gen.GenerateUUID();
+    conStore2.AddContainerObject(&alt_data, type_uuid, object_uuid, "blah", 0);
+    MHO_ContainerFileInterface conInter2;
+    conInter2.SetFilename("doh.json");
+
+    //convert the entire store to json 
+    json root;    
+    int detail = eJSONAll;
+    conInter2.ConvertStoreToJSON(conStore2,root,detail);
+
+    //open and dump to file 
+    std::ofstream outFile("./test.json", std::ofstream::out);
+    outFile << root;
+    outFile.close();
 
     // auto bl_slice = bl_data->SliceView(pp_index, ":", ":", ":");
     // ch_visibility_type* selected_bl_data = new ch_visibility_type();
@@ -220,18 +251,18 @@ int main(int argc, char** argv)
 
     std::size_t bl_dim[ch_visibility_type::rank::value];
     bl_data->GetDimensions(bl_dim);
-
+    
     for(std::size_t i=0; i<ch_visibility_type::rank::value; i++)
     {
         std::cout<<"vis size in dim: "<<i<<" = "<<bl_dim[i]<<std::endl;
     }
-
-
+    
+    
     //output for the delay 
     ch_visibility_type* sbd_data = bl_data->CloneEmpty();
     bl_dim[CH_FREQ_AXIS] *= 4; //normfx implementation demands this
     sbd_data->Resize(bl_dim);
-
+    
     //re-run this exercise via the pure c++ function
     MHO_NormFX nfxOp;
     nfxOp.SetArgs(bl_data, wt_data, sbd_data);
