@@ -365,7 +365,7 @@ MHO_MK4FringeInterface::ExportFringeFilesToStructs()
     }
 }
 
-void MHO_MK4FringeInterface::ExportFringeFileToJSON(){
+void MHO_MK4FringeInterface::ExportFringeStructsToJSON(){
     // Call typ200 functions here
     json jsonDump = {{"type_200", MHO_MK4Type200Converter::convertToJSON(fFringe->t200)},
                     {"type_201", MHO_MK4Type201Converter::convertToJSON(fFringe->t201)},

@@ -40,7 +40,7 @@ class MHO_MK4FringeInterface
 
         void ExportFringeFilesToStructs();
 
-        void ExportFringeFileToJSON();
+        void ExportFringeStructsToJSON();
 
     private:
 
