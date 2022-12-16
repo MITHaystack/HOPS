@@ -113,6 +113,7 @@ class MHO_SelectRepack:
                             out->ValueAt(out_loc) = in->ValueAt(in_loc);
                         }
                     }
+                    IfTableSelectOnAxes(in,out);
                 }
                 else
                 {
@@ -208,9 +209,19 @@ class MHO_SelectRepack:
                 template< typename XAxisType >
                 void operator()(const XAxisType& axis1, XAxisType& axis2)
                 {
-                    for(std::size_t i=0; i<fSelection.size();i++)
+                    if( fSelection.size() != 0 )
                     {
-                        axis2(i) = axis1( fSelection[i] );
+                        for(std::size_t i=0; i<fSelection.size();i++)
+                        {
+                            axis2(i) = axis1( fSelection[i] );
+                        }
+                    }
+                    else 
+                    {
+                        for(std::size_t i=0; i<axis1.GetSize();i++)
+                        {
+                            axis2(i) = axis1(i);
+                        }
                     }
                 }
 
