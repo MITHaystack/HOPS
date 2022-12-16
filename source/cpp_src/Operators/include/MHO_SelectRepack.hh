@@ -159,10 +159,11 @@ class MHO_SelectRepack:
             for(std::size_t a=0; a < XArgType::rank::value; a++)
             {
                 //reduce output dimensions for those axes which have selections
-                if(fAxisSelectionMap.count(a) == 0)
+                if(fAxisSelectionMap.count(a) != 0)
                 {
                     out_dim[a] = fAxisSelectionMap[a].size();
                 }
+                std::cout<<"a = "<< out_dim[a]<<std::endl;
             }
             return out_dim;
         }
