@@ -69,17 +69,8 @@ class MHO_SelectRepack:
         {
             if(in != nullptr && out != nullptr)
             {
-                std::array<std::size_t, XArgType::rank::value> out_dim;
-                in->GetDimensions( &(out_dim[0]) ); //initialize all dimensions to be the same
-                for(std::size_t a=0; a < XArgType::rank::value; a++)
-                {
-                    //reduce output dimensions for those axes which have selections
-                    if(fAxisSelectionMap.count(a) == 0)
-                    {
-                        out_dim[a] = fAxisSelectionMap[a].size();
-                    }
-                }
-                out->Resize(&(out_dim[0]));
+                std::array<std::size_t, XArgType::rank::value> out_dim = DetermineOutputDimensions(in);
+                ConditionallyResizeOutput(out_dim, out);
                 fInitialized = true;
                 return true;
             }
@@ -161,23 +152,31 @@ class MHO_SelectRepack:
 
     private:
 
-        // std::array<std::size_t, XArrayType::rank::value> DetermineOutputDimensions(const XArrayType* in)
-        // {
-        //     auto in_dim = in->GetDimensionArray();
-        //     in_dim[fDimIndex] /= fStride;
-        //     return in_dim;
-        // }
-        // 
-        // void ConditionallyResizeOutput(const std::array<std::size_t, XArrayType::rank::value>& dims, XArrayType* out)
-        // {
-        //     auto out_dim = out->GetDimensionArray();
-        //     bool have_to_resize = false;
-        //     for(std::size_t i=0; i<XArrayType::rank::value; i++)
-        //     {
-        //         if(out_dim[i] != dims[i] ){have_to_resize = true;}
-        //     }
-        //     if(have_to_resize){ out->Resize( &(dims[0]) );}
-        // }
+        std::array<std::size_t, XArrayType::rank::value> DetermineOutputDimensions(const XArrayType* in)
+        {
+            std::array<std::size_t, XArgType::rank::value> out_dim;
+            in->GetDimensions( &(out_dim[0]) ); //initialize all dimensions to be the same as input
+            for(std::size_t a=0; a < XArgType::rank::value; a++)
+            {
+                //reduce output dimensions for those axes which have selections
+                if(fAxisSelectionMap.count(a) == 0)
+                {
+                    out_dim[a] = fAxisSelectionMap[a].size();
+                }
+            }
+            return out_dim;
+        }
+        
+        void ConditionallyResizeOutput(const std::array<std::size_t, XArrayType::rank::value>& dims, XArrayType* out)
+        {
+            auto out_dim = out->GetDimensionArray();
+            bool have_to_resize = false;
+            for(std::size_t i=0; i<XArrayType::rank::value; i++)
+            {
+                if(out_dim[i] != dims[i] ){have_to_resize = true;}
+            }
+            if(have_to_resize){ out->Resize( &(dims[0]) );}
+        }
 
         //default...does nothing
         template< typename XCheckType = XArrayType >

@@ -23,10 +23,6 @@ set (CONTAINER_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_BaselineContainers.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_StationContainers.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ContainerDefinitions.hh
-    #${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_VisibilityType.hh
-    #${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_Visibilities.hh
-    #${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ChannelizedVisibilities.hh
-    #${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_StationCoordinates.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_SerializableObjectFactory.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ClassIdentityMap.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ContainerDictionary.hh
