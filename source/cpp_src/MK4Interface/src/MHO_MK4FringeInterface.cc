@@ -4,6 +4,7 @@
 
 #include "MHO_MultiTypeMap.hh"
 #include <array>
+#include <iostream>
 #include <string>
 
 namespace hops
@@ -388,7 +389,17 @@ void MHO_MK4FringeInterface::ExportFringeStructsToJSON(){
     //  
 }
 
+void MHO_MK4FringeInterface::ExportFringeFilesToJSON(const std::string& inputFile){
+    // call ReadFringeFile
+    // call ExportFringeFilesToStructs
+    // call ExportFringeStructsToJSON
+    std::cout << inputFile << endl;
+    // if (ReadFringeFile(inputFile)) {
+        // self.ExportFringeFilesToStructs();
+        // self.ExportFringeStructsToJSON();
 
+    //}
 
+}
 
 }

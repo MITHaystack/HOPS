@@ -42,6 +42,8 @@ class MHO_MK4FringeInterface
 
         void ExportFringeStructsToJSON();
 
+        void ExportFringeFilesToJSON(const std::string& outputfile);
+
     private:
 
         bool fHaveFringe;
