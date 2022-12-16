@@ -1,8 +1,9 @@
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../../Message/include)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../../Utilities/include)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../../Operators/include)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../include)
 
-set (HOPS_TEST_LIBS MHO_Message MHO_Utilities MHO_Containers)
+set (HOPS_TEST_LIBS MHO_Message MHO_Utilities MHO_Operators MHO_Containers)
 
 set(SOURCE_BASENAMES
     TestArrayWrapper
@@ -15,6 +16,7 @@ set(SOURCE_BASENAMES
     TestContainerStore
     TestTableContainerAccess
     TestTableContainerMultiplication
+    TestSelectRepack
 )
 
 

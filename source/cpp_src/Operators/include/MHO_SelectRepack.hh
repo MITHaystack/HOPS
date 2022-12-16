@@ -26,9 +26,9 @@
 namespace hops
 {
 
-template< class XArrayType>
+template< class XArgType>
 class MHO_SelectRepack:
-    public MHO_UnaryOperator< XArrayType >
+    public MHO_UnaryOperator< XArgType >
 {
     public:
 
@@ -52,12 +52,12 @@ class MHO_SelectRepack:
 
     protected:
 
-        virtual bool InitializeInPlace(XArrayType* in) override
+        virtual bool InitializeInPlace(XArgType* in) override
         {
             return InitializeOutOfPlace(in, &fWorkspace);
         }
 
-        virtual bool ExecuteInPlace(XArrayType* in) override
+        virtual bool ExecuteInPlace(XArgType* in) override
         {
             bool status = ExecuteOutOfPlace(in, &fWorkspace);
             //"in-place" execution requires a copy from the workspace back to the object we are modifying
@@ -65,7 +65,7 @@ class MHO_SelectRepack:
             return status;
         }
 
-        virtual bool InitializeOutOfPlace(const XArrayType* in, XArrayType* out) override
+        virtual bool InitializeOutOfPlace(const XArgType* in, XArgType* out) override
         {
             if(in != nullptr && out != nullptr)
             {
@@ -81,7 +81,7 @@ class MHO_SelectRepack:
             }
         }
 
-        virtual bool ExecuteOutOfPlace(const XArrayType* in, XArrayType* out) override
+        virtual bool ExecuteOutOfPlace(const XArgType* in, XArgType* out) override
         {
             if(fInitialized)
             {
@@ -103,7 +103,7 @@ class MHO_SelectRepack:
                     for(std::size_t i=0; i<total_size; i++)
                     {
                         //compute the indexes into the 'out' array 
-                        MHO_NDArrayMath::RowMajorIndexFromOffset(i, &(out_dim[0]), &(out_loc[0]) );
+                        MHO_NDArrayMath::RowMajorIndexFromOffset<XArgType::rank::value>(i, &(out_dim[0]), &(out_loc[0]) );
 
                         //compute the indexes into the 'in' array, remapping where needed
                         //from the selections
@@ -121,7 +121,7 @@ class MHO_SelectRepack:
                     for(std::size_t i=0; i<total_size; i++)
                     {
                         //compute the indexes into the 'out' array 
-                        MHO_NDArrayMath::RowMajorIndexFromOffset(i, &(out_dim[0]), &(out_loc[0]) );
+                        MHO_NDArrayMath::RowMajorIndexFromOffset<XArgType::rank::value>(i, &(out_dim[0]), &(out_loc[0]) );
 
                         //compute the indexes into the 'in' array, remapping where needed
                         //from the selections
@@ -152,7 +152,7 @@ class MHO_SelectRepack:
 
     private:
 
-        std::array<std::size_t, XArrayType::rank::value> DetermineOutputDimensions(const XArrayType* in)
+        std::array<std::size_t, XArgType::rank::value> DetermineOutputDimensions(const XArgType* in)
         {
             std::array<std::size_t, XArgType::rank::value> out_dim;
             in->GetDimensions( &(out_dim[0]) ); //initialize all dimensions to be the same as input
@@ -167,11 +167,11 @@ class MHO_SelectRepack:
             return out_dim;
         }
         
-        void ConditionallyResizeOutput(const std::array<std::size_t, XArrayType::rank::value>& dims, XArrayType* out)
+        void ConditionallyResizeOutput(const std::array<std::size_t, XArgType::rank::value>& dims, XArgType* out)
         {
             auto out_dim = out->GetDimensionArray();
             bool have_to_resize = false;
-            for(std::size_t i=0; i<XArrayType::rank::value; i++)
+            for(std::size_t i=0; i<XArgType::rank::value; i++)
             {
                 if(out_dim[i] != dims[i] ){have_to_resize = true;}
             }
@@ -179,19 +179,19 @@ class MHO_SelectRepack:
         }
 
         //default...does nothing
-        template< typename XCheckType = XArrayType >
+        template< typename XCheckType = XArgType >
         typename std::enable_if< !std::is_base_of<MHO_TableContainerBase, XCheckType>::value, void >::type
-        IfTableSelectOnAxes(const XArrayType* /*in*/, XArrayType* /*out*/){};
+        IfTableSelectOnAxes(const XArgType* /*in*/, XArgType* /*out*/){};
 
         //use SFINAE to generate specialization for MHO_TableContainer types
-        template< typename XCheckType = XArrayType >
+        template< typename XCheckType = XArgType >
         typename std::enable_if< std::is_base_of<MHO_TableContainerBase, XCheckType>::value, void >::type
-        IfTableSelectOnAxes(const XArrayType* in, XArrayType* out)
+        IfTableSelectOnAxes(const XArgType* in, XArgType* out)
         {
             for(std::size_t a=0; a<XArgType::rank::value; a++)
             {
                 SelectOnAxis axis_sub_sampler( fAxisSelectionMap[a] );
-                apply_at2< typename XArrayType::axis_pack_tuple_type, SelectOnAxis >( *in, *out, a, axis_sub_sampler);
+                apply_at2< typename XArgType::axis_pack_tuple_type, SelectOnAxis >( *in, *out, a, axis_sub_sampler);
             }
         }
 
@@ -220,7 +220,7 @@ class MHO_SelectRepack:
 
 
         bool fInitialized;
-        XArrayType fWorkspace;
+        XArgType fWorkspace;
 
         //map which holds the indexes selected from each axis
         //if no item is present for a particular axis, the assumption is that all pre-existing  
