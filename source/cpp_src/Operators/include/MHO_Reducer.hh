@@ -177,7 +177,7 @@ class MHO_Reducer: public MHO_UnaryOperator<XArrayType>
                         //the mean value as well/instead?
                         auto it1 = axis1.cbegin();
                         auto it2 = axis2.begin();
-                        *it2 = it1;
+                        *it2 = *it1;
                     }
                     else 
                     {

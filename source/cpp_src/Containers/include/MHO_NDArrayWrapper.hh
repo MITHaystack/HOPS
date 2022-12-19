@@ -347,7 +347,7 @@ class MHO_NDArrayWrapper:
             return *this;
         }
 
-        bool CheckIndexValidity(const index_type& idx)
+        bool CheckIndexValidity(const index_type& idx) const
         {
             return MHO_NDArrayMath::CheckIndexValidity<RANK>(&(fDims[0]), &(idx[0]) );
         }

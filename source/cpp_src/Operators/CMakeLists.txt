@@ -16,6 +16,7 @@ set (OPERATOR_HEADERFILES
     # ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_PointwiseMultiply.hh
     # ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_PointwiseAdd.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ComplexConjugator.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_AbsoluteValue.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_CyclicRotator.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_SubSample.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_SelectRepack.hh

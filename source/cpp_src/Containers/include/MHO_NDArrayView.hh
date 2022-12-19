@@ -217,15 +217,8 @@ class MHO_NDArrayView
             return *this;
         }
 
-    protected:
 
-        XValueType* fDataPtr; //data for an array view is always externally managed
-        index_type fDims; //size of each dimension
-        index_type fStrides; //strides between elements in each dimension
-        uint64_t fSize; //total size of array
-        mutable index_type fTmp; //temp index workspace
-
-        bool CheckIndexValidity(const index_type& idx)
+        bool CheckIndexValidity(const index_type& idx) const
         {
             return MHO_NDArrayMath::CheckIndexValidity<RANK>(&(fDims[0]), &(idx[0]) );
         }
@@ -240,6 +233,13 @@ class MHO_NDArrayView
             return fDataPtr[ MHO_NDArrayMath::OffsetFromStrideIndex<RANK>(&(fStrides[0]), &(idx[0]) ) ];
         }
 
+    protected:
+
+        XValueType* fDataPtr; //data for an array view is always externally managed
+        index_type fDims; //size of each dimension
+        index_type fStrides; //strides between elements in each dimension
+        uint64_t fSize; //total size of array
+        mutable index_type fTmp; //temp index workspace
 
     private:
 
