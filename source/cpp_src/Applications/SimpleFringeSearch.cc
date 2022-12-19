@@ -28,6 +28,19 @@ struct c_block* cb_head; //global extern kludge
 #include "MHO_NormFX.hh"
 #include "MHO_SelectRepack.hh"
 
+#include "MHO_Reducer.hh"
+
+#include "MHO_AbsoluteValue.hh"
+#include "MHO_FunctorBroadcaster.hh"
+
+
+
+#ifdef USE_ROOT
+    #include "TApplication.h"
+    #include "MHO_RootCanvasManager.hh"
+    #include "MHO_RootGraphManager.hh"
+#endif
+
 
 
 using namespace hops;
@@ -221,9 +234,25 @@ int main(int argc, char** argv)
     MHO_SelectRepack<ch_visibility_type> spack;
     ch_visibility_type* alt_data = new ch_visibility_type();
     spack.SelectAxisItems(0,selected_pp);
+
+    // std::vector< std::size_t > selected_ap;
+    // selected_ap.push_back(20);
+    // 
+    // std::vector< std::size_t > selected_ch;
+    // selected_ch.push_back(0);
+    // 
+    // //pick out just the first channel and ap
+    // spack.SelectAxisItems(1,selected_ch);
+    // spack.SelectAxisItems(2,selected_ap); 
+
     spack.SetArgs(bl_data, alt_data);
     spack.Initialize();
     spack.Execute();
+
+    //TODO, work out what to do with the axis interval labels in between operations 
+    //explicitly copy the channel axis labels here
+    std::get<CH_CHANNEL_AXIS>(*alt_data).CopyIntervalLabels( std::get<CH_CHANNEL_AXIS>(*bl_data) );
+    
 
     //DEBUG dump this to json
     MHO_ContainerStore conStore2;
@@ -268,6 +297,53 @@ int main(int argc, char** argv)
     nfxOp.SetArgs(bl_data, wt_data, sbd_data);
     nfxOp.Initialize();
     nfxOp.Execute();
+
+
+    // MHO_Reducer<ch_visibility_type, MHO_CompoundSum>* reducer = new MHO_Reducer<ch_visibility_type, MHO_CompoundSum>();
+    // reducer->SetArgs(sbd_data);
+    // reducer->ReduceAxis(1);
+    // //reducer->ReduceAxis(2);
+    // //reducer->ReduceAxis(NDIM-1);
+    // bool init = reducer->Initialize();
+    // bool exe = reducer->Execute();
+
+
+    // typedef MHO_AbsoluteValue<ch_visibility_type> absType;
+    // MHO_FunctorBroadcaster<ch_visibility_type, absType > abs_broadcast;
+    // abs_broadcast.SetArgs(sbd_data);
+    // abs_broadcast.Initialize();
+    // abs_broadcast.Execute();
+
+
+    #ifdef USE_ROOT
+
+    std::cout<<"starting root plotting"<<std::endl;
+
+    //ROOT stuff for plots
+
+    int dummy_argc = 0;
+    char tmp = '\0';
+    char* argv_placeholder = &tmp;
+    char** dummy_argv = &argv_placeholder;
+    
+    TApplication* App = new TApplication("test",&dummy_argc,dummy_argv);
+
+    MHO_RootCanvasManager cMan;
+    auto c = cMan.CreateCanvas(std::string("test"), 800, 800);
+
+    auto ch_slice = sbd_data->SliceView(0,0,0,":");
+
+    MHO_RootGraphManager gMan;
+    auto gr = gMan.GenerateGraph1D(ch_slice, std::get<CH_FREQ_AXIS>(*sbd_data) );
+
+    c->cd(1);
+    gr->Draw("APL");
+    c->Update();
+    App->Run();
+
+    #endif
+
+
 
     return 0;
 }

@@ -48,7 +48,10 @@ class MHO_RootGraphManager
             //now fill the histogram
             for(std::size_t i=0; i<nxbins; i++)
             {
-                h->SetPoint(x_axis(i), table.at(i) );
+                double sbd_bin = i* 0.5e6*(1.0/32e6);
+                std::cout<<i<<", "<<sbd_bin<<", "<< std::abs( table.at(i) )<<std::endl;
+                // h->SetPoint(i, x_axis(i), std::abs( table.at(i) ) );
+                h->SetPoint(i, sbd_bin, std::abs( table.at(i) ) );
             }
 
             f1DGraph.push_back(h);
