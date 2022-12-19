@@ -3,12 +3,17 @@ set (MATH_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_BitReversalPermutation.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_FastFourierTransformUtilities.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_CheckForNaN.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_SimulatedSignalGenerator.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_GaussianWhiteNoiseSignal.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_SingleToneSignal.hh
 )
 
 
 #list source files #############################################################
 set( MATH_SOURCEFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_BitReversalPermutation.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_GaussianWhiteNoiseSignal.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_SingleToneSignal.cc
 )
 
 #declare header paths ##########################################################
