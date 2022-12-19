@@ -62,9 +62,8 @@ class MHO_Axis:
         //pointers to exernally managed memory are not transferred)
         virtual void Copy(const MHO_Axis& rhs)
         {
-            std::cout<<"copying an axis"<<std::endl;
             MHO_VectorContainer<XValueType>::Copy(rhs); //copy the 1-d array
-            MHO_IntervalLabelTree::Copy(rhs); //copy interval tree
+            MHO_IntervalLabelTree::CopyIntervalLabels(rhs); //copy interval tree
         } 
 
         template<typename XStream> friend XStream& operator>>(XStream& s, MHO_Axis& aData)

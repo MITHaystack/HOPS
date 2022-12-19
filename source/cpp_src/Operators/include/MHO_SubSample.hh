@@ -202,7 +202,7 @@ class MHO_SubSample:
                 template< typename XAxisType >
                 void operator()(const XAxisType& axis1, XAxisType& axis2)
                 {
-                    axis2.CopyTags(axis1); //copy the axis tags (not labels)
+                    axis2.CopyTags(axis1); //copy the axis tags
                     //at this point axis2 should already be re-sized appropriately
                     auto it1 = axis1.cstride_begin(fStride);
                     auto end1 = axis1.cstride_end(fStride);

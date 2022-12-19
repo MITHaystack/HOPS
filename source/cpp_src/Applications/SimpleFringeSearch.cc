@@ -219,13 +219,11 @@ int main(int argc, char** argv)
 
     //select data only from this polprod, and repack
     MHO_SelectRepack<ch_visibility_type> spack;
-    ch_visibility_type alt_data;
+    ch_visibility_type* alt_data = new ch_visibility_type();
     spack.SelectAxisItems(0,selected_pp);
-    spack.SetArgs(bl_data, &alt_data);
+    spack.SetArgs(bl_data, alt_data);
     spack.Initialize();
     spack.Execute();
-    //make sure the tags get copied 
-    alt_data.CopyTags(*bl_data);
 
     //DEBUG dump this to json
     MHO_ContainerStore conStore2;
@@ -233,7 +231,7 @@ int main(int argc, char** argv)
     MHO_ContainerDictionary conDict;
     MHO_UUID type_uuid = conDict.GetUUIDFor<ch_visibility_type>();
     MHO_UUID object_uuid = gen.GenerateUUID();
-    conStore2.AddContainerObject(&alt_data, type_uuid, object_uuid, "blah", 0);
+    conStore2.AddContainerObject(alt_data, type_uuid, object_uuid, "blah", 0);
     MHO_ContainerFileInterface conInter2;
     conInter2.SetFilename("doh.json");
 
