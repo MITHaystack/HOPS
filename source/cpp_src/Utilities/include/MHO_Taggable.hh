@@ -54,6 +54,27 @@ class MHO_Taggable:
             return *this;
         }
 
+        virtual void CopyTags(const MHO_Taggable& rhs)
+        {
+            if(this != &rhs)
+            {
+                this->CopyFrom<char>(rhs);
+                this->CopyFrom<bool>(rhs);
+                this->CopyFrom<int>(rhs);
+                this->CopyFrom<double>(rhs);
+                this->CopyFrom<std::string>(rhs);
+            }
+        }
+
+        void ClearTags()
+        {
+            this->Clear<char>();
+            this->Clear<bool>();
+            this->Clear<int>();
+            this->Clear<double>();
+            this->Clear<std::string>();
+        }
+
     public: //MHO_Serializable interface
 
         virtual MHO_ClassVersion GetVersion() const override {return 0;};

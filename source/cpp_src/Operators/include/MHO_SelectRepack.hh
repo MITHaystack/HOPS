@@ -195,6 +195,7 @@ class MHO_SelectRepack:
                 SelectOnAxis axis_sub_sampler( fAxisSelectionMap[a] );
                 apply_at2< typename XArgType::axis_pack_tuple_type, SelectOnAxis >( *in, *out, a, axis_sub_sampler);
             }
+            out->CopyTags(*in); //make sure the table tags get copied
         }
 
 
@@ -209,6 +210,7 @@ class MHO_SelectRepack:
                 template< typename XAxisType >
                 void operator()(const XAxisType& axis1, XAxisType& axis2)
                 {
+                    axis2.CopyTags(axis1); //copy the axis tags (not labels)
                     if( fSelection.size() != 0 )
                     {
                         for(std::size_t i=0; i<fSelection.size();i++)

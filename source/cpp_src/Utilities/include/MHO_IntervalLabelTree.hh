@@ -60,6 +60,15 @@ class MHO_IntervalLabelTree: virtual public MHO_Serializable
         const MHO_IntervalLabel*
         GetFirstIntervalWithKeyValue(const std::string& key, const XLabelValueType& value) const;
 
+        virtual void Copy(const MHO_IntervalLabelTree& obj)
+        {
+            fIntervals.clear();
+            for(auto iter = obj.fIntervals.begin(); iter != obj.fIntervals.end(); iter++)
+            {
+                fIntervals.push_back( new MHO_IntervalLabel( *(*iter) ) );
+            }
+        }
+
     protected:
 
         //we are storing them all in a vector currently, this probably
