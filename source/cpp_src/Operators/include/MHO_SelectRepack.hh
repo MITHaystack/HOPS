@@ -210,9 +210,11 @@ class MHO_SelectRepack:
                 template< typename XAxisType >
                 void operator()(const XAxisType& axis1, XAxisType& axis2)
                 {
-                    axis2.CopyTags(axis1); //copy the axis tags (not labels)
+                    axis2.CopyTags(axis1); //copy the axis tags
                     if( fSelection.size() != 0 )
                     {
+                        //it doesn't make sense to copy the interval labels 
+                        //since we have changed the organization of this axis
                         for(std::size_t i=0; i<fSelection.size();i++)
                         {
                             axis2(i) = axis1( fSelection[i] );
