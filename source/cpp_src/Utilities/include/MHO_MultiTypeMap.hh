@@ -38,6 +38,11 @@ class MHO_SingleTypeMap
             //fMap.insert( std::pair<XKeyType, XValueType>(key,value) );
         }
 
+        void Clear()
+        {
+            fMap.clear();
+        }
+
         bool Retrieve(const XKeyType& key, XValueType& value) const
         {
             auto iter = fMap.find(key);
@@ -117,6 +122,7 @@ class MHO_MultiTypeMap< XKeyType, XValueType >: public MHO_SingleTypeMap< XKeyTy
         using MHO_SingleTypeMap< XKeyType, XValueType >::DumpMap;
         using MHO_SingleTypeMap< XKeyType, XValueType >::CopyFrom;
         using MHO_SingleTypeMap< XKeyType, XValueType >::CopyTo;
+        using MHO_SingleTypeMap< XKeyType, XValueType >::Clear;
 
         template<typename U = XValueType> typename std::enable_if< std::is_same<U,XValueType >::value, std::size_t >::type
         MapSize() const
@@ -156,6 +162,14 @@ class MHO_MultiTypeMap< XKeyType, XValueType >: public MHO_SingleTypeMap< XKeyTy
             CopyTo( *(static_cast< MHO_SingleTypeMap< XKeyType, XValueType >* >(&copy_to_obj)) );
         };
 
+        template<typename U = XValueType> typename std::enable_if<std::is_same<U,XValueType>::value>::type
+        Clear()
+        {
+            static_cast< MHO_SingleTypeMap< XKeyType, XValueType >* >( this )->Clear();
+        };
+
+
+
 };
 
 //now set up the recursion
@@ -187,6 +201,9 @@ class MHO_MultiTypeMap< XKeyType, XValueType, XValueTypeS...>: public MHO_MultiT
 
         using MHO_MultiTypeMap< XKeyType, XValueType >::CopyTo;
         using MHO_MultiTypeMap< XKeyType, XValueTypeS... >::CopyTo;
+
+        using MHO_MultiTypeMap< XKeyType, XValueType >::Clear;
+        using MHO_MultiTypeMap< XKeyType, XValueTypeS... >::Clear;
 
 };
 

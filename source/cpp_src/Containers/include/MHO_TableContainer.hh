@@ -113,6 +113,8 @@ class MHO_TableContainer:
             //copy the array, then copy the axis pack
             MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::Copy(rhs);
             *( this->GetAxisPack() ) = *(rhs.GetAxisPack());
+            //finally copy the table tags 
+            this->CopyTags(rhs);
         }
 
     protected:

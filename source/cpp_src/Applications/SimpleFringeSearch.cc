@@ -224,6 +224,8 @@ int main(int argc, char** argv)
     spack.SetArgs(bl_data, &alt_data);
     spack.Initialize();
     spack.Execute();
+    //make sure the tags get copied 
+    alt_data.CopyTags(*bl_data);
 
     //DEBUG dump this to json
     MHO_ContainerStore conStore2;

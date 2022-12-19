@@ -144,7 +144,8 @@ class MHO_Reducer: public MHO_UnaryOperator<XArrayType>
 
                 for(std::size_t i=0; i<XArrayType::rank::value; i++)
                 {
-                    if(fAxesToReduce[i] == 1){IfTableReduceAxis(in, out, i);}
+                    // if(fAxesToReduce[i] == 1){IfTableReduceAxis(in, out, i);}
+                    IfTableReduceAxis(in, out, i);
                 }
 
                 return true;
@@ -158,19 +159,36 @@ class MHO_Reducer: public MHO_UnaryOperator<XArrayType>
         class AxisReducer
         {
             public:
-                AxisReducer(){};
+                AxisReducer(std::size_t reduce_ax):
+                    fReduce(false)
+                {
+                    if(reduce_ax){fReduce = true;}
+                };
                 ~AxisReducer(){};
 
                 template< typename XAxisType >
                 void operator()(const XAxisType& axis1, XAxisType& axis2)
                 {
-                    //all we do is set the axis label to the start value of the
-                    //original axis, perhaps we ought to enable an option to use
-                    //the mean value as well/instead?
-                    auto it1 = axis1.cbegin();
-                    auto it2 = axis2.begin();
-                    *it2 = it1;
+                    if(fReduce)
+                    {
+                        //all we do is set the axis label to the start value of the
+                        //original axis, perhaps we ought to enable an option to use
+                        //the mean value as well/instead?
+                        auto it1 = axis1.cbegin();
+                        auto it2 = axis2.begin();
+                        *it2 = it1;
+                        axis2.CopyTags(axis1);//copy the axis tags
+                    }
+                    else 
+                    {
+                        //copy the whole axis
+                        axis2 = axis1;
+                    }
                 }
+            
+            private:
+
+                bool fReduce;
         };
 
         //default...does nothing
@@ -183,8 +201,9 @@ class MHO_Reducer: public MHO_UnaryOperator<XArrayType>
         typename std::enable_if< std::is_base_of<MHO_TableContainerBase, XCheckType>::value, void >::type
         IfTableReduceAxis(const XArrayType* in, XArrayType* out, std::size_t ax_index)
         {
-            AxisReducer axis_reducer;
+            AxisReducer axis_reducer(fAxesToReduce[ax_index]);
             apply_at2< typename XArrayType::axis_pack_tuple_type, AxisReducer >( *in, *out, ax_index, axis_reducer);
+            if(ax_index == 0){out->CopyTags(*in);} //make sure the table tags get copied, just once
         }
 
 

@@ -71,6 +71,16 @@ class MHO_VectorContainer:
         using MHO_NDArrayWrapper<XValueType,1>::operator();
         using MHO_NDArrayWrapper<XValueType,1>::operator[];
 
+        //expensive copy
+        //pointers to exernally managed memory are not transferred)
+        virtual void Copy(const MHO_VectorContainer& rhs)
+        {
+            //copy the array
+            MHO_NDArrayWrapper<XValueType,1>::Copy(rhs);
+            //then copy the tags 
+            this->CopyTags(rhs);
+        }
+
     protected:
 
         using MHO_NDArrayWrapper<XValueType,1>::fData;

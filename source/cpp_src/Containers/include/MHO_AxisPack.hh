@@ -50,6 +50,7 @@ class MHO_AxisPack:  public std::tuple< XAxisTypeS... >, virtual public MHO_Seri
             return total_size;
         }
 
+        virtual 
 
         //assignment operator
         MHO_AxisPack& operator=(const MHO_AxisPack& rhs)
