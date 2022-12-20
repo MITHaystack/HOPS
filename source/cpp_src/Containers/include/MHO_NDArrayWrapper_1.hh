@@ -169,6 +169,16 @@ class MHO_NDArrayWrapper<XValueType, 1>:
             return  MHO_NDArrayView<XValueType, 1>(&(fDataPtr[0]), &(fDims[0]), &(fStrides[0]) );
         }
 
+        XValueType& ValueAt(const index_type& idx)
+        {
+            return fDataPtr[idx];
+        }
+
+        const XValueType& ValueAt(const index_type& idx) const
+        {
+            return fDataPtr[idx];
+        }
+
     protected:
 
         XValueType* fDataPtr;
