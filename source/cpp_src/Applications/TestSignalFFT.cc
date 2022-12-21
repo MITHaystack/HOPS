@@ -13,8 +13,23 @@
 
 #include "MHO_SingleToneSignal.hh"
 #include "MHO_GaussianWhiteNoiseSignal.hh"
-
 #include "MHO_ContainerDefinitions.hh"
+
+
+#include "MHO_FastFourierTransform.hh"
+#include "MHO_MultidimensionalFastFourierTransform.hh"
+#ifdef HOPS_USE_FFTW3
+#include "MHO_MultidimensionalFastFourierTransformFFTW.hh"
+#endif
+
+#ifdef HOPS_USE_FFTW3
+typedef double FPTYPE;
+#define FFT_TYPE MHO_MultidimensionalFastFourierTransformFFTW<FPTYPE,1>
+#else
+typedef double FPTYPE;
+#define FFT_TYPE MHO_MultidimensionalFastFourierTransform<FPTYPE,1>
+#endif
+
 
 using namespace hops;
 
@@ -24,10 +39,9 @@ using ax_pack = MHO_AxisPack< ax_type >;
 using data_type = MHO_TableContainer< elem_type, ax_pack >;
 
 
-
 int main(int argc, char** argv)
 {
-    std::size_t n_samples = 100;
+    std::size_t n_samples = 1000;
     double sample_freq = 1e6;
 
     double mean = 0.0;
@@ -47,6 +61,7 @@ int main(int argc, char** argv)
 
     data_type noise_samples; noise_samples.Resize(n_samples);
     data_type tone_samples; tone_samples.Resize(n_samples);
+    data_type sum_samples; sum_samples.Resize(n_samples);
     // std::vector<double> noise_samples; noise_samples.resize(n_samples);
     // std::vector<double> tone_samples; tone_samples.resize(n_samples);
 
@@ -61,22 +76,53 @@ int main(int argc, char** argv)
         noise_samples(i) = value;
         std::get<0>(noise_samples)(i) = time;
         aToneSignal.GetSample(time, value);
-        tone_samples(i) = value;
+        tone_samples(i) = 10*value;
         std::get<0>(tone_samples)(i) = time;
+        sum_samples(i) = noise_samples(i) + tone_samples(i);
+        std::get<0>(sum_samples)(i) = time;
     }
 
-    for(std::size_t i=0; i<n_samples; i++)
-    {
-        std::cout<<noise_samples(i)<<std::endl;
-    }
-
-    std::cout<<"--------------"<<std::endl;
-
-    for(std::size_t i=0; i<n_samples; i++)
-    {
-        std::cout<<tone_samples(i)<<std::endl;
-    }
+    // for(std::size_t i=0; i<n_samples; i++)
+    // {
+    //     std::cout<<noise_samples(i)<<std::endl;
+    // }
+    // 
+    // std::cout<<"--------------"<<std::endl;
+    // 
+    // for(std::size_t i=0; i<n_samples; i++)
+    // {
+    //     std::cout<<tone_samples(i)<<std::endl;
+    // }
     
+    //now execute an FFT on the samples
+    data_type ft_noise_samples; ft_noise_samples.Resize(n_samples);
+    data_type ft_tone_samples; ft_tone_samples.Resize(n_samples);
+    data_type ft_sum_samples; ft_sum_samples.Resize(n_samples);
+
+
+    for(std::size_t i=0; i<n_samples; i++)
+    {
+        std::get<0>(ft_noise_samples)(i) = i;
+        std::get<0>(ft_tone_samples)(i) = i;
+        std::get<0>(ft_sum_samples)(i) = i;
+    }
+
+    FFT_TYPE* fft_engine = new FFT_TYPE();
+    fft_engine->SetForward();
+    fft_engine->SetArgs(&noise_samples, &ft_noise_samples);
+    fft_engine->Initialize();
+    fft_engine->Execute();
+
+    fft_engine->SetForward();
+    fft_engine->SetArgs(&tone_samples, &ft_tone_samples);
+    fft_engine->Initialize();
+    fft_engine->Execute();
+
+    fft_engine->SetForward();
+    fft_engine->SetArgs(&sum_samples, &ft_sum_samples);
+    fft_engine->Initialize();
+    fft_engine->Execute();
+
     #ifdef USE_ROOT
     
     std::cout<<"starting root plotting"<<std::endl;
@@ -90,21 +136,42 @@ int main(int argc, char** argv)
     
     MHO_RootCanvasManager cMan;
     auto c = cMan.CreateCanvas(std::string("test"), 800, 800);
-    c->Divide(1,2);
+    c->Divide(1,3);
 
     MHO_RootGraphManager gMan;
-    auto gr = gMan.GenerateComplexGraph1D(noise_samples, std::get<0>(noise_samples), 0);
-    auto gg = gMan.GenerateComplexGraph1D(tone_samples, std::get<0>(tone_samples), 0 );
+    auto g1 = gMan.GenerateComplexGraph1D(noise_samples, std::get<0>(noise_samples), 0);
+    auto g2 = gMan.GenerateComplexGraph1D(tone_samples, std::get<0>(tone_samples), 0 );
+    auto g3 = gMan.GenerateComplexGraph1D(sum_samples, std::get<0>(sum_samples), 0 );
 
     c->cd(1);
-    gr->Draw("APL");
+    g1->Draw("APL");
     c->Update();
     c->cd(2);
-    gg->Draw("APL");
+    g2->Draw("APL");
     c->Update();
-    // c->cd(3);
-    // gb->Draw("PCOL");
-    // c->Update();
+    c->cd(3);
+    g3->Draw("APL");
+    c->Update();
+
+
+    auto c2= cMan.CreateCanvas(std::string("ft_test"), 800, 800);
+    c2->Divide(1,3);
+    c2->cd(1);
+
+    //plot magnitude squared
+    auto f1 = gMan.GenerateComplexGraph1D(ft_noise_samples, std::get<0>(ft_noise_samples), 4);
+    auto f2 = gMan.GenerateComplexGraph1D(ft_tone_samples, std::get<0>(ft_tone_samples), 4 );
+    auto f3 = gMan.GenerateComplexGraph1D(ft_sum_samples, std::get<0>(ft_sum_samples), 4 );
+
+    c2->cd(1);
+    f1->Draw("APL");
+    c2->Update();
+    c2->cd(2);
+    f2->Draw("APL");
+    c2->Update();
+    c2->cd(3);
+    f3->Draw("APL");
+    c2->Update();
     
     App->Run();
     
