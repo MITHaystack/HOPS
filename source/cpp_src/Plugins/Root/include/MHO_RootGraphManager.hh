@@ -6,6 +6,7 @@
 #include "TGraph2D.h"
 #include "TMultiGraph.h"
 
+#include <complex>
 
 #include "MHO_Message.hh"
 #include "MHO_TestAssertions.hh"
@@ -45,18 +46,55 @@ class MHO_RootGraphManager
 
             TGraph* h = new TGraph();
 
-            //now fill the histogram
+            //now fill the graph
             for(std::size_t i=0; i<nxbins; i++)
             {
-                double sbd_bin = i* 0.5e6*(1.0/32e6);
-                std::cout<<i<<", "<<sbd_bin<<", "<< std::abs( table.at(i) )<<std::endl;
-                // h->SetPoint(i, x_axis(i), std::abs( table.at(i) ) );
-                h->SetPoint(i, sbd_bin, std::abs( table.at(i) ) );
+                h->SetPoint(i, x_axis(i), table.at(i) );
             }
 
             f1DGraph.push_back(h);
             return h;
         }
+
+        template< typename XTableType, typename XAxisType >
+        TGraph* GenerateComplexGraph1D(const XTableType& table, const XAxisType& x_axis, bool plot_mode=0 )
+        {
+            //assert that this is a 1d table 
+            HOPS_ASSERT_EQUAL( table.GetRank(), 1 );
+
+            //assume axis is labeled by doubles 
+            std::size_t nxbins = table.GetDimension(0);
+
+            TGraph* h = new TGraph();
+
+            //now fill the graph
+            for(std::size_t i=0; i<nxbins; i++)
+            {
+                double value; 
+                if(plot_mode == 0) //plot real part
+                {
+                    value = std::real( table(i) );
+                }
+                else if(plot_mode == 1) //plot imaginary part
+                {
+                    value = std::imag( table(i) );
+                }
+                else if(plot_mode == 2) //plo absolute value
+                {
+                    value = std::abs( table(i) );
+                }
+                else //plot phase 
+                {
+                    value = std::arg( table(i) );
+                }
+
+                h->SetPoint(i, x_axis(i), value);
+            }
+
+            f1DGraph.push_back(h);
+            return h;
+        }
+
 
         template< typename XTableType, typename XAxisType, typename YAxisType >
         TGraph2D* GenerateGraph2D(const XTableType& table, const XAxisType& x_axis, const YAxisType& y_axis)
@@ -68,7 +106,7 @@ class MHO_RootGraphManager
 
             TGraph2D* h = new TGraph2D();
 
-            //now fill the histogram
+            //now fill the graph
             std::size_t count = 0;
             for(std::size_t i=0; i<nxbins; i++)
             {

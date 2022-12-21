@@ -76,44 +76,39 @@ int main(int argc, char** argv)
     {
         std::cout<<tone_samples(i)<<std::endl;
     }
-    // 
-    // #ifdef USE_ROOT
-    // 
-    // std::cout<<"starting root plotting"<<std::endl;
-    // 
-    // //ROOT stuff for plots
-    // int dummy_argc = 0;
-    // char tmp = '\0';
-    // char* argv_placeholder = &tmp;
-    // char** dummy_argv = &argv_placeholder;
-    // TApplication* App = new TApplication("test",&dummy_argc,dummy_argv);
-    // 
-    // MHO_RootCanvasManager cMan;
-    // auto c = cMan.CreateCanvas(std::string("test"), 800, 800);
-    // c->Divide(1,3);
-    // 
-    // // auto r_slice = ctable->SliceView(":", ":", 0);
-    // // auto g_slice = ctable->SliceView(":", ":", 1);
-    // // auto b_slice = ctable->SliceView(":", ":", 2);
-    // // 
-    // // MHO_RootGraphManager gMan;
-    // // auto gr = gMan.GenerateGraph2D(r_slice, std::get<0>(*ctable), std::get<1>(*ctable) );
-    // // auto gg = gMan.GenerateGraph2D(g_slice, std::get<0>(*ctable), std::get<1>(*ctable) );
-    // // auto gb = gMan.GenerateGraph2D(b_slice, std::get<0>(*ctable), std::get<1>(*ctable) );
-    // 
-    // // c->cd(1);
-    // // gr->Draw("PCOL");
-    // // c->Update();
-    // // c->cd(2);
-    // // gg->Draw("PCOL");
-    // // c->Update();
-    // // c->cd(3);
-    // // gb->Draw("PCOL");
-    // // c->Update();
-    // 
-    // App->Run();
-    // 
-    // #endif
+    
+    #ifdef USE_ROOT
+    
+    std::cout<<"starting root plotting"<<std::endl;
+    
+    //ROOT stuff for plots
+    int dummy_argc = 0;
+    char tmp = '\0';
+    char* argv_placeholder = &tmp;
+    char** dummy_argv = &argv_placeholder;
+    TApplication* App = new TApplication("test",&dummy_argc,dummy_argv);
+    
+    MHO_RootCanvasManager cMan;
+    auto c = cMan.CreateCanvas(std::string("test"), 800, 800);
+    c->Divide(1,2);
+
+    MHO_RootGraphManager gMan;
+    auto gr = gMan.GenerateComplexGraph1D(noise_samples, std::get<0>(noise_samples), 0);
+    auto gg = gMan.GenerateComplexGraph1D(tone_samples, std::get<0>(tone_samples), 0 );
+
+    c->cd(1);
+    gr->Draw("APL");
+    c->Update();
+    c->cd(2);
+    gg->Draw("APL");
+    c->Update();
+    // c->cd(3);
+    // gb->Draw("PCOL");
+    // c->Update();
+    
+    App->Run();
+    
+    #endif
 
 
 }
