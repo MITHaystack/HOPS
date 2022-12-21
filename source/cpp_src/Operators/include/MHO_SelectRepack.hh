@@ -164,7 +164,6 @@ class MHO_SelectRepack:
                 {
                     out_dim[a] = fAxisSelectionMap[a].size();
                 }
-                std::cout<<"a = "<< out_dim[a]<<std::endl;
             }
             return out_dim;
         }

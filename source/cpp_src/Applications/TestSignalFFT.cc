@@ -22,6 +22,8 @@
 #include "MHO_MultidimensionalFastFourierTransformFFTW.hh"
 #endif
 
+#include "MHO_CyclicRotator.hh"
+
 #ifdef HOPS_USE_FFTW3
 typedef double FPTYPE;
 #define FFT_TYPE MHO_MultidimensionalFastFourierTransformFFTW<FPTYPE,1>
@@ -52,7 +54,7 @@ int main(int argc, char** argv)
     aNoiseSignal.SetStandardDeviation(stddev);
     aNoiseSignal.Initialize();
 
-    double tone_freq = 25000.0;
+    double tone_freq = 25030.5;
     double phase_offset = 0.0;
 
     MHO_SingleToneSignal aToneSignal;
@@ -76,7 +78,7 @@ int main(int argc, char** argv)
         noise_samples(i) = value;
         std::get<0>(noise_samples)(i) = time;
         aToneSignal.GetSample(time, value);
-        tone_samples(i) = 10*value;
+        tone_samples(i) = 8*value;
         std::get<0>(tone_samples)(i) = time;
         sum_samples(i) = noise_samples(i) + tone_samples(i);
         std::get<0>(sum_samples)(i) = time;
@@ -95,33 +97,51 @@ int main(int argc, char** argv)
     // }
     
     //now execute an FFT on the samples
-    data_type ft_noise_samples; ft_noise_samples.Resize(n_samples);
-    data_type ft_tone_samples; ft_tone_samples.Resize(n_samples);
-    data_type ft_sum_samples; ft_sum_samples.Resize(n_samples);
+    data_type ft_noise_samples = noise_samples; //ft_noise_samples.Resize(n_samples);
+    data_type ft_tone_samples = tone_samples; //ft_tone_samples.Resize(n_samples);
+    data_type ft_sum_samples = sum_samples; //ft_sum_samples.Resize(n_samples);
 
+    // for(std::size_t i=0; i<n_samples; i++)
+    // {
+    //     std::get<0>(ft_noise_samples)(i) = i;
+    //     std::get<0>(ft_tone_samples)(i) = i;
+    //     std::get<0>(ft_sum_samples)(i) = i;
+    // }
 
-    for(std::size_t i=0; i<n_samples; i++)
-    {
-        std::get<0>(ft_noise_samples)(i) = i;
-        std::get<0>(ft_tone_samples)(i) = i;
-        std::get<0>(ft_sum_samples)(i) = i;
-    }
+    bool status = false;
 
     FFT_TYPE* fft_engine = new FFT_TYPE();
     fft_engine->SetForward();
-    fft_engine->SetArgs(&noise_samples, &ft_noise_samples);
-    fft_engine->Initialize();
-    fft_engine->Execute();
+    fft_engine->SetArgs(&ft_noise_samples);
+    status = fft_engine->Initialize();
+    status = fft_engine->Execute();
 
     fft_engine->SetForward();
-    fft_engine->SetArgs(&tone_samples, &ft_tone_samples);
-    fft_engine->Initialize();
-    fft_engine->Execute();
+    fft_engine->SetArgs(&ft_tone_samples);
+    status = fft_engine->Initialize();
+    status = fft_engine->Execute();
 
     fft_engine->SetForward();
-    fft_engine->SetArgs(&sum_samples, &ft_sum_samples);
-    fft_engine->Initialize();
-    fft_engine->Execute();
+    fft_engine->SetArgs(&ft_sum_samples);
+    status = fft_engine->Initialize();
+    status = fft_engine->Execute();
+
+
+    MHO_CyclicRotator<data_type> aCyclicRotator;
+    aCyclicRotator.SetOffset(0, n_samples/2);
+    aCyclicRotator.SetArgs(&ft_noise_samples);
+    status = aCyclicRotator.Initialize();
+    status = aCyclicRotator.Execute();
+    
+    aCyclicRotator.SetOffset(0, n_samples/2);
+    aCyclicRotator.SetArgs(&ft_tone_samples);
+    status = aCyclicRotator.Initialize();
+    status = aCyclicRotator.Execute();
+    
+    aCyclicRotator.SetOffset(0, n_samples/2);
+    aCyclicRotator.SetArgs(&ft_sum_samples);
+    status = aCyclicRotator.Initialize();
+    status = aCyclicRotator.Execute();
 
     #ifdef USE_ROOT
     

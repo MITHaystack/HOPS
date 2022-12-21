@@ -8,6 +8,8 @@
 #include "MHO_UnaryOperator.hh"
 #include "MHO_FastFourierTransform.hh"
 
+#include "MHO_TableContainer.hh"
+
 namespace hops
 {
 
@@ -189,6 +191,9 @@ class MHO_MultidimensionalFastFourierTransform:
                                 (*(in))[data_location] = (*(fWorkspaceWrapper[d]))[i];
                             }
                         }
+
+                        std::cout<<"weeeeee "<<d<<std::endl;
+                        IfTableTransformAxis(in,d);
                     }
                 }
                 //successful
@@ -212,6 +217,9 @@ class MHO_MultidimensionalFastFourierTransform:
                              (void*) in->GetData(),
                              (in->GetSize() )*sizeof(std::complex<XFloatType>) );
             }
+
+            // TODO FIXME FOR TABLE CONTAINERS
+
             return ExecuteInPlace(out);
         }
 
@@ -236,6 +244,59 @@ class MHO_MultidimensionalFastFourierTransform:
                 delete fTransformCalculator[i]; fTransformCalculator[i] = NULL;
             }
         }
+
+
+        //default...does nothing
+        template< typename XCheckType = XArrayType >
+        typename std::enable_if< !std::is_base_of<MHO_TableContainerBase, XCheckType>::value, void >::type
+        IfTableTransformAxis(XArrayType* /*in*/, std::size_t /*axis_index*/){std::cout<<"DOH!"<<std::endl;};
+
+        //use SFINAE to generate specialization for MHO_TableContainer types
+        template< typename XCheckType = XArrayType >
+        typename std::enable_if< std::is_base_of<MHO_TableContainerBase, XCheckType>::value, void >::type
+        IfTableTransformAxis(XArrayType* in, std::size_t axis_index)
+        {
+            std::cout<<"Booo: "<<axis_index<<std::endl;
+            TransformAxis axis_xformer;
+            apply_at< typename XArrayType::axis_pack_tuple_type, TransformAxis >( *in, axis_index, axis_xformer);
+        }
+
+
+        class TransformAxis
+        {
+            public:
+                TransformAxis(){};
+                ~TransformAxis(){};
+
+                template< typename XAxisType >
+                void operator()(const XAxisType& axis1)
+                {
+                    //this is under the expectation that all axis labels are equi-spaced 
+                    //this should be a safe assumption since we are doing DFT anyway
+                    std::size_t N = axis1.GetSize();
+                    double length = N;
+                    if(N > 1)
+                    {
+                        double delta = axis1(1) - axis1(0);
+                        double spacing = (1.0/delta)*(1.0/length);
+                        double start = -1*N/2;
+                        for(std::size_t i=0; i<N; i++)
+                        {
+                            double x = i;
+                            double value = (i+start)*spacing;
+                            axis1(i) = value;
+                        }
+                    }
+                }
+
+            private:
+                std::vector< std::size_t > fSelection;
+
+        };
+
+
+
+        //data
 
         bool fIsValid;
         bool fForward;
