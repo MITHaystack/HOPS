@@ -79,13 +79,17 @@ class MHO_RootGraphManager
                 {
                     value = std::imag( table(i) );
                 }
-                else if(plot_mode == 2) //plo absolute value
+                else if(plot_mode == 2) //plot absolute value
                 {
                     value = std::abs( table(i) );
                 }
-                else //plot phase 
+                else if(plot_mode == 3) //plot phase
                 {
                     value = std::arg( table(i) );
+                }
+                else //plot magnitude squared
+                {
+                    value = std::real( table(i)*std::conj(table(i) ) );
                 }
 
                 h->SetPoint(i, x_axis(i), value);
