@@ -181,7 +181,7 @@ int main(int argc, char** argv)
 
     //plot magnitude squared
     auto f1 = gMan.GenerateComplexGraph1D(ft_noise_samples, std::get<0>(ft_noise_samples), 4);
-    auto f2 = gMan.GenerateComplexGraph1D(ft_tone_samples, std::get<0>(ft_tone_samples), 2 );
+    auto f2 = gMan.GenerateComplexGraph1D(ft_tone_samples, std::get<0>(ft_tone_samples), 4 );
     auto f3 = gMan.GenerateComplexGraph1D(ft_sum_samples, std::get<0>(ft_sum_samples), 4 );
 
     c2->cd(1);

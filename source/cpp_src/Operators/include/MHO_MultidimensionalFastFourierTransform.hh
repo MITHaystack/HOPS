@@ -259,8 +259,8 @@ class MHO_MultidimensionalFastFourierTransform:
         typename std::enable_if< std::is_base_of<MHO_TableContainerBase, XCheckType>::value, void >::type
         IfTableTransformAxis(XArgType* in, std::size_t axis_index)
         {
-            //TransformAxis axis_xformer;
-            //apply_at< typename XArgType::axis_pack_tuple_type, TransformAxis >( *in, axis_index, axis_xformer);
+            TransformAxis axis_xformer;
+            apply_at< typename XArgType::axis_pack_tuple_type, TransformAxis >( *in, axis_index, axis_xformer);
         }
 
 
