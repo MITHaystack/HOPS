@@ -27,7 +27,7 @@ endif(HOPS_DEV_USE_OLD)
 
 
 set(SOURCE_BASENAMES
-    TestSingleBandDelay
+    #TestSingleBandDelay
     TestMultiObjectStreaming
     TestConvertMk4Visibilities
     DumpFileObjectKeys
@@ -35,7 +35,7 @@ set(SOURCE_BASENAMES
     DumpFileObjectToJSON
     ConvertFileToJSON
     ConvertVexToJSON
-    TestSignalFFT
+    #TestSignalFFT
 )
 
 #for testing purposes only -- ROOT not intended to be a dependency

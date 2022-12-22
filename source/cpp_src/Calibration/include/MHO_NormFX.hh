@@ -70,7 +70,7 @@ class MHO_NormFX: public MHO_BinaryOperator<
         #ifdef HOPS_USE_FFTW3
             MHO_MultidimensionalFastFourierTransformFFTW<double,1> fFFTEngine;
         #else
-            MHO_MultidimensionalFastFourierTransform<double,1> fFFTEngine;
+            MHO_MultidimensionalFastFourierTransform< MHO_NDArrayWrapper< std::complex<double>, 1 > > fFFTEngine;
         #endif
         MHO_NDArrayWrapper< std::complex<double>, 1 > xp_spec;
         MHO_NDArrayWrapper< std::complex<double>, 1 > S;
