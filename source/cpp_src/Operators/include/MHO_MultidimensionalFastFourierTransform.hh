@@ -196,7 +196,6 @@ class MHO_MultidimensionalFastFourierTransform:
                             }
                         }
 
-                        std::cout<<"weeeeee "<<d<<std::endl;
                         IfTableTransformAxis(in,d);
                     }
                 }
@@ -253,14 +252,13 @@ class MHO_MultidimensionalFastFourierTransform:
         //default...does nothing
         template< typename XCheckType = XArgType >
         typename std::enable_if< !std::is_base_of<MHO_TableContainerBase, XCheckType>::value, void >::type
-        IfTableTransformAxis(XArgType* /*in*/, std::size_t /*axis_index*/){std::cout<<"DOH!"<<std::endl;};
+        IfTableTransformAxis(XArgType* /*in*/, std::size_t /*axis_index*/){};
 
         //use SFINAE to generate specialization for MHO_TableContainer types
         template< typename XCheckType = XArgType >
         typename std::enable_if< std::is_base_of<MHO_TableContainerBase, XCheckType>::value, void >::type
         IfTableTransformAxis(XArgType* in, std::size_t axis_index)
         {
-            std::cout<<"Booo: "<<axis_index<<std::endl;
             TransformAxis axis_xformer;
             apply_at< typename XArgType::axis_pack_tuple_type, TransformAxis >( *in, axis_index, axis_xformer);
         }
