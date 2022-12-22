@@ -24,13 +24,6 @@
 
 #include "MHO_CyclicRotator.hh"
 
-#ifdef HOPS_USE_FFTW3
-typedef double FPTYPE;
-#define FFT_TYPE MHO_MultidimensionalFastFourierTransformFFTW<FPTYPE,1>
-#else
-typedef double FPTYPE;
-#define FFT_TYPE MHO_MultidimensionalFastFourierTransform<FPTYPE,1>
-#endif
 
 
 using namespace hops;
@@ -39,6 +32,14 @@ using elem_type = std::complex<double>;
 using ax_type = MHO_Axis<double>;
 using ax_pack = MHO_AxisPack< ax_type >;
 using data_type = MHO_TableContainer< elem_type, ax_pack >;
+
+
+#ifdef HOPS_USE_FFTW3
+#define FFT_TYPE MHO_MultidimensionalFastFourierTransformFFTW<data_type>
+#else
+#define FFT_TYPE MHO_MultidimensionalFastFourierTransform<data_type>
+#endif
+
 
 
 int main(int argc, char** argv)
@@ -54,7 +55,7 @@ int main(int argc, char** argv)
     aNoiseSignal.SetStandardDeviation(stddev);
     aNoiseSignal.Initialize();
 
-    double tone_freq = 25030.5;
+    double tone_freq = 25000.0;
     double phase_offset = 0.0;
 
     MHO_SingleToneSignal aToneSignal;
@@ -180,7 +181,7 @@ int main(int argc, char** argv)
 
     //plot magnitude squared
     auto f1 = gMan.GenerateComplexGraph1D(ft_noise_samples, std::get<0>(ft_noise_samples), 4);
-    auto f2 = gMan.GenerateComplexGraph1D(ft_tone_samples, std::get<0>(ft_tone_samples), 4 );
+    auto f2 = gMan.GenerateComplexGraph1D(ft_tone_samples, std::get<0>(ft_tone_samples), 2 );
     auto f3 = gMan.GenerateComplexGraph1D(ft_sum_samples, std::get<0>(ft_sum_samples), 4 );
 
     c2->cd(1);

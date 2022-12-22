@@ -35,7 +35,7 @@ set(SOURCE_BASENAMES
     DumpFileObjectToJSON
     ConvertFileToJSON
     ConvertVexToJSON
-    #TestSignalFFT
+    TestSignalFFT
 )
 
 #for testing purposes only -- ROOT not intended to be a dependency
