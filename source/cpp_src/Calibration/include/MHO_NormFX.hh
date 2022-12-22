@@ -68,7 +68,7 @@ class MHO_NormFX: public MHO_BinaryOperator<
 
         //only needed for the old routine
         #ifdef HOPS_USE_FFTW3
-            MHO_MultidimensionalFastFourierTransformFFTW<double,1> fFFTEngine;
+            MHO_MultidimensionalFastFourierTransformFFTW< MHO_NDArrayWrapper< std::complex<double>, 1 > > fFFTEngine;
         #else
             MHO_MultidimensionalFastFourierTransform< MHO_NDArrayWrapper< std::complex<double>, 1 > > fFFTEngine;
         #endif

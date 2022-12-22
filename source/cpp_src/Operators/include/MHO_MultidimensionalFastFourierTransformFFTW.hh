@@ -13,13 +13,16 @@ namespace hops
 {
 
 
-template< typename XFloatType, size_t RANK>
+template< typename XArgType >
 class MHO_MultidimensionalFastFourierTransformFFTW:
-    public MHO_UnaryOperator< MHO_NDArrayWrapper< std::complex<XFloatType>, RANK > >
+    public MHO_UnaryOperator< XArgType >
 {
     public:
 
-        using XArrayType = MHO_NDArrayWrapper< std::complex< XFloatType>, RANK >;
+        static_assert( is_complex< typename XArgType::value_type >::value, "Array element type must be a complex floating point type." );
+
+        using complex_value_type = typename XArgType::value_type;
+        using floating_point_value_type = typename XArgType::value_type::value_type;
 
         MHO_MultidimensionalFastFourierTransformFFTW()
         {
@@ -27,7 +30,7 @@ class MHO_MultidimensionalFastFourierTransformFFTW:
             fInPtr = NULL;
             fOutPtr = NULL;
             fInPlacePtr = NULL;
-            for(size_t i=0; i<RANK; i++)
+            for(size_t i=0; i<XArgType::rank::value; i++)
             {
                 fDimensionSize[i] = 0;
             }
@@ -54,7 +57,7 @@ class MHO_MultidimensionalFastFourierTransformFFTW:
 
     protected:
 
-        virtual bool InitializeInPlace(XArrayType* in) override
+        virtual bool InitializeInPlace(XArgType* in) override
         {
             if( in != nullptr ){fIsValid = true;}
             else{fIsValid = false;}
@@ -63,14 +66,14 @@ class MHO_MultidimensionalFastFourierTransformFFTW:
             {
                 //check if the current transform sizes are the same as input
                 bool need_to_resize = false;
-                for(std::size_t i=0; i<RANK; i++)
+                for(std::size_t i=0; i<XArgType::rank::value; i++)
                 {
                     if(fDimensionSize[i] != in->GetDimension(i)){need_to_resize = true; break;}
                 }
                 if(need_to_resize)
                 {
                     in->GetDimensions(fDimensionSize);
-                    fTotalArraySize = MHO_NDArrayMath::TotalArraySize<RANK>(fDimensionSize);
+                    fTotalArraySize = MHO_NDArrayMath::TotalArraySize<XArgType::rank::value>(fDimensionSize);
                     DealocateWorkspace();
                     AllocateWorkspace();
                     DestructPlan();
@@ -83,7 +86,7 @@ class MHO_MultidimensionalFastFourierTransformFFTW:
         }
 
 
-        virtual bool InitializeOutOfPlace(const XArrayType* in, XArrayType* out) override
+        virtual bool InitializeOutOfPlace(const XArgType* in, XArgType* out) override
         {
             if( in != nullptr && out != nullptr ){fIsValid = true;}
             else{fIsValid = false;}
@@ -97,14 +100,14 @@ class MHO_MultidimensionalFastFourierTransformFFTW:
                 }
                 //check if the current transform sizes are the same as input
                 bool need_to_resize = false;
-                for(std::size_t i=0; i<RANK; i++)
+                for(std::size_t i=0; i<XArgType::rank::value; i++)
                 {
                     if(fDimensionSize[i] != in->GetDimension(i)){need_to_resize = true; break;}
                 }
                 if(need_to_resize)
                 {
                     in->GetDimensions(fDimensionSize);
-                    fTotalArraySize = MHO_NDArrayMath::TotalArraySize<RANK>(fDimensionSize);
+                    fTotalArraySize = MHO_NDArrayMath::TotalArraySize<XArgType::rank::value>(fDimensionSize);
                     DealocateWorkspace();
                     AllocateWorkspace();
                     DestructPlan();
@@ -118,7 +121,7 @@ class MHO_MultidimensionalFastFourierTransformFFTW:
 
 
 
-        virtual bool ExecuteInPlace(XArrayType* in) override
+        virtual bool ExecuteInPlace(XArgType* in) override
         {
             if(fIsValid && fInitialized)
             {
@@ -128,30 +131,30 @@ class MHO_MultidimensionalFastFourierTransformFFTW:
                     //we have to execute an in-place transform
                     if(fForward)
                     {
-                        MHO_FFTWTypes<XFloatType>::execute_dft_func(fPlanForwardInPlace,
-                        reinterpret_cast<typename MHO_FFTWTypes<XFloatType>::fftw_complex_type_ptr>(in->GetData() ),
-                        reinterpret_cast<typename MHO_FFTWTypes<XFloatType>::fftw_complex_type_ptr>(in->GetData() ) );
+                        MHO_FFTWTypes<floating_point_value_type>::execute_dft_func(fPlanForwardInPlace,
+                        reinterpret_cast<typename MHO_FFTWTypes<floating_point_value_type>::fftw_complex_type_ptr>(in->GetData() ),
+                        reinterpret_cast<typename MHO_FFTWTypes<floating_point_value_type>::fftw_complex_type_ptr>(in->GetData() ) );
                     }
                     else
                     {
-                        MHO_FFTWTypes<XFloatType>::execute_dft_func(fPlanBackwardInPlace,
-                        reinterpret_cast<typename MHO_FFTWTypes<XFloatType>::fftw_complex_type_ptr>(in->GetData() ),
-                        reinterpret_cast<typename MHO_FFTWTypes<XFloatType>::fftw_complex_type_ptr>(in->GetData() ) );
+                        MHO_FFTWTypes<floating_point_value_type>::execute_dft_func(fPlanBackwardInPlace,
+                        reinterpret_cast<typename MHO_FFTWTypes<floating_point_value_type>::fftw_complex_type_ptr>(in->GetData() ),
+                        reinterpret_cast<typename MHO_FFTWTypes<floating_point_value_type>::fftw_complex_type_ptr>(in->GetData() ) );
                     }
                 }
                 else
                 {
                     //alignment doesn't match so we need to use memcpy
-                    std::memcpy( fInPtr, in->GetData() , fTotalArraySize*sizeof(typename MHO_FFTWTypes<XFloatType>::fftw_complex_type) );
+                    std::memcpy( fInPtr, in->GetData() , fTotalArraySize*sizeof(typename MHO_FFTWTypes<floating_point_value_type>::fftw_complex_type) );
                     if(fForward)
                     {
-                        MHO_FFTWTypes<XFloatType>::execute_func(fPlanForward);
+                        MHO_FFTWTypes<floating_point_value_type>::execute_func(fPlanForward);
                     }
                     else
                     {
-                        MHO_FFTWTypes<XFloatType>::execute_func(fPlanBackward);
+                        MHO_FFTWTypes<floating_point_value_type>::execute_func(fPlanBackward);
                     }
-                    std::memcpy(in->GetData(), fOutPtr, fTotalArraySize*sizeof(typename MHO_FFTWTypes<XFloatType>::fftw_complex_type) );
+                    std::memcpy(in->GetData(), fOutPtr, fTotalArraySize*sizeof(typename MHO_FFTWTypes<floating_point_value_type>::fftw_complex_type) );
                 }
                 return true;
             }
@@ -164,11 +167,11 @@ class MHO_MultidimensionalFastFourierTransformFFTW:
         }
 
 
-        virtual bool ExecuteOutOfPlace(const XArrayType* in, XArrayType* out) override
+        virtual bool ExecuteOutOfPlace(const XArgType* in, XArgType* out) override
         {
             if(fIsValid && fInitialized)
             {
-                auto in_ptr = const_cast< std::complex<XFloatType>* >( in->GetData() );// we promised not to modify it, so be careful
+                auto in_ptr = const_cast< complex_value_type* >( in->GetData() );// we promised not to modify it, so be careful
                 //check memory alignment to determine if we can avoid copying the data around
                 if( HaveSameAlignment( in_ptr, fInPtr) &&
                     HaveSameAlignment(out->GetData(), fOutPtr) )
@@ -176,30 +179,30 @@ class MHO_MultidimensionalFastFourierTransformFFTW:
                     //transform is out-of-place
                     if(fForward)
                     {
-                        MHO_FFTWTypes<XFloatType>::execute_dft_func(fPlanForward,
-                        reinterpret_cast<typename MHO_FFTWTypes<XFloatType>::fftw_complex_type_ptr>( in_ptr ),
-                        reinterpret_cast<typename MHO_FFTWTypes<XFloatType>::fftw_complex_type_ptr>(out->GetData() ) );
+                        MHO_FFTWTypes<floating_point_value_type>::execute_dft_func(fPlanForward,
+                        reinterpret_cast<typename MHO_FFTWTypes<floating_point_value_type>::fftw_complex_type_ptr>( in_ptr ),
+                        reinterpret_cast<typename MHO_FFTWTypes<floating_point_value_type>::fftw_complex_type_ptr>(out->GetData() ) );
                     }
                     else
                     {
-                        MHO_FFTWTypes<XFloatType>::execute_dft_func(fPlanBackward,
-                        reinterpret_cast<typename MHO_FFTWTypes<XFloatType>::fftw_complex_type_ptr>( in_ptr ),
-                        reinterpret_cast<typename MHO_FFTWTypes<XFloatType>::fftw_complex_type_ptr>(out->GetData() ) );
+                        MHO_FFTWTypes<floating_point_value_type>::execute_dft_func(fPlanBackward,
+                        reinterpret_cast<typename MHO_FFTWTypes<floating_point_value_type>::fftw_complex_type_ptr>( in_ptr ),
+                        reinterpret_cast<typename MHO_FFTWTypes<floating_point_value_type>::fftw_complex_type_ptr>(out->GetData() ) );
                     }
                 }
                 else
                 {
                     //alignment doesn't match so we need to use memcpy
-                    std::memcpy( fInPtr, in->GetData() , fTotalArraySize*sizeof(typename MHO_FFTWTypes<XFloatType>::fftw_complex_type) );
+                    std::memcpy( fInPtr, in->GetData() , fTotalArraySize*sizeof(typename MHO_FFTWTypes<floating_point_value_type>::fftw_complex_type) );
                     if(fForward)
                     {
-                        MHO_FFTWTypes<XFloatType>::execute_func(fPlanForward);
+                        MHO_FFTWTypes<floating_point_value_type>::execute_func(fPlanForward);
                     }
                     else
                     {
-                        MHO_FFTWTypes<XFloatType>::execute_func(fPlanBackward);
+                        MHO_FFTWTypes<floating_point_value_type>::execute_func(fPlanBackward);
                     }
-                    std::memcpy(out->GetData(), fOutPtr, fTotalArraySize*sizeof(typename MHO_FFTWTypes<XFloatType>::fftw_complex_type) );
+                    std::memcpy(out->GetData(), fOutPtr, fTotalArraySize*sizeof(typename MHO_FFTWTypes<floating_point_value_type>::fftw_complex_type) );
                 }
                 return true;
             }
@@ -217,16 +220,16 @@ class MHO_MultidimensionalFastFourierTransformFFTW:
 
         virtual void AllocateWorkspace()
         {
-            fInPtr = MHO_FFTWTypes<XFloatType>::alloc_func(fTotalArraySize);
-            fOutPtr = MHO_FFTWTypes<XFloatType>::alloc_func(fTotalArraySize);
-            fInPlacePtr = MHO_FFTWTypes<XFloatType>::alloc_func(fTotalArraySize);
+            fInPtr = MHO_FFTWTypes<floating_point_value_type>::alloc_func(fTotalArraySize);
+            fOutPtr = MHO_FFTWTypes<floating_point_value_type>::alloc_func(fTotalArraySize);
+            fInPlacePtr = MHO_FFTWTypes<floating_point_value_type>::alloc_func(fTotalArraySize);
         }
 
         virtual void DealocateWorkspace()
         {
-            MHO_FFTWTypes<XFloatType>::free_func(fInPtr);
-            MHO_FFTWTypes<XFloatType>::free_func(fOutPtr);
-            MHO_FFTWTypes<XFloatType>::free_func(fInPlacePtr);
+            MHO_FFTWTypes<floating_point_value_type>::free_func(fInPtr);
+            MHO_FFTWTypes<floating_point_value_type>::free_func(fOutPtr);
+            MHO_FFTWTypes<floating_point_value_type>::free_func(fInPlacePtr);
         }
 
 
@@ -234,10 +237,10 @@ class MHO_MultidimensionalFastFourierTransformFFTW:
         {
             if(fInitialized)
             {
-                MHO_FFTWTypes<XFloatType>::destroy_plan_func(fPlanForward); fPlanForward = NULL;
-                MHO_FFTWTypes<XFloatType>::destroy_plan_func(fPlanBackward); fPlanBackward = NULL;
-                MHO_FFTWTypes<XFloatType>::destroy_plan_func(fPlanForwardInPlace); fPlanForwardInPlace = NULL;
-                MHO_FFTWTypes<XFloatType>::destroy_plan_func(fPlanBackwardInPlace); fPlanBackwardInPlace = NULL;
+                MHO_FFTWTypes<floating_point_value_type>::destroy_plan_func(fPlanForward); fPlanForward = NULL;
+                MHO_FFTWTypes<floating_point_value_type>::destroy_plan_func(fPlanBackward); fPlanBackward = NULL;
+                MHO_FFTWTypes<floating_point_value_type>::destroy_plan_func(fPlanForwardInPlace); fPlanForwardInPlace = NULL;
+                MHO_FFTWTypes<floating_point_value_type>::destroy_plan_func(fPlanBackwardInPlace); fPlanBackwardInPlace = NULL;
             }
         }
 
@@ -245,31 +248,31 @@ class MHO_MultidimensionalFastFourierTransformFFTW:
         {
             if(fInPtr == NULL || fOutPtr == NULL || fInPlacePtr == NULL){return false;}
 
-            int rank = RANK;
+            int rank = XArgType::rank::value;
             //we force fftw to only do one fft at a time
             //but we could implement a batched interface also...
             int howmany_rank = 0; //zero disables more than one x-form
             fHowManyDims.n = 1;
-            fHowManyDims.is = MHO_NDArrayMath::TotalArraySize<RANK>(fDimensionSize);
-            fHowManyDims.os = MHO_NDArrayMath::TotalArraySize<RANK>(fDimensionSize);
+            fHowManyDims.is = MHO_NDArrayMath::TotalArraySize<XArgType::rank::value>(fDimensionSize);
+            fHowManyDims.os = MHO_NDArrayMath::TotalArraySize<XArgType::rank::value>(fDimensionSize);
 
-            for(size_t i=0; i<RANK; i++)
+            for(size_t i=0; i<XArgType::rank::value; i++)
             {
                 fDims[i].n = fDimensionSize[i];
-                fDims[i].is = MHO_NDArrayMath::StrideFromRowMajorIndex<RANK>(i,fDimensionSize);
-                fDims[i].os = MHO_NDArrayMath::StrideFromRowMajorIndex<RANK>(i,fDimensionSize);
+                fDims[i].is = MHO_NDArrayMath::StrideFromRowMajorIndex<XArgType::rank::value>(i,fDimensionSize);
+                fDims[i].os = MHO_NDArrayMath::StrideFromRowMajorIndex<XArgType::rank::value>(i,fDimensionSize);
             }
 
-            fPlanForward = MHO_FFTWTypes<XFloatType>::plan_guru_func(rank, fDims, howmany_rank, &fHowManyDims,
+            fPlanForward = MHO_FFTWTypes<floating_point_value_type>::plan_guru_func(rank, fDims, howmany_rank, &fHowManyDims,
                                        fInPtr, fOutPtr, FFTW_FORWARD, FFTW_MEASURE);
 
-            fPlanBackward = MHO_FFTWTypes<XFloatType>::plan_guru_func(rank, fDims, howmany_rank, &fHowManyDims,
+            fPlanBackward = MHO_FFTWTypes<floating_point_value_type>::plan_guru_func(rank, fDims, howmany_rank, &fHowManyDims,
                                        fInPtr, fOutPtr, FFTW_BACKWARD, FFTW_MEASURE);
 
-            fPlanForwardInPlace = MHO_FFTWTypes<XFloatType>::plan_guru_func(rank, fDims, howmany_rank, &fHowManyDims,
+            fPlanForwardInPlace = MHO_FFTWTypes<floating_point_value_type>::plan_guru_func(rank, fDims, howmany_rank, &fHowManyDims,
                                        fInPlacePtr, fInPlacePtr, FFTW_FORWARD, FFTW_MEASURE);
 
-            fPlanBackwardInPlace = MHO_FFTWTypes<XFloatType>::plan_guru_func(rank, fDims, howmany_rank, &fHowManyDims,
+            fPlanBackwardInPlace = MHO_FFTWTypes<floating_point_value_type>::plan_guru_func(rank, fDims, howmany_rank, &fHowManyDims,
                                        fInPlacePtr, fInPlacePtr, FFTW_BACKWARD, FFTW_MEASURE);
 
             if(fPlanForward != NULL && fPlanBackward != NULL && fPlanBackwardInPlace != NULL && fPlanForwardInPlace != NULL)
@@ -285,8 +288,8 @@ class MHO_MultidimensionalFastFourierTransformFFTW:
         template< typename XPtrType1, typename XPtrType2>
         bool HaveSameAlignment(XPtrType1 ptr1, XPtrType2 ptr2)
         {
-            return ( MHO_FFTWTypes<XFloatType>::alignment_of_func( reinterpret_cast<XFloatType*>(ptr1) ) ==
-                     MHO_FFTWTypes<XFloatType>::alignment_of_func( reinterpret_cast<XFloatType*>(ptr2) ) );
+            return ( MHO_FFTWTypes<floating_point_value_type>::alignment_of_func( reinterpret_cast<floating_point_value_type*>(ptr1) ) ==
+                     MHO_FFTWTypes<floating_point_value_type>::alignment_of_func( reinterpret_cast<floating_point_value_type*>(ptr2) ) );
         }
 
 
@@ -296,17 +299,17 @@ class MHO_MultidimensionalFastFourierTransformFFTW:
         bool fInitialized;
 
         size_t fTotalArraySize;
-        size_t fDimensionSize[RANK];
+        size_t fDimensionSize[XArgType::rank::value];
 
-        typename MHO_FFTWTypes<XFloatType>::iodim_type fDims[RANK];
-        typename MHO_FFTWTypes<XFloatType>::iodim_type fHowManyDims;
-        typename MHO_FFTWTypes<XFloatType>::plan_type fPlanForward;
-        typename MHO_FFTWTypes<XFloatType>::plan_type fPlanBackward;
-        typename MHO_FFTWTypes<XFloatType>::plan_type fPlanForwardInPlace;
-        typename MHO_FFTWTypes<XFloatType>::plan_type fPlanBackwardInPlace;
-        typename MHO_FFTWTypes<XFloatType>::fftw_complex_type_ptr fInPtr;
-        typename MHO_FFTWTypes<XFloatType>::fftw_complex_type_ptr fOutPtr;
-        typename MHO_FFTWTypes<XFloatType>::fftw_complex_type_ptr fInPlacePtr;
+        typename MHO_FFTWTypes<floating_point_value_type>::iodim_type fDims[XArgType::rank::value];
+        typename MHO_FFTWTypes<floating_point_value_type>::iodim_type fHowManyDims;
+        typename MHO_FFTWTypes<floating_point_value_type>::plan_type fPlanForward;
+        typename MHO_FFTWTypes<floating_point_value_type>::plan_type fPlanBackward;
+        typename MHO_FFTWTypes<floating_point_value_type>::plan_type fPlanForwardInPlace;
+        typename MHO_FFTWTypes<floating_point_value_type>::plan_type fPlanBackwardInPlace;
+        typename MHO_FFTWTypes<floating_point_value_type>::fftw_complex_type_ptr fInPtr;
+        typename MHO_FFTWTypes<floating_point_value_type>::fftw_complex_type_ptr fOutPtr;
+        typename MHO_FFTWTypes<floating_point_value_type>::fftw_complex_type_ptr fInPlacePtr;
 };
 
 
