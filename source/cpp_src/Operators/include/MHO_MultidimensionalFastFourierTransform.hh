@@ -20,7 +20,6 @@ class MHO_MultidimensionalFastFourierTransform:
 {
     public:
 
-
         static_assert( is_complex< typename XArgType::value_type >::value, "Array element type must be a complex floating point type." );
 
         using complex_value_type = typename XArgType::value_type;
