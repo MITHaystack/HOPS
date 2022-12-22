@@ -82,7 +82,7 @@ class MHO_NormFX: public MHO_BinaryOperator<
         MHO_FunctorBroadcaster<ch_visibility_type, nanMaskerType> fNaNBroadcaster;
         MHO_FunctorBroadcaster<ch_visibility_type, conjType> fConjBroadcaster;
 
-        MHO_MultidimensionalPaddedFastFourierTransform<VFP_TYPE, CH_VIS_NDIM> fPaddedFFTEngine;
+        MHO_MultidimensionalPaddedFastFourierTransform< ch_visibility_type > fPaddedFFTEngine;
 
         MHO_SubSample<ch_sbd_type> fSubSampler;
         MHO_CyclicRotator<ch_sbd_type> fCyclicRotator;

@@ -16,8 +16,9 @@
 using namespace hops;
 
 typedef double FPTYPE;
-#define PADDED_FFT_TYPE MHO_MultidimensionalPaddedFastFourierTransform<FPTYPE,1>
-#define FFT_TYPE MHO_MultidimensionalFastFourierTransform<FPTYPE,1>
+#define ARRAY_TYPE MHO_NDArrayWrapper< std::complex<FPTYPE>, 1 > 
+#define PADDED_FFT_TYPE MHO_MultidimensionalPaddedFastFourierTransform< ARRAY_TYPE >
+#define FFT_TYPE MHO_MultidimensionalFastFourierTransform< ARRAY_TYPE >
 
 inline int positive_modulo(int i, int n) {
     return (i % n + n) % n;
@@ -68,10 +69,10 @@ int main(int argc, char** argv)
     const size_t M = 4; //even or odd M is OK
     const size_t NM = N*M;
 
-    MHO_NDArrayWrapper< std::complex<FPTYPE>, ndim> array1(N);
-    MHO_NDArrayWrapper< std::complex<FPTYPE>, ndim> array2(N);
-    MHO_NDArrayWrapper< std::complex<FPTYPE>, ndim> expanded_array1(NM);
-    MHO_NDArrayWrapper< std::complex<FPTYPE>, ndim> expanded_array2(NM);
+    ARRAY_TYPE array1(N);
+    ARRAY_TYPE array2(N);
+    ARRAY_TYPE expanded_array1(NM);
+    ARRAY_TYPE expanded_array2(NM);
 
     //fill up the array with a random signal
     srand(0);
@@ -279,11 +280,11 @@ int main(int argc, char** argv)
     //now run the same basic code as norm_fx
 
     int nlags = 2*N;
-    MHO_NDArrayWrapper< std::complex<FPTYPE>, ndim> xp_spec(4*nlags);
-    MHO_NDArrayWrapper< std::complex<FPTYPE>, ndim> S(4*nlags);
-    MHO_NDArrayWrapper< std::complex<FPTYPE>, ndim> xlag(4*nlags);
-    MHO_NDArrayWrapper< std::complex<FPTYPE>, ndim> output(4*nlags);
-    MHO_NDArrayWrapper< std::complex<FPTYPE>, ndim> output2(4*nlags);
+    ARRAY_TYPE xp_spec(4*nlags);
+    ARRAY_TYPE S(4*nlags);
+    ARRAY_TYPE xlag(4*nlags);
+    ARRAY_TYPE output(4*nlags);
+    ARRAY_TYPE output2(4*nlags);
 
     for (int i=0; i<4*nlags; i++){xp_spec[i] = 0.0;}
     for (int i=0; i<4*nlags; i++){S[i] = 0.0;}

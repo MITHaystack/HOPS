@@ -19,18 +19,21 @@
 namespace hops
 {
 
-template< typename XFloatType, std::size_t RANK>
+template< typename XArgType >
 class MHO_MultidimensionalPaddedFastFourierTransform:
-    public MHO_UnaryOperator< MHO_NDArrayWrapper< std::complex<XFloatType>, RANK > >
+    public MHO_UnaryOperator< XArgType >
 {
     public:
 
-        using XArrayType = MHO_NDArrayWrapper< std::complex< XFloatType>, RANK >;
+        static_assert( is_complex< typename XArgType::value_type >::value, "Array element type must be a complex floating point type." );
+
+        using complex_value_type = typename XArgType::value_type;
+        using floating_point_value_type = typename XArgType::value_type::value_type;
 
         MHO_MultidimensionalPaddedFastFourierTransform()
         {
             fPaddingFactor = 1;
-            for(std::size_t i=0; i<RANK; i++)
+            for(std::size_t i=0; i<XArgType::rank::value; i++)
             {
                 fInputDimensionSize[i] = 0;
                 fOutputDimensionSize[i] = 0;
@@ -63,27 +66,27 @@ class MHO_MultidimensionalPaddedFastFourierTransform:
 
         //sometimes we may want to select/deselect particular dimensions of the x-form
         //default is to transform along every dimension, but that may not always be needed
-        void SelectAllAxes(){for(std::size_t i=0; i<RANK; i++){fAxesToXForm[i] = true;}}
-        void DeselectAllAxes(){for(std::size_t i=0; i<RANK; i++){fAxesToXForm[i] = false;}}
+        void SelectAllAxes(){for(std::size_t i=0; i<XArgType::rank::value; i++){fAxesToXForm[i] = true;}}
+        void DeselectAllAxes(){for(std::size_t i=0; i<XArgType::rank::value; i++){fAxesToXForm[i] = false;}}
         void SelectAxis(std::size_t axis_index)
         {
-            if(axis_index < RANK){fAxesToXForm[axis_index] = true;}
+            if(axis_index < XArgType::rank::value){fAxesToXForm[axis_index] = true;}
             else
             {
                 msg_error("operators", "Cannot transform axis with index: " <<
-                          axis_index << "for array with rank: " << RANK << eom);
+                          axis_index << "for array with rank: " << XArgType::rank::value << eom);
             }
         }
 
     protected:
 
 
-        virtual bool InitializeInPlace(XArrayType* in)
+        virtual bool InitializeInPlace(XArgType* in)
         {
             return InitializeOutOfPlace(in, &fTmpWorkspace);
         }
 
-        virtual bool ExecuteInPlace(XArrayType* in)
+        virtual bool ExecuteInPlace(XArgType* in)
         {
             bool status = ExecuteOutOfPlace(in, &fTmpWorkspace);
             //"in-place" execution requires a copy from the workspace back to the object we are modifying
@@ -92,7 +95,7 @@ class MHO_MultidimensionalPaddedFastFourierTransform:
         }
 
 
-        virtual bool InitializeOutOfPlace(const XArrayType* in, XArrayType* out)
+        virtual bool InitializeOutOfPlace(const XArgType* in, XArgType* out)
         {
             if(in != nullptr && out != nullptr && in != out)
             {
@@ -103,7 +106,7 @@ class MHO_MultidimensionalPaddedFastFourierTransform:
             bool have_to_resize = false;
             if(fInitialized && fIsValid)
             {
-                for(std::size_t i=0; i<RANK; i++)
+                for(std::size_t i=0; i<XArgType::rank::value; i++)
                 {
                     if(fInputDimensionSize[i] != in->GetDimension(i)){have_to_resize = true; break;}
                     if(fOutputDimensionSize[i] != out->GetDimension(i)){have_to_resize = true; break;}
@@ -115,7 +118,7 @@ class MHO_MultidimensionalPaddedFastFourierTransform:
                 //output dimensions must be factor of fPaddingFactor bigger than input dims
                 in->GetDimensions(fInputDimensionSize);
                 out->GetDimensions(fOutputDimensionSize);
-                for(std::size_t i=0; i<RANK; i++)
+                for(std::size_t i=0; i<XArgType::rank::value; i++)
                 {
                     //for now we only support an implementation for even lengths
                     //as described on p. 751 of "Understanding Digital Signal Processing" by R.G. Lyons
@@ -140,13 +143,13 @@ class MHO_MultidimensionalPaddedFastFourierTransform:
 
 
 
-        virtual bool ExecuteOutOfPlace(const XArrayType* in, XArrayType* out)
+        virtual bool ExecuteOutOfPlace(const XArgType* in, XArgType* out)
         {
             if(fIsValid && fInitialized)
             {
-                //XFloatType total_input_size = 1.0;
+                //floating_point_value_type total_input_size = 1.0;
                 std::size_t total_size = 1;
-                for(std::size_t i=0; i<RANK; i++)
+                for(std::size_t i=0; i<XArgType::rank::value; i++)
                 {
                     //total_input_size *= fInputDimensionSize[i];
                     total_size *= fOutputDimensionSize[i];
@@ -179,14 +182,14 @@ class MHO_MultidimensionalPaddedFastFourierTransform:
                     //of Q dimensions it will be copied into 2^Q locations in the output).
                     while( in_iter != in_iter_end)
                     {
-                        std::array<std::size_t, RANK> in_index;
+                        std::array<std::size_t, XArgType::rank::value> in_index;
                         std::vector< std::vector<size_t> > out_index;
-                        out_index.resize(RANK);
+                        out_index.resize(XArgType::rank::value);
 
                         //get the input indices for each dimension
-                        MHO_NDArrayMath::RowMajorIndexFromOffset<RANK>(in_iter.GetOffset(), in->GetDimensions(), &(in_index[0]) );
+                        MHO_NDArrayMath::RowMajorIndexFromOffset<XArgType::rank::value>(in_iter.GetOffset(), in->GetDimensions(), &(in_index[0]) );
 
-                        for(std::size_t i=0; i<RANK; i++)
+                        for(std::size_t i=0; i<XArgType::rank::value; i++)
                         {
                             if(fAxesToXForm[i])
                             {
@@ -215,14 +218,14 @@ class MHO_MultidimensionalPaddedFastFourierTransform:
 
                         //determine the number of indices over which this input point is split
                         std::size_t npts = 1;
-                        for(std::size_t i=0; i<RANK; i++){npts *= out_index[i].size();}
+                        for(std::size_t i=0; i<XArgType::rank::value; i++){npts *= out_index[i].size();}
 
                         if(npts == 1) //no splits
                         {
-                            std::size_t out_idx[RANK];
-                            for(std::size_t i=0; i<RANK; i++){out_idx[i] = *(out_index[i].begin()); }
+                            std::size_t out_idx[XArgType::rank::value];
+                            for(std::size_t i=0; i<XArgType::rank::value; i++){out_idx[i] = *(out_index[i].begin()); }
                             //copy the input data to the same 'index' location in the output array
-                            std::size_t out_loc = MHO_NDArrayMath::OffsetFromRowMajorIndex<RANK>(fOutputDimensionSize, out_idx);
+                            std::size_t out_loc = MHO_NDArrayMath::OffsetFromRowMajorIndex<XArgType::rank::value>(fOutputDimensionSize, out_idx);
                             (*out)[out_loc] = *in_iter;
                         }
                         else
@@ -232,29 +235,29 @@ class MHO_MultidimensionalPaddedFastFourierTransform:
                             //over which to split this point in the output array
                             //to do this we construct all of the bit masks for every possible index combination
                             std::set< std::size_t > index_bitsets;
-                            std::bitset<RANK> mask;
-                            for(std::size_t i=0; i<RANK; i++)
+                            std::bitset<XArgType::rank::value> mask;
+                            for(std::size_t i=0; i<XArgType::rank::value; i++)
                             {
                                 mask[i] = 1;
                                 if(out_index[i].size() == 1){mask[i] = 0;}
                             }
-                            //compute all 2^RANK possibilities with mask applied
-                            std::size_t n_possible = MHO_NDArrayMath::PowerOfTwo<RANK>::value;
+                            //compute all 2^XArgType::rank::value possibilities with mask applied
+                            std::size_t n_possible = MHO_NDArrayMath::PowerOfTwo<XArgType::rank::value>::value;
                             for(std::size_t i=0; i<n_possible; i++)
                             {
-                                std::bitset<RANK> val(i);
+                                std::bitset<XArgType::rank::value> val(i);
                                 val &= mask; //binary 'and' with the mask
                                 index_bitsets.insert( val.to_ulong() );
                             }
 
                             //now loop over the bitsets, inserting a fraction of this point in each place
-                            std::size_t out_idx[RANK];
+                            std::size_t out_idx[XArgType::rank::value];
                             double norm = 1.0/(double)npts;
                             for(auto it = index_bitsets.begin(); it != index_bitsets.end(); it++)
                             {
-                                std::bitset<RANK> bits(*it);
-                                for(std::size_t i=0; i<RANK; i++){out_idx[i] = out_index[i][bits[i]];}
-                                std::size_t out_loc = MHO_NDArrayMath::OffsetFromRowMajorIndex<RANK>(fOutputDimensionSize, out_idx);
+                                std::bitset<XArgType::rank::value> bits(*it);
+                                for(std::size_t i=0; i<XArgType::rank::value; i++){out_idx[i] = out_index[i][bits[i]];}
+                                std::size_t out_loc = MHO_NDArrayMath::OffsetFromRowMajorIndex<XArgType::rank::value>(fOutputDimensionSize, out_idx);
                                 (*(out))[out_loc] = (*in_iter)*norm;
                             }
                         }
@@ -272,11 +275,11 @@ class MHO_MultidimensionalPaddedFastFourierTransform:
                         while( in_iter != in_iter_end)
                         {
                             //copy the input data to the same 'index' location in the output array
-                            std::array<std::size_t, RANK> in_indices;
+                            std::array<std::size_t, XArgType::rank::value> in_indices;
                             //get the input indices for each dimension
-                            MHO_NDArrayMath::RowMajorIndexFromOffset<RANK>(in_iter.GetOffset(), in->GetDimensions(), &(in_indices[0]) );
+                            MHO_NDArrayMath::RowMajorIndexFromOffset<XArgType::rank::value>(in_iter.GetOffset(), in->GetDimensions(), &(in_indices[0]) );
 
-                            std::size_t out_loc = MHO_NDArrayMath::OffsetFromRowMajorIndex<RANK>(fOutputDimensionSize, &(in_indices[0]) );
+                            std::size_t out_loc = MHO_NDArrayMath::OffsetFromRowMajorIndex<XArgType::rank::value>(fOutputDimensionSize, &(in_indices[0]) );
                             (*(out))[out_loc] = *in_iter;
                             ++in_iter;
                         }
@@ -286,14 +289,14 @@ class MHO_MultidimensionalPaddedFastFourierTransform:
                         //zero padding is placed at the start of the array
                         auto in_iter =  in->cbegin();
                         auto in_iter_end = in->cend();
-                        std::array<std::size_t, RANK> in_index;
-                        std::size_t out_index[RANK];
+                        std::array<std::size_t, XArgType::rank::value> in_index;
+                        std::size_t out_index[XArgType::rank::value];
                         while( in_iter != in_iter_end)
                         {
                             //copy the input data to the flipped location in the output array
-                            MHO_NDArrayMath::RowMajorIndexFromOffset<RANK>(in_iter.GetOffset(), in->GetDimensions(), &(in_index[0]) );
+                            MHO_NDArrayMath::RowMajorIndexFromOffset<XArgType::rank::value>(in_iter.GetOffset(), in->GetDimensions(), &(in_index[0]) );
 
-                            for(std::size_t i=0; i<RANK; i++)
+                            for(std::size_t i=0; i<XArgType::rank::value; i++)
                             {
                                 if(fAxesToXForm[i])
                                 {
@@ -308,20 +311,20 @@ class MHO_MultidimensionalPaddedFastFourierTransform:
                                 }
                                 else{out_index[i] = in_index[i];}
                             }
-                            std::size_t out_loc = MHO_NDArrayMath::OffsetFromRowMajorIndex<RANK>(fOutputDimensionSize, out_index);
+                            std::size_t out_loc = MHO_NDArrayMath::OffsetFromRowMajorIndex<XArgType::rank::value>(fOutputDimensionSize, out_index);
                             (*(out))[out_loc] = *in_iter;
                             ++in_iter;
                         }
                     }
                 }
 
-                std::size_t index[RANK];
-                std::size_t non_active_dimension_size[RANK-1];
-                std::size_t non_active_dimension_value[RANK-1];
-                std::size_t non_active_dimension_index[RANK-1];
+                std::size_t index[XArgType::rank::value];
+                std::size_t non_active_dimension_size[XArgType::rank::value-1];
+                std::size_t non_active_dimension_value[XArgType::rank::value-1];
+                std::size_t non_active_dimension_index[XArgType::rank::value-1];
 
                 //select the dimension on which to perform the FFT
-                for(std::size_t d = 0; d < RANK; d++)
+                for(std::size_t d = 0; d < XArgType::rank::value; d++)
                 {
                     if(fAxesToXForm[d])
                     {
@@ -329,7 +332,7 @@ class MHO_MultidimensionalPaddedFastFourierTransform:
                         //first compute the number of FFTs to perform
                         std::size_t n_fft = 1;
                         std::size_t count = 0;
-                        for(std::size_t i = 0; i < RANK; i++)
+                        for(std::size_t i = 0; i < XArgType::rank::value; i++)
                         {
                             if(i != d)
                             {
@@ -344,10 +347,10 @@ class MHO_MultidimensionalPaddedFastFourierTransform:
                         for(std::size_t n=0; n<n_fft; n++)
                         {
                             //invert place in list to obtain indices of block in array
-                            MHO_NDArrayMath::RowMajorIndexFromOffset<RANK-1>(n, non_active_dimension_size, non_active_dimension_value);
+                            MHO_NDArrayMath::RowMajorIndexFromOffset<XArgType::rank::value-1>(n, non_active_dimension_size, non_active_dimension_value);
 
                             //copy the value of the non-active dimensions in to index
-                            for(std::size_t i=0; i<RANK-1; i++)
+                            for(std::size_t i=0; i<XArgType::rank::value-1; i++)
                             {
                                 index[ non_active_dimension_index[i] ] = non_active_dimension_value[i];
                             }
@@ -357,7 +360,7 @@ class MHO_MultidimensionalPaddedFastFourierTransform:
                             for(std::size_t i=0; i<fOutputDimensionSize[d]; i++)
                             {
                                 index[d] = i;
-                                data_location = MHO_NDArrayMath::OffsetFromRowMajorIndex<RANK>(fOutputDimensionSize, index);
+                                data_location = MHO_NDArrayMath::OffsetFromRowMajorIndex<XArgType::rank::value>(fOutputDimensionSize, index);
                                 (*(fWorkspaceWrapper[d]))[i] = (*(out))[data_location];
                             }
 
@@ -368,12 +371,12 @@ class MHO_MultidimensionalPaddedFastFourierTransform:
                             for(std::size_t i=0; i<fOutputDimensionSize[d]; i++)
                             {
                                 index[d] = i;
-                                data_location = MHO_NDArrayMath::OffsetFromRowMajorIndex<RANK>(fOutputDimensionSize, index);
+                                data_location = MHO_NDArrayMath::OffsetFromRowMajorIndex<XArgType::rank::value>(fOutputDimensionSize, index);
                                 (*(out))[data_location] = (*(fWorkspaceWrapper[d]))[i];
                             }
 
                             // //normalize the output array
-                            // XFloatType norm = 1.0/total_input_size;
+                            // floating_point_value_type norm = 1.0/total_input_size;
                             // for(std::size_t i=0; i<total_size; i++){ (*(out))[i] *= norm;}
                         }
                     }
@@ -391,11 +394,11 @@ class MHO_MultidimensionalPaddedFastFourierTransform:
 
     private:
 
-        void ConditionallyResizeOutput(const std::array<std::size_t, RANK>& dims, XArrayType* out)
+        void ConditionallyResizeOutput(const std::array<std::size_t, XArgType::rank::value>& dims, XArgType* out)
         {
             auto out_dim = out->GetDimensionArray();
             bool have_to_resize = false;
-            for(std::size_t i=0; i<RANK; i++)
+            for(std::size_t i=0; i<XArgType::rank::value; i++)
             {
                 if(fAxesToXForm[i])
                 {
@@ -419,14 +422,14 @@ class MHO_MultidimensionalPaddedFastFourierTransform:
 
         virtual void AllocateWorkspace()
         {
-            for(std::size_t i=0; i<RANK; i++)
+            for(std::size_t i=0; i<XArgType::rank::value; i++)
             {
-                fWorkspaceWrapper[i] = new MHO_NDArrayWrapper< std::complex<XFloatType>, 1 >(fOutputDimensionSize[i]);
+                fWorkspaceWrapper[i] = new MHO_NDArrayWrapper< complex_value_type, 1 >(fOutputDimensionSize[i]);
 
                 #ifdef HOPS_USE_FFTW3
-                        fTransformCalculator[i] = new MHO_MultidimensionalFastFourierTransformFFTW<XFloatType,1>();
+                        fTransformCalculator[i] = new MHO_MultidimensionalFastFourierTransformFFTW<floating_point_value_type,1>();
                 #else
-                        fTransformCalculator[i] = new MHO_FastFourierTransform<XFloatType>();
+                        fTransformCalculator[i] = new MHO_FastFourierTransform<floating_point_value_type>();
                 #endif
 
                 fTransformCalculator[i]->SetArgs(fWorkspaceWrapper[i]);
@@ -436,7 +439,7 @@ class MHO_MultidimensionalPaddedFastFourierTransform:
 
         virtual void DealocateWorkspace()
         {
-            for(std::size_t i=0; i<RANK; i++)
+            for(std::size_t i=0; i<XArgType::rank::value; i++)
             {
                 delete fWorkspaceWrapper[i]; fWorkspaceWrapper[i] = NULL;
                 delete fTransformCalculator[i]; fTransformCalculator[i] = NULL;
@@ -450,18 +453,18 @@ class MHO_MultidimensionalPaddedFastFourierTransform:
         bool fInitialized;
 
         std::size_t fPaddingFactor;
-        std::size_t fInputDimensionSize[RANK];
-        std::size_t fOutputDimensionSize[RANK];
-        bool fAxesToXForm[RANK];
+        std::size_t fInputDimensionSize[XArgType::rank::value];
+        std::size_t fOutputDimensionSize[XArgType::rank::value];
+        bool fAxesToXForm[XArgType::rank::value];
 
         #ifdef HOPS_USE_FFTW3
-            MHO_MultidimensionalFastFourierTransformFFTW<XFloatType,1>* fTransformCalculator[RANK];
+            MHO_MultidimensionalFastFourierTransformFFTW<floating_point_value_type,1>* fTransformCalculator[XArgType::rank::value];
         #else
-            MHO_FastFourierTransform<XFloatType>* fTransformCalculator[RANK];
+            MHO_FastFourierTransform<floating_point_value_type>* fTransformCalculator[XArgType::rank::value];
         #endif
-        MHO_NDArrayWrapper<std::complex<XFloatType>, 1>* fWorkspaceWrapper[RANK];
+        MHO_NDArrayWrapper<complex_value_type, 1>* fWorkspaceWrapper[XArgType::rank::value];
 
-        MHO_NDArrayWrapper<std::complex<XFloatType>, RANK> fTmpWorkspace;
+        XArgType fTmpWorkspace;
 
 
 
