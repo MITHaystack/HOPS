@@ -427,7 +427,7 @@ class MHO_MultidimensionalPaddedFastFourierTransform:
                 fWorkspaceWrapper[i] = new MHO_NDArrayWrapper< complex_value_type, 1 >(fOutputDimensionSize[i]);
 
                 #ifdef HOPS_USE_FFTW3
-                        fTransformCalculator[i] = new MHO_MultidimensionalFastFourierTransformFFTW<floating_point_value_type,1>();
+                        fTransformCalculator[i] = new MHO_MultidimensionalFastFourierTransformFFTW< MHO_NDArrayWrapper< complex_value_type, 1 > >();
                 #else
                         fTransformCalculator[i] = new MHO_FastFourierTransform<floating_point_value_type>();
                 #endif
@@ -458,7 +458,7 @@ class MHO_MultidimensionalPaddedFastFourierTransform:
         bool fAxesToXForm[XArgType::rank::value];
 
         #ifdef HOPS_USE_FFTW3
-            MHO_MultidimensionalFastFourierTransformFFTW<floating_point_value_type,1>* fTransformCalculator[XArgType::rank::value];
+            MHO_MultidimensionalFastFourierTransformFFTW< MHO_NDArrayWrapper< complex_value_type, 1 > >* fTransformCalculator[XArgType::rank::value];
         #else
             MHO_FastFourierTransform<floating_point_value_type>* fTransformCalculator[XArgType::rank::value];
         #endif
