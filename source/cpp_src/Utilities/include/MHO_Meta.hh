@@ -12,6 +12,7 @@
 
 #include <type_traits>
 #include <tuple>
+#include <complex>
 
 namespace hops
 {
@@ -242,8 +243,22 @@ apply_at2(XTupleType& tup1, XTupleType2& tup2, size_t index, XFunctorType& funct
 
 
 ////////////////////////////////////////////////////////////////////////////////
+//check struct for complex floating point types 
+
+template <typename XValueType>
+struct is_complex: std::false_type {};
+
+template <>
+struct is_complex< std::complex<float> >: std::true_type {};
+
+template <>
+struct is_complex< std::complex<double> >: std::true_type {};
+
+template <>
+struct is_complex< std::complex<long double> >: std::true_type {};
 
 
+////////////////////////////////////////////////////////////////////////////////
 
 }//end of namespace
 
