@@ -57,7 +57,7 @@ class MHO_RootGraphManager
         }
 
         template< typename XTableType, typename XAxisType >
-        TGraph* GenerateComplexGraph1D(const XTableType& table, const XAxisType& x_axis, bool plot_mode=0 )
+        TGraph* GenerateComplexGraph1D(const XTableType& table, const XAxisType& x_axis, int plot_mode )
         {
             //assert that this is a 1d table 
             HOPS_ASSERT_EQUAL( table.GetRank(), 1 );
@@ -70,7 +70,7 @@ class MHO_RootGraphManager
             //now fill the graph
             for(std::size_t i=0; i<nxbins; i++)
             {
-                double value; 
+                double value = 0;
                 if(plot_mode == 0) //plot real part
                 {
                     value = std::real( table(i) );
