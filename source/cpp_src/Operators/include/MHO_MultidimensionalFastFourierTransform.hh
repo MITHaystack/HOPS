@@ -275,19 +275,14 @@ class MHO_MultidimensionalFastFourierTransform:
                 {
                     //this is under the expectation that all axis labels are equi-spaced 
                     //this should be a safe assumption since we are doing DFT anyway
+                    //one issue here is that we are not taking into account units (e.g. nanosec or MHz)
                     std::size_t N = axis1.GetSize();
                     double length = N;
-                    std::cout<<"N = "<<N<<std::endl;
                     if(N > 1)
                     {
                         double delta = axis1(1) - axis1(0);
                         double spacing = (1.0/delta)*(1.0/length);
                         double start = -1*length/2;
-
-                        std::cout<<"delta = "<<delta<<std::endl;
-                        std::cout<<"spacing = "<<spacing<<std::endl;
-                        std::cout<<"start = "<<start<<std::endl;
-
                         for(std::size_t i=0; i<N; i++)
                         {
                             double x = i;
