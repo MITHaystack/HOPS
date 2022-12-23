@@ -44,7 +44,7 @@ using data_type = MHO_TableContainer< elem_type, ax_pack >;
 
 int main(int argc, char** argv)
 {
-    std::size_t n_samples = 1000;
+    std::size_t n_samples = 1001;
     double sample_freq = 1e6;
 
     double mean = 0.0;
@@ -56,11 +56,21 @@ int main(int argc, char** argv)
     aNoiseSignal.Initialize();
 
     double tone_freq = 25000.0;
+    double tone_freq2 = 3000.0;
+    double tone_freq3 = 400000.0;
     double phase_offset = 0.0;
 
     MHO_SingleToneSignal aToneSignal;
     aToneSignal.SetToneFrequency(tone_freq);
     aToneSignal.SetPhaseOffset(phase_offset);
+
+    MHO_SingleToneSignal aToneSignal2;
+    aToneSignal2.SetToneFrequency(tone_freq2);
+    aToneSignal2.SetPhaseOffset(phase_offset);
+
+    MHO_SingleToneSignal aToneSignal3;
+    aToneSignal3.SetToneFrequency(tone_freq3);
+    aToneSignal3.SetPhaseOffset(phase_offset);
 
     data_type noise_samples; noise_samples.Resize(n_samples);
     data_type tone_samples; tone_samples.Resize(n_samples);
@@ -79,7 +89,13 @@ int main(int argc, char** argv)
         noise_samples(i) = value;
         std::get<0>(noise_samples)(i) = time;
         aToneSignal.GetSample(time, value);
-        tone_samples(i) = 8*value;
+        //tone_samples(i) = 4*value;
+        tone_samples(i) = 8.0*std::complex<double>(std::cos(2.0*M_PI*tone_freq*time),
+                                               std::sin(2.0*M_PI*tone_freq*time) );
+        aToneSignal2.GetSample(time, value);
+        tone_samples(i) += 4*value;
+        aToneSignal3.GetSample(time, value);
+        tone_samples(i) += 16*value;
         std::get<0>(tone_samples)(i) = time;
         sum_samples(i) = noise_samples(i) + tone_samples(i);
         std::get<0>(sum_samples)(i) = time;
