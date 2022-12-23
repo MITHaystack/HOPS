@@ -16,6 +16,8 @@
     #include "MHO_FastFourierTransform.hh"
 #endif
 
+#include "MHO_TableContainer.hh"
+
 namespace hops
 {
 
@@ -380,6 +382,8 @@ class MHO_MultidimensionalPaddedFastFourierTransform:
                             // for(std::size_t i=0; i<total_size; i++){ (*(out))[i] *= norm;}
                         }
                     }
+
+                    IfTableTransformAxis(in, out, d);
                 }
                 //successful
                 return true;
@@ -393,6 +397,54 @@ class MHO_MultidimensionalPaddedFastFourierTransform:
         }
 
     private:
+
+
+        //default...does nothing
+        template< typename XCheckType = XArgType >
+        typename std::enable_if< !std::is_base_of<MHO_TableContainerBase, XCheckType>::value, void >::type
+        IfTableTransformAxis(const XArgType* /*in*/, XArgType* out, std::size_t /*axis_index*/){};
+
+        //use SFINAE to generate specialization for MHO_TableContainer types
+        template< typename XCheckType = XArgType >
+        typename std::enable_if< std::is_base_of<MHO_TableContainerBase, XCheckType>::value, void >::type
+        IfTableTransformAxis(const XArgType* in, XArgType* out, std::size_t axis_index)
+        {
+            TransformAxis axis_xformer;
+            apply_at2< typename XArgType::axis_pack_tuple_type, TransformAxis >( *in, *out, axis_index, axis_xformer);
+        }
+
+
+        class TransformAxis
+        {
+            public:
+                TransformAxis(){};
+                ~TransformAxis(){};
+
+                template< typename XAxisType >
+                void operator()(const XAxisType& /*axis1*/, XAxisType& /*axis2*/){};
+
+                void operator()(const MHO_Axis<double>& axis1, MHO_Axis<double>& axis2)
+                {
+                    //this is under the expectation that all axis labels are equi-spaced 
+                    //this should be a safe assumption since we are doing DFT anyway
+                    //one issue here is that we are not taking into account units (e.g. nanosec or MHz)
+                    std::size_t N = axis2.GetSize();
+                    double length = N;
+                    if(N > 1)
+                    {
+                        double delta = axis1.at(1) - axis1.at(0);
+                        double spacing = (1.0/delta)*(1.0/length);
+                        double start = -1*length/2;
+                        for(std::size_t i=0; i<N; i++)
+                        {
+                            double x = i;
+                            double value = (i+start)*spacing;
+                            axis2(i) = value;
+                        }
+                    }
+                }
+        };
+
 
         void ConditionallyResizeOutput(const std::array<std::size_t, XArgType::rank::value>& dims, XArgType* out)
         {

@@ -292,9 +292,6 @@ class MHO_MultidimensionalFastFourierTransform:
                     }
                 }
 
-            private:
-                std::vector< std::size_t > fSelection;
-
         };
 
 
