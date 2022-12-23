@@ -334,7 +334,7 @@ int main(int argc, char** argv)
     auto ch_slice = sbd_data->SliceView(0,0,0,":");
 
     MHO_RootGraphManager gMan;
-    auto gr = gMan.GenerateComplexGraph1D(ch_slice, std::get<CH_FREQ_AXIS>(*sbd_data), 2 );
+    auto gr = gMan.GenerateComplexGraph1D(ch_slice, std::get<CH_FREQ_AXIS>(*sbd_data), 4 );
 
     c->cd(1);
     gr->Draw("APL");

@@ -89,9 +89,7 @@ int main(int argc, char** argv)
         noise_samples(i) = value;
         std::get<0>(noise_samples)(i) = time;
         aToneSignal.GetSample(time, value);
-        //tone_samples(i) = 4*value;
-        tone_samples(i) = 8.0*std::complex<double>(std::cos(2.0*M_PI*tone_freq*time),
-                                               std::sin(2.0*M_PI*tone_freq*time) );
+        tone_samples(i) = 8*value;
         aToneSignal2.GetSample(time, value);
         tone_samples(i) += 4*value;
         aToneSignal3.GetSample(time, value);
