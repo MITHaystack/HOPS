@@ -329,16 +329,22 @@ int main(int argc, char** argv)
     TApplication* App = new TApplication("test",&dummy_argc,dummy_argv);
 
     MHO_RootCanvasManager cMan;
-    auto c = cMan.CreateCanvas(std::string("test"), 800, 800);
-
-    auto ch_slice = sbd_data->SliceView(0,0,0,":");
-
     MHO_RootGraphManager gMan;
-    auto gr = gMan.GenerateComplexGraph1D(ch_slice, std::get<CH_FREQ_AXIS>(*sbd_data), 4 );
 
-    c->cd(1);
-    gr->Draw("APL");
-    c->Update();
+    for(std::size_t ch=0; ch<32; ch++)
+    {
+        std::stringstream ss;
+        ss << "channel_test";
+        ss << ch;
+
+        auto c = cMan.CreateCanvas(ss.str().c_str(), 800, 800);
+        auto ch_slice = sbd_data->SliceView(0,ch,0,":");
+        auto gr = gMan.GenerateComplexGraph1D(ch_slice, std::get<CH_FREQ_AXIS>(*sbd_data), 4 );
+
+        c->cd(1);
+        gr->Draw("APL");
+        c->Update();
+    }
     App->Run();
 
     #endif
