@@ -425,7 +425,7 @@ class MHO_MultidimensionalPaddedFastFourierTransform:
 
                 void operator()(const MHO_Axis<double>& axis1, MHO_Axis<double>& axis2)
                 {
-                    //this is under the expectation that all axis labels are equi-spaced 
+                    //this is under the expectation that all axis labels are equi-spaced
                     //this should be a safe assumption since we are doing DFT anyway
                     //one issue here is that we are not taking into account units (e.g. nanosec or MHz)
                     std::size_t N = axis2.GetSize();
@@ -443,6 +443,29 @@ class MHO_MultidimensionalPaddedFastFourierTransform:
                         }
                     }
                 }
+
+                //overload for doubles
+                void operator()(const MHO_Axis<float>& axis1, MHO_Axis<float>& axis2)
+                {
+                    //this is under the expectation that all axis labels are equi-spaced
+                    //this should be a safe assumption since we are doing DFT anyway
+                    //one issue here is that we are not taking into account units (e.g. nanosec or MHz)
+                    std::size_t N = axis2.GetSize();
+                    float length = N;
+                    if(N > 1)
+                    {
+                        float delta = axis1.at(1) - axis1.at(0);
+                        float spacing = (1.0/delta)*(1.0/length);
+                        float start = -1*length/2;
+                        for(std::size_t i=0; i<N; i++)
+                        {
+                            float x = i;
+                            float value = (i+start)*spacing;
+                            axis2(i) = value;
+                        }
+                    }
+                }
+
         };
 
 
