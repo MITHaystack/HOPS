@@ -153,8 +153,6 @@ class MHO_SubSample:
         }
 
 
-
-
     private:
 
         std::array<std::size_t, XArrayType::rank::value> DetermineOutputDimensions(const XArrayType* in)
@@ -185,14 +183,12 @@ class MHO_SubSample:
         typename std::enable_if< std::is_base_of<MHO_TableContainerBase, XCheckType>::value, void >::type
         IfTableSubSampleAxis(const XArrayType* in, XArrayType* out)
         {
-
-            for(size_t i = 0; i < XArrayType::rank::value; i++)
+            for(size_t i = 0; i < XArrayType::rank::value; i++) //apply to all axes
             {
                 std::size_t stride = 1; //non-sub-sampled axis are just copied directly (stride of 1)
                 if(i == fDimIndex){stride = fStride;}
-                std::cout<<"SUBSAMPLE ax "<<i<<std::endl;
                 SubSampleAxis axis_sub_sampler(stride);
-                apply_at2< typename XArrayType::axis_pack_tuple_type, SubSampleAxis >( *in, *out, fDimIndex, axis_sub_sampler);
+                apply_at2< typename XArrayType::axis_pack_tuple_type, SubSampleAxis >( *in, *out, i, axis_sub_sampler);
             }
             out->CopyTags(*in); //make sure the table tags get copied
         }
@@ -209,17 +205,23 @@ class MHO_SubSample:
                 template< typename XAxisType >
                 void operator()(const XAxisType& axis1, XAxisType& axis2)
                 {
-                    axis2.CopyTags(axis1); //copy the axis tags
-                    //at this point axis2 should already be re-sized appropriately
-                    auto it1 = axis1.cstride_begin(fStride);
-                    auto end1 = axis1.cstride_end(fStride);
-                    auto it2 = axis2.begin();
-                    auto end2 = axis2.end();
-                    while(it1 != end1 && it2 != end2)
+                    if(fStride == 1)
                     {
-                        *it2++ = *it1++;
+                        axis2.Copy(axis1);
                     }
-                    std::cout<<"ax2 @ 1 = "<<axis2(1)<<std::endl;
+                    else 
+                    {
+                        axis2.CopyTags(axis1); //copy the axis tags
+                        //at this point axis2 should already be re-sized appropriately
+                        auto it1 = axis1.cstride_begin(fStride);
+                        auto end1 = axis1.cstride_end(fStride);
+                        auto it2 = axis2.begin();
+                        auto end2 = axis2.end();
+                        while(it1 != end1 && it2 != end2)
+                        {
+                            *it2++ = *it1++;
+                        }
+                    }
                 }
 
             private:

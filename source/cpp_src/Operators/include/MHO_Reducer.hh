@@ -169,7 +169,6 @@ class MHO_Reducer: public MHO_UnaryOperator<XArrayType>
                 template< typename XAxisType >
                 void operator()(const XAxisType& axis1, XAxisType& axis2)
                 {
-                    axis2.CopyTags(axis1);//copy the axis tags
                     if(fReduce)
                     {
                         //all we do is set the axis label to the start value of the
@@ -178,14 +177,12 @@ class MHO_Reducer: public MHO_UnaryOperator<XArrayType>
                         auto it1 = axis1.cbegin();
                         auto it2 = axis2.begin();
                         *it2 = *it1;
+                        axis2.CopyTags(axis1);//copy the axis tags
                     }
                     else 
                     {
-                        //copy the axis values
-                        for(std::size_t i=0; i<axis1.GetSize();i++)
-                        {
-                            axis2(i) = axis1(i);
-                        }
+                        //copy the axis
+                        axis2.Copy(axis1);
                     }
                 }
             

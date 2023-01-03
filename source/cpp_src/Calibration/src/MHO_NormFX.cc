@@ -81,6 +81,9 @@ MHO_NormFX::InitializeImpl(const XArgType1* in1, const XArgType2* in2, XArgType3
         status = fSubSampler.Initialize();
         if(!status){msg_error("operators", "Could not initialize sub-sampler in MHO_NormFX." << eom); return false;}
 
+
+
+
         fCyclicRotator.SetOffset(CH_FREQ_AXIS, 2*nlags);
         fCyclicRotator.SetArgs(out);
         status = fCyclicRotator.Initialize();
@@ -151,11 +154,20 @@ MHO_NormFX::ExecuteImpl(const XArgType1* in1, const XArgType2* in2, XArgType3* o
         status = fPaddedFFTEngine.Execute();
         if(!status){msg_error("operators", "Could not execute paddded FFT in MHO_NormFX." << eom); return false;}
 
+        // auto ax2 = &(std::get<CH_TIME_AXIS>(fWorkspace));
+        // std::cout<<"workspace ax2(1) = "<<(*ax2)(1)<<std::endl;
+
         status = fSubSampler.Execute();
         if(!status){msg_error("operators", "Could not execute sub-sampler in MHO_NormFX." << eom); return false;}
 
+        // auto ax2b = &(std::get<CH_TIME_AXIS>(*out));
+        // std::cout<<"workspace ax2b(1) = "<<(*ax2b)(1)<<std::endl;
+
         status = fCyclicRotator.Execute();
         if(!status){msg_error("operators", "Could not execute cyclic-rotation MHO_NormFX." << eom); return false;}
+
+        // auto ax2c = &(std::get<CH_TIME_AXIS>(*out));
+        // std::cout<<"workspace ax2c(1) = "<<(*ax2c)(1)<<std::endl;
 
     #endif
 

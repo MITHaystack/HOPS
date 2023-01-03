@@ -189,7 +189,7 @@ class MHO_SelectRepack:
         typename std::enable_if< std::is_base_of<MHO_TableContainerBase, XCheckType>::value, void >::type
         IfTableSelectOnAxes(const XArgType* in, XArgType* out)
         {
-            for(std::size_t a=0; a<XArgType::rank::value; a++)
+            for(std::size_t a=0; a<XArgType::rank::value; a++) //apply to all axes
             {
                 SelectOnAxis axis_sub_sampler( fAxisSelectionMap[a] );
                 apply_at2< typename XArgType::axis_pack_tuple_type, SelectOnAxis >( *in, *out, a, axis_sub_sampler);
@@ -209,7 +209,6 @@ class MHO_SelectRepack:
                 template< typename XAxisType >
                 void operator()(const XAxisType& axis1, XAxisType& axis2)
                 {
-                    axis2.CopyTags(axis1); //copy the axis tags
                     if( fSelection.size() != 0 )
                     {
                         //it doesn't make sense to copy the interval labels 
@@ -218,13 +217,11 @@ class MHO_SelectRepack:
                         {
                             axis2(i) = axis1( fSelection[i] );
                         }
+                        axis2.CopyTags(axis1); //copy the axis tags
                     }
                     else 
                     {
-                        for(std::size_t i=0; i<axis1.GetSize();i++)
-                        {
-                            axis2(i) = axis1(i);
-                        }
+                        axis2.Copy(axis1); //no selection done on this axis, just copy
                     }
                 }
 
