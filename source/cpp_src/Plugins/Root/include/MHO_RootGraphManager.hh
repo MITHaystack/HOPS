@@ -125,6 +125,61 @@ class MHO_RootGraphManager
             return h;
         }
 
+
+        template< typename XTableType, typename XAxisType, typename YAxisType >
+        TGraph2D* GenerateComplexGraph2D(const XTableType& table, const XAxisType& x_axis, const YAxisType& y_axis, int plot_mode)
+        {
+            HOPS_ASSERT_EQUAL( table.GetRank(), 2 ); 
+
+            std::size_t nxbins = table.GetDimension(0);
+            std::size_t nybins = table.GetDimension(1);
+
+            TGraph2D* h = new TGraph2D();
+
+            //now fill the graph
+            std::size_t count = 0;
+            for(std::size_t i=0; i<nxbins; i++)
+            {
+                for(std::size_t j=0; j<nybins; j++)
+                {
+                    //now fill the graph
+                    double value = 0;
+                    if(plot_mode == 0) //plot real part
+                    {
+                        value = std::real( table(i,j) );
+                    }
+                    else if(plot_mode == 1) //plot imaginary part
+                    {
+                        value = std::imag( table(i,j) );
+                    }
+                    else if(plot_mode == 2) //plot absolute value
+                    {
+                        value = std::abs( table(i,j) );
+                    }
+                    else if(plot_mode == 3) //plot phase
+                    {
+                        value = std::arg( table(i,j) );
+                    }
+                    else //plot magnitude squared
+                    {
+                        value = std::real( table(i,j)*std::conj(table(i,j) ) );
+                    }
+                    std::cout<<"point: "<<i<<", "<<j<<", y = "<<y_axis(j)<<" val = "<<value<<std::endl; 
+                    // h->SetPoint(count, x_axis(i), y_axis(j), value );
+                    h->SetPoint(count, i, y_axis(j), value );
+                    //h->SetPoint(count, i, j, value );
+                    count++;
+                }
+            }
+
+            h->SetNpx(64);
+            h->SetNpy(64);
+
+            f2DGraph.push_back(h);
+            return h;
+        }
+
+
     private:
 
         std::vector<TGraph*> f1DGraph;
