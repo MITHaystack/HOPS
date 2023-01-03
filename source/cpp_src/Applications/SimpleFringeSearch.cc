@@ -286,7 +286,6 @@ int main(int argc, char** argv)
         std::cout<<"vis size in dim: "<<i<<" = "<<bl_dim[i]<<std::endl;
     }
     
-    
     //output for the delay 
     ch_visibility_type* sbd_data = bl_data->CloneEmpty();
     bl_dim[CH_FREQ_AXIS] *= 4; //normfx implementation demands this
@@ -298,6 +297,39 @@ int main(int argc, char** argv)
     nfxOp.Initialize();
     nfxOp.Execute();
 
+
+    // auto ax = &(std::get<CH_TIME_AXIS>(*sbd_data));
+    // for(std::size_t i=0; i< ax->GetSize(); i++)
+    // {
+    //     (*ax)(i) = i;
+    // }
+    // std::cout<<(*ax)(0)<<", "<<(*ax)(1)<<std::endl;
+    // 
+    // 
+    // auto ax2 = &(std::get<CH_TIME_AXIS>(*sbd_data));
+    // for(std::size_t i=0; i< ax2->GetSize(); i++)
+    // {
+    //     std::cout<< (*ax2)(i) << std::endl;
+    // }
+
+    //xform in the time (AP) axis
+    MHO_MultidimensionalFastFourierTransform< ch_visibility_type > fFFTEngine;
+    MHO_CyclicRotator<ch_visibility_type> fCyclicRotator;
+
+
+    bool status;
+    fFFTEngine.SetArgs(sbd_data);
+    fFFTEngine.DeselectAllAxes();
+    fFFTEngine.SelectAxis(CH_TIME_AXIS);
+    fFFTEngine.SetForward();
+    status = fFFTEngine.Initialize();
+
+    fCyclicRotator.SetOffset(CH_TIME_AXIS, bl_dim[CH_TIME_AXIS]/2);
+    fCyclicRotator.SetArgs(sbd_data);
+    status = fCyclicRotator.Initialize();
+
+    fFFTEngine.Execute();
+    fCyclicRotator.Execute();
 
     // MHO_Reducer<ch_visibility_type, MHO_CompoundSum>* reducer = new MHO_Reducer<ch_visibility_type, MHO_CompoundSum>();
     // reducer->SetArgs(sbd_data);
@@ -321,6 +353,37 @@ int main(int argc, char** argv)
 
     //ROOT stuff for plots
 
+    // int dummy_argc = 0;
+    // char tmp = '\0';
+    // char* argv_placeholder = &tmp;
+    // char** dummy_argv = &argv_placeholder;
+    // 
+    // TApplication* App = new TApplication("test",&dummy_argc,dummy_argv);
+    // 
+    // MHO_RootCanvasManager cMan;
+    // MHO_RootGraphManager gMan;
+    // 
+    // for(std::size_t ch=0; ch<32; ch++)
+    // {
+    //     std::stringstream ss;
+    //     ss << "channel_test";
+    //     ss << ch;
+    // 
+    //     auto c = cMan.CreateCanvas(ss.str().c_str(), 800, 800);
+    //     auto ch_slice = sbd_data->SliceView(0,ch,0,":");
+    //     auto gr = gMan.GenerateComplexGraph1D(ch_slice, std::get<CH_FREQ_AXIS>(*sbd_data), 4 );
+    // 
+    //     c->cd(1);
+    //     gr->Draw("APL");
+    //     c->Update();
+    // }
+    // App->Run();
+
+
+    std::cout<<"starting root plotting"<<std::endl;
+
+    //ROOT stuff for plots
+
     int dummy_argc = 0;
     char tmp = '\0';
     char* argv_placeholder = &tmp;
@@ -331,21 +394,25 @@ int main(int argc, char** argv)
     MHO_RootCanvasManager cMan;
     MHO_RootGraphManager gMan;
 
-    for(std::size_t ch=0; ch<32; ch++)
+    for(std::size_t ch=0; ch<1; ch++)
     {
         std::stringstream ss;
         ss << "channel_test";
         ss << ch;
 
-        auto c = cMan.CreateCanvas(ss.str().c_str(), 800, 800);
-        auto ch_slice = sbd_data->SliceView(0,ch,0,":");
-        auto gr = gMan.GenerateComplexGraph1D(ch_slice, std::get<CH_FREQ_AXIS>(*sbd_data), 4 );
+        std::cout<<ss.str()<<std::endl;
 
+        auto c = cMan.CreateCanvas(ss.str().c_str(), 800, 800);
+        auto ch_slice = sbd_data->SliceView(0,ch,":",":");
+        auto gr = gMan.GenerateComplexGraph2D(ch_slice, std::get<CH_TIME_AXIS>(*sbd_data),  std::get<CH_FREQ_AXIS>(*sbd_data), 4 );
+
+        std::cout<<"plotting"<<std::endl;
         c->cd(1);
-        gr->Draw("APL");
+        gr->Draw("COLZ");
         c->Update();
     }
     App->Run();
+
 
     #endif
 

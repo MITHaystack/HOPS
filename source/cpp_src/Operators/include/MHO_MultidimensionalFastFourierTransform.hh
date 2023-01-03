@@ -122,6 +122,7 @@ class MHO_MultidimensionalFastFourierTransform:
 
         virtual bool ExecuteInPlace(XArgType* in) override
         {
+            std::cout<<"executing in place"<<std::endl;
             if(fIsValid && fInitialized)
             {
                 size_t total_size = 1;
@@ -258,6 +259,7 @@ class MHO_MultidimensionalFastFourierTransform:
             if(fAxesToXForm[axis_index]) //only xform axis if this dimension was transformed
             {
                 TransformAxis axis_xformer;
+                std::cout<<"applying axis xformer on dim "<<axis_index<<std::endl;
                 apply_at< typename XArgType::axis_pack_tuple_type, TransformAxis >( *in, axis_index, axis_xformer);
             }
         }
@@ -284,10 +286,13 @@ class MHO_MultidimensionalFastFourierTransform:
                     if(N > 1)
                     {
                         double delta = axis1(1) - axis1(0);
+                        std::cout<<"delta = "<<delta<<std::endl;
+                        std::cout<<"N = "<<N<<std::endl;
                         double spacing = (1.0/delta)*(1.0/length);
                         double start = -1*length/2;
                         for(std::size_t i=0; i<N; i++)
                         {
+                            std::cout<<"axis @ "<<i <<" = "<< axis1(i)<<std::endl;
                             double x = i;
                             double value = (i+start)*spacing;
                             axis1(i) = value;
