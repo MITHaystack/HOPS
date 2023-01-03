@@ -409,12 +409,14 @@ class MHO_MultidimensionalPaddedFastFourierTransform:
             if(fAxesToXForm[axis_index])
             {
                 TransformAxis axis_xformer;
+                std::cout<<"XFORMING THE "<<axis_index<<" axis"<<std::endl;
                 apply_at2< typename XArgType::axis_pack_tuple_type, TransformAxis >( *in, *out, axis_index, axis_xformer);
             }
             else 
             {
                 //no x-form on this axis, just copy the axis values 
                 CopyAxis axis_copier;
+                std::cout<<"COPYING THE "<<axis_index<<" axis"<<std::endl;
                 apply_at2< typename XArgType::axis_pack_tuple_type, CopyAxis >( *in, *out, axis_index, axis_copier);
             }
         }
@@ -422,7 +424,12 @@ class MHO_MultidimensionalPaddedFastFourierTransform:
         struct CopyAxis
         {
             template< typename XAxisType >
-            void operator()(const XAxisType& axis1, XAxisType& axis2){axis2.Copy(axis1);}
+            void operator()(const XAxisType& axis1, XAxisType& axis2)
+            {
+                axis2.Copy(axis1);
+                std::cout<<"axis2 @ 1  = "<<axis2(1)<<std::endl;
+            }
+
         };
     
 

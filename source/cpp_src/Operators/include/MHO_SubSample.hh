@@ -185,8 +185,15 @@ class MHO_SubSample:
         typename std::enable_if< std::is_base_of<MHO_TableContainerBase, XCheckType>::value, void >::type
         IfTableSubSampleAxis(const XArrayType* in, XArrayType* out)
         {
-            SubSampleAxis axis_sub_sampler(fStride);
-            apply_at2< typename XArrayType::axis_pack_tuple_type, SubSampleAxis >( *in, *out, fDimIndex, axis_sub_sampler);
+
+            for(size_t i = 0; i < XArrayType::rank::value; i++)
+            {
+                std::size_t stride = 1; //non-sub-sampled axis are just copied directly (stride of 1)
+                if(i == fDimIndex){stride = fStride;}
+                std::cout<<"SUBSAMPLE ax "<<i<<std::endl;
+                SubSampleAxis axis_sub_sampler(stride);
+                apply_at2< typename XArrayType::axis_pack_tuple_type, SubSampleAxis >( *in, *out, fDimIndex, axis_sub_sampler);
+            }
             out->CopyTags(*in); //make sure the table tags get copied
         }
 
@@ -212,6 +219,7 @@ class MHO_SubSample:
                     {
                         *it2++ = *it1++;
                     }
+                    std::cout<<"ax2 @ 1 = "<<axis2(1)<<std::endl;
                 }
 
             private:
