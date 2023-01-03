@@ -195,9 +195,9 @@ class MHO_MultidimensionalFastFourierTransform:
                                 (*(in))[data_location] = (*(fWorkspaceWrapper[d]))[i];
                             }
                         }
-
-                        IfTableTransformAxis(in,d);
                     }
+
+                    IfTableTransformAxis(in,d);
                 }
                 //successful
                 return true;
@@ -216,12 +216,8 @@ class MHO_MultidimensionalFastFourierTransform:
             //if input and output point to the same array, don't bother copying data over
             if(in != out)
             {
-                std::memcpy( (void*) out->GetData(),
-                             (void*) in->GetData(),
-                             (in->GetSize() )*sizeof(complex_value_type) );
+                out->Copy(*in);
             }
-
-            // TODO FIXME FOR TABLE CONTAINERS
 
             return ExecuteInPlace(out);
         }
@@ -259,8 +255,11 @@ class MHO_MultidimensionalFastFourierTransform:
         typename std::enable_if< std::is_base_of<MHO_TableContainerBase, XCheckType>::value, void >::type
         IfTableTransformAxis(XArgType* in, std::size_t axis_index)
         {
-            TransformAxis axis_xformer;
-            apply_at< typename XArgType::axis_pack_tuple_type, TransformAxis >( *in, axis_index, axis_xformer);
+            if(fAxesToXForm[axis_index]) //only xform axis if this dimension was transformed
+            {
+                TransformAxis axis_xformer;
+                apply_at< typename XArgType::axis_pack_tuple_type, TransformAxis >( *in, axis_index, axis_xformer);
+            }
         }
 
 
@@ -270,8 +269,12 @@ class MHO_MultidimensionalFastFourierTransform:
                 TransformAxis(){};
                 ~TransformAxis(){};
 
+                //generic axis, do nothing
                 template< typename XAxisType >
-                void operator()(XAxisType& axis1)
+                void operator()(XAxisType& /*axis1*/){};
+
+                //overload for doubles
+                void operator()(MHO_Axis<double>& axis1)
                 {
                     //this is under the expectation that all axis labels are equi-spaced 
                     //this should be a safe assumption since we are doing DFT anyway
@@ -287,6 +290,28 @@ class MHO_MultidimensionalFastFourierTransform:
                         {
                             double x = i;
                             double value = (i+start)*spacing;
+                            axis1(i) = value;
+                        }
+                    }
+                }
+
+                //overload for floats
+                void operator()(MHO_Axis<float>& axis1)
+                {
+                    //this is under the expectation that all axis labels are equi-spaced 
+                    //this should be a safe assumption since we are doing DFT anyway
+                    //one issue here is that we are not taking into account units (e.g. nanosec or MHz)
+                    std::size_t N = axis1.GetSize();
+                    float length = N;
+                    if(N > 1)
+                    {
+                        float delta = axis1(1) - axis1(0);
+                        float spacing = (1.0/delta)*(1.0/length);
+                        float start = -1*length/2;
+                        for(std::size_t i=0; i<N; i++)
+                        {
+                            float x = i;
+                            float value = (i+start)*spacing;
                             axis1(i) = value;
                         }
                     }
