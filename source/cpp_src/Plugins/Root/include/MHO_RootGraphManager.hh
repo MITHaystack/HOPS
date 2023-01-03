@@ -182,8 +182,8 @@ class MHO_RootGraphManager
                 }
             }
 
-            h->SetNpx(64);
-            h->SetNpy(64);
+            h->SetNpx(128);
+            h->SetNpy(128);
 
             f2DGraph.push_back(h);
             return h;

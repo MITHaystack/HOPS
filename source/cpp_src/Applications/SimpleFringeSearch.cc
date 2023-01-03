@@ -297,21 +297,6 @@ int main(int argc, char** argv)
     nfxOp.Initialize();
     nfxOp.Execute();
 
-
-    // auto ax = &(std::get<CH_TIME_AXIS>(*sbd_data));
-    // for(std::size_t i=0; i< ax->GetSize(); i++)
-    // {
-    //     (*ax)(i) = i;
-    // }
-    // std::cout<<(*ax)(0)<<", "<<(*ax)(1)<<std::endl;
-    // 
-    // 
-    // auto ax2 = &(std::get<CH_TIME_AXIS>(*sbd_data));
-    // for(std::size_t i=0; i< ax2->GetSize(); i++)
-    // {
-    //     std::cout<< (*ax2)(i) << std::endl;
-    // }
-
     //xform in the time (AP) axis
     MHO_MultidimensionalFastFourierTransform< ch_visibility_type > fFFTEngine;
     MHO_CyclicRotator<ch_visibility_type> fCyclicRotator;
@@ -394,7 +379,7 @@ int main(int argc, char** argv)
     MHO_RootCanvasManager cMan;
     MHO_RootGraphManager gMan;
 
-    for(std::size_t ch=0; ch<1; ch++)
+    for(std::size_t ch=0; ch<32; ch++)
     {
         std::stringstream ss;
         ss << "channel_test";

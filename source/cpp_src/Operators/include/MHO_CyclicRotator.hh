@@ -88,7 +88,6 @@ class MHO_CyclicRotator: public MHO_UnaryOperator< XArrayType >
                         fModuloOffsets[i] = positive_modulo(fOffsets[i], fDimensionSize[i]);
                     }
                     else{fModuloOffsets[i] = 0;}
-                    IfTableRotateAxis(in, in, i);
                 }
 
                 size_t index[XArrayType::rank::value];
@@ -234,7 +233,6 @@ class MHO_CyclicRotator: public MHO_UnaryOperator< XArrayType >
                 template< typename XAxisType >
                 void operator()(const XAxisType& axis1, XAxisType& axis2)
                 {
-                    std::cout<<"WARNING CYCLIC ROT -> FIX AXIS ROTATION"<<std::endl;
                     axis2.Copy(axis1); //for now just copy the axis
                 }
 
