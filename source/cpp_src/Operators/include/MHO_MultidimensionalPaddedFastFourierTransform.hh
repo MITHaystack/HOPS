@@ -149,11 +149,9 @@ class MHO_MultidimensionalPaddedFastFourierTransform:
         {
             if(fIsValid && fInitialized)
             {
-                //floating_point_value_type total_input_size = 1.0;
                 std::size_t total_size = 1;
                 for(std::size_t i=0; i<XArgType::rank::value; i++)
                 {
-                    //total_input_size *= fInputDimensionSize[i];
                     total_size *= fOutputDimensionSize[i];
                     if(fForward)
                     {
@@ -167,7 +165,6 @@ class MHO_MultidimensionalPaddedFastFourierTransform:
 
                 //zero out the output array
                 out->ZeroArray();
-                // for(std::size_t i=0; i<total_size; i++){ (*(out))[i] = 0.0;}
 
                 //Here we copy the input data over to the output data array.
                 //The way we do this depends on if this array needs to padded symmetrically (with the zeros in the center)
@@ -377,9 +374,6 @@ class MHO_MultidimensionalPaddedFastFourierTransform:
                                 (*(out))[data_location] = (*(fWorkspaceWrapper[d]))[i];
                             }
 
-                            // //normalize the output array
-                            // floating_point_value_type norm = 1.0/total_input_size;
-                            // for(std::size_t i=0; i<total_size; i++){ (*(out))[i] *= norm;}
                         }
                     }
 
@@ -399,7 +393,7 @@ class MHO_MultidimensionalPaddedFastFourierTransform:
     private:
 
 
-        //default...does nothing
+        //default XArgType...does nothing
         template< typename XCheckType = XArgType >
         typename std::enable_if< !std::is_base_of<MHO_TableContainerBase, XCheckType>::value, void >::type
         IfTableTransformAxis(const XArgType* /*in*/, XArgType* out, std::size_t /*axis_index*/){};
@@ -409,10 +403,28 @@ class MHO_MultidimensionalPaddedFastFourierTransform:
         typename std::enable_if< std::is_base_of<MHO_TableContainerBase, XCheckType>::value, void >::type
         IfTableTransformAxis(const XArgType* in, XArgType* out, std::size_t axis_index)
         {
-            TransformAxis axis_xformer;
-            apply_at2< typename XArgType::axis_pack_tuple_type, TransformAxis >( *in, *out, axis_index, axis_xformer);
+            //make sure we copy the table tags once
+            if(axis_index == 0){out->CopyTags(*in);}
+
+            if(fAxesToXForm[axis_index])
+            {
+                TransformAxis axis_xformer;
+                apply_at2< typename XArgType::axis_pack_tuple_type, TransformAxis >( *in, *out, axis_index, axis_xformer);
+            }
+            else 
+            {
+                //no x-form on this axis, just copy the axis values 
+                CopyAxis axis_copier;
+                apply_at2< typename XArgType::axis_pack_tuple_type, CopyAxis >( *in, *out, axis_index, axis_copier);
+            }
         }
 
+        struct CopyAxis
+        {
+            template< typename XAxisType >
+            void operator()(const XAxisType& axis1, XAxisType& axis2){axis2.Copy(axis1);}
+        };
+    
 
         class TransformAxis
         {
@@ -420,9 +432,14 @@ class MHO_MultidimensionalPaddedFastFourierTransform:
                 TransformAxis(){};
                 ~TransformAxis(){};
 
+                //for generic types, just copy the axis 
                 template< typename XAxisType >
-                void operator()(const XAxisType& /*axis1*/, XAxisType& /*axis2*/){};
+                void operator()(const XAxisType& axis1, XAxisType& axis2)
+                {
+                    axis2.Copy(axis1);
+                };
 
+                //overload for doubles
                 void operator()(const MHO_Axis<double>& axis1, MHO_Axis<double>& axis2)
                 {
                     //this is under the expectation that all axis labels are equi-spaced
@@ -444,7 +461,7 @@ class MHO_MultidimensionalPaddedFastFourierTransform:
                     }
                 }
 
-                //overload for doubles
+                //overload for floats
                 void operator()(const MHO_Axis<float>& axis1, MHO_Axis<float>& axis2)
                 {
                     //this is under the expectation that all axis labels are equi-spaced
