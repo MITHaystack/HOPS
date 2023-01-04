@@ -425,7 +425,6 @@ class MHO_MultidimensionalPaddedFastFourierTransform:
             void operator()(const XAxisType& axis1, XAxisType& axis2)
             {
                 axis2.Copy(axis1);
-                std::cout<<"axis2 @ 1  = "<<axis2(1)<<std::endl;
             }
 
         };

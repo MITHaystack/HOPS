@@ -247,8 +247,6 @@ class MHO_CyclicRotator: public MHO_UnaryOperator< XArrayType >
                             j = ( (i-fOffset) % n + n) % n;
                             a = i;
                             b = j;
-
-                            std::cout<<" a = "<<a<<", b = "<<b<<std::endl;
                             axis2(a) = tmp(b);
                         }
                     }

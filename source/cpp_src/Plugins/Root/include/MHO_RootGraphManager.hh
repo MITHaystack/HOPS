@@ -140,12 +140,7 @@ class MHO_RootGraphManager
             if(nxbins != xax_size){msg_error("root_plugin ", "table dimension and x-axis size mismatch." << eom); return nullptr;}
             if(nybins != yax_size){msg_error("root_plugin ", "table dimension and y-axis size mismatch." << eom); return nullptr;}
 
-
             TGraph2D* h = new TGraph2D();
-
-            std::cout<<"nxbins = "<<nxbins<<std::endl;
-            std::cout<<"nybins = "<<nybins<<std::endl;
-
             //now fill the graph
             std::size_t count = 0;
             for(std::size_t i=0; i<nxbins; i++)
@@ -174,10 +169,7 @@ class MHO_RootGraphManager
                     {
                         value = std::real( table(i,j)*std::conj(table(i,j) ) );
                     }
-                    //std::cout<<"point: "<<i<<", "<<j<<", x = "<<x_axis(i)<<" val = "<<value<<std::endl; 
                     h->SetPoint(count, x_axis(i), y_axis(j), value );
-                    //h->SetPoint(count, i, y_axis(j), value );
-                    //h->SetPoint(count, i, j, value );
                     count++;
                 }
             }

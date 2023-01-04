@@ -385,15 +385,12 @@ int main(int argc, char** argv)
         ss << "channel_test";
         ss << ch;
 
-        std::cout<<ss.str()<<std::endl;
-
         auto c = cMan.CreateCanvas(ss.str().c_str(), 800, 800);
         auto ch_slice = sbd_data->SliceView(0,ch,":",":");
         auto gr = gMan.GenerateComplexGraph2D(ch_slice, std::get<CH_TIME_AXIS>(*sbd_data),  std::get<CH_FREQ_AXIS>(*sbd_data), 4 );
 
-        std::cout<<"plotting"<<std::endl;
         c->cd(1);
-        gr->Draw("SURFZ");
+        gr->Draw("SURF1");
         c->Update();
     }
     App->Run();
