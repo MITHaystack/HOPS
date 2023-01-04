@@ -122,7 +122,6 @@ class MHO_MultidimensionalFastFourierTransform:
 
         virtual bool ExecuteInPlace(XArgType* in) override
         {
-            std::cout<<"executing in place"<<std::endl;
             if(fIsValid && fInitialized)
             {
                 size_t total_size = 1;
