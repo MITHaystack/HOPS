@@ -110,11 +110,14 @@ class MHO_TableContainer:
         //pointers to exernally managed memory are not transferred)
         virtual void Copy(const MHO_TableContainer& rhs)
         {
-            //copy the array, then copy the axis pack
-            MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::Copy(rhs);
-            *( this->GetAxisPack() ) = *(rhs.GetAxisPack());
-            //finally copy the table tags 
-            this->CopyTags(rhs);
+            if(&rhs != this)
+            {
+                //copy the array, then copy the axis pack
+                MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::Copy(rhs);
+                *( this->GetAxisPack() ) = *(rhs.GetAxisPack());
+                //finally copy the table tags 
+                this->CopyTags(rhs);
+            }
         }
 
     protected:

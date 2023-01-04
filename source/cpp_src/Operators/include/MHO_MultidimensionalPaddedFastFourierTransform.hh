@@ -447,6 +447,8 @@ class MHO_MultidimensionalPaddedFastFourierTransform:
                 //overload for doubles
                 void operator()(const MHO_Axis<double>& axis1, MHO_Axis<double>& axis2)
                 {
+                    axis2.CopyTags(axis1); //first do a copy to get all of the tags, etc.
+
                     //this is under the expectation that all axis labels are equi-spaced
                     //this should be a safe assumption since we are doing DFT anyway
                     //one issue here is that we are not taking into account units (e.g. nanosec or MHz)
@@ -456,12 +458,22 @@ class MHO_MultidimensionalPaddedFastFourierTransform:
                     {
                         double delta = axis1.at(1) - axis1.at(0);
                         double spacing = (1.0/delta)*(1.0/length);
-                        double start = -1*length/2;
+                        double start = 0;//-1*length/2;
                         for(std::size_t i=0; i<N; i++)
                         {
                             double x = i;
-                            double value = (i+start)*spacing;
-                            axis2(i) = value;
+                            if(i<N/2)
+                            {
+                                start = 0;
+                                double value = (x+start)*spacing;
+                                axis2(i) = value;
+                            }
+                            else 
+                            {
+                                start = -1*length;
+                                double value = (x+start)*spacing;
+                                axis2(i) = value;
+                            }
                         }
                     }
                 }
@@ -469,6 +481,8 @@ class MHO_MultidimensionalPaddedFastFourierTransform:
                 //overload for floats
                 void operator()(const MHO_Axis<float>& axis1, MHO_Axis<float>& axis2)
                 {
+                    axis2.CopyTags(axis1); //first copy the tags, etc.
+
                     //this is under the expectation that all axis labels are equi-spaced
                     //this should be a safe assumption since we are doing DFT anyway
                     //one issue here is that we are not taking into account units (e.g. nanosec or MHz)
@@ -478,12 +492,22 @@ class MHO_MultidimensionalPaddedFastFourierTransform:
                     {
                         float delta = axis1.at(1) - axis1.at(0);
                         float spacing = (1.0/delta)*(1.0/length);
-                        float start = -1*length/2;
+                        float start = 0;//-1*length/2;
                         for(std::size_t i=0; i<N; i++)
                         {
                             float x = i;
-                            float value = (i+start)*spacing;
-                            axis2(i) = value;
+                            if(i<N/2)
+                            {
+                                start = 0;
+                                float value = (x+start)*spacing;
+                                axis2(i) = value;
+                            }
+                            else 
+                            {
+                                start = -1*length;
+                                float value = (x+start)*spacing;
+                                axis2(i) = value;
+                            }
                         }
                     }
                 }

@@ -75,10 +75,13 @@ class MHO_VectorContainer:
         //pointers to exernally managed memory are not transferred)
         virtual void Copy(const MHO_VectorContainer& rhs)
         {
-            //copy the array
-            MHO_NDArrayWrapper<XValueType,1>::Copy(rhs);
-            //then copy the tags 
-            this->CopyTags(rhs);
+            if(&rhs != this)
+            {
+                //copy the array
+                MHO_NDArrayWrapper<XValueType,1>::Copy(rhs);
+                //then copy the tags 
+                this->CopyTags(rhs);
+            }
         }
 
     protected:
