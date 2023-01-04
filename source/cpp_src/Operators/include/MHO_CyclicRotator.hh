@@ -88,6 +88,7 @@ class MHO_CyclicRotator: public MHO_UnaryOperator< XArrayType >
                         fModuloOffsets[i] = positive_modulo(fOffsets[i], fDimensionSize[i]);
                     }
                     else{fModuloOffsets[i] = 0;}
+                    IfTableRotateAxis(in, in, i);
                 }
 
                 size_t index[XArrayType::rank::value];
@@ -190,7 +191,6 @@ class MHO_CyclicRotator: public MHO_UnaryOperator< XArrayType >
                 std::array<std::size_t, XArrayType::rank::value > in_loc;
                 while( in_iter != in_iter_end)
                 {
-                    //in_loc = in_iter.GetIndexObject();
                     MHO_NDArrayMath::RowMajorIndexFromOffset< XArrayType::rank::value >(in_iter.GetOffset(), in_dim, &(in_loc[0]) );
                     for(std::size_t i=0; i<XArrayType::rank::value;i++)
                     {
@@ -233,11 +233,30 @@ class MHO_CyclicRotator: public MHO_UnaryOperator< XArrayType >
                 template< typename XAxisType >
                 void operator()(const XAxisType& axis1, XAxisType& axis2)
                 {
-                    axis2.Copy(axis1); //for now just copy the axis
+                    if(fOffset != 0)
+                    {
+                        XAxisType tmp;
+                        tmp.Copy(axis1);
+                        axis2.Copy(axis1); //copy the axis first to get tags, etc.
+                        //now rotate the elements by the offset 
+                        std::size_t a, b;
+                        int64_t i, j;
+                        int64_t n = axis2.GetSize();
+                        for(i=0; i<n; i++)
+                        {
+                            j = ( (i-fOffset) % n + n) % n;
+                            a = i;
+                            b = j;
+
+                            std::cout<<" a = "<<a<<", b = "<<b<<std::endl;
+                            axis2(a) = tmp(b);
+                        }
+                    }
+                    else{ axis2.Copy(axis1); }
                 }
 
             private:
-                std::size_t fOffset;
+                int64_t fOffset;
         };
 
 

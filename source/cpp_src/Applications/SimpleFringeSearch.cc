@@ -393,7 +393,7 @@ int main(int argc, char** argv)
 
         std::cout<<"plotting"<<std::endl;
         c->cd(1);
-        gr->Draw("COLZ");
+        gr->Draw("SURFZ");
         c->Update();
     }
     App->Run();

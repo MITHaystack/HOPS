@@ -286,12 +286,22 @@ class MHO_MultidimensionalFastFourierTransform:
                     {
                         double delta = axis1(1) - axis1(0);
                         double spacing = (1.0/delta)*(1.0/length);
-                        double start = -1*length/2;
+                        double start = 0;//-1*length/2;
                         for(std::size_t i=0; i<N; i++)
                         {
                             double x = i;
-                            double value = (i+start)*spacing;
-                            axis1(i) = value;
+                            if(i<N/2)
+                            {
+                                start = 0;
+                                double value = (x+start)*spacing;
+                                axis1(i) = value;
+                            }
+                            else 
+                            {
+                                start = -1*length;
+                                double value = (x+start)*spacing;
+                                axis1(i) = value;
+                            }
                         }
                     }
                 }
@@ -308,12 +318,22 @@ class MHO_MultidimensionalFastFourierTransform:
                     {
                         float delta = axis1(1) - axis1(0);
                         float spacing = (1.0/delta)*(1.0/length);
-                        float start = -1*length/2;
+                        float start = 0;//-1*length/2;
                         for(std::size_t i=0; i<N; i++)
                         {
                             float x = i;
-                            float value = (i+start)*spacing;
-                            axis1(i) = value;
+                            if(i<N/2)
+                            {
+                                start = 0;
+                                float value = (x+start)*spacing;
+                                axis1(i) = value;
+                            }
+                            else 
+                            {
+                                start = -1*length;
+                                float value = (x+start)*spacing;
+                                axis1(i) = value;
+                            }
                         }
                     }
                 }
