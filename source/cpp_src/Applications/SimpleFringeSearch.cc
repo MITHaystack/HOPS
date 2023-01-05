@@ -34,7 +34,6 @@ struct c_block* cb_head; //global extern kludge
 #include "MHO_FunctorBroadcaster.hh"
 
 
-
 #ifdef USE_ROOT
     #include "TApplication.h"
     #include "MHO_RootCanvasManager.hh"

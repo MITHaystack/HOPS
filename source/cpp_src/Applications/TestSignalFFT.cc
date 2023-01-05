@@ -89,11 +89,11 @@ int main(int argc, char** argv)
         noise_samples(i) = value;
         std::get<0>(noise_samples)(i) = time;
         aToneSignal.GetSample(time, value);
-        tone_samples(i) = 8*value;
+        tone_samples(i) = 1*value;
         aToneSignal2.GetSample(time, value);
-        tone_samples(i) += 4*value;
+        tone_samples(i) += 2*value;
         aToneSignal3.GetSample(time, value);
-        tone_samples(i) += 16*value;
+        tone_samples(i) += 3*value;
         std::get<0>(tone_samples)(i) = time;
         sum_samples(i) = noise_samples(i) + tone_samples(i);
         std::get<0>(sum_samples)(i) = time;
@@ -112,9 +112,9 @@ int main(int argc, char** argv)
     // }
     
     //now execute an FFT on the samples
-    data_type ft_noise_samples = noise_samples; //ft_noise_samples.Resize(n_samples);
-    data_type ft_tone_samples = tone_samples; //ft_tone_samples.Resize(n_samples);
-    data_type ft_sum_samples = sum_samples; //ft_sum_samples.Resize(n_samples);
+    data_type ft_noise_samples; ft_noise_samples.Copy(noise_samples); //ft_noise_samples.Resize(n_samples);
+    data_type ft_tone_samples; ft_tone_samples.Copy(tone_samples); //ft_tone_samples.Resize(n_samples);
+    data_type ft_sum_samples; ft_sum_samples.Copy(sum_samples); //ft_sum_samples.Resize(n_samples);
 
     // for(std::size_t i=0; i<n_samples; i++)
     // {
