@@ -46,16 +46,16 @@ class MHO_ExtremaSearch:
 
         virtual bool ExecuteInPlace(XArgType* in) override
         {
-            Search(in);
-            return true;
+            // Search(in);
+            return false;
         }
 
         virtual bool InitializeOutOfPlace(const XArgType* /*in*/, XArgType* /*out*/) override {return true;};
 
         virtual bool ExecuteOutOfPlace(const XArgType* in, XArgType* /*out*/) override
         {
-            msg_warn("operators", "MHO_ExtremaSearch was passed an additional (unused) argument. " << eom );
-            return ExecuteInPlace(in);
+            Search(in);
+            return true;
         }
 
     private:
@@ -64,40 +64,46 @@ class MHO_ExtremaSearch:
         // basic floating point types
         template< typename XCheckType = typename XArgType::value_type >
         typename std::enable_if< std::is_floating_point<XCheckType>::value, void >::type
-        Search(XArgType* in)
+        Search(const XArgType* in)
         {   
             using fp_value_type = typename XArgType::value_type;
             fMaxLocation = 0;
             fMinLocation = 0;
             fMax = std::numeric_limits<fp_value_type>::min();
             fMin = std::numeric_limits<fp_value_type>::max();
-            std::size_t N = in->GetSize(); 
             fp_value_type value;
-            for(std::size_t i=0; i<N; i++)
+            auto bit = in->cbegin();
+            auto eit = in->cend();
+            std::size_t i=0;
+            for(auto it = bit; it != eit; it++)
             {
-                value = (*in)[i];
+                value = *it;
                 if( value > fMax ){fMax = value; fMaxLocation = i; }
                 if( value < fMin ){fMin = value; fMinLocation = i; }
+                i++;
             }
         };
 
         //specialization for complex types
         template< typename XCheckType = typename XArgType::value_type >
         typename std::enable_if< is_complex< XCheckType >::value, void >::type
-        Search(XArgType* in)
+        Search(const XArgType* in)
         {
             using fp_value_type = typename XArgType::value_type::value_type;
             fMaxLocation = 0;
             fMinLocation = 0;
             fMax = std::numeric_limits<fp_value_type>::min();
             fMin = std::numeric_limits<fp_value_type>::max();
-            std::size_t N = in->GetSize();
             fp_value_type value;
-            for(std::size_t i=0; i<N; i++)
+            auto bit = in->cbegin();
+            auto eit = in->cend();
+            std::size_t i=0;
+            for(auto it = bit; it != eit; it++)
             {
-                value = std::abs( (*in)[i] );
+                value = std::abs(*it);
                 if( value > fMax ){fMax = value; fMaxLocation = i; }
                 if( value < fMin ){fMin = value; fMinLocation = i; }
+                i++;
             }
         };
 

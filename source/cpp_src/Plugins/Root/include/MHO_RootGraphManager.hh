@@ -5,6 +5,8 @@
 #include "TGraph.h"
 #include "TGraph2D.h"
 #include "TMultiGraph.h"
+#include "TH2D.h"
+#include "TH1D.h"
 
 #include <complex>
 

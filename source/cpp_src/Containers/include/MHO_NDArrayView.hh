@@ -129,6 +129,14 @@ class MHO_NDArrayView
             return MHO_NDArrayMath::OffsetFromStrideIndex<RANK>(&(fStrides[0]), index);
         }
 
+        //linear offset into the array
+        index_type GetIndicesForOffset(std::size_t offset)
+        {
+            index_type index;
+            MHO_NDArrayMath::RowMajorIndexFromOffset<RANK>(offset, &(fDims[0]), &(index[0]) );
+            return index;
+        }
+
 ////////////////////////////////////////////////////////////////////////////////
 
         //simple in-place compound assignment operators (mult/add/sub)//////////

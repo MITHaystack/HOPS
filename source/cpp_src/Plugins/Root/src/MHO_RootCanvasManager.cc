@@ -32,11 +32,12 @@ void MHO_RootCanvasManager::ConfigureStyle()
     fStyle->SetStatColor(0); //this one may not work
     const int NRGBs = 5;
     const int NCont = 48;
-    double stops[NRGBs] = { 0.00, 0.34, 0.61, 0.84, 1.00 };
-    double red[NRGBs]   = { 0.00, 0.00, 0.87, 1.00, 0.51 };
-    double green[NRGBs] = { 0.00, 0.81, 1.00, 0.20, 0.00 };
-    double blue[NRGBs]  = { 0.51, 1.00, 0.12, 0.00, 0.00 };
-    TColor::CreateGradientColorTable(NRGBs, stops, red, green, blue, NCont);
+    // double stops[NRGBs] = { 0.00, 0.34, 0.61, 0.84, 1.00 };
+    // double red[NRGBs]   = { 0.00, 0.00, 0.87, 1.00, 0.51 };
+    // double green[NRGBs] = { 0.00, 0.81, 1.00, 0.20, 0.00 };
+    // double blue[NRGBs]  = { 0.51, 1.00, 0.12, 0.00, 0.00 };
+    // TColor::CreateGradientColorTable(NRGBs, stops, red, green, blue, NCont);
+    fStyle->SetPalette(kDarkBodyRadiator);
     fStyle->SetNumberContours(NCont);
     fStyle->cd();
 }
