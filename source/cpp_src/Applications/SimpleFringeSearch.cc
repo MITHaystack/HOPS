@@ -364,22 +364,20 @@ int main(int argc, char** argv)
         std::cout<<ss.str()<<": max = "<<vmax<<" at index location: ("<<loc_array[0]<<", "<<loc_array[1] <<")  = ("
         <<dr_rate_ax(loc_array[0])<<", "<<delay_ax(loc_array[1])<<") " <<std::endl;
 
-        auto gr = gMan.GenerateComplexGraph2D(ch_slice, dr_rate_ax, delay_ax, 4 );
-
+        auto gr = gMan.GenerateComplexGraph2D(ch_slice, dr_rate_ax, delay_ax, ROOT_CMPLX_PLOT_ABS );
 
         c->cd();
+        c->SetTopMargin(0.1);
+        c->SetRightMargin(0.2);
 
-
-        c->DrawFrame(-10,-10,10,10);
-
-        gr->SetTitle( "Fringe; delay rate (ns/s); Single band delay (#mu s); Amp");
+        gr->SetTitle( "Fringe; delay rate (ns/s); Single band delay (#mus); Amp");
         gr->Draw("COLZ");
         gr->GetHistogram()->GetXaxis()->CenterTitle();
         gr->GetHistogram()->GetYaxis()->CenterTitle();
         gr->GetHistogram()->GetZaxis()->CenterTitle();
         gr->GetHistogram()->GetXaxis()->SetTitleOffset(1.2);
         gr->GetHistogram()->GetYaxis()->SetTitleOffset(1.08);
-        gr->GetHistogram()->GetZaxis()->SetTitleOffset(1.0);
+        gr->GetHistogram()->GetZaxis()->SetTitleOffset(-0.4);
         gr->Draw("COLZ");
         c->Update();
     }

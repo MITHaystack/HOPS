@@ -42,7 +42,6 @@ MHO_RootCanvasManager::CreateCanvas(std::string name, unsigned int width, unsign
 {
     TCanvas* c = new TCanvas(name.c_str(), name.c_str(), 0, 0, width, height);
     c->SetFillColor(0);
-    //c->SetRightMargin(0.2);
     c->cd();
     fCurrentCanvas = c;
     fCanvasList.push_back(c);

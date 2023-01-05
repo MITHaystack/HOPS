@@ -22,6 +22,12 @@
 *@brief:
 */
 
+
+#define ROOT_CMPLX_PLOT_REAL 0
+#define ROOT_CMPLX_PLOT_IMAG 1
+#define ROOT_CMPLX_PLOT_ABS 2
+#define ROOT_CMPLX_PLOT_ARG 3
+
 namespace hops 
 {
 
@@ -73,19 +79,19 @@ class MHO_RootGraphManager
             for(std::size_t i=0; i<nxbins; i++)
             {
                 double value = 0;
-                if(plot_mode == 0) //plot real part
+                if(plot_mode == ROOT_CMPLX_PLOT_REAL) //plot real part
                 {
                     value = std::real( table(i) );
                 }
-                else if(plot_mode == 1) //plot imaginary part
+                else if(plot_mode == ROOT_CMPLX_PLOT_IMAG) //plot imaginary part
                 {
                     value = std::imag( table(i) );
                 }
-                else if(plot_mode == 2) //plot absolute value
+                else if(plot_mode == ROOT_CMPLX_PLOT_ABS) //plot absolute value
                 {
                     value = std::abs( table(i) );
                 }
-                else if(plot_mode == 3) //plot phase
+                else if(plot_mode == ROOT_CMPLX_PLOT_ARG) //plot phase
                 {
                     value = std::arg( table(i) );
                 }
@@ -151,19 +157,19 @@ class MHO_RootGraphManager
                 {
                     //now fill the graph
                     double value = 0;
-                    if(plot_mode == 0) //plot real part
+                    if(plot_mode == ROOT_CMPLX_PLOT_REAL) //plot real part
                     {
                         value = std::real( table(i,j) );
                     }
-                    else if(plot_mode == 1) //plot imaginary part
+                    else if(plot_mode == ROOT_CMPLX_PLOT_IMAG) //plot imaginary part
                     {
                         value = std::imag( table(i,j) );
                     }
-                    else if(plot_mode == 2) //plot absolute value
+                    else if(plot_mode == ROOT_CMPLX_PLOT_ABS) //plot absolute value
                     {
                         value = std::abs( table(i,j) );
                     }
-                    else if(plot_mode == 3) //plot phase
+                    else if(plot_mode == ROOT_CMPLX_PLOT_ARG) //plot phase
                     {
                         value = std::arg( table(i,j) );
                     }
@@ -176,8 +182,8 @@ class MHO_RootGraphManager
                 }
             }
 
-            h->SetNpx(128);
-            h->SetNpy(128);
+            h->SetNpx(std::min((std::size_t)128, xax_size));
+            h->SetNpy(std::min((std::size_t)128, yax_size));
 
             f2DGraph.push_back(h);
             return h;
