@@ -296,7 +296,7 @@ int main(int argc, char** argv)
     nfxOp.Initialize();
     nfxOp.Execute();
 
-    //xform in the time (AP) axis
+    //xform in the time (AP) axis to look for delay rate
     MHO_MultidimensionalFastFourierTransform< ch_visibility_type > fFFTEngine;
     MHO_CyclicRotator<ch_visibility_type> fCyclicRotator;
 
@@ -314,54 +314,8 @@ int main(int argc, char** argv)
     fFFTEngine.Execute();
     fCyclicRotator.Execute();
 
-    // MHO_Reducer<ch_visibility_type, MHO_CompoundSum>* reducer = new MHO_Reducer<ch_visibility_type, MHO_CompoundSum>();
-    // reducer->SetArgs(sbd_data);
-    // reducer->ReduceAxis(1);
-    // //reducer->ReduceAxis(2);
-    // //reducer->ReduceAxis(NDIM-1);
-    // bool init = reducer->Initialize();
-    // bool exe = reducer->Execute();
-
-
-    // typedef MHO_AbsoluteValue<ch_visibility_type> absType;
-    // MHO_FunctorBroadcaster<ch_visibility_type, absType > abs_broadcast;
-    // abs_broadcast.SetArgs(sbd_data);
-    // abs_broadcast.Initialize();
-    // abs_broadcast.Execute();
-
 
     #ifdef USE_ROOT
-
-    std::cout<<"starting root plotting"<<std::endl;
-
-    //ROOT stuff for plots
-
-    // int dummy_argc = 0;
-    // char tmp = '\0';
-    // char* argv_placeholder = &tmp;
-    // char** dummy_argv = &argv_placeholder;
-    // 
-    // TApplication* App = new TApplication("test",&dummy_argc,dummy_argv);
-    // 
-    // MHO_RootCanvasManager cMan;
-    // MHO_RootGraphManager gMan;
-    // 
-    // for(std::size_t ch=0; ch<32; ch++)
-    // {
-    //     std::stringstream ss;
-    //     ss << "channel_test";
-    //     ss << ch;
-    // 
-    //     auto c = cMan.CreateCanvas(ss.str().c_str(), 800, 800);
-    //     auto ch_slice = sbd_data->SliceView(0,ch,0,":");
-    //     auto gr = gMan.GenerateComplexGraph1D(ch_slice, std::get<CH_FREQ_AXIS>(*sbd_data), 4 );
-    // 
-    //     c->cd(1);
-    //     gr->Draw("APL");
-    //     c->Update();
-    // }
-    // App->Run();
-
 
     std::cout<<"starting root plotting"<<std::endl;
 
@@ -417,23 +371,15 @@ int main(int argc, char** argv)
 
 
         c->DrawFrame(-10,-10,10,10);
-        // c->SetRightMargin(-0.05);
-        // c->SetLeftMargin(-0.1);
-        // c->SetTopMargin(-0.05);
-        // c->SetBottomMargin(-0.1);
 
         gr->SetTitle( "Fringe; delay rate (ns/s); Single band delay (#mu s); Amp");
         gr->Draw("COLZ");
-        //gr->SetMargin(0.1);
-
         gr->GetHistogram()->GetXaxis()->CenterTitle();
         gr->GetHistogram()->GetYaxis()->CenterTitle();
         gr->GetHistogram()->GetZaxis()->CenterTitle();
         gr->GetHistogram()->GetXaxis()->SetTitleOffset(1.2);
         gr->GetHistogram()->GetYaxis()->SetTitleOffset(1.08);
         gr->GetHistogram()->GetZaxis()->SetTitleOffset(1.0);
-        //gr->GetXaxis()->SetTitle("Delay Rate (ns/s)");
-        //gr->GetYaxis()->SetTitle("Single Band Delay #mu sec");
         gr->Draw("COLZ");
         c->Update();
     }

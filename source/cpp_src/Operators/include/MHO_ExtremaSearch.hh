@@ -46,7 +46,6 @@ class MHO_ExtremaSearch:
 
         virtual bool ExecuteInPlace(XArgType* in) override
         {
-            // Search(in);
             return false;
         }
 
