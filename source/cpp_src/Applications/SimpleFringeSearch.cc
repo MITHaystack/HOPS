@@ -32,7 +32,7 @@ struct c_block* cb_head; //global extern kludge
 
 #include "MHO_AbsoluteValue.hh"
 #include "MHO_FunctorBroadcaster.hh"
-
+#include "MHO_ExtremaSearch.hh"
 
 #ifdef USE_ROOT
     #include "TApplication.h"
@@ -300,7 +300,6 @@ int main(int argc, char** argv)
     MHO_MultidimensionalFastFourierTransform< ch_visibility_type > fFFTEngine;
     MHO_CyclicRotator<ch_visibility_type> fCyclicRotator;
 
-
     bool status;
     fFFTEngine.SetArgs(sbd_data);
     fFFTEngine.DeselectAllAxes();
@@ -378,7 +377,19 @@ int main(int argc, char** argv)
     MHO_RootCanvasManager cMan;
     MHO_RootGraphManager gMan;
 
-    for(std::size_t ch=0; ch<32; ch++)
+    MHO_ExtremaSearch< MHO_NDArrayView< visibility_element_type, 2 > > mSearch;
+
+    auto dr_rate_ax = std::get<CH_TIME_AXIS>(*sbd_data);
+    auto delay_ax = std::get<CH_FREQ_AXIS>(*sbd_data);
+
+    //divide out the reference frequency (need to think about this )
+    double rescale = 1.0/6.0;//ref freq = 6GHz (axis is then in nanosec/sec)
+    for(std::size_t d=0; d<dr_rate_ax.GetSize(); d++)
+    {
+        dr_rate_ax(d) *= rescale;
+    }
+
+    for(std::size_t ch=0; ch<bl_dim[CH_CHANNEL_AXIS]; ch++)
     {
         std::stringstream ss;
         ss << "channel_test";
@@ -386,10 +397,44 @@ int main(int argc, char** argv)
 
         auto c = cMan.CreateCanvas(ss.str().c_str(), 800, 800);
         auto ch_slice = sbd_data->SliceView(0,ch,":",":");
-        auto gr = gMan.GenerateComplexGraph2D(ch_slice, std::get<CH_TIME_AXIS>(*sbd_data),  std::get<CH_FREQ_AXIS>(*sbd_data), 4 );
+        mSearch.SetArgs(&ch_slice, nullptr); //THIS IS A MAJOR KLUGE, probably should NOT be a "unary data operator"
+        mSearch.Initialize();
+        mSearch.Execute();
 
-        c->cd(1);
-        gr->Draw("SURF1");
+        //really dumb/simple way of looking at the location of the delay/dr_rate max location
+        double vmax = mSearch.GetMax();
+        double vmin = mSearch.GetMin();
+        std::size_t max_loc = mSearch.GetMaxLocation();
+        std::size_t min_loc = mSearch.GetMinLocation();
+        auto loc_array = ch_slice.GetIndicesForOffset(max_loc);
+        std::cout<<ss.str()<<": max = "<<vmax<<" at index location: ("<<loc_array[0]<<", "<<loc_array[1] <<")  = ("
+        <<dr_rate_ax(loc_array[0])<<", "<<delay_ax(loc_array[1])<<") " <<std::endl;
+
+        auto gr = gMan.GenerateComplexGraph2D(ch_slice, dr_rate_ax, delay_ax, 4 );
+
+
+        c->cd();
+
+
+        c->DrawFrame(-10,-10,10,10);
+        // c->SetRightMargin(-0.05);
+        // c->SetLeftMargin(-0.1);
+        // c->SetTopMargin(-0.05);
+        // c->SetBottomMargin(-0.1);
+
+        gr->SetTitle( "Fringe; delay rate (ns/s); Single band delay (#mu s); Amp");
+        gr->Draw("COLZ");
+        //gr->SetMargin(0.1);
+
+        gr->GetHistogram()->GetXaxis()->CenterTitle();
+        gr->GetHistogram()->GetYaxis()->CenterTitle();
+        gr->GetHistogram()->GetZaxis()->CenterTitle();
+        gr->GetHistogram()->GetXaxis()->SetTitleOffset(1.2);
+        gr->GetHistogram()->GetYaxis()->SetTitleOffset(1.08);
+        gr->GetHistogram()->GetZaxis()->SetTitleOffset(1.0);
+        //gr->GetXaxis()->SetTitle("Delay Rate (ns/s)");
+        //gr->GetYaxis()->SetTitle("Single Band Delay #mu sec");
+        gr->Draw("COLZ");
         c->Update();
     }
     App->Run();
