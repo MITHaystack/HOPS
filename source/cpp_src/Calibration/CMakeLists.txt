@@ -4,8 +4,7 @@ set (CALIBRATION_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_VisibilityChannelizer.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_WeightChannelizer.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_NormFX.hh
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ManualChannelPhaseCorrection_v1.hh
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ManualChannelPhaseCorrection_v2.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ManualChannelPhaseCorrection.hh
 )
 
 #list source files #############################################################
@@ -14,8 +13,7 @@ set( CALIBRATION_SOURCEFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_VisibilityChannelizer.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_WeightChannelizer.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_NormFX.cc
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ManualChannelPhaseCorrection_v1.cc
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ManualChannelPhaseCorrection_v2.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ManualChannelPhaseCorrection.cc
 )
 
 #declare header paths ##########################################################
