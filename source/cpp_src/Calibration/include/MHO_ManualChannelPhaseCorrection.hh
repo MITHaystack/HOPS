@@ -12,6 +12,8 @@
 
 #include <cmath>
 #include <complex>
+#include <vector>
+#include <map>
 
 #include "MHO_TableContainer.hh"
 #include "MHO_ContainerDefinitions.hh"
@@ -36,12 +38,16 @@ class MHO_ManualChannelPhaseCorrection: public MHO_BinaryOperator<
         using XArgType2 = ch_pcal_phase_type;
         using XArgType3 = ch_visibility_type;
 
-        virtual bool InitializeImpl(const XArgType1* in1, const XArgType2* in2, XArgType3* out) override;
-        virtual bool ExecuteImpl(const XArgType1* in1, const XArgType2* in2, XArgType3* out) override;
+        virtual bool InitializeImpl(const XArgType1* in_vis, const XArgType2* pcal, XArgType3* out_vis) override;
+        virtual bool ExecuteImpl(const XArgType1* in_vis, const XArgType2* pcal, XArgType3* out_vis) override;
 
     private:
 
         bool fInitialized;
+        bool fConjugate;
+
+        std::map< std::size_t, std::size_t> fPolIdxMap; //map pcal pol index to vis pol-product index
+        std::map< std::size_t, std::size_t> fChanIdxMap; // map pcal chan index to vis chan index
 
         //may want to cache the dimensions of the input arrays and initialization state 
 
