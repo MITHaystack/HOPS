@@ -39,12 +39,12 @@ class MHO_BinaryOperator: public MHO_Operator
 
     protected:
 
-        using type1 = XArgType1;
-        using type2 = XArgType2;
-        using type3 = XArgType3;
+        // using type1 = XArgType1;
+        // using type2 = XArgType2;
+        // using type3 = XArgType3;
 
-        virtual bool InitializeImpl(const XArgType1* in1, const XArgType2* in2, XArgType3* out) = 0;
-        virtual bool ExecuteImpl(const XArgType1* in1, const XArgType2* in2, XArgType3* out) = 0;
+        virtual bool InitializeImpl(const XArgType1* /*in1*/, const XArgType2* /*in2*/, XArgType3* /*out*/) = 0;
+        virtual bool ExecuteImpl(const XArgType1* /*in1*/, const XArgType2* /*in2*/, XArgType3* /*out*/) = 0;
 
     protected:
 

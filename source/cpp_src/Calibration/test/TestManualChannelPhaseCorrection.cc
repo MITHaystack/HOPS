@@ -13,8 +13,7 @@
 #include "MHO_WeightChannelizer.hh"
 #include "MHO_FFTWTypes.hh"
 
-#include "MHO_ManualChannelPhaseCorrection_v1.hh"
-#include "MHO_ManualChannelPhaseCorrection_v2.hh"
+#include "MHO_ManualChannelPhaseCorrection.hh"
 
 using namespace hops;
 
@@ -140,22 +139,6 @@ int main(int argc, char** argv)
 
 
 
-    //OPTION 1 ////////////////////////////////////////////////////////////////
-    //Unary operator, p-cal data set via custom function
-
-    //now construct the manual phase cal operator and apply it to bl_data    
-    MHO_ManualChannelPhaseCorrection_v1 phase_corrector1;
-    phase_corrector1.SetArgs(bl_data);
-
-    //set the phase corrections here (need to define a function to do this...)
-    status = phase_corrector1.Initialize();
-    status = phase_corrector1.Execute();
-
-    //verify the output
-
-
-
-
 
 
     //OPTION 2 /////////////////////////////////////////////////////////////////
@@ -168,7 +151,7 @@ int main(int argc, char** argv)
     //set the phase corrections here (eventually this will be filled in via control file or other routine)
 
     //now construct the manual phase cal operator and apply it to bl_data
-    MHO_ManualChannelPhaseCorrection_v2 phase_corrector2;
+    MHO_ManualChannelPhaseCorrection phase_corrector2;
     phase_corrector2.SetArgs(bl_data, pcal_data, bl_data);
 
     status = phase_corrector2.Initialize();

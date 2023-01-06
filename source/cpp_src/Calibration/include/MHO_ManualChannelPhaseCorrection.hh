@@ -1,9 +1,9 @@
-#ifndef MHO_ManualChannelPhaseCorrection_v2_HH__
-#define MHO_ManualChannelPhaseCorrection_v2_HH__
+#ifndef MHO_ManualChannelPhaseCorrection_HH__
+#define MHO_ManualChannelPhaseCorrection_HH__
 
 /*
-*File: MHO_ManualChannelPhaseCorrection_v2.hh
-*Class: MHO_ManualChannelPhaseCorrection_v2
+*File: MHO_ManualChannelPhaseCorrection.hh
+*Class: MHO_ManualChannelPhaseCorrection
 *Author:
 *Email: 
 *Date:
@@ -22,15 +22,15 @@ namespace hops
 {
 
 
-class MHO_ManualChannelPhaseCorrection_v2: public MHO_BinaryOperator<
+class MHO_ManualChannelPhaseCorrection: public MHO_BinaryOperator<
     ch_visibility_type,
     ch_pcal_phase_type,
     ch_visibility_type >
 {
     public:
 
-        MHO_ManualChannelPhaseCorrection_v2();
-        virtual ~MHO_ManualChannelPhaseCorrection_v2();
+        MHO_ManualChannelPhaseCorrection();
+        virtual ~MHO_ManualChannelPhaseCorrection();
 
         using XArgType1 = ch_visibility_type;
         using XArgType2 = ch_pcal_phase_type;
@@ -41,7 +41,11 @@ class MHO_ManualChannelPhaseCorrection_v2: public MHO_BinaryOperator<
 
     private:
 
+        bool fInitialized;
+
         //may want to cache the dimensions of the input arrays and initialization state 
+
+
 
 
 };
@@ -50,4 +54,4 @@ class MHO_ManualChannelPhaseCorrection_v2: public MHO_BinaryOperator<
 }
 
 
-#endif /* end of include guard: MHO_ManualChannelPhaseCorrection_v2 */
+#endif /* end of include guard: MHO_ManualChannelPhaseCorrection */
