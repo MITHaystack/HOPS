@@ -41,6 +41,14 @@ class MHO_Taggable:
             return false;
         }
 
+        bool HasKey(const char* char_key) const
+        {
+            std::string key(char_key);
+            return HasKey(key);
+        }
+
+
+
         MHO_Taggable& operator=(const MHO_Taggable& rhs)
         {
             if(this != &rhs)

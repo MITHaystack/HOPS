@@ -46,6 +46,11 @@ class MHO_ManualChannelPhaseCorrection: public MHO_BinaryOperator<
         bool fInitialized;
         bool fConjugate;
 
+        std::string fStationKey;
+        std::string fRemStationKey;
+        std::string fRefStationKey;
+        std::string fBaselineKey;
+
         std::map< std::size_t, std::size_t> fPolIdxMap; //map pcal pol index to vis pol-product index
         std::map< std::size_t, std::size_t> fChanIdxMap; // map pcal chan index to vis chan index
 
