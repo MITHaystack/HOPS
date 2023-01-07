@@ -7,7 +7,12 @@ namespace hops
 MHO_ManualChannelPhaseCorrection::MHO_ManualChannelPhaseCorrection():
     fInitialized(false),
     fConjugate(false)
-{};
+{
+    fStationKey = "station";
+    fRemStationKey = "remote_station";
+    fRefStationKey = "reference_station";
+    fBaselineKey = "baseline";
+};
 
 MHO_ManualChannelPhaseCorrection::~MHO_ManualChannelPhaseCorrection(){};
 
@@ -15,18 +20,33 @@ MHO_ManualChannelPhaseCorrection::~MHO_ManualChannelPhaseCorrection(){};
 bool
 MHO_ManualChannelPhaseCorrection::InitializeImpl(const XArgType1* in_vis, const XArgType2* pcal, XArgType3* out_vis)
 {
-    //TODO check that dimensions of in_vis and out_vis are the same 
+    fInitialized = false;
+    //check that dimensions of in_vis and out_vis are the same 
+    if( !HaveSameDimensions(in_vis, out_vis) ){return false;}
 
     //check that the p-cal data is tagged with a station-id that is a member of this baseline
+    std::string station;
+    pcal->Retrieve( fStationKey, station);
+
+    std::string baseline;
+    in_vis->Retrieve(fBaselineKey, baseline);
+
+    if( baseline.find(station) == std::string::npos){return false;}
 
     //determine if the p-cal corrections are being applied to the remote or reference station
+    std::string rem_station;
+    std::string ref_station;
+    in_vis->Retrieve(fRemStationKey, rem_station);
+    in_vis->Retrieve(fRefStationKey, ref_station);
+    if(station != rem_station && station != ref_station){return false;} //p-cal station, baseline mismatch
+    if(station == rem_station){fConjugate = true;}
+    if(station == ref_station){fConjugate = false;}
 
     //map the pcal polarization index to the visibility pol-product index 
 
     //map the pcal channel index to the visibility channel index
 
-
-
+    fInitialized = true;
     return true;
 }
 
