@@ -21,6 +21,8 @@ bool
 MHO_ManualChannelPhaseCorrection::InitializeImpl(const XArgType1* in_vis, const XArgType2* pcal, XArgType3* out_vis)
 {
     fInitialized = false;
+    fPolIdxMap.clear();
+    fChanIdxMap.clear();
     //check that dimensions of in_vis and out_vis are the same 
     if( !HaveSameDimensions(in_vis, out_vis) ){return false;}
 
@@ -34,17 +36,37 @@ MHO_ManualChannelPhaseCorrection::InitializeImpl(const XArgType1* in_vis, const 
     if( baseline.find(station) == std::string::npos){return false;}
 
     //determine if the p-cal corrections are being applied to the remote or reference station
+    int pol_index = 0;
     std::string rem_station;
     std::string ref_station;
     in_vis->Retrieve(fRemStationKey, rem_station);
     in_vis->Retrieve(fRefStationKey, ref_station);
     if(station != rem_station && station != ref_station){return false;} //p-cal station, baseline mismatch
-    if(station == rem_station){fConjugate = true;}
-    if(station == ref_station){fConjugate = false;}
+    if(station == rem_station){fConjugate = true; pol_index = 1;}
+    if(station == ref_station){fConjugate = false; pol_index = 0;}
 
-    //map the pcal polarization index to the visibility pol-product index 
+    //map the pcal polarization index to the visibility pol-product index
+    auto pp_ax = std::get<CH_POLPROD_AXIS>(*in_vis);
+    auto pol_ax = std::get<0>(*pcal);
+    for(std::size_t j=0; j<pol_ax.GetSize(); j++)
+    {
+        for(std::size_t i=0; i<pp_ax.GetSize(); i++)
+        {
+            if( pol_ax(i)[0] == pp_ax(i)[pol_index] ){fPolIdxMap[j] = i;}
+        }
+    }
 
     //map the pcal channel index to the visibility channel index
+    auto chan_ax = std::get<CH_CHANNEL_AXIS>(*in_vis);
+    auto pcal_chan_ax = std::get<1>(*pcal);
+    for(std::size_t j=0; j<pcal_chan_ax.GetSize(); j++)
+    {
+        for(std::size_t i=0; i<chan_ax.GetSize(); i++)
+        {
+            if( pcal_chan_ax(i) == chan_ax(i) ){fChanIdxMap[j] = i;}
+        }
+    }
+
 
     fInitialized = true;
     return true;

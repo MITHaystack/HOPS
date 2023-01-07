@@ -26,7 +26,7 @@ namespace hops
 
 class MHO_ManualChannelPhaseCorrection: public MHO_BinaryOperator<
     ch_visibility_type,
-    ch_pcal_phase_type,
+    manual_pcal_type,
     ch_visibility_type >
 {
     public:
@@ -35,7 +35,7 @@ class MHO_ManualChannelPhaseCorrection: public MHO_BinaryOperator<
         virtual ~MHO_ManualChannelPhaseCorrection();
 
         using XArgType1 = ch_visibility_type;
-        using XArgType2 = ch_pcal_phase_type;
+        using XArgType2 = manual_pcal_type;
         using XArgType3 = ch_visibility_type;
 
         virtual bool InitializeImpl(const XArgType1* in_vis, const XArgType2* pcal, XArgType3* out_vis) override;

@@ -145,7 +145,7 @@ int main(int argc, char** argv)
     //binary operator, p-cal data is yet another table container
 
     //table for the pcal corrections
-    ch_pcal_phase_type* pcal_data = new ch_pcal_phase_type();
+    manual_pcal_type* pcal_data = new manual_pcal_type();
     pcal_data->Resize(bl_dim[0], bl_dim[1]); //resize 2d array (polprods x channels)
 
     //set the phase corrections here (eventually this will be filled in via control file or other routine)

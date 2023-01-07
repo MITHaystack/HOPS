@@ -33,6 +33,7 @@ struct c_block* cb_head; //global extern kludge
 #include "MHO_AbsoluteValue.hh"
 #include "MHO_FunctorBroadcaster.hh"
 #include "MHO_ExtremaSearch.hh"
+#include "MHO_ManualChannelPhaseCorrection.hh"
 
 #ifdef USE_ROOT
     #include "TApplication.h"
@@ -128,14 +129,38 @@ int main(int argc, char** argv)
     // struct dstats pc_phase[MAXFREQ][2];/* phase cal phases by channel and pol 
     //                                           for manual or additive pcal */
 
+    //construct the pcal array...this is a really ugly on-off testing kludge
+    manual_pcal_type ref_pcal; ref_pcal.Resize(2,MAXFREQ);
+    manual_pcal_type rem_pcal; rem_pcal.Resize(2,MAXFREQ);
+
+    //label the axes 
+    std::string pol_arr[2];
+    pol_arr[0] = "X";
+    pol_arr[1] = "Y";
+    for(unsigned int p=0; p<2; p++)
+    {
+        std::get<0>(ref_pcal)(p) = pol_arr[p];
+        std::get<0>(rem_pcal)(p) = pol_arr[p];
+    }
+
+    for(int ch=0; ch<MAXFREQ; ch++)
+    {
+        std::get<1>(ref_pcal)(ch) = ch;
+        std::get<1>(rem_pcal)(ch) = ch;
+    }
+
+    std::complex<double> imag_unit(0.0, 1.0);
     for(unsigned int p=0; p<2; p++)
     {
         for(std::size_t ch=0; ch<MAXFREQ; ch++)
         {
+            double ref_ph = cb_out->pc_phase[ch][p].ref;
+            double rem_ph = cb_out->pc_phase[ch][p].rem;
+            ref_pcal(p,ch) = std::exp( imag_unit*2.0*M_PI*ref_ph*(M_PI/180.) );
+            rem_pcal(p,ch) = std::exp( imag_unit*2.0*M_PI*rem_ph*(M_PI/180.) );
             std::cout<<"chan: "<< ch <<" ref-pc: "<< cb_out->pc_phase[ch][p].ref << " rem-pc: " << cb_out->pc_phase[ch][p].rem << std::endl;
         }
     }
-
 
     //read the directory file list
     std::vector< std::string > allFiles;
@@ -285,6 +310,16 @@ int main(int argc, char** argv)
         std::cout<<"vis size in dim: "<<i<<" = "<<bl_dim[i]<<std::endl;
     }
     
+    //apply manual pcal 
+    MHO_ManualChannelPhaseCorrection pcal_correct;
+    pcal_correct.SetArgs(bl_data, &rem_pcal, bl_data);
+    pcal_correct.Initialize();
+    pcal_correct.Execute();
+
+    pcal_correct.SetArgs(bl_data, &ref_pcal, bl_data);
+    pcal_correct.Initialize();
+    pcal_correct.Execute();
+
     //output for the delay 
     ch_visibility_type* sbd_data = bl_data->CloneEmpty();
     bl_dim[CH_FREQ_AXIS] *= 4; //normfx implementation demands this
