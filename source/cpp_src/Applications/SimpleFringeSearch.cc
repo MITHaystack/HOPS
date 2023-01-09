@@ -270,12 +270,12 @@ int main(int argc, char** argv)
     // std::vector< std::size_t > selected_ap;
     // selected_ap.push_back(20);
     // 
-    // std::vector< std::size_t > selected_ch;
-    // selected_ch.push_back(0);
-    // 
-    // //pick out just the first channel and ap
-    // spack.SelectAxisItems(1,selected_ch);
-    // spack.SelectAxisItems(2,selected_ap); 
+    std::vector< std::size_t > selected_ch;
+    selected_ch.push_back(0);
+    
+    //pick out just the first channel and ap
+    spack.SelectAxisItems(1,selected_ch);
+    //spack.SelectAxisItems(2,selected_ap); 
 
     spack.SetArgs(bl_data, alt_data);
     spack.Initialize();
@@ -285,6 +285,7 @@ int main(int argc, char** argv)
     //explicitly copy the channel axis labels here
     std::get<CH_CHANNEL_AXIS>(*alt_data).CopyIntervalLabels( std::get<CH_CHANNEL_AXIS>(*bl_data) );
     
+    bl_data->Copy(*alt_data);
 
     //DEBUG dump this to json
     MHO_ContainerStore conStore2;

@@ -47,8 +47,11 @@ class MHO_ManualChannelPhaseCorrection: public MHO_BinaryOperator<
         bool fInitialized;
         bool fConjugate;
 
+        //TODO FIXME migrate these to a constants header
         std::complex<double> fImagUnit;
+        double fDegToRad;
 
+        //keys for tag retrieval 
         std::string fStationKey;
         std::string fRemStationKey;
         std::string fRefStationKey;
@@ -56,8 +59,6 @@ class MHO_ManualChannelPhaseCorrection: public MHO_BinaryOperator<
 
         std::map< std::size_t, std::size_t> fPolIdxMap; //map pcal pol index to vis pol-product index
         std::map< std::size_t, std::size_t> fChanIdxMap; // map pcal chan index to vis chan index
-
-        //may want to cache the dimensions of the input arrays and initialization state 
 
         //minor helper function to make sure all strings are compared as upper-case only 
         void make_upper(std::string& s){ for(char& c : s){c = toupper(c); };

@@ -14,6 +14,7 @@ MHO_ManualChannelPhaseCorrection::MHO_ManualChannelPhaseCorrection():
     fBaselineKey = "baseline";
 
     fImagUnit = std::complex<double>(0.0, 1.0);
+    fDegToRad = M_PI/180;
 };
 
 MHO_ManualChannelPhaseCorrection::~MHO_ManualChannelPhaseCorrection(){};
@@ -100,6 +101,8 @@ MHO_ManualChannelPhaseCorrection::ExecuteImpl(const XArgType1* in_vis, const XAr
         //but the operator interface needs to be different since we need a unary op 
         //with separate 2 input arguments (vis array, and pcal array)
         out_vis->Copy(*in_vis);
+
+        auto chan_ax = std::get<CH_CHANNEL_AXIS>(*in_vis);
     
         //loop over pol products
         for(auto pol_it = fPolIdxMap.begin(); pol_it != fPolIdxMap.end(); pol_it++)
@@ -112,10 +115,9 @@ MHO_ManualChannelPhaseCorrection::ExecuteImpl(const XArgType1* in_vis, const XAr
                 std::size_t pcal_chan_idx = ch_it->second;
                 //retrieve the p-cal phasor (assume unit normal)
                 pcal_phasor_type pc_val = (*pcal)(pcal_pol_idx, pcal_chan_idx); //(*pcal)(pcal_pol_idx, pcal_chan_idx);
+                visibility_element_type pc_phasor = std::exp( fImagUnit*pc_val*fDegToRad );
 
-                visibility_element_type pc_phasor = std::exp( fImagUnit*2.0*M_PI*pc_val*(M_PI/180.) );
-
-                //conjugate if applied to remote station
+                //conjugate the pcal if applied to LSB
                 if(fConjugate){pc_val = std::conj(pc_phasor);} 
                 
                 //retrieve and multiply the appropriate sub view of the visibility array 
