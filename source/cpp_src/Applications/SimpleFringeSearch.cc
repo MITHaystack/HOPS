@@ -162,6 +162,9 @@ int main(int argc, char** argv)
         }
     }
 
+    ref_pcal.Insert(std::string("station"), std::string("GS") );
+    rem_pcal.Insert(std::string("station"), std::string("WF") );
+
     //read the directory file list
     std::vector< std::string > allFiles;
     std::vector< std::string > corFiles;
@@ -311,14 +314,15 @@ int main(int argc, char** argv)
     }
     
     //apply manual pcal 
+    bool ok;
     MHO_ManualChannelPhaseCorrection pcal_correct;
     pcal_correct.SetArgs(bl_data, &rem_pcal, bl_data);
-    pcal_correct.Initialize();
-    pcal_correct.Execute();
+    ok = pcal_correct.Initialize(); if(!ok){std::cout<<"flag1"<<std::endl;}
+    ok = pcal_correct.Execute(); if(!ok){std::cout<<"flag2"<<std::endl;}
 
     pcal_correct.SetArgs(bl_data, &ref_pcal, bl_data);
-    pcal_correct.Initialize();
-    pcal_correct.Execute();
+    ok = pcal_correct.Initialize(); if(!ok){std::cout<<"flag3"<<std::endl;}
+    ok = pcal_correct.Execute(); if(!ok){std::cout<<"flag4"<<std::endl;}
 
     //output for the delay 
     ch_visibility_type* sbd_data = bl_data->CloneEmpty();
@@ -396,8 +400,10 @@ int main(int argc, char** argv)
         std::size_t max_loc = mSearch.GetMaxLocation();
         std::size_t min_loc = mSearch.GetMinLocation();
         auto loc_array = ch_slice.GetIndicesForOffset(max_loc);
-        std::cout<<ss.str()<<": max = "<<vmax<<" at index location: ("<<loc_array[0]<<", "<<loc_array[1] <<")  = ("
-        <<dr_rate_ax(loc_array[0])<<", "<<delay_ax(loc_array[1])<<") " <<std::endl;
+        //std::cout<<ss.str()<<": max = "<<vmax<<" at index location: ("<<loc_array[0]<<", "<<loc_array[1] <<")  = ("
+        //<<dr_rate_ax(loc_array[0])<<", "<<delay_ax(loc_array[1])<<") " <<std::endl;
+        visibility_element_type val = ch_slice(loc_array[0], loc_array[1]);
+        std::cout<<"max mag = "<<std::abs(val)<<", arg = "<<std::arg(val)*(180./M_PI)<<std::endl;
 
         auto gr = gMan.GenerateComplexGraph2D(ch_slice, dr_rate_ax, delay_ax, ROOT_CMPLX_PLOT_ABS );
 
