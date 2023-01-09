@@ -12,6 +12,8 @@ MHO_ManualChannelPhaseCorrection::MHO_ManualChannelPhaseCorrection():
     fRemStationKey = "remote_station";
     fRefStationKey = "reference_station";
     fBaselineKey = "baseline";
+
+    fImagUnit = std::complex<double>(0.0, 1.0);
 };
 
 MHO_ManualChannelPhaseCorrection::~MHO_ManualChannelPhaseCorrection(){};
@@ -29,11 +31,13 @@ MHO_ManualChannelPhaseCorrection::InitializeImpl(const XArgType1* in_vis, const 
     //check that the p-cal data is tagged with a station-id that is a member of this baseline
     std::string station;
     pcal->Retrieve( fStationKey, station);
+    make_upper(station);
 
     std::cout<<"pcal station = "<<station<<std::endl;
 
     std::string baseline;
     in_vis->Retrieve(fBaselineKey, baseline);
+    make_upper(baseline);
 
     std::cout<<"baseline = "<<baseline<<std::endl;
 
@@ -60,7 +64,8 @@ MHO_ManualChannelPhaseCorrection::InitializeImpl(const XArgType1* in_vis, const 
         {
             auto pol = pol_ax(j);
             auto polprod = pp_ax(i);
-
+            make_upper(pol); 
+            make_upper(polprod);
             std::cout<<"pol_axis = "<<pol<<" polprod_ax = "<<polprod<<std::endl;
             if( pol[0] == polprod[pol_index] ){fPolIdxMap[i] = j; std::cout<<i<<" -> "<<j<<std::endl;}
             //if( pol_ax(i)[0] == pp_ax(i)[pol_index] ){fPolIdxMap[j] = i;}
@@ -106,13 +111,16 @@ MHO_ManualChannelPhaseCorrection::ExecuteImpl(const XArgType1* in_vis, const XAr
                 std::size_t vis_chan_idx = ch_it->first;
                 std::size_t pcal_chan_idx = ch_it->second;
                 //retrieve the p-cal phasor (assume unit normal)
-                pcal_phasor_type pc_val = (*pcal)(pcal_pol_idx, pcal_chan_idx);
+                pcal_phasor_type pc_val = (*pcal)(pcal_pol_idx, pcal_chan_idx); //(*pcal)(pcal_pol_idx, pcal_chan_idx);
+
+                visibility_element_type pc_phasor = std::exp( fImagUnit*2.0*M_PI*pc_val*(M_PI/180.) );
+
                 //conjugate if applied to remote station
-                if(fConjugate){pc_val = std::conj(pc_val);} 
+                if(fConjugate){pc_val = std::conj(pc_phasor);} 
                 
                 //retrieve and multiply the appropriate sub view of the visibility array 
                 auto chunk = out_vis->SubView(vis_pol_idx, vis_chan_idx);
-                chunk *= pc_val;
+                chunk *= pc_phasor;
             }
         }
     }

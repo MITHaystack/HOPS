@@ -14,6 +14,7 @@
 #include <complex>
 #include <vector>
 #include <map>
+#include <cctype>
 
 #include "MHO_TableContainer.hh"
 #include "MHO_ContainerDefinitions.hh"
@@ -46,6 +47,8 @@ class MHO_ManualChannelPhaseCorrection: public MHO_BinaryOperator<
         bool fInitialized;
         bool fConjugate;
 
+        std::complex<double> fImagUnit;
+
         std::string fStationKey;
         std::string fRemStationKey;
         std::string fRefStationKey;
@@ -56,7 +59,9 @@ class MHO_ManualChannelPhaseCorrection: public MHO_BinaryOperator<
 
         //may want to cache the dimensions of the input arrays and initialization state 
 
-
+        //minor helper function to make sure all strings are compared as upper-case only 
+        void make_upper(std::string& s){ for(char& c : s){c = toupper(c); };
+    }
 
 
 };

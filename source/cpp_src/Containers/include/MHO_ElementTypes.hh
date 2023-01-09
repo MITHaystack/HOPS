@@ -23,8 +23,11 @@ using visibility_element_type = std::complex<VFP_TYPE>;
 typedef double WFP_TYPE;
 using weight_element_type = WFP_TYPE;
 
-typedef double PCAL_TYPE;
-using pcal_phasor_type = std::complex<PCAL_TYPE>;
+typedef double PCFP_TYPE;
+
+using pcal_phasor_type = std::complex<PCFP_TYPE>;
+
+using manual_pcal_element_type = PCFP_TYPE;
 
 typedef double SPLINE_TYPE;
 using spline_coeff_type = SPLINE_TYPE;

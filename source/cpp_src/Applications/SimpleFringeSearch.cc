@@ -135,6 +135,11 @@ int main(int argc, char** argv)
 
     //label the axes 
     std::string pol_arr[2];
+
+    //from parser.c
+    // #define LXH 0
+    // #define RYV 1
+
     pol_arr[0] = "X";
     pol_arr[1] = "Y";
     for(unsigned int p=0; p<2; p++)
@@ -156,8 +161,8 @@ int main(int argc, char** argv)
         {
             double ref_ph = cb_out->pc_phase[ch][p].ref;
             double rem_ph = cb_out->pc_phase[ch][p].rem;
-            ref_pcal(p,ch) = std::exp( imag_unit*2.0*M_PI*ref_ph*(M_PI/180.) );
-            rem_pcal(p,ch) = std::exp( imag_unit*2.0*M_PI*rem_ph*(M_PI/180.) );
+            ref_pcal(p,ch) = ref_ph;// std::exp( imag_unit*2.0*M_PI*ref_ph*(M_PI/180.) );
+            rem_pcal(p,ch) = rem_ph; //std::exp( imag_unit*2.0*M_PI*rem_ph*(M_PI/180.) );
             std::cout<<"chan: "<< ch <<" ref-pc: "<< cb_out->pc_phase[ch][p].ref << " rem-pc: " << cb_out->pc_phase[ch][p].rem << std::endl;
         }
     }
