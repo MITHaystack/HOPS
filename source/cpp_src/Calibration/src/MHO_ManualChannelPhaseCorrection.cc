@@ -30,8 +30,12 @@ MHO_ManualChannelPhaseCorrection::InitializeImpl(const XArgType1* in_vis, const 
     std::string station;
     pcal->Retrieve( fStationKey, station);
 
+    std::cout<<"pcal station = "<<station<<std::endl;
+
     std::string baseline;
     in_vis->Retrieve(fBaselineKey, baseline);
+
+    std::cout<<"baseline = "<<baseline<<std::endl;
 
     if( baseline.find(station) == std::string::npos){return false;}
 
@@ -45,6 +49,8 @@ MHO_ManualChannelPhaseCorrection::InitializeImpl(const XArgType1* in_vis, const 
     if(station == rem_station){fConjugate = true; pol_index = 1;}
     if(station == ref_station){fConjugate = false; pol_index = 0;}
 
+    if(fConjugate){std::cout<<"is remote station"<<std::endl;}
+
     //map the pcal polarization index to the visibility pol-product index
     auto pp_ax = std::get<CH_POLPROD_AXIS>(*in_vis);
     auto pol_ax = std::get<0>(*pcal);
@@ -52,7 +58,12 @@ MHO_ManualChannelPhaseCorrection::InitializeImpl(const XArgType1* in_vis, const 
     {
         for(std::size_t i=0; i<pp_ax.GetSize(); i++)
         {
-            if( pol_ax(i)[0] == pp_ax(i)[pol_index] ){fPolIdxMap[j] = i;}
+            auto pol = pol_ax(j);
+            auto polprod = pp_ax(i);
+
+            std::cout<<"pol_axis = "<<pol<<" polprod_ax = "<<polprod<<std::endl;
+            if( pol[0] == polprod[pol_index] ){fPolIdxMap[i] = j; std::cout<<i<<" -> "<<j<<std::endl;}
+            //if( pol_ax(i)[0] == pp_ax(i)[pol_index] ){fPolIdxMap[j] = i;}
         }
     }
 
@@ -63,10 +74,11 @@ MHO_ManualChannelPhaseCorrection::InitializeImpl(const XArgType1* in_vis, const 
     {
         for(std::size_t i=0; i<chan_ax.GetSize(); i++)
         {
-            if( pcal_chan_ax(i) == chan_ax(i) ){fChanIdxMap[j] = i;}
+            if( pcal_chan_ax(j) == chan_ax(i) ){fChanIdxMap[i] = j;}
         }
     }
 
+    std::cout<<"init done"<<std::endl;
 
     fInitialized = true;
     return true;
@@ -84,19 +96,22 @@ MHO_ManualChannelPhaseCorrection::ExecuteImpl(const XArgType1* in_vis, const XAr
         //with separate 2 input arguments (vis array, and pcal array)
         out_vis->Copy(*in_vis);
     
-        //loop over p-cal pols
+        //loop over pol products
         for(auto pol_it = fPolIdxMap.begin(); pol_it != fPolIdxMap.end(); pol_it++)
         {
-            //loop over the p-cal channels
+            std::size_t vis_pol_idx = pol_it->first;
+            std::size_t pcal_pol_idx = pol_it->second;
             for(auto ch_it = fChanIdxMap.begin(); ch_it != fChanIdxMap.end(); ch_it++)
             {
+                std::size_t vis_chan_idx = ch_it->first;
+                std::size_t pcal_chan_idx = ch_it->second;
                 //retrieve the p-cal phasor (assume unit normal)
-                pcal_phasor_type pc_val = (*pcal)(pol_it->first, ch_it->first);
+                pcal_phasor_type pc_val = (*pcal)(pcal_pol_idx, pcal_chan_idx);
                 //conjugate if applied to remote station
                 if(fConjugate){pc_val = std::conj(pc_val);} 
                 
                 //retrieve and multiply the appropriate sub view of the visibility array 
-                auto chunk = out_vis->SubView(pol_it->second, ch_it->second);
+                auto chunk = out_vis->SubView(vis_pol_idx, vis_chan_idx);
                 chunk *= pc_val;
             }
         }
