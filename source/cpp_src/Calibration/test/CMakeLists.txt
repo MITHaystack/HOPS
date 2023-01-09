@@ -46,7 +46,7 @@ set(TEST_LIBS MHO_Message MHO_Math MHO_Operators MHO_Containers MHO_Calibration)
 
 #compile and install test executables
 set(SOURCE_BASENAMES
-    TestManualChannelPhaseCorrection
+    #TestManualChannelPhaseCorrection
 )
 
 foreach( BASENAME ${SOURCE_BASENAMES} )

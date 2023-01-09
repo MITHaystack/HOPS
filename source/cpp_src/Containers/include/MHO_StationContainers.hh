@@ -26,7 +26,7 @@ using multitone_pcal_type = MHO_TableContainer< pcal_phasor_type, multitone_pcal
 
 //manual (per-channel) pcal offsets
 using manual_pcal_axis_type = MHO_AxisPack< pol_axis_type, channel_axis_type >;
-using manual_pcal_type = MHO_TableContainer< pcal_phasor_type, manual_pcal_axis_type >;
+using manual_pcal_type = MHO_TableContainer< manual_pcal_element_type, manual_pcal_axis_type >;
 
 }//end of hops namespaces
 
