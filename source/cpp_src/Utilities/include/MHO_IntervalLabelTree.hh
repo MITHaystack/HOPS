@@ -35,6 +35,7 @@ class MHO_IntervalLabelTree: virtual public MHO_Serializable
         void InsertLabel(const MHO_IntervalLabel& label);
 
         std::vector< MHO_IntervalLabel* > GetIntervalsWhichIntersect(const std::size_t& idx);
+        std::vector< const MHO_IntervalLabel* > GetIntervalsWhichIntersect(const std::size_t& idx) const;
         std::vector< MHO_IntervalLabel* > GetIntervalsWhichIntersect(const MHO_Interval<std::size_t>* interval);
         std::vector< const MHO_IntervalLabel* > GetIntervalsWhichIntersect(const MHO_Interval<std::size_t>* interval) const;
 

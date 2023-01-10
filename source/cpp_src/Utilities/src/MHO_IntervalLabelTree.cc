@@ -75,6 +75,21 @@ MHO_IntervalLabelTree::GetIntervalsWhichIntersect(const std::size_t& idx)
     return labels;
 }
 
+std::vector< const MHO_IntervalLabel* >
+MHO_IntervalLabelTree::GetIntervalsWhichIntersect(const std::size_t& idx) const
+{
+    std::vector< const MHO_IntervalLabel* > labels;
+    //dumb brute for search over all intervals O(n)
+    for(std::size_t i=0; i<fIntervals.size(); i++)
+    {
+        if(fIntervals[i]->Intersects(idx))
+        {
+            labels.push_back(fIntervals[i]);
+        }
+    }
+    return labels;
+}
+
 std::vector< MHO_IntervalLabel* >
 MHO_IntervalLabelTree::GetIntervalsWhichIntersect(const MHO_Interval<std::size_t>* interval)
 {
