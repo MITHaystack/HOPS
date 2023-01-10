@@ -3,6 +3,7 @@
 set (OPERATOR_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_Operator.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_UnaryOperator.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_InspectingOperator.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_TransformingOperator.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_UnaryFunctor.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_BinaryOperator.hh

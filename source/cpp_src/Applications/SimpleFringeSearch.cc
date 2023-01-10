@@ -401,7 +401,7 @@ int main(int argc, char** argv)
 
         auto c = cMan.CreateCanvas(ss.str().c_str(), 800, 800);
         auto ch_slice = sbd_data->SliceView(0,ch,":",":");
-        mSearch.SetArgs(&ch_slice, nullptr); //THIS IS A MAJOR KLUGE, probably should NOT be a "unary data operator"
+        mSearch.SetArgs(&ch_slice); 
         mSearch.Initialize();
         mSearch.Execute();
 

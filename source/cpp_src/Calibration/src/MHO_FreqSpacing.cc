@@ -109,6 +109,8 @@ void FreqSpacing(const channel_axis_type& ch_axis)
     while ((div < 256) && (spacing_ok == 0));
 
 
+    std::cout<<"N MBD grid pts = "<<grid_pts<<std::endl;
+
     for(auto it = chan_idx_to_mbd_idx.begin(); it != chan_idx_to_mbd_idx.end(); it++)
     {
         std::cout<<"chan2mbd idx = "<<it->first<<", "<<it->second<<std::endl;

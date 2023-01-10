@@ -7,7 +7,7 @@
 
 #include "MHO_Meta.hh"
 #include "MHO_Message.hh"
-#include "MHO_UnaryOperator.hh"
+#include "MHO_InspectingOperator.hh"
 #include "MHO_NDArrayWrapper.hh"
 #include "MHO_TableContainer.hh"
 
@@ -27,7 +27,7 @@ namespace hops
 
 template< class XArgType>
 class MHO_ExtremaSearch:
-    public MHO_UnaryOperator< XArgType >
+    public MHO_InspectingOperator< XArgType >
 {
     public:
 
@@ -42,23 +42,10 @@ class MHO_ExtremaSearch:
 
     protected:
 
-        virtual bool InitializeInPlace(XArgType* /*in*/) override {return true;};
-
-        virtual bool ExecuteInPlace(XArgType* in) override
-        {
-            return false;
-        }
-
-        virtual bool InitializeOutOfPlace(const XArgType* /*in*/, XArgType* /*out*/) override {return true;};
-
-        virtual bool ExecuteOutOfPlace(const XArgType* in, XArgType* /*out*/) override
-        {
-            Search(in);
-            return true;
-        }
+        virtual bool InitializeImpl(const XArgType* /*in*/) override {return true;};
+        virtual bool ExecuteImpl(const XArgType* in) override { Search(in); return true;}
 
     private:
-
 
         // basic floating point types
         template< typename XCheckType = typename XArgType::value_type >
