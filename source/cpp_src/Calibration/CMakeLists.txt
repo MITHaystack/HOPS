@@ -5,6 +5,7 @@ set (CALIBRATION_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_WeightChannelizer.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_NormFX.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ManualChannelPhaseCorrection.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_FreqSpacing.hh
 )
 
 #list source files #############################################################
@@ -14,6 +15,7 @@ set( CALIBRATION_SOURCEFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_WeightChannelizer.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_NormFX.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ManualChannelPhaseCorrection.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_FreqSpacing.cc
 )
 
 #declare header paths ##########################################################

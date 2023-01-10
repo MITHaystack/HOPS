@@ -27,6 +27,7 @@ struct c_block* cb_head; //global extern kludge
 //operators
 #include "MHO_NormFX.hh"
 #include "MHO_SelectRepack.hh"
+#include "MHO_FreqSpacing.hh"
 
 #include "MHO_Reducer.hh"
 
@@ -270,8 +271,9 @@ int main(int argc, char** argv)
     // std::vector< std::size_t > selected_ap;
     // selected_ap.push_back(20);
     // 
+    //just use band-A
     std::vector< std::size_t > selected_ch;
-    selected_ch.push_back(0);
+    for(std::size_t i=0;i<8; i++){selected_ch.push_back(i);}
     
     //pick out just the first channel and ap
     spack.SelectAxisItems(1,selected_ch);
@@ -334,7 +336,10 @@ int main(int argc, char** argv)
     ch_visibility_type* sbd_data = bl_data->CloneEmpty();
     bl_dim[CH_FREQ_AXIS] *= 4; //normfx implementation demands this
     sbd_data->Resize(bl_dim);
-    
+
+    //calculate frequency space for MBD 
+    FreqSpacing(std::get<CH_CHANNEL_AXIS>(*bl_data));
+
     //re-run this exercise via the pure c++ function
     MHO_NormFX nfxOp;
     nfxOp.SetArgs(bl_data, wt_data, sbd_data);
@@ -406,8 +411,8 @@ int main(int argc, char** argv)
         std::size_t max_loc = mSearch.GetMaxLocation();
         std::size_t min_loc = mSearch.GetMinLocation();
         auto loc_array = ch_slice.GetIndicesForOffset(max_loc);
-        //std::cout<<ss.str()<<": max = "<<vmax<<" at index location: ("<<loc_array[0]<<", "<<loc_array[1] <<")  = ("
-        //<<dr_rate_ax(loc_array[0])<<", "<<delay_ax(loc_array[1])<<") " <<std::endl;
+        std::cout<<ss.str()<<": max = "<<vmax<<" at index location: ("<<loc_array[0]<<", "<<loc_array[1] <<")  = ("
+        <<dr_rate_ax(loc_array[0])<<", "<<delay_ax(loc_array[1])<<") " <<std::endl;
         visibility_element_type val = ch_slice(loc_array[0], loc_array[1]);
         std::cout<<"max mag = "<<std::abs(val)<<", arg = "<<std::arg(val)*(180./M_PI)<<std::endl;
 

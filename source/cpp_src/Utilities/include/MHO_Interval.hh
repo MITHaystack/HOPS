@@ -96,10 +96,10 @@ class MHO_Interval
             return false;
         }
 
-        //test if this open interval itersects with a point
+        //test if the closed interval itersects with a point
         bool Intersects(const XIntegerType& idx) const
         {
-            if(fLowerBound <= idx && idx < fUpperBound)
+            if(fLowerBound <= idx && idx <= fUpperBound)
             {
                 return true;
             }
