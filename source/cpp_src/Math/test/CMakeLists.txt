@@ -6,6 +6,7 @@ set (HOPS_TEST_LIBS MHO_Message MHO_Math)
 set(SOURCE_BASENAMES
     TestFastFourierTransform
     TestSignalGenerators
+    TestUniformGridCalculator
 )
 
 if(HOPS_USE_FFTW3)

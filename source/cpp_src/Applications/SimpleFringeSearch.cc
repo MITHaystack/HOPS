@@ -276,7 +276,7 @@ int main(int argc, char** argv)
     for(std::size_t i=0;i<8; i++){selected_ch.push_back(i);}
     
     //pick out just the first channel and ap
-    spack.SelectAxisItems(1,selected_ch);
+    //spack.SelectAxisItems(1,selected_ch);
     //spack.SelectAxisItems(2,selected_ap); 
 
     spack.SetArgs(bl_data, alt_data);
