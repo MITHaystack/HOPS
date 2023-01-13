@@ -124,6 +124,7 @@ MHO_UniformGridPointsCalculator::Calculate_v1()
         for(auto it = chan_idx_to_mbd_idx.begin(); it != chan_idx_to_mbd_idx.end(); it++)
         {
             std::cout<<"chan2mbd idx = "<<it->first<<", "<<it->second<<std::endl;
+            fIndexMap[it->first] = (std::size_t) it->second;
         }
 
         fSpacing = min_space;
