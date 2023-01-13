@@ -28,6 +28,7 @@ struct c_block* cb_head; //global extern kludge
 #include "MHO_NormFX.hh"
 #include "MHO_SelectRepack.hh"
 #include "MHO_FreqSpacing.hh"
+#include "MHO_UniformGridPointsCalculator.hh"
 
 #include "MHO_Reducer.hh"
 
@@ -276,7 +277,7 @@ int main(int argc, char** argv)
     for(std::size_t i=0;i<8; i++){selected_ch.push_back(i);}
     
     //pick out just the first channel and ap
-    //spack.SelectAxisItems(1,selected_ch);
+    spack.SelectAxisItems(1,selected_ch);
     //spack.SelectAxisItems(2,selected_ap); 
 
     spack.SetArgs(bl_data, alt_data);
@@ -340,6 +341,9 @@ int main(int argc, char** argv)
     //calculate frequency space for MBD 
     FreqSpacing(std::get<CH_CHANNEL_AXIS>(*bl_data));
 
+
+
+
     //re-run this exercise via the pure c++ function
     MHO_NormFX nfxOp;
     nfxOp.SetArgs(bl_data, wt_data, sbd_data);
@@ -365,6 +369,83 @@ int main(int argc, char** argv)
     fCyclicRotator.Execute();
 
 
+    //set up mbd grid
+    //grab all the channel sky frequencies
+    auto chan_ax = std::get<CH_CHANNEL_AXIS>(*bl_data);
+    std::string sky_freq_key = "sky_freq";
+    std::vector< double > chan_freqs;
+    for(std::size_t i=0;i<chan_ax.GetSize(); i++)
+    {
+        double freq;
+        std::vector< MHO_IntervalLabel* > labels;
+        labels = chan_ax.GetIntervalsWhichIntersect(i);
+        if(labels.size() != 0)
+        {
+            for(std::size_t j=0; j < labels.size(); j++)
+            {
+                if(labels[j]->HasKey(sky_freq_key))
+                {
+                    labels[j]->Retrieve(sky_freq_key, freq);
+                    chan_freqs.push_back(freq);
+                }
+                else{std::cout<<"no sky_freq"<<std::endl;}
+            }
+        }
+        else{std::cout<<"no labels for chan: "<<i<<std::endl;}
+    }
+    MHO_UniformGridPointsCalculator gridCalc;
+    gridCalc.SetPoints(chan_freqs);
+    gridCalc.Calculate();
+    
+    std::cout<<"info: "<<gridCalc.GetGridStart()<<", "<<gridCalc.GetGridSpacing()<<", "<<gridCalc.GetNGridPoints()<<std::endl;
+
+
+    sbd_data->GetDimensions(bl_dim);
+    double gstart = gridCalc.GetGridStart();
+    double gspace = gridCalc.GetGridSpacing();
+    std::size_t ngrid_pts = gridCalc.GetNGridPoints();
+    auto mbd_bin_map = gridCalc.GetGridIndexMap();
+    ch_visibility_type mbd_data;
+    mbd_data.Resize(bl_dim[0], ngrid_pts, bl_dim[2], bl_dim[3]);
+    mbd_data.ZeroArray();
+
+    auto mbd_ax = &(std::get<CH_CHANNEL_AXIS>(mbd_data) );
+    for(std::size_t i=0; i<ngrid_pts;i++)
+    {   
+        (*mbd_ax)(i) = gstart + i*gspace;
+    }
+
+    //fill in the mbd_data before we x-form it
+    for(std::size_t pp=0; pp<bl_dim[0]; pp++)
+    {
+        for(std::size_t ch=0; ch<bl_dim[1]; ch++)
+        {
+            std::size_t mbd_bin = mbd_bin_map[ch];
+            for(std::size_t dr=0; dr<bl_dim[2]; dr++)
+            {
+                for(std::size_t sbd=0; sbd<bl_dim[3]; sbd++)
+                {
+                    mbd_data(pp, mbd_bin, dr, sbd)  = (*sbd_data)(pp,ch,dr,sbd);
+                }
+            }
+        }
+    }
+
+    //now we are going to run a FFT on the mbd axis 
+    fFFTEngine.SetArgs(&mbd_data);
+    fFFTEngine.DeselectAllAxes();
+    fFFTEngine.SelectAxis(CH_CHANNEL_AXIS);
+    fFFTEngine.SetForward();
+    status = fFFTEngine.Initialize();
+
+    fCyclicRotator.SetOffset(CH_CHANNEL_AXIS, bl_dim[CH_CHANNEL_AXIS]/2);
+    fCyclicRotator.SetArgs(&mbd_data);
+    status = fCyclicRotator.Initialize();
+
+    status = fFFTEngine.Execute();
+    status = fCyclicRotator.Execute();
+
+
     #ifdef USE_ROOT
 
     std::cout<<"starting root plotting"<<std::endl;
@@ -382,6 +463,7 @@ int main(int argc, char** argv)
     MHO_RootGraphManager gMan;
 
     MHO_ExtremaSearch< MHO_NDArrayView< visibility_element_type, 2 > > mSearch;
+    MHO_ExtremaSearch< MHO_NDArrayView< visibility_element_type, 1 > > mbdSearch;
 
     auto dr_rate_ax = std::get<CH_TIME_AXIS>(*sbd_data);
     auto delay_ax = std::get<CH_FREQ_AXIS>(*sbd_data);
@@ -417,6 +499,17 @@ int main(int argc, char** argv)
         std::cout<<"max mag = "<<std::abs(val)<<", arg = "<<std::arg(val)*(180./M_PI)<<std::endl;
 
         auto gr = gMan.GenerateComplexGraph2D(ch_slice, dr_rate_ax, delay_ax, ROOT_CMPLX_PLOT_ABS );
+
+        //at the sbd, dr max locations, lets look for the mbd max too 
+        auto mbd_slice = mbd_data.SliceView(0,":", loc_array[0], loc_array[1]);
+        mbdSearch.SetArgs(&mbd_slice);
+        mbdSearch.Initialize();
+        mbdSearch.Execute();
+
+        std::size_t max_mbd_loc = mbdSearch.GetMaxLocation();
+        std::cout<<"mbd max located at: "<<max_mbd_loc<<std::endl;
+
+
 
         c->cd();
         c->SetTopMargin(0.1);
