@@ -405,14 +405,16 @@ int main(int argc, char** argv)
     double gspace = gridCalc.GetGridSpacing();
     std::size_t ngrid_pts = gridCalc.GetNGridPoints();
     auto mbd_bin_map = gridCalc.GetGridIndexMap();
-    ch_visibility_type mbd_data;
+
+    ch_mbd_type mbd_data;
     mbd_data.Resize(bl_dim[0], ngrid_pts, bl_dim[2], bl_dim[3]);
     mbd_data.ZeroArray();
+    // mbd_data.GetDimensions(bl_dim);
 
     auto mbd_ax = &(std::get<CH_CHANNEL_AXIS>(mbd_data) );
     for(std::size_t i=0; i<ngrid_pts;i++)
     {   
-        (*mbd_ax)(i) = i*gspace*1e6;
+        (*mbd_ax)(i) = i*gspace;
     }
 
     //fill in the mbd_data before we x-form it
@@ -421,33 +423,38 @@ int main(int argc, char** argv)
         for(std::size_t ch=0; ch<bl_dim[1]; ch++)
         {
             std::size_t mbd_bin = mbd_bin_map[ch];
+            std::cout<<"ch -> mbd = "<<ch<<", "<<mbd_bin<<std::endl;
             for(std::size_t dr=0; dr<bl_dim[2]; dr++)
             {
                 for(std::size_t sbd=0; sbd<bl_dim[3]; sbd++)
                 {
-                    mbd_data(pp, mbd_bin, dr, sbd) = ch%2;//(*sbd_data)(pp,ch,dr,sbd);
+                    //if(mbd_bin == 0){std::cout<<"stuf = "<<(*sbd_data)(pp,ch,dr,sbd)<<std::endl;}
+                    mbd_data(pp, mbd_bin, dr, sbd) = (*sbd_data)(pp,ch,dr,sbd);
                 }
             }
         }
     }
 
     //now we are going to run a FFT on the mbd axis 
-    fFFTEngine.SetArgs(&mbd_data);
-    fFFTEngine.DeselectAllAxes();
-    fFFTEngine.SelectAxis(CH_CHANNEL_AXIS);
-    fFFTEngine.SetForward();
-    status = fFFTEngine.Initialize();
+
+    MHO_MultidimensionalFastFourierTransform< ch_mbd_type > fFFTEngine2;
+    MHO_CyclicRotator< ch_mbd_type > fCyclicRotator2;
+    fFFTEngine2.SetArgs(&mbd_data);
+    fFFTEngine2.DeselectAllAxes();
+    fFFTEngine2.SelectAxis(CH_CHANNEL_AXIS);
+    fFFTEngine2.SetForward();
+    status = fFFTEngine2.Initialize();
 
     if(!status){std::cout<<"FAIL1"<<std::endl;}
 
-    fCyclicRotator.SetOffset(CH_CHANNEL_AXIS, bl_dim[CH_CHANNEL_AXIS]/2);
-    fCyclicRotator.SetArgs(&mbd_data);
-    status = fCyclicRotator.Initialize();
+    fCyclicRotator2.SetOffset(CH_CHANNEL_AXIS, ngrid_pts/2);
+    fCyclicRotator2.SetArgs(&mbd_data);
+    status = fCyclicRotator2.Initialize();
     if(!status){std::cout<<"FAIL2"<<std::endl;}
 
-    status = fFFTEngine.Execute();
+    status = fFFTEngine2.Execute();
     if(!status){std::cout<<"FAIL3"<<std::endl;}
-    status = fCyclicRotator.Execute();
+    status = fCyclicRotator2.Execute();
     if(!status){std::cout<<"FAIL4"<<std::endl;}
 
 
@@ -506,11 +513,11 @@ int main(int argc, char** argv)
         //auto gr = gMan.GenerateComplexGraph2D(ch_slice, dr_rate_ax, delay_ax, ROOT_CMPLX_PLOT_ABS );
 
         //at the sbd, dr max locations, lets look for the mbd max too 
-        auto mbd_slice = mbd_data.SliceView(0,":", loc_array[0], loc_array[1]);
-
+        auto mbd_slice = mbd_data.SliceView(0, ":", loc_array[0], loc_array[1]);
+        auto mbd_ax = std::get<CH_CHANNEL_AXIS>(mbd_data);
         for(std::size_t x=0;x<mbd_slice.GetSize(); x++)
         {
-            std::cout<<"x, val = "<<x<<", "<<mbd_slice(x)<<std::endl;
+            std::cout<<"x, val = "<<mbd_ax(x)<<", "<<mbd_slice(x)<<std::endl;
         }
 
         mbdSearch.SetArgs(&mbd_slice);
