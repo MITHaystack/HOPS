@@ -50,6 +50,8 @@ class MHO_UniformGridPointsCalculator
         void Calculate_v1(); //based on original implementation (freq_spacing.c)
         void Calculate_v2();
 
+        void FindStartAndMinMaxSpacing();
+
 
         double fEpsilon;
         double fStart;

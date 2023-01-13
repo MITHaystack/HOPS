@@ -20,9 +20,11 @@ int main(int argc, char** argv)
     // pts.push_back(11.32332342);
     pts.push_back(13.0);
     pts.push_back(17.0);
+    pts.push_back(17.1);
+    pts.push_back(17.33);
     pts.push_back(19.0);
     pts.push_back(71.0);
-    // pts.push_back(71.005);
+    pts.push_back(72.0);
     // 
 
     
