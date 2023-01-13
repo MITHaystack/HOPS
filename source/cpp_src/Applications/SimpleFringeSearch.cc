@@ -412,7 +412,7 @@ int main(int argc, char** argv)
     auto mbd_ax = &(std::get<CH_CHANNEL_AXIS>(mbd_data) );
     for(std::size_t i=0; i<ngrid_pts;i++)
     {   
-        (*mbd_ax)(i) = gstart + i*gspace;
+        (*mbd_ax)(i) = i*gspace*1e6;
     }
 
     //fill in the mbd_data before we x-form it
@@ -425,7 +425,7 @@ int main(int argc, char** argv)
             {
                 for(std::size_t sbd=0; sbd<bl_dim[3]; sbd++)
                 {
-                    mbd_data(pp, mbd_bin, dr, sbd)  = (*sbd_data)(pp,ch,dr,sbd);
+                    mbd_data(pp, mbd_bin, dr, sbd) = ch%2;//(*sbd_data)(pp,ch,dr,sbd);
                 }
             }
         }
@@ -438,12 +438,17 @@ int main(int argc, char** argv)
     fFFTEngine.SetForward();
     status = fFFTEngine.Initialize();
 
+    if(!status){std::cout<<"FAIL1"<<std::endl;}
+
     fCyclicRotator.SetOffset(CH_CHANNEL_AXIS, bl_dim[CH_CHANNEL_AXIS]/2);
     fCyclicRotator.SetArgs(&mbd_data);
     status = fCyclicRotator.Initialize();
+    if(!status){std::cout<<"FAIL2"<<std::endl;}
 
     status = fFFTEngine.Execute();
+    if(!status){std::cout<<"FAIL3"<<std::endl;}
     status = fCyclicRotator.Execute();
+    if(!status){std::cout<<"FAIL4"<<std::endl;}
 
 
     #ifdef USE_ROOT
@@ -498,13 +503,22 @@ int main(int argc, char** argv)
         visibility_element_type val = ch_slice(loc_array[0], loc_array[1]);
         std::cout<<"max mag = "<<std::abs(val)<<", arg = "<<std::arg(val)*(180./M_PI)<<std::endl;
 
-        auto gr = gMan.GenerateComplexGraph2D(ch_slice, dr_rate_ax, delay_ax, ROOT_CMPLX_PLOT_ABS );
+        //auto gr = gMan.GenerateComplexGraph2D(ch_slice, dr_rate_ax, delay_ax, ROOT_CMPLX_PLOT_ABS );
 
         //at the sbd, dr max locations, lets look for the mbd max too 
         auto mbd_slice = mbd_data.SliceView(0,":", loc_array[0], loc_array[1]);
+
+        for(std::size_t x=0;x<mbd_slice.GetSize(); x++)
+        {
+            std::cout<<"x, val = "<<x<<", "<<mbd_slice(x)<<std::endl;
+        }
+
         mbdSearch.SetArgs(&mbd_slice);
         mbdSearch.Initialize();
         mbdSearch.Execute();
+
+        auto new_mbd_ax = std::get<CH_CHANNEL_AXIS>(mbd_data);
+        auto gr = gMan.GenerateComplexGraph1D(mbd_slice, new_mbd_ax, ROOT_CMPLX_PLOT_ABS );
 
         std::size_t max_mbd_loc = mbdSearch.GetMaxLocation();
         std::cout<<"mbd max located at: "<<max_mbd_loc<<std::endl;
