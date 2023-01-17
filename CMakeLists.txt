@@ -59,8 +59,10 @@ file(MAKE_DIRECTORY ${SHARE_TEXT_INSTALL_DIR})
 file(MAKE_DIRECTORY ${SHARE_VHELP_INSTALL_DIR})
 ################################################################################
 
-#compiler flags (use c++11 standard)
+#compiler standard (use c++11 standard by default)
 hops_require_cpp11()
+#hops_require_cpp17()
+#hops_require_cpp20()
 
 option(EXTRA_WARNINGS "Turn on extra compiler warnings." OFF)
 if(EXTRA_WARNINGS)
@@ -119,26 +121,55 @@ endif()
 ################################################################################
 
 #python package setup
-find_package(PythonInterp REQUIRED)
-find_package(PythonLibs REQUIRED)
 
-if (PYTHON_EXECUTABLE)
-    #figure out the python install path
-    #so we can add it to PYTHONPATH
-    file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/pypath.py DESTINATION ${CMAKE_CURRENT_BINARY_DIR}
-      FILE_PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE
-      GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE
-    )
-    execute_process(COMMAND ${PYTHON_EXECUTABLE} "${CMAKE_CURRENT_BINARY_DIR}/pypath.py"  WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR} OUTPUT_VARIABLE PYTHON_SITE_PREFIX)
-    message(STATUS "Python path = ${PYTHON_SITE_PREFIX}")
+if(${CMAKE_VERSION} VERSION_GREATER "3.12.0")
 
-    string(STRIP "${PYTHON_SITE_PREFIX}" PYTHON_SITE_PREFIX)
 
-    set( PYTHON_MODULE_INSTALL_DIR  "${CMAKE_INSTALL_PREFIX}/${PYTHON_SITE_PREFIX}")
+  find_package (Python3 COMPONENTS Interpreter Development)
 
-    #now add the python source dir
-    add_subdirectory(${PYSOURCE})
-endif (PYTHON_EXECUTABLE)
+  if (Python3_EXECUTABLE)
+      #figure out the python install path
+      #so we can add it to PYTHONPATH
+      file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/pypath.py DESTINATION ${CMAKE_CURRENT_BINARY_DIR}
+        FILE_PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE
+        GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE
+      )
+      execute_process(COMMAND ${Python3_EXECUTABLE} "${CMAKE_CURRENT_BINARY_DIR}/pypath.py"  WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR} OUTPUT_VARIABLE PYTHON_SITE_PREFIX)
+      message(STATUS "Python path = ${PYTHON_SITE_PREFIX}")
+
+      string(STRIP "${PYTHON_SITE_PREFIX}" PYTHON_SITE_PREFIX)
+
+      set( PYTHON_MODULE_INSTALL_DIR  "${CMAKE_INSTALL_PREFIX}/${PYTHON_SITE_PREFIX}")
+
+      #now add the python source dir
+      add_subdirectory(${PYSOURCE})
+  endif (Python3_EXECUTABLE)
+
+else()
+
+  #if CMAKE version < 3.12 use old style find package to figure out where python is
+  find_package(PythonInterp REQUIRED)
+  find_package(PythonLibs REQUIRED)
+
+  if (PYTHON_EXECUTABLE)
+      #figure out the python install path
+      #so we can add it to PYTHONPATH
+      file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/pypath.py DESTINATION ${CMAKE_CURRENT_BINARY_DIR}
+        FILE_PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE
+        GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE
+      )
+      execute_process(COMMAND ${PYTHON_EXECUTABLE} "${CMAKE_CURRENT_BINARY_DIR}/pypath.py"  WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR} OUTPUT_VARIABLE PYTHON_SITE_PREFIX)
+      message(STATUS "Python path = ${PYTHON_SITE_PREFIX}")
+
+      string(STRIP "${PYTHON_SITE_PREFIX}" PYTHON_SITE_PREFIX)
+
+      set( PYTHON_MODULE_INSTALL_DIR  "${CMAKE_INSTALL_PREFIX}/${PYTHON_SITE_PREFIX}")
+
+      #now add the python source dir
+      add_subdirectory(${PYSOURCE})
+  endif (PYTHON_EXECUTABLE)
+
+endif()
 
 ################################################################################
 
