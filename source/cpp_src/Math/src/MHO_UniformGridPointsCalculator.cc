@@ -2,6 +2,8 @@
 #include "MHO_Message.hh"
 
 
+#define EXTRA_INTERP_DBG
+
 namespace hops 
 {
 
@@ -78,7 +80,11 @@ MHO_UniformGridPointsCalculator::Calculate_v1()
             spacing_ok = 1;
             spacing = min_space / div;
             div++;
-            grid_pts = 2;
+            #ifdef EXTRA_INTERP_DBG
+                grid_pts = 128; //use this value to simplify debugging of MBD search
+            #else 
+                grid_pts = 2; //this is the original value
+            #endif
             for(std::size_t fr = 0; fr < n_pts; fr++)
             {
                 index = (fPoints[fr] - min_pts) / spacing;

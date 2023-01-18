@@ -524,18 +524,22 @@ int main(int argc, char** argv)
         mbdSearch.Initialize();
         mbdSearch.Execute();
 
-        // auto new_mbd_ax = std::get<CH_CHANNEL_AXIS>(mbd_data);
-        // auto gr = gMan.GenerateComplexGraph1D(mbd_slice, new_mbd_ax, ROOT_CMPLX_PLOT_ABS );
-        //
+        auto new_mbd_ax = std::get<CH_CHANNEL_AXIS>(mbd_data);
+        auto gr2 = gMan.GenerateComplexGraph1D(mbd_slice, new_mbd_ax, ROOT_CMPLX_PLOT_ABS );
+        
         std::size_t max_mbd_loc = mbdSearch.GetMaxLocation();
-        std::cout<<"mbd max located at: "<<max_mbd_loc<<std::endl;
+        auto mbd_loc_array = mbd_slice.GetIndicesForOffset(max_mbd_loc);
+        std::cout<<"mbd max located at: "<<mbd_loc_array[0]<<std::endl;
 
 
 
         c->cd();
+        c->Divide(1,2);
+        
+        c->cd(1);
         c->SetTopMargin(0.1);
         c->SetRightMargin(0.2);
-
+        
         gr->SetTitle( "Fringe; delay rate (ns/s); Single band delay (#mus); Amp");
         gr->Draw("COLZ");
         gr->GetHistogram()->GetXaxis()->CenterTitle();
@@ -545,6 +549,18 @@ int main(int argc, char** argv)
         gr->GetHistogram()->GetYaxis()->SetTitleOffset(1.08);
         gr->GetHistogram()->GetZaxis()->SetTitleOffset(-0.4);
         gr->Draw("COLZ");
+  
+        
+          
+        c->Update();
+        c->cd(2);
+        c->SetTopMargin(0.1);
+        c->SetRightMargin(0.2);
+        
+        gr2->SetTitle( "Fringe; MBD; Amp");
+        gr2->Draw("APL");
+
+  
         c->Update();
     }
     App->Run();
