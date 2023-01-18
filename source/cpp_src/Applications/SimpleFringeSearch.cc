@@ -101,7 +101,7 @@ int main(int argc, char** argv)
         }
     }
 
-    if( directory == "" || baseline == "" || polprod == "" || control_file == "") 
+    if( directory == "" || baseline == "" || polprod == "" || control_file == "")
     {
         std::cout << usage << std::endl;
         return 1;
@@ -110,7 +110,7 @@ int main(int argc, char** argv)
     //parse the control file
     cb_head = (struct c_block *) malloc (sizeof (struct c_block) );
     struct c_block* cb_out = (struct c_block *) malloc (sizeof (struct c_block) );
-    nullify_cblock (cb_head);     
+    nullify_cblock (cb_head);
     default_cblock( cb_head );
     nullify_cblock (cb_out);
     default_cblock(cb_out);
@@ -125,17 +125,17 @@ int main(int argc, char** argv)
     int retval = construct_cblock(const_cast<char*>(control_file.c_str()), cb_head, cb_out, bl, const_cast<char*>(src.c_str()), fgroup, time);
     std::cout<<"c block retval = "<<retval<<std::endl;
 
-    //print pc_phases 
+    //print pc_phases
 
-    // struct dstats pc_phase_offset[2];// manual phase offset applied to all channels, by pol 
-    // struct dstats pc_phase[MAXFREQ][2];/* phase cal phases by channel and pol 
+    // struct dstats pc_phase_offset[2];// manual phase offset applied to all channels, by pol
+    // struct dstats pc_phase[MAXFREQ][2];/* phase cal phases by channel and pol
     //                                           for manual or additive pcal */
 
     //construct the pcal array...this is a really ugly on-off testing kludge
     manual_pcal_type ref_pcal; ref_pcal.Resize(2,MAXFREQ);
     manual_pcal_type rem_pcal; rem_pcal.Resize(2,MAXFREQ);
 
-    //label the axes 
+    //label the axes
     std::string pol_arr[2];
 
     //from parser.c
@@ -248,9 +248,9 @@ int main(int argc, char** argv)
     }
 
     //temporary testing...we want to pull out only the specified pol-product (e.g. XX)
-    //so for now we crudely create a copy from a slice view 
+    //so for now we crudely create a copy from a slice view
 
-    //first find the index which corresponds to the specified pol product 
+    //first find the index which corresponds to the specified pol product
     std::size_t pp_index = 0;
     std::vector<std::size_t> selected_pp;
     auto* pp_axis = &(std::get<CH_POLPROD_AXIS>(*bl_data));
@@ -271,23 +271,23 @@ int main(int argc, char** argv)
 
     // std::vector< std::size_t > selected_ap;
     // selected_ap.push_back(20);
-    // 
+    //
     //just use band-A
     std::vector< std::size_t > selected_ch;
     for(std::size_t i=0;i<8; i++){selected_ch.push_back(i);}
-    
+
     //pick out just the first channel and ap
     spack.SelectAxisItems(1,selected_ch);
-    //spack.SelectAxisItems(2,selected_ap); 
+    //spack.SelectAxisItems(2,selected_ap);
 
     spack.SetArgs(bl_data, alt_data);
     spack.Initialize();
     spack.Execute();
 
-    //TODO, work out what to do with the axis interval labels in between operations 
+    //TODO, work out what to do with the axis interval labels in between operations
     //explicitly copy the channel axis labels here
     std::get<CH_CHANNEL_AXIS>(*alt_data).CopyIntervalLabels( std::get<CH_CHANNEL_AXIS>(*bl_data) );
-    
+
     bl_data->Copy(*alt_data);
 
     //DEBUG dump this to json
@@ -300,12 +300,12 @@ int main(int argc, char** argv)
     MHO_ContainerFileInterface conInter2;
     conInter2.SetFilename("doh.json");
 
-    //convert the entire store to json 
-    json root;    
+    //convert the entire store to json
+    json root;
     int detail = eJSONAll;
     conInter2.ConvertStoreToJSON(conStore2,root,detail);
 
-    //open and dump to file 
+    //open and dump to file
     std::ofstream outFile("./test.json", std::ofstream::out);
     outFile << root;
     outFile.close();
@@ -316,13 +316,13 @@ int main(int argc, char** argv)
 
     std::size_t bl_dim[ch_visibility_type::rank::value];
     bl_data->GetDimensions(bl_dim);
-    
+
     for(std::size_t i=0; i<ch_visibility_type::rank::value; i++)
     {
         std::cout<<"vis size in dim: "<<i<<" = "<<bl_dim[i]<<std::endl;
     }
-    
-    //apply manual pcal 
+
+    //apply manual pcal
     bool ok;
     MHO_ManualChannelPhaseCorrection pcal_correct;
     pcal_correct.SetArgs(bl_data, &rem_pcal, bl_data);
@@ -333,12 +333,12 @@ int main(int argc, char** argv)
     ok = pcal_correct.Initialize(); if(!ok){std::cout<<"flag3"<<std::endl;}
     ok = pcal_correct.Execute(); if(!ok){std::cout<<"flag4"<<std::endl;}
 
-    //output for the delay 
+    //output for the delay
     ch_visibility_type* sbd_data = bl_data->CloneEmpty();
     bl_dim[CH_FREQ_AXIS] *= 4; //normfx implementation demands this
     sbd_data->Resize(bl_dim);
 
-    //calculate frequency space for MBD 
+    //calculate frequency space for MBD
     FreqSpacing(std::get<CH_CHANNEL_AXIS>(*bl_data));
 
 
@@ -396,7 +396,7 @@ int main(int argc, char** argv)
     MHO_UniformGridPointsCalculator gridCalc;
     gridCalc.SetPoints(chan_freqs);
     gridCalc.Calculate();
-    
+
     std::cout<<"info: "<<gridCalc.GetGridStart()<<", "<<gridCalc.GetGridSpacing()<<", "<<gridCalc.GetNGridPoints()<<std::endl;
 
 
@@ -413,7 +413,7 @@ int main(int argc, char** argv)
 
     auto mbd_ax = &(std::get<CH_CHANNEL_AXIS>(mbd_data) );
     for(std::size_t i=0; i<ngrid_pts;i++)
-    {   
+    {
         (*mbd_ax)(i) = i*gspace;
     }
 
@@ -435,7 +435,7 @@ int main(int argc, char** argv)
         }
     }
 
-    //now we are going to run a FFT on the mbd axis 
+    //now we are going to run a FFT on the mbd axis
 
     MHO_MultidimensionalFastFourierTransform< ch_mbd_type > fFFTEngine2;
     MHO_CyclicRotator< ch_mbd_type > fCyclicRotator2;
@@ -468,7 +468,7 @@ int main(int argc, char** argv)
     char tmp = '\0';
     char* argv_placeholder = &tmp;
     char** dummy_argv = &argv_placeholder;
-    
+
     TApplication* App = new TApplication("test",&dummy_argc,dummy_argv);
 
     MHO_RootCanvasManager cMan;
@@ -495,7 +495,7 @@ int main(int argc, char** argv)
 
         auto c = cMan.CreateCanvas(ss.str().c_str(), 800, 800);
         auto ch_slice = sbd_data->SliceView(0,ch,":",":");
-        mSearch.SetArgs(&ch_slice); 
+        mSearch.SetArgs(&ch_slice);
         mSearch.Initialize();
         mSearch.Execute();
 
@@ -510,23 +510,23 @@ int main(int argc, char** argv)
         visibility_element_type val = ch_slice(loc_array[0], loc_array[1]);
         std::cout<<"max mag = "<<std::abs(val)<<", arg = "<<std::arg(val)*(180./M_PI)<<std::endl;
 
-        //auto gr = gMan.GenerateComplexGraph2D(ch_slice, dr_rate_ax, delay_ax, ROOT_CMPLX_PLOT_ABS );
+        auto gr = gMan.GenerateComplexGraph2D(ch_slice, dr_rate_ax, delay_ax, ROOT_CMPLX_PLOT_ABS );
 
-        //at the sbd, dr max locations, lets look for the mbd max too 
+        //at the sbd, dr max locations, lets look for the mbd max too
         auto mbd_slice = mbd_data.SliceView(0, ":", loc_array[0], loc_array[1]);
         auto mbd_ax = std::get<CH_CHANNEL_AXIS>(mbd_data);
         for(std::size_t x=0;x<mbd_slice.GetSize(); x++)
         {
-            std::cout<<"x, val = "<<mbd_ax(x)<<", "<<mbd_slice(x)<<std::endl;
+            std::cout<<"x, val = "<<x<<", "<<mbd_ax(x)<<", "<<mbd_slice(x)<<std::endl;
         }
 
         mbdSearch.SetArgs(&mbd_slice);
         mbdSearch.Initialize();
         mbdSearch.Execute();
 
-        auto new_mbd_ax = std::get<CH_CHANNEL_AXIS>(mbd_data);
-        auto gr = gMan.GenerateComplexGraph1D(mbd_slice, new_mbd_ax, ROOT_CMPLX_PLOT_ABS );
-
+        // auto new_mbd_ax = std::get<CH_CHANNEL_AXIS>(mbd_data);
+        // auto gr = gMan.GenerateComplexGraph1D(mbd_slice, new_mbd_ax, ROOT_CMPLX_PLOT_ABS );
+        //
         std::size_t max_mbd_loc = mbdSearch.GetMaxLocation();
         std::cout<<"mbd max located at: "<<max_mbd_loc<<std::endl;
 
