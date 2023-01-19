@@ -487,6 +487,9 @@ int main(int argc, char** argv)
         dr_rate_ax(d) *= rescale;
     }
 
+
+
+
     for(std::size_t ch=0; ch<bl_dim[CH_CHANNEL_AXIS]; ch++)
     {
         std::stringstream ss;
@@ -514,10 +517,24 @@ int main(int argc, char** argv)
 
         //at the sbd, dr max locations, lets look for the mbd max too
         auto mbd_slice = mbd_data.SliceView(0, ":", loc_array[0], loc_array[1]);
-        auto mbd_ax = std::get<CH_CHANNEL_AXIS>(mbd_data);
+        auto mbd_ax = &(std::get<CH_CHANNEL_AXIS>(mbd_data));
+        
+        if(ch==0)
+        {
+            //TODO FIXME
+            //for some reason our MBD plot axis is flipped w.r.t to fourfit plot 
+            //is this a sign convention? due to LSB vs USB? Don't know right now
+            double fudge_factor = -1; //sign flip
+            for(std::size_t d=0; d<mbd_ax->GetSize(); d++)
+            {
+                (*mbd_ax)(d) *= fudge_factor;
+            }
+        }
+
+        
         for(std::size_t x=0;x<mbd_slice.GetSize(); x++)
         {
-            std::cout<<"x, val = "<<x<<", "<<mbd_ax(x)<<", "<<mbd_slice(x)<<std::endl;
+            std::cout<<"x, val = "<<x<<", "<<(*mbd_ax)(x)<<", "<<mbd_slice(x)<<std::endl;
         }
 
         mbdSearch.SetArgs(&mbd_slice);
@@ -525,7 +542,7 @@ int main(int argc, char** argv)
         mbdSearch.Execute();
 
         auto new_mbd_ax = std::get<CH_CHANNEL_AXIS>(mbd_data);
-        auto gr2 = gMan.GenerateComplexGraph1D(mbd_slice, new_mbd_ax, ROOT_CMPLX_PLOT_ABS );
+        auto gr2 = gMan.GenerateComplexGraph1D(mbd_slice, *mbd_ax, ROOT_CMPLX_PLOT_ABS );
         
         std::size_t max_mbd_loc = mbdSearch.GetMaxLocation();
         auto mbd_loc_array = mbd_slice.GetIndicesForOffset(max_mbd_loc);
