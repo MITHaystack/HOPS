@@ -19,6 +19,7 @@
 #include "MHO_TableContainer.hh"
 #include "MHO_ContainerDefinitions.hh"
 #include "MHO_BinaryOperator.hh"
+#include "MHO_Message.hh"
 
 
 namespace hops

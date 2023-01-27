@@ -34,13 +34,9 @@ MHO_ManualChannelPhaseCorrection::InitializeImpl(const XArgType1* in_vis, const 
     pcal->Retrieve( fStationKey, station);
     make_upper(station);
 
-    std::cout<<"pcal station = "<<station<<std::endl;
-
     std::string baseline;
     in_vis->Retrieve(fBaselineKey, baseline);
     make_upper(baseline);
-
-    std::cout<<"baseline = "<<baseline<<std::endl;
 
     if( baseline.find(station) == std::string::npos){return false;}
 
@@ -65,8 +61,7 @@ MHO_ManualChannelPhaseCorrection::InitializeImpl(const XArgType1* in_vis, const 
             auto polprod = pp_ax(i);
             make_upper(pol); 
             make_upper(polprod);
-            std::cout<<"pol_axis = "<<pol<<" polprod_ax = "<<polprod<<std::endl;
-            if( pol[0] == polprod[pol_index] ){fPolIdxMap[i] = j; std::cout<<i<<" -> "<<j<<std::endl;}
+            if( pol[0] == polprod[pol_index] ){fPolIdxMap[i] = j;}
         }
     }
 
@@ -81,7 +76,7 @@ MHO_ManualChannelPhaseCorrection::InitializeImpl(const XArgType1* in_vis, const 
         }
     }
 
-    std::cout<<"init done"<<std::endl;
+    msg_debug("calibration", "applying manual p-cal for station: "<<station<<" in baseline: "<<baseline<<"." <<eom);
 
     fInitialized = true;
     return true;
@@ -112,9 +107,7 @@ MHO_ManualChannelPhaseCorrection::ExecuteImpl(const XArgType1* in_vis, const XAr
                 std::size_t pcal_chan_idx = ch_it->second;
                 //retrieve the p-cal phasor (assume unit normal)
                 pcal_phasor_type pc_val = (*pcal)(pcal_pol_idx, pcal_chan_idx);
-                visibility_element_type pc_phasor = std::exp( -1.0*fImagUnit*pc_val*fDegToRad );
-
-                std::cout<<"applying pc rot of: "<<pc_val<<std::endl;
+                visibility_element_type pc_phasor = std::exp( fImagUnit*pc_val*fDegToRad );
 
                 //conjugate the pcal if applied to LSB
                 bool do_conj = false;
@@ -123,16 +116,9 @@ MHO_ManualChannelPhaseCorrection::ExecuteImpl(const XArgType1* in_vis, const XAr
                 for(std::size_t i=0; i<labels.size(); i++)
                 {
                     bool ok = labels[i]->Retrieve(fNetSidebandKey,sideband);
-                    if(ok)
-                    {
-                        if(sideband == "L")
-                        {
-                            //do_conj = true; std::cout<<"conjugating due to LSB"<<std::endl;
-                            break;
-                        }
-                    }
+                    if(ok){ if(sideband == "L"){do_conj = true; break;} }
                 }
-                if(do_conj){pc_val = std::conj(pc_phasor);} 
+                if(do_conj){pc_phasor = std::conj(pc_phasor);} 
                 
                 //retrieve and multiply the appropriate sub view of the visibility array 
                 auto chunk = out_vis->SubView(vis_pol_idx, vis_chan_idx);
