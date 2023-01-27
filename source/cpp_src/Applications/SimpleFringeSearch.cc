@@ -532,10 +532,10 @@ int main(int argc, char** argv)
         }
 
         
-        for(std::size_t x=0;x<mbd_slice.GetSize(); x++)
-        {
-            std::cout<<"x, val = "<<x<<", "<<(*mbd_ax)(x)<<", "<<mbd_slice(x)<<std::endl;
-        }
+        // for(std::size_t x=0;x<mbd_slice.GetSize(); x++)
+        // {
+        //     std::cout<<"x, val = "<<x<<", "<<(*mbd_ax)(x)<<", "<<mbd_slice(x)<<std::endl;
+        // }
 
         mbdSearch.SetArgs(&mbd_slice);
         mbdSearch.Initialize();
@@ -546,7 +546,7 @@ int main(int argc, char** argv)
         
         std::size_t max_mbd_loc = mbdSearch.GetMaxLocation();
         auto mbd_loc_array = mbd_slice.GetIndicesForOffset(max_mbd_loc);
-        std::cout<<"mbd max located at: "<<mbd_loc_array[0]<<std::endl;
+        std::cout<<"mbd max located at: "<<mbd_loc_array[0]<<" = "<<(*mbd_ax)(mbd_loc_array[0])<<std::endl;
 
 
 
