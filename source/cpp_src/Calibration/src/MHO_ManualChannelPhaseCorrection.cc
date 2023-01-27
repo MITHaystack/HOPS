@@ -5,13 +5,13 @@ namespace hops
 
 
 MHO_ManualChannelPhaseCorrection::MHO_ManualChannelPhaseCorrection():
-    fInitialized(false),
-    fConjugate(false)
+    fInitialized(false)
 {
     fStationKey = "station";
     fRemStationKey = "remote_station";
     fRefStationKey = "reference_station";
     fBaselineKey = "baseline";
+    fNetSidebandKey = "net_sideband";
 
     fImagUnit = std::complex<double>(0.0, 1.0);
     fDegToRad = M_PI/180;
@@ -51,10 +51,8 @@ MHO_ManualChannelPhaseCorrection::InitializeImpl(const XArgType1* in_vis, const 
     in_vis->Retrieve(fRemStationKey, rem_station);
     in_vis->Retrieve(fRefStationKey, ref_station);
     if(station != rem_station && station != ref_station){return false;} //p-cal station, baseline mismatch
-    if(station == rem_station){fConjugate = true; pol_index = 1;}
-    if(station == ref_station){fConjugate = false; pol_index = 0;}
-
-    if(fConjugate){std::cout<<"is remote station"<<std::endl;}
+    if(station == rem_station){pol_index = 1;}
+    if(station == ref_station){pol_index = 0;}
 
     //map the pcal polarization index to the visibility pol-product index
     auto pp_ax = std::get<CH_POLPROD_AXIS>(*in_vis);
@@ -69,7 +67,6 @@ MHO_ManualChannelPhaseCorrection::InitializeImpl(const XArgType1* in_vis, const 
             make_upper(polprod);
             std::cout<<"pol_axis = "<<pol<<" polprod_ax = "<<polprod<<std::endl;
             if( pol[0] == polprod[pol_index] ){fPolIdxMap[i] = j; std::cout<<i<<" -> "<<j<<std::endl;}
-            //if( pol_ax(i)[0] == pp_ax(i)[pol_index] ){fPolIdxMap[j] = i;}
         }
     }
 
@@ -102,7 +99,7 @@ MHO_ManualChannelPhaseCorrection::ExecuteImpl(const XArgType1* in_vis, const XAr
         //with separate 2 input arguments (vis array, and pcal array)
         out_vis->Copy(*in_vis);
 
-        auto chan_ax = std::get<CH_CHANNEL_AXIS>(*in_vis);
+        auto chan_ax = &(std::get<CH_CHANNEL_AXIS>(*in_vis));
     
         //loop over pol products
         for(auto pol_it = fPolIdxMap.begin(); pol_it != fPolIdxMap.end(); pol_it++)
@@ -114,11 +111,28 @@ MHO_ManualChannelPhaseCorrection::ExecuteImpl(const XArgType1* in_vis, const XAr
                 std::size_t vis_chan_idx = ch_it->first;
                 std::size_t pcal_chan_idx = ch_it->second;
                 //retrieve the p-cal phasor (assume unit normal)
-                pcal_phasor_type pc_val = (*pcal)(pcal_pol_idx, pcal_chan_idx); //(*pcal)(pcal_pol_idx, pcal_chan_idx);
-                visibility_element_type pc_phasor = std::exp( fImagUnit*pc_val*fDegToRad );
+                pcal_phasor_type pc_val = (*pcal)(pcal_pol_idx, pcal_chan_idx);
+                visibility_element_type pc_phasor = std::exp( -1.0*fImagUnit*pc_val*fDegToRad );
+
+                std::cout<<"applying pc rot of: "<<pc_val<<std::endl;
 
                 //conjugate the pcal if applied to LSB
-                if(fConjugate){pc_val = std::conj(pc_phasor);} 
+                bool do_conj = false;
+                std::string sideband;
+                auto labels = chan_ax->GetIntervalsWhichIntersect(vis_chan_idx);
+                for(std::size_t i=0; i<labels.size(); i++)
+                {
+                    bool ok = labels[i]->Retrieve(fNetSidebandKey,sideband);
+                    if(ok)
+                    {
+                        if(sideband == "L")
+                        {
+                            //do_conj = true; std::cout<<"conjugating due to LSB"<<std::endl;
+                            break;
+                        }
+                    }
+                }
+                if(do_conj){pc_val = std::conj(pc_phasor);} 
                 
                 //retrieve and multiply the appropriate sub view of the visibility array 
                 auto chunk = out_vis->SubView(vis_pol_idx, vis_chan_idx);

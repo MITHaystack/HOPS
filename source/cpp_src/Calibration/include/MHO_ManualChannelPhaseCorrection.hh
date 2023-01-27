@@ -45,7 +45,6 @@ class MHO_ManualChannelPhaseCorrection: public MHO_BinaryOperator<
     private:
 
         bool fInitialized;
-        bool fConjugate;
 
         //TODO FIXME migrate these to a constants header
         std::complex<double> fImagUnit;
@@ -56,6 +55,7 @@ class MHO_ManualChannelPhaseCorrection: public MHO_BinaryOperator<
         std::string fRemStationKey;
         std::string fRefStationKey;
         std::string fBaselineKey;
+        std::string fNetSidebandKey;
 
         std::map< std::size_t, std::size_t> fPolIdxMap; //map pcal pol index to vis pol-product index
         std::map< std::size_t, std::size_t> fChanIdxMap; // map pcal chan index to vis chan index
