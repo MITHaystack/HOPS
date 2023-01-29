@@ -40,21 +40,19 @@ class MHO_ScanDataStore
         std::size_t GetNBaselines(){return fBaselineCodes.size();};
         std::size_t GetNStations(){return fStationCodes.size();};
 
-        // //return the json object containing the root file information
-        // mho_json GetRootFileData();
-        //
-        // bool LoadBaseline(std::string baseline);
-        // bool LoadStation(std::string station);
-        //
-        // void ClearBaselineFiles();
-        // void ClearStationFiles();
+        //retieve file data (root, baseline, station)
+        mho_json GetRootFileData();
+        MHO_ContainerStore* LoadBaseline(std::string baseline);
+        MHO_ContainerStore* LoadStation(std::string station);
+
+        //deletes all loaded containers and resets the state for another scan.
+        void Clear();
 
     private:
 
         void DetermineRootFile();
         void MapBaselines();
         void MapStations();
-
 
         std::string fDirectory;
 
@@ -71,17 +69,12 @@ class MHO_ScanDataStore
         //map baseline 2-char code to filename (cor file)
         std::vector< std::string > fBaselineCodes;
         std::map< std::string, std::string > fBaselineFileMap;
+        std::map< std::string, MHO_ContainerStore* > fActiveBaselineContainers;
 
         //map station 1-char (mk4 id) code to filename
         std::vector< std::string > fStationCodes;
         std::map< std::string, std::string > fStationFileMap;
-
-        // //one active container for each '.cor' file which is open, mapped by baseline 2-char code
-        // std::map<std::string, MHO_ContainerStore* > fBaselineContainers;
-        //
-        // //one active container for each '.sta' file which is open, mapped by station mk4 id
-        // std::map< std::string, MHO_ContainerStore* > fStationContainers;
-
+        std::map< std::string, MHO_ContainerStore* > fActiveStationContainers;
 };
 
 
