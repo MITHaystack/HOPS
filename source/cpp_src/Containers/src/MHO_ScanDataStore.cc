@@ -4,22 +4,17 @@ namespace hops
 {
 
 MHO_ScanDataStore::MHO_ScanDataStore(){};
-MHO_ScanDataStore::~MHO_ScanDataStore(){};
+
+MHO_ScanDataStore::~MHO_ScanDataStore()
+{
+    Clear();
+};
 
 void
 MHO_ScanDataStore::Initialize()
 {
+    Clear();
     //read the directory file list
-    fAllFiles.clear();
-    fCorFiles.clear();
-    fStaFiles.clear();
-    fJSONFiles.clear();
-    fBaselineFileMap.clear();
-    fBaselineCodes.clear();
-    fStationFileMap.clear();
-    fStationCodes.clear();
-    fRootFileName = "";
-
     fDirInterface.SetCurrentDirectory(fDirectory);
     fDirInterface.ReadCurrentDirectory();
 
@@ -102,13 +97,6 @@ MHO_ScanDataStore::MapBaselines()
             }
         }
     }
-
-
-    // //read the entire file into memory (obviously we will want to optimize this in the future)
-    // MHO_ContainerStore conStore;
-    // MHO_ContainerFileInterface conInter;
-    // conInter.SetFilename(corel_file);
-    // conInter.PopulateStoreFromFile(conStore); //reads in all the objects in a file
 }
 
 void
@@ -133,29 +121,86 @@ MHO_ScanDataStore::MapStations()
 }
 
 
-// bool
-// MHO_ScanDataStore::LoadBaseline(std::string baseline)
-// {
-//     //
-//     // if(fBaselineContainers[baseline])
-//     //
-//     // //read the entire file into memory (obviously we will want to optimize this in the future)
-//     // MHO_ContainerStore conStore;
-//     // MHO_ContainerFileInterface conInter;
-//     // conInter.SetFilename(corel_file);
-//     // conInter.PopulateStoreFromFile(conStore); //reads in all the objects in a file
-//
-// }
+mho_json
+MHO_ScanDataStore::GetRootFileData()
+{
+    mho_json vex_info;
+    if(fRootFileName != "" )
+    {
+        std::ifstream ifs(fRootFileName);
+        vex_info = json::parse(ifs);
+    }
+    else
+    {
+        msg_warn("containers", "no root file found, returning empty data." << eom);
+    }
+    return vex_info;
+}
 
-// bool
-// MHO_ScanDataStore::LoadStation(std::string station);
-//
-// void
-// MHO_ScanDataStore::ClearBaselineFiles();
-//
-// void
-// MHO_ScanDataStore::ClearStationFiles();
-//
+MHO_ContainerStore*
+MHO_ScanDataStore::LoadBaseline(std::string baseline)
+{
+    auto it = fBaselineFileMap.find(baseline);
+    if(it != fBaselineFileMap.end() )
+    {
+
+        //read the entire file into memory (obviously we will want to optimize this in the future)
+        MHO_ContainerStore* conStore = new MHO_ContainerStore();
+        MHO_ContainerFileInterface conInter;
+        conInter.SetFilename(it->second);
+        conInter.PopulateStoreFromFile(*conStore); //reads in ALL the objects in the file
+
+        fActiveBaselineContainers[baseline] = conStore;
+        return conStore;
+    }
+    msg_warn("containers", "attempted to load baseline: "<< baseline <<" which does not exist." << eom);
+    return nullptr;
+}
+
+MHO_ContainerStore*
+MHO_ScanDataStore::LoadStation(std::string station)
+{
+    auto it = fStationFileMap.find(station);
+    if(it != fStationFileMap.end() )
+    {
+
+        //read the entire file into memory (obviously we will want to optimize this in the future)
+        MHO_ContainerStore* conStore = new MHO_ContainerStore();
+        MHO_ContainerFileInterface conInter;
+        conInter.SetFilename(it->second);
+        conInter.PopulateStoreFromFile(*conStore); //reads in ALL the objects in the file
+
+        fActiveStationContainers[station] = conStore;
+        return conStore;
+    }
+    msg_warn("containers", "attempted to load station: "<< station <<" which does not exist." << eom);
+    return nullptr;
+}
+
+
+void
+ MHO_ScanDataStore::Clear()
+ {
+     //delete open station containers
+     for(auto it = fActiveStationContainers.begin(); it != fActiveStationContainers.end(); it++){ delete it->second;}
+     fActiveStationContainers.clear();
+     fStationCodes.clear();
+     fStationFileMap.clear();
+
+     //delete open baseline containers
+     for(auto it = fActiveBaselineContainers.begin(); it != fActiveBaselineContainers.end(); it++){ delete it->second;}
+     fActiveBaselineContainers.clear();
+     fBaselineCodes.clear();
+     fBaselineFileMap.clear();
+
+     fAllFiles.clear();
+     fCorFiles.clear();
+     fStaFiles.clear();
+     fJSONFiles.clear();
+     fRootFileName = "";
+ }
+
+
 
 
 }

@@ -19,10 +19,11 @@ struct c_block* cb_head; //global extern kludge
 #include "MHO_DirectoryInterface.hh"
 
 //needed to read hops files and extract objects
-#include "MHO_ContainerDefinitions.hh"
-#include "MHO_ContainerStore.hh"
-#include "MHO_ContainerDictionary.hh"
-#include "MHO_ContainerFileInterface.hh"
+#include "MHO_ScanDataStore.hh"
+// #include "MHO_ContainerDefinitions.hh"
+// #include "MHO_ContainerStore.hh"
+// #include "MHO_ContainerDictionary.hh"
+// #include "MHO_ContainerFileInterface.hh"
 
 //operators
 #include "MHO_NormFX.hh"
@@ -172,68 +173,83 @@ int main(int argc, char** argv)
     ref_pcal.Insert(std::string("station"), std::string("GS") );
     rem_pcal.Insert(std::string("station"), std::string("WF") );
 
-    //read the directory file list
-    std::vector< std::string > allFiles;
-    std::vector< std::string > corFiles;
-    std::vector< std::string > staFiles;
-    std::vector< std::string > jsonFiles;
-    MHO_DirectoryInterface dirInterface;
-    dirInterface.SetCurrentDirectory(directory);
-    dirInterface.ReadCurrentDirectory();
 
-    dirInterface.GetFileList(allFiles);
-    dirInterface.GetFilesMatchingExtention(corFiles, "cor");
-    dirInterface.GetFilesMatchingExtention(staFiles, "sta");
-    dirInterface.GetFilesMatchingExtention(jsonFiles, "json");
-
-    //check that there is only one json file
-    std::string root_file = "";
-    if(jsonFiles.size() != 1)
+    MHO_ScanDataStore scanStore;
+    scanStore.SetDirectory(directory);
+    scanStore.Initialize();
+    if(!scanStore.IsValid());
     {
-        msg_fatal("main", "There are "<<jsonFiles.size()<<" root files." << eom);
-        std::exit(1);
-    }
-    else
-    {
-        root_file = jsonFiles[0];
+        msg_fatal("main", "cannot Initialize a valid scan store from this directory: " << directory << eom);
+        std::exit(1)
     }
 
-    std::ifstream ifs(root_file);
-    mho_json vexInfo = json::parse(ifs);
 
-    //locate the corel file that contains the baseline of interest (this is primitive)
-    std::string corel_file = "";
-    bool found_baseline = false;
-    for(auto it = corFiles.begin(); it != corFiles.end(); it++)
-    {
-        std::size_t index = it->find(baseline);
-        if(index != std::string::npos)
-        {
-            corel_file = *it;
-            found_baseline = true;
-        }
-    }
+    // //read the directory file list
+    // std::vector< std::string > allFiles;
+    // std::vector< std::string > corFiles;
+    // std::vector< std::string > staFiles;
+    // std::vector< std::string > jsonFiles;
+    // MHO_DirectoryInterface dirInterface;
+    // dirInterface.SetCurrentDirectory(directory);
+    // dirInterface.ReadCurrentDirectory();
+    //
+    // dirInterface.GetFileList(allFiles);
+    // dirInterface.GetFilesMatchingExtention(corFiles, "cor");
+    // dirInterface.GetFilesMatchingExtention(staFiles, "sta");
+    // dirInterface.GetFilesMatchingExtention(jsonFiles, "json");
+    //
+    // //check that there is only one json file
+    // std::string root_file = "";
+    // if(jsonFiles.size() != 1)
+    // {
+    //     msg_fatal("main", "There are "<<jsonFiles.size()<<" root files." << eom);
+    //     std::exit(1);
+    // }
+    // else
+    // {
+    //     root_file = jsonFiles[0];
+    // }
+    //
+    // std::ifstream ifs(root_file);
+    mho_json vexInfo = scanStore.GetRootFileData(); // json::parse(ifs);
 
-    if(!found_baseline)
+    //load the appropriate baseline
+    MHO_ContainerStore* conStore = scanStore.LoadBaseline(baseline);
+
+
+    // //locate the corel file that contains the baseline of interest (this is primitive)
+    // std::string corel_file = "";
+    // bool found_baseline = false;
+    // for(auto it = corFiles.begin(); it != corFiles.end(); it++)
+    // {
+    //     std::size_t index = it->find(baseline);
+    //     if(index != std::string::npos)
+    //     {
+    //         corel_file = *it;
+    //         found_baseline = true;
+    //     }
+    // }
+
+    if(conStore == nullptr)
     {
         msg_fatal("main", "Could not find a file for baseline: "<< baseline << eom);
         std::exit(1);
     }
 
-    //read the entire file into memory (obviously we will want to optimize this in the future)
-    MHO_ContainerStore conStore;
-    MHO_ContainerFileInterface conInter;
-    conInter.SetFilename(corel_file);
-    conInter.PopulateStoreFromFile(conStore); //reads in all the objects in a file
+    // //read the entire file into memory (obviously we will want to optimize this in the future)
+    // MHO_ContainerStore conStore;
+    // MHO_ContainerFileInterface conInter;
+    // conInter.SetFilename(corel_file);
+    // conInter.PopulateStoreFromFile(conStore); //reads in all the objects in a file
 
     //retrieve the (first) visibility and weight objects (currently assuming there is only one object per type)
     ch_visibility_type* bl_data = nullptr;
     ch_weight_type* wt_data = nullptr;
     MHO_ObjectTags* tags = nullptr;
 
-    bl_data = conStore.RetrieveObject<ch_visibility_type>();
-    wt_data = conStore.RetrieveObject<ch_weight_type>();
-    tags = conStore.RetrieveObject<MHO_ObjectTags>();
+    bl_data = conStore->RetrieveObject<ch_visibility_type>();
+    wt_data = conStore->RetrieveObject<ch_weight_type>();
+    tags = conStore->RetrieveObject<MHO_ObjectTags>();
 
     std::cout<<bl_data<<" "<<wt_data<<std::endl;
 
@@ -518,11 +534,11 @@ int main(int argc, char** argv)
         //at the sbd, dr max locations, lets look for the mbd max too
         auto mbd_slice = mbd_data.SliceView(0, ":", loc_array[0], loc_array[1]);
         auto mbd_ax = &(std::get<CH_CHANNEL_AXIS>(mbd_data));
-        
+
         if(ch==0)
         {
             //TODO FIXME
-            //for some reason our MBD plot axis is flipped w.r.t to fourfit plot 
+            //for some reason our MBD plot axis is flipped w.r.t to fourfit plot
             //is this a sign convention? due to LSB vs USB? Don't know right now
             double fudge_factor = -1; //sign flip
             for(std::size_t d=0; d<mbd_ax->GetSize(); d++)
@@ -531,7 +547,7 @@ int main(int argc, char** argv)
             }
         }
 
-        
+
         // for(std::size_t x=0;x<mbd_slice.GetSize(); x++)
         // {
         //     std::cout<<"x, val = "<<x<<", "<<(*mbd_ax)(x)<<", "<<mbd_slice(x)<<std::endl;
@@ -543,7 +559,7 @@ int main(int argc, char** argv)
 
         auto new_mbd_ax = std::get<CH_CHANNEL_AXIS>(mbd_data);
         auto gr2 = gMan.GenerateComplexGraph1D(mbd_slice, *mbd_ax, ROOT_CMPLX_PLOT_ABS );
-        
+
         std::size_t max_mbd_loc = mbdSearch.GetMaxLocation();
         auto mbd_loc_array = mbd_slice.GetIndicesForOffset(max_mbd_loc);
         std::cout<<"mbd max located at: "<<mbd_loc_array[0]<<" = "<<(*mbd_ax)(mbd_loc_array[0])<<std::endl;
@@ -552,11 +568,11 @@ int main(int argc, char** argv)
 
         c->cd();
         c->Divide(1,2);
-        
+
         c->cd(1);
         c->SetTopMargin(0.1);
         c->SetRightMargin(0.2);
-        
+
         gr->SetTitle( "Fringe; delay rate (ns/s); Single band delay (#mus); Amp");
         gr->Draw("COLZ");
         gr->GetHistogram()->GetXaxis()->CenterTitle();
@@ -566,18 +582,18 @@ int main(int argc, char** argv)
         gr->GetHistogram()->GetYaxis()->SetTitleOffset(1.08);
         gr->GetHistogram()->GetZaxis()->SetTitleOffset(-0.4);
         gr->Draw("COLZ");
-  
-        
-          
+
+
+
         c->Update();
         c->cd(2);
         c->SetTopMargin(0.1);
         c->SetRightMargin(0.2);
-        
+
         gr2->SetTitle( "Fringe; MBD; Amp");
         gr2->Draw("APL");
 
-  
+
         c->Update();
     }
     App->Run();
