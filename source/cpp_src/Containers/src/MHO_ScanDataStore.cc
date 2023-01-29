@@ -34,9 +34,9 @@ MHO_ScanDataStore::Initialize()
 bool
 MHO_ScanDataStore::IsValid()
 {
-    if(fRootFileName == ""){return false;}
-    if(fBaselineCodes.size() == 0){return false;}
-    if(fStationCodes.size() == 0){return false;}
+    if(fRootFileName == ""){msg_warn("containers", "no root file found." << eom); return false;}
+    if(fBaselineCodes.size() == 0){msg_warn("containers", "no baseline files found." << eom);return false;}
+    if(fStationCodes.size() == 0){msg_warn("containers", "no station files found." << eom);return false;}
     return true;
 }
 
