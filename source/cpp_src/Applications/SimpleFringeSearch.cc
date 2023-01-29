@@ -183,64 +183,15 @@ int main(int argc, char** argv)
         std::exit(1);
     }
 
-
-    // //read the directory file list
-    // std::vector< std::string > allFiles;
-    // std::vector< std::string > corFiles;
-    // std::vector< std::string > staFiles;
-    // std::vector< std::string > jsonFiles;
-    // MHO_DirectoryInterface dirInterface;
-    // dirInterface.SetCurrentDirectory(directory);
-    // dirInterface.ReadCurrentDirectory();
-    //
-    // dirInterface.GetFileList(allFiles);
-    // dirInterface.GetFilesMatchingExtention(corFiles, "cor");
-    // dirInterface.GetFilesMatchingExtention(staFiles, "sta");
-    // dirInterface.GetFilesMatchingExtention(jsonFiles, "json");
-    //
-    // //check that there is only one json file
-    // std::string root_file = "";
-    // if(jsonFiles.size() != 1)
-    // {
-    //     msg_fatal("main", "There are "<<jsonFiles.size()<<" root files." << eom);
-    //     std::exit(1);
-    // }
-    // else
-    // {
-    //     root_file = jsonFiles[0];
-    // }
-    //
-    // std::ifstream ifs(root_file);
-    mho_json vexInfo = scanStore.GetRootFileData(); // json::parse(ifs);
-
-    //load the appropriate baseline
+    //load root file and container store for this baseline
+    mho_json vexInfo = scanStore.GetRootFileData();
     MHO_ContainerStore* conStore = scanStore.LoadBaseline(baseline);
-
-
-    // //locate the corel file that contains the baseline of interest (this is primitive)
-    // std::string corel_file = "";
-    // bool found_baseline = false;
-    // for(auto it = corFiles.begin(); it != corFiles.end(); it++)
-    // {
-    //     std::size_t index = it->find(baseline);
-    //     if(index != std::string::npos)
-    //     {
-    //         corel_file = *it;
-    //         found_baseline = true;
-    //     }
-    // }
 
     if(conStore == nullptr)
     {
         msg_fatal("main", "Could not find a file for baseline: "<< baseline << eom);
         std::exit(1);
     }
-
-    // //read the entire file into memory (obviously we will want to optimize this in the future)
-    // MHO_ContainerStore conStore;
-    // MHO_ContainerFileInterface conInter;
-    // conInter.SetFilename(corel_file);
-    // conInter.PopulateStoreFromFile(conStore); //reads in all the objects in a file
 
     //retrieve the (first) visibility and weight objects (currently assuming there is only one object per type)
     ch_visibility_type* bl_data = nullptr;
@@ -250,10 +201,6 @@ int main(int argc, char** argv)
     bl_data = conStore->RetrieveObject<ch_visibility_type>();
     wt_data = conStore->RetrieveObject<ch_weight_type>();
     tags = conStore->RetrieveObject<MHO_ObjectTags>();
-
-    std::cout<<bl_data<<" "<<wt_data<<std::endl;
-
-
 
     std::size_t wt_dim[ch_weight_type::rank::value];
     wt_data->GetDimensions(wt_dim);
