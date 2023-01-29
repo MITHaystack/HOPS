@@ -180,7 +180,7 @@ int main(int argc, char** argv)
     if(!scanStore.IsValid());
     {
         msg_fatal("main", "cannot Initialize a valid scan store from this directory: " << directory << eom);
-        std::exit(1)
+        std::exit(1);
     }
 
 
