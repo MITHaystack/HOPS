@@ -253,30 +253,6 @@ int main(int argc, char** argv)
 
     bl_data->Copy(*alt_data);
 
-    //DEBUG dump this to json
-    MHO_ContainerStore conStore2;
-    MHO_UUIDGenerator gen;
-    MHO_ContainerDictionary conDict;
-    MHO_UUID type_uuid = conDict.GetUUIDFor<ch_visibility_type>();
-    MHO_UUID object_uuid = gen.GenerateUUID();
-    conStore2.AddContainerObject(alt_data, type_uuid, object_uuid, "blah", 0);
-    MHO_ContainerFileInterface conInter2;
-    conInter2.SetFilename("doh.json");
-
-    //convert the entire store to json
-    json root;
-    int detail = eJSONAll;
-    conInter2.ConvertStoreToJSON(conStore2,root,detail);
-
-    //open and dump to file
-    std::ofstream outFile("./test.json", std::ofstream::out);
-    outFile << root;
-    outFile.close();
-
-    // auto bl_slice = bl_data->SliceView(pp_index, ":", ":", ":");
-    // ch_visibility_type* selected_bl_data = new ch_visibility_type();
-    // selected_bl_data->Copy(bl_slice);
-
     std::size_t bl_dim[ch_visibility_type::rank::value];
     bl_data->GetDimensions(bl_dim);
 
@@ -303,8 +279,6 @@ int main(int argc, char** argv)
 
     //calculate frequency space for MBD
     FreqSpacing(std::get<CH_CHANNEL_AXIS>(*bl_data));
-
-
 
 
     //re-run this exercise via the pure c++ function
