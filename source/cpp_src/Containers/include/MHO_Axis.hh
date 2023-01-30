@@ -71,6 +71,24 @@ class MHO_Axis:
             return selected_idx;
         }
 
+        //index selection for single value
+        std::vector< std::size_t > 
+        SelectMatchingIndexes(const XValueType& label_value)
+        {
+            std::vector< std::size_t > selected_idx; 
+            //dumb brute force search, for a single label value
+            //check all the axis elements for a match 
+            for(std::size_t i = 0; i < this->GetSize(); i++)
+            {
+                if( (*this)[i] == label_value )
+                {
+                    selected_idx.push_back(i);
+                }
+            }
+            return selected_idx;
+        }
+
+
         virtual uint64_t GetSerializedSize() const override
         {
             uint64_t total_size = 0;
