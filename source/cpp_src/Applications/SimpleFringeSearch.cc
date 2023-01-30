@@ -200,8 +200,7 @@ int main(int argc, char** argv)
 
     // std::vector< std::size_t > selected_ap;
     // selected_ap.push_back(20);
-    //
-    //just use band-A
+
     std::vector< std::size_t > selected_ch;
     for(std::size_t i=16;i<32; i++){selected_ch.push_back(i);}
 
