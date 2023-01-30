@@ -8,9 +8,12 @@
 #include <map>
 #include <getopt.h>
 
-#include "ffcontrol.h"
+// #include "ffcontrol.h"
 #include "msg.h"
-struct c_block* cb_head; //global extern kludge
+#include "MHO_FourfitControlInterface.hh"
+// struct c_block* cb_head; //global extern kludge
+
+
 
 //global messaging util
 #include "MHO_Message.hh"
@@ -20,10 +23,6 @@ struct c_block* cb_head; //global extern kludge
 
 //needed to read hops files and extract objects
 #include "MHO_ScanDataStore.hh"
-// #include "MHO_ContainerDefinitions.hh"
-// #include "MHO_ContainerStore.hh"
-// #include "MHO_ContainerDictionary.hh"
-// #include "MHO_ContainerFileInterface.hh"
 
 //operators
 #include "MHO_NormFX.hh"
@@ -108,25 +107,14 @@ int main(int argc, char** argv)
         return 1;
     }
 
-    //parse the control file
-    cb_head = (struct c_block *) malloc (sizeof (struct c_block) );
-    struct c_block* cb_out = (struct c_block *) malloc (sizeof (struct c_block) );
-    nullify_cblock (cb_head);
-    default_cblock( cb_head );
-    nullify_cblock (cb_out);
-    default_cblock(cb_out);
-    char bl[2]; bl[0] = baseline[0]; bl[1] = baseline[1];
-    std::string src = " ";
-    char fgroup = 'X';
-    int time = 0;
-
-    std::cout<<control_file<<std::endl;
-    std::cout<<bl[0]<<bl[1]<<" "<<fgroup<<std::endl;
-
-    int retval = construct_cblock(const_cast<char*>(control_file.c_str()), cb_head, cb_out, bl, const_cast<char*>(src.c_str()), fgroup, time);
-    std::cout<<"c block retval = "<<retval<<std::endl;
-
-    //print pc_phases
+    MHO_FourfitControlInterface ffcontrol_inter;
+    ffcontrol_inter.SetControlFile(control_file);
+    ffcontrol_inter.SetBaseline(baseline);
+    ffcontrol_inter.SetSourceName(" ");
+    ffcontrol_inter.SetFrequencyGroup("X");
+    ffcontrol_inter.SetTime(0);
+    ffcontrol_inter.ConstructControlBlock();
+    c_block* cb_out = ffcontrol_inter.GetControlBlock();
 
     // struct dstats pc_phase_offset[2];// manual phase offset applied to all channels, by pol
     // struct dstats pc_phase[MAXFREQ][2];/* phase cal phases by channel and pol

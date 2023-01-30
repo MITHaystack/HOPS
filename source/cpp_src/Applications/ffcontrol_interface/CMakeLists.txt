@@ -19,10 +19,11 @@ list(APPEND FFCONTROLINTER_SOURCEFILES
 )
 
 #declare header paths for old c-libs ##########################################
-set(MK4UTIL_RELPATH "../../c_src/mk4util")
-set(DFIO_RELPATH "../../c_src/dfio")
-set(VEX_RELPATH "../../c_src/vex")
-set(FFCONTROL_RELPATH "../../c_src/fourfit_libs/ffcontrol")
+set(MK4UTIL_RELPATH "../../../c_src/mk4util")
+set(DFIO_RELPATH "../../../c_src/dfio")
+set(VEX_RELPATH "../../../c_src/vex")
+set(VEX_RELPATH "../../../c_src/msg")
+set(FFCONTROL_RELPATH "../../../c_src/fourfit_libs/ffcontrol")
 
 list(APPEND RELPATH_LIST
     ${MK4UTIL_RELPATH} ${DFIO_RELPATH} ${VEX_RELPATH} ${FFCONTROL_RELPATH}
