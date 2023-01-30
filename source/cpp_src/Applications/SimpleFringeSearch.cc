@@ -16,7 +16,6 @@
 //operators
 #include "MHO_NormFX.hh"
 #include "MHO_SelectRepack.hh"
-#include "MHO_SelectIndexesByAxisLabel.hh"
 #include "MHO_FreqSpacing.hh"
 #include "MHO_UniformGridPointsCalculator.hh"
 
@@ -193,19 +192,6 @@ int main(int argc, char** argv)
     std::set< std::string > pp_values; pp_values.insert(polprod);
     auto* pp_axis = &(std::get<CH_POLPROD_AXIS>(*bl_data));
     std::vector<std::size_t> selected_pp = pp_axis->SelectMatchingIndexes(pp_values);
-
-    // std::size_t pp_index = 0;
-    // std::vector<std::size_t> selected_pp;
-    // auto* pp_axis = &(std::get<CH_POLPROD_AXIS>(*bl_data));
-    // for(std::size_t pi = 0; pi < pp_axis->GetSize(); pi++)
-    // {
-    //     std::cout<<pi<<" = "<< (*pp_axis)[pi] << std::endl;
-    //     if( (*pp_axis)[pi] == polprod )
-    //     {
-    //         pp_index = pi;
-    //         selected_pp.push_back(pi);
-    //     }
-    // }
 
     //select data only from this polprod, and repack
     MHO_SelectRepack<ch_visibility_type> spack;
