@@ -2,31 +2,21 @@
 #include <fstream>
 #include <string>
 #include <vector>
-#include <algorithm>
-#include <set>
-#include <utility>
-#include <map>
 #include <getopt.h>
 
-// #include "ffcontrol.h"
 #include "msg.h"
 #include "MHO_FourfitControlInterface.hh"
-// struct c_block* cb_head; //global extern kludge
-
-
 
 //global messaging util
 #include "MHO_Message.hh"
 
-//handles reading directories, listing files etc.
-#include "MHO_DirectoryInterface.hh"
-
-//needed to read hops files and extract objects
+//needed to read hops files and extract objects from scan dir
 #include "MHO_ScanDataStore.hh"
 
 //operators
 #include "MHO_NormFX.hh"
 #include "MHO_SelectRepack.hh"
+#include "MHO_SelectIndexesByAxisLabel.hh"
 #include "MHO_FreqSpacing.hh"
 #include "MHO_UniformGridPointsCalculator.hh"
 
@@ -107,10 +97,11 @@ int main(int argc, char** argv)
         return 1;
     }
 
+    //read control file and build the control block which applies to this data 
     MHO_FourfitControlInterface ffcontrol_inter;
     ffcontrol_inter.SetControlFile(control_file);
     ffcontrol_inter.SetBaseline(baseline);
-    ffcontrol_inter.SetSourceName(" ");
+    ffcontrol_inter.SetSourceName(" "); //dummy value
     ffcontrol_inter.SetFrequencyGroup("X");
     ffcontrol_inter.SetTime(0);
     ffcontrol_inter.ConstructControlBlock();
@@ -197,9 +188,6 @@ int main(int argc, char** argv)
     {
         std::cout<<"weight size in dim: "<<i<<" = "<<wt_dim[i]<<std::endl;
     }
-
-    //temporary testing...we want to pull out only the specified pol-product (e.g. XX)
-    //so for now we crudely create a copy from a slice view
 
     //first find the index which corresponds to the specified pol product
     std::size_t pp_index = 0;
