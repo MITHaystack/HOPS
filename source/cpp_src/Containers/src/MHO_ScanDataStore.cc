@@ -66,7 +66,7 @@ MHO_ScanDataStore::DetermineRootFile()
         }
     }
 
-    if(n_candidate_files == 0)
+    if(n_candidate_files == 0 || fRootFileName == "")
     {
         msg_fatal("containers", "no root file found in directory: " << fDirectory << eom);
     }
@@ -89,7 +89,7 @@ MHO_ScanDataStore::MapBaselines()
         std::size_t index = basename.find_first_of(".");
         if(index != std::string::npos)
         {
-            bl_code = basename.substr(index + 1);
+            bl_code = basename.substr(0,index);
             if(bl_code.size() == 2)
             {
                 fBaselineFileMap[bl_code] = *it;
@@ -110,7 +110,7 @@ MHO_ScanDataStore::MapStations()
         std::size_t index = basename.find_first_of(".");
         if(index != std::string::npos)
         {
-            sta_code = basename.substr(index + 1);
+            sta_code = basename.substr(0,index);
             if(sta_code.size() == 1)
             {
                 fStationFileMap[sta_code] = *it;

@@ -177,9 +177,9 @@ int main(int argc, char** argv)
     MHO_ScanDataStore scanStore;
     scanStore.SetDirectory(directory);
     scanStore.Initialize();
-    if(!scanStore.IsValid());
+    if( !scanStore.IsValid() )
     {
-        msg_fatal("main", "cannot Initialize a valid scan store from this directory: " << directory << eom);
+        msg_fatal("main", "cannot initialize a valid scan store from this directory: " << directory << eom);
         std::exit(1);
     }
 
