@@ -51,7 +51,7 @@ class MHO_Axis:
 
         virtual ~MHO_Axis(){};
 
-        //index selection
+        //index selection from matching axis values
         std::vector< std::size_t > 
         SelectMatchingIndexes(const std::set<XValueType> label_values)
         {
@@ -71,7 +71,7 @@ class MHO_Axis:
             return selected_idx;
         }
 
-        //index selection for single value
+        //index selection for matching axis values (given a single value)
         std::vector< std::size_t > 
         SelectMatchingIndexes(const XValueType& label_value)
         {
@@ -86,6 +86,32 @@ class MHO_Axis:
                 }
             }
             return selected_idx;
+        }
+        
+
+        template< typename XLabelValueType >
+        void CollectAxisElementLabelValues(const std::string& label_key, std::vector< XLabelValueType >& label_values )
+        {
+            label_values.clear();
+            for(std::size_t i=0; i < this->GetSize(); i++)
+            {
+                XLabelValueType value;
+                std::vector< MHO_IntervalLabel* > labels;
+                labels = this->GetIntervalsWhichIntersect(i);
+                if(labels.size() != 0)
+                {
+                    for(std::size_t j=0; j < labels.size(); j++)
+                    {
+                        if(labels[j]->HasKey(label_key))
+                        {
+                            labels[j]->Retrieve(label_key, value);
+                            label_values.push_back(value);
+                            break;
+                        }
+                    }
+                }
+                else{ msg_debug("containers", "label with key: "<<label_key<<" does not exist for axis element: " << i<< eom); }
+            }
         }
 
 
