@@ -1,7 +1,5 @@
 #include "MHO_FourfitControlInterface.hh"
 
-struct c_block* cb_head; //global extern kludge (due to c-library interface)
-
 namespace hops 
 {
 
@@ -13,7 +11,8 @@ MHO_FourfitControlInterface::MHO_FourfitControlInterface()
     fSourceName = " ";
     fFrequencyGroup = "X";
     int fTime = 0;
-    cb_head = (struct c_block *) malloc (sizeof (struct c_block) );
+    //this needs to be fixed...ideal by elminating the stupid global var, but otherwise via static init
+    //cb_head = (struct c_block *) malloc (sizeof (struct c_block) );
     nullify_cblock(cb_head);
     default_cblock(cb_head);
 
@@ -39,11 +38,7 @@ MHO_FourfitControlInterface::ConstructControlBlock()
     {
         //parse the control file
         struct c_block* cb_out = (struct c_block *) malloc (sizeof (struct c_block) );
-        fAllocatedControlBlocks.push_back(cb_out);
-        nullify_cblock(cb_head);
-        default_cblock(cb_head);
-        nullify_cblock(cb_out);
-        default_cblock(cb_out);
+
         char bl[2]; 
         bl[0] = fBaseline[0]; 
         bl[1] = fBaseline[1];
@@ -58,6 +53,12 @@ MHO_FourfitControlInterface::ConstructControlBlock()
                                       cb_head, cb_out, 
                                       bl, const_cast<char*>(src.c_str()), 
                                       fgroup, fTime);
+                                      
+        fAllocatedControlBlocks.push_back(cb_out);
+        //fCachedBlock = cb_out;
+        
+        std::cout<<"cbout = "<<cb_out<<std::endl;
+        std::cout<<"cbout ref freq = "<<cb_out->ref_freq<<std::endl;
 
         if(retval == 0)
         {
@@ -75,10 +76,11 @@ MHO_FourfitControlInterface::ConstructControlBlock()
     return false;
 }
 
-c_block* 
+struct c_block* 
 MHO_FourfitControlInterface::GetControlBlock()
 {
-    return fAllocatedControlBlocks.back();
+    //return fCachedBlock;
+    return fAllocatedControlBlocks.front();
 }
 
 

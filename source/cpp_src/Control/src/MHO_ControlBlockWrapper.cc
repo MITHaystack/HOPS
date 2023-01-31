@@ -3,10 +3,11 @@
 namespace hops 
 {
     
-MHO_ControlBlockWrapper::MHO_ControlBlockWrapper(c_block* block, mho_json vex_info)
+MHO_ControlBlockWrapper::MHO_ControlBlockWrapper(c_block* block, mho_json vex_info, std::string baseline)
 {
     fControlBlock = block;
     fVexInfo = vex_info; //full copy (TODO -- maybe should just use a reference?)
+    fBaseline = baseline;
     if( !(fVexInfo["VEX_rev"] == "ovex") ){ msg_warn("control", "cannot find an ovex object in the vex info" << eom); }
     Initialize();
 }
@@ -28,33 +29,34 @@ MHO_ControlBlockWrapper::Initialize()
 void
 MHO_ControlBlockWrapper::DetermineStationInfo()
 {
-    std::string bl;
-    bl.append( &(fControlBlock->baseline[0]), 1);
-    bl.append( &(fControlBlock->baseline[1]), 1);
+    fRefMk4ID = "";
+    fRefMk4ID = "";
+    fRefSiteCode = "";
+    fRemSiteCode = "";
+    fRefSiteName = "";
+    fRemSiteCode = "";
     
-    std::string ref_mk4_id; ref_mk4_id.append( &(bl[0]),1);
-    std::string rem_mk4_id; rem_mk4_id.append( &(bl[1]),1);
-    std::string ref_station_code = "";
-    std::string rem_station_code = "";
-    std::string ref_site_name = "";
-    std::string rem_site_name = "";
+    fRefMk4ID.append( &(fBaseline[0]),1);
+    fRemMk4ID.append( &(fBaseline[1]),1);
 
     auto sites = fVexInfo["$SITE"];
     for(auto sit = sites.begin(); sit != sites.end(); sit++)
     {
-        if( (*sit)["mk4_site_ID"] == ref_mk4_id )
+        std::cout<<(*sit)["mk4_site_ID"]<<std::endl;
+        if( (*sit)["mk4_site_ID"] == fRefMk4ID )
         {
-            ref_station_code = (*sit)["site_ID"];
-            ref_site_name = (*sit)["site_name"];
+            fRefSiteCode = (*sit)["site_ID"];
+            fRefSiteName = (*sit)["site_name"];
         }
         
-        if( (*sit)["mk4_site_ID"] == rem_mk4_id )
+        if( (*sit)["mk4_site_ID"] == fRemMk4ID )
         {
-            rem_station_code = (*sit)["site_ID"];
-            rem_site_name = (*sit)["site_name"];
+            fRemSiteCode = (*sit)["site_ID"];
+            fRemSiteName = (*sit)["site_name"];
         }
     }
 
+    msg_debug("control", "control block associated with baseline: "<< fBaseline<<" with reference site: ("<< fRefMk4ID<<", "<<fRefSiteCode<<", "<<fRefSiteName<<") and remote site: ("<< fRemMk4ID<<", "<<fRemSiteCode<<", "<<fRemSiteName<<")" << eom );
 
 }
 

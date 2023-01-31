@@ -17,8 +17,7 @@ class MHO_ControlBlockWrapper
 {
 
     public:
-        MHO_ControlBlockWrapper(c_block* block, mho_json vex_info);
-
+        MHO_ControlBlockWrapper(c_block* block, mho_json vex_info, std::string baseline);
         virtual ~MHO_ControlBlockWrapper();
 
 
@@ -26,7 +25,15 @@ class MHO_ControlBlockWrapper
 
         mho_json fVexInfo;
         c_block* fControlBlock;
-                
+    
+        std::string fBaseline;
+        std::string fRefMk4ID;
+        std::string fRemMk4ID;
+        std::string fRefSiteCode;
+        std::string fRemSiteCode;
+        std::string fRefSiteName;
+        std::string fRemSiteName;
+        
         
         void Initialize();
         void DetermineStationInfo();

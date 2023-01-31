@@ -53,9 +53,6 @@ MHO_UniformGridPointsCalculator::Calculate_v1()
 
         //find the min freq, the average freq, spacing, etc.
         n_pts = fPoints.size();
-
-        if(n_pts == 0){std::cout<<"Error"<<std::endl;}
-
         min_pts = std::numeric_limits<double>::max();
         min_space = std::numeric_limits<double>::max();
         ave_loc = 0.0;

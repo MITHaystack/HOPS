@@ -2,12 +2,12 @@
 #define MHO_FourfitControlInterface_HH__
 
 #include "ffcontrol.h"
+struct c_block* cb_head; //global extern kludge (due to stupid c-library interface)
 
 #include <string>
 #include <vector>
 
 #include "MHO_Message.hh"
-
 
 
 namespace hops 
@@ -29,7 +29,7 @@ class MHO_FourfitControlInterface
 
         //returns true if sucessful, false if error
         bool ConstructControlBlock();
-        c_block* GetControlBlock();
+        struct c_block* GetControlBlock();
 
     private:
 
@@ -38,8 +38,9 @@ class MHO_FourfitControlInterface
         std::string fSourceName;
         std::string fFrequencyGroup;
         int fTime;
-
-        std::vector< c_block* > fAllocatedControlBlocks;
+        
+        struct c_block* fCachedBlock;
+        std::vector< struct c_block* > fAllocatedControlBlocks;
 
 };
 

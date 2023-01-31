@@ -13,6 +13,9 @@
 //needed to read hops files and extract objects from scan dir
 #include "MHO_ScanDataStore.hh"
 
+//control 
+#include "MHO_ControlBlockWrapper.hh"
+
 //operators
 #include "MHO_NormFX.hh"
 #include "MHO_SelectRepack.hh"
@@ -96,6 +99,52 @@ int main(int argc, char** argv)
         return 1;
     }
 
+
+    
+    //initialize the scan store from this directory
+    MHO_ScanDataStore scanStore;
+    scanStore.SetDirectory(directory);
+    scanStore.Initialize();
+    if( !scanStore.IsValid() )
+    {
+        msg_fatal("main", "cannot initialize a valid scan store from this directory: " << directory << eom);
+        std::exit(1);
+    }
+
+    //load root file and container store for this baseline
+    mho_json vexInfo = scanStore.GetRootFileData();
+    MHO_ContainerStore* conStore = scanStore.LoadBaseline(baseline);
+
+    if(conStore == nullptr)
+    {
+        msg_fatal("main", "Could not find a file for baseline: "<< baseline << eom);
+        std::exit(1);
+    }
+    
+    
+    //parse the control file
+    cb_head = (struct c_block *) malloc (sizeof (struct c_block) );
+    struct c_block* cb_out = (struct c_block *) malloc (sizeof (struct c_block) );
+    nullify_cblock (cb_head);
+    default_cblock( cb_head );
+    nullify_cblock (cb_out);
+    default_cblock(cb_out);
+    char bl[2]; bl[0] = baseline[0]; bl[1] = baseline[1];
+    std::string src = " ";
+    char fgroup = 'X';
+    int time = 0;
+
+    std::cout<<control_file<<std::endl;
+    std::cout<<bl[0]<<bl[1]<<" "<<fgroup<<std::endl;
+
+    int retval = construct_cblock(const_cast<char*>(control_file.c_str()), cb_head, cb_out, bl, const_cast<char*>(src.c_str()), fgroup, time);
+    std::cout<<"c block retval = "<<retval<<std::endl;
+    
+    std::cout<<"cboutA = "<<cb_out<<std::endl;
+    std::cout<<"cboutA ref freq = "<<cb_out->ref_freq<<std::endl;
+        printf("pcalA rem 0,0 = %f ", cb_out->pc_phase[0][0].rem);
+    
+
     //read control file and build the control block which applies to this data 
     MHO_FourfitControlInterface ffcontrol_inter;
     ffcontrol_inter.SetControlFile(control_file);
@@ -104,7 +153,10 @@ int main(int argc, char** argv)
     ffcontrol_inter.SetFrequencyGroup("X"); //dummy value (VGOS)
     ffcontrol_inter.SetTime(0); //dummy value
     ffcontrol_inter.ConstructControlBlock();
-    c_block* cb_out = ffcontrol_inter.GetControlBlock();
+    c_block* cb_out2 = ffcontrol_inter.GetControlBlock();
+    
+    
+    MHO_ControlBlockWrapper cb_wrapper(cb_out2, vexInfo, baseline);
 
     // struct dstats pc_phase_offset[2];// manual phase offset applied to all channels, by pol
     // struct dstats pc_phase[MAXFREQ][2];/* phase cal phases by channel and pol
@@ -151,25 +203,6 @@ int main(int argc, char** argv)
     ref_pcal.Insert(std::string("station"), std::string("GS") );
     rem_pcal.Insert(std::string("station"), std::string("WF") );
 
-    //initialize the scan store from this directory
-    MHO_ScanDataStore scanStore;
-    scanStore.SetDirectory(directory);
-    scanStore.Initialize();
-    if( !scanStore.IsValid() )
-    {
-        msg_fatal("main", "cannot initialize a valid scan store from this directory: " << directory << eom);
-        std::exit(1);
-    }
-
-    //load root file and container store for this baseline
-    mho_json vexInfo = scanStore.GetRootFileData();
-    MHO_ContainerStore* conStore = scanStore.LoadBaseline(baseline);
-
-    if(conStore == nullptr)
-    {
-        msg_fatal("main", "Could not find a file for baseline: "<< baseline << eom);
-        std::exit(1);
-    }
 
     //retrieve the (first) visibility and weight objects (currently assuming there is only one object per type)
     ch_visibility_type* bl_data = nullptr;
@@ -242,8 +275,8 @@ int main(int argc, char** argv)
     bl_dim[CH_FREQ_AXIS] *= 4; //normfx implementation demands this
     sbd_data->Resize(bl_dim);
 
-    //calculate frequency space for MBD
-    FreqSpacing(std::get<CH_CHANNEL_AXIS>(*bl_data));
+    // //calculate frequency space for MBD
+    // FreqSpacing(std::get<CH_CHANNEL_AXIS>(*bl_data));
 
 
     //re-run this exercise via the pure c++ function
@@ -308,7 +341,7 @@ int main(int argc, char** argv)
         for(std::size_t ch=0; ch<bl_dim[1]; ch++)
         {
             std::size_t mbd_bin = mbd_bin_map[ch];
-            std::cout<<"ch -> mbd = "<<ch<<", "<<mbd_bin<<std::endl;
+            //std::cout<<"ch -> mbd = "<<ch<<", "<<mbd_bin<<std::endl;
             for(std::size_t dr=0; dr<bl_dim[2]; dr++)
             {
                 for(std::size_t sbd=0; sbd<bl_dim[3]; sbd++)
