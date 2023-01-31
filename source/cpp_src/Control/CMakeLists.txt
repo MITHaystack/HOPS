@@ -5,11 +5,13 @@
 #list header files #############################################################
 set (CONTROL_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_FourfitControlInterface.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ControlBlockWrapper.hh
 )
 
 #list source files #############################################################
 set( CONTROL_SOURCEFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_FourfitControlInterface.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ControlBlockWrapper.cc
 )
 
 #declare header paths ##########################################################
