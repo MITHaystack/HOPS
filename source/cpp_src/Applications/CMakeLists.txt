@@ -1,17 +1,16 @@
 hops_internal_include_directories()
 
-set(HOPS_TEST_LIBS MHO_Message MHO_Utilities vex2json MHO_Math MHO_Operators MHO_Calibration MHO_MK4Interface)
+set(HOPS_TEST_LIBS MHO_Message MHO_Utilities vex2json MHO_Math MHO_Operators MHO_Calibration MHO_MK4Interface MHO_Control)
 
 #link against old fourfit libraries (temporary measure while we try to debug/transition)
 if(HOPS_DEV_USE_OLD)
 
-    add_subdirectory(ffcontrol_interface)
+    # add_subdirectory(ffcontrol_interface)
 
     #declare header paths ##########################################################
     set(FFCONTROL_RELPATH "../../c_src/fourfit_libs/ffcontrol")
     set(MK4UTIL_RELPATH "../../c_src/mk4util")
     set(MSG_RELPATH "../../c_src/msg")
-    set(FFCONTROL_INTER_RELPATH "./ffcontrol_interface")
 
     list(APPEND RELPATH_LIST ${MSG_RELPATH} ${MK4UTIL_RELPATH} ${FFCONTROL_RELPATH} ${FFCONTROL_INTER_RELPATH})
 
@@ -20,7 +19,7 @@ if(HOPS_DEV_USE_OLD)
         hops_internal_include_directories(${CMAKE_CURRENT_SOURCE_DIR}/${path}/include)
     endforeach(path)
     #build/link/install library ####################################################
-    set(OLD_DEV_TEST_LIBS "msg" "mk4util" "ffcontrol" "MHO_ffcontrol_interface")
+    set(OLD_DEV_TEST_LIBS "msg" "mk4util" "ffcontrol")
 
 endif(HOPS_DEV_USE_OLD)
 
