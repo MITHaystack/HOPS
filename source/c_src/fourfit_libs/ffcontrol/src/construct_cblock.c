@@ -34,6 +34,11 @@ int construct_cblock (char* filename,
             copy_cblock_parts(cb_ptr,cb_out);
         }
     }
+    
+    printf("booo ref_freq: %f \n", cb_out->ref_freq);
+    printf("addr %p \n", (void*)cb_out);
+    
+    printf("pcal rem 0,0 = %f ", cb_out->pc_phase[0][0].rem);
 
     if(control_file_buff != NULL){free(control_file_buff);};
     if(set_string_buff != NULL){free(set_string_buff);};
