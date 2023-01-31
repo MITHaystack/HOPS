@@ -101,8 +101,8 @@ int main(int argc, char** argv)
     ffcontrol_inter.SetControlFile(control_file);
     ffcontrol_inter.SetBaseline(baseline);
     ffcontrol_inter.SetSourceName(" "); //dummy value
-    ffcontrol_inter.SetFrequencyGroup("X");
-    ffcontrol_inter.SetTime(0);
+    ffcontrol_inter.SetFrequencyGroup("X"); //dummy value (VGOS)
+    ffcontrol_inter.SetTime(0); //dummy value
     ffcontrol_inter.ConstructControlBlock();
     c_block* cb_out = ffcontrol_inter.GetControlBlock();
 
@@ -151,7 +151,7 @@ int main(int argc, char** argv)
     ref_pcal.Insert(std::string("station"), std::string("GS") );
     rem_pcal.Insert(std::string("station"), std::string("WF") );
 
-
+    //initialize the scan store from this directory
     MHO_ScanDataStore scanStore;
     scanStore.SetDirectory(directory);
     scanStore.Initialize();
@@ -271,36 +271,19 @@ int main(int argc, char** argv)
     fCyclicRotator.Execute();
 
 
-    //set up mbd grid
-    //grab all the channel sky frequencies
-    auto chan_ax = std::get<CH_CHANNEL_AXIS>(*bl_data);
-    std::string sky_freq_key = "sky_freq";
+    //collect the sky frequency values of each channel
     std::vector< double > chan_freqs;
-    for(std::size_t i=0;i<chan_ax.GetSize(); i++)
-    {
-        double freq;
-        std::vector< MHO_IntervalLabel* > labels;
-        labels = chan_ax.GetIntervalsWhichIntersect(i);
-        if(labels.size() != 0)
-        {
-            for(std::size_t j=0; j < labels.size(); j++)
-            {
-                if(labels[j]->HasKey(sky_freq_key))
-                {
-                    labels[j]->Retrieve(sky_freq_key, freq);
-                    chan_freqs.push_back(freq);
-                }
-                else{std::cout<<"no sky_freq"<<std::endl;}
-            }
-        }
-        else{std::cout<<"no labels for chan: "<<i<<std::endl;}
-    }
+    std::string sky_freq_key = "sky_freq";
+    auto chan_ax = &(std::get<CH_CHANNEL_AXIS>(*bl_data) );
+    chan_ax->CollectAxisElementLabelValues(sky_freq_key, chan_freqs);
+    if(chan_freqs.size() != chan_ax->GetSize() ){msg_error("main", "channel axis and and sky frequency size mismatch" << eom);}
+
+    //calculate the frequncy grid for MBD search
     MHO_UniformGridPointsCalculator gridCalc;
     gridCalc.SetPoints(chan_freqs);
     gridCalc.Calculate();
 
-    std::cout<<"info: "<<gridCalc.GetGridStart()<<", "<<gridCalc.GetGridSpacing()<<", "<<gridCalc.GetNGridPoints()<<std::endl;
-
+    std::cout<<"grid info: "<<gridCalc.GetGridStart()<<", "<<gridCalc.GetGridSpacing()<<", "<<gridCalc.GetNGridPoints()<<std::endl;
 
     sbd_data->GetDimensions(bl_dim);
     double gstart = gridCalc.GetGridStart();
