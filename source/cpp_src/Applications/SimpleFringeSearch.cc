@@ -101,7 +101,6 @@ int main(int argc, char** argv)
     }
 
 
-    
     //initialize the scan store from this directory
     MHO_ScanDataStore scanStore;
     scanStore.SetDirectory(directory);
@@ -134,51 +133,9 @@ int main(int argc, char** argv)
     
     MHO_ControlBlockWrapper cb_wrapper(cb_out, vexInfo, baseline);
 
-    // struct dstats pc_phase_offset[2];// manual phase offset applied to all channels, by pol
-    // struct dstats pc_phase[MAXFREQ][2];/* phase cal phases by channel and pol
-    //                                           for manual or additive pcal */
-
-    //construct the pcal array...this is a really ugly on-off testing kludge
+    //construct the pcal array...need to re-think how we are going to move control block info around (scalar parameters vs. arrays etc)
     manual_pcal_type* ref_pcal = cb_wrapper.GetRefStationManualPCOffsets(); //ref_pcal.Resize(2,MAXFREQ);
     manual_pcal_type* rem_pcal = cb_wrapper.GetRemStationManualPCOffsets();// rem_pcal.Resize(2,MAXFREQ);
-
-    // //label the axes
-    // std::string pol_arr[2];
-    // 
-    // //from parser.c
-    // // #define LXH 0
-    // // #define RYV 1
-    // 
-    // pol_arr[0] = "X";
-    // pol_arr[1] = "Y";
-    // for(unsigned int p=0; p<2; p++)
-    // {
-    //     std::get<0>(ref_pcal)(p) = pol_arr[p];
-    //     std::get<0>(rem_pcal)(p) = pol_arr[p];
-    // }
-    // 
-    // for(int ch=0; ch<MAXFREQ; ch++)
-    // {
-    //     std::get<1>(ref_pcal)(ch) = ch;
-    //     std::get<1>(rem_pcal)(ch) = ch;
-    // }
-    // 
-    // std::complex<double> imag_unit(0.0, 1.0);
-    // for(unsigned int p=0; p<2; p++)
-    // {
-    //     for(std::size_t ch=0; ch<MAXFREQ; ch++)
-    //     {
-    //         double ref_ph = cb_out->pc_phase[ch][p].ref;
-    //         double rem_ph = cb_out->pc_phase[ch][p].rem;
-    //         ref_pcal(p,ch) = ref_ph;// std::exp( imag_unit*2.0*M_PI*ref_ph*(M_PI/180.) );
-    //         rem_pcal(p,ch) = rem_ph; //std::exp( imag_unit*2.0*M_PI*rem_ph*(M_PI/180.) );
-    //         std::cout<<"chan: "<< ch <<" ref-pc: "<< cb_out->pc_phase[ch][p].ref << " rem-pc: " << cb_out->pc_phase[ch][p].rem << std::endl;
-    //     }
-    // }
-    // 
-    // ref_pcal.Insert(std::string("station"), std::string("GS") );
-    // rem_pcal.Insert(std::string("station"), std::string("WF") );
-
 
     //retrieve the (first) visibility and weight objects (currently assuming there is only one object per type)
     ch_visibility_type* bl_data = nullptr;
