@@ -47,6 +47,30 @@ class MHO_NDArrayView
 
         //clone functionality
         MHO_NDArrayView* Clone(){ return new MHO_NDArrayView(*this); }
+        
+        //copy functionality, calling array view must have same shape as rhs 
+        void Copy(const MHO_NDArrayView& rhs)
+        {
+            //check the sizes are the same 
+            bool ok = true;
+            for(std::size_t i=0; i<RANK; i++){  if(fDims[i] != rhs.fDims[i]){ok = false;} }
+            //TODO -- this implementation could probably be optimized
+            if(ok)
+            {
+                index_type idx1; idx1.fill(0);
+                index_type idx2; idx2.fill(0);
+                for(std::size_t i=0; i<fSize; i++)
+                {
+                    MHO_NDArrayMath::IncrementIndices<RANK>(&(fDims[0]), &(idx1[0]));
+                    MHO_NDArrayMath::IncrementIndices<RANK>(&(rhs.fDims[0]), &(idx2[0]));
+                    this->ValueAt(idx1) = rhs.ValueAt(idx2);
+                }
+            }
+            else 
+            {
+                msg_error("containers", "array view copy failed due to mismatched strides" << eom);
+            }
+        }
 
         //get the total size of the array
         std::size_t GetRank() const {return RANK;}
