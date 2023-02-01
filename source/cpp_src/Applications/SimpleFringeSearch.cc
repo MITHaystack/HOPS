@@ -157,10 +157,10 @@ int main(int argc, char** argv)
     std::size_t wt_dim[ch_weight_type::rank::value];
     wt_data->GetDimensions(wt_dim);
 
-    for(std::size_t i=0; i<ch_weight_type::rank::value; i++)
-    {
-        std::cout<<"weight size in dim: "<<i<<" = "<<wt_dim[i]<<std::endl;
-    }
+    // for(std::size_t i=0; i<ch_weight_type::rank::value; i++)
+    // {
+    //     std::cout<<"weight size in dim: "<<i<<" = "<<wt_dim[i]<<std::endl;
+    // }
 
     ////////////////////////////////////////////////////////////////////////////
     //APPLY COARSE DATA SELECTION
@@ -180,7 +180,7 @@ int main(int argc, char** argv)
     // selected_ap.push_back(20);
 
     std::vector< std::size_t > selected_ch;
-    for(std::size_t i=16;i<32; i++){selected_ch.push_back(i);}
+    for(std::size_t i=0;i<8; i++){selected_ch.push_back(i);}
 
     //pick out just the first channel and ap
     spack.SelectAxisItems(1,selected_ch);
@@ -199,10 +199,10 @@ int main(int argc, char** argv)
     std::size_t bl_dim[ch_visibility_type::rank::value];
     bl_data->GetDimensions(bl_dim);
 
-    for(std::size_t i=0; i<ch_visibility_type::rank::value; i++)
-    {
-        std::cout<<"vis size in dim: "<<i<<" = "<<bl_dim[i]<<std::endl;
-    }
+    // for(std::size_t i=0; i<ch_visibility_type::rank::value; i++)
+    // {
+    //     std::cout<<"vis size in dim: "<<i<<" = "<<bl_dim[i]<<std::endl;
+    // }
     
     
     ////////////////////////////////////////////////////////////////////////////
@@ -269,7 +269,7 @@ int main(int argc, char** argv)
     gridCalc.SetPoints(chan_freqs);
     gridCalc.Calculate();
 
-    std::cout<<"grid info: "<<gridCalc.GetGridStart()<<", "<<gridCalc.GetGridSpacing()<<", "<<gridCalc.GetNGridPoints()<<std::endl;
+    //std::cout<<"grid info: "<<gridCalc.GetGridStart()<<", "<<gridCalc.GetGridSpacing()<<", "<<gridCalc.GetNGridPoints()<<std::endl;
 
     sbd_data->GetDimensions(bl_dim);
     double gstart = gridCalc.GetGridStart();
@@ -335,7 +335,8 @@ int main(int argc, char** argv)
 
 
 
-    #ifdef USE_ROOT
+    // #ifdef USE_ROOT
+    #ifdef NOT_DISABLED
 
     std::cout<<"starting root plotting"<<std::endl;
 
