@@ -63,49 +63,52 @@ MHO_ControlBlockWrapper::DetermineStationInfo()
 void 
 MHO_ControlBlockWrapper::ConstructManualPhaseCalOffsets()
 {
-    // //construct the pcal array...this is a really ugly on-off testing kludge
-    // manual_pcal_type ref_pcal; ref_pcal.Resize(2,MAXFREQ);
-    // manual_pcal_type rem_pcal; rem_pcal.Resize(2,MAXFREQ);
-    // 
-    // //label the axes
-    // std::string pol_arr[2];
-    // 
-    // //from parser.c
-    // // #define LXH 0
-    // // #define RYV 1
-    // 
-    // pol_arr[0] = "X";
-    // pol_arr[1] = "Y";
-    // for(unsigned int p=0; p<2; p++)
-    // {
-    //     std::get<0>(ref_pcal)(p) = pol_arr[p];
-    //     std::get<0>(rem_pcal)(p) = pol_arr[p];
-    // }
-    // 
-    // for(int ch=0; ch<MAXFREQ; ch++)
-    // {
-    //     std::get<1>(ref_pcal)(ch) = ch;
-    //     std::get<1>(rem_pcal)(ch) = ch;
-    // }
-    // 
-    // std::complex<double> imag_unit(0.0, 1.0);
-    // for(unsigned int p=0; p<2; p++)
-    // {
-    //     for(std::size_t ch=0; ch<MAXFREQ; ch++)
-    //     {
-    //         double ref_ph = cb_out->pc_phase[ch][p].ref;
-    //         double rem_ph = cb_out->pc_phase[ch][p].rem;
-    //         ref_pcal(p,ch) = ref_ph;// std::exp( imag_unit*2.0*M_PI*ref_ph*(M_PI/180.) );
-    //         rem_pcal(p,ch) = rem_ph; //std::exp( imag_unit*2.0*M_PI*rem_ph*(M_PI/180.) );
-    //         std::cout<<"chan: "<< ch <<" ref-pc: "<< cb_out->pc_phase[ch][p].ref << " rem-pc: " << cb_out->pc_phase[ch][p].rem << std::endl;
-    //     }
-    // }
-    // 
-    // ref_pcal.Insert(std::string("station"), std::string("GS") );
-    // rem_pcal.Insert(std::string("station"), std::string("WF") );
+    //construct the pcal array...this is a really ugly on-off testing kludge
+    manual_pcal_type fRefManPcal; fRefManPcal.Resize(2,MAXFREQ);
+    manual_pcal_type fRemManPcal; fRemManPcal.Resize(2,MAXFREQ);
+    
+    //label the axes - TODO FIXME -- how to distinguish between L,X,H and R,Y,V ???
+    std::string pol_arr[2];
+    //from parser.c 
+    // #define LXH 0
+    // #define RYV 1
+    pol_arr[0] = "X";
+    pol_arr[1] = "Y";
 
+    for(unsigned int p=0; p<2; p++)
+    {
+        std::get<0>(fRefManPcal)(p) = pol_arr[p];
+        std::get<0>(fRemManPcal)(p) = pol_arr[p];
+    }
     
+    for(int ch=0; ch<MAXFREQ; ch++)
+    {
+        std::get<1>(fRefManPcal)(ch) = ch;
+        std::get<1>(fRemManPcal)(ch) = ch;
+    }
     
+    std::complex<double> imag_unit(0.0, 1.0);
+    for(unsigned int p=0; p<2; p++)
+    {
+        for(std::size_t ch=0; ch<MAXFREQ; ch++)
+        {
+            double ref_ph = fControlBlock->pc_phase[ch][p].ref;
+            double rem_ph = fControlBlock->pc_phase[ch][p].rem;
+            fRefManPcal(p,ch) = ref_ph;
+            fRemManPcal(p,ch) = rem_ph;
+            std::cout<<"chan: "<< ch <<" ref-pc: "<< fControlBlock->pc_phase[ch][p].ref << " rem-pc: " << fControlBlock->pc_phase[ch][p].rem << std::endl;
+        }
+    }
+    
+    fRefManPcal.Insert(std::string("station"), fRefSiteCode );
+    fRemManPcal.Insert(std::string("station"), fRemSiteCode );
+
+    fRefManPcal.Insert(std::string("station_mk4id"), fRefMk4ID );
+    fRemManPcal.Insert(std::string("station_mk4id"), fRemMk4ID );
+    
+    fRefManPcal.Insert(std::string("station_name"), fRefSiteName );
+    fRemManPcal.Insert(std::string("station_name"), fRemSiteName );
+
 }
 
 

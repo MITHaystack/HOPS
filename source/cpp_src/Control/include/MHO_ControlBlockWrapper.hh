@@ -20,6 +20,8 @@ class MHO_ControlBlockWrapper
         MHO_ControlBlockWrapper(c_block* block, mho_json vex_info, std::string baseline);
         virtual ~MHO_ControlBlockWrapper();
 
+        manual_pcal_type* GetRefStationManualPCOffsets(){return &fRefManPcal;}
+        manual_pcal_type* GetRemStationManualPCOffsets(){return &fRemManPcal;};
 
     private:
 
@@ -38,6 +40,9 @@ class MHO_ControlBlockWrapper
         void Initialize();
         void DetermineStationInfo();
         void ConstructManualPhaseCalOffsets();
+        
+        manual_pcal_type fRefManPcal;
+        manual_pcal_type fRemManPcal;
 
         // int accept_sbs[MAXFREQ];        /* accept USB, LSB, DSB iff = 1, 2, 3 */
         // short index[2*MAXFREQ];         /* index numbers of acceptable sidebands */
