@@ -9,6 +9,11 @@
 #include "MHO_UnaryOperator.hh"
 #include "MHO_FFTWTypes.hh"
 
+
+#define HOPS_FFTW_PLAN_ALGO FFTW_ESTIMATE
+//could use FFTW_MEASURE instead
+
+
 namespace hops
 {
 
@@ -264,16 +269,16 @@ class MHO_MultidimensionalFastFourierTransformFFTW:
             }
 
             fPlanForward = MHO_FFTWTypes<floating_point_value_type>::plan_guru_func(rank, fDims, howmany_rank, &fHowManyDims,
-                                       fInPtr, fOutPtr, FFTW_FORWARD, FFTW_MEASURE);
+                                       fInPtr, fOutPtr, FFTW_FORWARD, HOPS_FFTW_PLAN_ALGO);
 
             fPlanBackward = MHO_FFTWTypes<floating_point_value_type>::plan_guru_func(rank, fDims, howmany_rank, &fHowManyDims,
-                                       fInPtr, fOutPtr, FFTW_BACKWARD, FFTW_MEASURE);
+                                       fInPtr, fOutPtr, FFTW_BACKWARD, HOPS_FFTW_PLAN_ALGO);
 
             fPlanForwardInPlace = MHO_FFTWTypes<floating_point_value_type>::plan_guru_func(rank, fDims, howmany_rank, &fHowManyDims,
-                                       fInPlacePtr, fInPlacePtr, FFTW_FORWARD, FFTW_MEASURE);
+                                       fInPlacePtr, fInPlacePtr, FFTW_FORWARD, HOPS_FFTW_PLAN_ALGO);
 
             fPlanBackwardInPlace = MHO_FFTWTypes<floating_point_value_type>::plan_guru_func(rank, fDims, howmany_rank, &fHowManyDims,
-                                       fInPlacePtr, fInPlacePtr, FFTW_BACKWARD, FFTW_MEASURE);
+                                       fInPlacePtr, fInPlacePtr, FFTW_BACKWARD, HOPS_FFTW_PLAN_ALGO);
 
             if(fPlanForward != NULL && fPlanBackward != NULL && fPlanBackwardInPlace != NULL && fPlanForwardInPlace != NULL)
             {
