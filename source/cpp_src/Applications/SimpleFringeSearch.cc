@@ -157,34 +157,30 @@ int main(int argc, char** argv)
     std::size_t wt_dim[ch_weight_type::rank::value];
     wt_data->GetDimensions(wt_dim);
 
-    // for(std::size_t i=0; i<ch_weight_type::rank::value; i++)
-    // {
-    //     std::cout<<"weight size in dim: "<<i<<" = "<<wt_dim[i]<<std::endl;
-    // }
-
     ////////////////////////////////////////////////////////////////////////////
     //APPLY COARSE DATA SELECTION
     ////////////////////////////////////////////////////////////////////////////
-
-    //first find the index which corresponds to the specified pol product
-    std::set< std::string > pp_values; pp_values.insert(polprod);
-    auto* pp_axis = &(std::get<CH_POLPROD_AXIS>(*bl_data));
-    std::vector<std::size_t> selected_pp = pp_axis->SelectMatchingIndexes(pp_values);
-
-    //select data only from this polprod, and repack
+    //select data repack
     MHO_SelectRepack<ch_visibility_type> spack;
-    ch_visibility_type* alt_data = new ch_visibility_type();
-    spack.SelectAxisItems(0,selected_pp);
 
+    //first find indexes which corresponds to the specified pol product
+    std::vector<std::size_t> selected_pp = (&(std::get<CH_POLPROD_AXIS>(*bl_data)))->SelectMatchingIndexes(polprod);
+
+    //select some specified AP's
     // std::vector< std::size_t > selected_ap;
     // selected_ap.push_back(20);
 
+    //select first 8 channels for testing
     std::vector< std::size_t > selected_ch;
     for(std::size_t i=0;i<8; i++){selected_ch.push_back(i);}
 
-    //pick out just the first channel and ap
+    //specify the indexes we want on each axis
+    spack.SelectAxisItems(0,selected_pp);
     spack.SelectAxisItems(1,selected_ch);
     //spack.SelectAxisItems(2,selected_ap);
+    
+
+    ch_visibility_type* alt_data = new ch_visibility_type();
 
     spack.SetArgs(bl_data, alt_data);
     spack.Initialize();
@@ -199,12 +195,7 @@ int main(int argc, char** argv)
     std::size_t bl_dim[ch_visibility_type::rank::value];
     bl_data->GetDimensions(bl_dim);
 
-    // for(std::size_t i=0; i<ch_visibility_type::rank::value; i++)
-    // {
-    //     std::cout<<"vis size in dim: "<<i<<" = "<<bl_dim[i]<<std::endl;
-    // }
-    
-    
+
     ////////////////////////////////////////////////////////////////////////////
     //APPLY DATA CORRECTIONS (A PRIORI -- PCAL)
     ////////////////////////////////////////////////////////////////////////////
@@ -277,32 +268,23 @@ int main(int argc, char** argv)
     std::size_t ngrid_pts = gridCalc.GetNGridPoints();
     auto mbd_bin_map = gridCalc.GetGridIndexMap();
 
+    //construct the mbd array according to the grid calc's size
     ch_mbd_type mbd_data;
     mbd_data.Resize(bl_dim[0], ngrid_pts, bl_dim[2], bl_dim[3]);
     mbd_data.ZeroArray();
-
+    
+    //set up the mbd delay axis
     auto mbd_ax = &(std::get<CH_CHANNEL_AXIS>(mbd_data) );
     for(std::size_t i=0; i<ngrid_pts;i++)
     {
         (*mbd_ax)(i) = i*gspace;
     }
-
-    //fill in the mbd_data before we x-form it
-    for(std::size_t pp=0; pp<bl_dim[0]; pp++)
+    
+    //copy the slice associated with each channel into the apppropriate slot in the MBD array
+    for(std::size_t ch=0; ch<bl_dim[1]; ch++)
     {
-        for(std::size_t ch=0; ch<bl_dim[1]; ch++)
-        {
-            std::size_t mbd_bin = mbd_bin_map[ch];
-            //std::cout<<"ch -> mbd = "<<ch<<", "<<mbd_bin<<std::endl;
-            for(std::size_t dr=0; dr<bl_dim[2]; dr++)
-            {
-                for(std::size_t sbd=0; sbd<bl_dim[3]; sbd++)
-                {
-                    //if(mbd_bin == 0){std::cout<<"stuf = "<<(*sbd_data)(pp,ch,dr,sbd)<<std::endl;}
-                    mbd_data(pp, mbd_bin, dr, sbd) = (*sbd_data)(pp,ch,dr,sbd);
-                }
-            }
-        }
+        std::size_t mbd_bin = mbd_bin_map[ch];
+        mbd_data.SliceView(":", mbd_bin, ":", ":").Copy( sbd_data->SliceView(":",ch,":",":") );
     }
 
     //now we are going to run a FFT on the mbd axis
@@ -335,8 +317,8 @@ int main(int argc, char** argv)
 
 
 
-    // #ifdef USE_ROOT
-    #ifdef NOT_DISABLED
+    #ifdef USE_ROOT
+    //#ifdef NOT_DISABLED
 
     std::cout<<"starting root plotting"<<std::endl;
 
