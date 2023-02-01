@@ -53,7 +53,8 @@ class MHO_NDArrayView
         {
             //check the sizes are the same 
             bool ok = true;
-            for(std::size_t i=0; i<RANK; i++){  if(fDims[i] != rhs.fDims[i]){ok = false;} }
+            std::size_t j=0;
+            for(j=0; j<RANK; j++){  if(fDims[j] != rhs.fDims[j]){ok = false; break;} }
             //TODO -- this implementation could probably be optimized
             if(ok)
             {
@@ -68,7 +69,7 @@ class MHO_NDArrayView
             }
             else 
             {
-                msg_error("containers", "array view copy failed due to mismatched strides" << eom);
+                msg_error("containers", "array view copy failed due to mismatched sizes on dimension: "<<j<<"." << eom);
             }
         }
 
