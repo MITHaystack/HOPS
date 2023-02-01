@@ -100,6 +100,10 @@ int main(int argc, char** argv)
         return 1;
     }
 
+    ////////////////////////////////////////////////////////////////////////////
+    //INITIAL SCAN DIRECTORY
+    ////////////////////////////////////////////////////////////////////////////
+
 
     //initialize the scan store from this directory
     MHO_ScanDataStore scanStore;
@@ -122,6 +126,10 @@ int main(int argc, char** argv)
     }
     
     
+    ////////////////////////////////////////////////////////////////////////////
+    //CONTROL BLOCK CONSTRUCTION
+    ////////////////////////////////////////////////////////////////////////////
+    
     //parse the control file
     cb_head = (struct c_block *) malloc (sizeof (struct c_block) );
     struct c_block* cb_out = (struct c_block *) malloc (sizeof (struct c_block) );
@@ -130,12 +138,12 @@ int main(int argc, char** argv)
     char fgroup = 'X';
     int time = 0;
     int retval = construct_cblock(const_cast<char*>(control_file.c_str()), cb_head, cb_out, bl, const_cast<char*>(src.c_str()), fgroup, time);
-    
     MHO_ControlBlockWrapper cb_wrapper(cb_out, vexInfo, baseline);
 
-    //construct the pcal array...need to re-think how we are going to move control block info around (scalar parameters vs. arrays etc)
-    manual_pcal_type* ref_pcal = cb_wrapper.GetRefStationManualPCOffsets(); //ref_pcal.Resize(2,MAXFREQ);
-    manual_pcal_type* rem_pcal = cb_wrapper.GetRemStationManualPCOffsets();// rem_pcal.Resize(2,MAXFREQ);
+
+    ////////////////////////////////////////////////////////////////////////////
+    //LOAD DATA
+    ////////////////////////////////////////////////////////////////////////////
 
     //retrieve the (first) visibility and weight objects (currently assuming there is only one object per type)
     ch_visibility_type* bl_data = nullptr;
@@ -145,7 +153,7 @@ int main(int argc, char** argv)
     bl_data = conStore->RetrieveObject<ch_visibility_type>();
     wt_data = conStore->RetrieveObject<ch_weight_type>();
     tags = conStore->RetrieveObject<MHO_ObjectTags>();
-
+    
     std::size_t wt_dim[ch_weight_type::rank::value];
     wt_data->GetDimensions(wt_dim);
 
@@ -153,6 +161,10 @@ int main(int argc, char** argv)
     {
         std::cout<<"weight size in dim: "<<i<<" = "<<wt_dim[i]<<std::endl;
     }
+
+    ////////////////////////////////////////////////////////////////////////////
+    //APPLY COARSE DATA SELECTION
+    ////////////////////////////////////////////////////////////////////////////
 
     //first find the index which corresponds to the specified pol product
     std::set< std::string > pp_values; pp_values.insert(polprod);
@@ -191,8 +203,16 @@ int main(int argc, char** argv)
     {
         std::cout<<"vis size in dim: "<<i<<" = "<<bl_dim[i]<<std::endl;
     }
+    
+    
+    ////////////////////////////////////////////////////////////////////////////
+    //APPLY DATA CORRECTIONS (A PRIORI -- PCAL)
+    ////////////////////////////////////////////////////////////////////////////
 
     //apply manual pcal
+    //construct the pcal array...need to re-think how we are going to move control block info around (scalar parameters vs. arrays etc)
+    manual_pcal_type* ref_pcal = cb_wrapper.GetRefStationManualPCOffsets(); 
+    manual_pcal_type* rem_pcal = cb_wrapper.GetRemStationManualPCOffsets();
     bool ok;
     MHO_ManualChannelPhaseCorrection pcal_correct;
     pcal_correct.SetArgs(bl_data, rem_pcal, bl_data);
@@ -208,17 +228,18 @@ int main(int argc, char** argv)
     bl_dim[CH_FREQ_AXIS] *= 4; //normfx implementation demands this
     sbd_data->Resize(bl_dim);
 
-    // //calculate frequency space for MBD
-    // FreqSpacing(std::get<CH_CHANNEL_AXIS>(*bl_data));
 
+    ////////////////////////////////////////////////////////////////////////////
+    //COARSE SBD, DR, MBD SEARCH ALGO
+    ////////////////////////////////////////////////////////////////////////////
 
-    //re-run this exercise via the pure c++ function
+    //run norm-fx via the wrapper class (x-form to SBD space)
     MHO_NormFX nfxOp;
     nfxOp.SetArgs(bl_data, wt_data, sbd_data);
     nfxOp.Initialize();
     nfxOp.Execute();
 
-    //xform in the time (AP) axis to look for delay rate
+    //xform in the time (AP) axis to look for delay/fringe rate
     MHO_MultidimensionalFastFourierTransform< ch_visibility_type > fFFTEngine;
     MHO_CyclicRotator<ch_visibility_type> fCyclicRotator;
 
@@ -236,8 +257,7 @@ int main(int argc, char** argv)
     fFFTEngine.Execute();
     fCyclicRotator.Execute();
 
-
-    //collect the sky frequency values of each channel
+    //collect the sky frequency values of each channel before we x-form to MBD space
     std::vector< double > chan_freqs;
     std::string sky_freq_key = "sky_freq";
     auto chan_ax = &(std::get<CH_CHANNEL_AXIS>(*bl_data) );
@@ -260,7 +280,6 @@ int main(int argc, char** argv)
     ch_mbd_type mbd_data;
     mbd_data.Resize(bl_dim[0], ngrid_pts, bl_dim[2], bl_dim[3]);
     mbd_data.ZeroArray();
-    // mbd_data.GetDimensions(bl_dim);
 
     auto mbd_ax = &(std::get<CH_CHANNEL_AXIS>(mbd_data) );
     for(std::size_t i=0; i<ngrid_pts;i++)
@@ -287,7 +306,6 @@ int main(int argc, char** argv)
     }
 
     //now we are going to run a FFT on the mbd axis
-
     MHO_MultidimensionalFastFourierTransform< ch_mbd_type > fFFTEngine2;
     MHO_CyclicRotator< ch_mbd_type > fCyclicRotator2;
     fFFTEngine2.SetArgs(&mbd_data);
@@ -307,6 +325,14 @@ int main(int argc, char** argv)
     if(!status){std::cout<<"FAIL3"<<std::endl;}
     status = fCyclicRotator2.Execute();
     if(!status){std::cout<<"FAIL4"<<std::endl;}
+
+
+
+
+    ////////////////////////////////////////////////////////////////////////////
+    //PLOTTING/DEBUG
+    ////////////////////////////////////////////////////////////////////////////
+
 
 
     #ifdef USE_ROOT
