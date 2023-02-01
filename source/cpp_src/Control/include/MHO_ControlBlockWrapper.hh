@@ -13,6 +13,8 @@
 namespace hops
 {
 
+//real basic retrieval of some parameters from old c-style control block
+
 class MHO_ControlBlockWrapper 
 {
 
@@ -20,8 +22,14 @@ class MHO_ControlBlockWrapper
         MHO_ControlBlockWrapper(c_block* block, mho_json vex_info, std::string baseline);
         virtual ~MHO_ControlBlockWrapper();
 
+        //manual per-channel p-cal offsets
         manual_pcal_type* GetRefStationManualPCOffsets(){return &fRefManPcal;}
         manual_pcal_type* GetRemStationManualPCOffsets(){return &fRemManPcal;};
+
+        //manual per-channel p-cal delay offsets 
+        manual_pcal_delay_type* GetRefStationManualPCDelayOffsets(){return &fRefManPcalDelay;}
+        manual_pcal_delay_type* GetRemStationManualPCDelayOffsets(){return &fRemManPcalDelay;};
+
 
         //get the start/stop offsets 
         double GetStartOffset();
@@ -44,10 +52,14 @@ class MHO_ControlBlockWrapper
         void Initialize();
         void DetermineStationInfo();
         void ConstructManualPhaseCalOffsets();
+        void ConstructManualPhaseCalDelayOffsets();
         void DetermineStartStop();
         
         manual_pcal_type fRefManPcal;
         manual_pcal_type fRemManPcal;
+        
+        manual_pcal_delay_type fRefManPcalDelay;
+        manual_pcal_delay_type fRemManPcalDelay;
 
         // int accept_sbs[MAXFREQ];        /* accept USB, LSB, DSB iff = 1, 2, 3 */
         // short index[2*MAXFREQ];         /* index numbers of acceptable sidebands */

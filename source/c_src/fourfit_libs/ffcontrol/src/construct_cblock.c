@@ -28,18 +28,13 @@ int construct_cblock (char* filename,
     {
         if(criteria_match (cb_ptr, baseline, source, fgroup, time))
         {
-            printf("matched \n");
-            printf("cb_ptr baseline: %c%c \n", cb_ptr->baseline[0], cb_ptr->baseline[1]);
-            printf("ref_freq: %f \n", cb_ptr->ref_freq);
+            // printf("matched \n");
+            // printf("cb_ptr baseline: %c%c \n", cb_ptr->baseline[0], cb_ptr->baseline[1]);
+            // printf("ref_freq: %f \n", cb_ptr->ref_freq);
             copy_cblock_parts(cb_ptr,cb_out);
         }
     }
     
-    printf("booo ref_freq: %f \n", cb_out->ref_freq);
-    printf("addr %p \n", (void*)cb_out);
-    
-    printf("pcal rem 0,0 = %f ", cb_out->pc_phase[0][0].rem);
-
     if(control_file_buff != NULL){free(control_file_buff);};
     if(set_string_buff != NULL){free(set_string_buff);};
 

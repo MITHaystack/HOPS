@@ -24,6 +24,7 @@ MHO_ControlBlockWrapper::Initialize()
 {
     DetermineStationInfo();    
     ConstructManualPhaseCalOffsets();
+    ConstructManualPhaseCalDelayOffsets();
 }
 
 void
@@ -42,7 +43,6 @@ MHO_ControlBlockWrapper::DetermineStationInfo()
     auto sites = fVexInfo["$SITE"];
     for(auto sit = sites.begin(); sit != sites.end(); sit++)
     {
-        std::cout<<(*sit)["mk4_site_ID"]<<std::endl;
         if( (*sit)["mk4_site_ID"] == fRefMk4ID )
         {
             fRefSiteCode = (*sit)["site_ID"];
@@ -64,8 +64,8 @@ void
 MHO_ControlBlockWrapper::ConstructManualPhaseCalOffsets()
 {
     //construct the pcal array...this is a really ugly on-off testing kludge
-    manual_pcal_type fRefManPcal; fRefManPcal.Resize(2,MAXFREQ);
-    manual_pcal_type fRemManPcal; fRemManPcal.Resize(2,MAXFREQ);
+    fRefManPcal.Resize(2,MAXFREQ);
+    fRemManPcal.Resize(2,MAXFREQ);
     
     //label the axes - TODO FIXME -- how to distinguish between L,X,H and R,Y,V ???
     std::string pol_arr[2];
@@ -96,7 +96,7 @@ MHO_ControlBlockWrapper::ConstructManualPhaseCalOffsets()
             double rem_ph = fControlBlock->pc_phase[ch][p].rem;
             fRefManPcal(p,ch) = ref_ph;
             fRemManPcal(p,ch) = rem_ph;
-            std::cout<<"chan: "<< ch <<" ref-pc: "<< fControlBlock->pc_phase[ch][p].ref << " rem-pc: " << fControlBlock->pc_phase[ch][p].rem << std::endl;
+            //std::cout<<"chan: "<< ch <<" ref-pc: "<< fControlBlock->pc_phase[ch][p].ref << " rem-pc: " << fControlBlock->pc_phase[ch][p].rem << std::endl;
         }
     }
     
@@ -108,8 +108,60 @@ MHO_ControlBlockWrapper::ConstructManualPhaseCalOffsets()
     
     fRefManPcal.Insert(std::string("station_name"), fRefSiteName );
     fRemManPcal.Insert(std::string("station_name"), fRemSiteName );
+}
+
+
+void 
+MHO_ControlBlockWrapper::ConstructManualPhaseCalDelayOffsets()
+{
+    //construct the pcal delay array...this is a really ugly on-off testing kludge
+    fRefManPcalDelay.Resize(2,MAXFREQ);
+    fRemManPcalDelay.Resize(2,MAXFREQ);
+    
+    //label the axes - TODO FIXME -- how to distinguish between L,X,H and R,Y,V ???
+    std::string pol_arr[2];
+    //from parser.c 
+    // #define LXH 0
+    // #define RYV 1
+    pol_arr[0] = "X";
+    pol_arr[1] = "Y";
+
+    for(unsigned int p=0; p<2; p++)
+    {
+        std::get<0>(fRefManPcalDelay)(p) = pol_arr[p];
+        std::get<0>(fRemManPcalDelay)(p) = pol_arr[p];
+    }
+    
+    for(int ch=0; ch<MAXFREQ; ch++)
+    {
+        std::get<1>(fRefManPcalDelay)(ch) = ch;
+        std::get<1>(fRemManPcalDelay)(ch) = ch;
+    }
+    
+    std::complex<double> imag_unit(0.0, 1.0);
+    for(unsigned int p=0; p<2; p++)
+    {
+        for(std::size_t ch=0; ch<MAXFREQ; ch++)
+        {
+            double ref_ph = fControlBlock->delay_offs_pol[ch][p].ref;
+            double rem_ph = fControlBlock->delay_offs_pol[ch][p].rem;
+            fRefManPcalDelay(p,ch) = ref_ph;
+            fRemManPcalDelay(p,ch) = rem_ph;
+            //std::cout<<"chan: "<< ch <<" ref-pc-delay: "<< fControlBlock->delay_offs_pol[ch][p].ref << " rem-pc-delay: " << fControlBlock->delay_offs_pol[ch][p].rem << std::endl;
+        }
+    }
+    
+    fRefManPcalDelay.Insert(std::string("station"), fRefSiteCode );
+    fRemManPcalDelay.Insert(std::string("station"), fRemSiteCode );
+
+    fRefManPcalDelay.Insert(std::string("station_mk4id"), fRefMk4ID );
+    fRemManPcalDelay.Insert(std::string("station_mk4id"), fRemMk4ID );
+    
+    fRefManPcalDelay.Insert(std::string("station_name"), fRefSiteName );
+    fRemManPcalDelay.Insert(std::string("station_name"), fRemSiteName );
 
 }
+
 
 void 
 MHO_ControlBlockWrapper::DetermineStartStop()
