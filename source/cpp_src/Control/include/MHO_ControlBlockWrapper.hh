@@ -23,6 +23,10 @@ class MHO_ControlBlockWrapper
         manual_pcal_type* GetRefStationManualPCOffsets(){return &fRefManPcal;}
         manual_pcal_type* GetRemStationManualPCOffsets(){return &fRemManPcal;};
 
+        //get the start/stop offsets 
+        double GetStartOffset();
+        double GetStopOffset();
+
     private:
 
         mho_json fVexInfo;
@@ -40,6 +44,7 @@ class MHO_ControlBlockWrapper
         void Initialize();
         void DetermineStationInfo();
         void ConstructManualPhaseCalOffsets();
+        void DetermineStartStop();
         
         manual_pcal_type fRefManPcal;
         manual_pcal_type fRemManPcal;

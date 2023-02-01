@@ -111,6 +111,73 @@ MHO_ControlBlockWrapper::ConstructManualPhaseCalOffsets()
 
 }
 
+void 
+MHO_ControlBlockWrapper::DetermineStartStop()
+{
+    //This logic comes from make_passes.c
+        //                             /* Now sort out timerange for this pass */
+        //                                 /* Note that cstart/cstop are true times */
+        //                                 /* that correspond to the values in the */
+        //                                 /* pass structure, which in Mk4 are the */
+        //                                 /* same as appear in the param structure */
+        // 
+        // cstart = (p->control.time_span[0] < 0)?      /* kludge: negative t means */
+        //     param->start_nom - (double)p->control.time_span[0]: /* relative time */
+        //     86400 *(ovex->start_time.day - 1)         /* else it's absolute time */
+        //    + 3600 * ovex->start_time.hour
+        //    + (double)p->control.time_span[0];
+        // 
+        // cstop  = (p->control.time_span[1] < 0)?
+        //     param->stop_nom + (double)p->control.time_span[1]:      /* relative */
+        //     86400 *(ovex->start_time.day - 1)
+        //    + 3600 * ovex->start_time.hour
+        //    + (double)p->control.time_span[1];                        /* absolute */
+        // 
+        // if (cstart < param->start)
+        //     cstart = param->start;
+        // if (cstop > param->stop)
+        //     cstop = param->stop;
+        //                                 /* Actual start is beginning of 1st ap */
+        //                                 /* .001 to avoid rejection of aps when */
+        //                                 /* cstart/cstop right on ap boundary */
+        // pstart = param->start;
+        // msg ("pstart %10f cstart %10f cstop %10f", 0, pstart, cstart, cstop);
+        // if (pstart == cstart)
+        //     start_offset = 0;
+        // else
+        //     start_offset = (int)((cstart - pstart) 
+        //                         / param->acc_period + .001);
+        // stop_offset = (int)((cstop - pstart) / param->acc_period + .001);
+        // p->num_ap = stop_offset - start_offset;
+        // p->ap_off = start_offset;
+        // msg ("num_ap %d ap_off %d", 0, p->num_ap, p->ap_off);
+        //                                 /* Autocorrelation? */
+        // if ((param->cormode == AUTO_PER_LAG) || (param->cormode == AUTO_GLOBAL)) 
+        //     p->autocorr = TRUE;
+        //                                 /* No data, skip this pass */
+        // if (p->num_ap == 0) continue;
+        //                                 /* True start/stop times */
+        // p->start = param->start + (start_offset * param->acc_period);
+        // p->stop = param->start + (stop_offset * param->acc_period);
+        // p->reftime = param->reftime;
+
+    
+}
+
+
+//get the start/stop offsets 
+double 
+MHO_ControlBlockWrapper::GetStartOffset()
+{
+    return fControlBlock->time_span[0]; //length of time since start, casts int to double
+}
+
+double 
+MHO_ControlBlockWrapper::GetStopOffset()
+{
+    return fControlBlock->time_span[1]; //length of time before end, casts int to double
+}
+
 
 
 }
