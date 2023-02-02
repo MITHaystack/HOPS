@@ -136,8 +136,8 @@ class MHO_SelectRepack:
                             {
                                 in_loc[a] = (fAxisSelectionMap[a])[out_loc[a]];
                             }
-                            out->ValueAt(out_loc) = in->ValueAt(in_loc);
                         }
+                        out->ValueAt(out_loc) = in->ValueAt(in_loc);
                     }
                 }
 
