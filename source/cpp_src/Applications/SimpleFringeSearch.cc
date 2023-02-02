@@ -207,8 +207,14 @@ int main(int argc, char** argv)
     bool ok;
     MHO_ManualChannelPhaseCorrection pcal_correct;
     pcal_correct.SetArgs(bl_data, rem_pcal, bl_data);
-    ok = pcal_correct.Initialize(); if(!ok){std::cout<<"flag1"<<std::endl;}
-    ok = pcal_correct.Execute(); if(!ok){std::cout<<"flag2"<<std::endl;}
+    ok = pcal_correct.Initialize(); 
+    check_step_error(ok, "main", "pcal initialization.");
+    //ok = pcal_correct.Execute(); if(!ok){std::cout<<"flag2"<<std::endl;}
+    check_step_error(ok, "main", "pcal execution.");
+
+    check_step_fatal(false, "main", "fatal test");
+    check_step_fatal(true, "main", "fatal test");
+
 
     pcal_correct.SetArgs(bl_data, ref_pcal, bl_data);
     ok = pcal_correct.Initialize(); if(!ok){std::cout<<"flag3"<<std::endl;}
