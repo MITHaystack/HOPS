@@ -11,15 +11,16 @@ if(HOPS_DEV_USE_OLD)
     set(FFCONTROL_RELPATH "../../c_src/fourfit_libs/ffcontrol")
     set(MK4UTIL_RELPATH "../../c_src/mk4util")
     set(MSG_RELPATH "../../c_src/msg")
+    set(FFMATH_RELPATH "../../c_src/fourfit_libs/ffmath")
 
-    list(APPEND RELPATH_LIST ${MSG_RELPATH} ${MK4UTIL_RELPATH} ${FFCONTROL_RELPATH} ${FFCONTROL_INTER_RELPATH})
+    list(APPEND RELPATH_LIST ${MSG_RELPATH} ${MK4UTIL_RELPATH} ${FFCONTROL_RELPATH} ${FFCONTROL_INTER_RELPATH} ${FFMATH_RELPATH})
 
     #include library headers
     foreach(path ${RELPATH_LIST})
         hops_internal_include_directories(${CMAKE_CURRENT_SOURCE_DIR}/${path}/include)
     endforeach(path)
     #build/link/install library ####################################################
-    set(OLD_DEV_TEST_LIBS "msg" "mk4util" "ffcontrol")
+    set(OLD_DEV_TEST_LIBS "msg" "mk4util" "ffcontrol" "ffmath")
 
 endif(HOPS_DEV_USE_OLD)
 

@@ -3,10 +3,13 @@
 #include <string>
 #include <vector>
 #include <getopt.h>
+#include <iomanip>
 
 #include "msg.h"
 #include "ffcontrol.h"
 struct c_block* cb_head; //global extern kludge (due to stupid c-library interface)
+
+#include "ffmath.h"
 
 //global messaging util
 #include "MHO_Message.hh"
@@ -39,6 +42,178 @@ struct c_block* cb_head; //global extern kludge (due to stupid c-library interfa
 
 
 using namespace hops;
+
+
+std::complex<double> vrot_mod(double tdelta, double dr, double mbd, double freq, double ref_freq)
+{
+    double theta;
+    std::complex<double> imag_unit(0.0, 1.0);
+                                        // theta is in rotations
+                                        /* fringe rate * time from central epoch */
+                                        
+    printf("(dr, mbd, freq, tdelta) = (%le, %le, %le, %f) \n", dr, mbd, freq, tdelta);
+    printf("(freq, ref_freq) = (%le, %le)\n",  freq, ref_freq);  
+    
+    theta = freq * dr * tdelta;
+    
+    printf("theta = %f\n", theta*(180.0/M_PI)*(-2.0*M_PI));
+    
+    // std::cout<<"dr = "<<dr<<std::endl;
+    // std::cout<<"tdelta = "<<tdelta<<std::endl;
+    // 
+    // std::cout<<"theta1 rot = "<<theta*(180./M_PI)*(-2.0 * M_PI)<<std::endl;
+
+                                        // Residual mbd effect at this freq
+    theta += mbd * (freq - ref_freq) * 1e-6;
+    
+    // std::cout<<"freq delta = "<<(freq - ref_freq)<<std::endl;
+                                        // Effect due to offset of lag where max lies
+    //theta += (param.nlags - status.max_delchan) * 0.125 * sb;
+    //removed optimize_closure stuff here
+
+    theta *= (-2.0 * M_PI);             // convert to radians
+
+    // std::cout<<"theta2 rot = "<<theta*(180./M_PI)<<std::endl;
+
+    std::complex<double> val = std::exp(imag_unit*theta);
+    return val;
+}
+
+
+
+void fine_peak_interpolation(ch_mbd_type* mbd_arr, ch_visibility_type* sbd_arr)
+{
+    bool ok;
+    //first find the location of the max SBD, DR, and MBD bin
+    MHO_ExtremaSearch< ch_mbd_type > mbdSearch;
+    mbdSearch.SetArgs(mbd_arr);
+    ok = mbdSearch.Initialize();
+    ok = mbdSearch.Execute();
+    
+    auto mbd_dim = mbd_arr->GetDimensions();
+    
+    double bin_max = mbdSearch.GetMax();
+    std::size_t offset_to_bin_max = mbdSearch.GetMaxLocation();
+    ch_mbd_type::index_type loc;
+    MHO_NDArrayMath::RowMajorIndexFromOffset< ch_mbd_type::rank::value >(offset_to_bin_max, &(mbd_dim[0]), &(loc[0]));
+    
+    std::cout<<"fringe max = "<<bin_max<<std::endl;
+    
+    for(std::size_t i=0; i<loc.size(); i++)
+    {
+        std::cout<<"max bin index for dim @ "<<i<<" = "<<loc[i]<<std::endl; 
+    }
+    
+    //follow the algorithm of interp.c (SIMUL) mode, to fill out a cube and interpolate
+    double drf[5][5][5];// 5x5x5 cube of fringe values
+    double xlim[3][2]; //cube limits each dim 
+    double xi[3];
+    double drfmax;
+    
+
+    //auto dr_ax = &( std::get<CH_TIME_AXIS>(*mbd_arr) );
+    auto mbd_ax = &( std::get<CH_CHANNEL_AXIS>(*mbd_arr) );
+    
+    auto chan_ax = &( std::get<CH_CHANNEL_AXIS>(*sbd_arr) );
+    auto dr_ax = &( std::get<CH_TIME_AXIS>(*sbd_arr) );
+    auto sbd_ax = &( std::get<CH_FREQ_AXIS>(*sbd_arr) );
+    
+    std::size_t nap = dr_ax->GetSize();
+    std::size_t nchan = chan_ax->GetSize();
+    
+    double sbd_delta = sbd_ax->at(1) - sbd_ax->at(0);
+    double dr_delta = dr_ax->at(1) - dr_ax->at(0);
+    double mbd_delta = mbd_ax->at(1) - mbd_ax->at(0);
+    
+    double ref_freq = 6e3; //6000 MHz gahh
+    std::string sky_freq_key = "sky_freq";
+    std::vector<double> chan_freq;
+    chan_ax->CollectAxisElementLabelValues(sky_freq_key, chan_freq );
+    
+    double sbd_lower = 1e30;
+    double sbd_upper = -1e30;
+    double mbd_lower = 1e30;
+    double mbd_upper = -1e30;
+    double dr_lower = 1e30;
+    double dr_upper = -1e30;
+    
+    std::cout<< std::setprecision(14);
+    for (std::size_t isbd=0; isbd<5; isbd++)
+    {
+        for (std::size_t imbd=0; imbd<5; imbd++)
+        {
+            for (std::size_t idr=0; idr<5; idr++)
+            {
+
+                std::complex<double> z = 0.0;
+
+                // calculate location of this tabular point (should modulo % axis size)
+                std::size_t sbd_bin = loc[3] + isbd - 2;
+                std::size_t dr_bin = loc[2] + idr - 2;
+                std::size_t mbd_bin = loc[1] + imbd - 2;
+                
+                double sbd = sbd_ax->at(sbd_bin) + 0.5*sbd_delta; 
+                double dr =  (dr_ax->at(dr_bin) + 0.5*dr_delta ); 
+                double mbd =  mbd_ax->at(mbd_bin) + 0.5*mbd_delta;
+                
+                std::cout<<"dr delta = "<<dr_delta<<std::endl;
+                std::cout<<"sbd, dr, mbd = "<<sbd<<", "<<dr<<", "<<mbd<<std::endl;
+                
+                if(sbd < sbd_lower){sbd_lower = sbd;}
+                if(sbd > sbd_upper){sbd_upper = sbd;}
+                
+                if(dr < dr_lower){dr_lower = dr;}
+                if(dr > dr_upper){dr_upper = dr;}
+                
+                if(mbd < mbd_lower){mbd_lower = mbd;}
+                if(mbd > mbd_upper){mbd_upper = mbd;}
+ 
+                // sbd = status.max_delchan    +        isbd - 2;
+                // mbd = status.mbd_max_global + 0.5 * (imbd - 2) * status.mbd_sep;
+                // dr  = status.dr_max_global  + 0.5 * (idr - 2)  * status.rate_sep;
+
+                // msg ("[interp]dr %le mbd %le sbd %d sbd_max(ns) %10.6f", -1,
+                //  dr,mbd,sbd,status.sbd_max);
+                                // counter-rotate data from all freqs. and AP's
+                for(std::size_t fr = 0; fr < nchan; fr++)
+                {
+                    //double frq = pass->pass_data + fr;
+                    double freq = chan_freq[fr];//use sky-freq of this channel????
+                    for(std::size_t ap = 0; ap < nap; ap++)
+                    {
+                        double tdelta = (ap + 0.5) - 15.0; //need time difference from the f.r.t????
+                        visibility_element_type vis = (*sbd_arr)(0,fr,ap,sbd_bin);
+                        std::complex<double> x = vis* vrot_mod(tdelta, dr, mbd, freq, ref_freq);
+                        z = z + x;
+                    }
+                }
+                drf[isbd][imbd][idr] = std::abs(z);
+                std::cout<<isbd<<", "<<imbd<<", "<<idr<<", "<<drf[isbd][imbd][idr]<<std::endl;
+                //msg ("drf[%d][%d][%d] %lf", 0, isbd, imbd, idr, drf[isbd][imbd][idr]);
+            }
+        }
+    }
+    
+
+    
+    xlim[0][0] = sbd_lower;// / status.sbd_sep - status.max_delchan + nl;
+    xlim[0][1] = sbd_upper;// / status.sbd_sep - status.max_delchan + nl;
+
+    xlim[1][0] = mbd_lower;// - status.mbd_max_global) / status.mbd_sep;
+    xlim[1][1] = mbd_upper;// - status.mbd_max_global) / status.mbd_sep;
+
+    xlim[2][0] = dr_lower;// - status.dr_max_global) / status.rate_sep;
+    xlim[2][1] = dr_upper;// - status.dr_max_global) / status.rate_sep;
+    
+    std::cout<< "xlim's "<< xlim[0][0]<<", "<< xlim[0][1] <<", "<< xlim[1][0] <<", "<< xlim[1][1] <<", " << xlim[2][0] <<", "<< xlim[2][1] <<std::endl;
+                                // find maximum value within cube via interpolation
+    max555(drf, xlim, xi, &drfmax);
+
+    std::cout<< "xi's "<< xi[0]<<", "<< xi[1] <<", "<< xi[2] <<std::endl;
+    std::cout<<"drf max = "<<drfmax<<std::endl;
+
+    
+}
 
 
 int main(int argc, char** argv)
@@ -320,6 +495,28 @@ int main(int argc, char** argv)
     check_step_fatal(ok, "main", "fft engine execution." << eom );
     ok = fCyclicRotator2.Execute();
     check_step_fatal(ok, "main", "cyclic rotation execution." << eom );
+
+
+    
+
+    ////////////////////////////////////////////////////////////////////////////
+    //FINE INTERPOLATION STEP
+    ////////////////////////////////////////////////////////////////////////////
+
+    fine_peak_interpolation(&mbd_data, sbd_data);
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
