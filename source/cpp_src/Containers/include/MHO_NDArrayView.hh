@@ -47,27 +47,24 @@ class MHO_NDArrayView
 
         //clone functionality
         MHO_NDArrayView* Clone(){ return new MHO_NDArrayView(*this); }
-        
-        //copy functionality, calling array view must have same shape as rhs 
+
+        //copy functionality, calling array view must have same shape as rhs
         void Copy(const MHO_NDArrayView& rhs)
         {
-            //check the sizes are the same 
+            //check the sizes are the same
             bool ok = true;
             std::size_t j=0;
             for(j=0; j<RANK; j++){  if(fDims[j] != rhs.fDims[j]){ok = false; break;} }
-            //TODO -- this implementation could probably be optimized
             if(ok)
             {
-                index_type idx1; idx1.fill(0);
-                index_type idx2; idx2.fill(0);
+                index_type idx; idx.fill(0);
                 for(std::size_t i=0; i<fSize; i++)
                 {
-                    MHO_NDArrayMath::IncrementIndices<RANK>(&(fDims[0]), &(idx1[0]));
-                    MHO_NDArrayMath::IncrementIndices<RANK>(&(rhs.fDims[0]), &(idx2[0]));
-                    this->ValueAt(idx1) = rhs.ValueAt(idx2);
+                    MHO_NDArrayMath::IncrementIndices<RANK>(&(fDims[0]), &(idx[0]));
+                    this->ValueAt(idx) = rhs.ValueAt(idx);
                 }
             }
-            else 
+            else
             {
                 msg_error("containers", "array view copy failed due to mismatched sizes on dimension: "<<j<<"." << eom);
             }
@@ -127,7 +124,7 @@ class MHO_NDArrayView
         {
             if(this != &rhs)
             {
-                Construct(rhs.fDataPtr, &(rhs.fDims[0]), &(rhs.fStrides[0]) ); 
+                Construct(rhs.fDataPtr, &(rhs.fDims[0]), &(rhs.fStrides[0]) );
             }
             return *this;
         }
@@ -142,7 +139,7 @@ class MHO_NDArrayView
 
         //set all elements in the array to zero
         void ZeroArray()
-        { 
+        {
             auto bit = this->begin();
             auto eit = this->end();
             for(auto it = bit; it != eit; ++it){*it = 0; }
@@ -209,7 +206,7 @@ class MHO_NDArrayView
             auto it2 = bit2;
             for(std::size_t i=0; i<fSize; i++)
             {
-                (*it1) *= (*it2); 
+                (*it1) *= (*it2);
                 ++it1;
                 ++it2;
             }
@@ -226,7 +223,7 @@ class MHO_NDArrayView
             auto it2 = bit2;
             for(std::size_t i=0; i<fSize; i++)
             {
-                (*it1) += (*it2); 
+                (*it1) += (*it2);
                 ++it1;
                 ++it2;
             }
@@ -243,7 +240,7 @@ class MHO_NDArrayView
             auto it2 = bit2;
             for(std::size_t i=0; i<fSize; i++)
             {
-                (*it1) -= (*it2); 
+                (*it1) -= (*it2);
                 ++it1;
                 ++it2;
             }
