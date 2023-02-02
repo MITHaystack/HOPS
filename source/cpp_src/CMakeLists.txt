@@ -4,6 +4,13 @@ if(ENABLE_DEBUG_MSG)
     hops_add_cxxflag(HOPS_ENABLE_DEBUG_MSG)
 endif(ENABLE_DEBUG_MSG)
 
+#add option to throw errors on bad return values
+option(ENABLE_STEPWISE_CHECK "When specified, check return value of operation initialization/execution, throw on error" OFF)
+if(ENABLE_STEPWISE_CHECK)
+    hops_add_cxxflag(HOPS_ENABLE_STEPWISE_CHECK)
+endif(ENABLE_STEPWISE_CHECK)
+
+
 hops_require_cpp11()
 
 #source sub directories (in order of dependence...this is important!)

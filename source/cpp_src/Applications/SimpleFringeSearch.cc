@@ -57,6 +57,7 @@ int main(int argc, char** argv)
     std::string control_file = "";
     std::string baseline = "";
     std::string polprod = "";
+    bool ok;
 
     static struct option longOptions[] = {{"help", no_argument, 0, 'h'},
                                           {"directory", required_argument, 0, 'd'},
@@ -179,6 +180,8 @@ int main(int argc, char** argv)
     spack.SelectAxisItems(1,selected_ch);
     //spack.SelectAxisItems(2,selected_ap);
     
+    
+    
 
     ch_visibility_type* alt_data = new ch_visibility_type();
 
@@ -204,21 +207,21 @@ int main(int argc, char** argv)
     //construct the pcal array...need to re-think how we are going to move control block info around (scalar parameters vs. arrays etc)
     manual_pcal_type* ref_pcal = cb_wrapper.GetRefStationManualPCOffsets(); 
     manual_pcal_type* rem_pcal = cb_wrapper.GetRemStationManualPCOffsets();
-    bool ok;
+
     MHO_ManualChannelPhaseCorrection pcal_correct;
+    
     pcal_correct.SetArgs(bl_data, rem_pcal, bl_data);
     ok = pcal_correct.Initialize(); 
-    check_step_error(ok, "main", "pcal initialization.");
-    //ok = pcal_correct.Execute(); if(!ok){std::cout<<"flag2"<<std::endl;}
-    check_step_error(ok, "main", "pcal execution.");
-
-    check_step_fatal(false, "main", "fatal test");
-    check_step_fatal(true, "main", "fatal test");
-
+    check_step_error(ok, "main", "ref pcal initialization." << eom );
+    ok = pcal_correct.Execute();
+    check_step_error(ok, "main", "ref pcal execution." << eom );
 
     pcal_correct.SetArgs(bl_data, ref_pcal, bl_data);
-    ok = pcal_correct.Initialize(); if(!ok){std::cout<<"flag3"<<std::endl;}
-    ok = pcal_correct.Execute(); if(!ok){std::cout<<"flag4"<<std::endl;}
+    ok = pcal_correct.Initialize();
+    check_step_error(ok, "main", "rem pcal initialization." << eom );
+    ok = pcal_correct.Execute();
+    check_step_error(ok, "main", "rem pcal execution." << eom );
+
 
     //output for the delay
     ch_visibility_type* sbd_data = bl_data->CloneEmpty();
@@ -233,26 +236,31 @@ int main(int argc, char** argv)
     //run norm-fx via the wrapper class (x-form to SBD space)
     MHO_NormFX nfxOp;
     nfxOp.SetArgs(bl_data, wt_data, sbd_data);
-    nfxOp.Initialize();
-    nfxOp.Execute();
+    ok = nfxOp.Initialize();
+    check_step_fatal(ok, "main", "normfx initialization." << eom );
+    ok = nfxOp.Execute();
+    check_step_fatal(ok, "main", "normfx execution." << eom );
 
     //xform in the time (AP) axis to look for delay/fringe rate
     MHO_MultidimensionalFastFourierTransform< ch_visibility_type > fFFTEngine;
     MHO_CyclicRotator<ch_visibility_type> fCyclicRotator;
 
-    bool status;
     fFFTEngine.SetArgs(sbd_data);
     fFFTEngine.DeselectAllAxes();
     fFFTEngine.SelectAxis(CH_TIME_AXIS);
     fFFTEngine.SetForward();
-    status = fFFTEngine.Initialize();
+    ok = fFFTEngine.Initialize();
+    check_step_fatal(ok, "main", "fft engine initialization." << eom );
 
     fCyclicRotator.SetOffset(CH_TIME_AXIS, bl_dim[CH_TIME_AXIS]/2);
     fCyclicRotator.SetArgs(sbd_data);
-    status = fCyclicRotator.Initialize();
+    ok = fCyclicRotator.Initialize();
+    check_step_fatal(ok, "main", "cyclic rotation initialization." << eom );
 
-    fFFTEngine.Execute();
-    fCyclicRotator.Execute();
+    ok = fFFTEngine.Execute();
+    check_step_fatal(ok, "main", "fft engine execution." << eom );
+    ok = fCyclicRotator.Execute();
+    check_step_fatal(ok, "main", "cyclic rotation execution." << eom );
 
     //collect the sky frequency values of each channel before we x-form to MBD space
     std::vector< double > chan_freqs;
@@ -300,19 +308,18 @@ int main(int argc, char** argv)
     fFFTEngine2.DeselectAllAxes();
     fFFTEngine2.SelectAxis(CH_CHANNEL_AXIS);
     fFFTEngine2.SetForward();
-    status = fFFTEngine2.Initialize();
-
-    if(!status){std::cout<<"FAIL1"<<std::endl;}
+    ok = fFFTEngine2.Initialize();
+    check_step_fatal(ok, "main", "fft engine initialization." << eom );
 
     fCyclicRotator2.SetOffset(CH_CHANNEL_AXIS, ngrid_pts/2);
     fCyclicRotator2.SetArgs(&mbd_data);
-    status = fCyclicRotator2.Initialize();
-    if(!status){std::cout<<"FAIL2"<<std::endl;}
+    ok = fCyclicRotator2.Initialize();
+    check_step_fatal(ok, "main", "cyclic rotation initialization." << eom );
 
-    status = fFFTEngine2.Execute();
-    if(!status){std::cout<<"FAIL3"<<std::endl;}
-    status = fCyclicRotator2.Execute();
-    if(!status){std::cout<<"FAIL4"<<std::endl;}
+    ok = fFFTEngine2.Execute();
+    check_step_fatal(ok, "main", "fft engine execution." << eom );
+    ok = fCyclicRotator2.Execute();
+    check_step_fatal(ok, "main", "cyclic rotation execution." << eom );
 
 
 

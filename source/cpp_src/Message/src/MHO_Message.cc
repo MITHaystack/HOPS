@@ -4,6 +4,7 @@ namespace hops
 {
 
 
+
 //initialization to nullptr
 MHO_Message* MHO_Message::fInstance = nullptr;
 

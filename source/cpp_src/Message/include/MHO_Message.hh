@@ -156,8 +156,8 @@ MHO_Message::operator<<(const XStreamableItemType& item)
 
 #ifdef HOPS_ENABLE_STEPWISE_CHECK  //this is defined as a compiler flag via build system
 //error check is enabled, so that we can verify a boolean return value is true 
-#define check_step_error(xVALUE, xKEY, xCONTENT) if(!xValue){ MHO_Message::GetInstance().SendMessage(eError,xKEY); }
-#define check_step_fatal(xVALUE, xKEY, xCONTENT) if(!xValue){ MHO_Message::GetInstance().SendMessage(eFatal,xKEY) << xCONTENT; HOPS_ASSERT_THROW(xVALUE); }
+#define check_step_error(xVALUE, xKEY, xCONTENT) if(!xVALUE){ MHO_Message::GetInstance().SendMessage(eError,xKEY) << xCONTENT; }
+#define check_step_fatal(xVALUE, xKEY, xCONTENT) if(!xVALUE){ MHO_Message::GetInstance().SendMessage(eFatal,xKEY) << xCONTENT; HOPS_ASSERT_THROW(xVALUE); }
 #else
 //error check is competely disabled 
 #define check_step_error(xVALUE, xKEY, xCONTENT)
