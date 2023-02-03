@@ -41,15 +41,17 @@ MHO_DelayRate::InitializeOutOfPlace(const XArgType* in, XArgType* out)
         status = fPaddedFFTEngine.Initialize();
         if(!status){msg_error("operators", "Could not initialize padded FFT in MHO_DelayRate." << eom); return false;}
 
-        // fSubSampler.SetDimensionAndStride(CH_FREQ_AXIS, 2);
-        // fSubSampler.SetArgs(&fWorkspace, out);
-        // status = fSubSampler.Initialize();
-        // if(!status){msg_error("operators", "Could not initialize sub-sampler in MHO_DelayRate." << eom); return false;}
-
         fCyclicRotator.SetOffset(CH_TIME_AXIS, np/2);
         fCyclicRotator.SetArgs(out);
         status = fCyclicRotator.Initialize();
         if(!status){msg_error("operators", "Could not initialize cyclic rotation in MHO_DelayRate." << eom); return false;}
+
+
+        fSubSampler.SetDimensionAndStride(CH_TIME_AXIS, 2);
+        fSubSampler.SetArgs(out);
+        status = fSubSampler.Initialize();
+        if(!status){msg_error("operators", "Could not initialize sub-sampler in MHO_DelayRate." << eom); return false;}
+
 
         fInitialized = true;
     }
@@ -91,6 +93,9 @@ MHO_DelayRate::ExecuteOutOfPlace(const XArgType* in1, XArgType* out)
         check_step_fatal(ok, "calibration", "fft engine execution." << eom );
         ok = fCyclicRotator.Execute();
         check_step_fatal(ok, "calibration", "cyclic rotation execution." << eom );
+
+        ok = fSubSampler.Execute();
+        check_step_fatal(ok, "calibration", "sub sample execution." << eom );
 
 
         return true;

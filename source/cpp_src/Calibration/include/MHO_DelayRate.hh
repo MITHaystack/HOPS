@@ -18,7 +18,7 @@
 
 #include "MHO_UnaryOperator.hh"
 #include "MHO_CyclicRotator.hh"
-// #include "MHO_SubSample.hh"
+#include "MHO_SubSample.hh"
 
 #ifdef HOPS_USE_FFTW3
     #include "MHO_FFTWTypes.hh"
@@ -65,7 +65,7 @@ class MHO_DelayRate: public MHO_UnaryOperator< ch_sbd_type >
 
         MHO_MultidimensionalPaddedFastFourierTransform< ch_visibility_type > fPaddedFFTEngine;
 
-        //MHO_SubSample<ch_sbd_type> fSubSampler;
+        MHO_SubSample<ch_sbd_type> fSubSampler;
         MHO_CyclicRotator<ch_sbd_type> fCyclicRotator;
 
         bool fInitialized;
