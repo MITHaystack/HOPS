@@ -13,6 +13,7 @@ MHO_DelayRate::~MHO_DelayRate(){};
 bool
 MHO_DelayRate::InitializeOutOfPlace(const XArgType* in, XArgType* out)
 {
+
     fInitialized = false;
     if(in != nullptr && out != nullptr)
     {
@@ -30,15 +31,15 @@ MHO_DelayRate::InitializeOutOfPlace(const XArgType* in, XArgType* out)
         std::size_t np = drsp_size*4;
         ConditionallyResizeOutput(&(fInDims[0]), np, out);
 
-        fPaddedFFTEngine.SetArgs(in, out);
-        fPaddedFFTEngine.DeselectAllAxes();
-        fPaddedFFTEngine.SelectAxis(CH_TIME_AXIS); //only perform padded fft on frequency (to lag) axis
-        fPaddedFFTEngine.SetForward();//forward DFT
-        fPaddedFFTEngine.SetPaddedSize(np);
-        fPaddedFFTEngine.SetEndPadded();//pretty sure this is the default from delay_rate.c
-
-        status = fPaddedFFTEngine.Initialize();
-        if(!status){msg_error("operators", "Could not initialize padded FFT in MHO_DelayRate." << eom); return false;}
+        // fPaddedFFTEngine.SetArgs(in, out);
+        // fPaddedFFTEngine.DeselectAllAxes();
+        // fPaddedFFTEngine.SelectAxis(CH_TIME_AXIS); //only perform padded fft on frequency (to lag) axis
+        // fPaddedFFTEngine.SetForward();//forward DFT
+        // fPaddedFFTEngine.SetPaddedSize(np);
+        // fPaddedFFTEngine.SetEndPadded();//pretty sure this is the default from delay_rate.c
+        // 
+        // status = fPaddedFFTEngine.Initialize();
+        // if(!status){msg_error("operators", "Could not initialize padded FFT in MHO_DelayRate." << eom); return false;}
 
         // fSubSampler.SetDimensionAndStride(CH_FREQ_AXIS, 2);
         // fSubSampler.SetArgs(&fWorkspace, out);
@@ -86,7 +87,7 @@ MHO_DelayRate::ExecuteOutOfPlace(const XArgType* in1, XArgType* out)
         //     out->SliceView(":", ":", ap, ":").Copy( in->SliceView(":",":",ap,":") );
         // }
 
-        bool ok = fPaddedFFTEngine.Execute();
+        bool ok;// = fPaddedFFTEngine.Execute();
         check_step_fatal(ok, "calibration", "fft engine execution." << eom );
         ok = fCyclicRotator.Execute();
         check_step_fatal(ok, "calibration", "cyclic rotation execution." << eom );
