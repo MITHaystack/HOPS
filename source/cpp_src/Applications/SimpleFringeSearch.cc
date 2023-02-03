@@ -25,6 +25,7 @@ struct c_block* cb_head; //global extern kludge (due to stupid c-library interfa
 #include "MHO_SelectRepack.hh"
 #include "MHO_FreqSpacing.hh"
 #include "MHO_UniformGridPointsCalculator.hh"
+#include "MHO_MultidimensionalArbitraryPaddedFastFourierTransform.hh"
 
 #include "MHO_Reducer.hh"
 
@@ -51,13 +52,13 @@ std::complex<double> vrot_mod(double tdelta, double dr, double mbd, double freq,
                                         // theta is in rotations
                                         /* fringe rate * time from central epoch */
                                         
-    printf("(dr, mbd, freq, tdelta) = (%le, %le, %le, %f) \n", dr, mbd, freq, tdelta);
-    printf("(freq, ref_freq) = (%le, %le)\n",  freq, ref_freq);  
-    
+    // printf("(dr, mbd, freq, tdelta) = (%le, %le, %le, %f) \n", dr, mbd, freq, tdelta);
+    // printf("(freq, ref_freq) = (%le, %le)\n",  freq, ref_freq);  
+    // 
     theta = freq * dr * tdelta;
     
-    printf("theta = %f\n", theta*(180.0/M_PI)*(-2.0*M_PI));
-    
+    // printf("theta = %f\n", theta*(180.0/M_PI)*(-2.0*M_PI));
+    // 
     // std::cout<<"dr = "<<dr<<std::endl;
     // std::cout<<"tdelta = "<<tdelta<<std::endl;
     // 
@@ -118,6 +119,12 @@ void fine_peak_interpolation(ch_mbd_type* mbd_arr, ch_visibility_type* sbd_arr)
     auto dr_ax = &( std::get<CH_TIME_AXIS>(*sbd_arr) );
     auto sbd_ax = &( std::get<CH_FREQ_AXIS>(*sbd_arr) );
     
+    //lets print the dr axis 
+    for(std::size_t idr = 0; idr<dr_ax->GetSize(); idr++)
+    {
+        std::cout<<"dr ax : "<<idr<<", "<<(*dr_ax)(idr)<<std::endl;
+    }
+
     std::size_t nap = dr_ax->GetSize();
     std::size_t nchan = chan_ax->GetSize();
     
@@ -153,12 +160,13 @@ void fine_peak_interpolation(ch_mbd_type* mbd_arr, ch_visibility_type* sbd_arr)
                 std::size_t mbd_bin = loc[1] + imbd - 2;
                 
                 double sbd = sbd_ax->at(sbd_bin) + 0.5*sbd_delta; 
-                double dr =  (dr_ax->at(dr_bin) + 0.5*dr_delta ); 
+                double dr =  (dr_ax->at(dr_bin) )*(1.0/ref_freq); 
                 double mbd =  mbd_ax->at(mbd_bin) + 0.5*mbd_delta;
                 
-                std::cout<<"dr delta = "<<dr_delta<<std::endl;
-                std::cout<<"sbd, dr, mbd = "<<sbd<<", "<<dr<<", "<<mbd<<std::endl;
-                
+                // std::cout<<"dr delta = "<<dr_delta<<std::endl;
+                // std::cout<<"sbd, dr, mbd = "<<sbd<<", "<<dr<<", "<<mbd<<std::endl;
+                std::cout<<"idr, dr, = "<<idr<<", "<<dr<<std::endl;                
+
                 if(sbd < sbd_lower){sbd_lower = sbd;}
                 if(sbd > sbd_upper){sbd_upper = sbd;}
                 
@@ -179,7 +187,7 @@ void fine_peak_interpolation(ch_mbd_type* mbd_arr, ch_visibility_type* sbd_arr)
                 {
                     //double frq = pass->pass_data + fr;
                     double freq = chan_freq[fr];//use sky-freq of this channel????
-                    for(std::size_t ap = 0; ap < nap; ap++)
+                    for(std::size_t ap = 0; ap < 30; ap++)
                     {
                         double tdelta = (ap + 0.5) - 15.0; //need time difference from the f.r.t????
                         visibility_element_type vis = (*sbd_arr)(0,fr,ap,sbd_bin);
@@ -188,7 +196,7 @@ void fine_peak_interpolation(ch_mbd_type* mbd_arr, ch_visibility_type* sbd_arr)
                     }
                 }
                 drf[isbd][imbd][idr] = std::abs(z);
-                std::cout<<isbd<<", "<<imbd<<", "<<idr<<", "<<drf[isbd][imbd][idr]<<std::endl;
+                //std::cout<<isbd<<", "<<imbd<<", "<<idr<<", "<<drf[isbd][imbd][idr]<<std::endl;
                 //msg ("drf[%d][%d][%d] %lf", 0, isbd, imbd, idr, drf[isbd][imbd][idr]);
             }
         }
@@ -416,26 +424,64 @@ int main(int argc, char** argv)
     ok = nfxOp.Execute();
     check_step_fatal(ok, "main", "normfx execution." << eom );
 
+
+
+
+    //borrow this stupid routine from search_windows.c
+    std::size_t drsp_size = 8192;
+    while ( (drsp_size / 4) > bl_dim[CH_TIME_AXIS] ) {drsp_size /= 2;};
+    std::cout<<"DRSP size = "<<drsp_size<<std::endl;
+
     //xform in the time (AP) axis to look for delay/fringe rate
-    MHO_MultidimensionalFastFourierTransform< ch_visibility_type > fFFTEngine;
+    //output for the delay
+    ch_visibility_type* sbd_dr_data = sbd_data->CloneEmpty();
+    sbd_dr_data->ZeroArray();
+    sbd_data->GetDimensions(bl_dim);
+    std::size_t nap = bl_dim[CH_TIME_AXIS];
+    bl_dim[CH_TIME_AXIS] = drsp_size;
+    sbd_dr_data->Resize(bl_dim);
+
+    std::get<CH_CHANNEL_AXIS>(*sbd_dr_data).CopyIntervalLabels( std::get<CH_CHANNEL_AXIS>(*bl_data) );
+
+
+    //copy the data into sbd_dr_data
+    for(std::size_t ap=0; ap<nap; ap++)
+    {
+        sbd_dr_data->SliceView(":", ":", ap, ":").Copy( sbd_data->SliceView(":",":",ap,":") );
+    }
+
+    //bl_dim[CH_TIME_AXIS] *= 4; //delay rate implementation demands this
+    //sbd_dr_data->Resize(bl_dim);
+
+    MHO_MultidimensionalArbitraryPaddedFastFourierTransform< ch_visibility_type > fPaddedFFTEngine;
+    fPaddedFFTEngine.SetArgs(sbd_data, sbd_dr_data);
+    fPaddedFFTEngine.DeselectAllAxes();
+    fPaddedFFTEngine.SelectAxis(CH_TIME_AXIS); //perform fft on AP/time axis
+    fPaddedFFTEngine.SetForward();//forward DFT
+    fPaddedFFTEngine.SetPaddedSize(4*drsp_size);
+    ok = fPaddedFFTEngine.Initialize();
+
+    sbd_dr_data->GetDimensions(bl_dim);
+
+    // MHO_MultidimensionalFastFourierTransform< ch_visibility_type > fFFTEngine;
+    // fFFTEngine.SetArgs(sbd_dr_data);
+    // fFFTEngine.DeselectAllAxes();
+    // fFFTEngine.SelectAxis(CH_TIME_AXIS);
+    // fFFTEngine.SetForward();
+    // ok = fFFTEngine.Initialize();
+    // check_step_fatal(ok, "main", "fft engine initialization." << eom );
+
     MHO_CyclicRotator<ch_visibility_type> fCyclicRotator;
-
-    fFFTEngine.SetArgs(sbd_data);
-    fFFTEngine.DeselectAllAxes();
-    fFFTEngine.SelectAxis(CH_TIME_AXIS);
-    fFFTEngine.SetForward();
-    ok = fFFTEngine.Initialize();
-    check_step_fatal(ok, "main", "fft engine initialization." << eom );
-
     fCyclicRotator.SetOffset(CH_TIME_AXIS, bl_dim[CH_TIME_AXIS]/2);
-    fCyclicRotator.SetArgs(sbd_data);
+    fCyclicRotator.SetArgs(sbd_dr_data);
     ok = fCyclicRotator.Initialize();
     check_step_fatal(ok, "main", "cyclic rotation initialization." << eom );
 
-    ok = fFFTEngine.Execute();
+    ok = fPaddedFFTEngine.Execute();
     check_step_fatal(ok, "main", "fft engine execution." << eom );
     ok = fCyclicRotator.Execute();
     check_step_fatal(ok, "main", "cyclic rotation execution." << eom );
+
 
     //collect the sky frequency values of each channel before we x-form to MBD space
     std::vector< double > chan_freqs;
@@ -451,7 +497,7 @@ int main(int argc, char** argv)
 
     //std::cout<<"grid info: "<<gridCalc.GetGridStart()<<", "<<gridCalc.GetGridSpacing()<<", "<<gridCalc.GetNGridPoints()<<std::endl;
 
-    sbd_data->GetDimensions(bl_dim);
+    sbd_dr_data->GetDimensions(bl_dim);
     double gstart = gridCalc.GetGridStart();
     double gspace = gridCalc.GetGridSpacing();
     std::size_t ngrid_pts = gridCalc.GetNGridPoints();
@@ -473,7 +519,7 @@ int main(int argc, char** argv)
     for(std::size_t ch=0; ch<bl_dim[1]; ch++)
     {
         std::size_t mbd_bin = mbd_bin_map[ch];
-        mbd_data.SliceView(":", mbd_bin, ":", ":").Copy( sbd_data->SliceView(":",ch,":",":") );
+        mbd_data.SliceView(":", mbd_bin, ":", ":").Copy( sbd_dr_data->SliceView(":",ch,":",":") );
     }
 
     //now we are going to run a FFT on the mbd axis
@@ -503,7 +549,7 @@ int main(int argc, char** argv)
     //FINE INTERPOLATION STEP
     ////////////////////////////////////////////////////////////////////////////
 
-    fine_peak_interpolation(&mbd_data, sbd_data);
+    fine_peak_interpolation(&mbd_data, sbd_dr_data);
 
 
 
@@ -547,8 +593,8 @@ int main(int argc, char** argv)
     MHO_ExtremaSearch< MHO_NDArrayView< visibility_element_type, 2 > > mSearch;
     MHO_ExtremaSearch< MHO_NDArrayView< visibility_element_type, 1 > > mbdSearch;
 
-    auto dr_rate_ax = std::get<CH_TIME_AXIS>(*sbd_data);
-    auto delay_ax = std::get<CH_FREQ_AXIS>(*sbd_data);
+    auto dr_rate_ax = std::get<CH_TIME_AXIS>(*sbd_dr_data);
+    auto delay_ax = std::get<CH_FREQ_AXIS>(*sbd_dr_data);
 
     //divide out the reference frequency (need to think about this )
     double rescale = 1.0/6.0;//ref freq = 6GHz (axis is then in nanosec/sec)
@@ -567,7 +613,7 @@ int main(int argc, char** argv)
         ss << ch;
 
         auto c = cMan.CreateCanvas(ss.str().c_str(), 800, 800);
-        auto ch_slice = sbd_data->SliceView(0,ch,":",":");
+        auto ch_slice = sbd_dr_data->SliceView(0,ch,":",":");
         mSearch.SetArgs(&ch_slice);
         mSearch.Initialize();
         mSearch.Execute();
