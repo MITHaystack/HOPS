@@ -26,12 +26,15 @@ struct c_block* cb_head; //global extern kludge (due to stupid c-library interfa
 #include "MHO_FreqSpacing.hh"
 #include "MHO_UniformGridPointsCalculator.hh"
 
+
 #include "MHO_Reducer.hh"
 
 #include "MHO_AbsoluteValue.hh"
 #include "MHO_FunctorBroadcaster.hh"
 #include "MHO_ExtremaSearch.hh"
 #include "MHO_ManualChannelPhaseCorrection.hh"
+#include "MHO_DelayRate.hh"
+
 
 #ifdef USE_ROOT
     #include "TApplication.h"
@@ -424,43 +427,49 @@ int main(int argc, char** argv)
     check_step_fatal(ok, "main", "normfx execution." << eom );
 
 
-
-
-    //borrow this stupid routine from search_windows.c
-    std::size_t drsp_size = 8192;
-    while ( (drsp_size / 4) > bl_dim[CH_TIME_AXIS] ) {drsp_size /= 2;};
-    std::cout<<"DRSP size = "<<drsp_size<<std::endl;
-
-    //xform in the time (AP) axis to look for delay/fringe rate
-    //output for the delay
+    MHO_DelayRate drOp;
     ch_visibility_type* sbd_dr_data = sbd_data->CloneEmpty();
-    sbd_dr_data->ZeroArray();
-    sbd_data->GetDimensions(bl_dim);
-    std::size_t nap = bl_dim[CH_TIME_AXIS];
-    bl_dim[CH_TIME_AXIS] = drsp_size;
-    sbd_dr_data->Resize(bl_dim);
+    drOp.SetArgs(sbd_data, sbd_dr_data);
+    ok = drOp.Initialize();
+    check_step_fatal(ok, "main", "dr initialization." << eom );
+    ok = drOp.Execute();
+    check_step_fatal(ok, "main", "dr execution." << eom );
 
-    std::get<CH_CHANNEL_AXIS>(*sbd_dr_data).CopyIntervalLabels( std::get<CH_CHANNEL_AXIS>(*bl_data) );
+    // //borrow this stupid routine from search_windows.c
+    // std::size_t drsp_size = 8192;
+    // while ( (drsp_size / 4) > bl_dim[CH_TIME_AXIS] ) {drsp_size /= 2;};
+    // std::cout<<"DRSP size = "<<drsp_size<<std::endl;
+    // 
+    // //xform in the time (AP) axis to look for delay/fringe rate
+    // //output for the delay
+    // //ch_visibility_type* sbd_dr_data = sbd_data->CloneEmpty();
+    // sbd_dr_data->ZeroArray();
+    // sbd_data->GetDimensions(bl_dim);
+    // std::size_t nap = bl_dim[CH_TIME_AXIS];
+    // bl_dim[CH_TIME_AXIS] = drsp_size;
+    // sbd_dr_data->Resize(bl_dim);
+    // 
+    // std::get<CH_CHANNEL_AXIS>(*sbd_dr_data).CopyIntervalLabels( std::get<CH_CHANNEL_AXIS>(*bl_data) );
 
 
-    //copy the data into sbd_dr_data
-    for(std::size_t ap=0; ap<nap; ap++)
-    {
-        sbd_dr_data->SliceView(":", ":", ap, ":").Copy( sbd_data->SliceView(":",":",ap,":") );
-    }
+    // //copy the data into sbd_dr_data
+    // for(std::size_t ap=0; ap<nap; ap++)
+    // {
+    //     sbd_dr_data->SliceView(":", ":", ap, ":").Copy( sbd_data->SliceView(":",":",ap,":") );
+    // }
 
     //bl_dim[CH_TIME_AXIS] *= 4; //delay rate implementation demands this
     //sbd_dr_data->Resize(bl_dim);
 
-    MHO_MultidimensionalPaddedFastFourierTransform< ch_visibility_type > fPaddedFFTEngine;
-    fPaddedFFTEngine.SetArgs(sbd_data, sbd_dr_data);
-    fPaddedFFTEngine.DeselectAllAxes();
-    fPaddedFFTEngine.SelectAxis(CH_TIME_AXIS); //perform fft on AP/time axis
-    fPaddedFFTEngine.SetForward();//forward DFT
-    fPaddedFFTEngine.SetPaddedSize(4*drsp_size);
-    ok = fPaddedFFTEngine.Initialize();
-
-    sbd_dr_data->GetDimensions(bl_dim);
+    // MHO_MultidimensionalPaddedFastFourierTransform< ch_visibility_type > fPaddedFFTEngine;
+    // fPaddedFFTEngine.SetArgs(sbd_data, sbd_dr_data);
+    // fPaddedFFTEngine.DeselectAllAxes();
+    // fPaddedFFTEngine.SelectAxis(CH_TIME_AXIS); //perform fft on AP/time axis
+    // fPaddedFFTEngine.SetForward();//forward DFT
+    // fPaddedFFTEngine.SetPaddedSize(4*drsp_size);
+    // ok = fPaddedFFTEngine.Initialize();
+    // 
+    // sbd_dr_data->GetDimensions(bl_dim);
 
     // MHO_MultidimensionalFastFourierTransform< ch_visibility_type > fFFTEngine;
     // fFFTEngine.SetArgs(sbd_dr_data);
@@ -470,16 +479,16 @@ int main(int argc, char** argv)
     // ok = fFFTEngine.Initialize();
     // check_step_fatal(ok, "main", "fft engine initialization." << eom );
 
-    MHO_CyclicRotator<ch_visibility_type> fCyclicRotator;
-    fCyclicRotator.SetOffset(CH_TIME_AXIS, bl_dim[CH_TIME_AXIS]/2);
-    fCyclicRotator.SetArgs(sbd_dr_data);
-    ok = fCyclicRotator.Initialize();
-    check_step_fatal(ok, "main", "cyclic rotation initialization." << eom );
-
-    ok = fPaddedFFTEngine.Execute();
-    check_step_fatal(ok, "main", "fft engine execution." << eom );
-    ok = fCyclicRotator.Execute();
-    check_step_fatal(ok, "main", "cyclic rotation execution." << eom );
+    // MHO_CyclicRotator<ch_visibility_type> fCyclicRotator;
+    // fCyclicRotator.SetOffset(CH_TIME_AXIS, bl_dim[CH_TIME_AXIS]/2);
+    // fCyclicRotator.SetArgs(sbd_dr_data);
+    // ok = fCyclicRotator.Initialize();
+    // check_step_fatal(ok, "main", "cyclic rotation initialization." << eom );
+    // 
+    // ok = fPaddedFFTEngine.Execute();
+    // check_step_fatal(ok, "main", "fft engine execution." << eom );
+    // ok = fCyclicRotator.Execute();
+    // check_step_fatal(ok, "main", "cyclic rotation execution." << eom );
 
 
     //collect the sky frequency values of each channel before we x-form to MBD space
