@@ -87,7 +87,7 @@ MHO_DelayRate::ExecuteOutOfPlace(const XArgType* in1, XArgType* out)
         //     out->SliceView(":", ":", ap, ":").Copy( in->SliceView(":",":",ap,":") );
         // }
 
-        bool ok;// = fPaddedFFTEngine.Execute();
+        bool ok = fPaddedFFTEngine.Execute();
         check_step_fatal(ok, "calibration", "fft engine execution." << eom );
         ok = fCyclicRotator.Execute();
         check_step_fatal(ok, "calibration", "cyclic rotation execution." << eom );
