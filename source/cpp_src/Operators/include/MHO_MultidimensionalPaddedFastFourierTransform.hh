@@ -35,6 +35,7 @@ class MHO_MultidimensionalPaddedFastFourierTransform:
         MHO_MultidimensionalPaddedFastFourierTransform()
         {
             fPaddingFactor = 1;
+            fPaddedSize = 0;
             for(std::size_t i=0; i<XArgType::rank::value; i++)
             {
                 fInputDimensionSize[i] = 0;
@@ -58,6 +59,9 @@ class MHO_MultidimensionalPaddedFastFourierTransform:
 
         //factor M by which the new array will be extended (original array, length N, new array length NM)
         virtual void SetPaddingFactor(std::size_t factor){fPaddingFactor = factor;};
+
+        //instead of a multiplicative factor, the original array, length N is padded out ot the new specified length M
+        virtual void SetPaddedSize(std::size_t new_size){fPaddedSize = new_size; fPaddingFactor = 1;}
 
         virtual void SetCenterPadded(){fCentered = true; fFlipped = false;}; //symmetric zero padding about the center of the array (preserves conj. sym.)
         virtual void SetEndPadded(){fCentered = false; fFlipped = false;}; //zero padding from end of signal out to end of the array
@@ -193,7 +197,11 @@ class MHO_MultidimensionalPaddedFastFourierTransform:
                             if(fAxesToXForm[i])
                             {
                                 std::size_t N = fInputDimensionSize[i];
-                                std::size_t M = fPaddingFactor;
+                                std::size_t M;
+
+                                if(fPaddingFactor != 1){M = fPaddingFactor*N;}
+                                else{M = fPaddedSize;}
+                            
                                 if(in_index[i] < N/2)
                                 {
                                     out_index[i].push_back(in_index[i]);
@@ -202,11 +210,11 @@ class MHO_MultidimensionalPaddedFastFourierTransform:
                                 {
                                     //split the middle point
                                     out_index[i].push_back(N/2);
-                                    out_index[i].push_back(N*M - N/2);
+                                    out_index[i].push_back(M - N/2);
                                 }
                                 else
                                 {
-                                    out_index[i].push_back( (N*M - N/2 + 1) + (in_index[i] - (N/2+1)) );
+                                    out_index[i].push_back( (M - N/2 + 1) + (in_index[i] - (N/2+1)) );
                                 }
                             }
                             else
@@ -522,10 +530,21 @@ class MHO_MultidimensionalPaddedFastFourierTransform:
             {
                 if(fAxesToXForm[i])
                 {
-                    if(dims[i]*fPaddingFactor != out_dim[i])
+                    if(fPaddingFactor != 1)
                     {
-                        have_to_resize = true;
-                        out_dim[i] = dims[i]*fPaddingFactor;
+                        if(dims[i]*fPaddingFactor != out_dim[i])
+                        {
+                            have_to_resize = true;
+                            out_dim[i] = dims[i]*fPaddingFactor;
+                        }
+                    }
+                    else 
+                    {
+                        if(fPaddedSize != out_dim[i])
+                        {
+                            have_to_resize = true;
+                            out_dim[i] = fPaddedSize;
+                        }
                     }
                 }
                 else
@@ -573,6 +592,7 @@ class MHO_MultidimensionalPaddedFastFourierTransform:
         bool fInitialized;
 
         std::size_t fPaddingFactor;
+        std::size_t fPaddedSize;
         std::size_t fInputDimensionSize[XArgType::rank::value];
         std::size_t fOutputDimensionSize[XArgType::rank::value];
         bool fAxesToXForm[XArgType::rank::value];
