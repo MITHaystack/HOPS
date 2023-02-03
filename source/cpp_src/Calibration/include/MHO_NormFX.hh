@@ -22,8 +22,6 @@
 #include "MHO_ComplexConjugator.hh"
 #include "MHO_CyclicRotator.hh"
 #include "MHO_SubSample.hh"
-#include "MHO_MultidimensionalFastFourierTransform.hh"
-#include "MHO_MultidimensionalPaddedFastFourierTransform.hh"
 
 #ifdef HOPS_USE_FFTW3
     #include "MHO_FFTWTypes.hh"
@@ -31,6 +29,11 @@
 #else
     #include "MHO_FastFourierTransform.hh"
 #endif
+
+
+#include "MHO_MultidimensionalFastFourierTransform.hh"
+#include "MHO_MultidimensionalPaddedFastFourierTransform.hh"
+
 
 
 

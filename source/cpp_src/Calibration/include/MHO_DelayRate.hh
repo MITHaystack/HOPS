@@ -18,9 +18,7 @@
 
 #include "MHO_UnaryOperator.hh"
 #include "MHO_CyclicRotator.hh"
-#include "MHO_SubSample.hh"
-#include "MHO_MultidimensionalFastFourierTransform.hh"
-#include "MHO_MultidimensionalPaddedFastFourierTransform.hh"
+// #include "MHO_SubSample.hh"
 
 #ifdef HOPS_USE_FFTW3
     #include "MHO_FFTWTypes.hh"
@@ -28,6 +26,12 @@
 #else
     #include "MHO_FastFourierTransform.hh"
 #endif
+
+
+#include "MHO_MultidimensionalFastFourierTransform.hh"
+#include "MHO_MultidimensionalPaddedFastFourierTransform.hh"
+
+
 
 
 
@@ -46,8 +50,8 @@ class MHO_DelayRate: public MHO_UnaryOperator< ch_sbd_type >
         using XArgType = ch_sbd_type;
 
 
-        virtual bool InitializeInPlace(XArgType* in){return false;};
-        virtual bool ExecuteInPlace(XArgType* in){return false;};
+        virtual bool InitializeInPlace(XArgType* in) override {return false;};
+        virtual bool ExecuteInPlace(XArgType* in) override {return false;};
 
         virtual bool InitializeOutOfPlace(const XArgType* in, XArgType* out) override;
         virtual bool ExecuteOutOfPlace(const XArgType* in1, XArgType* out) override;
