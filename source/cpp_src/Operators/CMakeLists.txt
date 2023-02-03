@@ -19,6 +19,7 @@ set (OPERATOR_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_SubSample.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_SelectRepack.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MultidimensionalPaddedFastFourierTransform.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MultidimensionalArbitraryPaddedFastFourierTransform.hh
 )
 
 if(HOPS_USE_FFTW3)
