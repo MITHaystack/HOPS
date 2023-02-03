@@ -25,7 +25,6 @@ struct c_block* cb_head; //global extern kludge (due to stupid c-library interfa
 #include "MHO_SelectRepack.hh"
 #include "MHO_FreqSpacing.hh"
 #include "MHO_UniformGridPointsCalculator.hh"
-#include "MHO_MultidimensionalArbitraryPaddedFastFourierTransform.hh"
 
 #include "MHO_Reducer.hh"
 
@@ -453,7 +452,7 @@ int main(int argc, char** argv)
     //bl_dim[CH_TIME_AXIS] *= 4; //delay rate implementation demands this
     //sbd_dr_data->Resize(bl_dim);
 
-    MHO_MultidimensionalArbitraryPaddedFastFourierTransform< ch_visibility_type > fPaddedFFTEngine;
+    MHO_MultidimensionalPaddedFastFourierTransform< ch_visibility_type > fPaddedFFTEngine;
     fPaddedFFTEngine.SetArgs(sbd_data, sbd_dr_data);
     fPaddedFFTEngine.DeselectAllAxes();
     fPaddedFFTEngine.SelectAxis(CH_TIME_AXIS); //perform fft on AP/time axis
