@@ -54,12 +54,12 @@ std::complex<double> vrot_mod(double tdelta, double dr, double mbd, double freq,
                                         // theta is in rotations
                                         /* fringe rate * time from central epoch */
                                         
-    // printf("(dr, mbd, freq, tdelta) = (%le, %le, %le, %f) \n", dr, mbd, freq, tdelta);
-    // printf("(freq, ref_freq) = (%le, %le)\n",  freq, ref_freq);  
-    // 
+    printf("(dr, mbd, freq, tdelta) = (%le, %le, %le, %f) \n", dr, mbd, freq, tdelta);
+    printf("(freq, ref_freq) = (%le, %le)\n",  freq, ref_freq);  
+    
     theta = freq * dr * tdelta;
     
-    // printf("theta = %f\n", theta*(180.0/M_PI)*(-2.0*M_PI));
+ printf("theta = %f\n", theta*(180.0/M_PI)*(-2.0*M_PI));
     // 
     // std::cout<<"dr = "<<dr<<std::endl;
     // std::cout<<"tdelta = "<<tdelta<<std::endl;
@@ -67,8 +67,10 @@ std::complex<double> vrot_mod(double tdelta, double dr, double mbd, double freq,
     // std::cout<<"theta1 rot = "<<theta*(180./M_PI)*(-2.0 * M_PI)<<std::endl;
 
                                         // Residual mbd effect at this freq
-    theta += mbd * (freq - ref_freq) * 1e-6;
-    
+    theta += mbd * (freq - ref_freq);
+
+ printf("theta2 = %f\n", theta*(180.0/M_PI)*(-2.0*M_PI));
+    // 
     // std::cout<<"freq delta = "<<(freq - ref_freq)<<std::endl;
                                         // Effect due to offset of lag where max lies
     //theta += (param.nlags - status.max_delchan) * 0.125 * sb;
@@ -159,15 +161,17 @@ void fine_peak_interpolation(ch_mbd_type* mbd_arr, ch_visibility_type* sbd_arr)
                 // calculate location of this tabular point (should modulo % axis size)
                 std::size_t sbd_bin = loc[3] + isbd - 2;
                 std::size_t dr_bin = loc[2] + idr - 2;
-                std::size_t mbd_bin = loc[1] + imbd - 2;
+                std::size_t mbd_bin = loc[1] - imbd + 2;
                 
                 double sbd = sbd_ax->at(sbd_bin) + 0.5*sbd_delta; 
                 double dr =  (dr_ax->at(dr_bin) )*(1.0/ref_freq); 
-                double mbd =  mbd_ax->at(mbd_bin) + 0.5*mbd_delta;
-                
+                // double mbd =  -1.0*(mbd_ax->at(mbd_bin) + 0.5*mbd_delta);
+                double mbd =  -1.0*(mbd_ax->at(mbd_bin));                
+
                 // std::cout<<"dr delta = "<<dr_delta<<std::endl;
                 // std::cout<<"sbd, dr, mbd = "<<sbd<<", "<<dr<<", "<<mbd<<std::endl;
-                std::cout<<"idr, dr, = "<<idr<<", "<<dr<<std::endl;                
+                //std::cout<<"idr, dr, = "<<idr<<", "<<dr<<std::endl;                
+                std::cout<<"imbd, mbd, = "<<imbd<<", "<<mbd<<std::endl;        
 
                 if(sbd < sbd_lower){sbd_lower = sbd;}
                 if(sbd > sbd_upper){sbd_upper = sbd;}
