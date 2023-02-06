@@ -54,12 +54,12 @@ std::complex<double> vrot_mod(double tdelta, double dr, double mbd, double freq,
                                         // theta is in rotations
                                         /* fringe rate * time from central epoch */
                                         
-    printf("(dr, mbd, freq, tdelta) = (%le, %le, %le, %f) \n", dr, mbd, freq, tdelta);
-    printf("(freq, ref_freq) = (%le, %le)\n",  freq, ref_freq);  
+    // printf("(dr, mbd, freq, tdelta) = (%le, %le, %le, %f) \n", dr, mbd, freq, tdelta);
+    // printf("(freq, ref_freq) = (%le, %le)\n",  freq, ref_freq);  
     
     theta = freq * dr * tdelta;
     
- printf("theta = %f\n", theta*(180.0/M_PI)*(-2.0*M_PI));
+    printf("theta = %f\n", theta*(180.0/M_PI)*(-2.0*M_PI));
     // 
     // std::cout<<"dr = "<<dr<<std::endl;
     // std::cout<<"tdelta = "<<tdelta<<std::endl;
@@ -69,7 +69,8 @@ std::complex<double> vrot_mod(double tdelta, double dr, double mbd, double freq,
                                         // Residual mbd effect at this freq
     theta += mbd * (freq - ref_freq);
 
- printf("theta2 = %f\n", theta*(180.0/M_PI)*(-2.0*M_PI));
+    printf("mbd = %f \n", mbd);
+    printf("theta2 = %f\n", theta*(180.0/M_PI)*(-2.0*M_PI));
     // 
     // std::cout<<"freq delta = "<<(freq - ref_freq)<<std::endl;
                                         // Effect due to offset of lag where max lies
@@ -86,7 +87,7 @@ std::complex<double> vrot_mod(double tdelta, double dr, double mbd, double freq,
 
 
 
-void fine_peak_interpolation(ch_mbd_type* mbd_arr, ch_visibility_type* sbd_arr)
+void fine_peak_interpolation(ch_mbd_type* mbd_arr, ch_visibility_type* sbd_arr, ch_visibility_type* sbd_dr_arr)
 {
     bool ok;
     //first find the location of the max SBD, DR, and MBD bin
@@ -96,7 +97,9 @@ void fine_peak_interpolation(ch_mbd_type* mbd_arr, ch_visibility_type* sbd_arr)
     ok = mbdSearch.Execute();
     
     auto mbd_dim = mbd_arr->GetDimensions();
-    
+    double nl = sbd_arr->GetDimension(CH_FREQ_AXIS);
+
+
     double bin_max = mbdSearch.GetMax();
     std::size_t offset_to_bin_max = mbdSearch.GetMaxLocation();
     ch_mbd_type::index_type loc;
@@ -119,9 +122,9 @@ void fine_peak_interpolation(ch_mbd_type* mbd_arr, ch_visibility_type* sbd_arr)
     //auto dr_ax = &( std::get<CH_TIME_AXIS>(*mbd_arr) );
     auto mbd_ax = &( std::get<CH_CHANNEL_AXIS>(*mbd_arr) );
     
-    auto chan_ax = &( std::get<CH_CHANNEL_AXIS>(*sbd_arr) );
-    auto dr_ax = &( std::get<CH_TIME_AXIS>(*sbd_arr) );
-    auto sbd_ax = &( std::get<CH_FREQ_AXIS>(*sbd_arr) );
+    auto chan_ax = &( std::get<CH_CHANNEL_AXIS>(*sbd_dr_arr) );
+    auto dr_ax = &( std::get<CH_TIME_AXIS>(*sbd_dr_arr) );
+    auto sbd_ax = &( std::get<CH_FREQ_AXIS>(*sbd_dr_arr) );
     
     //lets print the dr axis 
     for(std::size_t idr = 0; idr<dr_ax->GetSize(); idr++)
@@ -161,17 +164,17 @@ void fine_peak_interpolation(ch_mbd_type* mbd_arr, ch_visibility_type* sbd_arr)
                 // calculate location of this tabular point (should modulo % axis size)
                 std::size_t sbd_bin = loc[3] + isbd - 2;
                 std::size_t dr_bin = loc[2] + idr - 2;
-                std::size_t mbd_bin = loc[1] - imbd + 2;
+                std::size_t mbd_bin = loc[1] - imbd + 2; //TODO WHY THE -1 FUDGE FACTOR
                 
-                double sbd = sbd_ax->at(sbd_bin) + 0.5*sbd_delta; 
+                double sbd = sbd_ax->at(sbd_bin);// + 0.5*sbd_delta; 
                 double dr =  (dr_ax->at(dr_bin) )*(1.0/ref_freq); 
                 // double mbd =  -1.0*(mbd_ax->at(mbd_bin) + 0.5*mbd_delta);
-                double mbd =  -1.0*(mbd_ax->at(mbd_bin));                
+                double mbd = -1.0*(mbd_ax->at(mbd_bin)); //TODO WHY THE -1 FUDGE FACTOR
 
                 // std::cout<<"dr delta = "<<dr_delta<<std::endl;
-                // std::cout<<"sbd, dr, mbd = "<<sbd<<", "<<dr<<", "<<mbd<<std::endl;
+                std::cout<<"sbdi_bin, sbd = "<<sbd_bin<<", "<<sbd<<std::endl;
                 //std::cout<<"idr, dr, = "<<idr<<", "<<dr<<std::endl;                
-                std::cout<<"imbd, mbd, = "<<imbd<<", "<<mbd<<std::endl;        
+                //std::cout<<"imbd, mbd, = "<<imbd<<", "<<mbd<<std::endl;        
 
                 if(sbd < sbd_lower){sbd_lower = sbd;}
                 if(sbd > sbd_upper){sbd_upper = sbd;}
@@ -196,28 +199,30 @@ void fine_peak_interpolation(ch_mbd_type* mbd_arr, ch_visibility_type* sbd_arr)
                     for(std::size_t ap = 0; ap < 30; ap++)
                     {
                         double tdelta = (ap + 0.5) - 15.0; //need time difference from the f.r.t????
-                        visibility_element_type vis = (*sbd_arr)(0,fr,ap,sbd_bin);
+                        visibility_element_type vis = (0.25)* std::conj( (*sbd_arr)(0,fr,ap,sbd_bin) );  //TODO FUDGE FACTOR OF 1/4???!!! AND CONJUGATE?
+                        std::cout<<"vis @ "<<fr<<","<<ap<<" = ("<<vis.real()<<", "<<vis.imag()<<")"<<std::endl;
                         std::complex<double> x = vis* vrot_mod(tdelta, dr, mbd, freq, ref_freq);
                         z = z + x;
                     }
                 }
                 drf[isbd][imbd][idr] = std::abs(z);
                 //std::cout<<isbd<<", "<<imbd<<", "<<idr<<", "<<drf[isbd][imbd][idr]<<std::endl;
-                //msg ("drf[%d][%d][%d] %lf", 0, isbd, imbd, idr, drf[isbd][imbd][idr]);
+                printf("%d %le %le \n", sbd_bin, mbd, dr);
+                printf ("drf[%d][%d][%d] %lf \n", isbd, imbd, idr, drf[isbd][imbd][idr]);
             }
         }
     }
     
 
     
-    xlim[0][0] = sbd_lower;// / status.sbd_sep - status.max_delchan + nl;
-    xlim[0][1] = sbd_upper;// / status.sbd_sep - status.max_delchan + nl;
+    xlim[0][0] = -1;// sbd_lower;// / status.sbd_sep - status.max_delchan + nl;
+    xlim[0][1] = 1;//sbd_upper;// / status.sbd_sep - status.max_delchan + nl;
 
-    xlim[1][0] = mbd_lower;// - status.mbd_max_global) / status.mbd_sep;
-    xlim[1][1] = mbd_upper;// - status.mbd_max_global) / status.mbd_sep;
+    xlim[1][0] = -2;//mbd_lower;// - status.mbd_max_global) / status.mbd_sep;
+    xlim[1][1] = 2;//mbd_upper;// - status.mbd_max_global) / status.mbd_sep;
 
-    xlim[2][0] = dr_lower;// - status.dr_max_global) / status.rate_sep;
-    xlim[2][1] = dr_upper;// - status.dr_max_global) / status.rate_sep;
+    xlim[2][0] = -2;//dr_lower;// - status.dr_max_global) / status.rate_sep;
+    xlim[2][1] = 2;//dr_upper;// - status.dr_max_global) / status.rate_sep;
     
     std::cout<< "xlim's "<< xlim[0][0]<<", "<< xlim[0][1] <<", "<< xlim[1][0] <<", "<< xlim[1][1] <<", " << xlim[2][0] <<", "<< xlim[2][1] <<std::endl;
                                 // find maximum value within cube via interpolation
@@ -226,6 +231,11 @@ void fine_peak_interpolation(ch_mbd_type* mbd_arr, ch_visibility_type* sbd_arr)
     std::cout<< "xi's "<< xi[0]<<", "<< xi[1] <<", "<< xi[2] <<std::endl;
     std::cout<<"drf max = "<<drfmax<<std::endl;
 
+    double sbd_max = (loc[3] - nl + xi[0]) * sbd_delta;
+    double mbd_max_global = xi[1] * 0.5 * mbd_delta;
+    double dr_max_global  = xi[2] * 0.5 * dr_delta;
+
+    std::cout<<"Peak location (sbd, mbd, dr) = "<<sbd_max<<", "<<mbd_max_global<<", "<<dr_max_global<<std::endl;
     
 }
 
@@ -234,7 +244,7 @@ int main(int argc, char** argv)
 {
 
     set_progname("SimpleFringeSearch");
-    set_msglev(3);
+    set_msglev(-1);
     // set_msglev(-4);
 
     std::string usage = "SimpleFringeSearch -d <directory> -c <control file> -b <baseline> -p <pol. product>";
@@ -387,6 +397,11 @@ int main(int argc, char** argv)
     std::size_t bl_dim[ch_visibility_type::rank::value];
     bl_data->GetDimensions(bl_dim);
 
+
+    //multiply the visibility data by the '10000' whitney scale, and the 2bit x 2bit correction factor 
+    double scale_factor = 10000.0 * 1.06448;
+    (*bl_data) *= scale_factor;
+    
 
     ////////////////////////////////////////////////////////////////////////////
     //APPLY DATA CORRECTIONS (A PRIORI -- PCAL)
@@ -561,7 +576,7 @@ int main(int argc, char** argv)
     //FINE INTERPOLATION STEP
     ////////////////////////////////////////////////////////////////////////////
 
-    fine_peak_interpolation(&mbd_data, sbd_dr_data);
+    fine_peak_interpolation(&mbd_data, sbd_data, sbd_dr_data);
 
 
 
