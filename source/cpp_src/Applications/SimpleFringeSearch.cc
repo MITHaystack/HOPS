@@ -418,7 +418,9 @@ int main(int argc, char** argv)
     bl_data->GetDimensions(bl_dim);
 
 
-    //multiply the visibility data by the '10000' whitney scale, and the 2bit x 2bit correction factor 
+    //multiply the visibility data by the '10000' whitney scale, 
+    //and the 2bit x 2bit correction factor 
+    //this is normally done in difx2mark4
     double scale_factor = 10000.0 * 1.06448;
     (*bl_data) *= scale_factor;
     
