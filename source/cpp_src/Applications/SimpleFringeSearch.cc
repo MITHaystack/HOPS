@@ -231,10 +231,27 @@ void fine_peak_interpolation(ch_mbd_type* mbd_arr, ch_visibility_type* sbd_arr, 
     std::cout<< "xi's "<< xi[0]<<", "<< xi[1] <<", "<< xi[2] <<std::endl;
     std::cout<<"drf max = "<<drfmax<<std::endl;
 
-    double sbd_max = (loc[3] - nl + xi[0]) * sbd_delta;
-    double mbd_max_global = xi[1] * 0.5 * mbd_delta;
-    double dr_max_global  = xi[2] * 0.5 * dr_delta;
 
+
+    // calculate location of this tabular point (should modulo % axis size)
+    std::size_t sbd_bin = loc[3];
+    std::size_t dr_bin = loc[2];
+    std::size_t mbd_bin = loc[1];
+    
+    double sbd = sbd_ax->at(sbd_bin);// + 0.5*sbd_delta; 
+    double dr =  (dr_ax->at(dr_bin) )*(1.0/ref_freq); 
+    double mbd = -1.0*(mbd_ax->at(mbd_bin)); //TODO WHY THE -1 FUDGE FACTOR
+
+    double sbd_change = xi[0] * sbd_delta;
+    double mbd_change = xi[1] * mbd_delta;
+    double dr_change =  (xi[2] * dr_delta)/ref_freq;
+
+    double sbd_max = -1.0*(sbd + sbd_change);
+    double mbd_max_global = mbd+mbd_change;
+    double dr_max_global  = dr + dr_change;
+
+    std::cout<<"coarse location (sbd, mbd, dr) = "<<sbd<<", "<<mbd<<", "<<dr<<std::endl;
+    std::cout<<"change (sbd, mbd, dr) = "<<sbd_change<<", "<<mbd_change<<", "<<dr_change<<std::endl;
     std::cout<<"Peak location (sbd, mbd, dr) = "<<sbd_max<<", "<<mbd_max_global<<", "<<dr_max_global<<std::endl;
     
 }
