@@ -202,10 +202,13 @@ void fine_peak_interpolation(ch_mbd_type* mbd_arr, ch_visibility_type* sbd_arr, 
                         visibility_element_type vis = (0.25)* std::conj( (*sbd_arr)(0,fr,ap,sbd_bin) );  //TODO FUDGE FACTOR OF 1/4???!!! AND CONJUGATE?
                         std::cout<<"vis @ "<<fr<<","<<ap<<" = ("<<vis.real()<<", "<<vis.imag()<<")"<<std::endl;
                         std::complex<double> x = vis* vrot_mod(tdelta, dr, mbd, freq, ref_freq);
+                        std::cout<<"x = "<<x<<std::endl;
                         z = z + x;
                     }
                 }
                 drf[isbd][imbd][idr] = std::abs(z);
+                //TODO -- MUST WEIGHT BY TOTAL AP FRAC (have to fix usb/lsb weights everywhere) 
+                //z = z * 1.0 / (double) status.total_ap_frac;
                 //std::cout<<isbd<<", "<<imbd<<", "<<idr<<", "<<drf[isbd][imbd][idr]<<std::endl;
                 printf("%d %le %le \n", sbd_bin, mbd, dr);
                 printf ("drf[%d][%d][%d] %lf \n", isbd, imbd, idr, drf[isbd][imbd][idr]);
