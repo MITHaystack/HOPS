@@ -47,6 +47,29 @@ hops_include_directories(${CMAKE_CURRENT_BINARY_DIR})
 hops_add_cflag(HAVE_CONFIG_H)
 hops_add_cxxflag(HAVE_CONFIG_H)
 
+#fourfit displays the fringe plot with ghostscript and the postscript copypage command
+#this command was disabled on recent systems so some tweaks have to changes
+#need to happen in order to figure out how to display the fringe plot properly 
+
+find_program(GS_EXE gs) 
+if(GS_EXE)
+    set (GS_VER_ARG "--version")
+    message(STATUS "Executing command: ${GS_EXE} ${GS_VER_ARG}")
+    execute_process(COMMAND ${GS_EXE} ${GS_VER_ARG} WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} RESULT_VARIABLE GS_RESULT OUTPUT_VARIABLE GS_VERSION_STRING)
+    message(STATUS "Ghostscript version[${GS_RESULT}]: ${GS_VERSION_STRING}")
+    string(REPLACE "." "" GS_VERSION_VALUE ${GS_VERSION_STRING}) #strip out '.' chars
+    string(REPLACE "\n" "" GS_VERSION_VALUE ${GS_VERSION_VALUE}) #strip out any errant newline chars
+    message(STATUS "Ghostscript version flag passed as: ${GS_VERSION_VALUE}")
+
+    if(HOPS3_USE_CXX)
+        set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DGS_VERSION=${GS_VERSION_VALUE} ")
+    else()
+        set( CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DGS_VERSION=${GS_VERSION_VALUE} ")
+    endif(HOPS3_USE_CXX)
+else()
+    message(STATUS "Ghostscript executable (gs) could not be found, fourfit may not display properly.")
+endif()
+
 #old HOPS is littered with implicit function declarations
 #since fixing properly this would require a header for each function 
 #for the time being we are just going to disable this warning with:
@@ -58,20 +81,21 @@ hops_add_cxxflag(HAVE_CONFIG_H)
 
 option( HOPS3_DISABLE_WARNINGS "Disable specific compiler warnings in HOPS3 c-code." ON)
 
-if(NOT HOPS3_USE_CXX)
-    if(HOPS3_DISABLE_WARNINGS)
-        set( HOPS3_C_WARNINGS_TO_REMOVE "-Wno-implicit-int -Wno-implicit-function-declaration -Wno-format")
-        message(STATUS "HOPS3 C compiler warnings disabled for: ${HOPS3_C_WARNINGS_TO_REMOVE}" )
-        set( CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${HOPS3_C_WARNINGS_TO_REMOVE}")
-    endif(HOPS3_DISABLE_WARNINGS)
-else()
+if(HOPS3_USE_CXX)
     if(HOPS3_DISABLE_WARNINGS)
         # Do we also need -Wno-deprecated-register ??
         set( HOPS3_CXX_WARNINGS_TO_REMOVE "-Wno-write-strings -Wno-format-security -Wno-format")
         message(STATUS "HOPS3 C++ compiler warnings disabled for: ${HOPS3_CXX_WARNINGS_TO_REMOVE}" )
         set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${HOPS3_CXX_WARNINGS_TO_REMOVE}")
     endif(HOPS3_DISABLE_WARNINGS)
-endif(NOT HOPS3_USE_CXX)
+else()
+    if(HOPS3_DISABLE_WARNINGS)
+        set( HOPS3_C_WARNINGS_TO_REMOVE "-Wno-implicit-int -Wno-implicit-function-declaration -Wno-format")
+        message(STATUS "HOPS3 C compiler warnings disabled for: ${HOPS3_C_WARNINGS_TO_REMOVE}" )
+        set( CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${HOPS3_C_WARNINGS_TO_REMOVE}")
+    endif(HOPS3_DISABLE_WARNINGS)
+endif(HOPS3_USE_CXX)
+
 
 #mk4 and vex c-libraries from old HOPS
 add_subdirectory(msg)
