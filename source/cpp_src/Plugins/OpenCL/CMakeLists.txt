@@ -26,24 +26,31 @@ if (HOPS_USE_OPENCL)
 
     hops_external_include_directories(${OPENCL_INCLUDE_DIRS})
     hops_add_cxxflag (HOPS_USE_OPENCL)
-
     get_filename_component(OPENCL_LIBDIR ${OPENCL_LIBRARIES} PATH)
 
-    execute_process(COMMAND ${CMAKE_CXX_COMPILER}
-        -D HOPS_OPENCL_PLATFORM=${HOPS_OPENCL_PLATFORM}
-        -D HOPS_OPENCL_DEVICE_TYPE=${HOPS_OPENCL_DEVICE_TYPE}
-        -o GenerateOpenCLHeader
-        -I${OPENCL_INCLUDE_DIRS}
-        ${HOPS_OPENCL_CFLAGS}
-        ${CMAKE_CURRENT_SOURCE_DIR}/Core/src/GenerateOpenCLHeader.cc
-        -L${OPENCL_LIBDIR} ${OPENCL_LIB_FLAG}
-        WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
-        RESULT_VARIABLE CL_STATUS_OK
-        ERROR_VARIABLE NOT_USED)
+    #construct the compiler call to build GenerateOpenCLHeader
+    set(CL_HeaderGenCommand "${CMAKE_CXX_COMPILER}")
+    list(APPEND CL_HeaderGenArgs "-DHOPS_OPENCL_PLATFORM=${HOPS_OPENCL_PLATFORM}" "-DHOPS_OPENCL_DEVICE_TYPE=${HOPS_OPENCL_DEVICE_TYPE}")
+    list(APPEND CL_HeaderGenArgs "-o" "GenerateOpenCLHeader")
+    foreach( DIR ${OPENCL_INCLUDE_DIRS} )
+        list(APPEND CL_HeaderGenArgs "-I${DIR}" )  #be careful...this breaks if there is a leading whitespace before the '-I', why?!
+    endforeach( DIR )
+    list(APPEND CL_HeaderGenArgs ${HOPS_OPENCL_CFLAGS})
+    list(APPEND CL_HeaderGenArgs ${CMAKE_CURRENT_SOURCE_DIR}/Core/src/GenerateOpenCLHeader.cc)
+    list(APPEND CL_HeaderGenArgs "-L${OPENCL_LIBDIR}")
+    list(APPEND CL_HeaderGenArgs ${OPENCL_LIB_FLAG})
 
-        if(CL_STATUS_OK AND NOT CL_STATUS_OK EQUAL 0)
-          message(FATAL_ERROR "Could not build the OpenCL header generator." )
-        endif()
+    
+    if(${CMAKE_VERSION} VERSION_GREATER "3.15.0")
+        execute_process(COMMAND ${CMAKE_CXX_COMPILER} ${CL_HeaderGenArgs} WORKING_DIRECTORY ${CMAKE_BINARY_DIR} RESULT_VARIABLE CL_STATUS_OK ERROR_VARIABLE COMPILER_OUTPUT COMMAND_ECHO STDOUT)
+    else()
+        execute_process(COMMAND ${CMAKE_CXX_COMPILER} ${CL_HeaderGenArg} WORKING_DIRECTORY ${CMAKE_BINARY_DIR} RESULT_VARIABLE CL_STATUS_OK ERROR_VARIABLE COMPILER_OUTPUT )
+        message(STATUS "Executing: ${CMAKE_CXX_COMPILER} ${CL_HeaderGenArg}")
+    endif()    
+
+    if(CL_STATUS_OK AND NOT CL_STATUS_OK EQUAL 0)
+      message(FATAL_ERROR "Could not build the OpenCL header generator. Status = ${CL_STATUS_OK}. Error = ${COMPILER_OUTPUT}." )
+    endif()
 
     execute_process(COMMAND ./GenerateOpenCLHeader
         OUTPUT_FILE ${CMAKE_BINARY_DIR}/hopsocl_defines.h
