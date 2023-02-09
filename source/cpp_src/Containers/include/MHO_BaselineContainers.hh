@@ -49,7 +49,6 @@ using weight_type = MHO_TableContainer< weight_element_type, baseline_axis_pack 
 using ch_baseline_axis_pack = MHO_AxisPack< polprod_axis_type, channel_axis_type, time_axis_type, frequency_axis_type >;
 using ch_baseline_mbd_axis_pack =  MHO_AxisPack< polprod_axis_type, time_axis_type, time_axis_type, frequency_axis_type >;
 
-
 using ch_visibility_type = MHO_TableContainer< visibility_element_type, ch_baseline_axis_pack >;
 using ch_weight_type = MHO_TableContainer< weight_element_type, ch_baseline_axis_pack >;
 using ch_sbd_type = MHO_TableContainer< visibility_element_type, ch_baseline_axis_pack >;

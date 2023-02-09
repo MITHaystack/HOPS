@@ -94,13 +94,14 @@ MHO_VisibilityChannelizer::InitializeImpl(const visibility_type* in, ch_visibili
                 out_pp_axis->at(pp) = in_pp_axis->at(pp);
             }
 
-            //label the output channel axis with channel id's
+            //label the output channel axis with channel sky frequency
             for(std::size_t ch=0; ch<num_channels; ch++)
             {
                 int channel_id;
-                if( channel_labels[ch]->Retrieve(std::string("channel"), channel_id ) )
+                double sky_freq;
+                if( channel_labels[ch]->Retrieve(std::string("sky_freq"), sky_freq) ) //channel_labels[ch]->Retrieve(std::string("channel"), channel_id )
                 {
-                    out_channel_axis->at(ch) = channel_id;
+                    out_channel_axis->at(ch) = sky_freq; //channel_id;
                 }
                 else
                 {
