@@ -14,7 +14,7 @@ namespace hops
 
 using pol_axis_type = MHO_Axis<std::string>; //axis for polarization labels (X, Y, R, L, etc.)
 using polprod_axis_type = MHO_Axis<std::string>; //axis for polarization-product labels (XX, YX, XR, RL, RR, etc.)
-using channel_axis_type = MHO_Axis<int>; //channels are simply numbered
+using channel_axis_type = MHO_Axis<double>; //channels axis is sky_frequency of each channel (MHz)
 using frequency_axis_type = MHO_Axis<double>; //frequency axis (MHz)
 using time_axis_type = MHO_Axis<double>; //time and/or AP axis
 
