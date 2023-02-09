@@ -233,7 +233,11 @@ MHO_DiFXBaselineProcessor::ConstructVisibilityFileObjects()
                     ch_label.Insert(std::string("bandwidth"), bw);
                     ch_label.Insert(std::string("net_sideband"), sideband);
                     ch_label.Insert(std::string("difx_freqindex"), freqidx); //probably ought to be more systematic about creating channel names
-                    ch_label.Insert(std::string("chan_id"), std::string("placeholder")); //TODO FIXME need to construct difx2mark4-style chan_id
+                    
+                     //TODO FIXME need to construct difx2mark4-style chan_id -- 
+                    //or rather need to construct the chan_id which corresponds to the reference and remote station for this chunk
+                    //this also needs to be able to support zoom bands
+                    ch_label.Insert(std::string("chan_id"), std::string("placeholder"));
 
                     ch_axis->at(chidx) = sky_freq; //channel axis is now sky frequency not chidx;
                     wch_axis->at(chidx) = sky_freq; // chidx;
