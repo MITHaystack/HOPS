@@ -37,15 +37,20 @@ class MHO_Unit
         
         std::string fStringRep;
         
+        //the base SI units specified are:
+        //[ length, time, mass, ampere, temperature, luminosity, quantity (mole) ]
+        
+        //but we don't deal with mole's very much so I think we would would probably rather use:
+        //[ length, time, mass, ampere, temperature, luminosity, radians ]
+        std::array<int, 7> fExp; 
+
+        
         virtual void Parse(const std::string& repl); //takes a string and determines the appropriate unit exponents, and sets them in fExp
         //should be able to handle statements like "m/s" "s^{-1}" or "kg*m^2/s^2" as well as some compound SI units like joule "J" or tesla "T", etc.
 
-        //could be: 
-        //[ length, time, mass, ampere, temperature, luminosity, quantity (mole) ]
-        //or maybe we would rather have:
-        //[ length, time, mass, ampere, temperature, luminosity, radians ]
-        
-        std::array<int, 7> fExp; 
+        virutal std::string ConstructSTring(); //constructs a human readable string from the base unit exponents
+
+        //at some point we may want to add the ability to support common pre-factors (e.g. k for kilo, M for Mega, u for micro, etc.)
 
 };
 
