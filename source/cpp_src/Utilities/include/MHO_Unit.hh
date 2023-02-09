@@ -20,8 +20,8 @@ class MHO_Unit
         MHO_Unit operator/(const MHO_Unit& other) const;
         
         // operator overloads for compound assignment
-        SIUnit& operator*=(const SIUnit& other);
-        SIUnit& operator/=(const SIUnit& other);
+        MHO_Unit& operator*=(const MHO_Unit& other);
+        MHO_Unit& operator/=(const MHO_Unit& other);
         
         //raise the unit to an integer power 
         void RaiseToPower(int power);
