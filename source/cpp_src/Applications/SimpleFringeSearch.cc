@@ -25,7 +25,7 @@ struct c_block* cb_head; //global extern kludge (due to stupid c-library interfa
 #include "MHO_SelectRepack.hh"
 #include "MHO_FreqSpacing.hh"
 #include "MHO_UniformGridPointsCalculator.hh"
-
+#include "MHO_FringeRotation.hh"
 
 #include "MHO_Reducer.hh"
 
@@ -46,45 +46,45 @@ struct c_block* cb_head; //global extern kludge (due to stupid c-library interfa
 
 using namespace hops;
 
-
-std::complex<double> vrot_mod(double tdelta, double dr, double mbd, double freq, double ref_freq)
-{
-    double theta;
-    std::complex<double> imag_unit(0.0, 1.0);
-                                        // theta is in rotations
-                                        /* fringe rate * time from central epoch */
-                                        
-    // printf("(dr, mbd, freq, tdelta) = (%le, %le, %le, %f) \n", dr, mbd, freq, tdelta);
-    // printf("(freq, ref_freq) = (%le, %le)\n",  freq, ref_freq);  
-    
-    theta = freq * dr * tdelta;
-    
-    // printf("theta = %f\n", theta*(180.0/M_PI)*(-2.0*M_PI));
-    // 
-    // std::cout<<"dr = "<<dr<<std::endl;
-    // std::cout<<"tdelta = "<<tdelta<<std::endl;
-    // 
-    // std::cout<<"theta1 rot = "<<theta*(180./M_PI)*(-2.0 * M_PI)<<std::endl;
-
-                                        // Residual mbd effect at this freq
-    theta += mbd * (freq - ref_freq);
-
-    // printf("mbd = %f \n", mbd);
-    // printf("theta2 = %f\n", theta*(180.0/M_PI)*(-2.0*M_PI));
-    // // 
-    // std::cout<<"freq delta = "<<(freq - ref_freq)<<std::endl;
-                                        // Effect due to offset of lag where max lies
-    //theta += (param.nlags - status.max_delchan) * 0.125 * sb;
-    //removed optimize_closure stuff here
-
-    theta *= (-2.0 * M_PI);             // convert to radians
-
-    // std::cout<<"theta2 rot = "<<theta*(180./M_PI)<<std::endl;
-
-    std::complex<double> val = std::exp(imag_unit*theta);
-    return val;
-}
-
+// 
+// std::complex<double> vrot_mod(double tdelta, double dr, double mbd, double freq, double ref_freq)
+// {
+//     double theta;
+//     std::complex<double> imag_unit(0.0, 1.0);
+//                                         // theta is in rotations
+//                                         /* fringe rate * time from central epoch */
+// 
+//     // printf("(dr, mbd, freq, tdelta) = (%le, %le, %le, %f) \n", dr, mbd, freq, tdelta);
+//     // printf("(freq, ref_freq) = (%le, %le)\n",  freq, ref_freq);  
+// 
+//     theta = freq * dr * tdelta;
+// 
+//     // printf("theta = %f\n", theta*(180.0/M_PI)*(-2.0*M_PI));
+//     // 
+//     // std::cout<<"dr = "<<dr<<std::endl;
+//     // std::cout<<"tdelta = "<<tdelta<<std::endl;
+//     // 
+//     // std::cout<<"theta1 rot = "<<theta*(180./M_PI)*(-2.0 * M_PI)<<std::endl;
+// 
+//                                         // Residual mbd effect at this freq
+//     theta += mbd * (freq - ref_freq);
+// 
+//     // printf("mbd = %f \n", mbd);
+//     // printf("theta2 = %f\n", theta*(180.0/M_PI)*(-2.0*M_PI));
+//     // // 
+//     // std::cout<<"freq delta = "<<(freq - ref_freq)<<std::endl;
+//                                         // Effect due to offset of lag where max lies
+//     //theta += (param.nlags - status.max_delchan) * 0.125 * sb;
+//     //removed optimize_closure stuff here
+// 
+//     theta *= (-2.0 * M_PI);             // convert to radians
+// 
+//     // std::cout<<"theta2 rot = "<<theta*(180./M_PI)<<std::endl;
+// 
+//     std::complex<double> val = std::exp(imag_unit*theta);
+//     return val;
+// }
+// 
 
 
 void fine_peak_interpolation(ch_mbd_type* mbd_arr, ch_visibility_type* sbd_arr, ch_visibility_type* sbd_dr_arr)
@@ -151,6 +151,8 @@ void fine_peak_interpolation(ch_mbd_type* mbd_arr, ch_visibility_type* sbd_arr, 
     double dr_lower = 1e30;
     double dr_upper = -1e30;
     
+    MHO_FringeRotation frot;
+
     std::cout<< std::setprecision(14);
     for (std::size_t isbd=0; isbd<5; isbd++)
     {
@@ -201,7 +203,7 @@ void fine_peak_interpolation(ch_mbd_type* mbd_arr, ch_visibility_type* sbd_arr, 
                         double tdelta = (ap + 0.5) - 15.0; //need time difference from the f.r.t????
                         visibility_element_type vis = (0.25)* std::conj( (*sbd_arr)(0,fr,ap,sbd_bin) );  //TODO FUDGE FACTOR OF 1/4???!!! AND CONJUGATE?
                         //std::cout<<"vis @ "<<fr<<","<<ap<<" = ("<<vis.real()<<", "<<vis.imag()<<")"<<std::endl;
-                        std::complex<double> x = vis* vrot_mod(tdelta, dr, mbd, freq, ref_freq);
+                        std::complex<double> x = vis * frot.vrot(tdelta, freq, ref_freq, dr, mbd); // vrot_mod(tdelta, dr, mbd, freq, ref_freq);
                         //std::cout<<"x = "<<x<<std::endl;
                         z = z + x;
                     }
