@@ -57,14 +57,29 @@ if(GS_EXE)
     message(STATUS "Executing command: ${GS_EXE} ${GS_VER_ARG}")
     execute_process(COMMAND ${GS_EXE} ${GS_VER_ARG} WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} RESULT_VARIABLE GS_RESULT OUTPUT_VARIABLE GS_VERSION_STRING)
     message(STATUS "Ghostscript version[${GS_RESULT}]: ${GS_VERSION_STRING}")
-    string(REPLACE "." "" GS_VERSION_VALUE ${GS_VERSION_STRING}) #strip out '.' chars
-    string(REPLACE "\n" "" GS_VERSION_VALUE ${GS_VERSION_VALUE}) #strip out any errant newline chars
+    # string(REPLACE "." "" GS_VERSION_VALUE ${GS_VERSION_STRING}) #strip out '.' chars
+    string(REPLACE "\n" "" GS_VERSION_VALUE ${GS_VERSION_STRING}) #strip out any errant newline chars
     message(STATUS "Ghostscript version flag passed as: ${GS_VERSION_VALUE}")
 
+    #default value
+    set(GS_VERSION_FLAG "0")
+
+    if( GS_VERSION_VALUE VERSION_GREATER_EQUAL "9.1")
+        set(GS_VERSION_FLAG "9100")
+    endif()
+
+    if( GS_VERSION_VALUE VERSION_GREATER_EQUAL "9.22")
+        set(GS_VERSION_FLAG "9220")
+    endif()
+
+    if( GS_VERSION_VALUE VERSION_GREATER_EQUAL "9.5")
+        set(GS_VERSION_FLAG "9500")
+    endif()
+
     if(HOPS3_USE_CXX)
-        set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DGS_VERSION=${GS_VERSION_VALUE} ")
+        set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DGS_VERSION=${GS_VERSION_FLAG} ")
     else()
-        set( CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DGS_VERSION=${GS_VERSION_VALUE} ")
+        set( CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DGS_VERSION=${GS_VERSION_FLAG} ")
     endif(HOPS3_USE_CXX)
 else()
     message(STATUS "Ghostscript executable (gs) could not be found, fourfit may not display properly.")
