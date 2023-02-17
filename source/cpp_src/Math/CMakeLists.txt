@@ -7,6 +7,7 @@ set (MATH_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_GaussianWhiteNoiseSignal.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_SingleToneSignal.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_UniformGridPointsCalculator.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_FringeRotation.hh
 )
 
 
@@ -16,6 +17,7 @@ set( MATH_SOURCEFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_GaussianWhiteNoiseSignal.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_SingleToneSignal.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_UniformGridPointsCalculator.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_FringeRotation.cc
 )
 
 #declare header paths ##########################################################
