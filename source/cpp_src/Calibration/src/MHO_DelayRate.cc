@@ -96,7 +96,10 @@ MHO_DelayRate::ExecuteOutOfPlace(const XArgType* in1, XArgType* out)
 
         ok = fSubSampler.Execute();
         check_step_fatal(ok, "calibration", "sub sample execution." << eom );
-
+        // 
+        // //normalize the array
+        // double norm =  1.0/(double) out->GetDimension(CH_TIME_AXIS);
+        // *(out) *= norm;
 
         return true;
     }

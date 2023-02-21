@@ -26,7 +26,6 @@ struct c_block* cb_head; //global extern kludge (due to stupid c-library interfa
 #include "MHO_FreqSpacing.hh"
 #include "MHO_UniformGridPointsCalculator.hh"
 #include "MHO_FringeRotation.hh"
-
 #include "MHO_Reducer.hh"
 
 #include "MHO_AbsoluteValue.hh"
@@ -225,8 +224,8 @@ void fine_peak_interpolation(ch_mbd_type* mbd_arr, ch_visibility_type* sbd_arr, 
                     double freq = chan_freq[fr];//use sky-freq of this channel????
                     for(std::size_t ap = 0; ap < 30; ap++)
                     {
-                        double tdelta = (ap + 0.5) - 15.0; //need time difference from the f.r.t????
-                        visibility_element_type vis = (0.25)* std::conj( (*sbd_arr)(0,fr,ap,sbd_bin) );  //TODO FUDGE FACTOR OF 1/4???!!! AND CONJUGATE?
+                        double tdelta = (ap + 0.5) - 15.0; //need time difference from the f.r.t?
+                        visibility_element_type vis = std::conj( (*sbd_arr)(0,fr,ap,sbd_bin) );// *25;  //TODO FUDGE FACTOR OF 1/4???!!! AND CONJUGATE?
                         //std::cout<<"vis @ "<<fr<<","<<ap<<" = ("<<vis.real()<<", "<<vis.imag()<<")"<<std::endl;
                         std::complex<double> x = vis * frot.vrot(tdelta, freq, ref_freq, dr, mbd); // vrot_mod(tdelta, dr, mbd, freq, ref_freq);
                         //std::cout<<"x = "<<x<<std::endl;
@@ -238,7 +237,7 @@ void fine_peak_interpolation(ch_mbd_type* mbd_arr, ch_visibility_type* sbd_arr, 
                 //z = z * 1.0 / (double) status.total_ap_frac;
                 //std::cout<<isbd<<", "<<imbd<<", "<<idr<<", "<<drf[isbd][imbd][idr]<<std::endl;
                 //printf("%ld %le %le \n", sbd_bin, mbd, dr);
-                //printf ("drf[%ld][%ld][%ld] %lf \n", isbd, imbd, idr, drf[isbd][imbd][idr]);
+                printf ("drf[%ld][%ld][%ld] %lf \n", isbd, imbd, idr, drf[isbd][imbd][idr]);
             }
         }
     }
@@ -409,11 +408,13 @@ int main(int argc, char** argv)
     
 
 
+
     ////////////////////////////////////////////////////////////////////////////
     //APPLY COARSE DATA SELECTION
     ////////////////////////////////////////////////////////////////////////////
     //select data repack
     MHO_SelectRepack<ch_visibility_type> spack;
+    MHO_SelectRepack<ch_weight_type> wtspack;
 
     //first find indexes which corresponds to the specified pol product
     std::vector<std::size_t> selected_pp = (&(std::get<CH_POLPROD_AXIS>(*bl_data)))->SelectMatchingIndexes(polprod);
@@ -429,25 +430,53 @@ int main(int argc, char** argv)
     //specify the indexes we want on each axis
     spack.SelectAxisItems(0,selected_pp);
     spack.SelectAxisItems(1,selected_ch);
+    
+    wtspack.SelectAxisItems(0,selected_pp);
+    wtspack.SelectAxisItems(1,selected_ch);
     //spack.SelectAxisItems(2,selected_ap);
     
     
     ch_visibility_type* alt_data = new ch_visibility_type();
+    ch_weight_type* alt_wt_data = new ch_weight_type();
 
     spack.SetArgs(bl_data, alt_data);
     spack.Initialize();
     spack.Execute();
 
+    wtspack.SetArgs(wt_data, alt_wt_data);
+    wtspack.Initialize();
+    wtspack.Execute();
+
     //TODO, work out what to do with the axis interval labels in between operations
     //explicitly copy the channel axis labels here
     std::get<CH_CHANNEL_AXIS>(*alt_data).CopyIntervalLabels( std::get<CH_CHANNEL_AXIS>(*bl_data) );
+    std::get<CH_CHANNEL_AXIS>(*alt_wt_data).CopyIntervalLabels( std::get<CH_CHANNEL_AXIS>(*wt_data) );
 
+    wt_data->Copy(*alt_wt_data);
     bl_data->Copy(*alt_data);
     
     delete alt_data;
+    delete alt_wt_data;
 
     std::size_t bl_dim[ch_visibility_type::rank::value];
     bl_data->GetDimensions(bl_dim);
+    
+    
+    //compute the sum of the weights 
+    std::cout<<"weight at 0 = " << wt_data->at(0,0,0,0) <<std::endl;
+
+    MHO_Reducer<ch_weight_type, MHO_CompoundSum> wt_reducer;
+    wt_reducer.SetArgs(wt_data);
+    for(std::size_t i=0; i<ch_weight_type::rank::value; i++)
+    {
+        wt_reducer.ReduceAxis(i);
+    }
+    wt_reducer.Initialize();
+    wt_reducer.Execute();
+    
+    std::cout<<"reduced weights = "<<(*wt_data)[0]<<std::endl;
+
+    
 
     //multiply the visibility data by the '10000' whitney scale, 
     //and the 2bit x 2bit correction factor 
@@ -477,13 +506,13 @@ int main(int argc, char** argv)
     check_step_error(ok, "main", "rem pcal initialization." << eom );
     ok = pcal_correct.Execute();
     check_step_error(ok, "main", "rem pcal execution." << eom );
+    
 
     //output for the delay
     ch_visibility_type* sbd_data = bl_data->CloneEmpty();
     bl_dim[CH_FREQ_AXIS] *= 4; //normfx implementation demands this
     sbd_data->Resize(bl_dim);
-
-
+    
     ////////////////////////////////////////////////////////////////////////////
     //COARSE SBD, DR, MBD SEARCH ALGO
     ////////////////////////////////////////////////////////////////////////////
@@ -493,6 +522,7 @@ int main(int argc, char** argv)
     nfxOp.SetArgs(bl_data, wt_data, sbd_data);
     ok = nfxOp.Initialize();
     check_step_fatal(ok, "main", "normfx initialization." << eom );
+    
     ok = nfxOp.Execute();
     check_step_fatal(ok, "main", "normfx execution." << eom );
 
@@ -524,6 +554,7 @@ int main(int argc, char** argv)
     double gspace = gridCalc.GetGridSpacing();
     std::size_t ngrid_pts = gridCalc.GetNGridPoints();
     auto mbd_bin_map = gridCalc.GetGridIndexMap();
+    
 
     //construct the mbd array according to the grid calc's size
     //NOTE!! Because we are allocating space to do the MBD search over all SBD/DR at the same time 
