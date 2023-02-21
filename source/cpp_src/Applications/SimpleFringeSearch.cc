@@ -168,6 +168,8 @@ void fine_peak_interpolation(ch_mbd_type* mbd_arr, ch_visibility_type* sbd_arr, 
     double dr_upper = -1e30;
     
     MHO_FringeRotation frot;
+    std::size_t sbd_bin, dr_bin, mbd_bin;
+    double sbd, dr, mbd;
 
     std::cout<< std::setprecision(14);
     for (std::size_t isbd=0; isbd<5; isbd++)
@@ -180,14 +182,14 @@ void fine_peak_interpolation(ch_mbd_type* mbd_arr, ch_visibility_type* sbd_arr, 
                 std::complex<double> z = 0.0;
 
                 // calculate location of this tabular point (should modulo % axis size)
-                std::size_t sbd_bin = 0; //loc[3] + isbd - 2;
-                std::size_t dr_bin = 0;// loc[2] + idr - 2;
-                std::size_t mbd_bin = loc[1] - imbd + 2; //TODO WHY THE -1 FUDGE FACTOR
+                sbd_bin = 0; //loc[3] + isbd - 2;
+                dr_bin = 0;// loc[2] + idr - 2;
+                mbd_bin = loc[1] - imbd + 2; //TODO WHY THE -1 FUDGE FACTOR
                 // 
-                double sbd = sbd_ax->at(sbd_bin);// + 0.5*sbd_delta; 
-                double dr =  (dr_ax->at(dr_bin) )*(1.0/ref_freq); 
+                sbd = sbd_ax->at(sbd_bin);// + 0.5*sbd_delta; 
+                dr =  (dr_ax->at(dr_bin) )*(1.0/ref_freq); 
                 // double mbd =  -1.0*(mbd_ax->at(mbd_bin) + 0.5*mbd_delta);
-                double mbd = -1.0*(mbd_ax->at(mbd_bin)); //TODO WHY THE -1 FUDGE FACTOR
+                mbd = -1.0*(mbd_ax->at(mbd_bin)); //TODO WHY THE -1 FUDGE FACTOR
 
                 // std::cout<<"dr delta = "<<dr_delta<<std::endl;
                 //std::cout<<"sbdi_bin, sbd = "<<sbd_bin<<", "<<sbd<<std::endl;
@@ -218,9 +220,7 @@ void fine_peak_interpolation(ch_mbd_type* mbd_arr, ch_visibility_type* sbd_arr, 
                     dr_bin = dr_sbd_loc[fr].first + idr - 2;
                     sbd = sbd_ax->at(sbd_bin);// + 0.5*sbd_delta; 
                     dr =  (dr_ax->at(dr_bin) )*(1.0/ref_freq); 
-                    
-                    
-                    
+
                     //double frq = pass->pass_data + fr;
                     double freq = chan_freq[fr];//use sky-freq of this channel????
                     for(std::size_t ap = 0; ap < 30; ap++)
@@ -264,13 +264,16 @@ void fine_peak_interpolation(ch_mbd_type* mbd_arr, ch_visibility_type* sbd_arr, 
 
 
     // calculate location of this tabular point (should modulo % axis size)
-    std::size_t sbd_bin = loc[3];
-    std::size_t dr_bin = loc[2];
-    std::size_t mbd_bin = loc[1];
+    // std::size_t sbd_bin = loc[3];
+    // std::size_t dr_bin = loc[2];
+    //std::size_t 
+    sbd_bin = dr_sbd_loc[0].second;
+    dr_bin = dr_sbd_loc[0].first;
+    mbd_bin = loc[1];
     
-    double sbd = sbd_ax->at(sbd_bin);// + 0.5*sbd_delta; 
-    double dr =  (dr_ax->at(dr_bin) )*(1.0/ref_freq); 
-    double mbd = -1.0*(mbd_ax->at(mbd_bin)); //TODO WHY THE -1 FUDGE FACTOR
+    sbd = sbd_ax->at(sbd_bin);// + 0.5*sbd_delta; 
+    dr =  (dr_ax->at(dr_bin) )*(1.0/ref_freq); 
+    mbd = -1.0*(mbd_ax->at(mbd_bin)); //TODO WHY THE -1 FUDGE FACTOR
 
     double sbd_change = xi[0] * sbd_delta;
     double mbd_change = xi[1] * mbd_delta;
