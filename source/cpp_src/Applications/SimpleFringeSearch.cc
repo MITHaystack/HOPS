@@ -378,6 +378,8 @@ int main(int argc, char** argv)
     
     std::size_t wt_dim[ch_weight_type::rank::value];
     wt_data->GetDimensions(wt_dim);
+    
+
 
     ////////////////////////////////////////////////////////////////////////////
     //APPLY COARSE DATA SELECTION
@@ -402,8 +404,6 @@ int main(int argc, char** argv)
     //spack.SelectAxisItems(2,selected_ap);
     
     
-    
-
     ch_visibility_type* alt_data = new ch_visibility_type();
 
     spack.SetArgs(bl_data, alt_data);
@@ -415,6 +415,8 @@ int main(int argc, char** argv)
     std::get<CH_CHANNEL_AXIS>(*alt_data).CopyIntervalLabels( std::get<CH_CHANNEL_AXIS>(*bl_data) );
 
     bl_data->Copy(*alt_data);
+    
+    delete alt_data;
 
     std::size_t bl_dim[ch_visibility_type::rank::value];
     bl_data->GetDimensions(bl_dim);
@@ -447,7 +449,6 @@ int main(int argc, char** argv)
     check_step_error(ok, "main", "rem pcal initialization." << eom );
     ok = pcal_correct.Execute();
     check_step_error(ok, "main", "rem pcal execution." << eom );
-
 
     //output for the delay
     ch_visibility_type* sbd_data = bl_data->CloneEmpty();
@@ -497,6 +498,9 @@ int main(int argc, char** argv)
     auto mbd_bin_map = gridCalc.GetGridIndexMap();
 
     //construct the mbd array according to the grid calc's size
+    //NOTE!! Because we are allocating space to do the MBD search over all SBD/DR at the same time 
+    //this uses far more memory than is actually needed, we will have to optimized, or a do a 1-D delay
+    //search to reduce memory usage at some point
     ch_mbd_type mbd_data;
     mbd_data.Resize(bl_dim[0], ngrid_pts, bl_dim[2], bl_dim[3]);
     mbd_data.ZeroArray();
@@ -514,6 +518,7 @@ int main(int argc, char** argv)
         std::size_t mbd_bin = mbd_bin_map[ch];
         mbd_data.SliceView(":", mbd_bin, ":", ":").Copy( sbd_dr_data->SliceView(":",ch,":",":") );
     }
+    
 
     //now we are going to run a FFT on the mbd axis
     MHO_MultidimensionalFastFourierTransform< ch_mbd_type > fFFTEngine2;
@@ -553,8 +558,8 @@ int main(int argc, char** argv)
 
 
 
-    #ifdef USE_ROOT
-    //#ifdef NOT_DISABLED
+    //#ifdef USE_ROOT
+    #ifdef NOT_DISABLED
 
     std::cout<<"starting root plotting"<<std::endl;
 
