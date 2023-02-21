@@ -100,6 +100,22 @@ void fine_peak_interpolation(ch_mbd_type* mbd_arr, ch_visibility_type* sbd_arr, 
     double nl = sbd_arr->GetDimension(CH_FREQ_AXIS);
 
 
+    std::vector< std::pair<std::size_t, std::size_t > > dr_sbd_loc;
+    //find the location of the SBD and DR max bins
+    MHO_ExtremaSearch< MHO_NDArrayView< visibility_element_type, 2 > > mSearch;
+    for(std::size_t ch=0; ch < sbd_dr_arr->GetDimension(CH_CHANNEL_AXIS); ch++)
+    {
+        auto ch_slice = sbd_dr_arr->SliceView(0,ch,":",":");
+        mSearch.SetArgs(&ch_slice);
+        mSearch.Initialize();
+        mSearch.Execute();
+        std::size_t max_loc = mSearch.GetMaxLocation();
+        std::size_t min_loc = mSearch.GetMinLocation();
+        auto loc_array = ch_slice.GetIndicesForOffset(max_loc);
+        dr_sbd_loc.push_back( std::make_pair( loc_array[0], loc_array[1]) ) ;
+    }
+
+
     double bin_max = mbdSearch.GetMax();
     std::size_t offset_to_bin_max = mbdSearch.GetMaxLocation();
     ch_mbd_type::index_type loc;
@@ -164,10 +180,10 @@ void fine_peak_interpolation(ch_mbd_type* mbd_arr, ch_visibility_type* sbd_arr, 
                 std::complex<double> z = 0.0;
 
                 // calculate location of this tabular point (should modulo % axis size)
-                std::size_t sbd_bin = loc[3] + isbd - 2;
-                std::size_t dr_bin = loc[2] + idr - 2;
+                std::size_t sbd_bin = 0; //loc[3] + isbd - 2;
+                std::size_t dr_bin = 0;// loc[2] + idr - 2;
                 std::size_t mbd_bin = loc[1] - imbd + 2; //TODO WHY THE -1 FUDGE FACTOR
-                
+                // 
                 double sbd = sbd_ax->at(sbd_bin);// + 0.5*sbd_delta; 
                 double dr =  (dr_ax->at(dr_bin) )*(1.0/ref_freq); 
                 // double mbd =  -1.0*(mbd_ax->at(mbd_bin) + 0.5*mbd_delta);
@@ -196,6 +212,15 @@ void fine_peak_interpolation(ch_mbd_type* mbd_arr, ch_visibility_type* sbd_arr, 
                                 // counter-rotate data from all freqs. and AP's
                 for(std::size_t fr = 0; fr < nchan; fr++)
                 {
+                    
+                    // calculate location of this tabular point (should modulo % axis size)
+                    sbd_bin = dr_sbd_loc[fr].second + isbd - 2;
+                    dr_bin = dr_sbd_loc[fr].first + idr - 2;
+                    sbd = sbd_ax->at(sbd_bin);// + 0.5*sbd_delta; 
+                    dr =  (dr_ax->at(dr_bin) )*(1.0/ref_freq); 
+                    
+                    
+                    
                     //double frq = pass->pass_data + fr;
                     double freq = chan_freq[fr];//use sky-freq of this channel????
                     for(std::size_t ap = 0; ap < 30; ap++)
@@ -502,7 +527,8 @@ int main(int argc, char** argv)
     //this uses far more memory than is actually needed, we will have to optimized, or a do a 1-D delay
     //search to reduce memory usage at some point
     ch_mbd_type mbd_data;
-    mbd_data.Resize(bl_dim[0], ngrid_pts, bl_dim[2], bl_dim[3]);
+    // mbd_data.Resize(bl_dim[0], ngrid_pts, bl_dim[2], bl_dim[3]);
+    mbd_data.Resize(bl_dim[0], ngrid_pts, 1, 1);
     mbd_data.ZeroArray();
     
     //set up the mbd delay axis
@@ -515,8 +541,22 @@ int main(int argc, char** argv)
     //copy the slice associated with each channel into the apppropriate slot in the MBD array
     for(std::size_t ch=0; ch<bl_dim[1]; ch++)
     {
+        
+        ////search for the peak in SBD and DR and copy that into the mbd array 
+
+        MHO_ExtremaSearch< MHO_NDArrayView< visibility_element_type, 2 > > mSearch;
+
+        auto ch_slice = sbd_dr_data->SliceView(0,ch,":",":");
+        mSearch.SetArgs(&ch_slice);
+        mSearch.Initialize();
+        mSearch.Execute();
+        std::size_t max_loc = mSearch.GetMaxLocation();
+        std::size_t min_loc = mSearch.GetMinLocation();
+        auto loc_array = ch_slice.GetIndicesForOffset(max_loc);
+
         std::size_t mbd_bin = mbd_bin_map[ch];
-        mbd_data.SliceView(":", mbd_bin, ":", ":").Copy( sbd_dr_data->SliceView(":",ch,":",":") );
+        mbd_data(0, mbd_bin, 0, 0) = (*sbd_dr_data)(0,ch,loc_array[0],loc_array[1]);
+        // mbd_data.SliceView(":", mbd_bin, ":", ":").Copy( sbd_dr_data->SliceView(":",ch,":",":") );
     }
     
 
