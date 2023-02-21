@@ -89,6 +89,7 @@ MHO_NormFX::InitializeImpl(const XArgType1* in1, const XArgType2* in2, XArgType3
         status = fCyclicRotator.Initialize();
         if(!status){msg_error("operators", "Could not initialize cyclic rotation in MHO_NormFX." << eom); return false;}
 
+        // double norm = 1.0/(nlags*8);
         // fNormBroadcaster.GetFunctor()->SetFactor(norm);
         // fNormBroadcaster.SetInput(out);
         // fNormBroadcaster.SetOutput(out);
@@ -169,7 +170,9 @@ MHO_NormFX::ExecuteImpl(const XArgType1* in1, const XArgType2* in2, XArgType3* o
     #endif
 
         //normalize the array
-        double norm =  1.0/(double)fInDims[CH_FREQ_AXIS];
+        // double norm =  1.0/(double)fInDims[CH_FREQ_AXIS];
+        double norm =  1.0/(double) out->GetDimension(CH_FREQ_AXIS);
+        std::cout<<"the norm = "<< fInDims[CH_FREQ_AXIS]<<std::endl;
         *(out) *= norm;
 
         // status = fNormBroadcaster.Execute();

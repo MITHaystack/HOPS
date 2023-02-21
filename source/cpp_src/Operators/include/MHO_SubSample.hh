@@ -67,6 +67,11 @@ class MHO_SubSample:
             bool status = ExecuteOutOfPlace(in, &fWorkspace);
             //"in-place" execution requires a copy from the workspace back to the object we are modifying
             in->Copy(fWorkspace);
+            
+            // auto workspace_dim = fWorkspace.GetDimensionArray();
+            // for(std::size_t i=0; i<workspace_dim.size(); i++){workspace_dim[i] = 0;}
+            // fWorkspace.Resize(&(workspace_dim[0]));
+            
             return status;
         }
 
