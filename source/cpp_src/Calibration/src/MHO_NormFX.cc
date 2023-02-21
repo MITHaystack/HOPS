@@ -175,6 +175,8 @@ MHO_NormFX::ExecuteImpl(const XArgType1* in1, const XArgType2* in2, XArgType3* o
         // status = fNormBroadcaster.Execute();
         // if(!status){msg_error("operators", "Could not execute normalization in MHO_NormFX." << eom); return false;}
 
+        // fWorkspace.Resize(0,0,0,0);
+
         return true;
     }
 
