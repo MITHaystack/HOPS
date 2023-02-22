@@ -55,6 +55,9 @@ MHO_ContainerDictionary::MHO_ContainerDictionary()
     AddClassType<ch_baseline_axis_pack>();
     AddClassType<ch_visibility_type>(); 
     AddClassType<ch_weight_type>(); 
+    
+    AddClassType<ch_visibility_store_type>(); 
+    AddClassType<ch_weight_store_type>(); 
 
     AddClassType<station_coord_axis_pack>();
     AddClassType<station_coord_type>();
