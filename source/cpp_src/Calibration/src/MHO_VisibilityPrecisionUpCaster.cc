@@ -11,15 +11,27 @@ MHO_VisibilityPrecisionUpCaster::~MHO_VisibilityPrecisionUpCaster(){}
 bool
 MHO_VisibilityPrecisionUpCaster::ExecuteImpl(const ch_visibility_store_type* in, ch_visibility_type* out)
 {
-    //resize the output array 
-    
-    //copy the contents 
+    if(in != nullptr && out != nullptr)
+    {
+        //resize the output array 
+        out->Resize( in->GetDimensions() );
+        
+        //copy the contents
+        std::size_t total_size = in->GetSize();
+        for(std::size_t i=0; i<total_size; i++)
+        {
+            (*out)[i] = (*in)[i];
+        }
 
-    //copy the axes, their tags and labels 
-    
-    //copy the tags
-    
-    return true;
+        //copy the axes, their tags and labels 
+        *( out->GetAxisPack() ) = *( in->GetAxisPack() );
+
+        //copy the tags
+        out->CopyTags(*in);
+        
+        return true;
+    }
+    return false;
 }
 
 
