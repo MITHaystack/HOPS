@@ -60,7 +60,9 @@ using ch_pcal_phase_type = MHO_TableContainer< double, ch_pcal_axis_pack >;
 
 
 ////////////////////////////////////////////////////////////////////////////////
-//Definitions for visibilities and related quantities (storage (on-disk) types) to cut down on disk usage
+//Definitions for storage (on-disk) types for visibilities and related quantities to cut down on disk usage
+using visibility_store_type = MHO_TableContainer< visibility_element_store_type, baseline_axis_pack >;
+using weight_store_type = MHO_TableContainer< weight_element_store_type, baseline_axis_pack >;
 using ch_visibility_store_type = MHO_TableContainer< visibility_element_store_type, ch_baseline_axis_pack >;
 using ch_weight_store_type = MHO_TableContainer< weight_element_store_type, ch_baseline_axis_pack >;
 
