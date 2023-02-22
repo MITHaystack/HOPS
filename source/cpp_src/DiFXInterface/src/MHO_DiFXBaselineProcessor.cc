@@ -152,8 +152,8 @@ MHO_DiFXBaselineProcessor::ConstructVisibilityFileObjects()
         if(fV){delete fV; fV = nullptr;}
         if(fW){delete fW; fW = nullptr;}
 
-        fV = new ch_visibility_type(); 
-        fW = new ch_weight_type();
+        fV = new ch_visibility_store_type(); 
+        fW = new ch_weight_store_type();
 
         //tags for the visibilities
         fV->Resize(fNPolPairs, fNChannels, fNAPs, fNSpectralPoints);
@@ -168,7 +168,7 @@ MHO_DiFXBaselineProcessor::ConstructVisibilityFileObjects()
         fV->Insert(std::string("remote_station_mk4id"), fRemStationMk4Id);
 
         //tags for the weights
-        fW->Resize(fNPolPairs, fNChannels, fNAPs, fNSpectralPoints);
+        fW->Resize(fNPolPairs, fNChannels, fNAPs, 1); //fNSpectralPoints -- we only have 1 weight value for each AP, so set dimension along the spectral point axis to 1
         fW->ZeroArray();
         fW->Insert(std::string("name"), std::string("weights"));
         fW->Insert(std::string("difx_baseline_index"), fBaselineID);
@@ -250,11 +250,12 @@ MHO_DiFXBaselineProcessor::ConstructVisibilityFileObjects()
                     ap_axis->at(ap) = ap*fAPLength;
                     wap_axis->at(ap) = ap*fAPLength; 
                     MHO_DiFXVisibilityRecord* visRec = fVisibilities[pp][freqidx][ap];
+                    (*fW)(ppidx,chidx,ap,0) = visRec->dataweight; //set the data weight for this AP
+                    wsp_axis->at(0) = 0;
                     for(std::size_t sp = 0; sp<fNSpectralPoints; sp++)
                     {
                         sp_axis->at(sp) = sp*(bw/fNSpectralPoints); //frequency offset from edge of channel
-                        wsp_axis->at(sp) = sp*(bw/fNSpectralPoints);
-                        (*fW)(ppidx,chidx,ap,sp) = visRec->dataweight; //data weights don't need spectral point weighting (same value for every point)?
+                        
                         std::complex<double> tmp;
                         //for lower sideband flip axis and conjugate 
                         //why?...difx2mark4 does this, but then fourfit inverts it?) //TODO VERIFY IF THIS IS NEEDED
