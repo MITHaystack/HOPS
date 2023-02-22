@@ -255,7 +255,6 @@ MHO_DiFXBaselineProcessor::ConstructVisibilityFileObjects()
                     for(std::size_t sp = 0; sp<fNSpectralPoints; sp++)
                     {
                         sp_axis->at(sp) = sp*(bw/fNSpectralPoints); //frequency offset from edge of channel
-                        
                         std::complex<double> tmp;
                         //for lower sideband flip axis and conjugate 
                         //why?...difx2mark4 does this, but then fourfit inverts it?) //TODO VERIFY IF THIS IS NEEDED
