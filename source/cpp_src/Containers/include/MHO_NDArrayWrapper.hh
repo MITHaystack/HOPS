@@ -331,7 +331,7 @@ class MHO_NDArrayWrapper:
             return *this;
         }
 
-        //in place point-wise addition by another array
+        //in place point-wise addition by another array of the same type
         inline MHO_NDArrayWrapper& operator+=(const MHO_NDArrayWrapper& anArray)
         {
             if(!HaveSameNumberOfElements(this, &anArray)){throw std::out_of_range("MHO_NDArrayWrapper::+= size mismatch.");}

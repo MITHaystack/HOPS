@@ -254,6 +254,8 @@ MHO_DiFXBaselineProcessor::ConstructVisibilityFileObjects()
                     {
                         sp_axis->at(sp) = sp*(bw/fNSpectralPoints); //frequency offset from edge of channel
                         wsp_axis->at(sp) = sp*(bw/fNSpectralPoints);
+                        //TODO FIXME -- DO WE NEED TO HAVE DATA WEIGHTS FOR EACH SPECTRAL POINT?
+                        //The only application for that would be for 'notches' like accounting done later, but here it is just useless extra copies
                         (*fW)(ppidx,chidx,ap,sp) = visRec->dataweight; //data weights don't need spectral point weighting (same value for every point)?
                         std::complex<double> tmp;
                         //for lower sideband flip axis and conjugate 
