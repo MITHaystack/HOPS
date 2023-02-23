@@ -17,6 +17,11 @@ namespace hops
 #define NCOORD 7 //delay, az, el, par-angle, u, v, w
 #define NCOEFF 6 //hard coded in mk4 library, but can be flexible
 
+#define MTPCAL_NDIM 3
+#define MTPCAL_POL_AXIS 0
+#define MTPCAL_TIME_AXIS 1
+#define MTPCAL_FREQ_AXIS 2
+
 using station_coord_axis_pack = MHO_AxisPack< coord_axis_type, time_axis_type, coeff_axis_type>;
 using station_coord_type = MHO_TableContainer< spline_coeff_type, station_coord_axis_pack >;
 

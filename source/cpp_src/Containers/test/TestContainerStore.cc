@@ -51,12 +51,12 @@ int main(int argc, char** argv)
     std::cout<<"library has: "<<conStore.GetNObjects()<<" objects."<<std::endl;
 
     //here's how we would retrieve a 'visibility' object from the library
-    std::string vis_classname = MHO_ClassIdentity::ClassName<ch_visibility_type>();
+    std::string vis_classname = MHO_ClassIdentity::ClassName<visibility_type>();
     MHO_UUID vis_id = conDict.GetUUIDFromClassName(vis_classname);
     MHO_Serializable* generic = conStore.RetrieveFirstObjectMatchingType(vis_id);
     if(generic != nullptr)
     {
-        ch_visibility_type* vis = dynamic_cast<ch_visibility_type*>(generic);
+        visibility_type* vis = dynamic_cast<visibility_type*>(generic);
         if(vis != nullptr)
         {
             std::cout<<"success, we have located a visibility object" <<std::endl;

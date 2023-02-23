@@ -64,8 +64,8 @@ class MHO_MK4CorelInterface
         //For now we assume the caller will handle clean-up/deletion, so we do
         //not attempt to delete fExtractedVisibilities/fExtractedWeights in the
         //destructor of this interface class.
-        visibility_store_type* GetExtractedVisibilities(){return fExtractedVisibilities;};
-        weight_store_type* GetExtractedWeights(){return fExtractedWeights;};
+        uch_visibility_store_type* GetExtractedVisibilities(){return fExtractedVisibilities;};
+        uch_weight_store_type* GetExtractedWeights(){return fExtractedWeights;};
 
     private:
 
@@ -104,8 +104,8 @@ class MHO_MK4CorelInterface
                                 std::string ref_net_sb, std::string rem_net_sb);
         double calc_freq_bin(double sky_freq, double bw, std::string net_sb, int nlags, int bin_index);
 
-        visibility_store_type* fExtractedVisibilities;
-        weight_store_type* fExtractedWeights;
+        uch_visibility_store_type* fExtractedVisibilities;
+        uch_weight_store_type* fExtractedWeights;
 
 };
 

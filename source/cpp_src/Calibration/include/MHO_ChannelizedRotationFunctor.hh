@@ -52,8 +52,8 @@ class MHO_ChannelizedRotationFunctor: public MHO_NDArrayFunctor< ch_visibility_t
             const std::size_t* in_loc = input.GetIndices();
 
             //then retrieve the time/frequency values of the axis
-            double time = (*fTimeAxis)[in_loc[CH_TIME_AXIS]];
-            double freq = (*fFreqAxis)[in_loc[CH_FREQ_AXIS]];
+            double time = (*fTimeAxis)[in_loc[TIME_AXIS]];
+            double freq = (*fFreqAxis)[in_loc[FREQ_AXIS]];
 
             //then calculate the complex rotation (a la vrot.c, though more primitive)
             //TODO --- think more carefully about this....

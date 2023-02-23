@@ -18,7 +18,7 @@
 namespace hops
 {
 
-class MHO_VisibilityPrecisionUpCaster: public MHO_TransformingOperator< ch_visibility_store_type, ch_visibility_type>
+class MHO_VisibilityPrecisionUpCaster: public MHO_TransformingOperator< visibility_store_type, visibility_type>
 {
     public:
         MHO_VisibilityPrecisionUpCaster();
@@ -26,8 +26,8 @@ class MHO_VisibilityPrecisionUpCaster: public MHO_TransformingOperator< ch_visib
 
     protected:
 
-        virtual bool InitializeImpl(const ch_visibility_store_type* /*in*/, ch_visibility_type* /*out*/){return true;}; //no op
-        virtual bool ExecuteImpl(const ch_visibility_store_type* in, ch_visibility_type* out);
+        virtual bool InitializeImpl(const visibility_store_type* /*in*/, visibility_type* /*out*/){return true;}; //no op
+        virtual bool ExecuteImpl(const visibility_store_type* in, visibility_type* out);
 
     private:
 

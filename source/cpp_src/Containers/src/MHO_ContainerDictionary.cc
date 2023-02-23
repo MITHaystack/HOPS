@@ -51,22 +51,17 @@ MHO_ContainerDictionary::MHO_ContainerDictionary()
     AddClassType<weight_type>();
     
     AddClassType<multitone_pcal_type>();
-
-    AddClassType<ch_baseline_axis_pack>();
-    AddClassType<ch_visibility_type>(); 
-    AddClassType<ch_weight_type>(); 
-    
     AddClassType<station_coord_axis_pack>();
     AddClassType<station_coord_type>();
 
-    //don't need sbd type, as it is the same as visibility type
-    
     //storage types explicitly meant for on-disk format
     AddClassType<visibility_store_type>();
     AddClassType<weight_store_type>();
-    AddClassType<ch_visibility_store_type>(); 
-    AddClassType<ch_weight_store_type>(); 
-    
+
+    //other extraneous types 
+    AddClassType<uch_baseline_axis_pack>();
+    AddClassType<uch_visibility_type>(); 
+    AddClassType<uch_weight_type>(); 
 
     #else
 

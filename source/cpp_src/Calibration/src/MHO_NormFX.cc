@@ -23,7 +23,7 @@ MHO_NormFX::InitializeImpl(const XArgType1* in1, const XArgType2* in2, XArgType3
 
         bool status = true;
         //figure out if we have USB or LSB data (or a mixture)
-        auto* channel_axis = &(std::get<CH_CHANNEL_AXIS>( *(in1) ) );
+        auto* channel_axis = &(std::get<CHANNEL_AXIS>( *(in1) ) );
         std::size_t n_usb_chan = channel_axis->GetNIntervalsWithKeyValue(std::string("net_sideband"), 'U');
         std::size_t n_lsb_chan = channel_axis->GetNIntervalsWithKeyValue(std::string("net_sideband"), 'L');
         if(n_usb_chan != 0){fIsUSB = true;}
@@ -38,17 +38,17 @@ MHO_NormFX::InitializeImpl(const XArgType1* in1, const XArgType2* in2, XArgType3
         out->GetDimensions(fOutDims);
 
         //check that the output dimensions are correct
-        if(fInDims[CH_POLPROD_AXIS] != fOutDims[CH_POLPROD_AXIS]){status = false;}
-        if(fInDims[CH_CHANNEL_AXIS] != fOutDims[CH_CHANNEL_AXIS]){status = false;}
-        if(fInDims[CH_TIME_AXIS] != fOutDims[CH_TIME_AXIS]){status = false;}
-        if(4*fInDims[CH_FREQ_AXIS] != fOutDims[CH_FREQ_AXIS]){status = false;}
+        if(fInDims[POLPROD_AXIS] != fOutDims[POLPROD_AXIS]){status = false;}
+        if(fInDims[CHANNEL_AXIS] != fOutDims[CHANNEL_AXIS]){status = false;}
+        if(fInDims[TIME_AXIS] != fOutDims[TIME_AXIS]){status = false;}
+        if(4*fInDims[FREQ_AXIS] != fOutDims[FREQ_AXIS]){status = false;}
         if(!status){msg_error("operators", "Could not initialize MHO_NormFX, in/out dimension mis-match." << eom); return false;}
 
-        std::size_t nlags = fInDims[CH_FREQ_AXIS]; //in the original norm_fx, nlags is 2x this number
+        std::size_t nlags = fInDims[FREQ_AXIS]; //in the original norm_fx, nlags is 2x this number
 
         //temp fWorkspace
         out->GetDimensions(fWorkDims);
-        fWorkDims[CH_FREQ_AXIS] *= 2;
+        fWorkDims[FREQ_AXIS] *= 2;
         fWorkspace.Resize(fWorkDims);
         fWorkspace.SetArray(std::complex<double>(0.0,0.0));
 
@@ -64,7 +64,7 @@ MHO_NormFX::InitializeImpl(const XArgType1* in1, const XArgType2* in2, XArgType3
 
         fPaddedFFTEngine.SetArgs(in1, &fWorkspace);
         fPaddedFFTEngine.DeselectAllAxes();
-        fPaddedFFTEngine.SelectAxis(CH_FREQ_AXIS); //only perform padded fft on frequency (to lag) axis
+        fPaddedFFTEngine.SelectAxis(FREQ_AXIS); //only perform padded fft on frequency (to lag) axis
         fPaddedFFTEngine.SetForward();//forward DFT
         fPaddedFFTEngine.SetPaddingFactor(8);
 
@@ -76,7 +76,7 @@ MHO_NormFX::InitializeImpl(const XArgType1* in1, const XArgType2* in2, XArgType3
         status = fPaddedFFTEngine.Initialize();
         if(!status){msg_error("operators", "Could not initialize padded FFT in MHO_NormFX." << eom); return false;}
 
-        fSubSampler.SetDimensionAndStride(CH_FREQ_AXIS, 2);
+        fSubSampler.SetDimensionAndStride(FREQ_AXIS, 2);
         fSubSampler.SetArgs(&fWorkspace, out);
         status = fSubSampler.Initialize();
         if(!status){msg_error("operators", "Could not initialize sub-sampler in MHO_NormFX." << eom); return false;}
@@ -84,7 +84,7 @@ MHO_NormFX::InitializeImpl(const XArgType1* in1, const XArgType2* in2, XArgType3
 
 
 
-        fCyclicRotator.SetOffset(CH_FREQ_AXIS, 2*nlags);
+        fCyclicRotator.SetOffset(FREQ_AXIS, 2*nlags);
         fCyclicRotator.SetArgs(out);
         status = fCyclicRotator.Initialize();
         if(!status){msg_error("operators", "Could not initialize cyclic rotation in MHO_NormFX." << eom); return false;}
@@ -152,27 +152,27 @@ MHO_NormFX::ExecuteImpl(const XArgType1* in1, const XArgType2* in2, XArgType3* o
         status = fPaddedFFTEngine.Execute();
         if(!status){msg_error("operators", "Could not execute paddded FFT in MHO_NormFX." << eom); return false;}
 
-        // auto ax2 = &(std::get<CH_TIME_AXIS>(fWorkspace));
+        // auto ax2 = &(std::get<TIME_AXIS>(fWorkspace));
         // std::cout<<"workspace ax2(1) = "<<(*ax2)(1)<<std::endl;
 
         status = fSubSampler.Execute();
         if(!status){msg_error("operators", "Could not execute sub-sampler in MHO_NormFX." << eom); return false;}
 
-        // auto ax2b = &(std::get<CH_TIME_AXIS>(*out));
+        // auto ax2b = &(std::get<TIME_AXIS>(*out));
         // std::cout<<"workspace ax2b(1) = "<<(*ax2b)(1)<<std::endl;
 
         status = fCyclicRotator.Execute();
         if(!status){msg_error("operators", "Could not execute cyclic-rotation MHO_NormFX." << eom); return false;}
 
-        // auto ax2c = &(std::get<CH_TIME_AXIS>(*out));
+        // auto ax2c = &(std::get<TIME_AXIS>(*out));
         // std::cout<<"workspace ax2c(1) = "<<(*ax2c)(1)<<std::endl;
 
     #endif
 
         //normalize the array
-        // double norm =  1.0/(double)fInDims[CH_FREQ_AXIS];
-        double norm =  1.0/(double) out->GetDimension(CH_FREQ_AXIS);
-        std::cout<<"the norm = "<< fInDims[CH_FREQ_AXIS]<<std::endl;
+        // double norm =  1.0/(double)fInDims[FREQ_AXIS];
+        double norm =  1.0/(double) out->GetDimension(FREQ_AXIS);
+        std::cout<<"the norm = "<< fInDims[FREQ_AXIS]<<std::endl;
         *(out) *= norm;
 
         // status = fNormBroadcaster.Execute();
@@ -191,10 +191,10 @@ MHO_NormFX::ExecuteImpl(const XArgType1* in1, const XArgType2* in2, XArgType3* o
 
 void MHO_NormFX::run_old_normfx_core(const XArgType1* in1, const XArgType2* in2, XArgType3* out)
 {
-    std::size_t npp = fInDims[CH_POLPROD_AXIS];
-    std::size_t nchan = fInDims[CH_CHANNEL_AXIS];
-    std::size_t naps = fInDims[CH_TIME_AXIS];
-    std::size_t nlags = fInDims[CH_FREQ_AXIS];
+    std::size_t npp = fInDims[POLPROD_AXIS];
+    std::size_t nchan = fInDims[CHANNEL_AXIS];
+    std::size_t naps = fInDims[TIME_AXIS];
+    std::size_t nlags = fInDims[FREQ_AXIS];
 
     double polcof = 1.0;
     double usbfrac = 0.0;

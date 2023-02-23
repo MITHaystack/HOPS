@@ -9,7 +9,7 @@ MHO_WeightPrecisionUpCaster::MHO_WeightPrecisionUpCaster(){};
 MHO_WeightPrecisionUpCaster::~MHO_WeightPrecisionUpCaster(){}
 
 bool
-MHO_WeightPrecisionUpCaster::ExecuteImpl(const ch_weight_store_type* in, ch_weight_type* out)
+MHO_WeightPrecisionUpCaster::ExecuteImpl(const weight_store_type* in, weight_type* out)
 {
     if(in != nullptr && out != nullptr)
     {

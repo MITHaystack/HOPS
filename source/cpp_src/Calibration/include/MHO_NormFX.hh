@@ -44,9 +44,9 @@ namespace hops
 
 
 class MHO_NormFX: public MHO_BinaryOperator<
-    ch_visibility_type,
-    ch_weight_type,
-    ch_sbd_type >
+    visibility_type,
+    weight_type,
+    sbd_type >
 {
     public:
         MHO_NormFX();
@@ -54,9 +54,9 @@ class MHO_NormFX: public MHO_BinaryOperator<
 
     protected:
 
-        using XArgType1 = ch_visibility_type;
-        using XArgType2 = ch_weight_type;
-        using XArgType3 = ch_sbd_type;
+        using XArgType1 = visibility_type;
+        using XArgType2 = weight_type;
+        using XArgType3 = sbd_type;
 
         virtual bool InitializeImpl(const XArgType1* in1, const XArgType2* in2, XArgType3* out) override;
         virtual bool ExecuteImpl(const XArgType1* in1, const XArgType2* in2, XArgType3* out) override;
@@ -65,9 +65,9 @@ class MHO_NormFX: public MHO_BinaryOperator<
 
         void run_old_normfx_core(const XArgType1* in1, const XArgType2* in2, XArgType3* out);
 
-        std::size_t fInDims[CH_VIS_NDIM];
-        std::size_t fWorkDims[CH_VIS_NDIM];
-        std::size_t fOutDims[CH_VIS_NDIM];
+        std::size_t fInDims[VIS_NDIM];
+        std::size_t fWorkDims[VIS_NDIM];
+        std::size_t fOutDims[VIS_NDIM];
 
         //only needed for the old routine
         #ifdef HOPS_USE_FFTW3
@@ -79,18 +79,18 @@ class MHO_NormFX: public MHO_BinaryOperator<
         MHO_NDArrayWrapper< std::complex<double>, 1 > S;
         MHO_NDArrayWrapper< std::complex<double>, 1 > xlag;
 
-        typedef MHO_NaNMasker<ch_visibility_type> nanMaskerType;
-        typedef MHO_ComplexConjugator<ch_visibility_type> conjType;
+        typedef MHO_NaNMasker<visibility_type> nanMaskerType;
+        typedef MHO_ComplexConjugator<visibility_type> conjType;
 
-        MHO_FunctorBroadcaster<ch_visibility_type, nanMaskerType> fNaNBroadcaster;
-        MHO_FunctorBroadcaster<ch_visibility_type, conjType> fConjBroadcaster;
+        MHO_FunctorBroadcaster<visibility_type, nanMaskerType> fNaNBroadcaster;
+        MHO_FunctorBroadcaster<visibility_type, conjType> fConjBroadcaster;
 
-        MHO_MultidimensionalPaddedFastFourierTransform< ch_visibility_type > fPaddedFFTEngine;
+        MHO_MultidimensionalPaddedFastFourierTransform< visibility_type > fPaddedFFTEngine;
 
-        MHO_SubSample<ch_sbd_type> fSubSampler;
-        MHO_CyclicRotator<ch_sbd_type> fCyclicRotator;
+        MHO_SubSample<sbd_type> fSubSampler;
+        MHO_CyclicRotator<sbd_type> fCyclicRotator;
 
-        ch_sbd_type fWorkspace;
+        sbd_type fWorkspace;
         bool fInitialized;
         bool fIsUSB;
 

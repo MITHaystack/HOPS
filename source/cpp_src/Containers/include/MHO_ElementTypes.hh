@@ -11,11 +11,9 @@
 namespace hops
 {
 
-//global definition of floating point types for use in data containers//////
-//we primarily use double for now...but may want to consider float 
-//(to reduce unecessary memory usage) or perhaps consider a separate float format
-//that can be used for disk-storage, while the double format is used 
-//for in-memory computation...we should look at trade-offs with this
+//global definition of floating point types for use in data containers. ////////
+//for in-memory use we use double precision
+//for storage format (converted from difx) we use single float precision
 
 typedef double VFP_TYPE;
 typedef double WFP_TYPE;
@@ -37,7 +35,6 @@ using flag_element_type = FLAG_TYPE;
 //since the double based-types take up twice as much space
 typedef float VFP_STORE_TYPE;
 typedef float WFP_STORE_TYPE;
-
 using visibility_element_store_type = std::complex<VFP_STORE_TYPE>;
 using weight_element_store_type = WFP_STORE_TYPE;
 

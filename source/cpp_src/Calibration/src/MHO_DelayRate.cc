@@ -25,7 +25,7 @@ MHO_DelayRate::InitializeOutOfPlace(const XArgType* in, XArgType* out)
 
         //borrow this stupid routine from search_windows.c
         std::size_t drsp_size = 8192;
-        while ( (drsp_size / 4) > fInDims[CH_TIME_AXIS] ) {drsp_size /= 2;};
+        while ( (drsp_size / 4) > fInDims[TIME_AXIS] ) {drsp_size /= 2;};
         std::cout<<"DRSP size = "<<drsp_size<<std::endl;
 
         std::size_t np = drsp_size*4;
@@ -33,7 +33,7 @@ MHO_DelayRate::InitializeOutOfPlace(const XArgType* in, XArgType* out)
 
         fPaddedFFTEngine.SetArgs(in, out);
         fPaddedFFTEngine.DeselectAllAxes();
-        fPaddedFFTEngine.SelectAxis(CH_TIME_AXIS); //only perform padded fft on frequency (to lag) axis
+        fPaddedFFTEngine.SelectAxis(TIME_AXIS); //only perform padded fft on frequency (to lag) axis
         fPaddedFFTEngine.SetForward();//forward DFT
         fPaddedFFTEngine.SetPaddedSize(np);
         fPaddedFFTEngine.SetEndPadded();//pretty sure this is the default from delay_rate.c
@@ -41,13 +41,13 @@ MHO_DelayRate::InitializeOutOfPlace(const XArgType* in, XArgType* out)
         status = fPaddedFFTEngine.Initialize();
         if(!status){msg_error("operators", "Could not initialize padded FFT in MHO_DelayRate." << eom); return false;}
 
-        fCyclicRotator.SetOffset(CH_TIME_AXIS, np/2);
+        fCyclicRotator.SetOffset(TIME_AXIS, np/2);
         fCyclicRotator.SetArgs(out);
         status = fCyclicRotator.Initialize();
         if(!status){msg_error("operators", "Could not initialize cyclic rotation in MHO_DelayRate." << eom); return false;}
 
 
-        fSubSampler.SetDimensionAndStride(CH_TIME_AXIS, 2);
+        fSubSampler.SetDimensionAndStride(TIME_AXIS, 2);
         fSubSampler.SetArgs(out);
         status = fSubSampler.Initialize();
         if(!status){msg_error("operators", "Could not initialize sub-sampler in MHO_DelayRate." << eom); return false;}
@@ -75,14 +75,14 @@ MHO_DelayRate::ExecuteOutOfPlace(const XArgType* in1, XArgType* out)
         // ch_visibility_type* sbd_dr_data = sbd_data->CloneEmpty();
         // sbd_dr_data->ZeroArray();
         // sbd_data->GetDimensions(bl_dim);
-        // std::size_t nap = bl_dim[CH_TIME_AXIS];
-        // bl_dim[CH_TIME_AXIS] = drsp_size;
+        // std::size_t nap = bl_dim[TIME_AXIS];
+        // bl_dim[TIME_AXIS] = drsp_size;
         // sbd_dr_data->Resize(bl_dim);
 
-        //std::get<CH_CHANNEL_AXIS>(*sbd_dr_data).CopyIntervalLabels( std::get<CH_CHANNEL_AXIS>(*bl_data) );
+        //std::get<CHANNEL_AXIS>(*sbd_dr_data).CopyIntervalLabels( std::get<CHANNEL_AXIS>(*bl_data) );
 
         //copy the data into sbd_dr_data
-        std::size_t nap = fInDims[CH_TIME_AXIS];
+        std::size_t nap = fInDims[TIME_AXIS];
         out->ZeroArray();
         // for(std::size_t ap=0; ap<nap; ap++)
         // {
@@ -98,7 +98,7 @@ MHO_DelayRate::ExecuteOutOfPlace(const XArgType* in1, XArgType* out)
         check_step_fatal(ok, "calibration", "sub sample execution." << eom );
         // 
         // //normalize the array
-        // double norm =  1.0/(double) out->GetDimension(CH_TIME_AXIS);
+        // double norm =  1.0/(double) out->GetDimension(TIME_AXIS);
         // *(out) *= norm;
 
         return true;
@@ -119,7 +119,7 @@ MHO_DelayRate::ConditionallyResizeOutput(const std::size_t* dims,
     bool have_to_resize = false;
     for(std::size_t i=0; i<XArgType::rank::value; i++)
     {
-        if(i == CH_TIME_AXIS)
+        if(i == TIME_AXIS)
         {
             if(out_dim[i] != size)
             {

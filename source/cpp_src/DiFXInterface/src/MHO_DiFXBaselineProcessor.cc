@@ -152,8 +152,8 @@ MHO_DiFXBaselineProcessor::ConstructVisibilityFileObjects()
         if(fV){delete fV; fV = nullptr;}
         if(fW){delete fW; fW = nullptr;}
 
-        fV = new ch_visibility_store_type(); 
-        fW = new ch_weight_store_type();
+        fV = new visibility_store_type(); 
+        fW = new weight_store_type();
 
         //tags for the visibilities
         fV->Resize(fNPolPairs, fNChannels, fNAPs, fNSpectralPoints);
@@ -180,28 +180,28 @@ MHO_DiFXBaselineProcessor::ConstructVisibilityFileObjects()
         fW->Insert(std::string("remote_station_mk4id"), fRemStationMk4Id);
 
         //polarization product axis
-        auto* polprod_axis = &(std::get<CH_POLPROD_AXIS>(*fV));
-        auto* wpolprod_axis = &(std::get<CH_POLPROD_AXIS>(*fW));
+        auto* polprod_axis = &(std::get<POLPROD_AXIS>(*fV));
+        auto* wpolprod_axis = &(std::get<POLPROD_AXIS>(*fW));
         polprod_axis->Insert(std::string("name"), std::string("polarization_product") );
         wpolprod_axis->Insert(std::string("name"), std::string("polarization_product") );
 
         //channel axis
-        auto* ch_axis = &(std::get<CH_CHANNEL_AXIS>(*fV));
-        auto* wch_axis = &(std::get<CH_CHANNEL_AXIS>(*fW));
+        auto* ch_axis = &(std::get<CHANNEL_AXIS>(*fV));
+        auto* wch_axis = &(std::get<CHANNEL_AXIS>(*fW));
         ch_axis->Insert(std::string("name"), std::string("channel") );
         wch_axis->Insert(std::string("name"), std::string("channel") );
 
         //AP axis
-        auto* ap_axis = &(std::get<CH_TIME_AXIS>(*fV));
-        auto* wap_axis = &(std::get<CH_TIME_AXIS>(*fW));
+        auto* ap_axis = &(std::get<TIME_AXIS>(*fV));
+        auto* wap_axis = &(std::get<TIME_AXIS>(*fW));
         ap_axis->Insert(std::string("name"), std::string("time") );
         wap_axis->Insert(std::string("name"), std::string("time") );
         ap_axis->Insert(std::string("units"), std::string("s") );
         wap_axis->Insert(std::string("units"), std::string("s") );
 
         //(sub-channel) frequency axis 
-        auto* sp_axis = &(std::get<CH_FREQ_AXIS>(*fV));
-        auto* wsp_axis = &(std::get<CH_FREQ_AXIS>(*fW));
+        auto* sp_axis = &(std::get<FREQ_AXIS>(*fV));
+        auto* wsp_axis = &(std::get<FREQ_AXIS>(*fW));
         sp_axis->Insert(std::string("name"), std::string("frequency") );
         wsp_axis->Insert(std::string("name"), std::string("frequency") );
         sp_axis->Insert(std::string("units"), std::string("MHz") );

@@ -88,23 +88,23 @@ using namespace hops;
 // 
 
 
-void fine_peak_interpolation(ch_mbd_type* mbd_arr, ch_visibility_type* sbd_arr, ch_visibility_type* sbd_dr_arr)
+void fine_peak_interpolation(mbd_type* mbd_arr, visibility_type* sbd_arr, visibility_type* sbd_dr_arr)
 {
     bool ok;
     //first find the location of the max SBD, DR, and MBD bin
-    MHO_ExtremaSearch< ch_mbd_type > mbdSearch;
+    MHO_ExtremaSearch< mbd_type > mbdSearch;
     mbdSearch.SetArgs(mbd_arr);
     ok = mbdSearch.Initialize();
     ok = mbdSearch.Execute();
     
     auto mbd_dim = mbd_arr->GetDimensions();
-    double nl = sbd_arr->GetDimension(CH_FREQ_AXIS);
+    double nl = sbd_arr->GetDimension(FREQ_AXIS);
 
 
     std::vector< std::pair<std::size_t, std::size_t > > dr_sbd_loc;
     //find the location of the SBD and DR max bins
     MHO_ExtremaSearch< MHO_NDArrayView< visibility_element_type, 2 > > mSearch;
-    for(std::size_t ch=0; ch < sbd_dr_arr->GetDimension(CH_CHANNEL_AXIS); ch++)
+    for(std::size_t ch=0; ch < sbd_dr_arr->GetDimension(CHANNEL_AXIS); ch++)
     {
         auto ch_slice = sbd_dr_arr->SliceView(0,ch,":",":");
         mSearch.SetArgs(&ch_slice);
@@ -119,8 +119,8 @@ void fine_peak_interpolation(ch_mbd_type* mbd_arr, ch_visibility_type* sbd_arr, 
 
     double bin_max = mbdSearch.GetMax();
     std::size_t offset_to_bin_max = mbdSearch.GetMaxLocation();
-    ch_mbd_type::index_type loc;
-    MHO_NDArrayMath::RowMajorIndexFromOffset< ch_mbd_type::rank::value >(offset_to_bin_max, &(mbd_dim[0]), &(loc[0]));
+    mbd_type::index_type loc;
+    MHO_NDArrayMath::RowMajorIndexFromOffset< mbd_type::rank::value >(offset_to_bin_max, &(mbd_dim[0]), &(loc[0]));
     
     std::cout<<"fringe max = "<<bin_max<<std::endl;
     
@@ -136,12 +136,12 @@ void fine_peak_interpolation(ch_mbd_type* mbd_arr, ch_visibility_type* sbd_arr, 
     double drfmax;
     
 
-    //auto dr_ax = &( std::get<CH_TIME_AXIS>(*mbd_arr) );
-    auto mbd_ax = &( std::get<CH_CHANNEL_AXIS>(*mbd_arr) );
+    //auto dr_ax = &( std::get<TIME_AXIS>(*mbd_arr) );
+    auto mbd_ax = &( std::get<CHANNEL_AXIS>(*mbd_arr) );
     
-    auto chan_ax = &( std::get<CH_CHANNEL_AXIS>(*sbd_dr_arr) );
-    auto dr_ax = &( std::get<CH_TIME_AXIS>(*sbd_dr_arr) );
-    auto sbd_ax = &( std::get<CH_FREQ_AXIS>(*sbd_dr_arr) );
+    auto chan_ax = &( std::get<CHANNEL_AXIS>(*sbd_dr_arr) );
+    auto dr_ax = &( std::get<TIME_AXIS>(*sbd_dr_arr) );
+    auto sbd_ax = &( std::get<FREQ_AXIS>(*sbd_dr_arr) );
     
     // //lets print the dr axis 
     // for(std::size_t idr = 0; idr<dr_ax->GetSize(); idr++)
@@ -397,18 +397,18 @@ int main(int argc, char** argv)
     ////////////////////////////////////////////////////////////////////////////
 
     //retrieve the (first) visibility and weight objects (currently assuming there is only one object per type)
-    ch_visibility_store_type* bl_store_data = nullptr;
-    ch_weight_store_type* wt_store_data = nullptr;
+    visibility_store_type* bl_store_data = nullptr;
+    weight_store_type* wt_store_data = nullptr;
 
-    ch_visibility_type bl_data_obj;
-    ch_weight_type wt_data_obj;
-    ch_visibility_type* bl_data = &bl_data_obj;
-    ch_weight_type* wt_data = &wt_data_obj;
+    visibility_type bl_data_obj;
+    weight_type wt_data_obj;
+    visibility_type* bl_data = &bl_data_obj;
+    weight_type* wt_data = &wt_data_obj;
 
     MHO_ObjectTags* tags = nullptr;
 
-    bl_store_data = conStore->RetrieveObject<ch_visibility_store_type>();
-    wt_store_data = conStore->RetrieveObject<ch_weight_store_type>();
+    bl_store_data = conStore->RetrieveObject<visibility_store_type>();
+    wt_store_data = conStore->RetrieveObject<weight_store_type>();
     tags = conStore->RetrieveObject<MHO_ObjectTags>();
     
     if(bl_store_data == nullptr)
@@ -440,18 +440,18 @@ int main(int argc, char** argv)
     wt_up_caster.Initialize();
     wt_up_caster.Execute();
 
-    std::size_t wt_dim[ch_weight_type::rank::value];
+    std::size_t wt_dim[weight_type::rank::value];
     wt_data->GetDimensions(wt_dim);
 
     ////////////////////////////////////////////////////////////////////////////
     //APPLY COARSE DATA SELECTION
     ////////////////////////////////////////////////////////////////////////////
     //select data repack
-    MHO_SelectRepack<ch_visibility_type> spack;
-    MHO_SelectRepack<ch_weight_type> wtspack;
+    MHO_SelectRepack<visibility_type> spack;
+    MHO_SelectRepack<weight_type> wtspack;
 
     //first find indexes which corresponds to the specified pol product
-    std::vector<std::size_t> selected_pp = (&(std::get<CH_POLPROD_AXIS>(*bl_data)))->SelectMatchingIndexes(polprod);
+    std::vector<std::size_t> selected_pp = (&(std::get<POLPROD_AXIS>(*bl_data)))->SelectMatchingIndexes(polprod);
 
     //select some specified AP's
     // std::vector< std::size_t > selected_ap;
@@ -470,8 +470,8 @@ int main(int argc, char** argv)
     //spack.SelectAxisItems(2,selected_ap);
     
     
-    ch_visibility_type* alt_data = new ch_visibility_type();
-    ch_weight_type* alt_wt_data = new ch_weight_type();
+    visibility_type* alt_data = new visibility_type();
+    weight_type* alt_wt_data = new weight_type();
 
     spack.SetArgs(bl_data, alt_data);
     spack.Initialize();
@@ -483,8 +483,8 @@ int main(int argc, char** argv)
 
     //TODO, work out what to do with the axis interval labels in between operations
     //explicitly copy the channel axis labels here
-    std::get<CH_CHANNEL_AXIS>(*alt_data).CopyIntervalLabels( std::get<CH_CHANNEL_AXIS>(*bl_data) );
-    std::get<CH_CHANNEL_AXIS>(*alt_wt_data).CopyIntervalLabels( std::get<CH_CHANNEL_AXIS>(*wt_data) );
+    std::get<CHANNEL_AXIS>(*alt_data).CopyIntervalLabels( std::get<CHANNEL_AXIS>(*bl_data) );
+    std::get<CHANNEL_AXIS>(*alt_wt_data).CopyIntervalLabels( std::get<CHANNEL_AXIS>(*wt_data) );
 
     wt_data->Copy(*alt_wt_data);
     bl_data->Copy(*alt_data);
@@ -492,7 +492,7 @@ int main(int argc, char** argv)
     delete alt_data;
     delete alt_wt_data;
 
-    std::size_t bl_dim[ch_visibility_type::rank::value];
+    std::size_t bl_dim[visibility_type::rank::value];
     bl_data->GetDimensions(bl_dim);
     
     
@@ -514,9 +514,9 @@ int main(int argc, char** argv)
     //compute the sum of the weights 
     std::cout<<"weight at 0 = " << wt_data->at(0,0,0,0) <<std::endl;
 
-    MHO_Reducer<ch_weight_type, MHO_CompoundSum> wt_reducer;
+    MHO_Reducer<weight_type, MHO_CompoundSum> wt_reducer;
     wt_reducer.SetArgs(wt_data);
-    for(std::size_t i=0; i<ch_weight_type::rank::value; i++)
+    for(std::size_t i=0; i<weight_type::rank::value; i++)
     {
         wt_reducer.ReduceAxis(i);
     }
@@ -558,8 +558,8 @@ int main(int argc, char** argv)
     
 
     //output for the delay
-    ch_visibility_type* sbd_data = bl_data->CloneEmpty();
-    bl_dim[CH_FREQ_AXIS] *= 4; //normfx implementation demands this
+    visibility_type* sbd_data = bl_data->CloneEmpty();
+    bl_dim[FREQ_AXIS] *= 4; //normfx implementation demands this
     sbd_data->Resize(bl_dim);
     
     ////////////////////////////////////////////////////////////////////////////
@@ -577,7 +577,7 @@ int main(int argc, char** argv)
 
     //run the transformation to delay rate space (this also involves a zero padded FFT)
     MHO_DelayRate drOp;
-    ch_visibility_type* sbd_dr_data = sbd_data->CloneEmpty();
+    visibility_type* sbd_dr_data = sbd_data->CloneEmpty();
     drOp.SetArgs(sbd_data, sbd_dr_data);
     ok = drOp.Initialize();
     check_step_fatal(ok, "main", "dr initialization." << eom );
@@ -587,7 +587,7 @@ int main(int argc, char** argv)
     //collect the sky frequency values of each channel before we x-form to MBD space
     std::vector< double > chan_freqs;
     std::string sky_freq_key = "sky_freq";
-    auto chan_ax = &(std::get<CH_CHANNEL_AXIS>(*bl_data) );
+    auto chan_ax = &(std::get<CHANNEL_AXIS>(*bl_data) );
     chan_ax->CollectAxisElementLabelValues(sky_freq_key, chan_freqs);
     if(chan_freqs.size() != chan_ax->GetSize() ){msg_error("main", "channel axis and and sky frequency size mismatch" << eom);}
 
@@ -609,13 +609,13 @@ int main(int argc, char** argv)
     //NOTE!! Because we are allocating space to do the MBD search over all SBD/DR at the same time 
     //this uses far more memory than is actually needed, we will have to optimized, or a do a 1-D delay
     //search to reduce memory usage at some point
-    ch_mbd_type mbd_data;
+    mbd_type mbd_data;
     // mbd_data.Resize(bl_dim[0], ngrid_pts, bl_dim[2], bl_dim[3]);
     mbd_data.Resize(bl_dim[0], ngrid_pts, 1, 1);
     mbd_data.ZeroArray();
     
     //set up the mbd delay axis
-    auto mbd_ax = &(std::get<CH_CHANNEL_AXIS>(mbd_data) );
+    auto mbd_ax = &(std::get<CHANNEL_AXIS>(mbd_data) );
     for(std::size_t i=0; i<ngrid_pts;i++)
     {
         (*mbd_ax)(i) = i*gspace;
@@ -644,16 +644,16 @@ int main(int argc, char** argv)
     
 
     //now we are going to run a FFT on the mbd axis
-    MHO_MultidimensionalFastFourierTransform< ch_mbd_type > fFFTEngine2;
-    MHO_CyclicRotator< ch_mbd_type > fCyclicRotator2;
+    MHO_MultidimensionalFastFourierTransform< mbd_type > fFFTEngine2;
+    MHO_CyclicRotator< mbd_type > fCyclicRotator2;
     fFFTEngine2.SetArgs(&mbd_data);
     fFFTEngine2.DeselectAllAxes();
-    fFFTEngine2.SelectAxis(CH_CHANNEL_AXIS);
+    fFFTEngine2.SelectAxis(CHANNEL_AXIS);
     fFFTEngine2.SetForward();
     ok = fFFTEngine2.Initialize();
     check_step_fatal(ok, "main", "fft engine initialization." << eom );
 
-    fCyclicRotator2.SetOffset(CH_CHANNEL_AXIS, ngrid_pts/2);
+    fCyclicRotator2.SetOffset(CHANNEL_AXIS, ngrid_pts/2);
     fCyclicRotator2.SetArgs(&mbd_data);
     ok = fCyclicRotator2.Initialize();
     check_step_fatal(ok, "main", "cyclic rotation initialization." << eom );
@@ -701,8 +701,8 @@ int main(int argc, char** argv)
     MHO_ExtremaSearch< MHO_NDArrayView< visibility_element_type, 2 > > mSearch;
     MHO_ExtremaSearch< MHO_NDArrayView< visibility_element_type, 1 > > mbdSearch;
 
-    auto dr_rate_ax = std::get<CH_TIME_AXIS>(*sbd_dr_data);
-    auto delay_ax = std::get<CH_FREQ_AXIS>(*sbd_dr_data);
+    auto dr_rate_ax = std::get<TIME_AXIS>(*sbd_dr_data);
+    auto delay_ax = std::get<FREQ_AXIS>(*sbd_dr_data);
 
     //divide out the reference frequency (need to think about this )
     double rescale = 1.0/6.0;//ref freq = 6GHz (axis is then in nanosec/sec)
@@ -714,7 +714,7 @@ int main(int argc, char** argv)
 
 
 
-    for(std::size_t ch=0; ch<bl_dim[CH_CHANNEL_AXIS]; ch++)
+    for(std::size_t ch=0; ch<bl_dim[CHANNEL_AXIS]; ch++)
     {
         std::stringstream ss;
         ss << "channel_test";
@@ -741,7 +741,7 @@ int main(int argc, char** argv)
 
         //at the sbd, dr max locations, lets look for the mbd max too
         auto mbd_slice = mbd_data.SliceView(0, ":", loc_array[0], loc_array[1]);
-        auto mbd_ax = &(std::get<CH_CHANNEL_AXIS>(mbd_data));
+        auto mbd_ax = &(std::get<CHANNEL_AXIS>(mbd_data));
 
         if(ch==0)
         {
@@ -765,7 +765,7 @@ int main(int argc, char** argv)
         mbdSearch.Initialize();
         mbdSearch.Execute();
 
-        auto new_mbd_ax = std::get<CH_CHANNEL_AXIS>(mbd_data);
+        auto new_mbd_ax = std::get<CHANNEL_AXIS>(mbd_data);
         auto gr2 = gMan.GenerateComplexGraph1D(mbd_slice, *mbd_ax, ROOT_CMPLX_PLOT_ABS );
 
         std::size_t max_mbd_loc = mbdSearch.GetMaxLocation();

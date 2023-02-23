@@ -990,20 +990,20 @@ int main(int argc, char** argv)
     ch_visibility_type* ch_bl_data = ch_bl_data_prelim->Clone();
     ch_weight_type* ch_bl_wdata = ch_bl_wdata_prelim->Clone();
 
-    std::size_t tmp_dims[CH_VIS_NDIM];
+    std::size_t tmp_dims[VIS_NDIM];
     ch_bl_data_prelim->GetDimensions(tmp_dims);
-    tmp_dims[CH_POLPROD_AXIS] = 1;
+    tmp_dims[POLPROD_AXIS] = 1;
     ch_bl_data->Resize(tmp_dims);
     ch_bl_wdata->Resize(tmp_dims);
 
     //select only first pol product
     for(std::size_t p=0; p<1; p++)
     {
-        for(std::size_t i=0; i<tmp_dims[CH_CHANNEL_AXIS]; i++)
+        for(std::size_t i=0; i<tmp_dims[CHANNEL_AXIS]; i++)
         {
-            for(std::size_t j=0; j<tmp_dims[CH_TIME_AXIS]; j++)
+            for(std::size_t j=0; j<tmp_dims[TIME_AXIS]; j++)
             {
-                for(std::size_t k=0; k<tmp_dims[CH_FREQ_AXIS]; k++)
+                for(std::size_t k=0; k<tmp_dims[FREQ_AXIS]; k++)
                 {
                     (*ch_bl_data)(0,i,j,k) = (*ch_bl_data_prelim)(p,i,j,k);
                     (*ch_bl_wdata)(0,i,j,k) = (*ch_bl_wdata_prelim)(p,i,j,k);
@@ -1014,12 +1014,12 @@ int main(int argc, char** argv)
 
     //output array
     ch_baseline_sbd_type* ch_sbd_data = new ch_baseline_sbd_type();
-    std::size_t sbd_dims[CH_VIS_NDIM];
+    std::size_t sbd_dims[VIS_NDIM];
     ch_bl_data->GetDimensions(sbd_dims);
-    sbd_dims[CH_FREQ_AXIS] = 4*sbd_dims[CH_FREQ_AXIS]; //For whatever reason fill params sets nlags  = 2 x nlags, then normfx needs another 2x
+    sbd_dims[FREQ_AXIS] = 4*sbd_dims[FREQ_AXIS]; //For whatever reason fill params sets nlags  = 2 x nlags, then normfx needs another 2x
     ch_sbd_data->Resize(sbd_dims);
 
-    for(int q=0; q <CH_VIS_NDIM; q++)
+    for(int q=0; q <VIS_NDIM; q++)
     {
         std::cout<<"dim"<<q<<" = "<<sbd_dims[q]<<std::endl;
     }

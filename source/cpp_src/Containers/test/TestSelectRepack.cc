@@ -21,8 +21,8 @@ int main(int /*argc*/, char** /*argv*/)
     MHO_Message::GetInstance().AcceptAllKeys();
     MHO_Message::GetInstance().SetMessageLevel(eDebug);
 
-    ch_visibility_type in;
-    ch_visibility_type out;
+    visibility_type in;
+    visibility_type out;
 
     in.Resize(4,2,5,4);
 
@@ -35,7 +35,7 @@ int main(int /*argc*/, char** /*argv*/)
     ax2_idx.push_back(1);
     ax2_idx.push_back(3);
 
-    MHO_SelectRepack<ch_visibility_type> spack;
+    MHO_SelectRepack<visibility_type> spack;
     spack.SelectAxisItems(0,ax0_idx);
     spack.SelectAxisItems(2,ax2_idx);
     spack.SetArgs(&in, &out);

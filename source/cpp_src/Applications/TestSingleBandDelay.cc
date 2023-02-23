@@ -163,13 +163,13 @@ int main(int argc, char** argv)
     }
     inter.Close();
 
-    std::size_t bl_dim[CH_VIS_NDIM];
+    std::size_t bl_dim[VIS_NDIM];
     bl_data->GetDimensions(bl_dim);
 
     //create an array with 4x the number of 'lags', for zero padded interpolation
-    std::size_t nbl_dim[CH_VIS_NDIM];
+    std::size_t nbl_dim[VIS_NDIM];
     bl_data->GetDimensions(nbl_dim);
-    nbl_dim[CH_FREQ_AXIS] = 4*nbl_dim[CH_FREQ_AXIS];
+    nbl_dim[FREQ_AXIS] = 4*nbl_dim[FREQ_AXIS];
 
     ch_visibility_type* nbl_data = new ch_visibility_type();
     nbl_data->Resize(nbl_dim);
@@ -183,15 +183,15 @@ int main(int argc, char** argv)
     //this case, that chunk is the visibilities of a single (channel)
     //with axes of time-by-freq
 
-    // std::size_t channel_dims[2] = {data_dims[CH_TIME_AXIS], data_dims[CH_FREQ_AXIS]};
+    // std::size_t channel_dims[2] = {data_dims[TIME_AXIS], data_dims[FREQ_AXIS]};
     // MHO_NDArrayWrapper< std::complex<double>, 2> channel_wrapper(channel_dims);
     // channel_wrapper.SetExternalData( &( ch_bl_data->at(0,0,0,0) ) , channel_dims);
 
     //now we run an FFT on the freq axis only over each channel's data
-    MHO_MultidimensionalFastFourierTransform<VFP_TYPE, CH_VIS_NDIM>* fft_engine =
-        new MHO_MultidimensionalFastFourierTransform<VFP_TYPE, CH_VIS_NDIM>();
+    MHO_MultidimensionalFastFourierTransform<VFP_TYPE, VIS_NDIM>* fft_engine =
+        new MHO_MultidimensionalFastFourierTransform<VFP_TYPE, VIS_NDIM>();
     fft_engine->DeselectAllAxes(); //default is to do all axes, so deselect them
-    fft_engine->SelectAxis(CH_FREQ_AXIS); //only execute FFTs along the freq axis
+    fft_engine->SelectAxis(FREQ_AXIS); //only execute FFTs along the freq axis
     fft_engine->SetForward();
     fft_engine->SetArgs(bl_data);
     // fft_engine->SetInput(bl_data);
@@ -241,8 +241,8 @@ int main(int argc, char** argv)
     // std::vector<TGraph*> graphs;
     // std::size_t pol_prod = 1;
     // std::size_t channel = 0;
-    // std::size_t nAPs = bl_dim[CH_TIME_AXIS];
-    // std::size_t nLags = bl_dim[CH_FREQ_AXIS];
+    // std::size_t nAPs = bl_dim[TIME_AXIS];
+    // std::size_t nLags = bl_dim[FREQ_AXIS];
     // std::vector<double> sum; sum.resize(nLags,0);
     // 
     // for(std::size_t ap = 0; ap < nAPs; ap++)
@@ -330,15 +330,15 @@ int main(int argc, char** argv)
     // //this case, that chunk is the visibilities of a single (channel)
     // //with axes of time-by-freq
     //
-    // std::size_t channel_dims[2] = {data_dims[CH_TIME_AXIS], data_dims[CH_FREQ_AXIS]};
+    // std::size_t channel_dims[2] = {data_dims[TIME_AXIS], data_dims[FREQ_AXIS]};
     // MHO_NDArrayWrapper< std::complex<double>, 2> channel_wrapper(channel_dims);
     // channel_wrapper.SetExternalData( &( ch_bl_data->at(0,0,0,0) ) , channel_dims);
     //
     // //now we run a 2-d FFT on the time and freq axes over each channel's data
     // MHO_MultidimensionalFastFourierTransform<2>* fft_engine_2d = new MHO_MultidimensionalFastFourierTransform<2>();
-    // for(std::size_t pp=0; pp<data_dims[CH_POLPROD_AXIS]; pp++)
+    // for(std::size_t pp=0; pp<data_dims[POLPROD_AXIS]; pp++)
     // {
-    //     for(std::size_t ch=0; ch<data_dims[CH_CHANNEL_AXIS]; ch++)
+    //     for(std::size_t ch=0; ch<data_dims[CHANNEL_AXIS]; ch++)
     //     {
     //         //point the wrapper to the appropriate chunk of data
     //         channel_wrapper.SetExternalData( &( ch_bl_data->at(pp,ch,0,0) ), channel_dims);
@@ -352,18 +352,18 @@ int main(int argc, char** argv)
     //
     // // std::cout<<"done with the FFT's"<<std::endl;
     // // std::vector< std::vector< std::vector< std::complex<double> > > > sbd;
-    // // sbd.resize(data_dims[CH_POLPROD_AXIS]);
+    // // sbd.resize(data_dims[POLPROD_AXIS]);
     // //
     // // //now collapse the time and channel axis (channels only over the first 8 chans --one sampler)
-    // // for(std::size_t pp=0; pp<data_dims[CH_POLPROD_AXIS]; pp++)
+    // // for(std::size_t pp=0; pp<data_dims[POLPROD_AXIS]; pp++)
     // // {
-    // //     sbd[pp].resize(data_dims[CH_TIME_AXIS]);
-    // //     for(std::size_t t=0; t<data_dims[CH_TIME_AXIS]; t++)
+    // //     sbd[pp].resize(data_dims[TIME_AXIS]);
+    // //     for(std::size_t t=0; t<data_dims[TIME_AXIS]; t++)
     // //     {
-    // //         sbd[pp][t].resize(data_dims[CH_FREQ_AXIS], std::complex<double>(0.0, 0.0) );
-    // //         for(std::size_t f=0; f<data_dims[CH_FREQ_AXIS]; f++)
+    // //         sbd[pp][t].resize(data_dims[FREQ_AXIS], std::complex<double>(0.0, 0.0) );
+    // //         for(std::size_t f=0; f<data_dims[FREQ_AXIS]; f++)
     // //         {
-    // //             for(std::size_t ch=0; ch<data_dims[CH_CHANNEL_AXIS]; ch++)
+    // //             for(std::size_t ch=0; ch<data_dims[CHANNEL_AXIS]; ch++)
     // //             {
     // //                 sbd[pp][t][f] += ch_bl_data->at(pp,ch,t,f);
     // //             }
@@ -375,26 +375,26 @@ int main(int argc, char** argv)
     // //TODO FIXME check this calculation
     // //lets compute the values of the transformed (freq) axis --
     // //this ought to give us the values of the 'single band delay' axis
-    // MHO_NDArrayWrapper< double, 1> sbd_axis(data_dims[CH_FREQ_AXIS]);
-    // int n = data_dims[CH_FREQ_AXIS];
+    // MHO_NDArrayWrapper< double, 1> sbd_axis(data_dims[FREQ_AXIS]);
+    // int n = data_dims[FREQ_AXIS];
     // int n02 = n/2;
-    // for(std::size_t f=0; f<data_dims[CH_FREQ_AXIS]; f++)
+    // for(std::size_t f=0; f<data_dims[FREQ_AXIS]; f++)
     // {
     //     int tmp = f;
-    //     sbd_axis(f) = (tmp - n02)*(1.0/( freq_axis_ptr->at(data_dims[CH_FREQ_AXIS]-1) - freq_axis_ptr->at(0) )  );
+    //     sbd_axis(f) = (tmp - n02)*(1.0/( freq_axis_ptr->at(data_dims[FREQ_AXIS]-1) - freq_axis_ptr->at(0) )  );
     //     std::cout<<"sbd_axis: "<<f<<" = "<<sbd_axis(f)<<std::endl;
     // }
     //
     // //TODO FIXME check this calculation
     // //lets compute the values of the transformed (time) axis --
     // //this ought to give us the values of the 'delay-rate' axis
-    // MHO_NDArrayWrapper< double, 1> dr_axis(data_dims[CH_TIME_AXIS]);
-    // int dn = data_dims[CH_TIME_AXIS];
+    // MHO_NDArrayWrapper< double, 1> dr_axis(data_dims[TIME_AXIS]);
+    // int dn = data_dims[TIME_AXIS];
     // int dn02 = dn/2;
-    // for(std::size_t t=0; t<data_dims[CH_TIME_AXIS]; t++)
+    // for(std::size_t t=0; t<data_dims[TIME_AXIS]; t++)
     // {
     //     int tmp = t;
-    //     dr_axis(t) = (tmp - dn02)*(1.0/( time_axis_ptr->at(data_dims[CH_TIME_AXIS]-1) - time_axis_ptr->at(0) )  );
+    //     dr_axis(t) = (tmp - dn02)*(1.0/( time_axis_ptr->at(data_dims[TIME_AXIS]-1) - time_axis_ptr->at(0) )  );
     //     std::cout<<"dr_axis: "<<t<<" = "<<dr_axis(t)<<std::endl;
     // }
     //
@@ -409,7 +409,7 @@ int main(int argc, char** argv)
     //             ch_visibility_type::rank::value > summation;
     //
     // //sum all the data along the channel axis
-    // summation.ReduceAxis(CH_CHANNEL_AXIS);
+    // summation.ReduceAxis(CHANNEL_AXIS);
 
 
 
@@ -463,11 +463,11 @@ int main(int argc, char** argv)
     // myStyle->cd();
     //
     //
-    // TGraph2D* g_amp[ data_dims[CH_POLPROD_AXIS] ];
-    // TGraph* g_amp1[ data_dims[CH_POLPROD_AXIS] ];
-    // TCanvas* c[data_dims[CH_POLPROD_AXIS] ];
+    // TGraph2D* g_amp[ data_dims[POLPROD_AXIS] ];
+    // TGraph* g_amp1[ data_dims[POLPROD_AXIS] ];
+    // TCanvas* c[data_dims[POLPROD_AXIS] ];
     // std::vector< std::pair<double,double> > max_sbd_loc; max_sbd_loc.resize(4);
-    // for(std::size_t pp=0; pp<data_dims[CH_POLPROD_AXIS]; pp++)
+    // for(std::size_t pp=0; pp<data_dims[POLPROD_AXIS]; pp++)
     // {
     //     std::stringstream ss;
     //     ss << pp;
@@ -481,10 +481,10 @@ int main(int argc, char** argv)
     //     double sbd_max = 0;
     //     double sbd_max_location = 0;
     //
-    //     for(std::size_t f=0; f<data_dims[CH_FREQ_AXIS]; f++)
+    //     for(std::size_t f=0; f<data_dims[FREQ_AXIS]; f++)
     //     {
     //         std::complex<double> sum(0,0);
-    //         for(std::size_t t=0; t<data_dims[CH_TIME_AXIS]; t++)
+    //         for(std::size_t t=0; t<data_dims[TIME_AXIS]; t++)
     //         {
     //             sum += sbd[pp][t][f];
     //             g_amp[pp]->SetPoint(count, sbd_axis(f), dr_axis(t), std::abs( sbd[pp][t][f] ) );
@@ -514,7 +514,7 @@ int main(int argc, char** argv)
     //
     //
     //
-    // // for(std::size_t pp=0; pp<data_dims[CH_POLPROD_AXIS]; pp++)
+    // // for(std::size_t pp=0; pp<data_dims[POLPROD_AXIS]; pp++)
     // // {
     // //     c[pp]->cd();
     // //     g_amp[pp]->SetMarkerStyle(20);

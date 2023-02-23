@@ -51,7 +51,7 @@ MHO_ManualChannelPhaseCorrection::InitializeImpl(const XArgType1* in_vis, const 
     if(station == ref_station){pol_index = 0;}
 
     //map the pcal polarization index to the visibility pol-product index
-    auto pp_ax = std::get<CH_POLPROD_AXIS>(*in_vis);
+    auto pp_ax = std::get<POLPROD_AXIS>(*in_vis);
     auto pol_ax = std::get<0>(*pcal);
     for(std::size_t j=0; j<pol_ax.GetSize(); j++)
     {
@@ -66,7 +66,7 @@ MHO_ManualChannelPhaseCorrection::InitializeImpl(const XArgType1* in_vis, const 
     }
 
     //map the pcal channel index to the visibility channel index
-    auto chan_ax = std::get<CH_CHANNEL_AXIS>(*in_vis);
+    auto chan_ax = std::get<CHANNEL_AXIS>(*in_vis);
     auto pcal_chan_ax = std::get<1>(*pcal);
     for(std::size_t j=0; j<pcal_chan_ax.GetSize(); j++)
     {
@@ -94,7 +94,7 @@ MHO_ManualChannelPhaseCorrection::ExecuteImpl(const XArgType1* in_vis, const XAr
         //with separate 2 input arguments (vis array, and pcal array)
         out_vis->Copy(*in_vis);
 
-        auto chan_ax = &(std::get<CH_CHANNEL_AXIS>(*in_vis));
+        auto chan_ax = &(std::get<CHANNEL_AXIS>(*in_vis));
     
         //loop over pol products
         for(auto pol_it = fPolIdxMap.begin(); pol_it != fPolIdxMap.end(); pol_it++)
