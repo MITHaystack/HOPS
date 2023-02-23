@@ -18,7 +18,7 @@
 namespace hops
 {
 
-class MHO_WeightPrecisionUpCaster: public MHO_TransformingOperator< ch_weight_store_type, ch_weight_type>
+class MHO_WeightPrecisionUpCaster: public MHO_TransformingOperator< weight_store_type, weight_type>
 {
     public:
         MHO_WeightPrecisionUpCaster();
@@ -26,8 +26,8 @@ class MHO_WeightPrecisionUpCaster: public MHO_TransformingOperator< ch_weight_st
 
     protected:
 
-        virtual bool InitializeImpl(const ch_weight_store_type* /*in*/, ch_weight_type* /*out*/){return true;}; //no op
-        virtual bool ExecuteImpl(const ch_weight_store_type* in, ch_weight_type* out);
+        virtual bool InitializeImpl(const weight_store_type* /*in*/, weight_type* /*out*/){return true;}; //no op
+        virtual bool ExecuteImpl(const weight_store_type* in, weight_type* out);
 
     private:
 

@@ -129,7 +129,7 @@ int main(int argc, char** argv)
     std::cout<<"Will use corel file: "<<corel_file<<std::endl;
 
     //now open and read the (channelized) baseline visibility data
-    ch_visibility_type* bl_data = new ch_visibility_type();
+    visibility_type* bl_data = new visibility_type();
     MHO_BinaryFileInterface inter;
     bool status = inter.OpenToRead(corel_file);
     if(status)
@@ -147,7 +147,7 @@ int main(int argc, char** argv)
     }
     inter.Close();
 
-    std::size_t bl_dim[CH_VIS_NDIM];
+    std::size_t bl_dim[VIS_NDIM];
     bl_data->GetDimensions(bl_dim);
 
     //now we are going to pass the visibility data to python, and plot
@@ -183,9 +183,9 @@ int main(int argc, char** argv)
     test_op.Execute();
 
     std::cout<<"*************** contents of array now **************"<<std::endl;
-    for(size_t i=0; i<bl_data->GetDimension(CH_TIME_AXIS); i++)
+    for(size_t i=0; i<bl_data->GetDimension(TIME_AXIS); i++)
     {
-        for(size_t j=0; j<bl_data->GetDimension(CH_FREQ_AXIS); j++)
+        for(size_t j=0; j<bl_data->GetDimension(FREQ_AXIS); j++)
         {
             std::cout<<"vis(0,0,"<<i<<","<<j<<") = "<<(*bl_data)(0,0,i,j)<<std::endl;
         }

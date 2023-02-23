@@ -20,8 +20,8 @@ MHO_ChannelizedRotationFunctor::~MHO_ChannelizedRotationFunctor(){};
 void
 MHO_ChannelizedRotationFunctor::SetAxisPack(ch_baseline_axis_pack* axes)
 {
-    fTimeAxis = &(std::get<CH_TIME_AXIS>(*axes));
-    fFreqAxis = &(std::get<CH_FREQ_AXIS>(*axes));
+    fTimeAxis = &(std::get<TIME_AXIS>(*axes));
+    fFreqAxis = &(std::get<FREQ_AXIS>(*axes));
 };
 
 // void

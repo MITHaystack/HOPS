@@ -9,7 +9,7 @@ MHO_VisibilityPrecisionUpCaster::MHO_VisibilityPrecisionUpCaster(){};
 MHO_VisibilityPrecisionUpCaster::~MHO_VisibilityPrecisionUpCaster(){}
 
 bool
-MHO_VisibilityPrecisionUpCaster::ExecuteImpl(const ch_visibility_store_type* in, ch_visibility_type* out)
+MHO_VisibilityPrecisionUpCaster::ExecuteImpl(const visibility_store_type* in, visibility_type* out)
 {
     if(in != nullptr && out != nullptr)
     {

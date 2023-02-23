@@ -140,7 +140,7 @@ int main(int argc, char** argv)
     }
 
 
-    ch_visibility_type* ch_bl_data = new ch_visibility_type();
+    visibility_type* ch_bl_data = new visibility_type();
 
     MHO_ClassIdentityMap cid_map;
     cid_map.AddClassType(*cscalar);
@@ -164,7 +164,7 @@ int main(int argc, char** argv)
         inter.Write(*cscalar, "scalar1", label);
         inter.Write(*cvector, "vector2", label);
         inter.Write(*ctable, "table3", label);
-        inter.Write(*ch_bl_data, "ch_vis", label);
+        inter.Write(*ch_bl_data, "vis", label);
         inter.Close();
     }
     else

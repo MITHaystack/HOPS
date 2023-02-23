@@ -39,7 +39,7 @@ namespace hops
 {
 
 
-class MHO_DelayRate: public MHO_UnaryOperator< ch_sbd_type >
+class MHO_DelayRate: public MHO_UnaryOperator< sbd_type >
 {
     public:
         MHO_DelayRate();
@@ -47,7 +47,7 @@ class MHO_DelayRate: public MHO_UnaryOperator< ch_sbd_type >
 
     protected:
 
-        using XArgType = ch_sbd_type;
+        using XArgType = sbd_type;
 
 
         virtual bool InitializeInPlace(XArgType* in) override {return false;};
@@ -58,15 +58,15 @@ class MHO_DelayRate: public MHO_UnaryOperator< ch_sbd_type >
 
     private:
 
-        std::size_t fInDims[CH_VIS_NDIM];
-        std::size_t fOutDims[CH_VIS_NDIM];
+        std::size_t fInDims[VIS_NDIM];
+        std::size_t fOutDims[VIS_NDIM];
 
         void ConditionallyResizeOutput(const std::size_t* dims, std::size_t size, XArgType* out);
 
-        MHO_MultidimensionalPaddedFastFourierTransform< ch_visibility_type > fPaddedFFTEngine;
+        MHO_MultidimensionalPaddedFastFourierTransform< visibility_type > fPaddedFFTEngine;
 
-        MHO_SubSample<ch_sbd_type> fSubSampler;
-        MHO_CyclicRotator<ch_sbd_type> fCyclicRotator;
+        MHO_SubSample<sbd_type> fSubSampler;
+        MHO_CyclicRotator<sbd_type> fCyclicRotator;
 
         bool fInitialized;
 

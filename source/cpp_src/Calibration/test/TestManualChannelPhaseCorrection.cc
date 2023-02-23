@@ -124,10 +124,10 @@ int main(int argc, char** argv)
     }
     inter.Close();
 
-    std::size_t bl_dim[CH_VIS_NDIM];
+    std::size_t bl_dim[VIS_NDIM];
     bl_data->GetDimensions(bl_dim);
     //print the dimensions of this array of visibilities
-    for(std::size_t i=0;i<CH_VIS_NDIM; i++)
+    for(std::size_t i=0;i<VIS_NDIM; i++)
     {
         std::cout<<"Data dimension: "<<i<<" has size: "<<bl_dim[i]<<std::endl;
     }

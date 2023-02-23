@@ -423,8 +423,8 @@ MHO_MK4CorelInterface::ExtractCorelFile()
     ReadCorelFile();
     ReadVexFile();
 
-    visibility_store_type* bl_data = nullptr;
-    weight_store_type* bl_wdata = nullptr;
+    uch_visibility_store_type* bl_data = nullptr;
+    uch_weight_store_type* bl_wdata = nullptr;
 
     if(fHaveCorel && fHaveVex)
     {
@@ -449,8 +449,8 @@ MHO_MK4CorelInterface::ExtractCorelFile()
         msg_debug("mk4interface", "Number of spectral points = " << fNSpectral << eom);
 
         std::size_t bl_dim[VIS_NDIM] = {fNPPs, fNAPs, (fNChannelsPerPP*fNSpectral)};
-        bl_data = new visibility_store_type(bl_dim);
-        bl_wdata = new weight_store_type(bl_dim);
+        bl_data = new uch_visibility_store_type(bl_dim);
+        bl_wdata = new uch_weight_store_type(bl_dim);
 
         //first label the pol-product axis
         std::size_t pp_count = 0;
@@ -458,16 +458,16 @@ MHO_MK4CorelInterface::ExtractCorelFile()
         for(auto it = fPolProducts.begin(); it != fPolProducts.end(); it++)
         {
             pp_index_lookup[*it] = pp_count;
-            std::get<POLPROD_AXIS>(*bl_data)[pp_count] = *it;
-            std::get<POLPROD_AXIS>(*bl_wdata)[pp_count] = *it;
+            std::get<UCH_POLPROD_AXIS>(*bl_data)[pp_count] = *it;
+            std::get<UCH_POLPROD_AXIS>(*bl_wdata)[pp_count] = *it;
             pp_count++;
         }
 
         //now assign values to the time (0-th dim) axis
         for(size_t ap=0; ap<fNAPs; ap++)
         {
-            std::get<TIME_AXIS>(*bl_data)[ap] = ap_time_length*ap;
-            std::get<TIME_AXIS>(*bl_wdata)[ap] = ap_time_length*ap;
+            std::get<UCH_TIME_AXIS>(*bl_data)[ap] = ap_time_length*ap;
+            std::get<UCH_TIME_AXIS>(*bl_wdata)[ap] = ap_time_length*ap;
         }
 
         //finally we need to label the frequency axis
@@ -506,8 +506,8 @@ MHO_MK4CorelInterface::ExtractCorelFile()
                     ch_label.Insert(std::string("net_sideband"), net_sb);
                     ch_label.Insert(std::string("channel"), ch_count);
                     ch_label.SetBounds(freq_count, freq_count + fNSpectral);
-                    std::get<FREQ_AXIS>(*bl_data).InsertLabel(ch_label);
-                    std::get<FREQ_AXIS>(*bl_wdata).InsertLabel(ch_label);
+                    std::get<UCH_FREQ_AXIS>(*bl_data).InsertLabel(ch_label);
+                    std::get<UCH_FREQ_AXIS>(*bl_wdata).InsertLabel(ch_label);
                 }
 
                 //set up this portion of the frequency axis
@@ -517,8 +517,8 @@ MHO_MK4CorelInterface::ExtractCorelFile()
                     if(net_sb == "U"){findex = sp;};
                     if(net_sb == "L"){findex = fNSpectral-sp-1;}
                     double freq = calc_freq_bin(sky_freq, bw, net_sb, fNSpectral, findex);
-                    std::get<FREQ_AXIS>(*bl_data).at(freq_count) = freq;
-                    std::get<FREQ_AXIS>(*bl_wdata).at(freq_count) = freq;
+                    std::get<UCH_FREQ_AXIS>(*bl_data).at(freq_count) = freq;
+                    std::get<UCH_FREQ_AXIS>(*bl_wdata).at(freq_count) = freq;
                     freq_count++;
                 }
                 ch_count++;
@@ -527,19 +527,19 @@ MHO_MK4CorelInterface::ExtractCorelFile()
 
         #ifdef HOPS_ENABLE_DEBUG_MSG
         //lets print out the pol, time and freq axes now:
-        for(std::size_t i=0; i< std::get<POLPROD_AXIS>(*bl_data).GetSize(); i++)
+        for(std::size_t i=0; i< std::get<UCH_POLPROD_AXIS>(*bl_data).GetSize(); i++)
         {
-            msg_debug("mk4interface", "pol_axis: "<<i<<" = "<<std::get<POLPROD_AXIS>(*bl_data).at(i)<< eom);
+            msg_debug("mk4interface", "pol_axis: "<<i<<" = "<<std::get<UCH_POLPROD_AXIS>(*bl_data).at(i)<< eom);
         }
         
-        for(std::size_t i=0; i< std::get<TIME_AXIS>(*bl_data).GetSize(); i++)
+        for(std::size_t i=0; i< std::get<UCH_TIME_AXIS>(*bl_data).GetSize(); i++)
         {
-            msg_debug("mk4interface", "time_axis: "<<i<<" = "<<std::get<TIME_AXIS>(*bl_data).at(i)<<eom);
+            msg_debug("mk4interface", "time_axis: "<<i<<" = "<<std::get<UCH_TIME_AXIS>(*bl_data).at(i)<<eom);
         }
         
-        for(std::size_t i=0; i< std::get<FREQ_AXIS>(*bl_data).GetSize(); i++)
+        for(std::size_t i=0; i< std::get<UCH_FREQ_AXIS>(*bl_data).GetSize(); i++)
         {
-            msg_debug("mk4interface", "freq_axis: "<<i<<" = "<<std::get<FREQ_AXIS>(*bl_data).at(i)<<eom);
+            msg_debug("mk4interface", "freq_axis: "<<i<<" = "<<std::get<UCH_FREQ_AXIS>(*bl_data).at(i)<<eom);
         }
         #endif
 

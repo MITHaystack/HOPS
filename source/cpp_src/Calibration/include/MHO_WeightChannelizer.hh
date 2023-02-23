@@ -19,7 +19,7 @@ namespace hops
 {
 
 
-class MHO_WeightChannelizer: public MHO_TransformingOperator< weight_store_type, ch_weight_store_type>
+class MHO_WeightChannelizer: public MHO_TransformingOperator< uch_weight_store_type, weight_store_type>
 {
     public:
         MHO_WeightChannelizer();
@@ -27,8 +27,8 @@ class MHO_WeightChannelizer: public MHO_TransformingOperator< weight_store_type,
 
     private:
 
-        virtual bool InitializeImpl(const weight_store_type* in, ch_weight_store_type* out);
-        virtual bool ExecuteImpl(const weight_store_type* in, ch_weight_store_type* out);
+        virtual bool InitializeImpl(const uch_weight_store_type* in, weight_store_type* out);
+        virtual bool ExecuteImpl(const uch_weight_store_type* in, weight_store_type* out);
 
         bool fInitialized;
 

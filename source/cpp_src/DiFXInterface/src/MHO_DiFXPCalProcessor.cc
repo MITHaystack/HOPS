@@ -304,7 +304,7 @@ MHO_DiFXPCalProcessor::Organize()
         for(auto pol_iter = fPolSet.begin(); pol_iter != fPolSet.end(); pol_iter++)
         {
             std::string pol = *pol_iter;
-            std::get<POLPROD_AXIS>(fPCal).at(pol_idx) = pol;
+            std::get<MTPCAL_POL_AXIS>(fPCal).at(pol_idx) = pol;
             pol_idx++;
         }
 
@@ -312,7 +312,7 @@ MHO_DiFXPCalProcessor::Organize()
         for(auto it = fSortedPCalData.begin(); it != fSortedPCalData.end(); it++)
         {
             int ap = it->ap;
-            std::get<TIME_AXIS>(fPCal).at(time_idx) = ap*fAPLength;
+            std::get<MTPCAL_TIME_AXIS>(fPCal).at(time_idx) = ap*fAPLength;
             time_idx++;
         }
 
@@ -321,13 +321,13 @@ MHO_DiFXPCalProcessor::Organize()
         auto eit = fSortedPCalData[0].pc_phasors[*(fPolSet.begin())].end();
         for(auto it = bit; it != eit; it++)
         {
-            std::get<FREQ_AXIS>(fPCal).at(tone_idx) = it->tone_freq;
+            std::get<MTPCAL_FREQ_AXIS>(fPCal).at(tone_idx) = it->tone_freq;
             tone_idx++;
         }
 
         for(pol_idx = 0; pol_idx<npol; pol_idx++)
         {
-            std::string pol = std::get<POLPROD_AXIS>(fPCal).at(pol_idx);
+            std::string pol = std::get<MTPCAL_POL_AXIS>(fPCal).at(pol_idx);
             for(time_idx = 0; time_idx<naps; time_idx++)
             {
                 auto phasor_vec = &( fSortedPCalData[time_idx].pc_phasors[pol] );

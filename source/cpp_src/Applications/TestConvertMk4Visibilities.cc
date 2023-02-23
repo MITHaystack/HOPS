@@ -75,10 +75,10 @@ int main(int argc, char** argv)
     mk4inter.SetCorelFile(corel_filename);
     mk4inter.SetVexFile(root_filename);
     mk4inter.ExtractCorelFile();
-    visibility_store_type* bl_data = mk4inter.GetExtractedVisibilities();
-    weight_store_type* bl_wdata = mk4inter.GetExtractedWeights();
+    uch_visibility_store_type* bl_data = mk4inter.GetExtractedVisibilities();
+    uch_weight_store_type* bl_wdata = mk4inter.GetExtractedWeights();
 
-    ch_visibility_store_type* ch_bl_data = new ch_visibility_store_type();
+    visibility_store_type* ch_bl_data = new visibility_store_type();
     MHO_VisibilityChannelizer channelizer;
     channelizer.SetArgs(bl_data, ch_bl_data);
     // channelizer.SetInput(bl_data);

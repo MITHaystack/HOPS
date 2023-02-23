@@ -29,7 +29,7 @@ MHO_VisibilityChannelizer::MHO_VisibilityChannelizer()
 MHO_VisibilityChannelizer::~MHO_VisibilityChannelizer(){}
 
 bool
-MHO_VisibilityChannelizer::InitializeImpl(const visibility_store_type* in, ch_visibility_store_type* out)
+MHO_VisibilityChannelizer::InitializeImpl(const uch_visibility_store_type* in, visibility_store_type* out)
 {
     fInitialized = false;
     if(in != nullptr && out != nullptr)
@@ -41,11 +41,11 @@ MHO_VisibilityChannelizer::InitializeImpl(const visibility_store_type* in, ch_vi
         else
         {
             //now we need figure out the dimensions of the ouput array
-            std::size_t input_dim[visibility_store_type::rank::value];
+            std::size_t input_dim[uch_visibility_store_type::rank::value];
             in->GetDimensions(input_dim);
 
             //and determine the number of unique channel labels
-            auto* freq_axis = &(std::get<FREQ_AXIS>( *(in) ) );
+            auto* freq_axis = &(std::get<UCH_FREQ_AXIS>( *(in) ) );
             std::vector< const MHO_IntervalLabel* > channel_labels = freq_axis->GetIntervalsWithKey(std::string("channel"));
             std::size_t num_channels = channel_labels.size();
 
@@ -71,22 +71,22 @@ MHO_VisibilityChannelizer::InitializeImpl(const visibility_store_type* in, ch_vi
 
             //finally we can re-size the output array so that it is ready
             //to recieve data from each channel
-            std::size_t output_dim[ch_visibility_store_type::rank::value];
-            output_dim[CH_POLPROD_AXIS] = input_dim[POLPROD_AXIS];
-            output_dim[CH_CHANNEL_AXIS] = num_channels;
-            output_dim[CH_TIME_AXIS] = input_dim[TIME_AXIS];
-            output_dim[CH_FREQ_AXIS] = channel_length;
+            std::size_t output_dim[visibility_store_type::rank::value];
+            output_dim[POLPROD_AXIS] = input_dim[UCH_POLPROD_AXIS];
+            output_dim[CHANNEL_AXIS] = num_channels;
+            output_dim[TIME_AXIS] = input_dim[UCH_TIME_AXIS];
+            output_dim[FREQ_AXIS] = channel_length;
 
             out->Resize(output_dim[0], output_dim[1], output_dim[2], output_dim[3]);
 
-            auto* in_pp_axis = &(std::get<POLPROD_AXIS>( *(in) ) );
-            auto* in_time_axis = &(std::get<TIME_AXIS>( *(in) ) );
-            auto* in_freq_axis = &(std::get<FREQ_AXIS>( *(in) ) );
+            auto* in_pp_axis = &(std::get<UCH_POLPROD_AXIS>( *(in) ) );
+            auto* in_time_axis = &(std::get<UCH_TIME_AXIS>( *(in) ) );
+            auto* in_freq_axis = &(std::get<UCH_FREQ_AXIS>( *(in) ) );
 
-            auto* out_pp_axis = &(std::get<CH_POLPROD_AXIS>( *(out) ) );
-            auto* out_channel_axis = &(std::get<CH_CHANNEL_AXIS>( *(out) ) );
-            auto* out_time_axis = &(std::get<CH_TIME_AXIS>( *(out) ) );
-            auto* out_freq_axis = &(std::get<CH_FREQ_AXIS>( *(out) ) );
+            auto* out_pp_axis = &(std::get<POLPROD_AXIS>( *(out) ) );
+            auto* out_channel_axis = &(std::get<CHANNEL_AXIS>( *(out) ) );
+            auto* out_time_axis = &(std::get<TIME_AXIS>( *(out) ) );
+            auto* out_freq_axis = &(std::get<FREQ_AXIS>( *(out) ) );
 
             //label the output array polarization axis
             for(std::size_t pp=0; pp<in_pp_axis->GetSize(); pp++)
@@ -129,14 +129,14 @@ MHO_VisibilityChannelizer::InitializeImpl(const visibility_store_type* in, ch_vi
 }
 
 bool
-MHO_VisibilityChannelizer::ExecuteImpl(const visibility_store_type* in, ch_visibility_store_type* out)
+MHO_VisibilityChannelizer::ExecuteImpl(const uch_visibility_store_type* in, visibility_store_type* out)
 {
     if(fInitialized)
     {
-        auto* in_pp_axis = &(std::get<POLPROD_AXIS>( *(in) ) );
-        auto* in_time_axis = &(std::get<TIME_AXIS>( *(in) ) );
-        auto* in_freq_axis = &(std::get<FREQ_AXIS>( *(in) ) );
-        auto* out_channel_axis = &(std::get<CH_CHANNEL_AXIS>( *(out) ) );
+        auto* in_pp_axis = &(std::get<UCH_POLPROD_AXIS>( *(in) ) );
+        auto* in_time_axis = &(std::get<UCH_TIME_AXIS>( *(in) ) );
+        auto* in_freq_axis = &(std::get<UCH_FREQ_AXIS>( *(in) ) );
+        auto* out_channel_axis = &(std::get<CHANNEL_AXIS>( *(out) ) );
 
         //pack the data into the appropriate place
         for(std::size_t ch=0; ch<out_channel_axis->GetSize(); ch++)
