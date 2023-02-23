@@ -82,8 +82,8 @@ class MHO_DiFXBaselineProcessor
         std::vector< std::pair<int, json> > fBaselineFreqs;
 
         //the baseline data in hops data containers
-        ch_weight_type* fW;
-        ch_visibility_type* fV;
+        ch_weight_store_type* fW;
+        ch_visibility_store_type* fV;
         MHO_ObjectTags fTags;
 
         //comparison predicate for time-sorting visibility record data

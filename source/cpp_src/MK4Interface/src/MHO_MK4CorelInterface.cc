@@ -423,8 +423,8 @@ MHO_MK4CorelInterface::ExtractCorelFile()
     ReadCorelFile();
     ReadVexFile();
 
-    visibility_type* bl_data = nullptr;
-    weight_type* bl_wdata = nullptr;
+    visibility_store_type* bl_data = nullptr;
+    weight_store_type* bl_wdata = nullptr;
 
     if(fHaveCorel && fHaveVex)
     {
@@ -449,8 +449,8 @@ MHO_MK4CorelInterface::ExtractCorelFile()
         msg_debug("mk4interface", "Number of spectral points = " << fNSpectral << eom);
 
         std::size_t bl_dim[VIS_NDIM] = {fNPPs, fNAPs, (fNChannelsPerPP*fNSpectral)};
-        bl_data = new visibility_type(bl_dim);
-        bl_wdata = new weight_type(bl_dim);
+        bl_data = new visibility_store_type(bl_dim);
+        bl_wdata = new weight_store_type(bl_dim);
 
         //first label the pol-product axis
         std::size_t pp_count = 0;
