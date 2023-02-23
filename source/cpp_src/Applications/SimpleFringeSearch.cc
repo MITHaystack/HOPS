@@ -22,6 +22,7 @@ struct c_block* cb_head; //global extern kludge (due to stupid c-library interfa
 
 //operators
 #include "MHO_VisibilityPrecisionUpCaster.hh"
+#include "MHO_WeightPrecisionUpCaster.hh"
 #include "MHO_NormFX.hh"
 #include "MHO_SelectRepack.hh"
 #include "MHO_FreqSpacing.hh"
@@ -434,11 +435,13 @@ int main(int argc, char** argv)
     up_caster.Initialize();
     up_caster.Execute();
     
+    MHO_WeightPrecisionUpCaster wt_up_caster;
+    wt_up_caster.SetArgs(wt_store_data, wt_data);
+    wt_up_caster.Initialize();
+    wt_up_caster.Execute();
+
     std::size_t wt_dim[ch_weight_type::rank::value];
     wt_data->GetDimensions(wt_dim);
-    
-
-
 
     ////////////////////////////////////////////////////////////////////////////
     //APPLY COARSE DATA SELECTION
