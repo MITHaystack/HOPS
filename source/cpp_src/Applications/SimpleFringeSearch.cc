@@ -21,6 +21,7 @@ struct c_block* cb_head; //global extern kludge (due to stupid c-library interfa
 #include "MHO_ControlBlockWrapper.hh"
 
 //operators
+#include "MHO_VisibilityPrecisionUpCaster.hh"
 #include "MHO_NormFX.hh"
 #include "MHO_SelectRepack.hh"
 #include "MHO_FreqSpacing.hh"
@@ -395,13 +396,43 @@ int main(int argc, char** argv)
     ////////////////////////////////////////////////////////////////////////////
 
     //retrieve the (first) visibility and weight objects (currently assuming there is only one object per type)
-    ch_visibility_type* bl_data = nullptr;
-    ch_weight_type* wt_data = nullptr;
+    ch_visibility_store_type* bl_store_data = nullptr;
+    ch_weight_store_type* wt_store_data = nullptr;
+
+    ch_visibility_type bl_data_obj;
+    ch_weight_type wt_data_obj;
+    ch_visibility_type* bl_data = &bl_data_obj;
+    ch_weight_type* wt_data = &wt_data_obj;
+
     MHO_ObjectTags* tags = nullptr;
 
-    bl_data = conStore->RetrieveObject<ch_visibility_type>();
-    wt_data = conStore->RetrieveObject<ch_weight_type>();
+    bl_store_data = conStore->RetrieveObject<ch_visibility_store_type>();
+    wt_store_data = conStore->RetrieveObject<ch_weight_store_type>();
     tags = conStore->RetrieveObject<MHO_ObjectTags>();
+    
+    if(bl_store_data == nullptr)
+    {
+        msg_fatal("main", "failed to read visibility data from the .cor file." <<eom);
+        std::exit(1);
+    }
+    
+    if(wt_store_data == nullptr)
+    {
+        msg_fatal("main", "failed to read weight data from the .cor file." <<eom);
+        std::exit(1);
+    }
+    
+    if(tags == nullptr)
+    {
+        msg_fatal("main", "failed to read tag data from the .cor file." <<eom);
+        std::exit(1);
+    }
+
+    
+    MHO_VisibilityPrecisionUpCaster up_caster;
+    up_caster.SetArgs(bl_store_data, bl_data);
+    up_caster.Initialize();
+    up_caster.Execute();
     
     std::size_t wt_dim[ch_weight_type::rank::value];
     wt_data->GetDimensions(wt_dim);

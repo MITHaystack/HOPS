@@ -36,7 +36,7 @@ using visibility_type = MHO_TableContainer< visibility_element_type, baseline_ax
 using weight_type = MHO_TableContainer< weight_element_type, baseline_axis_pack >;
 
 ////////////////////////////////////////////////////////////////////////////////
-//Definitions for visibilities and related quantities
+//Definitions for visibilities and related quantities (in-memory types)
 //which have a separate channel axis. In this case all channels should have the 
 //same number of spectral points, or be padded out to the same size
 
@@ -54,9 +54,18 @@ using ch_weight_type = MHO_TableContainer< weight_element_type, ch_baseline_axis
 using ch_sbd_type = MHO_TableContainer< visibility_element_type, ch_baseline_axis_pack >;
 using ch_mbd_type = MHO_TableContainer< visibility_element_type, ch_baseline_mbd_axis_pack >;
 
-//(here we are storing pcal as a rotation in 'degrees', should/could we use phasor instead?)
+//(here we are storing manual pcal as a rotation in 'degrees', should/could we use phasor instead?)
 using ch_pcal_axis_pack = MHO_AxisPack< pol_axis_type, channel_axis_type>;
-using ch_pcal_phase_type = MHO_TableContainer< double, ch_pcal_axis_pack >;  
+using ch_pcal_phase_type = MHO_TableContainer< double, ch_pcal_axis_pack >;
+
+
+////////////////////////////////////////////////////////////////////////////////
+//Definitions for storage (on-disk) types for visibilities and related quantities to cut down on disk usage
+using visibility_store_type = MHO_TableContainer< visibility_element_store_type, baseline_axis_pack >;
+using weight_store_type = MHO_TableContainer< weight_element_store_type, baseline_axis_pack >;
+using ch_visibility_store_type = MHO_TableContainer< visibility_element_store_type, ch_baseline_axis_pack >;
+using ch_weight_store_type = MHO_TableContainer< weight_element_store_type, ch_baseline_axis_pack >;
+
 
 }//end of hops namespaces
 
