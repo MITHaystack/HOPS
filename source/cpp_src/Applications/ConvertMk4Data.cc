@@ -54,8 +54,6 @@ void ConvertCorel(const std::string root_file, const std::string& input_file, co
     MHO_VisibilityChannelizer channelizer;
     visibility_store_type* ch_bl_data = new visibility_store_type();
     channelizer.SetArgs(bl_data, ch_bl_data);
-    // channelizer.SetInput(bl_data);
-    // channelizer.SetOutput(ch_bl_data);
     bool init = channelizer.Initialize();
     if(init)
     {
@@ -76,12 +74,12 @@ void ConvertCorel(const std::string root_file, const std::string& input_file, co
     if(status)
     {
         uint32_t label = 0xFFFFFFFF; //someday make this mean something
-        // inter.Write(*ch_bl_data, "vis", label);
-        // inter.Write(*ch_bl_wdata, "weight", label);
+        inter.Write(*ch_bl_data, "vis", label);
+        inter.Write(*ch_bl_wdata, "weight", label);
 
-        //TODO AFTER DEBUG RETURN TO ch_* data
-        inter.Write(*bl_data, "vis", label);
-        inter.Write(*bl_wdata, "weight", label);
+        // //TODO AFTER DEBUG RETURN TO ch_* data
+        inter.Write(*bl_data, "uch_vis", label);
+        inter.Write(*bl_wdata, "uch_weight", label);
         inter.Close();
     }
     else

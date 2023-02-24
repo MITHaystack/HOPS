@@ -59,13 +59,13 @@ MHO_VisibilityChannelizer::InitializeImpl(const uch_visibility_store_type* in, v
             {
                 double sf;
                 (*iter)->Retrieve(std::string("sky_freq"), sf);
-                msg_debug("calibration", "Inserting channel of size: " << (*iter)->GetLength() << " with sky freq: " << sf << eom);
+                msg_debug("calibration", "inserting channel of size: " << (*iter)->GetLength() << " with sky freq: " << sf << eom);
                 channel_sizes.insert( (*iter)->GetLength() );
             }
 
             if(channel_sizes.size() != 1)
             {
-                msg_warn("calibration", "Channel sizes are not a uniform number of spectral points." << eom);
+                msg_warn("calibration", "channel sizes are not a uniform number of spectral points." << eom);
             }
             std::size_t channel_length = *( channel_sizes.begin() );
 
@@ -97,7 +97,6 @@ MHO_VisibilityChannelizer::InitializeImpl(const uch_visibility_store_type* in, v
             //label the output channel axis with channel sky frequency
             for(std::size_t ch=0; ch<num_channels; ch++)
             {
-                int channel_id;
                 double sky_freq;
                 if( channel_labels[ch]->Retrieve(std::string("sky_freq"), sky_freq) ) //channel_labels[ch]->Retrieve(std::string("channel"), channel_id )
                 {
@@ -105,7 +104,7 @@ MHO_VisibilityChannelizer::InitializeImpl(const uch_visibility_store_type* in, v
                 }
                 else
                 {
-                    msg_warn("calibration", "Warning channel id: "<< channel_id << " not found in channel labels." << eom);
+                    msg_warn("calibration", "Warning channel id: "<< ch << " not found in channel labels." << eom);
                 }
             }
 
@@ -182,6 +181,7 @@ MHO_VisibilityChannelizer::ExecuteImpl(const uch_visibility_store_type* in, visi
     }
     else
     {
+        msg_error("calibration", "visibility channelizer not initialized." << eom);
         return false;
     }
 
