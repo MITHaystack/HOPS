@@ -76,8 +76,12 @@ void ConvertCorel(const std::string root_file, const std::string& input_file, co
     if(status)
     {
         uint32_t label = 0xFFFFFFFF; //someday make this mean something
-        inter.Write(*ch_bl_data, "vis", label);
-        inter.Write(*ch_bl_wdata, "weight", label);
+        // inter.Write(*ch_bl_data, "vis", label);
+        // inter.Write(*ch_bl_wdata, "weight", label);
+
+        //TODO AFTER DEBUG RETURN TO ch_* data
+        inter.Write(*bl_data, "vis", label);
+        inter.Write(*bl_wdata, "weight", label);
         inter.Close();
     }
     else
