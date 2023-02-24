@@ -177,6 +177,9 @@ MHO_MK4CorelInterface::DetermineDataDimensions()
     fNAPs += 1;
     //fNAPs = valid_aps.size();
 
+
+
+
     #ifdef  HOPS_ENABLE_DEBUG_MSG
     msg_debug("mk4interface", "Total number of channel pairs = "<< fNChannels << eom );
     for(auto it = fAllChannelMap.begin(); it != fAllChannelMap.end(); it++)
@@ -236,6 +239,7 @@ MHO_MK4CorelInterface::DetermineDataDimensions()
     // TODO FIXME -- refactor the following section --
     //the ovex data retrieval (just to get the channel polariztaion!!!) is rather convoluted
     // we may want to add a feature to resolve vex link-words to json objects or json paths
+    //which would simplfy this mess
     std::string ref_st = std::string(&(baseline[0]),1);
     std::string rem_st = std::string(&(baseline[1]),1);
     double ref_sky_freq, ref_bw, rem_sky_freq, rem_bw;
@@ -374,21 +378,37 @@ MHO_MK4CorelInterface::DetermineDataDimensions()
         pp_chan_set_map[*it] = std::set<MHO_IntervalLabel*>();
         fPPSortedChannelInfo[*it] = std::vector< MHO_IntervalLabel* >();
     }
+
     //now separate out channel labels by pol-product
     for(auto it = fAllChannelMap.begin(); it != fAllChannelMap.end(); it++)
     {
-        char pol1, pol2;
+        std::string pol1, pol2;
         it->second.Retrieve("ref_polarization", pol1);
         it->second.Retrieve("rem_polarization", pol2);
+        std::cout<<"pol1: "<<pol1<<" pol2: "<<pol2<<std::endl;
         std::string ppkey;
-        ppkey.append(1,pol1);
-        ppkey.append(1,pol2);
+        ppkey.append(pol1);
+        ppkey.append(pol2);
+
+        std::cout<<"ppkey = "<<ppkey<<std::endl;
         auto indicator = pp_chan_set_map[ppkey].insert( &(it->second) );
         if(indicator.second)
         {
             fPPSortedChannelInfo[ppkey].push_back( &(it->second) );
         }
     }
+
+    std::cout<<"_________________________________"<<std::endl;
+    for(auto it = fPPSortedChannelInfo.begin(); it != fPPSortedChannelInfo.end(); it++)
+    {
+        std::cout<<it->first<<std::endl;
+        for(auto it2 = it->second.begin(); it2 != it->second.end(); it2++)
+        {
+            (*it2)->DumpMap<std::string>();
+            //std::cout<<" - "<<*it2<<std::endl;
+        }
+    }
+
 
     //make sure all pol-products share the same number of channels
     fNChannelsPerPP = 0;
@@ -414,6 +434,13 @@ MHO_MK4CorelInterface::DetermineDataDimensions()
     {
         std::sort( fPPSortedChannelInfo[*it].begin(), fPPSortedChannelInfo[*it].end(), sort_pred);
     }
+
+    std::cout<<"num pol prod = "<<fNPPs<<std::endl;
+    std::cout<<"num aps = "<<fNAPs<<std::endl;
+    std::cout<<"num spectral pts = "<<fNSpectral<<std::endl;
+    std::cout<<"num chan = "<<fNChannels<<std::endl;
+    std::cout<<"num chan per polprod = "<<fNChannelsPerPP<<std::endl;
+
 
 }
 
@@ -537,10 +564,10 @@ MHO_MK4CorelInterface::ExtractCorelFile()
             msg_debug("mk4interface", "time_axis: "<<i<<" = "<<std::get<UCH_TIME_AXIS>(*bl_data).at(i)<<eom);
         }
         
-        for(std::size_t i=0; i< std::get<UCH_FREQ_AXIS>(*bl_data).GetSize(); i++)
-        {
-            msg_debug("mk4interface", "freq_axis: "<<i<<" = "<<std::get<UCH_FREQ_AXIS>(*bl_data).at(i)<<eom);
-        }
+        // for(std::size_t i=0; i< std::get<UCH_FREQ_AXIS>(*bl_data).GetSize(); i++)
+        // {
+        //     msg_debug("mk4interface", "freq_axis: "<<i<<" = "<<std::get<UCH_FREQ_AXIS>(*bl_data).at(i)<<eom);
+        // }
         #endif
 
         //now fill in the actual visibility data
@@ -574,9 +601,9 @@ MHO_MK4CorelInterface::ExtractCorelFile()
                                 ch_label.Retrieve(std::string("pol_product"), ppkey);
                                 std::size_t pol_index = pp_index_lookup[ppkey];
                                 int nlags = t120->nlags;
-                                msg_debug("mk4interface",
-                                          "Adding freq data for ap: "<<ap
-                                          <<" channel: "<< key << eom);
+                                // msg_debug("mk4interface",
+                                //           "Adding freq data for ap: "<<ap
+                                //           <<" channel: "<< key << eom);
 
 
                                 for(int j=0; j<nlags; j++)
@@ -609,7 +636,7 @@ MHO_MK4CorelInterface::ExtractCorelFile()
     }
     else
     {
-        msg_error("mk4interface", "Failed to ready both corel and vex file." << eom);
+        msg_error("mk4interface", "Failed to read both corel and vex file." << eom);
     }
 
     fExtractedVisibilities = bl_data;
