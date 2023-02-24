@@ -137,10 +137,17 @@ MHO_WeightChannelizer::ExecuteImpl(const uch_weight_store_type* in, weight_store
         auto* in_freq_axis = &(std::get<UCH_FREQ_AXIS>( *(in) ) );
         auto* out_channel_axis = &(std::get<CHANNEL_AXIS>( *(out) ) );
 
+        std::cout<<"n chans = "<<out_channel_axis->GetSize()<<std::endl;
+        std::cout<<"n pp = "<<in_pp_axis->GetSize()<<std::endl;
+        std::cout<<"n aps = "<<in_time_axis->GetSize()<<std::endl;
+        // std::cout<<"n chans = "<<out_channel_axis->GetSize()<<std::endl;
+
+
         //pack the data into the appropriate place
-        for(std::size_t ch=0; ch<out_channel_axis->GetSize(); ch++)
+        for(int ch=0; ch<out_channel_axis->GetSize(); ch++)
         {
-            auto ch_label = in_freq_axis->GetFirstIntervalWithKeyValue(std::string("channel"), out_channel_axis->at(ch));
+            // auto ch_label = in_freq_axis->GetFirstIntervalWithKeyValue(std::string("channel"), out_channel_axis->at(ch));
+            auto ch_label = in_freq_axis->GetFirstIntervalWithKeyValue(std::string("channel"), ch);
             if( ch_label )
             {
                 std::size_t low = ch_label->GetLowerBound();
@@ -149,7 +156,7 @@ MHO_WeightChannelizer::ExecuteImpl(const uch_weight_store_type* in, weight_store
                 {
                     for(std::size_t t=0; t<in_time_axis->GetSize(); t++)
                     {
-                        (*out)(pp, ch, t, 0) = 1.0;//(*in)(pp, t, low);
+                        (*out)(pp, ch, t, 0) = (*in)(pp, t, low);
                         // for(std::size_t f=low; f<up; f++)
                         // {
                         //     std::size_t f_offset = f-low;
@@ -178,6 +185,10 @@ MHO_WeightChannelizer::ExecuteImpl(const uch_weight_store_type* in, weight_store
                 out_channel_axis->InsertLabel(fresh_ch_label);
             }
         }
+
+        std::cout<<" the first weight value before return = "<< (*out)(0, 0, 0, 0)<<std::endl; 
+
+
         return true;
     }
     else

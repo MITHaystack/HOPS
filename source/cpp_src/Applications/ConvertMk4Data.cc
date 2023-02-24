@@ -69,6 +69,9 @@ void ConvertCorel(const std::string root_file, const std::string& input_file, co
         bool wexe = wchannelizer.Execute();
     }
 
+    std::cout<<" the first weight value = "<< (*ch_bl_wdata)(0, 0, 0, 0)<<std::endl; 
+
+
     MHO_BinaryFileInterface inter;
     bool status = inter.OpenToWrite(output_file);
     if(status)
@@ -76,11 +79,11 @@ void ConvertCorel(const std::string root_file, const std::string& input_file, co
         uint32_t label = 0xFFFFFFFF; //someday make this mean something
         inter.Write(*ch_bl_data, "vis", label);
         inter.Write(*ch_bl_wdata, "weight", label);
-
-        // //TODO AFTER DEBUG RETURN TO ch_* data
-        inter.Write(*bl_data, "uch_vis", label);
-        inter.Write(*bl_wdata, "uch_weight", label);
-        inter.Close();
+        // 
+        // // //TODO AFTER DEBUG RETURN TO ch_* data
+        // inter.Write(*bl_data, "uch_vis", label);
+        // inter.Write(*bl_wdata, "uch_weight", label);
+        // inter.Close();
     }
     else
     {
