@@ -62,6 +62,9 @@ MHO_ContainerDictionary::MHO_ContainerDictionary()
     AddClassType<uch_baseline_axis_pack>();
     AddClassType<uch_visibility_type>(); 
     AddClassType<uch_weight_type>(); 
+    AddClassType<uch_visibility_store_type>(); 
+    AddClassType<uch_weight_store_type>(); 
+
 
     #else
 
