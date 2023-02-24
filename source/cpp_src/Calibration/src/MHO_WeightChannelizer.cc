@@ -59,15 +59,15 @@ MHO_WeightChannelizer::InitializeImpl(const uch_weight_store_type* in, weight_st
             {
                 double sf;
                 (*iter)->Retrieve(std::string("sky_freq"), sf);
-                msg_debug("calibration", "Inserting channel of size: " << (*iter)->GetLength() << "with sky freq: " << sf << eom);
+                msg_debug("calibration", "inserting channel of size: " << (*iter)->GetLength() << " with sky freq: " << sf << eom);
                 channel_sizes.insert( (*iter)->GetLength() );
             }
 
             if(channel_sizes.size() != 1)
             {
-                msg_warn("calibration", "Channel sizes are not a uniform number of spectral points." << eom);
+                msg_warn("calibration", "channel sizes are not a uniform number of spectral points." << eom);
             }
-            std::size_t channel_length = *( channel_sizes.begin() );
+            std::size_t channel_length = 1; //only one weight per channel-ap //*( channel_sizes.begin() );
 
             //finally we can re-size the output array so that it is ready
             //to recieve data from each channel
@@ -97,14 +97,14 @@ MHO_WeightChannelizer::InitializeImpl(const uch_weight_store_type* in, weight_st
             //label the output channel axis with channel id's
             for(std::size_t ch=0; ch<num_channels; ch++)
             {
-                int channel_id;
-                if( channel_labels[ch]->Retrieve(std::string("channel"), channel_id ) )
+                double channel_sky_freq;
+                if( channel_labels[ch]->Retrieve(std::string("sky_freq"), channel_sky_freq ) )
                 {
-                    out_channel_axis->at(ch) = channel_id;
+                    out_channel_axis->at(ch) = channel_sky_freq;
                 }
                 else
                 {
-                    msg_warn("calibration", "Warning channel id: "<< channel_id << " not found in channel labels." << eom);
+                    msg_warn("calibration", "Warning channel sky_freq for channel:" <<ch<<" not found in channel labels." << eom);
                 }
             }
 
@@ -113,11 +113,11 @@ MHO_WeightChannelizer::InitializeImpl(const uch_weight_store_type* in, weight_st
             {
                 out_time_axis->at(t) = in_time_axis->at(t);
             }
+
             //label the output array frequency axis (common to all channels!)
             for(std::size_t f=0; f<channel_length; f++)
             {
-                //this works temporarily, but may not be ideal
-                out_freq_axis->at(f) = in_freq_axis->at(f) - in_freq_axis->at(0);
+                out_freq_axis->at(f) = 0; //in_freq_axis->at(f) - in_freq_axis->at(0);
             }
 
             fInitialized = true;
@@ -149,11 +149,12 @@ MHO_WeightChannelizer::ExecuteImpl(const uch_weight_store_type* in, weight_store
                 {
                     for(std::size_t t=0; t<in_time_axis->GetSize(); t++)
                     {
-                        for(std::size_t f=low; f<up; f++)
-                        {
-                            std::size_t f_offset = f-low;
-                            (*out)(pp, ch, t, f_offset) = (*in)(pp, t, f);
-                        }
+                        (*out)(pp, ch, t, 0) = 1.0;//(*in)(pp, t, low);
+                        // for(std::size_t f=low; f<up; f++)
+                        // {
+                        //     std::size_t f_offset = f-low;
+                        //     (*out)(pp, ch, t, f_offset) = (*in)(pp, t, f);
+                        // }
                     }
                 }
 
@@ -181,6 +182,7 @@ MHO_WeightChannelizer::ExecuteImpl(const uch_weight_store_type* in, weight_store
     }
     else
     {
+        msg_error("calibration", "weight channelizer not initialized." << eom);
         return false;
     }
 
