@@ -88,6 +88,14 @@ class MHO_MK4CorelInterface
         std::size_t fNChannelsPerPP;
         std::set< std::string > fPolProducts;
 
+        //meta-data information 
+        std::string fBaselineName; //e.g. Gs:Wf
+        std::string fBaselineShortName; //e.g GE
+        std::string fRefStation; //e.g. Gs
+        std::string fRemStation; //e.g. Wf
+        std::string fRefStationMk4Id; //e.g G
+        std::string fRemStationMk4Id; //e.g.E
+
 
         //store all channel related data in interval labels for convenience
         std::map< std::string, MHO_IntervalLabel > fAllChannelMap;
