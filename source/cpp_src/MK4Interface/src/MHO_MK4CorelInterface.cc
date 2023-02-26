@@ -58,6 +58,12 @@ MHO_MK4CorelInterface::MHO_MK4CorelInterface():
     fPolProducts.clear();
     fAllChannelMap.clear();
     fPPSortedChannelInfo.clear();
+    fBaselineName = "";
+    fBaselineShortName= "";
+    fRefStation= "";
+    fRemStation = "";
+    fRefStationMk4Id = "";
+    fRemStationMk4Id = "";
 }
 
 MHO_MK4CorelInterface::~MHO_MK4CorelInterface()
@@ -90,6 +96,13 @@ MHO_MK4CorelInterface::ReadCorelFile()
         fHaveCorel = true;
         msg_debug("mk4interface", "Successfully read corel file."<< fCorelFile << eom);
     }
+
+    fBaselineName = "";
+    fBaselineShortName= "";
+    fRefStation= "";
+    fRemStation = "";
+    fRefStationMk4Id = "";
+    fRemStationMk4Id = "";
 }
 
 
@@ -133,6 +146,7 @@ MHO_MK4CorelInterface::DetermineDataDimensions()
     //std::set< int > valid_aps;
 
     std::string baseline = getstr(fCorel->t100->baseline, 2);
+    fBaselineShortName = baseline;
     msg_debug("mk4interface", "Reading data for baseline: " << baseline << eom);
 
     // struct mk4_corel::index_tag* idx;
@@ -204,10 +218,9 @@ MHO_MK4CorelInterface::DetermineDataDimensions()
     int nst = scan["station"].size(); // number of stations;
 
     //maps to resolve links
-    std::map< std::string, std::string > stationCodeToSiteID;
-    std::map< std::string, std::string > stationCodeToMk4ID;
-    std::map< std::string, std::string > stationCodeToFreqTableName;
-    std::map< std::string, std::string > mk4IDToFreqTableName;  
+    // std::map< std::string, std::string > stationCodeToFreqTableName;
+    std::map< std::string, std::string > mk4IDToFreqTableName;
+    std::map< std::string, std::string > mk4IDToStationCode;
 
     auto mode = fVex["$MODE"][mode_key];
     //TODO FIXME -- this is incorrect if there are multple BBC/IFs defined
@@ -226,11 +239,12 @@ MHO_MK4CorelInterface::DetermineDataDimensions()
             for(std::size_t q=0; q<n_qual; q++)
             {
                 std::string station_code = (*it)["qualifiers"][q].get<std::string>();
-                stationCodeToFreqTableName[station_code] = keyword;
+                // stationCodeToFreqTableName[station_code] = keyword;
                 //std::string site_key = 
                 std::string site_key = fVex["$STATION"][station_code]["$SITE"][0]["keyword"].get<std::string>();
                 std::string mk4_id = fVex["$SITE"][site_key]["mk4_site_ID"].get<std::string>();
                 mk4IDToFreqTableName[mk4_id] = keyword;
+                mk4IDToStationCode[mk4_id] = station_code;
             }
         }
     }
@@ -242,6 +256,11 @@ MHO_MK4CorelInterface::DetermineDataDimensions()
     //which would simplfy this mess
     std::string ref_st = std::string(&(baseline[0]),1);
     std::string rem_st = std::string(&(baseline[1]),1);
+    fRefStationMk4Id = ref_st;
+    fRemStationMk4Id = rem_st;
+    fRefStation = mk4IDToStationCode[ref_st];
+    fRemStation = mk4IDToStationCode[rem_st];
+    fBaselineName = fRefStation + ":" + fRemStation;
     double ref_sky_freq, ref_bw, rem_sky_freq, rem_bw;
     std::string ref_net_sb, rem_net_sb, ref_pol, rem_pol;
     bool found_ref = false;
@@ -638,6 +657,26 @@ MHO_MK4CorelInterface::ExtractCorelFile()
     {
         msg_error("mk4interface", "Failed to read both corel and vex file." << eom);
     }
+
+    bl_data->Insert(std::string("name"), std::string("visibilities"));
+    bl_data->Insert(std::string("baseline"), fBaselineName);
+    bl_data->Insert(std::string("baseline_shortname"), fBaselineShortName);
+    bl_data->Insert(std::string("reference_station"), fRefStation);
+    bl_data->Insert(std::string("remote_station"), fRemStation);
+    bl_data->Insert(std::string("reference_station_mk4id"), fRefStationMk4Id);
+    bl_data->Insert(std::string("remote_station_mk4id"), fRemStationMk4Id);
+
+    bl_wdata->Insert(std::string("name"), std::string("weights"));
+    bl_wdata->Insert(std::string("baseline"), fBaselineName);
+    bl_wdata->Insert(std::string("baseline_shortname"), fBaselineShortName);
+    bl_wdata->Insert(std::string("reference_station"), fRefStation);
+    bl_wdata->Insert(std::string("remote_station"), fRemStation);
+    bl_wdata->Insert(std::string("reference_station_mk4id"), fRefStationMk4Id);
+    bl_wdata->Insert(std::string("remote_station_mk4id"), fRemStationMk4Id);
+
+
+
+
 
     fExtractedVisibilities = bl_data;
     fExtractedWeights = bl_wdata;

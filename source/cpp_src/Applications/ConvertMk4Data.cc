@@ -59,6 +59,7 @@ void ConvertCorel(const std::string root_file, const std::string& input_file, co
     {
         bool exe = channelizer.Execute();
     }
+    ch_bl_data->CopyTags(*bl_data);
 
     MHO_WeightChannelizer wchannelizer;
     weight_store_type* ch_bl_wdata = new weight_store_type();
@@ -68,9 +69,7 @@ void ConvertCorel(const std::string root_file, const std::string& input_file, co
     {
         bool wexe = wchannelizer.Execute();
     }
-
-    std::cout<<" the first weight value = "<< (*ch_bl_wdata)(0, 0, 0, 0)<<std::endl; 
-
+    ch_bl_wdata->CopyTags(*bl_wdata);
 
     MHO_BinaryFileInterface inter;
     bool status = inter.OpenToWrite(output_file);
