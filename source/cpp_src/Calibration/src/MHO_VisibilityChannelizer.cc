@@ -161,7 +161,7 @@ MHO_VisibilityChannelizer::ExecuteImpl(const uch_visibility_store_type* in, visi
                 //attach a fresh channel label here:
                 double sky_freq;
                 double bw;
-                char net_sb;
+                std::string net_sb;
                 int channel_id;
 
                 MHO_IntervalLabel fresh_ch_label(ch,ch);
@@ -174,10 +174,34 @@ MHO_VisibilityChannelizer::ExecuteImpl(const uch_visibility_store_type* in, visi
                 fresh_ch_label.Insert(std::string("bandwidth"), bw);
                 fresh_ch_label.Insert(std::string("net_sideband"), net_sb);
                 fresh_ch_label.Insert(std::string("channel"), channel_id);
+                fresh_ch_label.SetBounds(ch,ch);
 
                 out_channel_axis->InsertLabel(fresh_ch_label);
             }
         }
+
+
+        //polarization product axis
+        auto* polprod_axis = &(std::get<POLPROD_AXIS>(*out));
+        polprod_axis->Insert(std::string("name"), std::string("polarization_product") );
+
+        //channel axis
+        auto* ch_axis = &(std::get<CHANNEL_AXIS>(*out));
+        ch_axis->Insert(std::string("name"), std::string("channel") );
+        ch_axis->Insert(std::string("units"), std::string("MHz") );
+
+        //AP axis
+        auto* ap_axis = &(std::get<TIME_AXIS>(*out));
+        ap_axis->Insert(std::string("name"), std::string("time") );
+        ap_axis->Insert(std::string("units"), std::string("s") );
+
+        //(sub-channel) frequency axis 
+        auto* sp_axis = &(std::get<FREQ_AXIS>(*out));
+        sp_axis->Insert(std::string("name"), std::string("frequency") );
+        sp_axis->Insert(std::string("units"), std::string("MHz") );
+
+
+
         return true;
     }
     else
