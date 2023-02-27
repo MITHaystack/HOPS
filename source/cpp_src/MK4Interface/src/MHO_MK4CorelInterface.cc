@@ -404,30 +404,16 @@ MHO_MK4CorelInterface::DetermineDataDimensions()
         std::string pol1, pol2;
         it->second.Retrieve("ref_polarization", pol1);
         it->second.Retrieve("rem_polarization", pol2);
-        std::cout<<"pol1: "<<pol1<<" pol2: "<<pol2<<std::endl;
         std::string ppkey;
         ppkey.append(pol1);
         ppkey.append(pol2);
 
-        std::cout<<"ppkey = "<<ppkey<<std::endl;
         auto indicator = pp_chan_set_map[ppkey].insert( &(it->second) );
         if(indicator.second)
         {
             fPPSortedChannelInfo[ppkey].push_back( &(it->second) );
         }
     }
-
-    std::cout<<"_________________________________"<<std::endl;
-    for(auto it = fPPSortedChannelInfo.begin(); it != fPPSortedChannelInfo.end(); it++)
-    {
-        std::cout<<it->first<<std::endl;
-        for(auto it2 = it->second.begin(); it2 != it->second.end(); it2++)
-        {
-            (*it2)->DumpMap<std::string>();
-            //std::cout<<" - "<<*it2<<std::endl;
-        }
-    }
-
 
     //make sure all pol-products share the same number of channels
     fNChannelsPerPP = 0;
@@ -453,13 +439,6 @@ MHO_MK4CorelInterface::DetermineDataDimensions()
     {
         std::sort( fPPSortedChannelInfo[*it].begin(), fPPSortedChannelInfo[*it].end(), sort_pred);
     }
-
-    std::cout<<"num pol prod = "<<fNPPs<<std::endl;
-    std::cout<<"num aps = "<<fNAPs<<std::endl;
-    std::cout<<"num spectral pts = "<<fNSpectral<<std::endl;
-    std::cout<<"num chan = "<<fNChannels<<std::endl;
-    std::cout<<"num chan per polprod = "<<fNChannelsPerPP<<std::endl;
-
 
 }
 
@@ -538,9 +517,10 @@ MHO_MK4CorelInterface::ExtractCorelFile()
                 (*it)->SetBounds(freq_count, freq_count + fNSpectral);
                 //add a common channel ID, for now this is just an integer
                 //but eventually it could be anything
-                // std::stringstream ss;
-                // ss << ch_count;
                 (*it)->Insert(std::string("channel"), ch_count);
+
+                //ought to add mk4 style channel ids, e.g. X08LX:X08LY?
+                (*it)->Insert(std::string("chan_id"), std::string("placeholder"));//placeholder for now
 
                 //if not present, insert a clean channel label on this axis
                 auto indicator = inserted_channel_labels.insert(ch_count);

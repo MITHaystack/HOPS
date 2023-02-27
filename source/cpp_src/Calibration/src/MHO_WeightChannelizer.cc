@@ -170,17 +170,20 @@ MHO_WeightChannelizer::ExecuteImpl(const uch_weight_store_type* in, weight_store
                 double bw;
                 std::string net_sb;
                 int channel_id;
+                std::string chan_id;
 
                 MHO_IntervalLabel fresh_ch_label;
                 ch_label->Retrieve(std::string("sky_freq"), sky_freq);
                 ch_label->Retrieve(std::string("bandwidth"), bw);
                 ch_label->Retrieve(std::string("net_sideband"), net_sb);
                 ch_label->Retrieve(std::string("channel"), channel_id);
+                ch_label->Retrieve(std::string("chan_id"), chan_id);
 
                 fresh_ch_label.Insert(std::string("sky_freq"), sky_freq);
                 fresh_ch_label.Insert(std::string("bandwidth"), bw);
                 fresh_ch_label.Insert(std::string("net_sideband"), net_sb);
                 fresh_ch_label.Insert(std::string("channel"), channel_id);
+                fresh_ch_label.Insert(std::string("chan_id"), chan_id);
                 fresh_ch_label.SetBounds(ch,ch);
                 out_channel_axis->InsertLabel(fresh_ch_label);
             }
