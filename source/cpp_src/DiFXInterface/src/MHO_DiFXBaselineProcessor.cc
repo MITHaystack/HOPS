@@ -1,6 +1,8 @@
 #include "MHO_DiFXBaselineProcessor.hh"
 #include "MHO_BinaryFileInterface.hh"
 
+#include <cctype>
+
 
 #define DIFX_BASE2ANT 256
 
@@ -61,8 +63,12 @@ MHO_DiFXBaselineProcessor::Organize()
     int ant2 = (fBaselineID % DIFX_BASE2ANT) - 1;
     fRefStation = (*fInput)["antenna"][ant1]["name"];
     fRemStation = (*fInput)["antenna"][ant2]["name"];
-    fBaselineName = fRefStation + ":" + fRemStation;
 
+    //convert the 2-char codes from all-caps to mk4-convention of 1-cap, 1-lower case
+    fRefStation = std::string() + (char) std::toupper(fRefStation[0]) + (char) std::tolower(fRefStation[1]);
+    fRemStation = std::string() + (char) std::toupper(fRemStation[0]) + (char) std::tolower(fRemStation[1]);
+
+    fBaselineName = fRefStation + ":" + fRemStation;
     fRefStationMk4Id = fStationCodeMap->GetMk4IdFromStationCode(fRefStation);
     fRemStationMk4Id = fStationCodeMap->GetMk4IdFromStationCode(fRemStation);
     fBaselineShortName = fRefStationMk4Id + fRemStationMk4Id;
@@ -235,7 +241,7 @@ MHO_DiFXBaselineProcessor::ConstructVisibilityFileObjects()
                     ch_label.Insert(std::string("bandwidth"), bw);
                     ch_label.Insert(std::string("net_sideband"), sideband);
                     ch_label.Insert(std::string("difx_freqindex"), freqidx); //probably ought to be more systematic about creating channel names
-                    
+                    ch_label.Insert(std::string("channel"), chidx); //channel position index
                      //TODO FIXME need to construct difx2mark4-style chan_id -- 
                     //or rather need to construct the chan_id which corresponds to the reference and remote station for this chunk
                     //this also needs to be able to support zoom bands
