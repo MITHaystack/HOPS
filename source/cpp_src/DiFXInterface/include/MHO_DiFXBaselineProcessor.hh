@@ -37,6 +37,10 @@ class MHO_DiFXBaselineProcessor
         void SetDiFXInputData(const json* input){fInput = input;}
         void SetRootCode(std::string rcode){fRootCode = rcode;}
 
+        //apply mk4 style visibility normalization
+        void SetNormalizeFalse(){fNormalize = false;}
+        void SetNormalizeTrue(){fNormalize = true;}
+
         void AddRecord(MHO_DiFXVisibilityRecord* record);
 
         void SetStationCodes(MHO_StationCodeMap* code_map);
@@ -77,6 +81,8 @@ class MHO_DiFXBaselineProcessor
         std::size_t fNAPs;
         std::size_t fNSpectralPoints;
         bool fCanChannelize;
+
+        bool fNormalize;
 
         //list of channel frequencies for this baseline, sorted in ascending order (freq)
         std::vector< std::pair<int, json> > fBaselineFreqs;
