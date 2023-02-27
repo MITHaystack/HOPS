@@ -190,6 +190,8 @@ MHO_DiFXBaselineProcessor::ConstructVisibilityFileObjects()
         auto* wch_axis = &(std::get<CHANNEL_AXIS>(*fW));
         ch_axis->Insert(std::string("name"), std::string("channel") );
         wch_axis->Insert(std::string("name"), std::string("channel") );
+        ch_axis->Insert(std::string("units"), std::string("MHz") );
+        wch_axis->Insert(std::string("units"), std::string("MHz") );
 
         //AP axis
         auto* ap_axis = &(std::get<TIME_AXIS>(*fV));

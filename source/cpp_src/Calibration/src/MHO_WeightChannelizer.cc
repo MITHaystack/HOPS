@@ -168,7 +168,7 @@ MHO_WeightChannelizer::ExecuteImpl(const uch_weight_store_type* in, weight_store
                 //attach a fresh channel label here:
                 double sky_freq;
                 double bw;
-                char net_sb;
+                std::string net_sb;
                 int channel_id;
 
                 MHO_IntervalLabel fresh_ch_label;
@@ -181,12 +181,29 @@ MHO_WeightChannelizer::ExecuteImpl(const uch_weight_store_type* in, weight_store
                 fresh_ch_label.Insert(std::string("bandwidth"), bw);
                 fresh_ch_label.Insert(std::string("net_sideband"), net_sb);
                 fresh_ch_label.Insert(std::string("channel"), channel_id);
-
+                fresh_ch_label.SetBounds(ch,ch);
                 out_channel_axis->InsertLabel(fresh_ch_label);
             }
         }
 
-        std::cout<<" the first weight value before return = "<< (*out)(0, 0, 0, 0)<<std::endl; 
+        //polarization product axis
+        auto* wpolprod_axis = &(std::get<POLPROD_AXIS>(*out));
+        wpolprod_axis->Insert(std::string("name"), std::string("polarization_product") );
+
+        //channel axis
+        auto* wch_axis = &(std::get<CHANNEL_AXIS>(*out));
+        wch_axis->Insert(std::string("name"), std::string("channel") );
+        wch_axis->Insert(std::string("units"), std::string("MHz") );
+
+        //AP axis
+        auto* wap_axis = &(std::get<TIME_AXIS>(*out));
+        wap_axis->Insert(std::string("name"), std::string("time") );
+        wap_axis->Insert(std::string("units"), std::string("s") );
+
+        //(sub-channel) frequency axis 
+        auto* wsp_axis = &(std::get<FREQ_AXIS>(*out));
+        wsp_axis->Insert(std::string("name"), std::string("frequency") );
+        wsp_axis->Insert(std::string("units"), std::string("MHz") );
 
 
         return true;
