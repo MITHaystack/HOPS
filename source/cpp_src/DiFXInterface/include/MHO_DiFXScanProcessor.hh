@@ -50,6 +50,8 @@ class MHO_DiFXScanProcessor
         void SetStationCodes(MHO_StationCodeMap* code_map);
         void ProcessScan(MHO_DiFXScanFileSet& fileSet);
 
+        void SetNormalizeFalse(){fNormalize = false;}
+        void SetNormalizeTrue(){fNormalize = true;}
 
         void SetPreserveDiFXScanNamesTrue(){fPreserveDiFXScanNames = true;}
         void SetPreserveDiFXScanNamesFalse(){fPreserveDiFXScanNames = false;};
@@ -84,6 +86,7 @@ class MHO_DiFXScanProcessor
 
         //integer experiment number 
         int fExperNum;
+        bool fNormalize;
 
         //the output directory for this scan 
         std::string fOutputDirectory;

@@ -5,6 +5,7 @@
 
 
 #define DIFX_BASE2ANT 256
+#define SCALE 10000.0
 
 namespace hops 
 {
@@ -16,6 +17,7 @@ MHO_DiFXBaselineProcessor::MHO_DiFXBaselineProcessor():
     fStationCodeMap(nullptr)
 {
     fRootCode = "unknown";
+    fNormalize = false;
 };
 
 MHO_DiFXBaselineProcessor::~MHO_DiFXBaselineProcessor()
@@ -275,6 +277,36 @@ MHO_DiFXBaselineProcessor::ConstructVisibilityFileObjects()
             }
             ppidx++;
         }
+
+    //apply difx2mark4 style normalization
+
+    /* The following coefficients are taken directly from difx2mark4 new_type1.c */
+
+    // factors are sqrt (Van Vleck correction) for 1b, 2b case
+    // quantization correction factor is pi/2 for
+    // 1x1 bit, or ~1.13 for 2x2 bit (see TMS, p.300)
+    // 1x2 bit uses harmonic mean of 1x1 and 2x2
+    // Note that these values apply to the weak signal
+    // (i.e. cross-correlation) case only.
+    double factor[2] = {1.25331, 1.06448};
+
+
+    if(fNormalize)
+    {
+        //apply a x10000 factor to convert to "Whitney's"
+        //then apply a n-bit statistics normalization factor (only 2x2, 1x1, and 1x2 bit supported)
+        double norm_factor = SCALE;
+
+        //determine which bit-statistics factor to apply
+
+        
+
+
+        (*fV) *= norm_factor;
+    }
+
+
+
     }
     else 
     {

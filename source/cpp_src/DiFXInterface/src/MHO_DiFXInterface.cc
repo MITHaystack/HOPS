@@ -6,7 +6,9 @@ namespace hops
 MHO_DiFXInterface::MHO_DiFXInterface():
     fInputDirectory(""),
     fOutputDirectory("")
-{};
+{
+    fNormalize = false;
+};
 
 MHO_DiFXInterface::~MHO_DiFXInterface(){};
 
@@ -227,6 +229,8 @@ MHO_DiFXInterface::ProcessScans()
     {
         fScanProcessor.SetExperimentNumber(fExperNum);
         fScanProcessor.SetRootCode(scan_codes[i]);
+        fScanProcessor.SetNormalizeFalse();
+        if(fNormalize){fScanProcessor.SetNormalizeTrue();}
         fScanProcessor.ProcessScan(fScanFileSetList[i]);
     }
 }

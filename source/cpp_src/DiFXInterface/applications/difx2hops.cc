@@ -35,14 +35,17 @@ int main(int argc, char** argv)
     std::string output_dir = "./";
     std::string station_codes_file = "";
     int exper_num = 1234;
+    bool normalize = false;
 
     static struct option longOptions[] = {{"help", no_argument, 0, 'h'},
                                           {"input_directory", required_argument, 0, 'i'},
                                           {"station_codes", required_argument, 0, 'c'},
                                           {"experiment_number", required_argument, 0, 'e'},
-                                          {"output_directory", required_argument, 0, 'o'}};
+                                          {"output_directory", required_argument, 0, 'o'},
+                                          {"normalize", no_argument, 0, 'n'} //use d2m4 norm convention
+                                        };
 
-    static const char* optString = "hi:c:e:o:";
+    static const char* optString = "hi:c:e:o:n";
 
     while(true)
     {
@@ -65,6 +68,9 @@ int main(int argc, char** argv)
                 break;
             case ('o'):
                 output_dir = std::string(optarg);
+                break;
+            case ('n'):
+                normalize = true;
                 break;
             default:
                 std::cout << usage << std::endl;
@@ -92,6 +98,8 @@ int main(int argc, char** argv)
     difxInterface.SetOutputDirectory(output_directory);
     difxInterface.SetStationCodes(&stcode_map);
     difxInterface.SetExperimentNumber(exper_num);
+    difxInterface.SetNormalizeFalse();
+    if(normalize){difxInterface.SetNormalizeTrue();}
 
     difxInterface.Initialize();
     difxInterface.ProcessScans();

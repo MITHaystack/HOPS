@@ -41,6 +41,9 @@ class MHO_DiFXInterface
         void SetStationCodes(MHO_StationCodeMap* code_map);
         void SetExperimentNumber(int num){fExperNum = num;}
 
+        void SetNormalizeFalse(){fNormalize = false;}
+        void SetNormalizeTrue(){fNormalize = true;}
+
         void Initialize(); //read the directory and construct the scan file-lists 
         void ProcessScans(); //convert the scans 
 
@@ -52,6 +55,7 @@ class MHO_DiFXInterface
         std::string fVexFile;
         std::string fV2DFile;
         std::vector< MHO_DiFXScanFileSet > fScanFileSetList;
+        bool fNormalize;
 
         int fExperNum;
         MHO_DiFXScanProcessor fScanProcessor;
