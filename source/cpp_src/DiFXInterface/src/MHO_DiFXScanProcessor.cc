@@ -183,7 +183,7 @@ MHO_DiFXScanProcessor::ConvertVisibilityFileObjects()
     }
 
     //need to normalize each baseline by the auto-corrs
-    if(fNormalize)
+    //if(fNormalize)
     {
         NormalizeVisibilities();
     }
@@ -205,6 +205,8 @@ MHO_DiFXScanProcessor::ConvertVisibilityFileObjects()
 void 
 MHO_DiFXScanProcessor::NormalizeVisibilities()
 {
+    msg_debug("difx_interface", "normalizing visibilities"<<eom;);
+
     //map station to autocorrs
     std::map<std::string, visibility_store_type*> raw_auto_corrs;
     //map station to norm coeffs
@@ -218,6 +220,7 @@ MHO_DiFXScanProcessor::NormalizeVisibilities()
         if( it->second.IsAutoCorr() )
         {
             std::string station_id = it->second.GetRefStationMk4Id();
+            std::cout<<"found autocorr: "<<station_id<<std::endl;
             auto vis = it->second.GetVisibilities();
             raw_auto_corrs[station_id] = vis;
         }
@@ -225,7 +228,7 @@ MHO_DiFXScanProcessor::NormalizeVisibilities()
         {
             std::string baseline = it->second.GetBaselineShortName();
             auto vis = it->second.GetVisibilities();
-            raw_auto_corrs[baseline] = vis;
+            raw_visibilities[baseline] = vis;
         }
     }
     
@@ -237,16 +240,18 @@ MHO_DiFXScanProcessor::NormalizeVisibilities()
     for(auto it = raw_auto_corrs.begin(); it != raw_auto_corrs.end(); it++)
     {
         std::string station_id = it->first;
+        std::cout<<"REDUCING AUTOCORR = "<<station_id<<std::endl;
         visibility_store_type* auto_corrs = it->second;
         visibility_store_type* reduced = new visibility_store_type();
         std::size_t npp = auto_corrs->GetDimension(POLPROD_AXIS);
         std::size_t nch = auto_corrs->GetDimension(CHANNEL_AXIS);
+        std::size_t nap = auto_corrs->GetDimension(TIME_AXIS);
         std::size_t n_spectral_pts = auto_corrs->GetDimension(FREQ_AXIS); //do we need to know naps too?
         reduced->Resize(npp, nch, 1, 1);
         reducer.SetArgs(auto_corrs, reduced);
         reducer.Initialize();
         reducer.Execute();
-        (*reduced) *= (1.0/(double)n_spectral_pts); //divide by number of spectral points
+        (*reduced) *= (1.0/( (double)n_spectral_pts * (double)nap) ); //divide by number of spectral points
         reduced_auto_corrs[station_id] = reduced;
     }
 
@@ -254,6 +259,7 @@ MHO_DiFXScanProcessor::NormalizeVisibilities()
     for(auto it = raw_visibilities.begin(); it != raw_visibilities.end(); it++)
     {
         std::string baseline = it->first;
+        std::cout<<"WORKING ON BASELINE: "<<baseline<<std::endl;
         auto vis = it->second;
         std::size_t npp = vis->GetDimension(POLPROD_AXIS);
         std::size_t nch = vis->GetDimension(CHANNEL_AXIS);
@@ -262,6 +268,7 @@ MHO_DiFXScanProcessor::NormalizeVisibilities()
 
         if(ref_st != rem_st) //only do cross corrs 
         {
+            std::cout<<"CROSS CORR"<<std::endl;
             auto ref_ac = reduced_auto_corrs[ref_st];
             auto rem_ac = reduced_auto_corrs[rem_st];
             for(std::size_t pp=0; pp<npp; pp++)
@@ -286,6 +293,9 @@ MHO_DiFXScanProcessor::NormalizeVisibilities()
                     {
                         double ref_val = std::sqrt( std::real( (*ref_ac)(ref_pp_idx,ch,0,0) ) );
                         double rem_val = std::sqrt( std::real( (*rem_ac)(rem_pp_idx,ch,0,0) ) );
+                        std::cout<<"pref = "<<ref_val<<std::endl;
+                        std::cout<<"prem = "<<rem_val<<std::endl;
+
                         double factor = 1.0;
                         if( std::fabs(ref_val) < EPS || std::fabs(rem_val) < EPS)
                         {
