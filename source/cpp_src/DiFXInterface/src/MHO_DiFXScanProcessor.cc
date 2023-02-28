@@ -237,7 +237,7 @@ MHO_DiFXScanProcessor::NormalizeVisibilities()
     //for the auto-corrs compute the sum/average of all the values for each pol/ap 
     MHO_Reducer<visibility_type, MHO_CompoundSum> reducer;
     reducer.ReduceAxis(FREQ_AXIS);
-    reducer.ReduceAxis(TIME_AXIS);
+    // reducer.ReduceAxis(TIME_AXIS);
     for(auto it = raw_auto_corrs.begin(); it != raw_auto_corrs.end(); it++)
     {
         std::string station_id = it->first;
@@ -248,12 +248,12 @@ MHO_DiFXScanProcessor::NormalizeVisibilities()
         std::size_t nch = auto_corrs->GetDimension(CHANNEL_AXIS);
         std::size_t nap = auto_corrs->GetDimension(TIME_AXIS);
         std::size_t n_spectral_pts = auto_corrs->GetDimension(FREQ_AXIS); //do we need to know naps too?
-        reduced->Resize(npp, nch, 1, 1);
+        reduced->Resize(npp, nch, nap, 1);
         reduced->ZeroArray();
         reducer.SetArgs(auto_corrs, reduced);
         reducer.Initialize();
         reducer.Execute();
-        (*reduced) *= (1.0/( (double)n_spectral_pts * (double)nap) ); //divide by number of spectral points x num aps
+        (*reduced) *= 1.0/( (double) n_spectral_pts ); //divide by number of spectral points
         reduced_auto_corrs[station_id] = reduced;
     }
 
@@ -264,6 +264,7 @@ MHO_DiFXScanProcessor::NormalizeVisibilities()
         std::cout<<"WORKING ON BASELINE: "<<baseline<<std::endl;
         auto vis = it->second;
         std::size_t npp = vis->GetDimension(POLPROD_AXIS);
+        std::size_t nap = vis->GetDimension(TIME_AXIS);
         std::size_t nch = vis->GetDimension(CHANNEL_AXIS);
         std::string ref_st = std::string() + (char) baseline[0];
         std::string rem_st = std::string() + (char) baseline[1];
@@ -292,20 +293,23 @@ MHO_DiFXScanProcessor::NormalizeVisibilities()
                 }
                 else 
                 {
-                    for(std::size_t ch=0; ch<nch; ch++)
+                    for(std::size_t ap=0;ap<nap;ap++)
                     {
-                        double ref_val = std::sqrt( std::real( (*ref_ac)(ref_pp_idx,ch,0,0) ) );
-                        double rem_val = std::sqrt( std::real( (*rem_ac)(rem_pp_idx,ch,0,0) ) );
-                        std::cout<<"pref = "<<ref_polprod<<", "<<ch<<", "<<ref_val<<std::endl;
-                        std::cout<<"prem = "<<ref_polprod<<", "<<ch<<", "<<rem_val<<std::endl;
-
-                        double factor = 1.0;
-                        if( std::fabs(ref_val) == 0.0 || std::fabs(rem_val) == 0.0)
+                        for(std::size_t ch=0; ch<nch; ch++)
                         {
-                            msg_error("difx_interface", "zero value in auto-corrs, normalization may not be correct."<<eom);
+                            double ref_val = std::sqrt( std::real( (*ref_ac)(ref_pp_idx,ch,ap,0) ) );
+                            double rem_val = std::sqrt( std::real( (*rem_ac)(rem_pp_idx,ch,ap,0) ) );
+                            std::cout<<"pref = "<<ref_polprod<<", "<<ch<<", "<<ref_val<<std::endl;
+                            std::cout<<"prem = "<<ref_polprod<<", "<<ch<<", "<<rem_val<<std::endl;
+
+                            double factor = 1.0;
+                            if( std::fabs(ref_val) == 0.0 || std::fabs(rem_val) == 0.0)
+                            {
+                                msg_error("difx_interface", "zero value in auto-corrs, normalization may not be correct."<<eom);
+                            }
+                            else{factor = 1.0/(ref_val*rem_val);}
+                            vis->SliceView(pp,ch,ap,":") *= factor;
                         }
-                        else{factor = 1.0/(ref_val*rem_val);}
-                        vis->SliceView(pp,ch,":",":") *= factor;
                     }
                 }
             }
