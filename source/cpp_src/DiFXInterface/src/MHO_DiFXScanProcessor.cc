@@ -248,10 +248,11 @@ MHO_DiFXScanProcessor::NormalizeVisibilities()
         std::size_t nap = auto_corrs->GetDimension(TIME_AXIS);
         std::size_t n_spectral_pts = auto_corrs->GetDimension(FREQ_AXIS); //do we need to know naps too?
         reduced->Resize(npp, nch, 1, 1);
+        reduced->ZeroArray();
         reducer.SetArgs(auto_corrs, reduced);
         reducer.Initialize();
         reducer.Execute();
-        (*reduced) *= (1.0/( (double)n_spectral_pts * (double)nap) ); //divide by number of spectral points
+        (*reduced) *= (1.0/( (double)n_spectral_pts * (double)nap) ); //divide by number of spectral points x num aps
         reduced_auto_corrs[station_id] = reduced;
     }
 
@@ -297,9 +298,9 @@ MHO_DiFXScanProcessor::NormalizeVisibilities()
                         std::cout<<"prem = "<<rem_val<<std::endl;
 
                         double factor = 1.0;
-                        if( std::fabs(ref_val) < EPS || std::fabs(rem_val) < EPS)
+                        if( std::fabs(ref_val) == 0.0 || std::fabs(rem_val) == 0.0)
                         {
-                            msg_error("difx_interface", "small or zero value in auto-corrs, normalization may not be correct."<<eom);
+                            msg_error("difx_interface", "zero value in auto-corrs, normalization may not be correct."<<eom);
                         }
                         else{factor = 1.0/(ref_val*rem_val);}
                         vis->SliceView(pp,ch,":",":") *= factor;
