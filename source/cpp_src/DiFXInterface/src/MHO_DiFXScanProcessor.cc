@@ -174,8 +174,7 @@ MHO_DiFXScanProcessor::ConvertVisibilityFileObjects()
 
     for(auto it = fAllBaselineVisibilities.begin(); it != fAllBaselineVisibilities.end(); it++)
     {
-        // it->second.SetNormalizeFalse();
-        // if(fNormalize){it->second.SetNormalizeTrue();}
+        it->second.SetRescaleTrue(); //default is to always apply VanVleck and x10000 scaling
         it->second.SetRootCode(fRootCode);
         it->second.SetStationCodes(fStationCodeMap);
         it->second.SetDiFXInputData(&fInput);
@@ -183,7 +182,7 @@ MHO_DiFXScanProcessor::ConvertVisibilityFileObjects()
     }
 
     //need to normalize each baseline by the auto-corrs
-    //if(fNormalize)
+    if(fNormalize)
     {
         NormalizeVisibilities();
     }
