@@ -1,9 +1,11 @@
 #include "MHO_DiFXBaselineProcessor.hh"
 #include "MHO_BinaryFileInterface.hh"
 
+#include "MHO_VisibilityPrecisionDownCaster.hh"
+#include "MHO_WeightPrecisionDownCaster.hh"
+
 #include <cctype>
 #include <cmath>
-
 
 #define DIFX_BASE2ANT 256
 #define SCALE 10000.0
@@ -356,10 +358,19 @@ MHO_DiFXBaselineProcessor::WriteVisibilityObjects(std::string output_dir)
 
     //now we down cast the double precision visibilities and weights from double to float 
     //this is to save disk space (but can be disabled)
-    
+    MHO_VisibilityPrecisionDownCaster vdcaster;
+    MHO_WeightPrecisionDownCaster wdcaster;
 
+    visibility_store_type vis_out;
+    weight_store_type weight_out;
 
+    vdcaster.SetArgs(fV, &vis_out);
+    vdcaster.Initialize();
+    vdcaster.Execute();
 
+    wdcaster.SetArgs(fW, &weight_out);
+    wdcaster.Initialize();
+    wdcaster.Execute();
 
     //construct output file name
     std::string root_code = fRootCode;
@@ -370,12 +381,12 @@ MHO_DiFXBaselineProcessor::WriteVisibilityObjects(std::string output_dir)
     if(status)
     {
         uint32_t label = 0xFFFFFFFF; //someday make this mean something
-        fTags.AddObjectUUID(fV->GetObjectUUID());
-        fTags.AddObjectUUID(fW->GetObjectUUID());
+        fTags.AddObjectUUID(vis_out.GetObjectUUID());
+        fTags.AddObjectUUID(weight_out.GetObjectUUID());
         inter.Write(fTags, "tags", label);
 
-        inter.Write(*fV, "vis", label);
-        inter.Write(*fW, "weight", label);
+        inter.Write(vis_out, "vis", label);
+        inter.Write(weight_out, "weight", label);
         inter.Close();
     }
     else
