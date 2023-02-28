@@ -208,11 +208,11 @@ MHO_DiFXScanProcessor::NormalizeVisibilities()
     msg_debug("difx_interface", "normalizing visibilities"<<eom;);
 
     //map station to autocorrs
-    std::map<std::string, visibility_store_type*> raw_auto_corrs;
+    std::map<std::string, visibility_type*> raw_auto_corrs;
     //map station to norm coeffs
-    std::map<std::string, visibility_store_type*> reduced_auto_corrs;
+    std::map<std::string, visibility_type*> reduced_auto_corrs;
     //map baseline to visibilities
-    std::map<std::string, visibility_store_type*> raw_visibilities;
+    std::map<std::string, visibility_type*> raw_visibilities;
 
     //first need to locate all of the auto-corrs, and visibilities
     for(auto it = fAllBaselineVisibilities.begin(); it != fAllBaselineVisibilities.end(); it++)
@@ -234,15 +234,15 @@ MHO_DiFXScanProcessor::NormalizeVisibilities()
     
 
     //for the auto-corrs compute the sum/average of all the values for each pol/ap 
-    MHO_Reducer<visibility_store_type, MHO_CompoundSum> reducer;
+    MHO_Reducer<visibility_type, MHO_CompoundSum> reducer;
     reducer.ReduceAxis(FREQ_AXIS);
     reducer.ReduceAxis(TIME_AXIS);
     for(auto it = raw_auto_corrs.begin(); it != raw_auto_corrs.end(); it++)
     {
         std::string station_id = it->first;
         std::cout<<"REDUCING AUTOCORR = "<<station_id<<std::endl;
-        visibility_store_type* auto_corrs = it->second;
-        visibility_store_type* reduced = new visibility_store_type();
+        visibility_type* auto_corrs = it->second;
+        visibility_type* reduced = new visibility_type();
         std::size_t npp = auto_corrs->GetDimension(POLPROD_AXIS);
         std::size_t nch = auto_corrs->GetDimension(CHANNEL_AXIS);
         std::size_t nap = auto_corrs->GetDimension(TIME_AXIS);

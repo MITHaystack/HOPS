@@ -51,7 +51,7 @@ class MHO_DiFXBaselineProcessor
         std::string GetRemStationMk4Id() const {return fRemStationMk4Id;}
         std::string GetBaselineShortName() const {return fBaselineShortName;}
 
-        visibility_store_type* GetVisibilities() {return fV;}
+        visibility_type* GetVisibilities() {return fV;}
 
         void Clear();
 
@@ -98,8 +98,8 @@ class MHO_DiFXBaselineProcessor
         std::vector< std::pair<int, json> > fBaselineFreqs;
 
         //the baseline data in hops data containers
-        weight_store_type* fW;
-        visibility_store_type* fV;
+        weight_type* fW;
+        visibility_type* fV;
         MHO_ObjectTags fTags;
 
         //comparison predicate for time-sorting visibility record data
