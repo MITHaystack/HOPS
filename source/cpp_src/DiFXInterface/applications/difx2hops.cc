@@ -28,8 +28,9 @@ int main(int argc, char** argv)
 {
     std::string usage = "difx2hops -e <exp. number> -i <input_directory> -c <station_codes_file> -o <output_directory>";
 
-    MHO_Message::GetInstance().AcceptAllKeys();
+    //MHO_Message::GetInstance().AcceptAllKeys();
     MHO_Message::GetInstance().SetMessageLevel(eDebug);
+    MHO_Message::GetInstance().AddKey("difx_interface");
 
     std::string input_dir = "./";
     std::string output_dir = "./";
