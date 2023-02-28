@@ -4,7 +4,9 @@ set (CALIBRATION_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_VisibilityChannelizer.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_WeightChannelizer.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_VisibilityPrecisionUpCaster.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_VisibilityPrecisionDownCaster.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_WeightPrecisionUpCaster.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_WeightPrecisionDownCaster.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ManualChannelPhaseCorrection.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_NormFX.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_DelayRate.hh
@@ -16,7 +18,9 @@ set( CALIBRATION_SOURCEFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_VisibilityChannelizer.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_WeightChannelizer.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_VisibilityPrecisionUpCaster.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_VisibilityPrecisionDownCaster.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_WeightPrecisionUpCaster.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_WeightPrecisionDownCaster.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ManualChannelPhaseCorrection.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_NormFX.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_DelayRate.cc

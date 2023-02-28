@@ -211,8 +211,8 @@ MHO_DiFXBaselineProcessor::ConstructVisibilityFileObjects()
         if(fV){delete fV; fV = nullptr;}
         if(fW){delete fW; fW = nullptr;}
 
-        fV = new visibility_store_type(); 
-        fW = new weight_store_type();
+        fV = new visibility_type(); 
+        fW = new weight_type();
 
         //tags for the visibilities
         fV->Resize(fNPolPairs, fNChannels, fNAPs, fNSpectralPoints);
@@ -353,6 +353,13 @@ MHO_DiFXBaselineProcessor::WriteVisibilityObjects(std::string output_dir)
         // and apply Van Vleck n-bit statistics normalization factor (only 2x2, 1x1, and 1x2 bit supported)
         (*fV) *= fScaleFactor;
     }
+
+    //now we down cast the double precision visibilities and weights from double to float 
+    //this is to save disk space (but can be disabled)
+    
+
+
+
 
     //construct output file name
     std::string root_code = fRootCode;
