@@ -199,6 +199,8 @@ MHO_DiFXScanProcessor::ConvertVisibilityFileObjects()
     {
         it->second.Clear();
     }
+    fAllBaselineVisibilities.clear();
+    
 
 }
 
@@ -276,6 +278,7 @@ MHO_DiFXScanProcessor::NormalizeVisibilities()
             {
                 //figure out the pol-mapping to the right autocorrs (we ignore cross-autos)
                 std::string polprod = std::get<POLPROD_AXIS>(*vis)(pp);
+                std::cout<<"pp ax = "<<std::get<POLPROD_AXIS>(*vis)(pp)<<std::endl;
                 std::string ref_polprod = std::string() + (char)polprod[0] + (char)polprod[0];
                 std::string rem_polprod = std::string() + (char)polprod[1] + (char)polprod[1];
                 std::size_t ref_pp_idx, rem_pp_idx;
@@ -286,7 +289,7 @@ MHO_DiFXScanProcessor::NormalizeVisibilities()
                 {
                     msg_error("difx_interface", 
                         "error missing pol-product in autocorrs needed to normalize: "
-                        <<baseline<<":"<<polprod<<"."<<eom);
+                        <<baseline<<":"<<polprod<<" "<<pp<<"."<<eom);
                 }
                 else 
                 {
@@ -294,8 +297,8 @@ MHO_DiFXScanProcessor::NormalizeVisibilities()
                     {
                         double ref_val = std::sqrt( std::real( (*ref_ac)(ref_pp_idx,ch,0,0) ) );
                         double rem_val = std::sqrt( std::real( (*rem_ac)(rem_pp_idx,ch,0,0) ) );
-                        std::cout<<"pref = "<<ref_val<<std::endl;
-                        std::cout<<"prem = "<<rem_val<<std::endl;
+                        std::cout<<"pref = "<<ref_polprod<<", "<<ch<<", "<<ref_val<<std::endl;
+                        std::cout<<"prem = "<<ref_polprod<<", "<<ch<<", "<<rem_val<<std::endl;
 
                         double factor = 1.0;
                         if( std::fabs(ref_val) == 0.0 || std::fabs(rem_val) == 0.0)
