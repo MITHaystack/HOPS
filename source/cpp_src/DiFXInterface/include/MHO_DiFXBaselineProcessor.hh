@@ -38,8 +38,8 @@ class MHO_DiFXBaselineProcessor
         void SetRootCode(std::string rcode){fRootCode = rcode;}
 
         //apply mk4 style visibility normalization
-        void SetNormalizeFalse(){fNormalize = false;}
-        void SetNormalizeTrue(){fNormalize = true;}
+        void SetRescaleFalse(){fRescale = false;}
+        void SetRescaleTrue(){fRescale = true;}
 
         void AddRecord(MHO_DiFXVisibilityRecord* record);
 
@@ -84,7 +84,7 @@ class MHO_DiFXBaselineProcessor
         std::size_t fNSpectralPoints;
         bool fCanChannelize;
 
-        bool fNormalize;
+        bool fRescale;
         std::map<int, double> fNBitsToFactor;
         double fScaleFactor;
 

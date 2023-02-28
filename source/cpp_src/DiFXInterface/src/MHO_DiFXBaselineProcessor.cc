@@ -18,7 +18,7 @@ MHO_DiFXBaselineProcessor::MHO_DiFXBaselineProcessor():
     fStationCodeMap(nullptr)
 {
     fRootCode = "unknown";
-    fNormalize = false;
+    fRescale = true;
     fScaleFactor = 1.0;
 
     /* The following coefficients are taken directly from difx2mark4 new_type1.c */
@@ -329,12 +329,11 @@ MHO_DiFXBaselineProcessor::ConstructVisibilityFileObjects()
             ppidx++;
         }
 
-        //apply difx2mark4 style factor correction
-        if(fNormalize)
+        //apply difx2mark4 style factor and Van Vleck correction
+        if(fRescale)
         {
             //apply a x10000 factor to convert to "Whitney's"
             // and apply Van Vleck n-bit statistics normalization factor (only 2x2, 1x1, and 1x2 bit supported)
-            std::cout<<"WHAT THE FAC = "<<fScaleFactor<<std::endl;
             (*fV) *= fScaleFactor;
         }
 
