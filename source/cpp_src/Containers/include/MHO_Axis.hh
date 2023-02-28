@@ -87,6 +87,23 @@ class MHO_Axis:
             }
             return selected_idx;
         }
+
+
+        //index selection for first matching axis values (given a single value)
+        bool
+        SelectFirstMatchingIndex(const XValueType& label_value, std::size_t& result)
+        {
+            result = 0;
+            for(std::size_t i = 0; i < this->GetSize(); i++)
+            {
+                if( (*this)[i] == label_value )
+                {
+                    result = i;
+                    return true;
+                }
+            }
+            return false;
+        }
         
 
         template< typename XLabelValueType >

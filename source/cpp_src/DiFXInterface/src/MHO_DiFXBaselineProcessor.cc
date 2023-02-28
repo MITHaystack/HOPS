@@ -329,17 +329,10 @@ MHO_DiFXBaselineProcessor::ConstructVisibilityFileObjects()
             ppidx++;
         }
 
-        //apply difx2mark4 style factor and Van Vleck correction
-        if(fRescale)
-        {
-            //apply a x10000 factor to convert to "Whitney's"
-            // and apply Van Vleck n-bit statistics normalization factor (only 2x2, 1x1, and 1x2 bit supported)
-            (*fV) *= fScaleFactor;
-        }
-
-        //still need to enable difx2mark4 "normalization"
-        //e.g. normalize (opts, vrec, nvrtot, nvis, vrsize, pfb);
-        //currently the output is equivalent to d2m4 "raw" mode
+        //still need to enable difx2mark4 "normalization" before writing out 
+        //since the process to do this needs to be able to see all auto-corrs and baselines 
+        //this normalization is handled at the scan-level
+        //without this normalization, the output is equivalent to d2m4 "raw" mode
 
     }
     else 
@@ -353,6 +346,14 @@ MHO_DiFXBaselineProcessor::ConstructVisibilityFileObjects()
 void 
 MHO_DiFXBaselineProcessor::WriteVisibilityObjects(std::string output_dir)
 {
+    //apply difx2mark4 style factor and Van Vleck correction before writing out
+    if(fRescale)
+    {
+        //apply a x10000 factor to convert to "Whitney's"
+        // and apply Van Vleck n-bit statistics normalization factor (only 2x2, 1x1, and 1x2 bit supported)
+        (*fV) *= fScaleFactor;
+    }
+
     //construct output file name
     std::string root_code = fRootCode;
     std::string output_file = output_dir + "/" + fBaselineShortName + "." + root_code + ".cor";
@@ -361,9 +362,7 @@ MHO_DiFXBaselineProcessor::WriteVisibilityObjects(std::string output_dir)
     bool status = inter.OpenToWrite(output_file);
     if(status)
     {
-
         uint32_t label = 0xFFFFFFFF; //someday make this mean something
-
         fTags.AddObjectUUID(fV->GetObjectUUID());
         fTags.AddObjectUUID(fW->GetObjectUUID());
         inter.Write(fTags, "tags", label);

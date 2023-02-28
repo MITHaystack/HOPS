@@ -32,7 +32,6 @@ class MHO_DiFXBaselineProcessor
         MHO_DiFXBaselineProcessor();
         virtual ~MHO_DiFXBaselineProcessor();
 
-
         int GetBaselineID() const {return fBaselineID;};
         void SetDiFXInputData(const json* input){fInput = input;}
         void SetRootCode(std::string rcode){fRootCode = rcode;}
@@ -46,6 +45,13 @@ class MHO_DiFXBaselineProcessor
         void SetStationCodes(MHO_StationCodeMap* code_map);
         void ConstructVisibilityFileObjects();
         void WriteVisibilityObjects(std::string output_dir);
+
+        bool IsAutoCorr() const {return (fRefStation == fRemStation);};
+        std::string GetRefStationMk4Id() const {return fRefStationMk4Id;}
+        std::string GetRemStationMk4Id() const {return fRemStationMk4Id;}
+        std::string GetBaselineShortName() const {return fBaselineShortName;}
+
+        visibility_store_type* GetVisibilities() {return fV;}
 
         void Clear();
 

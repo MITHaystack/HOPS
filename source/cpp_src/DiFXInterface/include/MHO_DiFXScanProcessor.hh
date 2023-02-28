@@ -72,6 +72,7 @@ class MHO_DiFXScanProcessor
         void LoadInputFile();
         void CreateRootFileObject(std::string vexfile);
         void ConvertVisibilityFileObjects();
+        void NormalizeVisibilities();
         void ConvertStationFileObjects();
 
         void ExtractPCalData();
