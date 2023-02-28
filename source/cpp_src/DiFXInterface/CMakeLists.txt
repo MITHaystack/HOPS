@@ -29,7 +29,7 @@ hops_internal_include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 #compile and install library ###################################################
 
-set(DIFXINTERFACE_LIBS MHO_Message MHO_Utilities vex2json MHO_Containers date-tz)
+set(DIFXINTERFACE_LIBS MHO_Message MHO_Utilities vex2json MHO_Containers MHO_Operators date-tz)
 
 # we use pkg-config to find difxio
 find_package(PkgConfig) 

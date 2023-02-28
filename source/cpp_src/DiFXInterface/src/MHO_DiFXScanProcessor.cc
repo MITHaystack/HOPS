@@ -3,7 +3,12 @@
 #include "MHO_VexGenerator.hh"
 #include "MHO_Clock.hh"
 
+#include "MHO_Reducer.hh"
+
 #include <math.h> 
+
+#define EPS 1e-15
+
 
 
 namespace hops 
@@ -180,9 +185,8 @@ MHO_DiFXScanProcessor::ConvertVisibilityFileObjects()
     //need to normalize each baseline by the auto-corrs
     if(fNormalize)
     {
-
+        NormalizeVisibilities();
     }
-
 
     //finally write out the visibility files
     for(auto it = fAllBaselineVisibilities.begin(); it != fAllBaselineVisibilities.end(); it++)
@@ -197,6 +201,111 @@ MHO_DiFXScanProcessor::ConvertVisibilityFileObjects()
     }
 
 }
+
+void 
+MHO_DiFXScanProcessor::NormalizeVisibilities()
+{
+    //map station to autocorrs
+    std::map<std::string, visibility_store_type*> raw_auto_corrs;
+    //map station to norm coeffs
+    std::map<std::string, visibility_store_type*> reduced_auto_corrs;
+    //map baseline to visibilities
+    std::map<std::string, visibility_store_type*> raw_visibilities;
+
+    //first need to locate all of the auto-corrs, and visibilities
+    for(auto it = fAllBaselineVisibilities.begin(); it != fAllBaselineVisibilities.end(); it++)
+    {
+        if( it->second.IsAutoCorr() )
+        {
+            std::string station_id = it->second.GetRefStationMk4Id();
+            auto vis = it->second.GetVisibilities();
+            raw_auto_corrs[station_id] = vis;
+        }
+        else 
+        {
+            std::string baseline = it->second.GetBaselineShortName();
+            auto vis = it->second.GetVisibilities();
+            raw_auto_corrs[baseline] = vis;
+        }
+    }
+    
+
+    //for the auto-corrs compute the sum/average of all the values for each pol/ap 
+    MHO_Reducer<visibility_store_type, MHO_CompoundSum> reducer;
+    reducer.ReduceAxis(FREQ_AXIS);
+    reducer.ReduceAxis(TIME_AXIS);
+    for(auto it = raw_auto_corrs.begin(); it != raw_auto_corrs.end(); it++)
+    {
+        std::string station_id = it->first;
+        visibility_store_type* auto_corrs = it->second;
+        visibility_store_type* reduced = new visibility_store_type();
+        std::size_t npp = auto_corrs->GetDimension(POLPROD_AXIS);
+        std::size_t nch = auto_corrs->GetDimension(CHANNEL_AXIS);
+        std::size_t n_spectral_pts = auto_corrs->GetDimension(FREQ_AXIS); //do we need to know naps too?
+        reduced->Resize(npp, nch, 1, 1);
+        reducer.SetArgs(auto_corrs, reduced);
+        reducer.Initialize();
+        reducer.Execute();
+        (*reduced) *= (1.0/(double)n_spectral_pts); //divide by number of spectral points
+        reduced_auto_corrs[station_id] = reduced;
+    }
+
+    //now apply normalizatioin to visibilities
+    for(auto it = raw_visibilities.begin(); it != raw_visibilities.end(); it++)
+    {
+        std::string baseline = it->first;
+        auto vis = it->second;
+        std::size_t npp = vis->GetDimension(POLPROD_AXIS);
+        std::size_t nch = vis->GetDimension(CHANNEL_AXIS);
+        std::string ref_st = std::string() + (char) baseline[0];
+        std::string rem_st = std::string() + (char) baseline[1];
+
+        if(ref_st != rem_st) //only do cross corrs 
+        {
+            auto ref_ac = reduced_auto_corrs[ref_st];
+            auto rem_ac = reduced_auto_corrs[rem_st];
+            for(std::size_t pp=0; pp<npp; pp++)
+            {
+                //figure out the pol-mapping to the right autocorrs (we ignore cross-autos)
+                std::string polprod = std::get<POLPROD_AXIS>(*vis)(pp);
+                std::string ref_polprod = std::string() + (char)polprod[0] + (char)polprod[0];
+                std::string rem_polprod = std::string() + (char)polprod[1] + (char)polprod[1];
+                std::size_t ref_pp_idx, rem_pp_idx;
+                bool ref_ok = std::get<POLPROD_AXIS>(*ref_ac).SelectFirstMatchingIndex(ref_polprod, ref_pp_idx);
+                bool rem_ok = std::get<POLPROD_AXIS>(*rem_ac).SelectFirstMatchingIndex(rem_polprod, rem_pp_idx);
+
+                if(!ref_ok || !rem_ok)
+                {
+                    msg_error("difx_interface", 
+                        "error missing pol-product in autocorrs needed to normalize: "
+                        <<baseline<<":"<<polprod<<"."<<eom);
+                }
+                else 
+                {
+                    for(std::size_t ch=0; ch<nch; ch++)
+                    {
+                        double ref_val = std::sqrt( std::real( (*ref_ac)(ref_pp_idx,ch,0,0) ) );
+                        double rem_val = std::sqrt( std::real( (*rem_ac)(rem_pp_idx,ch,0,0) ) );
+                        double factor = 1.0;
+                        if( std::fabs(ref_val) < EPS || std::fabs(rem_val) < EPS)
+                        {
+                            msg_error("difx_interface", "small or zero value in auto-corrs, normalization may not be correct."<<eom);
+                        }
+                        else{factor = 1.0/(ref_val*rem_val);}
+                        vis->SliceView(pp,ch,":",":") *= factor;
+                    }
+                }
+            }
+        }
+    }
+
+    //finally delete the reduced auto_corr arrays
+    for(auto it = reduced_auto_corrs.begin(); it != reduced_auto_corrs.end(); it++)
+    {
+        delete it->second;
+    }
+}
+
 
 void 
 MHO_DiFXScanProcessor::ConvertStationFileObjects()
