@@ -61,6 +61,8 @@ class MHO_DiFXBaselineProcessor
         std::string fRemStationMk4Id;
         std::string fBaselineName;
         std::string fBaselineShortName;
+        int fRefStationBits;
+        int fRemStationBits;
         double fAPLength;
 
         //the station 2-char to 1-char code map (user specified)
@@ -83,6 +85,8 @@ class MHO_DiFXBaselineProcessor
         bool fCanChannelize;
 
         bool fNormalize;
+        std::map<int, double> fNBitsToFactor;
+        double fScaleFactor;
 
         //list of channel frequencies for this baseline, sorted in ascending order (freq)
         std::vector< std::pair<int, json> > fBaselineFreqs;

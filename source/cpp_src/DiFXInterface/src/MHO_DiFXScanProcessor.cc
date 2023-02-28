@@ -169,6 +169,8 @@ MHO_DiFXScanProcessor::ConvertVisibilityFileObjects()
 
     for(auto it = fAllBaselineVisibilities.begin(); it != fAllBaselineVisibilities.end(); it++)
     {
+        it->second.SetNormalizeFalse();
+        if(fNormalize){it->second.SetNormalizeTrue();}
         it->second.SetRootCode(fRootCode);
         it->second.SetStationCodes(fStationCodeMap);
         it->second.SetDiFXInputData(&fInput);

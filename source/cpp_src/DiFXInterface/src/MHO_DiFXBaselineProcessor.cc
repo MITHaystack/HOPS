@@ -2,6 +2,7 @@
 #include "MHO_BinaryFileInterface.hh"
 
 #include <cctype>
+#include <cmath>
 
 
 #define DIFX_BASE2ANT 256
@@ -18,6 +19,19 @@ MHO_DiFXBaselineProcessor::MHO_DiFXBaselineProcessor():
 {
     fRootCode = "unknown";
     fNormalize = false;
+    fScaleFactor = 1.0;
+
+    /* The following coefficients are taken directly from difx2mark4 new_type1.c */
+
+    // factors are sqrt (Van Vleck correction) for 1b, 2b case
+    // quantization correction factor is pi/2 for
+    // 1x1 bit, or ~1.13 for 2x2 bit (see TMS, p.300)
+    // 1x2 bit uses harmonic mean of 1x1 and 2x2
+    // Note that these values apply to the weak signal
+    // (i.e. cross-correlation) case only.
+    fNBitsToFactor.clear();
+    fNBitsToFactor[1] = 1.25331;
+    fNBitsToFactor[2] = 1.06448;
 };
 
 MHO_DiFXBaselineProcessor::~MHO_DiFXBaselineProcessor()
@@ -130,6 +144,44 @@ MHO_DiFXBaselineProcessor::Organize()
     msg_debug("difx_interface", "data dimension of baseline: "<< 
               fBaselineID << " - " << fBaselineName <<" are (" << fNPolPairs << ", " << fNChannels 
               << ", " << fNAPs << ", " << fNSpectralPoints <<")" << eom);
+
+
+    //loop over the datastreams, find which ones correspond to the stations on 
+    //this baseline and figure out the #number of quantizations bits for 
+    //the reference (ant1) and remote station (ant2)
+    //this implicity assumes all datastreams from one antenna are sampled with 
+    //the same number of bits
+    fRemStationBits = 0;
+    fRefStationBits = 0;
+    std::size_t nDatastreams = (*fInput)["datastream"].size();
+
+    for(std::size_t d = 0; d<nDatastreams; d++)
+    {
+        int ant_id = (*fInput)["datastream"][d]["antennaId"];
+        if(ant_id == ant1) //reference station data stream
+        {
+            fRefStationBits =  (*fInput)["datastream"][d]["quantBits"];
+        }
+        if(ant_id == ant2) //remote station data stream
+        {
+            fRemStationBits = (*fInput)["datastream"][d]["quantBits"];
+        }
+        if(fRefStationBits != 0 && fRemStationBits != 0 ){break;}
+    }
+
+    if(ant1 != ant2) // cross-correlation
+    {
+        fScaleFactor = SCALE * fNBitsToFactor[fRefStationBits] * fNBitsToFactor[fRemStationBits];
+    }
+    else // auto-correlation
+    {
+        fScaleFactor = SCALE;
+    }
+
+
+    std::cout<<"REFERENCE STATION BITS = "<<fRefStationBits<<std::endl;
+    std::cout<<"REMOTE STATION BITS = "<<fRemStationBits<<std::endl;
+
 }
 
 
@@ -150,7 +202,6 @@ MHO_DiFXBaselineProcessor::ConstructVisibilityFileObjects()
 
     if(fCanChannelize && fInput != nullptr)
     {
-
         //insert the difx input data as a json string
         std::stringstream jss;
         jss << *fInput;
@@ -278,34 +329,14 @@ MHO_DiFXBaselineProcessor::ConstructVisibilityFileObjects()
             ppidx++;
         }
 
-    //apply difx2mark4 style normalization
-
-    /* The following coefficients are taken directly from difx2mark4 new_type1.c */
-
-    // factors are sqrt (Van Vleck correction) for 1b, 2b case
-    // quantization correction factor is pi/2 for
-    // 1x1 bit, or ~1.13 for 2x2 bit (see TMS, p.300)
-    // 1x2 bit uses harmonic mean of 1x1 and 2x2
-    // Note that these values apply to the weak signal
-    // (i.e. cross-correlation) case only.
-    double factor[2] = {1.25331, 1.06448};
-
-
-    if(fNormalize)
-    {
-        //apply a x10000 factor to convert to "Whitney's"
-        //then apply a n-bit statistics normalization factor (only 2x2, 1x1, and 1x2 bit supported)
-        double norm_factor = SCALE;
-
-        //determine which bit-statistics factor to apply
-
-        
-
-
-        (*fV) *= norm_factor;
-    }
-
-
+        //apply difx2mark4 style normalization
+        if(fNormalize)
+        {
+            //apply a x10000 factor to convert to "Whitney's"
+            // and apply Van Vleck n-bit statistics normalization factor (only 2x2, 1x1, and 1x2 bit supported)
+            std::cout<<"WHAT THE FAC = "<<fScaleFactor<<std::endl;
+            (*fV) *= fScaleFactor;
+        }
 
     }
     else 
