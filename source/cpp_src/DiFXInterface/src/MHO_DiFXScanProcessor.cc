@@ -169,12 +169,24 @@ MHO_DiFXScanProcessor::ConvertVisibilityFileObjects()
 
     for(auto it = fAllBaselineVisibilities.begin(); it != fAllBaselineVisibilities.end(); it++)
     {
-        it->second.SetNormalizeFalse();
-        if(fNormalize){it->second.SetNormalizeTrue();}
+        // it->second.SetNormalizeFalse();
+        // if(fNormalize){it->second.SetNormalizeTrue();}
         it->second.SetRootCode(fRootCode);
         it->second.SetStationCodes(fStationCodeMap);
         it->second.SetDiFXInputData(&fInput);
         it->second.ConstructVisibilityFileObjects();
+    }
+
+    //need to normalize each baseline by the auto-corrs
+    if(fNormalize)
+    {
+
+    }
+
+
+    //finally write out the visibility files
+    for(auto it = fAllBaselineVisibilities.begin(); it != fAllBaselineVisibilities.end(); it++)
+    {
         it->second.WriteVisibilityObjects(fOutputDirectory);
     }
     
