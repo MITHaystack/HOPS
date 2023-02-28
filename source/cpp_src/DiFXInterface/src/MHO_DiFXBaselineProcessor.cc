@@ -384,10 +384,20 @@ MHO_DiFXBaselineProcessor::WriteVisibilityObjects(std::string output_dir)
         fTags.AddObjectUUID(vis_out.GetObjectUUID());
         fTags.AddObjectUUID(weight_out.GetObjectUUID());
         inter.Write(fTags, "tags", label);
-
+        
         inter.Write(vis_out, "vis", label);
         inter.Write(weight_out, "weight", label);
         inter.Close();
+
+        //TODO ADD AN OPTION TO EXPORT DOUBLE PRECISION DATA
+        // uint32_t label = 0xFFFFFFFF; //someday make this mean something
+        // fTags.AddObjectUUID(fV->GetObjectUUID());
+        // fTags.AddObjectUUID(fW->GetObjectUUID());
+        // inter.Write(fTags, "tags", label);
+        // 
+        // inter.Write(*fV, "vis", label);
+        // inter.Write(*fW, "weight", label);
+        // inter.Close();
     }
     else
     {
