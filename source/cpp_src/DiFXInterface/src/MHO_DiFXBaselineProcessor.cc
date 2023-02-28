@@ -329,7 +329,7 @@ MHO_DiFXBaselineProcessor::ConstructVisibilityFileObjects()
             ppidx++;
         }
 
-        //apply difx2mark4 style normalization
+        //apply difx2mark4 style factor correction
         if(fNormalize)
         {
             //apply a x10000 factor to convert to "Whitney's"
@@ -337,6 +337,10 @@ MHO_DiFXBaselineProcessor::ConstructVisibilityFileObjects()
             std::cout<<"WHAT THE FAC = "<<fScaleFactor<<std::endl;
             (*fV) *= fScaleFactor;
         }
+
+        //still need to enable difx2mark4 "normalization"
+        //e.g. normalize (opts, vrec, nvrtot, nvis, vrsize, pfb);
+        //currently the output is equivalent to d2m4 "raw" mode
 
     }
     else 
