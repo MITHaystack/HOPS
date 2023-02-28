@@ -46,7 +46,7 @@ class MHO_DiFXBaselineProcessor
         void ConstructVisibilityFileObjects();
         void WriteVisibilityObjects(std::string output_dir);
 
-        bool IsAutoCorr() const {return (fRefStation == fRemStation);};
+        bool IsAutoCorr() const {if(fRefStation == fRemStation){return true;} return false;};
         std::string GetRefStationMk4Id() const {return fRefStationMk4Id;}
         std::string GetRemStationMk4Id() const {return fRemStationMk4Id;}
         std::string GetBaselineShortName() const {return fBaselineShortName;}
