@@ -35,6 +35,7 @@ set(SOURCE_BASENAMES
     ConvertFileToJSON
     ConvertVexToJSON
     TestSignalFFT
+    CompareVisibilityObjects
 )
 
 #for testing purposes only -- ROOT not intended to be a dependency
