@@ -183,8 +183,8 @@ void fine_peak_interpolation(mbd_type* mbd_arr, visibility_type* sbd_arr, visibi
                 std::complex<double> z = 0.0;
 
                 // calculate location of this tabular point (should modulo % axis size)
-                sbd_bin = 0; //loc[3] + isbd - 2;
-                dr_bin = 0;// loc[2] + idr - 2;
+                sbd_bin = (loc[3] + isbd - 2) % (int) sbd_ax->GetSize();
+                dr_bin = (loc[2] + idr - 2 ) % (int) dr_ax->GetSize() ;
                 mbd_bin = loc[1] - imbd + 2; //TODO WHY THE -1 FUDGE FACTOR
                 // 
                 sbd = sbd_ax->at(sbd_bin);// + 0.5*sbd_delta; 
@@ -227,9 +227,11 @@ void fine_peak_interpolation(mbd_type* mbd_arr, visibility_type* sbd_arr, visibi
                     for(std::size_t ap = 0; ap < 30; ap++)
                     {
                         double tdelta = (ap + 0.5) - 15.0; //need time difference from the f.r.t?
-                        visibility_element_type vis = std::conj( (*sbd_arr)(0,fr,ap,sbd_bin) );// *25;  //TODO FUDGE FACTOR OF 1/4???!!! AND CONJUGATE?
-                        //std::cout<<"vis @ "<<fr<<","<<ap<<" = ("<<vis.real()<<", "<<vis.imag()<<")"<<std::endl;
-                        std::complex<double> x = vis * frot.vrot(tdelta, freq, ref_freq, dr, mbd); // vrot_mod(tdelta, dr, mbd, freq, ref_freq);
+                        visibility_element_type vis = std::conj( (*sbd_arr)(0,fr,ap,sbd_bin) );// WHY CONJUGATE?
+                        // std::cout<<"vis @ "<<fr<<","<<ap<<" = ("<<vis.real()<<", "<<vis.imag()<<")"<<std::endl;
+                        std::complex<double> vr = frot.vrot(tdelta, freq, ref_freq, dr, mbd);
+                        // std::cout<<"vrot @ "<<fr<<","<<ap<<" = ("<<vr.real()<<", "<<vr.imag()<<")"<<std::endl;
+                        std::complex<double> x = vis * vr;// vrot_mod(tdelta, dr, mbd, freq, ref_freq);
                         //std::cout<<"x = "<<x<<std::endl;
                         z = z + x;
                     }
@@ -459,7 +461,8 @@ int main(int argc, char** argv)
 
     //select first 8 channels for testing
     std::vector< std::size_t > selected_ch;
-    for(std::size_t i=0;i<8; i++){selected_ch.push_back(i);}
+    // for(std::size_t i=0;i<8; i++){selected_ch.push_back(i);}
+        for(std::size_t i=0;i<2; i++){selected_ch.push_back(i);}
 
     //specify the indexes we want on each axis
     spack.SelectAxisItems(0,selected_pp);
@@ -508,12 +511,9 @@ int main(int argc, char** argv)
         }
     }
     
-    
-    
-    
-    //compute the sum of the weights 
-    std::cout<<"weight at 0 = " << wt_data->at(0,0,0,0) <<std::endl;
-
+    // //compute the sum of the weights 
+    // std::cout<<"weight at 0 = " << wt_data->at(0,0,0,0) <<std::endl;
+    // 
     MHO_Reducer<weight_type, MHO_CompoundSum> wt_reducer;
     wt_reducer.SetArgs(wt_data);
     for(std::size_t i=0; i<weight_type::rank::value; i++)
@@ -524,14 +524,8 @@ int main(int argc, char** argv)
     wt_reducer.Execute();
     
     std::cout<<"reduced weights = "<<(*wt_data)[0]<<std::endl;
-
     
-
-    //multiply the visibility data by the '10000' whitney scale, 
-    //and the 2bit x 2bit correction factor 
-    //this is normally done in difx2mark4
-    double scale_factor = 10000.0 * 1.06448;
-    (*bl_data) *= scale_factor;
+    (*bl_data) *= 1.0/(*wt_data)[0];
 
     ////////////////////////////////////////////////////////////////////////////
     //APPLY DATA CORRECTIONS (A PRIORI -- PCAL)
