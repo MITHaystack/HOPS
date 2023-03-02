@@ -59,7 +59,7 @@ if(GS_EXE)
     message(STATUS "Ghostscript version[${GS_RESULT}]: ${GS_VERSION_STRING}")
     # string(REPLACE "." "" GS_VERSION_VALUE ${GS_VERSION_STRING}) #strip out '.' chars
     string(REPLACE "\n" "" GS_VERSION_VALUE ${GS_VERSION_STRING}) #strip out any errant newline chars
-    message(STATUS "Ghostscript version flag passed as: ${GS_VERSION_VALUE}")
+    
 
     #default value
     set(GS_VERSION_FLAG "0")
@@ -75,6 +75,8 @@ if(GS_EXE)
     if( GS_VERSION_VALUE VERSION_GREATER_EQUAL "9.5")
         set(GS_VERSION_FLAG "9500")
     endif()
+
+    message(STATUS "Ghostscript version flag passed as: ${GS_VERSION_FLAG}")
 
     if(HOPS3_USE_CXX)
         set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DGS_VERSION=${GS_VERSION_FLAG} ")
