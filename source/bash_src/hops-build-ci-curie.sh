@@ -4,9 +4,11 @@ then
     echo "HOPS CI directory not set."
 else
     echo "Runing build in HOPS CI directory: ${HOPS_CI_DIR}"
+    START_TIME=$( date ) 
     #cd to the CI directory and check out the repository (master, assume this has already been done once)
     cd $HOPS_CI_DIR
     git pull
+    CURRENT_REV=$( git rev-parse HEAD )
 
     #mkdir build directory and run cmake with the following options 
     if [[ -d "$HOPS_CI_DIR/build" ]];
@@ -32,6 +34,11 @@ else
     
     #copy the test log 
     cp $HOPS_CI_DIR/build/Testing/Temporary/LastTest.log $HOPS_CI_DIR
+
+    END_TIME=$( date )
+
+    #e-mail out the log
+    echo "HOPS4 cmake build test start: $START_TIME, end $END_TIME " | mailx -A $HOPS_CI_DIR/build/Testing/Temporary/LastTest.log -s "HOPS4 build test results - $CURRENT_REV" barrettj@mit.edu
     
     #clean up
     cd "$HOPS_CI_DIR"
