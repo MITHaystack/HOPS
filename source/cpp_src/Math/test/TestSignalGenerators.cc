@@ -45,19 +45,18 @@ int main(int argc, char** argv)
         tone_samples[i] = value;
     }
 
-    for(std::size_t i=0; i<n_samples; i++)
-    {
-        std::cout<<noise_samples[i]<<std::endl;
-    }
+    // for(std::size_t i=0; i<n_samples; i++)
+    // {
+    //     std::cout<<noise_samples[i]<<std::endl;
+    // }
+    // 
+    // std::cout<<"--------------"<<std::endl;
 
-    std::cout<<"--------------"<<std::endl;
+    // for(std::size_t i=0; i<n_samples; i++)
+    // {
+    //     std::cout<<tone_samples[i]<<std::endl;
+    // }
 
-    for(std::size_t i=0; i<n_samples; i++)
-    {
-        std::cout<<tone_samples[i]<<std::endl;
-    }
-
-
-    
+    return 0;
 
 }
