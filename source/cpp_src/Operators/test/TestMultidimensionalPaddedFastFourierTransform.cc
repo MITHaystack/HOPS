@@ -132,26 +132,26 @@ int main(int argc, char** argv)
 
         for(size_t i=0; i<N; i++)
         {
-            std::cout<<"original array @ "<<i<<" = "<<array1[i]<<std::endl;
+            //std::cout<<"original array @ "<<i<<" = "<<array1[i]<<std::endl;
         }
 
-        std::cout << "--------------------------------------------------------------" << std::endl;
+        //std::cout << "--------------------------------------------------------------" << std::endl;
 
         for(size_t i=0; i<N; i++)
         {
-            std::cout<<"DFT'd array @ "<<i<<" = "<<array2[i]<<std::endl;
+            //std::cout<<"DFT'd array @ "<<i<<" = "<<array2[i]<<std::endl;
         }
 
-        std::cout << "--------------------------------------------------------------" << std::endl;
+        //std::cout << "--------------------------------------------------------------" << std::endl;
 
 
 
         for(size_t i=0; i<NM; i++)
         {
-            std::cout<<"manually zero end-padded interpolated array @ "<<i<<" = "<<expanded_array2[i]<<std::endl;
+            //std::cout<<"manually zero end-padded interpolated array @ "<<i<<" = "<<expanded_array2[i]<<std::endl;
         }
 
-        std::cout << "--------------------------------------------------------------" << std::endl;
+        //std::cout << "--------------------------------------------------------------" << std::endl;
 
         //now use the zero-padded (end) fft engine to do the same thing
         bool check;
@@ -171,7 +171,7 @@ int main(int argc, char** argv)
         for(size_t i=0; i<NM; i++)
         {
             expanded_array1[i] /= norm; //same normalization factor
-            std::cout<<"zero-padded interpolated array @ "<<i<<" = "<<expanded_array1[i]<<std::endl;
+            //std::cout<<"zero-padded interpolated array @ "<<i<<" = "<<expanded_array1[i]<<std::endl;
         }
 
         delete fft_engine2;
@@ -211,7 +211,7 @@ int main(int argc, char** argv)
 
         // for(size_t i=0; i<NM; i++)
         // {
-        //     std::cout<<"expanded array1 @ "<<i<<" = "<<expanded_array1[i]<<std::endl;
+        //     //std::cout<<"expanded array1 @ "<<i<<" = "<<expanded_array1[i]<<std::endl;
         // }
 
         //then we execute an inverse FFT to bring us back to original space
@@ -230,25 +230,25 @@ int main(int argc, char** argv)
 
         for(size_t i=0; i<N; i++)
         {
-            std::cout<<"original array @ "<<i<<" = "<<array1[i]<<std::endl;
+            //std::cout<<"original array @ "<<i<<" = "<<array1[i]<<std::endl;
         }
 
-        std::cout << "--------------------------------------------------------------" << std::endl;
+        //std::cout << "--------------------------------------------------------------" << std::endl;
 
-        std::cout << "--------------------------------------------------------------" << std::endl;
+        //std::cout << "--------------------------------------------------------------" << std::endl;
 
         for(size_t i=0; i<N; i++)
         {
-            std::cout<<"DFT'd array @ "<<i<<" = "<<array2[i]<<std::endl;
+            //std::cout<<"DFT'd array @ "<<i<<" = "<<array2[i]<<std::endl;
         }
 
 
         for(size_t i=0; i<NM; i++)
         {
-            std::cout<<"manually zero center-padded interpolated array @  "<<i<<" = "<<expanded_array2[i]<<std::endl;
+            //std::cout<<"manually zero center-padded interpolated array @  "<<i<<" = "<<expanded_array2[i]<<std::endl;
         }
 
-        std::cout << "--------------------------------------------------------------" << std::endl;
+        //std::cout << "--------------------------------------------------------------" << std::endl;
 
         //now use the zero-padded (center) fft engine to do the same thing
         bool check;
@@ -267,7 +267,7 @@ int main(int argc, char** argv)
         for(size_t i=0; i<NM; i++)
         {
             expanded_array1[i] /= norm; //same normalization factor
-            std::cout<<"zero-padded interpolated array @ "<<i<<" = "<<expanded_array1[i]<<std::endl;
+            //std::cout<<"zero-padded interpolated array @ "<<i<<" = "<<expanded_array1[i]<<std::endl;
         }
 
         delete fft_engine2;
@@ -365,7 +365,7 @@ int main(int argc, char** argv)
 
     #ifdef USE_ROOT
 
-    std::cout<<"starting root plotting"<<std::endl;
+    //std::cout<<"starting root plotting"<<std::endl;
 
     //ROOT stuff for plots
     TApplication* App = new TApplication("Plot",&argc,argv);

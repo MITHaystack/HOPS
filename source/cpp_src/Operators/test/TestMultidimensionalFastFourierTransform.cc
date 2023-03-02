@@ -37,7 +37,7 @@ int main(int /*argc*/, char** /*argv*/)
     std::cout<<"using fftw3 for FFTs"<<std::endl;
     #endif
 
-    #ifdef HOPS_ENABLE_DEBUG_MSG
+    #ifdef PRINT_DETAIL
     std::cout << "original data = " << std::endl;
     #endif
     for (size_t i = 0; i < dim_size[0]; i++) {
@@ -45,16 +45,16 @@ int main(int /*argc*/, char** /*argv*/)
             for (size_t k = 0; k < dim_size[2]; k++) {
                 input(i,j,k) = std::complex<FPTYPE>(count % 13, count % 17);
 
-                #ifdef HOPS_ENABLE_DEBUG_MSG
+                #ifdef PRINT_DETAIL
                 std::cout << input(i,j,k) << ", ";
                 #endif
                 count++;
             }
-            #ifdef HOPS_ENABLE_DEBUG_MSG
+            #ifdef PRINT_DETAIL
             std::cout << std::endl;
             #endif
         }
-        #ifdef HOPS_ENABLE_DEBUG_MSG
+        #ifdef PRINT_DETAIL
         std::cout << std::endl;
         #endif
     }
@@ -75,7 +75,7 @@ int main(int /*argc*/, char** /*argv*/)
     fft_engine->Initialize();
     fft_engine->Execute();
 
-    #ifdef HOPS_ENABLE_DEBUG_MSG
+    #ifdef PRINT_DETAIL
     std::cout << "DFT of data = " << std::endl;
     for (size_t i = 0; i < dim_size[0]; i++) {
         for (size_t j = 0; j < dim_size[1]; j++) {
@@ -97,7 +97,7 @@ int main(int /*argc*/, char** /*argv*/)
     fft_engine->Initialize();
     fft_engine->Execute();
 
-    #ifdef HOPS_ENABLE_DEBUG_MSG
+    #ifdef PRINT_DETAIL
     std::cout << "DFT of data = " << std::endl;
     for (size_t i = 0; i < dim_size[0]; i++) {
         for (size_t j = 0; j < dim_size[1]; j++) {
@@ -124,7 +124,7 @@ int main(int /*argc*/, char** /*argv*/)
     fft_engine->Initialize();
     fft_engine->Execute();
 
-    #ifdef HOPS_ENABLE_DEBUG_MSG
+    #ifdef PRINT_DETAIL
     std::cout << "IDFT of DFT of data = " << std::endl;
     #endif
 

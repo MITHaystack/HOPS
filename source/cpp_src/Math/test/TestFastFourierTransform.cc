@@ -19,21 +19,21 @@ int main(int /*argc*/, char** /*argv*/)
     std::complex<FP_Type> arr_orig[N];
     std::complex<FP_Type> twiddle[N];
 
-    #ifdef HOPS_ENABLE_DEBUG_MSG
+    #ifdef PRINT_DETAILS
     std::cout << "---------------------------------------------------------------" << std::endl;
     std::cout << "testing DIT followed by DIF (with bit-reversal permutation)" << std::endl;
     #endif
 
     MHO_BitReversalPermutation::ComputeBitReversedIndicesBaseTwo(N, index_arr);
     //fill up the array with a signal
-    #ifdef HOPS_ENABLE_DEBUG_MSG
+    #ifdef PRINT_DETAILS
     std::cout << "Original array = " << std::endl;
     #endif
     for (unsigned int i = 0; i < N; i++)
     {
         arr[i] = std::complex<FP_Type>(i, 0);
         arr_orig[i] = arr[i];
-        #ifdef HOPS_ENABLE_DEBUG_MSG
+        #ifdef PRINT_DETAILS
         std::cout << arr[i] << std::endl;
         #endif
     }
@@ -47,7 +47,7 @@ int main(int /*argc*/, char** /*argv*/)
     //do the radix-2 FFT decimation in time
     MHO_FastFourierTransformUtilities<FP_Type>::FFTRadixTwo_DIT(N, (FP_Type*) &(arr[0]), (FP_Type*) &(twiddle[0]));
 
-    #ifdef HOPS_ENABLE_DEBUG_MSG
+    #ifdef PRINT_DETAILS
     std::cout << "(unormalized DFT'd array = " << std::endl;
     for (unsigned int i = 0; i < N; i++)
     {
@@ -69,7 +69,7 @@ int main(int /*argc*/, char** /*argv*/)
         arr[i] *= 1.0 / ((FP_Type) N);
     }
 
-    #ifdef HOPS_ENABLE_DEBUG_MSG
+    #ifdef PRINT_DETAILS
     std::cout << "difference between original and IDFT of the DFT'd array = " << std::endl;
     for (unsigned int i = 0; i < N; i++) {
         std::cout << arr_orig[i] - arr[i] << std::endl;
@@ -79,13 +79,13 @@ int main(int /*argc*/, char** /*argv*/)
     #endif
 
     //fill up the array with a signal
-    #ifdef HOPS_ENABLE_DEBUG_MSG
+    #ifdef PRINT_DETAILS
     std::cout << "Original array = " << std::endl;
     #endif
     for (unsigned int i = 0; i < N; i++) {
         arr[i] = std::complex<FP_Type>(i, 0);
         arr_orig[i] = arr[i];
-        #ifdef HOPS_ENABLE_DEBUG_MSG
+        #ifdef PRINT_DETAILS
         std::cout << arr[i] << std::endl;
         #endif
     }
@@ -95,7 +95,7 @@ int main(int /*argc*/, char** /*argv*/)
     //do the radix-2 FFT
     MHO_FastFourierTransformUtilities<FP_Type>::FFTRadixTwo_DIF(N, (FP_Type*) &(arr[0]), (FP_Type*) &(twiddle[0]));
 
-    #ifdef HOPS_ENABLE_DEBUG_MSG
+    #ifdef PRINT_DETAILS
     std::cout << "unormalized DFT'd array = " << std::endl;
     for (unsigned int i = 0; i < N; i++) {
         std::cout << arr[i] << std::endl;
@@ -116,7 +116,7 @@ int main(int /*argc*/, char** /*argv*/)
         arr[i] *= 1.0 / ((FP_Type) N);
     }
 
-    #ifdef HOPS_ENABLE_DEBUG_MSG
+    #ifdef PRINT_DETAILS
     std::cout << "difference between original and IDFT of the DFT'd array = " << std::endl;
     for (unsigned int i = 0; i < N; i++)
     {

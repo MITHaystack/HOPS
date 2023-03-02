@@ -25,9 +25,7 @@ int main(int argc, char** argv)
     pts.push_back(19.0);
     pts.push_back(71.0);
     pts.push_back(72.0);
-    // 
 
-    
     MHO_UniformGridPointsCalculator grid_calc;
     grid_calc.SetPoints(pts);
     grid_calc.Calculate();
