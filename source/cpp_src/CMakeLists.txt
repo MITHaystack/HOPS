@@ -10,6 +10,8 @@ if(ENABLE_STEPWISE_CHECK)
     hops_add_cxxflag(HOPS_ENABLE_STEPWISE_CHECK)
 endif(ENABLE_STEPWISE_CHECK)
 
+#for testing, provide an option to download the test data
+option( HOPS_ENABLE_REMOTE_TEST_DATA "Download remote data for developer tests." OFF)
 
 hops_require_cpp11()
 
@@ -34,7 +36,6 @@ if(HOPS_USE_PYBIND11)
 endif(HOPS_USE_PYBIND11)
 
 add_subdirectory(${CPPSOURCE}/Plugins/Root) #CERN ROOT plugins
-
 
 add_subdirectory(${CPPSOURCE}/Applications) #applications
 

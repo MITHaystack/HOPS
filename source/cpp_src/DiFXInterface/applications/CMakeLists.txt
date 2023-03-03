@@ -21,3 +21,8 @@ foreach( BASENAME ${DIFXIO_DEP_SOURCE_BASENAMES} )
     target_link_libraries( ${BASENAME} ${HOPS_DIFXAPP_LIBS} PkgConfig::DIFXIO)
     install(PROGRAMS ${CMAKE_CURRENT_BINARY_DIR}/${BASENAME} DESTINATION ${BIN_INSTALL_DIR})
 endforeach( BASENAME )
+
+
+if(HOPS_ENABLE_TEST)
+    add_subdirectory(test)
+endif(HOPS_ENABLE_TEST)
