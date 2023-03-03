@@ -72,3 +72,8 @@ if(HOPS_DEV_USE_OLD)
     hops_install_executables( ${OLD_DEV_SOURCE_BASENAMES} )
 
 endif(HOPS_DEV_USE_OLD)
+
+
+#if(HOPS_ENABLE_TEST)
+#    add_subdirectory(test)
+#endif(HOPS_ENABLE_TEST)
