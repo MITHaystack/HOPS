@@ -23,7 +23,7 @@ ConvertMk4Data -i ./${D2M4_EXP_NUM}/${SCAN_DIR} -o ./${CM42H_DIR}
 
 D2M4_GE_FILE=$(ls ./${CM42H_DIR}/GE.*.cor)
 D2H_GE_FILE=$(ls ./${D2H_EXP_NUM}/${SCAN_DIR}/GE.*.cor)
-echo "Running: CompareCorFiles $D2H_GE_FILE $D2M4_GE_FILE"
-CompareCorFiles $D2H_GE_FILE $D2M4_GE_FILE
+echo "Running: CompareCorFiles -a $D2H_GE_FILE -b $D2M4_GE_FILE"
+CompareCorFiles -a $D2H_GE_FILE -b $D2M4_GE_FILE
 RET_VAL=$?
 exit $RET_VAL
