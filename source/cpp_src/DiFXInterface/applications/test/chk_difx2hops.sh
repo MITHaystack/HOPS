@@ -1,7 +1,14 @@
 #!/bin/bash
 
+verb=false
+[ -n "$testverb" ] && verb=true
+
+[ -d "$srcdir" ] || { echo srcdir not set; exit 1; }
+${HOPS_SETUP-'false'} || . $srcdir/chk_env.sh
+export DATADIR=`cd $srcdir/vt9105; pwd`
+
 RET_VAL=0
-EXP_DIR=/home/barrettj/work/projects/hops-test-data/vt9105
+EXP_DIR=$DATADIR
 EXP_NUM=1111
 #NOTE: difx2hops must be run from within the difx directory
 #This is because any relative paths specified in the difx.input files are
