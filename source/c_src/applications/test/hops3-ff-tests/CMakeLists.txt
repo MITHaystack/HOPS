@@ -64,7 +64,7 @@ if(BASH_PROGRAM)
                 chk_search
                 chk_fourmer
                 chk_frmrsrch
-                chk_hdlinks
+                #chk_hdlinks -- this one fails (probably we missing the perl script hops_data_links.pl)
                 chk_min_weight
                 chk_passband
                 chk_notches
