@@ -5,13 +5,13 @@
 
 #include "MHO_Reducer.hh"
 
-#include <math.h> 
+#include <math.h>
 
 #define EPS 1e-15
 
 
 
-namespace hops 
+namespace hops
 {
 
 MHO_DiFXScanProcessor::MHO_DiFXScanProcessor()
@@ -26,13 +26,13 @@ MHO_DiFXScanProcessor::~MHO_DiFXScanProcessor()
 {};
 
 
-void 
+void
 MHO_DiFXScanProcessor::SetStationCodes(MHO_StationCodeMap* code_map)
 {
     fStationCodeMap = code_map;
 }
 
-void 
+void
 MHO_DiFXScanProcessor::ProcessScan(MHO_DiFXScanFileSet& fileSet)
 {
     fFileSet = &fileSet;
@@ -40,11 +40,11 @@ MHO_DiFXScanProcessor::ProcessScan(MHO_DiFXScanFileSet& fileSet)
     bool ok = CreateScanOutputDirectory();
     if(ok)
     {
-        ConvertVisibilityFileObjects(); //convert visibilities and data weights 
-        ConvertStationFileObjects(); //convert the station splines, and pcal data 
+        ConvertVisibilityFileObjects(); //convert visibilities and data weights
+        ConvertStationFileObjects(); //convert the station splines, and pcal data
         CreateRootFileObject(fileSet.fVexFile); //create the equivalent to the Mk4 'ovex' root file
     }
-    else 
+    else
     {
         msg_error("difx_interface", "could not locate or create scan output directory: "<< fOutputDirectory <<", skipping." << eom);
     }
@@ -55,7 +55,7 @@ MHO_DiFXScanProcessor::ProcessScan(MHO_DiFXScanFileSet& fileSet)
 bool
 MHO_DiFXScanProcessor::CreateScanOutputDirectory()
 {
-    //currently we just use the DiFX scan name, but we should add the option 
+    //currently we just use the DiFX scan name, but we should add the option
     //to use the scan time e.g. (031-1020)
 
     MHO_DirectoryInterface dirInterface;
@@ -65,7 +65,7 @@ MHO_DiFXScanProcessor::CreateScanOutputDirectory()
     {
         output_dir += fFileSet->fScanName;
     }
-    else 
+    else
     {
         std::string scan_id = fInput["scan"][fFileSet->fIndex]["identifier"];
         output_dir += scan_id;
@@ -77,7 +77,7 @@ MHO_DiFXScanProcessor::CreateScanOutputDirectory()
     return ok;
 }
 
-void 
+void
 MHO_DiFXScanProcessor::CreateRootFileObject(std::string vexfile)
 {
     MHO_VexParser vparser;
@@ -87,7 +87,7 @@ MHO_DiFXScanProcessor::CreateRootFileObject(std::string vexfile)
     //now convert the 'vex' to 'ovex' (using only subset of information)
     vex_root[ MHO_VexDefinitions::VexRevisionFlag() ] = "ovex";
 
-    //add the experiment number 
+    //add the experiment number
     vex_root["$EXPER"]["exper_num"] = fExperNum;
 
     std::string scan_id = fInput["scan"][fFileSet->fIndex]["identifier"];
@@ -131,7 +131,7 @@ MHO_DiFXScanProcessor::CreateRootFileObject(std::string vexfile)
     vex_root.erase("$SOURCE");
     vex_root["$SOURCE"] = src;
 
-    //make sure the mk4_site_id single-character codes are specified for each site 
+    //make sure the mk4_site_id single-character codes are specified for each site
     for(auto it = vex_root["$SITE"].begin(); it != vex_root["$SITE"].end(); ++it)
     {
         std::string station_code = (*it)["site_ID"];
@@ -151,13 +151,13 @@ MHO_DiFXScanProcessor::CreateRootFileObject(std::string vexfile)
 
     //we also write out the 'ovex'/'vex' json object as a json file
     output_file = fOutputDirectory + "/" + src_name + "." + fRootCode + ".json";
-    //open and dump to file 
+    //open and dump to file
     std::ofstream outFile(output_file.c_str(), std::ofstream::out);
     outFile << vex_root.dump(2);
     outFile.close();
 }
 
-void 
+void
 MHO_DiFXScanProcessor::ConvertVisibilityFileObjects()
 {
     //load the visibilities
@@ -167,7 +167,7 @@ MHO_DiFXScanProcessor::ConvertVisibilityFileObjects()
     }
 
     //expectation here is that there is only a single file containing visibility
-    //records from every baseline in the scan 
+    //records from every baseline in the scan
     MHO_DiFXVisibilityProcessor visProcessor;
     visProcessor.SetFilename(fFileSet->fVisibilityFileList[0]);
     visProcessor.ReadDIFXFile(fAllBaselineVisibilities);
@@ -192,18 +192,18 @@ MHO_DiFXScanProcessor::ConvertVisibilityFileObjects()
     {
         it->second.WriteVisibilityObjects(fOutputDirectory);
     }
-    
+
     //clear out the baseline visbility containers for the next scan
     for(auto it = fAllBaselineVisibilities.begin(); it != fAllBaselineVisibilities.end(); it++)
     {
         it->second.Clear();
     }
     fAllBaselineVisibilities.clear();
-    
+
 
 }
 
-void 
+void
 MHO_DiFXScanProcessor::NormalizeVisibilities()
 {
     msg_debug("difx_interface", "normalizing visibilities"<<eom;);
@@ -221,27 +221,27 @@ MHO_DiFXScanProcessor::NormalizeVisibilities()
         if( it->second.IsAutoCorr() )
         {
             std::string station_id = it->second.GetRefStationMk4Id();
-            std::cout<<"found autocorr: "<<station_id<<std::endl;
+            //std::cout<<"found autocorr: "<<station_id<<std::endl;
             auto vis = it->second.GetVisibilities();
             raw_auto_corrs[station_id] = vis;
         }
-        else 
+        else
         {
             std::string baseline = it->second.GetBaselineShortName();
             auto vis = it->second.GetVisibilities();
             raw_visibilities[baseline] = vis;
         }
     }
-    
 
-    //for the auto-corrs compute the sum/average of all the values for each pol/ap 
+
+    //for the auto-corrs compute the sum/average of all the values for each pol/ap
     MHO_Reducer<visibility_type, MHO_CompoundSum> reducer;
     reducer.ReduceAxis(FREQ_AXIS);
     // reducer.ReduceAxis(TIME_AXIS);
     for(auto it = raw_auto_corrs.begin(); it != raw_auto_corrs.end(); it++)
     {
         std::string station_id = it->first;
-        std::cout<<"REDUCING AUTOCORR = "<<station_id<<std::endl;
+        //std::cout<<"REDUCING AUTOCORR = "<<station_id<<std::endl;
         visibility_type* auto_corrs = it->second;
         visibility_type* reduced = new visibility_type();
         std::size_t npp = auto_corrs->GetDimension(POLPROD_AXIS);
@@ -261,7 +261,7 @@ MHO_DiFXScanProcessor::NormalizeVisibilities()
     for(auto it = raw_visibilities.begin(); it != raw_visibilities.end(); it++)
     {
         std::string baseline = it->first;
-        std::cout<<"WORKING ON BASELINE: "<<baseline<<std::endl;
+        //std::cout<<"WORKING ON BASELINE: "<<baseline<<std::endl;
         auto vis = it->second;
         std::size_t npp = vis->GetDimension(POLPROD_AXIS);
         std::size_t nap = vis->GetDimension(TIME_AXIS);
@@ -269,16 +269,16 @@ MHO_DiFXScanProcessor::NormalizeVisibilities()
         std::string ref_st = std::string() + (char) baseline[0];
         std::string rem_st = std::string() + (char) baseline[1];
 
-        if(ref_st != rem_st) //only do cross corrs 
+        if(ref_st != rem_st) //only do cross corrs
         {
-            std::cout<<"CROSS CORR"<<std::endl;
+            //std::cout<<"CROSS CORR"<<std::endl;
             auto ref_ac = reduced_auto_corrs[ref_st];
             auto rem_ac = reduced_auto_corrs[rem_st];
             for(std::size_t pp=0; pp<npp; pp++)
             {
                 //figure out the pol-mapping to the right autocorrs (we ignore cross-autos)
                 std::string polprod = std::get<POLPROD_AXIS>(*vis)(pp);
-                std::cout<<"pp ax = "<<std::get<POLPROD_AXIS>(*vis)(pp)<<std::endl;
+                //std::cout<<"pp ax = "<<std::get<POLPROD_AXIS>(*vis)(pp)<<std::endl;
                 std::string ref_polprod = std::string() + (char)polprod[0] + (char)polprod[0];
                 std::string rem_polprod = std::string() + (char)polprod[1] + (char)polprod[1];
                 std::size_t ref_pp_idx, rem_pp_idx;
@@ -287,11 +287,11 @@ MHO_DiFXScanProcessor::NormalizeVisibilities()
 
                 if(!ref_ok || !rem_ok)
                 {
-                    msg_error("difx_interface", 
+                    msg_error("difx_interface",
                         "error missing pol-product in autocorrs needed to normalize: "
                         <<baseline<<":"<<polprod<<" "<<pp<<"."<<eom);
                 }
-                else 
+                else
                 {
                     for(std::size_t ap=0;ap<nap;ap++)
                     {
@@ -299,8 +299,8 @@ MHO_DiFXScanProcessor::NormalizeVisibilities()
                         {
                             double ref_val = std::sqrt( std::real( (*ref_ac)(ref_pp_idx,ch,ap,0) ) );
                             double rem_val = std::sqrt( std::real( (*rem_ac)(rem_pp_idx,ch,ap,0) ) );
-                            std::cout<<"pref = "<<ref_polprod<<", "<<ch<<", "<<ref_val<<std::endl;
-                            std::cout<<"prem = "<<ref_polprod<<", "<<ch<<", "<<rem_val<<std::endl;
+                            //std::cout<<"pref = "<<ref_polprod<<", "<<ch<<", "<<ref_val<<std::endl;
+                            //std::cout<<"prem = "<<ref_polprod<<", "<<ch<<", "<<rem_val<<std::endl;
 
                             double factor = 1.0;
                             if( std::fabs(ref_val) == 0.0 || std::fabs(rem_val) == 0.0)
@@ -324,7 +324,7 @@ MHO_DiFXScanProcessor::NormalizeVisibilities()
 }
 
 
-void 
+void
 MHO_DiFXScanProcessor::ConvertStationFileObjects()
 {
     //first extract the station coordinate quantities from the difx input
@@ -373,11 +373,11 @@ MHO_DiFXScanProcessor::ConvertStationFileObjects()
 }
 
 
-void 
+void
 MHO_DiFXScanProcessor::CleanUp()
 {
     //clear up and reset for next scan
-    //now iterate through the pcal map and delete the objects we cloned 
+    //now iterate through the pcal map and delete the objects we cloned
     for(auto it = fStationCode2PCal.begin(); it != fStationCode2PCal.end(); it++)
     {
         multitone_pcal_type* ptr = it->second;
@@ -396,10 +396,10 @@ MHO_DiFXScanProcessor::CleanUp()
 }
 
 
-void 
+void
 MHO_DiFXScanProcessor::LoadInputFile()
 {
-    //convert the input to json 
+    //convert the input to json
     MHO_DiFXInputProcessor input_proc;
     input_proc.LoadDiFXInputFile(fFileSet->fInputFile);
     input_proc.ConvertToJSON(fInput);
@@ -409,7 +409,7 @@ MHO_DiFXScanProcessor::LoadInputFile()
 }
 
 
-void 
+void
 MHO_DiFXScanProcessor::ExtractPCalData()
 {
     for(auto it = fFileSet->fPCALFileList.begin(); it != fFileSet->fPCALFileList.end(); it++)
@@ -428,11 +428,11 @@ MHO_DiFXScanProcessor::ExtractPCalData()
 }
 
 
-void 
+void
 MHO_DiFXScanProcessor::ExtractStationCoords()
 {
 
-    //populate fStationCode2Coords with each station present in fInput 
+    //populate fStationCode2Coords with each station present in fInput
     //(e.g. the station name/codes, coordinates, and delay spline info, etc. for each station)
     //first thing we have to do is figure out the data dimensions
     //the items we what to store here are equivalent to what is stored in the following type_3XXs
@@ -441,7 +441,7 @@ MHO_DiFXScanProcessor::ExtractStationCoords()
     //(3) parallatic angle spline coeff (type_303)
     //(4) uvw-coords spline coeff (type_303)
     //(5) phase-cal data (type_309)
-    //Note: with the exception of the phase-spline polynomial (type_302), all of these other quantities 
+    //Note: with the exception of the phase-spline polynomial (type_302), all of these other quantities
     //do not depend on the channel/frequency.
 
 
@@ -462,16 +462,16 @@ MHO_DiFXScanProcessor::ExtractStationCoords()
         station_coord_type* st_coord = new station_coord_type();
         fStationCode2Coords[station_code] = st_coord;
 
-        //get the spline model for the stations quantities 
+        //get the spline model for the stations quantities
         json antenna_poly = fInput["scan"][scan_index]["DifxPolyModel"][n][phase_center];
 
-        //figure out the start time of this polynomial 
+        //figure out the start time of this polynomial
         //TODO FIXME! we need to convert this date information to a cannonical date/time-stamp class
-        int mjd = antenna_poly[0]["mjd"];//start mjd 
-        int sec = antenna_poly[0]["sec"];//start second 
+        int mjd = antenna_poly[0]["mjd"];//start mjd
+        int sec = antenna_poly[0]["sec"];//start second
 
         //length of time each spline is valid
-        double duration = antenna_poly[0]["validDuration"]; 
+        double duration = antenna_poly[0]["validDuration"];
 
         //figure out the data dimensions
         std::size_t n_order = antenna_poly[0]["order"];
@@ -504,7 +504,7 @@ MHO_DiFXScanProcessor::ExtractStationCoords()
         for(std::size_t i=0; i<n_poly; i++)
         {
             json poly_interval = antenna_poly[i];
-            for(std::size_t p=0; p<=n_order; p++) 
+            for(std::size_t p=0; p<=n_order; p++)
             {
                 st_coord->at(0,i,p) = poly_interval["delay"][p];
                 st_coord->at(1,i,p) = poly_interval["az"][p];
@@ -522,15 +522,15 @@ MHO_DiFXScanProcessor::ExtractStationCoords()
 
 
 
-std::string 
+std::string
 MHO_DiFXScanProcessor::get_fourfit_reftime_for_scan(mho_json scan_obj)
 {
     //this function tries to follow d2m4 method of computing fourfit reference
     //time, but rather than using the DiFX MJD value, uses the vex-file
     //specified epoch along with hops_clock for the converion.
 
-    //loop over all the stations in this scan and determine the latest start 
-    //and earliest stop times   
+    //loop over all the stations in this scan and determine the latest start
+    //and earliest stop times
     double latest_start = -1.0;
     double earliest_stop = 1e30;
     for(std::size_t n = 0; n < scan_obj["station"].size(); n++)
@@ -545,7 +545,7 @@ MHO_DiFXScanProcessor::get_fourfit_reftime_for_scan(mho_json scan_obj)
     //truncate midpoint to integer second -- this is how difx2mark4 does it
     int itime =  itime = (latest_start + earliest_stop) / 2;
     std::string start_epoch = scan_obj["start"].get<std::string>();
-    auto start_tp = hops_clock::from_vex_format(start_epoch); 
+    auto start_tp = hops_clock::from_vex_format(start_epoch);
     auto frt_tp = start_tp + std::chrono::seconds(itime);
     std::string frt = hops_clock::to_vex_format(frt_tp);
 
