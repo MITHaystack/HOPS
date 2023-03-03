@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <sstream>
 #include <vector>
 #include <algorithm>
 #include <set>
@@ -34,6 +35,7 @@ int main(int argc, char** argv)
 
     std::string input_dir = "./";
     std::string output_dir = "./";
+    bool output_dir_specified = false;
     std::string station_codes_file = "";
     int exper_num = 1234;
     bool normalize = true;
@@ -69,6 +71,7 @@ int main(int argc, char** argv)
                 break;
             case ('o'):
                 output_dir = std::string(optarg);
+                output_dir_specified = true;
                 break;
             case ('r'):
                 normalize = false;
@@ -77,6 +80,15 @@ int main(int argc, char** argv)
                 std::cout << usage << std::endl;
                 return 1;
         }
+    }
+
+    //if not output directory was specified assume we are going to dump the
+    //converted data into <input_directory>/exper_num
+    if(!output_dir_specified)
+    {
+        std::stringstream ss;
+        ss << exper_num;
+        output_dir = input_dir + "/" + ss.str();
     }
 
     //if the output directory doesn't exist, then create it
