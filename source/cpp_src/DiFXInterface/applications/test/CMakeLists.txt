@@ -26,6 +26,7 @@ if(BASH_PROGRAM)
 
         set(TEST_SCRIPT_BASENAMES
             chk_difx2hops
+            chk_d2h_vs_d2m4.sh
         )
 
         #configure the environment

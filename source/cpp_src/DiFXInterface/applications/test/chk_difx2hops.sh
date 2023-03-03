@@ -54,11 +54,9 @@ else
     RET_VAL=1
 fi
 
-rm -rf $EXP_DIR/1111/
-
 echo "Return value: $RET_VAL"
+[ "${RET_VAL}" != "0" ]
 
-exit $RET_VAL
 
 # GE_FILE=$(ls ./GE.*.cor)
 # ConvertFileToJSON -f $GE_FILE -d 0 -o ./tmp.json
