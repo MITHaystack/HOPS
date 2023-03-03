@@ -16,6 +16,7 @@ EXP_NUM=1111
 #are placed in. This is just a quirk of the difxio library. Normally, absolute
 #paths are used, but that doesn't work outside of a correlator environment.
 cd $EXP_DIR
+rm -rf $EXP_DIR/1111/
 difx2hops -e $EXP_NUM -i ./ -c ./station.codes
 RET_VAL=$?
 
@@ -34,12 +35,14 @@ then
     else
         RET_VAL=2
     fi
+
     if [ "${NUM_STATION_FILES}" == "6" ];
     then
         echo "Found $NUM_STATION_FILES station files as expected."
     else
         RET_VAL=3
     fi
+
     if [ "${NUM_JSON_FILES}" == "1" ];
     then
         echo "Found $NUM_JSON_FILES json files as expected."
@@ -51,6 +54,9 @@ else
     RET_VAL=1
 fi
 
+rm -rf $EXP_DIR/1111/
+
+echo "Return value: $RET_VAL"
 [ "${RET_VAL}" != "0" ]
 
 
