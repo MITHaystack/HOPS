@@ -23,30 +23,40 @@ if(BASH_PROGRAM)
         )
         set_tests_properties(TESTDATA_UNPACK PROPERTIES DEPENDS TESTDATA_DOWNLOAD)
 
-        #test which work when old hops is compile as C or C++
-        set(TEST_SCRIPT_BASENAMES
-            chk_ff_2836
-            chk_ff_2843
-            chk_ff_3372
-            chk_ff_3413
-            chk_ff_3756
-            chk_ff_3571
-            chk_alist
-            chk_aedit
-            chk_min_weight
-            chk_passband
-            chk_notches
-            chk_ff_3772pb
-        )
+        set(TEST_SCRIPT_BASENAMES "")
+        if(HOPS3_USE_CXX)
+            #tests which work when old hops is compiled as C++, since the following
+            #executables are not yet compatible with both C and C++ compilers (only C):
+            # adump, average, cofit, fourmer, fplot, fringex, search, snratio, CorAsc2
 
-        #tests which only work when old hops is compiled as C, since the following
-        #executables are not yet compatible with both C and C++ compilers:
-        # adump, average, cofit, fourmer, fplot, fringex, search, snratio, CorAsc2
-
-        if( NOT HOPS3_USE_CXX)
             list(APPEND TEST_SCRIPT_BASENAMES
+                chk_ff_2836
+                chk_ff_2843
+                chk_ff_3372
+                chk_ff_3413
+                chk_ff_3756
+                chk_ff_3571
                 chk_baselines
+                chk_alist
+                chk_aedit
+                chk_min_weight
+                chk_passband
+                chk_notches
+                chk_ff_3772pb
+            )
+        else()
+            #test which work when old hops is compiled as C
+            list(APPEND TEST_SCRIPT_BASENAMES
+                chk_ff_2836
+                chk_ff_2843
+                chk_ff_3372
+                chk_ff_3413
+                chk_ff_3756
+                chk_baselines
+                chk_ff_3571
+                chk_alist
                 chk_adump
+                chk_aedit
                 chk_fringex
                 chk_average
                 chk_avefix
@@ -55,7 +65,11 @@ if(BASH_PROGRAM)
                 chk_fourmer
                 chk_frmrsrch
                 chk_hdlinks
+                chk_min_weight
+                chk_passband
+                chk_notches
                 chk_notches_xf
+                chk_ff_3772pb
             )
         endif(HOPS3_USE_CXX)
 
