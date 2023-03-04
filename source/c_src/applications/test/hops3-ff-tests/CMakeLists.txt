@@ -27,7 +27,7 @@ if(BASH_PROGRAM)
         if(HOPS3_USE_CXX)
             #tests which work when old hops is compiled as C++, since the following
             #executables are not yet compatible with both C and C++ compilers (only C):
-            # adump, average, cofit, fourmer, fplot, fringex, search, snratio, CorAsc2
+            # average, cofit, fourmer, fringex, search, snratio, CorAsc2
 
             list(APPEND TEST_SCRIPT_BASENAMES
                 chk_ff_2836
@@ -38,6 +38,7 @@ if(BASH_PROGRAM)
                 chk_ff_3571
                 chk_baselines
                 chk_alist
+                chk_adump
                 chk_aedit
                 chk_min_weight
                 chk_passband
