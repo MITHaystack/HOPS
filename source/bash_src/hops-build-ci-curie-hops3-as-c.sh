@@ -46,7 +46,7 @@ else
 
     #e-mail out the log
     #echo "HOPS4 cmake build test start: $START_TIME, end $END_TIME" $'\n \n' "$( cat $TEST_RUN_FILE)" | mailx  -A $CONFIG_LOG -A $BUILD_LOG -A $TEST_LOG -s "HOPS4 build test results - $CURRENT_REV" barrettj@mit.edu
-    echo "HOPS4 cmake build test start: $START_TIME, end $END_TIME" $'\n \n' "Log files in $CONFIG_LOG, $BUILD_LOG, and $TEST_LOG" $'\n \n' "$( cat $TEST_RUN_FILE)" | mailx   -s "HOPS4 build test results - $CURRENT_REV" barrettj@mit.edu
+    echo "HOPS4 cmake build (HOPS3 as C) test start: $START_TIME, end $END_TIME" $'\n \n' "Log files in $CONFIG_LOG, $BUILD_LOG, and $TEST_LOG" $'\n \n' "$( cat $TEST_RUN_FILE)" | mailx   -s "HOPS4 build test results - $CURRENT_REV" barrettj@mit.edu
 
 
 
