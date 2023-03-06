@@ -16,6 +16,7 @@
 #define PI 3.1415926536
 
 #include "adata.h"
+#include "msg.h"
 
 #define MAXID 560
 #define MAXSRC 20000
