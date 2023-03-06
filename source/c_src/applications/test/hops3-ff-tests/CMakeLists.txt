@@ -24,56 +24,32 @@ if(BASH_PROGRAM)
         set_tests_properties(TESTDATA_UNPACK PROPERTIES DEPENDS TESTDATA_DOWNLOAD)
 
         set(TEST_SCRIPT_BASENAMES "")
-        if(HOPS3_USE_CXX)
-            #tests which work when old hops is compiled as C++, since the following
-            #executables are not yet compatible with both C and C++ compilers (only C):
-            # average, cofit, fourmer, fringex, search, snratio, CorAsc2
-
-            list(APPEND TEST_SCRIPT_BASENAMES
-                chk_ff_2836
-                chk_ff_2843
-                chk_ff_3372
-                chk_ff_3413
-                chk_ff_3756
-                chk_ff_3571
-                chk_baselines
-                chk_alist
-                chk_adump
-                chk_aedit
-                chk_min_weight
-                chk_passband
-                chk_notches
-                chk_ff_3772pb
-                chk_average
-            )
-        else()
-            #test which work when old hops is compiled as C
-            list(APPEND TEST_SCRIPT_BASENAMES
-                chk_ff_2836
-                chk_ff_2843
-                chk_ff_3372
-                chk_ff_3413
-                chk_ff_3756
-                chk_baselines
-                chk_ff_3571
-                chk_alist
-                chk_adump
-                chk_aedit
-                chk_fringex
-                chk_average
-                chk_avefix
-                chk_cofit
-                chk_search
-                chk_fourmer
-                chk_frmrsrch
-                #chk_hdlinks -- this one fails (probably we missing the perl script hops_data_links.pl)
-                chk_min_weight
-                chk_passband
-                chk_notches
-                chk_notches_xf
-                chk_ff_3772pb
-            )
-        endif(HOPS3_USE_CXX)
+        #test which work when old hops is compiled as C
+        list(APPEND TEST_SCRIPT_BASENAMES
+            chk_ff_2836
+            chk_ff_2843
+            chk_ff_3372
+            chk_ff_3413
+            chk_ff_3756
+            chk_ff_3571
+            chk_ff_3772pb
+            chk_baselines
+            chk_alist
+            chk_adump
+            chk_aedit
+            chk_min_weight
+            chk_passband
+            chk_notches
+            chk_fringex
+            chk_average
+            chk_avefix
+            chk_cofit
+            chk_search
+            chk_fourmer
+            chk_frmrsrch
+            #chk_hdlinks -- this one fails (probably we missing the perl script hops_data_links.pl)
+            chk_notches_xf
+        )
 
         #configure the environment
         configure_file( ${CMAKE_CURRENT_SOURCE_DIR}/chk_cmake_env.sh ${CMAKE_CURRENT_BINARY_DIR}/chk_env.sh @ONLY)

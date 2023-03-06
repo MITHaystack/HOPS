@@ -4,6 +4,8 @@
 #include <stdio.h>
 
 #include "adata.h"
+#include "mk4_util.h"
+#include "mk4_afio.h"
 
 #if BIGGER
 #define MAX_BNO 45 			/* 10 telescopes */
