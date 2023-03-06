@@ -19,6 +19,8 @@
 #include "cpgplot.h"
 #include "search.h"
 
+#include <getopt.h>
+
 int
 parse_cmdline (int argc, char **argv, FILE **fpout, int *plot, int *sqp)
     {

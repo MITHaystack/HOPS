@@ -19,6 +19,7 @@ sort_data (avg_data* data, int navg)
     {
     int i;
     char rc[7];
+    extern void sorter (avg_data* data, int navg);
 					/* Initialize the sort order */
     for (i=0; i<navg; i++) data[i].order = i;
 return (0);

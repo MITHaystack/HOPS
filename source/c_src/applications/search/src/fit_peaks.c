@@ -29,6 +29,8 @@ fit_peaks (struct srchsummary *srchdata)
     double max_snr, fp_rcell, fp_dcell, rpos, dpos, fit_snr, snr_ratio;
     double ratediff, ratestep, delaydiff, delaystep;
     struct srchsummary *sb;
+    extern int parabola (double y0, double y1, double y2, double* x_max, double* y_max);
+    extern char* fringename(fringesum *fsumm);
 
     for (i=0; i<MAX_BNO; i++)
 	{
