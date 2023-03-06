@@ -1,5 +1,6 @@
 if(HOPS3_USE_CXX)
-    #only the folowing 3 applications have been upgraded to be compiled as C++
+    #only the following applications have been upgraded to be compiled as C++
+    add_subdirectory(adump)
     add_subdirectory(aedit)
     add_subdirectory(alist)
     add_subdirectory(fourfit)
