@@ -44,6 +44,7 @@ if(BASH_PROGRAM)
                 chk_passband
                 chk_notches
                 chk_ff_3772pb
+                chk_average
             )
         else()
             #test which work when old hops is compiled as C
