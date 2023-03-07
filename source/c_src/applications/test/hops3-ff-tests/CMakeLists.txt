@@ -24,7 +24,7 @@ if(BASH_PROGRAM)
         set_tests_properties(TESTDATA_UNPACK PROPERTIES DEPENDS TESTDATA_DOWNLOAD)
 
         set(TEST_SCRIPT_BASENAMES "")
-        #test which work when old hops is compiled as C
+
         list(APPEND TEST_SCRIPT_BASENAMES
             chk_ff_2836
             chk_ff_2843
@@ -47,8 +47,15 @@ if(BASH_PROGRAM)
             chk_search
             chk_fourmer
             chk_frmrsrch
-            #chk_hdlinks -- this one fails (probably we missing the perl script hops_data_links.pl)
             chk_notches_xf
+            chk_ps2pdf
+            #the following tests fail (either as c or c++)
+            #chk_hdlinks -- this one fails (probably we missing the perl script hops_data_links.pl)
+            #chk_ff_display
+            #chk_ff_dump
+            #chk_ff_ps2pdf
+            #chk_flagging
+            #chk_fsumm
         )
 
         #configure the environment
