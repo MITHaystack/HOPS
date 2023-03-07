@@ -23,7 +23,7 @@ foreach( BASENAME ${${EXENAME}_SOURCE_BASENAMES} )
 	list( APPEND ${EXENAME}_SOURCEFILES ${${EXENAME}_SOURCE_PATH}/${BASENAME} )
 endforeach( BASENAME )
 
-# list(INSERT ${EXENAME}_SOURCEFILES 0 ${CMAKE_CURRENT_SOURCE_DIR}/fplot.c)
+list(INSERT ${EXENAME}_SOURCEFILES 0 ${CMAKE_CURRENT_SOURCE_DIR}/fplot.c)
 
 #declare relative paths to internal headers/libs ###############################
 set(MSG_RELPATH "../../msg")
