@@ -19,6 +19,13 @@ set(SOURCE_BASENAMES
     TestTokenizer
 )
 
+if(HOPS_USE_MPI)
+    list (APPEND SOURCE_BASENAMES
+        TestMPIInterface
+    )
+    list(APPEND HOPS_TEST_LIBS MPI::MPI_CXX)
+endif(HOPS_USE_MPI)
+
 foreach( BASENAME ${SOURCE_BASENAMES} )
     add_executable( ${BASENAME} ${BASENAME}.cc )
     target_link_libraries( ${BASENAME} ${HOPS_TEST_LIBS})

@@ -96,6 +96,7 @@ option(HOPS_USE_FFTW3 "Use FFTW3 for fast fourier transforms" OFF)
 option(HOPS_USE_DIFXIO "Link against difxio library to read DiFX files" OFF)
 option(HOPS_USE_PYBIND11 "Build python bindings with pybind11" OFF)
 option(HOPS_USE_ROOT "Use CERN ROOT libraries to enable plugin tools for plotting/debug/analysis." OFF)
+option (HOPS_USE_MPI "Use MPI (Message Passing Interface) for parallel processing" OFF)
 
 
 #convenience variables
@@ -126,6 +127,12 @@ if(HOPS_USE_DIFXIO)
     find_package(PkgConfig) # we use pkg-config to find difxio
     pkg_search_module(DIFXIO REQUIRED difxio)
 endif()
+
+#find MPI devel if needed
+if (HOPS_USE_MPI)
+    find_package(MPI REQUIRED)
+endif(HOPS_USE_MPI)
+
 
 ################################################################################
 
