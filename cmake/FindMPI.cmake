@@ -246,7 +246,8 @@
 cmake_policy(PUSH)
 cmake_policy(SET CMP0057 NEW) # if IN_LIST
 
-include(${CMAKE_CURRENT_LIST_DIR}/FindPackageHandleStandardArgs.cmake)
+# include(${CMAKE_CURRENT_LIST_DIR}/FindPackageHandleStandardArgs.cmake)
+include(FindPackageHandleStandardArgs)
 
 # Generic compiler names
 set(_MPI_C_GENERIC_COMPILER_NAMES          mpicc    mpcc      mpicc_r mpcc_r)

@@ -31,6 +31,7 @@ set (UTILITIES_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_LegacyRootCodeGenerator.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_StationCodeMap.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_Clock.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MPIInterfaceWrapper.hh
 )
 
 #set_source_files_properties(picohash.h PROPERTIES COMPILE_FLAGS -fpermissive)
@@ -50,6 +51,16 @@ set( UTILITIES_SOURCEFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_StationCodeMap.cc
 )
 
+if (HOPS_USE_MPI)
+    list (APPEND UTILITIES_HEADERFILES
+        ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MPIInterface.hh
+    )
+    list (APPEND UTILITIES_SOURCEFILES
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_MPIInterface.cc
+    )
+endif(HOPS_USE_MPI)
+
+
 #declare header paths ##########################################################
 hops_internal_include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 hops_internal_include_directories(${EXTERN_HLIBS}/json/include)
@@ -59,7 +70,15 @@ hops_internal_include_directories(${EXTERN_HLIBS}/json/include)
 set(UTILITIES_LIBS MHO_Message)
 
 add_library (MHO_Utilities SHARED ${UTILITIES_SOURCEFILES})
-target_link_libraries (MHO_Utilities ${UTILITIES_LIBS})
+
+
+if(HOPS_USE_MPI)
+    message(INFO "building with MPI enabled.")
+    target_link_libraries (MHO_Utilities PUBLIC ${UTILITIES_LIBS} MPI::MPI_CXX)
+    target_compile_definitions(MHO_Utilities PUBLIC HOPS_USE_MPI)
+else(HOPS_USE_MPI)
+    target_link_libraries (MHO_Utilities ${UTILITIES_LIBS})
+endif(HOPS_USE_MPI)
 
 hops_install_headers (${UTILITIES_HEADERFILES})
 hops_install_libraries (MHO_Utilities)
