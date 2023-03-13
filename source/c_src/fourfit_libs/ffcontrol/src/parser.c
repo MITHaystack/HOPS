@@ -407,6 +407,9 @@ int parser (void)
                        else if (cb_ptr -> baseline[0] == WILDCARD) // rem station
                            cb_ptr -> mount_type[1] = tval;
                        }
+                    else if (toknum == MIXED_MODE_ROT_)
+                        cb_ptr -> mixed_mode_rot = tval;
+
 
                break;
 

@@ -66,7 +66,8 @@ nullify_cblock (struct c_block *cb_ptr)
     cb_ptr -> ion_smooth      = NULLINT;  
     cb_ptr -> est_pc_manual   = NULLINT;  
     cb_ptr -> vbp_correct     = NULLINT;  
-    cb_ptr -> vbp_fit         = NULLINT;  
+    cb_ptr -> vbp_fit         = NULLINT;
+    cb_ptr -> mixed_mode_rot = NULLINT;  
 
     for (i=0; i<5; i++)
         {

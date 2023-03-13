@@ -84,6 +84,7 @@ struct type_param
     int         est_pc_manual;          // estimate pc manual values
     int         mount_type[2];          // mount types for ref and rem
     double      elevation[2];           // elevation angle for ref and rem (radians)
+    int         mixed_mode_rot;         // iff true, rotate mixed LP-CP RY/YR data by 90
     };
 
 #define WIN_EDGE_SBD   0x01             /* masks for status.interp_err */
