@@ -60,6 +60,8 @@ int precorrect (struct scan_struct* ovex, struct type_pass* pass)
     param.mbd_anchor = pass->control.mbd_anchor;
     param.est_pc_manual = pass->control.est_pc_manual;
 
+    param.mixed_mode_rot = pass->control.mixed_mode_rot;
+
     for (i=0; i<2; i++)             // Copy windows into working area
         {
         param.win_sb[i] = pass->control.sb_window[i] + delay_offset;
@@ -139,6 +141,22 @@ int precorrect (struct scan_struct* ovex, struct type_pass* pass)
                     static_pc_off = (stn == 0)
                                   ? pass->control.pc_phase_offset[i].ref
                                   : pass->control.pc_phase_offset[i].rem;
+                                  
+                    if(param.mixed_mode_rot) //is mixed-mode extra 90 deg rotation turned on?
+                    {
+                        //msg ("mixed mot rot feature is enabled", 1);
+                        //this is a mixed mode (circular pol. x linear pol.) experiment?
+                        if( pass->linpol[0] != pass->linpol[1] )
+                        {
+                            //msg ("mixed mot rot feature is active for this scan: linpol? %d and pol index? %d", 1, pass->linpol[stn], i);
+                            if(pass->linpol[stn] == 1 && i == 1 ) //apply the rotation to the lin-pol station only
+                            {
+                                msg ("adding -90 deg to static pc_offset for RY/YR data of station %c", 1, ovex->st[n].mk4_site_id);
+                                static_pc_off += -90.0;
+                            }
+                        }
+                    }
+
                     status.pc_offset[fr][stn][i] += (static_pc_off != NULLFLOAT) ? static_pc_off : 0.0;
                     }
 
@@ -210,6 +228,21 @@ int precorrect (struct scan_struct* ovex, struct type_pass* pass)
                     static_pc_off = (stn == 0)
                                   ? pass->control.pc_phase_offset[i].ref
                                   : pass->control.pc_phase_offset[i].rem;
+
+                    if(param.mixed_mode_rot) //is mixed-mode extra 90 deg rotation turned on?
+                    {
+                        // ("mixed mot rot feature is enabled", 1);
+                        //this is a mixed mode (circular pol. x linear pol.) experiment?
+                        if( pass->linpol[0] != pass->linpol[1] )
+                        {
+                            //msg ("mixed mot rot feature is active for this scan: linpol? %d and pol index? %d", 1, pass->linpol[stn], i);
+                            if(pass->linpol[stn] == 1 && i == 1 ) //apply the rotation to the lin-pol station only
+                            {
+                                msg ("adding -90 deg to static pc_offset for RY/YR data of station %c", 1, ovex->st[n].mk4_site_id);
+                                static_pc_off += -90.0;
+                            }
+                        }
+                    }
 
                     status.pc_offset[fr][stn][i] += (static_pc_off != NULLFLOAT) ? static_pc_off
                                                                                  : 0.0;
