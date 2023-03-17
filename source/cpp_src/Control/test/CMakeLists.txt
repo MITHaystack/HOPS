@@ -11,8 +11,7 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../../Utilities/include)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../../Containers/include)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../include)
 
-set(HOPS_TEST_LIBS_LIBS "mk4util" "msg" "ffcontrol" )
-list(APPEND HOPS_TEST_LIBS MHO_Message MHO_Utilities MHO_Containers MHO_Control)
+set(HOPS_TEST_LIBS MHO_Message MHO_Utilities MHO_Containers MHO_Control msg mk4util ffcontrol)
 
 
 # set(SOURCE_BASENAMES
