@@ -74,6 +74,6 @@ if(HOPS_DEV_USE_OLD)
 endif(HOPS_DEV_USE_OLD)
 
 
-#if(HOPS_ENABLE_TEST)
+# if(HOPS_ENABLE_TEST)
 #    add_subdirectory(test)
-#endif(HOPS_ENABLE_TEST)
+# endif(HOPS_ENABLE_TEST)
