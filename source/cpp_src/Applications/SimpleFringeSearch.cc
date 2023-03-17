@@ -5,10 +5,24 @@
 #include <getopt.h>
 #include <iomanip>
 
+
+//fourfit control lib
+#ifndef HOPS3_USE_CXX
+extern "C"
+{
+#endif
+
 #include "msg.h"
 #include "ffcontrol.h"
 struct c_block* cb_head; //global extern kludge (due to stupid c-library interface)
 #include "ffmath.h"
+
+#ifndef HOPS3_USE_CXX
+}
+#endif
+
+
+
 
 //global messaging util
 #include "MHO_Message.hh"
