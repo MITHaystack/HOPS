@@ -1,17 +1,17 @@
-set(MSG_RELPATH "../../../c_src/msg/include")
-set(MK4UTIL_RELPATH "../../../c_src/mk4util/include")
-set(FFCONTROL_RELPATH "../../../c_src/fourfit_libs/ffcontrol/include")
+#declare header paths for old c-libs ##########################################
+set(MK4UTIL_RELPATH "../../c_src/mk4util")
+set(MSG_RELPATH "../../c_src/msg")
+set(FFCONTROL_RELPATH "../../c_src/fourfit_libs/ffcontrol")
 
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/${MSG_RELPATH})
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/${MK4UTIL_RELPATH})
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/${FFCONTROL_RELPATH})
+list(APPEND RELPATH_LIST ${MK4UTIL_RELPATH} ${MSG_RELPATH} ${FFCONTROL_RELPATH}
+)
 
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../../Message/include)
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../../Utilities/include)
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../../Containers/include)
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../include)
+#include library headers
+foreach(path ${RELPATH_LIST})
+    hops_internal_include_directories(${CMAKE_CURRENT_SOURCE_DIR}/${path}/include)
+endforeach(path)
 
-set(HOPS_TEST_LIBS MHO_Message MHO_Utilities MHO_Containers MHO_Control msg mk4util ffcontrol)
+set(HOPS_TEST_LIBS MHO_Message MHO_Utilities MHO_Containers MHO_Control  msg mk4util ffcontrol )
 
 
 # set(SOURCE_BASENAMES
