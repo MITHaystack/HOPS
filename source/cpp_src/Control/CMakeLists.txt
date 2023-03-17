@@ -18,7 +18,7 @@ set( CONTROL_SOURCEFILES
 hops_internal_include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 #list of c++ libraries
-set(CONTROL_LIBS MHO_Message MHO_Utilities MHO_Containers)
+set(CONTROL_LIBS MHO_Message MHO_Utilities MHO_Containers mk4util msg ffcontrol)
 
 #declare header paths for old c-libs ##########################################
 set(MK4UTIL_RELPATH "../../c_src/mk4util")
@@ -32,9 +32,6 @@ list(APPEND RELPATH_LIST ${MK4UTIL_RELPATH} ${MSG_RELPATH} ${FFCONTROL_RELPATH}
 foreach(path ${RELPATH_LIST})
     hops_internal_include_directories(${CMAKE_CURRENT_SOURCE_DIR}/${path}/include)
 endforeach(path)
-
-#add old c libs ################################################################
-list(APPEND CONTROL_LIBS "mk4util" "msg" "ffcontrol" )
 
 #compile and install library ###################################################
 add_library (MHO_Control SHARED ${CONTROL_SOURCEFILES})
