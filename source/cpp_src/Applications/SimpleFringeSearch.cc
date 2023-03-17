@@ -8,7 +8,6 @@
 #include "msg.h"
 #include "ffcontrol.h"
 struct c_block* cb_head; //global extern kludge (due to stupid c-library interface)
-
 #include "ffmath.h"
 
 //global messaging util
