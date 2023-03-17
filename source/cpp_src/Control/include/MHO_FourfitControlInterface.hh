@@ -1,8 +1,21 @@
 #ifndef MHO_FourfitControlInterface_HH__
 #define MHO_FourfitControlInterface_HH__
 
+
+//fourfit control lib
+#ifndef HOPS3_USE_CXX
+extern "C"
+{
+#endif
+
 #include "ffcontrol.h"
 struct c_block* cb_head; //global extern kludge (due to stupid c-library interface)
+
+#ifndef HOPS3_USE_CXX
+}
+#endif
+
+
 
 #include <string>
 #include <vector>

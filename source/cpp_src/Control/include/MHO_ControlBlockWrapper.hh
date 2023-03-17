@@ -1,7 +1,20 @@
 #ifndef MHO_ControlBlockWrapper_HH__
 #define MHO_ControlBlockWrapper_HH__
 
+//fourfit control lib
+#ifndef HOPS3_USE_CXX
+extern "C"
+{
+#endif
+
 #include "ffcontrol.h"
+
+#ifndef HOPS3_USE_CXX
+}
+#endif
+
+
+
 
 #include <string>
 #include <vector>
@@ -19,7 +32,7 @@ class MHO_ControlBlockWrapper
 {
 
     public:
-        MHO_ControlBlockWrapper(c_block* block, mho_json vex_info, std::string baseline);
+        MHO_ControlBlockWrapper(struct c_block* block, mho_json vex_info, std::string baseline);
         virtual ~MHO_ControlBlockWrapper();
 
         //manual per-channel p-cal offsets
@@ -38,7 +51,7 @@ class MHO_ControlBlockWrapper
     private:
 
         mho_json fVexInfo;
-        c_block* fControlBlock;
+        struct c_block* fControlBlock;
     
         std::string fBaseline;
         std::string fRefMk4ID;

@@ -3,7 +3,7 @@
 namespace hops 
 {
     
-MHO_ControlBlockWrapper::MHO_ControlBlockWrapper(c_block* block, mho_json vex_info, std::string baseline)
+MHO_ControlBlockWrapper::MHO_ControlBlockWrapper(struct c_block* block, mho_json vex_info, std::string baseline)
 {
     fControlBlock = block;
     fVexInfo = vex_info; //full copy (TODO -- maybe should just use a reference?)
