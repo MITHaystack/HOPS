@@ -23,15 +23,20 @@ set(HOPS_TEST_LIBS_LIBS "mk4util" "msg" "ffcontrol" )
 list(APPEND HOPS_TEST_LIBS MHO_Message MHO_Utilities MHO_Containers MHO_Control)
 
 
-set(SOURCE_BASENAMES
-    TestControlFileParsePCPhases
-)
+# set(SOURCE_BASENAMES
+#     TestControlFileParsePCPhases
+# )
+# 
+# foreach( BASENAME ${SOURCE_BASENAMES} )
+#     add_executable( ${BASENAME} ${BASENAME}.cc )
+#     target_link_libraries( ${BASENAME} ${HOPS_TEST_LIBS})
+#     add_test(NAME ${BASENAME}_test COMMAND ${BASENAME})
+# endforeach( BASENAME )
 
-foreach( BASENAME ${SOURCE_BASENAMES} )
-    add_executable( ${BASENAME} ${BASENAME}.cc )
-    target_link_libraries( ${BASENAME} ${HOPS_TEST_LIBS})
-    add_test(NAME ${BASENAME}_test COMMAND ${BASENAME})
-endforeach( BASENAME )
+add_executable( TestControlFileParsePCPhases TestControlFileParsePCPhases.cc )
+target_link_libraries( TestControlFileParsePCPhases ${HOPS_TEST_LIBS})
+add_test(NAME TestControlFileParsePCPhases_test COMMAND TestControlFileParsePCPhases -c ${CMAKE_CURRENT_SOURCE_DIR}/cf_test1)
+
 
 hops_install_executables( ${SOURCE_BASENAMES} )
 
