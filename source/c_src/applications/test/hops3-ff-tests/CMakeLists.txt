@@ -1,11 +1,7 @@
 #configure environment set-up script
-find_program (BASH_PROGRAM bash)
-find_program (TAR_PROGRAM tar)
-find_program (WGET_PROGRAM wget)
+find_program (BASH_PROGRAM bash REQUIRED)
 
 if(BASH_PROGRAM)
-
-    if(HOPS_ENABLE_REMOTE_TEST_DATA)
 
         set(TEST_SCRIPT_BASENAMES "")
 
@@ -48,7 +44,5 @@ if(BASH_PROGRAM)
             set_tests_properties(${BASENAME}_test PROPERTIES DEPENDS TESTDATA_UNPACK)
             set_tests_properties(${BASENAME}_test PROPERTIES ENVIRONMENT "srcdir=${HOPS_TEST_DATA_DIR}")
         endforeach( BASENAME )
-
-   endif(HOPS_ENABLE_REMOTE_TEST_DATA)
 
 endif(BASH_PROGRAM)
