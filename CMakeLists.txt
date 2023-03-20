@@ -105,7 +105,8 @@ set(CPPSOURCE ${CMAKE_CURRENT_SOURCE_DIR}/source/cpp_src)
 set(SHSOURCE ${CMAKE_CURRENT_SOURCE_DIR}/source/bash_src)
 set(PYSOURCE ${CMAKE_CURRENT_SOURCE_DIR}/source/python_src)
 set(EXTERN_HLIBS ${CMAKE_CURRENT_SOURCE_DIR}/extern)
-
+set(TEST_DATA_SOURCE ${CMAKE_CURRENT_SOURCE_DIR}/test_data)
+set(HOPS_TEST_DATA_DIR ${CMAKE_CURRENT_BINARY_DIR}/test_data)
 
 if(HOPS_ENABLE_TEST)
     enable_testing()
@@ -196,6 +197,12 @@ install( PROGRAMS ${CMAKE_CURRENT_BINARY_DIR}/hops.bash DESTINATION ${BIN_INSTAL
 ################################################################################
 #call build in the subdirectories
 add_subdirectory(${EXTERN_HLIBS}) #external (mostly header-only) dependencies, but date (tz) library must be built
+
+#optional directory for test-data
+if(HOPS_ENABLE_TEST)
+add_subdirectory(${TEST_DATA_SOURCE})
+endif(HOPS_ENABLE_TEST)
+
 add_subdirectory(${CSOURCE})
 add_subdirectory(${CPPSOURCE})
 add_subdirectory(doc)
