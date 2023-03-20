@@ -10,9 +10,6 @@ if(ENABLE_STEPWISE_CHECK)
     hops_add_cxxflag(HOPS_ENABLE_STEPWISE_CHECK)
 endif(ENABLE_STEPWISE_CHECK)
 
-#for testing, provide an option to download the test data
-option( HOPS_ENABLE_REMOTE_TEST_DATA "Download remote data for developer tests." OFF)
-
 hops_require_cpp11()
 
 #source sub directories (in order of dependence...this is important!)
