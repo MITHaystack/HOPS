@@ -89,14 +89,14 @@ message(STATUS "Using compiler ${COMPILER_ID} ${COMPILER_VERSION}")
 ################################################################################
 
 #options for triggering additional dependencies
-option(HOPS_ENABLE_TEST "Build developer tests." ON)
+option(HOPS_ENABLE_TEST "Build developer tests." OFF)
 option(HOPS3_USE_CXX "Build HOPS3 libraries using the C++ compiler." OFF)
 option(HOPS_DEV_USE_OLD "Allow new C++ code to use old hops/fourfit C-libraries, beyond what is absolutely necessary." OFF)
 option(HOPS_USE_FFTW3 "Use FFTW3 for fast fourier transforms" OFF)
 option(HOPS_USE_DIFXIO "Link against difxio library to read DiFX files" OFF)
 option(HOPS_USE_PYBIND11 "Build python bindings with pybind11" OFF)
 option(HOPS_USE_ROOT "Use CERN ROOT libraries to enable plugin tools for plotting/debug/analysis." OFF)
-option (HOPS_USE_MPI "Use MPI (Message Passing Interface) for parallel processing" OFF)
+option(HOPS_USE_MPI "Use MPI (Message Passing Interface) for parallel processing" OFF)
 
 
 #convenience variables
@@ -106,7 +106,16 @@ set(SHSOURCE ${CMAKE_CURRENT_SOURCE_DIR}/source/bash_src)
 set(PYSOURCE ${CMAKE_CURRENT_SOURCE_DIR}/source/python_src)
 set(EXTERN_HLIBS ${CMAKE_CURRENT_SOURCE_DIR}/extern)
 set(TEST_DATA_SOURCE ${CMAKE_CURRENT_SOURCE_DIR}/test_data)
-set(HOPS_TEST_DATA_DIR ${CMAKE_CURRENT_BINARY_DIR}/test_data)
+set(HOPS_TEST_DATA_DIR ${CMAKE_CURRENT_BINARY_DIR}/test_data) #actual location to put test data and do tests
+
+#check that we can download test data if testing is enabled
+cmake_dependent_option( HOPS_ENABLE_REMOTE_TEST_DATA "Download remote data for developer tests." ON "HOPS_ENABLE_TEST" OFF)
+if(HOPS_ENABLE_TEST)
+    if(NOT HOPS_ENABLE_REMOTE_TEST_DATA)
+            #we are not downloading test data (no local cache implemented yet), so turn it off
+            set(HOPS_ENABLE_TEST OFF CACHE BOOL "Build developer tests." FORCE)
+    endif(NOT HOPS_ENABLE_REMOTE_TEST_DATA)
+endif(HOPS_ENABLE_TEST)
 
 if(HOPS_ENABLE_TEST)
     enable_testing()
