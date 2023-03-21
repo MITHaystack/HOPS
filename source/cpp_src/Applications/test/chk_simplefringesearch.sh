@@ -11,20 +11,42 @@ EXP_DIR=$DATADIR
 D2H_EXP_NUM=1111
 D2M4_EXP_NUM=1234
 SCAN_DIR=105-1800
-CM42H_DIR=105-1800
-#NOTE: difx2hops must be run from within the difx directory
-#This is because any relative paths specified in the difx.input files are
-#relative to where the executable is run, not relative to the directory they
-#are placed in. This is just a quirk of the difxio library. Normally, absolute
-#paths are used, but that doesn't work outside of a correlator environment.
 cd $EXP_DIR
+
 echo "Running: SimpleFringeSearch -d ./${D2H_EXP_NUM}/${SCAN_DIR} -c ./cf_test3 -b GE -p XX"
-SimpleFringeSearch -d ./${D2H_EXP_NUM}/${SCAN_DIR} -c ./cf_test3 -b GE -p XX
 
+SimpleFringeSearch -d ./${D2H_EXP_NUM}/${SCAN_DIR} -c ./cf_test3 -b GE -p XX | grep max555 | tee ./sfs.out
 
-# D2M4_GE_FILE=$(ls ./${CM42H_DIR}/GE.*.cor)
-# D2H_GE_FILE=$(ls ./${D2H_EXP_NUM}/${SCAN_DIR}/GE.*.cor)
-# echo "Running: CompareCorFiles -a $D2H_GE_FILE -b $D2M4_GE_FILE"
-# CompareCorFiles -a $D2H_GE_FILE -b $D2M4_GE_FILE
-RET_VAL=$?
+sfs_mbd=$( cat ./sfs.out | grep -oP 'mbd [+-]?[0-9]+([.][0-9]+)?+([e][+-][0-9]+)?' |  awk '{print $2}' )
+sfs_sbd=$( cat ./sfs.out | grep -oP 'sbd [+-]?[0-9]+([.][0-9]+)?+([e][+-][0-9]+)?' |  awk '{print $2}' )
+sfs_dr=$(cat ./sfs.out | grep -oP 'dr [+-]?[0-9]+([.][0-9]+)?+([e][+-][0-9]+)?' |  awk '{print $2}' )
+
+echo "simple fringe mbd: $sfs_mbd"
+echo "simple fringe sbd: $sfs_sbd"
+echo "simple fringe dr: $sfs_dr"
+
+fourfit -m 1 -t -c ./cf_test3 -b GE -P XX ./${D2M4_EXP_NUM}/${SCAN_DIR} 2>&1  | grep max555 | tee ./ff.out
+
+ff_mbd=$( cat ./ff.out | grep -oP 'mbd [+-]?[0-9]+([.][0-9]+)?+([e][+-][0-9]+)?' |  awk '{print $2}' )
+ff_sbd=$( cat ./ff.out | grep -oP 'sbd [+-]?[0-9]+([.][0-9]+)?+([e][+-][0-9]+)?' |  awk '{print $2}' )
+ff_dr=$(cat ./ff.out | grep -oP 'dr [+-]?[0-9]+([.][0-9]+)?+([e][+-][0-9]+)?' |  awk '{print $2}' )
+
+echo "fourfit mbd: $ff_mbd"
+echo "fourfit sbd: $ff_sbd"
+echo "fourfit dr: $ff_dr"
+
+delta=$(echo "$sfs_mbd - $ff_mbd" | bc)
+echo "muh delta = $delta"
+
+low=-0.0005
+high=0.0005
+echo "TODO: Make this tolerance more strict!"
+aok=$(echo "$delta>$low && $delta<$high" | bc)
+echo "aok is $aok, $delta, $low, $high"
+
+RET_VAL=1
+if [ "$aok" -eq 1 ]; then 
+    RET_VAL=0
+fi
+
 exit $RET_VAL
