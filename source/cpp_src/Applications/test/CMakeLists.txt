@@ -1,7 +1,9 @@
 #configure environment set-up script
 find_program (BASH_PROGRAM bash)
+find_program (BC_PROGRAM bc)
 
-if(BASH_PROGRAM)
+#awk/grep also needed
+if(BASH_PROGRAM AND BC_PROGRAM)
 
     set(TEST_SCRIPT_BASENAMES
         chk_simplefringesearch
@@ -14,4 +16,4 @@ if(BASH_PROGRAM)
         set_tests_properties(${BASENAME}_test PROPERTIES ENVIRONMENT "srcdir=${HOPS_TEST_DATA_DIR}")
     endforeach( BASENAME )
 
-endif(BASH_PROGRAM)
+endif(BASH_PROGRAM AND BC_PROGRAM)
