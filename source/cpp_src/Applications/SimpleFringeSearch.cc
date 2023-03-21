@@ -301,7 +301,8 @@ void fine_peak_interpolation(mbd_type* mbd_arr, visibility_type* sbd_arr, visibi
 
     std::cout<<"coarse location (sbd, mbd, dr) = "<<sbd<<", "<<mbd<<", "<<dr<<std::endl;
     std::cout<<"change (sbd, mbd, dr) = "<<sbd_change<<", "<<mbd_change<<", "<<dr_change<<std::endl;
-    std::cout<<"Peak location (sbd, mbd, dr) = "<<sbd_max<<", "<<mbd_max_global<<", "<<dr_max_global<<std::endl;
+    // std::cout<<"Peak location (sbd, mbd, dr) = "<<sbd_max<<", "<<mbd_max_global<<", "<<dr_max_global<<std::endl;
+    std::cout<<"Peak max555, sbd "<<sbd_max<<" mbd "<<mbd_max_global<<" dr "<<dr_max_global<<std::endl;
     
 }
 
