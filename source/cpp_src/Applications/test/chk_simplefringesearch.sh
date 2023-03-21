@@ -8,10 +8,10 @@ export DATADIR=`cd $srcdir/vt9105; pwd`
 
 RET_VAL=0
 EXP_DIR=$DATADIR
-D2H_EXP_NUM=4444
+D2H_EXP_NUM=1111
 D2M4_EXP_NUM=1234
 SCAN_DIR=105-1800
-CM42H_DIR=105-1800a
+CM42H_DIR=105-1800
 #NOTE: difx2hops must be run from within the difx directory
 #This is because any relative paths specified in the difx.input files are
 #relative to where the executable is run, not relative to the directory they
