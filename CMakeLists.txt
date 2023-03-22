@@ -176,10 +176,9 @@ if(${CMAKE_VERSION} VERSION_GREATER "3.12.0")
       )
       execute_process(COMMAND ${Python3_EXECUTABLE} "${CMAKE_CURRENT_BINARY_DIR}/pypath.py"  WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR} OUTPUT_VARIABLE PYTHON_SITE_PREFIX)
       message(STATUS "Python path = ${PYTHON_SITE_PREFIX}")
-
       string(STRIP "${PYTHON_SITE_PREFIX}" PYTHON_SITE_PREFIX)
-
       set( PYTHON_MODULE_INSTALL_DIR  "${CMAKE_INSTALL_PREFIX}/${PYTHON_SITE_PREFIX}")
+      set(PY_EXE ${Python3_EXECUTABLE})
 
       #now add the python source dir
       add_subdirectory(${PYSOURCE})
@@ -200,10 +199,9 @@ else()
       )
       execute_process(COMMAND ${PYTHON_EXECUTABLE} "${CMAKE_CURRENT_BINARY_DIR}/pypath.py"  WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR} OUTPUT_VARIABLE PYTHON_SITE_PREFIX)
       message(STATUS "Python path = ${PYTHON_SITE_PREFIX}")
-
       string(STRIP "${PYTHON_SITE_PREFIX}" PYTHON_SITE_PREFIX)
-
       set( PYTHON_MODULE_INSTALL_DIR  "${CMAKE_INSTALL_PREFIX}/${PYTHON_SITE_PREFIX}")
+      set(PY_EXE ${PYTHON_EXECUTABLE})
 
       #now add the python source dir
       add_subdirectory(${PYSOURCE})
