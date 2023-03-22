@@ -3,11 +3,19 @@ find_program (BASH_PROGRAM bash)
 find_program (BC_PROGRAM bc)
 
 #awk/grep also needed
-if(BASH_PROGRAM AND BC_PROGRAM)
+if(BASH_PROGRAM)
 
-    set(TEST_SCRIPT_BASENAMES
-        chk_simplefringesearch
-    )
+    set(TEST_SCRIPT_BASENAMES "")
+    
+    if(BC_PROGRAM)
+        list(APPEND TEST_SCRIPT_BASENAMES chk_simplefringesearch)
+    endif(BC_PROGRAM)
+    
+    if(PY_EXE)
+        configure_file("${CMAKE_CURRENT_SOURCE_DIR}/compjson.py" "${CMAKE_CURRENT_BINARY_DIR}/compjson.py" @ONLY)
+        list(APPEND TEST_SCRIPT_BASENAMES chk_convertvex2json)
+    endif(PY_EXE)
+    
 
     foreach( BASENAME ${TEST_SCRIPT_BASENAMES} )
         configure_file( ${CMAKE_CURRENT_SOURCE_DIR}/${BASENAME}.sh ${CMAKE_CURRENT_BINARY_DIR}/${BASENAME}.sh @ONLY)
@@ -16,4 +24,4 @@ if(BASH_PROGRAM AND BC_PROGRAM)
         set_tests_properties(${BASENAME}_test PROPERTIES ENVIRONMENT "srcdir=${HOPS_TEST_DATA_DIR}")
     endforeach( BASENAME )
 
-endif(BASH_PROGRAM AND BC_PROGRAM)
+endif(BASH_PROGRAM)
