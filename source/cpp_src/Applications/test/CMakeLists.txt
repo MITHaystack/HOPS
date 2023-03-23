@@ -7,9 +7,10 @@ if(BASH_PROGRAM)
 
     set(TEST_SCRIPT_BASENAMES "")
     
-    if(BC_PROGRAM)
+    #check simple fringe search relies on difxio -> hops conversion of data before it can be run
+    if(BC_PROGRAM AND HOPS_USE_DIFXIO)
         list(APPEND TEST_SCRIPT_BASENAMES chk_simplefringesearch)
-    endif(BC_PROGRAM)
+    endif(BC_PROGRAM AND HOPS_USE_DIFXIO)
     
     if(PY_EXE)
         configure_file("${CMAKE_CURRENT_SOURCE_DIR}/compjson.py" "${CMAKE_CURRENT_BINARY_DIR}/compjson.py" @ONLY)
