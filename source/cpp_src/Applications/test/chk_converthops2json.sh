@@ -25,7 +25,7 @@ echo "Running: ConvertFileToJSON -f ./${CM42H_DIR}GE.*.cor -d 0 -o ${NEW_JSON_FI
 ConvertFileToJSON -f ./${CM42H_DIR}/GE.*.cor -d 0 -o ${NEW_JSON_FILE}
 
 #compare the json output to the reference 
-EQUIV=$(@PY_EXE@ @CMAKE_CURRENT_BINARY_DIR@/hopsobjdata.py $REF_JSON_FILE $NEW_JSON_FILE)
-echo "Test value is $EQUIV (same if =0)."
+@PY_EXE@ @CMAKE_CURRENT_BINARY_DIR@/hopsobjdata.py $REF_JSON_FILE $NEW_JSON_FILE
+RET_VAL=$?
 
-exit 0
+exit $RET_VAL
