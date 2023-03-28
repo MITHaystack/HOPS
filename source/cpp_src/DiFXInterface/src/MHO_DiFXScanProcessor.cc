@@ -18,7 +18,7 @@ MHO_DiFXScanProcessor::MHO_DiFXScanProcessor()
 {
     fRootCode = "unknown";
     fStationCodeMap = nullptr;
-    fPreserveDiFXScanNames = true;//false;
+    fPreserveDiFXScanNames = false;
     fNormalize = false;
 };
 

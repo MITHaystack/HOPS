@@ -8,6 +8,7 @@ MHO_DiFXInterface::MHO_DiFXInterface():
     fOutputDirectory("")
 {
     fNormalize = false;
+    fPreserveDiFXScanNames = false;
 };
 
 MHO_DiFXInterface::~MHO_DiFXInterface(){};
@@ -232,6 +233,10 @@ MHO_DiFXInterface::ProcessScans()
         fScanProcessor.SetRootCode(scan_codes[i]);
         fScanProcessor.SetNormalizeFalse();
         if(fNormalize){fScanProcessor.SetNormalizeTrue();}
+        
+        if(fPreserveDiFXScanNames){ fScanProcessor.SetPreserveDiFXScanNamesTrue();}
+        else{ fScanProcessor.SetPreserveDiFXScanNamesFalse(); }
+
         fScanProcessor.ProcessScan(fScanFileSetList[i]);
     }
 }
