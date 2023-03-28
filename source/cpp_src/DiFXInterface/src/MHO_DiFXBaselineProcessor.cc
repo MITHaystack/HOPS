@@ -179,11 +179,6 @@ MHO_DiFXBaselineProcessor::Organize()
     {
         fScaleFactor = SCALE;
     }
-
-
-    std::cout<<"REFERENCE STATION BITS = "<<fRefStationBits<<std::endl;
-    std::cout<<"REMOTE STATION BITS = "<<fRemStationBits<<std::endl;
-
 }
 
 
@@ -330,11 +325,6 @@ MHO_DiFXBaselineProcessor::ConstructVisibilityFileObjects()
             }
             ppidx++;
         }
-
-        //still need to enable difx2mark4 "normalization" before writing out 
-        //since the process to do this needs to be able to see all auto-corrs and baselines 
-        //this normalization is handled at the scan-level
-        //without this normalization, the output is equivalent to d2m4 "raw" mode
 
     }
     else 
