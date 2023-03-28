@@ -18,7 +18,7 @@ MHO_DiFXScanProcessor::MHO_DiFXScanProcessor()
 {
     fRootCode = "unknown";
     fStationCodeMap = nullptr;
-    fPreserveDiFXScanNames = false;
+    fPreserveDiFXScanNames = true;//false;
     fNormalize = false;
 };
 
@@ -221,7 +221,6 @@ MHO_DiFXScanProcessor::NormalizeVisibilities()
         if( it->second.IsAutoCorr() )
         {
             std::string station_id = it->second.GetRefStationMk4Id();
-            //std::cout<<"found autocorr: "<<station_id<<std::endl;
             auto vis = it->second.GetVisibilities();
             raw_auto_corrs[station_id] = vis;
         }
@@ -285,6 +284,7 @@ MHO_DiFXScanProcessor::NormalizeVisibilities()
                 bool ref_ok = std::get<POLPROD_AXIS>(*ref_ac).SelectFirstMatchingIndex(ref_polprod, ref_pp_idx);
                 bool rem_ok = std::get<POLPROD_AXIS>(*rem_ac).SelectFirstMatchingIndex(rem_polprod, rem_pp_idx);
 
+                bool issue_once = true;
                 if(!ref_ok || !rem_ok)
                 {
                     msg_error("difx_interface",
@@ -305,7 +305,14 @@ MHO_DiFXScanProcessor::NormalizeVisibilities()
                             double factor = 1.0;
                             if( std::fabs(ref_val) == 0.0 || std::fabs(rem_val) == 0.0)
                             {
-                                msg_error("difx_interface", "zero value in auto-corrs, normalization may not be correct."<<eom);
+                                if(issue_once)
+                                {
+                                    std::string st_code = "";
+                                    if( std::fabs(ref_val) == 0.0 ){st_code = ref_st;}
+                                    if( std::fabs(rem_val) == 0.0 ){st_code = rem_st;}
+                                    msg_error("difx_interface", "zero value in auto-corrs of station: "<< st_code << ", normalization may not be correct."<<eom);
+                                    issue_once = false;
+                                }
                             }
                             else{factor = 1.0/(ref_val*rem_val);}
                             vis->SliceView(pp,ch,ap,":") *= factor;
