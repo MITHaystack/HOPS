@@ -36,7 +36,7 @@ echo "fourfit sbd: $ff_sbd"
 echo "fourfit dr: $ff_dr"
 
 delta=$(echo "$sfs_mbd - $ff_mbd" | bc)
-echo "muh delta = $delta"
+echo "mbd delta = $delta"
 
 low=-0.0005
 high=0.0005
