@@ -10,7 +10,7 @@
 #define DIFX_BASE2ANT 256
 #define SCALE 10000.0
 
-namespace hops 
+namespace hops
 {
 
 MHO_DiFXBaselineProcessor::MHO_DiFXBaselineProcessor():
@@ -41,10 +41,10 @@ MHO_DiFXBaselineProcessor::~MHO_DiFXBaselineProcessor()
     Clear();
 }
 
-void 
+void
 MHO_DiFXBaselineProcessor::AddRecord(MHO_DiFXVisibilityRecord* record)
 {
-    //keep track of the baseline id on first insertion 
+    //keep track of the baseline id on first insertion
     if(fRecords.size() == 0){fBaselineID = record->baseline;}
     if(fBaselineID == record->baseline)
     {
@@ -60,7 +60,7 @@ MHO_DiFXBaselineProcessor::AddRecord(MHO_DiFXVisibilityRecord* record)
 }
 
 
-void 
+void
 MHO_DiFXBaselineProcessor::Organize()
 {
     if(fRecords.size() == 0)
@@ -133,6 +133,8 @@ MHO_DiFXBaselineProcessor::Organize()
         msg_error("difx_interface", "channels do not have same number of APs on baseline: " << fBaselineName <<" will zero pad-out to max AP: "<< fNAPs << "."<< eom);
     }
 
+    //TODO!! CHECK FOR MISSING APs
+
     //construct the table of frequencies for this baseline and sort in asscending order
     fNChannels = fFreqIndexSet.size();
     for(auto it = fFreqIndexSet.begin(); it != fFreqIndexSet.end(); it++)
@@ -143,15 +145,15 @@ MHO_DiFXBaselineProcessor::Organize()
     }
     std::sort(fBaselineFreqs.begin(), fBaselineFreqs.end(), fFreqPredicate);
 
-    msg_debug("difx_interface", "data dimension of baseline: "<< 
-              fBaselineID << " - " << fBaselineName <<" are (" << fNPolPairs << ", " << fNChannels 
+    msg_debug("difx_interface", "data dimension of baseline: "<<
+              fBaselineID << " - " << fBaselineName <<" are (" << fNPolPairs << ", " << fNChannels
               << ", " << fNAPs << ", " << fNSpectralPoints <<")" << eom);
 
 
-    //loop over the datastreams, find which ones correspond to the stations on 
-    //this baseline and figure out the #number of quantizations bits for 
+    //loop over the datastreams, find which ones correspond to the stations on
+    //this baseline and figure out the #number of quantizations bits for
     //the reference (ant1) and remote station (ant2)
-    //this implicity assumes all datastreams from one antenna are sampled with 
+    //this implicity assumes all datastreams from one antenna are sampled with
     //the same number of bits
     fRemStationBits = 0;
     fRefStationBits = 0;
@@ -182,7 +184,7 @@ MHO_DiFXBaselineProcessor::Organize()
 }
 
 
-void 
+void
 MHO_DiFXBaselineProcessor::SetStationCodes(MHO_StationCodeMap* code_map)
 {
     fStationCodeMap = code_map;
@@ -190,11 +192,11 @@ MHO_DiFXBaselineProcessor::SetStationCodes(MHO_StationCodeMap* code_map)
 
 
 
-void 
+void
 MHO_DiFXBaselineProcessor::ConstructVisibilityFileObjects()
 {
-    //fBaselineFreqs contains the ordered (ascending) list of channel frequencies 
-    //fVisibilities contains the pol-pair and time sorted visibilities 
+    //fBaselineFreqs contains the ordered (ascending) list of channel frequencies
+    //fVisibilities contains the pol-pair and time sorted visibilities
     Organize();
 
     if(fCanChannelize && fInput != nullptr)
@@ -208,7 +210,7 @@ MHO_DiFXBaselineProcessor::ConstructVisibilityFileObjects()
         if(fV){delete fV; fV = nullptr;}
         if(fW){delete fW; fW = nullptr;}
 
-        fV = new visibility_type(); 
+        fV = new visibility_type();
         fW = new weight_type();
 
         //tags for the visibilities
@@ -257,7 +259,7 @@ MHO_DiFXBaselineProcessor::ConstructVisibilityFileObjects()
         ap_axis->Insert(std::string("units"), std::string("s") );
         wap_axis->Insert(std::string("units"), std::string("s") );
 
-        //(sub-channel) frequency axis 
+        //(sub-channel) frequency axis
         auto* sp_axis = &(std::get<FREQ_AXIS>(*fV));
         auto* wsp_axis = &(std::get<FREQ_AXIS>(*fW));
         sp_axis->Insert(std::string("name"), std::string("frequency") );
@@ -274,14 +276,14 @@ MHO_DiFXBaselineProcessor::ConstructVisibilityFileObjects()
             wpolprod_axis->at(ppidx) = pp;
 
             //loop through baseline freqs in order, grabbing the associated channel
-            //and populating the visibility container 
+            //and populating the visibility container
             int chidx = 0;
             for(auto fqit = fBaselineFreqs.begin(); fqit != fBaselineFreqs.end(); fqit++) //loop though in freq (low -> high) order
             {
                 int freqidx = fqit->first;
                 json dfreq = fqit->second;
                 double sky_freq = dfreq["freq"];
-                double bw = dfreq["bw"]; 
+                double bw = dfreq["bw"];
                 std::string sideband = dfreq["sideband"];
 
                 if(ppidx == 0) //only one label needed for each channel
@@ -292,7 +294,7 @@ MHO_DiFXBaselineProcessor::ConstructVisibilityFileObjects()
                     ch_label.Insert(std::string("net_sideband"), sideband);
                     ch_label.Insert(std::string("difx_freqindex"), freqidx); //probably ought to be more systematic about creating channel names
                     ch_label.Insert(std::string("channel"), chidx); //channel position index
-                     //TODO FIXME need to construct difx2mark4-style chan_id -- 
+                     //TODO FIXME need to construct difx2mark4-style chan_id --
                     //or rather need to construct the chan_id which corresponds to the reference and remote station for this chunk
                     //this also needs to be able to support zoom bands
                     ch_label.Insert(std::string("chan_id"), std::string("placeholder"));
@@ -306,7 +308,7 @@ MHO_DiFXBaselineProcessor::ConstructVisibilityFileObjects()
                 for(std::size_t ap = 0; ap<fVisibilities[pp][freqidx].size(); ap++)
                 {
                     ap_axis->at(ap) = ap*fAPLength;
-                    wap_axis->at(ap) = ap*fAPLength; 
+                    wap_axis->at(ap) = ap*fAPLength;
                     MHO_DiFXVisibilityRecord* visRec = fVisibilities[pp][freqidx][ap];
                     (*fW)(ppidx,chidx,ap,0) = visRec->dataweight; //set the data weight for this AP
                     wsp_axis->at(0) = 0;
@@ -314,7 +316,7 @@ MHO_DiFXBaselineProcessor::ConstructVisibilityFileObjects()
                     {
                         sp_axis->at(sp) = sp*(bw/fNSpectralPoints); //frequency offset from edge of channel
                         std::complex<double> tmp;
-                        //for lower sideband flip axis and conjugate 
+                        //for lower sideband flip axis and conjugate
                         //why?...difx2mark4 does this, but then fourfit inverts it?) //TODO VERIFY IF THIS IS NEEDED
                         if(sideband == "L"){tmp = std::conj( visRec->visdata[fNSpectralPoints-1-sp] );}
                         else{ tmp = visRec->visdata[sp]; }
@@ -327,7 +329,7 @@ MHO_DiFXBaselineProcessor::ConstructVisibilityFileObjects()
         }
 
     }
-    else 
+    else
     {
         msg_error("difx_interface", "cannot channelize visibility data, as not all channels are equal length. Feature not yet supported" << eom );
     }
@@ -335,7 +337,7 @@ MHO_DiFXBaselineProcessor::ConstructVisibilityFileObjects()
 };
 
 
-void 
+void
 MHO_DiFXBaselineProcessor::WriteVisibilityObjects(std::string output_dir)
 {
     //apply difx2mark4 style factor and Van Vleck correction before writing out
@@ -346,7 +348,7 @@ MHO_DiFXBaselineProcessor::WriteVisibilityObjects(std::string output_dir)
         (*fV) *= fScaleFactor;
     }
 
-    //now we down cast the double precision visibilities and weights from double to float 
+    //now we down cast the double precision visibilities and weights from double to float
     //this is to save disk space (but can be disabled)
     MHO_VisibilityPrecisionDownCaster vdcaster;
     MHO_WeightPrecisionDownCaster wdcaster;
@@ -374,7 +376,7 @@ MHO_DiFXBaselineProcessor::WriteVisibilityObjects(std::string output_dir)
         fTags.AddObjectUUID(vis_out.GetObjectUUID());
         fTags.AddObjectUUID(weight_out.GetObjectUUID());
         inter.Write(fTags, "tags", label);
-        
+
         inter.Write(vis_out, "vis", label);
         inter.Write(weight_out, "weight", label);
         inter.Close();
@@ -384,7 +386,7 @@ MHO_DiFXBaselineProcessor::WriteVisibilityObjects(std::string output_dir)
         // fTags.AddObjectUUID(fV->GetObjectUUID());
         // fTags.AddObjectUUID(fW->GetObjectUUID());
         // inter.Write(fTags, "tags", label);
-        // 
+        //
         // inter.Write(*fV, "vis", label);
         // inter.Write(*fW, "weight", label);
         // inter.Close();
@@ -401,7 +403,7 @@ MHO_DiFXBaselineProcessor::WriteVisibilityObjects(std::string output_dir)
 };
 
 
-void 
+void
 MHO_DiFXBaselineProcessor::Clear()
 {
     //delete the visibility records
