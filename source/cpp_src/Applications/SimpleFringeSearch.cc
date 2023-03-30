@@ -21,8 +21,7 @@ struct c_block* cb_head; //global extern kludge (due to stupid c-library interfa
 }
 #endif
 
-
-
+#define EXTRA_DEBUG
 
 //global messaging util
 #include "MHO_Message.hh"
@@ -30,7 +29,7 @@ struct c_block* cb_head; //global extern kludge (due to stupid c-library interfa
 //needed to read hops files and extract objects from scan dir
 #include "MHO_ScanDataStore.hh"
 
-//control 
+//control
 #include "MHO_ControlBlockWrapper.hh"
 
 //operators
@@ -60,45 +59,45 @@ struct c_block* cb_head; //global extern kludge (due to stupid c-library interfa
 
 using namespace hops;
 
-// 
+//
 // std::complex<double> vrot_mod(double tdelta, double dr, double mbd, double freq, double ref_freq)
 // {
 //     double theta;
 //     std::complex<double> imag_unit(0.0, 1.0);
 //                                         // theta is in rotations
 //                                         /* fringe rate * time from central epoch */
-// 
+//
 //     // printf("(dr, mbd, freq, tdelta) = (%le, %le, %le, %f) \n", dr, mbd, freq, tdelta);
-//     // printf("(freq, ref_freq) = (%le, %le)\n",  freq, ref_freq);  
-// 
+//     // printf("(freq, ref_freq) = (%le, %le)\n",  freq, ref_freq);
+//
 //     theta = freq * dr * tdelta;
-// 
+//
 //     // printf("theta = %f\n", theta*(180.0/M_PI)*(-2.0*M_PI));
-//     // 
+//     //
 //     // std::cout<<"dr = "<<dr<<std::endl;
 //     // std::cout<<"tdelta = "<<tdelta<<std::endl;
-//     // 
+//     //
 //     // std::cout<<"theta1 rot = "<<theta*(180./M_PI)*(-2.0 * M_PI)<<std::endl;
-// 
+//
 //                                         // Residual mbd effect at this freq
 //     theta += mbd * (freq - ref_freq);
-// 
+//
 //     // printf("mbd = %f \n", mbd);
 //     // printf("theta2 = %f\n", theta*(180.0/M_PI)*(-2.0*M_PI));
-//     // // 
+//     // //
 //     // std::cout<<"freq delta = "<<(freq - ref_freq)<<std::endl;
 //                                         // Effect due to offset of lag where max lies
 //     //theta += (param.nlags - status.max_delchan) * 0.125 * sb;
 //     //removed optimize_closure stuff here
-// 
+//
 //     theta *= (-2.0 * M_PI);             // convert to radians
-// 
+//
 //     // std::cout<<"theta2 rot = "<<theta*(180./M_PI)<<std::endl;
-// 
+//
 //     std::complex<double> val = std::exp(imag_unit*theta);
 //     return val;
 // }
-// 
+//
 
 
 void fine_peak_interpolation(mbd_type* mbd_arr, visibility_type* sbd_arr, visibility_type* sbd_dr_arr)
@@ -109,7 +108,7 @@ void fine_peak_interpolation(mbd_type* mbd_arr, visibility_type* sbd_arr, visibi
     mbdSearch.SetArgs(mbd_arr);
     ok = mbdSearch.Initialize();
     ok = mbdSearch.Execute();
-    
+
     auto mbd_dim = mbd_arr->GetDimensions();
     double nl = sbd_arr->GetDimension(FREQ_AXIS);
 
@@ -134,29 +133,29 @@ void fine_peak_interpolation(mbd_type* mbd_arr, visibility_type* sbd_arr, visibi
     std::size_t offset_to_bin_max = mbdSearch.GetMaxLocation();
     mbd_type::index_type loc;
     MHO_NDArrayMath::RowMajorIndexFromOffset< mbd_type::rank::value >(offset_to_bin_max, &(mbd_dim[0]), &(loc[0]));
-    
+
     std::cout<<"fringe max = "<<bin_max<<std::endl;
-    
+
     for(std::size_t i=0; i<loc.size(); i++)
     {
-        std::cout<<"max bin index for dim @ "<<i<<" = "<<loc[i]<<std::endl; 
+        std::cout<<"max bin index for dim @ "<<i<<" = "<<loc[i]<<std::endl;
     }
-    
+
     //follow the algorithm of interp.c (SIMUL) mode, to fill out a cube and interpolate
     double drf[5][5][5];// 5x5x5 cube of fringe values
-    double xlim[3][2]; //cube limits each dim 
+    double xlim[3][2]; //cube limits each dim
     double xi[3];
     double drfmax;
-    
+
 
     //auto dr_ax = &( std::get<TIME_AXIS>(*mbd_arr) );
     auto mbd_ax = &( std::get<CHANNEL_AXIS>(*mbd_arr) );
-    
+
     auto chan_ax = &( std::get<CHANNEL_AXIS>(*sbd_dr_arr) );
     auto dr_ax = &( std::get<TIME_AXIS>(*sbd_dr_arr) );
     auto sbd_ax = &( std::get<FREQ_AXIS>(*sbd_dr_arr) );
-    
-    // //lets print the dr axis 
+
+    // //lets print the dr axis
     // for(std::size_t idr = 0; idr<dr_ax->GetSize(); idr++)
     // {
     //     std::cout<<"dr ax : "<<idr<<", "<<(*dr_ax)(idr)<<std::endl;
@@ -164,23 +163,23 @@ void fine_peak_interpolation(mbd_type* mbd_arr, visibility_type* sbd_arr, visibi
 
     std::size_t nap = dr_ax->GetSize();
     std::size_t nchan = chan_ax->GetSize();
-    
+
     double sbd_delta = sbd_ax->at(1) - sbd_ax->at(0);
     double dr_delta = dr_ax->at(1) - dr_ax->at(0);
     double mbd_delta = mbd_ax->at(1) - mbd_ax->at(0);
-    
+
     double ref_freq = 6e3; //6000 MHz gahh
     std::string sky_freq_key = "sky_freq";
     std::vector<double> chan_freq;
     chan_ax->CollectAxisElementLabelValues(sky_freq_key, chan_freq );
-    
+
     double sbd_lower = 1e30;
     double sbd_upper = -1e30;
     double mbd_lower = 1e30;
     double mbd_upper = -1e30;
     double dr_lower = 1e30;
     double dr_upper = -1e30;
-    
+
     MHO_FringeRotation frot;
     std::size_t sbd_bin, dr_bin, mbd_bin;
     double sbd, dr, mbd;
@@ -199,26 +198,26 @@ void fine_peak_interpolation(mbd_type* mbd_arr, visibility_type* sbd_arr, visibi
                 sbd_bin = (loc[3] + isbd - 2) % (int) sbd_ax->GetSize();
                 dr_bin = (loc[2] + idr - 2 ) % (int) dr_ax->GetSize() ;
                 mbd_bin = loc[1] - imbd + 2; //TODO WHY THE -1 FUDGE FACTOR
-                // 
-                sbd = sbd_ax->at(sbd_bin);// + 0.5*sbd_delta; 
-                dr =  (dr_ax->at(dr_bin) )*(1.0/ref_freq); 
+                //
+                sbd = sbd_ax->at(sbd_bin);// + 0.5*sbd_delta;
+                dr =  (dr_ax->at(dr_bin) )*(1.0/ref_freq);
                 // double mbd =  -1.0*(mbd_ax->at(mbd_bin) + 0.5*mbd_delta);
                 mbd = -1.0*(mbd_ax->at(mbd_bin)); //TODO WHY THE -1 FUDGE FACTOR
 
                 // std::cout<<"dr delta = "<<dr_delta<<std::endl;
                 //std::cout<<"sbdi_bin, sbd = "<<sbd_bin<<", "<<sbd<<std::endl;
-                //std::cout<<"idr, dr, = "<<idr<<", "<<dr<<std::endl;                
-                //std::cout<<"imbd, mbd, = "<<imbd<<", "<<mbd<<std::endl;        
+                //std::cout<<"idr, dr, = "<<idr<<", "<<dr<<std::endl;
+                //std::cout<<"imbd, mbd, = "<<imbd<<", "<<mbd<<std::endl;
 
                 if(sbd < sbd_lower){sbd_lower = sbd;}
                 if(sbd > sbd_upper){sbd_upper = sbd;}
-                
+
                 if(dr < dr_lower){dr_lower = dr;}
                 if(dr > dr_upper){dr_upper = dr;}
-                
+
                 if(mbd < mbd_lower){mbd_lower = mbd;}
                 if(mbd > mbd_upper){mbd_upper = mbd;}
- 
+
                 // sbd = status.max_delchan    +        isbd - 2;
                 // mbd = status.mbd_max_global + 0.5 * (imbd - 2) * status.mbd_sep;
                 // dr  = status.dr_max_global  + 0.5 * (idr - 2)  * status.rate_sep;
@@ -228,12 +227,12 @@ void fine_peak_interpolation(mbd_type* mbd_arr, visibility_type* sbd_arr, visibi
                                 // counter-rotate data from all freqs. and AP's
                 for(std::size_t fr = 0; fr < nchan; fr++)
                 {
-                    
+
                     // calculate location of this tabular point (should modulo % axis size)
                     sbd_bin = dr_sbd_loc[fr].second + isbd - 2;
                     dr_bin = dr_sbd_loc[fr].first + idr - 2;
-                    sbd = sbd_ax->at(sbd_bin);// + 0.5*sbd_delta; 
-                    dr =  (dr_ax->at(dr_bin) )*(1.0/ref_freq); 
+                    sbd = sbd_ax->at(sbd_bin);// + 0.5*sbd_delta;
+                    dr =  (dr_ax->at(dr_bin) )*(1.0/ref_freq);
 
                     //double frq = pass->pass_data + fr;
                     double freq = chan_freq[fr];//use sky-freq of this channel????
@@ -246,11 +245,19 @@ void fine_peak_interpolation(mbd_type* mbd_arr, visibility_type* sbd_arr, visibi
                         // std::cout<<"vrot @ "<<fr<<","<<ap<<" = ("<<vr.real()<<", "<<vr.imag()<<")"<<std::endl;
                         std::complex<double> x = vis * vr;// vrot_mod(tdelta, dr, mbd, freq, ref_freq);
                         //std::cout<<"x = "<<x<<std::endl;
+
+                        #ifdef EXTRA_DEBUG
+                        printf("(ap,fr) = %d, %d\n", ap,fr);
+                        printf("vis @ sbd: %d mbd: %f dr: %f = (%f, %f) \n", sbd_bin, mbd, dr, std::real(vis), std::imag(vis) );
+                        printf("vrot @ sbd: %d mbd: %f dr: %f = (%f, %f) \n", sbd_bin, mbd, dr, std::real(vr), std::imag(vr) );
+                        #endif
+
+
                         z = z + x;
                     }
                 }
                 drf[isbd][imbd][idr] = std::abs(z);
-                //TODO -- MUST WEIGHT BY TOTAL AP FRAC (have to fix usb/lsb weights everywhere) 
+                //TODO -- MUST WEIGHT BY TOTAL AP FRAC (have to fix usb/lsb weights everywhere)
                 //z = z * 1.0 / (double) status.total_ap_frac;
                 //std::cout<<isbd<<", "<<imbd<<", "<<idr<<", "<<drf[isbd][imbd][idr]<<std::endl;
                 //printf("%ld %le %le \n", sbd_bin, mbd, dr);
@@ -258,9 +265,9 @@ void fine_peak_interpolation(mbd_type* mbd_arr, visibility_type* sbd_arr, visibi
             }
         }
     }
-    
 
-    
+
+
     xlim[0][0] = -1;// sbd_lower;// / status.sbd_sep - status.max_delchan + nl;
     xlim[0][1] = 1;//sbd_upper;// / status.sbd_sep - status.max_delchan + nl;
 
@@ -269,7 +276,7 @@ void fine_peak_interpolation(mbd_type* mbd_arr, visibility_type* sbd_arr, visibi
 
     xlim[2][0] = -2;//dr_lower;// - status.dr_max_global) / status.rate_sep;
     xlim[2][1] = 2;//dr_upper;// - status.dr_max_global) / status.rate_sep;
-    
+
     std::cout<< "xlim's "<< xlim[0][0]<<", "<< xlim[0][1] <<", "<< xlim[1][0] <<", "<< xlim[1][1] <<", " << xlim[2][0] <<", "<< xlim[2][1] <<std::endl;
                                 // find maximum value within cube via interpolation
     max555(drf, xlim, xi, &drfmax);
@@ -282,13 +289,13 @@ void fine_peak_interpolation(mbd_type* mbd_arr, visibility_type* sbd_arr, visibi
     // calculate location of this tabular point (should modulo % axis size)
     // std::size_t sbd_bin = loc[3];
     // std::size_t dr_bin = loc[2];
-    //std::size_t 
+    //std::size_t
     sbd_bin = dr_sbd_loc[0].second;
     dr_bin = dr_sbd_loc[0].first;
     mbd_bin = loc[1];
-    
-    sbd = sbd_ax->at(sbd_bin);// + 0.5*sbd_delta; 
-    dr =  (dr_ax->at(dr_bin) )*(1.0/ref_freq); 
+
+    sbd = sbd_ax->at(sbd_bin);// + 0.5*sbd_delta;
+    dr =  (dr_ax->at(dr_bin) )*(1.0/ref_freq);
     mbd = -1.0*(mbd_ax->at(mbd_bin)); //TODO WHY THE -1 FUDGE FACTOR
 
     double sbd_change = xi[0] * sbd_delta;
@@ -303,7 +310,7 @@ void fine_peak_interpolation(mbd_type* mbd_arr, visibility_type* sbd_arr, visibi
     std::cout<<"change (sbd, mbd, dr) = "<<sbd_change<<", "<<mbd_change<<", "<<dr_change<<std::endl;
     // std::cout<<"Peak location (sbd, mbd, dr) = "<<sbd_max<<", "<<mbd_max_global<<", "<<dr_max_global<<std::endl;
     std::cout<<"Peak max555, sbd "<<sbd_max<<" mbd "<<mbd_max_global<<" dr "<<dr_max_global<<std::endl;
-    
+
 }
 
 
@@ -391,12 +398,12 @@ int main(int argc, char** argv)
         msg_fatal("main", "Could not find a file for baseline: "<< baseline << eom);
         std::exit(1);
     }
-    
-    
+
+
     ////////////////////////////////////////////////////////////////////////////
     //CONTROL BLOCK CONSTRUCTION
     ////////////////////////////////////////////////////////////////////////////
-    
+
     //parse the control file
     cb_head = (struct c_block *) malloc (sizeof (struct c_block) );
     struct c_block* cb_out = (struct c_block *) malloc (sizeof (struct c_block) );
@@ -426,31 +433,30 @@ int main(int argc, char** argv)
     bl_store_data = conStore->RetrieveObject<visibility_store_type>();
     wt_store_data = conStore->RetrieveObject<weight_store_type>();
     tags = conStore->RetrieveObject<MHO_ObjectTags>();
-    
+
     if(bl_store_data == nullptr)
     {
         msg_fatal("main", "failed to read visibility data from the .cor file." <<eom);
         std::exit(1);
     }
-    
+
     if(wt_store_data == nullptr)
     {
         msg_fatal("main", "failed to read weight data from the .cor file." <<eom);
         std::exit(1);
     }
-    
+
     if(tags == nullptr)
     {
-        msg_fatal("main", "failed to read tag data from the .cor file." <<eom);
-        std::exit(1);
+        msg_warn("main", "failed to read tag data from the .cor file." <<eom);
     }
 
-    
+
     MHO_VisibilityPrecisionUpCaster up_caster;
     up_caster.SetArgs(bl_store_data, bl_data);
     up_caster.Initialize();
     up_caster.Execute();
-    
+
     MHO_WeightPrecisionUpCaster wt_up_caster;
     wt_up_caster.SetArgs(wt_store_data, wt_data);
     wt_up_caster.Initialize();
@@ -481,12 +487,12 @@ int main(int argc, char** argv)
     //specify the indexes we want on each axis
     spack.SelectAxisItems(0,selected_pp);
     spack.SelectAxisItems(1,selected_ch);
-    
+
     wtspack.SelectAxisItems(0,selected_pp);
     wtspack.SelectAxisItems(1,selected_ch);
     //spack.SelectAxisItems(2,selected_ap);
-    
-    
+
+
     visibility_type* alt_data = new visibility_type();
     weight_type* alt_wt_data = new weight_type();
 
@@ -505,41 +511,41 @@ int main(int argc, char** argv)
 
     wt_data->Copy(*alt_wt_data);
     bl_data->Copy(*alt_data);
-    
+
     delete alt_data;
     delete alt_wt_data;
 
     std::size_t bl_dim[visibility_type::rank::value];
     bl_data->GetDimensions(bl_dim);
-    
-    
-    //apply the data weights 
-    for(std::size_t pp =0; pp < bl_dim[0]; pp++)
-    {
-        for(std::size_t ch=0; ch < bl_dim[1]; ch++)
-        {
-            for(std::size_t ap=0; ap < bl_dim[2]; ap++)
-            {
-                bl_data->SubView(pp, ch, ap) *= (*wt_data)(pp, ch, ap, 0);
-            }
-        }
-    }
-    
-    // //compute the sum of the weights 
-    // std::cout<<"weight at 0 = " << wt_data->at(0,0,0,0) <<std::endl;
-    // 
-    MHO_Reducer<weight_type, MHO_CompoundSum> wt_reducer;
-    wt_reducer.SetArgs(wt_data);
-    for(std::size_t i=0; i<weight_type::rank::value; i++)
-    {
-        wt_reducer.ReduceAxis(i);
-    }
-    wt_reducer.Initialize();
-    wt_reducer.Execute();
-    
-    std::cout<<"reduced weights = "<<(*wt_data)[0]<<std::endl;
-    
-    (*bl_data) *= 1.0/(*wt_data)[0];
+
+
+    // //apply the data weights
+    // for(std::size_t pp =0; pp < bl_dim[0]; pp++)
+    // {
+    //     for(std::size_t ch=0; ch < bl_dim[1]; ch++)
+    //     {
+    //         for(std::size_t ap=0; ap < bl_dim[2]; ap++)
+    //         {
+    //             bl_data->SubView(pp, ch, ap) *= (*wt_data)(pp, ch, ap, 0);
+    //         }
+    //     }
+    // }
+    //
+    // // //compute the sum of the weights
+    // // std::cout<<"weight at 0 = " << wt_data->at(0,0,0,0) <<std::endl;
+    // //
+    // MHO_Reducer<weight_type, MHO_CompoundSum> wt_reducer;
+    // wt_reducer.SetArgs(wt_data);
+    // for(std::size_t i=0; i<weight_type::rank::value; i++)
+    // {
+    //     wt_reducer.ReduceAxis(i);
+    // }
+    // wt_reducer.Initialize();
+    // wt_reducer.Execute();
+    //
+    // std::cout<<"reduced weights = "<<(*wt_data)[0]<<std::endl;
+    //
+    // (*bl_data) *= 1.0/(*wt_data)[0];
 
     ////////////////////////////////////////////////////////////////////////////
     //APPLY DATA CORRECTIONS (A PRIORI -- PCAL)
@@ -547,13 +553,13 @@ int main(int argc, char** argv)
 
     //apply manual pcal
     //construct the pcal array...need to re-think how we are going to move control block info around (scalar parameters vs. arrays etc)
-    manual_pcal_type* ref_pcal = cb_wrapper.GetRefStationManualPCOffsets(); 
+    manual_pcal_type* ref_pcal = cb_wrapper.GetRefStationManualPCOffsets();
     manual_pcal_type* rem_pcal = cb_wrapper.GetRemStationManualPCOffsets();
 
     MHO_ManualChannelPhaseCorrection pcal_correct;
-    
+
     pcal_correct.SetArgs(bl_data, rem_pcal, bl_data);
-    ok = pcal_correct.Initialize(); 
+    ok = pcal_correct.Initialize();
     check_step_error(ok, "main", "ref pcal initialization." << eom );
     ok = pcal_correct.Execute();
     check_step_error(ok, "main", "ref pcal execution." << eom );
@@ -563,13 +569,13 @@ int main(int argc, char** argv)
     check_step_error(ok, "main", "rem pcal initialization." << eom );
     ok = pcal_correct.Execute();
     check_step_error(ok, "main", "rem pcal execution." << eom );
-    
+
 
     //output for the delay
     visibility_type* sbd_data = bl_data->CloneEmpty();
     bl_dim[FREQ_AXIS] *= 4; //normfx implementation demands this
     sbd_data->Resize(bl_dim);
-    
+
     ////////////////////////////////////////////////////////////////////////////
     //COARSE SBD, DR, MBD SEARCH ALGO
     ////////////////////////////////////////////////////////////////////////////
@@ -579,7 +585,7 @@ int main(int argc, char** argv)
     nfxOp.SetArgs(bl_data, wt_data, sbd_data);
     ok = nfxOp.Initialize();
     check_step_fatal(ok, "main", "normfx initialization." << eom );
-    
+
     ok = nfxOp.Execute();
     check_step_fatal(ok, "main", "normfx execution." << eom );
 
@@ -611,29 +617,29 @@ int main(int argc, char** argv)
     double gspace = gridCalc.GetGridSpacing();
     std::size_t ngrid_pts = gridCalc.GetNGridPoints();
     auto mbd_bin_map = gridCalc.GetGridIndexMap();
-    
+
 
     //construct the mbd array according to the grid calc's size
-    //NOTE!! Because we are allocating space to do the MBD search over all SBD/DR at the same time 
+    //NOTE!! Because we are allocating space to do the MBD search over all SBD/DR at the same time
     //this uses far more memory than is actually needed, we will have to optimized, or a do a 1-D delay
     //search to reduce memory usage at some point
     mbd_type mbd_data;
     // mbd_data.Resize(bl_dim[0], ngrid_pts, bl_dim[2], bl_dim[3]);
     mbd_data.Resize(bl_dim[0], ngrid_pts, 1, 1);
     mbd_data.ZeroArray();
-    
+
     //set up the mbd delay axis
     auto mbd_ax = &(std::get<CHANNEL_AXIS>(mbd_data) );
     for(std::size_t i=0; i<ngrid_pts;i++)
     {
         (*mbd_ax)(i) = i*gspace;
     }
-    
+
     //copy the slice associated with each channel into the apppropriate slot in the MBD array
     for(std::size_t ch=0; ch<bl_dim[1]; ch++)
     {
-        
-        ////search for the peak in SBD and DR and copy that into the mbd array 
+
+        ////search for the peak in SBD and DR and copy that into the mbd array
 
         MHO_ExtremaSearch< MHO_NDArrayView< visibility_element_type, 2 > > mSearch;
 
@@ -649,7 +655,7 @@ int main(int argc, char** argv)
         mbd_data(0, mbd_bin, 0, 0) = (*sbd_dr_data)(0,ch,loc_array[0],loc_array[1]);
         // mbd_data.SliceView(":", mbd_bin, ":", ":").Copy( sbd_dr_data->SliceView(":",ch,":",":") );
     }
-    
+
 
     //now we are going to run a FFT on the mbd axis
     MHO_MultidimensionalFastFourierTransform< mbd_type > fFFTEngine2;

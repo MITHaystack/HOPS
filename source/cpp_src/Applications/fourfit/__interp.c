@@ -19,6 +19,7 @@
 #include "pass_struct.h"
 #include "ffmath.h"
 
+#define EXTRA_DEBUG
 
 #define DR  1
 #define MD 2
@@ -30,7 +31,7 @@ void __interp (struct type_pass *pass)
     {
     extern struct type_status status;
     extern struct type_param param;
-    hops_complex X, pcal, delay[3];
+    hops_complex X, pcal, delay[3], a, b;
     extern hops_complex __vrot (int, double, double, int, int, struct type_pass*);
     double sp, max, r_max, r, ph, peak, d_dr, d_mbd, dr, mbd,
            pcr, theta, center_mag, q[3],lower,upper,frac,
@@ -188,6 +189,15 @@ void __interp (struct type_pass *pass)
                                 {
                                 X = frq->data[ap].sbdelay[sbd]
                                   * __vrot (ap, dr, mbd, fr, 0, pass);
+
+                                #ifdef EXTRA_DEBUG
+                                a = frq->data[ap].sbdelay[sbd];
+                                b =  __vrot (ap, dr, mbd, fr, 0, pass);
+                                printf("(ap,fr) = %d, %d\n", ap,fr);
+                                printf("vis @ sbd: %d mbd: %f dr: %f = (%f, %f) \n", sbd, mbd, dr, real_comp(a), imag_comp(b) );
+                                printf("vrot @ sbd: %d mbd: %f dr: %f = (%f, %f) \n", sbd, mbd, dr, real_comp(b), imag_comp(b) );
+                                #endif
+
                                     // Weight by fractional ap's
                                 frac = 0.0;
                                 if (frq->data[ap].usbfrac >= 0.0)
@@ -199,6 +209,9 @@ void __interp (struct type_pass *pass)
                                 if ((frq->data[ap].usbfrac >= 0.0)
                                     && (frq->data[ap].lsbfrac >= 0.0)) frac /= 2.0;
                                 X = X * frac;
+                                #ifdef EXTRA_DEBUG
+                                printf("(ap,fr) frac = %d, %d = %f \n", ap, fr, frac);
+                                #endif
                                 z = z + X;
                                 }
                         }
