@@ -52,7 +52,7 @@ int __ion_search (struct type_pass *pass)
     double values[MAX_ION_PTS];
     int parabola (double *, double, double, double *, double *, double *);
     void sort_tecs (void);
-    extern void interp (struct type_pass*);
+    extern void __interp (struct type_pass*);
     extern int __search (struct type_pass*);
 
 
@@ -208,7 +208,7 @@ int __ion_search (struct type_pass *pass)
                 }
                                         // interpolate via direct counter-rotation for
                                         // more precise results
-            interp (pass);
+            __interp (pass);
             if (do_accounting) 
                 account ("Interpolate fringes");
             
