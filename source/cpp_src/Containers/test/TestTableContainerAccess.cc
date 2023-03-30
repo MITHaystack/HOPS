@@ -10,7 +10,7 @@
 
 using namespace hops;
 
-#define SCALE_FACTOR 2 //value of 2 should make a table 8gb in size
+#define SCALE_FACTOR 1 //2 //value of 2 should make a table 8gb in size
 
 
 void slice_iterate(visibility_type& vis)
@@ -52,7 +52,7 @@ int main(int argc, char** argv)
     std::cout<<"container size = "<< (sizeof(std::complex<double>)*total_size)/MB <<" MB." <<std::endl;
 
 
-    //time how long it takes to zero the array 
+    //time how long it takes to zero the array
     timer.Start();
     vis.ZeroArray();
     timer.Stop();
@@ -166,16 +166,16 @@ int main(int argc, char** argv)
     std::cout<<"time to fill array full array slice view: "<<delta<< " seconds "<<std::endl;
 
 
-    //check the scalar-complex multiplication routine 
+    //check the scalar-complex multiplication routine
     vis *= i_unit;
     std::cout<<"checking scalar multiplication by complex number: "<<vis.at(0,0,0,0)<<std::endl;
-    
 
-    //check the scalar multiplication routine 
+
+    //check the scalar multiplication routine
     vis *= 2.0;
     std::cout<<"checking scalar multiplication by real number: "<<vis.at(0,0,0,0)<<std::endl;
 
-    //figure out the maximum fraction difference between the access methods 
+    //figure out the maximum fraction difference between the access methods
     double dmax = 0.0;
     for(int i=0; i<tdeltas.size(); i++)
     {
