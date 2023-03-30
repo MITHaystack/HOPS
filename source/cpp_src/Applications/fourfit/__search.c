@@ -41,6 +41,13 @@ int __search (struct type_pass *pass)
 
     fftw_plan fftplan;
 
+
+    extern void __norm_fx (struct type_pass *pass,
+                  struct type_param *param,
+                  struct type_status *status,
+                  int fr, 
+                  int ap);
+
                                         // Initialization
     cnt = 0;
     status.epoch_off_cent = 0.0;
@@ -119,7 +126,7 @@ int __search (struct type_pass *pass)
                 norm_xf (pass, &param, &status, fr, ap);
             else
                 // use spectral version this is the main line of development now
-                norm_fx (pass, &param, &status, fr, ap);
+                __norm_fx (pass, &param, &status, fr, ap);
         
         msg ("Freq %d, ap's by sideband through norm = %d, %d", -1,
                 fr, status.ap_num[0][fr], status.ap_num[1][fr]);
