@@ -89,7 +89,7 @@ char version_no[] = FF_VER_NO;		// PACKAGE_VERSION from Makefile
 #ifdef EXTRA_DEBUG
     #include "MHO_Message.hh"
     using namespace hops;
-    extern void examine_pass(struct type_pass*);
+    extern void examine_pass(struct type_pass*, int);
 #endif
 
 
@@ -285,7 +285,7 @@ int main (int argc, char** argv)
             for (k=0; k<npass; k++)
                 {
                     #ifdef EXTRA_DEBUG
-                    examine_pass(pass+k);
+                    examine_pass(pass+k,k);
                     #endif
                 if (totpass > 0 && do_estimation) fs_ret = -3;
                 else fs_ret = __fringe_search (&root, pass + k);
