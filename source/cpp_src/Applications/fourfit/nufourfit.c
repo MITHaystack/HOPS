@@ -90,6 +90,7 @@ char version_no[] = FF_VER_NO;		// PACKAGE_VERSION from Makefile
     #include "MHO_Message.hh"
     using namespace hops;
     extern void examine_pass(struct type_pass*, int);
+    extern void examine_pass_sbd(struct type_pass*, int);
 #endif
 
 
