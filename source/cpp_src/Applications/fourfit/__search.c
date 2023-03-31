@@ -22,6 +22,15 @@
 #define MBD_GRID_MAX 8192
 #endif /* MBD_GRID_MAX == MBDMXPTS */
 
+#define EXTRA_DEBUG
+#ifdef EXTRA_DEBUG
+    #include "MHO_Message.hh"
+    using namespace hops;
+    extern void examine_pass(struct type_pass*, int);
+    extern void examine_pass_sbd(struct type_pass*, int);
+#endif
+
+
 extern void __norm_fx (struct type_pass*, struct type_param*, struct type_status*, int fr, int ap);
 
 int __search (struct type_pass *pass)
@@ -131,6 +140,10 @@ int __search (struct type_pass *pass)
                 __norm_fx (pass, &param, &status, fr, ap);
             }
         }
+
+        #ifdef EXTRA_DEBUG
+        examine_pass_sbd(pass,0);
+        #endif
 
         msg ("Freq %d, ap's by sideband through norm = %d, %d", -1,
                 fr, status.ap_num[0][fr], status.ap_num[1][fr]);
