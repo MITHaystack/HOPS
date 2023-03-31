@@ -28,7 +28,13 @@ void examine_pass(struct type_pass* pass, int pass_index)
 
     msg_info("nufourfit", "test message. " <<eom);
 
-    int npolprod = 1;//only examinining 1 pol prod right now
+    int npolprod = 4;//only examinining 1 pol prod right now
+    //
+    // for(int p=0; p<4; p++)
+    // {
+    //     if(pass->pprods_present[p]){npolprod++;}
+    // }
+
     int nchan = 0;
     int nap = 0;
     int nlags = 0;
@@ -68,7 +74,14 @@ void examine_pass(struct type_pass* pass, int pass_index)
 
     for(int pp=0; pp<npolprod; pp++)
     {
-        std::get<POLPROD_AXIS>(*bl_data)(pp) = "AA";// placeholder
+        std::string pp_label = "";
+        //pass->linpol; ///[2]; TODO use lin-pol indicators to get the correct pol prod label
+        if(pp == POL_LL){pp_label = "LL";}
+        if(pp == POL_RR){pp_label = "RR";}
+        if(pp == POL_LR){pp_label = "LR";}
+        if(pp == POL_RL){pp_label = "RL";}
+
+        std::get<POLPROD_AXIS>(*bl_data)(pp) = pp_label;// placeholder
         for(int ch=0; ch<nchan; ch++)
         {
             //set sky freq on channel axis
@@ -80,10 +93,16 @@ void examine_pass(struct type_pass* pass, int pass_index)
                 for(int n=0; n<nlags; n++)
                 {
                     std::get<FREQ_AXIS>(*bl_data)(n) = n; //not correct, should be scaled by freq interval
-                    if(pass->pass_data[ch].data->apdata_ll[sb] != NULL)
+                    auto lag_ptr = pass->pass_data[ch].data->apdata_ll[sb];
+                    lag_ptr = nullptr;
+                    if(pp == POL_LL){lag_ptr = pass->pass_data[ch].data->apdata_ll[sb];}
+                    if(pp == POL_RR){lag_ptr = pass->pass_data[ch].data->apdata_rr[sb];}
+                    if(pp == POL_LR){lag_ptr = pass->pass_data[ch].data->apdata_lr[sb];}
+                    if(pp == POL_RL){lag_ptr = pass->pass_data[ch].data->apdata_rl[sb];}
+                    if( lag_ptr != NULL)
                     {
-                        double rcomp = pass->pass_data[ch].data[ap].apdata_ll[sb]->ld.spec[n].re;
-                        double icomp = pass->pass_data[ch].data[ap].apdata_ll[sb]->ld.spec[n].im;
+                        double rcomp = lag_ptr->ld.spec[n].re;
+                        double icomp = lag_ptr->ld.spec[n].im;
                         std::complex<double> vis(rcomp, icomp);
                         (*bl_data)(pp,ch,ap,n) = vis;
                     }
