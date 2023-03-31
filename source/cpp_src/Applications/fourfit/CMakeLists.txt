@@ -68,6 +68,9 @@ if( PGPLOT_FOUND AND FFTW_FOUND AND X11_FOUND AND GFORTRAN_FOUND )
     #include exe headers
     include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
+    #special include for hops_config.h (which is generated at build time)
+    include_directories(${CMAKE_CURRENT_BINARY_DIR}/../../../c_src/)
+
     #include external library headers
     include_directories(${PGPLOT_INCLUDE_DIR})
     include_directories(${FFTW_INCLUDE_DIR})
