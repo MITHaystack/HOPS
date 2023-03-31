@@ -22,7 +22,7 @@
 
 using namespace hops;
 
-void examine_pass(struct type_pass* pass)
+void examine_pass(struct type_pass* pass, int pass_index)
 {
     printf("EXAMINING PASS_STRUCT, nfreq = %d \n", pass->nfreq);
 
@@ -68,15 +68,20 @@ void examine_pass(struct type_pass* pass)
 
     for(int pp=0; pp<npolprod; pp++)
     {
+        std::get<POLPROD_AXIS>(*bl_data)(pp) = "AA";// placeholder
         for(int ch=0; ch<nchan; ch++)
         {
+            //set sky freq on channel axis
+            double chan_freq = pass->pass_data[ch].frequency;
+            std::get<CHANNEL_AXIS>(*bl_data)(ch) = chan_freq;
             for(int ap=0; ap<nap; ap++)
             {
+                std::get<TIME_AXIS>(*bl_data)(ap) = ap; //not correct, should be scaled by ap_interval
                 for(int n=0; n<nlags; n++)
                 {
+                    std::get<FREQ_AXIS>(*bl_data)(n) = n; //not correct, should be scaled by freq interval
                     if(pass->pass_data[ch].data->apdata_ll[sb] != NULL)
                     {
-
                         double rcomp = pass->pass_data[ch].data[ap].apdata_ll[sb]->ld.spec[n].re;
                         double icomp = pass->pass_data[ch].data[ap].apdata_ll[sb]->ld.spec[n].im;
                         std::complex<double> vis(rcomp, icomp);
@@ -87,7 +92,28 @@ void examine_pass(struct type_pass* pass)
         }
     }
 
-    std::cout<<"blah = "<<*bl_data<<std::endl;
+    //dump bl_data into a file for later inspection
+    std::stringstream ss;
+    ss << "./pass_";
+    ss << pass_index;
+    ss << ".dump";
+
+    std::string output_file = ss.str();
+    MHO_BinaryFileInterface inter;
+    bool status = inter.OpenToWrite(output_file);
+    if(status)
+    {
+        uint32_t label = 0xFFFFFFFF; //someday make this mean something
+        inter.Write(*bl_data, "vis", label);
+        //inter.Write(*ch_bl_wdata, "weight", label);
+    }
+    else
+    {
+        msg_error("file", "Error opening corel output file: " << output_file << eom);
+    }
+
+    inter.Close();
+
 
     delete bl_data;
 
