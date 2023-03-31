@@ -30,7 +30,7 @@
 #include "mk4_data.h"
 #include "param_struct.h"
 #include "pass_struct.h"
-//#include "adhoc_flag.h"
+#include "adhoc_flag.h"
 #include "apply_funcs.h"
 #include "ffcontrol.h"
 //#include "ff_misc_if.h"
@@ -45,9 +45,9 @@
 void __norm_fx (struct type_pass *pass,
               struct type_param *param,
               struct type_status *status,
-              int fr, 
+              int fr,
               int ap)
-    { 
+    {
     struct type_120 *t120;
     struct freq_corel *fdata;
     struct data_corel *datum;
@@ -65,7 +65,7 @@ void __norm_fx (struct type_pass *pass,
         pol,
         pols,                       // bit-mapped pols to be processed in this pass
         usb_present, lsb_present,
-        usb_bypol[4],lsb_bypol[4], 
+        usb_bypol[4],lsb_bypol[4],
         lastpol[2];                 // last pol index with data present, by sideband
     int datum_uflag, datum_lflag;
     int stnpol[2][4] = {0, 1, 0, 1, 0, 1, 1, 0}; // [stn][pol] = 0:L/X/H, 1:R/Y/V
@@ -106,7 +106,7 @@ void __norm_fx (struct type_pass *pass,
         ips = 0;
         pols = param->pol;          // mask of pols in combination
         }
-        
+
                                     // do fft plan only iff nlags changes
     if (param->nlags != nlags)
         {
@@ -125,7 +125,7 @@ void __norm_fx (struct type_pass *pass,
                                         /* Initialize */
     for (i = 0; i < nlags*4; i++)
         S[i] = 0.0;
-        
+
     datum->sband = 0;
                                     /* -1.0 means no data, not zero weight */
     datum->usbfrac = -1.0;
@@ -139,7 +139,7 @@ void __norm_fx (struct type_pass *pass,
     lastpol[0] = ips;
     lastpol[1] = ips;
                                     // check sidebands for each pol. for data
-    //ADHOC_FLAG(param, datum->flag, fr, ap, &datum_uflag, &datum_lflag);
+    ADHOC_FLAG(param, datum->flag, fr, ap, &datum_uflag, &datum_lflag);
     for (ip=ips; ip<pass->pol+1; ip++)
         {
         usb_bypol[ip] = ((datum_uflag & (USB_FLAG << 2*ip)) != 0)
@@ -160,7 +160,7 @@ void __norm_fx (struct type_pass *pass,
     //it is only used in vrot
     datum->sband = usb_present - lsb_present;
                                     /*  sideband # -->  0=upper , 1= lower */
-    for (sb = 0; sb < 2; sb++) 
+    for (sb = 0; sb < 2; sb++)
       {
       for (i = 0; i < nlags*4; i++) // clear xcor & xp_spec for pol sum into them
           {
@@ -336,10 +336,10 @@ void __norm_fx (struct type_pass *pass,
                 }
             }
 
-                                    // add in phase effects if multitone delays 
+                                    // add in phase effects if multitone delays
                                     // were extracted
-        if (pass->control.nsamplers && param->pc_mode[0] == MULTITONE 
-                                    && param->pc_mode[1] == MULTITONE)      
+        if (pass->control.nsamplers && param->pc_mode[0] == MULTITONE
+                                    && param->pc_mode[1] == MULTITONE)
             diff_delay = +1e9 * (datum->rem_sdata.mt_delay[stnpol[1][pol]]
                                - datum->ref_sdata.mt_delay[stnpol[0][pol]]);
                                     // ##DELAY_OFFS## otherwise assume user has
@@ -356,12 +356,12 @@ void __norm_fx (struct type_pass *pass,
             {                       // filter out any nan's, if present
             if (isnan (t120->ld.spec[i].re) || isnan (t120->ld.spec[i].im))
                 {
-                msg ("omitting nan's in visibility for ap %d fr %d lag %i", 
+                msg ("omitting nan's in visibility for ap %d fr %d lag %i",
                       2, ap, fr, i);
                 }
                                     // add in iff this is a requested pol product
             else if (param->pol & 1<<ip || param->pol == 0)
-                {           
+                {
                 z = (double) t120->ld.spec[i].re + cmplx_unit_I * (double) t120->ld.spec[i].im;
                                     // rotate each pol prod by pcal prior to adding in
                 if (sb==0)
@@ -372,10 +372,10 @@ void __norm_fx (struct type_pass *pass,
                                     // cpolrotfac is unity except for CIRC_PAREL
                 z = z * polcof * cpolrotfac;
 
-                                    // corrections to phase as fn of freq based upon 
+                                    // corrections to phase as fn of freq based upon
                                     // delay calibrations
 
-                                    // calculate offset frequency in GHz 
+                                    // calculate offset frequency in GHz
                                     // from DC edge for this spectral point
                 deltaf = -2e-3 * i / (2e6 * param->samp_period * nlags);
                                     // but hold that thought until the cexp() below...
@@ -397,7 +397,7 @@ void __norm_fx (struct type_pass *pass,
                     if (sb)
                         phase_shift = -phase_shift;
                     }
-                                    // apply phase ramp to spectral points 
+                                    // apply phase ramp to spectral points
                 z = z * exp_complex(-2.0 * M_PI * cmplx_unit_I * (diff_delay * deltaf + phase_shift));
                 xp_spec[i] += z;
                 }
@@ -546,11 +546,11 @@ void __norm_fx (struct type_pass *pass,
               factor = datum->lsbfrac;
                                     // DC+highest goes into middle element of the S array
               sindex = i ? 4 * nlags - i : 2 * nlags;
-              S[sindex] += factor * conjugate (xp_spec[i] * 
+              S[sindex] += factor * conjugate (xp_spec[i] *
                   exp_complex ( cmplx_unit_I * (status->lsb_phoff[0] - status->lsb_phoff[1])));
               }
           }
-      }                             // bottom of sideband loop 
+      }                             // bottom of sideband loop
 
                                     /* Normalize data fractions
                                        The resulting sbdelay functions which
@@ -568,7 +568,7 @@ void __norm_fx (struct type_pass *pass,
         factor += datum->usbfrac;
     if (datum->lsbfrac >= 0.0)
         factor += datum->lsbfrac;
-    if ((datum->usbfrac >= 0.0) && (datum->lsbfrac >= 0.0)) 
+    if ((datum->usbfrac >= 0.0) && (datum->lsbfrac >= 0.0))
         factor /= 4.0;              // x2 factor for sb and for polcof
                                     // correct for multiple pols being added in
 
@@ -579,7 +579,7 @@ void __norm_fx (struct type_pass *pass,
 
     //Question:
     //why do we do this check? factor should never be negative (see above)
-    //and if factor == 0, is this an error that should be flagged? 
+    //and if factor == 0, is this an error that should be flagged?
     //  // and why do it here other than for the msg?
         // if (factor > 0.0)
         //     factor = 1.0 / factor;
@@ -588,16 +588,16 @@ void __norm_fx (struct type_pass *pass,
     //no data was seen and thus the spectral array S is here set to zero.
     //That should result in zero values for datum->sbdelay, but why take chances.
 
-    msg ("usbfrac %f lsbfrac %f polcof_sum %f factor %1f flag %x", -2, 
+    msg ("usbfrac %f lsbfrac %f polcof_sum %f factor %1f flag %x", -2,
             datum->usbfrac, datum->lsbfrac, polcof_sum, factor, datum->flag);
 
                                     /* Collect the results */
     if(datum->flag != 0 && factor > 0.0)
         {
         factor = 1.0 / factor;      // turn it into a divisor
-        for (i=0; i<4*nlags; i++) 
+        for (i=0; i<4*nlags; i++)
             S[i] = S[i] * factor;
-                                    // corrections to phase as fn of freq based upon 
+                                    // corrections to phase as fn of freq based upon
                                     // delay calibrations
                                     /* FFT to single-band delay */
         fftw_execute (fftplan);
@@ -608,7 +608,7 @@ void __norm_fx (struct type_pass *pass,
                                     /* Translate so i=nlags is central lag */
                                     // skip every other (interpolated) lag
             j = 2 * (i - nlags);
-            if (j < 0) 
+            if (j < 0)
                 j += 4 * nlags;
                                     /* re-normalize back to single lag */
                                     /* (property of FFTs) */
@@ -623,7 +623,7 @@ void __norm_fx (struct type_pass *pass,
         }
     else                            /* No data */
         {
-        for (i = 0; i < nlags*2; i++) 
+        for (i = 0; i < nlags*2; i++)
             datum->sbdelay[i] = 0.0;
         }
     }
