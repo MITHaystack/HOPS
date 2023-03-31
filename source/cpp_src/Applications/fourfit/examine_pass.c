@@ -28,18 +28,12 @@ void examine_pass(struct type_pass* pass, int pass_index)
 
     msg_info("nufourfit", "test message. " <<eom);
 
-    int npolprod = 4;//only examinining 1 pol prod right now
-    //
-    // for(int p=0; p<4; p++)
-    // {
-    //     if(pass->pprods_present[p]){npolprod++;}
-    // }
-
+    int npolprod = 4;
     int nchan = 0;
     int nap = 0;
     int nlags = 0;
 
-    int sb = 1;// ONLY LBS RIGHT NOW
+    int sb = 1;// ONLY LSB RIGHT NOW
 
     nchan = pass->nfreq;
     nap = pass->num_ap;
@@ -69,8 +63,12 @@ void examine_pass(struct type_pass* pass, int pass_index)
 
     //lets extract the pass data into a visibility container
     visibility_type* bl_data = new visibility_type();
+    weight_type* wt_data = new weight_type();
     bl_data->Resize(npolprod, nchan, nap, nlags);
     bl_data->ZeroArray();
+    wt_data->Resize(npolprod, nchan, nap, 1);
+    wt_data->ZeroArray();
+
 
     for(int pp=0; pp<npolprod; pp++)
     {
@@ -81,30 +79,41 @@ void examine_pass(struct type_pass* pass, int pass_index)
         if(pp == POL_LR){pp_label = "LR";}
         if(pp == POL_RL){pp_label = "RL";}
 
-        std::get<POLPROD_AXIS>(*bl_data)(pp) = pp_label;// placeholder
+        std::get<POLPROD_AXIS>(*bl_data)(pp) = pp_label;
+        std::get<POLPROD_AXIS>(*wt_data)(pp) = pp_label;
+
         for(int ch=0; ch<nchan; ch++)
         {
             //set sky freq on channel axis
             double chan_freq = pass->pass_data[ch].frequency;
             std::get<CHANNEL_AXIS>(*bl_data)(ch) = chan_freq;
+            std::get<CHANNEL_AXIS>(*wt_data)(ch) = chan_freq;
             for(int ap=0; ap<nap; ap++)
             {
                 std::get<TIME_AXIS>(*bl_data)(ap) = ap; //not correct, should be scaled by ap_interval
+                std::get<TIME_AXIS>(*wt_data)(ap) = ap;
                 for(int n=0; n<nlags; n++)
                 {
                     std::get<FREQ_AXIS>(*bl_data)(n) = n; //not correct, should be scaled by freq interval
                     auto lag_ptr = pass->pass_data[ch].data->apdata_ll[sb];
                     lag_ptr = nullptr;
-                    if(pp == POL_LL){lag_ptr = pass->pass_data[ch].data->apdata_ll[sb];}
-                    if(pp == POL_RR){lag_ptr = pass->pass_data[ch].data->apdata_rr[sb];}
-                    if(pp == POL_LR){lag_ptr = pass->pass_data[ch].data->apdata_lr[sb];}
-                    if(pp == POL_RL){lag_ptr = pass->pass_data[ch].data->apdata_rl[sb];}
+                    if(pp == POL_LL){lag_ptr = pass->pass_data[ch].data[ap].apdata_ll[sb];}
+                    if(pp == POL_RR){lag_ptr = pass->pass_data[ch].data[ap].apdata_rr[sb];}
+                    if(pp == POL_LR){lag_ptr = pass->pass_data[ch].data[ap].apdata_lr[sb];}
+                    if(pp == POL_RL){lag_ptr = pass->pass_data[ch].data[ap].apdata_rl[sb];}
+
                     if( lag_ptr != NULL)
                     {
                         double rcomp = lag_ptr->ld.spec[n].re;
                         double icomp = lag_ptr->ld.spec[n].im;
                         std::complex<double> vis(rcomp, icomp);
                         (*bl_data)(pp,ch,ap,n) = vis;
+
+                        if(n==0)
+                        {
+                            double w = lag_ptr->fw.weight;
+                            (*wt_data)(pp,ch,ap,0) = w;
+                        }
                     }
                 }
             }
@@ -124,7 +133,7 @@ void examine_pass(struct type_pass* pass, int pass_index)
     {
         uint32_t label = 0xFFFFFFFF; //someday make this mean something
         inter.Write(*bl_data, "vis", label);
-        //inter.Write(*ch_bl_wdata, "weight", label);
+        inter.Write(*wt_data, "weight", label);
     }
     else
     {
@@ -135,5 +144,6 @@ void examine_pass(struct type_pass* pass, int pass_index)
 
 
     delete bl_data;
+    delete wt_data;
 
 }
