@@ -19,7 +19,7 @@
 #include "pass_struct.h"
 #include "ffmath.h"
 
-#define EXTRA_DEBUG
+//#define EXTRA_DEBUG
 
 #define DR  1
 #define MD 2
