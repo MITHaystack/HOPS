@@ -81,6 +81,18 @@ char version_no[] = FF_VER_NO;		// PACKAGE_VERSION from Makefile
 #define FALSE 0
 #define TRUE 1
 
+
+//toggle stuff for additional examinination of fourfit internals
+//needed for comparison between old/new implementation
+#define EXTRA_DEBUG
+
+#ifdef EXTRA_DEBUG
+    #include "MHO_Message.hh"
+    using namespace hops;
+    extern void examine_pass(struct type_pass*);
+#endif
+
+
 int main (int argc, char** argv)
     {
     struct vex root;
@@ -95,11 +107,17 @@ int main (int argc, char** argv)
     fstruct *files, *fs;
     struct fileset fset;
     bsgstruct *base_sgrp;
-
     extern int __fringe_search ( struct vex* root, struct type_pass* pass);
 
     set_progname(FF_PROGNAME);
     set_msglev(2);
+
+    #ifdef EXTRA_DEBUG
+    //turn on c++ messaging
+    MHO_Message::GetInstance().AcceptAllKeys();
+    MHO_Message::GetInstance().SetMessageLevel(eDebug);
+    #endif
+
 
     //init lockfile data struct
     clear_global_lockfile_data();
@@ -266,6 +284,9 @@ int main (int argc, char** argv)
             nbtried++;
             for (k=0; k<npass; k++)
                 {
+                    #ifdef EXTRA_DEBUG
+                    examine_pass(pass+k);
+                    #endif
                 if (totpass > 0 && do_estimation) fs_ret = -3;
                 else fs_ret = __fringe_search (&root, pass + k);
                 if (fs_ret < 0) break;

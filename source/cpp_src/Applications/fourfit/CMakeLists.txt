@@ -95,19 +95,32 @@ if( PGPLOT_FOUND AND FFTW_FOUND AND X11_FOUND AND GFORTRAN_FOUND )
         hops_add_cflag(${FF_VER_NO_DEF})
     endif(HOPS3_USE_CXX)
 
+    #collect all the other include dir
+    hops_internal_include_directories()
+
     # set library lists ############################################################
     set(INTERNAL_LIBLIST
-        "msg"
-        "mk4util"
-        "afio"
-        "dfio"
-        "vex"
-        "ffcontrol"
-        "ffmath"
-        "ffcore"
-        "ffio"
-        "ffsearch"
-        "ffplot"
+        msg
+        mk4util
+        afio
+        dfio
+        vex
+        ffcontrol
+        ffmath
+        ffcore
+        ffio
+        ffsearch
+        ffplot
+    )
+
+    #add the new C++ libraries, so we can use them too
+    list(APPEND INTERNAL_LIBLIST
+        MHO_Message
+        MHO_Utilities
+        vex2json
+        MHO_Math
+        MHO_Operators
+        MHO_Calibration
     )
 
     set(EXTERNAL_LIBLIST
