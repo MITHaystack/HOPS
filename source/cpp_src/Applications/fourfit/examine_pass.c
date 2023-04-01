@@ -20,6 +20,8 @@
 #include "MHO_ContainerDictionary.hh"
 #include "MHO_ContainerFileInterface.hh"
 
+#include "MHO_DumpObject.hh"
+
 using namespace hops;
 
 void examine_pass(struct type_pass* pass, int pass_index)
@@ -118,28 +120,13 @@ void examine_pass(struct type_pass* pass, int pass_index)
         }
     }
 
-    //dump bl_data into a file for later inspection
+    std::string dir = "./";
     std::stringstream ss;
-    ss << "./pass_";
     ss << pass_index;
-    ss << ".dump";
+    std::string idx = ss.str();
 
-    std::string output_file = ss.str();
-    MHO_BinaryFileInterface inter;
-    bool status = inter.OpenToWrite(output_file);
-    if(status)
-    {
-        uint32_t label = 0xFFFFFFFF; //someday make this mean something
-        inter.Write(*bl_data, "vis", label);
-        inter.Write(*wt_data, "weight", label);
-    }
-    else
-    {
-        msg_error("file", "Error opening corel output file: " << output_file << eom);
-    }
-
-    inter.Close();
-
+    dump_object(bl_data, std::string("vis"), std::string("pass_vis") + idx + std::string(".dump"), dir);
+    dump_object(wt_data, std::string("weights"), std::string("pass_weight") + idx + std::string(".dump") , dir);
 
     delete bl_data;
     delete wt_data;
@@ -243,7 +230,6 @@ void examine_pass_sbd(struct type_pass* pass, int pass_index)
 
                     if( sbd_ptr != NULL)
                     {
-
                         double rcomp = real_comp(sbd_ptr[n]);
                         double icomp = imag_comp(sbd_ptr[n]);
                         std::complex<double> sbd(rcomp, icomp);
@@ -254,26 +240,13 @@ void examine_pass_sbd(struct type_pass* pass, int pass_index)
         }
     }
 
-    //dump bl_data into a file for later inspection
+    std::string dir = "./";
     std::stringstream ss;
-    ss << "./pass_sbd_";
     ss << pass_index;
-    ss << ".dump";
+    std::string idx = ss.str();
 
-    std::string output_file = ss.str();
-    MHO_BinaryFileInterface inter;
-    bool status = inter.OpenToWrite(output_file);
-    if(status)
-    {
-        uint32_t label = 0xFFFFFFFF; //someday make this mean something
-        inter.Write(*sbd_data, "sbd", label);
-    }
-    else
-    {
-        msg_error("file", "Error opening corel output file: " << output_file << eom);
-    }
+    dump_object(sbd_data, std::string("sbd"), std::string("pass_sbd") + idx + std::string(".dump"), dir);
 
-    inter.Close();
     delete sbd_data;
 
 }
