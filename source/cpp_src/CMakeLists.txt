@@ -38,4 +38,6 @@ add_subdirectory(${CPPSOURCE}/Plugins/Root) #CERN ROOT plugins
 add_subdirectory(${CPPSOURCE}/Applications) #applications
 
 #transitory applications for migration
-add_subdirectory(${CPPSOURCE}/Applications/fourfit)
+if(HOPS3_USE_CXX)
+    add_subdirectory(${CPPSOURCE}/Applications/fourfit)
+endif(HOPS3_USE_CXX)
