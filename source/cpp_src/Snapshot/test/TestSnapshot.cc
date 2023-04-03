@@ -31,7 +31,7 @@ int main(int argc, char** argv)
     for(std::size_t i=0; i<dim[0]; i++)
     {
         auto vis_slice = vis.SliceView(i, ":", ":", ":");
-        std::complex<double> tmp = ( (double)i )*i_unit;
+        std::complex<double> tmp = ( (double)(i+1)*2.0 )*i_unit;
         vis_slice *= tmp;
     }
 
