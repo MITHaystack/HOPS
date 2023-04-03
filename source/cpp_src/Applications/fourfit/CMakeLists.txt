@@ -96,7 +96,7 @@ if( PGPLOT_FOUND AND FFTW_FOUND AND X11_FOUND AND GFORTRAN_FOUND )
     endif(HOPS3_USE_CXX)
 
     #collect all the other include dir
-    hops_internal_include_directories()
+    hops_internal_include_directories("./")
 
     # set library lists ############################################################
     set(INTERNAL_LIBLIST
@@ -119,6 +119,8 @@ if( PGPLOT_FOUND AND FFTW_FOUND AND X11_FOUND AND GFORTRAN_FOUND )
         MHO_Utilities
         vex2json
         MHO_Math
+        MHO_Containers
+        MHO_Snapshot
         MHO_Operators
         MHO_Calibration
     )

@@ -7,7 +7,10 @@ endif(ENABLE_DEBUG_MSG)
 option(ENABLE_SNAPSHOTS "Enable object dumps to snapshot file for debugging/inspection" OFF)
 if(ENABLE_SNAPSHOTS)
     hops_add_cxxflag(HOPS_ENABLE_SNAPSHOTS)
+    add_compile_definitions("HOPS_SNAPSHOT_DIR=${SNAPSHOT_INSTALL_DIR}")
 endif(ENABLE_SNAPSHOTS)
+
+
 
 #add option to throw errors on bad return values
 option(ENABLE_STEPWISE_CHECK "When specified, check return value of operation initialization/execution, throw on error" OFF)

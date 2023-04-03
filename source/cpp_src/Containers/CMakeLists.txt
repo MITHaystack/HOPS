@@ -30,7 +30,6 @@ set (CONTAINER_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ContainerFileInterface.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ContainerStore.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ScanDataStore.hh
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_DumpObject.hh
 )
 
 set( CONTAINER_SOURCEFILES
