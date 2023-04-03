@@ -86,11 +86,11 @@ char version_no[] = FF_VER_NO;		// PACKAGE_VERSION from Makefile
 //needed for comparison between old/new implementation
 #define EXTRA_DEBUG
 
+#include "MHO_Message.hh"
+#include "MHO_Snapshot.hh"
+
 #ifdef EXTRA_DEBUG
-    #include "MHO_Message.hh"
-    using namespace hops;
-    extern void examine_pass(struct type_pass*, int);
-    extern void examine_pass_sbd(struct type_pass*, int);
+    #include "nuff_utils.h"
 #endif
 
 
@@ -114,9 +114,12 @@ int main (int argc, char** argv)
     set_msglev(2);
 
     #ifdef EXTRA_DEBUG
-    //turn on c++ messaging
-    MHO_Message::GetInstance().AcceptAllKeys();
-    MHO_Message::GetInstance().SetMessageLevel(eDebug);
+        //turn on c++ messaging
+        MHO_Message::GetInstance().AcceptAllKeys();
+        MHO_Message::GetInstance().SetMessageLevel(eDebug);
+        //turn on obj snapshots
+        MHO_Snapshot::GetInstance().AcceptAllKeys();
+        MHO_Snapshot::GetInstance().SetExecutableName(std::string("nufourfit"));
     #endif
 
 
@@ -285,9 +288,14 @@ int main (int argc, char** argv)
             nbtried++;
             for (k=0; k<npass; k++)
                 {
-                    #ifdef EXTRA_DEBUG
-                    examine_pass(pass+k,k);
-                    #endif
+                #ifdef EXTRA_DEBUG
+                    auto vis = extract_visibilities(pass+k);
+                    auto weights = extract_visibilities(pass+k);
+                    take_snapshot_here("test", "visib", __FILE__, __LINE__, vis);
+                    take_snapshot_here("test", "weights", __FILE__, __LINE__, weights);
+                    delete vis;
+                    delete weights;
+                #endif
                 if (totpass > 0 && do_estimation) fs_ret = -3;
                 else fs_ret = __fringe_search (&root, pass + k);
                 if (fs_ret < 0) break;

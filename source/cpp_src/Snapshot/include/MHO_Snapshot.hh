@@ -118,9 +118,12 @@ class MHO_Snapshot
 
                 if(status)
                 {
+                    obj->Insert( std::string("name"), name );
+                    obj->Insert( std::string("snapshot_key"), key);
                     obj->Insert( std::string("executable"), fExeName);
                     obj->Insert( std::string("file"), file);
                     obj->Insert( std::string("line"), line);
+                    obj->Insert( std::string("count_label"), (int) fCountLabel);
                     uint32_t label = fCountLabel;
                     inter.Write(*obj, name, label);
                     fCountLabel++;
