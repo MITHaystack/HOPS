@@ -118,6 +118,7 @@ class MHO_Snapshot
 
                 if(status)
                 {
+                    obj->Insert( std::string("executable"), fExeName);
                     obj->Insert( std::string("file"), file);
                     obj->Insert( std::string("line"), line);
                     uint32_t label = fCountLabel;
@@ -136,7 +137,7 @@ class MHO_Snapshot
 
         int GetPID()
         {
-            pid_t pid = getppid();
+            pid_t pid = getpid();
             return (int) pid;
         }
 
