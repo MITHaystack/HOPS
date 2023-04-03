@@ -30,8 +30,6 @@
     #define HOPS_SNAPSHOT_DIR_STR STRING(HOPS_SNAPSHOT_DIR)
 #endif
 
-#pragma message HOPS_SNAPSHOT_DIR_STR
-
 /*
 *File: MHO_Snapshot.hh
 *Class: MHO_Snapshot
@@ -91,6 +89,8 @@ class MHO_Snapshot
                 MHO_BinaryFileInterface inter;
                 bool status = inter.OpenToAppend(output_file);
 
+                std::cout<<"dump to file: "<<output_file<<std::endl;
+
                 if(status)
                 {
                     uint32_t label = fCountLabel;
@@ -130,8 +130,8 @@ class MHO_Snapshot
             ss << GetPID();
             ss << "_";
 
-            std::string fPrefix = ss.str();
-            std::string fPostfix = ".snap";
+            fPrefix = ss.str();
+            fPostfix = ".snap";
             fExeName = "";
         };
         virtual ~MHO_Snapshot(){};

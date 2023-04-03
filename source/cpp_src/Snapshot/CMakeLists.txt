@@ -1,6 +1,4 @@
 #list header files #############################################################
-
-
 set (SNAPSHOT_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_Snapshot.hh
 )
@@ -26,6 +24,6 @@ target_link_libraries (MHO_Snapshot ${SNAPSHOT_LIBS})
 hops_install_headers (${SNAPSHOT_HEADERFILES})
 hops_install_libraries (MHO_Snapshot )
 
-#if (HOPS_ENABLE_TEST)
-#    add_subdirectory(test)
-#endif (HOPS_ENABLE_TEST)
+if (HOPS_ENABLE_TEST)
+   add_subdirectory(test)
+endif (HOPS_ENABLE_TEST)
