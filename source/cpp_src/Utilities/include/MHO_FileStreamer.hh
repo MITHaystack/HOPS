@@ -38,6 +38,7 @@ class MHO_FileStreamer
 
         //let derived class specify the exact handling of file
         virtual void OpenToRead() = 0;
+        virtual void OpenToAppend() = 0;
         virtual void OpenToWrite() = 0;
         virtual void Close() = 0;
 

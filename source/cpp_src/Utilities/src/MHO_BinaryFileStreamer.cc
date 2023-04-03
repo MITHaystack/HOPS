@@ -21,6 +21,24 @@ MHO_BinaryFileStreamer::OpenToRead()
 }
 
 void
+MHO_BinaryFileStreamer::OpenToAppend()
+{
+    //open file for binary reading
+    fFile.open(fFilename.c_str(), std::fstream::out | std::ios::binary | std::ios::app  );
+
+    if( !fFile.is_open() || !fFile.good() )
+    {
+        msg_error("file", "Failed to open for writing, file: " << fFilename << eom);
+        fFileState = FileState::closed;
+    }
+    else
+    {
+        fFileState = FileState::writeable;
+    }
+}
+
+
+void
 MHO_BinaryFileStreamer::OpenToWrite()
 {
     //open file for binary writing

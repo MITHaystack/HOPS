@@ -147,9 +147,8 @@ class MHO_BinaryFileStreamer: public MHO_FileStreamer, public MHO_BinaryFileStre
         virtual ~MHO_BinaryFileStreamer(){};
 
         virtual void OpenToRead() override;
-        //for the time being we only allow writing in 'truncate' mode,
-        //at some point we may want to allow for 'append' mode
         virtual void OpenToWrite() override;
+        virtual void OpenToAppend() override;
         virtual void Close() override;
 
         virtual std::fstream& GetStream() override { return MHO_FileStreamer::GetStream();}

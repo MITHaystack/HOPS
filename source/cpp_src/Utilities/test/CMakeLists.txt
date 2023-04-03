@@ -17,6 +17,7 @@ set(SOURCE_BASENAMES
     TestStationCodeMap
     TestDateLibraryUsage
     TestTokenizer
+    TestWriteAppend
 )
 
 if(HOPS_USE_MPI)
