@@ -24,10 +24,7 @@
 
 #define EXTRA_DEBUG
 #ifdef EXTRA_DEBUG
-    #include "MHO_Message.hh"
-    using namespace hops;
-    extern void examine_pass(struct type_pass*, int);
-    extern void examine_pass_sbd(struct type_pass*, int);
+#include "nuff_utils.h"
 #endif
 
 
@@ -142,7 +139,9 @@ int __search (struct type_pass *pass)
         }
 
         #ifdef EXTRA_DEBUG
-        examine_pass_sbd(pass,0);
+        auto sbd_data = extract_sbd(pass);
+        take_snapshot_here("pass", "sbd", __FILE__, __LINE__, sbd_data);
+        delete sbd_data;
         #endif
 
         msg ("Freq %d, ap's by sideband through norm = %d, %d", -1,

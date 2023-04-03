@@ -5,146 +5,9 @@
 
 #include "nuff_utils.h"
 
-void examine_pass(struct type_pass* pass, int pass_index)
+sbd_type* extract_sbd(struct type_pass* pass)
 {
-    msg_info("nufourfit", "dumping vis data from pass: " << pass_index << eom);
-
-    int npolprod = 4;
-    int nchan = 0;
-    int nap = 0;
-    int nlags = 0;
-
-    int sb = 1;// ONLY LSB RIGHT NOW
-
-    nchan = pass->nfreq;
-    nap = pass->num_ap;
-    int pol = pass->pol;
-
-    for(int ch=0; ch < nchan; ch++)
-    {
-        double chan_freq = pass->pass_data[ch].frequency;
-        std::cout<<"chan: "<<ch<<" freq = "<<chan_freq<<std::endl;
-        std::cout<<"polprod code = "<<pass->pol<<std::endl;
-        if(pol == 0)
-        {
-            int sband = pass->pass_data[ch].data->sband;
-
-            //for(int sb=0; sb<2; sb++)
-            {
-                if(pass->pass_data[ch].data->apdata_ll[sb] != NULL)
-                {
-                    std::cout<<"sband = "<<sb<<std::endl;
-                    std::cout<<"nlags = "<<pass->pass_data[ch].data->apdata_ll[sb]->nlags <<std::endl;
-                    nlags = std::max(nlags, (int) pass->pass_data[ch].data->apdata_ll[sb]->nlags);
-                }
-            }
-        }
-    }
-
-
-    //lets extract the pass data into a visibility container
-    visibility_type* bl_data = new visibility_type();
-    weight_type* wt_data = new weight_type();
-    bl_data->Resize(npolprod, nchan, nap, nlags);
-    bl_data->ZeroArray();
-    wt_data->Resize(npolprod, nchan, nap, 1);
-    wt_data->ZeroArray();
-
-
-    for(int pp=0; pp<npolprod; pp++)
-    {
-        std::string pp_label = "";
-        //pass->linpol; ///[2]; TODO use lin-pol indicators to get the correct pol prod label
-        if(pp == POL_LL){pp_label = "LL";}
-        if(pp == POL_RR){pp_label = "RR";}
-        if(pp == POL_LR){pp_label = "LR";}
-        if(pp == POL_RL){pp_label = "RL";}
-
-        std::get<POLPROD_AXIS>(*bl_data)(pp) = pp_label;
-        std::get<POLPROD_AXIS>(*wt_data)(pp) = pp_label;
-
-        for(int ch=0; ch<nchan; ch++)
-        {
-            //set sky freq on channel axis
-            double chan_freq = pass->pass_data[ch].frequency;
-            std::get<CHANNEL_AXIS>(*bl_data)(ch) = chan_freq;
-            std::get<CHANNEL_AXIS>(*wt_data)(ch) = chan_freq;
-            for(int ap=0; ap<nap; ap++)
-            {
-                std::get<TIME_AXIS>(*bl_data)(ap) = ap; //not correct, should be scaled by ap_interval
-                std::get<TIME_AXIS>(*wt_data)(ap) = ap;
-                for(int n=0; n<nlags; n++)
-                {
-                    std::get<FREQ_AXIS>(*bl_data)(n) = n; //not correct, should be scaled by freq interval
-                    auto lag_ptr = pass->pass_data[ch].data[0].apdata_ll[sb];
-                    lag_ptr = nullptr;
-                    if(pp == POL_LL){lag_ptr = pass->pass_data[ch].data[ap].apdata_ll[sb];}
-                    if(pp == POL_RR){lag_ptr = pass->pass_data[ch].data[ap].apdata_rr[sb];}
-                    if(pp == POL_LR){lag_ptr = pass->pass_data[ch].data[ap].apdata_lr[sb];}
-                    if(pp == POL_RL){lag_ptr = pass->pass_data[ch].data[ap].apdata_rl[sb];}
-
-                    if( lag_ptr != NULL)
-                    {
-                        double rcomp = lag_ptr->ld.spec[n].re;
-                        double icomp = lag_ptr->ld.spec[n].im;
-                        std::complex<double> vis(rcomp, icomp);
-                        (*bl_data)(pp,ch,ap,n) = vis;
-
-                        if(n==0)
-                        {
-                            double w = lag_ptr->fw.weight;
-                            (*wt_data)(pp,ch,ap,0) = w;
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    take_snapshot_here("pass", "vis", __FILE__, __LINE__, bl_data);
-    take_snapshot_here("pass", "weights", __FILE__, __LINE__, wt_data);
-
-    // dump_object(bl_data, std::string("vis"), std::string("pass_vis") + idx + std::string(".dump"), dir);
-    // dump_object(wt_data, std::string("weights"), std::string("pass_weight") + idx + std::string(".dump") , dir);
-
-    delete bl_data;
-    delete wt_data;
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-void examine_pass_sbd(struct type_pass* pass, int pass_index)
-{
-    msg_info("nufourfit", "dumping sbd data from pass: " << pass_index << eom);
+    msg_info("nufourfit", "dumping sbd data from pass." << eom);
 
     int npolprod = 4;
     int nchan = 0;
@@ -219,19 +82,8 @@ void examine_pass_sbd(struct type_pass* pass, int pass_index)
         }
     }
 
-    take_snapshot_here("pass", "sbd", __FILE__, __LINE__, sbd_data);
-
-    // dump_object(sbd_data, std::string("sbd"), std::string("pass_sbd") + idx + std::string(".dump"), dir);
-
-    delete sbd_data;
-
+    return sbd_data;
 }
-
-
-
-
-
-
 
 
 visibility_type* extract_visibilities(struct type_pass* pass)

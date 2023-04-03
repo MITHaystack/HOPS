@@ -15,9 +15,8 @@
 
 using namespace hops;
 
-extern void examine_pass(struct type_pass*, int);
-extern void examine_pass_sbd(struct type_pass*, int);
 visibility_type* extract_visibilities(struct type_pass*);
 weight_type* extract_weights(struct type_pass*);
+sbd_type* extract_sbd(struct type_pass*);
 
 #endif
