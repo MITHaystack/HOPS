@@ -19,7 +19,7 @@ endif()
 set(HOPS_VERSION_NUMBER "4.00")
 project(Hops VERSION ${HOPS_VERSION_NUMBER})
 
-#default build type 
+#default build type
 set(default_build_type "Release")
 if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
   message(STATUS "Setting build type to '${default_build_type}' as none was specified.")
@@ -52,6 +52,7 @@ set(CONFIG_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/config")
 set(DATA_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/data")
 set(DOC_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/doc")
 set(LOG_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/log")
+set(SNAPSHOT_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/snapshot")
 set(OPENCL_KERNEL_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/cl_kernel")
 set(SHARE_TEXT_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/share/text")
 set(SHARE_VHELP_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/share/vhelp")
@@ -63,6 +64,7 @@ file(MAKE_DIRECTORY ${CONFIG_INSTALL_DIR})
 file(MAKE_DIRECTORY ${DATA_INSTALL_DIR})
 file(MAKE_DIRECTORY ${DOC_INSTALL_DIR})
 file(MAKE_DIRECTORY ${LOG_INSTALL_DIR})
+file(MAKE_DIRECTORY ${SNAPSHOT_INSTALL_DIR})
 file(MAKE_DIRECTORY ${OPENCL_KERNEL_INSTALL_DIR})
 file(MAKE_DIRECTORY ${SHARE_TEXT_INSTALL_DIR})
 file(MAKE_DIRECTORY ${SHARE_VHELP_INSTALL_DIR})
@@ -109,7 +111,7 @@ set(EXTERN_HLIBS ${CMAKE_CURRENT_SOURCE_DIR}/extern)
 set(TEST_DATA_SOURCE ${CMAKE_CURRENT_SOURCE_DIR}/test_data)
 set(HOPS_TEST_DATA_DIR ${CMAKE_CURRENT_BINARY_DIR}/test_data) #actual location to put test data and do tests
 
-#look for an environmental variable pointing to a cache of test data 
+#look for an environmental variable pointing to a cache of test data
 set(HOPS_USE_CACHED_TEST_DATA OFF)
 set(HOPS_NEED_REMOTE_DATA ON)
 if (NOT "$ENV{HOPS_CACHED_TEST_DATADIR}" STREQUAL "")

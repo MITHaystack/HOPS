@@ -3,8 +3,6 @@
 namespace hops
 {
 
-
-
 //initialization to nullptr
 MHO_Snapshot* MHO_Snapshot::fInstance = nullptr;
 
@@ -48,48 +46,24 @@ MHO_Snapshot::RemoveAllKeys()
     fKeys.clear();
 }
 
-
-MHO_Snapshot&
-MHO_Snapshot::SendSnapshot(const MHO_SnapshotLevel& level, const std::string& key)
-{
-    fCurrentLevel = level;
-    fCurrentKeyIsAllowed = false;
-    auto iter = fKeys.find(key);
-    if(iter != fKeys.end()){fCurrentKeyIsAllowed = true;}
-
-    if( PassSnapshot() )
-    {
-        fSnapshotStream << GetCurrentPrefix(level,key);
-    }
-
-    return *fInstance;
-}
-
-MHO_Snapshot&
-MHO_Snapshot::SendSnapshot(const MHO_SnapshotLevel& level, const char* key)
-{
-    fCurrentLevel = level;
-    fCurrentKeyIsAllowed = false;
-    std::string tmp_key(key);
-    auto iter = fKeys.find(tmp_key);
-    if(iter != fKeys.end()){fCurrentKeyIsAllowed = true;}
-
-    if( PassSnapshot() )
-    {
-        fSnapshotStream << GetCurrentPrefix(level, tmp_key);
-    }
-
-    return *fInstance;
-}
-
-
 bool
-MHO_Snapshot::PassSnapshot()
+MHO_Snapshot::PassSnapshot(std::string key)
 {
-    return ( fCurrentKeyIsAllowed || fAcceptAllKeys );
+    if(fAcceptAllKeys)
+    {
+        return true;
+    }
+    else
+    {
+        fCurrentKeyIsAllowed = false;
+        std::string tmp_key(key);
+        auto iter = fKeys.find(tmp_key);
+        if(iter != fKeys.end()){fCurrentKeyIsAllowed = true;}
+        return fCurrentKeyIsAllowed;
+    }
 }
 
 
 
 
-}
+} //end of namespace

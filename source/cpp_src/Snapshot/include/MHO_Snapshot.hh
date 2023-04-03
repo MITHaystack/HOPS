@@ -7,6 +7,7 @@
 #include <string>
 #include <iostream>
 #include <set>
+#include <unistd.h>
 
 //global messaging util
 #include "MHO_Message.hh"
@@ -20,6 +21,16 @@
 #include "MHO_ContainerDictionary.hh"
 #include "MHO_ContainerFileInterface.hh"
 
+//hops snapshot directory should be defined as <install_dir>/snapshot/
+#ifndef HOPS_SNAPSHOT_DIR
+    #define HOPS_SNAPSHOT_DIR_STR "./"
+#else
+    #define STR(str) #str
+    #define STRING(str) STR(str)
+    #define HOPS_SNAPSHOT_DIR_STR STRING(HOPS_SNAPSHOT_DIR)
+#endif
+
+#pragma message HOPS_SNAPSHOT_DIR_STR
 
 /*
 *File: MHO_Snapshot.hh
@@ -54,6 +65,9 @@ class MHO_Snapshot
             return *fInstance;
         }
 
+        void SetExecutableName(std::string exe_name){fExeName = exe_name;};
+        void SetExecutableName(const char* exe_name){ SetExecutableName(std::string(exe_name) ); }
+
         void AcceptAllKeys(){fAcceptAllKeys = true;}
         void LimitToKeySet(){fAcceptAllKeys = false;}
         void AddKey(const std::string& key);
@@ -61,9 +75,6 @@ class MHO_Snapshot
         void RemoveKey(const std::string& key);
         void RemoveKey(const char* key);
         void RemoveAllKeys();
-
-        void Flush();
-        void SetMessageLevel(MHO_SnapshotLevel level){fAllowedLevel = level;}
 
         template< typename XObjType >
         void DumpObject(XObjType* obj, const char* key, const char* name)
@@ -74,20 +85,33 @@ class MHO_Snapshot
         template< typename XObjType >
         void DumpObject(XObjType* obj, std::string key, std::string name)
         {
+            if( PassSnapshot(key) )
+            {
+                std::string output_file = fPrefix + fExeName + fPostfix;
+                MHO_BinaryFileInterface inter;
+                bool status = inter.OpenToAppend(output_file);
 
-            if(status)
-            {
-                uint32_t label = fCountLabel;
-                inter.Write(*obj, name, label);
+                if(status)
+                {
+                    uint32_t label = fCountLabel;
+                    inter.Write(*obj, name, label);
+                    fCountLabel++;
+                }
+                else
+                {
+                    msg_error("file", "error writing object "<< name << " to file: " << output_file << eom);
+                }
+                inter.Close();
             }
-            else
-            {
-                msg_error("file", "error writing object "<< name << " to file: " << output_file << eom);
-            }
-            inter.Close();
         }
 
     private:
+
+        int GetPID()
+        {
+            pid_t pid = getppid();
+            return (int) pid;
+        }
 
         //no public access to constructor
         //set up the stream, for now just point to std::cout
@@ -97,27 +121,32 @@ class MHO_Snapshot
             fCurrentKeyIsAllowed(false),
             fAcceptAllKeys(false)
         {
+            std::string dir_string = HOPS_SNAPSHOT_DIR_STR;
+
             //dump bl_data into a file for later inspection
             std::stringstream ss;
-            ss << dir;
-            ss << "/";
-            ss << filename;
+            ss << dir_string;
+            ss << "/pid_";
+            ss << GetPID();
+            ss << "_";
 
-            std::string output_file = ss.str();
-            MHO_BinaryFileInterface inter;
-            bool status = inter.OpenToWrite(output_file);
-
+            std::string fPrefix = ss.str();
+            std::string fPostfix = ".snap";
+            fExeName = "";
         };
         virtual ~MHO_Snapshot(){};
 
-        bool PassSnapshot();
+        bool PassSnapshot(std::string key);
 
         static MHO_Snapshot* fInstance; //static global class instance
 
-        //file in which to dump snapshots
-        std::string fFilename;
+        //used to construct filename in which to dump snapshots
+        int fPID;
+        std::string fPrefix;
+        std::string fPostfix;
+        std::string fExeName;
 
-        //label is used to count the number of snapshot dumps
+        //label is used to count the number of snapshots we have dumped
         uint32_t fCountLabel;
 
         std::set< std::string > fKeys; //keys of which messages we will accept for output
@@ -128,26 +157,26 @@ class MHO_Snapshot
 };
 
 
-
-
 //
-// //usage macros
-// #define msg_fatal(xKEY, xCONTENT) MHO_Snapshot::GetInstance().SendMessage(eFatal,xKEY) << xCONTENT;
-// #define msg_error(xKEY, xCONTENT) MHO_Snapshot::GetInstance().SendMessage(eError,xKEY) << xCONTENT;
-// #define msg_warn(xKEY, xCONTENT) MHO_Snapshot::GetInstance().SendMessage(eWarning,xKEY) << xCONTENT;
-// #define msg_status(xKEY, xCONTENT) MHO_Snapshot::GetInstance().SendMessage(eStatus,xKEY) << xCONTENT;
-// #define msg_info(xKEY, xCONTENT) MHO_Snapshot::GetInstance().SendMessage(eInfo,xKEY) << xCONTENT;
-
-#ifdef HOPS_ENABLE_DEBUG_MSG  //this is defined as a compiler flag via build system
-//#warning "HOPS_ENABLE_DEBUG_MSG is defined -- this is not a bug!"
-//allow debug messages when debug flag is active
-#define msg_debug(xKEY, xCONTENT) MHO_Snapshot::GetInstance().SendMessage(eDebug,xKEY) << xCONTENT;
-#else
-//debug is not enabled, so we remove them from compilation
-#define msg_debug(xKEY, xCONTENT)
-#endif
-
-
+//
+// //
+// // //usage macros
+// // #define msg_fatal(xKEY, xCONTENT) MHO_Snapshot::GetInstance().SendMessage(eFatal,xKEY) << xCONTENT;
+// // #define msg_error(xKEY, xCONTENT) MHO_Snapshot::GetInstance().SendMessage(eError,xKEY) << xCONTENT;
+// // #define msg_warn(xKEY, xCONTENT) MHO_Snapshot::GetInstance().SendMessage(eWarning,xKEY) << xCONTENT;
+// // #define msg_status(xKEY, xCONTENT) MHO_Snapshot::GetInstance().SendMessage(eStatus,xKEY) << xCONTENT;
+// // #define msg_info(xKEY, xCONTENT) MHO_Snapshot::GetInstance().SendMessage(eInfo,xKEY) << xCONTENT;
+//
+// #ifdef HOPS_ENABLE_DEBUG_MSG  //this is defined as a compiler flag via build system
+// //#warning "HOPS_ENABLE_DEBUG_MSG is defined -- this is not a bug!"
+// //allow debug messages when debug flag is active
+// #define msg_debug(xKEY, xCONTENT) MHO_Snapshot::GetInstance().SendMessage(eDebug,xKEY) << xCONTENT;
+// #else
+// //debug is not enabled, so we remove them from compilation
+// #define msg_debug(xKEY, xCONTENT)
+// #endif
+//
+//
 
 
 
