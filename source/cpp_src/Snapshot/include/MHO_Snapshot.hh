@@ -114,7 +114,7 @@ class MHO_Snapshot
                 MHO_BinaryFileInterface inter;
                 bool status = inter.OpenToAppend(output_file);
 
-                std::cout<<"dump to file: "<<output_file<<std::endl;
+                msg_debug("snapshot", "dumping object (" << name << ") snapshot to file: " << output_file << eom);
 
                 if(status)
                 {
