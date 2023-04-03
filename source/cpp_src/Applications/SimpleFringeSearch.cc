@@ -26,6 +26,9 @@ struct c_block* cb_head; //global extern kludge (due to stupid c-library interfa
 //global messaging util
 #include "MHO_Message.hh"
 
+//snapshot utility lib
+#include "MHO_Snapshot.hh"
+
 //needed to read hops files and extract objects from scan dir
 #include "MHO_ScanDataStore.hh"
 
@@ -326,6 +329,9 @@ int main(int argc, char** argv)
     MHO_Message::GetInstance().AcceptAllKeys();
     MHO_Message::GetInstance().SetMessageLevel(eDebug);
 
+    MHO_Snapshot::GetInstance().AcceptAllKeys();
+    MHO_Snapshot::GetInstance().SetExecutableName(std::string("SimpleFringeSearch"));
+
     std::string directory = "";
     std::string control_file = "";
     std::string baseline = "";
@@ -518,6 +524,9 @@ int main(int argc, char** argv)
     std::size_t bl_dim[visibility_type::rank::value];
     bl_data->GetDimensions(bl_dim);
 
+    //take a snapshot
+    take_snapshot_here("test", "visib", __FILE__, __LINE__, bl_data);
+    take_snapshot_here("test", "weights", __FILE__, __LINE__,  wt_data);
 
     // //apply the data weights
     // for(std::size_t pp =0; pp < bl_dim[0]; pp++)
