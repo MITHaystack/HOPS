@@ -35,7 +35,7 @@ int main(int argc, char** argv)
         vis_slice *= tmp;
     }
 
-    MHO_Snapshot::GetInstance().DumpObject(&vis, "test", "visib");
+    take_snapshot_here("test", "visib", __FILE__, __LINE__, &vis);
 
     return 0;
 }

@@ -105,6 +105,33 @@ class MHO_Snapshot
             }
         }
 
+        template< typename XObjType >
+        void DumpObject(XObjType* obj, std::string key, std::string name, std::string file, int line)
+        {
+            if( PassSnapshot(key) )
+            {
+                std::string output_file = fPrefix + fExeName + fPostfix;
+                MHO_BinaryFileInterface inter;
+                bool status = inter.OpenToAppend(output_file);
+
+                std::cout<<"dump to file: "<<output_file<<std::endl;
+
+                if(status)
+                {
+                    obj->Insert( std::string("file"), file);
+                    obj->Insert( std::string("line"), line);
+                    uint32_t label = fCountLabel;
+                    inter.Write(*obj, name, label);
+                    fCountLabel++;
+                }
+                else
+                {
+                    msg_error("file", "error writing object "<< name << " to file: " << output_file << eom);
+                }
+                inter.Close();
+            }
+        }
+
     private:
 
         int GetPID()
@@ -153,31 +180,19 @@ class MHO_Snapshot
         bool fCurrentKeyIsAllowed; //current key is in allowed set
         bool fAcceptAllKeys;
 
-
 };
 
+//this is defined as a compiler flag via build system
+#ifdef HOPS_ENABLE_SNAPSHOTS
+//allow object snapshots to be dumped when enabled
+#define take_snapshot(xKEY, xNAME, xOBJECT) MHO_Snapshot::GetInstance().DumpObject(xOBJECT, xKEY, xNAME);
+#define take_snapshot_here(xKEY, xNAME, xFILE, xLINE, xOBJECT) MHO_Snapshot::GetInstance().DumpObject(xOBJECT, xKEY, xNAME, xFILE, xLINE);
 
-//
-//
-// //
-// // //usage macros
-// // #define msg_fatal(xKEY, xCONTENT) MHO_Snapshot::GetInstance().SendMessage(eFatal,xKEY) << xCONTENT;
-// // #define msg_error(xKEY, xCONTENT) MHO_Snapshot::GetInstance().SendMessage(eError,xKEY) << xCONTENT;
-// // #define msg_warn(xKEY, xCONTENT) MHO_Snapshot::GetInstance().SendMessage(eWarning,xKEY) << xCONTENT;
-// // #define msg_status(xKEY, xCONTENT) MHO_Snapshot::GetInstance().SendMessage(eStatus,xKEY) << xCONTENT;
-// // #define msg_info(xKEY, xCONTENT) MHO_Snapshot::GetInstance().SendMessage(eInfo,xKEY) << xCONTENT;
-//
-// #ifdef HOPS_ENABLE_DEBUG_MSG  //this is defined as a compiler flag via build system
-// //#warning "HOPS_ENABLE_DEBUG_MSG is defined -- this is not a bug!"
-// //allow debug messages when debug flag is active
-// #define msg_debug(xKEY, xCONTENT) MHO_Snapshot::GetInstance().SendMessage(eDebug,xKEY) << xCONTENT;
-// #else
-// //debug is not enabled, so we remove them from compilation
-// #define msg_debug(xKEY, xCONTENT)
-// #endif
-//
-//
-
+#else
+//snapshot not enables, define to nothing
+#define take_snapshot(xKEY, xNAME, xOBJECT)
+#define take_snapshot_here(xKEY, xNAME, xFILE, xLINE, xOBJECT)
+#endif
 
 
 

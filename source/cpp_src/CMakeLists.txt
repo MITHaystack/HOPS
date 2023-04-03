@@ -4,6 +4,11 @@ if(ENABLE_DEBUG_MSG)
     hops_add_cxxflag(HOPS_ENABLE_DEBUG_MSG)
 endif(ENABLE_DEBUG_MSG)
 
+option(ENABLE_SNAPSHOTS "Enable object dumps to snapshot file for debugging/inspection" OFF)
+if(ENABLE_SNAPSHOTS)
+    hops_add_cxxflag(HOPS_ENABLE_SNAPSHOTS)
+endif(ENABLE_SNAPSHOTS)
+
 #add option to throw errors on bad return values
 option(ENABLE_STEPWISE_CHECK "When specified, check return value of operation initialization/execution, throw on error" OFF)
 if(ENABLE_STEPWISE_CHECK)

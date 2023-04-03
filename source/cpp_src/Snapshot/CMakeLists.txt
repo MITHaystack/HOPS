@@ -16,7 +16,7 @@ hops_internal_include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 set(SNAPSHOT_LIBS MHO_Message MHO_Utilities MHO_Containers)
 
 # add_compile_definitions()
-add_compile_definitions("HOPS_SNAPSHOT_DIR=\"${SNAPSHOT_INSTALL_DIR}\"")
+add_compile_definitions("HOPS_SNAPSHOT_DIR=${SNAPSHOT_INSTALL_DIR}")
 
 add_library (MHO_Snapshot SHARED ${SNAPSHOT_SOURCEFILES})
 target_link_libraries (MHO_Snapshot ${SNAPSHOT_LIBS})
