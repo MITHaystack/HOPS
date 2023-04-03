@@ -117,12 +117,12 @@ class MHO_Snapshot
         //file in which to dump snapshots
         std::string fFilename;
 
+        //label is used to count the number of snapshot dumps
         uint32_t fCountLabel;
 
         std::set< std::string > fKeys; //keys of which messages we will accept for output
         bool fCurrentKeyIsAllowed; //current key is in allowed set
         bool fAcceptAllKeys;
-        std::stringstream fMessageStream; //the message container to be filled/flushed
 
 
 };
@@ -148,15 +148,6 @@ class MHO_Snapshot
 #endif
 
 
-#ifdef HOPS_ENABLE_STEPWISE_CHECK  //this is defined as a compiler flag via build system
-//error check is enabled, so that we can verify a boolean return value is true
-#define check_step_error(xVALUE, xKEY, xCONTENT) if(!xVALUE){ MHO_Snapshot::GetInstance().SendMessage(eError,xKEY) << xCONTENT; }
-#define check_step_fatal(xVALUE, xKEY, xCONTENT) if(!xVALUE){ MHO_Snapshot::GetInstance().SendMessage(eFatal,xKEY) << xCONTENT; HOPS_ASSERT_THROW(xVALUE); }
-#else
-//error check is competely disabled
-#define check_step_error(xVALUE, xKEY, xCONTENT)
-#define check_step_fatal(xVALUE, xKEY, xCONTENT)
-#endif
 
 
 
