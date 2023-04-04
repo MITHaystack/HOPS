@@ -356,7 +356,7 @@ void extract_sbd_dr(struct type_pass* pass, struct type_status* status, int fr, 
     // {
         for(int s=0; s<drspec_size; s++)
         {
-            dr_obj->at(0, lag, fr, s) = rate_spectrum[s];
+            dr_obj->at(0, fr, s, lag) = rate_spectrum[s];
         }
     // }
 }
