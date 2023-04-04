@@ -24,10 +24,15 @@ MHO_NormFX::InitializeImpl(const XArgType1* in1, const XArgType2* in2, XArgType3
         bool status = true;
         //figure out if we have USB or LSB data (or a mixture)
         auto* channel_axis = &(std::get<CHANNEL_AXIS>( *(in1) ) );
-        std::size_t n_usb_chan = channel_axis->GetNIntervalsWithKeyValue(std::string("net_sideband"), 'U');
-        std::size_t n_lsb_chan = channel_axis->GetNIntervalsWithKeyValue(std::string("net_sideband"), 'L');
+        std::size_t n_usb_chan = channel_axis->GetNIntervalsWithKeyValue(std::string("net_sideband"), std::string("U"));
+        std::size_t n_lsb_chan = channel_axis->GetNIntervalsWithKeyValue(std::string("net_sideband"), std::string("L"));
         if(n_usb_chan != 0){fIsUSB = true;}
         if(n_lsb_chan != 0){fIsUSB = false;}
+        
+        
+        if(!fIsUSB){msg_debug("operators", "MHO_NormFX operating on LSB data, N LSB channels: " << n_lsb_chan <<eom );}
+        else{msg_debug("operators", "MHO_NormFX operating on USB data, N USB channels: " << n_usb_chan <<eom );}
+        
         if(n_usb_chan != 0 && n_lsb_chan != 0)
         {
             msg_error("operators", "Could not initialize MHO_NormFX, mixed USB/LSB data not yet supported." << eom);
@@ -57,11 +62,6 @@ MHO_NormFX::InitializeImpl(const XArgType1* in1, const XArgType2* in2, XArgType3
         status = fNaNBroadcaster.Initialize();
         if(!status){msg_error("operators", "Could not initialize NaN mask broadcast in MHO_NormFX." << eom); return false;}
 
-        #pragma message("TODO FIXME, the following line casts away const-ness:")
-        fConjBroadcaster.SetArgs( const_cast<XArgType1*>(in1) );
-        status = fConjBroadcaster.Initialize();
-        if(!status){msg_error("operators", "Could not initialize complex conjugation broadcast in MHO_NormFX." << eom); return false;}
-
         fPaddedFFTEngine.SetArgs(in1, &fWorkspace);
         fPaddedFFTEngine.DeselectAllAxes();
         fPaddedFFTEngine.SelectAxis(FREQ_AXIS); //only perform padded fft on frequency (to lag) axis
@@ -70,7 +70,7 @@ MHO_NormFX::InitializeImpl(const XArgType1* in1, const XArgType2* in2, XArgType3
 
         //TODO FIXME...currently this treats all channels as USB or LSB (but what if we have a mixed case?)
         //for LSB data we flip as well as pad
-        if(fIsUSB){fPaddedFFTEngine.SetEndPadded();}
+        if(!fIsUSB){fPaddedFFTEngine.SetEndPadded();}
         else{fPaddedFFTEngine.SetReverseEndPadded();}
 
         status = fPaddedFFTEngine.Initialize();
@@ -80,9 +80,6 @@ MHO_NormFX::InitializeImpl(const XArgType1* in1, const XArgType2* in2, XArgType3
         fSubSampler.SetArgs(&fWorkspace, out);
         status = fSubSampler.Initialize();
         if(!status){msg_error("operators", "Could not initialize sub-sampler in MHO_NormFX." << eom); return false;}
-
-
-
 
         fCyclicRotator.SetOffset(FREQ_AXIS, 2*nlags);
         fCyclicRotator.SetArgs(out);
@@ -95,6 +92,11 @@ MHO_NormFX::InitializeImpl(const XArgType1* in1, const XArgType2* in2, XArgType3
         // fNormBroadcaster.SetOutput(out);
         // status = fNormBroadcaster.Initialize();
         // if(!status){msg_error("operators", "Could not initialize MHO_NormFX." << eom); return false;}
+
+        //#pragma message("TODO FIXME, the following line casts away const-ness:")
+        fConjBroadcaster.SetArgs( out );
+        status = fConjBroadcaster.Initialize();
+        if(!status){msg_error("operators", "Could not initialize complex conjugation broadcast in MHO_NormFX." << eom); return false;}
 
         //double it
         nlags *= 2;
@@ -138,12 +140,7 @@ MHO_NormFX::ExecuteImpl(const XArgType1* in1, const XArgType2* in2, XArgType3* o
         status = fNaNBroadcaster.Execute();
         if(!status){msg_error("operators", "Could not execute NaN masker MHO_NormFX." << eom); return false;}
 
-        //for lower sideband we complex conjugate the data
-        if(!fIsUSB)
-        {
-            status = fConjBroadcaster.Execute();
-            if(!status){msg_error("operators", "Could not execute complex conjugation in MHO_NormFX." << eom); return false;}
-        }
+
 
     #ifdef USE_OLD
         run_old_normfx_core(in1, in2, out);
@@ -166,6 +163,13 @@ MHO_NormFX::ExecuteImpl(const XArgType1* in1, const XArgType2* in2, XArgType3* o
 
         // auto ax2c = &(std::get<TIME_AXIS>(*out));
         // std::cout<<"workspace ax2c(1) = "<<(*ax2c)(1)<<std::endl;
+        
+        //for lower sideband we complex conjugate the data
+        if(!fIsUSB)
+        {
+            status = fConjBroadcaster.Execute();
+            if(!status){msg_error("operators", "Could not execute complex conjugation in MHO_NormFX." << eom); return false;}
+        }
 
     #endif
 
