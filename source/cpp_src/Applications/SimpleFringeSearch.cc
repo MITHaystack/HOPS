@@ -249,11 +249,11 @@ void fine_peak_interpolation(mbd_type* mbd_arr, visibility_type* sbd_arr, visibi
                         std::complex<double> x = vis * vr;// vrot_mod(tdelta, dr, mbd, freq, ref_freq);
                         //std::cout<<"x = "<<x<<std::endl;
 
-                        #ifdef EXTRA_DEBUG
-                        printf("(ap,fr) = %d, %d\n", ap,fr);
-                        printf("vis @ sbd: %d mbd: %f dr: %f = (%f, %f) \n", sbd_bin, mbd, dr, std::real(vis), std::imag(vis) );
-                        printf("vrot @ sbd: %d mbd: %f dr: %f = (%f, %f) \n", sbd_bin, mbd, dr, std::real(vr), std::imag(vr) );
-                        #endif
+                        // #ifdef EXTRA_DEBUG
+                        // printf("(ap,fr) = %d, %d\n", ap,fr);
+                        // printf("vis @ sbd: %d mbd: %f dr: %f = (%f, %f) \n", sbd_bin, mbd, dr, std::real(vis), std::imag(vis) );
+                        // printf("vrot @ sbd: %d mbd: %f dr: %f = (%f, %f) \n", sbd_bin, mbd, dr, std::real(vr), std::imag(vr) );
+                        // #endif
 
 
                         z = z + x;
@@ -264,7 +264,7 @@ void fine_peak_interpolation(mbd_type* mbd_arr, visibility_type* sbd_arr, visibi
                 //z = z * 1.0 / (double) status.total_ap_frac;
                 //std::cout<<isbd<<", "<<imbd<<", "<<idr<<", "<<drf[isbd][imbd][idr]<<std::endl;
                 //printf("%ld %le %le \n", sbd_bin, mbd, dr);
-                printf ("drf[%ld][%ld][%ld] %lf \n", isbd, imbd, idr, drf[isbd][imbd][idr]);
+                // printf ("drf[%ld][%ld][%ld] %lf \n", isbd, imbd, idr, drf[isbd][imbd][idr]);
             }
         }
     }

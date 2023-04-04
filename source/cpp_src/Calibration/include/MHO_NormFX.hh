@@ -80,7 +80,7 @@ class MHO_NormFX: public MHO_BinaryOperator<
         MHO_NDArrayWrapper< std::complex<double>, 1 > xlag;
 
         typedef MHO_NaNMasker<visibility_type> nanMaskerType;
-        typedef MHO_ComplexConjugator<visibility_type> conjType;
+        typedef MHO_ComplexConjugator<sbd_type> conjType;
 
         MHO_FunctorBroadcaster<visibility_type, nanMaskerType> fNaNBroadcaster;
         MHO_FunctorBroadcaster<visibility_type, conjType> fConjBroadcaster;
