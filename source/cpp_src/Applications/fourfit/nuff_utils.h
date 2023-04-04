@@ -18,5 +18,6 @@ using namespace hops;
 visibility_type* extract_visibilities(struct type_pass*);
 weight_type* extract_weights(struct type_pass*);
 sbd_type* extract_sbd(struct type_pass*);
+sbd_type* extract_sbd_v2(struct type_pass* pass, struct type_param* param);
 
 #endif

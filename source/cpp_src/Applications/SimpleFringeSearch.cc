@@ -597,6 +597,9 @@ int main(int argc, char** argv)
 
     ok = nfxOp.Execute();
     check_step_fatal(ok, "main", "normfx execution." << eom );
+    
+    //take snapeshot of sbd data after normfx
+    take_snapshot_here("test", "sbd", __FILE__, __LINE__, sbd_data);
 
     //run the transformation to delay rate space (this also involves a zero padded FFT)
     MHO_DelayRate drOp;
