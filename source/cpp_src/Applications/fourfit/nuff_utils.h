@@ -20,4 +20,6 @@ weight_type* extract_weights(struct type_pass*);
 sbd_type* extract_sbd(struct type_pass*);
 sbd_type* extract_sbd_v2(struct type_pass* pass, struct type_param* param);
 
+void extract_sbd_dr(struct type_pass* pass, struct type_status* status, int fr, hops_complex* rate_spectrum, sbd_type* dr_obj);
+
 #endif

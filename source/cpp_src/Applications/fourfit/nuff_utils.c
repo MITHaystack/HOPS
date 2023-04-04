@@ -339,5 +339,26 @@ sbd_type* extract_sbd_v2(struct type_pass* pass, struct type_param* param)
 }
 
 
+void extract_sbd_dr(struct type_pass* pass, struct type_status* status, int fr, hops_complex* rate_spectrum, sbd_type* dr_obj)
+{
+    msg_info("nufourfit", "dumping sbd/DR data from rate_spectrum." << eom);
+    
+    
+    //rate spectrum is 2d (nchan x f_rate_size)
+    //and is computed for each lag separately (this should )
+
+    int npolprod = 1; //only 1 pol right now
+    int lag = status->lag; //does this 1 lag at a time, so we only fill in this one
+    int nchan = pass->nfreq;
+    int drspec_size =  4*status->drsp_size; //status->f_rate_size;
+
+    // for(int fr=0; fr<nchan; fr++)
+    // {
+        for(int s=0; s<drspec_size; s++)
+        {
+            dr_obj->at(0, lag, fr, s) = rate_spectrum[s];
+        }
+    // }
+}
 
 

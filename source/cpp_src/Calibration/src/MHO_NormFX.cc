@@ -176,7 +176,7 @@ MHO_NormFX::ExecuteImpl(const XArgType1* in1, const XArgType2* in2, XArgType3* o
         //normalize the array
         double norm =  1.0/(double)fInDims[FREQ_AXIS];
         //double norm =  1.0/(double) out->GetDimension(FREQ_AXIS);
-        std::cout<<"the norm = "<< fInDims[FREQ_AXIS]<<std::endl;
+        // std::cout<<"the norm = "<< fInDims[FREQ_AXIS]<<std::endl;
         *(out) *= norm;
 
         // status = fNormBroadcaster.Execute();
