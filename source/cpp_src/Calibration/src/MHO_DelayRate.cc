@@ -47,10 +47,10 @@ MHO_DelayRate::InitializeOutOfPlace(const XArgType* in, XArgType* out)
         if(!status){msg_error("operators", "Could not initialize cyclic rotation in MHO_DelayRate." << eom); return false;}
 
 
-        fSubSampler.SetDimensionAndStride(TIME_AXIS, 2);
-        fSubSampler.SetArgs(out);
-        status = fSubSampler.Initialize();
-        if(!status){msg_error("operators", "Could not initialize sub-sampler in MHO_DelayRate." << eom); return false;}
+        // fSubSampler.SetDimensionAndStride(TIME_AXIS, 2);
+        // fSubSampler.SetArgs(out);
+        // status = fSubSampler.Initialize();
+        // if(!status){msg_error("operators", "Could not initialize sub-sampler in MHO_DelayRate." << eom); return false;}
 
 
         fInitialized = true;
@@ -94,8 +94,8 @@ MHO_DelayRate::ExecuteOutOfPlace(const XArgType* in1, XArgType* out)
         ok = fCyclicRotator.Execute();
         check_step_fatal(ok, "calibration", "cyclic rotation execution." << eom );
 
-        ok = fSubSampler.Execute();
-        check_step_fatal(ok, "calibration", "sub sample execution." << eom );
+        // ok = fSubSampler.Execute();
+        // check_step_fatal(ok, "calibration", "sub sample execution." << eom );
         // 
         // //normalize the array
         // double norm =  1.0/(double) out->GetDimension(TIME_AXIS);
