@@ -29,6 +29,7 @@
 
 
 extern void __norm_fx (struct type_pass*, struct type_param*, struct type_status*, int fr, int ap);
+extern void __delay_rate (struct type_pass *, int, hops_complex* rate_spectrum);
 
 int __search (struct type_pass *pass)
     {
@@ -205,13 +206,39 @@ int __search (struct type_pass *pass)
                                         // set up for later fft's
     fftplan = fftw_plan_dft_1d (status.grid_points, (fftw_complex*) data, (fftw_complex*) data, FFTW_FORWARD, FFTW_MEASURE);
 
+
+
+    #ifdef EXTRA_DEBUG
+        //compute dr spec for all 'lags'
+        //lets extract the pass data into a visibility container
+        sbd_type* sbd_dr_data = new sbd_type();
+        sbd_dr_data->Resize(1, param.nlags, pass->nfreq, 4*status.drsp_size);
+        sbd_dr_data->ZeroArray();
+        for (lag = 0; lag < param.nlags; lag++)
+        {
+                status.lag = lag;
+                                                /* drate spectrum for each freq */
+                                                /* This weighted by fractional AP */
+                for (fr = 0; fr < pass->nfreq; fr++)
+                {
+                    __delay_rate (pass, fr, rate_spectrum[fr]);
+                    extract_sbd_dr(pass, &status, fr, rate_spectrum[fr], sbd_dr_data);
+                }
+        }
+
+        take_snapshot_here("test", "sbd_dr", __FILE__, __LINE__, sbd_dr_data);
+        delete sbd_dr_data;
+    #endif 
+
+
+
     for (lag = status.win_sb[0]; lag <= status.win_sb[1]; lag++)
         {
         status.lag = lag;
                                         /* drate spectrum for each freq */
                                         /* This weighted by fractional AP */
         for (fr = 0; fr < pass->nfreq; fr++)
-            delay_rate (pass, fr, rate_spectrum[fr]);
+            __delay_rate (pass, fr, rate_spectrum[fr]);
 
         for (dr_index = status.win_dr[0]; dr_index <= status.win_dr[1]; dr_index++)
             {

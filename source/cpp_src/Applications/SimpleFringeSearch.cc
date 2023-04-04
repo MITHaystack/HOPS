@@ -299,13 +299,13 @@ void fine_peak_interpolation(mbd_type* mbd_arr, visibility_type* sbd_arr, visibi
 
     sbd = sbd_ax->at(sbd_bin);// + 0.5*sbd_delta;
     dr =  (dr_ax->at(dr_bin) )*(1.0/ref_freq);
-    mbd = -1.0*(mbd_ax->at(mbd_bin)); //TODO WHY THE -1 FUDGE FACTOR
+    mbd = (mbd_ax->at(mbd_bin)); //TODO WHY THE -1 FUDGE FACTOR
 
     double sbd_change = xi[0] * sbd_delta;
     double mbd_change = xi[1] * mbd_delta;
     double dr_change =  (xi[2] * dr_delta)/ref_freq;
 
-    double sbd_max = -1.0*(sbd + sbd_change);
+    double sbd_max = (sbd + sbd_change);
     double mbd_max_global = mbd+mbd_change;
     double dr_max_global  = dr + dr_change;
 
@@ -609,6 +609,8 @@ int main(int argc, char** argv)
     check_step_fatal(ok, "main", "dr initialization." << eom );
     ok = drOp.Execute();
     check_step_fatal(ok, "main", "dr execution." << eom );
+    
+    take_snapshot_here("test", "sbd_dr", __FILE__, __LINE__, sbd_dr_data);
 
     //collect the sky frequency values of each channel before we x-form to MBD space
     std::vector< double > chan_freqs;
