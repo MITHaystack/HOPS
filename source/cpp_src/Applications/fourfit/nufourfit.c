@@ -290,7 +290,7 @@ int main (int argc, char** argv)
                 {
                 #ifdef EXTRA_DEBUG
                     auto vis = extract_visibilities(pass+k);
-                    auto weights = extract_visibilities(pass+k);
+                    auto weights = extract_weights(pass+k);
                     take_snapshot_here("test", "visib", __FILE__, __LINE__, vis);
                     take_snapshot_here("test", "weights", __FILE__, __LINE__, weights);
                     delete vis;

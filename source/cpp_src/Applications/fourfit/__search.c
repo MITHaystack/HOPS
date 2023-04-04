@@ -138,11 +138,7 @@ int __search (struct type_pass *pass)
             }
         }
 
-        #ifdef EXTRA_DEBUG
-        auto sbd_data = extract_sbd(pass);
-        take_snapshot_here("pass", "sbd", __FILE__, __LINE__, sbd_data);
-        delete sbd_data;
-        #endif
+
 
         msg ("Freq %d, ap's by sideband through norm = %d, %d", -1,
                 fr, status.ap_num[0][fr], status.ap_num[1][fr]);
@@ -150,6 +146,14 @@ int __search (struct type_pass *pass)
         // count of fr that actually have data after norm_fx
         if (status.apbyfreq[fr] > 0) status.napbyfreq ++;
         }
+        
+        
+        #ifdef EXTRA_DEBUG
+        auto sbd_data = extract_sbd_v2(pass, &param);
+        take_snapshot_here("pass", "sbd", __FILE__, __LINE__, sbd_data);
+        delete sbd_data;
+        #endif
+        
                                         /* norm can flag data, so check we still */
                                         /* have some! */
     if (status.total_ap == 0 || status.napbyfreq == 0)
