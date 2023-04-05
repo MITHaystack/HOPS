@@ -121,6 +121,27 @@ MHO_DelayRate_v2::ExecuteImpl(const XArgType1* in1, const XArgType2* in2, XArgTy
         
         ok = fCyclicRotator.Execute();
         check_step_fatal(ok, "calibration", "cyclic rotation execution." << eom );
+        
+        
+        
+        //we need a step here equivalent to the odd interpolation that delay_rate.c does like this:
+        
+        // for (L = 0; L < np; L++)
+        //     {
+        //     l_fp = fmod ((L - (np/2) ) * b + (size * 1.5) , (double)size) ;
+        //     l_int = (int)l_fp;
+        //     l_int2 = l_int+1;
+        //     if (l_int < 0) l_int = 0;
+        //     if (l_int2 > (size-1)) l_int2 = size - 1;
+        //     rate_spectrum[L] = fringe_spect[l_int] * (1.0 - l_fp + l_int)
+        //                      + fringe_spect[l_int2] * (l_fp - l_int);
+        // 
+        // 
+        
+        
+        
+        
+        
 
         // ok = fSubSampler.Execute();
         // check_step_fatal(ok, "calibration", "sub sample execution." << eom );
