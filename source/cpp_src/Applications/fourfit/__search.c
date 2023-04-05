@@ -238,7 +238,7 @@ int __search (struct type_pass *pass)
                                         /* drate spectrum for each freq */
                                         /* This weighted by fractional AP */
         for (fr = 0; fr < pass->nfreq; fr++)
-            __delay_rate (pass, fr, rate_spectrum[fr]);
+            delay_rate (pass, fr, rate_spectrum[fr]);
 
         for (dr_index = status.win_dr[0]; dr_index <= status.win_dr[1]; dr_index++)
             {
