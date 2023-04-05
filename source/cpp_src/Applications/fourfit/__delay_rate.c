@@ -67,13 +67,15 @@ void __delay_rate (struct type_pass *pass,
 
     fftw_execute (fftplan);
 
+    //cyclic rotate
     for (i = 0; i < size; i++)
         {
         j = i - size / 2;
         if (j < 0) j += size;
         fringe_spect[i] = X[j];
         }
-        
+    
+    //sub-sample by 2 ( not in original implementation)
     for (L = 0; L < np; L++)
     {
         rate_spectrum[L] = fringe_spect[2*L];
