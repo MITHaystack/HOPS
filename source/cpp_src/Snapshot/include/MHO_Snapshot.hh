@@ -156,13 +156,11 @@ class MHO_Snapshot
 
             //dump bl_data into a file for later inspection
             std::stringstream ss;
-            ss << dir_string;
-            ss << "/pid_";
+            ss << ".pid";
             ss << GetPID();
-            ss << "_";
 
-            fPrefix = ss.str();
-            fPostfix = ".snap";
+            fPrefix = dir_string + "/";
+            fPostfix = ss.str() + ".snap";
             fExeName = "";
         };
         virtual ~MHO_Snapshot(){};
