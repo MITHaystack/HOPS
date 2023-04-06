@@ -120,7 +120,7 @@ MHO_DelayRate_v2::ExecuteImpl(const XArgType1* in1, const XArgType2* in2, XArgTy
         out->Resize(pprod, nch, fDRSPSize, nsbd);       
         out->ZeroArray();
         
-        std::cout<<"bahhh "<<pprod<<", "<< nch << ", " << fDRSPSize << ", " << nsbd <<std::endl;
+        //std::cout<<"sizes "<<pprod<<", "<< nch << ", " << fDRSPSize << ", " << nsbd <<std::endl;
         
         for(std::size_t pp=0; pp<pprod; pp++)
         {
@@ -128,7 +128,7 @@ MHO_DelayRate_v2::ExecuteImpl(const XArgType1* in1, const XArgType2* in2, XArgTy
             {
                 double chan_freq = (std::get<CHANNEL_AXIS>(*in1) )(ch);
                 double b = ( (chan_freq / fRefFreq) * sz) / fDRSPSize;
-                std::cout<<"b = "<<b<<std::endl;
+
                 for(std::size_t sbd=0; sbd<nsbd; sbd++)
                 {
                     for(std::size_t dr=0; dr<fDRSPSize; dr++)
