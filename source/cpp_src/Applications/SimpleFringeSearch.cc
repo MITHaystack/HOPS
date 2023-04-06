@@ -540,22 +540,30 @@ int main(int argc, char** argv)
     //         }
     //     }
     // }
-    //
-    // // //compute the sum of the weights
-    // // std::cout<<"weight at 0 = " << wt_data->at(0,0,0,0) <<std::endl;
-    // //
-    // MHO_Reducer<weight_type, MHO_CompoundSum> wt_reducer;
-    // wt_reducer.SetArgs(wt_data);
-    // for(std::size_t i=0; i<weight_type::rank::value; i++)
-    // {
-    //     wt_reducer.ReduceAxis(i);
-    // }
-    // wt_reducer.Initialize();
-    // wt_reducer.Execute();
-    //
-    // std::cout<<"reduced weights = "<<(*wt_data)[0]<<std::endl;
-    //
-    // (*bl_data) *= 1.0/(*wt_data)[0];
+    
+    // //compute the sum of the weights
+    // std::cout<<"weight at 0 = " << wt_data->at(0,0,0,0) <<std::endl;
+    weight_type temp_weights;
+    temp_weights.Copy(*wt_data);
+    MHO_Reducer<weight_type, MHO_CompoundSum> wt_reducer;
+    wt_reducer.SetArgs(&temp_weights);
+    for(std::size_t i=0; i<weight_type::rank::value; i++)
+    {
+        wt_reducer.ReduceAxis(i);
+    }
+    wt_reducer.Initialize();
+    wt_reducer.Execute();
+    
+    double total_ap_frac = temp_weights[0];
+    std::cout<<"reduced weights = "<<temp_weights[0]<<std::endl;
+    
+    //change weights uuid  to prevent collision with previous snapshot
+    // MHO_UUIDGenerator gen;
+    // MHO_UUID new_uuid = gen.GenerateUUID(); //random object id
+    // temp_weights->SetObjectUUID(new_uuid);
+    take_snapshot_here("test", "reduced_weights", __FILE__, __LINE__,  &temp_weights);
+    
+    //(*bl_data) *= 1.0/(*wt_data)[0];
 
     ////////////////////////////////////////////////////////////////////////////
     //APPLY DATA CORRECTIONS (A PRIORI -- PCAL)
@@ -615,6 +623,8 @@ int main(int argc, char** argv)
     check_step_fatal(ok, "main", "dr execution." << eom );
     
     take_snapshot_here("test", "sbd_dr", __FILE__, __LINE__, sbd_dr_data);
+    
+    /*
 
     //collect the sky frequency values of each channel before we x-form to MBD space
     std::vector< double > chan_freqs;
@@ -629,23 +639,30 @@ int main(int argc, char** argv)
     gridCalc.Calculate();
 
     //std::cout<<"grid info: "<<gridCalc.GetGridStart()<<", "<<gridCalc.GetGridSpacing()<<", "<<gridCalc.GetNGridPoints()<<std::endl;
-
     sbd_dr_data->GetDimensions(bl_dim);
     double gstart = gridCalc.GetGridStart();
     double gspace = gridCalc.GetGridSpacing();
     std::size_t ngrid_pts = gridCalc.GetNGridPoints();
     auto mbd_bin_map = gridCalc.GetGridIndexMap();
+    
+    //some dims    
+    std::size_t nsdb = sbd_dr_data->GetDimension(FREQ_AXIS);
+    std::size_t ndr = sbd_dr_data->GetDimension(TIME_AXIS);
 
-
-    //construct the mbd array according to the grid calc's size
-    //NOTE!! Because we are allocating space to do the MBD search over all SBD/DR at the same time
-    //this uses far more memory than is actually needed, we will have to optimized, or a do a 1-D delay
-    //search to reduce memory usage at some point
+    //to save on memory, the MBD search is done in a 1-D array a single SBD/DR at a time
     mbd_type mbd_data;
     // mbd_data.Resize(bl_dim[0], ngrid_pts, bl_dim[2], bl_dim[3]);
-    mbd_data.Resize(bl_dim[0], ngrid_pts, 1, 1);
+    mbd_data.Resize(1, ngrid_pts, 1, 1);
     mbd_data.ZeroArray();
-
+    
+    
+    weight_type mbd_amp_data;
+    // mbd_data.Resize(bl_dim[0], ngrid_pts, bl_dim[2], bl_dim[3]);
+    mbd_amp_data.Resize(1, ngrid_pts, ndr, 1);
+    mbd_amp_data.ZeroArray();
+    
+    
+    
     //set up the mbd delay axis
     auto mbd_ax = &(std::get<CHANNEL_AXIS>(mbd_data) );
     for(std::size_t i=0; i<ngrid_pts;i++)
@@ -653,58 +670,153 @@ int main(int argc, char** argv)
         (*mbd_ax)(i) = i*gspace;
     }
 
-    //copy the slice associated with each channel into the apppropriate slot in the MBD array
-    for(std::size_t ch=0; ch<bl_dim[1]; ch++)
+
+
+    for(std::size_t sbd_idx=0; sbd_idx<nsdb; sbd_idx++)
     {
+        for(std::size_t dr_idx=0; dr_idx<ndr; dr_idx++)
+        {
+            //copy in the data from each channel for this SDB/DR
+            for(std::size_t ch=0; ch<bl_dim[1]; ch++)
+            {
+                std::size_t mbd_bin = mbd_bin_map[ch];
+                mbd_data(0, mbd_bin, 0, 0) = (*sbd_dr_data)(0,ch,dr_idx,sbd_idx);
+            }
+            
+            //now we are going to run a FFT on the mbd axis
+            MHO_MultidimensionalFastFourierTransform< mbd_type > fFFTEngine2;
+            MHO_CyclicRotator< mbd_type > fCyclicRotator2;
+            fFFTEngine2.SetArgs(&mbd_data);
+            fFFTEngine2.DeselectAllAxes();
+            fFFTEngine2.SelectAxis(CHANNEL_AXIS);
+            fFFTEngine2.SetForward();
+            ok = fFFTEngine2.Initialize();
+            check_step_fatal(ok, "main", "fft engine initialization." << eom );
 
-        ////search for the peak in SBD and DR and copy that into the mbd array
+            fCyclicRotator2.SetOffset(CHANNEL_AXIS, ngrid_pts/2);
+            fCyclicRotator2.SetArgs(&mbd_data);
+            ok = fCyclicRotator2.Initialize();
+            check_step_fatal(ok, "main", "cyclic rotation initialization." << eom );
 
-        MHO_ExtremaSearch< MHO_NDArrayView< visibility_element_type, 2 > > mSearch;
+            ok = fFFTEngine2.Execute();
+            check_step_fatal(ok, "main", "fft engine execution." << eom );
+            ok = fCyclicRotator2.Execute();
+            check_step_fatal(ok, "main", "cyclic rotation execution." << eom );
+        
+            for(std::size_t mbd_idx =0; mbd_idx<ngrid_pts; mbd_idx++)
+            {
+                mbd_amp_data(0,mbd_idx,dr_idx,0) = std::abs( mbd_data(0, mbd_idx, 0, 0) )/total_ap_frac;
+            }
+        }
 
-        auto ch_slice = sbd_dr_data->SliceView(0,ch,":",":");
-        mSearch.SetArgs(&ch_slice);
-        mSearch.Initialize();
-        mSearch.Execute();
-        std::size_t max_loc = mSearch.GetMaxLocation();
-        std::size_t min_loc = mSearch.GetMinLocation();
-        auto loc_array = ch_slice.GetIndicesForOffset(max_loc);
-
-        std::size_t mbd_bin = mbd_bin_map[ch];
-        mbd_data(0, mbd_bin, 0, 0) = (*sbd_dr_data)(0,ch,loc_array[0],loc_array[1]);
-        // mbd_data.SliceView(":", mbd_bin, ":", ":").Copy( sbd_dr_data->SliceView(":",ch,":",":") );
+        //now we seach over the 2-d space of MBD/DR for the max amplitude
+        if(sbd_idx == 0)
+        {
+            take_snapshot_here("test", "mbd_amp", __FILE__, __LINE__, &mbd_amp_data);
+        }
     }
+    
+    
+    */
 
-
-    //now we are going to run a FFT on the mbd axis
-    MHO_MultidimensionalFastFourierTransform< mbd_type > fFFTEngine2;
-    MHO_CyclicRotator< mbd_type > fCyclicRotator2;
-    fFFTEngine2.SetArgs(&mbd_data);
-    fFFTEngine2.DeselectAllAxes();
-    fFFTEngine2.SelectAxis(CHANNEL_AXIS);
-    fFFTEngine2.SetForward();
-    ok = fFFTEngine2.Initialize();
-    check_step_fatal(ok, "main", "fft engine initialization." << eom );
-
-    fCyclicRotator2.SetOffset(CHANNEL_AXIS, ngrid_pts/2);
-    fCyclicRotator2.SetArgs(&mbd_data);
-    ok = fCyclicRotator2.Initialize();
-    check_step_fatal(ok, "main", "cyclic rotation initialization." << eom );
-
-    ok = fFFTEngine2.Execute();
-    check_step_fatal(ok, "main", "fft engine execution." << eom );
-    ok = fCyclicRotator2.Execute();
-    check_step_fatal(ok, "main", "cyclic rotation execution." << eom );
-
-
-
-    ////////////////////////////////////////////////////////////////////////////
-    //FINE INTERPOLATION STEP (search over 5x5x5 grid around peak)
-    ////////////////////////////////////////////////////////////////////////////
-
-    fine_peak_interpolation(&mbd_data, sbd_data, sbd_dr_data);
-
-
-
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    // 
+    // 
+    // //construct the mbd array according to the grid calc's size
+    // //NOTE!! Because we are allocating space to do the MBD search over all SBD/DR at the same time
+    // //this uses far more memory than is actually needed, we will have to optimized, or a do a 1-D delay
+    // //search to reduce memory usage at some point
+    // mbd_type mbd_data;
+    // // mbd_data.Resize(bl_dim[0], ngrid_pts, bl_dim[2], bl_dim[3]);
+    // mbd_data.Resize(bl_dim[0], ngrid_pts, 1, 1);
+    // mbd_data.ZeroArray();
+    // 
+    // //set up the mbd delay axis
+    // auto mbd_ax = &(std::get<CHANNEL_AXIS>(mbd_data) );
+    // for(std::size_t i=0; i<ngrid_pts;i++)
+    // {
+    //     (*mbd_ax)(i) = i*gspace;
+    // }
+    // 
+    // //copy the slice associated with each channel into the apppropriate slot in the MBD array
+    // for(std::size_t ch=0; ch<bl_dim[1]; ch++)
+    // {
+    // 
+    //     ////search for the peak in SBD and DR and copy that into the mbd array
+    // 
+    //     MHO_ExtremaSearch< MHO_NDArrayView< visibility_element_type, 2 > > mSearch;
+    // 
+    //     auto ch_slice = sbd_dr_data->SliceView(0,ch,":",":");
+    //     mSearch.SetArgs(&ch_slice);
+    //     mSearch.Initialize();
+    //     mSearch.Execute();
+    //     std::size_t max_loc = mSearch.GetMaxLocation();
+    //     std::size_t min_loc = mSearch.GetMinLocation();
+    //     auto loc_array = ch_slice.GetIndicesForOffset(max_loc);
+    // 
+    //     std::size_t mbd_bin = mbd_bin_map[ch];
+    //     mbd_data(0, mbd_bin, 0, 0) = (*sbd_dr_data)(0,ch,loc_array[0],loc_array[1]);
+    //     // mbd_data.SliceView(":", mbd_bin, ":", ":").Copy( sbd_dr_data->SliceView(":",ch,":",":") );
+    // }
+    // 
+    // 
+    // //now we are going to run a FFT on the mbd axis
+    // MHO_MultidimensionalFastFourierTransform< mbd_type > fFFTEngine2;
+    // MHO_CyclicRotator< mbd_type > fCyclicRotator2;
+    // fFFTEngine2.SetArgs(&mbd_data);
+    // fFFTEngine2.DeselectAllAxes();
+    // fFFTEngine2.SelectAxis(CHANNEL_AXIS);
+    // fFFTEngine2.SetForward();
+    // ok = fFFTEngine2.Initialize();
+    // check_step_fatal(ok, "main", "fft engine initialization." << eom );
+    // 
+    // fCyclicRotator2.SetOffset(CHANNEL_AXIS, ngrid_pts/2);
+    // fCyclicRotator2.SetArgs(&mbd_data);
+    // ok = fCyclicRotator2.Initialize();
+    // check_step_fatal(ok, "main", "cyclic rotation initialization." << eom );
+    // 
+    // ok = fFFTEngine2.Execute();
+    // check_step_fatal(ok, "main", "fft engine execution." << eom );
+    // ok = fCyclicRotator2.Execute();
+    // check_step_fatal(ok, "main", "cyclic rotation execution." << eom );
+    // 
+    // 
+    // 
+    // ////////////////////////////////////////////////////////////////////////////
+    // //FINE INTERPOLATION STEP (search over 5x5x5 grid around peak)
+    // ////////////////////////////////////////////////////////////////////////////
+    // 
+    // fine_peak_interpolation(&mbd_data, sbd_data, sbd_dr_data);
+    // 
+    // 
+    // 
 
 
     ////////////////////////////////////////////////////////////////////////////

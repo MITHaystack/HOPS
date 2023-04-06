@@ -114,8 +114,8 @@ visibility_type* extract_visibilities(struct type_pass* pass)
             {
                 if(pass->pass_data[ch].data->apdata_ll[sb] != NULL)
                 {
-                    std::cout<<"sband = "<<sb<<std::endl;
-                    std::cout<<"nlags = "<<pass->pass_data[ch].data->apdata_ll[sb]->nlags <<std::endl;
+                    // std::cout<<"sband = "<<sb<<std::endl;
+                    // std::cout<<"nlags = "<<pass->pass_data[ch].data->apdata_ll[sb]->nlags <<std::endl;
                     nlags = std::max(nlags, (int) pass->pass_data[ch].data->apdata_ll[sb]->nlags);
                 }
             }
@@ -292,7 +292,7 @@ sbd_type* extract_sbd_v2(struct type_pass* pass, struct type_param* param)
     //     }
     // }
     
-    std::cout<<"nlags = "<<nlags<<std::endl;
+    // std::cout<<"nlags = "<<nlags<<std::endl;
 
     //lets extract the pass data into a visibility container
     sbd_type* sbd_data = new sbd_type();
@@ -341,9 +341,6 @@ sbd_type* extract_sbd_v2(struct type_pass* pass, struct type_param* param)
 
 void extract_sbd_dr(struct type_pass* pass, struct type_status* status, int fr, hops_complex* rate_spectrum, sbd_type* dr_obj)
 {
-    msg_info("nufourfit", "dumping sbd/DR data from rate_spectrum." << eom);
-    
-    
     //rate spectrum is 2d (nchan x f_rate_size)
     //and is computed for each lag separately (this should )
 
