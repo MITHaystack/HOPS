@@ -606,6 +606,7 @@ int main(int argc, char** argv)
     MHO_DelayRate_v2 drOp;
     //MHO_DelayRate drOp;
     visibility_type* sbd_dr_data = sbd_data->CloneEmpty();
+    drOp.SetReferenceFrequency(6000.0);
     drOp.SetArgs(sbd_data, wt_data, sbd_dr_data);
     //drOp.SetArgs(sbd_data, sbd_dr_data);
     ok = drOp.Initialize();

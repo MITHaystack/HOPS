@@ -350,7 +350,7 @@ void extract_sbd_dr(struct type_pass* pass, struct type_status* status, int fr, 
     int npolprod = 1; //only 1 pol right now
     int lag = status->lag; //does this 1 lag at a time, so we only fill in this one
     int nchan = pass->nfreq;
-    int drspec_size =  4*status->drsp_size; //status->f_rate_size;
+    int drspec_size =  status->drsp_size; //status->f_rate_size;
 
     // for(int fr=0; fr<nchan; fr++)
     // {
