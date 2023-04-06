@@ -48,11 +48,15 @@ class MHO_DelayRate_v2: public MHO_BinaryOperator<
         MHO_DelayRate_v2();
         virtual ~MHO_DelayRate_v2();
         
+        void SetReferenceFrequency(double ref_freq){fRefFreq = ref_freq;};
+        
     protected:
 
         using XArgType1 = visibility_type;
         using XArgType2 = weight_type;
         using XArgType3 = sbd_type;
+
+
 
         virtual bool InitializeImpl(const XArgType1* in1, const XArgType2* in2, XArgType3* out) override;
         virtual bool ExecuteImpl(const XArgType1* in1, const XArgType2* in2, XArgType3* out) override;
@@ -70,6 +74,9 @@ class MHO_DelayRate_v2: public MHO_BinaryOperator<
         MHO_CyclicRotator<sbd_type> fCyclicRotator;
         
         sbd_type fWorkspace;
+        sbd_type fWorkspace2;
+        int fDRSPSize;
+        double fRefFreq;
 
         bool fInitialized;
 

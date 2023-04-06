@@ -75,11 +75,11 @@ void __delay_rate (struct type_pass *pass,
         fringe_spect[i] = X[j];
         }
     
-    //sub-sample by 2 ( not in original implementation)
-    for (L = 0; L < np; L++)
-    {
-        rate_spectrum[L] = fringe_spect[2*L];
-    }
+    // //sub-sample by 2 ( not in original implementation)
+    // for (L = 0; L < np; L++)
+    // {
+    //     rate_spectrum[L] = fringe_spect[2*L];
+    // }
 
     b = (pass->pass_data[fr].frequency / param.ref_freq) * size / np;
 /*              / pass->pass_data[0].frequency) * size / np;  */
@@ -87,15 +87,29 @@ void __delay_rate (struct type_pass *pass,
                                         /* Grid fringe rate spectrum to delay */
                                         /* rate spectrum. rate[L] is interpolated */
                                         /* from fringe[l_int] & fringe[l_int2] */
-    // for (L = 0; L < np; L++)
-    //     {
-    //     l_fp = fmod ((L - (np/2) ) * b + (size * 1.5) , (double)size) ;
-    //     l_int = (int)l_fp;
-    //     l_int2 = l_int+1;
-    //     if (l_int < 0) l_int = 0;
-    //     if (l_int2 > (size-1)) l_int2 = size - 1;
-    //     rate_spectrum[L] = fringe_spect[l_int] * (1.0 - l_fp + l_int)
-    //                      + fringe_spect[l_int2] * (l_fp - l_int);
-    //     //msg("fr %d cabs(rate_spectrum[%d]) %f", -3, fr, L, cabs (rate_spectrum[L]));
-    //     }
+                                        
+    //printf("b = %f \n", b);
+    for (L = 0; L < np; L++)
+        {
+        l_fp = fmod ((L - (np/2) ) * b + (size * 1.5) , (double)size) ;
+        //printf("L, num, l_fp = %d, %f, %f \n ", L, (L - (np/2) ) * b + (size * 1.5) , l_fp);
+        l_int = (int)l_fp;
+        l_int2 = l_int+1;
+        if (l_int < 0) l_int = 0;
+        if (l_int2 > (size-1)) l_int2 = size - 1;
+        rate_spectrum[L] = fringe_spect[l_int] * (1.0 - l_fp + l_int)
+                         + fringe_spect[l_int2] * (l_fp - l_int);
+                         
+                         
+        //if(l_int == 0 && status.lag == 0)
+        // {
+        //  printf("L = %d \n", L);
+        //  printf("l_fp = %f \n", l_fp);
+        //  printf("p1 = %f, %f \n", real_comp(fringe_spect[l_int]), imag_comp(fringe_spect[l_int]) );
+        //  printf("p2 = %f, %f \n", real_comp(fringe_spect[l_int2]), imag_comp(fringe_spect[l_int2]) );
+        //  printf("result = %f, %f \n", real_comp(rate_spectrum[L]), imag_comp(rate_spectrum[L]) );
+        // }
+                         
+        //msg("fr %d cabs(rate_spectrum[%d]) %f", -3, fr, L, cabs (rate_spectrum[L]));
+        }
      }
