@@ -213,7 +213,7 @@ int __search (struct type_pass *pass)
         //lets extract the pass data into a visibility container
         sbd_type* sbd_dr_data = new sbd_type();
         sbd_dr_data->Resize(1, pass->nfreq, status.drsp_size,  2*param.nlags);
-        printf("bahh sizes = %d, %d, %d, %d \n", 1, pass->nfreq, status.drsp_size, 2*param.nlags);
+        //printf(" sizes = %d, %d, %d, %d \n", 1, pass->nfreq, status.drsp_size, 2*param.nlags);
         
         sbd_dr_data->ZeroArray();
         for (lag = 0; lag < 2*param.nlags; lag++)
