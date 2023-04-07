@@ -124,7 +124,7 @@ class MHO_NDArrayWrapper<XValueType, 1>:
         //convenience functions
         void SetArray(const XValueType& obj)
         {
-            for(std::size_t i=0; i < fSize; i++){fDataPtr[i] = obj; } 
+            for(std::size_t i=0; i < fSize; i++){fDataPtr[i] = obj; }
         }
         void ZeroArray()
         {
@@ -146,7 +146,9 @@ class MHO_NDArrayWrapper<XValueType, 1>:
         //linear offset into the array -- no real utility in 1-d case
         std::size_t GetOffsetForIndices(const std::size_t* index){return index[0];}
 
-        //here mainly so table containers with rank 1 still work, in this case a sub-view just gets you a scalar 
+        index_type GetIndicesForOffset(std::size_t offset){index_type val; val[0]= offset; return val;}
+
+        //here mainly so table containers with rank 1 still work, in this case a sub-view just gets you a scalar
         template <typename ...XIndexTypeS >
         typename std::enable_if< (sizeof...(XIndexTypeS) < 1), MHO_NDArrayWrapper<XValueType, 1 - ( sizeof...(XIndexTypeS) ) > >::type
         SubView(XIndexTypeS...idx)
@@ -160,10 +162,10 @@ class MHO_NDArrayWrapper<XValueType, 1>:
             return MHO_NDArrayWrapper<XValueType, 1 - ( sizeof...(XIndexTypeS) ) >(&(fDataPtr[offset]) , &(dim[0]) );
         }
 
-        //this function is mainly here to allow for 1-d table containers, there's not much utility 
+        //this function is mainly here to allow for 1-d table containers, there's not much utility
         //of a 'slice view' of a 1-d array (you just get the same array back...)
         MHO_NDArrayView< XValueType, 1>
-        SliceView(const char* /* unused_arg */) 
+        SliceView(const char* /* unused_arg */)
         {
             //just return a 1d array view of this 1-d array
             return  MHO_NDArrayView<XValueType, 1>(&(fDataPtr[0]), &(fDims[0]), &(fStrides[0]) );
@@ -274,8 +276,8 @@ class MHO_NDArrayWrapper<XValueType, 1>:
             else //use internally managed memory
             {
                 fData.resize(fSize);
-                //this concept does not work with std::vector<bool>, as 
-                //boolean vectors use packed bitsets, while bool variables are 
+                //this concept does not work with std::vector<bool>, as
+                //boolean vectors use packed bitsets, while bool variables are
                 //the size of a char, should write a specialization for boolean
                 //containers, but at the moment they aren't needed
                 fDataPtr = &(fData[0]);
