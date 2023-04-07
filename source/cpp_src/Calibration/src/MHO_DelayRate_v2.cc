@@ -23,11 +23,12 @@ MHO_DelayRate_v2::InitializeImpl(const XArgType1* in1, const XArgType2* in2, XAr
         bool status = true;
 
         in1->GetDimensions(fInDims);
-        
-        //copy the input data into the workspace 
+
+        //copy the input data into the workspace
         fWorkspace.Copy(*in1);
 
         //borrow this stupid routine from search_windows.c /////////////////////
+        #pragma message("Fix the DRSP size calculation to remove upper limit of 8192.")
         fDRSPSize = 8192;
         while ( (fDRSPSize / 4) > fInDims[TIME_AXIS] ) {fDRSPSize /= 2;};
         std::cout<<"DRSP size = "<<fDRSPSize<<std::endl;
@@ -42,7 +43,7 @@ MHO_DelayRate_v2::InitializeImpl(const XArgType1* in1, const XArgType2* in2, XAr
         fPaddedFFTEngine.SetForward();//forward DFT
         fPaddedFFTEngine.SetPaddedSize(np);
         fPaddedFFTEngine.SetEndPadded();//pretty sure this is the default from delay_rate.c
-        
+
         status = fPaddedFFTEngine.Initialize();
         if(!status){msg_error("operators", "Could not initialize padded FFT in MHO_DelayRate_v2." << eom); return false;}
 
@@ -86,8 +87,8 @@ MHO_DelayRate_v2::ExecuteImpl(const XArgType1* in1, const XArgType2* in2, XArgTy
         //std::get<CHANNEL_AXIS>(*sbd_dr_data).CopyIntervalLabels( std::get<CHANNEL_AXIS>(*bl_data) );
 
 
-        //apply the data weights to the data in fWorkspace 
-        std::size_t pprod = fWorkspace.GetDimension(POLPROD_AXIS); 
+        //apply the data weights to the data in fWorkspace
+        std::size_t pprod = fWorkspace.GetDimension(POLPROD_AXIS);
         std::size_t nch = fWorkspace.GetDimension(CHANNEL_AXIS);
         std::size_t nap = fWorkspace.GetDimension(TIME_AXIS);
 
@@ -108,8 +109,8 @@ MHO_DelayRate_v2::ExecuteImpl(const XArgType1* in1, const XArgType2* in2, XArgTy
 
         bool ok = fPaddedFFTEngine.Execute();
         check_step_fatal(ok, "calibration", "fft engine execution." << eom );
-        
-        
+
+
         ok = fCyclicRotator.Execute();
         check_step_fatal(ok, "calibration", "cyclic rotation execution." << eom );
 
@@ -117,11 +118,11 @@ MHO_DelayRate_v2::ExecuteImpl(const XArgType1* in1, const XArgType2* in2, XArgTy
         int sz = 4*fDRSPSize;
         std::size_t nsbd = fWorkspace2.GetDimension(FREQ_AXIS);
         out->Copy(fWorkspace2);
-        out->Resize(pprod, nch, fDRSPSize, nsbd);       
+        out->Resize(pprod, nch, fDRSPSize, nsbd);
         out->ZeroArray();
-        
+
         //std::cout<<"sizes "<<pprod<<", "<< nch << ", " << fDRSPSize << ", " << nsbd <<std::endl;
-        
+
         for(std::size_t pp=0; pp<pprod; pp++)
         {
             for(std::size_t ch=0; ch<nch; ch++)
@@ -152,19 +153,22 @@ MHO_DelayRate_v2::ExecuteImpl(const XArgType1* in1, const XArgType2* in2, XArgTy
 
                         // rate_spectrum[L] = fringe_spect[l_int] * (1.0 - l_fp + l_int)
                         //                      + fringe_spect[l_int2] * (l_fp - l_int);
-                        // 
-                        
-                        
+                        //
+
+
                         (*out)(pp, ch, dr, sbd) = interp_val;
+
+                        //assign the axis value along dr axis
+                        std::get<TIME_AXIS>(*out)(dr) = std::get<TIME_AXIS>(fWorkspace2)(l_int) * (1.0 - l_fp + l_int) + std::get<TIME_AXIS>(fWorkspace2)(l_int2) * (l_fp - l_int);
                     }
                 }
             }
         }
-        
-        
-        
+
+
+
         //we need a step here equivalent to the odd interpolation that delay_rate.c does like this:
-        
+
         // for (L = 0; L < np; L++)
         //     {
         //     l_fp = fmod ((L - (np/2) ) * b + (size * 1.5) , (double)size) ;
@@ -174,17 +178,17 @@ MHO_DelayRate_v2::ExecuteImpl(const XArgType1* in1, const XArgType2* in2, XArgTy
         //     if (l_int2 > (size-1)) l_int2 = size - 1;
         //     rate_spectrum[L] = fringe_spect[l_int] * (1.0 - l_fp + l_int)
         //                      + fringe_spect[l_int2] * (l_fp - l_int);
-        // 
-        // 
-        
-        
-        
-        
-        
+        //
+        //
+
+
+
+
+
 
         // ok = fSubSampler.Execute();
         // check_step_fatal(ok, "calibration", "sub sample execution." << eom );
-        // 
+        //
         // //normalize the array
         // double norm =  1.0/(double) out->GetDimension(TIME_AXIS);
         // *(out) *= norm;
@@ -198,7 +202,7 @@ MHO_DelayRate_v2::ExecuteImpl(const XArgType1* in1, const XArgType2* in2, XArgTy
 
 
 
-void 
+void
 MHO_DelayRate_v2::ConditionallyResizeOutput(const std::size_t* dims,
                                std::size_t size,
                                XArgType3* out)
