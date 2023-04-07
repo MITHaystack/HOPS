@@ -96,6 +96,7 @@ class MHO_TableContainer:
         using MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::GetDimensions;
         using MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::GetDimension;
         using MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::GetOffsetForIndices;
+        using MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::GetIndicesForOffset;
         using MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::SubView;
         using MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::SliceView;
 
@@ -115,7 +116,7 @@ class MHO_TableContainer:
                 //copy the array, then copy the axis pack
                 MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::Copy(rhs);
                 *( this->GetAxisPack() ) = *(rhs.GetAxisPack());
-                //finally copy the table tags 
+                //finally copy the table tags
                 this->CopyTags(rhs);
             }
         }

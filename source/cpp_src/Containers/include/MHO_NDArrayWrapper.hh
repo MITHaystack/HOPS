@@ -88,7 +88,7 @@ class MHO_NDArrayWrapper:
 
         //set pointer to externally managed array with associated dimensions
         void SetExternalData(XValueType* ptr, const std::size_t* dim){Construct(ptr, dim);}
-        
+
         bool IsExternallyManaged() const {return fExternallyManaged;}
 
         //get the total size of the array
@@ -145,7 +145,7 @@ class MHO_NDArrayWrapper:
         const XValueType* GetData() const {return fDataPtr;};
 
         //fast access operator by 1-dim index (absolute-position) into the array
-        //this assumes the data is contiguous in memory, which may not be true 
+        //this assumes the data is contiguous in memory, which may not be true
         //if the array wrapper is a slice of a larger array
         XValueType& operator[](std::size_t i){return fDataPtr[i];}
         const XValueType& operator[](std::size_t i) const {return fDataPtr[i];}
@@ -176,7 +176,7 @@ class MHO_NDArrayWrapper:
 
         //set all elements in the array to zero
         void ZeroArray()
-        { 
+        {
             std::memset(fDataPtr, 0, fSize*sizeof(XValueType) );
         }
 
@@ -206,6 +206,15 @@ class MHO_NDArrayWrapper:
         {
             return MHO_NDArrayMath::OffsetFromStrideIndex<RANK>(&(fStrides[0]), index);
         }
+        
+        //linear offset into the array
+        index_type GetIndicesForOffset(std::size_t offset)
+        {
+            index_type index;
+            MHO_NDArrayMath::RowMajorIndexFromOffset<RANK>(offset, &(fDims[0]), &(index[0]) );
+            return index;
+        }
+
 
         //sub-view of the array (given n < RANK leading indexes), return the remaining
         //chunk of the array with freely spanning indexes
@@ -215,7 +224,7 @@ class MHO_NDArrayWrapper:
         template <typename ...XIndexTypeS >
         typename std::enable_if<
             (sizeof...(XIndexTypeS) < RANK),
-            MHO_NDArrayWrapper<XValueType, RANK - ( sizeof...(XIndexTypeS) ) > 
+            MHO_NDArrayWrapper<XValueType, RANK - ( sizeof...(XIndexTypeS) ) >
         >::type
         SubView(XIndexTypeS...idx)
         {
@@ -231,15 +240,15 @@ class MHO_NDArrayWrapper:
 ////////////////////////////////////////////////////////////////////////////////
 
         //slice-view of the array (given n < RANK indexes), return the remaining
-        //chunk of the array with freely spanning indexes 
+        //chunk of the array with freely spanning indexes
         //the placeholder for the free-spanning indexes is the char ":"
         //for example: a ndarray X of RANK=3, and sizes [4,12,32], then SliceView(":",3,":")
         //returns an ndarray of RANK=2, and dimensions [4,32] starting at the
         //location of X(0,3,0), and spanning the data covered by X(":",3,":")
         //Data of the slice-view points to data owned by original array X
         template <typename ...XIndexTypeS >
-        typename std::enable_if< 
-            (sizeof...(XIndexTypeS) == RANK), 
+        typename std::enable_if<
+            (sizeof...(XIndexTypeS) == RANK),
             MHO_NDArrayView< XValueType, count_instances_of_type< const char*, sizeof...(XIndexTypeS)-1, XIndexTypeS... >::value >
         >::type
         SliceView(XIndexTypeS...idx)
@@ -270,12 +279,12 @@ class MHO_NDArrayWrapper:
                     //make sure the indexes are listed in increasing order
                     void reorder()
                     {
-                        std::sort(free_idx.begin(), free_idx.end() ); 
+                        std::sort(free_idx.begin(), free_idx.end() );
                         std::sort(fixed_idx.begin(), fixed_idx.end() ); //make sure they are in increasing order
                     }
             };
 
-            index_filler filler;    
+            index_filler filler;
             std::tuple< XIndexTypeS... > input_idx = std::make_tuple( idx... );
             indexed_tuple_visit<RANK>::visit(input_idx, filler);
             filler.reorder();
@@ -366,7 +375,7 @@ class MHO_NDArrayWrapper:
 
         // //only meta-data types we store are a name, and unit type
         // std::string fName;
-        // //until we develop a proper units/dimensions type, 
+        // //until we develop a proper units/dimensions type,
         // //we just store units as a string (the units class must be able to convert to <-> from a string)
         // std::string fUnits;
 
