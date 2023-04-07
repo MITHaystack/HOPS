@@ -321,6 +321,179 @@ using mbd_dr_amp_type = MHO_TableContainer< double, mbd_dr_axis_pack>;
 // }
 
 
+
+
+
+void fine_peak_interpolation(visibility_type* sbd_arr, MHO_Axis<double>* mbd_ax, MHO_Axis<double>* dr_ax, int c_mbdmax, int c_drmax, int c_sbdmax)
+{
+    //follow the algorithm of interp.c (SIMUL) mode, to fill out a cube and interpolate
+    double drf[5][5][5];// 5x5x5 cube of fringe values
+    double xlim[3][2]; //cube limits each dim
+    double xi[3];
+    double drfmax;
+
+    auto chan_ax = &( std::get<CHANNEL_AXIS>(*sbd_arr) );
+    auto ap_ax = &(std::get<TIME_AXIS>(*sbd_arr));
+    auto sbd_ax = &( std::get<FREQ_AXIS>(*sbd_arr) );
+
+    std::size_t nap = ap_ax->GetSize();
+    std::size_t nchan = chan_ax->GetSize();
+
+    double sbd_delta = sbd_ax->at(1) - sbd_ax->at(0);
+    double dr_delta = dr_ax->at(1) - dr_ax->at(0);
+    double mbd_delta = mbd_ax->at(1) - mbd_ax->at(0);
+
+    double ref_freq = 6e3; //6000 MHz gahh
+    std::string sky_freq_key = "sky_freq";
+
+    double sbd_lower = 1e30;
+    double sbd_upper = -1e30;
+    double mbd_lower = 1e30;
+    double mbd_upper = -1e30;
+    double dr_lower = 1e30;
+    double dr_upper = -1e30;
+
+    MHO_FringeRotation frot;
+    std::size_t sbd_bin, dr_bin, mbd_bin;
+    double sbd, dr, mbd;
+
+    std::cout<< std::setprecision(14);
+    for (std::size_t isbd=0; isbd<5; isbd++)
+    {
+        for (std::size_t imbd=0; imbd<5; imbd++)
+        {
+            for (std::size_t idr=0; idr<5; idr++)
+            {
+
+                std::complex<double> z = 0.0;
+
+                // calculate location of this tabular point (should modulo % axis size)
+                sbd_bin = (c_sbdmax + isbd - 2) % (int) sbd_ax->GetSize();
+                dr_bin = (c_drmax + idr - 2 ) % (int) dr_ax->GetSize() ;
+                mbd_bin = c_mbdmax - imbd + 2; //TODO WHY THE -1 FUDGE FACTOR
+                //
+                sbd = sbd_ax->at(sbd_bin);// + 0.5*sbd_delta;
+                dr =  (dr_ax->at(dr_bin) )*(1.0/ref_freq);
+                // double mbd =  -1.0*(mbd_ax->at(mbd_bin) + 0.5*mbd_delta);
+                mbd = -1.0*(mbd_ax->at(mbd_bin)); //TODO WHY THE -1 FUDGE FACTOR
+
+                // std::cout<<"dr delta = "<<dr_delta<<std::endl;
+                //std::cout<<"sbdi_bin, sbd = "<<sbd_bin<<", "<<sbd<<std::endl;
+                //std::cout<<"idr, dr, = "<<idr<<", "<<dr<<std::endl;
+                //std::cout<<"imbd, mbd, = "<<imbd<<", "<<mbd<<std::endl;
+
+                if(sbd < sbd_lower){sbd_lower = sbd;}
+                if(sbd > sbd_upper){sbd_upper = sbd;}
+
+                if(dr < dr_lower){dr_lower = dr;}
+                if(dr > dr_upper){dr_upper = dr;}
+
+                if(mbd < mbd_lower){mbd_lower = mbd;}
+                if(mbd > mbd_upper){mbd_upper = mbd;}
+
+                // sbd = status.max_delchan    +        isbd - 2;
+                // mbd = status.mbd_max_global + 0.5 * (imbd - 2) * status.mbd_sep;
+                // dr  = status.dr_max_global  + 0.5 * (idr - 2)  * status.rate_sep;
+
+                // msg ("[interp]dr %le mbd %le sbd %d sbd_max(ns) %10.6f", -1,
+                //  dr,mbd,sbd,status.sbd_max);
+                                // counter-rotate data from all freqs. and AP's
+                for(std::size_t fr = 0; fr < nchan; fr++)
+                {
+
+                    // calculate location of this tabular point (should modulo % axis size)
+                    sbd = sbd_ax->at(sbd_bin);// + 0.5*sbd_delta;
+                    dr =  (dr_ax->at(dr_bin) )*(1.0/ref_freq);
+
+                    //double frq = pass->pass_data + fr;
+                    double freq = (*chan_ax)(fr);//use sky-freq of this channel????
+                    for(std::size_t ap = 0; ap < 30; ap++)
+                    {
+                        double tdelta = (ap + 0.5) - 15.0; //need time difference from the f.r.t?
+                        visibility_element_type vis = std::conj( (*sbd_arr)(0,fr,ap,sbd_bin) );// WHY CONJUGATE?
+                        // std::cout<<"vis @ "<<fr<<","<<ap<<" = ("<<vis.real()<<", "<<vis.imag()<<")"<<std::endl;
+                        std::complex<double> vr = frot.vrot(tdelta, freq, ref_freq, dr, mbd);
+                        // std::cout<<"vrot @ "<<fr<<","<<ap<<" = ("<<vr.real()<<", "<<vr.imag()<<")"<<std::endl;
+                        std::complex<double> x = vis * vr;// vrot_mod(tdelta, dr, mbd, freq, ref_freq);
+                        //std::cout<<"x = "<<x<<std::endl;
+
+                        // #ifdef EXTRA_DEBUG
+                        // printf("(ap,fr) = %d, %d\n", ap,fr);
+                        // printf("vis @ sbd: %d mbd: %f dr: %f = (%f, %f) \n", sbd_bin, mbd, dr, std::real(vis), std::imag(vis) );
+                        // printf("vrot @ sbd: %d mbd: %f dr: %f = (%f, %f) \n", sbd_bin, mbd, dr, std::real(vr), std::imag(vr) );
+                        // #endif
+
+
+                        z = z + x;
+                    }
+                }
+                drf[isbd][imbd][idr] = std::abs(z);
+                //TODO -- MUST WEIGHT BY TOTAL AP FRAC (have to fix usb/lsb weights everywhere)
+                //z = z * 1.0 / (double) status.total_ap_frac;
+                //std::cout<<isbd<<", "<<imbd<<", "<<idr<<", "<<drf[isbd][imbd][idr]<<std::endl;
+                //printf("%ld %le %le \n", sbd_bin, mbd, dr);
+                // printf ("drf[%ld][%ld][%ld] %lf \n", isbd, imbd, idr, drf[isbd][imbd][idr]);
+            }
+        }
+    }
+
+
+
+    xlim[0][0] = -1;// sbd_lower;// / status.sbd_sep - status.max_delchan + nl;
+    xlim[0][1] = 1;//sbd_upper;// / status.sbd_sep - status.max_delchan + nl;
+
+    xlim[1][0] = -2;//mbd_lower;// - status.mbd_max_global) / status.mbd_sep;
+    xlim[1][1] = 2;//mbd_upper;// - status.mbd_max_global) / status.mbd_sep;
+
+    xlim[2][0] = -2;//dr_lower;// - status.dr_max_global) / status.rate_sep;
+    xlim[2][1] = 2;//dr_upper;// - status.dr_max_global) / status.rate_sep;
+
+    std::cout<< "xlim's "<< xlim[0][0]<<", "<< xlim[0][1] <<", "<< xlim[1][0] <<", "<< xlim[1][1] <<", " << xlim[2][0] <<", "<< xlim[2][1] <<std::endl;
+                                // find maximum value within cube via interpolation
+    max555(drf, xlim, xi, &drfmax);
+
+    std::cout<< "xi's "<< xi[0]<<", "<< xi[1] <<", "<< xi[2] <<std::endl;
+    std::cout<<"drf max = "<<drfmax<<std::endl;
+
+
+
+    // calculate location of this tabular point (should modulo % axis size)
+    // std::size_t sbd_bin = loc[3];
+    // std::size_t dr_bin = loc[2];
+    //std::size_t
+    sbd_bin = c_sbdmax;
+    dr_bin = c_drmax;
+    mbd_bin = c_mbdmax;
+
+    sbd = sbd_ax->at(sbd_bin);// + 0.5*sbd_delta;
+    dr =  (dr_ax->at(dr_bin) )*(1.0/ref_freq);
+    mbd = (mbd_ax->at(mbd_bin)); //TODO WHY THE -1 FUDGE FACTOR
+
+    double sbd_change = xi[0] * sbd_delta;
+    double mbd_change = xi[1] * mbd_delta;
+    double dr_change =  (xi[2] * dr_delta)/ref_freq;
+
+    double sbd_max = (sbd + sbd_change);
+    double mbd_max_global = mbd+mbd_change;
+    double dr_max_global  = dr + dr_change;
+
+    std::cout<<"coarse location (sbd, mbd, dr) = "<<sbd<<", "<<mbd<<", "<<dr<<std::endl;
+    std::cout<<"change (sbd, mbd, dr) = "<<sbd_change<<", "<<mbd_change<<", "<<dr_change<<std::endl;
+    // std::cout<<"Peak location (sbd, mbd, dr) = "<<sbd_max<<", "<<mbd_max_global<<", "<<dr_max_global<<std::endl;
+    std::cout<<"Peak max555, sbd "<<sbd_max<<" mbd "<<mbd_max_global<<" dr "<<dr_max_global<<std::endl;
+
+}
+
+
+
+
+
+
+
+
+
+
+
 int main(int argc, char** argv)
 {
 
@@ -672,6 +845,8 @@ int main(int argc, char** argv)
 
     //loop over the single-band delay 'lags', computing the MBD/DR function
     //find the max for each SBD
+    int c_mbdmax, c_sbdmax, c_drmax;
+    double maxmbd = 0.0;
     for(std::size_t sbd_idx=0; sbd_idx<nsdb; sbd_idx++)
     {
         mbd_dr_data.ZeroArray(); //zero out workspace
@@ -726,10 +901,19 @@ int main(int argc, char** argv)
         std::size_t max_loc = mSearch.GetMaxLocation();
         std::size_t min_loc = mSearch.GetMinLocation();
         auto loc_array = mbd_dr_amp_data.GetIndicesForOffset(max_loc);
+        double tmp_max = mbd_dr_amp_data[max_loc]/total_ap_frac;
 
         std::cout<<"index sbd, mbd, dr: "<<sbd_idx<<", "<<loc_array[0]<<", "<<loc_array[1]<<std::endl;
         std::cout<<"mbd, dr bins = "<< std::get<0>(mbd_dr_amp_data)(loc_array[0])<<", "<<std::get<1>(mbd_dr_amp_data)(loc_array[1]) <<std::endl;
-        std::cout<<"max value = "<<mbd_dr_amp_data[max_loc]/total_ap_frac<<std::endl;
+        std::cout<<"max value = "<<tmp_max<<std::endl;
+
+        if(tmp_max > maxmbd)
+        {
+            maxmbd = tmp_max;
+            c_mbdmax = loc_array[0];
+            c_sbdmax = sbd_idx;
+            c_drmax = loc_array[1];
+        }
 
         if(sbd_idx == 255)
         {
@@ -737,16 +921,11 @@ int main(int argc, char** argv)
         }
     }
 
+    auto mbd_ax_ptr = &(std::get<0>(mbd_dr_data) );
+    auto mbd_dr_ptr = &(std::get<1>(mbd_dr_data) );
 
 
-
-
-
-
-
-
-
-
+    fine_peak_interpolation(sbd_data, mbd_ax_ptr, mbd_dr_ptr, c_mbdmax, c_drmax, c_sbdmax);
 
 
 
