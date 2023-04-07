@@ -37,10 +37,10 @@ MHO_ContainerDictionary::MHO_ContainerDictionary()
 {
     AddClassType<MHO_ObjectTags>();
 
-    //NOTE: Most of the different types below are not needed or used anywhere 
-    //so we could easily trim this long list down to a much more focused set of 
-    //objects. However, having a wide variety defined already lets us handle stuff 
-    //which may fit into these objects but which has not been defined yet, and 
+    //NOTE: Most of the different types below are not needed or used anywhere
+    //so we could easily trim this long list down to a much more focused set of
+    //objects. However, having a wide variety defined already lets us handle stuff
+    //which may fit into these objects but which has not been defined yet, and
     //demonstrate how to add support for new types
 
     #ifndef HOPS_BUILD_EXTRA_CONTAINERS
@@ -49,7 +49,7 @@ MHO_ContainerDictionary::MHO_ContainerDictionary()
     AddClassType<baseline_axis_pack>();
     AddClassType<visibility_type>();
     AddClassType<weight_type>();
-    
+
     AddClassType<multitone_pcal_type>();
     AddClassType<station_coord_axis_pack>();
     AddClassType<station_coord_type>();
@@ -58,15 +58,35 @@ MHO_ContainerDictionary::MHO_ContainerDictionary()
     AddClassType<visibility_store_type>();
     AddClassType<weight_store_type>();
 
-    //other extraneous types 
+    //other extraneous types
     AddClassType<uch_baseline_axis_pack>();
-    AddClassType<uch_visibility_type>(); 
-    AddClassType<uch_weight_type>(); 
-    AddClassType<uch_visibility_store_type>(); 
-    AddClassType<uch_weight_store_type>(); 
+    AddClassType<uch_visibility_type>();
+    AddClassType<uch_weight_type>();
+    AddClassType<uch_visibility_store_type>();
+    AddClassType<uch_weight_store_type>();
 
 
     #else
+
+    //only add the bare minimum types here
+    AddClassType<baseline_axis_pack>();
+    AddClassType<visibility_type>();
+    AddClassType<weight_type>();
+
+    AddClassType<multitone_pcal_type>();
+    AddClassType<station_coord_axis_pack>();
+    AddClassType<station_coord_type>();
+
+    //storage types explicitly meant for on-disk format
+    AddClassType<visibility_store_type>();
+    AddClassType<weight_store_type>();
+
+    //other extraneous types
+    AddClassType<uch_baseline_axis_pack>();
+    AddClassType<uch_visibility_type>();
+    AddClassType<uch_weight_type>();
+    AddClassType<uch_visibility_store_type>();
+    AddClassType<uch_weight_store_type>();
 
     #pragma message("Building extra data containers types.")
 
@@ -92,7 +112,7 @@ MHO_ContainerDictionary::MHO_ContainerDictionary()
     AddClassType<MHO_ScalarString>();
 
     //boolean vectors are a problem due underlying impl of std::vector<bool (see MHO_NDArrayWrapper_1.hh line 195)
-    //AddClassType<MHO_VectorBool>(); 
+    //AddClassType<MHO_VectorBool>();
     AddClassType<MHO_VectorChar>();
     AddClassType<MHO_VectorUChar>();
     AddClassType<MHO_VectorShort>();
@@ -180,7 +200,10 @@ MHO_ContainerDictionary::MHO_ContainerDictionary()
     AddTable3(String, String, Double);
     AddTable3(String, String, String);
 
+
+
     ////////////////////////////////////////////////////////////////////////////////
+    /*
 
     AddTable4(Int, Int, Int, Int);
     AddTable4(Int, Int, Int, Double);
@@ -275,6 +298,8 @@ MHO_ContainerDictionary::MHO_ContainerDictionary()
     AddTable4(String, String, String, Int);
     AddTable4(String, String, String, Double);
     AddTable4(String, String, String, String);
+
+    */
 
     #endif
 
