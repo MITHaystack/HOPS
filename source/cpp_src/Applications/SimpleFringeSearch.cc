@@ -119,7 +119,7 @@ void fine_peak_interpolation(visibility_type* sbd_arr, weight_type* w_arr, MHO_A
                 sbd = sbd_ax->at(sbd_bin);// + 0.5*sbd_delta;
                 dr =  (dr_ax->at(dr_bin) )*(1.0/ref_freq);
                 // double mbd =  -1.0*(mbd_ax->at(mbd_bin) + 0.5*mbd_delta);
-                mbd = -1.0*(mbd_ax->at(mbd_bin)); //TODO WHY THE -1 FUDGE FACTOR
+                mbd = (mbd_ax->at(mbd_bin)); //TODO WHY THE -1 FUDGE FACTOR
 
                 // std::cout<<"dr delta = "<<dr_delta<<std::endl;
                 //std::cout<<"sbdi_bin, sbd = "<<sbd_bin<<", "<<sbd<<std::endl;
@@ -145,8 +145,8 @@ void fine_peak_interpolation(visibility_type* sbd_arr, weight_type* w_arr, MHO_A
                 for(std::size_t fr = 0; fr < nchan; fr++)
                 {
 
-                    // calculate location of this tabular point (should modulo % axis size)
-                    sbd = sbd_ax->at(sbd_bin);// + 0.5*sbd_delta;
+                    // calculate location of this tabular point (should modulo % axis size?)
+                    sbd = sbd_ax->at(sbd_bin);
                     dr =  (dr_ax->at(dr_bin) )*(1.0/ref_freq);
 
                     //double frq = pass->pass_data + fr;
@@ -154,26 +154,14 @@ void fine_peak_interpolation(visibility_type* sbd_arr, weight_type* w_arr, MHO_A
                     for(std::size_t ap = 0; ap < 30; ap++)
                     {
                         double tdelta = (ap + 0.5) - 15.0; //need time difference from the f.r.t?
-                        visibility_element_type vis = std::conj( (*sbd_arr)(0,fr,ap,sbd_bin) );// WHY CONJUGATE?
-                        // std::cout<<"vis @ "<<fr<<","<<ap<<" = ("<<vis.real()<<", "<<vis.imag()<<")"<<std::endl;
+                        visibility_element_type vis = (*sbd_arr)(0,fr,ap,sbd_bin);
                         std::complex<double> vr = frot.vrot(tdelta, freq, ref_freq, dr, mbd);
-                        // std::cout<<"vrot @ "<<fr<<","<<ap<<" = ("<<vr.real()<<", "<<vr.imag()<<")"<<std::endl;
                         std::complex<double> x = vis * vr;// vrot_mod(tdelta, dr, mbd, freq, ref_freq);
-                        //std::cout<<"x = "<<x<<std::endl;
-
-                        // #ifdef EXTRA_DEBUG
-                        // printf("(ap,fr) = %d, %d\n", ap,fr);
-                        // printf("vis @ sbd: %d mbd: %f dr: %f = (%f, %f) \n", sbd_bin, mbd, dr, std::real(vis), std::imag(vis) );
-                        // printf("vrot @ sbd: %d mbd: %f dr: %f = (%f, %f) \n", sbd_bin, mbd, dr, std::real(vr), std::imag(vr) );
-                        // #endif
-
-                        x *= (*w_arr)(0,fr,ap,0);
-
+                        x *= (*w_arr)(0,fr,ap,0); //multiply by the 'weight'
                         z = z + x;
                     }
                 }
 
-                //TODO -- MUST WEIGHT BY TOTAL AP FRAC (have to fix usb/lsb weights everywhere)
                 z = z * 1.0 / (double) total_ap_frac;
                 drf[isbd][imbd][idr] = std::abs(z);
                 //std::cout<<isbd<<", "<<imbd<<", "<<idr<<", "<<drf[isbd][imbd][idr]<<std::endl;
@@ -213,7 +201,7 @@ void fine_peak_interpolation(visibility_type* sbd_arr, weight_type* w_arr, MHO_A
 
     sbd = sbd_ax->at(sbd_bin);// + 0.5*sbd_delta;
     dr =  (dr_ax->at(dr_bin) )*(1.0/ref_freq);
-    mbd = (mbd_ax->at(mbd_bin)); //TODO WHY THE -1 FUDGE FACTOR
+    mbd = (mbd_ax->at(mbd_bin)); 
 
     double sbd_change = xi[0] * sbd_delta;
     double mbd_change = xi[1] * mbd_delta;
