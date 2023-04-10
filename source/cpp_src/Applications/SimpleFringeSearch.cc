@@ -82,11 +82,17 @@ void fine_peak_interpolation(visibility_type* sbd_arr, weight_type* w_arr, MHO_A
     auto sbd_ax = &( std::get<FREQ_AXIS>(*sbd_arr) );
 
     std::size_t nap = ap_ax->GetSize();
+
+
     std::size_t nchan = chan_ax->GetSize();
 
+    double ap_delta = ap_ax->at(1) - ap_ax->at(0);
     double sbd_delta = sbd_ax->at(1) - sbd_ax->at(0);
     double dr_delta = dr_ax->at(1) - dr_ax->at(0);
     double mbd_delta = mbd_ax->at(1) - mbd_ax->at(0);
+
+    double midpoint_time = ( ap_ax->at(nap-1) + ap_delta  + ap_ax->at(0) )/2.0;
+    std::cout<<"time midpoint = "<<midpoint_time<<std::endl;
 
     double ref_freq = 6e3; //6000 MHz gahh
 
@@ -151,9 +157,9 @@ void fine_peak_interpolation(visibility_type* sbd_arr, weight_type* w_arr, MHO_A
 
                     //double frq = pass->pass_data + fr;
                     double freq = (*chan_ax)(fr);//use sky-freq of this channel????
-                    for(std::size_t ap = 0; ap < 30; ap++)
+                    for(std::size_t ap = 0; ap < nap; ap++)
                     {
-                        double tdelta = (ap + 0.5) - 15.0; //need time difference from the f.r.t?
+                        double tdelta = ap_ax->at(ap) + ap_delta/2.0 - midpoint_time; //need time difference from the f.r.t?
                         visibility_element_type vis = (*sbd_arr)(0,fr,ap,sbd_bin);
                         std::complex<double> vr = frot.vrot(tdelta, freq, ref_freq, dr, mbd);
                         std::complex<double> x = vis * vr;// vrot_mod(tdelta, dr, mbd, freq, ref_freq);
