@@ -160,6 +160,8 @@ void __interp (struct type_pass *pass)
     sbd_lower = dmax (param.win_sb[0], (status.max_delchan - nl - 1) * status.sbd_sep);
     sbd_upper = dmin (param.win_sb[1], (status.max_delchan - nl + 1) * status.sbd_sep);
 
+    printf("max bin (sbd, mbd, dr) = %d, %d, %d\n", status.max_delchan, status.mbd_max_global, status.dr_max_global );
+
     if (param.interpol == SIMUL)
         {
         if (status.max_delchan < 2) // condition max_delchan so 5x5x5 cube stays in data
@@ -232,7 +234,7 @@ void __interp (struct type_pass *pass)
                 xlim[1][0], xlim[1][1], xlim[2][0], xlim[2][1]);
                                     // find maximum value within cube via interpolation
         max555 (drf, xlim, xi, &drfmax);
-
+        printf("xi's = %f, %f, %f \n", xi[0], xi[1], xi[2]);
                                     // calculate location of maximum in actual coords
         status.sbd_max = (status.max_delchan - nl + xi[0]) * status.sbd_sep;
         status.mbd_max_global += xi[1] * 0.5 * status.mbd_sep;

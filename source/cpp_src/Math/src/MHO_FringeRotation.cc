@@ -17,6 +17,7 @@ std::complex<double>
 MHO_FringeRotation::vrot_v1(double time_delta, double freq, double ref_freq, double dr, double mbd) const
 {
     double theta = freq * dr * time_delta;
+    //printf("theta = %f \n", theta);
     theta += mbd * (freq - ref_freq);
     theta *= (-2.0 * M_PI);             // convert to radians
     return std::exp(fImagUnit*theta);
