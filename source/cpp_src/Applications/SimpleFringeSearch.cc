@@ -94,6 +94,8 @@ void fine_peak_interpolation(visibility_type* sbd_arr, weight_type* w_arr, MHO_A
     double midpoint_time = ( ap_ax->at(nap-1) + ap_delta  + ap_ax->at(0) )/2.0;
     std::cout<<"time midpoint = "<<midpoint_time<<std::endl;
 
+    printf("max bin (sbd, mbd, dr) = %d, %d, %d\n", c_sbdmax, c_mbdmax, c_drmax );
+
     double ref_freq = 6e3; //6000 MHz gahh
 
     double sbd_lower = 1e30;
@@ -122,15 +124,9 @@ void fine_peak_interpolation(visibility_type* sbd_arr, weight_type* w_arr, MHO_A
                 dr_bin = (c_drmax + idr - 2 ) % (int) dr_ax->GetSize() ;
                 mbd_bin = ( c_mbdmax + imbd - 2) % (int) mbd_ax->GetSize() ;;
                 //
-                sbd = sbd_ax->at(sbd_bin);// + 0.5*sbd_delta;
+                sbd = sbd_ax->at(sbd_bin);
                 dr =  (dr_ax->at(dr_bin) )*(1.0/ref_freq);
-                // double mbd =  -1.0*(mbd_ax->at(mbd_bin) + 0.5*mbd_delta);
-                mbd = (mbd_ax->at(mbd_bin)); //TODO WHY THE -1 FUDGE FACTOR
-
-                // std::cout<<"dr delta = "<<dr_delta<<std::endl;
-                //std::cout<<"sbdi_bin, sbd = "<<sbd_bin<<", "<<sbd<<std::endl;
-                //std::cout<<"idr, dr, = "<<idr<<", "<<dr<<std::endl;
-                //std::cout<<"imbd, mbd, = "<<imbd<<", "<<mbd<<std::endl;
+                mbd = (mbd_ax->at(mbd_bin));
 
                 if(sbd < sbd_lower){sbd_lower = sbd;}
                 if(sbd > sbd_upper){sbd_upper = sbd;}
@@ -150,11 +146,6 @@ void fine_peak_interpolation(visibility_type* sbd_arr, weight_type* w_arr, MHO_A
                                 // counter-rotate data from all freqs. and AP's
                 for(std::size_t fr = 0; fr < nchan; fr++)
                 {
-
-                    // calculate location of this tabular point (should modulo % axis size?)
-                    sbd = sbd_ax->at(sbd_bin);
-                    dr =  (dr_ax->at(dr_bin) )*(1.0/ref_freq);
-
                     //double frq = pass->pass_data + fr;
                     double freq = (*chan_ax)(fr);//use sky-freq of this channel????
                     for(std::size_t ap = 0; ap < nap; ap++)
