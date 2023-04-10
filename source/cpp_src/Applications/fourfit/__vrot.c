@@ -36,6 +36,7 @@ hops_complex __vrot (int ap, double dr, double mbd, int fr, int sb, struct type_
     extern struct type_status status;
                                         // theta is in rotations
 
+    //printf("ap, acc_per, epoc_err, = %d, %f, %f, \n", ap, param.acc_period, status.epoch_err[fr]);
                                         /* fringe rate * time from central epoch */
     theta = pass->pass_data[fr].frequency * dr
                 * (param.acc_period * (ap + 0.5) + status.epoch_err[fr]);
