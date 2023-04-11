@@ -435,18 +435,6 @@ int main(int argc, char** argv)
     take_snapshot_here("test", "visib", __FILE__, __LINE__, bl_data);
     take_snapshot_here("test", "weights", __FILE__, __LINE__,  wt_data);
 
-    // //apply the data weights
-    // for(std::size_t pp =0; pp < bl_dim[0]; pp++)
-    // {
-    //     for(std::size_t ch=0; ch < bl_dim[1]; ch++)
-    //     {
-    //         for(std::size_t ap=0; ap < bl_dim[2]; ap++)
-    //         {
-    //             bl_data->SubView(pp, ch, ap) *= (*wt_data)(pp, ch, ap, 0);
-    //         }
-    //     }
-    // }
-
     // //compute the sum of the weights
     // std::cout<<"weight at 0 = " << wt_data->at(0,0,0,0) <<std::endl;
     weight_type temp_weights;
