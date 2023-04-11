@@ -69,7 +69,11 @@ class MHO_NDArrayWrapper<XValueType, 1>:
         const std::size_t* GetDimensions() const {return &(fDims[0]);}
         void GetDimensions(std::size_t* dim) const { dim[0] = fDims[0]; }
         index_type GetDimensionArray() const {return fDims;}
-        std::size_t GetDimension(std::size_t idx) const {return fDims[idx];}
+        std::size_t GetDimension(std::size_t idx) const 
+        {
+            if(idx==0){return fDims[0];}
+            else{ throw std::out_of_range("MHO_NDArrayWrapper_1::GetDimension() index out of range."); }
+        }
 
         //get element strides
         const std::size_t* GetStrides() const {return &(fStrides[0]);}
@@ -87,14 +91,14 @@ class MHO_NDArrayWrapper<XValueType, 1>:
         XValueType& at(std::size_t idx)
         {
             if( idx < fSize ){ return fDataPtr[idx]; }
-            else{ throw std::out_of_range("MHO_NDArrayWrapper::at() indices out of range.");}
+            else{ throw std::out_of_range("MHO_NDArrayWrapper_1::at() index out of range.");}
         }
 
         //const at()
         const XValueType& at(std::size_t idx) const
         {
             if( idx < fSize ){ return fDataPtr[idx]; }
-            else{ throw std::out_of_range("MHO_NDArrayWrapper::at() indices out of range.");}
+            else{ throw std::out_of_range("MHO_NDArrayWrapper_1::at() index out of range.");}
         }
 
         //in 1-d case, operator[] is same as operator()

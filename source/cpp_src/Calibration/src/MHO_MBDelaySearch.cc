@@ -33,6 +33,8 @@ MHO_MBDelaySearch::InitializeImpl(const XArgType* in)
         fNSBD = in->GetDimension(FREQ_AXIS);
         fNDR = in->GetDimension(TIME_AXIS);
 
+        //std::cout<<"sizes = "<<fNGridPoints<<", "<<fNSBD<<", "<<fNDR<<std::endl;
+
         //resize workspaces (TODO...make conditional on current size -- if already configured)
         fMBDWorkspace.Resize(fNGridPoints, fNDR);
         fMBDAmpWorkspace.Resize(fNGridPoints, fNDR);
@@ -88,7 +90,7 @@ MHO_MBDelaySearch::ExecuteImpl(const XArgType* in)
             }
 
             //copy in the data from each channel for this SDB/DR
-            std::size_t nch = std::get<CHANNEL_AXIS>(*in).GetDimension(CHANNEL_AXIS);
+            std::size_t nch = std::get<CHANNEL_AXIS>(*in).GetSize();
             for(std::size_t ch=0; ch<nch; ch++)
             {
                 std::size_t mbd_bin = fMBDBinMap[ch];
