@@ -33,7 +33,7 @@ MHO_MBDelaySearch::InitializeImpl(const XArgType* in)
         fNSBD = in->GetDimension(FREQ_AXIS);
         fNDR = in->GetDimension(TIME_AXIS);
 
-        //std::cout<<"sizes = "<<fNGridPoints<<", "<<fNSBD<<", "<<fNDR<<std::endl;
+        std::cout<<"sizes = "<<fNGridPoints<<", "<<fNSBD<<", "<<fNDR<<std::endl;
 
         //resize workspaces (TODO...make conditional on current size -- if already configured)
         fMBDWorkspace.Resize(fNGridPoints, fNDR);
@@ -66,27 +66,28 @@ MHO_MBDelaySearch::ExecuteImpl(const XArgType* in)
     if(fInitialized)
     {
         //loop over the single-band delay 'lags', computing the MBD/DR function
-        //find the max for each SBD
-
+        //find the max for each SBD, and globally
         double maxmbd = 0.0;
-        
         for(std::size_t sbd_idx=0; sbd_idx<fNSBD; sbd_idx++)
         {
             fMBDWorkspace.ZeroArray(); //zero out workspace
             fMBDAmpWorkspace.ZeroArray();
 
-            //set up the mbd delay axis (in frequency space)
-            auto mbd_ax = &(std::get<0>(fMBDWorkspace) );
-            for(std::size_t i=0; i<fNGridPoints;i++)
+            if(sbd_idx == fNSBD-1) //only need to do this once on the last iter
             {
-                mbd_ax->at(i) = fGridStart + i*fGridSpace;
-            }
+                //set up the mbd delay axis (in frequency space)
+                auto mbd_ax = &(std::get<0>(fMBDWorkspace) );
+                for(std::size_t i=0; i<fNGridPoints;i++)
+                {
+                    mbd_ax->at(i) = fGridStart + i*fGridSpace;
+                }
 
-            //set up the delay rate axis
-            auto dr_ax = &(std::get<1>(fMBDWorkspace) );
-            for(std::size_t i=0;i<fNDR;i++)
-            {
-                dr_ax->at(i) = std::get<TIME_AXIS>(*in)(i);
+                //set up the delay rate axis
+                auto dr_ax = &(std::get<1>(fMBDWorkspace) );
+                for(std::size_t i=0;i<fNDR;i++)
+                {
+                    dr_ax->at(i) = std::get<TIME_AXIS>(*in)(i);
+                }
             }
 
             //copy in the data from each channel for this SDB/DR
@@ -105,10 +106,6 @@ MHO_MBDelaySearch::ExecuteImpl(const XArgType* in)
             check_step_fatal(ok, "calibration", "MBD search fft engine execution." << eom );
             ok = fCyclicRotator.Execute();
             check_step_fatal(ok, "calibration", "MBD search cyclic rotation execution." << eom );
-
-            //set the axes equal
-            std::get<0>(fMBDAmpWorkspace) = std::get<0>(fMBDWorkspace);
-            std::get<1>(fMBDAmpWorkspace) = std::get<1>(fMBDWorkspace);
 
             std::size_t total_mbd_dr_size = fMBDWorkspace.GetSize();
             for(std::size_t i=0; i<total_mbd_dr_size; i++)
