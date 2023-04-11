@@ -34,7 +34,6 @@ class MHO_UniformGridPointsCalculator
         void SetPoints(const std::vector<double>& pts);
         void SetPoints(const double* pts, std::size_t npts);
 
-
         void Calculate();
 
         void GetGridPoints(std::vector<double>* grid_pts);//fill vector with grid points

@@ -99,7 +99,11 @@ class MHO_NDArrayWrapper:
         const std::size_t* GetDimensions() const {return &(fDims[0]);}
         void GetDimensions(std::size_t* dim) const { for(std::size_t i=0; i<RANK; i++){dim[i] = fDims[i];} }
         index_type GetDimensionArray() const {return fDims;}
-        std::size_t GetDimension(std::size_t idx) const {return fDims[idx];}
+        std::size_t GetDimension(std::size_t idx) const 
+        {
+            if(idx < RANK){return fDims[idx];}
+            else{ throw std::out_of_range("MHO_NDArrayWrapper::GetDimension() index out of range."); }
+        }
 
         //get element strides
         const std::size_t* GetStrides() const {return &(fStrides[0]);}
