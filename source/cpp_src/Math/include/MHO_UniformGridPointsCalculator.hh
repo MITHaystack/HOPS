@@ -31,7 +31,9 @@ class MHO_UniformGridPointsCalculator
         void SetEpsilon(double eps){fEpsilon = std::fabs(eps);};
 
         //expects points to be given in increasing order 
-        void SetPoints(std::vector<double> pts);
+        void SetPoints(const std::vector<double>& pts);
+        void SetPoints(const double* pts, std::size_t npts);
+
 
         void Calculate();
 

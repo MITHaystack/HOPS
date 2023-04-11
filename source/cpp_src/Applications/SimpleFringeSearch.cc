@@ -531,15 +531,16 @@ int main(int argc, char** argv)
     take_snapshot_here("test", "sbd_dr", __FILE__, __LINE__, sbd_dr_data);
 
     //collect the sky frequency values of each channel before we x-form to MBD space
-    std::vector< double > chan_freqs;
-    std::string sky_freq_key = "sky_freq";
-    auto chan_ax = &(std::get<CHANNEL_AXIS>(*bl_data) );
-    chan_ax->CollectAxisElementLabelValues(sky_freq_key, chan_freqs);
-    if(chan_freqs.size() != chan_ax->GetSize() ){msg_error("main", "channel axis and and sky frequency size mismatch" << eom);}
+    // std::vector< double > chan_freqs;
+    // std::string sky_freq_key = "sky_freq";
+    // auto chan_ax = &(std::get<CHANNEL_AXIS>(*bl_data) );
+    // chan_ax->CollectAxisElementLabelValues(sky_freq_key, chan_freqs);
+    // if(chan_freqs.size() != chan_ax->GetSize() ){msg_error("main", "channel axis and and sky frequency size mismatch" << eom);}
 
     //calculate the frequncy grid for MBD search
     MHO_UniformGridPointsCalculator gridCalc;
-    gridCalc.SetPoints(chan_freqs);
+    // gridCalc.SetPoints(chan_freqs);
+    gridCalc.SetPoints( std::get<CHANNEL_AXIS>(*bl_data).GetData(), std::get<CHANNEL_AXIS>(*bl_data).GetSize() );
     gridCalc.Calculate();
 
     //std::cout<<"grid info: "<<gridCalc.GetGridStart()<<", "<<gridCalc.GetGridSpacing()<<", "<<gridCalc.GetNGridPoints()<<std::endl;

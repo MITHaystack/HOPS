@@ -21,10 +21,18 @@ MHO_UniformGridPointsCalculator::~MHO_UniformGridPointsCalculator(){};
 
 
 void 
-MHO_UniformGridPointsCalculator::SetPoints(std::vector<double> pts)
+MHO_UniformGridPointsCalculator::SetPoints(const std::vector<double>& pts)
 {
     fPoints.clear();
     fPoints = pts;
+}
+
+void 
+MHO_UniformGridPointsCalculator::SetPoints(const double* pts, std::size_t npts)
+{
+    fPoints.clear();
+    fPoints.resize(npts);
+    for(std::size_t i=0;i<npts;i++){fPoints[i] = pts[i];}
 }
 
 void 
