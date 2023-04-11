@@ -38,14 +38,6 @@ using uch_baseline_axis_pack = MHO_AxisPack< polprod_axis_type, time_axis_type, 
 using uch_visibility_type = MHO_TableContainer< visibility_element_type, uch_baseline_axis_pack >;
 using uch_weight_type = MHO_TableContainer< weight_element_type, uch_baseline_axis_pack >;
 
-
-
-
-
-
-
-
-
 ////////////////////////////////////////////////////////////////////////////////
 //Definitions for visibilities and related quantities (in-memory types)
 //which have a separate channel axis. In this case all channels should have the 
@@ -58,12 +50,16 @@ using uch_weight_type = MHO_TableContainer< weight_element_type, uch_baseline_ax
 #define FREQ_AXIS 3
 
 using baseline_axis_pack = MHO_AxisPack< polprod_axis_type, channel_axis_type, time_axis_type, frequency_axis_type >;
-using baseline_mbd_axis_pack =  MHO_AxisPack< polprod_axis_type, time_axis_type, time_axis_type, frequency_axis_type >;
+using mbd_dr_axis_pack = MHO_AxisPack< time_axis_type, delay_rate_axis_type >;
 
 using visibility_type = MHO_TableContainer< visibility_element_type, baseline_axis_pack >;
 using weight_type = MHO_TableContainer< weight_element_type, baseline_axis_pack >;
-using sbd_type = MHO_TableContainer< visibility_element_type, baseline_axis_pack >;
-using mbd_type = MHO_TableContainer< visibility_element_type, baseline_mbd_axis_pack >;
+using sbd_type = visibility_type;
+using sbd_dr_type = visibility_type;
+
+using mbd_dr_type = MHO_TableContainer< visibility_element_type, mbd_dr_axis_pack >;
+using mbd_dr_amp_type = MHO_TableContainer< weight_element_type, mbd_dr_axis_pack >;
+
 
 //(here we are storing manual pcal as a rotation in 'degrees', should/could we use phasor instead?)
 using pcal_axis_pack = MHO_AxisPack< pol_axis_type, channel_axis_type>;
