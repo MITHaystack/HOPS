@@ -184,6 +184,7 @@ void __interp (struct type_pass *pass)
                                     // counter-rotate data from all freqs. and AP's
                     for (fr = 0; fr < pass->nfreq; fr++)
                         {
+                        // printf("freq @ %d = %f \n", fr, pass->pass_data[fr].frequency);
                         frq = pass->pass_data + fr;
                         for (ap = pass->ap_off; ap < pass->ap_off+pass->num_ap; ap++)
                                     // only rotate if "good" flag set

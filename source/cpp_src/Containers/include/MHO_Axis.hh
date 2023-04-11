@@ -51,6 +51,17 @@ class MHO_Axis:
 
         virtual ~MHO_Axis(){};
 
+        //have to make base class functions visible
+        using MHO_VectorContainer<XValueType>::Resize;
+        using MHO_VectorContainer<XValueType>::GetData;
+        using MHO_VectorContainer<XValueType>::GetSize;
+        using MHO_VectorContainer<XValueType>::GetDimensions;
+        using MHO_VectorContainer<XValueType>::GetDimension;
+        using MHO_VectorContainer<XValueType>::GetOffsetForIndices;
+        using MHO_VectorContainer<XValueType>::operator();
+        using MHO_VectorContainer<XValueType>::operator[];
+
+
         //index selection from matching axis values
         std::vector< std::size_t > 
         SelectMatchingIndexes(const std::set<XValueType> label_values)
