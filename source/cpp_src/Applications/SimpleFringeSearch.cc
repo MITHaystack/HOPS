@@ -50,7 +50,7 @@ struct c_block* cb_head; //global extern kludge (due to stupid c-library interfa
 #include "MHO_ExtremaSearch.hh"
 #include "MHO_ManualChannelPhaseCorrection.hh"
 #include "MHO_DelayRate.hh"
-
+#include "MHO_MBDelaySearch.hh"
 
 #ifdef USE_ROOT
     #include "TApplication.h"
@@ -530,137 +530,148 @@ int main(int argc, char** argv)
 
     take_snapshot_here("test", "sbd_dr", __FILE__, __LINE__, sbd_dr_data);
 
-    //collect the sky frequency values of each channel before we x-form to MBD space
-    // std::vector< double > chan_freqs;
-    // std::string sky_freq_key = "sky_freq";
-    // auto chan_ax = &(std::get<CHANNEL_AXIS>(*bl_data) );
-    // chan_ax->CollectAxisElementLabelValues(sky_freq_key, chan_freqs);
-    // if(chan_freqs.size() != chan_ax->GetSize() ){msg_error("main", "channel axis and and sky frequency size mismatch" << eom);}
+    MHO_MBDelaySearch mbdSearch;
+    mbdSearch.SetArgs(sbd_dr_data);
+    ok = mbdSearch.Initialize();
+    check_step_fatal(ok, "main", "mbd initialization." << eom );
+    ok = mbdSearch.Execute();
+    check_step_fatal(ok, "main", "mbd execution." << eom );
 
-    //calculate the frequncy grid for MBD search
-    MHO_UniformGridPointsCalculator gridCalc;
-    // gridCalc.SetPoints(chan_freqs);
-    gridCalc.SetPoints( std::get<CHANNEL_AXIS>(*bl_data).GetData(), std::get<CHANNEL_AXIS>(*bl_data).GetSize() );
-    gridCalc.Calculate();
+    int c_mbdmax = mbdSearch.GetMBDMaxBin();
+    int c_sbdmax = mbdSearch.GetSBDMaxBin();
+    int c_drmax = mbdSearch.GetDRMaxBin();
 
-    //std::cout<<"grid info: "<<gridCalc.GetGridStart()<<", "<<gridCalc.GetGridSpacing()<<", "<<gridCalc.GetNGridPoints()<<std::endl;
-    sbd_dr_data->GetDimensions(bl_dim);
-    double gstart = gridCalc.GetGridStart();
-    double gspace = gridCalc.GetGridSpacing();
-    std::size_t ngrid_pts = gridCalc.GetNGridPoints();
-    auto mbd_bin_map = gridCalc.GetGridIndexMap();
+    auto mbd_ax_ptr = mbdSearch.GetMBDAxis();//&(std::get<0>(mbd_dr_data) );
+    auto mbd_dr_ptr = mbdSearch.GetDRAxis(); //&(std::get<TIME_AXIS>(*sbd_dr_data) );
 
-    //some dims
-    std::size_t nsdb = sbd_dr_data->GetDimension(FREQ_AXIS);
-    std::size_t ndr = sbd_dr_data->GetDimension(TIME_AXIS);
 
-    mbd_dr_type mbd_dr_data;
-    mbd_dr_amp_type mbd_dr_amp_data;
-    mbd_dr_data.Resize(ngrid_pts, ndr);
-    mbd_dr_amp_data.Resize(ngrid_pts, ndr);
-
-    //set up FFT and rotator engines
-    MHO_MultidimensionalFastFourierTransform< mbd_dr_type > fFFTEngine2;
-    MHO_CyclicRotator< mbd_dr_type > fCyclicRotator2;
-    fFFTEngine2.SetArgs(&mbd_dr_data);
-    fFFTEngine2.DeselectAllAxes();
-    fFFTEngine2.SelectAxis(0);
-    fFFTEngine2.SetForward();
-    ok = fFFTEngine2.Initialize();
-    check_step_fatal(ok, "main", "fft engine initialization." << eom );
-
-    fCyclicRotator2.SetOffset(0, ngrid_pts/2);
-    fCyclicRotator2.SetArgs(&mbd_dr_data);
-    ok = fCyclicRotator2.Initialize();
-    check_step_fatal(ok, "main", "cyclic rotation initialization." << eom );
+    // //calculate the frequency grid for MBD search
+    // MHO_UniformGridPointsCalculator gridCalc;
+    // gridCalc.SetPoints( std::get<CHANNEL_AXIS>(*bl_data).GetData(), std::get<CHANNEL_AXIS>(*bl_data).GetSize() );
+    // gridCalc.Calculate();
+    // 
+    // //std::cout<<"grid info: "<<gridCalc.GetGridStart()<<", "<<gridCalc.GetGridSpacing()<<", "<<gridCalc.GetNGridPoints()<<std::endl;
+    // sbd_dr_data->GetDimensions(bl_dim);
+    // double gstart = gridCalc.GetGridStart();
+    // double gspace = gridCalc.GetGridSpacing();
+    // std::size_t ngrid_pts = gridCalc.GetNGridPoints();
+    // auto mbd_bin_map = gridCalc.GetGridIndexMap();
+    // 
+    // //some dims
+    // std::size_t nsdb = sbd_dr_data->GetDimension(FREQ_AXIS);
+    // std::size_t ndr = sbd_dr_data->GetDimension(TIME_AXIS);
+    // 
+    // mbd_dr_type mbd_dr_data;
+    // mbd_dr_amp_type mbd_dr_amp_data;
+    // mbd_dr_data.Resize(ngrid_pts, ndr);
+    // mbd_dr_amp_data.Resize(ngrid_pts, ndr);
+    // 
+    // //set up FFT and rotator engines
+    // MHO_MultidimensionalFastFourierTransform< mbd_dr_type > fFFTEngine2;
+    // MHO_CyclicRotator< mbd_dr_type > fCyclicRotator2;
+    // fFFTEngine2.SetArgs(&mbd_dr_data);
+    // fFFTEngine2.DeselectAllAxes();
+    // fFFTEngine2.SelectAxis(0);
+    // fFFTEngine2.SetForward();
+    // ok = fFFTEngine2.Initialize();
+    // check_step_fatal(ok, "main", "fft engine initialization." << eom );
+    // 
+    // fCyclicRotator2.SetOffset(0, ngrid_pts/2);
+    // fCyclicRotator2.SetArgs(&mbd_dr_data);
+    // ok = fCyclicRotator2.Initialize();
+    // check_step_fatal(ok, "main", "cyclic rotation initialization." << eom );
 
     //loop over the single-band delay 'lags', computing the MBD/DR function
     //find the max for each SBD
-    int c_mbdmax, c_sbdmax, c_drmax;
-    double maxmbd = 0.0;
-    for(std::size_t sbd_idx=0; sbd_idx<nsdb; sbd_idx++)
-    {
-        mbd_dr_data.ZeroArray(); //zero out workspace
-        mbd_dr_amp_data.ZeroArray();
+    // int c_mbdmax, c_sbdmax, c_drmax;
+    // 
+    // c_mbdmax = mbdSearch.GetMBDMaxBin()
+    // c_sbdmax = mbdSearch.GetSBDMaxBin();
+    // c_drmax = mbdSearch.GetDRMaxBin();
 
-        //set up the mbd delay axis (in frequency space)
-        auto mbd_ax = &(std::get<0>(mbd_dr_data) );
-        for(std::size_t i=0; i<ngrid_pts;i++)
-        {
-            mbd_ax->at(i) = i*gspace;
-        }
+    // double maxmbd = 0.0;
+    // for(std::size_t sbd_idx=0; sbd_idx<nsdb; sbd_idx++)
+    // {
+    //     mbd_dr_data.ZeroArray(); //zero out workspace
+    //     mbd_dr_amp_data.ZeroArray();
+    // 
+    //     //set up the mbd delay axis (in frequency space)
+    //     auto mbd_ax = &(std::get<0>(mbd_dr_data) );
+    //     for(std::size_t i=0; i<ngrid_pts;i++)
+    //     {
+    //         mbd_ax->at(i) = i*gspace;
+    //     }
+    // 
+    //     //set up the delay rate axis
+    //     auto dr_ax = &(std::get<1>(mbd_dr_data) );
+    //     for(std::size_t i=0;i<ndr;i++)
+    //     {
+    //         dr_ax->at(i) = std::get<TIME_AXIS>(*sbd_dr_data)(i);
+    //     }
+    // 
+    //     //copy in the data from each channel for this SDB/DR
+    //     for(std::size_t ch=0; ch<bl_dim[1]; ch++)
+    //     {
+    //         std::size_t mbd_bin = mbd_bin_map[ch];
+    //         for(std::size_t dr_idx=0; dr_idx < ndr; dr_idx++)
+    //         {
+    //              mbd_dr_data(mbd_bin, dr_idx) = (*sbd_dr_data)(0, ch, dr_idx, sbd_idx);
+    //         }
+    //         // mbd_dr_data.SliceView(mbd_bin, ":") = sbd_dr_data->SliceView(0, ch,":" ,sbd_idx); //TODO why does this not work??
+    //     }
+    // 
+    //     //now run an FFT along the MBD axis and cyclic rotate
+    //     ok = fFFTEngine2.Execute();
+    //     check_step_fatal(ok, "main", "fft engine execution." << eom );
+    //     ok = fCyclicRotator2.Execute();
+    //     check_step_fatal(ok, "main", "cyclic rotation execution." << eom );
+    // 
+    //     //set the axes equal
+    //     std::get<0>(mbd_dr_amp_data) = std::get<0>(mbd_dr_data);
+    //     std::get<1>(mbd_dr_amp_data) = std::get<1>(mbd_dr_data);
+    // 
+    //     std::size_t total_mbd_dr_size = mbd_dr_data.GetSize();
+    //     for(std::size_t i=0; i<total_mbd_dr_size; i++)
+    //     {
+    //         mbd_dr_amp_data[i] = std::abs(mbd_dr_data[i]);
+    //     }
+    // 
+    //     //search for the peak in MBD and DR
+    //     MHO_ExtremaSearch< mbd_dr_amp_type > mSearch;
+    //     mSearch.SetArgs(&mbd_dr_amp_data);
+    //     mSearch.Initialize();
+    //     mSearch.Execute();
+    //     std::size_t max_loc = mSearch.GetMaxLocation();
+    //     std::size_t min_loc = mSearch.GetMinLocation();
+    //     auto loc_array = mbd_dr_amp_data.GetIndicesForOffset(max_loc);
+    //     double tmp_max = mbd_dr_amp_data[max_loc]/total_ap_frac;
+    // 
+    //     // std::cout<<"index sbd, mbd, dr: "<<sbd_idx<<", "<<loc_array[0]<<", "<<loc_array[1]<<std::endl;
+    //     // std::cout<<"mbd, dr bins = "<< std::get<0>(mbd_dr_amp_data)(loc_array[0])<<", "<<std::get<1>(mbd_dr_amp_data)(loc_array[1]) <<std::endl;
+    //     // std::cout<<"max value = "<<tmp_max<<std::endl;
+    // 
+    //     if(tmp_max > maxmbd)
+    //     {
+    //         maxmbd = tmp_max;
+    //         c_mbdmax = loc_array[0];
+    //         c_sbdmax = sbd_idx;
+    //         c_drmax = loc_array[1];
+    //     }
+    // 
+    //     if(sbd_idx == 255)
+    //     {
+    //         take_snapshot_here("test", "mbd_dr", __FILE__, __LINE__, &mbd_dr_amp_data);
+    //     }
+    // }
 
-        //set up the delay rate axis
-        auto dr_ax = &(std::get<1>(mbd_dr_data) );
-        for(std::size_t i=0;i<ndr;i++)
-        {
-            dr_ax->at(i) = std::get<TIME_AXIS>(*sbd_dr_data)(i);
-        }
 
-        //copy in the data from each channel for this SDB/DR
-        for(std::size_t ch=0; ch<bl_dim[1]; ch++)
-        {
-            std::size_t mbd_bin = mbd_bin_map[ch];
-            for(std::size_t dr_idx=0; dr_idx < ndr; dr_idx++)
-            {
-                 mbd_dr_data(mbd_bin, dr_idx) = (*sbd_dr_data)(0, ch, dr_idx, sbd_idx);
-            }
-            // mbd_dr_data.SliceView(mbd_bin, ":") = sbd_dr_data->SliceView(0, ch,":" ,sbd_idx); //TODO why does this not work??
-        }
-
-        //now run an FFT along the MBD axis and cyclic rotate
-        ok = fFFTEngine2.Execute();
-        check_step_fatal(ok, "main", "fft engine execution." << eom );
-        ok = fCyclicRotator2.Execute();
-        check_step_fatal(ok, "main", "cyclic rotation execution." << eom );
-
-        //set the axes equal
-        std::get<0>(mbd_dr_amp_data) = std::get<0>(mbd_dr_data);
-        std::get<1>(mbd_dr_amp_data) = std::get<1>(mbd_dr_data);
-
-        std::size_t total_mbd_dr_size = mbd_dr_data.GetSize();
-        for(std::size_t i=0; i<total_mbd_dr_size; i++)
-        {
-            mbd_dr_amp_data[i] = std::abs(mbd_dr_data[i]);
-        }
-
-        //search for the peak in MBD and DR
-        MHO_ExtremaSearch< mbd_dr_amp_type > mSearch;
-        mSearch.SetArgs(&mbd_dr_amp_data);
-        mSearch.Initialize();
-        mSearch.Execute();
-        std::size_t max_loc = mSearch.GetMaxLocation();
-        std::size_t min_loc = mSearch.GetMinLocation();
-        auto loc_array = mbd_dr_amp_data.GetIndicesForOffset(max_loc);
-        double tmp_max = mbd_dr_amp_data[max_loc]/total_ap_frac;
-
-        // std::cout<<"index sbd, mbd, dr: "<<sbd_idx<<", "<<loc_array[0]<<", "<<loc_array[1]<<std::endl;
-        // std::cout<<"mbd, dr bins = "<< std::get<0>(mbd_dr_amp_data)(loc_array[0])<<", "<<std::get<1>(mbd_dr_amp_data)(loc_array[1]) <<std::endl;
-        // std::cout<<"max value = "<<tmp_max<<std::endl;
-
-        if(tmp_max > maxmbd)
-        {
-            maxmbd = tmp_max;
-            c_mbdmax = loc_array[0];
-            c_sbdmax = sbd_idx;
-            c_drmax = loc_array[1];
-        }
-
-        if(sbd_idx == 255)
-        {
-            take_snapshot_here("test", "mbd_dr", __FILE__, __LINE__, &mbd_dr_amp_data);
-        }
-    }
-
-    auto mbd_ax_ptr = &(std::get<0>(mbd_dr_data) );
-    auto mbd_dr_ptr = &(std::get<1>(mbd_dr_data) );
-
-
-
-    // ////////////////////////////////////////////////////////////////////////////
-    // //FINE INTERPOLATION STEP (search over 5x5x5 grid around peak)
-    // ////////////////////////////////////////////////////////////////////////////
-
+    // 
+    // 
+    // 
+    // // ////////////////////////////////////////////////////////////////////////////
+    // // //FINE INTERPOLATION STEP (search over 5x5x5 grid around peak)
+    // // ////////////////////////////////////////////////////////////////////////////
+    
     fine_peak_interpolation(sbd_data, wt_data, mbd_ax_ptr, mbd_dr_ptr, c_mbdmax, c_drmax, c_sbdmax);
 
 
