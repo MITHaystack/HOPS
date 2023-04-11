@@ -50,7 +50,6 @@ struct c_block* cb_head; //global extern kludge (due to stupid c-library interfa
 #include "MHO_ExtremaSearch.hh"
 #include "MHO_ManualChannelPhaseCorrection.hh"
 #include "MHO_DelayRate.hh"
-#include "MHO_DelayRate_v2.hh"
 
 
 #ifdef USE_ROOT
@@ -518,7 +517,7 @@ int main(int argc, char** argv)
     take_snapshot_here("test", "sbd", __FILE__, __LINE__, sbd_data);
 
     //run the transformation to delay rate space (this also involves a zero padded FFT)
-    MHO_DelayRate_v2 drOp;
+    MHO_DelayRate drOp;
     //MHO_DelayRate drOp;
     visibility_type* sbd_dr_data = sbd_data->CloneEmpty();
     drOp.SetReferenceFrequency(6000.0);
