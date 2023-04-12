@@ -191,7 +191,7 @@ void __interp (struct type_pass *pass)
                         frq = pass->pass_data + fr;
                         for (ap = pass->ap_off; ap < pass->ap_off+pass->num_ap; ap++)
                                     // only rotate if "good" flag set
-                            //if (frq->data[ap].flag)
+                            if (frq->data[ap].flag)
                                 {
                                 X = frq->data[ap].sbdelay[sbd]
                                   * __vrot (ap, dr, mbd, fr, 0, pass);
