@@ -46,6 +46,7 @@ set(OLD_DEV_TEST_LIBS "ffmath")
 
 list(APPEND OLD_DEV_SOURCE_BASENAMES
     SimpleFringeSearch
+    SimpleFringeSearch_v2
 )
 foreach( BASENAME ${OLD_DEV_SOURCE_BASENAMES} )
     add_executable( ${BASENAME} ${BASENAME}.cc )
