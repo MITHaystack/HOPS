@@ -91,6 +91,8 @@ MHO_DelayRate::ExecuteImpl(const XArgType1* in1, const XArgType2* in2, XArgType3
         std::size_t pprod = fWorkspace.GetDimension(POLPROD_AXIS);
         std::size_t nch = fWorkspace.GetDimension(CHANNEL_AXIS);
         std::size_t nap = fWorkspace.GetDimension(TIME_AXIS);
+        
+        double time_delta = std::get<TIME_AXIS>(*in1)(1) -  std::get<TIME_AXIS>(*in1)(0);
 
         for(std::size_t pp=0; pp<pprod; pp++)
         {
@@ -98,7 +100,7 @@ MHO_DelayRate::ExecuteImpl(const XArgType1* in1, const XArgType2* in2, XArgType3
             {
                 for(std::size_t ap=0; ap<nap; ap++)
                 {
-                    fWorkspace.SliceView(pp, ch, ap, ":") *= (*in2)(pp, ch, ap, 0);
+                    fWorkspace.SliceView(pp, ch, ap, ":") *= (*in2)(pp, ch, ap, 0); //apply the data weights
                 }
             }
         }
@@ -113,6 +115,8 @@ MHO_DelayRate::ExecuteImpl(const XArgType1* in1, const XArgType2* in2, XArgType3
 
         ok = fCyclicRotator.Execute();
         check_step_fatal(ok, "calibration", "cyclic rotation execution." << eom );
+        
+
 
         //linear interpolation, and conversion from fringe rate to delay rate step
         int sz = 4*fDRSPSize;
@@ -158,14 +162,21 @@ MHO_DelayRate::ExecuteImpl(const XArgType1* in1, const XArgType2* in2, XArgType3
 
                         (*out)(pp, ch, dr, sbd) = interp_val;
 
+                        std::get<TIME_AXIS>(*out)(dr) = ( (double)dr - (double)(fDRSPSize/2) )*(1.0/(time_delta*(double)fDRSPSize) );
                         //assign the axis value along dr axis
-                        std::get<TIME_AXIS>(*out)(dr) = std::get<TIME_AXIS>(fWorkspace2)(l_int) * (1.0 - l_fp + l_int) + std::get<TIME_AXIS>(fWorkspace2)(l_int2) * (l_fp - l_int);
+                        //std::get<TIME_AXIS>(*out)(dr) = std::get<TIME_AXIS>(fWorkspace2)(l_int) * (1.0 - l_fp + l_int) + std::get<TIME_AXIS>(fWorkspace2)(l_int2) * (l_fp - l_int);
                     }
                 }
             }
         }
 
 
+        // 
+        // ok = fSubSampler.Execute();
+        // check_step_fatal(ok, "calibration", "subsampler rotation execution." << eom );
+        // 
+        // 
+        
 
         //we need a step here equivalent to the odd interpolation that delay_rate.c does like this:
 

@@ -178,6 +178,9 @@ void __interp (struct type_pass *pass)
                     sbd = status.max_delchan    +        isbd - 2;
                     mbd = status.mbd_max_global + 0.5 * (imbd - 2) * status.mbd_sep;
                     dr  = status.dr_max_global  + 0.5 * (idr - 2)  * status.rate_sep;
+                    
+                    
+                    printf("idr = %d and dr = %.8f \n", idr, dr);
 
                     msg ("[interp]dr %le mbd %le sbd %d sbd_max(ns) %10.6f", -1,
                      dr,mbd,sbd,status.sbd_max);
@@ -188,7 +191,7 @@ void __interp (struct type_pass *pass)
                         frq = pass->pass_data + fr;
                         for (ap = pass->ap_off; ap < pass->ap_off+pass->num_ap; ap++)
                                     // only rotate if "good" flag set
-                            if (frq->data[ap].flag)
+                            //if (frq->data[ap].flag)
                                 {
                                 X = frq->data[ap].sbdelay[sbd]
                                   * __vrot (ap, dr, mbd, fr, 0, pass);
