@@ -75,6 +75,9 @@ void fine_peak_interpolation(visibility_type* sbd_arr, weight_type* w_arr, MHO_A
     double xlim[3][2]; //cube limits each dim
     double xi[3];
     double drfmax;
+    
+    double ref_freq = 6e3; //6000 MHz gahh
+
 
     auto chan_ax = &( std::get<CHANNEL_AXIS>(*sbd_arr) );
     auto ap_ax = &(std::get<TIME_AXIS>(*sbd_arr));
@@ -94,8 +97,8 @@ void fine_peak_interpolation(visibility_type* sbd_arr, weight_type* w_arr, MHO_A
     std::cout<<"time midpoint = "<<midpoint_time<<std::endl;
 
     printf("max bin (sbd, mbd, dr) = %d, %d, %d\n", c_sbdmax, c_mbdmax, c_drmax );
+    printf("mbd delta, dr delta = %.7f, %.7f \n", mbd_delta, dr_delta/ref_freq);
 
-    double ref_freq = 6e3; //6000 MHz gahh
 
     double sbd_lower = 1e30;
     double sbd_upper = -1e30;
@@ -105,16 +108,17 @@ void fine_peak_interpolation(visibility_type* sbd_arr, weight_type* w_arr, MHO_A
     double dr_upper = -1e30;
 
     MHO_FringeRotation frot;
-    std::size_t sbd_bin, dr_bin, mbd_bin;
+    int sbd_bin, dr_bin, mbd_bin;
     double sbd, dr, mbd;
 
-    std::cout<< std::setprecision(14);
-    for (std::size_t isbd=0; isbd<5; isbd++)
+    std::cout<< std::setprecision(15);
+    for (int isbd=0; isbd<5; isbd++)
     {
-        for (std::size_t imbd=0; imbd<5; imbd++)
+        for (int imbd=0; imbd<5; imbd++)
         {
-            for (std::size_t idr=0; idr<5; idr++)
+            for(int idr=0; idr<5; idr++)
             {
+
 
                 std::complex<double> z = 0.0;
 
@@ -123,9 +127,14 @@ void fine_peak_interpolation(visibility_type* sbd_arr, weight_type* w_arr, MHO_A
                 dr_bin = (c_drmax + idr - 2 ) % (int) dr_ax->GetSize() ;
                 mbd_bin = ( c_mbdmax + imbd - 2) % (int) mbd_ax->GetSize() ;;
                 //
-                sbd = sbd_ax->at(sbd_bin);
-                dr =  (dr_ax->at(dr_bin) )*(1.0/ref_freq);
-                mbd = (mbd_ax->at(mbd_bin));
+                sbd = sbd_ax->at( (std::size_t) sbd_bin);
+                //dr =  (dr_ax->at(dr_bin) )*(1.0/ref_freq);
+                //mbd = (mbd_ax->at( (std::size_t) mbd_bin));
+
+                mbd = mbd_ax->at(c_mbdmax) + 0.5 * (imbd - 2) * mbd_delta;
+                dr  = (dr_ax->at(c_drmax) + (0.5 * (idr - 2)  * dr_delta) )/ref_freq;
+                
+                printf("idr = %d and dr = %.8f \n", idr, dr);
 
                 if(sbd < sbd_lower){sbd_lower = sbd;}
                 if(sbd > sbd_upper){sbd_upper = sbd;}
@@ -200,13 +209,14 @@ void fine_peak_interpolation(visibility_type* sbd_arr, weight_type* w_arr, MHO_A
     mbd = (mbd_ax->at(mbd_bin)); 
 
     double sbd_change = xi[0] * sbd_delta;
-    double mbd_change = xi[1] * mbd_delta;
-    double dr_change =  (xi[2] * dr_delta)/ref_freq;
+    double mbd_change = xi[1] * 0.5 * mbd_delta;
+    double dr_change =  (xi[2] * 0.5 * dr_delta)/ref_freq;
 
     double sbd_max = (sbd + sbd_change);
     double mbd_max_global = mbd + mbd_change;
     double dr_max_global  = dr + dr_change;
 
+    std::cout<< std::setprecision(15);
     std::cout<<"coarse location (sbd, mbd, dr) = "<<sbd<<", "<<mbd<<", "<<dr<<std::endl;
     std::cout<<"change (sbd, mbd, dr) = "<<sbd_change<<", "<<mbd_change<<", "<<dr_change<<std::endl;
     // std::cout<<"Peak location (sbd, mbd, dr) = "<<sbd_max<<", "<<mbd_max_global<<", "<<dr_max_global<<std::endl;
