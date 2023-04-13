@@ -1,16 +1,36 @@
 #include "MHO_InterpolateFringePeak.hh"
 #include "MHO_FringeRotation.hh"
 
+//TODO REPLACE THESE
+#define min(a,b) (a<b)?(a):(b)
+#define max(a,b) (a<b)?(b):(a)
+
 namespace hops 
 {
 
-void MHO_InterpolateFringePeak::fine_peak_interpolation()
+bool 
+MHO_InterpolateFringePeak::Initialize()
+{
+
+}
+
+bool 
+MHO_InterpolateFringePeak::Execute()
+{
+
+}
+
+
+void 
+MHO_InterpolateFringePeak::fine_peak_interpolation()
 {
     //follow the algorithm of interp.c (SIMUL) mode, to fill out a cube and interpolate
     double drf[5][5][5];// 5x5x5 cube of fringe values
     double xlim[3][2]; //cube limits each dim
     double xi[3];
     double drfmax;
+
+    double total_ap_frac = 1.0; //TODO FIX ME
 
     auto chan_ax = &( std::get<CHANNEL_AXIS>(*fSBDArray) );
     auto ap_ax = &(std::get<TIME_AXIS>(*fSBDArray));
@@ -86,7 +106,7 @@ void MHO_InterpolateFringePeak::fine_peak_interpolation()
                     }
                 }
 
-                z = z * 1.0 / (double) total_ap_frac;
+                z = z * 1.0 / total_ap_frac;
                 drf[isbd][imbd][idr] = std::abs(z);
                 printf ("drf[%ld][%ld][%ld] %lf \n", isbd, imbd, idr, drf[isbd][imbd][idr]);
             }
@@ -110,8 +130,6 @@ void MHO_InterpolateFringePeak::fine_peak_interpolation()
 
     std::cout<< "xi's "<< xi[0]<<", "<< xi[1] <<", "<< xi[2] <<std::endl;
     std::cout<<"drf max = "<<drfmax<<std::endl;
-
-
 
     // calculate location of this tabular point (should modulo % axis size)
     // std::size_t sbd_bin = loc[3];
@@ -140,6 +158,143 @@ void MHO_InterpolateFringePeak::fine_peak_interpolation()
 }
 
 
+
+void MHO_InterpolateFringePeak::max555 (double drf[5][5][5],   // input: real function
+             double xlim[3][2],     // input: lower & upper bounds in 3 dimensions
+             double xi[3],          // output: coordinates at maximum value
+             double *drfmax)        // output: maximum value
+    {
+    int i,
+        j,
+        k,
+        l;
+
+    double dx0,
+           dx1,
+           dx2,
+           center[3],
+           x[3],
+           x0_lower, x1_lower, x2_lower,
+           x0_upper, x1_upper, x2_upper,
+           value,
+           bestval,
+           xbest[3],
+           epsilon = 0.0001;        // convergence criterion
+
+
+                                    // initialize search to center of cube
+    for (l=0; l<3; l++)
+        center[l] = 0.0;
+    dx0 = dx1 = dx2 = 0.4;
+
+    do
+        {
+                                    // search over 11x11x11 cube for max
+                                    // first compress search range to fit into bounds
+        x0_lower = dwin (center[0] - 5 * dx0, xlim[0][0], xlim[0][1]);
+        x1_lower = dwin (center[1] - 5 * dx1, xlim[1][0], xlim[1][1]);
+        x2_lower = dwin (center[2] - 5 * dx2, xlim[2][0], xlim[2][1]);
+
+        x0_upper = dwin (center[0] + 5 * dx0, xlim[0][0], xlim[0][1]);
+        x1_upper = dwin (center[1] + 5 * dx1, xlim[1][0], xlim[1][1]);
+        x2_upper = dwin (center[2] + 5 * dx2, xlim[2][0], xlim[2][1]);
+
+        dx0 = (x0_upper - x0_lower) / 10.0;
+        dx1 = (x1_upper - x1_lower) / 10.0;
+        dx2 = (x2_upper - x2_lower) / 10.0;
+        
+        center[0] = (x0_lower + x0_upper) / 2.0;
+        center[1] = (x1_lower + x1_upper) / 2.0;
+        center[2] = (x2_lower + x2_upper) / 2.0;
+
+        bestval = 0.0;
+        for (i=0; i<11; i++)
+            for (j=0; j<11; j++)
+                for (k=0; k<11; k++)
+                    {
+                    x[0] = center[0] + dx0 * (i-5);
+                    x[1] = center[1] + dx1 * (j-5);
+                    x[2] = center[2] + dx2 * (k-5);
+                                    // find interpolated value at this point
+                    interp555 (drf, x, &value);
+                       // msg ("i %d j %d k %d x %g %g %g value %lf", 
+                       //     2, i, j, k, x[0], x[1], x[2], value);
+                                    // is this a new maximum? 
+                                    // if so, save value and coords.
+                    if (value > bestval)
+                        {
+                        bestval = value;
+                        for (l=0; l<3; l++)
+                            xbest[l] = x[l];
+                        }
+                    }
+                                    // relocate center and reduce grid size
+        for (l=0; l<3; l++)
+            center[l] = xbest[l];
+        dx0 /= 5.0;
+        dx1 /= 5.0;
+        dx2 /= 5.0;
+        //msg ("max value %f at %g %g %g", 0, 
+        //      bestval, xbest[0], xbest[1], xbest[2]);
+        }
+    
+    while (dx0 > epsilon || dx1 > epsilon || dx2 > epsilon);
+                                    // return result to caller
+    *drfmax = bestval;
+    for (l=0; l<3; l++)
+        xi[l] = xbest[l];
+    }
+
+
+double
+MHO_InterpolateFringePeak::dwin(double value, double lower, double upper)
+{
+    if (value < lower) return (lower);
+    else if (value > upper) return (upper);
+    else return (value);
+}
+
+
+
+    
+void 
+MHO_InterpolateFringePeak::interp555 (double drf[5][5][5],// input: real function
+                                      double xi[3],       // input: coordinates to be evaluated at
+                                      double *drfval)     // output: interpolated value
+{
+    int i,
+    j,
+    k;
+
+    double a[5][3],
+    p,
+    p2;
+
+    for (j=0; j<3; j++)
+    {
+        p = xi[j];
+        p2 = p * p;
+        // Lagrange interpolating polynomials based
+        // on Abramowitz & Stegun's 25.2.15
+        a[0][j] = (p2-1) * p * (p-2) / 24;
+        a[1][j] = -(p-1) * p * (p2-4) / 6;
+        a[2][j] = (p2-1) * (p2-4) / 4;
+        a[3][j] = -(p+1) * p * (p2-4) / 6;
+        a[4][j] = (p2-1) * p * (p+2) / 24;
+        //msg ("p %lf a[][%d] %lf %lf %lf %lf %lf",2,
+        //        p, j, a[0][j], a[1][j], a[2][j], a[3][j], a[4][j]);
+    }
+
+    *drfval = 0.0;
+
+    for (i=0; i<5; i++)
+        for (j=0; j<5; j++)
+            for (k=0; k<5; k++)
+            {
+                *drfval += a[i][0] * a[j][1] * a[k][2] * drf[i][j][k];
+                //msg ("drf[%d][%d][%d] %lf drfval %lf",2, i,j,k, drf[i][j][k],*drfval);
+            }
+}
 
 
 
