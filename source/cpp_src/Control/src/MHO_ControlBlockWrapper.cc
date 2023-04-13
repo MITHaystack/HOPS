@@ -1,8 +1,8 @@
 #include "MHO_ControlBlockWrapper.hh"
 
-namespace hops 
+namespace hops
 {
-    
+
 MHO_ControlBlockWrapper::MHO_ControlBlockWrapper(struct c_block* block, mho_json vex_info, std::string baseline)
 {
     fControlBlock = block;
@@ -14,18 +14,26 @@ MHO_ControlBlockWrapper::MHO_ControlBlockWrapper(struct c_block* block, mho_json
 
 MHO_ControlBlockWrapper::~MHO_ControlBlockWrapper()
 {
-    
+
 }
 
 
 
-void 
+void
 MHO_ControlBlockWrapper::Initialize()
 {
-    DetermineStationInfo();    
+    DetermineStationInfo();
     ConstructManualPhaseCalOffsets();
     ConstructManualPhaseCalDelayOffsets();
 }
+
+
+double
+MHO_ControlBlockWrapper::GetReferenceFrequency()
+{
+    return fControlBlock->ref_freq;
+}
+
 
 void
 MHO_ControlBlockWrapper::DetermineStationInfo()
@@ -36,7 +44,7 @@ MHO_ControlBlockWrapper::DetermineStationInfo()
     fRemSiteCode = "";
     fRefSiteName = "";
     fRemSiteCode = "";
-    
+
     fRefMk4ID.append( &(fBaseline[0]),1);
     fRemMk4ID.append( &(fBaseline[1]),1);
 
@@ -48,7 +56,7 @@ MHO_ControlBlockWrapper::DetermineStationInfo()
             fRefSiteCode = (*sit)["site_ID"];
             fRefSiteName = (*sit)["site_name"];
         }
-        
+
         if( (*sit)["mk4_site_ID"] == fRemMk4ID )
         {
             fRemSiteCode = (*sit)["site_ID"];
@@ -60,16 +68,16 @@ MHO_ControlBlockWrapper::DetermineStationInfo()
 
 }
 
-void 
+void
 MHO_ControlBlockWrapper::ConstructManualPhaseCalOffsets()
 {
     //construct the pcal array...this is a really ugly on-off testing kludge
     fRefManPcal.Resize(2,MAXFREQ);
     fRemManPcal.Resize(2,MAXFREQ);
-    
+
     //label the axes - TODO FIXME -- how to distinguish between L,X,H and R,Y,V ???
     std::string pol_arr[2];
-    //from parser.c 
+    //from parser.c
     // #define LXH 0
     // #define RYV 1
     pol_arr[0] = "X";
@@ -80,13 +88,13 @@ MHO_ControlBlockWrapper::ConstructManualPhaseCalOffsets()
         std::get<0>(fRefManPcal)(p) = pol_arr[p];
         std::get<0>(fRemManPcal)(p) = pol_arr[p];
     }
-    
+
     for(int ch=0; ch<MAXFREQ; ch++)
     {
         std::get<1>(fRefManPcal)(ch) = ch;
         std::get<1>(fRemManPcal)(ch) = ch;
     }
-    
+
     std::complex<double> imag_unit(0.0, 1.0);
     for(unsigned int p=0; p<2; p++)
     {
@@ -99,28 +107,28 @@ MHO_ControlBlockWrapper::ConstructManualPhaseCalOffsets()
             //std::cout<<"chan: "<< ch <<" ref-pc: "<< fControlBlock->pc_phase[ch][p].ref << " rem-pc: " << fControlBlock->pc_phase[ch][p].rem << std::endl;
         }
     }
-    
+
     fRefManPcal.Insert(std::string("station"), fRefSiteCode );
     fRemManPcal.Insert(std::string("station"), fRemSiteCode );
 
     fRefManPcal.Insert(std::string("station_mk4id"), fRefMk4ID );
     fRemManPcal.Insert(std::string("station_mk4id"), fRemMk4ID );
-    
+
     fRefManPcal.Insert(std::string("station_name"), fRefSiteName );
     fRemManPcal.Insert(std::string("station_name"), fRemSiteName );
 }
 
 
-void 
+void
 MHO_ControlBlockWrapper::ConstructManualPhaseCalDelayOffsets()
 {
     //construct the pcal delay array...this is a really ugly on-off testing kludge
     fRefManPcalDelay.Resize(2,MAXFREQ);
     fRemManPcalDelay.Resize(2,MAXFREQ);
-    
+
     //label the axes - TODO FIXME -- how to distinguish between L,X,H and R,Y,V ???
     std::string pol_arr[2];
-    //from parser.c 
+    //from parser.c
     // #define LXH 0
     // #define RYV 1
     pol_arr[0] = "X";
@@ -131,13 +139,13 @@ MHO_ControlBlockWrapper::ConstructManualPhaseCalDelayOffsets()
         std::get<0>(fRefManPcalDelay)(p) = pol_arr[p];
         std::get<0>(fRemManPcalDelay)(p) = pol_arr[p];
     }
-    
+
     for(int ch=0; ch<MAXFREQ; ch++)
     {
         std::get<1>(fRefManPcalDelay)(ch) = ch;
         std::get<1>(fRemManPcalDelay)(ch) = ch;
     }
-    
+
     std::complex<double> imag_unit(0.0, 1.0);
     for(unsigned int p=0; p<2; p++)
     {
@@ -150,20 +158,20 @@ MHO_ControlBlockWrapper::ConstructManualPhaseCalDelayOffsets()
             //std::cout<<"chan: "<< ch <<" ref-pc-delay: "<< fControlBlock->delay_offs_pol[ch][p].ref << " rem-pc-delay: " << fControlBlock->delay_offs_pol[ch][p].rem << std::endl;
         }
     }
-    
+
     fRefManPcalDelay.Insert(std::string("station"), fRefSiteCode );
     fRemManPcalDelay.Insert(std::string("station"), fRemSiteCode );
 
     fRefManPcalDelay.Insert(std::string("station_mk4id"), fRefMk4ID );
     fRemManPcalDelay.Insert(std::string("station_mk4id"), fRemMk4ID );
-    
+
     fRefManPcalDelay.Insert(std::string("station_name"), fRefSiteName );
     fRemManPcalDelay.Insert(std::string("station_name"), fRemSiteName );
 
 }
 
 
-void 
+void
 MHO_ControlBlockWrapper::DetermineStartStop()
 {
     //This logic comes from make_passes.c
@@ -172,19 +180,19 @@ MHO_ControlBlockWrapper::DetermineStartStop()
         //                                 /* that correspond to the values in the */
         //                                 /* pass structure, which in Mk4 are the */
         //                                 /* same as appear in the param structure */
-        // 
+        //
         // cstart = (p->control.time_span[0] < 0)?      /* kludge: negative t means */
         //     param->start_nom - (double)p->control.time_span[0]: /* relative time */
         //     86400 *(ovex->start_time.day - 1)         /* else it's absolute time */
         //    + 3600 * ovex->start_time.hour
         //    + (double)p->control.time_span[0];
-        // 
+        //
         // cstop  = (p->control.time_span[1] < 0)?
         //     param->stop_nom + (double)p->control.time_span[1]:      /* relative */
         //     86400 *(ovex->start_time.day - 1)
         //    + 3600 * ovex->start_time.hour
         //    + (double)p->control.time_span[1];                        /* absolute */
-        // 
+        //
         // if (cstart < param->start)
         //     cstart = param->start;
         // if (cstop > param->stop)
@@ -197,14 +205,14 @@ MHO_ControlBlockWrapper::DetermineStartStop()
         // if (pstart == cstart)
         //     start_offset = 0;
         // else
-        //     start_offset = (int)((cstart - pstart) 
+        //     start_offset = (int)((cstart - pstart)
         //                         / param->acc_period + .001);
         // stop_offset = (int)((cstop - pstart) / param->acc_period + .001);
         // p->num_ap = stop_offset - start_offset;
         // p->ap_off = start_offset;
         // msg ("num_ap %d ap_off %d", 0, p->num_ap, p->ap_off);
         //                                 /* Autocorrelation? */
-        // if ((param->cormode == AUTO_PER_LAG) || (param->cormode == AUTO_GLOBAL)) 
+        // if ((param->cormode == AUTO_PER_LAG) || (param->cormode == AUTO_GLOBAL))
         //     p->autocorr = TRUE;
         //                                 /* No data, skip this pass */
         // if (p->num_ap == 0) continue;
@@ -213,18 +221,18 @@ MHO_ControlBlockWrapper::DetermineStartStop()
         // p->stop = param->start + (stop_offset * param->acc_period);
         // p->reftime = param->reftime;
 
-    
+
 }
 
 
-//get the start/stop offsets 
-double 
+//get the start/stop offsets
+double
 MHO_ControlBlockWrapper::GetStartOffset()
 {
     return fControlBlock->time_span[0]; //length of time since start, casts int to double
 }
 
-double 
+double
 MHO_ControlBlockWrapper::GetStopOffset()
 {
     return fControlBlock->time_span[1]; //length of time before end, casts int to double
