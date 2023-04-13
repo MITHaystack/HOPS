@@ -68,16 +68,13 @@ using mbd_dr_amp_type = MHO_TableContainer< double, mbd_dr_axis_pack>;
 
 double total_ap_frac;
 
-void fine_peak_interpolation(visibility_type* sbd_arr, weight_type* w_arr, MHO_Axis<double>* mbd_ax, MHO_Axis<double>* dr_ax, int c_mbdmax, int c_drmax, int c_sbdmax)
+void fine_peak_interpolation(double ref_freq, visibility_type* sbd_arr, weight_type* w_arr, MHO_Axis<double>* mbd_ax, MHO_Axis<double>* dr_ax, int c_mbdmax, int c_drmax, int c_sbdmax)
 {
     //follow the algorithm of interp.c (SIMUL) mode, to fill out a cube and interpolate
     double drf[5][5][5];// 5x5x5 cube of fringe values
     double xlim[3][2]; //cube limits each dim
     double xi[3];
     double drfmax;
-    
-    double ref_freq = 6e3; //6000 MHz gahh
-
 
     auto chan_ax = &( std::get<CHANNEL_AXIS>(*sbd_arr) );
     auto ap_ax = &(std::get<TIME_AXIS>(*sbd_arr));
@@ -128,12 +125,9 @@ void fine_peak_interpolation(visibility_type* sbd_arr, weight_type* w_arr, MHO_A
                 mbd_bin = ( c_mbdmax + imbd - 2) % (int) mbd_ax->GetSize() ;;
                 //
                 sbd = sbd_ax->at( (std::size_t) sbd_bin);
-                //dr =  (dr_ax->at(dr_bin) )*(1.0/ref_freq);
-                //mbd = (mbd_ax->at( (std::size_t) mbd_bin));
-
                 mbd = mbd_ax->at(c_mbdmax) + 0.5 * (imbd - 2) * mbd_delta;
                 dr  = (dr_ax->at(c_drmax) + (0.5 * (idr - 2)  * dr_delta) )/ref_freq;
-                
+
                 printf("idr = %d and dr = %.8f \n", idr, dr);
 
                 if(sbd < sbd_lower){sbd_lower = sbd;}
@@ -145,17 +139,10 @@ void fine_peak_interpolation(visibility_type* sbd_arr, weight_type* w_arr, MHO_A
                 if(mbd < mbd_lower){mbd_lower = mbd;}
                 if(mbd > mbd_upper){mbd_upper = mbd;}
 
-                // sbd = status.max_delchan    +        isbd - 2;
-                // mbd = status.mbd_max_global + 0.5 * (imbd - 2) * status.mbd_sep;
-                // dr  = status.dr_max_global  + 0.5 * (idr - 2)  * status.rate_sep;
-
-                // msg ("[interp]dr %le mbd %le sbd %d sbd_max(ns) %10.6f", -1,
-                //  dr,mbd,sbd,status.sbd_max);
-                                // counter-rotate data from all freqs. and AP's
+                // counter-rotate data from all freqs. and AP's
                 for(std::size_t fr = 0; fr < nchan; fr++)
                 {
-                    //double frq = pass->pass_data + fr;
-                    double freq = (*chan_ax)(fr);//use sky-freq of this channel????
+                    double freq = (*chan_ax)(fr);//sky freq of this channel
                     for(std::size_t ap = 0; ap < nap; ap++)
                     {
                         double tdelta = ap_ax->at(ap) + ap_delta/2.0 - midpoint_time; //need time difference from the f.r.t?
@@ -169,8 +156,6 @@ void fine_peak_interpolation(visibility_type* sbd_arr, weight_type* w_arr, MHO_A
 
                 z = z * 1.0 / (double) total_ap_frac;
                 drf[isbd][imbd][idr] = std::abs(z);
-                //std::cout<<isbd<<", "<<imbd<<", "<<idr<<", "<<drf[isbd][imbd][idr]<<std::endl;
-                //printf("%ld %le %le \n", sbd_bin, mbd, dr);
                 printf ("drf[%ld][%ld][%ld] %lf \n", isbd, imbd, idr, drf[isbd][imbd][idr]);
             }
         }
@@ -206,7 +191,7 @@ void fine_peak_interpolation(visibility_type* sbd_arr, weight_type* w_arr, MHO_A
 
     sbd = sbd_ax->at(sbd_bin);// + 0.5*sbd_delta;
     dr =  (dr_ax->at(dr_bin) )*(1.0/ref_freq);
-    mbd = (mbd_ax->at(mbd_bin)); 
+    mbd = (mbd_ax->at(mbd_bin));
 
     double sbd_change = xi[0] * sbd_delta;
     double mbd_change = xi[1] * 0.5 * mbd_delta;
@@ -219,15 +204,8 @@ void fine_peak_interpolation(visibility_type* sbd_arr, weight_type* w_arr, MHO_A
     std::cout<< std::setprecision(15);
     std::cout<<"coarse location (sbd, mbd, dr) = "<<sbd<<", "<<mbd<<", "<<dr<<std::endl;
     std::cout<<"change (sbd, mbd, dr) = "<<sbd_change<<", "<<mbd_change<<", "<<dr_change<<std::endl;
-    // std::cout<<"Peak location (sbd, mbd, dr) = "<<sbd_max<<", "<<mbd_max_global<<", "<<dr_max_global<<std::endl;
     std::cout<<"Peak max555, sbd "<<sbd_max<<" mbd "<<mbd_max_global<<" dr "<<dr_max_global<<std::endl;
-
 }
-
-
-
-
-
 
 
 
@@ -337,6 +315,7 @@ int main(int argc, char** argv)
     int retval = construct_cblock(const_cast<char*>(control_file.c_str()), cb_head, cb_out, bl, const_cast<char*>(src.c_str()), fgroup, time);
     MHO_ControlBlockWrapper cb_wrapper(cb_out, vexInfo, baseline);
 
+    double ref_freq = cb_wrapper.GetReferenceFrequency();//grab the reference frequency
 
     ////////////////////////////////////////////////////////////////////////////
     //LOAD DATA
@@ -446,7 +425,6 @@ int main(int argc, char** argv)
     take_snapshot_here("test", "weights", __FILE__, __LINE__,  wt_data);
 
     // //compute the sum of the weights
-    // std::cout<<"weight at 0 = " << wt_data->at(0,0,0,0) <<std::endl;
     weight_type temp_weights;
     temp_weights.Copy(*wt_data);
     MHO_Reducer<weight_type, MHO_CompoundSum> wt_reducer;
@@ -466,8 +444,6 @@ int main(int argc, char** argv)
     // MHO_UUID new_uuid = gen.GenerateUUID(); //random object id
     // temp_weights->SetObjectUUID(new_uuid);
     take_snapshot_here("test", "reduced_weights", __FILE__, __LINE__,  &temp_weights);
-
-    //(*bl_data) *= 1.0/(*wt_data)[0];
 
     ////////////////////////////////////////////////////////////////////////////
     //APPLY DATA CORRECTIONS (A PRIORI -- PCAL)
@@ -518,9 +494,8 @@ int main(int argc, char** argv)
     MHO_DelayRate drOp;
     //MHO_DelayRate drOp;
     visibility_type* sbd_dr_data = sbd_data->CloneEmpty();
-    drOp.SetReferenceFrequency(6000.0);
+    drOp.SetReferenceFrequency(ref_freq);
     drOp.SetArgs(sbd_data, wt_data, sbd_dr_data);
-    //drOp.SetArgs(sbd_data, sbd_dr_data);
     ok = drOp.Initialize();
     check_step_fatal(ok, "main", "dr initialization." << eom );
     ok = drOp.Execute();
@@ -541,16 +516,15 @@ int main(int argc, char** argv)
 
     std::cout<<"SBD/MBD/DR max bins = "<<c_sbdmax<<", "<<c_mbdmax<<", "<<c_drmax<<std::endl;
 
-    //TODO fix me -- we shouldn't be referencing internal members of the MHO_MBDelaySearch class workspace 
+    //TODO fix me -- we shouldn't be referencing internal members of the MHO_MBDelaySearch class workspace
     //Figure out how best to present this axis data to the fine-interp function.
     auto mbd_ax_ptr = mbdSearch.GetMBDAxis();
-    auto mbd_dr_ptr = mbdSearch.GetDRAxis(); 
+    auto mbd_dr_ptr = mbdSearch.GetDRAxis();
 
     // // ////////////////////////////////////////////////////////////////////////////
     // // //FINE INTERPOLATION STEP (search over 5x5x5 grid around peak)
     // // ////////////////////////////////////////////////////////////////////////////
-    
-    fine_peak_interpolation(sbd_data, wt_data, mbd_ax_ptr, mbd_dr_ptr, c_mbdmax, c_drmax, c_sbdmax);
+    fine_peak_interpolation(ref_freq, sbd_data, wt_data, mbd_ax_ptr, mbd_dr_ptr, c_mbdmax, c_drmax, c_sbdmax);
 
     ////////////////////////////////////////////////////////////////////////////
     //PLOTTING/DEBUG
