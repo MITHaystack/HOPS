@@ -1,6 +1,5 @@
 #list header files #############################################################
 set (CALIBRATION_HEADERFILES
-    #${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ChannelizedRotationFunctor.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_VisibilityChannelizer.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_WeightChannelizer.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_VisibilityPrecisionUpCaster.hh
@@ -15,7 +14,6 @@ set (CALIBRATION_HEADERFILES
 
 #list source files #############################################################
 set( CALIBRATION_SOURCEFILES
-    #${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ChannelizedRotationFunctor.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_VisibilityChannelizer.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_WeightChannelizer.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_VisibilityPrecisionUpCaster.cc

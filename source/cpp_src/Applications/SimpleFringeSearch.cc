@@ -456,10 +456,6 @@ int main(int argc, char** argv)
 
     MHO_ManualChannelPhaseCorrection pcal_correct;
 
-    std::cout<<"rem_pcal  ="<< *rem_pcal<<std::endl;
-    std::cout<<"ref_pcal  ="<< *ref_pcal<<std::endl;
-
-
     pcal_correct.SetArgs(bl_data, rem_pcal, bl_data);
     ok = pcal_correct.Initialize();
     check_step_error(ok, "main", "ref pcal initialization." << eom );
@@ -496,7 +492,6 @@ int main(int argc, char** argv)
 
     //run the transformation to delay rate space (this also involves a zero padded FFT)
     MHO_DelayRate drOp;
-    //MHO_DelayRate drOp;
     visibility_type* sbd_dr_data = sbd_data->CloneEmpty();
     drOp.SetReferenceFrequency(ref_freq);
     drOp.SetArgs(sbd_data, wt_data, sbd_dr_data);
