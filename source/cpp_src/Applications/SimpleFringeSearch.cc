@@ -456,6 +456,10 @@ int main(int argc, char** argv)
 
     MHO_ManualChannelPhaseCorrection pcal_correct;
 
+    std::cout<<"rem_pcal  ="<< *rem_pcal<<std::endl;
+    std::cout<<"ref_pcal  ="<< *ref_pcal<<std::endl;
+
+
     pcal_correct.SetArgs(bl_data, rem_pcal, bl_data);
     ok = pcal_correct.Initialize();
     check_step_error(ok, "main", "ref pcal initialization." << eom );
