@@ -1,8 +1,7 @@
 #include "MHO_DiFXBaselineProcessor.hh"
 #include "MHO_BinaryFileInterface.hh"
 
-#include "MHO_VisibilityPrecisionDownCaster.hh"
-#include "MHO_WeightPrecisionDownCaster.hh"
+#include "MHO_ElementTypeCaster.hh"
 
 #include <cctype>
 #include <cmath>
@@ -350,8 +349,8 @@ MHO_DiFXBaselineProcessor::WriteVisibilityObjects(std::string output_dir)
 
     //now we down cast the double precision visibilities and weights from double to float
     //this is to save disk space (but can be disabled)
-    MHO_VisibilityPrecisionDownCaster vdcaster;
-    MHO_WeightPrecisionDownCaster wdcaster;
+    MHO_ElementTypeCaster< visibility_type, visibility_store_type> vdcaster;
+    MHO_ElementTypeCaster< weight_type, weight_store_type> wdcaster;
 
     visibility_store_type vis_out;
     weight_store_type weight_out;

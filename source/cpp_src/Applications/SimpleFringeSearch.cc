@@ -36,8 +36,7 @@ struct c_block* cb_head; //global extern kludge (due to stupid c-library interfa
 #include "MHO_ControlBlockWrapper.hh"
 
 //operators
-#include "MHO_VisibilityPrecisionUpCaster.hh"
-#include "MHO_WeightPrecisionUpCaster.hh"
+#include "MHO_ElementTypeCaster.hh"
 #include "MHO_NormFX.hh"
 #include "MHO_SelectRepack.hh"
 #include "MHO_FreqSpacing.hh"
@@ -353,13 +352,12 @@ int main(int argc, char** argv)
         msg_warn("main", "failed to read tag data from the .cor file." <<eom);
     }
 
-
-    MHO_VisibilityPrecisionUpCaster up_caster;
+    MHO_ElementTypeCaster<visibility_store_type, visibility_type> up_caster;
     up_caster.SetArgs(bl_store_data, bl_data);
     up_caster.Initialize();
     up_caster.Execute();
-
-    MHO_WeightPrecisionUpCaster wt_up_caster;
+    
+    MHO_ElementTypeCaster< weight_store_type, weight_type> wt_up_caster;
     wt_up_caster.SetArgs(wt_store_data, wt_data);
     wt_up_caster.Initialize();
     wt_up_caster.Execute();
