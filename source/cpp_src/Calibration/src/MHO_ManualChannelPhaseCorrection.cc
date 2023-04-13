@@ -80,16 +80,15 @@ MHO_ManualChannelPhaseCorrection::InitializeImpl(const XArgType1* in_vis, const 
         }
     }
 
-    //map the pcal channel index to the visibility channel index
-    //TODO FIX/REPLACE THIS!
+    //map the pcal channel index to the visibility channel index 
+    //(this a pointless no-op at the moment)
+    #pragma message("TODO FIX/REPLACE THE PCAL <-> VISIB CHANNEL MAP!")
     auto chan_ax = std::get<CHANNEL_AXIS>(*in_vis);
     auto pcal_chan_ax = std::get<PCAL_CHANNEL_AXIS>(*pcal);
     for(std::size_t j=0; j<pcal_chan_ax.GetSize(); j++)
     {
         for(std::size_t i=0; i<chan_ax.GetSize(); i++)
         {
-            std::cout<<pcal_chan_ax(j)<<", "<<chan_ax(i)<<std::endl;
-            // if( pcal_chan_ax(j) == chan_ax(i) ){fChanIdxMap[i] = j;}
             if( j == i ){fChanIdxMap[i] = j;}
         }
     }
@@ -106,19 +105,6 @@ MHO_ManualChannelPhaseCorrection::ExecuteImpl(const XArgType1* in_vis, const XAr
 {
     if(fInitialized)
     {
-        std::cout<<"execute pcal"<<std::endl;
-
-        for(auto it=fPolIdxMap.begin(); it !=fPolIdxMap.end(); it++)
-        {
-            std::cout<<"pol map: "<<it->first<<", "<<it->second<<std::endl;
-        }
-
-
-        for(auto it=fChanIdxMap.begin(); it !=fChanIdxMap.end(); it++)
-        {
-            std::cout<<"chan map: "<<it->first<<", "<<it->second<<std::endl;
-        }
-
         //just copy in_vis into out_vis
         //TODO FIXME...there is no reason we can't do this operation in place applied to in_vs
         //but the operator interface needs to be different since we need a unary op 
@@ -138,7 +124,6 @@ MHO_ManualChannelPhaseCorrection::ExecuteImpl(const XArgType1* in_vis, const XAr
                 std::size_t pcal_chan_idx = ch_it->second;
                 //retrieve the p-cal phasor (assume unit normal)
                 pcal_phasor_type pc_val = (*pcal)(pcal_pol_idx, pcal_chan_idx);
-                std::cout<<"pc_val = " <<pc_val<<std::endl;
                 visibility_element_type pc_phasor = std::exp( fImagUnit*pc_val*fDegToRad );
 
                 //conjugate the pcal if applied to LSB
