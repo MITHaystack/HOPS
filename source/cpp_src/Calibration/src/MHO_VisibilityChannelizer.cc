@@ -140,7 +140,6 @@ MHO_VisibilityChannelizer::ExecuteImpl(const uch_visibility_store_type* in, visi
         //pack the data into the appropriate place
         for(int ch=0; ch<out_channel_axis->GetSize(); ch++)
         {
-            // auto ch_label = in_freq_axis->GetFirstIntervalWithKeyValue(std::string("channel"), out_channel_axis->at(ch));
             auto ch_label = in_freq_axis->GetFirstIntervalWithKeyValue(std::string("channel"), ch);
             if( ch_label )
             {
@@ -202,8 +201,6 @@ MHO_VisibilityChannelizer::ExecuteImpl(const uch_visibility_store_type* in, visi
         auto* sp_axis = &(std::get<FREQ_AXIS>(*out));
         sp_axis->Insert(std::string("name"), std::string("frequency") );
         sp_axis->Insert(std::string("units"), std::string("MHz") );
-
-
 
         return true;
     }
