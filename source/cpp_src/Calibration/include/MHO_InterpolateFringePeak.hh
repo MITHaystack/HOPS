@@ -45,6 +45,7 @@ class MHO_InterpolateFringePeak: public MHO_Operator
         int fSBDMaxBin;
     
         double fRefFreq;
+        double fTotalSummedWeights;
         visibility_type* fSBDArray;
         weight_type* fWeights;
     
@@ -53,9 +54,11 @@ class MHO_InterpolateFringePeak: public MHO_Operator
 
         void fine_peak_interpolation();
 
+        MHO_NDArrayWrapper<double, 3> fDRF;
+
         //copy of max555.c impl
-        void max555 (double drf[5][5][5], double xlim[3][2], double xi[3], double *drfmax);  
-        void interp555 (double drf[5][5][5], double xi[3], double *drfval);
+        void max555 (MHO_NDArrayWrapper<double, 3>&, double xlim[3][2], double xi[3], double *drfmax);  
+        void interp555 (MHO_NDArrayWrapper<double, 3>&, double xi[3], double *drfval);
         double dwin (double, double, double);
 };
 
