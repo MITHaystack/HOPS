@@ -50,6 +50,7 @@ struct c_block* cb_head; //global extern kludge (due to stupid c-library interfa
 #include "MHO_ManualChannelPhaseCorrection.hh"
 #include "MHO_DelayRate.hh"
 #include "MHO_MBDelaySearch.hh"
+#include "MHO_InterpolateFringePeak.hh"
 
 #ifdef USE_ROOT
     #include "TApplication.h"
@@ -513,6 +514,21 @@ int main(int argc, char** argv)
 
     std::cout<<"SBD/MBD/DR max bins = "<<c_sbdmax<<", "<<c_mbdmax<<", "<<c_drmax<<std::endl;
 
+
+    MHO_InterpolateFringePeak fringeInterp;
+    fringeInterp.SetReferenceFrequency(ref_freq);
+    fringeInterp.SetMaxBins(c_sbdmax, c_mbdmax, c_drmax);
+    
+    fringeInterp.SetSBDArray(sbd_data);
+    fringeInterp.SetWeights(wt_data);
+
+    fringeInterp.SetMBDAxis( mbdSearch.GetMBDAxis());
+    fringeInterp.SetDRAxis( mbdSearch.GetDRAxis());
+
+    fringeInterp.Initialize();
+    fringeInterp.Execute();
+
+    
     //TODO fix me -- we shouldn't be referencing internal members of the MHO_MBDelaySearch class workspace
     //Figure out how best to present this axis data to the fine-interp function.
     auto mbd_ax_ptr = mbdSearch.GetMBDAxis();
@@ -521,7 +537,7 @@ int main(int argc, char** argv)
     // // ////////////////////////////////////////////////////////////////////////////
     // // //FINE INTERPOLATION STEP (search over 5x5x5 grid around peak)
     // // ////////////////////////////////////////////////////////////////////////////
-    fine_peak_interpolation(ref_freq, sbd_data, wt_data, mbd_ax_ptr, mbd_dr_ptr, c_mbdmax, c_drmax, c_sbdmax);
+    //fine_peak_interpolation(ref_freq, sbd_data, wt_data, mbd_ax_ptr, mbd_dr_ptr, c_mbdmax, c_drmax, c_sbdmax);
 
     ////////////////////////////////////////////////////////////////////////////
     //PLOTTING/DEBUG

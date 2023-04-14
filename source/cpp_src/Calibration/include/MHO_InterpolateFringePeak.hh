@@ -23,7 +23,7 @@ namespace hops
 class MHO_InterpolateFringePeak: public MHO_Operator
 {
     public:
-        MHO_InterpolateFringePeak(){};
+        MHO_InterpolateFringePeak();
         virtual ~MHO_InterpolateFringePeak(){};
 
         void SetReferenceFrequency(double ref_freq){fRefFreq = ref_freq;}
@@ -32,8 +32,8 @@ class MHO_InterpolateFringePeak: public MHO_Operator
         void SetSBDArray(visibility_type* sbd_arr){fSBDArray = sbd_arr;}
         void SetWeights(weight_type* weights){fWeights = weights;}
 
-        void SetMBDAxis(time_axis_type* mbd_ax){fMBDAxis = mbd_ax;}
-        void SetDRAxis(delay_rate_axis_type* dr_ax){fDRAxis = dr_ax;}
+        void SetMBDAxis(const time_axis_type* mbd_ax){fMBDAxis.Copy(*mbd_ax);}
+        void SetDRAxis(const delay_rate_axis_type* dr_ax){fDRAxis.Copy(*dr_ax);}
 
         virtual bool Initialize() override;
         virtual bool Execute() override;
@@ -48,8 +48,8 @@ class MHO_InterpolateFringePeak: public MHO_Operator
         visibility_type* fSBDArray;
         weight_type* fWeights;
     
-        time_axis_type* fMBDAxis;
-        delay_rate_axis_type* fDRAxis;
+        time_axis_type fMBDAxis;
+        delay_rate_axis_type fDRAxis;
 
         void fine_peak_interpolation();
 
