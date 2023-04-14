@@ -8,16 +8,43 @@
 namespace hops 
 {
 
+MHO_InterpolateFringePeak::MHO_InterpolateFringePeak()
+{
+    fMBDMaxBin = 0;
+    fDRMaxBin = 0;
+    fSBDMaxBin = 0;
+
+    fRefFreq = 1.0;
+    fSBDArray = nullptr;
+    fWeights = nullptr;
+
+    fMBDAxis.Resize(1);
+    fDRAxis.Resize(1);
+}
+
 bool 
 MHO_InterpolateFringePeak::Initialize()
 {
-
-}
+    if(fSBDArray == nullptr){return false;}
+    if(fWeights == nullptr){return false;}
+    if(fMBDAxis.GetSize() == 1){return false;}
+    if(fDRAxis.GetSize() == 1){return false;}
+    return true;
+};
 
 bool 
 MHO_InterpolateFringePeak::Execute()
 {
+    fine_peak_interpolation();
+    return true;
+}
 
+void 
+MHO_InterpolateFringePeak::SetMaxBins(int sbd_max, int mbd_max, int dr_max)
+{
+    fSBDMaxBin = sbd_max; 
+    fMBDMaxBin = mbd_max;
+    fDRMaxBin = dr_max;
 }
 
 
@@ -36,19 +63,24 @@ MHO_InterpolateFringePeak::fine_peak_interpolation()
     auto ap_ax = &(std::get<TIME_AXIS>(*fSBDArray));
     auto sbd_ax = &( std::get<FREQ_AXIS>(*fSBDArray) );
 
+    std::cout<<"sbd ax ="<<sbd_ax<<std::endl;
+    std::cout<<"sbdmaxbin="<<fSBDMaxBin<<std::endl;
+
+    std::cout<<"fSBDArray = "<<fSBDArray<<std::endl;
+
     std::size_t nap = ap_ax->GetSize();
     std::size_t nchan = chan_ax->GetSize();
 
     double ap_delta = ap_ax->at(1) - ap_ax->at(0);
     double sbd_delta = sbd_ax->at(1) - sbd_ax->at(0);
-    double dr_delta = fDRAxis->at(1) - fDRAxis->at(0);
-    double mbd_delta = fMBDAxis->at(1) - fMBDAxis->at(0);
+    double dr_delta = fDRAxis.at(1) - fDRAxis.at(0);
+    double mbd_delta = fMBDAxis.at(1) - fMBDAxis.at(0);
 
     double midpoint_time = ( ap_ax->at(nap-1) + ap_delta  + ap_ax->at(0) )/2.0;
     std::cout<<"time midpoint = "<<midpoint_time<<std::endl;
 
-    printf("max bin (sbd, mbd, dr) = %d, %d, %d\n", fSBDMaxBin, fMBDMaxBin, fDRMaxBin );
-    printf("mbd delta, dr delta = %.7f, %.7f \n", mbd_delta, dr_delta/fRefFreq);
+    //printf("max bin (sbd, mbd, dr) = %d, %d, %d\n", fSBDMaxBin, fMBDMaxBin, fDRMaxBin );
+    //printf("mbd delta, dr delta = %.7f, %.7f \n", mbd_delta, dr_delta/fRefFreq);
 
 
     double sbd_lower = 1e30;
@@ -73,14 +105,14 @@ MHO_InterpolateFringePeak::fine_peak_interpolation()
 
                 // calculate location of this tabular point (should modulo % axis size)
                 sbd_bin = (fSBDMaxBin + isbd - 2) % (int) sbd_ax->GetSize();
-                dr_bin = (fDRMaxBin + idr - 2 ) % (int) fDRAxis->GetSize() ;
-                mbd_bin = ( fMBDMaxBin + imbd - 2) % (int) fMBDAxis->GetSize() ;;
+                dr_bin = (fDRMaxBin + idr - 2 ) % (int) fDRAxis.GetSize() ;
+                mbd_bin = ( fMBDMaxBin + imbd - 2) % (int) fMBDAxis.GetSize() ;;
                 //
                 sbd = sbd_ax->at( (std::size_t) sbd_bin);
-                mbd = fMBDAxis->at(fMBDMaxBin) + 0.5 * (imbd - 2) * mbd_delta;
-                dr  = (fDRAxis->at(fDRMaxBin) + (0.5 * (idr - 2)  * dr_delta) )/fRefFreq;
+                mbd = fMBDAxis.at(fMBDMaxBin) + 0.5 * (imbd - 2) * mbd_delta;
+                dr  = (fDRAxis.at(fDRMaxBin) + (0.5 * (idr - 2)  * dr_delta) )/fRefFreq;
 
-                printf("idr = %d and dr = %.8f \n", idr, dr);
+                //printf("idr = %d and dr = %.8f \n", idr, dr);
 
                 if(sbd < sbd_lower){sbd_lower = sbd;}
                 if(sbd > sbd_upper){sbd_upper = sbd;}
@@ -108,7 +140,7 @@ MHO_InterpolateFringePeak::fine_peak_interpolation()
 
                 z = z * 1.0 / total_ap_frac;
                 drf[isbd][imbd][idr] = std::abs(z);
-                printf ("drf[%ld][%ld][%ld] %lf \n", isbd, imbd, idr, drf[isbd][imbd][idr]);
+                //printf ("drf[%ld][%ld][%ld] %lf \n", isbd, imbd, idr, drf[isbd][imbd][idr]);
             }
         }
     }
@@ -139,9 +171,14 @@ MHO_InterpolateFringePeak::fine_peak_interpolation()
     dr_bin = fDRMaxBin;
     mbd_bin = fMBDMaxBin;
 
+    std::cout<<"----------------------------------------"<<std::endl;
+    std::cout<<"sbd ax ="<<sbd_ax<<std::endl;
+    std::cout<<"sbd_bin="<<sbd_bin<<std::endl;
+    std::cout<<"mbd_bin="<<mbd_bin<<std::endl;
+
     sbd = sbd_ax->at(sbd_bin);// + 0.5*sbd_delta;
-    dr =  (fDRAxis->at(dr_bin) )*(1.0/fRefFreq);
-    mbd = (fMBDAxis->at(mbd_bin));
+    dr =  (fDRAxis.at(dr_bin) )*(1.0/fRefFreq);
+    mbd = (fMBDAxis.at(mbd_bin));
 
     double sbd_change = xi[0] * sbd_delta;
     double mbd_change = xi[1] * 0.5 * mbd_delta;
@@ -155,6 +192,7 @@ MHO_InterpolateFringePeak::fine_peak_interpolation()
     std::cout<<"coarse location (sbd, mbd, dr) = "<<sbd<<", "<<mbd<<", "<<dr<<std::endl;
     std::cout<<"change (sbd, mbd, dr) = "<<sbd_change<<", "<<mbd_change<<", "<<dr_change<<std::endl;
     std::cout<<"Peak max555, sbd "<<sbd_max<<" mbd "<<mbd_max_global<<" dr "<<dr_max_global<<std::endl;
+
 }
 
 
