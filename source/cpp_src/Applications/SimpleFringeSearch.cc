@@ -62,16 +62,6 @@ struct c_block* cb_head; //global extern kludge (due to stupid c-library interfa
 using namespace hops;
 
 
-using mbd_dr_axis_pack = MHO_AxisPack< MHO_Axis<double>, MHO_Axis<double> >;
-using mbd_dr_type = MHO_TableContainer< visibility_element_type, mbd_dr_axis_pack>;
-using mbd_dr_amp_type = MHO_TableContainer< double, mbd_dr_axis_pack>;
-
-double total_ap_frac;
-
-
-
-
-
 int main(int argc, char** argv)
 {
 
@@ -295,7 +285,7 @@ int main(int argc, char** argv)
     wt_reducer.Initialize();
     wt_reducer.Execute();
 
-    total_ap_frac = temp_weights[0];
+    double total_ap_frac = temp_weights[0];
     std::cout<<"reduced weights = "<<temp_weights[0]<<std::endl;
 
     wt_data->Insert("total_summed_weights", total_ap_frac);
@@ -348,7 +338,7 @@ int main(int argc, char** argv)
     ok = nfxOp.Execute();
     check_step_fatal(ok, "main", "normfx execution." << eom );
 
-    //take snapeshot of sbd data after normfx
+    //take snapshot of sbd data after normfx
     take_snapshot_here("test", "sbd", __FILE__, __LINE__, sbd_data);
 
     //run the transformation to delay rate space (this also involves a zero padded FFT)
@@ -363,6 +353,7 @@ int main(int argc, char** argv)
 
     take_snapshot_here("test", "sbd_dr", __FILE__, __LINE__, sbd_dr_data);
 
+    //coarse SBD/MBD/DR search (locates max bin)
     MHO_MBDelaySearch mbdSearch;
     mbdSearch.SetArgs(sbd_dr_data);
     ok = mbdSearch.Initialize();
@@ -377,6 +368,9 @@ int main(int argc, char** argv)
     std::cout<<"SBD/MBD/DR max bins = "<<c_sbdmax<<", "<<c_mbdmax<<", "<<c_drmax<<std::endl;
 
 
+    ////////////////////////////////////////////////////////////////////////////
+    //FINE INTERPOLATION STEP (search over 5x5x5 grid around peak)
+    ////////////////////////////////////////////////////////////////////////////
     MHO_InterpolateFringePeak fringeInterp;
     fringeInterp.SetReferenceFrequency(ref_freq);
     fringeInterp.SetMaxBins(c_sbdmax, c_mbdmax, c_drmax);
@@ -384,22 +378,14 @@ int main(int argc, char** argv)
     fringeInterp.SetSBDArray(sbd_data);
     fringeInterp.SetWeights(wt_data);
 
+    //TODO fix me -- we shouldn't be referencing internal members of the MHO_MBDelaySearch class workspace
+    //Figure out how best to present this axis data to the fine-interp function.
     fringeInterp.SetMBDAxis( mbdSearch.GetMBDAxis());
     fringeInterp.SetDRAxis( mbdSearch.GetDRAxis());
 
     fringeInterp.Initialize();
     fringeInterp.Execute();
 
-    
-    //TODO fix me -- we shouldn't be referencing internal members of the MHO_MBDelaySearch class workspace
-    //Figure out how best to present this axis data to the fine-interp function.
-    auto mbd_ax_ptr = mbdSearch.GetMBDAxis();
-    auto mbd_dr_ptr = mbdSearch.GetDRAxis();
-
-    // // ////////////////////////////////////////////////////////////////////////////
-    // // //FINE INTERPOLATION STEP (search over 5x5x5 grid around peak)
-    // // ////////////////////////////////////////////////////////////////////////////
-    //fine_peak_interpolation(ref_freq, sbd_data, wt_data, mbd_ax_ptr, mbd_dr_ptr, c_mbdmax, c_drmax, c_sbdmax);
 
     ////////////////////////////////////////////////////////////////////////////
     //PLOTTING/DEBUG
