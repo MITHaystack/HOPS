@@ -11,11 +11,14 @@ MHO_InterpolateFringePeak::MHO_InterpolateFringePeak()
     fSBDMaxBin = 0;
 
     fRefFreq = 1.0;
+    fTotalSummedWeights = 1.0;
     fSBDArray = nullptr;
     fWeights = nullptr;
 
     fMBDAxis.Resize(1);
     fDRAxis.Resize(1);
+
+    fDRF.Resize(5,5,5);
 }
 
 bool 
@@ -25,6 +28,13 @@ MHO_InterpolateFringePeak::Initialize()
     if(fWeights == nullptr){return false;}
     if(fMBDAxis.GetSize() == 1){return false;}
     if(fDRAxis.GetSize() == 1){return false;}
+    bool ok = fWeights->Retrieve("total_summed_weights", fTotalSummedWeights);
+    if(!ok)
+    {
+        msg_warn("calibration", "missing 'total_summed_weights' tag in weights object." << eom);
+        return false;
+    }
+
     return true;
 };
 
@@ -48,17 +58,13 @@ void
 MHO_InterpolateFringePeak::fine_peak_interpolation()
 {
     //follow the algorithm of interp.c (SIMUL) mode, to fill out a cube and interpolate
-    double drf[5][5][5];// 5x5x5 cube of fringe values
+    //double drf[5][5][5];// 5x5x5 cube of fringe values
     double xlim[3][2]; //cube limits each dim
     double xi[3];
     double drfmax;
 
-    double total_ap_frac = 1.0;
-    bool ok = fWeights->Retrieve("total_summed_weights", total_ap_frac);
-    if(!ok)
-    {
-        msg_warn("calibration", "missing 'total_summed_weights' tag in weights object." << eom);
-    }
+    double total_ap_frac = fTotalSummedWeights;
+    
     std::cout<<"total ap frac = "<<total_ap_frac<<std::endl;
 
     auto chan_ax = &( std::get<CHANNEL_AXIS>(*fSBDArray) );
@@ -78,12 +84,12 @@ MHO_InterpolateFringePeak::fine_peak_interpolation()
     double dr_delta = fDRAxis.at(1) - fDRAxis.at(0);
     double mbd_delta = fMBDAxis.at(1) - fMBDAxis.at(0);
 
+    //TODO FIXME -- shoudl this be the fourfit refrence time? Also...should this be calculated elsewhere?
     double midpoint_time = ( ap_ax->at(nap-1) + ap_delta  + ap_ax->at(0) )/2.0;
     std::cout<<"time midpoint = "<<midpoint_time<<std::endl;
 
     //printf("max bin (sbd, mbd, dr) = %d, %d, %d\n", fSBDMaxBin, fMBDMaxBin, fDRMaxBin );
     //printf("mbd delta, dr delta = %.7f, %.7f \n", mbd_delta, dr_delta/fRefFreq);
-
 
     double sbd_lower = 1e30;
     double sbd_upper = -1e30;
@@ -141,7 +147,8 @@ MHO_InterpolateFringePeak::fine_peak_interpolation()
                 }
 
                 z = z * 1.0 / total_ap_frac;
-                drf[isbd][imbd][idr] = std::abs(z);
+                // drf[isbd][imbd][idr] = std::abs(z);
+                fDRF(isbd, imbd, idr) = std::abs(z);
                 //printf ("drf[%ld][%ld][%ld] %lf \n", isbd, imbd, idr, drf[isbd][imbd][idr]);
             }
         }
@@ -160,7 +167,7 @@ MHO_InterpolateFringePeak::fine_peak_interpolation()
 
     std::cout<< "xlim's "<< xlim[0][0]<<", "<< xlim[0][1] <<", "<< xlim[1][0] <<", "<< xlim[1][1] <<", " << xlim[2][0] <<", "<< xlim[2][1] <<std::endl;
                                 // find maximum value within cube via interpolation
-    max555(drf, xlim, xi, &drfmax);
+    max555(fDRF, xlim, xi, &drfmax);
 
     std::cout<< "xi's "<< xi[0]<<", "<< xi[1] <<", "<< xi[2] <<std::endl;
     std::cout<<"drf max = "<<drfmax<<std::endl;
@@ -199,7 +206,7 @@ MHO_InterpolateFringePeak::fine_peak_interpolation()
 
 
 
-void MHO_InterpolateFringePeak::max555 (double drf[5][5][5],   // input: real function
+void MHO_InterpolateFringePeak::max555 (MHO_NDArrayWrapper<double, 3>& drf,   // input: real function
              double xlim[3][2],     // input: lower & upper bounds in 3 dimensions
              double xi[3],          // output: coordinates at maximum value
              double *drfmax)        // output: maximum value
@@ -298,7 +305,7 @@ MHO_InterpolateFringePeak::dwin(double value, double lower, double upper)
 
     
 void 
-MHO_InterpolateFringePeak::interp555 (double drf[5][5][5],// input: real function
+MHO_InterpolateFringePeak::interp555 (MHO_NDArrayWrapper<double, 3>& drf,// input: real function
                                       double xi[3],       // input: coordinates to be evaluated at
                                       double *drfval)     // output: interpolated value
 {
@@ -331,7 +338,7 @@ MHO_InterpolateFringePeak::interp555 (double drf[5][5][5],// input: real functio
         for (j=0; j<5; j++)
             for (k=0; k<5; k++)
             {
-                *drfval += a[i][0] * a[j][1] * a[k][2] * drf[i][j][k];
+                *drfval += a[i][0] * a[j][1] * a[k][2] * drf(i,j,k);
                 //msg ("drf[%d][%d][%d] %lf drfval %lf",2, i,j,k, drf[i][j][k],*drfval);
             }
 }
