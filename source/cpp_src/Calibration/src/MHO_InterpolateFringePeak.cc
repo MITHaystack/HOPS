@@ -1,10 +1,6 @@
 #include "MHO_InterpolateFringePeak.hh"
 #include "MHO_FringeRotation.hh"
 
-//TODO REPLACE THESE
-#define min(a,b) (a<b)?(a):(b)
-#define max(a,b) (a<b)?(b):(a)
-
 namespace hops 
 {
 
@@ -57,7 +53,13 @@ MHO_InterpolateFringePeak::fine_peak_interpolation()
     double xi[3];
     double drfmax;
 
-    double total_ap_frac = 1.0; //TODO FIX ME
+    double total_ap_frac = 1.0;
+    bool ok = fWeights->Retrieve("total_summed_weights", total_ap_frac);
+    if(!ok)
+    {
+        msg_warn("calibration", "missing 'total_summed_weights' tag in weights object." << eom);
+    }
+    std::cout<<"total ap frac = "<<total_ap_frac<<std::endl;
 
     auto chan_ax = &( std::get<CHANNEL_AXIS>(*fSBDArray) );
     auto ap_ax = &(std::get<TIME_AXIS>(*fSBDArray));
