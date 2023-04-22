@@ -63,8 +63,6 @@ class MHO_NormFX: public MHO_BinaryOperator<
 
     private:
 
-        void run_old_normfx_core(const XArgType1* in1, const XArgType2* in2, XArgType3* out);
-
         std::size_t fInDims[VIS_NDIM];
         std::size_t fWorkDims[VIS_NDIM];
         std::size_t fOutDims[VIS_NDIM];
@@ -75,9 +73,6 @@ class MHO_NormFX: public MHO_BinaryOperator<
         #else
             MHO_MultidimensionalFastFourierTransform< MHO_NDArrayWrapper< std::complex<double>, 1 > > fFFTEngine;
         #endif
-        MHO_NDArrayWrapper< std::complex<double>, 1 > xp_spec;
-        MHO_NDArrayWrapper< std::complex<double>, 1 > S;
-        MHO_NDArrayWrapper< std::complex<double>, 1 > xlag;
 
         typedef MHO_NaNMasker<visibility_type> nanMaskerType;
         typedef MHO_ComplexConjugator<sbd_type> conjType;
