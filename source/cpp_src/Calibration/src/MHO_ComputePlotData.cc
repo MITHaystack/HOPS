@@ -66,6 +66,11 @@ MHO_ComputePlotData::calc_mbd()
 void
 MHO_ComputePlotData::calc_sbd()
 {
+
+    //grab the total summed weights 
+    double total_summed_weights = 1.0;
+    fWeights->Retrieve("total_summed_weights", total_summed_weights);
+
     MHO_FringeRotation frot;
 
     xpower_type sbd_xpower_in;
@@ -81,6 +86,7 @@ MHO_ComputePlotData::calc_sbd()
     auto ap_ax = &(std::get<TIME_AXIS>(*fSBDArray));
 
     double ap_delta = ap_ax->at(1) - ap_ax->at(0);
+
 
     //TODO FIXME -- shoudl this be the fourfit refrence time? Also...should this be calculated elsewhere?
     double midpoint_time = ( ap_ax->at(nap-1) + ap_delta  + ap_ax->at(0) )/2.0;
@@ -112,18 +118,19 @@ MHO_ComputePlotData::calc_sbd()
             }
         }
         sbd_xpower_in(i) = sum;
-        sbd_amp(i) = std::abs(sum)/fTotalSummedWeights;
+        sbd_amp(i) = std::abs(sum)/total_summed_weights;
+        std::cout<<"sbd_amp @ "<< i << " = " << sbd_amp(i) <<std::endl;
     }
 
 
-    fCyclicRotator.SetOffset(FREQ_AXIS, nbins/2);
+    fCyclicRotator.SetOffset(0, nbins/2);
     fCyclicRotator.SetArgs(&sbd_xpower_in);
     bool status = fCyclicRotator.Initialize();
     if(!status){msg_error("operators", "Could not initialize cyclic rotation." << eom); }
 
     fPaddedFFTEngine.SetArgs(&sbd_xpower_in, &sbd_xpower_out);
     fPaddedFFTEngine.DeselectAllAxes();
-    fPaddedFFTEngine.SelectAxis(FREQ_AXIS); //only perform padded fft on frequency (to lag) axis
+    fPaddedFFTEngine.SelectAxis(0);
     fPaddedFFTEngine.SetForward();//forward DFT
     fPaddedFFTEngine.SetPaddingFactor(4);
 
@@ -139,6 +146,13 @@ MHO_ComputePlotData::calc_sbd()
     status = fCyclicRotator.Execute();
     status = fPaddedFFTEngine.Execute();
 
+    std::cout<<"done sbd calc"<<std::endl;
+
+
+    for(std::size_t i=0; i<sbd_xpower_out.GetSize(); i++)
+    {
+        std::cout<<"|xpower| out @ "<<i<<" = "<<std::abs(sbd_xpower_out(i))<<std::endl;
+    }
 
         // 
         // 
