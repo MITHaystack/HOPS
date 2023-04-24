@@ -1,7 +1,7 @@
 #include "MHO_InterpolateFringePeak.hh"
 #include "MHO_FringeRotation.hh"
 
-namespace hops 
+namespace hops
 {
 
 MHO_InterpolateFringePeak::MHO_InterpolateFringePeak()
@@ -21,7 +21,7 @@ MHO_InterpolateFringePeak::MHO_InterpolateFringePeak()
     fDRF.Resize(5,5,5);
 }
 
-bool 
+bool
 MHO_InterpolateFringePeak::Initialize()
 {
     if(fSBDArray == nullptr){return false;}
@@ -38,23 +38,23 @@ MHO_InterpolateFringePeak::Initialize()
     return true;
 };
 
-bool 
+bool
 MHO_InterpolateFringePeak::Execute()
 {
     fine_peak_interpolation();
     return true;
 }
 
-void 
+void
 MHO_InterpolateFringePeak::SetMaxBins(int sbd_max, int mbd_max, int dr_max)
 {
-    fSBDMaxBin = sbd_max; 
+    fSBDMaxBin = sbd_max;
     fMBDMaxBin = mbd_max;
     fDRMaxBin = dr_max;
 }
 
 
-void 
+void
 MHO_InterpolateFringePeak::fine_peak_interpolation()
 {
     //follow the algorithm of interp.c (SIMUL) mode, to fill out a cube and interpolate
@@ -64,7 +64,7 @@ MHO_InterpolateFringePeak::fine_peak_interpolation()
     double drfmax;
 
     double total_ap_frac = fTotalSummedWeights;
-    
+
     std::cout<<"total ap frac = "<<total_ap_frac<<std::endl;
 
     auto chan_ax = &( std::get<CHANNEL_AXIS>(*fSBDArray) );
@@ -197,6 +197,11 @@ MHO_InterpolateFringePeak::fine_peak_interpolation()
     double mbd_max_global = mbd + mbd_change;
     double dr_max_global  = dr + dr_change;
 
+    fSBDelay = sbd_max;
+    fMBDelay = mbd_max_global;
+    fDelayRate = dr_max_global;
+
+
     std::cout<< std::setprecision(15);
     std::cout<<"coarse location (sbd, mbd, dr) = "<<sbd<<", "<<mbd<<", "<<dr<<std::endl;
     std::cout<<"change (sbd, mbd, dr) = "<<sbd_change<<", "<<mbd_change<<", "<<dr_change<<std::endl;
@@ -249,7 +254,7 @@ void MHO_InterpolateFringePeak::max555 (MHO_NDArrayWrapper<double, 3>& drf,   //
         dx0 = (x0_upper - x0_lower) / 10.0;
         dx1 = (x1_upper - x1_lower) / 10.0;
         dx2 = (x2_upper - x2_lower) / 10.0;
-        
+
         center[0] = (x0_lower + x0_upper) / 2.0;
         center[1] = (x1_lower + x1_upper) / 2.0;
         center[2] = (x2_lower + x2_upper) / 2.0;
@@ -264,9 +269,9 @@ void MHO_InterpolateFringePeak::max555 (MHO_NDArrayWrapper<double, 3>& drf,   //
                     x[2] = center[2] + dx2 * (k-5);
                                     // find interpolated value at this point
                     interp555 (drf, x, &value);
-                       // msg ("i %d j %d k %d x %g %g %g value %lf", 
+                       // msg ("i %d j %d k %d x %g %g %g value %lf",
                        //     2, i, j, k, x[0], x[1], x[2], value);
-                                    // is this a new maximum? 
+                                    // is this a new maximum?
                                     // if so, save value and coords.
                     if (value > bestval)
                         {
@@ -281,10 +286,10 @@ void MHO_InterpolateFringePeak::max555 (MHO_NDArrayWrapper<double, 3>& drf,   //
         dx0 /= 5.0;
         dx1 /= 5.0;
         dx2 /= 5.0;
-        //msg ("max value %f at %g %g %g", 0, 
+        //msg ("max value %f at %g %g %g", 0,
         //      bestval, xbest[0], xbest[1], xbest[2]);
         }
-    
+
     while (dx0 > epsilon || dx1 > epsilon || dx2 > epsilon);
                                     // return result to caller
     *drfmax = bestval;
@@ -303,8 +308,8 @@ MHO_InterpolateFringePeak::dwin(double value, double lower, double upper)
 
 
 
-    
-void 
+
+void
 MHO_InterpolateFringePeak::interp555 (MHO_NDArrayWrapper<double, 3>& drf,// input: real function
                                       double xi[3],       // input: coordinates to be evaluated at
                                       double *drfval)     // output: interpolated value

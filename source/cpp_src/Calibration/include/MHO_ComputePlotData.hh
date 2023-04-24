@@ -36,7 +36,7 @@ class MHO_ComputePlotData
         MHO_ComputePlotData(){};
         virtual ~MHO_ComputePlotData(){};
 
-        void SetVisibilities();
+        //void SetVisibilities();
 
         void SetReferenceFrequency(double ref_freq){fRefFreq = ref_freq;}
         void SetMBDelay(double mbdelay){fMBDelay = mbdelay;}
@@ -48,7 +48,7 @@ class MHO_ComputePlotData
 
 
 
-    protected:
+    //protected:
 
         //void calculate();
 
