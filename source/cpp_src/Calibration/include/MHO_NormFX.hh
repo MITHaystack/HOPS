@@ -67,13 +67,6 @@ class MHO_NormFX: public MHO_BinaryOperator<
         std::size_t fWorkDims[VIS_NDIM];
         std::size_t fOutDims[VIS_NDIM];
 
-        //only needed for the old routine
-        #ifdef HOPS_USE_FFTW3
-            MHO_MultidimensionalFastFourierTransformFFTW< MHO_NDArrayWrapper< std::complex<double>, 1 > > fFFTEngine;
-        #else
-            MHO_MultidimensionalFastFourierTransform< MHO_NDArrayWrapper< std::complex<double>, 1 > > fFFTEngine;
-        #endif
-
         typedef MHO_NaNMasker<visibility_type> nanMaskerType;
         typedef MHO_ComplexConjugator<sbd_type> conjType;
 

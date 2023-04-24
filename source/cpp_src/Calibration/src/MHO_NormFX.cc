@@ -100,13 +100,6 @@ MHO_NormFX::InitializeImpl(const XArgType1* in1, const XArgType2* in2, XArgType3
 
         //double it
         nlags *= 2;
-        xp_spec.Resize(4*nlags);
-        S.Resize(4*nlags);
-        xlag.Resize(4*nlags);
-
-        fFFTEngine.SetArgs(&S, &xlag);
-        fFFTEngine.SetForward();
-        fFFTEngine.Initialize();
 
         fInitialized = true;
     }
