@@ -64,6 +64,13 @@ class MHO_ComputePlotData
         visibility_type* fSBDArray;
         weight_type* fWeights;
 
+
+        using xpower_type = MHO_TableContainer< std::complex<double>, MHO_AxisPack< MHO_Axis<double> > >;
+        using xpower_amp_type = MHO_TableContainer< double, MHO_AxisPack< MHO_Axis<double> > >;
+
+        MHO_MultidimensionalPaddedFastFourierTransform< xpower_type > fPaddedFFTEngine;
+        MHO_CyclicRotator< xpower_type > fCyclicRotator;
+
 };
 
 }
