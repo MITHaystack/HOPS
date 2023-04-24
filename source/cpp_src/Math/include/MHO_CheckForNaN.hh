@@ -34,21 +34,21 @@ class MHO_CheckForNaN
 
 
 template<>
-bool
+inline bool
 MHO_CheckForNaN<float>::isnan(const float& value)
 {
     return std::isnan(value);
 }
 
 template<>
-bool
+inline bool
 MHO_CheckForNaN<double>::isnan(const double& value)
 {
     return std::isnan(value);
 }
 
 template<>
-bool
+inline bool
 MHO_CheckForNaN<long double>::isnan(const long double& value)
 {
     return std::isnan(value);
@@ -56,21 +56,21 @@ MHO_CheckForNaN<long double>::isnan(const long double& value)
 
 
 template<>
-bool
+inline bool
 MHO_CheckForNaN< std::complex<float> >::isnan(const std::complex<float>& value)
 {
     return std::isnan(value.real()) || std::isnan(value.imag());
 }
 
 template<>
-bool
+inline bool
 MHO_CheckForNaN< std::complex<double> >::isnan(const std::complex<double>& value)
 {
     return std::isnan(value.real()) || std::isnan(value.imag());
 }
 
 template<>
-bool
+inline bool
 MHO_CheckForNaN< std::complex<long double> >::isnan(const std::complex<long double>& value)
 {
     return std::isnan(value.real()) || std::isnan(value.imag());
