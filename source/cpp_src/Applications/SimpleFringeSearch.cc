@@ -52,6 +52,8 @@ struct c_block* cb_head; //global extern kludge (due to stupid c-library interfa
 #include "MHO_MBDelaySearch.hh"
 #include "MHO_InterpolateFringePeak.hh"
 
+#include "MHO_ComputePlotData.hh"
+
 #ifdef USE_ROOT
     #include "TApplication.h"
     #include "MHO_RootCanvasManager.hh"
@@ -207,7 +209,7 @@ int main(int argc, char** argv)
     up_caster.SetArgs(bl_store_data, bl_data);
     up_caster.Initialize();
     up_caster.Execute();
-    
+
     MHO_ElementTypeCaster< weight_store_type, weight_type> wt_up_caster;
     wt_up_caster.SetArgs(wt_store_data, wt_data);
     wt_up_caster.Initialize();
@@ -374,7 +376,7 @@ int main(int argc, char** argv)
     MHO_InterpolateFringePeak fringeInterp;
     fringeInterp.SetReferenceFrequency(ref_freq);
     fringeInterp.SetMaxBins(c_sbdmax, c_mbdmax, c_drmax);
-    
+
     fringeInterp.SetSBDArray(sbd_data);
     fringeInterp.SetWeights(wt_data);
 
@@ -386,10 +388,25 @@ int main(int argc, char** argv)
     fringeInterp.Initialize();
     fringeInterp.Execute();
 
+    //todo ought to make this a more uniform/cleaner interface (probably using the common label map store)
+    double sbdelay = fringeInterp.GetSBDelay();
+    double mbdelay = fringeInterp.GetMBDelay();
+    double drate = fringeInterp.GetDelayRate();
 
     ////////////////////////////////////////////////////////////////////////////
     //PLOTTING/DEBUG
     ////////////////////////////////////////////////////////////////////////////
+
+    MHO_ComputePlotData mk_plotdata;
+
+    mk_plotdata.SetReferenceFrequency(ref_freq);
+    mk_plotdata.SetMBDelay(mbdelay);
+    mk_plotdata.SetDelayRate(drate);
+    mk_plotdata.SetSBDArray(sbd_data);
+    mk_plotdata.SetWeights(wt_data);
+
+    mk_plotdata.calc_sbd();
+
 
 
 

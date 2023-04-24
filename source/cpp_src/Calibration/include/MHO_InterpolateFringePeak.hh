@@ -38,17 +38,21 @@ class MHO_InterpolateFringePeak: public MHO_Operator
         virtual bool Initialize() override;
         virtual bool Execute() override;
 
+        double GetSBDelay() const {return fSBDelay;}
+        double GetMBDelay() const {return fMBDelay;}
+        double GetDelayRate() const {return fDelayRate;}
+
     private:
 
         int fMBDMaxBin;
         int fDRMaxBin;
         int fSBDMaxBin;
-    
+
         double fRefFreq;
         double fTotalSummedWeights;
         visibility_type* fSBDArray;
         weight_type* fWeights;
-    
+
         time_axis_type fMBDAxis;
         delay_rate_axis_type fDRAxis;
 
@@ -56,8 +60,12 @@ class MHO_InterpolateFringePeak: public MHO_Operator
 
         MHO_NDArrayWrapper<double, 3> fDRF;
 
+        double fSBDelay;
+        double fMBDelay;
+        double fDelayRate;
+
         //copy of max555.c impl
-        void max555 (MHO_NDArrayWrapper<double, 3>&, double xlim[3][2], double xi[3], double *drfmax);  
+        void max555 (MHO_NDArrayWrapper<double, 3>&, double xlim[3][2], double xi[3], double *drfmax);
         void interp555 (MHO_NDArrayWrapper<double, 3>&, double xi[3], double *drfval);
         double dwin (double, double, double);
 };
