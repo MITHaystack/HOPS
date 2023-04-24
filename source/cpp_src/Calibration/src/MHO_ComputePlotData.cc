@@ -68,15 +68,14 @@ MHO_ComputePlotData::calc_sbd()
 {
     MHO_FringeRotation frot;
 
-    MHO_TableContainer< double, 1> sbd_amp;
-    MHO_TableContainer< visibility_type, 1> sbd_xpower_in;
-    MHO_TableContainer< visibility_type, 1> sbd_xpower_out;
-
+    xpower_type sbd_xpower_in;
+    xpower_type sbd_xpower_out;
+    xpower_amp_type sbd_amp;
 
     std::size_t POLPROD = 0;
-    std::size_t nchan = fSBDArray.GetDimension(CHANNEL_AXIS);
-    std::size_t nap = fSBDArray.GetDimension(TIME_AXIS);
-    std::size_t nbins = fSBDArray.GetDimension(FREQ_AXIS);
+    std::size_t nchan = fSBDArray->GetDimension(CHANNEL_AXIS);
+    std::size_t nap = fSBDArray->GetDimension(TIME_AXIS);
+    std::size_t nbins = fSBDArray->GetDimension(FREQ_AXIS);
 
     auto chan_ax = &( std::get<CHANNEL_AXIS>(*fSBDArray) );
     auto ap_ax = &(std::get<TIME_AXIS>(*fSBDArray));
@@ -89,7 +88,7 @@ MHO_ComputePlotData::calc_sbd()
 
     sbd_amp.Resize(nbins);
     sbd_xpower_in.Resize(nbins);
-    sbd_xpower_out.Resize(2*nbins); //interpolate factor of 2
+    sbd_xpower_out.Resize(4*nbins); //interpolation
 
     sbd_xpower_in.ZeroArray();
     sbd_xpower_out.ZeroArray();
@@ -97,18 +96,18 @@ MHO_ComputePlotData::calc_sbd()
     //loop over all 'lags' and sum over channel/ap
     for(std::size_t i=0; i<nbins; i++)
     {
-        visibility_element_type sum = 0;
+        std::complex<double> sum = 0;
         for(std::size_t ch=0; ch < nchan; ch++)
         {
             double freq = (*chan_ax)(ch);//sky freq of this channel
             for(std::size_t ap=0; ap < nap; ap++)
             {
                 double tdelta = ap_ax->at(ap) + ap_delta/2.0 - midpoint_time; //need time difference from the f.r.t?
-                visibility_element_type vis = (*fSBDArray)(POLPROD, ch, ap, i);
-                visibility_element_type vr = frot.vrot(tdelta, freq, fRefFreq, fDelayRate, fMBDelay);
-                visibility_element_type z = vis*vr;
+                std::complex<double> vis = (*fSBDArray)(POLPROD, ch, ap, i);
+                std::complex<double> vr = frot.vrot(tdelta, freq, fRefFreq, fDelayRate, fMBDelay);
+                std::complex<double> z = vis*vr;
                 //apply weight and sum
-                weight_element_type w = (*fWeights)(POLPROD, ch, ap, 0);
+                double w = (*fWeights)(POLPROD, ch, ap, 0);
                 sum += w*z;
             }
         }
@@ -117,66 +116,92 @@ MHO_ComputePlotData::calc_sbd()
     }
 
 
+    fCyclicRotator.SetOffset(FREQ_AXIS, nbins/2);
+    fCyclicRotator.SetArgs(&sbd_xpower_in);
+    bool status = fCyclicRotator.Initialize();
+    if(!status){msg_error("operators", "Could not initialize cyclic rotation." << eom); }
 
-                                            // Calculate single band delay,
-                                            // Xpower spectrum, & sbdbox
-        for (i = 0; i < 2*MAXLAG; i++)
-            X[i] = 0.0;
-        for (i = 0; i < 4*MAXLAG; i++)
-            Y[i] = 0.0;
-        for (i = 0; i < MAXFREQ; i++)
-            {
-            max[i] = 0.0;
-            maxchan[i] = 0;
-            }
-        nl = param.nlags;
-        for (lag = 0; lag < nl * 2; lag++)
-            {
-            for (fr = 0; fr < pass->nfreq; fr++)
-                {
-                sum = 0.0;
-                for (ap = pass->ap_off; ap < pass->ap_off+pass->num_ap; ap++)
-                    {
-                    datum = pdata[fr].data + ap;
-                    Z = datum->sbdelay[lag]
-                      * vrot (ap, status.dr_max_global, status.mbd_max_global, fr, 0, pass);
-                                            // sb correction made by spectral below
-                                            // Weight by fractional AP
-                    frac = 0.0;
-                    if (datum->usbfrac >= 0.0) frac  = datum->usbfrac;
-                    if (datum->lsbfrac >= 0.0) frac += datum->lsbfrac;
-                                            // When both sidebands added together,
-                                            // we use the mean fraction
-                    if ((datum->usbfrac >= 0.0) && (datum->lsbfrac >= 0.0)) frac /= 2.0;
-                    Z = Z * frac;
+    fPaddedFFTEngine.SetArgs(&sbd_xpower_in, &sbd_xpower_out);
+    fPaddedFFTEngine.DeselectAllAxes();
+    fPaddedFFTEngine.SelectAxis(FREQ_AXIS); //only perform padded fft on frequency (to lag) axis
+    fPaddedFFTEngine.SetForward();//forward DFT
+    fPaddedFFTEngine.SetPaddingFactor(4);
 
-                    sum = Z + sum;
-                    }
-                                            // sbsp is singleband spect. for each freq
-                                            // X is singleb sp. summed over all freq's
-                //sbsp[fr][lag] = sum;
-                X[lag] = X[lag] + sum;
-                                            // Find the max lag for each frequency
-                if (abs_complex(sum) > max[fr])
-                    {
-                    max[fr] = abs_complex (sum);
-                    maxchan[fr] = lag;
-                    }
-                }
-            plot.sb_amp[lag] = abs_complex(X[lag]) / status.total_ap_frac;
+    //TODO FIXME...currently this treats all channels as USB or LSB (but what if we have a mixed case?)
+    //for LSB data we flip as well as pad
+    // if(!fIsUSB){fPaddedFFTEngine.SetEndPadded();}
+    // else{fPaddedFFTEngine.SetReverseEndPadded();}
 
-            if (lag == status.max_delchan)
-                status.coh_avg_phase = arg_complex (X[lag]);
-            j = lag - nl;
-            if (j < 0)
-                j += 4 * nl;
-            if (lag == 0)
-                j = 2 * nl;             // pure real lsb/dc channel goes in middle
-            Y[j] = X[lag];
-            }
-                                            // FFT sband spectrum -> XPower spectrum
-        fftplan = fftw_plan_dft_1d (4 * nl, (fftw_complex*) Y, (fftw_complex*) Y, FFTW_FORWARD, FFTW_ESTIMATE);
-        fftw_execute (fftplan);
+    status = fPaddedFFTEngine.Initialize();
+    if(!status){msg_error("operators", "Could not initialize padded FFT." << eom);}
+
+
+    status = fCyclicRotator.Execute();
+    status = fPaddedFFTEngine.Execute();
+
+
+        // 
+        // 
+        // 
+        //                                     // Calculate single band delay,
+        //                                     // Xpower spectrum, & sbdbox
+        // for (i = 0; i < 2*MAXLAG; i++)
+        //     X[i] = 0.0;
+        // for (i = 0; i < 4*MAXLAG; i++)
+        //     Y[i] = 0.0;
+        // for (i = 0; i < MAXFREQ; i++)
+        //     {
+        //     max[i] = 0.0;
+        //     maxchan[i] = 0;
+        //     }
+        // nl = param.nlags;
+        // for (lag = 0; lag < nl * 2; lag++)
+        //     {
+        //     for (fr = 0; fr < pass->nfreq; fr++)
+        //         {
+        //         sum = 0.0;
+        //         for (ap = pass->ap_off; ap < pass->ap_off+pass->num_ap; ap++)
+        //             {
+        //             datum = pdata[fr].data + ap;
+        //             Z = datum->sbdelay[lag]
+        //               * vrot (ap, status.dr_max_global, status.mbd_max_global, fr, 0, pass);
+        //                                     // sb correction made by spectral below
+        //                                     // Weight by fractional AP
+        //             frac = 0.0;
+        //             if (datum->usbfrac >= 0.0) frac  = datum->usbfrac;
+        //             if (datum->lsbfrac >= 0.0) frac += datum->lsbfrac;
+        //                                     // When both sidebands added together,
+        //                                     // we use the mean fraction
+        //             if ((datum->usbfrac >= 0.0) && (datum->lsbfrac >= 0.0)) frac /= 2.0;
+        //             Z = Z * frac;
+        // 
+        //             sum = Z + sum;
+        //             }
+        //                                     // sbsp is singleband spect. for each freq
+        //                                     // X is singleb sp. summed over all freq's
+        //         //sbsp[fr][lag] = sum;
+        //         X[lag] = X[lag] + sum;
+        //                                     // Find the max lag for each frequency
+        //         if (abs_complex(sum) > max[fr])
+        //             {
+        //             max[fr] = abs_complex (sum);
+        //             maxchan[fr] = lag;
+        //             }
+        //         }
+        //     plot.sb_amp[lag] = abs_complex(X[lag]) / status.total_ap_frac;
+        // 
+        //     if (lag == status.max_delchan)
+        //         status.coh_avg_phase = arg_complex (X[lag]);
+        //     j = lag - nl;
+        //     if (j < 0)
+        //         j += 4 * nl;
+        //     if (lag == 0)
+        //         j = 2 * nl;             // pure real lsb/dc channel goes in middle
+        //     Y[j] = X[lag];
+        //     }
+        //                                     // FFT sband spectrum -> XPower spectrum
+        // fftplan = fftw_plan_dft_1d (4 * nl, (fftw_complex*) Y, (fftw_complex*) Y, FFTW_FORWARD, FFTW_ESTIMATE);
+        // fftw_execute (fftplan);
 
         // // scale crosspower spectra for correct amplitude
         // for (i = 0; i < 2*nl; i++)
