@@ -382,7 +382,7 @@ int main(int argc, char** argv)
     fringeInterp.SetSBDArray(sbd_data);
     fringeInterp.SetWeights(wt_data);
 
-    //TODO fix me -- we shouldn't be referencing internal members of the MHO_MBDelaySearch class workspace
+    #pragma message("TODO FIXME -- we shouldn't be referencing internal members of the MHO_MBDelaySearch class workspace")
     //Figure out how best to present this axis data to the fine-interp function.
     fringeInterp.SetMBDAxis( mbdSearch.GetMBDAxis());
     fringeInterp.SetDRAxis( mbdSearch.GetDRAxis());
@@ -408,7 +408,7 @@ int main(int argc, char** argv)
     mk_plotdata.SetSBDArray(sbd_data);
     mk_plotdata.SetWeights(wt_data);
 
-    mk_plotdata.calc_sbd();
+    auto sbd_amp = mk_plotdata.calc_sbd();
 
     //test stuff
     py::scoped_interpreter guard{}; // start the interpreter and keep it alive, need this or we segfault

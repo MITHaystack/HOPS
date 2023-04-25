@@ -131,7 +131,7 @@ MHO_ComputePlotData::calc_mbd()
         
 }
 
-void
+xpower_amp_type
 MHO_ComputePlotData::calc_sbd()
 {
 
@@ -192,6 +192,7 @@ MHO_ComputePlotData::calc_sbd()
         std::cout<<"sbd_amp @ "<< i << " = " << sbd_amp(i) <<std::endl; //at this point SBD AMP is correct
     }
 
+    return sbd_amp;
 
     /*
 

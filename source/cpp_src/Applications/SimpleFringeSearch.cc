@@ -405,7 +405,7 @@ int main(int argc, char** argv)
     mk_plotdata.SetSBDArray(sbd_data);
     mk_plotdata.SetWeights(wt_data);
 
-    mk_plotdata.calc_sbd();
+    auto sbd_amp = mk_plotdata.calc_sbd();
 
 
 
