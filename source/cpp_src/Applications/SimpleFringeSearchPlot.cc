@@ -16,6 +16,7 @@ extern "C"
 #include "ffcontrol.h"
 struct c_block* cb_head; //global extern kludge (due to stupid c-library interface)
 
+
 #ifndef HOPS3_USE_CXX
 }
 #endif
@@ -53,12 +54,14 @@ struct c_block* cb_head; //global extern kludge (due to stupid c-library interfa
 
 #include "MHO_ComputePlotData.hh"
 
-#ifdef USE_ROOT
-    #include "TApplication.h"
-    #include "MHO_RootCanvasManager.hh"
-    #include "MHO_RootGraphManager.hh"
-#endif
 
+//pybind11 stuff to interface with python
+#include <pybind11/pybind11.h>
+#include <pybind11/embed.h>
+#include "pybind11_json/pybind11_json.hpp"
+namespace py = pybind11;
+namespace nl = nlohmann;
+using namespace pybind11::literals;
 
 using namespace hops;
 
@@ -407,136 +410,16 @@ int main(int argc, char** argv)
 
     mk_plotdata.calc_sbd();
 
+    //test stuff
+    py::scoped_interpreter guard{}; // start the interpreter and keep it alive, need this or we segfault
+    py::dict obj = py::dict("number"_a=1234, "hello"_a="world");
+    // Automatic py::dict->nl::json conversion
+    nl::json j = obj;
+    // Automatic nl::json->py::object conversion
+    py::object result1 = j;
+    // Automatic nl::json->py::dict conversion
+    py::dict result2 = j;
 
-
-
-    //#ifdef USE_ROOT
-    #ifdef NOT_DISABLED
-
-    std::cout<<"starting root plotting"<<std::endl;
-
-    //ROOT stuff for plots
-
-    int dummy_argc = 0;
-    char tmp = '\0';
-    char* argv_placeholder = &tmp;
-    char** dummy_argv = &argv_placeholder;
-
-    TApplication* App = new TApplication("test",&dummy_argc,dummy_argv);
-
-    MHO_RootCanvasManager cMan;
-    MHO_RootGraphManager gMan;
-
-    MHO_ExtremaSearch< MHO_NDArrayView< visibility_element_type, 2 > > mSearch;
-    MHO_ExtremaSearch< MHO_NDArrayView< visibility_element_type, 1 > > mbdSearch;
-
-    auto dr_rate_ax = std::get<TIME_AXIS>(*sbd_dr_data);
-    auto delay_ax = std::get<FREQ_AXIS>(*sbd_dr_data);
-
-    //divide out the reference frequency (need to think about this )
-    double rescale = 1.0/6.0;//ref freq = 6GHz (axis is then in nanosec/sec)
-    for(std::size_t d=0; d<dr_rate_ax.GetSize(); d++)
-    {
-        dr_rate_ax(d) *= rescale;
-    }
-
-
-
-
-    for(std::size_t ch=0; ch<bl_dim[CHANNEL_AXIS]; ch++)
-    {
-        std::stringstream ss;
-        ss << "channel_test";
-        ss << ch;
-
-        auto c = cMan.CreateCanvas(ss.str().c_str(), 800, 800);
-        auto ch_slice = sbd_dr_data->SliceView(0,ch,":",":");
-        mSearch.SetArgs(&ch_slice);
-        mSearch.Initialize();
-        mSearch.Execute();
-
-        //really dumb/simple way of looking at the location of the delay/dr_rate max location
-        double vmax = mSearch.GetMax();
-        double vmin = mSearch.GetMin();
-        std::size_t max_loc = mSearch.GetMaxLocation();
-        std::size_t min_loc = mSearch.GetMinLocation();
-        auto loc_array = ch_slice.GetIndicesForOffset(max_loc);
-        std::cout<<ss.str()<<": max = "<<vmax<<" at index location: ("<<loc_array[0]<<", "<<loc_array[1] <<")  = ("
-        <<dr_rate_ax(loc_array[0])<<", "<<delay_ax(loc_array[1])<<") " <<std::endl;
-        visibility_element_type val = ch_slice(loc_array[0], loc_array[1]);
-        std::cout<<"max mag = "<<std::abs(val)<<", arg = "<<std::arg(val)*(180./M_PI)<<std::endl;
-
-        auto gr = gMan.GenerateComplexGraph2D(ch_slice, dr_rate_ax, delay_ax, ROOT_CMPLX_PLOT_ABS );
-
-        //at the sbd, dr max locations, lets look for the mbd max too
-        auto mbd_slice = mbd_data.SliceView(0, ":", loc_array[0], loc_array[1]);
-        auto mbd_ax = &(std::get<CHANNEL_AXIS>(mbd_data));
-
-        if(ch==0)
-        {
-            //TODO FIXME
-            //for some reason our MBD plot axis is flipped w.r.t to fourfit plot
-            //is this a sign convention? due to LSB vs USB? Don't know right now
-            double fudge_factor = -1; //sign flip
-            for(std::size_t d=0; d<mbd_ax->GetSize(); d++)
-            {
-                (*mbd_ax)(d) *= fudge_factor;
-            }
-        }
-
-
-        // for(std::size_t x=0;x<mbd_slice.GetSize(); x++)
-        // {
-        //     std::cout<<"x, val = "<<x<<", "<<(*mbd_ax)(x)<<", "<<mbd_slice(x)<<std::endl;
-        // }
-
-        mbdSearch.SetArgs(&mbd_slice);
-        mbdSearch.Initialize();
-        mbdSearch.Execute();
-
-        auto new_mbd_ax = std::get<CHANNEL_AXIS>(mbd_data);
-        auto gr2 = gMan.GenerateComplexGraph1D(mbd_slice, *mbd_ax, ROOT_CMPLX_PLOT_ABS );
-
-        std::size_t max_mbd_loc = mbdSearch.GetMaxLocation();
-        auto mbd_loc_array = mbd_slice.GetIndicesForOffset(max_mbd_loc);
-        std::cout<<"mbd max located at: "<<mbd_loc_array[0]<<" = "<<(*mbd_ax)(mbd_loc_array[0])<<std::endl;
-
-
-
-        c->cd();
-        c->Divide(1,2);
-
-        c->cd(1);
-        c->SetTopMargin(0.1);
-        c->SetRightMargin(0.2);
-
-        gr->SetTitle( "Fringe; delay rate (ns/s); Single band delay (#mus); Amp");
-        gr->Draw("COLZ");
-        gr->GetHistogram()->GetXaxis()->CenterTitle();
-        gr->GetHistogram()->GetYaxis()->CenterTitle();
-        gr->GetHistogram()->GetZaxis()->CenterTitle();
-        gr->GetHistogram()->GetXaxis()->SetTitleOffset(1.2);
-        gr->GetHistogram()->GetYaxis()->SetTitleOffset(1.08);
-        gr->GetHistogram()->GetZaxis()->SetTitleOffset(-0.4);
-        gr->Draw("COLZ");
-
-
-
-        c->Update();
-        c->cd(2);
-        c->SetTopMargin(0.1);
-        c->SetRightMargin(0.2);
-
-        gr2->SetTitle( "Fringe; MBD; Amp");
-        gr2->Draw("APL");
-
-
-        c->Update();
-    }
-    App->Run();
-
-
-    #endif
 
 
 
