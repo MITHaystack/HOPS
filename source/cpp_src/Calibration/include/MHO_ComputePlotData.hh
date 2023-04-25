@@ -41,6 +41,7 @@ class MHO_ComputePlotData
         void SetReferenceFrequency(double ref_freq){fRefFreq = ref_freq;}
         void SetMBDelay(double mbdelay){fMBDelay = mbdelay;}
         void SetDelayRate(double dr){fDelayRate = dr;}
+        void SetSBDelay(double sbdelay){fSBDelay = sbdelay;}
 
         void SetSBDArray(visibility_type* sbd_arr){fSBDArray = sbd_arr;}
         void SetWeights(weight_type* weights){fWeights = weights;}
@@ -60,6 +61,7 @@ class MHO_ComputePlotData
         double fTotalSummedWeights;
         double fMBDelay;
         double fDelayRate;
+        double fSBDelay;
 
         visibility_type* fSBDArray;
         weight_type* fWeights;
@@ -69,6 +71,7 @@ class MHO_ComputePlotData
         using xpower_amp_type = MHO_TableContainer< double, MHO_AxisPack< MHO_Axis<double> > >;
 
         MHO_MultidimensionalPaddedFastFourierTransform< xpower_type > fPaddedFFTEngine;
+        MHO_MultidimensionalFastFourierTransform< xpower_type > fFFTEngine;
         MHO_CyclicRotator< xpower_type > fCyclicRotator;
 
 };

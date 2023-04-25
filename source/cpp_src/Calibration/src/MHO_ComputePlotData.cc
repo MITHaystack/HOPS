@@ -6,10 +6,76 @@ namespace hops
 void
 MHO_ComputePlotData::calc_mbd()
 {
+    /*
+    //grab the total summed weights 
+    double total_summed_weights = 1.0;
+    fWeights->Retrieve("total_summed_weights", total_summed_weights);
 
-/*
-    plot.dr_size = np;
-    plot.dr_size_max = npmax;
+    MHO_FringeRotation frot;
+
+    xpower_type mbd_in;
+    xpower_type mbd_out;
+    xpower_amp_type sbd_amp;
+
+    std::size_t POLPROD = 0;
+    std::size_t nchan = fSBDArray->GetDimension(CHANNEL_AXIS);
+    std::size_t nap = fSBDArray->GetDimension(TIME_AXIS);
+    //std::size_t nbins = fSBDArray->GetDimension(FREQ_AXIS);
+
+    auto chan_ax = &( std::get<CHANNEL_AXIS>(*fSBDArray) );
+    auto ap_ax = &(std::get<TIME_AXIS>(*fSBDArray));
+    auto sbd_ax = &( std::get<FREQ_AXIS>(*fSBDArray) );
+    double ap_delta = ap_ax->at(1) - ap_ax->at(0);
+    double sbd_delta = sbd_ax->at(1) - sbd_ax->at(0);
+
+    //TODO FIXME -- shoudl this be the fourfit refrence time? Also...should this be calculated elsewhere?
+    double midpoint_time = ( ap_ax->at(nap-1) + ap_delta  + ap_ax->at(0) )/2.0;
+    std::cout<<"time midpoint = "<<midpoint_time<<std::endl;
+
+
+    // Calculate multi band delay.
+    // Apply rotator to single band delay
+    // values and add up over time.
+    // MBD FFT max size hardcoded to 8192 at present
+    // set floor of 256 points in mbd plot
+    int nbins = 256;
+    //(status.grid_points < 256) ? 256 : status.grid_points;
+
+
+    sbd_amp.Resize(nbins);
+    sbd_xpower_in.Resize(nbins);
+    sbd_xpower_out.Resize(4*nbins); //interpolation
+
+    sbd_xpower_in.ZeroArray();
+    sbd_xpower_out.ZeroArray();
+
+    //loop over all 'lags' and sum over channel/ap
+    for(std::size_t i=0; i<nbins; i++)
+    {
+        std::complex<double> sum = 0;
+        for(std::size_t ch=0; ch < nchan; ch++)
+        {
+            double freq = (*chan_ax)(ch);//sky freq of this channel
+            sum = 0;
+            for(std::size_t ap=0; ap < nap; ap++)
+            {
+                double tdelta = ap_ax->at(ap) + ap_delta/2.0 - midpoint_time; //need time difference from the f.r.t?
+                std::complex<double> vis = (*fSBDArray)(POLPROD, ch, ap, i);
+                std::complex<double> vr = frot.vrot(tdelta, freq, fRefFreq, fDelayRate, fMBDelay);
+                std::complex<double> z = vis*vr;
+                //apply weight and sum
+                double w = (*fWeights)(POLPROD, ch, ap, 0);
+                sum += w*z;
+            }
+            sbd_xpower_in(i) += sum;
+        }
+        sbd_amp(i) = std::abs( sbd_xpower_in(i) )/total_summed_weights;
+        std::cout<<"sbd_amp @ "<< i << " = " << sbd_amp(i) <<std::endl; //at this point SBD AMP is correct
+    }
+
+
+
+
     plot.num_ap = pass->num_ap;
     plot.num_freq = pass->nfreq;
 
@@ -59,8 +125,10 @@ MHO_ComputePlotData::calc_mbd()
             j += plot.num_mb_pts;
         plot.mb_amp[i] = abs_complex(Y[j]) / status.total_ap_frac;
         }
-
+        
         */
+
+        
 }
 
 void
@@ -84,8 +152,9 @@ MHO_ComputePlotData::calc_sbd()
 
     auto chan_ax = &( std::get<CHANNEL_AXIS>(*fSBDArray) );
     auto ap_ax = &(std::get<TIME_AXIS>(*fSBDArray));
-
+    auto sbd_ax = &( std::get<FREQ_AXIS>(*fSBDArray) );
     double ap_delta = ap_ax->at(1) - ap_ax->at(0);
+    double sbd_delta = sbd_ax->at(1) - sbd_ax->at(0);
 
 
     //TODO FIXME -- shoudl this be the fourfit refrence time? Also...should this be calculated elsewhere?
@@ -106,6 +175,7 @@ MHO_ComputePlotData::calc_sbd()
         for(std::size_t ch=0; ch < nchan; ch++)
         {
             double freq = (*chan_ax)(ch);//sky freq of this channel
+            sum = 0;
             for(std::size_t ap=0; ap < nap; ap++)
             {
                 double tdelta = ap_ax->at(ap) + ap_delta/2.0 - midpoint_time; //need time difference from the f.r.t?
@@ -116,12 +186,16 @@ MHO_ComputePlotData::calc_sbd()
                 double w = (*fWeights)(POLPROD, ch, ap, 0);
                 sum += w*z;
             }
+            sbd_xpower_in(i) += sum;
         }
-        sbd_xpower_in(i) = sum;
-        sbd_amp(i) = std::abs(sum)/total_summed_weights;
-        std::cout<<"sbd_amp @ "<< i << " = " << sbd_amp(i) <<std::endl;
+        sbd_amp(i) = std::abs( sbd_xpower_in(i) )/total_summed_weights;
+        std::cout<<"sbd_amp @ "<< i << " = " << sbd_amp(i) <<std::endl; //at this point SBD AMP is correct
     }
 
+
+    /*
+
+    //none of the stuff to computer the xpower spectrum works below...very confusing
 
     fCyclicRotator.SetOffset(0, nbins/2);
     fCyclicRotator.SetArgs(&sbd_xpower_in);
@@ -134,6 +208,8 @@ MHO_ComputePlotData::calc_sbd()
     fPaddedFFTEngine.SetForward();//forward DFT
     fPaddedFFTEngine.SetPaddingFactor(4);
 
+    fPaddedFFTEngine.SetEndPadded(); //temp kludge
+
     //TODO FIXME...currently this treats all channels as USB or LSB (but what if we have a mixed case?)
     //for LSB data we flip as well as pad
     // if(!fIsUSB){fPaddedFFTEngine.SetEndPadded();}
@@ -143,14 +219,25 @@ MHO_ComputePlotData::calc_sbd()
     if(!status){msg_error("operators", "Could not initialize padded FFT." << eom);}
 
 
-    status = fCyclicRotator.Execute();
+    //status = fCyclicRotator.Execute();
     status = fPaddedFFTEngine.Execute();
 
     std::cout<<"done sbd calc"<<std::endl;
+    
+    //multiply the array by some stupid scale factor:
+    
+    double factor = sqrt (0.5) / (M_PI * total_summed_weights);
+    sbd_xpower_out *= factor;
 
 
-    for(std::size_t i=0; i<sbd_xpower_out.GetSize(); i++)
+    //Z = exp_complex(-cmplx_unit_I * (status.sbd_max * (i-nl) * M_PI / (status.sbd_sep * 2*nl)));
+
+    std::complex<double> imagUnit(0.0,1.0);
+    int nbs = nbins;
+    for(int i=0; i<2*nbs; i++)
     {
+        std::complex<double> z = std::exp( -1.0*imagUnit*( fSBDelay*(i-nbs)*M_PI/(sbd_delta*2*nbs) ) );
+        sbd_xpower_out(i) *= z;
         std::cout<<"|xpower| out @ "<<i<<" = "<<std::abs(sbd_xpower_out(i))<<std::endl;
     }
 
@@ -236,6 +323,8 @@ MHO_ComputePlotData::calc_sbd()
         //     Z = exp_complex(-cmplx_unit_I * (status.sbd_max * (i-nl) * M_PI / (status.sbd_sep * 2*nl)));
         //     plot.cp_spectrum[i] = Z * plot.cp_spectrum[i];
         // }
+        
+        */
 
 }
 
