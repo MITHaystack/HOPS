@@ -128,7 +128,7 @@ MHO_ScanDataStore::GetRootFileData()
     if(fRootFileName != "" )
     {
         std::ifstream ifs(fRootFileName);
-        vex_info = json::parse(ifs);
+        vex_info = mho_json::parse(ifs);
     }
     else
     {

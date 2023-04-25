@@ -139,7 +139,7 @@ MHO_DiFXBaselineProcessor::Organize()
     for(auto it = fFreqIndexSet.begin(); it != fFreqIndexSet.end(); it++)
     {
         int freqidx = *it;
-        json freq = (*fInput)["freq"][freqidx];
+        mho_json freq = (*fInput)["freq"][freqidx];
         fBaselineFreqs.push_back(  std::make_pair(freqidx,freq) );
     }
     std::sort(fBaselineFreqs.begin(), fBaselineFreqs.end(), fFreqPredicate);
@@ -280,7 +280,7 @@ MHO_DiFXBaselineProcessor::ConstructVisibilityFileObjects()
             for(auto fqit = fBaselineFreqs.begin(); fqit != fBaselineFreqs.end(); fqit++) //loop though in freq (low -> high) order
             {
                 int freqidx = fqit->first;
-                json dfreq = fqit->second;
+                mho_json dfreq = fqit->second;
                 double sky_freq = dfreq["freq"];
                 double bw = dfreq["bw"];
                 std::string sideband = dfreq["sideband"];

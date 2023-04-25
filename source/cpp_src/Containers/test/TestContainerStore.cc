@@ -64,8 +64,8 @@ int main(int argc, char** argv)
         }
     }
 
-    //convert the entire store to json 
-    json root;
+    //convert the entire store to mho_json 
+    mho_json root;
     conInter.ConvertStoreToJSON(conStore,root,eJSONTags);
 
     std::cout<< root.dump(2) <<std::endl;

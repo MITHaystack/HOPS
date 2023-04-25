@@ -41,7 +41,7 @@ MHO_MK4VexInterface::GetVex()
 
 
 bool
-MHO_MK4VexInterface::ExportVexFileToJSON(json& json_obj)
+MHO_MK4VexInterface::ExportVexFileToJSON(mho_json& json_obj)
 {
     if(fHaveVex){json_obj = fVex; return true;}
     else{return false;}

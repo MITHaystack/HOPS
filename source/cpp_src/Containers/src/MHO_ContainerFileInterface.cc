@@ -123,7 +123,7 @@ MHO_ContainerFileInterface::WriteStoreToFile(MHO_ContainerStore& store)
 
 
 void 
-MHO_ContainerFileInterface::ConvertStoreToJSON(MHO_ContainerStore& store, json& json_obj, int level_of_detail)
+MHO_ContainerFileInterface::ConvertStoreToJSON(MHO_ContainerStore& store, mho_json& json_obj, int level_of_detail)
 {
     std::vector< MHO_UUID > type_ids;
     store.GetAllTypeUUIDs(type_ids);
@@ -143,7 +143,7 @@ MHO_ContainerFileInterface::ConvertStoreToJSON(MHO_ContainerStore& store, json& 
                     converter->second->SetObjectToConvert(obj);
                     converter->second->SetLevelOfDetail(level_of_detail);
                     converter->second->ConstructJSONRepresentation();
-                    json j = *(converter->second->GetJSON());
+                    mho_json j = *(converter->second->GetJSON());
                     std::string object_uuid = it2->as_string();
                     json_obj[object_uuid] = j;
                 }
@@ -156,7 +156,7 @@ MHO_ContainerFileInterface::ConvertStoreToJSON(MHO_ContainerStore& store, json& 
 void 
 MHO_ContainerFileInterface::ConvertObjectInStoreToJSON(MHO_ContainerStore& store,
                                                        const MHO_UUID& obj_uuid,
-                                                       json& json_obj, 
+                                                       mho_json& json_obj, 
                                                        int level_of_detail)
 {
     std::vector< MHO_UUID > type_ids;
@@ -178,7 +178,7 @@ MHO_ContainerFileInterface::ConvertObjectInStoreToJSON(MHO_ContainerStore& store
                         converter->second->SetObjectToConvert(obj);
                         converter->second->SetLevelOfDetail(level_of_detail);
                         converter->second->ConstructJSONRepresentation();
-                        json j = *(converter->second->GetJSON());
+                        mho_json j = *(converter->second->GetJSON());
                         std::string object_uuid = it2->as_string();
                         json_obj[object_uuid] = j;
                     }

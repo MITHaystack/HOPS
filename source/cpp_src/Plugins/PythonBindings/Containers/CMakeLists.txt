@@ -15,7 +15,6 @@ hops_internal_include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 #set libraries to link agains library (headers only) ###########################
 set(PYCONTAINER_LIBS MHO_Message MHO_Utilities MHO_Containers)
 
-
 #create and install the python module
 pybind11_add_module(pyMHO_Containers SHARED ${PYCONTAINER_SOURCEFILES})
 
