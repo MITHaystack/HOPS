@@ -402,6 +402,7 @@ int main(int argc, char** argv)
     mk_plotdata.SetReferenceFrequency(ref_freq);
     mk_plotdata.SetMBDelay(mbdelay);
     mk_plotdata.SetDelayRate(drate);
+    mk_plotdata.SetSBDelay(sbdelay);
     mk_plotdata.SetSBDArray(sbd_data);
     mk_plotdata.SetWeights(wt_data);
 
