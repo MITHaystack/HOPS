@@ -37,9 +37,9 @@ const int NUMBEROFFFITCHAN = 16;
 
 namespace hops {
 
-json convertToJSON(const type_205 &t) {
+mho_json convertToJSON(const type_205 &t) {
   int ffitChannel;
-  json JSONFfitChannels[NUMBEROFFFITCHAN];
+  mho_json JSONFfitChannels[NUMBEROFFFITCHAN];
 
   // because ffit_can is an unnamed struct, we can't pass it to functions easily
   // so the following had to be done

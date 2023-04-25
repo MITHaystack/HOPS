@@ -199,7 +199,7 @@ int main(int argc, char** argv)
 
     MHO_MK4VexInterface vexInter;
     vexInter.OpenVexFile(root_file);
-    json ovex;
+    mho_json ovex;
     bool ovex_ok = vexInter.ExportVexFileToJSON(ovex);
     if(ovex_ok)
     {

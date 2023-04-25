@@ -31,7 +31,7 @@
 
 namespace hops {
 
-  json convertToJSON(const type_200 &t) {
+  mho_json convertToJSON(const type_200 &t) {
     return {
       // logic to handle edge cases where the exper_name and scan_name are 32
       // chars and correlator is 8 chars

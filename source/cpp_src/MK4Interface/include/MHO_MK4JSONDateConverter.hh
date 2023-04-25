@@ -35,7 +35,7 @@ namespace hops
 * @return JSON string
 */
 
-json convertDateToJSON(const date &t);
+mho_json convertDateToJSON(const date &t);
 
 }
 

@@ -41,7 +41,7 @@ int main(int argc, char **argv) {
   my208.totphase_ref = 2.22;
   my208.tec_error = 2.22;
 
-  json obj = convertToJSON(my208);
+  mho_json obj = convertToJSON(my208);
   std::cout << obj.dump(2) << std::endl;
 
   return 0;

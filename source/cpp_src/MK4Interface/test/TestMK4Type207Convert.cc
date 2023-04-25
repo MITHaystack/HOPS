@@ -57,7 +57,7 @@ int main(int argc, char **argv) {
     my207.rem_errate[i] = 4.44;
   }
 
-  json obj = convertToJSON(my207);
+  mho_json obj = convertToJSON(my207);
   std::cout << obj.dump(2) << std::endl;
 
   return 0;

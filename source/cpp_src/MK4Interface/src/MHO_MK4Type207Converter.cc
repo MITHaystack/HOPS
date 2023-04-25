@@ -33,13 +33,13 @@ const int REFANDREMSIZE = 64;
 
 namespace hops {
 
-json sidebandsToJSON(const sbandf &t) {
+mho_json sidebandsToJSON(const sbandf &t) {
   return {{"lsb", t.lsb}, {"usb", t.usb}};
 }
 
-json sidebandsArrayToJSON(const sbandf t[REFANDREMSIZE]) {
+mho_json sidebandsArrayToJSON(const sbandf t[REFANDREMSIZE]) {
   int i;
-  json JSONsidebandsArray[REFANDREMSIZE];
+  mho_json JSONsidebandsArray[REFANDREMSIZE];
 
   for (i = 0; i < REFANDREMSIZE; i++) {
     JSONsidebandsArray[i] = sidebandsToJSON(t[i]);
@@ -47,16 +47,16 @@ json sidebandsArrayToJSON(const sbandf t[REFANDREMSIZE]) {
   return JSONsidebandsArray;
 }
 
-json floatToJSON(const float t[REFANDREMSIZE]) {
+mho_json floatToJSON(const float t[REFANDREMSIZE]) {
   int i;
-  json errate;
+  mho_json errate;
   for (i = 0; i < REFANDREMSIZE; i++) {
     errate[i] = t[i];
   }
   return errate;
 }
 
-json convertToJSON(const type_207 &t) {
+mho_json convertToJSON(const type_207 &t) {
   return {{"record_id", std::string(t.record_id, 3).c_str()},
           {"version_no", std::string(t.version_no, 2).c_str()},
           {"unused1", std::string(t.unused1, 2).c_str()},

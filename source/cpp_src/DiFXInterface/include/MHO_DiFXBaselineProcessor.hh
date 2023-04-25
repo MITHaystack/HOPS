@@ -33,7 +33,7 @@ class MHO_DiFXBaselineProcessor
         virtual ~MHO_DiFXBaselineProcessor();
 
         int GetBaselineID() const {return fBaselineID;};
-        void SetDiFXInputData(const json* input){fInput = input;}
+        void SetDiFXInputData(const mho_json* input){fInput = input;}
         void SetRootCode(std::string rcode){fRootCode = rcode;}
 
         //apply mk4 style visibility normalization
@@ -74,7 +74,7 @@ class MHO_DiFXBaselineProcessor
         //the station 2-char to 1-char code map (user specified)
         MHO_StationCodeMap* fStationCodeMap;
 
-        const json* fInput;
+        const mho_json* fInput;
         std::vector< MHO_DiFXVisibilityRecord* > fRecords;
         //for a single baseline, maps pol-pair, then freqindex to visiblity records 
         //needed to recorganized the visibilities into tables 
@@ -95,7 +95,7 @@ class MHO_DiFXBaselineProcessor
         double fScaleFactor;
 
         //list of channel frequencies for this baseline, sorted in ascending order (freq)
-        std::vector< std::pair<int, json> > fBaselineFreqs;
+        std::vector< std::pair<int, mho_json> > fBaselineFreqs;
 
         //the baseline data in hops data containers
         weight_type* fW;
@@ -116,7 +116,7 @@ class MHO_DiFXBaselineProcessor
         //comparison predicate for sorting index-frequency record pairs
         struct FreqIndexPairLess
         {
-            bool operator()(const std::pair<int, json>& a, const std::pair<int, json>& b) const 
+            bool operator()(const std::pair<int, mho_json>& a, const std::pair<int, mho_json>& b) const 
             {
                 double a_freq = a.second["freq"];
                 double b_freq = b.second["freq"];

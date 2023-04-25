@@ -61,7 +61,7 @@ int main(int argc, char** argv)
     std::cout<<"Converting "<<conStore.GetNObjects()<<" objects."<<std::endl;
 
     //convert the entire store to json 
-    json root;
+    mho_json root;
     conInter.ConvertStoreToJSON(conStore,root,detail);
 
     //open and dump to file 

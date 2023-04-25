@@ -25,7 +25,7 @@
 
 namespace hops {
 
-json convertToJSON(const type_204 &t) {
+mho_json convertToJSON(const type_204 &t) {
   return {{"record_id", std::string(t.record_id, 3).c_str()},
           {"version_no", std::string(t.version_no, 2).c_str()},
           {"ff_version", t.ff_version},

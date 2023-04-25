@@ -19,7 +19,7 @@ int main(int argc, char **argv) {
     my210.amp_phas[i].phase = 22.22;
   }
 
-  json obj = convertToJSON(my210);
+  mho_json obj = convertToJSON(my210);
   std::cout << obj.dump(2) << std::endl;
 
   return 0;

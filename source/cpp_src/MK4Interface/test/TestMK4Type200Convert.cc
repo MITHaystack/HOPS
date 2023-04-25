@@ -47,7 +47,7 @@ int main(int argc, char **argv) {
   my200.frt.minute = 22;
   my200.frt.second = 22;
 
-  json obj = convertToJSON(my200);
+  mho_json obj = convertToJSON(my200);
 
   std::cout << obj.dump(2) << std::endl;
 

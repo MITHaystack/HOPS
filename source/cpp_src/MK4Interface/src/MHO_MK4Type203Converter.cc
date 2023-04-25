@@ -36,15 +36,15 @@ const int NUMBEROFCHANNELS = 8 * MAXFREQ;
 
 namespace hops {
 
-json convertToJSON(const type_203 &t) {
+mho_json convertToJSON(const type_203 &t) {
   return {{"record_id", std::string(t.record_id, 3).c_str()},
           {"version_no", std::string(t.version_no, 2).c_str()},
           {"channels", convertChannelArrayToJSON(t)}};
 }
 
-json convertChannelArrayToJSON(const type_203 &t) {
+mho_json convertChannelArrayToJSON(const type_203 &t) {
   int channel;
-  json JSONChannels[NUMBEROFCHANNELS];
+  mho_json JSONChannels[NUMBEROFCHANNELS];
 
   for (channel = 0; channel < NUMBEROFCHANNELS; channel++) {
     JSONChannels[channel] = convertChannelToJSON(t.channels[channel]);
@@ -52,7 +52,7 @@ json convertChannelArrayToJSON(const type_203 &t) {
   return JSONChannels;
 }
 
-json convertChannelToJSON(const ch_struct &t) {
+mho_json convertChannelToJSON(const ch_struct &t) {
   return {{"index", t.index},
           {"sample_rate", t.sample_rate},
           {"refsb", t.refsb},
