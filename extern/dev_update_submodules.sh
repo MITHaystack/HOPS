@@ -24,5 +24,6 @@ rm ./pybind11.tar.gz
 
 cp ./submodules/json/single_include/nlohmann/json.hpp ./json/include/json.hh
 
+cp ./submodules/pybind11_json/include/pybind11_json/pybind11_json.hpp ./pybind11_json/include/pybind11_json.hpp
 
 
