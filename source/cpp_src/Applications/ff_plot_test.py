@@ -331,4 +331,5 @@ def fourfit_plot(plot_dict, filename):
     # plt.text(0.965,0.92,'pol '+plot_dict['PolStr'].strip("'"),transform=plt.gcf().transFigure,
     #          fontsize=10,verticalalignment='top',family='sans-serif',horizontalalignment='right',fontweight='bold')
     #
+    #pylab.show()
     pylab.savefig(filename)
