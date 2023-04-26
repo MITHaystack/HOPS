@@ -41,6 +41,10 @@ class MHO_InterpolateFringePeak: public MHO_Operator
         double GetSBDelay() const {return fSBDelay;}
         double GetMBDelay() const {return fMBDelay;}
         double GetDelayRate() const {return fDelayRate;}
+        double GetFringeRate() const {return fFringeRate;}
+
+        // double GetAmp() const {return fAmp;}
+        // double GetPhase() const {return fPhase;}
 
     private:
 
@@ -63,6 +67,11 @@ class MHO_InterpolateFringePeak: public MHO_Operator
         double fSBDelay;
         double fMBDelay;
         double fDelayRate;
+        double fFringeRate;
+
+        //at max
+        double fAmp;
+        double fPhase;
 
         //copy of max555.c impl
         void max555 (MHO_NDArrayWrapper<double, 3>&, double xlim[3][2], double xi[3], double *drfmax);

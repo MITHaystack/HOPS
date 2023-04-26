@@ -39,15 +39,15 @@ hops_install_executables( ${SOURCE_BASENAMES} )
 # #(temporary measure while we try to debug/transition)
 # set(FFMATH_RELPATH "../../c_src/fourfit_libs/ffmath")
 # list(APPEND RELPATH_LIST ${FFMATH_RELPATH})
-# 
+#
 # foreach(path ${RELPATH_LIST})
 #     hops_internal_include_directories(${CMAKE_CURRENT_SOURCE_DIR}/${path}/include)
 # endforeach(path)
-# 
+#
 # set(OLD_DEV_TEST_LIBS "ffmath")
-# 
+#
 # list(APPEND OLD_DEV_SOURCE_BASENAMES
-# 
+#
 # )
 # foreach( BASENAME ${OLD_DEV_SOURCE_BASENAMES} )
 #     add_executable( ${BASENAME} ${BASENAME}.cc )
@@ -64,12 +64,17 @@ if(HOPS_USE_PYBIND11)
     list(APPEND PYBIND_TEST_BASENAMES
         SimpleFringeSearchPlot
     )
-    
+
     foreach( BASENAME ${PYBIND_TEST_BASENAMES} )
         add_executable( ${BASENAME} ${BASENAME}.cc )
         target_link_libraries( ${BASENAME} ${HOPS_TEST_LIBS} ${PYBIND_TEST_LIBS})
     endforeach( BASENAME )
     hops_install_executables( ${PYBIND_TEST_BASENAMES} )
+
+    #temp work around until we do this properly
+    install(PROGRAMS "${CMAKE_CURRENT_SOURCE_DIR}/ff_plot_test.py" DESTINATION ${PYTHON_MODULE_INSTALL_DIR})
+
+
 
 endif(HOPS_USE_PYBIND11)
 
