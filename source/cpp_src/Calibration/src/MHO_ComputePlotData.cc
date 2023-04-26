@@ -7,7 +7,7 @@ void
 MHO_ComputePlotData::calc_mbd()
 {
     /*
-    //grab the total summed weights 
+    //grab the total summed weights
     double total_summed_weights = 1.0;
     fWeights->Retrieve("total_summed_weights", total_summed_weights);
 
@@ -125,17 +125,17 @@ MHO_ComputePlotData::calc_mbd()
             j += plot.num_mb_pts;
         plot.mb_amp[i] = abs_complex(Y[j]) / status.total_ap_frac;
         }
-        
+
         */
 
-        
+
 }
 
 xpower_amp_type
 MHO_ComputePlotData::calc_sbd()
 {
 
-    //grab the total summed weights 
+    //grab the total summed weights
     double total_summed_weights = 1.0;
     fWeights->Retrieve("total_summed_weights", total_summed_weights);
 
@@ -189,6 +189,7 @@ MHO_ComputePlotData::calc_sbd()
             sbd_xpower_in(i) += sum;
         }
         sbd_amp(i) = std::abs( sbd_xpower_in(i) )/total_summed_weights;
+        std::get<0>(sbd_amp)(i) = (*sbd_ax)(i);
         std::cout<<"sbd_amp @ "<< i << " = " << sbd_amp(i) <<std::endl; //at this point SBD AMP is correct
     }
 
@@ -224,9 +225,9 @@ MHO_ComputePlotData::calc_sbd()
     status = fPaddedFFTEngine.Execute();
 
     std::cout<<"done sbd calc"<<std::endl;
-    
+
     //multiply the array by some stupid scale factor:
-    
+
     double factor = sqrt (0.5) / (M_PI * total_summed_weights);
     sbd_xpower_out *= factor;
 
@@ -242,9 +243,9 @@ MHO_ComputePlotData::calc_sbd()
         std::cout<<"|xpower| out @ "<<i<<" = "<<std::abs(sbd_xpower_out(i))<<std::endl;
     }
 
-        // 
-        // 
-        // 
+        //
+        //
+        //
         //                                     // Calculate single band delay,
         //                                     // Xpower spectrum, & sbdbox
         // for (i = 0; i < 2*MAXLAG; i++)
@@ -276,7 +277,7 @@ MHO_ComputePlotData::calc_sbd()
         //                                     // we use the mean fraction
         //             if ((datum->usbfrac >= 0.0) && (datum->lsbfrac >= 0.0)) frac /= 2.0;
         //             Z = Z * frac;
-        // 
+        //
         //             sum = Z + sum;
         //             }
         //                                     // sbsp is singleband spect. for each freq
@@ -291,7 +292,7 @@ MHO_ComputePlotData::calc_sbd()
         //             }
         //         }
         //     plot.sb_amp[lag] = abs_complex(X[lag]) / status.total_ap_frac;
-        // 
+        //
         //     if (lag == status.max_delchan)
         //         status.coh_avg_phase = arg_complex (X[lag]);
         //     j = lag - nl;
@@ -324,7 +325,7 @@ MHO_ComputePlotData::calc_sbd()
         //     Z = exp_complex(-cmplx_unit_I * (status.sbd_max * (i-nl) * M_PI / (status.sbd_sep * 2*nl)));
         //     plot.cp_spectrum[i] = Z * plot.cp_spectrum[i];
         // }
-        
+
         */
 
 }

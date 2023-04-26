@@ -417,6 +417,7 @@ int main(int argc, char** argv)
     for(std::size_t i=0;i<npts;i++)
     {
         plot_dict["SBD_AMP"].push_back( sbd_amp(i) );
+        plot_dict["SBD_AMP_XAXIS"].push_back( std::get<0>(sbd_amp)(i) );
     }
 
 

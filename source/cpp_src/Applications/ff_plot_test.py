@@ -38,7 +38,8 @@ def fourfit_plot(plot_dict, filename):
 
     # build x-axis arrays for SBD, MBD, delayrate, Xpow spec, etc
 
-    sbd_x = np.arange(-4,4,8/len(plot_dict['SBD_AMP']))
+    #sbd_x = np.arange(-4,4,8/len(plot_dict['SBD_AMP']))
+    sbd_x = plot_dict['SBD_AMP_XAXIS']
     # mbd_x = np.arange(-0.1,0.1,0.2/len(plot_dict['MBD_AMP']))
     # dly_x = np.arange(-0.225,0.225,0.45/len(plot_dict['DLYRATE']))
     # xpow_x = np.arange(-2,2,4.0/len(plot_dict['XPSPEC-ABS']))
@@ -85,7 +86,7 @@ def fourfit_plot(plot_dict, filename):
     ax3 = plt.subplot2grid((16,8),(5,0),rowspan=3,colspan=3)
 
     ax3.plot(sbd_x, plot_dict['SBD_AMP'],'g-',linewidth=0.8)
-    ax3.set_xlim(-4,4)
+    ax3.set_xlim(sbd_x[0],sbd_x[-1])
     ax3.set_ylim(bottom=0)
     ax3.set_xlabel(r'singleband delay ($\mu$s)',fontsize=9)
     plt.xticks(fontsize=8)
