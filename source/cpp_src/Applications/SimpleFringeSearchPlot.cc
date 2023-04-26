@@ -394,6 +394,7 @@ int main(int argc, char** argv)
     double sbdelay = fringeInterp.GetSBDelay();
     double mbdelay = fringeInterp.GetMBDelay();
     double drate = fringeInterp.GetDelayRate();
+    double frate = fringeInterp.GetFringeRate();
 
     ////////////////////////////////////////////////////////////////////////////
     //PLOTTING/DEBUG
@@ -410,15 +411,57 @@ int main(int argc, char** argv)
 
     auto sbd_amp = mk_plotdata.calc_sbd();
 
+
+    mho_json plot_dict;
+    std::size_t npts = sbd_amp.GetSize();
+    for(std::size_t i=0;i<npts;i++)
+    {
+        plot_dict["SBD_AMP"].push_back( sbd_amp(i) );
+    }
+
+
+    plot_dict["Quality"] = "0"; //push_back('9');  plot_dict["Quality"].push_back('G');
+    plot_dict["SNR"] = 0.;
+    plot_dict["IntgTime"] = 0.;
+    plot_dict["Amp"] = 0.;
+    plot_dict["ResPhase"] = 0.;
+    plot_dict["PFD"] = "-";
+
+    plot_dict["ResidSbd(us)"] = sbdelay;
+    plot_dict["ResidMbd(us)"] = mbdelay;
+    plot_dict["FringeRate(Hz)"]  = frate;
+    plot_dict["IonTEC(TEC)"] = "-";
+    plot_dict["RefFreq(MHz)"] = ref_freq;
+    plot_dict["AP(sec)"] = "-";
+    plot_dict["ExperName"] = "-";
+    plot_dict["ExperNum"] = "-";
+    plot_dict["YearDOY"] = "-";
+    plot_dict["Start"] = "-";
+    plot_dict["Stop"] = "-";
+    plot_dict["FRT"] = "-";
+    plot_dict["CorrTime"] = "-";
+    plot_dict["FFTime"] = "-";
+    plot_dict["BuildTime"] = "-";
+    plot_dict["RA"]= "-";
+    plot_dict["Dec"] = "-";
+
     //test stuff
     py::scoped_interpreter guard{}; // start the interpreter and keep it alive, need this or we segfault
-    py::dict obj = py::dict("number"_a=1234, "hello"_a="world");
-    // Automatic py::dict->nl::json conversion
-    nl::json j = obj;
-    // Automatic nl::json->py::object conversion
-    py::object result1 = j;
-    // Automatic nl::json->py::dict conversion
-    py::dict result2 = j;
+    py::dict plot_obj = plot_dict;
+
+
+    //load our interface module
+    auto ff_test = py::module::import("ff_plot_test");
+    //call a python functioin on the interface class instance
+    ff_test.attr("fourfit_plot")(plot_obj, "fplot.png");
+
+    // py::dict obj = py::dict("number"_a=1234, "hello"_a="world");
+    // // Automatic py::dict->nl::json conversion
+    // nl::json j = obj;
+    // // Automatic nl::json->py::object conversion
+    // py::object result1 = j;
+    // // Automatic nl::json->py::dict conversion
+    // py::dict result2 = j;
 
 
 

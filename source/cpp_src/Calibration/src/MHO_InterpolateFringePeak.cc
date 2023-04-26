@@ -200,7 +200,7 @@ MHO_InterpolateFringePeak::fine_peak_interpolation()
     fSBDelay = sbd_max;
     fMBDelay = mbd_max_global;
     fDelayRate = dr_max_global;
-
+    fFringeRate = fDRAxis.at(dr_bin) + (xi[2] * 0.5 * dr_delta);
 
     std::cout<< std::setprecision(15);
     std::cout<<"coarse location (sbd, mbd, dr) = "<<sbd<<", "<<mbd<<", "<<dr<<std::endl;
