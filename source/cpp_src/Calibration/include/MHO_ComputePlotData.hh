@@ -46,6 +46,7 @@ class MHO_ComputePlotData
         void SetMBDelay(double mbdelay){fMBDelay = mbdelay;}
         void SetDelayRate(double dr){fDelayRate = dr;}
         void SetSBDelay(double sbdelay){fSBDelay = sbdelay;}
+        void SetSBDelayBin(std::size_t max_sbd_bin){fSBDMaxBin = max_sbd_bin;};
 
         void SetSBDArray(visibility_type* sbd_arr){fSBDArray = sbd_arr;}
         void SetWeights(weight_type* weights){fWeights = weights;}
@@ -55,7 +56,7 @@ class MHO_ComputePlotData
 
         //void calculate();
 
-        void calc_mbd();
+        xpower_amp_type calc_mbd();
         
         #pragma message("TODO FIXME, temporary kludge to pass sbd amp data for test")
         xpower_amp_type calc_sbd();
@@ -67,10 +68,15 @@ class MHO_ComputePlotData
         double fMBDelay;
         double fDelayRate;
         double fSBDelay;
+        
+        std::size_t fSBDMaxBin;
 
         visibility_type* fSBDArray;
         weight_type* fWeights;
 
+
+        xpower_type fMBDWorkspace;
+        xpower_amp_type fMBDAmpWorkspace;
 
     
         MHO_MultidimensionalPaddedFastFourierTransform< xpower_type > fPaddedFFTEngine;

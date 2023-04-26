@@ -1,26 +1,66 @@
 #include "MHO_ComputePlotData.hh"
 
+#include "MHO_UniformGridPointsCalculator.hh"
+
 namespace hops
 {
 
-void
+xpower_amp_type
 MHO_ComputePlotData::calc_mbd()
 {
-    /*
+
+    //calculate the frequency grid for the channel -> MBD FFT
+    MHO_UniformGridPointsCalculator fGridCalc;
+    fGridCalc.SetPoints( std::get<CHANNEL_AXIS>(*fSBDArray).GetData(), std::get<CHANNEL_AXIS>(*fSBDArray).GetSize() );
+    fGridCalc.Calculate();
+
+    std::size_t fGridStart = fGridCalc.GetGridStart();
+    double fGridSpace = fGridCalc.GetGridSpacing();
+    std::size_t fNGridPoints = fGridCalc.GetNGridPoints();
+    auto fMBDBinMap = fGridCalc.GetGridIndexMap();
+    std::size_t fNSBD = fSBDArray->GetDimension(FREQ_AXIS);
+    std::size_t fNDR = fSBDArray->GetDimension(TIME_AXIS);
+
+    std::cout<<"sizes = "<<fNGridPoints<<", "<<fNSBD<<", "<<fNDR<<std::endl;
+
+    //resize workspaces (TODO...make conditional on current size -- if already configured)
+    fMBDWorkspace.Resize(fNGridPoints);
+    fMBDWorkspace.ZeroArray();
+    fMBDAmpWorkspace.Resize(fNGridPoints);
+    fMBDAmpWorkspace.ZeroArray();
+    
+    auto mbd_ax = &(std::get<0>(fMBDWorkspace) );
+    for(std::size_t i=0; i<fNGridPoints;i++)
+    {
+        mbd_ax->at(i) = fGridStart + i*fGridSpace;
+    }
+
+    //set up FFT and rotator engines
+    fFFTEngine.SetArgs(&fMBDWorkspace);
+    fFFTEngine.DeselectAllAxes();
+    fFFTEngine.SelectAxis(0);
+    fFFTEngine.SetForward();
+    bool ok = fFFTEngine.Initialize();
+    check_step_fatal(ok, "calibration", "MBD search fft engine initialization." << eom );
+
+    fCyclicRotator.SetOffset(0, fNGridPoints/2);
+    fCyclicRotator.SetArgs(&fMBDWorkspace);
+    ok = fCyclicRotator.Initialize();
+    check_step_fatal(ok, "calibration", "MBD search cyclic rotation initialization." << eom );
+
+    //now we are going to loop over all of the channels/AP 
+    //and perform the weighted sum of the data at the max-SBD bin 
+    //with the fitted delay-rate rotation (but mbd=0) applied 
+
     //grab the total summed weights
     double total_summed_weights = 1.0;
     fWeights->Retrieve("total_summed_weights", total_summed_weights);
 
     MHO_FringeRotation frot;
 
-    xpower_type mbd_in;
-    xpower_type mbd_out;
-    xpower_amp_type sbd_amp;
-
     std::size_t POLPROD = 0;
     std::size_t nchan = fSBDArray->GetDimension(CHANNEL_AXIS);
     std::size_t nap = fSBDArray->GetDimension(TIME_AXIS);
-    //std::size_t nbins = fSBDArray->GetDimension(FREQ_AXIS);
 
     auto chan_ax = &( std::get<CHANNEL_AXIS>(*fSBDArray) );
     auto ap_ax = &(std::get<TIME_AXIS>(*fSBDArray));
@@ -28,105 +68,139 @@ MHO_ComputePlotData::calc_mbd()
     double ap_delta = ap_ax->at(1) - ap_ax->at(0);
     double sbd_delta = sbd_ax->at(1) - sbd_ax->at(0);
 
-    //TODO FIXME -- shoudl this be the fourfit refrence time? Also...should this be calculated elsewhere?
+    //TODO FIXME -- should this be the fourfit refrence time? Also...should this be calculated elsewhere?
     double midpoint_time = ( ap_ax->at(nap-1) + ap_delta  + ap_ax->at(0) )/2.0;
     std::cout<<"time midpoint = "<<midpoint_time<<std::endl;
-
-
-    // Calculate multi band delay.
-    // Apply rotator to single band delay
-    // values and add up over time.
-    // MBD FFT max size hardcoded to 8192 at present
-    // set floor of 256 points in mbd plot
-    int nbins = 256;
-    //(status.grid_points < 256) ? 256 : status.grid_points;
-
-
-    sbd_amp.Resize(nbins);
-    sbd_xpower_in.Resize(nbins);
-    sbd_xpower_out.Resize(4*nbins); //interpolation
-
-    sbd_xpower_in.ZeroArray();
-    sbd_xpower_out.ZeroArray();
-
-    //loop over all 'lags' and sum over channel/ap
-    for(std::size_t i=0; i<nbins; i++)
+    
+    
+    std::complex<double> sum = 0;
+    for(std::size_t ch=0; ch < nchan; ch++)
     {
-        std::complex<double> sum = 0;
-        for(std::size_t ch=0; ch < nchan; ch++)
+        double freq = (*chan_ax)(ch);//sky freq of this channel
+        sum = 0;
+        for(std::size_t ap=0; ap < nap; ap++)
         {
-            double freq = (*chan_ax)(ch);//sky freq of this channel
-            sum = 0;
-            for(std::size_t ap=0; ap < nap; ap++)
-            {
-                double tdelta = ap_ax->at(ap) + ap_delta/2.0 - midpoint_time; //need time difference from the f.r.t?
-                std::complex<double> vis = (*fSBDArray)(POLPROD, ch, ap, i);
-                std::complex<double> vr = frot.vrot(tdelta, freq, fRefFreq, fDelayRate, fMBDelay);
-                std::complex<double> z = vis*vr;
-                //apply weight and sum
-                double w = (*fWeights)(POLPROD, ch, ap, 0);
-                sum += w*z;
-            }
-            sbd_xpower_in(i) += sum;
+            double tdelta = ap_ax->at(ap) + ap_delta/2.0 - midpoint_time; //need time difference from the f.r.t?
+            std::complex<double> vis = (*fSBDArray)(POLPROD, ch, ap, fSBDMaxBin); //pick out data at SBD max bin
+            std::complex<double> vr = frot.vrot(tdelta, freq, fRefFreq, fDelayRate, 0.0); //apply at MBD=0.0
+            std::complex<double> z = vis*vr;
+            //apply weight and sum
+            double w = (*fWeights)(POLPROD, ch, ap, 0);
+            sum += w*z;
         }
-        sbd_amp(i) = std::abs( sbd_xpower_in(i) )/total_summed_weights;
-        std::cout<<"sbd_amp @ "<< i << " = " << sbd_amp(i) <<std::endl; //at this point SBD AMP is correct
+        //slot the summed data in at the appropriate location in the new grid 
+        std::size_t mbd_bin = fMBDBinMap[ch];
+        fMBDWorkspace(mbd_bin) = sum;
     }
+    
+    //now run an FFT along the MBD axis and cyclic rotate
+    ok = fFFTEngine.Execute();
+    check_step_fatal(ok, "calibration", "MBD search fft engine execution." << eom );
+    ok = fCyclicRotator.Execute();
+    check_step_fatal(ok, "calibration", "MBD search cyclic rotation execution." << eom );
+
+    for(std::size_t i=0; i<fNGridPoints; i++)
+    {
+        fMBDAmpWorkspace[i] = std::abs(fMBDWorkspace[i])/total_summed_weights;
+        std::get<0>(fMBDAmpWorkspace).at(i) = std::get<0>(fMBDWorkspace).at(i);
+    }
+    
+    return fMBDAmpWorkspace;
+
+    // 
+    // // Calculate multi band delay.
+    // // Apply rotator to single band delay
+    // // values and add up over time.
+    // // MBD FFT max size hardcoded to 8192 at present
+    // // set floor of 256 points in mbd plot
+    // int nbins = 256;
+    // //(status.grid_points < 256) ? 256 : status.grid_points;
+    // 
+    // 
+    // sbd_amp.Resize(nbins);
+    // sbd_xpower_in.Resize(nbins);
+    // sbd_xpower_out.Resize(4*nbins); //interpolation
+    // 
+    // sbd_xpower_in.ZeroArray();
+    // sbd_xpower_out.ZeroArray();
+    // 
+    // //loop over all 'lags' and sum over channel/ap
+    // for(std::size_t i=0; i<nbins; i++)
+    // {
+    //     std::complex<double> sum = 0;
+    //     for(std::size_t ch=0; ch < nchan; ch++)
+    //     {
+    //         double freq = (*chan_ax)(ch);//sky freq of this channel
+    //         sum = 0;
+    //         for(std::size_t ap=0; ap < nap; ap++)
+    //         {
+    //             double tdelta = ap_ax->at(ap) + ap_delta/2.0 - midpoint_time; //need time difference from the f.r.t?
+    //             std::complex<double> vis = (*fSBDArray)(POLPROD, ch, ap, i);
+    //             std::complex<double> vr = frot.vrot(tdelta, freq, fRefFreq, fDelayRate, fMBDelay);
+    //             std::complex<double> z = vis*vr;
+    //             //apply weight and sum
+    //             double w = (*fWeights)(POLPROD, ch, ap, 0);
+    //             sum += w*z;
+    //         }
+    //         sbd_xpower_in(i) += sum;
+    //     }
+    //     sbd_amp(i) = std::abs( sbd_xpower_in(i) )/total_summed_weights;
+    //     std::cout<<"sbd_amp @ "<< i << " = " << sbd_amp(i) <<std::endl; //at this point SBD AMP is correct
+    // }
 
 
 
-
-    plot.num_ap = pass->num_ap;
-    plot.num_freq = pass->nfreq;
-
-                                        // Calculate multi band delay.
-                                        // Apply rotator to single band delay
-                                        // values and add up over time.
-                                        // MBD FFT max size hardcoded to 8192 at present
-                                        // set floor of 256 points in mbd plot
-    plot.num_mb_pts = (status.grid_points < 256) ? 256 : status.grid_points;
-    for (i = 0; i < plot.num_mb_pts; i++)
-        {
-        X[i] = 0.0;
-        Y[i] = 0.0;
-        }
-    for (fr = 0; fr < pass->nfreq; fr++)
-        {
-        for (ap = pass->ap_off; ap < pass->ap_off+pass->num_ap; ap++)
-            {
-            datum = pdata[fr].data + ap;
-            Z = datum->sbdelay[status.max_delchan]
-              * vrot (ap, status.dr_max_global, 0.0, fr, datum->sband, pass);
-                                        // Weight by fractional AP
-            frac = 0.0;
-            if (datum->usbfrac >= 0.0)
-                frac = datum->usbfrac;
-            if (datum->lsbfrac >= 0.0)
-                frac += datum->lsbfrac;
-                                        // When both sidebands added together,
-                                        // we use the mean fraction
-            if ((datum->usbfrac >= 0.0) && (datum->lsbfrac >= 0.0))
-                frac /= 2.0;
-            Z = Z * frac;
-
-            X[fr] = X[fr] + Z;
-            }                           // Space frequencies in array for FFT
-        // allow garbage to be ignored
-        if (status.mb_index[fr] < GRID_PTS)
-            Y[status.mb_index[fr]] = X[fr];
-        }
-                                        // FFt across freq to mbdelay spectrum
-    fftplan = fftw_plan_dft_1d (plot.num_mb_pts, (fftw_complex*) Y, (fftw_complex*) Y, FFTW_FORWARD, FFTW_ESTIMATE);
-    fftw_execute (fftplan);
-    for (i = 0; i < plot.num_mb_pts; i++)
-        {
-        j = i - plot.num_mb_pts / 2;
-        if (j < 0)
-            j += plot.num_mb_pts;
-        plot.mb_amp[i] = abs_complex(Y[j]) / status.total_ap_frac;
-        }
-
-        */
+    // 
+    // plot.num_ap = pass->num_ap;
+    // plot.num_freq = pass->nfreq;
+    // 
+    //                                     // Calculate multi band delay.
+    //                                     // Apply rotator to single band delay
+    //                                     // values and add up over time.
+    //                                     // MBD FFT max size hardcoded to 8192 at present
+    //                                     // set floor of 256 points in mbd plot
+    // plot.num_mb_pts = (status.grid_points < 256) ? 256 : status.grid_points;
+    // for (i = 0; i < plot.num_mb_pts; i++)
+    //     {
+    //     X[i] = 0.0;
+    //     Y[i] = 0.0;
+    //     }
+    // for (fr = 0; fr < pass->nfreq; fr++)
+    // {
+    //     for (ap = pass->ap_off; ap < pass->ap_off+pass->num_ap; ap++)
+    //     {
+    //         datum = pdata[fr].data + ap;
+    //         Z = datum->sbdelay[status.max_delchan]
+    //           * vrot (ap, status.dr_max_global, 0.0, fr, datum->sband, pass);
+    //                                     // Weight by fractional AP
+    //         frac = 0.0;
+    //         if (datum->usbfrac >= 0.0)
+    //             frac = datum->usbfrac;
+    //         if (datum->lsbfrac >= 0.0)
+    //             frac += datum->lsbfrac;
+    //                                     // When both sidebands added together,
+    //                                     // we use the mean fraction
+    //         if ((datum->usbfrac >= 0.0) && (datum->lsbfrac >= 0.0))
+    //             frac /= 2.0;
+    //         Z = Z * frac;
+    // 
+    //         X[fr] = X[fr] + Z;
+    //     }                           // Space frequencies in array for FFT
+    //     // allow garbage to be ignored
+    //     if (status.mb_index[fr] < GRID_PTS)
+    //         Y[status.mb_index[fr]] = X[fr];
+    // }
+    //                                     // FFt across freq to mbdelay spectrum
+    // fftplan = fftw_plan_dft_1d (plot.num_mb_pts, (fftw_complex*) Y, (fftw_complex*) Y, FFTW_FORWARD, FFTW_ESTIMATE);
+    // fftw_execute (fftplan);
+    // for (i = 0; i < plot.num_mb_pts; i++)
+    //     {
+    //     j = i - plot.num_mb_pts / 2;
+    //     if (j < 0)
+    //         j += plot.num_mb_pts;
+    //     plot.mb_amp[i] = abs_complex(Y[j]) / status.total_ap_frac;
+    //     }
+    // 
 
 
 }
@@ -190,7 +264,7 @@ MHO_ComputePlotData::calc_sbd()
         }
         sbd_amp(i) = std::abs( sbd_xpower_in(i) )/total_summed_weights;
         std::get<0>(sbd_amp)(i) = (*sbd_ax)(i);
-        std::cout<<"sbd_amp @ "<< i << " = " << sbd_amp(i) <<std::endl; //at this point SBD AMP is correct
+        //std::cout<<"sbd_amp @ "<< i << " = " << sbd_amp(i) <<std::endl; //at this point SBD AMP is correct
     }
 
     return sbd_amp;
