@@ -378,7 +378,7 @@ int main(int argc, char** argv)
     MHO_InterpolateFringePeak fringeInterp;
     fringeInterp.SetReferenceFrequency(ref_freq);
     fringeInterp.SetMaxBins(c_sbdmax, c_mbdmax, c_drmax);
-
+    
     fringeInterp.SetSBDArray(sbd_data);
     fringeInterp.SetWeights(wt_data);
 
@@ -407,9 +407,11 @@ int main(int argc, char** argv)
     mk_plotdata.SetDelayRate(drate);
     mk_plotdata.SetSBDelay(sbdelay);
     mk_plotdata.SetSBDArray(sbd_data);
+    mk_plotdata.SetSBDelayBin(c_sbdmax);
     mk_plotdata.SetWeights(wt_data);
 
     auto sbd_amp = mk_plotdata.calc_sbd();
+    auto mbd_amp = mk_plotdata.calc_mbd();
 
 
     mho_json plot_dict;
@@ -420,6 +422,22 @@ int main(int argc, char** argv)
         plot_dict["SBD_AMP_XAXIS"].push_back( std::get<0>(sbd_amp)(i) );
     }
 
+    npts = mbd_amp.GetSize();
+    for(std::size_t i=0;i<npts;i++)
+    {
+        plot_dict["MBD_AMP"].push_back( mbd_amp(i) );
+        plot_dict["MBD_AMP_XAXIS"].push_back( std::get<0>(mbd_amp)(i) );
+        plot_dict["DLYRATE"].push_back(0.0);
+    }
+
+
+
+    //std::cout<< vexInfo["$EXPER"][0]<<std::endl;
+    mho_json exper_section = vexInfo["$EXPER"];
+    auto exper_info = exper_section.begin().value();
+
+    std::cout<< exper_info["exper_name"] << std::endl;
+    std::cout<< exper_info["exper_num"] << std::endl;
 
     plot_dict["Quality"] = "0"; //push_back('9');  plot_dict["Quality"].push_back('G');
     plot_dict["SNR"] = 0.;
@@ -434,8 +452,8 @@ int main(int argc, char** argv)
     plot_dict["IonTEC(TEC)"] = "-";
     plot_dict["RefFreq(MHz)"] = ref_freq;
     plot_dict["AP(sec)"] = "-";
-    plot_dict["ExperName"] = "-";
-    plot_dict["ExperNum"] = "-";
+    plot_dict["ExperName"] = exper_info["exper_name"];
+    plot_dict["ExperNum"] = exper_info["exper_num"];
     plot_dict["YearDOY"] = "-";
     plot_dict["Start"] = "-";
     plot_dict["Stop"] = "-";
@@ -450,20 +468,10 @@ int main(int argc, char** argv)
     py::scoped_interpreter guard{}; // start the interpreter and keep it alive, need this or we segfault
     py::dict plot_obj = plot_dict;
 
-
     //load our interface module
     auto ff_test = py::module::import("ff_plot_test");
     //call a python functioin on the interface class instance
     ff_test.attr("fourfit_plot")(plot_obj, "fplot.png");
-
-    // py::dict obj = py::dict("number"_a=1234, "hello"_a="world");
-    // // Automatic py::dict->nl::json conversion
-    // nl::json j = obj;
-    // // Automatic nl::json->py::object conversion
-    // py::object result1 = j;
-    // // Automatic nl::json->py::dict conversion
-    // py::dict result2 = j;
-
 
 
 
