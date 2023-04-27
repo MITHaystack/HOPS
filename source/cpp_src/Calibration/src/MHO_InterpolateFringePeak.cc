@@ -179,6 +179,7 @@ MHO_InterpolateFringePeak::fine_peak_interpolation()
     sbd_bin = fSBDMaxBin;
     dr_bin = fDRMaxBin;
     mbd_bin = fMBDMaxBin;
+    fFringeAmp = drfmax;
 
     std::cout<<"----------------------------------------"<<std::endl;
     std::cout<<"sbd ax ="<<sbd_ax<<std::endl;

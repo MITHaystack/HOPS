@@ -59,6 +59,8 @@ class MHO_ComputePlotData
         xpower_amp_type calc_sbd();
         xpower_amp_type calc_dr();
 
+        double calc_phase();
+
         double fRefFreq;
         double fTotalSummedWeights;
         double fMBDelay;

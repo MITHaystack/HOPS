@@ -42,6 +42,7 @@ class MHO_InterpolateFringePeak: public MHO_Operator
         double GetMBDelay() const {return fMBDelay;}
         double GetDelayRate() const {return fDelayRate;}
         double GetFringeRate() const {return fFringeRate;}
+        double GetFringeAmplitude() const {return fFringeAmp;}
 
         // double GetAmp() const {return fAmp;}
         // double GetPhase() const {return fPhase;}
@@ -68,6 +69,7 @@ class MHO_InterpolateFringePeak: public MHO_Operator
         double fMBDelay;
         double fDelayRate;
         double fFringeRate;
+        double fFringeAmp;
 
         //at max
         double fAmp;
