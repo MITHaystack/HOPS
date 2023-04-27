@@ -303,7 +303,9 @@ MHO_ComputePlotData::calc_phase()
             std::complex<double> z = vis*vr;
             //apply weight and sum
             double w = (*fWeights)(POLPROD, ch, ap, 0);
-            sum_all += z*w;
+            std::complex<double> wght_phsr = vr;
+            printf("ADD= (%f,%f)\n", std::real(wght_phsr), std::imag(wght_phsr) );
+            sum_all += wght_phsr;
         }
     }
 
