@@ -324,6 +324,7 @@ MHO_ComputePlotData::calc_dr()
     #pragma message("Fix the DRSP size calculation to remove upper limit of 8192.")
     std::size_t drsp_size = 8192;
     while ( (drsp_size / 4) > nap ) {drsp_size /= 2;};
+    if(drsp_size < 256){drsp_size = 256;}
     std::cout<<"DRSP size = "<<drsp_size<<std::endl;
     ////////////////////////////////////////////////////////////////////////
 
@@ -355,6 +356,13 @@ MHO_ComputePlotData::calc_dr()
     double ap_delta = ap_ax->at(1) - ap_ax->at(0);
     double sbd_delta = sbd_ax->at(1) - sbd_ax->at(0);
 
+    auto dr_ax = &(std::get<0>(fDRWorkspace) );
+    for(std::size_t i=0; i<drsp_size;i++)
+    {
+        dr_ax->at(i) = i*ap_delta;
+    }
+
+
     //TODO FIXME -- should this be the fourfit refrence time? Also...should this be calculated elsewhere?
     double midpoint_time = ( ap_ax->at(nap-1) + ap_delta  + ap_ax->at(0) )/2.0;
     std::cout<<"time midpoint = "<<midpoint_time<<std::endl;
@@ -384,7 +392,7 @@ MHO_ComputePlotData::calc_dr()
     for(std::size_t i=0; i<drsp_size; i++)
     {
         fDRAmpWorkspace[i] = std::abs(fDRWorkspace[i])/total_summed_weights;
-        std::get<0>(fDRAmpWorkspace).at(i) = std::get<0>(fDRWorkspace).at(i);
+        std::get<0>(fDRAmpWorkspace).at(i) = (std::get<0>(fDRWorkspace).at(i) )/(fRefFreq/1000.0);
     }
 
     return fDRAmpWorkspace;
