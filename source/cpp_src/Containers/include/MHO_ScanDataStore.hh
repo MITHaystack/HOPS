@@ -42,6 +42,7 @@ class MHO_ScanDataStore
 
         //retieve file data (root, baseline, station)
         mho_json GetRootFileData();
+        std::string GetRootFileBasename(){return fDirInterface.GetBasename(fRootFileName);}
         MHO_ContainerStore* LoadBaseline(std::string baseline);
         MHO_ContainerStore* LoadStation(std::string station);
 

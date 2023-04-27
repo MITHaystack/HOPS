@@ -450,13 +450,21 @@ int main(int argc, char** argv)
     std::cout<< exper_info["exper_name"] << std::endl;
     std::cout<< exper_info["exper_num"] << std::endl;
 
-    plot_dict["Quality"] = "0"; //push_back('9');  plot_dict["Quality"].push_back('G');
+    mho_json src_section = vexInfo["$SOURCE"];
+    auto src_info = src_section.begin().value();
+    
+    mho_json sched_section = vexInfo["$SCHED"];
+    std::string scan_name = sched_section.begin().key();
+    auto sched_info = sched_section.begin().value();
+
+    plot_dict["Quality"] = "-"; //push_back('9');  plot_dict["Quality"].push_back('G');
     plot_dict["SNR"] = 0.;
     plot_dict["IntgTime"] = 0.;
     plot_dict["Amp"] = famp;
+
+    #pragma message("TODO FIXME -- when control file parameter mbd_anchor sbd is used there is an additional correction done to fringe phase, see fill_208.c line 158!!")
     plot_dict["ResPhase"] = std::fmod(coh_avg_phase * (180.0/M_PI), 360.0);
     plot_dict["PFD"] = "-";
-
     plot_dict["ResidSbd(us)"] = sbdelay;
     plot_dict["ResidMbd(us)"] = mbdelay;
     plot_dict["FringeRate(Hz)"]  = frate;
@@ -472,9 +480,14 @@ int main(int argc, char** argv)
     plot_dict["CorrTime"] = "-";
     plot_dict["FFTime"] = "-";
     plot_dict["BuildTime"] = "-";
-    plot_dict["RA"]= "-";
-    plot_dict["Dec"] = "-";
 
+    plot_dict["RA"] = src_info["ra"];
+    plot_dict["Dec"] = src_info["dec"];
+    
+    plot_dict["RootScanBaseline"] = scanStore.GetRootFileBasename() + ", " + scan_name + ", " + baseline;
+    plot_dict["CorrVers"] = "HOPS4/DiFX fourfit  rev 0";
+    plot_dict["PolStr"] = polprod;
+    
     //test stuff
     py::scoped_interpreter guard{}; // start the interpreter and keep it alive, need this or we segfault
     py::dict plot_obj = plot_dict;

@@ -241,7 +241,7 @@ MHO_ComputePlotData::calc_dr()
         {
             double tdelta = ap_ax->at(ap) + ap_delta/2.0 - midpoint_time; //need time difference from the f.r.t?
             std::complex<double> vis = (*fSBDArray)(POLPROD, ch, ap, fSBDMaxBin); //pick out data at SBD max bin
-            std::complex<double> vr = frot.vrot(tdelta, freq, fRefFreq, fDelayRate, fMBDelay); //why rotate at the max delay rate??
+            std::complex<double> vr = frot.vrot(tdelta, freq, fRefFreq, 0.0, fMBDelay); //why rotate at the max delay rate??
             std::complex<double> z = vis*vr;
             //apply weight and sum
             double w = (*fWeights)(POLPROD, ch, ap, 0);
@@ -282,10 +282,16 @@ MHO_ComputePlotData::calc_phase()
     //with the fitted delay-rate rotation (but mbd=0) applied
     auto chan_ax = &( std::get<CHANNEL_AXIS>(*fSBDArray) );
     auto ap_ax = &(std::get<TIME_AXIS>(*fSBDArray));
-    // auto sbd_ax = &( std::get<FREQ_AXIS>(*fSBDArray) );
+    auto sbd_ax = &( std::get<FREQ_AXIS>(*fSBDArray) );
     double ap_delta = ap_ax->at(1) - ap_ax->at(0);
-    // double sbd_delta = sbd_ax->at(1) - sbd_ax->at(0);
-
+    double sbd_delta = sbd_ax->at(1) - sbd_ax->at(0);
+    
+    
+    frot.SetSBDSeparation(sbd_delta);
+    frot.SetSBDMaxBin(fSBDMaxBin);
+    frot.SetNSBDBins(sbd_ax->GetSize()/4);
+    //frot.SetSBDMax( (*sbd_ax)(fSBDMaxBin) );
+    frot.SetSBDMax( fSBDelay );
 
     //TODO FIXME -- should this be the fourfit refrence time? Also...should this be calculated elsewhere?
     double midpoint_time = ( ap_ax->at(nap-1) + ap_delta  + ap_ax->at(0) )/2.0;
@@ -295,19 +301,23 @@ MHO_ComputePlotData::calc_phase()
     for(std::size_t ch=0; ch < nchan; ch++)
     {
         double freq = (*chan_ax)(ch);//sky freq of this channel
+        #pragma message("TODO FIXME FOR NON-LSB DATA!")
+        frot.SetSideband(-1);
         for(std::size_t ap=0; ap < nap; ap++)
         {
             double tdelta = ap_ax->at(ap) + ap_delta/2.0 - midpoint_time; //need time difference from the f.r.t?
             std::complex<double> vis = (*fSBDArray)(POLPROD, ch, ap, fSBDMaxBin); //pick out data at SBD max bin
-            std::complex<double> vr = frot.vrot(tdelta, freq, fRefFreq, fDelayRate, fMBDelay); //why rotate at the max delay rate??
+            std::complex<double> vr = frot.vrot(tdelta, freq, fRefFreq, fDelayRate, fMBDelay); 
             std::complex<double> z = vis*vr;
             //apply weight and sum
             double w = (*fWeights)(POLPROD, ch, ap, 0);
-            std::complex<double> wght_phsr = vr;
-            printf("ADD= (%f,%f)\n", std::real(wght_phsr), std::imag(wght_phsr) );
+            std::complex<double> wght_phsr = z*w;
+            printf("ROT = (%f,%f)\n", std::real(vr), std::imag(vr) );
             sum_all += wght_phsr;
         }
     }
+
+    std::cout<<"sbd sep = "<<sbd_delta<<" sbd max = "<<fSBDelay<<std::endl;
 
     std::cout<<"sum all = "<<sum_all<<std::endl;
     double coh_avg_phase = std::arg(sum_all);
