@@ -5,6 +5,12 @@
 namespace hops
 {
 
+
+
+
+
+
+
 xpower_amp_type
 MHO_ComputePlotData::calc_mbd()
 {
@@ -109,6 +115,22 @@ MHO_ComputePlotData::calc_mbd()
 
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 xpower_amp_type
 MHO_ComputePlotData::calc_sbd()
 {
@@ -172,8 +194,68 @@ MHO_ComputePlotData::calc_sbd()
     }
 
     return sbd_amp;
+    
+    
+    
+    
+        //     if (lag == status.max_delchan)
+        //         status.coh_avg_phase = arg_complex (X[lag]);
+        //     j = lag - nl;
+        //     if (j < 0)
+        //         j += 4 * nl;
+        //     if (lag == 0)
+        //         j = 2 * nl;             // pure real lsb/dc channel goes in middle
+        //     Y[j] = X[lag];
+        //     }
+        //                                     /* FFT sband spectrum -> XPower spectrum */
+        // fftplan = fftw_plan_dft_1d (4 * nl, (fftw_complex*) Y, (fftw_complex*) Y, FFTW_FORWARD, FFTW_ESTIMATE);
+        // fftw_execute (fftplan);
+        //                                     // scale crosspower spectra for correct amplitude
+        // for (i = 0; i < 2*nl; i++)
+        //    {
+        //    j = nl - i;
+        //    if (j <= 0)
+        //        sb_factor = status.total_usb_frac > 0 ?
+        //            sqrt (0.5) / (M_PI * status.total_usb_frac) : 0.0;
+        //    else
+        //        sb_factor = status.total_lsb_frac > 0 ?
+        //            sqrt (0.5) / (M_PI * status.total_lsb_frac) : 0.0;
+        // 
+        //    if (j < 0)
+        //        j += 4*nl;
+        // 
+        //    plot.cp_spectrum[i] = Y[j] * sb_factor;
+        //                                     /* Counter rotate to eliminate sband delay */
+        //    Z = exp_complex(-cmplx_unit_I * (status.sbd_max * (i-nl) * M_PI / (status.sbd_sep * 2*nl)));
+        //    plot.cp_spectrum[i] = Z * plot.cp_spectrum[i];
+        //    }
+        // 
+        // 
+        // 
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 xpower_amp_type
 MHO_ComputePlotData::calc_dr()
@@ -229,7 +311,6 @@ MHO_ComputePlotData::calc_dr()
         dr_ax->at(i) = i*ap_delta;
     }
 
-
     //TODO FIXME -- should this be the fourfit refrence time? Also...should this be calculated elsewhere?
     double midpoint_time = ( ap_ax->at(nap-1) + ap_delta  + ap_ax->at(0) )/2.0;
     std::cout<<"time midpoint = "<<midpoint_time<<std::endl;
@@ -241,7 +322,7 @@ MHO_ComputePlotData::calc_dr()
         {
             double tdelta = ap_ax->at(ap) + ap_delta/2.0 - midpoint_time; //need time difference from the f.r.t?
             std::complex<double> vis = (*fSBDArray)(POLPROD, ch, ap, fSBDMaxBin); //pick out data at SBD max bin
-            std::complex<double> vr = frot.vrot(tdelta, freq, fRefFreq, 0.0, fMBDelay); //why rotate at the max delay rate??
+            std::complex<double> vr = frot.vrot(tdelta, freq, fRefFreq, fDelayRate, fMBDelay); //why rotate at the max delay rate??
             std::complex<double> z = vis*vr;
             //apply weight and sum
             double w = (*fWeights)(POLPROD, ch, ap, 0);
@@ -259,11 +340,37 @@ MHO_ComputePlotData::calc_dr()
     for(std::size_t i=0; i<drsp_size; i++)
     {
         fDRAmpWorkspace[i] = std::abs(fDRWorkspace[i])/total_summed_weights;
+        #pragma message("TODO FIXME, factor 1/1000 is due to need to plot axis in ns/s")
         std::get<0>(fDRAmpWorkspace).at(i) = (std::get<0>(fDRWorkspace).at(i) )/(fRefFreq/1000.0);
     }
 
     return fDRAmpWorkspace;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 double
 MHO_ComputePlotData::calc_phase()
@@ -289,7 +396,7 @@ MHO_ComputePlotData::calc_phase()
     
     frot.SetSBDSeparation(sbd_delta);
     frot.SetSBDMaxBin(fSBDMaxBin);
-    frot.SetNSBDBins(sbd_ax->GetSize()/4);
+    frot.SetNSBDBins(sbd_ax->GetSize()/4);  //this is nlags, FACTOR OF 4 is because sbd space is padded by a factor of 4
     //frot.SetSBDMax( (*sbd_ax)(fSBDMaxBin) );
     frot.SetSBDMax( fSBDelay );
 
@@ -312,7 +419,6 @@ MHO_ComputePlotData::calc_phase()
             //apply weight and sum
             double w = (*fWeights)(POLPROD, ch, ap, 0);
             std::complex<double> wght_phsr = z*w;
-            printf("ROT = (%f,%f)\n", std::real(vr), std::imag(vr) );
             sum_all += wght_phsr;
         }
     }

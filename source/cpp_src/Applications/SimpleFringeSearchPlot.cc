@@ -443,12 +443,9 @@ int main(int argc, char** argv)
         plot_dict["DLYRATE_XAXIS"].push_back( std::get<0>(dr_amp)(i) );
     }
 
-    //std::cout<< vexInfo["$EXPER"][0]<<std::endl;
     mho_json exper_section = vexInfo["$EXPER"];
     auto exper_info = exper_section.begin().value();
-
     std::cout<< exper_info["exper_name"] << std::endl;
-    std::cout<< exper_info["exper_num"] << std::endl;
 
     mho_json src_section = vexInfo["$SOURCE"];
     auto src_info = src_section.begin().value();
@@ -457,7 +454,7 @@ int main(int argc, char** argv)
     std::string scan_name = sched_section.begin().key();
     auto sched_info = sched_section.begin().value();
 
-    plot_dict["Quality"] = "-"; //push_back('9');  plot_dict["Quality"].push_back('G');
+    plot_dict["Quality"] = "-";
     plot_dict["SNR"] = 0.;
     plot_dict["IntgTime"] = 0.;
     plot_dict["Amp"] = famp;
@@ -472,7 +469,7 @@ int main(int argc, char** argv)
     plot_dict["RefFreq(MHz)"] = ref_freq;
     plot_dict["AP(sec)"] = ap_delta;
     plot_dict["ExperName"] = exper_info["exper_name"];
-    plot_dict["ExperNum"] = exper_info["exper_num"];
+    plot_dict["ExperNum"] = "-";
     plot_dict["YearDOY"] = "-";
     plot_dict["Start"] = "-";
     plot_dict["Stop"] = "-";
