@@ -453,9 +453,27 @@ int main(int argc, char** argv)
     mho_json sched_section = vexInfo["$SCHED"];
     std::string scan_name = sched_section.begin().key();
     auto sched_info = sched_section.begin().value();
+    
+    mho_json freq_section = vexInfo["$FREQ"];
+    auto freq_info = freq_section.begin().value();
+    double sample_rate = freq_info["sample_rate"]["value"];
+    double samp_period = 1.0/(sample_rate*1e6);
 
     plot_dict["Quality"] = "-";
-    plot_dict["SNR"] = 0.;
+    
+
+    //Poor imitation of SNR -- needs corrections
+    //hardcoded dummy values right now
+    double eff_npol = 1.0;
+    double amp_corr_factor = 1.0;
+    double fact1 = 1.0; //more than 16 lags
+    double fact2 = 0.881; //2bit x 2bit
+    double fact3 = 0.970; //difx
+    double acc_period = ap_delta;
+    double inv_sigma = fact1 * fact2 * fact3 * std::sqrt(acc_period/samp_period);
+
+    plot_dict["SNR"] = famp * inv_sigma *  sqrt(total_ap_frac * eff_npol)/(1e4* amp_corr_factor);
+    
     plot_dict["IntgTime"] = 0.;
     plot_dict["Amp"] = famp;
 
