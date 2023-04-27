@@ -38,14 +38,11 @@ def fourfit_plot(plot_dict, filename):
 
     # build x-axis arrays for SBD, MBD, delayrate, Xpow spec, etc
 
-    #sbd_x = np.arange(-4,4,8/len(plot_dict['SBD_AMP']))
     sbd_x = plot_dict['SBD_AMP_XAXIS']
     mbd_x = plot_dict['MBD_AMP_XAXIS']
     dly_x = plot_dict['DLYRATE_XAXIS']
-    #mbd_x = np.arange(-0.1,0.1,0.2/len(plot_dict['MBD_AMP']))
-    #dly_x = np.arange(-0.225,0.225,0.45/len(plot_dict['DLYRATE']))
     # xpow_x = np.arange(-2,2,4.0/len(plot_dict['XPSPEC-ABS']))
-    #
+
 
     # Build the figure.  We'll construct this figure using many subplots, with different grid specifications.
 
@@ -292,7 +289,7 @@ def fourfit_plot(plot_dict, filename):
         str(np.round(float(plot_dict['SNR']),1)) + '\n' + \
         str(np.round(float(plot_dict['IntgTime']),3)) + '\n' + \
         str(np.round(float(plot_dict['Amp']),3)) + '\n' + \
-        str(np.round(float(plot_dict['ResPhase']),3)) + '\n' + \
+        str(np.round(float(plot_dict['ResPhase']),1)) + '\n' + \
         plot_dict['PFD'] + '\n' + \
         '\n' + \
         str(np.round(float(plot_dict['ResidSbd(us)']),6)) + '\n' + \
@@ -301,7 +298,7 @@ def fourfit_plot(plot_dict, filename):
         str(np.round(float(plot_dict['FringeRate(Hz)']),6)) + '\n' + \
         plot_dict['IonTEC(TEC)'] + '\n\n' + \
         str(np.round(float(plot_dict['RefFreq(MHz)']),4)) + '\n' + \
-        str(np.round(float(plot_dict['AP(sec)']),2)) + '\n' + \
+        str(np.round(float(plot_dict['AP(sec)']),3)) + '\n' + \
         plot_dict['ExperName'] + '\n' + \
         str( plot_dict['ExperNum'] ) + '\n' + \
         plot_dict['YearDOY'] + '\n' + \
@@ -322,16 +319,16 @@ def fourfit_plot(plot_dict, filename):
     plt.text(0.965,0.9,textstr2,transform=plt.gcf().transFigure,fontsize=10,verticalalignment='top',
              family='monospace',horizontalalignment='right',color='k')
 
-    #
-    # # Add the top matter
-    # plt.text(0.965,0.94,plot_dict['RootScanBaseline'].strip("'"),transform=plt.gcf().transFigure,
-    #          fontsize=12,verticalalignment='top',family='sans-serif',horizontalalignment='right',fontweight='bold')
-    #
-    # plt.text(0.05,0.94,plot_dict['CorrVers'].strip("'"),transform=plt.gcf().transFigure,
-    #          fontsize=12,verticalalignment='top',family='sans-serif',horizontalalignment='left',fontweight='bold')
-    #
-    # plt.text(0.965,0.92,'pol '+plot_dict['PolStr'].strip("'"),transform=plt.gcf().transFigure,
-    #          fontsize=10,verticalalignment='top',family='sans-serif',horizontalalignment='right',fontweight='bold')
-    #
+    
+    # Add the top matter
+    plt.text(0.965,0.94,plot_dict['RootScanBaseline'].strip("'"),transform=plt.gcf().transFigure,
+             fontsize=12,verticalalignment='top',family='sans-serif',horizontalalignment='right',fontweight='bold')
+    
+    plt.text(0.05,0.94,plot_dict['CorrVers'].strip("'"),transform=plt.gcf().transFigure,
+             fontsize=12,verticalalignment='top',family='sans-serif',horizontalalignment='left',fontweight='bold')
+    
+    plt.text(0.965,0.92,'pol '+plot_dict['PolStr'].strip("'"),transform=plt.gcf().transFigure,
+             fontsize=10,verticalalignment='top',family='sans-serif',horizontalalignment='right',fontweight='bold')
+    
     #pylab.show()
     pylab.savefig(filename)

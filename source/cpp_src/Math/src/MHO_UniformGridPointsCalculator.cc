@@ -86,6 +86,7 @@ MHO_UniformGridPointsCalculator::Calculate_v1()
             spacing = min_space / div;
             div++;
             #ifdef EXTRA_INTERP_DBG
+                #pragma message("TODO FIXME: Warning additional grid points being used in MBD search.")
                 grid_pts = 256; //use this value to simplify debugging of MBD search
             #else 
                 grid_pts = 2; //this is the original value
