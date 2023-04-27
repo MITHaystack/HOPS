@@ -301,7 +301,7 @@ def fourfit_plot(plot_dict, filename):
         str(np.round(float(plot_dict['FringeRate(Hz)']),6)) + '\n' + \
         plot_dict['IonTEC(TEC)'] + '\n\n' + \
         str(np.round(float(plot_dict['RefFreq(MHz)']),4)) + '\n' + \
-        plot_dict['AP(sec)'] + '\n' + \
+        str(np.round(float(plot_dict['AP(sec)']),2)) + '\n' + \
         plot_dict['ExperName'] + '\n' + \
         str( plot_dict['ExperNum'] ) + '\n' + \
         plot_dict['YearDOY'] + '\n' + \

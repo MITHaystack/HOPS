@@ -395,10 +395,12 @@ int main(int argc, char** argv)
     double mbdelay = fringeInterp.GetMBDelay();
     double drate = fringeInterp.GetDelayRate();
     double frate = fringeInterp.GetFringeRate();
+    double famp = fringeInterp.GetFringeAmplitude();
 
     ////////////////////////////////////////////////////////////////////////////
     //PLOTTING/DEBUG
     ////////////////////////////////////////////////////////////////////////////
+    //TODO FIXME Organize all the plot data generation better
 
     MHO_ComputePlotData mk_plotdata;
 
@@ -413,6 +415,10 @@ int main(int argc, char** argv)
     auto sbd_amp = mk_plotdata.calc_sbd();
     auto mbd_amp = mk_plotdata.calc_mbd();
     auto dr_amp = mk_plotdata.calc_dr();
+    double coh_avg_phase = mk_plotdata.calc_phase();
+
+    //calculate AP period
+    double ap_delta = std::get<TIME_AXIS>(*bl_data)(1) - std::get<TIME_AXIS>(*bl_data)(0);
 
 
     mho_json plot_dict;
@@ -447,8 +453,8 @@ int main(int argc, char** argv)
     plot_dict["Quality"] = "0"; //push_back('9');  plot_dict["Quality"].push_back('G');
     plot_dict["SNR"] = 0.;
     plot_dict["IntgTime"] = 0.;
-    plot_dict["Amp"] = 0.;
-    plot_dict["ResPhase"] = 0.;
+    plot_dict["Amp"] = famp;
+    plot_dict["ResPhase"] = std::fmod(coh_avg_phase * (180.0/M_PI), 360.0);
     plot_dict["PFD"] = "-";
 
     plot_dict["ResidSbd(us)"] = sbdelay;
@@ -456,7 +462,7 @@ int main(int argc, char** argv)
     plot_dict["FringeRate(Hz)"]  = frate;
     plot_dict["IonTEC(TEC)"] = "-";
     plot_dict["RefFreq(MHz)"] = ref_freq;
-    plot_dict["AP(sec)"] = "-";
+    plot_dict["AP(sec)"] = ap_delta;
     plot_dict["ExperName"] = exper_info["exper_name"];
     plot_dict["ExperNum"] = exper_info["exper_num"];
     plot_dict["YearDOY"] = "-";
