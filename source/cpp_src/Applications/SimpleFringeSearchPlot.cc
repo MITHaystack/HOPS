@@ -412,7 +412,7 @@ int main(int argc, char** argv)
 
     auto sbd_amp = mk_plotdata.calc_sbd();
     auto mbd_amp = mk_plotdata.calc_mbd();
-    auto dr_amp = mk_plotdata.calc_sbd();
+    auto dr_amp = mk_plotdata.calc_dr();
 
 
     mho_json plot_dict;
@@ -436,8 +436,6 @@ int main(int argc, char** argv)
         plot_dict["DLYRATE"].push_back( dr_amp(i) );
         plot_dict["DLYRATE_XAXIS"].push_back( std::get<0>(dr_amp)(i) );
     }
-
-
 
     //std::cout<< vexInfo["$EXPER"][0]<<std::endl;
     mho_json exper_section = vexInfo["$EXPER"];
