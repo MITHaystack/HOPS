@@ -378,7 +378,7 @@ int main(int argc, char** argv)
     MHO_InterpolateFringePeak fringeInterp;
     fringeInterp.SetReferenceFrequency(ref_freq);
     fringeInterp.SetMaxBins(c_sbdmax, c_mbdmax, c_drmax);
-    
+
     fringeInterp.SetSBDArray(sbd_data);
     fringeInterp.SetWeights(wt_data);
 
@@ -412,6 +412,7 @@ int main(int argc, char** argv)
 
     auto sbd_amp = mk_plotdata.calc_sbd();
     auto mbd_amp = mk_plotdata.calc_mbd();
+    auto dr_amp = mk_plotdata.calc_sbd();
 
 
     mho_json plot_dict;
@@ -427,7 +428,13 @@ int main(int argc, char** argv)
     {
         plot_dict["MBD_AMP"].push_back( mbd_amp(i) );
         plot_dict["MBD_AMP_XAXIS"].push_back( std::get<0>(mbd_amp)(i) );
-        plot_dict["DLYRATE"].push_back(0.0);
+    }
+
+    npts = dr_amp.GetSize();
+    for(std::size_t i=0;i<npts;i++)
+    {
+        plot_dict["DLYRATE"].push_back( dr_amp(i) );
+        plot_dict["DLYRATE_XAXIS"].push_back( std::get<0>(dr_amp)(i) );
     }
 
 

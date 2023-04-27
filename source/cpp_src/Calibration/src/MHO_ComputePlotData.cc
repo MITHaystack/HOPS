@@ -28,7 +28,7 @@ MHO_ComputePlotData::calc_mbd()
     fMBDWorkspace.ZeroArray();
     fMBDAmpWorkspace.Resize(fNGridPoints);
     fMBDAmpWorkspace.ZeroArray();
-    
+
     auto mbd_ax = &(std::get<0>(fMBDWorkspace) );
     for(std::size_t i=0; i<fNGridPoints;i++)
     {
@@ -48,9 +48,9 @@ MHO_ComputePlotData::calc_mbd()
     ok = fCyclicRotator.Initialize();
     check_step_fatal(ok, "calibration", "MBD search cyclic rotation initialization." << eom );
 
-    //now we are going to loop over all of the channels/AP 
-    //and perform the weighted sum of the data at the max-SBD bin 
-    //with the fitted delay-rate rotation (but mbd=0) applied 
+    //now we are going to loop over all of the channels/AP
+    //and perform the weighted sum of the data at the max-SBD bin
+    //with the fitted delay-rate rotation (but mbd=0) applied
 
     //grab the total summed weights
     double total_summed_weights = 1.0;
@@ -71,8 +71,8 @@ MHO_ComputePlotData::calc_mbd()
     //TODO FIXME -- should this be the fourfit refrence time? Also...should this be calculated elsewhere?
     double midpoint_time = ( ap_ax->at(nap-1) + ap_delta  + ap_ax->at(0) )/2.0;
     std::cout<<"time midpoint = "<<midpoint_time<<std::endl;
-    
-    
+
+
     std::complex<double> sum = 0;
     for(std::size_t ch=0; ch < nchan; ch++)
     {
@@ -88,11 +88,11 @@ MHO_ComputePlotData::calc_mbd()
             double w = (*fWeights)(POLPROD, ch, ap, 0);
             sum += w*z;
         }
-        //slot the summed data in at the appropriate location in the new grid 
+        //slot the summed data in at the appropriate location in the new grid
         std::size_t mbd_bin = fMBDBinMap[ch];
         fMBDWorkspace(mbd_bin) = sum;
     }
-    
+
     //now run an FFT along the MBD axis and cyclic rotate
     ok = fFFTEngine.Execute();
     check_step_fatal(ok, "calibration", "MBD search fft engine execution." << eom );
@@ -104,104 +104,8 @@ MHO_ComputePlotData::calc_mbd()
         fMBDAmpWorkspace[i] = std::abs(fMBDWorkspace[i])/total_summed_weights;
         std::get<0>(fMBDAmpWorkspace).at(i) = std::get<0>(fMBDWorkspace).at(i);
     }
-    
+
     return fMBDAmpWorkspace;
-
-    // 
-    // // Calculate multi band delay.
-    // // Apply rotator to single band delay
-    // // values and add up over time.
-    // // MBD FFT max size hardcoded to 8192 at present
-    // // set floor of 256 points in mbd plot
-    // int nbins = 256;
-    // //(status.grid_points < 256) ? 256 : status.grid_points;
-    // 
-    // 
-    // sbd_amp.Resize(nbins);
-    // sbd_xpower_in.Resize(nbins);
-    // sbd_xpower_out.Resize(4*nbins); //interpolation
-    // 
-    // sbd_xpower_in.ZeroArray();
-    // sbd_xpower_out.ZeroArray();
-    // 
-    // //loop over all 'lags' and sum over channel/ap
-    // for(std::size_t i=0; i<nbins; i++)
-    // {
-    //     std::complex<double> sum = 0;
-    //     for(std::size_t ch=0; ch < nchan; ch++)
-    //     {
-    //         double freq = (*chan_ax)(ch);//sky freq of this channel
-    //         sum = 0;
-    //         for(std::size_t ap=0; ap < nap; ap++)
-    //         {
-    //             double tdelta = ap_ax->at(ap) + ap_delta/2.0 - midpoint_time; //need time difference from the f.r.t?
-    //             std::complex<double> vis = (*fSBDArray)(POLPROD, ch, ap, i);
-    //             std::complex<double> vr = frot.vrot(tdelta, freq, fRefFreq, fDelayRate, fMBDelay);
-    //             std::complex<double> z = vis*vr;
-    //             //apply weight and sum
-    //             double w = (*fWeights)(POLPROD, ch, ap, 0);
-    //             sum += w*z;
-    //         }
-    //         sbd_xpower_in(i) += sum;
-    //     }
-    //     sbd_amp(i) = std::abs( sbd_xpower_in(i) )/total_summed_weights;
-    //     std::cout<<"sbd_amp @ "<< i << " = " << sbd_amp(i) <<std::endl; //at this point SBD AMP is correct
-    // }
-
-
-
-    // 
-    // plot.num_ap = pass->num_ap;
-    // plot.num_freq = pass->nfreq;
-    // 
-    //                                     // Calculate multi band delay.
-    //                                     // Apply rotator to single band delay
-    //                                     // values and add up over time.
-    //                                     // MBD FFT max size hardcoded to 8192 at present
-    //                                     // set floor of 256 points in mbd plot
-    // plot.num_mb_pts = (status.grid_points < 256) ? 256 : status.grid_points;
-    // for (i = 0; i < plot.num_mb_pts; i++)
-    //     {
-    //     X[i] = 0.0;
-    //     Y[i] = 0.0;
-    //     }
-    // for (fr = 0; fr < pass->nfreq; fr++)
-    // {
-    //     for (ap = pass->ap_off; ap < pass->ap_off+pass->num_ap; ap++)
-    //     {
-    //         datum = pdata[fr].data + ap;
-    //         Z = datum->sbdelay[status.max_delchan]
-    //           * vrot (ap, status.dr_max_global, 0.0, fr, datum->sband, pass);
-    //                                     // Weight by fractional AP
-    //         frac = 0.0;
-    //         if (datum->usbfrac >= 0.0)
-    //             frac = datum->usbfrac;
-    //         if (datum->lsbfrac >= 0.0)
-    //             frac += datum->lsbfrac;
-    //                                     // When both sidebands added together,
-    //                                     // we use the mean fraction
-    //         if ((datum->usbfrac >= 0.0) && (datum->lsbfrac >= 0.0))
-    //             frac /= 2.0;
-    //         Z = Z * frac;
-    // 
-    //         X[fr] = X[fr] + Z;
-    //     }                           // Space frequencies in array for FFT
-    //     // allow garbage to be ignored
-    //     if (status.mb_index[fr] < GRID_PTS)
-    //         Y[status.mb_index[fr]] = X[fr];
-    // }
-    //                                     // FFt across freq to mbdelay spectrum
-    // fftplan = fftw_plan_dft_1d (plot.num_mb_pts, (fftw_complex*) Y, (fftw_complex*) Y, FFTW_FORWARD, FFTW_ESTIMATE);
-    // fftw_execute (fftplan);
-    // for (i = 0; i < plot.num_mb_pts; i++)
-    //     {
-    //     j = i - plot.num_mb_pts / 2;
-    //     if (j < 0)
-    //         j += plot.num_mb_pts;
-    //     plot.mb_amp[i] = abs_complex(Y[j]) / status.total_ap_frac;
-    //     }
-    // 
-
 
 }
 
@@ -404,87 +308,162 @@ MHO_ComputePlotData::calc_sbd()
 
 }
 
-void
+xpower_amp_type
 MHO_ComputePlotData::calc_dr()
 {
+    //grab the total summed weights
+    double total_summed_weights = 1.0;
+    fWeights->Retrieve("total_summed_weights", total_summed_weights);
 
-    /*
-        pdata = pass->pass_data;            // For convenience
+    MHO_FringeRotation frot;
+    std::size_t POLPROD = 0;
+    std::size_t nchan = fSBDArray->GetDimension(CHANNEL_AXIS);
+    std::size_t nap = fSBDArray->GetDimension(TIME_AXIS);
+    //borrow this stupid routine from search_windows.c /////////////////////
 
-                                        // Calculate delay rate spectrum
-                                        // (at max delay channel and averaged
-                                        // over all frequencies
-    np = status.drsp_size;
-    npmax = np;
-    if (npmax < 256) npmax = 256;       // Empirically determined from FRNGE plots
+    #pragma message("Fix the DRSP size calculation to remove upper limit of 8192.")
+    std::size_t drsp_size = 8192;
+    while ( (drsp_size / 4) > nap ) {drsp_size /= 2;};
+    std::cout<<"DRSP size = "<<drsp_size<<std::endl;
+    ////////////////////////////////////////////////////////////////////////
 
-                                        // first apply rotator to single band
-                                        // delay values (at max sb delay) and
-                                        // total sum over all freqs
-    for (i = 0; i < MAXAP; i++)
-        X[i] = 0.0;
+    //resize workspaces (TODO...make conditional on current size -- if already configured)
+    fDRWorkspace.Resize(drsp_size);
+    fDRWorkspace.ZeroArray();
+    fDRAmpWorkspace.Resize(drsp_size);
+    fDRAmpWorkspace.ZeroArray();
 
-    for (fr = 0; fr < pass->nfreq; fr++)
-        for(ap = pass->ap_off; ap < pass->ap_off+pass->num_ap; ap++)
-            {
-            datum = pdata[fr].data + ap;
-            Z = datum->sbdelay[status.max_delchan]
-              * vrot (ap,status.dr_max_global, status.mbd_max_global, fr, datum->sband, pass);
-                                        // Weight by fractional AP
-            frac = 0.0;
-            if (datum->usbfrac >= 0.0) frac = datum->usbfrac;
-            if (datum->lsbfrac >= 0.0) frac += datum->lsbfrac;
-                                        // When both sidebands added together,
-                                        // we use the mean fraction
-            if ((datum->usbfrac >= 0.0) && (datum->lsbfrac >= 0.0)) frac /= 2.0;
-            Z = Z * frac;
+    //set up FFT and rotator engines
+    fFFTEngine.SetArgs(&fDRWorkspace);
+    fFFTEngine.DeselectAllAxes();
+    fFFTEngine.SelectAxis(0);
+    fFFTEngine.SetForward();
+    bool ok = fFFTEngine.Initialize();
+    check_step_fatal(ok, "calibration", "MBD search fft engine initialization." << eom );
 
-            X[ap-pass->ap_off] = X[ap-pass->ap_off] + Z;
-            }
-                                        // Then perform FFT over time to obtain
-                                        // d-r spectrum avg'd over all frequencies
-    fftplan = fftw_plan_dft_1d (npmax, (fftw_complex*) X, (fftw_complex*) X, FFTW_FORWARD, FFTW_ESTIMATE);
-    fftw_execute (fftplan);
-    for (i = 0; i < npmax; i++)
+    fCyclicRotator.SetOffset(0, drsp_size/2);
+    fCyclicRotator.SetArgs(&fDRWorkspace);
+    ok = fCyclicRotator.Initialize();
+    check_step_fatal(ok, "calibration", "MBD search cyclic rotation initialization." << eom );
+
+    //now we are going to loop over all of the channels/AP
+    //and perform the weighted sum of the data at the max-SBD bin
+    //with the fitted delay-rate rotation (but mbd=0) applied
+    auto chan_ax = &( std::get<CHANNEL_AXIS>(*fSBDArray) );
+    auto ap_ax = &(std::get<TIME_AXIS>(*fSBDArray));
+    auto sbd_ax = &( std::get<FREQ_AXIS>(*fSBDArray) );
+    double ap_delta = ap_ax->at(1) - ap_ax->at(0);
+    double sbd_delta = sbd_ax->at(1) - sbd_ax->at(0);
+
+    //TODO FIXME -- should this be the fourfit refrence time? Also...should this be calculated elsewhere?
+    double midpoint_time = ( ap_ax->at(nap-1) + ap_delta  + ap_ax->at(0) )/2.0;
+    std::cout<<"time midpoint = "<<midpoint_time<<std::endl;
+
+    for(std::size_t ch=0; ch < nchan; ch++)
+    {
+        double freq = (*chan_ax)(ch);//sky freq of this channel
+        for(std::size_t ap=0; ap < nap; ap++)
         {
-        rj = (double)i - (double)(npmax/2);
-        offset = status.dr_max_global * pdata[0].frequency * param.acc_period
-                        * (double)npmax;
-        rj -= offset;
-        if (rj < -0.5) rj += (double)npmax;
-        if (rj > (npmax - 0.5)) rj -= (double)npmax;
-        j = (int)(rj + 0.5);
-        plot.d_rate[i] = abs_complex (X[j]) / (double)status.total_ap_frac;
-        }
-                                        // adjust dr plot for effects of coherence time
-                                         * if that feature has been invoked  rjc 2006.4.27
-    if (pass->control.t_cohere > 0.0)
-        {
-        n = npmax * param.acc_period / pass->control.t_cohere;
-        n = (n%2) ? n : n+1;            // force n to be odd for symmetry (no bias)
-        msg ("convolving plot rate spectrum over %d res. elements", 0, n);
-        msg ("delay rate spectrum:", 0);
-                                        // store rate spectrum temporarily & prescale
-        for (i = 0; i < npmax; i++)
-            temp[i] = plot.d_rate[i] / n;
-
-        for (i = 0; i < npmax; i++)
-            {
-            plot.d_rate[i] = 0.0;
-                                        // form boxcar sum about the ith point
-            for (j=-(n/2); j<=n/2; j++)
-                {
-                ij = i + j;             // force sum of i+j to wrap (lie within 0..npmax-1)
-                ij = (ij < 0) ? ij + npmax : ij;
-                ij = (ij >= npmax) ? ij - npmax : ij;
-
-                plot.d_rate[i] += temp[ij];
-                }
-            msg ("%3d %12.6lf", 0, i, plot.d_rate[i]);
-            }
+            double tdelta = ap_ax->at(ap) + ap_delta/2.0 - midpoint_time; //need time difference from the f.r.t?
+            std::complex<double> vis = (*fSBDArray)(POLPROD, ch, ap, fSBDMaxBin); //pick out data at SBD max bin
+            std::complex<double> vr = frot.vrot(tdelta, freq, fRefFreq, fDelayRate, fMBDelay); //why rotate at the max delay rate??
+            std::complex<double> z = vis*vr;
+            //apply weight and sum
+            double w = (*fWeights)(POLPROD, ch, ap, 0);
+            fDRWorkspace(ap) += w*z;
         }
 
-        */
+    }
+
+    //now run an FFT along the MBD axis and cyclic rotate
+    ok = fFFTEngine.Execute();
+    check_step_fatal(ok, "calibration", "MBD search fft engine execution." << eom );
+    ok = fCyclicRotator.Execute();
+    check_step_fatal(ok, "calibration", "MBD search cyclic rotation execution." << eom );
+
+    for(std::size_t i=0; i<drsp_size; i++)
+    {
+        fDRAmpWorkspace[i] = std::abs(fDRWorkspace[i])/total_summed_weights;
+        std::get<0>(fDRAmpWorkspace).at(i) = std::get<0>(fDRWorkspace).at(i);
+    }
+
+    return fDRAmpWorkspace;
+
+
+    //     pdata = pass->pass_data;            // For convenience
+    //
+    //                                     // Calculate delay rate spectrum
+    //                                     // (at max delay channel and averaged
+    //                                     // over all frequencies
+    // np = status.drsp_size;
+    // npmax = np;
+    // if (npmax < 256) npmax = 256;       // Empirically determined from FRNGE plots
+    //
+    //                                     // first apply rotator to single band
+    //                                     // delay values (at max sb delay) and
+    //                                     // total sum over all freqs
+    // for (i = 0; i < MAXAP; i++)
+    //     X[i] = 0.0;
+    //
+    // for (fr = 0; fr < pass->nfreq; fr++)
+    //     for(ap = pass->ap_off; ap < pass->ap_off+pass->num_ap; ap++)
+    //         {
+    //         datum = pdata[fr].data + ap;
+    //         Z = datum->sbdelay[status.max_delchan]
+    //           * vrot (ap,status.dr_max_global, status.mbd_max_global, fr, datum->sband, pass);
+    //                                     // Weight by fractional AP
+    //         frac = 0.0;
+    //         if (datum->usbfrac >= 0.0) frac = datum->usbfrac;
+    //         if (datum->lsbfrac >= 0.0) frac += datum->lsbfrac;
+    //                                     // When both sidebands added together,
+    //                                     // we use the mean fraction
+    //         if ((datum->usbfrac >= 0.0) && (datum->lsbfrac >= 0.0)) frac /= 2.0;
+    //         Z = Z * frac;
+    //
+    //         X[ap-pass->ap_off] = X[ap-pass->ap_off] + Z;
+    //         }
+    //                                     // Then perform FFT over time to obtain
+    //                                     // d-r spectrum avg'd over all frequencies
+    // fftplan = fftw_plan_dft_1d (npmax, (fftw_complex*) X, (fftw_complex*) X, FFTW_FORWARD, FFTW_ESTIMATE);
+    // fftw_execute (fftplan);
+    // for (i = 0; i < npmax; i++)
+    //     {
+    //     rj = (double)i - (double)(npmax/2);
+    //     offset = status.dr_max_global * pdata[0].frequency * param.acc_period
+    //                     * (double)npmax;
+    //     rj -= offset;
+    //     if (rj < -0.5) rj += (double)npmax;
+    //     if (rj > (npmax - 0.5)) rj -= (double)npmax;
+    //     j = (int)(rj + 0.5);
+    //     plot.d_rate[i] = abs_complex (X[j]) / (double)status.total_ap_frac;
+    //     }
+    //                                     // adjust dr plot for effects of coherence time
+    //                                      * if that feature has been invoked  rjc 2006.4.27
+    // if (pass->control.t_cohere > 0.0)
+    //     {
+    //     n = npmax * param.acc_period / pass->control.t_cohere;
+    //     n = (n%2) ? n : n+1;            // force n to be odd for symmetry (no bias)
+    //     msg ("convolving plot rate spectrum over %d res. elements", 0, n);
+    //     msg ("delay rate spectrum:", 0);
+    //                                     // store rate spectrum temporarily & prescale
+    //     for (i = 0; i < npmax; i++)
+    //         temp[i] = plot.d_rate[i] / n;
+    //
+    //     for (i = 0; i < npmax; i++)
+    //         {
+    //         plot.d_rate[i] = 0.0;
+    //                                     // form boxcar sum about the ith point
+    //         for (j=-(n/2); j<=n/2; j++)
+    //             {
+    //             ij = i + j;             // force sum of i+j to wrap (lie within 0..npmax-1)
+    //             ij = (ij < 0) ? ij + npmax : ij;
+    //             ij = (ij >= npmax) ? ij - npmax : ij;
+    //
+    //             plot.d_rate[i] += temp[ij];
+    //             }
+    //         msg ("%3d %12.6lf", 0, i, plot.d_rate[i]);
+    //         }
+    //     }
 
 }
 
