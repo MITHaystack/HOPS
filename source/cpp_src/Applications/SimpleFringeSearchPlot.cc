@@ -459,9 +459,9 @@ int main(int argc, char** argv)
     double sample_rate = freq_info["sample_rate"]["value"];
     double samp_period = 1.0/(sample_rate*1e6);
 
+
     plot_dict["Quality"] = "-";
     
-
     //Poor imitation of SNR -- needs corrections
     //hardcoded dummy values right now
     double eff_npol = 1.0;
@@ -471,10 +471,11 @@ int main(int argc, char** argv)
     double fact3 = 0.970; //difx
     double acc_period = ap_delta;
     double inv_sigma = fact1 * fact2 * fact3 * std::sqrt(acc_period/samp_period);
-
     plot_dict["SNR"] = famp * inv_sigma *  sqrt(total_ap_frac * eff_npol)/(1e4* amp_corr_factor);
     
-    plot_dict["IntgTime"] = 0.;
+    std::size_t nchan = std::get<CHANNEL_AXIS>(*bl_data).GetSize();
+    plot_dict["IntgTime"] = total_ap_frac*acc_period /(double)nchan;
+
     plot_dict["Amp"] = famp;
 
     #pragma message("TODO FIXME -- when control file parameter mbd_anchor sbd is used there is an additional correction done to fringe phase, see fill_208.c line 158!!")
