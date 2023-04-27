@@ -29,7 +29,7 @@
 
 namespace hops
 {
-    
+
 using xpower_type = MHO_TableContainer< std::complex<double>, MHO_AxisPack< MHO_Axis<double> > >;
 using xpower_amp_type = MHO_TableContainer< double, MHO_AxisPack< MHO_Axis<double> > >;
 
@@ -54,31 +54,28 @@ class MHO_ComputePlotData
 
     //protected:
 
-        //void calculate();
-
-        xpower_amp_type calc_mbd();
-        
         #pragma message("TODO FIXME, temporary kludge to pass sbd amp data for test")
+        xpower_amp_type calc_mbd();
         xpower_amp_type calc_sbd();
-        
-        void calc_dr();
+        xpower_amp_type calc_dr();
 
         double fRefFreq;
         double fTotalSummedWeights;
         double fMBDelay;
         double fDelayRate;
         double fSBDelay;
-        
+
         std::size_t fSBDMaxBin;
 
         visibility_type* fSBDArray;
         weight_type* fWeights;
 
+        xpower_type fDRWorkspace;
+        xpower_amp_type fDRAmpWorkspace;
 
         xpower_type fMBDWorkspace;
         xpower_amp_type fMBDAmpWorkspace;
 
-    
         MHO_MultidimensionalPaddedFastFourierTransform< xpower_type > fPaddedFFTEngine;
         MHO_MultidimensionalFastFourierTransform< xpower_type > fFFTEngine;
         MHO_CyclicRotator< xpower_type > fCyclicRotator;

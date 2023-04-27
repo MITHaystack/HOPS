@@ -40,9 +40,10 @@ def fourfit_plot(plot_dict, filename):
 
     #sbd_x = np.arange(-4,4,8/len(plot_dict['SBD_AMP']))
     sbd_x = plot_dict['SBD_AMP_XAXIS']
-    #mbd_x = plot_dict['MBD_AMP_XAXIS']
-    mbd_x = np.arange(-0.1,0.1,0.2/len(plot_dict['MBD_AMP']))
-    dly_x = np.arange(-0.225,0.225,0.45/len(plot_dict['DLYRATE']))
+    mbd_x = plot_dict['MBD_AMP_XAXIS']
+    dly_x = plot_dict['DLYRATE_XAXIS']
+    #mbd_x = np.arange(-0.1,0.1,0.2/len(plot_dict['MBD_AMP']))
+    #dly_x = np.arange(-0.225,0.225,0.45/len(plot_dict['DLYRATE']))
     # xpow_x = np.arange(-2,2,4.0/len(plot_dict['XPSPEC-ABS']))
     #
 
@@ -54,7 +55,7 @@ def fourfit_plot(plot_dict, filename):
     ax1 = plt.subplot2grid((16,16),(0,0),rowspan=4,colspan=13)
 
     ax1.plot(dly_x, plot_dict['DLYRATE'],'r-',linewidth=0.8)
-    ax1.set_xlim(-0.225,0.225)
+    ax1.set_xlim(dly_x[0],dly_x[-1])
     ax1.set_ylim(bottom=0)
     ax1.set_xlabel('delay rate (ns/s)',fontsize=9)
     plt.xticks(fontsize=8)
@@ -70,14 +71,14 @@ def fourfit_plot(plot_dict, filename):
     plt.yticks(fontsize=8,rotation=90)
     ax2 = ax2a.twiny()
     ax2.plot(mbd_x, plot_dict['MBD_AMP'],'b-',linewidth=0.8)
-    ax2.set_xlim(-0.1,0.1)
+    ax2.set_xlim(mbd_x[0],mbd_x[-1])
     ax2.set_ylim(bottom=0)
     ax2.set_xlabel(r'multiband delay ($\mu$s)',fontsize=9)
     ax2.xaxis.set_major_formatter(FormatStrFormatter('%.2f'))
     plt.xticks(fontsize=8)
     ax2.xaxis.label.set_color('b')
     ax2.minorticks_on()
-    
+
     # ax2a.set_ylabel('amplitude',fontsize=9)
     # ax2a.yaxis.label.set_color('b')
 
