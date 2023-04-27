@@ -43,6 +43,8 @@ class MHO_FringeRotation
 
         std::complex<double> vrot_v1(double time_delta, double freq, double ref_freq, double dr, double mbd) const;
         
+        double calc_sideband_correction(double mbd) const;
+        
         int fSideband;
         int fNSBDBins;
         int fSBDMaxBin;

@@ -26,31 +26,26 @@ MHO_FringeRotation::vrot(double time_delta, double freq, double ref_freq, double
 std::complex<double>
 MHO_FringeRotation::vrot_v1(double time_delta, double freq, double ref_freq, double dr, double mbd) const
 {
-    double theta = freq * dr * time_delta;
-    theta += mbd * (freq - ref_freq);
-    
-    //TODO, what is the origin of this correction?
-    //Why is it used when computing the fringe phase, but not in vrot when locating the peak in MBD/DR space?
+    double theta = freq * dr * time_delta; //fringe rotation due to delay_rate * time_delta
+    theta += mbd * (freq - ref_freq); //fringe rotation due to delay * freq_delta
+    theta += calc_sideband_correction(mbd); //TODO, what is the origin of this correction?
+    return std::exp(-2.0 * M_PI * fImagUnit * theta); //return the phasor
+}
+
+
+
+double
+MHO_FringeRotation::calc_sideband_correction(double mbd) const
+{
+    double theta_corr = 0.0;
+    //Why is none of the following used in vrot when locating the peak in MBD/DR space, but used when computing the fringe phase?
+    theta_corr += (fNSBDBins - fSBDMaxBin)* 0.125 * fSideband; // Effect due to offset of lag where max lies?
     //vrot.c says:
     //effect of non-integral sbd iff SSB
     //correct phase to dc edge, based on sb delay */
-    
-    // Effect due to offset of lag where max lies (huh??)
-    theta += (fNSBDBins - fSBDMaxBin)* 0.125 * fSideband;
-    
-    if(fOptimizeClosure){theta += 0.125 * mbd * fSideband / fSBDSep;}
-    else{theta += (0.125 * fSBDMax * fSideband) / fSBDSep;}
-
-    std::cout<<"adding: "<<(0.125 * fSBDMax * fSideband) / fSBDSep<<std::endl;
-
-    theta *= (-2.0 * M_PI);             // convert to radians
-    return std::exp(fImagUnit*theta);
-
-
-
-
-
+    if(fOptimizeClosure){theta_corr += 0.125 * mbd * fSideband / fSBDSep;}
+    else{theta_corr += (0.125 * fSBDMax * fSideband) / fSBDSep;}
+    return theta_corr;
 }
-
 
 }
