@@ -58,6 +58,7 @@ class MHO_ComputePlotData
         xpower_amp_type calc_mbd();
         xpower_amp_type calc_sbd();
         xpower_type calc_xpower();
+        xpower_type calc_xpower_KLUDGE();
         xpower_amp_type calc_dr();
 
         double calc_phase();

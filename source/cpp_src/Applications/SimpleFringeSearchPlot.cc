@@ -415,7 +415,7 @@ int main(int argc, char** argv)
     auto sbd_amp = mk_plotdata.calc_sbd();
     auto mbd_amp = mk_plotdata.calc_mbd();
     auto dr_amp = mk_plotdata.calc_dr();
-    auto sbd_xpower = mk_plotdata.calc_xpower();
+    auto sbd_xpower = mk_plotdata.calc_xpower_KLUDGE();
     double coh_avg_phase = mk_plotdata.calc_phase();
 
     //calculate AP period
@@ -444,7 +444,7 @@ int main(int argc, char** argv)
     }
 
     npts = sbd_xpower.GetSize();
-    for(std::size_t i=0;i<npts/4;i++)
+    for(std::size_t i=0;i<npts;i++)
     {
         plot_dict["XPSPEC-ABS"].push_back( std::abs(sbd_xpower(i) ) );
         plot_dict["XPSPEC-ARG"].push_back( std::arg(sbd_xpower(i) )*(180.0/M_PI) );
