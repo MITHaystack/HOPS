@@ -203,8 +203,6 @@ MHO_ComputePlotData::calc_sbd()
 xpower_type
 MHO_ComputePlotData::calc_xpower()
 {
-
-
     //grab the total summed weights
     double total_summed_weights = 1.0;
     fWeights->Retrieve("total_summed_weights", total_summed_weights);
@@ -291,83 +289,9 @@ MHO_ComputePlotData::calc_xpower()
         std::cout<<"sbd_xpower_out @ "<< i << " = " << sbd_xpower_out(i) <<std::endl; //at this point SBD AMP is correct
     }
 
-    // int nl = nbins/4;
-    // std::complex<double> imagUnit(0.0, 1.0);
-    // for( int i = 0; i < 2*nl; i++)
-    // {
-    //    int j = nl - i;
-    //    double sb_factor = sqrt (0.5) / (M_PI * total_summed_weights);
-    //    // if (j <= 0)
-    //    //     sb_factor = status.total_usb_frac > 0 ?
-    //    //         sqrt (0.5) / (M_PI * status.total_usb_frac) : 0.0;
-    //    // else
-    //    //     sb_factor = status.total_lsb_frac > 0 ?
-    //    //         sqrt (0.5) / (M_PI * status.total_lsb_frac) : 0.0;
-    //
-    //    if (j < 0)
-    //        j += 4*nl;
-    //
-    //    double bin = i;
-    //    std::complex<double> z = sb_factor*std::exp( 1.0 * imagUnit * fSBDelay * bin * M_PI / sbd_delta * 2.0 * (double)nl );
-    //    sbd_xpower_out(i) *= sb_factor;// * sbd_xpower_out(i);
-    //    //std::get<0>(sbd_xpower_in)(i) = std::get<0>(sbd_xpower_out)(i);
-    //    // plot.cp_spectrum[i] = Y[j] * sb_factor;
-    //    //                                  /* Counter rotate to eliminate sband delay */
-    //    // Z = exp_complex(-cmplx_unit_I * (status.sbd_max * (i-nl) * M_PI / (status.sbd_sep * 2*nl)));
-    //    // plot.cp_spectrum[i] = Z * plot.cp_spectrum[i];
-    // }
-
-
     return sbd_xpower_out;
 
-
-
-
-    //                                     /* FFT sband spectrum -> XPower spectrum */
-    // fftplan = fftw_plan_dft_1d (nbins, (fftw_complex*) sbd_po, (fftw_complex*) Y, FFTW_FORWARD, FFTW_ESTIMATE);
-    // fftw_execute (fftplan);
-                                        // scale crosspower spectra for correct amplitude
-    // for (i = 0; i < 2*nl; i++)
-    // {
-    //    j = nl - i;
-    //    if (j <= 0)
-    //        sb_factor = status.total_usb_frac > 0 ?
-    //            sqrt (0.5) / (M_PI * status.total_usb_frac) : 0.0;
-    //    else
-    //        sb_factor = status.total_lsb_frac > 0 ?
-    //            sqrt (0.5) / (M_PI * status.total_lsb_frac) : 0.0;
-    //
-    //    if (j < 0)
-    //        j += 4*nl;
-    //
-    //    plot.cp_spectrum[i] = Y[j] * sb_factor;
-    //                                     /* Counter rotate to eliminate sband delay */
-    //    Z = exp_complex(-cmplx_unit_I * (status.sbd_max * (i-nl) * M_PI / (status.sbd_sep * 2*nl)));
-    //    plot.cp_spectrum[i] = Z * plot.cp_spectrum[i];
-    // }
-
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 xpower_amp_type
@@ -462,29 +386,6 @@ MHO_ComputePlotData::calc_dr()
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 double
 MHO_ComputePlotData::calc_phase()
 {
@@ -542,6 +443,128 @@ MHO_ComputePlotData::calc_phase()
     double coh_avg_phase = std::arg(sum_all);
     return coh_avg_phase; //not quite the value which is displayed in the fringe plot (see fill type 208)
 }
+
+
+
+xpower_type
+MHO_ComputePlotData::calc_xpower_KLUDGE()
+{
+    //kludge version
+    #pragma message("TODO FIXME XPOWER KLUDGE")
+    //grab the total summed weights
+    double total_summed_weights = 1.0;
+    fWeights->Retrieve("total_summed_weights", total_summed_weights);
+
+    MHO_FringeRotation frot;
+    int nlags = fSBDArray->GetDimension(FREQ_AXIS)/4;
+    int nl = nlags;
+
+    int MAXLAG = 128;//8192;
+    xpower_type X;
+    xpower_type Y;
+    xpower_type cp_spectrum;
+    X.Resize(2*MAXLAG); X.ZeroArray();
+    Y.Resize(4*MAXLAG); Y.ZeroArray();
+    cp_spectrum.Resize(2*nl); cp_spectrum.ZeroArray();
+
+    std::size_t POLPROD = 0;
+    std::size_t nchan = fSBDArray->GetDimension(CHANNEL_AXIS);
+    std::size_t nap = fSBDArray->GetDimension(TIME_AXIS);
+    std::size_t nbins = fSBDArray->GetDimension(FREQ_AXIS);
+
+    auto chan_ax = &( std::get<CHANNEL_AXIS>(*fSBDArray) );
+    auto ap_ax = &(std::get<TIME_AXIS>(*fSBDArray));
+    auto sbd_ax = &( std::get<FREQ_AXIS>(*fSBDArray) );
+    double ap_delta = ap_ax->at(1) - ap_ax->at(0);
+    double sbd_delta = sbd_ax->at(1) - sbd_ax->at(0);
+
+    //TODO FIXME -- should this be the fourfit refrence time? Also...should this be calculated elsewhere?
+    double midpoint_time = ( ap_ax->at(nap-1) + ap_delta  + ap_ax->at(0) )/2.0;
+    std::cout<<"time midpoint = "<<midpoint_time<<std::endl;
+
+    std::complex<double> sum;
+    std::complex<double> Z, vr;
+    double frac;
+    for(int lag = 0; lag < 2*nl; lag++)
+    {
+        for(int ch = 0; ch < nchan; ch++)
+        {
+            sum = 0.0;
+            double freq = (*chan_ax)(ch);//sky freq of this channel
+            for (int ap = 0; ap < nap; ap++)
+            {
+                double tdelta = ap_ax->at(ap) + ap_delta/2.0 - midpoint_time; //need time difference from the f.r.t?
+                std::complex<double> vis = (*fSBDArray)(POLPROD, ch, ap, 2*lag);
+                std::complex<double> vr = frot.vrot(tdelta, freq, fRefFreq, fDelayRate, fMBDelay);
+                std::complex<double> Z = vis*vr;
+                //apply weight and sum
+                double w = (*fWeights)(POLPROD, ch, ap, 0);
+                sum += w*Z;
+            }
+            X[lag] = X[lag] + sum;
+        }
+        //need to understand this
+        int j = lag - nl;
+        if(j < 0){j += 4 * nl;}
+        if(lag == 0){j = 2 * nl;}             // pure real lsb/dc channel goes in middle??
+        Y[j] = X[lag];
+        std::get<0>(Y)(j) = j;
+    }
+
+    //set up FFT
+    fFFTEngine.SetArgs(&Y, &Y);
+    fFFTEngine.DeselectAllAxes();
+    fFFTEngine.SelectAxis(0);
+    fFFTEngine.SetForward();
+    bool ok = fFFTEngine.Initialize();
+    check_step_fatal(ok, "calibration", "MBD search fft engine initialization." << eom );
+
+    //now run an FFT along the MBD axis and cyclic rotate
+    ok = fFFTEngine.Execute();
+    check_step_fatal(ok, "calibration", "MBD search fft engine execution." << eom );
+
+    std::complex<double> cmplx_unit_I(0.0, 1.0);
+    int s =  Y.GetDimension(0)/2;
+    cp_spectrum.Resize(s);
+
+    for(int i=0; i<s; i++)
+    {
+        cp_spectrum(s-i-1) = Y(i);
+        Z = std::exp(cmplx_unit_I * (fSBDelay * (i-s) * M_PI / (sbd_delta *2.0* s)));
+        cp_spectrum[s-i-1] *= Z * (sqrt(0.5)/total_summed_weights );
+        std::get<0>(cp_spectrum)(s-i-1) = -1.0*32.0*((double)i/(double)s); //specific VGOS case, just for looks
+    }
+
+    return cp_spectrum;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 }
