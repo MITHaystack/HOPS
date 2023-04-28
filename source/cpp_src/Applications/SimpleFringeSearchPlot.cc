@@ -415,11 +415,11 @@ int main(int argc, char** argv)
     auto sbd_amp = mk_plotdata.calc_sbd();
     auto mbd_amp = mk_plotdata.calc_mbd();
     auto dr_amp = mk_plotdata.calc_dr();
+    auto sbd_xpower = mk_plotdata.calc_xpower();
     double coh_avg_phase = mk_plotdata.calc_phase();
 
     //calculate AP period
     double ap_delta = std::get<TIME_AXIS>(*bl_data)(1) - std::get<TIME_AXIS>(*bl_data)(0);
-
 
     mho_json plot_dict;
     std::size_t npts = sbd_amp.GetSize();
@@ -443,17 +443,25 @@ int main(int argc, char** argv)
         plot_dict["DLYRATE_XAXIS"].push_back( std::get<0>(dr_amp)(i) );
     }
 
+    npts = sbd_xpower.GetSize();
+    for(std::size_t i=0;i<npts/4;i++)
+    {
+        plot_dict["XPSPEC-ABS"].push_back( std::abs(sbd_xpower(i) ) );
+        plot_dict["XPSPEC-ARG"].push_back( std::arg(sbd_xpower(i) )*(180.0/M_PI) );
+        plot_dict["XPSPEC_XAXIS"].push_back( std::get<0>(sbd_xpower)(i) );
+    }
+
     mho_json exper_section = vexInfo["$EXPER"];
     auto exper_info = exper_section.begin().value();
     std::cout<< exper_info["exper_name"] << std::endl;
 
     mho_json src_section = vexInfo["$SOURCE"];
     auto src_info = src_section.begin().value();
-    
+
     mho_json sched_section = vexInfo["$SCHED"];
     std::string scan_name = sched_section.begin().key();
     auto sched_info = sched_section.begin().value();
-    
+
     mho_json freq_section = vexInfo["$FREQ"];
     auto freq_info = freq_section.begin().value();
     double sample_rate = freq_info["sample_rate"]["value"];
@@ -461,7 +469,7 @@ int main(int argc, char** argv)
 
 
     plot_dict["Quality"] = "-";
-    
+
     //Poor imitation of SNR -- needs corrections
     //hardcoded dummy values right now
     double eff_npol = 1.0;
@@ -472,7 +480,7 @@ int main(int argc, char** argv)
     double acc_period = ap_delta;
     double inv_sigma = fact1 * fact2 * fact3 * std::sqrt(acc_period/samp_period);
     plot_dict["SNR"] = famp * inv_sigma *  sqrt(total_ap_frac * eff_npol)/(1e4* amp_corr_factor);
-    
+
     std::size_t nchan = std::get<CHANNEL_AXIS>(*bl_data).GetSize();
     plot_dict["IntgTime"] = total_ap_frac*acc_period /(double)nchan;
 
@@ -499,11 +507,11 @@ int main(int argc, char** argv)
 
     plot_dict["RA"] = src_info["ra"];
     plot_dict["Dec"] = src_info["dec"];
-    
+
     plot_dict["RootScanBaseline"] = scanStore.GetRootFileBasename() + ", " + scan_name + ", " + baseline;
     plot_dict["CorrVers"] = "HOPS4/DiFX fourfit  rev 0";
     plot_dict["PolStr"] = polprod;
-    
+
     //test stuff
     py::scoped_interpreter guard{}; // start the interpreter and keep it alive, need this or we segfault
     py::dict plot_obj = plot_dict;

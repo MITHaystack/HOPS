@@ -57,6 +57,7 @@ class MHO_ComputePlotData
         #pragma message("TODO FIXME, temporary kludge to pass sbd amp data for test")
         xpower_amp_type calc_mbd();
         xpower_amp_type calc_sbd();
+        xpower_type calc_xpower();
         xpower_amp_type calc_dr();
 
         double calc_phase();
