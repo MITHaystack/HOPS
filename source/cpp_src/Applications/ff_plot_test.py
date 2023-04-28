@@ -41,6 +41,7 @@ def fourfit_plot(plot_dict, filename):
     sbd_x = plot_dict['SBD_AMP_XAXIS']
     mbd_x = plot_dict['MBD_AMP_XAXIS']
     dly_x = plot_dict['DLYRATE_XAXIS']
+    xpow_x = plot_dict['XPSPEC_XAXIS']
     # xpow_x = np.arange(-2,2,4.0/len(plot_dict['XPSPEC-ABS']))
 
 
@@ -96,34 +97,34 @@ def fourfit_plot(plot_dict, filename):
     ax3.yaxis.label.set_color('g')
     ax3.minorticks_on()
 
-    #
-    # # The cross-powe sepctra
-    # ax4 = plt.subplot2grid((16,16),(5,7),rowspan=3,colspan=6)
-    #
-    # ax4.plot(xpow_x, plot_dict['XPSPEC-ABS'],'co-',markersize=3,markerfacecolor='b')
-    # ax4.set_xlim(0,2)
-    # ax4.set_ylim(bottom=0)
-    # ax4.set_xlabel('Avgd XPow Spectrum (MHz)',fontsize=9)
-    # plt.xticks(fontsize=8)
-    # ax4.xaxis.label.set_color('k')
-    # ax4.xaxis.set_major_formatter(FormatStrFormatter('%.1f'))
-    # ax4.set_ylabel('amplitude',fontsize=9)
-    # plt.yticks(fontsize=8,rotation=90)
-    # ax4.yaxis.label.set_color('b')
-    # ax4.minorticks_on()
-    #
-    # ax5 = ax4.twinx()
-    #
-    # ax5.plot(xpow_x, plot_dict['XPSPEC-ARG'],'ro',markersize=3)
-    # ax5.set_xlim(0,2)
-    # ax5.set_ylim(-180,180)
-    # ax5.set_ylabel('phase [deg]',fontsize=9)
-    # ytick_locs = [-180,-90,0,90,180]
-    # ytick_labels = [str(yy) for yy in ytick_locs]
-    # plt.yticks(ytick_locs, ytick_labels, fontsize=8,rotation=90)
-    # ax5.yaxis.label.set_color('r')
-    #
-    #
+
+    # The cross-powe sepctra
+    ax4 = plt.subplot2grid((16,16),(5,7),rowspan=3,colspan=6)
+
+    ax4.plot(xpow_x, plot_dict['XPSPEC-ABS'],'co-',markersize=3,markerfacecolor='b')
+    ax4.set_xlim(xpow_x[0],xpow_x[-1])
+    ax4.set_ylim(bottom=0)
+    ax4.set_xlabel('Avgd XPow Spectrum (MHz)',fontsize=9)
+    plt.xticks(fontsize=8)
+    ax4.xaxis.label.set_color('k')
+    ax4.xaxis.set_major_formatter(FormatStrFormatter('%.1f'))
+    ax4.set_ylabel('amplitude',fontsize=9)
+    plt.yticks(fontsize=8,rotation=90)
+    ax4.yaxis.label.set_color('b')
+    ax4.minorticks_on()
+
+    ax5 = ax4.twinx()
+
+    ax5.plot(xpow_x, plot_dict['XPSPEC-ARG'],'ro',markersize=3)
+    ax5.set_xlim(xpow_x[0],xpow_x[-1])
+    ax5.set_ylim(-180,180)
+    ax5.set_ylabel('phase [deg]',fontsize=9)
+    ytick_locs = [-180,-90,0,90,180]
+    ytick_labels = [str(yy) for yy in ytick_locs]
+    plt.yticks(ytick_locs, ytick_labels, fontsize=8,rotation=90)
+    ax5.yaxis.label.set_color('r')
+
+
     #
     #
     # # Now we build the plots for each band; this will need attention, currently only supports six bands
@@ -319,16 +320,16 @@ def fourfit_plot(plot_dict, filename):
     plt.text(0.965,0.9,textstr2,transform=plt.gcf().transFigure,fontsize=10,verticalalignment='top',
              family='monospace',horizontalalignment='right',color='k')
 
-    
+
     # Add the top matter
     plt.text(0.965,0.94,plot_dict['RootScanBaseline'].strip("'"),transform=plt.gcf().transFigure,
              fontsize=12,verticalalignment='top',family='sans-serif',horizontalalignment='right',fontweight='bold')
-    
+
     plt.text(0.05,0.94,plot_dict['CorrVers'].strip("'"),transform=plt.gcf().transFigure,
              fontsize=12,verticalalignment='top',family='sans-serif',horizontalalignment='left',fontweight='bold')
-    
+
     plt.text(0.965,0.92,'pol '+plot_dict['PolStr'].strip("'"),transform=plt.gcf().transFigure,
              fontsize=10,verticalalignment='top',family='sans-serif',horizontalalignment='right',fontweight='bold')
-    
+
     #pylab.show()
     pylab.savefig(filename)
