@@ -459,7 +459,7 @@ MHO_MK4CorelInterface::ExtractCorelFile()
         double ap_time_length = 1.0; //defaults to 1 sec
         if(fVex.contains("$EVEX") && fVex["$EVEX"].size() == 1)
         {
-            double ap_time_length = (fVex["$EVEX"].begin().value())["AP_length"]["value"].get<double>();
+            ap_time_length = (fVex["$EVEX"].begin().value())["AP_length"]["value"].get<double>();
         }
         else 
         {
