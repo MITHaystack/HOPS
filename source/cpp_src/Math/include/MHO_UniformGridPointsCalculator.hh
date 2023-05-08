@@ -29,11 +29,11 @@ class MHO_UniformGridPointsCalculator
         ~MHO_UniformGridPointsCalculator();
 
         void SetEpsilon(double eps){fEpsilon = std::fabs(eps);};
+        void SetDefaultGridPoints(std::size_t n){fDefaultGridPoints = n;};
 
         //expects points to be given in increasing order 
         void SetPoints(const std::vector<double>& pts);
         void SetPoints(const double* pts, std::size_t npts);
-
         void Calculate();
 
         void GetGridPoints(std::vector<double>* grid_pts);//fill vector with grid points
@@ -62,6 +62,8 @@ class MHO_UniformGridPointsCalculator
         double fNGridPoints;
         std::vector<double> fPoints;
         std::map<std::size_t, std::size_t> fIndexMap;
+
+        int fDefaultGridPoints;
 
         double fAbsEps; //use to check that value is not zero
 

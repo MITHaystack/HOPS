@@ -15,6 +15,10 @@ MHO_UniformGridPointsCalculator::MHO_UniformGridPointsCalculator()
     fMaxSpacing = 0;
     fNGridPoints = 0;
     fAbsEps = 1e-30;
+    fDefaultGridPoints = 2;
+    #ifdef EXTRA_INTERP_DBG
+    fDefaultGridPoints = 256;
+    #endif
 }
 
 MHO_UniformGridPointsCalculator::~MHO_UniformGridPointsCalculator(){};
@@ -85,12 +89,8 @@ MHO_UniformGridPointsCalculator::Calculate_v1()
             spacing_ok = 1;
             spacing = min_space / div;
             div++;
-            #ifdef EXTRA_INTERP_DBG
-                #pragma message("TODO FIXME: Warning additional grid points being used in MBD search.")
-                grid_pts = 256; //use this value to simplify debugging of MBD search
-            #else 
-                grid_pts = 2; //this is the original value
-            #endif
+            grid_pts = fDefaultGridPoints ; //use this value to simplify debugging of MBD search
+
             for(std::size_t fr = 0; fr < n_pts; fr++)
             {
                 index = (fPoints[fr] - min_pts) / spacing;

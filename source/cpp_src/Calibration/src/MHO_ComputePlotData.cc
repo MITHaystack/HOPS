@@ -17,6 +17,7 @@ MHO_ComputePlotData::calc_mbd()
 
     //calculate the frequency grid for the channel -> MBD FFT
     MHO_UniformGridPointsCalculator fGridCalc;
+    fGridCalc.SetDefaultGridPoints(8192);
     fGridCalc.SetPoints( std::get<CHANNEL_AXIS>(*fSBDArray).GetData(), std::get<CHANNEL_AXIS>(*fSBDArray).GetSize() );
     fGridCalc.Calculate();
 
