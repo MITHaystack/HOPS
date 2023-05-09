@@ -91,8 +91,10 @@ MHO_ControlBlockWrapper::ConstructManualPhaseCalOffsets()
     //from parser.c
     // #define LXH 0
     // #define RYV 1
-    pol_arr[0] = "X";
-    pol_arr[1] = "Y";
+    // pol_arr[0] = "X";
+    // pol_arr[1] = "Y";
+    pol_arr[0] = "L";
+    pol_arr[1] = "R";
 
     for(unsigned int p=0; p<2; p++)
     {
@@ -142,8 +144,10 @@ MHO_ControlBlockWrapper::ConstructManualPhaseCalDelayOffsets()
     //from parser.c
     // #define LXH 0
     // #define RYV 1
-    pol_arr[0] = "X";
-    pol_arr[1] = "Y";
+    // pol_arr[0] = "X";
+    // pol_arr[1] = "Y";
+    pol_arr[0] = "L";
+    pol_arr[1] = "R";
 
     for(unsigned int p=0; p<2; p++)
     {

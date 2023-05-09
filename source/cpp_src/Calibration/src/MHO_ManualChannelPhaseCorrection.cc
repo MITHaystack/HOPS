@@ -76,6 +76,7 @@ MHO_ManualChannelPhaseCorrection::InitializeImpl(const XArgType1* in_vis, const 
             auto polprod = pp_ax(i);
             make_upper(pol); 
             make_upper(polprod);
+            std::cout<<"pol, polprod = "<<pol<<", "<<polprod<<std::endl;
             if( pol[0] == polprod[pol_index] ){fPolIdxMap[i] = j;}
         }
     }
@@ -105,6 +106,8 @@ MHO_ManualChannelPhaseCorrection::ExecuteImpl(const XArgType1* in_vis, const XAr
 {
     if(fInitialized)
     {
+        msg_debug("calibration", "executing manual p-cal for station. "<<eom);
+
         //just copy in_vis into out_vis
         //TODO FIXME...there is no reason we can't do this operation in place applied to in_vs
         //but the operator interface needs to be different since we need a unary op 
@@ -123,19 +126,12 @@ MHO_ManualChannelPhaseCorrection::ExecuteImpl(const XArgType1* in_vis, const XAr
                 std::size_t vis_chan_idx = ch_it->first;
                 std::size_t pcal_chan_idx = ch_it->second;
                 //retrieve the p-cal phasor (assume unit normal)
-                pcal_phasor_type pc_val = (*pcal)(pcal_pol_idx, pcal_chan_idx);
+                manual_pcal_element_type pc_val = (*pcal)(pcal_pol_idx, pcal_chan_idx);
                 visibility_element_type pc_phasor = std::exp( fImagUnit*pc_val*fDegToRad );
 
-                //conjugate the pcal if applied to LSB
-                bool do_conj = false;
-                std::string sideband;
-                auto labels = chan_ax->GetIntervalsWhichIntersect(vis_chan_idx);
-                for(std::size_t i=0; i<labels.size(); i++)
-                {
-                    bool ok = labels[i]->Retrieve(fNetSidebandKey,sideband);
-                    if(ok){ if(sideband == "L"){do_conj = true; break;} }
-                }
-                if(do_conj){pc_phasor = std::conj(pc_phasor);} 
+                std::cout<<"PCAL value = "<<pc_val<<std::endl;
+                pc_phasor = std::conj(pc_phasor); //conjugate for USB/LSB, but not for DSB?? 
+
                 
                 //retrieve and multiply the appropriate sub view of the visibility array 
                 auto chunk = out_vis->SubView(vis_pol_idx, vis_chan_idx);
