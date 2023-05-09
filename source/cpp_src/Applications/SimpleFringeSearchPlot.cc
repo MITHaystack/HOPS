@@ -235,8 +235,11 @@ int main(int argc, char** argv)
     // selected_ap.push_back(20);
 
     //select first 8 channels for testing
-    std::vector< std::size_t > selected_ch;
-    for(std::size_t i=0;i<8; i++){selected_ch.push_back(i);}
+    std::size_t n_max_channels = std::get<CHANNEL_AXIS>(*bl_data).GetSize();
+    std::vector< std::size_t > selected_ch = cb_wrapper.GetActiveChannelsKLUDGE(n_max_channels);
+    
+
+    //for(std::size_t i=0;i<8; i++){selected_ch.push_back(i);}
     //for(std::size_t i=0;i<2; i++){selected_ch.push_back(i);}
 
     //specify the indexes we want on each axis
@@ -272,6 +275,15 @@ int main(int argc, char** argv)
 
     std::size_t bl_dim[visibility_type::rank::value];
     bl_data->GetDimensions(bl_dim);
+    for(std::size_t i=0; i < visibility_type::rank::value; i++)
+    {
+        if(bl_dim[i] == 0)
+        {
+            msg_fatal("main", "no data left after cuts." << eom);
+            std::exit(1);
+        }
+    }
+
 
     //take a snapshot
     take_snapshot_here("test", "visib", __FILE__, __LINE__, bl_data);
