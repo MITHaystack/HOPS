@@ -70,8 +70,11 @@ MHO_NormFX::InitializeImpl(const XArgType1* in1, const XArgType2* in2, XArgType3
 
         //TODO FIXME...currently this treats all channels as USB or LSB (but what if we have a mixed case?)
         //for LSB data we flip as well as pad
-        if(!fIsUSB){fPaddedFFTEngine.SetEndPadded();}
-        else{fPaddedFFTEngine.SetReverseEndPadded();}
+        // if(!fIsUSB){fPaddedFFTEngine.SetEndPadded();}
+        // else{fPaddedFFTEngine.SetReverseEndPadded();}
+
+        fPaddedFFTEngine.SetEndPadded();
+
 
         status = fPaddedFFTEngine.Initialize();
         if(!status){msg_error("operators", "Could not initialize padded FFT in MHO_NormFX." << eom); return false;}

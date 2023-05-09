@@ -236,15 +236,15 @@ int main(int argc, char** argv)
 
     //select first 8 channels for testing
     std::vector< std::size_t > selected_ch;
-    //for(std::size_t i=0;i<16; i++){selected_ch.push_back(i);}
+    for(std::size_t i=0;i<8; i++){selected_ch.push_back(i);}
     //for(std::size_t i=0;i<2; i++){selected_ch.push_back(i);}
 
     //specify the indexes we want on each axis
     spack.SelectAxisItems(0,selected_pp);
-    //spack.SelectAxisItems(1,selected_ch);
+    spack.SelectAxisItems(1,selected_ch);
 
     wtspack.SelectAxisItems(0,selected_pp);
-    //wtspack.SelectAxisItems(1,selected_ch);
+    wtspack.SelectAxisItems(1,selected_ch);
     //spack.SelectAxisItems(2,selected_ap);
 
 
