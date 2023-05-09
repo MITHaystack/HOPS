@@ -34,6 +34,17 @@ MHO_ControlBlockWrapper::GetReferenceFrequency()
     return fControlBlock->ref_freq;
 }
 
+std::vector<std::size_t>
+MHO_ControlBlockWrapper::GetActiveChannelsKLUDGE(std::size_t n_max_channels)
+{
+    fActiveChannels.clear();
+    for(std::size_t i=0; i<n_max_channels; i++)
+    {
+        if( fControlBlock->accept_sbs[i] != 0){fActiveChannels.push_back(i);}
+    }
+    return fActiveChannels;
+}
+
 
 void
 MHO_ControlBlockWrapper::DetermineStationInfo()

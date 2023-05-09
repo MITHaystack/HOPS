@@ -46,6 +46,8 @@ class MHO_ControlBlockWrapper
         manual_pcal_delay_type* GetRefStationManualPCDelayOffsets(){return &fRefManPcalDelay;}
         manual_pcal_delay_type* GetRemStationManualPCDelayOffsets(){return &fRemManPcalDelay;};
 
+        //get indices of the active channels 
+        std::vector<std::size_t> GetActiveChannelsKLUDGE(std::size_t n_max_channels);
 
         //get the start/stop offsets
         double GetStartOffset();
@@ -76,6 +78,8 @@ class MHO_ControlBlockWrapper
 
         manual_pcal_delay_type fRefManPcalDelay;
         manual_pcal_delay_type fRemManPcalDelay;
+
+        std::vector<std::size_t> fActiveChannels;
 
         // int accept_sbs[MAXFREQ];        /* accept USB, LSB, DSB iff = 1, 2, 3 */
         // short index[2*MAXFREQ];         /* index numbers of acceptable sidebands */
