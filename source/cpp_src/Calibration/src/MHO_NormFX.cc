@@ -67,13 +67,7 @@ MHO_NormFX::InitializeImpl(const XArgType1* in1, const XArgType2* in2, XArgType3
         fPaddedFFTEngine.SelectAxis(FREQ_AXIS); //only perform padded fft on frequency (to lag) axis
         fPaddedFFTEngine.SetForward();//forward DFT
         fPaddedFFTEngine.SetPaddingFactor(8);
-
-        //TODO FIXME...currently this treats all channels as USB or LSB (but what if we have a mixed case?)
-        //for LSB data we flip as well as pad
-        // if(!fIsUSB){fPaddedFFTEngine.SetEndPadded();}
-        // else{fPaddedFFTEngine.SetReverseEndPadded();}
-
-        fPaddedFFTEngine.SetEndPadded();
+        fPaddedFFTEngine.SetEndPadded(); //for both LSB and USB (what about DSB?)
 
 
         status = fPaddedFFTEngine.Initialize();
@@ -88,13 +82,6 @@ MHO_NormFX::InitializeImpl(const XArgType1* in1, const XArgType2* in2, XArgType3
         fCyclicRotator.SetArgs(out);
         status = fCyclicRotator.Initialize();
         if(!status){msg_error("operators", "Could not initialize cyclic rotation in MHO_NormFX." << eom); return false;}
-
-        // double norm = 1.0/(nlags*8);
-        // fNormBroadcaster.GetFunctor()->SetFactor(norm);
-        // fNormBroadcaster.SetInput(out);
-        // fNormBroadcaster.SetOutput(out);
-        // status = fNormBroadcaster.Initialize();
-        // if(!status){msg_error("operators", "Could not initialize MHO_NormFX." << eom); return false;}
 
         //#pragma message("TODO FIXME, the following line casts away const-ness:")
         fConjBroadcaster.SetArgs( out );
@@ -136,29 +123,14 @@ MHO_NormFX::ExecuteImpl(const XArgType1* in1, const XArgType2* in2, XArgType3* o
         status = fNaNBroadcaster.Execute();
         if(!status){msg_error("operators", "Could not execute NaN masker MHO_NormFX." << eom); return false;}
 
-
-
-    #ifdef USE_OLD
-        run_old_normfx_core(in1, in2, out);
-    #else
-
         status = fPaddedFFTEngine.Execute();
         if(!status){msg_error("operators", "Could not execute paddded FFT in MHO_NormFX." << eom); return false;}
-
-        // auto ax2 = &(std::get<TIME_AXIS>(fWorkspace));
-        // std::cout<<"workspace ax2(1) = "<<(*ax2)(1)<<std::endl;
 
         status = fSubSampler.Execute();
         if(!status){msg_error("operators", "Could not execute sub-sampler in MHO_NormFX." << eom); return false;}
 
-        // auto ax2b = &(std::get<TIME_AXIS>(*out));
-        // std::cout<<"workspace ax2b(1) = "<<(*ax2b)(1)<<std::endl;
-
         status = fCyclicRotator.Execute();
         if(!status){msg_error("operators", "Could not execute cyclic-rotation MHO_NormFX." << eom); return false;}
-
-        // auto ax2c = &(std::get<TIME_AXIS>(*out));
-        // std::cout<<"workspace ax2c(1) = "<<(*ax2c)(1)<<std::endl;
 
         //for lower sideband we complex conjugate the data
         if(!fIsUSB)
@@ -167,18 +139,10 @@ MHO_NormFX::ExecuteImpl(const XArgType1* in1, const XArgType2* in2, XArgType3* o
             if(!status){msg_error("operators", "Could not execute complex conjugation in MHO_NormFX." << eom); return false;}
         }
 
-    #endif
 
         //normalize the array
         double norm =  1.0/(double)fInDims[FREQ_AXIS];
-        //double norm =  1.0/(double) out->GetDimension(FREQ_AXIS);
-        // std::cout<<"the norm = "<< fInDims[FREQ_AXIS]<<std::endl;
         *(out) *= norm;
-
-        // status = fNormBroadcaster.Execute();
-        // if(!status){msg_error("operators", "Could not execute normalization in MHO_NormFX." << eom); return false;}
-
-        // fWorkspace.Resize(0,0,0,0);
 
         return true;
     }

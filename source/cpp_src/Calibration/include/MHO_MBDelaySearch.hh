@@ -28,7 +28,6 @@
 #endif
 
 #include "MHO_MultidimensionalFastFourierTransform.hh"
-#include "MHO_MultidimensionalPaddedFastFourierTransform.hh"
 
 #include "MHO_UniformGridPointsCalculator.hh"
 #include "MHO_ExtremaSearch.hh"
