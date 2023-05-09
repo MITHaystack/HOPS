@@ -33,7 +33,7 @@ MHO_MBDelaySearch::InitializeImpl(const XArgType* in)
         fNSBD = in->GetDimension(FREQ_AXIS);
         fNDR = in->GetDimension(TIME_AXIS);
 
-        std::cout<<"sizes = "<<fNGridPoints<<", "<<fNSBD<<", "<<fNDR<<std::endl;
+        msg_debug("calibration", "MBD search, N grid points = " << fNGridPoints << eom);
 
         //resize workspaces (TODO...make conditional on current size -- if already configured)
         fMBDWorkspace.Resize(fNGridPoints, fNDR);

@@ -38,7 +38,6 @@ struct c_block* cb_head; //global extern kludge (due to stupid c-library interfa
 #include "MHO_ElementTypeCaster.hh"
 #include "MHO_NormFX.hh"
 #include "MHO_SelectRepack.hh"
-#include "MHO_FreqSpacing.hh"
 #include "MHO_UniformGridPointsCalculator.hh"
 #include "MHO_FringeRotation.hh"
 #include "MHO_Reducer.hh"

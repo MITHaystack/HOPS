@@ -64,17 +64,16 @@ MHO_InterpolateFringePeak::fine_peak_interpolation()
     double drfmax;
 
     double total_ap_frac = fTotalSummedWeights;
-
-    std::cout<<"total ap frac = "<<total_ap_frac<<std::endl;
+    // 
+    // std::cout<<"total ap frac = "<<total_ap_frac<<std::endl;
 
     auto chan_ax = &( std::get<CHANNEL_AXIS>(*fSBDArray) );
     auto ap_ax = &(std::get<TIME_AXIS>(*fSBDArray));
     auto sbd_ax = &( std::get<FREQ_AXIS>(*fSBDArray) );
 
-    std::cout<<"sbd ax ="<<sbd_ax<<std::endl;
-    std::cout<<"sbdmaxbin="<<fSBDMaxBin<<std::endl;
-
-    std::cout<<"fSBDArray = "<<fSBDArray<<std::endl;
+    // std::cout<<"sbd ax ="<<sbd_ax<<std::endl;
+    // std::cout<<"sbdmaxbin="<<fSBDMaxBin<<std::endl;
+    // std::cout<<"fSBDArray = "<<fSBDArray<<std::endl;
 
     std::size_t nap = ap_ax->GetSize();
     std::size_t nchan = chan_ax->GetSize();
@@ -86,7 +85,7 @@ MHO_InterpolateFringePeak::fine_peak_interpolation()
 
     //TODO FIXME -- shoudl this be the fourfit refrence time? Also...should this be calculated elsewhere?
     double midpoint_time = ( ap_ax->at(nap-1) + ap_delta  + ap_ax->at(0) )/2.0;
-    std::cout<<"time midpoint = "<<midpoint_time<<std::endl;
+    // std::cout<<"time midpoint = "<<midpoint_time<<std::endl;
 
     //printf("max bin (sbd, mbd, dr) = %d, %d, %d\n", fSBDMaxBin, fMBDMaxBin, fDRMaxBin );
     //printf("mbd delta, dr delta = %.7f, %.7f \n", mbd_delta, dr_delta/fRefFreq);
@@ -165,12 +164,12 @@ MHO_InterpolateFringePeak::fine_peak_interpolation()
     xlim[2][0] = -2;//dr_lower;// - status.dr_max_global) / status.rate_sep;
     xlim[2][1] = 2;//dr_upper;// - status.dr_max_global) / status.rate_sep;
 
-    std::cout<< "xlim's "<< xlim[0][0]<<", "<< xlim[0][1] <<", "<< xlim[1][0] <<", "<< xlim[1][1] <<", " << xlim[2][0] <<", "<< xlim[2][1] <<std::endl;
+    // std::cout<< "xlim's "<< xlim[0][0]<<", "<< xlim[0][1] <<", "<< xlim[1][0] <<", "<< xlim[1][1] <<", " << xlim[2][0] <<", "<< xlim[2][1] <<std::endl;
                                 // find maximum value within cube via interpolation
     max555(fDRF, xlim, xi, &drfmax);
 
-    std::cout<< "xi's "<< xi[0]<<", "<< xi[1] <<", "<< xi[2] <<std::endl;
-    std::cout<<"drf max = "<<drfmax<<std::endl;
+    // std::cout<< "xi's "<< xi[0]<<", "<< xi[1] <<", "<< xi[2] <<std::endl;
+    // std::cout<<"drf max = "<<drfmax<<std::endl;
 
     // calculate location of this tabular point (should modulo % axis size)
     // std::size_t sbd_bin = loc[3];
@@ -181,10 +180,10 @@ MHO_InterpolateFringePeak::fine_peak_interpolation()
     mbd_bin = fMBDMaxBin;
     fFringeAmp = drfmax;
 
-    std::cout<<"----------------------------------------"<<std::endl;
-    std::cout<<"sbd ax ="<<sbd_ax<<std::endl;
-    std::cout<<"sbd_bin="<<sbd_bin<<std::endl;
-    std::cout<<"mbd_bin="<<mbd_bin<<std::endl;
+    // std::cout<<"----------------------------------------"<<std::endl;
+    // std::cout<<"sbd ax ="<<sbd_ax<<std::endl;
+    // std::cout<<"sbd_bin="<<sbd_bin<<std::endl;
+    // std::cout<<"mbd_bin="<<mbd_bin<<std::endl;
 
     sbd = sbd_ax->at(sbd_bin);// + 0.5*sbd_delta;
     dr =  (fDRAxis.at(dr_bin) )*(1.0/fRefFreq);
@@ -204,8 +203,8 @@ MHO_InterpolateFringePeak::fine_peak_interpolation()
     fFringeRate = fDRAxis.at(dr_bin) + (xi[2] * 0.5 * dr_delta);
 
     std::cout<< std::setprecision(15);
-    std::cout<<"coarse location (sbd, mbd, dr) = "<<sbd<<", "<<mbd<<", "<<dr<<std::endl;
-    std::cout<<"change (sbd, mbd, dr) = "<<sbd_change<<", "<<mbd_change<<", "<<dr_change<<std::endl;
+    // std::cout<<"coarse location (sbd, mbd, dr) = "<<sbd<<", "<<mbd<<", "<<dr<<std::endl;
+    // std::cout<<"change (sbd, mbd, dr) = "<<sbd_change<<", "<<mbd_change<<", "<<dr_change<<std::endl;
     std::cout<<"Peak max555, sbd "<<sbd_max<<" mbd "<<mbd_max_global<<" dr "<<dr_max_global<<std::endl;
 
 }
@@ -270,8 +269,6 @@ void MHO_InterpolateFringePeak::max555 (MHO_NDArrayWrapper<double, 3>& drf,   //
                     x[2] = center[2] + dx2 * (k-5);
                                     // find interpolated value at this point
                     interp555 (drf, x, &value);
-                       // msg ("i %d j %d k %d x %g %g %g value %lf",
-                       //     2, i, j, k, x[0], x[1], x[2], value);
                                     // is this a new maximum?
                                     // if so, save value and coords.
                     if (value > bestval)
@@ -287,8 +284,6 @@ void MHO_InterpolateFringePeak::max555 (MHO_NDArrayWrapper<double, 3>& drf,   //
         dx0 /= 5.0;
         dx1 /= 5.0;
         dx2 /= 5.0;
-        //msg ("max value %f at %g %g %g", 0,
-        //      bestval, xbest[0], xbest[1], xbest[2]);
         }
 
     while (dx0 > epsilon || dx1 > epsilon || dx2 > epsilon);
@@ -334,8 +329,6 @@ MHO_InterpolateFringePeak::interp555 (MHO_NDArrayWrapper<double, 3>& drf,// inpu
         a[2][j] = (p2-1) * (p2-4) / 4;
         a[3][j] = -(p+1) * p * (p2-4) / 6;
         a[4][j] = (p2-1) * p * (p+2) / 24;
-        //msg ("p %lf a[][%d] %lf %lf %lf %lf %lf",2,
-        //        p, j, a[0][j], a[1][j], a[2][j], a[3][j], a[4][j]);
     }
 
     *drfval = 0.0;
@@ -345,7 +338,6 @@ MHO_InterpolateFringePeak::interp555 (MHO_NDArrayWrapper<double, 3>& drf,// inpu
             for (k=0; k<5; k++)
             {
                 *drfval += a[i][0] * a[j][1] * a[k][2] * drf(i,j,k);
-                //msg ("drf[%d][%d][%d] %lf drfval %lf",2, i,j,k, drf[i][j][k],*drfval);
             }
 }
 
