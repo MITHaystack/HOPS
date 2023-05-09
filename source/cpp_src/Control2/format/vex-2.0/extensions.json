@@ -1,0 +1,26 @@
+{
+    "block_name": "$EXTENSIONS",
+    "version": "2.0",
+    "start_tag": "def",
+    "stop_tag": "enddef",
+    "type" : "compound",
+    "block_type": "primitive",
+    "parameters" :
+    {
+        "extension":
+        {
+            "type": "list_compound",
+            "parameters":
+            {
+                "owner": {"type": "string"},
+                "name": {"type": "string"},
+                "values": {"type": "list_string"}
+            },
+            "fields": ["owner", "name", "values"]
+        }
+    },
+    "fields": 
+    [
+        "extension"
+    ]
+}
