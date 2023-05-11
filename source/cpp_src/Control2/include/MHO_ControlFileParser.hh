@@ -45,7 +45,7 @@ class MHO_ControlFileParser
         void IndexStatements();
         void SplitStatements();
         void JoinLines();
-        void MarkBlocks();
+        // void MarkBlocks();
         // std::vector< MHO_ControlLine > CollectBlockLines(std::string block_name);
         // void ProcessBlocks(mho_json& root);
 
@@ -76,6 +76,7 @@ class MHO_ControlFileParser
         std::string fFormatDirectory;
         std::string fControlVersion;
         std::vector< std::string > fBlockNames;
+        mho_json fBlockNamesJSON;
 
         //block parser 
         //MHO_ControlBlockParser fBlockParser;
