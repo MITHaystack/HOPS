@@ -1,9 +1,9 @@
-#ifndef MHO_VexLine_HH__
-#define MHO_VexLine_HH__
+#ifndef MHO_ControlLine_HH__
+#define MHO_ControlLine_HH__
 
 /*
-*@file: MHO_VexLine.hh
-*@class: MHO_VexLine
+*@file: MHO_ControlLine.hh
+*@class: MHO_ControlLine
 *@author: J. Barrett
 *@email: barrettj@mit.edu
 *@date:
@@ -15,7 +15,7 @@
 namespace hops
 {
 
-struct MHO_VexLine
+struct MHO_ControlLine
 {
     std::size_t fLineNumber;
     std::size_t fStatementNumber;
@@ -25,4 +25,4 @@ struct MHO_VexLine
 
 }
 
-#endif /* end of include guard: MHO_VexLine */
+#endif /* end of include guard: MHO_ControlLine */
