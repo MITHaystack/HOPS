@@ -8,7 +8,27 @@ namespace hops
 
 MHO_ControlFileParser::MHO_ControlFileParser()
 {
+    //read the block-names.json file 
+    fFormatDirectory = HOPS_CONTROL_FORMAT_DIR;
+    fFormatDirectory += "/control/";
 
+    std::string block_names_file = fFormatDirectory + "block-names.json";
+    std::ifstream ifs;
+    ifs.open( block_names_file.c_str(), std::ifstream::in );
+
+    if(ifs.is_open())
+    {
+        fBlockNamesJSON = mho_json::parse(ifs);
+    }
+    ifs.close();
+
+    fBlockNames = fBlockNamesJSON["block_names"];
+    
+    
+    for(auto blockIt = fBlockNames.begin(); blockIt != fBlockNames.end(); blockIt++)
+    {
+        std::cout<<"block name = "<< *blockIt << std::endl;
+    }
 }
 
 
@@ -33,7 +53,7 @@ MHO_ControlFileParser::ParseControl()
         std::cout<<it->fContents<<std::endl;
     }
     
-    // SplitStatements(); //split multiple ";" on one line into as many statements as needed
+    SplitStatements(); //split multiple ";" on one line into as many statements as needed
     // JoinLines(); //join incomplete segments split across multiple lines into a single statement
     // IndexStatements();
     // MarkBlocks(); //mark the major parsable sections
@@ -100,9 +120,6 @@ MHO_ControlFileParser::RemoveComments()
     }
 }
 
-/*
-
-
 void
 MHO_ControlFileParser::SplitStatements()
 {
@@ -113,74 +130,57 @@ MHO_ControlFileParser::SplitStatements()
     fTokenizer.SetRemoveLeadingTrailingWhitespaceTrue();
     fTokenizer.SetIncludeEmptyTokensFalse();
     
-    
-    //primitive search for start/end literal statements
+    std::vector< std::string> tokens;
     auto it = fLines.begin();
     while(it != fLines.end())
     {
+        fTokenizer.SetString( &(it->fContents) );
+        fTokenizer.GetTokens(&tokens);
         
-        fTokenizer.
-        it->fContents;
-        
-        
-        
-        bool must_split = false;
-        std::size_t n_stmt = std::count( it->fContents.begin(), it->fContents.end(), statement_end[0]);
-        if(n_stmt > 1){must_split = true;}
-    
-        //another condition for splitting the line would be if we have something 
-        //messy like the following (still legal according to the standard):
-        //    def K2; VSN = 1 : HOB+0093 : 
-        //    2019y133d00h00m : 2019y134d23h59m 
-        //    ; enddef;
-        //to detect this we need to check if there are any non white space characters 
-        //after the presence of a ';' (comments should be stripped at this point)
-    
-        std::string whitespace_chars = MHO_ControlDefinitions::WhitespaceDelim();
-        if(n_stmt >= 1)
+        //brute force search
+        for(auto tokenIt = tokens.begin(); tokenIt != tokens.end(); tokenIt++)
         {
-            std::size_t last_flag_pos = it->fContents.find_last_of(statement_end);
-            for(std::size_t ch = last_flag_pos; ch < it->fContents.size(); ch++)
+            for(auto blockIt = fBlockNames.begin(); blockIt != fBlockNames.end(); blockIt++)
             {
-                if( whitespace_chars.find( it->fContents[ch] ) == std::string::npos)
+                if(*tokenIt == * blockIt)
                 {
-                    //there is a non-whitespace character here, so we must split this line at the ';'
-                    must_split = true;
-                    break;
+                    std::cout<<" found a control element: "<< *tokenIt <<std::endl;
                 }
             }
         }
-    
-    
-        if(must_split)
-        {
-            //split this statement into multiple 'lines'
-            std::vector< std::size_t > positions;
-            std::vector< MHO_ControlLine > split_lines;
-            for(std::size_t i=0; i<it->fContents.size(); i++)
-            {
-                if( it->fContents[i] == ';')
-                {
-                    positions.push_back(i);
-                    split_lines.push_back(*it);
-                }
-            }
-    
-            std::size_t start = 0;
-            std::size_t length = 0;
-            for(std::size_t i=0; i<split_lines.size(); i++)
-            {
-                length = positions[i] + 1 - start;
-                split_lines[i].fContents = it->fContents.substr(start,length);
-                start = positions[i]+1;
-            }
-            it = fLines.erase(it);
-            fLines.insert(it, split_lines.begin(), split_lines.end());
-        }
-        else{++it;};
+        it++;
     }
+        // 
+        // if(must_split)
+        // {
+        //     //split this statement into multiple 'lines'
+        //     std::vector< std::size_t > positions;
+        //     std::vector< MHO_ControlLine > split_lines;
+        //     for(std::size_t i=0; i<it->fContents.size(); i++)
+        //     {
+        //         if( it->fContents[i] == ';')
+        //         {
+        //             positions.push_back(i);
+        //             split_lines.push_back(*it);
+        //         }
+        //     }
+        // 
+        //     std::size_t start = 0;
+        //     std::size_t length = 0;
+        //     for(std::size_t i=0; i<split_lines.size(); i++)
+        //     {
+        //         length = positions[i] + 1 - start;
+        //         split_lines[i].fContents = it->fContents.substr(start,length);
+        //         start = positions[i]+1;
+        //     }
+        //     it = fLines.erase(it);
+        //     fLines.insert(it, split_lines.begin(), split_lines.end());
+        // }
+        // else{++it;};
+    //}
 }
 
+/* 
 void
 MHO_ControlFileParser::IndexStatements()
 {
@@ -300,6 +300,7 @@ MHO_ControlFileParser::MarkBlocks()
         }
     }
 }
+
 
 
 void 
