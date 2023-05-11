@@ -131,6 +131,8 @@ MHO_ControlFileParser::SplitStatements()
     fTokenizer.SetIncludeEmptyTokensFalse();
     
     std::vector< std::string> tokens;
+    std::list< std::vector< std::string> > element_tokens;
+    
     auto it = fLines.begin();
     while(it != fLines.end())
     {
