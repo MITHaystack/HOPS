@@ -1,11 +1,12 @@
 set (CONTROL2_HEADERFILES
     # ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_VexDefinitions.hh
-    # ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_VexLine.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ControlLine.hh
     # ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_VexTokenProcessor.hh
     # ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_VexBlockParser.hh
     # ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_VexParser.hh
     # ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_VexGenerator.hh
     # ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_VexElementLineGenerator.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ControlFileParser.hh
 )
 
 ##################################################
@@ -17,6 +18,7 @@ set (CONTROL2_SOURCEFILES
     # ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_VexBlockParser.cc
     # ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_VexGenerator.cc
     # ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_VexElementLineGenerator.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ControlFileParser.cc
 )
 
 #declare header paths ##########################################################
@@ -29,7 +31,7 @@ set_property( SOURCE ${CONTROL2_SOURCEFILES}
 
 add_library (MHO_Control2 SHARED ${CONTROL2_SOURCEFILES} ${CONTROL2_HEADERFILES})
 
-target_link_libraries (MHO_Control2 MHO_Utilities)
+target_link_libraries (MHO_Control2 MHO_Utilities MHO_Message)
 
 hops_install_headers (${CONTROL2_HEADERFILES})
 hops_install_libraries (MHO_Control2)

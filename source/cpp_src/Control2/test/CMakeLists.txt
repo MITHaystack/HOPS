@@ -3,14 +3,11 @@ include_directories(${EXTERN_HLIBS}/json/include)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../include)
 
 set (HOPS_TEST_LIBS
-    vex2json
+    MHO_Message MHO_Utilities MHO_Control2
 )
 
 set(SOURCE_BASENAMES
-    TestJson
-    TestVexParser
-    TestJson2Vex
-    TestExtractFreqTable
+    TestControlFileParser
 )
 
 foreach( BASENAME ${SOURCE_BASENAMES} )

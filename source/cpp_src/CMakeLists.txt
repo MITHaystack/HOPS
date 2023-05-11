@@ -31,6 +31,7 @@ add_subdirectory(${CPPSOURCE}/Calibration) #VLBI specific data containers and op
 add_subdirectory(${CPPSOURCE}/vex2json) #library to convert ovex to json
 add_subdirectory(${CPPSOURCE}/MK4Interface) #interface to MK4 data types and import
 add_subdirectory(${CPPSOURCE}/Control) #interface to old fourfit control library
+add_subdirectory(${CPPSOURCE}/Control2) #interface to old fourfit control library
 
 if(HOPS_USE_DIFXIO)
 add_subdirectory(${CPPSOURCE}/DiFXInterface)

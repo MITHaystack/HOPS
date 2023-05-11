@@ -47,7 +47,7 @@ class MHO_Tokenizer{
         */
         void SetString(const std::string* aString);
 
-        /** Set the delimeter to be used to parse the string in SetString 
+        /** Set the delimiter to be used to parse the string in SetString 
         * @param aDelim string a string to be used as a delimiter
         * @returns None
         */
