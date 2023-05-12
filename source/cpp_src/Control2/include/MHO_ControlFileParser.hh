@@ -42,6 +42,7 @@ class MHO_ControlFileParser
 
         void ReadFile();
         void RemoveComments();
+        void TokenizeLines();
         void IndexStatements();
         void SplitStatements();
         void JoinLines();
