@@ -46,14 +46,14 @@ MHO_ControlFileParser::ParseControl()
 {
     ReadFile(); //read file into memory
     RemoveComments(); //excise all comments
-    
+    TokenizeLines();
     
     for(auto it = fLines.begin(); it != fLines.end(); it++)
     {
         std::cout<<it->fContents<<std::endl;
     }
     
-    SplitStatements(); //split multiple ";" on one line into as many statements as needed
+    //SplitStatements(); //split multiple ";" on one line into as many statements as needed
     // JoinLines(); //join incomplete segments split across multiple lines into a single statement
     // IndexStatements();
     // MarkBlocks(); //mark the major parsable sections
@@ -95,6 +95,7 @@ MHO_ControlFileParser::ReadFile()
     }
 }
 
+
 void 
 MHO_ControlFileParser::RemoveComments()
 {
@@ -120,10 +121,28 @@ MHO_ControlFileParser::RemoveComments()
     }
 }
 
+void MHO_ControlFileParser::TokenizeLines()
+{
+    std::string whitespace_delims(" \t\r\n");
+    fTokenizer.SetDelimiter(whitespace_delims);
+    //fTokenizer.SetUseMulticharacterDelimiterFalse();
+    fTokenizer.SetRemoveLeadingTrailingWhitespaceTrue();
+    fTokenizer.SetIncludeEmptyTokensFalse();
+
+    auto it = fLines.begin();
+    while(it != fLines.end())
+    {
+        it->fTokens.clear();
+        fTokenizer.SetString( &(it->fContents) );
+        fTokenizer.GetTokens( &(it->fTokens) );
+        it++;
+    }
+}
+
+
 void
 MHO_ControlFileParser::SplitStatements()
 {
-    
     std::string whitespace_delims(" \t\r\n");
     fTokenizer.SetDelimiter(whitespace_delims);
     //fTokenizer.SetUseMulticharacterDelimiterFalse();
@@ -131,55 +150,57 @@ MHO_ControlFileParser::SplitStatements()
     fTokenizer.SetIncludeEmptyTokensFalse();
     
     std::vector< std::string> tokens;
-    std::list< std::vector< std::string> > element_tokens;
+    std::list< std::vector< std::string > > element_tokens;
     
     auto it = fLines.begin();
     while(it != fLines.end())
     {
+        bool must_split = false;
         fTokenizer.SetString( &(it->fContents) );
         fTokenizer.GetTokens(&tokens);
         
         //brute force search
+        std::size_t n_block_elements = 0;
         for(auto tokenIt = tokens.begin(); tokenIt != tokens.end(); tokenIt++)
         {
             for(auto blockIt = fBlockNames.begin(); blockIt != fBlockNames.end(); blockIt++)
             {
                 if(*tokenIt == * blockIt)
                 {
+                    n_block_elements++;
                     std::cout<<" found a control element: "<< *tokenIt <<std::endl;
                 }
             }
         }
-        it++;
+        if(n_block_elements > 1){must_split = true;}
+    
+        if(must_split)
+        {
+            //split this statement into multiple 'lines'
+            std::vector< std::size_t > positions;
+            std::vector< MHO_ControlLine > split_lines;
+            for(std::size_t i=0; i<it->fContents.size(); i++)
+            {
+                if( it->fContents[i] == ';')
+                {
+                    positions.push_back(i);
+                    split_lines.push_back(*it);
+                }
+            }
+        
+            std::size_t start = 0;
+            std::size_t length = 0;
+            for(std::size_t i=0; i<split_lines.size(); i++)
+            {
+                length = positions[i] + 1 - start;
+                split_lines[i].fContents = it->fContents.substr(start,length);
+                start = positions[i]+1;
+            }
+            it = fLines.erase(it);
+            fLines.insert(it, split_lines.begin(), split_lines.end());
+        }
+        else{++it;};
     }
-        // 
-        // if(must_split)
-        // {
-        //     //split this statement into multiple 'lines'
-        //     std::vector< std::size_t > positions;
-        //     std::vector< MHO_ControlLine > split_lines;
-        //     for(std::size_t i=0; i<it->fContents.size(); i++)
-        //     {
-        //         if( it->fContents[i] == ';')
-        //         {
-        //             positions.push_back(i);
-        //             split_lines.push_back(*it);
-        //         }
-        //     }
-        // 
-        //     std::size_t start = 0;
-        //     std::size_t length = 0;
-        //     for(std::size_t i=0; i<split_lines.size(); i++)
-        //     {
-        //         length = positions[i] + 1 - start;
-        //         split_lines[i].fContents = it->fContents.substr(start,length);
-        //         start = positions[i]+1;
-        //     }
-        //     it = fLines.erase(it);
-        //     fLines.insert(it, split_lines.begin(), split_lines.end());
-        // }
-        // else{++it;};
-    //}
 }
 
 /* 
