@@ -61,16 +61,18 @@ class MHO_ControlFileParser
         //format definition
         std::string fFormatDirectory;
         std::string fControlVersion;
-        std::vector< std::string > fBlockNames;
-        mho_json fBlockNamesJSON;
+        std::vector< std::string > fKeywordNames;
+        mho_json fKeywordNamesJSON;
 
         //tokenizer
         MHO_Tokenizer fTokenizer;
 
-        //all tokens from file
-        std::vector< std::string > fFileTokens;
-        std::vector< std::size_t > fLineStartLocations;
-        std::vector< std::size_t > fKeywordLocations;
+        std::vector< std::string > fFileTokens; //all tokens from file
+        std::vector< std::size_t > fLineStartLocations; //index of each token which starts a line
+        std::vector< std::size_t > fKeywordLocations; //index of each keyword token
+
+        std::vector< std::vector< std::string > > fKeywordSections;
+
 
 };
 
