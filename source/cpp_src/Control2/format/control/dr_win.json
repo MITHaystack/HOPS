@@ -1,0 +1,13 @@
+{
+    "keyword_name": "dr_win",
+    "version": "1.0",
+    "element_type": "primitive",
+    "parameters" :
+    {
+        "limits": {"type": "list_real", "dimension": "time"}
+    },
+    "fields": 
+    [
+        "limits"
+    ]
+}
