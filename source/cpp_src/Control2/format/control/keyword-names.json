@@ -1,6 +1,6 @@
 {
     "version": "1.0",
-    "block_names":
+    "keyword_names":
     [
         "if",
         "else",
@@ -25,9 +25,6 @@
         "keep",
         "discard",
         "normal",
-        "ap_by_ap",
-        "manual",
-        "multitone",
         "scan_start",
         "each_minute",
         "ref_freq",
@@ -79,7 +76,7 @@
         "pc_delay_r",
         "pc_delay_x",
         "pc_delay_y",
-        "weak_channel", 
+        "weak_channel",
         "pc_amp_hcode",
         "fmatch_bw_pct",
         "file",
@@ -89,7 +86,6 @@
         "plot_data_dir",
         "mbd_anchor",
         "model",
-        "sbd",
         "sampler_delay_l",
         "sampler_delay_r",
         "sampler_delay_x",
@@ -102,10 +98,6 @@
         "vbp_coeffs",
         "vbp_file",
         "mount_type",
-        "no_mount",
-        "cassegrain",
-        "nasmythleft",
-        "nasmythright",
         "mixed_pol_yshift90"
     ]
 }
