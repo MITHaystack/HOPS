@@ -18,13 +18,13 @@ MHO_ControlFileParser::MHO_ControlFileParser()
 
     if(ifs.is_open())
     {
-        fBlockNamesJSON = mho_json::parse(ifs);
+        fKeywordNamesJSON = mho_json::parse(ifs);
     }
     ifs.close();
 
-    fBlockNames = fBlockNamesJSON["keyword_names"];
+    fKeywordNames = fKeywordNamesJSON["keyword_names"];
 
-    for(auto blockIt = fBlockNames.begin(); blockIt != fBlockNames.end(); blockIt++)
+    for(auto blockIt = fKeywordNames.begin(); blockIt != fKeywordNames.end(); blockIt++)
     {
         std::cout<<"block name = "<< *blockIt << std::endl;
     }
@@ -60,6 +60,35 @@ MHO_ControlFileParser::ParseControl()
     for(std::size_t i=0; i<fKeywordLocations.size(); i++)
     {
         std::cout<<"keyword: "<<fFileTokens[fKeywordLocations[i]]<<" at index: "<<fKeywordLocations[i]<<std::endl;
+    }
+
+    //split the tokens into sections governed by a single keyword
+    fKeywordSections.clear();
+    if(fKeywordLocations.size() > 0)
+    {
+        for(std::size_t i=0; i<fKeywordLocations.size(); i++)
+        {
+            std::size_t start = fKeywordLocations[i];
+            std::size_t stop = fFileTokens.size();
+            if(i < fKeywordLocations.size() - 1 )
+            {
+                stop = fKeywordLocations[i+1];
+            }
+            std::vector< std::string > tokens;
+            for(std::size_t j = start; j < stop; j++){tokens.push_back(fFileTokens[j]);}
+            fKeywordSections.push_back(tokens);
+        }
+    }
+
+    for(std::size_t i=0; i<fKeywordSections.size(); i++)
+    {
+        std::cout<<"keyword section: "<<i<<" = "<<std::endl;
+        for(std::size_t j=0 ; j<fKeywordSections[i].size(); j++)
+        {
+            std::cout<<fKeywordSections[i][j]<<" ";
+        }
+        std::cout<<std::endl;
+        std::cout<<"+++++++++++++++++++++++++++++++"<<std::endl;
     }
 
     //SplitStatements(); //split multiple ";" on one line into as many statements as needed
@@ -169,7 +198,7 @@ MHO_ControlFileParser::FindKeywords()
     fKeywordLocations.clear();
     for(auto tokenIt = fFileTokens.begin(); tokenIt != fFileTokens.end(); tokenIt++)
     {
-        for(auto blockIt = fBlockNames.begin(); blockIt != fBlockNames.end(); blockIt++)
+        for(auto blockIt = fKeywordNames.begin(); blockIt != fKeywordNames.end(); blockIt++)
         {
             if(*tokenIt == * blockIt)
             {
