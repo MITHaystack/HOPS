@@ -19,11 +19,10 @@ namespace hops
 struct MHO_ControlLine
 {
     std::size_t fLineNumber;
-    std::size_t fStatementNumber;
     std::string fContents;
     std::vector< std::string > fTokens;
-    bool fIsLiteral;
 };
+
 
 }
 

@@ -24,7 +24,7 @@
 // #include "MHO_ControlBlockParser.hh"
 // #include "MHO_ControlDefinitions.hh"
 
-namespace hops 
+namespace hops
 {
 
 class MHO_ControlFileParser
@@ -37,53 +37,40 @@ class MHO_ControlFileParser
 
         //mho_json
         void ParseControl();
-        
+
     private:
 
         void ReadFile();
         void RemoveComments();
         void TokenizeLines();
-        void IndexStatements();
-        void SplitStatements();
-        void JoinLines();
-        // void MarkBlocks();
-        // std::vector< MHO_ControlLine > CollectBlockLines(std::string block_name);
+        void MergeTokens();
+        void FindKeywords();
+
         // void ProcessBlocks(mho_json& root);
-
-        // bool IsPotentialBlockStart(std::string line);
-        // bool IsBlockStart(std::string line, std::string blk_name);
-
         std::string fControlFileName;
 
         //token/delimiter definitions
-        //MHO_ControlDefinitions fControlDef;
-
-        std::string fControlRevisionFlag;
-        std::string fControlDelim;
         std::string fWhitespace;
-        std::string fBlockStartFlag;
-        std::string fStatementEndFlag;
-        std::string fRefFlag;
+        std::string fCommentFlag;
 
         //workspace
-        std::string fLine; //the line from the input file 
+        std::string fLine; //the line from the input file
         std::list< MHO_ControlLine > fLines;
         using line_itr = std::list< MHO_ControlLine >::iterator;
-        std::set< std::string > fFoundBlocks; 
-        std::map< std::string, line_itr > fBlockStartLines;
-        std::map< std::string, line_itr > fBlockStopLines;
 
-        //format definition 
+        //format definition
         std::string fFormatDirectory;
         std::string fControlVersion;
         std::vector< std::string > fBlockNames;
         mho_json fBlockNamesJSON;
 
-        //block parser 
-        //MHO_ControlBlockParser fBlockParser;
-        
-        //tokenizer 
+        //tokenizer
         MHO_Tokenizer fTokenizer;
+
+        //all tokens from file
+        std::vector< std::string > fFileTokens;
+        std::vector< std::size_t > fLineStartLocations;
+        std::vector< std::size_t > fKeywordLocations;
 
 };
 
