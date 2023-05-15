@@ -1,4 +1,5 @@
 {
-    "keyword_name": "pc_amp_hcode",
+    "name": "pc_amp_hcode",
+    "statement_type": "primitive",
     "type": "real"
 }

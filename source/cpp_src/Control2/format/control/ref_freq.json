@@ -1,4 +1,5 @@
 {
-    "keyword_name": "ref_freq",
+    "name": "ref_freq",
+    "statement_type": "primitive",
     "type": "real"
 }

@@ -47,10 +47,11 @@ MHO_ControlFileParser::SetControlFile(std::string filename)
     fControlFileName = filename;
 }
 
-//mho_json
-void
+mho_json
 MHO_ControlFileParser::ParseControl()
 {
+    mho_json root;
+
     ReadFile(); //read file into memory
     RemoveComments(); //excise all comments
     TokenizeLines();
@@ -62,13 +63,7 @@ MHO_ControlFileParser::ParseControl()
         std::cout<<it->fContents<<std::endl;
     }
 
-    for(std::size_t i=0; i<fKeywordLocations.size(); i++)
-    {
-        std::cout<<"keyword: "<<fFileTokens[fKeywordLocations[i]]<<" at index: "<<fKeywordLocations[i]<<std::endl;
-    }
-
     //split the tokens into sections governed by a single keyword
-    fKeywordSections.clear();
     fStatements.clear();
     if(fKeywordLocations.size() > 0)
     {
@@ -82,39 +77,38 @@ MHO_ControlFileParser::ParseControl()
             }
             std::vector< std::string > tokens;
             for(std::size_t j = start+1; j < stop; j++){tokens.push_back(fFileTokens[j]);}
-            fKeywordSections.push_back(tokens);
             MHO_ControlStatement stmt;
             stmt.fKeyword = fFileTokens[start];
             stmt.fTokens = tokens;
             fStatements.push_back(stmt);
         }
     }
+    
+    std::vector< mho_json > block_statements;
+    mho_json empty_condition;
+    empty_condition["name"] = "if";
+    empty_condition["statement_type"] = "conditional";
+    
+    root["conditions"].push_back(empty_condition);
 
-    for(std::size_t i=0; i<fKeywordSections.size(); i++)
+    for(std::size_t i=0; i<fStatements.size(); i++)
     {
-        // std::cout<<"keyword section: "<<i<<" = "<<std::endl;
-        // for(std::size_t j=0 ; j<fKeywordSections[i].size(); j++)
-        // {
-        //     std::cout<<fKeywordSections[i][j]<<" ";
-        // }
-        // std::cout<<std::endl;
-        // std::cout<<"+++++++++++++++++++++++++++++++"<<std::endl;
-        
         mho_json tmp = fElementParser.ParseControlStatement(fStatements[i]);
-
-        std::cout<< fStatements[i].fKeyword<< " " << tmp.dump(2) << std::endl;
+        if(tmp["statement_type"] == "conditional")
+        {
+            root["conditions"].back()["statements"] = block_statements;
+            root["conditions"].push_back(tmp);
+            block_statements.clear();
+        }
+        else 
+        {
+            block_statements.push_back(tmp);
+        }
     }
 
-    //SplitStatements(); //split multiple ";" on one line into as many statements as needed
-    // JoinLines(); //join incomplete segments split across multiple lines into a single statement
-    // IndexStatements();
-    // MarkBlocks(); //mark the major parsable sections
+    std::cout<< root.dump(2) << std::endl;
 
-    // mho_json root;
-    // root[fControlDef.ControlRevisionFlag()] = fControlVersion;
-    // ProcessBlocks(root);
-
-    // return root;
+    return root;
 }
 
 void

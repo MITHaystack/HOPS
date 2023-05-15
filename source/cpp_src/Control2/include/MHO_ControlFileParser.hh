@@ -36,8 +36,7 @@ class MHO_ControlFileParser
 
         void SetControlFile(std::string filename);
 
-        //mho_json
-        void ParseControl();
+        mho_json ParseControl();
 
     private:
 

@@ -1,4 +1,5 @@
 {
-    "keyword_name": "ion_npts",
+    "name": "ion_npts",
+    "statement_type": "primitive",
     "type": "int"
 }
