@@ -11,13 +11,11 @@
 */
 
 #include "MHO_Message.hh"
-#include "MHO_Tokenizer.hh"
 #include "MHO_JSONHeaderWrapper.hh"
-#include "MHO_DirectoryInterface.hh"
 
-#include "MHO_VexLine.hh"
-#include "MHO_VexDefinitions.hh"
-
+#include <cstdlib>
+#include <vector>
+#include <string>
 
 namespace hops
 {
@@ -27,19 +25,15 @@ class MHO_ControlTokenProcessor
     public:
         MHO_ControlTokenProcessor();
         virtual ~MHO_ControlTokenProcessor();
-    
-        mho_json ProcessInt(const std::string& element_name, mho_json& format, std::vector< std::string >& tokens);
-        mho_json ProcessListInt(const std::string& element_name, mho_json& format, std::vector< std::string >& tokens);
-        mho_json ProcessListString(const std::string& element_name, mho_json& format, std::vector< std::string >& tokens);
-        mho_json ProcessReal(const std::string& element_name, mho_json& format, std::vector< std::string >& tokens);
-        mho_json ProcessListReal(const std::string& element_name, mho_json& format, std::vector< std::string >& tokens);
 
-        bool ContainsWhitespace(std::string value);
+        mho_json ProcessInt(const std::string& element_name, std::string& token);
+        mho_json ProcessString(const std::string& element_name, std::string& token);
+        mho_json ProcessReal(const std::string& element_name, std::string& token);
+        mho_json ProcessListInt(const std::string& element_name, std::vector< std::string >& tokens);
+        mho_json ProcessListString(const std::string& element_name, std::vector< std::string >& tokens);
+        mho_json ProcessListReal(const std::string& element_name, std::vector< std::string >& tokens);
 
     private:
-
-        std::string fWhitespaceDelim;
-        MHO_Tokenizer fTokenizer;
 };
 
 }
