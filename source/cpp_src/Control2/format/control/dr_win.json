@@ -4,9 +4,9 @@
     "element_type": "primitive",
     "parameters" :
     {
-        "limits": {"type": "list_real", "dimension": "time"}
+        "limits": {"type": "list_real"}
     },
-    "fields": 
+    "fields":
     [
         "limits"
     ]

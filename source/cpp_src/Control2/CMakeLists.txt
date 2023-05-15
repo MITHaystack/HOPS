@@ -1,24 +1,16 @@
 set (CONTROL2_HEADERFILES
-    # ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_VexDefinitions.hh
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ControlLine.hh
-    # ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_VexTokenProcessor.hh
-    # ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_VexBlockParser.hh
-    # ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_VexParser.hh
-    # ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_VexGenerator.hh
-    # ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_VexElementLineGenerator.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ControlElements.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ControlFileParser.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ControlElementParser.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ControlTokenProcessor.hh
 )
 
 ##################################################
 
 set (CONTROL2_SOURCEFILES
-    # ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_VexDefinitions.cc
-    # ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_VexParser.cc
-    # ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_VexTokenProcessor.cc
-    # ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_VexBlockParser.cc
-    # ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_VexGenerator.cc
-    # ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_VexElementLineGenerator.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ControlFileParser.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ControlElementParser.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ControlTokenProcessor.cc
 )
 
 #declare header paths ##########################################################
