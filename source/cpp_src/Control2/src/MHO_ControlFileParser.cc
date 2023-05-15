@@ -92,17 +92,17 @@ MHO_ControlFileParser::ParseControl()
 
     for(std::size_t i=0; i<fKeywordSections.size(); i++)
     {
-        std::cout<<"keyword section: "<<i<<" = "<<std::endl;
-        for(std::size_t j=0 ; j<fKeywordSections[i].size(); j++)
-        {
-            std::cout<<fKeywordSections[i][j]<<" ";
-        }
-        std::cout<<std::endl;
-        std::cout<<"+++++++++++++++++++++++++++++++"<<std::endl;
+        // std::cout<<"keyword section: "<<i<<" = "<<std::endl;
+        // for(std::size_t j=0 ; j<fKeywordSections[i].size(); j++)
+        // {
+        //     std::cout<<fKeywordSections[i][j]<<" ";
+        // }
+        // std::cout<<std::endl;
+        // std::cout<<"+++++++++++++++++++++++++++++++"<<std::endl;
         
         mho_json tmp = fElementParser.ParseControlStatement(fStatements[i]);
 
-        std::cout<< tmp.dump(2) << std::endl;
+        std::cout<< fStatements[i].fKeyword<< " " << tmp.dump(2) << std::endl;
     }
 
     //SplitStatements(); //split multiple ";" on one line into as many statements as needed
