@@ -1,4 +1,5 @@
 {
-    "keyword_name": "weak_channel",
+    "name": "weak_channel",
+    "statement_type": "primitive",
     "type": "real"
 }

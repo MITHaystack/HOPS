@@ -1,4 +1,5 @@
 {
-    "keyword_name": "dr_win",
+    "name": "dr_win",
+    "statement_type": "primitive",
     "type": "list_real"
 }

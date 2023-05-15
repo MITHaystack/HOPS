@@ -1,4 +1,5 @@
 {
-    "keyword_name": "freqs",
+    "name": "freqs",
+    "statement_type": "primitive",
     "type": "list_string"
 }

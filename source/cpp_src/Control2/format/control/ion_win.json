@@ -1,4 +1,5 @@
 {
-    "keyword_name": "ion_win",
+    "name": "ion_win",
+    "statement_type": "primitive",
     "type": "list_real"
 }

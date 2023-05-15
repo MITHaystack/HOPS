@@ -1,4 +1,5 @@
 {
-    "keyword_name": "pc_period",
+    "name": "pc_period",
+    "statement_type": "primitive",
     "type": "int"
 }

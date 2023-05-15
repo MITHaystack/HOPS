@@ -1,4 +1,5 @@
 {
-    "keyword_name": "ionosphere",
+    "name": "ionosphere",
+    "statement_type": "primitive",
     "type": "real"
 }
