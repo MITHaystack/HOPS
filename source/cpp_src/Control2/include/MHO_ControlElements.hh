@@ -25,7 +25,7 @@ struct MHO_ControlLine
 
 struct MHO_ControlStatement
 {
-    std::string keyword;
+    std::string fKeyword;
     std::vector< std::string > fTokens;
 };
 
@@ -37,8 +37,26 @@ enum control_element_type
     control_string_type,
     control_list_string_type,
     control_list_real_type,
-    control_conditional_type
+    control_conditional_type,
+    control_compound_type,
+    control_unknown_type
 };
+
+
+inline control_element_type 
+DetermineControlType(std::string etype)
+{
+    if(etype == "int"){return control_int_type;}
+    if(etype == "list_int"){return control_list_int_type;}
+    if(etype == "real"){return control_real_type;}
+    if(etype == "list_real"){return control_list_real_type;}
+    if(etype == "string"){return control_string_type;}
+    if(etype == "list_string"){return control_list_string_type;}
+    if(etype == "conditional"){return control_conditional_type;}
+    if(etype == "compound"){return control_compound_type;}
+    return control_unknown_type;
+}
+
 
 
 }

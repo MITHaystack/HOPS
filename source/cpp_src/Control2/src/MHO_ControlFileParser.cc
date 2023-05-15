@@ -31,6 +31,11 @@ MHO_ControlFileParser::MHO_ControlFileParser()
 
     fWhitespace = " \t\r\n";
     fCommentFlag = "*";
+    
+    
+    
+    fElementParser.LoadElementFormats();
+
 }
 
 
@@ -64,6 +69,7 @@ MHO_ControlFileParser::ParseControl()
 
     //split the tokens into sections governed by a single keyword
     fKeywordSections.clear();
+    fStatements.clear();
     if(fKeywordLocations.size() > 0)
     {
         for(std::size_t i=0; i<fKeywordLocations.size(); i++)
@@ -75,8 +81,12 @@ MHO_ControlFileParser::ParseControl()
                 stop = fKeywordLocations[i+1];
             }
             std::vector< std::string > tokens;
-            for(std::size_t j = start; j < stop; j++){tokens.push_back(fFileTokens[j]);}
+            for(std::size_t j = start+1; j < stop; j++){tokens.push_back(fFileTokens[j]);}
             fKeywordSections.push_back(tokens);
+            MHO_ControlStatement stmt;
+            stmt.fKeyword = fFileTokens[start];
+            stmt.fTokens = tokens;
+            fStatements.push_back(stmt);
         }
     }
 
@@ -89,6 +99,10 @@ MHO_ControlFileParser::ParseControl()
         }
         std::cout<<std::endl;
         std::cout<<"+++++++++++++++++++++++++++++++"<<std::endl;
+        
+        mho_json tmp = fElementParser.ParseControlStatement(fStatements[i]);
+
+        std::cout<< tmp.dump(2) << std::endl;
     }
 
     //SplitStatements(); //split multiple ";" on one line into as many statements as needed
