@@ -1,5 +1,5 @@
 set (CONTROL2_HEADERFILES
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ControlElements.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ControlDefinitions.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ControlFileParser.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ControlElementParser.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ControlTokenProcessor.hh

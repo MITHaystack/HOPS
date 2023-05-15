@@ -101,28 +101,28 @@ MHO_ControlElementParser::ParseControlStatement(const MHO_ControlStatement& cont
 mho_json
 MHO_ControlElementParser::ParseTokens(const std::string& element_name, mho_json& format, const std::vector< std::string >& tokens)
 {
-    control_element_type etype = DetermineControlType( format["type"].get<std::string>() );
+    control_element_type etype = MHO_ControlDefinitions::DetermineControlType( format["type"].get<std::string>() );
     mho_json element_data;
 
     switch(etype)
     {
         case control_int_type:
-            element_data = fTokenProcessor.ProcessInt(element_name, tokens[0]);
-        break;
-        case control_list_int_type:
-            element_data = fTokenProcessor.ProcessListInt(element_name, tokens);
+            element_data = fTokenProcessor.ProcessInt(tokens[0]);
         break;
         case control_real_type:
-            element_data = fTokenProcessor.ProcessReal(element_name, tokens[0]);
-        break;
-        case control_list_real_type:
-            element_data = fTokenProcessor.ProcessListReal(element_name, tokens);
+            element_data = fTokenProcessor.ProcessReal(tokens[0]);
         break;
         case control_string_type:
-            element_data = tokens[0];
+            element_data =  fTokenProcessor.ProcessString(tokens[0]);
+        break;
+        case control_list_int_type:
+            element_data = fTokenProcessor.ProcessListInt(tokens);
+        break;
+        case control_list_real_type:
+            element_data = fTokenProcessor.ProcessListReal(tokens);
         break;
         case control_list_string_type:
-            element_data = fTokenProcessor.ProcessListString(element_name, tokens);
+            element_data = fTokenProcessor.ProcessListString(tokens);
         break;
         case control_compound_type: //all compound types treated the same way
             //element_data = ProcessCompound(element_name, format, tokens);
