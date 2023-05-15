@@ -94,7 +94,7 @@ MHO_ControlFileParser::ParseControl()
     for(std::size_t i=0; i<fStatements.size(); i++)
     {
         mho_json tmp = fElementParser.ParseControlStatement(fStatements[i]);
-        if(tmp["statement_type"] == "conditional")
+        if(tmp["statement_type"] == "conditional" || i == fStatements.size()-1)
         {
             root["conditions"].back()["statements"] = block_statements;
             root["conditions"].push_back(tmp);
@@ -189,11 +189,9 @@ void
 MHO_ControlFileParser::MergeTokens()
 {
     fFileTokens.clear();
-    fLineStartLocations.clear();
     auto it = fLines.begin();
     while(it != fLines.end())
     {
-        fLineStartLocations.push_back(fFileTokens.size());
         fFileTokens.insert( fFileTokens.end(), it->fTokens.begin(), it->fTokens.end() );
         it++;
     }
