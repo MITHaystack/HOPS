@@ -21,6 +21,7 @@
 #include "MHO_JSONHeaderWrapper.hh"
 
 #include "MHO_ControlElements.hh"
+#include "MHO_ControlElementParser.hh"
 // #include "MHO_ControlBlockParser.hh"
 // #include "MHO_ControlDefinitions.hh"
 
@@ -72,7 +73,10 @@ class MHO_ControlFileParser
         std::vector< std::size_t > fKeywordLocations; //index of each keyword token
 
         std::vector< std::vector< std::string > > fKeywordSections;
+        
+        std::vector< MHO_ControlStatement > fStatements;
 
+        MHO_ControlElementParser fElementParser;
 
 };
 

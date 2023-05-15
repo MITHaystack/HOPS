@@ -20,8 +20,6 @@ MHO_ControlElementParser::~MHO_ControlElementParser(){};
 void
 MHO_ControlElementParser::LoadElementFormats()
 {
-    fElementFormatsLoaded = false;
-
     //read the keyword-names.json file
     fFormatDirectory = HOPS_CONTROL_FORMAT_DIR;
     fFormatDirectory += "/control/";
@@ -47,8 +45,6 @@ MHO_ControlElementParser::LoadElementFormats()
         std::string format_file = fFormatDirectory + element_format_file;
 
         //TODO should check that the file exists
-
-
         std::ifstream bf_ifs;
         bf_ifs.open( format_file.c_str(), std::ifstream::in );
 
@@ -61,6 +57,7 @@ MHO_ControlElementParser::LoadElementFormats()
         bf_ifs.close();
     }
 
+    std::cout << fElementFormats.dump(2) << std::endl;
 
 
 }
@@ -71,53 +68,44 @@ MHO_ControlElementParser::GetElementFormatFileName(std::string element_name)
     std::string file_name = element_name + ".json";
     return file_name;
 }
-//
-// mho_json
-// MHO_ControlElementParser::ParseElementLines(std::string element_name, const std::vector< MHO_VexLine >* element_lines)
-// {
-//     //retrieve the element format
-//     fElementFormatLoaded = false;
-//     LoadElementFormat(element_name);
-//     fElementLines = element_lines;
-//
-//     if(fElementFormatLoaded)
-//     {
-//         if(element_name == "$GLOBAL"){ return ParseGlobalElement();} //global element is "special"
-//         else
-//         {
-//             if(fElementFormat["element_type"].get<std::string>() == "unsupported")
-//             {
-//                 std::string version = fElementFormat["version"].get<std::string>();
-//                 msg_warn("vex", "element type: "<<element_name<<" is not supported in vex version: "<< version<< ", skipping."<<eom);
-//                 mho_json empty;
-//                 return empty;
-//             }
-//             else
-//             {
-//                 return ParseElement(); //otherwise parse any of the other supported elements
-//             }
-//         }
-//     }
-//     else
-//     {
-//         msg_error("vex", "parser error, could not load format file for: "<<element_name<<" element, skipping."<<eom);
-//         mho_json empty;
-//         return empty;
-//     }
-// }
-//
+
+
+
+mho_json 
+MHO_ControlElementParser::ParseControlStatement(const MHO_ControlStatement& control_statement)
+{
+    //retrieve the element format
+    std::string element_name = control_statement.fKeyword;
+    fElementFormatLoaded = false;
+
+    //find the element format 
+    auto formatIt = fElementFormats.find(element_name);
+    if(formatIt != fElementFormats.end() ){fElementFormatLoaded = true;}
+    
+    if(fElementFormatLoaded)
+    {
+        return ParseTokens(element_name, fElementFormats[element_name], control_statement.fTokens); //otherwise parse any of the other supported elements
+    }
+    else
+    {
+        msg_error("control", "parser error, could not load format file for: "<<element_name<<" element, skipping."<<eom);
+        mho_json empty;
+        return empty;
+    }
+}
+
 // mho_json
 // MHO_ControlElementParser::ParseElement()
 // {
 //     mho_json element_root;
-//
+// 
 //     std::stack< std::string > path;
 //     std::stack< mho_json* > file_node;
 //     std::stack< mho_json > format_node;
-//
+// 
 //     path.push(fElementName);
 //     file_node.push( &element_root );
-//
+// 
 //     if(fElementLines != nullptr)
 //     {
 //         for(auto it = ++(fElementLines->begin()); it != fElementLines->end(); it++)
@@ -149,49 +137,7 @@ MHO_ControlElementParser::GetElementFormatFileName(std::string element_name)
 //     {
 //         msg_error("vex", "failed to parse element, no lines to process."<< eom);
 //     }
-//
-//     return element_root;
-// }
-//
-//
-// mho_json
-// MHO_ControlElementParser::ParseGlobalElement()
-// {
-//     mho_json element_root;
-//
-//     std::stack< std::string > path;
-//     std::stack< mho_json* > file_node;
-//     std::stack< mho_json > format_node;
-//
-//     if(fElementFormat.contains("parameters"))
-//     {
-//         path.push(fElementName);
-//         file_node.push( &element_root );
-//         format_node.push( fElementFormat["parameters"] );
-//     }
-//     else
-//     {
-//         msg_error("vex", "failed to find parameters statement in $GLOBAL format element"<<eom);
-//         return element_root;
-//     }
-//
-//     if(fElementLines != nullptr)
-//     {
-//         for(auto it = ++(fElementLines->begin()); it != fElementLines->end(); it++)
-//         {
-//             bool success = false;
-//             if( IsReferenceTag(*it) )
-//             {
-//                 success = ProcessReference(*it, path, file_node.top(), format_node.top() );
-//             }
-//             if(!success){msg_error("vex", "failed to process line: "<< it->fLineNumber << eom);}
-//         }
-//     }
-//     else
-//     {
-//         msg_error("vex", "failed to parse element, no lines to process."<< eom);
-//     }
-//
+// 
 //     return element_root;
 // }
 
@@ -317,63 +263,53 @@ MHO_ControlElementParser::GetElementFormatFileName(std::string element_name)
 // }
 //
 //
-// mho_json
-// MHO_ControlElementParser::ProcessTokens(const std::string& element_name, mho_json& format, std::vector< std::string >& tokens)
-// {
-//     vex_element_type etype = MHO_VexDefinitions::DetermineType( format["type"].get<std::string>() );
-//     mho_json element_data;
-//
-//     switch(etype)
-//     {
-//         case vex_int_type:
-//             element_data = fTokenProcessor.ProcessInt(element_name, format, tokens);
-//         break;
-//         case vex_list_int_type:
-//             element_data = fTokenProcessor.ProcessListInt(element_name, format, tokens);
-//         break;
-//         case vex_real_type:
-//             element_data = fTokenProcessor.ProcessReal(element_name, format, tokens);
-//         break;
-//         case vex_list_real_type:
-//             element_data = fTokenProcessor.ProcessListReal(element_name, format, tokens);
-//         break;
-//         case vex_keyword_type:
-//             element_data = tokens[0];
-//         break;
-//         case vex_string_type:
-//             element_data = tokens[0];
-//         break;
-//         case vex_list_string_type:
-//             element_data = fTokenProcessor.ProcessListString(element_name, format, tokens);
-//         break;
-//         case vex_epoch_type:
-//             element_data = tokens[0];
-//         break;
-//         case vex_radec_type:
-//             element_data = tokens[0]; //leave source coordinates as strings, can convert later
-//         break;
-//         case vex_link_type:
-//             element_data = tokens[0];
-//         break;
-//         case vex_compound_type: //all compound types treated the same way
-//             element_data = ProcessCompound(element_name, format, tokens);
-//         case vex_list_compound_type:
-//             element_data = ProcessCompound(element_name, format, tokens);
-//         break;
-//         default:
-//         break;
-//     }
-//     return element_data;
-// }
-//
-// mho_json
-// MHO_ControlElementParser::ProcessCompound(const std::string& element_name, mho_json&format, std::vector< std::string >& tokens)
-// {
-//     mho_json element_data;
+mho_json
+MHO_ControlElementParser::ParseTokens(const std::string& element_name, mho_json& format, const std::vector< std::string >& tokens)
+{
+    control_element_type etype = DetermineControlType( format["type"].get<std::string>() );
+    mho_json element_data;
+
+    switch(etype)
+    {
+        case control_int_type:
+            element_data = fTokenProcessor.ProcessInt(element_name, tokens[0]);
+        break;
+        case control_list_int_type:
+            element_data = fTokenProcessor.ProcessListInt(element_name, tokens);
+        break;
+        case control_real_type:
+            element_data = fTokenProcessor.ProcessReal(element_name, tokens[0]);
+        break;
+        case control_list_real_type:
+            element_data = fTokenProcessor.ProcessListReal(element_name, tokens);
+        break;
+        case control_string_type:
+            element_data = tokens[0];
+        break;
+        case control_list_string_type:
+            element_data = fTokenProcessor.ProcessListString(element_name, tokens);
+        break;
+        case control_compound_type: //all compound types treated the same way
+            //element_data = ProcessCompound(element_name, format, tokens);
+        break;
+        default:
+        break;
+    }
+    return element_data;
+}
+
+mho_json
+MHO_ControlElementParser::ProcessCompound(const std::string& element_name, mho_json& format, std::vector< std::string >& tokens)
+{
+    mho_json element_data;
+    return element_data;
+}
+// 
+// 
 //     mho_json fields = format["fields"];
 //     std::size_t n_tokens = tokens.size();
 //     std::size_t n_all_fields = fields.size();
-//
+// 
 //     std::size_t token_idx = 0;
 //     std::string hash = MHO_VexDefinitions::OptionalFlag();
 //     std::string nothing = "";
@@ -389,7 +325,7 @@ MHO_ControlElementParser::GetElementFormatFileName(std::string element_name)
 //                 mho_json next_format =  format["parameters"][field_name];
 //                 std::string type_name = next_format["type"].get<std::string>();
 //                 std::vector< std::string > tmp_tokens;
-//
+// 
 //                 if( type_name == "list_int" || type_name == "list_real" || type_name == "list_string")
 //                 {
 //                     //consume the rest of the tokens until the end
@@ -444,7 +380,11 @@ MHO_ControlElementParser::GetElementFormatFileName(std::string element_name)
 //     }
 //     return element_data;
 // }
-//
+
+
+
+
+
 //
 // bool
 // MHO_ControlElementParser::MatchesType(const std::string& token, const std::string& type_name)

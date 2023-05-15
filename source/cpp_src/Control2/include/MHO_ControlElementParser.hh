@@ -37,15 +37,14 @@ class MHO_ControlElementParser
 
         void SetFormatDirectory(std::string fdir){fFormatDirectory = fdir;}
         void LoadElementFormats();
-        //mho_json ParseControlStatements(std::string Element_name, const std::vector< MHO_VexLine >* element_lines);
+        mho_json ParseControlStatement(const MHO_ControlStatement& control_statement);
 
     private:
 
 
         std::string GetElementFormatFileName(std::string element_name);
 
-        // mho_json ParseElement();
-        // mho_json ParseGlobalElement();
+        mho_json ParseElement();
         //
         // bool IsStartTag(const MHO_VexLine& line);
         // bool IsStopTag(const MHO_VexLine& line);
@@ -58,12 +57,12 @@ class MHO_ControlElementParser
         //
         //
         //
-        // mho_json ProcessTokens(const std::string& element_name, mho_json& format, std::vector< std::string >& tokens);
-        // mho_json ProcessCompound(const std::string& element_name, mho_json& format, std::vector< std::string >& tokens);
+        mho_json ParseTokens(const std::string& element_name, mho_json& format, const std::vector< std::string >& tokens);
+        mho_json ProcessCompound(const std::string& element_name, mho_json& format, std::vector< std::string >& tokens);
         //
         // bool MatchesType(const std::string& token, const std::string& type_name);
 
-        bool fElementFormatsLoaded;
+        bool fElementFormatLoaded;
         mho_json fElementFormats;
         std::string fFormatDirectory;
         std::vector< std::string > fKeywordNames;
