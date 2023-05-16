@@ -11,3 +11,5 @@ install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/control/weak_channel.json" DESTINATIO
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/control/ion_win.json" DESTINATION "${DATA_INSTALL_DIR}/control")
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/control/ion_npts.json" DESTINATION "${DATA_INSTALL_DIR}/control")
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/control/ionosphere.json" DESTINATION "${DATA_INSTALL_DIR}/control")
+install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/control/pc_phases_x.json" DESTINATION "${DATA_INSTALL_DIR}/control")
+install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/control/pc_phases_y.json" DESTINATION "${DATA_INSTALL_DIR}/control")
