@@ -46,7 +46,7 @@ class MHO_ControlElementParser
         mho_json ParseElement();
 
         mho_json ParseTokens(const std::string& element_name, mho_json& format, const std::vector< std::string >& tokens);
-        mho_json ProcessCompound(const std::string& element_name, mho_json& format, std::vector< std::string >& tokens);
+        mho_json ProcessCompound(const std::string& element_name, mho_json& format, const std::vector< std::string >& tokens);
 
         bool fElementFormatLoaded;
         mho_json fElementFormats;

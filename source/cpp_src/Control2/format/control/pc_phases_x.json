@@ -1,0 +1,15 @@
+{
+    "name": "pc_phases_x",
+    "statement_type": "compound",
+    "type" : "compound",
+    "parameters":
+    {
+        "channel_names": {"type": "string"},
+        "pc_phases": {"type": "list_real"}
+    },
+    "fields": 
+    [
+        "channel_names", 
+        "pc_phases"
+    ]
+}
