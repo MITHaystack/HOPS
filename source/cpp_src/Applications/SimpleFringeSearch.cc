@@ -5,20 +5,20 @@
 #include <getopt.h>
 #include <iomanip>
 
-
-//fourfit control lib
-#ifndef HOPS3_USE_CXX
-extern "C"
-{
-#endif
-
-#include "msg.h"
-#include "ffcontrol.h"
-struct c_block* cb_head; //global extern kludge (due to stupid c-library interface)
-
-#ifndef HOPS3_USE_CXX
-}
-#endif
+// 
+// //fourfit control lib
+// #ifndef HOPS3_USE_CXX
+// extern "C"
+// {
+// #endif
+// 
+// #include "msg.h"
+// #include "ffcontrol.h"
+// struct c_block* cb_head; //global extern kludge (due to stupid c-library interface)
+// 
+// #ifndef HOPS3_USE_CXX
+// }
+// #endif
 
 #define EXTRA_DEBUG
 
@@ -155,17 +155,17 @@ int main(int argc, char** argv)
     //CONTROL BLOCK CONSTRUCTION
     ////////////////////////////////////////////////////////////////////////////
 
-    //parse the control file
-    cb_head = (struct c_block *) malloc (sizeof (struct c_block) );
-    struct c_block* cb_out = (struct c_block *) malloc (sizeof (struct c_block) );
-    char bl[2]; bl[0] = baseline[0]; bl[1] = baseline[1];
-    std::string src = " ";
-    char fgroup = 'X';
-    int time = 0;
-    int retval = construct_cblock(const_cast<char*>(control_file.c_str()), cb_head, cb_out, bl, const_cast<char*>(src.c_str()), fgroup, time);
-    MHO_ControlBlockWrapper cb_wrapper(cb_out, vexInfo, baseline);
+    // //parse the control file
+    // cb_head = (struct c_block *) malloc (sizeof (struct c_block) );
+    // struct c_block* cb_out = (struct c_block *) malloc (sizeof (struct c_block) );
+    // char bl[2]; bl[0] = baseline[0]; bl[1] = baseline[1];
+    // std::string src = " ";
+    // char fgroup = 'X';
+    // int time = 0;
+    // int retval = construct_cblock(const_cast<char*>(control_file.c_str()), cb_head, cb_out, bl, const_cast<char*>(src.c_str()), fgroup, time);
+    // MHO_ControlBlockWrapper cb_wrapper(cb_out, vexInfo, baseline);
 
-    double ref_freq = cb_wrapper.GetReferenceFrequency();//grab the reference frequency
+    double ref_freq = 6000.0;// cb_wrapper.GetReferenceFrequency();//grab the reference frequency
 
     ////////////////////////////////////////////////////////////////////////////
     //LOAD DATA
@@ -300,6 +300,8 @@ int main(int argc, char** argv)
     //APPLY DATA CORRECTIONS (A PRIORI -- PCAL)
     ////////////////////////////////////////////////////////////////////////////
 
+    /*
+    
     //apply manual pcal
     //construct the pcal array...need to re-think how we are going to move control block info around (scalar parameters vs. arrays etc)
     manual_pcal_type* ref_pcal = cb_wrapper.GetRefStationManualPCOffsets();
@@ -318,7 +320,7 @@ int main(int argc, char** argv)
     check_step_error(ok, "main", "rem pcal initialization." << eom );
     ok = pcal_correct.Execute();
     check_step_error(ok, "main", "rem pcal execution." << eom );
-
+    */
 
     //output for the delay
     visibility_type* sbd_data = bl_data->CloneEmpty();
