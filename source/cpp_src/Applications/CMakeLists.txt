@@ -1,6 +1,6 @@
 hops_internal_include_directories()
 
-set(HOPS_TEST_LIBS MHO_Message MHO_Utilities vex2json MHO_Math MHO_Containers MHO_Snapshot MHO_Operators MHO_Calibration MHO_MK4Interface) # MHO_Control)
+set(HOPS_TEST_LIBS MHO_Message MHO_Utilities vex2json MHO_Math MHO_Containers MHO_Snapshot MHO_Operators MHO_Calibration MHO_MK4Interface MHO_Control)
 
 set(SOURCE_BASENAMES
     #TestSingleBandDelay

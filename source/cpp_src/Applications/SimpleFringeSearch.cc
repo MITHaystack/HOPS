@@ -31,9 +31,6 @@
 //needed to read hops files and extract objects from scan dir
 #include "MHO_ScanDataStore.hh"
 
-//control
-#include "MHO_ControlBlockWrapper.hh"
-
 //operators
 #include "MHO_ElementTypeCaster.hh"
 #include "MHO_NormFX.hh"
@@ -64,11 +61,6 @@ using namespace hops;
 
 int main(int argc, char** argv)
 {
-
-    set_progname("SimpleFringeSearch");
-    set_msglev(-1);
-    // set_msglev(-4);
-
     std::string usage = "SimpleFringeSearch -d <directory> -c <control file> -b <baseline> -p <pol. product>";
 
     MHO_Message::GetInstance().AcceptAllKeys();
