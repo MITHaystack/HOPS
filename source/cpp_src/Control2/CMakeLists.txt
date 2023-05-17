@@ -8,6 +8,7 @@ set (CONTROL2_HEADERFILES
 ##################################################
 
 set (CONTROL2_SOURCEFILES
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ControlDefinitions.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ControlFileParser.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ControlElementParser.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ControlTokenProcessor.cc

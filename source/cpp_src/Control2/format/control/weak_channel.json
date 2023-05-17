@@ -1,5 +1,5 @@
 {
     "name": "weak_channel",
-    "statement_type": "primitive",
+    "statement_type": "parameter",
     "type": "real"
 }

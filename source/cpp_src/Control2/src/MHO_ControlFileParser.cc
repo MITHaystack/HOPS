@@ -9,30 +9,31 @@ namespace hops
 MHO_ControlFileParser::MHO_ControlFileParser()
 {
     //read the block-names.json file
-    fFormatDirectory = HOPS_CONTROL_FORMAT_DIR;
-    fFormatDirectory += "/control/";
+    fFormatDirectory = MHO_ControlDefinitions::GetFormatDirectory();
 
-    std::string block_names_file = fFormatDirectory + "keyword-names.json";
-    std::ifstream ifs;
-    ifs.open( block_names_file.c_str(), std::ifstream::in );
-
-    if(ifs.is_open())
-    {
-        fKeywordNamesJSON = mho_json::parse(ifs);
-    }
-    ifs.close();
-
-    fKeywordNames = fKeywordNamesJSON["keyword_names"];
+    // std::string block_names_file = fFormatDirectory + "keyword-names.json";
+    // std::ifstream ifs;
+    // ifs.open( block_names_file.c_str(), std::ifstream::in );
+    // 
+    // if(ifs.is_open())
+    // {
+    //     fKeywordNamesJSON = mho_json::parse(ifs);
+    // }
+    // ifs.close();
+    // 
+    // 
+    fWhitespace = MHO_ControlDefinitions::WhitespaceDelim();
+    fCommentFlag = MHO_ControlDefinitions::CommentFlag();
+    fKeywordNames = MHO_ControlDefinitions::GetKeywordNames();
+    
+    
+    // fKeywordNamesJSON["keyword_names"];
 
     for(auto blockIt = fKeywordNames.begin(); blockIt != fKeywordNames.end(); blockIt++)
     {
         std::cout<<"block name = "<< *blockIt << std::endl;
     }
 
-    fWhitespace = " \t\r\n";
-    fCommentFlag = "*";
-    
-    
     
     fElementParser.LoadElementFormats();
 

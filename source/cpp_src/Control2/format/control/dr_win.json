@@ -1,5 +1,5 @@
 {
     "name": "dr_win",
-    "statement_type": "primitive",
+    "statement_type": "parameter",
     "type": "list_real"
 }
