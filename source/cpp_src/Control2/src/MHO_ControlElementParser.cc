@@ -20,27 +20,36 @@ MHO_ControlElementParser::~MHO_ControlElementParser(){};
 void
 MHO_ControlElementParser::LoadElementFormats()
 {
-    //read the keyword-names.json file
-    fFormatDirectory = HOPS_CONTROL_FORMAT_DIR;
-    fFormatDirectory += "/control/";
+    // //read the keyword-names.json file
+    // fFormatDirectory = HOPS_CONTROL_FORMAT_DIR;
+    // fFormatDirectory += "/control/";
+    // 
+    // std::string keyword_names_file = fFormatDirectory + "keyword-names.json";
+    // std::ifstream ifs;
+    // ifs.open( keyword_names_file.c_str(), std::ifstream::in );
+    // 
+    // 
+    // mho_json keywordNamesJSON;
+    // if(ifs.is_open())
+    // {
+    //     keywordNamesJSON = mho_json::parse(ifs);
+    // }
+    // ifs.close();
+    // 
+    // fKeywordNames = keywordNamesJSON["keyword_names"];
+    
+    
 
-    std::string keyword_names_file = fFormatDirectory + "keyword-names.json";
-    std::ifstream ifs;
-    ifs.open( keyword_names_file.c_str(), std::ifstream::in );
+    fFormatDirectory = MHO_ControlDefinitions::GetFormatDirectory();
+    fKeywordNames = MHO_ControlDefinitions::GetKeywordNames();
 
-
-    mho_json keywordNamesJSON;
-    if(ifs.is_open())
-    {
-        keywordNamesJSON = mho_json::parse(ifs);
-    }
-    ifs.close();
-
-    fKeywordNames = keywordNamesJSON["keyword_names"];
 
     for(auto keyIt = fKeywordNames.begin(); keyIt != fKeywordNames.end(); keyIt++ )
     {
         std::string key = *keyIt;
+        
+        std::cout<<"block name = "<< key << std::endl;
+        
         std::string element_format_file = GetElementFormatFileName(key);
         std::string format_file = fFormatDirectory + element_format_file;
 
@@ -81,9 +90,19 @@ MHO_ControlElementParser::ParseControlStatement(const MHO_ControlStatement& cont
     //find the element format 
     auto formatIt = fElementFormats.find(element_name);
     if(formatIt != fElementFormats.end() ){fElementFormatLoaded = true;}
+
+    std::cout<<"element_name = "<< element_name <<std::endl;
     
     if(fElementFormatLoaded)
     {
+        std::string statement_type = fElementFormats[element_name]["statement_type"];
+        if( statement_type == "unknown" || statement_type.size() == 0)
+        {
+            msg_error("control", "control function for: "<<element_name<<" not yet implemented, skipping."<<eom);
+            mho_json empty;
+            return empty;
+        }
+
         mho_json elem;
         elem["name"] = fElementFormats[element_name]["name"];
         elem["statement_type"] = fElementFormats[element_name]["statement_type"];
@@ -92,7 +111,7 @@ MHO_ControlElementParser::ParseControlStatement(const MHO_ControlStatement& cont
     }
     else
     {
-        msg_error("control", "parser error, could not load format file for: "<<element_name<<" element, skipping."<<eom);
+        msg_warn("control", "parser error, could not load format file for: "<<element_name<<" element, skipping."<<eom);
         mho_json empty;
         return empty;
     }
