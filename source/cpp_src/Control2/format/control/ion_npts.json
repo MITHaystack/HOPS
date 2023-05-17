@@ -1,5 +1,5 @@
 {
     "name": "ion_npts",
-    "statement_type": "primitive",
+    "statement_type": "parameter",
     "type": "int"
 }

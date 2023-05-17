@@ -1,5 +1,5 @@
 {
     "name": "pc_amp_hcode",
-    "statement_type": "primitive",
+    "statement_type": "parameter",
     "type": "real"
 }

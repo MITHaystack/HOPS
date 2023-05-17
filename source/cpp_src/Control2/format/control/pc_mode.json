@@ -1,5 +1,5 @@
 {
     "name": "pc_mode",
-    "statement_type": "primitive",
+    "statement_type": "parameter",
     "type": "string"
 }

@@ -1,5 +1,5 @@
 {
     "name": "ref_freq",
-    "statement_type": "primitive",
+    "statement_type": "parameter",
     "type": "real"
 }

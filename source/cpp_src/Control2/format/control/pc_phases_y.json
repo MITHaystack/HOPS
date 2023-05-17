@@ -1,6 +1,6 @@
 {
     "name": "pc_phases_y",
-    "statement_type": "compound",
+    "statement_type": "parameter",
     "type" : "compound",
     "parameters":
     {
