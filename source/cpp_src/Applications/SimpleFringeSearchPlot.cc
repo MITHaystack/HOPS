@@ -6,20 +6,20 @@
 #include <iomanip>
 
 
-//fourfit control lib
-#ifndef HOPS3_USE_CXX
-extern "C"
-{
-#endif
-
-#include "msg.h"
-#include "ffcontrol.h"
-struct c_block* cb_head; //global extern kludge (due to stupid c-library interface)
-
-
-#ifndef HOPS3_USE_CXX
-}
-#endif
+// //fourfit control lib
+// #ifndef HOPS3_USE_CXX
+// extern "C"
+// {
+// #endif
+// 
+// #include "msg.h"
+// #include "ffcontrol.h"
+// struct c_block* cb_head; //global extern kludge (due to stupid c-library interface)
+// 
+// 
+// #ifndef HOPS3_USE_CXX
+// }
+// #endif
 
 #define EXTRA_DEBUG
 
@@ -32,8 +32,8 @@ struct c_block* cb_head; //global extern kludge (due to stupid c-library interfa
 //needed to read hops files and extract objects from scan dir
 #include "MHO_ScanDataStore.hh"
 
-//control
-#include "MHO_ControlBlockWrapper.hh"
+// //control
+// #include "MHO_ControlBlockWrapper.hh"
 
 //operators
 #include "MHO_ElementTypeCaster.hh"
@@ -68,9 +68,9 @@ using namespace hops;
 int main(int argc, char** argv)
 {
 
-    set_progname("SimpleFringeSearch");
-    set_msglev(-1);
-    // set_msglev(-4);
+    // set_progname("SimpleFringeSearch");
+    // set_msglev(-1);
+    // // set_msglev(-4);
 
     std::string usage = "SimpleFringeSearch -d <directory> -c <control file> -b <baseline> -p <pol. product>";
 
@@ -158,17 +158,17 @@ int main(int argc, char** argv)
     //CONTROL BLOCK CONSTRUCTION
     ////////////////////////////////////////////////////////////////////////////
 
-    //parse the control file
-    cb_head = (struct c_block *) malloc (sizeof (struct c_block) );
-    struct c_block* cb_out = (struct c_block *) malloc (sizeof (struct c_block) );
-    char bl[2]; bl[0] = baseline[0]; bl[1] = baseline[1];
-    std::string src = " ";
-    char fgroup = 'X';
-    int time = 0;
-    int retval = construct_cblock(const_cast<char*>(control_file.c_str()), cb_head, cb_out, bl, const_cast<char*>(src.c_str()), fgroup, time);
-    MHO_ControlBlockWrapper cb_wrapper(cb_out, vexInfo, baseline);
+    // //parse the control file
+    // cb_head = (struct c_block *) malloc (sizeof (struct c_block) );
+    // struct c_block* cb_out = (struct c_block *) malloc (sizeof (struct c_block) );
+    // char bl[2]; bl[0] = baseline[0]; bl[1] = baseline[1];
+    // std::string src = " ";
+    // char fgroup = 'X';
+    // int time = 0;
+    // int retval = construct_cblock(const_cast<char*>(control_file.c_str()), cb_head, cb_out, bl, const_cast<char*>(src.c_str()), fgroup, time);
+    // MHO_ControlBlockWrapper cb_wrapper(cb_out, vexInfo, baseline);
 
-    double ref_freq = cb_wrapper.GetReferenceFrequency();//grab the reference frequency
+    double ref_freq = 6000.0;// cb_wrapper.GetReferenceFrequency();//grab the reference frequency
 
     ////////////////////////////////////////////////////////////////////////////
     //LOAD DATA
@@ -235,10 +235,9 @@ int main(int argc, char** argv)
 
     //select first 8 channels for testing
     std::size_t n_max_channels = std::get<CHANNEL_AXIS>(*bl_data).GetSize();
-    std::vector< std::size_t > selected_ch = cb_wrapper.GetActiveChannelsKLUDGE(n_max_channels);
+    std::vector< std::size_t > selected_ch;// = cb_wrapper.GetActiveChannelsKLUDGE(n_max_channels);
     
-
-    //for(std::size_t i=0;i<8; i++){selected_ch.push_back(i);}
+    for(std::size_t i=0;i<8; i++){selected_ch.push_back(i);}
     //for(std::size_t i=0;i<2; i++){selected_ch.push_back(i);}
 
     //specify the indexes we want on each axis
@@ -315,6 +314,8 @@ int main(int argc, char** argv)
     //APPLY DATA CORRECTIONS (A PRIORI -- PCAL)
     ////////////////////////////////////////////////////////////////////////////
 
+    /*
+
     //apply manual pcal
     //construct the pcal array...need to re-think how we are going to move control block info around (scalar parameters vs. arrays etc)
     manual_pcal_type* ref_pcal = cb_wrapper.GetRefStationManualPCOffsets();
@@ -334,6 +335,7 @@ int main(int argc, char** argv)
     ok = pcal_correct.Execute();
     check_step_error(ok, "main", "rem pcal execution." << eom );
 
+    */
 
     //output for the delay
     visibility_type* sbd_data = bl_data->CloneEmpty();
