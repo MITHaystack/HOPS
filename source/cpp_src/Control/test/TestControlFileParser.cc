@@ -12,6 +12,8 @@ int main(int argc, char** argv)
     MHO_Message::GetInstance().AcceptAllKeys();
     MHO_Message::GetInstance().SetMessageLevel(eDebug);
 
+    if(argc < 2){std::cout<<"must pass file name of control file"<<std::endl; return 1;}
+
     std::string controlfile(argv[1]);
 
     MHO_ControlFileParser cparser;

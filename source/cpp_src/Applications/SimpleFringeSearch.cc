@@ -5,21 +5,6 @@
 #include <getopt.h>
 #include <iomanip>
 
-// 
-// //fourfit control lib
-// #ifndef HOPS3_USE_CXX
-// extern "C"
-// {
-// #endif
-// 
-// #include "msg.h"
-// #include "ffcontrol.h"
-// struct c_block* cb_head; //global extern kludge (due to stupid c-library interface)
-// 
-// #ifndef HOPS3_USE_CXX
-// }
-// #endif
-
 #define EXTRA_DEBUG
 
 //global messaging util
@@ -30,6 +15,9 @@
 
 //needed to read hops files and extract objects from scan dir
 #include "MHO_ScanDataStore.hh"
+
+//control
+#include "MHO_ControlFileParser.hh"
 
 //operators
 #include "MHO_ElementTypeCaster.hh"
@@ -146,18 +134,10 @@ int main(int argc, char** argv)
     ////////////////////////////////////////////////////////////////////////////
     //CONTROL BLOCK CONSTRUCTION
     ////////////////////////////////////////////////////////////////////////////
-
-    // //parse the control file
-    // cb_head = (struct c_block *) malloc (sizeof (struct c_block) );
-    // struct c_block* cb_out = (struct c_block *) malloc (sizeof (struct c_block) );
-    // char bl[2]; bl[0] = baseline[0]; bl[1] = baseline[1];
-    // std::string src = " ";
-    // char fgroup = 'X';
-    // int time = 0;
-    // int retval = construct_cblock(const_cast<char*>(control_file.c_str()), cb_head, cb_out, bl, const_cast<char*>(src.c_str()), fgroup, time);
-    // MHO_ControlBlockWrapper cb_wrapper(cb_out, vexInfo, baseline);
-
-    double ref_freq = 6000.0;// cb_wrapper.GetReferenceFrequency();//grab the reference frequency
+    MHO_ControlFileParser cparser;
+    cparser.SetControlFile(control_file);
+    auto control_statements = cparser.ParseControl();
+    double ref_freq = 6000.0;
 
     ////////////////////////////////////////////////////////////////////////////
     //LOAD DATA
