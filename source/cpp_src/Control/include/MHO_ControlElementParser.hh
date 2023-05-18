@@ -35,25 +35,15 @@ class MHO_ControlElementParser
         MHO_ControlElementParser();
         virtual ~MHO_ControlElementParser();
 
-        void SetFormatDirectory(std::string fdir){fFormatDirectory = fdir;}
-        void LoadElementFormats();
         mho_json ParseControlStatement(const MHO_ControlStatement& control_statement);
 
     private:
 
-        std::string GetElementFormatFileName(std::string element_name);
-
-        mho_json ParseElement();
-
         mho_json ParseTokens(const std::string& element_name, mho_json& format, const std::vector< std::string >& tokens);
         mho_json ProcessCompound(const std::string& element_name, mho_json& format, const std::vector< std::string >& tokens);
 
-        bool fElementFormatLoaded;
         mho_json fElementFormats;
-        std::string fFormatDirectory;
-        std::vector< std::string > fKeywordNames;
 
-        MHO_Tokenizer fTokenizer;
         MHO_ControlTokenProcessor fTokenProcessor;
 };
 

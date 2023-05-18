@@ -14,6 +14,7 @@
 #include <vector>
 
 #include "MHO_DirectoryInterface.hh"
+#include "MHO_JSONHeaderWrapper.hh"
 
 namespace hops
 {
@@ -49,7 +50,7 @@ enum control_element_type
 class MHO_ControlDefinitions
 {
     public:
-        MHO_ControlDefinitions();
+        MHO_ControlDefinitions(){};
         virtual ~MHO_ControlDefinitions(){};
 
         static std::string GetFormatDirectory();
@@ -59,6 +60,8 @@ class MHO_ControlDefinitions
         static std::string CommentFlag() {return std::string("*");};
 
         static control_element_type DetermineControlType(std::string etype);
+
+        static mho_json GetControlFormat(); 
 
     private:
 

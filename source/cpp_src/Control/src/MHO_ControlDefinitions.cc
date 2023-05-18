@@ -1,47 +1,10 @@
 #include "MHO_ControlDefinitions.hh"
 
 #include <iostream>
+#include <fstream>
 
 namespace hops
 {
-
-MHO_ControlDefinitions::MHO_ControlDefinitions()
-{
-    //load all of the .json format files here so they are in memory
-    //we may also want to combine all the format files into a single one
-
-    /*
-    std::string format_dir = MHO_ControlDefinitions::GetFormatDirectory();
-    keywords = MHO_ControlDefinitions::GetKeywordNames();
-
-    for(auto keyIt = keywords.begin(); keyIt != keywords.end(); keyIt++ )
-    {
-        std::string key = *keyIt;
-
-        std::cout<<"block name = "<< key << std::endl;
-
-        std::string element_format_file = GetElementFormatFileName(key);
-        std::string format_file = format_dir + element_format_file;
-
-        //TODO should check that the file exists
-        std::ifstream bf_ifs;
-        bf_ifs.open( format_file.c_str(), std::ifstream::in );
-
-        mho_json bformat;
-        if(bf_ifs.is_open())
-        {
-            bformat = mho_json::parse(bf_ifs);
-            fControlFormat[key] = bformat;
-        }
-        bf_ifs.close();
-    }
-
-    std::cout << fControlFormat.dump(2) << std::endl;
-    */
-
-
-
-};
 
 std::string
 MHO_ControlDefinitions::GetFormatDirectory()
@@ -93,5 +56,40 @@ MHO_ControlDefinitions::DetermineControlType(std::string etype)
     return control_unknown_type;
 }
 
+
+mho_json 
+MHO_ControlDefinitions::GetControlFormat()
+{
+    //load all of the .json format files here so they are in memory
+    //TODO -- we may also want to combine all the format files into a single file
+
+    std::string format_dir = GetFormatDirectory();
+    std::vector< std::string > keywords = GetKeywordNames();
+    mho_json format_obj;
+
+    for(auto keyIt = keywords.begin(); keyIt != keywords.end(); keyIt++ )
+    {
+        std::string key = *keyIt;
+
+        std::cout<<"block name = "<< key << std::endl;
+
+        std::string element_format_file = key + ".json";
+        std::string format_file = format_dir + element_format_file;
+
+        //TODO should check that the file exists
+        std::ifstream bf_ifs;
+        bf_ifs.open( format_file.c_str(), std::ifstream::in );
+
+        mho_json bformat;
+        if(bf_ifs.is_open())
+        {
+            bformat = mho_json::parse(bf_ifs);
+            format_obj[key] = bformat;
+        }
+        bf_ifs.close();
+    }
+
+    return format_obj;
+}
 
 }

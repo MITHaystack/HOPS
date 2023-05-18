@@ -1,78 +1,29 @@
 #include "MHO_ControlElementParser.hh"
 
-#include <fstream>
-#include <cctype>
-#include <algorithm>
-#include <stack>
-#include <regex>
-
 namespace hops
 {
 
 MHO_ControlElementParser::MHO_ControlElementParser()
 {
-
+    fElementFormats = MHO_ControlDefinitions::GetControlFormat();
 };
 
 MHO_ControlElementParser::~MHO_ControlElementParser(){};
-
-
-void
-MHO_ControlElementParser::LoadElementFormats()
-{
-    fFormatDirectory = MHO_ControlDefinitions::GetFormatDirectory();
-    fKeywordNames = MHO_ControlDefinitions::GetKeywordNames();
-
-    for(auto keyIt = fKeywordNames.begin(); keyIt != fKeywordNames.end(); keyIt++ )
-    {
-        std::string key = *keyIt;
-
-        std::cout<<"block name = "<< key << std::endl;
-
-        std::string element_format_file = GetElementFormatFileName(key);
-        std::string format_file = fFormatDirectory + element_format_file;
-
-        //TODO should check that the file exists
-        std::ifstream bf_ifs;
-        bf_ifs.open( format_file.c_str(), std::ifstream::in );
-
-        mho_json bformat;
-        if(bf_ifs.is_open())
-        {
-            bformat = mho_json::parse(bf_ifs);
-            fElementFormats[key] = bformat;
-        }
-        bf_ifs.close();
-    }
-
-    std::cout << fElementFormats.dump(2) << std::endl;
-
-
-}
-
-std::string
-MHO_ControlElementParser::GetElementFormatFileName(std::string element_name)
-{
-    std::string file_name = element_name + ".json";
-    return file_name;
-}
-
-
 
 mho_json
 MHO_ControlElementParser::ParseControlStatement(const MHO_ControlStatement& control_statement)
 {
     //retrieve the element format
     std::string element_name = control_statement.fKeyword;
-    fElementFormatLoaded = false;
+    bool format_loaded= false;
 
     //find the element format
     auto formatIt = fElementFormats.find(element_name);
-    if(formatIt != fElementFormats.end() ){fElementFormatLoaded = true;}
+    if(formatIt != fElementFormats.end() ){format_loaded= true;}
 
     std::cout<<"element_name = "<< element_name <<std::endl;
 
-    if(fElementFormatLoaded)
+    if(format_loaded)
     {
         std::string statement_type = fElementFormats[element_name]["statement_type"];
         if( statement_type == "unknown" || statement_type.size() == 0)
