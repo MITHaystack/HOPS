@@ -23,18 +23,12 @@ MHO_ControlDefinitions::GetKeywordNames()
     MHO_DirectoryInterface dirInterface;
 
     dirInterface.SetCurrentDirectory(format_dir);
-
-    std::cout<<"format_dir = "<<format_dir<<std::endl;
-
     dirInterface.ReadCurrentDirectory();
     dirInterface.GetFilesMatchingExtention(keywords, "json");
-
-    std::cout<<"n keyword files = "<<keywords.size()<<std::endl;
 
     for(std::size_t i=0; i<keywords.size(); i++)
     {
         std::string tmp = MHO_DirectoryInterface::GetBasename( keywords[i] );
-        std::cout<<"tmp = "<<keywords[i]<<std::endl;
         keywords[i] = MHO_DirectoryInterface::StripExtensionFromBasename(tmp);
     }
 
@@ -70,9 +64,6 @@ MHO_ControlDefinitions::GetControlFormat()
     for(auto keyIt = keywords.begin(); keyIt != keywords.end(); keyIt++ )
     {
         std::string key = *keyIt;
-
-        std::cout<<"block name = "<< key << std::endl;
-
         std::string element_format_file = key + ".json";
         std::string format_file = format_dir + element_format_file;
 

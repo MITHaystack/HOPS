@@ -5,7 +5,6 @@
 #include "MHO_Message.hh"
 #include "MHO_ControlFileParser.hh"
 
-
 using namespace hops;
 
 int main(int argc, char** argv)
@@ -16,16 +15,14 @@ int main(int argc, char** argv)
     std::string controlfile(argv[1]);
 
     MHO_ControlFileParser cparser;
-    //vparser.SetVexVersion("2.0");
     cparser.SetControlFile(controlfile);
-    //mho_json vex =
-    cparser.ParseControl();
+    auto control_statements = cparser.ParseControl();
     
-    // //open and dump to file 
-    // std::string output_file("test_vex.json");
-    // std::ofstream outFile(output_file.c_str(), std::ofstream::out);
-    // outFile << vex;
-    // outFile.close();
+    //open and dump to file 
+    std::string output_file("./control.json");
+    std::ofstream outFile(output_file.c_str(), std::ofstream::out);
+    outFile << control_statements;
+    outFile.close();
 
     return 0;
 }

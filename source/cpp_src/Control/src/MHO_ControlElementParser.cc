@@ -20,15 +20,12 @@ MHO_ControlElementParser::ParseControlStatement(const MHO_ControlStatement& cont
     //find the element format
     auto formatIt = fElementFormats.find(element_name);
     if(formatIt != fElementFormats.end() ){format_loaded= true;}
-
-    std::cout<<"element_name = "<< element_name <<std::endl;
-
     if(format_loaded)
     {
         std::string statement_type = fElementFormats[element_name]["statement_type"];
         if( statement_type == "unknown" || statement_type.size() == 0)
         {
-            msg_error("control", "control function for: "<<element_name<<" not yet implemented, skipping."<<eom);
+            msg_warn("control", "control function for: "<<element_name<<" not yet implemented, skipping."<<eom);
             mho_json empty;
             return empty;
         }
