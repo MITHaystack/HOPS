@@ -34,8 +34,6 @@ MHO_ControlFileParser::MHO_ControlFileParser()
         std::cout<<"block name = "<< *blockIt << std::endl;
     }
 
-    
-    fElementParser.LoadElementFormats();
 
 }
 
