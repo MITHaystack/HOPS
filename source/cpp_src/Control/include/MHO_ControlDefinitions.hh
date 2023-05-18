@@ -49,7 +49,7 @@ enum control_element_type
 class MHO_ControlDefinitions
 {
     public:
-        MHO_ControlDefinitions(){};
+        MHO_ControlDefinitions();
         virtual ~MHO_ControlDefinitions(){};
 
         static std::string GetFormatDirectory();
@@ -61,6 +61,8 @@ class MHO_ControlDefinitions
         static control_element_type DetermineControlType(std::string etype);
 
     private:
+
+        //mho_json fControlFormat;
 
 };
 

@@ -20,36 +20,15 @@ MHO_ControlElementParser::~MHO_ControlElementParser(){};
 void
 MHO_ControlElementParser::LoadElementFormats()
 {
-    // //read the keyword-names.json file
-    // fFormatDirectory = HOPS_CONTROL_FORMAT_DIR;
-    // fFormatDirectory += "/control/";
-    // 
-    // std::string keyword_names_file = fFormatDirectory + "keyword-names.json";
-    // std::ifstream ifs;
-    // ifs.open( keyword_names_file.c_str(), std::ifstream::in );
-    // 
-    // 
-    // mho_json keywordNamesJSON;
-    // if(ifs.is_open())
-    // {
-    //     keywordNamesJSON = mho_json::parse(ifs);
-    // }
-    // ifs.close();
-    // 
-    // fKeywordNames = keywordNamesJSON["keyword_names"];
-    
-    
-
     fFormatDirectory = MHO_ControlDefinitions::GetFormatDirectory();
     fKeywordNames = MHO_ControlDefinitions::GetKeywordNames();
-
 
     for(auto keyIt = fKeywordNames.begin(); keyIt != fKeywordNames.end(); keyIt++ )
     {
         std::string key = *keyIt;
-        
+
         std::cout<<"block name = "<< key << std::endl;
-        
+
         std::string element_format_file = GetElementFormatFileName(key);
         std::string format_file = fFormatDirectory + element_format_file;
 
@@ -80,19 +59,19 @@ MHO_ControlElementParser::GetElementFormatFileName(std::string element_name)
 
 
 
-mho_json 
+mho_json
 MHO_ControlElementParser::ParseControlStatement(const MHO_ControlStatement& control_statement)
 {
     //retrieve the element format
     std::string element_name = control_statement.fKeyword;
     fElementFormatLoaded = false;
 
-    //find the element format 
+    //find the element format
     auto formatIt = fElementFormats.find(element_name);
     if(formatIt != fElementFormats.end() ){fElementFormatLoaded = true;}
 
     std::cout<<"element_name = "<< element_name <<std::endl;
-    
+
     if(fElementFormatLoaded)
     {
         std::string statement_type = fElementFormats[element_name]["statement_type"];

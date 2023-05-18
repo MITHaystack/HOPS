@@ -5,7 +5,45 @@
 namespace hops
 {
 
-std::string 
+MHO_ControlDefinitions::MHO_ControlDefinitions()
+{
+    //load all of the .json format files here so they are in memory
+    //we may also want to combine all the format files into a single one
+
+    /*
+    std::string format_dir = MHO_ControlDefinitions::GetFormatDirectory();
+    keywords = MHO_ControlDefinitions::GetKeywordNames();
+
+    for(auto keyIt = keywords.begin(); keyIt != keywords.end(); keyIt++ )
+    {
+        std::string key = *keyIt;
+
+        std::cout<<"block name = "<< key << std::endl;
+
+        std::string element_format_file = GetElementFormatFileName(key);
+        std::string format_file = format_dir + element_format_file;
+
+        //TODO should check that the file exists
+        std::ifstream bf_ifs;
+        bf_ifs.open( format_file.c_str(), std::ifstream::in );
+
+        mho_json bformat;
+        if(bf_ifs.is_open())
+        {
+            bformat = mho_json::parse(bf_ifs);
+            fControlFormat[key] = bformat;
+        }
+        bf_ifs.close();
+    }
+
+    std::cout << fControlFormat.dump(2) << std::endl;
+    */
+
+
+
+};
+
+std::string
 MHO_ControlDefinitions::GetFormatDirectory()
 {
     std::string format_dir = HOPS_CONTROL_FORMAT_DIR;
@@ -13,35 +51,35 @@ MHO_ControlDefinitions::GetFormatDirectory()
     return format_dir;
 }
 
-std::vector< std::string > 
+std::vector< std::string >
 MHO_ControlDefinitions::GetKeywordNames()
 {
-    
+
     std::vector< std::string > keywords;
     std::string format_dir = GetFormatDirectory();
     MHO_DirectoryInterface dirInterface;
 
     dirInterface.SetCurrentDirectory(format_dir);
-    
+
     std::cout<<"format_dir = "<<format_dir<<std::endl;
-    
+
     dirInterface.ReadCurrentDirectory();
     dirInterface.GetFilesMatchingExtention(keywords, "json");
-    
+
     std::cout<<"n keyword files = "<<keywords.size()<<std::endl;
-    
+
     for(std::size_t i=0; i<keywords.size(); i++)
     {
         std::string tmp = MHO_DirectoryInterface::GetBasename( keywords[i] );
         std::cout<<"tmp = "<<keywords[i]<<std::endl;
         keywords[i] = MHO_DirectoryInterface::StripExtensionFromBasename(tmp);
     }
-    
+
     return keywords;
 }
 
 
-control_element_type 
+control_element_type
 MHO_ControlDefinitions::DetermineControlType(std::string etype)
 {
     if(etype == "int"){return control_int_type;}
