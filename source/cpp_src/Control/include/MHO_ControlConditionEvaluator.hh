@@ -24,6 +24,8 @@ class MHO_ControlConditionEvaluator
         std::string fFGroup;
         std::string fScanTime;
 
+        //std::vector< std::string > PreprocessTokens( std::vector< std::string>& tokens);
+
 };
 
 

@@ -40,6 +40,7 @@ class MHO_ControlFileParser
 
         void ReadFile();
         void RemoveComments();
+        void FixSymbols();
         void TokenizeLines();
         void MergeTokens();
         void FindKeywords();
@@ -67,7 +68,7 @@ class MHO_ControlFileParser
         std::vector< std::string > fFileTokens; //all tokens from file
         std::vector< std::size_t > fLineStartLocations; //index of each token which starts a line
         std::vector< std::size_t > fKeywordLocations; //index of each keyword token
-        
+
         std::vector< MHO_ControlStatement > fStatements;
 
         MHO_ControlElementParser fElementParser;

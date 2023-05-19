@@ -38,6 +38,11 @@ MHO_ControlConditionEvaluator::Evaluate(mho_json& control_condition)
             {
                 std::vector< std::string > tokens = control_condition["value"];
 
+                //need to pre-process these tokens to make sure parentheses, and '<', '>' are separated as individual tokens
+
+
+
+
                 std::vector< std::string > bl;
                 std::vector< std::string > src;
                 std::vector< std::string > fg;
@@ -73,11 +78,14 @@ MHO_ControlConditionEvaluator::Evaluate(mho_json& control_condition)
                     std::cout<< tokens[i] << std::endl;
                 }
 
+
+
                 std::cout<<"==============="<<std::endl;
                 for(std::size_t i=0; i<bl.size(); i++)
                 {
                     std::cout<<bl[i]<<std::endl;
                 }
+
                 for(std::size_t i=0; i<src.size(); i++)
                 {
                     std::cout<<src[i]<<std::endl;
@@ -86,6 +94,8 @@ MHO_ControlConditionEvaluator::Evaluate(mho_json& control_condition)
                 {
                     std::cout<<fg[i]<<std::endl;
                 }
+
+
 
             }
         }
@@ -136,7 +146,28 @@ MHO_ControlConditionEvaluator::Evaluate(mho_json& control_condition)
     return value;
 }
 
-
+// std::vector< std::string >
+// MHO_ControlConditionEvaluator::PreprocessTokens( std::vector< std::string>& tokens)
+// {
+//     std::vector< std::string > fixed_tokens;
+//
+//     std::string open_paren("(");
+//     std::string close_paren(")");
+//     std::string ls("<");
+//     std::string gt(">");
+//
+//     std::string fixed_open_paren(" ( ");
+//     std::string fixed_close_paren(" ) ");
+//     std::string fixed_lt(" < ");
+//     std::string fixed_gt(" > ");
+//
+//
+//
+//
+//
+//     std::string raw_field_name = it->get<std::string>();
+//     std::string field_name = std::regex_replace(raw_field_name,std::regex(hash),nothing);
+// }
 
 
 }
