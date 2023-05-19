@@ -1,6 +1,7 @@
 #include "MHO_ControlFileParser.hh"
 
 #include <fstream>
+#include <regex>
 
 
 namespace hops
@@ -33,6 +34,7 @@ MHO_ControlFileParser::ParseControl()
 
     ReadFile(); //read file into memory
     RemoveComments(); //excise all comments
+    FixSymbols();
     TokenizeLines();
     MergeTokens();
     FindKeywords();
@@ -143,6 +145,59 @@ MHO_ControlFileParser::RemoveComments()
         }
         else{it++;}
     }
+}
+
+void
+MHO_ControlFileParser::FixSymbols()
+{
+    //makes sure that if we have a parenthese, or <, > symbol these get padded with space
+    //so that they are treated as a separate token
+    std::string bare_open_paren("(");
+    std::string bare_close_paren(")");
+    std::string open_paren("\\(");
+    std::string close_paren("\\)");
+    std::string lt("<");
+    std::string gt(">");
+
+    std::string fixed_open_paren(" ( ");
+    std::string fixed_close_paren(" ) ");
+    std::string fixed_lt(" < ");
+    std::string fixed_gt(" > ");
+
+    auto it = fLines.begin();
+    while(it != fLines.end())
+    {
+        if( it->fContents.find(bare_open_paren) != std::string::npos )
+        {
+            std::string line = it->fContents;
+            std::string fixed_line = std::regex_replace(line,std::regex(open_paren),fixed_open_paren);
+            it->fContents = fixed_line;
+        }
+
+        if( it->fContents.find(bare_close_paren) != std::string::npos )
+        {
+            std::string line = it->fContents;
+            std::string fixed_line = std::regex_replace(line,std::regex(close_paren),fixed_close_paren);
+            it->fContents = fixed_line;
+        }
+
+        if( it->fContents.find(lt) != std::string::npos )
+        {
+            std::string line = it->fContents;
+            std::string fixed_line = std::regex_replace(line,std::regex(lt),fixed_lt);
+            it->fContents = fixed_line;
+        }
+
+        if( it->fContents.find(close_paren) != std::string::npos )
+        {
+            std::string line = it->fContents;
+            std::string fixed_line = std::regex_replace(line,std::regex(gt),fixed_gt);
+            it->fContents = fixed_line;
+        }
+
+        it++;
+    }
+
 }
 
 void
