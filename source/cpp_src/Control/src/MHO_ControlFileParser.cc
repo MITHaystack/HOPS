@@ -62,12 +62,14 @@ MHO_ControlFileParser::ParseControl()
             fStatements.push_back(stmt);
         }
     }
-    
+
     std::vector< mho_json > block_statements;
     mho_json empty_condition;
     empty_condition["name"] = "if";
+    std::vector< std::string > dummy; dummy.push_back( std::string("true") );
+    empty_condition["value"] = dummy;
     empty_condition["statement_type"] = "conditional";
-    
+
     root["conditions"].push_back(empty_condition);
 
     for(std::size_t i=0; i<fStatements.size(); i++)
@@ -79,7 +81,7 @@ MHO_ControlFileParser::ParseControl()
             root["conditions"].push_back(tmp);
             block_statements.clear();
         }
-        else 
+        else //this is a bug!
         {
             block_statements.push_back(tmp);
         }
