@@ -38,10 +38,54 @@ MHO_ControlConditionEvaluator::Evaluate(mho_json& control_condition)
             {
                 std::vector< std::string > tokens = control_condition["value"];
 
+                std::vector< std::string > bl;
+                std::vector< std::string > src;
+                std::vector< std::string > fg;
+
+                //need to parse the tokens, this could be complicated
+                std::cout<<"---------------"<<std::endl;
+                std::size_t max_idx = tokens.size() - 1;
                 for(std::size_t i=0; i < tokens.size() ; i++)
                 {
+                    if(tokens[i] == "station" && i+1 <= max_idx )
+                    {
+                        std::string opt1 = tokens[i+1] + "?";
+                        std::string opt2 = "?" + tokens[i+1];
+                        bl.push_back(opt1);
+                        bl.push_back(opt2);
+                    }
+
+                    if(tokens[i] == "baseline" && i+1 <= max_idx )
+                    {
+                        bl.push_back(tokens[i+1]);
+                    }
+
+                    if(tokens[i] == "source" && i+1 <= max_idx )
+                    {
+                        src.push_back(tokens[i+1]);
+                    }
+
+                    if(tokens[i] == "f_group" && i+1 <= max_idx )
+                    {
+                        fg.push_back(tokens[i+1]);
+                    }
+
                     std::cout<< tokens[i] << std::endl;
-                 }
+                }
+
+                std::cout<<"==============="<<std::endl;
+                for(std::size_t i=0; i<bl.size(); i++)
+                {
+                    std::cout<<bl[i]<<std::endl;
+                }
+                for(std::size_t i=0; i<src.size(); i++)
+                {
+                    std::cout<<src[i]<<std::endl;
+                }
+                for(std::size_t i=0; i<fg.size(); i++)
+                {
+                    std::cout<<fg[i]<<std::endl;
+                }
 
             }
         }
