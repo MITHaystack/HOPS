@@ -1,7 +1,13 @@
 #ifndef MHO_ControlConditionEvaluator_HH__
 #define MHO_ControlConditionEvaluator_HH__
 
+#include "MHO_Message.hh"
 #include "MHO_ControlDefinitions.hh"
+
+#include <string>
+#include <vector>
+#include <list>
+#include <stack>
 
 namespace hops
 {
@@ -19,7 +25,18 @@ class MHO_ControlConditionEvaluator
 
     private:
 
+        int EvaluateStation(std::string station);
+        int EvaluateBaseline(std::string baseline);
+        int EvaluateSource(std::string src);
+        int EvaluateFrequencyGroup(std::string fgroup);
+
+        int EvaluateBooleanOps(std::list< int > states);
+
+        std::string fWildcard;
+
         std::string fBaseline;
+        std::string fRefStation;
+        std::string fRemStation;
         std::string fSource;
         std::string fFGroup;
         std::string fScanTime;
