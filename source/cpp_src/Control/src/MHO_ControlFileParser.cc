@@ -150,7 +150,7 @@ MHO_ControlFileParser::RemoveComments()
 void
 MHO_ControlFileParser::FixSymbols()
 {
-    //makes sure that if we have a parenthese, or <, > symbol these get padded with space
+    //makes sure that if we have a parentheses, or ! or <, > symbol these get padded with space
     //so that they are treated as a separate token
     std::string bare_open_paren("(");
     std::string bare_close_paren(")");

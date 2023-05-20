@@ -25,6 +25,8 @@ int main(int argc, char** argv)
     //    std::cout << control_statements.dump(2) << std::endl;
 
     MHO_ControlConditionEvaluator eval;
+    eval.SetPassInformation( std::string("GE"), std::string("?"), std::string("?"), std::string("time"));
+
     for(auto it = control_statements["conditions"].begin(); it != control_statements["conditions"].end(); it++)
     {
         //std::cout << it->dump(2) << std::endl;
@@ -35,6 +37,8 @@ int main(int argc, char** argv)
                 if( (*it)["statement_type"].get<std::string>() == "conditional" )
                 {
                     bool b = eval.Evaluate( *it );
+                    if(b){std::cout<<"statement is true"<<std::endl;}
+                    else{std::cout<<"statement is false"<<std::endl;}
                 }
             }
         }

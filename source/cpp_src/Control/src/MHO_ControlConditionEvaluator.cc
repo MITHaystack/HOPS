@@ -2,12 +2,26 @@
 
 #include <iostream>
 
+#define FALSE_STATE 0
+#define TRUE_STATE 1
+#define OPEN_PAR 2
+#define CLOSED_PAR 3
+#define NOT_OP 4
+#define AND_OP 5
+#define OR_OP 6
+
 namespace hops
 {
 
 MHO_ControlConditionEvaluator::MHO_ControlConditionEvaluator()
 {
-
+    fWildcard = "?";
+    fBaseline = "??";
+    fRefStation = "?";
+    fRemStation = "?";
+    fSource = "?";
+    fFGroup = "?";
+    fScanTime = "?";
 }
 
 MHO_ControlConditionEvaluator::~MHO_ControlConditionEvaluator()
@@ -19,88 +33,348 @@ void
 MHO_ControlConditionEvaluator::SetPassInformation(std::string baseline, std::string source, std::string fgroup, std::string scan_time)
 {
     fBaseline = baseline;
+    fRefStation = fBaseline[0];
+    fRemStation = fBaseline[1];
     fSource = source;
     fFGroup = fgroup;
     fScanTime = scan_time;
 }
 
+
+
+
+
+
+
+
+
 bool
 MHO_ControlConditionEvaluator::Evaluate(mho_json& control_condition)
 {
-    bool value = false;
+    bool condition_value = false;
+
+    //open parentheses is +1, closed is -1, if we ever go negative or finish with a non-zero value 
+    //then we have and unmatched parentheses error somewhere.
+    int paren_count = 0;
 
     if( control_condition.find("statement_type") != control_condition.end() )
     {
-
         if( !( control_condition["statement_type"].is_null() ) )
         {
             if(control_condition["statement_type"].get<std::string>() == "conditional")
             {
                 std::vector< std::string > tokens = control_condition["value"];
 
-                //need to pre-process these tokens to make sure parentheses, and '<', '>' are separated as individual tokens
+                std::cout<<" Evaluating: " << control_condition["value"] << std::endl;
 
-
-
-
-                std::vector< std::string > bl;
-                std::vector< std::string > src;
-                std::vector< std::string > fg;
-
-                //need to parse the tokens, this could be complicated
-                std::cout<<"---------------"<<std::endl;
-                std::size_t max_idx = tokens.size() - 1;
-                for(std::size_t i=0; i < tokens.size() ; i++)
+                std::stack< int > eval_stack;
+                auto it = tokens.begin();
+                while( it != tokens.end() )
                 {
-                    if(tokens[i] == "station" && i+1 <= max_idx )
+                    if( *it == "true" )
                     {
-                        std::string opt1 = tokens[i+1] + "?";
-                        std::string opt2 = "?" + tokens[i+1];
-                        bl.push_back(opt1);
-                        bl.push_back(opt2);
+                        eval_stack.push(TRUE_STATE);
                     }
 
-                    if(tokens[i] == "baseline" && i+1 <= max_idx )
+                    if( *it == "false" )
                     {
-                        bl.push_back(tokens[i+1]);
+                        eval_stack.push(FALSE_STATE);
                     }
 
-                    if(tokens[i] == "source" && i+1 <= max_idx )
+                    if( *it == "(" )
                     {
-                        src.push_back(tokens[i+1]);
+                        eval_stack.push(OPEN_PAR);
+                        paren_count++;
                     }
 
-                    if(tokens[i] == "f_group" && i+1 <= max_idx )
+                    if( *it == ")" )
                     {
-                        fg.push_back(tokens[i+1]);
+                        eval_stack.push(CLOSED_PAR);
+                        paren_count--;
                     }
 
-                    std::cout<< tokens[i] << std::endl;
+                    if( *it == "and" )
+                    {
+                        eval_stack.push(AND_OP);
+                    }
+
+                    if( *it == "not" )
+                    {
+                        eval_stack.push(NOT_OP);
+                    }
+
+                    if( *it == "or" )
+                    {
+                        eval_stack.push(OR_OP);
+                    }
+
+                    if( *it == "station")
+                    {
+                        ++it; //must consume next token
+                        if( it == tokens.end() ){msg_error("control", "missing argument to station statement." << eom);}
+                        eval_stack.push( EvaluateStation(*it) );
+                    }
+
+                    if( *it == "baseline")
+                    {
+                        ++it;
+                        if( it == tokens.end() ){msg_error("control", "missing argument to baseline statement." << eom);}
+                        eval_stack.push( EvaluateBaseline(*it) );
+                    }
+                    
+                    if( *it == "source")
+                    {
+                        ++it;
+                        if( it == tokens.end() ){msg_error("control", "missing argument to source statement." << eom);}
+                        eval_stack.push( EvaluateSource(*it) );
+                    }
+                    
+                    if( *it == "f_group")
+                    {
+                        ++it;
+                        if( it == tokens.end() ){msg_error("control", "missing argument to f_group statement." << eom);}
+                        eval_stack.push( EvaluateFrequencyGroup(*it) );
+                    }
+
+                    if(paren_count < 0)
+                    {
+                        msg_error("control", "unmatched parentheses." << eom);
+                    }
+
+                    if(*it == "scan"){msg_debug("control", "scan not implemented " << eom);}
+
+                    if( eval_stack.top() == CLOSED_PAR)
+                    {
+                        //pop off everything until we get back to the open parentheses
+                        //then evaluate it, and push the result back onto the stack
+                        eval_stack.pop();
+                        std::list< int > tmp;
+                        while(eval_stack.top() != OPEN_PAR)
+                        {
+                            tmp.push_back( eval_stack.top() );
+                            eval_stack.pop();
+                        }
+                        if( eval_stack.top() == OPEN_PAR){ eval_stack.pop(); }
+                        int result = EvaluateBooleanOps(tmp);
+                        eval_stack.push(result);
+                    }
+                    it++;
                 }
 
-
-
-                std::cout<<"==============="<<std::endl;
-                for(std::size_t i=0; i<bl.size(); i++)
+                if(paren_count != 0)
                 {
-                    std::cout<<bl[i]<<std::endl;
+                    msg_error("control", "unmatched parentheses." << eom);
                 }
 
-                for(std::size_t i=0; i<src.size(); i++)
+                //evalute the stack 
+                //pop off everything until we get back to the open parentheses
+                //then evaluate it, and push the result back onto the stack
+
+                std::list< int > tmp;
+                while(eval_stack.size() != 0)
                 {
-                    std::cout<<src[i]<<std::endl;
+                    tmp.push_back( eval_stack.top() );
+                    eval_stack.pop();
                 }
-                for(std::size_t i=0; i<fg.size(); i++)
-                {
-                    std::cout<<fg[i]<<std::endl;
-                }
-
-
-
+                condition_value  = EvaluateBooleanOps(tmp);
             }
         }
 
     }
+
+    return condition_value;
+}
+
+
+int 
+MHO_ControlConditionEvaluator::EvaluateBooleanOps(std::list< int > states)
+{
+    //order of precedence is NOT, then AND, then OR
+
+    //first loop over list evaluating NOTs 
+    for(auto it = states.begin(); it != states.end(); it++)
+    {
+        if(*it == NOT_OP)
+        {
+            it = states.erase(it);
+            if(it != states.end() )
+            {
+                if(*it == TRUE_STATE){*it = FALSE_STATE;}
+                if(*it == FALSE_STATE){*it = TRUE_STATE;}
+            }
+        }
+    }
+
+    //now loop over the list evaluating the ANDs 
+    for(auto it = states.begin(); it != states.end(); it++)
+    {
+        if(*it == AND_OP)
+        {
+            auto first_arg_it = std::prev(it);
+            auto second_arg_it = std::next(it);
+            int val1 = *first_arg_it;
+            int val2 = *second_arg_it;
+            int result = FALSE_STATE;
+            if( val1 == TRUE_STATE && val2 == TRUE_STATE){result = TRUE_STATE;}
+            *first_arg_it = result; //set the first argument equal to result
+            it = states.erase(it); //erase AND_OP 
+            it = states.erase(it); //erase second arg
+        }
+    }
+
+
+    //now loop over the list evaluating any ORs 
+    for(auto it = states.begin(); it != states.end(); it++)
+    {
+        if(*it == OR_OP)
+        {
+            auto first_arg_it = std::prev(it);
+            auto second_arg_it = std::next(it);
+            int val1 = *first_arg_it;
+            int val2 = *second_arg_it;
+            int result = TRUE_STATE;
+            if( val1 == FALSE_STATE && val2 == FALSE_STATE){result = FALSE_STATE;}
+            *first_arg_it = result; //set the first argument equal to result
+            it = states.erase(it); //erase OR_OP 
+            it = states.erase(it); //erase second arg
+        }
+    }
+
+    //result should only be one element 
+    if(states.size() != 1){msg_error("control", "error evaluating condition statement." << eom); return false;}
+    
+    return states.front();
+
+}
+
+
+int 
+MHO_ControlConditionEvaluator::EvaluateStation(std::string station)
+{
+    if(station == fRefStation || station == fRemStation){return TRUE_STATE;}
+    if(station == fWildcard){return TRUE_STATE;}
+    return FALSE_STATE;
+}
+
+int 
+MHO_ControlConditionEvaluator::EvaluateBaseline(std::string baseline)
+{
+    std::string ref_station(1,baseline[0]);
+    std::string rem_station(1,baseline[1]);
+    if(baseline == fBaseline){return TRUE_STATE;}
+    if(ref_station == fWildcard && rem_station == fRemStation){return TRUE_STATE;}
+    if(rem_station == fWildcard && ref_station == fRefStation){return TRUE_STATE;}
+    if(rem_station == fWildcard && ref_station == fWildcard){return TRUE_STATE;}
+    return FALSE_STATE;
+}
+
+int
+MHO_ControlConditionEvaluator::EvaluateSource(std::string src)
+{
+    if(src == fWildcard){return TRUE_STATE;}
+    if(src == fSource){return TRUE_STATE;}
+    return FALSE_STATE;
+}
+
+int 
+MHO_ControlConditionEvaluator::EvaluateFrequencyGroup(std::string fgroup)
+{
+    if(fgroup == fFGroup){return TRUE_STATE;}
+    if(fgroup == fWildcard){return TRUE_STATE;}
+    return FALSE_STATE;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// 
+// bool
+// MHO_ControlConditionEvaluator::Evaluate(mho_json& control_condition)
+// {
+//     bool value = false;
+// 
+//     if( control_condition.find("statement_type") != control_condition.end() )
+//     {
+// 
+//         if( !( control_condition["statement_type"].is_null() ) )
+//         {
+//             if(control_condition["statement_type"].get<std::string>() == "conditional")
+//             {
+//                 std::vector< std::string > tokens = control_condition["value"];
+// 
+//                 //need to pre-process these tokens to make sure parentheses, and '<', '>' are separated as individual tokens
+// 
+// 
+// 
+// 
+//                 std::vector< std::string > bl;
+//                 std::vector< std::string > src;
+//                 std::vector< std::string > fg;
+// 
+//                 //need to parse the tokens, this could be complicated
+//                 std::cout<<"---------------"<<std::endl;
+//                 std::size_t max_idx = tokens.size() - 1;
+//                 for(std::size_t i=0; i < tokens.size() ; i++)
+//                 {
+//                     if(tokens[i] == "station" && i+1 <= max_idx )
+//                     {
+//                         std::string opt1 = tokens[i+1] + "?";
+//                         std::string opt2 = "?" + tokens[i+1];
+//                         bl.push_back(opt1);
+//                         bl.push_back(opt2);
+//                     }
+// 
+//                     if(tokens[i] == "baseline" && i+1 <= max_idx )
+//                     {
+//                         bl.push_back(tokens[i+1]);
+//                     }
+// 
+//                     if(tokens[i] == "source" && i+1 <= max_idx )
+//                     {
+//                         src.push_back(tokens[i+1]);
+//                     }
+// 
+//                     if(tokens[i] == "f_group" && i+1 <= max_idx )
+//                     {
+//                         fg.push_back(tokens[i+1]);
+//                     }
+// 
+//                     std::cout<< tokens[i] << std::endl;
+//                 }
+// 
+// 
+// 
+//                 std::cout<<"==============="<<std::endl;
+//                 for(std::size_t i=0; i<bl.size(); i++)
+//                 {
+//                     std::cout<<bl[i]<<std::endl;
+//                 }
+// 
+//                 for(std::size_t i=0; i<src.size(); i++)
+//                 {
+//                     std::cout<<src[i]<<std::endl;
+//                 }
+//                 for(std::size_t i=0; i<fg.size(); i++)
+//                 {
+//                     std::cout<<fg[i]<<std::endl;
+//                 }
+// 
+// 
+// 
+//             }
+//         }
+// 
+//     }
 
         //                                                    /* compare baselines */
         // match[0] =  (base[0] == WILDCARD
@@ -141,10 +415,19 @@ MHO_ControlConditionEvaluator::Evaluate(mho_json& control_condition)
         //     all_match &= (cb_ptr->knot[i] == FALSE && match[i] == TRUE )  ||
         //                  (cb_ptr->knot[i] == TRUE  && match[i] == FALSE);
         //
+// 
+// 
+//     return value;
+// }
+// 
+// 
+// 
 
 
-    return value;
-}
+
+
+
+
 
 // std::vector< std::string >
 // MHO_ControlConditionEvaluator::PreprocessTokens( std::vector< std::string>& tokens)
