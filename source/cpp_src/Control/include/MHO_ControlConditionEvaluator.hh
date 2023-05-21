@@ -25,10 +25,19 @@ class MHO_ControlConditionEvaluator
 
     private:
 
-        int EvaluateStation(std::string station);
-        int EvaluateBaseline(std::string baseline);
-        int EvaluateSource(std::string src);
-        int EvaluateFrequencyGroup(std::string fgroup);
+        using token_iter = std::vector< std::string >::iterator;
+
+        int ProcessToken(token_iter& it, token_iter& it_end);
+
+        int EvaluateStation(token_iter& it);
+        int EvaluateBaseline(token_iter& it);
+        int EvaluateSource(token_iter& it);
+        int EvaluateFrequencyGroup(token_iter& it);
+        int EvaluateScan(token_iter& it, token_iter& it_end);
+
+        int ScanLessThan(std::string scan);
+        int ScanGreaterThan(std::string scan);
+        int ScanInBetween(std::string scan_low, std::string scan_high);
 
         int EvaluateBooleanOps(std::list< int > states);
 
@@ -40,8 +49,6 @@ class MHO_ControlConditionEvaluator
         std::string fSource;
         std::string fFGroup;
         std::string fScanTime;
-
-        //std::vector< std::string > PreprocessTokens( std::vector< std::string>& tokens);
 
 };
 
