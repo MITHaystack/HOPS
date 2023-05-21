@@ -25,7 +25,7 @@ int main(int argc, char** argv)
     //    std::cout << control_statements.dump(2) << std::endl;
 
     MHO_ControlConditionEvaluator eval;
-    eval.SetPassInformation( std::string("GE"), std::string("?"), std::string("?"), std::string("time"));
+    eval.SetPassInformation( std::string("GE"), std::string("?"), std::string("?"), std::string("288-210210"));
 
     for(auto it = control_statements["conditions"].begin(); it != control_statements["conditions"].end(); it++)
     {
