@@ -38,12 +38,14 @@ class MHO_ControlFileParser
 
     private:
 
-        void ReadFile();
+        bool ReadFile();
         void RemoveComments();
         void FixSymbols();
         void TokenizeLines();
         void MergeTokens();
         void FindKeywords();
+        void FormStatements();
+        mho_json ConstructControlObjects();
 
         std::string fControlFileName;
 
