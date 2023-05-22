@@ -154,17 +154,37 @@ int main(int argc, char** argv)
         std::exit(1);
     }
 
-
     ////////////////////////////////////////////////////////////////////////////
     //CONTROL BLOCK CONSTRUCTION
     ////////////////////////////////////////////////////////////////////////////
     MHO_ControlFileParser cparser;
     MHO_ControlConditionEvaluator ceval;
     cparser.SetControlFile(control_file);
-    auto control_statements = cparser.ParseControl();
+    auto all_statements = cparser.ParseControl();
+    mho_json control_statements;
 
     ceval.SetPassInformation(baseline, srcName, "X", scnName);//baseline, source, fgroup, scan
-    //if( control_statements.empty() )
+    for(auto it = all_statements["conditions"].begin(); it != all_statements["conditions"].end(); it++)
+    {
+        //std::cout << it->dump(2) << std::endl;
+        if( it->find("statement_type") != it->end() )
+        {
+            if( !( (*it)["statement_type"].is_null() ) &&  (*it)["statement_type"].get<std::string>() == "conditional" )
+            {
+                bool b = ceval.Evaluate( *it );
+                if(b)
+                {
+                    for(auto st = (*it)["statements"].begin(); st != (*it)["statements"].end(); st++)
+                    {
+                        control_statements.push_back(*st);
+                    }
+                }
+                if(b){std::cout<<"statement is true: "<< (*it)["value"] <<std::endl;}
+                else{std::cout<<"statement is false: "<< (*it)["value"] <<std::endl;}
+            }
+        }
+    }
+
 
     double ref_freq = 6000.0;
 
