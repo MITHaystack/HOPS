@@ -11,11 +11,9 @@ MHO_ControlFileParser::MHO_ControlFileParser()
 {
     //read the block-names.json file
     fFormatDirectory = MHO_ControlDefinitions::GetFormatDirectory();
-
     fWhitespace = MHO_ControlDefinitions::WhitespaceDelim();
     fCommentFlag = MHO_ControlDefinitions::CommentFlag();
     fKeywordNames = MHO_ControlDefinitions::GetKeywordNames();
-
 }
 
 
@@ -56,10 +54,10 @@ MHO_ControlFileParser::ParseControl()
             {
                 stop = fKeywordLocations[i+1];
             }
-            std::vector< std::string > tokens;
+            std::vector< MHO_Token > tokens;
             for(std::size_t j = start+1; j < stop; j++){tokens.push_back(fFileTokens[j]);}
             MHO_ControlStatement stmt;
-            stmt.fKeyword = fFileTokens[start];
+            stmt.fKeyword = fFileTokens[start].fValue;
             stmt.fTokens = tokens;
             fStatements.push_back(stmt);
         }
@@ -209,11 +207,21 @@ MHO_ControlFileParser::TokenizeLines()
     fTokenizer.SetIncludeEmptyTokensFalse();
 
     auto it = fLines.begin();
+    std::vector< std::string > workspace;
     while(it != fLines.end())
     {
-        it->fTokens.clear();
+        workspace.clear();
         fTokenizer.SetString( &(it->fContents) );
-        fTokenizer.GetTokens( &(it->fTokens) );
+        fTokenizer.GetTokens( &workspace );
+
+        it->fTokens.clear();
+        for(std::size_t i=0; i<workspace.size(); i++)
+        {
+            MHO_Token tmp;
+            tmp.fValue = workspace[i];
+            tmp.fLineNumber = it->fLineNumber;
+            it->fTokens.push_back(tmp);
+        }
         it++;
     }
 }
@@ -240,7 +248,7 @@ MHO_ControlFileParser::FindKeywords()
     {
         for(auto blockIt = fKeywordNames.begin(); blockIt != fKeywordNames.end(); blockIt++)
         {
-            if(*tokenIt == * blockIt)
+            if(tokenIt->fValue == * blockIt)
             {
                 fKeywordLocations.push_back( std::distance(fFileTokens.begin(), tokenIt) );
                 break;

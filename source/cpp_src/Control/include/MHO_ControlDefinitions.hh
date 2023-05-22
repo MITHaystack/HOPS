@@ -23,20 +23,19 @@ struct MHO_Token
 {
     std::string fValue;
     std::size_t fLineNumber;
-    std::size_t fColumnNumber;
 };
 
 struct MHO_ControlLine
 {
     std::size_t fLineNumber;
     std::string fContents;
-    std::vector< std::string > fTokens;
+    std::vector< MHO_Token > fTokens;
 };
 
 struct MHO_ControlStatement
 {
     std::string fKeyword;
-    std::vector< std::string > fTokens;
+    std::vector< MHO_Token > fTokens;
 };
 
 enum control_element_type
@@ -51,7 +50,6 @@ enum control_element_type
     control_compound_type,
     control_unknown_type
 };
-
 
 
 class MHO_ControlDefinitions

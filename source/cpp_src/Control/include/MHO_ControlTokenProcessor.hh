@@ -12,10 +12,13 @@
 
 #include "MHO_Message.hh"
 #include "MHO_JSONHeaderWrapper.hh"
+#include "MHO_ControlDefinitions.hh"
 
 #include <cstdlib>
 #include <vector>
 #include <string>
+#include <cstdlib>
+#include <limits>
 
 namespace hops
 {
@@ -26,14 +29,20 @@ class MHO_ControlTokenProcessor
         MHO_ControlTokenProcessor();
         virtual ~MHO_ControlTokenProcessor();
 
-        mho_json ProcessInt(const std::string& token);
-        mho_json ProcessString(const std::string& token);
-        mho_json ProcessReal(const std::string& token);
-        mho_json ProcessListInt(const std::vector< std::string >& tokens);
-        mho_json ProcessListString(const std::vector< std::string >& tokens);
-        mho_json ProcessListReal(const std::vector< std::string >& tokens);
+        mho_json ProcessInt(const MHO_Token& token);
+        mho_json ProcessString(const MHO_Token& token);
+        mho_json ProcessReal(const MHO_Token& token);
+        mho_json ProcessListInt(const std::vector< MHO_Token >& tokens);
+        mho_json ProcessListString(const std::vector< MHO_Token >& tokens);
+        mho_json ProcessListReal(const std::vector< MHO_Token >& tokens);
 
     private:
+
+
+        bool ConvertFloat(const MHO_Token& token, double& val);
+        bool ConvertInteger(const MHO_Token& token, int& val);
+
+
 };
 
 }

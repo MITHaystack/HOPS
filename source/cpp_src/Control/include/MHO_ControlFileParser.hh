@@ -65,7 +65,7 @@ class MHO_ControlFileParser
         //tokenizer
         MHO_Tokenizer fTokenizer;
 
-        std::vector< std::string > fFileTokens; //all tokens from file
+        std::vector< MHO_Token > fFileTokens; //all tokens from file
         std::vector< std::size_t > fLineStartLocations; //index of each token which starts a line
         std::vector< std::size_t > fKeywordLocations; //index of each keyword token
 
