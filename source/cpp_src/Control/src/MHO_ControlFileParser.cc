@@ -57,6 +57,7 @@ MHO_ControlFileParser::ParseControl()
             std::vector< MHO_Token > tokens;
             for(std::size_t j = start+1; j < stop; j++){tokens.push_back(fFileTokens[j]);}
             MHO_ControlStatement stmt;
+            stmt.fStartLineNumber = fFileTokens[start].fLineNumber;
             stmt.fKeyword = fFileTokens[start].fValue;
             stmt.fTokens = tokens;
             fStatements.push_back(stmt);
@@ -69,13 +70,21 @@ MHO_ControlFileParser::ParseControl()
     std::vector< std::string > dummy; dummy.push_back( std::string("true") );
     empty_condition["value"] = dummy;
     empty_condition["statement_type"] = "conditional";
+    empty_condition["line_number"] = 0;
 
     root["conditions"].push_back(empty_condition);
 
     for(std::size_t i=0; i<fStatements.size(); i++)
     {
         mho_json tmp = fElementParser.ParseControlStatement(fStatements[i]);
-        if(tmp["statement_type"] == "conditional" || i == fStatements.size()-1)
+        if(tmp["statement_type"] == "conditional" )
+        {
+            tmp["line_number"] = fStatements[i].fStartLineNumber;
+            root["conditions"].back()["statements"] = block_statements;
+            root["conditions"].push_back(tmp);
+            block_statements.clear();
+        }
+        else if (i == fStatements.size()-1) 
         {
             root["conditions"].back()["statements"] = block_statements;
             root["conditions"].push_back(tmp);

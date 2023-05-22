@@ -57,6 +57,7 @@ MHO_ControlConditionEvaluator::Evaluate(mho_json& control_condition)
         {
             if(control_condition["statement_type"].get<std::string>() == "conditional")
             {
+                fStartLineNumber = control_condition["line_number"];
                 std::vector< std::string > tokens = control_condition["value"];
 
                 std::cout<<" Evaluating: " << control_condition["value"] << std::endl;
@@ -140,8 +141,16 @@ MHO_ControlConditionEvaluator::EvaluateBooleanOps(std::list< int > states)
     //states vector consistes of NOT, AND, OR and TRUE/FALSE values
     //order of precedence is NOT, then AND, then OR
 
+    int not_count = 0;
+    int and_count = 0;
+    int or_count = 0;
+
     do
     {
+        not_count = 0;
+        and_count = 0;
+        or_count = 0;
+
         std::cout<<"printing states:"<<std::endl;
         for(auto s = states.begin(); s != states.end(); s++){std::cout<< *s <<std::endl;}
         std::cout<<"------"<<std::endl;
@@ -151,6 +160,7 @@ MHO_ControlConditionEvaluator::EvaluateBooleanOps(std::list< int > states)
         {
             if(*it == NOT_OP)
             {
+                not_count++;
                 it = states.erase(it);
                 if(it != states.end() )
                 {
@@ -165,8 +175,23 @@ MHO_ControlConditionEvaluator::EvaluateBooleanOps(std::list< int > states)
         {
             if(*it == AND_OP)
             {
+                and_count++;
+
+                if(it == states.begin() )
+                {
+                    msg_fatal("control", "cannot parse 'and' condition with missing first argument for if statement starting on "<< fStartLineNumber << "." << eom );
+                    std::exit(1);
+                }
+
                 auto first_arg_it = std::prev(it);
                 auto second_arg_it = std::next(it);
+
+                if(second_arg_it == states.end() ) //can't have an and statment start the line
+                {
+                    msg_fatal("control", "cannot parse 'and' condition with missing second argument for if statement starting on "<< fStartLineNumber << "." << eom );
+                    std::exit(1);
+                }
+
                 int val1 = *first_arg_it;
                 int val2 = *second_arg_it;
                 int result = FALSE_STATE;
@@ -183,8 +208,23 @@ MHO_ControlConditionEvaluator::EvaluateBooleanOps(std::list< int > states)
         {
             if(*it == OR_OP)
             {
+                or_count++;
+
+                if(it == states.begin() )
+                {
+                    msg_fatal("control", "cannot parse 'or' condition with missing first argument for if statement starting on "<< fStartLineNumber << "." << eom );
+                    std::exit(1);
+                }
+
                 auto first_arg_it = std::prev(it);
                 auto second_arg_it = std::next(it);
+
+                if(second_arg_it == states.end() ) //can't have an and statment start the line
+                {
+                    msg_fatal("control", "cannot parse 'or' condition with missing second argument for if statement starting on "<< fStartLineNumber << "." << eom );
+                    std::exit(1);
+                }
+
                 int val1 = *first_arg_it;
                 int val2 = *second_arg_it;
                 int result = TRUE_STATE;
@@ -196,11 +236,25 @@ MHO_ControlConditionEvaluator::EvaluateBooleanOps(std::list< int > states)
         }
 
     }
-    while(states.size() != 1);
+    while( not_count || and_count || or_count); //keep looping until we have evaluated all of (not,and,or)
 
-
-
-    return states.front();
+    //if we have more than one boolean state at the end, we by default and them all together
+    //this could happen if someone wrote: "if (station A) (station B)", and failed to put an explicit 'and' in the middle
+    if(states.size() > 1)
+    {
+        for(auto it = states.begin(); it != states.end(); it++){if( *it == FALSE_STATE){return FALSE_STATE;} }
+        return TRUE_STATE;
+    }
+    else if(states.size() == 1)
+    {
+        return states.front();
+    }
+    else
+    {
+        //we have an error
+        msg_error("control", "error parsing if statement. " << eom);
+        return FALSE_STATE;
+    }
 
 }
 

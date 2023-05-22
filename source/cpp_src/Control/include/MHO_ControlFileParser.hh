@@ -62,14 +62,11 @@ class MHO_ControlFileParser
         std::vector< std::string > fKeywordNames;
         mho_json fKeywordNamesJSON;
 
-        //tokenizer
+        //token processing
         MHO_Tokenizer fTokenizer;
-
         std::vector< MHO_Token > fFileTokens; //all tokens from file
-        std::vector< std::size_t > fLineStartLocations; //index of each token which starts a line
         std::vector< std::size_t > fKeywordLocations; //index of each keyword token
-
-        std::vector< MHO_ControlStatement > fStatements;
+        std::vector< MHO_ControlStatement > fStatements; //collection of tokens for each logical statement
 
         MHO_ControlElementParser fElementParser;
 

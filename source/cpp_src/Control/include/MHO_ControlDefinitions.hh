@@ -34,6 +34,7 @@ struct MHO_ControlLine
 
 struct MHO_ControlStatement
 {
+    std::size_t fStartLineNumber;
     std::string fKeyword;
     std::vector< MHO_Token > fTokens;
 };
