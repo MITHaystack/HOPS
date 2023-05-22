@@ -60,16 +60,16 @@ MHO_ControlConditionEvaluator::Evaluate(mho_json& control_condition)
                 fStartLineNumber = control_condition["line_number"];
                 std::vector< std::string > tokens = control_condition["value"];
 
-                std::cout<<" Evaluating: " << control_condition["value"] << std::endl;
+                //std::cout<<"evaluating: " << control_condition["value"] << std::endl;
 
                 std::stack< int > eval_stack;
                 auto it = tokens.begin();
                 auto it_end = tokens.end();
                 while( it != tokens.end() )
                 {
-                    std::cout<<"token: "<<*it<<std::endl;
+                    //std::cout<<"token: "<<*it<<std::endl;
                     eval_stack.push( ProcessToken(it, it_end) );
-                    std::cout<<"top value = "<<eval_stack.top()<<std::endl;
+                    //std::cout<<"top value = "<<eval_stack.top()<<std::endl;
                     if(eval_stack.top() == OPEN_PAR){paren_count++;}
                     if(eval_stack.top() == CLOSED_PAR){paren_count--;}
 
@@ -160,9 +160,9 @@ MHO_ControlConditionEvaluator::EvaluateBooleanOps(std::list< int > states)
         and_count = 0;
         or_count = 0;
 
-        std::cout<<"printing states:"<<std::endl;
-        for(auto s = states.begin(); s != states.end(); s++){std::cout<< *s <<std::endl;}
-        std::cout<<"------"<<std::endl;
+        //std::cout<<"printing states:"<<std::endl;
+        //for(auto s = states.begin(); s != states.end(); s++){std::cout<< *s <<std::endl;}
+        //std::cout<<"------"<<std::endl;
 
         //first loop over list evaluating NOTs
         for(auto it = states.begin(); it != states.end(); it++)
