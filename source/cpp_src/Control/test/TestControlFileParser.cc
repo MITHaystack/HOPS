@@ -25,7 +25,7 @@ int main(int argc, char** argv)
     //    std::cout << control_statements.dump(2) << std::endl;
 
     MHO_ControlConditionEvaluator eval;
-    eval.SetPassInformation( std::string("GE"), std::string("?"), std::string("?"), std::string("288-210210"));
+    eval.SetPassInformation( std::string("GE"), std::string("?"), std::string("X"), std::string("288-210210"));
 
 
     mho_json selected_ctrl_statements;
@@ -46,23 +46,24 @@ int main(int argc, char** argv)
                             selected_ctrl_statements.push_back(*st);
                         }
                     }
-                    if(b){std::cout<<"statement is true"<<std::endl;}
-                    else{std::cout<<"statement is false"<<std::endl;}
+                    if(b){std::cout<<"statement is true: "<< (*it)["value"] <<std::endl;}
+                    else{std::cout<<"statement is false: "<< (*it)["value"] <<std::endl;}
                 }
             }
         }
     }
 
-    std::cout<<"selected control statements:" <<std::endl;
-    std::cout<< selected_ctrl_statements.dump(2) <<std::endl;
-
-
-
     //open and dump to file
-    std::string output_file("./control.json");
+    std::string output_file("./all_control.json");
+    std::string output2_file("./selected_control.json");
+
     std::ofstream outFile(output_file.c_str(), std::ofstream::out);
     outFile << control_statements;
     outFile.close();
+
+    std::ofstream outFile2(output2_file.c_str(), std::ofstream::out);
+    outFile2 << selected_ctrl_statements;
+    outFile2.close();
 
     return 0;
 }
