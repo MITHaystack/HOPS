@@ -16,7 +16,6 @@ MHO_ControlFileParser::MHO_ControlFileParser()
     fKeywordNames = MHO_ControlDefinitions::GetKeywordNames();
 }
 
-
 MHO_ControlFileParser::~MHO_ControlFileParser(){};
 
 void
@@ -28,78 +27,24 @@ MHO_ControlFileParser::SetControlFile(std::string filename)
 mho_json
 MHO_ControlFileParser::ParseControl()
 {
+    bool ok;
     mho_json root;
 
-    ReadFile(); //read file into memory
-    RemoveComments(); //excise all comments
+    ok = ReadFile();
+    if(!ok){return root;}
+
+    RemoveComments();
     FixSymbols();
     TokenizeLines();
     MergeTokens();
     FindKeywords();
+    FormStatements();
 
-    // for(auto it = fLines.begin(); it != fLines.end(); it++)
-    // {
-    //     std::cout<<it->fContents<<std::endl;
-    // }
-
-    //split the tokens into sections governed by a single keyword
-    fStatements.clear();
-    if(fKeywordLocations.size() > 0)
-    {
-        for(std::size_t i=0; i<fKeywordLocations.size(); i++)
-        {
-            std::size_t start = fKeywordLocations[i];
-            std::size_t stop = fFileTokens.size();
-            if(i < fKeywordLocations.size() - 1 )
-            {
-                stop = fKeywordLocations[i+1];
-            }
-            std::vector< MHO_Token > tokens;
-            for(std::size_t j = start+1; j < stop; j++){tokens.push_back(fFileTokens[j]);}
-            MHO_ControlStatement stmt;
-            stmt.fStartLineNumber = fFileTokens[start].fLineNumber;
-            stmt.fKeyword = fFileTokens[start].fValue;
-            stmt.fTokens = tokens;
-            fStatements.push_back(stmt);
-        }
-    }
-
-    std::vector< mho_json > block_statements;
-    mho_json empty_condition;
-    empty_condition["name"] = "if";
-    std::vector< std::string > dummy; dummy.push_back( std::string("true") );
-    empty_condition["value"] = dummy;
-    empty_condition["statement_type"] = "conditional";
-    empty_condition["line_number"] = 0;
-
-    root["conditions"].push_back(empty_condition);
-
-    for(std::size_t i=0; i<fStatements.size(); i++)
-    {
-        mho_json tmp = fElementParser.ParseControlStatement(fStatements[i]);
-        if(tmp["statement_type"] == "conditional" )
-        {
-            tmp["line_number"] = fStatements[i].fStartLineNumber;
-            root["conditions"].back()["statements"] = block_statements;
-            root["conditions"].push_back(tmp);
-            block_statements.clear();
-        }
-        else if (i == fStatements.size()-1) 
-        {
-            root["conditions"].back()["statements"] = block_statements;
-            root["conditions"].push_back(tmp);
-            block_statements.clear();
-        }
-        else
-        {
-            block_statements.push_back(tmp);
-        }
-    }
-    // std::cout<< root.dump(2) << std::endl;
+    root = ConstructControlObjects();
     return root;
 }
 
-void
+bool
 MHO_ControlFileParser::ReadFile()
 {
     //nothing special, just read in the entire file line by line and stash in memory
@@ -120,12 +65,14 @@ MHO_ControlFileParser::ReadFile()
                 line_count++;
             }
             vfile.close();
+            return true;
         }
         else
         {
             msg_error("control", "could not open file: "<<fControlFileName<<eom);
         }
     }
+    return false;
 }
 
 
@@ -264,6 +211,71 @@ MHO_ControlFileParser::FindKeywords()
             }
         }
     }
+}
+
+void
+MHO_ControlFileParser::FormStatements()
+{
+    //split the tokens into sections governed by a single keyword
+    fStatements.clear();
+    if(fKeywordLocations.size() > 0)
+    {
+        for(std::size_t i=0; i<fKeywordLocations.size(); i++)
+        {
+            std::size_t start = fKeywordLocations[i];
+            std::size_t stop = fFileTokens.size();
+            if(i < fKeywordLocations.size() - 1 )
+            {
+                stop = fKeywordLocations[i+1];
+            }
+            std::vector< MHO_Token > tokens;
+            for(std::size_t j = start+1; j < stop; j++){tokens.push_back(fFileTokens[j]);}
+            MHO_ControlStatement stmt;
+            stmt.fStartLineNumber = fFileTokens[start].fLineNumber;
+            stmt.fKeyword = fFileTokens[start].fValue;
+            stmt.fTokens = tokens;
+            fStatements.push_back(stmt);
+        }
+    }
+}
+
+
+mho_json
+MHO_ControlFileParser::ConstructControlObjects()
+{
+    mho_json root;
+    std::vector< mho_json > block_statements;
+    mho_json empty_condition;
+    empty_condition["name"] = "if";
+    std::vector< std::string > dummy; dummy.push_back( std::string("true") );
+    empty_condition["value"] = dummy;
+    empty_condition["statement_type"] = "conditional";
+    empty_condition["line_number"] = 0;
+
+    root["conditions"].push_back(empty_condition);
+
+    for(std::size_t i=0; i<fStatements.size(); i++)
+    {
+        mho_json tmp = fElementParser.ParseControlStatement(fStatements[i]);
+        if(tmp["statement_type"] == "conditional" )
+        {
+            tmp["line_number"] = fStatements[i].fStartLineNumber;
+            root["conditions"].back()["statements"] = block_statements;
+            root["conditions"].push_back(tmp);
+            block_statements.clear();
+        }
+        else if (i == fStatements.size()-1)
+        {
+            root["conditions"].back()["statements"] = block_statements;
+            root["conditions"].push_back(tmp);
+            block_statements.clear();
+        }
+        else
+        {
+            block_statements.push_back(tmp);
+        }
+    }
+    return root;
 }
 
 
