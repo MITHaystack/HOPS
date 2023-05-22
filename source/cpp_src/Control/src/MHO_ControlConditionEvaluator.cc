@@ -40,6 +40,33 @@ MHO_ControlConditionEvaluator::SetPassInformation(std::string baseline, std::str
     fScanTime = scan_time;
 }
 
+mho_json
+MHO_ControlConditionEvaluator::GetApplicableStatements(mho_json& control_contents)
+{
+    mho_json control_statements;
+    for(auto it = control_contents["conditions"].begin(); it != control_contents["conditions"].end(); it++)
+    {
+        if( it->find("statement_type") != it->end() )
+        {
+            if( !( (*it)["statement_type"].is_null() ) &&  (*it)["statement_type"].get<std::string>() == "conditional" )
+            {
+                if( Evaluate( *it ) )
+                {
+                    for(auto st = (*it)["statements"].begin(); st != (*it)["statements"].end(); st++)
+                    {
+                        control_statements.push_back(*st);
+                    }
+                    msg_debug("control", "statement is true: "<< (*it)["value"] << eom );
+                }
+                else
+                {
+                    msg_debug("control", "statement is false: "<< (*it)["value"] << eom );
+                }
+            }
+        }
+    }
+    return control_statements;
+}
 
 
 bool

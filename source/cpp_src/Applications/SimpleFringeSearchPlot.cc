@@ -160,32 +160,14 @@ int main(int argc, char** argv)
     MHO_ControlFileParser cparser;
     MHO_ControlConditionEvaluator ceval;
     cparser.SetControlFile(control_file);
-    auto all_statements = cparser.ParseControl();
+    auto control_contents = cparser.ParseControl();
     mho_json control_statements;
 
     //TODO -- where should frequency group information get stashed/retrieved?
     ceval.SetPassInformation(baseline, srcName, "?", scnName);//baseline, source, fgroup, scan
+    control_statements = ceval.GetApplicableStatements(control_contents);
 
-    for(auto it = all_statements["conditions"].begin(); it != all_statements["conditions"].end(); it++)
-    {
-        //std::cout << it->dump(2) << std::endl;
-        if( it->find("statement_type") != it->end() )
-        {
-            if( !( (*it)["statement_type"].is_null() ) &&  (*it)["statement_type"].get<std::string>() == "conditional" )
-            {
-                bool b = ceval.Evaluate( *it );
-                if(b)
-                {
-                    for(auto st = (*it)["statements"].begin(); st != (*it)["statements"].end(); st++)
-                    {
-                        control_statements.push_back(*st);
-                    }
-                }
-                if(b){std::cout<<"statement is true: "<< (*it)["value"] <<std::endl;}
-                else{std::cout<<"statement is false: "<< (*it)["value"] <<std::endl;}
-            }
-        }
-    }
+    //now we need to process the control statements (this means setting parameters and constructing any related operators)
 
 
     //now we need to process the control statements (this means setting parameters and constructing any related operators)
