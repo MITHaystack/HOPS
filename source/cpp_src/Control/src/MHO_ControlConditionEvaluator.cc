@@ -72,7 +72,12 @@ MHO_ControlConditionEvaluator::Evaluate(mho_json& control_condition)
                     std::cout<<"top value = "<<eval_stack.top()<<std::endl;
                     if(eval_stack.top() == OPEN_PAR){paren_count++;}
                     if(eval_stack.top() == CLOSED_PAR){paren_count--;}
-                    if(paren_count < 0){msg_error("control", "unmatched ')' parentheses." << eom);}
+
+                    if(paren_count < 0)
+                    {
+                        msg_fatal("control", "unmatched parentheses while parsing if statement starting on line "<< fStartLineNumber << "." << eom );
+                        std::exit(1);
+                    }
 
                     if( eval_stack.top() == CLOSED_PAR)
                     {
@@ -92,7 +97,11 @@ MHO_ControlConditionEvaluator::Evaluate(mho_json& control_condition)
                     it++;
                 }
 
-                if(paren_count != 0){msg_error("control", "unmatched parentheses." << eom);}
+                if(paren_count != 0)
+                {
+                    msg_fatal("control", "unmatched parentheses while parsing if statement starting on line "<< fStartLineNumber << "." << eom );
+                    std::exit(1);
+                }
 
                 //evalute the stack
                 //pop off everything until we get back to the open parentheses
@@ -179,7 +188,7 @@ MHO_ControlConditionEvaluator::EvaluateBooleanOps(std::list< int > states)
 
                 if(it == states.begin() )
                 {
-                    msg_fatal("control", "cannot parse 'and' condition with missing first argument for if statement starting on "<< fStartLineNumber << "." << eom );
+                    msg_fatal("control", "cannot parse 'and' condition with missing first argument for if statement starting on line "<< fStartLineNumber << "." << eom );
                     std::exit(1);
                 }
 
@@ -188,7 +197,7 @@ MHO_ControlConditionEvaluator::EvaluateBooleanOps(std::list< int > states)
 
                 if(second_arg_it == states.end() ) //can't have an and statment start the line
                 {
-                    msg_fatal("control", "cannot parse 'and' condition with missing second argument for if statement starting on "<< fStartLineNumber << "." << eom );
+                    msg_fatal("control", "cannot parse 'and' condition with missing second argument for if statement starting on line "<< fStartLineNumber << "." << eom );
                     std::exit(1);
                 }
 
@@ -212,7 +221,7 @@ MHO_ControlConditionEvaluator::EvaluateBooleanOps(std::list< int > states)
 
                 if(it == states.begin() )
                 {
-                    msg_fatal("control", "cannot parse 'or' condition with missing first argument for if statement starting on "<< fStartLineNumber << "." << eom );
+                    msg_fatal("control", "cannot parse 'or' condition with missing first argument for if statement starting on line "<< fStartLineNumber << "." << eom );
                     std::exit(1);
                 }
 
@@ -221,7 +230,7 @@ MHO_ControlConditionEvaluator::EvaluateBooleanOps(std::list< int > states)
 
                 if(second_arg_it == states.end() ) //can't have an and statment start the line
                 {
-                    msg_fatal("control", "cannot parse 'or' condition with missing second argument for if statement starting on "<< fStartLineNumber << "." << eom );
+                    msg_fatal("control", "cannot parse 'or' condition with missing second argument for if statement starting on line "<< fStartLineNumber << "." << eom );
                     std::exit(1);
                 }
 
@@ -252,7 +261,7 @@ MHO_ControlConditionEvaluator::EvaluateBooleanOps(std::list< int > states)
     else
     {
         //we have an error
-        msg_error("control", "error parsing if statement. " << eom);
+        msg_error("control", "error parsing if statement on line "<< fStartLineNumber << ", assuming false." << eom );
         return FALSE_STATE;
     }
 
