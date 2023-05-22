@@ -163,7 +163,9 @@ int main(int argc, char** argv)
     auto all_statements = cparser.ParseControl();
     mho_json control_statements;
 
-    ceval.SetPassInformation(baseline, srcName, "X", scnName);//baseline, source, fgroup, scan
+    //TODO -- where should frequency group information get stashed/retrieved?
+    ceval.SetPassInformation(baseline, srcName, "?", scnName);//baseline, source, fgroup, scan
+
     for(auto it = all_statements["conditions"].begin(); it != all_statements["conditions"].end(); it++)
     {
         //std::cout << it->dump(2) << std::endl;
@@ -184,6 +186,9 @@ int main(int argc, char** argv)
             }
         }
     }
+
+
+    //now we need to process the control statements (this means setting parameters and constructing any related operators)
 
 
     double ref_freq = 6000.0;
