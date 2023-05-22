@@ -21,6 +21,10 @@ class MHO_ControlConditionEvaluator
 
         void SetPassInformation(std::string baseline, std::string source, std::string fgroup, std::string scan_time);
 
+        //reduces the contents of a control file to only those statements which are applicable for this pass
+        mho_json GetApplicableStatements(mho_json& control_contents);
+
+        //evaluates a single condition
         bool Evaluate(mho_json& control_condition);
 
     private:
@@ -49,7 +53,6 @@ class MHO_ControlConditionEvaluator
         std::string fSource;
         std::string fFGroup;
         std::string fScanTime;
-
 
         std::size_t fStartLineNumber;
 };
