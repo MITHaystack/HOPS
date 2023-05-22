@@ -72,7 +72,9 @@ MHO_ControlConditionEvaluator::Evaluate(mho_json& control_condition)
                 auto it_end = tokens.end();
                 while( it != tokens.end() )
                 {
+                    std::cout<<"token: "<<*it<<std::endl;
                     eval_stack.push( ProcessToken(it, it_end) );
+                    std::cout<<"top value = "<<eval_stack.top()<<std::endl;
                     if(eval_stack.top() == OPEN_PAR){paren_count++;}
                     if(eval_stack.top() == CLOSED_PAR){paren_count--;}
                     if(paren_count < 0){msg_error("control", "unmatched ')' parentheses." << eom);}
@@ -104,7 +106,7 @@ MHO_ControlConditionEvaluator::Evaluate(mho_json& control_condition)
                 std::list< int > tmp;
                 while(eval_stack.size() != 0)
                 {
-                    tmp.push_back( eval_stack.top() );
+                    tmp.push_front( eval_stack.top() );
                     eval_stack.pop();
                 }
                 condition_value = EvaluateBooleanOps(tmp);
