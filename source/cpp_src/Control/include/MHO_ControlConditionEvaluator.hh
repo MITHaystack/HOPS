@@ -50,6 +50,8 @@ class MHO_ControlConditionEvaluator
         std::string fFGroup;
         std::string fScanTime;
 
+
+        std::size_t fStartLineNumber;
 };
 
 
