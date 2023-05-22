@@ -33,18 +33,12 @@ void
 MHO_ControlConditionEvaluator::SetPassInformation(std::string baseline, std::string source, std::string fgroup, std::string scan_time)
 {
     fBaseline = baseline;
-    fRefStation = fBaseline[0];
-    fRemStation = fBaseline[1];
+    fRefStation = std::string(1,fBaseline[0]);
+    fRemStation = std::string(1,fBaseline[1]);
     fSource = source;
     fFGroup = fgroup;
     fScanTime = scan_time;
 }
-
-
-
-
-
-
 
 
 
