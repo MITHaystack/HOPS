@@ -83,7 +83,7 @@ MHO_ControlFileParser::ParseControl()
             root["conditions"].push_back(tmp);
             block_statements.clear();
         }
-        else //this is a bug!
+        else
         {
             block_statements.push_back(tmp);
         }

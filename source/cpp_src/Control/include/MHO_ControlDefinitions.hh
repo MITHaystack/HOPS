@@ -19,6 +19,13 @@
 namespace hops
 {
 
+struct MHO_Token
+{
+    std::string fValue;
+    std::size_t fLineNumber;
+    std::size_t fColumnNumber;
+};
+
 struct MHO_ControlLine
 {
     std::size_t fLineNumber;
@@ -61,7 +68,7 @@ class MHO_ControlDefinitions
 
         static control_element_type DetermineControlType(std::string etype);
 
-        static mho_json GetControlFormat(); 
+        static mho_json GetControlFormat();
 
     private:
 
