@@ -16,9 +16,6 @@ using namespace hops;
 
 int main(int argc, char **argv) {
 
-  json my200s;
-  // struct type_200 my200;
-
   // Open file
   std::string fringeFile = filename;
   // Call interface to read fringe file
@@ -26,12 +23,6 @@ int main(int argc, char **argv) {
   // Dump it in to fFringe field of that interface
   fringeReader.ReadFringeFile(&filename);
   mk4_fringe fringeReader.fFringe
-
-
-  // Call type 200s functions on type 200 structs from that file
-  //json obj = convertToJSON(my200);
-
-  // Store in my200s
 
   // Dump to file
   //std::ofstream outputFile(type200-dump.js);
