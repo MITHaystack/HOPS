@@ -45,10 +45,16 @@ MHO_ControlElementParser::ParseControlStatement(const MHO_ControlStatement& cont
 }
 
 mho_json
-MHO_ControlElementParser::ParseTokens(const std::string& element_name, mho_json& format, const std::vector< std::string >& tokens)
+MHO_ControlElementParser::ParseTokens(const std::string& element_name, mho_json& format, const std::vector< MHO_Token >& tokens)
 {
     control_element_type etype = MHO_ControlDefinitions::DetermineControlType( format["type"].get<std::string>() );
     mho_json element_data;
+
+    if(tokens.size() == 0)
+    {
+        msg_fatal("control", "missing tokens when parsing a statement for keyword " << element_name << "." << eom );
+        std::exit(1);
+    }
 
     switch(etype)
     {
@@ -80,7 +86,7 @@ MHO_ControlElementParser::ParseTokens(const std::string& element_name, mho_json&
 }
 
 mho_json
-MHO_ControlElementParser::ProcessCompound(const std::string& element_name, mho_json& format, const std::vector< std::string >& tokens)
+MHO_ControlElementParser::ProcessCompound(const std::string& element_name, mho_json& format, const std::vector< MHO_Token >& tokens)
 {
     mho_json element_data;
 
@@ -93,13 +99,13 @@ MHO_ControlElementParser::ProcessCompound(const std::string& element_name, mho_j
     {
         if(token_idx < tokens.size() )
         {
-            if(tokens[token_idx] == nothing){token_idx++;} //empty value, skip this element
+            if(tokens[token_idx].fValue == nothing){token_idx++;} //empty value, skip this element
             else
             {
                 std::string field_name = it->get<std::string>();
                 mho_json next_format =  format["parameters"][field_name];
                 std::string type_name = next_format["type"].get<std::string>();
-                std::vector< std::string > tmp_tokens;
+                std::vector< MHO_Token > tmp_tokens;
 
                 if( type_name == "list_int" || type_name == "list_real" || type_name == "list_string")
                 {

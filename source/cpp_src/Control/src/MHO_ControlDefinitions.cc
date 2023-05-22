@@ -51,7 +51,7 @@ MHO_ControlDefinitions::DetermineControlType(std::string etype)
 }
 
 
-mho_json 
+mho_json
 MHO_ControlDefinitions::GetControlFormat()
 {
     //load all of the .json format files here so they are in memory
