@@ -27,6 +27,8 @@ int main(int argc, char** argv)
     MHO_ControlConditionEvaluator eval;
     eval.SetPassInformation( std::string("GE"), std::string("?"), std::string("?"), std::string("288-210210"));
 
+
+    mho_json selected_ctrl_statements;
     for(auto it = control_statements["conditions"].begin(); it != control_statements["conditions"].end(); it++)
     {
         //std::cout << it->dump(2) << std::endl;
@@ -37,12 +39,24 @@ int main(int argc, char** argv)
                 if( (*it)["statement_type"].get<std::string>() == "conditional" )
                 {
                     bool b = eval.Evaluate( *it );
+                    if(b)
+                    {
+                        for(auto st = (*it)["statements"].begin(); st != (*it)["statements"].end(); st++)
+                        {
+                            selected_ctrl_statements.push_back(*st);
+                        }
+                    }
                     if(b){std::cout<<"statement is true"<<std::endl;}
                     else{std::cout<<"statement is false"<<std::endl;}
                 }
             }
         }
     }
+
+    std::cout<<"selected control statements:" <<std::endl;
+    std::cout<< selected_ctrl_statements.dump(2) <<std::endl;
+
+
 
     //open and dump to file
     std::string output_file("./control.json");
