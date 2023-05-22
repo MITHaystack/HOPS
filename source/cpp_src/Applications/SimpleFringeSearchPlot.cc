@@ -19,6 +19,7 @@
 
 //control
 #include "MHO_ControlFileParser.hh"
+#include "MHO_ControlConditionEvaluator.hh"
 
 //operators
 #include "MHO_ElementTypeCaster.hh"
@@ -126,6 +127,25 @@ int main(int argc, char** argv)
 
     //load root file and container store for this baseline
     mho_json vexInfo = scanStore.GetRootFileData();
+
+    //get scan name and source name
+    mho_json::json_pointer sched_pointer("/$SCHED");
+    auto sched = vexInfo.at(sched_pointer);
+    if(sched.size() != 1)
+    {
+        msg_error("main", "root file " <<  scanStore.GetRootFileBasename() <<" contains missing or ambiguous $SCHED information." << eom );
+        std::exit(1);
+    }
+
+    std::string scnName = sched.begin().key();
+    std::string src_loc = "/$SCHED/" + scnName + "/source/0/source";
+    std::cout<<"src location = "<<src_loc<<std::endl;
+    mho_json::json_pointer src_jptr(src_loc);
+
+    std::string srcName = vexInfo.at(src_jptr).get<std::string>();
+
+    std::cout<<"scan = "<<scnName<<" and source = "<<srcName<<std::endl;
+
     MHO_ContainerStore* conStore = scanStore.LoadBaseline(baseline);
 
     if(conStore == nullptr)
@@ -139,8 +159,12 @@ int main(int argc, char** argv)
     //CONTROL BLOCK CONSTRUCTION
     ////////////////////////////////////////////////////////////////////////////
     MHO_ControlFileParser cparser;
+    MHO_ControlConditionEvaluator ceval;
     cparser.SetControlFile(control_file);
     auto control_statements = cparser.ParseControl();
+
+    ceval.SetPassInformation(baseline, srcName, "X", scnName);//baseline, source, fgroup, scan
+    //if( control_statements.empty() )
 
     double ref_freq = 6000.0;
 
@@ -210,7 +234,7 @@ int main(int argc, char** argv)
     //select first 8 channels for testing
     std::size_t n_max_channels = std::get<CHANNEL_AXIS>(*bl_data).GetSize();
     std::vector< std::size_t > selected_ch;// = cb_wrapper.GetActiveChannelsKLUDGE(n_max_channels);
-    
+
     for(std::size_t i=0;i<8; i++){selected_ch.push_back(i);}
     //for(std::size_t i=0;i<2; i++){selected_ch.push_back(i);}
 
