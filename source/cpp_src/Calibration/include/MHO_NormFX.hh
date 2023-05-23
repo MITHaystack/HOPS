@@ -30,8 +30,6 @@
     #include "MHO_FastFourierTransform.hh"
 #endif
 
-
-#include "MHO_MultidimensionalFastFourierTransform.hh"
 #include "MHO_MultidimensionalPaddedFastFourierTransform.hh"
 
 
