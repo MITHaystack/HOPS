@@ -139,12 +139,8 @@ int main(int argc, char** argv)
 
     std::string scnName = sched.begin().key();
     std::string src_loc = "/$SCHED/" + scnName + "/source/0/source";
-    std::cout<<"src location = "<<src_loc<<std::endl;
     mho_json::json_pointer src_jptr(src_loc);
-
     std::string srcName = vexInfo.at(src_jptr).get<std::string>();
-
-    std::cout<<"scan = "<<scnName<<" and source = "<<srcName<<std::endl;
 
     MHO_ContainerStore* conStore = scanStore.LoadBaseline(baseline);
 
@@ -166,9 +162,6 @@ int main(int argc, char** argv)
     //TODO -- where should frequency group information get stashed/retrieved?
     ceval.SetPassInformation(baseline, srcName, "?", scnName);//baseline, source, fgroup, scan
     control_statements = ceval.GetApplicableStatements(control_contents);
-
-    //now we need to process the control statements (this means setting parameters and constructing any related operators)
-
 
     //now we need to process the control statements (this means setting parameters and constructing any related operators)
 
@@ -439,6 +432,8 @@ int main(int argc, char** argv)
     //calculate AP period
     double ap_delta = std::get<TIME_AXIS>(*bl_data)(1) - std::get<TIME_AXIS>(*bl_data)(0);
 
+    /*
+
     mho_json plot_dict;
     std::size_t npts = sbd_amp.GetSize();
     for(std::size_t i=0;i<npts;i++)
@@ -541,7 +536,7 @@ int main(int argc, char** argv)
     //call a python functioin on the interface class instance
     ff_test.attr("fourfit_plot")(plot_obj, "fplot.png");
 
-
+    */
 
     return 0;
 }
