@@ -121,33 +121,38 @@ MHO_ControlFileParser::FixSymbols()
     auto it = fLines.begin();
     while(it != fLines.end())
     {
-        if( it->fContents.find(bare_open_paren) != std::string::npos )
-        {
-            std::string line = it->fContents;
-            std::string fixed_line = std::regex_replace(line,std::regex(open_paren),fixed_open_paren);
-            it->fContents = fixed_line;
-        }
+        FindAndReplace(bare_open_paren, open_paren, fixed_open_paren, it->fContents);
+        FindAndReplace(bare_close_paren, close_paren, fixed_close_paren, it->fContents);
+        FindAndReplace(lt, lt, fixed_lt, it->fContents);
+        FindAndReplace(gt, gt, fixed_gt, it->fContents);
 
-        if( it->fContents.find(bare_close_paren) != std::string::npos )
-        {
-            std::string line = it->fContents;
-            std::string fixed_line = std::regex_replace(line,std::regex(close_paren),fixed_close_paren);
-            it->fContents = fixed_line;
-        }
+        // if( it->fContents.find(bare_open_paren) != std::string::npos )
+        // {
+        //     std::string line = it->fContents;
+        //     std::string fixed_line = std::regex_replace(line,std::regex(open_paren),fixed_open_paren);
+        //     it->fContents = fixed_line;
+        // }
 
-        if( it->fContents.find(lt) != std::string::npos )
-        {
-            std::string line = it->fContents;
-            std::string fixed_line = std::regex_replace(line,std::regex(lt),fixed_lt);
-            it->fContents = fixed_line;
-        }
+        // if( it->fContents.find(bare_close_paren) != std::string::npos )
+        // {
+        //     std::string line = it->fContents;
+        //     std::string fixed_line = std::regex_replace(line,std::regex(close_paren),fixed_close_paren);
+        //     it->fContents = fixed_line;
+        // }
 
-        if( it->fContents.find(close_paren) != std::string::npos )
-        {
-            std::string line = it->fContents;
-            std::string fixed_line = std::regex_replace(line,std::regex(gt),fixed_gt);
-            it->fContents = fixed_line;
-        }
+        // if( it->fContents.find(lt) != std::string::npos )
+        // {
+        //     std::string line = it->fContents;
+        //     std::string fixed_line = std::regex_replace(line,std::regex(lt),fixed_lt);
+        //     it->fContents = fixed_line;
+        // }
+
+        // if( it->fContents.find(gt) != std::string::npos )
+        // {
+        //     std::string line = it->fContents;
+        //     std::string fixed_line = std::regex_replace(line,std::regex(gt),fixed_gt);
+        //     it->fContents = fixed_line;
+        // }
 
         it++;
     }
@@ -277,6 +282,18 @@ MHO_ControlFileParser::ConstructControlObjects()
     }
     return root;
 }
+
+
+void
+MHO_ControlFileParser::FindAndReplace(const std::string& find_str, const std::string& regex_str, const std::string& replace_str, std::string& text)
+{
+    if( text.find(find_str) != std::string::npos )
+    {
+        std::string fixed_line = std::regex_replace(text, std::regex(regex_str), replace_str);
+        text = fixed_line;
+    }
+}
+
 
 
 }//end namespace
