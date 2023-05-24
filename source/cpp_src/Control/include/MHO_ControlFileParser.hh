@@ -47,6 +47,9 @@ class MHO_ControlFileParser
         void FormStatements();
         mho_json ConstructControlObjects();
 
+
+        void FindAndReplace(const std::string& find_str, const std::string& regex_str, const std::string& replace_str, std::string& text);
+
         std::string fControlFileName;
 
         //token/delimiter definitions
