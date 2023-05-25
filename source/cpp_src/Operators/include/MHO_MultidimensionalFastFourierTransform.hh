@@ -7,7 +7,12 @@
 #include "MHO_Message.hh"
 #include "MHO_NDArrayWrapper.hh"
 #include "MHO_UnaryOperator.hh"
-#include "MHO_FastFourierTransform.hh"
+
+#ifdef HOPS_USE_FFTW3
+    #include "MHO_MultidimensionalFastFourierTransformFFTW.hh"
+#else
+    #include "MHO_FastFourierTransform.hh"
+#endif
 
 #include "MHO_TableContainer.hh"
 
@@ -229,7 +234,13 @@ class MHO_MultidimensionalFastFourierTransform:
             for(size_t i=0; i<XArgType::rank::value; i++)
             {
                 fWorkspaceWrapper[i] = new MHO_NDArrayWrapper< complex_value_type, 1 >(fDimensionSize[i]);
-                fTransformCalculator[i] = new MHO_FastFourierTransform<floating_point_value_type>();
+
+                #ifdef HOPS_USE_FFTW3
+                        fTransformCalculator[i] = new MHO_MultidimensionalFastFourierTransformFFTW< MHO_NDArrayWrapper< complex_value_type, 1 > >();
+                #else
+                        fTransformCalculator[i] = new MHO_FastFourierTransform<floating_point_value_type>();
+                #endif
+                
                 fTransformCalculator[i]->SetArgs(fWorkspaceWrapper[i]);
                 fTransformCalculator[i]->Initialize();
             }
@@ -276,7 +287,7 @@ class MHO_MultidimensionalFastFourierTransform:
                 //overload for doubles
                 void operator()(MHO_Axis<double>& axis1)
                 {
-                    //this is under the expectation that all axis labels are equi-spaced 
+                    //this is under the expectation that all axis labels are equi-spaced
                     //this should be a safe assumption since we are doing DFT anyway
                     //one issue here is that we are not taking into account units (e.g. nanosec or MHz)
                     std::size_t N = axis1.GetSize();
@@ -295,7 +306,7 @@ class MHO_MultidimensionalFastFourierTransform:
                                 double value = (x+start)*spacing;
                                 axis1(i) = value;
                             }
-                            else 
+                            else
                             {
                                 start = -1*length;
                                 double value = (x+start)*spacing;
@@ -308,7 +319,7 @@ class MHO_MultidimensionalFastFourierTransform:
                 //overload for floats
                 void operator()(MHO_Axis<float>& axis1)
                 {
-                    //this is under the expectation that all axis labels are equi-spaced 
+                    //this is under the expectation that all axis labels are equi-spaced
                     //this should be a safe assumption since we are doing DFT anyway
                     //one issue here is that we are not taking into account units (e.g. nanosec or MHz)
                     std::size_t N = axis1.GetSize();
@@ -327,7 +338,7 @@ class MHO_MultidimensionalFastFourierTransform:
                                 float value = (x+start)*spacing;
                                 axis1(i) = value;
                             }
-                            else 
+                            else
                             {
                                 start = -1*length;
                                 float value = (x+start)*spacing;
@@ -350,7 +361,14 @@ class MHO_MultidimensionalFastFourierTransform:
         size_t fDimensionSize[XArgType::rank::value];
         bool fAxesToXForm[XArgType::rank::value];
 
-        MHO_FastFourierTransform< floating_point_value_type >* fTransformCalculator[XArgType::rank::value];
+        //MHO_FastFourierTransform< floating_point_value_type >* fTransformCalculator[XArgType::rank::value];
+
+        #ifdef HOPS_USE_FFTW3
+            MHO_MultidimensionalFastFourierTransformFFTW< MHO_NDArrayWrapper< complex_value_type, 1 > >* fTransformCalculator[XArgType::rank::value];
+        #else
+            MHO_FastFourierTransform<floating_point_value_type>* fTransformCalculator[XArgType::rank::value];
+        #endif
+
         MHO_NDArrayWrapper< complex_value_type, 1>* fWorkspaceWrapper[XArgType::rank::value];
 
 

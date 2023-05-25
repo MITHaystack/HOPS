@@ -1,6 +1,6 @@
 #include "MHO_MBDelaySearch.hh"
 
-namespace hops 
+namespace hops
 {
 
 MHO_MBDelaySearch::MHO_MBDelaySearch()
@@ -110,7 +110,12 @@ MHO_MBDelaySearch::ExecuteImpl(const XArgType* in)
             std::size_t total_mbd_dr_size = fMBDWorkspace.GetSize();
             for(std::size_t i=0; i<total_mbd_dr_size; i++)
             {
-                fMBDAmpWorkspace[i] = std::abs(fMBDWorkspace[i]);
+                //since we don't care about the actual amplitude (just searching for the max location)
+                //this is faster since it doesn't need to take a square root
+                double a = std::real(fMBDWorkspace[i]);
+                double b = std::imag(fMBDWorkspace[i]);
+                fMBDAmpWorkspace[i] = a*a + b*b;
+                // std::abs(fMBDWorkspace[i]);
             }
 
             //search for the peak amplitude in MBD and DR space

@@ -201,7 +201,7 @@ class MHO_MultidimensionalPaddedFastFourierTransform:
 
                                 if(fPaddingFactor != 1){M = fPaddingFactor*N;}
                                 else{M = fPaddedSize;}
-                            
+
                                 if(in_index[i] < N/2)
                                 {
                                     out_index[i].push_back(in_index[i]);
@@ -419,9 +419,9 @@ class MHO_MultidimensionalPaddedFastFourierTransform:
                 TransformAxis axis_xformer;
                 apply_at2< typename XArgType::axis_pack_tuple_type, TransformAxis >( *in, *out, axis_index, axis_xformer);
             }
-            else 
+            else
             {
-                //no x-form on this axis, just copy the axis values 
+                //no x-form on this axis, just copy the axis values
                 CopyAxis axis_copier;
                 apply_at2< typename XArgType::axis_pack_tuple_type, CopyAxis >( *in, *out, axis_index, axis_copier);
             }
@@ -436,7 +436,7 @@ class MHO_MultidimensionalPaddedFastFourierTransform:
             }
 
         };
-    
+
 
         class TransformAxis
         {
@@ -444,7 +444,7 @@ class MHO_MultidimensionalPaddedFastFourierTransform:
                 TransformAxis(){};
                 ~TransformAxis(){};
 
-                //for generic types, just copy the axis 
+                //for generic types, just copy the axis
                 template< typename XAxisType >
                 void operator()(const XAxisType& axis1, XAxisType& axis2)
                 {
@@ -475,7 +475,7 @@ class MHO_MultidimensionalPaddedFastFourierTransform:
                                 double value = (x+start)*spacing;
                                 axis2(i) = value;
                             }
-                            else 
+                            else
                             {
                                 start = -1*length;
                                 double value = (x+start)*spacing;
@@ -509,7 +509,7 @@ class MHO_MultidimensionalPaddedFastFourierTransform:
                                 float value = (x+start)*spacing;
                                 axis2(i) = value;
                             }
-                            else 
+                            else
                             {
                                 start = -1*length;
                                 float value = (x+start)*spacing;
@@ -538,7 +538,7 @@ class MHO_MultidimensionalPaddedFastFourierTransform:
                             out_dim[i] = dims[i]*fPaddingFactor;
                         }
                     }
-                    else 
+                    else
                     {
                         if(fPaddedSize != out_dim[i])
                         {
