@@ -22,6 +22,7 @@
 #include "MHO_Axis.hh"
 #include "MHO_AxisPack.hh"
 
+#include "MHO_FileStreamer.hh"
 
 namespace hops
 {
@@ -171,10 +172,23 @@ class MHO_TableContainer:
                 aData.Resize(dims);
                 //now stream in the axes
                 s >> static_cast< XAxisPackType& >(aData);
-                //now stream the mult-dim array data
-                for(size_t i=0; i<aData.fSize; i++)
+
+                //ask for the file stream directly so we can optimize the read
+                //this is not so bueno, breaking ecapsulation of the streamer
+                //auto fs_ptr = dynamic_cast< MHO_BinaryFileStreamer* >(&s);
+                auto fs_ptr = dynamic_cast< MHO_FileStreamer* >(&s);
+                if(fs_ptr != nullptr)
                 {
-                    s >> aData.fData[i];
+                    std::fstream& pfile = fs_ptr->GetStream();
+                    pfile.read(reinterpret_cast<char*>( &(aData.fData[0]) ), aData.fSize*sizeof(XValueType));
+                }
+                else
+                {
+                    //now stream the mult-dim array data generically
+                    for(size_t i=0; i<aData.fSize; i++)
+                    {
+                        s >> aData.fData[i];
+                    }
                 }
             }
             return s;
