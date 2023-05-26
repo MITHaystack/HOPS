@@ -58,7 +58,7 @@ class MHO_MBDelaySearch: public MHO_InspectingOperator< visibility_type >
         virtual bool ExecuteImpl(const XArgType* in) override;
 
     private:
-
+        
         //workspace
         bool fInitialized;
         std::vector< double > fChannelFreqs;

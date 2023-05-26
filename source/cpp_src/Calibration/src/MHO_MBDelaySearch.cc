@@ -112,10 +112,11 @@ MHO_MBDelaySearch::ExecuteImpl(const XArgType* in)
             {
                 //since we don't care about the actual amplitude (just searching for the max location)
                 //this is faster since it doesn't need to take a square root
-                double a = std::real(fMBDWorkspace[i]);
-                double b = std::imag(fMBDWorkspace[i]);
-                fMBDAmpWorkspace[i] = a*a + b*b;
+                // double a = std::real(fMBDWorkspace[i]);
+                // double b = std::imag(fMBDWorkspace[i]);
+                // fMBDAmpWorkspace[i] = a*a + b*b;
                 // std::abs(fMBDWorkspace[i]);
+                fMBDAmpWorkspace[i] = std::norm(fMBDWorkspace[i]);
             }
 
             //search for the peak amplitude in MBD and DR space
