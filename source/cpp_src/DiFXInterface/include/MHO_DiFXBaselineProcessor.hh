@@ -23,7 +23,7 @@
 #include "MHO_StationCodeMap.hh"
 #include "MHO_JSONHeaderWrapper.hh"
 
-namespace hops 
+namespace hops
 {
 
 class MHO_DiFXBaselineProcessor
@@ -58,6 +58,7 @@ class MHO_DiFXBaselineProcessor
     private:
 
         void Organize();
+        void DeleteDiFXVisRecords();
 
         std::string fRootCode;
         int fBaselineID;
@@ -76,8 +77,8 @@ class MHO_DiFXBaselineProcessor
 
         const mho_json* fInput;
         std::vector< MHO_DiFXVisibilityRecord* > fRecords;
-        //for a single baseline, maps pol-pair, then freqindex to visiblity records 
-        //needed to recorganized the visibilities into tables 
+        //for a single baseline, maps pol-pair, then freqindex to visiblity records
+        //needed to recorganized the visibilities into tables
         std::map< std::string, std::map<int, std::vector<MHO_DiFXVisibilityRecord* > > > fVisibilities;
 
         std::set<std::string> fPolPairSet;
@@ -105,7 +106,7 @@ class MHO_DiFXBaselineProcessor
         //comparison predicate for time-sorting visibility record data
         struct VisRecordTimeLess
         {
-            bool operator()(const MHO_DiFXVisibilityRecord* a, const MHO_DiFXVisibilityRecord* b) const 
+            bool operator()(const MHO_DiFXVisibilityRecord* a, const MHO_DiFXVisibilityRecord* b) const
             {
                 if(a->mjd == b->mjd){return a->seconds < b->seconds;}
                 else{return a->mjd < b->mjd;}
@@ -116,7 +117,7 @@ class MHO_DiFXBaselineProcessor
         //comparison predicate for sorting index-frequency record pairs
         struct FreqIndexPairLess
         {
-            bool operator()(const std::pair<int, mho_json>& a, const std::pair<int, mho_json>& b) const 
+            bool operator()(const std::pair<int, mho_json>& a, const std::pair<int, mho_json>& b) const
             {
                 double a_freq = a.second["freq"];
                 double b_freq = b.second["freq"];
