@@ -6,6 +6,8 @@
 #include <cctype>
 #include <cmath>
 
+#include <malloc.h>
+
 #define DIFX_BASE2ANT 256
 #define SCALE 10000.0
 
@@ -424,6 +426,7 @@ MHO_DiFXBaselineProcessor::DeleteDiFXVisRecords()
         delete fRecords[i];
     }
     fRecords.clear();
+    malloc_trim(0); //for lots of small objects is may be helpful to flush pages back to OS
 }
 
 
