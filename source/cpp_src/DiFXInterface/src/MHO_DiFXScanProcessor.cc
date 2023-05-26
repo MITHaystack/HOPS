@@ -206,7 +206,7 @@ MHO_DiFXScanProcessor::ConvertVisibilityFileObjects()
 void
 MHO_DiFXScanProcessor::NormalizeVisibilities()
 {
-    msg_debug("difx_interface", "normalizing visibilities"<<eom;);
+    msg_debug("difx_interface", "normalizing visibilities"<< eom);
 
     //map station to autocorrs
     std::map<std::string, visibility_type*> raw_auto_corrs;
