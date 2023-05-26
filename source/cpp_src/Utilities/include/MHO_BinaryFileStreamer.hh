@@ -103,54 +103,6 @@ template<> class MHO_BinaryFileStreamerSingleType<std::string>
         virtual MHO_BinaryFileStreamer& Self() = 0;
 };
 
-
-
-//specialization for std::vector<int> v;
-template< typename XValueType>
-template<> class MHO_BinaryFileStreamerSingleType< std::vector<XValueType> >
-{
-    public:
-        MHO_BinaryFileStreamerSingleType(){};
-        virtual ~MHO_BinaryFileStreamerSingleType(){};
-
-        //read in
-        friend inline MHO_BinaryFileStreamer& operator>>(MHO_BinaryFileStreamerSingleType< std::vector<XValueType> >& s, std::vector<XValueType& obj)
-        {
-            uint64_t size;
-            s.GetStream().read(reinterpret_cast<char*>(&size), sizeof(uint64_t));
-            obj.resize(size);
-            s.GetStream().read(&obj[0], size*sizeof(XValueType) );
-            return s.Self();
-        }
-
-        //write out
-        friend inline MHO_BinaryFileStreamer& operator>>(MHO_BinaryFileStreamerSingleType< std::vector<XValueType> >& s, std::vector<XValueType& obj)
-        {
-            uint64_t size = obj.size();
-            s.GetStream().write(reinterpret_cast<const char*>(&size), sizeof(uint64_t));
-            s.GetStream().write(obj.c_str(), size*sizeof(XValueType));
-
-            s.AddBytesWritten(sizeof(uint64_t));
-            s.AddBytesWritten( size*sizeof(XValueType) );
-            return s.Self();
-        }
-
-        virtual std::fstream& GetStream() = 0;
-
-        virtual void ResetByteCount() = 0;
-        virtual void AddBytesWritten(uint64_t) = 0;
-        virtual uint64_t GetNBytesWritten() const = 0;
-
-    protected:
-
-        virtual MHO_BinaryFileStreamer& Self() = 0;
-};
-
-
-
-
-
-
 //now declare a multi-type streamer with a variadic template parameter for the types to be streamed
 template <typename... XValueTypeS>
 class MHO_BinaryFileStreamerMultiType;
@@ -183,9 +135,7 @@ typedef MHO_BinaryFileStreamerMultiType<
     std::complex<float>,
     std::complex<double>,
     std::complex<long double>,
-    std::string,
-    std::vector< std::complex<double> >
-     >
+    std::string>
 MHO_BinaryFileStreamerBasicTypes;
 
 //now declare the concrete class which does the work for file streams
