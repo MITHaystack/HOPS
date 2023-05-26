@@ -25,7 +25,8 @@ class MHO_FileStreamer
         {
             fFileState = FileState::undefined;
             fObjectState = ObjectState::unset;
-            fBufferSize = 64*1024; ///64KB chunk
+            //fBufferSize = 64*1024; ///64KB chunk
+            fBufferSize = 2*1024*1024; ///2MB chunk
             fBuffer = new char[fBufferSize];
         };
 
