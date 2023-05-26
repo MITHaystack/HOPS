@@ -333,6 +333,7 @@ MHO_DiFXBaselineProcessor::ConstructVisibilityFileObjects()
         msg_error("difx_interface", "cannot channelize visibility data, as not all channels are equal length. Feature not yet supported" << eom );
     }
 
+    DeleteDiFXVisRecords();
 };
 
 
@@ -405,12 +406,7 @@ MHO_DiFXBaselineProcessor::WriteVisibilityObjects(std::string output_dir)
 void
 MHO_DiFXBaselineProcessor::Clear()
 {
-    //delete the visibility records
-    for(std::size_t i=0; i<fRecords.size(); i++)
-    {
-        delete fRecords[i];
-    }
-    fRecords.clear();
+    DeleteDiFXVisRecords();
     fPolPairSet.clear();
     fFreqIndexSet.clear();
     fSpecPointSet.clear();
@@ -418,6 +414,17 @@ MHO_DiFXBaselineProcessor::Clear()
     fBaselineFreqs.clear();
     if(fV){delete fV; fV = nullptr;}
     if(fW){delete fW; fW = nullptr;}
+}
+
+void
+MHO_DiFXBaselineProcessor::DeleteDiFXVisRecords()
+{
+    //delete the visibility records
+    for(std::size_t i=0; i<fRecords.size(); i++)
+    {
+        delete fRecords[i];
+    }
+    fRecords.clear();
 }
 
 
