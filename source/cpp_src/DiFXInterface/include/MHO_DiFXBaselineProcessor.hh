@@ -17,11 +17,12 @@
 
 #include "MHO_DiFXVisibilityRecord.hh"
 #include "MHO_ContainerDefinitions.hh"
-#include "MHO_VisibilityChannelizer.hh"
-#include "MHO_WeightChannelizer.hh"
 #include "MHO_ObjectTags.hh"
 #include "MHO_StationCodeMap.hh"
 #include "MHO_JSONHeaderWrapper.hh"
+
+
+
 
 namespace hops
 {
@@ -51,7 +52,7 @@ class MHO_DiFXBaselineProcessor
         std::string GetRemStationMk4Id() const {return fRemStationMk4Id;}
         std::string GetBaselineShortName() const {return fBaselineShortName;}
 
-        visibility_type* GetVisibilities() {return fV;}
+        visibility_store_type* GetVisibilities() {return fV;}
 
         void Clear();
 
@@ -99,8 +100,8 @@ class MHO_DiFXBaselineProcessor
         std::vector< std::pair<int, mho_json> > fBaselineFreqs;
 
         //the baseline data in hops data containers
-        weight_type* fW;
-        visibility_type* fV;
+        weight_store_type* fW;
+        visibility_store_type* fV;
         MHO_ObjectTags fTags;
 
         //comparison predicate for time-sorting visibility record data

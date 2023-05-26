@@ -209,8 +209,8 @@ MHO_DiFXBaselineProcessor::ConstructVisibilityFileObjects()
         if(fV){delete fV; fV = nullptr;}
         if(fW){delete fW; fW = nullptr;}
 
-        fV = new visibility_type();
-        fW = new weight_type();
+        fV = new visibility_store_type();
+        fW = new weight_store_type();
 
         //tags for the visibilities
         fV->Resize(fNPolPairs, fNChannels, fNAPs, fNSpectralPoints);
@@ -348,21 +348,21 @@ MHO_DiFXBaselineProcessor::WriteVisibilityObjects(std::string output_dir)
         (*fV) *= fScaleFactor;
     }
 
-    //now we down cast the double precision visibilities and weights from double to float
-    //this is to save disk space (but can be disabled)
-    MHO_ElementTypeCaster< visibility_type, visibility_store_type> vdcaster;
-    MHO_ElementTypeCaster< weight_type, weight_store_type> wdcaster;
-
-    visibility_store_type vis_out;
-    weight_store_type weight_out;
-
-    vdcaster.SetArgs(fV, &vis_out);
-    vdcaster.Initialize();
-    vdcaster.Execute();
-
-    wdcaster.SetArgs(fW, &weight_out);
-    wdcaster.Initialize();
-    wdcaster.Execute();
+    // //now we down cast the double precision visibilities and weights from double to float
+    // //this is to save disk space (but can be disabled)
+    // MHO_ElementTypeCaster< visibility_type, visibility_store_type> vdcaster;
+    // MHO_ElementTypeCaster< weight_type, weight_store_type> wdcaster;
+    //
+    // visibility_store_type vis_out;
+    // weight_store_type weight_out;
+    //
+    // vdcaster.SetArgs(fV, &vis_out);
+    // vdcaster.Initialize();
+    // vdcaster.Execute();
+    //
+    // wdcaster.SetArgs(fW, &weight_out);
+    // wdcaster.Initialize();
+    // wdcaster.Execute();
 
     //construct output file name
     std::string root_code = fRootCode;
@@ -372,24 +372,23 @@ MHO_DiFXBaselineProcessor::WriteVisibilityObjects(std::string output_dir)
     bool status = inter.OpenToWrite(output_file);
     if(status)
     {
+        // uint32_t label = 0xFFFFFFFF; //someday make this mean something
+        // fTags.AddObjectUUID(vis_out.GetObjectUUID());
+        // fTags.AddObjectUUID(weight_out.GetObjectUUID());
+        // inter.Write(fTags, "tags", label);
+        // 
+        // inter.Write(vis_out, "vis", label);
+        // inter.Write(weight_out, "weight", label);
+        // inter.Close();
+
         uint32_t label = 0xFFFFFFFF; //someday make this mean something
-        fTags.AddObjectUUID(vis_out.GetObjectUUID());
-        fTags.AddObjectUUID(weight_out.GetObjectUUID());
+        fTags.AddObjectUUID(fV->GetObjectUUID());
+        fTags.AddObjectUUID(fW->GetObjectUUID());
         inter.Write(fTags, "tags", label);
 
-        inter.Write(vis_out, "vis", label);
-        inter.Write(weight_out, "weight", label);
+        inter.Write(*fV, "vis", label);
+        inter.Write(*fW, "weight", label);
         inter.Close();
-
-        //TODO ADD AN OPTION TO EXPORT DOUBLE PRECISION DATA
-        // uint32_t label = 0xFFFFFFFF; //someday make this mean something
-        // fTags.AddObjectUUID(fV->GetObjectUUID());
-        // fTags.AddObjectUUID(fW->GetObjectUUID());
-        // inter.Write(fTags, "tags", label);
-        //
-        // inter.Write(*fV, "vis", label);
-        // inter.Write(*fW, "weight", label);
-        // inter.Close();
     }
     else
     {
