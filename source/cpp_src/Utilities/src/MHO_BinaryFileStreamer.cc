@@ -16,6 +16,7 @@ MHO_BinaryFileStreamer::OpenToRead()
     }
     else
     {
+        fFile.rdbuf()->pubsetbuf(this->fBuffer, this->fBufferSize);
         fFileState = FileState::readable;
     }
 }
