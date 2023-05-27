@@ -146,7 +146,7 @@ MHO_DiFXBaselineProcessor::Organize()
     }
     std::sort(fBaselineFreqs.begin(), fBaselineFreqs.end(), fFreqPredicate);
 
-    msg_debug("difx_interface", "data dimension of baseline: "<<
+    msg_debug("difx_interface", "data dimensions of baseline: "<<
               fBaselineID << " - " << fBaselineName <<" are (" << fNPolPairs << ", " << fNChannels
               << ", " << fNAPs << ", " << fNSpectralPoints <<")" << eom);
 
@@ -350,22 +350,6 @@ MHO_DiFXBaselineProcessor::WriteVisibilityObjects(std::string output_dir)
         (*fV) *= fScaleFactor;
     }
 
-    // //now we down cast the double precision visibilities and weights from double to float
-    // //this is to save disk space (but can be disabled)
-    // MHO_ElementTypeCaster< visibility_type, visibility_store_type> vdcaster;
-    // MHO_ElementTypeCaster< weight_type, weight_store_type> wdcaster;
-    //
-    // visibility_store_type vis_out;
-    // weight_store_type weight_out;
-    //
-    // vdcaster.SetArgs(fV, &vis_out);
-    // vdcaster.Initialize();
-    // vdcaster.Execute();
-    //
-    // wdcaster.SetArgs(fW, &weight_out);
-    // wdcaster.Initialize();
-    // wdcaster.Execute();
-
     //construct output file name
     std::string root_code = fRootCode;
     std::string output_file = output_dir + "/" + fBaselineShortName + "." + root_code + ".cor";
@@ -374,15 +358,6 @@ MHO_DiFXBaselineProcessor::WriteVisibilityObjects(std::string output_dir)
     bool status = inter.OpenToWrite(output_file);
     if(status)
     {
-        // uint32_t label = 0xFFFFFFFF; //someday make this mean something
-        // fTags.AddObjectUUID(vis_out.GetObjectUUID());
-        // fTags.AddObjectUUID(weight_out.GetObjectUUID());
-        // inter.Write(fTags, "tags", label);
-        // 
-        // inter.Write(vis_out, "vis", label);
-        // inter.Write(weight_out, "weight", label);
-        // inter.Close();
-
         uint32_t label = 0xFFFFFFFF; //someday make this mean something
         fTags.AddObjectUUID(fV->GetObjectUUID());
         fTags.AddObjectUUID(fW->GetObjectUUID());
@@ -426,7 +401,7 @@ MHO_DiFXBaselineProcessor::DeleteDiFXVisRecords()
         delete fRecords[i];
     }
     fRecords.clear();
-    malloc_trim(0); //for lots of small objects is may be helpful to flush pages back to OS
+    malloc_trim(0); //for lots of small objects this may be helpful to flush pages back to OS
 }
 
 
