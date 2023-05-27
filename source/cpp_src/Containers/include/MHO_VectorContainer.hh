@@ -101,7 +101,7 @@ class MHO_VectorContainer:
             MHO_ClassVersion vers;
             s >> vers;
 
-            switch( vers ) 
+            switch(vers) 
             {
                 case 0:
                     aData.StreamInData_V0(s);
