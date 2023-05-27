@@ -86,9 +86,9 @@ class MHO_VectorContainer:
 
     protected:
 
-        using MHO_NDArrayWrapper<XValueType,1>::fData;
-        using MHO_NDArrayWrapper<XValueType,1>::fDims;
-        using MHO_NDArrayWrapper<XValueType,1>::fSize;
+        // using MHO_NDArrayWrapper<XValueType,1>::fData;
+        // using MHO_NDArrayWrapper<XValueType,1>::fDims;
+        // using MHO_NDArrayWrapper<XValueType,1>::fSize;
 
         uint64_t ComputeSerializedSize() const
         {
@@ -96,7 +96,7 @@ class MHO_VectorContainer:
             total_size += sizeof(MHO_ClassVersion);
             total_size += MHO_Taggable::GetSerializedSize();
             total_size += sizeof(uint64_t);
-            total_size += this->fSize*sizeof(XValueType); //all elements have the same size
+            total_size += this->GetSize()*sizeof(XValueType); //all elements have the same size
             return total_size;
         }
 
@@ -116,9 +116,10 @@ class MHO_VectorContainer:
                 size_t total_size[1];
                 s >> total_size[0];
                 aData.Resize(total_size);
-                for(size_t i=0; i<aData.fSize; i++)
+                auto data_ptr = aData.GetData();
+                for(size_t i=0; i<total_size[0]; i++)
                 {
-                    s >> aData.fData[i];
+                    s >> data_ptr[i];
                 }
             }
             return s;
@@ -128,10 +129,12 @@ class MHO_VectorContainer:
         {
             s << aData.GetVersion();
             s << static_cast<const MHO_Taggable& >(aData);
-            s << aData.fSize;
-            for(size_t i=0; i<aData.fSize; i++)
+            uint64_t dsize = aData.GetSize();
+            s << (uint64_t) dsize;
+            auto data_ptr = aData.GetData();
+            for(size_t i=0; i<dsize; i++)
             {
-                s << aData.fData[i];
+                s << data_ptr[i];
             }
             return s;
         }
@@ -149,10 +152,12 @@ MHO_VectorContainer<std::string>::ComputeSerializedSize() const
     total_size += sizeof(MHO_ClassVersion);
     total_size += MHO_Taggable::GetSerializedSize();
     total_size += sizeof(uint64_t);
-    for(size_t i=0; i<this->fSize; i++)
+    std::size_t dsize = this->GetSize();
+    auto data_ptr = this->GetData();
+    for(size_t i=0; i<dsize; i++)
     {
         total_size += sizeof(uint64_t); //every string get streamed with a size
-        total_size += this->fData[i].size();
+        total_size += data_ptr[i].size(); //n char in each string
     }
     return total_size;
 }
