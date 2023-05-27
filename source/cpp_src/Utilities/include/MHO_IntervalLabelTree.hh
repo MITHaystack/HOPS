@@ -95,37 +95,66 @@ class MHO_IntervalLabelTree: virtual public MHO_Serializable
         {
             MHO_ClassVersion vers;
             s >> vers;
-            if( vers != aData.GetVersion() )
+            switch(vers) 
             {
-                MHO_ClassIdentity::ClassVersionErrorMsg(aData, vers);
-                //Flag this as an unknown object version so we can skip over this data
-                MHO_ObjectStreamState<XStream>::SetUnknown(s);
-            }
-            else
-            {
-                std::size_t n_labels;
-                s >> n_labels;
-                for(std::size_t i=0; i<n_labels; i++)
-                {
-                    MHO_IntervalLabel tmp;
-                    s >> tmp;
-                    aData.InsertLabel(tmp);
-                }
+                case 0:
+                    aData.StreamInData_V0(s);
+                break;
+                default:
+                    MHO_ClassIdentity::ClassVersionErrorMsg(aData, vers);
+                    //Flag this as an unknown object version so we can skip over this data
+                    MHO_ObjectStreamState<XStream>::SetUnknown(s);
             }
             return s;
         }
 
         template<typename XStream> friend XStream& operator<<(XStream& s, const MHO_IntervalLabelTree& aData)
         {
-            s << aData.GetVersion();
-            s << aData.fIntervals.size();
-            for(std::size_t i=0; i<aData.fIntervals.size(); i++)
+            switch( aData.GetVersion() ) 
             {
-                s << *( aData.fIntervals[i] );
+                case 0:
+                    s << aData.GetVersion();
+                    aData.StreamOutData_V0(s);
+                break;
+                default:
+                    msg_error("containers", 
+                        "error, cannot stream out MHO_IntervalLabel object with unknown version: " 
+                        << aData.GetVersion() << eom );
             }
             return s;
         }
+
+    private:
+
+        template<typename XStream> void StreamInData_V0(XStream& s)
+        {
+            std::size_t n_labels;
+            s >> n_labels;
+            for(std::size_t i=0; i<n_labels; i++)
+            {
+                MHO_IntervalLabel tmp;
+                s >> tmp;
+                this->InsertLabel(tmp);
+            }
+        }
+
+        template<typename XStream> void StreamOutData_V0(XStream& s) const
+        {
+            s << this->fIntervals.size();
+            for(std::size_t i=0; i<this->fIntervals.size(); i++)
+            {
+                s << *( this->fIntervals[i] );
+            }
+        }
 };
+
+
+
+
+
+
+
+
 
 template<typename XLabelValueType>
 std::size_t
