@@ -149,7 +149,10 @@ class MHO_ContainerJSONConverter: public MHO_JSONConverter
 
         virtual void ConstructJSONRepresentation()
         {
-            if(fContainer != nullptr){ ConstructJSON(fContainer);} 
+            if(fContainer != nullptr)
+            { 
+                ConstructJSON(fContainer);
+            } 
         }
 
     private:

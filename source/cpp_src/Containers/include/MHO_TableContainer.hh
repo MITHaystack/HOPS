@@ -60,7 +60,10 @@ class MHO_TableContainer:
         MHO_TableContainer* Clone(){ return new MHO_TableContainer(*this); }
 
         //clone table shape, but leave contents/axes empty
-        MHO_TableContainer* CloneEmpty(){ return new MHO_TableContainer( &(this->fDims[0]) ); }
+        MHO_TableContainer* CloneEmpty()
+        {
+            return new MHO_TableContainer( this->GetDimensions() ); 
+        }
 
         virtual ~MHO_TableContainer(){};
 
@@ -73,7 +76,7 @@ class MHO_TableContainer:
             total_size += XAxisPackType::NAXES::value*sizeof(uint64_t);
             total_size += XAxisPackType::GetSerializedSize();
             total_size += MHO_Taggable::GetSerializedSize();
-            total_size += (this->fSize)*sizeof(XValueType);
+            total_size += ( this->GetSize() )*sizeof(XValueType);
             return total_size;
         }
 
@@ -96,6 +99,7 @@ class MHO_TableContainer:
         using MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::GetSize;
         using MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::GetDimensions;
         using MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::GetDimension;
+        using MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::GetDimensionArray;
         using MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::GetOffsetForIndices;
         using MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::GetIndicesForOffset;
         using MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::SubView;
@@ -107,15 +111,15 @@ class MHO_TableContainer:
 
         using MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::ValueAt;
 
-
         //expensive copy (as opposed to the assignment operator,
         //pointers to exernally managed memory are not transferred)
         virtual void Copy(const MHO_TableContainer& rhs)
         {
             if(&rhs != this)
             {
-                //copy the array, then copy the axis pack
+                //copy the array
                 MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::Copy(rhs);
+                //copy the axis pack
                 *( this->GetAxisPack() ) = *(rhs.GetAxisPack());
                 //finally copy the table tags
                 this->CopyTags(rhs);
@@ -124,9 +128,9 @@ class MHO_TableContainer:
 
     protected:
 
-        using MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::fData;
-        using MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::fDims;
-        using MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::fSize;
+        // using MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::fData;
+        // using MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::fDims;
+        // using MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::fSize;
 
     public:
 
@@ -135,16 +139,20 @@ class MHO_TableContainer:
             //first stream version and dimensions
             s << aData.GetVersion();
             s << static_cast< const MHO_Taggable& >(aData);
+            auto dims = aData.GetDimensionArray();
             for(size_t i=0; i < XAxisPackType::NAXES::value; i++)
             {
-                s << aData.fDims[i];
+                s << (uint64_t) dims[i];
             }
             //then dump axes
             s << static_cast< const XAxisPackType& >(aData);
+
             //finally dump the array data
-            for(size_t i=0; i<aData.fSize; i++)
+            std::size_t dsize = aData.GetSize();
+            auto data_ptr = aData.GetData();
+            for(size_t i=0; i<dsize; i++)
             {
-                s << aData.fData[i];
+                s << data_ptr[i];
             }
             return s;
         }
@@ -164,30 +172,33 @@ class MHO_TableContainer:
                 s >> static_cast< MHO_Taggable& >(aData);
 
                 //next stream the axis-pack
+                uint64_t tmp_dim; 
                 std::size_t dims[XAxisPackType::NAXES::value];
                 for(size_t i=0; i < XAxisPackType::NAXES::value; i++)
                 {
-                    s >> dims[i];
+                    s >> tmp_dim;
+                    dims[i] = tmp_dim;
                 }
                 aData.Resize(dims);
                 //now stream in the axes
                 s >> static_cast< XAxisPackType& >(aData);
 
-                //ask for the file stream directly so we can optimize the read
-                //this is not so bueno, breaking ecapsulation of the streamer
-                //auto fs_ptr = dynamic_cast< MHO_BinaryFileStreamer* >(&s);
+                //ask for the file stream directly so we can optimize the read in chunks
+                //this is not so bueno, breaking ecapsulation of the file streamer class
                 auto fs_ptr = dynamic_cast< MHO_FileStreamer* >(&s);
+                std::size_t dsize = aData.GetSize();
+                auto data_ptr = aData.GetData();
                 if(fs_ptr != nullptr)
                 {
                     std::fstream& pfile = fs_ptr->GetStream();
-                    pfile.read(reinterpret_cast<char*>( &(aData.fData[0]) ), aData.fSize*sizeof(XValueType));
+                    pfile.read(reinterpret_cast<char*>(data_ptr), dsize*sizeof(XValueType));
                 }
                 else
                 {
-                    //now stream the mult-dim array data generically
-                    for(size_t i=0; i<aData.fSize; i++)
+                    //otherwise stream the mult-dim array data generically
+                    for(size_t i=0; i<dsize; i++)
                     {
-                        s >> aData.fData[i];
+                        s >> data_ptr[i];
                     }
                 }
             }
