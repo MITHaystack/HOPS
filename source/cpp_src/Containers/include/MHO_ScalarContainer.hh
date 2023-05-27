@@ -66,35 +66,59 @@ class MHO_ScalarContainer:
 
         std::size_t GetSize() const {return 1;};
 
-    protected:
-
-        using MHO_NDArrayWrapper<XValueType,0>::fData;
+    public:
 
         template<typename XStream> friend XStream& operator>>(XStream& s, MHO_ScalarContainer& aData)
         {
             MHO_ClassVersion vers;
             s >> vers;
-            if( vers != aData.GetVersion() )
+            switch(vers) 
             {
-                MHO_ClassIdentity::ClassVersionErrorMsg(aData, vers);
-                //Flag this as an unknown object version so we can skip over this data
-                MHO_ObjectStreamState<XStream>::SetUnknown(s);
-            }
-            else
-            {
-                s >> aData.fData;
-                s >> static_cast< MHO_Taggable& >(aData);
+                case 0:
+                    aData.StreamInData_V0(s);
+                break;
+                default:
+                    MHO_ClassIdentity::ClassVersionErrorMsg(aData, vers);
+                    //Flag this as an unknown object version so we can skip over this data
+                    MHO_ObjectStreamState<XStream>::SetUnknown(s);
             }
             return s;
-        };
+        }
+
 
         template<typename XStream> friend XStream& operator<<(XStream& s, const MHO_ScalarContainer& aData)
         {
-            s << aData.GetVersion();
-            s << aData.fData;
-            s << static_cast< const MHO_Taggable& >(aData);
+            switch( aData.GetVersion() ) 
+            {
+                case 0:
+                    s << aData.GetVersion();
+                    aData.StreamOutData_V0(s);
+                break;
+                default:
+                    msg_error("containers", 
+                        "error, cannot stream out MHO_ScalarContainer object with unknown version: " 
+                        << aData.GetVersion() << eom );
+            }
             return s;
+        }
+
+    private:
+
+        template<typename XStream> void StreamInData_V0(XStream& s)
+        {
+            s >> this->fData;
+            s >> static_cast< MHO_Taggable& >(*this);
         };
+
+        template<typename XStream> void StreamOutData_V0(XStream& s) const
+        {
+            s << this->fData;
+            s << static_cast< const MHO_Taggable& >(*this);
+        };
+    
+    protected:
+
+        using MHO_NDArrayWrapper<XValueType,0>::fData;
 
 };
 
