@@ -127,75 +127,100 @@ class MHO_TableContainer:
 
     public:
 
+        template<typename XStream> friend XStream& operator>>(XStream& s, MHO_TableContainer& aData)
+        {
+            MHO_ClassVersion vers;
+            s >> vers;
+
+            switch(vers) 
+            {
+                case 0:
+                    aData.StreamInData_V0(s);
+                break;
+                default:
+                    MHO_ClassIdentity::ClassVersionErrorMsg(aData, vers);
+                    //Flag this as an unknown object version so we can skip over this data
+                    MHO_ObjectStreamState<XStream>::SetUnknown(s);
+            }
+            return s;
+        }
+
+
         template<typename XStream> friend XStream& operator<<(XStream& s, const MHO_TableContainer& aData)
         {
+            switch( aData.GetVersion() ) 
+            {
+                case 0:
+                    s << aData.GetVersion();
+                    aData.StreamOutData_V0(s);
+                break;
+                default:
+                    msg_error("containers", 
+                        "error, cannot stream out MHO_TableContainer object with unknown version: " 
+                        << aData.GetVersion() << eom );
+            }
+            return s;
+        }
+
+
+    private:
+
+        template<typename XStream> void StreamOutData_V0(XStream& s) const
+        {
             //first stream version and dimensions
-            s << aData.GetVersion();
-            s << static_cast< const MHO_Taggable& >(aData);
-            auto dims = aData.GetDimensionArray();
+            s << static_cast< const MHO_Taggable& >(*this);
+            auto dims = this->GetDimensionArray();
             for(size_t i=0; i < XAxisPackType::NAXES::value; i++)
             {
                 s << (uint64_t) dims[i];
             }
             //then dump axes
-            s << static_cast< const XAxisPackType& >(aData);
+            s << static_cast< const XAxisPackType& >(*this);
 
             //finally dump the array data
-            std::size_t dsize = aData.GetSize();
-            auto data_ptr = aData.GetData();
+            std::size_t dsize = this->GetSize();
+            auto data_ptr = this->GetData();
             for(size_t i=0; i<dsize; i++)
             {
                 s << data_ptr[i];
             }
-            return s;
         }
 
-        template<typename XStream> friend XStream& operator>>(XStream& s, MHO_TableContainer& aData)
+        template<typename XStream> void StreamInData_V0(XStream& s)
         {
-            MHO_ClassVersion vers;
-            s >> vers;
-            if( vers != aData.GetVersion() )
+            s >> static_cast< MHO_Taggable& >(*this);
+
+            //next stream the axis-pack
+            uint64_t tmp_dim; 
+            std::size_t dims[XAxisPackType::NAXES::value];
+            for(size_t i=0; i < XAxisPackType::NAXES::value; i++)
             {
-                MHO_ClassIdentity::ClassVersionErrorMsg(aData, vers);
-                //Flag this as an unknown object version so we can skip over this data
-                MHO_ObjectStreamState<XStream>::SetUnknown(s);
+                s >> tmp_dim;
+                dims[i] = tmp_dim;
+            }
+            this->Resize(dims);
+
+            //now stream in the axes
+            s >> static_cast< XAxisPackType& >(*this);
+
+            //ask for the file stream directly so we can optimize the read in chunks
+            //this is not so bueno, breaking ecapsulation of the file streamer class
+            auto fs_ptr = dynamic_cast< MHO_FileStreamer* >(&s);
+            std::size_t dsize = this->GetSize();
+            auto data_ptr = this->GetData();
+            if(fs_ptr != nullptr)
+            {
+                std::fstream& pfile = fs_ptr->GetStream();
+                pfile.read(reinterpret_cast<char*>(data_ptr), dsize*sizeof(XValueType));
             }
             else
             {
-                s >> static_cast< MHO_Taggable& >(aData);
-
-                //next stream the axis-pack
-                uint64_t tmp_dim; 
-                std::size_t dims[XAxisPackType::NAXES::value];
-                for(size_t i=0; i < XAxisPackType::NAXES::value; i++)
+                //otherwise stream the mult-dim array data generically
+                for(size_t i=0; i<dsize; i++)
                 {
-                    s >> tmp_dim;
-                    dims[i] = tmp_dim;
-                }
-                aData.Resize(dims);
-                //now stream in the axes
-                s >> static_cast< XAxisPackType& >(aData);
-
-                //ask for the file stream directly so we can optimize the read in chunks
-                //this is not so bueno, breaking ecapsulation of the file streamer class
-                auto fs_ptr = dynamic_cast< MHO_FileStreamer* >(&s);
-                std::size_t dsize = aData.GetSize();
-                auto data_ptr = aData.GetData();
-                if(fs_ptr != nullptr)
-                {
-                    std::fstream& pfile = fs_ptr->GetStream();
-                    pfile.read(reinterpret_cast<char*>(data_ptr), dsize*sizeof(XValueType));
-                }
-                else
-                {
-                    //otherwise stream the mult-dim array data generically
-                    for(size_t i=0; i<dsize; i++)
-                    {
-                        s >> data_ptr[i];
-                    }
+                    s >> data_ptr[i];
                 }
             }
-            return s;
         }
 
 };
