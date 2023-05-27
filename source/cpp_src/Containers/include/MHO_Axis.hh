@@ -161,35 +161,57 @@ class MHO_Axis:
                 MHO_VectorContainer<XValueType>::Copy(rhs); //copy the 1-d array
                 MHO_IntervalLabelTree::CopyIntervalLabels(rhs); //copy interval tree
             }
-        } 
+        }
+
 
         template<typename XStream> friend XStream& operator>>(XStream& s, MHO_Axis& aData)
         {
             MHO_ClassVersion vers;
             s >> vers;
-            if( vers != aData.GetVersion() )
+            switch(vers) 
             {
-                MHO_ClassIdentity::ClassVersionErrorMsg(aData, vers);
-                //Flag this as an unknown object version so we can skip over this data
-                MHO_ObjectStreamState<XStream>::SetUnknown(s);
-            }
-            else
-            {
-                s >> static_cast< MHO_VectorContainer< XValueType >& >(aData);
-                s >> static_cast< MHO_IntervalLabelTree& >(aData);
+                case 0:
+                    aData.StreamInData_V0(s);
+                break;
+                default:
+                    MHO_ClassIdentity::ClassVersionErrorMsg(aData, vers);
+                    //Flag this as an unknown object version so we can skip over this data
+                    MHO_ObjectStreamState<XStream>::SetUnknown(s);
             }
             return s;
         }
+
 
         template<typename XStream> friend XStream& operator<<(XStream& s, const MHO_Axis& aData)
         {
-            s << aData.GetVersion();
-            s << static_cast< const MHO_VectorContainer< XValueType >& >(aData);
-            s << static_cast< const MHO_IntervalLabelTree& >(aData);
+            switch( aData.GetVersion() ) 
+            {
+                case 0:
+                    s << aData.GetVersion();
+                    aData.StreamOutData_V0(s);
+                break;
+                default:
+                    msg_error("containers", 
+                        "error, cannot stream out MHO_Axis object with unknown version: " 
+                        << aData.GetVersion() << eom );
+            }
             return s;
         }
 
-    protected:
+    private:
+
+        template<typename XStream> void StreamInData_V0(XStream& s)
+        {
+            s >> static_cast< MHO_VectorContainer< XValueType >& >(*this);
+            s >> static_cast< MHO_IntervalLabelTree& >(*this);
+        }
+
+        template<typename XStream> void StreamOutData_V0(XStream& s) const
+        {
+            s << static_cast< const MHO_VectorContainer< XValueType >& >(*this);
+            s << static_cast< const MHO_IntervalLabelTree& >(*this);
+        }
+
 
 };
 

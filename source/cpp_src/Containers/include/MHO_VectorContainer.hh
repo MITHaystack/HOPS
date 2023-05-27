@@ -100,7 +100,6 @@ class MHO_VectorContainer:
         {
             MHO_ClassVersion vers;
             s >> vers;
-
             switch(vers) 
             {
                 case 0:
