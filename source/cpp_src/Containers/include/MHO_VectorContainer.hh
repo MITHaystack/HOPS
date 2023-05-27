@@ -84,11 +84,7 @@ class MHO_VectorContainer:
             }
         }
 
-    protected:
-
-        // using MHO_NDArrayWrapper<XValueType,1>::fData;
-        // using MHO_NDArrayWrapper<XValueType,1>::fDims;
-        // using MHO_NDArrayWrapper<XValueType,1>::fSize;
+    public:
 
         uint64_t ComputeSerializedSize() const
         {
@@ -104,39 +100,62 @@ class MHO_VectorContainer:
         {
             MHO_ClassVersion vers;
             s >> vers;
-            if( vers != aData.GetVersion() )
+
+            switch( vers ) 
             {
-                MHO_ClassIdentity::ClassVersionErrorMsg(aData, vers);
-                //Flag this as an unknown object version so we can skip over this data
-                MHO_ObjectStreamState<XStream>::SetUnknown(s);
-            }
-            else
-            {
-                s >> static_cast< MHO_Taggable& >(aData);
-                size_t total_size[1];
-                s >> total_size[0];
-                aData.Resize(total_size);
-                auto data_ptr = aData.GetData();
-                for(size_t i=0; i<total_size[0]; i++)
-                {
-                    s >> data_ptr[i];
-                }
+                case 0:
+                    aData.StreamInData_V0(s);
+                break;
+                default:
+                    MHO_ClassIdentity::ClassVersionErrorMsg(aData, vers);
+                    //Flag this as an unknown object version so we can skip over this data
+                    MHO_ObjectStreamState<XStream>::SetUnknown(s);
             }
             return s;
         }
 
+
         template<typename XStream> friend XStream& operator<<(XStream& s, const MHO_VectorContainer& aData)
         {
-            s << aData.GetVersion();
-            s << static_cast<const MHO_Taggable& >(aData);
-            uint64_t dsize = aData.GetSize();
+            switch( aData.GetVersion() ) 
+            {
+                case 0:
+                    s << aData.GetVersion();
+                    aData.StreamOutData_V0(s);
+                break;
+                default:
+                    msg_error("containers", 
+                        "error, cannot stream out MHO_VectorContainer object with unknown version: " 
+                        << aData.GetVersion() << eom );
+            }
+            return s;
+        }
+
+    private:
+
+        template<typename XStream> void StreamOutData_V0(XStream& s) const
+        {
+            s << static_cast<const MHO_Taggable& >(*this);
+            uint64_t dsize = this->GetSize();
             s << (uint64_t) dsize;
-            auto data_ptr = aData.GetData();
+            auto data_ptr = this->GetData();
             for(size_t i=0; i<dsize; i++)
             {
                 s << data_ptr[i];
             }
-            return s;
+        }
+
+        template<typename XStream> void StreamInData_V0(XStream& s)
+        {
+            s >> static_cast< MHO_Taggable& >(*this);
+            size_t total_size[1];
+            s >> total_size[0];
+            this->Resize(total_size);
+            auto data_ptr = this->GetData();
+            for(size_t i=0; i<total_size[0]; i++)
+            {
+                s >> data_ptr[i];
+            }
         }
 
 };
