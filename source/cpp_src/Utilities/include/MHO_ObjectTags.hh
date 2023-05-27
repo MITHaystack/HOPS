@@ -195,10 +195,6 @@ class MHO_ObjectTags: public MHO_Taggable, public MHO_ExtensibleElement
         //all object UUIDs which are associated with the tags 
         std::set< MHO_UUID > fObjectUUIDSet;
     
-        //tag dictionary 
-        //MHO_Taggable fTags;
-
-
     public:
 
         virtual uint64_t GetSerializedSize() const override
@@ -211,52 +207,70 @@ class MHO_ObjectTags: public MHO_Taggable, public MHO_ExtensibleElement
             return total_size;
         }
 
+
         template<typename XStream> friend XStream& operator>>(XStream& s, MHO_ObjectTags& aData)
         {
-            //first item to stream is always the version number
             MHO_ClassVersion vers;
             s >> vers;
-            //check if incoming data is equal to the current class version
-            if( vers != aData.GetVersion() )
+            switch(vers) 
             {
-                MHO_ClassIdentity::ClassVersionErrorMsg(aData, vers);
-                //Flag this as an unknown object version so we can skip over this data
-                MHO_ObjectStreamState<XStream>::SetUnknown(s);
-            }
-            else
-            {
-                //then do the number of object uuids 
-                uint64_t n_uuids = 0;
-                s >> n_uuids;
-                //then do object uuids
-                for(uint64_t i=0; i<n_uuids; i++)
-                {
-                    MHO_UUID tmp_uuid;
-                    s >> tmp_uuid;
-                    aData.AddObjectUUID(tmp_uuid);
-                }
-                //now do the taggable element;
-                s >> static_cast< MHO_Taggable& >(aData);
+                case 0:
+                    aData.StreamInData_V0(s);
+                break;
+                default:
+                    MHO_ClassIdentity::ClassVersionErrorMsg(aData, vers);
+                    //Flag this as an unknown object version so we can skip over this data
+                    MHO_ObjectStreamState<XStream>::SetUnknown(s);
             }
             return s;
-        };
-        
+        }
+
         template<typename XStream> friend XStream& operator<<(XStream& s, const MHO_ObjectTags& aData)
         {
-            //first item to stream is always the version number
-            s << aData.GetVersion();
+            switch( aData.GetVersion() ) 
+            {
+                case 0:
+                    s << aData.GetVersion();
+                    aData.StreamOutData_V0(s);
+                break;
+                default:
+                    msg_error("containers", 
+                        "error, cannot stream out MHO_Taggable object with unknown version: " 
+                        << aData.GetVersion() << eom );
+            }
+            return s;
+        }
+
+    private:
+
+        template<typename XStream> void StreamInData_V0(XStream& s)
+        {
             //then do the number of object uuids 
-            uint64_t n_uuids = aData.fObjectUUIDSet.size();
+            uint64_t n_uuids = 0;
+            s >> n_uuids;
+            //then do object uuids
+            for(uint64_t i=0; i<n_uuids; i++)
+            {
+                MHO_UUID tmp_uuid;
+                s >> tmp_uuid;
+                this->AddObjectUUID(tmp_uuid);
+            }
+            //now do the taggable element;
+            s >> static_cast< MHO_Taggable& >(*this);
+        };
+        
+        template<typename XStream> void StreamOutData_V0(XStream& s) const
+        {
+            //then do the number of object uuids 
+            uint64_t n_uuids = this->fObjectUUIDSet.size();
             s << n_uuids;
             //then do object uuids
-            for(auto it= aData.fObjectUUIDSet.begin(); it != aData.fObjectUUIDSet.end(); it++)
+            for(auto it= this->fObjectUUIDSet.begin(); it != this->fObjectUUIDSet.end(); it++)
             {
                 s << *it;
             }
             //now do the taggable element;
-            s << static_cast< const MHO_Taggable& >(aData);
-
-            return s;
+            s << static_cast< const MHO_Taggable& >(*this);
         };
 
 };
