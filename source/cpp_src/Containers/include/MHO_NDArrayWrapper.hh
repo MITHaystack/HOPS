@@ -368,12 +368,6 @@ class MHO_NDArrayWrapper:
 
     private:
 
-        // //only meta-data types we store are a name, and unit type
-        // std::string fName;
-        // //until we develop a proper units/dimensions type,
-        // //we just store units as a string (the units class must be able to convert to <-> from a string)
-        // std::string fUnits;
-
         std::vector< XValueType > fData; //used for internally managed data
         index_type fDims; //size of each dimension
         index_type fStrides; //strides between elements in each dimension
@@ -423,14 +417,9 @@ class MHO_NDArrayWrapper:
         iterator end(){ return iterator(&(fData[0]), &(fData[0]) + fData.size(), fData.size());}
         iterator iterator_at(std::size_t offset){return iterator(&(fData[0]), &(fData[0]) + std::min(offset, fData.size()), fData.size());}
 
-        // const_iterator cbegin() const{ return const_iterator(&(fData[0]), &(fData[0]), fData.size());}
-        // const_iterator cend() const { return const_iterator(&(fData[0]), &(fData[0]) + fData.size(), fData.size());}
-        // const_iterator citerator_at(std::size_t offset) const {return const_iterator(&(fData[0]), &(fData[0]) + std::min(offset, fData.size()), fData.size());}
         const_iterator cbegin() const{ return const_iterator(&(fData[0]), &(fData[0]), fData.size());}
         const_iterator cend() const { return const_iterator(&(fData[0]), &(fData[0]) + fData.size(), fData.size());}
         const_iterator citerator_at(std::size_t offset) const {return const_iterator(&(fData[0]), &(fData[0]) + std::min(offset, fData.size()), fData.size());}
-
-
 
         stride_iterator stride_begin(std::size_t stride){ return stride_iterator(&(fData[0]), &(fData[0]), fData.size(), stride);}
         stride_iterator stride_end(std::size_t stride){ return stride_iterator(&(fData[0]), &(fData[0]) + fData.size(), fData.size(), stride);}

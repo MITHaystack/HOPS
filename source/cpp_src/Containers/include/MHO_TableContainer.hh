@@ -108,7 +108,6 @@ class MHO_TableContainer:
         using MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::at;
         using MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::operator();
         using MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::operator[];
-
         using MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::ValueAt;
 
         //expensive copy (as opposed to the assignment operator,
@@ -125,12 +124,6 @@ class MHO_TableContainer:
                 this->CopyTags(rhs);
             }
         }
-
-    protected:
-
-        // using MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::fData;
-        // using MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::fDims;
-        // using MHO_NDArrayWrapper<XValueType,XAxisPackType::NAXES::value>::fSize;
 
     public:
 
