@@ -58,59 +58,14 @@ class MHO_IntervalLabel:
             total_size += sizeof(MHO_ClassVersion); //version number
             total_size += 2*sizeof(std::size_t); //upper/lower bounds
 
-            std::vector< std::string > keys;
-            keys = this->DumpKeys< char >();
-            total_size += sizeof(uint64_t); //for the number of keys
-            for(std::size_t i=0; i<keys.size(); i++)
-            {
-                total_size += sizeof(uint64_t);//every string get streamed with a 'size'
-                total_size += keys[i].size();
-                total_size += sizeof(char);
-            }
-            keys.clear();
+            total_size += cm_aggregate_serializable_item_size<char>(*this);
+            total_size += cm_aggregate_serializable_item_size<bool>(*this);
+            total_size += cm_aggregate_serializable_item_size<int>(*this);
+            total_size += cm_aggregate_serializable_item_size<double>(*this);
+            total_size += cm_aggregate_serializable_item_size<std::string>(*this);
 
-            keys = this->DumpKeys<bool>();
-            total_size += sizeof(uint64_t);
-            for(std::size_t i=0; i<keys.size(); i++)
-            {
-                total_size += sizeof(uint64_t);//every string get streamed with a 'size'
-                total_size += keys[i].size();
-                total_size += sizeof(bool);
-            }
-            keys.clear();
+            return total_size;
 
-            keys = this->DumpKeys<int>();
-            total_size += sizeof(uint64_t);
-            for(std::size_t i=0; i<keys.size(); i++)
-            {
-                total_size += sizeof(uint64_t);//every string get streamed with a 'size'
-                total_size += keys[i].size();
-                total_size += sizeof(int);
-            }
-            keys.clear();
-
-            keys = this->DumpKeys<double>();
-            total_size += sizeof(uint64_t);
-            for(std::size_t i=0; i<keys.size(); i++)
-            {
-                total_size += sizeof(uint64_t);//every string get streamed with a 'size'
-                total_size += keys[i].size();
-                total_size += sizeof(double);
-            }
-            keys.clear();
-
-            keys = this->DumpKeys<std::string>();
-            total_size += sizeof(uint64_t);
-            for(std::size_t i=0; i<keys.size(); i++)
-            {
-                std::string val;
-                total_size += sizeof(uint64_t);//every string get streamed with a 'size'
-                total_size += keys[i].size();
-                Retrieve(keys[i], val);
-                total_size += sizeof(uint64_t);//every string get streamed with a 'size'
-                total_size += val.size();
-            }
-            keys.clear();
             return total_size;
         }
 
@@ -152,134 +107,29 @@ class MHO_IntervalLabel:
         template<typename XStream> void StreamInData_V0(XStream& s)
         {
             //first need to stream the integer interval pair
-            std::size_t low, up;
+            uint64_t low, up;
             s >> low;
             s >> up;
             this->SetBounds(low, up);
 
-            //then for each type in the multi-type map, we need to stream in
-            //the size of the map and then each subsequent key-value pair
-            std::size_t n_elem;
-            s >> n_elem;
-            for(std::size_t i=0; i<n_elem; i++)
-            {
-                std::string key;
-                char val;
-                s >> key;
-                s >> val;
-                this->Insert(key, val);
-            }
-            n_elem = 0;
-
-            s >> n_elem;
-            for(std::size_t i=0; i<n_elem; i++)
-            {
-                std::string key;
-                bool val;
-                s >> key;
-                s >> val;
-                this->Insert(key, val);
-            }
-            n_elem = 0;
-
-            s >> n_elem;
-            for(std::size_t i=0; i<n_elem; i++)
-            {
-                std::string key;
-                int val;
-                s >> key;
-                s >> val;
-                this->Insert(key, val);
-            }
-            n_elem = 0;
-
-            s >> n_elem;
-            for(std::size_t i=0; i<n_elem; i++)
-            {
-                std::string key;
-                double val;
-                s >> key;
-                s >> val;
-                this->Insert(key, val);
-            }
-            n_elem = 0;
-
-            s >> n_elem;
-            for(std::size_t i=0; i<n_elem; i++)
-            {
-                std::string key;
-                std::string val;
-                s >> key;
-                s >> val;
-                this->Insert(key, val);
-            }
-            n_elem = 0;
+            cm_stream_importer<XStream, char>(s, *this);
+            cm_stream_importer<XStream, bool>(s, *this);
+            cm_stream_importer<XStream, int>(s, *this);
+            cm_stream_importer<XStream, double>(s, *this);
+            cm_stream_importer<XStream, std::string>(s, *this);
         };
 
         template<typename XStream> void StreamOutData_V0(XStream& s) const
         {
             //first need to stream the integer interval pair
-            s << this->GetLowerBound();
-            s << this->GetUpperBound();
+            s << (uint64_t) this->GetLowerBound();
+            s << (uint64_t) this->GetUpperBound();
 
-            //then for each type in the multi-type map, we need to stream out
-            //the size of the map and then each subsequent key-value pair
-
-            std::vector< std::string > keys;
-            keys = this->DumpKeys< char >();
-            s << keys.size();
-            for(std::size_t i=0; i<keys.size(); i++)
-            {
-                char val;
-                this->Retrieve(keys[i], val);
-                s << keys[i];
-                s << val;
-            }
-            keys.clear();
-
-            keys = this->DumpKeys<bool>();
-            s << keys.size();
-            for(std::size_t i=0; i<keys.size(); i++)
-            {
-                bool val;
-                this->Retrieve(keys[i], val);
-                s << keys[i];
-                s << val;
-            }
-            keys.clear();
-
-            keys = this->DumpKeys<int>();
-            s << keys.size();
-            for(std::size_t i=0; i<keys.size(); i++)
-            {
-                int val;
-                this->Retrieve(keys[i], val);
-                s << keys[i];
-                s << val;
-            }
-            keys.clear();
-
-            keys = this->DumpKeys<double>();
-            s << keys.size();
-            for(std::size_t i=0; i<keys.size(); i++)
-            {
-                double val;
-                this->Retrieve(keys[i], val);
-                s << keys[i];
-                s << val;
-            }
-            keys.clear();
-
-            keys = this->DumpKeys<std::string>();
-            s << keys.size();
-            for(std::size_t i=0; i<keys.size(); i++)
-            {
-                std::string val;
-                this->Retrieve(keys[i], val);
-                s << keys[i];
-                s << val;
-            }
-            keys.clear();
+            cm_stream_exporter<XStream, char>(s, *this);
+            cm_stream_exporter<XStream, bool>(s, *this);
+            cm_stream_exporter<XStream, int>(s, *this);
+            cm_stream_exporter<XStream, double>(s, *this);
+            cm_stream_exporter<XStream, std::string>(s, *this);
         };
 
 
