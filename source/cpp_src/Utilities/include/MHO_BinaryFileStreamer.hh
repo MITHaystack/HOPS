@@ -8,7 +8,7 @@
 *Email: barrettj@mit.edu
 *Date:
 *Description: variadic template parameter implemenation
-* of a gen scatter hierarchy streamer for POD types
+* of a gen scatter hierarchy streamer for POD types to a file stream
 */
 
 #include <stdio.h>
@@ -73,7 +73,7 @@ template<> class MHO_BinaryFileStreamerSingleType<std::string>
         //read in
         friend inline MHO_BinaryFileStreamer& operator>>(MHO_BinaryFileStreamerSingleType<std::string>& s, std::string& obj)
         {
-            uint64_t size; //TODO FIXME 64bit int is probably overkill for storing string size...should we change this?
+            uint64_t size;
             s.GetStream().read(reinterpret_cast<char*>(&size), sizeof(uint64_t));
             obj.resize(size);
             s.GetStream().read(&obj[0], size);
@@ -83,7 +83,7 @@ template<> class MHO_BinaryFileStreamerSingleType<std::string>
         //write out
         friend inline MHO_BinaryFileStreamer& operator<<(MHO_BinaryFileStreamerSingleType<std::string>& s, const std::string& obj)
         {
-            uint64_t size = obj.size(); //TODO FIXME 64bit int is probably overkill for storing string size...should we change this?
+            uint64_t size = obj.size();
             s.GetStream().write(reinterpret_cast<const char*>(&size), sizeof(uint64_t));
             s.GetStream().write(obj.c_str(), size);
 
