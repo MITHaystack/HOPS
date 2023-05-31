@@ -13,7 +13,7 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../../Utilities/include)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../../Math/include)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../include)
 
-set (HOPS_TEST_LIBS MHO_Message MHO_Utilities MHO_Math MHO_MK4Interface mk4util dfio vex )
+set (HOPS_TEST_LIBS MHO_Message MHO_Utilities MHO_Math MHO_Containers MHO_MK4Interface mk4util dfio vex )
 
 set(SOURCE_BASENAMES
     TestMK4VexInterface

@@ -1,7 +1,7 @@
 #declare header paths ##########################################################
 hops_internal_include_directories()
 
-set (HOPS_TEST_LIBS MHO_Message MHO_Math MHO_Utilities MHO_Operators)
+set (HOPS_TEST_LIBS MHO_Message MHO_Math MHO_Utilities MHO_Containers MHO_Operators)
 
 set(SOURCE_BASENAMES
     TestMultidimensionalFastFourierTransform
