@@ -17,45 +17,30 @@ MHO_ManualChannelPhaseCorrection::MHO_ManualChannelPhaseCorrection():
     fBaselineKey = "baseline";
     fNetSidebandKey = "net_sideband";
 
-    fImagUnit = std::complex<double>(0.0, 1.0);
-    fDegToRad = M_PI/180;
+    fImagUnit = MHO_Constants::imag_unit;
+    fDegToRad = MHO_Constants::deg_to_rad; 
 };
 
 MHO_ManualChannelPhaseCorrection::~MHO_ManualChannelPhaseCorrection(){};
 
 
-bool
-MHO_ManualChannelPhaseCorrection::InitializeImpl(const XArgType1* in_vis, const XArgType2* pcal, XArgType3* out_vis)
+bool 
+MHO_ManualChannelPhaseCorrection::InitializeInPlace(visibility_type* in)
 {
     fInitialized = false;
     fPolIdxMap.clear();
     fChanIdxMap.clear();
-    //check that dimensions of in_vis and out_vis are the same 
-    if( !HaveSameDimensions(in_vis, out_vis) )
-    {
-        msg_warn("calibration", "manual pcal mismatch of dimensions of in/out array." << eom );
-        return false;
-    }
 
     //check that the p-cal data is tagged with a station-id that is a member of this baseline
     std::string station;
     pcal->Retrieve( fStationKey, station);
-
-    std::string baseline;
-    in_vis->Retrieve(fBaselineKey, baseline);
-
-    if( baseline.find(station) == std::string::npos)
-    {
-        msg_warn("calibration", "manual pcal station: "<< station <<" not a member of baseline: "<< baseline << eom );
-        return false;
-    }
-
+    
     //determine if the p-cal corrections are being applied to the remote or reference station
     int pol_index = 0;
     std::string rem_station;
     std::string ref_station;
-    in_vis->Retrieve(fRemStationKey, rem_station);
-    in_vis->Retrieve(fRefStationKey, ref_station);
+    in->Retrieve(fRemStationKey, rem_station);
+    in->Retrieve(fRefStationKey, ref_station);
     if(station != rem_station && station != ref_station)
     {
         msg_warn("calibration", "manual pcal, station: "<< station <<" not reference or remote station ("<<rem_station<<", "<<ref_station<<")."<< eom );
@@ -66,7 +51,7 @@ MHO_ManualChannelPhaseCorrection::InitializeImpl(const XArgType1* in_vis, const 
     if(station == ref_station){pol_index = 0;}
 
     //map the pcal polarization index to the visibility pol-product index
-    auto pp_ax = std::get<POLPROD_AXIS>(*in_vis);
+    auto pp_ax = std::get<POLPROD_AXIS>(*in);
     auto pol_ax = std::get<PCAL_POL_AXIS>(*pcal);
     for(std::size_t j=0; j<pol_ax.GetSize(); j++)
     {
@@ -84,7 +69,7 @@ MHO_ManualChannelPhaseCorrection::InitializeImpl(const XArgType1* in_vis, const 
     //map the pcal channel index to the visibility channel index 
     //(this a pointless no-op at the moment)
     #pragma message("TODO FIX/REPLACE THE PCAL <-> VISIB CHANNEL MAP!")
-    auto chan_ax = std::get<CHANNEL_AXIS>(*in_vis);
+    auto chan_ax = std::get<CHANNEL_AXIS>(*in);
     auto pcal_chan_ax = std::get<PCAL_CHANNEL_AXIS>(*pcal);
     for(std::size_t j=0; j<pcal_chan_ax.GetSize(); j++)
     {
@@ -101,20 +86,14 @@ MHO_ManualChannelPhaseCorrection::InitializeImpl(const XArgType1* in_vis, const 
 }
 
 
-bool
-MHO_ManualChannelPhaseCorrection::ExecuteImpl(const XArgType1* in_vis, const XArgType2* pcal, XArgType3* out_vis)
+bool 
+MHO_ManualChannelPhaseCorrection::ExecuteInPlace(visibility_type* in)
 {
     if(fInitialized)
     {
         msg_debug("calibration", "executing manual p-cal for station. "<<eom);
 
-        //just copy in_vis into out_vis
-        //TODO FIXME...there is no reason we can't do this operation in place applied to in_vs
-        //but the operator interface needs to be different since we need a unary op 
-        //with separate 2 input arguments (vis array, and pcal array)
-        out_vis->Copy(*in_vis);
-
-        auto chan_ax = &(std::get<CHANNEL_AXIS>(*in_vis));
+        auto chan_ax = &(std::get<CHANNEL_AXIS>(*in));
     
         //loop over pol products
         for(auto pol_it = fPolIdxMap.begin(); pol_it != fPolIdxMap.end(); pol_it++)
@@ -134,7 +113,7 @@ MHO_ManualChannelPhaseCorrection::ExecuteImpl(const XArgType1* in_vis, const XAr
 
                 
                 //retrieve and multiply the appropriate sub view of the visibility array 
-                auto chunk = out_vis->SubView(vis_pol_idx, vis_chan_idx);
+                auto chunk = in->SubView(vis_pol_idx, vis_chan_idx);
                 chunk *= pc_phasor;
             }
         }
@@ -145,8 +124,20 @@ MHO_ManualChannelPhaseCorrection::ExecuteImpl(const XArgType1* in_vis, const XAr
         msg_warn("calibration", "manual pcal application failed, operation was not initialized. " <<eom);
         return false;
     }
+}
 
-};
+bool 
+MHO_ManualChannelPhaseCorrection::InitializeOutOfPlace(const visibility_type* in, visibility_type* out)
+{
+    InitializeInPlace(in);
+}
+
+bool 
+MHO_ManualChannelPhaseCorrection::ExecuteOutOfPlace(const visibility_type* in, visibility_type* out) 
+{
+    out->Copy(*in);
+    ExecuteInPlace(out);
+}
 
 
 }//end of namespace

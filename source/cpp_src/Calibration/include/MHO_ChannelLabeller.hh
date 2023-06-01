@@ -3,6 +3,7 @@
 
 #include <string>
 #include <map>
+#include <stack>
 
 #include "MHO_Message.hh"
 
@@ -33,7 +34,8 @@ class MHO_ChannelLabeller: public MHO_UnaryOperator< XArrayType >
         {
             //we inherited this set of 64 characters from fourfit
             fChannelChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789$%";
-
+            fBase = fChannelChars.size();
+            fIndexToChannelLabel.clear();
         };
         
         virtual ~MHO_ChannelLabeller(){};
@@ -48,12 +50,13 @@ class MHO_ChannelLabeller: public MHO_UnaryOperator< XArrayType >
             std::size_t nchans = in->GetDimension(CHANNEL_AXIS);
             //the first 64 channels are given single character labels 'a', 'b', etc.
             //if we have more than 64 channels we start labelling channels with 2-chars
-            //from this set, like: 'ab', 'ac', ... 'a%', 'ba', ...
+            //from this set, starting with 'ba', 'bc', ... 'b%', 'ca', ...
             //if we still have more than 4096 channels, we move to 3-char labels and so on.
-            
-            
-            
+            FillIndexToChannelLabel(nchans);
 
+            
+            
+            return true;
         }
         
         virtual bool InitializeOutOfPlace(const XArrayType* /*in*/, XArrayType* /*out*/) override {return true;}
@@ -62,17 +65,48 @@ class MHO_ChannelLabeller: public MHO_UnaryOperator< XArrayType >
         virtual bool ExecuteOutOfPlace(const XArrayType* in, XArrayType* out) override
         {
             out->Copy(*in);
-            ExecuteInPlace(out);
+            return ExecuteInPlace(out);
         }
 
     private:
         
+    public:
+        
+        void FillIndexToChannelLabel(std::size_t nchans)
+        {
+            fIndexToChannelLabel.clear();
+            for(std::size_t i=0; i<nchans; i++)
+            {
+                std::stack<char> cstack;
+                std::size_t q,r;
+                q = i;
+                do
+                {
+                    r = q%64; 
+                    q = q/64; 
+                    cstack.push(fChannelChars[r]);
+                }
+                while( q > 0);
+                
+                std::string ch_label = "";
+                while(cstack.size() != 0)
+                {
+                    ch_label += cstack.top();
+                    cstack.pop();
+                }
+                
+                fIndexToChannelLabel[i] = ch_label;
+                std::cout<<i<<" : "<<ch_label<<std::endl;
+            }
+        }
+        
         //user supplied channel label to frequency map (if available)
-        std::map< std::string, double > fChannelNameToFrequency; 
+        std::map< std::string, double > fChannelLabelToFrequency; 
         //legal characters in channel labels
         std::string fChannelChars;
+        std::size_t fBase;
         //channel index to channel name map
-        std::map<std::size_t, std::string > fIndexToChannelName; 
+        std::map<std::size_t, std::string > fIndexToChannelLabel; 
 };
     
     

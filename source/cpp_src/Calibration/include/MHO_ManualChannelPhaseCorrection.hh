@@ -16,38 +16,43 @@
 #include <map>
 #include <cctype>
 
+#include "MHO_Message.hh"
+#include "MHO_Constants.hh"
+
 #include "MHO_TableContainer.hh"
 #include "MHO_ContainerDefinitions.hh"
-#include "MHO_BinaryOperator.hh"
-#include "MHO_Message.hh"
+#include "MHO_UnaryOperator.hh"
+
 
 
 namespace hops
 {
 
 
-class MHO_ManualChannelPhaseCorrection: public MHO_BinaryOperator<
-    visibility_type,
-    manual_pcal_type,
-    visibility_type >
+class MHO_ManualChannelPhaseCorrection: public MHO_UnaryOperator< visibility_type >
 {
     public:
 
         MHO_ManualChannelPhaseCorrection();
         virtual ~MHO_ManualChannelPhaseCorrection();
 
-        using XArgType1 = visibility_type;
-        using XArgType2 = manual_pcal_type;
-        using XArgType3 = visibility_type;
+        void SetPhaseCorrections(const manual_pcal_type& man_pcal){fPCal = man_pcal;};
 
-        virtual bool InitializeImpl(const XArgType1* in_vis, const XArgType2* pcal, XArgType3* out_vis) override;
-        virtual bool ExecuteImpl(const XArgType1* in_vis, const XArgType2* pcal, XArgType3* out_vis) override;
+    protected:
+
+        virtual bool InitializeInPlace(visibility_type* in) override;
+        virtual bool InitializeOutOfPlace(const visibility_type* in, visibility_type* out) override;
+
+        virtual bool ExecuteInPlace(visibility_type* in) override;
+        virtual bool ExecuteOutOfPlace(const visibility_type* in, visibility_type* out) override;
 
     private:
 
+        manual_pcal_type fPCal;
+
         bool fInitialized;
 
-        //TODO FIXME migrate these to a constants header
+        //constants
         std::complex<double> fImagUnit;
         double fDegToRad;
 
