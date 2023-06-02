@@ -17,11 +17,11 @@ namespace hops
 
 class MHO_ManualChannelPhaseCorrectionBuilder: public MHO_OperatorBuilder
 {
+    public:
+        MHO_ManualChannelPhaseCorrectionBuilder(): MHO_OperatorBuilder(){};
+        virtual ~MHO_ManualChannelPhaseCorrectionBuilder(){};
 
-    MHO_ManualChannelPhaseCorrectionBuilder(): MHO_OperatorBuilder(){};
-    virtual ~MHO_ManualChannelPhaseCorrectionBuilder(){};
-
-    virtual bool Build() override;
+        virtual std::pair<std::string, MHO_Operator*> Build() override;
     
 };
 

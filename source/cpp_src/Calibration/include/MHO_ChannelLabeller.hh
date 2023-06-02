@@ -43,7 +43,7 @@ class MHO_ChannelLabeller: public MHO_UnaryOperator< XArrayType >
             fDefaultChannelChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789$%";
             fExtendedChannelChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"; //used beyond 64
             fIndexToChannelLabel.clear();
-            fEps = 1e-6; //tolerance when mapping freq to indices
+            fEps = 1e-4; //tolerance when mapping freq to indices
             fChannelLabelKey = "channel_label";
         };
         
