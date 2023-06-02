@@ -17,8 +17,7 @@ class MHO_OperatorBuilder
 
     public:
         MHO_OperatorBuilder():
-            fName(""),
-            fOper(nullptr)
+            fName("")
         {};
         
         virtual ~MHO_OperatorBuilder(){}; //does not delete fOper, delegates memory management to downstream
@@ -36,7 +35,7 @@ class MHO_OperatorBuilder
         //builds the object and sets attributes, returns a nullptr if failed
         virtual std::pair<std::string, MHO_Operator*> Build() = 0;
         
-    private:
+    protected:
 
         std::string fName;
         mho_json fConditions;
