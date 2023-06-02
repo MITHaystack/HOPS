@@ -50,7 +50,7 @@ hops_internal_include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 #compile and install library ###################################################
 
-set(MK4INTERFACE_LIBS mk4util dfio vex vex2json MHO_Message MHO_Utilities)
+set(MK4INTERFACE_LIBS mk4util dfio vex vex2json MHO_Message MHO_Utilities MHO_Containers)
 
 add_library (MHO_MK4Interface SHARED ${MK4INTERFACE_SOURCEFILES})
 target_link_libraries (MHO_MK4Interface ${MK4INTERFACE_LIBS})
