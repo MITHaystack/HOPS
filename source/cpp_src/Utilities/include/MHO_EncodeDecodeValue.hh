@@ -50,7 +50,7 @@ encode_value(const uint64_t& value, const std::string& character_set)
 }
 
 uint64_t
-decode_value(std::string& code, const std::string& character_set)
+decode_value(const std::string& code, const std::string& character_set)
 {
     uint64_t decoded_value = 0;
     std::stack<char> cstack;

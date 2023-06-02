@@ -7,9 +7,13 @@
 
 #include "MHO_Message.hh"
 
+#include "MHO_EncodeDecodeValue.hh"
+
 #include "MHO_TableContainer.hh"
 #include "MHO_ContainerDefinitions.hh"
 #include "MHO_UnaryOperator.hh"
+
+
 
 /*
 *File: MHO_ChannelLabeller.hh
@@ -17,8 +21,9 @@
 *Author: J. Barrett
 *Email: barrettj@mit.edu
 *Date:
-*Description: Applies 'fourfit' labels to each channel (e.g. a, b,...), if no map is supplied then 
-the default mapping is in order of frequency low -> high, starting with 'a'
+*Description: Applies 'fourfit' labels to each channel (e.g. a, b,...), 
+* if no user-define map is supplied then the default mapping is in order 
+* of frequency low -> high, starting with 'a'
 */
 
 
@@ -32,36 +37,108 @@ class MHO_ChannelLabeller: public MHO_UnaryOperator< XArrayType >
 
         MHO_ChannelLabeller()
         {
-            //we inherited this set of 64 characters from fourfit
-            fChannelChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789$%";
-            fBase = fChannelChars.size();
+            //we inherited the set of 64 characters from fourfit
+            //consider how we may want to change this in the future
+            #pragma message("TODO FIXME: re-think mult-char labelling scheme, what is most user friendly?")
+            fDefaultChannelChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789$%";
+            fExtendedChannelChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"; //used beyond 64
             fIndexToChannelLabel.clear();
+            fEps = 1e-6; //tolerance when mapping freq to indices
+            fChannelLabelKey = "channel_label";
         };
         
         virtual ~MHO_ChannelLabeller(){};
 
+        //allow channel freq association to use a difference tolerance
+        void SetTolerance(double tol){fEps = tol;}
+
+        //provide the option to use different character sets
+        void SetDefaultChannelChars(const std::string& ch_set){fDefaultChannelChars = ch_set;}
+        void SetExtendedChannelChars(const std::string& ex_set){fExtendedChannelChars = ex_set;}
+
+        //if there is a user provided labelling scheme, use that (i.e. chan_ids)
+        void SetChannelLabelToFrequencyMap(const std::map< std::string, double >& map)
+        {
+            fChannelLabelToFrequency = map;
+        }
+
+
+        //default encoding/decoding scheme
+        std::string EncodeValueToLabel(const uint64_t& value) const
+        {
+            if(value < fDefaultChannelChars.size()){return encode_value(value, fDefaultChannelChars);}
+            //else multi-char code
+            uint64_t j = value - fDefaultChannelChars.size() + fExtendedChannelChars.size();
+            return encode_value(j, fExtendedChannelChars);
+        }
+
+        uint64_t DecodeLabelToValue(const std::string& label) const
+        {
+            if(label.size() == 1){ return decode_value(label, fDefaultChannelChars);}
+            //else multi-char code
+            uint64_t extended_value = decode_value(label, fExtendedChannelChars);
+            extended_value -= fExtendedChannelChars.size();
+            extended_value += fDefaultChannelChars.size();
+            return extended_value;
+        }
+
     protected:
 
         virtual bool InitializeInPlace(XArrayType* in) override {return true;}
+        virtual bool InitializeOutOfPlace(const XArrayType* /*in*/, XArrayType* /*out*/) override {return true;}
 
         virtual bool ExecuteInPlace(XArrayType* in) override
         {
-            //first determine the number of channels the input array has.
-            std::size_t nchans = in->GetDimension(CHANNEL_AXIS);
-            //the first 64 channels are given single character labels 'a', 'b', etc.
-            //if we have more than 64 channels we start labelling channels with 2-chars
-            //from this set, starting with 'ba', 'bc', ... 'b%', 'ca', ...
-            //if we still have more than 4096 channels, we move to 3-char labels and so on.
-            FillIndexToChannelLabel(nchans);
+            //need to use the user provided frequency <-> channel label map
+            auto chan_axis_ptr = &( std::get<CHANNEL_AXIS>(*in) );
+            std::size_t nchans = chan_axis_ptr->GetSize();
 
-            
-            
+            if(fChannelLabelToFrequency.size() == 0)
+            {
+                std::cout<<"boo"<<std::endl;
+                //apply default channel labels
+                FillDefaultMap(nchans);
+                for(std::size_t i=0; i<nchans; i++)
+                {
+                    MHO_IntervalLabel label(i,i);
+                    label.Insert(fChannelLabelKey, fIndexToChannelLabel[i]);
+                    chan_axis_ptr->InsertLabel(label);
+                }
+            }
+            else 
+            {
+                if(fChannelLabelToFrequency.size() < nchans)
+                {
+                    msg_error("calibration", "not all channels given a user specified label, "
+                              << "some channels will remain un-labelled." << eom);
+                }
+
+                //now do a brute force search over the channel frequencies, and 
+                //determine which ones match the labels we've been given 
+                for(auto it= fChannelLabelToFrequency.begin(); it != fChannelLabelToFrequency.end(); it++)
+                {
+                    std::string ch_label = it->first;
+                    double freq = it->second;
+                    for(std::size_t i=0; i<nchans; i++)
+                    {
+                        double ch_freq = chan_axis_ptr->at(i);
+                        if( std::abs(freq - ch_freq) < fEps )
+                        {
+                            MHO_IntervalLabel label(i,i);
+                            label.Insert(fChannelLabelKey, ch_label);
+                            chan_axis_ptr->InsertLabel(label);
+                            break;
+                        }
+                    }
+                }
+
+            }
+
+            //now apply the channel labels to the data
+
             return true;
         }
-        
-        virtual bool InitializeOutOfPlace(const XArrayType* /*in*/, XArrayType* /*out*/) override {return true;}
 
-        
         virtual bool ExecuteOutOfPlace(const XArrayType* in, XArrayType* out) override
         {
             out->Copy(*in);
@@ -69,42 +146,26 @@ class MHO_ChannelLabeller: public MHO_UnaryOperator< XArrayType >
         }
 
     private:
-        
-    public:
-        
-        void FillIndexToChannelLabel(std::size_t nchans)
+
+        void FillDefaultMap(std::size_t nchans)
         {
             fIndexToChannelLabel.clear();
             for(std::size_t i=0; i<nchans; i++)
             {
-                std::stack<char> cstack;
-                std::size_t q,r;
-                q = i;
-                do
-                {
-                    r = q%64; 
-                    q = q/64; 
-                    cstack.push(fChannelChars[r]);
-                }
-                while( q > 0);
-                
-                std::string ch_label = "";
-                while(cstack.size() != 0)
-                {
-                    ch_label += cstack.top();
-                    cstack.pop();
-                }
-                
-                fIndexToChannelLabel[i] = ch_label;
-                std::cout<<i<<" : "<<ch_label<<std::endl;
+                fIndexToChannelLabel[i] = EncodeValueToLabel(i);
             }
         }
-        
+
+        //data 
+        std::string fChannelLabelKey;
+
         //user supplied channel label to frequency map (if available)
-        std::map< std::string, double > fChannelLabelToFrequency; 
+        std::map< std::string, double > fChannelLabelToFrequency;
+        double fEps;
+ 
         //legal characters in channel labels
-        std::string fChannelChars;
-        std::size_t fBase;
+        std::string fDefaultChannelChars;
+        std::string fExtendedChannelChars;
         //channel index to channel name map
         std::map<std::size_t, std::string > fIndexToChannelLabel; 
 };
