@@ -1,7 +1,7 @@
 #list header files #############################################################
 set (BUILDERS_HEADERFILES
     #calibration operators
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ManualChannelPhaseCorrectionBuilder.hh
+    #${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ManualChannelPhaseCorrectionBuilder.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ChannelLabellerBuilder.hh
 )
 
@@ -9,7 +9,7 @@ set (BUILDERS_HEADERFILES
 set( BUILDERS_SOURCEFILES
     #calibration operators
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ChannelLabellerBuilder.cc
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ManualChannelPhaseCorrectionBuilder.cc
+    #${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ManualChannelPhaseCorrectionBuilder.cc
 )
 
 #declare header paths ##########################################################
@@ -25,6 +25,6 @@ target_link_libraries (MHO_Builders ${BUILDERS_LIBS})
 hops_install_headers (${BUILDERS_HEADERFILES})
 hops_install_libraries (MHO_Builders )
 
-# if (HOPS_ENABLE_TEST)
-#     add_subdirectory(test)
-# endif (HOPS_ENABLE_TEST)
+if (HOPS_ENABLE_TEST)
+    add_subdirectory(test)
+endif (HOPS_ENABLE_TEST)

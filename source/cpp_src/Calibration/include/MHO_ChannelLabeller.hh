@@ -59,9 +59,9 @@ class MHO_ChannelLabeller: public MHO_UnaryOperator< XArrayType >
         //if there is a user provided labelling scheme, use that (i.e. chan_ids)
         void SetChannelLabelToFrequencyMap(const std::map< std::string, double >& map)
         {
+            std::cout << "got map of size: " << map.size() << '\n';
             fChannelLabelToFrequency = map;
         }
-
 
         //default encoding/decoding scheme
         std::string EncodeValueToLabel(const uint64_t& value) const
@@ -107,6 +107,7 @@ class MHO_ChannelLabeller: public MHO_UnaryOperator< XArrayType >
             }
             else 
             {
+                std::cout<<"bah"<<std::endl;
                 if(fChannelLabelToFrequency.size() < nchans)
                 {
                     msg_error("calibration", "not all channels given a user specified label, "
