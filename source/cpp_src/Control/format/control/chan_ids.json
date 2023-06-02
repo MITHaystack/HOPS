@@ -1,5 +1,15 @@
 {
-    "name": "unknown",
-    "statement_type": "unknown",
-    "type": "unknown"
+    "name": "chan_ids",
+    "statement_type": "parameter",
+    "type" : "compound",
+    "parameters":
+    {
+        "channel_names": {"type": "string"},
+        "channel_frequencies": {"type": "list_real"}
+    },
+    "fields": 
+    [
+        "channel_names", 
+        "channel_frequencies"
+    ]
 }

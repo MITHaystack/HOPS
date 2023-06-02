@@ -5,7 +5,7 @@ namespace hops
 {
 
 
-bool 
+std::pair<std::string, MHO_Operator*>
 MHO_ManualChannelPhaseCorrectionBuilder::Build()
 {
     this->fOper = new MHO_ManualChannelPhaseCorrection();

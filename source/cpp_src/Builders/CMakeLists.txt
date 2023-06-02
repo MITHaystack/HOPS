@@ -2,11 +2,13 @@
 set (BUILDERS_HEADERFILES
     #calibration operators
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ManualChannelPhaseCorrectionBuilder.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ChannelLabellerBuilder.hh
 )
 
 #list source files #############################################################
 set( BUILDERS_SOURCEFILES
     #calibration operators
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ChannelLabellerBuilder.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ManualChannelPhaseCorrectionBuilder.cc
 )
 
