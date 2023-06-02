@@ -17,14 +17,10 @@ set (UTILITIES_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_TimeStampConverter.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MultiTypeMap.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_Interval.hh
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_IntervalLabel.hh
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_IntervalLabelTree.hh
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_Taggable.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_BinaryFileStreamer.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_UUIDGenerator.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MD5HashGenerator.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_BinaryFileInterface.hh
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ObjectTags.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_DirectoryInterface.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ExtensibleElement.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_JSONHeaderWrapper.hh
@@ -42,8 +38,6 @@ set( UTILITIES_SOURCEFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_Timer.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_TimeStampConverter.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_Tokenizer.cc
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_IntervalLabel.cc
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_IntervalLabelTree.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_BinaryFileStreamer.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_UUIDGenerator.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_DirectoryInterface.cc
