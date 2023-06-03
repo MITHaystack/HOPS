@@ -29,8 +29,6 @@ class MHO_ChannelLabellerBuilder: public MHO_OperatorBuilder
 
     private:
 
-        std::vector< std::string > ParseChannelLabels(const std::string& channel_names);
-        MHO_Tokenizer fTokenizer;
 };
 
 }//end namespace
