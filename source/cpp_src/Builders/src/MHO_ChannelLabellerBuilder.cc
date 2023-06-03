@@ -2,6 +2,9 @@
 #include "MHO_ChannelLabeller.hh"
 #include "MHO_ContainerDefinitions.hh"
 
+#include "MHO_Meta.hh"
+#include "MHO_ControlUtilities.hh"
+
 #include <cstdlib>
 
 namespace hops
@@ -13,20 +16,15 @@ MHO_ChannelLabellerBuilder::Build()
 {
     MHO_ChannelLabeller<visibility_type>* op = new MHO_ChannelLabeller<visibility_type>();
 
-    //assume attributes are ok
-    //TODO add checks!
+    //assume attributes are ok for now - TODO add checks! 
     std::string op_name = fAttributes["name"].get<std::string>();
     std::string channel_name_str = fAttributes["channel_names"].get<std::string>();
     std::vector<double> chan_freqs = fAttributes["channel_frequencies"].get< std::vector<double> >();
-    std::vector< std::string > chan_names = ParseChannelLabels(channel_name_str);
+    std::vector< std::string > chan_names = SplitChannelLabels(channel_name_str);
 
     if( chan_freqs.size() == chan_names.size() )
     {
-        std::map< std::string, double> label2freq;
-        for(std::size_t i=0; i<chan_freqs.size(); i++)
-        {
-            label2freq[ chan_names[i] ] = chan_freqs[i];
-        }
+        auto label2freq = zip_into_map(chan_names, chan_freqs); //name -> freq
         op->SetChannelLabelToFrequencyMap(label2freq);
         //return a default channel labelling operator 
         return std::make_pair<std::string, MHO_Operator*>("channel_labeller", op);
@@ -35,57 +33,12 @@ MHO_ChannelLabellerBuilder::Build()
     {
         delete op;
         op = nullptr;
-        msg_error("builders", "cannot label channels with an unequal number of elements (labels, freqs) = ("
-                << chan_names.size() << ", " << chan_freqs.size() << ")" << eom );
+        msg_error("builders", "cannot label channels with an unequal number of elements " <<
+                  "(labels, freqs) = (" << chan_names.size() << ", " << chan_freqs.size() << ")"
+                  << eom );
 
         return std::make_pair<std::string, MHO_Operator*>("channel_labeller", op);
     }
-
-    // {
-    //     "name": "chan_ids",
-    //     "statement_type": "parameter",
-    //     "type" : "compound",
-    //     "parameters":
-    //     {
-    //         "channel_names": {"type": "string"},
-    //         "channel_frequencies": {"type": "list_real"}
-    //     },
-    //     "fields": 
-    //     [
-    //         "channel_names", 
-    //         "channel_frequencies"
-    //     ]
-    // }
-
-}
-
-std::vector< std::string > 
-MHO_ChannelLabellerBuilder::ParseChannelLabels(const std::string& channel_names)
-{
-    std::vector< std::string > split_channel_names;
-    std::string comma = ",";
-
-    std::cout << channel_names <<std::endl;
-    if( channel_names.find(comma) == std::string::npos )
-    {
-        //assume single char labels only, use every character as a label
-        for(std::size_t i=0; i<channel_names.size(); i++)
-        {
-            std::string chn = "";
-            chn += channel_names[i];
-            split_channel_names.push_back(chn);
-        }
-    }
-    else //assume we are using a comma delimiter for possibly multi-char labels
-    {
-        fTokenizer.SetDelimiter(comma);
-        fTokenizer.SetIncludeEmptyTokensFalse();
-        fTokenizer.SetRemoveLeadingTrailingWhitespaceTrue();
-        fTokenizer.SetString(&channel_names);
-        fTokenizer.GetTokens(&split_channel_names);
-    }
-
-    return split_channel_names;
 }
 
 
