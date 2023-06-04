@@ -5,6 +5,8 @@
 #include "MHO_Meta.hh"
 #include "MHO_ControlUtilities.hh"
 
+#include <vector>
+#include <map>
 #include <cstdlib>
 
 namespace hops

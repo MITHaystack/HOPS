@@ -18,15 +18,18 @@ MHO_ManualChannelPhaseCorrection::MHO_ManualChannelPhaseCorrection():
     fNetSidebandKey = "net_sideband";
 
     fImagUnit = MHO_Constants::imag_unit;
-    fDegToRad = MHO_Constants::deg_to_rad; 
+    fDegToRad = MHO_Constants::deg_to_rad;
 };
 
 MHO_ManualChannelPhaseCorrection::~MHO_ManualChannelPhaseCorrection(){};
 
 
-bool 
+bool
 MHO_ManualChannelPhaseCorrection::InitializeInPlace(visibility_type* in)
 {
+    return false;
+}
+    /*
     fInitialized = false;
     fPolIdxMap.clear();
     fChanIdxMap.clear();
@@ -34,7 +37,7 @@ MHO_ManualChannelPhaseCorrection::InitializeInPlace(visibility_type* in)
     //check that the p-cal data is tagged with a station-id that is a member of this baseline
     std::string station;
     pcal->Retrieve( fStationKey, station);
-    
+
     //determine if the p-cal corrections are being applied to the remote or reference station
     int pol_index = 0;
     std::string rem_station;
@@ -59,14 +62,14 @@ MHO_ManualChannelPhaseCorrection::InitializeInPlace(visibility_type* in)
         {
             auto pol = pol_ax(j);
             auto polprod = pp_ax(i);
-            make_upper(pol); 
+            make_upper(pol);
             make_upper(polprod);
             std::cout<<"pol, polprod = "<<pol<<", "<<polprod<<std::endl;
             if( pol[0] == polprod[pol_index] ){fPolIdxMap[i] = j;}
         }
     }
 
-    //map the pcal channel index to the visibility channel index 
+    //map the pcal channel index to the visibility channel index
     //(this a pointless no-op at the moment)
     #pragma message("TODO FIX/REPLACE THE PCAL <-> VISIB CHANNEL MAP!")
     auto chan_ax = std::get<CHANNEL_AXIS>(*in);
@@ -81,20 +84,26 @@ MHO_ManualChannelPhaseCorrection::InitializeInPlace(visibility_type* in)
 
     msg_debug("calibration", "initialized manual p-cal for station: "<<station<<" in baseline: "<<baseline<<"." <<eom);
 
+
     fInitialized = true;
     return true;
 }
 
+*/
 
-bool 
+
+bool
 MHO_ManualChannelPhaseCorrection::ExecuteInPlace(visibility_type* in)
 {
+    return false;
+}
+    /*
     if(fInitialized)
     {
         msg_debug("calibration", "executing manual p-cal for station. "<<eom);
 
         auto chan_ax = &(std::get<CHANNEL_AXIS>(*in));
-    
+
         //loop over pol products
         for(auto pol_it = fPolIdxMap.begin(); pol_it != fPolIdxMap.end(); pol_it++)
         {
@@ -109,34 +118,40 @@ MHO_ManualChannelPhaseCorrection::ExecuteInPlace(visibility_type* in)
                 visibility_element_type pc_phasor = std::exp( fImagUnit*pc_val*fDegToRad );
 
                 std::cout<<"PCAL value = "<<pc_val<<std::endl;
-                pc_phasor = std::conj(pc_phasor); //conjugate for USB/LSB, but not for DSB?? 
+                pc_phasor = std::conj(pc_phasor); //conjugate for USB/LSB, but not for DSB??
 
-                
-                //retrieve and multiply the appropriate sub view of the visibility array 
+
+                //retrieve and multiply the appropriate sub view of the visibility array
                 auto chunk = in->SubView(vis_pol_idx, vis_chan_idx);
                 chunk *= pc_phasor;
             }
         }
         return true;
     }
-    else 
+    else
     {
         msg_warn("calibration", "manual pcal application failed, operation was not initialized. " <<eom);
         return false;
     }
+
+    return false;
 }
 
-bool 
+*/
+
+
+bool
 MHO_ManualChannelPhaseCorrection::InitializeOutOfPlace(const visibility_type* in, visibility_type* out)
 {
-    InitializeInPlace(in);
+    return false;
+    //InitializeInPlace(in);
 }
 
-bool 
-MHO_ManualChannelPhaseCorrection::ExecuteOutOfPlace(const visibility_type* in, visibility_type* out) 
+bool
+MHO_ManualChannelPhaseCorrection::ExecuteOutOfPlace(const visibility_type* in, visibility_type* out)
 {
     out->Copy(*in);
-    ExecuteInPlace(out);
+    return ExecuteInPlace(out);
 }
 
 

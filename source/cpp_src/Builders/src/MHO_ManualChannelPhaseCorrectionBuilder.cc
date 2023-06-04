@@ -1,15 +1,27 @@
 #include "MHO_ManualChannelPhaseCorrectionBuilder.hh"
 #include "MHO_ManualChannelPhaseCorrection.hh"
 
+#include "MHO_Meta.hh"
+#include "MHO_ControlUtilities.hh"
+
+
 namespace hops
 {
 
 
-std::pair<std::string, MHO_Operator*>
+
+
+bool
 MHO_ManualChannelPhaseCorrectionBuilder::Build()
 {
-    this->fOper = new MHO_ManualChannelPhaseCorrection();
-    
+    MHO_ManualChannelPhaseCorrection* op = new MHO_ManualChannelPhaseCorrection();
+
+    //assume attributes are ok for now - TODO add checks!
+    std::string op_name = fAttributes["name"].get<std::string>();
+    std::string channel_name_str = fAttributes["channel_names"].get<std::string>();
+    std::vector<double> pc_phases = fAttributes["pc_phases"].get< std::vector<double> >();
+    std::vector< std::string > chan_names = SplitChannelLabels(channel_name_str);
+
     // {
     //     "name": "pc_phases_x",
     //     "statement_type": "parameter",
@@ -19,50 +31,37 @@ MHO_ManualChannelPhaseCorrectionBuilder::Build()
     //         "channel_names": {"type": "string"},
     //         "pc_phases": {"type": "list_real"}
     //     },
-    //     "fields": 
+    //     "fields":
     //     [
-    //         "channel_names", 
+    //         "channel_names",
     //         "pc_phases"
     //     ]
     // }
 
-}
-// public:
-// 
-//     MHO_ManualChannelPhaseCorrection();
-//     virtual ~MHO_ManualChannelPhaseCorrection();
-// 
-//     using XArgType1 = visibility_type;
-//     using XArgType2 = manual_pcal_type;
-//     using XArgType3 = visibility_type;
-// 
-//     virtual bool InitializeImpl(const XArgType1* in_vis, const XArgType2* pcal, XArgType3* out_vis) override;
-//     virtual bool ExecuteImpl(const XArgType1* in_vis, const XArgType2* pcal, XArgType3* out_vis) override;
-// 
-// private:
-    // 
-    // bool fInitialized;
-    // 
-    // //TODO FIXME migrate these to a constants header
-    // std::complex<double> fImagUnit;
-    // double fDegToRad;
-    // 
-    // //keys for tag retrieval 
-    // std::string fStationKey;
-    // std::string fRemStationKey;
-    // std::string fRefStationKey;
-    // std::string fBaselineKey;
-    // std::string fNetSidebandKey;
-    // 
-    // std::map< std::size_t, std::size_t> fPolIdxMap; //map pcal pol index to vis pol-product index
-    // std::map< std::size_t, std::size_t> fChanIdxMap; // map pcal chan index to vis chan index
-    // 
-    // //minor helper function to make sure all strings are compared as upper-case only 
-    // void make_upper(std::string& s){ for(char& c : s){c = toupper(c); };
-    
-    
-    
 
-    
+    if( pc_phases.size() == chan_names.size() )
+    {
+        auto label2pcp = zip_into_map(chan_names, pc_phases); //name -> freq
+        //op->SetChannelLabelToFrequencyMap(label2freq);
+        //return a default channel labelling operator
+
+        // bool replace_duplicates = true;
+        // MHO_OperatorToolbox::GetInstance().AddOperator(op,op_name,replace_duplicates);
+
+        return false;
+        //return true;
+    }
+    else
+    {
+        delete op;
+        op = nullptr;
+        msg_error("builders", "cannot set pc_phases with unequal number of channels/elements " <<
+                  "(channels, pc_phases) = (" << chan_names.size() << ", " << pc_phases.size() << ")"
+                  << eom );
+        return false;
+    }
+}
+
+
 
 }//end namespace

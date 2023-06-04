@@ -1,22 +1,23 @@
 #list header files #############################################################
 set (BUILDERS_HEADERFILES
     #calibration operators
-    #${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ManualChannelPhaseCorrectionBuilder.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ChannelLabellerBuilder.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ManualChannelPhaseCorrectionBuilder.hh
+
 )
 
 #list source files #############################################################
 set( BUILDERS_SOURCEFILES
     #calibration operators
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ChannelLabellerBuilder.cc
-    #${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ManualChannelPhaseCorrectionBuilder.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ManualChannelPhaseCorrectionBuilder.cc
 )
 
 #declare header paths ##########################################################
 hops_internal_include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 #list of c++ libraries
-set(BUILDERS_LIBS MHO_Message MHO_Utilities MHO_Operators MHO_Containers)
+set(BUILDERS_LIBS MHO_Message MHO_Utilities MHO_Operators MHO_Containers MHO_Control MHO_Calibration)
 
 #compile and install library ###################################################
 add_library (MHO_Builders SHARED ${BUILDERS_SOURCEFILES})
