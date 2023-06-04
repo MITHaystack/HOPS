@@ -6,6 +6,7 @@
 
 #include "MHO_Message.hh"
 #include "MHO_Operator.hh"
+#include "MHO_OperatorToolbox.hh"
 #include "MHO_JSONHeaderWrapper.hh"
 
 namespace hops 
@@ -16,15 +17,11 @@ class MHO_OperatorBuilder
 {
 
     public:
-        MHO_OperatorBuilder():
-            fName("")
-        {};
-        
-        virtual ~MHO_OperatorBuilder(){}; //does not delete fOper, delegates memory management to downstream
-        
-        virtual void SetName(const std::string& name){fName = name;} //operator name
 
-        //copy the json config
+        MHO_OperatorBuilder(){};
+        virtual ~MHO_OperatorBuilder(){}; //delegate memory management to toolbox
+
+        //copy the json config for this operator
         virtual void SetConditions(const mho_json& cond){fConditions = cond;} //required conditions
         virtual void SetAttributes(const mho_json& attr){fAttributes = attr;}; //configuration parameters
         
@@ -32,12 +29,20 @@ class MHO_OperatorBuilder
         //this is tricky since we may not have all arguments available at the time of the operator's 
         //construction, need to think about this, for now leave this out.
         
-        //builds the object and sets attributes, returns a nullptr if failed
-        virtual std::pair<std::string, MHO_Operator*> Build() = 0;
-        
+        //builds the object, if successful passes to toolbox and returns true
+        //otherwise returns false
+        virtual bool Build(const mho_json& cond, const mho_json& attr)
+        {
+            fConditions = cond;
+            fAttributes = attr;
+            return BuildImpl();
+        }
+
     protected:
 
-        std::string fName;
+        //derived class implementation
+        virtual bool BuildImpl() = 0;
+
         mho_json fConditions;
         mho_json fAttributes;
 };
