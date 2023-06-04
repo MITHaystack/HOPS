@@ -1,5 +1,7 @@
 #list header files #############################################################
 set (BUILDERS_HEADERFILES
+    #toolbox 
+    MHO_OperatorToolbox.hh
     #calibration operators
     #${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ManualChannelPhaseCorrectionBuilder.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ChannelLabellerBuilder.hh

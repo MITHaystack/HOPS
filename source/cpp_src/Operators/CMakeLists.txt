@@ -2,6 +2,7 @@
 #list header files #############################################################
 set (OPERATOR_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_Operator.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_OperatorToolbox.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_UnaryOperator.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_InspectingOperator.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_TransformingOperator.hh
