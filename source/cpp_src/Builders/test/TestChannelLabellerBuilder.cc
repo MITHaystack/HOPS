@@ -17,9 +17,9 @@ using namespace hops;
 //         "channel_names": {"type": "string"},
 //         "channel_frequencies": {"type": "list_real"}
 //     },
-//     "fields": 
+//     "fields":
 //     [
-//         "channel_names", 
+//         "channel_names",
 //         "channel_frequencies"
 //     ]
 // }
@@ -31,7 +31,7 @@ int main(int argc, char** argv)
     MHO_Message::GetInstance().SetMessageLevel(eDebug);
 
     std::string chan_ids = "abcdefghijklmnopqrstuvwxyzABCDEF";
-    std::vector< double > freqs = 
+    std::vector< double > freqs =
     {
         215979.203125, 215920.609375, 215862.015625, 215803.421875,
         215744.828125, 215686.234375, 215627.640625, 215569.046875,
@@ -53,11 +53,9 @@ int main(int argc, char** argv)
     builder.SetAttributes(attrib);
 
 
-    auto name_op = builder.Build();
-
-    auto virt_op = name_op.second;
-
-    MHO_ChannelLabeller<visibility_type>* op = dynamic_cast< MHO_ChannelLabeller<visibility_type>* >(virt_op);
+    bool ok = builder.Build();
+    std::string name = "chan_ids";
+    auto op = MHO_OperatorToolbox::GetInstance().GetOperatorAs< MHO_ChannelLabeller<visibility_type> >(name);
 
     if(op != nullptr)
     {
@@ -89,7 +87,10 @@ int main(int argc, char** argv)
             }
             else{std::cout<<"unlabelled channel present"<<std::endl;}
         }
+
+        return 0;
     }
 
-    return 0;
+    //error
+    return 1;
 }

@@ -9,7 +9,7 @@
 #include "MHO_OperatorToolbox.hh"
 #include "MHO_JSONHeaderWrapper.hh"
 
-namespace hops 
+namespace hops
 {
 
 
@@ -24,24 +24,16 @@ class MHO_OperatorBuilder
         //copy the json config for this operator
         virtual void SetConditions(const mho_json& cond){fConditions = cond;} //required conditions
         virtual void SetAttributes(const mho_json& attr){fAttributes = attr;}; //configuration parameters
-        
+
         //how should we pass information about the arguments? //names? uuids? pointers?
-        //this is tricky since we may not have all arguments available at the time of the operator's 
+        //this is tricky since we may not have all arguments available at the time of the operator's
         //construction, need to think about this, for now leave this out.
-        
+
         //builds the object, if successful passes to toolbox and returns true
         //otherwise returns false
-        virtual bool Build(const mho_json& cond, const mho_json& attr)
-        {
-            fConditions = cond;
-            fAttributes = attr;
-            return BuildImpl();
-        }
+        virtual bool Build() = 0;
 
     protected:
-
-        //derived class implementation
-        virtual bool BuildImpl() = 0;
 
         mho_json fConditions;
         mho_json fAttributes;

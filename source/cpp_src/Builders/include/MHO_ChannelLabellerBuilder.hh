@@ -5,7 +5,7 @@
 *File: MHO_ChannelLabellerBuilder.hh
 *Class: MHO_ChannelLabellerBuilder
 *Author:
-*Email: 
+*Email:
 *Date:
 *Description:
 */
@@ -25,7 +25,7 @@ class MHO_ChannelLabellerBuilder: public MHO_OperatorBuilder
         MHO_ChannelLabellerBuilder(): MHO_OperatorBuilder(){};
         virtual ~MHO_ChannelLabellerBuilder(){};
 
-        virtual std::pair<std::string, MHO_Operator*> Build() override;
+        virtual bool Build() override;
 
     private:
 

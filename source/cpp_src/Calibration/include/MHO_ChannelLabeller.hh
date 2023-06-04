@@ -21,8 +21,8 @@
 *Author: J. Barrett
 *Email: barrettj@mit.edu
 *Date:
-*Description: Applies 'fourfit' labels to each channel (e.g. a, b,...), 
-* if no user-define map is supplied then the default mapping is in order 
+*Description: Applies 'fourfit' labels to each channel (e.g. a, b,...),
+* if no user-define map is supplied then the default mapping is in order
 * of frequency low -> high, starting with 'a'
 */
 
@@ -30,7 +30,7 @@
 namespace hops
 {
 
-template< typename XArrayType > 
+template< typename XArrayType >
 class MHO_ChannelLabeller: public MHO_UnaryOperator< XArrayType >
 {
     public:
@@ -46,7 +46,7 @@ class MHO_ChannelLabeller: public MHO_UnaryOperator< XArrayType >
             fEps = 1e-4; //tolerance when mapping freq to indices
             fChannelLabelKey = "channel_label";
         };
-        
+
         virtual ~MHO_ChannelLabeller(){};
 
         //allow channel freq association to use a difference tolerance
@@ -59,7 +59,6 @@ class MHO_ChannelLabeller: public MHO_UnaryOperator< XArrayType >
         //if there is a user provided labelling scheme, use that (i.e. chan_ids)
         void SetChannelLabelToFrequencyMap(const std::map< std::string, double >& map)
         {
-            std::cout << "got map of size: " << map.size() << '\n';
             fChannelLabelToFrequency = map;
         }
 
@@ -95,7 +94,6 @@ class MHO_ChannelLabeller: public MHO_UnaryOperator< XArrayType >
 
             if(fChannelLabelToFrequency.size() == 0)
             {
-                std::cout<<"boo"<<std::endl;
                 //apply default channel labels
                 FillDefaultMap(nchans);
                 for(std::size_t i=0; i<nchans; i++)
@@ -105,17 +103,16 @@ class MHO_ChannelLabeller: public MHO_UnaryOperator< XArrayType >
                     chan_axis_ptr->InsertLabel(label);
                 }
             }
-            else 
+            else
             {
-                std::cout<<"bah"<<std::endl;
                 if(fChannelLabelToFrequency.size() < nchans)
                 {
                     msg_error("calibration", "not all channels given a user specified label, "
                               << "some channels will remain un-labelled." << eom);
                 }
 
-                //now do a brute force search over the channel frequencies, and 
-                //determine which ones match the labels we've been given 
+                //now do a brute force search over the channel frequencies, and
+                //determine which ones match the labels we've been given
                 for(auto it= fChannelLabelToFrequency.begin(); it != fChannelLabelToFrequency.end(); it++)
                 {
                     std::string ch_label = it->first;
@@ -157,21 +154,21 @@ class MHO_ChannelLabeller: public MHO_UnaryOperator< XArrayType >
             }
         }
 
-        //data 
+        //data
         std::string fChannelLabelKey;
 
         //user supplied channel label to frequency map (if available)
         std::map< std::string, double > fChannelLabelToFrequency;
         double fEps;
- 
+
         //legal characters in channel labels
         std::string fDefaultChannelChars;
         std::string fExtendedChannelChars;
         //channel index to channel name map
-        std::map<std::size_t, std::string > fIndexToChannelLabel; 
+        std::map<std::size_t, std::string > fIndexToChannelLabel;
 };
-    
-    
+
+
 } //end of namespace
 
 #endif /* end of include guard: MHO_ChannelLabeller_HH__ */
