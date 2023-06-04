@@ -11,6 +11,7 @@ set (CONTROL_HEADERFILES
 
 set (CONTROL_SOURCEFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ControlDefinitions.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ControlUtilities.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ControlFileParser.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ControlElementParser.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ControlTokenProcessor.cc

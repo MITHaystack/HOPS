@@ -5,7 +5,7 @@
 *File: MHO_ManualChannelPhaseCorrectionBuilder.hh
 *Class: MHO_ManualChannelPhaseCorrectionBuilder
 *Author:
-*Email: 
+*Email:
 *Date:
 *Description:
 */
@@ -21,8 +21,8 @@ class MHO_ManualChannelPhaseCorrectionBuilder: public MHO_OperatorBuilder
         MHO_ManualChannelPhaseCorrectionBuilder(): MHO_OperatorBuilder(){};
         virtual ~MHO_ManualChannelPhaseCorrectionBuilder(){};
 
-        virtual std::pair<std::string, MHO_Operator*> Build() override;
-    
+        virtual bool Build() override;
+
 };
 
 }//end namespace
