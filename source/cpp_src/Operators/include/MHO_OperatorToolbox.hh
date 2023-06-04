@@ -19,9 +19,15 @@ namespace hops
 {
 
 
-//uses the singleton pattern 
+//uses the singleton pattern
 class MHO_OperatorToolbox
 {
+    private:
+        MHO_OperatorToolbox(){}
+        virtual ~MHO_OperatorToolbox(){Clear();}
+        static MHO_OperatorToolbox* fInstance; //static global class instance
+
+
     public:
         //since this is a singleton we need to remove ability to copy/move
         MHO_OperatorToolbox(MHO_OperatorToolbox const&) = delete;
@@ -42,10 +48,13 @@ class MHO_OperatorToolbox
             auto it = fOperators.find(name);
             if(replace_duplicate)
             {
-                if(it != fOperators.end()){delete *it; *it = nullptr;}
+                if(it != fOperators.end())
+                {
+                    delete it->second;
+                }
                 fOperators[name] = op;
             }
-            else 
+            else
             {
                 if(it == fOperators.end()){fOperators[name] = op;}
             }
@@ -56,10 +65,10 @@ class MHO_OperatorToolbox
         {
             MHO_Operator* ptr = nullptr;
             auto it = fOperators.find(name);
-            if(*it != fOperators.end()){ptr = *it;}
+            if(it != fOperators.end()){ptr = it->second;}
             return ptr;
         }
-        
+
         //retrieval, with case to specific type, is missing returns nullptr
         template < typename XOperatorType >
         XOperatorType* GetOperatorAs(const std::string& name)
@@ -75,10 +84,18 @@ class MHO_OperatorToolbox
 
     private:
 
-        MHO_OperatorToolbox():{};
-        virtual ~MHO_OperatorToolbox(){};
 
-        static MHO_OperatorToolbox* fInstance; //static global class instance
+
+        void Clear()
+        {
+            //delete all the operators
+            for(auto it = fOperators.begin(); it != fOperators.end(); it++)
+            {
+                delete it->second;
+            }
+            fOperators.clear();
+        };
+
 
         std::map< std::string, MHO_Operator* > fOperators;
 

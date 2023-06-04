@@ -11,12 +11,12 @@ namespace hops
 {
 
 
-std::pair<std::string, MHO_Operator*>
+bool
 MHO_ChannelLabellerBuilder::Build()
 {
     MHO_ChannelLabeller<visibility_type>* op = new MHO_ChannelLabeller<visibility_type>();
 
-    //assume attributes are ok for now - TODO add checks! 
+    //assume attributes are ok for now - TODO add checks!
     std::string op_name = fAttributes["name"].get<std::string>();
     std::string channel_name_str = fAttributes["channel_names"].get<std::string>();
     std::vector<double> chan_freqs = fAttributes["channel_frequencies"].get< std::vector<double> >();
@@ -26,18 +26,21 @@ MHO_ChannelLabellerBuilder::Build()
     {
         auto label2freq = zip_into_map(chan_names, chan_freqs); //name -> freq
         op->SetChannelLabelToFrequencyMap(label2freq);
-        //return a default channel labelling operator 
-        return std::make_pair<std::string, MHO_Operator*>("channel_labeller", op);
+        //return a default channel labelling operator
+
+        bool replace_duplicates = true;
+        MHO_OperatorToolbox::GetInstance().AddOperator(op,op_name,replace_duplicates);
+
+        return true;
     }
-    else 
+    else
     {
         delete op;
         op = nullptr;
         msg_error("builders", "cannot label channels with an unequal number of elements " <<
                   "(labels, freqs) = (" << chan_names.size() << ", " << chan_freqs.size() << ")"
                   << eom );
-
-        return std::make_pair<std::string, MHO_Operator*>("channel_labeller", op);
+        return false;
     }
 }
 

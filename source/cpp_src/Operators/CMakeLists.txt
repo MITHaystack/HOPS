@@ -34,13 +34,14 @@ endif(HOPS_USE_FFTW3)
 
 set( OPERATOR_SOURCEFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_Operator.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_OperatorToolbox.cc
 )
 
 #declare header paths ##########################################################
 hops_internal_include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 #compile and install library ###################################################
-set(OPERATOR_LIBS MHO_Message MHO_Math MHO_Containers) 
+set(OPERATOR_LIBS MHO_Message MHO_Math MHO_Containers)
 
 if(HOPS_USE_FFTW3)
     list(APPEND OPERATOR_LIBS ${FFTW_LIBRARIES} ${FFTW_SINGLE_LIBRARIES} ${FFTW_LONG_LIBRARIES})
