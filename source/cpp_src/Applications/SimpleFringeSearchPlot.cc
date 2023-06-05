@@ -224,7 +224,9 @@ int main(int argc, char** argv)
     ////////////////////////////////////////////////////////////////////////////
     //LOAD DATA AND ASSEMBLY THE DATA LIBRARY
     ////////////////////////////////////////////////////////////////////////////
-    MHO_ContainerStore* conStore = scanStore.LoadBaseline(baseline);
+    MHO_ContainerStore* conStore = new MHO_ContainerStore();
+    scanStore.LoadBaseline(baseline, conStore);
+    
     if(conStore == nullptr)
     {
         msg_fatal("main", "Could not find a file for baseline: "<< baseline << eom);
@@ -602,6 +604,8 @@ int main(int argc, char** argv)
     ff_test.attr("fourfit_plot")(plot_obj, "fplot.png");
 
     */
+
+    delete conStore;
 
     return 0;
 }
