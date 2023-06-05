@@ -57,8 +57,8 @@ class MHO_ContainerStore
         MHO_Serializable* RetrieveObject(const std::string& type_uuid, const std::string& object_uuid);
         MHO_Serializable* RetrieveObject(const MHO_UUID& type_uuid, const MHO_UUID& object_uuid);
 
-        template < typename XRetrieveClassType > 
-        XRetrieveClassType* RetrieveObject(std::string object_uuid = "");
+        template < typename XClassType > 
+        XClassType* RetrieveObject(std::string object_uuid = "");
     
         //just grab the first object of a specific type, nullptr on fail
         MHO_Serializable* RetrieveFirstObjectMatchingType(const MHO_FileKey& key);
@@ -73,7 +73,8 @@ class MHO_ContainerStore
         void GetAllTypeUUIDs(std::vector<MHO_UUID>& type_ids) const;
         void GetAllObjectUUIDsOfType(const MHO_UUID& type_id, std::vector<MHO_UUID>& obj_ids) const;
 
-        //destroy and object in the store
+        //destroy an object in the store
+        template < typename XClassType > void DeleteObject(XClassType* obj_ptr);
         void DeleteObject(const MHO_FileKey& key);
         void DeleteObject(const std::string& type_uuid, const std::string& object_uuid);
         void DeleteObject(const MHO_UUID& type_uuid, const MHO_UUID& object_uuid);
@@ -95,14 +96,14 @@ class MHO_ContainerStore
 };
 
 
-template < typename XRetrieveClassType > 
-XRetrieveClassType* 
+template < typename XClassType > 
+XClassType* 
 MHO_ContainerStore::RetrieveObject(std::string object_uuid)
 {
     //get the type id for this object 
-    std::string type_uuid = fDictionary.GetUUIDFor<XRetrieveClassType>().as_string();
+    std::string type_uuid = fDictionary.GetUUIDFor<XClassType>().as_string();
     MHO_Serializable* ser_obj = nullptr;
-    XRetrieveClassType* obj = nullptr;
+    XClassType* obj = nullptr;
 
     if(object_uuid != "")
     {
@@ -116,10 +117,33 @@ MHO_ContainerStore::RetrieveObject(std::string object_uuid)
 
     if(ser_obj)
     {
-        obj = dynamic_cast<XRetrieveClassType*>(ser_obj);
+        obj = dynamic_cast<XClassType*>(ser_obj);
     }
     
     return obj;
+}
+
+
+template < typename XClassType > 
+void 
+MHO_ContainerStore::DeleteObject(XClassType* obj_ptr)
+{
+    MHO_Serializable* base_ptr = static_cast<MHO_Serializable*>(obj_ptr);
+    
+    //get the type id for this object 
+    MHO_UUID type_id = fDictionary.GetUUIDFor<XClassType>();
+    auto it1 = fObjects.find(type_id);
+    if( it1 != fObjects.end() )
+    {
+        for(auto it2 = it1->second.begin(); it2 != it1->second.end(); it2++)
+        {
+            if( base_ptr == it2->second )
+            {
+                delete it2->second;
+                it1->second.erase(it2);
+            }
+        }
+    }
 }
 
 

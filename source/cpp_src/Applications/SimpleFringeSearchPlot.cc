@@ -53,8 +53,54 @@ using namespace hops;
 
 void configure_data_library(MHO_ContainerStore* store, mho_json* data_lib)
 {
+    //retrieve the (first) visibility and weight objects
+    //(currently assuming there is only one object per type)
+    visibility_store_type* vis_store_data = nullptr;
+    weight_store_type* wt_store_data = nullptr;
 
+    vis_store_data = store->RetrieveObject<visibility_store_type>();
+    wt_store_data = store->RetrieveObject<weight_store_type>();
 
+    if(vis_store_data == nullptr)
+    {
+        msg_fatal("main", "failed to read visibility data from the .cor file." <<eom);
+        std::exit(1);
+    }
+
+    if(wt_store_data == nullptr)
+    {
+        msg_fatal("main", "failed to read weight data from the .cor file." <<eom);
+        std::exit(1);
+    }
+
+    visibility_type* vis_data = new visibility_type();
+    weight_type* wt_data = new weight_type();
+
+    MHO_ElementTypeCaster<visibility_store_type, visibility_type> up_caster;
+    up_caster.SetArgs(vis_store_data, vis_data);
+    up_caster.Initialize();
+    up_caster.Execute();
+
+    MHO_ElementTypeCaster< weight_store_type, weight_type> wt_up_caster;
+    wt_up_caster.SetArgs(wt_store_data, wt_data);
+    wt_up_caster.Initialize();
+    wt_up_caster.Execute();
+
+    //now shove the up-casted data into the container store and remove the
+    //original objects 
+    
+    // MHO_UUID vis_type_uuid = ;
+    // MHO_UUID vis_obj_uuid;
+    // MHO_UUID wt_type_uuid;
+    // MHO_UUID wt_obj_uuid;
+    // 
+    // store->AddContainerObject(vis_data, vis_type_uuid, vis_obj_uuid, std::string("visib"),0)
+    // store->AddContainerObject(wt_data, wt_type_uuid, wt_obj_uuid, std::string("weights"),0)
+    // bool AddContainerObject(MHO_Serializable* obj, 
+    //                         const MHO_UUID& type_uuid, 
+    //                         const MHO_UUID& object_uuid,
+    //                         std::string shortname = "",
+    //                         uint32_t label = 0);
 
     // dataLibrary["data_library_type"] = "single_baseline";
     // dataLibrary["visibilities"] = 
@@ -68,13 +114,13 @@ void configure_data_library(MHO_ContainerStore* store, mho_json* data_lib)
 int main(int argc, char** argv)
 {
 
-    std::string usage = "SimpleFringeSearch -d <directory> -c <control file> -b <baseline> -p <pol. product>";
+    std::string usage = "SimpleFringeSearchPlot -d <directory> -c <control file> -b <baseline> -p <pol. product>";
 
     MHO_Message::GetInstance().AcceptAllKeys();
     MHO_Message::GetInstance().SetMessageLevel(eDebug);
 
     MHO_Snapshot::GetInstance().AcceptAllKeys();
-    MHO_Snapshot::GetInstance().SetExecutableName(std::string("SimpleFringeSearch"));
+    MHO_Snapshot::GetInstance().SetExecutableName(std::string("SimpleFringeSearchPlot"));
 
     std::string directory = "";
     std::string control_file = "";
@@ -186,7 +232,7 @@ int main(int argc, char** argv)
     }
     mho_json dataLibrary;
     
-    configure_data_library(conStore, &dataLibrary);
+    //configure_data_library(conStore, &dataLibrary);
 
     //retrieve the (first) visibility and weight objects
     //(currently assuming there is only one object per type)
