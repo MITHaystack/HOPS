@@ -5,7 +5,7 @@
 *File: MHO_ManualChannelPhaseCorrection.hh
 *Class: MHO_ManualChannelPhaseCorrection
 *Author:
-*Email: 
+*Email:
 *Date:
 *Description:
 */
@@ -36,7 +36,12 @@ class MHO_ManualChannelPhaseCorrection: public MHO_UnaryOperator< visibility_typ
         MHO_ManualChannelPhaseCorrection();
         virtual ~MHO_ManualChannelPhaseCorrection();
 
-        void SetPhaseCorrections(const manual_pcal_type& man_pcal){fPCal = man_pcal;};
+        void SetStation(std::string station){fStationCode = station;}; //2-char station code
+        void SetStationMk4ID(std::string station_id){fMk4ID = station_id;} //1-char mk4id
+        void SetPolarization(const std::string& pol){fPol = pol; make_upper(fPol);};
+
+         //channel label -> pc_phases
+        void SetChannelToPCPhaseMap(const std::map< std::string, double >& map){fPCMap = map;};
 
     protected:
 
@@ -48,25 +53,30 @@ class MHO_ManualChannelPhaseCorrection: public MHO_UnaryOperator< visibility_typ
 
     private:
 
-        manual_pcal_type fPCal;
-
-        bool fInitialized;
+        std::size_t DetermineStationIndex(const visibility_type* in);
+        bool PolMatch(std::size_t station_idx, std::string& polprod);
 
         //constants
         std::complex<double> fImagUnit;
         double fDegToRad;
 
-        //keys for tag retrieval 
+        //selection
+        std::string fStationCode;
+        std::string fMk4ID;
+        std::string fPol;
+
+        //channel label -> pcal phases
+        std::map< std::string, double > fPCMap;
+
+        //keys for tag retrieval
         std::string fStationKey;
         std::string fRemStationKey;
         std::string fRefStationKey;
-        std::string fBaselineKey;
-        std::string fNetSidebandKey;
+        std::string fRemStationMk4IDKey;
+        std::string fRefStationMk4IDKey;
+        std::string fChannelLabelKey;
 
-        std::map< std::size_t, std::size_t> fPolIdxMap; //map pcal pol index to vis pol-product index
-        std::map< std::size_t, std::size_t> fChanIdxMap; // map pcal chan index to vis chan index
-
-        //minor helper function to make sure all strings are compared as upper-case only 
+        //minor helper function to make sure all strings are compared as upper-case only
         void make_upper(std::string& s){ for(char& c : s){c = toupper(c); };
     }
 

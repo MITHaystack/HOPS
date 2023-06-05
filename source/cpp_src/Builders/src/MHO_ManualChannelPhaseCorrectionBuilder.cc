@@ -8,13 +8,9 @@
 namespace hops
 {
 
-
-
-
 bool
 MHO_ManualChannelPhaseCorrectionBuilder::Build()
 {
-    MHO_ManualChannelPhaseCorrection* op = new MHO_ManualChannelPhaseCorrection();
 
     //assume attributes are ok for now - TODO add checks!
     std::string op_name = fAttributes["name"].get<std::string>();
@@ -38,23 +34,26 @@ MHO_ManualChannelPhaseCorrectionBuilder::Build()
     //     ]
     // }
 
+    std::string pol = "X";
+    std::string mk4id = "E";
 
     if( pc_phases.size() == chan_names.size() )
     {
-        auto label2pcp = zip_into_map(chan_names, pc_phases); //name -> freq
-        //op->SetChannelLabelToFrequencyMap(label2freq);
-        //return a default channel labelling operator
+        MHO_ManualChannelPhaseCorrection* op = new MHO_ManualChannelPhaseCorrection();
 
-        // bool replace_duplicates = true;
-        // MHO_OperatorToolbox::GetInstance().AddOperator(op,op_name,replace_duplicates);
+        auto chan2pcp = zip_into_map(chan_names, pc_phases); //name -> freq
+        op->SetChannelToPCPhaseMap(chan2pcp);
+        op->SetPolarization(pol);
+        op->SetStationMk4ID(mk4id);
 
-        return false;
-        //return true;
+        bool replace_duplicates = false;
+        MHO_OperatorToolbox::GetInstance().AddOperator(op,op_name,replace_duplicates);
+
+        return true;
+
     }
     else
     {
-        delete op;
-        op = nullptr;
         msg_error("builders", "cannot set pc_phases with unequal number of channels/elements " <<
                   "(channels, pc_phases) = (" << chan_names.size() << ", " << pc_phases.size() << ")"
                   << eom );
