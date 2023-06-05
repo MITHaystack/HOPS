@@ -73,6 +73,11 @@ class MHO_ContainerStore
         void GetAllTypeUUIDs(std::vector<MHO_UUID>& type_ids) const;
         void GetAllObjectUUIDsOfType(const MHO_UUID& type_id, std::vector<MHO_UUID>& obj_ids) const;
 
+        //destroy and object in the store
+        void DeleteObject(const MHO_FileKey& key);
+        void DeleteObject(const std::string& type_uuid, const std::string& object_uuid);
+        void DeleteObject(const MHO_UUID& type_uuid, const MHO_UUID& object_uuid);
+
 
     protected:
 

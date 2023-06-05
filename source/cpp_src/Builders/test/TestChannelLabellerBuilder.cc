@@ -52,7 +52,7 @@ int main(int argc, char** argv)
     attrib["channel_names"] = chan_ids;
     attrib["channel_frequencies"] = freqs;
 
-    MHO_ChannelLabellerBuilder builder(&toolbox, &store);
+    MHO_ChannelLabellerBuilder builder(&toolbox);
     builder.SetAttributes(attrib);
 
     bool ok = builder.Build();

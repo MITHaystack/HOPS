@@ -51,6 +51,20 @@ using namespace pybind11::literals;
 using namespace hops;
 
 
+void configure_data_library(MHO_ContainerStore* store, mho_json* data_lib)
+{
+
+
+
+    // dataLibrary["data_library_type"] = "single_baseline";
+    // dataLibrary["visibilities"] = 
+    // dataLibrary["weights"] = 
+    // dataLibrary["reference_station_data"] =
+    // dataLibrary["remote_station_data"] = 
+    // dataLibrary["object_tags"] =
+    
+}
+
 int main(int argc, char** argv)
 {
 
@@ -142,16 +156,10 @@ int main(int argc, char** argv)
     mho_json::json_pointer src_jptr(src_loc);
     std::string srcName = vexInfo.at(src_jptr).get<std::string>();
 
-    MHO_ContainerStore* conStore = scanStore.LoadBaseline(baseline);
 
-    if(conStore == nullptr)
-    {
-        msg_fatal("main", "Could not find a file for baseline: "<< baseline << eom);
-        std::exit(1);
-    }
 
     ////////////////////////////////////////////////////////////////////////////
-    //CONTROL BLOCK CONSTRUCTION
+    //CONTROL CONSTRUCTION
     ////////////////////////////////////////////////////////////////////////////
     MHO_ControlFileParser cparser;
     MHO_ControlConditionEvaluator ceval;
@@ -164,15 +172,24 @@ int main(int argc, char** argv)
     control_statements = ceval.GetApplicableStatements(control_contents);
 
     //now we need to process the control statements (this means setting parameters and constructing any related operators)
-
-
     double ref_freq = 6000.0;
 
-    ////////////////////////////////////////////////////////////////////////////
-    //LOAD DATA
-    ////////////////////////////////////////////////////////////////////////////
 
-    //retrieve the (first) visibility and weight objects (currently assuming there is only one object per type)
+    ////////////////////////////////////////////////////////////////////////////
+    //LOAD DATA AND ASSEMBLY THE DATA LIBRARY
+    ////////////////////////////////////////////////////////////////////////////
+    MHO_ContainerStore* conStore = scanStore.LoadBaseline(baseline);
+    if(conStore == nullptr)
+    {
+        msg_fatal("main", "Could not find a file for baseline: "<< baseline << eom);
+        std::exit(1);
+    }
+    mho_json dataLibrary;
+    
+    configure_data_library(conStore, &dataLibrary);
+
+    //retrieve the (first) visibility and weight objects
+    //(currently assuming there is only one object per type)
     visibility_store_type* bl_store_data = nullptr;
     weight_store_type* wt_store_data = nullptr;
 
@@ -180,7 +197,6 @@ int main(int argc, char** argv)
     weight_type wt_data_obj;
     visibility_type* bl_data = &bl_data_obj;
     weight_type* wt_data = &wt_data_obj;
-
     MHO_ObjectTags* tags = nullptr;
 
     bl_store_data = conStore->RetrieveObject<visibility_store_type>();
@@ -214,8 +230,11 @@ int main(int argc, char** argv)
     wt_up_caster.Initialize();
     wt_up_caster.Execute();
 
-    std::size_t wt_dim[weight_type::rank::value];
-    wt_data->GetDimensions(wt_dim);
+    ////////////////////////////////////////////////////////////////////////////
+    //OPERATOR CONSTRUCTION
+    ////////////////////////////////////////////////////////////////////////////
+
+    
 
     ////////////////////////////////////////////////////////////////////////////
     //APPLY COARSE DATA SELECTION

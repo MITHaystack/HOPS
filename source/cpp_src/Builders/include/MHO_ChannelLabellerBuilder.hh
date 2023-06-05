@@ -19,8 +19,8 @@ class MHO_ChannelLabellerBuilder: public MHO_OperatorBuilder
 {
     public:
         
-        MHO_ChannelLabellerBuilder(MHO_OperatorToolbox* toolbox, MHO_ContainerStore* store):
-            MHO_OperatorBuilder(toolbox, store)
+        MHO_ChannelLabellerBuilder(MHO_OperatorToolbox* toolbox):
+            MHO_OperatorBuilder(toolbox)
             {};
             
         virtual ~MHO_ChannelLabellerBuilder(){};

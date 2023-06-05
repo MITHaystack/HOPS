@@ -235,5 +235,38 @@ MHO_ContainerStore::GetObjectNameLabel(const MHO_UUID& type_uuid, const MHO_UUID
 }
 
 
+void MHO_ContainerStore::DeleteObject(const MHO_FileKey& key)
+{
+    MHO_UUID type_id = key.fTypeId;
+    MHO_UUID obj_id = key.fObjectId;
+    DeleteObject(type_id, obj_id);
+}
+
+void 
+MHO_ContainerStore::DeleteObject(const std::string& type_uuid, const std::string& object_uuid)
+{
+    MHO_UUID type_id;
+    bool ok1 = type_id.from_string(type_uuid);
+    MHO_UUID obj_id;
+    bool ok2 = obj_id.from_string(object_uuid);
+    if(ok1 && ok2){DeleteObject(type_id, obj_id);}
+
+}
+
+void 
+MHO_ContainerStore::DeleteObject(const MHO_UUID& type_uuid, const MHO_UUID& object_uuid)
+{
+    auto it = fObjects.find(type_uuid);
+    if( it != fObjects.end() )
+    {
+        auto it2 = it->second.find(object_uuid);
+        if( it2 != it->second.end() )
+        {
+            delete it2->second;
+            it->second.erase(it2);
+        }
+    }
+}
+
 
 } //end of namespace
