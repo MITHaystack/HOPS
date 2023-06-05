@@ -137,44 +137,44 @@ MHO_ScanDataStore::GetRootFileData()
     return vex_info;
 }
 
-MHO_ContainerStore*
-MHO_ScanDataStore::LoadBaseline(std::string baseline)
+void
+MHO_ScanDataStore::LoadBaseline(std::string baseline, MHO_ContainerStore* store)
 {
     auto it = fBaselineFileMap.find(baseline);
     if(it != fBaselineFileMap.end() )
     {
 
         //read the entire file into memory (obviously we will want to optimize this in the future)
-        MHO_ContainerStore* conStore = new MHO_ContainerStore();
+        //MHO_ContainerStore* store = new MHO_ContainerStore();
         MHO_ContainerFileInterface conInter;
         conInter.SetFilename(it->second);
-        conInter.PopulateStoreFromFile(*conStore); //reads in ALL the objects in the file
+        conInter.PopulateStoreFromFile(*store); //reads in ALL the objects in the file
 
-        fActiveBaselineContainers[baseline] = conStore;
-        return conStore;
+        //fActiveBaselineContainers[baseline] = store;
+        // return store;
     }
     msg_warn("containers", "attempted to load baseline: "<< baseline <<" which does not exist." << eom);
-    return nullptr;
+    // return nullptr;
 }
 
-MHO_ContainerStore*
-MHO_ScanDataStore::LoadStation(std::string station)
+void
+MHO_ScanDataStore::LoadStation(std::string station, MHO_ContainerStore* store)
 {
     auto it = fStationFileMap.find(station);
     if(it != fStationFileMap.end() )
     {
 
         //read the entire file into memory (obviously we will want to optimize this in the future)
-        MHO_ContainerStore* conStore = new MHO_ContainerStore();
+        // MHO_ContainerStore* store = new MHO_ContainerStore();
         MHO_ContainerFileInterface conInter;
         conInter.SetFilename(it->second);
-        conInter.PopulateStoreFromFile(*conStore); //reads in ALL the objects in the file
-
-        fActiveStationContainers[station] = conStore;
-        return conStore;
+        conInter.PopulateStoreFromFile(*store); //reads in ALL the objects in the file
+        // 
+        // fActiveStationContainers[station] = store;
+        // return store;
     }
     msg_warn("containers", "attempted to load station: "<< station <<" which does not exist." << eom);
-    return nullptr;
+    // return nullptr;
 }
 
 
@@ -182,14 +182,14 @@ void
  MHO_ScanDataStore::Clear()
  {
      //delete open station containers
-     for(auto it = fActiveStationContainers.begin(); it != fActiveStationContainers.end(); it++){ delete it->second;}
-     fActiveStationContainers.clear();
+     // for(auto it = fActiveStationContainers.begin(); it != fActiveStationContainers.end(); it++){ delete it->second;}
+     // fActiveStationContainers.clear();
      fStationCodes.clear();
      fStationFileMap.clear();
 
      //delete open baseline containers
-     for(auto it = fActiveBaselineContainers.begin(); it != fActiveBaselineContainers.end(); it++){ delete it->second;}
-     fActiveBaselineContainers.clear();
+     // for(auto it = fActiveBaselineContainers.begin(); it != fActiveBaselineContainers.end(); it++){ delete it->second;}
+     // fActiveBaselineContainers.clear();
      fBaselineCodes.clear();
      fBaselineFileMap.clear();
 

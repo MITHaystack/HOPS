@@ -122,7 +122,8 @@ int main(int argc, char** argv)
 
     //load root file and container store for this baseline
     mho_json vexInfo = scanStore.GetRootFileData();
-    MHO_ContainerStore* conStore = scanStore.LoadBaseline(baseline);
+    MHO_ContainerStore* conStore = new MHO_ContainerStore;
+    scanStore.LoadBaseline(baseline, conStore);
 
     if(conStore == nullptr)
     {
@@ -511,7 +512,7 @@ int main(int argc, char** argv)
 
     #endif
 
-
+    delete conStore;
 
     return 0;
 }
