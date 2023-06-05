@@ -19,8 +19,8 @@ class MHO_ManualChannelPhaseCorrectionBuilder: public MHO_OperatorBuilder
 {
     public:
         
-        MHO_ManualChannelPhaseCorrectionBuilder(MHO_OperatorToolbox* toolbox, MHO_ContainerStore* store):
-            MHO_OperatorBuilder(toolbox,store)
+        MHO_ManualChannelPhaseCorrectionBuilder(MHO_OperatorToolbox* toolbox):
+            MHO_OperatorBuilder(toolbox)
             {};
             
         virtual ~MHO_ManualChannelPhaseCorrectionBuilder(){};

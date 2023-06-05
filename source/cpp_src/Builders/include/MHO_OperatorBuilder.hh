@@ -19,20 +19,22 @@ class MHO_OperatorBuilder
 
     public:
 
-        MHO_OperatorBuilder(MHO_OperatorToolbox* toolbox, MHO_ContainerStore* store):
+        MHO_OperatorBuilder(MHO_OperatorToolbox* toolbox):
             fOperatorToolbox(toolbox),
-            fContainerStore(store)
+            fContainerStore(nullptr),
+            fDataLibrary(nullptr)
             {};
             
         virtual ~MHO_OperatorBuilder(){}; //delegate memory management to toolbox
         
         //json description of the data library for this pass
-        //the library maps argument names to object UUID
+        //the library maps argument names to an object UUID
         //which can then be used to be retrieve an object from the scan data store
-        virtual void SetDataLibrary(const mho_json& lib){fDataLibrary = lib;} 
+        virtual void SetDataLibrary(mho_json* lib){fDataLibrary = lib;} 
+        virtual void SetContainerStore(MHO_ContainerStore* store){fContainerStore = store;}
 
         //json config for this operator (parse from the control file)
-        virtual void SetConditions(const mho_json& cond){fConditions = cond;} //required conditions
+        virtual void SetConditions(const mho_json& cond){fConditions = cond;} //conditional statements
         virtual void SetAttributes(const mho_json& attr){fAttributes = attr;}; //configuration parameters
 
         //builds the object, if successful passes to toolbox and returns true
@@ -41,10 +43,14 @@ class MHO_OperatorBuilder
 
     protected:
         
+        //constructed operator gets stashed here
         MHO_OperatorToolbox* fOperatorToolbox;
-        MHO_ContainerStore* fContainerStore;
 
-        mho_json fDataLibrary;
+        //container store and data look-up library (for retrieval and setting of arguments)
+        MHO_ContainerStore* fContainerStore;
+        mho_json* fDataLibrary;
+
+        //provided for the configuration of the operator that is to be built
         mho_json fConditions;
         mho_json fAttributes;
 };

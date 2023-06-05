@@ -61,7 +61,7 @@ int main(int argc, char** argv)
     attrib["channel_names"] = chan_ids;
     attrib["pc_phases"] = pc_phases;
 
-    MHO_ManualChannelPhaseCorrectionBuilder builder(&toolbox, &store);
+    MHO_ManualChannelPhaseCorrectionBuilder builder(&toolbox);
     builder.SetAttributes(attrib);
     builder.SetConditions(conditions);
 
