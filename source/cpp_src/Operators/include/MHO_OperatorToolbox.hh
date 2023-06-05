@@ -18,29 +18,12 @@
 namespace hops
 {
 
-
-//uses the singleton pattern
 class MHO_OperatorToolbox
 {
-    private:
+    public:
+
         MHO_OperatorToolbox(){}
         virtual ~MHO_OperatorToolbox(){Clear();}
-        static MHO_OperatorToolbox* fInstance; //static global class instance
-
-
-    public:
-        //since this is a singleton we need to remove ability to copy/move
-        MHO_OperatorToolbox(MHO_OperatorToolbox const&) = delete;
-        MHO_OperatorToolbox(MHO_OperatorToolbox&&) = delete;
-        MHO_OperatorToolbox& operator=(MHO_OperatorToolbox const&) = delete;
-        MHO_OperatorToolbox& operator=(MHO_OperatorToolbox&&) = delete;
-
-        //provide public access to the only static instance
-        static MHO_OperatorToolbox& GetInstance()
-        {
-            if(fInstance == nullptr){fInstance = new MHO_OperatorToolbox();}
-            return *fInstance;
-        }
 
         //insertion
         void AddOperator(MHO_Operator* op, const std::string& name, bool replace_duplicate=true)
@@ -83,8 +66,6 @@ class MHO_OperatorToolbox
         }
 
     private:
-
-
 
         void Clear()
         {

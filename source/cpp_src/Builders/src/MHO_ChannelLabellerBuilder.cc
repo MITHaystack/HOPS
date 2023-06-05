@@ -41,7 +41,7 @@ MHO_ChannelLabellerBuilder::Build()
         //return a default channel labelling operator
 
         bool replace_duplicates = true;
-        MHO_OperatorToolbox::GetInstance().AddOperator(op,op_name,replace_duplicates);
+        this->fOperatorToolbox->AddOperator(op,op_name,replace_duplicates);
 
         return true;
     }

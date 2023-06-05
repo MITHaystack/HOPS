@@ -2,7 +2,6 @@
 #include "MHO_ManualChannelPhaseCorrection.hh"
 
 #include "MHO_Meta.hh"
-#include "MHO_ControlUtilities.hh"
 #include "MHO_Tokenizer.hh"
 
 namespace hops
@@ -44,7 +43,7 @@ MHO_ManualChannelPhaseCorrectionBuilder::Build()
         op->SetStationMk4ID(mk4id);
 
         bool replace_duplicates = false;
-        MHO_OperatorToolbox::GetInstance().AddOperator(op,op_name,replace_duplicates);
+        this->fOperatorToolbox->AddOperator(op,op_name,replace_duplicates);
 
         return true;
 
