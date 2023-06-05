@@ -55,12 +55,13 @@ MHO_ManualChannelPhaseCorrection::ExecuteInPlace(visibility_type* in)
                 {
                     std::size_t ch = ilabel->GetLowerBound();
                     visibility_element_type pc_phasor = std::exp( fImagUnit*pc_val*fDegToRad );
-
-                    std::cout<<"PCAL value = "<<pc_val<<std::endl;
                     pc_phasor = std::conj(pc_phasor); //conjugate for USB/LSB, TODO - but not for DSB??
+
+                    std::cout<<"PCAL value = "<<chan_label<<" : "<<ch<<" : "<<pc_val<<" : "<<pc_phasor<<std::endl;
 
                     //retrieve and multiply the appropriate sub view of the visibility array
                     auto chunk = in->SubView(pp, ch);
+                    std::cout<<"chunk size = "<<chunk.GetSize()<<std::endl;
                     chunk *= pc_phasor;
                 }
             }
@@ -84,20 +85,21 @@ MHO_ManualChannelPhaseCorrection::DetermineStationIndex(const visibility_type* i
 {
     //determine if the p-cal corrections are being applied to the remote or reference station
     std::string val;
-    if(fStationCode != "")//seletion by 2-char station code
-    {
-        in->Retrieve(fRemStationKey, val);
-        if(fStationCode == val){return 1;}
-        in->Retrieve(fRefStationKey, val);
-        if(fStationCode == val){return 0;}
-    }
-
+    
     if(fMk4ID != "") //selection by mk4 id
     {
         in->Retrieve(fRemStationMk4IDKey, val);
         if(fMk4ID == val){return 1;}
         in->Retrieve(fRefStationMk4IDKey, val);
         if(fMk4ID == val){return 0;}
+    }
+    
+    if(fStationCode != "")//seletion by 2-char station code
+    {
+        in->Retrieve(fRemStationKey, val);
+        if(fStationCode == val){return 1;}
+        in->Retrieve(fRefStationKey, val);
+        if(fStationCode == val){return 0;}
     }
 
     msg_warn("calibration", "manual pcal, remote/reference station do not match selection."<< eom );

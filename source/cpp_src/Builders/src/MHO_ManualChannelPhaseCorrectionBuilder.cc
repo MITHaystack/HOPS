@@ -18,24 +18,11 @@ MHO_ManualChannelPhaseCorrectionBuilder::Build()
     std::vector<double> pc_phases = fAttributes["pc_phases"].get< std::vector<double> >();
     std::vector< std::string > chan_names = SplitChannelLabels(channel_name_str);
 
-    // {
-    //     "name": "pc_phases_x",
-    //     "statement_type": "parameter",
-    //     "type" : "compound",
-    //     "parameters":
-    //     {
-    //         "channel_names": {"type": "string"},
-    //         "pc_phases": {"type": "list_real"}
-    //     },
-    //     "fields":
-    //     [
-    //         "channel_names",
-    //         "pc_phases"
-    //     ]
-    // }
-
-    std::string pol = "X";
-    std::string mk4id = "E";
+    std::string pol = ParsePolFromName(op_name);
+    std::string mk4id = ExtractStationMk4ID();
+    op_name = "pc_phases";
+    
+    std::cout<<"pol = "<<pol<<" station mk4id = "<<mk4id<<std::endl;
 
     if( pc_phases.size() == chan_names.size() )
     {
@@ -61,6 +48,36 @@ MHO_ManualChannelPhaseCorrectionBuilder::Build()
     }
 }
 
+std::string
+MHO_ManualChannelPhaseCorrectionBuilder::ParsePolFromName(const std::string& name)
+{
+    if(name == "pc_phases_x"){return std::string("X");}
+    if(name == "pc_phases_y"){return std::string("Y");}
+    if(name == "pc_phases_r"){return std::string("R");}
+    if(name == "pc_phases_l"){return std::string("L");}
+    return std::string("?");
+}
+
+
+std::string
+MHO_ManualChannelPhaseCorrectionBuilder::ExtractStationMk4ID()
+{
+    std::string station_id = "?";
+    std::vector< std::string > condition_values = fConditions["value"].get< std::vector< std::string > >();
+
+    for(auto it = condition_values.begin(); it != condition_values.end(); it++)
+    {
+         //grab the first station ID in the 'if' statement
+         //this is ok 99% of the time, but what about if there is statement like: 'if station X or station X'?
+         //would then need to check that this station is a member of this pass too, and if not use the next
+        if(*it == "station")
+        {
+            it++;
+            if(it != condition_values.end()){station_id = *it; return station_id;}
+        }
+    }
+    return station_id;
+}
 
 
 }//end namespace
