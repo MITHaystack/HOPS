@@ -44,7 +44,7 @@ MHO_ContainerFileInterface::PopulateStoreFromFile(MHO_ContainerStore& store)
         if(!ok){msg_error("containers", "could not extract file object keys" << eom); return;}
     }
 
-    //open file and read each object, and stuff it in the storerary
+    //open file and read each object, and stuff it in the store
     ok = fFileInterface.OpenToRead(fFilename);
     if(!ok)
     {
