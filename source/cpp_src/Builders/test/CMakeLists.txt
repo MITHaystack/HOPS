@@ -8,6 +8,7 @@ set (HOPS_TEST_LIBS
 
 set(SOURCE_BASENAMES
     TestChannelLabellerBuilder
+    TestManualChannelPhaseCorrectionBuilder
 )
 
 foreach( BASENAME ${SOURCE_BASENAMES} )

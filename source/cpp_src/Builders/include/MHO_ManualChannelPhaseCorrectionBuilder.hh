@@ -22,7 +22,11 @@ class MHO_ManualChannelPhaseCorrectionBuilder: public MHO_OperatorBuilder
         virtual ~MHO_ManualChannelPhaseCorrectionBuilder(){};
 
         virtual bool Build() override;
-
+        
+    private:
+        
+        std::string ParsePolFromName(const std::string& name);
+        std::string ExtractStationMk4ID();
 };
 
 }//end namespace
