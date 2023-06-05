@@ -29,6 +29,16 @@ MHO_IntervalLabelTree::InsertLabel(const MHO_IntervalLabel& label)
     fIntervals.push_back( new MHO_IntervalLabel(label) );
 }
 
+void
+MHO_IntervalLabelTree::ClearLabels()
+{
+    for(auto it = fIntervals.begin(); it != fIntervals.end(); it++)
+    {
+        delete *it;
+    }
+    fIntervals.clear();
+}
+
 std::vector< MHO_IntervalLabel* >
 MHO_IntervalLabelTree::GetIntervalsWithKey(const std::string& key)
 {

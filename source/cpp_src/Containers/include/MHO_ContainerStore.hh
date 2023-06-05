@@ -77,7 +77,7 @@ class MHO_ContainerStore
     protected:
 
         //object dictionary...currently we only have one dictionary implementation
-        //however, we may in the future want to allow the use to pass a custom dictionary implementation 
+        //however, we may in the future want to allow the user to pass a custom dictionary implementation 
         //if they have additional classes they want to serialize which are not already supported 
         MHO_ContainerDictionary fDictionary;
 

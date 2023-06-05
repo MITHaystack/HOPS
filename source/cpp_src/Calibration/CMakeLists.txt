@@ -1,5 +1,6 @@
 #list header files #############################################################
 set (CALIBRATION_HEADERFILES
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ChannelLabeller.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_VisibilityChannelizer.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_WeightChannelizer.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ManualChannelPhaseCorrection.hh

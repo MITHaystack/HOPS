@@ -5,7 +5,7 @@
 *File: MHO_ManualChannelPhaseCorrection.hh
 *Class: MHO_ManualChannelPhaseCorrection
 *Author:
-*Email: 
+*Email:
 *Date:
 *Description:
 */
@@ -16,52 +16,67 @@
 #include <map>
 #include <cctype>
 
+#include "MHO_Message.hh"
+#include "MHO_Constants.hh"
+
 #include "MHO_TableContainer.hh"
 #include "MHO_ContainerDefinitions.hh"
-#include "MHO_BinaryOperator.hh"
-#include "MHO_Message.hh"
+#include "MHO_UnaryOperator.hh"
+
 
 
 namespace hops
 {
 
 
-class MHO_ManualChannelPhaseCorrection: public MHO_BinaryOperator<
-    visibility_type,
-    manual_pcal_type,
-    visibility_type >
+class MHO_ManualChannelPhaseCorrection: public MHO_UnaryOperator< visibility_type >
 {
     public:
 
         MHO_ManualChannelPhaseCorrection();
         virtual ~MHO_ManualChannelPhaseCorrection();
 
-        using XArgType1 = visibility_type;
-        using XArgType2 = manual_pcal_type;
-        using XArgType3 = visibility_type;
+        void SetStation(std::string station){fStationCode = station;}; //2-char station code
+        void SetStationMk4ID(std::string station_id){fMk4ID = station_id;} //1-char mk4id
+        void SetPolarization(const std::string& pol){fPol = pol; make_upper(fPol);};
 
-        virtual bool InitializeImpl(const XArgType1* in_vis, const XArgType2* pcal, XArgType3* out_vis) override;
-        virtual bool ExecuteImpl(const XArgType1* in_vis, const XArgType2* pcal, XArgType3* out_vis) override;
+         //channel label -> pc_phases
+        void SetChannelToPCPhaseMap(const std::map< std::string, double >& map){fPCMap = map;};
+
+    protected:
+
+        virtual bool InitializeInPlace(visibility_type* in) override;
+        virtual bool InitializeOutOfPlace(const visibility_type* in, visibility_type* out) override;
+
+        virtual bool ExecuteInPlace(visibility_type* in) override;
+        virtual bool ExecuteOutOfPlace(const visibility_type* in, visibility_type* out) override;
 
     private:
 
-        bool fInitialized;
+        std::size_t DetermineStationIndex(const visibility_type* in);
+        bool PolMatch(std::size_t station_idx, std::string& polprod);
 
-        //TODO FIXME migrate these to a constants header
+        //constants
         std::complex<double> fImagUnit;
         double fDegToRad;
 
-        //keys for tag retrieval 
+        //selection
+        std::string fStationCode;
+        std::string fMk4ID;
+        std::string fPol;
+
+        //channel label -> pcal phases
+        std::map< std::string, double > fPCMap;
+
+        //keys for tag retrieval
         std::string fStationKey;
         std::string fRemStationKey;
         std::string fRefStationKey;
-        std::string fBaselineKey;
-        std::string fNetSidebandKey;
+        std::string fRemStationMk4IDKey;
+        std::string fRefStationMk4IDKey;
+        std::string fChannelLabelKey;
 
-        std::map< std::size_t, std::size_t> fPolIdxMap; //map pcal pol index to vis pol-product index
-        std::map< std::size_t, std::size_t> fChanIdxMap; // map pcal chan index to vis chan index
-
-        //minor helper function to make sure all strings are compared as upper-case only 
+        //minor helper function to make sure all strings are compared as upper-case only
         void make_upper(std::string& s){ for(char& c : s){c = toupper(c); };
     }
 
