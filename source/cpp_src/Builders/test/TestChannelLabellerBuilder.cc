@@ -43,19 +43,21 @@ int main(int argc, char** argv)
         214338.578125, 214279.984375, 214221.390625, 214162.796875
     };
 
+    MHO_OperatorToolbox toolbox;
+    MHO_ContainerStore store;
+
     mho_json attrib;
 
     attrib["name"] = "chan_ids";
     attrib["channel_names"] = chan_ids;
     attrib["channel_frequencies"] = freqs;
 
-    MHO_ChannelLabellerBuilder builder;
+    MHO_ChannelLabellerBuilder builder(&toolbox, &store);
     builder.SetAttributes(attrib);
-
 
     bool ok = builder.Build();
     std::string name = "chan_ids";
-    auto op = MHO_OperatorToolbox::GetInstance().GetOperatorAs< MHO_ChannelLabeller<visibility_type> >(name);
+    auto op = toolbox.GetOperatorAs< MHO_ChannelLabeller<visibility_type> >(name);
 
     if(op != nullptr)
     {

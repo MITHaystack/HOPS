@@ -34,7 +34,6 @@ endif(HOPS_USE_FFTW3)
 
 set( OPERATOR_SOURCEFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_Operator.cc
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_OperatorToolbox.cc
 )
 
 #declare header paths ##########################################################

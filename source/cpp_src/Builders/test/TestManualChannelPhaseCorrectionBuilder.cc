@@ -33,6 +33,9 @@ int main(int argc, char** argv)
     MHO_Message::GetInstance().AcceptAllKeys();
     MHO_Message::GetInstance().SetMessageLevel(eDebug);
     
+    MHO_OperatorToolbox toolbox;
+    MHO_ContainerStore store;
+    
     //construct some trivial visibilities
     visibility_type vis;
     vis.Insert( std::string("reference_station_mk4id"), std::string("E") );
@@ -58,13 +61,13 @@ int main(int argc, char** argv)
     attrib["channel_names"] = chan_ids;
     attrib["pc_phases"] = pc_phases;
 
-    MHO_ManualChannelPhaseCorrectionBuilder builder;
+    MHO_ManualChannelPhaseCorrectionBuilder builder(&toolbox, &store);
     builder.SetAttributes(attrib);
     builder.SetConditions(conditions);
 
     bool ok = builder.Build();
     std::string name = "pc_phases";
-    auto op = MHO_OperatorToolbox::GetInstance().GetOperatorAs< MHO_ManualChannelPhaseCorrection >(name);
+    auto op = toolbox.GetOperatorAs< MHO_ManualChannelPhaseCorrection >(name);
 
     if(op != nullptr)
     {

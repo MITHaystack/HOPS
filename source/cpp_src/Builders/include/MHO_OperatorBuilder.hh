@@ -7,6 +7,7 @@
 #include "MHO_Message.hh"
 #include "MHO_Operator.hh"
 #include "MHO_OperatorToolbox.hh"
+#include "MHO_ContainerStore.hh"
 #include "MHO_JSONHeaderWrapper.hh"
 
 namespace hops
@@ -18,23 +19,32 @@ class MHO_OperatorBuilder
 
     public:
 
-        MHO_OperatorBuilder(){};
+        MHO_OperatorBuilder(MHO_OperatorToolbox* toolbox, MHO_ContainerStore* store):
+            fOperatorToolbox(toolbox),
+            fContainerStore(store)
+            {};
+            
         virtual ~MHO_OperatorBuilder(){}; //delegate memory management to toolbox
+        
+        //json description of the data library for this pass
+        //the library maps argument names to object UUID
+        //which can then be used to be retrieve an object from the scan data store
+        virtual void SetDataLibrary(const mho_json& lib){fDataLibrary = lib;} 
 
-        //copy the json config for this operator
+        //json config for this operator (parse from the control file)
         virtual void SetConditions(const mho_json& cond){fConditions = cond;} //required conditions
         virtual void SetAttributes(const mho_json& attr){fAttributes = attr;}; //configuration parameters
-
-        //how should we pass information about the arguments? //names? uuids? pointers?
-        //this is tricky since we may not have all arguments available at the time of the operator's
-        //construction, need to think about this, for now leave this out.
 
         //builds the object, if successful passes to toolbox and returns true
         //otherwise returns false
         virtual bool Build() = 0;
 
     protected:
+        
+        MHO_OperatorToolbox* fOperatorToolbox;
+        MHO_ContainerStore* fContainerStore;
 
+        mho_json fDataLibrary;
         mho_json fConditions;
         mho_json fAttributes;
 };
