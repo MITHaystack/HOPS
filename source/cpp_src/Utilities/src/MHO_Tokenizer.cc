@@ -198,5 +198,30 @@ MHO_Tokenizer::TrimLeadingAndTrailingWhitespace(const std::string& value)
     return ret_val;
 }
 
-}//end namespace 
 
+std::vector< std::string > 
+SplitString(const std::string& input, std::string delim)
+{
+    std::vector< std::string > split;
+    if(delim == "") //split string at every character
+    {
+        for(std::size_t i=0; i<input.size(); i++)
+        {
+            std::string c = "";
+            c += input[i];
+            split.push_back(c);
+        }
+    }
+    else //split at delimiter
+    {
+        MHO_Tokenizer tokenizer;
+        tokenizer.SetDelimiter(delim);
+        tokenizer.SetIncludeEmptyTokensFalse();
+        tokenizer.SetRemoveLeadingTrailingWhitespaceTrue();
+        tokenizer.SetString(&input);
+        tokenizer.GetTokens(&split);
+    }
+    return split;
+}
+
+}//end namespace 

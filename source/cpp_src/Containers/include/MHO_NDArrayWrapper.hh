@@ -213,17 +213,17 @@ class MHO_NDArrayWrapper:
         template <typename ...XIndexTypeS >
         typename std::enable_if<
             (sizeof...(XIndexTypeS) < RANK),
-            MHO_NDArrayWrapper<XValueType, RANK - ( sizeof...(XIndexTypeS) ) >
+            MHO_NDArrayView<XValueType, RANK - ( sizeof...(XIndexTypeS) ) >
         >::type
         SubView(XIndexTypeS...idx)
         {
+            constexpr typename std::integral_constant< std::size_t, sizeof...(XIndexTypeS) > nfixed_t;
             std::array<std::size_t, sizeof...(XIndexTypeS) > leading_idx = {{static_cast<size_t>(idx)...}};
             for(std::size_t i=0; i<RANK; i++){fTmp[i] = 0;}
             for(std::size_t i=0; i<leading_idx.size(); i++){fTmp[i] = leading_idx[i];}
             std::size_t offset = MHO_NDArrayMath::OffsetFromStrideIndex<RANK>(&(fStrides[0]), &(fTmp[0]));
-            std::array<std::size_t, RANK - (sizeof...(XIndexTypeS)) > dim;
-            for(std::size_t i=0; i<dim.size(); i++){dim[i] = fDims[i + (sizeof...(XIndexTypeS) )];}
-            return  MHO_NDArrayWrapper<XValueType, RANK - ( sizeof...(XIndexTypeS) ) >( &(fData[offset]), &(dim[0]) );
+            return  MHO_NDArrayView<XValueType, RANK - ( sizeof...(XIndexTypeS) ) >( &(fData[offset]), &(fDims[nfixed_t]), &(fStrides[nfixed_t]) );
+            
         }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -242,8 +242,7 @@ class MHO_NDArrayWrapper:
         >::type
         SliceView(XIndexTypeS...idx)
         {
-            typedef std::integral_constant< std::size_t, count_instances_of_type< const char*, sizeof...(XIndexTypeS)-1, XIndexTypeS... >::value > nfree_t;
-            typedef std::integral_constant< std::size_t, RANK - count_instances_of_type< const char*, sizeof...(XIndexTypeS)-1, XIndexTypeS... >::value > nfixed_t;
+            constexpr typename std::integral_constant< std::size_t, count_instances_of_type< const char*, sizeof...(XIndexTypeS)-1, XIndexTypeS... >::value > nfree_t;
 
             class index_filler
             {
@@ -280,14 +279,14 @@ class MHO_NDArrayWrapper:
 
             std::size_t offset = MHO_NDArrayMath::OffsetFromRowMajorIndex<RANK>(&(fDims[0]), &( filler.full_idx[0]));
 
-            std::array<std::size_t, nfree_t::value > dim;
-            std::array<std::size_t, nfree_t::value > strides;
+            std::array<std::size_t, nfree_t > dim;
+            std::array<std::size_t, nfree_t > strides;
             for(std::size_t i=0; i<dim.size(); i++)
             {
                 dim[i] = fDims[ filler.free_idx[i] ];
                 strides[i] = fStrides[ filler.free_idx[i] ];
             }
-            return  MHO_NDArrayView<XValueType, nfree_t::value >( &(fData[offset]), &(dim[0]), &(strides[0]) );
+            return  MHO_NDArrayView<XValueType, nfree_t >( &(fData[offset]), &(dim[0]), &(strides[0]) );
         }
 
 ////////////////////////////////////////////////////////////////////////////////
