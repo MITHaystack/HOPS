@@ -80,6 +80,16 @@ class MHO_Tokenizer{
         std::vector< std::pair< std::size_t, std::size_t>  > fQuotePairIndexes;
 };
 
+
+
+//fuction which splits a single string into a vector of tokens
+//if the default (no delimiter) is used, then each character is split into a new token
+//otherwise the string is split on the specified delimiter
+std::vector< std::string > SplitString(const std::string& input, std::string delim = "");
+
+
+
+
 } // end of hops namespace
 
 #endif /* end of include guard: MHO_Tokenizer */

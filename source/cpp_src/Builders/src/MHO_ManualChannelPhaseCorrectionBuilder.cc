@@ -3,7 +3,7 @@
 
 #include "MHO_Meta.hh"
 #include "MHO_ControlUtilities.hh"
-
+#include "MHO_Tokenizer.hh"
 
 namespace hops
 {
@@ -16,7 +16,17 @@ MHO_ManualChannelPhaseCorrectionBuilder::Build()
     std::string op_name = fAttributes["name"].get<std::string>();
     std::string channel_name_str = fAttributes["channel_names"].get<std::string>();
     std::vector<double> pc_phases = fAttributes["pc_phases"].get< std::vector<double> >();
-    std::vector< std::string > chan_names = SplitChannelLabels(channel_name_str);
+
+    std::vector< std::string > chan_names;
+    if(channel_name_str.find(",") != std::string::npos)
+    {
+        chan_names= SplitString(channel_name_str, std::string(",")); //split on commas
+    }
+    else 
+    {
+        chan_names= SplitString(channel_name_str); //split every char
+    }
+
 
     std::string pol = ParsePolFromName(op_name);
     std::string mk4id = ExtractStationMk4ID();
