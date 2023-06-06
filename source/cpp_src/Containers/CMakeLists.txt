@@ -40,7 +40,6 @@ set( CONTAINER_SOURCEFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_IntervalLabel.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_IntervalLabelTree.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ContainerDictionary.cc
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ContainerStore.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ContainerFileInterface.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ScanDataStore.cc
 )
