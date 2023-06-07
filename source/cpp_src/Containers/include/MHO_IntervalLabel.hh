@@ -132,6 +132,15 @@ class MHO_IntervalLabel:
             cm_stream_exporter<XStream, std::string>(s, *this);
         };
 
+        virtual MHO_UUID DetermineTypeUUID() const override
+        {
+            MHO_MD5HashGenerator gen;
+            gen.Initialize();
+            std::string name = MHO_ClassIdentity::ClassName(*this);
+            gen << name;
+            gen.Finalize();
+            return gen.GetDigestAsUUID();
+        }
 
 };
 
