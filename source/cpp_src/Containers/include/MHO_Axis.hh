@@ -211,6 +211,16 @@ class MHO_Axis:
             s << static_cast< const MHO_VectorContainer< XValueType >& >(*this);
             s << static_cast< const MHO_IntervalLabelTree& >(*this);
         }
+        
+        virtual MHO_UUID DetermineTypeUUID() const override
+        {
+            MHO_MD5HashGenerator gen;
+            gen.Initialize();
+            std::string name = MHO_ClassIdentity::ClassName(*this);
+            gen << name;
+            gen.Finalize();
+            return gen.GetDigestAsUUID();
+        }
 
 
 };

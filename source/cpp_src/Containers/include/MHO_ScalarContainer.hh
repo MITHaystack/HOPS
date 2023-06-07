@@ -115,6 +115,16 @@ class MHO_ScalarContainer:
             s << this->fData;
             s << static_cast< const MHO_Taggable& >(*this);
         };
+        
+        virtual MHO_UUID DetermineTypeUUID() const override
+        {
+            MHO_MD5HashGenerator gen;
+            gen.Initialize();
+            std::string name = MHO_ClassIdentity::ClassName(*this);
+            gen << name;
+            gen.Finalize();
+            return gen.GetDigestAsUUID();
+        }
     
     protected:
 

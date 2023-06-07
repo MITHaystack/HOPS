@@ -63,7 +63,7 @@ MHO_ContainerFileInterface::PopulateStoreFromFile(MHO_ContainerStore& store)
             MHO_Serializable* obj = factory->second->BuildFromFileInterface(fFileInterface);
             if(obj != nullptr)
             {
-                store.AddObject(key,obj);
+                store.AddObject(obj); //store.AddObject(key,obj);
             }
             else 
             {
