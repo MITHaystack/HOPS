@@ -58,6 +58,7 @@ MHO_ContainerStore::IsObjectPresent(const MHO_UUID& obj_id) const
 MHO_Serializable* 
 MHO_ContainerStore::GetObject(const MHO_UUID& obj_id)
 {
+    //this is a slow  O(N) way to take care of this
     MHO_Serializable* ptr = nullptr;
     for(auto it = fIdsToObjects.begin(); it != fIdsToObjects.end(); it++)
     {
@@ -70,6 +71,15 @@ MHO_ContainerStore::GetObject(const MHO_UUID& obj_id)
         }
     }
     return ptr;
+}
+
+bool 
+MHO_ContainerStore::DeleteObject(const MHO_UUID& obj_id)
+{
+    MHO_Serializable* ptr = GetObject(obj_id);
+    if(ptr == nullptr){return false;}
+    DeleteObject<MHO_Serializable>(ptr);
+    return true;
 }
 
 

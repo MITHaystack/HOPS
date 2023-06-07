@@ -56,22 +56,20 @@ int main(int argc, char** argv)
     //MHO_Serializable* generic
 
     visibility_type* vis = conStore.GetObject<visibility_type>(0); //get the first object with this type
+    if(vis != nullptr)
+    {
+        std::cout<<"success, we have located a visibility object" <<std::endl;
+        /* we can now do some data manipulation with the vis object... */
+    }
 
-    // if(generic != nullptr)
-    // {
-    //     visibility_type* vis = dynamic_cast<visibility_type*>(generic);
-        if(vis != nullptr)
-        {
-            std::cout<<"success, we have located a visibility object" <<std::endl;
-            /* we can now do some data manipulation with the vis object... */
-        }
-    // }
 
     //convert the entire store to mho_json 
     mho_json root;
     conInter.ConvertStoreToJSON(conStore,root,eJSONTags);
 
     std::cout<< root.dump(2) <<std::endl;
+
+    conStore.Clear();
 
     return 0;
 }
