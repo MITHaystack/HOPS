@@ -52,6 +52,8 @@ class MHO_ContainerStore
         bool IsObjectPresent(const MHO_UUID& obj_id) const;
         //get an object via uuid (returns nullptr if not present)
         MHO_Serializable* GetObject(const MHO_UUID& obj_id);
+        //destroy an object in the store by uuid, returns true if successful
+        bool DeleteObject(const MHO_UUID& obj_id);
         //get every type uuid present
         void GetAllTypeUUIDs(std::vector< MHO_UUID >& type_ids);
         //get every object uuid associated with the type
