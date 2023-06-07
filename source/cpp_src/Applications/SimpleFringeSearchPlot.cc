@@ -101,12 +101,13 @@ void configure_data_library(MHO_ContainerStore* store)
     store->DeleteObject(vis_store_data);
     store->DeleteObject(wt_store_data);
 
-    //now shove the double precision data into the container store with the correct shortname
+    #pragma message("TODO - if we plan to rely on short-names to identify objects, we need to validate them here")
+    //TODO make sure that the visibility object is called 'vis' and weights are called 'weights', etc.
+    //TODO also validate the station data
+    
+    //now shove the double precision data into the container store with the same shortname
     store->AddObject(vis_data);
     store->AddObject(wt_data);
-    
-    if(vis_shortname != "visib"){vis_shortname = "visib";}
-    if(wt_shortname != "weights"){wt_shortname = "weights";} 
     store->SetShortName(vis_data->GetObjectUUID(), vis_shortname);
     store->SetShortName(wt_data->GetObjectUUID(), wt_shortname);
 }
@@ -201,7 +202,6 @@ int main(int argc, char** argv)
     mho_json::json_pointer src_jptr(src_loc);
     std::string srcName = vexInfo.at(src_jptr).get<std::string>();
 
-
     ////////////////////////////////////////////////////////////////////////////
     //CONTROL CONSTRUCTION
     ////////////////////////////////////////////////////////////////////////////
@@ -229,14 +229,33 @@ int main(int argc, char** argv)
     
     if(conStore == nullptr)
     {
-        msg_fatal("main", "Could not find a file for baseline: "<< baseline << eom);
+        msg_fatal("main", "could not find a file for baseline: "<< baseline << eom);
         std::exit(1);
     }
     
     configure_data_library(conStore);
     
-    visibility_type* vis_data = conStore->GetObject<visibility_type>(0);
-    weight_type* wt_data = conStore->GetObject<weight_type>(0);
+    auto visID = conStore->GetObjectUUID(std::string("vis"));
+    auto wtID = conStore->GetObjectUUID(std::string("weight"));
+    
+    if( visID.is_empty() || wtID.is_empty() )
+    {
+        msg_fatal("main", "could not find visibility or weight objects with names (vis, weight)." << eom);
+        std::exit(1);
+    }
+    
+    visibility_type* vis_data = conStore->GetObject<visibility_type>(visID);
+    weight_type* wt_data = conStore->GetObject<weight_type>(wtID);
+    
+    ////////////////////////////////////////////////////////////////////////////
+    //PARAMETER SETTING
+    ////////////////////////////////////////////////////////////////////////////
+    mho_json parameter_store;
+    //set defaults 
+    
+    //TODO process control statments that set parameters
+    
+    
 
     ////////////////////////////////////////////////////////////////////////////
     //OPERATOR CONSTRUCTION

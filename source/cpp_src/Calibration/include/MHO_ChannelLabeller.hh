@@ -88,53 +88,54 @@ class MHO_ChannelLabeller: public MHO_UnaryOperator< XArrayType >
 
         virtual bool ExecuteInPlace(XArrayType* in) override
         {
-            //need to use the user provided frequency <-> channel label map
-            auto chan_axis_ptr = &( std::get<CHANNEL_AXIS>(*in) );
-            std::size_t nchans = chan_axis_ptr->GetSize();
-
-            if(fChannelLabelToFrequency.size() == 0)
+            if(in != nullptr)
             {
-                //apply default channel labels
-                FillDefaultMap(nchans);
-                for(std::size_t i=0; i<nchans; i++)
-                {
-                    MHO_IntervalLabel label(i,i);
-                    label.Insert(fChannelLabelKey, fIndexToChannelLabel[i]);
-                    chan_axis_ptr->InsertLabel(label);
-                }
-            }
-            else
-            {
-                if(fChannelLabelToFrequency.size() < nchans)
-                {
-                    msg_error("calibration", "not all channels given a user specified label, "
-                              << "some channels will remain un-labelled." << eom);
-                }
+                //need to use the user provided frequency <-> channel label map
+                auto chan_axis_ptr = &( std::get<CHANNEL_AXIS>(*in) );
+                std::size_t nchans = chan_axis_ptr->GetSize();
 
-                //now do a brute force search over the channel frequencies, and
-                //determine which ones match the labels we've been given
-                for(auto it= fChannelLabelToFrequency.begin(); it != fChannelLabelToFrequency.end(); it++)
+                if(fChannelLabelToFrequency.size() == 0)
                 {
-                    std::string ch_label = it->first;
-                    double freq = it->second;
+                    //apply default channel labels
+                    FillDefaultMap(nchans);
                     for(std::size_t i=0; i<nchans; i++)
                     {
-                        double ch_freq = chan_axis_ptr->at(i);
-                        if( std::abs(freq - ch_freq) < fEps )
-                        {
-                            MHO_IntervalLabel label(i,i);
-                            label.Insert(fChannelLabelKey, ch_label);
-                            chan_axis_ptr->InsertLabel(label);
-                            break;
-                        }
+                        MHO_IntervalLabel label(i,i);
+                        label.Insert(fChannelLabelKey, fIndexToChannelLabel[i]);
+                        chan_axis_ptr->InsertLabel(label);
                     }
                 }
+                else
+                {
+                    if(fChannelLabelToFrequency.size() < nchans)
+                    {
+                        msg_error("calibration", "not all channels given a user specified label, "
+                                  << "some channels will remain un-labelled." << eom);
+                    }
 
+                    //now do a brute force search over the channel frequencies, and
+                    //determine which ones match the labels we've been given
+                    for(auto it= fChannelLabelToFrequency.begin(); it != fChannelLabelToFrequency.end(); it++)
+                    {
+                        std::string ch_label = it->first;
+                        double freq = it->second;
+                        for(std::size_t i=0; i<nchans; i++)
+                        {
+                            double ch_freq = chan_axis_ptr->at(i);
+                            if( std::abs(freq - ch_freq) < fEps )
+                            {
+                                MHO_IntervalLabel label(i,i);
+                                label.Insert(fChannelLabelKey, ch_label);
+                                chan_axis_ptr->InsertLabel(label);
+                                break;
+                            }
+                        }
+                    }
+
+                }
+                return true;
             }
-
-            //now apply the channel labels to the data
-
-            return true;
+            return false;
         }
 
         virtual bool ExecuteOutOfPlace(const XArrayType* in, XArrayType* out) override
