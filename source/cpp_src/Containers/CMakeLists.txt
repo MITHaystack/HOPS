@@ -42,6 +42,7 @@ set( CONTAINER_SOURCEFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ContainerDictionary.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ContainerFileInterface.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ScanDataStore.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ContainerStore.cc
 )
 
 #declare header paths ##########################################################

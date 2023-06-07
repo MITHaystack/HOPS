@@ -53,16 +53,19 @@ int main(int argc, char** argv)
     //here's how we would retrieve a 'visibility' object from the library
     std::string vis_classname = MHO_ClassIdentity::ClassName<visibility_type>();
     MHO_UUID vis_id = conDict.GetUUIDFromClassName(vis_classname);
-    MHO_Serializable* generic = conStore.RetrieveFirstObjectMatchingType(vis_id);
-    if(generic != nullptr)
-    {
-        visibility_type* vis = dynamic_cast<visibility_type*>(generic);
+    //MHO_Serializable* generic
+
+    visibility_type* vis = conStore.GetObject<visibility_type>(0); //get the first object with this type
+
+    // if(generic != nullptr)
+    // {
+    //     visibility_type* vis = dynamic_cast<visibility_type*>(generic);
         if(vis != nullptr)
         {
             std::cout<<"success, we have located a visibility object" <<std::endl;
             /* we can now do some data manipulation with the vis object... */
         }
-    }
+    // }
 
     //convert the entire store to mho_json 
     mho_json root;
