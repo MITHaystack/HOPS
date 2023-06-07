@@ -115,8 +115,78 @@ MHO_ContainerStore::GetAllObjectUUIDsOfType(MHO_UUID type_id, std::vector< MHO_U
             obj_ids.push_back(item_object_id);
         }
     }
-
 }
+
+
+bool 
+MHO_ContainerStore::SetShortName(const MHO_UUID& obj_id, const std::string& shortname)
+{
+    if(shortname.size() != 0 && IsObjectPresent(obj_id))
+    {
+        auto it_status = fShortNameSet.insert(shortname);
+        if(it_status.second) //if insertion was successful
+        {
+            fShortNameToIds[shortname] = obj_id;
+            return true;
+        }
+    }
+    return false;
+}
+
+MHO_UUID 
+MHO_ContainerStore::GetObjectUUID(const std::string& shortname)
+{
+    MHO_UUID obj_id;
+    auto it = fShortNameToIds.find(shortname);
+    if(it != fShortNameToIds.end()){obj_id = it->second;}
+    return obj_id;
+}
+
+
+//provide retrival of object short name from uuid
+std::string 
+MHO_ContainerStore::GetShortName(const MHO_UUID& obj_id)
+{
+    //brute force search 
+    std::string value = "";
+    for(auto it = fShortNameToIds.begin(); it != fShortNameToIds.end(); it++)
+    {
+        if(it->second == obj_id){value = it->first; break;}
+    }
+    return value;
+}
+
+
+void 
+MHO_ContainerStore::GetAllShortNames(std::vector< std::string >& shortnames)
+{
+    shortnames.clear();
+    for(auto it = fShortNameToIds.begin(); it != fShortNameToIds.end(); it++)
+    {
+        shortnames.push_back(it->first);
+    }
+}
+
+bool
+MHO_ContainerStore::SetObjectLabel(const MHO_UUID& obj_id, uint32_t label)
+{
+    if(IsObjectPresent(obj_id))
+    {
+        fIdsToLabels[obj_id] = label;
+        return true;
+    }
+    return false;
+}
+
+uint32_t 
+MHO_ContainerStore::GetObjectLabel(const MHO_UUID& obj_id)
+{
+    uint32_t value = 0;
+    auto it = fIdsToLabels.find(obj_id);
+    if(it != fIdsToLabels.end()){value = it->second;}
+    return value;
+}
+
 
 
 
