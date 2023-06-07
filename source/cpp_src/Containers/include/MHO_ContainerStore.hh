@@ -37,10 +37,6 @@ class MHO_ContainerStore
         
         //add an object with specific type
         template<typename XClassType> bool AddObject(XClassType* obj);
-        // //check if an object of a specific type is in the store with the given uuid
-        // template<typename XClassType> bool IsObjectPresent(const MHO_UUID& obj_id) const;
-        //check if an object is already the store by pointer 
-        // template<typename XClassType> bool IsObjectPresent(const XClassType* obj) const;
         //get an object of a specific type via object uuid (returns nullptr if not present)
         template < typename XClassType > XClassType* GetObject(const MHO_UUID& obj_id);
         //get an object of a specific type via index (returns nullptr if not present)
@@ -49,7 +45,7 @@ class MHO_ContainerStore
         template < typename XClassType > bool DeleteObject(XClassType* obj_ptr);
         //get the type uuid for a specific type (if it is supported) - if unsupported uuid will be zero
         template < typename XClassType > MHO_UUID GetTypeUUID();
-        //get the number of object of a specific type
+        //get the number of objects of a specific type
         template < typename XClassType > std::size_t GetNObjects() const;
         
         //add an object with type described in a file key 
@@ -64,7 +60,7 @@ class MHO_ContainerStore
         void GetAllTypeUUIDs(std::vector< MHO_UUID >& type_ids);
         //get every object uuid associated with the type
         void GetAllObjectUUIDsOfType(MHO_UUID type_id, std::vector< MHO_UUID >& obj_ids);
-
+        //get total number of objects in store
         std::size_t GetNObjects() const {return fObjectsToIds.size();}
 
     protected:
@@ -111,34 +107,6 @@ MHO_ContainerStore::AddObject(XClassType* obj)
     return true;
 }
  
-// template<typename XClassType>
-// bool
-// MHO_ContainerStore::IsObjectPresent(const MHO_UUID& obj_id) const
-// {
-//     MHO_UUID type_id = fDictionary.GetUUIDFor<XClassType>();
-// 
-//     key_pair kp;
-//     kp.first = type_id;
-//     kp.second = obj_id;
-// 
-//     auto it = fIdsToObjects.find(kp);
-//     if(it != fIdsToObjects.end()){return true;}
-//     return false;
-// }
-
-
-// //check if an object is already in the store by pointer 
-// template<typename XClassType> 
-// bool
-// MHO_ContainerStore::IsObjectPresent(const XClassType* obj) const
-// {
-//     MHO_Serializable* ptr = static_cast<MHO_Serializable*>(obj);
-//     if(ptr == nullptr){return false;}
-//     auto it = fObjectsToIds.find(ptr);
-//     if(it != fObjectsToIds.end()){return true;}
-//     return false;
-// }
-
 template < typename XClassType >
 XClassType*
 MHO_ContainerStore::GetObject(const MHO_UUID& obj_id)
