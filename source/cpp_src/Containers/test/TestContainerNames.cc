@@ -46,7 +46,9 @@ class LocalDictionary: public MHO_ContainerDictionary
                 // std::cout<<type_uuid.as_string()<<" - "<<fAllObjectTypeNames[type_uuid]<<std::endl;
                 std::string shortname = "test";
                 uint32_t label = 1;
-                bool ok = lib.AddContainerObject(obj, type_uuid, object_uuid, shortname, label);
+                // bool ok = lib.AddContainerObject(obj, type_uuid, object_uuid, shortname, label);
+                bool ok = lib.AddObject(type_uuid, obj);// type_uuid, object_uuid, shortname, label);
+
             }
             fAllObjects.clear();// we've handed ownership of these objects off to the container library
         }

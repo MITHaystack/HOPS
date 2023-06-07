@@ -58,8 +58,8 @@ void configure_data_library(MHO_ContainerStore* store, mho_json* data_lib)
     visibility_store_type* vis_store_data = nullptr;
     weight_store_type* wt_store_data = nullptr;
 
-    vis_store_data = store->RetrieveObject<visibility_store_type>();
-    wt_store_data = store->RetrieveObject<weight_store_type>();
+    vis_store_data = store->GetObject<visibility_store_type>(0);
+    wt_store_data = store->GetObject<weight_store_type>(0);
 
     if(vis_store_data == nullptr)
     {
@@ -247,9 +247,9 @@ int main(int argc, char** argv)
     weight_type* wt_data = &wt_data_obj;
     MHO_ObjectTags* tags = nullptr;
 
-    bl_store_data = conStore->RetrieveObject<visibility_store_type>();
-    wt_store_data = conStore->RetrieveObject<weight_store_type>();
-    tags = conStore->RetrieveObject<MHO_ObjectTags>();
+    bl_store_data = conStore->GetObject<visibility_store_type>(0);
+    wt_store_data = conStore->GetObject<weight_store_type>(0);
+    tags = conStore->GetObject<MHO_ObjectTags>(0);
 
     if(bl_store_data == nullptr)
     {

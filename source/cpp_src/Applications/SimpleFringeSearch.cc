@@ -155,9 +155,9 @@ int main(int argc, char** argv)
 
     MHO_ObjectTags* tags = nullptr;
 
-    bl_store_data = conStore->RetrieveObject<visibility_store_type>();
-    wt_store_data = conStore->RetrieveObject<weight_store_type>();
-    tags = conStore->RetrieveObject<MHO_ObjectTags>();
+    bl_store_data = conStore->GetObject<visibility_store_type>(0);
+    wt_store_data = conStore->GetObject<weight_store_type>(0);
+    tags = conStore->GetObject<MHO_ObjectTags>(0);
 
     if(bl_store_data == nullptr)
     {

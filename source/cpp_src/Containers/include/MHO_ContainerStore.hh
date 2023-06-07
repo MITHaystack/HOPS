@@ -11,6 +11,7 @@
 * retrival is through type/object ids
 */
 
+#include <set>
 #include <map>
 #include <utility>
 #include <vector>
@@ -34,39 +35,37 @@ class MHO_ContainerStore
         //deletes all objects in the store 
         void Clear();
         
-        //add an object with specific type, and generate/assign an object uuid for it
+        //add an object with specific type
         template<typename XClassType> bool AddObject(XClassType* obj);
-        //add an object with specific type, using the provided object uuid  
-        template<typename XClassType> bool AddObject(XClassType* obj, MHO_UUID obj_id); 
-        //check if an object of a specific type is in the store with the given uuid
-        template<typename XClassType> bool IsObjectPresent(const MHO_UUID& obj_id) const;
+        // //check if an object of a specific type is in the store with the given uuid
+        // template<typename XClassType> bool IsObjectPresent(const MHO_UUID& obj_id) const;
         //check if an object is already the store by pointer 
-        template<typename XClassType> bool IsObjectPresent(const XClassType* obj) const;
+        // template<typename XClassType> bool IsObjectPresent(const XClassType* obj) const;
         //get an object of a specific type via object uuid (returns nullptr if not present)
         template < typename XClassType > XClassType* GetObject(const MHO_UUID& obj_id);
         //get an object of a specific type via index (returns nullptr if not present)
         template < typename XClassType > XClassType* GetObject(std::size_t index);
         //destroy an object in the store, returns true if successful
         template < typename XClassType > bool DeleteObject(XClassType* obj_ptr);
-        //get the object uuid via pointer
-        template < typename XClassType > MHO_UUID GetObjectUUID(XClassType* obj_ptr);
         //get the type uuid for a specific type (if it is supported) - if unsupported uuid will be zero
         template < typename XClassType > MHO_UUID GetTypeUUID();
         //get the number of object of a specific type
         template < typename XClassType > std::size_t GetNObjects() const;
         
-        
-        //add an object with type described by type_id, and generate/assign an object uuid for it
+        //add an object with type described in a file key 
+        bool AddObject(MHO_FileKey fkey, MHO_Serializable* obj);
+        //add an object with type described by type_id
         bool AddObject(MHO_UUID type_id, MHO_Serializable* obj);
-        //add an object with type described by type_id, using the provided object uuid  
-        bool AddObject(MHO_UUID type_id, MHO_UUID obj_id, MHO_Serializable* obj); 
-        
         //check if any object with the give object id is in the store
         bool IsObjectPresent(const MHO_UUID& obj_id) const;
         //get an object via uuid (returns nullptr if not present)
         MHO_Serializable* GetObject(const MHO_UUID& obj_id);
+        //get every type uuid present
+        void GetAllTypeUUIDs(std::vector< MHO_UUID >& type_ids);
+        //get every object uuid associated with the type
+        void GetAllObjectUUIDsOfType(MHO_UUID type_id, std::vector< MHO_UUID >& obj_ids);
 
-
+        std::size_t GetNObjects() const {return fObjectsToIds.size();}
 
     protected:
         
@@ -77,9 +76,6 @@ class MHO_ContainerStore
         //if they have additional classes they want to serialize which are not already supported 
         MHO_ContainerDictionary fDictionary;
         
-        //random uuid generator 
-        MHO_UUIDGenerator fGenerator;
-        
         //all objects are stored as pointers to the base-class MHO_Serializable
         //they are cast to the underlying type specified by the type id upon retrieval
         
@@ -88,7 +84,6 @@ class MHO_ContainerStore
         
         //the key is a pointer to an object, and the value is a pair of <type_uuid, obj_id>
         std::map< MHO_Serializable*, key_pair > fObjectsToIds;
-
 };
 
 
@@ -105,7 +100,7 @@ MHO_ContainerStore::AddObject(XClassType* obj)
     MHO_UUID type_id = fDictionary.GetUUIDFor<XClassType>();
     if( type_id.is_empty() ){return false;}
 
-    MHO_UUID obj_id = fGenerator.GenerateUUID();
+    MHO_UUID obj_id = obj->GetObjectUUID();
     
     key_pair kp;
     kp.first = type_id;
@@ -116,56 +111,33 @@ MHO_ContainerStore::AddObject(XClassType* obj)
     return true;
 }
  
-template<typename XClassType> 
-bool 
-MHO_ContainerStore::AddObject(XClassType* obj, MHO_UUID obj_id)
-{
-    if(obj == nullptr){return false;}
-
-    //attempt to cast to our storage type
-    auto ptr = static_cast< MHO_Serializable* >(obj);
-    if(ptr == nullptr){return false;}
-    
-    MHO_UUID type_id = fDictionary.GetUUIDFor<XClassType>();
-    if( type_id.is_empty() ){return false;}
-    if( obj_id.is_empty() ){return false;}
-
-    key_pair kp;
-    kp.first = type_id;
-    kp.second = obj_id;
-    
-    fIdsToObjects[kp] = ptr;
-    fObjectsToIds[ptr] = kp;
-    return true;
-}
-
-template<typename XClassType>
-bool
-MHO_ContainerStore::IsObjectPresent(const MHO_UUID& obj_id) const
-{
-    MHO_UUID type_id = fDictionary.GetUUIDFor<XClassType>();
-    
-    key_pair kp;
-    kp.first = type_id;
-    kp.second = obj_id;
-
-    auto it = fIdsToObjects.find(kp);
-    if(it != fIdsToObjects.end()){return true;}
-    return false;
-}
+// template<typename XClassType>
+// bool
+// MHO_ContainerStore::IsObjectPresent(const MHO_UUID& obj_id) const
+// {
+//     MHO_UUID type_id = fDictionary.GetUUIDFor<XClassType>();
+// 
+//     key_pair kp;
+//     kp.first = type_id;
+//     kp.second = obj_id;
+// 
+//     auto it = fIdsToObjects.find(kp);
+//     if(it != fIdsToObjects.end()){return true;}
+//     return false;
+// }
 
 
-//check if an object is already the store by pointer 
-template<typename XClassType> 
-bool
-MHO_ContainerStore::IsObjectPresent(const XClassType* obj) const
-{
-    MHO_Serializable* ptr = static_cast<MHO_Serializable*>(obj);
-    if(ptr == nullptr){return false;}
-    auto it = fObjectsToIds.find(ptr);
-    if(it != fObjectsToIds.end()){return true;}
-    return false;
-}
+// //check if an object is already in the store by pointer 
+// template<typename XClassType> 
+// bool
+// MHO_ContainerStore::IsObjectPresent(const XClassType* obj) const
+// {
+//     MHO_Serializable* ptr = static_cast<MHO_Serializable*>(obj);
+//     if(ptr == nullptr){return false;}
+//     auto it = fObjectsToIds.find(ptr);
+//     if(it != fObjectsToIds.end()){return true;}
+//     return false;
+// }
 
 template < typename XClassType >
 XClassType*
@@ -239,24 +211,6 @@ MHO_ContainerStore::DeleteObject(XClassType* obj_ptr)
 
 template < typename XClassType >
 MHO_UUID
-MHO_ContainerStore::GetObjectUUID(XClassType* obj_ptr)
-{
-    MHO_UUID obj_id;
-    MHO_Serializable* ptr = static_cast<MHO_Serializable*>(obj_ptr);
-    if(ptr != nullptr)
-    {
-        auto it = fObjectsToIds.find(ptr);
-        if(it != fObjectsToIds.end())
-        {
-            key_pair kp = it->second;
-            obj_id = kp.second;
-        }
-    }
-    return obj_id;
-}
-
-template < typename XClassType >
-MHO_UUID
 MHO_ContainerStore::GetTypeUUID()
 {
     MHO_UUID type_id = fDictionary.GetUUIDFor<XClassType>();
@@ -277,88 +231,6 @@ MHO_ContainerStore::GetNObjects() const
     }
     return count;
 }
-
-
-void 
-MHO_ContainerStore::Clear()
-{
-    for(auto it = fObjectsToIds.begin(); it != fObjectsToIds.end(); it++)
-    {
-        MHO_Serializable* ptr = it->first;
-        delete ptr;
-    }
-    fObjectsToIds.clear();
-    fIdsToObjects.clear();
-}
-
-
-//add an object with type described by type_id, and generate/assign an object uuid for it
-bool 
-MHO_ContainerStore::AddObject(MHO_UUID type_id, MHO_Serializable* obj)
-{
-    if(obj == nullptr){return false;}
-    if( type_id.is_empty() ){return false;}
-
-    MHO_UUID obj_id = fGenerator.GenerateUUID();
-    key_pair kp;
-    kp.first = type_id;
-    kp.second = obj_id;
-    
-    fIdsToObjects[kp] = obj;
-    fObjectsToIds[obj] = kp;
-    return true;
-}
-
-//add an object with type described by type_id, using the provided object uuid  
-bool 
-MHO_ContainerStore::AddObject(MHO_UUID type_id, MHO_UUID obj_id, MHO_Serializable* obj)
-{
-    if(obj == nullptr){return false;}
-    if( type_id.is_empty() || obj_id.is_empty() ){return false;}
-    key_pair kp;
-    kp.first = type_id;
-    kp.second = obj_id;
-    
-    fIdsToObjects[kp] = obj;
-    fObjectsToIds[obj] = kp;
-    return true;
-}
-
-//check if any object with the give object id is in the store
-bool 
-MHO_ContainerStore::IsObjectPresent(const MHO_UUID& obj_id) const
-{
-    for(auto it = fIdsToObjects.begin(); it != fIdsToObjects.end(); it++)
-    {
-        key_pair item_ids = it->first;
-        MHO_UUID item_object_id = item_ids.second;
-        if(obj_id == item_object_id){return true;}
-    }
-    return false;
-}
-
-//get an object via uuid (returns nullptr if not present)
-MHO_Serializable* 
-MHO_ContainerStore::GetObject(const MHO_UUID& obj_id)
-{
-    MHO_Serializable* ptr = nullptr;
-    for(auto it = fIdsToObjects.begin(); it != fIdsToObjects.end(); it++)
-    {
-        key_pair item_ids = it->first;
-        MHO_UUID item_object_id = item_ids.second;
-        if(obj_id == item_object_id)
-        {
-            ptr = it->second;
-            break;
-        }
-    }
-    return ptr;
-}
-
-
-
-
-
 
 
 

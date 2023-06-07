@@ -63,7 +63,7 @@ MHO_ContainerFileInterface::PopulateStoreFromFile(MHO_ContainerStore& store)
             MHO_Serializable* obj = factory->second->BuildFromFileInterface(fFileInterface);
             if(obj != nullptr)
             {
-                store.AddContainerObject(obj,key);
+                store.AddObject(key,obj);
             }
             else 
             {
@@ -107,8 +107,11 @@ MHO_ContainerFileInterface::WriteStoreToFile(MHO_ContainerStore& store)
             store.GetAllObjectUUIDsOfType(*it, obj_ids);
             for(auto it2 = obj_ids.begin(); it2 != obj_ids.end(); it2++)
             {
-                MHO_Serializable* obj = store.RetrieveObject(*it, *it2);
-                std::pair<std::string, uint32_t> name_label = store.GetObjectNameLabel(*it,*it2);
+                MHO_Serializable* obj = store.GetObject(*it2);
+                #pragma message("TODO fix the name/label attached to objects from the container store")
+                std::pair<std::string, uint32_t> name_label;// = store.GetObjectNameLabel(*it,*it2);
+                name_label.first = std::string("dummy");
+                name_label.second = 0;
                 bool ok = factory->second->WriteToFileInterface(fFileInterface, obj, name_label.first, name_label.second);
                 if(!ok)
                 {
@@ -137,7 +140,7 @@ MHO_ContainerFileInterface::ConvertStoreToJSON(MHO_ContainerStore& store, mho_js
             store.GetAllObjectUUIDsOfType(*it, obj_ids);
             for(auto it2 = obj_ids.begin(); it2 != obj_ids.end(); it2++)
             {
-                MHO_Serializable* obj = store.RetrieveObject(*it, *it2);
+                MHO_Serializable* obj = store.GetObject(*it2);
                 if(obj != nullptr)
                 {
                     converter->second->SetObjectToConvert(obj);
@@ -172,7 +175,7 @@ MHO_ContainerFileInterface::ConvertObjectInStoreToJSON(MHO_ContainerStore& store
             {
                 if(obj_uuid == *it2)
                 {
-                    MHO_Serializable* obj = store.RetrieveObject(*it, *it2);
+                    MHO_Serializable* obj = store.GetObject(*it2);
                     if(obj != nullptr)
                     {
                         converter->second->SetObjectToConvert(obj);
