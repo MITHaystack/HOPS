@@ -51,7 +51,7 @@ using namespace pybind11::literals;
 using namespace hops;
 
 
-void configure_data_library(MHO_ContainerStore* store, mho_json* data_lib)
+void configure_data_library(MHO_ContainerStore* store)
 {
     //retrieve the (first) visibility and weight objects
     //(currently assuming there is only one object per type)
@@ -72,6 +72,17 @@ void configure_data_library(MHO_ContainerStore* store, mho_json* data_lib)
         msg_fatal("main", "failed to read weight data from the .cor file." <<eom);
         std::exit(1);
     }
+    
+    std::size_t n_vis = store->GetNObjects<visibility_store_type>();
+    std::size_t n_wt = store->GetNObjects<weight_store_type>();
+    
+    if(n_vis != 1 || n_wt != 1)
+    {
+        msg_warn("main", "multiple visibility and/or weight types not yet supported" << eom);
+    }
+
+    std::string vis_shortname = store->GetShortName(vis_store_data->GetObjectUUID() );
+    std::string wt_shortname = store->GetShortName(wt_store_data->GetObjectUUID() );
 
     visibility_type* vis_data = new visibility_type();
     weight_type* wt_data = new weight_type();
@@ -85,30 +96,19 @@ void configure_data_library(MHO_ContainerStore* store, mho_json* data_lib)
     wt_up_caster.SetArgs(wt_store_data, wt_data);
     wt_up_caster.Initialize();
     wt_up_caster.Execute();
-
-    //now shove the up-casted data into the container store and remove the
-    //original objects 
     
-    // MHO_UUID vis_type_uuid = ;
-    // MHO_UUID vis_obj_uuid;
-    // MHO_UUID wt_type_uuid;
-    // MHO_UUID wt_obj_uuid;
-    // 
-    // store->AddContainerObject(vis_data, vis_type_uuid, vis_obj_uuid, std::string("visib"),0)
-    // store->AddContainerObject(wt_data, wt_type_uuid, wt_obj_uuid, std::string("weights"),0)
-    // bool AddContainerObject(MHO_Serializable* obj, 
-    //                         const MHO_UUID& type_uuid, 
-    //                         const MHO_UUID& object_uuid,
-    //                         std::string shortname = "",
-    //                         uint32_t label = 0);
+    //remove the original objects
+    store->DeleteObject(vis_store_data);
+    store->DeleteObject(wt_store_data);
 
-    // dataLibrary["data_library_type"] = "single_baseline";
-    // dataLibrary["visibilities"] = 
-    // dataLibrary["weights"] = 
-    // dataLibrary["reference_station_data"] =
-    // dataLibrary["remote_station_data"] = 
-    // dataLibrary["object_tags"] =
+    //now shove the double precision data into the container store with the correct shortname
+    store->AddObject(vis_data);
+    store->AddObject(wt_data);
     
+    if(vis_shortname != "visib"){vis_shortname = "visib";}
+    if(wt_shortname != "weights"){wt_shortname = "weights";} 
+    store->SetShortName(vis_data->GetObjectUUID(), vis_shortname);
+    store->SetShortName(wt_data->GetObjectUUID(), wt_shortname);
 }
 
 int main(int argc, char** argv)
@@ -174,7 +174,6 @@ int main(int argc, char** argv)
     //INITIAL SCAN DIRECTORY
     ////////////////////////////////////////////////////////////////////////////
 
-
     //initialize the scan store from this directory
     MHO_ScanDataStore scanStore;
     scanStore.SetDirectory(directory);
@@ -203,7 +202,6 @@ int main(int argc, char** argv)
     std::string srcName = vexInfo.at(src_jptr).get<std::string>();
 
 
-
     ////////////////////////////////////////////////////////////////////////////
     //CONTROL CONSTRUCTION
     ////////////////////////////////////////////////////////////////////////////
@@ -222,66 +220,30 @@ int main(int argc, char** argv)
 
 
     ////////////////////////////////////////////////////////////////////////////
-    //LOAD DATA AND ASSEMBLY THE DATA LIBRARY
+    //LOAD DATA AND ASSEMBLY THE DATA STORE
     ////////////////////////////////////////////////////////////////////////////
     MHO_ContainerStore* conStore = new MHO_ContainerStore();
     scanStore.LoadBaseline(baseline, conStore);
+    
+    //TODO load the station data files too
     
     if(conStore == nullptr)
     {
         msg_fatal("main", "Could not find a file for baseline: "<< baseline << eom);
         std::exit(1);
     }
-    mho_json dataLibrary;
     
-    //configure_data_library(conStore, &dataLibrary);
-
-    //retrieve the (first) visibility and weight objects
-    //(currently assuming there is only one object per type)
-    visibility_store_type* bl_store_data = nullptr;
-    weight_store_type* wt_store_data = nullptr;
-
-    visibility_type bl_data_obj;
-    weight_type wt_data_obj;
-    visibility_type* bl_data = &bl_data_obj;
-    weight_type* wt_data = &wt_data_obj;
-    MHO_ObjectTags* tags = nullptr;
-
-    bl_store_data = conStore->GetObject<visibility_store_type>(0);
-    wt_store_data = conStore->GetObject<weight_store_type>(0);
-    tags = conStore->GetObject<MHO_ObjectTags>(0);
-
-    if(bl_store_data == nullptr)
-    {
-        msg_fatal("main", "failed to read visibility data from the .cor file." <<eom);
-        std::exit(1);
-    }
-
-    if(wt_store_data == nullptr)
-    {
-        msg_fatal("main", "failed to read weight data from the .cor file." <<eom);
-        std::exit(1);
-    }
-
-    if(tags == nullptr)
-    {
-        msg_warn("main", "failed to read tag data from the .cor file." <<eom);
-    }
-
-    MHO_ElementTypeCaster<visibility_store_type, visibility_type> up_caster;
-    up_caster.SetArgs(bl_store_data, bl_data);
-    up_caster.Initialize();
-    up_caster.Execute();
-
-    MHO_ElementTypeCaster< weight_store_type, weight_type> wt_up_caster;
-    wt_up_caster.SetArgs(wt_store_data, wt_data);
-    wt_up_caster.Initialize();
-    wt_up_caster.Execute();
+    configure_data_library(conStore);
+    
+    visibility_type* vis_data = conStore->GetObject<visibility_type>(0);
+    weight_type* wt_data = conStore->GetObject<weight_type>(0);
 
     ////////////////////////////////////////////////////////////////////////////
     //OPERATOR CONSTRUCTION
     ////////////////////////////////////////////////////////////////////////////
 
+    
+    
     
 
     ////////////////////////////////////////////////////////////////////////////
@@ -292,14 +254,14 @@ int main(int argc, char** argv)
     MHO_SelectRepack<weight_type> wtspack;
 
     //first find indexes which corresponds to the specified pol product
-    std::vector<std::size_t> selected_pp = (&(std::get<POLPROD_AXIS>(*bl_data)))->SelectMatchingIndexes(polprod);
+    std::vector<std::size_t> selected_pp = (&(std::get<POLPROD_AXIS>(*vis_data)))->SelectMatchingIndexes(polprod);
 
     //select some specified AP's
     // std::vector< std::size_t > selected_ap;
     // selected_ap.push_back(20);
 
     //select first 8 channels for testing
-    std::size_t n_max_channels = std::get<CHANNEL_AXIS>(*bl_data).GetSize();
+    std::size_t n_max_channels = std::get<CHANNEL_AXIS>(*vis_data).GetSize();
     std::vector< std::size_t > selected_ch;// = cb_wrapper.GetActiveChannelsKLUDGE(n_max_channels);
 
     for(std::size_t i=0;i<8; i++){selected_ch.push_back(i);}
@@ -317,7 +279,7 @@ int main(int argc, char** argv)
     visibility_type* alt_data = new visibility_type();
     weight_type* alt_wt_data = new weight_type();
 
-    spack.SetArgs(bl_data, alt_data);
+    spack.SetArgs(vis_data, alt_data);
     spack.Initialize();
     spack.Execute();
 
@@ -327,17 +289,17 @@ int main(int argc, char** argv)
 
     //TODO, work out what to do with the axis interval labels in between operations
     //explicitly copy the channel axis labels here
-    std::get<CHANNEL_AXIS>(*alt_data).CopyIntervalLabels( std::get<CHANNEL_AXIS>(*bl_data) );
+    std::get<CHANNEL_AXIS>(*alt_data).CopyIntervalLabels( std::get<CHANNEL_AXIS>(*vis_data) );
     std::get<CHANNEL_AXIS>(*alt_wt_data).CopyIntervalLabels( std::get<CHANNEL_AXIS>(*wt_data) );
 
     wt_data->Copy(*alt_wt_data);
-    bl_data->Copy(*alt_data);
+    vis_data->Copy(*alt_data);
 
     delete alt_data;
     delete alt_wt_data;
 
     std::size_t bl_dim[visibility_type::rank::value];
-    bl_data->GetDimensions(bl_dim);
+    vis_data->GetDimensions(bl_dim);
     for(std::size_t i=0; i < visibility_type::rank::value; i++)
     {
         if(bl_dim[i] == 0)
@@ -349,7 +311,7 @@ int main(int argc, char** argv)
 
 
     //take a snapshot
-    take_snapshot_here("test", "visib", __FILE__, __LINE__, bl_data);
+    take_snapshot_here("test", "visib", __FILE__, __LINE__, vis_data);
     take_snapshot_here("test", "weights", __FILE__, __LINE__,  wt_data);
 
     // //compute the sum of the weights
@@ -388,13 +350,13 @@ int main(int argc, char** argv)
 
     MHO_ManualChannelPhaseCorrection pcal_correct;
 
-    pcal_correct.SetArgs(bl_data, rem_pcal, bl_data);
+    pcal_correct.SetArgs(vis_data, rem_pcal, vis_data);
     ok = pcal_correct.Initialize();
     check_step_error(ok, "main", "ref pcal initialization." << eom );
     ok = pcal_correct.Execute();
     check_step_error(ok, "main", "ref pcal execution." << eom );
 
-    pcal_correct.SetArgs(bl_data, ref_pcal, bl_data);
+    pcal_correct.SetArgs(vis_data, ref_pcal, vis_data);
     ok = pcal_correct.Initialize();
     check_step_error(ok, "main", "rem pcal initialization." << eom );
     ok = pcal_correct.Execute();
@@ -403,7 +365,7 @@ int main(int argc, char** argv)
     */
 
     //output for the delay
-    visibility_type* sbd_data = bl_data->CloneEmpty();
+    visibility_type* sbd_data = vis_data->CloneEmpty();
     bl_dim[FREQ_AXIS] *= 4; //normfx implementation demands this
     sbd_data->Resize(bl_dim);
 
@@ -413,7 +375,7 @@ int main(int argc, char** argv)
 
     //run norm-fx via the wrapper class (x-form to SBD space)
     MHO_NormFX nfxOp;
-    nfxOp.SetArgs(bl_data, wt_data, sbd_data);
+    nfxOp.SetArgs(vis_data, wt_data, sbd_data);
     ok = nfxOp.Initialize();
     check_step_fatal(ok, "main", "normfx initialization." << eom );
 
@@ -497,7 +459,7 @@ int main(int argc, char** argv)
     double coh_avg_phase = mk_plotdata.calc_phase();
 
     //calculate AP period
-    double ap_delta = std::get<TIME_AXIS>(*bl_data)(1) - std::get<TIME_AXIS>(*bl_data)(0);
+    double ap_delta = std::get<TIME_AXIS>(*vis_data)(1) - std::get<TIME_AXIS>(*vis_data)(0);
 
     /*
 
@@ -561,7 +523,7 @@ int main(int argc, char** argv)
     double inv_sigma = fact1 * fact2 * fact3 * std::sqrt(acc_period/samp_period);
     plot_dict["SNR"] = famp * inv_sigma *  sqrt(total_ap_frac * eff_npol)/(1e4* amp_corr_factor);
 
-    std::size_t nchan = std::get<CHANNEL_AXIS>(*bl_data).GetSize();
+    std::size_t nchan = std::get<CHANNEL_AXIS>(*vis_data).GetSize();
     plot_dict["IntgTime"] = total_ap_frac*acc_period /(double)nchan;
 
     plot_dict["Amp"] = famp;
