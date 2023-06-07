@@ -48,10 +48,6 @@ class MHO_ContainerStore
         //get the number of objects of a specific type
         template < typename XClassType > std::size_t GetNObjects() const;
         
-        //add an object with type described in a file key 
-        // bool AddObject(MHO_FileKey fkey, MHO_Serializable* obj);
-        //add an object with type described by type_id
-        // bool AddObject(MHO_Serializable* obj);
         //check if any object with the give object id is in the store
         bool IsObjectPresent(const MHO_UUID& obj_id) const;
         //get an object via uuid (returns nullptr if not present)
@@ -89,12 +85,9 @@ MHO_ContainerStore::AddObject(XClassType* obj)
 {
     if(obj == nullptr){return false;}
 
-    //attempt to cast to our storage type
+    //attempt to cast to our storage/serialization type
     auto ptr = static_cast< MHO_Serializable* >(obj);
     if(ptr == nullptr){return false;}
-    
-    // MHO_UUID type_id = fDictionary.GetUUIDFor<XClassType>();
-    // if( type_id.is_empty() ){return false;}
 
     MHO_UUID obj_id = obj->GetObjectUUID();
     MHO_UUID type_id = obj->GetTypeUUID();
