@@ -22,23 +22,27 @@ class MHO_OperatorBuilder
         MHO_OperatorBuilder(MHO_OperatorToolbox* toolbox):
             fOperatorToolbox(toolbox),
             fContainerStore(nullptr),
-            fDataLibrary(nullptr)
+            fParameterStore(nullptr)
             {};
+            
+        MHO_OperatorBuilder(MHO_OperatorToolbox* toolbox, MHO_ContainerStore* cstore, mho_json* pstore):
+            fOperatorToolbox(toolbox),
+            fContainerStore(cstore),
+            fParameterStore(pstore)
+            {};
+            
             
         virtual ~MHO_OperatorBuilder(){}; //delegate memory management to toolbox
         
-        //json description of the data library for this pass
-        //the library maps argument names to an object UUID
-        //which can then be used to be retrieve an object from the scan data store
-        virtual void SetDataLibrary(mho_json* lib){fDataLibrary = lib;} 
-        virtual void SetContainerStore(MHO_ContainerStore* store){fContainerStore = store;}
+        virtual void SetParameterStore(mho_json* pstore){fParameterStore = pstore;} 
+        virtual void SetContainerStore(MHO_ContainerStore* cstore){fContainerStore = cstore;}
 
-        //json config for this operator (parse from the control file)
+        //json config for this operator (parsed from the control file)
         virtual void SetConditions(const mho_json& cond){fConditions = cond;} //conditional statements
         virtual void SetAttributes(const mho_json& attr){fAttributes = attr;}; //configuration parameters
 
         //builds the object, if successful passes to toolbox and returns true
-        //otherwise returns false
+        //otherwise returns false and operator is not constructed
         virtual bool Build() = 0;
 
     protected:
@@ -48,7 +52,7 @@ class MHO_OperatorBuilder
 
         //container store and data look-up library (for retrieval and setting of arguments)
         MHO_ContainerStore* fContainerStore;
-        mho_json* fDataLibrary;
+        mho_json* fParameterStore;
 
         //provided for the configuration of the operator that is to be built
         mho_json fConditions;
