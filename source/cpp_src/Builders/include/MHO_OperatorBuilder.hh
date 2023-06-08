@@ -42,7 +42,7 @@ class MHO_OperatorBuilder
         virtual void SetAttributes(const mho_json& attr){fAttributes = attr;}; //configuration parameters
 
         //builds the object, if successful passes to toolbox and returns true
-        //otherwise returns false and operator is not constructed
+        //otherwise returns false and operator is not b
         virtual bool Build() = 0;
 
     protected:

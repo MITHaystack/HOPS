@@ -36,6 +36,14 @@ int main(int /*argc*/, char** /*argv*/)
 
     std::cout<<key3<<" = "<<params.GetAs<std::string>(key3)<<std::endl;
     std::cout<<key4<<" = "<<params.GetAs<std::string>(key4)<<std::endl;
+    
+    std::string path1 = "/baseline/GE";
+    std::string badpath = "/path/to/nowhere";
+    
+    std::cout<<"is present? "<<path1<<" = "<<params.IsPresent(path1)<<std::endl;
+    std::cout<<"is present? "<<key1<<" = "<<params.IsPresent(key1)<<std::endl;
+    std::cout<<"is present? "<<badpath<<" = "<<params.IsPresent(badpath)<<std::endl;
+
 
     return 0;
 }
