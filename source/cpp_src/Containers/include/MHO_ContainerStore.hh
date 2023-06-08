@@ -40,6 +40,8 @@ class MHO_ContainerStore
         template<typename XClassType> bool AddObject(XClassType* obj);
         //get an object of a specific type via object uuid (returns nullptr if not present)
         template < typename XClassType > XClassType* GetObject(const MHO_UUID& obj_id);
+        //provides retrieval of an object via nickname, returns nullptr on failure
+        template < typename XClassType > XClassType* GetObject(const std::string& shortname);
         //get an object of a specific type via index (returns nullptr if not present)
         template < typename XClassType > XClassType* GetObject(std::size_t index);
         //destroy an object in the store, returns true if successful
@@ -154,6 +156,19 @@ MHO_ContainerStore::GetObject(const MHO_UUID& obj_id)
     {
         MHO_Serializable* obj = it->second;
         ptr = dynamic_cast<XClassType*>(obj);
+    }
+    return ptr;
+}
+
+template < typename XClassType > 
+XClassType* 
+MHO_ContainerStore::GetObject(const std::string& shortname)
+{
+    XClassType* ptr = nullptr;
+    MHO_UUID obj_id = GetObjectUUID(shortname);
+    if( !obj_id.is_empty() )
+    {
+        ptr = GetObject<XClassType>(obj_id);
     }
     return ptr;
 }
