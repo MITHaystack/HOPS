@@ -23,8 +23,19 @@ int main(int /*argc*/, char** /*argv*/)
     params.Get(key1, readback1);
     params.Get(key2, readback2);
     
-    std::cout<<"readback1 = "<<readback1.at(0)<<", "<<readback1.at(1)<<std::endl;
-    std::cout<<"readback2 = "<<readback2<<std::endl;
+    std::cout<<key1<<" = "<<readback1.at(0)<<", "<<readback1.at(1)<<std::endl;
+    std::cout<<key2<<" = "<<readback2<<std::endl;
+
+    std::string key3 = "/baseline/GE/fringe_algo";
+    std::string key4 = "/baseline/XY/fringe_algo";
+    std::string val3 = "default";
+    std::string val4 = "special";
+    
+    params.Set(key3, val3);
+    params.Set(key4, val4);
+
+    std::cout<<key3<<" = "<<params.GetAs<std::string>(key3)<<std::endl;
+    std::cout<<key4<<" = "<<params.GetAs<std::string>(key4)<<std::endl;
 
     return 0;
 }
