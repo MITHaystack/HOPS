@@ -21,9 +21,9 @@ using namespace hops;
 //         "channel_names": {"type": "string"},
 //         "pc_phases": {"type": "list_real"}
 //     },
-//     "fields": 
+//     "fields":
 //     [
-//         "channel_names", 
+//         "channel_names",
 //         "pc_phases"
 //     ]
 // }
@@ -32,18 +32,21 @@ int main(int argc, char** argv)
 {
     MHO_Message::GetInstance().AcceptAllKeys();
     MHO_Message::GetInstance().SetMessageLevel(eDebug);
-    
+
     MHO_OperatorToolbox toolbox;
     MHO_ContainerStore store;
-    
+
     //construct some trivial visibilities
-    visibility_type vis;
-    vis.Insert( std::string("reference_station_mk4id"), std::string("E") );
-    vis.Resize(1, 32, 1, 1);
-    
+    visibility_type* vis = new visibility_type();
+    vis->Insert( std::string("reference_station_mk4id"), std::string("E") );
+    vis->Resize(1, 32, 1, 1);
+
+    store.AddObject(vis);
+    store.SetShortName(vis->GetObjectUUID(), std::string("vis"));
+
     //add a default channel labeller
     MHO_ChannelLabeller<visibility_type> ch_labeller;
-    ch_labeller.SetArgs(&vis);
+    ch_labeller.SetArgs(vis);
     ch_labeller.Initialize();
     ch_labeller.Execute();
 
@@ -51,7 +54,7 @@ int main(int argc, char** argv)
     conditions["name"] = "if";
     conditions["value"].push_back("station");
     conditions["value"].push_back("E");
-    
+
     mho_json attrib;
     std::string chan_ids = "abcdefghijklmnopqrstuvwxyzABCDEF";
     std::vector< double > pc_phases;
@@ -61,7 +64,7 @@ int main(int argc, char** argv)
     attrib["channel_names"] = chan_ids;
     attrib["pc_phases"] = pc_phases;
 
-    MHO_ManualChannelPhaseCorrectionBuilder builder(&toolbox);
+    MHO_ManualChannelPhaseCorrectionBuilder builder(&toolbox, &store, nullptr);
     builder.SetAttributes(attrib);
     builder.SetConditions(conditions);
 
@@ -71,13 +74,10 @@ int main(int argc, char** argv)
 
     if(op != nullptr)
     {
-
-
-        for(std::size_t i=0; i<vis.GetSize(); i++){vis[i] = 1.0;}
-        auto pol_axis_ptr  = &(std::get<POLPROD_AXIS>(vis));
-        auto chan_axis_ptr = &(std::get<CHANNEL_AXIS>(vis));
+        for(std::size_t i=0; i<vis->GetSize(); i++){ (*vis)[i] = 1.0;}
+        auto pol_axis_ptr  = &(std::get<POLPROD_AXIS>(*vis));
+        auto chan_axis_ptr = &(std::get<CHANNEL_AXIS>(*vis));
         pol_axis_ptr->at(0) = "XX";
-        op->SetArgs(&vis);
         bool ok = op->Initialize();
         std::cout<<"ok = "<<ok<<std::endl;
         ok = op->Execute();
@@ -85,7 +85,7 @@ int main(int argc, char** argv)
 
         for(std::size_t i=0; i<chan_axis_ptr->GetSize(); i++)
         {
-            std::cout<< vis.at(0,i,0,0)<<std::endl;
+            std::cout<< vis->at(0,i,0,0)<<std::endl;
         }
 
 

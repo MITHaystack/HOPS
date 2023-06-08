@@ -18,11 +18,15 @@ namespace hops
 class MHO_ChannelLabellerBuilder: public MHO_OperatorBuilder
 {
     public:
-        
+
         MHO_ChannelLabellerBuilder(MHO_OperatorToolbox* toolbox):
             MHO_OperatorBuilder(toolbox)
             {};
-            
+
+        MHO_ChannelLabellerBuilder(MHO_OperatorToolbox* toolbox, MHO_ContainerStore* cstore, mho_json* pstore):
+            MHO_OperatorBuilder(toolbox, cstore, pstore)
+            {};
+
         virtual ~MHO_ChannelLabellerBuilder(){};
 
         virtual bool Build() override;
