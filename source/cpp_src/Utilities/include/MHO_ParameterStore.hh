@@ -10,11 +10,34 @@ namespace hops
 {
 
 //class to store parameters (typically from control file) for later retrieval
-//TODO -- evaluate if using json is appropriate (fast?), could also use MHO_MultiTypeMap 
-//but we'd need to add an option to pass std::vector<T> values as well as single values
 
-//There are some deficiencies with the json approach, for example everything except terminal values
-//must be named objects (no lists allowd), though maybe we don't really need that functionality
+//There are some deficiencies with this json-based approach, for example everything except terminal values
+//must be named objects (no lists allowed), though maybe we don't really need that functionality
+
+//TODO -- allow for variable keys in the value path. Sometimes the name 
+//of an item is found within the value of another item, so it would be useful to extract 
+//that name, and substitute it into the value path for the item of interest.
+//For example consider the following structure:
+// {
+// 
+//     "item0":
+//     {
+//         "key1": "kvalue1",
+//         "key2": "kvalue2"
+//     };
+//     "item1": 
+//     {
+//         "kvalue1": "value3",
+//         "kvalue2": "value4",
+//     }
+// }
+//Let's say we wanted to access 'value4', but didn't know the name of the key "kvalue2",
+//but knew it could be located under item1 via a key specified by the value associated with "item0/key2"
+//Then a useful construction to retrieve this would be something like the following (with the variable key within braces):
+//std::string vpath = "/item1/{/item0/key2}"  --> this gets translated into "/item1/kvalue2" before retrieval
+//auto value = params.Get<std::string>(vpath);
+//
+
 
 class MHO_ParameterStore
 {
@@ -32,12 +55,15 @@ class MHO_ParameterStore
         void FillData(const mho_json& data){fStore = data;}
         void ClearData(){fStore.clear();}
         
+        //returns true if no error adding value
         template< typename XValueType>
         bool Set(const std::string& value_path, const XValueType& value);
 
+        //returns true if found
         template< typename XValueType>
         bool Get(const std::string& value_path, XValueType& value);
 
+        //always returns a value, if not found the value returned is XValueType()
         template< typename XValueType>
         XValueType GetAs(const std::string& value_path);
 
