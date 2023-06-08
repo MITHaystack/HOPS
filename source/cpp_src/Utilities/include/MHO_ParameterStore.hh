@@ -6,8 +6,6 @@
 #include "MHO_JSONHeaderWrapper.hh"
 #include "MHO_Tokenizer.hh"
 
-#define SAFETY_DANCE 
-
 namespace hops
 {
 
@@ -30,6 +28,9 @@ class MHO_ParameterStore
         };
 
         ~MHO_ParameterStore(){};
+
+        void FillData(const mho_json& data){fStore = data;}
+        void ClearData(){fStore.clear();}
         
         template< typename XValueType>
         bool Set(const std::string& value_path, const XValueType& value);
@@ -52,26 +53,25 @@ class MHO_ParameterStore
             for(auto it = fPath.begin(); it != fPath.end(); it++)
             {
                 auto jit = p->find(*it);
-                if(jit == p->end())
-                {
-                    return false;
-                }
-                else if( *it == *(fPath.rbegin() ) )
-                {
-                    return true;
-                }
-                else
-                {
-                    p = &(jit.value());
-                }
+                if(jit == p->end()){return false;}
+                else if( *it == *(fPath.rbegin() ) ){return true;}
+                else{p = &(jit.value());}
             }
             return false;
         }
 
     private:
 
-        //TODO sanitise the value_path string -- for example a trailing '/' will cause a crash
-        std::string SanitizePath(const std::string& value_path){return value_path;}
+        //sanitize the value_path string -- for example a trailing '/' is no good
+        std::string SanitizePath(const std::string& value_path)
+        {
+            std::string vpath = MHO_Tokenizer::TrimLeadingAndTrailingWhitespace(value_path);
+            if(vpath.size() > 0 && vpath.back() == '/') //trim any trailing '/'
+            {
+                vpath.pop_back();
+            }
+            return vpath;
+        }
 
         //helpers
         MHO_Tokenizer fTokenizer;
@@ -125,19 +125,31 @@ template< typename XValueType>
 bool
 MHO_ParameterStore::Get(const std::string& value_path, XValueType& value)
 {
-    #ifdef SAFETY_DANCE
-    //kind of silly to do this - should just re-implement the access method below
-    //to use the same check-logic to retrieve the value, instead of using json_pointer
-    if(!IsPresent(value_path)){return false;}
-    #endif
-    
+    //NOTE: we do not use json_pointer to access values specified by path 
+    //because it will throw an exception if used when the path is not present/complete
     std::string path = SanitizePath(value_path);
-    mho_json::json_pointer jptr(path);
-    auto item = fStore.at(jptr);
-    if( !item.empty() )
+    fPath.clear();
+    fTokenizer.SetString(&path);
+    fTokenizer.GetTokens(&fPath);
+
+    bool present = false;
+    auto* p = &fStore;
+    for(auto it = fPath.begin(); it != fPath.end(); it++)
     {
-        value = item.get<XValueType>();
-        return true;
+        auto jit = p->find(*it);
+        if(jit == p->end())
+        {
+            return false;
+        }
+        else if( *it == *(fPath.rbegin() ) )
+        {
+            value = jit->get<XValueType>();
+            return true;
+        }
+        else
+        {
+            p = &(jit.value());
+        }
     }
     return false;
 }
@@ -148,7 +160,7 @@ MHO_ParameterStore::GetAs(const std::string& value_path)
 {
     XValueType v = XValueType(); //default constructor (zero for int, double, etc)
     bool ok = Get(value_path,v);
-    if(!ok){msg_debug("utility", "failed to retrieve value: "<< value_path<<" returning default: " << v << eom );}
+    if(!ok){msg_debug("utility", "failed to retrieve value: "<< value_path <<" returning default: " << v << eom );}
     return v;
 }
 
