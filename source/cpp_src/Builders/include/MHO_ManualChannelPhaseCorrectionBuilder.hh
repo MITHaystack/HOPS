@@ -11,20 +11,22 @@
 */
 
 #include "MHO_OperatorBuilder.hh"
+#include "MHO_ChannelQuantity.hh"
 
 namespace hops
 {
 
-class MHO_ManualChannelPhaseCorrectionBuilder: public MHO_OperatorBuilder
+class MHO_ManualChannelPhaseCorrectionBuilder: 
+    public MHO_OperatorBuilder,
+    public MHO_ChannelQuantity
 {
     public:
 
-        MHO_ManualChannelPhaseCorrectionBuilder(MHO_OperatorToolbox* toolbox):
-            MHO_OperatorBuilder(toolbox)
-            {};
-
-        MHO_ManualChannelPhaseCorrectionBuilder(MHO_OperatorToolbox* toolbox, MHO_ContainerStore* cstore, mho_json* pstore):
-            MHO_OperatorBuilder(toolbox, cstore, pstore)
+        MHO_ManualChannelPhaseCorrectionBuilder(MHO_OperatorToolbox* toolbox, 
+                                                MHO_ContainerStore* cstore = nullptr,
+                                                MHO_ParameterStore* pstore = nullptr):
+            MHO_OperatorBuilder(toolbox, cstore, pstore),
+            MHO_ChannelQuantity()
             {};
 
         virtual ~MHO_ManualChannelPhaseCorrectionBuilder(){};

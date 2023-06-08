@@ -11,20 +11,22 @@
 */
 
 #include "MHO_OperatorBuilder.hh"
+#include "MHO_ChannelQuantity.hh"
 
 namespace hops
 {
 
-class MHO_ChannelLabellerBuilder: public MHO_OperatorBuilder
+class MHO_ChannelLabellerBuilder: 
+    public MHO_OperatorBuilder,
+    public MHO_ChannelQuantity
 {
     public:
 
-        MHO_ChannelLabellerBuilder(MHO_OperatorToolbox* toolbox):
-            MHO_OperatorBuilder(toolbox)
-            {};
-
-        MHO_ChannelLabellerBuilder(MHO_OperatorToolbox* toolbox, MHO_ContainerStore* cstore, mho_json* pstore):
-            MHO_OperatorBuilder(toolbox, cstore, pstore)
+        MHO_ChannelLabellerBuilder(MHO_OperatorToolbox* toolbox, 
+                                   MHO_ContainerStore* cstore = nullptr,
+                                   MHO_ParameterStore* pstore = nullptr):
+            MHO_OperatorBuilder(toolbox, cstore, pstore),
+            MHO_ChannelQuantity()
             {};
 
         virtual ~MHO_ChannelLabellerBuilder(){};

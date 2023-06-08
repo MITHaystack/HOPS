@@ -10,66 +10,49 @@ namespace hops
 bool
 MHO_ManualChannelPhaseCorrectionBuilder::Build()
 {
-
-    //assume attributes are ok for now - TODO add checks!
-    std::string op_name = fAttributes["name"].get<std::string>();
-    std::string channel_name_str = fAttributes["channel_names"].get<std::string>();
-    std::vector<double> pc_phases = fAttributes["pc_phases"].get< std::vector<double> >();
-
-    std::vector< std::string > chan_names;
-    if(channel_name_str.find(",") != std::string::npos)
+    if( IsConfigurationOk() )
     {
-        chan_names= SplitString(channel_name_str, std::string(",")); //split on commas
-    }
-    else
-    {
-        chan_names= SplitString(channel_name_str); //split every char
-    }
+        //assume attributes are ok for now - TODO add checks!
+        std::string op_name = fAttributes["name"].get<std::string>();
+        std::string channel_name_str = fAttributes["channel_names"].get<std::string>();
+        std::vector<double> pc_phases = fAttributes["pc_phases"].get< std::vector<double> >();
 
+        std::string pol = ParsePolFromName(op_name);
+        std::string mk4id = ExtractStationMk4ID();
+        op_name = "pc_phases";
+        std::cout<<"pol = "<<pol<<" station mk4id = "<<mk4id<<std::endl;
+        //construct channel -> pc_phase map
+        auto chan2pcp = MapChannelQuantities(channel_name_str, pc_phases);
 
-    std::string pol = ParsePolFromName(op_name);
-    std::string mk4id = ExtractStationMk4ID();
-    op_name = "pc_phases";
-
-    std::cout<<"pol = "<<pol<<" station mk4id = "<<mk4id<<std::endl;
-
-    if( pc_phases.size() == chan_names.size() )
-    {
-
-
-        //retrieve the arguments to operate on from the container store
-        std::string vis_name = "vis";
-        auto visID = fContainerStore->GetObjectUUID(vis_name);
-        visibility_type* vis_data = fContainerStore->GetObject<visibility_type>(visID);
-        if( vis_data == nullptr )
+        if( chan2pcp.size() > 0)
         {
-            msg_error("builders", "cannot construct MHO_ManualChannelPhaseCorrection without visibility data." << eom);
+            //retrieve the arguments to operate on from the container store
+            visibility_type* vis_data = fContainerStore->GetObject<visibility_type>(std::string("vis"));
+            if( vis_data == nullptr )
+            {
+                msg_error("builders", "cannot construct MHO_ManualChannelPhaseCorrection without visibility data." << eom);
+                return false;
+            }
+
+            MHO_ManualChannelPhaseCorrection* op = new MHO_ManualChannelPhaseCorrection();
+
+            //set the arguments
+            op->SetArgs(vis_data);
+            op->SetChannelToPCPhaseMap(chan2pcp);
+            op->SetPolarization(pol);
+            op->SetStationMk4ID(mk4id);
+
+            bool replace_duplicates = false;
+            this->fOperatorToolbox->AddOperator(op,op_name,replace_duplicates);
+            return true;
+        }
+        else
+        {
+            msg_error("builders", "cannot set pc_phases with unequal number of channels/elements. " << eom);
             return false;
         }
-
-        MHO_ManualChannelPhaseCorrection* op = new MHO_ManualChannelPhaseCorrection();
-
-        //set the arguments
-        op->SetArgs(vis_data);
-
-        auto chan2pcp = zip_into_map(chan_names, pc_phases); //name -> freq
-        op->SetChannelToPCPhaseMap(chan2pcp);
-        op->SetPolarization(pol);
-        op->SetStationMk4ID(mk4id);
-
-        bool replace_duplicates = false;
-        this->fOperatorToolbox->AddOperator(op,op_name,replace_duplicates);
-
-        return true;
-
     }
-    else
-    {
-        msg_error("builders", "cannot set pc_phases with unequal number of channels/elements " <<
-                  "(channels, pc_phases) = (" << chan_names.size() << ", " << pc_phases.size() << ")"
-                  << eom );
-        return false;
-    }
+    return false;
 }
 
 std::string

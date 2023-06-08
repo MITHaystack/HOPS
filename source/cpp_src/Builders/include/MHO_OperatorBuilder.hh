@@ -8,6 +8,7 @@
 #include "MHO_Operator.hh"
 #include "MHO_OperatorToolbox.hh"
 #include "MHO_ContainerStore.hh"
+#include "MHO_ParameterStore.hh"
 #include "MHO_JSONHeaderWrapper.hh"
 
 namespace hops
@@ -18,14 +19,9 @@ class MHO_OperatorBuilder
 {
 
     public:
-
-        MHO_OperatorBuilder(MHO_OperatorToolbox* toolbox):
-            fOperatorToolbox(toolbox),
-            fContainerStore(nullptr),
-            fParameterStore(nullptr)
-            {};
-            
-        MHO_OperatorBuilder(MHO_OperatorToolbox* toolbox, MHO_ContainerStore* cstore, mho_json* pstore):
+        MHO_OperatorBuilder(MHO_OperatorToolbox* toolbox, 
+                            MHO_ContainerStore* cstore = nullptr,
+                            MHO_ParameterStore* pstore = nullptr):
             fOperatorToolbox(toolbox),
             fContainerStore(cstore),
             fParameterStore(pstore)
@@ -34,7 +30,8 @@ class MHO_OperatorBuilder
             
         virtual ~MHO_OperatorBuilder(){}; //delegate memory management to toolbox
         
-        virtual void SetParameterStore(mho_json* pstore){fParameterStore = pstore;} 
+        virtual void SetToolbox(MHO_OperatorToolbox* toolbox){fOperatorToolbox = toolbox;}
+        virtual void SetParameterStore(MHO_ParameterStore* pstore){fParameterStore = pstore;} 
         virtual void SetContainerStore(MHO_ContainerStore* cstore){fContainerStore = cstore;}
 
         //json config for this operator (parsed from the control file)
@@ -47,12 +44,15 @@ class MHO_OperatorBuilder
 
     protected:
         
+        //provided for derived class to validate fAttributes and/or fConditions
+        virtual bool IsConfigurationOk(){return true;}
+        
         //constructed operator gets stashed here
         MHO_OperatorToolbox* fOperatorToolbox;
 
-        //container store and data look-up library (for retrieval and setting of arguments)
+        //data container and parameters stores
         MHO_ContainerStore* fContainerStore;
-        mho_json* fParameterStore;
+        MHO_ParameterStore* fParameterStore;
 
         //provided for the configuration of the operator that is to be built
         mho_json fConditions;
