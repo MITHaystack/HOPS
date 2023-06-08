@@ -5,6 +5,7 @@
 #include <getopt.h>
 #include <iomanip>
 
+
 #define EXTRA_DEBUG
 
 //global messaging util
@@ -18,6 +19,7 @@
 
 //control
 #include "MHO_ControlFileParser.hh"
+#include "MHO_ControlConditionEvaluator.hh"
 
 //operators
 #include "MHO_ElementTypeCaster.hh"
@@ -37,25 +39,89 @@
 
 #include "MHO_ComputePlotData.hh"
 
-#ifdef USE_ROOT
-    #include "TApplication.h"
-    #include "MHO_RootCanvasManager.hh"
-    #include "MHO_RootGraphManager.hh"
-#endif
 
+//pybind11 stuff to interface with python
+#include <pybind11/pybind11.h>
+#include <pybind11/embed.h>
+#include "pybind11_json/pybind11_json.hpp"
+namespace py = pybind11;
+namespace nl = nlohmann;
+using namespace pybind11::literals;
 
 using namespace hops;
 
 
+void configure_data_library(MHO_ContainerStore* store)
+{
+    //retrieve the (first) visibility and weight objects
+    //(currently assuming there is only one object per type)
+    visibility_store_type* vis_store_data = nullptr;
+    weight_store_type* wt_store_data = nullptr;
+
+    vis_store_data = store->GetObject<visibility_store_type>(0);
+    wt_store_data = store->GetObject<weight_store_type>(0);
+
+    if(vis_store_data == nullptr)
+    {
+        msg_fatal("main", "failed to read visibility data from the .cor file." <<eom);
+        std::exit(1);
+    }
+
+    if(wt_store_data == nullptr)
+    {
+        msg_fatal("main", "failed to read weight data from the .cor file." <<eom);
+        std::exit(1);
+    }
+    
+    std::size_t n_vis = store->GetNObjects<visibility_store_type>();
+    std::size_t n_wt = store->GetNObjects<weight_store_type>();
+    
+    if(n_vis != 1 || n_wt != 1)
+    {
+        msg_warn("main", "multiple visibility and/or weight types not yet supported" << eom);
+    }
+
+    std::string vis_shortname = store->GetShortName(vis_store_data->GetObjectUUID() );
+    std::string wt_shortname = store->GetShortName(wt_store_data->GetObjectUUID() );
+
+    visibility_type* vis_data = new visibility_type();
+    weight_type* wt_data = new weight_type();
+
+    MHO_ElementTypeCaster<visibility_store_type, visibility_type> up_caster;
+    up_caster.SetArgs(vis_store_data, vis_data);
+    up_caster.Initialize();
+    up_caster.Execute();
+
+    MHO_ElementTypeCaster< weight_store_type, weight_type> wt_up_caster;
+    wt_up_caster.SetArgs(wt_store_data, wt_data);
+    wt_up_caster.Initialize();
+    wt_up_caster.Execute();
+    
+    //remove the original objects
+    store->DeleteObject(vis_store_data);
+    store->DeleteObject(wt_store_data);
+
+    #pragma message("TODO - if we plan to rely on short-names to identify objects, we need to validate them here")
+    //TODO make sure that the visibility object is called 'vis' and weights are called 'weights', etc.
+    //TODO also validate the station data
+    
+    //now shove the double precision data into the container store with the same shortname
+    store->AddObject(vis_data);
+    store->AddObject(wt_data);
+    store->SetShortName(vis_data->GetObjectUUID(), vis_shortname);
+    store->SetShortName(wt_data->GetObjectUUID(), wt_shortname);
+}
+
 int main(int argc, char** argv)
 {
-    std::string usage = "SimpleFringeSearch -d <directory> -c <control file> -b <baseline> -p <pol. product>";
+
+    std::string usage = "SimpleFringeSearchPlot -d <directory> -c <control file> -b <baseline> -p <pol. product>";
 
     MHO_Message::GetInstance().AcceptAllKeys();
     MHO_Message::GetInstance().SetMessageLevel(eDebug);
 
     MHO_Snapshot::GetInstance().AcceptAllKeys();
-    MHO_Snapshot::GetInstance().SetExecutableName(std::string("SimpleFringeSearch"));
+    MHO_Snapshot::GetInstance().SetExecutableName(std::string("SimpleFringeSearchPlot"));
 
     std::string directory = "";
     std::string control_file = "";
@@ -109,7 +175,6 @@ int main(int argc, char** argv)
     //INITIAL SCAN DIRECTORY
     ////////////////////////////////////////////////////////////////////////////
 
-
     //initialize the scan store from this directory
     MHO_ScanDataStore scanStore;
     scanStore.SetDirectory(directory);
@@ -122,72 +187,83 @@ int main(int argc, char** argv)
 
     //load root file and container store for this baseline
     mho_json vexInfo = scanStore.GetRootFileData();
-    MHO_ContainerStore* conStore = new MHO_ContainerStore;
-    scanStore.LoadBaseline(baseline, conStore);
 
-    if(conStore == nullptr)
+    //get scan name and source name
+    mho_json::json_pointer sched_pointer("/$SCHED");
+    auto sched = vexInfo.at(sched_pointer);
+    if(sched.size() != 1)
     {
-        msg_fatal("main", "Could not find a file for baseline: "<< baseline << eom);
+        msg_error("main", "root file " <<  scanStore.GetRootFileBasename() <<" contains missing or ambiguous $SCHED information." << eom );
         std::exit(1);
     }
 
+    std::string scnName = sched.begin().key();
+    std::string src_loc = "/$SCHED/" + scnName + "/source/0/source";
+    mho_json::json_pointer src_jptr(src_loc);
+    std::string srcName = vexInfo.at(src_jptr).get<std::string>();
 
     ////////////////////////////////////////////////////////////////////////////
-    //CONTROL BLOCK CONSTRUCTION
+    //CONTROL CONSTRUCTION
     ////////////////////////////////////////////////////////////////////////////
     MHO_ControlFileParser cparser;
+    MHO_ControlConditionEvaluator ceval;
     cparser.SetControlFile(control_file);
-    auto control_statements = cparser.ParseControl();
+    auto control_contents = cparser.ParseControl();
+    mho_json control_statements;
+
+    //TODO -- where should frequency group information get stashed/retrieved?
+    ceval.SetPassInformation(baseline, srcName, "?", scnName);//baseline, source, fgroup, scan
+    control_statements = ceval.GetApplicableStatements(control_contents);
+
+    //now we need to process the control statements (this means setting parameters and constructing any related operators)
     double ref_freq = 6000.0;
 
+
     ////////////////////////////////////////////////////////////////////////////
-    //LOAD DATA
+    //LOAD DATA AND ASSEMBLY THE DATA STORE
     ////////////////////////////////////////////////////////////////////////////
-
-    //retrieve the (first) visibility and weight objects (currently assuming there is only one object per type)
-    visibility_store_type* bl_store_data = nullptr;
-    weight_store_type* wt_store_data = nullptr;
-
-    visibility_type bl_data_obj;
-    weight_type wt_data_obj;
-    visibility_type* bl_data = &bl_data_obj;
-    weight_type* wt_data = &wt_data_obj;
-
-    MHO_ObjectTags* tags = nullptr;
-
-    bl_store_data = conStore->GetObject<visibility_store_type>(0);
-    wt_store_data = conStore->GetObject<weight_store_type>(0);
-    tags = conStore->GetObject<MHO_ObjectTags>(0);
-
-    if(bl_store_data == nullptr)
+    MHO_ContainerStore* conStore = new MHO_ContainerStore();
+    scanStore.LoadBaseline(baseline, conStore);
+    
+    //TODO load the station data files too
+    
+    if(conStore == nullptr)
     {
-        msg_fatal("main", "failed to read visibility data from the .cor file." <<eom);
+        msg_fatal("main", "could not find a file for baseline: "<< baseline << eom);
         std::exit(1);
     }
-
-    if(wt_store_data == nullptr)
+    
+    configure_data_library(conStore);
+    
+    auto visID = conStore->GetObjectUUID(std::string("vis"));
+    auto wtID = conStore->GetObjectUUID(std::string("weight"));
+    
+    if( visID.is_empty() || wtID.is_empty() )
     {
-        msg_fatal("main", "failed to read weight data from the .cor file." <<eom);
+        msg_fatal("main", "could not find visibility or weight objects with names (vis, weight)." << eom);
         std::exit(1);
     }
+    
+    visibility_type* vis_data = conStore->GetObject<visibility_type>(visID);
+    weight_type* wt_data = conStore->GetObject<weight_type>(wtID);
+    
+    ////////////////////////////////////////////////////////////////////////////
+    //PARAMETER SETTING
+    ////////////////////////////////////////////////////////////////////////////
+    mho_json parameter_store;
+    //set defaults 
+    
+    //TODO process control statments that set parameters
+    
+    
 
-    if(tags == nullptr)
-    {
-        msg_warn("main", "failed to read tag data from the .cor file." <<eom);
-    }
+    ////////////////////////////////////////////////////////////////////////////
+    //OPERATOR CONSTRUCTION
+    ////////////////////////////////////////////////////////////////////////////
 
-    MHO_ElementTypeCaster<visibility_store_type, visibility_type> up_caster;
-    up_caster.SetArgs(bl_store_data, bl_data);
-    up_caster.Initialize();
-    up_caster.Execute();
-
-    MHO_ElementTypeCaster< weight_store_type, weight_type> wt_up_caster;
-    wt_up_caster.SetArgs(wt_store_data, wt_data);
-    wt_up_caster.Initialize();
-    wt_up_caster.Execute();
-
-    std::size_t wt_dim[weight_type::rank::value];
-    wt_data->GetDimensions(wt_dim);
+    
+    
+    
 
     ////////////////////////////////////////////////////////////////////////////
     //APPLY COARSE DATA SELECTION
@@ -197,14 +273,16 @@ int main(int argc, char** argv)
     MHO_SelectRepack<weight_type> wtspack;
 
     //first find indexes which corresponds to the specified pol product
-    std::vector<std::size_t> selected_pp = (&(std::get<POLPROD_AXIS>(*bl_data)))->SelectMatchingIndexes(polprod);
+    std::vector<std::size_t> selected_pp = (&(std::get<POLPROD_AXIS>(*vis_data)))->SelectMatchingIndexes(polprod);
 
     //select some specified AP's
     // std::vector< std::size_t > selected_ap;
     // selected_ap.push_back(20);
 
     //select first 8 channels for testing
-    std::vector< std::size_t > selected_ch;
+    std::size_t n_max_channels = std::get<CHANNEL_AXIS>(*vis_data).GetSize();
+    std::vector< std::size_t > selected_ch;// = cb_wrapper.GetActiveChannelsKLUDGE(n_max_channels);
+
     for(std::size_t i=0;i<8; i++){selected_ch.push_back(i);}
     //for(std::size_t i=0;i<2; i++){selected_ch.push_back(i);}
 
@@ -220,7 +298,7 @@ int main(int argc, char** argv)
     visibility_type* alt_data = new visibility_type();
     weight_type* alt_wt_data = new weight_type();
 
-    spack.SetArgs(bl_data, alt_data);
+    spack.SetArgs(vis_data, alt_data);
     spack.Initialize();
     spack.Execute();
 
@@ -230,20 +308,29 @@ int main(int argc, char** argv)
 
     //TODO, work out what to do with the axis interval labels in between operations
     //explicitly copy the channel axis labels here
-    std::get<CHANNEL_AXIS>(*alt_data).CopyIntervalLabels( std::get<CHANNEL_AXIS>(*bl_data) );
+    std::get<CHANNEL_AXIS>(*alt_data).CopyIntervalLabels( std::get<CHANNEL_AXIS>(*vis_data) );
     std::get<CHANNEL_AXIS>(*alt_wt_data).CopyIntervalLabels( std::get<CHANNEL_AXIS>(*wt_data) );
 
     wt_data->Copy(*alt_wt_data);
-    bl_data->Copy(*alt_data);
+    vis_data->Copy(*alt_data);
 
     delete alt_data;
     delete alt_wt_data;
 
     std::size_t bl_dim[visibility_type::rank::value];
-    bl_data->GetDimensions(bl_dim);
+    vis_data->GetDimensions(bl_dim);
+    for(std::size_t i=0; i < visibility_type::rank::value; i++)
+    {
+        if(bl_dim[i] == 0)
+        {
+            msg_fatal("main", "no data left after cuts." << eom);
+            std::exit(1);
+        }
+    }
+
 
     //take a snapshot
-    take_snapshot_here("test", "visib", __FILE__, __LINE__, bl_data);
+    take_snapshot_here("test", "visib", __FILE__, __LINE__, vis_data);
     take_snapshot_here("test", "weights", __FILE__, __LINE__,  wt_data);
 
     // //compute the sum of the weights
@@ -274,7 +361,7 @@ int main(int argc, char** argv)
     ////////////////////////////////////////////////////////////////////////////
 
     /*
-    
+
     //apply manual pcal
     //construct the pcal array...need to re-think how we are going to move control block info around (scalar parameters vs. arrays etc)
     manual_pcal_type* ref_pcal = cb_wrapper.GetRefStationManualPCOffsets();
@@ -282,21 +369,22 @@ int main(int argc, char** argv)
 
     MHO_ManualChannelPhaseCorrection pcal_correct;
 
-    pcal_correct.SetArgs(bl_data, rem_pcal, bl_data);
+    pcal_correct.SetArgs(vis_data, rem_pcal, vis_data);
     ok = pcal_correct.Initialize();
     check_step_error(ok, "main", "ref pcal initialization." << eom );
     ok = pcal_correct.Execute();
     check_step_error(ok, "main", "ref pcal execution." << eom );
 
-    pcal_correct.SetArgs(bl_data, ref_pcal, bl_data);
+    pcal_correct.SetArgs(vis_data, ref_pcal, vis_data);
     ok = pcal_correct.Initialize();
     check_step_error(ok, "main", "rem pcal initialization." << eom );
     ok = pcal_correct.Execute();
     check_step_error(ok, "main", "rem pcal execution." << eom );
+
     */
 
     //output for the delay
-    visibility_type* sbd_data = bl_data->CloneEmpty();
+    visibility_type* sbd_data = vis_data->CloneEmpty();
     bl_dim[FREQ_AXIS] *= 4; //normfx implementation demands this
     sbd_data->Resize(bl_dim);
 
@@ -306,7 +394,7 @@ int main(int argc, char** argv)
 
     //run norm-fx via the wrapper class (x-form to SBD space)
     MHO_NormFX nfxOp;
-    nfxOp.SetArgs(bl_data, wt_data, sbd_data);
+    nfxOp.SetArgs(vis_data, wt_data, sbd_data);
     ok = nfxOp.Initialize();
     check_step_fatal(ok, "main", "normfx initialization." << eom );
 
@@ -353,7 +441,7 @@ int main(int argc, char** argv)
     fringeInterp.SetSBDArray(sbd_data);
     fringeInterp.SetWeights(wt_data);
 
-    //TODO fix me -- we shouldn't be referencing internal members of the MHO_MBDelaySearch class workspace
+    #pragma message("TODO FIXME -- we shouldn't be referencing internal members of the MHO_MBDelaySearch class workspace")
     //Figure out how best to present this axis data to the fine-interp function.
     fringeInterp.SetMBDAxis( mbdSearch.GetMBDAxis());
     fringeInterp.SetDRAxis( mbdSearch.GetDRAxis());
@@ -365,10 +453,13 @@ int main(int argc, char** argv)
     double sbdelay = fringeInterp.GetSBDelay();
     double mbdelay = fringeInterp.GetMBDelay();
     double drate = fringeInterp.GetDelayRate();
+    double frate = fringeInterp.GetFringeRate();
+    double famp = fringeInterp.GetFringeAmplitude();
 
     ////////////////////////////////////////////////////////////////////////////
     //PLOTTING/DEBUG
     ////////////////////////////////////////////////////////////////////////////
+    //TODO FIXME Organize all the plot data generation better
 
     MHO_ComputePlotData mk_plotdata;
 
@@ -377,140 +468,123 @@ int main(int argc, char** argv)
     mk_plotdata.SetDelayRate(drate);
     mk_plotdata.SetSBDelay(sbdelay);
     mk_plotdata.SetSBDArray(sbd_data);
+    mk_plotdata.SetSBDelayBin(c_sbdmax);
     mk_plotdata.SetWeights(wt_data);
 
     auto sbd_amp = mk_plotdata.calc_sbd();
+    auto mbd_amp = mk_plotdata.calc_mbd();
+    auto dr_amp = mk_plotdata.calc_dr();
+    auto sbd_xpower = mk_plotdata.calc_xpower_KLUDGE();
+    double coh_avg_phase = mk_plotdata.calc_phase();
 
+    //calculate AP period
+    double ap_delta = std::get<TIME_AXIS>(*vis_data)(1) - std::get<TIME_AXIS>(*vis_data)(0);
 
+    #ifdef USE_PYBIND11
 
-
-    //#ifdef USE_ROOT
-    #ifdef NOT_DISABLED
-
-    std::cout<<"starting root plotting"<<std::endl;
-
-    //ROOT stuff for plots
-
-    int dummy_argc = 0;
-    char tmp = '\0';
-    char* argv_placeholder = &tmp;
-    char** dummy_argv = &argv_placeholder;
-
-    TApplication* App = new TApplication("test",&dummy_argc,dummy_argv);
-
-    MHO_RootCanvasManager cMan;
-    MHO_RootGraphManager gMan;
-
-    MHO_ExtremaSearch< MHO_NDArrayView< visibility_element_type, 2 > > mSearch;
-    MHO_ExtremaSearch< MHO_NDArrayView< visibility_element_type, 1 > > mbdSearch;
-
-    auto dr_rate_ax = std::get<TIME_AXIS>(*sbd_dr_data);
-    auto delay_ax = std::get<FREQ_AXIS>(*sbd_dr_data);
-
-    //divide out the reference frequency (need to think about this )
-    double rescale = 1.0/6.0;//ref freq = 6GHz (axis is then in nanosec/sec)
-    for(std::size_t d=0; d<dr_rate_ax.GetSize(); d++)
+    mho_json plot_dict;
+    std::size_t npts = sbd_amp.GetSize();
+    for(std::size_t i=0;i<npts;i++)
     {
-        dr_rate_ax(d) *= rescale;
+        plot_dict["SBD_AMP"].push_back( sbd_amp(i) );
+        plot_dict["SBD_AMP_XAXIS"].push_back( std::get<0>(sbd_amp)(i) );
     }
 
-
-
-
-    for(std::size_t ch=0; ch<bl_dim[CHANNEL_AXIS]; ch++)
+    npts = mbd_amp.GetSize();
+    for(std::size_t i=0;i<npts;i++)
     {
-        std::stringstream ss;
-        ss << "channel_test";
-        ss << ch;
-
-        auto c = cMan.CreateCanvas(ss.str().c_str(), 800, 800);
-        auto ch_slice = sbd_dr_data->SliceView(0,ch,":",":");
-        mSearch.SetArgs(&ch_slice);
-        mSearch.Initialize();
-        mSearch.Execute();
-
-        //really dumb/simple way of looking at the location of the delay/dr_rate max location
-        double vmax = mSearch.GetMax();
-        double vmin = mSearch.GetMin();
-        std::size_t max_loc = mSearch.GetMaxLocation();
-        std::size_t min_loc = mSearch.GetMinLocation();
-        auto loc_array = ch_slice.GetIndicesForOffset(max_loc);
-        std::cout<<ss.str()<<": max = "<<vmax<<" at index location: ("<<loc_array[0]<<", "<<loc_array[1] <<")  = ("
-        <<dr_rate_ax(loc_array[0])<<", "<<delay_ax(loc_array[1])<<") " <<std::endl;
-        visibility_element_type val = ch_slice(loc_array[0], loc_array[1]);
-        std::cout<<"max mag = "<<std::abs(val)<<", arg = "<<std::arg(val)*(180./M_PI)<<std::endl;
-
-        auto gr = gMan.GenerateComplexGraph2D(ch_slice, dr_rate_ax, delay_ax, ROOT_CMPLX_PLOT_ABS );
-
-        //at the sbd, dr max locations, lets look for the mbd max too
-        auto mbd_slice = mbd_data.SliceView(0, ":", loc_array[0], loc_array[1]);
-        auto mbd_ax = &(std::get<CHANNEL_AXIS>(mbd_data));
-
-        if(ch==0)
-        {
-            //TODO FIXME
-            //for some reason our MBD plot axis is flipped w.r.t to fourfit plot
-            //is this a sign convention? due to LSB vs USB? Don't know right now
-            double fudge_factor = -1; //sign flip
-            for(std::size_t d=0; d<mbd_ax->GetSize(); d++)
-            {
-                (*mbd_ax)(d) *= fudge_factor;
-            }
-        }
-
-
-        // for(std::size_t x=0;x<mbd_slice.GetSize(); x++)
-        // {
-        //     std::cout<<"x, val = "<<x<<", "<<(*mbd_ax)(x)<<", "<<mbd_slice(x)<<std::endl;
-        // }
-
-        mbdSearch.SetArgs(&mbd_slice);
-        mbdSearch.Initialize();
-        mbdSearch.Execute();
-
-        auto new_mbd_ax = std::get<CHANNEL_AXIS>(mbd_data);
-        auto gr2 = gMan.GenerateComplexGraph1D(mbd_slice, *mbd_ax, ROOT_CMPLX_PLOT_ABS );
-
-        std::size_t max_mbd_loc = mbdSearch.GetMaxLocation();
-        auto mbd_loc_array = mbd_slice.GetIndicesForOffset(max_mbd_loc);
-        std::cout<<"mbd max located at: "<<mbd_loc_array[0]<<" = "<<(*mbd_ax)(mbd_loc_array[0])<<std::endl;
-
-
-
-        c->cd();
-        c->Divide(1,2);
-
-        c->cd(1);
-        c->SetTopMargin(0.1);
-        c->SetRightMargin(0.2);
-
-        gr->SetTitle( "Fringe; delay rate (ns/s); Single band delay (#mus); Amp");
-        gr->Draw("COLZ");
-        gr->GetHistogram()->GetXaxis()->CenterTitle();
-        gr->GetHistogram()->GetYaxis()->CenterTitle();
-        gr->GetHistogram()->GetZaxis()->CenterTitle();
-        gr->GetHistogram()->GetXaxis()->SetTitleOffset(1.2);
-        gr->GetHistogram()->GetYaxis()->SetTitleOffset(1.08);
-        gr->GetHistogram()->GetZaxis()->SetTitleOffset(-0.4);
-        gr->Draw("COLZ");
-
-
-
-        c->Update();
-        c->cd(2);
-        c->SetTopMargin(0.1);
-        c->SetRightMargin(0.2);
-
-        gr2->SetTitle( "Fringe; MBD; Amp");
-        gr2->Draw("APL");
-
-
-        c->Update();
+        plot_dict["MBD_AMP"].push_back( mbd_amp(i) );
+        plot_dict["MBD_AMP_XAXIS"].push_back( std::get<0>(mbd_amp)(i) );
     }
-    App->Run();
+
+    npts = dr_amp.GetSize();
+    for(std::size_t i=0;i<npts;i++)
+    {
+        plot_dict["DLYRATE"].push_back( dr_amp(i) );
+        plot_dict["DLYRATE_XAXIS"].push_back( std::get<0>(dr_amp)(i) );
+    }
+
+    npts = sbd_xpower.GetSize();
+    for(std::size_t i=0;i<npts;i++)
+    {
+        plot_dict["XPSPEC-ABS"].push_back( std::abs(sbd_xpower(i) ) );
+        plot_dict["XPSPEC-ARG"].push_back( std::arg(sbd_xpower(i) )*(180.0/M_PI) );
+        plot_dict["XPSPEC_XAXIS"].push_back( std::get<0>(sbd_xpower)(i) );
+    }
+
+    mho_json exper_section = vexInfo["$EXPER"];
+    auto exper_info = exper_section.begin().value();
+    std::cout<< exper_info["exper_name"] << std::endl;
+
+    mho_json src_section = vexInfo["$SOURCE"];
+    auto src_info = src_section.begin().value();
+
+    mho_json sched_section = vexInfo["$SCHED"];
+    std::string scan_name = sched_section.begin().key();
+    auto sched_info = sched_section.begin().value();
+
+    mho_json freq_section = vexInfo["$FREQ"];
+    auto freq_info = freq_section.begin().value();
+    double sample_rate = freq_info["sample_rate"]["value"];
+    double samp_period = 1.0/(sample_rate*1e6);
 
 
-    #endif
+    plot_dict["Quality"] = "-";
+
+    //Poor imitation of SNR -- needs corrections
+    //hardcoded dummy values right now
+    double eff_npol = 1.0;
+    double amp_corr_factor = 1.0;
+    double fact1 = 1.0; //more than 16 lags
+    double fact2 = 0.881; //2bit x 2bit
+    double fact3 = 0.970; //difx
+    double acc_period = ap_delta;
+    double inv_sigma = fact1 * fact2 * fact3 * std::sqrt(acc_period/samp_period);
+    plot_dict["SNR"] = famp * inv_sigma *  sqrt(total_ap_frac * eff_npol)/(1e4* amp_corr_factor);
+
+    std::size_t nchan = std::get<CHANNEL_AXIS>(*vis_data).GetSize();
+    plot_dict["IntgTime"] = total_ap_frac*acc_period /(double)nchan;
+
+    plot_dict["Amp"] = famp;
+
+    #pragma message("TODO FIXME -- when control file parameter mbd_anchor sbd is used there is an additional correction done to fringe phase, see fill_208.c line 158!!")
+    plot_dict["ResPhase"] = std::fmod(coh_avg_phase * (180.0/M_PI), 360.0);
+    plot_dict["PFD"] = "-";
+    plot_dict["ResidSbd(us)"] = sbdelay;
+    plot_dict["ResidMbd(us)"] = mbdelay;
+    plot_dict["FringeRate(Hz)"]  = frate;
+    plot_dict["IonTEC(TEC)"] = "-";
+    plot_dict["RefFreq(MHz)"] = ref_freq;
+    plot_dict["AP(sec)"] = ap_delta;
+    plot_dict["ExperName"] = exper_info["exper_name"];
+    plot_dict["ExperNum"] = "-";
+    plot_dict["YearDOY"] = "-";
+    plot_dict["Start"] = "-";
+    plot_dict["Stop"] = "-";
+    plot_dict["FRT"] = "-";
+    plot_dict["CorrTime"] = "-";
+    plot_dict["FFTime"] = "-";
+    plot_dict["BuildTime"] = "-";
+
+    plot_dict["RA"] = src_info["ra"];
+    plot_dict["Dec"] = src_info["dec"];
+
+    plot_dict["RootScanBaseline"] = scanStore.GetRootFileBasename() + ", " + scan_name + ", " + baseline;
+    plot_dict["CorrVers"] = "HOPS4/DiFX fourfit  rev 0";
+    plot_dict["PolStr"] = polprod;
+
+
+    std::cout<<"python plotting"<<std::endl;
+    //test stuff
+    py::scoped_interpreter guard{}; // start the interpreter and keep it alive, need this or we segfault
+    py::dict plot_obj = plot_dict;
+
+    //load our interface module
+    auto ff_test = py::module::import("ff_plot_test");
+    //call a python functioin on the interface class instance
+    ff_test.attr("fourfit_plot")(plot_obj, "fplot.png");
+
+    #endif //USE_PYBIND11
 
     delete conStore;
 
