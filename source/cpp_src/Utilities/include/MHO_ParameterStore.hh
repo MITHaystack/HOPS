@@ -28,15 +28,19 @@ namespace hops
 //     "item1": 
 //     {
 //         "kvalue1": "value3",
-//         "kvalue2": "value4",
+//         "kvalue2": 
+//          {
+//              "key3": "value4",
+//              "key5": "value5"
+//          }
 //     }
 // }
-//Let's say we wanted to access 'value4', but didn't know the name of the key "kvalue2",
+//Let's say we wanted to access 'value4', but didn't know the name of the key "kvalue2", (only item1 and key3)
 //but knew it could be located under item1 via a key specified by the value associated with "item0/key2"
-//Then a useful construction to retrieve this would be something like the following (with the variable key within braces):
-//std::string vpath = "/item1/{/item0/key2}"  --> this gets translated into "/item1/kvalue2" before retrieval
+//Then a useful construction to retrieve this would be something like the following (with the variable key's location within braces):
+//std::string vpath = "/item1/{/item0/key2}/key3"  --> this gets translated into "/item1/kvalue2/key3" before retrieval
 //auto value = params.Get<std::string>(vpath);
-//
+//NOTE: this wouldn't be particularly useful for hops parameters -- but would be for retrieving vex info
 
 
 class MHO_ParameterStore
