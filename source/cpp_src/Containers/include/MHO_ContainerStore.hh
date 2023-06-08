@@ -153,7 +153,7 @@ MHO_ContainerStore::GetObject(const MHO_UUID& obj_id)
     if(it != fIdsToObjects.end())
     {
         MHO_Serializable* obj = it->second;
-        XClassType* ptr = dynamic_cast<XClassType*>(obj);
+        ptr = dynamic_cast<XClassType*>(obj);
     }
     return ptr;
 }
