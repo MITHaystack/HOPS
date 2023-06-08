@@ -52,10 +52,11 @@ MHO_ControlConditionEvaluator::GetApplicableStatements(mho_json& control_content
             {
                 if( Evaluate( *it ) )
                 {
-                    for(auto st = (*it)["statements"].begin(); st != (*it)["statements"].end(); st++)
-                    {
-                        control_statements.push_back(*st);
-                    }
+                    control_statements.push_back(*it);
+                    // for(auto st = (*it)["statements"].begin(); st != (*it)["statements"].end(); st++)
+                    // {
+                    //     control_statements.push_back(*st);
+                    // }
                     msg_debug("control", "statement is true: "<< (*it)["value"] << eom );
                 }
                 else

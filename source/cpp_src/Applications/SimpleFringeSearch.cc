@@ -215,6 +215,8 @@ int main(int argc, char** argv)
     ceval.SetPassInformation(baseline, srcName, "?", scnName);//baseline, source, fgroup, scan
     control_statements = ceval.GetApplicableStatements(control_contents);
 
+    std::cout<< control_statements.dump(2) <<std::endl;
+
     //now we need to process the control statements (this means setting parameters and constructing any related operators)
     double ref_freq = 6000.0;
 
