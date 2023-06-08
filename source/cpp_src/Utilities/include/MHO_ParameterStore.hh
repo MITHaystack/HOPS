@@ -10,7 +10,8 @@ namespace hops
 {
 
 //class to store parameters (typically from control file) for later retrieval
-//TODO -- evaluate if using json is appropriate, could also use MHO_MultiTypeMap 
+//TODO -- evaluate if using json is appropriate (fast?), could also use MHO_MultiTypeMap 
+//but we'd need to add an option to pass std::vector<T> values as well as single values
 
 class MHO_ParameterStore
 {
@@ -31,8 +32,8 @@ class MHO_ParameterStore
         template< typename XValueType>
         bool Get(const std::string& value_path, XValueType& value);
 
-        // template< typename XValueType>
-        // XValueType GetAs(const std::string& value_path);
+        template< typename XValueType>
+        XValueType GetAs(const std::string& value_path);
 
     private:
 
@@ -98,7 +99,15 @@ MHO_ParameterStore::Get(const std::string& value_path, XValueType& value)
     return false;
 }
 
-
+template< typename XValueType>
+XValueType
+MHO_ParameterStore::GetAs(const std::string& value_path)
+{
+    XValueType v = XValueType(); //default constructor (zero for int, double, etc)
+    bool ok = Get(value_path,v);
+    if(!ok){msg_debug("utility", "failed to retrieve value: "<< value_path<<" returning default: " << v << eom );}
+    return v;
+}
 
 }//end of namespace
 
