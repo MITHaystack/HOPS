@@ -18,6 +18,7 @@ MHO_ChannelLabellerBuilder::Build()
 {
     if( IsConfigurationOk() )
     {
+        msg_debug("builders", "building channel labelling operator."<< eom);
         //assume attributes are ok for now - TODO add checks!
         std::string op_name = fAttributes["name"].get<std::string>();
         std::string channel_name_str = fAttributes["channel_names"].get<std::string>();

@@ -175,7 +175,7 @@ MHO_ControlConditionEvaluator::ProcessToken(token_iter& it, token_iter& it_end)
 int
 MHO_ControlConditionEvaluator::EvaluateBooleanOps(std::list< int > states)
 {
-    //states vector consistes of NOT, AND, OR and TRUE/FALSE values
+    //states vector consists of NOT, AND, OR and TRUE/FALSE values
     //order of precedence is NOT, then AND, then OR
 
     int not_count = 0;
