@@ -25,6 +25,7 @@ set (UTILITIES_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_DirectoryInterface.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ExtensibleElement.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_JSONHeaderWrapper.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ParameterStore.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_LegacyRootCodeGenerator.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_StationCodeMap.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_Clock.hh

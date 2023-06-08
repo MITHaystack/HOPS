@@ -17,6 +17,7 @@ set(SOURCE_BASENAMES
     TestTokenizer
     TestWriteAppend
     TestEncodeDecode
+    TestParameterStore
 )
 
 if(HOPS_USE_MPI)
