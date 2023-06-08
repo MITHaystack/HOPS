@@ -37,16 +37,22 @@
 #include "MHO_MBDelaySearch.hh"
 #include "MHO_InterpolateFringePeak.hh"
 
+#include "MHO_OperatorBuilderManager.hh"
+
 #include "MHO_ComputePlotData.hh"
 
 
 //pybind11 stuff to interface with python
+#ifdef USE_PYBIND11
+
 #include <pybind11/pybind11.h>
 #include <pybind11/embed.h>
 #include "pybind11_json/pybind11_json.hpp"
 namespace py = pybind11;
 namespace nl = nlohmann;
 using namespace pybind11::literals;
+
+#endif 
 
 using namespace hops;
 
@@ -214,7 +220,6 @@ int main(int argc, char** argv)
     //TODO -- where should frequency group information get stashed/retrieved?
     ceval.SetPassInformation(baseline, srcName, "?", scnName);//baseline, source, fgroup, scan
     control_statements = ceval.GetApplicableStatements(control_contents);
-
     std::cout<< control_statements.dump(2) <<std::endl;
 
     //now we need to process the control statements (this means setting parameters and constructing any related operators)
@@ -224,7 +229,9 @@ int main(int argc, char** argv)
     ////////////////////////////////////////////////////////////////////////////
     //LOAD DATA AND ASSEMBLY THE DATA STORE
     ////////////////////////////////////////////////////////////////////////////
+    MHO_ParameterStore* paramStore = new MHO_ParameterStore();
     MHO_ContainerStore* conStore = new MHO_ContainerStore();
+    
     scanStore.LoadBaseline(baseline, conStore);
     
     //TODO load the station data files too
@@ -252,7 +259,6 @@ int main(int argc, char** argv)
     ////////////////////////////////////////////////////////////////////////////
     //PARAMETER SETTING
     ////////////////////////////////////////////////////////////////////////////
-    mho_json parameter_store;
     //set defaults 
     
     //TODO process control statments that set parameters
@@ -262,10 +268,11 @@ int main(int argc, char** argv)
     ////////////////////////////////////////////////////////////////////////////
     //OPERATOR CONSTRUCTION
     ////////////////////////////////////////////////////////////////////////////
+    MHO_OperatorToolbox* opToolbox = new MHO_OperatorToolbox();
+    MHO_OperatorBuilderManager build_manager(opToolbox, conStore, paramStore);
+    build_manager.SetControlStatements(control_statements);
+    build_manager.BuildAll();
 
-    
-    
-    
 
     ////////////////////////////////////////////////////////////////////////////
     //APPLY COARSE DATA SELECTION

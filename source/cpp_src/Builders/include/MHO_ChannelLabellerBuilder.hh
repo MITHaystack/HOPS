@@ -27,7 +27,7 @@ class MHO_ChannelLabellerBuilder:
                                    MHO_ParameterStore* pstore = nullptr):
             MHO_OperatorBuilder(toolbox, cstore, pstore),
             MHO_ChannelQuantity()
-            {};
+        {};
 
         virtual ~MHO_ChannelLabellerBuilder(){};
 

@@ -25,8 +25,7 @@ class MHO_OperatorBuilder
             fOperatorToolbox(toolbox),
             fContainerStore(cstore),
             fParameterStore(pstore)
-            {};
-            
+        {};
             
         virtual ~MHO_OperatorBuilder(){}; //delegate memory management to toolbox
         

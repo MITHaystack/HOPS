@@ -4,7 +4,8 @@ set (BUILDERS_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ChannelQuantity.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ChannelLabellerBuilder.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ManualChannelPhaseCorrectionBuilder.hh
-
+    #manager
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_OperatorBuilderManager.hh
 )
 
 #list source files #############################################################
@@ -13,6 +14,8 @@ set( BUILDERS_SOURCEFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ChannelQuantity.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ChannelLabellerBuilder.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ManualChannelPhaseCorrectionBuilder.cc
+    #manager
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_OperatorBuilderManager.cc
 )
 
 #declare header paths ##########################################################
