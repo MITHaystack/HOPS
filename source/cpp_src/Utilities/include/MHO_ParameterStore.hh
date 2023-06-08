@@ -15,6 +15,9 @@ namespace hops
 //TODO -- evaluate if using json is appropriate (fast?), could also use MHO_MultiTypeMap 
 //but we'd need to add an option to pass std::vector<T> values as well as single values
 
+//There are some deficiencies with the json approach, for example everything except terminal values
+//must be named objects (no lists allowd), though maybe we don't really need that functionality
+
 class MHO_ParameterStore
 {
     public:
@@ -123,6 +126,8 @@ bool
 MHO_ParameterStore::Get(const std::string& value_path, XValueType& value)
 {
     #ifdef SAFETY_DANCE
+    //kind of silly to do this - should just re-implement the access method below
+    //to use the same check-logic to retrieve the value, instead of using json_pointer
     if(!IsPresent(value_path)){return false;}
     #endif
     
