@@ -18,17 +18,21 @@ namespace hops
 class MHO_ManualChannelPhaseCorrectionBuilder: public MHO_OperatorBuilder
 {
     public:
-        
+
         MHO_ManualChannelPhaseCorrectionBuilder(MHO_OperatorToolbox* toolbox):
             MHO_OperatorBuilder(toolbox)
             {};
-            
+
+        MHO_ManualChannelPhaseCorrectionBuilder(MHO_OperatorToolbox* toolbox, MHO_ContainerStore* cstore, mho_json* pstore):
+            MHO_OperatorBuilder(toolbox, cstore, pstore)
+            {};
+
         virtual ~MHO_ManualChannelPhaseCorrectionBuilder(){};
 
         virtual bool Build() override;
-        
+
     private:
-        
+
         std::string ParsePolFromName(const std::string& name);
         std::string ExtractStationMk4ID();
 };

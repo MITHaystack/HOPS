@@ -1,8 +1,5 @@
 #include "MHO_ManualChannelPhaseCorrection.hh"
 
-#define PCAL_POL_AXIS 0
-#define PCAL_CHANNEL_AXIS 1
-
 
 namespace hops
 {
@@ -85,7 +82,7 @@ MHO_ManualChannelPhaseCorrection::DetermineStationIndex(const visibility_type* i
 {
     //determine if the p-cal corrections are being applied to the remote or reference station
     std::string val;
-    
+
     if(fMk4ID != "") //selection by mk4 id
     {
         in->Retrieve(fRemStationMk4IDKey, val);
@@ -93,7 +90,7 @@ MHO_ManualChannelPhaseCorrection::DetermineStationIndex(const visibility_type* i
         in->Retrieve(fRefStationMk4IDKey, val);
         if(fMk4ID == val){return 0;}
     }
-    
+
     if(fStationCode != "")//seletion by 2-char station code
     {
         in->Retrieve(fRemStationKey, val);

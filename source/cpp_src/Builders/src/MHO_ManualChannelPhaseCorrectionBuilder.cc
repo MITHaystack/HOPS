@@ -21,7 +21,7 @@ MHO_ManualChannelPhaseCorrectionBuilder::Build()
     {
         chan_names= SplitString(channel_name_str, std::string(",")); //split on commas
     }
-    else 
+    else
     {
         chan_names= SplitString(channel_name_str); //split every char
     }
@@ -30,12 +30,27 @@ MHO_ManualChannelPhaseCorrectionBuilder::Build()
     std::string pol = ParsePolFromName(op_name);
     std::string mk4id = ExtractStationMk4ID();
     op_name = "pc_phases";
-    
+
     std::cout<<"pol = "<<pol<<" station mk4id = "<<mk4id<<std::endl;
 
     if( pc_phases.size() == chan_names.size() )
     {
+
+
+        //retrieve the arguments to operate on from the container store
+        std::string vis_name = "vis";
+        auto visID = fContainerStore->GetObjectUUID(vis_name);
+        visibility_type* vis_data = fContainerStore->GetObject<visibility_type>(visID);
+        if( vis_data == nullptr )
+        {
+            msg_error("builders", "cannot construct MHO_ManualChannelPhaseCorrection without visibility data." << eom);
+            return false;
+        }
+
         MHO_ManualChannelPhaseCorrection* op = new MHO_ManualChannelPhaseCorrection();
+
+        //set the arguments
+        op->SetArgs(vis_data);
 
         auto chan2pcp = zip_into_map(chan_names, pc_phases); //name -> freq
         op->SetChannelToPCPhaseMap(chan2pcp);

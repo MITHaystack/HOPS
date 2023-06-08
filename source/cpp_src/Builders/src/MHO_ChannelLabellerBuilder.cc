@@ -30,22 +30,22 @@ MHO_ChannelLabellerBuilder::Build()
     if( chan_freqs.size() == chan_names.size() )
     {
         //create the map, channel name -> freq
-        auto label2freq = zip_into_map(chan_names, chan_freqs); 
-        
+        auto label2freq = zip_into_map(chan_names, chan_freqs);
+
         //retrieve the arguments to operate on from the container store
         std::string vis_name = "vis";
         std::string weight_name = "weight";
         auto visID = fContainerStore->GetObjectUUID(vis_name);
         auto wtID = fContainerStore->GetObjectUUID(weight_name);
-        
-        if( visID.is_empty() || wtID.is_empty() )
-        {
-            msg_fatal("builders", "cannot construct MHO_ChannelLabeller without visibility or weight data." << eom);
-            return false;
-        }
-        
+
         visibility_type* vis_data = fContainerStore->GetObject<visibility_type>(visID);
         weight_type* wt_data = fContainerStore->GetObject<weight_type>(wtID);
+
+        if( vis_data == nullptr || wt_data == nullptr)
+        {
+            msg_error("builders", "cannot construct MHO_ChannelLabeller without visibility or weight data." << eom);
+            return false;
+        }
 
         MHO_ChannelLabeller<visibility_type>* vis_op = new MHO_ChannelLabeller<visibility_type>();
         MHO_ChannelLabeller<weight_type>* wt_op = new MHO_ChannelLabeller<weight_type>();
@@ -53,11 +53,12 @@ MHO_ChannelLabellerBuilder::Build()
         vis_op->SetChannelLabelToFrequencyMap(label2freq);
         wt_op->SetChannelLabelToFrequencyMap(label2freq);
 
-        //now set the arguments 
+        //now set the arguments
         vis_op->SetArgs(vis_data);
         wt_op->SetArgs(wt_data);
 
         bool replace_duplicates = true;
+        #pragma message("TODO - figure out proper naming/retrieval scheme for operators")
         fOperatorToolbox->AddOperator(vis_op,op_name + ":" + vis_name , replace_duplicates);
         fOperatorToolbox->AddOperator(wt_op,op_name + ":" + weight_name , replace_duplicates);
 
