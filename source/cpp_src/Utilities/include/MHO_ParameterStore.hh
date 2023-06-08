@@ -6,6 +6,8 @@
 #include "MHO_JSONHeaderWrapper.hh"
 #include "MHO_Tokenizer.hh"
 
+#define SAFETY_DANCE 
+
 namespace hops
 {
 
@@ -25,7 +27,7 @@ class MHO_ParameterStore
         };
 
         ~MHO_ParameterStore(){};
-
+        
         template< typename XValueType>
         bool Set(const std::string& value_path, const XValueType& value);
 
@@ -35,7 +37,38 @@ class MHO_ParameterStore
         template< typename XValueType>
         XValueType GetAs(const std::string& value_path);
 
+        bool IsPresent(const std::string& value_path)
+        {
+            std::string path = SanitizePath(value_path);
+            fPath.clear();
+            fTokenizer.SetString(&path);
+            fTokenizer.GetTokens(&fPath);
+
+            bool present = false;
+            auto* p = &fStore;
+            for(auto it = fPath.begin(); it != fPath.end(); it++)
+            {
+                auto jit = p->find(*it);
+                if(jit == p->end())
+                {
+                    return false;
+                }
+                else if( *it == *(fPath.rbegin() ) )
+                {
+                    return true;
+                }
+                else
+                {
+                    p = &(jit.value());
+                }
+            }
+            return false;
+        }
+
     private:
+
+        //TODO sanitise the value_path string -- for example a trailing '/' will cause a crash
+        std::string SanitizePath(const std::string& value_path){return value_path;}
 
         //helpers
         MHO_Tokenizer fTokenizer;
@@ -49,9 +82,10 @@ template< typename XValueType>
 bool
 MHO_ParameterStore::Set(const std::string& value_path, const XValueType& value)
 {
-  //first we tokenize the value path into a sequence of names 
+    //first we tokenize the value path into a sequence of names 
+    std::string path = SanitizePath(value_path);
     fPath.clear();
-    fTokenizer.SetString(&value_path);
+    fTokenizer.SetString(&path);
     fTokenizer.GetTokens(&fPath);
 
     bool ok = false;
@@ -88,8 +122,12 @@ template< typename XValueType>
 bool
 MHO_ParameterStore::Get(const std::string& value_path, XValueType& value)
 {
-    //TODO sanitise the value_path string -- for example a trailing '/' will cause a crash
-    mho_json::json_pointer jptr(value_path);
+    #ifdef SAFETY_DANCE
+    if(!IsPresent(value_path)){return false;}
+    #endif
+    
+    std::string path = SanitizePath(value_path);
+    mho_json::json_pointer jptr(path);
     auto item = fStore.at(jptr);
     if( !item.empty() )
     {
