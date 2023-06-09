@@ -14,9 +14,16 @@ MHO_ManualChannelPhaseCorrectionBuilder::Build()
     {
         msg_debug("builders", "building a manual per-channel phase correction operator."<< eom);
         //assume attributes are ok for now - TODO add checks!
+
+        std::cout<<"attributes = "<<fAttributes.dump(2)<<std::endl;
+
+        std::cout<<fAttributes["name"]<<std::endl;
+        std::cout<<fAttributes["value"]["channel_names"]<<std::endl;
+        std::cout<<fAttributes["value"]["pc_phases"]<<std::endl;
+
         std::string op_name = fAttributes["name"].get<std::string>();
-        std::string channel_name_str = fAttributes["channel_names"].get<std::string>();
-        std::vector<double> pc_phases = fAttributes["pc_phases"].get< std::vector<double> >();
+        std::string channel_name_str = fAttributes["value"]["channel_names"].get<std::string>();
+        std::vector<double> pc_phases = fAttributes["value"]["pc_phases"].get< std::vector<double> >();
 
         std::string pol = ParsePolFromName(op_name);
         std::string mk4id = ExtractStationMk4ID();

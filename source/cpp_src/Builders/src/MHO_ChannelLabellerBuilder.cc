@@ -21,8 +21,8 @@ MHO_ChannelLabellerBuilder::Build()
         msg_debug("builders", "building channel labelling operator."<< eom);
         //assume attributes are ok for now - TODO add checks!
         std::string op_name = fAttributes["name"].get<std::string>();
-        std::string channel_name_str = fAttributes["channel_names"].get<std::string>();
-        std::vector<double> chan_freqs = fAttributes["channel_frequencies"].get< std::vector<double> >();
+        std::string channel_name_str = fAttributes["value"]["channel_names"].get<std::string>();
+        std::vector<double> chan_freqs = fAttributes["value"]["channel_frequencies"].get< std::vector<double> >();
         //construct channel <-> freq map
         auto label2freq = MapChannelQuantities(channel_name_str, chan_freqs);
 
