@@ -1,25 +1,25 @@
 #include "MHO_OperatorBuilderManager.hh"
 
 
-//builders 
+//builders
 #include "MHO_ChannelLabellerBuilder.hh"
 #include "MHO_ManualChannelPhaseCorrectionBuilder.hh"
 
-namespace hops 
+namespace hops
 {
-    
-void 
+
+void
 MHO_OperatorBuilderManager::CreateBuilders()
 {
     AddBuilderType<MHO_ChannelLabellerBuilder>("chan_ids");
     AddBuilderType<MHO_ManualChannelPhaseCorrectionBuilder>("pc_phases_x"); //TODO FIXME -- need a different label
 }
 
-void 
+void
 MHO_OperatorBuilderManager::BuildAll()
 {
-    //loop over control statements, find the associated builder in the builder map 
-    //and tell it to make an operator responsible for its action 
+    //loop over control statements, find the associated builder in the builder map
+    //and tell it to make an operator responsible for its action
     for(auto ctrl_iter = fControl.begin(); ctrl_iter != fControl.end(); ctrl_iter++)
     {
         auto ctrl_item = *(ctrl_iter);
@@ -33,7 +33,7 @@ MHO_OperatorBuilderManager::BuildAll()
             auto builder_it = fBuilderMap.find(name);
             if(builder_it != fBuilderMap.end())
             {
-                std::cout<<"found and operator builder for: "<<name<<std::endl;
+                std::cout<<"found an operator builder for: "<<name<<std::endl;
                 builder_it->second->SetConditions(*ctrl_iter); //is this the right way to do this?
                 builder_it->second->SetAttributes(*stmt_iter);
                 builder_it->second->Build();
