@@ -1,6 +1,8 @@
 #ifndef MHO_Operator_HH__
 #define MHO_Operator_HH__
 
+#include <limits>
+
 /*
 *@file: MHO_Operator.hh
 *@class: MHO_Operator
@@ -22,7 +24,10 @@ class MHO_Operator
         virtual bool Initialize() = 0;
         virtual bool Execute() = 0;
 
+        virtual double Priority() const {return std::numeric_limits<double>::max();} //lowest priority
+
     private:
+
 };
 
 }
