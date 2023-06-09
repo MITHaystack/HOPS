@@ -118,6 +118,66 @@ void configure_data_library(MHO_ContainerStore* store)
     store->SetShortName(wt_data->GetObjectUUID(), wt_shortname);
 }
 
+/*
+void apply_cuts()
+{
+
+    ////////////////////////////////////////////////////////////////////////////
+    //APPLY COARSE DATA SELECTION
+    ////////////////////////////////////////////////////////////////////////////
+    //select data repack
+    MHO_SelectRepack<visibility_type> spack;
+    MHO_SelectRepack<weight_type> wtspack;
+
+    //first find indexes which corresponds to the specified pol product
+    std::vector<std::size_t> selected_pp = (&(std::get<POLPROD_AXIS>(*vis_data)))->SelectMatchingIndexes(polprod);
+
+    //select some specified AP's
+    // std::vector< std::size_t > selected_ap;
+    // selected_ap.push_back(20);
+
+    //select first 8 channels for testing
+    std::size_t n_max_channels = std::get<CHANNEL_AXIS>(*vis_data).GetSize();
+    std::vector< std::size_t > selected_ch;// = cb_wrapper.GetActiveChannelsKLUDGE(n_max_channels);
+
+    for(std::size_t i=0;i<8; i++){selected_ch.push_back(i);}
+    //for(std::size_t i=0;i<2; i++){selected_ch.push_back(i);}
+
+    //specify the indexes we want on each axis
+    spack.SelectAxisItems(0,selected_pp);
+    spack.SelectAxisItems(1,selected_ch);
+
+    wtspack.SelectAxisItems(0,selected_pp);
+    wtspack.SelectAxisItems(1,selected_ch);
+    //spack.SelectAxisItems(2,selected_ap);
+
+
+    visibility_type* alt_data = new visibility_type();
+    weight_type* alt_wt_data = new weight_type();
+
+    spack.SetArgs(vis_data, alt_data);
+    spack.Initialize();
+    spack.Execute();
+
+    wtspack.SetArgs(wt_data, alt_wt_data);
+    wtspack.Initialize();
+    wtspack.Execute();
+
+    //TODO, work out what to do with the axis interval labels in between operations
+    //explicitly copy the channel axis labels here
+    std::get<CHANNEL_AXIS>(*alt_data).CopyIntervalLabels( std::get<CHANNEL_AXIS>(*vis_data) );
+    std::get<CHANNEL_AXIS>(*alt_wt_data).CopyIntervalLabels( std::get<CHANNEL_AXIS>(*wt_data) );
+
+    wt_data->Copy(*alt_wt_data);
+    vis_data->Copy(*alt_data);
+
+    delete alt_data;
+    delete alt_wt_data;
+
+}
+
+*/
+
 int main(int argc, char** argv)
 {
 
@@ -231,101 +291,40 @@ int main(int argc, char** argv)
     ////////////////////////////////////////////////////////////////////////////
     MHO_ParameterStore* paramStore = new MHO_ParameterStore();
     MHO_ContainerStore* conStore = new MHO_ContainerStore();
-    
+    MHO_OperatorToolbox* opToolbox = new MHO_OperatorToolbox();
+    //load baseline data
     scanStore.LoadBaseline(baseline, conStore);
-    
     //TODO load the station data files too
-    
-    if(conStore == nullptr)
-    {
-        msg_fatal("main", "could not find a file for baseline: "<< baseline << eom);
-        std::exit(1);
-    }
-    
-    configure_data_library(conStore);
-    
-    auto visID = conStore->GetObjectUUID(std::string("vis"));
-    auto wtID = conStore->GetObjectUUID(std::string("weight"));
-    
-    if( visID.is_empty() || wtID.is_empty() )
+
+    configure_data_library(conStore);//momentarily needed for float -> double cast
+
+    visibility_type* vis_data = conStore->GetObject<visibility_type>(std::string("vis"));
+    weight_type* wt_data = conStore->GetObject<weight_type>(std::string("weight"));
+    if( vis_data == nullptr || wt_data == nullptr )
     {
         msg_fatal("main", "could not find visibility or weight objects with names (vis, weight)." << eom);
         std::exit(1);
     }
     
-    visibility_type* vis_data = conStore->GetObject<visibility_type>(visID);
-    weight_type* wt_data = conStore->GetObject<weight_type>(wtID);
-    
     ////////////////////////////////////////////////////////////////////////////
     //PARAMETER SETTING
     ////////////////////////////////////////////////////////////////////////////
     //set defaults 
-    
-    //TODO process control statments that set parameters
-    
-    
+    paramStore->Set(std::string("/global/selected_polprod"), polprod);
+    paramStore->Set(std::string("/global/ref_freq"), 6000.0); //TODO FIXME
+    //TODO FIXME -  process control statments that set parameters (e.g. start/stop, dr_win, etc)
+
 
     ////////////////////////////////////////////////////////////////////////////
     //OPERATOR CONSTRUCTION
     ////////////////////////////////////////////////////////////////////////////
-    MHO_OperatorToolbox* opToolbox = new MHO_OperatorToolbox();
+
     MHO_OperatorBuilderManager build_manager(opToolbox, conStore, paramStore);
     build_manager.SetControlStatements(control_statements);
     build_manager.BuildAll();
 
 
-    ////////////////////////////////////////////////////////////////////////////
-    //APPLY COARSE DATA SELECTION
-    ////////////////////////////////////////////////////////////////////////////
-    //select data repack
-    MHO_SelectRepack<visibility_type> spack;
-    MHO_SelectRepack<weight_type> wtspack;
-
-    //first find indexes which corresponds to the specified pol product
-    std::vector<std::size_t> selected_pp = (&(std::get<POLPROD_AXIS>(*vis_data)))->SelectMatchingIndexes(polprod);
-
-    //select some specified AP's
-    // std::vector< std::size_t > selected_ap;
-    // selected_ap.push_back(20);
-
-    //select first 8 channels for testing
-    std::size_t n_max_channels = std::get<CHANNEL_AXIS>(*vis_data).GetSize();
-    std::vector< std::size_t > selected_ch;// = cb_wrapper.GetActiveChannelsKLUDGE(n_max_channels);
-
-    for(std::size_t i=0;i<8; i++){selected_ch.push_back(i);}
-    //for(std::size_t i=0;i<2; i++){selected_ch.push_back(i);}
-
-    //specify the indexes we want on each axis
-    spack.SelectAxisItems(0,selected_pp);
-    spack.SelectAxisItems(1,selected_ch);
-
-    wtspack.SelectAxisItems(0,selected_pp);
-    wtspack.SelectAxisItems(1,selected_ch);
-    //spack.SelectAxisItems(2,selected_ap);
-
-
-    visibility_type* alt_data = new visibility_type();
-    weight_type* alt_wt_data = new weight_type();
-
-    spack.SetArgs(vis_data, alt_data);
-    spack.Initialize();
-    spack.Execute();
-
-    wtspack.SetArgs(wt_data, alt_wt_data);
-    wtspack.Initialize();
-    wtspack.Execute();
-
-    //TODO, work out what to do with the axis interval labels in between operations
-    //explicitly copy the channel axis labels here
-    std::get<CHANNEL_AXIS>(*alt_data).CopyIntervalLabels( std::get<CHANNEL_AXIS>(*vis_data) );
-    std::get<CHANNEL_AXIS>(*alt_wt_data).CopyIntervalLabels( std::get<CHANNEL_AXIS>(*wt_data) );
-
-    wt_data->Copy(*alt_wt_data);
-    vis_data->Copy(*alt_data);
-
-    delete alt_data;
-    delete alt_wt_data;
-
+    
     std::size_t bl_dim[visibility_type::rank::value];
     vis_data->GetDimensions(bl_dim);
     for(std::size_t i=0; i < visibility_type::rank::value; i++)
@@ -595,7 +594,9 @@ int main(int argc, char** argv)
 
     #endif //USE_PYBIND11
 
+    delete paramStore;
     delete conStore;
+    delete opToolbox;
 
     return 0;
 }
