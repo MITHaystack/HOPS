@@ -3,6 +3,8 @@
 
 #include <string>
 #include <map>
+#include <vector>
+#include <algorithm>
 
 #include "MHO_Operator.hh"
 
@@ -65,6 +67,20 @@ class MHO_OperatorToolbox
             return ptr;
         }
 
+        std::vector< MHO_Operator* > GetAllOperators()
+        {
+            std::vector< MHO_Operator* > ops;
+            for(auto it = fOperators.begin(); it != fOperators.end(); it++)
+            {
+                ops.push_back( it->second );
+            }
+
+            operator_predicate op_pred;
+            std::sort(ops.begin(), ops.end(), op_pred);
+            return ops;
+        }
+
+
     private:
 
         void Clear()
@@ -79,6 +95,21 @@ class MHO_OperatorToolbox
 
 
         std::map< std::string, MHO_Operator* > fOperators;
+
+        //for sorting operator priorites
+        class operator_predicate
+        {
+            public:
+                operator_predicate(){};
+                virtual ~operator_predicate(){};
+
+            virtual bool operator()(const MHO_Operator* a, const MHO_Operator* b)
+            {
+                return a->Priority() < b->Priority();
+            }
+        };
+
+
 
 };
 
