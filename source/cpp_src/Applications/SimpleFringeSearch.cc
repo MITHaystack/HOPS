@@ -37,7 +37,10 @@
 #include "MHO_MBDelaySearch.hh"
 #include "MHO_InterpolateFringePeak.hh"
 
+//initialization
 #include "MHO_OperatorBuilderManager.hh"
+#include "MHO_ParameterConfigurator.hh"
+#include "MHO_ParameterManager.hh"
 
 #include "MHO_ComputePlotData.hh"
 
@@ -274,8 +277,10 @@ int main(int argc, char** argv)
     MHO_ControlFileParser cparser;
     MHO_ControlConditionEvaluator ceval;
     cparser.SetControlFile(control_file);
+    mho_json control_format = MHO_ControlDefinitions::GetControlFormat();
     auto control_contents = cparser.ParseControl();
     mho_json control_statements;
+
 
     //TODO -- where should frequency group information get stashed/retrieved?
     ceval.SetPassInformation(baseline, srcName, "?", scnName);//baseline, source, fgroup, scan
@@ -309,6 +314,12 @@ int main(int argc, char** argv)
     ////////////////////////////////////////////////////////////////////////////
     //PARAMETER SETTING
     ////////////////////////////////////////////////////////////////////////////
+    MHO_ParameterManager paramManager(paramStore, control_format);
+    //MHO_ParameterConfigurator paramConf(paramStore, control_format);
+    
+    paramManager.SetControlStatements(control_statements);
+    paramManager.ConfigureAll();
+
     //set defaults 
     paramStore->Set(std::string("/global/selected_polprod"), polprod);
     paramStore->Set(std::string("/global/ref_freq"), 6000.0); //TODO FIXME
