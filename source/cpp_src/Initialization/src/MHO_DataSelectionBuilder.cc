@@ -9,7 +9,7 @@ MHO_DataSelectionBuilder::Build()
 {
     if( IsConfigurationOk() )
     {
-        msg_debug("builders", "building data selection operators."<< eom);
+        msg_debug("initialization", "building data selection operators."<< eom);
 
         //currently this operator only does coarse data selection on pol-product
         //and channels, it does not do start/stop AP selction (but it should)
@@ -32,7 +32,7 @@ MHO_DataSelectionBuilder::Build()
 
         if( !do_select_chans && !do_select_polprods)
         {
-            msg_info("builders", "no data selection needed." << eom);
+            msg_info("initialization", "no data selection needed." << eom);
             return false;
         }
 
@@ -42,7 +42,7 @@ MHO_DataSelectionBuilder::Build()
 
         if( vis_data == nullptr || wt_data == nullptr )
         {
-            msg_error("builders", "cannot construct MHO_SelectRepack without visibility or weight data." << eom);
+            msg_error("initialization", "cannot construct MHO_SelectRepack without visibility or weight data." << eom);
             return false;
         }
 

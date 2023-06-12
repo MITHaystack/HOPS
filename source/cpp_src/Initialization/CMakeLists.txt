@@ -1,5 +1,7 @@
 #list header files #############################################################
 set (INITIALIZATION_HEADERFILES
+    #parameters 
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ParameterConfigurator.hh
     #labelling operators 
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ChannelLabellerBuilder.hh
     #selection operators
@@ -13,6 +15,8 @@ set (INITIALIZATION_HEADERFILES
 
 #list source files #############################################################
 set( INITIALIZATION_SOURCEFILES
+    #parameters 
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ParameterConfigurator.cc
     #labelling operators 
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ChannelLabellerBuilder.cc
     #selection operators
