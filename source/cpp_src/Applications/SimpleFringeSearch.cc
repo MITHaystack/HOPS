@@ -326,7 +326,7 @@ int main(int argc, char** argv)
     //TODO FIXME -  process control statments that set parameters (e.g. start/stop, dr_win, etc)
 
     
-
+    paramStore->Dump();
 
 
 

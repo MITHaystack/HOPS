@@ -56,6 +56,9 @@ class MHO_ParameterStore
 
         ~MHO_ParameterStore(){};
 
+        //TODO remove me 
+        void Dump(){std::cout<< fStore.dump(2) <<std::endl;}
+
         void FillData(const mho_json& data){fStore = data;}
         void ClearData(){fStore.clear();}
         
