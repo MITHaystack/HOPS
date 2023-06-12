@@ -1,5 +1,5 @@
 #list header files #############################################################
-set (BUILDERS_HEADERFILES
+set (INITIALIZATION_HEADERFILES
     #labelling operators 
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ChannelLabellerBuilder.hh
     #selection operators
@@ -12,7 +12,7 @@ set (BUILDERS_HEADERFILES
 )
 
 #list source files #############################################################
-set( BUILDERS_SOURCEFILES
+set( INITIALIZATION_SOURCEFILES
     #labelling operators 
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ChannelLabellerBuilder.cc
     #selection operators
@@ -28,14 +28,14 @@ set( BUILDERS_SOURCEFILES
 hops_internal_include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 #list of c++ libraries
-set(BUILDERS_LIBS MHO_Message MHO_Utilities MHO_Operators MHO_Containers MHO_Calibration)
+set(INITIALIZATION_LIBS MHO_Message MHO_Utilities MHO_Operators MHO_Containers MHO_Calibration)
 
 #compile and install library ###################################################
-add_library (MHO_Builders SHARED ${BUILDERS_SOURCEFILES})
-target_link_libraries (MHO_Builders ${BUILDERS_LIBS})
+add_library (MHO_Initialization SHARED ${INITIALIZATION_SOURCEFILES})
+target_link_libraries (MHO_Initialization ${INITIALIZATION_LIBS})
 
-hops_install_headers (${BUILDERS_HEADERFILES})
-hops_install_libraries (MHO_Builders )
+hops_install_headers (${INITIALIZATION_HEADERFILES})
+hops_install_libraries (MHO_Initialization )
 
 if (HOPS_ENABLE_TEST)
     add_subdirectory(test)

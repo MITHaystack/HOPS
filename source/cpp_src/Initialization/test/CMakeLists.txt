@@ -3,7 +3,7 @@ include_directories(${EXTERN_HLIBS}/json/include)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../include)
 
 set (HOPS_TEST_LIBS
-    MHO_Message MHO_Utilities MHO_Operators MHO_Containers MHO_Builders
+    MHO_Message MHO_Utilities MHO_Operators MHO_Containers MHO_Initialization
 )
 
 set(SOURCE_BASENAMES
