@@ -36,7 +36,12 @@ class MHO_OperatorBuilderManager
 
         void SetControlStatements(const mho_json& statements){fControl = statements;};
         
-        void BuildAll();
+        //data selection is not entirely dictated via control file
+        //TODO formalize this -- what other operators need to be built 
+        //that are independent of control statements?
+        void BuildDefaultOperators();
+        void BuildDataSelectionOperators(); 
+        void BuildControlStatementOperators();
 
     private:
         

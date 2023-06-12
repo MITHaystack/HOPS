@@ -54,6 +54,12 @@ class MHO_OperatorToolbox
             return ptr;
         }
 
+        MHO_Operator* GetOperator(const char* name)
+        {
+            std::string sname(name);
+            return GetOperator(sname);
+        }
+
         //retrieval, with case to specific type, is missing returns nullptr
         template < typename XOperatorType >
         XOperatorType* GetOperatorAs(const std::string& name)
