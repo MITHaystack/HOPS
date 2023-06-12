@@ -2,6 +2,7 @@
 set (INITIALIZATION_HEADERFILES
     #parameters 
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ParameterConfigurator.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ParameterManager.hh
     #labelling operators 
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ChannelLabellerBuilder.hh
     #selection operators
@@ -17,6 +18,7 @@ set (INITIALIZATION_HEADERFILES
 set( INITIALIZATION_SOURCEFILES
     #parameters 
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ParameterConfigurator.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ParameterManager.cc
     #labelling operators 
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ChannelLabellerBuilder.cc
     #selection operators
