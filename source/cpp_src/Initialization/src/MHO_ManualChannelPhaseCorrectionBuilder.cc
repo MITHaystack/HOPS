@@ -12,7 +12,7 @@ MHO_ManualChannelPhaseCorrectionBuilder::Build()
 {
     if( IsConfigurationOk() )
     {
-        msg_debug("builders", "building a manual per-channel phase correction operator."<< eom);
+        msg_debug("initialization", "building a manual per-channel phase correction operator."<< eom);
         //assume attributes are ok for now - TODO add checks!
 
         //std::cout<<"attributes = "<<fAttributes.dump(2)<<std::endl;
@@ -38,7 +38,7 @@ MHO_ManualChannelPhaseCorrectionBuilder::Build()
             visibility_type* vis_data = fContainerStore->GetObject<visibility_type>(std::string("vis"));
             if( vis_data == nullptr )
             {
-                msg_error("builders", "cannot construct MHO_ManualChannelPhaseCorrection without visibility data." << eom);
+                msg_error("initialization", "cannot construct MHO_ManualChannelPhaseCorrection without visibility data." << eom);
                 return false;
             }
 
@@ -56,7 +56,7 @@ MHO_ManualChannelPhaseCorrectionBuilder::Build()
         }
         else
         {
-            msg_error("builders", "cannot set pc_phases with unequal number of channels/elements. " << eom);
+            msg_error("initialization", "cannot set pc_phases with unequal number of channels/elements. " << eom);
             return false;
         }
     }

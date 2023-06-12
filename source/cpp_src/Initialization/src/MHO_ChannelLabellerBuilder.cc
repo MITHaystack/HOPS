@@ -18,7 +18,7 @@ MHO_ChannelLabellerBuilder::Build()
 {
     if( IsConfigurationOk() )
     {
-        msg_debug("builders", "building channel labelling operator."<< eom);
+        msg_debug("initialization", "building channel labelling operator."<< eom);
         //assume attributes are ok for now - TODO add checks!
         std::string op_name = fAttributes["name"].get<std::string>();
         std::string channel_name_str = fAttributes["value"]["channel_names"].get<std::string>();
@@ -34,7 +34,7 @@ MHO_ChannelLabellerBuilder::Build()
 
             if( vis_data == nullptr || wt_data == nullptr)
             {
-                msg_error("builders", "cannot construct MHO_ChannelLabeller without visibility or weight data." << eom);
+                msg_error("initialization", "cannot construct MHO_ChannelLabeller without visibility or weight data." << eom);
                 return false;
             }
 
@@ -57,7 +57,7 @@ MHO_ChannelLabellerBuilder::Build()
         }
         else
         {
-            msg_error("builders", "cannot label channels with an unequal number of channels/elements." << eom );
+            msg_error("initialization", "cannot label channels with an unequal number of channels/elements." << eom );
             return false;
         }
     }
