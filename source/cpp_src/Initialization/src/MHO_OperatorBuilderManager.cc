@@ -3,6 +3,7 @@
 
 //builders
 #include "MHO_ChannelLabellerBuilder.hh"
+#include "MHO_DataSelectionBuilder.hh"
 #include "MHO_ManualChannelPhaseCorrectionBuilder.hh"
 
 namespace hops
@@ -13,11 +14,40 @@ MHO_OperatorBuilderManager::CreateBuilders()
 {
     AddBuilderType<MHO_ChannelLabellerBuilder>("chan_ids");
     AddBuilderType<MHO_ManualChannelPhaseCorrectionBuilder>("pc_phases_x"); //TODO FIXME -- need a different label
+    AddBuilderType<MHO_DataSelectionBuilder>("coarse_selection");
+}
+
+void 
+MHO_OperatorBuilderManager::BuildDefaultOperators()
+{
+    std::cout<<"bulding default ops"<<std::endl;
+    std::string name = "chan_ids";
+    auto builder_it = fBuilderMap.find(name);
+    if(builder_it != fBuilderMap.end())
+    {
+        //no control attributes assigned (default built)
+        builder_it->second->Build();
+    }
+}
+
+
+void MHO_OperatorBuilderManager::BuildDataSelectionOperators()
+{
+    std::cout<<"bulding selection ops"<<std::endl;
+    std::string name = "coarse_selection";
+    auto builder_it = fBuilderMap.find(name);
+    if(builder_it != fBuilderMap.end())
+    {
+        //no control attributes assigned
+        builder_it->second->Build();
+    }
+
 }
 
 void
-MHO_OperatorBuilderManager::BuildAll()
+MHO_OperatorBuilderManager::BuildControlStatementOperators()
 {
+    std::cout<<"bulding control ops"<<std::endl;
     //loop over control statements, find the associated builder in the builder map
     //and tell it to make an operator responsible for its action
     for(auto ctrl_iter = fControl.begin(); ctrl_iter != fControl.end(); ctrl_iter++)

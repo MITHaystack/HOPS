@@ -281,6 +281,7 @@ int main(int argc, char** argv)
     auto control_contents = cparser.ParseControl();
     mho_json control_statements;
 
+    std::cout<<control_contents.dump(4)<<std::endl;
 
     //TODO -- where should frequency group information get stashed/retrieved?
     ceval.SetPassInformation(baseline, srcName, "?", scnName);//baseline, source, fgroup, scan
@@ -316,16 +317,11 @@ int main(int argc, char** argv)
     ////////////////////////////////////////////////////////////////////////////
     MHO_ParameterManager paramManager(paramStore, control_format);
     //MHO_ParameterConfigurator paramConf(paramStore, control_format);
-    
+    //set defaults 
+    paramStore->Set(std::string("selected_polprod"), polprod);
+
     paramManager.SetControlStatements(control_statements);
     paramManager.ConfigureAll();
-
-    //set defaults 
-    paramStore->Set(std::string("/global/selected_polprod"), polprod);
-    paramStore->Set(std::string("/global/ref_freq"), 6000.0); //TODO FIXME
-    //TODO FIXME -  process control statments that set parameters (e.g. start/stop, dr_win, etc)
-
-    
     paramStore->Dump();
 
 
@@ -336,10 +332,25 @@ int main(int argc, char** argv)
 
     MHO_OperatorBuilderManager build_manager(opToolbox, conStore, paramStore);
     build_manager.SetControlStatements(control_statements);
-    build_manager.BuildAll();
+    build_manager.BuildDefaultOperators();
+    build_manager.BuildDataSelectionOperators();
+    build_manager.BuildControlStatementOperators();
+    //build_manager.BuildAll();
 
 
-    
+    std::vector< MHO_Operator*> ops = opToolbox->GetAllOperators();
+    std::cout<<"number of ops = "<<ops.size()<<std::endl;
+
+
+    //manually (for now) retrieve and apply operators 
+    // MHO_Operator* chan_labeller = opToolbox->GetOperator("chan_ids");
+    // MHO_Operator* pc_phases_x = opToolbox->GetOperator("pc_phases_x");
+    // MHO_Operator* coarse_select = opToolbox->GetOperator("coarse_selection");
+    // 
+    // if(chan_labeller){chan_labeller->Initialize(); chan_labeller->Execute();}
+    // if(coarse_select){coarse_select->Initialize(); coarse_select->Execute();}
+    // if(pc_phases_x){pc_phases_x->Initialize(); pc_phases_x->Execute();}
+
     std::size_t bl_dim[visibility_type::rank::value];
     vis_data->GetDimensions(bl_dim);
     for(std::size_t i=0; i < visibility_type::rank::value; i++)

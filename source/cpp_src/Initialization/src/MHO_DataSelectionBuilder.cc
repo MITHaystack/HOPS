@@ -15,7 +15,7 @@ MHO_DataSelectionBuilder::Build()
         //and channels, it does not do start/stop AP selction (but it should)
 
         bool do_select_polprods = false;
-        std::string polprod_key = "/global/selected_polprod";
+        std::string polprod_key = "selected_polprod";
         std::string polprod = ""; 
         if(fParameterStore->IsPresent(polprod_key))
         {
@@ -23,7 +23,7 @@ MHO_DataSelectionBuilder::Build()
         }
 
         bool do_select_chans = false;
-        std::string select_chan_key = "/global/selected_channels";
+        std::string select_chan_key = "freqs";
         std::vector< std::string > chans;
         if(fParameterStore->IsPresent(select_chan_key))
         {
@@ -77,7 +77,7 @@ MHO_DataSelectionBuilder::Build()
         spack->SetArgs(vis_data);
         wtspack->SetArgs(wt_data);
 
-        std::string op_name = "data_select";
+        std::string op_name = "coarse_selection";
         bool replace_duplicates = true;
         #pragma message("TODO - figure out proper naming/retrieval scheme for operators")
         fOperatorToolbox->AddOperator(spack, op_name + ":vis", replace_duplicates);

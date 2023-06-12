@@ -1,5 +1,6 @@
 {
     "name": "dr_win",
     "statement_type": "parameter",
+    "parameter_type": "fit",
     "type": "list_real"
 }

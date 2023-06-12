@@ -1,5 +1,6 @@
 {
-    "name": "unknown",
-    "statement_type": "unknown",
+    "name": "ion_smooth",
+    "statement_type": "parameter",
+    "parameter_type": "fit",
     "type": "unknown"
 }
