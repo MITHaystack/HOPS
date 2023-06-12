@@ -287,7 +287,7 @@ int main(int argc, char** argv)
 
 
     ////////////////////////////////////////////////////////////////////////////
-    //LOAD DATA AND ASSEMBLY THE DATA STORE
+    //LOAD DATA AND ASSEMBLE THE DATA STORE
     ////////////////////////////////////////////////////////////////////////////
     MHO_ParameterStore* paramStore = new MHO_ParameterStore();
     MHO_ContainerStore* conStore = new MHO_ContainerStore();
@@ -313,6 +313,10 @@ int main(int argc, char** argv)
     paramStore->Set(std::string("/global/selected_polprod"), polprod);
     paramStore->Set(std::string("/global/ref_freq"), 6000.0); //TODO FIXME
     //TODO FIXME -  process control statments that set parameters (e.g. start/stop, dr_win, etc)
+
+    
+
+
 
 
     ////////////////////////////////////////////////////////////////////////////

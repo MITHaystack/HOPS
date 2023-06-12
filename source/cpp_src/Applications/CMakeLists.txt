@@ -11,7 +11,7 @@ set(HOPS_TEST_LIBS
     MHO_Calibration 
     MHO_MK4Interface 
     MHO_Control
-    MHO_Builders
+    MHO_Initialization
 )
 
 set(SOURCE_BASENAMES
