@@ -1,7 +1,8 @@
 {
     "name": "chan_ids",
-    "statement_type": "parameter",
+    "statement_type": "operator",
     "type" : "compound",
+    "priority": 0.1,
     "parameters":
     {
         "channel_names": {"type": "string"},

@@ -30,14 +30,16 @@ MHO_ChannelLabellerBuilder::Build()
             //construct channel <-> freq map
             label2freq = MapChannelQuantities(channel_name_str, chan_freqs);
 
-            
+            msg_debug("initialization", "channel labelling operator was given a map of size: "<< label2freq.size() << eom );
             // {
             //     msg_error("initialization", "cannot label channels with an unequal number of channels/elements." << eom );
             //     return false;
             // }
-
         }
-
+        else 
+        {
+            msg_debug("initialization", "default channel labelling operator being created."<< eom );
+        }
         //retrieve the arguments to operate on from the container store
         visibility_type* vis_data = fContainerStore->GetObject<visibility_type>(std::string("vis"));
         weight_type* wt_data = fContainerStore->GetObject<weight_type>(std::string("weight"));

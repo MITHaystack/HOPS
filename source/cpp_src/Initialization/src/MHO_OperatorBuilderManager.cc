@@ -14,6 +14,9 @@ MHO_OperatorBuilderManager::CreateBuilders()
 {
     AddBuilderType<MHO_ChannelLabellerBuilder>("chan_ids");
     AddBuilderType<MHO_ManualChannelPhaseCorrectionBuilder>("pc_phases_x"); //TODO FIXME -- need a different label
+    AddBuilderType<MHO_ManualChannelPhaseCorrectionBuilder>("pc_phases_y");
+    AddBuilderType<MHO_ManualChannelPhaseCorrectionBuilder>("pc_phases_r");
+    AddBuilderType<MHO_ManualChannelPhaseCorrectionBuilder>("pc_phases_l");
     AddBuilderType<MHO_DataSelectionBuilder>("coarse_selection");
 }
 

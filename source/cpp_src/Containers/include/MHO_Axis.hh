@@ -116,6 +116,32 @@ class MHO_Axis:
             return false;
         }
         
+        //index selection from matching label values (e.g. gets the indices for which column is tagged with "channel_label":"a" etc.)
+        //extra dumb brute force, TODO make me smarter
+        template< typename XLabelValueType >
+        std::vector< std::size_t > 
+        SelectMatchingIndexesByLabelValue(const std::string& label_key, const XLabelValueType& label_value)
+        {
+            std::vector< std::size_t > matching_idx;
+            for(std::size_t i=0; i < this->GetSize(); i++)
+            {
+                XLabelValueType value;
+                std::vector< MHO_IntervalLabel* > labels;
+                labels = this->GetIntervalsWhichIntersect(i);
+                if(labels.size() != 0)
+                {
+                    for(std::size_t j=0; j < labels.size(); j++)
+                    {
+                        if(labels[j]->HasKey(label_key))
+                        {
+                            labels[j]->Retrieve(label_key, value);
+                            if(value == label_value){matching_idx.push_back(i);}
+                        }
+                    }
+                }
+            }
+            return matching_idx;
+        }
 
         template< typename XLabelValueType >
         void CollectAxisElementLabelValues(const std::string& label_key, std::vector< XLabelValueType >& label_values )

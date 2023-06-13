@@ -72,12 +72,14 @@ class MHO_OperatorToolbox
             }
             return ptr;
         }
-
+        
+        
         std::vector< MHO_Operator* > GetAllOperators()
         {
             std::vector< MHO_Operator* > ops;
             for(auto it = fOperators.begin(); it != fOperators.end(); it++)
             {
+                std::cout<<"operator with name: "<<it->first<<std::endl;
                 ops.push_back( it->second );
             }
 
@@ -85,6 +87,25 @@ class MHO_OperatorToolbox
             std::sort(ops.begin(), ops.end(), op_pred);
             return ops;
         }
+        
+        std::vector< MHO_Operator* > GetOperatorsByPriorityRange(double lower_limit, double upper_limit)
+        {
+            std::vector< MHO_Operator* > ops;
+            for(auto it = fOperators.begin(); it != fOperators.end(); it++)
+            {
+                double priority = it->second->Priority();
+                if(priority < upper_limit && lower_limit <= priority )
+                {
+                    std::cout<<"operator with name: "<<it->first<<std::endl;
+                    ops.push_back( it->second );
+                }
+            }
+
+            operator_predicate op_pred;
+            std::sort(ops.begin(), ops.end(), op_pred);
+            return ops;
+        }
+
 
 
     private:
@@ -99,8 +120,11 @@ class MHO_OperatorToolbox
             fOperators.clear();
         };
 
-
+        //for storing operators by name 
         std::map< std::string, MHO_Operator* > fOperators;
+        
+        //for storing operators by category 
+        std::multimap< std::string, MHO_Operator* > fCategoryToOperators;
 
         //for sorting operator priorites
         class operator_predicate

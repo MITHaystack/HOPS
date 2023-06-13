@@ -24,10 +24,16 @@ class MHO_Operator
         virtual bool Initialize() = 0;
         virtual bool Execute() = 0;
 
-        virtual double Priority() const {return std::numeric_limits<double>::max();} //lowest priority
+
+        //allow priority to vary 
+        virtual void SetPriority(const double& priority){fPriority = priority;}
+        //a higher value for the fPriority field implies a lower priority 
+        //for this operator in the order of execution
+        virtual double Priority() const {return fPriority;} 
 
     private:
 
+        double fPriority;
 };
 
 }

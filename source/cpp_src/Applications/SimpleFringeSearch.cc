@@ -333,12 +333,21 @@ int main(int argc, char** argv)
     MHO_OperatorBuilderManager build_manager(opToolbox, conStore, paramStore);
     build_manager.SetControlStatements(control_statements);
     build_manager.BuildDefaultOperators();
+    
+    std::vector< MHO_Operator*> ops = opToolbox->GetAllOperators();
+    for(auto opIt= ops.begin(); opIt != ops.end(); opIt++)
+    {
+        (*opIt)->Initialize();
+        (*opIt)->Execute();
+    }
+    
     build_manager.BuildDataSelectionOperators();
     build_manager.BuildControlStatementOperators();
     //build_manager.BuildAll();
 
 
-    std::vector< MHO_Operator*> ops = opToolbox->GetAllOperators();
+    //std::vector< MHO_Operator*>
+    ops = opToolbox->GetAllOperators();
     std::cout<<"number of ops = "<<ops.size()<<std::endl;
 
 

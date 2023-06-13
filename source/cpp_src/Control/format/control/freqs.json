@@ -1,6 +1,5 @@
 {
     "name": "freqs",
-    "statement_type": "operator",
-    "operator_type": "labelling",
+    "statement_type": "parameter",
     "type": "list_string"
 }
