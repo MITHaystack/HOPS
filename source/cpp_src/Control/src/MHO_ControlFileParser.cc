@@ -233,22 +233,22 @@ MHO_ControlFileParser::ConstructControlObjects()
     for(std::size_t i=0; i<fStatements.size(); i++)
     {
         mho_json tmp = fElementParser.ParseControlStatement(fStatements[i]);
-        if(tmp["statement_type"] == "conditional" )
+        if(tmp["statement_type"] == "conditional" ) //enter new conditional block 'if'
         {
             tmp["line_number"] = fStatements[i].fStartLineNumber;
             root["conditions"].back()["statements"] = block_statements;
             root["conditions"].push_back(tmp);
             block_statements.clear();
         }
-        else if (i == fStatements.size()-1)
+        else if (i == fStatements.size()-1) //reached the last statement in the CF, close out
         {
+            block_statements.push_back(tmp);
             root["conditions"].back()["statements"] = block_statements;
-            root["conditions"].push_back(tmp);
             block_statements.clear();
         }
         else
         {
-            block_statements.push_back(tmp);
+            block_statements.push_back(tmp); //just another statement in current conditional block, add it
         }
     }
     return root;
