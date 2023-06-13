@@ -17,8 +17,9 @@ class MHO_OperatorBuilderManager
     public:
         
         MHO_OperatorBuilderManager(MHO_OperatorToolbox* toolbox, 
-                                   MHO_ContainerStore* cstore = nullptr,
-                                   MHO_ParameterStore* pstore = nullptr):
+                                   MHO_ContainerStore* cstore,
+                                   MHO_ParameterStore* pstore
+                                  ):
             fOperatorToolbox(toolbox),
             fContainerStore(cstore),
             fParameterStore(pstore)
@@ -38,7 +39,7 @@ class MHO_OperatorBuilderManager
         
         //data selection is not entirely dictated via control file
         //TODO formalize this -- what other operators need to be built 
-        //that are independent of control statements?
+        //that are independent of control file statements?
         void BuildDefaultOperators();
         void BuildDataSelectionOperators(); 
         void BuildControlStatementOperators();
@@ -73,7 +74,7 @@ class MHO_OperatorBuilderManager
         MHO_ContainerStore* fContainerStore;
         MHO_ParameterStore* fParameterStore;
         
-        //map to builders which do the actual work
+        //collections of builders, mapped by name
         std::map< std::string, MHO_OperatorBuilder* > fBuilderMap;
 };
 

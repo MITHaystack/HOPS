@@ -1,7 +1,8 @@
 {
     "name": "pc_phases_x",
-    "statement_type": "parameter",
+    "statement_type": "operator",
     "type" : "compound",
+    "priority": 3.5,
     "parameters":
     {
         "channel_names": {"type": "string"},

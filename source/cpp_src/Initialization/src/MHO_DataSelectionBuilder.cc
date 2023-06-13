@@ -57,6 +57,7 @@ MHO_DataSelectionBuilder::Build()
         if(do_select_polprods)
         {
             std::vector<std::size_t> selected_pp;
+            msg_debug("initialization", "data selection, selecting pol-product = "<< polprod << eom);
             selected_pp = (&(std::get<POLPROD_AXIS>(*vis_data)))->SelectMatchingIndexes(polprod);
             spack->SelectAxisItems(POLPROD_AXIS,selected_pp);
             wtspack->SelectAxisItems(POLPROD_AXIS,selected_pp);
@@ -64,12 +65,23 @@ MHO_DataSelectionBuilder::Build()
 
         if(do_select_chans)
         {
-            // std::vector< std::string > chan_set;
-            // for(auto it = chans.begin(); it != chans.end(); it++){chan_set.insert(*it);}
-            // std::vector<std::size_t> selected_ch;
-            // selected_ch = (&(std::get<CHANNEL_AXIS>(*vis_data)))->SelectMatchingIndexes(chan_set);
-            // spack.SelectAxisItems(CHANNEL_AXIS,selected_ch);
-            // wtspack.SelectAxisItems(CHANNEL_AXIS,selected_ch);
+            std::set< std::string > chan_set;
+            for(auto it = chans.begin(); it != chans.end(); it++){chan_set.insert(*it);}
+            msg_debug("initialization", "data selection, selecting "<<chan_set.size() << " channels." << eom);
+            //TODO, this channel label -> index selection method is pretty crude could be optimized
+            std::string chan_label_key = "channel_label";
+            std::set< std::size_t > index_set;
+            std::vector<std::size_t> selected_ch;
+            for(auto it = chan_set.begin(); it!= chan_set.end(); it++)
+            {
+                std::vector< std::size_t > tmp_idx = (&(std::get<CHANNEL_AXIS>(*vis_data)))->SelectMatchingIndexesByLabelValue(chan_label_key, *it);
+                std::copy(tmp_idx.begin(), tmp_idx.end(), std::inserter(index_set,index_set.end() ) );
+            }
+            std::copy(index_set.begin(), index_set.end(), std::inserter(selected_ch,selected_ch.end() ) );
+
+            msg_debug("initialization", "data selection, selecting "<<selected_ch.size() << " channels." << eom);
+            spack->SelectAxisItems(CHANNEL_AXIS,selected_ch);
+            wtspack->SelectAxisItems(CHANNEL_AXIS,selected_ch);
         }
 
         //TODO FIXME implement start/stop AP selection
