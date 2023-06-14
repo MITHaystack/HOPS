@@ -222,12 +222,12 @@ int main(int argc, char** argv)
     auto control_contents = cparser.ParseControl();
     mho_json control_statements;
 
-    std::cout<<control_contents.dump(4)<<std::endl;
+    //std::cout<<control_contents.dump(4)<<std::endl;
 
     //TODO -- where should frequency group information get stashed/retrieved?
     ceval.SetPassInformation(baseline, srcName, "?", scnName);//baseline, source, fgroup, scan
     control_statements = ceval.GetApplicableStatements(control_contents);
-    std::cout<< control_statements.dump(2) <<std::endl;
+    //std::cout<< control_statements.dump(2) <<std::endl;
 
     ////////////////////////////////////////////////////////////////////////////
     //LOAD DATA AND ASSEMBLE THE DATA STORE
@@ -253,7 +253,6 @@ int main(int argc, char** argv)
     //PARAMETER SETTING
     ////////////////////////////////////////////////////////////////////////////
     MHO_ParameterManager paramManager(paramStore, control_format);
-    //MHO_ParameterConfigurator paramConf(paramStore, control_format);
     //set defaults 
     paramStore->Set(std::string("selected_polprod"), polprod);
 
@@ -276,7 +275,7 @@ int main(int argc, char** argv)
         {"statement_type", "operator"},
         {"operator_category" , "selection"},
         {"type" , "empty"},
-        {"priority", 0.1}
+        {"priority", 1.01}
     };
     control_format["coarse_selection"] = data_select_format;
     (*(control_statements.begin()))["statements"].push_back(data_select_format);
@@ -314,6 +313,19 @@ int main(int argc, char** argv)
         (*opIt)->Initialize();
         (*opIt)->Execute();
     }
+    
+    //safety check
+    std::size_t bl_dim[visibility_type::rank::value];
+    vis_data->GetDimensions(bl_dim);
+    for(std::size_t i=0; i < visibility_type::rank::value; i++)
+    {
+        if(bl_dim[i] == 0)
+        {
+            msg_fatal("main", "no data left after cuts." << eom);
+            std::exit(1);
+        }
+    }
+    
     build_manager.BuildOperatorCategory("flagging");
     std::cout<<"toolbox has: "<<opToolbox->GetNOperators()<<" operators."<<std::endl;
     ops = opToolbox->GetOperatorsByCategory("flagging");
@@ -331,32 +343,6 @@ int main(int argc, char** argv)
         std::cout<<"init and exec of: "<<(*opIt)->GetName()<<std::endl;
         (*opIt)->Initialize();
         (*opIt)->Execute();
-    }
-
-
-    //std::vector< MHO_Operator*>
-    ops = opToolbox->GetAllOperators();
-    std::cout<<"number of ops = "<<ops.size()<<std::endl;
-
-
-    //manually (for now) retrieve and apply operators 
-    // MHO_Operator* chan_labeller = opToolbox->GetOperator("chan_ids");
-    // MHO_Operator* pc_phases_x = opToolbox->GetOperator("pc_phases_x");
-    // MHO_Operator* coarse_select = opToolbox->GetOperator("coarse_selection");
-    // 
-    // if(chan_labeller){chan_labeller->Initialize(); chan_labeller->Execute();}
-    // if(coarse_select){coarse_select->Initialize(); coarse_select->Execute();}
-    // if(pc_phases_x){pc_phases_x->Initialize(); pc_phases_x->Execute();}
-
-    std::size_t bl_dim[visibility_type::rank::value];
-    vis_data->GetDimensions(bl_dim);
-    for(std::size_t i=0; i < visibility_type::rank::value; i++)
-    {
-        if(bl_dim[i] == 0)
-        {
-            msg_fatal("main", "no data left after cuts." << eom);
-            std::exit(1);
-        }
     }
 
 
@@ -381,38 +367,8 @@ int main(int argc, char** argv)
 
     wt_data->Insert("total_summed_weights", total_ap_frac);
 
-    //change weights uuid  to prevent collision with previous snapshot
-    // MHO_UUIDGenerator gen;
-    // MHO_UUID new_uuid = gen.GenerateUUID(); //random object id
-    // temp_weights->SetObjectUUID(new_uuid);
     take_snapshot_here("test", "reduced_weights", __FILE__, __LINE__,  &temp_weights);
 
-    ////////////////////////////////////////////////////////////////////////////
-    //APPLY DATA CORRECTIONS (A PRIORI -- PCAL)
-    ////////////////////////////////////////////////////////////////////////////
-
-    /*
-
-    //apply manual pcal
-    //construct the pcal array...need to re-think how we are going to move control block info around (scalar parameters vs. arrays etc)
-    manual_pcal_type* ref_pcal = cb_wrapper.GetRefStationManualPCOffsets();
-    manual_pcal_type* rem_pcal = cb_wrapper.GetRemStationManualPCOffsets();
-
-    MHO_ManualChannelPhaseCorrection pcal_correct;
-
-    pcal_correct.SetArgs(vis_data, rem_pcal, vis_data);
-    ok = pcal_correct.Initialize();
-    check_step_error(ok, "main", "ref pcal initialization." << eom );
-    ok = pcal_correct.Execute();
-    check_step_error(ok, "main", "ref pcal execution." << eom );
-
-    pcal_correct.SetArgs(vis_data, ref_pcal, vis_data);
-    ok = pcal_correct.Initialize();
-    check_step_error(ok, "main", "rem pcal initialization." << eom );
-    ok = pcal_correct.Execute();
-    check_step_error(ok, "main", "rem pcal execution." << eom );
-
-    */
 
     //output for the delay
     visibility_type* sbd_data = vis_data->CloneEmpty();
