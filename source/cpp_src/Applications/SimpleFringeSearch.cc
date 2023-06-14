@@ -269,7 +269,7 @@ int main(int argc, char** argv)
     ////////////////////////////////////////////////////////////////////////////
 
     MHO_OperatorBuilderManager build_manager(opToolbox, conStore, paramStore, control_format);
-    build_manager.SetControlStatements(control_statements);
+    build_manager.SetControlStatements(&control_statements);
 
      std::vector< MHO_Operator*> ops;// = opToolbox->GetAllOperators();
     // for(auto opIt= ops.begin(); opIt != ops.end(); opIt++)

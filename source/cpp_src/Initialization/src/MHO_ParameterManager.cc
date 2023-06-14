@@ -16,7 +16,7 @@ MHO_ParameterManager::ConfigureAll()
         for(auto stmt_iter = statements->begin(); stmt_iter != statements->end(); )
         {
             std::string name = (*stmt_iter)["name"];
-            if(fFormat.contains(name) && fFormat[name].contains("type") )
+            if(fFormat.contains(name) && fFormat[name].contains("statement_type") )
             {
                 std::string stmt_type = fFormat[name]["statement_type"].get<std::string>();
                 if(stmt_type == "parameter")
@@ -29,6 +29,7 @@ MHO_ParameterManager::ConfigureAll()
                     stmt_iter = statements->erase(stmt_iter); std::cout<<"erased consumed param: "<<name<<std::endl;
                 }
                 else{stmt_iter++;}
+                //TODO Expand the possible parameter types (e.g. we may want 'station_parameter' for some quantities, e.g. ionosphere)
             }
             else
             {

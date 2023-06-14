@@ -41,7 +41,7 @@ class MHO_OperatorBuilderManager
         }
 
         //pass in parsed control file elements 
-        void SetControlStatements(const mho_json& statements){fControl = statements;};
+        void SetControlStatements(mho_json* statements){fControl = statements;};
 
         void BuildOperatorCategory(const char* cat){std::string scat(cat); BuildOperatorCategory(scat);};
         void BuildOperatorCategory(const std::string& cat);
@@ -81,7 +81,7 @@ class MHO_OperatorBuilderManager
         
         //internal data
         mho_json fFormat; //control file statement formats
-        mho_json fControl; //control file statements
+        mho_json* fControl; //control file statements
 
         //constructed operators all get stashed here
         MHO_OperatorToolbox* fOperatorToolbox;
