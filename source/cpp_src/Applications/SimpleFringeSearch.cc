@@ -121,65 +121,6 @@ void configure_data_library(MHO_ContainerStore* store)
     store->SetShortName(wt_data->GetObjectUUID(), wt_shortname);
 }
 
-/*
-void apply_cuts()
-{
-
-    ////////////////////////////////////////////////////////////////////////////
-    //APPLY COARSE DATA SELECTION
-    ////////////////////////////////////////////////////////////////////////////
-    //select data repack
-    MHO_SelectRepack<visibility_type> spack;
-    MHO_SelectRepack<weight_type> wtspack;
-
-    //first find indexes which corresponds to the specified pol product
-    std::vector<std::size_t> selected_pp = (&(std::get<POLPROD_AXIS>(*vis_data)))->SelectMatchingIndexes(polprod);
-
-    //select some specified AP's
-    // std::vector< std::size_t > selected_ap;
-    // selected_ap.push_back(20);
-
-    //select first 8 channels for testing
-    std::size_t n_max_channels = std::get<CHANNEL_AXIS>(*vis_data).GetSize();
-    std::vector< std::size_t > selected_ch;// = cb_wrapper.GetActiveChannelsKLUDGE(n_max_channels);
-
-    for(std::size_t i=0;i<8; i++){selected_ch.push_back(i);}
-    //for(std::size_t i=0;i<2; i++){selected_ch.push_back(i);}
-
-    //specify the indexes we want on each axis
-    spack.SelectAxisItems(0,selected_pp);
-    spack.SelectAxisItems(1,selected_ch);
-
-    wtspack.SelectAxisItems(0,selected_pp);
-    wtspack.SelectAxisItems(1,selected_ch);
-    //spack.SelectAxisItems(2,selected_ap);
-
-
-    visibility_type* alt_data = new visibility_type();
-    weight_type* alt_wt_data = new weight_type();
-
-    spack.SetArgs(vis_data, alt_data);
-    spack.Initialize();
-    spack.Execute();
-
-    wtspack.SetArgs(wt_data, alt_wt_data);
-    wtspack.Initialize();
-    wtspack.Execute();
-
-    //TODO, work out what to do with the axis interval labels in between operations
-    //explicitly copy the channel axis labels here
-    std::get<CHANNEL_AXIS>(*alt_data).CopyIntervalLabels( std::get<CHANNEL_AXIS>(*vis_data) );
-    std::get<CHANNEL_AXIS>(*alt_wt_data).CopyIntervalLabels( std::get<CHANNEL_AXIS>(*wt_data) );
-
-    wt_data->Copy(*alt_wt_data);
-    vis_data->Copy(*alt_data);
-
-    delete alt_data;
-    delete alt_wt_data;
-
-}
-
-*/
 
 int main(int argc, char** argv)
 {
@@ -288,10 +229,6 @@ int main(int argc, char** argv)
     control_statements = ceval.GetApplicableStatements(control_contents);
     std::cout<< control_statements.dump(2) <<std::endl;
 
-    //now we need to process the control statements (this means setting parameters and constructing any related operators)
-    double ref_freq = 6000.0;
-
-
     ////////////////////////////////////////////////////////////////////////////
     //LOAD DATA AND ASSEMBLE THE DATA STORE
     ////////////////////////////////////////////////////////////////////////////
@@ -320,29 +257,34 @@ int main(int argc, char** argv)
     //set defaults 
     paramStore->Set(std::string("selected_polprod"), polprod);
 
-    paramManager.SetControlStatements(control_statements);
+    paramManager.SetControlStatements(&control_statements);
     paramManager.ConfigureAll();
     paramStore->Dump();
 
-
+    //test grab the reference freq
+    double ref_freq = paramStore->GetAs<double>(std::string("ref_freq"));
 
     ////////////////////////////////////////////////////////////////////////////
     //OPERATOR CONSTRUCTION
     ////////////////////////////////////////////////////////////////////////////
 
-    MHO_OperatorBuilderManager build_manager(opToolbox, conStore, paramStore);
+    MHO_OperatorBuilderManager build_manager(opToolbox, conStore, paramStore, control_format);
     build_manager.SetControlStatements(control_statements);
-    build_manager.BuildDefaultOperators();
+
+     std::vector< MHO_Operator*> ops;// = opToolbox->GetAllOperators();
+    // for(auto opIt= ops.begin(); opIt != ops.end(); opIt++)
+    // {
+    //     (*opIt)->Initialize();
+    //     (*opIt)->Execute();
+    // }
     
-    std::vector< MHO_Operator*> ops = opToolbox->GetAllOperators();
-    for(auto opIt= ops.begin(); opIt != ops.end(); opIt++)
-    {
-        (*opIt)->Initialize();
-        (*opIt)->Execute();
-    }
-    
-    build_manager.BuildDataSelectionOperators();
-    build_manager.BuildControlStatementOperators();
+    build_manager.BuildOperatorCategory("default");
+    build_manager.BuildOperatorCategory("labelling");
+    build_manager.BuildOperatorCategory("selection");
+    build_manager.BuildOperatorCategory("flagging");
+    build_manager.BuildOperatorCategory("calibration");
+
+    //build_manager.BuildControlStatementOperators();
     //build_manager.BuildAll();
 
 

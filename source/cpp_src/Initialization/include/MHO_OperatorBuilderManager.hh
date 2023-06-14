@@ -18,54 +18,70 @@ class MHO_OperatorBuilderManager
         
         MHO_OperatorBuilderManager(MHO_OperatorToolbox* toolbox, 
                                    MHO_ContainerStore* cstore,
-                                   MHO_ParameterStore* pstore
+                                   MHO_ParameterStore* pstore,
+                                   mho_json control_format
                                   ):
             fOperatorToolbox(toolbox),
             fContainerStore(cstore),
             fParameterStore(pstore)
         {
+            fFormat = control_format;
             CreateBuilders();
         };
 
         virtual ~MHO_OperatorBuilderManager()
         {
-            for(auto it = fBuilderMap.begin(); it != fBuilderMap.end(); it++)
+            for(std::size_t i = 0; i<fAllBuilders.size(); i++)
             {
-                delete it->second;
+                delete fAllBuilders[i];
             }
+            fAllBuilders.clear();
+            fNameToBuilderMap.clear();
+            fCategoryToBuilderMap.clear();
         }
 
+        //pass in parsed control file elements 
         void SetControlStatements(const mho_json& statements){fControl = statements;};
-        
-        //data selection is not entirely dictated via control file
-        //TODO formalize this -- what other operators need to be built 
-        //that are independent of control file statements?
-        void BuildDefaultOperators();
-        void BuildDataSelectionOperators(); 
-        void BuildControlStatementOperators();
+
+        void BuildOperatorCategory(const char* cat){std::string scat(cat); BuildOperatorCategory(scat);};
+        void BuildOperatorCategory(const std::string& cat);
 
     private:
         
         void CreateBuilders();
         
         template<typename XBuilderType>
-        void AddBuilderType(const char* builder_name)
+        void AddBuilderType(const char* builder_name, const mho_json& format)
         {
             std::string bn(builder_name);
-            AddBuilderType<XBuilderType>(bn);
+            AddBuilderType<XBuilderType>(bn, format);
         };
         
         template<typename XBuilderType>
-        void AddBuilderType(const std::string& builder_name)
+        void AddBuilderType(const std::string& builder_name, const mho_json& format)
         {
-            auto it = fBuilderMap.find(builder_name);
-            if( it == fBuilderMap.end()) //not found, so make one
+            auto it = fNameToBuilderMap.find(builder_name);
+            if( it == fNameToBuilderMap.end()) //not found, so make one
             {
-                fBuilderMap.emplace(builder_name, new XBuilderType(fOperatorToolbox, fContainerStore, fParameterStore) );
+                auto builder = new XBuilderType(fOperatorToolbox, fContainerStore, fParameterStore);
+                builder->SetFormat(format);
+                
+                //the builder's operator category comes from the format specification
+                std::string category = "unknown";
+                if(format.contains("operator_category"))
+                {
+                    category = format["operator_category"].get<std::string>(); 
+                }
+                
+                fAllBuilders.push_back(builder);
+                fNameToBuilderMap.emplace(builder_name, builder);
+                fCategoryToBuilderMap.emplace(category, builder);
             }
         };
         
-        mho_json fControl;
+        //internal data
+        mho_json fFormat; //control file statement formats
+        mho_json fControl; //control file statements
 
         //constructed operators all get stashed here
         MHO_OperatorToolbox* fOperatorToolbox;
@@ -74,8 +90,15 @@ class MHO_OperatorBuilderManager
         MHO_ContainerStore* fContainerStore;
         MHO_ParameterStore* fParameterStore;
         
-        //collections of builders, mapped by name
-        std::map< std::string, MHO_OperatorBuilder* > fBuilderMap;
+        //container to store all of the builders, for memory management
+        std::vector< MHO_OperatorBuilder* > fAllBuilders;
+
+        //name -> builder map for lookup by name 
+        std::map< std::string, MHO_OperatorBuilder* > fNameToBuilderMap;
+
+        //operator category -> builder multimap for lookup by category
+        std::multimap< std::string, MHO_OperatorBuilder* > fCategoryToBuilderMap;
+
 };
 
 }
