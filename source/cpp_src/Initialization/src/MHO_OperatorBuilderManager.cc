@@ -20,12 +20,25 @@ MHO_OperatorBuilderManager::CreateBuilders()
     AddBuilderType<MHO_ManualChannelPhaseCorrectionBuilder>("pc_phases_r", fFormat["pc_phases_r"]);
     AddBuilderType<MHO_ManualChannelPhaseCorrectionBuilder>("pc_phases_l", fFormat["pc_phases_l"]);
     
+    //the below additions are some operators which have to be applied but are not 
+    //always specified via control file (data selection and default channel labels)
+    #pragma message("fix this horrible hack")
     //this one is special since it is not an operator specified via control file
     mho_json special;
     special["operator_category"] = "selection";
     special["priority"] = 1.1;
     AddBuilderType<MHO_DataSelectionBuilder>("coarse_selection", special); 
+
+    //this one is also special (default channel labeling behavior)
+    mho_json special2;
+    special2["operator_category"] = "default";
+    special2["priority"] = 0.1;
+    AddBuilderType<MHO_ChannelLabellerBuilder>("default_chan_ids", special2);
+
+
 }
+
+
 
 void 
 MHO_OperatorBuilderManager::BuildOperatorCategory(const std::string& cat)

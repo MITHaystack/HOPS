@@ -267,25 +267,71 @@ int main(int argc, char** argv)
     ////////////////////////////////////////////////////////////////////////////
     //OPERATOR CONSTRUCTION
     ////////////////////////////////////////////////////////////////////////////
+    //add the data selection operator 
+    //TODO FIXME -- this is a horrible hack to get this operator into the initialization stream 
+    #pragma message("fix this horrible hack")
+    mho_json data_select_format =
+    {
+        {"name", "coarse_selection"},
+        {"statement_type", "operator"},
+        {"operator_category" , "selection"},
+        {"type" , "empty"},
+        {"priority", 0.1}
+    };
+    control_format["coarse_selection"] = data_select_format;
+    (*(control_statements.begin()))["statements"].push_back(data_select_format);
+    
 
     MHO_OperatorBuilderManager build_manager(opToolbox, conStore, paramStore, control_format);
     build_manager.SetControlStatements(&control_statements);
 
-     std::vector< MHO_Operator*> ops;// = opToolbox->GetAllOperators();
-    // for(auto opIt= ops.begin(); opIt != ops.end(); opIt++)
-    // {
-    //     (*opIt)->Initialize();
-    //     (*opIt)->Execute();
-    // }
-    
-    build_manager.BuildOperatorCategory("default");
-    build_manager.BuildOperatorCategory("labelling");
-    build_manager.BuildOperatorCategory("selection");
-    build_manager.BuildOperatorCategory("flagging");
-    build_manager.BuildOperatorCategory("calibration");
+    std::vector< MHO_Operator*> ops;
 
-    //build_manager.BuildControlStatementOperators();
-    //build_manager.BuildAll();
+    build_manager.BuildOperatorCategory("default");
+    std::cout<<"toolbox has: "<<opToolbox->GetNOperators()<<" operators."<<std::endl;
+    ops = opToolbox->GetAllOperators();
+    for(auto opIt= ops.begin(); opIt != ops.end(); opIt++)
+    {
+        std::cout<<"init and exec of: "<<(*opIt)->GetName()<<std::endl;
+        (*opIt)->Initialize();
+        (*opIt)->Execute();
+    }
+    build_manager.BuildOperatorCategory("labelling");
+    std::cout<<"toolbox has: "<<opToolbox->GetNOperators()<<" operators."<<std::endl;
+    ops = opToolbox->GetOperatorsByCategory("labelling");
+    for(auto opIt= ops.begin(); opIt != ops.end(); opIt++)
+    {
+        std::cout<<"init and exec of: "<<(*opIt)->GetName()<<std::endl;
+        (*opIt)->Initialize();
+        (*opIt)->Execute();
+    }
+    build_manager.BuildOperatorCategory("selection");
+    std::cout<<"toolbox has: "<<opToolbox->GetNOperators()<<" operators."<<std::endl;
+    ops = opToolbox->GetOperatorsByCategory("selection");
+    for(auto opIt= ops.begin(); opIt != ops.end(); opIt++)
+    {
+        std::cout<<"init and exec of: "<<(*opIt)->GetName()<<std::endl;
+        (*opIt)->Initialize();
+        (*opIt)->Execute();
+    }
+    build_manager.BuildOperatorCategory("flagging");
+    std::cout<<"toolbox has: "<<opToolbox->GetNOperators()<<" operators."<<std::endl;
+    ops = opToolbox->GetOperatorsByCategory("flagging");
+    for(auto opIt= ops.begin(); opIt != ops.end(); opIt++)
+    {
+        std::cout<<"init and exec of: "<<(*opIt)->GetName()<<std::endl;
+        (*opIt)->Initialize();
+        (*opIt)->Execute();
+    }
+    build_manager.BuildOperatorCategory("calibration");
+    std::cout<<"toolbox has: "<<opToolbox->GetNOperators()<<" operators."<<std::endl;
+    ops = opToolbox->GetOperatorsByCategory("calibration");
+    for(auto opIt= ops.begin(); opIt != ops.end(); opIt++)
+    {
+        std::cout<<"init and exec of: "<<(*opIt)->GetName()<<std::endl;
+        (*opIt)->Initialize();
+        (*opIt)->Execute();
+    }
 
 
     //std::vector< MHO_Operator*>
