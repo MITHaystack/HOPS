@@ -22,12 +22,12 @@ MHO_ManualChannelPhaseCorrectionBuilder::Build()
         std::cout<<fAttributes["value"]["pc_phases"]<<std::endl;
 
         std::string op_name = fAttributes["name"].get<std::string>();
+        std::string op_category = "calibration";
         std::string channel_name_str = fAttributes["value"]["channel_names"].get<std::string>();
         std::vector<double> pc_phases = fAttributes["value"]["pc_phases"].get< std::vector<double> >();
 
         std::string pol = ParsePolFromName(op_name);
         std::string mk4id = ExtractStationMk4ID();
-        op_name = "pc_phases";
         std::cout<<"pol = "<<pol<<" station mk4id = "<<mk4id<<std::endl;
         //construct channel -> pc_phase map
         auto chan2pcp = MapChannelQuantities(channel_name_str, pc_phases);
@@ -49,9 +49,11 @@ MHO_ManualChannelPhaseCorrectionBuilder::Build()
             op->SetChannelToPCPhaseMap(chan2pcp);
             op->SetPolarization(pol);
             op->SetStationMk4ID(mk4id);
+            
+            op->SetName(op_name);
 
             bool replace_duplicates = false;
-            this->fOperatorToolbox->AddOperator(op,op_name,replace_duplicates);
+            this->fOperatorToolbox->AddOperator(op,op->GetName(),op_category,replace_duplicates);
             return true;
         }
         else

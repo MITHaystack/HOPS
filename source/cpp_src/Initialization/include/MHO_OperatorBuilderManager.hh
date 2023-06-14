@@ -73,6 +73,8 @@ class MHO_OperatorBuilderManager
                     category = format["operator_category"].get<std::string>(); 
                 }
                 
+                std::cout<<"ADDING A BUILDER: "<<builder_name<<" - "<<category<<std::endl;
+                
                 fAllBuilders.push_back(builder);
                 fNameToBuilderMap.emplace(builder_name, builder);
                 fCategoryToBuilderMap.emplace(category, builder);

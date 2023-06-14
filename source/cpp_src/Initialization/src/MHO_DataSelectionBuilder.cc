@@ -90,10 +90,15 @@ MHO_DataSelectionBuilder::Build()
         wtspack->SetArgs(wt_data);
 
         std::string op_name = "coarse_selection";
+        std::string op_category = "selection";
         bool replace_duplicates = true;
         #pragma message("TODO - figure out proper naming/retrieval scheme for operators")
-        fOperatorToolbox->AddOperator(spack, op_name + ":vis", replace_duplicates);
-        fOperatorToolbox->AddOperator(wtspack, op_name + ":weight", replace_duplicates);
+        
+        spack->SetName(op_name + ":vis");
+        wtspack->SetName(op_name + ":weight");
+        
+        fOperatorToolbox->AddOperator(spack, spack->GetName(), op_category, replace_duplicates);
+        fOperatorToolbox->AddOperator(wtspack, wtspack->GetName(), op_category, replace_duplicates);
     }
     return false;
 }

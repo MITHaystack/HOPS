@@ -1,7 +1,7 @@
 #ifndef MHO_Operator_HH__
 #define MHO_Operator_HH__
 
-#include <limits>
+#include <string>
 
 /*
 *@file: MHO_Operator.hh
@@ -24,6 +24,8 @@ class MHO_Operator
         virtual bool Initialize() = 0;
         virtual bool Execute() = 0;
 
+        virtual void SetName(std::string name){fName = name;}
+        virtual std::string GetName() const {return fName;}
 
         //allow priority to vary 
         virtual void SetPriority(const double& priority){fPriority = priority;}
@@ -33,6 +35,7 @@ class MHO_Operator
 
     private:
 
+        std::string fName;
         double fPriority;
 };
 

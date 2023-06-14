@@ -22,6 +22,7 @@ MHO_ChannelLabellerBuilder::Build()
         //assume attributes are ok for now - TODO add checks!
         std::map< std::string, double> label2freq;
         std::string op_name = "chan_ids";
+        std::string op_category = "labelling"; //should get this from format
         if(! fAttributes.empty() )
         {
             //std::string op_name = fAttributes["name"].get<std::string>();
@@ -66,8 +67,12 @@ MHO_ChannelLabellerBuilder::Build()
 
         bool replace_duplicates = true; //replces the default labeller
         #pragma message("TODO - figure out proper naming/retrieval scheme for operators")
-        fOperatorToolbox->AddOperator(vis_op,op_name + ":vis", replace_duplicates);
-        fOperatorToolbox->AddOperator(wt_op,op_name + ":weight", replace_duplicates);
+        
+        vis_op->SetName(op_name + ":vis");
+        wt_op->SetName(op_name + ":weight");
+        
+        fOperatorToolbox->AddOperator(vis_op, vis_op->GetName(), op_category, replace_duplicates);
+        fOperatorToolbox->AddOperator(wt_op, wt_op->GetName(), op_category, replace_duplicates);
 
         return true;
 
