@@ -6,19 +6,34 @@ namespace hops
 void
 MHO_ParameterManager::ConfigureAll()
 {
-    //loop over control statements, find the associated builder in the builder map
-    //and tell it to make an operator responsible for its action
-    for(auto ctrl_iter = fControl.begin(); ctrl_iter != fControl.end(); ctrl_iter++)
+    //loop over control statements, find the parameter statements and put them in 
+    //parameter store, then remove them from further processing
+    for(auto ctrl_iter = fControl->begin(); ctrl_iter != fControl->end(); ctrl_iter++)
     {
         auto ctrl_item = *(ctrl_iter);
-        auto statements = (*ctrl_iter)["statements"];
-        for(auto stmt_iter = statements.begin(); stmt_iter != statements.end(); stmt_iter++)
+        auto statements = &( (*ctrl_iter)["statements"] );
+        std::vector< std::string > consumed_elements;
+        for(auto stmt_iter = statements->begin(); stmt_iter != statements->end(); )
         {
             std::string name = (*stmt_iter)["name"];
-            std::cout<<"param processing: "<<name<<std::endl;
-            fDefaultParameterConfig.SetConditions(*ctrl_iter);
-            fDefaultParameterConfig.SetAttributes(*stmt_iter);
-            fDefaultParameterConfig.Configure();
+            if(fFormat.contains(name) && fFormat[name].contains("type") )
+            {
+                std::string stmt_type = fFormat[name]["statement_type"].get<std::string>();
+                if(stmt_type == "parameter")
+                {
+                    consumed_elements.push_back(name);
+                    std::cout<<"param processing: "<<name<<std::endl;
+                    fDefaultParameterConfig.SetConditions(*ctrl_iter);
+                    fDefaultParameterConfig.SetAttributes(*stmt_iter);
+                    fDefaultParameterConfig.Configure();
+                    stmt_iter = statements->erase(stmt_iter); std::cout<<"erased consumed param: "<<name<<std::endl;
+                }
+                else{stmt_iter++;}
+            }
+            else
+            {
+                stmt_iter++;
+            }
         }
     }
 }

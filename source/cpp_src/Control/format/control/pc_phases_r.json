@@ -1,6 +1,7 @@
 {
     "name": "pc_phases_r",
     "statement_type": "operator",
+    "operator_category" : "calibration",
     "type" : "compound",
     "priority": 3.5,
     "parameters":
