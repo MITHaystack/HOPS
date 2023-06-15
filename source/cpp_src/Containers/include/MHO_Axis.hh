@@ -63,12 +63,12 @@ class MHO_Axis:
 
 
         //index selection from matching axis values
-        std::vector< std::size_t > 
+        std::vector< std::size_t >
         SelectMatchingIndexes(const std::set<XValueType> label_values)
         {
-            std::vector< std::size_t > selected_idx; 
+            std::vector< std::size_t > selected_idx;
             //dumb brute force search, for each label value
-            //check all the axis elements for a match 
+            //check all the axis elements for a match
             for(auto label_it = label_values.begin(); label_it != label_values.end(); label_it++)
             {
                 for(std::size_t i = 0; i < this->GetSize(); i++)
@@ -83,12 +83,12 @@ class MHO_Axis:
         }
 
         //index selection for matching axis values (given a single value)
-        std::vector< std::size_t > 
+        std::vector< std::size_t >
         SelectMatchingIndexes(const XValueType& label_value)
         {
-            std::vector< std::size_t > selected_idx; 
+            std::vector< std::size_t > selected_idx;
             //dumb brute force search, for a single label value
-            //check all the axis elements for a match 
+            //check all the axis elements for a match
             for(std::size_t i = 0; i < this->GetSize(); i++)
             {
                 if( (*this)[i] == label_value )
@@ -115,22 +115,22 @@ class MHO_Axis:
             }
             return false;
         }
-        
+
         //index selection from matching label values (e.g. gets the indices for
         //which column is tagged with "channel_label":"a" etc.)
         //extra dumb brute force, TODO make me smarter
         template< typename XLabelValueType >
-        std::vector< std::size_t > 
+        std::vector< std::size_t >
         SelectMatchingIndexesByLabelValue(const std::string& label_key, const XLabelValueType& label_value)
         {
             std::vector< std::size_t > matching_idx;
             for(std::size_t i=0; i < this->GetSize(); i++)
             {
-                XLabelValueType value;
                 std::vector< MHO_IntervalLabel* > labels;
                 labels = this->GetIntervalsWhichIntersect(i);
                 for(std::size_t j=0; j < labels.size(); j++)
                 {
+                    XLabelValueType value;
                     if(labels[j]->HasKey(label_key))
                     {
                         labels[j]->Retrieve(label_key, value);
@@ -150,19 +150,15 @@ class MHO_Axis:
             std::set< std::size_t > idx;
             for(std::size_t i=0; i < this->GetSize(); i++)
             {
-                XLabelValueType value;
                 std::vector< MHO_IntervalLabel* > labels;
                 labels = this->GetIntervalsWhichIntersect(i);
                 for(std::size_t j=0; j<labels.size(); j++)
                 {
+                    XLabelValueType value;
                     if(labels[j]->HasKey(label_key))
                     {
-                        bool ok = labels[j]->Retrieve(label_key, value);
-                        if( ok && (label_values.find(value) != label_values.end()) )
-                        {
-                            std::cout<<"adding: "<<value<<" : "<<i<<std::endl;
-                            idx.insert(i);
-                        }
+                        labels[j]->Retrieve(label_key, value);
+                        if( label_values.find(value) != label_values.end() ){idx.insert(i);}
                     }
                 }
             }
@@ -177,11 +173,11 @@ class MHO_Axis:
             label_values.clear();
             for(std::size_t i=0; i < this->GetSize(); i++)
             {
-                XLabelValueType value;
                 std::vector< MHO_IntervalLabel* > labels;
                 labels = this->GetIntervalsWhichIntersect(i);
                 for(std::size_t j=0; j < labels.size(); j++)
                 {
+                    XLabelValueType value;
                     if(labels[j]->HasKey(label_key))
                     {
                         labels[j]->Retrieve(label_key, value);
@@ -218,7 +214,7 @@ class MHO_Axis:
         {
             MHO_ClassVersion vers;
             s >> vers;
-            switch(vers) 
+            switch(vers)
             {
                 case 0:
                     aData.StreamInData_V0(s);
@@ -234,15 +230,15 @@ class MHO_Axis:
 
         template<typename XStream> friend XStream& operator<<(XStream& s, const MHO_Axis& aData)
         {
-            switch( aData.GetVersion() ) 
+            switch( aData.GetVersion() )
             {
                 case 0:
                     s << aData.GetVersion();
                     aData.StreamOutData_V0(s);
                 break;
                 default:
-                    msg_error("containers", 
-                        "error, cannot stream out MHO_Axis object with unknown version: " 
+                    msg_error("containers",
+                        "error, cannot stream out MHO_Axis object with unknown version: "
                         << aData.GetVersion() << eom );
             }
             return s;
@@ -261,7 +257,7 @@ class MHO_Axis:
             s << static_cast< const MHO_VectorContainer< XValueType >& >(*this);
             s << static_cast< const MHO_IntervalLabelTree& >(*this);
         }
-        
+
         virtual MHO_UUID DetermineTypeUUID() const override
         {
             MHO_MD5HashGenerator gen;
