@@ -55,7 +55,7 @@ namespace py = pybind11;
 namespace nl = nlohmann;
 using namespace pybind11::literals;
 
-#endif 
+#endif
 
 using namespace hops;
 
@@ -81,10 +81,10 @@ void configure_data_library(MHO_ContainerStore* store)
         msg_fatal("main", "failed to read weight data from the .cor file." <<eom);
         std::exit(1);
     }
-    
+
     std::size_t n_vis = store->GetNObjects<visibility_store_type>();
     std::size_t n_wt = store->GetNObjects<weight_store_type>();
-    
+
     if(n_vis != 1 || n_wt != 1)
     {
         msg_warn("main", "multiple visibility and/or weight types not yet supported" << eom);
@@ -105,7 +105,7 @@ void configure_data_library(MHO_ContainerStore* store)
     wt_up_caster.SetArgs(wt_store_data, wt_data);
     wt_up_caster.Initialize();
     wt_up_caster.Execute();
-    
+
     //remove the original objects
     store->DeleteObject(vis_store_data);
     store->DeleteObject(wt_store_data);
@@ -113,7 +113,7 @@ void configure_data_library(MHO_ContainerStore* store)
     #pragma message("TODO - if we plan to rely on short-names to identify objects, we need to validate them here")
     //TODO make sure that the visibility object is called 'vis' and weights are called 'weights', etc.
     //TODO also validate the station data
-    
+
     //now shove the double precision data into the container store with the same shortname
     store->AddObject(vis_data);
     store->AddObject(wt_data);
@@ -227,7 +227,7 @@ int main(int argc, char** argv)
     //TODO -- where should frequency group information get stashed/retrieved?
     ceval.SetPassInformation(baseline, srcName, "?", scnName);//baseline, source, fgroup, scan
     control_statements = ceval.GetApplicableStatements(control_contents);
-    //std::cout<< control_statements.dump(2) <<std::endl;
+    std::cout<< control_statements.dump(2) <<std::endl;
 
     ////////////////////////////////////////////////////////////////////////////
     //LOAD DATA AND ASSEMBLE THE DATA STORE
@@ -248,12 +248,12 @@ int main(int argc, char** argv)
         msg_fatal("main", "could not find visibility or weight objects with names (vis, weight)." << eom);
         std::exit(1);
     }
-    
+
     ////////////////////////////////////////////////////////////////////////////
     //PARAMETER SETTING
     ////////////////////////////////////////////////////////////////////////////
     MHO_ParameterManager paramManager(paramStore, control_format);
-    //set defaults 
+    //set defaults
     paramStore->Set(std::string("selected_polprod"), polprod);
 
     paramManager.SetControlStatements(&control_statements);
@@ -266,8 +266,8 @@ int main(int argc, char** argv)
     ////////////////////////////////////////////////////////////////////////////
     //OPERATOR CONSTRUCTION
     ////////////////////////////////////////////////////////////////////////////
-    //add the data selection operator 
-    //TODO FIXME -- this is a horrible hack to get this operator into the initialization stream 
+    //add the data selection operator
+    //TODO FIXME -- this is a horrible hack to get this operator into the initialization stream
     #pragma message("fix this horrible hack")
     mho_json data_select_format =
     {
@@ -279,7 +279,7 @@ int main(int argc, char** argv)
     };
     control_format["coarse_selection"] = data_select_format;
     (*(control_statements.begin()))["statements"].push_back(data_select_format);
-    
+
 
     MHO_OperatorBuilderManager build_manager(opToolbox, conStore, paramStore, control_format);
     build_manager.SetControlStatements(&control_statements);
@@ -313,7 +313,7 @@ int main(int argc, char** argv)
         (*opIt)->Initialize();
         (*opIt)->Execute();
     }
-    
+
     //safety check
     std::size_t bl_dim[visibility_type::rank::value];
     vis_data->GetDimensions(bl_dim);
@@ -325,7 +325,7 @@ int main(int argc, char** argv)
             std::exit(1);
         }
     }
-    
+
     build_manager.BuildOperatorCategory("flagging");
     std::cout<<"toolbox has: "<<opToolbox->GetNOperators()<<" operators."<<std::endl;
     ops = opToolbox->GetOperatorsByCategory("flagging");
