@@ -96,7 +96,7 @@ MHO_OperatorBuilderManager::BuildOperatorCategory(const std::string& cat)
                     else
                     {
                         stmt_iter++;
-                        msg_debug("initialization", "operator: "<< name <<" not supported or part of "<<cat<<" category."<<eom);
+                        //msg_debug("initialization", "operator: "<< name <<" not supported or part of "<<cat<<" category."<<eom);
                     }
                 }
             }

@@ -109,7 +109,7 @@ class MHO_ChannelLabeller: public MHO_UnaryOperator< XArrayType >
                 {
                     if(fChannelLabelToFrequency.size() < nchans)
                     {
-                        msg_error("calibration", "not all channels given a user specified label, "
+                        msg_warn("calibration", "not all channels given a user specified label, "
                                   << "some channels will remain un-labelled." << eom);
                     }
 

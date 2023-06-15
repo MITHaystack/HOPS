@@ -53,12 +53,8 @@ MHO_ManualChannelPhaseCorrection::ExecuteInPlace(visibility_type* in)
                     std::size_t ch = ilabel->GetLowerBound();
                     visibility_element_type pc_phasor = std::exp( fImagUnit*pc_val*fDegToRad );
                     pc_phasor = std::conj(pc_phasor); //conjugate for USB/LSB, TODO - but not for DSB??
-
-                    std::cout<<"PCAL value = "<<chan_label<<" : "<<ch<<" : "<<pc_val<<" : "<<pc_phasor<<std::endl;
-
                     //retrieve and multiply the appropriate sub view of the visibility array
                     auto chunk = in->SubView(pp, ch);
-                    std::cout<<"chunk size = "<<chunk.GetSize()<<std::endl;
                     chunk *= pc_phasor;
                 }
             }
