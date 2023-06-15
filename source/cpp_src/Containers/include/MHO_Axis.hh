@@ -116,7 +116,8 @@ class MHO_Axis:
             return false;
         }
         
-        //index selection from matching label values (e.g. gets the indices for which column is tagged with "channel_label":"a" etc.)
+        //index selection from matching label values (e.g. gets the indices for
+        //which column is tagged with "channel_label":"a" etc.)
         //extra dumb brute force, TODO make me smarter
         template< typename XLabelValueType >
         std::vector< std::size_t > 
@@ -128,20 +129,47 @@ class MHO_Axis:
                 XLabelValueType value;
                 std::vector< MHO_IntervalLabel* > labels;
                 labels = this->GetIntervalsWhichIntersect(i);
-                if(labels.size() != 0)
+                for(std::size_t j=0; j < labels.size(); j++)
                 {
-                    for(std::size_t j=0; j < labels.size(); j++)
+                    if(labels[j]->HasKey(label_key))
                     {
-                        if(labels[j]->HasKey(label_key))
-                        {
-                            labels[j]->Retrieve(label_key, value);
-                            if(value == label_value){matching_idx.push_back(i);}
-                        }
+                        labels[j]->Retrieve(label_key, value);
+                        if(value == label_value){matching_idx.push_back(i);}
                     }
                 }
             }
             return matching_idx;
         }
+
+        //collect all indices which match any value in the set
+        template< typename XLabelValueType >
+        std::vector< std::size_t >
+        SelectMatchingIndexesByLabelValue(const std::string& label_key, const std::set<XLabelValueType>& label_values)
+        {
+            std::vector< std::size_t > matching_idx;
+            std::set< std::size_t > idx;
+            for(std::size_t i=0; i < this->GetSize(); i++)
+            {
+                XLabelValueType value;
+                std::vector< MHO_IntervalLabel* > labels;
+                labels = this->GetIntervalsWhichIntersect(i);
+                for(std::size_t j=0; j<labels.size(); j++)
+                {
+                    if(labels[j]->HasKey(label_key))
+                    {
+                        bool ok = labels[j]->Retrieve(label_key, value);
+                        if( ok && (label_values.find(value) != label_values.end()) )
+                        {
+                            std::cout<<"adding: "<<value<<" : "<<i<<std::endl;
+                            idx.insert(i);
+                        }
+                    }
+                }
+            }
+            std::copy(idx.begin(), idx.end(), std::inserter(matching_idx, matching_idx.end()));
+            return matching_idx;
+        }
+
 
         template< typename XLabelValueType >
         void CollectAxisElementLabelValues(const std::string& label_key, std::vector< XLabelValueType >& label_values )
@@ -152,19 +180,15 @@ class MHO_Axis:
                 XLabelValueType value;
                 std::vector< MHO_IntervalLabel* > labels;
                 labels = this->GetIntervalsWhichIntersect(i);
-                if(labels.size() != 0)
+                for(std::size_t j=0; j < labels.size(); j++)
                 {
-                    for(std::size_t j=0; j < labels.size(); j++)
+                    if(labels[j]->HasKey(label_key))
                     {
-                        if(labels[j]->HasKey(label_key))
-                        {
-                            labels[j]->Retrieve(label_key, value);
-                            label_values.push_back(value);
-                            break;
-                        }
+                        labels[j]->Retrieve(label_key, value);
+                        label_values.push_back(value);
+                        break;
                     }
                 }
-                else{ msg_debug("containers", "label with key: "<<label_key<<" does not exist for axis element: " << i<< eom); }
             }
         }
 

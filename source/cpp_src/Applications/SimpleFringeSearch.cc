@@ -288,13 +288,13 @@ int main(int argc, char** argv)
 
     build_manager.BuildOperatorCategory("default");
     std::cout<<"toolbox has: "<<opToolbox->GetNOperators()<<" operators."<<std::endl;
-    ops = opToolbox->GetAllOperators();
-    for(auto opIt= ops.begin(); opIt != ops.end(); opIt++)
-    {
-        std::cout<<"init and exec of: "<<(*opIt)->GetName()<<std::endl;
-        (*opIt)->Initialize();
-        (*opIt)->Execute();
-    }
+    // ops = opToolbox->GetAllOperators();
+    // for(auto opIt= ops.begin(); opIt != ops.end(); opIt++)
+    // {
+    //     std::cout<<"init and exec of: "<<(*opIt)->GetName()<<std::endl;
+    //     (*opIt)->Initialize();
+    //     (*opIt)->Execute();
+    // }
     build_manager.BuildOperatorCategory("labelling");
     std::cout<<"toolbox has: "<<opToolbox->GetNOperators()<<" operators."<<std::endl;
     ops = opToolbox->GetOperatorsByCategory("labelling");
