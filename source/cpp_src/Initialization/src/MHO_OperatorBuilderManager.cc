@@ -19,15 +19,15 @@ MHO_OperatorBuilderManager::CreateBuilders()
     AddBuilderType<MHO_ManualChannelPhaseCorrectionBuilder>("pc_phases_y", fFormat["pc_phases_y"]);
     AddBuilderType<MHO_ManualChannelPhaseCorrectionBuilder>("pc_phases_r", fFormat["pc_phases_r"]);
     AddBuilderType<MHO_ManualChannelPhaseCorrectionBuilder>("pc_phases_l", fFormat["pc_phases_l"]);
-    
-    //the below additions are some operators which have to be applied but are not 
+
+    //the below additions are some operators which have to be applied but are not
     //always specified via control file (data selection and default channel labels)
     #pragma message("fix this horrible hack")
     //this one is special since it is not an operator specified via control file
     mho_json special;
     special["operator_category"] = "selection";
     special["priority"] = 1.1;
-    AddBuilderType<MHO_DataSelectionBuilder>("coarse_selection", special); 
+    AddBuilderType<MHO_DataSelectionBuilder>("coarse_selection", special);
 
     //this one is also special (default channel labeling behavior)
     mho_json special2;
@@ -38,7 +38,7 @@ MHO_OperatorBuilderManager::CreateBuilders()
 
 
 
-void 
+void
 MHO_OperatorBuilderManager::BuildOperatorCategory(const std::string& cat)
 {
     //check that the category is supported (listed below)
@@ -48,7 +48,7 @@ MHO_OperatorBuilderManager::BuildOperatorCategory(const std::string& cat)
     if(cat == "selection"){ok = true;}
     if(cat == "flagging"){ok = true;}
     if(cat == "calibration"){ok = true;}
-    
+
     if(true)
     {
         msg_debug("initialization", "building operator category: "<<cat<<"."<<eom);
@@ -59,15 +59,15 @@ MHO_OperatorBuilderManager::BuildOperatorCategory(const std::string& cat)
             auto it2 = fCategoryToBuilderMap.upper_bound(cat);
             if(it1 != fCategoryToBuilderMap.end() )
             {
-                while (it1 != it2)   
+                while (it1 != it2)
                 {
                     //no control attributes need (default builders)
                     it1->second->Build();
                     it1++;
                 }
-            } 
+            }
         }
-        else 
+        else
         {
             for(auto ctrl_iter = fControl->begin(); ctrl_iter != fControl->end(); ctrl_iter++)
             {
@@ -80,20 +80,20 @@ MHO_OperatorBuilderManager::BuildOperatorCategory(const std::string& cat)
                     {
                         if(cat == fFormat[name]["operator_category"].get<std::string>() ){build_op = true;}
                     }
-                    
+
                     if(build_op)
                     {
                         auto builder_it = fNameToBuilderMap.find(name);
                         if(builder_it != fNameToBuilderMap.end())
                         {
-                            msg_debug("initialization", "building operator with name: "<<name<<"."<<eom);
+                            msg_debug("initialization", "building operator with name: "<<name<<" in category: "<<cat<<"."<<eom);
                             builder_it->second->SetConditions(*ctrl_iter);
                             builder_it->second->SetAttributes(*stmt_iter);
                             builder_it->second->Build();
                         }
                         stmt_iter = statements->erase(stmt_iter);
                     }
-                    else 
+                    else
                     {
                         stmt_iter++;
                         msg_debug("initialization", "operator: "<< name <<" not supported or part of "<<cat<<" category."<<eom);
@@ -102,11 +102,11 @@ MHO_OperatorBuilderManager::BuildOperatorCategory(const std::string& cat)
             }
         }
     }
-    else 
+    else
     {
         msg_warn("initialization", "operator category: "<< cat<< " is not supported." << eom);
     }
-    
+
 }
 
 

@@ -14,9 +14,7 @@ MHO_ManualChannelPhaseCorrectionBuilder::Build()
     {
         msg_debug("initialization", "building a manual per-channel phase correction operator."<< eom);
         //assume attributes are ok for now - TODO add checks!
-        // std::cout<<fAttributes["name"]<<std::endl;
-        // std::cout<<fAttributes["value"]["channel_names"]<<std::endl;
-        // std::cout<<fAttributes["value"]["pc_phases"]<<std::endl;
+
 
         std::string op_name = fAttributes["name"].get<std::string>();
         std::string op_category = "calibration";
