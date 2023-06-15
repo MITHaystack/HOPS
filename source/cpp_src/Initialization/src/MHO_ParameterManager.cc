@@ -21,15 +21,16 @@ MHO_ParameterManager::ConfigureAll()
                 std::string stmt_type = fFormat[name]["statement_type"].get<std::string>();
                 if(stmt_type == "parameter")
                 {
+                    msg_debug("initialization", "configuring parameter: "<<name<<"."<<eom);
                     consumed_elements.push_back(name);
-                    std::cout<<"param processing: "<<name<<std::endl;
                     fDefaultParameterConfig.SetConditions(*ctrl_iter);
                     fDefaultParameterConfig.SetAttributes(*stmt_iter);
                     fDefaultParameterConfig.Configure();
-                    stmt_iter = statements->erase(stmt_iter); std::cout<<"erased consumed param: "<<name<<std::endl;
+                    stmt_iter = statements->erase(stmt_iter);
                 }
                 else{stmt_iter++;}
-                //TODO Expand the possible parameter types (e.g. we may want 'station_parameter' for some quantities, e.g. ionosphere)
+                //TODO Expand the possible parameter types 
+                //(e.g. we may want 'station_parameter' for some quantities, e.g. ionosphere)
             }
             else
             {

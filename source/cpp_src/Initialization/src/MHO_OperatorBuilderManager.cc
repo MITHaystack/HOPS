@@ -34,8 +34,6 @@ MHO_OperatorBuilderManager::CreateBuilders()
     special2["operator_category"] = "default";
     special2["priority"] = 0.1;
     AddBuilderType<MHO_ChannelLabellerBuilder>("default_chan_ids", special2);
-
-
 }
 
 
@@ -63,7 +61,7 @@ MHO_OperatorBuilderManager::BuildOperatorCategory(const std::string& cat)
             {
                 while (it1 != it2)   
                 {
-                    //no control attributes need (default builder)
+                    //no control attributes need (default builders)
                     it1->second->Build();
                     it1++;
                 }
@@ -73,9 +71,6 @@ MHO_OperatorBuilderManager::BuildOperatorCategory(const std::string& cat)
         {
             for(auto ctrl_iter = fControl->begin(); ctrl_iter != fControl->end(); ctrl_iter++)
             {
-                //auto ctrl_item = *(ctrl_iter);
-                // std::cout<<ctrl_item.dump(2)<<std::endl;
-                // std::cout<<"-----------------"<<std::endl;
                 auto statements = &( (*ctrl_iter)["statements"] );
                 for(auto stmt_iter = statements->begin(); stmt_iter != statements->end(); )
                 {
@@ -88,16 +83,15 @@ MHO_OperatorBuilderManager::BuildOperatorCategory(const std::string& cat)
                     
                     if(build_op)
                     {
-                        std::cout<<"looking for an operator builder for: "<<name<<" category: "<<cat<<std::endl;
                         auto builder_it = fNameToBuilderMap.find(name);
                         if(builder_it != fNameToBuilderMap.end())
                         {
-                            std::cout<<"found an operator builder for: "<<name<<std::endl;
+                            msg_debug("initialization", "building operator with name: "<<name<<"."<<eom);
                             builder_it->second->SetConditions(*ctrl_iter);
                             builder_it->second->SetAttributes(*stmt_iter);
                             builder_it->second->Build();
                         }
-                        stmt_iter = statements->erase(stmt_iter); std::cout<<"erased consumed op statement: "<<name<<std::endl;
+                        stmt_iter = statements->erase(stmt_iter);
                     }
                     else 
                     {
@@ -116,34 +110,4 @@ MHO_OperatorBuilderManager::BuildOperatorCategory(const std::string& cat)
 }
 
 
-
-
-// void
-// MHO_OperatorBuilderManager::BuildControlStatementOperators()
-// {
-//     std::cout<<"bulding control ops"<<std::endl;
-//     //loop over control statements, find the associated builder in the builder map
-//     //and tell it to make an operator responsible for its action
-//     for(auto ctrl_iter = fControl->begin(); ctrl_iter != fControl->end(); ctrl_iter++)
-//     {
-//         auto ctrl_item = *(ctrl_iter);
-//         // std::cout<<ctrl_item.dump(2)<<std::endl;
-//         // std::cout<<"-----------------"<<std::endl;
-//         auto statements = (*ctrl_iter)["statements"];
-//         for(auto stmt_iter = statements.begin(); stmt_iter != statements.end(); stmt_iter++)
-//         {
-//             std::string name = (*stmt_iter)["name"];
-//             std::cout<<"looking for an operator builder for: "<<name<<std::endl;
-//             auto builder_it = fNameToBuilderMap.find(name);
-//             if(builder_it != fNameToBuilderMap.end())
-//             {
-//                 std::cout<<"found an operator builder for: "<<name<<std::endl;
-//                 builder_it->second->SetConditions(*ctrl_iter); //is this the right way to do this?
-//                 builder_it->second->SetAttributes(*stmt_iter);
-//                 builder_it->second->Build();
-//             }
-//         }
-//     }
-// }
-
-}
+}//end namespace

@@ -67,14 +67,11 @@ class MHO_OperatorBuilderManager
                 builder->SetFormat(format);
                 
                 //the builder's operator category comes from the format specification
-                std::string category = "unknown";
+                std::string category = "unknown"; //default's to unknown
                 if(format.contains("operator_category"))
                 {
                     category = format["operator_category"].get<std::string>(); 
                 }
-                
-                std::cout<<"ADDING A BUILDER: "<<builder_name<<" - "<<category<<std::endl;
-                
                 fAllBuilders.push_back(builder);
                 fNameToBuilderMap.emplace(builder_name, builder);
                 fCategoryToBuilderMap.emplace(category, builder);

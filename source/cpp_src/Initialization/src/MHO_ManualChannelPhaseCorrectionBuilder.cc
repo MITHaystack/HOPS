@@ -14,12 +14,9 @@ MHO_ManualChannelPhaseCorrectionBuilder::Build()
     {
         msg_debug("initialization", "building a manual per-channel phase correction operator."<< eom);
         //assume attributes are ok for now - TODO add checks!
-
-        //std::cout<<"attributes = "<<fAttributes.dump(2)<<std::endl;
-
-        std::cout<<fAttributes["name"]<<std::endl;
-        std::cout<<fAttributes["value"]["channel_names"]<<std::endl;
-        std::cout<<fAttributes["value"]["pc_phases"]<<std::endl;
+        // std::cout<<fAttributes["name"]<<std::endl;
+        // std::cout<<fAttributes["value"]["channel_names"]<<std::endl;
+        // std::cout<<fAttributes["value"]["pc_phases"]<<std::endl;
 
         std::string op_name = fAttributes["name"].get<std::string>();
         std::string op_category = "calibration";
@@ -28,7 +25,6 @@ MHO_ManualChannelPhaseCorrectionBuilder::Build()
 
         std::string pol = ParsePolFromName(op_name);
         std::string mk4id = ExtractStationMk4ID();
-        std::cout<<"pol = "<<pol<<" station mk4id = "<<mk4id<<std::endl;
         //construct channel -> pc_phase map
         auto chan2pcp = MapChannelQuantities(channel_name_str, pc_phases);
 
@@ -49,8 +45,9 @@ MHO_ManualChannelPhaseCorrectionBuilder::Build()
             op->SetChannelToPCPhaseMap(chan2pcp);
             op->SetPolarization(pol);
             op->SetStationMk4ID(mk4id);
-            
             op->SetName(op_name);
+
+            msg_debug("initialization", "creating operator: "<<op_name<<" for station: "<<mk4id<<" pol: "<<pol<<"."<<eom);
 
             bool replace_duplicates = false;
             this->fOperatorToolbox->AddOperator(op,op->GetName(),op_category,replace_duplicates);

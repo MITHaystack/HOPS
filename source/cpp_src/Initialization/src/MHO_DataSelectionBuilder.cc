@@ -32,7 +32,7 @@ MHO_DataSelectionBuilder::Build()
 
         if( !do_select_chans && !do_select_polprods)
         {
-            msg_info("initialization", "no data selection needed." << eom);
+            msg_info("initialization", "no pol/freq data selection needed." << eom);
             return false;
         }
 
@@ -67,17 +67,9 @@ MHO_DataSelectionBuilder::Build()
         {
             std::set< std::string > chan_set;
             for(auto it = chans.begin(); it != chans.end(); it++){chan_set.insert(*it);}
-            msg_debug("initialization", "data selection, selecting "<<chan_set.size() << " channels." << eom);
-            //TODO, this channel label -> index selection method is pretty crude could be optimized
             std::string chan_label_key = "channel_label";
-            std::set< std::size_t > index_set;
             std::vector<std::size_t> selected_ch;
-            for(auto it = chan_set.begin(); it!= chan_set.end(); it++)
-            {
-                std::vector< std::size_t > tmp_idx = (&(std::get<CHANNEL_AXIS>(*vis_data)))->SelectMatchingIndexesByLabelValue(chan_label_key, *it);
-                std::copy(tmp_idx.begin(), tmp_idx.end(), std::inserter(index_set,index_set.end() ) );
-            }
-            std::copy(index_set.begin(), index_set.end(), std::inserter(selected_ch,selected_ch.end() ) );
+            selected_ch =  (&(std::get<CHANNEL_AXIS>(*vis_data)))->SelectMatchingIndexesByLabelValue(chan_label_key, chan_set);
 
             msg_debug("initialization", "data selection, selecting "<<selected_ch.size() << " channels." << eom);
             spack->SelectAxisItems(CHANNEL_AXIS,selected_ch);
