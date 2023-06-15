@@ -78,7 +78,10 @@ MHO_OperatorBuilderManager::BuildOperatorCategory(const std::string& cat)
                     bool build_op = false;
                     if( fFormat.contains(name) && fFormat[name].contains("operator_category") )
                     {
-                        if(cat == fFormat[name]["operator_category"].get<std::string>() ){build_op = true;}
+                        if(cat == fFormat[name]["operator_category"].get<std::string>() )
+                        {
+                            build_op = true;
+                        }
                     }
 
                     if(build_op)
@@ -90,13 +93,17 @@ MHO_OperatorBuilderManager::BuildOperatorCategory(const std::string& cat)
                             builder_it->second->SetConditions(*ctrl_iter);
                             builder_it->second->SetAttributes(*stmt_iter);
                             builder_it->second->Build();
+                            stmt_iter = statements->erase(stmt_iter);
                         }
-                        stmt_iter = statements->erase(stmt_iter);
+                        else //couldn't find a builder for this operator, skip
+                        {
+                            stmt_iter++;
+                            msg_debug("initialization", "operator: "<< name <<" not yet supported."<<eom);
+                        }
                     }
                     else
                     {
-                        stmt_iter++;
-                        //msg_debug("initialization", "operator: "<< name <<" not supported or part of "<<cat<<" category."<<eom);
+                        stmt_iter++; //statement not in this category, skip
                     }
                 }
             }

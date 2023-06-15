@@ -1,5 +1,7 @@
 {
-    "name": "unknown",
-    "statement_type": "unknown",
-    "type": "unknown"
+    "name": "pc_phases_offset_x",
+    "statement_type": "operator",
+    "operator_category" : "calibration",
+    "type" : "real",
+    "priority": 3.5
 }
