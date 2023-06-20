@@ -45,7 +45,7 @@ MHO_ManualPolPhaseCorrection::ExecuteInPlace(visibility_type* in)
             //conjugate the phase for the reference station, but not remote?
             //should this behavior change depending on the USB/LSB?
             #pragma message("TODO FIXME - test all manual pc phase correction cases (ref/rem/USB/LSB/DSB)")
-            if(st_idx == 1){pc_phasor = std::conj(pc_phasor);} //conjugate
+            if(st_idx == 1){pc_phasor = std::conj(pc_phasor);} //conjugate for remote but not reference station
             //retrieve and multiply the appropriate sub view of the visibility array
             auto chunk = in->SubView(pp);
             chunk *= pc_phasor;
