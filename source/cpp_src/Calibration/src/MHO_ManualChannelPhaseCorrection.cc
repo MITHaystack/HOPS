@@ -52,7 +52,11 @@ MHO_ManualChannelPhaseCorrection::ExecuteInPlace(visibility_type* in)
                 {
                     std::size_t ch = ilabel->GetLowerBound();
                     visibility_element_type pc_phasor = std::exp( fImagUnit*pc_val*fDegToRad );
-                    pc_phasor = std::conj(pc_phasor); //conjugate for USB/LSB, TODO - but not for DSB??
+                    
+                    //we always conjugate for USB/LSB?, TODO - but not for DSB??
+                    //should the behavior change depending on reference or remote station as is MHO_ManualPolPhaseCorrection???
+                    #pragma message("TODO FIXME - test all manual pc phase correction cases (ref/rem/USB/LSB/DSB)")
+                    pc_phasor = std::conj(pc_phasor); 
                     //retrieve and multiply the appropriate sub view of the visibility array
                     auto chunk = in->SubView(pp, ch);
                     chunk *= pc_phasor;

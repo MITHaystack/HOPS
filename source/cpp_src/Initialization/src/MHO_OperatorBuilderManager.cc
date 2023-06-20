@@ -5,6 +5,7 @@
 #include "MHO_ChannelLabellerBuilder.hh"
 #include "MHO_DataSelectionBuilder.hh"
 #include "MHO_ManualChannelPhaseCorrectionBuilder.hh"
+#include "MHO_ManualPolPhaseCorrectionBuilder.hh"
 
 namespace hops
 {
@@ -15,10 +16,18 @@ MHO_OperatorBuilderManager::CreateBuilders()
 
     //we have a very limited number of operators enabled currently
     AddBuilderType<MHO_ChannelLabellerBuilder>("chan_ids", fFormat["chan_ids"]);
-    AddBuilderType<MHO_ManualChannelPhaseCorrectionBuilder>("pc_phases_x", fFormat["pc_phases_x"]); //TODO FIXME -- need a different label?
+    
+    //TODO FIXME -- do we need a different labels, should these be consolidated?
+    AddBuilderType<MHO_ManualChannelPhaseCorrectionBuilder>("pc_phases_x", fFormat["pc_phases_x"]); 
     AddBuilderType<MHO_ManualChannelPhaseCorrectionBuilder>("pc_phases_y", fFormat["pc_phases_y"]);
     AddBuilderType<MHO_ManualChannelPhaseCorrectionBuilder>("pc_phases_r", fFormat["pc_phases_r"]);
     AddBuilderType<MHO_ManualChannelPhaseCorrectionBuilder>("pc_phases_l", fFormat["pc_phases_l"]);
+    
+    AddBuilderType<MHO_ManualPolPhaseCorrectionBuilder>("pc_phase_offset_x", fFormat["pc_phase_offset_x"]); 
+    AddBuilderType<MHO_ManualPolPhaseCorrectionBuilder>("pc_phase_offset_y", fFormat["pc_phase_offset_y"]);
+    AddBuilderType<MHO_ManualPolPhaseCorrectionBuilder>("pc_phase_offset_r", fFormat["pc_phase_offset_r"]);
+    AddBuilderType<MHO_ManualPolPhaseCorrectionBuilder>("pc_phase_offset_l", fFormat["pc_phase_offset_l"]);
+    
 
     //the below additions are some operators which have to be applied but are not
     //always specified via control file (data selection and default channel labels)
