@@ -16,12 +16,15 @@ MHO_ParameterManager::ConfigureAll()
         for(auto stmt_iter = statements->begin(); stmt_iter != statements->end(); )
         {
             std::string name = (*stmt_iter)["name"];
+            
             if(fFormat.contains(name) && fFormat[name].contains("statement_type") )
             {
                 std::string stmt_type = fFormat[name]["statement_type"].get<std::string>();
                 if(stmt_type == "parameter")
                 {
-                    msg_debug("initialization", "configuring parameter: "<<name<<"."<<eom);
+                    std::string parameter_type = "unknown";
+                    if(fFormat[name].contains("parameter_type")){parameter_type = fFormat[name]["parameter_type"].get<std::string>();}
+                    msg_debug("initialization", "configuring parameter: "<<name<<" of type: "<<parameter_type<<eom);
                     consumed_elements.push_back(name);
                     fDefaultParameterConfig.SetConditions(*ctrl_iter);
                     fDefaultParameterConfig.SetAttributes(*stmt_iter);

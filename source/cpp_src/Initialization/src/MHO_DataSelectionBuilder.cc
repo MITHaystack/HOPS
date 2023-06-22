@@ -30,7 +30,26 @@ MHO_DataSelectionBuilder::Build()
             do_select_chans = fParameterStore->Get(select_chan_key, chans);
         }
 
-        if( !do_select_chans && !do_select_polprods)
+        bool do_select_aps = false;
+        std::string start_key = "start";
+        std::string stop_key = "stop";
+        int start = 0;
+        int stop = 0;
+        if(fParameterStore->IsPresent(start_key) || fParameterStore->IsPresent(stop_key) )
+        {
+            fParameterStore->Get(start_key, start);
+            fParameterStore->Get(stop_key, stop);
+            if(start != 0 || stop != 0){do_select_aps = true;}
+            
+            //negative values are seconds past scan start of before stop
+            if(start > 0 || stop > 0) //in original fourfit positive values imply selection by minute past the last hour, 
+            {
+                msg_error("initialization", "start/stop selection by minute past the hour is not yet supported." << eom);
+                do_select_aps = false;
+            }
+        }
+        
+        if( !do_select_chans && !do_select_polprods && !do_select_aps)
         {
             msg_info("initialization", "no pol/freq data selection needed." << eom);
             return false;
@@ -74,6 +93,26 @@ MHO_DataSelectionBuilder::Build()
             msg_debug("initialization", "data selection, selecting "<<selected_ch.size() << " channels." << eom);
             spack->SelectAxisItems(CHANNEL_AXIS,selected_ch);
             wtspack->SelectAxisItems(CHANNEL_AXIS,selected_ch);
+        }
+        
+        if(do_select_aps)
+        {
+            std::vector<std::size_t> selected_aps;
+            msg_debug("initialization", "data selection, selecting pol-product = "<< polprod << eom);
+            auto ap_ax_ptr = &(std::get<TIME_AXIS>(*vis_data));
+            std::size_t naps = ap_ax_ptr->GetSize();
+            double first_t = ap_ax_ptr->at(0);
+            double last_t = ap_ax_ptr->at(naps-1);
+            #pragma message("The stop/start parameters are passed as integers (n seconds), which works find for 1 sec APs, but for smaller APs maybe we should pass them as floats?")
+            for(std::size_t i=0; i<naps; i++)
+            {
+                double t = (*ap_ax_ptr)(i);
+                //std::cout<<" t, stop, start, begin, end = "<< t <<", "<< (last_t + stop)<<", "<< (first_t - start)<<", " << first_t<<", "<<last_t<< std::endl;
+                if( t <= (last_t + (double)stop) && t >= (first_t - (double)start) ){selected_aps.push_back(i);}
+            }
+
+            spack->SelectAxisItems(TIME_AXIS,selected_aps);
+            wtspack->SelectAxisItems(TIME_AXIS,selected_aps);
         }
 
         //TODO FIXME implement start/stop AP selection
