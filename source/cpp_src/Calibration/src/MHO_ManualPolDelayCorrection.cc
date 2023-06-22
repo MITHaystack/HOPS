@@ -19,7 +19,7 @@ MHO_ManualPolDelayCorrection::MHO_ManualPolDelayCorrection()
 
     fImagUnit = MHO_Constants::imag_unit;
     fDegToRad = MHO_Constants::deg_to_rad;
-    fNanoSecToSecond = 1e-9;
+    fNanoSecToSecond = MHO_Constants::nanosec_to_second;
     
     fDelayOffset = 0.0;
 };

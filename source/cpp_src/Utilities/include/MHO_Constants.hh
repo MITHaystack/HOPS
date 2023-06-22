@@ -17,7 +17,9 @@ class MHO_Constants
         constexpr static double pi = 3.14159265358979323846264338;
         constexpr static double deg_to_rad = pi/180.0;
         constexpr static double rad_to_deg = 180.0/pi;
+        constexpr static double nanosec_to_second = 1e-9;
         constexpr static std::complex<double> imag_unit{0.0, 1.0};
+
 };
 
 }
