@@ -12,15 +12,14 @@ MHO_ManualPolDelayCorrection::MHO_ManualPolDelayCorrection()
     fRefStationKey = "reference_station";
     fRemStationMk4IDKey = "remote_station_mk4id";
     fRefStationMk4IDKey = "reference_station_mk4id";
-    fChannelLabelKey = "channel_label";
 
     fStationCode = "";
     fMk4ID = "";
 
     fImagUnit = MHO_Constants::imag_unit;
-    fDegToRad = MHO_Constants::deg_to_rad;
     fNanoSecToSecond = MHO_Constants::nanosec_to_second;
     fMHzToHz = MHO_Constants::MHz_to_Hz;
+    fPi = MHO_Constants::pi;
     
     fRefFreq = 0.0;
     fDelayOffset = 0.0;
@@ -34,8 +33,6 @@ MHO_ManualPolDelayCorrection::ExecuteInPlace(visibility_type* in)
 {
     std::size_t st_idx = DetermineStationIndex(in);
     if(st_idx != 0 && st_idx != 1){return false;}
-
-    std::cout<<"pc delay offset = "<<fDelayOffset<<std::endl;
 
     //loop over pol-products and apply pc-phases to the appropriate pol/channel/freq
     auto pp_ax = &(std::get<POLPROD_AXIS>(*in) );
@@ -51,7 +48,7 @@ MHO_ManualPolDelayCorrection::ExecuteInPlace(visibility_type* in)
             {
                 double chan_freq = chan_ax->at(ch);
                 double deltaf = fMHzToHz*(chan_freq - fRefFreq); //is this strictly correct?...this ignores slope across channel width
-                double theta = 2.0*M_PI*deltaf*delay;
+                double theta = 2.0*fPi*deltaf*delay;
 
                 visibility_element_type pc_phasor = std::exp( fImagUnit*theta );
                 if(st_idx == 1){pc_phasor = std::conj(pc_phasor);} //conjugate for remote but not reference station

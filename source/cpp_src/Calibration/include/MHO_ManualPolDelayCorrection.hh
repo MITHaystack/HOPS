@@ -56,9 +56,9 @@ class MHO_ManualPolDelayCorrection: public MHO_UnaryOperator< visibility_type >
 
         //constants
         std::complex<double> fImagUnit;
-        double fDegToRad;
         double fNanoSecToSecond;
         double fMHzToHz;
+        double fPi;
 
         //selection
         std::string fStationCode;
@@ -75,7 +75,6 @@ class MHO_ManualPolDelayCorrection: public MHO_UnaryOperator< visibility_type >
         std::string fRefStationKey;
         std::string fRemStationMk4IDKey;
         std::string fRefStationMk4IDKey;
-        std::string fChannelLabelKey;
 
         //minor helper function to make sure all strings are compared as upper-case only
         void make_upper(std::string& s){ for(char& c : s){c = toupper(c); };
