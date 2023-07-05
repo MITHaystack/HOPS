@@ -18,9 +18,6 @@ MHO_ManualPolDelayCorrectionBuilder::Build()
         std::string op_name = fAttributes["name"].get<std::string>();
         std::string op_category = "calibration";
         double pc_delay_offset = fAttributes["value"].get<double>();
-        
-        
-        std::cout<<"MY PC DELAY = "<<pc_delay_offset<<std::endl;
 
         std::string pol = ParsePolFromName(op_name);
         std::string mk4id = ExtractStationMk4ID();
