@@ -20,6 +20,7 @@ MHO_ManualPolDelayCorrection::MHO_ManualPolDelayCorrection()
     fImagUnit = MHO_Constants::imag_unit;
     fDegToRad = MHO_Constants::deg_to_rad;
     fNanoSecToSecond = MHO_Constants::nanosec_to_second;
+    fMHzToHz = MHO_Constants::MHz_to_Hz;
     
     fDelayOffset = 0.0;
 };
@@ -42,15 +43,30 @@ MHO_ManualPolDelayCorrection::ExecuteInPlace(visibility_type* in)
         pp_label = pp_ax->at(pp);
         if( PolMatch(st_idx, pp_label) )
         {
-            visibility_element_type pc_phasor = std::exp( fImagUnit*fDelayOffset*fDegToRad );
-            
-            //conjugate the phase for the reference station, but not remote?
-            //should this behavior change depending on the USB/LSB?
-            #pragma message("TODO FIXME - test all manual pc phase correction cases (ref/rem/USB/LSB/DSB)")
-            if(st_idx == 1){pc_phasor = std::conj(pc_phasor);} //conjugate for remote but not reference station
-            //retrieve and multiply the appropriate sub view of the visibility array
-            auto chunk = in->SubView(pp);
-            chunk *= pc_phasor;
+            for( std::size_t sp = 0; sp < freq_ax->GetSize(); sp++)
+            {
+                double deltaf = freq_ax->at(sp)*fMHzToHz;
+                double phase_shift = 0.0;//look at all the craziness in normfx to handle this
+                
+                // //calculate frequency offset from DC edge of this spectral point
+                // // calculate offset frequency in GHz 
+                // // from DC edge for this spectral point
+                // deltaf = -2e-3 * i / (2e6 * param->samp_period * nlags);
+                // // apply phase ramp to spectral points 
+                // z = z * exp_complex(-2.0 * M_PI * cmplx_unit_I * (diff_delay * deltaf + phase_shift));
+
+                double theta = deltaf*fDelayOffset*fNanoSecToSecond*fDegToRad + phase_shift;
+                visibility_element_type pc_phasor = std::exp( fImagUnit*theta );
+                
+                //conjugate the phase for the reference station, but not remote?
+                //should this behavior change depending on the USB/LSB?
+                #pragma message("TODO FIXME - test all manual pc phase correction cases (ref/rem/USB/LSB/DSB)")
+                if(st_idx == 1){pc_phasor = std::conj(pc_phasor);} //conjugate for remote but not reference station
+                
+                //retrieve and multiply the appropriate sub view of the visibility array
+                auto chunk = in->SliceView(pp,":", ":", sp);
+                chunk *= pc_phasor;
+            }
         }
     }
 

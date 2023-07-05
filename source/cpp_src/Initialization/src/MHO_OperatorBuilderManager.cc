@@ -6,6 +6,7 @@
 #include "MHO_DataSelectionBuilder.hh"
 #include "MHO_ManualChannelPhaseCorrectionBuilder.hh"
 #include "MHO_ManualPolPhaseCorrectionBuilder.hh"
+#include "MHO_ManualPolDelayCorrectionBuilder.hh"
 
 namespace hops
 {
@@ -28,6 +29,10 @@ MHO_OperatorBuilderManager::CreateBuilders()
     AddBuilderType<MHO_ManualPolPhaseCorrectionBuilder>("pc_phase_offset_r", fFormat["pc_phase_offset_r"]);
     AddBuilderType<MHO_ManualPolPhaseCorrectionBuilder>("pc_phase_offset_l", fFormat["pc_phase_offset_l"]);
     
+    AddBuilderType<MHO_ManualPolDelayCorrectionBuilder>("pc_delay_x", fFormat["pc_delay_x"]); 
+    AddBuilderType<MHO_ManualPolDelayCorrectionBuilder>("pc_delay_y", fFormat["pc_delay_y"]);
+    AddBuilderType<MHO_ManualPolDelayCorrectionBuilder>("pc_delay_r", fFormat["pc_delay_r"]);
+    AddBuilderType<MHO_ManualPolDelayCorrectionBuilder>("pc_delay_l", fFormat["pc_delay_l"]);
 
     //the below additions are some operators which have to be applied but are not
     //always specified via control file (data selection and default channel labels)

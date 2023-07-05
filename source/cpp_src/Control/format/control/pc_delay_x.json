@@ -2,16 +2,6 @@
     "name": "pc_delay_x",
     "statement_type": "operator",
     "operator_category" : "calibration",
-    "type" : "compound",
-    "priority": 3.5,
-    "parameters":
-    {
-        "channel_names": {"type": "string"},
-        "pc_delays": {"type": "list_real"}
-    },
-    "fields":
-    [
-        "channel_names",
-        "pc_delays"
-    ]
+    "type" : "real",
+    "priority": 3.5
 }
