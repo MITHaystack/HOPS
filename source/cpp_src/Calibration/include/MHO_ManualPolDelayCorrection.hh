@@ -56,6 +56,8 @@ class MHO_ManualPolDelayCorrection: public MHO_UnaryOperator< visibility_type >
         //constants
         std::complex<double> fImagUnit;
         double fDegToRad;
+        double fNanoSecToSecond;
+        double fMHzToHz;
 
         //selection
         std::string fStationCode;
