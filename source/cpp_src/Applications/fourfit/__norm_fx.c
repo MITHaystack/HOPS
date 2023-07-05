@@ -379,8 +379,6 @@ void __norm_fx (struct type_pass *pass,
                                     // from DC edge for this spectral point
                 deltaf = -2e-3 * i / (2e6 * param->samp_period * nlags);
                                     // but hold that thought until the cexp() below...
-                printf("deltaf @ %d = %f \n", i, deltaf);
-                printf("deltaf*diff_delay = %f \n", (diff_delay * deltaf) );
 
                 // One size may not fit all.  The code below is a compromise
                 // between current geodetic practice and current EHT needs.
