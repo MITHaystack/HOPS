@@ -35,6 +35,7 @@ class MHO_ManualPolDelayCorrection: public MHO_UnaryOperator< visibility_type >
         MHO_ManualPolDelayCorrection();
         virtual ~MHO_ManualPolDelayCorrection();
 
+        void SetReferenceFrequency(double ref_freq){fRefFreq = ref_freq;}
         void SetStation(std::string station){fStationCode = station;}; //2-char station code
         void SetStationMk4ID(std::string station_id){fMk4ID = station_id;} //1-char mk4id
         void SetPolarization(const std::string& pol){fPol = pol; make_upper(fPol);};
@@ -64,7 +65,8 @@ class MHO_ManualPolDelayCorrection: public MHO_UnaryOperator< visibility_type >
         std::string fMk4ID;
         std::string fPol;
         
-        //pc delay
+        //ref freq and pc delay
+        double fRefFreq;
         double fDelayOffset;
 
         //keys for tag retrieval

@@ -22,6 +22,7 @@ MHO_ManualPolDelayCorrection::MHO_ManualPolDelayCorrection()
     fNanoSecToSecond = MHO_Constants::nanosec_to_second;
     fMHzToHz = MHO_Constants::MHz_to_Hz;
     
+    fRefFreq = 0.0;
     fDelayOffset = 0.0;
 };
 
@@ -34,37 +35,28 @@ MHO_ManualPolDelayCorrection::ExecuteInPlace(visibility_type* in)
     std::size_t st_idx = DetermineStationIndex(in);
     if(st_idx != 0 && st_idx != 1){return false;}
 
+    std::cout<<"pc delay offset = "<<fDelayOffset<<std::endl;
+
     //loop over pol-products and apply pc-phases to the appropriate pol/channel/freq
     auto pp_ax = &(std::get<POLPROD_AXIS>(*in) );
-    auto freq_ax = &(std::get<FREQ_AXIS>(*in) );
+    auto chan_ax = &(std::get<CHANNEL_AXIS>(*in) );
     std::string pp_label;
     for(std::size_t pp=0; pp < pp_ax->GetSize(); pp++)
     {
+        double delay = fDelayOffset*fNanoSecToSecond;
         pp_label = pp_ax->at(pp);
         if( PolMatch(st_idx, pp_label) )
         {
-            for( std::size_t sp = 0; sp < freq_ax->GetSize(); sp++)
+            for(std::size_t ch=0; ch<chan_ax->GetSize(); ch++)
             {
-                double deltaf = freq_ax->at(sp)*fMHzToHz;
-                double phase_shift = 0.0;//look at all the craziness in normfx to handle this
-                
-                // //calculate frequency offset from DC edge of this spectral point
-                // // calculate offset frequency in GHz 
-                // // from DC edge for this spectral point
-                // deltaf = -2e-3 * i / (2e6 * param->samp_period * nlags);
-                // // apply phase ramp to spectral points 
-                // z = z * exp_complex(-2.0 * M_PI * cmplx_unit_I * (diff_delay * deltaf + phase_shift));
+                double chan_freq = chan_ax->at(ch);
+                double deltaf = fMHzToHz*(chan_freq - fRefFreq); //is this strictly correct?...this ignores slope across channel width
+                double theta = 2.0*M_PI*deltaf*delay;
 
-                double theta = deltaf*fDelayOffset*fNanoSecToSecond*fDegToRad + phase_shift;
                 visibility_element_type pc_phasor = std::exp( fImagUnit*theta );
-                
-                //conjugate the phase for the reference station, but not remote?
-                //should this behavior change depending on the USB/LSB?
-                #pragma message("TODO FIXME - test all manual pc phase correction cases (ref/rem/USB/LSB/DSB)")
                 if(st_idx == 1){pc_phasor = std::conj(pc_phasor);} //conjugate for remote but not reference station
-                
                 //retrieve and multiply the appropriate sub view of the visibility array
-                auto chunk = in->SliceView(pp,":", ":", sp);
+                auto chunk = in->SubView(pp, ch);
                 chunk *= pc_phasor;
             }
         }

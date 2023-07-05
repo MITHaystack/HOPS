@@ -18,9 +18,15 @@ MHO_ManualPolDelayCorrectionBuilder::Build()
         std::string op_name = fAttributes["name"].get<std::string>();
         std::string op_category = "calibration";
         double pc_delay_offset = fAttributes["value"].get<double>();
+        
+        
+        std::cout<<"MY PC DELAY = "<<pc_delay_offset<<std::endl;
 
         std::string pol = ParsePolFromName(op_name);
         std::string mk4id = ExtractStationMk4ID();
+
+        //grab the reference frequency from the parameter store 
+        double ref_freq = fParameterStore->GetAs<double>(std::string("ref_freq"));
 
         //retrieve the arguments to operate on from the container store
         visibility_type* vis_data = fContainerStore->GetObject<visibility_type>(std::string("vis"));
@@ -34,6 +40,7 @@ MHO_ManualPolDelayCorrectionBuilder::Build()
 
         //set the arguments
         op->SetArgs(vis_data);
+        op->SetReferenceFrequency(ref_freq);
         op->SetPCDelayOffset(pc_delay_offset);
         op->SetPolarization(pol);
         op->SetStationMk4ID(mk4id);
@@ -52,10 +59,10 @@ MHO_ManualPolDelayCorrectionBuilder::Build()
 std::string
 MHO_ManualPolDelayCorrectionBuilder::ParsePolFromName(const std::string& name)
 {
-    if(name == "pc_delay_offset_x"){return std::string("X");}
-    if(name == "pc_delay_offset_y"){return std::string("Y");}
-    if(name == "pc_delay_offset_r"){return std::string("R");}
-    if(name == "pc_delay_offset_l"){return std::string("L");}
+    if(name == "pc_delay_x"){return std::string("X");}
+    if(name == "pc_delay_y"){return std::string("Y");}
+    if(name == "pc_delay_r"){return std::string("R");}
+    if(name == "pc_delay_l"){return std::string("L");}
     return std::string("?");
 }
 
