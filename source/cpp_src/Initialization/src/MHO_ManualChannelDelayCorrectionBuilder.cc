@@ -16,6 +16,9 @@ MHO_ManualChannelDelayCorrectionBuilder::Build()
         //assume attributes are ok for now - TODO add checks!
 
         std::string op_name = fAttributes["name"].get<std::string>();
+        
+        std::cout<<"building an op with name: "<<op_name<<std::endl;
+        
         std::string op_category = "calibration";
         std::string channel_name_str = fAttributes["value"]["channel_names"].get<std::string>();
         std::vector<double> pc_delays = fAttributes["value"]["pc_delays"].get< std::vector<double> >();

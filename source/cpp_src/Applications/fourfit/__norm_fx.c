@@ -42,6 +42,8 @@
 #define MIXED_MODE 2
 #define CIRC_PAREL 3
 
+#define DISABLE_PHASE_SHIFT
+
 void __norm_fx (struct type_pass *pass,
               struct type_param *param,
               struct type_status *status,
@@ -398,7 +400,11 @@ void __norm_fx (struct type_pass *pass,
                         phase_shift = -phase_shift;
                     }
                                     // apply phase ramp to spectral points
+                #ifndef DISABLE_PHASE_SHIFT
                 z = z * exp_complex(-2.0 * M_PI * cmplx_unit_I * (diff_delay * deltaf + phase_shift));
+                #else
+                z = z * exp_complex(-2.0 * M_PI * cmplx_unit_I * (diff_delay * deltaf));
+                #endif
                 xp_spec[i] += z;
                 }
             }                       // bottom of lags loop

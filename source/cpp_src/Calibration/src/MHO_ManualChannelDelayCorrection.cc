@@ -32,6 +32,9 @@ bool
 MHO_ManualChannelDelayCorrection::ExecuteInPlace(visibility_type* in)
 {
     std::size_t st_idx = DetermineStationIndex(in);
+
+    std::cout<<"man delay op, st_idx = "<<st_idx<<" my pol = "<<fPol<<std::endl;
+
     if(st_idx != 0 && st_idx != 1){return false;}
 
     //loop over pol-products and apply pc-phases to the appropriate pol/channel
@@ -41,11 +44,13 @@ MHO_ManualChannelDelayCorrection::ExecuteInPlace(visibility_type* in)
     
     std::string chan_label;
     std::string pp_label;
+    
     for(std::size_t pp=0; pp < pp_ax->GetSize(); pp++)
     {
         pp_label = pp_ax->at(pp);
         if( PolMatch(st_idx, pp_label) )
         {
+            std::cout<<"POL MATCH = "<<pp_label<<" st idx = "<<st_idx<<std::endl;
             for(auto pcal_it = fPCDelayMap.begin(); pcal_it != fPCDelayMap.end(); pcal_it++)
             {
                 chan_label = pcal_it->first;
@@ -60,7 +65,7 @@ MHO_ManualChannelDelayCorrection::ExecuteInPlace(visibility_type* in)
                     for(std::size_t sp=0; sp < freq_ax->GetSize(); sp++)
                     {
                         double deltaf = freq_ax->at(sp)*fMHzToHz; //-2e-3 * i / (2e6 * param->samp_period * nlags);
-                        double theta = 2.0*fPi*deltaf*delay*fNanoSecToSecond;
+                        double theta = -2.0*fPi*deltaf*delay*fNanoSecToSecond;
                         
                         std::cout<<"ch: "<<chan_label<<" sp = "<<sp<<" deltaf = "<<deltaf<<" delay = "<<delay<<" theta = "<<theta<<std::endl;
                         visibility_element_type pc_phasor = std::exp( fImagUnit*theta );
