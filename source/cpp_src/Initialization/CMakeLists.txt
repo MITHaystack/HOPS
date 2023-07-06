@@ -10,6 +10,7 @@ set (INITIALIZATION_HEADERFILES
     #calibration operators
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ChannelQuantity.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ManualChannelPhaseCorrectionBuilder.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ManualChannelDelayCorrectionBuilder.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ManualPolPhaseCorrectionBuilder.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ManualPolDelayCorrectionBuilder.hh
     #manager
@@ -28,6 +29,7 @@ set( INITIALIZATION_SOURCEFILES
     #calibration operators
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ChannelQuantity.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ManualChannelPhaseCorrectionBuilder.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ManualChannelDelayCorrectionBuilder.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ManualPolPhaseCorrectionBuilder.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ManualPolDelayCorrectionBuilder.cc
     #manager
