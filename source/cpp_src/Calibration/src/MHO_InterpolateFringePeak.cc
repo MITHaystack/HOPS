@@ -101,7 +101,7 @@ MHO_InterpolateFringePeak::fine_peak_interpolation()
     int sbd_bin, dr_bin, mbd_bin;
     double sbd, dr, mbd;
 
-    std::cout<< std::setprecision(15);
+    //std::cout<< std::setprecision(15);
     for (int isbd=0; isbd<5; isbd++)
     {
         for (int imbd=0; imbd<5; imbd++)
