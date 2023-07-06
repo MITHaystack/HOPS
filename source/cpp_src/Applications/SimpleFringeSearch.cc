@@ -122,6 +122,19 @@ void configure_data_library(MHO_ContainerStore* store)
 }
 
 
+void build_and_exec_operators(MHO_OperatorBuilderManager& build_manager, MHO_OperatorToolbox* opToolbox, std::string category)
+{
+    build_manager.BuildOperatorCategory(category);
+    std::cout<<"toolbox has: "<<opToolbox->GetNOperators()<<" operators."<<std::endl;
+    auto ops = opToolbox->GetOperatorsByCategory(category);
+    for(auto opIt= ops.begin(); opIt != ops.end(); opIt++)
+    {
+        std::cout<<"init and exec of: "<<(*opIt)->GetName()<<std::endl;
+        (*opIt)->Initialize();
+        (*opIt)->Execute();
+    }    
+}
+
 int main(int argc, char** argv)
 {
 
@@ -284,67 +297,22 @@ int main(int argc, char** argv)
     MHO_OperatorBuilderManager build_manager(opToolbox, conStore, paramStore, control_format);
     build_manager.SetControlStatements(&control_statements);
 
-    std::vector< MHO_Operator*> ops;
-
     build_manager.BuildOperatorCategory("default");
     std::cout<<"toolbox has: "<<opToolbox->GetNOperators()<<" operators."<<std::endl;
-    // ops = opToolbox->GetAllOperators();
-    // for(auto opIt= ops.begin(); opIt != ops.end(); opIt++)
-    // {
-    //     std::cout<<"init and exec of: "<<(*opIt)->GetName()<<std::endl;
-    //     (*opIt)->Initialize();
-    //     (*opIt)->Execute();
-    // }
-    build_manager.BuildOperatorCategory("labelling");
-    std::cout<<"toolbox has: "<<opToolbox->GetNOperators()<<" operators."<<std::endl;
-    ops = opToolbox->GetOperatorsByCategory("labelling");
-    for(auto opIt= ops.begin(); opIt != ops.end(); opIt++)
-    {
-        std::cout<<"init and exec of: "<<(*opIt)->GetName()<<std::endl;
-        (*opIt)->Initialize();
-        (*opIt)->Execute();
-    }
-    build_manager.BuildOperatorCategory("selection");
-    std::cout<<"toolbox has: "<<opToolbox->GetNOperators()<<" operators."<<std::endl;
-    ops = opToolbox->GetOperatorsByCategory("selection");
-    for(auto opIt= ops.begin(); opIt != ops.end(); opIt++)
-    {
-        std::cout<<"init and exec of: "<<(*opIt)->GetName()<<std::endl;
-        (*opIt)->Initialize();
-        (*opIt)->Execute();
-    }
 
+    build_and_exec_operators(build_manager, opToolbox, std::string("labelling"));
+    build_and_exec_operators(build_manager, opToolbox, std::string("selection"));
+    
     //safety check
     std::size_t bl_dim[visibility_type::rank::value];
     vis_data->GetDimensions(bl_dim);
     for(std::size_t i=0; i < visibility_type::rank::value; i++)
     {
-        if(bl_dim[i] == 0)
-        {
-            msg_fatal("main", "no data left after cuts." << eom);
-            std::exit(1);
-        }
+        if(bl_dim[i] == 0){msg_fatal("main", "no data left after cuts." << eom); std::exit(1);}
     }
-
-    build_manager.BuildOperatorCategory("flagging");
-    std::cout<<"toolbox has: "<<opToolbox->GetNOperators()<<" operators."<<std::endl;
-    ops = opToolbox->GetOperatorsByCategory("flagging");
-    for(auto opIt= ops.begin(); opIt != ops.end(); opIt++)
-    {
-        std::cout<<"init and exec of: "<<(*opIt)->GetName()<<std::endl;
-        (*opIt)->Initialize();
-        (*opIt)->Execute();
-    }
-    build_manager.BuildOperatorCategory("calibration");
-    std::cout<<"toolbox has: "<<opToolbox->GetNOperators()<<" operators."<<std::endl;
-    ops = opToolbox->GetOperatorsByCategory("calibration");
-    for(auto opIt= ops.begin(); opIt != ops.end(); opIt++)
-    {
-        std::cout<<"init and exec of: "<<(*opIt)->GetName()<<std::endl;
-        (*opIt)->Initialize();
-        (*opIt)->Execute();
-    }
-
+    
+    build_and_exec_operators(build_manager, opToolbox, std::string("flagging"));
+    build_and_exec_operators(build_manager, opToolbox, std::string("calibration"));
 
     //take a snapshot
     take_snapshot_here("test", "visib", __FILE__, __LINE__, vis_data);
