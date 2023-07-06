@@ -5,6 +5,7 @@
 #include "MHO_ChannelLabellerBuilder.hh"
 #include "MHO_DataSelectionBuilder.hh"
 #include "MHO_ManualChannelPhaseCorrectionBuilder.hh"
+#include "MHO_ManualChannelDelayCorrectionBuilder.hh"
 #include "MHO_ManualPolPhaseCorrectionBuilder.hh"
 #include "MHO_ManualPolDelayCorrectionBuilder.hh"
 
@@ -19,16 +20,26 @@ MHO_OperatorBuilderManager::CreateBuilders()
     AddBuilderType<MHO_ChannelLabellerBuilder>("chan_ids", fFormat["chan_ids"]);
     
     //TODO FIXME -- do we need a different labels, should these be consolidated?
+    
+    //manual per-channel pc phase corrections
     AddBuilderType<MHO_ManualChannelPhaseCorrectionBuilder>("pc_phases_x", fFormat["pc_phases_x"]); 
     AddBuilderType<MHO_ManualChannelPhaseCorrectionBuilder>("pc_phases_y", fFormat["pc_phases_y"]);
     AddBuilderType<MHO_ManualChannelPhaseCorrectionBuilder>("pc_phases_r", fFormat["pc_phases_r"]);
     AddBuilderType<MHO_ManualChannelPhaseCorrectionBuilder>("pc_phases_l", fFormat["pc_phases_l"]);
     
+    //manual per-channel pc delay corrections
+    AddBuilderType<MHO_ManualChannelDelayCorrectionBuilder>("delay_offs_x", fFormat["delay_offs_x"]); 
+    AddBuilderType<MHO_ManualChannelDelayCorrectionBuilder>("delay_offs_y", fFormat["delay_offs_y"]);
+    AddBuilderType<MHO_ManualChannelDelayCorrectionBuilder>("delay_offs_r", fFormat["delay_offs_r"]);
+    AddBuilderType<MHO_ManualChannelDelayCorrectionBuilder>("delay_offs_l", fFormat["delay_offs_l"]);
+    
+    //manual per-pol pc phase corrections
     AddBuilderType<MHO_ManualPolPhaseCorrectionBuilder>("pc_phase_offset_x", fFormat["pc_phase_offset_x"]); 
     AddBuilderType<MHO_ManualPolPhaseCorrectionBuilder>("pc_phase_offset_y", fFormat["pc_phase_offset_y"]);
     AddBuilderType<MHO_ManualPolPhaseCorrectionBuilder>("pc_phase_offset_r", fFormat["pc_phase_offset_r"]);
     AddBuilderType<MHO_ManualPolPhaseCorrectionBuilder>("pc_phase_offset_l", fFormat["pc_phase_offset_l"]);
     
+    //manual per-pol pc delay corrections
     AddBuilderType<MHO_ManualPolDelayCorrectionBuilder>("pc_delay_x", fFormat["pc_delay_x"]); 
     AddBuilderType<MHO_ManualPolDelayCorrectionBuilder>("pc_delay_y", fFormat["pc_delay_y"]);
     AddBuilderType<MHO_ManualPolDelayCorrectionBuilder>("pc_delay_r", fFormat["pc_delay_r"]);
