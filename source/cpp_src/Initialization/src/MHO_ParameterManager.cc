@@ -32,8 +32,8 @@ MHO_ParameterManager::ConfigureAll()
                     stmt_iter = statements->erase(stmt_iter);
                 }
                 else{stmt_iter++;}
-                //TODO Expand the possible parameter types 
-                //(e.g. we may want 'station_parameter' for some quantities, e.g. ionosphere)
+                //if need expand the possible parameter/statement types 
+
             }
             else
             {

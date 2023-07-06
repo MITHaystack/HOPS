@@ -27,12 +27,24 @@ class MHO_ParameterConfigurator
         //json config for this parameter (parsed from the control file)
         virtual void SetConditions(const mho_json& cond){fConditions = cond;} //conditional statements
         virtual void SetAttributes(const mho_json& attr){fAttributes = attr;}; //configuration parameters
-
         virtual bool Configure();
 
     protected:
+        
         /* data */
-        enum ParamType
+        enum class ParamType
+        {
+            config,
+            global,
+            station,
+            baseline,
+            fit,
+            plot,
+            generic,
+            unknown
+        };
+        
+        enum class ParamValueType
         {
             int_type,
             real_type,
@@ -42,9 +54,13 @@ class MHO_ParameterConfigurator
             list_string_type,
             unknown
         };
-        typedef enum ParamType param_t;
+        
+        
+        typedef ParamType param_t;
+        typedef ParamValueType paramv_t;
 
         ParamType DetermineParamType(const std::string& par_type) const;
+        ParamValueType DetermineParamValueType(const std::string& par_value_type) const;
 
         template< typename XValueType >
         void SetScalarParameter(std::string path, const XValueType& value);
@@ -58,9 +74,6 @@ class MHO_ParameterConfigurator
         //provided for the configuration of the parameter that is to be setting
         mho_json fConditions;
         mho_json fAttributes;
-
-
-
 
 };
 
