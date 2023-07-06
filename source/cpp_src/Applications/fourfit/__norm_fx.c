@@ -42,7 +42,7 @@
 #define MIXED_MODE 2
 #define CIRC_PAREL 3
 
-#define DISABLE_PHASE_SHIFT
+//#define DISABLE_PHASE_SHIFT
 
 void __norm_fx (struct type_pass *pass,
               struct type_param *param,
