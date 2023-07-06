@@ -78,6 +78,7 @@ class MHO_ManualChannelDelayCorrection: public MHO_UnaryOperator< visibility_typ
         std::string fRemStationMk4IDKey;
         std::string fRefStationMk4IDKey;
         std::string fChannelLabelKey;
+        std::string fBandwidthKey;
 
         //minor helper function to make sure all strings are compared as upper-case only
         void make_upper(std::string& s){ for(char& c : s){c = toupper(c); };
