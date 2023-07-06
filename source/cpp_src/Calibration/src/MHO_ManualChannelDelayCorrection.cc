@@ -74,8 +74,9 @@ MHO_ManualChannelDelayCorrection::ExecuteInPlace(visibility_type* in)
                             ok = (*ol_it)->Retrieve(std::string("bandwidth"), bandwidth);
                             if(ok)
                             {
+                                //calculate effective sampling period for channel assuming Nyquist rate
                                 bandwidth *= fMHzToHz;
-                                eff_sample_period = 1.0/(2.0*bandwidth);
+                                eff_sample_period = 1.0/(2.0*bandwidth); 
                                 break;
                             }
                         }
@@ -90,7 +91,7 @@ MHO_ManualChannelDelayCorrection::ExecuteInPlace(visibility_type* in)
                         double theta = -2.0*fPi*deltaf*delay*fNanoSecToSecond;
                         
                         #pragma message("TODO FIXME -- geodetic phase shift treatment needs implementation (see normfx. line 398)" )
-                        double phase_shift = -2.0*fPi*(1.0/4.0)*delay*fNanoSecToSecond/eff_sample_period; 
+                        double phase_shift = -2.0*fPi*(1.0/4.0)*delay*fNanoSecToSecond/eff_sample_period; //where does factor of 1/4 come from (see normfx)
                         phase_shift *=  -( (double)(2*nsp) - 2.0) / (double)(2*nsp); //factor of 2 is from the way normfx zero-pads the data
                         theta += phase_shift;
                         
