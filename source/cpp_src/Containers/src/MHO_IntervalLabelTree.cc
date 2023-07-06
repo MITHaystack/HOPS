@@ -46,10 +46,10 @@ MHO_IntervalLabelTree::GetIntervalsWithKey(const std::string& key)
     //dumb brute for search over all intervals O(n)
     for(std::size_t i=0; i<fIntervals.size(); i++)
     {
-            if(fIntervals[i]->HasKey(key) )
-            {
-                labels.push_back(fIntervals[i]);
-            }
+        if(fIntervals[i]->HasKey(key) )
+        {
+            labels.push_back(fIntervals[i]);
+        }
     }
     return labels;
 }
@@ -61,10 +61,10 @@ MHO_IntervalLabelTree::GetIntervalsWithKey(const std::string& key) const
     //dumb brute for search over all intervals O(n)
     for(std::size_t i=0; i<fIntervals.size(); i++)
     {
-            if(fIntervals[i]->HasKey(key) )
-            {
-                labels.push_back(fIntervals[i]);
-            }
+        if(fIntervals[i]->HasKey(key) )
+        {
+            labels.push_back(fIntervals[i]);
+        }
     }
     return labels;
 }
