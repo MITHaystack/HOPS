@@ -119,9 +119,11 @@ MHO_DelayRate::ExecuteImpl(const XArgType1* in1, const XArgType2* in2, XArgType3
                         double num = ( (double)dr - (double)(fDRSPSize/2) ) * b + ( (double)sz * 1.5);
                         double l_fp = fmod(  num , (double) sz) ;
                         int l_int = (int)l_fp;
-                        int l_int2 = l_int+1;
                         if (l_int < 0){ l_int = 0; }
+                        int l_int2 = l_int+1;
+                        //std::cout<<sz<<":"<<l_int<<": "<<l_int2<<std::endl;
                         if (l_int2 > (sz-1)){ l_int2 = sz - 1;}
+                        //std::cout<<sz<<":"<<l_int<<": "<<l_int2<<std::endl;
                         sbd_type::value_type interp_val = fWorkspace2(pp, ch, l_int, sbd) * (1.0 - l_fp + l_int) + fWorkspace2(pp, ch, l_int2, sbd) * (l_fp - l_int);
                         (*out)(pp, ch, dr, sbd) = interp_val;
 
