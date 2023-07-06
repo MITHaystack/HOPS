@@ -122,11 +122,12 @@ void configure_data_library(MHO_ContainerStore* store)
 }
 
 
-void build_and_exec_operators(MHO_OperatorBuilderManager& build_manager, MHO_OperatorToolbox* opToolbox, std::string category)
+void build_and_exec_operators(MHO_OperatorBuilderManager& build_manager, MHO_OperatorToolbox* opToolbox, const char* category)
 {
-    build_manager.BuildOperatorCategory(category);
+    std::string cat(category);
+    build_manager.BuildOperatorCategory(cat);
     std::cout<<"toolbox has: "<<opToolbox->GetNOperators()<<" operators."<<std::endl;
-    auto ops = opToolbox->GetOperatorsByCategory(category);
+    auto ops = opToolbox->GetOperatorsByCategory(cat);
     for(auto opIt= ops.begin(); opIt != ops.end(); opIt++)
     {
         std::cout<<"init and exec of: "<<(*opIt)->GetName()<<std::endl;
@@ -300,8 +301,8 @@ int main(int argc, char** argv)
     build_manager.BuildOperatorCategory("default");
     std::cout<<"toolbox has: "<<opToolbox->GetNOperators()<<" operators."<<std::endl;
 
-    build_and_exec_operators(build_manager, opToolbox, std::string("labelling"));
-    build_and_exec_operators(build_manager, opToolbox, std::string("selection"));
+    build_and_exec_operators(build_manager, opToolbox, "labelling");
+    build_and_exec_operators(build_manager, opToolbox, "selection");
     
     //safety check
     std::size_t bl_dim[visibility_type::rank::value];
@@ -311,8 +312,8 @@ int main(int argc, char** argv)
         if(bl_dim[i] == 0){msg_fatal("main", "no data left after cuts." << eom); std::exit(1);}
     }
     
-    build_and_exec_operators(build_manager, opToolbox, std::string("flagging"));
-    build_and_exec_operators(build_manager, opToolbox, std::string("calibration"));
+    build_and_exec_operators(build_manager, opToolbox, "flagging");
+    build_and_exec_operators(build_manager, opToolbox, "calibration");
 
     //take a snapshot
     take_snapshot_here("test", "visib", __FILE__, __LINE__, vis_data);
