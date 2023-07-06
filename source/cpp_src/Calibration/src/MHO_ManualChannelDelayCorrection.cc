@@ -63,6 +63,7 @@ MHO_ManualChannelDelayCorrection::ExecuteInPlace(visibility_type* in)
                     std::size_t ch = ilabel->GetLowerBound();
                     
                     //get the channels bandwidth to determine effective sampling period
+                    bool ok = false;
                     double bandwidth = 0;
                     double eff_sample_period = 0;
                     auto other_labels = chan_ax->GetIntervalsWhichIntersect(ch);
@@ -70,19 +71,16 @@ MHO_ManualChannelDelayCorrection::ExecuteInPlace(visibility_type* in)
                     {
                         if((*ol_it)->HasKey(fBandwidthKey))
                         {
-                            bool ok = (*ol_it)->Retrieve(std::string("bandwidth"), bandwidth);
+                            ok = (*ol_it)->Retrieve(std::string("bandwidth"), bandwidth);
                             if(ok)
                             {
                                 bandwidth *= fMHzToHz;
                                 eff_sample_period = 1.0/(2.0*bandwidth);
-                                std::cout<<"CHANNEL BANDWIDTH = "<<bandwidth<<" ok = "<<ok<<std::endl;
-                                std::cout<<"EFFECTIVE SAMPLE PERIOD = "<<eff_sample_period<<std::endl;
                                 break;
                             }
                         }
                     }
-
-
+                    if(!ok){msg_error("calibration", "channel: "<<chan_label<<" is missing bandwidth tag."<<eom);}
 
                     //loop over spectral points calculating the phase correction from this delay at each point
                     std::size_t nsp = freq_ax->GetSize(); 
@@ -96,25 +94,11 @@ MHO_ManualChannelDelayCorrection::ExecuteInPlace(visibility_type* in)
                         phase_shift *=  -( (double)(2*nsp) - 2.0) / (double)(2*nsp); //factor of 2 is from the way normfx zero-pads the data
                         theta += phase_shift;
                         
-                        std::cout<<"FACTOR = "<<-( (double)(nsp) - 2.0) / (double)(nsp)<<std::endl;
-                        // 
-                        // 
-                        // - 1e-3 * delay / (4e6 * param->samp_period);
-                        // phase_shift *= - (double)(nlags - 2) / (double)(nlags);
-                        // 
-                        // 
-                        
-                        
-                        std::cout<<"ch: "<<chan_label<<" sp = "<<sp<<" deltaf = "<<deltaf<<" delay = "<<delay<<" theta = "<<theta<<std::endl;
-                        std::cout<<"phase shift = "<<phase_shift<<std::endl;
                         visibility_element_type pc_phasor = std::exp( fImagUnit*theta );
-                        
-                        auto chunk = in->SliceView(pp, ch, ":", sp); //select this spectral point across all APs
-                        
-                        #pragma message("TODO FIXME - pc delays_offs does not correct for the per-channel phase offset (see normfx.c)")
                         if(st_idx == 1){pc_phasor = std::conj(pc_phasor);} //conjugate for remote but not reference station
+                        
                         //retrieve and multiply the appropriate sub view of the visibility array
-
+                        auto chunk = in->SliceView(pp, ch, ":", sp); //select this spectral point (for this pol/channel) across all APs
                         chunk *= pc_phasor;
                     }
                 }
