@@ -140,7 +140,7 @@ MHO_DiFXScanProcessor::CreateRootFileObject(std::string vexfile)
 
     //lastly we need to insert the traditional mk4 channel names for each frequency
     //TODO FIXME -- need to support zoom bands (requires difx .input data)
-    fChanNameConstructor.AddChannelNames(vex_root);
+    //fChanNameConstructor.AddChannelNames(vex_root);
     //and/or adapt the channel defintions to deal with zoom bands
     //std::string tmp = vex_root["$FREQ"]["VGOS_std"]["chan_def"][0]["channel_name"].get<std::string>();
 
