@@ -34,8 +34,8 @@ class chan_label_freq_predicate
     virtual bool operator()(const MHO_IntervalLabel* a, const MHO_IntervalLabel* b)
     {
         double a_frq, b_frq;
-        a->Retrieve(std::string("ref_sky_freq"), a_frq);
-        b->Retrieve(std::string("ref_sky_freq"), b_frq);
+        a->Retrieve(std::string("sky_freq"), a_frq);
+        b->Retrieve(std::string("sky_freq"), b_frq);
         return a_frq < b_frq;
     }
 };
