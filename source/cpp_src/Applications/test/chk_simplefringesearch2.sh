@@ -4,18 +4,18 @@ verb=false
 
 [ -d "$srcdir" ] || { echo srcdir not set; exit 1; }
 ${HOPS_SETUP-'false'} || . $srcdir/chk_env.sh
-export DATADIR=`cd $srcdir/vt9105; pwd`
+export DATADIR=`cd $srcdir/3764; pwd`
 
 RET_VAL=0
 EXP_DIR=$DATADIR
-D2H_EXP_NUM=1111
-D2M4_EXP_NUM=1234
-SCAN_DIR=105-1800
+D2H_EXP_NUM=hops4
+D2M4_EXP_NUM=.
+SCAN_DIR=104-1228
 cd $EXP_DIR
 
-echo "Running: SimpleFringeSearch -d ./${D2H_EXP_NUM}/${SCAN_DIR} -c ./cf_test4 -b GE -p XX"
+echo "Running: SimpleFringeSearch -d ./${D2H_EXP_NUM}/${SCAN_DIR} -c ./test0.cf -b AS -p RR"
 
-SimpleFringeSearch -d ./${D2H_EXP_NUM}/${SCAN_DIR} -c ./cf_test4 -b GE -p XX | grep max555 | tee ./sfs.out
+SimpleFringeSearch -d ./${D2H_EXP_NUM}/${SCAN_DIR} -c ./test0.cf -b AS -p RR | grep max555 | tee ./sfs.out
 
 sfs_mbd=$( cat ./sfs.out | grep -oP 'mbd [+-]?[0-9]+([.][0-9]+)?+([e][+-][0-9]+)?' |  awk '{print $2}' )
 sfs_sbd=$( cat ./sfs.out | grep -oP 'sbd [+-]?[0-9]+([.][0-9]+)?+([e][+-][0-9]+)?' |  awk '{print $2}' )
@@ -30,8 +30,8 @@ echo "simple fringe mbd: $sfs_mbd"
 echo "simple fringe sbd: $sfs_sbd"
 echo "simple fringe dr: $sfs_dr"
 
-echo "Running: fourfit -m 1 -t -c ./cf_test4 -b GE -P XX ./${D2M4_EXP_NUM}/${SCAN_DIR}"
-fourfit -m 1 -t -c ./cf_test4 -b GE -P XX ./${D2M4_EXP_NUM}/${SCAN_DIR} 2>&1  | grep max555 | tee ./ff.out
+echo "Running: fourfit -m 1 -t -c ./test0.cf -b AS -P RR ${EXP_DIR}/${SCAN_DIR}"
+fourfit -m 1 -t -c ./test0.cf -b AS -P RR ${EXP_DIR}/${SCAN_DIR} 2>&1  | grep max555 | tee ./ff.out
 
 ff_mbd=$( cat ./ff.out | grep -oP 'mbd [+-]?[0-9]+([.][0-9]+)?+([e][+-][0-9]+)?' |  awk '{print $2}' )
 ff_sbd=$( cat ./ff.out | grep -oP 'sbd [+-]?[0-9]+([.][0-9]+)?+([e][+-][0-9]+)?' |  awk '{print $2}' )
@@ -54,7 +54,7 @@ echo "mbd % difference = $mbd_delta"
 echo "sbd % difference = $sbd_delta"
 echo "dr % difference = $dr_delta"
 
-#tolerance of 0.01%
+#tolerance of 0.02%
 low=-0.02
 high=0.02
 echo "Tolerance is (+/- $high %) on mbd/sbd/dr."

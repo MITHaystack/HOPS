@@ -9,7 +9,7 @@ if(BASH_PROGRAM)
 
     #check simple fringe search relies on difxio -> hops conversion of data before it can be run
     if(BC_PROGRAM AND HOPS_USE_DIFXIO)
-        list(APPEND TEST_SCRIPT_BASENAMES chk_simplefringesearch chk_dumpfileobjkeys)
+        list(APPEND TEST_SCRIPT_BASENAMES chk_simplefringesearch chk_simplefringesearch2 chk_dumpfileobjkeys)
     endif(BC_PROGRAM AND HOPS_USE_DIFXIO)
 
     if(HOPS3_USE_CXX)
