@@ -140,7 +140,7 @@ MHO_DiFXScanProcessor::CreateRootFileObject(std::string vexfile)
 
     //lastly we need to insert the traditional mk4 channel names for each frequency
     //TODO FIXME -- need to support zoom bands (requires difx .input data)
-    fChanNameConstructor.AddChannelNames(vex_root);
+    //fChanNameConstructor.AddChannelNames(vex_root);
     //and/or adapt the channel defintions to deal with zoom bands
     //std::string tmp = vex_root["$FREQ"]["VGOS_std"]["chan_def"][0]["channel_name"].get<std::string>();
 
@@ -206,14 +206,14 @@ MHO_DiFXScanProcessor::ConvertVisibilityFileObjects()
 void
 MHO_DiFXScanProcessor::NormalizeVisibilities()
 {
-    msg_debug("difx_interface", "normalizing visibilities"<<eom;);
+    msg_debug("difx_interface", "normalizing visibilities"<< eom);
 
     //map station to autocorrs
-    std::map<std::string, visibility_type*> raw_auto_corrs;
+    std::map<std::string, visibility_store_type*> raw_auto_corrs;
     //map station to norm coeffs
-    std::map<std::string, visibility_type*> reduced_auto_corrs;
+    std::map<std::string, visibility_store_type*> reduced_auto_corrs;
     //map baseline to visibilities
-    std::map<std::string, visibility_type*> raw_visibilities;
+    std::map<std::string, visibility_store_type*> raw_visibilities;
 
     //first need to locate all of the auto-corrs, and visibilities
     for(auto it = fAllBaselineVisibilities.begin(); it != fAllBaselineVisibilities.end(); it++)
@@ -234,15 +234,15 @@ MHO_DiFXScanProcessor::NormalizeVisibilities()
 
 
     //for the auto-corrs compute the sum/average of all the values for each pol/ap
-    MHO_Reducer<visibility_type, MHO_CompoundSum> reducer;
+    MHO_Reducer<visibility_store_type, MHO_CompoundSum> reducer;
     reducer.ReduceAxis(FREQ_AXIS);
     // reducer.ReduceAxis(TIME_AXIS);
     for(auto it = raw_auto_corrs.begin(); it != raw_auto_corrs.end(); it++)
     {
         std::string station_id = it->first;
         //std::cout<<"REDUCING AUTOCORR = "<<station_id<<std::endl;
-        visibility_type* auto_corrs = it->second;
-        visibility_type* reduced = new visibility_type();
+        visibility_store_type* auto_corrs = it->second;
+        visibility_store_type* reduced = new visibility_store_type();
         std::size_t npp = auto_corrs->GetDimension(POLPROD_AXIS);
         std::size_t nch = auto_corrs->GetDimension(CHANNEL_AXIS);
         std::size_t nap = auto_corrs->GetDimension(TIME_AXIS);
@@ -470,7 +470,7 @@ MHO_DiFXScanProcessor::ExtractStationCoords()
         fStationCode2Coords[station_code] = st_coord;
 
         //get the spline model for the stations quantities
-        json antenna_poly = fInput["scan"][scan_index]["DifxPolyModel"][n][phase_center];
+        mho_json antenna_poly = fInput["scan"][scan_index]["DifxPolyModel"][n][phase_center];
 
         //figure out the start time of this polynomial
         //TODO FIXME! we need to convert this date information to a cannonical date/time-stamp class
@@ -510,7 +510,7 @@ MHO_DiFXScanProcessor::ExtractStationCoords()
 
         for(std::size_t i=0; i<n_poly; i++)
         {
-            json poly_interval = antenna_poly[i];
+            mho_json poly_interval = antenna_poly[i];
             for(std::size_t p=0; p<=n_order; p++)
             {
                 st_coord->at(0,i,p) = poly_interval["delay"][p];

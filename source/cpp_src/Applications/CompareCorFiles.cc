@@ -62,12 +62,12 @@ int main(int argc, char** argv)
     conInter2.PopulateStoreFromFile(conStore2);
 
     //retrieve the first two visibility objects
-    visibility_store_type* vis1 = conStore1.RetrieveObject<visibility_store_type>();
-    visibility_store_type* vis2 = conStore2.RetrieveObject<visibility_store_type>();
+    visibility_store_type* vis1 = conStore1.GetObject<visibility_store_type>(0);
+    visibility_store_type* vis2 = conStore2.GetObject<visibility_store_type>(0);
 
     //retrieve the first two weight objects
-    weight_store_type* w1 = conStore1.RetrieveObject<weight_store_type>();
-    weight_store_type* w2 = conStore2.RetrieveObject<weight_store_type>();
+    weight_store_type* w1 = conStore1.GetObject<weight_store_type>(0);
+    weight_store_type* w2 = conStore2.GetObject<weight_store_type>(0);
 
 
     if(vis1 == nullptr || vis2 == nullptr)

@@ -7,10 +7,8 @@ set (HOPS_TEST_LIBS MHO_Message MHO_Utilities date-tz)
 
 set(SOURCE_BASENAMES
     TestMultiTypeMap
-    TestIntervalLabelTree
     TestTimeStampConverter
     TestUUIDGenerator
-    TestObjectTags
     TestDirectoryInterface
     TestLegacyRootCodeGenerator
     TestTemplateTypenameDeduction
@@ -18,6 +16,8 @@ set(SOURCE_BASENAMES
     TestDateLibraryUsage
     TestTokenizer
     TestWriteAppend
+    TestEncodeDecode
+    TestParameterStore
 )
 
 if(HOPS_USE_MPI)

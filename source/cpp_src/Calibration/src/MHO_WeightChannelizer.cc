@@ -137,16 +137,9 @@ MHO_WeightChannelizer::ExecuteImpl(const uch_weight_store_type* in, weight_store
         auto* in_freq_axis = &(std::get<UCH_FREQ_AXIS>( *(in) ) );
         auto* out_channel_axis = &(std::get<CHANNEL_AXIS>( *(out) ) );
 
-        std::cout<<"n chans = "<<out_channel_axis->GetSize()<<std::endl;
-        std::cout<<"n pp = "<<in_pp_axis->GetSize()<<std::endl;
-        std::cout<<"n aps = "<<in_time_axis->GetSize()<<std::endl;
-        // std::cout<<"n chans = "<<out_channel_axis->GetSize()<<std::endl;
-
-
         //pack the data into the appropriate place
         for(int ch=0; ch<out_channel_axis->GetSize(); ch++)
         {
-            // auto ch_label = in_freq_axis->GetFirstIntervalWithKeyValue(std::string("channel"), out_channel_axis->at(ch));
             auto ch_label = in_freq_axis->GetFirstIntervalWithKeyValue(std::string("channel"), ch);
             if( ch_label )
             {

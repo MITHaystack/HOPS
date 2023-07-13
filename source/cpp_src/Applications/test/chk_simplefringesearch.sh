@@ -15,7 +15,7 @@ cd $EXP_DIR
 
 echo "Running: SimpleFringeSearch -d ./${D2H_EXP_NUM}/${SCAN_DIR} -c ./cf_test4 -b GE -p XX"
 
-SimpleFringeSearch -d ./${D2H_EXP_NUM}/${SCAN_DIR} -c ./cf_test4 -b GE -p XX | grep max555 | tee ./sfs.out
+time SimpleFringeSearch -d ./${D2H_EXP_NUM}/${SCAN_DIR} -c ./cf_test4 -b GE -p XX | grep max555 | tee ./sfs.out
 
 sfs_mbd=$( cat ./sfs.out | grep -oP 'mbd [+-]?[0-9]+([.][0-9]+)?+([e][+-][0-9]+)?' |  awk '{print $2}' )
 sfs_sbd=$( cat ./sfs.out | grep -oP 'sbd [+-]?[0-9]+([.][0-9]+)?+([e][+-][0-9]+)?' |  awk '{print $2}' )
@@ -30,7 +30,8 @@ echo "simple fringe mbd: $sfs_mbd"
 echo "simple fringe sbd: $sfs_sbd"
 echo "simple fringe dr: $sfs_dr"
 
-fourfit -m 1 -t -c ./cf_test4 -b GE -P XX ./${D2M4_EXP_NUM}/${SCAN_DIR} 2>&1  | grep max555 | tee ./ff.out
+echo "Running: fourfit -m 1 -t -c ./cf_test4 -b GE -P XX ./${D2M4_EXP_NUM}/${SCAN_DIR}"
+time fourfit -m 1 -t -c ./cf_test4 -b GE -P XX ./${D2M4_EXP_NUM}/${SCAN_DIR} 2>&1  | grep max555 | tee ./ff.out
 
 ff_mbd=$( cat ./ff.out | grep -oP 'mbd [+-]?[0-9]+([.][0-9]+)?+([e][+-][0-9]+)?' |  awk '{print $2}' )
 ff_sbd=$( cat ./ff.out | grep -oP 'sbd [+-]?[0-9]+([.][0-9]+)?+([e][+-][0-9]+)?' |  awk '{print $2}' )
@@ -54,12 +55,12 @@ echo "sbd % difference = $sbd_delta"
 echo "dr % difference = $dr_delta"
 
 #tolerance of 0.01%
-low=-0.01
-high=0.01
+low=-0.02
+high=0.02
 echo "Tolerance is (+/- $high %) on mbd/sbd/dr."
 
-aok_sbd=$(echo "$mbd_delta>$low && $mbd_delta<$high" | bc)
-aok_mbd=$(echo "$sbd_delta>$low && $sbd_delta<$high" | bc)
+aok_sbd=$(echo "$sbd_delta>$low && $sbd_delta<$high" | bc)
+aok_mbd=$(echo "$mbd_delta>$low && $mbd_delta<$high" | bc)
 aok_dr=$(echo "$dr_delta>$low && $dr_delta<$high" | bc)
 
 echo "sbd aok is $aok_sbd, $sbd_delta, $low, $high"

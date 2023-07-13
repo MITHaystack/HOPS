@@ -28,11 +28,11 @@ MHO_NormFX::InitializeImpl(const XArgType1* in1, const XArgType2* in2, XArgType3
         std::size_t n_lsb_chan = channel_axis->GetNIntervalsWithKeyValue(std::string("net_sideband"), std::string("L"));
         if(n_usb_chan != 0){fIsUSB = true;}
         if(n_lsb_chan != 0){fIsUSB = false;}
-        
-        
+
+
         if(!fIsUSB){msg_debug("operators", "MHO_NormFX operating on LSB data, N LSB channels: " << n_lsb_chan <<eom );}
         else{msg_debug("operators", "MHO_NormFX operating on USB data, N USB channels: " << n_usb_chan <<eom );}
-        
+
         if(n_usb_chan != 0 && n_lsb_chan != 0)
         {
             msg_error("operators", "Could not initialize MHO_NormFX, mixed USB/LSB data not yet supported." << eom);
@@ -67,11 +67,8 @@ MHO_NormFX::InitializeImpl(const XArgType1* in1, const XArgType2* in2, XArgType3
         fPaddedFFTEngine.SelectAxis(FREQ_AXIS); //only perform padded fft on frequency (to lag) axis
         fPaddedFFTEngine.SetForward();//forward DFT
         fPaddedFFTEngine.SetPaddingFactor(8);
+        fPaddedFFTEngine.SetEndPadded(); //for both LSB and USB (what about DSB?)
 
-        //TODO FIXME...currently this treats all channels as USB or LSB (but what if we have a mixed case?)
-        //for LSB data we flip as well as pad
-        if(!fIsUSB){fPaddedFFTEngine.SetEndPadded();}
-        else{fPaddedFFTEngine.SetReverseEndPadded();}
 
         status = fPaddedFFTEngine.Initialize();
         if(!status){msg_error("operators", "Could not initialize padded FFT in MHO_NormFX." << eom); return false;}
@@ -86,13 +83,6 @@ MHO_NormFX::InitializeImpl(const XArgType1* in1, const XArgType2* in2, XArgType3
         status = fCyclicRotator.Initialize();
         if(!status){msg_error("operators", "Could not initialize cyclic rotation in MHO_NormFX." << eom); return false;}
 
-        // double norm = 1.0/(nlags*8);
-        // fNormBroadcaster.GetFunctor()->SetFactor(norm);
-        // fNormBroadcaster.SetInput(out);
-        // fNormBroadcaster.SetOutput(out);
-        // status = fNormBroadcaster.Initialize();
-        // if(!status){msg_error("operators", "Could not initialize MHO_NormFX." << eom); return false;}
-
         //#pragma message("TODO FIXME, the following line casts away const-ness:")
         fConjBroadcaster.SetArgs( out );
         status = fConjBroadcaster.Initialize();
@@ -100,13 +90,6 @@ MHO_NormFX::InitializeImpl(const XArgType1* in1, const XArgType2* in2, XArgType3
 
         //double it
         nlags *= 2;
-        xp_spec.Resize(4*nlags);
-        S.Resize(4*nlags);
-        xlag.Resize(4*nlags);
-
-        fFFTEngine.SetArgs(&S, &xlag);
-        fFFTEngine.SetForward();
-        fFFTEngine.Initialize();
 
         fInitialized = true;
     }
@@ -140,30 +123,15 @@ MHO_NormFX::ExecuteImpl(const XArgType1* in1, const XArgType2* in2, XArgType3* o
         status = fNaNBroadcaster.Execute();
         if(!status){msg_error("operators", "Could not execute NaN masker MHO_NormFX." << eom); return false;}
 
-
-
-    #ifdef USE_OLD
-        run_old_normfx_core(in1, in2, out);
-    #else
-
         status = fPaddedFFTEngine.Execute();
         if(!status){msg_error("operators", "Could not execute paddded FFT in MHO_NormFX." << eom); return false;}
-
-        // auto ax2 = &(std::get<TIME_AXIS>(fWorkspace));
-        // std::cout<<"workspace ax2(1) = "<<(*ax2)(1)<<std::endl;
 
         status = fSubSampler.Execute();
         if(!status){msg_error("operators", "Could not execute sub-sampler in MHO_NormFX." << eom); return false;}
 
-        // auto ax2b = &(std::get<TIME_AXIS>(*out));
-        // std::cout<<"workspace ax2b(1) = "<<(*ax2b)(1)<<std::endl;
-
         status = fCyclicRotator.Execute();
         if(!status){msg_error("operators", "Could not execute cyclic-rotation MHO_NormFX." << eom); return false;}
 
-        // auto ax2c = &(std::get<TIME_AXIS>(*out));
-        // std::cout<<"workspace ax2c(1) = "<<(*ax2c)(1)<<std::endl;
-        
         //for lower sideband we complex conjugate the data
         if(!fIsUSB)
         {
@@ -171,115 +139,16 @@ MHO_NormFX::ExecuteImpl(const XArgType1* in1, const XArgType2* in2, XArgType3* o
             if(!status){msg_error("operators", "Could not execute complex conjugation in MHO_NormFX." << eom); return false;}
         }
 
-    #endif
 
         //normalize the array
         double norm =  1.0/(double)fInDims[FREQ_AXIS];
-        //double norm =  1.0/(double) out->GetDimension(FREQ_AXIS);
-        // std::cout<<"the norm = "<< fInDims[FREQ_AXIS]<<std::endl;
         *(out) *= norm;
-
-        // status = fNormBroadcaster.Execute();
-        // if(!status){msg_error("operators", "Could not execute normalization in MHO_NormFX." << eom); return false;}
-
-        // fWorkspace.Resize(0,0,0,0);
 
         return true;
     }
 
     return false;
 };
-
-
-
-
-void MHO_NormFX::run_old_normfx_core(const XArgType1* in1, const XArgType2* in2, XArgType3* out)
-{
-    std::size_t npp = fInDims[POLPROD_AXIS];
-    std::size_t nchan = fInDims[CHANNEL_AXIS];
-    std::size_t naps = fInDims[TIME_AXIS];
-    std::size_t nlags = fInDims[FREQ_AXIS];
-
-    double polcof = 1.0;
-    double usbfrac = 0.0;
-    double lsbfrac = 1.0;
-    double factor = 1.0;
-
-    //double it
-    nlags *= 2;
-    std::complex<double> z;
-
-    for(std::size_t fr=0; fr<nchan; fr++)
-    {
-        for(std::size_t ap=0; ap<naps; ap++)
-        {
-            for (int i=0; i<4*nlags; i++){xp_spec[i] = 0.0;}
-            for (int i=0; i<4*nlags; i++){S[i] = 0.0;}
-
-            for(std::size_t pp=0; pp<1; pp++) //loop over pol-products (select and/or add)
-            {
-                for (int i=0; i<nlags/2; i++)
-                {
-                    z = (*(in1))(pp,fr,ap,i);
-                    z = z * polcof;
-                    xp_spec[i] += z;
-                }
-            }
-
-            //lower-sideband data
-            for(int i = 0; i < nlags; i++)
-            {
-                factor = 1.0;// datum->lsbfrac;
-
-                //LSB
-                // DC+highest goes into middle element of the S array
-                // int sindex = 4*nlags - i;
-                // if(i==0){sindex = 2*nlags;}
-                //USB
-                int sindex;
-
-                if(fIsUSB)
-                {
-                    sindex = i;
-                }
-                else
-                {
-                    sindex = 4*nlags - i;
-                    if(i==0){sindex = 2*nlags;}
-                }
-
-                //int sindex = i ? 4 * nlags - i : 2 * nlags;
-                //std::complex<double> tmp2 = std::exp (I_complex * (status->lsb_phoff[0] - status->lsb_phoff[1]));
-                //S[sindex] += factor * std::conj (xp_spec[i] );// * tmp2 );
-
-//                S[sindex] += factor * std::conj (xp_spec[i] );
-                S[sindex] += factor * xp_spec[i];
-            }
-
-            //for (int i=0; i<4*nlags; i++){S[i] = S[i] * factor;}
-
-            fFFTEngine.Execute();
-
-            // corrections to phase as fn of freq based upon
-            // delay calibrations
-            // FFT to single-band delay
-            //fftw_execute (fftplan);
-            // Place SB delay values in data structure
-            // FX correlator - use full xlag range
-            for (int i = 0; i < 2*nlags; i++)
-            {
-                // Translate so i=nlags is central lag
-                // skip every other (interpolated) lag
-                int j = 2 * (i - nlags);
-                if (j < 0){j += 4 * nlags;}
-                (*(out))(0,fr,ap,i) = xlag[j] ; // (double) (nlags / 2);
-                //out->at(0,fr,ap,i) = xlag[j] / (double) (nlags / 2);
-            }
-
-        }
-    }
-}
-
 
 
 }//end of namespace

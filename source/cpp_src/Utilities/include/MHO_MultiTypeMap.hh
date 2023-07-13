@@ -16,6 +16,7 @@
 #include <string>
 #include <iostream>
 #include <vector>
+#include <cstdint>
 
 #include "MHO_Meta.hh"
 
@@ -211,8 +212,87 @@ class MHO_MultiTypeMap< XKeyType, XValueType, XValueTypeS...>: public MHO_MultiT
 
 //TODO: Make sure this set of types is complete for data axis labelling needs
 //Consider what other types might be needed (float? short? dates?)
+//#pragma message("TODO FIXME -- need to specify fixed sized types in MHO_MultiTypeMap from cstdint for portability.")
 typedef MHO_MultiTypeMap< std::string, char, bool, int, double, std::string > MHO_CommonLabelMap;
 
+template< typename XItemType > 
+struct cm_size_calculator
+{ 
+    const XItemType* item;
+    uint64_t get_item_size()
+    {
+        return (uint64_t) sizeof(XItemType);
+    }
+}; 
+
+template<> 
+struct cm_size_calculator<std::string>
+{ 
+    const std::string* item;
+    uint64_t get_item_size()
+    {
+        //every string get streamed with a 'size'
+        uint64_t total_size = 0;
+        total_size += sizeof(uint64_t);
+        total_size += item->size();
+        return total_size;
+    }
+}; 
+
+template<typename XItemType > 
+uint64_t cm_aggregate_serializable_item_size(const MHO_CommonLabelMap& aMap)
+{
+    uint64_t total_size = 0;
+    std::vector< std::string > keys;
+    keys = aMap.DumpKeys< XItemType >();
+    total_size += sizeof(uint64_t); //for the number of keys
+
+    //calculate the size of each key and item in the map
+    cm_size_calculator<std::string> str_calc;
+    cm_size_calculator<XItemType> itm_calc;
+    for(std::size_t i=0; i<keys.size(); i++)
+    {
+        XItemType val;
+        aMap.Retrieve(keys[i], val);
+        str_calc.item = &(keys[i]);
+        total_size += str_calc.get_item_size();
+
+        itm_calc.item = &(val);
+        total_size += itm_calc.get_item_size();
+    }
+    return total_size;
 }
+
+template<typename XStream, typename XImportType > 
+void cm_stream_importer(XStream& s, MHO_CommonLabelMap& aMap)
+{
+    std::size_t n_elem;
+    s >> n_elem;
+    for(std::size_t i=0; i<n_elem; i++)
+    {
+        std::string key;
+        XImportType val;
+        s >> key;
+        s >> val;
+        aMap.Insert(key, val);
+    }
+}
+
+template<typename XStream, typename XExportType> 
+void cm_stream_exporter(XStream& s, const MHO_CommonLabelMap& aMap)
+{
+    std::vector< std::string > keys;
+    keys = aMap.DumpKeys< XExportType >();
+    s << (uint64_t) keys.size();
+    for(std::size_t i=0; i<keys.size(); i++)
+    {
+        XExportType val;
+        aMap.Retrieve(keys[i], val);
+        s << keys[i];
+        s << val;
+    }
+}
+
+}//end of namespace
 
 #endif /* end of include guard: MHO_MultiTypeMap_HH__ */

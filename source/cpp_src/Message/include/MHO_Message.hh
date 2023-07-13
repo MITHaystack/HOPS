@@ -7,6 +7,7 @@
 #include <string>
 #include <iostream>
 #include <set>
+#include <mutex>
 
 #include "MHO_TestAssertions.hh"
 
@@ -55,7 +56,6 @@ using hops::eInfo;
 using hops::eDebug;
 
 //uses the singleton pattern (as we only have one terminal)
-//TODO make this class thread safe
 class MHO_Message
 {
 
@@ -72,6 +72,9 @@ class MHO_Message
             if(fInstance == nullptr){fInstance = new MHO_Message();}
             return *fInstance;
         }
+
+        void Lock(){fMutex.lock();};
+        void Unlock(){fMutex.unlock();};
 
         void AcceptAllKeys(){fAcceptAllKeys = true;}
         void LimitToKeySet(){fAcceptAllKeys = false;}
@@ -111,6 +114,8 @@ class MHO_Message
         bool PassMessage();
         std::string GetCurrentPrefix(const MHO_MessageLevel& level, const std::string& key);
 
+        std::mutex fMutex;
+
         static MHO_Message* fInstance; //static global class instance
         std::ostream* fTerminalStream; //stream to terminal output
         std::set< std::string > fKeys; //keys of which messages we will accept for output
@@ -136,18 +141,16 @@ MHO_Message::operator<<(const XStreamableItemType& item)
     return *fInstance;
 }
 
-
-//usage macros
-#define msg_fatal(xKEY, xCONTENT) MHO_Message::GetInstance().SendMessage(eFatal,xKEY) << xCONTENT;
-#define msg_error(xKEY, xCONTENT) MHO_Message::GetInstance().SendMessage(eError,xKEY) << xCONTENT;
-#define msg_warn(xKEY, xCONTENT) MHO_Message::GetInstance().SendMessage(eWarning,xKEY) << xCONTENT;
-#define msg_status(xKEY, xCONTENT) MHO_Message::GetInstance().SendMessage(eStatus,xKEY) << xCONTENT;
-#define msg_info(xKEY, xCONTENT) MHO_Message::GetInstance().SendMessage(eInfo,xKEY) << xCONTENT;
+//abuse the comma operator to smash the lock/unlock onto the same line for the usage macros
+#define msg_fatal(xKEY, xCONTENT) MHO_Message::GetInstance().Lock(), MHO_Message::GetInstance().SendMessage(eFatal,xKEY) << xCONTENT, MHO_Message::GetInstance().Unlock();
+#define msg_error(xKEY, xCONTENT) MHO_Message::GetInstance().Lock(), MHO_Message::GetInstance().SendMessage(eError,xKEY) << xCONTENT, MHO_Message::GetInstance().Unlock();
+#define msg_warn(xKEY, xCONTENT) MHO_Message::GetInstance().Lock(), MHO_Message::GetInstance().SendMessage(eWarning,xKEY) << xCONTENT, MHO_Message::GetInstance().Unlock();
+#define msg_status(xKEY, xCONTENT) MHO_Message::GetInstance().Lock(), MHO_Message::GetInstance().SendMessage(eStatus,xKEY) << xCONTENT, MHO_Message::GetInstance().Unlock();
+#define msg_info(xKEY, xCONTENT) MHO_Message::GetInstance().Lock(), MHO_Message::GetInstance().SendMessage(eInfo,xKEY) << xCONTENT, MHO_Message::GetInstance().Unlock();
 
 #ifdef HOPS_ENABLE_DEBUG_MSG  //this is defined as a compiler flag via build system
-//#warning "HOPS_ENABLE_DEBUG_MSG is defined -- this is not a bug!"
 //allow debug messages when debug flag is active
-#define msg_debug(xKEY, xCONTENT) MHO_Message::GetInstance().SendMessage(eDebug,xKEY) << xCONTENT;
+#define msg_debug(xKEY, xCONTENT) MHO_Message::GetInstance().Lock(), MHO_Message::GetInstance().SendMessage(eDebug,xKEY) << xCONTENT, MHO_Message::GetInstance().Unlock();
 #else
 //debug is not enabled, so we remove them from compilation
 #define msg_debug(xKEY, xCONTENT)
@@ -155,11 +158,11 @@ MHO_Message::operator<<(const XStreamableItemType& item)
 
 
 #ifdef HOPS_ENABLE_STEPWISE_CHECK  //this is defined as a compiler flag via build system
-//error check is enabled, so that we can verify a boolean return value is true 
+//error check is enabled, so that we can verify a boolean return value is true
 #define check_step_error(xVALUE, xKEY, xCONTENT) if(!xVALUE){ MHO_Message::GetInstance().SendMessage(eError,xKEY) << xCONTENT; }
 #define check_step_fatal(xVALUE, xKEY, xCONTENT) if(!xVALUE){ MHO_Message::GetInstance().SendMessage(eFatal,xKEY) << xCONTENT; HOPS_ASSERT_THROW(xVALUE); }
 #else
-//error check is competely disabled 
+//error check is competely disabled
 #define check_step_error(xVALUE, xKEY, xCONTENT)
 #define check_step_fatal(xVALUE, xKEY, xCONTENT)
 #endif

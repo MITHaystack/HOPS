@@ -1,0 +1,6 @@
+{
+    "name": "freqs",
+    "statement_type": "parameter",
+    "parameter_type": "selection",
+    "type": "list_string"
+}

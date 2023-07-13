@@ -33,7 +33,7 @@ AddClassType< MHO_TableContainer< ComplexF, MHO_AxisPack_##TYPE1##_##TYPE2##_##T
 namespace hops
 {
 
-using mbd_dr_axis_pack = MHO_AxisPack< MHO_Axis<double>, MHO_Axis<double> >;
+
 
 MHO_ContainerDictionary::MHO_ContainerDictionary()
 {
@@ -52,6 +52,10 @@ MHO_ContainerDictionary::MHO_ContainerDictionary()
     AddClassType<visibility_type>();
     AddClassType<weight_type>();
 
+    AddClassType<mbd_dr_axis_pack>();
+    AddClassType<mbd_dr_type>();
+    AddClassType<mbd_dr_amp_type>();
+
     AddClassType<multitone_pcal_type>();
     AddClassType<station_coord_axis_pack>();
     AddClassType<station_coord_type>();
@@ -67,16 +71,16 @@ MHO_ContainerDictionary::MHO_ContainerDictionary()
     AddClassType<uch_visibility_store_type>();
     AddClassType<uch_weight_store_type>();
 
-    #pragma message("TODO - Move the mbd data type to proper header.")
-    AddClassType< MHO_TableContainer< visibility_element_type, mbd_dr_axis_pack> >();
-    AddClassType< MHO_TableContainer< double, mbd_dr_axis_pack> >();
-
     #else
 
     //only add the bare minimum types here
     AddClassType<baseline_axis_pack>();
     AddClassType<visibility_type>();
     AddClassType<weight_type>();
+
+    AddClassType<mbd_dr_axis_pack>();
+    AddClassType<mbd_dr_type>();
+    AddClassType<mbd_dr_amp_type>();
 
     AddClassType<multitone_pcal_type>();
     AddClassType<station_coord_axis_pack>();

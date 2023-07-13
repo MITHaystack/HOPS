@@ -42,9 +42,9 @@ class MHO_ContainerFileInterface: public MHO_ContainerDictionary
 
         void WriteStoreToFile(MHO_ContainerStore& store);
 
-        void ConvertStoreToJSON(MHO_ContainerStore& store, json& json_obj, int level_of_detail=eJSONBasic);
+        void ConvertStoreToJSON(MHO_ContainerStore& store, mho_json& json_obj, int level_of_detail=eJSONBasic);
 
-        void ConvertObjectInStoreToJSON(MHO_ContainerStore& store,  const MHO_UUID& obj_uuid, json& json_obj, int level_of_detail=eJSONBasic);
+        void ConvertObjectInStoreToJSON(MHO_ContainerStore& store,  const MHO_UUID& obj_uuid, mho_json& json_obj, int level_of_detail=eJSONBasic);
 
     private:
 

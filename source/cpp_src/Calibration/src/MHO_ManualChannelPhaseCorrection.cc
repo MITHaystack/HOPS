@@ -1,134 +1,121 @@
 #include "MHO_ManualChannelPhaseCorrection.hh"
 
+
 namespace hops
 {
 
 
-MHO_ManualChannelPhaseCorrection::MHO_ManualChannelPhaseCorrection():
-    fInitialized(false)
+MHO_ManualChannelPhaseCorrection::MHO_ManualChannelPhaseCorrection()
 {
     fStationKey = "station";
     fRemStationKey = "remote_station";
     fRefStationKey = "reference_station";
-    fBaselineKey = "baseline";
-    fNetSidebandKey = "net_sideband";
+    fRemStationMk4IDKey = "remote_station_mk4id";
+    fRefStationMk4IDKey = "reference_station_mk4id";
+    fChannelLabelKey = "channel_label";
 
-    fImagUnit = std::complex<double>(0.0, 1.0);
-    fDegToRad = M_PI/180;
+    fStationCode = "";
+    fMk4ID = "";
+
+    fImagUnit = MHO_Constants::imag_unit;
+    fDegToRad = MHO_Constants::deg_to_rad;
+
+
 };
 
 MHO_ManualChannelPhaseCorrection::~MHO_ManualChannelPhaseCorrection(){};
 
 
 bool
-MHO_ManualChannelPhaseCorrection::InitializeImpl(const XArgType1* in_vis, const XArgType2* pcal, XArgType3* out_vis)
+MHO_ManualChannelPhaseCorrection::ExecuteInPlace(visibility_type* in)
 {
-    fInitialized = false;
-    fPolIdxMap.clear();
-    fChanIdxMap.clear();
-    //check that dimensions of in_vis and out_vis are the same 
-    if( !HaveSameDimensions(in_vis, out_vis) ){return false;}
+    std::size_t st_idx = DetermineStationIndex(in);
+    if(st_idx != 0 && st_idx != 1){return false;}
 
-    //check that the p-cal data is tagged with a station-id that is a member of this baseline
-    std::string station;
-    pcal->Retrieve( fStationKey, station);
-    make_upper(station);
-
-    std::string baseline;
-    in_vis->Retrieve(fBaselineKey, baseline);
-    make_upper(baseline);
-
-    if( baseline.find(station) == std::string::npos){return false;}
-
-    //determine if the p-cal corrections are being applied to the remote or reference station
-    int pol_index = 0;
-    std::string rem_station;
-    std::string ref_station;
-    in_vis->Retrieve(fRemStationKey, rem_station);
-    in_vis->Retrieve(fRefStationKey, ref_station);
-    if(station != rem_station && station != ref_station){return false;} //p-cal station, baseline mismatch
-    if(station == rem_station){pol_index = 1;}
-    if(station == ref_station){pol_index = 0;}
-
-    //map the pcal polarization index to the visibility pol-product index
-    auto pp_ax = std::get<POLPROD_AXIS>(*in_vis);
-    auto pol_ax = std::get<0>(*pcal);
-    for(std::size_t j=0; j<pol_ax.GetSize(); j++)
+    //loop over pol-products and apply pc-phases to the appropriate pol/channel
+    auto pp_ax = &(std::get<POLPROD_AXIS>(*in) );
+    auto chan_ax = &(std::get<CHANNEL_AXIS>(*in) );
+    std::string chan_label;
+    std::string pp_label;
+    for(std::size_t pp=0; pp < pp_ax->GetSize(); pp++)
     {
-        for(std::size_t i=0; i<pp_ax.GetSize(); i++)
+        pp_label = pp_ax->at(pp);
+        if( PolMatch(st_idx, pp_label) )
         {
-            auto pol = pol_ax(j);
-            auto polprod = pp_ax(i);
-            make_upper(pol); 
-            make_upper(polprod);
-            if( pol[0] == polprod[pol_index] ){fPolIdxMap[i] = j;}
-        }
-    }
-
-    //map the pcal channel index to the visibility channel index
-    auto chan_ax = std::get<CHANNEL_AXIS>(*in_vis);
-    auto pcal_chan_ax = std::get<1>(*pcal);
-    for(std::size_t j=0; j<pcal_chan_ax.GetSize(); j++)
-    {
-        for(std::size_t i=0; i<chan_ax.GetSize(); i++)
-        {
-            if( pcal_chan_ax(j) == chan_ax(i) ){fChanIdxMap[i] = j;}
-        }
-    }
-
-    msg_debug("calibration", "applying manual p-cal for station: "<<station<<" in baseline: "<<baseline<<"." <<eom);
-
-    fInitialized = true;
-    return true;
-}
-
-
-bool
-MHO_ManualChannelPhaseCorrection::ExecuteImpl(const XArgType1* in_vis, const XArgType2* pcal, XArgType3* out_vis)
-{
-    if(fInitialized)
-    {
-        //just copy in_vis into out_vis
-        //TODO FIXME...there is no reason we can't do this operation in place applied to in_vs
-        //but the operator interface needs to be different since we need a unary op 
-        //with separate 2 input arguments (vis array, and pcal array)
-        out_vis->Copy(*in_vis);
-
-        auto chan_ax = &(std::get<CHANNEL_AXIS>(*in_vis));
-    
-        //loop over pol products
-        for(auto pol_it = fPolIdxMap.begin(); pol_it != fPolIdxMap.end(); pol_it++)
-        {
-            std::size_t vis_pol_idx = pol_it->first;
-            std::size_t pcal_pol_idx = pol_it->second;
-            for(auto ch_it = fChanIdxMap.begin(); ch_it != fChanIdxMap.end(); ch_it++)
+            for(auto pcal_it = fPCMap.begin(); pcal_it != fPCMap.end(); pcal_it++)
             {
-                std::size_t vis_chan_idx = ch_it->first;
-                std::size_t pcal_chan_idx = ch_it->second;
-                //retrieve the p-cal phasor (assume unit normal)
-                pcal_phasor_type pc_val = (*pcal)(pcal_pol_idx, pcal_chan_idx);
-                visibility_element_type pc_phasor = std::exp( fImagUnit*pc_val*fDegToRad );
-
-                //conjugate the pcal if applied to LSB
-                bool do_conj = false;
-                std::string sideband;
-                auto labels = chan_ax->GetIntervalsWhichIntersect(vis_chan_idx);
-                for(std::size_t i=0; i<labels.size(); i++)
+                chan_label = pcal_it->first;
+                double pc_val = pcal_it->second;
+                //TODO, may need to re-work this mapping method if too slow
+                const MHO_IntervalLabel* ilabel = chan_ax->GetFirstIntervalWithKeyValue(fChannelLabelKey, chan_label);
+                if(ilabel != nullptr)
                 {
-                    bool ok = labels[i]->Retrieve(fNetSidebandKey,sideband);
-                    if(ok){ if(sideband == "L"){do_conj = true; break;} }
+                    std::size_t ch = ilabel->GetLowerBound();
+                    visibility_element_type pc_phasor = std::exp( fImagUnit*pc_val*fDegToRad );
+                    
+                    //we always conjugate for USB/LSB?, TODO - but not for DSB??
+                    //should the behavior change depending on reference or remote station as is MHO_ManualPolPhaseCorrection???
+                    #pragma message("TODO FIXME - test all manual pc phase correction cases (ref/rem/USB/LSB/DSB)")
+                    pc_phasor = std::conj(pc_phasor); 
+                    //retrieve and multiply the appropriate sub view of the visibility array
+                    auto chunk = in->SubView(pp, ch);
+                    chunk *= pc_phasor;
                 }
-                if(do_conj){pc_phasor = std::conj(pc_phasor);} 
-                
-                //retrieve and multiply the appropriate sub view of the visibility array 
-                auto chunk = out_vis->SubView(vis_pol_idx, vis_chan_idx);
-                chunk *= pc_phasor;
             }
         }
     }
 
     return true;
-};
+}
+
+
+bool
+MHO_ManualChannelPhaseCorrection::ExecuteOutOfPlace(const visibility_type* in, visibility_type* out)
+{
+    out->Copy(*in);
+    return ExecuteInPlace(out);
+}
+
+
+std::size_t
+MHO_ManualChannelPhaseCorrection::DetermineStationIndex(const visibility_type* in)
+{
+    //determine if the p-cal corrections are being applied to the remote or reference station
+    std::string val;
+
+    if(fMk4ID != "") //selection by mk4 id
+    {
+        in->Retrieve(fRemStationMk4IDKey, val);
+        if(fMk4ID == val){return 1;}
+        in->Retrieve(fRefStationMk4IDKey, val);
+        if(fMk4ID == val){return 0;}
+    }
+
+    if(fStationCode != "")//seletion by 2-char station code
+    {
+        in->Retrieve(fRemStationKey, val);
+        if(fStationCode == val){return 1;}
+        in->Retrieve(fRefStationKey, val);
+        if(fStationCode == val){return 0;}
+    }
+
+    msg_warn("calibration", "manual pcal, remote/reference station do not match selection."<< eom );
+    return 2;
+}
+
+bool
+MHO_ManualChannelPhaseCorrection::PolMatch(std::size_t station_idx, std::string& polprod)
+{
+    make_upper(polprod);
+    return (fPol[0] == polprod[station_idx]);
+}
+
+
+bool
+MHO_ManualChannelPhaseCorrection::InitializeInPlace(visibility_type* /*in*/){ return true;}
+
+bool
+MHO_ManualChannelPhaseCorrection::InitializeOutOfPlace(const visibility_type* /*in*/, visibility_type* /*out*/){return true;}
 
 
 }//end of namespace

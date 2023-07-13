@@ -78,8 +78,8 @@ MHO_DiFXInterface::Initialize()
     fDirInterface.GetFilesMatchingExtention(tmpFiles, "v2d");
     if(tmpFiles.size() != 1)
     {
-        msg_fatal("difx_interface", tmpFiles.size() << " .v2d files found in " << fInputDirectory << eom );
-        std::exit(1);
+        msg_info("difx_interface", tmpFiles.size() << " .v2d files found in " << fInputDirectory << eom );
+        fV2DFile = ""; //no v2d file
     }
     fV2DFile = tmpFiles[0];
     tmpFiles.clear();

@@ -30,7 +30,7 @@ class MHO_MK4VexInterface
         void OpenVexFile(std::string file_path);
         mho_json GetVex();
 
-        bool ExportVexFileToJSON(json& json_obj);
+        bool ExportVexFileToJSON(mho_json& json_obj);
 
     private:
 
