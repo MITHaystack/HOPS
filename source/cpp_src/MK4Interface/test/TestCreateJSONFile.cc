@@ -11,23 +11,19 @@
 #include "MHO_MK4Type208Converter.hh"
 #include "MHO_MK4Type210Converter.hh"
 #include "MHO_MK4Type212Converter.hh"
+#include "MHO_MK4FringeInterface.hh"
 
 using namespace hops;
 
 int main(int argc, char **argv) {
 
-  // Open file
-  std::string fringeFile = filename;
+  // Call all the type200 tests here
+
   // Call interface to read fringe file
   MHO_MK4FringeInterface* fringeReader = new MHO_MK4FringeInterface();
-  // Dump it in to fFringe field of that interface
-  fringeReader.ReadFringeFile(&filename);
-  mk4_fringe fringeReader.fFringe
-
-  // Dump to file
-  //std::ofstream outputFile(type200-dump.js);
-  //outputFile << std::setw(4) << my200s << std::endl;
-  //outputFile.close()
+  //MHO_MK4FringeInterface mk4FringeInterface;
+  //mk4FringeInterface.ExportFringeFilesToJSON(fringeFile);
+  fringeReader->ExportFringeStructsToJSON();
 
   return 0;
 }

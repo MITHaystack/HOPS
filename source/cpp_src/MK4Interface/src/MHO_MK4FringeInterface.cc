@@ -91,7 +91,7 @@ void MHO_MK4FringeInterface::ExportFringeFilesToJSON(const std::string& inputFil
     // call ReadFringeFile
     // call ExportFringeFilesToStructs
     // call ExportFringeStructsToJSON
-    std::cout << inputFile << endl;
+    //std::cout << inputFile << endl;
     // if (ReadFringeFile(inputFile)) {
         // self.ExportFringeFilesToStructs();
         // self.ExportFringeStructsToJSON();
