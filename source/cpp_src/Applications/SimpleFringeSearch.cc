@@ -6,21 +6,6 @@
 #include <iomanip>
 
 
-//fourfit control lib
-#ifndef HOPS3_USE_CXX
-extern "C"
-{
-#endif
-
-#include "msg.h"
-#include "ffcontrol.h"
-struct c_block* cb_head; //global extern kludge (due to stupid c-library interface)
-#include "ffmath.h"
-
-#ifndef HOPS3_USE_CXX
-}
-#endif
-
 #define EXTRA_DEBUG
 
 //global messaging util
@@ -33,14 +18,13 @@ struct c_block* cb_head; //global extern kludge (due to stupid c-library interfa
 #include "MHO_ScanDataStore.hh"
 
 //control
-#include "MHO_ControlBlockWrapper.hh"
+#include "MHO_ControlFileParser.hh"
+#include "MHO_ControlConditionEvaluator.hh"
 
 //operators
-#include "MHO_VisibilityPrecisionUpCaster.hh"
-#include "MHO_WeightPrecisionUpCaster.hh"
+#include "MHO_ElementTypeCaster.hh"
 #include "MHO_NormFX.hh"
 #include "MHO_SelectRepack.hh"
-#include "MHO_FreqSpacing.hh"
 #include "MHO_UniformGridPointsCalculator.hh"
 #include "MHO_FringeRotation.hh"
 #include "MHO_Reducer.hh"
@@ -50,194 +34,118 @@ struct c_block* cb_head; //global extern kludge (due to stupid c-library interfa
 #include "MHO_ExtremaSearch.hh"
 #include "MHO_ManualChannelPhaseCorrection.hh"
 #include "MHO_DelayRate.hh"
+#include "MHO_MBDelaySearch.hh"
+#include "MHO_InterpolateFringePeak.hh"
+
+//initialization
+#include "MHO_OperatorBuilderManager.hh"
+#include "MHO_ParameterConfigurator.hh"
+#include "MHO_ParameterManager.hh"
+
+#include "MHO_ComputePlotData.hh"
 
 
-#ifdef USE_ROOT
-    #include "TApplication.h"
-    #include "MHO_RootCanvasManager.hh"
-    #include "MHO_RootGraphManager.hh"
+//pybind11 stuff to interface with python
+#ifdef USE_PYBIND11
+
+#include <pybind11/pybind11.h>
+#include <pybind11/embed.h>
+#include "pybind11_json/pybind11_json.hpp"
+namespace py = pybind11;
+namespace nl = nlohmann;
+using namespace pybind11::literals;
+
 #endif
-
 
 using namespace hops;
 
 
-using mbd_dr_axis_pack = MHO_AxisPack< MHO_Axis<double>, MHO_Axis<double> >;
-using mbd_dr_type = MHO_TableContainer< visibility_element_type, mbd_dr_axis_pack>;
-using mbd_dr_amp_type = MHO_TableContainer< double, mbd_dr_axis_pack>;
-
-double total_ap_frac;
-
-void fine_peak_interpolation(visibility_type* sbd_arr, weight_type* w_arr, MHO_Axis<double>* mbd_ax, MHO_Axis<double>* dr_ax, int c_mbdmax, int c_drmax, int c_sbdmax)
+void configure_data_library(MHO_ContainerStore* store)
 {
-    //follow the algorithm of interp.c (SIMUL) mode, to fill out a cube and interpolate
-    double drf[5][5][5];// 5x5x5 cube of fringe values
-    double xlim[3][2]; //cube limits each dim
-    double xi[3];
-    double drfmax;
+    //retrieve the (first) visibility and weight objects
+    //(currently assuming there is only one object per type)
+    visibility_store_type* vis_store_data = nullptr;
+    weight_store_type* wt_store_data = nullptr;
 
-    auto chan_ax = &( std::get<CHANNEL_AXIS>(*sbd_arr) );
-    auto ap_ax = &(std::get<TIME_AXIS>(*sbd_arr));
-    auto sbd_ax = &( std::get<FREQ_AXIS>(*sbd_arr) );
+    vis_store_data = store->GetObject<visibility_store_type>(0);
+    wt_store_data = store->GetObject<weight_store_type>(0);
 
-    std::size_t nap = ap_ax->GetSize();
-
-
-    std::size_t nchan = chan_ax->GetSize();
-
-    double ap_delta = ap_ax->at(1) - ap_ax->at(0);
-    double sbd_delta = sbd_ax->at(1) - sbd_ax->at(0);
-    double dr_delta = dr_ax->at(1) - dr_ax->at(0);
-    double mbd_delta = mbd_ax->at(1) - mbd_ax->at(0);
-
-    double midpoint_time = ( ap_ax->at(nap-1) + ap_delta  + ap_ax->at(0) )/2.0;
-    std::cout<<"time midpoint = "<<midpoint_time<<std::endl;
-
-    printf("max bin (sbd, mbd, dr) = %d, %d, %d\n", c_sbdmax, c_mbdmax, c_drmax );
-
-    double ref_freq = 6e3; //6000 MHz gahh
-
-    double sbd_lower = 1e30;
-    double sbd_upper = -1e30;
-    double mbd_lower = 1e30;
-    double mbd_upper = -1e30;
-    double dr_lower = 1e30;
-    double dr_upper = -1e30;
-
-    MHO_FringeRotation frot;
-    std::size_t sbd_bin, dr_bin, mbd_bin;
-    double sbd, dr, mbd;
-
-    std::cout<< std::setprecision(14);
-    for (std::size_t isbd=0; isbd<5; isbd++)
+    if(vis_store_data == nullptr)
     {
-        for (std::size_t imbd=0; imbd<5; imbd++)
-        {
-            for (std::size_t idr=0; idr<5; idr++)
-            {
-
-                std::complex<double> z = 0.0;
-
-                // calculate location of this tabular point (should modulo % axis size)
-                sbd_bin = (c_sbdmax + isbd - 2) % (int) sbd_ax->GetSize();
-                dr_bin = (c_drmax + idr - 2 ) % (int) dr_ax->GetSize() ;
-                mbd_bin = ( c_mbdmax + imbd - 2) % (int) mbd_ax->GetSize() ;;
-                //
-                sbd = sbd_ax->at(sbd_bin);
-                dr =  (dr_ax->at(dr_bin) )*(1.0/ref_freq);
-                mbd = (mbd_ax->at(mbd_bin));
-
-                if(sbd < sbd_lower){sbd_lower = sbd;}
-                if(sbd > sbd_upper){sbd_upper = sbd;}
-
-                if(dr < dr_lower){dr_lower = dr;}
-                if(dr > dr_upper){dr_upper = dr;}
-
-                if(mbd < mbd_lower){mbd_lower = mbd;}
-                if(mbd > mbd_upper){mbd_upper = mbd;}
-
-                // sbd = status.max_delchan    +        isbd - 2;
-                // mbd = status.mbd_max_global + 0.5 * (imbd - 2) * status.mbd_sep;
-                // dr  = status.dr_max_global  + 0.5 * (idr - 2)  * status.rate_sep;
-
-                // msg ("[interp]dr %le mbd %le sbd %d sbd_max(ns) %10.6f", -1,
-                //  dr,mbd,sbd,status.sbd_max);
-                                // counter-rotate data from all freqs. and AP's
-                for(std::size_t fr = 0; fr < nchan; fr++)
-                {
-                    //double frq = pass->pass_data + fr;
-                    double freq = (*chan_ax)(fr);//use sky-freq of this channel????
-                    for(std::size_t ap = 0; ap < nap; ap++)
-                    {
-                        double tdelta = ap_ax->at(ap) + ap_delta/2.0 - midpoint_time; //need time difference from the f.r.t?
-                        visibility_element_type vis = (*sbd_arr)(0,fr,ap,sbd_bin);
-                        std::complex<double> vr = frot.vrot(tdelta, freq, ref_freq, dr, mbd);
-                        std::complex<double> x = vis * vr;// vrot_mod(tdelta, dr, mbd, freq, ref_freq);
-                        x *= (*w_arr)(0,fr,ap,0); //multiply by the 'weight'
-                        z = z + x;
-                    }
-                }
-
-                z = z * 1.0 / (double) total_ap_frac;
-                drf[isbd][imbd][idr] = std::abs(z);
-                //std::cout<<isbd<<", "<<imbd<<", "<<idr<<", "<<drf[isbd][imbd][idr]<<std::endl;
-                //printf("%ld %le %le \n", sbd_bin, mbd, dr);
-                printf ("drf[%ld][%ld][%ld] %lf \n", isbd, imbd, idr, drf[isbd][imbd][idr]);
-            }
-        }
+        msg_fatal("main", "failed to read visibility data from the .cor file." <<eom);
+        std::exit(1);
     }
 
+    if(wt_store_data == nullptr)
+    {
+        msg_fatal("main", "failed to read weight data from the .cor file." <<eom);
+        std::exit(1);
+    }
 
+    std::size_t n_vis = store->GetNObjects<visibility_store_type>();
+    std::size_t n_wt = store->GetNObjects<weight_store_type>();
 
-    xlim[0][0] = -1;// sbd_lower;// / status.sbd_sep - status.max_delchan + nl;
-    xlim[0][1] = 1;//sbd_upper;// / status.sbd_sep - status.max_delchan + nl;
+    if(n_vis != 1 || n_wt != 1)
+    {
+        msg_warn("main", "multiple visibility and/or weight types not yet supported" << eom);
+    }
 
-    xlim[1][0] = -2;//mbd_lower;// - status.mbd_max_global) / status.mbd_sep;
-    xlim[1][1] = 2;//mbd_upper;// - status.mbd_max_global) / status.mbd_sep;
+    std::string vis_shortname = store->GetShortName(vis_store_data->GetObjectUUID() );
+    std::string wt_shortname = store->GetShortName(wt_store_data->GetObjectUUID() );
 
-    xlim[2][0] = -2;//dr_lower;// - status.dr_max_global) / status.rate_sep;
-    xlim[2][1] = 2;//dr_upper;// - status.dr_max_global) / status.rate_sep;
+    visibility_type* vis_data = new visibility_type();
+    weight_type* wt_data = new weight_type();
 
-    std::cout<< "xlim's "<< xlim[0][0]<<", "<< xlim[0][1] <<", "<< xlim[1][0] <<", "<< xlim[1][1] <<", " << xlim[2][0] <<", "<< xlim[2][1] <<std::endl;
-                                // find maximum value within cube via interpolation
-    max555(drf, xlim, xi, &drfmax);
+    MHO_ElementTypeCaster<visibility_store_type, visibility_type> up_caster;
+    up_caster.SetArgs(vis_store_data, vis_data);
+    up_caster.Initialize();
+    up_caster.Execute();
 
-    std::cout<< "xi's "<< xi[0]<<", "<< xi[1] <<", "<< xi[2] <<std::endl;
-    std::cout<<"drf max = "<<drfmax<<std::endl;
+    MHO_ElementTypeCaster< weight_store_type, weight_type> wt_up_caster;
+    wt_up_caster.SetArgs(wt_store_data, wt_data);
+    wt_up_caster.Initialize();
+    wt_up_caster.Execute();
 
+    //remove the original objects
+    store->DeleteObject(vis_store_data);
+    store->DeleteObject(wt_store_data);
 
+    #pragma message("TODO - if we plan to rely on short-names to identify objects, we need to validate them here")
+    //TODO make sure that the visibility object is called 'vis' and weights are called 'weights', etc.
+    //TODO also validate the station data
 
-    // calculate location of this tabular point (should modulo % axis size)
-    // std::size_t sbd_bin = loc[3];
-    // std::size_t dr_bin = loc[2];
-    //std::size_t
-    sbd_bin = c_sbdmax;
-    dr_bin = c_drmax;
-    mbd_bin = c_mbdmax;
-
-    sbd = sbd_ax->at(sbd_bin);// + 0.5*sbd_delta;
-    dr =  (dr_ax->at(dr_bin) )*(1.0/ref_freq);
-    mbd = (mbd_ax->at(mbd_bin)); 
-
-    double sbd_change = xi[0] * sbd_delta;
-    double mbd_change = xi[1] * mbd_delta;
-    double dr_change =  (xi[2] * dr_delta)/ref_freq;
-
-    double sbd_max = (sbd + sbd_change);
-    double mbd_max_global = mbd + mbd_change;
-    double dr_max_global  = dr + dr_change;
-
-    std::cout<<"coarse location (sbd, mbd, dr) = "<<sbd<<", "<<mbd<<", "<<dr<<std::endl;
-    std::cout<<"change (sbd, mbd, dr) = "<<sbd_change<<", "<<mbd_change<<", "<<dr_change<<std::endl;
-    // std::cout<<"Peak location (sbd, mbd, dr) = "<<sbd_max<<", "<<mbd_max_global<<", "<<dr_max_global<<std::endl;
-    std::cout<<"Peak max555, sbd "<<sbd_max<<" mbd "<<mbd_max_global<<" dr "<<dr_max_global<<std::endl;
-
+    //now shove the double precision data into the container store with the same shortname
+    store->AddObject(vis_data);
+    store->AddObject(wt_data);
+    store->SetShortName(vis_data->GetObjectUUID(), vis_shortname);
+    store->SetShortName(wt_data->GetObjectUUID(), wt_shortname);
 }
 
 
-
-
-
-
-
-
-
-
+void build_and_exec_operators(MHO_OperatorBuilderManager& build_manager, MHO_OperatorToolbox* opToolbox, const char* category)
+{
+    std::string cat(category);
+    build_manager.BuildOperatorCategory(cat);
+    std::cout<<"toolbox has: "<<opToolbox->GetNOperators()<<" operators."<<std::endl;
+    auto ops = opToolbox->GetOperatorsByCategory(cat);
+    for(auto opIt= ops.begin(); opIt != ops.end(); opIt++)
+    {
+        std::cout<<"init and exec of: "<<(*opIt)->GetName()<<std::endl;
+        (*opIt)->Initialize();
+        (*opIt)->Execute();
+    }    
+}
 
 int main(int argc, char** argv)
 {
 
-    set_progname("SimpleFringeSearch");
-    set_msglev(-1);
-    // set_msglev(-4);
-
-    std::string usage = "SimpleFringeSearch -d <directory> -c <control file> -b <baseline> -p <pol. product>";
+    std::string usage = "SimpleFringeSearchPlot -d <directory> -c <control file> -b <baseline> -p <pol. product>";
 
     MHO_Message::GetInstance().AcceptAllKeys();
     MHO_Message::GetInstance().SetMessageLevel(eDebug);
 
     MHO_Snapshot::GetInstance().AcceptAllKeys();
-    MHO_Snapshot::GetInstance().SetExecutableName(std::string("SimpleFringeSearch"));
+    MHO_Snapshot::GetInstance().SetExecutableName(std::string("SimpleFringeSearchPlot"));
 
     std::string directory = "";
     std::string control_file = "";
@@ -291,7 +199,6 @@ int main(int argc, char** argv)
     //INITIAL SCAN DIRECTORY
     ////////////////////////////////////////////////////////////////////////////
 
-
     //initialize the scan store from this directory
     MHO_ScanDataStore scanStore;
     scanStore.SetDirectory(directory);
@@ -304,151 +211,115 @@ int main(int argc, char** argv)
 
     //load root file and container store for this baseline
     mho_json vexInfo = scanStore.GetRootFileData();
-    MHO_ContainerStore* conStore = scanStore.LoadBaseline(baseline);
 
-    if(conStore == nullptr)
+    //get scan name and source name
+    mho_json::json_pointer sched_pointer("/$SCHED");
+    auto sched = vexInfo.at(sched_pointer);
+    if(sched.size() != 1)
     {
-        msg_fatal("main", "Could not find a file for baseline: "<< baseline << eom);
+        msg_error("main", "root file " <<  scanStore.GetRootFileBasename() <<" contains missing or ambiguous $SCHED information." << eom );
         std::exit(1);
     }
 
+    std::string scnName = sched.begin().key();
+    std::string src_loc = "/$SCHED/" + scnName + "/source/0/source";
+    mho_json::json_pointer src_jptr(src_loc);
+    std::string srcName = vexInfo.at(src_jptr).get<std::string>();
 
     ////////////////////////////////////////////////////////////////////////////
-    //CONTROL BLOCK CONSTRUCTION
+    //CONTROL CONSTRUCTION
     ////////////////////////////////////////////////////////////////////////////
+    MHO_ControlFileParser cparser;
+    MHO_ControlConditionEvaluator ceval;
+    cparser.SetControlFile(control_file);
+    mho_json control_format = MHO_ControlDefinitions::GetControlFormat();
+    auto control_contents = cparser.ParseControl();
+    mho_json control_statements;
 
-    //parse the control file
-    cb_head = (struct c_block *) malloc (sizeof (struct c_block) );
-    struct c_block* cb_out = (struct c_block *) malloc (sizeof (struct c_block) );
-    char bl[2]; bl[0] = baseline[0]; bl[1] = baseline[1];
-    std::string src = " ";
-    char fgroup = 'X';
-    int time = 0;
-    int retval = construct_cblock(const_cast<char*>(control_file.c_str()), cb_head, cb_out, bl, const_cast<char*>(src.c_str()), fgroup, time);
-    MHO_ControlBlockWrapper cb_wrapper(cb_out, vexInfo, baseline);
+    //std::cout<<control_contents.dump(4)<<std::endl;
 
+    //TODO -- where should frequency group information get stashed/retrieved?
+    ceval.SetPassInformation(baseline, srcName, "?", scnName);//baseline, source, fgroup, scan
+    control_statements = ceval.GetApplicableStatements(control_contents);
+    std::cout<< control_statements.dump(2) <<std::endl;
 
     ////////////////////////////////////////////////////////////////////////////
-    //LOAD DATA
+    //LOAD DATA AND ASSEMBLE THE DATA STORE
     ////////////////////////////////////////////////////////////////////////////
+    MHO_ParameterStore* paramStore = new MHO_ParameterStore();
+    MHO_ContainerStore* conStore = new MHO_ContainerStore();
+    MHO_OperatorToolbox* opToolbox = new MHO_OperatorToolbox();
+    //load baseline data
+    scanStore.LoadBaseline(baseline, conStore);
+    //TODO load the station data files too
 
-    //retrieve the (first) visibility and weight objects (currently assuming there is only one object per type)
-    visibility_store_type* bl_store_data = nullptr;
-    weight_store_type* wt_store_data = nullptr;
+    configure_data_library(conStore);//momentarily needed for float -> double cast
 
-    visibility_type bl_data_obj;
-    weight_type wt_data_obj;
-    visibility_type* bl_data = &bl_data_obj;
-    weight_type* wt_data = &wt_data_obj;
-
-    MHO_ObjectTags* tags = nullptr;
-
-    bl_store_data = conStore->RetrieveObject<visibility_store_type>();
-    wt_store_data = conStore->RetrieveObject<weight_store_type>();
-    tags = conStore->RetrieveObject<MHO_ObjectTags>();
-
-    if(bl_store_data == nullptr)
+    visibility_type* vis_data = conStore->GetObject<visibility_type>(std::string("vis"));
+    weight_type* wt_data = conStore->GetObject<weight_type>(std::string("weight"));
+    if( vis_data == nullptr || wt_data == nullptr )
     {
-        msg_fatal("main", "failed to read visibility data from the .cor file." <<eom);
+        msg_fatal("main", "could not find visibility or weight objects with names (vis, weight)." << eom);
         std::exit(1);
     }
 
-    if(wt_store_data == nullptr)
-    {
-        msg_fatal("main", "failed to read weight data from the .cor file." <<eom);
-        std::exit(1);
-    }
+    ////////////////////////////////////////////////////////////////////////////
+    //PARAMETER SETTING
+    ////////////////////////////////////////////////////////////////////////////
+    MHO_ParameterManager paramManager(paramStore, control_format);
+    //set defaults
+    paramStore->Set(std::string("selected_polprod"), polprod);
 
-    if(tags == nullptr)
-    {
-        msg_warn("main", "failed to read tag data from the .cor file." <<eom);
-    }
+    paramManager.SetControlStatements(&control_statements);
+    paramManager.ConfigureAll();
+    paramStore->Dump();
 
-
-    MHO_VisibilityPrecisionUpCaster up_caster;
-    up_caster.SetArgs(bl_store_data, bl_data);
-    up_caster.Initialize();
-    up_caster.Execute();
-
-    MHO_WeightPrecisionUpCaster wt_up_caster;
-    wt_up_caster.SetArgs(wt_store_data, wt_data);
-    wt_up_caster.Initialize();
-    wt_up_caster.Execute();
-
-    std::size_t wt_dim[weight_type::rank::value];
-    wt_data->GetDimensions(wt_dim);
+    //test grab the reference freq
+    double ref_freq = paramStore->GetAs<double>(std::string("ref_freq"));
 
     ////////////////////////////////////////////////////////////////////////////
-    //APPLY COARSE DATA SELECTION
+    //OPERATOR CONSTRUCTION
     ////////////////////////////////////////////////////////////////////////////
-    //select data repack
-    MHO_SelectRepack<visibility_type> spack;
-    MHO_SelectRepack<weight_type> wtspack;
-
-    //first find indexes which corresponds to the specified pol product
-    std::vector<std::size_t> selected_pp = (&(std::get<POLPROD_AXIS>(*bl_data)))->SelectMatchingIndexes(polprod);
-
-    //select some specified AP's
-    // std::vector< std::size_t > selected_ap;
-    // selected_ap.push_back(20);
-
-    //select first 8 channels for testing
-    std::vector< std::size_t > selected_ch;
-    for(std::size_t i=0;i<8; i++){selected_ch.push_back(i);}
-    //for(std::size_t i=0;i<2; i++){selected_ch.push_back(i);}
-
-    //specify the indexes we want on each axis
-    spack.SelectAxisItems(0,selected_pp);
-    spack.SelectAxisItems(1,selected_ch);
-
-    wtspack.SelectAxisItems(0,selected_pp);
-    wtspack.SelectAxisItems(1,selected_ch);
-    //spack.SelectAxisItems(2,selected_ap);
+    //add the data selection operator
+    //TODO FIXME -- this is a horrible hack to get this operator into the initialization stream
+    #pragma message("fix this horrible hack")
+    mho_json data_select_format =
+    {
+        {"name", "coarse_selection"},
+        {"statement_type", "operator"},
+        {"operator_category" , "selection"},
+        {"type" , "empty"},
+        {"priority", 1.01}
+    };
+    control_format["coarse_selection"] = data_select_format;
+    (*(control_statements.begin()))["statements"].push_back(data_select_format);
 
 
-    visibility_type* alt_data = new visibility_type();
-    weight_type* alt_wt_data = new weight_type();
+    MHO_OperatorBuilderManager build_manager(opToolbox, conStore, paramStore, control_format);
+    build_manager.SetControlStatements(&control_statements);
 
-    spack.SetArgs(bl_data, alt_data);
-    spack.Initialize();
-    spack.Execute();
+    build_manager.BuildOperatorCategory("default");
+    std::cout<<"toolbox has: "<<opToolbox->GetNOperators()<<" operators."<<std::endl;
 
-    wtspack.SetArgs(wt_data, alt_wt_data);
-    wtspack.Initialize();
-    wtspack.Execute();
-
-    //TODO, work out what to do with the axis interval labels in between operations
-    //explicitly copy the channel axis labels here
-    std::get<CHANNEL_AXIS>(*alt_data).CopyIntervalLabels( std::get<CHANNEL_AXIS>(*bl_data) );
-    std::get<CHANNEL_AXIS>(*alt_wt_data).CopyIntervalLabels( std::get<CHANNEL_AXIS>(*wt_data) );
-
-    wt_data->Copy(*alt_wt_data);
-    bl_data->Copy(*alt_data);
-
-    delete alt_data;
-    delete alt_wt_data;
-
+    build_and_exec_operators(build_manager, opToolbox, "labelling");
+    build_and_exec_operators(build_manager, opToolbox, "selection");
+    
+    //safety check
     std::size_t bl_dim[visibility_type::rank::value];
-    bl_data->GetDimensions(bl_dim);
+    vis_data->GetDimensions(bl_dim);
+    for(std::size_t i=0; i < visibility_type::rank::value; i++)
+    {
+        if(bl_dim[i] == 0){msg_fatal("main", "no data left after cuts." << eom); std::exit(1);}
+    }
+    
+    build_and_exec_operators(build_manager, opToolbox, "flagging");
+    build_and_exec_operators(build_manager, opToolbox, "calibration");
 
     //take a snapshot
-    take_snapshot_here("test", "visib", __FILE__, __LINE__, bl_data);
+    take_snapshot_here("test", "visib", __FILE__, __LINE__, vis_data);
     take_snapshot_here("test", "weights", __FILE__, __LINE__,  wt_data);
 
-    // //apply the data weights
-    // for(std::size_t pp =0; pp < bl_dim[0]; pp++)
-    // {
-    //     for(std::size_t ch=0; ch < bl_dim[1]; ch++)
-    //     {
-    //         for(std::size_t ap=0; ap < bl_dim[2]; ap++)
-    //         {
-    //             bl_data->SubView(pp, ch, ap) *= (*wt_data)(pp, ch, ap, 0);
-    //         }
-    //     }
-    // }
-
     // //compute the sum of the weights
-    // std::cout<<"weight at 0 = " << wt_data->at(0,0,0,0) <<std::endl;
     weight_type temp_weights;
     temp_weights.Copy(*wt_data);
     MHO_Reducer<weight_type, MHO_CompoundSum> wt_reducer;
@@ -460,43 +331,16 @@ int main(int argc, char** argv)
     wt_reducer.Initialize();
     wt_reducer.Execute();
 
-    total_ap_frac = temp_weights[0];
+    double total_ap_frac = temp_weights[0];
     std::cout<<"reduced weights = "<<temp_weights[0]<<std::endl;
 
-    //change weights uuid  to prevent collision with previous snapshot
-    // MHO_UUIDGenerator gen;
-    // MHO_UUID new_uuid = gen.GenerateUUID(); //random object id
-    // temp_weights->SetObjectUUID(new_uuid);
+    wt_data->Insert("total_summed_weights", total_ap_frac);
+
     take_snapshot_here("test", "reduced_weights", __FILE__, __LINE__,  &temp_weights);
-
-    //(*bl_data) *= 1.0/(*wt_data)[0];
-
-    ////////////////////////////////////////////////////////////////////////////
-    //APPLY DATA CORRECTIONS (A PRIORI -- PCAL)
-    ////////////////////////////////////////////////////////////////////////////
-
-    //apply manual pcal
-    //construct the pcal array...need to re-think how we are going to move control block info around (scalar parameters vs. arrays etc)
-    manual_pcal_type* ref_pcal = cb_wrapper.GetRefStationManualPCOffsets();
-    manual_pcal_type* rem_pcal = cb_wrapper.GetRemStationManualPCOffsets();
-
-    MHO_ManualChannelPhaseCorrection pcal_correct;
-
-    pcal_correct.SetArgs(bl_data, rem_pcal, bl_data);
-    ok = pcal_correct.Initialize();
-    check_step_error(ok, "main", "ref pcal initialization." << eom );
-    ok = pcal_correct.Execute();
-    check_step_error(ok, "main", "ref pcal execution." << eom );
-
-    pcal_correct.SetArgs(bl_data, ref_pcal, bl_data);
-    ok = pcal_correct.Initialize();
-    check_step_error(ok, "main", "rem pcal initialization." << eom );
-    ok = pcal_correct.Execute();
-    check_step_error(ok, "main", "rem pcal execution." << eom );
 
 
     //output for the delay
-    visibility_type* sbd_data = bl_data->CloneEmpty();
+    visibility_type* sbd_data = vis_data->CloneEmpty();
     bl_dim[FREQ_AXIS] *= 4; //normfx implementation demands this
     sbd_data->Resize(bl_dim);
 
@@ -506,23 +350,21 @@ int main(int argc, char** argv)
 
     //run norm-fx via the wrapper class (x-form to SBD space)
     MHO_NormFX nfxOp;
-    nfxOp.SetArgs(bl_data, wt_data, sbd_data);
+    nfxOp.SetArgs(vis_data, wt_data, sbd_data);
     ok = nfxOp.Initialize();
     check_step_fatal(ok, "main", "normfx initialization." << eom );
 
     ok = nfxOp.Execute();
     check_step_fatal(ok, "main", "normfx execution." << eom );
 
-    //take snapeshot of sbd data after normfx
+    //take snapshot of sbd data after normfx
     take_snapshot_here("test", "sbd", __FILE__, __LINE__, sbd_data);
 
     //run the transformation to delay rate space (this also involves a zero padded FFT)
     MHO_DelayRate drOp;
-    //MHO_DelayRate drOp;
     visibility_type* sbd_dr_data = sbd_data->CloneEmpty();
-    drOp.SetReferenceFrequency(6000.0);
+    drOp.SetReferenceFrequency(ref_freq);
     drOp.SetArgs(sbd_data, wt_data, sbd_dr_data);
-    //drOp.SetArgs(sbd_data, sbd_dr_data);
     ok = drOp.Initialize();
     check_step_fatal(ok, "main", "dr initialization." << eom );
     ok = drOp.Execute();
@@ -530,276 +372,179 @@ int main(int argc, char** argv)
 
     take_snapshot_here("test", "sbd_dr", __FILE__, __LINE__, sbd_dr_data);
 
-    //collect the sky frequency values of each channel before we x-form to MBD space
-    // std::vector< double > chan_freqs;
-    // std::string sky_freq_key = "sky_freq";
-    // auto chan_ax = &(std::get<CHANNEL_AXIS>(*bl_data) );
-    // chan_ax->CollectAxisElementLabelValues(sky_freq_key, chan_freqs);
-    // if(chan_freqs.size() != chan_ax->GetSize() ){msg_error("main", "channel axis and and sky frequency size mismatch" << eom);}
+    //coarse SBD/MBD/DR search (locates max bin)
+    MHO_MBDelaySearch mbdSearch;
+    mbdSearch.SetArgs(sbd_dr_data);
+    ok = mbdSearch.Initialize();
+    check_step_fatal(ok, "main", "mbd initialization." << eom );
+    ok = mbdSearch.Execute();
+    check_step_fatal(ok, "main", "mbd execution." << eom );
 
-    //calculate the frequncy grid for MBD search
-    MHO_UniformGridPointsCalculator gridCalc;
-    // gridCalc.SetPoints(chan_freqs);
-    gridCalc.SetPoints( std::get<CHANNEL_AXIS>(*bl_data).GetData(), std::get<CHANNEL_AXIS>(*bl_data).GetSize() );
-    gridCalc.Calculate();
+    int c_mbdmax = mbdSearch.GetMBDMaxBin();
+    int c_sbdmax = mbdSearch.GetSBDMaxBin();
+    int c_drmax = mbdSearch.GetDRMaxBin();
 
-    //std::cout<<"grid info: "<<gridCalc.GetGridStart()<<", "<<gridCalc.GetGridSpacing()<<", "<<gridCalc.GetNGridPoints()<<std::endl;
-    sbd_dr_data->GetDimensions(bl_dim);
-    double gstart = gridCalc.GetGridStart();
-    double gspace = gridCalc.GetGridSpacing();
-    std::size_t ngrid_pts = gridCalc.GetNGridPoints();
-    auto mbd_bin_map = gridCalc.GetGridIndexMap();
-
-    //some dims
-    std::size_t nsdb = sbd_dr_data->GetDimension(FREQ_AXIS);
-    std::size_t ndr = sbd_dr_data->GetDimension(TIME_AXIS);
-
-    mbd_dr_type mbd_dr_data;
-    mbd_dr_amp_type mbd_dr_amp_data;
-    mbd_dr_data.Resize(ngrid_pts, ndr);
-    mbd_dr_amp_data.Resize(ngrid_pts, ndr);
-
-    //set up FFT and rotator engines
-    MHO_MultidimensionalFastFourierTransform< mbd_dr_type > fFFTEngine2;
-    MHO_CyclicRotator< mbd_dr_type > fCyclicRotator2;
-    fFFTEngine2.SetArgs(&mbd_dr_data);
-    fFFTEngine2.DeselectAllAxes();
-    fFFTEngine2.SelectAxis(0);
-    fFFTEngine2.SetForward();
-    ok = fFFTEngine2.Initialize();
-    check_step_fatal(ok, "main", "fft engine initialization." << eom );
-
-    fCyclicRotator2.SetOffset(0, ngrid_pts/2);
-    fCyclicRotator2.SetArgs(&mbd_dr_data);
-    ok = fCyclicRotator2.Initialize();
-    check_step_fatal(ok, "main", "cyclic rotation initialization." << eom );
-
-    //loop over the single-band delay 'lags', computing the MBD/DR function
-    //find the max for each SBD
-    int c_mbdmax, c_sbdmax, c_drmax;
-    double maxmbd = 0.0;
-    for(std::size_t sbd_idx=0; sbd_idx<nsdb; sbd_idx++)
-    {
-        mbd_dr_data.ZeroArray(); //zero out workspace
-        mbd_dr_amp_data.ZeroArray();
-
-        //set up the mbd delay axis (in frequency space)
-        auto mbd_ax = &(std::get<0>(mbd_dr_data) );
-        for(std::size_t i=0; i<ngrid_pts;i++)
-        {
-            mbd_ax->at(i) = i*gspace;
-        }
-
-        //set up the delay rate axis
-        auto dr_ax = &(std::get<1>(mbd_dr_data) );
-        for(std::size_t i=0;i<ndr;i++)
-        {
-            dr_ax->at(i) = std::get<TIME_AXIS>(*sbd_dr_data)(i);
-        }
-
-        //copy in the data from each channel for this SDB/DR
-        for(std::size_t ch=0; ch<bl_dim[1]; ch++)
-        {
-            std::size_t mbd_bin = mbd_bin_map[ch];
-            for(std::size_t dr_idx=0; dr_idx < ndr; dr_idx++)
-            {
-                 mbd_dr_data(mbd_bin, dr_idx) = (*sbd_dr_data)(0, ch, dr_idx, sbd_idx);
-            }
-            // mbd_dr_data.SliceView(mbd_bin, ":") = sbd_dr_data->SliceView(0, ch,":" ,sbd_idx); //TODO why does this not work??
-        }
-
-        //now run an FFT along the MBD axis and cyclic rotate
-        ok = fFFTEngine2.Execute();
-        check_step_fatal(ok, "main", "fft engine execution." << eom );
-        ok = fCyclicRotator2.Execute();
-        check_step_fatal(ok, "main", "cyclic rotation execution." << eom );
-
-        //set the axes equal
-        std::get<0>(mbd_dr_amp_data) = std::get<0>(mbd_dr_data);
-        std::get<1>(mbd_dr_amp_data) = std::get<1>(mbd_dr_data);
-
-        std::size_t total_mbd_dr_size = mbd_dr_data.GetSize();
-        for(std::size_t i=0; i<total_mbd_dr_size; i++)
-        {
-            mbd_dr_amp_data[i] = std::abs(mbd_dr_data[i]);
-        }
-
-        //search for the peak in MBD and DR
-        MHO_ExtremaSearch< mbd_dr_amp_type > mSearch;
-        mSearch.SetArgs(&mbd_dr_amp_data);
-        mSearch.Initialize();
-        mSearch.Execute();
-        std::size_t max_loc = mSearch.GetMaxLocation();
-        std::size_t min_loc = mSearch.GetMinLocation();
-        auto loc_array = mbd_dr_amp_data.GetIndicesForOffset(max_loc);
-        double tmp_max = mbd_dr_amp_data[max_loc]/total_ap_frac;
-
-        // std::cout<<"index sbd, mbd, dr: "<<sbd_idx<<", "<<loc_array[0]<<", "<<loc_array[1]<<std::endl;
-        // std::cout<<"mbd, dr bins = "<< std::get<0>(mbd_dr_amp_data)(loc_array[0])<<", "<<std::get<1>(mbd_dr_amp_data)(loc_array[1]) <<std::endl;
-        // std::cout<<"max value = "<<tmp_max<<std::endl;
-
-        if(tmp_max > maxmbd)
-        {
-            maxmbd = tmp_max;
-            c_mbdmax = loc_array[0];
-            c_sbdmax = sbd_idx;
-            c_drmax = loc_array[1];
-        }
-
-        if(sbd_idx == 255)
-        {
-            take_snapshot_here("test", "mbd_dr", __FILE__, __LINE__, &mbd_dr_amp_data);
-        }
-    }
-
-    auto mbd_ax_ptr = &(std::get<0>(mbd_dr_data) );
-    auto mbd_dr_ptr = &(std::get<1>(mbd_dr_data) );
+    std::cout<<"SBD/MBD/DR max bins = "<<c_sbdmax<<", "<<c_mbdmax<<", "<<c_drmax<<std::endl;
 
 
+    ////////////////////////////////////////////////////////////////////////////
+    //FINE INTERPOLATION STEP (search over 5x5x5 grid around peak)
+    ////////////////////////////////////////////////////////////////////////////
+    MHO_InterpolateFringePeak fringeInterp;
+    fringeInterp.SetReferenceFrequency(ref_freq);
+    fringeInterp.SetMaxBins(c_sbdmax, c_mbdmax, c_drmax);
 
-    // ////////////////////////////////////////////////////////////////////////////
-    // //FINE INTERPOLATION STEP (search over 5x5x5 grid around peak)
-    // ////////////////////////////////////////////////////////////////////////////
+    fringeInterp.SetSBDArray(sbd_data);
+    fringeInterp.SetWeights(wt_data);
 
-    fine_peak_interpolation(sbd_data, wt_data, mbd_ax_ptr, mbd_dr_ptr, c_mbdmax, c_drmax, c_sbdmax);
+    #pragma message("TODO FIXME -- we shouldn't be referencing internal members of the MHO_MBDelaySearch class workspace")
+    //Figure out how best to present this axis data to the fine-interp function.
+    fringeInterp.SetMBDAxis( mbdSearch.GetMBDAxis());
+    fringeInterp.SetDRAxis( mbdSearch.GetDRAxis());
 
+    fringeInterp.Initialize();
+    fringeInterp.Execute();
 
+    //todo ought to make this a more uniform/cleaner interface (probably using the common label map store)
+    double sbdelay = fringeInterp.GetSBDelay();
+    double mbdelay = fringeInterp.GetMBDelay();
+    double drate = fringeInterp.GetDelayRate();
+    double frate = fringeInterp.GetFringeRate();
+    double famp = fringeInterp.GetFringeAmplitude();
 
     ////////////////////////////////////////////////////////////////////////////
     //PLOTTING/DEBUG
     ////////////////////////////////////////////////////////////////////////////
+    //TODO FIXME Organize all the plot data generation better
 
+    MHO_ComputePlotData mk_plotdata;
 
+    mk_plotdata.SetReferenceFrequency(ref_freq);
+    mk_plotdata.SetMBDelay(mbdelay);
+    mk_plotdata.SetDelayRate(drate);
+    mk_plotdata.SetSBDelay(sbdelay);
+    mk_plotdata.SetSBDArray(sbd_data);
+    mk_plotdata.SetSBDelayBin(c_sbdmax);
+    mk_plotdata.SetWeights(wt_data);
 
-    //#ifdef USE_ROOT
-    #ifdef NOT_DISABLED
+    auto sbd_amp = mk_plotdata.calc_sbd();
+    auto mbd_amp = mk_plotdata.calc_mbd();
+    auto dr_amp = mk_plotdata.calc_dr();
+    auto sbd_xpower = mk_plotdata.calc_xpower_KLUDGE();
+    double coh_avg_phase = mk_plotdata.calc_phase();
 
-    std::cout<<"starting root plotting"<<std::endl;
+    //calculate AP period
+    double ap_delta = std::get<TIME_AXIS>(*vis_data)(1) - std::get<TIME_AXIS>(*vis_data)(0);
 
-    //ROOT stuff for plots
+    #ifdef USE_PYBIND11
 
-    int dummy_argc = 0;
-    char tmp = '\0';
-    char* argv_placeholder = &tmp;
-    char** dummy_argv = &argv_placeholder;
-
-    TApplication* App = new TApplication("test",&dummy_argc,dummy_argv);
-
-    MHO_RootCanvasManager cMan;
-    MHO_RootGraphManager gMan;
-
-    MHO_ExtremaSearch< MHO_NDArrayView< visibility_element_type, 2 > > mSearch;
-    MHO_ExtremaSearch< MHO_NDArrayView< visibility_element_type, 1 > > mbdSearch;
-
-    auto dr_rate_ax = std::get<TIME_AXIS>(*sbd_dr_data);
-    auto delay_ax = std::get<FREQ_AXIS>(*sbd_dr_data);
-
-    //divide out the reference frequency (need to think about this )
-    double rescale = 1.0/6.0;//ref freq = 6GHz (axis is then in nanosec/sec)
-    for(std::size_t d=0; d<dr_rate_ax.GetSize(); d++)
+    mho_json plot_dict;
+    std::size_t npts = sbd_amp.GetSize();
+    for(std::size_t i=0;i<npts;i++)
     {
-        dr_rate_ax(d) *= rescale;
+        plot_dict["SBD_AMP"].push_back( sbd_amp(i) );
+        plot_dict["SBD_AMP_XAXIS"].push_back( std::get<0>(sbd_amp)(i) );
     }
 
-
-
-
-    for(std::size_t ch=0; ch<bl_dim[CHANNEL_AXIS]; ch++)
+    npts = mbd_amp.GetSize();
+    for(std::size_t i=0;i<npts;i++)
     {
-        std::stringstream ss;
-        ss << "channel_test";
-        ss << ch;
-
-        auto c = cMan.CreateCanvas(ss.str().c_str(), 800, 800);
-        auto ch_slice = sbd_dr_data->SliceView(0,ch,":",":");
-        mSearch.SetArgs(&ch_slice);
-        mSearch.Initialize();
-        mSearch.Execute();
-
-        //really dumb/simple way of looking at the location of the delay/dr_rate max location
-        double vmax = mSearch.GetMax();
-        double vmin = mSearch.GetMin();
-        std::size_t max_loc = mSearch.GetMaxLocation();
-        std::size_t min_loc = mSearch.GetMinLocation();
-        auto loc_array = ch_slice.GetIndicesForOffset(max_loc);
-        std::cout<<ss.str()<<": max = "<<vmax<<" at index location: ("<<loc_array[0]<<", "<<loc_array[1] <<")  = ("
-        <<dr_rate_ax(loc_array[0])<<", "<<delay_ax(loc_array[1])<<") " <<std::endl;
-        visibility_element_type val = ch_slice(loc_array[0], loc_array[1]);
-        std::cout<<"max mag = "<<std::abs(val)<<", arg = "<<std::arg(val)*(180./M_PI)<<std::endl;
-
-        auto gr = gMan.GenerateComplexGraph2D(ch_slice, dr_rate_ax, delay_ax, ROOT_CMPLX_PLOT_ABS );
-
-        //at the sbd, dr max locations, lets look for the mbd max too
-        auto mbd_slice = mbd_data.SliceView(0, ":", loc_array[0], loc_array[1]);
-        auto mbd_ax = &(std::get<CHANNEL_AXIS>(mbd_data));
-
-        if(ch==0)
-        {
-            //TODO FIXME
-            //for some reason our MBD plot axis is flipped w.r.t to fourfit plot
-            //is this a sign convention? due to LSB vs USB? Don't know right now
-            double fudge_factor = -1; //sign flip
-            for(std::size_t d=0; d<mbd_ax->GetSize(); d++)
-            {
-                (*mbd_ax)(d) *= fudge_factor;
-            }
-        }
-
-
-        // for(std::size_t x=0;x<mbd_slice.GetSize(); x++)
-        // {
-        //     std::cout<<"x, val = "<<x<<", "<<(*mbd_ax)(x)<<", "<<mbd_slice(x)<<std::endl;
-        // }
-
-        mbdSearch.SetArgs(&mbd_slice);
-        mbdSearch.Initialize();
-        mbdSearch.Execute();
-
-        auto new_mbd_ax = std::get<CHANNEL_AXIS>(mbd_data);
-        auto gr2 = gMan.GenerateComplexGraph1D(mbd_slice, *mbd_ax, ROOT_CMPLX_PLOT_ABS );
-
-        std::size_t max_mbd_loc = mbdSearch.GetMaxLocation();
-        auto mbd_loc_array = mbd_slice.GetIndicesForOffset(max_mbd_loc);
-        std::cout<<"mbd max located at: "<<mbd_loc_array[0]<<" = "<<(*mbd_ax)(mbd_loc_array[0])<<std::endl;
-
-
-
-        c->cd();
-        c->Divide(1,2);
-
-        c->cd(1);
-        c->SetTopMargin(0.1);
-        c->SetRightMargin(0.2);
-
-        gr->SetTitle( "Fringe; delay rate (ns/s); Single band delay (#mus); Amp");
-        gr->Draw("COLZ");
-        gr->GetHistogram()->GetXaxis()->CenterTitle();
-        gr->GetHistogram()->GetYaxis()->CenterTitle();
-        gr->GetHistogram()->GetZaxis()->CenterTitle();
-        gr->GetHistogram()->GetXaxis()->SetTitleOffset(1.2);
-        gr->GetHistogram()->GetYaxis()->SetTitleOffset(1.08);
-        gr->GetHistogram()->GetZaxis()->SetTitleOffset(-0.4);
-        gr->Draw("COLZ");
-
-
-
-        c->Update();
-        c->cd(2);
-        c->SetTopMargin(0.1);
-        c->SetRightMargin(0.2);
-
-        gr2->SetTitle( "Fringe; MBD; Amp");
-        gr2->Draw("APL");
-
-
-        c->Update();
+        plot_dict["MBD_AMP"].push_back( mbd_amp(i) );
+        plot_dict["MBD_AMP_XAXIS"].push_back( std::get<0>(mbd_amp)(i) );
     }
-    App->Run();
+
+    npts = dr_amp.GetSize();
+    for(std::size_t i=0;i<npts;i++)
+    {
+        plot_dict["DLYRATE"].push_back( dr_amp(i) );
+        plot_dict["DLYRATE_XAXIS"].push_back( std::get<0>(dr_amp)(i) );
+    }
+
+    npts = sbd_xpower.GetSize();
+    for(std::size_t i=0;i<npts;i++)
+    {
+        plot_dict["XPSPEC-ABS"].push_back( std::abs(sbd_xpower(i) ) );
+        plot_dict["XPSPEC-ARG"].push_back( std::arg(sbd_xpower(i) )*(180.0/M_PI) );
+        plot_dict["XPSPEC_XAXIS"].push_back( std::get<0>(sbd_xpower)(i) );
+    }
+
+    mho_json exper_section = vexInfo["$EXPER"];
+    auto exper_info = exper_section.begin().value();
+    std::cout<< exper_info["exper_name"] << std::endl;
+
+    mho_json src_section = vexInfo["$SOURCE"];
+    auto src_info = src_section.begin().value();
+
+    mho_json sched_section = vexInfo["$SCHED"];
+    std::string scan_name = sched_section.begin().key();
+    auto sched_info = sched_section.begin().value();
+
+    mho_json freq_section = vexInfo["$FREQ"];
+    auto freq_info = freq_section.begin().value();
+    double sample_rate = freq_info["sample_rate"]["value"];
+    double samp_period = 1.0/(sample_rate*1e6);
 
 
-    #endif
+    plot_dict["Quality"] = "-";
+
+    //Poor imitation of SNR -- needs corrections
+    //hardcoded dummy values right now
+    double eff_npol = 1.0;
+    double amp_corr_factor = 1.0;
+    double fact1 = 1.0; //more than 16 lags
+    double fact2 = 0.881; //2bit x 2bit
+    double fact3 = 0.970; //difx
+    double acc_period = ap_delta;
+    double inv_sigma = fact1 * fact2 * fact3 * std::sqrt(acc_period/samp_period);
+    plot_dict["SNR"] = famp * inv_sigma *  sqrt(total_ap_frac * eff_npol)/(1e4* amp_corr_factor);
+
+    std::size_t nchan = std::get<CHANNEL_AXIS>(*vis_data).GetSize();
+    plot_dict["IntgTime"] = total_ap_frac*acc_period /(double)nchan;
+
+    plot_dict["Amp"] = famp;
+
+    #pragma message("TODO FIXME -- when control file parameter mbd_anchor sbd is used there is an additional correction done to fringe phase, see fill_208.c line 158!!")
+    plot_dict["ResPhase"] = std::fmod(coh_avg_phase * (180.0/M_PI), 360.0);
+    plot_dict["PFD"] = "-";
+    plot_dict["ResidSbd(us)"] = sbdelay;
+    plot_dict["ResidMbd(us)"] = mbdelay;
+    plot_dict["FringeRate(Hz)"]  = frate;
+    plot_dict["IonTEC(TEC)"] = "-";
+    plot_dict["RefFreq(MHz)"] = ref_freq;
+    plot_dict["AP(sec)"] = ap_delta;
+    plot_dict["ExperName"] = exper_info["exper_name"];
+    plot_dict["ExperNum"] = "-";
+    plot_dict["YearDOY"] = "-";
+    plot_dict["Start"] = "-";
+    plot_dict["Stop"] = "-";
+    plot_dict["FRT"] = "-";
+    plot_dict["CorrTime"] = "-";
+    plot_dict["FFTime"] = "-";
+    plot_dict["BuildTime"] = "-";
+
+    plot_dict["RA"] = src_info["ra"];
+    plot_dict["Dec"] = src_info["dec"];
+
+    plot_dict["RootScanBaseline"] = scanStore.GetRootFileBasename() + ", " + scan_name + ", " + baseline;
+    plot_dict["CorrVers"] = "HOPS4/DiFX fourfit  rev 0";
+    plot_dict["PolStr"] = polprod;
 
 
+    std::cout<<"python plotting"<<std::endl;
+    //test stuff
+    py::scoped_interpreter guard{}; // start the interpreter and keep it alive, need this or we segfault
+    py::dict plot_obj = plot_dict;
+
+    //load our interface module
+    auto ff_test = py::module::import("ff_plot_test");
+    //call a python functioin on the interface class instance
+    ff_test.attr("fourfit_plot")(plot_obj, "fplot.png");
+
+    #endif //USE_PYBIND11
+
+    delete paramStore;
+    delete conStore;
+    delete opToolbox;
 
     return 0;
 }

@@ -1,6 +1,18 @@
 hops_internal_include_directories()
 
-set(HOPS_TEST_LIBS MHO_Message MHO_Utilities vex2json MHO_Math MHO_Containers MHO_Snapshot MHO_Operators MHO_Calibration MHO_MK4Interface MHO_Control)
+set(HOPS_TEST_LIBS 
+    MHO_Message 
+    MHO_Utilities 
+    vex2json 
+    MHO_Math 
+    MHO_Containers 
+    MHO_Snapshot 
+    MHO_Operators 
+    MHO_Calibration 
+    MHO_MK4Interface 
+    MHO_Control
+    MHO_Initialization
+)
 
 set(SOURCE_BASENAMES
     #TestSingleBandDelay
@@ -13,6 +25,7 @@ set(SOURCE_BASENAMES
     ConvertVexToJSON
     TestSignalFFT
     CompareCorFiles
+    SimpleFringeSearch
 )
 
 #for testing purposes only -- ROOT not intended to be a dependency
@@ -25,6 +38,26 @@ if (HOPS_USE_ROOT)
     list(APPEND HOPS_TEST_LIBS MHO_RootPlugin ${ROOT_LIBRARIES})
 endif()
 
+
+if(HOPS_USE_PYBIND11)
+    hops_internal_include_directories(../../Plugins/PythonBindings/Containers/include)
+    hops_internal_include_directories(../../Plugins/PythonBindings/Operators/include)
+    list(APPEND PYBIND_TEST_LIBS pyMHO_Containers pyMHO_Operators pybind11::embed)
+    add_cflag(USE_PYBIND11)
+    # list(APPEND PYBIND_TEST_BASENAMES
+    #     SimpleFringeSearchPlot
+    # )
+    list(APPEND HOPS_TEST_LIBS ${PYBIND_TEST_LIBS})
+    # foreach( BASENAME ${PYBIND_TEST_BASENAMES} )
+    #     add_executable( ${BASENAME} ${BASENAME}.cc )
+    #     target_link_libraries( ${BASENAME} ${HOPS_TEST_LIBS} ${PYBIND_TEST_LIBS})
+    # endforeach( BASENAME )
+    # hops_install_executables( ${PYBIND_TEST_BASENAMES} )
+
+    #temp work around until we do this properly
+    install(PROGRAMS "${CMAKE_CURRENT_SOURCE_DIR}/ff_plot_test.py" DESTINATION ${PYTHON_MODULE_INSTALL_DIR})
+endif(HOPS_USE_PYBIND11)
+
 foreach( BASENAME ${SOURCE_BASENAMES} )
     add_executable( ${BASENAME} ${BASENAME}.cc )
     target_link_libraries( ${BASENAME} ${HOPS_TEST_LIBS})
@@ -33,25 +66,6 @@ endforeach( BASENAME )
 hops_install_executables( ${SOURCE_BASENAMES} )
 
 ################################################################################
-#executables which link against additional old fourfit libraries
-#(temporary measure while we try to debug/transition)
-set(FFMATH_RELPATH "../../c_src/fourfit_libs/ffmath")
-list(APPEND RELPATH_LIST ${FFMATH_RELPATH})
-
-foreach(path ${RELPATH_LIST})
-    hops_internal_include_directories(${CMAKE_CURRENT_SOURCE_DIR}/${path}/include)
-endforeach(path)
-
-set(OLD_DEV_TEST_LIBS "ffmath")
-
-list(APPEND OLD_DEV_SOURCE_BASENAMES
-    SimpleFringeSearch
-)
-foreach( BASENAME ${OLD_DEV_SOURCE_BASENAMES} )
-    add_executable( ${BASENAME} ${BASENAME}.cc )
-    target_link_libraries( ${BASENAME} ${HOPS_TEST_LIBS} ${OLD_DEV_TEST_LIBS})
-endforeach( BASENAME )
-hops_install_executables( ${OLD_DEV_SOURCE_BASENAMES} )
 
 
 if(HOPS_ENABLE_TEST)

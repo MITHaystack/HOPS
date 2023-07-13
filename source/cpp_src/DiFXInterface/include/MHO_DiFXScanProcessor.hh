@@ -80,7 +80,7 @@ class MHO_DiFXScanProcessor
         void CleanUp();
 
         //the DiFX input file structure 
-        json fInput;
+        mho_json fInput;
 
         //the root code assigned to this scan 
         std::string fRootCode;

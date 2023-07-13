@@ -30,7 +30,7 @@ int main(int argc, char **argv) {
     }
   }
 
-  json obj = convertToJSON(my203);
+  mho_json obj = convertToJSON(my203);
   std::cout << obj.dump(2) << std::endl;
 
   return 0;

@@ -57,7 +57,7 @@ int main(int argc, char **argv) {
     my205.ffit_chan[i].channels[3] = 3;
   }
 
-  json obj = convertToJSON(my205);
+  mho_json obj = convertToJSON(my205);
   std::cout << obj.dump(2) << std::endl;
 
   return 0;

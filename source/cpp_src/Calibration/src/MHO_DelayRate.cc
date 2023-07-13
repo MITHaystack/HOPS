@@ -31,7 +31,7 @@ MHO_DelayRate::InitializeImpl(const XArgType1* in1, const XArgType2* in2, XArgTy
         #pragma message("Fix the DRSP size calculation to remove upper limit of 8192.")
         fDRSPSize = 8192;
         while ( (fDRSPSize / 4) > fInDims[TIME_AXIS] ) {fDRSPSize /= 2;};
-        std::cout<<"DRSP size = "<<fDRSPSize<<std::endl;
+        msg_debug("calibration", "delay rate search space size = "<< fDRSPSize << eom );
         ////////////////////////////////////////////////////////////////////////
 
         std::size_t np = fDRSPSize*4;
@@ -52,12 +52,6 @@ MHO_DelayRate::InitializeImpl(const XArgType1* in1, const XArgType2* in2, XArgTy
         status = fCyclicRotator.Initialize();
         if(!status){msg_error("operators", "Could not initialize cyclic rotation in MHO_DelayRate." << eom); return false;}
 
-        // fSubSampler.SetDimensionAndStride(TIME_AXIS, 2);
-        // fSubSampler.SetArgs(out);
-        // status = fSubSampler.Initialize();
-        // if(!status){msg_error("operators", "Could not initialize sub-sampler in MHO_DelayRate." << eom); return false;}
-
-
         fInitialized = true;
     }
 
@@ -74,23 +68,12 @@ MHO_DelayRate::ExecuteImpl(const XArgType1* in1, const XArgType2* in2, XArgType3
 
     if(fInitialized)
     {
-
-        // //xform in the time (AP) axis to look for delay/fringe rate
-        // //output for the delay
-        // ch_visibility_type* sbd_dr_data = sbd_data->CloneEmpty();
-        // sbd_dr_data->ZeroArray();
-        // sbd_data->GetDimensions(bl_dim);
-        // std::size_t nap = bl_dim[TIME_AXIS];
-        // bl_dim[TIME_AXIS] = drsp_size;
-        // sbd_dr_data->Resize(bl_dim);
-
-        //std::get<CHANNEL_AXIS>(*sbd_dr_data).CopyIntervalLabels( std::get<CHANNEL_AXIS>(*bl_data) );
-
-
         //apply the data weights to the data in fWorkspace
         std::size_t pprod = fWorkspace.GetDimension(POLPROD_AXIS);
         std::size_t nch = fWorkspace.GetDimension(CHANNEL_AXIS);
         std::size_t nap = fWorkspace.GetDimension(TIME_AXIS);
+        
+        double time_delta = std::get<TIME_AXIS>(*in1)(1) -  std::get<TIME_AXIS>(*in1)(0);
 
         for(std::size_t pp=0; pp<pprod; pp++)
         {
@@ -98,7 +81,7 @@ MHO_DelayRate::ExecuteImpl(const XArgType1* in1, const XArgType2* in2, XArgType3
             {
                 for(std::size_t ap=0; ap<nap; ap++)
                 {
-                    fWorkspace.SliceView(pp, ch, ap, ":") *= (*in2)(pp, ch, ap, 0);
+                    fWorkspace.SliceView(pp, ch, ap, ":") *= (*in2)(pp, ch, ap, 0); //apply the data weights
                 }
             }
         }
@@ -113,6 +96,7 @@ MHO_DelayRate::ExecuteImpl(const XArgType1* in1, const XArgType2* in2, XArgType3
 
         ok = fCyclicRotator.Execute();
         check_step_fatal(ok, "calibration", "cyclic rotation execution." << eom );
+        
 
         //linear interpolation, and conversion from fringe rate to delay rate step
         int sz = 4*fDRSPSize;
@@ -120,8 +104,6 @@ MHO_DelayRate::ExecuteImpl(const XArgType1* in1, const XArgType2* in2, XArgType3
         out->Copy(fWorkspace2);
         out->Resize(pprod, nch, fDRSPSize, nsbd);
         out->ZeroArray();
-
-        //std::cout<<"sizes "<<pprod<<", "<< nch << ", " << fDRSPSize << ", " << nsbd <<std::endl;
 
         for(std::size_t pp=0; pp<pprod; pp++)
         {
@@ -136,62 +118,22 @@ MHO_DelayRate::ExecuteImpl(const XArgType1* in1, const XArgType2* in2, XArgType3
                     {
                         double num = ( (double)dr - (double)(fDRSPSize/2) ) * b + ( (double)sz * 1.5);
                         double l_fp = fmod(  num , (double) sz) ;
-                        //printf("L, num, l_fp = %d, %f, %f \n ", dr, num, l_fp);
                         int l_int = (int)l_fp;
-                        int l_int2 = l_int+1;
                         if (l_int < 0){ l_int = 0; }
+                        int l_int2 = l_int+1;
+                        //std::cout<<sz<<":"<<l_int<<": "<<l_int2<<std::endl;
                         if (l_int2 > (sz-1)){ l_int2 = sz - 1;}
+                        //std::cout<<sz<<":"<<l_int<<": "<<l_int2<<std::endl;
                         sbd_type::value_type interp_val = fWorkspace2(pp, ch, l_int, sbd) * (1.0 - l_fp + l_int) + fWorkspace2(pp, ch, l_int2, sbd) * (l_fp - l_int);
-                        // if(l_int ==0 && sbd == 0)
-                        // {
-                        //     std::cout<<"L = "<<dr<<std::endl;
-                        //     std::cout<<"l_fp = "<<l_fp<<std::endl;
-                        //     std::cout<<"p1 = "<<fWorkspace2(pp, ch, l_int, sbd)<<std::endl;
-                        //     std::cout<<"p2 = "<<fWorkspace2(pp, ch, l_int2, sbd)<<std::endl;
-                        //     std::cout<<"result = "<<interp_val<<std::endl;
-                        // }
-
-                        // rate_spectrum[L] = fringe_spect[l_int] * (1.0 - l_fp + l_int)
-                        //                      + fringe_spect[l_int2] * (l_fp - l_int);
-                        //
-
-
                         (*out)(pp, ch, dr, sbd) = interp_val;
 
+                        std::get<TIME_AXIS>(*out)(dr) = ( (double)dr - (double)(fDRSPSize/2) )*(1.0/(time_delta*(double)fDRSPSize) );
                         //assign the axis value along dr axis
-                        std::get<TIME_AXIS>(*out)(dr) = std::get<TIME_AXIS>(fWorkspace2)(l_int) * (1.0 - l_fp + l_int) + std::get<TIME_AXIS>(fWorkspace2)(l_int2) * (l_fp - l_int);
+                        //std::get<TIME_AXIS>(*out)(dr) = std::get<TIME_AXIS>(fWorkspace2)(l_int) * (1.0 - l_fp + l_int) + std::get<TIME_AXIS>(fWorkspace2)(l_int2) * (l_fp - l_int);
                     }
                 }
             }
         }
-
-
-
-        //we need a step here equivalent to the odd interpolation that delay_rate.c does like this:
-
-        // for (L = 0; L < np; L++)
-        //     {
-        //     l_fp = fmod ((L - (np/2) ) * b + (size * 1.5) , (double)size) ;
-        //     l_int = (int)l_fp;
-        //     l_int2 = l_int+1;
-        //     if (l_int < 0) l_int = 0;
-        //     if (l_int2 > (size-1)) l_int2 = size - 1;
-        //     rate_spectrum[L] = fringe_spect[l_int] * (1.0 - l_fp + l_int)
-        //                      + fringe_spect[l_int2] * (l_fp - l_int);
-        //
-        //
-
-
-
-
-
-
-        // ok = fSubSampler.Execute();
-        // check_step_fatal(ok, "calibration", "sub sample execution." << eom );
-        //
-        // //normalize the array
-        // double norm =  1.0/(double) out->GetDimension(TIME_AXIS);
-        // *(out) *= norm;
 
         return true;
     }

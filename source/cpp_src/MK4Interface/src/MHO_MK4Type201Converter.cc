@@ -41,21 +41,21 @@ const int PULSARPHASESIZE = 4;
 //    } date_struct;
 
 namespace hops {
-json skyCoordToJSON(const sky_coord &t) {
+mho_json skyCoordToJSON(const sky_coord &t) {
   return {{"ra_hrs", t.ra_hrs},     {"ra_mins", t.ra_mins},
           {"ra_secs", t.ra_secs},   {"dec_degs", t.dec_degs},
           {"dec_mins", t.dec_mins}, {"dec_secs", t.dec_secs}};
 }
 
-json pulsarPhaseToJSON(const double t[PULSARPHASESIZE]) {
-  json JSONArray;
+mho_json pulsarPhaseToJSON(const double t[PULSARPHASESIZE]) {
+  mho_json JSONArray;
   for (int i = 0; i < PULSARPHASESIZE; i++) {
     JSONArray[i] = t[i];
   }
   return JSONArray;
 }
 
-json convertToJSON(const type_201 &t) {
+mho_json convertToJSON(const type_201 &t) {
   return {// logic to handle edge cases where the source is 32 chars
           // this is a hold over from the previous fortran code and is an issue
           // upstream with the c code

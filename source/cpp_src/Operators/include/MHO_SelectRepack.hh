@@ -11,7 +11,7 @@
 *Description:
 * operator to select data from table and repack it into an entirely new table,
 * this typically would involve lots of copying (expensive), so it should be used
-* sparringly (e.g. initial or final data selection)
+* sparringly (e.g. initial or final coarse data selection)
 
 */
 
@@ -217,11 +217,12 @@ class MHO_SelectRepack:
                         {
                             axis2(i) = axis1( fSelection[i] );
                         }
-                        axis2.CopyTags(axis1); //copy the axis tags
+                        axis2.CopyTags(axis1); //copy the axis tags 
+                        axis2.CopyIntervalLabels(axis1); //copy labels
                     }
                     else 
                     {
-                        axis2.Copy(axis1); //no selection done on this axis, just copy
+                        axis2.Copy(axis1); //no selection done on this axis, just copy everything
                     }
                 }
 

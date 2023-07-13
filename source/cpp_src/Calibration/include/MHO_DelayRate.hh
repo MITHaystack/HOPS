@@ -27,8 +27,6 @@
     #include "MHO_FastFourierTransform.hh"
 #endif
 
-
-#include "MHO_MultidimensionalFastFourierTransform.hh"
 #include "MHO_MultidimensionalPaddedFastFourierTransform.hh"
 
 
@@ -47,9 +45,9 @@ class MHO_DelayRate: public MHO_BinaryOperator<
     public:
         MHO_DelayRate();
         virtual ~MHO_DelayRate();
-        
+
         void SetReferenceFrequency(double ref_freq){fRefFreq = ref_freq;};
-        
+
     protected:
 
         using XArgType1 = visibility_type;
@@ -72,7 +70,7 @@ class MHO_DelayRate: public MHO_BinaryOperator<
 
         MHO_SubSample<sbd_type> fSubSampler;
         MHO_CyclicRotator<sbd_type> fCyclicRotator;
-        
+
         sbd_type fWorkspace;
         sbd_type fWorkspace2;
         int fDRSPSize;

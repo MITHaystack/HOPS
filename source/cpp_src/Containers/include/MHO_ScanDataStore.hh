@@ -42,8 +42,9 @@ class MHO_ScanDataStore
 
         //retieve file data (root, baseline, station)
         mho_json GetRootFileData();
-        MHO_ContainerStore* LoadBaseline(std::string baseline);
-        MHO_ContainerStore* LoadStation(std::string station);
+        std::string GetRootFileBasename(){return fDirInterface.GetBasename(fRootFileName);}
+        void LoadBaseline(std::string baseline, MHO_ContainerStore* store);
+        void LoadStation(std::string station, MHO_ContainerStore* store);
 
         //deletes all loaded containers and resets the state for another scan.
         void Clear();

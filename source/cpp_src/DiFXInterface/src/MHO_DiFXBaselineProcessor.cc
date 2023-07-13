@@ -1,11 +1,12 @@
 #include "MHO_DiFXBaselineProcessor.hh"
 #include "MHO_BinaryFileInterface.hh"
 
-#include "MHO_VisibilityPrecisionDownCaster.hh"
-#include "MHO_WeightPrecisionDownCaster.hh"
+#include "MHO_ElementTypeCaster.hh"
 
 #include <cctype>
 #include <cmath>
+
+#include <malloc.h>
 
 #define DIFX_BASE2ANT 256
 #define SCALE 10000.0
@@ -140,12 +141,12 @@ MHO_DiFXBaselineProcessor::Organize()
     for(auto it = fFreqIndexSet.begin(); it != fFreqIndexSet.end(); it++)
     {
         int freqidx = *it;
-        json freq = (*fInput)["freq"][freqidx];
+        mho_json freq = (*fInput)["freq"][freqidx];
         fBaselineFreqs.push_back(  std::make_pair(freqidx,freq) );
     }
     std::sort(fBaselineFreqs.begin(), fBaselineFreqs.end(), fFreqPredicate);
 
-    msg_debug("difx_interface", "data dimension of baseline: "<<
+    msg_debug("difx_interface", "data dimensions of baseline: "<<
               fBaselineID << " - " << fBaselineName <<" are (" << fNPolPairs << ", " << fNChannels
               << ", " << fNAPs << ", " << fNSpectralPoints <<")" << eom);
 
@@ -210,8 +211,8 @@ MHO_DiFXBaselineProcessor::ConstructVisibilityFileObjects()
         if(fV){delete fV; fV = nullptr;}
         if(fW){delete fW; fW = nullptr;}
 
-        fV = new visibility_type();
-        fW = new weight_type();
+        fV = new visibility_store_type();
+        fW = new weight_store_type();
 
         //tags for the visibilities
         fV->Resize(fNPolPairs, fNChannels, fNAPs, fNSpectralPoints);
@@ -281,7 +282,7 @@ MHO_DiFXBaselineProcessor::ConstructVisibilityFileObjects()
             for(auto fqit = fBaselineFreqs.begin(); fqit != fBaselineFreqs.end(); fqit++) //loop though in freq (low -> high) order
             {
                 int freqidx = fqit->first;
-                json dfreq = fqit->second;
+                mho_json dfreq = fqit->second;
                 double sky_freq = dfreq["freq"];
                 double bw = dfreq["bw"];
                 std::string sideband = dfreq["sideband"];
@@ -334,6 +335,7 @@ MHO_DiFXBaselineProcessor::ConstructVisibilityFileObjects()
         msg_error("difx_interface", "cannot channelize visibility data, as not all channels are equal length. Feature not yet supported" << eom );
     }
 
+    DeleteDiFXVisRecords();
 };
 
 
@@ -348,22 +350,6 @@ MHO_DiFXBaselineProcessor::WriteVisibilityObjects(std::string output_dir)
         (*fV) *= fScaleFactor;
     }
 
-    //now we down cast the double precision visibilities and weights from double to float
-    //this is to save disk space (but can be disabled)
-    MHO_VisibilityPrecisionDownCaster vdcaster;
-    MHO_WeightPrecisionDownCaster wdcaster;
-
-    visibility_store_type vis_out;
-    weight_store_type weight_out;
-
-    vdcaster.SetArgs(fV, &vis_out);
-    vdcaster.Initialize();
-    vdcaster.Execute();
-
-    wdcaster.SetArgs(fW, &weight_out);
-    wdcaster.Initialize();
-    wdcaster.Execute();
-
     //construct output file name
     std::string root_code = fRootCode;
     std::string output_file = output_dir + "/" + fBaselineShortName + "." + root_code + ".cor";
@@ -373,23 +359,13 @@ MHO_DiFXBaselineProcessor::WriteVisibilityObjects(std::string output_dir)
     if(status)
     {
         uint32_t label = 0xFFFFFFFF; //someday make this mean something
-        fTags.AddObjectUUID(vis_out.GetObjectUUID());
-        fTags.AddObjectUUID(weight_out.GetObjectUUID());
+        fTags.AddObjectUUID(fV->GetObjectUUID());
+        fTags.AddObjectUUID(fW->GetObjectUUID());
         inter.Write(fTags, "tags", label);
 
-        inter.Write(vis_out, "vis", label);
-        inter.Write(weight_out, "weight", label);
+        inter.Write(*fV, "vis", label);
+        inter.Write(*fW, "weight", label);
         inter.Close();
-
-        //TODO ADD AN OPTION TO EXPORT DOUBLE PRECISION DATA
-        // uint32_t label = 0xFFFFFFFF; //someday make this mean something
-        // fTags.AddObjectUUID(fV->GetObjectUUID());
-        // fTags.AddObjectUUID(fW->GetObjectUUID());
-        // inter.Write(fTags, "tags", label);
-        //
-        // inter.Write(*fV, "vis", label);
-        // inter.Write(*fW, "weight", label);
-        // inter.Close();
     }
     else
     {
@@ -406,12 +382,7 @@ MHO_DiFXBaselineProcessor::WriteVisibilityObjects(std::string output_dir)
 void
 MHO_DiFXBaselineProcessor::Clear()
 {
-    //delete the visibility records
-    for(std::size_t i=0; i<fRecords.size(); i++)
-    {
-        delete fRecords[i];
-    }
-    fRecords.clear();
+    DeleteDiFXVisRecords();
     fPolPairSet.clear();
     fFreqIndexSet.clear();
     fSpecPointSet.clear();
@@ -419,6 +390,18 @@ MHO_DiFXBaselineProcessor::Clear()
     fBaselineFreqs.clear();
     if(fV){delete fV; fV = nullptr;}
     if(fW){delete fW; fW = nullptr;}
+}
+
+void
+MHO_DiFXBaselineProcessor::DeleteDiFXVisRecords()
+{
+    //delete the visibility records
+    for(std::size_t i=0; i<fRecords.size(); i++)
+    {
+        delete fRecords[i];
+    }
+    fRecords.clear();
+    malloc_trim(0); //for lots of small objects this may be helpful to flush pages back to OS
 }
 
 

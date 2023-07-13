@@ -30,7 +30,7 @@ namespace hops
 * A function that accepts the data from a type 201 file in the form of a struct and converts it to a JSON string.
 */
 
-json convertToJSON(const type_201& t);
+mho_json convertToJSON(const type_201& t);
 
 }
 

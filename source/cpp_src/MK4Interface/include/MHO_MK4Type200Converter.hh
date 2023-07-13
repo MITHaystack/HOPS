@@ -34,7 +34,7 @@ namespace hops
 * @param t pointer
 * @return JSON string
 */
-json convertToJSON(const type_200& t);
+mho_json convertToJSON(const type_200& t);
 
 }
 

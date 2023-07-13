@@ -17,6 +17,7 @@ using polprod_axis_type = MHO_Axis<std::string>; //axis for polarization-product
 using channel_axis_type = MHO_Axis<double>; //channels axis is sky_frequency of each channel (MHz)
 using frequency_axis_type = MHO_Axis<double>; //frequency axis (MHz)
 using time_axis_type = MHO_Axis<double>; //time and/or AP axis
+using delay_rate_axis_type = MHO_Axis<double>; //delay rate axis
 
 //station coordinate specific quantities
 using coord_axis_type = MHO_Axis<std::string>; //coordinate name (delay, phase, parallatic_angle, az, el, u, v, w)

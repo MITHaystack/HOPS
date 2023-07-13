@@ -16,7 +16,7 @@ extern "C"
 }
 #endif
 
-//include the json library stuff through the header wrapper 
+//include the mho_json library stuff through the header wrapper 
 //that lives inc the utilities library 
 #include "MHO_JSONHeaderWrapper.hh"
 
@@ -35,9 +35,9 @@ namespace hops
 * @return JSON string
 */
 
-json convertToJSON(const type_203& t);
-json convertChannelArrayToJSON (const type_203 &t);
-json convertChannelToJSON (const ch_struct &t);
+mho_json convertToJSON(const type_203& t);
+mho_json convertChannelArrayToJSON (const type_203 &t);
+mho_json convertChannelToJSON (const ch_struct &t);
 
 }
 

@@ -29,8 +29,10 @@ add_subdirectory(${CPPSOURCE}/Snapshot)
 add_subdirectory(${CPPSOURCE}/Operators) #data operator base classes and generic operators
 add_subdirectory(${CPPSOURCE}/Calibration) #VLBI specific data containers and operators
 add_subdirectory(${CPPSOURCE}/vex2json) #library to convert ovex to json
+add_subdirectory(${CPPSOURCE}/Control) #library to parse old-fourfit control files
+add_subdirectory(${CPPSOURCE}/Initialization) #library to build objects
 add_subdirectory(${CPPSOURCE}/MK4Interface) #interface to MK4 data types and import
-add_subdirectory(${CPPSOURCE}/Control) #interface to old fourfit control library
+
 
 if(HOPS_USE_DIFXIO)
 add_subdirectory(${CPPSOURCE}/DiFXInterface)

@@ -4,7 +4,7 @@
 
 namespace hops {
 
-   json convertDateToJSON(const date &t){
+   mho_json convertDateToJSON(const date &t){
       return {
           {"year", t.year}, 
           {"day", t.day},

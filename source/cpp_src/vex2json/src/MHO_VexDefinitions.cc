@@ -34,7 +34,7 @@ void MHO_VexDefinitions::SetVexVersion(std::string version)
     std::ifstream bn_ifs;
     bn_ifs.open( bnames_file.c_str(), std::ifstream::in );
 
-    json bnames;
+    mho_json bnames;
     if(bn_ifs.is_open())
     {
         bnames = mho_ordered_json::parse(bn_ifs);

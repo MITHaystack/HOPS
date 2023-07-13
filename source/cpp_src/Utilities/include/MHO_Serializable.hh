@@ -18,6 +18,8 @@
 #include "MHO_UUID.hh"
 #include "MHO_UUIDGenerator.hh"
 
+#
+
 namespace hops
 {
 
@@ -36,11 +38,21 @@ class MHO_Serializable
         virtual uint64_t GetSerializedSize() const = 0;
 
         MHO_UUID GetObjectUUID() const {return fObjectUUID;};
+        
         void SetObjectUUID(const MHO_UUID& uuid){fObjectUUID = uuid;};
+        
+        virtual MHO_UUID GetTypeUUID() const 
+        {
+            if(fTypeUUID.is_empty()){fTypeUUID = DetermineTypeUUID();}
+            return fTypeUUID;
+        }
 
     private:
+        
+        virtual MHO_UUID DetermineTypeUUID() const = 0;
 
         MHO_UUID fObjectUUID;
+        mutable MHO_UUID fTypeUUID;
     
 };
 
