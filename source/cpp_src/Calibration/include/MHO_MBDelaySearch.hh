@@ -47,8 +47,13 @@ class MHO_MBDelaySearch: public MHO_InspectingOperator< visibility_type >
         int GetDRMaxBin() const {return fDRMaxBin;}
 
         //TODO FIX ME
-        time_axis_type* GetMBDAxis(){ return &(std::get<0>(fMBDWorkspace)); };
-        delay_rate_axis_type* GetDRAxis(){ return &(std::get<1>(fMBDWorkspace)); };
+        // time_axis_type* GetMBDAxis(){ return &(std::get<0>(fMBDWorkspace)); };
+        //delay_rate_axis_type* GetDRAxis(){ return &(std::get<1>(fMBDWorkspace)); };
+        
+        time_axis_type* GetMBDAxis(){ return &fMBDAxis; };
+        delay_rate_axis_type* GetDRAxis(){ return &fDRAxis; };
+
+
 
     protected:
 
@@ -59,11 +64,16 @@ class MHO_MBDelaySearch: public MHO_InspectingOperator< visibility_type >
 
     private:
         
+        using mbd_axis_pack = MHO_AxisPack< time_axis_type >;
+        using mbd_type = MHO_TableContainer< visibility_element_type, mbd_axis_pack >;
+        using mbd_amp_type = MHO_TableContainer< double, mbd_axis_pack >;
+
+        
         //workspace
         bool fInitialized;
         std::vector< double > fChannelFreqs;
-        mbd_dr_type fMBDWorkspace;
-        mbd_dr_amp_type fMBDAmpWorkspace;
+        mbd_type fMBDWorkspace;
+        mbd_amp_type fMBDAmpWorkspace;
 
         //dims and parameters
         double fGridStart;
@@ -78,12 +88,16 @@ class MHO_MBDelaySearch: public MHO_InspectingOperator< visibility_type >
         int fSBDMaxBin;
         int fDRMaxBin;
 
+        MHO_Axis<double> fMBDAxis;
+        MHO_Axis<double> fDRAxis;
+
         MHO_UniformGridPointsCalculator fGridCalc;
+        
 
-        MHO_MultidimensionalFastFourierTransform< mbd_dr_type > fFFTEngine;
-        MHO_CyclicRotator< mbd_dr_type > fCyclicRotator;
+        MHO_MultidimensionalFastFourierTransform< mbd_type > fFFTEngine;
+        MHO_CyclicRotator< mbd_type > fCyclicRotator;
 
-        MHO_ExtremaSearch< mbd_dr_amp_type > fMaxSearch;
+        MHO_ExtremaSearch< mbd_amp_type > fMaxSearch;
 
 };
 

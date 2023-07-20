@@ -399,8 +399,8 @@ int main(int argc, char** argv)
 
     #pragma message("TODO FIXME -- we shouldn't be referencing internal members of the MHO_MBDelaySearch class workspace")
     //Figure out how best to present this axis data to the fine-interp function.
-    fringeInterp.SetMBDAxis( mbdSearch.GetMBDAxis());
-    fringeInterp.SetDRAxis( mbdSearch.GetDRAxis());
+    fringeInterp.SetMBDAxis( mbdSearch.GetMBDAxis() );
+    fringeInterp.SetDRAxis( mbdSearch.GetDRAxis() ); 
 
     fringeInterp.Initialize();
     fringeInterp.Execute();
