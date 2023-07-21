@@ -39,7 +39,7 @@ MHO_DelayRate::InitializeImpl(const XArgType1* in1, const XArgType2* in2, XArgTy
 
         fPaddedFFTEngine.SetArgs(&fWorkspace, &fWorkspace2);
         fPaddedFFTEngine.DeselectAllAxes();
-        fPaddedFFTEngine.SelectAxis(TIME_AXIS); //only perform padded fft on frequency (to lag) axis
+        fPaddedFFTEngine.SelectAxis(TIME_AXIS);
         fPaddedFFTEngine.SetForward();//forward DFT
         fPaddedFFTEngine.SetPaddedSize(np);
         fPaddedFFTEngine.SetEndPadded();//pretty sure this is the default from delay_rate.c
@@ -93,7 +93,6 @@ MHO_DelayRate::ExecuteImpl(const XArgType1* in1, const XArgType2* in2, XArgType3
 
         bool ok = fPaddedFFTEngine.Execute();
         check_step_fatal(ok, "calibration", "fft engine execution." << eom );
-
 
         ok = fCyclicRotator.Execute();
         check_step_fatal(ok, "calibration", "cyclic rotation execution." << eom );
