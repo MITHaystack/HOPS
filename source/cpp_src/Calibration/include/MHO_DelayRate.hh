@@ -64,6 +64,7 @@ class MHO_DelayRate: public MHO_BinaryOperator<
         std::size_t fInDims[VIS_NDIM];
         std::size_t fOutDims[VIS_NDIM];
 
+        void ApplyDataWeights(const XArgType2* in2);
         void ConditionallyResizeOutput(const std::size_t* dims, std::size_t size, XArgType3* out);
 
         MHO_MultidimensionalPaddedFastFourierTransform< visibility_type > fPaddedFFTEngine;
