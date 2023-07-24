@@ -437,10 +437,17 @@ MHO_ComputePlotData::calc_phase()
         }
 
         #pragma message("TODO FIXME FOR NON-LSB DATA!")
+        frot.SetSideband(0); //DSB
+        if(net_sideband == "U")
+        {
+            frot.SetSideband(1);
+        }
+
         if(net_sideband == "L")
         {
             frot.SetSideband(-1);
         }
+
         for(std::size_t ap=0; ap < nap; ap++)
         {
             double tdelta = ap_ax->at(ap) + ap_delta/2.0 - midpoint_time; //need time difference from the f.r.t?
@@ -450,14 +457,22 @@ MHO_ComputePlotData::calc_phase()
             //apply weight and sum
             double w = (*fWeights)(POLPROD, ch, ap, 0);
             std::complex<double> wght_phsr = z*w;
-            sum_all += wght_phsr;
+            if(net_sideband == "U")
+            {
+                sum_all += -1.0*wght_phsr;
+            }
+            else 
+            {
+                sum_all += wght_phsr;
+            }
         }
     }
 
     std::cout<<"sbd sep = "<<sbd_delta<<" sbd max = "<<fSBDelay<<std::endl;
-
     std::cout<<"sum all = "<<sum_all<<std::endl;
+
     double coh_avg_phase = std::arg(sum_all);
+
     return coh_avg_phase; //not quite the value which is displayed in the fringe plot (see fill type 208)
 }
 
@@ -506,8 +521,34 @@ MHO_ComputePlotData::calc_xpower_KLUDGE()
     {
         for(int ch = 0; ch < nchan; ch++)
         {
-            sum = 0.0;
+
             double freq = (*chan_ax)(ch);//sky freq of this channel
+            MHO_IntervalLabel ilabel(ch,ch);
+            std::string net_sideband = "?";
+            std::string sidebandlabelkey = "net_sideband";
+            auto other_labels = chan_ax->GetIntervalsWhichIntersect(&ilabel);
+            for(auto olit = other_labels.begin(); olit != other_labels.end(); olit++)
+            {
+                if( (*olit)->HasKey(sidebandlabelkey) )
+                {
+                    (*olit)->Retrieve(sidebandlabelkey, net_sideband);
+                    break;
+                }
+            }
+
+            #pragma message("TODO FIXME FOR NON-LSB DATA!")
+            frot.SetSideband(0); //DSB
+            if(net_sideband == "U")
+            {
+                frot.SetSideband(1);
+            }
+
+            if(net_sideband == "L")
+            {
+                frot.SetSideband(-1);
+            }
+
+            sum = 0.0;
             for (int ap = 0; ap < nap; ap++)
             {
                 double tdelta = ap_ax->at(ap) + ap_delta/2.0 - midpoint_time; //need time difference from the f.r.t?
