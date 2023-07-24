@@ -63,7 +63,7 @@ MHO_ManualChannelPhaseCorrection::ExecuteInPlace(visibility_type* in)
                     {
                         if( (*olit)->HasKey(fSidebandLabelKey) )
                         {
-                            (*olit)->Retrieve("net_sideband", net_sideband);
+                            (*olit)->Retrieve(fSidebandLabelKey, net_sideband);
                             break;
                         }
                     }
