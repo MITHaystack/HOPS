@@ -1,0 +1,1 @@
+char datadir[200] = "";

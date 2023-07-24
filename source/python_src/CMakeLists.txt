@@ -19,5 +19,6 @@ if (PYTHON_EXECUTABLE)
     install(CODE "execute_process(COMMAND ${PYTHON_EXECUTABLE} ${SETUP_PY} install --prefix=${CMAKE_INSTALL_PREFIX} )")
 
     add_subdirectory(scripts)
+    add_subdirectory(mk4_module)
 
 endif (PYTHON_EXECUTABLE)
