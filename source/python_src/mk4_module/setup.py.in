@@ -12,4 +12,4 @@ from distutils.core import setup
 setup(name='mk4io',
       version='0.1',
       package_dir={ '': '@abs_srcdir@' },
-      packages=['mk4', 'afio'])
+      packages=['mk4io', 'afio'])
