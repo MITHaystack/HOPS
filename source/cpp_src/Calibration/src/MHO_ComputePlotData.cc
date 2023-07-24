@@ -423,8 +423,24 @@ MHO_ComputePlotData::calc_phase()
     for(std::size_t ch=0; ch < nchan; ch++)
     {
         double freq = (*chan_ax)(ch);//sky freq of this channel
+        MHO_IntervalLabel ilabel(ch,ch);
+        std::string net_sideband = "?";
+        std::string sidebandlabelkey = "net_sideband";
+        auto other_labels = chan_ax->GetIntervalsWhichIntersect(&ilabel);
+        for(auto olit = other_labels.begin(); olit != other_labels.end(); olit++)
+        {
+            if( (*olit)->HasKey(sidebandlabelkey) )
+            {
+                (*olit)->Retrieve(sidebandlabelkey, net_sideband);
+                break;
+            }
+        }
+
         #pragma message("TODO FIXME FOR NON-LSB DATA!")
-        frot.SetSideband(-1);
+        if(net_sideband == "L")
+        {
+            frot.SetSideband(-1);
+        }
         for(std::size_t ap=0; ap < nap; ap++)
         {
             double tdelta = ap_ax->at(ap) + ap_delta/2.0 - midpoint_time; //need time difference from the f.r.t?
