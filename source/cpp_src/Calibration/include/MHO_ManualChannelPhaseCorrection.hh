@@ -68,13 +68,17 @@ class MHO_ManualChannelPhaseCorrection: public MHO_UnaryOperator< visibility_typ
         //channel label -> pcal phases
         std::map< std::string, double > fPCMap;
 
-        //keys for tag retrieval
+        //keys for tag retrieval and matching
         std::string fStationKey;
         std::string fRemStationKey;
         std::string fRefStationKey;
         std::string fRemStationMk4IDKey;
         std::string fRefStationMk4IDKey;
         std::string fChannelLabelKey;
+        std::string fSidebandLabelKey;
+        std::string fLowerSideband;
+        std::string fUpperSideband;
+        
 
         //minor helper function to make sure all strings are compared as upper-case only
         void make_upper(std::string& s){ for(char& c : s){c = toupper(c); };
