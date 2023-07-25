@@ -1,15 +1,15 @@
-file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/hops DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/hops)
-file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/mk4_module DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/mk4_module)
+#just wholesale copy the entire source directory into the build directory 
+#because setuptools was written by monkeys and likes to pollute the source 
+#directory with egg.info garbage
+file(COPY "${CMAKE_CURRENT_SOURCE_DIR}/" DESTINATION "${CMAKE_CURRENT_BINARY_DIR}/")
 
 set(abs_srcdir "${CMAKE_CURRENT_BINARY_DIR}")
 
 if (PY_EXE)
 
-    
-
-    set(SETUP_PY_IN "${CMAKE_CURRENT_SOURCE_DIR}/setup.py.in")
+    set(SETUP_PY_IN "${CMAKE_CURRENT_BINARY_DIR}/setup.py.in")
     set(SETUP_PY    "${CMAKE_CURRENT_BINARY_DIR}/setup.py")
-    set(DEPS        "${CMAKE_CURRENT_SOURCE_DIR}/hops/__init__.py")
+    set(DEPS        "${CMAKE_CURRENT_BINARY_DIR}/hops/__init__.py")
     set(OUTPUT      "${CMAKE_CURRENT_BINARY_DIR}/build/hops4py_timestamp")
 
     configure_file(${SETUP_PY_IN} ${SETUP_PY})
