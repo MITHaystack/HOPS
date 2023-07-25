@@ -1,8 +1,8 @@
 """python-ctypes library for interface with mk4io data-types"""
 
-from .mk4io import mk4ioredefine_array_length
-from .mk4io import mk4ioredefine_char_array_length
-from .mk4io import mk4iofp_approximately_equal
+from .mk4io import  mk4redefine_array_length
+from .mk4io import  mk4redefine_char_array_length
+from .mk4io import  mk4fp_approximately_equal
 from .mk4io import  Mk4StructureBase
 
 from .mk4io import  type_000
@@ -19,7 +19,7 @@ from .mk4io import  spectral
 from .mk4io import  lag_data
 from .mk4io import  type_120
 from .mk4io import  index_tag
-from .mk4io import  mk4io_corel
+from .mk4io import  mk4_corel
 from .mk4io import  sky_coord
 from .mk4io import  type_200
 from .mk4io import  type_201
@@ -46,7 +46,7 @@ from .mk4io import  type_221
 from .mk4io import  type_222
 from .mk4io import  complex_struct
 from .mk4io import  type_230
-from .mk4io import  mk4io_fringe
+from .mk4io import  mk4_fringe
 from .mk4io import  type_300
 from .mk4io import  type_301
 from .mk4io import  type_302
@@ -63,10 +63,10 @@ from .mk4io import  type_308
 from .mk4io import  ch1_tag
 from .mk4io import  type_309
 from .mk4io import  model_struct
-from .mk4io import  mk4io_sdata
+from .mk4io import  mk4_sdata
 
-from .mk4io import mk4ioio_load
-from .mk4io import mk4iocorel
-from .mk4io import mk4iofringe
-from .mk4io import clear_mk4iofringe
-from .mk4io import mk4iosdata
+from .mk4io import mk4io_load
+from .mk4io import mk4corel
+from .mk4io import mk4fringe
+from .mk4io import clear_mk4fringe
+from .mk4io import mk4sdata

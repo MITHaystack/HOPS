@@ -1,3 +1,5 @@
+file(COPY "${CMAKE_CURRENT_SOURCE_DIR}/" DESTINATION "${CMAKE_CURRENT_BINARY_DIR}/")
+
 #declare library name ##########################################################
 set(LIBNAME "mk4io")
 
@@ -50,6 +52,7 @@ target_link_libraries (${LIBNAME} ${LIBLIST})
 hops_install_libraries (${LIBNAME})
 
 #python package setup ##########################################################
+
 set(abs_srcdir "${CMAKE_CURRENT_BINARY_DIR}")
 
 if (PY_EXE)
