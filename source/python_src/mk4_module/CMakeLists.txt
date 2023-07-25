@@ -50,7 +50,7 @@ target_link_libraries (${LIBNAME} ${LIBLIST})
 hops_install_libraries (${LIBNAME})
 
 #python package setup ##########################################################
-set(abs_srcdir "${CMAKE_CURRENT_SOURCE_DIR}")
+set(abs_srcdir "${CMAKE_CURRENT_BINARY_DIR}")
 
 if (PY_EXE)
 
@@ -73,14 +73,3 @@ if (PY_EXE)
 
     install(CODE "execute_process(COMMAND ${PY_EXE} ${SETUP_PY} install --prefix=${CMAKE_INSTALL_PREFIX} )")
 endif()
-
-
-
-
-
-
-
-
-
-
-

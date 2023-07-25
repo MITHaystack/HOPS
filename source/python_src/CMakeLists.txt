@@ -1,7 +1,11 @@
+file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/hops DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/hops)
+file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/mk4_module DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/mk4_module)
 
-set(abs_srcdir "${CMAKE_CURRENT_SOURCE_DIR}")
+set(abs_srcdir "${CMAKE_CURRENT_BINARY_DIR}")
 
 if (PY_EXE)
+
+    
 
     set(SETUP_PY_IN "${CMAKE_CURRENT_SOURCE_DIR}/setup.py.in")
     set(SETUP_PY    "${CMAKE_CURRENT_BINARY_DIR}/setup.py")

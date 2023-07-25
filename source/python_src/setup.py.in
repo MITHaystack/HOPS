@@ -1,17 +1,14 @@
-#
-# module setup for the hops python package
-# (c) Massachusetts Institute of Technology, 2020
-# The contents of the package Copyright statement apply here.
-#
-from distutils.core import setup
+import sys
+if sys.version_info[0] == 3 and sys.version_info[1] >= 10:
+   try:
+       import setuptools.setup as setup
+   except ImportError:
+       from distutils.core import setup
+else:
+   from distutils.core import setup
 
-#TODO make this file  verions number  be generated from cmake
 setup(name='hops',
       version='@MODULE_VERSION_MAJOR@.@MODULE_VERSION_MINOR@' +
         '.@MODULE_VERSION_PATCH@',
       package_dir={ '': '@abs_srcdir@' },
       packages=['hops'])
-
-#
-# eof
-#
