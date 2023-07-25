@@ -10,8 +10,6 @@ if(ENABLE_SNAPSHOTS)
     add_compile_definitions("HOPS_SNAPSHOT_DIR=${SNAPSHOT_INSTALL_DIR}")
 endif(ENABLE_SNAPSHOTS)
 
-
-
 #add option to throw errors on bad return values
 option(ENABLE_STEPWISE_CHECK "When specified, check return value of operation initialization/execution, throw on error" OFF)
 if(ENABLE_STEPWISE_CHECK)

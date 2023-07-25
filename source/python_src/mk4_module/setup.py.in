@@ -1,11 +1,4 @@
-# import sys
-# if sys.version_info[0] == 3 and sys.version_info[1] >= 10:
-#    try:
-#        import setuptools.setup as setup
-#    except ImportError:
-#        from distutils.core import setup
-# else:
-from distutils.core import setup
+from @PYTHON_SETUP@ import setup
 
 setup(name='mk4io',
       version='0.1',
