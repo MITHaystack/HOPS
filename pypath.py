@@ -1,6 +1,5 @@
-#try to figure out where on earth python wants to stash the modules
-#untested on anything but debian w/python 2.7, it may vary 
-#depending on platform and python version
+#construct name for local site-packages directory
 import os
 import sys
-print( os.path.join("lib", "python" + sys.version[:3],"site-packages") )
+version_str = str(sys.version_info.major) + "." + str(sys.version_info.minor)
+print( os.path.join("lib", "python" + version_str, "site-packages") )
