@@ -71,11 +71,9 @@ if (PY_EXE)
 
     add_custom_target(mk4io_target ALL DEPENDS ${OUTPUT})
 
-    #make setuptools think it is installing to some place in the PYTHONPATH (which is set later by hops.bash)
     if("${PYTHON_SETUP}" STREQUAL "setuptools")
         #use pip/setuptools
-        install(CODE "execute_process(COMMAND ${PY_EXE} -m pip install . --prefix=${CMAKE_INSTALL_PREFIX} )")    
-        #install(CODE "execute_process(COMMAND ${CMAKE_COMMAND} -E env PYTHONPATH=${PYTHON_MODULE_INSTALL_DIR} ${PY_EXE} -m pip install . --prefix=${CMAKE_INSTALL_PREFIX} )")
+        install(CODE "execute_process(COMMAND ${PY_EXE} -m pip install ${CMAKE_CURRENT_BINARY_DIR} --target=${PYTHON_MODULE_INSTALL_DIR} )")
     else()
         #use distutils
         install(CODE "execute_process(COMMAND ${PY_EXE} ${SETUP_PY} install --prefix=${CMAKE_INSTALL_PREFIX} )")
