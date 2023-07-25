@@ -1,14 +1,13 @@
-import sys
-if sys.version_info[0] == 3 and sys.version_info[1] >= 10:
-   try:
-       import setuptools.setup as setup
-   except ImportError:
-       from distutils.core import setup
-else:
-   from distutils.core import setup
+# import sys
+# if sys.version_info[0] == 3 and sys.version_info[1] >= 10:
+#    try:
+#        import setuptools.setup as setup
+#    except ImportError:
+#        from distutils.core import setup
+# else:
+from distutils.core import setup
 
 setup(name='hops',
-      version='@MODULE_VERSION_MAJOR@.@MODULE_VERSION_MINOR@' +
-        '.@MODULE_VERSION_PATCH@',
+      version='@MODULE_VERSION_MAJOR@.@MODULE_VERSION_MINOR@' + '@MODULE_VERSION_PATCH@',
       package_dir={ '': '@abs_srcdir@' },
       packages=['hops'])

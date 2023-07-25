@@ -46,7 +46,7 @@ list(APPEND LIBLIST "mk4util" "afio" "dfio")
 add_library (${LIBNAME} SHARED ${${LIBNAME}_SOURCEFILES} ${${LIBNAME}_HEADERFILES})
 
 target_link_libraries (${LIBNAME} ${LIBLIST})
-#hops_install_headers (${${LIBNAME}_HEADERFILES})
+
 hops_install_libraries (${LIBNAME})
 
 #python package setup ##########################################################
@@ -54,11 +54,11 @@ set(abs_srcdir "${CMAKE_CURRENT_BINARY_DIR}")
 
 if (PY_EXE)
 
-    set(SETUP_PY_IN "${CMAKE_CURRENT_SOURCE_DIR}/setup.py.in")
+    set(SETUP_PY_IN "${CMAKE_CURRENT_BINARY_DIR}/setup.py.in")
     set(SETUP_PY    "${CMAKE_CURRENT_BINARY_DIR}/setup.py")
     set(DEPS        
-        "${CMAKE_CURRENT_SOURCE_DIR}/mk4io/__init__.py"
-        "${CMAKE_CURRENT_SOURCE_DIR}/afio/__init__.py"
+        "${CMAKE_CURRENT_BINARY_DIR}/mk4io/__init__.py"
+        "${CMAKE_CURRENT_BINARY_DIR}/afio/__init__.py"
         )
     set(OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/build/mk4io_timestamp")
 
