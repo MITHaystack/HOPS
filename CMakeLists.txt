@@ -153,28 +153,39 @@ endif()
 
     
 if(PY_EXE)
-      #figure out the python install path, so we can add it to PYTHONPATH
-      file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/pypath.py DESTINATION ${CMAKE_CURRENT_BINARY_DIR}
-        FILE_PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE
-        GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE
-      )
-      execute_process(COMMAND ${PY_EXE} "${CMAKE_CURRENT_BINARY_DIR}/pypath.py"  WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR} OUTPUT_VARIABLE PYTHON_SITE_PREFIX)
-      string(STRIP "${PYTHON_SITE_PREFIX}" PYTHON_SITE_PREFIX)
-      message(STATUS "Python path = ${PYTHON_SITE_PREFIX}")
-      set( PYTHON_MODULE_INSTALL_DIR  "${CMAKE_INSTALL_PREFIX}/${PYTHON_SITE_PREFIX}")
-      
-      #also figure out if we should use distutils or setuptools 
-      #figure out the python install path, so we can add it to PYTHONPATH
-      file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/pyinfo.py DESTINATION ${CMAKE_CURRENT_BINARY_DIR}
-        FILE_PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE
-        GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE
-      )
-      execute_process(COMMAND ${PY_EXE} "${CMAKE_CURRENT_BINARY_DIR}/pyinfo.py"  WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR} OUTPUT_VARIABLE PYTHON_SETUP)
-      string(STRIP "${PYTHON_SETUP}" PYTHON_SETUP)
-      message(STATUS "Python setup option = ${PYTHON_SETUP}")
 
-      #now add the python source dir
-      add_subdirectory(${PYSOURCE})
+    #figure out the python version and appropriate install path, so we can add it to PYTHONPATH
+    #also figure out if we should use distutils or setuptools/pip
+    file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/pyinfo.py DESTINATION ${CMAKE_CURRENT_BINARY_DIR}
+    FILE_PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE
+    GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE
+    )
+    execute_process(COMMAND ${PY_EXE} "${CMAKE_CURRENT_BINARY_DIR}/pyinfo.py"  WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR} OUTPUT_VARIABLE PYTHON_CONFIG)
+    string(STRIP "${PYTHON_CONFIG}" PYTHON_CONFIG)
+    message(STATUS "Python configuration (vers,prefix,setup,need_pip,have_pip) = ${PYTHON_CONFIG}")
+    set(PYTHON_CONFIG_SETTINGS ${PYTHON_CONFIG} )
+
+    list(GET PYTHON_CONFIG_SETTINGS 0 PYTHON_VERS)
+    list(GET PYTHON_CONFIG_SETTINGS 1 PYTHON_SITE_PREFIX)
+    list(GET PYTHON_CONFIG_SETTINGS 2 PYTHON_SETUP)
+    list(GET PYTHON_CONFIG_SETTINGS 3 PYTHON_NEED_PIP)
+    list(GET PYTHON_CONFIG_SETTINGS 4 PYTHON_HAVE_PIP)
+    set( PYTHON_MODULE_INSTALL_DIR  "${CMAKE_INSTALL_PREFIX}/${PYTHON_SITE_PREFIX}")
+
+    message(STATUS "Python path = ${PYTHON_SITE_PREFIX}")
+    message(STATUS "Python installation tool = ${PYTHON_SETUP}")
+    
+    #now add the python source dir
+    if("${PYTHON_NEED_PIP}" STREQUAL "false")
+        add_subdirectory(${PYSOURCE})
+    else()
+        if("${PYTHON_HAVE_PIP}" STREQUAL "true")
+        add_subdirectory(${PYSOURCE})
+        else()
+        message(WARNING "Python ${PYTHON_VERS} requires pip for packaging of local hops tools, install pip for these to be built.")
+        endif()
+    endif()
+
 endif(PY_EXE)
 
 ################################################################################
