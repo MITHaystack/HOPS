@@ -15,8 +15,11 @@ cmake_policy(SET CMP0048 NEW)
 endif()
 ################################################################################
 
-# project version
-set(HOPS_VERSION_NUMBER "4.00")
+# project version (stuck with these names due to configure.ac for now)
+set(MODULE_VERSION_MAJOR 4)
+set(MODULE_VERSION_MINOR 0)
+set(MODULE_VERSION_PATCH 0)
+set(HOPS_VERSION_NUMBER "${MODULE_VERSION_MAJOR}.${MODULE_VERSION_MINOR}${MODULE_VERSION_PATCH}")
 project(Hops VERSION ${HOPS_VERSION_NUMBER})
 
 #default build type
@@ -68,12 +71,21 @@ file(MAKE_DIRECTORY ${SNAPSHOT_INSTALL_DIR})
 file(MAKE_DIRECTORY ${OPENCL_KERNEL_INSTALL_DIR})
 file(MAKE_DIRECTORY ${SHARE_TEXT_INSTALL_DIR})
 file(MAKE_DIRECTORY ${SHARE_VHELP_INSTALL_DIR})
+
+#convenience variables
+set(CSOURCE ${CMAKE_CURRENT_SOURCE_DIR}/source/c_src)
+set(CPPSOURCE ${CMAKE_CURRENT_SOURCE_DIR}/source/cpp_src)
+set(SHSOURCE ${CMAKE_CURRENT_SOURCE_DIR}/source/bash_src)
+set(PYSOURCE ${CMAKE_CURRENT_SOURCE_DIR}/source/python_src)
+set(EXTERN_HLIBS ${CMAKE_CURRENT_SOURCE_DIR}/extern)
+
 ################################################################################
 
 #compiler standard (use c++11 standard by default)
 hops_require_cpp11()
 #hops_require_cpp17()
 #hops_require_cpp20()
+message(STATUS "Using compiler ${COMPILER_ID} ${COMPILER_VERSION}")
 
 option(EXTRA_WARNINGS "Turn on extra compiler warnings." OFF)
 if(EXTRA_WARNINGS)
@@ -86,8 +98,6 @@ else()
     set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}" )
 endif()
 
-message(STATUS "Using compiler ${COMPILER_ID} ${COMPILER_VERSION}")
-
 ################################################################################
 
 #options for triggering additional dependencies
@@ -98,42 +108,6 @@ option(HOPS_USE_DIFXIO "Link against difxio library to read DiFX files" OFF)
 option(HOPS_USE_PYBIND11 "Build python bindings with pybind11" OFF)
 option(HOPS_USE_ROOT "Use CERN ROOT libraries to enable plugin tools for plotting/debug/analysis." OFF)
 option(HOPS_USE_MPI "Use MPI (Message Passing Interface) for parallel processing" OFF)
-
-#convenience variables
-set(CSOURCE ${CMAKE_CURRENT_SOURCE_DIR}/source/c_src)
-set(CPPSOURCE ${CMAKE_CURRENT_SOURCE_DIR}/source/cpp_src)
-set(SHSOURCE ${CMAKE_CURRENT_SOURCE_DIR}/source/bash_src)
-set(PYSOURCE ${CMAKE_CURRENT_SOURCE_DIR}/source/python_src)
-set(EXTERN_HLIBS ${CMAKE_CURRENT_SOURCE_DIR}/extern)
-
-
-#stuff for controlling testing/test-data location
-set(TEST_DATA_SOURCE ${CMAKE_CURRENT_SOURCE_DIR}/test_data)
-set(HOPS_TEST_DATA_DIR ${CMAKE_CURRENT_BINARY_DIR}/test_data) #actual location to put test data and do tests
-
-#look for an environmental variable pointing to a cache of test data
-set(HOPS_USE_CACHED_TEST_DATA OFF)
-set(HOPS_NEED_REMOTE_DATA ON)
-if (NOT "$ENV{HOPS_CACHED_TEST_DATADIR}" STREQUAL "")
-    set(HOPS_CACHED_TEST_DATADIR "$ENV{HOPS_CACHED_TEST_DATADIR}" CACHE STRING "Location of cached hops test data." FORCE)
-    mark_as_advanced(HOPS_CACHED_TEST_DATADIR)
-    set(HOPS_USE_CACHED_TEST_DATA ON)
-    set(HOPS_NEED_REMOTE_DATA OFF)
-endif()
-
-#check that we can download test data if testing is enabled and there is no cache
-cmake_dependent_option( HOPS_ENABLE_REMOTE_TEST_DATA "Download remote data for developer tests." ${HOPS_NEED_REMOTE_DATA} "HOPS_ENABLE_TEST" OFF)
-
-if(HOPS_ENABLE_TEST)
-    if(NOT HOPS_ENABLE_REMOTE_TEST_DATA AND NOT HOPS_USE_CACHED_TEST_DATA)
-            #we are not downloading test data (and no local cache available), so force it off
-            set(HOPS_ENABLE_TEST OFF CACHE BOOL "Build developer tests." FORCE)
-    endif()
-endif(HOPS_ENABLE_TEST)
-
-if(HOPS_ENABLE_TEST)
-    enable_testing()
-endif(HOPS_ENABLE_TEST)
 
 if(HOPS3_USE_CXX)
     hops_add_cflag(HOPS3_USE_CXX)
@@ -159,11 +133,9 @@ endif(HOPS_USE_MPI)
 
 
 ################################################################################
-
 #python package setup
 
 if(${CMAKE_VERSION} VERSION_GREATER "3.12.0")
-
 
   find_package (Python3 COMPONENTS Interpreter Development)
 
@@ -179,6 +151,7 @@ if(${CMAKE_VERSION} VERSION_GREATER "3.12.0")
       string(STRIP "${PYTHON_SITE_PREFIX}" PYTHON_SITE_PREFIX)
       set( PYTHON_MODULE_INSTALL_DIR  "${CMAKE_INSTALL_PREFIX}/${PYTHON_SITE_PREFIX}")
       set(PY_EXE ${Python3_EXECUTABLE})
+      set(PYTHON_EXECUTABLE PY_EXE)
 
       #now add the python source dir
       add_subdirectory(${PYSOURCE})
@@ -208,6 +181,38 @@ else()
   endif (PYTHON_EXECUTABLE)
 
 endif()
+
+
+################################################################################
+#stuff for controlling testing/test-data location
+set(TEST_DATA_SOURCE ${CMAKE_CURRENT_SOURCE_DIR}/test_data)
+set(HOPS_TEST_DATA_DIR ${CMAKE_CURRENT_BINARY_DIR}/test_data) #actual location to put test data and do tests
+
+#look for an environmental variable pointing to a cache of test data
+set(HOPS_USE_CACHED_TEST_DATA OFF)
+set(HOPS_NEED_REMOTE_DATA ON)
+if (NOT "$ENV{HOPS_CACHED_TEST_DATADIR}" STREQUAL "")
+    set(HOPS_CACHED_TEST_DATADIR "$ENV{HOPS_CACHED_TEST_DATADIR}" CACHE STRING "Location of cached hops test data." FORCE)
+    mark_as_advanced(HOPS_CACHED_TEST_DATADIR)
+    set(HOPS_USE_CACHED_TEST_DATA ON)
+    set(HOPS_NEED_REMOTE_DATA OFF)
+endif()
+
+#check that we can download test data if testing is enabled and there is no cache
+cmake_dependent_option( HOPS_ENABLE_REMOTE_TEST_DATA "Download remote data for developer tests." ${HOPS_NEED_REMOTE_DATA} "HOPS_ENABLE_TEST" OFF)
+
+if(HOPS_ENABLE_TEST)
+    if(NOT HOPS_ENABLE_REMOTE_TEST_DATA AND NOT HOPS_USE_CACHED_TEST_DATA)
+            #we are not downloading test data (and no local cache available), so force it off
+            set(HOPS_ENABLE_TEST OFF CACHE BOOL "Build developer tests." FORCE)
+    endif()
+endif(HOPS_ENABLE_TEST)
+
+if(HOPS_ENABLE_TEST)
+    enable_testing()
+endif(HOPS_ENABLE_TEST)
+
+
 
 ################################################################################
 
