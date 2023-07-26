@@ -11,7 +11,7 @@ import logging
 
 #hops package python libs
 import vpal
-#import hopstestb as ht
+#import hops_test as ht
 #import ffcontrol
 
 ################################################################################
