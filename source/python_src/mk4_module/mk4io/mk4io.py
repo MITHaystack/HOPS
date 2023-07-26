@@ -942,8 +942,8 @@ def mk4io_load():
     ld_lib_path = os.getenv('LD_LIBRARY_PATH')
     possible_path_list = ld_lib_path.split(':')
     for a_path in possible_path_list:
-        libpath = os.path.join(a_path, 'hops', 'libmk4io.so')
-        altlibpath = os.path.join(a_path, 'libmk4io.so')
+        libpath = os.path.join(a_path, 'hops', 'libdfio.so')
+        altlibpath = os.path.join(a_path, 'libdfio.so')
         if os.path.isfile(libpath):
             #found the library, go ahead and load it up
             dfio = ctypes.cdll.LoadLibrary(libpath)
@@ -957,7 +957,7 @@ def mk4io_load():
     #next try to find the library using the environmental variable HOPS_PREFIX
     prefix = os.getenv('HOPS_PREFIX')
     if prefix != None:
-        path = os.path.join(prefix, 'lib','hops', 'libmk4io.so')
+        path = os.path.join(prefix, 'lib','hops', 'libdfio.so')
         if os.path.isfile(path):
             dfio = ctypes.cdll.LoadLibrary(path)
             return dfio
@@ -966,7 +966,7 @@ def mk4io_load():
     root = os.getenv('HOPS_ROOT')
     arch = os.getenv('HOPS_ARCH')
     if root != None and arch != None:
-        path = os.path.join(root, arch,'lib','hops', 'libmk4io.so')
+        path = os.path.join(root, arch,'lib','hops', 'libdfio.so')
         if os.path.isfile(path):
             dfio = ctypes.cdll.LoadLibrary(path)
             return dfio

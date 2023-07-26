@@ -3,7 +3,6 @@
 #directory with egg.info garbage
 file(COPY "${CMAKE_CURRENT_SOURCE_DIR}/" DESTINATION "${CMAKE_CURRENT_BINARY_DIR}/")
 
-
 if (PY_EXE)
 
     set(abs_srcdir "${CMAKE_CURRENT_BINARY_DIR}")
@@ -27,7 +26,7 @@ if (PY_EXE)
     if("${PYTHON_SETUP}" STREQUAL "setuptools")
         #use pip/setuptools
         add_custom_target(hops4py_install_target ALL 
-            COMMAND ${PY_EXE} -m pip install ${CMAKE_CURRENT_BINARY_DIR} --target=${PYTHON_MODULE_INSTALL_DIR}
+            COMMAND ${PY_EXE} -m pip install ${CMAKE_CURRENT_BINARY_DIR} --upgrade --target=${PYTHON_MODULE_INSTALL_DIR}
             DEPENDS mk4io_build_target
         )
 
