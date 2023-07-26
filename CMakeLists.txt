@@ -171,9 +171,6 @@ if(PY_EXE)
     list(GET PYTHON_CONFIG_SETTINGS 4 PYTHON_HAVE_PIP)
     set( PYTHON_MODULE_INSTALL_DIR  "${CMAKE_INSTALL_PREFIX}/${PYTHON_SITE_PREFIX}")
 
-    message(STATUS "Python path = ${PYTHON_SITE_PREFIX}")
-    message(STATUS "Python installation tool = ${PYTHON_SETUP}")
-    
     #now add the python source dir
     if("${PYTHON_NEED_PIP}" STREQUAL "false")
         add_subdirectory(${PYSOURCE})
@@ -181,7 +178,7 @@ if(PY_EXE)
         if("${PYTHON_HAVE_PIP}" STREQUAL "true")
         add_subdirectory(${PYSOURCE})
         else()
-        message(WARNING "Python ${PYTHON_VERS} requires pip for packaging of local hops tools, install pip for these to be built.")
+        message(WARNING "Python ${PYTHON_VERS} requires pip for proper packaging of local hops tools. Install pip for these to be built.")
         endif()
     endif()
 
