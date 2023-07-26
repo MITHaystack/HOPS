@@ -15,7 +15,7 @@ import os
 import logging
 
 #HOPS imports
-import hopstestb as ht
+import hops_test as ht
 import vpal.fourphase_lib
 import vpal.ffres2pcp_lib
 
