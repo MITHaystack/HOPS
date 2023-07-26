@@ -335,8 +335,8 @@ def afio_load():
     ld_lib_path = os.getenv('LD_LIBRARY_PATH')
     possible_path_list = ld_lib_path.split(':')
     for a_path in possible_path_list:
-        libpath = os.path.join(a_path, 'hops', 'libmk4iob.so')
-        altlibpath = os.path.join(a_path, 'libmk4iob.so')
+        libpath = os.path.join(a_path, 'hops', 'libafio.so')
+        altlibpath = os.path.join(a_path, 'libafio.so')
         if os.path.isfile(libpath):
             #found the library, go ahead and load it up
             afio = ctypes.cdll.LoadLibrary(libpath)
@@ -351,7 +351,7 @@ def afio_load():
     #next try to find the library using the environmental variable HOPS_PREFIX
     prefix = os.getenv('HOPS_PREFIX')
     if prefix != None:
-        path = os.path.join(prefix, 'lib','hops', 'libmk4iob.so')
+        path = os.path.join(prefix, 'lib','hops', 'libafio.so')
         if os.path.isfile(path):
             afio = ctypes.cdll.LoadLibrary(path)
             return afio
@@ -360,7 +360,7 @@ def afio_load():
     root = os.getenv('HOPS_ROOT')
     arch = os.getenv('HOPS_ARCH')
     if root != None and arch != None:
-        path = os.path.join(root, arch,'lib','hops', 'libmk4iob.so')
+        path = os.path.join(root, arch,'lib','hops', 'libafio.so')
         if os.path.isfile(path):
             afio = ctypes.cdll.LoadLibrary(path)
             return afio
