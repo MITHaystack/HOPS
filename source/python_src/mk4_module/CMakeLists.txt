@@ -52,34 +52,39 @@ target_link_libraries (${LIBNAME} ${LIBLIST})
 hops_install_libraries (${LIBNAME})
 
 #python package setup ##########################################################
-
-set(abs_srcdir "${CMAKE_CURRENT_BINARY_DIR}")
-
 if (PY_EXE)
+
+    set(abs_srcdir "${CMAKE_CURRENT_BINARY_DIR}")
+
+    #need this target to refresh our copy if anything in the source has changed
+    add_custom_target( mk4io_copy_src ALL
+                       COMMAND ${CMAKE_COMMAND} -E copy_directory
+                       "${CMAKE_CURRENT_SOURCE_DIR}/" "${CMAKE_CURRENT_BINARY_DIR}/"
+    )
 
     set(SETUP_PY_IN "${CMAKE_CURRENT_BINARY_DIR}/setup.py.in")
     set(SETUP_PY    "${CMAKE_CURRENT_BINARY_DIR}/setup.py")
-    set(DEPS        
-        "${CMAKE_CURRENT_BINARY_DIR}/mk4io/__init__.py"
-        "${CMAKE_CURRENT_BINARY_DIR}/afio/__init__.py"
-        )
-    set(OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/build/mk4io_timestamp")
 
     configure_file(${SETUP_PY_IN} ${SETUP_PY})
 
-    add_custom_command(OUTPUT ${OUTPUT}
-                       COMMAND ${PY_EXE} ${SETUP_PY} build
-                       COMMAND ${CMAKE_COMMAND} -E touch ${OUTPUT}
-                       DEPENDS ${DEPS})
-
-    add_custom_target(mk4io_target ALL DEPENDS ${OUTPUT})
+    add_custom_target(mk4io_build_target ALL 
+        COMMAND ${PY_EXE} ${SETUP_PY} build
+        DEPENDS mk4io_copy_src
+    )
 
     if("${PYTHON_SETUP}" STREQUAL "setuptools")
         #use pip/setuptools
-        install(CODE "execute_process(COMMAND ${PY_EXE} -m pip install ${CMAKE_CURRENT_BINARY_DIR} --target=${PYTHON_MODULE_INSTALL_DIR} )")
+        add_custom_target(mk4io_install_target ALL 
+            COMMAND ${PY_EXE} -m pip install ${CMAKE_CURRENT_BINARY_DIR} --target=${PYTHON_MODULE_INSTALL_DIR}
+            DEPENDS mk4io_build_target
+        )
+
     else()
         #use distutils
-        install(CODE "execute_process(COMMAND ${PY_EXE} ${SETUP_PY} install --prefix=${CMAKE_INSTALL_PREFIX} )")
+        add_custom_target(mk4io_install_target ALL 
+            COMMAND ${PY_EXE} ${SETUP_PY} install --prefix=${CMAKE_INSTALL_PREFIX} 
+            DEPENDS mk4io_build_target
+        )
     endif()
     
-endif()
+endif(PY_EXE)
