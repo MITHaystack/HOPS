@@ -139,7 +139,6 @@ if(${CMAKE_VERSION} VERSION_GREATER "3.12.0")
     find_package (Python3 COMPONENTS Interpreter Development)
     if (Python3_EXECUTABLE)
         set(PY_EXE ${Python3_EXECUTABLE})
-        set(PYTHON_EXECUTABLE PY_EXE)
     endif(Python3_EXECUTABLE)
 else()
   #if CMAKE version < 3.12 use old style find package to figure out where python is
