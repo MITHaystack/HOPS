@@ -37,4 +37,9 @@ if (PY_EXE)
     add_subdirectory(vpal_module)
     add_subdirectory(ffcontrol_module)
     
+    # if(HOPS_ENABLE_TEST)
+    #    add_subdirectory(test)
+    # endif(HOPS_ENABLE_TEST)
+    # 
+    # 
 endif(PY_EXE)
