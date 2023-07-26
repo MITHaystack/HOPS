@@ -1,0 +1,208 @@
+#!@PYTHON@
+
+#core imports
+from __future__ import print_function
+from __future__ import division
+#from builtins import str
+#from builtins import range
+from past.utils import old_div
+import argparse
+import sys
+import os
+#import math
+#import re
+
+import numpy as np
+
+import matplotlib
+matplotlib.use("Agg")#, warn=False)
+
+import matplotlib.pyplot as plt
+import matplotlib.gridspec as gridspec
+matplotlib.rcParams.update({'savefig.dpi':300})
+import pylab
+
+import mk4b
+
+#HOPS module imports
+import vpal.processing
+#import vpal.utility
+#import vpal.fringe_file_manipulation
+
+#import hopstestb as ht
+
+################################################################################
+
+def main():
+    # usage_text = '\n parallactic_plots.py [options] <control-file> <stations> <experiment-directory>' \
+    #              '\n e.g.: parallactic_plots.py ./cf_GHEVY_ff GHEV ./'
+    # parser = optparse.OptionParser(usage=usage_text)
+
+    parser = argparse.ArgumentParser(
+        prog='parallactic_plots.py', \
+        description='''utility for plotting parallactic angle dependence of pol-product amplitudes''' \
+        )
+
+    parser.add_argument('control_file', help='the control file for the fringe-fit data; pol-prods XX,XY,YX,YY are required')
+    parser.add_argument('stations', help='concatenated string of single character codes; script generates a plot for each baseline')
+    parser.add_argument('experiment_directory', help='relative path to directory containing experiment data')
+
+    parser.add_argument('-s', '--snr-min', type=float, dest='snr_min', help='set minimum allowed snr threshold, default=7.', default=7.)
+    parser.add_argument('-q', '--quality-limit', type=int, dest='quality_lower_limit', help='set the lower limit on fringe quality (inclusive), default=3', default=3)
+
+    args = parser.parse_args()
+
+    #print('args: ', args)
+
+    control_file = args.control_file
+    stations = args.stations
+    polprod = ['XX','XY','YX','YY']
+    exp_dir = args.experiment_directory
+    snr_min = args.snr_min
+    quality_lower_limit = args.quality_lower_limit
+    
+    abs_exp_dir = os.path.abspath(exp_dir)
+    exp_name = os.path.split(os.path.abspath(exp_dir))[1]
+
+    #determine all possible baselines in this experiment
+    baseline_list = vpal.processing.construct_valid_baseline_list(abs_exp_dir, stations[0], stations[1:], network_reference_baselines_only=False)
+
+    # get a list of fringe files that were generated with this control file
+    ff_list = vpal.processing.gather_fringe_files(exp_dir, control_file, baseline_list, pol_products=polprod, max_depth=2)
+
+    print('Found '+str(len(ff_list))+' matching fringe files.')
+    
+    # loop over baselines, generate a plot for each
+    for bline in baseline_list:
+
+        print('Collecting parallactic angles for baseline '+bline)
+
+        #default output filename
+        plot_name = "./parallactic_" + bline + "_" + exp_name
+
+        # how many unique, complete scans?
+        scans = []
+        polarization = []
+        for ff in ff_list:
+            scans.append(ff.scan_id)
+            polarization.append(ff.polarization)
+
+        unique_scans, counts = np.unique(scans, return_counts=True)
+            
+        # build an array to hold the amplitudes for each pol product
+        polproduct_amps = -1*np.ones((len(unique_scans),4)) # four columns, for each polprod
+        scan_dPar = np.zeros(len(unique_scans)) # difference in parallactic angle between the stations
+        
+        #need to:
+        #(1) collect the amplitudes for each pol-product from each scan
+        #(2) apply the snr, and quality code cuts
+        #(3) build array for each pol-product of parallactic angle and (normalized) amplitude
+        #(5) create plot with pol-products for each possible baseline
+        ################################################################################
+
+        for ff in ff_list:
+
+            #print(ff.scan_name, ff.baseline, ff.polarization)
+            
+            if ff.baseline != bline:
+                #print(ff.scan_name, ff.baseline, bline)
+                continue
+
+            # skip fringe files that don't meet the snr/qcode cuts
+            if ff.snr < snr_min or ff.quality < quality_lower_limit:
+                #print(ff.scan_name, ff.polarization, ff.snr, ff.quality)
+                continue
+            
+            
+            # find the root file
+            root_suffix = ff.filename[-6:]
+
+            # get the station parallactic angle from the station data file
+            station_data_file0 = os.path.join( os.path.dirname(ff.filename), bline[0] + ".." + root_suffix)
+            sdata0 = mk4b.mk4sdata(station_data_file0)
+            pangle0 = sdata0.model[0].t303[0].contents.parallactic_angle[0]
+            
+            station_data_file1 = os.path.join( os.path.dirname(ff.filename), bline[1] + ".." + root_suffix)
+            sdata1 = mk4b.mk4sdata(station_data_file1)
+            pangle1 = sdata1.model[0].t303[0].contents.parallactic_angle[0]
+
+            # store the amplitude of this polprod, and the difference in parallactic angles for this scan
+            polproduct_amps[np.where(unique_scans == ff.scan_id),polprod.index(ff.polarization)] = ff.amp
+            scan_dPar[np.where(unique_scans == ff.scan_id)] = pangle1-pangle0
+            
+            #print(ff.scan_id, bline[0], bline[1], ff.pol_product, ff.amp, pangle1, pangle0)
+
+
+        idx = []
+        for ii in range(len(scan_dPar)):
+
+            # remove scans with missing data
+            if any(polproduct_amps[ii,:]==-1):
+                #print(ff_list[ii].scan_id, polproduct_amps[ii,:])
+                idx.append(ii)
+
+        print('Removing '+str(len(idx))+' scans with missing data.')
+        polproduct_amps = np.delete(polproduct_amps, idx, axis=0)
+        scan_dPar = np.delete(scan_dPar,idx)
+                                            
+        #print(polproduct_amps[ii,:] / np.max(polproduct_amps[ii,:]), scan_dPar[ii]/45.)
+
+        nscans = len(scan_dPar)
+        print(str(nscans) + ' scans remaining')
+
+            
+        polprod_amps_norm = polproduct_amps / np.max(polproduct_amps,axis=1,keepdims=True)
+
+
+        #sys.exit()
+
+        fig_width_pt = 600  # Get this from LaTeX using \showthe\columnwidth
+        inches_per_pt = 1.0/72.27               # Convert pt to inch
+        #golden_mean = (2.236-1.0)/2.0         # Aesthetic ratio
+        golden_mean = 0.7
+        fig_width = fig_width_pt*inches_per_pt  # width in inches
+        fig_height = fig_width*golden_mean      # height in inches
+        fig_size = [fig_width,fig_height]
+        
+        matplotlib.rcParams.update({'savefig.dpi':350,
+                                'text.usetex':True,
+                                'figure.figsize':fig_size,
+                                'font.family':"serif",
+                                'font.serif':["Times"]})
+        
+        fig = pylab.figure(np.random.randint(0,1000))
+        #gs1 = gridspec.GridSpec(2,2)
+        #gs1.update(wspace=0.25, hspace=0.0)
+        
+        ax0 = plt.subplot()
+        
+        pylab.plot(scan_dPar, polprod_amps_norm[:,0], 'rs', markersize=2, label=polprod[0])
+        pylab.plot(scan_dPar, polprod_amps_norm[:,1], 'bs', markersize=2, label=polprod[1])
+        pylab.plot(scan_dPar, polprod_amps_norm[:,2], 'yo', markersize=2, label=polprod[2])
+        pylab.plot(scan_dPar, polprod_amps_norm[:,3], 'ko', markersize=2, label=polprod[3])
+
+        x = np.arange(np.min(scan_dPar)-30, np.max(scan_dPar)+30, 1)
+
+        pylab.plot(x, np.abs(np.cos(np.pi*x/180.)), 'k--', linewidth=0.8, label=r'$|$cos($\Delta PA$)$|$')
+        pylab.plot(x, np.abs(np.sin(np.pi*x/180.)), 'r--', linewidth=0.8, label=r'$|$sin($\Delta PA$)$|$')
+
+        
+        pylab.grid(True, which='both', linestyle=':', alpha=0.6)
+        #pylab.xticks(visible=False)
+        pylab.ylabel('normalized scan amplitude', fontsize=10)
+        #pylab.title(polprod[0],fontsize=10)
+        pylab.ylim(-0.01, 1.01)
+        pylab.xlim(np.min(scan_dPar)-10,np.max(scan_dPar)+10)
+        
+        pylab.legend(fancybox=True, fontsize=9)
+        
+        pylab.xlabel(r'parallactic angle difference [deg], PA$_'+bline[0]+'$-PA$_'+bline[1]+'$', fontsize=10)
+        pylab.title('Test for polarization swap, experiment '+exp_name+', baseline '+bline+', '+str(nscans)+' scans', fontsize=12)
+        
+        pylab.savefig(plot_name + '.png', bbox_inches='tight')
+        pylab.close()
+
+
+if __name__ == '__main__':          # official entry point
+    main()
+    sys.exit(0)
