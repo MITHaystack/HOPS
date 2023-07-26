@@ -1,0 +1,28 @@
+{
+  "record_id":200,
+  "version_no":22,
+  "software_rev":2,
+  "expt_no":123,
+  "exper_name":"Le experiment",
+  "correlator":"Le correlator",
+  "scan_name":"Le scan",
+  "start_offset":200,
+  "stop_offset":2,
+
+  "date":{
+    "scantime":"2021-11-21T18:57:18.000+05:00",
+    "corr_date":"2022-01-10",
+    "fourfit_date":"2022-02-10",
+    "frt":{
+      "year":"2021",
+      "day":"21",
+      "hour":"18",
+      "minute":"57",
+      "second":"18"
+    }
+   },
+
+  "time_stamp":"2022-02-03T18:00:18.000+05:00"
+  
+
+}
