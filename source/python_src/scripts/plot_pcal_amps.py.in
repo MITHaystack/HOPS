@@ -1,0 +1,413 @@
+#!@PYTHON@
+
+#core imports
+from __future__ import print_function
+from __future__ import division
+from builtins import str
+from builtins import range
+from past.utils import old_div
+import argparse
+import sys
+import os
+import math
+#import re
+#from datetime import datetime
+import itertools
+
+#non-core imports
+import numpy as np
+#import scipy.stats
+
+import matplotlib
+matplotlib.use("Agg")
+
+import matplotlib.pyplot as plt
+import matplotlib.gridspec as gridspec
+matplotlib.rcParams.update({'savefig.dpi':300})
+import pylab
+#import matplotlib.patches as mpatches
+from matplotlib.pyplot import cm
+
+#HOPS module imports
+import vpal.processing
+import vpal.utility
+import vpal.fringe_file_manipulation
+
+import mk4b
+import hopstestb as ht
+
+# one polarization at a time (choose XX or YY)
+# one baseline at a time? should be independent of fringe fitting; issue is collecting enough scans
+# would be better to select a station, and pick one baseline from each scan
+# collects scans, scan times; plots four panels (one for each band) of each channel's amp
+
+################################################################################
+
+def main():
+    # usage_text = '\n plot_pcal_amps.py [options] <control-file> <ref_station> <stations> <pol-product> <experiment-directory>' \
+    #              '\n e.g.: plot_pcal_amps.py ./cf_GHEVY_ff G HEV XX ./'
+    # parser = optparse.OptionParser(usage=usage_text)
+
+    parser = argparse.ArgumentParser(
+        prog='plot_pcal_amps.py', \
+        description='''utility for plotting channel-by-channel phasecal amplitudes for one polarization over time''' \
+        )
+
+    parser.add_argument('control_file', help='the control file used for the fringe fitting')
+    parser.add_argument('ref_station', help='single character code of station for channel-by-channel residual analysis')
+    parser.add_argument('stations', help='concatenated string of single character codes for remote stations to use')
+    parser.add_argument('pol_product', help='the polarization-product to be used (eg XX, YY, or I)')
+    parser.add_argument('experiment_directory', help='relative path to directory containing experiment data')
+
+    #parser.add_argument('-n', '--numproc', type=int, dest='num_proc', help='number of concurrent fourfit jobs to run, default=1', default=1)
+    parser.add_argument('-c', '--channels', dest='channels', help='specify the channels to be used, default=abcdefghijklmnopqrstuvwxyzABCDEF.', default='abcdefghijklmnopqrstuvwxyzABCDEF')
+    parser.add_argument('-s', '--snr-min', type=float, dest='snr_min', help='set minimum allowed snr threshold, default=15.', default=15.)
+    #parser.add_argument('-d', '--dtec-threshold', type=float, dest='dtec_thresh', help='set maximum allowed difference in dTEC, default=1.', default=1.0)
+    parser.add_argument('-q', '--quality-limit', type=int, dest='quality_lower_limit', help='set the lower limit on fringe quality (inclusive), default=3.', default=3)
+    #parser.add_argument('-p', '--progress', action='store_true', dest='use_progress_ticker', help='monitor process with progress indicator', default=False)
+    #parser.add_argument('-b', '--begin-scan', dest='begin_scan_limit', help='limit the earliest scan to be used e.g 244-1719', default="000-0000")
+    #parser.add_argument('-e', '--end-scan', dest='end_scan_limit', help='limit the latest scan to be used, e.g. 244-2345', default="999-9999")
+    #parser.add_argument('-r', '--remove-outliers', dest='remove_outlier_nsigma', help='remove scans which are n*sigma away from the mean, default=0 (off)', default=0.0 )
+
+
+    args = parser.parse_args()
+
+    #print('args: ', args)
+
+    control_file = args.control_file
+    ref_station = args.ref_station
+    stations = args.stations
+    polprod = args.pol_product
+    exp_dir = args.experiment_directory
+
+    abs_exp_dir = os.path.abspath(exp_dir)
+    exp_name = os.path.split(os.path.abspath(exp_dir))[1]
+    #rnsigma = float(args.remove_outlier_nsigma)
+
+    if not os.path.isfile(os.path.abspath(control_file)):
+        print("could not find control file: ", control_file)
+        sys.exit(1)
+
+    #pol product:
+    #if polprod not in ['XX', 'YY', 'XY', 'YX', 'I']:
+    #    print("polarization product must be one of: XX, YY, XY, YX, or I")
+    #    sys.exit(1)
+
+    
+    # determine all possible baselines
+    # this step is necessary, even if we assert only one possible baseline, to verify that we have the correct ordering of stations
+    print('Calculating baselines')
+
+    baseline_list = vpal.processing.construct_valid_baseline_list(abs_exp_dir, ref_station, stations, network_reference_baselines_only=True)
+
+    print('Baselines:', baseline_list)
+    
+    #qcode_list = []
+    #for q in list(range(args.quality_lower_limit, 10)):
+    #    qcode_list.append( str(q) )
+
+    #needed for plot-naming
+    #control_file_stripped = re.sub('[/\.]', '', control_file)
+
+    #default output filename
+    plot_name = "./pcal_amps_" + ref_station + "_" + stations + '_' + polprod + '_' + exp_name
+
+    # initialize a dictionary to hold lists of pcal amps for each scan (also scan time)
+    channel_pcal_amp = dict()
+    channel_pcal_amp['scans'] = list()
+    channel_pcal_amp['scan_times'] = list()
+    channel_pcal_amp['az'] = list()
+    channel_pcal_amp['el'] = list()
+    for ch in args.channels:
+        channel_pcal_amp[ch] = list()
+
+    # won't use the frequencies for plotting, but need to verify that each scan has the same frequency setup
+    freqs = dict()
+    for ch in args.channels:
+        freqs[ch] = -1.0
+        
+        
+    for bline in baseline_list:
+
+        print('Collecting fringe files for baseline',bline)
+        
+        # baselines may have different channel lists (eg a station may ignore some noisy channels),
+        # but the frequencies should all be the same
+        channel_freqs = list()
+        
+        ff_list_pre = vpal.processing.gather_fringe_files(exp_dir, control_file, [bline], pol_products=polprod, max_depth=2)
+        
+        print("n fringe files  =", str(len(ff_list_pre)))
+        
+        #apply cuts
+        ff_list = []
+
+        for ff in ff_list_pre:
+            if ff.snr >= args.snr_min and ff.quality >= args.quality_lower_limit:
+                ff_list.append(ff)
+        
+        if len(ff_list) == 0:
+            print("Error: no fringe files available after cuts, skipping baseline: ", bline)
+
+        else:
+
+            ref_flag=True
+            if bline[0]==args.ref_station:
+                print('Collecting data from ',bline,'reference station')
+            elif bline[1]==args.ref_station:
+                ref_flag=False
+                print('Collecting data from ',bline,'remote station')
+                
+            #loop over fringe files and collect the phase residuals
+            #pcal_amps = dict()
+
+            for ff in ff_list:
+
+                # make sure the number of channels is consistent for each scan in this baseline
+                # if this is the first scan for this baseline (channel_freqs hasn't been initialized), we'll assign it to this set of channels
+                chfreqs = ff.get_channel_frequency_tuples()
+                if len(channel_freqs)>0:
+                    if len(chfreqs) != len(channel_freqs):
+                        print('Scan '+ff.scan_id+' has a different channel setup!')
+                        sys.exit()
+                else:
+                    channel_freqs = chfreqs
+                    #for ii in range(len(channel_freqs)):
+                    #    pcal_amps[channel_freqs[ii][0]] = list()
+
+                
+                mf = mk4b.mk4fringe(ff.filename)
+
+                ff_pp_list = ht.get_file_polarization_product_provisional(ff.filename)
+                if len(ff_pp_list)>1:
+                    continue
+
+                # store the scan and scan time
+                channel_pcal_amp['scans'].append(ff.scan_name)
+
+                # convert scan time to fractional DOY
+                YYYY, DDD, hh, mm, ss = vpal.utility.int_to_time(ff.time_tag)
+                scan_time = DDD + hh/24. + mm/(24.*60.) + ss/86400.                
+                channel_pcal_amp['scan_times'].append(scan_time)
+
+                if ref_flag:
+                    channel_pcal_amp['az'].append(ff.ref_az)
+                    channel_pcal_amp['el'].append(ff.ref_elev)
+                else:
+                    channel_pcal_amp['az'].append(ff.rem_az)
+                    channel_pcal_amp['el'].append(ff.rem_elev)
+
+                for ii in range(len(channel_freqs)):
+                    # choose reference or remote station pcals
+                    if ref_flag:
+                        channel_pcal_amp[channel_freqs[ii][0]].append(mf.t207.contents.ref_pcamp[ii].usb*1000)
+                    else:
+                        channel_pcal_amp[channel_freqs[ii][0]].append(mf.t207.contents.rem_pcamp[ii].usb*1000)                        
+
+            # will this fail if we're missing band A?
+            if len(channel_pcal_amp[args.channels[0]])==0:
+                print("Error: could not find pcal amplitudes.")
+                sys.exit(1)
+
+
+        # store dict of frequencies in GHz
+        # check that the frequency is the same as previous baselines
+        for chan in channel_freqs:
+            if freqs[chan[0]] == chan[2]/1e9:
+                continue
+            elif freqs[chan[0]] < 0.0:
+                freqs[chan[0]] = chan[2]/1e9
+            else:
+                print('Channel '+chan[0]+' has frequency '+str(chan[2]/1e9)+' but it should be '+str(freqs[chan[0]]))
+                sys.exit(1)
+
+                            
+    print("Number of scans:", len(channel_pcal_amp[args.channels[0]]))
+    
+    channel_mean_pcal_amp = dict()
+    channel_stddev = dict()
+    for ch in args.channels:
+        channel_mean_pcal_amp[ch] = np.mean(channel_pcal_amp[ch])
+        channel_stddev[ch] = np.std(channel_pcal_amp[ch])
+        print( "(mean, std. dev) phasecal amplitude for channel: ", ch, " = ", channel_mean_pcal_amp[ch], channel_stddev[ch])
+        #print( "(mean, std. dev) Y phasecal amplitude for channel: ", ch, " = ", channel_YY_mean_pcal_amp[ch], channel_YY_stddev[ch])
+
+
+    """
+    # store the frequencies and data in lists for plotting
+    # I think we can assume the channel labels are in order of frequency
+    channel_XX_pc_amps = []
+    channel_YY_pc_amps = []
+    channel_f = []
+    channel_names = []
+    for ch in args.channels:
+        if freqs[ch]>0:
+            channel_names.append(ch)
+            channel_XX_pc_amps.append(channel_XX_pcal_amp[ch]) # this is a list of lists, instead of a dict of lists
+            channel_YY_pc_amps.append(channel_YY_pcal_amp[ch])
+            channel_f.append(freqs[ch])
+        else:
+            channel_pc_amps.append(0.0)
+            channel_f.append(0.0)
+    """
+        
+    fig_width_pt = 600  # Get this from LaTeX using \showthe\columnwidth
+    inches_per_pt = 1.0/72.27               # Convert pt to inch
+    #golden_mean = (2.236-1.0)/2.0         # Aesthetic ratio
+    golden_mean = 1.2
+    fig_width = fig_width_pt*inches_per_pt  # width in inches
+    fig_height = fig_width*golden_mean      # height in inches
+    fig_size = [fig_width,fig_height]
+                                                                        
+
+    matplotlib.rcParams.update({'savefig.dpi':350,
+                                'text.usetex':True,
+                                'figure.figsize':fig_size,
+                                'font.family':"serif",
+                                'font.serif':["Times"]})
+    
+    
+    fig = pylab.figure(np.random.randint(0,1000))
+
+    ax0 = plt.subplot(111)
+    pylab.title(r'Channel-by-channel '+polprod+' phasecal amplitudes for station '+ref_station+' in experiment '+exp_name, fontsize=12, y=1.01)
+    
+    ax0.spines['right'].set_color('none')
+    ax0.spines['bottom'].set_color('none')
+    ax0.spines['left'].set_color('none')
+    ax0.spines['top'].set_color('none')
+    plt.tick_params(labelcolor='none', which='both', top=False, bottom=False, left=False, right=False)
+
+    # use fixed colors / markers
+    # use same xticks for each plot, but only visible for the bottom plot (ii==3)
+    
+    for ii in list(range(4)):
+
+        ax = fig.add_subplot(4,1,ii+1)
+
+        color = iter(cm.gist_rainbow(np.linspace(0, 1, 8)))
+        markers = itertools.cycle(('s', '+', '.', 'o', 'x'))
+        
+        # for each channel in the band, plot pcal amp vs time
+        
+        #xtick_locs = list()
+        #xtick_labels = list()
+        #band_freqs = list()
+        #bidx = list()
+        for jj in list(range(8*ii,8*ii+8)):
+            c = matplotlib.colors.to_hex(next(color))
+            m = next(markers)
+            ch = args.channels[jj]
+            #if ch in channel_names:
+            pylab.plot(channel_pcal_amp['scan_times'], channel_pcal_amp[ch], m, color=c, markersize=4, alpha=0.8, label=bline)
+
+                
+        pylab.grid(True, which='both', linestyle=':', alpha=0.6)
+
+        #pylab.ylim(0,150.0)
+        #pylab.ylim(0.1,150.0)
+        #pylab.yscale('log')
+        pylab.yticks(fontsize=10)
+        pylab.ylabel('amplitude [arb]', fontsize=12)
+
+        if ii==3:
+            pylab.xticks(fontsize=10)
+            pylab.xlabel('time [fractional DOY]', fontsize=12)
+        else:
+            pylab.xticks(visible=False)
+            #pylab.yticks(visible=False)
+
+
+    pylab.savefig(plot_name + '.png', bbox_inches='tight')
+    pylab.close()
+
+
+
+
+
+
+    fig = pylab.figure(np.random.randint(0,1000))
+
+    ax0 = plt.subplot(111)
+    pylab.title(r'Channel-by-channel phasecal amplitudes for station '+ref_station+' in experiment '+exp_name, fontsize=12, y=1.01)
+    
+    ax0.spines['right'].set_color('none')
+    ax0.spines['bottom'].set_color('none')
+    ax0.spines['left'].set_color('none')
+    ax0.spines['top'].set_color('none')
+    plt.tick_params(labelcolor='none', which='both', top=False, bottom=False, left=False, right=False)
+
+    for ii in list(range(4)):
+
+        ax = fig.add_subplot(4,1,ii+1)
+
+        color = iter(cm.gist_rainbow(np.linspace(0, 1, 8)))
+        markers = itertools.cycle(('s', '+', '.', 'o', 'x'))
+        
+        for jj in list(range(8*ii,8*ii+8)):
+            c = matplotlib.colors.to_hex(next(color))
+            m = next(markers)
+            ch = args.channels[jj]
+            pylab.plot(channel_pcal_amp['az'], channel_pcal_amp[ch], m, color=c, markersize=4, alpha=0.8, label=bline)
+                
+        pylab.grid(True, which='both', linestyle=':', alpha=0.6)
+        pylab.yticks(fontsize=10)
+        pylab.ylabel('amplitude [arb]', fontsize=12)
+
+        if ii==3:
+            pylab.xticks(fontsize=10)
+            pylab.xlabel('azimuth [deg]', fontsize=12)
+        else:
+            pylab.xticks(visible=False)
+
+    pylab.savefig(plot_name + '_az.png', bbox_inches='tight')
+    pylab.close()
+
+
+
+
+    fig = pylab.figure(np.random.randint(0,1000))
+
+    ax0 = plt.subplot(111)
+    pylab.title(r'Channel-by-channel phasecal amplitudes for station '+ref_station+' in experiment '+exp_name, fontsize=12, y=1.01)
+    
+    ax0.spines['right'].set_color('none')
+    ax0.spines['bottom'].set_color('none')
+    ax0.spines['left'].set_color('none')
+    ax0.spines['top'].set_color('none')
+    plt.tick_params(labelcolor='none', which='both', top=False, bottom=False, left=False, right=False)
+
+    for ii in list(range(4)):
+
+        ax = fig.add_subplot(4,1,ii+1)
+
+        color = iter(cm.gist_rainbow(np.linspace(0, 1, 8)))
+        markers = itertools.cycle(('s', '+', '.', 'o', 'x'))
+        
+        for jj in list(range(8*ii,8*ii+8)):
+            c = matplotlib.colors.to_hex(next(color))
+            m = next(markers)
+            ch = args.channels[jj]
+            pylab.plot(channel_pcal_amp['el'], channel_pcal_amp[ch], m, color=c, markersize=4, alpha=0.8, label=bline)
+                
+        pylab.grid(True, which='both', linestyle=':', alpha=0.6)
+        pylab.yticks(fontsize=10)
+        pylab.ylabel('amplitude [arb]', fontsize=12)
+
+        if ii==3:
+            pylab.xticks(fontsize=10)
+            pylab.xlabel('elevation [deg]', fontsize=12)
+        else:
+            pylab.xticks(visible=False)
+
+    pylab.savefig(plot_name + '_el.png', bbox_inches='tight')
+    pylab.close()
+
+
+    
+
+
+
+if __name__ == '__main__':          # official entry point
+    main()
+    sys.exit(0)
