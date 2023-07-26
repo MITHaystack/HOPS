@@ -18,6 +18,7 @@ if (PY_EXE)
 
     configure_file(${SETUP_PY_IN} ${SETUP_PY})
 
+    #add a build target to catch problems before install (output not used)
     add_custom_target(hops4py_build_target ALL 
         COMMAND ${PY_EXE} ${SETUP_PY} build
         DEPENDS mk4io_copy_src
@@ -25,17 +26,10 @@ if (PY_EXE)
 
     if("${PYTHON_SETUP}" STREQUAL "setuptools")
         #use pip/setuptools
-        add_custom_target(hops4py_install_target ALL 
-            COMMAND ${PY_EXE} -m pip install ${CMAKE_CURRENT_BINARY_DIR} --upgrade --target=${PYTHON_MODULE_INSTALL_DIR}
-            DEPENDS mk4io_build_target
-        )
-
+        install(CODE "execute_process(COMMAND ${PY_EXE} -m pip install ${CMAKE_CURRENT_BINARY_DIR} --upgrade --target=${PYTHON_MODULE_INSTALL_DIR} )")
     else()
         #use distutils
-        add_custom_target(hops4py_install_target ALL 
-            COMMAND ${PY_EXE} ${SETUP_PY} install --prefix=${CMAKE_INSTALL_PREFIX} 
-            DEPENDS mk4io_build_target
-        )
+        install(CODE "execute_process( COMMAND ${PY_EXE} ${SETUP_PY} install --prefix=${CMAKE_INSTALL_PREFIX} )")
     endif()
 
     add_subdirectory(scripts)
