@@ -131,6 +131,36 @@ if (HOPS_USE_MPI)
     find_package(MPI REQUIRED)
 endif(HOPS_USE_MPI)
 
+################################################################################
+#stuff for controlling testing/test-data location
+set(TEST_DATA_SOURCE ${CMAKE_CURRENT_SOURCE_DIR}/test_data)
+set(HOPS_TEST_DATA_DIR ${CMAKE_CURRENT_BINARY_DIR}/test_data) #actual location to put test data and do tests
+
+#look for an environmental variable pointing to a cache of test data
+set(HOPS_USE_CACHED_TEST_DATA OFF)
+set(HOPS_NEED_REMOTE_DATA ON)
+if (NOT "$ENV{HOPS_CACHED_TEST_DATADIR}" STREQUAL "")
+    set(HOPS_CACHED_TEST_DATADIR "$ENV{HOPS_CACHED_TEST_DATADIR}" CACHE STRING "Location of cached hops test data." FORCE)
+    mark_as_advanced(HOPS_CACHED_TEST_DATADIR)
+    set(HOPS_USE_CACHED_TEST_DATA ON)
+    set(HOPS_NEED_REMOTE_DATA OFF)
+endif()
+
+#check that we can download test data if testing is enabled and there is no cache
+cmake_dependent_option( HOPS_ENABLE_REMOTE_TEST_DATA "Download remote data for developer tests." ${HOPS_NEED_REMOTE_DATA} "HOPS_ENABLE_TEST" OFF)
+
+if(HOPS_ENABLE_TEST)
+    if(NOT HOPS_ENABLE_REMOTE_TEST_DATA AND NOT HOPS_USE_CACHED_TEST_DATA)
+            #we are not downloading test data (and no local cache available), so force it off
+            set(HOPS_ENABLE_TEST OFF CACHE BOOL "Build developer tests." FORCE)
+    endif()
+endif(HOPS_ENABLE_TEST)
+
+if(HOPS_ENABLE_TEST)
+    enable_testing()
+    add_subdirectory(${TEST_DATA_SOURCE})
+endif(HOPS_ENABLE_TEST)
+
 
 ################################################################################
 #python package setup
@@ -171,7 +201,26 @@ if(PY_EXE)
     list(GET PYTHON_CONFIG_SETTINGS 4 PYTHON_HAVE_PIP)
     set( PYTHON_MODULE_INSTALL_DIR  "${CMAKE_INSTALL_PREFIX}/${PYTHON_SITE_PREFIX}")
 
-    #now add the python source dir
+else()
+    
+    #no python found so turn off pybind11 too 
+    set(HOPS_USE_PYBIND11 OFF)
+
+endif(PY_EXE)
+
+################################################################################
+#configure the environment set-up script
+configure_file( ${SHSOURCE}/hopsenv.sh.cmake ${CMAKE_CURRENT_BINARY_DIR}/hops.bash @ONLY)
+install( PROGRAMS ${CMAKE_CURRENT_BINARY_DIR}/hops.bash DESTINATION ${BIN_INSTALL_DIR} )
+
+################################################################################
+#call build in the subdirectories
+add_subdirectory(${EXTERN_HLIBS}) #external (mostly header-only) dependencies, but date (tz) library must be built
+add_subdirectory(${CSOURCE})
+add_subdirectory(${CPPSOURCE})
+
+if(PY_EXE)
+    # add the python source dir
     if("${PYTHON_NEED_PIP}" STREQUAL "false")
         add_subdirectory(${PYSOURCE})
     else()
@@ -181,59 +230,6 @@ if(PY_EXE)
         message(WARNING "Python ${PYTHON_VERS} requires pip for proper packaging of local hops tools. Install pip for these to be built.")
         endif()
     endif()
-    
-else()
-    #no python found so turn off pybind11 too 
-    set(HOPS_USE_PYBIND11 OFF)
-
-endif(PY_EXE)
-
-################################################################################
-#stuff for controlling testing/test-data location
-set(TEST_DATA_SOURCE ${CMAKE_CURRENT_SOURCE_DIR}/test_data)
-set(HOPS_TEST_DATA_DIR ${CMAKE_CURRENT_BINARY_DIR}/test_data) #actual location to put test data and do tests
-
-#look for an environmental variable pointing to a cache of test data
-set(HOPS_USE_CACHED_TEST_DATA OFF)
-set(HOPS_NEED_REMOTE_DATA ON)
-if (NOT "$ENV{HOPS_CACHED_TEST_DATADIR}" STREQUAL "")
-    set(HOPS_CACHED_TEST_DATADIR "$ENV{HOPS_CACHED_TEST_DATADIR}" CACHE STRING "Location of cached hops test data." FORCE)
-    mark_as_advanced(HOPS_CACHED_TEST_DATADIR)
-    set(HOPS_USE_CACHED_TEST_DATA ON)
-    set(HOPS_NEED_REMOTE_DATA OFF)
 endif()
 
-#check that we can download test data if testing is enabled and there is no cache
-cmake_dependent_option( HOPS_ENABLE_REMOTE_TEST_DATA "Download remote data for developer tests." ${HOPS_NEED_REMOTE_DATA} "HOPS_ENABLE_TEST" OFF)
-
-if(HOPS_ENABLE_TEST)
-    if(NOT HOPS_ENABLE_REMOTE_TEST_DATA AND NOT HOPS_USE_CACHED_TEST_DATA)
-            #we are not downloading test data (and no local cache available), so force it off
-            set(HOPS_ENABLE_TEST OFF CACHE BOOL "Build developer tests." FORCE)
-    endif()
-endif(HOPS_ENABLE_TEST)
-
-if(HOPS_ENABLE_TEST)
-    enable_testing()
-endif(HOPS_ENABLE_TEST)
-
-
-
-################################################################################
-
-#configure environment set-up script
-configure_file( ${SHSOURCE}/hopsenv.sh.cmake ${CMAKE_CURRENT_BINARY_DIR}/hops.bash @ONLY)
-install( PROGRAMS ${CMAKE_CURRENT_BINARY_DIR}/hops.bash DESTINATION ${BIN_INSTALL_DIR} )
-
-################################################################################
-#call build in the subdirectories
-add_subdirectory(${EXTERN_HLIBS}) #external (mostly header-only) dependencies, but date (tz) library must be built
-
-#optional directory for test-data
-if(HOPS_ENABLE_TEST)
-add_subdirectory(${TEST_DATA_SOURCE})
-endif(HOPS_ENABLE_TEST)
-
-add_subdirectory(${CSOURCE})
-add_subdirectory(${CPPSOURCE})
 add_subdirectory(doc)

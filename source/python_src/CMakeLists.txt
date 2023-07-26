@@ -3,7 +3,7 @@
 #directory with egg.info garbage
 file(COPY "${CMAKE_CURRENT_SOURCE_DIR}/" DESTINATION "${CMAKE_CURRENT_BINARY_DIR}/")
 
-if (PY_EXE)
+if(PY_EXE AND NOT HOPS3_USE_CXX)
 
     set(abs_srcdir "${CMAKE_CURRENT_BINARY_DIR}")
 
@@ -37,9 +37,9 @@ if (PY_EXE)
     add_subdirectory(vpal_module)
     add_subdirectory(ffcontrol_module)
     
-    # if(HOPS_ENABLE_TEST)
-    #    add_subdirectory(test)
-    # endif(HOPS_ENABLE_TEST)
-    # 
-    # 
-endif(PY_EXE)
+    if(HOPS_ENABLE_TEST)
+        enable_testing()
+        add_subdirectory(test)
+    endif(HOPS_ENABLE_TEST)
+
+endif(PY_EXE AND NOT HOPS3_USE_CXX)
