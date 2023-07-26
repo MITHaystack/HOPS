@@ -80,12 +80,12 @@ set(PYSOURCE ${CMAKE_CURRENT_SOURCE_DIR}/source/python_src)
 set(EXTERN_HLIBS ${CMAKE_CURRENT_SOURCE_DIR}/extern)
 
 ################################################################################
-
-#compiler standard (use c++11 standard by default)
+#compiler settings
+#use c++11 standard by default
 hops_require_cpp11()
 #hops_require_cpp17()
 #hops_require_cpp20()
-message(STATUS "Using compiler ${COMPILER_ID} ${COMPILER_VERSION}")
+message(STATUS "Using compiler ${COMPILER_ID} ${COMPILER_VERSION} and standard c++${HOPS_CXX_STANDARD}")
 
 option(EXTRA_WARNINGS "Turn on extra compiler warnings." OFF)
 if(EXTRA_WARNINGS)
@@ -181,6 +181,10 @@ if(PY_EXE)
         message(WARNING "Python ${PYTHON_VERS} requires pip for proper packaging of local hops tools. Install pip for these to be built.")
         endif()
     endif()
+    
+else()
+    #no python found so turn off pybind11 too 
+    set(HOPS_USE_PYBIND11 OFF)
 
 endif(PY_EXE)
 
