@@ -80,8 +80,8 @@ class FFControlStructureBase(ctypes.Structure):
                 print( field[0], ":")
                 a.printsummary()
             else:
-                if a != NULLINT and a != NULLFLOAT and a != NULLCHAR:
-                    print( field[0], ":" , a)
+                #if a != NULLINT and a != NULLFLOAT and a != NULLCHAR:
+                print( field[0], ":" , a)
 
     def printarray(self,a):
         """ dump data form a parsed array """
@@ -197,11 +197,14 @@ c_block._fields_ = [
     ('vbp_coeffs', dstats * 5),
     ('vbp_file', (ctypes.c_char *256) * 2),
     ('mount_type', (ctypes.c_int) * 2 ),
-    ('mixed_mode_rot', ctypes.c_int),
-    ('noautofringes', ctypes.c_int),
-    ('mod4numbering', ctypes.c_int),
-    ('mbdrplopt', (ctypes.c_int) * 2),
-] #end of c_block._fields_
+    ('mixed_mode_rot', ctypes.c_int)
+]
+
+#TODO IMPORTANT - make sure this matches the c structure 
+    # ('noautofringes', ctypes.c_int),
+    # ('mod4numbering', ctypes.c_int),
+    # ('mbdrplopt', (ctypes.c_int) * 2),
+#] #end of c_block._fields_
 
 
 ################################################################################
@@ -219,10 +222,12 @@ def load_ffcontrol_library():
         if os.path.isfile(libpath):
             #found the library, go ahead and load it up
             ffcontrol = ctypes.cdll.LoadLibrary(libpath)
+            ffcontrol.set_msglev(3)
             return ffcontrol
         elif os.path.isfile(altlibpath):
             #found the library, go ahead and load it up
             ffcontrol = ctypes.cdll.LoadLibrary(altlibpath)
+            ffcontrol.set_msglev(3)
             return ffcontrol
 
     #next try to find the library using the environmental variable HOPS_PREFIX
@@ -231,6 +236,7 @@ def load_ffcontrol_library():
         path = os.path.join(prefix, 'lib','hops', 'libffcontrolpy.so')
         if os.path.isfile(path):
             ffcontrol = ctypes.cdll.LoadLibrary(path)
+            ffcontrol.set_msglev(3)
             return ffcontrol
 
     #failing that, try to find it using the HOPS_ROOT and HOPS_ARCH env's
@@ -240,6 +246,7 @@ def load_ffcontrol_library():
         path = os.path.join(root, arch,'lib','hops', 'libffcontrolpy.so')
         if os.path.isfile(path):
             ffcontrol = ctypes.cdll.LoadLibrary(path)
+            ffcontrol.set_msglev(3)
             return ffcontrol
 
     #failed to find the library
@@ -249,8 +256,13 @@ def load_ffcontrol_library():
 def get_control_block(filename, baseline, source, fgroup, time):
     """ construct a control block from the specified control file, baseline, source, frequency group, and time """
     ffcontrol_lib = load_ffcontrol_library()
+    # ffcontrol_lib.set_msglev(-5)
     cb_out = c_block()
-    ffcontrol_lib.construct_cblock(ctypes.create_string_buffer(filename.encode()), ctypes.byref(cb_out), ctypes.create_string_buffer(baseline.encode()), ctypes.create_string_buffer(source.encode()), ctypes.c_char(fgroup.encode()), ctypes.c_int(time) )
+    fn_buff = ctypes.create_string_buffer(filename.encode())
+    bl_buff = ctypes.create_string_buffer(baseline.encode(),2)
+    src_buff = ctypes.create_string_buffer(source.encode(),32)
+
+    ffcontrol_lib.for_python_construct_cblock(fn_buff, ctypes.byref(cb_out), bl_buff, src_buff, ctypes.c_char(fgroup.encode()), ctypes.c_int(time) )
     return cb_out
 
 def get_fcode_index(freq_char):

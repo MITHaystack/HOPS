@@ -6,7 +6,7 @@
 
 int copy_cblock_parts ( struct c_block* f, struct c_block* t);
 int create_fsm();
-int criteria_match (struct c_block* cb_ptr, char base[2], char sour[31], char group, int time);
+int criteria_match (struct c_block* cb_ptr, char* base, char* sour, char group, int time);
 int default_cblock (struct c_block *cb_ptr);
 char* get_bfstring (char* barg);
 int init_tokens();
