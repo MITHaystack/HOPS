@@ -16,27 +16,20 @@ cd $EXP_DIR
 @PY_EXE@ -B @abs_srcdir@/test_mk4io.py $EXP_DIR
 MK4IO_PASS_FAIL=$?
 
-# @PY_EXE@ -B @abs_srcdir@/test_ffres2pcp.py $EXP_DIR
-# FFRES2PCP_PASS_FAIL=$?
+@PY_EXE@ -B @abs_srcdir@/test_ffres2pcp.py $EXP_DIR
+FFRES2PCP_PASS_FAIL=$?
 
 @PY_EXE@ -B @abs_srcdir@/test_fourphase.py $EXP_DIR
 FOURPHASE_PASS_FAIL=$?
 
-if [ "$MK4IO_PASS_FAIL" -eq 0 -a  "$FOURPHASE_PASS_FAIL" -eq 0 ]; then
+
+if [ "$MK4IO_PASS_FAIL" -eq 0 -a "$FFRES2PCP_PASS_FAIL" -eq 0 -a  "$FOURPHASE_PASS_FAIL" -eq 0 ]; then
   echo "Full chops test suite passed."
   exit 0
 else
   echo "Full chops test suite failed."
   exit 1
 fi
-
-# if [ "$MK4IO_PASS_FAIL" -eq 0 -a "$FFRES2PCP_PASS_FAIL" -eq 0 -a  "$FOURPHASE_PASS_FAIL" -eq 0 ]; then
-#   echo "Full chops test suite passed."
-#   exit 0
-# else
-#   echo "Full chops test suite failed."
-#   exit 1
-# fi
 
 #
 # eof
