@@ -217,8 +217,8 @@ install( PROGRAMS ${CMAKE_CURRENT_BINARY_DIR}/hops.bash DESTINATION ${BIN_INSTAL
 ################################################################################
 #call build in the subdirectories
 add_subdirectory(${EXTERN_HLIBS}) #external (mostly header-only) dependencies, but date (tz) library must be built
-add_subdirectory(${CSOURCE})
-add_subdirectory(${CPPSOURCE})
+add_subdirectory(${CSOURCE}) #mostly hops3 source
+add_subdirectory(${CPPSOURCE}) #mostly hops4 source
 
 if(PY_EXE)
     # add the python source dir
@@ -233,4 +233,5 @@ if(PY_EXE)
     endif()
 endif()
 
+#build docs
 add_subdirectory(doc)

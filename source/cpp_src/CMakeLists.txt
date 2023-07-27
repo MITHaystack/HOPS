@@ -39,16 +39,9 @@ endif(HOPS_USE_DIFXIO)
 add_subdirectory(${CPPSOURCE}/Plugins/OpenCL) #opencl plugin
 
 if(HOPS_USE_PYBIND11)
-    #TODO fix the python version detected by cmake/pybind11 to be consisted
-    #see: https://pybind11.readthedocs.io/en/stable/faq.html?highlight=cmake#cmake-doesn-t-detect-the-right-python-version
     add_subdirectory(${CPPSOURCE}/Plugins/PythonBindings) #python bindings
 endif(HOPS_USE_PYBIND11)
 
 add_subdirectory(${CPPSOURCE}/Plugins/Root) #CERN ROOT plugins
 
 add_subdirectory(${CPPSOURCE}/Applications) #applications
-
-#transitory applications for migration
-if(HOPS3_USE_CXX)
-    add_subdirectory(${CPPSOURCE}/Applications/fourfit)
-endif(HOPS3_USE_CXX)

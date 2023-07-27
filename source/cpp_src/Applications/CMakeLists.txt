@@ -1,15 +1,15 @@
 hops_internal_include_directories()
 
-set(HOPS_TEST_LIBS 
-    MHO_Message 
-    MHO_Utilities 
-    vex2json 
-    MHO_Math 
-    MHO_Containers 
-    MHO_Snapshot 
-    MHO_Operators 
-    MHO_Calibration 
-    MHO_MK4Interface 
+set(HOPS_TEST_LIBS
+    MHO_Message
+    MHO_Utilities
+    vex2json
+    MHO_Math
+    MHO_Containers
+    MHO_Snapshot
+    MHO_Operators
+    MHO_Calibration
+    MHO_MK4Interface
     MHO_Control
     MHO_Initialization
 )
@@ -66,7 +66,10 @@ endforeach( BASENAME )
 hops_install_executables( ${SOURCE_BASENAMES} )
 
 ################################################################################
-
+#transitory applications for migration
+if(HOPS3_USE_CXX)
+    add_subdirectory(${CPPSOURCE}/Applications/fourfit)
+endif(HOPS3_USE_CXX)
 
 if(HOPS_ENABLE_TEST)
    add_subdirectory(test)
