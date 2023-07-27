@@ -36,6 +36,7 @@ include(HopsDefaults)
 include(CMakeDependentOption)
 include(FindGFORTRAN)
 include(FindPGPLOT)
+#include(CPack) not ready for this yet
 
 #install prefix
 message(STATUS "Architecture is ${CMAKE_SYSTEM_PROCESSOR}")
