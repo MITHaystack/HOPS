@@ -30,7 +30,6 @@ if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
   set_property(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS "Debug" "Release" "MinSizeRel" "RelWithDebInfo")
 endif()
 
-
 #includes for package finding
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake )
 include(HopsDefaults)
@@ -102,16 +101,18 @@ endif()
 
 #options for triggering additional dependencies
 option(HOPS_ENABLE_TEST "Build developer tests." OFF)
-option(HOPS3_USE_CXX "Build HOPS3 libraries using the C++ compiler." OFF)
 option(HOPS_USE_FFTW3 "Use FFTW3 for fast fourier transforms" OFF)
 option(HOPS_USE_DIFXIO "Link against difxio library to read DiFX files" OFF)
 option(HOPS_USE_PYBIND11 "Build python bindings with pybind11" OFF)
 option(HOPS_USE_ROOT "Use CERN ROOT libraries to enable plugin tools for plotting/debug/analysis." OFF)
 option(HOPS_USE_MPI "Use MPI (Message Passing Interface) for parallel processing" OFF)
+option(HOPS3_USE_CXX "Build HOPS3 libraries using the C++ compiler." OFF)
+option(HOPS3_PYTHON_EXTRAS "Build python (cytpes) interface to hops3 libraries" ON)
 
 if(HOPS3_USE_CXX)
     hops_add_cflag(HOPS3_USE_CXX)
     hops_add_cxxflag(HOPS3_USE_CXX)
+    set(HOPS3_PYTHON_EXTRAS OFF CACHE BOOL "(Disabled when HOPS3_USE_CXX=ON)" FORCE )
 endif()
 
 if(HOPS_USE_FFTW3)
@@ -180,7 +181,7 @@ else()
   endif (PYTHON_EXECUTABLE)
 endif()
 
-    
+
 if(PY_EXE)
 
     #figure out the python version and appropriate install path, so we can add it to PYTHONPATH
@@ -202,8 +203,8 @@ if(PY_EXE)
     set( PYTHON_MODULE_INSTALL_DIR  "${CMAKE_INSTALL_PREFIX}/${PYTHON_SITE_PREFIX}")
 
 else()
-    
-    #no python found so turn off pybind11 too 
+
+    #no python found so turn off pybind11 too
     set(HOPS_USE_PYBIND11 OFF)
 
 endif(PY_EXE)
