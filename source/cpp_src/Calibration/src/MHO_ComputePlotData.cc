@@ -625,10 +625,6 @@ MHO_ComputePlotData::DumpInfoToJSON()
     mho_json src_section = fVexInfo["$SOURCE"];
     auto src_info = src_section.begin().value();
 
-    mho_json sched_section = fVexInfo["$SCHED"];
-    std::string scan_name = sched_section.begin().key();
-    auto sched_info = sched_section.begin().value();
-
     mho_json freq_section = fVexInfo["$FREQ"];
     auto freq_info = freq_section.begin().value();
     double sample_rate = freq_info["sample_rate"]["value"];
