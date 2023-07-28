@@ -33,7 +33,7 @@ set( CALIBRATION_SOURCEFILES
 hops_internal_include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 #list of c++ libraries
-set(CALIBRATION_LIBS MHO_Message MHO_Math MHO_Operators MHO_Containers)
+set(CALIBRATION_LIBS MHO_Message MHO_Math MHO_Utilities MHO_Operators MHO_Containers)
 
 #compile and install library ###################################################
 add_library (MHO_Calibration SHARED ${CALIBRATION_SOURCEFILES})

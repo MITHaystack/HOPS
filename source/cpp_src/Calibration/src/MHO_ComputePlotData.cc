@@ -5,12 +5,6 @@
 namespace hops
 {
 
-
-
-
-
-
-
 xpower_amp_type
 MHO_ComputePlotData::calc_mbd()
 {
@@ -115,21 +109,6 @@ MHO_ComputePlotData::calc_mbd()
     return fMBDAmpWorkspace;
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 xpower_amp_type
@@ -598,10 +577,105 @@ MHO_ComputePlotData::calc_xpower_KLUDGE()
 }
 
 
+mho_json
+MHO_ComputePlotData::DumpInfoToJSON()
+{
+    auto sbd_amp = calc_sbd();
+    auto mbd_amp = calc_mbd();
+    auto dr_amp = calc_dr();
+    auto sbd_xpower = calc_xpower_KLUDGE();
+    double coh_avg_phase = calc_phase();
 
+    //calculate AP period
+    double ap_delta = std::get<TIME_AXIS>(*fVisibilities)(1) - std::get<TIME_AXIS>(*fVisibilities)(0);
 
+    mho_json plot_dict;
+    std::size_t npts = sbd_amp.GetSize();
+    for(std::size_t i=0;i<npts;i++)
+    {
+        plot_dict["SBD_AMP"].push_back( sbd_amp(i) );
+        plot_dict["SBD_AMP_XAXIS"].push_back( std::get<0>(sbd_amp)(i) );
+    }
 
+    npts = mbd_amp.GetSize();
+    for(std::size_t i=0;i<npts;i++)
+    {
+        plot_dict["MBD_AMP"].push_back( mbd_amp(i) );
+        plot_dict["MBD_AMP_XAXIS"].push_back( std::get<0>(mbd_amp)(i) );
+    }
 
+    npts = dr_amp.GetSize();
+    for(std::size_t i=0;i<npts;i++)
+    {
+        plot_dict["DLYRATE"].push_back( dr_amp(i) );
+        plot_dict["DLYRATE_XAXIS"].push_back( std::get<0>(dr_amp)(i) );
+    }
+
+    npts = sbd_xpower.GetSize();
+    for(std::size_t i=0;i<npts;i++)
+    {
+        plot_dict["XPSPEC-ABS"].push_back( std::abs(sbd_xpower(i) ) );
+        plot_dict["XPSPEC-ARG"].push_back( std::arg(sbd_xpower(i) )*(180.0/M_PI) );
+        plot_dict["XPSPEC_XAXIS"].push_back( std::get<0>(sbd_xpower)(i) );
+    }
+
+    mho_json exper_section = fVexInfo["$EXPER"];
+    auto exper_info = exper_section.begin().value();
+
+    mho_json src_section = fVexInfo["$SOURCE"];
+    auto src_info = src_section.begin().value();
+
+    mho_json sched_section = fVexInfo["$SCHED"];
+    std::string scan_name = sched_section.begin().key();
+    auto sched_info = sched_section.begin().value();
+
+    mho_json freq_section = fVexInfo["$FREQ"];
+    auto freq_info = freq_section.begin().value();
+    double sample_rate = freq_info["sample_rate"]["value"];
+    double samp_period = 1.0/(sample_rate*1e6);
+
+    plot_dict["Quality"] = "-";
+
+    //Poor imitation of SNR -- needs corrections
+    //hardcoded dummy values right now
+    double eff_npol = 1.0;
+    double amp_corr_factor = 1.0;
+    double fact1 = 1.0; //more than 16 lags
+    double fact2 = 0.881; //2bit x 2bit
+    double fact3 = 0.970; //difx
+    double acc_period = ap_delta;
+    double inv_sigma = fact1 * fact2 * fact3 * std::sqrt(acc_period/samp_period);
+    plot_dict["SNR"] = fAmp * inv_sigma *  sqrt(fTotalSummedWeights * eff_npol)/(1e4* amp_corr_factor);
+
+    std::size_t nchan = std::get<CHANNEL_AXIS>(*fVisibilities).GetSize();
+    plot_dict["IntgTime"] = fTotalSummedWeights*acc_period /(double)nchan;
+
+    plot_dict["Amp"] = fAmp;
+
+    #pragma message("TODO FIXME -- when control file parameter mbd_anchor sbd is used there is an additional correction done to fringe phase, see fill_208.c line 158!!")
+    plot_dict["ResPhase"] = std::fmod(coh_avg_phase * (180.0/M_PI), 360.0);
+    plot_dict["PFD"] = "-";
+    plot_dict["ResidSbd(us)"] = fSBDelay;
+    plot_dict["ResidMbd(us)"] = fMBDelay;
+    plot_dict["FringeRate(Hz)"]  = fFringeRate;
+    plot_dict["IonTEC(TEC)"] = "-";
+    plot_dict["RefFreq(MHz)"] = fRefFreq;
+    plot_dict["AP(sec)"] = ap_delta;
+    plot_dict["ExperName"] = exper_info["exper_name"];
+    plot_dict["ExperNum"] = "-";
+    plot_dict["YearDOY"] = "-";
+    plot_dict["Start"] = "-";
+    plot_dict["Stop"] = "-";
+    plot_dict["FRT"] = "-";
+    plot_dict["CorrTime"] = "-";
+    plot_dict["FFTime"] = "-";
+    plot_dict["BuildTime"] = "-";
+
+    plot_dict["RA"] = src_info["ra"];
+    plot_dict["Dec"] = src_info["dec"];
+
+    return plot_dict;
+}
 
 
 
