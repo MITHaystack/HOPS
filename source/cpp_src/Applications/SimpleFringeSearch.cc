@@ -440,7 +440,13 @@ int main(int argc, char** argv)
     plot_dict["RootScanBaseline"] = scanStore.GetRootFileBasename() + ", " + scan_name + ", " + baseline;
     plot_dict["CorrVers"] = "HOPS4/DiFX fourfit  rev 0";
     plot_dict["PolStr"] = polprod;
-    
+
+    //open and dump to file
+    std::string fdump = "fdump.json";
+    std::ofstream fdumpFile(fdump.c_str(), std::ofstream::out);
+    fdumpFile << plot_dict;
+    fdumpFile.close();
+
     #ifdef USE_PYBIND11
     
     std::cout<<"python plotting"<<std::endl;
