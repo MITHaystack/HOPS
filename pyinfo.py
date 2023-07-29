@@ -28,8 +28,7 @@ if need_pip == "true":
     except ImportError:
         pip_installed="false"
 
-# info_str = version_str + ";" + pyinstall_path + ";" + setup_option + ";" + need_pip + ";" + pip_installed
-
-info_str = version_str + ";" + pyinstall_path + ";" + "distutils.core" + ";" + "false" + ";" + pip_installed
+info_str = version_str + ";" + pyinstall_path + ";" + setup_option + ";" + need_pip + ";" + pip_installed
+#info_str = version_str + ";" + pyinstall_path + ";" + "distutils.core" + ";" + "false" + ";" + pip_installed
 
 print(info_str)
