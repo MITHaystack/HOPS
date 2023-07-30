@@ -23,17 +23,7 @@
 #include "MHO_CyclicRotator.hh"
 #include "MHO_SubSample.hh"
 
-// #ifdef HOPS_USE_FFTW3
-//     #include "MHO_MultidimensionalFastFourierTransformFFTW.hh"
-// #else
-//     #include "MHO_FastFourierTransform.hh"
-// #endif
-
 #include "MHO_MultidimensionalPaddedFastFourierTransform.hh"
-
-
-
-
 
 
 namespace hops
