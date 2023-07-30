@@ -12,7 +12,6 @@ set(SOURCE_BASENAMES
     TestPointwiseMultiply
     TestCyclicRotation
     TestSubSample
-    TestFFTWAlt
 )
 
 #for testing purposes only -- ROOT not intended to be a dependency

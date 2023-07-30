@@ -38,6 +38,7 @@ class MHO_MultidimensionalFastFourierTransformFFTW:
             for(size_t i=0; i<XArgType::rank::value; i++)
             {
                 fDimensionSize[i] = 0;
+                fAxesToXForm[i] = true;
             }
 
             fIsValid = false;
@@ -56,9 +57,23 @@ class MHO_MultidimensionalFastFourierTransformFFTW:
             DestructPlan();
         };
 
-        virtual void SetForward(){fForward = true;}
-        virtual void SetBackward(){fForward = false;};
+        virtual void SetForward(){fForward = true; fInitialized = false;}
+        virtual void SetBackward(){fForward = false; fInitialized = false;};
 
+        //sometimes we may want to select/deselect particular dimensions of the x-form
+        //default is to transform along every dimension, but that may not always be needed
+        void SelectAllAxes(){for(std::size_t i=0; i<XArgType::rank::value; i++){fAxesToXForm[i] = true;} fInitialized = false;}
+        void DeselectAllAxes(){for(std::size_t i=0; i<XArgType::rank::value; i++){fAxesToXForm[i] = false;} fInitialized = false;}
+        void SelectAxis(std::size_t axis_index)
+        {
+            fInitialized = false;
+            if(axis_index < XArgType::rank::value){fAxesToXForm[axis_index] = true;}
+            else
+            {
+                msg_error("operators", "Cannot transform axis with index: " <<
+                          axis_index << "for array with rank: " << XArgType::rank::value << eom);
+            }
+        }
 
     protected:
 
@@ -75,7 +90,7 @@ class MHO_MultidimensionalFastFourierTransformFFTW:
                 {
                     if(fDimensionSize[i] != in->GetDimension(i)){need_to_resize = true; break;}
                 }
-                if(need_to_resize)
+                if(need_to_resize || !fInitialized ) 
                 {
                     in->GetDimensions(fDimensionSize);
                     fTotalArraySize = MHO_NDArrayMath::TotalArraySize<XArgType::rank::value>(fDimensionSize);
@@ -109,7 +124,7 @@ class MHO_MultidimensionalFastFourierTransformFFTW:
                 {
                     if(fDimensionSize[i] != in->GetDimension(i)){need_to_resize = true; break;}
                 }
-                if(need_to_resize)
+                if(need_to_resize || !fInitialized )
                 {
                     in->GetDimensions(fDimensionSize);
                     fTotalArraySize = MHO_NDArrayMath::TotalArraySize<XArgType::rank::value>(fDimensionSize);
@@ -253,31 +268,62 @@ class MHO_MultidimensionalFastFourierTransformFFTW:
         {
             if(fInPtr == NULL || fOutPtr == NULL || fInPlacePtr == NULL){return false;}
 
-            int rank = XArgType::rank::value;
-            //we force fftw to only do one fft at a time
-            //but we could implement a batched interface also...
-            int howmany_rank = 0; //zero disables more than one x-form
-            fHowManyDims.n = 1;
-            fHowManyDims.is = MHO_NDArrayMath::TotalArraySize<XArgType::rank::value>(fDimensionSize);
-            fHowManyDims.os = MHO_NDArrayMath::TotalArraySize<XArgType::rank::value>(fDimensionSize);
+            //then compute the rank of the transform (the number of axes selected)
+            int rank = 0;
+            for(size_t d = 0; d < XArgType::rank::value; d++){if(fAxesToXForm[d]){rank++;}}
 
-            for(size_t i=0; i<XArgType::rank::value; i++)
+            //then compute the howmany_rank of the transform
+            //number of dimensions need to describe location of the starting point
+            int howmany_rank = XArgType::rank::value - rank;
+
+
+            std::cout<<"rank = "<<rank<<std::endl;
+            std::cout<<"howmany_rank = "<<howmany_rank<<std::endl;
+            //now figure out the dimensions of the transforms
+            //note: unless we are transforming every dimension of the input,
+            //we may not fill up this array completely (hence the count variable)
+            int count = 0; 
+            for(size_t d = 0; d < XArgType::rank::value; d++)
             {
-                fDims[i].n = fDimensionSize[i];
-                fDims[i].is = MHO_NDArrayMath::StrideFromRowMajorIndex<XArgType::rank::value>(i,fDimensionSize);
-                fDims[i].os = MHO_NDArrayMath::StrideFromRowMajorIndex<XArgType::rank::value>(i,fDimensionSize);
+                if(fAxesToXForm[d])
+                {
+                    //figure out the dims parameter (length of the FFT and stride between elements)
+                    fDims[count].n = fDimensionSize[d];
+                    fDims[count].is = MHO_NDArrayMath::StrideFromRowMajorIndex<XArgType::rank::value>(d,fDimensionSize);
+                    fDims[count].os = MHO_NDArrayMath::StrideFromRowMajorIndex<XArgType::rank::value>(d,fDimensionSize);
+
+                    std::cout<<"dims @"<<count<<" = "<<fDims[count].n<<", "<<fDims[count].is<<", "<<fDims[count].os<<std::endl;
+                    count++;
+                }
             }
 
-            fPlanForward = MHO_FFTWTypes<floating_point_value_type>::plan_guru_func(rank, fDims, howmany_rank, &fHowManyDims,
+            count=0;
+            for(size_t d = 0; d < XArgType::rank::value; d++)
+            {
+                if(!fAxesToXForm[d])
+                {
+                    //figure out the dims parameter (length of the FFT and stride between elements)
+                    fHowManyDims[count].n = fDimensionSize[d];
+                    fHowManyDims[count].is = MHO_NDArrayMath::StrideFromRowMajorIndex<XArgType::rank::value>(d,fDimensionSize);
+                    fHowManyDims[count].os = MHO_NDArrayMath::StrideFromRowMajorIndex<XArgType::rank::value>(d,fDimensionSize);
+
+                    std::cout<<"howmany_dims @"<<count<<" = "<<fHowManyDims[count].n<<", "<<fHowManyDims[count].is<<", "<<fHowManyDims[count].os<<std::endl;
+                    count++;
+                }
+
+            }
+
+
+            fPlanForward = MHO_FFTWTypes<floating_point_value_type>::plan_guru_func(rank, fDims, howmany_rank, fHowManyDims,
                                        fInPtr, fOutPtr, FFTW_FORWARD, HOPS_FFTW_PLAN_ALGO);
 
-            fPlanBackward = MHO_FFTWTypes<floating_point_value_type>::plan_guru_func(rank, fDims, howmany_rank, &fHowManyDims,
+            fPlanBackward = MHO_FFTWTypes<floating_point_value_type>::plan_guru_func(rank, fDims, howmany_rank, fHowManyDims,
                                        fInPtr, fOutPtr, FFTW_BACKWARD, HOPS_FFTW_PLAN_ALGO);
 
-            fPlanForwardInPlace = MHO_FFTWTypes<floating_point_value_type>::plan_guru_func(rank, fDims, howmany_rank, &fHowManyDims,
+            fPlanForwardInPlace = MHO_FFTWTypes<floating_point_value_type>::plan_guru_func(rank, fDims, howmany_rank, fHowManyDims,
                                        fInPlacePtr, fInPlacePtr, FFTW_FORWARD, HOPS_FFTW_PLAN_ALGO);
 
-            fPlanBackwardInPlace = MHO_FFTWTypes<floating_point_value_type>::plan_guru_func(rank, fDims, howmany_rank, &fHowManyDims,
+            fPlanBackwardInPlace = MHO_FFTWTypes<floating_point_value_type>::plan_guru_func(rank, fDims, howmany_rank, fHowManyDims,
                                        fInPlacePtr, fInPlacePtr, FFTW_BACKWARD, HOPS_FFTW_PLAN_ALGO);
 
             if(fPlanForward != NULL && fPlanBackward != NULL && fPlanBackwardInPlace != NULL && fPlanForwardInPlace != NULL)
@@ -305,9 +351,10 @@ class MHO_MultidimensionalFastFourierTransformFFTW:
 
         size_t fTotalArraySize;
         size_t fDimensionSize[XArgType::rank::value];
+        bool fAxesToXForm[XArgType::rank::value];
 
         typename MHO_FFTWTypes<floating_point_value_type>::iodim_type fDims[XArgType::rank::value];
-        typename MHO_FFTWTypes<floating_point_value_type>::iodim_type fHowManyDims;
+        typename MHO_FFTWTypes<floating_point_value_type>::iodim_type fHowManyDims[XArgType::rank::value];
         typename MHO_FFTWTypes<floating_point_value_type>::plan_type fPlanForward;
         typename MHO_FFTWTypes<floating_point_value_type>::plan_type fPlanBackward;
         typename MHO_FFTWTypes<floating_point_value_type>::plan_type fPlanForwardInPlace;

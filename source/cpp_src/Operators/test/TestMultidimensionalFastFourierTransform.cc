@@ -65,16 +65,14 @@ int main(int /*argc*/, char** /*argv*/)
 
     fft_engine->SetForward();
     fft_engine->SetArgs(&input);
-
-#ifndef HOPS_USE_FFTW3 //test the axis selection feature (not implemented for FFTW)
+    
     fft_engine->DeselectAllAxes();
     fft_engine->SelectAxis(0);
     fft_engine->SelectAxis(2);
-#endif
-
+    
     fft_engine->Initialize();
     fft_engine->Execute();
-
+    
     #ifdef PRINT_DETAIL
     std::cout << "DFT of data = " << std::endl;
     for (size_t i = 0; i < dim_size[0]; i++) {
@@ -88,7 +86,7 @@ int main(int /*argc*/, char** /*argv*/)
     }
     #endif
 
-#ifndef HOPS_USE_FFTW3
+
     //just do the middle data axis
     fft_engine->SetForward();
     fft_engine->SetArgs(&input);
@@ -96,7 +94,7 @@ int main(int /*argc*/, char** /*argv*/)
     fft_engine->SelectAxis(1);
     fft_engine->Initialize();
     fft_engine->Execute();
-
+    
     #ifdef PRINT_DETAIL
     std::cout << "DFT of data = " << std::endl;
     for (size_t i = 0; i < dim_size[0]; i++) {
@@ -110,17 +108,11 @@ int main(int /*argc*/, char** /*argv*/)
     }
     #endif
 
-#endif
-
-
-
     std::cout << "--------------------------------------------------------------" << std::endl;
 
     fft_engine->SetBackward();
     fft_engine->SetArgs(&input);
-#ifndef HOPS_USE_FFTW3
     fft_engine->SelectAllAxes();
-#endif
     fft_engine->Initialize();
     fft_engine->Execute();
 
