@@ -20,14 +20,12 @@
 #include "MHO_InspectingOperator.hh"
 #include "MHO_CyclicRotator.hh"
 
+#include "MHO_MultidimensionalFastFourierTransform.hh"
+
 #ifdef HOPS_USE_FFTW3
-    #include "MHO_FFTWTypes.hh"
     #include "MHO_MultidimensionalFastFourierTransformFFTW.hh"
-#else
-    #include "MHO_FastFourierTransform.hh"
 #endif
 
-#include "MHO_MultidimensionalFastFourierTransform.hh"
 
 #include "MHO_UniformGridPointsCalculator.hh"
 #include "MHO_ExtremaSearch.hh"
@@ -92,9 +90,13 @@ class MHO_MBDelaySearch: public MHO_InspectingOperator< visibility_type >
         MHO_Axis<double> fDRAxis;
 
         MHO_UniformGridPointsCalculator fGridCalc;
-        
 
-        MHO_MultidimensionalFastFourierTransform< mbd_type > fFFTEngine;
+        #ifdef HOPS_USE_FFTW3
+                MHO_MultidimensionalFastFourierTransformFFTW< mbd_type > fFFTEngine;
+        #else 
+                MHO_MultidimensionalFastFourierTransform< mbd_type > fFFTEngine;
+        #endif
+
         MHO_CyclicRotator< mbd_type > fCyclicRotator;
 
         MHO_ExtremaSearch< mbd_amp_type > fMaxSearch;
