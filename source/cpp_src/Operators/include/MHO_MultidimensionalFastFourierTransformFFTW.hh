@@ -59,8 +59,8 @@ class MHO_MultidimensionalFastFourierTransformFFTW:
             DestructPlan();
         };
 
-        virtual void SetForward(){fForward = true; fInitialized = false;}
-        virtual void SetBackward(){fForward = false; fInitialized = false;};
+        virtual void SetForward(){fForward = true;}
+        virtual void SetBackward(){fForward = false;};
 
         //sometimes we may want to select/deselect particular dimensions of the x-form
         //default is to transform along every dimension, but that may not always be needed
@@ -99,10 +99,12 @@ class MHO_MultidimensionalFastFourierTransformFFTW:
                     DealocateWorkspace();
                     AllocateWorkspace();
                     DestructPlan();
-                    bool success = ConstructPlan();
-                    fInitialized = success;
+                    fInitialized = ConstructPlan();
                 }
-                fInitialized = true;
+                else
+                {
+                    fInitialized = true;
+                }
             }
             return (fInitialized && fIsValid);
         }
@@ -112,6 +114,7 @@ class MHO_MultidimensionalFastFourierTransformFFTW:
         {
             if( in != nullptr && out != nullptr ){fIsValid = true;}
             else{fIsValid = false;}
+
             if(fIsValid)
             {
                 //check if the arrays have the same dimensions
@@ -133,10 +136,12 @@ class MHO_MultidimensionalFastFourierTransformFFTW:
                     DealocateWorkspace();
                     AllocateWorkspace();
                     DestructPlan();
-                    bool success = ConstructPlan();
-                    fInitialized = success;
+                    fInitialized = ConstructPlan();
                 }
-                fInitialized = true;
+                else
+                {
+                    fInitialized = true;
+                }
             }
             return (fInitialized && fIsValid);
         }
@@ -178,12 +183,22 @@ class MHO_MultidimensionalFastFourierTransformFFTW:
                     }
                     std::memcpy(in->GetData(), fOutPtr, fTotalArraySize*sizeof(typename MHO_FFTWTypes<floating_point_value_type>::fftw_complex_type) );
                 }
+
+                for(size_t d=0; d<XArgType::rank::value; d++)
+                {
+                    if(fAxesToXForm[d])
+                    {
+                        IfTableTransformAxis(in,d);
+                    }
+                };
+
                 return true;
             }
             else
             {
                 //error
-                msg_error("operators", "FFT input/output array dimensions are not valid or intialization failed. Aborting transform." << eom);
+                if(!fIsValid){msg_error("operators", "FFT input/output array dimensions/pointers are not valid. Aborting transform." << eom);}
+                if(!fInitialized){msg_error("operators", "FFT intialization failed. Aborting transform." << eom);}
                 return false;
             }
         }
@@ -232,7 +247,7 @@ class MHO_MultidimensionalFastFourierTransformFFTW:
                 {
                     if(fAxesToXForm[d])
                     {
-                        IfTableTransformAxis(in,d)
+                        IfTableTransformAxis(out,d);
                     }
                 };
 
@@ -242,7 +257,8 @@ class MHO_MultidimensionalFastFourierTransformFFTW:
             else
             {
                 //error
-                msg_error("operators", "FFT input/output array dimensions are not valid or intialization failed. Aborting transform." << eom);
+                if(!fIsValid){msg_error("operators", "FFT input/output array dimensions/pointers are not valid. Aborting transform." << eom);}
+                if(!fInitialized){msg_error("operators", "FFT intialization failed. Aborting transform." << eom);}
                 return false;
             }
         }
@@ -345,6 +361,7 @@ class MHO_MultidimensionalFastFourierTransformFFTW:
             }
             else
             {
+                msg_warn("operators", "could not construct FFTW transform plan." << eom);
                 return false;
             }
         }
