@@ -1,0 +1,63 @@
+#!@PY_EXE@
+
+import argparse
+import json
+import sys
+import os
+
+from hops_io import parse_PDD
+
+def main():
+
+    parser = argparse.ArgumentParser(
+         prog='compjsonpdd.py', \
+         description='''primitive utility to compare two json files''' \
+         )
+
+    parser.add_argument('fileA', help='the HOPS4 json fringe data dump')
+    parser.add_argument('fileB', help='the HOPS3 (plot_data_dir) dump file')
+ 
+    args = parser.parse_args()
+ 
+    f1_name = os.path.abspath(args.fileA)
+    f2_name = os.path.abspath(args.fileB)
+    
+    f1 = open(f1_name, "r")
+    j1 = json.loads(f1.read())
+    j2 = parse_PDD(f2_name)
+
+    #print(j1)
+    #print(f2)
+
+    #the fields we compare are quite limited for now, just list them here:
+    key_type_dict = {
+        'AP(sec)':'float',
+        'Amp':'float',
+        #'Dec',
+        'ExperName':'string',
+        #'ExperNum',
+        'FringeRate(Hz)':'float',
+        'IntgTime':'float',
+        #'PFD',
+        'PolStr':'string',
+        'RefFreq(MHz)':'float',
+        'ResPhase':'float',
+        'ResidMbd(us)':'float',
+        'ResidSbd(us)':'float',
+        #'RootScanBaseline',
+        'SNR':'float',
+        #'Start',
+        #'Stop',
+        #'YearDOY'
+    }
+
+    for k,t in key_type_dict.items():
+        print(k, " : ", j1[k], " == ", j2[k])
+    
+    return 0
+
+
+
+if __name__ == '__main__':          #entry point
+    ret_val = main()
+    sys.exit(ret_val)

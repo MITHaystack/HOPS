@@ -1,4 +1,4 @@
-#!@PYTHON_EXECUTABLE@
+#!@PY_EXE@
 #
 # test executable
 #

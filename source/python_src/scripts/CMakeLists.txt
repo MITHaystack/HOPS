@@ -22,6 +22,9 @@ if (PY_EXE)
 
         configure_file("${CMAKE_CURRENT_SOURCE_DIR}/vgoscf_generate.py.in" "${CMAKE_CURRENT_BINARY_DIR}/vgoscf_generate.py" @ONLY)
         install(PROGRAMS "${CMAKE_CURRENT_BINARY_DIR}/vgoscf_generate.py" DESTINATION ${BIN_INSTALL_DIR})
+
+        configure_file("${CMAKE_CURRENT_SOURCE_DIR}/compjsonpdd.py.in" "${CMAKE_CURRENT_BINARY_DIR}/compjsonpdd.py" @ONLY)
+        install(PROGRAMS "${CMAKE_CURRENT_BINARY_DIR}/compjsonpdd.py" DESTINATION ${BIN_INSTALL_DIR})
     endif(HOPS3_PYTHON_EXTRAS)
 
 endif (PY_EXE)
