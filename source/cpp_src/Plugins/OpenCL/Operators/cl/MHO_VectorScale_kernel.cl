@@ -1,5 +1,5 @@
-#ifndef NTSVectorScale_Defined_H
-#define NTSVectorScale_Defined_H
+#ifndef MHO_VectorScale_Defined_H
+#define MHO_VectorScale_Defined_H
 
 #include "hopsocl_defines.h"
 #include "MHO_ComplexMultiply.cl"
