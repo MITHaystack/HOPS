@@ -42,7 +42,7 @@ def parse_PDD(filename):
             
             line_split = lines[ii].split(None)
 
-            print(line_split)
+            #print(line_split)
             # if the line is empty, skip it
             if len(line_split)<2:
                 ii+=1

@@ -1,4 +1,4 @@
-#!@PYTHON@
+#!@PY_EXE@
 #
 #python script to run the necessary calibration routines to generate
 #a control file for a vgos experiment, currently this script serves to

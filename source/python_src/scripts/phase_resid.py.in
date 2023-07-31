@@ -1,4 +1,4 @@
-#!@PYTHON@
+#!@PY_EXE@
 
 #core imports
 from __future__ import print_function
