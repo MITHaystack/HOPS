@@ -15,6 +15,7 @@
 #include <utility>
 #include <string>
 
+#include "MHO_Meta.hh"
 #include "MHO_Units.hh"
 #include "MHO_MultiTypeMap.hh"
 #include "MHO_NDArrayWrapper.hh"
@@ -26,8 +27,6 @@
 
 namespace hops
 {
-
-class MHO_TableContainerBase{}; //only needed for dependent template specializations
 
 template< typename XValueType, typename XAxisPackType >
 class MHO_TableContainer:

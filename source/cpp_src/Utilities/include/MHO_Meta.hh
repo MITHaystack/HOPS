@@ -281,13 +281,13 @@ zip_into_map(const XContainer1& c1, const XContainer2& c2)
 }
 
 
-
-
-
-
-
-
-
+////////////////////////////////////////////////////////////////////////////////
+//empty classes for detecting classes derived from container types
+//only needed for dependent template specializations
+class MHO_AxisBase{};
+class MHO_TableContainerBase{}; 
+class MHO_VectorContainerBase{};  //only needed for dependent template specializations
+class MHO_ScalarContainerBase{}; //only needed for dependent template specializations
 
 ////////////////////////////////////////////////////////////////////////////////
 

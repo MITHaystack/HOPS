@@ -12,6 +12,7 @@
 
 #include <set>
 
+#include "MHO_Meta.hh"
 #include "MHO_VectorContainer.hh"
 #include "MHO_Interval.hh"
 #include "MHO_IntervalLabel.hh"
@@ -19,8 +20,6 @@
 
 namespace hops
 {
-
-class MHO_AxisBase{};
 
 
 template< typename XValueType >
