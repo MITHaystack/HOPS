@@ -63,8 +63,7 @@ class MHO_OpenCLMultidimensionalFastFourierTransform:
             if(axis_index < XArgType::rank::value){fAxesToXForm[axis_index] = true;}
             else
             {
-                msg_error("operators", "Cannot transform axis with index: " <<
-                          axis_index << "for array with rank: " << XArgType::rank::value << eom);
+                msg_error("operators", "Cannot transform axis with index: " << axis_index << "for array with rank: " << XArgType::rank::value << eom);
             }
         }
 
