@@ -305,9 +305,6 @@ class MHO_MultidimensionalFastFourierTransformFFTW:
             //number of dimensions need to describe location of the starting point
             int howmany_rank = XArgType::rank::value - rank;
 
-
-            std::cout<<"rank = "<<rank<<std::endl;
-            std::cout<<"howmany_rank = "<<howmany_rank<<std::endl;
             //now figure out the dimensions of the transforms
             //note: unless we are transforming every dimension of the input,
             //we may not fill up this array completely (hence the count variable)
@@ -320,8 +317,6 @@ class MHO_MultidimensionalFastFourierTransformFFTW:
                     fDims[count].n = fDimensionSize[d];
                     fDims[count].is = MHO_NDArrayMath::StrideFromRowMajorIndex<XArgType::rank::value>(d,fDimensionSize);
                     fDims[count].os = MHO_NDArrayMath::StrideFromRowMajorIndex<XArgType::rank::value>(d,fDimensionSize);
-
-                    std::cout<<"dims @"<<count<<" = "<<fDims[count].n<<", "<<fDims[count].is<<", "<<fDims[count].os<<std::endl;
                     count++;
                 }
             }
@@ -335,8 +330,6 @@ class MHO_MultidimensionalFastFourierTransformFFTW:
                     fHowManyDims[count].n = fDimensionSize[d];
                     fHowManyDims[count].is = MHO_NDArrayMath::StrideFromRowMajorIndex<XArgType::rank::value>(d,fDimensionSize);
                     fHowManyDims[count].os = MHO_NDArrayMath::StrideFromRowMajorIndex<XArgType::rank::value>(d,fDimensionSize);
-
-                    std::cout<<"howmany_dims @"<<count<<" = "<<fHowManyDims[count].n<<", "<<fHowManyDims[count].is<<", "<<fHowManyDims[count].os<<std::endl;
                     count++;
                 }
 
