@@ -4,6 +4,7 @@ import argparse
 import json
 import sys
 import os
+import math
 
 from hops_io import parse_PDD
 
@@ -16,12 +17,12 @@ def main():
 
     parser.add_argument('fileA', help='the HOPS4 json fringe data dump')
     parser.add_argument('fileB', help='the HOPS3 (plot_data_dir) dump file')
- 
+
     args = parser.parse_args()
- 
+
     f1_name = os.path.abspath(args.fileA)
     f2_name = os.path.abspath(args.fileB)
-    
+
     f1 = open(f1_name, "r")
     j1 = json.loads(f1.read())
     j2 = parse_PDD(f2_name)
@@ -39,7 +40,7 @@ def main():
         'FringeRate(Hz)':'float',
         'IntgTime':'float',
         #'PFD',
-        'PolStr':'string',
+        #'PolStr':'string',
         'RefFreq(MHz)':'float',
         'ResPhase':'float',
         'ResidMbd(us)':'float',
@@ -51,11 +52,33 @@ def main():
         #'YearDOY'
     }
 
-    for k,t in key_type_dict.items():
-        print(k, " : ", j1[k], " == ", j2[k])
-    
-    return 0
+    bad_count = 0
+    bad_keys = []
+    rel_percent_error = 0.02
 
+    for k,t in key_type_dict.items():
+
+        if t == 'string':
+            val1 = str(j1[k])
+            val2 = str(j2[k])
+            print(k, t, " : ", j1[k], " ? ", j2[k])
+            if val1 != val2:
+                bad_count += 1
+                bad_keys.append(k)
+
+        if t == 'float':
+            val1 = float(j1[k])
+            val2 = float(j2[k])
+            delta = val1 - val2
+            print(k, t, " : percent difference: ", (delta/val2)*100 )
+            if math.fabs(delta/val2)*100 > rel_percent_error:
+                bad_count += 1
+                bad_keys.append(k)
+
+    for k in bad_keys:
+        print("Error on value: ", k)
+
+    return bad_count
 
 
 if __name__ == '__main__':          #entry point
