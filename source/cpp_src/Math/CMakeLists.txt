@@ -2,6 +2,7 @@
 set (MATH_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_BitReversalPermutation.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_FastFourierTransformUtilities.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_FastFourierTransformWorkspace.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_CheckForNaN.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_SimulatedSignalGenerator.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_GaussianWhiteNoiseSignal.hh
