@@ -1,5 +1,5 @@
-#ifndef NTSArrayMath
-#define NTSArrayMath
+#ifndef MHO_NDArrayMath
+#define MHO_NDArrayMath
 
 #include "hopsocl_defines.h"
 
@@ -85,4 +85,4 @@ TotalArraySize(unsigned int ndim, const unsigned int* DimSize)
     return val;
 }
 
-#endif /* NTSArrayMath */
+#endif /* MHO_NDArrayMath */
