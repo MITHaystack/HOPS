@@ -151,15 +151,17 @@ int main(int argc, char** argv)
     std::string control_file = "";
     std::string baseline = "";
     std::string polprod = "";
+    std::string output_file = "fdump.json"; //for testing
     bool ok;
 
     static struct option longOptions[] = {{"help", no_argument, 0, 'h'},
                                           {"directory", required_argument, 0, 'd'},
                                           {"control", required_argument, 0, 'c'},
                                           {"baseline", required_argument, 0, 'b'},
-                                          {"polarization-product", required_argument, 0, 'p'}};
+                                          {"polarization-product", required_argument, 0, 'p'},
+                                          {"output", required_argument, 0, 'o'}};
 
-    static const char* optString = "hd:c:b:p:";
+    static const char* optString = "hd:c:b:p:o:";
 
     while(true)
     {
@@ -182,6 +184,9 @@ int main(int argc, char** argv)
                 break;
             case ('p'):
                 polprod = std::string(optarg);
+                break;
+            case ('o'):
+                output_file = std::string(optarg);
                 break;
             default:
                 std::cout << usage << std::endl;
@@ -442,7 +447,7 @@ int main(int argc, char** argv)
     plot_dict["PolStr"] = polprod;
 
     //open and dump to file
-    std::string fdump = "fdump.json";
+    std::string fdump = output_file;
     std::ofstream fdumpFile(fdump.c_str(), std::ofstream::out);
     fdumpFile << plot_dict;
     fdumpFile.close();
