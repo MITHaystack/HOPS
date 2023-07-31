@@ -55,7 +55,7 @@ class MHO_MultidimensionalFastFourierTransformFFTW:
 
         virtual ~MHO_MultidimensionalFastFourierTransformFFTW()
         {
-            DealocateWorkspace();
+            DeallocateWorkspace();
             DestructPlan();
         };
 
@@ -96,7 +96,7 @@ class MHO_MultidimensionalFastFourierTransformFFTW:
                 {
                     in->GetDimensions(fDimensionSize);
                     fTotalArraySize = MHO_NDArrayMath::TotalArraySize<XArgType::rank::value>(fDimensionSize);
-                    DealocateWorkspace();
+                    DeallocateWorkspace();
                     AllocateWorkspace();
                     DestructPlan();
                     fInitialized = ConstructPlan();
@@ -133,7 +133,7 @@ class MHO_MultidimensionalFastFourierTransformFFTW:
                 {
                     in->GetDimensions(fDimensionSize);
                     fTotalArraySize = MHO_NDArrayMath::TotalArraySize<XArgType::rank::value>(fDimensionSize);
-                    DealocateWorkspace();
+                    DeallocateWorkspace();
                     AllocateWorkspace();
                     DestructPlan();
                     fInitialized = ConstructPlan();
@@ -274,7 +274,7 @@ class MHO_MultidimensionalFastFourierTransformFFTW:
             fInPlacePtr = MHO_FFTWTypes<floating_point_value_type>::alloc_func(fTotalArraySize);
         }
 
-        virtual void DealocateWorkspace()
+        virtual void DeallocateWorkspace()
         {
             MHO_FFTWTypes<floating_point_value_type>::free_func(fInPtr);
             MHO_FFTWTypes<floating_point_value_type>::free_func(fOutPtr);

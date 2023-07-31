@@ -54,7 +54,7 @@ class MHO_MultidimensionalPaddedFastFourierTransform:
 
         virtual ~MHO_MultidimensionalPaddedFastFourierTransform()
         {
-            DealocateWorkspace();
+            DeallocateWorkspace();
         };
 
         //factor M by which the new array will be extended (original array, length N, new array length NM)
@@ -139,7 +139,7 @@ class MHO_MultidimensionalPaddedFastFourierTransform:
                 if(fIsValid)
                 {
                     ConditionallyResizeOutput(in->GetDimensionArray(), out);
-                    DealocateWorkspace();
+                    DeallocateWorkspace();
                     AllocateWorkspace();
                     fInitialized = true;
                 }
@@ -576,7 +576,7 @@ class MHO_MultidimensionalPaddedFastFourierTransform:
             }
         }
 
-        virtual void DealocateWorkspace()
+        virtual void DeallocateWorkspace()
         {
             for(std::size_t i=0; i<XArgType::rank::value; i++)
             {
