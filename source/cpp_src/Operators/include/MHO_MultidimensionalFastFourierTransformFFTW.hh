@@ -40,16 +40,6 @@ class MHO_MultidimensionalFastFourierTransformFFTW:
             fInPtr = NULL;
             fOutPtr = NULL;
             fInPlacePtr = NULL;
-            // for(size_t i=0; i<XArgType::rank::value; i++)
-            // {
-            //     fDimensionSize[i] = 0;
-            //     fAxesToXForm[i] = true;
-            // }
-
-            // fIsValid = false;
-            // fInitialized = false;
-            // fForward = true;
-
             fPlanForward = NULL;
             fPlanBackward = NULL;
             fPlanForwardInPlace = NULL;
@@ -61,24 +51,6 @@ class MHO_MultidimensionalFastFourierTransformFFTW:
             DeallocateWorkspace();
             DestructPlan();
         };
-
-        // virtual void SetForward(){fForward = true;}
-        // virtual void SetBackward(){fForward = false;};
-
-        // //sometimes we may want to select/deselect particular dimensions of the x-form
-        // //default is to transform along every dimension, but that may not always be needed
-        // void SelectAllAxes(){for(std::size_t i=0; i<XArgType::rank::value; i++){fAxesToXForm[i] = true;} fInitialized = false;}
-        // void DeselectAllAxes(){for(std::size_t i=0; i<XArgType::rank::value; i++){fAxesToXForm[i] = false;} fInitialized = false;}
-        // void SelectAxis(std::size_t axis_index)
-        // {
-        //     fInitialized = false;
-        //     if(axis_index < XArgType::rank::value){fAxesToXForm[axis_index] = true;}
-        //     else
-        //     {
-        //         msg_error("operators", "Cannot transform axis with index: " <<
-        //                   axis_index << "for array with rank: " << XArgType::rank::value << eom);
-        //     }
-        // }
 
     protected:
 
@@ -370,113 +342,9 @@ class MHO_MultidimensionalFastFourierTransformFFTW:
         }
 
 
-        //axis handling for table containers 
-
-        // 
-        // //default...does nothing
-        // template< typename XCheckType = XArgType >
-        // typename std::enable_if< !std::is_base_of<MHO_TableContainerBase, XCheckType>::value, void >::type
-        // IfTableTransformAxis(XArgType* /*in*/, std::size_t /*axis_index*/){};
-        // 
-        // //use SFINAE to generate specialization for MHO_TableContainer types
-        // template< typename XCheckType = XArgType >
-        // typename std::enable_if< std::is_base_of<MHO_TableContainerBase, XCheckType>::value, void >::type
-        // IfTableTransformAxis(XArgType* in, std::size_t axis_index)
-        // {
-        //     if(fAxesToXForm[axis_index]) //only xform axis if this dimension was transformed
-        //     {
-        //         TransformAxis axis_xformer;
-        //         apply_at< typename XArgType::axis_pack_tuple_type, TransformAxis >( *in, axis_index, axis_xformer);
-        //     }
-        // }
-
-        // 
-        // class TransformAxis
-        // {
-        //     public:
-        //         TransformAxis(){};
-        //         ~TransformAxis(){};
-        // 
-        //         //generic axis, do nothing
-        //         template< typename XAxisType >
-        //         void operator()(XAxisType& /*axis1*/){};
-        // 
-        //         //overload for doubles
-        //         void operator()(MHO_Axis<double>& axis1)
-        //         {
-        //             //this is under the expectation that all axis labels are equi-spaced
-        //             //this should be a safe assumption since we are doing DFT anyway
-        //             //one issue here is that we are not taking into account units (e.g. nanosec or MHz)
-        //             std::size_t N = axis1.GetSize();
-        //             double length = N;
-        //             if(N > 1)
-        //             {
-        //                 double delta = axis1(1) - axis1(0);
-        //                 double spacing = (1.0/delta)*(1.0/length);
-        //                 double start = 0;//-1*length/2;
-        //                 for(std::size_t i=0; i<N; i++)
-        //                 {
-        //                     double x = i;
-        //                     if(i<N/2)
-        //                     {
-        //                         start = 0;
-        //                         double value = (x+start)*spacing;
-        //                         axis1(i) = value;
-        //                     }
-        //                     else
-        //                     {
-        //                         start = -1*length;
-        //                         double value = (x+start)*spacing;
-        //                         axis1(i) = value;
-        //                     }
-        //                 }
-        //             }
-        //         }
-        // 
-        //         //overload for floats
-        //         void operator()(MHO_Axis<float>& axis1)
-        //         {
-        //             //this is under the expectation that all axis labels are equi-spaced
-        //             //this should be a safe assumption since we are doing DFT anyway
-        //             //one issue here is that we are not taking into account units (e.g. nanosec or MHz)
-        //             std::size_t N = axis1.GetSize();
-        //             float length = N;
-        //             if(N > 1)
-        //             {
-        //                 float delta = axis1(1) - axis1(0);
-        //                 float spacing = (1.0/delta)*(1.0/length);
-        //                 float start = 0;//-1*length/2;
-        //                 for(std::size_t i=0; i<N; i++)
-        //                 {
-        //                     float x = i;
-        //                     if(i<N/2)
-        //                     {
-        //                         start = 0;
-        //                         float value = (x+start)*spacing;
-        //                         axis1(i) = value;
-        //                     }
-        //                     else
-        //                     {
-        //                         start = -1*length;
-        //                         float value = (x+start)*spacing;
-        //                         axis1(i) = value;
-        //                     }
-        //                 }
-        //             }
-        //         }
-        // 
-        // };
-        // 
-
 
         //data
-        // bool fIsValid;
-        // bool fForward;
-        // bool fInitialized;
-
         size_t fTotalArraySize;
-        // size_t fDimensionSize[XArgType::rank::value];
-        // bool fAxesToXForm[XArgType::rank::value];
 
         typename MHO_FFTWTypes<floating_point_value_type>::iodim_type fDims[XArgType::rank::value];
         typename MHO_FFTWTypes<floating_point_value_type>::iodim_type fHowManyDims[XArgType::rank::value];
