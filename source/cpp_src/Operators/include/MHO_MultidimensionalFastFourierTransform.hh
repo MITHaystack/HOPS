@@ -47,7 +47,7 @@ class MHO_MultidimensionalFastFourierTransform:
 
         virtual ~MHO_MultidimensionalFastFourierTransform()
         {
-            DealocateWorkspace();
+            DeallocateWorkspace();
         };
 
         virtual void SetForward(){fForward = true;}
@@ -85,7 +85,7 @@ class MHO_MultidimensionalFastFourierTransform:
                 if(need_to_resize)
                 {
                     in->GetDimensions(fDimensionSize);
-                    DealocateWorkspace();
+                    DeallocateWorkspace();
                     AllocateWorkspace();
                 }
                 fInitialized = true;
@@ -115,7 +115,7 @@ class MHO_MultidimensionalFastFourierTransform:
                 if(need_to_resize)
                 {
                     in->GetDimensions(fDimensionSize);
-                    DealocateWorkspace();
+                    DeallocateWorkspace();
                     AllocateWorkspace();
                 }
                 fInitialized = true;
@@ -246,7 +246,7 @@ class MHO_MultidimensionalFastFourierTransform:
             }
         }
 
-        virtual void DealocateWorkspace()
+        virtual void DeallocateWorkspace()
         {
             for(size_t i=0; i<XArgType::rank::value; i++)
             {
