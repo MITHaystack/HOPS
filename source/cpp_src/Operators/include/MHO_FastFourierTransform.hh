@@ -35,24 +35,9 @@ class MHO_FastFourierTransform:
 
     private:
 
-        // virtual void AllocateWorkspace();
-        // virtual void DealocateWorkspace();
-
         bool fForward;
-        //bool fSizeIsPowerOfTwo;
         bool fInitialized;
-
         MHO_FastFourierTransformWorkspace<XFloatType> fW;
-
-        // //auxilliary workspace needed for basic 1D transform
-        // unsigned int fN;
-        // unsigned int fM;
-        // unsigned int* fPermutation;
-        // std::complex<XFloatType>* fTwiddle;
-        // std::complex<XFloatType>* fConjugateTwiddle;
-        // std::complex<XFloatType>* fScale;
-        // std::complex<XFloatType>* fCirculant;
-        // std::complex<XFloatType>* fWorkspace;
 
 };
 
@@ -61,24 +46,11 @@ template< typename XFloatType >
 MHO_FastFourierTransform<XFloatType>::MHO_FastFourierTransform()
 {
     fForward = true;
-    //fSizeIsPowerOfTwo = false;
     fInitialized = false;
-
-    // fN = 0;
-    // fM = 0;
-    // fPermutation = NULL;
-    // fTwiddle = NULL;
-    // fConjugateTwiddle = NULL;
-    // fScale = NULL;
-    // fCirculant = NULL;
-    // fWorkspace = NULL;
 }
 
 template< typename XFloatType >
-MHO_FastFourierTransform<XFloatType>::~MHO_FastFourierTransform()
-{
-    // DealocateWorkspace();
-}
+MHO_FastFourierTransform<XFloatType>::~MHO_FastFourierTransform(){}
 
 template< typename XFloatType >
 void
@@ -97,12 +69,6 @@ MHO_FastFourierTransform<XFloatType>::InitializeInPlace(XArrayType* in)
         if( fW.fN != in->GetSize() )
         {
             fW.Resize( in->GetSize() );
-            // fN = in->GetSize();
-            // fSizeIsPowerOfTwo = MHO_BitReversalPermutation::IsPowerOfTwo(fN);
-            // fM = MHO_FastFourierTransformUtilities<XFloatType>::ComputeBluesteinArraySize(fN);
-            // //initialize the workspace
-            // DealocateWorkspace();
-            // AllocateWorkspace();
             fInitialized = true;
         }
     }
@@ -123,12 +89,6 @@ MHO_FastFourierTransform<XFloatType>::InitializeOutOfPlace(const XArrayType* in,
         if( fW.fN != in->GetSize() )
         {
             fW.Resize( in->GetSize() );
-            // fN = in->GetSize();
-            // fSizeIsPowerOfTwo = MHO_BitReversalPermutation::IsPowerOfTwo(fN);
-            // fM = MHO_FastFourierTransformUtilities<XFloatType>::ComputeBluesteinArraySize(fN);
-            // //initialize the workspace
-            // DealocateWorkspace();
-            // AllocateWorkspace();
             fInitialized = true;
         }
     }
@@ -157,8 +117,7 @@ MHO_FastFourierTransform<XFloatType>::ExecuteInPlace(XArrayType* in)
             }
         }
 
-        //if(fSizeIsPowerOfTwo)
-        if(fW.fM == 0)
+        if(fW.fM == 0) //size is a power of two
         {
             //use radix-2
             MHO_BitReversalPermutation::PermuteArray< std::complex<XFloatType> >(fW.fN, fW.fPermutation, in->GetData());
@@ -190,7 +149,6 @@ MHO_FastFourierTransform<XFloatType>::ExecuteInPlace(XArrayType* in)
     }
 }
 
-
 ///Make a call to execute the FFT plan and perform the transformation
 template< typename XFloatType >
 bool
@@ -200,59 +158,6 @@ MHO_FastFourierTransform<XFloatType>::ExecuteOutOfPlace(const XArrayType* in, XA
     std::memcpy( (void*) out->GetData(), (void*) in->GetData(), fW.fN*sizeof(std::complex<XFloatType>) );
     return ExecuteInPlace(out);
 }
-
-
-// template< typename XFloatType >
-// void
-// MHO_FastFourierTransform<XFloatType>::AllocateWorkspace()
-// {
-//     if(!fSizeIsPowerOfTwo)
-//     {
-//         //can't perform an in-place transform, need workspace
-//         fPermutation = new unsigned int[fM];
-//         fTwiddle = new std::complex<XFloatType>[fM];
-//         fConjugateTwiddle = new std::complex<XFloatType>[fM];
-//         fScale = new std::complex<XFloatType>[fN];
-//         fCirculant = new std::complex<XFloatType>[fM];
-//         fWorkspace = new std::complex<XFloatType>[fM];
-//         //use Bluestein algorithm
-//         MHO_BitReversalPermutation::ComputeBitReversedIndicesBaseTwo(fM, fPermutation);
-//         MHO_FastFourierTransformUtilities<XFloatType>::ComputeTwiddleFactors(fM, fTwiddle);
-//         MHO_FastFourierTransformUtilities<XFloatType>::ComputeConjugateTwiddleFactors(fM, fConjugateTwiddle);
-//         MHO_FastFourierTransformUtilities<XFloatType>::ComputeBluesteinScaleFactors(fN, fScale);
-//         MHO_FastFourierTransformUtilities<XFloatType>::ComputeBluesteinCirculantVector(fN, fM, fTwiddle, fScale, fCirculant);
-//     }
-//     else
-//     {
-//         //can do an in-place transform,
-//         //only need space for the permutation array, and twiddle factors
-//         fPermutation = new unsigned int[fN];
-//         fTwiddle = new std::complex<XFloatType>[fN];
-//         fConjugateTwiddle = new std::complex<XFloatType>[fN];
-//         //use radix-2
-//         MHO_BitReversalPermutation::ComputeBitReversedIndicesBaseTwo(fN, fPermutation);
-//         MHO_FastFourierTransformUtilities<XFloatType>::ComputeTwiddleFactors(fN, fTwiddle);
-//         MHO_FastFourierTransformUtilities<XFloatType>::ComputeConjugateTwiddleFactors(fN, fConjugateTwiddle);
-//     }
-// }
-// 
-// 
-// template< typename XFloatType >
-// void
-// MHO_FastFourierTransform<XFloatType>::DealocateWorkspace()
-// {
-//     delete[] fPermutation; fPermutation = NULL;
-//     delete[] fTwiddle; fTwiddle = NULL;
-//     delete[] fConjugateTwiddle; fConjugateTwiddle = NULL;
-//     delete[] fScale; fScale = NULL;
-//     delete[] fCirculant; fCirculant = NULL;
-//     delete[] fWorkspace; fWorkspace = NULL;
-// }
-// 
-
-
-
-
 
 
 }
