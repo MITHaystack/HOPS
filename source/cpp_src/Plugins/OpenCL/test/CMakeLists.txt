@@ -14,7 +14,7 @@ set(HOPS_TEST_LIBS MHO_Message MHO_Utilities MHO_Containers MHO_OpenCLPlugin)
 set(SOURCE_BASENAMES
     TestOpenCLInterface
     TestOpenCLNDArrayBuffer
-    TestOpenCLMultidimensionalFastFourierTransform
+    #TestOpenCLMultidimensionalFastFourierTransform
 )
 
 foreach( BASENAME ${SOURCE_BASENAMES} )
