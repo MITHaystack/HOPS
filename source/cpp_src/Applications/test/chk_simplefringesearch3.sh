@@ -20,7 +20,6 @@ echo "Running: fourfit -m 4 -c ./test0.cf -b AS -P RR ./${SCAN_DIR} set plot_dat
 time fourfit -m 1 -c ./test0.cf -b AS -P RR ./${SCAN_DIR} set plot_data_dir ./chk3 2>&1  | tee ./ff.out
 
 compjsonpdd.py ./fdump.json ./chk3/104-1228-AS-B-RR.2GAB6T
-
-RET_VAL=0
+RET_VAL=$?
 
 exit $RET_VAL
