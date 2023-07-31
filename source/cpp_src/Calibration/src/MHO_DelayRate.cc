@@ -76,17 +76,6 @@ MHO_DelayRate::ExecuteImpl(const XArgType1* in1, const XArgType2* in2, XArgType3
         double time_delta = std::get<TIME_AXIS>(*in1)(1) -  std::get<TIME_AXIS>(*in1)(0);
 
         ApplyDataWeights(in2);
-        // for(std::size_t pp=0; pp<pprod; pp++)
-        // {
-        //     for(std::size_t ch=0; ch<nch; ch++)
-        //     {
-        //         for(std::size_t ap=0; ap<nap; ap++)
-        //         {
-        //             fWorkspace.SliceView(pp, ch, ap, ":") *= (*in2)(pp, ch, ap, 0); //apply the data weights
-        //         }
-        //     }
-        // }
-
 
         //std::size_t nap = fInDims[TIME_AXIS];
         out->ZeroArray();
@@ -96,7 +85,6 @@ MHO_DelayRate::ExecuteImpl(const XArgType1* in1, const XArgType2* in2, XArgType3
 
         ok = fCyclicRotator.Execute();
         check_step_fatal(ok, "calibration", "cyclic rotation execution." << eom );
-        
 
         //linear interpolation, and conversion from fringe rate to delay rate step
         int sz = 4*fDRSPSize;
