@@ -14,6 +14,7 @@
 #include <string>
 #include <complex>
 
+#include "MHO_Meta.hh"
 #include "MHO_Serializable.hh"
 #include "MHO_Taggable.hh"
 #include "MHO_NDArrayWrapper.hh"
@@ -21,7 +22,6 @@
 namespace hops
 {
 
-class MHO_ScalarContainerBase{}; //only needed for dependent template specializations
 
 template< typename XValueType >
 class MHO_ScalarContainer:
