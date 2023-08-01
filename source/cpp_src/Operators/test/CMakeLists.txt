@@ -30,6 +30,7 @@ if(HOPS_USE_FFTW3)
     hops_external_include_directories (${FFTW_INCLUDE_DIRS})
     hops_add_cxxflag(HOPS_USE_FFTW3)
     list(APPEND HOPS_TEST_LIBS ${FFTW_LIBRARIES})
+    list(APPEND SOURCE_BASENAMES TestMultidimensionalFastFourierTransformFFTW )
 endif (HOPS_USE_FFTW3)
 
 foreach( BASENAME ${SOURCE_BASENAMES} )
