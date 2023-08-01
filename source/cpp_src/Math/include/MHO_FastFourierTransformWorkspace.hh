@@ -46,7 +46,7 @@ MHO_FastFourierTransformWorkspace
             Resize(n);
         };
         
-        MHO_FastFourierTransformWorkspace(const MHO_FastFourierTransform& copy)
+        MHO_FastFourierTransformWorkspace(const MHO_FastFourierTransformWorkspace& copy)
         {
             fN = 0;
             fM = 0;
