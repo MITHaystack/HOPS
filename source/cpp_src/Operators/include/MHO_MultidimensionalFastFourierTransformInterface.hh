@@ -40,9 +40,9 @@ class MHO_MultidimensionalFastFourierTransformInterface
 
         //sometimes we may want to select/deselect particular dimensions of the x-form
         //default is to transform along every dimension, but that may not always be needed
-        void SelectAllAxes(){for(std::size_t i=0; i<XArgType::rank::value; i++){fAxesToXForm[i] = true; fInitialized = false;}}
-        void DeselectAllAxes(){for(std::size_t i=0; i<XArgType::rank::value; i++){fAxesToXForm[i] = false; fInitialized = false;}}
-        void SelectAxis(std::size_t axis_index)
+        virtual void SelectAllAxes(){for(std::size_t i=0; i<XArgType::rank::value; i++){fAxesToXForm[i] = true; fInitialized = false;}}
+        virtual void DeselectAllAxes(){for(std::size_t i=0; i<XArgType::rank::value; i++){fAxesToXForm[i] = false; fInitialized = false;}}
+        virtual void SelectAxis(std::size_t axis_index)
         {
             fInitialized = false;
             if(axis_index < XArgType::rank::value){fAxesToXForm[axis_index] = true;}
