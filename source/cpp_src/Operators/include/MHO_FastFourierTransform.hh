@@ -8,6 +8,7 @@
 #include "MHO_BitReversalPermutation.hh"
 #include "MHO_FastFourierTransformUtilities.hh"
 #include "MHO_FastFourierTransformWorkspace.hh"
+#include "MHO_FastFourierTransformCalls.hh"
 
 namespace hops
 {
@@ -20,11 +21,15 @@ class MHO_FastFourierTransform:
 
         using XArrayType = MHO_NDArrayWrapper< std::complex< XFloatType>, 1 >;
 
-        MHO_FastFourierTransform();
-        virtual ~MHO_FastFourierTransform();
+        MHO_FastFourierTransform()
+        {
+            fForward = true;
+            fInitialized = false;
+        }
+        virtual ~MHO_FastFourierTransform(){};
 
-        virtual void SetForward();
-        virtual void SetBackward();
+        virtual void SetForward(){fForward = true;};
+        virtual void SetBackward(){fForward = false;};
 
     protected:
 
@@ -41,41 +46,16 @@ class MHO_FastFourierTransform:
 
 };
 
-
-template< typename XFloatType >
-MHO_FastFourierTransform<XFloatType>::MHO_FastFourierTransform()
-{
-    fForward = true;
-    fInitialized = false;
-}
-
-template< typename XFloatType >
-MHO_FastFourierTransform<XFloatType>::~MHO_FastFourierTransform(){}
-
-template< typename XFloatType >
-void
-MHO_FastFourierTransform<XFloatType>::SetForward(){fForward = true;}
-
-template< typename XFloatType >
-void
-MHO_FastFourierTransform<XFloatType>::SetBackward(){fForward = false;}
-
 template< typename XFloatType >
 bool
 MHO_FastFourierTransform<XFloatType>::InitializeInPlace(XArrayType* in)
 {
     if( in != nullptr )
     {
-        if( fW.fN != in->GetSize() )
-        {
-            fW.Resize( in->GetSize() );
-            fInitialized = true;
-        }
+        if( fW.fN != in->GetSize() ){ fW.Resize( in->GetSize() ); }
+        fInitialized = true;
     }
-    else
-    {
-        fInitialized = false;
-    }
+    else{ fInitialized = false; }
     return fInitialized;
 }
 
@@ -86,16 +66,10 @@ MHO_FastFourierTransform<XFloatType>::InitializeOutOfPlace(const XArrayType* in,
 {
     if( (in != nullptr && out != nullptr) && (in->GetSize() == out->GetSize()) )
     {
-        if( fW.fN != in->GetSize() )
-        {
-            fW.Resize( in->GetSize() );
-            fInitialized = true;
-        }
+        if( fW.fN != in->GetSize() ){ fW.Resize( in->GetSize() ); }
+        fInitialized = true;
     }
-    else
-    {
-        fInitialized = false;
-    }
+    else{ fInitialized = false; }
     return fInitialized;
 }
 
@@ -107,38 +81,8 @@ MHO_FastFourierTransform<XFloatType>::ExecuteInPlace(XArrayType* in)
 {
     if(fInitialized)
     {
-        //for DFT we conjugate first (NOTE: this matches FFTW3 convention)
-        if(fForward)
-        {
-            std::complex<XFloatType>* data = in->GetData();
-            for(unsigned int i=0; i<fW.fN; i++)
-            {
-                data[i] = std::conj(data[i]);
-            }
-        }
-
-        if(fW.fM == 0) //size is a power of two
-        {
-            //use radix-2
-            MHO_BitReversalPermutation::PermuteArray< std::complex<XFloatType> >(fW.fN, fW.fPermutation, in->GetData());
-            MHO_FastFourierTransformUtilities<XFloatType>::FFTRadixTwo_DIT(fW.fN, in->GetData(), fW.fTwiddle);
-        }
-        else
-        {
-            //use bluestein algorithm for arbitrary N
-            MHO_FastFourierTransformUtilities<XFloatType>::FFTBluestein(fW.fN, fW.fM, in->GetData(), fW.fTwiddle, fW.fConjugateTwiddle, fW.fScale, fW.fCirculant, fW.fWorkspace);
-        }
-
-        //for DFT we conjugate again (NOTE: this matches FFTW3 convention)
-        if(fForward)
-        {
-            std::complex<XFloatType>* data = in->GetData();
-            for(unsigned int i=0; i<fW.fN; i++)
-            {
-                data[i] = std::conj(data[i]);
-            }
-        }
-
+        if( fW.IsRadix2() ){ FFTRadix2(in->GetData(), fW, fForward); }
+        else{ FFTBluestein(in->GetData(), fW, fForward); }
         return true;
     }
     else

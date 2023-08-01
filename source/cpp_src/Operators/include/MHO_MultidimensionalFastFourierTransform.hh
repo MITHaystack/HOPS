@@ -8,13 +8,17 @@
 #include "MHO_NDArrayWrapper.hh"
 #include "MHO_UnaryOperator.hh"
 
+#include "MHO_FastFourierTransformUtilities.hh"
+#include "MHO_FastFourierTransformWorkspace.hh"
+#include "MHO_FastFourierTransformCalls.hh"
+
 #include "MHO_MultidimensionalFastFourierTransformInterface.hh"
 
-#ifdef HOPS_USE_FFTW3
-    #include "MHO_MultidimensionalFastFourierTransformFFTW.hh"
-#else
-    #include "MHO_FastFourierTransform.hh"
-#endif
+// #ifdef HOPS_USE_FFTW3
+//     #include "MHO_MultidimensionalFastFourierTransformFFTW.hh"
+// #else
+//     #include "MHO_FastFourierTransform.hh"
+// #endif
 
 #include "MHO_TableContainer.hh"
 
@@ -35,11 +39,11 @@ class MHO_MultidimensionalFastFourierTransform:
         MHO_MultidimensionalFastFourierTransform():
             MHO_MultidimensionalFastFourierTransformInterface< XArgType >()
         {
-            for(size_t i=0; i<XArgType::rank::value; i++)
-            {
-                fWorkspaceWrapper[i] = NULL;
-                fTransformCalculator[i] = NULL;
-            }
+            // for(size_t i=0; i<XArgType::rank::value; i++)
+            // {
+            //     fWorkspaceWrapper[i] = NULL;
+            //     fTransformCalculator[i] = NULL;
+            // }
         };
 
         virtual ~MHO_MultidimensionalFastFourierTransform()
@@ -114,14 +118,14 @@ class MHO_MultidimensionalFastFourierTransform:
                 for(size_t i=0; i<XArgType::rank::value; i++)
                 {
                     total_size *= this->fDimensionSize[i];
-                    if(this->fForward)
-                    {
-                        fTransformCalculator[i]->SetForward();
-                    }
-                    else
-                    {
-                        fTransformCalculator[i]->SetBackward();
-                    }
+                    // if(this->fForward)
+                    // {
+                    //     fTransformCalculator[i]->SetForward();
+                    // }
+                    // else
+                    // {
+                    //     fTransformCalculator[i]->SetBackward();
+                    // }
                 }
 
                 size_t index[XArgType::rank::value];
@@ -162,24 +166,31 @@ class MHO_MultidimensionalFastFourierTransform:
                             }
 
                             size_t data_location;
+                            complex_value_type* data;
                             //copy the row selected by the other dimensions
-                            for(size_t i=0; i<this->fDimensionSize[d]; i++)
-                            {
-                                index[d] = i;
+                            // for(size_t i=0; i<this->fDimensionSize[d]; i++)
+                            // {
+                                index[d] = 0;//i;
                                 data_location = MHO_NDArrayMath::OffsetFromRowMajorIndex<XArgType::rank::value>(this->fDimensionSize, index);
-                                (*(fWorkspaceWrapper[d]))[i] = (*(in))[data_location];
-                            }
+                                data = &( (in->GetData())[data_location] );
+                                //(*(fWorkspaceWrapper[d]))[i] = (*(in))[data_location];
+                            // }
 
                             //compute the FFT of the row selected
-                            fTransformCalculator[d]->Execute();
+                            unsigned int stride = MHO_NDArrayMath::StrideFromRowMajorIndex<XArgType::rank::value>(d, this->fDimensionSize);
+                            if( fW[d].IsRadix2() ){ FFTRadix2(data, fW[d], this->fForward, stride); }
+                            else{ FFTBluestein(data, fW[d], this->fForward, stride); }
 
-                            //copy the row selected back
-                            for(size_t i=0; i<this->fDimensionSize[d]; i++)
-                            {
-                                index[d] = i;
-                                data_location = MHO_NDArrayMath::OffsetFromRowMajorIndex<XArgType::rank::value>(this->fDimensionSize, index);
-                                (*(in))[data_location] = (*(fWorkspaceWrapper[d]))[i];
-                            }
+
+                            // fTransformCalculator[d]->Execute();
+
+                            // //copy the row selected back
+                            // for(size_t i=0; i<this->fDimensionSize[d]; i++)
+                            // {
+                            //     index[d] = i;
+                            //     data_location = MHO_NDArrayMath::OffsetFromRowMajorIndex<XArgType::rank::value>(this->fDimensionSize, index);
+                            //     (*(in))[data_location] = (*(fWorkspaceWrapper[d]))[i];
+                            // }
                         }
                     }
 
@@ -214,37 +225,39 @@ class MHO_MultidimensionalFastFourierTransform:
         {
             for(size_t i=0; i<XArgType::rank::value; i++)
             {
-                fWorkspaceWrapper[i] = new MHO_NDArrayWrapper< complex_value_type, 1 >(this->fDimensionSize[i]);
-
-                #ifdef HOPS_USE_FFTW3
-                        fTransformCalculator[i] = new MHO_MultidimensionalFastFourierTransformFFTW< MHO_NDArrayWrapper< complex_value_type, 1 > >();
-                #else
-                        fTransformCalculator[i] = new MHO_FastFourierTransform<floating_point_value_type>();
-                #endif
-                
-                fTransformCalculator[i]->SetArgs(fWorkspaceWrapper[i]);
-                fTransformCalculator[i]->Initialize();
+                fW[i].Resize( this->fDimensionSize[i] );
             }
+                // fWorkspaceWrapper[i] = new MHO_NDArrayWrapper< complex_value_type, 1 >(this->fDimensionSize[i]);
+                // 
+                // #ifdef HOPS_USE_FFTW3
+                //         fTransformCalculator[i] = new MHO_MultidimensionalFastFourierTransformFFTW< MHO_NDArrayWrapper< complex_value_type, 1 > >();
+                // #else
+                //         fTransformCalculator[i] = new MHO_FastFourierTransform<floating_point_value_type>();
+                // #endif
+                
+                // fTransformCalculator[i]->SetArgs(fWorkspaceWrapper[i]);
+                // fTransformCalculator[i]->Initialize();
+            //}
         }
 
         virtual void DeallocateWorkspace()
         {
-            for(size_t i=0; i<XArgType::rank::value; i++)
-            {
-                delete fWorkspaceWrapper[i]; fWorkspaceWrapper[i] = NULL;
-                delete fTransformCalculator[i]; fTransformCalculator[i] = NULL;
-            }
+            // for(size_t i=0; i<XArgType::rank::value; i++)
+            // {
+            //     delete fWorkspaceWrapper[i]; fWorkspaceWrapper[i] = NULL;
+            //     delete fTransformCalculator[i]; fTransformCalculator[i] = NULL;
+            // }
         }
 
-        #ifdef HOPS_USE_FFTW3
-            MHO_MultidimensionalFastFourierTransformFFTW< MHO_NDArrayWrapper< complex_value_type, 1 > >* fTransformCalculator[XArgType::rank::value];
-        #else
-            MHO_FastFourierTransform<floating_point_value_type>* fTransformCalculator[XArgType::rank::value];
-        #endif
+        // #ifdef HOPS_USE_FFTW3
+        //     MHO_MultidimensionalFastFourierTransformFFTW< MHO_NDArrayWrapper< complex_value_type, 1 > >* fTransformCalculator[XArgType::rank::value];
+        // #else
+        //     MHO_FastFourierTransform<floating_point_value_type>* fTransformCalculator[XArgType::rank::value];
+        // #endif
 
-        MHO_NDArrayWrapper< complex_value_type, 1>* fWorkspaceWrapper[XArgType::rank::value];
+        // MHO_NDArrayWrapper< complex_value_type, 1>* fWorkspaceWrapper[XArgType::rank::value];
 
-
+        MHO_FastFourierTransformWorkspace<floating_point_value_type> fW[XArgType::rank::value];
 };
 
 

@@ -1,5 +1,5 @@
-#ifndef MHO_FastFourierTransform_HH__
-#define MHO_FastFourierTransform_HH__
+#ifndef MHO_FastFourierTransformCalls_HH__
+#define MHO_FastFourierTransformCalls_HH__
 
 #include <complex>
 #include <cstddef>
@@ -44,6 +44,7 @@ void FFTBluestein(std::complex<XFloatType>* data, MHO_FastFourierTransformWorksp
     if(isForward){ MHO_FastFourierTransformUtilities<XFloatType>::Conjugate(work.fN, data, stride); }
 }
 
-}
+}//end namespace
 
-#endif /* MHO_FastFourierTransform_HH__ */
+
+#endif /* MHO_FastFourierTransformCalls_HH__ */
