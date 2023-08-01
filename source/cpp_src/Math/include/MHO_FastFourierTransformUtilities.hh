@@ -18,7 +18,12 @@ class MHO_FastFourierTransformUtilities
     public:
         MHO_FastFourierTransformUtilities(){};
         virtual ~MHO_FastFourierTransformUtilities(){};
-
+        
+        //conjugate an array
+        static void Conjugate(unsigned int N, std::complex< XFloatType >* array, unsigned int stride = 1)
+        {
+            for(unsigned int i=0; i<N; i++){ array[i*stride] = std::conj(array[i*stride]); }
+        }
 
         ////////////////////////////////////////////////////////////////////////
         //compute all the twiddle factors e^{i*2*pi/N} for 0 to N-1
@@ -29,16 +34,13 @@ class MHO_FastFourierTransformUtilities
             //using std::cos and std::sin is more accurate than the recursive method
             //to compute the twiddle factors
             ComputeTwiddleFactors(N, conj_twiddle);
-            for(unsigned int i=0; i<N; i++)
-            {
-                conj_twiddle[i] = std::conj(conj_twiddle[i]);
-            }
+            Conjugate(N, conj_twiddle);
         }
         ////////////////////////////////////////////////////////////////////////
 
         ////////////////////////////////////////////////////////////////////////
         //RADIX-2
-        static void FFTRadixTwo_DIT(unsigned int N, XFloatType* data, XFloatType* twiddle)
+        static void FFTRadixTwo_DIT(unsigned int N, XFloatType* data, XFloatType* twiddle, unsigned int stride = 1)
         {
             //decimation in time
 
@@ -71,8 +73,8 @@ class MHO_FastFourierTransformUtilities
                         {
                             butterfly_index = group_start + k; //index
 
-                            ButterflyRadixTwo_CooleyTukey( &(data[2*butterfly_index]),
-                                                           &(data[2*butterfly_index + 2*butterfly_width]),
+                            ButterflyRadixTwo_CooleyTukey( &(data[2*butterfly_index*stride]),
+                                                           &(data[2*butterfly_index*stride + 2*butterfly_width*stride]),
                                                            &(twiddle[2*n_butterfly_groups*k]) );
                         }
                     }
@@ -84,11 +86,6 @@ class MHO_FastFourierTransformUtilities
                 msg_error("math", "MHO_FastFourierTransformUtilities::FFTRadixTwo_DIT: error, array has length: "<<N<<" which is not an integer power of 2."<<eom);
             }
         }
-
-
-
-
-
 
         static void ButterflyRadixTwo_CooleyTukey(XFloatType* H0, XFloatType* H1, XFloatType* W)
         {
@@ -111,7 +108,7 @@ class MHO_FastFourierTransformUtilities
             H0[1] = H0[1] + alpha_i;
         }
 
-        static void FFTRadixTwo_DIF(unsigned int N, XFloatType* data, XFloatType* twiddle)
+        static void FFTRadixTwo_DIF(unsigned int N, XFloatType* data, XFloatType* twiddle, unsigned int stride = 1)
         {
             //decimation in frequency
 
@@ -144,8 +141,8 @@ class MHO_FastFourierTransformUtilities
                         {
                             butterfly_index = group_start + k; //index
 
-                            ButterflyRadixTwo_GentlemanSande( &(data[2*butterfly_index]),
-                                                              &(data[2*butterfly_index + 2*butterfly_width]),
+                            ButterflyRadixTwo_GentlemanSande( &(data[2*butterfly_index*stride]),
+                                                              &(data[2*butterfly_index*stride + 2*butterfly_width*stride]),
                                                               &(twiddle[2*n_butterfly_groups*k]) );
                         }
                     }
@@ -192,14 +189,14 @@ class MHO_FastFourierTransformUtilities
         }
 
         //wrappers for complex array
-        static void FFTRadixTwo_DIT(unsigned int N, std::complex< XFloatType >* data, std::complex< XFloatType >* twiddle)
+        static void FFTRadixTwo_DIT(unsigned int N, std::complex< XFloatType >* data, std::complex< XFloatType >* twiddle, unsigned int stride = 1)
         {
-            FFTRadixTwo_DIT(N, (XFloatType*)&(data[0]), (XFloatType*) &(twiddle[0]) );
+            FFTRadixTwo_DIT(N, (XFloatType*)&(data[0]), (XFloatType*) &(twiddle[0]), stride);
         }
 
-        static void FFTRadixTwo_DIF(unsigned int N, std::complex< XFloatType >* data, std::complex< XFloatType >* twiddle)
+        static void FFTRadixTwo_DIF(unsigned int N, std::complex< XFloatType >* data, std::complex< XFloatType >* twiddle, unsigned int stride = 1)
         {
-            FFTRadixTwo_DIF(N, (XFloatType*)&(data[0]), (XFloatType*) &(twiddle[0]) );
+            FFTRadixTwo_DIF(N, (XFloatType*)&(data[0]), (XFloatType*) &(twiddle[0]), stride);
         }
 
 
@@ -267,14 +264,15 @@ class MHO_FastFourierTransformUtilities
                                  std::complex< XFloatType >* conj_twiddle,
                                  std::complex< XFloatType >* scale,
                                  std::complex< XFloatType >* circulant,
-                                 std::complex< XFloatType >* workspace)
+                                 std::complex< XFloatType >* workspace,
+                                 unsigned int stride = 1)
         {
 
             //STEP D
             //copy the data into the workspace and scale by the scale factor
             for(unsigned int i=0; i<N; i++)
             {
-                workspace[i] = data[i]*scale[i];
+                workspace[i] = data[i*stride]*scale[i];
             }
 
             //fill out the rest of the extended vector with zeros
@@ -286,7 +284,7 @@ class MHO_FastFourierTransformUtilities
             //STEP E
             //perform the DFT on the workspace
             //do radix-2 FFT w/ decimation in frequency (normal order input, bit-address permutated output)
-            MHO_FastFourierTransformUtilities::FFTRadixTwo_DIF(M, (XFloatType*)(&(workspace[0])), (XFloatType*)(&(twiddle[0])) );
+            FFTRadixTwo_DIF(M, (XFloatType*)(&(workspace[0])), (XFloatType*)(&(twiddle[0])) );
 
             //STEP F
             //now we scale the workspace with the circulant vector
@@ -298,17 +296,16 @@ class MHO_FastFourierTransformUtilities
             //STEP G
             //now perform the inverse DFT on the workspace
             //do radix-2 FFT w/ decimation in time (bit-address permutated input, normal order output)
-            MHO_FastFourierTransformUtilities::FFTRadixTwo_DIT(M, (XFloatType*)(&(workspace[0])), (XFloatType*)(&(conj_twiddle[0])) );
+            FFTRadixTwo_DIT(M, (XFloatType*)(&(workspace[0])), (XFloatType*)(&(conj_twiddle[0])) );
 
             //STEP H
             //renormalize to complete IDFT, extract and scale at the same time
             XFloatType norm = 1.0/((XFloatType)M);
             for(unsigned int i=0; i<N; i++)
             {
-                data[i] = norm*workspace[i]*scale[i];
+                data[i*stride] = norm*workspace[i]*scale[i];
             }
         }
-
 
 };
 

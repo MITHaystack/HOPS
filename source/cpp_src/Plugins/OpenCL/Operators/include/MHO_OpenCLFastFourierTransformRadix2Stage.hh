@@ -240,12 +240,10 @@ class MHO_OpenCLFastFourierTransformRadix2Stage:
         std::string fOpenCLFlags;
 
         unsigned int fMaxBufferSize; //we use the same size for all of the buffers (max across all dimensions)
-        cl::Buffer* fDimensionBufferCL; //buffer for the dimensions of the array
         cl::Buffer* fTwiddleBufferCL; //buffer for the FFT twiddle factors
         cl::Buffer* fConjugateTwiddleBufferCL; //buffer for the conjugate FFT twiddle factors
         cl::Buffer* fScaleBufferCL; //buffer for the bluestein scale factors
         cl::Buffer* fCirculantBufferCL; //buffer for the bluestein circulant vector
-        cl::Buffer* fDataBufferCL; //buffer for the data to be transformed
         cl::Buffer* fPermuationArrayCL; //buffer for the permutation array
         cl::Buffer* fWorkspaceBufferCL; //buffer to global workspace
 

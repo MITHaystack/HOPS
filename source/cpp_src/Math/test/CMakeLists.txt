@@ -7,6 +7,7 @@ set(SOURCE_BASENAMES
     TestFastFourierTransform
     TestSignalGenerators
     TestUniformGridCalculator
+    TestFastFourierTransform2
 )
 
 if(HOPS_USE_FFTW3)
