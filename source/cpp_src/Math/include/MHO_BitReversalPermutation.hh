@@ -35,7 +35,7 @@ class MHO_BitReversalPermutation
 
         //data type of size 1
         template<typename DataType >
-        static void PermuteArray(unsigned int N, const unsigned int* permutation_index_arr, DataType* arr)
+        static void PermuteArray(unsigned int N, const unsigned int* permutation_index_arr, DataType* arr, unsigned int stride = 1)
         {
             //expects an array of size N
             DataType val;
@@ -45,16 +45,16 @@ class MHO_BitReversalPermutation
                 if(i < perm )
                 {
                     //swap values
-                    val = arr[i];
-                    arr[i] = arr[ perm ];
-                    arr[perm] = val;
+                    val = arr[i*stride];
+                    arr[i*stride] = arr[ perm*stride ];
+                    arr[perm*stride] = val;
                 }
             }
         }
 
         //arbitrary data_size (e.g two values packed together in a series)
         template<typename DataType >
-        static void PermuteArray(unsigned int N, unsigned int data_size, const unsigned int* permutation_index_arr, DataType* arr)
+        static void PermuteArray(unsigned int N, unsigned int data_size, const unsigned int* permutation_index_arr, DataType* arr, unsigned int stride = 1)
         {
             //expects an array of size N*data_size
             DataType val;
@@ -68,9 +68,9 @@ class MHO_BitReversalPermutation
 
                     for(unsigned int j=0; j<data_size; j++)
                     {
-                        val = arr[old_index*data_size + j];
-                        arr[old_index*data_size + j] = arr[new_index*data_size + j];
-                        arr[new_index*data_size + j] = val;
+                        val = arr[(old_index*data_size + j)*stride];
+                        arr[(old_index*data_size + j)*stride] = arr[(new_index*data_size + j)*stride];
+                        arr[(new_index*data_size + j)*stride] = val;
                     }
                 }
             }
@@ -78,7 +78,7 @@ class MHO_BitReversalPermutation
 
 
         template<typename DataType >
-        static void PermuteVector(unsigned int N, const unsigned int* permutation_index_arr, std::vector<DataType>* arr)
+        static void PermuteVector(unsigned int N, const unsigned int* permutation_index_arr, std::vector<DataType>* arr, unsigned int stride = 1)
         {
             //expects an array of size N
             DataType val;
@@ -88,9 +88,9 @@ class MHO_BitReversalPermutation
                 if(i < perm )
                 {
                     //swap values
-                    val = arr[i];
-                    arr[i] = arr[ perm ];
-                    arr[perm] = val;
+                    val = arr[i*stride];
+                    arr[i*stride] = arr[ perm*stride ];
+                    arr[perm*stride] = val;
                 }
             }
         }

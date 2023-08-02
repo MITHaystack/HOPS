@@ -23,7 +23,7 @@ void FFTRadix2(std::complex<XFloatType>* data, MHO_FastFourierTransformWorkspace
     if(isForward){ MHO_FastFourierTransformUtilities<XFloatType>::Conjugate(work.fN, data, stride); }
 
     //use radix-2
-    MHO_BitReversalPermutation::PermuteArray< std::complex<XFloatType> >(work.fN, work.fPermutation, data);
+    MHO_BitReversalPermutation::PermuteArray< std::complex<XFloatType> >(work.fN, work.fPermutation, data, stride);
     MHO_FastFourierTransformUtilities<XFloatType>::FFTRadixTwo_DIT(work.fN, data, work.fTwiddle, stride);
 
     //for DFT we conjugate again (NOTE: this matches FFTW3 convention)
