@@ -117,7 +117,7 @@ run_test(const std::vector<std::size_t>& dim_size, const std::vector<std::size_t
     
     double err = std::sqrt(l2_norm);
     std::cout << "--------------------------" << std::endl;
-    std::cout << "single pass wallclock time(s): " << runtime << std::endl;
+    std::cout << "single pass wallclock time (s): " << runtime << std::endl;
     std::cout << "L2_diff = " << err << std::endl;
     std::cout << "L2_diff/N = "<< err/norm <<std::endl; //average error per point
     double tol = 1.5e-15;
