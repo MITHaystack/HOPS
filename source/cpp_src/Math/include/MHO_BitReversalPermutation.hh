@@ -2,7 +2,12 @@
 #define MHO_BitReversalPermutation_HH__
 
 #include <cstddef>
-#include <vector>
+
+#define USE_STDALGO_SWAP
+
+#ifdef USE_STDALGO_SWAP
+#include <algorithm>
+#endif
 
 namespace hops
 {
@@ -33,9 +38,9 @@ class MHO_BitReversalPermutation
         static void ComputeBitReversedIndices(unsigned int N, unsigned int B, unsigned int* index_arr);
 
 
-        //data type of size 1
+        //mon-strided data access pattern
         template<typename DataType >
-        static void PermuteArray(unsigned int N, const unsigned int* permutation_index_arr, DataType* arr, unsigned int stride = 1)
+        static void PermuteArray(unsigned int N, const unsigned int* permutation_index_arr, DataType* arr)
         {
             //expects an array of size N
             DataType val;
@@ -45,13 +50,39 @@ class MHO_BitReversalPermutation
                 if(i < perm )
                 {
                     //swap values
-                    val = arr[i*stride];
-                    arr[i*stride] = arr[ perm*stride ];
-                    arr[perm*stride] = val;
+                    #ifdef USE_STDALGO_SWAP
+                    std::swap(arr[i], arr[perm]);
+                    #else
+                    val = arr[i];
+                    arr[i] = arr[ perm];
+                    arr[perm] = val;
+                    #endif
                 }
             }
         }
 
+        //strided data access version
+        template<typename DataType >
+        static void PermuteArray(unsigned int N, const unsigned int* permutation_index_arr, DataType* arr, unsigned int stride)
+        {
+            //expects an array of size N
+            DataType val;
+            for(unsigned int i=0; i<N; i++)
+            {
+                unsigned int perm = permutation_index_arr[i];
+                if(i < perm )
+                {
+                    //swap values
+                    #ifdef USE_STDALGO_SWAP
+                    std::swap(arr[i*stride], arr[perm*stride]);
+                    #else
+                    val = arr[i*stride];
+                    arr[i*stride] = arr[ perm*stride ];
+                    arr[perm*stride] = val;
+                    #endif
+                }
+            }
+        }
 
 
     private:
