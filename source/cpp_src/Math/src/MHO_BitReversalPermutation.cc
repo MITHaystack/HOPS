@@ -31,8 +31,7 @@ unsigned int
 MHO_BitReversalPermutation::TwoToThePowerOf(unsigned int N)
 {
     unsigned int val = 1;
-    for(unsigned int i=0; i<N; i++){val *= 2;}
-    return val;
+    return (val << N);
 }
 
 unsigned int
