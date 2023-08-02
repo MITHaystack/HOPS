@@ -1,4 +1,5 @@
 #include "MHO_Message.hh"
+#include "MHO_Timer.hh"
 #include "MHO_FastFourierTransform.hh"
 #include "MHO_MultidimensionalFastFourierTransformFFTW.hh"
 
@@ -92,7 +93,13 @@ run_test(const std::vector<std::size_t>& dim_size, const std::vector<std::size_t
     fft_engine->SetArgs(input);
     fft_engine->SelectAllAxes();
     fft_engine->Initialize();
+    
+    MHO_Timer timer;
+    timer.MeasureWallclockTime();
+    timer.Start();
     fft_engine->Execute();
+    timer.Stop();
+    double runtime = timer.GetDurationAsDouble();
 
     FPTYPE norm = total_size;
     FPTYPE l2_norm = 0;
@@ -106,9 +113,11 @@ run_test(const std::vector<std::size_t>& dim_size, const std::vector<std::size_t
     }
     
     double err = std::sqrt(l2_norm);
+    std::cout << "--------------------------" << std::endl;
+    std::cout << "single pass wallclock time (s): " << runtime << std::endl;
     std::cout << "L2_diff = " << err << std::endl;
     std::cout << "L2_diff/N = "<< err/norm <<std::endl; //average error per point
-    double tol = 1.5e-15; //tests for ndim=3, dval=19
+    double tol = 1.5e-15;
 
     delete input;
     delete original;
@@ -124,16 +133,22 @@ int main(int /*argc*/, char** /*argv*/)
     // set this up to do several multidimensional FFTs of various sizes
     std::vector<std::size_t> dim_sizes;
     std::vector<std::size_t> axes;
+    
+    dim_sizes.clear();
+    axes.clear();
+    dim_sizes.insert(dim_sizes.end(), { 8 });
+    axes.insert(axes.end(), { 0 });
+    int val0 = run_test<ARRAY1_TYPE, FFT1_TYPE>(dim_sizes, axes);
 
     dim_sizes.clear();
     axes.clear();
-    dim_sizes.insert(dim_sizes.end(), { 64 });
+    dim_sizes.insert(dim_sizes.end(), { 1024 });
     axes.insert(axes.end(), { 0 });
     int val1 = run_test<ARRAY1_TYPE, FFT1_TYPE>(dim_sizes, axes);
     
     dim_sizes.clear();
     axes.clear();
-    dim_sizes.insert(dim_sizes.end(), { 64, 19 });
+    dim_sizes.insert(dim_sizes.end(), { 512, 19 });
     axes.insert(axes.end(), { 0 });
     int val2 = run_test<ARRAY2_TYPE, FFT2_TYPE>(dim_sizes, axes);
     
@@ -145,9 +160,9 @@ int main(int /*argc*/, char** /*argv*/)
     
     dim_sizes.clear();
     axes.clear();
-    dim_sizes.insert(dim_sizes.end(), { 4, 64, 512, 45 });
+    dim_sizes.insert(dim_sizes.end(), { 32, 64, 30, 160 });
     axes.insert(axes.end(), { 1, 3 });
     int val4 = run_test<ARRAY4_TYPE, FFT4_TYPE>(dim_sizes, axes);
 
-    return val1 + val2 + val3 + val4;
+    return val0 + val1 + val2 + val3 + val4;
 }

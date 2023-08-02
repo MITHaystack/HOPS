@@ -20,7 +20,13 @@ class MHO_FastFourierTransformUtilities
         virtual ~MHO_FastFourierTransformUtilities(){};
         
         //conjugate an array
-        static void Conjugate(unsigned int N, std::complex< XFloatType >* array, unsigned int stride = 1)
+        static void Conjugate(unsigned int N, std::complex< XFloatType >* array)
+        {
+            for(unsigned int i=0; i<N; i++){ array[i] = std::conj(array[i]); }
+        }
+
+        //strided, conjugate array
+        static void Conjugate(unsigned int N, std::complex< XFloatType >* array, unsigned int stride)
         {
             for(unsigned int i=0; i<N; i++){ array[i*stride] = std::conj(array[i*stride]); }
         }
@@ -40,7 +46,54 @@ class MHO_FastFourierTransformUtilities
 
         ////////////////////////////////////////////////////////////////////////
         //RADIX-2
-        static void FFTRadixTwo_DIT(unsigned int N, XFloatType* data, XFloatType* twiddle, unsigned int stride = 1)
+        static void FFTRadixTwo_DIT(unsigned int N, XFloatType* data, XFloatType* twiddle)
+        {
+            //decimation in time
+
+            //input: data array in bit-address permutated order
+            //output: fft of data in normal order
+            if(MHO_BitReversalPermutation::IsPowerOfTwo(N) )
+            {
+                unsigned int logN = MHO_BitReversalPermutation::LogBaseTwo(N);
+
+                unsigned int butterfly_width;
+                unsigned int n_butterfly_groups;
+                unsigned int group_start;
+                unsigned int butterfly_index;
+
+                for(unsigned int stage = 0; stage < logN; stage++)
+                {
+                    //compute the width of each butterfly
+                    butterfly_width = MHO_BitReversalPermutation::TwoToThePowerOf(stage);
+
+                    //compute the number of butterfly groups
+                    n_butterfly_groups = N/(2*butterfly_width);
+
+                    for(unsigned int n = 0; n < n_butterfly_groups; n++)
+                    {
+                        //compute the starting index of this butterfly group
+                        group_start = 2*n*butterfly_width;
+
+                        for(unsigned int k=0; k < butterfly_width; k++)
+                        {
+                            butterfly_index = group_start + k; //index
+
+                            ButterflyRadixTwo_CooleyTukey( &(data[2*butterfly_index]),
+                                                           &(data[2*butterfly_index + 2*butterfly_width]),
+                                                           &(twiddle[2*n_butterfly_groups*k]) );
+                        }
+                    }
+
+                }
+            }
+            else
+            {
+                msg_error("math", "MHO_FastFourierTransformUtilities::FFTRadixTwo_DIT: error, array has length: "<<N<<" which is not an integer power of 2."<<eom);
+            }
+        }
+        
+        //RADIX-2, STRIDED data access overload
+        static void FFTRadixTwo_DIT(unsigned int N, XFloatType* data, XFloatType* twiddle, unsigned int stride)
         {
             //decimation in time
 
@@ -86,6 +139,8 @@ class MHO_FastFourierTransformUtilities
                 msg_error("math", "MHO_FastFourierTransformUtilities::FFTRadixTwo_DIT: error, array has length: "<<N<<" which is not an integer power of 2."<<eom);
             }
         }
+        
+
 
         static void ButterflyRadixTwo_CooleyTukey(XFloatType* H0, XFloatType* H1, XFloatType* W)
         {
@@ -108,7 +163,58 @@ class MHO_FastFourierTransformUtilities
             H0[1] = H0[1] + alpha_i;
         }
 
-        static void FFTRadixTwo_DIF(unsigned int N, XFloatType* data, XFloatType* twiddle, unsigned int stride = 1)
+        //RADIX-2 DIF
+        static void FFTRadixTwo_DIF(unsigned int N, XFloatType* data, XFloatType* twiddle)
+        {
+            //decimation in frequency
+
+            //input: data array in normal order
+            //output: fft of data in bit-address permutated order
+
+            if(MHO_BitReversalPermutation::IsPowerOfTwo(N) )
+            {
+                unsigned int logN = MHO_BitReversalPermutation::LogBaseTwo(N);
+
+                unsigned int butterfly_width;
+                unsigned int n_butterfly_groups;
+                unsigned int group_start;
+                unsigned int butterfly_index;
+
+                for(unsigned int stage = 0; stage < logN; stage++)
+                {
+                    //compute the number of butterfly groups
+                    n_butterfly_groups= MHO_BitReversalPermutation::TwoToThePowerOf(stage);
+
+                    //compute the width of each butterfly
+                    butterfly_width =  N/(2*n_butterfly_groups);
+
+                    for(unsigned int n = 0; n < n_butterfly_groups; n++)
+                    {
+                        //compute the starting index of this butterfly group
+                        group_start = 2*n*butterfly_width;
+
+                        for(unsigned int k=0; k < butterfly_width; k++)
+                        {
+                            butterfly_index = group_start + k; //index
+
+                            ButterflyRadixTwo_GentlemanSande( &(data[2*butterfly_index]),
+                                                              &(data[2*butterfly_index + 2*butterfly_width]),
+                                                              &(twiddle[2*n_butterfly_groups*k]) );
+                        }
+                    }
+
+                }
+            }
+            else
+            {
+                msg_error("math", "MHO_FastFourierTransformUtilities::FFTRadixTwo_DIF: error, array has length: "<<N<<" which is not an integer power of 2."<< eom);
+            }
+
+        }
+        
+        
+        //RADIX-2 DIF, strided data access
+        static void FFTRadixTwo_DIF(unsigned int N, XFloatType* data, XFloatType* twiddle, unsigned int stride)
         {
             //decimation in frequency
 
@@ -157,7 +263,6 @@ class MHO_FastFourierTransformUtilities
         }
 
 
-
         static void ButterflyRadixTwo_GentlemanSande(XFloatType* H0, XFloatType* H1, XFloatType* W)
         {
             ////////////////////////////////////////////////////////////////////////
@@ -189,16 +294,26 @@ class MHO_FastFourierTransformUtilities
         }
 
         //wrappers for complex array
-        static void FFTRadixTwo_DIT(unsigned int N, std::complex< XFloatType >* data, std::complex< XFloatType >* twiddle, unsigned int stride = 1)
+        static void FFTRadixTwo_DIT(unsigned int N, std::complex< XFloatType >* data, std::complex< XFloatType >* twiddle)
+        {
+            FFTRadixTwo_DIT(N, (XFloatType*)&(data[0]), (XFloatType*) &(twiddle[0]) );
+        }
+
+        static void FFTRadixTwo_DIF(unsigned int N, std::complex< XFloatType >* data, std::complex< XFloatType >* twiddle)
+        {
+            FFTRadixTwo_DIF(N, (XFloatType*)&(data[0]), (XFloatType*) &(twiddle[0]) );
+        }
+
+        //wrappers for complex array, strided
+        static void FFTRadixTwo_DIT(unsigned int N, std::complex< XFloatType >* data, std::complex< XFloatType >* twiddle, unsigned int stride)
         {
             FFTRadixTwo_DIT(N, (XFloatType*)&(data[0]), (XFloatType*) &(twiddle[0]), stride);
         }
 
-        static void FFTRadixTwo_DIF(unsigned int N, std::complex< XFloatType >* data, std::complex< XFloatType >* twiddle, unsigned int stride = 1)
+        static void FFTRadixTwo_DIF(unsigned int N, std::complex< XFloatType >* data, std::complex< XFloatType >* twiddle, unsigned int stride)
         {
             FFTRadixTwo_DIF(N, (XFloatType*)&(data[0]), (XFloatType*) &(twiddle[0]), stride);
         }
-
 
 
         ////////////////////////////////////////////////////////////////////////
@@ -256,7 +371,62 @@ class MHO_FastFourierTransformUtilities
             MHO_FastFourierTransformUtilities::FFTRadixTwo_DIF(M, circulant, twiddle);
         }
 
-        //N is length of the data
+
+        //Bluestein algorithm for arbitrary length, N is length of the data
+        static void FFTBluestein(unsigned int N,
+                                 unsigned int M,
+                                 std::complex< XFloatType >* data,
+                                 std::complex< XFloatType >* twiddle,
+                                 std::complex< XFloatType >* conj_twiddle,
+                                 std::complex< XFloatType >* scale,
+                                 std::complex< XFloatType >* circulant,
+                                 std::complex< XFloatType >* workspace)
+        {
+
+            //STEP D
+            //copy the data into the workspace and scale by the scale factor
+            for(unsigned int i=0; i<N; i++)
+            {
+                workspace[i] = data[i]*scale[i];
+            }
+
+            //fill out the rest of the extended vector with zeros
+            for(unsigned int i=N; i<M; i++)
+            {
+                workspace[i] = std::complex<XFloatType>(0.0,0.0);
+            }
+
+            //STEP E
+            //perform the DFT on the workspace
+            //do radix-2 FFT w/ decimation in frequency (normal order input, bit-address permutated output)
+            FFTRadixTwo_DIF(M, (XFloatType*)(&(workspace[0])), (XFloatType*)(&(twiddle[0])) );
+
+            //STEP F
+            //now we scale the workspace with the circulant vector
+            for(unsigned int i=0; i<M; i++)
+            {
+                workspace[i] *= circulant[i];
+            }
+
+            //STEP G
+            //now perform the inverse DFT on the workspace
+            //do radix-2 FFT w/ decimation in time (bit-address permutated input, normal order output)
+            FFTRadixTwo_DIT(M, (XFloatType*)(&(workspace[0])), (XFloatType*)(&(conj_twiddle[0])) );
+
+            //STEP H
+            //renormalize to complete IDFT, extract and scale at the same time
+            XFloatType norm = 1.0/((XFloatType)M);
+            for(unsigned int i=0; i<N; i++)
+            {
+                data[i] = norm*workspace[i]*scale[i];
+            }
+        }
+
+
+
+
+
+        //Bluestein algorithm for arbitrary length, N is length of the data, strided data access overload
         static void FFTBluestein(unsigned int N,
                                  unsigned int M,
                                  std::complex< XFloatType >* data,
@@ -265,7 +435,7 @@ class MHO_FastFourierTransformUtilities
                                  std::complex< XFloatType >* scale,
                                  std::complex< XFloatType >* circulant,
                                  std::complex< XFloatType >* workspace,
-                                 unsigned int stride = 1)
+                                 unsigned int stride)
         {
 
             //STEP D
@@ -306,8 +476,8 @@ class MHO_FastFourierTransformUtilities
                 data[i*stride] = norm*workspace[i]*scale[i];
             }
         }
-
-};
+        
+}; //end of class
 
 
 
