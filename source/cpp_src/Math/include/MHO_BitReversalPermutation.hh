@@ -14,7 +14,7 @@ class MHO_BitReversalPermutation
         virtual ~MHO_BitReversalPermutation(){};
 
         static bool IsPowerOfTwo(unsigned int N);
-        static unsigned int TwoToThePowerOf(unsigned int N); //N must be >= 0
+        static unsigned int TwoToThePowerOf(unsigned int N); //N must be >= 0 and <=31
         static unsigned int LogBaseTwo(unsigned int N);
         static unsigned int NextLowestPowerOfTwo(unsigned int N);
 
