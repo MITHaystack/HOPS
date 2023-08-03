@@ -17,7 +17,7 @@ typedef double FP_Type;
 int main(int /*argc*/, char** /*argv*/)
 {
     std::vector< unsigned int > fftSizes;
-    fftSizes = {32, 21, 79, 256, 1024, 8192, 16384};
+    fftSizes = {32, 21, 97, 256, 1024, 8192, 16384};
     
     for(unsigned int i=0; i<fftSizes.size(); i++)
     {

@@ -57,6 +57,9 @@ class MHO_FastFourierTransformUtilities
             unsigned int group_start;
             unsigned int butterfly_index;
             unsigned int access_stride = 2*stride;
+            XFloatType* H0;
+            XFloatType* H1;
+            XFloatType* W;
 
             for(unsigned int stage = 0; stage < logN; stage++)
             {
@@ -72,15 +75,16 @@ class MHO_FastFourierTransformUtilities
                     for(unsigned int k=0; k < butterfly_width; k++)
                     {
                         butterfly_index = group_start + k; //index
-                        ButterflyRadixTwo_CooleyTukey( &(data[access_stride*butterfly_index]),
-                                                       &(data[access_stride*(butterfly_index + butterfly_width)]),
-                                                       &(twiddle[2*n_butterfly_groups*k]) );
+                        H0 = data + (access_stride*butterfly_index);
+                        H1 = H0 + access_stride*butterfly_width;
+                        W = twiddle + 2*n_butterfly_groups*k;
+                        ButterflyRadixTwo_CooleyTukey(H0,H1,W);
                     }
                 }
             }
         }
 
-        static void ButterflyRadixTwo_CooleyTukey(XFloatType* H0, XFloatType* H1, XFloatType* W)
+        static inline void ButterflyRadixTwo_CooleyTukey(XFloatType* H0, XFloatType* H1, XFloatType* W)
         {
             ////////////////////////////////////////////////////////////////////////
             //See page 23
@@ -122,6 +126,9 @@ class MHO_FastFourierTransformUtilities
             unsigned int group_start;
             unsigned int butterfly_index;
             unsigned int access_stride = 2*stride;
+            XFloatType* H0;
+            XFloatType* H1;
+            XFloatType* W;
 
             for(unsigned int stage = 0; stage < logN; stage++)
             {
@@ -137,15 +144,17 @@ class MHO_FastFourierTransformUtilities
                     for(unsigned int k=0; k < butterfly_width; k++)
                     {
                         butterfly_index = group_start + k; //index
-                        ButterflyRadixTwo_GentlemanSande( &(data[access_stride*butterfly_index]),
-                                                          &(data[access_stride*(butterfly_index + butterfly_width)]),
-                                                          &(twiddle[2*n_butterfly_groups*k]) );
+                        
+                        H0 = data + (access_stride*butterfly_index);
+                        H1 = H0 + access_stride*butterfly_width;
+                        W = twiddle + 2*n_butterfly_groups*k;
+                        ButterflyRadixTwo_GentlemanSande(H0,H1,W);
                     }
                 }
             }
         }
         
-        static void ButterflyRadixTwo_GentlemanSande(XFloatType* H0, XFloatType* H1, XFloatType* W)
+        static inline void ButterflyRadixTwo_GentlemanSande(XFloatType* H0, XFloatType* H1, XFloatType* W)
         {
             ////////////////////////////////////////////////////////////////////////
             //See page 25
@@ -185,24 +194,14 @@ class MHO_FastFourierTransformUtilities
             H1[0] = H10; H1[1] = H11;
         }
 
+
         //wrappers for complex array
-        static void FFTRadixTwo_DIT(unsigned int N, std::complex< XFloatType >* data, std::complex< XFloatType >* twiddle)
-        {
-            FFTRadixTwo_DIT(N, (XFloatType*)&(data[0]), (XFloatType*) &(twiddle[0]) );
-        }
-
-        static void FFTRadixTwo_DIF(unsigned int N, std::complex< XFloatType >* data, std::complex< XFloatType >* twiddle)
-        {
-            FFTRadixTwo_DIF(N, (XFloatType*)&(data[0]), (XFloatType*) &(twiddle[0]) );
-        }
-
-        //wrappers for complex array, strided
-        static void FFTRadixTwo_DIT(unsigned int N, std::complex< XFloatType >* data, std::complex< XFloatType >* twiddle, unsigned int stride)
+        static void FFTRadixTwo_DIT(unsigned int N, std::complex< XFloatType >* data, std::complex< XFloatType >* twiddle, unsigned int stride = 1)
         {
             FFTRadixTwo_DIT(N, (XFloatType*)&(data[0]), (XFloatType*) &(twiddle[0]), stride);
         }
 
-        static void FFTRadixTwo_DIF(unsigned int N, std::complex< XFloatType >* data, std::complex< XFloatType >* twiddle, unsigned int stride)
+        static void FFTRadixTwo_DIF(unsigned int N, std::complex< XFloatType >* data, std::complex< XFloatType >* twiddle, unsigned int stride = 1)
         {
             FFTRadixTwo_DIF(N, (XFloatType*)&(data[0]), (XFloatType*) &(twiddle[0]), stride);
         }

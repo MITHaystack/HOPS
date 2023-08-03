@@ -118,7 +118,7 @@ if (HOPS_USE_OPENCL)
         ${CMAKE_BINARY_DIR}/hopsocl_defines.h
         #
         ${CMAKE_CURRENT_SOURCE_DIR}/Math/cl/MHO_ArrayMath.cl
-        ${CMAKE_CURRENT_SOURCE_DIR}/Math/cl/MHO_ComplexMultiply.cl
+        ${CMAKE_CURRENT_SOURCE_DIR}/Math/cl/MHO_ComplexUtils.cl
         ${CMAKE_CURRENT_SOURCE_DIR}/Math/cl/MHO_PointwiseComplexVectorAdd_kernel.cl
         ${CMAKE_CURRENT_SOURCE_DIR}/Math/cl/MHO_PointwiseComplexVectorMultiply_kernel.cl
         ${CMAKE_CURRENT_SOURCE_DIR}/Math/cl/MHO_ZeroComplexArray_kernel.cl
