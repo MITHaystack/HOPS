@@ -15,76 +15,32 @@
 namespace hops
 {
 
-//non-strided call, workspace is expected to be initialized before call
 template< typename XFloatType >
-void FFTRadix2(std::complex<XFloatType>* data, MHO_FastFourierTransformWorkspace<XFloatType>& work, bool isForward)
+void FFTRadix2(std::complex<XFloatType>* data, MHO_FastFourierTransformWorkspace<XFloatType>& work, bool isForward, unsigned int stride=1)
 {
     //for DFT we conjugate first (NOTE: this matches FFTW3 convention)
-    if(isForward){ MHO_FastFourierTransformUtilities<XFloatType>::Conjugate(work.fN, data); }
+    if(isForward){ MHO_FastFourierTransformUtilities<XFloatType>::Conjugate(work.fN, data, stride); }
 
     //use radix-2
-    MHO_BitReversalPermutation::PermuteArray< std::complex<XFloatType> >(work.fN, work.fPermutation, data);
-    MHO_FastFourierTransformUtilities<XFloatType>::FFTRadixTwo_DIT(work.fN, data, work.fTwiddle);
+    MHO_BitReversalPermutation::PermuteArray< std::complex<XFloatType> >(work.fN, work.fPermutation, data, stride);
+    MHO_FastFourierTransformUtilities<XFloatType>::FFTRadixTwo_DIT(work.fN, data, work.fTwiddle, stride);
 
     //for DFT we conjugate again (NOTE: this matches FFTW3 convention)
-    if(isForward){ MHO_FastFourierTransformUtilities<XFloatType>::Conjugate(work.fN, data); }
-}
-
-//non-strided call, workspace is expected to be initialized before call
-template< typename XFloatType >
-void FFTBluestein(std::complex<XFloatType>* data, MHO_FastFourierTransformWorkspace<XFloatType>& work, bool isForward)
-{
-    //for DFT we conjugate first (NOTE: this matches FFTW3 convention)
-    if(isForward){ MHO_FastFourierTransformUtilities<XFloatType>::Conjugate(work.fN, data); }
-
-    //use bluestein algorithm for arbitrary (non-power of 2) N
-    MHO_FastFourierTransformUtilities<XFloatType>::FFTBluestein(work.fN, work.fM, data, work.fTwiddle, work.fConjugateTwiddle, work.fScale, work.fCirculant, work.fWorkspace);
-
-    //for DFT we conjugate again (NOTE: this matches FFTW3 convention)
-    if(isForward){ MHO_FastFourierTransformUtilities<XFloatType>::Conjugate(work.fN, data); }
-}
-
-
-template< typename XFloatType >
-void FFTRadix2(std::complex<XFloatType>* data, MHO_FastFourierTransformWorkspace<XFloatType>& work, bool isForward, unsigned int stride)
-{
-    if(stride == 1)
-    {
-        FFTRadix2(data, work, isForward); //non strided call
-    }
-    else 
-    {
-        //for DFT we conjugate first (NOTE: this matches FFTW3 convention)
-        if(isForward){ MHO_FastFourierTransformUtilities<XFloatType>::Conjugate(work.fN, data, stride); }
-
-        //use radix-2
-        MHO_BitReversalPermutation::PermuteArray< std::complex<XFloatType> >(work.fN, work.fPermutation, data, stride);
-        MHO_FastFourierTransformUtilities<XFloatType>::FFTRadixTwo_DIT(work.fN, data, work.fTwiddle, stride);
-
-        //for DFT we conjugate again (NOTE: this matches FFTW3 convention)
-        if(isForward){ MHO_FastFourierTransformUtilities<XFloatType>::Conjugate(work.fN, data, stride); }
-    }
+    if(isForward){ MHO_FastFourierTransformUtilities<XFloatType>::Conjugate(work.fN, data, stride); }
 }
 
 //workspace is expected to be initialized before call
 template< typename XFloatType >
-void FFTBluestein(std::complex<XFloatType>* data, MHO_FastFourierTransformWorkspace<XFloatType>& work, bool isForward, unsigned int stride)
+void FFTBluestein(std::complex<XFloatType>* data, MHO_FastFourierTransformWorkspace<XFloatType>& work, bool isForward, unsigned int stride = 1)
 {
-    if(stride == 1)
-    {
-        FFTBluestein(data, work, isForward); //non strided call
-    }
-    else
-    {
-        //for DFT we conjugate first (NOTE: this matches FFTW3 convention)
-        if(isForward){ MHO_FastFourierTransformUtilities<XFloatType>::Conjugate(work.fN, data, stride); }
+    //for DFT we conjugate first (NOTE: this matches FFTW3 convention)
+    if(isForward){ MHO_FastFourierTransformUtilities<XFloatType>::Conjugate(work.fN, data, stride); }
 
-        //use bluestein algorithm for arbitrary (non-power of 2) N
-        MHO_FastFourierTransformUtilities<XFloatType>::FFTBluestein(work.fN, work.fM, data, work.fTwiddle, work.fConjugateTwiddle, work.fScale, work.fCirculant, work.fWorkspace, stride);
+    //use bluestein algorithm for arbitrary (non-power of 2) N
+    MHO_FastFourierTransformUtilities<XFloatType>::FFTBluestein(work.fN, work.fM, data, work.fTwiddle, work.fConjugateTwiddle, work.fScale, work.fCirculant, work.fWorkspace, stride);
 
-        //for DFT we conjugate again (NOTE: this matches FFTW3 convention)
-        if(isForward){ MHO_FastFourierTransformUtilities<XFloatType>::Conjugate(work.fN, data, stride); }
-    }
+    //for DFT we conjugate again (NOTE: this matches FFTW3 convention)
+    if(isForward){ MHO_FastFourierTransformUtilities<XFloatType>::Conjugate(work.fN, data, stride); }
 }
 
 

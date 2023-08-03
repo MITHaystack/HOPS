@@ -23,9 +23,6 @@ class MHO_BitReversalPermutation
         static unsigned int LogBaseTwo(unsigned int N);
         static unsigned int NextLowestPowerOfTwo(unsigned int N);
 
-        //factor the integer N into powers of the factors listed in factors
-        static bool Factor(unsigned int N, unsigned int n_factors, unsigned int* factors, unsigned int* powers);
-
         static bool IsPowerOfBase(unsigned int N, unsigned int B);
         static unsigned int RaiseBaseToThePower(unsigned int B, unsigned int N); //N must be >= 0
         static unsigned int LogBaseB(unsigned int N, unsigned int B);
@@ -33,12 +30,7 @@ class MHO_BitReversalPermutation
         //must have N = 2^P, with P an integer
         static void ComputeBitReversedIndicesBaseTwo(unsigned int N, unsigned int* index_arr);
 
-        //must have length N = B^P, with P an integer
-        //B is the base of the number system used to compute the bit indices
-        static void ComputeBitReversedIndices(unsigned int N, unsigned int B, unsigned int* index_arr);
-
-
-        //mon-strided data access pattern
+        //non-strided data access pattern
         template<typename DataType >
         static void PermuteArray(unsigned int N, const unsigned int* permutation_index_arr, DataType* arr)
         {
@@ -85,9 +77,64 @@ class MHO_BitReversalPermutation
         }
 
 
+
+        //non-strided data access pattern
+        //branch free (this is actually slower on CPU, but we preserve it here for comparison as this method is used on GPU)
+        template<typename DataType >
+        static void PermuteArrayBranchFree(unsigned int N, const unsigned int* permutation_index_arr, DataType* arr)
+        {
+            DataType a,b;
+            //expects an array of size N
+            unsigned int perm;
+            typename DataType::value_type do_swap;
+            typename DataType::value_type sgn;
+            for(unsigned int i=0; i<N; i++)
+            {
+                perm = permutation_index_arr[i];
+                do_swap = (i < perm);
+                sgn = (i < perm) - (i >= perm);
+                a = arr[i];
+                b = arr[perm];
+                
+                a = a + do_swap*b;
+                b = do_swap*a - sgn*b;
+                a = a - do_swap*b;
+                
+                arr[i] = a;
+                arr[perm] = b;
+            }
+        }
+        
+        //strided data access version
+        //branch free (this is actually slower on CPU, but we preserve it here for comparison as this method is used on GPU)
+        template<typename DataType >
+        static void PermuteArrayBranchFree(unsigned int N, const unsigned int* permutation_index_arr, DataType* arr, unsigned int stride)
+        {
+            DataType a,b;
+            //expects an array of size N
+            unsigned int perm;
+            typename DataType::value_type do_swap;
+            typename DataType::value_type sgn;
+            for(unsigned int i=0; i<N; i++)
+            {
+
+                perm = permutation_index_arr[i];
+                do_swap = (i < perm);
+                sgn = (i < perm) - (i >= perm);
+                a = arr[i*stride];
+                b = arr[perm*stride];
+                
+                a = a + do_swap*b;
+                b = do_swap*a - sgn*b;
+                a = a - do_swap*b;
+                
+                arr[i*stride] = a;
+                arr[perm*stride] = b;
+            }
+        }
+
     private:
 };
-
 
 }
 
