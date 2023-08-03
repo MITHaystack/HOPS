@@ -21,6 +21,7 @@ int main(int /*argc*/, char** /*argv*/)
     const size_t dim_size[ndim] = {dval, dval, dval};
     const size_t total_size = dim_size[0] * dim_size[1] * dim_size[2];
     ARRAY_TYPE input(dim_size);
+    ARRAY_TYPE output(dim_size);
 
     //fill up the array with a signal
     int count = 0;
@@ -54,7 +55,7 @@ int main(int /*argc*/, char** /*argv*/)
     FFT_TYPE* fft_engine = new FFT_TYPE();
 
     fft_engine->SetForward();
-    fft_engine->SetArgs(&input);
+    fft_engine->SetArgs(&input, &output);
     
     fft_engine->DeselectAllAxes();
     fft_engine->SelectAxis(0);
@@ -79,7 +80,7 @@ int main(int /*argc*/, char** /*argv*/)
 
     //just do the middle data axis
     fft_engine->SetForward();
-    fft_engine->SetArgs(&input);
+    fft_engine->SetArgs(&output, &input);
     fft_engine->DeselectAllAxes();
     fft_engine->SelectAxis(1);
     fft_engine->Initialize();
