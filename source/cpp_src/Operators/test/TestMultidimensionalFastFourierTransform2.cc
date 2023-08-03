@@ -140,31 +140,31 @@ int main(int /*argc*/, char** /*argv*/)
     
     dim_sizes.clear();
     axes.clear();
-    dim_sizes.insert(dim_sizes.end(), { 8 });
+    dim_sizes.insert(dim_sizes.end(), { 1024 });
     axes.insert(axes.end(), { 0 });
     int val0 = run_test<ARRAY1_TYPE, FFT1_TYPE>(dim_sizes, axes);
 
     dim_sizes.clear();
     axes.clear();
-    dim_sizes.insert(dim_sizes.end(), { 1024 });
+    dim_sizes.insert(dim_sizes.end(), { 1024*256 });
     axes.insert(axes.end(), { 0 });
     int val1 = run_test<ARRAY1_TYPE, FFT1_TYPE>(dim_sizes, axes);
     
     dim_sizes.clear();
     axes.clear();
-    dim_sizes.insert(dim_sizes.end(), { 512, 19 });
+    dim_sizes.insert(dim_sizes.end(), { 512, 32 });
     axes.insert(axes.end(), { 0 });
     int val2 = run_test<ARRAY2_TYPE, FFT2_TYPE>(dim_sizes, axes);
     
     dim_sizes.clear();
     axes.clear();
-    dim_sizes.insert(dim_sizes.end(), { 79, 16, 128 });
+    dim_sizes.insert(dim_sizes.end(), { 64, 32, 97 });
     axes.insert(axes.end(), { 0, 2 });
     int val3 = run_test<ARRAY3_TYPE, FFT3_TYPE>(dim_sizes, axes);
     
     dim_sizes.clear();
     axes.clear();
-    dim_sizes.insert(dim_sizes.end(), { 32, 64, 30, 160 });
+    dim_sizes.insert(dim_sizes.end(), { 32, 64, 32, 163 });
     axes.insert(axes.end(), { 1, 3 });
     int val4 = run_test<ARRAY4_TYPE, FFT4_TYPE>(dim_sizes, axes);
 
