@@ -31,7 +31,12 @@ if (HOPS_USE_OPENCL)
     #construct the compiler call to build GenerateOpenCLHeader
     set(CL_HeaderGenCommand "${CMAKE_CXX_COMPILER}")
     list(APPEND CL_HeaderGenArgs "-DHOPS_OPENCL_PLATFORM=${HOPS_OPENCL_PLATFORM}" "-DHOPS_OPENCL_DEVICE_TYPE=${HOPS_OPENCL_DEVICE_TYPE}")
+    if(OPENCL_IS_VERSION2)
+        list(APPEND CL_HeaderGenArgs "-DHOPS_OPENCL_VERSION2")
+    endif(OPENCL_IS_VERSION2)
     list(APPEND CL_HeaderGenArgs "-o" "GenerateOpenCLHeader")
+
+
     foreach( DIR ${OPENCL_INCLUDE_DIRS} )
         list(APPEND CL_HeaderGenArgs "-I${DIR}" )  #be careful...this breaks if there is a leading whitespace before the '-I', why?!
     endforeach( DIR )
@@ -40,13 +45,13 @@ if (HOPS_USE_OPENCL)
     list(APPEND CL_HeaderGenArgs "-L${OPENCL_LIBDIR}")
     list(APPEND CL_HeaderGenArgs ${OPENCL_LIB_FLAG})
 
-    
+
     if(${CMAKE_VERSION} VERSION_GREATER "3.15.0")
         execute_process(COMMAND ${CMAKE_CXX_COMPILER} ${CL_HeaderGenArgs} WORKING_DIRECTORY ${CMAKE_BINARY_DIR} RESULT_VARIABLE CL_STATUS_OK ERROR_VARIABLE COMPILER_OUTPUT COMMAND_ECHO STDOUT)
     else()
         execute_process(COMMAND ${CMAKE_CXX_COMPILER} ${CL_HeaderGenArg} WORKING_DIRECTORY ${CMAKE_BINARY_DIR} RESULT_VARIABLE CL_STATUS_OK ERROR_VARIABLE COMPILER_OUTPUT )
         message(STATUS "Executing: ${CMAKE_CXX_COMPILER} ${CL_HeaderGenArg}")
-    endif()    
+    endif()
 
     if(CL_STATUS_OK AND NOT CL_STATUS_OK EQUAL 0)
       message(FATAL_ERROR "Could not build the OpenCL header generator. Status = ${CL_STATUS_OK}. Error = ${COMPILER_OUTPUT}." )
