@@ -88,7 +88,7 @@ struct MHO_OpenCLTypeMap
                         { \
                             std::cout<<"OpenCL Exception caught: "<<std::endl;\
                             std::cout<<__FILE__<<":"<<__LINE__<<std::endl; \
-                            std::cout<<error.what()<<"("<<error.err()<<")"<<std::endl; \
+                            std::cout<<error.what()<<"("<<error.err()<<") = "<<  MHO_OpenCLInterface::GetInstance()->GetErrorMessage(error.err() )  << std::endl; \
                             std::exit(1); \
                         }
 #else
