@@ -44,7 +44,7 @@ PermuteArray(unsigned int N, unsigned int stride, __global const unsigned int* p
         sgn = (i < perm) - (i >= perm);
         a = arr[x];
         b = arr[y];
-        
+        //branch free way of doing a conditional swap only if (i<perm)
         a = a + do_swap*b;
         b = do_swap*a - sgn*b;
         a = a - do_swap*b;

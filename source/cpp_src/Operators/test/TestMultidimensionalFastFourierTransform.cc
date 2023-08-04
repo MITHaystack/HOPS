@@ -1,9 +1,6 @@
 #include "MHO_Message.hh"
 #include "MHO_FastFourierTransform.hh"
 #include "MHO_MultidimensionalFastFourierTransform.hh"
-// #ifdef HOPS_USE_FFTW3
-// #include "MHO_MultidimensionalFastFourierTransformFFTW.hh"
-// #endif
 
 #include <cmath>
 #include <iomanip>
@@ -11,15 +8,10 @@
 
 using namespace hops;
 
-// #ifdef HOPS_USE_FFTW3
-// typedef double FPTYPE;
-// #define ARRAY_TYPE MHO_NDArrayWrapper< std::complex<FPTYPE>, 3 > 
-// #define FFT_TYPE MHO_MultidimensionalFastFourierTransformFFTW<ARRAY_TYPE>
-// #else
 typedef double FPTYPE;
 #define ARRAY_TYPE MHO_NDArrayWrapper< std::complex<FPTYPE>, 3 > 
 #define FFT_TYPE MHO_MultidimensionalFastFourierTransform<ARRAY_TYPE>
-// #endif
+
 
 #define PRINT_DETAIL
 
@@ -33,10 +25,6 @@ int main(int /*argc*/, char** /*argv*/)
 
     //fill up the array with a signal
     int count = 0;
-
-    // #ifdef HOPS_USE_FFTW3
-    // std::cout<<"using fftw3 for FFTs"<<std::endl;
-    // #endif
 
     #ifdef PRINT_DETAIL
     std::cout << "original data = " << std::endl;

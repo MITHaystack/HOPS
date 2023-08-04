@@ -20,6 +20,8 @@
 #include "MHO_OpenCLHeaderWrapper.hh"
 #include <vector>
 #include <complex>
+#include <string>
+#include <map>
 
 
 template< typename XValueType >
@@ -104,10 +106,10 @@ namespace hops
 
             static MHO_OpenCLInterface* GetInstance();
 
-            cl::Context            GetContext() const { return *fContext; }
+            cl::Context GetContext() const { return *fContext; }
             CL_VECTOR_TYPE<cl::Device> GetDevices() const { return fDevices; }
-            cl::Device             GetDevice()  const { return fDevices[fCLDeviceID]; }
-            cl::CommandQueue&      GetQueue(int i=-1) const;
+            cl::Device GetDevice()  const { return fDevices[fCLDeviceID]; }
+            cl::CommandQueue& GetQueue(int i=-1) const;
 
             unsigned int GetNumberOfDevices() const
             {
@@ -120,22 +122,29 @@ namespace hops
             void SetKernelPath(std::string s) { fKernelPath = s; }
             std::string GetKernelPath() const { return fKernelPath; }
 
+            std::string GetErrorMessage(int code){return fOpenCLCode2ErrorMap[code];}
+
         protected:
 
             MHO_OpenCLInterface();
             virtual ~MHO_OpenCLInterface();
 
             void InitializeOpenCL();
+            void FillErrorCodeMaps();
 
             static MHO_OpenCLInterface* fOpenCLInterface;
 
             std::string fKernelPath;
 
             CL_VECTOR_TYPE<cl::Platform> fPlatforms;
-            CL_VECTOR_TYPE<cl::Device>   fDevices;
-            unsigned int                   fCLDeviceID;
-            cl::Context              *fContext;
+            CL_VECTOR_TYPE<cl::Device> fDevices;
+            unsigned int fCLDeviceID;
+            cl::Context* fContext;
             mutable std::vector<cl::CommandQueue*>  fQueues;
+
+            std::map<std::string, int> fOpenCLError2CodeMap;
+            std::map<int, std::string> fOpenCLCode2ErrorMap;
+
     };
 
 }

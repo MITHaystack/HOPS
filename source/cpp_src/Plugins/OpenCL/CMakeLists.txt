@@ -86,7 +86,7 @@ if (HOPS_USE_OPENCL)
         ${CMAKE_CURRENT_SOURCE_DIR}/Containers/include/MHO_OpenCLNDArrayBuffer.hh
         #
         ${CMAKE_CURRENT_SOURCE_DIR}/Operators/include/MHO_OpenCLScalarMultiply.hh
-        ${CMAKE_CURRENT_SOURCE_DIR}/Operators/include/MHO_OpenCLBatchedMultidimensionalFastFourierTransform.hh
+        #${CMAKE_CURRENT_SOURCE_DIR}/Operators/include/MHO_OpenCLBatchedMultidimensionalFastFourierTransform.hh
     )
 
     #include directories
@@ -124,9 +124,10 @@ if (HOPS_USE_OPENCL)
         #
         ${CMAKE_CURRENT_SOURCE_DIR}/Math/cl/MHO_ArrayMath.cl
         ${CMAKE_CURRENT_SOURCE_DIR}/Math/cl/MHO_ComplexUtils.cl
-        ${CMAKE_CURRENT_SOURCE_DIR}/Math/cl/MHO_PointwiseComplexVectorAdd_kernel.cl
-        ${CMAKE_CURRENT_SOURCE_DIR}/Math/cl/MHO_PointwiseComplexVectorMultiply_kernel.cl
-        ${CMAKE_CURRENT_SOURCE_DIR}/Math/cl/MHO_ZeroComplexArray_kernel.cl
+        ${CMAKE_CURRENT_SOURCE_DIR}/Math/cl/MHO_BitReversalPermutation.cl
+        # ${CMAKE_CURRENT_SOURCE_DIR}/Math/cl/MHO_PointwiseComplexVectorAdd_kernel.cl
+        # ${CMAKE_CURRENT_SOURCE_DIR}/Math/cl/MHO_PointwiseComplexVectorMultiply_kernel.cl
+        # ${CMAKE_CURRENT_SOURCE_DIR}/Math/cl/MHO_ZeroComplexArray_kernel.cl
         ${CMAKE_CURRENT_SOURCE_DIR}/Math/cl/MHO_FastFourierTransformUtilities.cl
         ${CMAKE_CURRENT_SOURCE_DIR}/Math/cl/MHO_MultidimensionalFastFourierTransform_kernel.cl
         #
