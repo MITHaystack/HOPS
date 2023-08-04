@@ -24,14 +24,14 @@ class MHO_Operator
         virtual bool Initialize() = 0;
         virtual bool Execute() = 0;
 
-        virtual void SetName(std::string name){fName = name;}
-        virtual std::string GetName() const {return fName;}
+        void SetName(std::string name){fName = name;}
+        std::string GetName() const {return fName;}
 
-        //allow priority to vary 
+        //allow priority to vary
         virtual void SetPriority(const double& priority){fPriority = priority;}
-        //a higher value for the fPriority field implies a lower priority 
+        //a higher value for the fPriority field implies a lower priority
         //for this operator in the order of execution
-        virtual double Priority() const {return fPriority;} 
+        virtual double Priority() const {return fPriority;}
 
     private:
 
