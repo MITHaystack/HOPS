@@ -10,8 +10,7 @@
 //FFT_NDIM
 
 __kernel void
-MultidimensionalFastFourierTransform_Radix2Stage
-(
+MultidimensionalFastFourierTransform_Radix2Stage(
     unsigned int D, //d = 0, 1, ...FFT_NDIM-1 specifies the dimension/axis selected to be transformed
     __global const unsigned int* array_dimensions, //sizes of the array in each dimension
     __global const CL_TYPE2* twiddle, //fft twiddle factors
@@ -27,6 +26,7 @@ MultidimensionalFastFourierTransform_Radix2Stage
     for(unsigned int i=0; i<FFT_NDIM; i++){dim[i] = array_dimensions[i];}
 
     size_t index[FFT_NDIM];
+    size_t div_space[FFT_NDIM];
     size_t non_active_dimension_size[FFT_NDIM-1];
     size_t non_active_dimension_value[FFT_NDIM-1];
     size_t non_active_dimension_index[FFT_NDIM-1];
@@ -53,7 +53,7 @@ MultidimensionalFastFourierTransform_Radix2Stage
     {
         offset = i_global;
         //invert place in list to obtain indices of block in array
-        RowMajorIndexFromOffset(FFT_NDIM, offset, non_active_dimension_size, non_active_dimension_value);
+        RowMajorIndexFromOffset(FFT_NDIM, offset, non_active_dimension_size, non_active_dimension_value, div_space);
 
         //copy the value of the non-active dimensions in to the index array
         for(size_t i=0; i<FFT_NDIM-1; i++)
@@ -62,7 +62,7 @@ MultidimensionalFastFourierTransform_Radix2Stage
         }
         index[D] = 0; //for the selected dimension, index value is zero
 
-        CL_TYPE2* chunk;
+        __global CL_TYPE2* chunk;
         data_location = OffsetFromRowMajorIndex( FFT_NDIM, dim, index);
         chunk = &( data[data_location] );
 

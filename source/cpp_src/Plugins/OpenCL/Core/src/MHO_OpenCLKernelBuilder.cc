@@ -83,7 +83,7 @@ cl::Kernel* MHO_OpenCLKernelBuilder::BuildKernel(std::string SourceFileName, std
     }
     catch(cl::Error error)
     {
-        std::cout<<"Kernel construction of "<< KernelName <<" failed with error code: "<<error.what()<<": "<<error.err()<<std::endl;
+        std::cout<<"Kernel construction of "<< KernelName <<" failed with error code: "<<error.what()<<": "<<error.err() <<": "<<MHO_OpenCLInterface::GetInstance()->GetErrorMessage(error.err() )<<std::endl;
         if(build_log.size() != 0)
         {
             s << build_log;

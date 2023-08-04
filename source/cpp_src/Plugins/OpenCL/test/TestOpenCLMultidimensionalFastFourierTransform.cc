@@ -1,115 +1,177 @@
 #include "MHO_Message.hh"
 
-#include "MHO_OpenCLBatchedMultidimensionalFastFourierTransform.hh"
-#include "MHO_FastFourierTransform.hh"
-#include "MHO_MultidimensionalFastFourierTransform.hh"
-
 #include <cmath>
-#include <iomanip>
 #include <iostream>
+
+#include "MHO_OpenCLInterface.hh"
+#include "MHO_OpenCLKernelBuilder.hh"
+#include "MHO_OpenCLNDArrayBuffer.hh"
+#include "MHO_TableContainer.hh"
+
+#include "MHO_OpenCLScalarMultiply.hh"
+
 
 using namespace hops;
 
+#define NDIM 3
+#define XDIM 0
+#define YDIM 1
+#define ZDIM 2
+typedef MHO_AxisPack< MHO_Axis<double>, MHO_Axis<double>, MHO_Axis< std::string > > axis_pack_test;
+typedef MHO_TableContainer< std::complex<double>, axis_pack_test > test_table_type;
+
+
+
+unsigned int fNLocal;
+unsigned int fPreferredWorkgroupMultiple;
+unsigned int fMaxNWorkItems;
+cl::Kernel* fFFTKernel = nullptr;
+void ConstructOpenCLKernels()
+{
+    std::cout<<"building opencl kernels"<<std::endl;
+    //Get name of kernel source file
+    std::stringstream clFile;
+    clFile << MHO_OpenCLInterface::GetInstance()->GetKernelPath() << "/MHO_MultidimensionalFastFourierTransform_kernel.cl";
+
+    //set the build options
+    std::stringstream options;
+    //create the build flags
+    std::stringstream ss;
+    ss << " -D FFT_NDIM=" << NDIM;
+    ss << " -I " << MHO_OpenCLInterface::GetInstance()->GetKernelPath();
+
+    options << ss.str();
+
+    MHO_OpenCLKernelBuilder k_builder;
+    fFFTKernel = k_builder.BuildKernel(clFile.str(), std::string("MultidimensionalFastFourierTransform_Radix2Stage"), options.str());
+
+    //get n-local
+    fNLocal = fFFTKernel->getWorkGroupInfo<CL_KERNEL_WORK_GROUP_SIZE>(MHO_OpenCLInterface::GetInstance()->GetDevice());
+    fPreferredWorkgroupMultiple = fFFTKernel->getWorkGroupInfo<CL_KERNEL_PREFERRED_WORK_GROUP_SIZE_MULTIPLE>( MHO_OpenCLInterface::GetInstance()->GetDevice());
+    if (fPreferredWorkgroupMultiple < fNLocal){fNLocal = fPreferredWorkgroupMultiple;}
+
+    //determine the largest global worksize
+    fMaxNWorkItems = 0;
+    // for (unsigned int D = 0; D < XArgType::rank::value; D++) {
+    //     //compute number of 1d fft's needed (n-global)
+    //     unsigned int n_global = fDimensionSize[0];
+    //     unsigned int n_local_1d_transforms = 1;
+    //     for (unsigned int i = 0; i < XArgType::rank::value-1; i++) {
+    //         if (i != D) {
+    //             n_global *= fSpatialDim[i];
+    //             n_local_1d_transforms *= fSpatialDim[i];
+    //         };
+    //     };
+    // 
+    //     //pad out n-global to be a multiple of the n-local
+    //     unsigned int nDummy = fNLocal - (n_global % fNLocal);
+    //     if (nDummy == fNLocal) {
+    //         nDummy = 0;
+    //     };
+    //     n_global += nDummy;
+    // 
+    //     if (fMaxNWorkItems < n_global) {
+    //         fMaxNWorkItems = n_global;
+    //     };
+    // }
+
+
+    std::cout<<"fNLocal = "<<fNLocal<<std::endl;
+    std::cout<<"fPreferredWorkgroupMultiple = "<<fPreferredWorkgroupMultiple<<std::endl;
+    std::cout<<"fMaxNWorkItems = "<<fMaxNWorkItems<<std::endl;
+    
+}
+
+cl::Buffer* fDimensionBufferCL = nullptr;
+cl::Buffer* fTwiddleBufferCL = nullptr;
+cl::Buffer* fConjugateTwiddleBufferCL = nullptr;
+cl::Buffer* fScaleBufferCL = nullptr;
+cl::Buffer* fCirculantBufferCL = nullptr;
+cl::Buffer* fDataBufferCL = nullptr;
+cl::Buffer* fPermuationArrayCL = nullptr;
+
+void AllocateDeviceWorkspace(unsigned int fMaxBufferSize)
+{
+    std::cout<<"building CL buffers"<<std::endl;
+    fDimensionBufferCL = new cl::Buffer(MHO_OpenCLInterface::GetInstance()->GetContext(), CL_MEM_READ_ONLY, NDIM * sizeof(unsigned int));
+    fTwiddleBufferCL = new cl::Buffer(MHO_OpenCLInterface::GetInstance()->GetContext(), CL_MEM_READ_ONLY, fMaxBufferSize * sizeof(CL_TYPE2));
+    fConjugateTwiddleBufferCL = new cl::Buffer(MHO_OpenCLInterface::GetInstance()->GetContext(), CL_MEM_READ_ONLY, fMaxBufferSize * sizeof(CL_TYPE2));
+    fScaleBufferCL = new cl::Buffer(MHO_OpenCLInterface::GetInstance()->GetContext(), CL_MEM_READ_ONLY, fMaxBufferSize * sizeof(CL_TYPE2));
+    fCirculantBufferCL = new cl::Buffer(MHO_OpenCLInterface::GetInstance()->GetContext(), CL_MEM_READ_ONLY, fMaxBufferSize * sizeof(CL_TYPE2));
+    fPermuationArrayCL = new cl::Buffer(MHO_OpenCLInterface::GetInstance()->GetContext(), CL_MEM_READ_ONLY,fMaxBufferSize * sizeof(unsigned int));
+}
+
+
+
+
 int main(int /*argc*/, char** /*argv*/)
 {
-    const size_t p = 1;
-    const size_t stride = ((p + 1) * (p + 2)) / 2;
-    const size_t d = 3;
-    const size_t z = 1;
-    const size_t div_size = 8;// 2 * d * (z + 1);
+    MHO_OpenCLInterface::GetInstance();
 
+    size_t dim[NDIM];
+    dim[0] = 256; //x
+    dim[1] = 256; //y
+    dim[2] = 64; //z
 
-    const size_t batch_size = 1;// stride;
-    const size_t ndim = 4;
-    const size_t dim_size[ndim] = {batch_size, div_size, div_size, div_size};
+    test_table_type* test = new test_table_type(dim);
 
-    const size_t total_size = dim_size[0] * dim_size[1] * dim_size[2] * dim_size[3];
-
-    std::cout<<"total size = "<<total_size<<std::endl;
-
-    double spatial_size = dim_size[1] * dim_size[2] * dim_size[3];
-
-    auto* raw_data = new std::complex<double>[total_size];
-    typedef MHO_NDArrayWrapper<std::complex<double>, ndim> arrType;
-
-
-    arrType input;
-    input.Resize(dim_size);
-
-
-    //fill up the array with a signal
-    for (size_t i = 0; i < total_size; i++) {
-        raw_data[i] = i;
-    }
-
-    size_t index[ndim];
-    size_t count = 0;
-
-    for (size_t a = 0; a < batch_size; a++) {
-        index[0] = a;
-        count = 0;
-        for (size_t i = 0; i < dim_size[1]; i++) {
-            index[1] = i;
-            for (size_t j = 0; j < dim_size[2]; j++) {
-                index[2] = j;
-
-                for (size_t k = 0; k < dim_size[3]; k++) {
-                    index[3] = k;
-                    input(a,i,j,k) = std::complex<double>(count % 13, count % 3);
-                    count++;
-                }
-                
+    //set values
+    for(size_t i=0; i<dim[0]; i++)
+    {
+        for(size_t j=0; j<dim[1]; j++)
+        {
+            for(size_t k=0; k<dim[2]; k++)
+            {
+                double value = 10*i + j;
+                (*test)(i,j,k) = std::complex<double>(value, k+1);
             }
-            
         }
     }
 
-    auto* fft_eng = new MHO_OpenCLBatchedMultidimensionalFastFourierTransform< arrType >();
+    std::cout<<"test(0,0,0) = "<<(*test)(0,0,0)<<std::endl;
+    std::cout<<"test(1,1,1) = "<<(*test)(1,1,1)<<std::endl;
+    std::cout<<"test(2,2,2) = "<<(*test)(2,2,2)<<std::endl;
 
-    fft_eng->SetForward();
-    fft_eng->SetInput(&input);
-    fft_eng->SetOutput(&input);
+    //create the buffer extension
+    auto buffer_ext = test->MakeExtension< MHO_OpenCLNDArrayBuffer< test_table_type > >();
 
-    fft_eng->Initialize();
+    buffer_ext->ConstructDimensionBuffer();
+    buffer_ext->ConstructDataBuffer();
 
-    fft_eng->Execute();
-
-
-    fft_eng->SetBackward();
-    fft_eng->Execute();
-
-    count = 0;
-    double l2_norm = 0;
-    double norm = spatial_size;
-
-    for (size_t a = 0; a < batch_size; a++) {
-        l2_norm = 0;
-        count = 0;
-        index[0] = a;
-        for (size_t i = 0; i < dim_size[1]; i++) {
-            index[1] = i;
-            for (size_t j = 0; j < dim_size[2]; j++) {
-                index[2] = j;
-
-                for (size_t k = 0; k < dim_size[3]; k++) {
-                    index[3] = k;
-                    std::complex<double> del = input(a,i,j,k) / norm;
-                    del -= std::complex<double>(count % 13, count % 3);
-
-                    l2_norm += std::real(del) * std::real(del) + std::imag(del) * std::imag(del);
-
-                    count++;
-                }
-                
-            }
-            
-        }
-
-        //std::cout << "L2 norm difference = " << std::sqrt(l2_norm) << std::endl;
-    }
+    AllocateDeviceWorkspace(256);
+    ConstructOpenCLKernels();
 
 
-    delete fft_eng;
+    delete fDimensionBufferCL;
+    delete fTwiddleBufferCL;
+    delete fConjugateTwiddleBufferCL;
+    delete fScaleBufferCL;
+    delete fCirculantBufferCL;
+    delete fDataBufferCL;
+    delete fPermuationArrayCL;
+
+    delete fFFTKernel;
+    // buffer_ext->WriteDataBuffer();
+    // buffer_ext->WriteDimensionBuffer();
+
+    // MHO_OpenCLScalarMultiply< std::complex<double>, test_table_type> scalarMult;
+    // std::complex<double> factor = std::complex<double>(2.0,0.0);
+    // scalarMult.SetFactor(factor);
+    // scalarMult.SetReadTrue();
+    // scalarMult.SetWriteTrue();
+    // scalarMult.SetArgs(test);
+    // scalarMult.Initialize();
+    // scalarMult.Execute();
+    // 
+    // 
+    // //now lets take a look at the data:
+    // std::cout<<"**********************"<<std::endl;
+    // std::cout<<"using device to scale by factor of: "<<factor<<std::endl;
+    // std::cout<<"**********************"<<std::endl;
+    // std::cout<<"test(0,0,0) = "<<(*test)(0,0,0)<<std::endl;
+    // std::cout<<"test(1,1,1) = "<<(*test)(1,1,1)<<std::endl;
+    // std::cout<<"test(2,2,2) = "<<(*test)(2,2,2)<<std::endl;
+
 
     return 0;
 }

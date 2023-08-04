@@ -19,13 +19,6 @@ inline CL_TYPE2 ComplexConjugate(CL_TYPE2 x)
     return z;
 }
 
-
-//conjugate an array
-void Conjugate(unsigned int N, CL_TYPE2* array)
-{
-    for(unsigned int i=0; i<N; i++){ array[i] = ComplexConjugate(array[i]); }
-}
-
 //strided, conjugate array
 void Conjugate(unsigned int N, unsigned int stride, CL_TYPE2* array)
 {
