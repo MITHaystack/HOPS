@@ -1,4 +1,5 @@
 #include "MHO_Message.hh"
+#include "MHO_Timer.hh"
 
 #include <cmath>
 #include <iostream>
@@ -63,10 +64,10 @@ void ConstructOpenCLKernels()
 int main(int /*argc*/, char** /*argv*/)
 {
     MHO_OpenCLInterface::GetInstance();
-
+    MHO_Timer timer;
     size_t dim[NDIM];
-    dim[0] = 16; //x
-    dim[1] = 16; //y
+    dim[0] = 1024; //x
+    dim[1] = 256; //y
     // dim[2] = 4; //z
 
     test_table_type* test = new test_table_type(dim);
@@ -82,12 +83,11 @@ int main(int /*argc*/, char** /*argv*/)
         (*test2)[i] = std::complex<double>(i % 5, i % 17); 
     }
 
-
-    std::cout<<"original array = "<<std::endl;
-    std::cout<<(*test)<<std::endl;
-    
-    std::cout<<"copy of array = "<<std::endl;
-    std::cout<<(*test2)<<std::endl;
+    // std::cout<<"original array = "<<std::endl;
+    // std::cout<<(*test)<<std::endl;
+    // 
+    // std::cout<<"copy of array = "<<std::endl;
+    // std::cout<<(*test2)<<std::endl;
 
     //host/device workspace for FFT plan info 
     MHO_FastFourierTransformWorkspace<double> fW[NDIM];
@@ -119,8 +119,8 @@ int main(int /*argc*/, char** /*argv*/)
     //then create the buffers for the FFT plan info 
     for(unsigned int i=0; i<NDIM; i++)
     {
-        std::cout<<"twiddle dim: "<<i<<" = "<<fTwiddle[i]<<std::endl;
-        std::cout<<"perm dim: "<<i<<" = "<<fPerm[i]<<std::endl;
+        // std::cout<<"twiddle dim: "<<i<<" = "<<fTwiddle[i]<<std::endl;
+        // std::cout<<"perm dim: "<<i<<" = "<<fPerm[i]<<std::endl;
         auto twid_ext = fTwiddle[i].MakeExtension< MHO_OpenCLNDArrayBuffer< twiddle_type > >();
         twid_ext->ConstructDataBuffer();
         twid_ext->WriteDataBuffer();
@@ -129,105 +129,116 @@ int main(int /*argc*/, char** /*argv*/)
         perm_ext->WriteDataBuffer();
     }
 
-    CL_ERROR_TRY
+    //CL_ERROR_TRY
     //buffer_ext->WriteDimensionBuffer();
     fFFTKernel->setArg(1, *( buffer_ext->GetDimensionBuffer() ) );
-    CL_ERROR_CATCH
+    //CL_ERROR_CATCH
 
-    CL_ERROR_TRY
+    //CL_ERROR_TRY
     fFFTKernel->setArg(4, *( buffer_ext->GetDataBuffer() ) );
-    CL_ERROR_CATCH
+    //CL_ERROR_CATCH
 
     //determine the largest global worksize
     fMaxNWorkItems = 0;
     unsigned int n_global;
     //now run the FFT stages (update the twiddle/perm at each stage)
+
+    timer.MeasureWallclockTime();
+    timer.Start();
     for(unsigned int D=0; D<NDIM; D++)
     {
         //compute number of 1d fft's needed (n-global)
         unsigned int n_global = 1;
         for(unsigned int i = 0; i < NDIM; i++){ if (i != D){n_global *= dim[i];} }
-        std::cout<<"number of FFTs needed:"<<n_global<<std::endl;
+        //std::cout<<"number of FFTs needed:"<<n_global<<std::endl;
         //pad out n-global to be a multiple of the n-local
         unsigned int nDummy = fNLocal - (n_global % fNLocal);
         if(nDummy == fNLocal){ nDummy = 0; }
         n_global += nDummy;
         if (fMaxNWorkItems < n_global){ fMaxNWorkItems = n_global; }
 
-        std::cout<<"D = "<<D<<" dim = "<<dim[D]<<" n local = "<<fNLocal<<" n_global "<<n_global<<" ndummy = "<<nDummy<<std::endl;
+        // std::cout<<"D = "<<D<<" dim = "<<dim[D]<<" n local = "<<fNLocal<<" n_global "<<n_global<<" ndummy = "<<nDummy<<std::endl;
 
         cl::NDRange global(n_global);
         cl::NDRange local(fNLocal);
 
         //set the arguments which are updated at each stage
         fFFTKernel->setArg(0, D);
-        //std::cout<<"flag0"<<std::endl;
-
-
-        //std::cout<<"flag1"<<std::endl;
-
-        CL_ERROR_TRY
-        //fTwiddle[D].AsExtension< MHO_OpenCLNDArrayBuffer< twiddle_type > >()->WriteDataBuffer();
+        //CL_ERROR_TRY
         fFFTKernel->setArg(2, *( fTwiddle[D].AsExtension< MHO_OpenCLNDArrayBuffer< twiddle_type > >()->GetDataBuffer() ) );
-        CL_ERROR_CATCH
+        //CL_ERROR_CATCH
         //std::cout<<"flag2"<<std::endl;
-
-        CL_ERROR_TRY
-        //fPerm[D].AsExtension< MHO_OpenCLNDArrayBuffer< permutation_array_type > >()->WriteDataBuffer();
+        //CL_ERROR_TRY
         fFFTKernel->setArg(3, *( fPerm[D].AsExtension< MHO_OpenCLNDArrayBuffer< permutation_array_type > >()->GetDataBuffer() ) );
-        CL_ERROR_CATCH
+        //CL_ERROR_CATCH
         //std::cout<<"flag3"<<std::endl;
-
-
         //std::cout<<"flag4"<<std::endl;
 
         //now enqueue the kernel
-        CL_ERROR_TRY
+        //CL_ERROR_TRY
         MHO_OpenCLInterface::GetInstance()->GetQueue().enqueueNDRangeKernel(*fFFTKernel,
                                                                          cl::NullRange,
                                                                          global,
                                                                          local);
-        CL_ERROR_CATCH
+        //CL_ERROR_CATCH
 
-        //force it to finish
-        MHO_OpenCLInterface::GetInstance()->GetQueue().finish();
 
-        //get the results (move this out of loop)
-        buffer_ext->ReadDataBuffer();
-        MHO_OpenCLInterface::GetInstance()->GetQueue().finish();
-
-        std::cout<<"----------"<<std::endl;
-        std::cout<<(*test)<<std::endl;
-        
+        // std::cout<<"----------"<<std::endl;
+        // std::cout<<(*test)<<std::endl;
 
     }
 
+    //force it to finish
+    MHO_OpenCLInterface::GetInstance()->GetQueue().finish();
+
+    timer.Stop();
+    double gpu_runtime = timer.GetDurationAsDouble();
+    std::cout<<"GPU time = "<<gpu_runtime<<std::endl;
+
+    //get the results (move this out of loop)
+    buffer_ext->ReadDataBuffer();
+    MHO_OpenCLInterface::GetInstance()->GetQueue().finish();
+
+
     //now do an FFT on the CPU to check we get the same thing
+    // auto fft_engine = new MHO_MultidimensionalFastFourierTransformFFTW< test_table_type >();
     auto fft_engine = new MHO_MultidimensionalFastFourierTransform< test_table_type >();
     //no do IFFT pass on all axes
     fft_engine->SetForward();
     fft_engine->SetArgs(test2);
     fft_engine->DisableAxisLabelTransformation();
+
     fft_engine->SelectAllAxes();
-    
-    fft_engine->DeselectAllAxes();
-    fft_engine->SelectAxis(0);
     fft_engine->Initialize();
+
+
+    timer.MeasureWallclockTime();
+    timer.Start();
     fft_engine->Execute();
+    timer.Stop();
+    double cpu_runtime = timer.GetDurationAsDouble();
 
-    std::cout<<"alternate path:"<<std::endl;
+    std::cout<<"CPU time = "<<cpu_runtime<<std::endl;
+    // 
+    // fft_engine->DeselectAllAxes();
+    // fft_engine->SelectAxis(0);
+    // fft_engine->Initialize();
+    // fft_engine->Execute();
+    // 
+    // std::cout<<"alternate path:"<<std::endl;
+    // 
+    // std::cout<<"***************"<<std::endl;
+    // std::cout<<(*test2)<<std::endl;
+    // 
+    // fft_engine->DeselectAllAxes();
+    // fft_engine->SelectAxis(1);
+    // fft_engine->Initialize();
+    // fft_engine->Execute();
+    // 
+    // std::cout<<"***************"<<std::endl;
+    // std::cout<< *test2 << std::endl;
 
-    std::cout<<"***************"<<std::endl;
-    std::cout<<(*test2)<<std::endl;
-
-    fft_engine->DeselectAllAxes();
-    fft_engine->SelectAxis(1);
-    fft_engine->Initialize();
-    fft_engine->Execute();
-
-    std::cout<<"***************"<<std::endl;
-    std::cout<< *test2 << std::endl;
-
+    std::cout<<"speed up factor (should be >1) = "<<cpu_runtime/gpu_runtime<<std::endl;
 
     //compute the difference between the results
     double delta = 0;
