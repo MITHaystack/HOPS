@@ -11,19 +11,30 @@
 
 #include "MHO_FastFourierTransform.hh"
 #include "MHO_MultidimensionalFastFourierTransform.hh"
-//#include "MHO_MultidimensionalFastFourierTransformFFTW.hh"
+#include "MHO_MultidimensionalFastFourierTransformFFTW.hh"
 
 using namespace hops;
 
-#define NDIM 2
+#define NDIM 3
 
-typedef MHO_AxisPack< MHO_Axis<double>, MHO_Axis<double> > axis_pack_test;
+// typedef MHO_AxisPack< MHO_Axis<double>, MHO_Axis<double> > axis_pack_test;
+// typedef MHO_TableContainer< std::complex<double>, axis_pack_test > test_table_type;
+// 
+// typedef MHO_AxisPack< MHO_Axis<double> > ap1;
+// 
+// typedef MHO_TableContainer< std::complex<double>, ap1 > twiddle_type;
+// typedef MHO_TableContainer< unsigned int, ap1 > permutation_array_type; 
+
+typedef MHO_AxisPack< MHO_Axis<double>, MHO_Axis<double>, MHO_Axis<double> > axis_pack_test;
 typedef MHO_TableContainer< std::complex<double>, axis_pack_test > test_table_type;
 
 typedef MHO_AxisPack< MHO_Axis<double> > ap1;
 
 typedef MHO_TableContainer< std::complex<double>, ap1 > twiddle_type;
 typedef MHO_TableContainer< unsigned int, ap1 > permutation_array_type; 
+
+
+
 
 unsigned int fNLocal;
 unsigned int fPreferredWorkgroupMultiple;
@@ -66,9 +77,9 @@ int main(int /*argc*/, char** /*argv*/)
     MHO_OpenCLInterface::GetInstance();
     MHO_Timer timer;
     size_t dim[NDIM];
-    dim[0] = 1024; //x
-    dim[1] = 256; //y
-    // dim[2] = 4; //z
+    dim[0] = 64; //x
+    dim[1] = 32; //y
+    dim[2] = 128; //z
 
     test_table_type* test = new test_table_type(dim);
     test_table_type* test2 = new test_table_type(dim);
@@ -157,7 +168,7 @@ int main(int /*argc*/, char** /*argv*/)
         n_global += nDummy;
         if (fMaxNWorkItems < n_global){ fMaxNWorkItems = n_global; }
 
-        // std::cout<<"D = "<<D<<" dim = "<<dim[D]<<" n local = "<<fNLocal<<" n_global "<<n_global<<" ndummy = "<<nDummy<<std::endl;
+        std::cout<<"D = "<<D<<" dim = "<<dim[D]<<" n local = "<<fNLocal<<" n_global "<<n_global<<" ndummy = "<<nDummy<<std::endl;
 
         cl::NDRange global(n_global);
         cl::NDRange local(fNLocal);
@@ -201,8 +212,8 @@ int main(int /*argc*/, char** /*argv*/)
 
 
     //now do an FFT on the CPU to check we get the same thing
-    // auto fft_engine = new MHO_MultidimensionalFastFourierTransformFFTW< test_table_type >();
-    auto fft_engine = new MHO_MultidimensionalFastFourierTransform< test_table_type >();
+    auto fft_engine = new MHO_MultidimensionalFastFourierTransformFFTW< test_table_type >();
+    //auto fft_engine = new MHO_MultidimensionalFastFourierTransform< test_table_type >();
     //no do IFFT pass on all axes
     fft_engine->SetForward();
     fft_engine->SetArgs(test2);
@@ -246,7 +257,7 @@ int main(int /*argc*/, char** /*argv*/)
     {
         delta += std::abs( (*test)[i] - (*test2)[i] );
     }
-    std::cout<<"delta = "<<delta<<std::endl;
+    std::cout<<"average delta = "<<delta/(double)total_size<<std::endl;
 
 
     //clean up
