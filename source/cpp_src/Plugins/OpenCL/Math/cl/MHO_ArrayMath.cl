@@ -5,11 +5,12 @@
 
 //modulus of two integers
 inline unsigned int
-Modulus(int arg, int n)
+Modulus(unsigned int arg, unsigned int n)
 {
-    //returns arg mod n;
-    CL_TYPE Div = ( (CL_TYPE)arg )/( (CL_TYPE) n);
-    return (unsigned int)(fabs( (CL_TYPE)arg - floor(Div)*((CL_TYPE)n) ) );
+    return arg % n;
+    // //returns arg mod n;
+    // CL_TYPE Div = ( (CL_TYPE)arg )/( (CL_TYPE) n);
+    // return (unsigned int)(fabs( (CL_TYPE)arg - floor(Div)*((CL_TYPE)n) ) );
 }
 
 //for a multidimensional array (using row major indexing) which has the
@@ -71,7 +72,6 @@ RowMajorIndexFromOffset(unsigned int ndim, unsigned int offset, const unsigned i
         }
     }
 }
-
 
 //given the dimensions of an array, computes its total size, assuming all dimensions are non-zero
 inline unsigned int
