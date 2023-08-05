@@ -63,7 +63,7 @@ int main(int /*argc*/, char** /*argv*/)
 
     size_t dim[NDIM];
     dim[0] = 8; //x
-    dim[1] = 16; //y
+    dim[1] = 8; //y
     // dim[2] = 4; //z
 
     test_table_type* test = new test_table_type(dim);
