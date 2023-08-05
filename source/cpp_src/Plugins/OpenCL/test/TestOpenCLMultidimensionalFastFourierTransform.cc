@@ -215,7 +215,7 @@ int main(int /*argc*/, char** /*argv*/)
     auto fft_engine = new MHO_MultidimensionalFastFourierTransformFFTW< test_table_type >();
     //auto fft_engine = new MHO_MultidimensionalFastFourierTransform< test_table_type >();
     //no do IFFT pass on all axes
-    fft_engine->SetForward();
+    fft_engine->SetBackward();//Forward();
     fft_engine->SetArgs(test2);
     fft_engine->DisableAxisLabelTransformation();
 

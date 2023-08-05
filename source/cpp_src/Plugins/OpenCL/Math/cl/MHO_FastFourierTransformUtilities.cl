@@ -44,7 +44,7 @@ void FFTRadixTwo_DIT(unsigned int N, unsigned int stride, __global const CL_TYPE
                 H0 = data[x];
                 H1 = data[y];
                 W = twiddle[n_butterfly_groups*k];
-                W.s1 *= -1;  //conjugate???????!!!!!!
+                //W.s1 *= -1;  //conjugate???????!!!!!!
     
                 //here we use the Cooly-Tukey butterfly
                 //multiply H1 by twiddle factor to get W*H1, store temporary workspace Z
@@ -55,7 +55,6 @@ void FFTRadixTwo_DIT(unsigned int N, unsigned int stride, __global const CL_TYPE
                 H1 = H0;
                 H0 += Z;
                 H1 -= Z;
-    
                 data[x] = H0;
                 data[y] = H1;
             }
@@ -97,7 +96,7 @@ FFTRadixTwo_DIF(unsigned int N, unsigned int stride, __global const CL_TYPE2* tw
                 H0 = data[stride*butterfly_index];
                 H1 = data[stride*(butterfly_index+butterfly_width)];
                 W = twiddle[n_butterfly_groups*k];
-                W.s1 *= -1; //conjugate???????!!!!!!
+                //W.s1 *= -1; //conjugate???????!!!!!!
 
                 //here we use Gentleman Sande butterfly
                 Z = H1; //first cache H1 in Z
