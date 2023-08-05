@@ -65,7 +65,7 @@ MultidimensionalFastFourierTransform_Radix2Stage(
         chunk = &( data[data_location] );
 
         PermuteArray(dim[D], stride, permutation_array, chunk);
-        FFTRadixTwo_DIT(dim[D], stride, twiddle, chunk);
+        FFTRadixTwo_DIF(dim[D], stride, twiddle, chunk);
 
     }
 }

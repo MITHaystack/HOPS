@@ -45,17 +45,12 @@ void FFTRadixTwo_DIT(unsigned int N, unsigned int stride, __global const CL_TYPE
                 W = twiddle[n_butterfly_groups*k];
 
                 //here we use the Cooly-Tukey butterfly
-
                 //multiply H1 by twiddle factor to get W*H1, store temporary workspace Z
-                // Z.s0 = (H1.s0)*(W.s0) - (H1.s1)*(W.s1);
-                // Z.s1 = (H1.s0)*(W.s1) + (H1.s1)*(W.s0);
                 Z = ComplexMultiply(H1, W);
-
                 //compute the update
                 //H0' = H0 + W*H1
                 //H1' = H0 - W*H1
                 H1 = H0;
-
                 H0 += Z;
                 H1 -= Z;
 
@@ -64,56 +59,6 @@ void FFTRadixTwo_DIT(unsigned int N, unsigned int stride, __global const CL_TYPE
             }
         }
     }
-
-
-
-
-
-    // //decimation in time, N is assumed to be a power of 2
-    // unsigned int logN = LogBaseTwo(N);
-    // unsigned int butterfly_width;
-    // unsigned int n_butterfly_groups;
-    // unsigned int group_start;
-    // unsigned int butterfly_index;
-    // 
-    // //temporary workspace
-    // CL_TYPE2 H0;
-    // CL_TYPE2 H1;
-    // CL_TYPE2 W;
-    // CL_TYPE2 Z;
-    // 
-    // for(unsigned int stage = 0; stage < logN; stage++)
-    // {
-    //     //compute the width of each butterfly
-    //     butterfly_width = TwoToThePowerOf(stage);
-    //     //compute the number of butterfly groups
-    //     n_butterfly_groups = N/(2*butterfly_width);
-    // 
-    //     for(unsigned int n = 0; n < n_butterfly_groups; n++)
-    //     {
-    //         //compute the starting index of this butterfly group
-    //         group_start = 2*n*butterfly_width;
-    //         for(unsigned int k=0; k < butterfly_width; k++)
-    //         {
-    //             butterfly_index = group_start + k; //index
-    // 
-    //             H0 = data[stride*butterfly_index];
-    //             H1 = data[stride*(butterfly_index + butterfly_width)];
-    //             W = twiddle[n_butterfly_groups*k];
-    // 
-    //             //here we use the Cooley-Tukey butterfly
-    //             //multiply H1 by twiddle factor to get W*H1, store temporary workspace Z
-    //             Z = ComplexMultiply(H1, W);
-    //             //compute the update
-    //             H1 = H0;
-    //             H0 += Z;
-    //             H1 -= Z;
-    // 
-    //             data[stride*butterfly_index] = H0;
-    //             data[stride*(butterfly_index + butterfly_width)] = H1;
-    //         }
-    //     }
-    // }
 }
 
 
@@ -126,12 +71,14 @@ FFTRadixTwo_DIF(unsigned int N, unsigned int stride, __global const CL_TYPE2* tw
     CL_TYPE2 H1;
     CL_TYPE2 W;
     CL_TYPE2 Z;
-
+    
+    //decimation in frequency, N is assumed to be a power of 2
     unsigned int logN = LogBaseTwo(N);
     unsigned int butterfly_width;
     unsigned int n_butterfly_groups;
     unsigned int group_start;
     unsigned int butterfly_index;
+    
 
     for(unsigned int stage = 0; stage < logN; stage++)
     {
@@ -139,99 +86,43 @@ FFTRadixTwo_DIF(unsigned int N, unsigned int stride, __global const CL_TYPE2* tw
         n_butterfly_groups = TwoToThePowerOf(stage);
 
         //compute the width of each butterfly
-        butterfly_width = N/(2*n_butterfly_groups);
-
+        butterfly_width =  N/(2*n_butterfly_groups);
         for(unsigned int n = 0; n < n_butterfly_groups; n++)
         {
             //compute the starting index of this butterfly group
             group_start = 2*n*butterfly_width;
-
             for(unsigned int k=0; k < butterfly_width; k++)
             {
                 butterfly_index = group_start + k; //index
-
+                
                 H0 = data[stride*butterfly_index];
-                H1 = data[stride*(butterfly_index + butterfly_width)];
-                W = twiddle[n_butterfly_groups*k];
+                H1 = data[stride*(butterfly_index+butterfly_width)];
+                W = twiddle[2*n_butterfly_groups*k];
+                //ButterflyRadixTwo_GentlemanSande(H0,H1,W);
 
                 //here we use the Gentleman-Sande butterfly
-
+                
                 //compute the update
                 //first cache H1 in Z
                 Z = H1;
-
+                
                 //set H1' = H0 - H1
                 H1 = H0 - Z;
-
+                
                 //set H0 = H0 + H1
                 H0 += Z;
-
+                
                 //multiply H1 by twiddle factor to get W*H1, to obtain H1' = (H0 - H1)*W
-                Z.s0 = (H1.s0)*(W.s0) - (H1.s1)*(W.s1);
-                Z.s1 = (H1.s0)*(W.s1) + (H1.s1)*(W.s0);
+                Z = ComplexMultiply(H1,W);
+                // Z.s0 = (H1.s0)*(W.s0) - (H1.s1)*(W.s1);
+                // Z.s1 = (H1.s0)*(W.s1) + (H1.s1)*(W.s0);
+                H1 = Z;
 
                 data[stride*butterfly_index] = H0;
-                data[stride*(butterfly_index + butterfly_width)] = Z;
+                data[stride*(butterfly_index+butterfly_width)]=H1;
             }
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-    // //decimation in frequency, N is assumed to be a power of 2
-    // unsigned int logN = LogBaseTwo(N);
-    // unsigned int butterfly_width;
-    // unsigned int n_butterfly_groups;
-    // unsigned int group_start;
-    // unsigned int butterfly_index;
-    // 
-    // //temporary workspace
-    // CL_TYPE2 H0;
-    // CL_TYPE2 H1;
-    // CL_TYPE2 W;
-    // CL_TYPE2 Z;
-    // 
-    // for(unsigned int stage = 0; stage < logN; stage++)
-    // {
-    //     //compute the number of butterfly groups
-    //     n_butterfly_groups= TwoToThePowerOf(stage);
-    // 
-    //     //compute the width of each butterfly
-    //     butterfly_width =  N/(2*n_butterfly_groups);
-    //     for(unsigned int n = 0; n < n_butterfly_groups; n++)
-    //     {
-    //         //compute the starting index of this butterfly group
-    //         group_start = 2*n*butterfly_width;
-    //         for(unsigned int k=0; k < butterfly_width; k++)
-    //         {
-    //             butterfly_index = group_start + k; //index
-    // 
-    //             H0 = data[stride*butterfly_index];
-    //             H1 = data[stride*(butterfly_index + butterfly_width)];
-    //             W = twiddle[n_butterfly_groups*k];
-    // 
-    //             //here we use the Gentleman-Sande butterfly
-    //             //compute the update
-    //             Z = H1; //first cache H1 in Z
-    //             H1 = H0 - Z; //set H1' = H0 - H1
-    //             H0 += Z; //set H0 = H0 + H1
-    // 
-    //             //multiply H1 by twiddle factor to get W*H1, to obtain H1' = (H0 - H1)*W
-    //             Z = ComplexMultiply(H1, W);
-    // 
-    //             data[stride*butterfly_index] = H0;
-    //             data[stride*(butterfly_index + butterfly_width)] = Z;
-    //         }
-    //     }
-    // }
 }
 
 
