@@ -37,21 +37,33 @@ PermuteArray(unsigned int N, unsigned int stride, __global const unsigned int* p
     int do_swap, sgn;
     for(unsigned int i=0; i<N; i++)
     {
-        x = i*stride;
-        y = perm*stride;
         perm = permutation_index_arr[i];
-        do_swap = (i < perm);
-        sgn = (i < perm) - (i >= perm);
-        a = arr[x];
-        b = arr[y];
-        //branch free way of doing a conditional swap only if (i<perm)
-        a = a + do_swap*b;
-        b = do_swap*a - sgn*b;
-        a = a - do_swap*b;
-        
-        arr[x] = a;
-        arr[y] = b;
+        if(i<perm)
+        {
+            a = arr[i*stride];
+            b = arr[perm*stride];
+            arr[i*stride] = b;
+            b = arr[perm*stride] = a;
+        }
     }
+
+    // for(unsigned int i=0; i<N; i++)
+    // {
+    //     perm = permutation_index_arr[i];
+    //     x = i*stride;
+    //     y = perm*stride;
+    //     do_swap = (i < perm);
+    //     sgn = (i < perm) - (i >= perm);
+    //     a = arr[x];
+    //     b = arr[y];
+    //     //branch free way of doing a conditional swap only if (i<perm)
+    //     a = a + do_swap*b;
+    //     b = do_swap*a - sgn*b;
+    //     a = a - do_swap*b;
+    // 
+    //     arr[x] = a;
+    //     arr[y] = b;
+    // }
 }
 
 
