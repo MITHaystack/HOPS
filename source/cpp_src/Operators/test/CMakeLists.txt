@@ -6,6 +6,7 @@ set (HOPS_TEST_LIBS MHO_Message MHO_Math MHO_Utilities MHO_Containers MHO_Operat
 set(SOURCE_BASENAMES
     TestMultidimensionalFastFourierTransform
     TestMultidimensionalFastFourierTransform2
+    TestMultidimensionalFastFourierTransform3
     TestMultidimensionalPaddedFastFourierTransform
     #TestInterpolatedFFT
     TestReducer
@@ -34,6 +35,7 @@ if(HOPS_USE_FFTW3)
     list(APPEND SOURCE_BASENAMES 
         TestMultidimensionalFastFourierTransformFFTW
         TestMultidimensionalFastFourierTransformFFTW2
+        TestMultidimensionalFastFourierTransformFFTW3
     )
 endif (HOPS_USE_FFTW3)
 
