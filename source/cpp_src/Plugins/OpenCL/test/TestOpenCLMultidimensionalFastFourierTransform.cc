@@ -77,8 +77,8 @@ int main(int /*argc*/, char** /*argv*/)
     MHO_OpenCLInterface::GetInstance();
     MHO_Timer timer;
     size_t dim[NDIM];
-    dim[0] = 64; //x
-    dim[1] = 32; //y
+    dim[0] = 1024; //x
+    dim[1] = 1024; //y
     dim[2] = 128; //z
 
     test_table_type* test = new test_table_type(dim);
@@ -156,7 +156,7 @@ int main(int /*argc*/, char** /*argv*/)
 
     timer.MeasureWallclockTime();
     timer.Start();
-    for(unsigned int D=0; D<NDIM; D++)
+    for(unsigned int D=NDIM-1; D<NDIM; D++)
     {
         //compute number of 1d fft's needed (n-global)
         unsigned int n_global = 1;
@@ -219,7 +219,10 @@ int main(int /*argc*/, char** /*argv*/)
     fft_engine->SetArgs(test2);
     fft_engine->DisableAxisLabelTransformation();
 
-    fft_engine->SelectAllAxes();
+    fft_engine->DeselectAllAxes();
+    fft_engine->SelectAxis(NDIM-1);
+
+    //fft_engine->SelectAllAxes();
     fft_engine->Initialize();
 
 
