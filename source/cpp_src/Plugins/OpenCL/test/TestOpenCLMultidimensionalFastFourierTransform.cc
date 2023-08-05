@@ -77,9 +77,13 @@ int main(int /*argc*/, char** /*argv*/)
     MHO_OpenCLInterface::GetInstance();
     MHO_Timer timer;
     size_t dim[NDIM];
-    dim[0] = 1024; //x
-    dim[1] = 1024; //y
-    dim[2] = 128; //z
+    // dim[0] = 1024; //x
+    // dim[1] = 1024; //y
+    // dim[2] = 128; //z
+
+    dim[0] = 4096; //128; //x
+    dim[1] = 512; //128; //y
+    dim[2] = 64; //128; //z
 
     test_table_type* test = new test_table_type(dim);
     test_table_type* test2 = new test_table_type(dim);
