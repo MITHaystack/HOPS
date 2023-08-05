@@ -59,7 +59,7 @@ PermuteArrayNoBranch(unsigned int N, unsigned int stride, __constant const unsig
 
 
 void 
-PermuteArray(unsigned int N, unsigned int stride, __constant const unsigned int* permutation_index_arr, CL_TYPE2* arr)
+PermuteArrayStrided(unsigned int N, unsigned int stride, __constant const unsigned int* permutation_index_arr, CL_TYPE2* arr)
 {
     CL_TYPE2 a,b;
     unsigned int x,y;
@@ -75,9 +75,25 @@ PermuteArray(unsigned int N, unsigned int stride, __constant const unsigned int*
             b = arr[y];
             arr[x] = b;
             arr[y] = a;
-            // val = arr[x];
-            // arr[x] = arr[y];
-            // arr[y] = val;
+        }
+    }
+}
+
+
+void 
+PermuteArray(unsigned int N, __constant const unsigned int* permutation_index_arr, CL_TYPE2* arr)
+{
+    CL_TYPE2 a,b;
+    for(unsigned int i=0; i<N; i++)
+    {
+        unsigned int perm = permutation_index_arr[i];
+        if(i < perm )
+        {
+            //swap values
+            a = arr[i];
+            b = arr[perm];
+            arr[i] = b;
+            arr[perm] = a;
         }
     }
 }
