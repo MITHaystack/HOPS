@@ -63,7 +63,7 @@ int main(int /*argc*/, char** /*argv*/)
     MHO_OpenCLInterface::GetInstance();
 
     size_t dim[NDIM];
-    dim[0] = 1; //x
+    dim[0] = 8; //x
     dim[1] = 8; //y
     // dim[2] = 4; //z
 
@@ -83,11 +83,7 @@ int main(int /*argc*/, char** /*argv*/)
     std::cout<<(*test)<<std::endl;
     
     std::cout<<"copy of array = "<<std::endl;
-    std::cout<<(*test)<<std::endl;
-    
-    // std::cout<<"test(0,0,0) = "<<(*test)(0,0,0)<<std::endl;
-    // std::cout<<"test(1,1,1) = "<<(*test)(1,1,1)<<std::endl;
-    // std::cout<<"test(2,2,2) = "<<(*test)(2,2,2)<<std::endl;
+    std::cout<<(*test2)<<std::endl;
 
     //host/device workspace for FFT plan info 
     MHO_FastFourierTransformWorkspace<double> fW[NDIM];
@@ -104,7 +100,6 @@ int main(int /*argc*/, char** /*argv*/)
             fPerm[i][j] = fW[i].fPermutation[j];
         }
     }
-
 
     ConstructOpenCLKernels();
 
@@ -128,6 +123,14 @@ int main(int /*argc*/, char** /*argv*/)
         perm_ext->WriteDataBuffer();
     }
 
+    CL_ERROR_TRY
+    //buffer_ext->WriteDimensionBuffer();
+    fFFTKernel->setArg(1, *( buffer_ext->GetDimensionBuffer() ) );
+    CL_ERROR_CATCH
+
+    CL_ERROR_TRY
+    fFFTKernel->setArg(4, *( buffer_ext->GetDataBuffer() ) );
+    CL_ERROR_CATCH
 
     //determine the largest global worksize
     fMaxNWorkItems = 0;
@@ -138,40 +141,39 @@ int main(int /*argc*/, char** /*argv*/)
         //compute number of 1d fft's needed (n-global)
         unsigned int n_global = 1;
         for(unsigned int i = 0; i < NDIM; i++){ if (i != D){n_global *= dim[i];} }
+        std::cout<<"number of FFTs needed:"<<n_global<<std::endl;
         //pad out n-global to be a multiple of the n-local
         unsigned int nDummy = fNLocal - (n_global % fNLocal);
         if(nDummy == fNLocal){ nDummy = 0; }
         n_global += nDummy;
         if (fMaxNWorkItems < n_global){ fMaxNWorkItems = n_global; }
 
-        std::cout<<"dim = "<<dim[D]<<" n local = "<<fNLocal<<" n_global "<<n_global<<" ndummy = "<<nDummy<<std::endl;
+        std::cout<<"D = "<<D<<" dim = "<<dim[D]<<" n local = "<<fNLocal<<" n_global "<<n_global<<" ndummy = "<<nDummy<<std::endl;
 
         cl::NDRange global(n_global);
         cl::NDRange local(fNLocal);
 
         //set the arguments which are updated at each stage
         fFFTKernel->setArg(0, D);
-        std::cout<<"flag0"<<std::endl;
+        //std::cout<<"flag0"<<std::endl;
+
+
+        //std::cout<<"flag1"<<std::endl;
 
         CL_ERROR_TRY
-        fFFTKernel->setArg(1, *( buffer_ext->GetDimensionBuffer() ) );
-        CL_ERROR_CATCH
-        std::cout<<"flag1"<<std::endl;
-
-        CL_ERROR_TRY
+        //fTwiddle[D].AsExtension< MHO_OpenCLNDArrayBuffer< twiddle_type > >()->WriteDataBuffer();
         fFFTKernel->setArg(2, *( fTwiddle[D].AsExtension< MHO_OpenCLNDArrayBuffer< twiddle_type > >()->GetDataBuffer() ) );
         CL_ERROR_CATCH
-        std::cout<<"flag2"<<std::endl;
+        //std::cout<<"flag2"<<std::endl;
 
         CL_ERROR_TRY
+        //fPerm[D].AsExtension< MHO_OpenCLNDArrayBuffer< permutation_array_type > >()->WriteDataBuffer();
         fFFTKernel->setArg(3, *( fPerm[D].AsExtension< MHO_OpenCLNDArrayBuffer< permutation_array_type > >()->GetDataBuffer() ) );
         CL_ERROR_CATCH
-        std::cout<<"flag3"<<std::endl;
+        //std::cout<<"flag3"<<std::endl;
 
-        CL_ERROR_TRY
-        fFFTKernel->setArg(4, *( buffer_ext->GetDataBuffer() ) );
-        CL_ERROR_CATCH
-        std::cout<<"flag4"<<std::endl;
+
+        //std::cout<<"flag4"<<std::endl;
 
         //now enqueue the kernel
         CL_ERROR_TRY
@@ -184,7 +186,7 @@ int main(int /*argc*/, char** /*argv*/)
         //force it to finish
         MHO_OpenCLInterface::GetInstance()->GetQueue().finish();
 
-        //get the results (move out of loop)
+        //get the results (move this out of loop)
         buffer_ext->ReadDataBuffer();
         MHO_OpenCLInterface::GetInstance()->GetQueue().finish();
 
@@ -194,28 +196,30 @@ int main(int /*argc*/, char** /*argv*/)
 
     }
 
-
-
-    // std::cout<<"test(0,0,0) = "<<(*test)(0,0,0)<<std::endl;
-    // std::cout<<"test(1,1,1) = "<<(*test)(1,1,1)<<std::endl;
-    // std::cout<<"test(2,2,2) = "<<(*test)(2,2,2)<<std::endl;
-
-    //now do an IFFT on the CPU to check we get the same thing back.
+    //now do an FFT on the CPU to check we get the same thing
     auto fft_engine = new MHO_MultidimensionalFastFourierTransform< test_table_type >();
     //no do IFFT pass on all axes
     fft_engine->SetForward();
     fft_engine->SetArgs(test2);
     fft_engine->DisableAxisLabelTransformation();
+    //fft_engine->SelectAllAxes();
+
     fft_engine->DeselectAllAxes();
+    fft_engine->SelectAxis(0);
+    fft_engine->Initialize();
+    fft_engine->Execute();
+
+    std::cout<<"alternate path:"<<std::endl;
+
+    std::cout<<"***************"<<std::endl;
+    std::cout<<(*test2)<<std::endl;
+
     fft_engine->SelectAxis(1);
     fft_engine->Initialize();
     fft_engine->Execute();
 
-    // std::cout<<"test(0,0,0) = "<<(*test)(0,0,0)<<std::endl;
-    // std::cout<<"test(1,1,1) = "<<(*test)(1,1,1)<<std::endl;
-    // std::cout<<"test(2,2,2) = "<<(*test)(2,2,2)<<std::endl;
 
-    std::cout<<"alternate path:"<<std::endl;
+    std::cout<<"***************"<<std::endl;
     std::cout<< *test2 << std::endl;
 
     //clean up
