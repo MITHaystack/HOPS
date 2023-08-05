@@ -46,13 +46,10 @@ MultidimensionalFastFourierTransform_Radix2Stage(
     }
 
     //figure out which chunk of the data this thread is responsible
-    unsigned int offset = 0;
-    unsigned int data_location = 0;
-    unsigned int stride = StrideFromRowMajorIndex(FFT_NDIM, D, dim); //stride for this axis
-
-    if(i_global < n_fft) //thread id must be less than total number of 1d fft's
+    unsigned int offset = i_global;
+    __global CL_TYPE2* chunk;
+    if(offset < n_fft) //thread id must be less than total number of 1d fft's
     {
-        offset = i_global;
         //invert place in list to obtain indices of block in array
         RowMajorIndexFromOffset(FFT_NDIM-1, offset, non_active_dimension_size, non_active_dimension_value, div_space);
         
@@ -63,26 +60,14 @@ MultidimensionalFastFourierTransform_Radix2Stage(
         }
         index[D] = 0; //for the selected dimension, index value is zero
 
-        __global CL_TYPE2* chunk;
-        data_location = OffsetFromRowMajorIndex(FFT_NDIM, dim, index);
+        unsigned int data_location = OffsetFromRowMajorIndex(FFT_NDIM, dim, index);
+        unsigned int stride = StrideFromRowMajorIndex(FFT_NDIM, D, dim); //stride for this axis
         chunk = &( data[data_location] );
 
-        // //compute the FFT of the row selected
         PermuteArray(dim[D], stride, permutation_array, chunk);
         FFTRadixTwo_DIT(dim[D], stride, twiddle, chunk);
-    }
 
-    // if(i_global == n_fft -1)
-    // {
-    //     data[0].s0 = n_fft;
-    //     data[0].s1 = stride; 
-    //     data[1].s0 = data_location;
-    //     data[1].s1 = D;
-    //     data[2].s0 = dim[0];
-    //     data[2].s1 = dim[1];
-    //     data[3].s0 = offset;
-    //     data[3].s1 = 333;
-    // }
+    }
 }
 
 #endif /* MHO_MultidimensionalFastFourierTransform_Defined_H */

@@ -11,7 +11,6 @@
 #include "MHO_FastFourierTransform.hh"
 #include "MHO_MultidimensionalFastFourierTransform.hh"
 
-
 using namespace hops;
 
 #define NDIM 2
@@ -78,6 +77,15 @@ int main(int /*argc*/, char** /*argv*/)
         (*test2)[i] = std::complex<double>( (i+1)%2, i % 2);
         //(*test2)[i] = std::complex<double>(i % 13, i % 17); //for read back testing
     }
+    // (*test)(0,0) = std::complex<double>(1.0, 0.);
+    // (*test2)(0,0) = std::complex<double>(1.0, 0.);
+    // (*test)(1,0) = std::complex<double>(1.0, 0.);
+    // (*test2)(1,0) = std::complex<double>(1.0, 0.);
+    // (*test)(2,0) = std::complex<double>(1.0, 0.);
+    // (*test2)(2,0) = std::complex<double>(1.0, 0.);
+    // (*test)(3,0) = std::complex<double>(1.0, 0.);
+    // (*test2)(3,0) = std::complex<double>(1.0, 0.);
+
 
     std::cout<<"original array = "<<std::endl;
     std::cout<<(*test)<<std::endl;
@@ -213,7 +221,7 @@ int main(int /*argc*/, char** /*argv*/)
 
     std::cout<<"***************"<<std::endl;
     std::cout<<(*test2)<<std::endl;
-
+    fft_engine->DeselectAllAxes();
     fft_engine->SelectAxis(1);
     fft_engine->Initialize();
     fft_engine->Execute();
@@ -221,6 +229,16 @@ int main(int /*argc*/, char** /*argv*/)
 
     std::cout<<"***************"<<std::endl;
     std::cout<< *test2 << std::endl;
+
+
+    //compute the difference between the results
+    double delta = 0;
+    for(std::size_t i=0; i<test->GetSize(); i++)
+    {
+        delta += std::abs( (*test)[i] - (*test2)[i] );
+    }
+    std::cout<<"delta = "<<delta<<std::endl;
+
 
     //clean up
     delete fFFTKernel;
