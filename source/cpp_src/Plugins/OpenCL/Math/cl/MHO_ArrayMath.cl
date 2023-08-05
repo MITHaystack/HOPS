@@ -8,8 +8,8 @@ inline unsigned int
 Modulus(int arg, int n)
 {
     //returns arg mod n;
-    CL_TYPE div = ( (CL_TYPE)arg )/( (CL_TYPE) n);
-    return (unsigned int)(fabs( (CL_TYPE)arg - floor(div)*((CL_TYPE)n) ) );
+    CL_TYPE Div = ( (CL_TYPE)arg )/( (CL_TYPE) n);
+    return (unsigned int)(fabs( (CL_TYPE)arg - floor(Div)*((CL_TYPE)n) ) );
 }
 
 //for a multidimensional array (using row major indexing) which has the
@@ -48,9 +48,9 @@ StrideFromRowMajorIndex(unsigned int ndim, unsigned int selected_dim, const unsi
 //for a multidimensional array (using row major indexing) which has the
 //dimensions specified in DimSize, this function computes the indices of
 //the elements which has the given offset from the first element
-//must provide a workspace div[ndim]
+//must provide a workspace Div[ndim]
 inline void
-RowMajorIndexFromOffset(unsigned int ndim, unsigned int offset, const unsigned int* DimSize, unsigned int* Index, unsigned int* div)
+RowMajorIndexFromOffset(unsigned int ndim, unsigned int offset, const unsigned int* DimSize, unsigned int* Index, unsigned int* Div)
 {
     //in row major format the last index varies the fastest
     unsigned int i;
@@ -62,12 +62,12 @@ RowMajorIndexFromOffset(unsigned int ndim, unsigned int offset, const unsigned i
         if(d == 0)
         {
             Index[i] = Modulus(offset, DimSize[i]);
-            div[i] = (offset - Index[i])/DimSize[i];
+            Div[i] = (offset - Index[i])/DimSize[i];
         }
         else
         {
-            Index[i] = Modulus(div[i+1], DimSize[i]);
-            div[i] = (div[i+1] - Index[i])/DimSize[i];
+            Index[i] = Modulus(Div[i+1], DimSize[i]);
+            Div[i] = (Div[i+1] - Index[i])/DimSize[i];
         }
     }
 }

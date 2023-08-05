@@ -25,16 +25,16 @@ MultidimensionalFastFourierTransform_Radix2Stage(
     unsigned int dim[FFT_NDIM];
     for(unsigned int i=0; i<FFT_NDIM; i++){dim[i] = array_dimensions[i];}
 
-    size_t index[FFT_NDIM];
-    size_t div_space[FFT_NDIM];
-    size_t non_active_dimension_size[FFT_NDIM-1];
-    size_t non_active_dimension_value[FFT_NDIM-1];
-    size_t non_active_dimension_index[FFT_NDIM-1];
+    unsigned int index[FFT_NDIM];
+    unsigned int div_space[FFT_NDIM];
+    unsigned int non_active_dimension_size[FFT_NDIM-1];
+    unsigned int non_active_dimension_value[FFT_NDIM-1];
+    unsigned int non_active_dimension_index[FFT_NDIM-1];
 
     //figure out the total number of 1-D FFTs to perform along this axis
-    size_t n_fft = 1;
-    size_t count = 0;
-    for(size_t i = 0; i < FFT_NDIM; i++)
+    unsigned int n_fft = 1;
+    unsigned int count = 0;
+    for(unsigned int i = 0; i < FFT_NDIM; i++)
     {
         if(i != D)
         {
@@ -44,13 +44,12 @@ MultidimensionalFastFourierTransform_Radix2Stage(
             count++;
         }
     }
-    
-    data[i_global] = n_fft;
 
     //figure out which chunk of the data this thread is responsible
     unsigned int offset = 0;
     unsigned int data_location = 0;
     unsigned int stride = StrideFromRowMajorIndex(FFT_NDIM, D, dim); //stride for this axis
+
     if(i_global < n_fft) //thread id must be less than total number of 1d fft's
     {
         offset = i_global;
@@ -58,7 +57,7 @@ MultidimensionalFastFourierTransform_Radix2Stage(
         RowMajorIndexFromOffset(FFT_NDIM, offset, non_active_dimension_size, non_active_dimension_value, div_space);
         
         //copy the value of the non-active dimensions in to the index array
-        for(size_t i=0; i<FFT_NDIM-1; i++)
+        for(unsigned int i=0; i<FFT_NDIM-1; i++)
         {
             index[ non_active_dimension_index[i] ] = non_active_dimension_value[i];
         }
@@ -67,16 +66,12 @@ MultidimensionalFastFourierTransform_Radix2Stage(
         __global CL_TYPE2* chunk;
         data_location = OffsetFromRowMajorIndex( FFT_NDIM, dim, index);
         chunk = &( data[data_location] );
+    
+         //data_location;
 
-        // for(size_t j=0; j < dim[D]; j++)
-        // {
-        //     chunk[j*stride] = dim[1];
-        // }
-        chunk[i_global] = stride;
-
-        //compute the FFT of the row selected
-        // PermuteArray(dim[D], stride, permutation_array, chunk);
-        // FFTRadixTwo_DIT(dim[D], stride, chunk, twiddle);
+        // //compute the FFT of the row selected
+        PermuteArray(dim[D], stride, permutation_array, chunk);
+        FFTRadixTwo_DIT(dim[D], stride, twiddle, chunk);
     }
 
 
@@ -94,16 +89,16 @@ MultidimensionalFastFourierTransform_Radix2Stage(
     // unsigned int dim[FFT_NDIM];
     // for(unsigned int i=0; i<FFT_NDIM; i++){dim[i] = array_dimensions[i];}
     // 
-    // size_t index[FFT_NDIM];
-    // size_t div_space[FFT_NDIM];
-    // size_t non_active_dimension_size[FFT_NDIM-1];
-    // size_t non_active_dimension_value[FFT_NDIM-1];
-    // size_t non_active_dimension_index[FFT_NDIM-1];
+    // unsigned int index[FFT_NDIM];
+    // unsigned int div_space[FFT_NDIM];
+    // unsigned int non_active_dimension_size[FFT_NDIM-1];
+    // unsigned int non_active_dimension_value[FFT_NDIM-1];
+    // unsigned int non_active_dimension_index[FFT_NDIM-1];
     // 
     // //figure out the total number of 1-D FFTs to perform along this axis
-    // size_t n_fft = 1;
-    // size_t count = 0;
-    // for(size_t i = 0; i < FFT_NDIM; i++)
+    // unsigned int n_fft = 1;
+    // unsigned int count = 0;
+    // for(unsigned int i = 0; i < FFT_NDIM; i++)
     // {
     //     if(i != D)
     //     {
@@ -125,7 +120,7 @@ MultidimensionalFastFourierTransform_Radix2Stage(
     //     RowMajorIndexFromOffset(FFT_NDIM, offset, non_active_dimension_size, non_active_dimension_value, div_space);
     // 
     //     //copy the value of the non-active dimensions in to the index array
-    //     for(size_t i=0; i<FFT_NDIM-1; i++)
+    //     for(unsigned int i=0; i<FFT_NDIM-1; i++)
     //     {
     //         index[ non_active_dimension_index[i] ] = non_active_dimension_value[i];
     //     }
@@ -135,7 +130,7 @@ MultidimensionalFastFourierTransform_Radix2Stage(
     //     data_location = OffsetFromRowMajorIndex( FFT_NDIM, dim, index);
     //     chunk = &( data[data_location] );
     // 
-    //     // for(size_t j=0; j < dim[D]; j++)
+    //     // for(unsigned int j=0; j < dim[D]; j++)
     //     // {
     //     //     chunk[j*stride] = D;
     //     // }

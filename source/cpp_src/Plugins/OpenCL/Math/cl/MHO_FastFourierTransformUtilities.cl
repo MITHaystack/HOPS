@@ -8,7 +8,7 @@
 
 ////////////////////////////////////////////////////////////////////////
 //RADIX-2
-void FFTRadixTwo_DIT(unsigned int N, unsigned int stride, CL_TYPE2* data, __global const CL_TYPE2* twiddle)
+void FFTRadixTwo_DIT(unsigned int N, unsigned int stride, __global const CL_TYPE2* twiddle, __global CL_TYPE2* data)
 {
     //decimation in time, N is assumed to be a power of 2
     unsigned int logN = LogBaseTwo(N);
@@ -60,7 +60,7 @@ void FFTRadixTwo_DIT(unsigned int N, unsigned int stride, CL_TYPE2* data, __glob
 
 //RADIX-2 DIF
 void 
-FFTRadixTwo_DIF(unsigned int N, unsigned int stride, CL_TYPE2* data, __global const CL_TYPE2* twiddle)
+FFTRadixTwo_DIF(unsigned int N, unsigned int stride, __global const CL_TYPE2* twiddle, __global CL_TYPE2* data)
 {
     //decimation in frequency, N is assumed to be a power of 2
     unsigned int logN = LogBaseTwo(N);
