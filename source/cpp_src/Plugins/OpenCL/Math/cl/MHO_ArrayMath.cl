@@ -8,7 +8,7 @@ inline unsigned int
 Modulus(unsigned int arg, unsigned int n)
 {
     return arg % n;
-    // //returns arg mod n;
+    // // //returns arg mod n;
     // CL_TYPE Div = ( (CL_TYPE)arg )/( (CL_TYPE) n);
     // return (unsigned int)(fabs( (CL_TYPE)arg - floor(Div)*((CL_TYPE)n) ) );
 }
@@ -51,7 +51,7 @@ StrideFromRowMajorIndex(unsigned int ndim, unsigned int selected_dim, const unsi
 //the elements which has the given offset from the first element
 //must provide a workspace Div[ndim]
 inline void
-RowMajorIndexFromOffset(unsigned int ndim, unsigned int offset, const unsigned int* DimSize, unsigned int* Index, unsigned int* Div)
+RowMajorIndexFromOffset(unsigned int ndim, const unsigned int offset, const unsigned int* DimSize, unsigned int* Index, unsigned int* Div)
 {
     //in row major format the last index varies the fastest
     unsigned int i;

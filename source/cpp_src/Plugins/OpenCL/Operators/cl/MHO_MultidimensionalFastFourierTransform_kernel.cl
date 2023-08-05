@@ -64,11 +64,25 @@ MultidimensionalFastFourierTransform_Radix2Stage(
         unsigned int stride = StrideFromRowMajorIndex(FFT_NDIM, D, dim); //stride for this axis
         chunk = &( data[data_location] );
 
-        // PermuteArray(dim[D], stride, permutation_array, chunk);
-        // FFTRadixTwo_DIT(dim[D], stride, twiddle, chunk);
-
-        FFTRadixTwo_DIF(dim[D], stride, twiddle, chunk);
         PermuteArray(dim[D], stride, permutation_array, chunk);
+        FFTRadixTwo_DIT(dim[D], stride, twiddle, chunk);
+        
+
+        // FFTRadixTwo_DIF(dim[D], stride, twiddle, chunk);
+        // PermuteArray(dim[D], stride, permutation_array, chunk);
+
+        //if(i_global == n_fft -1)
+        // {
+        //     // chunk[0].s0 = offset; //(offset)*1000;
+        //     // chunk[0].s1 = stride*1000; 
+        //     // data[1].s0 = data_location;
+        //     // data[1].s1 = D;
+        //     // data[2].s0 = dim[0];
+        //     // data[2].s1 = dim[1];
+        //     // data[3].s0 = offset;
+        //     // data[3].s1 = 333;
+        // }
+
     }
 }
 

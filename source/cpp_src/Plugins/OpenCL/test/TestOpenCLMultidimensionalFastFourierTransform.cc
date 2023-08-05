@@ -10,6 +10,7 @@
 
 #include "MHO_FastFourierTransform.hh"
 #include "MHO_MultidimensionalFastFourierTransform.hh"
+//#include "MHO_MultidimensionalFastFourierTransformFFTW.hh"
 
 using namespace hops;
 
@@ -18,8 +19,10 @@ using namespace hops;
 typedef MHO_AxisPack< MHO_Axis<double>, MHO_Axis<double> > axis_pack_test;
 typedef MHO_TableContainer< std::complex<double>, axis_pack_test > test_table_type;
 
-typedef MHO_NDArrayWrapper< std::complex<double>, 1 > twiddle_type; 
-typedef MHO_NDArrayWrapper< unsigned int, 1 > permutation_array_type; 
+typedef MHO_AxisPack< MHO_Axis<double> > ap1;
+
+typedef MHO_TableContainer< std::complex<double>, ap1 > twiddle_type;
+typedef MHO_TableContainer< unsigned int, ap1 > permutation_array_type; 
 
 unsigned int fNLocal;
 unsigned int fPreferredWorkgroupMultiple;
@@ -62,8 +65,8 @@ int main(int /*argc*/, char** /*argv*/)
     MHO_OpenCLInterface::GetInstance();
 
     size_t dim[NDIM];
-    dim[0] = 8; //x
-    dim[1] = 8; //y
+    dim[0] = 16; //x
+    dim[1] = 16; //y
     // dim[2] = 4; //z
 
     test_table_type* test = new test_table_type(dim);
@@ -73,18 +76,11 @@ int main(int /*argc*/, char** /*argv*/)
     //fill up the array with data 
     for(std::size_t i=0; i<total_size; i++)
     {
-        (*test)[i] = std::complex<double>(  (i+1)%2, i % 2); 
-        (*test2)[i] = std::complex<double>( (i+1)%2, i % 2);
-        //(*test2)[i] = std::complex<double>(i % 13, i % 17); //for read back testing
+        // (*test)[i] = std::complex<double>(  (i+1)%2, i % 2); 
+        // (*test2)[i] = std::complex<double>( (i+1)%2, i % 2);
+        (*test)[i] = std::complex<double>(i % 5, i % 17); 
+        (*test2)[i] = std::complex<double>(i % 5, i % 17); 
     }
-    // (*test)(0,0) = std::complex<double>(1.0, 0.);
-    // (*test2)(0,0) = std::complex<double>(1.0, 0.);
-    // (*test)(1,0) = std::complex<double>(1.0, 0.);
-    // (*test2)(1,0) = std::complex<double>(1.0, 0.);
-    // (*test)(2,0) = std::complex<double>(1.0, 0.);
-    // (*test2)(2,0) = std::complex<double>(1.0, 0.);
-    // (*test)(3,0) = std::complex<double>(1.0, 0.);
-    // (*test2)(3,0) = std::complex<double>(1.0, 0.);
 
 
     std::cout<<"original array = "<<std::endl;
@@ -100,9 +96,9 @@ int main(int /*argc*/, char** /*argv*/)
     for(unsigned int i=0; i<NDIM; i++)
     {
         fW[i].Resize(dim[i]);
-        fTwiddle[i].Resize(fW[i].fN);
-        fPerm[i].Resize(fW[i].fN);
-        for(std::size_t j=0; j<fW[i].fN; j++)
+        fTwiddle[i].Resize(dim[i]);
+        fPerm[i].Resize(dim[i]);
+        for(std::size_t j=0; j<dim[i]; j++)
         {
             fTwiddle[i][j] = fW[i].fTwiddle[j];
             fPerm[i][j] = fW[i].fPermutation[j];
@@ -123,6 +119,8 @@ int main(int /*argc*/, char** /*argv*/)
     //then create the buffers for the FFT plan info 
     for(unsigned int i=0; i<NDIM; i++)
     {
+        std::cout<<"twiddle dim: "<<i<<" = "<<fTwiddle[i]<<std::endl;
+        std::cout<<"perm dim: "<<i<<" = "<<fPerm[i]<<std::endl;
         auto twid_ext = fTwiddle[i].MakeExtension< MHO_OpenCLNDArrayBuffer< twiddle_type > >();
         twid_ext->ConstructDataBuffer();
         twid_ext->WriteDataBuffer();
@@ -210,8 +208,8 @@ int main(int /*argc*/, char** /*argv*/)
     fft_engine->SetForward();
     fft_engine->SetArgs(test2);
     fft_engine->DisableAxisLabelTransformation();
-    //fft_engine->SelectAllAxes();
-
+    fft_engine->SelectAllAxes();
+    
     fft_engine->DeselectAllAxes();
     fft_engine->SelectAxis(0);
     fft_engine->Initialize();
@@ -221,11 +219,11 @@ int main(int /*argc*/, char** /*argv*/)
 
     std::cout<<"***************"<<std::endl;
     std::cout<<(*test2)<<std::endl;
+
     fft_engine->DeselectAllAxes();
     fft_engine->SelectAxis(1);
     fft_engine->Initialize();
     fft_engine->Execute();
-
 
     std::cout<<"***************"<<std::endl;
     std::cout<< *test2 << std::endl;
