@@ -13,13 +13,15 @@ __kernel void
 MultidimensionalFastFourierTransform_Radix2Stage(
     unsigned int D, //d = 0, 1, ...FFT_NDIM-1 specifies the dimension/axis selected to be transformed
     __global const unsigned int* array_dimensions, //sizes of the array in each dimension
-    __global const CL_TYPE2* twiddle, //fft twiddle factors
-    __global const unsigned int* permutation_array, //bit reversal permutation indices
+    __constant const CL_TYPE2* twiddle, //fft twiddle factors
+    __constant const unsigned int* permutation_array, //bit reversal permutation indices
     __global CL_TYPE2* data // the data to be transformed (in-place)
 )
 {
     //get the index of the current thread
     unsigned int i_global = get_global_id(0);
+
+    CL_TYPE2 buffer[1024];
 
     //assign a private variable the array dimensions
     unsigned int dim[FFT_NDIM];
@@ -64,9 +66,20 @@ MultidimensionalFastFourierTransform_Radix2Stage(
         unsigned int stride = StrideFromRowMajorIndex(FFT_NDIM, D, dim); //stride for this axis
         chunk = &( data[data_location] );
 
-        PermuteArray(dim[D], stride, permutation_array, chunk);
-        FFTRadixTwo_DIT(dim[D], stride, twiddle, chunk);
+        for(unsigned int i=0; i<dim[D]; i++)
+        {
+            buffer[i] = chunk[i*stride];
+        }
+
+        PermuteArray(dim[D], 1, permutation_array, buffer);
+        FFTRadixTwo_DIT(dim[D], 1, twiddle, buffer);
         // 
+
+        for(unsigned int i=0; i<dim[D]; i++)
+        {
+            chunk[i*stride] = buffer[i]; 
+        }
+
 
         // FFTRadixTwo_DIF(dim[D], stride, twiddle, chunk);
         // PermuteArray(dim[D], stride, permutation_array, chunk);
