@@ -8,7 +8,7 @@
 
 ////////////////////////////////////////////////////////////////////////
 //RADIX-2
-void FFTRadixTwo_DIT(unsigned int N, unsigned int stride, __global const CL_TYPE2* twiddle, __global CL_TYPE2* data)
+void FFTRadixTwo_DIT(unsigned int N, unsigned int stride, __constant const CL_TYPE2* twiddle, CL_TYPE2* data)
 {
     //temporary workspace
     CL_TYPE2 H0;
@@ -44,8 +44,7 @@ void FFTRadixTwo_DIT(unsigned int N, unsigned int stride, __global const CL_TYPE
                 H0 = data[x];
                 H1 = data[y];
                 W = twiddle[n_butterfly_groups*k];
-                //W.s1 *= -1;  //conjugate???????!!!!!!
-    
+                
                 //here we use the Cooly-Tukey butterfly
                 //multiply H1 by twiddle factor to get W*H1, store temporary workspace Z
                 Z = ComplexMultiply(H1, W);
@@ -65,7 +64,7 @@ void FFTRadixTwo_DIT(unsigned int N, unsigned int stride, __global const CL_TYPE
 
 //RADIX-2 DIF
 void 
-FFTRadixTwo_DIF(unsigned int N, unsigned int stride, __global const CL_TYPE2* twiddle, __global CL_TYPE2* data)
+FFTRadixTwo_DIF(unsigned int N, unsigned int stride, __constant const CL_TYPE2* twiddle, CL_TYPE2* data)
 {
     //temporary workspace
     CL_TYPE2 H0;
@@ -96,7 +95,6 @@ FFTRadixTwo_DIF(unsigned int N, unsigned int stride, __global const CL_TYPE2* tw
                 H0 = data[stride*butterfly_index];
                 H1 = data[stride*(butterfly_index+butterfly_width)];
                 W = twiddle[n_butterfly_groups*k];
-                //W.s1 *= -1; //conjugate???????!!!!!!
 
                 //here we use Gentleman Sande butterfly
                 Z = H1; //first cache H1 in Z
