@@ -79,9 +79,9 @@ int main(int /*argc*/, char** /*argv*/)
     // dim[1] = 1024; //y
     // dim[2] = 128; //z
 
-    dim[0] = 4; //128; //x
-    dim[1] = 8; //128; //y
-    dim[2] = 8; //128; //z
+    dim[0] = 32; //128; //x
+    dim[1] = 1024; //128; //y
+    dim[2] = 1024; //128; //z
 
     test_table_type* test = new test_table_type(dim);
     test_table_type* test2 = new test_table_type(dim);
@@ -122,6 +122,7 @@ int main(int /*argc*/, char** /*argv*/)
 
     ConstructOpenCLKernels();
 
+    std::cout<<"creating data buffer"<<std::endl;
     //create the opencl buffer extensions 
     ///data and dims first
     auto buffer_ext = test->MakeExtension< MHO_OpenCLNDArrayBuffer< test_table_type > >();
@@ -146,7 +147,7 @@ int main(int /*argc*/, char** /*argv*/)
     }
 
     //create a workspace buffer 
-    unsigned int max_buff_size = 4*fNLocal*max_dim;
+    unsigned int max_buff_size = 32*fNLocal*max_dim;
     std::cout<<"max_buff_size = "<<max_buff_size<<std::endl;
     cl::Buffer* workspace_buffer = new cl::Buffer(MHO_OpenCLInterface::GetInstance()->GetContext(),
                                        CL_MEM_READ_WRITE,
@@ -172,7 +173,7 @@ int main(int /*argc*/, char** /*argv*/)
 
     timer.MeasureWallclockTime();
     timer.Start();
-    for(unsigned int D=0; D<1; D++)
+    for(unsigned int D=0; D<NDIM; D++)
     {
         //compute number of 1d fft's needed (n-global)
         unsigned int n_global = 1;
@@ -235,10 +236,10 @@ int main(int /*argc*/, char** /*argv*/)
     fft_engine->SetArgs(test2);
     fft_engine->DisableAxisLabelTransformation();
 
-    fft_engine->DeselectAllAxes();
-    fft_engine->SelectAxis(0);
+    // fft_engine->DeselectAllAxes();
+    // fft_engine->SelectAxis(0);
 
-    //fft_engine->SelectAllAxes();
+    fft_engine->SelectAllAxes();
     fft_engine->Initialize();
 
 
@@ -274,7 +275,7 @@ int main(int /*argc*/, char** /*argv*/)
     double delta = 0;
     for(std::size_t i=0; i<test->GetSize(); i++)
     {
-        std::cout<<"i = "<<i<<" test2 = "<<(*test2)[i]<<std::endl;
+        //std::cout<<"i = "<<i<<" test2 = "<<(*test2)[i]<<std::endl;
         delta += std::abs( (*test)[i] - (*test2)[i] );
     }
     std::cout<<"average delta = "<<delta/(double)total_size<<std::endl;

@@ -26,10 +26,11 @@ MultidimensionalFastFourierTransform_Radix2Stage(
     unsigned int n_group = get_num_groups(0);
     unsigned int group_size = get_local_size(0);
 
-    printf("global, local, work, group = %d, %d, %d, %d \n", i_global, i_local, i_work, n_group);
-
+    //printf("global, local, work, group = %d, %d, %d, %d \n", i_global, i_local, i_work, n_group);
 
     //__private CL_TYPE2 buffer[4096];
+    //__global CL_TYPE2* buffer = &(workspace[(i_work*group_size+i_local)*array_dimensions[D]]);
+
 
     //assign a private variable the array dimensions
     unsigned int dim[FFT_NDIM];
@@ -55,7 +56,6 @@ MultidimensionalFastFourierTransform_Radix2Stage(
         }
     }
 
-    work_group_barrier(0);
 
     //figure out which chunk of the data this thread is responsible
     unsigned int offset = i_global;
@@ -63,7 +63,6 @@ MultidimensionalFastFourierTransform_Radix2Stage(
     //if(offset < n_fft) //thread id must be less than total number of 1d fft's
     if(offset < n_fft)
     {
-        __global CL_TYPE2* buffer = &(workspace[(i_work*group_size+i_local)*array_dimensions[D]]);
 
         //invert place in list to obtain indices of block in array
         RowMajorIndexFromOffset(FFT_NDIM-1, offset, non_active_dimension_size, non_active_dimension_value, div_space);
@@ -80,34 +79,29 @@ MultidimensionalFastFourierTransform_Radix2Stage(
 
         chunk = &( data[data_location] );
 
-        for(unsigned int i=0; i<dim[D]; i++)
-        {
-            buffer[i] = 0;
-        }
+        // for(unsigned int i=0; i<dim[D]; i++)
+        // {
+        //     buffer[i] = chunk[i*stride];
+        // }
 
-        for(unsigned int i=0; i<dim[D]; i++)
-        {
-            buffer[i] = chunk[i*stride];
-        }
+        //printf("%d, %d, %d, %d   1111 buff, chunk %lf, %lf, *** %lf, %lf\n",  i_global, i_local, data_location, (i_work*n_group+i_local)*array_dimensions[D], buffer[0].s0, buffer[0].s1, chunk[0].s0, chunk[0].s1 );
 
-        printf("%d, %d, %d, %d   1111 buff, chunk %lf, %lf, *** %lf, %lf\n",  i_global, i_local, data_location, (i_work*n_group+i_local)*array_dimensions[D], buffer[0].s0, buffer[0].s1, chunk[0].s0, chunk[0].s1 );
+        // PermuteArray(dim[D], permutation_array, buffer);
+        // FFTRadixTwo_DIT(dim[D], twiddle, buffer);
 
-        PermuteArray(dim[D], permutation_array, buffer);
-        FFTRadixTwo_DIT(dim[D], twiddle, buffer);
-
-        // PermuteArrayStrided(dim[D], stride, permutation_array, chunk);
-        // FFTRadixTwo_DITStrided(dim[D], stride, twiddle, chunk);
+        PermuteArrayStrided(dim[D], stride, permutation_array, chunk);
+        FFTRadixTwo_DITStrided(dim[D], stride, twiddle, chunk);
 
         // FFTRadixTwo_DIF(dim[D], twiddle, buffer);
         // PermuteArray(dim[D], permutation_array, buffer);
 
-        for(unsigned int i=0; i<dim[D]; i++)
-        {
-            //buffer[i] = chunk[i*stride];// - buffer[i]; 
-            chunk[i*stride] = buffer[i]; 
-        }
+        // for(unsigned int i=0; i<dim[D]; i++)
+        // {
+        //     //buffer[i] = chunk[i*stride];// - buffer[i]; 
+        //     chunk[i*stride] = buffer[i]; 
+        // }
 
-        printf("%d, %d, %d, %d  2222 buff, chunk %lf, %lf, *** %lf, %lf\n", i_global, i_local, data_location, i_local*array_dimensions[D], buffer[0].s0, buffer[0].s1, chunk[0].s0, chunk[0].s1 );
+        //printf("%d, %d, %d, %d  2222 buff, chunk %lf, %lf, *** %lf, %lf\n", i_global, i_local, data_location, i_local*array_dimensions[D], buffer[0].s0, buffer[0].s1, chunk[0].s0, chunk[0].s1 );
 
         // 
         // PermuteArrayStrided(dim[D], stride, permutation_array, chunk);
@@ -117,7 +111,6 @@ MultidimensionalFastFourierTransform_Radix2Stage(
 
     }
 
-    barrier(CLK_GLOBAL_MEM_FENCE);
 }
 
 #endif /* MHO_MultidimensionalFastFourierTransform_Defined_H */
