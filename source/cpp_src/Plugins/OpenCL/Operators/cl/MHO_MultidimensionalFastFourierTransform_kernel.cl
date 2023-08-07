@@ -21,7 +21,7 @@ MultidimensionalFastFourierTransform_Radix2Stage(
     //get the index of the current thread
     unsigned int i_global = get_global_id(0);
 
-    __private CL_TYPE2 buffer[4096];
+    __private CL_TYPE2 buffer[2048];
 
     //assign a private variable the array dimensions
     unsigned int dim[FFT_NDIM];
