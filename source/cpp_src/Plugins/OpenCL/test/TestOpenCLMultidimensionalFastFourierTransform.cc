@@ -34,8 +34,6 @@ typedef MHO_TableContainer< std::complex<double>, ap1 > twiddle_type;
 typedef MHO_TableContainer< unsigned int, ap1 > permutation_array_type; 
 
 
-
-
 unsigned int fNLocal;
 unsigned int fPreferredWorkgroupMultiple;
 unsigned int fMaxNWorkItems;
@@ -81,7 +79,7 @@ int main(int /*argc*/, char** /*argv*/)
     // dim[1] = 1024; //y
     // dim[2] = 128; //z
 
-    dim[0] = 4096; //128; //x
+    dim[0] = 1024; //128; //x
     dim[1] = 512; //128; //y
     dim[2] = 64; //128; //z
 
@@ -108,8 +106,10 @@ int main(int /*argc*/, char** /*argv*/)
     MHO_FastFourierTransformWorkspace<double> fW[NDIM];
     twiddle_type fTwiddle[NDIM];
     permutation_array_type fPerm[NDIM];
+    unsigned int max_dim = 0;
     for(unsigned int i=0; i<NDIM; i++)
     {
+        if(dim[i]>max_dim){max_dim = dim[i];};
         fW[i].Resize(dim[i]);
         fTwiddle[i].Resize(dim[i]);
         fPerm[i].Resize(dim[i]);
@@ -131,7 +131,8 @@ int main(int /*argc*/, char** /*argv*/)
     buffer_ext->WriteDataBuffer();
     buffer_ext->WriteDimensionBuffer();
 
-    //then create the buffers for the FFT plan info 
+    //then create the buffers for the FFT plan info
+
     for(unsigned int i=0; i<NDIM; i++)
     {
         // std::cout<<"twiddle dim: "<<i<<" = "<<fTwiddle[i]<<std::endl;
@@ -144,14 +145,25 @@ int main(int /*argc*/, char** /*argv*/)
         perm_ext->WriteDataBuffer();
     }
 
-    //CL_ERROR_TRY
+    //create a workspace buffer 
+    unsigned int max_buff_size = 2*fNLocal*max_dim;
+    std::cout<<"max_buff_size = "<<max_buff_size<<std::endl;
+    cl::Buffer* workspace_buffer = new cl::Buffer(MHO_OpenCLInterface::GetInstance()->GetContext(),
+                                       CL_MEM_READ_WRITE,
+                                       total_size * sizeof(CL_TYPE2));
+
+    std::cout<<"total size = "<<total_size<<std::endl;
+
+    CL_ERROR_TRY
     //buffer_ext->WriteDimensionBuffer();
     fFFTKernel->setArg(1, *( buffer_ext->GetDimensionBuffer() ) );
-    //CL_ERROR_CATCH
+    CL_ERROR_CATCH
 
-    //CL_ERROR_TRY
+    CL_ERROR_TRY
     fFFTKernel->setArg(4, *( buffer_ext->GetDataBuffer() ) );
-    //CL_ERROR_CATCH
+    CL_ERROR_CATCH
+
+    fFFTKernel->setArg(5, *(workspace_buffer) );
 
     //determine the largest global worksize
     fMaxNWorkItems = 0;
@@ -179,23 +191,23 @@ int main(int /*argc*/, char** /*argv*/)
 
         //set the arguments which are updated at each stage
         fFFTKernel->setArg(0, D);
-        //CL_ERROR_TRY
+        CL_ERROR_TRY
         fFFTKernel->setArg(2, *( fTwiddle[D].AsExtension< MHO_OpenCLNDArrayBuffer< twiddle_type > >()->GetDataBuffer() ) );
-        //CL_ERROR_CATCH
+        CL_ERROR_CATCH
         //std::cout<<"flag2"<<std::endl;
-        //CL_ERROR_TRY
+        CL_ERROR_TRY
         fFFTKernel->setArg(3, *( fPerm[D].AsExtension< MHO_OpenCLNDArrayBuffer< permutation_array_type > >()->GetDataBuffer() ) );
-        //CL_ERROR_CATCH
+        CL_ERROR_CATCH
         //std::cout<<"flag3"<<std::endl;
         //std::cout<<"flag4"<<std::endl;
 
         //now enqueue the kernel
-        //CL_ERROR_TRY
+        CL_ERROR_TRY
         MHO_OpenCLInterface::GetInstance()->GetQueue().enqueueNDRangeKernel(*fFFTKernel,
                                                                          cl::NullRange,
                                                                          global,
                                                                          local);
-        //CL_ERROR_CATCH
+        CL_ERROR_CATCH
 
 
         // std::cout<<"----------"<<std::endl;
