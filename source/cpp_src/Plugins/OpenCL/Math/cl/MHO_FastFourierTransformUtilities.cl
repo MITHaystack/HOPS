@@ -5,6 +5,32 @@
 #include "MHO_ComplexUtils.cl"
 #include "MHO_BitReversalPermutation.cl"
 
+////////////////////////////////////////////////////////////////////////////////
+unsigned int CalculateWorkItemInfo(unsigned int NDIM, //total number of dimensions
+                                   unsigned int D, //selected dimension
+                                   unsigned int* dim, //size of array in each dimension 
+                                   unsigned int* non_active_dimension_index, //index selected in each non-active dimension
+                                   unsigned int* non_active_dimension_size) //sizes of each non-active dimension
+
+{
+    //figure out the total number of 1-D FFTs to perform along this (active) axis
+    unsigned int n_fft = 1;
+    unsigned int count = 0;
+    for(unsigned int i = 0; i < NDIM; i++)
+    {
+        if(i != D)
+        {
+            n_fft *= dim[i];
+            non_active_dimension_index[count] = i;
+            non_active_dimension_size[count] = dim[i];
+            count++;
+        }
+    }
+    //returns the total number of FFTs that need to be performed
+    return n_fft;
+}
+
+
 
 ////////////////////////////////////////////////////////////////////////
 //RADIX-2
