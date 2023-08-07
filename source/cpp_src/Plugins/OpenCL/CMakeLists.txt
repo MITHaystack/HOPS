@@ -132,7 +132,9 @@ if (HOPS_USE_OPENCL)
         ${CMAKE_CURRENT_SOURCE_DIR}/Math/cl/MHO_FastFourierTransformUtilities.cl
         #
         ${CMAKE_CURRENT_SOURCE_DIR}/Operators/cl/MHO_VectorScale_kernel.cl
-        ${CMAKE_CURRENT_SOURCE_DIR}/Operators/cl/MHO_MultidimensionalFastFourierTransform_kernel.cl
+        ${CMAKE_CURRENT_SOURCE_DIR}/Operators/cl/MHO_MultidimensionalFastFourierTransformStrided_kernel.cl
+        ${CMAKE_CURRENT_SOURCE_DIR}/Operators/cl/MHO_MultidimensionalFastFourierTransformPrivate_kernel.cl
+        ${CMAKE_CURRENT_SOURCE_DIR}/Operators/cl/MHO_MultidimensionalFastFourierTransformWorkspace_kernel.cl
     )
 
     install ( FILES ${OPENCLPLUGIN_CLFILES}  DESTINATION ${OPENCL_KERNEL_INSTALL_DIR} )

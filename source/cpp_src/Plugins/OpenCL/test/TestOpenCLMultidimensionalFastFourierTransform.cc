@@ -43,7 +43,7 @@ void ConstructOpenCLKernels()
     std::cout<<"building opencl kernels"<<std::endl;
     //Get name of kernel source file
     std::stringstream clFile;
-    clFile << MHO_OpenCLInterface::GetInstance()->GetKernelPath() << "/MHO_MultidimensionalFastFourierTransform_kernel.cl";
+    clFile << MHO_OpenCLInterface::GetInstance()->GetKernelPath() << "/MHO_MultidimensionalFastFourierTransformStrided_kernel.cl";
 
     //set the build options
     std::stringstream options;
