@@ -15,13 +15,17 @@ MultidimensionalFastFourierTransform_Radix2Stage(
     __global const unsigned int* array_dimensions, //sizes of the array in each dimension
     __constant const CL_TYPE2* twiddle, //fft twiddle factors
     __constant const unsigned int* permutation_array, //bit reversal permutation indices
-    __global CL_TYPE2* data // the data to be transformed (in-place)
+    __global CL_TYPE2* data, // the data to be transformed
+    __global CL_TYPE2* workspace // workspace 
 )
 {
     //get the index of the current thread
     unsigned int i_global = get_global_id(0);
+    unsigned int i_local;
 
-    __private CL_TYPE2 buffer[4096];
+    //__global CL_TYPE2* buffer = &(workspace[i_global*array_dimensions[D]]);
+
+    //__private CL_TYPE2 buffer[4096];
 
     //assign a private variable the array dimensions
     unsigned int dim[FFT_NDIM];
@@ -66,22 +70,24 @@ MultidimensionalFastFourierTransform_Radix2Stage(
         unsigned int stride = StrideFromRowMajorIndex(FFT_NDIM, D, dim); //stride for this axis
         chunk = &( data[data_location] );
 
-        for(unsigned int i=0; i<dim[D]; i++)
-        {
-            buffer[i] = chunk[i*stride];
-        }
+        // for(unsigned int i=0; i<dim[D]; i++)
+        // {
+        //     buffer[i] = chunk[i*stride];
+        // }
 
-        PermuteArray(dim[D], permutation_array, buffer);
-        FFTRadixTwo_DIT(dim[D], twiddle, buffer);
+        PermuteArrayStrided(dim[D], stride, permutation_array, chunk);
+        FFTRadixTwo_DITStrided(dim[D], stride, twiddle, chunk);
+
+        // PermuteArray(dim[D], permutation_array, buffer);
+        // FFTRadixTwo_DIT(dim[D], twiddle, buffer);
 
         // FFTRadixTwo_DIF(dim[D], twiddle, buffer);
         // PermuteArray(dim[D], permutation_array, buffer);
 
-        for(unsigned int i=0; i<dim[D]; i++)
-        {
-            chunk[i*stride] = buffer[i]; 
-        }
-
+        // for(unsigned int i=0; i<dim[D]; i++)
+        // {
+        //     chunk[i*stride] = buffer[i]; 
+        // }
 
     }
 }
