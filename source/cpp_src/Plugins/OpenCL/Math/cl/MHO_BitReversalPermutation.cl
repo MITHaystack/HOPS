@@ -28,7 +28,7 @@ TwoToThePowerOf(unsigned int N)
 
 
 void 
-PermuteArrayNoBranch(unsigned int N, unsigned int stride, __constant const unsigned int* permutation_index_arr, __global CL_TYPE2* arr)
+PermuteArrayNoBranch(unsigned int N, unsigned int stride, const unsigned int* permutation_index_arr, __global CL_TYPE2* arr)
 {
     CL_TYPE2 a,b;
     //expects an array of size N
@@ -59,7 +59,7 @@ PermuteArrayNoBranch(unsigned int N, unsigned int stride, __constant const unsig
 
 
 void 
-PermuteArrayStrided(unsigned int N, unsigned int stride, __constant const unsigned int* permutation_index_arr, CL_TYPE2* arr)
+PermuteArrayStrided(unsigned int N, unsigned int stride, const unsigned int* permutation_index_arr, CL_TYPE2* arr)
 {
     CL_TYPE2 a,b;
     unsigned int x,y;
@@ -81,7 +81,7 @@ PermuteArrayStrided(unsigned int N, unsigned int stride, __constant const unsign
 
 
 void 
-PermuteArray(unsigned int N, __constant const unsigned int* permutation_index_arr, CL_TYPE2* arr)
+PermuteArray(unsigned int N, const unsigned int* permutation_index_arr, CL_TYPE2* arr)
 {
     CL_TYPE2 a,b;
     for(unsigned int i=0; i<N; i++)

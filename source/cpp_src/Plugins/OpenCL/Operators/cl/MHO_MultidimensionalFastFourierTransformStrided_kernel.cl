@@ -13,45 +13,43 @@ __kernel void
 MultidimensionalFastFourierTransform_Radix2Stage(
     unsigned int D, //d = 0, 1, ...FFT_NDIM-1 specifies the dimension/axis selected to be transformed
     __global const unsigned int* dim, //sizes of the array in each dimension
-    __constant const CL_TYPE2* twiddle, //fft twiddle factors
-    __constant const unsigned int* permutation_array, //bit reversal permutation indices
-    __global CL_TYPE2* data, // the data to be transformed
-    __global CL_TYPE2* workspace // workspace 
+    __global const CL_TYPE2* twiddle, //fft twiddle factors
+    __global const unsigned int* permutation_array, //bit reversal permutation indices
+    __global CL_TYPE2* data // the data to be transformed
 )
 {
-    //get the index of the current work thread
-    unsigned int i_global = get_global_id(0);
+    //get the index of the current work item in the global list 
+    unsigned int offset = get_global_id(0);
+
+    //pointer to the work-item's data chunk
+    __global CL_TYPE2* chunk;
 
     //workspace for index calculations
     unsigned int index[FFT_NDIM];
     unsigned int div_space[FFT_NDIM-1];
-    unsigned int non_active_dimension_size[FFT_NDIM-1];
-    unsigned int non_active_dimension_value[FFT_NDIM-1];
-    unsigned int non_active_dimension_index[FFT_NDIM-1];
+    unsigned int na_dimension_size[FFT_NDIM-1];
+    unsigned int na_dimension_value[FFT_NDIM-1];
+    unsigned int na_dimension_index[FFT_NDIM-1];
 
-    //figure out the total number of 1-D FFTs to perform along this axis
-    unsigned int n_fft;
-    n_fft = CalculateWorkItemInfo(FFT_NDIM, D, dim, non_active_dimension_index, non_active_dimension_size);
+    //figure out the total number of 1-D FFTs to perform and the stride along this axis
+    unsigned int n_fft, stride, data_location;
+    n_fft = CalculateWorkItemInfo(FFT_NDIM, D, dim, na_dimension_index, na_dimension_size);
+    stride = StrideFromRowMajorIndex(FFT_NDIM, D, dim);
 
-    //figure out which chunk of the data this thread is responsible
-    unsigned int offset = i_global;
-    __global CL_TYPE2* chunk;
+    //invert our place in list to obtain indices of the block in the global data array
+    RowMajorIndexFromOffset(FFT_NDIM-1, offset, na_dimension_size, na_dimension_value, div_space);
+    index[D] = 0; //for the current selected dimension, the index value is always zero
+    for(unsigned int i=0; i<FFT_NDIM-1; i++)
+    {
+        //copy the value of the non-active dimensions in to the index array
+        index[ na_dimension_index[i] ] = na_dimension_value[i]; 
+    }
+    //calculate the offset to the start of the work-item's data
+    data_location = OffsetFromRowMajorIndex(FFT_NDIM, dim, index);
+    chunk = &( data[data_location] );
+
     if(offset < n_fft) //thread id must be less than total number of 1d fft's
     {
-        //invert place in list to obtain indices of block in array
-        RowMajorIndexFromOffset(FFT_NDIM-1, offset, non_active_dimension_size, non_active_dimension_value, div_space);
-        
-        //copy the value of the non-active dimensions in to the index array
-        for(unsigned int i=0; i<FFT_NDIM-1; i++)
-        {
-            index[ non_active_dimension_index[i] ] = non_active_dimension_value[i];
-        }
-        index[D] = 0; //for the selected dimension, index value is zero
-
-        unsigned int data_location = OffsetFromRowMajorIndex(FFT_NDIM, dim, index);
-        unsigned int stride = StrideFromRowMajorIndex(FFT_NDIM, D, dim); //stride for this axis
-        chunk = &( data[data_location] );
-
         PermuteArrayStrided(dim[D], stride, permutation_array, chunk);
         FFTRadixTwo_DITStrided(dim[D], stride, twiddle, chunk);
     }
