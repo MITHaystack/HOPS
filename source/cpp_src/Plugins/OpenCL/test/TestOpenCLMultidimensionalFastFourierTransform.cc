@@ -50,6 +50,7 @@ void ConstructOpenCLKernels()
     //create the build flags
     std::stringstream ss;
     ss << " -D FFT_NDIM=" << NDIM;
+    //ss << " -cl-std=CL2.0 ";
     ss << " -I " << MHO_OpenCLInterface::GetInstance()->GetKernelPath();
 
     options << ss.str();
@@ -78,10 +79,16 @@ int main(int /*argc*/, char** /*argv*/)
     // dim[0] = 1024; //x
     // dim[1] = 1024; //y
     // dim[2] = 128; //z
+    // 
+    // dim[0] = 32; //128; //x
+    // dim[1] = 1024; //128; //y
+    // dim[2] = 1024; //128; //z
 
-    dim[0] = 32; //128; //x
-    dim[1] = 1024; //128; //y
-    dim[2] = 1024; //128; //z
+    
+    dim[0] = 4096; //x
+    dim[1] = 32; //y
+    dim[2] = 128; //z
+
 
     test_table_type* test = new test_table_type(dim);
     test_table_type* test2 = new test_table_type(dim);
@@ -147,11 +154,11 @@ int main(int /*argc*/, char** /*argv*/)
     }
 
     //create a workspace buffer 
-    unsigned int max_buff_size = 32*fNLocal*max_dim;
-    std::cout<<"max_buff_size = "<<max_buff_size<<std::endl;
-    cl::Buffer* workspace_buffer = new cl::Buffer(MHO_OpenCLInterface::GetInstance()->GetContext(),
-                                       CL_MEM_READ_WRITE,
-                                       total_size * sizeof(CL_TYPE2));
+    // unsigned int max_buff_size = 32*fNLocal*max_dim;
+    // std::cout<<"max_buff_size = "<<max_buff_size<<std::endl;
+    // cl::Buffer* workspace_buffer = new cl::Buffer(MHO_OpenCLInterface::GetInstance()->GetContext(),
+    //                                    CL_MEM_READ_WRITE,
+    //                                    total_size * sizeof(CL_TYPE2));
 
     std::cout<<"total size = "<<total_size<<std::endl;
 
@@ -164,7 +171,7 @@ int main(int /*argc*/, char** /*argv*/)
     fFFTKernel->setArg(4, *( buffer_ext->GetDataBuffer() ) );
     CL_ERROR_CATCH
 
-    fFFTKernel->setArg(5, *(workspace_buffer) );
+    // fFFTKernel->setArg(5, *(workspace_buffer) );
 
     //determine the largest global worksize
     fMaxNWorkItems = 0;
@@ -216,17 +223,14 @@ int main(int /*argc*/, char** /*argv*/)
 
     }
 
-    //force it to finish
-    MHO_OpenCLInterface::GetInstance()->GetQueue().finish();
-
-    timer.Stop();
-    double gpu_runtime = timer.GetDurationAsDouble();
-    std::cout<<"GPU time = "<<gpu_runtime<<std::endl;
-
     //get the results (move this out of loop)
     buffer_ext->ReadDataBuffer();
     MHO_OpenCLInterface::GetInstance()->GetQueue().finish();
 
+    
+    timer.Stop();
+    double gpu_runtime = timer.GetDurationAsDouble();
+    std::cout<<"GPU time = "<<gpu_runtime<<std::endl;
 
     //now do an FFT on the CPU to check we get the same thing
     auto fft_engine = new MHO_MultidimensionalFastFourierTransformFFTW< test_table_type >();

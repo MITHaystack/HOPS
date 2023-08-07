@@ -58,20 +58,24 @@ MultidimensionalFastFourierTransform_PrivateRadix2Stage(
 
     //figure out which chunk of the data this thread is responsible
     unsigned int offset = i_global;
+    unsigned int data_location = offset;
+    if(stride == 1){data_location *= dim[D];}
+
+
     if(offset < n_fft) //thread id must be less than total number of 1d fft's
     {
-        //invert place in list to obtain indices of block in array
-        RowMajorIndexFromOffset(FFT_NDIM-1, offset, non_active_dimension_size, non_active_dimension_value, div_space);
-        
-        //copy the value of the non-active dimensions in to the index array
-        for(unsigned int i=0; i<FFT_NDIM-1; i++)
-        {
-            index[ non_active_dimension_index[i] ] = non_active_dimension_value[i];
-        }
-        index[D] = 0; //for the selected dimension, index value is zero
-
-        unsigned int data_location = OffsetFromRowMajorIndex(FFT_NDIM, dim, index);
-        unsigned int stride = StrideFromRowMajorIndex(FFT_NDIM, D, dim); //stride for this axis
+        // //invert place in list to obtain indices of block in array
+        // RowMajorIndexFromOffset(FFT_NDIM-1, offset, non_active_dimension_size, non_active_dimension_value, div_space);
+        // 
+        // //copy the value of the non-active dimensions in to the index array
+        // for(unsigned int i=0; i<FFT_NDIM-1; i++)
+        // {
+        //     index[ non_active_dimension_index[i] ] = non_active_dimension_value[i];
+        // }
+        // index[D] = 0; //for the selected dimension, index value is zero
+        // 
+        // unsigned int data_location = OffsetFromRowMajorIndex(FFT_NDIM, dim, index);
+        // unsigned int stride = StrideFromRowMajorIndex(FFT_NDIM, D, dim); //stride for this axis
 
         chunk = &( data[data_location] );
 

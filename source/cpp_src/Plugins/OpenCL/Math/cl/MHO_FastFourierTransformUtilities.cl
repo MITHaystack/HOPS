@@ -30,11 +30,9 @@ unsigned int CalculateWorkItemInfo(unsigned int NDIM, //total number of dimensio
     return n_fft;
 }
 
-
-
 ////////////////////////////////////////////////////////////////////////
 //RADIX-2
-void FFTRadixTwo_DITStrided(unsigned int N, unsigned int stride, __constant const CL_TYPE2* twiddle, CL_TYPE2* data)
+void FFTRadixTwo_DITStrided(unsigned int N, unsigned int stride, const CL_TYPE2* twiddle, CL_TYPE2* data)
 {
     //temporary workspace
     CL_TYPE2 H0;
@@ -70,7 +68,9 @@ void FFTRadixTwo_DITStrided(unsigned int N, unsigned int stride, __constant cons
                 H0 = data[x];
                 H1 = data[y];
                 W = twiddle[n_butterfly_groups*k];
-                
+                // W.s0 = cos(2.0*M_PI*(double)(n_butterfly_groups*k)/(double) N);
+                // W.s1 = sin(2.0*M_PI*(double)(n_butterfly_groups*k)/(double) N);
+
                 //here we use the Cooly-Tukey butterfly
                 //multiply H1 by twiddle factor to get W*H1, store temporary workspace Z
                 Z = ComplexMultiply(H1, W);
@@ -90,7 +90,7 @@ void FFTRadixTwo_DITStrided(unsigned int N, unsigned int stride, __constant cons
 
 //RADIX-2 DIF
 void 
-FFTRadixTwo_DIFStrided(unsigned int N, unsigned int stride, __constant const CL_TYPE2* twiddle, CL_TYPE2* data)
+FFTRadixTwo_DIFStrided(unsigned int N, unsigned int stride, const CL_TYPE2* twiddle, CL_TYPE2* data)
 {
     //temporary workspace
     CL_TYPE2 H0;
@@ -140,7 +140,7 @@ FFTRadixTwo_DIFStrided(unsigned int N, unsigned int stride, __constant const CL_
 
 ////////////////////////////////////////////////////////////////////////
 //RADIX-2
-void FFTRadixTwo_DIT(unsigned int N, __constant const CL_TYPE2* twiddle, CL_TYPE2* data)
+void FFTRadixTwo_DIT(unsigned int N, const CL_TYPE2* twiddle, CL_TYPE2* data)
 {
     //temporary workspace
     CL_TYPE2 H0;
@@ -176,7 +176,9 @@ void FFTRadixTwo_DIT(unsigned int N, __constant const CL_TYPE2* twiddle, CL_TYPE
                 H0 = data[x];
                 H1 = data[y];
                 W = twiddle[n_butterfly_groups*k];
-                
+                // W.s0 = cos(2.0*M_PI*(double)(n_butterfly_groups*k)/(double) N);
+                // W.s1 = sin(2.0*M_PI*(double)(n_butterfly_groups*k)/(double) N);
+
                 //here we use the Cooly-Tukey butterfly
                 //multiply H1 by twiddle factor to get W*H1, store temporary workspace Z
                 Z = ComplexMultiply(H1, W);
@@ -196,7 +198,7 @@ void FFTRadixTwo_DIT(unsigned int N, __constant const CL_TYPE2* twiddle, CL_TYPE
 
 //RADIX-2 DIF
 void 
-FFTRadixTwo_DIF(unsigned int N, __constant const CL_TYPE2* twiddle, CL_TYPE2* data)
+FFTRadixTwo_DIF(unsigned int N, const CL_TYPE2* twiddle, CL_TYPE2* data)
 {
     //temporary workspace
     CL_TYPE2 H0;
