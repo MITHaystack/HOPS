@@ -26,6 +26,17 @@ TwoToThePowerOf(unsigned int N)
     return (val << N);
 }
 
+unsigned int 
+ReverseIndexBits(unsigned int nbits, unsigned int x)
+{
+    unsigned int val = 0;
+    for (unsigned int i = 0; i < nbits; i++)
+    {
+        val |= ( ( 1 & ((x & (1 << i)) >> i) ) << ( (nbits - 1) - i) );
+    }
+    return val;
+}
+
 
 void 
 PermuteArrayNoBranch(unsigned int N, unsigned int stride, const unsigned int* permutation_index_arr, __global CL_TYPE2* arr)
@@ -59,7 +70,7 @@ PermuteArrayNoBranch(unsigned int N, unsigned int stride, const unsigned int* pe
 
 
 void 
-PermuteArrayStrided(unsigned int N, unsigned int stride, const unsigned int* permutation_index_arr, CL_TYPE2* arr)
+PermuteArrayStridedCached(unsigned int N, unsigned int stride, const unsigned int* permutation_index_arr, CL_TYPE2* arr)
 {
     CL_TYPE2 a,b;
     unsigned int x,y;
@@ -81,7 +92,7 @@ PermuteArrayStrided(unsigned int N, unsigned int stride, const unsigned int* per
 
 
 void 
-PermuteArray(unsigned int N, const unsigned int* permutation_index_arr, CL_TYPE2* arr)
+PermuteArrayCached(unsigned int N, const unsigned int* permutation_index_arr, CL_TYPE2* arr)
 {
     CL_TYPE2 a,b;
     for(unsigned int i=0; i<N; i++)
@@ -98,7 +109,27 @@ PermuteArray(unsigned int N, const unsigned int* permutation_index_arr, CL_TYPE2
     }
 }
 
-
+void 
+PermuteArrayStrided(unsigned int N, unsigned int stride, CL_TYPE2* arr)
+{
+    unsigned int log2N = LogBaseTwo(N);
+    unsigned int x,y;
+    CL_TYPE2 a,b;
+    for(unsigned int i=0; i<N; i++)
+    {
+        unsigned int perm = ReverseIndexBits(log2N,i);
+        if(i < perm )
+        {
+            //swap values
+            x = i*stride;
+            y = perm*stride;
+            a = arr[x];
+            b = arr[y];
+            arr[x] = b;
+            arr[y] = a;
+        }
+    }
+}
 
 
 

@@ -34,7 +34,6 @@ class MHO_FastFourierTransformUtilities
         ////////////////////////////////////////////////////////////////////////
         //compute all the twiddle factors e^{i*2*pi/N} for 0 to N-1
         static void ComputeTwiddleFactors(unsigned int N, std::complex< XFloatType >* twiddle);
-
         static void ComputeConjugateTwiddleFactors(unsigned int N, std::complex< XFloatType >* conj_twiddle)
         {
             //using std::cos and std::sin is more accurate than the recursive method
@@ -42,6 +41,21 @@ class MHO_FastFourierTransformUtilities
             ComputeTwiddleFactors(N, conj_twiddle);
             Conjugate(N, conj_twiddle);
         }
+
+
+        ////////////////////////////////////////////////////////////////////////
+        //compute only the twiddle factors we need to compute them on the fly 
+        //e.g e^{ix}, e^{2ix}, e^{4ix}, e^{8ix}, etc up to e^{Nix} )
+        //that way we only need log2N storage
+        static void ComputeTwiddleFactorBasis(unsigned int log2N, std::complex< XFloatType >* twiddle);
+        
+        static void ComputeConjugateTwiddleFactorBasis(unsigned int log2N, std::complex< XFloatType >* conj_twiddle)
+        {
+            ComputeTwiddleFactors(log2N, conj_twiddle);
+            Conjugate(log2N, conj_twiddle);
+        }
+
+
         ////////////////////////////////////////////////////////////////////////
 
         ////////////////////////////////////////////////////////////////////////
@@ -366,6 +380,56 @@ MHO_FastFourierTransformUtilities<long double>::ComputeTwiddleFactors(unsigned i
     }
 }
 
+////////////////////////////////////////////////////////////////////////////////
+
+//template specializations for float, double, and long double
+
+template<>
+inline void
+MHO_FastFourierTransformUtilities<float>::ComputeTwiddleFactorBasis(unsigned int log2N, std::complex< float >* twiddle)
+{
+    float dN, di;
+    dN = MHO_BitReversalPermutation::TwoToThePowerOf(log2N);
+    di = 1;
+    for(std::size_t i=0; i<log2N;i++)
+    {
+        twiddle[i] = std::complex<float>(std::cos((2.0*M_PI*di)/dN), std::sin((2.0*M_PI*di)/dN));
+        di *= 2;
+    }
+}
+
+
+template<>
+inline void
+MHO_FastFourierTransformUtilities<double>::ComputeTwiddleFactorBasis(unsigned int log2N, std::complex< double >* twiddle)
+{
+    double dN, di;
+    dN = MHO_BitReversalPermutation::TwoToThePowerOf(log2N);
+    di = 1;
+    for(std::size_t i=0; i<log2N;i++)
+    {
+        twiddle[i] = std::complex<double>(std::cos((2.0*M_PI*di)/dN), std::sin((2.0*M_PI*di)/dN));
+        di *= 2;
+    }
+}
+
+
+template<>
+inline void
+MHO_FastFourierTransformUtilities<long double>::ComputeTwiddleFactorBasis(unsigned int log2N, std::complex< long double >* twiddle)
+{
+    long double dN, di;
+    dN = MHO_BitReversalPermutation::TwoToThePowerOf(log2N);
+    di = 1;
+    for(std::size_t i=0; i<log2N;i++)
+    {
+        twiddle[i] = std::complex<long double>(std::cos((2.0*M_PI*di)/dN), std::sin((2.0*M_PI*di)/dN));
+        di *= 2;
+    }
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
 
 template<>
 inline void

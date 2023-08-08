@@ -4,10 +4,12 @@ hops_internal_include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../include)
 set (HOPS_TEST_LIBS MHO_Message MHO_Math)
 
 set(SOURCE_BASENAMES
+    TestBitReversal
     TestFastFourierTransform
     TestSignalGenerators
     TestUniformGridCalculator
     TestFastFourierTransform2
+    TestTwiddleFactors
 )
 
 if(HOPS_USE_FFTW3)

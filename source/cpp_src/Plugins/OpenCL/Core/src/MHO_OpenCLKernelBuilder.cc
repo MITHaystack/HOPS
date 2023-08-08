@@ -61,6 +61,13 @@ cl::Kernel* MHO_OpenCLKernelBuilder::BuildKernel(std::string SourceFileName, std
         std::cout<<s.str()<<std::endl;
         std::exit(1);
     }
+    
+    std::stringstream tmp;
+    tmp<<"Build Status: "<<program.getBuildInfo<CL_PROGRAM_BUILD_STATUS>(MHO_OpenCLInterface::GetInstance()->GetDevice())<<std::endl;
+    tmp<<"Build Options:\t"<<program.getBuildInfo<CL_PROGRAM_BUILD_OPTIONS>(MHO_OpenCLInterface::GetInstance()->GetDevice())<<std::endl;
+    tmp<<"Build Log:\t "<<program.getBuildInfo<CL_PROGRAM_BUILD_LOG>(MHO_OpenCLInterface::GetInstance()->GetDevice())<<std::endl;
+    std::cout<<tmp.str()<<std::endl;
+    
 
     #ifdef DEBUG_OPENCL_COMPILER_OUTPUT
     std::stringstream s;
