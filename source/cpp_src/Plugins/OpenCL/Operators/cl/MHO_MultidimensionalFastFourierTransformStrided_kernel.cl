@@ -10,7 +10,7 @@
 //FFT_NDIM
 
 __kernel void
-MultidimensionalFastFourierTransform_Radix2Stage(
+MultidimensionalFastFourierTransformStrided_Radix2Stage(
     unsigned int D, //d = 0, 1, ...FFT_NDIM-1 specifies the dimension/axis selected to be transformed
     __global const unsigned int* dim, //sizes of the array in each dimension
     __global const CL_TYPE2* twiddle, //fft twiddle factors
@@ -32,11 +32,12 @@ MultidimensionalFastFourierTransform_Radix2Stage(
     unsigned int na_dimension_index[FFT_NDIM-1];
 
     //figure out the total number of 1-D FFTs to perform and the stride along this axis
+    //as well as the coordinates of this work item in the non-active dimensions
     unsigned int n_fft, stride, data_location;
     n_fft = CalculateWorkItemInfo(FFT_NDIM, D, dim, na_dimension_index, na_dimension_size);
     stride = StrideFromRowMajorIndex(FFT_NDIM, D, dim);
 
-    //invert our place in list to obtain indices of the block in the global data array
+    //invert our location in work-item list to obtain indices of the block start in the global data array
     RowMajorIndexFromOffset(FFT_NDIM-1, offset, na_dimension_size, na_dimension_value, div_space);
     index[D] = 0; //for the current selected dimension, the index value is always zero
     for(unsigned int i=0; i<FFT_NDIM-1; i++)
@@ -44,12 +45,13 @@ MultidimensionalFastFourierTransform_Radix2Stage(
         //copy the value of the non-active dimensions in to the index array
         index[ na_dimension_index[i] ] = na_dimension_value[i]; 
     }
-    //calculate the offset to the start of the work-item's data
+    //calculate the total memory offset to the start of the work-item's data block
     data_location = OffsetFromRowMajorIndex(FFT_NDIM, dim, index);
     chunk = &( data[data_location] );
 
     if(offset < n_fft) //thread id must be less than total number of 1d fft's
     {
+        //perform the strided FFT in-place
         PermuteArrayStrided(dim[D], stride, permutation_array, chunk);
         FFTRadixTwo_DITStrided(dim[D], stride, twiddle, chunk);
     }
