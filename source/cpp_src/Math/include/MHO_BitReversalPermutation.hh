@@ -22,6 +22,7 @@ class MHO_BitReversalPermutation
         static unsigned int TwoToThePowerOf(unsigned int N); //N must be >= 0 and <=31
         static unsigned int LogBaseTwo(unsigned int N);
         static unsigned int NextLowestPowerOfTwo(unsigned int N);
+        static unsigned int ReverseIndexBits(unsigned int nbits, unsigned int x);
 
         static bool IsPowerOfBase(unsigned int N, unsigned int B);
         static unsigned int RaiseBaseToThePower(unsigned int B, unsigned int N); //N must be >= 0

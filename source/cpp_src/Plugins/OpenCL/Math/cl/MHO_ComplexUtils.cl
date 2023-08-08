@@ -19,6 +19,16 @@ inline CL_TYPE2 ComplexConjugate(CL_TYPE2 x)
     return z;
 }
 
+//conjugate is applied to the second argument 
+inline CL_TYPE2 ConjugateComplexMultiply(CL_TYPE2 x, CL_TYPE2 y)
+{
+    CL_TYPE2 z;
+    z.s0 = x.s0*y.s0 + x.s1*y.s1;
+    z.s1 = x.s1*y.s0 - x.s0*y.s1;
+    return z;
+}
+
+
 //strided, conjugate array
 void Conjugate(unsigned int N, unsigned int stride, CL_TYPE2* array)
 {

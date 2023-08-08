@@ -56,7 +56,7 @@ void ConstructOpenCLKernels()
     options << ss.str();
 
     MHO_OpenCLKernelBuilder k_builder;
-    fFFTKernel = k_builder.BuildKernel(clFile.str(), std::string("MultidimensionalFastFourierTransform_Radix2Stage"), options.str());
+    fFFTKernel = k_builder.BuildKernel(clFile.str(), std::string("MultidimensionalFastFourierTransformStrided_Radix2Stage"), options.str());
 
     //get n-local
     fNLocal = fFFTKernel->getWorkGroupInfo<CL_KERNEL_WORK_GROUP_SIZE>(MHO_OpenCLInterface::GetInstance()->GetDevice());
@@ -148,9 +148,9 @@ int main(int /*argc*/, char** /*argv*/)
         auto twid_ext = fTwiddle[i].MakeExtension< MHO_OpenCLNDArrayBuffer< twiddle_type > >();
         twid_ext->ConstructDataBuffer();
         twid_ext->WriteDataBuffer();
-        auto perm_ext = fPerm[i].MakeExtension< MHO_OpenCLNDArrayBuffer< permutation_array_type > >();
-        perm_ext->ConstructDataBuffer();
-        perm_ext->WriteDataBuffer();
+        // auto perm_ext = fPerm[i].MakeExtension< MHO_OpenCLNDArrayBuffer< permutation_array_type > >();
+        // perm_ext->ConstructDataBuffer();
+        // perm_ext->WriteDataBuffer();
     }
 
     //create a workspace buffer 
@@ -168,7 +168,7 @@ int main(int /*argc*/, char** /*argv*/)
     CL_ERROR_CATCH
 
     CL_ERROR_TRY
-    fFFTKernel->setArg(4, *( buffer_ext->GetDataBuffer() ) );
+    fFFTKernel->setArg(3, *( buffer_ext->GetDataBuffer() ) );
     CL_ERROR_CATCH
 
     // fFFTKernel->setArg(5, *(workspace_buffer) );
@@ -203,9 +203,9 @@ int main(int /*argc*/, char** /*argv*/)
         fFFTKernel->setArg(2, *( fTwiddle[D].AsExtension< MHO_OpenCLNDArrayBuffer< twiddle_type > >()->GetDataBuffer() ) );
         CL_ERROR_CATCH
         //std::cout<<"flag2"<<std::endl;
-        CL_ERROR_TRY
-        fFFTKernel->setArg(3, *( fPerm[D].AsExtension< MHO_OpenCLNDArrayBuffer< permutation_array_type > >()->GetDataBuffer() ) );
-        CL_ERROR_CATCH
+        // CL_ERROR_TRY
+        // fFFTKernel->setArg(3, *( fPerm[D].AsExtension< MHO_OpenCLNDArrayBuffer< permutation_array_type > >()->GetDataBuffer() ) );
+        // CL_ERROR_CATCH
         //std::cout<<"flag3"<<std::endl;
         //std::cout<<"flag4"<<std::endl;
 

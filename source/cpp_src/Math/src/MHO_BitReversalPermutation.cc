@@ -1,4 +1,5 @@
 #include <cstddef>
+#include <bitset>
 
 #include "MHO_Message.hh"
 #include "MHO_BitReversalPermutation.hh"
@@ -45,6 +46,18 @@ MHO_BitReversalPermutation::NextLowestPowerOfTwo(unsigned int N)
     }
 }
 
+//takes the input value x, and the number of bits, and returns 
+//the number which is composed of the bits of x in reverse order
+unsigned int 
+MHO_BitReversalPermutation::ReverseIndexBits(unsigned int nbits, unsigned int x)
+{
+    unsigned int val = 0;
+    for (unsigned int i = 0; i < nbits; i++)
+    {
+        val |= ( ( 1 & ((x & (1 << i)) >> i) ) << ( (nbits - 1) - i) );
+    }
+    return val;
+}
 
 bool MHO_BitReversalPermutation::IsPowerOfBase(unsigned int N, unsigned int B)
 {
@@ -99,8 +112,6 @@ MHO_BitReversalPermutation::ComputeBitReversedIndicesBaseTwo(unsigned int N, uns
     //this is slow but simple
     //for details see
     //Fast Fourier Transforms by James S. Walker, CRC Press
-
-
     if( IsPowerOfTwo(N) && N != 0)
     {
         unsigned int p = LogBaseTwo(N);
@@ -131,10 +142,6 @@ MHO_BitReversalPermutation::ComputeBitReversedIndicesBaseTwo(unsigned int N, uns
                 index_arr[q + mid] = index_arr[q] + 1;
             }
         }
-    }
-    else
-    {
-        msg_error("math", "MHO_BitReversalPermutation::ComputeBitReversedIndices: called with non-power of two array size."<< eom );
     }
 }
 
