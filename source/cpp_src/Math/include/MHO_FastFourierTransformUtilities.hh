@@ -468,7 +468,7 @@ MHO_FastFourierTransformUtilities<double>::ComputeBluesteinScaleFactors(unsigned
     {
         i2 = i*i % (2*N); //taking the modulus here results in a more accurate DFT/IDFT
         x = theta*i2;
-        scale[i] = std::complex<double>( cosl(x), sin(x) );
+        scale[i] = std::complex<double>( cos(x), sin(x) );
     }
 
     //IMPORTANT NOTE!
