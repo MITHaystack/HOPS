@@ -13,17 +13,19 @@ __kernel void
 MultidimensionalFastFourierTransformStrided_Radix2Stage(
     unsigned int D, //d = 0, 1, ...FFT_NDIM-1 specifies the dimension/axis selected to be transformed
     __global const unsigned int* dim_arr, //sizes of the array in each dimension
-    __global CL_TYPE2* data // the data to be transformed
+    __global CL_TYPE2* data, // the data to be transformed
+    __local CL_TYPE2* twiddle_scratch //scratch space for the twiddle factor basis
 )
 {    
     //get the index of the current work item in the global list 
     unsigned int offset = get_global_id(0);
+    unsigned int i_local = get_local_id(0);
+    unsigned int workgroup_size = get_local_size(0);
     unsigned int dim[FFT_NDIM];
     for(unsigned int i=0;i<FFT_NDIM; i++){dim[i] = dim_arr[i];}
     
-    //private space for the twiddle factor basis
-    __local CL_TYPE2 twiddle_basis_workspace[32*32];
-    __local CL_TYPE2* twiddle_basis = &(twiddle_basis_workspace[32*get_local_id(0)]);
+    //work-item specific space for the twiddle factor basis
+    __local CL_TYPE2* twiddle_basis = &(twiddle_scratch[workgroup_size*get_local_id(0)]);
     unsigned int log2N = LogBaseTwo(dim[D]);
     ComputeTwiddleFactorBasis(log2N, twiddle_basis);
 

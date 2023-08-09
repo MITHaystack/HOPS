@@ -20,6 +20,7 @@ using namespace hops;
 //#define FP_Type float  (can only be use if CL_TYPE is defined as float)
 
 #define NDIM 3
+#define MAX_NBITS 32
 typedef MHO_AxisPack< MHO_Axis<FP_Type>, MHO_Axis<FP_Type>, MHO_Axis<FP_Type> > axis_pack_test;
 typedef MHO_TableContainer< std::complex<FP_Type>, axis_pack_test > test_table_type;
 
@@ -104,6 +105,7 @@ int main(int /*argc*/, char** /*argv*/)
 
     fFFTKernel->setArg(1, *( buffer_ext->GetDimensionBuffer() ) );
     fFFTKernel->setArg(2, *( buffer_ext->GetDataBuffer() ) );
+    fFFTKernel->setArg(3, MAX_NBITS*fNLocal*sizeof(cl_double2), NULL);
 
     //determine the largest global worksize
     fMaxNWorkItems = 0;
