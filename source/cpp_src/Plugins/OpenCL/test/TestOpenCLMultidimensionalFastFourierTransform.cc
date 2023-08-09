@@ -16,9 +16,12 @@ using namespace hops;
 
 #define USE_FFTW
 
+#define FP_Type double
+//#define FP_Type float  (can only be use if CL_TYPE is defined as float)
+
 #define NDIM 3
-typedef MHO_AxisPack< MHO_Axis<double>, MHO_Axis<double>, MHO_Axis<double> > axis_pack_test;
-typedef MHO_TableContainer< std::complex<double>, axis_pack_test > test_table_type;
+typedef MHO_AxisPack< MHO_Axis<FP_Type>, MHO_Axis<FP_Type>, MHO_Axis<FP_Type> > axis_pack_test;
+typedef MHO_TableContainer< std::complex<FP_Type>, axis_pack_test > test_table_type;
 
 #ifdef USE_FFTW
 #include "MHO_MultidimensionalFastFourierTransformFFTW.hh"
@@ -81,8 +84,8 @@ int main(int /*argc*/, char** /*argv*/)
     //fill up the array with data 
     for(std::size_t i=0; i<total_size; i++)
     {
-        (*test)[i] = std::complex<double>(i % 5, i % 17); 
-        (*test2)[i] = std::complex<double>(i % 5, i % 17); 
+        (*test)[i] = std::complex<FP_Type>(i % 5, i % 17); 
+        (*test2)[i] = std::complex<FP_Type>(i % 5, i % 17); 
     }
 
     ConstructOpenCLKernels();
@@ -139,7 +142,7 @@ int main(int /*argc*/, char** /*argv*/)
     MHO_OpenCLInterface::GetInstance()->GetQueue().finish();
     
     timer.Stop();
-    double gpu_runtime = timer.GetDurationAsDouble();
+    FP_Type gpu_runtime = timer.GetDurationAsDouble();
     std::cout<<"GPU time = "<<gpu_runtime<<std::endl;
 
     //now do an FFT on the CPU to check we get the same thing
@@ -155,19 +158,18 @@ int main(int /*argc*/, char** /*argv*/)
     timer.Start();
     fft_engine->Execute();
     timer.Stop();
-    double cpu_runtime = timer.GetDurationAsDouble();
+    FP_Type cpu_runtime = timer.GetDurationAsDouble();
 
     std::cout<<"CPU time = "<<cpu_runtime<<std::endl;
-
     std::cout<<"speed up factor (should be >1) = "<<cpu_runtime/gpu_runtime<<std::endl;
 
     //compute the difference between the results
-    double delta = 0;
+    FP_Type delta = 0;
     for(std::size_t i=0; i<test->GetSize(); i++)
     {
         delta += std::abs( (*test)[i] - (*test2)[i] );
     }
-    std::cout<<"average delta = "<<delta/(double)total_size<<std::endl;
+    std::cout<<"average delta = "<<delta/(FP_Type)total_size<<std::endl;
 
 
     //clean up
