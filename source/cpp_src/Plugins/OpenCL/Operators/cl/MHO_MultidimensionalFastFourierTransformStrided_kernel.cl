@@ -13,8 +13,6 @@ __kernel void
 MultidimensionalFastFourierTransformStrided_Radix2Stage(
     unsigned int D, //d = 0, 1, ...FFT_NDIM-1 specifies the dimension/axis selected to be transformed
     __global const unsigned int* dim_arr, //sizes of the array in each dimension
-    __global const CL_TYPE2* twiddle, //fft twiddle factors
-    //__global const unsigned int* permutation_array, //bit reversal permutation indices
     __global CL_TYPE2* data // the data to be transformed
 )
 {    
@@ -61,7 +59,6 @@ MultidimensionalFastFourierTransformStrided_Radix2Stage(
     {
         //perform the strided FFT in-place
         PermuteArrayStrided(dim[D], stride, chunk);
-        //PermuteArrayStridedCached(dim[D], stride, permutation_array, chunk);
         FFTRadixTwo_DITStridedCached(dim[D], stride, twiddle_basis, chunk);
     }
 
