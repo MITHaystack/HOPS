@@ -44,7 +44,7 @@ mho_json convertToJSON(const type_203 &t) {
 
 mho_json convertChannelArrayToJSON(const type_203 &t) {
   int channel;
-  mho_json JSONChannels[NUMBEROFCHANNELS];
+  mho_json JSONChannels; //[NUMBEROFCHANNELS];
 
   for (channel = 0; channel < NUMBEROFCHANNELS; channel++) {
     JSONChannels[channel] = convertChannelToJSON(t.channels[channel]);

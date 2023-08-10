@@ -25,7 +25,7 @@ mho_json polarsToJSON(const polars &t) {
 
 mho_json ampPhaseArrayToJSON(const polars t[AMPPHASE]) {
   int i;
-  mho_json JSONArray[AMPPHASE];
+  mho_json JSONArray;//[AMPPHASE];
 
   for (i = 0; i < AMPPHASE; i++) {
     JSONArray[i] = polarsToJSON(t[i]);

@@ -32,7 +32,7 @@ mho_json newphasorToJSON(const newphasor &t) {
 
 mho_json dataToJSON(const newphasor t[DATASIZE]) {
   int i;
-  mho_json JSONArray[DATASIZE];
+  mho_json JSONArray;//[DATASIZE];
 
   for (i = 0; i < DATASIZE; i++) {
     JSONArray[i] = newphasorToJSON(t[i]);
