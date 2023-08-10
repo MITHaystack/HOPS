@@ -32,28 +32,10 @@ CL_TYPE2 ComputeTwiddleFactor(unsigned int log2N, unsigned int index, __local co
         bit *=2;
     }
     return val;
-    
-    //branch free has garbage performance!
-    // unsigned int bit = 1;
-    // CL_TYPE2 val, unit;
-    // unit.s0 = 1.0;
-    // unit.s1 = 0.0;
-    // val = unit;
-    // bool ok, nok;
-    // CL_TYPE dok, dnok;
-    // for(unsigned int i=0; i<log2N; i++)
-    // {
-    //     ok = (index & bit);
-    //     nok = !ok;
-    //     dok = ok;
-    //     dnok = nok;
-    //     val = ComplexMultiply(val, dok*basis[i] + dnok*unit);
-    //     bit *=2;
-    // }
-    // return val;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
+//calculates the number of 1d FFTs, and shape of work items
 unsigned int CalculateWorkItemInfo(unsigned int NDIM, //total number of dimensions
                                    unsigned int D, //selected dimension
                                    unsigned int* dim, //size of array in each dimension 
@@ -78,67 +60,10 @@ unsigned int CalculateWorkItemInfo(unsigned int NDIM, //total number of dimensio
     return n_fft;
 }
 
-////////////////////////////////////////////////////////////////////////
-//RADIX-2
-void FFTRadixTwo_DITStrided(unsigned int N, unsigned int stride, const CL_TYPE2* twiddle, CL_TYPE2* data)
-{
-    //temporary workspace
-    CL_TYPE2 H0;
-    CL_TYPE2 H1;
-    CL_TYPE2 W;
-    CL_TYPE2 Z;
-
-    unsigned int logN = LogBaseTwo(N);
-    unsigned int butterfly_width;
-    unsigned int n_butterfly_groups;
-    unsigned int group_start;
-    unsigned int butterfly_index;
-    unsigned int x,y;
-
-
-    for(unsigned int stage = 0; stage < logN; stage++)
-    {
-        //compute the width of each butterfly
-        butterfly_width = TwoToThePowerOf(stage);
-        //compute the number of butterfly groups
-        n_butterfly_groups = N/(2*butterfly_width);
-    
-        for(unsigned int n = 0; n < n_butterfly_groups; n++)
-        {
-            //compute the starting index of this butterfly group
-            group_start = 2*n*butterfly_width;
-            for(unsigned int k=0; k < butterfly_width; k++)
-            {
-                butterfly_index = group_start + k; //index
-                x = stride*butterfly_index;
-                y = stride*(butterfly_index + butterfly_width);
-            
-                H0 = data[x];
-                H1 = data[y];
-                W = twiddle[n_butterfly_groups*k];
-                // W.s0 = cos(2.0*M_PI*(double)(n_butterfly_groups*k)/(double) N);
-                // W.s1 = sin(2.0*M_PI*(double)(n_butterfly_groups*k)/(double) N);
-
-                //here we use the Cooly-Tukey butterfly
-                //multiply H1 by twiddle factor to get W*H1, store temporary workspace Z
-                Z = ComplexMultiply(H1, W);
-                //compute the update
-                //H0' = H0 + W*H1
-                //H1' = H0 - W*H1
-                H1 = H0;
-                H0 += Z;
-                H1 -= Z;
-                data[x] = H0;
-                data[y] = H1;
-            }
-        }
-    }
-}
-
 ////////////////////////////////////////////////////////////////////////////////
-
-
-void FFTRadixTwo_DITStridedCached(unsigned int N, unsigned int stride, __local const CL_TYPE2* twiddle_basis, __global CL_TYPE2* data)
+//RADIX2 DIT with strided data locations.
+//The twiddle factors computed on-the-fly from a factor-basis.
+void FFTRadixTwo_DIT(unsigned int N, unsigned int stride, __local const CL_TYPE2* twiddle_basis, __global CL_TYPE2* data)
 {
     //temporary workspace
     CL_TYPE2 H0;
@@ -152,7 +77,6 @@ void FFTRadixTwo_DITStridedCached(unsigned int N, unsigned int stride, __local c
     unsigned int group_start;
     unsigned int butterfly_index;
     unsigned int x,y;
-
 
     for(unsigned int stage = 0; stage < logN; stage++)
     {
@@ -174,9 +98,6 @@ void FFTRadixTwo_DITStridedCached(unsigned int N, unsigned int stride, __local c
                 H0 = data[x];
                 H1 = data[y];
                 W = ComputeTwiddleFactor(logN, n_butterfly_groups*k, twiddle_basis);
-                //twiddle[n_butterfly_groups*k];
-                // W.s0 = cos(2.0*M_PI*(double)(n_butterfly_groups*k)/(double) N);
-                // W.s1 = sin(2.0*M_PI*(double)(n_butterfly_groups*k)/(double) N);
 
                 //here we use the Cooly-Tukey butterfly
                 //multiply H1 by twiddle factor to get W*H1, store temporary workspace Z
@@ -198,7 +119,7 @@ void FFTRadixTwo_DITStridedCached(unsigned int N, unsigned int stride, __local c
 
 //RADIX-2 DIF
 void 
-FFTRadixTwo_DIFStrided(unsigned int N, unsigned int stride, const CL_TYPE2* twiddle, CL_TYPE2* data)
+FFTRadixTwo_DIF(unsigned int N, unsigned int stride, __local const CL_TYPE2* twiddle_basis, CL_TYPE2* data)
 {
     //temporary workspace
     CL_TYPE2 H0;
@@ -228,7 +149,7 @@ FFTRadixTwo_DIFStrided(unsigned int N, unsigned int stride, const CL_TYPE2* twid
                 butterfly_index = group_start + k; //index
                 H0 = data[stride*butterfly_index];
                 H1 = data[stride*(butterfly_index+butterfly_width)];
-                W = twiddle[n_butterfly_groups*k];
+                W = ComputeTwiddleFactor(logN, n_butterfly_groups*k, twiddle_basis);
 
                 //here we use Gentleman Sande butterfly
                 Z = H1; //first cache H1 in Z
@@ -239,117 +160,6 @@ FFTRadixTwo_DIFStrided(unsigned int N, unsigned int stride, const CL_TYPE2* twid
 
                 data[stride*butterfly_index] = H0;
                 data[stride*(butterfly_index+butterfly_width)]=Z;
-            }
-        }
-    }
-}
-
-
-
-////////////////////////////////////////////////////////////////////////
-//RADIX-2
-void FFTRadixTwo_DIT(unsigned int N, const CL_TYPE2* twiddle, CL_TYPE2* data)
-{
-    //temporary workspace
-    CL_TYPE2 H0;
-    CL_TYPE2 H1;
-    CL_TYPE2 W;
-    CL_TYPE2 Z;
-
-    unsigned int logN = LogBaseTwo(N);
-    unsigned int butterfly_width;
-    unsigned int n_butterfly_groups;
-    unsigned int group_start;
-    unsigned int butterfly_index;
-    unsigned int x,y;
-
-
-    for(unsigned int stage = 0; stage < logN; stage++)
-    {
-        //compute the width of each butterfly
-        butterfly_width = TwoToThePowerOf(stage);
-        //compute the number of butterfly groups
-        n_butterfly_groups = N/(2*butterfly_width);
-    
-        for(unsigned int n = 0; n < n_butterfly_groups; n++)
-        {
-            //compute the starting index of this butterfly group
-            group_start = 2*n*butterfly_width;
-            for(unsigned int k=0; k < butterfly_width; k++)
-            {
-                butterfly_index = group_start + k; //index
-                x = butterfly_index;
-                y = (butterfly_index + butterfly_width);
-            
-                H0 = data[x];
-                H1 = data[y];
-                W = twiddle[n_butterfly_groups*k];
-                // W.s0 = cos(2.0*M_PI*(double)(n_butterfly_groups*k)/(double) N);
-                // W.s1 = sin(2.0*M_PI*(double)(n_butterfly_groups*k)/(double) N);
-
-                //here we use the Cooly-Tukey butterfly
-                //multiply H1 by twiddle factor to get W*H1, store temporary workspace Z
-                Z = ComplexMultiply(H1, W);
-                //compute the update
-                //H0' = H0 + W*H1
-                //H1' = H0 - W*H1
-                H1 = H0;
-                H0 += Z;
-                H1 -= Z;
-                data[x] = H0;
-                data[y] = H1;
-            }
-        }
-    }
-}
-
-
-//RADIX-2 DIF
-void 
-FFTRadixTwo_DIF(unsigned int N, const CL_TYPE2* twiddle, CL_TYPE2* data)
-{
-    //temporary workspace
-    CL_TYPE2 H0;
-    CL_TYPE2 H1;
-    CL_TYPE2 W;
-    CL_TYPE2 Z;
-    
-    //decimation in frequency, N is assumed to be a power of 2
-    unsigned int logN = LogBaseTwo(N);
-    unsigned int butterfly_width;
-    unsigned int n_butterfly_groups;
-    unsigned int group_start;
-    unsigned int butterfly_index;
-    unsigned int x,y;
-    for(unsigned int stage = 0; stage < logN; stage++)
-    {
-        //compute the number of butterfly groups
-        n_butterfly_groups= TwoToThePowerOf(stage);
-    
-        //compute the width of each butterfly
-        butterfly_width =  N/(2*n_butterfly_groups);
-        for(unsigned int n = 0; n < n_butterfly_groups; n++)
-        {
-            //compute the starting index of this butterfly group
-            group_start = 2*n*butterfly_width;
-            for(unsigned int k=0; k < butterfly_width; k++)
-            {
-                butterfly_index = group_start + k; //index
-                x = butterfly_index;
-                y = (butterfly_index + butterfly_width);
-                H0 = data[x];
-                H1 = data[y];
-                W = twiddle[n_butterfly_groups*k];
-
-                //here we use Gentleman Sande butterfly
-                Z = H1; //first cache H1 in Z
-                H1 = H0 - Z; //set H1' = H0 - H1
-                H0 += Z; //set H0 = H0 + H1
-                //multiply H1 by twiddle factor to get W*H1, to obtain H1' = (H0 - H1)*W
-                Z = ComplexMultiply(H1,W);
-
-                data[x] = H0;
-                data[y]=Z;
             }
         }
     }

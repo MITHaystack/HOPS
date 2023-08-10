@@ -1,3 +1,4 @@
+
 #ifndef MHO_MultidimensionalFastFourierTransform_Defined_H
 #define MHO_MultidimensionalFastFourierTransform_Defined_H
 
@@ -10,7 +11,7 @@
 //FFT_NDIM
 
 __kernel void
-NDFFTStridedRadix2Stage(
+NDFFTRadix2Stage(
     unsigned int D, //d = 0, 1, ...FFT_NDIM-1 specifies the dimension/axis selected to be transformed
     __global const unsigned int* dim_arr, //sizes of the array in each dimension
     __global CL_TYPE2* data, // the data to be transformed
@@ -60,8 +61,8 @@ NDFFTStridedRadix2Stage(
     if(offset < n_fft) //thread id must be less than total number of 1d fft's
     {
         //perform the strided FFT in-place
-        PermuteArrayStrided(dim[D], stride, chunk);
-        FFTRadixTwo_DITStridedCached(dim[D], stride, twiddle_basis, chunk);
+        PermuteArray(dim[D], stride, chunk);
+        FFTRadixTwo_DIT(dim[D], stride, twiddle_basis, chunk);
     }
 
 }
