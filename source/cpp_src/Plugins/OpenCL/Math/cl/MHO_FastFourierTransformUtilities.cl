@@ -6,6 +6,15 @@
 #include "MHO_BitReversalPermutation.cl"
 
 
+unsigned int ComputeBluesteinArraySize(unsigned int N) 
+{
+    //returns smallest M = 2^p >= (2N - 2);
+    unsigned int M = 2*(N - 1);
+    if(IsPowerOfTwo(M)){return M;}
+    else{ return NextLowestPowerOfTwo(M);}
+}
+
+
 void ComputeTwiddleFactorBasis(unsigned int log2N, __local CL_TYPE2* twiddle)
 {
     double dN, di, arg;
