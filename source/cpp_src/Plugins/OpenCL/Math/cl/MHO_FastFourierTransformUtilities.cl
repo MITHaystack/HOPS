@@ -138,7 +138,7 @@ void FFTRadixTwo_DITStrided(unsigned int N, unsigned int stride, const CL_TYPE2*
 ////////////////////////////////////////////////////////////////////////////////
 
 
-void FFTRadixTwo_DITStridedCached(unsigned int N, unsigned int stride, __local const CL_TYPE2* twiddle_basis, CL_TYPE2* data)
+void FFTRadixTwo_DITStridedCached(unsigned int N, unsigned int stride, __local const CL_TYPE2* twiddle_basis, __global CL_TYPE2* data)
 {
     //temporary workspace
     CL_TYPE2 H0;
