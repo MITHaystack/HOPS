@@ -110,7 +110,7 @@ PermuteArrayCached(unsigned int N, const unsigned int* permutation_index_arr, CL
 }
 
 void 
-PermuteArrayStrided(unsigned int N, unsigned int stride, CL_TYPE2* arr)
+PermuteArrayStrided(unsigned int N, unsigned int stride, __global CL_TYPE2* arr)
 {
     unsigned int log2N = LogBaseTwo(N);
     unsigned int x,y;
