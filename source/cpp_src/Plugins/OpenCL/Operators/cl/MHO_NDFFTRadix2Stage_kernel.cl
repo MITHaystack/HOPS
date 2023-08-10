@@ -62,7 +62,8 @@ NDFFTRadix2Stage(
     {
         //perform the strided FFT in-place
         PermuteArray(dim[D], stride, chunk);
-        FFTRadixTwo_DIT(dim[D], stride, twiddle_basis, chunk);
+        //the third argument (1.0) indicates twiddle factors are not conjugated
+        FFTRadixTwo_DIT(dim[D], stride, 1.0, twiddle_basis, chunk); 
     }
 
 }

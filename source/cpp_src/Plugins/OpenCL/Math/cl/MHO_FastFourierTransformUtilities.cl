@@ -20,7 +20,8 @@ void ComputeTwiddleFactorBasis(unsigned int log2N, __local CL_TYPE2* twiddle)
     }
 }
 
-CL_TYPE2 ComputeTwiddleFactor(unsigned int log2N, unsigned int index, __local const CL_TYPE2* basis)
+//conjugate_flag must be 1 (no conjugate) or -1 (conjugate)
+CL_TYPE2 ComputeTwiddleFactor(unsigned int log2N, unsigned int index, __local const CL_TYPE2* basis, CL_TYPE conj_flag)
 {
     unsigned int bit = 1;
     CL_TYPE2 val;
@@ -31,6 +32,7 @@ CL_TYPE2 ComputeTwiddleFactor(unsigned int log2N, unsigned int index, __local co
         if( (index & bit) ){val = ComplexMultiply(val,basis[i]);}
         bit *=2;
     }
+    val.s1 *= conj_flag;
     return val;
 }
 
@@ -63,7 +65,7 @@ unsigned int CalculateWorkItemInfo(unsigned int NDIM, //total number of dimensio
 ////////////////////////////////////////////////////////////////////////////////
 //RADIX2 DIT with strided data locations.
 //The twiddle factors computed on-the-fly from a factor-basis.
-void FFTRadixTwo_DIT(unsigned int N, unsigned int stride, __local const CL_TYPE2* twiddle_basis, __global CL_TYPE2* data)
+void FFTRadixTwo_DIT(unsigned int N, unsigned int stride, CL_TYPE conj_flag, __local const CL_TYPE2* twiddle_basis, __global CL_TYPE2* data)
 {
     //temporary workspace
     CL_TYPE2 H0;
@@ -97,7 +99,7 @@ void FFTRadixTwo_DIT(unsigned int N, unsigned int stride, __local const CL_TYPE2
             
                 H0 = data[x];
                 H1 = data[y];
-                W = ComputeTwiddleFactor(logN, n_butterfly_groups*k, twiddle_basis);
+                W = ComputeTwiddleFactor(logN, n_butterfly_groups*k, twiddle_basis, conj_flag);
 
                 //here we use the Cooly-Tukey butterfly
                 //multiply H1 by twiddle factor to get W*H1, store temporary workspace Z
@@ -119,7 +121,7 @@ void FFTRadixTwo_DIT(unsigned int N, unsigned int stride, __local const CL_TYPE2
 
 //RADIX-2 DIF
 void 
-FFTRadixTwo_DIF(unsigned int N, unsigned int stride, __local const CL_TYPE2* twiddle_basis, CL_TYPE2* data)
+FFTRadixTwo_DIF(unsigned int N, unsigned int stride, CL_TYPE conj_flag, __local const CL_TYPE2* twiddle_basis, CL_TYPE2* data)
 {
     //temporary workspace
     CL_TYPE2 H0;
@@ -149,7 +151,7 @@ FFTRadixTwo_DIF(unsigned int N, unsigned int stride, __local const CL_TYPE2* twi
                 butterfly_index = group_start + k; //index
                 H0 = data[stride*butterfly_index];
                 H1 = data[stride*(butterfly_index+butterfly_width)];
-                W = ComputeTwiddleFactor(logN, n_butterfly_groups*k, twiddle_basis);
+                W = ComputeTwiddleFactor(logN, n_butterfly_groups*k, twiddle_basis, conj_flag);
 
                 //here we use Gentleman Sande butterfly
                 Z = H1; //first cache H1 in Z
@@ -166,180 +168,54 @@ FFTRadixTwo_DIF(unsigned int N, unsigned int stride, __local const CL_TYPE2* twi
 }
 
 
+//Bluestein algorithm for arbitrary length, N is length of the data, strided data access
+void 
+#ifdef FFT_USE_CONST_MEM
+FFTBluestein(unsigned int N,
+             unsigned int M,
+             unsigned int stride,
+             __local const CL_TYPE2* twiddle_basis,
+             __global CL_TYPE2* data,
+             __constant CL_TYPE2* scale,
+             __constant CL_TYPE2* circulant,
+             __global CL_TYPE2* workspace)
+#else
+FFTBluestein(unsigned int N,
+             unsigned int M,
+             unsigned int stride,
+             __local const CL_TYPE2* twiddle_basis,
+             __global CL_TYPE2* data,
+             __global CL_TYPE2* scale,
+             __global CL_TYPE2* circulant,
+             __global CL_TYPE2* workspace)
+#endif
+{
+    //STEP D
+    //copy the data into the workspace and scale by the scale factor
+    for(unsigned int i=0; i<N; i++){workspace[i] = ComplexMultiply(data[i*stride], scale[i]);}
+    //fill out the rest of the extended vector with zeros
+    for(unsigned int i=N; i<M; i++){workspace[i] = 0.0;}
 
+    //STEP E
+    //perform the DFT on the workspace
+    //do radix-2 FFT w/ decimation in frequency (normal order input, bit-address permutated output)
+    FFTRadixTwo_DIF(M, 1, 1.0, twiddle_basis, workspace); //stride=1, using normal twiddle factors
 
+    //STEP F
+    //now we scale the workspace with the circulant vector
+    for(unsigned int i=0; i<M; i++){workspace[i] = ComplexMultiply(workspace[i], circulant[i]);}
 
+    //STEP G
+    //now perform the inverse DFT on the workspace
+    //do radix-2 FFT w/ decimation in time (bit-address permutated input, normal order output)
+    FFTRadixTwo_DIT(M, 1, -1.0, twiddle_basis, workspace);//stride=1, use conjugate twiddle factors
 
+    //STEP H
+    //renormalize to complete IDFT, extract and scale at the same time
+    CL_TYPE norm = 1.0/((CL_TYPE)M);
+    for(unsigned int i=0; i<N; i++){data[i*stride] = norm*ComplexMultiply(workspace[i], scale[i]);}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// 
-// 
-// FFTBluestein(unsigned int N,
-//              unsigned int M,
-//              __global CL_TYPE2* twiddle, //must be size M
-//              __global CL_TYPE2* conj_twiddle, //must be size M
-//              __global CL_TYPE2* scale, //must be size N
-//              __global CL_TYPE2* circulant, //must be size M
-//              CL_TYPE2* data) //must be size M, initially filled up to N
-// 
-// 
-// 
-// 
-// //Bluestein algorithm for arbitrary length, N is length of the data, strided data access
-// void FFTBluestein(unsigned int N,
-//                   unsigned int M,
-//                   unsigned int stride,
-//                   CL_TYPE2* data,
-//                   __global CL_TYPE2* twiddle,
-//                   __global CL_TYPE2* conj_twiddle,
-//                   __global CL_TYPE2* scale,
-//                   __global CL_TYPE2* circulant,
-//                   __global CL_TYPE2* workspace)
-// {
-//     //STEP D
-//     //copy the data into the workspace and scale by the scale factor
-//     for(unsigned int i=0; i<N; i++)
-//     {
-//         workspace[i] = ComplexMultiply(data[i*stride], scale[i]);
-//     }
-// 
-//     //fill out the rest of the extended vector with zeros
-//     CL_TYPE2 Z = 0.0;
-//     for(unsigned int i=N; i<M; i++)
-//     {
-//         workspace[i] = Z;
-//     }
-// 
-//     //STEP E
-//     //perform the DFT on the workspace
-//     //do radix-2 FFT w/ decimation in frequency (normal order input, bit-address permutated output)
-//     FFTRadixTwo_DIF(M, 1, workspace, twiddle );
-// 
-//     //STEP F
-//     //now we scale the workspace with the circulant vector
-//     for(unsigned int i=0; i<M; i++)
-//     {
-//         workspace[i] = ComplexMultiply(workspace[i], circulant[i]);
-//     }
-// 
-//     //STEP G
-//     //now perform the inverse DFT on the workspace
-//     //do radix-2 FFT w/ decimation in time (bit-address permutated input, normal order output)
-//     FFTRadixTwo_DIT(M, 1, workspace, conj_twiddle);
-// 
-//     //STEP H
-//     //renormalize to complete IDFT, extract and scale at the same time
-//     CL_TYPE norm = 1.0/((CL_TYPE)M);
-//     for(unsigned int i=0; i<N; i++)
-//     {
-//         data[i*stride] = norm*ComplexMultiply(workspace[i], scale[i]);
-//     }
-// }
-// 
-// 
-// 
-// 
-// 
-// ////////////////////////////////////////////////////////////////////////////////
-// //Bluestein Algorithm
-// 
-// void
-// #ifdef FFT_USE_CONST_MEM
-// FFTBluestein(unsigned int N,
-//              unsigned int M,
-//              __constant CL_TYPE2* twiddle, //must be size M
-//              __constant CL_TYPE2* conj_twiddle, //must be size M
-//              __constant CL_TYPE2* scale, //must be size N
-//              __constant CL_TYPE2* circulant, //must be size M
-//              CL_TYPE2* data) //must be size M, initially filled up to N
-// #else
-// FFTBluestein(unsigned int N,
-//              unsigned int M,
-//              __global CL_TYPE2* twiddle, //must be size M
-//              __global CL_TYPE2* conj_twiddle, //must be size M
-//              __global CL_TYPE2* scale, //must be size N
-//              __global CL_TYPE2* circulant, //must be size M
-//              CL_TYPE2* data) //must be size M, initially filled up to N
-// #endif
-// {
-// 
-// 
-//     //STEP D
-//     //copy the data into the workspace and scale by the scale factor
-//     CL_TYPE2 B;
-//     CL_TYPE2 A;
-//     CL_TYPE2 Z;
-// 
-//     for(size_t i=0; i<N; i++)
-//     {
-//         A = data[i];
-//         B = scale[i];
-//         Z.s0 = (A.s0)*(B.s0) - (A.s1)*(B.s1);
-//         Z.s1 =  (A.s1)*(B.s0) + (A.s0)*(B.s1);
-//         data[i] = Z;
-//     }
-// 
-//     //fill out the rest of the extended vector with zeros
-//     Z = 0.0;
-//     for(size_t i=N; i<M; i++)
-//     {
-//         data[i] = Z;
-//     }
-// 
-//     //do a decimation in frequency radix-2 FFT
-//     FFTRadixTwo_DIF(M, data, twiddle);
-// 
-//     //STEP F
-//     //now we scale the workspace with the circulant vector, and conjugate for input to dft
-//     for(size_t i=0; i<M; i++)
-//     {
-//         A = data[i];
-//         B = circulant[i];
-//         Z.s0 = (A.s0)*(B.s0) - (A.s1)*(B.s1);
-//         Z.s1 = ( (A.s0)*(B.s1) + (A.s1)*(B.s0) );
-//         data[i] = Z;
-//     }
-// 
-//     //do a decimation in time radix-2 inverse FFT
-//     FFTRadixTwo_DIT(M, data, conj_twiddle);
-// 
-//     //STEP H
-//     //renormalize to complete IDFT, extract and scale at the same time
-//     CL_TYPE norm = 1.0/((CL_TYPE)M);
-//     for(size_t i=0; i<N; i++)
-//     {
-//         A = data[i];
-//         B = scale[i];
-// 
-//         Z.s0 = (A.s0)*(B.s0) - (A.s1)*(B.s1);
-//         Z.s1 = (A.s0)*(B.s1) + (A.s1)*(B.s0);
-//         data[i] = norm*Z;
-//     }
-// }
-
+}
 
 
 #endif /* MHO_FastFourierUtilities_Defined_H */
