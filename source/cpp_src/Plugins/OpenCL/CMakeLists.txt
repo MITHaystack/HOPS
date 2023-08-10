@@ -31,10 +31,10 @@ if (HOPS_USE_OPENCL)
     #construct the compiler call to build GenerateOpenCLHeader
     set(CL_HeaderGenCommand "${CMAKE_CXX_COMPILER}")
     list(APPEND CL_HeaderGenArgs "-DHOPS_OPENCL_PLATFORM=${HOPS_OPENCL_PLATFORM}" "-DHOPS_OPENCL_DEVICE_TYPE=${HOPS_OPENCL_DEVICE_TYPE}")
-    if(OPENCL_IS_VERSION2)
-        list(APPEND CL_HeaderGenArgs "-DHOPS_OPENCL_VERSION2")
-        set( ${CMAKE_CXX_FLAGS} "${CMAKE_CXX_FLAGS} -DHOPS_OPENCL_VERSION2")
-    endif(OPENCL_IS_VERSION2)
+    #if(OPENCL_IS_VERSION2)
+    #    list(APPEND CL_HeaderGenArgs "-DHOPS_OPENCL_VERSION2")
+    #    set( ${CMAKE_CXX_FLAGS} "${CMAKE_CXX_FLAGS} -DHOPS_OPENCL_VERSION2")
+    #endif(OPENCL_IS_VERSION2)
     list(APPEND CL_HeaderGenArgs "-o" "GenerateOpenCLHeader")
 
 
