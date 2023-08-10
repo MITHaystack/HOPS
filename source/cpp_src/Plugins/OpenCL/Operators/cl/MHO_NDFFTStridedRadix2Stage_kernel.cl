@@ -10,7 +10,7 @@
 //FFT_NDIM
 
 __kernel void
-MultidimensionalFastFourierTransformStrided_Radix2Stage(
+NDFFTStridedRadix2Stage(
     unsigned int D, //d = 0, 1, ...FFT_NDIM-1 specifies the dimension/axis selected to be transformed
     __global const unsigned int* dim_arr, //sizes of the array in each dimension
     __global CL_TYPE2* data, // the data to be transformed
@@ -31,10 +31,6 @@ MultidimensionalFastFourierTransformStrided_Radix2Stage(
 
     //pointer to the work-item's data chunk
     __global CL_TYPE2* chunk;
-
-    #ifdef USE_PRIVATE_MEM
-    __private CL_TYPE2 buffer[4096];
-    #endif
 
     //workspace for index calculations
     unsigned int index[FFT_NDIM];
@@ -63,28 +59,9 @@ MultidimensionalFastFourierTransformStrided_Radix2Stage(
 
     if(offset < n_fft) //thread id must be less than total number of 1d fft's
     {
-        #ifndef USE_PRIVATE_MEM
         //perform the strided FFT in-place
         PermuteArrayStrided(dim[D], stride, chunk);
         FFTRadixTwo_DITStridedCached(dim[D], stride, twiddle_basis, chunk);
-
-        #else
-
-        for(unsigned int i=0; i<dim[D]; i++)
-        {
-            buffer[i] = chunk[i*stride];
-        }
-        
-        //perform the strided FFT in-place
-        PermuteArrayStrided(dim[D], 1, buffer);
-        FFTRadixTwo_DITStridedCached(dim[D], 1, twiddle_basis, buffer);
-        
-        for(unsigned int i=0; i<dim[D]; i++)
-        {
-            chunk[i*stride] = buffer[i]; 
-        }
-
-        #endif
     }
 
 }

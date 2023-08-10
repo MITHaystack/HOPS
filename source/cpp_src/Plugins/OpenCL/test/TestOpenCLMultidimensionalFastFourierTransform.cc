@@ -41,7 +41,7 @@ void ConstructOpenCLKernels()
     std::cout<<"building opencl kernels"<<std::endl;
     //Get name of kernel source file
     std::stringstream clFile;
-    clFile << MHO_OpenCLInterface::GetInstance()->GetKernelPath() << "/MHO_MultidimensionalFastFourierTransformStrided_kernel.cl";
+    clFile << MHO_OpenCLInterface::GetInstance()->GetKernelPath() << "/MHO_NDFFTStridedRadix2Stage_kernel.cl";
 
     //set the build options
     std::stringstream options;
@@ -52,7 +52,7 @@ void ConstructOpenCLKernels()
 
     options << ss.str();
     MHO_OpenCLKernelBuilder k_builder;
-    fFFTKernel = k_builder.BuildKernel(clFile.str(), std::string("MultidimensionalFastFourierTransformStrided_Radix2Stage"), options.str());
+    fFFTKernel = k_builder.BuildKernel(clFile.str(), std::string("NDFFTStridedRadix2Stage"), options.str());
 
     //get n-local
     fNLocal = fFFTKernel->getWorkGroupInfo<CL_KERNEL_WORK_GROUP_SIZE>(MHO_OpenCLInterface::GetInstance()->GetDevice());
@@ -74,7 +74,7 @@ int main(int /*argc*/, char** /*argv*/)
     size_t dim[NDIM];
 
     dim[0] = 4096; //x
-    dim[1] = 32; //y
+    dim[1] = 256; //y
     dim[2] = 128; //z
 
 
