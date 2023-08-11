@@ -1,6 +1,6 @@
 
-#ifndef MHO_MultidimensionalFastFourierTransform_Defined_H
-#define MHO_MultidimensionalFastFourierTransform_Defined_H
+#ifndef MHO_NDFFTRadix2_kernel_Defined__
+#define MHO_NDFFTRadix2_kernel_Defined__
 
 #include "hopsocl_defines.h"
 #include "MHO_ArrayMath.cl"
@@ -71,4 +71,4 @@ NDFFTRadix2Stage(
 
 }
 
-#endif /* MHO_MultidimensionalFastFourierTransform_Defined_H */
+#endif /* MHO_NDFFTRadix2_kernel_Defined__ */
