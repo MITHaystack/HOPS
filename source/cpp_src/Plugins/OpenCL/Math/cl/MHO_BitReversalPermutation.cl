@@ -26,6 +26,17 @@ TwoToThePowerOf(unsigned int N)
     return (val << N);
 }
 
+unsigned int
+NextLowestPowerOfTwo(unsigned int N)
+{
+    if(IsPowerOfTwo(N) ){return N;}
+    else
+    {
+        unsigned int p = LogBaseTwo(N);
+        return TwoToThePowerOf(p+1);
+    }
+}
+
 unsigned int 
 ReverseIndexBits(unsigned int nbits, unsigned int x)
 {

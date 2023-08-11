@@ -10,6 +10,10 @@
 //compile time constants
 //FFT_NDIM
 
+
+//TODO HOW DO WE DETERMINE THIS FOR OUR DEVICE??
+#define MAX_CONCURRENT_WORKGROUPS 4 
+
 __kernel void
 #ifdef FFT_USE_CONST_MEM
 NDFFTBluesteinStage(
@@ -26,15 +30,16 @@ NDFFTBluesteinStage(
     __global const unsigned int* dim_arr, //sizes of the array in each dimension
     __local CL_TYPE2* twiddle_scratch, //scratch space for the twiddle factor basis
     __global CL_TYPE2* data, // the data to be transformed
-     __global CL_TYPE2* scale,
-     __global CL_TYPE2* circulant,
-     __global CL_TYPE2* workspace)
+    __global CL_TYPE2* scale,
+    __global CL_TYPE2* circulant,
+    __global CL_TYPE2* workspace)
 #endif
 {    
     //get the index of the current work item in the global list 
-    unsigned int offset = get_global_id(0);
+    unsigned int i_global = get_global_id(0);
     unsigned int i_local = get_local_id(0);
     unsigned int workgroup_size = get_local_size(0);
+    unsigned int i_workgroup = (i_global/workgroup_size)%MAX_CONCURRENT_WORKGROUPS;
     unsigned int dim[FFT_NDIM];
     for(unsigned int i=0;i<FFT_NDIM; i++){dim[i] = dim_arr[i];}
     
@@ -42,9 +47,14 @@ NDFFTBluesteinStage(
     __local CL_TYPE2* twiddle_basis = &(twiddle_scratch[workgroup_size*get_local_id(0)]);
     unsigned int log2N = LogBaseTwo(dim[D]);
     ComputeTwiddleFactorBasis(log2N, twiddle_basis);
+    unsigned int M = ComputeBluesteinArraySize(dim[D]);
 
     //pointer to the work-item's data chunk
     __global CL_TYPE2* chunk;
+
+    //pointer to the FFT workspace 
+    __global CL_TYPE2* work_chunk;
+    work_chunk = &(workspace[  M*(workgroup_size*i_workgroup + i_local) ] );
 
     //workspace for index calculations
     unsigned int index[FFT_NDIM];
@@ -60,7 +70,7 @@ NDFFTBluesteinStage(
     stride = StrideFromRowMajorIndex(FFT_NDIM, D, dim);
 
     //invert our location in work-item list to obtain indices of the block start in the global data array
-    RowMajorIndexFromOffset(FFT_NDIM-1, offset, na_dimension_size, na_dimension_value, div_space);
+    RowMajorIndexFromOffset(FFT_NDIM-1, i_global, na_dimension_size, na_dimension_value, div_space);
     index[D] = 0; //for the current selected dimension, the index value is always zero
     for(unsigned int i=0; i<FFT_NDIM-1; i++)
     {
@@ -71,10 +81,9 @@ NDFFTBluesteinStage(
     data_location = OffsetFromRowMajorIndex(FFT_NDIM, dim, index);
     chunk = &( data[data_location] );
 
-    unsigned int M = ComputeBluesteinArraySize(dim[D]);
-    if(offset < n_fft) //thread id must be less than total number of 1d fft's
+    if(i_global < n_fft) //thread id must be less than total number of 1d fft's
     {
-        FFTBluestein(dim[D], M, stride, twiddle_basis, chunk, scale, circulant, workspace);
+        FFTBluestein(dim[D], M, stride, twiddle_basis, chunk, scale, circulant, work_chunk);
     }
 
 }

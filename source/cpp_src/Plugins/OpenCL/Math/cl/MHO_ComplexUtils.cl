@@ -30,7 +30,7 @@ inline CL_TYPE2 ConjugateComplexMultiply(CL_TYPE2 x, CL_TYPE2 y)
 
 
 //strided, conjugate array
-void Conjugate(unsigned int N, unsigned int stride, CL_TYPE2* array)
+void Conjugate(unsigned int N, unsigned int stride, __global CL_TYPE2* array)
 {
     for(unsigned int i=0; i<N; i++){ array[i*stride] = ComplexConjugate(array[i*stride]); }
 }

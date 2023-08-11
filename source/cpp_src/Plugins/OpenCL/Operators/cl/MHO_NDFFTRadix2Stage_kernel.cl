@@ -13,6 +13,7 @@
 __kernel void
 NDFFTRadix2Stage(
     unsigned int D, //d = 0, 1, ...FFT_NDIM-1 specifies the dimension/axis selected to be transformed
+    unsigned int isForward, //0 -> is a backward FFT, 1 -> is a forward FFT
     __global const unsigned int* dim_arr, //sizes of the array in each dimension
     __global CL_TYPE2* data, // the data to be transformed
     __local CL_TYPE2* twiddle_scratch //scratch space for the twiddle factor basis
@@ -29,6 +30,9 @@ NDFFTRadix2Stage(
     __local CL_TYPE2* twiddle_basis = &(twiddle_scratch[workgroup_size*get_local_id(0)]);
     unsigned int log2N = LogBaseTwo(dim[D]);
     ComputeTwiddleFactorBasis(log2N, twiddle_basis);
+
+    CL_TYPE direction = FFT_BACKWARD;
+    if(isForward){direction = FFT_FORWARD;}
 
     //pointer to the work-item's data chunk
     __global CL_TYPE2* chunk;
@@ -62,8 +66,7 @@ NDFFTRadix2Stage(
     {
         //perform the strided FFT in-place
         PermuteArray(dim[D], stride, chunk);
-        //the third argument (1.0) indicates twiddle factors are not conjugated
-        FFTRadixTwo_DIT(dim[D], stride, 1.0, twiddle_basis, chunk); 
+        FFTRadixTwo_DIT(dim[D], stride, NORMAL_TWIDDLE, direction, twiddle_basis, chunk);
     }
 
 }

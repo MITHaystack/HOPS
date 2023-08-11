@@ -103,9 +103,9 @@ int main(int /*argc*/, char** /*argv*/)
 
     std::cout<<"total size = "<<total_size<<std::endl;
 
-    fFFTKernel->setArg(1, *( buffer_ext->GetDimensionBuffer() ) );
-    fFFTKernel->setArg(2, *( buffer_ext->GetDataBuffer() ) );
-    fFFTKernel->setArg(3, MAX_NBITS*fNLocal*sizeof(cl_double2), NULL);
+    fFFTKernel->setArg(2, *( buffer_ext->GetDimensionBuffer() ) );
+    fFFTKernel->setArg(3, *( buffer_ext->GetDataBuffer() ) );
+    fFFTKernel->setArg(4, MAX_NBITS*fNLocal*sizeof(cl_double2), NULL);
 
     //determine the largest global worksize
     fMaxNWorkItems = 0;
@@ -131,6 +131,7 @@ int main(int /*argc*/, char** /*argv*/)
 
         //set the arguments which are updated at each stage
         fFFTKernel->setArg(0, D);
+        fFFTKernel->setArg(1, 1);//is a forward transform
 
         //now enqueue the kernel
         MHO_OpenCLInterface::GetInstance()->GetQueue().enqueueNDRangeKernel(*fFFTKernel,
@@ -150,7 +151,8 @@ int main(int /*argc*/, char** /*argv*/)
     //now do an FFT on the CPU to check we get the same thing
     auto fft_engine = new CPU_FFT_TYPE();
     //no do IFFT pass on all axes
-    fft_engine->SetBackward();//Forward();
+    // fft_engine->SetBackward();//Forward();
+    fft_engine->SetForward();
     fft_engine->SetArgs(test2);
     fft_engine->DisableAxisLabelTransformation();
     fft_engine->SelectAllAxes();
