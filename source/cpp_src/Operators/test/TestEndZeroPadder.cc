@@ -57,6 +57,8 @@ int main(int /*argc*/, char** /*argv*/)
     MHO_EndZeroPadder<array_type> padder;
     padder.SetPaddingFactor(M);
     padder.SetEndPadded();
+    padder.SetReverseEndPadded();
+    //padder.DisableNormFXMode();
     padder.SetArgs(input1, output);
     bool init = padder.Initialize();
     bool exe = padder.Execute();

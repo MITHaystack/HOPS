@@ -34,6 +34,7 @@ class MHO_EndZeroPadder:
             fIsValid = false;
             fFlipped = false; //chooses which end we pad
             fInitialized = false;
+            fNormFXMode = true;
         };
 
         virtual ~MHO_EndZeroPadder(){};
@@ -46,6 +47,10 @@ class MHO_EndZeroPadder:
 
         virtual void SetEndPadded(){fFlipped = false;}; //zero padding from end of signal out to end of the array
         virtual void SetReverseEndPadded(){fFlipped = true;}; //place signal at end of array and zero pad out to start
+
+        virtual void DisableNormFXMode(){fNormFXMode = false;}; //zero padding from end of signal out to end of the array
+        virtual void EnableNormFXMode(){fNormFXMode = true;}; //place signal at end of array and zero pad out to start
+
 
         //sometimes we may want to select/deselect particular dimensions of the x-form
         //default is to transform along every dimension, but that may not always be needed
@@ -134,14 +139,15 @@ class MHO_EndZeroPadder:
                         {
                             if(fAxesToXForm[i])
                             {
+                                out_index[i] = (fOutputDimensionSize[i]-1) - in_index[i];
                                 //The way were are setting the indexes here
                                 //(with n=0 mapping to N/2 is done for compatibility with norm_fx)
                                 //TODO FIXME...figure out why it is done this way
-                                if(in_index[i] != 0)
+                                if(fNormFXMode)
                                 {
                                     out_index[i] = (fOutputDimensionSize[i]) - in_index[i];
+                                    if(in_index[i] == 0){ out_index[i] = fOutputDimensionSize[i]/2; }
                                 }
-                                else{out_index[i] = fOutputDimensionSize[i]/2;}
                             }
                             else{out_index[i] = in_index[i];}
                         }
@@ -195,6 +201,7 @@ class MHO_EndZeroPadder:
         bool fIsValid;
         bool fInitialized;
         bool fFlipped;
+        bool fNormFXMode;
 
         std::size_t fPaddingFactor;
         std::size_t fPaddedSize;
