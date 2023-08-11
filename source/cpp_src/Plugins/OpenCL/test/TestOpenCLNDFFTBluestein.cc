@@ -77,9 +77,9 @@ int main(int /*argc*/, char** /*argv*/)
     MHO_Timer timer;
     size_t dim[NDIM];
 
-    dim[0] = 56; //x
-    dim[1] = 30; //y
-    dim[2] = 160; //z
+    dim[0] = 3; //x
+    dim[1] = 3; //y
+    dim[2] = 3; //z
 
     test_table_type* test = new test_table_type(dim);
     test_table_type* test2 = new test_table_type(dim);
@@ -107,6 +107,7 @@ int main(int /*argc*/, char** /*argv*/)
     //we need to construct FFT workspace plans to build the scale/circulant vectors 
     MHO_FastFourierTransformWorkspace<FP_Type> fft_work[NDIM];
     unsigned int max_dim_size = 0;
+    unsigned int max_work_size = 0;
     std::vector< circulant_type > scales;
     std::vector< circulant_type > circs;
     std::vector< cl::Buffer* > scale_buffers;
@@ -115,34 +116,85 @@ int main(int /*argc*/, char** /*argv*/)
     {
         fft_work[i].Resize(dim[i]);
         if(dim[i] > max_dim_size){max_dim_size = dim[i];}
+        if(fft_work[i].fM > max_work_size){max_work_size = fft_work[i].fM;}
+    }
 
+    for(unsigned int i=0; i<NDIM; i++)
+    {
+        unsigned int M = fft_work[i].fM;
+        unsigned int N = fft_work[i].fN;
         circulant_type s;
         circulant_type c;
-        s.Resize(fft_work[i].fM);
-        c.Resize(fft_work[i].fM);
 
-        for(unsigned int j=0; j<fft_work[i].fM; j++)
+        s.Resize(M);
+        c.Resize(M);
+
+        for(unsigned int j=0; j<N; j++)
         {
             s[j] = fft_work[i].fScale[j];
-            c[j] = fft_work[i].fCirculant[j];
+            std::cout<<"j, s = "<<j<<s[j]<<std::endl;
         }
 
-        auto s_ext = s.MakeExtension< MHO_OpenCLNDArrayBuffer< circulant_type > >();
-        s_ext->ConstructDataBuffer();
-        s_ext->WriteDataBuffer();
+        for(unsigned int j=0; j<M; j++)
+        {
+            c[j] = fft_work[i].fCirculant[j];
+            std::cout<<"j, c = "<<j<<c[j]<<std::endl;
+        }
 
-        auto c_ext = c.MakeExtension< MHO_OpenCLNDArrayBuffer< circulant_type > >();
-        c_ext->ConstructDataBuffer();
-        c_ext->WriteDataBuffer();
+        std::cout<<i<<", "<<"N = "<<N<<" M = "<<M<<std::endl;
 
-        scales.push_back(s);
-        circs.push_back(c);
+        // auto s_ext = s.MakeExtension< MHO_OpenCLNDArrayBuffer< circulant_type > >();
+        // s_ext->ConstructDataBuffer();
+        // s_ext->WriteDataBuffer();
+        // 
+        // auto c_ext = c.MakeExtension< MHO_OpenCLNDArrayBuffer< circulant_type > >();
+        // c_ext->ConstructDataBuffer();
+        // c_ext->WriteDataBuffer();
 
-        scale_buffers.push_back(s_ext->GetDataBuffer() );
-        circ_buffers.push_back(c_ext->GetDataBuffer() );
+        //buffer for the bluestein scale factors
+        auto fScaleBufferCL = new cl::Buffer(MHO_OpenCLInterface::GetInstance()->GetContext(),
+                                        CL_MEM_READ_ONLY,
+                                        max_dim_size * sizeof(CL_TYPE2));
+
+        //buffer for the bluestein circulant vector
+        auto fCirculantBufferCL = new cl::Buffer(MHO_OpenCLInterface::GetInstance()->GetContext(),
+                                            CL_MEM_READ_ONLY,
+                                            max_work_size * sizeof(CL_TYPE2));
+
+
+        #ifdef ENFORCE_CL_FINISH
+                            MHO_OpenCLInterface::GetInstance()->GetQueue().finish();
+        #endif
+        CL_ERROR_TRY
+                            MHO_OpenCLInterface::GetInstance()->GetQueue().enqueueWriteBuffer(*fScaleBufferCL,
+                                                                                           CL_TRUE,
+                                                                                           0,
+                                                                                           N * sizeof(CL_TYPE2),
+                                                                                           s.GetData() );
+        CL_ERROR_CATCH
+
+        #ifdef ENFORCE_CL_FINISH
+
+                            MHO_OpenCLInterface::GetInstance()->GetQueue().finish();
+        #endif
+
+        CL_ERROR_TRY
+                            MHO_OpenCLInterface::GetInstance()->GetQueue().enqueueWriteBuffer(*fCirculantBufferCL,
+                                                                                           CL_TRUE,
+                                                                                           0,
+                                                                                           M * sizeof(CL_TYPE2),
+                                                                                           c.GetData() );
+        CL_ERROR_CATCH
+
+        // scales.push_back(s);
+        // circs.push_back(c);
+
+        scale_buffers.push_back(fScaleBufferCL);
+        circ_buffers.push_back(fCirculantBufferCL);
     }
 
     // unsigned int D, //d = 0, 1, ...FFT_NDIM-1 specifies the dimension/axis selected to be transformed
+    // unsigned int isForward, //0 -> is a backward FFT, 1 -> is a forward FFT
     // __global const unsigned int* dim_arr, //sizes of the array in each dimension
     // __local CL_TYPE2* twiddle_scratch, //scratch space for the twiddle factor basis
     // __global CL_TYPE2* data, // the data to be transformed
@@ -152,14 +204,15 @@ int main(int /*argc*/, char** /*argv*/)
 
     std::cout<<"total size = "<<total_size<<std::endl;
 
-    fFFTKernel->setArg(1, *( buffer_ext->GetDimensionBuffer() ) ); //array dimensions
-    fFFTKernel->setArg(2, MAX_NBITS*fNLocal*sizeof(cl_double2), NULL);
-    fFFTKernel->setArg(3, *( buffer_ext->GetDataBuffer() ) ); 
+    fFFTKernel->setArg(2, *( buffer_ext->GetDimensionBuffer() ) ); //array dimensions
+    fFFTKernel->setArg(3, MAX_NBITS*fNLocal*sizeof(cl_double2), NULL);
+    fFFTKernel->setArg(4, *( buffer_ext->GetDataBuffer() ) ); 
 
     //create a workspace buffer (arg 6)
-    unsigned int n_bytes = (static_cast< unsigned int >( MAX_CONCURRENT_WORKGROUPS*fNLocal*max_dim_size) )*sizeof( MHO_OpenCLTypeMap< std::complex<double>  >::mapped_type );  
+    unsigned int n_bytes = static_cast< unsigned int >( max_work_size*9*sizeof( MHO_OpenCLTypeMap< std::complex<double>  >::mapped_type ) );  
+    std::cout<<"nbytes ="<<n_bytes<<std::endl;
     cl::Buffer* fWorkspaceBufferCL = new cl::Buffer(MHO_OpenCLInterface::GetInstance()->GetContext(), CL_MEM_READ_WRITE, n_bytes);
-    fFFTKernel->setArg(6, *fWorkspaceBufferCL );
+    fFFTKernel->setArg(7, *fWorkspaceBufferCL );
 
     //determine the largest global worksize
     fMaxNWorkItems = 0;
@@ -178,9 +231,7 @@ int main(int /*argc*/, char** /*argv*/)
         if(nDummy == fNLocal){ nDummy = 0; }
         n_global += nDummy;
         if (fMaxNWorkItems < n_global){ fMaxNWorkItems = n_global; }
-        //std::cout<<"D = "<<D<<" dim = "<<dim[D]<<" n local = "<<fNLocal<<" n_global "<<n_global<<" ndummy = "<<nDummy<<std::endl;
-
-        
+        std::cout<<"D = "<<D<<" dim = "<<dim[D]<<" n local = "<<fNLocal<<" n_global "<<n_global<<" ndummy = "<<nDummy<<std::endl;
 
 
         cl::NDRange global(n_global);
@@ -188,14 +239,16 @@ int main(int /*argc*/, char** /*argv*/)
 
         //set the arguments which are updated at each stage
         fFFTKernel->setArg(0, D); //selected dimension
+        fFFTKernel->setArg(1, 1); //is forward
 
         std::cout<<"pter = "<<scale_buffers[D]<<std::endl;
         CL_ERROR_TRY
-        fFFTKernel->setArg(4, *(scale_buffers[D]) ); 
+        fFFTKernel->setArg(5, *(scale_buffers[D]) ); 
         CL_ERROR_CATCH
 
+        std::cout<<"pter = "<<circ_buffers[D]<<std::endl;
         CL_ERROR_TRY
-        fFFTKernel->setArg(5, *(circ_buffers[D]) ); 
+        fFFTKernel->setArg(6, *(circ_buffers[D]) ); 
         CL_ERROR_CATCH
 
         //now enqueue the kernel
@@ -235,6 +288,7 @@ int main(int /*argc*/, char** /*argv*/)
     FP_Type delta = 0;
     for(std::size_t i=0; i<test->GetSize(); i++)
     {
+        std::cout<<(*test)[i]<<" ? "<<(*test2)[i]<<std::endl;
         delta += std::abs( (*test)[i] - (*test2)[i] );
     }
     std::cout<<"average delta = "<<delta/(FP_Type)total_size<<std::endl;

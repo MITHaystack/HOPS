@@ -28,6 +28,7 @@
 __kernel void
 NDFFTBluesteinStage(
     unsigned int D, //d = 0, 1, ...FFT_NDIM-1 specifies the dimension/axis selected to be transformed
+    unsigned int isForward, //0 -> is a backward FFT, 1 -> is a forward FFT
     __global const unsigned int* dim_arr, //sizes of the array in each dimension
     __local CL_TYPE2* twiddle_scratch, //scratch space for the twiddle factor basis
     __global CL_TYPE2* data, // the data to be transformed
@@ -39,7 +40,7 @@ NDFFTBluesteinStage(
     unsigned int i_global = get_global_id(0);
     unsigned int i_local = get_local_id(0);
     unsigned int workgroup_size = get_local_size(0);
-    unsigned int i_workgroup = (i_global/workgroup_size)%MAX_CONCURRENT_WORKGROUPS;
+    unsigned int i_workgroup = i_global;//(i_global/workgroup_size)%MAX_CONCURRENT_WORKGROUPS;
     unsigned int dim[FFT_NDIM];
     for(unsigned int i=0;i<FFT_NDIM; i++){dim[i] = dim_arr[i];}
     
@@ -49,12 +50,16 @@ NDFFTBluesteinStage(
     ComputeTwiddleFactorBasis(log2N, twiddle_basis);
     unsigned int M = ComputeBluesteinArraySize(dim[D]);
 
+    CL_TYPE direction = FFT_BACKWARD;
+    if(isForward){direction = FFT_FORWARD;}
+
     //pointer to the work-item's data chunk
     __global CL_TYPE2* chunk;
 
     //pointer to the FFT workspace 
     __global CL_TYPE2* work_chunk;
-    work_chunk = &(workspace[  M*(workgroup_size*i_workgroup + i_local) ] );
+    // work_chunk = &(workspace[  M*(workgroup_size*i_workgroup + i_local) ] );
+    work_chunk = &(workspace[i_global*M]);
 
     //workspace for index calculations
     unsigned int index[FFT_NDIM];
@@ -83,7 +88,7 @@ NDFFTBluesteinStage(
 
     if(i_global < n_fft) //thread id must be less than total number of 1d fft's
     {
-        FFTBluestein(dim[D], M, stride, twiddle_basis, chunk, scale, circulant, work_chunk);
+        FFTBluestein(dim[D], M, stride, direction, twiddle_basis, chunk, scale, circulant, work_chunk);
     }
 
 }

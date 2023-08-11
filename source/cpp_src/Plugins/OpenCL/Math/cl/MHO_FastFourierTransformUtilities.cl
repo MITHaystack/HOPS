@@ -226,6 +226,7 @@ void
 FFTBluestein(unsigned int N,
              unsigned int M,
              unsigned int stride,
+             CL_TYPE direction, //-1 = forward, 1 = backward
              __local const CL_TYPE2* twiddle_basis,
              __global CL_TYPE2* data,
              __constant CL_TYPE2* scale,
@@ -235,6 +236,7 @@ FFTBluestein(unsigned int N,
 FFTBluestein(unsigned int N,
              unsigned int M,
              unsigned int stride,
+             CL_TYPE direction, //-1 = forward, 1 = backward
              __local const CL_TYPE2* twiddle_basis,
              __global CL_TYPE2* data,
              __global CL_TYPE2* scale,
@@ -242,9 +244,16 @@ FFTBluestein(unsigned int N,
              __global CL_TYPE2* workspace)
 #endif
 {
+    CL_TYPE2 X;
     //STEP D
     //copy the data into the workspace and scale by the scale factor
-    for(unsigned int i=0; i<N; i++){workspace[i] = ComplexMultiply(data[i*stride], scale[i]);}
+    for(unsigned int i=0; i<N; i++)
+    {
+        X = data[i*stride];
+        X.s1 *= direction; //conjugate here if direction is forward
+        X = ComplexMultiply(X,scale[i]);
+        workspace[i] = X;
+    }
     //fill out the rest of the extended vector with zeros
     for(unsigned int i=N; i<M; i++){workspace[i] = 0.0;}
 
@@ -265,8 +274,12 @@ FFTBluestein(unsigned int N,
     //STEP H
     //renormalize to complete IDFT, extract and scale at the same time
     CL_TYPE norm = 1.0/((CL_TYPE)M);
-    for(unsigned int i=0; i<N; i++){data[i*stride] = norm*ComplexMultiply(workspace[i], scale[i]);}
-
+    for(unsigned int i=0; i<N; i++)
+    {
+        X = norm*ComplexMultiply(workspace[i], scale[i]);
+        X.s1 *= direction; //conjugate here if direction is forward
+        data[i*stride] = X;
+    }
 }
 
 
