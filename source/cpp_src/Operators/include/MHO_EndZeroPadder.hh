@@ -32,12 +32,17 @@ class MHO_EndZeroPadder:
             }
 
             fIsValid = false;
-            fFlipped = false; //chooses which end we pad
             fInitialized = false;
-            fNormFXMode = true;
+            fFlipped = false; //chooses which end we pad
+            fNormFXMode = true; //when enabled, then when flipped, copies the last element to N/2
+            fPreserveWorkspace = false; //when false tmp workspace will be destroyed after every use
+            fTmpWorkspace = nullptr;
         };
 
-        virtual ~MHO_EndZeroPadder(){};
+        virtual ~MHO_EndZeroPadder()
+        {
+            delete fTmpWorkspace;
+        };
 
         //factor M by which the new array will be extended (original array, length N, new array length NM)
         virtual void SetPaddingFactor(std::size_t factor){fPaddingFactor = factor;};
@@ -51,6 +56,8 @@ class MHO_EndZeroPadder:
         virtual void DisableNormFXMode(){fNormFXMode = false;}; //zero padding from end of signal out to end of the array
         virtual void EnableNormFXMode(){fNormFXMode = true;}; //place signal at end of array and zero pad out to start
 
+        virtual void PreserveWorkspace(){fPreserveWorkspace = true;}
+        virtual void DoNotPreserveWorkspace(){fPreserveWorkspace = false;}
 
         //sometimes we may want to select/deselect particular dimensions of the x-form
         //default is to transform along every dimension, but that may not always be needed
@@ -71,17 +78,23 @@ class MHO_EndZeroPadder:
 
         virtual bool InitializeInPlace(XArgType* in)
         {
-            return InitializeOutOfPlace(in, &fTmpWorkspace);
+            if(fTmpWorkspace == nullptr){fTmpWorkspace = new XArgType();}
+            return InitializeOutOfPlace(in, fTmpWorkspace);
         }
 
         virtual bool ExecuteInPlace(XArgType* in)
         {
-            bool status = ExecuteOutOfPlace(in, &fTmpWorkspace);
+            bool status = ExecuteOutOfPlace(in, fTmpWorkspace);
             //"in-place" execution requires a copy from the workspace back to the object we are modifying
-            in->Copy(fTmpWorkspace);
+            in->Copy(*fTmpWorkspace);
+            if(!fPreserveWorkspace)
+            {
+                //destroy the temporary workspace when we are done 
+                delete fTmpWorkspace;
+                fTmpWorkspace = nullptr;
+            }
             return status;
         }
-
 
         virtual bool InitializeOutOfPlace(const XArgType* in, XArgType* out)
         {
@@ -202,6 +215,7 @@ class MHO_EndZeroPadder:
         bool fInitialized;
         bool fFlipped;
         bool fNormFXMode;
+        bool fPreserveWorkspace;
 
         std::size_t fPaddingFactor;
         std::size_t fPaddedSize;
@@ -209,7 +223,7 @@ class MHO_EndZeroPadder:
         std::size_t fOutputDimensionSize[XArgType::rank::value];
         bool fAxesToXForm[XArgType::rank::value];
 
-        XArgType fTmpWorkspace;
+        XArgType* fTmpWorkspace;
 };
 
 
