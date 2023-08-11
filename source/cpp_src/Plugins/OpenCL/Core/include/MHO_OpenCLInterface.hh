@@ -74,7 +74,7 @@ struct MHO_OpenCLTypeMap
 //#define DEBUG_OPENCL_COMPILER_OUTPUT
 
 //add try-catch for opencl exceptions
-//#define USE_CL_ERROR_TRY_CATCH
+#define USE_CL_ERROR_TRY_CATCH
 
 #ifdef USE_CL_ERROR_TRY_CATCH
 #include <iostream>
