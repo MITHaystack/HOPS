@@ -62,6 +62,21 @@ MHO_NormFX::InitializeImpl(const XArgType1* in1, const XArgType2* in2, XArgType3
         status = fNaNBroadcaster.Initialize();
         if(!status){msg_error("operators", "Could not initialize NaN mask broadcast in MHO_NormFX." << eom); return false;}
 
+        #ifdef TOGGLE_SWITCH
+
+        fZeroPadder.SetArgs(in1, &fWorkspace);
+        fZeroPadder.DeselectAllAxes();
+        fZeroPadder.SelectAxis(FREQ_AXIS); //only pad on the frequency (to lag) axis
+        fZeroPadder.SetPaddingFactor(8);
+        fZeroPadder.SetEndPadded(); //for both LSB and USB (what about DSB?)
+
+        fFFTEngine.SetArgs(&fWorkspace);
+        fFFTEngine.DeselectAllAxes();
+        fFFTEngine.SelectAxis(FREQ_AXIS); //only perform padded fft on frequency (to lag) axis
+        fFFTEngine.SetForward();//forward DFT
+
+        #else 
+
         fPaddedFFTEngine.SetArgs(in1, &fWorkspace);
         fPaddedFFTEngine.DeselectAllAxes();
         fPaddedFFTEngine.SelectAxis(FREQ_AXIS); //only perform padded fft on frequency (to lag) axis
@@ -69,9 +84,24 @@ MHO_NormFX::InitializeImpl(const XArgType1* in1, const XArgType2* in2, XArgType3
         fPaddedFFTEngine.SetPaddingFactor(8);
         fPaddedFFTEngine.SetEndPadded(); //for both LSB and USB (what about DSB?)
 
+        #endif
+
+
+        #ifdef TOGGLE_SWITCH
+
+        status = fZeroPadder.Initialize();
+        if(!status){msg_error("operators", "Could not initialize zero padder in MHO_NormFX." << eom); return false;}
+
+        status = fFFTEngine.Initialize();
+        if(!status){msg_error("operators", "Could not initialize padded FFT in MHO_NormFX." << eom); return false;}
+
+        #else 
 
         status = fPaddedFFTEngine.Initialize();
         if(!status){msg_error("operators", "Could not initialize padded FFT in MHO_NormFX." << eom); return false;}
+
+        #endif
+
 
         fSubSampler.SetDimensionAndStride(FREQ_AXIS, 2);
         fSubSampler.SetArgs(&fWorkspace, out);
@@ -123,8 +153,20 @@ MHO_NormFX::ExecuteImpl(const XArgType1* in1, const XArgType2* in2, XArgType3* o
         status = fNaNBroadcaster.Execute();
         if(!status){msg_error("operators", "Could not execute NaN masker MHO_NormFX." << eom); return false;}
 
+        #ifdef TOGGLE_SWITCH
+
+        status = fZeroPadder.Execute();
+        if(!status){msg_error("operators", "Could not execute zero padder in MHO_NormFX." << eom); return false;}
+
+        status = fFFTEngine.Execute();
+        if(!status){msg_error("operators", "Could not execute FFT in MHO_NormFX." << eom); return false;}
+
+        #else
+
         status = fPaddedFFTEngine.Execute();
-        if(!status){msg_error("operators", "Could not execute paddded FFT in MHO_NormFX." << eom); return false;}
+        if(!status){msg_error("operators", "Could not execute FFT in MHO_NormFX." << eom); return false;}
+        
+        #endif
 
         status = fSubSampler.Execute();
         if(!status){msg_error("operators", "Could not execute sub-sampler in MHO_NormFX." << eom); return false;}

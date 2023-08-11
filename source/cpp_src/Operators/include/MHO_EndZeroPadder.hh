@@ -56,8 +56,8 @@ class MHO_EndZeroPadder:
         virtual void DisableNormFXMode(){fNormFXMode = false;}; //zero padding from end of signal out to end of the array
         virtual void EnableNormFXMode(){fNormFXMode = true;}; //place signal at end of array and zero pad out to start
 
-        virtual void PreserveWorkspace(){fPreserveWorkspace = true;}
-        virtual void DoNotPreserveWorkspace(){fPreserveWorkspace = false;}
+        virtual void PreserveWorkspace(){fPreserveWorkspace = true;} //keep the memory reserved for the workspace around after exectution
+        virtual void DoNotPreserveWorkspace(){fPreserveWorkspace = false;} //delete memory after execution
 
         //sometimes we may want to select/deselect particular dimensions of the x-form
         //default is to transform along every dimension, but that may not always be needed
@@ -183,6 +183,64 @@ class MHO_EndZeroPadder:
         }
 
     private:
+
+        //default...does nothing
+        template< typename XCheckType = XArgType >
+        typename std::enable_if< !std::is_base_of<MHO_TableContainerBase, XCheckType>::value, void >::type
+        IfTableTransformAxis(const XArgType* /*in*/, XArgType* /*out*/){};
+
+        //use SFINAE to generate specialization for MHO_TableContainer types
+        template< typename XCheckType = XArgType >
+        typename std::enable_if< std::is_base_of<MHO_TableContainerBase, XCheckType>::value, void >::type
+        IfTableTransformAxis(const XArgType* in, XArgType* out)
+        {
+            for(size_t i = 0; i < XArgType::rank::value; i++) //apply to all axes
+            {
+                TransformAxis axis_transformer();
+                apply_at2< typename XArgType::axis_pack_tuple_type, TransformAxis >( *in, *out, i, axis_transformer);
+            }
+            out->CopyTags(*in); //make sure the table tags get copied
+        }
+
+
+        class TransformAxis
+        {
+            public:
+                TransformAxis(){};
+                ~TransformAxis(){};
+
+                #pragma message("TODO FIXME - this does not work for the reverse end-padded case")
+                template< typename XAxisType >
+                void operator()(const XAxisType& axis1, XAxisType& axis2)
+                {
+                    std::size_t ax1_size = axis1.size();
+                    std::size_t ax2_size = axis2.size();
+                    axis2.Copy(axis1); //first copy everything
+                    if(ax1_size != ax2_size)
+                    {
+                        axis2.Resize(ax2_size);
+                        double delta = axis1(1) - axis1(0);
+                        double start = axis1(ax1_size-1);
+                        for(std::size_t i=0; i<ax1_size; i++)
+                        {
+                            axis2(i) = axis1(i);
+                        }
+                        for(std::size_t i=ax1_size; i<ax2_size; i++)
+                        {
+                            axis2(i) = start + (i+1)*delta;
+                        }
+                    }
+                }
+        };
+
+
+
+
+
+
+
+
+
 
         void ConditionallyResizeOutput(const std::array<std::size_t, XArgType::rank::value>& dims, XArgType* out)
         {
