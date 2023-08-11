@@ -15,6 +15,7 @@ set(SOURCE_BASENAMES
     TestOpenCLInterface
     TestOpenCLNDArrayBuffer
     TestOpenCLNDFFTRadix2
+    TestOpenCLNDFFTBluestein
 )
 
 foreach( BASENAME ${SOURCE_BASENAMES} )

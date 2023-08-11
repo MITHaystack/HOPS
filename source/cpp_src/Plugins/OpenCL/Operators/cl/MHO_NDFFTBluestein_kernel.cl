@@ -1,6 +1,6 @@
 
-#ifndef MHO_MultidimensionalFastFourierTransform_Defined_H
-#define MHO_MultidimensionalFastFourierTransform_Defined_H
+#ifndef MHO_NDFFTBluestein_kernel_Defined__
+#define MHO_NDFFTBluestein_kernel_Defined__
 
 #include "hopsocl_defines.h"
 #include "MHO_ArrayMath.cl"
@@ -10,21 +10,22 @@
 //compile time constants
 //FFT_NDIM
 
+// #ifdef FFT_USE_CONST_MEM
+// NDFFTBluesteinStage(
+//     unsigned int D, //d = 0, 1, ...FFT_NDIM-1 specifies the dimension/axis selected to be transformed
+//     __global const unsigned int* dim_arr, //sizes of the array in each dimension
+//     __local CL_TYPE2* twiddle_scratch, //scratch space for the twiddle factor basis
+//     __global CL_TYPE2* data, // the data to be transformed
+//     __constant CL_TYPE2* scale,
+//     __constant CL_TYPE2* circulant,
+//     __global CL_TYPE2* workspace)
+// #else
+
 
 //TODO HOW DO WE DETERMINE THIS FOR OUR DEVICE??
 #define MAX_CONCURRENT_WORKGROUPS 4 
 
 __kernel void
-#ifdef FFT_USE_CONST_MEM
-NDFFTBluesteinStage(
-    unsigned int D, //d = 0, 1, ...FFT_NDIM-1 specifies the dimension/axis selected to be transformed
-    __global const unsigned int* dim_arr, //sizes of the array in each dimension
-    __local CL_TYPE2* twiddle_scratch, //scratch space for the twiddle factor basis
-    __global CL_TYPE2* data, // the data to be transformed
-    __constant CL_TYPE2* scale,
-    __constant CL_TYPE2* circulant,
-    __global CL_TYPE2* workspace)
-#else
 NDFFTBluesteinStage(
     unsigned int D, //d = 0, 1, ...FFT_NDIM-1 specifies the dimension/axis selected to be transformed
     __global const unsigned int* dim_arr, //sizes of the array in each dimension
@@ -33,7 +34,6 @@ NDFFTBluesteinStage(
     __global CL_TYPE2* scale,
     __global CL_TYPE2* circulant,
     __global CL_TYPE2* workspace)
-#endif
 {    
     //get the index of the current work item in the global list 
     unsigned int i_global = get_global_id(0);
@@ -88,4 +88,4 @@ NDFFTBluesteinStage(
 
 }
 
-#endif /* MHO_MultidimensionalFastFourierTransform_Defined_H */
+#endif /* MHO_NDFFTBluestein_kernel_Defined__ */
