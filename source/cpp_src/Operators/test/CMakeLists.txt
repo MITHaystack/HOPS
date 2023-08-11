@@ -9,6 +9,7 @@ set(SOURCE_BASENAMES
     TestMultidimensionalFastFourierTransform3
     TestMultidimensionalPaddedFastFourierTransform
     #TestInterpolatedFFT
+    TestEndZeroPadder
     TestReducer
     TestPointwiseAdd
     TestPointwiseMultiply
