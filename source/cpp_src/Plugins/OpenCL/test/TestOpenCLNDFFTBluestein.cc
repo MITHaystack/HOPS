@@ -77,7 +77,7 @@ int main(int /*argc*/, char** /*argv*/)
     MHO_Timer timer;
     size_t dim[NDIM];
 
-    dim[0] = 3; //x
+    dim[0] = 5; //x
     dim[1] = 3; //y
     dim[2] = 3; //z
 
@@ -209,7 +209,7 @@ int main(int /*argc*/, char** /*argv*/)
     fFFTKernel->setArg(4, *( buffer_ext->GetDataBuffer() ) ); 
 
     //create a workspace buffer (arg 6)
-    unsigned int n_bytes = static_cast< unsigned int >( max_work_size*9*sizeof( MHO_OpenCLTypeMap< std::complex<double>  >::mapped_type ) );  
+    unsigned int n_bytes = static_cast< unsigned int >( max_work_size*max_dim_size*max_dim_size*sizeof( MHO_OpenCLTypeMap< std::complex<double>  >::mapped_type ) );  
     std::cout<<"nbytes ="<<n_bytes<<std::endl;
     cl::Buffer* fWorkspaceBufferCL = new cl::Buffer(MHO_OpenCLInterface::GetInstance()->GetContext(), CL_MEM_READ_WRITE, n_bytes);
     fFFTKernel->setArg(7, *fWorkspaceBufferCL );
