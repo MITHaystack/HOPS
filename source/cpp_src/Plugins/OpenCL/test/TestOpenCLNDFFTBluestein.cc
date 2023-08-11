@@ -100,6 +100,19 @@ int main(int /*argc*/, char** /*argv*/)
     buffer_ext->WriteDataBuffer();
     buffer_ext->WriteDimensionBuffer();
 
+    //we need to construct FFT workspace plans to build the scale/circulant vectors 
+    MHO_FastFourierTransformWorkspace fft_plans[NDIM];
+;
+
+
+
+
+
+
+
+
+
+
     // unsigned int D, //d = 0, 1, ...FFT_NDIM-1 specifies the dimension/axis selected to be transformed
     // __global const unsigned int* dim_arr, //sizes of the array in each dimension
     // __local CL_TYPE2* twiddle_scratch, //scratch space for the twiddle factor basis

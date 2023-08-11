@@ -5,6 +5,12 @@
 #include "MHO_ComplexUtils.cl"
 #include "MHO_BitReversalPermutation.cl"
 
+#define FFT_FORWARD -1.0
+#define FFT_BACKWARD 1.0
+
+#define NORMAL_TWIDDLE 1.0
+#define CONJ_TWIDDLE -1.0
+
 
 unsigned int ComputeBluesteinArraySize(unsigned int N) 
 {
@@ -52,7 +58,6 @@ unsigned int CalculateWorkItemInfo(unsigned int NDIM, //total number of dimensio
                                    unsigned int* dim, //size of array in each dimension 
                                    unsigned int* non_active_dimension_index, //index selected in each non-active dimension
                                    unsigned int* non_active_dimension_size) //sizes of each non-active dimension
-
 {
     //figure out the total number of 1-D FFTs to perform along this (active) axis
     unsigned int n_fft = 1;
@@ -73,8 +78,13 @@ unsigned int CalculateWorkItemInfo(unsigned int NDIM, //total number of dimensio
 
 ////////////////////////////////////////////////////////////////////////////////
 //RADIX2 DIT with strided data locations.
-//The twiddle factors computed on-the-fly from a factor-basis.
-void FFTRadixTwo_DIT(unsigned int N, unsigned int stride, CL_TYPE conj_flag, __local const CL_TYPE2* twiddle_basis, __global CL_TYPE2* data)
+//The twiddle factors are computed on-the-fly from a factor-basis.
+void FFTRadixTwo_DIT(unsigned int N, 
+                     unsigned int stride, 
+                     CL_TYPE conj_flag, //conjugate the twiddle factors
+                     CL_TYPE direction, //-1 = forward, 1 = backward
+                     __local const CL_TYPE2* twiddle_basis, 
+                     __global CL_TYPE2* data)
 {
     //temporary workspace
     CL_TYPE2 H0;
@@ -95,7 +105,6 @@ void FFTRadixTwo_DIT(unsigned int N, unsigned int stride, CL_TYPE conj_flag, __l
         butterfly_width = TwoToThePowerOf(stage);
         //compute the number of butterfly groups
         n_butterfly_groups = N/(2*butterfly_width);
-    
         for(unsigned int n = 0; n < n_butterfly_groups; n++)
         {
             //compute the starting index of this butterfly group
@@ -110,6 +119,13 @@ void FFTRadixTwo_DIT(unsigned int N, unsigned int stride, CL_TYPE conj_flag, __l
                 H1 = data[y];
                 W = ComputeTwiddleFactor(logN, n_butterfly_groups*k, twiddle_basis, conj_flag);
 
+                //conjugate if the direction flag is -1 (but only on the first pass)
+                if(stage == 0)
+                {
+                    H0.s1 *= direction;
+                    H1.s1 *= direction;
+                }
+
                 //here we use the Cooly-Tukey butterfly
                 //multiply H1 by twiddle factor to get W*H1, store temporary workspace Z
                 Z = ComplexMultiply(H1, W);
@@ -119,6 +135,14 @@ void FFTRadixTwo_DIT(unsigned int N, unsigned int stride, CL_TYPE conj_flag, __l
                 H1 = H0;
                 H0 += Z;
                 H1 -= Z;
+
+                //conjugate if the direction flag is -1 (but only on the last pass)
+                if(stage == logN-1)
+                {
+                    H0.s1 *= direction;
+                    H1.s1 *= direction;
+                }
+
                 data[x] = H0;
                 data[y] = H1;
             }
@@ -130,7 +154,12 @@ void FFTRadixTwo_DIT(unsigned int N, unsigned int stride, CL_TYPE conj_flag, __l
 
 //RADIX-2 DIF
 void 
-FFTRadixTwo_DIF(unsigned int N, unsigned int stride, CL_TYPE conj_flag, __local const CL_TYPE2* twiddle_basis, CL_TYPE2* data)
+FFTRadixTwo_DIF(unsigned int N, 
+                unsigned int stride, 
+                CL_TYPE conj_flag, 
+                CL_TYPE direction, //-1 = forward, 1 = backward
+                __local const CL_TYPE2* twiddle_basis,
+                CL_TYPE2* data)
 {
     //temporary workspace
     CL_TYPE2 H0;
@@ -160,6 +189,13 @@ FFTRadixTwo_DIF(unsigned int N, unsigned int stride, CL_TYPE conj_flag, __local 
                 butterfly_index = group_start + k; //index
                 H0 = data[stride*butterfly_index];
                 H1 = data[stride*(butterfly_index+butterfly_width)];
+                //conjugate if the direction flag is -1 (but only on the first pass)
+                if(stage == 0)
+                {
+                    H0.s1 *= direction;
+                    H1.s1 *= direction;
+                }
+
                 W = ComputeTwiddleFactor(logN, n_butterfly_groups*k, twiddle_basis, conj_flag);
 
                 //here we use Gentleman Sande butterfly
@@ -168,6 +204,13 @@ FFTRadixTwo_DIF(unsigned int N, unsigned int stride, CL_TYPE conj_flag, __local 
                 H0 += Z; //set H0 = H0 + H1
                 //multiply H1 by twiddle factor to get W*H1, to obtain H1' = (H0 - H1)*W
                 Z = ComplexMultiply(H1,W);
+
+                //conjugate if the direction flag is -1 (but only on the last pass)
+                if(stage == logN-1)
+                {
+                    H0.s1 *= direction;
+                    Z.s1 *= direction;
+                }
 
                 data[stride*butterfly_index] = H0;
                 data[stride*(butterfly_index+butterfly_width)]=Z;
@@ -208,7 +251,7 @@ FFTBluestein(unsigned int N,
     //STEP E
     //perform the DFT on the workspace
     //do radix-2 FFT w/ decimation in frequency (normal order input, bit-address permutated output)
-    FFTRadixTwo_DIF(M, 1, 1.0, twiddle_basis, workspace); //stride=1, using normal twiddle factors
+    FFTRadixTwo_DIF(M, 1, NORMAL_TWIDDLE, FFT_FORWARD, twiddle_basis, workspace); //stride=1, using normal twiddle factors
 
     //STEP F
     //now we scale the workspace with the circulant vector
@@ -217,7 +260,7 @@ FFTBluestein(unsigned int N,
     //STEP G
     //now perform the inverse DFT on the workspace
     //do radix-2 FFT w/ decimation in time (bit-address permutated input, normal order output)
-    FFTRadixTwo_DIT(M, 1, -1.0, twiddle_basis, workspace);//stride=1, use conjugate twiddle factors
+    FFTRadixTwo_DIT(M, 1, CONJ_TWIDDLE, FFT_FORWARD, twiddle_basis, workspace); //stride=1, use conjugate twiddle factors
 
     //STEP H
     //renormalize to complete IDFT, extract and scale at the same time
