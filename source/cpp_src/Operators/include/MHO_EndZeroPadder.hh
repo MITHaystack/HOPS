@@ -153,12 +153,12 @@ class MHO_EndZeroPadder:
                             if(fAxesToXForm[i])
                             {
                                 out_index[i] = (fOutputDimensionSize[i]-1) - in_index[i];
-                                //The way were are setting the indexes here
+                                //The way were are setting the indexes here when fNormFXMode is enabled
                                 //(with n=0 mapping to N/2 is done for compatibility with norm_fx)
-                                //TODO FIXME...figure out why it is done this way
+                                //TODO...figure out why it is done this way
                                 if(fNormFXMode)
                                 {
-                                    out_index[i] = (fOutputDimensionSize[i]) - in_index[i];
+                                    out_index[i] = fOutputDimensionSize[i] - in_index[i];
                                     if(in_index[i] == 0){ out_index[i] = fOutputDimensionSize[i]/2; }
                                 }
                             }
