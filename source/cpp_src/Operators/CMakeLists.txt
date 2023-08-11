@@ -21,6 +21,7 @@ set (OPERATOR_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_CyclicRotator.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_SubSample.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_SelectRepack.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_EndZeroPadder.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MultidimensionalPaddedFastFourierTransform.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ElementTypeCaster.hh
 )
