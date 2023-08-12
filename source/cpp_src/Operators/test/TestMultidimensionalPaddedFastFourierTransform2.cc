@@ -3,6 +3,7 @@
 #include "MHO_MultidimensionalPaddedFastFourierTransform.hh"
 #include "MHO_MultidimensionalFastFourierTransform.hh"
 #include "MHO_EndZeroPadder.hh"
+#include "MHO_TableContainer.hh"
 
 #include <cmath>
 #include <iomanip>
@@ -14,7 +15,8 @@ using namespace hops;
 
 typedef double FPTYPE;
 #define NDIM 2
-#define ARRAY_TYPE MHO_NDArrayWrapper< std::complex<FPTYPE>, NDIM > 
+#define AXIS_PACK_TYPE MHO_AxisPack< MHO_Axis<double>, MHO_Axis<double> >
+#define ARRAY_TYPE MHO_TableContainer< std::complex<FPTYPE>, AXIS_PACK_TYPE > 
 #define PADDER_TYPE MHO_EndZeroPadder< ARRAY_TYPE >
 #define PADDED_FFT_TYPE MHO_MultidimensionalPaddedFastFourierTransform< ARRAY_TYPE >
 #define FFT_TYPE MHO_MultidimensionalFastFourierTransform< ARRAY_TYPE >
@@ -45,6 +47,7 @@ int main(int argc, char** argv)
         std::cout<<" in dim @ "<<i<< " = "<<idim_size[i]<<std::endl;
     }
 
+
     std::cout << "--------------------------------------------------------------" << std::endl;
 
     for(std::size_t i=0; i<input1->GetSize(); i++)
@@ -52,6 +55,27 @@ int main(int argc, char** argv)
         (*input1)[i] = std::complex<FPTYPE>( i%5, i%17); 
         (*input2)[i] = std::complex<FPTYPE>( i%5, i%17); 
     }
+
+    for(size_t i=0; i<dval; i++)
+    {
+        (&std::get<0>(*input1) )->at(i) = i;
+        (&std::get<1>(*input1) )->at(i) = i;
+        (&std::get<0>(*input2) )->at(i) = i;
+        (&std::get<1>(*input2) )->at(i) = i;
+    }
+
+    
+    //compare the results
+    for(std::size_t i=0; i<dval; i++)
+    {
+        std::cout<<std::get<0>(*input1)(i)<<" ? " << std::get<0>(*input2)(i)<<std::endl;
+    }
+
+    for(std::size_t i=0; i<dval; i++)
+    {
+        std::cout<<std::get<1>(*input1)(i)<<" ? " << std::get<1>(*input2)(i)<<std::endl;
+    }
+
 
     bool init, exe;
 
@@ -68,6 +92,20 @@ int main(int argc, char** argv)
     padder.SetArgs(input1, output1);
     init = padder.Initialize();
     exe = padder.Execute();
+
+
+    //compare the results
+    for(std::size_t i=0; i<dval; i++)
+    {
+        std::cout<<std::get<0>(*output1)(i)<<" ? " << std::get<0>(*output2)(i)<<std::endl;
+    }
+
+    for(std::size_t i=0; i<dval; i++)
+    {
+        std::cout<<std::get<1>(*output1)(i)<<" ? " << std::get<1>(*output2)(i)<<std::endl;
+    }
+
+ 
 
     std::cout<<"flag1"<<std::endl;
 
@@ -99,6 +137,17 @@ int main(int argc, char** argv)
     for(std::size_t i=0; i<input1->GetSize(); i++)
     {
         std::cout<<(*output1)[i]<<" ? " << (*output2)[i]<<std::endl;
+    }
+
+    //compare the results
+    for(std::size_t i=0; i<dval; i++)
+    {
+        std::cout<<std::get<0>(*output1)(i)<<" ? " << std::get<0>(*output2)(i)<<std::endl;
+    }
+
+    for(std::size_t i=0; i<dval; i++)
+    {
+        std::cout<<std::get<1>(*output1)(i)<<" ? " << std::get<1>(*output2)(i)<<std::endl;
     }
 
 
