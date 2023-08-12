@@ -24,6 +24,8 @@
 #include "MHO_SubSample.hh"
 #include "MHO_EndZeroPadder.hh"
 
+
+#define TOGGLE_SWITCH
 #ifdef TOGGLE_SWITCH
 #include "MHO_MultidimensionalFastFourierTransform.hh"
 #else

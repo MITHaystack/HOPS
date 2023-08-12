@@ -170,7 +170,7 @@ class MHO_EndZeroPadder:
                     }
                 }
 
-                //IfTableTransformAxis(in, out, d);
+                IfTableTransformAxis(in, out);
                 //successful
                 return true;
             }
@@ -196,42 +196,69 @@ class MHO_EndZeroPadder:
         {
             for(size_t i = 0; i < XArgType::rank::value; i++) //apply to all axes
             {
-                TransformAxis axis_transformer();
+                TransformAxis axis_transformer(1);
                 apply_at2< typename XArgType::axis_pack_tuple_type, TransformAxis >( *in, *out, i, axis_transformer);
             }
             out->CopyTags(*in); //make sure the table tags get copied
         }
 
 
+
+
         class TransformAxis
         {
             public:
-                TransformAxis(){};
+                TransformAxis(std::size_t stride):
+                    fStride(stride)
+                {};
                 ~TransformAxis(){};
 
-                #pragma message("TODO FIXME - this does not work for the reverse end-padded case")
                 template< typename XAxisType >
                 void operator()(const XAxisType& axis1, XAxisType& axis2)
                 {
-                    std::size_t ax1_size = axis1.size();
-                    std::size_t ax2_size = axis2.size();
-                    axis2.Copy(axis1); //first copy everything
-                    if(ax1_size != ax2_size)
-                    {
-                        axis2.Resize(ax2_size);
-                        double delta = axis1(1) - axis1(0);
-                        double start = axis1(ax1_size-1);
-                        for(std::size_t i=0; i<ax1_size; i++)
-                        {
-                            axis2(i) = axis1(i);
-                        }
-                        for(std::size_t i=ax1_size; i<ax2_size; i++)
-                        {
-                            axis2(i) = start + (i+1)*delta;
-                        }
-                    }
+                    std::size_t ax1_size = axis1.GetSize();
+                    std::size_t ax2_size = axis2.GetSize();
+                    axis2.Copy(axis1);
+                    axis2.CopyTags(axis1); //copy the axis tags
+                    axis2.Resize(ax2_size);
+                    for(std::size_t i=0;i<ax1_size;i++){axis2(i) = axis1(i);}
+                    for(std::size_t i=ax1_size; i<ax2_size; i++){axis2(i) = 0.0;}
                 }
+
+            private:
+                std::size_t fStride;
         };
+
+        // struct TransformAxis
+        // {
+        //     // public:
+        //     //     TransformAxis(){};
+        //     //     ~TransformAxis(){};
+        // 
+        //         #pragma message("TODO FIXME - this does not work for the reverse end-padded case")
+        //         template< typename XAxisType >
+        //         void operator()(const XAxisType& axis1, XAxisType& axis2)
+        //         {
+        //             std::cout<<"hayyy"<<std::endl;
+        //             // std::size_t ax1_size = axis1.size();
+        //             // std::size_t ax2_size = axis2.size();
+        //             axis2.Copy(axis1); //first copy everything
+        //             // if(ax1_size != ax2_size)
+        //             // {
+        //             //     axis2.Resize(ax2_size);
+        //             //     double delta = axis1(1) - axis1(0);
+        //             //     double start = axis1(ax1_size-1);
+        //             //     for(std::size_t i=0; i<ax1_size; i++)
+        //             //     {
+        //             //         axis2(i) = axis1(i);
+        //             //     }
+        //             //     for(std::size_t i=ax1_size; i<ax2_size; i++)
+        //             //     {
+        //             //         axis2(i) = start + (i+1)*delta;
+        //             //     }
+        //             // }
+        //         }
+        // };
 
 
 
