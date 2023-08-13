@@ -86,8 +86,8 @@ int main(int argc, char** argv)
     padder.DeselectAllAxes();
     padder.SelectAxis(0);
     padder.SetPaddingFactor(pfactor);
-    //padder.SetEndPadded();
-    padder.SetReverseEndPadded();
+    padder.SetEndPadded();
+    //padder.SetReverseEndPadded();
     padder.EnableNormFXMode();
     padder.SetArgs(input1, output1);
     init = padder.Initialize();
@@ -95,12 +95,12 @@ int main(int argc, char** argv)
 
 
     //compare the results
-    for(std::size_t i=0; i<dval; i++)
+    for(std::size_t i=0; i<std::get<0>(*output1).GetSize(); i++)
     {
         std::cout<<std::get<0>(*output1)(i)<<" ? " << std::get<0>(*output2)(i)<<std::endl;
     }
 
-    for(std::size_t i=0; i<dval; i++)
+    for(std::size_t i=0; i<std::get<1>(*output1).GetSize(); i++)
     {
         std::cout<<std::get<1>(*output1)(i)<<" ? " << std::get<1>(*output2)(i)<<std::endl;
     }
@@ -126,26 +126,26 @@ int main(int argc, char** argv)
     pfft_engine.SelectAxis(0); //only peform on the first axis
     pfft_engine.SetForward();//forward DFT
     pfft_engine.SetPaddingFactor(pfactor);
-    //pfft_engine.SetEndPadded(); //for both LSB and USB (what about DSB?)
-    pfft_engine.SetReverseEndPadded();
+    pfft_engine.SetEndPadded(); //for both LSB and USB (what about DSB?)
+    //pfft_engine.SetReverseEndPadded();
     init = pfft_engine.Initialize();
     exe = pfft_engine.Execute();
 
     std::cout<<"flag3"<<std::endl;
 
     //compare the results
-    for(std::size_t i=0; i<input1->GetSize(); i++)
+    for(std::size_t i=0; i<std::get<0>(*output1).GetSize(); i++)
     {
         std::cout<<(*output1)[i]<<" ? " << (*output2)[i]<<std::endl;
     }
 
     //compare the results
-    for(std::size_t i=0; i<dval; i++)
+    for(std::size_t i=0; i<std::get<0>(*output1).GetSize(); i++)
     {
         std::cout<<std::get<0>(*output1)(i)<<" ? " << std::get<0>(*output2)(i)<<std::endl;
     }
 
-    for(std::size_t i=0; i<dval; i++)
+    for(std::size_t i=0; i<std::get<1>(*output1).GetSize(); i++)
     {
         std::cout<<std::get<1>(*output1)(i)<<" ? " << std::get<1>(*output2)(i)<<std::endl;
     }
