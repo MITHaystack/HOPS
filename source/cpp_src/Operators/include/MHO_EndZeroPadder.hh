@@ -208,11 +208,11 @@ class MHO_EndZeroPadder:
         class TransformAxis
         {
             public:
-                TransformAxis(bool modify, bool flipped)
-                {
-                    fModify = modify;
-                    flipped = flipped;
-                };
+                TransformAxis(bool modify, bool flipped):
+                    fModify(modify),
+                    fFlipped(flipped)
+                {};
+
                 ~TransformAxis(){};
 
                 //generic axis, do nothing

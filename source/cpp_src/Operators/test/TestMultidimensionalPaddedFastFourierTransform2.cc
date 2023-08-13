@@ -86,8 +86,8 @@ int main(int argc, char** argv)
     padder.DeselectAllAxes();
     padder.SelectAxis(0);
     padder.SetPaddingFactor(pfactor);
-    padder.SetEndPadded();
-    //padder.SetReverseEndPadded();
+    //padder.SetEndPadded();
+    padder.SetReverseEndPadded();
     padder.EnableNormFXMode();
     padder.SetArgs(input1, output1);
     init = padder.Initialize();
@@ -126,8 +126,8 @@ int main(int argc, char** argv)
     pfft_engine.SelectAxis(0); //only peform on the first axis
     pfft_engine.SetForward();//forward DFT
     pfft_engine.SetPaddingFactor(pfactor);
-    pfft_engine.SetEndPadded(); //for both LSB and USB (what about DSB?)
-    //pfft_engine.SetReverseEndPadded();
+    //pfft_engine.SetEndPadded(); //for both LSB and USB (what about DSB?)
+    pfft_engine.SetReverseEndPadded();
     init = pfft_engine.Initialize();
     exe = pfft_engine.Execute();
 
