@@ -196,7 +196,7 @@ class MHO_EndZeroPadder:
         {
             for(size_t i = 0; i < XArgType::rank::value; i++) //apply to all axes
             {
-                TransformAxis axis_transformer(1);
+                TransformAxis axis_transformer(fAxesToXForm[i], fFlipped);
                 apply_at2< typename XArgType::axis_pack_tuple_type, TransformAxis >( *in, *out, i, axis_transformer);
             }
             out->CopyTags(*in); //make sure the table tags get copied
@@ -208,66 +208,75 @@ class MHO_EndZeroPadder:
         class TransformAxis
         {
             public:
-                TransformAxis(std::size_t stride):
-                    fStride(stride)
-                {};
+                TransformAxis(bool modify, bool flipped)
+                {
+                    fModify = modify;
+                    flipped = flipped;
+                };
                 ~TransformAxis(){};
 
+                //generic axis, do nothing
                 template< typename XAxisType >
-                void operator()(const XAxisType& axis1, XAxisType& axis2)
+                void operator()(const XAxisType& /*axis1*/, XAxisType& /*axis2*/){};
+
+                void operator()(const MHO_Axis<double>& axis1, MHO_Axis<double>& axis2)
                 {
                     std::size_t ax1_size = axis1.GetSize();
                     std::size_t ax2_size = axis2.GetSize();
                     axis2.Copy(axis1);
-                    axis2.CopyTags(axis1); //copy the axis tags
+                    if(!fModify){return;} //just copy this axis
                     axis2.Resize(ax2_size);
-                    for(std::size_t i=0;i<ax1_size;i++){axis2(i) = axis1(i);}
-                    for(std::size_t i=ax1_size; i<ax2_size; i++){axis2(i) = 0.0;}
+                    //assumes uniform labelling, probably ok as we only need this for FFTs
+                    double delta = axis1(1) - axis1(0);
+                    if(!fFlipped)
+                    {
+                        for(std::size_t i=0;i<ax1_size;i++){axis2(i) = axis1(i);}
+                        for(std::size_t i=ax1_size; i<ax2_size; i++)
+                        {
+                            axis2(i) = axis1(ax1_size-1) + (i-(ax1_size-1))*delta;
+                        }
+                    }
+                    else 
+                    {
+                        for(std::size_t i=0;i<ax1_size;i++){axis2(i) = axis1(ax1_size -1 - i);}
+                        for(std::size_t i=ax1_size; i<ax2_size; i++)
+                        {
+                            axis2(i) = axis1(0) - (i-(ax1_size-1))*delta;
+                        }
+                    }
+                }
+
+                void operator()(const MHO_Axis<float>& axis1, MHO_Axis<float>& axis2)
+                {
+                    std::size_t ax1_size = axis1.GetSize();
+                    std::size_t ax2_size = axis2.GetSize();
+                    axis2.Copy(axis1);
+                    if(!fModify){return;} //just copy this axis
+                    axis2.Resize(ax2_size);
+                    //assumes uniform labelling, probably ok as we only need this for FFTs
+                    double delta = axis1(1) - axis1(0); 
+                    if(!fFlipped)
+                    {
+                        for(std::size_t i=0;i<ax1_size;i++){axis2(i) = axis1(i);}
+                        for(std::size_t i=ax1_size; i<ax2_size; i++)
+                        {
+                            axis2(i) = axis1(ax1_size-1) + (i-(ax1_size-1))*delta;
+                        }
+                    }
+                    else 
+                    {
+                        for(std::size_t i=0;i<ax1_size;i++){axis2(i) = axis1(ax1_size -1 - i);}
+                        for(std::size_t i=ax1_size; i<ax2_size; i++)
+                        {
+                            axis2(i) = axis1(0) - (i-(ax1_size-1))*delta;
+                        }
+                    }
                 }
 
             private:
-                std::size_t fStride;
+                bool fModify;
+                bool fFlipped;
         };
-
-        // struct TransformAxis
-        // {
-        //     // public:
-        //     //     TransformAxis(){};
-        //     //     ~TransformAxis(){};
-        // 
-        //         #pragma message("TODO FIXME - this does not work for the reverse end-padded case")
-        //         template< typename XAxisType >
-        //         void operator()(const XAxisType& axis1, XAxisType& axis2)
-        //         {
-        //             std::cout<<"hayyy"<<std::endl;
-        //             // std::size_t ax1_size = axis1.size();
-        //             // std::size_t ax2_size = axis2.size();
-        //             axis2.Copy(axis1); //first copy everything
-        //             // if(ax1_size != ax2_size)
-        //             // {
-        //             //     axis2.Resize(ax2_size);
-        //             //     double delta = axis1(1) - axis1(0);
-        //             //     double start = axis1(ax1_size-1);
-        //             //     for(std::size_t i=0; i<ax1_size; i++)
-        //             //     {
-        //             //         axis2(i) = axis1(i);
-        //             //     }
-        //             //     for(std::size_t i=ax1_size; i<ax2_size; i++)
-        //             //     {
-        //             //         axis2(i) = start + (i+1)*delta;
-        //             //     }
-        //             // }
-        //         }
-        // };
-
-
-
-
-
-
-
-
-
 
         void ConditionallyResizeOutput(const std::array<std::size_t, XArgType::rank::value>& dims, XArgType* out)
         {
