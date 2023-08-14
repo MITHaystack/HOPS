@@ -23,7 +23,7 @@
 #include "MHO_EndZeroPadder.hh"
 
 
-//#define TOGGLE_SWITCH
+#define TOGGLE_SWITCH
 #ifdef TOGGLE_SWITCH
 #include "MHO_MultidimensionalFastFourierTransform.hh"
 #else
@@ -70,6 +70,7 @@ class MHO_DelayRate: public MHO_BinaryOperator<
         MHO_CyclicRotator<sbd_type> fCyclicRotator;
 
         #ifdef TOGGLE_SWITCH
+        MHO_EndZeroPadder< visibility_type > fZeroPadder;
         MHO_MultidimensionalFastFourierTransform< visibility_type > fFFTEngine;
         #else
         MHO_MultidimensionalPaddedFastFourierTransform< visibility_type > fPaddedFFTEngine;

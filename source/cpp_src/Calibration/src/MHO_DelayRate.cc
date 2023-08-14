@@ -41,22 +41,22 @@ MHO_DelayRate::InitializeImpl(const XArgType1* in1, const XArgType2* in2, XArgTy
 
         fZeroPadder.SetArgs(&fWorkspace, &fWorkspace2);
         fZeroPadder.DeselectAllAxes();
-        fZeroPadder.SelectAxis(FREQ_AXIS); //only pad on the frequency (to lag) axis
+        fZeroPadder.SelectAxis(TIME_AXIS); //only pad on the frequency (to lag) axis
         fZeroPadder.SetPaddedSize(np);
-        fZeroPadder.SetEndPadded(); //for both LSB and USB (what about DSB?)
+        fZeroPadder.SetEndPadded();
 
         fFFTEngine.SetArgs(&fWorkspace2);
         fFFTEngine.DeselectAllAxes();
-        fFFTEngine.SelectAxis(FREQ_AXIS); //only perform padded fft on frequency (to lag) axis
+        fFFTEngine.SelectAxis(TIME_AXIS); //only perform padded fft on frequency (to lag) axis
         fFFTEngine.SetForward();//forward DFT
 
         #else
 
         fPaddedFFTEngine.SetArgs(&fWorkspace, &fWorkspace2);
         fPaddedFFTEngine.DeselectAllAxes();
-        fPaddedFFTEngine.SelectAxis(FREQ_AXIS); //only perform padded fft on frequency (to lag) axis
+        fPaddedFFTEngine.SelectAxis(TIME_AXIS); //only perform padded fft on frequency (to lag) axis
         fPaddedFFTEngine.SetForward();//forward DFT
-        fPaddedFFTEngine.SetPaddingFactor(8);
+        fPaddedFFTEngine.SetPaddedSize(np);
         fPaddedFFTEngine.SetEndPadded(); //for both LSB and USB (what about DSB?)
 
         #endif
