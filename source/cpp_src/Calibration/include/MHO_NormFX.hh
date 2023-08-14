@@ -24,7 +24,13 @@
 #include "MHO_SubSample.hh"
 #include "MHO_EndZeroPadder.hh"
 
+#ifdef HOPS_USE_FFTW
+#include "MHO_MultidimensionalFastFourierTransformFFTW.hh"
+#define FFT_ENGINE_TYPE MHO_MultidimensionalFastFourierTransformFFTW< visibility_type >
+#else
 #include "MHO_MultidimensionalFastFourierTransform.hh"
+#define FFT_ENGINE_TYPE MHO_MultidimensionalFastFourierTransform< visibility_type >
+#endif
 
 namespace hops
 {
@@ -60,7 +66,7 @@ class MHO_NormFX: public MHO_BinaryOperator<
         MHO_FunctorBroadcaster<visibility_type, nanMaskerType> fNaNBroadcaster;
         MHO_FunctorBroadcaster<visibility_type, conjType> fConjBroadcaster;
 
-        MHO_MultidimensionalFastFourierTransform< visibility_type > fFFTEngine;
+        FFT_ENGINE_TYPE fFFTEngine;
         MHO_EndZeroPadder< visibility_type > fZeroPadder;
         MHO_SubSample<sbd_type> fSubSampler;
         MHO_CyclicRotator<sbd_type> fCyclicRotator;

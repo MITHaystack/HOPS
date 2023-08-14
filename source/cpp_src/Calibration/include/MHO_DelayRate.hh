@@ -19,11 +19,15 @@
 #include "MHO_BinaryOperator.hh"
 #include "MHO_CyclicRotator.hh"
 #include "MHO_SubSample.hh"
-
 #include "MHO_EndZeroPadder.hh"
 
+#ifdef HOPS_USE_FFTW
+#include "MHO_MultidimensionalFastFourierTransformFFTW.hh"
+#define FFT_ENGINE_TYPE MHO_MultidimensionalFastFourierTransformFFTW< visibility_type >
+#else
 #include "MHO_MultidimensionalFastFourierTransform.hh"
-
+#define FFT_ENGINE_TYPE MHO_MultidimensionalFastFourierTransform< visibility_type >
+#endif
 
 namespace hops
 {
@@ -65,7 +69,7 @@ class MHO_DelayRate: public MHO_BinaryOperator<
         MHO_CyclicRotator<sbd_type> fCyclicRotator;
 
         MHO_EndZeroPadder< visibility_type > fZeroPadder;
-        MHO_MultidimensionalFastFourierTransform< visibility_type > fFFTEngine;
+        FFT_ENGINE_TYPE fFFTEngine;
 
         sbd_type fWorkspace;
         sbd_type fWorkspace2;
