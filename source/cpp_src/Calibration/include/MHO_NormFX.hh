@@ -24,13 +24,7 @@
 #include "MHO_SubSample.hh"
 #include "MHO_EndZeroPadder.hh"
 
-
-#define TOGGLE_SWITCH
-#ifdef TOGGLE_SWITCH
 #include "MHO_MultidimensionalFastFourierTransform.hh"
-#else
-#include "MHO_MultidimensionalPaddedFastFourierTransform.hh"
-#endif
 
 namespace hops
 {
@@ -66,12 +60,7 @@ class MHO_NormFX: public MHO_BinaryOperator<
         MHO_FunctorBroadcaster<visibility_type, nanMaskerType> fNaNBroadcaster;
         MHO_FunctorBroadcaster<visibility_type, conjType> fConjBroadcaster;
 
-        #ifdef TOGGLE_SWITCH
         MHO_MultidimensionalFastFourierTransform< visibility_type > fFFTEngine;
-        #else
-        MHO_MultidimensionalPaddedFastFourierTransform< visibility_type > fPaddedFFTEngine;
-        #endif
-
         MHO_EndZeroPadder< visibility_type > fZeroPadder;
         MHO_SubSample<sbd_type> fSubSampler;
         MHO_CyclicRotator<sbd_type> fCyclicRotator;

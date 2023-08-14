@@ -37,8 +37,6 @@ MHO_DelayRate::InitializeImpl(const XArgType1* in1, const XArgType2* in2, XArgTy
         std::size_t np = fDRSPSize*4;
         ConditionallyResizeOutput(&(fInDims[0]), np, &fWorkspace2);
 
-        #ifdef TOGGLE_SWITCH
-
         fZeroPadder.SetArgs(&fWorkspace, &fWorkspace2);
         fZeroPadder.DeselectAllAxes();
         fZeroPadder.SelectAxis(TIME_AXIS); //only pad on the frequency (to lag) axis
@@ -50,41 +48,11 @@ MHO_DelayRate::InitializeImpl(const XArgType1* in1, const XArgType2* in2, XArgTy
         fFFTEngine.SelectAxis(TIME_AXIS); //only perform padded fft on frequency (to lag) axis
         fFFTEngine.SetForward();//forward DFT
 
-        #else
-
-        fPaddedFFTEngine.SetArgs(&fWorkspace, &fWorkspace2);
-        fPaddedFFTEngine.DeselectAllAxes();
-        fPaddedFFTEngine.SelectAxis(TIME_AXIS); //only perform padded fft on frequency (to lag) axis
-        fPaddedFFTEngine.SetForward();//forward DFT
-        fPaddedFFTEngine.SetPaddedSize(np);
-        fPaddedFFTEngine.SetEndPadded(); //for both LSB and USB (what about DSB?)
-
-        #endif
-
-        // fPaddedFFTEngine.SetArgs(&fWorkspace, &fWorkspace2);
-        // fPaddedFFTEngine.DeselectAllAxes();
-        // fPaddedFFTEngine.SelectAxis(TIME_AXIS);
-        // fPaddedFFTEngine.SetForward();//forward DFT
-        // fPaddedFFTEngine.SetPaddedSize(np);
-        // fPaddedFFTEngine.SetEndPadded();//pretty sure this is the default from delay_rate.c
-
-        #ifdef TOGGLE_SWITCH
-
         ok = fZeroPadder.Initialize();
         if(!ok){msg_error("operators", "Could not initialize zero padder in MHO_DelayRate" << eom); return false;}
 
         ok = fFFTEngine.Initialize();
         if(!ok){msg_error("operators", "Could not initialize FFT in MHO_DelayRate" << eom); return false;}
-
-        #else
-
-        ok = fPaddedFFTEngine.Initialize();
-        if(!ok){msg_error("operators", "Could not initialize padded FFT in MHO_DelayRate" << eom); return false;}
-
-        #endif
-
-        // ok = fPaddedFFTEngine.Initialize();
-        // if(!ok){msg_error("operators", "Could not initialize padded FFT in MHO_DelayRate." << eom); return false;}
 
         fCyclicRotator.SetOffset(TIME_AXIS, np/2);
         fCyclicRotator.SetArgs(&fWorkspace2);
@@ -119,22 +87,12 @@ MHO_DelayRate::ExecuteImpl(const XArgType1* in1, const XArgType2* in2, XArgType3
         //std::size_t nap = fInDims[TIME_AXIS];
         out->ZeroArray();
         bool ok;
-        #ifdef TOGGLE_SWITCH
 
         ok = fZeroPadder.Execute();
         if(!ok){msg_error("operators", "Could not execute zero padder in MHO_DelayRate" << eom); return false;}
 
         ok = fFFTEngine.Execute();
         if(!ok){msg_error("operators", "Could not execute FFT in MHO_DelayRate" << eom); return false;}
-
-        #else
-
-        ok = fPaddedFFTEngine.Execute();
-        if(!ok){msg_error("operators", "Could not execute FFT in MHO_DelayRate" << eom); return false;}
-
-        #endif
-        // bool ok = fPaddedFFTEngine.Execute();
-        // check_step_fatal(ok, "calibration", "fft engine execution." << eom );
 
         ok = fCyclicRotator.Execute();
         check_step_fatal(ok, "calibration", "cyclic rotation execution." << eom );
