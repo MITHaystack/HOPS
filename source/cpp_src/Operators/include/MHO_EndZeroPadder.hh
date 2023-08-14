@@ -89,7 +89,7 @@ class MHO_EndZeroPadder:
             in->Copy(*fTmpWorkspace);
             if(!fPreserveWorkspace)
             {
-                //destroy the temporary workspace when we are done 
+                //destroy the temporary workspace when we are done
                 delete fTmpWorkspace;
                 fTmpWorkspace = nullptr;
             }
@@ -236,7 +236,7 @@ class MHO_EndZeroPadder:
                             axis2(i) = axis1(ax1_size-1) + (i-(ax1_size-1))*delta;
                         }
                     }
-                    else 
+                    else
                     {
                         for(std::size_t i=0;i<ax1_size;i++){axis2(i) = axis1(ax1_size -1 - i);}
                         for(std::size_t i=ax1_size; i<ax2_size; i++)
@@ -254,7 +254,7 @@ class MHO_EndZeroPadder:
                     if(!fModify){return;} //just copy this axis
                     axis2.Resize(ax2_size);
                     //assumes uniform labelling, probably ok as we only need this for FFTs
-                    double delta = axis1(1) - axis1(0); 
+                    double delta = axis1(1) - axis1(0);
                     if(!fFlipped)
                     {
                         for(std::size_t i=0;i<ax1_size;i++){axis2(i) = axis1(i);}
@@ -263,7 +263,7 @@ class MHO_EndZeroPadder:
                             axis2(i) = axis1(ax1_size-1) + (i-(ax1_size-1))*delta;
                         }
                     }
-                    else 
+                    else
                     {
                         for(std::size_t i=0;i<ax1_size;i++){axis2(i) = axis1(ax1_size -1 - i);}
                         for(std::size_t i=ax1_size; i<ax2_size; i++)
@@ -290,6 +290,14 @@ class MHO_EndZeroPadder:
                     {
                         have_to_resize = true;
                         out_dim[i] = dims[i]*fPaddingFactor;
+                    }
+                    if(fPaddingFactor == 1)
+                    {
+                        if(dims[i] != fPaddedSize)
+                        {
+                            have_to_resize = true;
+                            out_dim[i] = fPaddedSize;
+                        }
                     }
                 }
                 else
