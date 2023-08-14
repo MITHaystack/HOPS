@@ -49,6 +49,7 @@ enum control_element_type
     control_list_real_type,
     control_conditional_type,
     control_compound_type,
+    control_bool_type,
     control_unknown_type
 };
 

@@ -46,6 +46,7 @@ MHO_ControlDefinitions::DetermineControlType(std::string etype)
     if(etype == "string"){return control_string_type;}
     if(etype == "list_string"){return control_list_string_type;}
     if(etype == "conditional"){return control_conditional_type;}
+    if(etype == "bool"){return control_bool_type;}
     if(etype == "compound"){return control_compound_type;}
     return control_unknown_type;
 }
