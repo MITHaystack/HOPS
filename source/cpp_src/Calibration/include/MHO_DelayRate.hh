@@ -21,7 +21,7 @@
 #include "MHO_SubSample.hh"
 #include "MHO_EndZeroPadder.hh"
 
-#ifdef HOPS_USE_FFTW
+#ifdef HOPS_USE_FFTW3
 #include "MHO_MultidimensionalFastFourierTransformFFTW.hh"
 #define FFT_ENGINE_TYPE MHO_MultidimensionalFastFourierTransformFFTW< visibility_type >
 #else
