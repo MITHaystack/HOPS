@@ -75,7 +75,7 @@ MHO_NormFX::InitializeImpl(const XArgType1* in1, const XArgType2* in2, XArgType3
         fFFTEngine.SelectAxis(FREQ_AXIS); //only perform padded fft on frequency (to lag) axis
         fFFTEngine.SetForward();//forward DFT
 
-        #else 
+        #else
 
         fPaddedFFTEngine.SetArgs(in1, &fWorkspace);
         fPaddedFFTEngine.DeselectAllAxes();
@@ -93,9 +93,9 @@ MHO_NormFX::InitializeImpl(const XArgType1* in1, const XArgType2* in2, XArgType3
         if(!status){msg_error("operators", "Could not initialize zero padder in MHO_NormFX." << eom); return false;}
 
         status = fFFTEngine.Initialize();
-        if(!status){msg_error("operators", "Could not initialize padded FFT in MHO_NormFX." << eom); return false;}
+        if(!status){msg_error("operators", "Could not initialize FFT in MHO_NormFX." << eom); return false;}
 
-        #else 
+        #else
 
         status = fPaddedFFTEngine.Initialize();
         if(!status){msg_error("operators", "Could not initialize padded FFT in MHO_NormFX." << eom); return false;}
@@ -165,7 +165,7 @@ MHO_NormFX::ExecuteImpl(const XArgType1* in1, const XArgType2* in2, XArgType3* o
 
         status = fPaddedFFTEngine.Execute();
         if(!status){msg_error("operators", "Could not execute FFT in MHO_NormFX." << eom); return false;}
-        
+
         #endif
 
         status = fSubSampler.Execute();
