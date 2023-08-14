@@ -217,7 +217,11 @@ class MHO_EndZeroPadder:
 
                 //generic axis, do nothing
                 template< typename XAxisType >
-                void operator()(const XAxisType& /*axis1*/, XAxisType& /*axis2*/){};
+                void operator()(const XAxisType& axis1, XAxisType& axis2)
+                {
+                    axis2.Copy(axis1);
+                    if(!fModify){return;} //just copy this axis
+                };
 
                 void operator()(const MHO_Axis<double>& axis1, MHO_Axis<double>& axis2)
                 {
