@@ -44,6 +44,13 @@ class MHO_MultidimensionalFastFourierTransform:
             in->GetDimensions(this->fDimensionSize);
             AllocateWorkspace();
             this->fInitialized = true;
+            #ifdef HOPS_ENABLE_DEBUG_MSG
+            msg_debug("operators", "initialized a native FFT plan."<<eom);
+            for(std::size_t i=0; i<XArgType::rank::value; i++)
+            {
+                msg_debug("operators", "fft plan dimension: "<<i<<" has size: "<<this->fDimensionSize[i]<<", enabled? "<<this->fAxesToXForm[i]<<"."<<eom);
+            }
+            #endif
             return true;
         }
 
@@ -55,6 +62,13 @@ class MHO_MultidimensionalFastFourierTransform:
             in->GetDimensions(this->fDimensionSize);
             AllocateWorkspace();
             this->fInitialized = true;
+            #ifdef HOPS_ENABLE_DEBUG_MSG
+            msg_debug("operators", "initialized a native FFT plan."<<eom);
+            for(std::size_t i=0; i<XArgType::rank::value; i++)
+            {
+                msg_debug("operators", "fft plan dimension: "<<i<<" has size: "<<this->fDimensionSize[i]<<", enabled? "<<this->fAxesToXForm[i]<<"."<<eom);
+            }
+            #endif
             return true;
         }
 

@@ -68,7 +68,7 @@ class MHO_MultidimensionalFastFourierTransformFFTW:
                 {
                     if(this->fDimensionSize[i] != in->GetDimension(i)){need_to_resize = true; break;}
                 }
-                if(need_to_resize || !this->fInitialized ) 
+                if(need_to_resize || !this->fInitialized )
                 {
                     in->GetDimensions(this->fDimensionSize);
                     fTotalArraySize = MHO_NDArrayMath::TotalArraySize<XArgType::rank::value>(this->fDimensionSize);
@@ -76,6 +76,13 @@ class MHO_MultidimensionalFastFourierTransformFFTW:
                     AllocateWorkspace();
                     DestructPlan();
                     this->fInitialized = ConstructPlan();
+                    #ifdef HOPS_ENABLE_DEBUG_MSG
+                    msg_debug("operators", "initialized an FFTW3 FFT plan."<<eom);
+                    for(std::size_t i=0; i<XArgType::rank::value; i++)
+                    {
+                        msg_debug("operators", "fft plan dimension: "<<i<<" has size: "<<this->fDimensionSize[i]<<", enabled? "<<this->fAxesToXForm[i]<<"."<<eom);
+                    }
+                    #endif
                 }
                 else
                 {
@@ -113,6 +120,13 @@ class MHO_MultidimensionalFastFourierTransformFFTW:
                     AllocateWorkspace();
                     DestructPlan();
                     this->fInitialized = ConstructPlan();
+                    #ifdef HOPS_ENABLE_DEBUG_MSG
+                    msg_debug("operators", "initialized an FFTW3 FFT plan."<<eom);
+                    for(std::size_t i=0; i<XArgType::rank::value; i++)
+                    {
+                        msg_debug("operators", "fft plan dimension: "<<i<<" has size: "<<this->fDimensionSize[i]<<", enabled? "<<this->fAxesToXForm[i]<<"."<<eom);
+                    }
+                    #endif
                 }
                 else
                 {
@@ -133,13 +147,13 @@ class MHO_MultidimensionalFastFourierTransformFFTW:
                 if(!this->fInitialized){msg_error("operators", "FFT intialization failed. Aborting transform." << eom);}
                 return false;
             }
-        
+
             //check memory alignment to determine if we can avoid copying the data around
             if( HaveSameAlignment(in->GetData(), fInPtr) )
             {
                 if(this->fForward){fCurrentPlan = &fPlanForwardInPlace;}
                 else{fCurrentPlan  = &fPlanBackwardInPlace;}
-                
+
                 MHO_FFTWTypes<floating_point_value_type>::execute_dft_func(*fCurrentPlan,
                 reinterpret_cast<typename MHO_FFTWTypes<floating_point_value_type>::fftw_complex_type_ptr>(in->GetData() ),
                 reinterpret_cast<typename MHO_FFTWTypes<floating_point_value_type>::fftw_complex_type_ptr>(in->GetData() ) );
@@ -148,7 +162,7 @@ class MHO_MultidimensionalFastFourierTransformFFTW:
             {
                 if(this->fForward){fCurrentPlan = &fPlanForward;}
                 else{fCurrentPlan  = &fPlanBackward;}
-                
+
                 //alignment doesn't match so we need to use memcpy
                 std::memcpy( fInPtr, in->GetData() , fTotalArraySize*sizeof(typename MHO_FFTWTypes<floating_point_value_type>::fftw_complex_type) );
                 MHO_FFTWTypes<floating_point_value_type>::execute_func(*fCurrentPlan);
@@ -162,7 +176,7 @@ class MHO_MultidimensionalFastFourierTransformFFTW:
                     this->IfTableTransformAxis(in,d);
                 }
             };
-            
+
             return true;
 
         }
@@ -220,7 +234,7 @@ class MHO_MultidimensionalFastFourierTransformFFTW:
             //now figure out the dimensions of the transforms
             //note: unless we are transforming every dimension of the input,
             //we may not fill up this array completely (hence the count variable)
-            int count = 0; 
+            int count = 0;
             for(size_t d = 0; d < XArgType::rank::value; d++)
             {
                 if(this->fAxesToXForm[d])

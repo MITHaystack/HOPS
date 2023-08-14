@@ -14,21 +14,31 @@
 #include <cmath>
 #include <complex>
 
+#include "MHO_AxisPack.hh"
 #include "MHO_TableContainer.hh"
 #include "MHO_ContainerDefinitions.hh"
-
 #include "MHO_InspectingOperator.hh"
 #include "MHO_CyclicRotator.hh"
-
-#include "MHO_MultidimensionalFastFourierTransform.hh"
-
-#ifdef HOPS_USE_FFTW3
-    #include "MHO_MultidimensionalFastFourierTransformFFTW.hh"
-#endif
-
-
 #include "MHO_UniformGridPointsCalculator.hh"
 #include "MHO_ExtremaSearch.hh"
+
+namespace hops
+{
+
+using mbd_axis_pack = MHO_AxisPack< time_axis_type >;
+using mbd_type = MHO_TableContainer< visibility_element_type, mbd_axis_pack >;
+using mbd_amp_type = MHO_TableContainer< double, mbd_axis_pack >;
+
+}
+
+#ifdef HOPS_USE_FFTW3
+#include "MHO_MultidimensionalFastFourierTransformFFTW.hh"
+#define FFT_ENGINE_TYPE MHO_MultidimensionalFastFourierTransformFFTW< mbd_type >
+#else
+#include "MHO_MultidimensionalFastFourierTransform.hh"
+#define FFT_ENGINE_TYPE MHO_MultidimensionalFastFourierTransform< mbd_type >
+#endif
+
 
 namespace hops
 {
@@ -39,7 +49,7 @@ class MHO_MBDelaySearch: public MHO_InspectingOperator< visibility_type >
     public:
         MHO_MBDelaySearch();
         virtual ~MHO_MBDelaySearch();
-        
+
         int GetMBDMaxBin() const {return fMBDMaxBin;}
         int GetSBDMaxBin() const {return fSBDMaxBin;}
         int GetDRMaxBin() const {return fDRMaxBin;}
@@ -47,7 +57,7 @@ class MHO_MBDelaySearch: public MHO_InspectingOperator< visibility_type >
         //TODO FIX ME
         // time_axis_type* GetMBDAxis(){ return &(std::get<0>(fMBDWorkspace)); };
         //delay_rate_axis_type* GetDRAxis(){ return &(std::get<1>(fMBDWorkspace)); };
-        
+
         time_axis_type* GetMBDAxis(){ return &fMBDAxis; };
         delay_rate_axis_type* GetDRAxis(){ return &fDRAxis; };
 
@@ -61,12 +71,8 @@ class MHO_MBDelaySearch: public MHO_InspectingOperator< visibility_type >
         virtual bool ExecuteImpl(const XArgType* in) override;
 
     private:
-        
-        using mbd_axis_pack = MHO_AxisPack< time_axis_type >;
-        using mbd_type = MHO_TableContainer< visibility_element_type, mbd_axis_pack >;
-        using mbd_amp_type = MHO_TableContainer< double, mbd_axis_pack >;
 
-        
+
         //workspace
         bool fInitialized;
         std::vector< double > fChannelFreqs;
@@ -77,7 +83,7 @@ class MHO_MBDelaySearch: public MHO_InspectingOperator< visibility_type >
         double fGridStart;
         double fGridSpace;
         std::size_t fNGridPoints;
-        std::size_t fNSBD; 
+        std::size_t fNSBD;
         std::size_t fNDR;
         std::map<std::size_t, std::size_t> fMBDBinMap;
 
@@ -91,11 +97,7 @@ class MHO_MBDelaySearch: public MHO_InspectingOperator< visibility_type >
 
         MHO_UniformGridPointsCalculator fGridCalc;
 
-        #ifdef HOPS_USE_FFTW3
-                MHO_MultidimensionalFastFourierTransformFFTW< mbd_type > fFFTEngine;
-        #else 
-                MHO_MultidimensionalFastFourierTransform< mbd_type > fFFTEngine;
-        #endif
+        FFT_ENGINE_TYPE fFFTEngine;
 
         MHO_CyclicRotator< mbd_type > fCyclicRotator;
 
