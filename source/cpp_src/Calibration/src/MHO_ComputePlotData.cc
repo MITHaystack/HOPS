@@ -1,7 +1,7 @@
 #include "MHO_ComputePlotData.hh"
 
 #include "MHO_UniformGridPointsCalculator.hh"
-
+#include "MHO_EndZeroPadder.hh"
 namespace hops
 {
 
@@ -680,41 +680,41 @@ MHO_ComputePlotData::calc_xpower_KLUDGE2()
             }
             X[n] += sum;
         }
-        std::get<0>(X)->at(n) = (*freq_ax)(n);
+        (&std::get<0>(X))->at(n) = (*freq_ax)(n);
     }
     
-    MHO_EndZeroPadder< xpower_type > padder;
-    padder.SetPaddingFactor(8);
-    padder.SetEndPadded();
-    padder.SetArgs(&X, &X);
-    bool init = padder.Initialize();
-    bool exe = padder.Execute();
-    
-
-    //set up FFT
-    fFFTEngine.SetArgs(&X, &X);
-    fFFTEngine.DeselectAllAxes();
-    fFFTEngine.SelectAxis(0);
-    fFFTEngine.SetForward();
-    bool ok = fFFTEngine.Initialize();
-    check_step_fatal(ok, "calibration", "MBD search fft engine initialization." << eom );
-
-    //now run an FFT along the MBD axis and cyclic rotate
-    ok = fFFTEngine.Execute();
-    check_step_fatal(ok, "calibration", "MBD search fft engine execution." << eom );
-    
-    //set up FFT
-    fFFTEngine.SetArgs(&X, &X);
-    fFFTEngine.DeselectAllAxes();
-    fFFTEngine.SelectAxis(0);
-    fFFTEngine.SetBackward();
-    bool ok = fFFTEngine.Initialize();
-    check_step_fatal(ok, "calibration", "MBD search fft engine initialization." << eom );
-
-    //now run an FFT along the MBD axis and cyclic rotate
-    ok = fFFTEngine.Execute();
-    check_step_fatal(ok, "calibration", "MBD search fft engine execution." << eom );
-    
+    // MHO_EndZeroPadder< xpower_type > padder;
+    // padder.SetPaddingFactor(2);
+    // padder.SetEndPadded();
+    // padder.SetArgs(&X);
+    // bool init = padder.Initialize();
+    // bool exe = padder.Execute();
+    // 
+    // 
+    // //set up FFT
+    // fFFTEngine.SetArgs(&X);
+    // fFFTEngine.DeselectAllAxes();
+    // fFFTEngine.SelectAxis(0);
+    // fFFTEngine.SetForward();
+    // bool ok = fFFTEngine.Initialize();
+    // check_step_fatal(ok, "calibration", "MBD search fft engine initialization." << eom );
+    // 
+    // //now run an FFT along the MBD axis and cyclic rotate
+    // ok = fFFTEngine.Execute();
+    // check_step_fatal(ok, "calibration", "MBD search fft engine execution." << eom );
+    // 
+    // //set up FFT
+    // fFFTEngine.SetArgs(&X);
+    // fFFTEngine.DeselectAllAxes();
+    // fFFTEngine.SelectAxis(0);
+    // fFFTEngine.SetBackward();
+    // ok = fFFTEngine.Initialize();
+    // check_step_fatal(ok, "calibration", "MBD search fft engine initialization." << eom );
+    // 
+    // //now run an FFT along the MBD axis and cyclic rotate
+    // ok = fFFTEngine.Execute();
+    // check_step_fatal(ok, "calibration", "MBD search fft engine execution." << eom );
+    // 
 
 
     //now run an FFT along the MBD axis and cyclic rotate
@@ -723,8 +723,7 @@ MHO_ComputePlotData::calc_xpower_KLUDGE2()
 
     std::complex<double> cmplx_unit_I(0.0, 1.0);
     cp_spectrum.Resize(X.GetSize());
-    
-    
+
     std::cout<<"sbd delay = "<<fSBDelay<<std::endl;
     std::cout<<"sbd delta = "<<freq_delta<<std::endl;
     
@@ -736,7 +735,7 @@ MHO_ComputePlotData::calc_xpower_KLUDGE2()
         Z = std::exp(-1.0*cmplx_unit_I * arg) ;
         cp_spectrum[i] *= Z;//
         cp_spectrum[i] *= (sqrt(0.5)/total_summed_weights );
-        std::get<0>(cp_spectrum)(i) = (std::get<0>(X)(i);
+        std::get<0>(cp_spectrum)(i) = std::get<0>(X)(i);
 
     }
 
