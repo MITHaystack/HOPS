@@ -496,6 +496,7 @@ MHO_ComputePlotData::calc_xpower_KLUDGE()
     std::complex<double> sum;
     std::complex<double> Z, vr;
     double frac;
+    double bw;
     for(int lag = 0; lag < 2*nl; lag++)
     {
         for(int ch = 0; ch < nchan; ch++)
@@ -505,6 +506,7 @@ MHO_ComputePlotData::calc_xpower_KLUDGE()
             MHO_IntervalLabel ilabel(ch,ch);
             std::string net_sideband = "?";
             std::string sidebandlabelkey = "net_sideband";
+            std::string bandwidthlabelkey = "bandwidth";
             auto other_labels = chan_ax->GetIntervalsWhichIntersect(&ilabel);
             for(auto olit = other_labels.begin(); olit != other_labels.end(); olit++)
             {
@@ -514,6 +516,16 @@ MHO_ComputePlotData::calc_xpower_KLUDGE()
                     break;
                 }
             }
+            
+            for(auto olit = other_labels.begin(); olit != other_labels.end(); olit++)
+            {
+                if( (*olit)->HasKey(bandwidthlabelkey) )
+                {
+                    (*olit)->Retrieve(bandwidthlabelkey, bw);
+                    break;
+                }
+            }
+
 
             #pragma message("TODO FIXME FOR NON-LSB DATA!")
             frot.SetSideband(0); //DSB
@@ -569,7 +581,8 @@ MHO_ComputePlotData::calc_xpower_KLUDGE()
         cp_spectrum(s-i-1) = Y(i);
         Z = std::exp(cmplx_unit_I * (fSBDelay * (i-s) * M_PI / (sbd_delta *2.0* s)));
         cp_spectrum[s-i-1] *= Z * (sqrt(0.5)/total_summed_weights );
-        std::get<0>(cp_spectrum)(s-i-1) = -1.0*32.0*((double)i/(double)s); //specific VGOS case, just for looks
+        std::get<0>(cp_spectrum)(s-i-1) = -1.0*(bw)*((double)i/(double)s); //label freq ax
+
     }
 
     return cp_spectrum;
