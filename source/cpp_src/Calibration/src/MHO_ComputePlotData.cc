@@ -590,13 +590,131 @@ MHO_ComputePlotData::calc_xpower_KLUDGE()
 }
 
 
+xpower_type
+MHO_ComputePlotData::calc_xpower_KLUDGE2()
+{
+    //kludge version
+    #pragma message("TODO FIXME XPOWER KLUDGE")
+    //grab the total summed weights
+    double total_summed_weights = 1.0;
+    fWeights->Retrieve("total_summed_weights", total_summed_weights);
+
+    MHO_FringeRotation frot;
+    int N = fVisibilities->GetDimension(FREQ_AXIS);
+    xpower_type X;
+    X.Resize(N);
+    xpower_type cp_spectrum;
+
+    std::size_t POLPROD = 0;
+    std::size_t nchan = fVisibilities->GetDimension(CHANNEL_AXIS);
+    std::size_t nap = fVisibilities->GetDimension(TIME_AXIS);
+    std::size_t nbins = fVisibilities->GetDimension(FREQ_AXIS);
+
+    auto chan_ax = &( std::get<CHANNEL_AXIS>(*fVisibilities) );
+    auto ap_ax = &(std::get<TIME_AXIS>(*fVisibilities));
+    auto freq_ax = &( std::get<FREQ_AXIS>(*fVisibilities) );
+    double ap_delta = ap_ax->at(1) - ap_ax->at(0);
+    double freq_delta = freq_ax->at(1) - freq_ax->at(0);
+
+    //TODO FIXME -- should this be the fourfit refrence time? Also...should this be calculated elsewhere?
+    double midpoint_time = ( ap_ax->at(nap-1) + ap_delta  + ap_ax->at(0) )/2.0;
+    std::cout<<"time midpoint = "<<midpoint_time<<std::endl;
+
+    std::complex<double> sum;
+    std::complex<double> Z, vr;
+    double frac;
+    double bw;
+    X.ZeroArray();
+    for(int n = 0; n < N; n++)
+    {
+        for(int ch = 0; ch < nchan; ch++)
+        {
+            double freq = (*chan_ax)(ch);//sky freq of this channel
+            MHO_IntervalLabel ilabel(ch,ch);
+            std::string net_sideband = "?";
+            std::string sidebandlabelkey = "net_sideband";
+            std::string bandwidthlabelkey = "bandwidth";
+            auto other_labels = chan_ax->GetIntervalsWhichIntersect(&ilabel);
+            for(auto olit = other_labels.begin(); olit != other_labels.end(); olit++)
+            {
+                if( (*olit)->HasKey(sidebandlabelkey) )
+                {
+                    (*olit)->Retrieve(sidebandlabelkey, net_sideband);
+                    break;
+                }
+            }
+            
+            for(auto olit = other_labels.begin(); olit != other_labels.end(); olit++)
+            {
+                if( (*olit)->HasKey(bandwidthlabelkey) )
+                {
+                    (*olit)->Retrieve(bandwidthlabelkey, bw);
+                    break;
+                }
+            }
+
+            #pragma message("TODO FIXME FOR NON-LSB DATA!")
+            frot.SetSideband(0); //DSB
+            if(net_sideband == "U")
+            {
+                frot.SetSideband(1);
+            }
+
+            if(net_sideband == "L")
+            {
+                frot.SetSideband(-1);
+            }
+
+            sum = 0.0;
+            for (int ap = 0; ap < nap; ap++)
+            {
+                double tdelta = ap_ax->at(ap) + ap_delta/2.0 - midpoint_time; //need time difference from the f.r.t?
+                std::complex<double> vis = (*fVisibilities)(POLPROD, ch, ap, n);
+                std::complex<double> vr = frot.vrot(tdelta, freq, fRefFreq, fDelayRate, fMBDelay);
+                std::complex<double> Z = vis*vr;
+                //apply weight and sum
+                double w = (*fWeights)(POLPROD, ch, ap, 0);
+                sum += w*Z;
+            }
+            X[n] += sum;
+        }
+    }
+
+    //now run an FFT along the MBD axis and cyclic rotate
+    // ok = fFFTEngine.Execute();
+    check_step_fatal(ok, "calibration", "MBD search fft engine execution." << eom );
+
+    std::complex<double> cmplx_unit_I(0.0, 1.0);
+    cp_spectrum.Resize(N);
+    
+    
+    std::cout<<"sbd delay = "<<fSBDelay<<std::endl;
+    std::cout<<"sbd delta = "<<freq_delta<<std::endl;
+    
+    for(int i=0; i<N; i++)
+    {
+        cp_spectrum(i) = X(i);
+        double arg = 2.0*M_PI*fSBDelay*((*freq_ax)(i));
+        std::cout<<"arg "<<i<<" = "<<arg<<std::endl;
+        Z = std::exp(-1.0*cmplx_unit_I * arg) ;
+        cp_spectrum[i] *= Z;//
+        cp_spectrum[i] *= (sqrt(0.5)/total_summed_weights );
+        std::get<0>(cp_spectrum)(i) = (*freq_ax)(i);
+
+    }
+
+    return cp_spectrum;
+
+}
+
+
 mho_json
 MHO_ComputePlotData::DumpInfoToJSON()
 {
     auto sbd_amp = calc_sbd();
     auto mbd_amp = calc_mbd();
     auto dr_amp = calc_dr();
-    auto sbd_xpower = calc_xpower_KLUDGE();
+    auto sbd_xpower = calc_xpower_KLUDGE2();
     double coh_avg_phase = calc_phase();
 
     //calculate AP period
