@@ -132,13 +132,13 @@ int main(int /*argc*/, char** /*argv*/)
         for(unsigned int j=0; j<N; j++)
         {
             s[j] = fft_work[i].fScale[j];
-            std::cout<<"j, s = "<<j<<s[j]<<std::endl;
+            std::cout<<"j, s = "<<j<<", "<<s[j]<<std::endl;
         }
 
         for(unsigned int j=0; j<M; j++)
         {
             c[j] = fft_work[i].fCirculant[j];
-            std::cout<<"j, c = "<<j<<c[j]<<std::endl;
+            std::cout<<"j, c = "<<j <<", "<<c[j]<<std::endl;
         }
 
         std::cout<<i<<", "<<"N = "<<N<<" M = "<<M<<std::endl;
