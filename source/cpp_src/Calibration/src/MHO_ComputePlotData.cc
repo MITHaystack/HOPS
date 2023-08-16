@@ -602,7 +602,9 @@ MHO_ComputePlotData::calc_xpower_KLUDGE2()
     MHO_FringeRotation frot;
     int N = fVisibilities->GetDimension(FREQ_AXIS);
     xpower_type X;
+    xpower_type Y;
     X.Resize(N);
+    Y.Resize(N);
     xpower_type cp_spectrum;
 
     std::size_t POLPROD = 0;
@@ -678,34 +680,73 @@ MHO_ComputePlotData::calc_xpower_KLUDGE2()
             }
             X[n] += sum;
         }
+        std::get<0>(X)->at(n) = (*freq_ax)(n);
     }
+    
+    MHO_EndZeroPadder< xpower_type > padder;
+    padder.SetPaddingFactor(8);
+    padder.SetEndPadded();
+    padder.SetArgs(&X, &X);
+    bool init = padder.Initialize();
+    bool exe = padder.Execute();
+    
+
+    //set up FFT
+    fFFTEngine.SetArgs(&X, &X);
+    fFFTEngine.DeselectAllAxes();
+    fFFTEngine.SelectAxis(0);
+    fFFTEngine.SetForward();
+    bool ok = fFFTEngine.Initialize();
+    check_step_fatal(ok, "calibration", "MBD search fft engine initialization." << eom );
+
+    //now run an FFT along the MBD axis and cyclic rotate
+    ok = fFFTEngine.Execute();
+    check_step_fatal(ok, "calibration", "MBD search fft engine execution." << eom );
+    
+    //set up FFT
+    fFFTEngine.SetArgs(&X, &X);
+    fFFTEngine.DeselectAllAxes();
+    fFFTEngine.SelectAxis(0);
+    fFFTEngine.SetBackward();
+    bool ok = fFFTEngine.Initialize();
+    check_step_fatal(ok, "calibration", "MBD search fft engine initialization." << eom );
+
+    //now run an FFT along the MBD axis and cyclic rotate
+    ok = fFFTEngine.Execute();
+    check_step_fatal(ok, "calibration", "MBD search fft engine execution." << eom );
+    
+
 
     //now run an FFT along the MBD axis and cyclic rotate
     // ok = fFFTEngine.Execute();
     check_step_fatal(ok, "calibration", "MBD search fft engine execution." << eom );
 
     std::complex<double> cmplx_unit_I(0.0, 1.0);
-    cp_spectrum.Resize(N);
+    cp_spectrum.Resize(X.GetSize());
     
     
     std::cout<<"sbd delay = "<<fSBDelay<<std::endl;
     std::cout<<"sbd delta = "<<freq_delta<<std::endl;
     
-    for(int i=0; i<N; i++)
+    for(int i=0; i<X.GetSize(); i++)
     {
         cp_spectrum(i) = X(i);
-        double arg = 2.0*M_PI*fSBDelay*((*freq_ax)(i));
+        double arg = 2.0*M_PI*fSBDelay*(std::get<0>(X)(i));
         std::cout<<"arg "<<i<<" = "<<arg<<std::endl;
         Z = std::exp(-1.0*cmplx_unit_I * arg) ;
         cp_spectrum[i] *= Z;//
         cp_spectrum[i] *= (sqrt(0.5)/total_summed_weights );
-        std::get<0>(cp_spectrum)(i) = (*freq_ax)(i);
+        std::get<0>(cp_spectrum)(i) = (std::get<0>(X)(i);
 
     }
 
     return cp_spectrum;
 
 }
+
+
+
+
 
 
 
