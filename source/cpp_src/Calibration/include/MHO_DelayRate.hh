@@ -20,13 +20,10 @@
 #include "MHO_CyclicRotator.hh"
 #include "MHO_SubSample.hh"
 #include "MHO_EndZeroPadder.hh"
+#include "MHO_MultidimensionalFastFourierTransform.hh"
 
 #ifdef HOPS_USE_FFTW3
 #include "MHO_MultidimensionalFastFourierTransformFFTW.hh"
-#define FFT_ENGINE_TYPE MHO_MultidimensionalFastFourierTransformFFTW< visibility_type >
-#else
-#include "MHO_MultidimensionalFastFourierTransform.hh"
-#define FFT_ENGINE_TYPE MHO_MultidimensionalFastFourierTransform< visibility_type >
 #endif
 
 namespace hops
@@ -63,8 +60,12 @@ class MHO_DelayRate: public MHO_BinaryOperator<
         void ApplyDataWeights(const XArgType2* in2);
         void ConditionallyResizeOutput(const std::size_t* dims, std::size_t size, XArgType3* out);
 
-        //MHO_MultidimensionalPaddedFastFourierTransform< visibility_type > fPaddedFFTEngine;
-
+        #ifdef HOPS_USE_FFTW3
+        using FFT_ENGINE_TYPE = MHO_MultidimensionalFastFourierTransformFFTW< visibility_type >;
+        #else
+        using FFT_ENGINE_TYPE = MHO_MultidimensionalFastFourierTransform< visibility_type >;
+        #endif
+        
         MHO_SubSample<sbd_type> fSubSampler;
         MHO_CyclicRotator<sbd_type> fCyclicRotator;
 
