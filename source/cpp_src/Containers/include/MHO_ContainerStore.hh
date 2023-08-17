@@ -79,6 +79,9 @@ class MHO_ContainerStore
         //get all short names currently in use
         void GetAllShortNames(std::vector< std::string >& shortnames);
         
+        //provides a way in which we can replace the nickname of an object
+        void RenameObject(const std::string& current_shortname, const std::string& new_shortname);
+        
         //provide the ability to attach integer labels to object uuids
         //only a single integer label can be assigned per object uuid
         //returns false if object not present
@@ -273,9 +276,17 @@ MHO_ContainerStore::GetNObjects() const
     return count;
 }
 
-
-
-
+inline void 
+MHO_ContainerStore::RenameObject(const std::string& current_shortname, const std::string& new_shortname)
+{
+    MHO_UUID obj_uuid = GetObjectUUID(current_shortname);
+    if(obj_uuid.as_long() != 0)
+    {
+        fShortNameSet.erase(current_shortname);
+        fShortNameToIds.erase(current_shortname);
+        SetShortName(obj_uuid, new_shortname);
+    }
+}
 
 
 

@@ -264,8 +264,9 @@ int main(int argc, char** argv)
     std::string ref_station_mk4id = std::string(1,baseline[0]);
     std::string rem_station_mk4id = std::string(1,baseline[1]);
     scanStore.LoadStation(ref_station_mk4id, conStore);
+    conStore->RenameObject("sta", "ref_sta");
     scanStore.LoadStation(rem_station_mk4id, conStore);
-
+    conStore->RenameObject("sta", "rem_sta");
 
     visibility_type* vis_data = conStore->GetObject<visibility_type>(std::string("vis"));
     weight_type* wt_data = conStore->GetObject<weight_type>(std::string("weight"));
