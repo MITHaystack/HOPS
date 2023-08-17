@@ -21,6 +21,8 @@
 
 #include "MHO_Message.hh"
 
+namespace mk4
+{
 //forward declaration of mk4_corel and vex structs
 //we do this to keep the mk4 structures from 'leaking' into the new code via includes,
 //We want to make sure any interface to the old mk4 IO libraries is kept only
@@ -34,6 +36,8 @@ extern "C"
 #ifndef HOPS3_USE_CXX
 }
 #endif
+
+}
 
 namespace hops
 {
@@ -49,7 +53,7 @@ class MHO_MK4StationInterface
         void SetVexFile(const std::string& vex){fVexFile = vex;}
         void SetStationFile(const std::string& station){fStationFile = station;}
 
-        mk4_sdata* GetStationData(){return fStation;};
+        mk4::mk4_sdata* GetStationData(){return fStation;};
 
         //extract the data
         station_coord_type* ExtractStationFile();
@@ -61,8 +65,8 @@ class MHO_MK4StationInterface
         void ReadVexFile();
         bool fHaveStation;
         bool fHaveVex;
-        struct mk4_sdata* fStation;
-        struct vex* fVex;
+        struct mk4::mk4_sdata* fStation;
+        struct mk4::vex* fVex;
         std::string fVexFile;
         std::string fStationFile;
 
