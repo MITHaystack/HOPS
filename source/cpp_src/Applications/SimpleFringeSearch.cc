@@ -401,7 +401,8 @@ int main(int argc, char** argv)
     bool optimize_closure_flag = false;
     bool is_oc_set = paramStore->Get(std::string("optimize_closure"), optimize_closure_flag );
     std::cout<<"optimize closure??? "<<is_oc_set<<", "<<optimize_closure_flag<<std::endl;
-    if(optimize_closure_flag){fringeInterp.EnableOptimizeClosure();} //NOTE, this has no effect on fringe phase when using 'interp' algo
+    //NOTE, this has no effect on fringe phase when using 'simul' algo (which is the only one implemented currently)
+    if(optimize_closure_flag){fringeInterp.EnableOptimizeClosure();}
     
     fringeInterp.SetReferenceFrequency(ref_freq);
     fringeInterp.SetMaxBins(c_sbdmax, c_mbdmax, c_drmax);
@@ -429,8 +430,12 @@ int main(int argc, char** argv)
     ////////////////////////////////////////////////////////////////////////////
     //TODO FIXME Organize all the plot data generation better
 
+    std::string mbd_anchor;
+    bool is_mbd_anchor_set = paramStore->Get(std::string("mbd_anchor"), mbd_anchor);
+
     MHO_ComputePlotData mk_plotdata;
     if(optimize_closure_flag){mk_plotdata.EnableOptimizeClosure();} //this does have an effect on overall fringe phase
+    if(is_mbd_anchor_set){mk_plotdata.SetMBDAnchor(mbd_anchor);} //effect not yet implemented
     mk_plotdata.SetSummedWeights(total_ap_frac);
     mk_plotdata.SetReferenceFrequency(ref_freq);
     mk_plotdata.SetMBDelay(mbdelay);

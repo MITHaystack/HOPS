@@ -5,6 +5,11 @@
 namespace hops
 {
 
+MHO_ComputePlotData::MHO_ComputePlotData()
+{
+    fMBDAnchor = "model";
+};
+
 xpower_amp_type
 MHO_ComputePlotData::calc_mbd()
 {
@@ -1042,7 +1047,12 @@ MHO_ComputePlotData::DumpInfoToJSON()
 
     plot_dict["Amp"] = fAmp;
 
-    #pragma message("TODO FIXME -- when control file parameter mbd_anchor sbd is used there is an additional correction done to fringe phase, see fill_208.c line 158!!")
+    if( fMBDAnchor == "sbd" )
+    {
+        #pragma message("TODO FIXME -- when control file parameter mbd_anchor sbd is used there is an additional correction done to fringe phase, see fill_208.c line 158!!")
+        msg_warn("calibration", "support for mbd_anchor is not yet implemented." <<eom);
+    }
+
     plot_dict["ResPhase"] = std::fmod(coh_avg_phase * (180.0/M_PI), 360.0);
     plot_dict["PFD"] = "-";
     plot_dict["ResidSbd(us)"] = fSBDelay;
