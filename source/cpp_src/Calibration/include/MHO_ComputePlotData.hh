@@ -35,11 +35,13 @@ using xpower_amp_type = MHO_TableContainer< double, MHO_AxisPack< MHO_Axis<doubl
 class MHO_ComputePlotData
 {
     public:
-        MHO_ComputePlotData(){};
+        MHO_ComputePlotData();
         virtual ~MHO_ComputePlotData(){};
         
         void EnableOptimizeClosure(){fRot.SetOptimizeClosureTrue();}
         void DisableOptimizeClosure(){fRot.SetOptimizeClosureFalse();}
+        
+        void SetMBDAnchor(std::string flag){fMBDAnchor = flag;}
 
         void SetSummedWeights(double total_ap_frac){fTotalSummedWeights = total_ap_frac;}
         void SetReferenceFrequency(double ref_freq){fRefFreq = ref_freq;}
@@ -98,6 +100,9 @@ class MHO_ComputePlotData
         
         //class which implements vrot
         MHO_FringeRotation fRot;
+        
+        //flag for mbd anchor 
+        std::string fMBDAnchor;
 
 };
 
