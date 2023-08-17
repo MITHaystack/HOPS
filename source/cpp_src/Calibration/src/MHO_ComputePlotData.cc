@@ -457,6 +457,10 @@ MHO_ComputePlotData::calc_phase()
 
 
 
+
+
+
+
 xpower_type
 MHO_ComputePlotData::calc_xpower_KLUDGE()
 {
@@ -497,6 +501,7 @@ MHO_ComputePlotData::calc_xpower_KLUDGE()
     std::complex<double> Z, vr;
     double frac;
     double bw;
+    std::string net_sideband = "?";
     for(int lag = 0; lag < 2*nl; lag++)
     {
         for(int ch = 0; ch < nchan; ch++)
@@ -504,7 +509,7 @@ MHO_ComputePlotData::calc_xpower_KLUDGE()
 
             double freq = (*chan_ax)(ch);//sky freq of this channel
             MHO_IntervalLabel ilabel(ch,ch);
-            std::string net_sideband = "?";
+
             std::string sidebandlabelkey = "net_sideband";
             std::string bandwidthlabelkey = "bandwidth";
             auto other_labels = chan_ax->GetIntervalsWhichIntersect(&ilabel);
@@ -576,18 +581,51 @@ MHO_ComputePlotData::calc_xpower_KLUDGE()
     int s =  Y.GetDimension(0)/2;
     cp_spectrum.Resize(s);
 
-    for(int i=0; i<s; i++)
+    
+    //this is seriously broken
+    if(net_sideband == "L")
     {
-        cp_spectrum(s-i-1) = Y(i);
-        Z = std::exp(cmplx_unit_I * (fSBDelay * (i-s) * M_PI / (sbd_delta *2.0* s)));
-        cp_spectrum[s-i-1] *= Z * (sqrt(0.5)/total_summed_weights );
-        std::get<0>(cp_spectrum)(s-i-1) = -1.0*(bw)*((double)i/(double)s); //label freq ax
-
+        for(int i=0; i<s; i++)
+        {
+            cp_spectrum(s-i-1) = Y(i);
+            Z = std::exp(cmplx_unit_I * (fSBDelay * (i-s) * M_PI / (sbd_delta *2.0* s)));
+            cp_spectrum[s-i-1] *= Z * (sqrt(0.5)/total_summed_weights );
+            std::get<0>(cp_spectrum)(s-i-1) = -1.0*(bw)*((double)i/(double)s); //label freq ax
+        }
     }
+    else 
+    {
+        for(int i=0; i<s; i++)
+        {
+            cp_spectrum(i) = Y(i+s-1);
+            Z = std::exp(cmplx_unit_I * (fSBDelay * (i-s) * M_PI / (sbd_delta *2.0* s)));
+            cp_spectrum(i) *= Z * (sqrt(0.5)/total_summed_weights );
+            std::get<0>(cp_spectrum)(i) = -1.0*(bw)*((double)i/(double)s); //label freq ax
+        }
+    }
+
 
     return cp_spectrum;
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 xpower_type
@@ -645,7 +683,7 @@ MHO_ComputePlotData::calc_xpower_KLUDGE2()
                     break;
                 }
             }
-            
+
             for(auto olit = other_labels.begin(); olit != other_labels.end(); olit++)
             {
                 if( (*olit)->HasKey(bandwidthlabelkey) )
@@ -682,7 +720,7 @@ MHO_ComputePlotData::calc_xpower_KLUDGE2()
         }
         (&std::get<0>(X))->at(n) = (*freq_ax)(n);
     }
-    
+
     // MHO_EndZeroPadder< xpower_type > padder;
     // padder.SetPaddingFactor(2);
     // padder.SetEndPadded();
@@ -726,7 +764,7 @@ MHO_ComputePlotData::calc_xpower_KLUDGE2()
 
     std::cout<<"sbd delay = "<<fSBDelay<<std::endl;
     std::cout<<"sbd delta = "<<freq_delta<<std::endl;
-    
+
     for(int i=0; i<X.GetSize(); i++)
     {
         cp_spectrum(i) = X(i);
@@ -751,6 +789,26 @@ MHO_ComputePlotData::calc_xpower_KLUDGE2()
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 xpower_type
 MHO_ComputePlotData::calc_xpower_KLUDGE3()
 {
@@ -762,6 +820,7 @@ MHO_ComputePlotData::calc_xpower_KLUDGE3()
 
     MHO_FringeRotation frot;
     int N = fSBDArray->GetDimension(FREQ_AXIS);
+    int NLAGS = fVisibilities->GetDimension(FREQ_AXIS);
 
     xpower_type X;
     xpower_type Y;
@@ -850,7 +909,7 @@ MHO_ComputePlotData::calc_xpower_KLUDGE3()
     std::cout<<X<<std::endl;
 
     //set up FFT
-    fFFTEngine.SetArgs(&X, &X);
+    fFFTEngine.SetArgs(&X);
     fFFTEngine.DeselectAllAxes();
     fFFTEngine.SelectAxis(0);
     fFFTEngine.SetForward();
@@ -861,48 +920,48 @@ MHO_ComputePlotData::calc_xpower_KLUDGE3()
     ok = fFFTEngine.Execute();
     check_step_fatal(ok, "calibration", "MBD search fft engine execution." << eom );
 
-    // std::complex<double> cmplx_unit_I(0.0, 1.0);
-    // int s =  X.GetDimension(0)/2;
-    // cp_spectrum.Resize(s);
-    // 
-    // for(int i=0; i<s; i++)
-    // {
-    //     cp_spectrum(s-i-1) = Y(i);
-    //     Z = std::exp(cmplx_unit_I * (fSBDelay * (i-s) * M_PI / (sbd_delta *2.0* s)));
-    //     cp_spectrum[s-i-1] *= Z * (sqrt(0.5)/total_summed_weights );
-    //     std::get<0>(cp_spectrum)(s-i-1) = -1.0*(bw)*((double)i/(double)s); //label freq ax
-    // 
-    // }
-    // 
-    // return cp_spectrum;
-
-
-    //now run an FFT along the MBD axis and cyclic rotate
-    // ok = fFFTEngine.Execute();
-    check_step_fatal(ok, "calibration", "MBD search fft engine execution." << eom );
-
     std::complex<double> cmplx_unit_I(0.0, 1.0);
-    // cp_spectrum.Resize(N);
-    // 
-    // 
-    // std::cout<<"sbd delay = "<<fSBDelay<<std::endl;
-    // std::cout<<"sbd delta = "<<freq_delta<<std::endl;
-    // 
-    for(int i=0; i<N; i++)
+    int s =  X.GetDimension(0);
+    cp_spectrum.Resize(128);
+    
+    for(int i=0; i<128; i++)
     {
         cp_spectrum(i) = X(i);
-        // double arg = 2.0*M_PI*fSBDelay*((*freq_ax)(i));
-        // std::cout<<"arg "<<i<<" = "<<arg<<std::endl;
-        // Z = std::exp(-1.0*cmplx_unit_I * arg) ;
-        // cp_spectrum[i] *= Z;//
-        // cp_spectrum[i] *= (sqrt(0.5)/total_summed_weights );
-        std::get<0>(cp_spectrum)(i) = std::get<0>(X)(i);
+        Z = std::exp(-1.0*cmplx_unit_I * (fSBDelay * (i) * M_PI / (sbd_delta *2.0* s)));
+        cp_spectrum(i) *= Z * (sqrt(0.5)/total_summed_weights );
+        std::get<0>(cp_spectrum)(i) = -1.0*(bw)*((double)i/(double)s); //label freq ax
+        std::cout<<"i, abs(c)  ="<<i<<", "<<std::abs(cp_spectrum(i))<<std::endl;
     }
-
-    std::cout<<"BOOO"<<std::endl;
-    std::cout<<X<<std::endl;
     
-    return X;//cp_spectrum;
+    return cp_spectrum;
+
+
+    // //now run an FFT along the MBD axis and cyclic rotate
+    // // ok = fFFTEngine.Execute();
+    // check_step_fatal(ok, "calibration", "MBD search fft engine execution." << eom );
+    // 
+    // //std::complex<double> cmplx_unit_I(0.0, 1.0);
+    // // cp_spectrum.Resize(N);
+    // // 
+    // // 
+    // // std::cout<<"sbd delay = "<<fSBDelay<<std::endl;
+    // // std::cout<<"sbd delta = "<<freq_delta<<std::endl;
+    // // 
+    // for(int i=0; i<N; i++)
+    // {
+    //     cp_spectrum(i) = X(i);
+    //     // double arg = 2.0*M_PI*fSBDelay*((*freq_ax)(i));
+    //     // std::cout<<"arg "<<i<<" = "<<arg<<std::endl;
+    //     // Z = std::exp(-1.0*cmplx_unit_I * arg) ;
+    //     // cp_spectrum[i] *= Z;//
+    //     // cp_spectrum[i] *= (sqrt(0.5)/total_summed_weights );
+    //     std::get<0>(cp_spectrum)(i) = std::get<0>(X)(i);
+    // }
+    // 
+    // std::cout<<"BOOO"<<std::endl;
+    // std::cout<<X<<std::endl;
+    // 
+    // return X;//cp_spectrum;
 
 }
 
@@ -930,7 +989,7 @@ MHO_ComputePlotData::DumpInfoToJSON()
     auto sbd_amp = calc_sbd();
     auto mbd_amp = calc_mbd();
     auto dr_amp = calc_dr();
-    auto sbd_xpower = calc_xpower_KLUDGE2();
+    auto sbd_xpower = calc_xpower_KLUDGE();
     double coh_avg_phase = calc_phase();
 
     //calculate AP period
