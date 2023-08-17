@@ -38,7 +38,7 @@ class MHO_ContainerFileInterface: public MHO_ContainerDictionary
         //currently this function reads the file keys and then the all the file objects
         //we may want to split this functionality so we can inspect the file first 
         //and then only read the objects of interest
-        void PopulateStoreFromFile(MHO_ContainerStore& store);
+        void PopulateStoreFromFile(MHO_ContainerStore& store, bool do_clear_store=false);
 
         void WriteStoreToFile(MHO_ContainerStore& store);
 

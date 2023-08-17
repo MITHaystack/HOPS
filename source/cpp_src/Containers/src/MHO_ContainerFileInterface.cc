@@ -23,9 +23,9 @@ MHO_ContainerFileInterface::SetIndexFileName(std::string index_filename)
 }
 
 void 
-MHO_ContainerFileInterface::PopulateStoreFromFile(MHO_ContainerStore& store)
+MHO_ContainerFileInterface::PopulateStoreFromFile(MHO_ContainerStore& store, bool do_clear_store)
 {
-    store.Clear();
+    if(do_clear_store){store.Clear();}
     bool ok = false;
 
     //pull the file object keys for inspection 
