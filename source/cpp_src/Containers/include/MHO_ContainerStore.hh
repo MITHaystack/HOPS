@@ -87,6 +87,14 @@ class MHO_ContainerStore
         //returns zero if object or label is not present
         uint32_t GetObjectLabel(const MHO_UUID& obj_id);
         
+        void DumpShortNamesToIds()
+        {
+            for(auto it = fShortNameToIds.begin(); it != fShortNameToIds.end(); it++)
+            {
+                std::cout<<it->first<<" : "<<it->second.as_string()<<std::endl;
+            }
+        }
+        
 
     protected:
         
