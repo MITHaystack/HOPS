@@ -396,6 +396,13 @@ int main(int argc, char** argv)
     //FINE INTERPOLATION STEP (search over 5x5x5 grid around peak)
     ////////////////////////////////////////////////////////////////////////////
     MHO_InterpolateFringePeak fringeInterp;
+    
+    
+    bool optimize_closure_flag = false;
+    bool is_oc_set = paramStore->Get(std::string("optimize_closure"), optimize_closure_flag );
+    std::cout<<"optimize closure??? "<<is_oc_set<<", "<<optimize_closure_flag<<std::endl;
+    if(optimize_closure_flag){fringeInterp.EnableOptimizeClosure();} //NOTE, this has no effect on fringe phase when using 'interp' algo
+    
     fringeInterp.SetReferenceFrequency(ref_freq);
     fringeInterp.SetMaxBins(c_sbdmax, c_mbdmax, c_drmax);
 
@@ -423,7 +430,7 @@ int main(int argc, char** argv)
     //TODO FIXME Organize all the plot data generation better
 
     MHO_ComputePlotData mk_plotdata;
-
+    if(optimize_closure_flag){mk_plotdata.EnableOptimizeClosure();} //this does have an effect on overall fringe phase
     mk_plotdata.SetSummedWeights(total_ap_frac);
     mk_plotdata.SetReferenceFrequency(ref_freq);
     mk_plotdata.SetMBDelay(mbdelay);
