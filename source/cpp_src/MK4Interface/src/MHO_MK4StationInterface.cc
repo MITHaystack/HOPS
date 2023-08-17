@@ -1,4 +1,5 @@
 #include "MHO_MK4StationInterface.hh"
+#include "MHO_Clock.hh"
 
 #include <vector>
 #include <cstdlib>
@@ -6,6 +7,9 @@
 #include <complex>
 #include <set>
 #include <algorithm>
+
+namespace mk4
+{
 
 //mk4 IO library
 #ifndef HOPS3_USE_CXX
@@ -20,6 +24,7 @@ extern "C"
 }
 #endif
 
+}
 
 namespace hops
 {
@@ -32,8 +37,8 @@ MHO_MK4StationInterface::MHO_MK4StationInterface():
     fVex(nullptr)
 {
 
-    fVex = (struct vex *) calloc ( 1, sizeof(struct vex) );
-    fStation = (struct mk4_sdata *) calloc ( 1, sizeof(struct mk4_sdata) );
+    fVex = (struct mk4::vex *) calloc ( 1, sizeof(struct mk4::vex) );
+    fStation = (struct mk4::mk4_sdata *) calloc ( 1, sizeof(struct mk4::mk4_sdata) );
     fNCoeffs = 0;
     fNIntervals = 0;
     fNCoord = 0;
@@ -41,7 +46,7 @@ MHO_MK4StationInterface::MHO_MK4StationInterface():
 
 MHO_MK4StationInterface::~MHO_MK4StationInterface()
 {
-    clear_mk4sdata(fStation);
+    mk4::clear_mk4sdata(fStation);
     free(fStation);
     free(fVex);
 }
@@ -85,19 +90,36 @@ MHO_MK4StationInterface::ExtractStationFile()
         std::get<COORD_AXIS>(*st_data)[6] = "w";
 
         //extract some basics from the type_300 
-        type_300* t300 = fStation->t300;
+        mk4::type_300* t300 = fStation->t300;
         double spline_interval = t300->model_interval;
 
         //TODO FIXME! we need to convert this data struct to a cannonical date/time-stamp class
-        //struct date model_start = t300->model_start;
-
+        struct mk4::date model_start = t300->model_start;
+        legacy_hops_date ldate;
+        ldate.year = model_start.year;
+        ldate.day = model_start.day;
+        ldate.hour = model_start.hour;
+        ldate.minute = model_start.minute;
+        ldate.second = model_start.second;
+        
+        //std::cout<<"hops time-point converted from legacy hops-date-struct: "<<std::endl;
+        std::cout<<"year = "<<ldate.year<<std::endl;
+        std::cout<<"date = "<<ldate.day<<std::endl;
+        std::cout<<"hour = "<<ldate.hour<<std::endl;
+        std::cout<<"mins = "<<ldate.minute<<std::endl;
+        std::cout<<"secs = "<< std::setprecision(9) <<ldate.second<<std::endl;
+        
+        auto mstart = hops_clock::from_legacy_hops_date(ldate);
+        
+        std::cout<<"to hops date in iso-8601 format: "<<hops_clock::to_iso8601_format(mstart)<<std::endl;
+        
         //with the exception of the type_302s, the spline data is the same from each channel, so just use ch=0
         std::size_t ch = 0;
         for(std::size_t sp=0; sp<fNIntervals; sp++)
         {
             std::get<INTERVAL_AXIS>(*st_data)[sp] = sp*spline_interval; //seconds since start
-            type_301* t301 = fStation->model[ch].t301[sp]; //delay
-            type_303* t303 = fStation->model[ch].t303[sp]; //az,el,par,u,v,w
+            mk4::type_301* t301 = fStation->model[ch].t301[sp]; //delay
+            mk4::type_303* t303 = fStation->model[ch].t303[sp]; //az,el,par,u,v,w
             if( t301 != nullptr && t303 != nullptr)
             {
                 if( t301->interval != sp){msg_error("mk4interface", "spline interval mis-match." << eom);};
@@ -129,14 +151,14 @@ void MHO_MK4StationInterface::ReadStationFile()
     if(fHaveStation)
     {
         msg_debug("mk4interface", "Clearing a previously exisiting station data struct."<< eom);
-        clear_mk4sdata(fStation);
+        mk4::clear_mk4sdata(fStation);
         fStation = nullptr;
         fHaveStation = false;
     }
 
     //have to copy fStationFile for const_cast, as mk4 lib doesn't respect const
     std::string fname = fStationFile;
-    int retval = read_mk4sdata( const_cast<char*>(fname.c_str()), fStation );
+    int retval = mk4::read_mk4sdata( const_cast<char*>(fname.c_str()), fStation );
     if(retval == 0)
     {
         fHaveStation = true;
@@ -156,13 +178,13 @@ void MHO_MK4StationInterface::ReadVexFile()
     {
         msg_debug("mk4interface", "Clearing a previously exisiting vex struct."<< eom);
         free(fVex);
-        fVex = (struct vex *) calloc ( 1, sizeof(struct vex) );
+        fVex = (struct mk4::vex *) calloc ( 1, sizeof(struct mk4::vex) );
         fHaveVex = false;
     }
 
     std::string tmp_key(""); //use empty key for now
     std::string fname = fVexFile;
-    int retval = get_vex( const_cast<char*>(fname.c_str() ),
+    int retval = mk4::get_vex( const_cast<char*>(fname.c_str() ),
                           OVEX | EVEX | IVEX | LVEX ,
                           const_cast<char*>(tmp_key.c_str() ), fVex);
 

@@ -64,7 +64,7 @@ hops_internal_include_directories(${EXTERN_HLIBS}/json/include)
 
 #compile and install library ###################################################
 
-set(UTILITIES_LIBS MHO_Message)
+set(UTILITIES_LIBS MHO_Message date-tz)
 
 add_library (MHO_Utilities SHARED ${UTILITIES_SOURCEFILES})
 

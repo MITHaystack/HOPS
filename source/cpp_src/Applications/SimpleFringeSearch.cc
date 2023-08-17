@@ -277,7 +277,7 @@ int main(int argc, char** argv)
     }
 
     //DEBUG
-    conStore->DumpShortNamesToIds();
+    //conStore->DumpShortNamesToIds();
 
     ////////////////////////////////////////////////////////////////////////////
     //PARAMETER SETTING
