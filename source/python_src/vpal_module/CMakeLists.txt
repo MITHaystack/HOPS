@@ -1,7 +1,9 @@
-file(COPY "${CMAKE_CURRENT_SOURCE_DIR}/" DESTINATION "${CMAKE_CURRENT_BINARY_DIR}/")
+
 
 #python package setup ##########################################################
 if (PY_EXE)
+
+    #file(COPY "${CMAKE_CURRENT_SOURCE_DIR}/" DESTINATION "${CMAKE_CURRENT_BINARY_DIR}/")
 
     set(abs_srcdir "${CMAKE_CURRENT_BINARY_DIR}")
 
