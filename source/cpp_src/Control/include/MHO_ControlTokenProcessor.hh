@@ -35,12 +35,13 @@ class MHO_ControlTokenProcessor
         mho_json ProcessListInt(const std::vector< MHO_Token >& tokens);
         mho_json ProcessListString(const std::vector< MHO_Token >& tokens);
         mho_json ProcessListReal(const std::vector< MHO_Token >& tokens);
+        mho_json ProcessBool(const MHO_Token& token);
 
     private:
 
-
         bool ConvertFloat(const MHO_Token& token, double& val);
         bool ConvertInteger(const MHO_Token& token, int& val);
+        bool ConvertBool(const MHO_Token& token, bool& val);
 
 
 };
