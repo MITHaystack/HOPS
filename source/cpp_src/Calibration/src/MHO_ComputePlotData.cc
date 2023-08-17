@@ -57,8 +57,6 @@ MHO_ComputePlotData::calc_mbd()
     double total_summed_weights = 1.0;
     fWeights->Retrieve("total_summed_weights", total_summed_weights);
 
-    MHO_FringeRotation frot;
-
     std::size_t POLPROD = 0;
     std::size_t nchan = fSBDArray->GetDimension(CHANNEL_AXIS);
     std::size_t nap = fSBDArray->GetDimension(TIME_AXIS);
@@ -83,7 +81,7 @@ MHO_ComputePlotData::calc_mbd()
         {
             double tdelta = ap_ax->at(ap) + ap_delta/2.0 - midpoint_time; //need time difference from the f.r.t?
             std::complex<double> vis = (*fSBDArray)(POLPROD, ch, ap, fSBDMaxBin); //pick out data at SBD max bin
-            std::complex<double> vr = frot.vrot(tdelta, freq, fRefFreq, fDelayRate, 0.0); //apply at MBD=0.0
+            std::complex<double> vr = fRot.vrot(tdelta, freq, fRefFreq, fDelayRate, 0.0); //apply at MBD=0.0
             std::complex<double> z = vis*vr;
             //apply weight and sum
             double w = (*fWeights)(POLPROD, ch, ap, 0);
@@ -118,8 +116,6 @@ MHO_ComputePlotData::calc_sbd()
     //grab the total summed weights
     double total_summed_weights = 1.0;
     fWeights->Retrieve("total_summed_weights", total_summed_weights);
-
-    MHO_FringeRotation frot;
 
     xpower_type sbd_xpower_in;
     xpower_type sbd_xpower_out;
@@ -160,7 +156,7 @@ MHO_ComputePlotData::calc_sbd()
             {
                 double tdelta = ap_ax->at(ap) + ap_delta/2.0 - midpoint_time; //need time difference from the f.r.t?
                 std::complex<double> vis = (*fSBDArray)(POLPROD, ch, ap, i);
-                std::complex<double> vr = frot.vrot(tdelta, freq, fRefFreq, fDelayRate, fMBDelay);
+                std::complex<double> vr = fRot.vrot(tdelta, freq, fRefFreq, fDelayRate, fMBDelay);
                 std::complex<double> z = vis*vr;
                 //apply weight and sum
                 double w = (*fWeights)(POLPROD, ch, ap, 0);
@@ -186,8 +182,6 @@ MHO_ComputePlotData::calc_xpower()
     //grab the total summed weights
     double total_summed_weights = 1.0;
     fWeights->Retrieve("total_summed_weights", total_summed_weights);
-
-    MHO_FringeRotation frot;
 
     xpower_type sbd_xpower_in;
     xpower_type sbd_xpower_out;
@@ -228,7 +222,7 @@ MHO_ComputePlotData::calc_xpower()
             {
                 double tdelta = ap_ax->at(ap) + ap_delta/2.0 - midpoint_time; //need time difference from the f.r.t?
                 std::complex<double> vis = (*fSBDArray)(POLPROD, ch, ap, i);
-                std::complex<double> vr = frot.vrot(tdelta, freq, fRefFreq, fDelayRate, fMBDelay);
+                std::complex<double> vr = fRot.vrot(tdelta, freq, fRefFreq, fDelayRate, fMBDelay);
                 std::complex<double> z = vis*vr;
                 //apply weight and sum
                 double w = (*fWeights)(POLPROD, ch, ap, 0);
@@ -281,7 +275,6 @@ MHO_ComputePlotData::calc_dr()
     double total_summed_weights = 1.0;
     fWeights->Retrieve("total_summed_weights", total_summed_weights);
 
-    MHO_FringeRotation frot;
     std::size_t POLPROD = 0;
     std::size_t nchan = fSBDArray->GetDimension(CHANNEL_AXIS);
     std::size_t nap = fSBDArray->GetDimension(TIME_AXIS);
@@ -339,7 +332,7 @@ MHO_ComputePlotData::calc_dr()
         {
             double tdelta = ap_ax->at(ap) + ap_delta/2.0 - midpoint_time; //need time difference from the f.r.t?
             std::complex<double> vis = (*fSBDArray)(POLPROD, ch, ap, fSBDMaxBin); //pick out data at SBD max bin
-            std::complex<double> vr = frot.vrot(tdelta, freq, fRefFreq, fDelayRate, fMBDelay); //why rotate at the max delay rate??
+            std::complex<double> vr = fRot.vrot(tdelta, freq, fRefFreq, fDelayRate, fMBDelay); //why rotate at the max delay rate??
             std::complex<double> z = vis*vr;
             //apply weight and sum
             double w = (*fWeights)(POLPROD, ch, ap, 0);
@@ -373,7 +366,6 @@ MHO_ComputePlotData::calc_phase()
     double total_summed_weights = 1.0;
     fWeights->Retrieve("total_summed_weights", total_summed_weights);
 
-    MHO_FringeRotation frot;
     std::size_t POLPROD = 0;
     std::size_t nchan = fSBDArray->GetDimension(CHANNEL_AXIS);
     std::size_t nap = fSBDArray->GetDimension(TIME_AXIS);
@@ -387,12 +379,11 @@ MHO_ComputePlotData::calc_phase()
     double ap_delta = ap_ax->at(1) - ap_ax->at(0);
     double sbd_delta = sbd_ax->at(1) - sbd_ax->at(0);
 
-
-    frot.SetSBDSeparation(sbd_delta);
-    frot.SetSBDMaxBin(fSBDMaxBin);
-    frot.SetNSBDBins(sbd_ax->GetSize()/4);  //this is nlags, FACTOR OF 4 is because sbd space is padded by a factor of 4
-    //frot.SetSBDMax( (*sbd_ax)(fSBDMaxBin) );
-    frot.SetSBDMax( fSBDelay );
+    fRot.SetSBDSeparation(sbd_delta);
+    fRot.SetSBDMaxBin(fSBDMaxBin);
+    fRot.SetNSBDBins(sbd_ax->GetSize()/4);  //this is nlags, FACTOR OF 4 is because sbd space is padded by a factor of 4
+    //fRot.SetSBDMax( (*sbd_ax)(fSBDMaxBin) );
+    fRot.SetSBDMax( fSBDelay );
 
     //TODO FIXME -- should this be the fourfit refrence time? Also...should this be calculated elsewhere?
     double midpoint_time = ( ap_ax->at(nap-1) + ap_delta  + ap_ax->at(0) )/2.0;
@@ -416,22 +407,22 @@ MHO_ComputePlotData::calc_phase()
         }
 
         #pragma message("TODO FIXME FOR NON-LSB DATA!")
-        frot.SetSideband(0); //DSB
+        fRot.SetSideband(0); //DSB
         if(net_sideband == "U")
         {
-            frot.SetSideband(1);
+            fRot.SetSideband(1);
         }
 
         if(net_sideband == "L")
         {
-            frot.SetSideband(-1);
+            fRot.SetSideband(-1);
         }
 
         for(std::size_t ap=0; ap < nap; ap++)
         {
             double tdelta = ap_ax->at(ap) + ap_delta/2.0 - midpoint_time; //need time difference from the f.r.t?
             std::complex<double> vis = (*fSBDArray)(POLPROD, ch, ap, fSBDMaxBin); //pick out data at SBD max bin
-            std::complex<double> vr = frot.vrot(tdelta, freq, fRefFreq, fDelayRate, fMBDelay);
+            std::complex<double> vr = fRot.vrot(tdelta, freq, fRefFreq, fDelayRate, fMBDelay);
             std::complex<double> z = vis*vr;
             //apply weight and sum
             double w = (*fWeights)(POLPROD, ch, ap, 0);
@@ -470,7 +461,6 @@ MHO_ComputePlotData::calc_xpower_KLUDGE()
     double total_summed_weights = 1.0;
     fWeights->Retrieve("total_summed_weights", total_summed_weights);
 
-    MHO_FringeRotation frot;
     int nlags = fSBDArray->GetDimension(FREQ_AXIS)/4;
     int nl = nlags;
 
@@ -533,15 +523,15 @@ MHO_ComputePlotData::calc_xpower_KLUDGE()
 
 
             #pragma message("TODO FIXME FOR NON-LSB DATA!")
-            frot.SetSideband(0); //DSB
+            fRot.SetSideband(0); //DSB
             if(net_sideband == "U")
             {
-                frot.SetSideband(1);
+                fRot.SetSideband(1);
             }
 
             if(net_sideband == "L")
             {
-                frot.SetSideband(-1);
+                fRot.SetSideband(-1);
             }
 
             sum = 0.0;
@@ -549,7 +539,7 @@ MHO_ComputePlotData::calc_xpower_KLUDGE()
             {
                 double tdelta = ap_ax->at(ap) + ap_delta/2.0 - midpoint_time; //need time difference from the f.r.t?
                 std::complex<double> vis = (*fSBDArray)(POLPROD, ch, ap, 2*lag);
-                std::complex<double> vr = frot.vrot(tdelta, freq, fRefFreq, fDelayRate, fMBDelay);
+                std::complex<double> vr = fRot.vrot(tdelta, freq, fRefFreq, fDelayRate, fMBDelay);
                 std::complex<double> Z = vis*vr;
                 //apply weight and sum
                 double w = (*fWeights)(POLPROD, ch, ap, 0);
@@ -637,7 +627,6 @@ MHO_ComputePlotData::calc_xpower_KLUDGE2()
     double total_summed_weights = 1.0;
     fWeights->Retrieve("total_summed_weights", total_summed_weights);
 
-    MHO_FringeRotation frot;
     int N = fVisibilities->GetDimension(FREQ_AXIS);
     xpower_type X;
     xpower_type Y;
@@ -694,15 +683,15 @@ MHO_ComputePlotData::calc_xpower_KLUDGE2()
             }
 
             #pragma message("TODO FIXME FOR NON-LSB DATA!")
-            frot.SetSideband(0); //DSB
+            fRot.SetSideband(0); //DSB
             if(net_sideband == "U")
             {
-                frot.SetSideband(1);
+                fRot.SetSideband(1);
             }
 
             if(net_sideband == "L")
             {
-                frot.SetSideband(-1);
+                fRot.SetSideband(-1);
             }
 
             sum = 0.0;
@@ -710,7 +699,7 @@ MHO_ComputePlotData::calc_xpower_KLUDGE2()
             {
                 double tdelta = ap_ax->at(ap) + ap_delta/2.0 - midpoint_time; //need time difference from the f.r.t?
                 std::complex<double> vis = (*fVisibilities)(POLPROD, ch, ap, n);
-                std::complex<double> vr = frot.vrot(tdelta, freq, fRefFreq, fDelayRate, fMBDelay);
+                std::complex<double> vr = fRot.vrot(tdelta, freq, fRefFreq, fDelayRate, fMBDelay);
                 std::complex<double> Z = vis*vr;
                 //apply weight and sum
                 double w = (*fWeights)(POLPROD, ch, ap, 0);
@@ -818,7 +807,6 @@ MHO_ComputePlotData::calc_xpower_KLUDGE3()
     double total_summed_weights = 1.0;
     fWeights->Retrieve("total_summed_weights", total_summed_weights);
 
-    MHO_FringeRotation frot;
     int N = fSBDArray->GetDimension(FREQ_AXIS);
     int NLAGS = fVisibilities->GetDimension(FREQ_AXIS);
 
@@ -879,15 +867,15 @@ MHO_ComputePlotData::calc_xpower_KLUDGE3()
 
 
             #pragma message("TODO FIXME FOR NON-LSB DATA!")
-            frot.SetSideband(0); //DSB
+            fRot.SetSideband(0); //DSB
             if(net_sideband == "U")
             {
-                frot.SetSideband(1);
+                fRot.SetSideband(1);
             }
 
             if(net_sideband == "L")
             {
-                frot.SetSideband(-1);
+                fRot.SetSideband(-1);
             }
 
             sum = 0.0;
@@ -895,7 +883,7 @@ MHO_ComputePlotData::calc_xpower_KLUDGE3()
             {
                 double tdelta = ap_ax->at(ap) + ap_delta/2.0 - midpoint_time; //need time difference from the f.r.t?
                 std::complex<double> vis = (*fSBDArray)(POLPROD, ch, ap, lag);
-                std::complex<double> vr = frot.vrot(tdelta, freq, fRefFreq, fDelayRate, fMBDelay);
+                std::complex<double> vr = fRot.vrot(tdelta, freq, fRefFreq, fDelayRate, fMBDelay);
                 std::complex<double> Z = vis*vr;
                 //apply weight and sum
                 double w = (*fWeights)(POLPROD, ch, ap, 0);
@@ -1016,10 +1004,6 @@ MHO_ComputePlotData::DumpInfoToJSON()
         plot_dict["DLYRATE"].push_back( dr_amp(i) );
         plot_dict["DLYRATE_XAXIS"].push_back( std::get<0>(dr_amp)(i) );
     }
-    
-    
-    std::cout<<"BLAHH"<<std::endl;
-    std::cout<<sbd_xpower<<std::endl;
 
     npts = sbd_xpower.GetSize();
     for(std::size_t i=0;i<npts;i++)

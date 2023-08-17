@@ -37,6 +37,9 @@ class MHO_ComputePlotData
     public:
         MHO_ComputePlotData(){};
         virtual ~MHO_ComputePlotData(){};
+        
+        void EnableOptimizeClosure(){fRot.SetOptimizeClosureTrue();}
+        void DisableOptimizeClosure(){fRot.SetOptimizeClosureFalse();}
 
         void SetSummedWeights(double total_ap_frac){fTotalSummedWeights = total_ap_frac;}
         void SetReferenceFrequency(double ref_freq){fRefFreq = ref_freq;}
@@ -92,6 +95,9 @@ class MHO_ComputePlotData
         MHO_MultidimensionalPaddedFastFourierTransform< xpower_type > fPaddedFFTEngine;
         MHO_MultidimensionalFastFourierTransform< xpower_type > fFFTEngine;
         MHO_CyclicRotator< xpower_type > fCyclicRotator;
+        
+        //class which implements vrot
+        MHO_FringeRotation fRot;
 
 };
 

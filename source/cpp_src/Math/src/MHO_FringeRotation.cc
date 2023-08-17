@@ -43,7 +43,8 @@ MHO_FringeRotation::calc_sideband_correction(double mbd) const
     //vrot.c says:
     //effect of non-integral sbd iff SSB
     //correct phase to dc edge, based on sb delay */
-    if(fOptimizeClosure){theta_corr += 0.125 * mbd * fSideband / fSBDSep;}
+    double oc_corr = 0.125 * mbd * fSideband / fSBDSep;
+    if(fOptimizeClosure){theta_corr += oc_corr;} //std::cout<<"oc correction: "<<oc_corr<<std::endl; std::cout<<mbd<<", "<<fSideband<<", "<<fSBDSep<<std::endl;}
     else{theta_corr += (0.125 * fSBDMax * fSideband) / fSBDSep;}
     return theta_corr;
 }

@@ -48,6 +48,7 @@ class MHO_ParameterConfigurator
         {
             int_type,
             real_type,
+            bool_type,
             string_type,
             list_int_type,
             list_real_type,

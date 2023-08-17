@@ -35,6 +35,12 @@ MHO_ParameterConfigurator::Configure()
                 SetScalarParameter(name, value);
             }
             break;
+            case ParamValueType::bool_type:
+            {
+                bool value = fAttributes["value"].get<bool>();
+                SetScalarParameter(name, value);
+            }
+            break;
             case ParamValueType::string_type:
             {
                 std::string value = fAttributes["value"].get<std::string>();
@@ -74,6 +80,7 @@ MHO_ParameterConfigurator::DetermineParamValueType(const std::string& par_value_
 {
     if(par_value_type == "int"){return ParamValueType::int_type;}
     if(par_value_type == "real"){return ParamValueType::real_type;}
+    if(par_value_type == "bool"){return ParamValueType::bool_type;}
     if(par_value_type == "string"){return ParamValueType::string_type;}
     if(par_value_type == "list_int"){return ParamValueType::list_int_type;}
     if(par_value_type == "list_real"){return ParamValueType::list_real_type;}

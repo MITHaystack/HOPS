@@ -97,7 +97,7 @@ MHO_InterpolateFringePeak::fine_peak_interpolation()
     double dr_lower = 1e30;
     double dr_upper = -1e30;
 
-    MHO_FringeRotation frot;
+
     int sbd_bin, dr_bin, mbd_bin;
     double sbd, dr, mbd;
 
@@ -138,7 +138,7 @@ MHO_InterpolateFringePeak::fine_peak_interpolation()
                     {
                         double tdelta = ap_ax->at(ap) + ap_delta/2.0 - midpoint_time; //need time difference from the f.r.t?
                         visibility_element_type vis = (*fSBDArray)(0,fr,ap,sbd_bin);
-                        std::complex<double> vr = frot.vrot(tdelta, freq, fRefFreq, dr, mbd);
+                        std::complex<double> vr = fRot.vrot(tdelta, freq, fRefFreq, dr, mbd);
                         std::complex<double> x = vis * vr;// vrot_mod(tdelta, dr, mbd, freq, fRefFreq);
                         x *= (*fWeights)(0,fr,ap,0); //multiply by the 'weight'
                         z = z + x;
