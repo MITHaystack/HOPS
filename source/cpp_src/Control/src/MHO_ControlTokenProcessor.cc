@@ -79,6 +79,16 @@ MHO_ControlTokenProcessor::ProcessListReal(const std::vector< MHO_Token >& token
 }
 
 
+mho_json
+MHO_ControlTokenProcessor::ProcessBool(const MHO_Token& token)
+{
+    mho_json element_data;
+    bool value;
+    bool ok = ConvertBool(token, value);
+    if(ok){element_data = value;}
+    return element_data;
+}
+
 bool
 MHO_ControlTokenProcessor::ConvertFloat(const MHO_Token& token, double& val)
 {
@@ -123,6 +133,25 @@ MHO_ControlTokenProcessor::ConvertInteger(const MHO_Token& token, int& val)
     }
     return ok;
 }
+
+
+bool
+MHO_ControlTokenProcessor::ConvertBool(const MHO_Token& token, bool& val)
+{
+    bool ok = false;
+    if(token.fValue == "false"){val = false; ok = true;}
+    if(token.fValue == "true"){val = true; ok = true;}
+    if(!ok)
+    {
+        //TODO - Q: Should this be a fatal error?
+        msg_fatal("control", "could not convert: "<< token.fValue << " to boolean value, only 'true' and 'false' accepted." << eom);
+        std::exit(1);
+    }
+    
+    return ok;
+}
+
+
 
 
 }
