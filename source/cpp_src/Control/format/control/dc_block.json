@@ -1,5 +1,6 @@
 {
-    "name": "unknown",
-    "statement_type": "unknown",
-    "type": "unknown"
+    "name": "dc_block",
+    "statement_type": "parameter",
+    "parameter_type": "flagging",
+    "type": "bool"
 }
