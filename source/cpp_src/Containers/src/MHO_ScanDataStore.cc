@@ -157,12 +157,15 @@ MHO_ScanDataStore::LoadBaseline(std::string baseline, MHO_ContainerStore* store)
 void
 MHO_ScanDataStore::LoadStation(std::string station, MHO_ContainerStore* store)
 {
+    std::cout<<"trying to load data from station:"<<station<<std::endl;
+    
     auto it = fStationFileMap.find(station);
     if(it != fStationFileMap.end() )
     {
         //read the entire file into memory (obviously we will want to optimize this in the future)
         MHO_ContainerFileInterface conInter;
         conInter.SetFilename(it->second);
+        std::cout<<"gotta station data file: "<<it->second<<std::endl;
         conInter.PopulateStoreFromFile(*store); //reads in ALL the objects in the file
     }
     else 

@@ -200,6 +200,8 @@ int main(int argc, char** argv)
         return 1;
     }
 
+    if(baseline.size() != 2){msg_fatal("main", "baseline must be passed as 2-char code."<<eom); std::exit(1);}
+
     ////////////////////////////////////////////////////////////////////////////
     //INITIAL SCAN DIRECTORY
     ////////////////////////////////////////////////////////////////////////////
@@ -256,9 +258,14 @@ int main(int argc, char** argv)
     MHO_OperatorToolbox* opToolbox = new MHO_OperatorToolbox();
     //load baseline data
     scanStore.LoadBaseline(baseline, conStore);
-    //TODO load the station data files too
 
     configure_data_library(conStore);//momentarily needed for float -> double cast
+
+    std::string ref_station_mk4id = std::string(1,baseline[0]);
+    std::string rem_station_mk4id = std::string(1,baseline[1]);
+    scanStore.LoadStation(ref_station_mk4id, conStore);
+    scanStore.LoadStation(rem_station_mk4id, conStore);
+
 
     visibility_type* vis_data = conStore->GetObject<visibility_type>(std::string("vis"));
     weight_type* wt_data = conStore->GetObject<weight_type>(std::string("weight"));
