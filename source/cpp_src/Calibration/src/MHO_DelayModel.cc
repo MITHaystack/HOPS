@@ -1,5 +1,7 @@
 #include "MHO_DelayModel.hh"
 
+#include "MHO_Clock.hh"
+
 namespace hops 
 {
 
@@ -11,7 +13,7 @@ MHO_DelayModel::~MHO_DelayModel(){};
 void 
 MHO_DelayModel::compute_model()
 {
-    // 
+    
     // int i;
     // double ref_mod_start, rem_mod_start, ref_tdiff, rem_tdiff;
     // double ref_int_no, ref_t, ref_t2, ref_t3, ref_t4, ref_t5;
@@ -21,20 +23,37 @@ MHO_DelayModel::compute_model()
     // double ref_doppler;
     // struct mk4_sdata *refsd, *remsd;
     // struct type_301 *ref301, *rem301;
+
+    //double reftime;
+    //double ref_mod_start, rem_mod_start;
+    std::string ref_mod_start;
+    std::string rem_mod_start; 
+
+    bool ok;
+    ok = fRefData->Retrieve(std::string("model_start"), ref_mod_start);
+    if(!ok){msg_error("calibration", "model_start missing from reference station delay model data." << eom);}
+    ok = fRemData->Retrieve(std::string("model_start"), rem_mod_start);
+    if(!ok){msg_error("calibration", "model_start missing from remote station delay model data." << eom);}
+
+    auto frt = hops_clock::from_vex_format(fRefTimeString);
+    auto ref_start = hops_clock::from_iso8601_format(ref_mod_start);
+    auto rem_start = hops_clock::from_iso8601_format(rem_mod_start);
+    
+
+    auto ref_tdiff_duration = frt - ref_start;
+    auto rem_tdiff_duration = frt - rem_start;
+
+    double ref_tdiff = std::chrono::duration<double>(ref_tdiff_duration).count(); 
+    double rem_tdiff = std::chrono::duration<double>(rem_tdiff_duration).count(); 
+
+    std::cout<<hops_clock::to_iso8601_format(frt)<<std::endl;
+    std::cout<<hops_clock::to_iso8601_format(ref_start)<<std::endl;
+    std::cout<<hops_clock::to_iso8601_format(rem_start)<<std::endl;
+
+    std::cout<<ref_tdiff<<std::endl;
+    std::cout<<rem_tdiff<<std::endl;
+
     // 
-    //                                     /* First, locate sdata files */
-    // refsd = remsd = NULL;
-    // for (i=0; i<MAXSTATIONS; i++)
-    //     {
-    //     if (sdata[i].t300 == NULL) continue;
-    //     if (sdata[i].t300->id == param->baseline[0]) refsd = sdata + i;
-    //     if (sdata[i].t300->id == param->baseline[1]) remsd = sdata + i;
-    //     }
-    // if ((refsd == NULL) || (remsd == NULL))
-    //     {
-    //     msg ("Could not find stations for model in compute_model()", 2);
-    //     return (-1);
-    //     }
     //                                     /* Model start times in same units */
     //                                     /* as param.reftime (secs BOY)*/
     //                                     /* All times/intervals should be the */
@@ -237,7 +256,7 @@ MHO_DelayModel::compute_model()
     // *rate_ref  = (rem_rate - ref_rate) * ref_doppler;
     // *ref_stn_delay = ref_delay;
     // 
-    // 
+    
 }
 
 }

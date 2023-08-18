@@ -16,10 +16,12 @@ class MHO_DelayModel
         void SetReferenceTimeString(std::string fourfit_reftime_string){fRefTimeString = fourfit_reftime_string;};
         void SetReferenceStationData(const station_coord_type* ref_data){fRefData = ref_data;};
         void SetRemoteStationData(const station_coord_type* rem_data){fRemData = rem_data;};
-        
+    
+        void compute_model();
+    
     private:
         
-        void compute_model();
+
     
         std::string fRefTimeString;
         const station_coord_type* fRefData;
