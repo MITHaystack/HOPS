@@ -57,7 +57,7 @@ int main(int argc, char** argv)
     MHO_MK4StationInterface mk4inter;
 
     mk4inter.SetStationFile(station_filename);
-    mk4inter.SetVexFile(root_filename);
+    // mk4inter.SetVexFile(root_filename);
     station_coord_type* st_data = mk4inter.ExtractStationFile();
 
     std::size_t dim[STATION_NDIM];

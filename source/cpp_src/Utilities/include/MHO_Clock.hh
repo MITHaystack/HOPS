@@ -23,6 +23,7 @@
 
 #include "MHO_Tokenizer.hh"
 #include "MHO_Message.hh"
+#include "legacy_hops_date.hh"
 
 #define J2000_TAI_EPOCH "2000-01-01 11:59:27.816"
 #define ISO8601_UTC_FORMAT "%FT%TZ"
@@ -32,20 +33,9 @@
 #define NANOSEC_TO_SEC 1e-9
 #define SEC_TO_NANOSEC 1000000000
 
-//using namespace date;
 
 namespace hops 
 {
-
-//struct compatible with the legacy hops date format
-struct legacy_hops_date
-{
-    short   year;
-    short   day;
-    short   hour;
-    short   minute;
-    float   second;
-};
 
 class hops_clock
 {
