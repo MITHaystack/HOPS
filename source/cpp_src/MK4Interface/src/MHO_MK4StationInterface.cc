@@ -1,5 +1,5 @@
 #include "MHO_MK4StationInterface.hh"
-// #include "MHO_Clock.hh"
+#include "MHO_LegacyDateConverter.hh"
 
 #include <vector>
 #include <cstdlib>
@@ -7,9 +7,6 @@
 #include <complex>
 #include <set>
 #include <algorithm>
-
-// namespace mk4
-// {
 
 //mk4 IO library
 #ifndef HOPS3_USE_CXX
@@ -23,8 +20,6 @@ extern "C"
 #ifndef HOPS3_USE_CXX
 }
 #endif
-
-// }
 
 namespace hops
 {
@@ -92,13 +87,13 @@ MHO_MK4StationInterface::ExtractStationFile()
         double spline_interval = t300->model_interval;
 
         //TODO FIXME! we need to convert this data struct to a cannonical date/time-stamp class
-        // struct date model_start = t300->model_start;
-        // legacy_hops_date ldate;
-        // ldate.year = model_start.year;
-        // ldate.day = model_start.day;
-        // ldate.hour = model_start.hour;
-        // ldate.minute = model_start.minute;
-        // ldate.second = model_start.second;
+        struct date model_start = t300->model_start;
+        legacy_hops_date ldate;
+        ldate.year = model_start.year;
+        ldate.day = model_start.day;
+        ldate.hour = model_start.hour;
+        ldate.minute = model_start.minute;
+        ldate.second = model_start.second;
 
         // legacy_hops_date ldate;
         // ldate.year = t300->model_start.year;
@@ -116,8 +111,8 @@ MHO_MK4StationInterface::ExtractStationFile()
         // 
         //auto mstart = hops_clock::from_legacy_hops_date(ldate);
         
-        //std::cout<<"to hops date in iso-8601 format: "<<hops_clock::to_iso8601_format(mstart)<<std::endl;
-        
+        std::cout<<"to hops date in iso-8601 format: "<< MHO_LegacyDateConverter::ConvertToISO8601Format(ldate) << std::endl;
+
         //with the exception of the type_302s, the spline data is the same from each channel, so just use ch=0
         std::size_t ch = 0;
         for(std::size_t sp=0; sp<fNIntervals; sp++)
@@ -167,12 +162,12 @@ void MHO_MK4StationInterface::ReadStationFile()
     if(retval == 0)
     {
         fHaveStation = true;
-        msg_debug("mk4interface", "Failed to read station data file: "<< fStationFile << ", error value: "<< retval << eom);
+        msg_debug("mk4interface", "Successfully read station data file."<< fStationFile << eom);
     }
     else
     {
         fHaveStation = false;
-        msg_debug("mk4interface", "Successfully read station data file."<< fStationFile << eom);
+        msg_debug("mk4interface", "Failed to read station data file: "<< fStationFile << ", error value: "<< retval << eom);
     }
 }
 
