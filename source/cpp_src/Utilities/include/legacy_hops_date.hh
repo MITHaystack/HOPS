@@ -1,6 +1,9 @@
 #ifndef LEGACY_HOPS_DATA_HH__
 #define LEGACY_HOPS_DATA_HH__
 
+namespace hops
+{
+
 //struct compatible with the legacy hops date format
 struct legacy_hops_date
 {
@@ -11,6 +14,7 @@ struct legacy_hops_date
     float   second;
 };
 
+}
 
 #endif /* end of include guard: LEGACY_HOPS_DATA_HH__ */
 
