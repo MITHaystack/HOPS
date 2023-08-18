@@ -240,8 +240,6 @@ int main(int argc, char** argv)
     std::string frt_vex_string = vexInfo.at(frt_jptr).get<std::string>();
     std::cout<<"FOURFIT REFERENCE TIME = "<<frt_vex_string<<std::endl;
 
-
-
     ////////////////////////////////////////////////////////////////////////////
     //CONTROL CONSTRUCTION
     ////////////////////////////////////////////////////////////////////////////
@@ -455,6 +453,7 @@ int main(int argc, char** argv)
     delay_model.SetFourfitReferenceTimeVexString(frt_vex_string);
     delay_model.SetReferenceStationData(ref_data);
     delay_model.SetRemoteStationData(rem_data);
+    delay_model.SetClockModel(vexInfo["$CLOCK"]);
     delay_model.compute_model();
 
 

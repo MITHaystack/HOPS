@@ -13,7 +13,40 @@ MHO_DelayModel::~MHO_DelayModel(){};
 void 
 MHO_DelayModel::compute_model()
 {
-    
+    bool ok;
+    std::cout<<"Clock model = "<<fClockModel.dump(2)<<std::endl;
+
+
+    //get the ref/rem station codes
+    std::string ref_code;
+    ok = fRefData->Retrieve(std::string("station_code"), ref_code);
+    if(!ok){msg_error("calibration", "station_code missing from reference station data." << eom);}
+
+    // std::string rem_code;
+    // ok = fRemData->Retrieve(std::string("station_code"), rem_code);
+    // if(!ok){msg_error("calibration", "station_code missing from remote station data." << eom);}
+
+    double ref_clock_rate = 0.0;
+    double ref_clock_delay = 0.0;
+    std::string ref_clock_mod_start;
+    if(fClockModel.contains(ref_code))
+    {
+        std::cout<<"dump clock: "<<fClockModel[ref_code].dump(2)<<std::endl;
+        std::cout<< "rate = " << fClockModel[ref_code]["clock_early"][0]["clock_rate"]["value"] << std::endl;
+        std::cout<< "offset = " << fClockModel[ref_code]["clock_early"][0]["clock_early_offset"]["value"] << std::endl;
+        std::cout<< "origin epoch = " << fClockModel[ref_code]["clock_early"][0]["origin_epoch"] << std::endl;
+        std::cout<< "start_validity_epoch = " << fClockModel[ref_code]["clock_early"][0]["start_validity_epoch"] << std::endl;
+
+        ref_clock_rate = fClockModel[ref_code]["clock_early"][0]["clock_rate"]["value"];
+        ref_clock_delay = fClockModel[ref_code]["clock_early"][0]["clock_early_offset"]["value"];
+        //ref_clock_delay *= 1e-6;
+        ref_clock_mod_start = fClockModel[ref_code]["clock_early"][0]["origin_epoch"];
+    }
+    else 
+    {
+        msg_warn("calibration", "reference station: "<<ref_code<<" missing from clock model."<<eom);
+    }
+
     // int i;
     // double ref_mod_start, rem_mod_start, ref_tdiff, rem_tdiff;
     // double ref_int_no, ref_t, ref_t2, ref_t3, ref_t4, ref_t5;
@@ -29,21 +62,30 @@ MHO_DelayModel::compute_model()
     std::string ref_mod_start;
     std::string rem_mod_start; 
 
-    bool ok;
+
     ok = fRefData->Retrieve(std::string("model_start"), ref_mod_start);
     if(!ok){msg_error("calibration", "model_start missing from reference station delay model data." << eom);}
     ok = fRemData->Retrieve(std::string("model_start"), rem_mod_start);
     if(!ok){msg_error("calibration", "model_start missing from remote station delay model data." << eom);}
 
     auto frt = hops_clock::from_vex_format(fRefTimeString);
+    auto clock_mod_start = hops_clock::from_vex_format(ref_clock_mod_start);
     auto ref_start = hops_clock::from_iso8601_format(ref_mod_start);
     auto rem_start = hops_clock::from_iso8601_format(rem_mod_start);
     
+    auto ref_clock_tdiff_duration = frt - clock_mod_start;
     auto ref_tdiff_duration = frt - ref_start;
     auto rem_tdiff_duration = frt - rem_start;
 
+    //convert to double (seconds)
     double ref_tdiff = std::chrono::duration<double>(ref_tdiff_duration).count(); 
     double rem_tdiff = std::chrono::duration<double>(rem_tdiff_duration).count(); 
+
+    double ref_clk_tdiff = std::chrono::duration<double>(ref_clock_tdiff_duration).count();
+
+    //correct for clock drift
+    ref_clock_delay += ref_clk_tdiff*ref_clock_rate;
+
 
     std::cout<<hops_clock::to_iso8601_format(frt)<<std::endl;
     std::cout<<hops_clock::to_iso8601_format(ref_start)<<std::endl;
@@ -138,6 +180,13 @@ MHO_DelayModel::compute_model()
                                        /* Clock in usec, clockrate dimensionless */
     // ref_delay -= t202->ref_clock * 1.0e-6;
     // ref_rate -= t202->ref_clockrate;
+
+    std::cout<<"ref clk tdiff = "<<ref_clk_tdiff<<std::endl;
+    std::cout<<"ref_rate = "<<ref_clock_rate<<std::endl;
+
+    // ref_delay -= ref_clk_tdiff;
+    // ref_rate -= ref_clock_rate;
+
                                        /* Adjust ref delay for approx time of ref */
                                        /* station wavefront passage, not geocenter */
                                        /* wavefront passage */

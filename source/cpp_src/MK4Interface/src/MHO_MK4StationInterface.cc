@@ -102,7 +102,7 @@ MHO_MK4StationInterface::ExtractStationFile()
         st_data->Insert(std::string("name"), std::string("station_data"));
         st_data->Insert(std::string("station_name"), station_name);
         st_data->Insert(std::string("station_mk4id"), mk4_id);
-        st_data->Insert(std::string("station_id"), station_id);
+        st_data->Insert(std::string("station_code"), station_id);
         st_data->Insert(std::string("model_start"), model_start_date);
         st_data->Insert(std::string("nsplines"), fStation->t300->nsplines);
         st_data->Insert(std::string("model_interval"), spline_interval);
