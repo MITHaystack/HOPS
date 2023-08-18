@@ -1,4 +1,5 @@
 #include "MHO_MK4CorelInterface.hh"
+#include "MHO_LegacyDateConverter.hh"
 
 #include <vector>
 #include <cstdlib>
@@ -638,6 +639,37 @@ MHO_MK4CorelInterface::ExtractCorelFile()
         msg_error("mk4interface", "Failed to read both corel and vex file." << eom);
     }
 
+
+    //grab the meta data from the type_100 and tag this data with it
+    type_100* t100 = fCorel->t100;
+    legacy_hops_date ldate;
+    date* adate;
+
+    //convert the legacy date structs to a cannonical date/time-stamp string
+    adate = &(t100->procdate);
+    ldate.year = adate->year;
+    ldate.day = adate->day;
+    ldate.hour = adate->hour;
+    ldate.minute = adate->minute;
+    ldate.second = adate->second;
+    std::string procdate_string = MHO_LegacyDateConverter::ConvertToISO8601Format(ldate);
+
+    adate = &(t100->start);
+    ldate.year = adate->year;
+    ldate.day = adate->day;
+    ldate.hour = adate->hour;
+    ldate.minute = adate->minute;
+    ldate.second = adate->second;
+    std::string start_string = MHO_LegacyDateConverter::ConvertToISO8601Format(ldate);
+
+    adate = &(t100->stop);
+    ldate.year = adate->year;
+    ldate.day = adate->day;
+    ldate.hour = adate->hour;
+    ldate.minute = adate->minute;
+    ldate.second = adate->second;
+    std::string stop_string = MHO_LegacyDateConverter::ConvertToISO8601Format(ldate);
+
     bl_data->Insert(std::string("name"), std::string("visibilities"));
     bl_data->Insert(std::string("baseline"), fBaselineName);
     bl_data->Insert(std::string("baseline_shortname"), fBaselineShortName);
@@ -645,6 +677,9 @@ MHO_MK4CorelInterface::ExtractCorelFile()
     bl_data->Insert(std::string("remote_station"), fRemStation);
     bl_data->Insert(std::string("reference_station_mk4id"), fRefStationMk4Id);
     bl_data->Insert(std::string("remote_station_mk4id"), fRemStationMk4Id);
+    //bl_data->Insert(std::string("procdate"), procdate_string); //processing data no long used
+    bl_data->Insert(std::string("start"), start_string);
+    bl_data->Insert(std::string("stop"), stop_string);
 
     bl_wdata->Insert(std::string("name"), std::string("weights"));
     bl_wdata->Insert(std::string("baseline"), fBaselineName);
@@ -653,9 +688,9 @@ MHO_MK4CorelInterface::ExtractCorelFile()
     bl_wdata->Insert(std::string("remote_station"), fRemStation);
     bl_wdata->Insert(std::string("reference_station_mk4id"), fRefStationMk4Id);
     bl_wdata->Insert(std::string("remote_station_mk4id"), fRemStationMk4Id);
-
-
-
+    //bl_wdata->Insert(std::string("procdate"), procdate_string);
+    bl_wdata->Insert(std::string("start"), start_string);
+    bl_wdata->Insert(std::string("stop"), stop_string);
 
 
     fExtractedVisibilities = bl_data;
@@ -670,7 +705,6 @@ MHO_MK4CorelInterface::getstr(const char* char_array, std::size_t max_size)
 {
     return std::string( char_array, std::min( strlen(char_array), max_size) );
 }
-
 
 
 bool

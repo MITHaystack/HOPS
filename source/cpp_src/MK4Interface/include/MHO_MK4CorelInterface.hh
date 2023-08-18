@@ -96,7 +96,6 @@ class MHO_MK4CorelInterface
         std::string fRefStationMk4Id; //e.g G
         std::string fRemStationMk4Id; //e.g.E
 
-
         //store all channel related data in interval labels for convenience
         std::map< std::string, MHO_IntervalLabel > fAllChannelMap;
 
