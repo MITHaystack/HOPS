@@ -13,7 +13,7 @@ class MHO_DelayModel
         MHO_DelayModel();
         virtual ~MHO_DelayModel();
         
-        void SetReferenceTimeString(std::string fourfit_reftime_string){fRefTimeString = fourfit_reftime_string;};
+        void SetFourfitReferenceTimeVexString(std::string fourfit_reftime_string){fRefTimeString = fourfit_reftime_string;};
         void SetReferenceStationData(const station_coord_type* ref_data){fRefData = ref_data;};
         void SetRemoteStationData(const station_coord_type* rem_data){fRemData = rem_data;};
     

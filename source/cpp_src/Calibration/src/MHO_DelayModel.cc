@@ -39,7 +39,6 @@ MHO_DelayModel::compute_model()
     auto ref_start = hops_clock::from_iso8601_format(ref_mod_start);
     auto rem_start = hops_clock::from_iso8601_format(rem_mod_start);
     
-
     auto ref_tdiff_duration = frt - ref_start;
     auto rem_tdiff_duration = frt - rem_start;
 
@@ -53,78 +52,78 @@ MHO_DelayModel::compute_model()
     std::cout<<ref_tdiff<<std::endl;
     std::cout<<rem_tdiff<<std::endl;
 
-    // 
-    //                                     /* Model start times in same units */
-    //                                     /* as param.reftime (secs BOY)*/
-    //                                     /* All times/intervals should be the */
-    //                                     /* same for reference/remote, but just */
-    //                                     /* in case this is false in future, */
-    //                                     /* There's no harm done in computing */
-    //                                     /* everything independently by station */
-    // ref_mod_start = 86400.0 *(refsd->t300->model_start.day - 1)
-    //                + 3600.0 * refsd->t300->model_start.hour
-    //                +   60.0 * refsd->t300->model_start.minute
-    //                +          refsd->t300->model_start.second;
-    // 
-    // rem_mod_start = 86400.0 *(remsd->t300->model_start.day - 1)
-    //                + 3600.0 * remsd->t300->model_start.hour
-    //                + 60.0   * remsd->t300->model_start.minute
-    //                +          remsd->t300->model_start.second;
-    //                                     /* Which model interval number? */
-    // ref_tdiff = param->reftime - ref_mod_start;
-    // rem_tdiff = param->reftime - rem_mod_start;
-    // ref_int_no = floor (ref_tdiff / (double)refsd->t300->model_interval);
-    // rem_int_no = floor (rem_tdiff / (double)remsd->t300->model_interval);
-    //                                     /* Locate corresponding type 301 records */
-    //                                     /* The delay splines should be the same */
-    //                                     /* for all channels, so we just take */
-    //                                     /* channel 0 */
-    // for (i=0; i<refsd->t300->nsplines; i++)
-    //     if (refsd->model[0].t301[i]->interval == (int)ref_int_no) 
-    //         break;
-    // if (i == refsd->t300->nsplines)
-    //     {
-    //     msg ("Warning!! FRT is outside of ref spline range - must extrapolate!", 2);
-    //                                 // use spline nearest the frt
-    //     if (ref_tdiff < 0.0)
-    //         i = 0;
-    //     else
-    //         i = refsd->t300->nsplines - 1;
-    //     }
-    // ref301 = refsd->model[0].t301[i];
-    // 
-    // for (i=0; i<remsd->t300->nsplines; i++)
-    //     if (remsd->model[0].t301[i]->interval == (int)rem_int_no)
-    //         break;
-    // if (i == remsd->t300->nsplines)
-    //     {
-    //     msg ("Warning!! FRT is outside of rem spline range - must extrapolate!", 2);
-    //                                 // use spline nearest the frt
-    //     if (rem_tdiff < 0.0)
-    //         i = 0;
-    //     else
-    //         i = remsd->t300->nsplines - 1;
-    //     }
-    // rem301 = remsd->model[0].t301[i];
-    //                                     /* Seconds in target interval */
-    // ref_t = ref_tdiff - (ref_int_no * refsd->t300->model_interval);
-    // rem_t = rem_tdiff - (rem_int_no * remsd->t300->model_interval);
-    //                                     /* Powers of t */
-    // ref_t2 = ref_t * ref_t;
-    // ref_t3 = ref_t2 * ref_t;
-    // ref_t4 = ref_t3 * ref_t;
-    // ref_t5 = ref_t4 * ref_t;
-    // rem_t2 = rem_t * rem_t;
-    // rem_t3 = rem_t2 * rem_t;
-    // rem_t4 = rem_t3 * rem_t;
-    // rem_t5 = rem_t4 * rem_t;
-    //                                     /* Compute delays */
-    // ref_delay = ref301->delay_spline[0]
-    //                 + ref301->delay_spline[1] * ref_t
-    //                 + ref301->delay_spline[2] * ref_t2
-    //                 + ref301->delay_spline[3] * ref_t3
-    //                 + ref301->delay_spline[4] * ref_t4
-    //                 + ref301->delay_spline[5] * ref_t5;
+    double ref_model_interval;
+    double rem_model_interval;
+    ok = fRefData->Retrieve(std::string("model_interval"), ref_model_interval);
+    if(!ok){msg_error("calibration", "model_interval missing from reference station delay model data." << eom);}
+    ok = fRemData->Retrieve(std::string("model_interval"), rem_model_interval);
+    if(!ok){msg_error("calibration", "model_interval missing from reference station delay model data." << eom);}
+
+    int ref_int_no = std::floor(ref_tdiff/ref_model_interval);
+    int rem_int_no = std::floor(rem_tdiff/rem_model_interval);
+
+    if(ref_tdiff < 0.0)
+    {
+        msg_warn("calibration", "FRT is outside of reference station spline range - must extrapolate!" << eom);
+        ref_int_no = 0;
+    }
+
+    if(rem_tdiff < 0.0)
+    {
+        msg_warn("calibration", "FRT is outside of remote station spline range - must extrapolate!" << eom);
+        rem_int_no = 0;
+    }   
+
+    if(ref_int_no >= fRefData->GetDimension(INTERVAL_AXIS) )
+    {
+        msg_warn("calibration", "FRT is outside of ref spline range - must extrapolate!" << eom);
+        ref_int_no = fRefData->GetDimension(0)-1;
+    }
+
+    if(rem_int_no >= fRemData->GetDimension(INTERVAL_AXIS) )
+    {
+        msg_warn("calibration", "FRT is outside of ref spline range - must extrapolate!" << eom);
+        rem_int_no = fRemData->GetDimension(0)-1;
+    }
+
+    //seconds in target interval
+    double ref_t = ref_tdiff - (ref_int_no * ref_model_interval);
+    double rem_t = rem_tdiff - (rem_int_no * rem_model_interval);
+
+    //compute delays
+    double ref_delay = 0.0;
+    double rem_delay = 0.0;
+    double ref_rate = 0.0;
+    double rem_rate = 0.0;
+    double ref_accel = 0.0;
+    double rem_accel = 0.0;
+    int n_coeff = fRefData->GetDimension(COEFF_AXIS);
+    for(int p=0; p<n_coeff; p++)
+    {
+        double ref_tp = std::pow(ref_t, p);
+        double rem_tp = std::pow(rem_t, p);
+        double ref_tpm1 = std::pow(ref_t, p-1);
+        double rem_tpm1 = std::pow(rem_t, p-1);
+        double ref_tpm2 = std::pow(ref_t, p-2);
+        double rem_tpm2 = std::pow(rem_t, p-2);
+        ref_delay += fRefData->at(0, ref_int_no, p) * ref_tp;
+        rem_delay += fRemData->at(0, rem_int_no, p) * rem_tp;
+        ref_rate += fRefData->at(0, ref_int_no, p) * p * ref_tpm1;
+        rem_rate += fRemData->at(0, rem_int_no, p) * p * rem_tpm1;
+        ref_accel += fRefData->at(0, ref_int_no, p) * p * (p-1) * ref_tpm2;
+        rem_accel += fRemData->at(0, rem_int_no, p) * p * (p-1) * rem_tpm2;
+    }
+    
+    std::cout<<"ref_delay = "<<ref_delay<<std::endl;
+    std::cout<<"rem_delay = "<<rem_delay<<std::endl;
+    std::cout<<"ref_rate = "<<ref_rate<<std::endl;
+    std::cout<<"rem_rate = "<<rem_rate<<std::endl;
+    std::cout<<"ref_accel = "<<ref_accel<<std::endl;
+    std::cout<<"rem_accel = "<<rem_accel<<std::endl;
+
+
+
+
     // rem_delay = rem301->delay_spline[0]
     //                 + rem301->delay_spline[1] * rem_t
     //                 + rem301->delay_spline[2] * rem_t2
