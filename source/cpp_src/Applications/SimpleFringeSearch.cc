@@ -237,8 +237,8 @@ int main(int argc, char** argv)
     //get the fourfit reference time 
     std::string frt_loc = "/$SCHED/" + scnName + "/fourfit_reftime";
     mho_json::json_pointer frt_jptr(frt_loc);
-    std::string frt_string = vexInfo.at(frt_jptr).get<std::string>();
-    std::cout<<"FOURFIT REFERENCE TIME = "<<frt_string<<std::endl;
+    std::string frt_vex_string = vexInfo.at(frt_jptr).get<std::string>();
+    std::cout<<"FOURFIT REFERENCE TIME = "<<frt_vex_string<<std::endl;
 
 
 
@@ -294,7 +294,7 @@ int main(int argc, char** argv)
     MHO_ParameterManager paramManager(paramStore, control_format);
     //set defaults
     paramStore->Set(std::string("selected_polprod"), polprod);
-    paramStore->Set(std::string("fourfit_reftime_string"), frt_string);
+    paramStore->Set(std::string("fourfit_reftime_vex_string"), frt_vex_string);
 
     paramManager.SetControlStatements(&control_statements);
     paramManager.ConfigureAll();
@@ -452,7 +452,7 @@ int main(int argc, char** argv)
     station_coord_type* ref_data = conStore->GetObject<station_coord_type>(std::string("ref_sta"));
     station_coord_type* rem_data = conStore->GetObject<station_coord_type>(std::string("rem_sta"));
     MHO_DelayModel delay_model;
-    delay_model.SetReferenceTimeString(frt_string);
+    delay_model.SetFourfitReferenceTimeVexString(frt_vex_string);
     delay_model.SetReferenceStationData(ref_data);
     delay_model.SetRemoteStationData(rem_data);
     delay_model.compute_model();
