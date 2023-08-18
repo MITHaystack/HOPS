@@ -104,7 +104,7 @@ void ConvertStation(const std::string root_file, const std::string& input_file, 
 
     msg_info("file", "Converting station input file: " << input_file << eom);
     mk4inter.SetStationFile(input_file);
-    mk4inter.SetVexFile(root_file);
+    // mk4inter.SetVexFile(root_file);
     station_coord_type* st_data = mk4inter.ExtractStationFile();
 
     MHO_BinaryFileInterface inter;
