@@ -1,0 +1,32 @@
+#ifndef MHO_DelayModel_HH__
+#define MHO_DelayModel_HH__
+
+#include "MHO_TableContainer.hh"
+#include "MHO_ContainerDefinitions.hh"
+
+namespace hops 
+{
+
+class MHO_DelayModel
+{
+    public:
+        MHO_DelayModel();
+        virtual ~MHO_DelayModel();
+        
+        void SetReferenceTimeString(std::string fourfit_reftime_string){fRefTimeString = fourfit_reftime_string;};
+        void SetReferenceStationData(const station_coord_type* ref_data){fRefData = ref_data;};
+        void SetRemoteStationData(const station_coord_type* rem_data){fRemData = rem_data;};
+        
+    private:
+        
+        void compute_model();
+    
+        std::string fRefTimeString;
+        const station_coord_type* fRefData;
+        const station_coord_type* fRemData;
+
+};
+
+}//end of namespace
+
+#endif /* end of include guard: MHO_DelayModel_HH__ */

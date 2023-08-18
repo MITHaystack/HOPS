@@ -43,6 +43,7 @@
 #include "MHO_ParameterManager.hh"
 
 #include "MHO_ComputePlotData.hh"
+#include "MHO_DelayModel.hh"
 
 
 //pybind11 stuff to interface with python
@@ -233,6 +234,14 @@ int main(int argc, char** argv)
     mho_json::json_pointer src_jptr(src_loc);
     std::string srcName = vexInfo.at(src_jptr).get<std::string>();
 
+    //get the fourfit reference time 
+    std::string frt_loc = "/$SCHED/" + scnName + "/fourfit_reftime";
+    mho_json::json_pointer frt_jptr(frt_loc);
+    std::string frt_string = vexInfo.at(frt_jptr).get<std::string>();
+    std::cout<<"FOURFIT REFERENCE TIME = "<<frt_string<<std::endl;
+
+
+
     ////////////////////////////////////////////////////////////////////////////
     //CONTROL CONSTRUCTION
     ////////////////////////////////////////////////////////////////////////////
@@ -285,6 +294,7 @@ int main(int argc, char** argv)
     MHO_ParameterManager paramManager(paramStore, control_format);
     //set defaults
     paramStore->Set(std::string("selected_polprod"), polprod);
+    paramStore->Set(std::string("fourfit_reftime_string"), frt_string);
 
     paramManager.SetControlStatements(&control_statements);
     paramManager.ConfigureAll();
@@ -429,12 +439,27 @@ int main(int argc, char** argv)
     fringeInterp.Initialize();
     fringeInterp.Execute();
 
-    //todo ought to make this a more uniform/cleaner interface (probably using the common label map store)
+    //TODO ought to make this a more uniform/cleaner interface (probably using the common label map store)
     double sbdelay = fringeInterp.GetSBDelay();
     double mbdelay = fringeInterp.GetMBDelay();
     double drate = fringeInterp.GetDelayRate();
     double frate = fringeInterp.GetFringeRate();
     double famp = fringeInterp.GetFringeAmplitude();
+
+
+
+    
+    station_coord_type* ref_data = conStore->GetObject<station_coord_type>(std::string("ref_sta"));
+    station_coord_type* rem_data = conStore->GetObject<station_coord_type>(std::string("rem_sta"));
+    MHO_DelayModel delay_model;
+    delay_model.SetReferenceTimeString(frt_string);
+    delay_model.SetReferenceStationData(ref_data);
+    delay_model.SetRemoteStationData(rem_data);
+
+
+
+
+
 
     ////////////////////////////////////////////////////////////////////////////
     //PLOTTING/DEBUG

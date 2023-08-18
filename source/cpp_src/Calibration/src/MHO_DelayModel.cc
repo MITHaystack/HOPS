@@ -1,15 +1,15 @@
-#include "MHO_ComputeDelayModel.hh"
+#include "MHO_DelayModel.hh"
 
 namespace hops 
 {
 
-MHO_ComputeDelayModel::MHO_ComputeDelayModel(){};
-MHO_ComputeDelayModel::~MHO_ComputeDelayModel(){};
+MHO_DelayModel::MHO_DelayModel(){};
+MHO_DelayModel::~MHO_DelayModel(){};
 
 
 
 void 
-MHO_ComputeDelayModel::compute_model()
+MHO_DelayModel::compute_model()
 {
     // 
     // int i;
