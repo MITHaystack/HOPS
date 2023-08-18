@@ -121,63 +121,123 @@ MHO_DelayModel::compute_model()
     std::cout<<"ref_accel = "<<ref_accel<<std::endl;
     std::cout<<"rem_accel = "<<rem_accel<<std::endl;
 
+    double delay = rem_delay - ref_delay;
+    double rate = rem_rate - ref_rate;
+    double accel = rem_accel - ref_accel;
+
+    std::cout<<"delay, rate, accel= "<<delay<<", "<<rate<<", "<<accel<<std::endl;
 
 
+////////////////////////////////////////////////////////////////////////////////
 
-    // rem_delay = rem301->delay_spline[0]
-    //                 + rem301->delay_spline[1] * rem_t
-    //                 + rem301->delay_spline[2] * rem_t2
-    //                 + rem301->delay_spline[3] * rem_t3
-    //                 + rem301->delay_spline[4] * rem_t4
-    //                 + rem301->delay_spline[5] * rem_t5;
-    //                                     /* Compute delay rates */
-    // ref_rate = ref301->delay_spline[1]
-    //                 + ref301->delay_spline[2] * 2.0 * ref_t
-    //                 + ref301->delay_spline[3] * 3.0 * ref_t2
-    //                 + ref301->delay_spline[4] * 4.0 * ref_t3
-    //                 + ref301->delay_spline[5] * 5.0 * ref_t4;
-    // rem_rate = rem301->delay_spline[1]
-    //                 + rem301->delay_spline[2] * 2.0 * rem_t
-    //                 + rem301->delay_spline[3] * 3.0 * rem_t2
-    //                 + rem301->delay_spline[4] * 4.0 * rem_t3
-    //                 + rem301->delay_spline[5] * 5.0 * rem_t4;
-    //                                     /* Compute accelerations */
-    // ref_accel = 2.0 * ref301->delay_spline[2]
-    //                 + ref301->delay_spline[3] * 6.0 * ref_t
-    //                 + ref301->delay_spline[4] * 12.0 * ref_t2
-    //                 + ref301->delay_spline[5] * 20.0 * ref_t3;
-    // rem_accel = 2.0 * rem301->delay_spline[2]
-    //                 + rem301->delay_spline[3] * 6.0 * rem_t
-    //                 + rem301->delay_spline[4] * 12.0 * rem_t2
-    //                 + rem301->delay_spline[5] * 20.0 * rem_t3;
-    //                                     /* Baseline apriori model */
-    // msg ("model delays, rem=%g sec, ref=%gsec", 0, rem_delay, ref_delay);
-    // msg ("model rates, rem=%g sec/sec, ref=%g sec/sec", 0, rem_rate, ref_rate);
-    // msg ("model accels, rem=%g sec/sec^2, ref=%g sec/sec^2", 0, rem_accel, ref_accel);
-    // *delay = rem_delay - ref_delay;
-    // *rate = rem_rate - ref_rate;
-    // *accel = rem_accel - ref_accel;
-    // 
-    // 
-    //                                    /* now do calculations all over again at the
-    //                                     * time of wavefront passing the ref station */
-    //                                    /* Correct ref delay/rate for clocks */
-    //                                    /* which are inherent in model from genaroot */
-    //                                    /* Clock in usec, clockrate dimensionless */
+    
+                                       /* now do calculations all over again at the
+                                        * time of wavefront passing the ref station */
+                                       /* Correct ref delay/rate for clocks */
+                                       /* which are inherent in model from genaroot */
+                                       /* Clock in usec, clockrate dimensionless */
     // ref_delay -= t202->ref_clock * 1.0e-6;
     // ref_rate -= t202->ref_clockrate;
-    //                                    /* Adjust ref delay for approx time of ref */
-    //                                    /* station wavefront passage, not geocenter */
-    //                                    /* wavefront passage */
-    // ref_delay *= 1.0 - ref_rate;
-    //                                    /* Doppler shift for ref stn, < 1 is redshift
-    //                                     * do this so can correct for missing or extra
-    //                                     * data bits in both streams (see rate calc) */
-    // ref_doppler = 1.0 - ref_rate;
-    //                                    /* Which model interval number? Use adjusted */
-    //                                    /* times */
-    // ref_tdiff = param->reftime - ref_mod_start - ref_delay;
-    // rem_tdiff = param->reftime - rem_mod_start - ref_delay;
+                                       /* Adjust ref delay for approx time of ref */
+                                       /* station wavefront passage, not geocenter */
+                                       /* wavefront passage */
+    ref_delay *= 1.0 - ref_rate;
+                                       /* Doppler shift for ref stn, < 1 is redshift
+                                        * do this so can correct for missing or extra
+                                        * data bits in both streams (see rate calc) */
+    double ref_doppler = 1.0 - ref_rate;
+                                       /* Which model interval number? Use adjusted */
+                                       /* times */
+    ref_tdiff = ref_tdiff - ref_delay;
+    rem_tdiff = rem_tdiff - ref_delay;
+
+
+////////////////////////////////////////////////////////////////////////////////
+
+
+    ref_int_no = std::floor(ref_tdiff/ref_model_interval);
+    rem_int_no = std::floor(rem_tdiff/rem_model_interval);
+
+    if(ref_tdiff < 0.0)
+    {
+        msg_warn("calibration", "FRT is outside of reference station spline range - must extrapolate!" << eom);
+        ref_int_no = 0;
+    }
+
+    if(rem_tdiff < 0.0)
+    {
+        msg_warn("calibration", "FRT is outside of remote station spline range - must extrapolate!" << eom);
+        rem_int_no = 0;
+    }   
+
+    if(ref_int_no >= fRefData->GetDimension(INTERVAL_AXIS) )
+    {
+        msg_warn("calibration", "FRT is outside of ref spline range - must extrapolate!" << eom);
+        ref_int_no = fRefData->GetDimension(0)-1;
+    }
+
+    if(rem_int_no >= fRemData->GetDimension(INTERVAL_AXIS) )
+    {
+        msg_warn("calibration", "FRT is outside of ref spline range - must extrapolate!" << eom);
+        rem_int_no = fRemData->GetDimension(0)-1;
+    }
+
+    //seconds in target interval
+    ref_t = ref_tdiff - (ref_int_no * ref_model_interval);
+    rem_t = rem_tdiff - (rem_int_no * rem_model_interval);
+
+    //compute delays
+    ref_delay = 0.0;
+    rem_delay = 0.0;
+    ref_rate = 0.0;
+    rem_rate = 0.0;
+    ref_accel = 0.0;
+    rem_accel = 0.0;
+    n_coeff = fRefData->GetDimension(COEFF_AXIS);
+    for(int p=0; p<n_coeff; p++)
+    {
+        double ref_tp = std::pow(ref_t, p);
+        double rem_tp = std::pow(rem_t, p);
+        double ref_tpm1 = std::pow(ref_t, p-1);
+        double rem_tpm1 = std::pow(rem_t, p-1);
+        double ref_tpm2 = std::pow(ref_t, p-2);
+        double rem_tpm2 = std::pow(rem_t, p-2);
+        ref_delay += fRefData->at(0, ref_int_no, p) * ref_tp;
+        rem_delay += fRemData->at(0, rem_int_no, p) * rem_tp;
+        ref_rate += fRefData->at(0, ref_int_no, p) * p * ref_tpm1;
+        rem_rate += fRemData->at(0, rem_int_no, p) * p * rem_tpm1;
+        ref_accel += fRefData->at(0, ref_int_no, p) * p * (p-1) * ref_tpm2;
+        rem_accel += fRemData->at(0, rem_int_no, p) * p * (p-1) * rem_tpm2;
+    }
+
+    std::cout<<"ref_delay = "<<ref_delay<<std::endl;
+    std::cout<<"rem_delay = "<<rem_delay<<std::endl;
+    std::cout<<"ref_rate = "<<ref_rate<<std::endl;
+    std::cout<<"rem_rate = "<<rem_rate<<std::endl;
+    std::cout<<"ref_accel = "<<ref_accel<<std::endl;
+    std::cout<<"rem_accel = "<<rem_accel<<std::endl;
+
+    double delay_ref = rem_delay - ref_delay;
+    double rate_ref  = (rem_rate - ref_rate) * ref_doppler;
+    double ref_stn_delay = ref_delay;
+    
+
+    std::cout<<"delay_ref, rate_ref, ref_stn_delay"<<delay_ref<<", "<<rate_ref<<", "<<ref_stn_delay<<std::endl;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     // ref_int_no = floor (ref_tdiff / (double)refsd->t300->model_interval);
     // rem_int_no = floor (rem_tdiff / (double)remsd->t300->model_interval);
     //                                     /* Locate corresponding type 301 records */
