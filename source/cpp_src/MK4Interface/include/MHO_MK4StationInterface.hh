@@ -44,25 +44,26 @@ class MHO_MK4StationInterface
         MHO_MK4StationInterface();
         virtual ~MHO_MK4StationInterface();
 
-        //need both the vex (root) file and corel file to extract the data
         void SetStationFile(const std::string& station){fStationFile = station;}
 
         mk4_sdata* GetStationData(){return fStation;};
 
-        //extract the data
         station_coord_type* ExtractStationFile();
 
     private:
 
-        //corel and vex file members
+        std::string
+        getstr(const char* char_array, std::size_t max_size)
+        {
+            return std::string( char_array, std::min( strlen(char_array), max_size) );
+        }
+
         void ReadStationFile();
-        void ReadVexFile();
 
         bool fHaveStation;
         struct mk4_sdata* fStation;
 
         std::string fStationFile;
-
         std::size_t fNCoeffs;
         std::size_t fNIntervals;
         std::size_t fNCoord;
