@@ -12,7 +12,7 @@ set (CALIBRATION_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MBDelaySearch.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_InterpolateFringePeak.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ComputePlotData.hh
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ComputeDelayModel.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_DelayModel.hh
 )
 
 #list source files #############################################################
@@ -28,7 +28,7 @@ set( CALIBRATION_SOURCEFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_MBDelaySearch.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_InterpolateFringePeak.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ComputePlotData.cc
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ComputeDelayModel.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_DelayModel.cc
 )
 
 #declare header paths ##########################################################
