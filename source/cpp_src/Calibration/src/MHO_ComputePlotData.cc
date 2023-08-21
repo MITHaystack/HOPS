@@ -976,8 +976,8 @@ MHO_ComputePlotData::calc_xpower_KLUDGE3()
 
 
 
-mho_json
-MHO_ComputePlotData::DumpInfoToJSON()
+void
+MHO_ComputePlotData::DumpInfoToJSON(mho_json& plot_dict)
 {
     auto sbd_amp = calc_sbd();
     auto mbd_amp = calc_mbd();
@@ -988,7 +988,6 @@ MHO_ComputePlotData::DumpInfoToJSON()
     //calculate AP period
     double ap_delta = std::get<TIME_AXIS>(*fVisibilities)(1) - std::get<TIME_AXIS>(*fVisibilities)(0);
 
-    mho_json plot_dict;
     std::size_t npts = sbd_amp.GetSize();
     for(std::size_t i=0;i<npts;i++)
     {
@@ -1074,7 +1073,6 @@ MHO_ComputePlotData::DumpInfoToJSON()
     plot_dict["RA"] = src_info["ra"];
     plot_dict["Dec"] = src_info["dec"];
 
-    return plot_dict;
 }
 
 

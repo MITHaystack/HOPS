@@ -68,13 +68,13 @@ class MHO_ParameterStore
 
         //returns true if found
         template< typename XValueType>
-        bool Get(const std::string& value_path, XValueType& value);
+        bool Get(const std::string& value_path, XValueType& value) const;
 
         //always returns a value, if not found the value returned is XValueType()
         template< typename XValueType>
-        XValueType GetAs(const std::string& value_path);
+        XValueType GetAs(const std::string& value_path) const;
 
-        bool IsPresent(const std::string& value_path)
+        bool IsPresent(const std::string& value_path) const
         {
             std::string path = SanitizePath(value_path);
             fPath.clear();
@@ -96,7 +96,7 @@ class MHO_ParameterStore
     private:
 
         //sanitize the value_path string -- for example a trailing '/' is no good
-        std::string SanitizePath(const std::string& value_path)
+        std::string SanitizePath(const std::string& value_path) const
         {
             std::string vpath = MHO_Tokenizer::TrimLeadingAndTrailingWhitespace(value_path);
             if(vpath.size() > 0 && vpath.back() == '/') //trim any trailing '/'
@@ -107,8 +107,8 @@ class MHO_ParameterStore
         }
 
         //helpers
-        MHO_Tokenizer fTokenizer;
-        std::vector< std::string > fPath;
+        mutable MHO_Tokenizer fTokenizer;
+        mutable std::vector< std::string > fPath;
 
         //stash data in a json object
         mho_json fStore;
@@ -156,7 +156,7 @@ MHO_ParameterStore::Set(const std::string& value_path, const XValueType& value)
 
 template< typename XValueType>
 bool
-MHO_ParameterStore::Get(const std::string& value_path, XValueType& value)
+MHO_ParameterStore::Get(const std::string& value_path, XValueType& value) const
 {
     //NOTE: we do not use json_pointer to access values specified by path 
     //because it will throw an exception if used when the path is not present/complete
@@ -189,7 +189,7 @@ MHO_ParameterStore::Get(const std::string& value_path, XValueType& value)
 
 template< typename XValueType>
 XValueType
-MHO_ParameterStore::GetAs(const std::string& value_path)
+MHO_ParameterStore::GetAs(const std::string& value_path) const
 {
     XValueType v = XValueType(); //default constructor (zero for int, double, etc)
     bool ok = Get(value_path,v);

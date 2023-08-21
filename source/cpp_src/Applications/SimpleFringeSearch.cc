@@ -137,6 +137,178 @@ void build_and_exec_operators(MHO_OperatorBuilderManager& build_manager, MHO_Ope
     }    
 }
 
+
+
+
+void fill_output_info(const MHO_ParameterStore* paramStore, mho_json& plot_dict)
+{
+    //parameters 
+    double ref_freq = paramStore->GetAs<double>(std::string("ref_freq"));
+
+
+    //fringe
+    double sbdelay = paramStore->GetAs<double>("/fringe/sbdelay");
+    double mbdelay = paramStore->GetAs<double>("/fringe/mbdelay");
+    double drate = paramStore->GetAs<double>("/fringe/drate");
+    double frate = paramStore->GetAs<double>("/fringe/frate");
+    double famp = paramStore->GetAs<double>("/fringe/famp");
+
+    //model 
+    double ap_delay = paramStore->GetAs<double>("/model/ap_delay");
+    double ap_rate = paramStore->GetAs<double>("/model/ap_rate");
+    double ap_accel = paramStore->GetAs<double>("/model/ap_accel");
+
+    // 
+    // //plot_dict["ResPhase"] = std::fmod(coh_avg_phase * (180.0/M_PI), 360.0);
+    // plot_dict["PFD"] = "-";
+    // plot_dict["ResidSbd(us)"] = sbdelay;
+    // plot_dict["ResidMbd(us)"] = mbdelay;
+    // plot_dict["FringeRate(Hz)"]  = frate;
+    // plot_dict["IonTEC(TEC)"] = "-";
+    // plot_dict["RefFreq(MHz)"] = ref_freq;
+    // plot_dict["AP(sec)"] = ap_delta;
+    // plot_dict["ExperName"] = exper_info["exper_name"];
+    // plot_dict["ExperNum"] = "-";
+    // 
+    // 
+    // std::string frt_vex_string = store->GetAs<std::string>("fourfit_reftime_vex_string");
+    // auto frt = hops_clock::from_vex_format(frt_vex_string);
+    // legacy_hops_date frt_ldate = hops_clock::to_legacy_hops_date(frt);
+    // std::stringstream ss;
+    // ss << frt_ldate.year;
+    // ss << ":"
+    // ss << std::setw(3) << std::setfill('0') << frt_ldate.day;
+    // std::string year_doy = ss.str();
+    // 
+    // std::cout<<"hops time-point converted to legacy hops-date-struct: "<<std::endl;
+    // std::cout<<"year = "<<ldate.year<<std::endl;
+    // std::cout<<"date = "<<ldate.day<<std::endl;
+    // std::cout<<"hour = "<<ldate.hour<<std::endl;
+    // std::cout<<"mins = "<<ldate.minute<<std::endl;
+    // std::cout<<"secs = "<< std::setprecision(9) <<ldate.second<<std::endl;
+    // 
+    // 
+    // t200->frt.year = t200->scantime.year;
+    // t200->frt.second = fmod ((double)param->reftime,  60.0);
+    // int_reftime = param->reftime;       /* In seconds */
+    // int_reftime /= 60;                  /* Now in minutes */
+    // t200->frt.minute = int_reftime % 60;
+    // int_reftime /= 60;                  /* Now in hours */
+    // t200->frt.hour = int_reftime % 24;
+    // t200->frt.day = int_reftime / 24 + 1; /* days start with 001 */
+    // 
+    // 
+    // 
+    // plot_dict["YearDOY"] = year_doy;
+    // plot_dict["Start"] = "-";
+    // plot_dict["Stop"] = "-";
+    // plot_dict["FRT"] = "-";
+    // plot_dict["CorrTime"] = "-";
+    // plot_dict["FFTime"] = "-";
+    // plot_dict["BuildTime"] = "-";
+    // 
+    // plot_dict["RA"] = src_info["ra"];
+    // plot_dict["Dec"] = src_info["dec"];
+    // 
+    // 
+    // plot_dict["MODELINFO\n");
+    // plot_dict["GroupDelay"]
+    //     // dp->param->mbd_anchor == MODEL ? "Model(usec)" : "SBD(usec)  ",
+    //     // dp->fringe->t208->tot_mbd);
+    // plot_dict["SbandDelay(usec)"] = 0;
+    //     //dp->fringe->t208->tot_sbd);
+    // plot_dict["PhaseDelay(usec)"] = 0;
+    //     //dp->fringe->t208->adelay + dp->status->resid_ph_delay);
+    // plot_dict["TotalPhase(deg)"] = 0;
+    //     //dp->fringe->t208->totphase);
+    // plot_dict["AprioriDelay(usec)"] = 0;
+    //     //dp->fringe->t208->adelay);
+    // plot_dict["AprioriClock(usec)"] = 0;
+    //     //dp->fringe->t202->rem_clock - dp->fringe->t202->ref_clock);
+    // plot_dict["AprioriClockrate(us/s)"] = 0;
+    //     //(dp->fringe->t202->rem_clockrate - dp->fringe->t202->ref_clockrate));
+    // plot_dict["AprioriRate(us/s)"] = 0;
+    //     //dp->fringe->t208->arate);
+    // plot_dict["AprioriAccel(us/s/s)"] = 0;
+    //     //dp->fringe->t208->aaccel);
+    // plot_dict["ResidMbdelay(usec)"] = 0;
+    //     //dp->fringe->t208->resid_mbd);
+    // plot_dict["ResidSbdelay(usec)"] = 0;
+    //     //dp->fringe->t208->resid_sbd);
+    // plot_dict["ResidPhdelay(usec)"] = 0;
+    //     //dp->status->resid_ph_delay);
+    // plot_dict["ResidRate(us/s)"] = 0;
+    //     //dp->fringe->t208->resid_rate);
+    // plot_dict["ResidPhase(deg)"] = 0;
+    //     //dp->fringe->t208->resphase);
+    // plot_dict["ResidMbdelayError(usec)"] = 0;
+    //     //dp->fringe->t208->mbd_error);
+    // plot_dict["ResidSbdelayError(usec)"] = 0;
+    //     //dp->fringe->t208->sbd_error);
+    // plot_dict["ResidPhdelayError(usec)"] = 0;
+    //     //dp->status->ph_delay_err);
+    // plot_dict["ResidRateError(us/s)"] = 0;
+    //     //dp->fringe->t208->rate_error);
+    // plot_dict["ResidPhaseError(deg)"] = 0;
+    //     //dp->status->phase_err);
+
+
+}
+
+//calculate useful quantities used later throughout the program
+void precalculate_quantities(MHO_ContainerStore* conStore, MHO_ParameterStore* paramStore)
+{
+    visibility_type* vis_data = conStore->GetObject<visibility_type>(std::string("vis"));
+    weight_type* wt_data = conStore->GetObject<weight_type>(std::string("weight"));
+    if( vis_data == nullptr || wt_data == nullptr )
+    {
+        msg_fatal("main", "could not find visibility or weight objects with names (vis, weight)." << eom);
+        std::exit(1);
+    }
+
+    auto ap_ax = &(std::get<TIME_AXIS>(*vis_data));
+    if(ap_ax->GetSize() <= 1)
+    {
+        msg_fatal("main", "could not determine AP period for data." << eom);
+        std::exit(1);
+    }
+
+    double ap_delta = ap_ax->at(1) - ap_ax->at(0);
+    paramStore->Set("AP_period", ap_delta);
+
+
+    // //TODO FIXME -- should this be the fourfit refrence time? Also...should this be calculated elsewhere?
+    // double midpoint_time = ( ap_ax->at(nap-1) + ap_delta  + ap_ax->at(0) )/2.0;
+    // std::cout<<"time midpoint = "<<midpoint_time<<std::endl;
+
+
+    //compute the sum of the data weights
+    weight_type temp_weights;
+    temp_weights.Copy(*wt_data);
+    MHO_Reducer<weight_type, MHO_CompoundSum> wt_reducer;
+    wt_reducer.SetArgs(&temp_weights);
+    for(std::size_t i=0; i<weight_type::rank::value; i++)
+    {
+        wt_reducer.ReduceAxis(i);
+    }
+    wt_reducer.Initialize();
+    wt_reducer.Execute();
+    double total_ap_frac = temp_weights[0];
+    std::cout<<"reduced weights = "<<temp_weights[0]<<std::endl;
+    paramStore->Set("/fringe/total_summed_weights", total_ap_frac);
+    wt_data->Insert("total_summed_weights", total_ap_frac);
+}
+
+
+
+
+
+
+
+
+
+
+
 int main(int argc, char** argv)
 {
 
@@ -343,24 +515,28 @@ int main(int argc, char** argv)
     take_snapshot_here("test", "visib", __FILE__, __LINE__, vis_data);
     take_snapshot_here("test", "weights", __FILE__, __LINE__,  wt_data);
 
-    // //compute the sum of the weights
-    weight_type temp_weights;
-    temp_weights.Copy(*wt_data);
-    MHO_Reducer<weight_type, MHO_CompoundSum> wt_reducer;
-    wt_reducer.SetArgs(&temp_weights);
-    for(std::size_t i=0; i<weight_type::rank::value; i++)
-    {
-        wt_reducer.ReduceAxis(i);
-    }
-    wt_reducer.Initialize();
-    wt_reducer.Execute();
-
-    double total_ap_frac = temp_weights[0];
-    std::cout<<"reduced weights = "<<temp_weights[0]<<std::endl;
-
-    wt_data->Insert("total_summed_weights", total_ap_frac);
-
-    take_snapshot_here("test", "reduced_weights", __FILE__, __LINE__,  &temp_weights);
+    //calulate useful quantities to stash in the parameter store
+    precalculate_quantities(conStore, paramStore);
+    // // //compute the sum of the weights
+    // weight_type temp_weights;
+    // temp_weights.Copy(*wt_data);
+    // MHO_Reducer<weight_type, MHO_CompoundSum> wt_reducer;
+    // wt_reducer.SetArgs(&temp_weights);
+    // for(std::size_t i=0; i<weight_type::rank::value; i++)
+    // {
+    //     wt_reducer.ReduceAxis(i);
+    // }
+    // wt_reducer.Initialize();
+    // wt_reducer.Execute();
+    // 
+    // double total_ap_frac = temp_weights[0];
+    // std::cout<<"reduced weights = "<<temp_weights[0]<<std::endl;
+    // 
+    // paramStore->Set("/fringe/total_summed_weights", total_ap_frac);
+    // 
+    // wt_data->Insert("total_summed_weights", total_ap_frac);
+    // 
+    // take_snapshot_here("test", "reduced_weights", __FILE__, __LINE__,  &temp_weights);
 
 
     //output for the delay
@@ -408,15 +584,17 @@ int main(int argc, char** argv)
     int c_sbdmax = mbdSearch.GetSBDMaxBin();
     int c_drmax = mbdSearch.GetDRMaxBin();
 
-    std::cout<<"SBD/MBD/DR max bins = "<<c_sbdmax<<", "<<c_mbdmax<<", "<<c_drmax<<std::endl;
+    paramStore->Set("/fringe/max_mbd_bin", c_mbdmax);
+    paramStore->Set("/fringe/max_sbd_bin", c_sbdmax);
+    paramStore->Set("/fringe/max_dr_bin", c_drmax);
 
+    std::cout<<"SBD/MBD/DR max bins = "<<c_sbdmax<<", "<<c_mbdmax<<", "<<c_drmax<<std::endl;
 
     ////////////////////////////////////////////////////////////////////////////
     //FINE INTERPOLATION STEP (search over 5x5x5 grid around peak)
     ////////////////////////////////////////////////////////////////////////////
     MHO_InterpolateFringePeak fringeInterp;
-    
-    
+        
     bool optimize_closure_flag = false;
     bool is_oc_set = paramStore->Get(std::string("optimize_closure"), optimize_closure_flag );
     std::cout<<"optimize closure??? "<<is_oc_set<<", "<<optimize_closure_flag<<std::endl;
@@ -437,16 +615,18 @@ int main(int argc, char** argv)
     fringeInterp.Initialize();
     fringeInterp.Execute();
 
-    //TODO ought to make this a more uniform/cleaner interface (probably using the common label map store)
     double sbdelay = fringeInterp.GetSBDelay();
     double mbdelay = fringeInterp.GetMBDelay();
     double drate = fringeInterp.GetDelayRate();
     double frate = fringeInterp.GetFringeRate();
     double famp = fringeInterp.GetFringeAmplitude();
 
+    paramStore->Set("/fringe/sbdelay", sbdelay);
+    paramStore->Set("/fringe/mbdelay", mbdelay);
+    paramStore->Set("/fringe/drate", drate);
+    paramStore->Set("/fringe/frate", frate);
+    paramStore->Set("/fringe/famp", famp);
 
-
-    
     station_coord_type* ref_data = conStore->GetObject<station_coord_type>(std::string("ref_sta"));
     station_coord_type* rem_data = conStore->GetObject<station_coord_type>(std::string("rem_sta"));
     MHO_DelayModel delay_model;
@@ -455,9 +635,15 @@ int main(int argc, char** argv)
     delay_model.SetRemoteStationData(rem_data);
     delay_model.ComputeModel();
 
+    double ap_delay = delay_model.GetDelay();
+    double ap_rate = delay_model.GetRate();
+    double ap_accel = delay_model.GetAcceleration();
 
-
-
+    paramStore->Set("/model/ap_delay", ap_delay);
+    paramStore->Set("/model/ap_rate", ap_rate);
+    paramStore->Set("/model/ap_accel", ap_accel);
+    
+    paramStore->Dump();
 
     ////////////////////////////////////////////////////////////////////////////
     //PLOTTING/DEBUG
@@ -470,6 +656,8 @@ int main(int argc, char** argv)
     MHO_ComputePlotData mk_plotdata;
     if(optimize_closure_flag){mk_plotdata.EnableOptimizeClosure();} //this does have an effect on overall fringe phase
     if(is_mbd_anchor_set){mk_plotdata.SetMBDAnchor(mbd_anchor);} //effect not yet implemented
+
+    double total_ap_frac = paramStore->GetAs<double>("/fringe/total_summed_weights");
     mk_plotdata.SetSummedWeights(total_ap_frac);
     mk_plotdata.SetReferenceFrequency(ref_freq);
     mk_plotdata.SetMBDelay(mbdelay);
@@ -483,7 +671,8 @@ int main(int argc, char** argv)
     mk_plotdata.SetVisibilities(vis_data);
     mk_plotdata.SetVexInfo(vexInfo);
 
-    mho_json plot_dict = mk_plotdata.DumpInfoToJSON();
+    mho_json plot_dict;
+    mk_plotdata.DumpInfoToJSON(plot_dict);
 
     mho_json sched_section = vexInfo["$SCHED"];
     std::string scan_name = sched_section.begin().key();

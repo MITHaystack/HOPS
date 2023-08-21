@@ -57,7 +57,7 @@ class MHO_ComputePlotData
         void SetVisibilities(visibility_type* vis_data){fVisibilities = vis_data;}
         void SetVexInfo(const mho_json& vex_info){fVexInfo = vex_info;}
 
-        mho_json DumpInfoToJSON();
+        void DumpInfoToJSON(mho_json& plot_dict);
 
     //protected:
 
