@@ -3,7 +3,6 @@
 
 #include "MHO_TableContainer.hh"
 #include "MHO_ContainerDefinitions.hh"
-#include "MHO_JSONHeaderWrapper.hh"
 
 namespace hops 
 {
@@ -17,10 +16,11 @@ class MHO_DelayModel
         void SetFourfitReferenceTimeVexString(std::string fourfit_reftime_string){fRefTimeString = fourfit_reftime_string;};
         void SetReferenceStationData(station_coord_type* ref_data){fRefData = ref_data;};
         void SetRemoteStationData(station_coord_type* rem_data){fRemData = rem_data;};
-    
-        // void SetClockModel(const mho_json& clock_model){fClockModel = clock_model;};
-
         void compute_model();
+
+        double GetDelay(){return fDelay;}
+        double GetRate(){return fRate;};
+        double GetAcceleration(){return fAccel;};
     
     private:
 
@@ -32,11 +32,18 @@ class MHO_DelayModel
         //clamp selected interval between [0, n_intervals-1]
         void CheckSplineInterval(int n_intervals, double tdiff, int& int_no, std::string station_id);
 
+        template< typename XTagType >
+        XTagType RetrieveTag(station_coord_type* data, std::string key);
+
+        //necessary data
         std::string fRefTimeString;
         station_coord_type* fRefData;
         station_coord_type* fRemData;
 
-        mho_json fClockModel;
+        //results 
+        double fDelay;
+        double fRate;
+        double fAccel;
 
 };
 
@@ -67,6 +74,19 @@ MHO_DelayModel::EvaluateDelaySpline(const XCoeffVectorType& coeff, double delta_
         results[ACCEL_INDEX] += p*(p-1)*c*tpm2;
     }
 }
+
+
+template< typename XTagType >
+XTagType 
+MHO_DelayModel::RetrieveTag(station_coord_type* data, std::string key)
+{
+    //get the ref/rem station codes
+    XTagType value;
+    bool ok = fRefData->Retrieve(key, value);
+    if(!ok){msg_error("calibration", "data tag with key: "<< key <<" is missing from station data." << eom);}
+    return value;
+}
+
 
 }//end of namespace
 
