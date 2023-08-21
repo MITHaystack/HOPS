@@ -453,7 +453,7 @@ int main(int argc, char** argv)
     delay_model.SetFourfitReferenceTimeVexString(frt_vex_string);
     delay_model.SetReferenceStationData(ref_data);
     delay_model.SetRemoteStationData(rem_data);
-    delay_model.SetClockModel(vexInfo["$CLOCK"]);
+    // delay_model.SetClockModel(vexInfo["$CLOCK"]);
     delay_model.compute_model();
 
 
