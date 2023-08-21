@@ -15,8 +15,8 @@ class MHO_DelayModel
         virtual ~MHO_DelayModel();
         
         void SetFourfitReferenceTimeVexString(std::string fourfit_reftime_string){fRefTimeString = fourfit_reftime_string;};
-        void SetReferenceStationData(const station_coord_type* ref_data){fRefData = ref_data;};
-        void SetRemoteStationData(const station_coord_type* rem_data){fRemData = rem_data;};
+        void SetReferenceStationData(station_coord_type* ref_data){fRefData = ref_data;};
+        void SetRemoteStationData(station_coord_type* rem_data){fRemData = rem_data;};
     
         void SetClockModel(const mho_json& clock_model){fClockModel = clock_model;};
 
@@ -24,13 +24,40 @@ class MHO_DelayModel
         void compute_model();
     
     private:
+        //evalute the delay model (delay, rate, accel) from the spline coefficients
+        //XCoeffVectorType is expected to be an MHO_NDArrayView type
+        template< typename XCoeffVectorType >
+        void
+        EvaluateDelaySpline(const XCoeffVectorType& coeff, double delta_t, double* results)
+        {
+            #define DELAY_INDEX 0
+            #define RATE_INDEX 1
+            #define ACCEL_INDEX 2
+            #define DELAY_COEFF_INDEX 0
 
-        void EvaluateDelaySpline(const std::vector<double>& coeff, double delta_t, double* results);
+            //compute delay, rate accel
+            results[DELAY_INDEX] = 0.0;
+            results[RATE_INDEX] = 0.0; 
+            results[ACCEL_INDEX] = 0.0;
+            int n_coeff = coeff.GetSize();
+            double tp, tpm1, tpm2, c;
+            for(int p=0; p<n_coeff; p++)
+            {
+                c = coeff(p);
+                tp = std::pow(delta_t, p);
+                tpm1 = std::pow(delta_t, p-1);
+                tpm2 = std::pow(delta_t, p-2);
+                results[DELAY_INDEX] += c*tp;
+                results[RATE_INDEX] += p*c*tpm1;
+                results[ACCEL_INDEX] += p*(p-1)*c*tpm2;
+            }
+        }
 
+        void CheckSplineInterval(int n_intervals, double tdiff, int& int_no, std::string station_id);
 
         std::string fRefTimeString;
-        const station_coord_type* fRefData;
-        const station_coord_type* fRemData;
+        station_coord_type* fRefData;
+        station_coord_type* fRemData;
 
         mho_json fClockModel;
 

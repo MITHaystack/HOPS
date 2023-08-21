@@ -222,8 +222,7 @@ class MHO_NDArrayWrapper:
             for(std::size_t i=0; i<RANK; i++){fTmp[i] = 0;}
             for(std::size_t i=0; i<leading_idx.size(); i++){fTmp[i] = leading_idx[i];}
             std::size_t offset = MHO_NDArrayMath::OffsetFromStrideIndex<RANK>(&(fStrides[0]), &(fTmp[0]));
-            return  MHO_NDArrayView<XValueType, RANK - ( sizeof...(XIndexTypeS) ) >( &(fData[offset]), &(fDims[nfixed_t]), &(fStrides[nfixed_t]) );
-            
+            return MHO_NDArrayView<XValueType, RANK - ( sizeof...(XIndexTypeS) ) >( &(fData[offset]), &(fDims[nfixed_t]), &(fStrides[nfixed_t]) );
         }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -286,7 +285,7 @@ class MHO_NDArrayWrapper:
                 dim[i] = fDims[ filler.free_idx[i] ];
                 strides[i] = fStrides[ filler.free_idx[i] ];
             }
-            return  MHO_NDArrayView<XValueType, nfree_t >( &(fData[offset]), &(dim[0]), &(strides[0]) );
+            return MHO_NDArrayView<XValueType, nfree_t >( &(fData[offset]), &(dim[0]), &(strides[0]) );
         }
 
 ////////////////////////////////////////////////////////////////////////////////
