@@ -367,4 +367,32 @@ MHO_DelayModel::compute_model()
     
 }
 
+//evalute the delay model (delay, rate, accel) from the spline coefficients
+void 
+MHO_DelayModel::EvaluateDelaySpline(const std::vector<double>& coeff, double delta_t, double* results)
+{
+    #define DELAY_INDEX 0
+    #define RATE_INDEX 1
+    #define ACCEL_INDEX 2
+
+    //compute delay, rate accel
+    results[DELAY_INDEX] = 0.0;
+    results[RATE_INDEX] = 0.0; 
+    results[ACCEL_INDEX] = 0.0;
+    int n_coeff = coeff.size();
+    double tp, tpm1, tpm2, c;
+    for(int p=0; p<n_coeff; p++)
+    {
+        c = coeff[p];
+        tp = std::pow(delta_t, p);
+        tpm1 = std::pow(delta_t, p-1);
+        tpm2 = std::pow(delta_t, p-2);
+        results[DELAY_INDEX] += c*tp;
+        results[RATE_INDEX] += p*c*tpm1;
+        results[ACCEL_INDEX] += p*(p-1)*c*tpm2;
+    }
+}
+
+
+
 }

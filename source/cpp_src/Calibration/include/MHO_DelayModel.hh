@@ -25,6 +25,9 @@ class MHO_DelayModel
     
     private:
 
+        void EvaluateDelaySpline(const std::vector<double>& coeff, double delta_t, double* results);
+
+
         std::string fRefTimeString;
         const station_coord_type* fRefData;
         const station_coord_type* fRemData;
