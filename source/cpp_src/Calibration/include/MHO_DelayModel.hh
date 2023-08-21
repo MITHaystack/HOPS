@@ -16,7 +16,7 @@ class MHO_DelayModel
         void SetFourfitReferenceTimeVexString(std::string fourfit_reftime_string){fRefTimeString = fourfit_reftime_string;};
         void SetReferenceStationData(station_coord_type* ref_data){fRefData = ref_data;};
         void SetRemoteStationData(station_coord_type* rem_data){fRemData = rem_data;};
-        void compute_model();
+        void ComputeModel();
 
         double GetDelay(){return fDelay;}
         double GetRate(){return fRate;};
