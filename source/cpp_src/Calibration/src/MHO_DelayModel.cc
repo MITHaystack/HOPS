@@ -18,30 +18,19 @@ MHO_DelayModel::~MHO_DelayModel(){};
 
 
 void 
-MHO_DelayModel::compute_model()
+MHO_DelayModel::ComputeModel()
 {
-    bool ok;
-
-    //fourfit reference time time point
+    //convert fourfit reference time string to time point
     auto frt = hops_clock::from_vex_format(fRefTimeString);
 
     //get the ref/rem station codes
     std::string ref_code = RetrieveTag<std::string>(fRefData, "station_code");
     std::string rem_code = RetrieveTag<std::string>(fRemData, "station_code");
 
-    // ok = fRefData->Retrieve(std::string("station_code"), ref_code);
-    // if(!ok){msg_error("calibration", "station_code missing from reference station data." << eom);}
-    // std::string rem_code;
-    // ok = fRemData->Retrieve(std::string("station_code"), rem_code);
-    // if(!ok){msg_error("calibration", "station_code missing from remote station data." << eom);}
-
     //get the ref/rem station delay model start times
     std::string ref_mod_start = RetrieveTag<std::string>(fRefData, "model_start");
     std::string rem_mod_start = RetrieveTag<std::string>(fRemData, "model_start");
-    // ok = fRefData->Retrieve(std::string("model_start"), ref_mod_start);
-    // if(!ok){msg_error("calibration", "model_start missing from reference station delay model data." << eom);}
-    // ok = fRemData->Retrieve(std::string("model_start"), rem_mod_start);
-    // if(!ok){msg_error("calibration", "model_start missing from remote station delay model data." << eom);}
+    //convert string to time point
     auto ref_start = hops_clock::from_iso8601_format(ref_mod_start);
     auto rem_start = hops_clock::from_iso8601_format(rem_mod_start);
     
@@ -59,12 +48,6 @@ MHO_DelayModel::compute_model()
 
     double ref_model_interval = RetrieveTag<double>(fRefData, "model_interval");
     double rem_model_interval = RetrieveTag<double>(fRemData, "model_interval");
-
-    // 
-    // ok = fRefData->Retrieve(std::string("model_interval"), ref_model_interval);
-    // if(!ok){msg_error("calibration", "model_interval missing from reference station delay model data." << eom);}
-    // ok = fRemData->Retrieve(std::string("model_interval"), rem_model_interval);
-    // if(!ok){msg_error("calibration", "model_interval missing from reference station delay model data." << eom);}
 
     //figure out which spline interval overlaps with the fourfit reference time
     int ref_int_no = std::floor(ref_tdiff/ref_model_interval);
@@ -108,8 +91,6 @@ MHO_DelayModel::CheckSplineInterval(int n_intervals, double tdiff, int& int_no, 
         int_no = n_intervals-1;
     }
 }
-
-
 
 
 }//end namespace 
