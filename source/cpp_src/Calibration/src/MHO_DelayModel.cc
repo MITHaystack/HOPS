@@ -1,6 +1,8 @@
 #include "MHO_DelayModel.hh"
-
 #include "MHO_Clock.hh"
+
+#define DELAY_COEFF_INDEX 0
+
 
 namespace hops 
 {
@@ -22,9 +24,9 @@ MHO_DelayModel::compute_model()
     ok = fRefData->Retrieve(std::string("station_code"), ref_code);
     if(!ok){msg_error("calibration", "station_code missing from reference station data." << eom);}
 
-    // std::string rem_code;
-    // ok = fRemData->Retrieve(std::string("station_code"), rem_code);
-    // if(!ok){msg_error("calibration", "station_code missing from remote station data." << eom);}
+    std::string rem_code;
+    ok = fRemData->Retrieve(std::string("station_code"), rem_code);
+    if(!ok){msg_error("calibration", "station_code missing from remote station data." << eom);}
 
     double ref_clock_rate = 0.0;
     double ref_clock_delay = 0.0;
@@ -104,29 +106,8 @@ MHO_DelayModel::compute_model()
     int ref_int_no = std::floor(ref_tdiff/ref_model_interval);
     int rem_int_no = std::floor(rem_tdiff/rem_model_interval);
 
-    if(ref_tdiff < 0.0)
-    {
-        msg_warn("calibration", "FRT is outside of reference station spline range - must extrapolate!" << eom);
-        ref_int_no = 0;
-    }
-
-    if(rem_tdiff < 0.0)
-    {
-        msg_warn("calibration", "FRT is outside of remote station spline range - must extrapolate!" << eom);
-        rem_int_no = 0;
-    }   
-
-    if(ref_int_no >= fRefData->GetDimension(INTERVAL_AXIS) )
-    {
-        msg_warn("calibration", "FRT is outside of ref spline range - must extrapolate!" << eom);
-        ref_int_no = fRefData->GetDimension(0)-1;
-    }
-
-    if(rem_int_no >= fRemData->GetDimension(INTERVAL_AXIS) )
-    {
-        msg_warn("calibration", "FRT is outside of ref spline range - must extrapolate!" << eom);
-        rem_int_no = fRemData->GetDimension(0)-1;
-    }
+    CheckSplineInterval(fRefData->GetDimension(INTERVAL_AXIS), ref_tdiff, ref_int_no, ref_code);
+    CheckSplineInterval(fRemData->GetDimension(INTERVAL_AXIS), rem_tdiff, rem_int_no, rem_code);
 
     //seconds in target interval
     double ref_t = ref_tdiff - (ref_int_no * ref_model_interval);
@@ -139,29 +120,23 @@ MHO_DelayModel::compute_model()
     double rem_rate = 0.0;
     double ref_accel = 0.0;
     double rem_accel = 0.0;
-    int n_coeff = fRefData->GetDimension(COEFF_AXIS);
-    for(int p=0; p<n_coeff; p++)
-    {
-        double ref_tp = std::pow(ref_t, p);
-        double rem_tp = std::pow(rem_t, p);
-        double ref_tpm1 = std::pow(ref_t, p-1);
-        double rem_tpm1 = std::pow(rem_t, p-1);
-        double ref_tpm2 = std::pow(ref_t, p-2);
-        double rem_tpm2 = std::pow(rem_t, p-2);
-        ref_delay += fRefData->at(0, ref_int_no, p) * ref_tp;
-        rem_delay += fRemData->at(0, rem_int_no, p) * rem_tp;
-        ref_rate += fRefData->at(0, ref_int_no, p) * p * ref_tpm1;
-        rem_rate += fRemData->at(0, rem_int_no, p) * p * rem_tpm1;
-        ref_accel += fRefData->at(0, ref_int_no, p) * p * (p-1) * ref_tpm2;
-        rem_accel += fRemData->at(0, rem_int_no, p) * p * (p-1) * rem_tpm2;
-    }
-    
-    std::cout<<"ref_delay = "<<ref_delay<<std::endl;
-    std::cout<<"rem_delay = "<<rem_delay<<std::endl;
-    std::cout<<"ref_rate = "<<ref_rate<<std::endl;
-    std::cout<<"rem_rate = "<<rem_rate<<std::endl;
-    std::cout<<"ref_accel = "<<ref_accel<<std::endl;
-    std::cout<<"rem_accel = "<<rem_accel<<std::endl;
+
+    auto ref_coeff = fRefData->SubView(DELAY_COEFF_INDEX, ref_int_no); //extract spline coeffs for delay at this interval;
+    double ref_dra[3];
+    EvaluateDelaySpline(ref_coeff, ref_t, ref_dra);
+
+    double rem_dra[3];
+    auto rem_coeff = fRemData->SubView(DELAY_COEFF_INDEX, rem_int_no); //extract spline coeffs for delay at this interval;
+    EvaluateDelaySpline(rem_coeff, rem_t, rem_dra);
+
+    std::cout<<"2ref_delay = "<<ref_dra[0]<<std::endl;
+    std::cout<<"2rem_delay = "<<rem_dra[0]<<std::endl;
+    std::cout<<"2ref_rate = "<<ref_dra[1]<<std::endl;
+    std::cout<<"2rem_rate = "<<rem_dra[1]<<std::endl;
+    std::cout<<"2ref_accel = "<<ref_dra[2]<<std::endl;
+    std::cout<<"2rem_accel = "<<rem_dra[2]<<std::endl;
+
+
 
     double delay = rem_delay - ref_delay;
     double rate = rem_rate - ref_rate;
@@ -235,44 +210,53 @@ MHO_DelayModel::compute_model()
     ref_t = ref_tdiff - (ref_int_no * ref_model_interval);
     rem_t = rem_tdiff - (rem_int_no * rem_model_interval);
 
-    //compute delays
-    ref_delay = 0.0;
-    rem_delay = 0.0;
-    ref_rate = 0.0;
-    rem_rate = 0.0;
-    ref_accel = 0.0;
-    rem_accel = 0.0;
-    n_coeff = fRefData->GetDimension(COEFF_AXIS);
-    for(int p=0; p<n_coeff; p++)
-    {
-        double ref_tp = std::pow(ref_t, p);
-        double rem_tp = std::pow(rem_t, p);
-        double ref_tpm1 = std::pow(ref_t, p-1);
-        double rem_tpm1 = std::pow(rem_t, p-1);
-        double ref_tpm2 = std::pow(ref_t, p-2);
-        double rem_tpm2 = std::pow(rem_t, p-2);
-        ref_delay += fRefData->at(0, ref_int_no, p) * ref_tp;
-        rem_delay += fRemData->at(0, rem_int_no, p) * rem_tp;
-        ref_rate += fRefData->at(0, ref_int_no, p) * p * ref_tpm1;
-        rem_rate += fRemData->at(0, rem_int_no, p) * p * rem_tpm1;
-        ref_accel += fRefData->at(0, ref_int_no, p) * p * (p-1) * ref_tpm2;
-        rem_accel += fRemData->at(0, rem_int_no, p) * p * (p-1) * rem_tpm2;
-    }
-
-    std::cout<<"ref_delay = "<<ref_delay<<std::endl;
-    std::cout<<"rem_delay = "<<rem_delay<<std::endl;
-    std::cout<<"ref_rate = "<<ref_rate<<std::endl;
-    std::cout<<"rem_rate = "<<rem_rate<<std::endl;
-    std::cout<<"ref_accel = "<<ref_accel<<std::endl;
-    std::cout<<"rem_accel = "<<rem_accel<<std::endl;
-
-    double delay_ref = rem_delay - ref_delay;
-    double rate_ref  = (rem_rate - ref_rate) * ref_doppler;
-    double ref_stn_delay = ref_delay;
     
+    // auto ref_coeff = fRefData->SubView(DELAY_COEFF_INDEX, ref_int_no); //spline coeffs for delay at this interval;
+    // double ref_dra[3];
+    // EvaluateDelaySpline(ref_coeff, ref_t, ref_dra);
+    // 
+    // double rem_dra[3];
+    // auto rem_coeff = fRemData->SubView(DELAY_COEFF_INDEX, rem_int_no); //spline coeffs for delay at this interval;
+    // EvaluateDelaySpline(rem_coeff, rem_t, rem_dra);
 
-    std::cout<<"delay_ref, rate_ref, ref_stn_delay"<<delay_ref<<", "<<rate_ref<<", "<<ref_stn_delay<<std::endl;
 
+    // //compute delays
+    // ref_delay = 0.0;
+    // rem_delay = 0.0;
+    // ref_rate = 0.0;
+    // rem_rate = 0.0;
+    // ref_accel = 0.0;
+    // rem_accel = 0.0;
+    // n_coeff = fRefData->GetDimension(COEFF_AXIS);
+    // for(int p=0; p<n_coeff; p++)
+    // {
+    //     double ref_tp = std::pow(ref_t, p);
+    //     double rem_tp = std::pow(rem_t, p);
+    //     double ref_tpm1 = std::pow(ref_t, p-1);
+    //     double rem_tpm1 = std::pow(rem_t, p-1);
+    //     double ref_tpm2 = std::pow(ref_t, p-2);
+    //     double rem_tpm2 = std::pow(rem_t, p-2);
+    //     ref_delay += fRefData->at(0, ref_int_no, p) * ref_tp;
+    //     rem_delay += fRemData->at(0, rem_int_no, p) * rem_tp;
+    //     ref_rate += fRefData->at(0, ref_int_no, p) * p * ref_tpm1;
+    //     rem_rate += fRemData->at(0, rem_int_no, p) * p * rem_tpm1;
+    //     ref_accel += fRefData->at(0, ref_int_no, p) * p * (p-1) * ref_tpm2;
+    //     rem_accel += fRemData->at(0, rem_int_no, p) * p * (p-1) * rem_tpm2;
+    // }
+
+    // std::cout<<"ref_delay = "<<ref_dra[0]<<std::endl;
+    // std::cout<<"rem_delay = "<<rem_dra[0]<<std::endl;
+    // std::cout<<"ref_rate = "<<ref_dra[1]<<std::endl;
+    // std::cout<<"rem_rate = "<<rem_dra[1]<<std::endl;
+    // std::cout<<"ref_accel = "<<ref_dra[2]<<std::endl;
+    // std::cout<<"rem_accel = "<<rem_dra[2]<<std::endl;
+
+    // double delay_ref = rem_delay - ref_delay;
+    // double rate_ref  = (rem_rate - ref_rate) * ref_doppler;
+    // double ref_stn_delay = ref_delay;
+    // 
+    // std::cout<<"delay_ref, rate_ref, ref_stn_delay"<<delay_ref<<", "<<rate_ref<<", "<<ref_stn_delay<<std::endl;
+    // 
 
 
 
@@ -367,32 +351,22 @@ MHO_DelayModel::compute_model()
     
 }
 
-//evalute the delay model (delay, rate, accel) from the spline coefficients
-void 
-MHO_DelayModel::EvaluateDelaySpline(const std::vector<double>& coeff, double delta_t, double* results)
+void
+MHO_DelayModel::CheckSplineInterval(int n_intervals, double tdiff, int& int_no, std::string station_id)
 {
-    #define DELAY_INDEX 0
-    #define RATE_INDEX 1
-    #define ACCEL_INDEX 2
-
-    //compute delay, rate accel
-    results[DELAY_INDEX] = 0.0;
-    results[RATE_INDEX] = 0.0; 
-    results[ACCEL_INDEX] = 0.0;
-    int n_coeff = coeff.size();
-    double tp, tpm1, tpm2, c;
-    for(int p=0; p<n_coeff; p++)
+    if(tdiff < 0.0)
     {
-        c = coeff[p];
-        tp = std::pow(delta_t, p);
-        tpm1 = std::pow(delta_t, p-1);
-        tpm2 = std::pow(delta_t, p-2);
-        results[DELAY_INDEX] += c*tp;
-        results[RATE_INDEX] += p*c*tpm1;
-        results[ACCEL_INDEX] += p*(p-1)*c*tpm2;
+        msg_warn("calibration", "fourfit reference time is outside of station: "<<station_id<<" spline range - must extrapolate!" << eom);
+        int_no = 0;
+    }
+    if(int_no >= n_intervals )
+    {
+        msg_warn("calibration", "fourfit reference time is outside of station: "<<station_id<<" spline range - must extrapolate!" << eom);
+        int_no = n_intervals-1;
     }
 }
 
 
 
-}
+
+}//end namespace 
