@@ -391,7 +391,7 @@ void precalculate_quantities(MHO_ContainerStore* conStore, MHO_ParameterStore* p
 int main(int argc, char** argv)
 {
 
-    std::string usage = "SimpleFringeSearchPlot -d <directory> -c <control file> -b <baseline> -p <pol. product>";
+    std::string usage = "ffit -d <directory> -c <control file> -b <baseline> -p <pol. product>";
 
     MHO_Message::GetInstance().AcceptAllKeys();
     MHO_Message::GetInstance().SetMessageLevel(eDebug);
