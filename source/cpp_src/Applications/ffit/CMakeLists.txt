@@ -1,4 +1,4 @@
-hops_internal_include_directories()
+hops_internal_include_directories("./")
 
 set(FFIT_LIBS
     MHO_Message
@@ -15,6 +15,15 @@ set(FFIT_LIBS
 
 set(SOURCE_BASENAMES
     ffit
+)
+
+set(ffit_SOURCEFILES
+    ${CMAKE_CURRENT_SOURCE_DIR}/ffit.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/configure_data_library.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/build_and_exec_operators.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/extract_vex_info.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/fill_output_info.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/precalculate_quantities.cc
 )
 
 #for testing purposes only -- ROOT not intended to be a dependency
@@ -38,10 +47,8 @@ if(HOPS_USE_PYBIND11)
     # install(PROGRAMS "${CMAKE_CURRENT_SOURCE_DIR}/ff_plot_test.py" DESTINATION ${PYTHON_MODULE_INSTALL_DIR})
 endif(HOPS_USE_PYBIND11)
 
-foreach( BASENAME ${SOURCE_BASENAMES} )
-    add_executable( ${BASENAME} ${BASENAME}.cc )
-    target_link_libraries( ${BASENAME} ${FFIT_LIBS})
-endforeach( BASENAME )
+add_executable( ffit ${ffit_SOURCEFILES} )
+target_link_libraries( ffit ${FFIT_LIBS})
 
 hops_install_executables( ${SOURCE_BASENAMES} )
 

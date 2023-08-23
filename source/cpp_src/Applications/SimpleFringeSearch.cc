@@ -328,7 +328,10 @@ void extract_vex_info(const mho_json& vexInfo, MHO_ParameterStore* paramStore)
     paramStore->Set("/vex/scan/sample_rate", sample_rate);
     paramStore->Set("/vex/scan/sample_period", 1.0/sample_rate);
     
-    //TODO FIXME, we also need extract the clock model, as well as station information
+    //TODO FIXME, we also need extract the clock model, as well as station information 
+    
+    
+        
     
 }
 
@@ -377,14 +380,6 @@ void precalculate_quantities(MHO_ContainerStore* conStore, MHO_ParameterStore* p
     paramStore->Set("/fringe/total_summed_weights", total_ap_frac);
     wt_data->Insert("total_summed_weights", total_ap_frac);
 }
-
-
-
-
-
-
-
-
 
 
 
@@ -589,27 +584,6 @@ int main(int argc, char** argv)
 
     //calulate useful quantities to stash in the parameter store
     precalculate_quantities(conStore, paramStore);
-    // // //compute the sum of the weights
-    // weight_type temp_weights;
-    // temp_weights.Copy(*wt_data);
-    // MHO_Reducer<weight_type, MHO_CompoundSum> wt_reducer;
-    // wt_reducer.SetArgs(&temp_weights);
-    // for(std::size_t i=0; i<weight_type::rank::value; i++)
-    // {
-    //     wt_reducer.ReduceAxis(i);
-    // }
-    // wt_reducer.Initialize();
-    // wt_reducer.Execute();
-    // 
-    // double total_ap_frac = temp_weights[0];
-    // std::cout<<"reduced weights = "<<temp_weights[0]<<std::endl;
-    // 
-    // paramStore->Set("/fringe/total_summed_weights", total_ap_frac);
-    // 
-    // wt_data->Insert("total_summed_weights", total_ap_frac);
-    // 
-    // take_snapshot_here("test", "reduced_weights", __FILE__, __LINE__,  &temp_weights);
-
 
     //output for the delay
     visibility_type* sbd_data = vis_data->CloneEmpty();
