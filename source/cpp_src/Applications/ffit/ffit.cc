@@ -143,14 +143,14 @@ int main(int argc, char** argv)
     build_manager.SetControlStatements(&control_statements);
 
     build_manager.BuildOperatorCategory("default");
-    build_and_exec_operators(build_manager, &opToolbox, "labelling");
-    build_and_exec_operators(build_manager, &opToolbox, "selection");
+    init_and_exec_operators(build_manager, &opToolbox, "labelling");
+    init_and_exec_operators(build_manager, &opToolbox, "selection");
     
     //safety check
     if(vis_data->GetSize() == 0){msg_fatal("main", "no data left after cuts." << eom); std::exit(1);}
     
-    build_and_exec_operators(build_manager, &opToolbox, "flagging");
-    build_and_exec_operators(build_manager, &opToolbox, "calibration");
+    init_and_exec_operators(build_manager, &opToolbox, "flagging");
+    init_and_exec_operators(build_manager, &opToolbox, "calibration");
 
     //take a snapshot
     take_snapshot_here("test", "visib", __FILE__, __LINE__, vis_data);

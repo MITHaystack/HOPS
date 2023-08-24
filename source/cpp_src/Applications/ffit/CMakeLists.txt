@@ -20,7 +20,7 @@ set(SOURCE_BASENAMES
 set(ffit_SOURCEFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/ffit.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/configure_data_library.cc
-    ${CMAKE_CURRENT_SOURCE_DIR}/build_and_exec_operators.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/init_and_exec_operators.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/extract_vex_info.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/fill_output_info.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/precalculate_quantities.cc
