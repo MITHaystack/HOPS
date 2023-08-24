@@ -193,7 +193,7 @@ MHO_ParameterStore::GetAs(const std::string& value_path) const
 {
     XValueType v = XValueType(); //default constructor (zero for int, double, etc)
     bool ok = Get(value_path,v);
-    if(!ok){msg_debug("utility", "failed to retrieve value: "<< value_path <<" returning default: " << v << eom );}
+    if(!ok){msg_warn("utility", "failed to retrieve value: "<< value_path <<" returning default value: " << v << eom );}
     return v;
 }
 

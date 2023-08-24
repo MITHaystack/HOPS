@@ -34,6 +34,7 @@ mho_json construct_plot_data(MHO_ContainerStore* conStore, MHO_ParameterStore* p
     bool is_mbd_anchor_set = paramStore->Get(std::string("mbd_anchor"), mbd_anchor);
 
     MHO_ComputePlotData mk_plotdata;
+    mk_plotdata.SetParameterStore(paramStore);
     bool optimize_closure_flag = false;
     bool is_oc_set = paramStore->Get(std::string("optimize_closure"), optimize_closure_flag );
     if(optimize_closure_flag){mk_plotdata.EnableOptimizeClosure();} //this does have an effect on overall fringe phase
