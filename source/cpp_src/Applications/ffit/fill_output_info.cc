@@ -1,5 +1,7 @@
 #include "ffit.hh"
 
+#include "MHO_Clock.hh"
+
 void fill_output_info(const MHO_ParameterStore* paramStore, const mho_json& vexInfo, mho_json& plot_dict)
 {
     //vex section info and quantities

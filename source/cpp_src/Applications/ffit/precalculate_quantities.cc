@@ -1,5 +1,8 @@
 #include "ffit.hh"
 
+#include "MHO_Reducer.hh"
+#include "MHO_DelayModel.hh"
+
 //calculate useful quantities used later throughout the program
 void precalculate_quantities(MHO_ContainerStore* conStore, MHO_ParameterStore* paramStore)
 {
@@ -42,4 +45,25 @@ void precalculate_quantities(MHO_ContainerStore* conStore, MHO_ParameterStore* p
     std::cout<<"reduced weights = "<<temp_weights[0]<<std::endl;
     paramStore->Set("/fringe/total_summed_weights", total_ap_frac);
     wt_data->Insert("total_summed_weights", total_ap_frac);
+    
+    
+    //compute the a priori delay model
+    station_coord_type* ref_data = conStore->GetObject<station_coord_type>(std::string("ref_sta"));
+    station_coord_type* rem_data = conStore->GetObject<station_coord_type>(std::string("rem_sta"));
+    MHO_DelayModel delay_model;
+    std::string frt_vex_string = paramStore->GetAs<std::string>("/vex/scan/fourfit_reftime");
+    delay_model.SetFourfitReferenceTimeVexString(frt_vex_string);
+    delay_model.SetReferenceStationData(ref_data);
+    delay_model.SetRemoteStationData(rem_data);
+    delay_model.ComputeModel();
+
+    double ap_delay = delay_model.GetDelay();
+    double ap_rate = delay_model.GetRate();
+    double ap_accel = delay_model.GetAcceleration();
+
+    paramStore->Set("/model/apriori_delay", ap_delay);
+    paramStore->Set("/model/apriori_rate", ap_rate);
+    paramStore->Set("/model/apriori_accel", ap_accel);
+    
+    
 }
