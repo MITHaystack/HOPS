@@ -162,12 +162,14 @@ int main(int argc, char** argv)
     //execute the basic fringe search algorithm
     basic_fringe_search(&conStore, &paramStore);
 
-    paramStore.Dump();
-
     ////////////////////////////////////////////////////////////////////////////
     //PLOTTING/DEBUG
     ////////////////////////////////////////////////////////////////////////////
     mho_json plot_dict = construct_plot_data(&conStore, &paramStore, vexInfo);
+
+    std::cout<<"------------------------------------"<<std::endl;
+    paramStore.Dump();
+    std::cout<<"------------------------------------"<<std::endl;
 
     #ifdef USE_PYBIND11
 

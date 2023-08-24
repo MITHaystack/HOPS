@@ -46,7 +46,6 @@ void precalculate_quantities(MHO_ContainerStore* conStore, MHO_ParameterStore* p
     paramStore->Set("/fringe/total_summed_weights", total_ap_frac);
     wt_data->Insert("total_summed_weights", total_ap_frac);
     
-    
     //compute the a priori delay model
     station_coord_type* ref_data = conStore->GetObject<station_coord_type>(std::string("ref_sta"));
     station_coord_type* rem_data = conStore->GetObject<station_coord_type>(std::string("rem_sta"));
@@ -61,9 +60,9 @@ void precalculate_quantities(MHO_ContainerStore* conStore, MHO_ParameterStore* p
     double ap_rate = delay_model.GetRate();
     double ap_accel = delay_model.GetAcceleration();
 
-    paramStore->Set("/model/apriori_delay", ap_delay);
-    paramStore->Set("/model/apriori_rate", ap_rate);
-    paramStore->Set("/model/apriori_accel", ap_accel);
+    paramStore->Set("/model/adelay", ap_delay);
+    paramStore->Set("/model/arate", ap_rate);
+    paramStore->Set("/model/aaccel", ap_accel);
     
     
 }
