@@ -1,5 +1,11 @@
 #include "ffit.hh"
 
+#include "MHO_NormFX.hh"
+#include "MHO_DelayRate.hh"
+#include "MHO_MBDelaySearch.hh"
+#include "MHO_InterpolateFringePeak.hh"
+#include "MHO_UniformGridPointsCalculator.hh"
+
 void basic_fringe_search(MHO_ContainerStore* conStore, MHO_ParameterStore* paramStore)
 {
     bool ok;

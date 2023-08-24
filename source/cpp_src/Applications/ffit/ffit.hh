@@ -7,38 +7,14 @@
 //snapshot utility lib
 #include "MHO_Snapshot.hh"
 
-//needed to read hops files and extract objects from scan dir
-#include "MHO_ScanDataStore.hh"
-
-//control
-#include "MHO_ControlFileParser.hh"
-#include "MHO_ControlConditionEvaluator.hh"
-
-//operators
-
-#include "MHO_NormFX.hh"
-#include "MHO_SelectRepack.hh"
-#include "MHO_UniformGridPointsCalculator.hh"
-#include "MHO_FringeRotation.hh"
-#include "MHO_Reducer.hh"
-
-#include "MHO_AbsoluteValue.hh"
-#include "MHO_FunctorBroadcaster.hh"
-#include "MHO_ExtremaSearch.hh"
-#include "MHO_ManualChannelPhaseCorrection.hh"
-#include "MHO_DelayRate.hh"
-#include "MHO_MBDelaySearch.hh"
-#include "MHO_InterpolateFringePeak.hh"
+//data/config passing classes
+#include "MHO_ParameterStore.hh"
+#include "MHO_ContainerStore.hh"
+#include "MHO_OperatorToolbox.hh"
+#include "MHO_JSONHeaderWrapper.hh"
 
 //initialization
 #include "MHO_OperatorBuilderManager.hh"
-#include "MHO_ParameterConfigurator.hh"
-#include "MHO_ParameterManager.hh"
-
-#include "MHO_ComputePlotData.hh"
-#include "MHO_DelayModel.hh"
-
-#include "MHO_Clock.hh"
 
 //pybind11 stuff to interface with python
 #ifdef USE_PYBIND11
@@ -60,5 +36,6 @@ void precalculate_quantities(MHO_ContainerStore* conStore, MHO_ParameterStore* p
 void build_and_exec_operators(MHO_OperatorBuilderManager& build_manager, MHO_OperatorToolbox* opToolbox, const char* category);
 int parse_command_line(int argc, char** argv, MHO_ParameterStore* paramStore);
 void basic_fringe_search(MHO_ContainerStore* conStore, MHO_ParameterStore* paramStore);
+mho_json construct_plot_data(MHO_ContainerStore* conStore, MHO_ParameterStore* paramStore, mho_json& vexInfo);
 
 #endif
