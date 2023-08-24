@@ -32,6 +32,7 @@ static const MHO_MessageEndline eom = MHO_MessageEndline();
 enum
 MHO_MessageLevel: int
 {
+    eSilentErrorLevel = -1, //mute all messages entirely, including fatal ones
     eFatalErrorLevel = 0, //use for fatal errors (program termination imminent)
     eErrorLevel = 1, //use for non-fatal errors which may lead to unexpected behavior
     eWarningLevel = 2, //use to inform about unexpected state which may lead to errors
@@ -41,6 +42,7 @@ MHO_MessageLevel: int
 };
 
 //short hand aliases
+static const MHO_MessageLevel eSilent = MHO_MessageLevel::eSilentErrorLevel;
 static const MHO_MessageLevel eFatal = MHO_MessageLevel::eFatalErrorLevel;
 static const MHO_MessageLevel eError = MHO_MessageLevel::eErrorLevel;
 static const MHO_MessageLevel eWarning = MHO_MessageLevel::eWarningLevel;
@@ -48,6 +50,7 @@ static const MHO_MessageLevel eStatus = MHO_MessageLevel::eStatusLevel;
 static const MHO_MessageLevel eInfo = MHO_MessageLevel::eInfoLevel;
 static const MHO_MessageLevel eDebug = MHO_MessageLevel::eDebugLevel;
 
+using hops::eSilent;
 using hops::eFatal;
 using hops::eError;
 using hops::eWarning;
