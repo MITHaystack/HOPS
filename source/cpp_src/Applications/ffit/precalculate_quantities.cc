@@ -2,6 +2,7 @@
 
 #include "MHO_Reducer.hh"
 #include "MHO_DelayModel.hh"
+#include "MHO_Clock.hh"
 
 //calculate useful quantities used later throughout the program
 void precalculate_quantities(MHO_ContainerStore* conStore, MHO_ParameterStore* paramStore)
@@ -24,7 +25,6 @@ void precalculate_quantities(MHO_ContainerStore* conStore, MHO_ParameterStore* p
     double ap_delta = ap_ax->at(1) - ap_ax->at(0);
     paramStore->Set("ap_period", ap_delta);
 
-
     //offset to the start of the data 
     double start_offset = ap_ax->at(0);
     std::cout<<"offset to the start of the first ap = "<<start_offset<<std::endl;
@@ -35,9 +35,6 @@ void precalculate_quantities(MHO_ContainerStore* conStore, MHO_ParameterStore* p
     std::cout<<"offset to end of the last ap = "<<stop_offset<<std::endl;
     paramStore->Set("stop_offset", stop_offset);
 
-    // //TODO FIXME -- should this be the fourfit refrence time? Also...should this be calculated elsewhere?
-    // double midpoint_time = ( ap_ax->at(nap-1) + ap_delta  + ap_ax->at(0) )/2.0;
-    // std::cout<<"time midpoint = "<<midpoint_time<<std::endl;
 
 
     //compute the sum of the data weights
@@ -65,7 +62,19 @@ void precalculate_quantities(MHO_ContainerStore* conStore, MHO_ParameterStore* p
     delay_model.SetReferenceStationData(ref_data);
     delay_model.SetRemoteStationData(rem_data);
     delay_model.ComputeModel();
-
+    
+    //calculate the offset to the refence time (within the scan)
+    // //TODO FIXME -- should this be the fourfit refrence time? Also...should this be calculated elsewhere?
+    // double midpoint_time = ( ap_ax->at(nap-1) + ap_delta  + ap_ax->at(0) )/2.0;
+    // std::cout<<"time midpoint = "<<midpoint_time<<std::endl;
+    auto frt = hops_clock::from_vex_format(frt_vex_string);
+    std::string start_vex_string = paramStore->GetAs<std::string>("/vex/scan/start");
+    auto start_time = hops_clock::from_vex_format(start_vex_string);
+    
+    auto offset_to_frt_duration = frt - start_time;
+    double frt_offset = std::chrono::duration<double>(offset_to_frt_duration).count(); 
+    paramStore->Set("frt_offset", frt_offset);
+    
     double ap_delay = delay_model.GetDelay();
     double ap_rate = delay_model.GetRate();
     double ap_accel = delay_model.GetAcceleration();

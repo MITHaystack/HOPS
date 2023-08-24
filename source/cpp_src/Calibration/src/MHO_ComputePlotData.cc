@@ -8,6 +8,7 @@ namespace hops
 MHO_ComputePlotData::MHO_ComputePlotData()
 {
     fMBDAnchor = "model";
+    fParamStore = nullptr;
 };
 
 xpower_amp_type
@@ -73,8 +74,10 @@ MHO_ComputePlotData::calc_mbd()
     double sbd_delta = sbd_ax->at(1) - sbd_ax->at(0);
 
     //TODO FIXME -- should this be the fourfit refrence time? Also...should this be calculated elsewhere?
-    double midpoint_time = ( ap_ax->at(nap-1) + ap_delta  + ap_ax->at(0) )/2.0;
-    std::cout<<"time midpoint = "<<midpoint_time<<std::endl;
+    double frt_offset = fParamStore->GetAs<double>("frt_offset");
+    
+    //( ap_ax->at(nap-1) + ap_delta  + ap_ax->at(0) )/2.0;
+    std::cout<<"time midpoint = "<<frt_offset<<std::endl;
 
 
     std::complex<double> sum = 0;
@@ -84,7 +87,7 @@ MHO_ComputePlotData::calc_mbd()
         sum = 0;
         for(std::size_t ap=0; ap < nap; ap++)
         {
-            double tdelta = ap_ax->at(ap) + ap_delta/2.0 - midpoint_time; //need time difference from the f.r.t?
+            double tdelta = ap_ax->at(ap) + ap_delta/2.0 - frt_offset; //need time difference from the f.r.t?
             std::complex<double> vis = (*fSBDArray)(POLPROD, ch, ap, fSBDMaxBin); //pick out data at SBD max bin
             std::complex<double> vr = fRot.vrot(tdelta, freq, fRefFreq, fDelayRate, 0.0); //apply at MBD=0.0
             std::complex<double> z = vis*vr;
@@ -139,8 +142,9 @@ MHO_ComputePlotData::calc_sbd()
 
 
     //TODO FIXME -- shoudl this be the fourfit refrence time? Also...should this be calculated elsewhere?
-    double midpoint_time = ( ap_ax->at(nap-1) + ap_delta  + ap_ax->at(0) )/2.0;
-    std::cout<<"time midpoint = "<<midpoint_time<<std::endl;
+    //double frt_offset = ( ap_ax->at(nap-1) + ap_delta  + ap_ax->at(0) )/2.0;
+    double frt_offset = fParamStore->GetAs<double>("frt_offset");
+    std::cout<<"time midpoint = "<<frt_offset<<std::endl;
 
     sbd_amp.Resize(nbins);
     sbd_xpower_in.Resize(nbins);
@@ -159,7 +163,7 @@ MHO_ComputePlotData::calc_sbd()
             sum = 0;
             for(std::size_t ap=0; ap < nap; ap++)
             {
-                double tdelta = ap_ax->at(ap) + ap_delta/2.0 - midpoint_time; //need time difference from the f.r.t?
+                double tdelta = ap_ax->at(ap) + ap_delta/2.0 - frt_offset; //need time difference from the f.r.t?
                 std::complex<double> vis = (*fSBDArray)(POLPROD, ch, ap, i);
                 std::complex<double> vr = fRot.vrot(tdelta, freq, fRefFreq, fDelayRate, fMBDelay);
                 std::complex<double> z = vis*vr;
@@ -205,8 +209,9 @@ MHO_ComputePlotData::calc_xpower()
 
 
     //TODO FIXME -- shoudl this be the fourfit refrence time? Also...should this be calculated elsewhere?
-    double midpoint_time = ( ap_ax->at(nap-1) + ap_delta  + ap_ax->at(0) )/2.0;
-    std::cout<<"time midpoint = "<<midpoint_time<<std::endl;
+    //double frt_offset = ( ap_ax->at(nap-1) + ap_delta  + ap_ax->at(0) )/2.0;
+    double frt_offset = fParamStore->GetAs<double>("frt_offset");
+    std::cout<<"time midpoint = "<<frt_offset<<std::endl;
 
     sbd_amp.Resize(nbins);
     sbd_xpower_in.Resize(nbins);
@@ -225,7 +230,7 @@ MHO_ComputePlotData::calc_xpower()
             sum = 0;
             for(std::size_t ap=0; ap < nap; ap++)
             {
-                double tdelta = ap_ax->at(ap) + ap_delta/2.0 - midpoint_time; //need time difference from the f.r.t?
+                double tdelta = ap_ax->at(ap) + ap_delta/2.0 - frt_offset; //need time difference from the f.r.t?
                 std::complex<double> vis = (*fSBDArray)(POLPROD, ch, ap, i);
                 std::complex<double> vr = fRot.vrot(tdelta, freq, fRefFreq, fDelayRate, fMBDelay);
                 std::complex<double> z = vis*vr;
@@ -327,15 +332,16 @@ MHO_ComputePlotData::calc_dr()
     }
 
     //TODO FIXME -- should this be the fourfit refrence time? Also...should this be calculated elsewhere?
-    double midpoint_time = ( ap_ax->at(nap-1) + ap_delta  + ap_ax->at(0) )/2.0;
-    std::cout<<"time midpoint = "<<midpoint_time<<std::endl;
+    //double frt_offset = ( ap_ax->at(nap-1) + ap_delta  + ap_ax->at(0) )/2.0;
+    double frt_offset = fParamStore->GetAs<double>("frt_offset");
+    std::cout<<"time midpoint = "<<frt_offset<<std::endl;
 
     for(std::size_t ch=0; ch < nchan; ch++)
     {
         double freq = (*chan_ax)(ch);//sky freq of this channel
         for(std::size_t ap=0; ap < nap; ap++)
         {
-            double tdelta = ap_ax->at(ap) + ap_delta/2.0 - midpoint_time; //need time difference from the f.r.t?
+            double tdelta = ap_ax->at(ap) + ap_delta/2.0 - frt_offset; //need time difference from the f.r.t?
             std::complex<double> vis = (*fSBDArray)(POLPROD, ch, ap, fSBDMaxBin); //pick out data at SBD max bin
             std::complex<double> vr = fRot.vrot(tdelta, freq, fRefFreq, fDelayRate, fMBDelay); //why rotate at the max delay rate??
             std::complex<double> z = vis*vr;
@@ -391,8 +397,9 @@ MHO_ComputePlotData::calc_phase()
     fRot.SetSBDMax( fSBDelay );
 
     //TODO FIXME -- should this be the fourfit refrence time? Also...should this be calculated elsewhere?
-    double midpoint_time = ( ap_ax->at(nap-1) + ap_delta  + ap_ax->at(0) )/2.0;
-    std::cout<<"time midpoint = "<<midpoint_time<<std::endl;
+    double frt_offset = fParamStore->GetAs<double>("frt_offset");
+    //double frt_offset = ( ap_ax->at(nap-1) + ap_delta  + ap_ax->at(0) )/2.0;
+    std::cout<<"time midpoint = "<<frt_offset<<std::endl;
 
     std::complex<double> sum_all = 0.0;
     for(std::size_t ch=0; ch < nchan; ch++)
@@ -425,7 +432,7 @@ MHO_ComputePlotData::calc_phase()
 
         for(std::size_t ap=0; ap < nap; ap++)
         {
-            double tdelta = ap_ax->at(ap) + ap_delta/2.0 - midpoint_time; //need time difference from the f.r.t?
+            double tdelta = ap_ax->at(ap) + ap_delta/2.0 - frt_offset; //need time difference from the f.r.t?
             std::complex<double> vis = (*fSBDArray)(POLPROD, ch, ap, fSBDMaxBin); //pick out data at SBD max bin
             std::complex<double> vr = fRot.vrot(tdelta, freq, fRefFreq, fDelayRate, fMBDelay);
             std::complex<double> z = vis*vr;
@@ -489,8 +496,9 @@ MHO_ComputePlotData::calc_xpower_KLUDGE()
     double sbd_delta = sbd_ax->at(1) - sbd_ax->at(0);
 
     //TODO FIXME -- should this be the fourfit refrence time? Also...should this be calculated elsewhere?
-    double midpoint_time = ( ap_ax->at(nap-1) + ap_delta  + ap_ax->at(0) )/2.0;
-    std::cout<<"time midpoint = "<<midpoint_time<<std::endl;
+    //double frt_offset = ( ap_ax->at(nap-1) + ap_delta  + ap_ax->at(0) )/2.0;
+    double frt_offset = fParamStore->GetAs<double>("frt_offset");
+    std::cout<<"time midpoint = "<<frt_offset<<std::endl;
 
     std::complex<double> sum;
     std::complex<double> Z, vr;
@@ -542,7 +550,7 @@ MHO_ComputePlotData::calc_xpower_KLUDGE()
             sum = 0.0;
             for (int ap = 0; ap < nap; ap++)
             {
-                double tdelta = ap_ax->at(ap) + ap_delta/2.0 - midpoint_time; //need time difference from the f.r.t?
+                double tdelta = ap_ax->at(ap) + ap_delta/2.0 - frt_offset; //need time difference from the f.r.t?
                 std::complex<double> vis = (*fSBDArray)(POLPROD, ch, ap, 2*lag);
                 std::complex<double> vr = fRot.vrot(tdelta, freq, fRefFreq, fDelayRate, fMBDelay);
                 std::complex<double> Z = vis*vr;
@@ -651,8 +659,9 @@ MHO_ComputePlotData::calc_xpower_KLUDGE2()
     double freq_delta = freq_ax->at(1) - freq_ax->at(0);
 
     //TODO FIXME -- should this be the fourfit refrence time? Also...should this be calculated elsewhere?
-    double midpoint_time = ( ap_ax->at(nap-1) + ap_delta  + ap_ax->at(0) )/2.0;
-    std::cout<<"time midpoint = "<<midpoint_time<<std::endl;
+    //double frt_offset = ( ap_ax->at(nap-1) + ap_delta  + ap_ax->at(0) )/2.0;
+    double frt_offset = fParamStore->GetAs<double>("frt_offset");
+    std::cout<<"time midpoint = "<<frt_offset<<std::endl;
 
     std::complex<double> sum;
     std::complex<double> Z, vr;
@@ -702,7 +711,7 @@ MHO_ComputePlotData::calc_xpower_KLUDGE2()
             sum = 0.0;
             for (int ap = 0; ap < nap; ap++)
             {
-                double tdelta = ap_ax->at(ap) + ap_delta/2.0 - midpoint_time; //need time difference from the f.r.t?
+                double tdelta = ap_ax->at(ap) + ap_delta/2.0 - frt_offset; //need time difference from the f.r.t?
                 std::complex<double> vis = (*fVisibilities)(POLPROD, ch, ap, n);
                 std::complex<double> vr = fRot.vrot(tdelta, freq, fRefFreq, fDelayRate, fMBDelay);
                 std::complex<double> Z = vis*vr;
@@ -834,8 +843,9 @@ MHO_ComputePlotData::calc_xpower_KLUDGE3()
     double sbd_delta = sbd_ax->at(1) - sbd_ax->at(0);
 
     //TODO FIXME -- should this be the fourfit refrence time? Also...should this be calculated elsewhere?
-    double midpoint_time = ( ap_ax->at(nap-1) + ap_delta  + ap_ax->at(0) )/2.0;
-    std::cout<<"time midpoint = "<<midpoint_time<<std::endl;
+    //double frt_offset = ( ap_ax->at(nap-1) + ap_delta  + ap_ax->at(0) )/2.0;
+    double frt_offset = fParamStore->GetAs<double>("frt_offset");
+    std::cout<<"time midpoint = "<<frt_offset<<std::endl;
 
     std::complex<double> sum;
     std::complex<double> Z, vr;
@@ -886,7 +896,7 @@ MHO_ComputePlotData::calc_xpower_KLUDGE3()
             sum = 0.0;
             for (int ap = 0; ap < nap; ap++)
             {
-                double tdelta = ap_ax->at(ap) + ap_delta/2.0 - midpoint_time; //need time difference from the f.r.t?
+                double tdelta = ap_ax->at(ap) + ap_delta/2.0 - frt_offset; //need time difference from the f.r.t?
                 std::complex<double> vis = (*fSBDArray)(POLPROD, ch, ap, lag);
                 std::complex<double> vr = fRot.vrot(tdelta, freq, fRefFreq, fDelayRate, fMBDelay);
                 std::complex<double> Z = vis*vr;

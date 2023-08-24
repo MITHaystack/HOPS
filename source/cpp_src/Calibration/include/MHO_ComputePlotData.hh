@@ -12,6 +12,8 @@
 #include "MHO_SubSample.hh"
 #include "MHO_FringeRotation.hh"
 
+#include "MHO_ParameterStore.hh"
+
 #ifdef HOPS_USE_FFTW3
     #include "MHO_FFTWTypes.hh"
     #include "MHO_MultidimensionalFastFourierTransformFFTW.hh"
@@ -42,6 +44,7 @@ class MHO_ComputePlotData
         void DisableOptimizeClosure(){fRot.SetOptimizeClosureFalse();}
         
         void SetMBDAnchor(std::string flag){fMBDAnchor = flag;}
+        void SetParameterStore(MHO_ParameterStore* pStore){fParamStore = pStore;}
 
         void SetSummedWeights(double total_ap_frac){fTotalSummedWeights = total_ap_frac;}
         void SetReferenceFrequency(double ref_freq){fRefFreq = ref_freq;}
@@ -92,6 +95,7 @@ class MHO_ComputePlotData
         xpower_type fMBDWorkspace;
         xpower_amp_type fMBDAmpWorkspace;
 
+        MHO_ParameterStore* fParamStore;
         mho_json fVexInfo;
 
         MHO_MultidimensionalPaddedFastFourierTransform< xpower_type > fPaddedFFTEngine;
