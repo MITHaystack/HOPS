@@ -172,10 +172,10 @@ int main(int argc, char** argv)
     paramStore.Dump();
     std::cout<<"------------------------------------"<<std::endl;
     
-    std::cout<<"------------------------------------"<<std::endl;
-    std::cout<<"PLOT DICT :"<<std::endl;
-    std::cout<< plot_dict.dump(2) <<std::endl;
-    std::cout<<"------------------------------------"<<std::endl;
+    // std::cout<<"------------------------------------"<<std::endl;
+    // std::cout<<"PLOT DICT :"<<std::endl;
+    // std::cout<< plot_dict.dump(2) <<std::endl;
+    // std::cout<<"------------------------------------"<<std::endl;
 
     #ifdef USE_PYBIND11
     

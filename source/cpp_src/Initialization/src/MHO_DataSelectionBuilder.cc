@@ -41,7 +41,7 @@ MHO_DataSelectionBuilder::Build()
             fParameterStore->Get(stop_key, stop);
             if(start != 0 || stop != 0){do_select_aps = true;}
             
-            //negative values are seconds past scan start of before stop
+            //negative values are seconds past scan start or before stop
             if(start > 0 || stop > 0) //in original fourfit positive values imply selection by minute past the last hour, 
             {
                 msg_error("initialization", "start/stop selection by minute past the hour is not yet supported." << eom);

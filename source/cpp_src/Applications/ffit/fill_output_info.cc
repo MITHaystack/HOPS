@@ -76,9 +76,25 @@ void fill_output_info(const MHO_ParameterStore* paramStore, const mho_json& vexI
     std::string frt_vex_string = paramStore->GetAs<std::string>("/vex/scan/fourfit_reftime");
     auto frt = hops_clock::from_vex_format(frt_vex_string);
     legacy_hops_date frt_ldate = hops_clock::to_legacy_hops_date(frt);
-    std::string year_doy = leftpadzeros_integer(4, frt_ldate.year) +":" + leftpadzeros_integer(3, frt_ldate.day);
-    std::string frt_string = make_legacy_datetime_format(frt_ldate);
     
+    std::string start_vex_string = paramStore->GetAs<std::string>("/vex/scan/start");
+    auto start_time = hops_clock::from_vex_format(start_vex_string);
+    double start_offset = paramStore->GetAs<double>("start_offset");
+    int64_t start_offset_as_nanosec = (int64_t)start_offset*1e9; //KLUDGE;
+    std::cout<<"start offset = "<<start_offset<<std::endl;
+    //start_time = start_time + std::chrono::seconds<double>(start_offset);//std::chrono::duration<double>(start_offset);//, std::chrono::seconds>(start_offset);
+    start_time = start_time + hops_clock::duration(start_offset_as_nanosec);
+    legacy_hops_date start_ldate = hops_clock::to_legacy_hops_date(start_time);
+    
+    double stop_offset = paramStore->GetAs<double>("stop_offset");
+    int64_t stop_offset_as_nanosec = (int64_t)stop_offset*1e9; //KLUDGE;
+    std::cout<<"stop offset = "<<stop_offset<<std::endl;
+    //start_time = start_time + std::chrono::seconds<double>(start_offset);//std::chrono::duration<double>(start_offset);//, std::chrono::seconds>(start_offset);
+    auto stop_time = hops_clock::from_vex_format(start_vex_string);
+    stop_time = stop_time + hops_clock::duration(stop_offset_as_nanosec);
+    legacy_hops_date stop_ldate = hops_clock::to_legacy_hops_date(stop_time);
+
+
     // 
     // std::cout<<"hops time-point converted to legacy hops-date-struct: "<<std::endl;
     // std::cout<<"year = "<<ldate.year<<std::endl;
@@ -98,11 +114,12 @@ void fill_output_info(const MHO_ParameterStore* paramStore, const mho_json& vexI
     // t200->frt.day = int_reftime / 24 + 1; /* days start with 001 */
     // 
     // 
-    // 
+    
+    std::string year_doy = leftpadzeros_integer(4, frt_ldate.year) +":" + leftpadzeros_integer(3, frt_ldate.day);
     plot_dict["YearDOY"] = year_doy;
-    plot_dict["Start"] = "-";
-    plot_dict["Stop"] = "-";
-    plot_dict["FRT"] = frt_string; 
+    plot_dict["Start"] = make_legacy_datetime_format(start_ldate);
+    plot_dict["Stop"] = make_legacy_datetime_format(stop_ldate);;
+    plot_dict["FRT"] = make_legacy_datetime_format(frt_ldate);
     plot_dict["CorrTime"] = "-";
     plot_dict["FFTime"] = "-";
     plot_dict["BuildTime"] = "-";

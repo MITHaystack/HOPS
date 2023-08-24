@@ -25,6 +25,16 @@ void precalculate_quantities(MHO_ContainerStore* conStore, MHO_ParameterStore* p
     paramStore->Set("ap_period", ap_delta);
 
 
+    //offset to the start of the data 
+    double start_offset = ap_ax->at(0);
+    std::cout<<"offset to the start of the first ap = "<<start_offset<<std::endl;
+    paramStore->Set("start_offset", start_offset);
+    
+    //offset to the start of the data 
+    double stop_offset = ap_ax->at( ap_ax->GetSize()-1 ) + ap_delta;
+    std::cout<<"offset to end of the last ap = "<<stop_offset<<std::endl;
+    paramStore->Set("stop_offset", stop_offset);
+
     // //TODO FIXME -- should this be the fourfit refrence time? Also...should this be calculated elsewhere?
     // double midpoint_time = ( ap_ax->at(nap-1) + ap_delta  + ap_ax->at(0) )/2.0;
     // std::cout<<"time midpoint = "<<midpoint_time<<std::endl;
