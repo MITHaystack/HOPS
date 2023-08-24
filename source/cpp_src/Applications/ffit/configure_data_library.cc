@@ -1,5 +1,7 @@
 #include "ffit.hh"
 
+#include "MHO_ElementTypeCaster.hh"
+
 void configure_data_library(MHO_ContainerStore* store)
 {
     //retrieve the (first) visibility and weight objects
