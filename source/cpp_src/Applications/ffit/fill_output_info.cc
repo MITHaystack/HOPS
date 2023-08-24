@@ -1,6 +1,35 @@
 #include "ffit.hh"
 
+#include <sstream>
+#include <iomanip>
+#include <cmath>
+
 #include "MHO_Clock.hh"
+
+
+std::string 
+leftpadzeros_integer(unsigned int n_places, int value)
+{
+    std::stringstream ss;
+    ss << std::setw(n_places);
+    ss << std::setfill('0');
+    ss << value;
+    return ss.str();
+}
+
+std::string
+make_legacy_datetime_format(legacy_hops_date ldate)
+{
+    //formats the time as HHMMSS.xx with no separators (except the '.' for the fractional second)
+    int isec = (int) ldate.second;
+    float fsec = ldate.second - isec;
+    std::string dt;
+    dt = leftpadzeros_integer(2, ldate.hour) + leftpadzeros_integer(2, ldate.minute) + leftpadzeros_integer(2, isec);
+    int fsec_dummy = (int) (100*fsec);
+    dt += "." + leftpadzeros_integer(2, fsec_dummy);
+    return dt;
+}
+
 
 void fill_output_info(const MHO_ParameterStore* paramStore, const mho_json& vexInfo, mho_json& plot_dict)
 {
@@ -47,11 +76,9 @@ void fill_output_info(const MHO_ParameterStore* paramStore, const mho_json& vexI
     std::string frt_vex_string = paramStore->GetAs<std::string>("/vex/scan/fourfit_reftime");
     auto frt = hops_clock::from_vex_format(frt_vex_string);
     legacy_hops_date frt_ldate = hops_clock::to_legacy_hops_date(frt);
-    std::stringstream ss;
-    ss << frt_ldate.year;
-    ss << ":";
-    ss << std::setw(3) << std::setfill('0') << frt_ldate.day;
-    std::string year_doy = ss.str();
+    std::string year_doy = leftpadzeros_integer(4, frt_ldate.year) +":" + leftpadzeros_integer(3, frt_ldate.day);
+    std::string frt_string = make_legacy_datetime_format(frt_ldate);
+    
     // 
     // std::cout<<"hops time-point converted to legacy hops-date-struct: "<<std::endl;
     // std::cout<<"year = "<<ldate.year<<std::endl;
@@ -75,7 +102,7 @@ void fill_output_info(const MHO_ParameterStore* paramStore, const mho_json& vexI
     plot_dict["YearDOY"] = year_doy;
     plot_dict["Start"] = "-";
     plot_dict["Stop"] = "-";
-    plot_dict["FRT"] = "-";
+    plot_dict["FRT"] = frt_string; 
     plot_dict["CorrTime"] = "-";
     plot_dict["FFTime"] = "-";
     plot_dict["BuildTime"] = "-";
@@ -93,23 +120,23 @@ void fill_output_info(const MHO_ParameterStore* paramStore, const mho_json& vexI
         //dp->fringe->t208->adelay + dp->status->resid_ph_delay);
     plot_dict["TotalPhase(deg)"] = 0;
         //dp->fringe->t208->totphase);
-    plot_dict["AprioriDelay(usec)"] = 0;
+    plot_dict["AprioriDelay(usec)"] = paramStore->GetAs<double>("/model/adelay");
         //dp->fringe->t208->adelay);
     plot_dict["AprioriClock(usec)"] = 0;
         //dp->fringe->t202->rem_clock - dp->fringe->t202->ref_clock);
     plot_dict["AprioriClockrate(us/s)"] = 0;
         //(dp->fringe->t202->rem_clockrate - dp->fringe->t202->ref_clockrate));
-    plot_dict["AprioriRate(us/s)"] = 0;
+    plot_dict["AprioriRate(us/s)"] = paramStore->GetAs<double>("/model/arate");
         //dp->fringe->t208->arate);
-    plot_dict["AprioriAccel(us/s/s)"] = 0;
+    plot_dict["AprioriAccel(us/s/s)"] = paramStore->GetAs<double>("/model/aaccel");
         //dp->fringe->t208->aaccel);
-    plot_dict["ResidMbdelay(usec)"] = 0;
+    plot_dict["ResidMbdelay(usec)"] = paramStore->GetAs<double>("/fringe/mbdelay");
         //dp->fringe->t208->resid_mbd);
-    plot_dict["ResidSbdelay(usec)"] = 0;
+    plot_dict["ResidSbdelay(usec)"] = paramStore->GetAs<double>("/fringe/sbdelay");
         //dp->fringe->t208->resid_sbd);
     plot_dict["ResidPhdelay(usec)"] = 0;
         //dp->status->resid_ph_delay);
-    plot_dict["ResidRate(us/s)"] = 0;
+    plot_dict["ResidRate(us/s)"] = paramStore->GetAs<double>("/fringe/drate");
         //dp->fringe->t208->resid_rate);
     plot_dict["ResidPhase(deg)"] = 0;
         //dp->fringe->t208->resphase);

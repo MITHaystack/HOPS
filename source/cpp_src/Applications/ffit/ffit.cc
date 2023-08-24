@@ -168,21 +168,27 @@ int main(int argc, char** argv)
     fill_output_info(&paramStore, vexInfo, plot_dict);
 
     std::cout<<"------------------------------------"<<std::endl;
+    std::cout<<"PARAMATER STORE:"<<std::endl;
     paramStore.Dump();
+    std::cout<<"------------------------------------"<<std::endl;
+    
+    std::cout<<"------------------------------------"<<std::endl;
+    std::cout<<"PLOT DICT :"<<std::endl;
+    std::cout<< plot_dict.dump(2) <<std::endl;
     std::cout<<"------------------------------------"<<std::endl;
 
     #ifdef USE_PYBIND11
-
+    
     msg_debug("main", "python plot generation enabled." << eom );
     //test stuff
     py::scoped_interpreter guard{}; // start the interpreter and keep it alive, need this or we segfault
     py::dict plot_obj = plot_dict;
-
+    
     //load our interface module
     auto ff_test = py::module::import("ff_plot_test");
     //call a python function on the interface class instance
     ff_test.attr("fourfit_plot")(plot_obj, "fplot.png");
-
+    
     #endif //USE_PYBIND11
 
     return 0;
