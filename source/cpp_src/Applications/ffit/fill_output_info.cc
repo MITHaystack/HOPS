@@ -16,7 +16,6 @@ void fill_output_info(const MHO_ParameterStore* paramStore, const mho_json& vexI
     double sample_rate = freq_info["sample_rate"]["value"];
     double samp_period = 1.0/(sample_rate*1e6);
 
-
     //configuration parameters 
     double ref_freq = paramStore->GetAs<double>("ref_freq");
     double ap_delta = paramStore->GetAs<double>("ap_period");

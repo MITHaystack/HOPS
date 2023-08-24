@@ -1,9 +1,6 @@
 #include "ffit.hh"
 
-//initialization
-#include "MHO_OperatorBuilderManager.hh"
-
-void build_and_exec_operators(MHO_OperatorBuilderManager& build_manager, MHO_OperatorToolbox* opToolbox, const char* category)
+void init_and_exec_operators(MHO_OperatorBuilderManager& build_manager, MHO_OperatorToolbox* opToolbox, const char* category)
 {
     std::string cat(category);
     build_manager.BuildOperatorCategory(cat);
