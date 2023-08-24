@@ -24,6 +24,8 @@ set(ffit_SOURCEFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/extract_vex_info.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/fill_output_info.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/precalculate_quantities.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/parse_command_line.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/basic_fringe_search.cc
 )
 
 #for testing purposes only -- ROOT not intended to be a dependency

@@ -3,7 +3,6 @@
 
 #define DELAY_COEFF_INDEX 0
 
-
 namespace hops 
 {
 
@@ -58,6 +57,9 @@ MHO_DelayModel::ComputeModel()
     //calculate seconds into target interval
     double ref_t = ref_tdiff - (ref_int_no * ref_model_interval);
     double rem_t = rem_tdiff - (rem_int_no * rem_model_interval);
+    
+    msg_debug("calibration", "delay_model: ref model interval: "<< ref_int_no <<" and time offset: "<< ref_t << eom);
+    msg_debug("calibration", "delay_model: rem model interval: "<< rem_int_no <<" and time offset: "<< rem_t << eom);
 
     //evaluate delay, rate, accel
     double ref_dra[3];
