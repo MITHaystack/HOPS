@@ -528,12 +528,18 @@ inline
 hops_clock::vex_date 
 hops_clock::extract_vex_date(const std::string& timestamp)
 {
+    vex_date vdate;
+    if(timestamp.size() == 0 )
+    {
+        msg_error("utilities", "cannot extract vex data from empty string." << eom);
+        return vdate;
+    }
+    
     MHO_Tokenizer tokenizer;
     std::vector<std::string> tokens;
     std::stringstream ss;
     std::string rest;
     std::string syear, sord_day, shour, smin, ssec;
-    vex_date vdate;
 
     tokenizer.SetDelimiter(std::string("y"));
     tokenizer.SetString(&timestamp);

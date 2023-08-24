@@ -44,7 +44,7 @@ void fill_output_info(const MHO_ParameterStore* paramStore, const mho_json& vexI
     plot_dict["ExperName"] = exper_info["exper_name"];
     plot_dict["ExperNum"] = "-";
     
-    std::string frt_vex_string = paramStore->GetAs<std::string>("fourfit_reftime_vex_string");
+    std::string frt_vex_string = paramStore->GetAs<std::string>("/vex/scan/fourfit_reftime");
     auto frt = hops_clock::from_vex_format(frt_vex_string);
     legacy_hops_date frt_ldate = hops_clock::to_legacy_hops_date(frt);
     std::stringstream ss;

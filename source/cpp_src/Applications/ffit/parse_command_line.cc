@@ -108,11 +108,21 @@ int parse_command_line(int argc, char** argv, MHO_ParameterStore* paramStore)
         return 1;
     }
 
-    //pass the info back in the parameter store
+    //store the raw arguments in the parameter store
+    std::vector<std::string> arglist;
+    for(int i=0; i<argc; i++)
+    {
+        arglist.push_back( std::string(argv[i]) );
+    }
+    paramStore->Set("/cmdline/args", arglist);
+
+    //pass the extracted info back in the parameter store
     paramStore->Set("/cmdline/directory", directory);
     paramStore->Set("/cmdline/baseline", baseline);
     paramStore->Set("/cmdline/polprod", polprod);
     paramStore->Set("/cmdline/control_file",control_file);
+    
+    
     return 0;
 
 }

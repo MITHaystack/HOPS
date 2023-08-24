@@ -32,7 +32,7 @@ int main(int argc, char** argv)
     MHO_ScanDataStore scanStore; //provides access to data associated with this scan
     MHO_ContainerStore conStore; //stores data containers for in-use data
     MHO_OperatorToolbox opToolbox; //stores the data operator objects
-    
+
     int parse_status = parse_command_line(argc, argv, &paramStore);
     if(parse_status != 0){msg_fatal("main", "could not parse command line options." << eom); std::exit(1);}
 
@@ -40,8 +40,6 @@ int main(int argc, char** argv)
     std::string control_file = paramStore.GetAs<std::string>("/cmdline/control_file");
     std::string baseline = paramStore.GetAs<std::string>("/cmdline/baseline");
     std::string polprod = paramStore.GetAs<std::string>("/cmdline/polprod");
-
-    bool ok;
 
     ////////////////////////////////////////////////////////////////////////////
     //INITIALIZE SCAN DIRECTORY
@@ -89,7 +87,7 @@ int main(int argc, char** argv)
     //load baseline data
     scanStore.LoadBaseline(baseline, &conStore);
     configure_data_library(&conStore);//momentarily needed for float -> double cast
-
+    //load and rename station data according to reference/remote
     std::string ref_station_mk4id = std::string(1,baseline[0]);
     std::string rem_station_mk4id = std::string(1,baseline[1]);
     scanStore.LoadStation(ref_station_mk4id, &conStore);
@@ -165,7 +163,9 @@ int main(int argc, char** argv)
     ////////////////////////////////////////////////////////////////////////////
     //PLOTTING/DEBUG
     ////////////////////////////////////////////////////////////////////////////
+    //TODO may want to reorg the way this is done
     mho_json plot_dict = construct_plot_data(&conStore, &paramStore, vexInfo);
+    fill_output_info(&paramStore, vexInfo, plot_dict);
 
     std::cout<<"------------------------------------"<<std::endl;
     paramStore.Dump();
@@ -180,7 +180,7 @@ int main(int argc, char** argv)
 
     //load our interface module
     auto ff_test = py::module::import("ff_plot_test");
-    //call a python functioin on the interface class instance
+    //call a python function on the interface class instance
     ff_test.attr("fourfit_plot")(plot_obj, "fplot.png");
 
     #endif //USE_PYBIND11
