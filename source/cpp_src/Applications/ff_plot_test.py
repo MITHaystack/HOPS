@@ -339,12 +339,11 @@ def fourfit_plot(plot_dict, filename):
         'Delay rate (us/s) ' + '\n' + \
         'Total Phase (deg) ' + '\n'
 
-    # btmtextstr2 = str(np.round(float(plot_dict["GroupDelay"]),3)) + '\n' + \
-    #     str(np.round(float(plot_dict["SbandDelay(usec)"]),3)) + '\n' + \
-    #     str(np.round(float(plot_dict["PhaseDelay(usec)"]),3)) + '\n' + \
-    #     str(np.round(float(plot_dict["AprioriRate(us/s)"]),3)) + '\n' + \ #THIS IS WRONG!!!
-    #     str(np.round(float(plot_dict["TotalPhase(deg)"]),3)) + '\n'
-
+    btmtextstr2 = str(np.format_float_scientific( float(plot_dict["GroupDelay"]), precision=5, min_digits=5 ) )  + '\n' + \
+        str(np.format_float_scientific(float(plot_dict["SbandDelay(usec)"]), precision=5, min_digits=5) ) + '\n' + \
+        str(np.format_float_scientific(float(plot_dict["ResidRate(us/s)"]), precision=5, min_digits=5) ) + '\n' + \
+        str(np.format_float_scientific(float(plot_dict["ResidRate(us/s)"]), precision=5, min_digits=5) ) + '\n' + \
+        str(np.format_float_scientific(float(plot_dict["TotalPhase(deg)"]), precision=2, min_digits=2) )
 
     btmtextstr3 = 'Apriori delay (usec) ' + '\n' + \
         'Apriori clock (usec) ' + '\n' + \
@@ -352,6 +351,11 @@ def fourfit_plot(plot_dict, filename):
         'Apriori rate (us/s) ' + '\n' + \
         'Apriori accel (us/s/s) ' + '\n'
 
+    btmtextstr4 = str(np.format_float_scientific( float(plot_dict["AprioriDelay(usec)"]), precision=5, min_digits=5 ) )  + '\n' + \
+        str(np.format_float_scientific(float(plot_dict["AprioriClock(usec)"]), precision=5, min_digits=5) ) + '\n' + \
+        str(np.format_float_scientific(float(plot_dict["AprioriClockrate(us/s)"]), precision=5, min_digits=5) ) + '\n' + \
+        str(np.format_float_scientific(float(plot_dict["AprioriRate(us/s)"]), precision=5, min_digits=5) ) + '\n' + \
+        str(np.format_float_scientific(float(plot_dict["AprioriAccel(us/s/s)"]), precision=2, min_digits=2) )
 
     btmtextstr5 = 'Resid mbdelay (usec) ' + '\n' + \
         'Resid sbdelay (usec) ' + '\n' + \
@@ -367,15 +371,18 @@ def fourfit_plot(plot_dict, filename):
 
 
     # Add the text boxes
-    plt.text(0.05,0.2,btmtextstr1,transform=plt.gcf().transFigure,fontsize=7,verticalalignment='top',
+    plt.text(0.03,0.2,btmtextstr1,transform=plt.gcf().transFigure,fontsize=7,verticalalignment='top',
              family='monospace',horizontalalignment='left',color='k')
 
-    # plt.text(0.4,0.4,btmtextstr2,transform=plt.gcf().transFigure,fontsize=10,verticalalignment='top',
-    #          family='monospace',horizontalalignment='right',color='k')
+    # Add the text boxes
+    plt.text(0.25,0.2,btmtextstr2,transform=plt.gcf().transFigure,fontsize=7,verticalalignment='top',
+             family='monospace',horizontalalignment='right',color='k')
 
     plt.text(0.3,0.2,btmtextstr3,transform=plt.gcf().transFigure,fontsize=7,verticalalignment='top',
              family='monospace',horizontalalignment='left',color='k')
 
+    plt.text(0.55,0.2,btmtextstr4,transform=plt.gcf().transFigure,fontsize=7,verticalalignment='top',
+             family='monospace',horizontalalignment='right',color='k')
 
     plt.text(0.6,0.2,btmtextstr5,transform=plt.gcf().transFigure,fontsize=7,verticalalignment='top',
              family='monospace',horizontalalignment='left',color='k')
