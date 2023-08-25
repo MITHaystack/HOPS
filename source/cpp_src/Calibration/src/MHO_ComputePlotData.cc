@@ -87,7 +87,7 @@ MHO_ComputePlotData::calc_mbd()
         sum = 0;
         for(std::size_t ap=0; ap < nap; ap++)
         {
-            double tdelta = ap_ax->at(ap) - frt_offset; //need time difference from the f.r.t?
+            double tdelta = (ap_ax->at(ap) + ap_delta/2.0) - frt_offset; //need time difference from the f.r.t?
             std::complex<double> vis = (*fSBDArray)(POLPROD, ch, ap, fSBDMaxBin); //pick out data at SBD max bin
             std::complex<double> vr = fRot.vrot(tdelta, freq, fRefFreq, fDelayRate, 0.0); //apply at MBD=0.0
             std::complex<double> z = vis*vr;
@@ -163,7 +163,7 @@ MHO_ComputePlotData::calc_sbd()
             sum = 0;
             for(std::size_t ap=0; ap < nap; ap++)
             {
-                double tdelta = ap_ax->at(ap) - frt_offset; //need time difference from the f.r.t?
+                double tdelta = (ap_ax->at(ap) + ap_delta/2.0) - frt_offset; //need time difference from the f.r.t?
                 std::complex<double> vis = (*fSBDArray)(POLPROD, ch, ap, i);
                 std::complex<double> vr = fRot.vrot(tdelta, freq, fRefFreq, fDelayRate, fMBDelay);
                 std::complex<double> z = vis*vr;
@@ -230,7 +230,7 @@ MHO_ComputePlotData::calc_xpower()
             sum = 0;
             for(std::size_t ap=0; ap < nap; ap++)
             {
-                double tdelta = ap_ax->at(ap) - frt_offset; //need time difference from the f.r.t?
+                double tdelta = (ap_ax->at(ap) + ap_delta/2.0) - frt_offset; //need time difference from the f.r.t?
                 std::complex<double> vis = (*fSBDArray)(POLPROD, ch, ap, i);
                 std::complex<double> vr = fRot.vrot(tdelta, freq, fRefFreq, fDelayRate, fMBDelay);
                 std::complex<double> z = vis*vr;
@@ -341,7 +341,7 @@ MHO_ComputePlotData::calc_dr()
         double freq = (*chan_ax)(ch);//sky freq of this channel
         for(std::size_t ap=0; ap < nap; ap++)
         {
-            double tdelta = ap_ax->at(ap) - frt_offset; //need time difference from the f.r.t?
+            double tdelta = (ap_ax->at(ap) + ap_delta/2.0) - frt_offset; //need time difference from the f.r.t?
             std::complex<double> vis = (*fSBDArray)(POLPROD, ch, ap, fSBDMaxBin); //pick out data at SBD max bin
             std::complex<double> vr = fRot.vrot(tdelta, freq, fRefFreq, fDelayRate, fMBDelay); //why rotate at the max delay rate??
             std::complex<double> z = vis*vr;
@@ -432,7 +432,7 @@ MHO_ComputePlotData::calc_phase()
 
         for(std::size_t ap=0; ap < nap; ap++)
         {
-            double tdelta = ap_ax->at(ap) - frt_offset; //need time difference from the f.r.t?
+            double tdelta = (ap_ax->at(ap) + ap_delta/2.0) - frt_offset; //need time difference from the f.r.t?
             std::complex<double> vis = (*fSBDArray)(POLPROD, ch, ap, fSBDMaxBin); //pick out data at SBD max bin
             std::complex<double> vr = fRot.vrot(tdelta, freq, fRefFreq, fDelayRate, fMBDelay);
             std::complex<double> z = vis*vr;
@@ -550,7 +550,7 @@ MHO_ComputePlotData::calc_xpower_KLUDGE()
             sum = 0.0;
             for (int ap = 0; ap < nap; ap++)
             {
-                double tdelta = ap_ax->at(ap) - frt_offset; //need time difference from the f.r.t?
+                double tdelta = (ap_ax->at(ap) + ap_delta/2.0) - frt_offset; //need time difference from the f.r.t?
                 std::complex<double> vis = (*fSBDArray)(POLPROD, ch, ap, 2*lag);
                 std::complex<double> vr = fRot.vrot(tdelta, freq, fRefFreq, fDelayRate, fMBDelay);
                 std::complex<double> Z = vis*vr;
@@ -711,7 +711,7 @@ MHO_ComputePlotData::calc_xpower_KLUDGE2()
             sum = 0.0;
             for (int ap = 0; ap < nap; ap++)
             {
-                double tdelta = ap_ax->at(ap) - frt_offset; //need time difference from the f.r.t?
+                double tdelta = (ap_ax->at(ap) + ap_delta/2.0) - frt_offset; //need time difference from the f.r.t?
                 std::complex<double> vis = (*fVisibilities)(POLPROD, ch, ap, n);
                 std::complex<double> vr = fRot.vrot(tdelta, freq, fRefFreq, fDelayRate, fMBDelay);
                 std::complex<double> Z = vis*vr;
@@ -896,7 +896,7 @@ MHO_ComputePlotData::calc_xpower_KLUDGE3()
             sum = 0.0;
             for (int ap = 0; ap < nap; ap++)
             {
-                double tdelta = ap_ax->at(ap) - frt_offset; //need time difference from the f.r.t?
+                double tdelta = (ap_ax->at(ap) + ap_delta/2.0) - frt_offset; //need time difference from the f.r.t?
                 std::complex<double> vis = (*fSBDArray)(POLPROD, ch, ap, lag);
                 std::complex<double> vr = fRot.vrot(tdelta, freq, fRefFreq, fDelayRate, fMBDelay);
                 std::complex<double> Z = vis*vr;
