@@ -43,6 +43,18 @@ double calculate_snr(double effective_npol, double ap_period, double samp_period
     return snr;
 }
 
+double calculate_pfd(double snr, double pts_searched)
+{
+    double a = 1.0 - std::exp(-1.0*(snr*snr)/ 2.0);
+    double pfd =  1.0 - std::pow(a, pts_searched);
+    if(pfd < 0.01)
+    {
+        pfd = pts_searched * std::exp(-1.0*(snr*snr)/ 2.0);
+    }
+    return pfd;
+}
+
+
 void fill_output_info(const MHO_ParameterStore* paramStore, const mho_json& vexInfo, mho_json& plot_dict)
 {
     //vex section info and quantities
@@ -109,9 +121,22 @@ void fill_output_info(const MHO_ParameterStore* paramStore, const mho_json& vexI
         
     plot_dict["Amp"] = famp;
         
-    // 
+    
+    //total number of points searched 
+    std::size_t nmbd = paramStore->GetAs<std::size_t>("/fringe/n_mbd_points");
+    std::size_t nsbd = paramStore->GetAs<std::size_t>("/fringe/n_sbd_points");
+    std::size_t ndr = paramStore->GetAs<std::size_t>("/fringe/n_dr_points");
+    double total_npts_searched = (double)nmbd * (double)nsbd *(double)ndr;
+
     // //plot_dict["ResPhase"] = std::fmod(coh_avg_phase * (180.0/M_PI), 360.0);
-    plot_dict["PFD"] = "-";
+
+
+    #pragma message("TODO FIXME - PFD calculation needs the MBD/SBD/DR windows defined")
+    double pfd = calculate_pfd(snr, total_npts_searched);
+    std::cout<<"SNR, NPTS, PFD = "<<snr<<", "<<total_npts_searched<<", "<<pfd<<std::endl;
+    plot_dict["PFD"] = 0.0; 
+
+
     plot_dict["ResidSbd(us)"] = sbdelay;
     plot_dict["ResidMbd(us)"] = mbdelay;
     plot_dict["FringeRate(Hz)"]  = frate;
