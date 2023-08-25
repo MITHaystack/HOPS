@@ -332,5 +332,65 @@ def fourfit_plot(plot_dict, filename):
     plt.text(0.965,0.92,'pol '+plot_dict['PolStr'].strip("'"),transform=plt.gcf().transFigure,
              fontsize=10,verticalalignment='top',family='sans-serif',horizontalalignment='right',fontweight='bold')
 
+
+    btmtextstr1 = 'Group delay (usec) ' + '\n' + \
+        'Sband delay (usec) ' + '\n' + \
+        'Phase delay (usec) ' + '\n' + \
+        'Delay rate (us/s) ' + '\n' + \
+        'Total Phase (deg) ' + '\n'
+
+    # btmtextstr2 = str(np.round(float(plot_dict["GroupDelay"]),3)) + '\n' + \
+    #     str(np.round(float(plot_dict["SbandDelay(usec)"]),3)) + '\n' + \
+    #     str(np.round(float(plot_dict["PhaseDelay(usec)"]),3)) + '\n' + \
+    #     str(np.round(float(plot_dict["AprioriRate(us/s)"]),3)) + '\n' + \ #THIS IS WRONG!!!
+    #     str(np.round(float(plot_dict["TotalPhase(deg)"]),3)) + '\n'
+
+
+    btmtextstr3 = 'Apriori delay (usec) ' + '\n' + \
+        'Apriori clock (usec) ' + '\n' + \
+        'Apriori clockrate (us/s) ' + '\n' + \
+        'Apriori rate (us/s) ' + '\n' + \
+        'Apriori accel (us/s/s) ' + '\n'
+
+
+    btmtextstr5 = 'Resid mbdelay (usec) ' + '\n' + \
+        'Resid sbdelay (usec) ' + '\n' + \
+        'Resid phdelay (usec) ' + '\n' + \
+        'Resid rate (us/s) ' + '\n' + \
+        'Resid phase (deg) ' + '\n'
+
+
+    # Add the text boxes
+    plt.text(0.05,0.2,btmtextstr1,transform=plt.gcf().transFigure,fontsize=7,verticalalignment='top',
+             family='monospace',horizontalalignment='left',color='k')
+
+    # plt.text(0.4,0.4,btmtextstr2,transform=plt.gcf().transFigure,fontsize=10,verticalalignment='top',
+    #          family='monospace',horizontalalignment='right',color='k')
+
+    plt.text(0.3,0.2,btmtextstr3,transform=plt.gcf().transFigure,fontsize=7,verticalalignment='top',
+             family='monospace',horizontalalignment='left',color='k')
+
+
+    plt.text(0.6,0.2,btmtextstr5,transform=plt.gcf().transFigure,fontsize=7,verticalalignment='top',
+             family='monospace',horizontalalignment='left',color='k')
+
+
+
+    # btmtextstr4 = 'Apriori delay (usec) ' + '\n' + \
+    #     'Apriori clock (usec) ' + '\n' + \
+    #     'Apriori clockrate (us/s) ' + '\n' + \
+    #     'Apriori rate (us/s) ' + '\n' + \
+    #     'Apriori accel (us/s/s) ' + '\n'
+
+
+
+
+
+
+
+
+
+
+
     #pylab.show()
     pylab.savefig(filename)
