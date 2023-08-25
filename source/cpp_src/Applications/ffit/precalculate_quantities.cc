@@ -35,7 +35,9 @@ void precalculate_quantities(MHO_ContainerStore* conStore, MHO_ParameterStore* p
     std::cout<<"offset to end of the last ap = "<<stop_offset<<std::endl;
     paramStore->Set("stop_offset", stop_offset);
 
-
+    //the number of channels present after cuts 
+    int nchan = std::get<CHANNEL_AXIS>(*vis_data).GetSize();
+    paramStore->Set("nchannels", nchan);
 
     //compute the sum of the data weights
     weight_type temp_weights;

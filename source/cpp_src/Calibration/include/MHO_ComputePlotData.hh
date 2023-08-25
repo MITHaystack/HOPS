@@ -13,6 +13,7 @@
 #include "MHO_FringeRotation.hh"
 
 #include "MHO_ParameterStore.hh"
+#include "MHO_ContainerStore.hh"
 
 #ifdef HOPS_USE_FFTW3
     #include "MHO_FFTWTypes.hh"
@@ -42,23 +43,13 @@ class MHO_ComputePlotData
         
         void EnableOptimizeClosure(){fRot.SetOptimizeClosureTrue();}
         void DisableOptimizeClosure(){fRot.SetOptimizeClosureFalse();}
-        
         void SetMBDAnchor(std::string flag){fMBDAnchor = flag;}
+
+        void SetContainerStore(MHO_ContainerStore* cStore){fContainerStore = cStore;}
         void SetParameterStore(MHO_ParameterStore* pStore){fParamStore = pStore;}
-
-        void SetSummedWeights(double total_ap_frac){fTotalSummedWeights = total_ap_frac;}
-        void SetReferenceFrequency(double ref_freq){fRefFreq = ref_freq;}
-        void SetMBDelay(double mbdelay){fMBDelay = mbdelay;}
-        void SetDelayRate(double dr){fDelayRate = dr;}
-        void SetFringeRate(double fr){fFringeRate = fr;}
-        void SetSBDelay(double sbdelay){fSBDelay = sbdelay;}
-        void SetSBDelayBin(std::size_t max_sbd_bin){fSBDMaxBin = max_sbd_bin;};
-        void SetAmplitude(double amp){fAmp = amp;}
-
-        void SetSBDArray(visibility_type* sbd_arr){fSBDArray = sbd_arr;}
-        void SetWeights(weight_type* weights){fWeights = weights;}
-        void SetVisibilities(visibility_type* vis_data){fVisibilities = vis_data;}
         void SetVexInfo(const mho_json& vex_info){fVexInfo = vex_info;}
+
+        void Initialize();
 
         void DumpInfoToJSON(mho_json& plot_dict);
 
@@ -95,6 +86,7 @@ class MHO_ComputePlotData
         xpower_type fMBDWorkspace;
         xpower_amp_type fMBDAmpWorkspace;
 
+        MHO_ContainerStore* fContainerStore;
         MHO_ParameterStore* fParamStore;
         mho_json fVexInfo;
 
