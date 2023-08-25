@@ -40,6 +40,7 @@ class MHO_UniformGridPointsCalculator
 
         double GetGridStart() const {return fStart;};//get value of start
         double GetGridSpacing() const {return fSpacing;}; //the distance between points on the uniform grid
+        double GetGridAverage() const {return fAverageLocation;}
         std::size_t GetNGridPoints() const {return fNGridPoints;}; //the number of points in the uniform grid 
 
         //maps the indexes of the original points to their new locations in the 
@@ -59,6 +60,7 @@ class MHO_UniformGridPointsCalculator
         double fSpacing;
         double fMinSpacing;
         double fMaxSpacing;
+        double fAverageLocation;
         double fNGridPoints;
         std::vector<double> fPoints;
         std::map<std::size_t, std::size_t> fIndexMap;

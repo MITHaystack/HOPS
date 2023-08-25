@@ -998,7 +998,11 @@ MHO_ComputePlotData::DumpInfoToJSON(mho_json& plot_dict)
     auto mbd_amp = calc_mbd();
     auto dr_amp = calc_dr();
     auto sbd_xpower = calc_xpower_KLUDGE();
+
+    //TODO FIXME -- move the residual phase calc elsewhere
     double coh_avg_phase = calc_phase();
+    coh_avg_phase = std::fmod(coh_avg_phase * (180.0/M_PI), 360.0);
+    fParamStore->Set("/fringe/raw_resid_phase", coh_avg_phase);
 
     //calculate AP period
     double ap_delta = std::get<TIME_AXIS>(*fVisibilities)(1) - std::get<TIME_AXIS>(*fVisibilities)(0);
@@ -1032,42 +1036,7 @@ MHO_ComputePlotData::DumpInfoToJSON(mho_json& plot_dict)
         plot_dict["XPSPEC_XAXIS"].push_back( std::get<0>(sbd_xpower)(i) );
     }
 
-    mho_json exper_section = fVexInfo["$EXPER"];
-    auto exper_info = exper_section.begin().value();
 
-    mho_json src_section = fVexInfo["$SOURCE"];
-    auto src_info = src_section.begin().value();
-
-    mho_json freq_section = fVexInfo["$FREQ"];
-    auto freq_info = freq_section.begin().value();
-    double sample_rate = freq_info["sample_rate"]["value"];
-    double samp_period = 1.0/(sample_rate*1e6);
-
-    plot_dict["Quality"] = "-";
-
-    // //Poor imitation of SNR -- needs corrections
-    // //hardcoded dummy values right now
-    // double eff_npol = 1.0;
-    // double amp_corr_factor = 1.0;
-    // double fact1 = 1.0; //more than 16 lags
-    // double fact2 = 0.881; //2bit x 2bit
-    // double fact3 = 0.970; //difx
-    double acc_period = ap_delta;
-    // double inv_sigma = fact1 * fact2 * fact3 * std::sqrt(acc_period/samp_period);
-    // plot_dict["SNR"] = fAmp * inv_sigma *  sqrt(fTotalSummedWeights * eff_npol)/(1e4* amp_corr_factor);
-    // 
-    // std::size_t nchan = std::get<CHANNEL_AXIS>(*fVisibilities).GetSize();
-    // plot_dict["IntgTime"] = fTotalSummedWeights*acc_period /(double)nchan;
-
-    plot_dict["Amp"] = fAmp;
-
-    if( fMBDAnchor == "sbd" )
-    {
-        #pragma message("TODO FIXME -- when control file parameter mbd_anchor sbd is used there is an additional correction done to fringe phase, see fill_208.c line 158!!")
-        msg_warn("calibration", "support for mbd_anchor is not yet implemented." <<eom);
-    }
-
-    plot_dict["ResPhase"] = std::fmod(coh_avg_phase * (180.0/M_PI), 360.0);
 
 }
 

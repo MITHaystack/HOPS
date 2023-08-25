@@ -163,12 +163,15 @@ int main(int argc, char** argv)
     //execute the basic fringe search algorithm
     basic_fringe_search(&conStore, &paramStore);
 
+    //calculate the fringe properties 
+    calculate_fringe_info(&conStore, &paramStore, vexInfo);
+
     ////////////////////////////////////////////////////////////////////////////
     //PLOTTING/DEBUG
     ////////////////////////////////////////////////////////////////////////////
     //TODO may want to reorg the way this is done
     mho_json plot_dict = construct_plot_data(&conStore, &paramStore, vexInfo);
-    fill_output_info(&paramStore, vexInfo, plot_dict);
+    fill_plot_data(&paramStore, plot_dict);
 
     std::cout<<"------------------------------------"<<std::endl;
     std::cout<<"PARAMATER STORE:"<<std::endl;

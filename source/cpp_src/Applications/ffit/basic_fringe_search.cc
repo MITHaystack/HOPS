@@ -69,12 +69,14 @@ void basic_fringe_search(MHO_ContainerStore* conStore, MHO_ParameterStore* param
     int c_sbdmax = mbdSearch.GetSBDMaxBin();
     int c_drmax = mbdSearch.GetDRMaxBin();
     double freq_spacing = mbdSearch.GetFrequencySpacing();
+    double ave_freq = mbdSearch.GetAverageFrequency();
 
 
     paramStore->Set("/fringe/max_mbd_bin", c_mbdmax);
     paramStore->Set("/fringe/max_sbd_bin", c_sbdmax);
     paramStore->Set("/fringe/max_dr_bin", c_drmax);
     paramStore->Set("/fringe/ambiguity", 1.0/freq_spacing);
+    paramStore->Set("/fringe/average_frequency", ave_freq);
 
     std::size_t n_mbd_pts = sbd_dr_data->GetDimension(CHANNEL_AXIS);
     std::size_t n_dr_pts = sbd_dr_data->GetDimension(TIME_AXIS);

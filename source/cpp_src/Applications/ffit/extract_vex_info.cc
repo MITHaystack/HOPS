@@ -44,7 +44,18 @@ void extract_vex_info(const mho_json& vexInfo, MHO_ParameterStore* paramStore)
     mho_json exper_section = vexInfo["$EXPER"];
     auto exper_info = exper_section.begin().value();
     std::string exper_name = exper_info["exper_name"];
-    paramStore->Set("/vex/experiment_name", exper_name);
+    paramStore->Set("/vex/experiment_name", exper_name); //required
+
+    if(exper_info.contains("exper_num"))
+    {
+        std::stringstream ss;
+        ss << exper_info["exper_num"];
+        paramStore->Set("/vex/experiment_number", ss.str());
+    }
+    else
+    {
+        paramStore->Set("/vex/experiment_number", "----");
+    }
 
     //NOTE: this implicitly assumes that all channels have the same bandwidth!
     mho_json freq_section = vexInfo["$FREQ"];

@@ -22,7 +22,8 @@ set(ffit_SOURCEFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/configure_data_library.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/init_and_exec_operators.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/extract_vex_info.cc
-    ${CMAKE_CURRENT_SOURCE_DIR}/fill_output_info.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/calculate_fringe_info.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/fill_plot_data.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/precalculate_quantities.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/parse_command_line.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/basic_fringe_search.cc
