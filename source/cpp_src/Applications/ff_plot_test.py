@@ -359,6 +359,12 @@ def fourfit_plot(plot_dict, filename):
         'Resid rate (us/s) ' + '\n' + \
         'Resid phase (deg) ' + '\n'
 
+    btmtextstr6 = str(np.format_float_scientific( float(plot_dict['ResidMbd(us)']), precision=5, min_digits=5 ) )  + '\n' + \
+        str(np.format_float_scientific(float(plot_dict['ResidSbd(us)']), precision=5, min_digits=5) ) + '\n' + \
+        str(np.format_float_scientific(float(plot_dict["ResidPhdelay(usec)"]), precision=5, min_digits=5) ) + '\n' + \
+        str(np.format_float_scientific(float(plot_dict["ResidRate(us/s)"]), precision=5, min_digits=5) ) + '\n' + \
+        str(np.format_float_scientific(float(plot_dict['ResPhase']), precision=2, min_digits=2) )
+
 
     # Add the text boxes
     plt.text(0.05,0.2,btmtextstr1,transform=plt.gcf().transFigure,fontsize=7,verticalalignment='top',
@@ -373,6 +379,9 @@ def fourfit_plot(plot_dict, filename):
 
     plt.text(0.6,0.2,btmtextstr5,transform=plt.gcf().transFigure,fontsize=7,verticalalignment='top',
              family='monospace',horizontalalignment='left',color='k')
+
+    plt.text(0.85,0.2,btmtextstr6,transform=plt.gcf().transFigure,fontsize=7,verticalalignment='top',
+             family='monospace',horizontalalignment='right',color='k')
 
 
 
