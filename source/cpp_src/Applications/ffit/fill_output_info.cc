@@ -55,7 +55,7 @@ double calculate_pfd(double snr, double pts_searched)
 }
 
 
-void fill_output_info(const MHO_ParameterStore* paramStore, const mho_json& vexInfo, mho_json& plot_dict)
+void fill_output_info(MHO_ParameterStore* paramStore, const mho_json& vexInfo, mho_json& plot_dict)
 {
     //vex section info and quantities
     mho_json exper_section = vexInfo["$EXPER"];
@@ -150,7 +150,18 @@ void fill_output_info(const MHO_ParameterStore* paramStore, const mho_json& vexI
     plot_dict["RefFreq(MHz)"] = ref_freq;
     plot_dict["AP(sec)"] = ap_delta;
     plot_dict["ExperName"] = exper_info["exper_name"];
-    plot_dict["ExperNum"] = "-";
+
+    if(exper_info.contains("exper_num"))
+    {
+        std::stringstream ss;
+        ss << exper_info["exper_num"];
+        plot_dict["ExperNum"] = ss.str();
+    }
+    else
+    {
+        plot_dict["ExperNum"] = "-";
+    }
+
     plot_dict["YearDOY"] = year_doy;
     plot_dict["Start"] = make_legacy_datetime_format(start_ldate);
     plot_dict["Stop"] = make_legacy_datetime_format(stop_ldate);;
@@ -168,29 +179,28 @@ void fill_output_info(const MHO_ParameterStore* paramStore, const mho_json& vexI
     std::cout<<"tot_mbd = "<<tot_mbd<<std::endl;
     std::cout<<"tot_sbd = "<<tot_sbd<<std::endl;
 
-    // // anchor total mbd to sbd if desired
-    // ambig = 1.0 / status->freq_space;
-    // if (param->mbd_anchor == SBD)
-    // {
-    //     delta_mbd = ambig * std::floor( (tot_sbd - tot_mbd) / ambig + 0.5);
-    //     tot_mbd += delta_mbd;
-    // }
+    double ambig = paramStore->GetAs<double>("/fringe/ambiguity");
+    std::string mbd_anchor = paramStore->GetAs<std::string>("mbd_anchor");
+    // anchor total mbd to sbd if desired
+    double delta_mbd = 0.0;
+    if(mbd_anchor == "sbd")
+    {
+        std::cout<<"MBDANCHOR IS SBD!"<<std::endl;
+        delta_mbd = ambig * std::floor( (tot_sbd - tot_mbd) / ambig + 0.5);
+    }
 
+    tot_mbd += delta_mbd;
+    std::cout<<"tot_mbd = "<<tot_mbd<<" and delta mbd = "<<delta_mbd<<std::endl;
 
-                //                                     /* Totals, residuals, and errors */
-                //                                     // status values assigned by update(...GLOBAL)
-                //                                     // and subsequenly updated by interp(max555)
-                // t208->tot_mbd = t208->adelay + status->mbd_max_global;
-                // t208->tot_sbd = t208->adelay + status->sbd_max;
-                //                                     // anchor total mbd to sbd if desired
-                // ambig = 1.0 / status->freq_space;
-                // if (param->mbd_anchor == SBD)
-                //     {
-                //     delta_mbd = ambig * floor ((t208->tot_sbd - t208->tot_mbd) / ambig + 0.5);
-                //     t208->tot_mbd += delta_mbd;
-                //     }
-                // 
-                // t208->tot_rate = t208->arate + status->corr_dr_max;
+    double tot_drate = arate + drate;
+
+    paramStore->Set("/fringe/total_sbdelay", tot_sbd);
+    paramStore->Set("/fringe/total_mbdelay", tot_mbd);
+    paramStore->Set("/fringe/total_drate", tot_drate);
+
+    //now calculate the delay error
+    
+
                 //                                     /* ref. stn. time-tagged observables are
                 //                                      * approximated by combining retarded a prioris
                 //                                      * with non-retarded residuals */
@@ -201,6 +211,10 @@ void fill_output_info(const MHO_ParameterStore* paramStore, const mho_json& vexI
                 //     t208->tot_mbd_ref += ambig 
                 //                        * floor ((t208->tot_sbd_ref - t208->tot_mbd_ref) / ambig + 0.5);
                 // t208->tot_rate_ref = arate_ref * 1e6 + status->corr_dr_max;
+
+
+
+
                 // 
                 // t208->resid_mbd = status->mbd_max_global;
                 // t208->resid_sbd = status->sbd_max;
@@ -269,38 +283,44 @@ void fill_output_info(const MHO_ParameterStore* paramStore, const mho_json& vexI
 
 
 
+                paramStore->Set("/fringe/total_sbdelay", tot_sbd);
+                paramStore->Set("/fringe/total_mbdelay", tot_mbd);
+                paramStore->Set("/fringe/total_drate", tot_drate);
 
 
+    // dp->param->mbd_anchor == MODEL ? "Model(usec)" : "SBD(usec)  ",
+    plot_dict["GroupDelay"] = paramStore->GetAs<double>("/fringe/total_mbdelay");         // dp->fringe->t208->tot_mbd);
+    plot_dict["SbandDelay(usec)"] = paramStore->GetAs<double>("/fringe/total_sbdelay");   //dp->fringe->t208->tot_sbd);
 
-    plot_dict["GroupDelay"] = 0;
-        // dp->param->mbd_anchor == MODEL ? "Model(usec)" : "SBD(usec)  ",
-        // dp->fringe->t208->tot_mbd);
-    plot_dict["SbandDelay(usec)"] = 0;
-        //dp->fringe->t208->tot_sbd);
     plot_dict["PhaseDelay(usec)"] = 0;
         //dp->fringe->t208->adelay + dp->status->resid_ph_delay);
     plot_dict["TotalPhase(deg)"] = 0;
         //dp->fringe->t208->totphase);
-    plot_dict["AprioriDelay(usec)"] = paramStore->GetAs<double>("/model/adelay");
-        //dp->fringe->t208->adelay);
+
+
     plot_dict["AprioriClock(usec)"] = 0;
         //dp->fringe->t202->rem_clock - dp->fringe->t202->ref_clock);
     plot_dict["AprioriClockrate(us/s)"] = 0;
         //(dp->fringe->t202->rem_clockrate - dp->fringe->t202->ref_clockrate));
-    plot_dict["AprioriRate(us/s)"] = paramStore->GetAs<double>("/model/arate");
-        //dp->fringe->t208->arate);
-    plot_dict["AprioriAccel(us/s/s)"] = paramStore->GetAs<double>("/model/aaccel");
-        //dp->fringe->t208->aaccel);
-    plot_dict["ResidMbdelay(usec)"] = paramStore->GetAs<double>("/fringe/mbdelay");
-        //dp->fringe->t208->resid_mbd);
-    plot_dict["ResidSbdelay(usec)"] = paramStore->GetAs<double>("/fringe/sbdelay");
-        //dp->fringe->t208->resid_sbd);
+
+    plot_dict["AprioriDelay(usec)"] = paramStore->GetAs<double>("/model/adelay");         //dp->fringe->t208->adelay);
+    plot_dict["AprioriRate(us/s)"] = paramStore->GetAs<double>("/model/arate");         //dp->fringe->t208->arate);
+    plot_dict["AprioriAccel(us/s/s)"] = paramStore->GetAs<double>("/model/aaccel");         //dp->fringe->t208->aaccel);
+    plot_dict["ResidMbdelay(usec)"] = paramStore->GetAs<double>("/fringe/mbdelay");         //dp->fringe->t208->resid_mbd);
+    plot_dict["ResidSbdelay(usec)"] = paramStore->GetAs<double>("/fringe/sbdelay");         //dp->fringe->t208->resid_sbd);
+
     plot_dict["ResidPhdelay(usec)"] = 0;
         //dp->status->resid_ph_delay);
+
     plot_dict["ResidRate(us/s)"] = paramStore->GetAs<double>("/fringe/drate");
         //dp->fringe->t208->resid_rate);
+
     plot_dict["ResidPhase(deg)"] = 0;
         //dp->fringe->t208->resphase);
+
+
+
+
     plot_dict["ResidMbdelayError(usec)"] = 0;
         //dp->fringe->t208->mbd_error);
     plot_dict["ResidSbdelayError(usec)"] = 0;
