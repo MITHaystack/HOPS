@@ -73,6 +73,13 @@ void basic_fringe_search(MHO_ContainerStore* conStore, MHO_ParameterStore* param
     paramStore->Set("/fringe/max_sbd_bin", c_sbdmax);
     paramStore->Set("/fringe/max_dr_bin", c_drmax);
 
+    std::size_t n_mbd_pts = sbd_dr_data->GetDimension(CHANNEL_AXIS);
+    std::size_t n_dr_pts = sbd_dr_data->GetDimension(TIME_AXIS);
+    std::size_t n_sbd_pts = sbd_dr_data->GetDimension(FREQ_AXIS);
+    paramStore->Set("/fringe/n_mbd_points", n_mbd_pts);
+    paramStore->Set("/fringe/n_sbd_points", n_sbd_pts);
+    paramStore->Set("/fringe/n_dr_points", n_dr_pts);
+
     std::cout<<"SBD/MBD/DR max bins = "<<c_sbdmax<<", "<<c_mbdmax<<", "<<c_drmax<<std::endl;
 
     ////////////////////////////////////////////////////////////////////////////

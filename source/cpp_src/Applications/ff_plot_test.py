@@ -286,12 +286,13 @@ def fourfit_plot(plot_dict, filename):
         'RA & Dec (J2000)'
 
 
+
     textstr2 = str(plot_dict['Quality']) + '\n\n' + \
         str(np.round(float(plot_dict['SNR']),1)) + '\n' + \
         str(np.round(float(plot_dict['IntgTime']),3)) + '\n' + \
         str(np.round(float(plot_dict['Amp']),3)) + '\n' + \
         str(np.round(float(plot_dict['ResPhase']),1)) + '\n' + \
-        plot_dict['PFD'] + '\n' + \
+        str(np.round(float(plot_dict['PFD']),2)) + '\n' + \
         '\n' + \
         str(np.round(float(plot_dict['ResidSbd(us)']),6)) + '\n' + \
         str(np.round(float(plot_dict['ResidMbd(us)']),6))  + '\n' + \
