@@ -116,8 +116,6 @@ MHO_DataSelectionBuilder::Build()
             wtspack->SelectAxisItems(TIME_AXIS,selected_aps);
         }
 
-        //TODO FIXME implement start/stop AP selection
-
         spack->SetArgs(vis_data);
         wtspack->SetArgs(wt_data);
 
