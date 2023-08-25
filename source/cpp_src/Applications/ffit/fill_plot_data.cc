@@ -1,0 +1,63 @@
+#include "ffit.hh"
+
+#include <sstream>
+#include <iomanip>
+#include <cmath>
+
+void fill_plot_data(MHO_ParameterStore* paramStore, mho_json& plot_dict)
+{
+    plot_dict["Quality"] = paramStore->GetAs<std::string>("/fringe/quality_code");
+    plot_dict["SNR"] = paramStore->GetAs<double>("/fringe/snr");
+    plot_dict["IntgTime"] = paramStore->GetAs<double>("/fringe/integration_time");
+    plot_dict["Amp"] = paramStore->GetAs<double>("/fringe/famp");
+    plot_dict["ResPhase"] = paramStore->GetAs<double>("/fringe/raw_resid_phase");
+    plot_dict["PFD"] = paramStore->GetAs<double>("/fringe/prob_false_detect");
+
+    plot_dict["ResidSbd(us)"] = paramStore->GetAs<double>("/fringe/sbdelay");
+    plot_dict["ResidMbd(us)"] = paramStore->GetAs<double>("/fringe/mbdelay");
+    plot_dict["FringeRate(Hz)"]  = paramStore->GetAs<double>("/fringe/frate");
+    plot_dict["IonTEC(TEC)"] = "-";
+    plot_dict["RefFreq(MHz)"] = paramStore->GetAs<double>("ref_freq");
+    plot_dict["AP(sec)"] = paramStore->GetAs<double>("ap_period");
+    plot_dict["ExperName"] = paramStore->GetAs<std::string>("/vex/experiment_name");
+    plot_dict["ExperNum"] = paramStore->GetAs<std::string>("/vex/experiment_number");
+
+    //export the legacy date/time stamps for start, stop, and FRT
+    plot_dict["YearDOY"] = paramStore->GetAs<std::string>("/fringe/year_doy");
+    plot_dict["Start"] = paramStore->GetAs<std::string>("/fringe/legacy_start_timestamp");
+    plot_dict["Stop"] = paramStore->GetAs<std::string>("/fringe/legacy_stop_timestamp");
+    plot_dict["FRT"] = paramStore->GetAs<std::string>("/fringe/legacy_frt_timestamp");
+    plot_dict["CorrTime"] = "-";
+    plot_dict["FFTime"] = "-";
+    plot_dict["BuildTime"] = "-";
+
+
+    plot_dict["RA"] = paramStore->GetAs<std::string>("/vex/scan/source/ra");
+    plot_dict["Dec"] = paramStore->GetAs<std::string>("/vex/scan/source/dec");
+
+    // // dp->param->mbd_anchor == MODEL ? "Model(usec)" : "SBD(usec)  ",
+    plot_dict["GroupDelay"] = paramStore->GetAs<double>("/fringe/total_mbdelay");         // dp->fringe->t208->tot_mbd);
+    plot_dict["SbandDelay(usec)"] = paramStore->GetAs<double>("/fringe/total_sbdelay");   //dp->fringe->t208->tot_sbd);
+
+    plot_dict["PhaseDelay(usec)"] = 0;  //dp->fringe->t208->adelay + dp->status->resid_ph_delay);
+    plot_dict["TotalPhase(deg)"] = 0; //dp->fringe->t208->totphase);
+    plot_dict["AprioriClock(usec)"] = 0; //dp->fringe->t202->rem_clock - dp->fringe->t202->ref_clock);
+    plot_dict["AprioriClockrate(us/s)"] = 0; //(dp->fringe->t202->rem_clockrate - dp->fringe->t202->ref_clockrate));
+
+    plot_dict["AprioriDelay(usec)"] = paramStore->GetAs<double>("/model/adelay");         //dp->fringe->t208->adelay);
+    plot_dict["AprioriRate(us/s)"] = paramStore->GetAs<double>("/model/arate");         //dp->fringe->t208->arate);
+    plot_dict["AprioriAccel(us/s/s)"] = paramStore->GetAs<double>("/model/aaccel");         //dp->fringe->t208->aaccel);
+    plot_dict["ResidMbdelay(usec)"] = paramStore->GetAs<double>("/fringe/mbdelay");         //dp->fringe->t208->resid_mbd);
+    plot_dict["ResidSbdelay(usec)"] = paramStore->GetAs<double>("/fringe/sbdelay");         //dp->fringe->t208->resid_sbd);
+
+    plot_dict["ResidPhdelay(usec)"] = 0; //dp->status->resid_ph_delay);
+
+    plot_dict["ResidRate(us/s)"] = paramStore->GetAs<double>("/fringe/drate"); //dp->fringe->t208->resid_rate);
+
+    plot_dict["ResidPhase(deg)"] = 0; //dp->fringe->t208->resphase);
+    plot_dict["ResidMbdelayError(usec)"] = 0; //dp->fringe->t208->mbd_error);
+    plot_dict["ResidSbdelayError(usec)"] = 0;  //dp->fringe->t208->sbd_error);
+    plot_dict["ResidPhdelayError(usec)"] = 0;  //dp->status->ph_delay_err);
+    plot_dict["ResidRateError(us/s)"] = 0; //dp->fringe->t208->rate_error);
+    plot_dict["ResidPhaseError(deg)"] = 0;  //dp->status->phase_err);
+}

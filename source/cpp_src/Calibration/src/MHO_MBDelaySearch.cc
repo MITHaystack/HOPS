@@ -29,6 +29,7 @@ MHO_MBDelaySearch::InitializeImpl(const XArgType* in)
         fGridStart = fGridCalc.GetGridStart();
         fGridSpace = fGridCalc.GetGridSpacing();
         fNGridPoints = fGridCalc.GetNGridPoints();
+        fAverageFreq = fGridCalc.GetGridAverage();
         fMBDBinMap = fGridCalc.GetGridIndexMap();
         fNSBD = in->GetDimension(FREQ_AXIS);
         fNDR = in->GetDimension(TIME_AXIS);

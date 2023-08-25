@@ -31,7 +31,8 @@ using namespace hops;
 //helper functions 
 void configure_data_library(MHO_ContainerStore* store);
 void extract_vex_info(const mho_json& vexInfo, MHO_ParameterStore* paramStore);
-void fill_output_info(MHO_ParameterStore* paramStore, const mho_json& vexInfo, mho_json& plot_dict);
+void calculate_fringe_info(MHO_ContainerStore* conStore, MHO_ParameterStore* paramStore, const mho_json& vexInfo);
+void fill_plot_data(MHO_ParameterStore* paramStore, mho_json& plot_dict);
 void precalculate_quantities(MHO_ContainerStore* conStore, MHO_ParameterStore* paramStore);
 void init_and_exec_operators(MHO_OperatorBuilderManager& build_manager, MHO_OperatorToolbox* opToolbox, const char* category);
 int parse_command_line(int argc, char** argv, MHO_ParameterStore* paramStore);

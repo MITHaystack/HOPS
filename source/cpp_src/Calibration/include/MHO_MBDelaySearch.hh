@@ -53,7 +53,9 @@ class MHO_MBDelaySearch: public MHO_InspectingOperator< visibility_type >
         int GetMBDMaxBin() const {return fMBDMaxBin;}
         int GetSBDMaxBin() const {return fSBDMaxBin;}
         int GetDRMaxBin() const {return fDRMaxBin;}
+
         double GetFrequencySpacing() const {return fGridSpace;}
+        double GetAverageFrequency() const {return fAverageFreq;}
 
         //TODO FIX ME
         // time_axis_type* GetMBDAxis(){ return &(std::get<0>(fMBDWorkspace)); };
@@ -83,6 +85,7 @@ class MHO_MBDelaySearch: public MHO_InspectingOperator< visibility_type >
         //dims and parameters
         double fGridStart;
         double fGridSpace;
+        double fAverageFreq;
         std::size_t fNGridPoints;
         std::size_t fNSBD;
         std::size_t fNDR;

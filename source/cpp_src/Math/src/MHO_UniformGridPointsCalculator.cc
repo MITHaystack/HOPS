@@ -81,6 +81,8 @@ MHO_UniformGridPointsCalculator::Calculate_v1()
         }
         ave_loc /= (double)n_pts;
 
+        fAverageLocation = ave_loc;
+
         div = 1;
         bool spacing_err = false;
         std::map<std::size_t, double> chan_idx_to_mbd_idx;
