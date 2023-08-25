@@ -72,13 +72,7 @@ MHO_ComputePlotData::calc_mbd()
     auto sbd_ax = &( std::get<FREQ_AXIS>(*fSBDArray) );
     double ap_delta = ap_ax->at(1) - ap_ax->at(0);
     double sbd_delta = sbd_ax->at(1) - sbd_ax->at(0);
-
-    //TODO FIXME -- should this be the fourfit refrence time? Also...should this be calculated elsewhere?
     double frt_offset = fParamStore->GetAs<double>("frt_offset");
-    
-    //( ap_ax->at(nap-1) + ap_delta  + ap_ax->at(0) )/2.0;
-    std::cout<<"time midpoint = "<<frt_offset<<std::endl;
-
 
     std::complex<double> sum = 0;
     for(std::size_t ch=0; ch < nchan; ch++)
@@ -139,12 +133,7 @@ MHO_ComputePlotData::calc_sbd()
     auto sbd_ax = &( std::get<FREQ_AXIS>(*fSBDArray) );
     double ap_delta = ap_ax->at(1) - ap_ax->at(0);
     double sbd_delta = sbd_ax->at(1) - sbd_ax->at(0);
-
-
-    //TODO FIXME -- shoudl this be the fourfit refrence time? Also...should this be calculated elsewhere?
-    //double frt_offset = ( ap_ax->at(nap-1) + ap_delta  + ap_ax->at(0) )/2.0;
     double frt_offset = fParamStore->GetAs<double>("frt_offset");
-    std::cout<<"time midpoint = "<<frt_offset<<std::endl;
 
     sbd_amp.Resize(nbins);
     sbd_xpower_in.Resize(nbins);
@@ -206,12 +195,7 @@ MHO_ComputePlotData::calc_xpower()
     auto sbd_ax = &( std::get<FREQ_AXIS>(*fSBDArray) );
     double ap_delta = ap_ax->at(1) - ap_ax->at(0);
     double sbd_delta = sbd_ax->at(1) - sbd_ax->at(0);
-
-
-    //TODO FIXME -- shoudl this be the fourfit refrence time? Also...should this be calculated elsewhere?
-    //double frt_offset = ( ap_ax->at(nap-1) + ap_delta  + ap_ax->at(0) )/2.0;
     double frt_offset = fParamStore->GetAs<double>("frt_offset");
-    std::cout<<"time midpoint = "<<frt_offset<<std::endl;
 
     sbd_amp.Resize(nbins);
     sbd_xpower_in.Resize(nbins);
@@ -324,17 +308,14 @@ MHO_ComputePlotData::calc_dr()
     auto sbd_ax = &( std::get<FREQ_AXIS>(*fSBDArray) );
     double ap_delta = ap_ax->at(1) - ap_ax->at(0);
     double sbd_delta = sbd_ax->at(1) - sbd_ax->at(0);
-
+    double frt_offset = fParamStore->GetAs<double>("frt_offset");
     auto dr_ax = &(std::get<0>(fDRWorkspace) );
+
     for(std::size_t i=0; i<drsp_size;i++)
     {
         dr_ax->at(i) = i*ap_delta;
     }
 
-    //TODO FIXME -- should this be the fourfit refrence time? Also...should this be calculated elsewhere?
-    //double frt_offset = ( ap_ax->at(nap-1) + ap_delta  + ap_ax->at(0) )/2.0;
-    double frt_offset = fParamStore->GetAs<double>("frt_offset");
-    std::cout<<"time midpoint = "<<frt_offset<<std::endl;
 
     for(std::size_t ch=0; ch < nchan; ch++)
     {
@@ -395,11 +376,7 @@ MHO_ComputePlotData::calc_phase()
     fRot.SetNSBDBins(sbd_ax->GetSize()/4);  //this is nlags, FACTOR OF 4 is because sbd space is padded by a factor of 4
     //fRot.SetSBDMax( (*sbd_ax)(fSBDMaxBin) );
     fRot.SetSBDMax( fSBDelay );
-
-    //TODO FIXME -- should this be the fourfit refrence time? Also...should this be calculated elsewhere?
     double frt_offset = fParamStore->GetAs<double>("frt_offset");
-    //double frt_offset = ( ap_ax->at(nap-1) + ap_delta  + ap_ax->at(0) )/2.0;
-    std::cout<<"time midpoint = "<<frt_offset<<std::endl;
 
     std::complex<double> sum_all = 0.0;
     for(std::size_t ch=0; ch < nchan; ch++)
@@ -418,7 +395,6 @@ MHO_ComputePlotData::calc_phase()
             }
         }
 
-        #pragma message("TODO FIXME FOR NON-LSB DATA!")
         fRot.SetSideband(0); //DSB
         if(net_sideband == "U")
         {
@@ -494,11 +470,7 @@ MHO_ComputePlotData::calc_xpower_KLUDGE()
     auto sbd_ax = &( std::get<FREQ_AXIS>(*fSBDArray) );
     double ap_delta = ap_ax->at(1) - ap_ax->at(0);
     double sbd_delta = sbd_ax->at(1) - sbd_ax->at(0);
-
-    //TODO FIXME -- should this be the fourfit refrence time? Also...should this be calculated elsewhere?
-    //double frt_offset = ( ap_ax->at(nap-1) + ap_delta  + ap_ax->at(0) )/2.0;
     double frt_offset = fParamStore->GetAs<double>("frt_offset");
-    std::cout<<"time midpoint = "<<frt_offset<<std::endl;
 
     std::complex<double> sum;
     std::complex<double> Z, vr;
@@ -658,10 +630,9 @@ MHO_ComputePlotData::calc_xpower_KLUDGE2()
     double ap_delta = ap_ax->at(1) - ap_ax->at(0);
     double freq_delta = freq_ax->at(1) - freq_ax->at(0);
 
-    //TODO FIXME -- should this be the fourfit refrence time? Also...should this be calculated elsewhere?
+
     //double frt_offset = ( ap_ax->at(nap-1) + ap_delta  + ap_ax->at(0) )/2.0;
     double frt_offset = fParamStore->GetAs<double>("frt_offset");
-    std::cout<<"time midpoint = "<<frt_offset<<std::endl;
 
     std::complex<double> sum;
     std::complex<double> Z, vr;
@@ -696,7 +667,6 @@ MHO_ComputePlotData::calc_xpower_KLUDGE2()
                 }
             }
 
-            #pragma message("TODO FIXME FOR NON-LSB DATA!")
             fRot.SetSideband(0); //DSB
             if(net_sideband == "U")
             {
@@ -842,10 +812,8 @@ MHO_ComputePlotData::calc_xpower_KLUDGE3()
     double ap_delta = ap_ax->at(1) - ap_ax->at(0);
     double sbd_delta = sbd_ax->at(1) - sbd_ax->at(0);
 
-    //TODO FIXME -- should this be the fourfit refrence time? Also...should this be calculated elsewhere?
     //double frt_offset = ( ap_ax->at(nap-1) + ap_delta  + ap_ax->at(0) )/2.0;
     double frt_offset = fParamStore->GetAs<double>("frt_offset");
-    std::cout<<"time midpoint = "<<frt_offset<<std::endl;
 
     std::complex<double> sum;
     std::complex<double> Z, vr;
@@ -880,8 +848,6 @@ MHO_ComputePlotData::calc_xpower_KLUDGE3()
                 }
             }
 
-
-            #pragma message("TODO FIXME FOR NON-LSB DATA!")
             fRot.SetSideband(0); //DSB
             if(net_sideband == "U")
             {
