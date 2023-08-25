@@ -25,7 +25,7 @@ set(SOURCE_BASENAMES
     ConvertVexToJSON
     TestSignalFFT
     CompareCorFiles
-    SimpleFringeSearch
+    #SimpleFringeSearch
 )
 
 #for testing purposes only -- ROOT not intended to be a dependency

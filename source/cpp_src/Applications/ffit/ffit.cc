@@ -53,6 +53,9 @@ int main(int argc, char** argv)
         msg_fatal("main", "cannot initialize a valid scan store from this directory: " << directory << eom);
         std::exit(1);
     }
+    //pass the directory and root file info the the parameter store 
+    paramStore.Set("directory", directory);
+    paramStore.Set("root_file", scanStore.GetRootFileBasename() );
 
     //load root file and extract useful vex info
     mho_json vexInfo = scanStore.GetRootFileData();

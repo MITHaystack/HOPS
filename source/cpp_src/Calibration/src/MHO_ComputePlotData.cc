@@ -9,7 +9,47 @@ MHO_ComputePlotData::MHO_ComputePlotData()
 {
     fMBDAnchor = "model";
     fParamStore = nullptr;
+    fContainerStore = nullptr;
+    fVisibilities = nullptr;
+    fWeights = nullptr;
+    fSBDArray = nullptr;
 };
+
+
+void
+MHO_ComputePlotData::Initialize()
+{
+    fTotalSummedWeights = fParamStore->GetAs<double>("/fringe/total_summed_weights");
+    fRefFreq = fParamStore->GetAs<double>("ref_freq");
+    fMBDelay = fParamStore->GetAs<double>("/fringe/mbdelay");
+    fDelayRate = fParamStore->GetAs<double>("/fringe/drate");
+    fFringeRate = fParamStore->GetAs<double>("/fringe/frate");
+    fSBDelay = fParamStore->GetAs<double>("/fringe/sbdelay");
+    fSBDMaxBin = fParamStore->GetAs<double>("/fringe/max_sbd_bin");
+    fAmp = fParamStore->GetAs<double>("/fringe/famp");
+
+    fVisibilities = fContainerStore->GetObject<visibility_type>(std::string("vis"));
+    fWeights = fContainerStore->GetObject<weight_type>(std::string("weight"));
+    fSBDArray = fContainerStore->GetObject<visibility_type>(std::string("sbd"));
+    if(fVisibilities == nullptr)
+    {
+        msg_fatal("main", "could not find visibility, object with name 'vis'." << eom);
+        std::exit(1);
+    }
+
+    if(fWeights == nullptr)
+    {
+        msg_fatal("main", "could not find visibility, object with name 'weight'." << eom);
+        std::exit(1);
+    }
+
+    if(fSBDArray == nullptr)
+    {
+        msg_fatal("main", "could not find visibility, object with name 'sbd'." << eom);
+        std::exit(1);
+    }
+
+}
 
 xpower_amp_type
 MHO_ComputePlotData::calc_mbd()
@@ -374,7 +414,6 @@ MHO_ComputePlotData::calc_phase()
     fRot.SetSBDSeparation(sbd_delta);
     fRot.SetSBDMaxBin(fSBDMaxBin);
     fRot.SetNSBDBins(sbd_ax->GetSize()/4);  //this is nlags, FACTOR OF 4 is because sbd space is padded by a factor of 4
-    //fRot.SetSBDMax( (*sbd_ax)(fSBDMaxBin) );
     fRot.SetSBDMax( fSBDelay );
     double frt_offset = fParamStore->GetAs<double>("frt_offset");
 
@@ -1006,19 +1045,19 @@ MHO_ComputePlotData::DumpInfoToJSON(mho_json& plot_dict)
 
     plot_dict["Quality"] = "-";
 
-    //Poor imitation of SNR -- needs corrections
-    //hardcoded dummy values right now
-    double eff_npol = 1.0;
-    double amp_corr_factor = 1.0;
-    double fact1 = 1.0; //more than 16 lags
-    double fact2 = 0.881; //2bit x 2bit
-    double fact3 = 0.970; //difx
+    // //Poor imitation of SNR -- needs corrections
+    // //hardcoded dummy values right now
+    // double eff_npol = 1.0;
+    // double amp_corr_factor = 1.0;
+    // double fact1 = 1.0; //more than 16 lags
+    // double fact2 = 0.881; //2bit x 2bit
+    // double fact3 = 0.970; //difx
     double acc_period = ap_delta;
-    double inv_sigma = fact1 * fact2 * fact3 * std::sqrt(acc_period/samp_period);
-    plot_dict["SNR"] = fAmp * inv_sigma *  sqrt(fTotalSummedWeights * eff_npol)/(1e4* amp_corr_factor);
-
-    std::size_t nchan = std::get<CHANNEL_AXIS>(*fVisibilities).GetSize();
-    plot_dict["IntgTime"] = fTotalSummedWeights*acc_period /(double)nchan;
+    // double inv_sigma = fact1 * fact2 * fact3 * std::sqrt(acc_period/samp_period);
+    // plot_dict["SNR"] = fAmp * inv_sigma *  sqrt(fTotalSummedWeights * eff_npol)/(1e4* amp_corr_factor);
+    // 
+    // std::size_t nchan = std::get<CHANNEL_AXIS>(*fVisibilities).GetSize();
+    // plot_dict["IntgTime"] = fTotalSummedWeights*acc_period /(double)nchan;
 
     plot_dict["Amp"] = fAmp;
 
@@ -1029,25 +1068,6 @@ MHO_ComputePlotData::DumpInfoToJSON(mho_json& plot_dict)
     }
 
     plot_dict["ResPhase"] = std::fmod(coh_avg_phase * (180.0/M_PI), 360.0);
-    plot_dict["PFD"] = "-";
-    plot_dict["ResidSbd(us)"] = fSBDelay;
-    plot_dict["ResidMbd(us)"] = fMBDelay;
-    plot_dict["FringeRate(Hz)"]  = fFringeRate;
-    plot_dict["IonTEC(TEC)"] = "-";
-    plot_dict["RefFreq(MHz)"] = fRefFreq;
-    plot_dict["AP(sec)"] = ap_delta;
-    plot_dict["ExperName"] = exper_info["exper_name"];
-    plot_dict["ExperNum"] = "-";
-    plot_dict["YearDOY"] = "-";
-    plot_dict["Start"] = "-";
-    plot_dict["Stop"] = "-";
-    plot_dict["FRT"] = "-";
-    plot_dict["CorrTime"] = "-";
-    plot_dict["FFTime"] = "-";
-    plot_dict["BuildTime"] = "-";
-
-    plot_dict["RA"] = src_info["ra"];
-    plot_dict["Dec"] = src_info["dec"];
 
 }
 

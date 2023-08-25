@@ -29,6 +29,19 @@ make_legacy_datetime_format(legacy_hops_date ldate)
     return dt;
 }
 
+double calculate_snr(double effective_npol, double ap_period, double samp_period, double total_ap_frac, double amp)
+{
+    //Poor imitation of SNR -- needs corrections
+    //some hardcoded values used right now
+    double amp_corr_factor = 1.0;
+    double fact1 = 1.0; //more than 16 lags
+    double fact2 = 0.881; //2bit x 2bit
+    double fact3 = 0.970; //difx
+    double whitneys = 1e4; //unit conversion to 'Whitneys'
+    double inv_sigma = fact1 * fact2 * fact3 * std::sqrt(ap_period/samp_period);
+    double snr = amp * inv_sigma *  sqrt(total_ap_frac * effective_npol)/(whitneys * amp_corr_factor);
+    return snr;
+}
 
 void fill_output_info(const MHO_ParameterStore* paramStore, const mho_json& vexInfo, mho_json& plot_dict)
 {
@@ -42,6 +55,7 @@ void fill_output_info(const MHO_ParameterStore* paramStore, const mho_json& vexI
     mho_json freq_section = vexInfo["$FREQ"];
     auto freq_info = freq_section.begin().value();
     double sample_rate = freq_info["sample_rate"]["value"];
+    //TODO FIXME (what if channels have multi-bandwiths?, units?)
     double samp_period = 1.0/(sample_rate*1e6);
 
     //configuration parameters 
@@ -49,6 +63,7 @@ void fill_output_info(const MHO_ParameterStore* paramStore, const mho_json& vexI
     double ap_delta = paramStore->GetAs<double>("ap_period");
 
     //fringe quantities
+    double total_summed_weights = paramStore->GetAs<double>("/fringe/total_summed_weights");
     double sbdelay = paramStore->GetAs<double>("/fringe/sbdelay");
     double mbdelay = paramStore->GetAs<double>("/fringe/mbdelay");
     double drate = paramStore->GetAs<double>("/fringe/drate");
@@ -60,6 +75,40 @@ void fill_output_info(const MHO_ParameterStore* paramStore, const mho_json& vexI
     double ap_rate = paramStore->GetAs<double>("/model/ap_rate");
     double ap_accel = paramStore->GetAs<double>("/model/ap_accel");
 
+    std::string frt_vex_string = paramStore->GetAs<std::string>("/vex/scan/fourfit_reftime");
+    auto frt = hops_clock::from_vex_format(frt_vex_string);
+    legacy_hops_date frt_ldate = hops_clock::to_legacy_hops_date(frt);
+    
+    std::string start_vex_string = paramStore->GetAs<std::string>("/vex/scan/start");
+    auto start_time = hops_clock::from_vex_format(start_vex_string);
+    double start_offset = paramStore->GetAs<double>("start_offset");
+    int64_t start_offset_as_nanosec = (int64_t)start_offset*SEC_TO_NANOSEC; //KLUDGE;
+
+    start_time = start_time + hops_clock::duration(start_offset_as_nanosec);
+    legacy_hops_date start_ldate = hops_clock::to_legacy_hops_date(start_time);
+    
+    double stop_offset = paramStore->GetAs<double>("stop_offset");
+    int64_t stop_offset_as_nanosec = (int64_t)stop_offset*SEC_TO_NANOSEC; //KLUDGE;
+    
+    auto stop_time = hops_clock::from_vex_format(start_vex_string);
+    stop_time = stop_time + hops_clock::duration(stop_offset_as_nanosec);
+    legacy_hops_date stop_ldate = hops_clock::to_legacy_hops_date(stop_time);
+    std::string year_doy = leftpadzeros_integer(4, frt_ldate.year) +":" + leftpadzeros_integer(3, frt_ldate.day);
+
+    
+    plot_dict["RA"] = src_info["ra"];
+    plot_dict["Dec"] = src_info["dec"];
+
+    plot_dict["Quality"] = "-";
+    double eff_npol = 1.0; //TODO FIXME
+    double snr = calculate_snr(eff_npol, ap_delta, samp_period, total_summed_weights, famp);
+    plot_dict["SNR"] = snr;
+
+    int nchan = paramStore->GetAs<int>("nchannels");
+    plot_dict["IntgTime"] = (total_summed_weights*ap_delta)/(double)nchan;
+        
+    plot_dict["Amp"] = famp;
+        
     // 
     // //plot_dict["ResPhase"] = std::fmod(coh_avg_phase * (180.0/M_PI), 360.0);
     plot_dict["PFD"] = "-";
@@ -71,28 +120,6 @@ void fill_output_info(const MHO_ParameterStore* paramStore, const mho_json& vexI
     plot_dict["AP(sec)"] = ap_delta;
     plot_dict["ExperName"] = exper_info["exper_name"];
     plot_dict["ExperNum"] = "-";
-    
-    std::string frt_vex_string = paramStore->GetAs<std::string>("/vex/scan/fourfit_reftime");
-    auto frt = hops_clock::from_vex_format(frt_vex_string);
-    legacy_hops_date frt_ldate = hops_clock::to_legacy_hops_date(frt);
-    
-    std::string start_vex_string = paramStore->GetAs<std::string>("/vex/scan/start");
-    auto start_time = hops_clock::from_vex_format(start_vex_string);
-    double start_offset = paramStore->GetAs<double>("start_offset");
-    int64_t start_offset_as_nanosec = (int64_t)start_offset*SEC_TO_NANOSEC; //KLUDGE;
-    std::cout<<"start offset = "<<start_offset<<std::endl;
-    start_time = start_time + hops_clock::duration(start_offset_as_nanosec);
-    legacy_hops_date start_ldate = hops_clock::to_legacy_hops_date(start_time);
-    
-    double stop_offset = paramStore->GetAs<double>("stop_offset");
-    int64_t stop_offset_as_nanosec = (int64_t)stop_offset*SEC_TO_NANOSEC; //KLUDGE;
-    std::cout<<"stop offset = "<<stop_offset<<std::endl;
-    
-    auto stop_time = hops_clock::from_vex_format(start_vex_string);
-    stop_time = stop_time + hops_clock::duration(stop_offset_as_nanosec);
-    legacy_hops_date stop_ldate = hops_clock::to_legacy_hops_date(stop_time);
-
-    std::string year_doy = leftpadzeros_integer(4, frt_ldate.year) +":" + leftpadzeros_integer(3, frt_ldate.day);
     plot_dict["YearDOY"] = year_doy;
     plot_dict["Start"] = make_legacy_datetime_format(start_ldate);
     plot_dict["Stop"] = make_legacy_datetime_format(stop_ldate);;
@@ -100,10 +127,6 @@ void fill_output_info(const MHO_ParameterStore* paramStore, const mho_json& vexI
     plot_dict["CorrTime"] = "-";
     plot_dict["FFTime"] = "-";
     plot_dict["BuildTime"] = "-";
-    
-    plot_dict["RA"] = src_info["ra"];
-    plot_dict["Dec"] = src_info["dec"];
-
 
     plot_dict["GroupDelay"] = 0;
         // dp->param->mbd_anchor == MODEL ? "Model(usec)" : "SBD(usec)  ",
