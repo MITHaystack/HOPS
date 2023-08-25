@@ -53,6 +53,7 @@ class MHO_MBDelaySearch: public MHO_InspectingOperator< visibility_type >
         int GetMBDMaxBin() const {return fMBDMaxBin;}
         int GetSBDMaxBin() const {return fSBDMaxBin;}
         int GetDRMaxBin() const {return fDRMaxBin;}
+        double GetFrequencySpacing() const {return fGridSpace;}
 
         //TODO FIX ME
         // time_axis_type* GetMBDAxis(){ return &(std::get<0>(fMBDWorkspace)); };
