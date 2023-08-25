@@ -83,9 +83,15 @@ void fill_output_info(const MHO_ParameterStore* paramStore, const mho_json& vexI
     double famp = paramStore->GetAs<double>("/fringe/famp");
 
     //a priori (correlator) model quantities 
-    double ap_delay = paramStore->GetAs<double>("/model/ap_delay");
-    double ap_rate = paramStore->GetAs<double>("/model/ap_rate");
-    double ap_accel = paramStore->GetAs<double>("/model/ap_accel");
+    double adelay = paramStore->GetAs<double>("/model/adelay");
+    double arate = paramStore->GetAs<double>("/model/arate");
+    double aaccel = paramStore->GetAs<double>("/model/aaccel");
+
+    //TODO FIXME -- -acount for units (convert to usec)
+    //NEED to acout for units everywhere!
+    adelay *= 1.0e6;
+    arate *= 1.0e6;
+    aaccel *= 1.0e6;
 
     std::string frt_vex_string = paramStore->GetAs<std::string>("/vex/scan/fourfit_reftime");
     auto frt = hops_clock::from_vex_format(frt_vex_string);
@@ -152,6 +158,119 @@ void fill_output_info(const MHO_ParameterStore* paramStore, const mho_json& vexI
     plot_dict["CorrTime"] = "-";
     plot_dict["FFTime"] = "-";
     plot_dict["BuildTime"] = "-";
+
+    //TODO FIXME -- -acount for units (this is in usec)
+    double tot_mbd = adelay + mbdelay;
+    double tot_sbd = adelay + sbdelay;
+
+    std::cout<<"mbdelay = "<<mbdelay<<std::endl;
+    std::cout<<"adelay = "<<adelay<<std::endl;
+    std::cout<<"tot_mbd = "<<tot_mbd<<std::endl;
+    std::cout<<"tot_sbd = "<<tot_sbd<<std::endl;
+
+    // // anchor total mbd to sbd if desired
+    // ambig = 1.0 / status->freq_space;
+    // if (param->mbd_anchor == SBD)
+    // {
+    //     delta_mbd = ambig * std::floor( (tot_sbd - tot_mbd) / ambig + 0.5);
+    //     tot_mbd += delta_mbd;
+    // }
+
+
+                //                                     /* Totals, residuals, and errors */
+                //                                     // status values assigned by update(...GLOBAL)
+                //                                     // and subsequenly updated by interp(max555)
+                // t208->tot_mbd = t208->adelay + status->mbd_max_global;
+                // t208->tot_sbd = t208->adelay + status->sbd_max;
+                //                                     // anchor total mbd to sbd if desired
+                // ambig = 1.0 / status->freq_space;
+                // if (param->mbd_anchor == SBD)
+                //     {
+                //     delta_mbd = ambig * floor ((t208->tot_sbd - t208->tot_mbd) / ambig + 0.5);
+                //     t208->tot_mbd += delta_mbd;
+                //     }
+                // 
+                // t208->tot_rate = t208->arate + status->corr_dr_max;
+                //                                     /* ref. stn. time-tagged observables are
+                //                                      * approximated by combining retarded a prioris
+                //                                      * with non-retarded residuals */
+                // t208->tot_mbd_ref  = adelay_ref * 1e6 + status->mbd_max_global;
+                // t208->tot_sbd_ref  = adelay_ref * 1e6 + status->sbd_max;
+                //                                     // anchor ref mbd as above
+                // if (param->mbd_anchor == SBD)
+                //     t208->tot_mbd_ref += ambig 
+                //                        * floor ((t208->tot_sbd_ref - t208->tot_mbd_ref) / ambig + 0.5);
+                // t208->tot_rate_ref = arate_ref * 1e6 + status->corr_dr_max;
+                // 
+                // t208->resid_mbd = status->mbd_max_global;
+                // t208->resid_sbd = status->sbd_max;
+                // t208->resid_rate = status->corr_dr_max;
+                // t208->mbd_error = (status->nion == 0) ?
+                //     (float)(1.0 / (2.0 * M_PI * status->freq_spread * status->snr)) :
+                //     1e-3 * status->ion_sigmas[0];
+                //     msg ("mbd sigma w/ no ionosphere %f with ion %f ps", 1, 
+                //         (double)(1e6 / (2.0 * M_PI * status->freq_spread * status->snr)), 1e3 * status->ion_sigmas[0]);
+                //                                     /* get proper weighting for sbd error estimate */
+                // status->sbavg = 0.0;
+                // for (fr = 0; fr < pass->nfreq; fr++)
+                //     for (ap = pass->ap_off; ap < pass->ap_off + pass->num_ap; ap++) 
+                //         status->sbavg += pass->pass_data[fr].data[ap].sband;
+                // status->sbavg /= status->total_ap;
+                // t208->sbd_error = (float)(sqrt (12.0) * status->sbd_sep * 4.0
+                //             / (2.0 * M_PI * status->snr * (2.0 - fabs (status->sbavg) )));
+                // temp = status->total_ap * param->acc_period / pass->channels;
+                // t208->rate_error = (float)(sqrt(12.0) 
+                //                     / ( 2.0 * M_PI * status->snr * param->ref_freq * temp));
+                // 
+                // t208->ambiguity = 1.0 / status->freq_space;
+                // t208->amplitude = status->delres_max/10000.;
+                // t208->inc_seg_ampl = status->inc_avg_amp;
+                // t208->inc_chan_ampl = status->inc_avg_amp_freq;
+                // t208->snr = status->snr;
+                // t208->prob_false = status->prob_false;
+                // status->apphase = fmod (param->ref_freq * t208->adelay * 360.0, 360.0);
+                // t208->totphase = fmod (status->apphase + status->coh_avg_phase
+                //                     * (180.0/M_PI) , 360.0);
+                //                                     /* Ref stn frame apriori delay usec */
+                // adelay_ref *= 1.0e6;
+                //                                     /* ref_stn_delay in sec, rate in usec/sec */
+                // adelay_ref -= ref_stn_delay * t208->resid_rate;
+                // apphase_ref = fmod (param->ref_freq * adelay_ref * 360.0, 360.0);
+                // t208->totphase_ref = fmod (apphase_ref + status->coh_avg_phase
+                //                     * (180.0/M_PI) , 360.0);
+                // t208->resphase = fmod (status->coh_avg_phase * (180.0/M_PI), 360.0);
+                //                                 // adjust phases for mbd ambiguity
+                // if (param->mbd_anchor == SBD)
+                //     {
+                //     delta_f = fmod (param->ref_freq - pass->pass_data[0].frequency, status->freq_space);
+                //     msg ("delta_mbd %g delta_f %g", 1, delta_mbd, delta_f);
+                //     t208->totphase += 360.0 * delta_mbd * delta_f;
+                //     t208->totphase = fmod(t208->totphase, 360.0);
+                //     t208->resphase += 360.0 * delta_mbd * delta_f;
+                //     t208->resphase = fmod(t208->resphase, 360.0);
+                //     }
+                // 
+                // msg ("residual phase %f", 1, t208->resphase);
+                // 
+                // t208->tec_error = (status->nion) ? status->ion_sigmas[2] : 0.0;
+                // 
+                // 
+                // 
+                // 
+                // 
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     plot_dict["GroupDelay"] = 0;
         // dp->param->mbd_anchor == MODEL ? "Model(usec)" : "SBD(usec)  ",

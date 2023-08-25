@@ -77,13 +77,13 @@ void precalculate_quantities(MHO_ContainerStore* conStore, MHO_ParameterStore* p
     double frt_offset = std::chrono::duration<double>(offset_to_frt_duration).count(); 
     paramStore->Set("frt_offset", frt_offset);
     
-    double ap_delay = delay_model.GetDelay();
-    double ap_rate = delay_model.GetRate();
-    double ap_accel = delay_model.GetAcceleration();
+    double adelay = delay_model.GetDelay();
+    double arate = delay_model.GetRate();
+    double aaccel = delay_model.GetAcceleration();
 
-    paramStore->Set("/model/adelay", ap_delay);
-    paramStore->Set("/model/arate", ap_rate);
-    paramStore->Set("/model/aaccel", ap_accel);
+    paramStore->Set("/model/adelay", adelay);
+    paramStore->Set("/model/arate", arate);
+    paramStore->Set("/model/aaccel", aaccel);
     
     
 }
