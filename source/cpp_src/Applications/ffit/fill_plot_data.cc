@@ -39,8 +39,11 @@ void fill_plot_data(MHO_ParameterStore* paramStore, mho_json& plot_dict)
     plot_dict["GroupDelay"] = paramStore->GetAs<double>("/fringe/total_mbdelay");         // dp->fringe->t208->tot_mbd);
     plot_dict["SbandDelay(usec)"] = paramStore->GetAs<double>("/fringe/total_sbdelay");   //dp->fringe->t208->tot_sbd);
 
-    plot_dict["PhaseDelay(usec)"] = 0;  //dp->fringe->t208->adelay + dp->status->resid_ph_delay);
-    plot_dict["TotalPhase(deg)"] = 0; //dp->fringe->t208->totphase);
+    plot_dict["DelayRate (us/s)"] = paramStore->GetAs<double>("/fringe/total_drate");
+
+
+    plot_dict["PhaseDelay(usec)"] = paramStore->GetAs<double>("/fringe/phase_delay");  //dp->fringe->t208->adelay + dp->status->resid_ph_delay);
+    plot_dict["TotalPhase(deg)"] = paramStore->GetAs<double>("/fringe/tot_phase"); //dp->fringe->t208->totphase);
     plot_dict["AprioriClock(usec)"] = 0; //dp->fringe->t202->rem_clock - dp->fringe->t202->ref_clock);
     plot_dict["AprioriClockrate(us/s)"] = 0; //(dp->fringe->t202->rem_clockrate - dp->fringe->t202->ref_clockrate));
 
@@ -50,14 +53,15 @@ void fill_plot_data(MHO_ParameterStore* paramStore, mho_json& plot_dict)
     plot_dict["ResidMbdelay(usec)"] = paramStore->GetAs<double>("/fringe/mbdelay");         //dp->fringe->t208->resid_mbd);
     plot_dict["ResidSbdelay(usec)"] = paramStore->GetAs<double>("/fringe/sbdelay");         //dp->fringe->t208->resid_sbd);
 
-    plot_dict["ResidPhdelay(usec)"] = 0; //dp->status->resid_ph_delay);
+    plot_dict["ResidPhdelay(usec)"] = paramStore->GetAs<double>("/fringe/resid_ph_delay"); //dp->status->resid_ph_delay);
 
     plot_dict["ResidRate(us/s)"] = paramStore->GetAs<double>("/fringe/drate"); //dp->fringe->t208->resid_rate);
 
-    plot_dict["ResidPhase(deg)"] = 0; //dp->fringe->t208->resphase);
+    plot_dict["ResidPhase(deg)"] = paramStore->GetAs<double>("/fringe/resid_phase")*(180.0/M_PI); //dp->fringe->t208->resphase);
     plot_dict["ResidMbdelayError(usec)"] = 0; //dp->fringe->t208->mbd_error);
     plot_dict["ResidSbdelayError(usec)"] = 0;  //dp->fringe->t208->sbd_error);
     plot_dict["ResidPhdelayError(usec)"] = 0;  //dp->status->ph_delay_err);
     plot_dict["ResidRateError(us/s)"] = 0; //dp->fringe->t208->rate_error);
     plot_dict["ResidPhaseError(deg)"] = 0;  //dp->status->phase_err);
+
 }

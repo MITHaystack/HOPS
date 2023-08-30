@@ -339,11 +339,11 @@ def fourfit_plot(plot_dict, filename):
         'Delay rate (us/s) ' + '\n' + \
         'Total Phase (deg) ' + '\n'
 
-    btmtextstr2 = str(np.format_float_scientific( float(plot_dict["GroupDelay"]), precision=5, min_digits=5 ) )  + '\n' + \
-        str(np.format_float_scientific(float(plot_dict["SbandDelay(usec)"]), precision=5, min_digits=5) ) + '\n' + \
-        str(np.format_float_scientific(float(plot_dict["ResidRate(us/s)"]), precision=5, min_digits=5) ) + '\n' + \
-        str(np.format_float_scientific(float(plot_dict["ResidRate(us/s)"]), precision=5, min_digits=5) ) + '\n' + \
-        str(np.format_float_scientific(float(plot_dict["TotalPhase(deg)"]), precision=2, min_digits=2) )
+    btmtextstr2 = str(np.format_float_scientific( float(plot_dict["GroupDelay"]), precision=11, min_digits=11 ) )  + '\n' + \
+        str(np.format_float_scientific(float(plot_dict["SbandDelay(usec)"]), precision=11, min_digits=11) ) + '\n' + \
+        str(np.format_float_scientific(float(plot_dict["PhaseDelay(usec)"]), precision=11, min_digits=11) ) + '\n' + \
+        str(np.format_float_scientific(float(plot_dict["DelayRate (us/s)"]), precision=11, min_digits=11) ) + '\n' + \
+        str( np.round(float(plot_dict["TotalPhase(deg)"]),1) )
 
     btmtextstr3 = 'Apriori delay (usec) ' + '\n' + \
         'Apriori clock (usec) ' + '\n' + \
@@ -351,11 +351,11 @@ def fourfit_plot(plot_dict, filename):
         'Apriori rate (us/s) ' + '\n' + \
         'Apriori accel (us/s/s) ' + '\n'
 
-    btmtextstr4 = str(np.format_float_scientific( float(plot_dict["AprioriDelay(usec)"]), precision=5, min_digits=5 ) )  + '\n' + \
+    btmtextstr4 = str(np.format_float_scientific( float(plot_dict["AprioriDelay(usec)"]), precision=12, min_digits=11 ) )  + '\n' + \
         str(np.format_float_scientific(float(plot_dict["AprioriClock(usec)"]), precision=5, min_digits=5) ) + '\n' + \
         str(np.format_float_scientific(float(plot_dict["AprioriClockrate(us/s)"]), precision=5, min_digits=5) ) + '\n' + \
-        str(np.format_float_scientific(float(plot_dict["AprioriRate(us/s)"]), precision=5, min_digits=5) ) + '\n' + \
-        str(np.format_float_scientific(float(plot_dict["AprioriAccel(us/s/s)"]), precision=2, min_digits=2) )
+        str(np.format_float_scientific(float(plot_dict["AprioriRate(us/s)"]), precision=11, min_digits=11) ) + '\n' + \
+        str(np.format_float_scientific(float(plot_dict["AprioriAccel(us/s/s)"]), precision=11, min_digits=11) )
 
     btmtextstr5 = 'Resid mbdelay (usec) ' + '\n' + \
         'Resid sbdelay (usec) ' + '\n' + \
@@ -367,27 +367,26 @@ def fourfit_plot(plot_dict, filename):
         str(np.format_float_scientific(float(plot_dict['ResidSbd(us)']), precision=5, min_digits=5) ) + '\n' + \
         str(np.format_float_scientific(float(plot_dict["ResidPhdelay(usec)"]), precision=5, min_digits=5) ) + '\n' + \
         str(np.format_float_scientific(float(plot_dict["ResidRate(us/s)"]), precision=5, min_digits=5) ) + '\n' + \
-        str(np.format_float_scientific(float(plot_dict['ResPhase']), precision=2, min_digits=2) )
-
+        str( np.round(float(plot_dict["ResidPhase(deg)"]),1) )
 
     # Add the text boxes
-    plt.text(0.03,0.2,btmtextstr1,transform=plt.gcf().transFigure,fontsize=7,verticalalignment='top',
+    plt.text(0.01,0.2,btmtextstr1,transform=plt.gcf().transFigure,fontsize=7,verticalalignment='top',
              family='monospace',horizontalalignment='left',color='k')
 
     # Add the text boxes
-    plt.text(0.25,0.2,btmtextstr2,transform=plt.gcf().transFigure,fontsize=7,verticalalignment='top',
+    plt.text(0.28,0.2,btmtextstr2,transform=plt.gcf().transFigure,fontsize=7,verticalalignment='top',
              family='monospace',horizontalalignment='right',color='k')
 
     plt.text(0.3,0.2,btmtextstr3,transform=plt.gcf().transFigure,fontsize=7,verticalalignment='top',
              family='monospace',horizontalalignment='left',color='k')
 
-    plt.text(0.55,0.2,btmtextstr4,transform=plt.gcf().transFigure,fontsize=7,verticalalignment='top',
+    plt.text(0.6,0.2,btmtextstr4,transform=plt.gcf().transFigure,fontsize=7,verticalalignment='top',
              family='monospace',horizontalalignment='right',color='k')
 
-    plt.text(0.6,0.2,btmtextstr5,transform=plt.gcf().transFigure,fontsize=7,verticalalignment='top',
+    plt.text(0.65,0.2,btmtextstr5,transform=plt.gcf().transFigure,fontsize=7,verticalalignment='top',
              family='monospace',horizontalalignment='left',color='k')
 
-    plt.text(0.85,0.2,btmtextstr6,transform=plt.gcf().transFigure,fontsize=7,verticalalignment='top',
+    plt.text(0.88,0.2,btmtextstr6,transform=plt.gcf().transFigure,fontsize=7,verticalalignment='top',
              family='monospace',horizontalalignment='right',color='k')
 
 
