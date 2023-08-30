@@ -4,6 +4,10 @@
 #include "MHO_DelayModel.hh"
 #include "MHO_Clock.hh"
 
+
+
+
+
 //calculate useful quantities used later throughout the program
 void precalculate_quantities(MHO_ContainerStore* conStore, MHO_ParameterStore* paramStore)
 {
@@ -66,13 +70,9 @@ void precalculate_quantities(MHO_ContainerStore* conStore, MHO_ParameterStore* p
     delay_model.ComputeModel();
     
     //calculate the offset to the refence time (within the scan)
-    // //TODO FIXME -- should this be the fourfit refrence time? Also...should this be calculated elsewhere?
-    // double midpoint_time = ( ap_ax->at(nap-1) + ap_delta  + ap_ax->at(0) )/2.0;
-    // std::cout<<"time midpoint = "<<midpoint_time<<std::endl;
     auto frt = hops_clock::from_vex_format(frt_vex_string);
     std::string start_vex_string = paramStore->GetAs<std::string>("/vex/scan/start");
     auto start_time = hops_clock::from_vex_format(start_vex_string);
-    
     auto offset_to_frt_duration = frt - start_time;
     double frt_offset = std::chrono::duration<double>(offset_to_frt_duration).count(); 
     paramStore->Set("frt_offset", frt_offset);
@@ -81,9 +81,11 @@ void precalculate_quantities(MHO_ContainerStore* conStore, MHO_ParameterStore* p
     double arate = delay_model.GetRate();
     double aaccel = delay_model.GetAcceleration();
 
-    paramStore->Set("/model/adelay", adelay);
-    paramStore->Set("/model/arate", arate);
-    paramStore->Set("/model/aaccel", aaccel);
+    //store and  convert to microsec 
+    //TODO FIXME - document units of all the various parameters/quantities
+    paramStore->Set("/model/adelay", 1e6*adelay);
+    paramStore->Set("/model/arate", 1e6*arate);
+    paramStore->Set("/model/aaccel", 1e6*aaccel);
     
-    
+    //get the clock model information (a priori clock offset and rate)
 }

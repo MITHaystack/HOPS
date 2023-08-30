@@ -5,6 +5,7 @@
 #include <cmath>
 
 #include "MHO_Clock.hh"
+#include "MHO_FringeRotation.hh"
 
 std::string 
 leftpadzeros_integer(unsigned int n_places, int value)
@@ -60,9 +61,100 @@ std::string calculate_qf()
     return std::string("?");
 }
 
-double calculate_residual_phase()
+// double calculate_residual_phase()
+// {
+//     return 0.0;
+// }
+
+
+double
+calculate_residual_phase(MHO_ContainerStore* conStore, MHO_ParameterStore* paramStore)
 {
-    return 0.0;
+    double total_summed_weights = paramStore->GetAs<double>("/fringe/total_summed_weights");
+    double ref_freq = paramStore->GetAs<double>("ref_freq");
+    double mbd = paramStore->GetAs<double>("/fringe/mbdelay");
+    double drate = paramStore->GetAs<double>("/fringe/drate");
+    double sbd = paramStore->GetAs<double>("/fringe/sbdelay");
+    double sbd_max_bin = paramStore->GetAs<double>("/fringe/max_sbd_bin");
+    double frt_offset = paramStore->GetAs<double>("frt_offset");
+    double ap_delta =  paramStore->GetAs<double>("ap_period");
+
+    auto weights = conStore->GetObject<weight_type>(std::string("weight"));
+    auto sbd_arr = conStore->GetObject<visibility_type>(std::string("sbd"));
+    
+    std::size_t POLPROD = 0;
+    std::size_t nchan = sbd_arr->GetDimension(CHANNEL_AXIS);
+    std::size_t nap = sbd_arr->GetDimension(TIME_AXIS);
+
+    //now we are going to loop over all of the channels/AP
+    //and perform the weighted sum of the data at the max-SBD bin
+    //with the fitted delay-rate rotation (but mbd=0) applied
+    auto chan_ax = &( std::get<CHANNEL_AXIS>(*sbd_arr) );
+    auto ap_ax = &(std::get<TIME_AXIS>(*sbd_arr));
+    auto sbd_ax = &( std::get<FREQ_AXIS>(*sbd_arr) );
+    // double ap_delta = ap_ax->at(1) - ap_ax->at(0);
+    double sbd_delta = sbd_ax->at(1) - sbd_ax->at(0);
+    
+    MHO_FringeRotation frot;
+    frot.SetSBDSeparation(sbd_delta);
+    frot.SetSBDMaxBin(sbd_max_bin);
+    frot.SetNSBDBins(sbd_ax->GetSize()/4);  //this is nlags, FACTOR OF 4 is because sbd space is padded by a factor of 4
+    frot.SetSBDMax( sbd );
+
+    std::complex<double> sum_all = 0.0;
+    for(std::size_t ch=0; ch < nchan; ch++)
+    {
+        double freq = (*chan_ax)(ch);//sky freq of this channel
+        MHO_IntervalLabel ilabel(ch,ch);
+        std::string net_sideband = "?";
+        std::string sidebandlabelkey = "net_sideband";
+        auto other_labels = chan_ax->GetIntervalsWhichIntersect(&ilabel);
+        for(auto olit = other_labels.begin(); olit != other_labels.end(); olit++)
+        {
+            if( (*olit)->HasKey(sidebandlabelkey) )
+            {
+                (*olit)->Retrieve(sidebandlabelkey, net_sideband);
+                break;
+            }
+        }
+
+        frot.SetSideband(0); //DSB
+        if(net_sideband == "U")
+        {
+            frot.SetSideband(1);
+        }
+
+        if(net_sideband == "L")
+        {
+            frot.SetSideband(-1);
+        }
+
+        for(std::size_t ap=0; ap < nap; ap++)
+        {
+            double tdelta = (ap_ax->at(ap) + ap_delta/2.0) - frt_offset; //need time difference from the f.r.t?
+            std::complex<double> vis = (*sbd_arr)(POLPROD, ch, ap, sbd_max_bin); //pick out data at SBD max bin
+            std::complex<double> vr = frot.vrot(tdelta, freq, ref_freq, drate, mbd);
+            std::complex<double> z = vis*vr;
+            //apply weight and sum
+            double w = (*weights)(POLPROD, ch, ap, 0);
+            std::complex<double> wght_phsr = z*w;
+            if(net_sideband == "U")
+            {
+                sum_all += -1.0*wght_phsr;
+            }
+            else 
+            {
+                sum_all += wght_phsr;
+            }
+        }
+    }
+
+    std::cout<<"sbd sep = "<<sbd_delta<<" sbd max = "<<sbd<<std::endl;
+    std::cout<<"sum all = "<<sum_all<<std::endl;
+
+    double coh_avg_phase = std::arg(sum_all);
+
+    return coh_avg_phase; //not quite the value which is displayed in the fringe plot (see fill type 208)
 }
 
 
@@ -97,12 +189,15 @@ void calculate_fringe_info(MHO_ContainerStore* conStore, MHO_ParameterStore* par
     double adelay = paramStore->GetAs<double>("/model/adelay");
     double arate = paramStore->GetAs<double>("/model/arate");
     double aaccel = paramStore->GetAs<double>("/model/aaccel");
+    
+
+    
 
     //TODO FIXME -- -acount for units (convert to usec)
     //NEED to acout for units everywhere!
-    adelay *= 1.0e6;
-    arate *= 1.0e6;
-    aaccel *= 1.0e6;
+    // adelay *= 1.0e6;
+    // arate *= 1.0e6;
+    // aaccel *= 1.0e6;
 
     std::string frt_vex_string = paramStore->GetAs<std::string>("/vex/scan/fourfit_reftime");
     auto frt = hops_clock::from_vex_format(frt_vex_string);
@@ -151,9 +246,29 @@ void calculate_fringe_info(MHO_ContainerStore* conStore, MHO_ParameterStore* par
     double total_npts_searched = (double)nmbd * (double)nsbd *(double)ndr;
 
     
-    double resid_phase = calculate_residual_phase();
+    double resid_phase = calculate_residual_phase(conStore, paramStore);
     // //plot_dict["ResPhase"] = std::fmod(coh_avg_phase * (180.0/M_PI), 360.0);
     paramStore->Set("/fringe/resid_phase", resid_phase);
+
+    double resid_ph_delay = resid_phase / (2.0 * M_PI * ref_freq);
+    paramStore->Set("/fringe/resid_ph_delay", resid_ph_delay);
+    
+    double ph_delay = adelay + resid_ph_delay;
+    std::cout<<"ph_delay = adelay + resid_ph_delay = "<<ph_delay<<" = "<<adelay<<" + "<<resid_ph_delay<<std::endl;
+
+    paramStore->Set("/fringe/phase_delay", ph_delay);
+    
+    
+    //calculate the a priori phase and total phase
+    double aphase = std::fmod( ref_freq*adelay*360.0, 360.0); //from fill_208.c, no conversion from radians??
+    double tot_phase = std::fmod( aphase + resid_phase*(180.0/M_PI), 360.0 );
+
+    std::cout<<"APHASE = "<<aphase<<std::endl;
+    std::cout<<"RESID PHASE = "<<resid_phase<<std::endl;
+    std::cout<<"TOTPHASE = "<<tot_phase<<std::endl;
+
+    paramStore->Set("/fringe/aphase", aphase);
+    paramStore->Set("/fringe/tot_phase", tot_phase);
 
     //calculate the probability of false detection, THIS IS BROKEN
     #pragma message("TODO FIXME - PFD calculation needs the MBD/SBD/DR windows defined")
