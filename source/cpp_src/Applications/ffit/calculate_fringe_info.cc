@@ -7,6 +7,7 @@
 #include "MHO_Clock.hh"
 #include "MHO_FringeRotation.hh"
 
+
 std::string 
 leftpadzeros_integer(unsigned int n_places, int value)
 {
@@ -90,27 +91,7 @@ std::string calculate_qf()
     return std::string("?");
 }
 
-// double calculate_residual_phase()
-// {
-//     return 0.0;
-// }
-void calculate_freq_space((MHO_ContainerStore* conStore, MHO_ParameterStore* paramStore)
-{
-    // //calculate the frequency grid for MBD search
-    // MHO_UniformGridPointsCalculator fGridCalc;
-    // fGridCalc.SetPoints( std::get<CHANNEL_AXIS>(*in).GetData(), std::get<CHANNEL_AXIS>(*in).GetSize() );
-    // fGridCalc.Calculate();
-    // 
-    // fGridStart = fGridCalc.GetGridStart();
-    // fGridSpace = fGridCalc.GetGridSpacing();
-    // fNGridPoints = fGridCalc.GetNGridPoints();
-    // fAverageFreq = fGridCalc.GetGridAverage();
-    // fMBDBinMap = fGridCalc.GetGridIndexMap();
-    // fNSBD = in->GetDimension(FREQ_AXIS);
-    // fNDR = in->GetDimension(TIME_AXIS);
 
-    
-}
 
 double
 calculate_residual_phase(MHO_ContainerStore* conStore, MHO_ParameterStore* paramStore)
@@ -283,7 +264,7 @@ void calculate_fringe_info(MHO_ContainerStore* conStore, MHO_ParameterStore* par
     //calculate quality code 
     std::string quality_code = calculate_qf();
     paramStore->Set("/fringe/quality_code", quality_code);
-    
+
     //total number of points searched 
     std::size_t nmbd = paramStore->GetAs<std::size_t>("/fringe/n_mbd_points");
     std::size_t nsbd = paramStore->GetAs<std::size_t>("/fringe/n_sbd_points");
@@ -351,16 +332,19 @@ void calculate_fringe_info(MHO_ContainerStore* conStore, MHO_ParameterStore* par
     paramStore->Set("/fringe/total_drate", tot_drate);
     
     double sbd_sep = paramStore->GetAs<double>("/fringe/sbd_separation");
-    
-    double freq_spread = 32e6; //TODO
+    double freq_spread = paramStore->GetAs<double>("/fringe/frequency_spread");
     double mbd_error = calculate_mbd_no_ion_error(freq_spread, snr);
-    double sbavg = 0.0; //TODO
+    
+    #pragma message("TODO FIXME, calculate SBAVG properly")
+    double sbavg = 1.0;
     double sbd_error = calculate_sbd_error(sbd_sep, snr, sbavg);
     double drate_error = calculate_drate_error(snr, ref_freq, integration_time);
-    
+
     paramStore->Set("/fringe/mbd_error", mbd_error);
     paramStore->Set("/fringe/sbd_error", sbd_error);
     paramStore->Set("/fringe/drate_error", drate_error);
+
+
 
     //now calculate the errors (ionosphere fitting not yet included)
     //double mbd_error = 1.0 / (2.0 * M_PI * status->freq_spread * snr);

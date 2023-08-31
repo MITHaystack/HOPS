@@ -15,6 +15,8 @@ MHO_UniformGridPointsCalculator::MHO_UniformGridPointsCalculator()
     fMaxSpacing = 0;
     fNGridPoints = 0;
     fAbsEps = 1e-30;
+    fAverageLocation = 0;
+    fSpread = 0;
     fDefaultGridPoints = 2;
     #ifdef EXTRA_INTERP_DBG
     fDefaultGridPoints = 256;
@@ -82,6 +84,27 @@ MHO_UniformGridPointsCalculator::Calculate_v1()
         ave_loc /= (double)n_pts;
 
         fAverageLocation = ave_loc;
+        
+        //determine the spread about the average 
+        double spread = 0.0;
+        for(std::size_t i=0; i<n_pts; i++)
+        {
+            double freq = fPoints[i];
+            double delta = freq - ave_loc;
+            spread += delta*delta;
+        }
+        
+        if(n_pts > 1)
+        {
+            spread = std::sqrt(spread/(double)n_pts);
+        }
+        fSpread = spread;
+
+        //TODO FIXME
+        // else 
+        // {
+        //     spread = bandwidth/std::sqrt(12.0); //uniform distribution over bandwidth
+        // }
 
         div = 1;
         bool spacing_err = false;
