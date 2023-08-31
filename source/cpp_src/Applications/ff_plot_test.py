@@ -368,6 +368,18 @@ def fourfit_plot(plot_dict, filename):
         str(np.format_float_scientific(float(plot_dict["ResidPhdelay(usec)"]), precision=5, min_digits=5) ) + '\n' + \
         str(np.format_float_scientific(float(plot_dict["ResidRate(us/s)"]), precision=5, min_digits=5) ) + '\n' + \
         str( np.round(float(plot_dict["ResidPhase(deg)"]),1) )
+        
+    btmtextstr7 = '+/-' + '\n' + \
+        '+/-' + '\n' + \
+        '+/-' + '\n' + \
+        '+/-' + '\n' + \
+        '+/-' + '\n'
+        
+    btmtextstr8 = str(np.format_float_scientific( float(plot_dict["ResidMbdelayError(usec)"]), precision=2, min_digits=2 ) )  + '\n' + \
+        str(np.format_float_scientific(float(plot_dict["ResidSbdelayError(usec)"]), precision=2, min_digits=2) ) + '\n' + \
+        str(np.format_float_scientific(float(plot_dict["ResidPhdelayError(usec)"]), precision=2, min_digits=2) ) + '\n' + \
+        str(np.format_float_scientific(float(plot_dict["ResidRateError(us/s)"]), precision=2, min_digits=2) ) + '\n' + \
+        str( np.round(float(plot_dict["ResidPhaseError(deg)"]),2) )
 
     # Add the text boxes
     plt.text(0.01,0.2,btmtextstr1,transform=plt.gcf().transFigure,fontsize=7,verticalalignment='top',
@@ -389,13 +401,11 @@ def fourfit_plot(plot_dict, filename):
     plt.text(0.88,0.2,btmtextstr6,transform=plt.gcf().transFigure,fontsize=7,verticalalignment='top',
              family='monospace',horizontalalignment='right',color='k')
 
+    plt.text(0.89,0.2,btmtextstr7,transform=plt.gcf().transFigure,fontsize=7,verticalalignment='top',
+             family='monospace',horizontalalignment='left',color='k')
 
-
-    # btmtextstr4 = 'Apriori delay (usec) ' + '\n' + \
-    #     'Apriori clock (usec) ' + '\n' + \
-    #     'Apriori clockrate (us/s) ' + '\n' + \
-    #     'Apriori rate (us/s) ' + '\n' + \
-    #     'Apriori accel (us/s/s) ' + '\n'
+    plt.text(0.97,0.2,btmtextstr8,transform=plt.gcf().transFigure,fontsize=7,verticalalignment='top',
+             family='monospace',horizontalalignment='right',color='k')
 
 
 
