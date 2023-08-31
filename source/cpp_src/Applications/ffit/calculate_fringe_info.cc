@@ -395,11 +395,25 @@ void calculate_fringe_info(MHO_ContainerStore* conStore, MHO_ParameterStore* par
     // plot_dict["TotalPhase(deg)"] = 0;
     //     //dp->fringe->t208->totphase);
     // 
-    // 
-    // plot_dict["AprioriClock(usec)"] = 0;
+    //
+    double ref_clock_off = paramStore->GetAs<double>("/ref_station/clock_offset_at_frt");
+    double rem_clock_off = paramStore->GetAs<double>("/rem_station/clock_offset_at_frt");
+    double ref_rate = paramStore->GetAs<double>("/ref_station/clock_rate");
+    double rem_rate = paramStore->GetAs<double>("/rem_station/clock_rate");
+    
+    double clock_offset = rem_clock_off - ref_clock_off;
+    double clock_rate =  rem_rate - ref_rate;
+    
+    paramStore->Set("/fringe/relative_clock_offset", clock_offset); //usec
+    paramStore->Set("/fringe/relative_clock_rate", clock_rate*1e6); //usec/s
+    
+    // plot_dict["AprioriClock(usec)"] = clock_offset;
     //     //dp->fringe->t202->rem_clock - dp->fringe->t202->ref_clock);
-    // plot_dict["AprioriClockrate(us/s)"] = 0;
+    // plot_dict["AprioriClockrate(us/s)"] = clock_rate;;
     //     //(dp->fringe->t202->rem_clockrate - dp->fringe->t202->ref_clockrate));
+    // 
+    
+    
     // 
     // plot_dict["AprioriDelay(usec)"] = paramStore->GetAs<double>("/model/adelay");         //dp->fringe->t208->adelay);
     // plot_dict["AprioriRate(us/s)"] = paramStore->GetAs<double>("/model/arate");         //dp->fringe->t208->arate);

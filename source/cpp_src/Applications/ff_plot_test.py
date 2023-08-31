@@ -352,8 +352,8 @@ def fourfit_plot(plot_dict, filename):
         'Apriori accel (us/s/s) ' + '\n'
 
     btmtextstr4 = str(np.format_float_scientific( float(plot_dict["AprioriDelay(usec)"]), precision=12, min_digits=11 ) )  + '\n' + \
-        str(np.format_float_scientific(float(plot_dict["AprioriClock(usec)"]), precision=5, min_digits=5) ) + '\n' + \
-        str(np.format_float_scientific(float(plot_dict["AprioriClockrate(us/s)"]), precision=5, min_digits=5) ) + '\n' + \
+        str(np.format_float_scientific(float(plot_dict["AprioriClock(usec)"]), precision=7, min_digits=7) ) + '\n' + \
+        str(np.format_float_scientific(float(plot_dict["AprioriClockrate(us/s)"]), precision=7, min_digits=7) ) + '\n' + \
         str(np.format_float_scientific(float(plot_dict["AprioriRate(us/s)"]), precision=11, min_digits=11) ) + '\n' + \
         str(np.format_float_scientific(float(plot_dict["AprioriAccel(us/s/s)"]), precision=11, min_digits=11) )
 

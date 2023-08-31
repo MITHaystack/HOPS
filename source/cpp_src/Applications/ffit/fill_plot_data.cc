@@ -31,33 +31,28 @@ void fill_plot_data(MHO_ParameterStore* paramStore, mho_json& plot_dict)
     plot_dict["FFTime"] = "-";
     plot_dict["BuildTime"] = "-";
 
-
     plot_dict["RA"] = paramStore->GetAs<std::string>("/vex/scan/source/ra");
     plot_dict["Dec"] = paramStore->GetAs<std::string>("/vex/scan/source/dec");
 
     // // dp->param->mbd_anchor == MODEL ? "Model(usec)" : "SBD(usec)  ",
-    plot_dict["GroupDelay"] = paramStore->GetAs<double>("/fringe/total_mbdelay");         // dp->fringe->t208->tot_mbd);
-    plot_dict["SbandDelay(usec)"] = paramStore->GetAs<double>("/fringe/total_sbdelay");   //dp->fringe->t208->tot_sbd);
-
+    plot_dict["GroupDelay"] = paramStore->GetAs<double>("/fringe/total_mbdelay");        
+    plot_dict["SbandDelay(usec)"] = paramStore->GetAs<double>("/fringe/total_sbdelay");
     plot_dict["DelayRate (us/s)"] = paramStore->GetAs<double>("/fringe/total_drate");
+    plot_dict["PhaseDelay(usec)"] = paramStore->GetAs<double>("/fringe/phase_delay");
+    plot_dict["TotalPhase(deg)"] = paramStore->GetAs<double>("/fringe/tot_phase");
+    
+    plot_dict["AprioriClock(usec)"] = paramStore->GetAs<double>("/fringe/relative_clock_offset");
+    plot_dict["AprioriClockrate(us/s)"] = paramStore->GetAs<double>("/fringe/relative_clock_rate"); 
+    plot_dict["AprioriDelay(usec)"] = paramStore->GetAs<double>("/model/adelay");
+    plot_dict["AprioriRate(us/s)"] = paramStore->GetAs<double>("/model/arate");
+    plot_dict["AprioriAccel(us/s/s)"] = paramStore->GetAs<double>("/model/aaccel");
+    
+    plot_dict["ResidMbdelay(usec)"] = paramStore->GetAs<double>("/fringe/mbdelay");
+    plot_dict["ResidSbdelay(usec)"] = paramStore->GetAs<double>("/fringe/sbdelay");
+    plot_dict["ResidPhdelay(usec)"] = paramStore->GetAs<double>("/fringe/resid_ph_delay");
+    plot_dict["ResidRate(us/s)"] = paramStore->GetAs<double>("/fringe/drate");
+    plot_dict["ResidPhase(deg)"] = paramStore->GetAs<double>("/fringe/resid_phase")*(180.0/M_PI);
 
-
-    plot_dict["PhaseDelay(usec)"] = paramStore->GetAs<double>("/fringe/phase_delay");  //dp->fringe->t208->adelay + dp->status->resid_ph_delay);
-    plot_dict["TotalPhase(deg)"] = paramStore->GetAs<double>("/fringe/tot_phase"); //dp->fringe->t208->totphase);
-    plot_dict["AprioriClock(usec)"] = 0; //dp->fringe->t202->rem_clock - dp->fringe->t202->ref_clock);
-    plot_dict["AprioriClockrate(us/s)"] = 0; //(dp->fringe->t202->rem_clockrate - dp->fringe->t202->ref_clockrate));
-
-    plot_dict["AprioriDelay(usec)"] = paramStore->GetAs<double>("/model/adelay");         //dp->fringe->t208->adelay);
-    plot_dict["AprioriRate(us/s)"] = paramStore->GetAs<double>("/model/arate");         //dp->fringe->t208->arate);
-    plot_dict["AprioriAccel(us/s/s)"] = paramStore->GetAs<double>("/model/aaccel");         //dp->fringe->t208->aaccel);
-    plot_dict["ResidMbdelay(usec)"] = paramStore->GetAs<double>("/fringe/mbdelay");         //dp->fringe->t208->resid_mbd);
-    plot_dict["ResidSbdelay(usec)"] = paramStore->GetAs<double>("/fringe/sbdelay");         //dp->fringe->t208->resid_sbd);
-
-    plot_dict["ResidPhdelay(usec)"] = paramStore->GetAs<double>("/fringe/resid_ph_delay"); //dp->status->resid_ph_delay);
-
-    plot_dict["ResidRate(us/s)"] = paramStore->GetAs<double>("/fringe/drate"); //dp->fringe->t208->resid_rate);
-
-    plot_dict["ResidPhase(deg)"] = paramStore->GetAs<double>("/fringe/resid_phase")*(180.0/M_PI); //dp->fringe->t208->resphase);
     plot_dict["ResidMbdelayError(usec)"] = 0; //dp->fringe->t208->mbd_error);
     plot_dict["ResidSbdelayError(usec)"] = 0;  //dp->fringe->t208->sbd_error);
     plot_dict["ResidPhdelayError(usec)"] = 0;  //dp->status->ph_delay_err);
