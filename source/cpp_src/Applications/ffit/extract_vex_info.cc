@@ -1,11 +1,113 @@
 #include "ffit.hh"
 
+void extract_clock_early(const mho_json& clk, 
+                         double& clock_early, 
+                         std::string& clock_early_units, 
+                         double& clock_rate, 
+                         std::string& clock_rate_units,
+                         std::string& origin,
+                         std::string& validity)
+{
+    clock_early = 0.;
+    clock_early_units = "";
+    clock_rate = 0.;
+    clock_rate_units = "";
+    origin = "";
+    validity = "";
+    //TODO deal with units!
+    if(clk.contains("clock_early_offset"))
+    {
+        clock_early = clk["clock_early_offset"]["value"].get<double>();
+        if(clk["clock_early_offset"].contains("units"))
+        {
+            clock_early_units = clk["clock_early_offset"]["units"].get<std::string>();
+        }
+    }
+
+    if(clk.contains("clock_rate")) //this is an optional vex field
+    {
+        clock_rate = clk["clock_rate"]["value"].get<double>();
+        if(clk["clock_rate"].contains("units"))
+        {
+            clock_rate_units =  clk["clock_rate"]["units"].get<std::string>();
+        }
+    }
+    
+    if(clk.contains("origin_epoch")) //this is an optional vex field
+    {
+        origin = clk["origin_epoch"].get<std::string>();
+    }
+    
+    if(clk.contains("start_validity_epoch")) //this is an optional vex field
+    {
+        validity = clk["start_validity_epoch"].get<std::string>();
+    }
+}
+
 void extract_clock_model(const mho_json& vexInfo, MHO_ParameterStore* paramStore)
 {
+    std::size_t n_clocks = 0;
+    double clock_early_offset = 0.;
+    std::string offset_units = "";
+    double clock_rate = 0.;
+    std::string rate_units = "";
+    std::string origin_epoch = "";
+    std::string start_validity_epoch = "";
+    
+
     //pulls out the appropriate segment of the clock model 
     //for the reference and remote stations and stashes in the parameter store
+    //TODO FIXME, we also need extract the clock model, as well as station information
     
+    //get the clock sections for the reference and remote stations
+    std::string ref_clock_key = "/$CLOCK/" + paramStore->GetAs<std::string>("/ref_station/clock_ref");
+
+    mho_json::json_pointer ref_clock_pointer(ref_clock_key);
+    auto ref_clock = vexInfo.at(ref_clock_pointer);
+    if( !ref_clock.contains("clock_early"))
+    {
+        msg_error("main", "root file missing $CLOCK information for reference station." << eom );
+        std::exit(1);
+    }
+
+    #pragma message("TODO FIXME - select the approprate clock interval closest to the FRT.")
+    //std::string frt_string = paramStore->GetAs<std::string>("/vex/scan/fourfit_reftime");
+
+    n_clocks = ref_clock["clock_early"].size();
+    if(n_clocks == 1)
+    {
+        auto clk = ref_clock["clock_early"][0];
+        extract_clock_early(clk, clock_early_offset, offset_units, clock_rate, rate_units, origin_epoch, start_validity_epoch);
+        paramStore->Set("/ref_station/clock_early_offset", clock_early_offset);
+        paramStore->Set("/ref_station/clock_rate", clock_rate);
+        if(offset_units != ""){paramStore->Set("/ref_station/clock_early_offset_units", offset_units);}
+        if(rate_units != ""){paramStore->Set("/ref_station/clock_rate_units", rate_units);}
+        if(origin_epoch != ""){paramStore->Set("/ref_station/clock_origin", origin_epoch);}
+        if(start_validity_epoch != ""){paramStore->Set("/ref_station/clock_validity", start_validity_epoch);}
+    }
     
+    std::string rem_clock_key = "/$CLOCK/" + paramStore->GetAs<std::string>("/rem_station/clock_ref");
+    mho_json::json_pointer rem_clock_pointer(rem_clock_key);
+    auto rem_clock = vexInfo.at(rem_clock_pointer);
+    if( !rem_clock.contains("clock_early"))
+    {
+        msg_error("main", "root file missing $CLOCK information for remote station."<< eom );
+        std::exit(1);
+    }
+    
+    n_clocks = rem_clock["clock_early"].size();
+    if(n_clocks == 1)
+    {
+        auto clk = rem_clock["clock_early"][0];
+        extract_clock_early(clk, clock_early_offset, offset_units, clock_rate, rate_units, origin_epoch, start_validity_epoch);
+        paramStore->Set("/rem_station/clock_early_offset", clock_early_offset);
+        paramStore->Set("/rem_station/clock_rate", clock_rate);
+        if(offset_units != ""){paramStore->Set("/rem_station/clock_early_offset_units", offset_units);}
+        if(rate_units != ""){paramStore->Set("/rem_station/clock_rate_units", rate_units);}
+        if(origin_epoch != ""){paramStore->Set("/rem_station/clock_origin", origin_epoch);}
+        if(start_validity_epoch != ""){paramStore->Set("/rem_station/clock_validity", start_validity_epoch);}
+    }
+
 }
 
 
@@ -62,7 +164,7 @@ void extract_vex_info(const mho_json& vexInfo, MHO_ParameterStore* paramStore)
     //need to loop over the $STATION section to grab the reference names
     //for the other sections (namely $ANTENNA and $CLOCK)
     std::string ref_id = paramStore->GetAs<std::string>("/ref_station/site_id");
-    std::string rem_id = paramStore->GetAs<std::string>("/ref_station/site_id");
+    std::string rem_id = paramStore->GetAs<std::string>("/rem_station/site_id");
 
     mho_json::json_pointer station_pointer("/$STATION");
     auto stations = vexInfo.at(station_pointer);
@@ -89,6 +191,7 @@ void extract_vex_info(const mho_json& vexInfo, MHO_ParameterStore* paramStore)
         
         if(code == rem_id)
         {
+            std::cout<<"code = "<<code<<" rem id = "<<rem_id<<std::endl;
             std::string site_ref = station->at("$SITE")[0]["keyword"].get<std::string>();
             std::string clock_ref = station->at("$CLOCK")[0]["keyword"].get<std::string>();
             std::string antenna_ref = station->at("$ANTENNA")[0]["keyword"].get<std::string>();
@@ -126,13 +229,11 @@ void extract_vex_info(const mho_json& vexInfo, MHO_ParameterStore* paramStore)
     std::string frt_loc = "/$SCHED/" + scnName + "/fourfit_reftime";
     mho_json::json_pointer frt_jptr(frt_loc);
     std::string frt_string = vexInfo.at(frt_jptr).get<std::string>();
-    std::cout<<"FOURFIT REFERENCE TIME = "<<frt_string<<std::endl;
     paramStore->Set("/vex/scan/fourfit_reftime", frt_string);
     
     std::string start_loc = "/$SCHED/" + scnName + "/start";
     mho_json::json_pointer start_jptr(start_loc);
     std::string start_string = vexInfo.at(start_jptr).get<std::string>();
-    std::cout<<"START TIME = "<<start_string<<std::endl;
     paramStore->Set("/vex/scan/start", start_string);
     
     //get experiment info
@@ -168,59 +269,7 @@ void extract_vex_info(const mho_json& vexInfo, MHO_ParameterStore* paramStore)
     paramStore->Set("/vex/scan/sample_rate", sample_rate);
     paramStore->Set("/vex/scan/sample_period", 1.0/sample_rate);
     
-    //TODO FIXME, we also need extract the clock model, as well as station information
-    
-    //get the clock sections for the reference and remote stations
-    std::string ref_clock_key = "/$CLOCK/" + paramStore->GetAs<std::string>("/ref_station/clock_ref");
-    mho_json::json_pointer ref_clock_pointer(ref_clock_key);
-    auto ref_clock = vexInfo.at(ref_clock_pointer);
-    if( !ref_clock.contains("clock_early"))
-    {
-        msg_error("main", "root file missing $CLOCK information for reference station." << eom );
-        std::exit(1);
-    }
-    
-    //loop over the 'clock_early' entries
-    std::size_t n_clocks = ref_clock["clock_early"].size();
-    std::size_t selected_interval = 0;
-    for(std::size_t i = 0; i<n_clocks; i++)
-    {
-        auto clk = ref_clock["clock_early"][i];
-        
-        if(clk.contains("clock_early_offset"))
-        {
-            
-        }
+    //extract the clock model, as well as station information
+    extract_clock_model(vexInfo, paramStore);
 
-        if(clk.contains("clock_rate"))
-        {
-            
-        }
-        
-        if(clk.contains("origin_epoch"))
-        {
-            
-        }
-        
-        if(clk.contains("start_validity_epoch"))
-        {
-            
-        }
-    }
-    
-    
-    
-    // mho_json::json_pointer clock_pointer("/$CLOCK");
-    // auto clocks = vexInfo.at(clock_pointer);
-    // if(clocks.size() < 2)
-    // {
-    //     msg_error("main", "root file contains missing or $CLOCK information." << eom );
-    //     std::exit(1);
-    // }
-    // 
-    // 
-    // 
-    
-    
-    
 }
