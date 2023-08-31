@@ -3,7 +3,42 @@
 #include "MHO_Reducer.hh"
 #include "MHO_DelayModel.hh"
 #include "MHO_Clock.hh"
+#include "MHO_UniformGridPointsCalculator.hh"
 
+void calculate_freq_space(MHO_ContainerStore* conStore, MHO_ParameterStore* paramStore)
+{
+    visibility_type* vis_data = conStore->GetObject<visibility_type>(std::string("vis"));
+
+    //calculate the frequency grid for MBD search
+    MHO_UniformGridPointsCalculator fGridCalc;
+    fGridCalc.SetPoints( std::get<CHANNEL_AXIS>(*vis_data).GetData(), std::get<CHANNEL_AXIS>(*vis_data).GetSize() );
+    fGridCalc.Calculate();
+    
+    double gridStart = fGridCalc.GetGridStart();
+    double gridSpace = fGridCalc.GetGridSpacing();
+    double ambig = 1.0/gridSpace;
+    double nGridPoints = fGridCalc.GetNGridPoints();
+    double averageFreq = fGridCalc.GetGridAverage();
+    double freqSpread = fGridCalc.GetSpread();
+    
+    //correct the frequency spread if we only have 1 channel
+    //the number of channels present after cuts 
+    int nchan = paramStore->GetAs<int>("nchannels");
+    double channel_bandwidth = paramStore->GetAs<double>("channel_bandwidth");
+    
+    if(nchan == 1)
+    {
+        freqSpread = channel_bandwidth/std::sqrt(12.0); //uniform distribution 
+    }
+    
+    paramStore->Set("/fringe/start_frequency", gridStart);
+    paramStore->Set("/fringe/frequency_spacing", gridSpace);
+    paramStore->Set("/fringe/ambiguity", ambig);
+    paramStore->Set("/fringe/n_frequency_points", nGridPoints);
+    paramStore->Set("/fringe/average_frequency", averageFreq);
+    paramStore->Set("/fringe/frequency_spread", freqSpread);
+
+}
 
 void calculate_clock_model(MHO_ParameterStore* paramStore)
 {
@@ -28,18 +63,7 @@ void calculate_clock_model(MHO_ParameterStore* paramStore)
     if(rem_origin_epoch != ""){rem_origin_tp = hops_clock::from_vex_format(rem_origin_epoch);}
 
 
-    // "ref_station": {
-    // "antenna_ref": "ALMA",
-    // "clock_early_offset": 2107.147,
-    // "clock_early_offset_units": "usec",
-    // "clock_origin": "2021y098d23h52m00s",
-    // "clock_rate": 7e-15,
-    // "clock_ref": "Aa",
-    // "clock_validity": "2021y104d12h28m00s",
-
     //TODO ALSO ENSURE THAT THE VALIDITY EPOCH IS BEFORE THE FRT
-
-
     double refdiff = 0.0;
     if(ref_rate != 0.0)
     {
@@ -95,7 +119,22 @@ void precalculate_quantities(MHO_ContainerStore* conStore, MHO_ParameterStore* p
 
     double ap_delta = ap_ax->at(1) - ap_ax->at(0);
     paramStore->Set("ap_period", ap_delta);
-
+    
+    //grab the channel bandwidth (assume to be the same for all channels)
+    auto chan_ax = &(std::get<CHANNEL_AXIS>(*vis_data));
+    auto ch0_labels = chan_ax->GetIntervalsWhichIntersect((std::size_t)0);
+    double bandwidth = 0;
+    for(auto it = ch0_labels.begin(); it != ch0_labels.end(); it++)
+    {
+        if( (*it)->HasKey("bandwidth") )
+        {
+            (*it)->Retrieve("bandwidth", bandwidth);
+            break;
+        }
+    }
+    paramStore->Set("channel_bandwidth", bandwidth);
+    
+    
     //offset to the start of the data 
     double start_offset = ap_ax->at(0);
     std::cout<<"offset to the start of the first ap = "<<start_offset<<std::endl;
@@ -107,7 +146,7 @@ void precalculate_quantities(MHO_ContainerStore* conStore, MHO_ParameterStore* p
     paramStore->Set("stop_offset", stop_offset);
 
     //the number of channels present after cuts 
-    int nchan = std::get<CHANNEL_AXIS>(*vis_data).GetSize();
+    int nchan = chan_ax->GetSize();
     paramStore->Set("nchannels", nchan);
 
     //compute the sum of the data weights
@@ -156,4 +195,8 @@ void precalculate_quantities(MHO_ContainerStore* conStore, MHO_ParameterStore* p
     
     //figureout the clock information at the FRT
     calculate_clock_model(paramStore);
+    
+    //determines properties of the frequency grid used in the MBD search
+    calculate_freq_space(conStore, paramStore);
+    
 }

@@ -75,8 +75,8 @@ void basic_fringe_search(MHO_ContainerStore* conStore, MHO_ParameterStore* param
     paramStore->Set("/fringe/max_mbd_bin", c_mbdmax);
     paramStore->Set("/fringe/max_sbd_bin", c_sbdmax);
     paramStore->Set("/fringe/max_dr_bin", c_drmax);
-    paramStore->Set("/fringe/ambiguity", 1.0/freq_spacing);
-    paramStore->Set("/fringe/average_frequency", ave_freq);
+    // paramStore->Set("/fringe/ambiguity", 1.0/freq_spacing);
+    // paramStore->Set("/fringe/average_frequency", ave_freq);
 
     std::size_t n_mbd_pts = sbd_dr_data->GetDimension(CHANNEL_AXIS);
     std::size_t n_dr_pts = sbd_dr_data->GetDimension(TIME_AXIS);
@@ -94,7 +94,6 @@ void basic_fringe_search(MHO_ContainerStore* conStore, MHO_ParameterStore* param
         
     bool optimize_closure_flag = false;
     bool is_oc_set = paramStore->Get(std::string("optimize_closure"), optimize_closure_flag );
-    std::cout<<"optimize closure??? "<<is_oc_set<<", "<<optimize_closure_flag<<std::endl;
     //NOTE, this has no effect on fringe-phase when using 'simul' algo
     //This is also true in the legacy code simul implementation, and which is
     //currently is the only one implemented
