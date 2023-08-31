@@ -83,7 +83,11 @@ MHO_DelayModel::RetrieveTag(station_coord_type* data, std::string key)
     //get the ref/rem station codes
     XTagType value;
     bool ok = fRefData->Retrieve(key, value);
-    if(!ok){msg_error("calibration", "data tag with key: "<< key <<" is missing from station data." << eom);}
+    if(!ok)
+    {
+        msg_fatal("calibration", "data tag with key: "<< key <<" is missing from station data." << eom);
+        std::exit(1);
+    }
     return value;
 }
 

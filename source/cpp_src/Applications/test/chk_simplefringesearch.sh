@@ -13,9 +13,9 @@ D2M4_EXP_NUM=1234
 SCAN_DIR=105-1800
 cd $EXP_DIR
 
-echo "Running: SimpleFringeSearch -d ./${D2H_EXP_NUM}/${SCAN_DIR} -c ./cf_test4 -b GE -p XX"
+echo "Running: ffit -d ./${D2H_EXP_NUM}/${SCAN_DIR} -c ./cf_test4 -b GE -p XX"
 
-time SimpleFringeSearch -d ./${D2H_EXP_NUM}/${SCAN_DIR} -c ./cf_test4 -b GE -p XX | grep max555 | tee ./sfs.out
+time ffit -d ./${D2H_EXP_NUM}/${SCAN_DIR} -c ./cf_test4 -b GE -p XX | grep max555 | tee ./sfs.out
 
 sfs_mbd=$( cat ./sfs.out | grep -oP 'mbd [+-]?[0-9]+([.][0-9]+)?+([e][+-][0-9]+)?' |  awk '{print $2}' )
 sfs_sbd=$( cat ./sfs.out | grep -oP 'sbd [+-]?[0-9]+([.][0-9]+)?+([e][+-][0-9]+)?' |  awk '{print $2}' )

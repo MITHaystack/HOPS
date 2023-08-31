@@ -357,6 +357,13 @@ MHO_DiFXScanProcessor::ConvertStationFileObjects()
         std::string root_code = fRootCode;
         std::string output_file = fOutputDirectory + "/" + station_mk4id + "." + root_code + ".sta";
 
+        
+        station_coord_data_ptr->Insert(std::string("station_mk4id"), station_mk4id);
+        station_coord_data_ptr->Insert(std::string("name"), std::string("station_data"));
+        // st_coord->Insert(std::string("station_name"), station_name);
+        //st_coord->Insert(std::string("model_start"), model_start_date);
+        
+
         MHO_BinaryFileInterface inter;
         bool status = inter.OpenToWrite(output_file);
         MHO_ObjectTags tags;
@@ -476,10 +483,12 @@ MHO_DiFXScanProcessor::ExtractStationCoords()
         //TODO FIXME! we need to convert this date information to a cannonical date/time-stamp class
         int mjd = antenna_poly[0]["mjd"];//start mjd
         int sec = antenna_poly[0]["sec"];//start second
+        
+        std::string model_start = get_vexdate_from_mjd_sec(mjd,sec);
 
         //length of time each spline is valid
         double duration = antenna_poly[0]["validDuration"];
-
+        
         //figure out the data dimensions
         std::size_t n_order = antenna_poly[0]["order"];
         std::size_t n_coord = NCOORD; //note we do not manufacture a phase-spline (e.g. type_302)
@@ -522,6 +531,20 @@ MHO_DiFXScanProcessor::ExtractStationCoords()
                 st_coord->at(6,i,p) = poly_interval["w"][p];
             }
         }
+        
+        //tag the station data structure with all the meta data from the type_300
+
+
+        st_coord->Insert(std::string("station_code"), station_code);
+        int nsplines = n_poly;
+        st_coord->Insert(std::string("nsplines"), nsplines);
+        st_coord->Insert(std::string("model_interval"), duration);
+        st_coord->Insert(std::string("model_start"), model_start);
+        
+        //st_coord->Insert(std::string("station_name"), station_name);
+        //st_coord->Insert(std::string("model_start"), model_start_date);
+        
+        
     }
 }
 
@@ -559,5 +582,14 @@ MHO_DiFXScanProcessor::get_fourfit_reftime_for_scan(mho_json scan_obj)
     return frt;
 }
 
+
+
+std::string
+MHO_DiFXScanProcessor::get_vexdate_from_mjd_sec(double mjd, double sec)
+{
+    double total_mjd = mjd + sec/86400.0;
+    auto mjd_tp = hops_clock::from_mjd(total_mjd);
+    return hops_clock::to_vex_format(mjd_tp);
+}
 
 }//end of namespace

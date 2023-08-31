@@ -26,6 +26,7 @@
 #include "legacy_hops_date.hh"
 
 #define J2000_TAI_EPOCH "2000-01-01 11:59:27.816"
+#define J2000_MJD_EPOCH 51544.50000 //how sure are we about this???!
 #define ISO8601_UTC_FORMAT "%FT%TZ"
 #define HOPS_TIMESTAMP_PREFIX "HOPS-J2000"
 #define HOPS_TIME_DELIM "|"
@@ -126,6 +127,10 @@ class hops_clock
         static
         std::chrono::time_point<hops_clock, std::chrono::nanoseconds >
         from_vex_format(const std::string& timestamp);
+        
+        static
+        std::chrono::time_point<hops_clock, std::chrono::nanoseconds >
+        from_mjd(const double& mjd);
 
         static
         std::string
@@ -451,6 +456,15 @@ hops_clock::to_legacy_hops_date(const std::chrono::time_point<hops_clock, std::c
     return ldate;
 }
 
+inline 
+std::chrono::time_point<hops_clock, std::chrono::nanoseconds >
+hops_clock::from_mjd(const double& mjd)
+{
+    double delta = mjd - J2000_MJD_EPOCH;
+    std::chrono::duration<double> duration_seconds(delta);
+    auto hops_epoch_start = get_hops_epoch_utc();
+    return hops_time< std::chrono::nanoseconds >( hops_epoch_start.time_since_epoch() + std::chrono::duration_cast< std::chrono::nanoseconds >(duration_seconds) );
+}
 
 inline
 std::chrono::time_point<hops_clock, std::chrono::nanoseconds >
