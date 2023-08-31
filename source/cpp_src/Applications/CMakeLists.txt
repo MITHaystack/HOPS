@@ -53,9 +53,6 @@ if(HOPS_USE_PYBIND11)
     #     target_link_libraries( ${BASENAME} ${HOPS_TEST_LIBS} ${PYBIND_TEST_LIBS})
     # endforeach( BASENAME )
     # hops_install_executables( ${PYBIND_TEST_BASENAMES} )
-
-    #temp work around until we do this properly
-    install(PROGRAMS "${CMAKE_CURRENT_SOURCE_DIR}/ff_plot_test.py" DESTINATION ${PYTHON_MODULE_INSTALL_DIR})
 endif(HOPS_USE_PYBIND11)
 
 foreach( BASENAME ${SOURCE_BASENAMES} )

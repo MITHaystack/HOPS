@@ -82,6 +82,12 @@ MHO_DelayModel::ComputeModel()
 void
 MHO_DelayModel::CheckSplineInterval(int n_intervals, double tdiff, int& int_no, std::string station_id)
 {
+    if(n_intervals == 0)
+    {
+        msg_fatal("calibration", "number of spline intervals is 0, missing or malformed data?" << eom );
+        std::exit(1);
+    }
+    
     if(tdiff < 0.0)
     {
         msg_warn("calibration", "fourfit reference time is outside of station: "<<station_id<<" spline range - must extrapolate!" << eom);
