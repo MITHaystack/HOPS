@@ -85,11 +85,29 @@ double calculate_pfd(double snr, double pts_searched)
     return pfd;
 }
 
+double calculate_phase_error(double sbavg, double snr)
+{
+    //no ionosphere
+    double sband_err = std::sqrt (1.0 + 3.0 * (sbavg * sbavg)); //why?
+    double phase_err = 180.0 * sband_err / (M_PI * snr);
+    return phase_err;
+}
+
+double calculate_phase_delay_error(double sbavg, double snr, double ref_freq)
+{
+    //no ionosphere
+    double sband_err = std::sqrt (1.0 + 3.0 * (sbavg * sbavg));
+    double ph_delay_err = sband_err / (2.0 * M_PI * snr * ref_freq);
+    return ph_delay_err;
+}
+
 std::string calculate_qf()
 {
     //dummy 
     return std::string("?");
 }
+
+
 
 
 
@@ -337,6 +355,7 @@ void calculate_fringe_info(MHO_ContainerStore* conStore, MHO_ParameterStore* par
     
     #pragma message("TODO FIXME, calculate SBAVG properly")
     double sbavg = 1.0;
+    
     double sbd_error = calculate_sbd_error(sbd_sep, snr, sbavg);
     double drate_error = calculate_drate_error(snr, ref_freq, integration_time);
 
@@ -344,7 +363,11 @@ void calculate_fringe_info(MHO_ContainerStore* conStore, MHO_ParameterStore* par
     paramStore->Set("/fringe/sbd_error", sbd_error);
     paramStore->Set("/fringe/drate_error", drate_error);
 
-
+    double ph_err = calculate_phase_error(sbavg, snr);
+    double phdelay_err = calculate_phase_delay_error(sbavg, snr, ref_freq);
+    
+    paramStore->Set("/fringe/phase_error", ph_err);
+    paramStore->Set("/fringe/phase_delay_error", phdelay_err);
 
     //now calculate the errors (ionosphere fitting not yet included)
     //double mbd_error = 1.0 / (2.0 * M_PI * status->freq_spread * snr);
