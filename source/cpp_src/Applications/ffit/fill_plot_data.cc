@@ -53,10 +53,10 @@ void fill_plot_data(MHO_ParameterStore* paramStore, mho_json& plot_dict)
     plot_dict["ResidRate(us/s)"] = paramStore->GetAs<double>("/fringe/drate");
     plot_dict["ResidPhase(deg)"] = paramStore->GetAs<double>("/fringe/resid_phase")*(180.0/M_PI);
 
-    plot_dict["ResidMbdelayError(usec)"] = 0; //dp->fringe->t208->mbd_error);
-    plot_dict["ResidSbdelayError(usec)"] = 0;  //dp->fringe->t208->sbd_error);
+    plot_dict["ResidMbdelayError(usec)"] = paramStore->GetAs<double>("/fringe/mbd_error"); //dp->fringe->t208->mbd_error);
+    plot_dict["ResidSbdelayError(usec)"] = paramStore->GetAs<double>("/fringe/sbd_error");  //dp->fringe->t208->sbd_error);
     plot_dict["ResidPhdelayError(usec)"] = 0;  //dp->status->ph_delay_err);
-    plot_dict["ResidRateError(us/s)"] = 0; //dp->fringe->t208->rate_error);
+    plot_dict["ResidRateError(us/s)"] = paramStore->GetAs<double>("/fringe/drate_error"); //dp->fringe->t208->rate_error);
     plot_dict["ResidPhaseError(deg)"] = 0;  //dp->status->phase_err);
 
 }

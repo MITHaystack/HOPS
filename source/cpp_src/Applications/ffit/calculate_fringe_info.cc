@@ -44,6 +44,35 @@ double calculate_snr(double effective_npol, double ap_period, double samp_period
     return snr;
 }
 
+double calculate_mbd_no_ion_error(double freq_spread, double snr)
+{
+    double mbd_err = (1.0 / (2.0 * M_PI * freq_spread * snr) );
+    return mbd_err;
+}
+
+double calculate_sbd_error(double sbd_sep, double snr, double sbavg)
+{
+    /* get proper weighting for sbd error estimate */
+    // status->sbavg = 0.0;
+    // for (fr = 0; fr < pass->nfreq; fr++)
+    // for (ap = pass->ap_off; ap < pass->ap_off + pass->num_ap; ap++) 
+    // status->sbavg += pass->pass_data[fr].data[ap].sband;
+    // status->sbavg /= status->total_ap;
+
+    double sbd_err = (std::sqrt(12.0) * sbd_sep * 4.0) / (2.0 * M_PI * snr * (2.0 - std::fabs(sbavg)) ) ;
+    return sbd_err;
+}
+
+//double calculate_drate_error(double snr, double ref_freq, double total_ap, double ap_delta, double nchan)
+double calculate_drate_error(double snr, double ref_freq, double integration_time)
+{
+    // temp = status->total_ap * param->acc_period / pass->channels;
+    //double temp = total_ap*ap_delta/nchan;
+    double temp = integration_time;
+    double drate_error = std::sqrt(12.0) / ( 2.0 * M_PI * snr * ref_freq * temp) ;
+    return drate_error;
+}
+
 double calculate_pfd(double snr, double pts_searched)
 {
     double a = 1.0 - std::exp(-1.0*(snr*snr)/ 2.0);
@@ -65,7 +94,23 @@ std::string calculate_qf()
 // {
 //     return 0.0;
 // }
+void calculate_freq_space((MHO_ContainerStore* conStore, MHO_ParameterStore* paramStore)
+{
+    // //calculate the frequency grid for MBD search
+    // MHO_UniformGridPointsCalculator fGridCalc;
+    // fGridCalc.SetPoints( std::get<CHANNEL_AXIS>(*in).GetData(), std::get<CHANNEL_AXIS>(*in).GetSize() );
+    // fGridCalc.Calculate();
+    // 
+    // fGridStart = fGridCalc.GetGridStart();
+    // fGridSpace = fGridCalc.GetGridSpacing();
+    // fNGridPoints = fGridCalc.GetNGridPoints();
+    // fAverageFreq = fGridCalc.GetGridAverage();
+    // fMBDBinMap = fGridCalc.GetGridIndexMap();
+    // fNSBD = in->GetDimension(FREQ_AXIS);
+    // fNDR = in->GetDimension(TIME_AXIS);
 
+    
+}
 
 double
 calculate_residual_phase(MHO_ContainerStore* conStore, MHO_ParameterStore* paramStore)
@@ -94,6 +139,8 @@ calculate_residual_phase(MHO_ContainerStore* conStore, MHO_ParameterStore* param
     auto sbd_ax = &( std::get<FREQ_AXIS>(*sbd_arr) );
     // double ap_delta = ap_ax->at(1) - ap_ax->at(0);
     double sbd_delta = sbd_ax->at(1) - sbd_ax->at(0);
+    
+    paramStore->Set("/fringe/sbd_separation", sbd_delta);
     
     MHO_FringeRotation frot;
     frot.SetSBDSeparation(sbd_delta);
@@ -189,8 +236,6 @@ void calculate_fringe_info(MHO_ContainerStore* conStore, MHO_ParameterStore* par
     double adelay = paramStore->GetAs<double>("/model/adelay");
     double arate = paramStore->GetAs<double>("/model/arate");
     double aaccel = paramStore->GetAs<double>("/model/aaccel");
-    
-
     
 
     //TODO FIXME -- -acount for units (convert to usec)
@@ -304,6 +349,18 @@ void calculate_fringe_info(MHO_ContainerStore* conStore, MHO_ParameterStore* par
     paramStore->Set("/fringe/total_sbdelay", tot_sbd);
     paramStore->Set("/fringe/total_mbdelay", tot_mbd);
     paramStore->Set("/fringe/total_drate", tot_drate);
+    
+    double sbd_sep = paramStore->GetAs<double>("/fringe/sbd_separation");
+    
+    double freq_spread = 32e6; //TODO
+    double mbd_error = calculate_mbd_no_ion_error(freq_spread, snr);
+    double sbavg = 0.0; //TODO
+    double sbd_error = calculate_sbd_error(sbd_sep, snr, sbavg);
+    double drate_error = calculate_drate_error(snr, ref_freq, integration_time);
+    
+    paramStore->Set("/fringe/mbd_error", mbd_error);
+    paramStore->Set("/fringe/sbd_error", sbd_error);
+    paramStore->Set("/fringe/drate_error", drate_error);
 
     //now calculate the errors (ionosphere fitting not yet included)
     //double mbd_error = 1.0 / (2.0 * M_PI * status->freq_spread * snr);
