@@ -13,7 +13,6 @@
 
 //WHY THE 5 SECOND OFFSET?
 #define DIFX_J2000_MJD_EPOCH_ISO8601 "2000-01-01T12:00:05.000000000Z"
-// #define DIFX_J2000_MJD_EPOCH "2000-01-01 12:00:05.000" //this is UTC
 #define DIFX_J2000_MJD_EPOCH_OFFSET 51544.50000 
 
 namespace hops
@@ -485,13 +484,12 @@ MHO_DiFXScanProcessor::ExtractStationCoords()
         mho_json antenna_poly = fInput["scan"][scan_index]["DifxPolyModel"][n][phase_center];
 
         //figure out the start time of this polynomial
-        //TODO FIXME! we need to convert this date information to a cannonical date/time-stamp class
+        //and convert this date information to a cannonical date/time-stamp class
         int mjd = antenna_poly[0]["mjd"];//start mjd
         int sec = antenna_poly[0]["sec"];//start second
         
         std::cout<<"MJD = "<<mjd<<std::endl;
         std::cout<<"SEC = "<<sec<<std::endl;
-
 
         std::string model_start = get_vexdate_from_mjd_sec(mjd,sec);
 
@@ -544,18 +542,14 @@ MHO_DiFXScanProcessor::ExtractStationCoords()
         }
         
         //tag the station data structure with all the meta data from the type_300
-
-
         st_coord->Insert(std::string("station_code"), station_code);
-        int nsplines = n_poly;
-        st_coord->Insert(std::string("nsplines"), nsplines);
         st_coord->Insert(std::string("model_interval"), duration);
         st_coord->Insert(std::string("model_start"), model_start);
-        
-        //st_coord->Insert(std::string("station_name"), station_name);
-        //st_coord->Insert(std::string("model_start"), model_start_date);
-        
-        
+
+        //store n_poly as int
+        int nsplines = n_poly;
+        st_coord->Insert(std::string("nsplines"), nsplines);
+
     }
 }
 

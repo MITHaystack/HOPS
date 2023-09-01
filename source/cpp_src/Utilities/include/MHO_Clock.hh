@@ -38,7 +38,7 @@
 #define HOPS_TIME_UNIT "ns"
 #define NANOSEC_TO_SEC 1e-9
 #define SEC_TO_NANOSEC 1000000000
-
+#define JD_TO_SEC 86400.0
 
 namespace hops 
 {
@@ -481,13 +481,11 @@ hops_clock::from_mjd(const std::string& mjd_epoch_utc_iso8601, const double& epo
     auto mjd_epoch_utc = std::chrono::time_point_cast<std::chrono::nanoseconds>(mjd_epoch);
 
     double delta = (mjd - epoch_offset); 
-    std::cout<<"delta = "<<delta<<std::endl;
-    delta *= 86400.0; 
+    delta *= JD_TO_SEC; 
     std::chrono::duration<double> duration_seconds(delta);
 
     auto utc_time_point = mjd_epoch_utc + std::chrono::duration_cast< std::chrono::nanoseconds >(duration_seconds);
     auto hops_time_point = from_utc(utc_time_point);
-    std::cout<<"epoch start: "<< to_iso8601_format(hops_time_point) <<std::endl;
     return hops_time_point;
 }
 
@@ -501,17 +499,12 @@ hops_clock::to_mjd(const std::string& mjd_epoch_utc_iso8601, const double& epoch
     std::istream stream(ss.rdbuf());
     date::from_stream(stream, frmt.c_str(), mjd_epoch);
     auto mjd_epoch_utc = std::chrono::time_point_cast<std::chrono::nanoseconds>(mjd_epoch);
-
-    std::cout<<"mjd_epoch_utc = "<<to_iso8601_format(from_utc(mjd_epoch_utc))<<std::endl;
-
     auto tp_utc = to_utc(tp);
 
     double delta = (tp_utc - mjd_epoch_utc).count();
     delta *= NANOSEC_TO_SEC; //convert to seconds
-    delta /= 86400.0; //convert to days
-    std::cout<<"delta = "<<delta<<std::endl;
+    delta /= JD_TO_SEC; //convert to days
     delta += epoch_offset; //subtract epoch offset
-    std::cout<<"delta + epoch = "<<delta<<std::endl;
     return delta;
 }
 
