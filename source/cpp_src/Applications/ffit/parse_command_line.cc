@@ -24,7 +24,7 @@ int parse_command_line(int argc, char** argv, MHO_ParameterStore* paramStore)
                                           {"message-level", required_argument, 0, 'm'},
                                           {"output", required_argument, 0, 'o'}};
 
-    static const char* optString = "hd:c:b:p:o:";
+    static const char* optString = "hd:c:b:p:o:m:";
 
     while(true)
     {
