@@ -26,7 +26,10 @@
 #include "legacy_hops_date.hh"
 
 #define J2000_TAI_EPOCH "2000-01-01 11:59:27.816"
-#define J2000_MJD_EPOCH 51544.50000 //how sure are we about this???!
+#define J2000_MJD_EPOCH "2000-01-01 12:00:05.000"
+#define J2000_MJD_EPOCH_OFFSET 51544.50000 // 51544.5003725
+//2443144.5003725
+
 #define ISO8601_UTC_FORMAT "%FT%TZ"
 #define HOPS_TIMESTAMP_PREFIX "HOPS-J2000"
 #define HOPS_TIME_DELIM "|"
@@ -460,10 +463,28 @@ inline
 std::chrono::time_point<hops_clock, std::chrono::nanoseconds >
 hops_clock::from_mjd(const double& mjd)
 {
-    double delta = mjd - J2000_MJD_EPOCH;
+
+    std::string frmt = "%F %T";
+    std::string j2000 = J2000_MJD_EPOCH;
+    //std::string j2000 = J2000_MJD_TAI_EPOCH;
+    //date::tai_time<std::chrono::nanoseconds> j2000_mjd_epoch;
+    date::utc_time<std::chrono::nanoseconds> j2000_mjd_epoch;
+    std::istringstream ss(j2000);
+    std::istream stream(ss.rdbuf());
+    date::from_stream(stream, frmt.c_str(), j2000_mjd_epoch);
+    //auto mjd_epoch_utc = std::chrono::time_point_cast<std::chrono::nanoseconds>( date::tai_clock::to_utc( j2000_mjd_epoch ) );
+    auto mjd_epoch_utc = std::chrono::time_point_cast<std::chrono::nanoseconds>( j2000_mjd_epoch );
+
+    double delta = (mjd - J2000_MJD_EPOCH_OFFSET); 
+    std::cout<<"delta = "<<delta<<std::endl;
+    delta *= 86400.0;
     std::chrono::duration<double> duration_seconds(delta);
-    auto hops_epoch_start = get_hops_epoch_utc();
-    return hops_time< std::chrono::nanoseconds >( hops_epoch_start.time_since_epoch() + std::chrono::duration_cast< std::chrono::nanoseconds >(duration_seconds) );
+    // auto hops_epoch_start = get_hops_epoch_utc();
+
+    auto utc_time_point = mjd_epoch_utc + std::chrono::duration_cast< std::chrono::nanoseconds >(duration_seconds);
+    auto hops_time_point = from_utc(utc_time_point);
+    std::cout<<"epoch start: "<< to_iso8601_format(hops_time_point) <<std::endl;
+    return hops_time_point;
 }
 
 inline
