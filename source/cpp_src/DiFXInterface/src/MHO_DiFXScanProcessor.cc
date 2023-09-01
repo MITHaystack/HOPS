@@ -526,7 +526,7 @@ MHO_DiFXScanProcessor::ExtractStationCoords()
             std::get<COEFF_AXIS>(*st_coord)[i] = i;
         }
 
-        double MICROSEC_TO_SEC = 1e-6; //need to match difx2mark4 convention
+        double NEG_MICROSEC_TO_SEC = -1e-6; //need to match difx2mark4 convention
 
         for(std::size_t i=0; i<n_poly; i++)
         {
@@ -552,7 +552,7 @@ MHO_DiFXScanProcessor::ExtractStationCoords()
                 v = poly_interval["v"][p];
                 w = poly_interval["w"][p];
 
-                st_coord->at(0,i,p) = MICROSEC_TO_SEC * delay;
+                st_coord->at(0,i,p) = NEG_MICROSEC_TO_SEC * delay;
 
                 st_coord->at(1,i,p) = az;
                 st_coord->at(2,i,p) = el;

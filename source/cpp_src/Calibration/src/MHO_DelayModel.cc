@@ -29,6 +29,10 @@ MHO_DelayModel::ComputeModel()
         //get the ref/rem station codes
         std::string ref_code = RetrieveTag<std::string>(fRefData, "station_code");
         std::string rem_code = RetrieveTag<std::string>(fRemData, "station_code");
+        
+        msg_warn("calibration", "reference staion code: " << ref_code << eom );
+        msg_warn("calibration", "remote staion code: " << rem_code << eom );
+
 
         //get the ref/rem station delay model start times
         std::string ref_mod_start = RetrieveTag<std::string>(fRefData, "model_start");
@@ -73,6 +77,9 @@ MHO_DelayModel::ComputeModel()
         double rem_dra[3];
         auto rem_coeff = fRemData->SubView(DELAY_COEFF_INDEX, rem_int_no); //extract spline coeffs for delay at this interval;
         EvaluateDelaySpline(rem_coeff, rem_t, rem_dra);
+
+        std::cout<<"ref dra = "<<ref_dra[0]<<std::endl;
+        std::cout<<"rem dra = "<<rem_dra[0]<<std::endl;
 
         fDelay = rem_dra[0] - ref_dra[0];
         fRate = rem_dra[1] - ref_dra[1];
