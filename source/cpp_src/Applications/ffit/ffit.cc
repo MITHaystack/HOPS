@@ -189,6 +189,12 @@ int main(int argc, char** argv)
     // std::cout<< plot_dict.dump(2) <<std::endl;
     // std::cout<<"------------------------------------"<<std::endl;
 
+    //open and dump to file
+    std::string fdump = "fdump.json";
+    std::ofstream fdumpFile(fdump.c_str(), std::ofstream::out);
+    fdumpFile << plot_dict;
+    fdumpFile.close();
+
     #ifdef USE_PYBIND11
     
     msg_debug("main", "python plot generation enabled." << eom );
