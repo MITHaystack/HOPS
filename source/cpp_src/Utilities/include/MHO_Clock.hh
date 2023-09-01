@@ -26,8 +26,8 @@
 #include "legacy_hops_date.hh"
 
 #define J2000_TAI_EPOCH "2000-01-01 11:59:27.816"
-#define J2000_MJD_EPOCH "2000-01-01 12:00:05.000" //THIS IS A UTC TIME STAMP, BUT WHY ARE WE OFF BY 5 SECONDS?
-#define J2000_MJD_EPOCH_OFFSET 51544.50000 
+// #define J2000_MJD_EPOCH "2000-01-01 12:00:05.000" //THIS IS A UTC TIME STAMP, BUT WHY ARE WE OFF BY 5 SECONDS?
+// #define J2000_MJD_EPOCH_OFFSET 51544.50000 
 
 // #define J2000_MJD_EPOCH "2000-01-01 00:00:00.000"
 // #define J2000_MJD_EPOCH_OFFSET 51544.0
@@ -135,7 +135,11 @@ class hops_clock
         
         static
         std::chrono::time_point<hops_clock, std::chrono::nanoseconds >
-        from_mjd(const double& mjd);
+        from_mjd(const std::string& mjd_epoch_utc_iso8601, const double& epoch_offset, const double& mjd);
+
+        static
+        double
+        to_mjd(const std::string& mjd_epoch_utc_iso8601, const double& epoch_offset, const std::chrono::time_point<hops_clock, std::chrono::nanoseconds >& tp);
 
         static
         std::string
@@ -461,33 +465,56 @@ hops_clock::to_legacy_hops_date(const std::chrono::time_point<hops_clock, std::c
     return ldate;
 }
 
+
+
+
 inline 
 std::chrono::time_point<hops_clock, std::chrono::nanoseconds >
-hops_clock::from_mjd(const double& mjd)
+hops_clock::from_mjd(const std::string& mjd_epoch_utc_iso8601, const double& epoch_offset, const double& mjd)
 {
 
-    std::string frmt = "%F %T";
-    std::string j2000 = J2000_MJD_EPOCH;
-    //std::string j2000 = J2000_MJD_TAI_EPOCH;
-    //date::tai_time<std::chrono::nanoseconds> j2000_mjd_epoch;
-    date::utc_time<std::chrono::nanoseconds> j2000_mjd_epoch;
-    std::istringstream ss(j2000);
+    std::string frmt = ISO8601_UTC_FORMAT;
+    date::utc_time<std::chrono::nanoseconds> mjd_epoch;
+    std::istringstream ss(mjd_epoch_utc_iso8601);
     std::istream stream(ss.rdbuf());
-    date::from_stream(stream, frmt.c_str(), j2000_mjd_epoch);
-    //auto mjd_epoch_utc = std::chrono::time_point_cast<std::chrono::nanoseconds>( date::tai_clock::to_utc( j2000_mjd_epoch ) );
-    auto mjd_epoch_utc = std::chrono::time_point_cast<std::chrono::nanoseconds>( j2000_mjd_epoch );
+    date::from_stream(stream, frmt.c_str(), mjd_epoch);
+    auto mjd_epoch_utc = std::chrono::time_point_cast<std::chrono::nanoseconds>(mjd_epoch);
 
-    double delta = (mjd - J2000_MJD_EPOCH_OFFSET); 
+    double delta = (mjd - epoch_offset); 
     std::cout<<"delta = "<<delta<<std::endl;
-    delta *= 86400.0;
+    delta *= 86400.0; 
     std::chrono::duration<double> duration_seconds(delta);
-    // auto hops_epoch_start = get_hops_epoch_utc();
 
     auto utc_time_point = mjd_epoch_utc + std::chrono::duration_cast< std::chrono::nanoseconds >(duration_seconds);
     auto hops_time_point = from_utc(utc_time_point);
     std::cout<<"epoch start: "<< to_iso8601_format(hops_time_point) <<std::endl;
     return hops_time_point;
 }
+
+inline
+double
+hops_clock::to_mjd(const std::string& mjd_epoch_utc_iso8601, const double& epoch_offset, const std::chrono::time_point<hops_clock, std::chrono::nanoseconds >& tp)
+{
+    std::string frmt = ISO8601_UTC_FORMAT;
+    date::utc_time<std::chrono::nanoseconds> mjd_epoch;
+    std::istringstream ss(mjd_epoch_utc_iso8601);
+    std::istream stream(ss.rdbuf());
+    date::from_stream(stream, frmt.c_str(), mjd_epoch);
+    auto mjd_epoch_utc = std::chrono::time_point_cast<std::chrono::nanoseconds>(mjd_epoch);
+
+    std::cout<<"mjd_epoch_utc = "<<to_iso8601_format(from_utc(mjd_epoch_utc))<<std::endl;
+
+    auto tp_utc = to_utc(tp);
+
+    double delta = (tp_utc - mjd_epoch_utc).count();
+    delta *= NANOSEC_TO_SEC; //convert to seconds
+    delta /= 86400.0; //convert to days
+    std::cout<<"delta = "<<delta<<std::endl;
+    delta += epoch_offset; //subtract epoch offset
+    std::cout<<"delta + epoch = "<<delta<<std::endl;
+    return delta;
+}
+
 
 inline
 std::chrono::time_point<hops_clock, std::chrono::nanoseconds >

@@ -11,7 +11,10 @@
 
 #define EPS 1e-15
 
-
+//WHY THE 5 SECOND OFFSET?
+#define DIFX_J2000_MJD_EPOCH_ISO8601 "2000-01-01T12:00:05.000000000Z"
+// #define DIFX_J2000_MJD_EPOCH "2000-01-01 12:00:05.000" //this is UTC
+#define DIFX_J2000_MJD_EPOCH_OFFSET 51544.50000 
 
 namespace hops
 {
@@ -599,7 +602,14 @@ MHO_DiFXScanProcessor::get_vexdate_from_mjd_sec(double mjd, double sec)
     
     std::cout<<"total mjd = "<<std::setprecision(15)<<total_mjd<<std::endl;
 
-    auto mjd_tp = hops_clock::from_mjd(total_mjd);
+    auto mjd_tp = hops_clock::from_mjd(DIFX_J2000_MJD_EPOCH_ISO8601, DIFX_J2000_MJD_EPOCH_OFFSET, total_mjd);
+
+    std::cout<<"mjd_tp = "<<hops_clock::to_iso8601_format(mjd_tp)<<std::endl;
+
+    double back_mjd = hops_clock::to_mjd(DIFX_J2000_MJD_EPOCH_ISO8601, DIFX_J2000_MJD_EPOCH_OFFSET, mjd_tp);
+
+    std::cout<<"read back mjd = "<<back_mjd<<std::endl;
+
     return hops_clock::to_vex_format(mjd_tp);
 }
 
