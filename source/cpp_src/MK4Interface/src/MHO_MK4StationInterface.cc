@@ -91,7 +91,7 @@ MHO_MK4StationInterface::ExtractStationFile()
         ldate.hour = model_start.hour;
         ldate.minute = model_start.minute;
         ldate.second = model_start.second;
-        std::string model_start_date = MHO_LegacyDateConverter::ConvertToISO8601Format(ldate);
+        std::string model_start_date = MHO_LegacyDateConverter::ConvertToVexFormat(ldate);
 
         //retrieve the station name/id
         std::string mk4_id = getstr(&(t300->id), 1);
