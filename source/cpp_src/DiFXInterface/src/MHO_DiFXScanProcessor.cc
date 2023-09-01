@@ -7,6 +7,8 @@
 
 #include <math.h>
 
+#include <iomanip>
+
 #define EPS 1e-15
 
 
@@ -484,7 +486,13 @@ MHO_DiFXScanProcessor::ExtractStationCoords()
         int mjd = antenna_poly[0]["mjd"];//start mjd
         int sec = antenna_poly[0]["sec"];//start second
         
+        std::cout<<"MJD = "<<mjd<<std::endl;
+        std::cout<<"SEC = "<<sec<<std::endl;
+
+
         std::string model_start = get_vexdate_from_mjd_sec(mjd,sec);
+
+        std::cout<<"MODEL START = "<<model_start<<std::endl;;
 
         //length of time each spline is valid
         double duration = antenna_poly[0]["validDuration"];
@@ -587,7 +595,10 @@ MHO_DiFXScanProcessor::get_fourfit_reftime_for_scan(mho_json scan_obj)
 std::string
 MHO_DiFXScanProcessor::get_vexdate_from_mjd_sec(double mjd, double sec)
 {
-    double total_mjd = mjd + sec/86400.0;
+    double total_mjd = (double)mjd + (double)sec /86400.0;
+    
+    std::cout<<"total mjd = "<<std::setprecision(15)<<total_mjd<<std::endl;
+
     auto mjd_tp = hops_clock::from_mjd(total_mjd);
     return hops_clock::to_vex_format(mjd_tp);
 }
