@@ -3,7 +3,7 @@ if(PY_EXE AND HOPS3_PYTHON_EXTRAS AND NOT HOPS3_USE_CXX)
     #just wholesale copy the entire python source directory into the build directory
     #because the pythonic wizards who wrote setuptools like to pollute the source
     #directory with egg.info garbage
-    # file(COPY "${CMAKE_CURRENT_SOURCE_DIR}/" DESTINATION "${CMAKE_CURRENT_BINARY_DIR}/")
+    file(COPY "${CMAKE_CURRENT_SOURCE_DIR}/" DESTINATION "${CMAKE_CURRENT_BINARY_DIR}/")
 
     set(abs_srcdir "${CMAKE_CURRENT_BINARY_DIR}")
 
