@@ -179,22 +179,24 @@ void extract_vex_info(const mho_json& vexInfo, MHO_ParameterStore* paramStore)
     {
         std::string code = station.key();
         std::cout<<"STATION CODE = "<<code<<std::endl;
+        //default reference keywords are just the 2-char station code
+        std::string site_ref = code;
+        std::string clock_ref = code;
+        std::string antenna_ref = code;
         if(code == ref_id)
         {
-            std::string site_ref = station->at("$SITE")[0]["keyword"].get<std::string>();
-            std::string clock_ref = station->at("$CLOCK")[0]["keyword"].get<std::string>();
-            std::string antenna_ref = station->at("$ANTENNA")[0]["keyword"].get<std::string>();
+            if(station->contains("$SITE")){site_ref = station->at("$SITE")[0]["keyword"].get<std::string>();}
+            if(station->contains("$CLOCK")){clock_ref = station->at("$CLOCK")[0]["keyword"].get<std::string>();}
+            if(station->contains("$ANTENNA")){antenna_ref = station->at("$ANTENNA")[0]["keyword"].get<std::string>();}
             paramStore->Set("/ref_station/site_ref", site_ref);
             paramStore->Set("/ref_station/clock_ref", clock_ref);
             paramStore->Set("/ref_station/antenna_ref", antenna_ref);
         }
-        
         if(code == rem_id)
         {
-            std::cout<<"code = "<<code<<" rem id = "<<rem_id<<std::endl;
-            std::string site_ref = station->at("$SITE")[0]["keyword"].get<std::string>();
-            std::string clock_ref = station->at("$CLOCK")[0]["keyword"].get<std::string>();
-            std::string antenna_ref = station->at("$ANTENNA")[0]["keyword"].get<std::string>();
+            if(station->contains("$SITE")){site_ref = station->at("$SITE")[0]["keyword"].get<std::string>();}
+            if(station->contains("$CLOCK")){clock_ref = station->at("$CLOCK")[0]["keyword"].get<std::string>();}
+            if(station->contains("$ANTENNA")){antenna_ref = station->at("$ANTENNA")[0]["keyword"].get<std::string>();}
             paramStore->Set("/rem_station/site_ref", site_ref);
             paramStore->Set("/rem_station/clock_ref", clock_ref);
             paramStore->Set("/rem_station/antenna_ref", antenna_ref);

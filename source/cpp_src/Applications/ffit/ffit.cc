@@ -98,6 +98,12 @@ int main(int argc, char** argv)
     scanStore.LoadStation(rem_station_mk4id, &conStore);
     conStore.RenameObject("sta", "rem_sta");
 
+
+    station_coord_type* ref_data = conStore.GetObject<station_coord_type>(std::string("ref_sta"));
+    station_coord_type* rem_data = conStore.GetObject<station_coord_type>(std::string("rem_sta"));
+
+    std::cout<<"REF REM data PTRS!!!!  = "<<ref_data<<", "<<rem_data<<std::endl;
+
     visibility_type* vis_data = conStore.GetObject<visibility_type>(std::string("vis"));
     weight_type* wt_data = conStore.GetObject<weight_type>(std::string("weight"));
     if( vis_data == nullptr || wt_data == nullptr )

@@ -378,7 +378,7 @@ MHO_DiFXScanProcessor::ConvertStationFileObjects()
         {
             uint32_t label = 0xFFFFFFFF; //someday make this mean something
             inter.Write(tags, "tags", label);
-            inter.Write( *station_coord_data_ptr, "coords", label);
+            inter.Write( *station_coord_data_ptr, "sta", label);
             if(pcal_data_ptr){ inter.Write( *pcal_data_ptr, "pcal", label); }
             inter.Close();
         }
