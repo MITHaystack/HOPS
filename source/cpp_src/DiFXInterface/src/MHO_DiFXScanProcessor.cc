@@ -526,18 +526,40 @@ MHO_DiFXScanProcessor::ExtractStationCoords()
             std::get<COEFF_AXIS>(*st_coord)[i] = i;
         }
 
+        double MICROSEC_TO_SEC = 1e-6; //need to match difx2mark4 convention
+
         for(std::size_t i=0; i<n_poly; i++)
         {
             mho_json poly_interval = antenna_poly[i];
             for(std::size_t p=0; p<=n_order; p++)
             {
-                st_coord->at(0,i,p) = poly_interval["delay"][p];
-                st_coord->at(1,i,p) = poly_interval["az"][p];
-                st_coord->at(2,i,p) = poly_interval["elcorr"][p];
-                st_coord->at(3,i,p) = poly_interval["parangle"][p];
-                st_coord->at(4,i,p) = poly_interval["u"][p];
-                st_coord->at(5,i,p) = poly_interval["v"][p];
-                st_coord->at(6,i,p) = poly_interval["w"][p];
+                double delay, az, el, par, u, v, w;
+
+                std::cout<<"p = "<<p<<std::endl;
+                std::cout<<"DEL = "<< poly_interval["delay"][p] << std::endl;
+                std::cout<<"AZ = "<< poly_interval["az"][p] << std::endl;
+                std::cout<<"EL = "<< poly_interval["elgeom"][p] << std::endl;
+                std::cout<<"PAR = "<< poly_interval["parangle"][p] << std::endl;
+                std::cout<<"U = "<< poly_interval["u"][p] << std::endl;
+                std::cout<<"V = "<< poly_interval["v"][p] << std::endl;
+                std::cout<<"W = "<< poly_interval["w"][p] << std::endl;
+
+                delay = poly_interval["delay"][p];
+                az = poly_interval["az"][p];
+                el = poly_interval["elgeom"][p];
+                par = poly_interval["parangle"][p];
+                u = poly_interval["u"][p];
+                v = poly_interval["v"][p];
+                w = poly_interval["w"][p];
+
+                st_coord->at(0,i,p) = MICROSEC_TO_SEC * delay;
+
+                st_coord->at(1,i,p) = az;
+                st_coord->at(2,i,p) = el;
+                st_coord->at(3,i,p) = par;
+                st_coord->at(4,i,p) = u;
+                st_coord->at(5,i,p) = v;
+                st_coord->at(6,i,p) = w;
             }
         }
         

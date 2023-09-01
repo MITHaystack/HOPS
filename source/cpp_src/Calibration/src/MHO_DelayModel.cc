@@ -34,12 +34,12 @@ MHO_DelayModel::ComputeModel()
         std::string ref_mod_start = RetrieveTag<std::string>(fRefData, "model_start");
         std::string rem_mod_start = RetrieveTag<std::string>(fRemData, "model_start");
         //convert string to time point
-        auto ref_start = hops_clock::from_iso8601_format(ref_mod_start);
-        auto rem_start = hops_clock::from_iso8601_format(rem_mod_start);
+        auto ref_start = hops_clock::from_vex_format(ref_mod_start);
+        auto rem_start = hops_clock::from_vex_format(rem_mod_start);
         
-        msg_debug("calibration", "fourfit reference time is: "<< hops_clock::to_iso8601_format(frt)<< eom);
-        msg_debug("calibration", "reference station delay model start time is: "<<hops_clock::to_iso8601_format(ref_start)<< eom);
-        msg_debug("calibration", "remote station delay model start time is: "<<hops_clock::to_iso8601_format(rem_start)<< eom);
+        msg_warn("calibration", "fourfit reference time is: "<< hops_clock::to_iso8601_format(frt)<< eom);
+        msg_warn("calibration", "reference station delay model start time is: "<<hops_clock::to_iso8601_format(ref_start)<< eom);
+        msg_warn("calibration", "remote station delay model start time is: "<<hops_clock::to_iso8601_format(rem_start)<< eom);
 
         //calculate time differences
         auto ref_tdiff_duration = frt - ref_start;
@@ -62,8 +62,8 @@ MHO_DelayModel::ComputeModel()
         double ref_t = ref_tdiff - (ref_int_no * ref_model_interval);
         double rem_t = rem_tdiff - (rem_int_no * rem_model_interval);
         
-        msg_debug("calibration", "delay_model: ref model interval: "<< ref_int_no <<" and time offset: "<< ref_t << eom);
-        msg_debug("calibration", "delay_model: rem model interval: "<< rem_int_no <<" and time offset: "<< rem_t << eom);
+        msg_warn("calibration", "delay_model: ref model interval: "<< ref_int_no <<" and time offset: "<< ref_t << eom);
+        msg_warn("calibration", "delay_model: rem model interval: "<< rem_int_no <<" and time offset: "<< rem_t << eom);
 
         //evaluate delay, rate, accel
         double ref_dra[3];
@@ -78,7 +78,7 @@ MHO_DelayModel::ComputeModel()
         fRate = rem_dra[1] - ref_dra[1];
         fAccel = rem_dra[2] - ref_dra[2];
 
-        msg_debug("calibration", "delay model: offset, rate, accel = "<<fDelay<<", "<<fRate<<", "<<fAccel<< eom);
+        msg_warn("calibration", "delay model: offset, rate, accel = "<<fDelay<<", "<<fRate<<", "<<fAccel<< eom);
     }
     else 
     {
