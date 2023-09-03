@@ -483,6 +483,17 @@ MHO_DiFXScanProcessor::ExtractStationCoords()
         //get the spline model for the stations quantities
         mho_json antenna_poly = fInput["scan"][scan_index]["DifxPolyModel"][n][phase_center];
 
+        
+
+        //get the antenna
+        mho_json ant = fInput["antenna"][n];
+
+        std::cout<<"DUMP THE ANTENNA: "<< ant.dump(2)<<std::endl;
+
+        std::cout<<"WHAT IS THIS? "<< ant["clockrefmjd"] <<std::endl;
+        double clockrefmjd = ant["clockrefmjd"];
+
+
         //figure out the start time of this polynomial
         //and convert this date information to a cannonical date/time-stamp class
         int mjd = antenna_poly[0]["mjd"];//start mjd
@@ -563,6 +574,9 @@ MHO_DiFXScanProcessor::ExtractStationCoords()
             }
         }
         
+        //correct delay mode with antenna clock model 
+        apply_delay_model_clock_correction(ant, antenna_poly, st_coord);
+
         //tag the station data structure with all the meta data from the type_300
         st_coord->Insert(std::string("station_code"), station_code);
         st_coord->Insert(std::string("model_interval"), duration);
@@ -615,18 +629,95 @@ std::string
 MHO_DiFXScanProcessor::get_vexdate_from_mjd_sec(double mjd, double sec)
 {
     double total_mjd = (double)mjd + (double)sec /86400.0;
-    
-    std::cout<<"total mjd = "<<std::setprecision(15)<<total_mjd<<std::endl;
-
     auto mjd_tp = hops_clock::from_mjd(DIFX_J2000_MJD_EPOCH_ISO8601, DIFX_J2000_MJD_EPOCH_OFFSET, total_mjd);
-
-    std::cout<<"mjd_tp = "<<hops_clock::to_iso8601_format(mjd_tp)<<std::endl;
-
     double back_mjd = hops_clock::to_mjd(DIFX_J2000_MJD_EPOCH_ISO8601, DIFX_J2000_MJD_EPOCH_OFFSET, mjd_tp);
-
-    std::cout<<"read back mjd = "<<back_mjd<<std::endl;
-
     return hops_clock::to_vex_format(mjd_tp);
 }
+
+
+void 
+MHO_DiFXScanProcessor::apply_delay_model_clock_correction(const mho_json& ant, const mho_json& ant_poly, station_coord_type* st_coord)
+{
+    //see difx2mar4 createType3s.c line 269
+    double clock[6];
+    // units of difx are usec, ff uses sec
+    // shift clock polynomial to start of model interval
+
+    double clockrefmjd = ant["clockrefmjd"];;
+    double modelrefmjd = ant_poly[0]["mjd"];//start mjd
+    double modelrefsec = ant_poly[0]["sec"];//start second
+
+    double deltat = 86400.0 * (modelrefmjd - clockrefmjd) + modelrefsec; //TODO check this!!
+
+    //deltat = 8.64e4 * ((**(D->scan[scanId].im+n)+j)->mjd - (D->antenna+n)->clockrefmjd) + (**(D->scan[scanId].im+n)+j)->sec;
+
+    //loop over each interval
+    for(std::size_t i=0; i< std::get<INTERVAL_AXIS>(*st_coord).GetSize(); i++)
+    {
+        double sec_offset = std::get<INTERVAL_AXIS>(*st_coord)[i];
+        double dt = deltat + sec_offset;
+        int nclock = local_getDifxAntennaShiftedClock(ant, dt, 6, clock);
+    
+        // difx delay doesn't have clock added in, so
+        // we must do it here
+        //loop over poly coeff
+        for(int p=0; p<6; p++)
+        {
+            // t301.delay_spline[l] = -1.e-6 * (**(D->scan[scanId].im+n)+j)->delay[l];
+            if(p < nclock) // add in those clock coefficients that are valid
+            {
+                st_coord->at(0,i,p) -= 1e-6 * clock[p];
+            }
+        }
+    }
+
+}
+
+
+//lifted from difx_antenna.c with minor changes (so we can avoid introducing additional dependencies to difxio lib)
+int 
+MHO_DiFXScanProcessor::local_getDifxAntennaShiftedClock(const mho_json& da, double dt, int outputClockSize, double *clockOut)
+{
+    if( !(da.contains("clockorder")) || !(da.contains("clockcoeff")) )
+    {
+            return -1;
+    }
+    int clockorder = da["clockorder"];
+
+    if(outputClockSize < clockorder+1)
+    {
+        return -2;
+    }
+
+    double a[MAX_MODEL_ORDER+1]; //MAX_MODEL_ORDER defined in difx_input.h
+    for(int i = 0; i < MAX_MODEL_ORDER+1; ++i)             // pad out input array to full order with 0's
+    {
+        a[i] = 0.0;
+        if(i <= clockorder)
+        {
+            double value = da["clockcoeff"][i];
+            a[i] = value;
+        }
+    }
+
+    double t2, t3, t4, t5;  /* units: sec^n, n = 2, 3, 4, 5 */
+    t2 = dt * dt;
+    t3 = t2 * dt;
+    t4 = t2 * t2;
+    t5 = t3 * t2;
+
+    switch(clockorder)
+    {
+        case 5: clockOut[5] = a[5];
+        case 4: clockOut[4] = a[4] + 5 * a[5] * dt;
+        case 3: clockOut[3] = a[3] + 4 * a[4] * dt + 10 * a[5] * t2;
+        case 2: clockOut[2] = a[2] + 3 * a[3] * dt +  6 * a[4] * t2 + 10 * a[5] * t3;
+        case 1: clockOut[1] = a[1] + 2 * a[2] * dt +  3 * a[3] * t2 +  4 * a[4] * t3 + 5 * a[5] * t4;
+        case 0: clockOut[0] = a[0] +     a[1] * dt +      a[2] * t2 +      a[3] * t3 +     a[4] * t4 + a[5] * t5; 
+    }
+
+    return clockorder + 1;
+}
+
 
 }//end of namespace
