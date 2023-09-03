@@ -666,6 +666,7 @@ MHO_DiFXScanProcessor::apply_delay_model_clock_correction(const mho_json& ant, c
             // t301.delay_spline[l] = -1.e-6 * (**(D->scan[scanId].im+n)+j)->delay[l];
             if(p < nclock) // add in those clock coefficients that are valid
             {
+                std::cout<<"CLOCK CORR "<<p<<" = "<<clock[p]<<std::endl;
                 st_coord->at(0,i,p) -= 1e-6 * clock[p];
             }
         }
