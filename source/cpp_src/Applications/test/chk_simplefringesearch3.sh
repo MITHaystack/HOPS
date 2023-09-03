@@ -19,7 +19,7 @@ time ffit -d ./${D2H_EXP_NUM}/${SCAN_DIR} -c ./test0.cf -b AS -p RR | tee ./sfs.
 echo "Running: fourfit -m 4 -c ./test0.cf -b AS -P RR ./${SCAN_DIR} set plot_data_dir ./chk3 "
 time fourfit -m 1 -c ./test0.cf -b AS -P RR ./${SCAN_DIR} set plot_data_dir ./chk3 2>&1  | tee ./ff.out
 
-compjsonpdd.py ./fdump.json ./chk3/104-1228-AS-B-RR.2GAB6T
+compjsonpdd.py ./fdump.json ./chk3/104-1228-AS-B-RR.*
 RET_VAL=$?
 
 exit $RET_VAL
