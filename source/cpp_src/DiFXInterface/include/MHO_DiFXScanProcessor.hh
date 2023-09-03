@@ -64,6 +64,9 @@ class MHO_DiFXScanProcessor
 
     private:
 
+        void apply_delay_model_clock_correction(const mho_json& ant, const mho_json& ant_poly, station_coord_type* st_coord);
+        int local_getDifxAntennaShiftedClock(const mho_json& da, double dt, int outputClockSize, double *clockOut);
+
         //the station 2-char to 1-char code map (user specified)
         MHO_StationCodeMap* fStationCodeMap;
 
