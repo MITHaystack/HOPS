@@ -66,6 +66,7 @@ class MHO_DiFXScanProcessor
 
         void apply_delay_model_clock_correction(const mho_json& ant, const mho_json& ant_poly, station_coord_type* st_coord);
         int local_getDifxAntennaShiftedClock(const mho_json& da, double dt, int outputClockSize, double *clockOut);
+        void calculateZerothOrderParallacticAngle(station_coord_type* st_coord, double X, double Y, double Z, double src_dec, double dt);
 
         //the station 2-char to 1-char code map (user specified)
         MHO_StationCodeMap* fStationCodeMap;
@@ -109,6 +110,9 @@ class MHO_DiFXScanProcessor
         MHO_DiFXChannelNameConstructor fChanNameConstructor;
 
         bool fPreserveDiFXScanNames;
+
+        double MICROSEC_TO_SEC; //needed to match difx2mark4 convention
+
 
 };
 
