@@ -24,6 +24,7 @@ MHO_DiFXScanProcessor::MHO_DiFXScanProcessor()
     fStationCodeMap = nullptr;
     fPreserveDiFXScanNames = false;
     fNormalize = false;
+    MICROSEC_TO_SEC = 1e-6; //needed to match difx2mark4 convention
 };
 
 MHO_DiFXScanProcessor::~MHO_DiFXScanProcessor()
@@ -364,6 +365,7 @@ MHO_DiFXScanProcessor::ConvertStationFileObjects()
         
         station_coord_data_ptr->Insert(std::string("station_mk4id"), station_mk4id);
         station_coord_data_ptr->Insert(std::string("name"), std::string("station_data"));
+
         // st_coord->Insert(std::string("station_name"), station_name);
         //st_coord->Insert(std::string("model_start"), model_start_date);
         
@@ -473,6 +475,10 @@ MHO_DiFXScanProcessor::ExtractStationCoords()
         msg_warn("difx_interface", "more than one phase center is not supported, using the first. " << eom);
     }
 
+    std::size_t phaseCenterSrcId = fInput["scan"][scan_index]["phsCentreSrcs"][phase_center];
+    mho_json src = fInput["source"][phaseCenterSrcId];
+    double src_dec = src["dec"];
+
     for(std::size_t n=0; n<nAntenna; n++)
     {
         //first get antenna name for an ID (later we need to map this to the 2 char code)
@@ -483,16 +489,16 @@ MHO_DiFXScanProcessor::ExtractStationCoords()
         //get the spline model for the stations quantities
         mho_json antenna_poly = fInput["scan"][scan_index]["DifxPolyModel"][n][phase_center];
 
-        
-
-        //get the antenna
+        //get the antenna info
         mho_json ant = fInput["antenna"][n];
+        std::string station_name = ant["name"];
+        std::string station_mount = ant["mount"];
+        std::vector<double> position = ant["position"];
+
 
         std::cout<<"DUMP THE ANTENNA: "<< ant.dump(2)<<std::endl;
-
         std::cout<<"WHAT IS THIS? "<< ant["clockrefmjd"] <<std::endl;
         double clockrefmjd = ant["clockrefmjd"];
-
 
         //figure out the start time of this polynomial
         //and convert this date information to a cannonical date/time-stamp class
@@ -537,7 +543,6 @@ MHO_DiFXScanProcessor::ExtractStationCoords()
             std::get<COEFF_AXIS>(*st_coord)[i] = i;
         }
 
-        double NEG_MICROSEC_TO_SEC = -1e-6; //need to match difx2mark4 convention
 
         for(std::size_t i=0; i<n_poly; i++)
         {
@@ -563,8 +568,7 @@ MHO_DiFXScanProcessor::ExtractStationCoords()
                 v = poly_interval["v"][p];
                 w = poly_interval["w"][p];
 
-                st_coord->at(0,i,p) = NEG_MICROSEC_TO_SEC * delay;
-
+                st_coord->at(0,i,p) = -1.0 * MICROSEC_TO_SEC * delay; //negative sign to match difx2mar4 convention
                 st_coord->at(1,i,p) = az;
                 st_coord->at(2,i,p) = el;
                 st_coord->at(3,i,p) = par;
@@ -579,8 +583,16 @@ MHO_DiFXScanProcessor::ExtractStationCoords()
 
         //tag the station data structure with all the meta data from the type_300
         st_coord->Insert(std::string("station_code"), station_code);
+        st_coord->Insert(std::string("station_name"), station_name);
         st_coord->Insert(std::string("model_interval"), duration);
         st_coord->Insert(std::string("model_start"), model_start);
+        st_coord->Insert(std::string("mount"), station_mount);
+        st_coord->Insert(std::string("X"), position[0]);
+        st_coord->Insert(std::string("Y"), position[1]);
+        st_coord->Insert(std::string("Z"), position[2]);
+
+        //calculate zero-th order parallactic_angle values
+        calculateZerothOrderParallacticAngle(st_coord, position[0], position[1], position[2], src_dec, duration);
 
         //store n_poly as int
         int nsplines = n_poly;
@@ -639,18 +651,14 @@ void
 MHO_DiFXScanProcessor::apply_delay_model_clock_correction(const mho_json& ant, const mho_json& ant_poly, station_coord_type* st_coord)
 {
     //see difx2mar4 createType3s.c line 269
-    double clock[6];
+    double clock[MAX_MODEL_ORDER+1];
     // units of difx are usec, ff uses sec
     // shift clock polynomial to start of model interval
 
     double clockrefmjd = ant["clockrefmjd"];;
     double modelrefmjd = ant_poly[0]["mjd"];//start mjd
     double modelrefsec = ant_poly[0]["sec"];//start second
-
-    double deltat = 86400.0 * (modelrefmjd - clockrefmjd) + modelrefsec; //TODO check this!!
-
-    //deltat = 8.64e4 * ((**(D->scan[scanId].im+n)+j)->mjd - (D->antenna+n)->clockrefmjd) + (**(D->scan[scanId].im+n)+j)->sec;
-
+    double deltat = 86400.0 * (modelrefmjd - clockrefmjd) + modelrefsec;
     //loop over each interval
     for(std::size_t i=0; i< std::get<INTERVAL_AXIS>(*st_coord).GetSize(); i++)
     {
@@ -658,16 +666,14 @@ MHO_DiFXScanProcessor::apply_delay_model_clock_correction(const mho_json& ant, c
         double dt = deltat + sec_offset;
         int nclock = local_getDifxAntennaShiftedClock(ant, dt, 6, clock);
     
-        // difx delay doesn't have clock added in, so
-        // we must do it here
+        // difx delay doesn't have clock added in, so we must do it here
         //loop over poly coeff
-        for(int p=0; p<6; p++)
+        for(int p=0; p<MAX_MODEL_ORDER+1; p++)
         {
-            // t301.delay_spline[l] = -1.e-6 * (**(D->scan[scanId].im+n)+j)->delay[l];
             if(p < nclock) // add in those clock coefficients that are valid
             {
-                std::cout<<"CLOCK CORR "<<p<<" = "<<clock[p]<<std::endl;
-                st_coord->at(0,i,p) -= 1e-6 * clock[p];
+                //negative sign to match difx2mar4 convention
+                st_coord->at(0,i,p) -= MICROSEC_TO_SEC * clock[p];
             }
         }
     }
@@ -675,7 +681,7 @@ MHO_DiFXScanProcessor::apply_delay_model_clock_correction(const mho_json& ant, c
 }
 
 
-//lifted from difx_antenna.c with minor changes (so we can avoid introducing additional dependencies to difxio lib)
+//lifted from difx_antenna.c line 288 with minor changes (so we can avoid introducing additional dependencies to difxio lib)
 int 
 MHO_DiFXScanProcessor::local_getDifxAntennaShiftedClock(const mho_json& da, double dt, int outputClockSize, double *clockOut)
 {
@@ -719,6 +725,50 @@ MHO_DiFXScanProcessor::local_getDifxAntennaShiftedClock(const mho_json& da, doub
 
     return clockorder + 1;
 }
+
+//adapted from difx2mark createType3s.c
+void MHO_DiFXScanProcessor::calculateZerothOrderParallacticAngle(station_coord_type* st_coord, double X, double Y, double Z, double dec, double dt)
+{
+    //station coordinates: X, Y, Z;
+    //source declination: dec;
+    //poly model interval: dt;
+
+
+    std::size_t n_poly = std::get<INTERVAL_AXIS>(*st_coord).GetSize();
+    for(std::size_t i=0; i<n_poly; i++)
+    {
+        // par. angle from calc program is NYI, so add zeroth order approx here
+        for(std::size_t p=0; p<6; p++)
+        {
+            if(p == 0) // for now, only constant term is non-zero
+            {
+                double az0 = st_coord->at(1,i,0); //1 is az
+                double az1 = st_coord->at(1,i,1);
+                double el0 = st_coord->at(2,i,0); //2 is el
+                double el1 = st_coord->at(2,i,1);
+                // calculate geocentric latitude (rad)
+                double geoc_lat = std::atan2(Z, std::sqrt(X*X + Y*Y) );
+                // evaluate az & el at midpoint of spline interval
+                double el = ( M_PI / 180.0 ) * (el0 + 0.5*dt*el1);
+                double az = ( M_PI / 180.0 ) * (az0 + 0.5*dt*az1);
+                // evaluate sin and cos of the local hour angle
+                double sha = -1.0 * std::cos(el) * std::sin(az) / std::cos(dec);
+                double cha = ( std::sin(el) - std::sin(geoc_lat) * std::sin(dec) ) / ( std::cos(geoc_lat) * std::cos(dec) );
+                // approximate (first order in f) conversion
+                double geod_lat = std::atan(1.00674 * std::tan(geoc_lat));
+                // finally ready for par. angle
+                double par_angle = (180 / M_PI) * std::atan2(sha, ( std::cos(dec) * std::tan(geod_lat) - std::sin(dec) * cha) );
+                std::cout<<"PAR ANGLE = "<<par_angle<<std::endl;
+                st_coord->at(3,i,0) = par_angle; //3 is par. angle
+            }
+            else
+            {
+                st_coord->at(3,i,0) = 0.0; //all other coeff are set to zero
+            }
+        }
+    }
+}
+
 
 
 }//end of namespace
