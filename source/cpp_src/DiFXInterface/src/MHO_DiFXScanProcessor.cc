@@ -494,23 +494,15 @@ MHO_DiFXScanProcessor::ExtractStationCoords()
         std::string station_name = ant["name"];
         std::string station_mount = ant["mount"];
         std::vector<double> position = ant["position"];
-
-
-        std::cout<<"DUMP THE ANTENNA: "<< ant.dump(2)<<std::endl;
-        std::cout<<"WHAT IS THIS? "<< ant["clockrefmjd"] <<std::endl;
         double clockrefmjd = ant["clockrefmjd"];
 
         //figure out the start time of this polynomial
         //and convert this date information to a cannonical date/time-stamp class
         int mjd = antenna_poly[0]["mjd"];//start mjd
         int sec = antenna_poly[0]["sec"];//start second
-        
-        std::cout<<"MJD = "<<mjd<<std::endl;
-        std::cout<<"SEC = "<<sec<<std::endl;
 
         std::string model_start = get_vexdate_from_mjd_sec(mjd,sec);
 
-        std::cout<<"MODEL START = "<<model_start<<std::endl;;
 
         //length of time each spline is valid
         double duration = antenna_poly[0]["validDuration"];
@@ -551,19 +543,19 @@ MHO_DiFXScanProcessor::ExtractStationCoords()
             {
                 double delay, az, el, par, u, v, w;
 
-                std::cout<<"p = "<<p<<std::endl;
-                std::cout<<"DEL = "<< poly_interval["delay"][p] << std::endl;
-                std::cout<<"AZ = "<< poly_interval["az"][p] << std::endl;
-                std::cout<<"EL = "<< poly_interval["elgeom"][p] << std::endl;
-                std::cout<<"PAR = "<< poly_interval["parangle"][p] << std::endl;
-                std::cout<<"U = "<< poly_interval["u"][p] << std::endl;
-                std::cout<<"V = "<< poly_interval["v"][p] << std::endl;
-                std::cout<<"W = "<< poly_interval["w"][p] << std::endl;
+                // std::cout<<"p = "<<p<<std::endl;
+                // std::cout<<"DEL = "<< poly_interval["delay"][p] << std::endl;
+                // std::cout<<"AZ = "<< poly_interval["az"][p] << std::endl;
+                // std::cout<<"EL = "<< poly_interval["elgeom"][p] << std::endl;
+                // std::cout<<"PAR = "<< poly_interval["parangle"][p] << std::endl;
+                // std::cout<<"U = "<< poly_interval["u"][p] << std::endl;
+                // std::cout<<"V = "<< poly_interval["v"][p] << std::endl;
+                // std::cout<<"W = "<< poly_interval["w"][p] << std::endl;
 
                 delay = poly_interval["delay"][p];
                 az = poly_interval["az"][p];
                 el = poly_interval["elgeom"][p];
-                par = poly_interval["parangle"][p];
+                //par = poly_interval["parangle"][p]; //CALC does not yet support par. angle
                 u = poly_interval["u"][p];
                 v = poly_interval["v"][p];
                 w = poly_interval["w"][p];
@@ -571,7 +563,7 @@ MHO_DiFXScanProcessor::ExtractStationCoords()
                 st_coord->at(0,i,p) = -1.0 * MICROSEC_TO_SEC * delay; //negative sign to match difx2mar4 convention
                 st_coord->at(1,i,p) = az;
                 st_coord->at(2,i,p) = el;
-                st_coord->at(3,i,p) = par;
+                st_coord->at(3,i,p) = 0.0; //just fill in dummy value for now
                 st_coord->at(4,i,p) = u;
                 st_coord->at(5,i,p) = v;
                 st_coord->at(6,i,p) = w;
@@ -593,6 +585,7 @@ MHO_DiFXScanProcessor::ExtractStationCoords()
 
         //calculate zero-th order parallactic_angle values
         calculateZerothOrderParallacticAngle(st_coord, position[0], position[1], position[2], src_dec, duration);
+        //std::cout<<"PAR ANGLE!!! = "<<st_coord->at(3,0,0)<<std::endl;
 
         //store n_poly as int
         int nsplines = n_poly;
@@ -733,7 +726,6 @@ void MHO_DiFXScanProcessor::calculateZerothOrderParallacticAngle(station_coord_t
     //source declination: dec;
     //poly model interval: dt;
 
-
     std::size_t n_poly = std::get<INTERVAL_AXIS>(*st_coord).GetSize();
     for(std::size_t i=0; i<n_poly; i++)
     {
@@ -757,13 +749,13 @@ void MHO_DiFXScanProcessor::calculateZerothOrderParallacticAngle(station_coord_t
                 // approximate (first order in f) conversion
                 double geod_lat = std::atan(1.00674 * std::tan(geoc_lat));
                 // finally ready for par. angle
-                double par_angle = (180 / M_PI) * std::atan2(sha, ( std::cos(dec) * std::tan(geod_lat) - std::sin(dec) * cha) );
-                std::cout<<"PAR ANGLE = "<<par_angle<<std::endl;
-                st_coord->at(3,i,0) = par_angle; //3 is par. angle
+                double par_angle = (180.0 / M_PI) * std::atan2(sha, ( std::cos(dec) * std::tan(geod_lat) - std::sin(dec) * cha) );
+                //std::cout<<"PAR ANGLE = "<<par_angle<<std::endl;
+                st_coord->at(3,i,p) = par_angle; //3 is par. angle
             }
             else
             {
-                st_coord->at(3,i,0) = 0.0; //all other coeff are set to zero
+                st_coord->at(3,i,p) = 0.0; //all other coeff are set to zero
             }
         }
     }
