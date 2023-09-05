@@ -121,7 +121,6 @@ std::string calculate_qf()
 
 
 
-
 double
 calculate_residual_phase(MHO_ContainerStore* conStore, MHO_ParameterStore* paramStore)
 {
@@ -214,6 +213,34 @@ calculate_residual_phase(MHO_ContainerStore* conStore, MHO_ParameterStore* param
     return coh_avg_phase; //not quite the value which is displayed in the fringe plot (see fill type 208)
 }
 
+void correct_phases_mbd_anchor_sbd(double ref_freq, double freq0, double frequency_spacing, double delta_mbd, double& totphase_deg, double& resphase_deg)
+{
+        std::cout<<"TOTPHASE ="<<totphase_deg<<std::endl;
+        std::cout<<"RESPHASE = "<<resphase_deg<<std::endl;
+        double delta_f = std::fmod(ref_freq - freq0, frequency_spacing);
+        std::cout<<"DELTA F = "<<delta_f<<std::endl;
+        // msg ("delta_mbd %g delta_f %g", 1, delta_mbd, delta_f);
+        totphase_deg += 360.0 * delta_mbd * delta_f;
+        totphase_deg = std::fmod(totphase_deg, 360.0);
+        resphase_deg += 360.0 * delta_mbd * delta_f;
+        resphase_deg = std::fmod(resphase_deg, 360.0);
+        std::cout<<"TOTPHASE ="<<totphase_deg<<std::endl;
+        std::cout<<"RESPHASE = "<<resphase_deg<<std::endl;
+        
+        // }
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 void calculate_fringe_info(MHO_ContainerStore* conStore, MHO_ParameterStore* paramStore, const mho_json& vexInfo)
 {
@@ -300,30 +327,18 @@ void calculate_fringe_info(MHO_ContainerStore* conStore, MHO_ParameterStore* par
     std::size_t ndr = paramStore->GetAs<std::size_t>("/fringe/n_dr_points");
     double total_npts_searched = (double)nmbd * (double)nsbd *(double)ndr;
 
-    
-    double resid_phase = calculate_residual_phase(conStore, paramStore);
-    // //plot_dict["ResPhase"] = std::fmod(coh_avg_phase * (180.0/M_PI), 360.0);
-    paramStore->Set("/fringe/resid_phase", resid_phase);
+    double resid_phase_rad = calculate_residual_phase(conStore, paramStore);
+    double resid_phase_deg = std::fmod(resid_phase_rad*(180.0/M_PI), 360.0);
 
-    double resid_ph_delay = resid_phase / (2.0 * M_PI * ref_freq);
-    paramStore->Set("/fringe/resid_ph_delay", resid_ph_delay);
-    
-    double ph_delay = adelay + resid_ph_delay;
-    std::cout<<"ph_delay = adelay + resid_ph_delay = "<<ph_delay<<" = "<<adelay<<" + "<<resid_ph_delay<<std::endl;
-
-    paramStore->Set("/fringe/phase_delay", ph_delay);
-    
-    
     //calculate the a priori phase and total phase
     double aphase = std::fmod( ref_freq*adelay*360.0, 360.0); //from fill_208.c, no conversion from radians??
-    double tot_phase = std::fmod( aphase + resid_phase*(180.0/M_PI), 360.0 );
+    double tot_phase_deg = std::fmod( aphase + resid_phase_rad*(180.0/M_PI), 360.0 );
 
     std::cout<<"APHASE = "<<aphase<<std::endl;
-    std::cout<<"RESID PHASE = "<<resid_phase<<std::endl;
-    std::cout<<"TOTPHASE = "<<tot_phase<<std::endl;
+    std::cout<<"RESID PHASE DEG= "<<resid_phase_deg<<std::endl;
+    std::cout<<"TOTPHASE DEG = "<<tot_phase_deg<<std::endl;
 
     paramStore->Set("/fringe/aphase", aphase);
-    paramStore->Set("/fringe/tot_phase", tot_phase);
 
     //calculate the probability of false detection, THIS IS BROKEN
     #pragma message("TODO FIXME - PFD calculation needs the MBD/SBD/DR windows defined")
@@ -342,24 +357,38 @@ void calculate_fringe_info(MHO_ContainerStore* conStore, MHO_ParameterStore* par
     std::cout<<"tot_sbd = "<<tot_sbd<<std::endl;
 
     double ambig = paramStore->GetAs<double>("/fringe/ambiguity");
+    double freq_spacing = paramStore->GetAs<double>("/fringe/frequency_spacing");
     std::string mbd_anchor = paramStore->GetAs<std::string>("mbd_anchor");
+    
     // anchor total mbd to sbd if desired
     double delta_mbd = 0.0;
+    double freq0 = paramStore->GetAs<double>("/fringe/start_frequency");
     if(mbd_anchor == "sbd")
     {
         std::cout<<"MBDANCHOR IS SBD!"<<std::endl;
         delta_mbd = ambig * std::floor( (tot_sbd - tot_mbd) / ambig + 0.5);
+        tot_mbd += delta_mbd;
+        correct_phases_mbd_anchor_sbd(ref_freq, freq0, freq_spacing, delta_mbd, tot_phase_deg, resid_phase_deg);
     }
 
-    tot_mbd += delta_mbd;
+    double resid_ph_delay = resid_phase_rad / (2.0 * M_PI * ref_freq);
+    double ph_delay = adelay + resid_ph_delay;
+    std::cout<<"ph_delay = adelay + resid_ph_delay = "<<ph_delay<<" = "<<adelay<<" + "<<resid_ph_delay<<std::endl;
+
+    // paramStore->Set("/fringe/resid_phase_rad", resid_phase_rad);
+    paramStore->Set("/fringe/resid_phase", resid_phase_deg);
+    paramStore->Set("/fringe/resid_ph_delay", resid_ph_delay);
+    paramStore->Set("/fringe/phase_delay", ph_delay);
+    paramStore->Set("/fringe/tot_phase", tot_phase_deg);
+
     std::cout<<"tot_mbd = "<<tot_mbd<<" and delta mbd = "<<delta_mbd<<std::endl;
 
     double tot_drate = arate + drate;
-
     paramStore->Set("/fringe/total_sbdelay", tot_sbd);
     paramStore->Set("/fringe/total_mbdelay", tot_mbd);
     paramStore->Set("/fringe/total_drate", tot_drate);
     
+
     double sbd_sep = paramStore->GetAs<double>("/fringe/sbd_separation");
     double freq_spread = paramStore->GetAs<double>("/fringe/frequency_spread");
     double mbd_error = calculate_mbd_no_ion_error(freq_spread, snr);

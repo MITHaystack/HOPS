@@ -56,7 +56,6 @@ def main():
         # 'BuildTime':' "-";
         #'RA':'string',
         #'Dec':'string',
-        'GroupDelayModel(usec)':'float', # TODO -- this becomes GroupDelaySBD(usec) if mbd_anchor sbd is in the control file
         'SbandDelay(usec)':'float',
         #'DelayRate(ps/s)':'float', -- something is wrong with this one in pdd file, should be total delay rate, but it is residual delay rate
         'PhaseDelay(usec)':'float',
@@ -78,6 +77,13 @@ def main():
         'ResidPhaseError(deg)':'float'
     }
 
+    #the name of the total group delay parameter changes depending on whether or not 'mbd_anchor sbd'
+    #is in the control file, check if either is present, and compare only if it exists
+    optional_key_type_dict = {
+        'GroupDelayModel(usec)':'float', 
+        'GroupDelaySBD(usec)':'float', # TODO -- this becomes GroupDelaySBD(usec) if mbd_anchor sbd is in the control file
+    }
+
     bad_count = 0
     bad_keys = []
     rel_percent_error = 0.03
@@ -85,7 +91,6 @@ def main():
     print("tolerance is: ", rel_percent_error, " percent.")
 
     for k,t in key_type_dict.items():
-
         if t == 'string':
             if(k in j1 and k in j2):
                 val1 = str(j1[k])
@@ -109,6 +114,7 @@ def main():
                 delta = val1 - val2
                 print(k, t, " : percent difference: ", (delta/val2)*100 )
                 if math.fabs(delta/val2)*100 > rel_percent_error:
+                    print(k, ": ", val1, " not close enough to: ", val2)
                     bad_count += 1
                     bad_keys.append(k)
             else:
@@ -118,6 +124,31 @@ def main():
                     print("missing ", k , " in ", f2_name)
                 bad_count += 1
                 bad_keys.append(k)
+                
+                
+                
+                
+    for k,t in optional_key_type_dict.items():
+        if t == 'string':
+            if(k in j1 and k in j2):
+                val1 = str(j1[k])
+                val2 = str(j2[k])
+                print(k, t, " : ", j1[k], " ? ", j2[k])
+                if val1 != val2:
+                    bad_count += 1
+                    bad_keys.append(k)
+
+        if t == 'float':
+            if(k in j1 and k in j2):
+                val1 = float(j1[k])
+                val2 = float(j2[k])
+                delta = val1 - val2
+                print(k, t, " : percent difference: ", (delta/val2)*100 )
+                if math.fabs(delta/val2)*100 > rel_percent_error:
+                    print(k, ": ", val1, " not close enough to: ", val2)
+                    bad_count += 1
+                    bad_keys.append(k)
+
 
     for k in bad_keys:
         print("Error on value: ", k)

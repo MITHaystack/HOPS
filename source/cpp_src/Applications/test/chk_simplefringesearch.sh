@@ -33,7 +33,7 @@ echo "simple fringe sbd: $sfs_sbd"
 echo "simple fringe dr: $sfs_dr"
 
 echo "Running: fourfit -m 1 -t -c ./cf_test4 -b GE -P XX ./${D2M4_EXP_NUM}/${SCAN_DIR}"
-time fourfit -m 1 -t -c ./cf_test4 -b GE -P XX ./${D2M4_EXP_NUM}/${SCAN_DIR} set mbd_anchor model plot_data_dir ./chk1 2>&1  | grep max555 | tee ./ff.out
+time fourfit -m 1 -t -c ./cf_test4 -b GE -P XX ./${D2M4_EXP_NUM}/${SCAN_DIR} set plot_data_dir ./chk1 2>&1  | grep max555 | tee ./ff.out
 
 ff_mbd=$( cat ./ff.out | grep -oP 'mbd [+-]?[0-9]+([.][0-9]+)?+([e][+-][0-9]+)?' |  awk '{print $2}' )
 ff_sbd=$( cat ./ff.out | grep -oP 'sbd [+-]?[0-9]+([.][0-9]+)?+([e][+-][0-9]+)?' |  awk '{print $2}' )
