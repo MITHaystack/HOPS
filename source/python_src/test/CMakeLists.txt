@@ -11,8 +11,9 @@ if(BASH_PROGRAM)
     configure_file("${CMAKE_CURRENT_SOURCE_DIR}/test_ffres2pcp.py" "${CMAKE_CURRENT_BINARY_DIR}/test_ffres2pcp.py" @ONLY)
     configure_file("${CMAKE_CURRENT_SOURCE_DIR}/test_fourphase.py" "${CMAKE_CURRENT_BINARY_DIR}/test_fourphase.py" @ONLY)
 
-    #check simple fringe search relies on difxio -> hops conversion of data before it can be run
+    if(HOPS3_PYTHON_EXTRAS)
     list(APPEND TEST_SCRIPT_BASENAMES "vpal_test_harness")
+    endif(HOPS3_PYTHON_EXTRAS)
 
     foreach( BASENAME ${TEST_SCRIPT_BASENAMES} )
         configure_file( ${CMAKE_CURRENT_SOURCE_DIR}/${BASENAME}.sh.in ${CMAKE_CURRENT_BINARY_DIR}/${BASENAME}.sh @ONLY)
