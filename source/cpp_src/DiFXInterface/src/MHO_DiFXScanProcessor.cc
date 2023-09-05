@@ -750,7 +750,7 @@ void MHO_DiFXScanProcessor::calculateZerothOrderParallacticAngle(station_coord_t
                 double geod_lat = std::atan(1.00674 * std::tan(geoc_lat));
                 // finally ready for par. angle
                 double par_angle = (180.0 / M_PI) * std::atan2(sha, ( std::cos(dec) * std::tan(geod_lat) - std::sin(dec) * cha) );
-                //std::cout<<"PAR ANGLE = "<<par_angle<<std::endl;
+                //std::cout<<"PAR ANGLE @ "<<p<<" = "<<par_angle<<std::endl;
                 st_coord->at(3,i,p) = par_angle; //3 is par. angle
             }
             else
