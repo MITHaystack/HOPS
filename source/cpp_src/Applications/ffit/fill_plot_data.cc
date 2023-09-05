@@ -35,9 +35,9 @@ void fill_plot_data(MHO_ParameterStore* paramStore, mho_json& plot_dict)
     plot_dict["Dec"] = paramStore->GetAs<std::string>("/vex/scan/source/dec");
 
     // // dp->param->mbd_anchor == MODEL ? "Model(usec)" : "SBD(usec)  ",
-    plot_dict["GroupDelay"] = paramStore->GetAs<double>("/fringe/total_mbdelay");        
+    plot_dict["GroupDelayModel(usec)"] = paramStore->GetAs<double>("/fringe/total_mbdelay");        
     plot_dict["SbandDelay(usec)"] = paramStore->GetAs<double>("/fringe/total_sbdelay");
-    plot_dict["DelayRate (us/s)"] = paramStore->GetAs<double>("/fringe/total_drate");
+    plot_dict["DelayRate(ps/s)"] = paramStore->GetAs<double>("/fringe/total_drate");
     plot_dict["PhaseDelay(usec)"] = paramStore->GetAs<double>("/fringe/phase_delay");
     plot_dict["TotalPhase(deg)"] = paramStore->GetAs<double>("/fringe/tot_phase");
     

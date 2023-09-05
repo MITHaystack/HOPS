@@ -32,24 +32,50 @@ def main():
 
     #the fields we compare are quite limited for now, just list them here:
     key_type_dict = {
-        'AP(sec)':'float',
-        'Amp':'float',
-        #'Dec',
-        'ExperName':'string',
-        #'ExperNum',
-        'FringeRate(Hz)':'float',
-        'IntgTime':'float',
-        #'PFD',
-        #'PolStr':'string',
-        'RefFreq(MHz)':'float',
-        'ResPhase':'float',
-        'ResidMbd(us)':'float',
-        'ResidSbd(us)':'float',
         #'RootScanBaseline',
-        'SNR':'float',
-        #'Start',
-        #'Stop',
-        #'YearDOY'
+        #'PolStr':'string',
+        #'Quality': 'string',
+        'SNR': 'float',
+        'IntgTime':'float',
+        'Amp':'float',
+        'ResPhase':'float',
+        #'PFD':'float',
+        'ResidSbd(us)':'float',
+        'ResidMbd(us)':'float',
+        'FringeRate(Hz)': 'float',
+        'RefFreq(MHz)':'float',
+        'AP(sec)':'float',
+        'ExperName':'string',
+        'ExperNum':'string',
+        'YearDOY':'string',
+        'Start':'string',
+        'Stop':'string',
+        'FRT':'string',
+        # 'CorrTime':' "-";
+        # 'FFTime':' "-";
+        # 'BuildTime':' "-";
+        #'RA':'string',
+        #'Dec':'string',
+        'GroupDelayModel(usec)':'float',
+        'SbandDelay(usec)':'float',
+        #'DelayRate(ps/s)':'float', -- something is wrong with this one in pdd file, should be total delay rate, but it is residual delay rate
+        'PhaseDelay(usec)':'float',
+        'TotalPhase(deg)':'float',
+        'AprioriClock(usec)':'float',
+        'AprioriClockrate(us/s)':'float',
+        'AprioriDelay(usec)':'float',
+        'AprioriRate(us/s)':'float',
+        'AprioriAccel(us/s/s)':'float',
+        'ResidMbdelay(usec)':'float',
+        'ResidSbdelay(usec)':'float',
+        'ResidPhdelay(usec)':'float',
+        'ResidRate(us/s)':'float',
+        'ResidPhase(deg)':'float',
+        'ResidMbdelayError(usec)':'float',
+        'ResidSbdelayError(usec)':'float',
+        'ResidPhdelayError(usec)':'float',
+        'ResidRateError(us/s)':'float',
+        'ResidPhaseError(deg)':'float'
     }
 
     bad_count = 0

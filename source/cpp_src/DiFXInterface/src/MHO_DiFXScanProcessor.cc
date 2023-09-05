@@ -362,13 +362,8 @@ MHO_DiFXScanProcessor::ConvertStationFileObjects()
         std::string root_code = fRootCode;
         std::string output_file = fOutputDirectory + "/" + station_mk4id + "." + root_code + ".sta";
 
-        
         station_coord_data_ptr->Insert(std::string("station_mk4id"), station_mk4id);
         station_coord_data_ptr->Insert(std::string("name"), std::string("station_data"));
-
-        // st_coord->Insert(std::string("station_name"), station_name);
-        //st_coord->Insert(std::string("model_start"), model_start_date);
-        
 
         MHO_BinaryFileInterface inter;
         bool status = inter.OpenToWrite(output_file);
@@ -477,7 +472,7 @@ MHO_DiFXScanProcessor::ExtractStationCoords()
 
     std::size_t phaseCenterSrcId = fInput["scan"][scan_index]["phsCentreSrcs"][phase_center];
     mho_json src = fInput["source"][phaseCenterSrcId];
-    double src_dec = src["dec"];
+    double src_dec = src["dec"]; //needed for parallatic angle calculation
 
     for(std::size_t n=0; n<nAntenna; n++)
     {
@@ -502,7 +497,6 @@ MHO_DiFXScanProcessor::ExtractStationCoords()
         int sec = antenna_poly[0]["sec"];//start second
 
         std::string model_start = get_vexdate_from_mjd_sec(mjd,sec);
-
 
         //length of time each spline is valid
         double duration = antenna_poly[0]["validDuration"];
@@ -542,28 +536,23 @@ MHO_DiFXScanProcessor::ExtractStationCoords()
             for(std::size_t p=0; p<=n_order; p++)
             {
                 double delay, az, el, par, u, v, w;
-
-                // std::cout<<"p = "<<p<<std::endl;
-                // std::cout<<"DEL = "<< poly_interval["delay"][p] << std::endl;
-                // std::cout<<"AZ = "<< poly_interval["az"][p] << std::endl;
-                // std::cout<<"EL = "<< poly_interval["elgeom"][p] << std::endl;
-                // std::cout<<"PAR = "<< poly_interval["parangle"][p] << std::endl;
-                // std::cout<<"U = "<< poly_interval["u"][p] << std::endl;
-                // std::cout<<"V = "<< poly_interval["v"][p] << std::endl;
-                // std::cout<<"W = "<< poly_interval["w"][p] << std::endl;
-
                 delay = poly_interval["delay"][p];
                 az = poly_interval["az"][p];
                 el = poly_interval["elgeom"][p];
-                //par = poly_interval["parangle"][p]; //CALC does not yet support par. angle
+                #ifdef CALC_SUPPORTS_PARANGLE //not defined! CALC does not yet support par. angle spline
+                par = poly_interval["parangle"][p];
+                #else 
+                //just fill in dummy values for now
+                par = 0.0;
+                #endif
                 u = poly_interval["u"][p];
                 v = poly_interval["v"][p];
                 w = poly_interval["w"][p];
 
-                st_coord->at(0,i,p) = -1.0 * MICROSEC_TO_SEC * delay; //negative sign to match difx2mar4 convention
+                st_coord->at(0,i,p) = -1.0 * MICROSEC_TO_SEC * delay; //negative sign needed to match difx2mar4 convention
                 st_coord->at(1,i,p) = az;
                 st_coord->at(2,i,p) = el;
-                st_coord->at(3,i,p) = 0.0; //just fill in dummy value for now
+                st_coord->at(3,i,p) = par;
                 st_coord->at(4,i,p) = u;
                 st_coord->at(5,i,p) = v;
                 st_coord->at(6,i,p) = w;
@@ -578,6 +567,8 @@ MHO_DiFXScanProcessor::ExtractStationCoords()
         st_coord->Insert(std::string("station_name"), station_name);
         st_coord->Insert(std::string("model_interval"), duration);
         st_coord->Insert(std::string("model_start"), model_start);
+        
+        //do we really need to add these parameters here (available from vex)
         st_coord->Insert(std::string("mount"), station_mount);
         st_coord->Insert(std::string("X"), position[0]);
         st_coord->Insert(std::string("Y"), position[1]);
@@ -585,12 +576,10 @@ MHO_DiFXScanProcessor::ExtractStationCoords()
 
         //calculate zero-th order parallactic_angle values
         calculateZerothOrderParallacticAngle(st_coord, position[0], position[1], position[2], src_dec, duration);
-        //std::cout<<"PAR ANGLE!!! = "<<st_coord->at(3,0,0)<<std::endl;
 
         //store n_poly as int
         int nsplines = n_poly;
         st_coord->Insert(std::string("nsplines"), nsplines);
-
     }
 }
 
@@ -674,7 +663,8 @@ MHO_DiFXScanProcessor::apply_delay_model_clock_correction(const mho_json& ant, c
 }
 
 
-//lifted from difx_antenna.c line 288 with minor changes (so we can avoid introducing additional dependencies to difxio lib)
+//lifted from difx_antenna.c line 288 with minor changes 
+//(copied here so we can avoid introducing additional dependencies to difxio lib)
 int 
 MHO_DiFXScanProcessor::local_getDifxAntennaShiftedClock(const mho_json& da, double dt, int outputClockSize, double *clockOut)
 {
@@ -746,11 +736,10 @@ void MHO_DiFXScanProcessor::calculateZerothOrderParallacticAngle(station_coord_t
                 // evaluate sin and cos of the local hour angle
                 double sha = -1.0 * std::cos(el) * std::sin(az) / std::cos(dec);
                 double cha = ( std::sin(el) - std::sin(geoc_lat) * std::sin(dec) ) / ( std::cos(geoc_lat) * std::cos(dec) );
-                // approximate (first order in f) conversion
+                // approximate (first order in f) conversion (where does the magic number 1.00674 come from?)
                 double geod_lat = std::atan(1.00674 * std::tan(geoc_lat));
                 // finally ready for par. angle
                 double par_angle = (180.0 / M_PI) * std::atan2(sha, ( std::cos(dec) * std::tan(geod_lat) - std::sin(dec) * cha) );
-                //std::cout<<"PAR ANGLE @ "<<p<<" = "<<par_angle<<std::endl;
                 st_coord->at(3,i,p) = par_angle; //3 is par. angle
             }
             else
