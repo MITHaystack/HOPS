@@ -34,7 +34,8 @@ void fill_plot_data(MHO_ParameterStore* paramStore, mho_json& plot_dict)
     plot_dict["RA"] = paramStore->GetAs<std::string>("/vex/scan/source/ra");
     plot_dict["Dec"] = paramStore->GetAs<std::string>("/vex/scan/source/dec");
 
-    //name of this output parameter changes depending on whether or not we are using mbd_anchor = sbd
+    //in order to follow the PDD interface, the name of the following output 
+    //parameter changes depending on whether or not we are using mbd_anchor = sbd
     std::string mbd_anchor = paramStore->GetAs<std::string>("mbd_anchor");
     if(mbd_anchor == "sbd")
     {
@@ -59,11 +60,11 @@ void fill_plot_data(MHO_ParameterStore* paramStore, mho_json& plot_dict)
     plot_dict["ResidSbdelay(usec)"] = paramStore->GetAs<double>("/fringe/sbdelay");
     plot_dict["ResidPhdelay(usec)"] = paramStore->GetAs<double>("/fringe/resid_ph_delay");
     plot_dict["ResidRate(us/s)"] = paramStore->GetAs<double>("/fringe/drate");
-    plot_dict["ResidPhase(deg)"] = paramStore->GetAs<double>("/fringe/resid_phase");
+    plot_dict["ResidPhase(deg)"] = paramStore->GetAs<double>("/fringe/resid_phase"); //degrees
 
-    plot_dict["ResidMbdelayError(usec)"] = paramStore->GetAs<double>("/fringe/mbd_error"); //dp->fringe->t208->mbd_error);
-    plot_dict["ResidSbdelayError(usec)"] = paramStore->GetAs<double>("/fringe/sbd_error");  //dp->fringe->t208->sbd_error);
+    plot_dict["ResidMbdelayError(usec)"] = paramStore->GetAs<double>("/fringe/mbd_error"); 
+    plot_dict["ResidSbdelayError(usec)"] = paramStore->GetAs<double>("/fringe/sbd_error"); 
     plot_dict["ResidPhdelayError(usec)"] = paramStore->GetAs<double>("/fringe/phase_delay_error");
-    plot_dict["ResidRateError(us/s)"] = paramStore->GetAs<double>("/fringe/drate_error"); //dp->fringe->t208->rate_error);
-    plot_dict["ResidPhaseError(deg)"] =  paramStore->GetAs<double>("/fringe/phase_error");  //dp->status->phase_err);
+    plot_dict["ResidRateError(us/s)"] = paramStore->GetAs<double>("/fringe/drate_error"); 
+    plot_dict["ResidPhaseError(deg)"] =  paramStore->GetAs<double>("/fringe/phase_error");
 }
