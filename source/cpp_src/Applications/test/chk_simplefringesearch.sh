@@ -13,6 +13,8 @@ D2M4_EXP_NUM=1234
 SCAN_DIR=105-1800
 cd $EXP_DIR
 
+export HOPS_PLOT_DATA_MASK=0x83FFFFFF
+
 echo "Running: ffit -d ./${D2H_EXP_NUM}/${SCAN_DIR} -c ./cf_test4 -b GE -p XX"
 
 time ffit -d ./${D2H_EXP_NUM}/${SCAN_DIR} -c ./cf_test4 -b GE -p XX | grep max555 | tee ./sfs.out
@@ -31,7 +33,7 @@ echo "simple fringe sbd: $sfs_sbd"
 echo "simple fringe dr: $sfs_dr"
 
 echo "Running: fourfit -m 1 -t -c ./cf_test4 -b GE -P XX ./${D2M4_EXP_NUM}/${SCAN_DIR}"
-time fourfit -m 1 -t -c ./cf_test4 -b GE -P XX ./${D2M4_EXP_NUM}/${SCAN_DIR} 2>&1  | grep max555 | tee ./ff.out
+time fourfit -m 1 -t -c ./cf_test4 -b GE -P XX ./${D2M4_EXP_NUM}/${SCAN_DIR} set mbd_anchor model plot_data_dir ./chk1 2>&1  | grep max555 | tee ./ff.out
 
 ff_mbd=$( cat ./ff.out | grep -oP 'mbd [+-]?[0-9]+([.][0-9]+)?+([e][+-][0-9]+)?' |  awk '{print $2}' )
 ff_sbd=$( cat ./ff.out | grep -oP 'sbd [+-]?[0-9]+([.][0-9]+)?+([e][+-][0-9]+)?' |  awk '{print $2}' )
@@ -67,9 +69,12 @@ echo "sbd aok is $aok_sbd, $sbd_delta, $low, $high"
 echo "mbd aok is $aok_mbd, $mbd_delta, $low, $high"
 echo "dr aok is $aok_dr, $dr_delta, $low, $high"
 
-RET_VAL=1
-if [ "$aok_mbd" -eq 1 -a "$aok_sbd" -eq 1 -a "$aok_dr" -eq 1 ]; then 
-    RET_VAL=0
-fi
+# RET_VAL=1
+# if [ "$aok_mbd" -eq 1 -a "$aok_sbd" -eq 1 -a "$aok_dr" -eq 1 ]; then 
+#     RET_VAL=0
+# fi
+
+compjsonpdd.py ./fdump.json ./chk1/105-1800*
+RET_VAL=$?
 
 exit $RET_VAL

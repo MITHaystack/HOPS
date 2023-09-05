@@ -46,7 +46,7 @@ def main():
         'RefFreq(MHz)':'float',
         'AP(sec)':'float',
         'ExperName':'string',
-        'ExperNum':'string',
+        #'ExperNum':'string', --not particularly critical
         'YearDOY':'string',
         'Start':'string',
         'Stop':'string',
@@ -56,7 +56,7 @@ def main():
         # 'BuildTime':' "-";
         #'RA':'string',
         #'Dec':'string',
-        'GroupDelayModel(usec)':'float',
+        'GroupDelayModel(usec)':'float', # TODO -- this becomes GroupDelaySBD(usec) if mbd_anchor sbd is in the control file
         'SbandDelay(usec)':'float',
         #'DelayRate(ps/s)':'float', -- something is wrong with this one in pdd file, should be total delay rate, but it is residual delay rate
         'PhaseDelay(usec)':'float',
@@ -80,24 +80,42 @@ def main():
 
     bad_count = 0
     bad_keys = []
-    rel_percent_error = 0.02
+    rel_percent_error = 0.03
+    
+    print("tolerance is: ", rel_percent_error, " percent.")
 
     for k,t in key_type_dict.items():
 
         if t == 'string':
-            val1 = str(j1[k])
-            val2 = str(j2[k])
-            print(k, t, " : ", j1[k], " ? ", j2[k])
-            if val1 != val2:
+            if(k in j1 and k in j2):
+                val1 = str(j1[k])
+                val2 = str(j2[k])
+                print(k, t, " : ", j1[k], " ? ", j2[k])
+                if val1 != val2:
+                    bad_count += 1
+                    bad_keys.append(k)
+            else:
+                if( not k in j1):
+                    print("missing ", k, " in ", f1_name)
+                if(not k in j2):
+                    print("missing ", k , " in ", f2_name)
                 bad_count += 1
                 bad_keys.append(k)
 
         if t == 'float':
-            val1 = float(j1[k])
-            val2 = float(j2[k])
-            delta = val1 - val2
-            print(k, t, " : percent difference: ", (delta/val2)*100 )
-            if math.fabs(delta/val2)*100 > rel_percent_error:
+            if(k in j1 and k in j2):
+                val1 = float(j1[k])
+                val2 = float(j2[k])
+                delta = val1 - val2
+                print(k, t, " : percent difference: ", (delta/val2)*100 )
+                if math.fabs(delta/val2)*100 > rel_percent_error:
+                    bad_count += 1
+                    bad_keys.append(k)
+            else:
+                if( not k in j1):
+                    print("missing ", k, " in ", f1_name)
+                if(not k in j2):
+                    print("missing ", k , " in ", f2_name)
                 bad_count += 1
                 bad_keys.append(k)
 

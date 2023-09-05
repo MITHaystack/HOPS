@@ -64,11 +64,22 @@ double calculate_sbd_error(double sbd_sep, double snr, double sbavg)
     return sbd_err;
 }
 
-//double calculate_drate_error(double snr, double ref_freq, double total_ap, double ap_delta, double nchan)
-double calculate_drate_error(double snr, double ref_freq, double integration_time)
+//this is the fourfit original version (unweighted integration time - may under estimate the error)
+double calculate_drate_error_v1(double snr, double ref_freq, double total_nap, double ap_delta)
 {
-    // temp = status->total_ap * param->acc_period / pass->channels;
-    //double temp = total_ap*ap_delta/nchan;
+    //originally: temp = status->total_ap * param->acc_period / pass->channels;
+    //but we don't need the number of channels due to the difference in the way
+    //we count 'APs' vs original c-code.
+    double temp = total_nap*ap_delta; 
+    double drate_error = std::sqrt(12.0) / ( 2.0 * M_PI * snr * ref_freq * temp) ;
+    return drate_error;
+}
+
+
+//probably makes more sense to use the integration time to compute this uncertainty,
+//but original fourfit version (_v1) just uses the total (unweighted) time
+double calculate_drate_error_v2(double snr, double ref_freq, double integration_time)
+{
     double temp = integration_time;
     double drate_error = std::sqrt(12.0) / ( 2.0 * M_PI * snr * ref_freq * temp) ;
     return drate_error;
@@ -357,7 +368,12 @@ void calculate_fringe_info(MHO_ContainerStore* conStore, MHO_ParameterStore* par
     double sbavg = 1.0;
     
     double sbd_error = calculate_sbd_error(sbd_sep, snr, sbavg);
-    double drate_error = calculate_drate_error(snr, ref_freq, integration_time);
+
+    int total_naps = paramStore->GetAs<int>("total_naps");
+    double drate_error = calculate_drate_error_v1(snr, ref_freq, total_naps, ap_delta);
+
+    //may want to consider this version in the future
+    //double drate_error = calculate_drate_error_v2(snr, ref_freq, integration_time);
 
     paramStore->Set("/fringe/mbd_error", mbd_error);
     paramStore->Set("/fringe/sbd_error", sbd_error);
