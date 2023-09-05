@@ -125,9 +125,7 @@ def main():
                 bad_count += 1
                 bad_keys.append(k)
                 
-                
-                
-                
+
     for k,t in optional_key_type_dict.items():
         if t == 'string':
             if(k in j1 and k in j2):
