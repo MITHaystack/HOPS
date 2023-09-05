@@ -13,6 +13,8 @@ D2M4_EXP_NUM=.
 SCAN_DIR=104-1228
 cd $EXP_DIR
 
+export HOPS_PLOT_DATA_MASK=0x83FFFFFF
+
 echo "Running: ffit -d ./${D2H_EXP_NUM}/${SCAN_DIR} -c ./test0.cf -b AS -p RR"
 time ffit -d ./${D2H_EXP_NUM}/${SCAN_DIR} -c ./test0.cf -b AS -p RR | tee ./sfs.out
 
