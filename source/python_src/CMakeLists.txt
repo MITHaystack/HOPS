@@ -32,8 +32,6 @@ if(PY_EXE AND HOPS3_PYTHON_EXTRAS AND NOT HOPS3_USE_CXX)
         install(CODE "execute_process( COMMAND ${PY_EXE} ${SETUP_PY} install --prefix=${CMAKE_INSTALL_PREFIX} )")
     endif()
 
-    add_subdirectory(scripts)
-
     if(HOPS3_PYTHON_EXTRAS)
         add_subdirectory(mk4_module)
         add_subdirectory(vpal_module)
@@ -46,3 +44,6 @@ if(PY_EXE AND HOPS3_PYTHON_EXTRAS AND NOT HOPS3_USE_CXX)
     endif(HOPS_ENABLE_TEST)
 
 endif(PY_EXE AND HOPS3_PYTHON_EXTRAS AND NOT HOPS3_USE_CXX)
+
+#outside if condition due to one script (compjsonpdd.py) which has not dependencies
+add_subdirectory(scripts)
