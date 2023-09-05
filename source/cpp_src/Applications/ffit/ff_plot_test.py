@@ -339,7 +339,12 @@ def fourfit_plot(plot_dict, filename):
         'Delay rate (us/s) ' + '\n' + \
         'Total Phase (deg) ' + '\n'
 
-    btmtextstr2 = str(np.format_float_scientific( float(plot_dict["GroupDelayModel(usec)"]), precision=11, min_digits=11 ) )  + '\n' + \
+    group_delay_key = "GroupDelayModel(usec)"
+    if not group_delay_key in plot_dict:
+        group_delay_key = "GroupDelaySBD(usec)"
+
+
+    btmtextstr2 = str(np.format_float_scientific( float(plot_dict[group_delay_key]), precision=11, min_digits=11 ) )  + '\n' + \
         str(np.format_float_scientific(float(plot_dict["SbandDelay(usec)"]), precision=11, min_digits=11) ) + '\n' + \
         str(np.format_float_scientific(float(plot_dict["PhaseDelay(usec)"]), precision=11, min_digits=11) ) + '\n' + \
         str(np.format_float_scientific(float(plot_dict["DelayRate(ps/s)"]), precision=11, min_digits=11) ) + '\n' + \

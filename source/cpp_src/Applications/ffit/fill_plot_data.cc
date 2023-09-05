@@ -10,7 +10,7 @@ void fill_plot_data(MHO_ParameterStore* paramStore, mho_json& plot_dict)
     plot_dict["SNR"] = paramStore->GetAs<double>("/fringe/snr");
     plot_dict["IntgTime"] = paramStore->GetAs<double>("/fringe/integration_time");
     plot_dict["Amp"] = paramStore->GetAs<double>("/fringe/famp");
-    plot_dict["ResPhase"] = paramStore->GetAs<double>("/fringe/raw_resid_phase");
+    plot_dict["ResPhase"] = paramStore->GetAs<double>("/fringe/resid_phase");
     plot_dict["PFD"] = paramStore->GetAs<double>("/fringe/prob_false_detect");
 
     plot_dict["ResidSbd(us)"] = paramStore->GetAs<double>("/fringe/sbdelay");
@@ -34,8 +34,16 @@ void fill_plot_data(MHO_ParameterStore* paramStore, mho_json& plot_dict)
     plot_dict["RA"] = paramStore->GetAs<std::string>("/vex/scan/source/ra");
     plot_dict["Dec"] = paramStore->GetAs<std::string>("/vex/scan/source/dec");
 
-    // // dp->param->mbd_anchor == MODEL ? "Model(usec)" : "SBD(usec)  ",
-    plot_dict["GroupDelayModel(usec)"] = paramStore->GetAs<double>("/fringe/total_mbdelay");
+    //name of this output parameter changes depending on whether or not we are using mbd_anchor = sbd
+    std::string mbd_anchor = paramStore->GetAs<std::string>("mbd_anchor");
+    if(mbd_anchor == "sbd")
+    {
+        plot_dict["GroupDelaySBD(usec)"] = paramStore->GetAs<double>("/fringe/total_mbdelay");
+    }
+    else
+    {
+        plot_dict["GroupDelayModel(usec)"] = paramStore->GetAs<double>("/fringe/total_mbdelay");
+    }
     plot_dict["SbandDelay(usec)"] = paramStore->GetAs<double>("/fringe/total_sbdelay");
     plot_dict["DelayRate(ps/s)"] = paramStore->GetAs<double>("/fringe/total_drate");
     plot_dict["PhaseDelay(usec)"] = paramStore->GetAs<double>("/fringe/phase_delay");
@@ -51,7 +59,7 @@ void fill_plot_data(MHO_ParameterStore* paramStore, mho_json& plot_dict)
     plot_dict["ResidSbdelay(usec)"] = paramStore->GetAs<double>("/fringe/sbdelay");
     plot_dict["ResidPhdelay(usec)"] = paramStore->GetAs<double>("/fringe/resid_ph_delay");
     plot_dict["ResidRate(us/s)"] = paramStore->GetAs<double>("/fringe/drate");
-    plot_dict["ResidPhase(deg)"] = paramStore->GetAs<double>("/fringe/resid_phase")*(180.0/M_PI);
+    plot_dict["ResidPhase(deg)"] = paramStore->GetAs<double>("/fringe/resid_phase");
 
     plot_dict["ResidMbdelayError(usec)"] = paramStore->GetAs<double>("/fringe/mbd_error"); //dp->fringe->t208->mbd_error);
     plot_dict["ResidSbdelayError(usec)"] = paramStore->GetAs<double>("/fringe/sbd_error");  //dp->fringe->t208->sbd_error);

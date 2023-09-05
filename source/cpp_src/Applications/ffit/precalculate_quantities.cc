@@ -139,7 +139,6 @@ void precalculate_quantities(MHO_ContainerStore* conStore, MHO_ParameterStore* p
     }
     paramStore->Set("channel_bandwidth", bandwidth);
     
-
     //offset to the start of the data 
     double start_offset = ap_ax->at(0);
     std::cout<<"offset to the start of the first ap = "<<start_offset<<std::endl;
