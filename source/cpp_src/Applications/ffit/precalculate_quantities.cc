@@ -197,7 +197,7 @@ void precalculate_quantities(MHO_ContainerStore* conStore, MHO_ParameterStore* p
     paramStore->Set("/model/arate", 1e6*arate);
     paramStore->Set("/model/aaccel", 1e6*aaccel);
     
-    //figureout the clock information at the FRT
+    //figure out the clock information at the FRT
     calculate_clock_model(paramStore);
     
     //determines properties of the frequency grid used in the MBD search

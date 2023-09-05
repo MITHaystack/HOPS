@@ -146,7 +146,6 @@ calculate_residual_phase(MHO_ContainerStore* conStore, MHO_ParameterStore* param
     auto chan_ax = &( std::get<CHANNEL_AXIS>(*sbd_arr) );
     auto ap_ax = &(std::get<TIME_AXIS>(*sbd_arr));
     auto sbd_ax = &( std::get<FREQ_AXIS>(*sbd_arr) );
-    // double ap_delta = ap_ax->at(1) - ap_ax->at(0);
     double sbd_delta = sbd_ax->at(1) - sbd_ax->at(0);
     
     paramStore->Set("/fringe/sbd_separation", sbd_delta);
@@ -232,7 +231,7 @@ void calculate_fringe_info(MHO_ContainerStore* conStore, MHO_ParameterStore* par
     mho_json freq_section = vexInfo["$FREQ"];
     auto freq_info = freq_section.begin().value();
     double sample_rate = freq_info["sample_rate"]["value"];
-    //TODO FIXME (what if channels have multi-bandwiths?, units?)
+    //TODO FIXME (what if channels have multiple-bandwidths?, units?)
     double samp_period = 1.0/(sample_rate*1e6);
 
     //configuration parameters 
@@ -252,12 +251,6 @@ void calculate_fringe_info(MHO_ContainerStore* conStore, MHO_ParameterStore* par
     double arate = paramStore->GetAs<double>("/model/arate");
     double aaccel = paramStore->GetAs<double>("/model/aaccel");
     
-    //TODO FIXME -- -account for units (convert to usec)
-    //NEED to account for units everywhere!
-    // adelay *= 1.0e6;
-    // arate *= 1.0e6;
-    // aaccel *= 1.0e6;
-
     std::string frt_vex_string = paramStore->GetAs<std::string>("/vex/scan/fourfit_reftime");
     auto frt = hops_clock::from_vex_format(frt_vex_string);
     legacy_hops_date frt_ldate = hops_clock::to_legacy_hops_date(frt);
