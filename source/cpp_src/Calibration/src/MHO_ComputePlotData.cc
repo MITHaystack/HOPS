@@ -367,9 +367,11 @@ MHO_ComputePlotData::calc_segs()
     phasor_segs.Resize(nchan+1, nap);
     phasor_segs.ZeroArray();
 
+
     for(std::size_t ap=0; ap < nap; ap++)
     {
         std::complex<double> sum = 0; //sum over all channels
+        double sumwt = 0.0;
         double tdelta = (ap_ax->at(ap) + ap_delta/2.0) - frt_offset; //need time difference from the f.r.t?
         for(std::size_t ch=0; ch < nchan; ch++)
         {
@@ -383,9 +385,10 @@ MHO_ComputePlotData::calc_segs()
             double w = (*fWeights)(POLPROD, ch, ap, 0);
             std::complex<double> wght_phsr = w*z;
             sum += wght_phsr;
+            sumwt += w;
         }
         (&std::get<1>(phasor_segs))->at(ap) = ap_ax->at(ap);
-        phasor_segs(nchan,ap) = sum;
+        phasor_segs(nchan,ap) = sum/sumwt;
     }
     return phasor_segs;
 }
@@ -1126,13 +1129,13 @@ MHO_ComputePlotData::DumpInfoToJSON(mho_json& plot_dict)
         plot_dict["XPSPEC_XAXIS"].push_back( std::get<0>(sbd_xpower)(i) );
     }
 
-    std::size_t nfreqs = phasors.GetDimension(0);
+    std::size_t nplots = phasors.GetDimension(0);
     std::size_t naps = phasors.GetDimension(1);
 
     std::vector<double> seg_amp;
     std::vector<double> seg_arg;
     
-    for(std::size_t i=0; i<nfreqs; i++)
+    for(std::size_t i=0; i<nplots; i++)
     {
         for(std::size_t j=0; j<naps; j++)
         {
@@ -1143,6 +1146,10 @@ MHO_ComputePlotData::DumpInfoToJSON(mho_json& plot_dict)
 
     plot_dict["SEG_AMP"] = seg_amp;
     plot_dict["SEG_PHS"] = seg_arg;
+    
+    plot_dict["NSeg"] = naps;
+    plot_dict["NPlots"] = nplots; //nchan+1
+    plot_dict["StartPlot"] = 0;
 
 }
 
