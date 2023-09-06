@@ -298,7 +298,96 @@ MHO_ComputePlotData::calc_xpower()
     }
 
     return sbd_xpower_out;
+}
 
+
+phasor_type 
+MHO_ComputePlotData::calc_segs()
+{
+    // /* For each freq & ap, the fringe phasor */
+    // /* is the sband delay spectrum at the max */
+    // /* delay chan., rotated by vrot() */
+    // for (fr = 0; fr < pass->nfreq; fr++)
+    // {
+    //     sum_freq = 0.0;
+    //     sumwt = 0.0;
+    //     for (ap = pass->ap_off; ap < pass->ap_off+pass->num_ap; ap++)
+    //     {
+    //         datum = pdata[fr].data + ap;
+    //         plot.weights[fr][ap] = 0.0;
+    //             /* Flag bits set indicate data present */
+    //         if (datum->flag != 0)
+    //         {
+    //             ap_cnt[ap]++;
+    //             if (datum->lsbfrac >= 0.0)
+    //             plot.weights[fr][ap] += datum->lsbfrac;
+    //             if (datum->usbfrac >= 0.0)
+    //             plot.weights[fr][ap] += datum->usbfrac;
+    //                 /* True weights - factor of 2 inherent */
+    //                 /* in sbdelay values for double sideband */
+    //             sumwt += plot.weights[fr][ap];
+    //                 /* Double-sideband relative weights, */
+    //                 /* take mean */
+    //             if ((datum->usbfrac >= 0.0) && (datum->lsbfrac >= 0.0))
+    //             plot.weights[fr][ap] /= 2.0;
+    // 
+    //             Z = datum->sbdelay[status.max_delchan]
+    //             * vrot(ap,status.dr_max_global,status.mbd_max_global,fr,datum->sband,pass);
+    //             plot.phasor[fr][ap] = Z;
+    //         }
+    //         else
+    //         plot.phasor[fr][ap] = 0.0;
+    //         wght_phsr = plot.phasor[fr][ap] * plot.weights[fr][ap];
+    //         sum_all = sum_all + wght_phsr;
+    //         sum_freq = sum_freq + wght_phsr;
+    //         sum_ap[ap] = sum_ap[ap] + wght_phsr;
+    //     }
+    //         /* Changed to reflect fractional APs */
+    //     c = (sumwt > 0.0) ? status.amp_corr_fact/sumwt : 0.0;
+    // }
+    
+    //grab the total summed weights
+    double total_summed_weights = 1.0;
+    fWeights->Retrieve("total_summed_weights", total_summed_weights);
+    
+    //grab the SBD max bin 
+    std::size_t max_sbd_bin = (std::size_t)fParamStore->GetAs<int>("/fringe/max_sbd_bin");
+
+    std::size_t POLPROD = 0;
+    std::size_t nchan = fSBDArray->GetDimension(CHANNEL_AXIS);
+    std::size_t nap = fSBDArray->GetDimension(TIME_AXIS);
+    std::size_t nbins = fSBDArray->GetDimension(FREQ_AXIS);
+
+    auto chan_ax = &( std::get<CHANNEL_AXIS>(*fSBDArray) );
+    auto ap_ax = &(std::get<TIME_AXIS>(*fSBDArray));
+    double ap_delta = ap_ax->at(1) - ap_ax->at(0);
+    double frt_offset = fParamStore->GetAs<double>("frt_offset");
+    
+    phasor_type phasor_segs;
+    phasor_segs.Resize(nchan+1, nap);
+    phasor_segs.ZeroArray();
+
+    for(std::size_t ap=0; ap < nap; ap++)
+    {
+        std::complex<double> sum = 0; //sum over all channels
+        double tdelta = (ap_ax->at(ap) + ap_delta/2.0) - frt_offset; //need time difference from the f.r.t?
+        for(std::size_t ch=0; ch < nchan; ch++)
+        {
+            double freq = (*chan_ax)(ch);//sky freq of this channel
+            (&std::get<0>(phasor_segs))->at(ch) = freq;
+            std::complex<double> vis = (*fSBDArray)(POLPROD, ch, ap, max_sbd_bin);
+            std::complex<double> vr = fRot.vrot(tdelta, freq, fRefFreq, fDelayRate, fMBDelay);
+            std::complex<double> z = vis*vr;
+            phasor_segs(ch, ap) = z;
+            //apply weight and sum
+            double w = (*fWeights)(POLPROD, ch, ap, 0);
+            std::complex<double> wght_phsr = w*z;
+            sum += wght_phsr;
+        }
+        (&std::get<1>(phasor_segs))->at(ap) = ap_ax->at(ap);
+        phasor_segs(nchan,ap) = sum;
+    }
+    return phasor_segs;
 }
 
 
@@ -998,6 +1087,7 @@ MHO_ComputePlotData::DumpInfoToJSON(mho_json& plot_dict)
     auto mbd_amp = calc_mbd();
     auto dr_amp = calc_dr();
     auto sbd_xpower = calc_xpower_KLUDGE();
+    auto phasors = calc_segs();
 
     //TODO FIXME -- move the residual phase calc elsewhere
     double coh_avg_phase = calc_phase();
@@ -1036,7 +1126,23 @@ MHO_ComputePlotData::DumpInfoToJSON(mho_json& plot_dict)
         plot_dict["XPSPEC_XAXIS"].push_back( std::get<0>(sbd_xpower)(i) );
     }
 
+    std::size_t nfreqs = phasors.GetDimension(0);
+    std::size_t naps = phasors.GetDimension(1);
 
+    std::vector<double> seg_amp;
+    std::vector<double> seg_arg;
+    
+    for(std::size_t i=0; i<nfreqs; i++)
+    {
+        for(std::size_t j=0; j<naps; j++)
+        {
+            seg_amp.push_back( std::abs( phasors(i,j) ) );
+            seg_arg.push_back( std::arg( phasors(i,j) ) );
+        }
+    }
+
+    plot_dict["SEG_AMP"] = seg_amp;
+    plot_dict["SEG_PHS"] = seg_arg;
 
 }
 

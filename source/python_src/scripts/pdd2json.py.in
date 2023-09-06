@@ -1,0 +1,35 @@
+#!@PY_EXE@
+
+import argparse
+import json
+import sys
+import os
+import math
+
+from hops_io import parse_PDD
+
+def main():
+
+    parser = argparse.ArgumentParser(
+         prog='pdd2json.py', \
+         description='''primitive utility to convert fourfit PDD file to json''' \
+         )
+
+    parser.add_argument('input_file', help='the HOPS3 (plot_data_dir) dump file')
+    parser.add_argument('output_file', help='the name of the output file')
+
+    args = parser.parse_args()
+    in_name = os.path.abspath(args.input_file)
+    out_name = os.path.abspath(args.output_file)
+
+    pdd_data = parse_PDD(in_name)
+
+    with open(out_name, 'w') as f:
+        json.dump(pdd_data, f)
+        return 0
+    
+    return 1
+
+if __name__ == '__main__':          #entry point
+    ret_val = main()
+    sys.exit(ret_val)
