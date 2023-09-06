@@ -125,47 +125,60 @@ def fourfit_plot(plot_dict, filename):
     ax5.yaxis.label.set_color('r')
 
 
-    #
-    #
-    # # Now we build the plots for each band; this will need attention, currently only supports six bands
-    # # (and is built by hand; need to loop)
-    # cols = 42
-    # colw = 6
-    #
-    # # convert SEG_PHS to deg
-    # phs = [xx*180/np.pi for xx in plot_dict['SEG_PHS']]
-    #
-    # i=0
-    # ax6 = plt.subplot2grid((16,cols),(9,0),rowspan=3,colspan=colw)
-    # ax6.plot(range(34),plot_dict['SEG_AMP'][i::7],'co-',markersize=3,markerfacecolor='b')
-    # ax6.set_xlim(0,34)
-    # ax6.set_ylim(0,60)
-    # ax6.set_ylabel('amplitude',fontsize=9)
-    # plt.xticks(visible=False)
-    # plt.yticks(fontsize=8,rotation=90)
-    # ax6.yaxis.label.set_color('b')
-    # ax6.minorticks_on()
-    #
-    # ax6a = ax6.twinx()
-    # ax6a.plot(range(34), phs[i::7],'ro',markersize=3)
-    # ax6a.set_xlim(0,34)
-    # ax6a.set_ylim(-180,180)
-    #
-    #
+    # Now we build the plots for each band; this will need attention, currently only supports six bands
+    # (and is built by hand; need to loop)
+    cols = 42
+    colw = 6
+    
+    #grab seg amp
+    seg_amp_arr = np.array( plot_dict['SEG_AMP'] )
+    
+    # convert SEG_PHS to deg
+    seg_phs_arr = np.array( [xx*180/np.pi for xx in plot_dict['SEG_PHS']] )
+    
+    seg_amp_arr1 = seg_amp_arr.reshape(9,30)
+    seg_phs_arr1 = seg_phs_arr.reshape(9,30)
+    
+    for ch in range(0,7):
+        ax6 = plt.subplot2grid((16,cols),(9,colw*ch),rowspan=3,colspan=colw)
+        #ax6 = plt.subplot2grid((16,cols),(9,0),rowspan=3,colspan=colw)
+        ax6.plot(range(30), seg_amp_arr1[ch],'co-',markersize=3,markerfacecolor='b')
+        ax6.set_xlim(0,30)
+        ax6.set_ylim(0,15)
+        if ch == 0:
+            ax6.set_ylabel('amplitude',fontsize=9)
+        else:
+            ax6.set_yticklabels(labels=[],visible=False)
+            
+        plt.xticks(visible=False)
+        plt.yticks(fontsize=8,rotation=90)
+        ax6.yaxis.label.set_color('b')
+        ax6.minorticks_on()
+        
+        ax6a = ax6.twinx()
+        ax6a.plot(range(30), seg_phs_arr1[ch],'ro',markersize=3)
+        ax6a.set_xlim(0,30)
+        ax6a.set_ylim(-180,180)
+        if ch == 7:
+            ax6a.set_ylabel('phase [deg]',fontsize=9)
+        else:
+            ax6a.set_yticklabels(labels=[],visible=False)
+    # 
+    # 
     # i=1
     # ax7 = plt.subplot2grid((16,cols),(9,colw*i),rowspan=3,colspan=colw)
     # ax7.plot(range(34),plot_dict['SEG_AMP'][i::7],'co-',markersize=3,markerfacecolor='b')
     # ax7.set_xlim(0,34)
     # ax7.set_ylim(0,60)
     # plt.xticks(visible=False)
-    #
+    # 
     # ax7a = ax7.twinx()
     # ax7a.plot(range(34), phs[i::7],'ro',markersize=3)
     # ax7a.set_xlim(0,34)
     # ax7a.set_ylim(-180,180)
     # ax7.set_yticklabels(labels=[],visible=False)
-    #
-    #
+    # 
+    # 
     # i=2
     # ax8 = plt.subplot2grid((16,cols),(9,colw*i),rowspan=3,colspan=colw)
     # ax8.plot(range(34),plot_dict['SEG_AMP'][i::7],'co-',markersize=3,markerfacecolor='b')
@@ -174,13 +187,13 @@ def fourfit_plot(plot_dict, filename):
     # plt.xticks(visible=False)
     # ax8.yaxis.label.set_color('b')
     # ax8.minorticks_on()
-    #
+    # 
     # ax8a = ax8.twinx()
     # ax8a.plot(range(34), phs[i::7],'ro',markersize=3)
     # ax8a.set_xlim(0,34)
     # ax8a.set_ylim(-180,180)
     # ax8.set_yticklabels(labels=[],visible=False)
-    #
+    # 
     # i=3
     # ax9 = plt.subplot2grid((16,cols),(9,colw*i),rowspan=3,colspan=colw)
     # ax9.plot(range(34),plot_dict['SEG_AMP'][34*i:34*(i+1)],'co-',markersize=3,markerfacecolor='b')
@@ -191,14 +204,14 @@ def fourfit_plot(plot_dict, filename):
     # #plt.yticks(visible=False)
     # ax9.yaxis.label.set_color('b')
     # ax9.minorticks_on()
-    #
+    # 
     # ax9a = ax9.twinx()
     # ax9a.plot(range(34), phs[i::7],'ro',markersize=3)
     # ax9a.set_xlim(0,34)
     # ax9a.set_ylim(-180,180)
     # #plt.xticks(visible=False)
     # ax9.set_yticklabels(labels=[],visible=False)
-    #
+    # 
     # i=4
     # ax10 = plt.subplot2grid((16,cols),(9,colw*i),rowspan=3,colspan=colw)
     # #ax10.plot(range(34),plot_dict['SEG_AMP'][34*i:34*(i+1)],'co-',markersize=3,markerfacecolor='b')
@@ -209,14 +222,14 @@ def fourfit_plot(plot_dict, filename):
     # #plt.yticks(visible=False)
     # ax10.yaxis.label.set_color('b')
     # ax10.minorticks_on()
-    #
+    # 
     # ax10a = ax10.twinx()
     # ax10a.plot(range(34), phs[i::7],'ro',markersize=3)
     # ax10a.set_xlim(0,34)
     # ax10a.set_ylim(-180,180)
     # #ax10a.set_yticklabels(labels=[],visible=False)
     # ax10.set_yticklabels(labels=[],visible=False)
-    #
+    # 
     # i=5
     # ax11 = plt.subplot2grid((16,cols),(9,colw*i),rowspan=3,colspan=colw)
     # #ax11.plot(range(34),plot_dict['SEG_AMP'][34*i:34*(i+1)],'co-',markersize=3,markerfacecolor='b')
@@ -227,14 +240,14 @@ def fourfit_plot(plot_dict, filename):
     # #plt.yticks(visible=False)
     # ax11.yaxis.label.set_color('b')
     # ax11.minorticks_on()
-    #
+    # 
     # ax11a = ax11.twinx()
     # ax11a.plot(range(34), phs[i::7],'ro',markersize=3)
     # ax11a.set_xlim(0,34)
     # ax11a.set_ylim(-180,180)
     # #plt.yticks(visible=False)
     # ax11.set_yticklabels(labels=[],visible=False)
-    #
+    # 
     # i=6
     # ax12 = plt.subplot2grid((16,cols),(9,colw*i),rowspan=3,colspan=colw)
     # #ax12.plot(range(34),plot_dict['SEG_AMP'][34*i:34*(i+1)],'co-',markersize=3,markerfacecolor='b')
@@ -245,7 +258,7 @@ def fourfit_plot(plot_dict, filename):
     # #plt.yticks(visible=False)
     # ax12.yaxis.label.set_color('b')
     # ax12.minorticks_on()
-    #
+    # 
     # ax12a = ax12.twinx()
     # ax12a.plot(range(34), phs[i::7],'ro',markersize=3)
     # ax12a.set_xlim(0,34)
@@ -257,9 +270,9 @@ def fourfit_plot(plot_dict, filename):
     # plt.xticks(visible=False)
     # ax12a.yaxis.label.set_color('r')
     # ax12.set_yticklabels(labels=[],visible=False)
-    #
-    #
-    #
+    # 
+    
+    
     # # Now build the text boxes
     #
     props = dict(boxstyle='square',facecolor='white',alpha=0.5)

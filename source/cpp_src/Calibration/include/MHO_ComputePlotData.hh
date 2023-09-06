@@ -32,6 +32,7 @@ namespace hops
 {
 
 using xpower_type = MHO_TableContainer< std::complex<double>, MHO_AxisPack< MHO_Axis<double> > >;
+using phasor_type = MHO_TableContainer< std::complex<double>, MHO_AxisPack< MHO_Axis<double>, MHO_Axis<double> > >;
 using xpower_amp_type = MHO_TableContainer< double, MHO_AxisPack< MHO_Axis<double> > >;
 
 
@@ -59,6 +60,7 @@ class MHO_ComputePlotData
         xpower_amp_type calc_mbd();
         xpower_amp_type calc_sbd();
         xpower_type calc_xpower();
+        phasor_type calc_segs();
         xpower_type calc_xpower_KLUDGE();
         xpower_type calc_xpower_KLUDGE2();
         xpower_type calc_xpower_KLUDGE3();
