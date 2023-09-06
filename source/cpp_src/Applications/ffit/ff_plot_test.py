@@ -52,7 +52,7 @@ def fourfit_plot(plot_dict, filename):
     # The delay rate panel (shares axes with the multiband delay)
     ax1 = plt.subplot2grid((16,16),(0,0),rowspan=4,colspan=13)
 
-    ax1.plot(dly_x, plot_dict['DLYRATE'],'r-',linewidth=0.8)
+    ax1.plot(dly_x, plot_dict['DLYRATE'],'r-',linewidth=0.5)
     ax1.set_xlim(dly_x[0],dly_x[-1])
     ax1.set_ylim(bottom=0)
     ax1.set_xlabel('delay rate (ns/s)',fontsize=9)
@@ -68,7 +68,7 @@ def fourfit_plot(plot_dict, filename):
     ax2a = ax1.twinx()
     plt.yticks(fontsize=8,rotation=90)
     ax2 = ax2a.twiny()
-    ax2.plot(mbd_x, plot_dict['MBD_AMP'],'b-',linewidth=0.8)
+    ax2.plot(mbd_x, plot_dict['MBD_AMP'],'b-',linewidth=0.5)
     ax2.set_xlim(mbd_x[0],mbd_x[-1])
     ax2.set_ylim(bottom=0)
     ax2.set_xlabel(r'multiband delay ($\mu$s)',fontsize=9)
@@ -85,7 +85,7 @@ def fourfit_plot(plot_dict, filename):
     # The singleband delay panel
     ax3 = plt.subplot2grid((16,8),(5,0),rowspan=3,colspan=3)
 
-    ax3.plot(sbd_x, plot_dict['SBD_AMP'],'g-',linewidth=0.8)
+    ax3.plot(sbd_x, plot_dict['SBD_AMP'],'g-',linewidth=0.5)
     ax3.set_xlim(sbd_x[0],sbd_x[-1])
     ax3.set_ylim(bottom=0)
     ax3.set_xlabel(r'singleband delay ($\mu$s)',fontsize=9)
@@ -101,7 +101,7 @@ def fourfit_plot(plot_dict, filename):
     # The cross-powe sepctra
     ax4 = plt.subplot2grid((16,16),(5,7),rowspan=3,colspan=6)
 
-    ax4.plot(xpow_x, plot_dict['XPSPEC-ABS'],'co-',markersize=3,markerfacecolor='b')
+    ax4.plot(xpow_x, plot_dict['XPSPEC-ABS'],'co-',markersize=2,markerfacecolor='b',linewidth=0.5, markeredgewidth=0.0)
     ax4.set_xlim(xpow_x[0],xpow_x[-1])
     ax4.set_ylim(bottom=0)
     ax4.set_xlabel('Avgd XPow Spectrum (MHz)',fontsize=9)
@@ -115,7 +115,7 @@ def fourfit_plot(plot_dict, filename):
 
     ax5 = ax4.twinx()
 
-    ax5.plot(xpow_x, plot_dict['XPSPEC-ARG'],'ro',markersize=3)
+    ax5.plot(xpow_x, plot_dict['XPSPEC-ARG'],'ro',markersize=2,linewidth=0.5, markeredgewidth=0.0)
     ax5.set_xlim(xpow_x[0],xpow_x[-1])
     ax5.set_ylim(-180,180)
     ax5.set_ylabel('phase [deg]',fontsize=9)
@@ -127,53 +127,69 @@ def fourfit_plot(plot_dict, filename):
 
     # Now we build the plots for each band; this will need attention, currently only supports six bands
     # (and is built by hand; need to loop)
-    cols = 42
+
+    n_seg = plot_dict["NSeg"]
+    n_seg_plots = plot_dict["NPlots"]
+    
+    # cols = 42
     colw = 6
+    cols = 1
     
     #grab seg amp
     seg_amp_arr = np.array( plot_dict['SEG_AMP'] )
+    max_seg_amp = np.max(seg_amp_arr)
     
     # convert SEG_PHS to deg
     seg_phs_arr = np.array( [xx*180/np.pi for xx in plot_dict['SEG_PHS']] )
     
-    seg_amp_arr1 = seg_amp_arr.reshape(9,30)
-    seg_phs_arr1 = seg_phs_arr.reshape(9,30)
+    seg_amp_arr1 = seg_amp_arr.reshape(n_seg_plots,n_seg)
+    seg_phs_arr1 = seg_phs_arr.reshape(n_seg_plots,n_seg)
     
-    for ch in range(0,7):
-        ax6 = plt.subplot2grid((16,cols),(9,colw*ch),rowspan=3,colspan=colw)
-        #ax6 = plt.subplot2grid((16,cols),(9,0),rowspan=3,colspan=colw)
-        ax6.plot(range(30), seg_amp_arr1[ch],'co-',markersize=3,markerfacecolor='b')
-        ax6.set_xlim(0,30)
-        ax6.set_ylim(0,15)
+    for ch in range(0,n_seg_plots):
+        #ax6 = plt.subplot2grid((16,cols),(9,colw*ch),rowspan=3,colspan=colw)
+        ax6 = plt.subplot2grid((16,colw*n_seg_plots),(9,colw*ch), rowspan=3,colspan=colw)
+        ax6.plot(range(n_seg), seg_amp_arr1[ch],'co-',markersize=2, markerfacecolor='b', linewidth=0.5, markeredgewidth=0.0)
+        ax6.set_xlim(0,n_seg)
+        ax6.set_ylim(0,1.7*max_seg_amp)
+        ax6.set_xticklabels(labels=[],visible=False)
         if ch == 0:
             ax6.set_ylabel('amplitude',fontsize=9)
+            plt.yticks(fontsize=8,rotation=90)
+            ax6.yaxis.label.set_color('b')
+            ax6.minorticks_on()
+            plt.tick_params(left = True, bottom = False)
         else:
             ax6.set_yticklabels(labels=[],visible=False)
-            
-        plt.xticks(visible=False)
-        plt.yticks(fontsize=8,rotation=90)
-        ax6.yaxis.label.set_color('b')
-        ax6.minorticks_on()
-        
+            plt.yticks(visible=False)
+            plt.tick_params(left = False, bottom = False) 
         ax6a = ax6.twinx()
-        ax6a.plot(range(30), seg_phs_arr1[ch],'ro',markersize=3)
-        ax6a.set_xlim(0,30)
+        ax6a.plot(range(n_seg), seg_phs_arr1[ch],'ro',markersize=2, linewidth=0.5, markeredgewidth=0.0)
+        ax6a.set_xlim(0,n_seg)
         ax6a.set_ylim(-180,180)
-        if ch == 7:
+        if ch == n_seg_plots-1:
             ax6a.set_ylabel('phase [deg]',fontsize=9)
+            ax6a.set_ylabel('phase [deg]',fontsize=9)
+            ytick_locs = [-180,-90,0,90,180]
+            ytick_labels = [str(yy) for yy in ytick_locs]
+            plt.yticks(ytick_locs, ytick_labels, fontsize=8,rotation=90)
+            ax6a.yaxis.label.set_color('r')
+            plt.tick_params(right = True, bottom = False) 
         else:
             ax6a.set_yticklabels(labels=[],visible=False)
+            plt.tick_params(left = False, bottom = False) 
+
+
     # 
     # 
     # i=1
     # ax7 = plt.subplot2grid((16,cols),(9,colw*i),rowspan=3,colspan=colw)
-    # ax7.plot(range(34),plot_dict['SEG_AMP'][i::7],'co-',markersize=3,markerfacecolor='b')
+    # ax7.plot(range(34),plot_dict['SEG_AMP'][i::7],'co-',markersize=2,markerfacecolor='b')
     # ax7.set_xlim(0,34)
     # ax7.set_ylim(0,60)
     # plt.xticks(visible=False)
     # 
     # ax7a = ax7.twinx()
-    # ax7a.plot(range(34), phs[i::7],'ro',markersize=3)
+    # ax7a.plot(range(34), phs[i::7],'ro',markersize=2)
     # ax7a.set_xlim(0,34)
     # ax7a.set_ylim(-180,180)
     # ax7.set_yticklabels(labels=[],visible=False)
@@ -181,7 +197,7 @@ def fourfit_plot(plot_dict, filename):
     # 
     # i=2
     # ax8 = plt.subplot2grid((16,cols),(9,colw*i),rowspan=3,colspan=colw)
-    # ax8.plot(range(34),plot_dict['SEG_AMP'][i::7],'co-',markersize=3,markerfacecolor='b')
+    # ax8.plot(range(34),plot_dict['SEG_AMP'][i::7],'co-',markersize=2,markerfacecolor='b')
     # ax8.set_xlim(0,34)
     # ax8.set_ylim(0,60)
     # plt.xticks(visible=False)
@@ -189,15 +205,15 @@ def fourfit_plot(plot_dict, filename):
     # ax8.minorticks_on()
     # 
     # ax8a = ax8.twinx()
-    # ax8a.plot(range(34), phs[i::7],'ro',markersize=3)
+    # ax8a.plot(range(34), phs[i::7],'ro',markersize=2)
     # ax8a.set_xlim(0,34)
     # ax8a.set_ylim(-180,180)
     # ax8.set_yticklabels(labels=[],visible=False)
     # 
     # i=3
     # ax9 = plt.subplot2grid((16,cols),(9,colw*i),rowspan=3,colspan=colw)
-    # ax9.plot(range(34),plot_dict['SEG_AMP'][34*i:34*(i+1)],'co-',markersize=3,markerfacecolor='b')
-    # ax9.plot(range(34),plot_dict['SEG_AMP'][i::7],'co-',markersize=3,markerfacecolor='b')
+    # ax9.plot(range(34),plot_dict['SEG_AMP'][34*i:34*(i+1)],'co-',markersize=2,markerfacecolor='b')
+    # ax9.plot(range(34),plot_dict['SEG_AMP'][i::7],'co-',markersize=2,markerfacecolor='b')
     # ax9.set_xlim(0,34)
     # ax9.set_ylim(0,60)
     # plt.xticks(visible=False)
@@ -206,7 +222,7 @@ def fourfit_plot(plot_dict, filename):
     # ax9.minorticks_on()
     # 
     # ax9a = ax9.twinx()
-    # ax9a.plot(range(34), phs[i::7],'ro',markersize=3)
+    # ax9a.plot(range(34), phs[i::7],'ro',markersize=2)
     # ax9a.set_xlim(0,34)
     # ax9a.set_ylim(-180,180)
     # #plt.xticks(visible=False)
@@ -214,8 +230,8 @@ def fourfit_plot(plot_dict, filename):
     # 
     # i=4
     # ax10 = plt.subplot2grid((16,cols),(9,colw*i),rowspan=3,colspan=colw)
-    # #ax10.plot(range(34),plot_dict['SEG_AMP'][34*i:34*(i+1)],'co-',markersize=3,markerfacecolor='b')
-    # ax10.plot(range(34),plot_dict['SEG_AMP'][i::7],'co-',markersize=3,markerfacecolor='b')
+    # #ax10.plot(range(34),plot_dict['SEG_AMP'][34*i:34*(i+1)],'co-',markersize=2,markerfacecolor='b')
+    # ax10.plot(range(34),plot_dict['SEG_AMP'][i::7],'co-',markersize=2,markerfacecolor='b')
     # ax10.set_xlim(0,34)
     # ax10.set_ylim(0,60)
     # plt.xticks(visible=False)
@@ -224,7 +240,7 @@ def fourfit_plot(plot_dict, filename):
     # ax10.minorticks_on()
     # 
     # ax10a = ax10.twinx()
-    # ax10a.plot(range(34), phs[i::7],'ro',markersize=3)
+    # ax10a.plot(range(34), phs[i::7],'ro',markersize=2)
     # ax10a.set_xlim(0,34)
     # ax10a.set_ylim(-180,180)
     # #ax10a.set_yticklabels(labels=[],visible=False)
@@ -232,8 +248,8 @@ def fourfit_plot(plot_dict, filename):
     # 
     # i=5
     # ax11 = plt.subplot2grid((16,cols),(9,colw*i),rowspan=3,colspan=colw)
-    # #ax11.plot(range(34),plot_dict['SEG_AMP'][34*i:34*(i+1)],'co-',markersize=3,markerfacecolor='b')
-    # ax11.plot(range(34),plot_dict['SEG_AMP'][i::7],'co-',markersize=3,markerfacecolor='b')
+    # #ax11.plot(range(34),plot_dict['SEG_AMP'][34*i:34*(i+1)],'co-',markersize=2,markerfacecolor='b')
+    # ax11.plot(range(34),plot_dict['SEG_AMP'][i::7],'co-',markersize=2,markerfacecolor='b')
     # ax11.set_xlim(0,34)
     # ax11.set_ylim(0,60)
     # plt.xticks(visible=False)
@@ -242,7 +258,7 @@ def fourfit_plot(plot_dict, filename):
     # ax11.minorticks_on()
     # 
     # ax11a = ax11.twinx()
-    # ax11a.plot(range(34), phs[i::7],'ro',markersize=3)
+    # ax11a.plot(range(34), phs[i::7],'ro',markersize=2)
     # ax11a.set_xlim(0,34)
     # ax11a.set_ylim(-180,180)
     # #plt.yticks(visible=False)
@@ -250,8 +266,8 @@ def fourfit_plot(plot_dict, filename):
     # 
     # i=6
     # ax12 = plt.subplot2grid((16,cols),(9,colw*i),rowspan=3,colspan=colw)
-    # #ax12.plot(range(34),plot_dict['SEG_AMP'][34*i:34*(i+1)],'co-',markersize=3,markerfacecolor='b')
-    # ax12.plot(range(34),plot_dict['SEG_AMP'][i::7],'co-',markersize=3,markerfacecolor='b')
+    # #ax12.plot(range(34),plot_dict['SEG_AMP'][34*i:34*(i+1)],'co-',markersize=2,markerfacecolor='b')
+    # ax12.plot(range(34),plot_dict['SEG_AMP'][i::7],'co-',markersize=2,markerfacecolor='b')
     # ax12.set_xlim(0,34)
     # ax12.set_ylim(0,60)
     # plt.xticks(visible=False)
@@ -260,7 +276,7 @@ def fourfit_plot(plot_dict, filename):
     # ax12.minorticks_on()
     # 
     # ax12a = ax12.twinx()
-    # ax12a.plot(range(34), phs[i::7],'ro',markersize=3)
+    # ax12a.plot(range(34), phs[i::7],'ro',markersize=2)
     # ax12a.set_xlim(0,34)
     # ax12a.set_ylim(-180,180)
     # ax12a.set_ylabel('phase [deg]',fontsize=9)
@@ -342,7 +358,7 @@ def fourfit_plot(plot_dict, filename):
     plt.text(0.05,0.94,plot_dict['CorrVers'].strip("'"),transform=plt.gcf().transFigure,
              fontsize=12,verticalalignment='top',family='sans-serif',horizontalalignment='left',fontweight='bold')
 
-    plt.text(0.965,0.92,'pol '+plot_dict['PolStr'].strip("'"),transform=plt.gcf().transFigure,
+    plt.text(0.965,0.92, plot_dict['PolStr'].strip("'"),transform=plt.gcf().transFigure,
              fontsize=10,verticalalignment='top',family='sans-serif',horizontalalignment='right',fontweight='bold')
 
 

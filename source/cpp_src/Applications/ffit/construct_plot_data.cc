@@ -42,7 +42,12 @@ mho_json construct_plot_data(MHO_ContainerStore* conStore, MHO_ParameterStore* p
     auto sched_info = sched_section.begin().value();
     plot_dict["RootScanBaseline"] = root_file + ", " + scan_name + ", " + baseline;
     plot_dict["CorrVers"] = "HOPS4/DiFX fourfit  rev 0";
-    plot_dict["PolStr"] = polprod;
+    
+    auto ref_name = paramStore->GetAs<std::string>("/ref_station/site_name");
+    auto rem_name = paramStore->GetAs<std::string>("/rem_station/site_name");
+    std::string freq_group = "fgroup ?";
+
+    plot_dict["PolStr"] = ref_name + " - " + rem_name +", " + freq_group + ", " + "pol " + polprod;
 
     //DEBUG! open and dump to file
     std::string output_file = "fdump.json"; //for testing
