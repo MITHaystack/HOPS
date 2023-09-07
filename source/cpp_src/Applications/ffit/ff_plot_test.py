@@ -137,7 +137,7 @@ def fourfit_plot(plot_dict, filename):
 
     #grab seg amp
     seg_amp_arr = np.array( plot_dict['SEG_AMP'] )
-    max_seg_amp = np.max(seg_amp_arr)
+    seg_ymax = float(plot_dict['Amp'])*3.0 #see generate_graphs.c
 
     # convert SEG_PHS to deg
     seg_phs_arr = np.array( [xx*180/np.pi for xx in plot_dict['SEG_PHS']] )
@@ -146,17 +146,10 @@ def fourfit_plot(plot_dict, filename):
     seg_phs_arr1 = seg_phs_arr.reshape(n_seg_plots,n_seg)
 
     for ch in range(0,n_seg_plots):
-        #ax6 = plt.subplot2grid((16,cols),(9,colw*ch),rowspan=3,colspan=colw)
-        nave=50
-        current_arr = seg_amp_arr1[ch]
-        avgResult = np.average(current_arr.reshape(-1, nave), axis=1)
-
         ax6 = plt.subplot2grid((16,colw*n_seg_plots),(9,colw*ch), rowspan=3,colspan=colw)
-        # ax6.plot(range(n_seg), seg_amp_arr1[ch],'co-',markersize=2, markerfacecolor='b', linewidth=0.5, markeredgewidth=0.0)
-        ax6.plot(range(len(avgResult)), avgResult,'co-',markersize=2, markerfacecolor='b', linewidth=0.5, markeredgewidth=0.0)
-        # ax6.set_xlim(0,n_seg)
-        ax6.set_xlim(0,len(avgResult))
-        ax6.set_ylim(0,4.5)
+        ax6.plot(range(n_seg), seg_amp_arr1[ch],'co-',markersize=2, markerfacecolor='b', linewidth=0.5, markeredgewidth=0.0)
+        ax6.set_xlim(0,n_seg)
+        ax6.set_ylim(0,seg_ymax)
         ax6.set_xticklabels(labels=[],visible=False)
         if ch == 0:
             ax6.set_ylabel('amplitude',fontsize=9)
@@ -168,13 +161,10 @@ def fourfit_plot(plot_dict, filename):
             ax6.set_yticklabels(labels=[],visible=False)
             plt.yticks(visible=False)
             plt.tick_params(left = False, bottom = False)
-        ax6a = ax6.twinx()
 
-        current_phs_arr = seg_phs_arr1[ch]
-        avgResultPhs = np.average(current_phs_arr.reshape(-1, nave), axis=1)
-        ax6a.plot(range(len(avgResultPhs)), avgResultPhs,'ro',markersize=2, linewidth=0.5, markeredgewidth=0.0)
-        # ax6a.plot(range(n_seg), seg_phs_arr1[ch],'ro',markersize=2, linewidth=0.5, markeredgewidth=0.0)
-        ax6a.set_xlim(0,len(avgResultPhs))
+        ax6a = ax6.twinx()
+        ax6a.plot(range(n_seg), seg_phs_arr1[ch],'ro',markersize=2, linewidth=0.5, markeredgewidth=0.0)
+        ax6a.set_xlim(0,n_seg)
         ax6a.set_ylim(-180,180)
         if ch == n_seg_plots-1:
             ax6a.set_ylabel('phase [deg]',fontsize=9)
