@@ -68,8 +68,6 @@ MHO_ComputePlotData::calc_mbd()
     std::size_t fNSBD = fSBDArray->GetDimension(FREQ_AXIS);
     std::size_t fNDR = fSBDArray->GetDimension(TIME_AXIS);
 
-    std::cout<<"sizes = "<<fNGridPoints<<", "<<fNSBD<<", "<<fNDR<<std::endl;
-
     //resize workspaces (TODO...make conditional on current size -- if already configured)
     fMBDWorkspace.Resize(fNGridPoints);
     fMBDWorkspace.ZeroArray();
@@ -321,7 +319,11 @@ MHO_ComputePlotData::calc_segs()
     phasor_segs.Resize(nchan+1, nap);
     phasor_segs.ZeroArray();
 
-
+    //grab the fourfit channel name 
+    std::string chan_label_key = "channel_label";
+    std::vector< std::string > channel_labels;
+    (&std::get<CHANNEL_AXIS>(*fSBDArray))->CollectAxisElementLabelValues(chan_label_key, channel_labels);
+    
     for(std::size_t ap=0; ap < nap; ap++)
     {
         std::complex<double> sum = 0; //sum over all channels
@@ -330,21 +332,32 @@ MHO_ComputePlotData::calc_segs()
         for(std::size_t ch=0; ch < nchan; ch++)
         {
             double freq = (*chan_ax)(ch);//sky freq of this channel
+            //make sure this plot gets the channel label:
+            MHO_IntervalLabel ch_name(ch,ch);
+            ch_name.Insert(chan_label_key, channel_labels[ch]);
+            (&std::get<0>(phasor_segs))->InsertLabel(ch_name);
+
             (&std::get<0>(phasor_segs))->at(ch) = freq;
             std::complex<double> vis = (*fSBDArray)(POLPROD, ch, ap, max_sbd_bin);
             std::complex<double> vr = fRot.vrot(tdelta, freq, fRefFreq, fDelayRate, fMBDelay);
             std::complex<double> z = vis*vr;
             phasor_segs(ch, ap) = z;
+            (&std::get<0>(phasor_segs))->at(ch) = freq; //set the channel frequency label
             //apply weight and sum
             double w = (*fWeights)(POLPROD, ch, ap, 0);
             std::complex<double> wght_phsr = w*z;
             sum += wght_phsr;
             sumwt += w;
         }
-        (&std::get<1>(phasor_segs))->at(ap) = ap_ax->at(ap);
+        (&std::get<1>(phasor_segs))->at(ap) = ap_ax->at(ap); //set the ap label
+        //add the sum over all channels
         phasor_segs(nchan,ap) = sum/sumwt;
+        MHO_IntervalLabel ch_name(nchan,nchan);
+        ch_name.Insert(chan_label_key, std::string("All"));
+        (&std::get<0>(phasor_segs))->InsertLabel(ch_name);
     }
     return phasor_segs;
+
 }
 
 
@@ -1041,24 +1054,12 @@ MHO_ComputePlotData::DumpInfoToJSON(mho_json& plot_dict)
         plot_dict["XPSPEC_XAXIS"].push_back( std::get<0>(sbd_xpower)(i) );
     }
 
-    //data for the entire set of phasors (channel,AP)
-    // std::size_t nplots = phasors.GetDimension(0);
-    // std::size_t naps = phasors.GetDimension(1);
-    // std::vector<double> seg_amp;
-    // std::vector<double> seg_arg;
-    // for(std::size_t i=0; i<nplots; i++)
-    // {
-    //     for(std::size_t j=0; j<naps; j++)
-    //     {
-    //         seg_amp.push_back( std::abs( phasors(i,j) ) );
-    //         seg_arg.push_back( std::arg( phasors(i,j) ) );
-    //     }
-    // }
-    // plot_dict["SEG_AMP"] = seg_amp;
-    // plot_dict["SEG_PHS"] = seg_arg;
-    // plot_dict["NSeg"] = naps;
-    // plot_dict["NPlots"] = nplots; //nchan+1
-    // plot_dict["StartPlot"] = 0;
+    //grab the fourfit channel labels
+    std::string chan_label_key = "channel_label";
+    std::vector< std::string > channel_labels;
+    (&std::get<0>(phasors))->CollectAxisElementLabelValues(chan_label_key, channel_labels);
+
+    plot_dict["ChannelsPlotted"] = channel_labels;
 
     //grab the per-channe/AP phasors, and average down if necessary
     std::size_t nplot = phasors.GetDimension(0);

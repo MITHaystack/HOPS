@@ -135,6 +135,11 @@ def fourfit_plot(plot_dict, filename):
     #grab seg amp
     seg_amp_arr = np.array( plot_dict['SEG_AMP'] )
     seg_ymax = float(plot_dict['Amp'])*3.0 #see generate_graphs.c
+    
+    seg_chan_labels = plot_dict["ChannelsPlotted"]
+    if len(seg_chan_labels) == 0:
+        #if this info is missing use the default fourfit channel names
+        seg_chan_labels =  [chr for chr in "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"]
 
     # convert SEG_PHS to deg
     seg_phs_arr = np.array( [xx*180/np.pi for xx in plot_dict['SEG_PHS']] )
@@ -150,6 +155,9 @@ def fourfit_plot(plot_dict, filename):
         ax6.set_ylim(0,seg_ymax)
         ax6.set_xticklabels(labels=[],visible=False)
         ax6.tick_params(axis='both', direction='in', which='both')
+        if ch < n_seg_plots-1:
+            ax6.title.set_text(seg_chan_labels[ch])
+            ax6.title.set_size(8)
         if ch == 0:
             ax6.set_ylabel('amplitude',fontsize=9)
             plt.yticks(fontsize=8,rotation=90)
@@ -170,6 +178,9 @@ def fourfit_plot(plot_dict, filename):
         ax6a.set_ylim(-180,180)
         ax6a.tick_params(axis='both', direction='in', which='both')
         if ch == n_seg_plots-1:
+            if n_seg_plots > 1:
+                ax6a.title.set_text("all")
+                ax6a.title.set_size(8)
             ax6a.set_ylabel('phase [deg]',fontsize=9)
             ax6a.set_ylabel('phase [deg]',fontsize=9)
             ytick_locs = [-180,-90,0,90,180]
@@ -246,7 +257,6 @@ def fourfit_plot(plot_dict, filename):
 
     plt.text(0.965,0.9,textstr2,transform=plt.gcf().transFigure,fontsize=10,verticalalignment='top',
              family='monospace',horizontalalignment='right',color='k')
-
 
     # Add the top matter
     plt.text(0.965,0.94,plot_dict['RootScanBaseline'].strip("'"),transform=plt.gcf().transFigure,
