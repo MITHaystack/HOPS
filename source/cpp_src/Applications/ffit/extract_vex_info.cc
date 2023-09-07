@@ -150,6 +150,7 @@ void extract_vex_info(const mho_json& vexInfo, MHO_ParameterStore* paramStore)
                 paramStore->Set("/ref_station/site_name", site_name);
                 paramStore->Set("/ref_station/site_type", site_type);
                 //TODO maybe extract site position/velocity too? Do we need this?
+                //position...yes, if we want to be able to calculate parallactic angle at any time from az,el spline
             }
             
             if(mk4id == rem_station_mk4id)
@@ -178,7 +179,6 @@ void extract_vex_info(const mho_json& vexInfo, MHO_ParameterStore* paramStore)
     for(auto station = stations.begin(); station != stations.end(); station++)
     {
         std::string code = station.key();
-        std::cout<<"STATION CODE = "<<code<<std::endl;
         //default reference keywords are just the 2-char station code
         std::string site_ref = code;
         std::string clock_ref = code;

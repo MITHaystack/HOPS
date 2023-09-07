@@ -21,12 +21,12 @@ int parse_command_line(int argc, char** argv, MHO_ParameterStore* paramStore)
                                           {"directory", required_argument, 0, 'd'},
                                           {"control", required_argument, 0, 'c'},
                                           {"baseline", required_argument, 0, 'b'},
-                                          {"polarization-product", required_argument, 0, 'p'},
+                                          {"polarization-product", required_argument, 0, 'P'},
                                           {"message-level", required_argument, 0, 'm'},
                                           {"ap-per-seg", required_argument, 0, 's'},
                                           {"output", required_argument, 0, 'o'}};
 
-    static const char* optString = "hd:c:b:p:o:m:s:";
+    static const char* optString = "hd:c:b:P:o:m:s:";
 
     while(true)
     {
@@ -47,7 +47,7 @@ int parse_command_line(int argc, char** argv, MHO_ParameterStore* paramStore)
             case ('b'):
                 baseline = std::string(optarg);
                 break;
-            case ('p'):
+            case ('P'):
                 polprod = std::string(optarg);
                 break;
             case ('o'):
