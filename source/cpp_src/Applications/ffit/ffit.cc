@@ -190,8 +190,8 @@ int main(int argc, char** argv)
     // std::cout<<"------------------------------------"<<std::endl;
 
     //open and dump to file
-    std::string fdump = "fdump.json";
-    std::ofstream fdumpFile(fdump.c_str(), std::ofstream::out);
+    std::string output_file = paramStore.GetAs<std::string>("/cmdline/output_file");
+    std::ofstream fdumpFile(output_file.c_str(), std::ofstream::out);
     fdumpFile << plot_dict;
     fdumpFile.close();
 

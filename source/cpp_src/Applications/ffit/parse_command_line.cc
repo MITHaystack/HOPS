@@ -14,6 +14,7 @@ int parse_command_line(int argc, char** argv, MHO_ParameterStore* paramStore)
     std::string polprod = "";
     std::string output_file = "fdump.json"; //for testing
     int message_level = -1;
+    int ap_per_seg;
     bool ok;
 
     static struct option longOptions[] = {{"help", no_argument, 0, 'h'},
@@ -22,9 +23,10 @@ int parse_command_line(int argc, char** argv, MHO_ParameterStore* paramStore)
                                           {"baseline", required_argument, 0, 'b'},
                                           {"polarization-product", required_argument, 0, 'p'},
                                           {"message-level", required_argument, 0, 'm'},
+                                          {"ap-per-seg", required_argument, 0, 's'},
                                           {"output", required_argument, 0, 'o'}};
 
-    static const char* optString = "hd:c:b:p:o:m:";
+    static const char* optString = "hd:c:b:p:o:m:s:";
 
     while(true)
     {
@@ -53,6 +55,10 @@ int parse_command_line(int argc, char** argv, MHO_ParameterStore* paramStore)
                 break;
             case ('m'):
                 message_level = std::atoi(optarg);
+                break;
+            case ('s'):
+                ap_per_seg = std::atoi(optarg);
+                if(ap_per_seg < 0){ap_per_seg = 0; msg_warn("main", "invalid ap_per_seg, ignoring." << eom);}
                 break;
             default:
                 std::cout << usage << std::endl;
@@ -121,7 +127,8 @@ int parse_command_line(int argc, char** argv, MHO_ParameterStore* paramStore)
     paramStore->Set("/cmdline/baseline", baseline);
     paramStore->Set("/cmdline/polprod", polprod);
     paramStore->Set("/cmdline/control_file",control_file);
-    
+    paramStore->Set("/cmdline/ap_per_seg",ap_per_seg);
+    paramStore->Set("/cmdline/output_file",output_file);  
     
     return 0;
 

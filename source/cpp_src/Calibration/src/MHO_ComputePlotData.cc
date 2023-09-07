@@ -1068,7 +1068,7 @@ MHO_ComputePlotData::DumpInfoToJSON(mho_json& plot_dict)
     std::vector<double> seg_arg;
 
     //use fourfit defaults to determine how many APs to average together (see calc_rms.c)
-    std::size_t ap_per_seg = 0; //disabled for now, TODO add to parameter store (cmdline arg)
+    int ap_per_seg = fParamStore->GetAs<int>("/cmdline/ap_per_seg");
     std::size_t apseg;
     if(nplot == 2){nplot = 1;}
     if(ap_per_seg == 0)
