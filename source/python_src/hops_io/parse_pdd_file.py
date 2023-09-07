@@ -42,7 +42,7 @@ def parse_PDD(filename):
             
             line_split = lines[ii].split(None)
 
-            #print(line_split)
+            print(line_split)
             # if the line is empty, skip it
             if len(line_split)<2:
                 ii+=1
@@ -57,6 +57,26 @@ def parse_PDD(filename):
                 #pdd_dict['CorrVers'] = line_split[2]+' '+line_split[3]+' '+line_split[4]+' '+line_split[5]+' '+line_split[6]
                 ii+=1
                 continue
+            if line_split[1]=='PLOT_INFO':
+                nchan = int(line_split[2])
+                #grab the next line as a header
+                ii+=1
+                line_split = lines[ii].split(None)
+                print(line_split)
+                hdr_line = line_split
+                pdd_dict['PLOT_INFO'] = {}
+                pdd_dict['PLOT_INFO']['header'] = hdr_line
+                for hdr in hdr_line:
+                    pdd_dict['PLOT_INFO'][hdr] = []
+                ii+=1
+                #grab the next several lines as special info about each channel 
+                for n in range(0,nchan):
+                    line_split = lines[ii].split(None)
+                    print(line_split)
+                    ch_info_line = line_split
+                    for info_idx in range(0,len(ch_info_line)):
+                        pdd_dict['PLOT_INFO'][hdr_line[info_idx]].append( ch_info_line[info_idx] )
+                    ii += 1
             
             # Parse the lines: 
             #  - if the line is len==3, we'll assume it is of the form ['#', KEY, VALUE], and assign appropriately
