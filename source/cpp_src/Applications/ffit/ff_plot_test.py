@@ -91,14 +91,14 @@ def fourfit_plot(plot_dict, filename):
     ax3.set_xlabel(r'singleband delay ($\mu$s)',fontsize=9)
     plt.xticks(fontsize=8)
     ax3.xaxis.label.set_color('g')
-    ax3.xaxis.set_major_formatter(FormatStrFormatter('%.0f'))
+    ax3.xaxis.set_major_formatter(FormatStrFormatter('%.1f'))
     ax3.set_ylabel('amplitude',fontsize=9)
     plt.yticks(fontsize=8,rotation=90)
     ax3.yaxis.label.set_color('g')
     ax3.minorticks_on()
 
 
-    # The cross-powe sepctra
+    # The cross-power sepctra
     ax4 = plt.subplot2grid((16,16),(5,7),rowspan=3,colspan=6)
 
     ax4.plot(xpow_x, plot_dict['XPSPEC-ABS'],'co-',markersize=2,markerfacecolor='b',linewidth=0.5, markeredgewidth=0.0)

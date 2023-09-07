@@ -1060,94 +1060,50 @@ MHO_ComputePlotData::DumpInfoToJSON(mho_json& plot_dict)
     // plot_dict["NPlots"] = nplots; //nchan+1
     // plot_dict["StartPlot"] = 0;
 
-
-
+    //grab the per-channe/AP phasors, and average down if necessary
     std::size_t nplot = phasors.GetDimension(0);
     std::size_t naps = phasors.GetDimension(1);
     std::size_t nseg = naps;
     std::vector<double> seg_amp;
     std::vector<double> seg_arg;
-    
-    // for(std::size_t i=0; i<nplot; i++)
-    // {
-    //     for(std::size_t j=0; j<naps; j++)
-    //     {
-    //         seg_amp.push_back( std::abs( phasors(i,j) ) );
-    //         seg_arg.push_back( std::arg( phasors(i,j) ) );
-    //     }
-    // }
-    // 
-    // std::cout<<"NSEG "<<nseg<<std::endl;
-    // std::cout<<"NAPS "<<naps<<std::endl;
-    // 
-    // 
-    // plot_dict["SEG_AMP"] = seg_amp;
-    // plot_dict["SEG_PHS"] = seg_arg;
-    // plot_dict["NSeg"] = naps;
-    // plot_dict["NPlots"] = nplot; //nchan+1
-    // plot_dict["StartPlot"] = 0;
-    // 
 
-
-    //use Fourfit defaults to determine how many APs to average together (see calc_rms.c)
-    
-    std::size_t ap_per_seg = 0;
+    //use fourfit defaults to determine how many APs to average together (see calc_rms.c)
+    std::size_t ap_per_seg = 0; //disabled for now, TODO add to parameter store (cmdline arg)
     std::size_t apseg;
     if(nplot == 2){nplot = 1;}
-
     if(ap_per_seg == 0)
     {
         nseg = 200/nplot; //max of 200 points across plot
-        std::cout<<"NSEG ORG = "<<nseg<<std::endl;
         if(nseg > naps){nseg = naps;}
         apseg = naps / nseg;
-    
-        std::cout<<"apseg"<<apseg<<std::endl;
-        std::cout<<"NSEG ORG2 = "<<nseg<<std::endl;
     }
     else
     {
         if(ap_per_seg > naps){apseg = naps;}
         else{apseg = ap_per_seg;}
     }
-    
-    std::cout<<"NSEG = "<<nseg<<std::endl;
-    std::cout<<"APSEG = "<<apseg<<std::endl;
-    std::cout<<"NAPS = "<<naps<<std::endl;
-    
-    /* Number of segments, starting at AP 0 */
-    /* and using integer apseg per segment */
+
+    // Number of segments, starting at AP 0
+    // and using integer apseg per segment 
     nseg = naps / apseg;
-    /* Remainder goes into last segment */
+    //Remainder goes into last segment (???)
     if( (naps % apseg) != 0){ nseg += 1;}
-    
-    std::cout<<"NSEG = "<<nseg<<std::endl;
-    std::cout<<"APSEG = "<<apseg<<std::endl;
-    std::cout<<"NAPS = "<<naps<<std::endl;
-    
     for(std::size_t i=0; i<nplot; i++)
     {
         std::complex<double> ph = 0;
         for(std::size_t j=0; j<naps; j++)
         {
             ph += phasors(i,j);
-            if(apseg == 1)
+            if(j % apseg == apseg-1 ) //push the last one back
             {
+                ph *= 1.0/(double)apseg; //average
                 seg_amp.push_back( std::abs(ph) );
                 seg_arg.push_back( std::arg(ph) );
-            }
-            else 
-            {
-                std::cout<<"j%apseg = "<<j%apseg<<" ? "<<apseg-1<<std::endl;
-                if(j % apseg == apseg-1 ) //push the last one back
-                {
-                    ph *= 1.0/(double)apseg; //average
-                    seg_amp.push_back( std::abs(ph) );
-                    seg_arg.push_back( std::arg(ph) );
-                }
+                ph = 0.0;
             }
         }
     }
+    
     plot_dict["SEG_AMP"] = seg_amp;
     plot_dict["SEG_PHS"] = seg_arg;
     plot_dict["NSeg"] = nseg;
