@@ -1058,7 +1058,6 @@ MHO_ComputePlotData::DumpInfoToJSON(mho_json& plot_dict)
     std::string chan_label_key = "channel_label";
     std::vector< std::string > channel_labels;
     (&std::get<0>(phasors))->CollectAxisElementLabelValues(chan_label_key, channel_labels);
-
     plot_dict["ChannelsPlotted"] = channel_labels;
 
     //grab the per-channe/AP phasors, and average down if necessary
@@ -1110,6 +1109,55 @@ MHO_ComputePlotData::DumpInfoToJSON(mho_json& plot_dict)
     plot_dict["NSeg"] = nseg;
     plot_dict["NPlots"] = nplot; //nchan+1
     plot_dict["StartPlot"] = 0;
+    
+    //add the 'PLOT_INFO' section
+    std::vector<std::string> pltheader{
+        "#Ch",
+        "Freq(MHz)",
+        "Phase",
+        "Ampl",
+        "SbdBox",
+        "APsRf",
+        "APsRm",
+        "PCdlyRf",
+        "PCdlyRm",
+        "PCPhsRf",
+        "PCPhsRm",
+        "PCOffRf",
+        "PCOffRm",
+        "PCAmpRf",
+        "PCAmpRm",
+        "ChIdRf",
+        "TrkRf",
+        "ChIdRm",
+        "TrkRm"
+    };
+    plot_dict["PLOT_INFO"]["header"] = pltheader;
+    
+    for(std::size_t i=0; i<nplot; i++)
+    {
+        double freq = std::get<0>(phasors).at(i);
+        plot_dict["PLOT_INFO"]["#Ch"].push_back(channel_labels[i]);
+        plot_dict["PLOT_INFO"]["Freq(MHz)"].push_back(freq);
+        plot_dict["PLOT_INFO"]["Phase"].push_back(0.0);
+        plot_dict["PLOT_INFO"]["Ampl"].push_back(0.0);
+        plot_dict["PLOT_INFO"]["SbdBox"].push_back(0.0);
+        plot_dict["PLOT_INFO"]["APsRf"].push_back(0.0);
+        plot_dict["PLOT_INFO"]["APsRm"].push_back(0.0);
+        plot_dict["PLOT_INFO"]["PCdlyRf"].push_back(0.0);
+        plot_dict["PLOT_INFO"]["PCdlyRm"].push_back(0.0);
+        plot_dict["PLOT_INFO"]["PCPhsRf"].push_back(0.0);
+        plot_dict["PLOT_INFO"]["PCPhsRm"].push_back(0.0);
+        plot_dict["PLOT_INFO"]["PCOffRf"].push_back(0.0);
+        plot_dict["PLOT_INFO"]["PCOffRm"].push_back(0.0);
+        plot_dict["PLOT_INFO"]["PCAmpRf"].push_back(0.0);
+        plot_dict["PLOT_INFO"]["PCAmpRm"].push_back(0.0);
+        plot_dict["PLOT_INFO"]["ChIdRf"].push_back("-");
+        plot_dict["PLOT_INFO"]["TrkRf"].push_back("-");
+        plot_dict["PLOT_INFO"]["ChIdRm"].push_back("-");
+        plot_dict["PLOT_INFO"]["TrkRm"].push_back("-");
+    }
+
 
 }
 

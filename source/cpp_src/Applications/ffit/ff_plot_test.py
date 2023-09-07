@@ -222,8 +222,6 @@ def fourfit_plot(plot_dict, filename):
         'Com/FF/build ' + '\n\n\n\n' + \
         'RA & Dec (J2000)'
 
-
-
     textstr2 = str(plot_dict['Quality']) + '\n\n' + \
         str(np.round(float(plot_dict['SNR']),1)) + '\n' + \
         str(np.round(float(plot_dict['IntgTime']),3)) + '\n' + \
@@ -249,6 +247,111 @@ def fourfit_plot(plot_dict, filename):
         plot_dict['BuildTime'] + '\n\n' + \
         plot_dict['RA'] + '\n' + \
         plot_dict['Dec']
+
+    axT = plt.subplot2grid((24,n_seg_plots),(19,0),rowspan=5,colspan=n_seg_plots)
+    #plt.subplots_adjust(left=0.1, right=0.9, top=0.8, bottom=0.1)  # Adjust margins as needed
+
+    ct_header_text = {}
+    ct_header_text["#Ch"] = ""
+    ct_header_text["Freq(MHz)"] = "Freq (MHz)"
+    ct_header_text["Phase"] = "Phase"
+    ct_header_text["Ampl"] = "Ampl."
+    ct_header_text["SbdBox"] = "Sbd box"
+    ct_header_text["APsRf"] = "APs used"
+    ct_header_text["APsRm"] = "APs used"
+    ct_header_text["PCdlyRf"] = ""
+    ct_header_text["PCdlyRm"] = ""
+    ct_header_text["PCPhsRf"] = "PC phase"
+    ct_header_text["PCPhsRm"] = "PC phase"
+    ct_header_text["PCOffRf"] = "Manl PC"
+    ct_header_text["PCOffRm"] = "Manl PC"
+    ct_header_text["PCAmpRf"] = "PC amp"
+    ct_header_text["PCAmpRm"] = "PC amp"
+    ct_header_text["ChIdRf"] = "Chan ids"
+    ct_header_text["TrkRf"] = "Tracks"
+    ct_header_text["ChIdRm"]  = "Chan ids"
+    ct_header_text["TrkRm"] = "Tracks"
+
+    #declare the elements which are paired up and printed with a ":"
+    paired_data1 = {}    
+    paired_data2 = {}
+    paired_data1["APsRf"] = "APsRm"
+    paired_data1["PCPhsRf"] = "PCPhsRm"
+    paired_data1["PCOffRf"] = "PCOffRm"
+    for k in paired_data1.keys():
+        v = paired_data1[k]
+        paired_data2[v] = k
+
+    #create the table of per-channel data
+    ct_data = []
+    ct_headers = plot_dict['PLOT_INFO']['header']
+    cth_text = []
+    for hdr in ct_headers:
+        if hdr in paired_data1.keys():
+            hdr2 = paired_data1[hdr]
+            hdr_txt = ct_header_text[hdr]
+            if hdr_txt != "": #dont plot the empty labels
+                #need to grab both data element lists
+                elem1 = plot_dict['PLOT_INFO'][hdr]
+                elem2 = plot_dict['PLOT_INFO'][hdr2]
+                zipped_list = list(zip(elem1, elem2))
+                result_list = []
+                if hdr == "APsRf":
+                    result_list = [f"{int(np.rint(float(item[0])))}/{int(np.rint(float(item[1])))}" for item in zipped_list]
+                else:
+                    result_list = [f"{int(np.rint(float(item[0])))}:{int(np.rint(float(item[1])))}" for item in zipped_list]
+                cth_text.append(hdr_txt)
+                ct_data.append(result_list)
+        else:
+            if not (hdr in paired_data2.keys()):
+                hdr_txt = ct_header_text[hdr]
+                if hdr_txt != "": #dont plot the empty labels
+                    cth_text.append(hdr_txt)
+                    ct_data.append(plot_dict['PLOT_INFO'][hdr])
+
+    #trim the last column (the 'All column') to be added back later
+    for ct_row in ct_data:
+        ct_row.pop()
+
+    #add the header names as the last column
+    for row in range(0, len(ct_data)):
+        hdr_txt = cth_text[row]
+        ct_data[row].append(hdr_txt)
+
+    print(ct_data)
+
+    # Create the table
+    table = axT.table(cellText=ct_data, loc='center')
+
+    # Remove the borders from the table
+    for key, cell in table._cells.items():
+        cell.set_linewidth(0)
+        cell.set_text_props(ha="left")
+
+    # Hide the axis
+    axT.axis('off')
+    
+    # Adjust the cell font size (optional)
+    table.auto_set_font_size(False)
+    table.set_fontsize(6)
+
+    # Set the table cell height to make it smaller
+    table.scale(1, 0.5)  # Adjust the scale factor as needed
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     # Add the text boxes
@@ -322,30 +425,32 @@ def fourfit_plot(plot_dict, filename):
         str(np.format_float_scientific(float(plot_dict["ResidRateError(us/s)"]), precision=1, min_digits=1) ) + '\n' + \
         str( np.round(float(plot_dict["ResidPhaseError(deg)"]),2) )
 
-    # Add the text boxes
-    plt.text(0.01,0.2,btmtextstr1,transform=plt.gcf().transFigure,fontsize=7,verticalalignment='top',
-             family='monospace',horizontalalignment='left',color='k')
+    bottom_yoffset = 0.1
 
     # Add the text boxes
-    plt.text(0.28,0.2,btmtextstr2,transform=plt.gcf().transFigure,fontsize=7,verticalalignment='top',
-             family='monospace',horizontalalignment='right',color='k')
-
-    plt.text(0.3,0.2,btmtextstr3,transform=plt.gcf().transFigure,fontsize=7,verticalalignment='top',
+    plt.text(0.01,bottom_yoffset,btmtextstr1,transform=plt.gcf().transFigure,fontsize=7,verticalalignment='top',
              family='monospace',horizontalalignment='left',color='k')
 
-    plt.text(0.6,0.2,btmtextstr4,transform=plt.gcf().transFigure,fontsize=7,verticalalignment='top',
+    # Add the text boxes
+    plt.text(0.28,bottom_yoffset,btmtextstr2,transform=plt.gcf().transFigure,fontsize=7,verticalalignment='top',
              family='monospace',horizontalalignment='right',color='k')
 
-    plt.text(0.65,0.2,btmtextstr5,transform=plt.gcf().transFigure,fontsize=7,verticalalignment='top',
+    plt.text(0.3,bottom_yoffset,btmtextstr3,transform=plt.gcf().transFigure,fontsize=7,verticalalignment='top',
              family='monospace',horizontalalignment='left',color='k')
 
-    plt.text(0.88,0.2,btmtextstr6,transform=plt.gcf().transFigure,fontsize=7,verticalalignment='top',
+    plt.text(0.6,bottom_yoffset,btmtextstr4,transform=plt.gcf().transFigure,fontsize=7,verticalalignment='top',
              family='monospace',horizontalalignment='right',color='k')
 
-    plt.text(0.89,0.2,btmtextstr7,transform=plt.gcf().transFigure,fontsize=7,verticalalignment='top',
+    plt.text(0.65,bottom_yoffset,btmtextstr5,transform=plt.gcf().transFigure,fontsize=7,verticalalignment='top',
              family='monospace',horizontalalignment='left',color='k')
 
-    plt.text(0.97,0.2,btmtextstr8,transform=plt.gcf().transFigure,fontsize=7,verticalalignment='top',
+    plt.text(0.88,bottom_yoffset,btmtextstr6,transform=plt.gcf().transFigure,fontsize=7,verticalalignment='top',
+             family='monospace',horizontalalignment='right',color='k')
+
+    plt.text(0.89,bottom_yoffset,btmtextstr7,transform=plt.gcf().transFigure,fontsize=7,verticalalignment='top',
+             family='monospace',horizontalalignment='left',color='k')
+
+    plt.text(0.97,bottom_yoffset,btmtextstr8,transform=plt.gcf().transFigure,fontsize=7,verticalalignment='top',
              family='monospace',horizontalalignment='right',color='k')
 
 
