@@ -69,7 +69,8 @@ MHO_ControlFileParser::ReadFile()
         }
         else
         {
-            msg_error("control", "could not open file: "<<fControlFileName<<eom);
+            msg_fatal("control", "could not open control file: "<<fControlFileName<<eom);
+            std::exit(1);
         }
     }
     return false;
