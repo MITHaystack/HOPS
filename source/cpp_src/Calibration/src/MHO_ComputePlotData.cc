@@ -1019,8 +1019,8 @@ MHO_ComputePlotData::DumpInfoToJSON(mho_json& plot_dict)
 
     //TODO FIXME -- move the residual phase calc elsewhere
     double coh_avg_phase = calc_phase();
-    coh_avg_phase = std::fmod(coh_avg_phase * (180.0/M_PI), 360.0);
-    fParamStore->Set("/fringe/raw_resid_phase", coh_avg_phase);
+    double coh_avg_phase_deg = std::fmod(coh_avg_phase * (180.0/M_PI), 360.0);
+    fParamStore->Set("/fringe/raw_resid_phase", coh_avg_phase_deg);
 
     //calculate AP period
     double ap_delta = std::get<TIME_AXIS>(*fVisibilities)(1) - std::get<TIME_AXIS>(*fVisibilities)(0);
@@ -1066,6 +1066,9 @@ MHO_ComputePlotData::DumpInfoToJSON(mho_json& plot_dict)
     std::size_t nseg = naps;
     std::vector<double> seg_amp;
     std::vector<double> seg_arg;
+    
+    std::vector<double> ch_amp;
+    std::vector<double> ch_arg;
 
     //use fourfit defaults to determine how many APs to average together (see calc_rms.c)
     int ap_per_seg = fParamStore->GetAs<int>("/cmdline/ap_per_seg");
@@ -1091,9 +1094,11 @@ MHO_ComputePlotData::DumpInfoToJSON(mho_json& plot_dict)
     for(std::size_t i=0; i<nplot; i++)
     {
         std::complex<double> ph = 0;
+        std::complex<double> phsum = 0;
         for(std::size_t j=0; j<naps; j++)
         {
             ph += phasors(i,j);
+            phsum += phasors(i,j);
             if(j % apseg == apseg-1 ) //push the last one back
             {
                 ph *= 1.0/(double)apseg; //average
@@ -1102,7 +1107,27 @@ MHO_ComputePlotData::DumpInfoToJSON(mho_json& plot_dict)
                 ph = 0.0;
             }
         }
+        phsum *= 1.0/(double)naps;
+        ch_amp.push_back( std::abs(phsum) );
+        
+        //see calc_rms.c line 304
+        double chph = std::arg(phsum);
+        std::cout<<"Channel: "<<i<< "raw phase = "<<chph*(180./M_PI)<<std::endl;
+        chph -= coh_avg_phase;
+        
+
+        
+        chph = std::fmod(chph, 2.0 * M_PI);
+        if (chph > M_PI)
+            chph -= 2.0 * M_PI;
+        else if (chph < - M_PI)
+            chph += 2.0 * M_PI;
+            
+        std::cout<<"Channel: "<<i<< "corrected phase = "<<chph*(180./M_PI)<<std::endl;
+        ch_arg.push_back( chph );
     }
+    
+    std::cout<<"coh_avg_phase = "<<coh_avg_phase*(180./M_PI)<<std::endl;
     
     plot_dict["SEG_AMP"] = seg_amp;
     plot_dict["SEG_PHS"] = seg_arg;
@@ -1134,14 +1159,20 @@ MHO_ComputePlotData::DumpInfoToJSON(mho_json& plot_dict)
     };
     plot_dict["PLOT_INFO"]["header"] = pltheader;
     
+    //includes the 'All' channel
     for(std::size_t i=0; i<nplot; i++)
     {
         double freq = std::get<0>(phasors).at(i);
         plot_dict["PLOT_INFO"]["#Ch"].push_back(channel_labels[i]);
         plot_dict["PLOT_INFO"]["Freq(MHz)"].push_back(freq);
-        plot_dict["PLOT_INFO"]["Phase"].push_back(0.0);
-        plot_dict["PLOT_INFO"]["Ampl"].push_back(0.0);
+        plot_dict["PLOT_INFO"]["Phase"].push_back(ch_arg[i]*(180.0/M_PI));
+        plot_dict["PLOT_INFO"]["Ampl"].push_back(ch_amp[i]);
         plot_dict["PLOT_INFO"]["SbdBox"].push_back(0.0);
+    }
+
+    //just the normal channels (no 'All')
+    for(std::size_t i=0; i<nplot-1; i++)
+    {
         plot_dict["PLOT_INFO"]["APsRf"].push_back(0.0);
         plot_dict["PLOT_INFO"]["APsRm"].push_back(0.0);
         plot_dict["PLOT_INFO"]["PCdlyRf"].push_back(0.0);
@@ -1157,7 +1188,6 @@ MHO_ComputePlotData::DumpInfoToJSON(mho_json& plot_dict)
         plot_dict["PLOT_INFO"]["ChIdRm"].push_back("-");
         plot_dict["PLOT_INFO"]["TrkRm"].push_back("-");
     }
-
 
 }
 
