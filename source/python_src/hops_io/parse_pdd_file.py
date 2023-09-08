@@ -54,7 +54,7 @@ def parse_PDD(filename):
                 ii+=1
                 continue
             if line_split[1]=='CorrVers':
-                pdd_dict['CorrVers'] = ' '.join([ (item.strip("'")).strip("#") for item in line_split]) #[2]+' '+line_split[3]+' '+line_split[4]+' '+line_split[5]+' '+line_split[6]
+                pdd_dict['CorrVers'] = ' '.join([ (item.strip("'")).strip("#") for item in line_split[2:] ]) #[2]+' '+line_split[3]+' '+line_split[4]+' '+line_split[5]+' '+line_split[6]
                 ii+=1
                 continue
             if line_split[1]=='PLOT_INFO':
