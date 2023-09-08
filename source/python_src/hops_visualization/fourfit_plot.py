@@ -153,8 +153,8 @@ def make_fourfit_plot(plot_dict, filename):
     # Now we build the plots for each band; this will need attention, currently only supports six bands
     # (and is built by hand; need to loop)
 
-    n_seg = plot_dict["NSeg"]
-    n_seg_plots = plot_dict["NPlots"]
+    n_seg = int(plot_dict["NSeg"])
+    n_seg_plots = int(plot_dict["NPlots"])
     colw = 6
 
     print("nseg, nsegplots = ", n_seg, n_seg_plots)
