@@ -353,7 +353,7 @@ def make_fourfit_plot(plot_dict, filename):
     # Create the table
     table = axT.table(cellText=ct_data, loc='center')
 
-    # Remove the borders from the table
+    # Remove the borders from the table and set alignment
     for key, cell in table._cells.items():
         cell.set_linewidth(0)
         cell.set_text_props(ha="left")
@@ -367,20 +367,6 @@ def make_fourfit_plot(plot_dict, filename):
 
     # Set the table cell height to make it smaller
     table.scale(1, 0.5)  # Adjust the scale factor as needed
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

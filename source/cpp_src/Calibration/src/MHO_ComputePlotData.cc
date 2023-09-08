@@ -1014,12 +1014,11 @@ MHO_ComputePlotData::DumpInfoToJSON(mho_json& plot_dict)
     auto sbd_amp = calc_sbd();
     auto mbd_amp = calc_mbd();
     auto dr_amp = calc_dr();
-    auto fake_phase = calc_phase(); //TODO FIXME -- just needed at the moment to properly set fRot parameters
+    //TODO FIXME -- move the residual phase calc elsewhere (but we need it for the moment to set the fRot parameters)
+    double coh_avg_phase = calc_phase();
     auto sbd_xpower = calc_xpower_KLUDGE();
     auto phasors = calc_segs();
 
-    //TODO FIXME -- move the residual phase calc elsewhere
-    double coh_avg_phase = calc_phase();
     double coh_avg_phase_deg = std::fmod(coh_avg_phase * (180.0/M_PI), 360.0);
     fParamStore->Set("/fringe/raw_resid_phase", coh_avg_phase_deg);
 
@@ -1071,19 +1070,15 @@ MHO_ComputePlotData::DumpInfoToJSON(mho_json& plot_dict)
     std::vector<double> ch_amp;
     std::vector<double> ch_arg;
 
-    //use fourfit defaults to determine how many APs to average together (see calc_rms.c)
+    //use fourfit default method to determine how many APs to average together (see calc_rms.c)
     int ap_per_seg = fParamStore->GetAs<int>("/cmdline/ap_per_seg");
     std::size_t apseg;
     if(nplot == 2){nplot = 1;}
-    std::cout<<"ap per seg = "<<ap_per_seg<<std::endl;
     if(ap_per_seg == 0)
     {
         nseg = 200/nplot; //max of 200 points across plot
-        std::cout<<"nplot = "<<nplot<<" nseg = "<< nseg<<std::endl;
         if(nseg > naps){nseg = naps;}
-        std::cout<<"nseg now = "<<nseg<<" naps = "<<naps<<std::endl;
         apseg = naps / nseg;
-        std::cout<<"nseg, apseg, naps = "<<nseg<<", "<<apseg<<", "<<naps<<std::endl;
     }
     else
     {
@@ -1097,10 +1092,6 @@ MHO_ComputePlotData::DumpInfoToJSON(mho_json& plot_dict)
     //Remainder goes into last segment (???)
     if( (naps % apseg) != 0){ nseg += 1;}
 
-
-    std::cout<<"NAPS = "<<naps<<std::endl;
-    std::cout<<"APSEG="<<apseg<<std::endl;
-    std::cout<<"NSEG = "<<nseg<<std::endl;
 
     for(std::size_t i=0; i<nplot; i++)
     {
@@ -1120,26 +1111,9 @@ MHO_ComputePlotData::DumpInfoToJSON(mho_json& plot_dict)
         }
         phsum *= 1.0/(double)naps;
         ch_amp.push_back( std::abs(phsum) );
-        
-        //see calc_rms.c line 304
-        double chph = std::arg(phsum);
-        // std::cout<<"Channel: "<<i<< "raw phase = "<<chph*(180./M_PI)<<std::endl;
-        // chph -= coh_avg_phase;
-        // 
-        // 
-        // 
-        // chph = std::fmod(chph, 2.0 * M_PI);
-        // if (chph > M_PI)
-        //     chph -= 2.0 * M_PI;
-        // else if (chph < - M_PI)
-        //     chph += 2.0 * M_PI;
-        // 
-        // std::cout<<"Channel: "<<i<< "corrected phase = "<<chph*(180./M_PI)<<std::endl;
-        ch_arg.push_back( chph );
+        ch_arg.push_back( std::arg(phsum) );
     }
-    
-    std::cout<<"coh_avg_phase = "<<coh_avg_phase*(180./M_PI)<<std::endl;
-    
+
     plot_dict["SEG_AMP"] = seg_amp;
     plot_dict["SEG_PHS"] = seg_arg;
     plot_dict["NSeg"] = nseg;
@@ -1204,24 +1178,4 @@ MHO_ComputePlotData::DumpInfoToJSON(mho_json& plot_dict)
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-}
+}//end namespace
