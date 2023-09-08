@@ -299,10 +299,10 @@ MHO_ComputePlotData::calc_xpower()
 }
 
 
-phasor_type 
+phasor_type
 MHO_ComputePlotData::calc_segs()
 {
-    //grab the SBD max bin 
+    //grab the SBD max bin
     std::size_t max_sbd_bin = (std::size_t)fParamStore->GetAs<int>("/fringe/max_sbd_bin");
 
     std::size_t POLPROD = 0;
@@ -314,16 +314,16 @@ MHO_ComputePlotData::calc_segs()
     auto ap_ax = &(std::get<TIME_AXIS>(*fSBDArray));
     double ap_delta = ap_ax->at(1) - ap_ax->at(0);
     double frt_offset = fParamStore->GetAs<double>("frt_offset");
-    
+
     phasor_type phasor_segs;
     phasor_segs.Resize(nchan+1, nap);
     phasor_segs.ZeroArray();
 
-    //grab the fourfit channel name 
+    //grab the fourfit channel name
     std::string chan_label_key = "channel_label";
     std::vector< std::string > channel_labels;
     (&std::get<CHANNEL_AXIS>(*fSBDArray))->CollectAxisElementLabelValues(chan_label_key, channel_labels);
-    
+
     for(std::size_t ap=0; ap < nap; ap++)
     {
         std::complex<double> sum = 0; //sum over all channels
@@ -517,7 +517,7 @@ MHO_ComputePlotData::calc_phase()
             {
                 sum_all += -1.0*wght_phsr;
             }
-            else 
+            else
             {
                 sum_all += wght_phsr;
             }
@@ -594,7 +594,7 @@ MHO_ComputePlotData::calc_xpower_KLUDGE()
                     break;
                 }
             }
-            
+
             for(auto olit = other_labels.begin(); olit != other_labels.end(); olit++)
             {
                 if( (*olit)->HasKey(bandwidthlabelkey) )
@@ -654,7 +654,7 @@ MHO_ComputePlotData::calc_xpower_KLUDGE()
     int s =  Y.GetDimension(0)/2;
     cp_spectrum.Resize(s);
 
-    
+
     //this is seriously broken
     if(net_sideband == "L")
     {
@@ -666,7 +666,7 @@ MHO_ComputePlotData::calc_xpower_KLUDGE()
             std::get<0>(cp_spectrum)(s-i-1) = -1.0*(bw)*((double)i/(double)s); //label freq ax
         }
     }
-    else 
+    else
     {
         for(int i=0; i<s; i++)
         {
@@ -798,8 +798,8 @@ MHO_ComputePlotData::calc_xpower_KLUDGE2()
     // padder.SetArgs(&X);
     // bool init = padder.Initialize();
     // bool exe = padder.Execute();
-    // 
-    // 
+    //
+    //
     // //set up FFT
     // fFFTEngine.SetArgs(&X);
     // fFFTEngine.DeselectAllAxes();
@@ -807,11 +807,11 @@ MHO_ComputePlotData::calc_xpower_KLUDGE2()
     // fFFTEngine.SetForward();
     // bool ok = fFFTEngine.Initialize();
     // check_step_fatal(ok, "calibration", "MBD search fft engine initialization." << eom );
-    // 
+    //
     // //now run an FFT along the MBD axis and cyclic rotate
     // ok = fFFTEngine.Execute();
     // check_step_fatal(ok, "calibration", "MBD search fft engine execution." << eom );
-    // 
+    //
     // //set up FFT
     // fFFTEngine.SetArgs(&X);
     // fFFTEngine.DeselectAllAxes();
@@ -819,11 +819,11 @@ MHO_ComputePlotData::calc_xpower_KLUDGE2()
     // fFFTEngine.SetBackward();
     // ok = fFFTEngine.Initialize();
     // check_step_fatal(ok, "calibration", "MBD search fft engine initialization." << eom );
-    // 
+    //
     // //now run an FFT along the MBD axis and cyclic rotate
     // ok = fFFTEngine.Execute();
     // check_step_fatal(ok, "calibration", "MBD search fft engine execution." << eom );
-    // 
+    //
 
 
     //now run an FFT along the MBD axis and cyclic rotate
@@ -936,7 +936,7 @@ MHO_ComputePlotData::calc_xpower_KLUDGE3()
                     break;
                 }
             }
-            
+
             for(auto olit = other_labels.begin(); olit != other_labels.end(); olit++)
             {
                 if( (*olit)->HasKey(bandwidthlabelkey) )
@@ -972,7 +972,7 @@ MHO_ComputePlotData::calc_xpower_KLUDGE3()
             std::get<0>(X)(lag) = (*sbd_ax)(lag);
         }
     }
-    
+
     std::cout<<X<<std::endl;
 
     //set up FFT
@@ -990,7 +990,7 @@ MHO_ComputePlotData::calc_xpower_KLUDGE3()
     std::complex<double> cmplx_unit_I(0.0, 1.0);
     int s =  X.GetDimension(0);
     cp_spectrum.Resize(128);
-    
+
     for(int i=0; i<128; i++)
     {
         cp_spectrum(i) = X(i);
@@ -999,7 +999,7 @@ MHO_ComputePlotData::calc_xpower_KLUDGE3()
         std::get<0>(cp_spectrum)(i) = -1.0*(bw)*((double)i/(double)s); //label freq ax
         std::cout<<"i, abs(c)  ="<<i<<", "<<std::abs(cp_spectrum(i))<<std::endl;
     }
-    
+
     return cp_spectrum;
 }
 
@@ -1064,9 +1064,9 @@ MHO_ComputePlotData::DumpInfoToJSON(mho_json& plot_dict)
     std::size_t nplot = phasors.GetDimension(0);
     std::size_t naps = phasors.GetDimension(1);
     std::size_t nseg = naps;
-    std::vector<double> seg_amp;
-    std::vector<double> seg_arg;
-    
+    std::vector< std::vector<double> > seg_amp; seg_amp.resize(nplot);
+    std::vector< std::vector<double> > seg_arg; seg_arg.resize(nplot);
+
     std::vector<double> ch_amp;
     std::vector<double> ch_arg;
 
@@ -1087,7 +1087,7 @@ MHO_ComputePlotData::DumpInfoToJSON(mho_json& plot_dict)
     }
 
     // Number of segments, starting at AP 0
-    // and using integer apseg per segment 
+    // and using integer apseg per segment
     nseg = naps / apseg;
     //Remainder goes into last segment (???)
     if( (naps % apseg) != 0){ nseg += 1;}
@@ -1104,8 +1104,8 @@ MHO_ComputePlotData::DumpInfoToJSON(mho_json& plot_dict)
             if(j % apseg == apseg-1 ) //push the last one back
             {
                 ph *= 1.0/(double)apseg; //average
-                seg_amp.push_back( std::abs(ph) );
-                seg_arg.push_back( std::arg(ph) );
+                seg_amp[i].push_back( std::abs(ph) );
+                seg_arg[i].push_back( std::arg(ph) );
                 ph = 0.0;
             }
         }
@@ -1114,12 +1114,29 @@ MHO_ComputePlotData::DumpInfoToJSON(mho_json& plot_dict)
         ch_arg.push_back( std::arg(phsum) );
     }
 
-    plot_dict["SEG_AMP"] = seg_amp;
-    plot_dict["SEG_PHS"] = seg_arg;
+    //need to flatten and transpose this data to match the plot_data_dir format
+    std::vector< double > transposed_flatted_seg_amp;
+    std::vector< double > transposed_flatted_seg_arg;
+
+    for(std::size_t j=0; j<naps; j++)
+    {
+        for(std::size_t i=0; i<nplot; i++)
+        {
+            transposed_flatted_seg_amp.push_back( seg_amp[i][j] );
+            transposed_flatted_seg_arg.push_back( seg_arg[i][j] );
+        }
+    }
+
+    // plot_dict["SEG_AMP"] = seg_amp;
+    // plot_dict["SEG_PHS"] = seg_arg;
+    plot_dict["SEG_AMP"] = transposed_flatted_seg_amp;
+    plot_dict["SEG_PHS"] = transposed_flatted_seg_arg;
+
+
     plot_dict["NSeg"] = nseg;
     plot_dict["NPlots"] = nplot; //nchan+1
     plot_dict["StartPlot"] = 0;
-    
+
     //add the 'PLOT_INFO' section
     std::vector<std::string> pltheader{
         "#Ch",
@@ -1143,7 +1160,7 @@ MHO_ComputePlotData::DumpInfoToJSON(mho_json& plot_dict)
         "TrkRm"
     };
     plot_dict["PLOT_INFO"]["header"] = pltheader;
-    
+
     //includes the 'All' channel
     for(std::size_t i=0; i<nplot; i++)
     {
