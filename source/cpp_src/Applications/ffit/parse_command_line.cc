@@ -14,7 +14,7 @@ int parse_command_line(int argc, char** argv, MHO_ParameterStore* paramStore)
     std::string polprod = "";
     std::string output_file = "fdump.json"; //for testing
     int message_level = -1;
-    int ap_per_seg;
+    int ap_per_seg = 0;
     bool ok;
 
     static struct option longOptions[] = {{"help", no_argument, 0, 'h'},

@@ -1074,11 +1074,15 @@ MHO_ComputePlotData::DumpInfoToJSON(mho_json& plot_dict)
     int ap_per_seg = fParamStore->GetAs<int>("/cmdline/ap_per_seg");
     std::size_t apseg;
     if(nplot == 2){nplot = 1;}
+    std::cout<<"ap per seg = "<<ap_per_seg<<std::endl;
     if(ap_per_seg == 0)
     {
         nseg = 200/nplot; //max of 200 points across plot
+        std::cout<<"nplot = "<<nplot<<" nseg = "<< nseg<<std::endl;
         if(nseg > naps){nseg = naps;}
+        std::cout<<"nseg now = "<<nseg<<" naps = "<<naps<<std::endl;
         apseg = naps / nseg;
+        std::cout<<"nseg, apseg, naps = "<<nseg<<", "<<apseg<<", "<<naps<<std::endl;
     }
     else
     {
