@@ -197,16 +197,30 @@ int main(int argc, char** argv)
 
     #ifdef USE_PYBIND11
     
+    // msg_debug("main", "python plot generation enabled." << eom );
+    // //test stuff
+    // py::scoped_interpreter guard{}; // start the interpreter and keep it alive, need this or we segfault
+    // py::dict plot_obj = plot_dict;
+    // 
+    // //load our interface module
+    // auto ff_test = py::module::import("ff_plot_test");
+    // //call a python function on the interface class instance
+    // ff_test.attr("fourfit_plot")(plot_obj, "fplot.png");
+
+
     msg_debug("main", "python plot generation enabled." << eom );
     //test stuff
     py::scoped_interpreter guard{}; // start the interpreter and keep it alive, need this or we segfault
     py::dict plot_obj = plot_dict;
     
     //load our interface module
-    auto ff_test = py::module::import("ff_plot_test");
+    auto vis_module = py::module::import("hops_visualization");
+    auto plot_lib = vis_module.attr("fourfit_plot");
     //call a python function on the interface class instance
-    ff_test.attr("fourfit_plot")(plot_obj, "fplot.png");
-    
+    plot_lib.attr("make_fourfit_plot")(plot_obj, "fplot.png");
+
+
+
     #endif //USE_PYBIND11
 
     return 0;

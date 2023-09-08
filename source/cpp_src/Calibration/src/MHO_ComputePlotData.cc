@@ -1091,6 +1091,12 @@ MHO_ComputePlotData::DumpInfoToJSON(mho_json& plot_dict)
     nseg = naps / apseg;
     //Remainder goes into last segment (???)
     if( (naps % apseg) != 0){ nseg += 1;}
+
+
+    std::cout<<"NAPS = "<<naps<<std::endl;
+    std::cout<<"APSEG="<<apseg<<std::endl;
+    std::cout<<"NSEG = "<<nseg<<std::endl;
+
     for(std::size_t i=0; i<nplot; i++)
     {
         std::complex<double> ph = 0;
