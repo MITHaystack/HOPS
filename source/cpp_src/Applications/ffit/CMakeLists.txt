@@ -47,8 +47,6 @@ if(HOPS_USE_PYBIND11)
     list(APPEND PYBIND_TEST_LIBS pyMHO_Containers pyMHO_Operators pybind11::embed)
     add_cflag(USE_PYBIND11)
     list(APPEND FFIT_LIBS ${PYBIND_TEST_LIBS})
-    #temp work around until we do this properly
-    install(PROGRAMS "${CMAKE_CURRENT_SOURCE_DIR}/ff_plot_test.py" DESTINATION ${PYTHON_MODULE_INSTALL_DIR})
 endif(HOPS_USE_PYBIND11)
 
 
