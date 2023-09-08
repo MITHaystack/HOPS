@@ -63,7 +63,7 @@ def make_fourfit_plot(plot_dict, filename):
         xpow_x = plot_dict['XPSPEC_XAXIS']
     else:
         xpow_x = np.arange(0,len(plot_dict['XPSPEC-ABS']))
-        
+
     # xpow_x = np.arange(-2,2,4.0/len(plot_dict['XPSPEC-ABS']))
 
 
@@ -72,7 +72,9 @@ def make_fourfit_plot(plot_dict, filename):
     fig = pylab.figure(1)
 
     # The delay rate panel (shares axes with the multiband delay)
-    ax1 = plt.subplot2grid((16,16),(0,0),rowspan=4,colspan=13)
+    ax1 = plt.subplot2grid((16,16),(0,0),rowspan=3,colspan=13)
+    plt.subplots_adjust(left=0.07, right=0.93, bottom=0.07, top=0.93)
+
     ax1.plot(dly_x, plot_dict['DLYRATE'],'r-',linewidth=0.5)
     ax1.set_xlim(dly_x[0],dly_x[-1])
     ax1.set_ylim(bottom=0)
@@ -84,7 +86,8 @@ def make_fourfit_plot(plot_dict, filename):
     plt.yticks(fontsize=8,rotation=90)
     ax1.yaxis.label.set_color('r')
     ax1.minorticks_on()
-    ax1.tick_params(axis='both', direction='in', which='both')
+    ax1.tick_params(axis='both', direction='in', which='both', bottom=True, left=True)
+
     #
     # twin both axes, retain the intermediate axes object to adjust those ticks
     ax2a = ax1.twinx()
@@ -98,16 +101,14 @@ def make_fourfit_plot(plot_dict, filename):
     plt.xticks(fontsize=8)
     ax2.xaxis.label.set_color('b')
     ax2.minorticks_on()
-    ax2.tick_params(axis='both', direction='in', which='both')
-
+    ax2.tick_params(axis='both', direction='in', which='both', top=True, right=True)
     # ax2a.set_ylabel('amplitude',fontsize=9)
     # ax2a.yaxis.label.set_color('b')
 
 
 
     # The singleband delay panel
-    ax3 = plt.subplot2grid((16,8),(5,0),rowspan=3,colspan=3)
-
+    ax3 = plt.subplot2grid((16, 16),(4,0),rowspan=2,colspan=6)
     ax3.plot(sbd_x, plot_dict['SBD_AMP'],'g-',linewidth=0.5)
     ax3.set_xlim(sbd_x[0],sbd_x[-1])
     ax3.set_ylim(bottom=0)
@@ -119,10 +120,11 @@ def make_fourfit_plot(plot_dict, filename):
     plt.yticks(fontsize=8,rotation=90)
     ax3.yaxis.label.set_color('g')
     ax3.minorticks_on()
-    ax3.tick_params(axis='both', direction='in', which='both')
+    ax3.tick_params(axis='both', direction='in', which='both', right=True, bottom=True, left=True, top=True)
 
     # The cross-power sepctra
-    ax4 = plt.subplot2grid((16,16),(5,7),rowspan=3,colspan=6)
+    #ax4 = plt.subplot2grid((16,16),(5,7),rowspan=3,colspan=6)
+    ax4 = plt.subplot2grid((16, 16),(4,7),rowspan=2,colspan=6)
     ax4.plot(xpow_x, plot_dict['XPSPEC-ABS'],'co-',markersize=2,markerfacecolor='b',linewidth=0.5, markeredgewidth=0.0)
     ax4.set_xlim(xpow_x[0],xpow_x[-1])
     ax4.set_ylim(bottom=0)
@@ -134,7 +136,8 @@ def make_fourfit_plot(plot_dict, filename):
     plt.yticks(fontsize=8,rotation=90)
     ax4.yaxis.label.set_color('b')
     ax4.minorticks_on()
-    ax4.tick_params(axis='both', direction='in', which='both')
+    ax4.tick_params(axis='both', direction='in', which='both', right=True, bottom=True, left=True, top=True)
+
 
     ax5 = ax4.twinx()
     ax5.plot(xpow_x, plot_dict['XPSPEC-ARG'],'ro',markersize=2,linewidth=0.5, markeredgewidth=0.0)
@@ -159,7 +162,7 @@ def make_fourfit_plot(plot_dict, filename):
     #grab seg amp
     seg_amp_arr = np.array( plot_dict['SEG_AMP'] )
     seg_ymax = float(plot_dict['Amp'])*3.0 #see generate_graphs.c
-    
+
     if "ChannelsPlotted" in plot_dict:
         seg_chan_labels = plot_dict["ChannelsPlotted"]
     else:
@@ -173,7 +176,7 @@ def make_fourfit_plot(plot_dict, filename):
     seg_phs_arr1 = seg_phs_arr.reshape(n_seg_plots,n_seg)
 
     for ch in range(0,n_seg_plots):
-        ax6 = plt.subplot2grid((16,colw*n_seg_plots),(9,colw*ch),rowspan=3,colspan=colw)
+        ax6 = plt.subplot2grid((32,colw*n_seg_plots),(14,colw*ch),rowspan=5,colspan=colw)
         plt.subplots_adjust(wspace=0, hspace=0)
         ax6.plot(range(n_seg), seg_amp_arr1[ch],'co-',markersize=2, markerfacecolor='b', linewidth=0.5, markeredgewidth=0.0)
         ax6.set_xlim(0,n_seg)
@@ -182,7 +185,7 @@ def make_fourfit_plot(plot_dict, filename):
         ax6.tick_params(axis='both', direction='in', which='both')
         if ch < n_seg_plots-1:
             ax6.title.set_text(seg_chan_labels[ch])
-            ax6.title.set_size(8)
+            ax6.title.set_size(9)
         if ch == 0:
             ax6.set_ylabel('amplitude',fontsize=9)
             plt.yticks(fontsize=8,rotation=90)
@@ -204,8 +207,8 @@ def make_fourfit_plot(plot_dict, filename):
         ax6a.tick_params(axis='both', direction='in', which='both')
         if ch == n_seg_plots-1:
             if n_seg_plots > 1:
-                ax6a.title.set_text("all")
-                ax6a.title.set_size(8)
+                ax6a.title.set_text("All")
+                ax6a.title.set_size(9)
             ax6a.set_ylabel('phase [deg]',fontsize=9)
             ax6a.set_ylabel('phase [deg]',fontsize=9)
             ytick_locs = [-180,-90,0,90,180]
@@ -221,6 +224,192 @@ def make_fourfit_plot(plot_dict, filename):
             plt.tick_params(left = False, bottom = False)
         # ax6.plot(range(n_seg), seg_amp_arr1[ch],'co-',markersize=2, markerfacecolor='b', linewidth=0.5, markeredgewidth=0.0)
         # ax6a.plot(range(n_seg), seg_phs_arr1[ch],'ro',markersize=2, linewidth=0.5, markeredgewidth=0.0)
+
+    #USB/LSB PLOTS
+    for ch in range(0,n_seg_plots-1):
+        ax7 = plt.subplot2grid((256,colw*n_seg_plots),(152,colw*ch),rowspan=4,colspan=colw)
+        plt.subplots_adjust(wspace=0, hspace=0)
+        ax7.plot(range(n_seg), np.zeros(n_seg),'co-',markersize=2, markerfacecolor='g', linewidth=0.5, markeredgewidth=0.0)
+        ax7.set_xlim(0,n_seg)
+        ax7.set_ylim(0,seg_ymax)
+        ax7.set_xticklabels(labels=[],visible=False)
+        ax7.tick_params(axis='both', direction='in', which='both')
+        ax7.xaxis.set_major_locator(plt.NullLocator())
+        ax7.yaxis.set_major_locator(plt.NullLocator())
+        ax7.set_yticklabels(labels=[],visible=False)
+        plt.yticks(visible=False)
+        plt.tick_params(left = False, bottom = False)
+        if ch == 0:
+            ax7.set_ylabel('U',fontsize=7, rotation=0, labelpad=5)
+
+        ax7b = plt.subplot2grid((256,colw*n_seg_plots),(156,colw*ch),rowspan=4,colspan=colw)
+        plt.subplots_adjust(wspace=0, hspace=0)
+        ax7b.plot(range(n_seg), np.zeros(n_seg),'co-',markersize=2, markerfacecolor='g', linewidth=0.5, markeredgewidth=0.0)
+        ax7b.set_xlim(0,n_seg)
+        ax7b.set_ylim(0,seg_ymax)
+        ax7b.set_xticklabels(labels=[],visible=False)
+        ax7b.tick_params(axis='both', direction='in', which='both')
+        ax7b.xaxis.set_major_locator(plt.NullLocator())
+        ax7b.yaxis.set_major_locator(plt.NullLocator())
+        ax7b.set_yticklabels(labels=[],visible=False)
+        plt.yticks(visible=False)
+        plt.tick_params(left = False, bottom = False)
+        if ch == 0:
+            ax7b.set_ylabel('L',fontsize=7, rotation=0, labelpad=5)
+
+    #PCAL PLOTS
+    for ch in range(0,n_seg_plots-1):
+        ax8 = plt.subplot2grid((255,colw*n_seg_plots),(160,colw*ch),rowspan=16,colspan=colw)
+        plt.subplots_adjust(wspace=0, hspace=0)
+        ax8.plot(range(n_seg), np.zeros(n_seg),'co-',markersize=2, markerfacecolor='m', linewidth=0.5, markeredgewidth=0.0)
+        ax8.set_xlim(0,n_seg)
+        ax8.set_ylim(-180,180)
+        ax8.set_xticklabels(labels=[],visible=False)
+        ax8.tick_params(axis='both', direction='in', which='both')
+
+        if ch == 0:
+            ax8.set_ylabel('pcal',fontsize=9)
+            plt.yticks(fontsize=8,rotation=90)
+            #ax8.yticks(visible=True)
+            ax8.minorticks_on()
+            ax8.tick_params(axis='y', left = False, bottom = False, labelleft=False)
+        elif ch == (n_seg_plots-2) :
+            plt.yticks(fontsize=8,rotation=90)
+            #ax8.yticks(visible=True)
+            ax8.minorticks_on()
+            ax8.tick_params(axis='y', left=False, labelleft=False)
+            ax8.tick_params(axis='y', right=True, labelright=True)
+        else:
+            #ax6.axis(" ")
+            ax8.xaxis.set_major_locator(plt.NullLocator())
+            ax8.yaxis.set_major_locator(plt.NullLocator())
+            ax8.set_yticklabels(labels=[],visible=False)
+            plt.yticks(visible=False)
+
+        # if ch == 0:
+        #     ax8.set_ylabel('PCAL',fontsize=9)
+        #     plt.yticks(fontsize=8,rotation=90)
+        #     ax8.yaxis.label.set_color('b')
+        #     plt.yticks(visible=False)
+        #     plt.tick_params(left = False, bottom = False)
+        # else if ch == n_seg_plots-2:
+        #     plt.yticks(fontsize=8,rotation=90)
+        #     ax8.yaxis.label.set_color('b')
+        #     plt.yticks(visible=True)
+        #     plt.tick_params(right = True, bottom = False)
+        # else:
+        #     #ax6.axis("off")
+        #     ax8.xaxis.set_major_locator(plt.NullLocator())
+        #     ax8.yaxis.set_major_locator(plt.NullLocator())
+        #     ax8.set_yticklabels(labels=[],visible=False)
+        #     plt.yticks(visible=True)
+        #     ax8.minorticks_on()
+        #     plt.tick_params(right = True, bottom = False)
+
+
+
+    #make the text table
+    axT = plt.subplot2grid((96,n_seg_plots),(67,0),rowspan=20,colspan=n_seg_plots)
+    #plt.subplots_adjust(left=0.07, right=0.93, bottom=0.07, top=0.93)
+    #plt.subplots_adjust(left=0.1, right=0.9, top=0.8, bottom=0.1)  # Adjust margins as needed
+
+    ct_header_text = {}
+    ct_header_text["#Ch"] = ""
+    ct_header_text["Freq(MHz)"] = "Freq (MHz)"
+    ct_header_text["Phase"] = "Phase"
+    ct_header_text["Ampl"] = "Ampl."
+    ct_header_text["SbdBox"] = "Sbd box"
+    ct_header_text["APsRf"] = "APs used"
+    ct_header_text["APsRm"] = "APs used"
+    ct_header_text["PCdlyRf"] = "PC freqs"
+    ct_header_text["PCdlyRm"] = "PC freqs"
+    ct_header_text["PCPhsRf"] = "PC phase"
+    ct_header_text["PCPhsRm"] = "PC phase"
+    ct_header_text["PCOffRf"] = "Manl PC"
+    ct_header_text["PCOffRm"] = "Manl PC"
+    ct_header_text["PCAmpRf"] = "PC amp"
+    ct_header_text["PCAmpRm"] = "PC amp"
+    ct_header_text["ChIdRf"] = "Chan ids"
+    ct_header_text["TrkRf"] = "Tracks"
+    ct_header_text["ChIdRm"] = "Chan ids"
+    ct_header_text["TrkRm"] = "Tracks"
+
+    #declare the elements which are paired up and printed with a ":"
+    paired_data1 = {}
+    paired_data2 = {}
+    paired_data1["APsRf"] = "APsRm"
+    paired_data1["PCPhsRf"] = "PCPhsRm"
+    paired_data1["PCOffRf"] = "PCOffRm"
+    for k in paired_data1.keys():
+        v = paired_data1[k]
+        paired_data2[v] = k
+
+    #create the table of per-channel data
+    ct_data = []
+    ct_headers = plot_dict['PLOT_INFO']['header']
+    cth_text = []
+    for hdr in ct_headers:
+        if hdr in paired_data1.keys():
+            hdr2 = paired_data1[hdr]
+            hdr_txt = ct_header_text[hdr]
+            if hdr_txt != "": #dont plot the empty labels
+                #need to grab both data element lists
+                elem1 = plot_dict['PLOT_INFO'][hdr]
+                elem2 = plot_dict['PLOT_INFO'][hdr2]
+                zipped_list = list(zip(elem1, elem2))
+                result_list = []
+                if hdr == "APsRf":
+                    result_list = [f"{int(np.rint(float(item[0])))}/{int(np.rint(float(item[1])))}" for item in zipped_list]
+                else:
+                    result_list = [f"{int(np.rint(float(item[0])))}:{int(np.rint(float(item[1])))}" for item in zipped_list]
+                cth_text.append(hdr_txt)
+                ct_data.append(result_list)
+        else:
+            if not (hdr in paired_data2.keys()):
+                hdr_txt = ct_header_text[hdr]
+                if hdr_txt != "": #dont plot the empty labels
+                    cth_text.append(hdr_txt)
+                    if hdr_txt not in ["Chan ids","Tracks"]:
+                        result_list = [f"{np.round(float(item), 1)}" for item in plot_dict['PLOT_INFO'][hdr]]
+                    else:
+                        result_list = [str(item) for item in plot_dict['PLOT_INFO'][hdr]]
+                    ct_data.append(result_list)
+
+    #trim the last column (the 'All column') to be added back later
+    for ct_row in range(0, len(ct_data)):
+        if cth_text[ct_row] in ["Freq (MHz)", "Phase", "Ampl.", "Sbd box"] and len(ct_data[ct_row]) == len(plot_dict['PLOT_INFO']["#Ch"]):
+            ct_data[ct_row].pop()
+
+    print(ct_data)
+
+    #add the header names as the last column
+    for row in range(0, len(ct_data)):
+        hdr_txt = cth_text[row]
+        ct_data[row].append(hdr_txt)
+
+    print(ct_data)
+
+
+    # Create the table
+    table = axT.table(cellText=ct_data, loc='center')
+
+    # Remove the borders from the table and set alignment
+    for key, cell in table._cells.items():
+        cell.set_linewidth(0)
+        cell.set_text_props(ha="left")
+
+    # Hide the axis
+    axT.axis('off')
+
+    # Adjust the cell font size (optional)
+    table.auto_set_font_size(False)
+    table.set_fontsize(8)
+
+    # Set the table cell height to make it smaller
+    table.scale(1, 0.7)  # Adjust the scale factor as needed
+
+
+
 
     # # Now build the text boxes
     #
@@ -273,118 +462,23 @@ def make_fourfit_plot(plot_dict, filename):
         plot_dict['RA'] + '\n' + \
         plot_dict['Dec']
 
-    axT = plt.subplot2grid((24,n_seg_plots),(19,0),rowspan=5,colspan=n_seg_plots)
-    #plt.subplots_adjust(left=0.1, right=0.9, top=0.8, bottom=0.1)  # Adjust margins as needed
-
-    ct_header_text = {}
-    ct_header_text["#Ch"] = ""
-    ct_header_text["Freq(MHz)"] = "Freq (MHz)"
-    ct_header_text["Phase"] = "Phase"
-    ct_header_text["Ampl"] = "Ampl."
-    ct_header_text["SbdBox"] = "Sbd box"
-    ct_header_text["APsRf"] = "APs used"
-    ct_header_text["APsRm"] = "APs used"
-    ct_header_text["PCdlyRf"] = ""
-    ct_header_text["PCdlyRm"] = ""
-    ct_header_text["PCPhsRf"] = "PC phase"
-    ct_header_text["PCPhsRm"] = "PC phase"
-    ct_header_text["PCOffRf"] = "Manl PC"
-    ct_header_text["PCOffRm"] = "Manl PC"
-    ct_header_text["PCAmpRf"] = "PC amp"
-    ct_header_text["PCAmpRm"] = "PC amp"
-    ct_header_text["ChIdRf"] = "" #"Chan ids"
-    ct_header_text["TrkRf"] = "" #"Tracks"
-    ct_header_text["ChIdRm"] = "" #"Chan ids"
-    ct_header_text["TrkRm"] = "" #"Tracks"
-
-    #declare the elements which are paired up and printed with a ":"
-    paired_data1 = {}    
-    paired_data2 = {}
-    paired_data1["APsRf"] = "APsRm"
-    paired_data1["PCPhsRf"] = "PCPhsRm"
-    paired_data1["PCOffRf"] = "PCOffRm"
-    for k in paired_data1.keys():
-        v = paired_data1[k]
-        paired_data2[v] = k
-
-    #create the table of per-channel data
-    ct_data = []
-    ct_headers = plot_dict['PLOT_INFO']['header']
-    cth_text = []
-    for hdr in ct_headers:
-        if hdr in paired_data1.keys():
-            hdr2 = paired_data1[hdr]
-            hdr_txt = ct_header_text[hdr]
-            if hdr_txt != "": #dont plot the empty labels
-                #need to grab both data element lists
-                elem1 = plot_dict['PLOT_INFO'][hdr]
-                elem2 = plot_dict['PLOT_INFO'][hdr2]
-                zipped_list = list(zip(elem1, elem2))
-                result_list = []
-                if hdr == "APsRf":
-                    result_list = [f"{int(np.rint(float(item[0])))}/{int(np.rint(float(item[1])))}" for item in zipped_list]
-                else:
-                    result_list = [f"{int(np.rint(float(item[0])))}:{int(np.rint(float(item[1])))}" for item in zipped_list]
-                cth_text.append(hdr_txt)
-                ct_data.append(result_list)
-        else:
-            if not (hdr in paired_data2.keys()):
-                hdr_txt = ct_header_text[hdr]
-                if hdr_txt != "": #dont plot the empty labels
-                    cth_text.append(hdr_txt)
-                    result_list = [f"{np.round(float(item), 1)}" for item in plot_dict['PLOT_INFO'][hdr]]
-                    ct_data.append(result_list)
-
-    #trim the last column (the 'All column') to be added back later
-    for ct_row in range(0, len(ct_data)):
-        if cth_text[ct_row] in ["Freq (MHz)", "Phase", "Ampl.", "Sbd box"] and len(ct_data[ct_row]) == len(plot_dict['PLOT_INFO']["#Ch"]):
-            ct_data[ct_row].pop()
-
-    print(ct_data)
-
-    #add the header names as the last column
-    for row in range(0, len(ct_data)):
-        hdr_txt = cth_text[row]
-        ct_data[row].append(hdr_txt)
-        
-    print(ct_data)
-
-
-    # Create the table
-    table = axT.table(cellText=ct_data, loc='center')
-
-    # Remove the borders from the table and set alignment
-    for key, cell in table._cells.items():
-        cell.set_linewidth(0)
-        cell.set_text_props(ha="left")
-
-    # Hide the axis
-    axT.axis('off')
-    
-    # Adjust the cell font size (optional)
-    table.auto_set_font_size(False)
-    table.set_fontsize(6)
-
-    # Set the table cell height to make it smaller
-    table.scale(1, 0.5)  # Adjust the scale factor as needed
-
 
 
     # Add the text boxes
-    plt.text(0.805,0.9,textstr1,transform=plt.gcf().transFigure,fontsize=10,verticalalignment='top',
+    plt.text(0.83,0.94,textstr1,transform=plt.gcf().transFigure,fontsize=9,verticalalignment='top',
              family='monospace',horizontalalignment='left',color='g')
 
-    plt.text(0.965,0.9,textstr2,transform=plt.gcf().transFigure,fontsize=10,verticalalignment='top',
+    plt.text(0.965,0.94,textstr2,transform=plt.gcf().transFigure,fontsize=9,verticalalignment='top',
              family='monospace',horizontalalignment='right',color='k')
 
     # Add the top matter
-    plt.text(0.965,0.94,plot_dict['RootScanBaseline'].strip("'"),transform=plt.gcf().transFigure,
+    plt.text(0.965,0.98,plot_dict['RootScanBaseline'].strip("'"),transform=plt.gcf().transFigure,
              fontsize=12,verticalalignment='top',family='sans-serif',horizontalalignment='right',fontweight='bold')
 
-    # plt.text(0.05,0.94,plot_dict['CorrVers'].strip("'"),transform=plt.gcf().transFigure,
-    #          fontsize=12,verticalalignment='top',family='sans-serif',horizontalalignment='left',fontweight='bold')
+    plt.text(0.05,0.98,plot_dict['CorrVers'].strip("'"),transform=plt.gcf().transFigure,
+             fontsize=12,verticalalignment='top',family='sans-serif',horizontalalignment='left',fontweight='bold')
 
-    plt.text(0.965,0.92, plot_dict['PolStr'].strip("'"),transform=plt.gcf().transFigure,
+    plt.text(0.965,0.96, plot_dict['PolStr'].strip("'"),transform=plt.gcf().transFigure,
              fontsize=10,verticalalignment='top',family='sans-serif',horizontalalignment='right',fontweight='bold')
 
 
@@ -441,7 +535,7 @@ def make_fourfit_plot(plot_dict, filename):
         str(np.format_float_scientific(float(plot_dict["ResidRateError(us/s)"]), precision=1, min_digits=1) ) + '\n' + \
         str( np.round(float(plot_dict["ResidPhaseError(deg)"]),2) )
 
-    bottom_yoffset = 0.1
+    bottom_yoffset = 0.16
 
     # Add the text boxes
     plt.text(0.01,bottom_yoffset,btmtextstr1,transform=plt.gcf().transFigure,fontsize=7,verticalalignment='top',
