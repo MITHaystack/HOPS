@@ -368,7 +368,8 @@ def fourfit_plot(plot_dict, filename):
     # Set the table cell height to make it smaller
     table.scale(1, 0.5)  # Adjust the scale factor as needed
 
-
+    #pylab.show()
+    pylab.savefig(filename)
 
 
 
