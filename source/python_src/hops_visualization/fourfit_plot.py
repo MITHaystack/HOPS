@@ -286,28 +286,6 @@ def make_fourfit_plot(plot_dict, filename):
             ax8.set_yticklabels(labels=[],visible=False)
             plt.yticks(visible=False)
 
-        # if ch == 0:
-        #     ax8.set_ylabel('PCAL',fontsize=9)
-        #     plt.yticks(fontsize=8,rotation=90)
-        #     ax8.yaxis.label.set_color('b')
-        #     plt.yticks(visible=False)
-        #     plt.tick_params(left = False, bottom = False)
-        # else if ch == n_seg_plots-2:
-        #     plt.yticks(fontsize=8,rotation=90)
-        #     ax8.yaxis.label.set_color('b')
-        #     plt.yticks(visible=True)
-        #     plt.tick_params(right = True, bottom = False)
-        # else:
-        #     #ax6.axis("off")
-        #     ax8.xaxis.set_major_locator(plt.NullLocator())
-        #     ax8.yaxis.set_major_locator(plt.NullLocator())
-        #     ax8.set_yticklabels(labels=[],visible=False)
-        #     plt.yticks(visible=True)
-        #     ax8.minorticks_on()
-        #     plt.tick_params(right = True, bottom = False)
-
-
-
     #make the text table
     axT = plt.subplot2grid((96,n_seg_plots),(67,0),rowspan=20,colspan=n_seg_plots)
     #plt.subplots_adjust(left=0.07, right=0.93, bottom=0.07, top=0.93)
