@@ -172,13 +172,16 @@ def make_fourfit_plot(plot_dict, filename):
     # convert SEG_PHS to deg
     seg_phs_arr = np.array( [xx*180/np.pi for xx in plot_dict['SEG_PHS']] )
 
-    seg_amp_arr1 = seg_amp_arr.reshape(n_seg_plots,n_seg)
-    seg_phs_arr1 = seg_phs_arr.reshape(n_seg_plots,n_seg)
+    # seg_amp_arr1 = seg_amp_arr.reshape(n_seg_plots,n_seg)
+    # seg_phs_arr1 = seg_phs_arr.reshape(n_seg_plots,n_seg)
+
+    seg_amp_arr1 = seg_amp_arr.reshape(n_seg, n_seg_plots)
+    seg_phs_arr1 = seg_phs_arr.reshape(n_seg, n_seg_plots)
 
     for ch in range(0,n_seg_plots):
         ax6 = plt.subplot2grid((32,colw*n_seg_plots),(14,colw*ch),rowspan=5,colspan=colw)
         plt.subplots_adjust(wspace=0, hspace=0)
-        ax6.plot(range(n_seg), seg_amp_arr1[ch],'co-',markersize=2, markerfacecolor='b', linewidth=0.5, markeredgewidth=0.0)
+        ax6.plot(range(n_seg), seg_amp_arr1[:,ch],'co-',markersize=2, markerfacecolor='b', linewidth=0.5, markeredgewidth=0.0)
         ax6.set_xlim(0,n_seg)
         ax6.set_ylim(0,seg_ymax)
         ax6.set_xticklabels(labels=[],visible=False)
@@ -201,7 +204,7 @@ def make_fourfit_plot(plot_dict, filename):
             plt.tick_params(left = False, bottom = False)
 
         ax6a = ax6.twinx()
-        ax6a.plot(range(n_seg), seg_phs_arr1[ch],'ro',markersize=2, linewidth=0.5, markeredgewidth=0.0)
+        ax6a.plot(range(n_seg), seg_phs_arr1[:,ch],'ro',markersize=2, linewidth=0.5, markeredgewidth=0.0)
         ax6a.set_xlim(0,n_seg)
         ax6a.set_ylim(-180,180)
         ax6a.tick_params(axis='both', direction='in', which='both')
