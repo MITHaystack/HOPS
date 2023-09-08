@@ -472,7 +472,7 @@ MHO_ComputePlotData::calc_phase()
 
     fRot.SetSBDSeparation(sbd_delta);
     fRot.SetSBDMaxBin(fSBDMaxBin);
-    fRot.SetNSBDBins(sbd_ax->GetSize()/4);  //this is nlags, FACTOR OF 4 is because sbd space is padded by a factor of 4
+    fRot.SetNSBDBins(sbd_ax->GetSize()/2);  //this is effective nlags
     fRot.SetSBDMax( fSBDelay );
     double frt_offset = fParamStore->GetAs<double>("frt_offset");
 
@@ -1014,6 +1014,7 @@ MHO_ComputePlotData::DumpInfoToJSON(mho_json& plot_dict)
     auto sbd_amp = calc_sbd();
     auto mbd_amp = calc_mbd();
     auto dr_amp = calc_dr();
+    auto fake_phase = calc_phase(); //TODO FIXME -- just needed at the moment to properly set fRot parameters
     auto sbd_xpower = calc_xpower_KLUDGE();
     auto phasors = calc_segs();
 
@@ -1122,18 +1123,18 @@ MHO_ComputePlotData::DumpInfoToJSON(mho_json& plot_dict)
         
         //see calc_rms.c line 304
         double chph = std::arg(phsum);
-        std::cout<<"Channel: "<<i<< "raw phase = "<<chph*(180./M_PI)<<std::endl;
-        chph -= coh_avg_phase;
-        
-
-        
-        chph = std::fmod(chph, 2.0 * M_PI);
-        if (chph > M_PI)
-            chph -= 2.0 * M_PI;
-        else if (chph < - M_PI)
-            chph += 2.0 * M_PI;
-            
-        std::cout<<"Channel: "<<i<< "corrected phase = "<<chph*(180./M_PI)<<std::endl;
+        // std::cout<<"Channel: "<<i<< "raw phase = "<<chph*(180./M_PI)<<std::endl;
+        // chph -= coh_avg_phase;
+        // 
+        // 
+        // 
+        // chph = std::fmod(chph, 2.0 * M_PI);
+        // if (chph > M_PI)
+        //     chph -= 2.0 * M_PI;
+        // else if (chph < - M_PI)
+        //     chph += 2.0 * M_PI;
+        // 
+        // std::cout<<"Channel: "<<i<< "corrected phase = "<<chph*(180./M_PI)<<std::endl;
         ch_arg.push_back( chph );
     }
     
