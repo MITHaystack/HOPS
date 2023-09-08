@@ -20,10 +20,10 @@ def parse_PDD(filename):
 
 
     '''
-    
 
 
-    # 
+
+    #
     # f = open(filename)
     # lines = f.readlines()
     # f.close()
@@ -36,10 +36,10 @@ def parse_PDD(filename):
 
         # datatypes that require an extra line skip
         skip2 = ['SEG_AMP', 'SEG_PHS', 'WEIGHTS', 'PHASOR-ABS', 'PHASOR-ARG', 'MEAN_AP']
-        
+
         ii=0
         while ii<len(lines):
-            
+
             line_split = lines[ii].split(None)
 
             print(line_split)
@@ -54,7 +54,7 @@ def parse_PDD(filename):
                 ii+=1
                 continue
             if line_split[1]=='CorrVers':
-                #pdd_dict['CorrVers'] = line_split[2]+' '+line_split[3]+' '+line_split[4]+' '+line_split[5]+' '+line_split[6]
+                pdd_dict['CorrVers'] = ' '.join([ (item.strip("'")).strip("#") for item in line_split]) #[2]+' '+line_split[3]+' '+line_split[4]+' '+line_split[5]+' '+line_split[6]
                 ii+=1
                 continue
             if line_split[1]=='PLOT_INFO':
@@ -69,7 +69,7 @@ def parse_PDD(filename):
                 for hdr in hdr_line:
                     pdd_dict['PLOT_INFO'][hdr] = []
                 ii+=1
-                #grab the next several lines as special info about each channel 
+                #grab the next several lines as special info about each channel
                 for n in range(0,nchan):
                     line_split = lines[ii].split(None)
                     print(line_split)
@@ -77,8 +77,8 @@ def parse_PDD(filename):
                     for info_idx in range(0,len(ch_info_line)):
                         pdd_dict['PLOT_INFO'][hdr_line[info_idx]].append( ch_info_line[info_idx] )
                     ii += 1
-            
-            # Parse the lines: 
+
+            # Parse the lines:
             #  - if the line is len==3, we'll assume it is of the form ['#', KEY, VALUE], and assign appropriately
             #  - if the line is len==4 and has curly brackets AND the subsequent line has no #, we'll build an array
             # TODO: add some sanity checks to make sure the arrays have the expected number of elements
@@ -99,7 +99,7 @@ def parse_PDD(filename):
 
                 # some datatypes require skipping two lines, this is very annoying
                 if line_split[1] in skip2:
-                    increment = 2                
+                    increment = 2
                 else:
                     increment = 1
 
@@ -120,11 +120,10 @@ def parse_PDD(filename):
                 # add the list of values to the dictionary
                 pdd_dict[line_split[1]] = arr
                 ii+=jj-1
-                
+
             elif line_split[1] == 'eof':
                 break
             else:
                 ii+=1
 
     return pdd_dict
-            
