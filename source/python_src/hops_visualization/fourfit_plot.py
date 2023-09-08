@@ -62,7 +62,7 @@ def make_fourfit_plot(plot_dict, filename):
     if 'XPSPEC_XAXIS' in plot_dict:
         xpow_x = plot_dict['XPSPEC_XAXIS']
     else:
-        xpow_x = np.arange(0,len(plot_dict['XPSPEC-ABS']))
+        xpow_x = np.arange(0,len(plot_dict['XPSPEC-ABS'])/2)
 
     # xpow_x = np.arange(-2,2,4.0/len(plot_dict['XPSPEC-ABS']))
 
@@ -125,7 +125,7 @@ def make_fourfit_plot(plot_dict, filename):
     # The cross-power sepctra
     #ax4 = plt.subplot2grid((16,16),(5,7),rowspan=3,colspan=6)
     ax4 = plt.subplot2grid((16, 16),(4,7),rowspan=2,colspan=6)
-    ax4.plot(xpow_x, plot_dict['XPSPEC-ABS'],'co-',markersize=2,markerfacecolor='b',linewidth=0.5, markeredgewidth=0.0)
+    ax4.plot(xpow_x, plot_dict['XPSPEC-ABS'][0:len(xpow_x)],'co-',markersize=2,markerfacecolor='b',linewidth=0.5, markeredgewidth=0.0)
     ax4.set_xlim(xpow_x[0],xpow_x[-1])
     ax4.set_ylim(bottom=0)
     ax4.set_xlabel('Avgd XPow Spectrum (MHz)',fontsize=9)
@@ -140,7 +140,7 @@ def make_fourfit_plot(plot_dict, filename):
 
 
     ax5 = ax4.twinx()
-    ax5.plot(xpow_x, plot_dict['XPSPEC-ARG'],'ro',markersize=2,linewidth=0.5, markeredgewidth=0.0)
+    ax5.plot(xpow_x, plot_dict['XPSPEC-ARG'][0:len(xpow_x)],'ro',markersize=2,linewidth=0.5, markeredgewidth=0.0)
     ax5.set_xlim(xpow_x[0],xpow_x[-1])
     ax5.set_ylim(-180,180)
     ax5.set_ylabel('phase [deg]',fontsize=9)
@@ -436,7 +436,7 @@ def make_fourfit_plot(plot_dict, filename):
         'Com/FF/build ' + '\n\n\n\n' + \
         'RA & Dec (J2000)'
 
-    textstr2 = str(plot_dict['Quality']) + '\n\n' + \
+    textstr2 = str(plot_dict['Quality'].strip("'")) + '\n\n' + \
         str(np.round(float(plot_dict['SNR']),1)) + '\n' + \
         str(np.round(float(plot_dict['IntgTime']),3)) + '\n' + \
         str(np.round(float(plot_dict['Amp']),3)) + '\n' + \
