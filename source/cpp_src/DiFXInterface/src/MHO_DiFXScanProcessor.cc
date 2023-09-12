@@ -11,9 +11,11 @@
 
 #define EPS 1e-15
 
-//WHY THE 5 SECOND OFFSET?
+//WHY THE 5 SECOND OFFSET? (THIS IS FROM LEAP SECONDS )
+//THERE HAVE BEEN 5 LEAP SECONDS SINCE YEAR 2000 (up til now '23)
+//TODO FIX/ACCOUNT FOR THIS
 #define DIFX_J2000_MJD_EPOCH_ISO8601 "2000-01-01T12:00:05.000000000Z"
-#define DIFX_J2000_MJD_EPOCH_OFFSET 51544.50000 
+#define DIFX_J2000_MJD_EPOCH_OFFSET 51544.50000
 
 namespace hops
 {
@@ -500,7 +502,7 @@ MHO_DiFXScanProcessor::ExtractStationCoords()
 
         //length of time each spline is valid
         double duration = antenna_poly[0]["validDuration"];
-        
+
         //figure out the data dimensions
         std::size_t n_order = antenna_poly[0]["order"];
         std::size_t n_coord = NCOORD; //note we do not manufacture a phase-spline (e.g. type_302)
@@ -541,7 +543,7 @@ MHO_DiFXScanProcessor::ExtractStationCoords()
                 el = poly_interval["elgeom"][p];
                 #ifdef CALC_SUPPORTS_PARANGLE //not defined! CALC does not yet support par. angle spline
                 par = poly_interval["parangle"][p];
-                #else 
+                #else
                 //just fill in dummy values for now
                 par = 0.0;
                 #endif
@@ -558,8 +560,8 @@ MHO_DiFXScanProcessor::ExtractStationCoords()
                 st_coord->at(6,i,p) = w;
             }
         }
-        
-        //correct delay mode with antenna clock model 
+
+        //correct delay mode with antenna clock model
         apply_delay_model_clock_correction(ant, antenna_poly, st_coord);
 
         //tag the station data structure with all the meta data from the type_300
@@ -567,7 +569,7 @@ MHO_DiFXScanProcessor::ExtractStationCoords()
         st_coord->Insert(std::string("station_name"), station_name);
         st_coord->Insert(std::string("model_interval"), duration);
         st_coord->Insert(std::string("model_start"), model_start);
-        
+
         //do we really need to add these parameters here (available from vex)
         st_coord->Insert(std::string("mount"), station_mount);
         st_coord->Insert(std::string("X"), position[0]);
@@ -629,7 +631,7 @@ MHO_DiFXScanProcessor::get_vexdate_from_mjd_sec(double mjd, double sec)
 }
 
 
-void 
+void
 MHO_DiFXScanProcessor::apply_delay_model_clock_correction(const mho_json& ant, const mho_json& ant_poly, station_coord_type* st_coord)
 {
     //see difx2mar4 createType3s.c line 269
@@ -647,7 +649,7 @@ MHO_DiFXScanProcessor::apply_delay_model_clock_correction(const mho_json& ant, c
         double sec_offset = std::get<INTERVAL_AXIS>(*st_coord)[i];
         double dt = deltat + sec_offset;
         int nclock = local_getDifxAntennaShiftedClock(ant, dt, 6, clock);
-    
+
         // difx delay doesn't have clock added in, so we must do it here
         //loop over poly coeff
         for(int p=0; p<MAX_MODEL_ORDER+1; p++)
@@ -663,9 +665,9 @@ MHO_DiFXScanProcessor::apply_delay_model_clock_correction(const mho_json& ant, c
 }
 
 
-//lifted from difx_antenna.c line 288 with minor changes 
+//lifted from difx_antenna.c line 288 with minor changes
 //(copied here so we can avoid introducing additional dependencies to difxio lib)
-int 
+int
 MHO_DiFXScanProcessor::local_getDifxAntennaShiftedClock(const mho_json& da, double dt, int outputClockSize, double *clockOut)
 {
     if( !(da.contains("clockorder")) || !(da.contains("clockcoeff")) )
@@ -703,7 +705,7 @@ MHO_DiFXScanProcessor::local_getDifxAntennaShiftedClock(const mho_json& da, doub
         case 3: clockOut[3] = a[3] + 4 * a[4] * dt + 10 * a[5] * t2;
         case 2: clockOut[2] = a[2] + 3 * a[3] * dt +  6 * a[4] * t2 + 10 * a[5] * t3;
         case 1: clockOut[1] = a[1] + 2 * a[2] * dt +  3 * a[3] * t2 +  4 * a[4] * t3 + 5 * a[5] * t4;
-        case 0: clockOut[0] = a[0] +     a[1] * dt +      a[2] * t2 +      a[3] * t3 +     a[4] * t4 + a[5] * t5; 
+        case 0: clockOut[0] = a[0] +     a[1] * dt +      a[2] * t2 +      a[3] * t3 +     a[4] * t4 + a[5] * t5;
     }
 
     return clockorder + 1;
