@@ -635,23 +635,23 @@ MHO_DiFXScanProcessor::get_vexdate_from_mjd_sec(double mjd, double sec)
     double total_mjd = (double)mjd + (double)sec /86400.0;
     auto difx_mjd_epoch = hops_clock::from_iso8601_format(DIFX_J2000_MJD_EPOCH_UTC_ISO8601);
 
-    msg_debug("difx_interface", "the nominal difx mjd epoch start is: "<< hops_clock::to_iso8601_format( difx_mjd_epoch )  << eom);
+    //msg_debug("difx_interface", "the nominal difx mjd epoch start is: "<< hops_clock::to_iso8601_format( difx_mjd_epoch )  << eom);
 
     auto approx_tp = hops_clock::from_mjd(difx_mjd_epoch, DIFX_J2000_MJD_EPOCH_OFFSET, total_mjd);
 
-    msg_debug("difx_interface", "the approximate time point of interest is: "<< hops_clock::to_iso8601_format( approx_tp ) << eom);
+    //msg_debug("difx_interface", "the approximate time point of interest is: "<< hops_clock::to_iso8601_format( approx_tp ) << eom);
 
     //calculate the number of leap seconds
     auto t1 = hops_clock::to_utc(difx_mjd_epoch);
     auto t2 = hops_clock::to_utc(approx_tp);
     auto n_leaps = hops_clock::get_leap_seconds_between(difx_mjd_epoch, approx_tp);
 
-    msg_debug("difx_interface", "the number of leap seconds between the approximate time and difx mjd epoch start is: "<< n_leaps.count() << eom);
+    //msg_debug("difx_interface", "the number of leap seconds between the approximate time and difx mjd epoch start is: "<< n_leaps.count() << eom);
 
     //now correct the nominal difx start epoch to deal with the number of leap seconds
     auto actual_epoch_start = difx_mjd_epoch + n_leaps;
 
-    msg_debug("difx_interface", "the corrected difx mjd epoch start now is: "<<  hops_clock::to_iso8601_format( actual_epoch_start ) << eom);
+    msg_debug("difx_interface", "the leap-second corrected difx mjd epoch start is: "<<  hops_clock::to_iso8601_format( actual_epoch_start ) << eom);
 
     auto mjd_tp = hops_clock::from_mjd(actual_epoch_start, DIFX_J2000_MJD_EPOCH_OFFSET, total_mjd );
 
