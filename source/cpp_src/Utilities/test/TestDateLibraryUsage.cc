@@ -25,9 +25,6 @@ January 1, 2000, 11:58:55.816 UTC (Coordinated Universal Time).[b]
 */
 
 
-//WHY THE 5 SECOND OFFSET? (THIS IS FROM LEAP SECONDS )
-//THERE HAVE BEEN 5 LEAP SECONDS SINCE YEAR 2000 (up til now '23)
-//TODO FIX/ACCOUNT FOR THIS
 #define DIFX_J2000_MJD_EPOCH_UTC_ISO8601 "2000-01-01T12:00:00.000000000Z"
 #define DIFX_J2000_MJD_EPOCH_OFFSET 51544.50000
 
@@ -107,25 +104,28 @@ int main(int /*argc*/, char** /*argv*/)
 
     std::cout<<"hops tp5, time since epoch = "<<hops_tp5.time_since_epoch().count()<<std::endl;
 
-    auto utc_tp1 = hops_clock::to_utc( hops_tp5 );
-    auto utc_tp0 = hops_clock::get_hops_epoch_utc();
+    // auto utc_tp1 = hops_clock::to_utc( hops_tp5 );
+    // auto utc_tp0 = hops_clock::get_hops_epoch_utc();
 
-    auto lp_info0  = date::get_leap_second_info(utc_tp0);
-    auto lp_info1 = date::get_leap_second_info(utc_tp1);
+    auto tp1 = hops_tp5;
+    auto tp0 = hops_clock::get_hops_epoch();
 
-    std::cout<<"leap seconds elapsed at epoch start: "<<lp_info0.elapsed.count()<<std::endl;
-    std::cout<<"leap seconds elapsed at test time: "<<lp_info1.elapsed.count()<<std::endl;
-    std::cout<<"leaps seconds added in between: "<<lp_info1.elapsed.count() - lp_info0.elapsed.count()<<std::endl;
+    // auto lp_info0  = date::get_leap_second_info(utc_tp0);
+    // auto lp_info1 = date::get_leap_second_info(utc_tp1);
+    //
+    // std::cout<<"leap seconds elapsed at epoch start: "<<lp_info0.elapsed.count()<<std::endl;
+    // std::cout<<"leap seconds elapsed at test time: "<<lp_info1.elapsed.count()<<std::endl;
+    // std::cout<<"leaps seconds added in between: "<<lp_info1.elapsed.count() - lp_info0.elapsed.count()<<std::endl;
 
-    auto n_leaps = hops_clock::get_leap_seconds_between(utc_tp0, utc_tp1);
+    auto n_leaps = hops_clock::get_leap_seconds_between(tp0, tp1);
 
     std::cout<<"n leap seconds inserted between hops (J2000) epoch and: "<<vtest<<" = "<<n_leaps.count()<<std::endl;
 
     std::cout<<"number of leap seconds in tzdb: "<<get_tzdb().leap_seconds.size()<<" -> should be 27 (as of 9/12/2023)"<<std::endl;
 
-    auto nom_difx_epoch_utc = hops_clock::to_utc( hops_clock::from_iso8601_format(DIFX_J2000_MJD_EPOCH_UTC_ISO8601) );
+    auto nom_difx_epoch = hops_clock::from_iso8601_format(DIFX_J2000_MJD_EPOCH_UTC_ISO8601);
 
-    double mjd = hops_clock::to_mjd(nom_difx_epoch_utc, DIFX_J2000_MJD_EPOCH_OFFSET, hops_tp5);
+    double mjd = hops_clock::to_mjd(nom_difx_epoch, DIFX_J2000_MJD_EPOCH_OFFSET, hops_tp5);
 
     std::cout<<vtest<<" as difx mjd  = "<<mjd<<std::endl;
 
