@@ -28,6 +28,7 @@ set(ffit_SOURCEFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/parse_command_line.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/basic_fringe_search.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/construct_plot_data.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/set_default_parameters.cc
 )
 
 #for testing purposes only -- ROOT not intended to be a dependency
