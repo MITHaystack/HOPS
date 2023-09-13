@@ -31,7 +31,7 @@ void MHO_DiFXInterface::SetStationCodes(MHO_StationCodeMap* code_map)
 };
 
 
-void 
+void
 MHO_DiFXInterface::Initialize()
 {
     //directory interface
@@ -56,7 +56,7 @@ MHO_DiFXInterface::Initialize()
     // {
     //     std::cout<<"file: "<<*it<<std::endl;
     // }
-    // 
+    //
     // //debug
     // for(auto it=allSubDirs.begin(); it != allSubDirs.end(); it++)
     // {
@@ -68,10 +68,10 @@ MHO_DiFXInterface::Initialize()
     fDirInterface.GetFilesMatchingExtention(tmpFiles, "vex");
     if(tmpFiles.size() != 1)
     {
-        msg_fatal("difx_interface", tmpFiles.size() << " .vex files found in " << fInputDirectory << eom );
-        std::exit(1);
+        msg_error("difx_interface", tmpFiles.size() << " .vex files found in " << fInputDirectory << eom );
+        fVexFile = ""; //no vex file (or non-unique vex file)
     }
-    fVexFile = tmpFiles[0];
+    else{ fVexFile = tmpFiles[0]; }
     tmpFiles.clear();
 
     //find the .v2d file (should be unique)
@@ -89,7 +89,7 @@ MHO_DiFXInterface::Initialize()
     fDirInterface.GetFilesMatchingExtention(inputFiles, "input");
     std::sort(inputFiles.begin(), inputFiles.end());
 
-    //find the DiFX name for each scan (should be unique), derive this from the .input file list 
+    //find the DiFX name for each scan (should be unique), derive this from the .input file list
     std::vector< std::string > scanNames;
     for(auto it = inputFiles.begin(); it != inputFiles.end(); it++)
     {
@@ -117,20 +117,20 @@ MHO_DiFXInterface::Initialize()
     std::map< std::string, bool > calcPresent;
     fDirInterface.GetFilesMatchingExtention(calcFiles, "calc");
     for(auto it = calcFiles.begin(); it != calcFiles.end(); it++){calcPresent[*it] = true;}
-    
+
     //find the .flag files
     std::vector< std::string > flagFiles;
     std::map< std::string, bool> flagPresent;
     fDirInterface.GetFilesMatchingExtention(flagFiles, "flag");
     for(auto it = flagFiles.begin(); it != flagFiles.end(); it++){flagPresent[*it] = true;}
-    
-    //grab all of the .difx directories 
+
+    //grab all of the .difx directories
     std::vector< std::string > difxDirs;
     std::map< std::string, bool > difxPresent;
     fDirInterface.GetSubDirectoriesMatchingExtention(difxDirs, "difx");
     for(auto it = difxDirs.begin(); it != difxDirs.end(); it++){difxPresent[*it] = true;}
 
-    //now construct the scan file sets for each input 
+    //now construct the scan file sets for each input
     fScanFileSetList.clear();
     std::size_t scan_count = 0;
     for(auto it=scanNames.begin(); it != scanNames.end(); it++)
@@ -150,7 +150,7 @@ MHO_DiFXInterface::Initialize()
         // std::cout<<"flag = "<<flag_file<<std::endl;
         // std::cout<<"difx = "<<difx_dir<<std::endl;
 
-        //verify each is present 
+        //verify each is present
         bool have_full_set = true;
         auto im = imPresent.find(im_file); if(im == imPresent.end()){have_full_set = false;}
         auto calc = calcPresent.find(calc_file); if(calc == calcPresent.end()){have_full_set = false;}
@@ -160,7 +160,7 @@ MHO_DiFXInterface::Initialize()
         if(have_full_set)
         {
             MHO_DiFXScanFileSet fileSet;
-            
+
             fileSet.fIndex = scan_count;
             fileSet.fScanName = *it;
             fileSet.fInputBaseDirectory = fInputDirectory;
@@ -179,7 +179,7 @@ MHO_DiFXInterface::Initialize()
             MHO_DirectoryInterface subDirInterface;
             subDirInterface.SetCurrentDirectory(difx_dir);
             subDirInterface.ReadCurrentDirectory();
-            
+
             //locate Swinburne file
             std::vector< std::string > visibFiles;
             subDirInterface.GetFilesMatchingPrefix(visibFiles, "DIFX_");
@@ -188,7 +188,7 @@ MHO_DiFXInterface::Initialize()
                 fileSet.fVisibilityFileList.push_back(*it);
             }
 
-            //locate the pcal files 
+            //locate the pcal files
             std::vector< std::string > pcalFiles;
             subDirInterface.GetFilesMatchingPrefix(pcalFiles, "PCAL_");
             for(auto it=pcalFiles.begin(); it != pcalFiles.end(); it++)
@@ -200,12 +200,12 @@ MHO_DiFXInterface::Initialize()
             {
                 fScanFileSetList.push_back(fileSet);
             }
-            else 
+            else
             {
                 msg_warn("difx_interface", "No visibility files found associated with scan: " << *it << " will not process." << eom);
             }
         }
-        else 
+        else
         {
             msg_warn("difx_interface", "Could not find all difx files associated with scan: " << *it << " will not process." << eom);
         }
@@ -219,10 +219,10 @@ MHO_DiFXInterface::Initialize()
     }
 }
 
-void 
+void
 MHO_DiFXInterface::ProcessScans()
 {
-    //generate all of the root codes for the incoming scans  
+    //generate all of the root codes for the incoming scans
     MHO_LegacyRootCodeGenerator rcode_gen;
     std::vector< std::string > scan_codes = rcode_gen.GetCodes( fScanFileSetList.size() );
 
@@ -233,7 +233,7 @@ MHO_DiFXInterface::ProcessScans()
         fScanProcessor.SetRootCode(scan_codes[i]);
         fScanProcessor.SetNormalizeFalse();
         if(fNormalize){fScanProcessor.SetNormalizeTrue();}
-        
+
         if(fPreserveDiFXScanNames){ fScanProcessor.SetPreserveDiFXScanNamesTrue();}
         else{ fScanProcessor.SetPreserveDiFXScanNamesFalse(); }
 

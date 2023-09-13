@@ -88,81 +88,88 @@ MHO_DiFXScanProcessor::CreateScanOutputDirectory()
 void
 MHO_DiFXScanProcessor::CreateRootFileObject(std::string vexfile)
 {
-    MHO_VexParser vparser;
-    vparser.SetVexFile(vexfile);
-    mho_json vex_root = vparser.ParseVex();
-
-    //now convert the 'vex' to 'ovex' (using only subset of information)
-    vex_root[ MHO_VexDefinitions::VexRevisionFlag() ] = "ovex";
-
-    //add the experiment number
-    vex_root["$EXPER"]["exper_num"] = fExperNum;
-
-    std::string scan_id = fInput["scan"][fFileSet->fIndex]["identifier"];
-    std::vector< std::string > source_ids;
-
-    //rip out all scans but the one we are processing
-    mho_json sched;
-    mho_json sched_copy = vex_root["$SCHED"];
-    for(auto it = sched_copy.begin(); it != sched_copy.end(); ++it)
+    if(vexfile != "")
     {
-        if(it.key() == scan_id)
-        {
-            for(std::size_t n = 0; n < (*it)["source"][0].size(); n++)
-            {
-                source_ids.push_back( (*it)["source"][n]["source"] );
-            }
-            (*it)["fourfit_reftime"] = get_fourfit_reftime_for_scan(*it); //add the fourfit reference time
-            sched[it.key()] = it.value(); //add this scan to the schedule section
-            break;
-        }
-    }
-    vex_root.erase("$SCHED");
-    vex_root["$SCHED"] = sched;
+        MHO_VexParser vparser;
+        vparser.SetVexFile(vexfile);
+        mho_json vex_root = vparser.ParseVex();
 
-    //rip out all sources but the one specified for this scan
-    std::string src_name = "unknown";
-    mho_json src;
-    mho_json src_copy = vex_root["$SOURCE"];
-    for(auto it = src_copy.begin(); it != src_copy.end(); ++it)
-    {
-        for(std::size_t n = 0; n < source_ids.size(); n++)
+        //now convert the 'vex' to 'ovex' (using only subset of information)
+        vex_root[ MHO_VexDefinitions::VexRevisionFlag() ] = "ovex";
+
+        //add the experiment number
+        vex_root["$EXPER"]["exper_num"] = fExperNum;
+
+        std::string scan_id = fInput["scan"][fFileSet->fIndex]["identifier"];
+        std::vector< std::string > source_ids;
+
+        //rip out all scans but the one we are processing
+        mho_json sched;
+        mho_json sched_copy = vex_root["$SCHED"];
+        for(auto it = sched_copy.begin(); it != sched_copy.end(); ++it)
         {
-            if(it.key() == source_ids[n])
+            if(it.key() == scan_id)
             {
-                src[it.key()] = it.value();
-                src_name = (it.value())["source_name"];
+                for(std::size_t n = 0; n < (*it)["source"][0].size(); n++)
+                {
+                    source_ids.push_back( (*it)["source"][n]["source"] );
+                }
+                (*it)["fourfit_reftime"] = get_fourfit_reftime_for_scan(*it); //add the fourfit reference time
+                sched[it.key()] = it.value(); //add this scan to the schedule section
                 break;
             }
         }
-    }
-    vex_root.erase("$SOURCE");
-    vex_root["$SOURCE"] = src;
+        vex_root.erase("$SCHED");
+        vex_root["$SCHED"] = sched;
 
-    //make sure the mk4_site_id single-character codes are specified for each site
-    for(auto it = vex_root["$SITE"].begin(); it != vex_root["$SITE"].end(); ++it)
+        //rip out all sources but the one specified for this scan
+        std::string src_name = "unknown";
+        mho_json src;
+        mho_json src_copy = vex_root["$SOURCE"];
+        for(auto it = src_copy.begin(); it != src_copy.end(); ++it)
+        {
+            for(std::size_t n = 0; n < source_ids.size(); n++)
+            {
+                if(it.key() == source_ids[n])
+                {
+                    src[it.key()] = it.value();
+                    src_name = (it.value())["source_name"];
+                    break;
+                }
+            }
+        }
+        vex_root.erase("$SOURCE");
+        vex_root["$SOURCE"] = src;
+
+        //make sure the mk4_site_id single-character codes are specified for each site
+        for(auto it = vex_root["$SITE"].begin(); it != vex_root["$SITE"].end(); ++it)
+        {
+            std::string station_code = (*it)["site_ID"];
+            (*it)["mk4_site_ID"] = fStationCodeMap->GetMk4IdFromStationCode(station_code);
+        }
+
+        //lastly we need to insert the traditional mk4 channel names for each frequency
+        //TODO FIXME -- need to support zoom bands (requires difx .input data)
+        //fChanNameConstructor.AddChannelNames(vex_root);
+        //and/or adapt the channel defintions to deal with zoom bands
+        //std::string tmp = vex_root["$FREQ"]["VGOS_std"]["chan_def"][0]["channel_name"].get<std::string>();
+
+        MHO_VexGenerator gen;
+        std::string output_file = fOutputDirectory + "/" + src_name + "." + fRootCode;
+        gen.SetFilename(output_file);
+        gen.GenerateVex(vex_root);
+
+        //we also write out the 'ovex'/'vex' json object as a json file
+        output_file = fOutputDirectory + "/" + src_name + "." + fRootCode + ".json";
+        //open and dump to file
+        std::ofstream outFile(output_file.c_str(), std::ofstream::out);
+        outFile << vex_root.dump(2);
+        outFile.close();
+    }
+    else
     {
-        std::string station_code = (*it)["site_ID"];
-        (*it)["mk4_site_ID"] = fStationCodeMap->GetMk4IdFromStationCode(station_code);
+        msg_error("difx_interface", "could not determine vex file, will not be able to generate root (ovex) information." << eom );
     }
-
-    //lastly we need to insert the traditional mk4 channel names for each frequency
-    //TODO FIXME -- need to support zoom bands (requires difx .input data)
-    //fChanNameConstructor.AddChannelNames(vex_root);
-    //and/or adapt the channel defintions to deal with zoom bands
-    //std::string tmp = vex_root["$FREQ"]["VGOS_std"]["chan_def"][0]["channel_name"].get<std::string>();
-
-    MHO_VexGenerator gen;
-    std::string output_file = fOutputDirectory + "/" + src_name + "." + fRootCode;
-    gen.SetFilename(output_file);
-    gen.GenerateVex(vex_root);
-
-    //we also write out the 'ovex'/'vex' json object as a json file
-    output_file = fOutputDirectory + "/" + src_name + "." + fRootCode + ".json";
-    //open and dump to file
-    std::ofstream outFile(output_file.c_str(), std::ofstream::out);
-    outFile << vex_root.dump(2);
-    outFile.close();
 }
 
 void
