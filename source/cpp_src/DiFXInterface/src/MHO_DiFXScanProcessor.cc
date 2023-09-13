@@ -14,7 +14,7 @@
 //WHY THE 5 SECOND OFFSET? (THIS IS FROM LEAP SECONDS )
 //THERE HAVE BEEN 5 LEAP SECONDS SINCE YEAR 2000 (up til now '23)
 //TODO FIX/ACCOUNT FOR THIS
-#define DIFX_J2000_MJD_EPOCH_ISO8601 "2000-01-01T12:00:05.000000000Z"
+#define DIFX_J2000_MJD_EPOCH_UTC_ISO8601 "2000-01-01T12:00:00.000000000Z"
 #define DIFX_J2000_MJD_EPOCH_OFFSET 51544.50000
 
 namespace hops
@@ -625,9 +625,42 @@ std::string
 MHO_DiFXScanProcessor::get_vexdate_from_mjd_sec(double mjd, double sec)
 {
     double total_mjd = (double)mjd + (double)sec /86400.0;
-    auto mjd_tp = hops_clock::from_mjd(DIFX_J2000_MJD_EPOCH_ISO8601, DIFX_J2000_MJD_EPOCH_OFFSET, total_mjd);
-    double back_mjd = hops_clock::to_mjd(DIFX_J2000_MJD_EPOCH_ISO8601, DIFX_J2000_MJD_EPOCH_OFFSET, mjd_tp);
+
+    auto difx_mjd_epoch_utc = hops_clock::to_utc( hops_clock::from_iso8601_format(DIFX_J2000_MJD_EPOCH_UTC_ISO8601) );
+
+    std::cout<<"Nominal difx mjd epoch start = "<<hops_clock::to_iso8601_format( hops_clock::from_utc(difx_mjd_epoch_utc) ) << std::endl;
+
+    //auto difx_mjd_epoch_start = hops_clock::from_mjd(DIFX_J2000_MJD_EPOCH_UTC_ISO8601, DIFX_J2000_MJD_EPOCH_OFFSET, 0);
+    //auto difx_mjd_epoch_start_utc = hops_clock::to_utc(difx_mjd_epoch_start);
+
+    auto approx_tp = hops_clock::from_mjd(difx_mjd_epoch_utc, DIFX_J2000_MJD_EPOCH_OFFSET, total_mjd);
+    auto approx_tp_utc = hops_clock::to_utc(approx_tp);
+
+    std::cout<<"approximate time point = "<<hops_clock::to_iso8601_format( hops_clock::from_utc( approx_tp_utc) ) << std::endl;
+
+    //calculate the number of leap seconds
+    auto n_leaps = hops_clock::get_leap_seconds_between(difx_mjd_epoch_utc, approx_tp_utc);
+
+    std::cout<<"n leap seconds "<<n_leaps.count()<<std::endl;
+
+    //now correct the nominal difx start epoch to deal with the number of leap seconds
+    auto actual_epoch_start = difx_mjd_epoch_utc + n_leaps; //std::chrono::duration_cast< std::chrono::seconds >(n_leaps);
+
+    std::cout<<"actual epoch start = " << hops_clock::to_iso8601_format( hops_clock::from_utc( actual_epoch_start ) )<<std::endl;
+
+    auto mjd_tp = hops_clock::from_mjd(actual_epoch_start, DIFX_J2000_MJD_EPOCH_OFFSET, total_mjd );
+
+    std::cout<<"MJD: "<<total_mjd<<" as vex date = "<<hops_clock::to_vex_format(mjd_tp)<<std::endl;
+
     return hops_clock::to_vex_format(mjd_tp);
+
+
+
+
+
+    // double total_mjd = (double)mjd + (double)sec /86400.0;
+    // auto mjd_tp = hops_clock::from_mjd(DIFX_J2000_MJD_EPOCH_UTC_ISO8601, DIFX_J2000_MJD_EPOCH_OFFSET, total_mjd);
+    // return hops_clock::to_vex_format(mjd_tp);
 }
 
 
