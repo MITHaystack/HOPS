@@ -5,7 +5,7 @@
 namespace hops
 {
 
-void 
+void
 MHO_DiFXVisibilityProcessor::ReadDIFXFile(std::map< int, MHO_DiFXBaselineProcessor >& allBaselineVisibilities)
 {
     //assume allBaselineVisibilities and allBaselineUniquePolPairs are empty to start
@@ -28,7 +28,7 @@ MHO_DiFXVisibilityProcessor::ReadDIFXFile(std::map< int, MHO_DiFXBaselineProcess
 
         if( !(vFile.good() ) )
         {
-            msg_debug("difx_interface", "could no longer read Swinburne file: " << fFilename << " after "<<n_records<<" records."<< eom);
+            msg_debug("difx_interface", "stopped reading Swinburne file: " << fFilename << " after "<<n_records<<" records."<< eom);
             break;
         }
 
@@ -48,9 +48,9 @@ MHO_DiFXVisibilityProcessor::ReadDIFXFile(std::map< int, MHO_DiFXBaselineProcess
                 vFile.read( reinterpret_cast<char*>(&visRecord.seconds), sizeof(double) );
                 vFile.read( reinterpret_cast<char*>( &visRecord.configindex), sizeof(int) );
                 vFile.read( reinterpret_cast<char*>(&visRecord.sourceindex), sizeof(int) );
-                vFile.read( reinterpret_cast<char*>(&visRecord.freqindex), sizeof(int) ); 
+                vFile.read( reinterpret_cast<char*>(&visRecord.freqindex), sizeof(int) );
                 vFile.read( reinterpret_cast<char*>(visRecord.polpair), 2*sizeof(char) );
-                vFile.read( reinterpret_cast<char*>(&visRecord.pulsarbin), sizeof(int) ); 
+                vFile.read( reinterpret_cast<char*>(&visRecord.pulsarbin), sizeof(int) );
                 vFile.read( reinterpret_cast<char*>(&visRecord.dataweight), sizeof(double) );
                 vFile.read( reinterpret_cast<char*>(visRecord.uvw), 3*sizeof(double) );
 
@@ -62,7 +62,7 @@ MHO_DiFXVisibilityProcessor::ReadDIFXFile(std::map< int, MHO_DiFXBaselineProcess
                     vFile.read( reinterpret_cast<char*>(&(visRecord.visdata[0])), visRecord.nchan*sizeof(MHO_VisibilityChunk));
                     if(!vFile.good()){keep_reading = false;}
                 }
-                else 
+                else
                 {
                     //have to parcel out the visibilities one at a time
                     std::size_t npoints = 0;
@@ -70,7 +70,7 @@ MHO_DiFXVisibilityProcessor::ReadDIFXFile(std::map< int, MHO_DiFXBaselineProcess
                     {
                         MHO_VisibilityChunk chunk;
                         vFile.read( reinterpret_cast<char*>(&chunk), sizeof(MHO_VisibilityChunk) );
-                        //verify we haven't smacked into the sync word 
+                        //verify we haven't smacked into the sync word
                         if(vFile.good())
                         {
                             if(chunk.sync_test[0] != VISRECORD_SYNC_WORD_DIFX2 )
@@ -91,7 +91,7 @@ MHO_DiFXVisibilityProcessor::ReadDIFXFile(std::map< int, MHO_DiFXBaselineProcess
                     visRecord.nchan = npoints;
                     //cache the n spectral points associated with each baseline+frequency in a map
                     //so we can just grab them all at once on the next encounter
-                    fNChannelsMap[ std::make_pair(visRecord.baseline, visRecord.freqindex) ] = visRecord.nchan; 
+                    fNChannelsMap[ std::make_pair(visRecord.baseline, visRecord.freqindex) ] = visRecord.nchan;
                 }
                 //add the record to the appropriate baseline
                 allBaselineVisibilities[visRecord.baseline].AddRecord( new MHO_DiFXVisibilityRecord(visRecord) );
