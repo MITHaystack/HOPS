@@ -1117,14 +1117,20 @@ MHO_ComputePlotData::DumpInfoToJSON(mho_json& plot_dict)
     std::vector< double > transposed_flatted_seg_amp;
     std::vector< double > transposed_flatted_seg_arg;
 
-    for(std::size_t j=0; j<naps; j++)
+    std::size_t xsize = seg_amp.size();
+    std::size_t ysize = seg_amp[0].size();
+
+    for(std::size_t j=0; j<ysize; j++)
     {
-        for(std::size_t i=0; i<nplot; i++)
+        for(std::size_t i=0; i<xsize; i++)
         {
             transposed_flatted_seg_amp.push_back( seg_amp[i][j] );
             transposed_flatted_seg_arg.push_back( seg_arg[i][j] );
         }
     }
+
+    std::cout<<"naps = "<<naps<<" nplots = "<<std::endl;
+    std::cout<<"size of seg amp = "<<transposed_flatted_seg_amp.size()<<std::endl;
 
     // plot_dict["SEG_AMP"] = seg_amp;
     // plot_dict["SEG_PHS"] = seg_arg;
