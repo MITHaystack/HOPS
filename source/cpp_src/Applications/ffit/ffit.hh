@@ -28,7 +28,7 @@
 
 using namespace hops;
 
-//helper functions 
+//helper functions
 void configure_data_library(MHO_ContainerStore* store);
 void extract_vex_info(const mho_json& vexInfo, MHO_ParameterStore* paramStore);
 void calculate_fringe_info(MHO_ContainerStore* conStore, MHO_ParameterStore* paramStore, const mho_json& vexInfo);
@@ -38,5 +38,6 @@ void init_and_exec_operators(MHO_OperatorBuilderManager& build_manager, MHO_Oper
 int parse_command_line(int argc, char** argv, MHO_ParameterStore* paramStore);
 void basic_fringe_search(MHO_ContainerStore* conStore, MHO_ParameterStore* paramStore);
 mho_json construct_plot_data(MHO_ContainerStore* conStore, MHO_ParameterStore* paramStore, mho_json& vexInfo);
+void set_default_parameters(MHO_ContainerStore* conStore, MHO_ParameterStore* paramStore);
 
 #endif

@@ -6,7 +6,7 @@
 int parse_command_line(int argc, char** argv, MHO_ParameterStore* paramStore)
 {
     //TODO make this conform/support most of the command line options of fourfit
-    std::string usage = "ffit -d <directory> -c <control file> -b <baseline> -p <pol. product>";
+    std::string usage = "ffit -d <directory> -c <control file> -b <baseline> -P <pol. product>";
 
     std::string directory = "";
     std::string control_file = "";
@@ -71,10 +71,10 @@ int parse_command_line(int argc, char** argv, MHO_ParameterStore* paramStore)
         msg_fatal("main", "usage: "<< usage << eom);
         return 1;
     }
-    
-    //set the message level according to the fourfit style 
+
+    //set the message level according to the fourfit style
     //where 3 is least verbose, and '-1' is most verbose
-    switch (message_level) 
+    switch (message_level)
     {
         case -2:
             //NOTE: debug messages must be compiled-in
@@ -110,7 +110,7 @@ int parse_command_line(int argc, char** argv, MHO_ParameterStore* paramStore)
 
     if(baseline.size() != 2)
     {
-        msg_fatal("main", "baseline must be passed as 2-char code."<< eom); 
+        msg_fatal("main", "baseline must be passed as 2-char code."<< eom);
         return 1;
     }
 
@@ -128,8 +128,8 @@ int parse_command_line(int argc, char** argv, MHO_ParameterStore* paramStore)
     paramStore->Set("/cmdline/polprod", polprod);
     paramStore->Set("/cmdline/control_file",control_file);
     paramStore->Set("/cmdline/ap_per_seg",ap_per_seg);
-    paramStore->Set("/cmdline/output_file",output_file);  
-    
+    paramStore->Set("/cmdline/output_file",output_file);
+
     return 0;
 
 }

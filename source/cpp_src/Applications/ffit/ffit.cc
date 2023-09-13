@@ -26,7 +26,7 @@ int main(int argc, char** argv)
 
     MHO_Snapshot::GetInstance().AcceptAllKeys();
     MHO_Snapshot::GetInstance().SetExecutableName(std::string("ffit"));
-    
+
     //provide necessary objects for operation
     MHO_ParameterStore paramStore; //stores various parameters using string keys
     MHO_ScanDataStore scanStore; //provides access to data associated with this scan
@@ -53,7 +53,7 @@ int main(int argc, char** argv)
         msg_fatal("main", "cannot initialize a valid scan store from this directory: " << directory << eom);
         std::exit(1);
     }
-    //pass the directory and root file info the the parameter store 
+    //pass the directory and root file info the the parameter store
     paramStore.Set("directory", directory);
     paramStore.Set("root_file", scanStore.GetRootFileBasename() );
 
@@ -85,8 +85,8 @@ int main(int argc, char** argv)
     ////////////////////////////////////////////////////////////////////////////
 
     std::cout<<"dumping parameter store"<<std::endl;
-    paramStore.Dump();    
-    
+    paramStore.Dump();
+
     //load baseline data
     scanStore.LoadBaseline(baseline, &conStore);
     configure_data_library(&conStore);//momentarily needed for float -> double cast
@@ -98,11 +98,8 @@ int main(int argc, char** argv)
     scanStore.LoadStation(rem_station_mk4id, &conStore);
     conStore.RenameObject("sta", "rem_sta");
 
-
     station_coord_type* ref_data = conStore.GetObject<station_coord_type>(std::string("ref_sta"));
     station_coord_type* rem_data = conStore.GetObject<station_coord_type>(std::string("rem_sta"));
-
-    std::cout<<"REF REM data PTRS!!!!  = "<<ref_data<<", "<<rem_data<<std::endl;
 
     visibility_type* vis_data = conStore.GetObject<visibility_type>(std::string("vis"));
     weight_type* wt_data = conStore.GetObject<weight_type>(std::string("weight"));
@@ -115,12 +112,13 @@ int main(int argc, char** argv)
     //DEBUG
     //conStore.DumpShortNamesToIds();
 
+
+
     ////////////////////////////////////////////////////////////////////////////
     //PARAMETER SETTING
     ////////////////////////////////////////////////////////////////////////////
+    set_default_parameters(&conStore, &paramStore); //set some default parameters (polprod, ref_freq)
     MHO_ParameterManager paramManager(&paramStore, control_format);
-    //set defaults
-    paramStore.Set(std::string("selected_polprod"), polprod);
 
     paramManager.SetControlStatements(&control_statements);
     paramManager.ConfigureAll();
@@ -152,10 +150,10 @@ int main(int argc, char** argv)
     build_manager.BuildOperatorCategory("default");
     init_and_exec_operators(build_manager, &opToolbox, "labelling");
     init_and_exec_operators(build_manager, &opToolbox, "selection");
-    
+
     //safety check
     if(vis_data->GetSize() == 0){msg_fatal("main", "no data left after cuts." << eom); std::exit(1);}
-    
+
     init_and_exec_operators(build_manager, &opToolbox, "flagging");
     init_and_exec_operators(build_manager, &opToolbox, "calibration");
 
@@ -165,11 +163,11 @@ int main(int argc, char** argv)
 
     //calulate useful quantities to stash in the parameter store
     precalculate_quantities(&conStore, &paramStore);
-    
+
     //execute the basic fringe search algorithm
     basic_fringe_search(&conStore, &paramStore);
 
-    //calculate the fringe properties 
+    //calculate the fringe properties
     calculate_fringe_info(&conStore, &paramStore, vexInfo);
 
     ////////////////////////////////////////////////////////////////////////////
@@ -183,7 +181,7 @@ int main(int argc, char** argv)
     std::cout<<"PARAMATER STORE:"<<std::endl;
     paramStore.Dump();
     std::cout<<"------------------------------------"<<std::endl;
-    
+
     // std::cout<<"------------------------------------"<<std::endl;
     // std::cout<<"PLOT DICT :"<<std::endl;
     // std::cout<< plot_dict.dump(2) <<std::endl;
@@ -196,12 +194,12 @@ int main(int argc, char** argv)
     fdumpFile.close();
 
     #ifdef USE_PYBIND11
-    
+
     // msg_debug("main", "python plot generation enabled." << eom );
     // //test stuff
     // py::scoped_interpreter guard{}; // start the interpreter and keep it alive, need this or we segfault
     // py::dict plot_obj = plot_dict;
-    // 
+    //
     // //load our interface module
     // auto ff_test = py::module::import("ff_plot_test");
     // //call a python function on the interface class instance
@@ -212,7 +210,7 @@ int main(int argc, char** argv)
     //test stuff
     py::scoped_interpreter guard{}; // start the interpreter and keep it alive, need this or we segfault
     py::dict plot_obj = plot_dict;
-    
+
     //load our interface module
     auto vis_module = py::module::import("hops_visualization");
     auto plot_lib = vis_module.attr("fourfit_plot");
