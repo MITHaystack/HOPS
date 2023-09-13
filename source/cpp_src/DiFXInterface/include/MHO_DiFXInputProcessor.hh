@@ -2,6 +2,7 @@
 #define MHO_DiFXInputProcessor_HH__
 
 #include "MHO_JSONHeaderWrapper.hh"
+#include "MHO_Message.hh"
 
 /*
 *@file: MHO_DiFXInputProcessor.hh
@@ -14,7 +15,7 @@
 
 #include "difxio/difx_input.h"
 
-namespace hops 
+namespace hops
 {
 
 class MHO_DiFXInputProcessor
