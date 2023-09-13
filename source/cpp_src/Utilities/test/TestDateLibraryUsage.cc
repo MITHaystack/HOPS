@@ -78,7 +78,7 @@ int main(int /*argc*/, char** /*argv*/)
 
     std::cout<<"hops time-point converted back from hops-formatted string = "<<hops_tp3<<std::endl;
 
-    auto hops_tp4 = hops_clock::from_vex_format(vex_str); 
+    auto hops_tp4 = hops_clock::from_vex_format(vex_str);
 
     std::cout<<"hops time-point converted back from vex string = "<<hops_tp4<<std::endl;
 
@@ -97,7 +97,26 @@ int main(int /*argc*/, char** /*argv*/)
 
     std::cout<<"to hops date in iso-8601 format: "<<hops_clock::to_iso8601_format( hops_clock::from_vex_format(vtest) )<<std::endl;
 
+    auto hops_tp5 = hops_clock::from_vex_format(vtest);
 
+    std::cout<<"hops tp5, time since epoch = "<<hops_tp5.time_since_epoch().count()<<std::endl;
+
+    auto utc_tp1 = hops_clock::to_utc( hops_tp5 );
+    auto utc_tp0 = hops_clock::get_hops_epoch_utc();
+
+    auto lp_info0  = date::get_leap_second_info(utc_tp0);
+    auto lp_info1 = date::get_leap_second_info(utc_tp1);
+
+    std::cout<<"leap seconds elapsed at epoch start: "<<lp_info0.elapsed.count()<<std::endl;
+    std::cout<<"leap seconds elapsed at test time: "<<lp_info1.elapsed.count()<<std::endl;
+    std::cout<<"leaps seconds added in between: "<<lp_info1.elapsed.count() - lp_info0.elapsed.count()<<std::endl;
+
+
+    int n_leaps = hops_clock::get_leap_seconds_between(utc_tp0, utc_tp1);
+
+    std::cout<<"n leap seconds inserted between hops (J2000) epoch and: "<<vtest<<" = "<<n_leaps<<std::endl;
+
+    std::cout<<"number of leap seconds in tzdb: "<<get_tzdb().leap_seconds.size()<<" -> should be 27 (as of 9/12/2023)"<<std::endl;
 
 
     return 0;
