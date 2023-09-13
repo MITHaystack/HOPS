@@ -106,46 +106,46 @@ class hops_clock
         from_local(const std::chrono::time_point<date::local_t, Duration>&) NOEXCEPT;
 
         static
-        std::chrono::time_point<hops_clock, std::chrono::nanoseconds >
+        time_point
         from_iso8601_format(const std::string& timestamp);
 
         static
         std::string
-        to_iso8601_format(const std::chrono::time_point<hops_clock, std::chrono::nanoseconds >& tp);
+        to_iso8601_format(const time_point& tp);
 
         static
-        std::chrono::time_point<hops_clock, std::chrono::nanoseconds >
+        time_point
         from_hops_format(const std::string& timestamp);
 
         static
         std::string
-        to_hops_format(const std::chrono::time_point<hops_clock, std::chrono::nanoseconds >& tp);
+        to_hops_format(const time_point& tp);
 
         static
-        std::chrono::time_point<hops_clock, std::chrono::nanoseconds >
+        time_point
         from_legacy_hops_date(legacy_hops_date& ldate);
 
         static
         legacy_hops_date
-        to_legacy_hops_date(const std::chrono::time_point<hops_clock, std::chrono::nanoseconds >& tp);
+        to_legacy_hops_date(const time_point& tp);
 
         static
-        std::chrono::time_point<hops_clock, std::chrono::nanoseconds >
+        time_point
         from_vex_format(const std::string& timestamp);
 
 
         static
-        std::chrono::time_point<hops_clock, std::chrono::nanoseconds >
-        from_mjd(const std::chrono::time_point<hops_clock, std::chrono::nanoseconds >& mjd_epoch, const double& epoch_offset, const double& mjd);
+        time_point
+        from_mjd(const time_point& mjd_epoch, const double& epoch_offset, const double& mjd);
 
         static
         double
-        to_mjd(const std::chrono::time_point<hops_clock, std::chrono::nanoseconds >& mjd_epoch, const double& epoch_offset, const std::chrono::time_point<hops_clock, std::chrono::nanoseconds >& tp);
+        to_mjd(const time_point& mjd_epoch, const double& epoch_offset, const time_point& tp);
 
 
         static
         std::string
-        to_vex_format(const std::chrono::time_point<hops_clock, std::chrono::nanoseconds >& tp, bool truncate_to_nearest_second = false);
+        to_vex_format(const time_point& tp, bool truncate_to_nearest_second = false);
 
         static date::utc_time< std::chrono::nanoseconds > get_hops_epoch_utc()
         {
@@ -158,7 +158,7 @@ class hops_clock
             return std::chrono::time_point_cast<std::chrono::nanoseconds>( date::tai_clock::to_utc( j2000_tai_epoch ) );
         }
 
-        static std::chrono::time_point<hops_clock, std::chrono::nanoseconds > get_hops_epoch()
+        static time_point get_hops_epoch()
         {
             return from_utc( get_hops_epoch_utc() );
         }
@@ -181,8 +181,8 @@ class hops_clock
         //calculates the number of leap seconds inserted between two UTC dates
         static std::chrono::seconds get_leap_seconds_between
         (
-            const std::chrono::time_point<hops_clock, std::chrono::nanoseconds >& t_start,
-            const std::chrono::time_point<hops_clock, std::chrono::nanoseconds >& t_end
+            const time_point& t_start,
+            const time_point& t_end
         )
         {
             auto t_start_utc = to_utc(t_start);
@@ -390,7 +390,7 @@ operator<<(std::basic_ostream<CharT, Traits>& os, const hops_time<Duration>& t)
 }
 
 inline
-std::chrono::time_point<hops_clock, std::chrono::nanoseconds >
+hops_clock::time_point
 hops_clock::from_iso8601_format(const std::string& timestamp)
 {
     using namespace date;
@@ -405,7 +405,7 @@ hops_clock::from_iso8601_format(const std::string& timestamp)
 
 inline
 std::string
-hops_clock::to_iso8601_format(const std::chrono::time_point<hops_clock, std::chrono::nanoseconds >& tp)
+hops_clock::to_iso8601_format(const time_point& tp)
 {
     std::stringstream ss;
     ss << tp;
@@ -413,7 +413,7 @@ hops_clock::to_iso8601_format(const std::chrono::time_point<hops_clock, std::chr
 }
 
 inline
-std::chrono::time_point<hops_clock, std::chrono::nanoseconds >
+hops_clock::time_point
 hops_clock::from_hops_format(const std::string& timestamp)
 {
     using namespace date;
@@ -435,17 +435,17 @@ hops_clock::from_hops_format(const std::string& timestamp)
             ss << nanosecond_count;
             int64_t ns;
             ss >> ns;
-            return std::chrono::time_point<hops_clock, std::chrono::nanoseconds >( std::chrono::nanoseconds(ns) );
+            return time_point( std::chrono::nanoseconds(ns) );
         }
     }
     msg_error("utility", "hops timestamp string not understood or supported, returning epoch start. "<< eom);
-    return std::chrono::time_point<hops_clock, std::chrono::nanoseconds >( std::chrono::nanoseconds(0) );
+    return time_point( std::chrono::nanoseconds(0) );
 
 }
 
 inline
 std::string
-hops_clock::to_hops_format(const std::chrono::time_point<hops_clock, std::chrono::nanoseconds >& tp)
+hops_clock::to_hops_format(const time_point& tp)
 {
     std::stringstream ss;
     ss << HOPS_TIMESTAMP_PREFIX;
@@ -457,7 +457,7 @@ hops_clock::to_hops_format(const std::chrono::time_point<hops_clock, std::chrono
 }
 
 inline
-std::chrono::time_point<hops_clock, std::chrono::nanoseconds >
+hops_clock::time_point
 hops_clock::from_legacy_hops_date(legacy_hops_date& ldate)
 {
     vex_date vdate = vex_date_from_legacy(ldate);
@@ -467,7 +467,7 @@ hops_clock::from_legacy_hops_date(legacy_hops_date& ldate)
 
 inline
 legacy_hops_date
-hops_clock::to_legacy_hops_date(const std::chrono::time_point<hops_clock, std::chrono::nanoseconds >& tp)
+hops_clock::to_legacy_hops_date(const time_point& tp)
 {
     using namespace date;
     using namespace std::chrono;
@@ -507,8 +507,8 @@ hops_clock::to_legacy_hops_date(const std::chrono::time_point<hops_clock, std::c
 
 
 inline
-std::chrono::time_point<hops_clock, std::chrono::nanoseconds >
-hops_clock::from_mjd(const std::chrono::time_point<hops_clock, std::chrono::nanoseconds >& mjd_epoch, const double& epoch_offset, const double& mjd)
+hops_clock::time_point
+hops_clock::from_mjd(const time_point& mjd_epoch, const double& epoch_offset, const double& mjd)
 {
     double delta = (mjd - epoch_offset);
     delta *= JD_TO_SEC;
@@ -523,7 +523,7 @@ hops_clock::from_mjd(const std::chrono::time_point<hops_clock, std::chrono::nano
 
 inline
 double
-hops_clock::to_mjd(const std::chrono::time_point<hops_clock, std::chrono::nanoseconds >& mjd_epoch, const double& epoch_offset, const std::chrono::time_point<hops_clock, std::chrono::nanoseconds >& tp)
+hops_clock::to_mjd(const time_point& mjd_epoch, const double& epoch_offset, const time_point& tp)
 {
     auto mjd_epoch_utc = to_utc(mjd_epoch);
     auto tp_utc = to_utc(tp);
@@ -536,7 +536,7 @@ hops_clock::to_mjd(const std::chrono::time_point<hops_clock, std::chrono::nanose
 }
 
 inline
-std::chrono::time_point<hops_clock, std::chrono::nanoseconds >
+hops_clock::time_point
 hops_clock::from_vex_format(const std::string& timestamp)
 {
     vex_date vdate = hops_clock::extract_vex_date(timestamp);
@@ -548,7 +548,7 @@ hops_clock::from_vex_format(const std::string& timestamp)
 
 inline
 std::string
-hops_clock::to_vex_format(const std::chrono::time_point<hops_clock, std::chrono::nanoseconds >& tp, bool truncate_to_nearest_second)
+hops_clock::to_vex_format(const time_point& tp, bool truncate_to_nearest_second)
 {
     using namespace date;
     using namespace std::chrono;
