@@ -10,7 +10,6 @@ using namespace date;
 using namespace std;
 using namespace std::chrono;
 
-
 #include "MHO_Clock.hh"
 
 
@@ -23,8 +22,15 @@ The Gregorian date January 1, 2000, at 12:00 TT (Terrestrial Time).
 The Julian date 2451545.0 TT (Terrestrial Time).[9]
 January 1, 2000, 11:59:27.816 TAI (International Atomic Time).[10]
 January 1, 2000, 11:58:55.816 UTC (Coordinated Universal Time).[b]
-
 */
+
+
+//WHY THE 5 SECOND OFFSET? (THIS IS FROM LEAP SECONDS )
+//THERE HAVE BEEN 5 LEAP SECONDS SINCE YEAR 2000 (up til now '23)
+//TODO FIX/ACCOUNT FOR THIS
+#define DIFX_J2000_MJD_EPOCH_UTC_ISO8601 "2000-01-01T12:00:00.000000000Z"
+#define DIFX_J2000_MJD_EPOCH_OFFSET 51544.50000
+
 
 using namespace hops;
 
@@ -111,13 +117,17 @@ int main(int /*argc*/, char** /*argv*/)
     std::cout<<"leap seconds elapsed at test time: "<<lp_info1.elapsed.count()<<std::endl;
     std::cout<<"leaps seconds added in between: "<<lp_info1.elapsed.count() - lp_info0.elapsed.count()<<std::endl;
 
+    auto n_leaps = hops_clock::get_leap_seconds_between(utc_tp0, utc_tp1);
 
-    int n_leaps = hops_clock::get_leap_seconds_between(utc_tp0, utc_tp1);
-
-    std::cout<<"n leap seconds inserted between hops (J2000) epoch and: "<<vtest<<" = "<<n_leaps<<std::endl;
+    std::cout<<"n leap seconds inserted between hops (J2000) epoch and: "<<vtest<<" = "<<n_leaps.count()<<std::endl;
 
     std::cout<<"number of leap seconds in tzdb: "<<get_tzdb().leap_seconds.size()<<" -> should be 27 (as of 9/12/2023)"<<std::endl;
 
+    auto nom_difx_epoch_utc = hops_clock::to_utc( hops_clock::from_iso8601_format(DIFX_J2000_MJD_EPOCH_UTC_ISO8601) );
+
+    double mjd = hops_clock::to_mjd(nom_difx_epoch_utc, DIFX_J2000_MJD_EPOCH_OFFSET, hops_tp5);
+
+    std::cout<<vtest<<" as difx mjd  = "<<mjd<<std::endl;
 
     return 0;
 }

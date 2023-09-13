@@ -135,11 +135,16 @@ class hops_clock
 
         static
         std::chrono::time_point<hops_clock, std::chrono::nanoseconds >
-        from_mjd(const std::string& mjd_epoch_utc_iso8601, const double& epoch_offset, const double& mjd);
+        from_mjd(const date::utc_time< std::chrono::nanoseconds >& mjd_epoch_utc, const double& epoch_offset, const double& mjd);
+
+        // static
+        // double
+        // to_mjd(const std::string& mjd_epoch_utc_iso8601, const double& epoch_offset, const std::chrono::time_point<hops_clock, std::chrono::nanoseconds >& tp);
 
         static
         double
-        to_mjd(const std::string& mjd_epoch_utc_iso8601, const double& epoch_offset, const std::chrono::time_point<hops_clock, std::chrono::nanoseconds >& tp);
+        to_mjd(const date::utc_time< std::chrono::nanoseconds >& mjd_epoch_utc, const double& epoch_offset, const std::chrono::time_point<hops_clock, std::chrono::nanoseconds >& tp);
+
 
         static
         std::string
@@ -157,16 +162,16 @@ class hops_clock
         }
 
         //calculates the number of leap seconds inserted between two UTC dates
-        static int get_leap_seconds_between
+        static std::chrono::seconds get_leap_seconds_between
         (
-            date::utc_time< std::chrono::nanoseconds >& t_start,
-            date::utc_time< std::chrono::nanoseconds >& t_end
+            date::utc_time< std::chrono::nanoseconds >& t_start_utc,
+            date::utc_time< std::chrono::nanoseconds >& t_end_utc
         )
         {
-            auto lp_info0  = date::get_leap_second_info(t_start);
-            auto lp_info1 = date::get_leap_second_info(t_end);
+            auto lp_info0  = date::get_leap_second_info(t_start_utc);
+            auto lp_info1 = date::get_leap_second_info(t_end_utc);
             int delta = lp_info1.elapsed.count() - lp_info0.elapsed.count();
-            return delta;
+            return std::chrono::seconds(delta);
         }
 
     private:
@@ -483,16 +488,8 @@ hops_clock::to_legacy_hops_date(const std::chrono::time_point<hops_clock, std::c
 
 inline
 std::chrono::time_point<hops_clock, std::chrono::nanoseconds >
-hops_clock::from_mjd(const std::string& mjd_epoch_utc_iso8601, const double& epoch_offset, const double& mjd)
+hops_clock::from_mjd(const date::utc_time< std::chrono::nanoseconds >& mjd_epoch_utc, const double& epoch_offset, const double& mjd)
 {
-
-    std::string frmt = ISO8601_UTC_FORMAT;
-    date::utc_time<std::chrono::nanoseconds> mjd_epoch;
-    std::istringstream ss(mjd_epoch_utc_iso8601);
-    std::istream stream(ss.rdbuf());
-    date::from_stream(stream, frmt.c_str(), mjd_epoch);
-    auto mjd_epoch_utc = std::chrono::time_point_cast<std::chrono::nanoseconds>(mjd_epoch);
-
     double delta = (mjd - epoch_offset);
     delta *= JD_TO_SEC;
     std::chrono::duration<double> duration_seconds(delta);
@@ -502,16 +499,11 @@ hops_clock::from_mjd(const std::string& mjd_epoch_utc_iso8601, const double& epo
     return hops_time_point;
 }
 
+
 inline
 double
-hops_clock::to_mjd(const std::string& mjd_epoch_utc_iso8601, const double& epoch_offset, const std::chrono::time_point<hops_clock, std::chrono::nanoseconds >& tp)
+hops_clock::to_mjd(const date::utc_time< std::chrono::nanoseconds >& mjd_epoch_utc, const double& epoch_offset, const std::chrono::time_point<hops_clock, std::chrono::nanoseconds >& tp)
 {
-    std::string frmt = ISO8601_UTC_FORMAT;
-    date::utc_time<std::chrono::nanoseconds> mjd_epoch;
-    std::istringstream ss(mjd_epoch_utc_iso8601);
-    std::istream stream(ss.rdbuf());
-    date::from_stream(stream, frmt.c_str(), mjd_epoch);
-    auto mjd_epoch_utc = std::chrono::time_point_cast<std::chrono::nanoseconds>(mjd_epoch);
     auto tp_utc = to_utc(tp);
 
     double delta = (tp_utc - mjd_epoch_utc).count();
@@ -520,7 +512,6 @@ hops_clock::to_mjd(const std::string& mjd_epoch_utc_iso8601, const double& epoch
     delta += epoch_offset; //subtract epoch offset
     return delta;
 }
-
 
 inline
 std::chrono::time_point<hops_clock, std::chrono::nanoseconds >
