@@ -81,7 +81,10 @@ MHO_DiFXInterface::Initialize()
         msg_info("difx_interface", tmpFiles.size() << " .v2d files found in " << fInputDirectory << eom );
         fV2DFile = ""; //no v2d file
     }
-    fV2DFile = tmpFiles[0];
+    else
+    {
+        fV2DFile = tmpFiles[0];
+    }
     tmpFiles.clear();
 
     //find the .input files
