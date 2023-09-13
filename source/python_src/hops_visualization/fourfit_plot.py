@@ -157,8 +157,6 @@ def make_fourfit_plot(plot_dict, filename):
     n_seg_plots = int(plot_dict["NPlots"])
     colw = 6
 
-    print("nseg, nsegplots = ", n_seg, n_seg_plots)
-
     #grab seg amp
     seg_amp_arr = np.array( plot_dict['SEG_AMP'] )
     seg_ymax = float(plot_dict['Amp'])*3.0 #see generate_graphs.c
@@ -361,15 +359,10 @@ def make_fourfit_plot(plot_dict, filename):
         if cth_text[ct_row] in ["Freq (MHz)", "Phase", "Ampl.", "Sbd box"] and len(ct_data[ct_row]) == len(plot_dict['PLOT_INFO']["#Ch"]):
             ct_data[ct_row].pop()
 
-    print(ct_data)
-
     #add the header names as the last column
     for row in range(0, len(ct_data)):
         hdr_txt = cth_text[row]
         ct_data[row].append(hdr_txt)
-
-    print(ct_data)
-
 
     # Create the table
     table = axT.table(cellText=ct_data, loc='center')

@@ -66,8 +66,6 @@ MHO_MBDelaySearch::ExecuteImpl(const XArgType* in)
 
     if(fInitialized)
     {
-        std::cout<<"dims = "<<fNSBD<<", "<<fNDR<<std::endl;
-
         //loop over the single-band delay 'lags', computing the MBD/DR function
         //find the max for each SBD, and globally
         double maxmbd = 0.0;

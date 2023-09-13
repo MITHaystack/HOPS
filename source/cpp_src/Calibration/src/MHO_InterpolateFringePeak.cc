@@ -64,7 +64,7 @@ MHO_InterpolateFringePeak::fine_peak_interpolation()
     double drfmax;
 
     double total_ap_frac = fTotalSummedWeights;
-    // 
+    //
     // std::cout<<"total ap frac = "<<total_ap_frac<<std::endl;
 
     auto chan_ax = &( std::get<CHANNEL_AXIS>(*fSBDArray) );
@@ -202,10 +202,10 @@ MHO_InterpolateFringePeak::fine_peak_interpolation()
     fDelayRate = dr_max_global;
     fFringeRate = fDRAxis.at(dr_bin) + (xi[2] * 0.5 * dr_delta);
 
-    std::cout<< std::setprecision(15);
+    //std::cout<< std::setprecision(15);
     // std::cout<<"coarse location (sbd, mbd, dr) = "<<sbd<<", "<<mbd<<", "<<dr<<std::endl;
     // std::cout<<"change (sbd, mbd, dr) = "<<sbd_change<<", "<<mbd_change<<", "<<dr_change<<std::endl;
-    std::cout<<"Peak max555, sbd "<<sbd_max<<" mbd "<<mbd_max_global<<" dr "<<dr_max_global<<std::endl;
+    //std::cout<<"Peak max555, sbd "<<sbd_max<<" mbd "<<mbd_max_global<<" dr "<<dr_max_global<<std::endl;
 
 }
 

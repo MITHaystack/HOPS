@@ -16,11 +16,11 @@ void basic_fringe_search(MHO_ContainerStore* conStore, MHO_ParameterStore* param
         msg_fatal("main", "could not find visibility or weight objects with names (vis, weight)." << eom);
         std::exit(1);
     }
-    
+
     //temporarily organize the main fringe search in this function
     //TODO consolidate the coarse search in a single class, so it can be mixed-and-matched
     //with different interpolation schemes
-    
+
     //output for the delay
     std::size_t bl_dim[visibility_type::rank::value];
     vis_data->GetDimensions(bl_dim);
@@ -85,20 +85,18 @@ void basic_fringe_search(MHO_ContainerStore* conStore, MHO_ParameterStore* param
     paramStore->Set("/fringe/n_sbd_points", n_sbd_pts);
     paramStore->Set("/fringe/n_dr_points", n_dr_pts);
 
-    std::cout<<"SBD/MBD/DR max bins = "<<c_sbdmax<<", "<<c_mbdmax<<", "<<c_drmax<<std::endl;
-
     ////////////////////////////////////////////////////////////////////////////
     //FINE INTERPOLATION STEP (search over 5x5x5 grid around peak)
     ////////////////////////////////////////////////////////////////////////////
     MHO_InterpolateFringePeak fringeInterp;
-        
+
     bool optimize_closure_flag = false;
     bool is_oc_set = paramStore->Get(std::string("optimize_closure"), optimize_closure_flag );
     //NOTE, this has no effect on fringe-phase when using 'simul' algo
     //This is also true in the legacy code simul implementation, and which is
     //currently is the only one implemented
     if(optimize_closure_flag){fringeInterp.EnableOptimizeClosure();}
-    
+
     fringeInterp.SetReferenceFrequency(ref_freq);
     fringeInterp.SetMaxBins(c_sbdmax, c_mbdmax, c_drmax);
 
@@ -108,7 +106,7 @@ void basic_fringe_search(MHO_ContainerStore* conStore, MHO_ParameterStore* param
     #pragma message("TODO FIXME -- we shouldn't be referencing internal members of the MHO_MBDelaySearch class workspace")
     //Figure out how best to present this axis data to the fine-interp function.
     fringeInterp.SetMBDAxis( mbdSearch.GetMBDAxis() );
-    fringeInterp.SetDRAxis( mbdSearch.GetDRAxis() ); 
+    fringeInterp.SetDRAxis( mbdSearch.GetDRAxis() );
 
     fringeInterp.Initialize();
     fringeInterp.Execute();
@@ -124,7 +122,7 @@ void basic_fringe_search(MHO_ContainerStore* conStore, MHO_ParameterStore* param
     paramStore->Set("/fringe/drate", drate);
     paramStore->Set("/fringe/frate", frate);
     paramStore->Set("/fringe/famp", famp);
-    
+
     //add the sbd_data, and sbd_dr_data to the container store
     conStore->AddObject(sbd_data);
     conStore->AddObject(sbd_dr_data);
