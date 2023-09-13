@@ -11,9 +11,10 @@
 
 #define EPS 1e-15
 
-//WHY THE 5 SECOND OFFSET? (THIS IS FROM LEAP SECONDS )
-//THERE HAVE BEEN 5 LEAP SECONDS SINCE YEAR 2000 (up til now '23)
-//TODO FIX/ACCOUNT FOR THIS
+//this is the nominal DiFX MJD epoch start...however, it will be off by however
+//many leap seconds have been inserted between this time and the time point of
+//interest...so when UTC times are calculated from DiFX MJD values, this epoch
+//start but be corrected by the number of leap seconds inserted (total of 5 as of 2023)
 #define DIFX_J2000_MJD_EPOCH_UTC_ISO8601 "2000-01-01T12:00:00.000000000Z"
 #define DIFX_J2000_MJD_EPOCH_OFFSET 51544.50000
 

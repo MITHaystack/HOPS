@@ -26,12 +26,6 @@
 #include "legacy_hops_date.hh"
 
 #define J2000_TAI_EPOCH "2000-01-01 11:59:27.816"
-// #define J2000_MJD_EPOCH "2000-01-01 12:00:05.000" //THIS IS A UTC TIME STAMP, BUT WHY ARE WE OFF BY 5 SECONDS?
-// #define J2000_MJD_EPOCH_OFFSET 51544.50000
-
-// #define J2000_MJD_EPOCH "2000-01-01 00:00:00.000"
-// #define J2000_MJD_EPOCH_OFFSET 51544.0
-
 #define ISO8601_UTC_FORMAT "%FT%TZ"
 #define HOPS_TIMESTAMP_PREFIX "HOPS-J2000"
 #define HOPS_TIME_DELIM "|"
@@ -163,22 +157,7 @@ class hops_clock
             return from_utc( get_hops_epoch_utc() );
         }
 
-
-        // //calculates the number of leap seconds inserted between two UTC dates
-        // static std::chrono::seconds get_leap_seconds_between
-        // (
-        //     date::utc_time< std::chrono::nanoseconds >& t_start_utc,
-        //     date::utc_time< std::chrono::nanoseconds >& t_end_utc
-        // )
-        // {
-        //     auto lp_info0  = date::get_leap_second_info(t_start_utc);
-        //     auto lp_info1 = date::get_leap_second_info(t_end_utc);
-        //     int delta = lp_info1.elapsed.count() - lp_info0.elapsed.count();
-        //     return std::chrono::seconds(delta);
-        // }
-
-
-        //calculates the number of leap seconds inserted between two UTC dates
+        //calculates the number of leap seconds inserted between two hops time points (UTC based clock)
         static std::chrono::seconds get_leap_seconds_between
         (
             const time_point& t_start,
