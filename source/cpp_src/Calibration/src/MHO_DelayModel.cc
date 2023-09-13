@@ -3,7 +3,7 @@
 
 #define DELAY_COEFF_INDEX 0
 
-namespace hops 
+namespace hops
 {
 
 MHO_DelayModel::MHO_DelayModel()
@@ -18,7 +18,7 @@ MHO_DelayModel::MHO_DelayModel()
 MHO_DelayModel::~MHO_DelayModel(){};
 
 
-void 
+void
 MHO_DelayModel::ComputeModel()
 {
     if(fRefData !=nullptr && fRemData != nullptr)
@@ -29,10 +29,9 @@ MHO_DelayModel::ComputeModel()
         //get the ref/rem station codes
         std::string ref_code = RetrieveTag<std::string>(fRefData, "station_code");
         std::string rem_code = RetrieveTag<std::string>(fRemData, "station_code");
-        
-        msg_warn("calibration", "reference staion code: " << ref_code << eom );
-        msg_warn("calibration", "remote staion code: " << rem_code << eom );
 
+        msg_debug("calibration", "reference staion code: " << ref_code << eom );
+        msg_debug("calibration", "remote staion code: " << rem_code << eom );
 
         //get the ref/rem station delay model start times
         std::string ref_mod_start = RetrieveTag<std::string>(fRefData, "model_start");
@@ -40,18 +39,18 @@ MHO_DelayModel::ComputeModel()
         //convert string to time point
         auto ref_start = hops_clock::from_vex_format(ref_mod_start);
         auto rem_start = hops_clock::from_vex_format(rem_mod_start);
-        
-        msg_warn("calibration", "fourfit reference time is: "<< hops_clock::to_iso8601_format(frt)<< eom);
-        msg_warn("calibration", "reference station delay model start time is: "<<hops_clock::to_iso8601_format(ref_start)<< eom);
-        msg_warn("calibration", "remote station delay model start time is: "<<hops_clock::to_iso8601_format(rem_start)<< eom);
+
+        msg_debug("calibration", "fourfit reference time is: "<< hops_clock::to_iso8601_format(frt)<< eom);
+        msg_debug("calibration", "reference station delay model start time is: "<<hops_clock::to_iso8601_format(ref_start)<< eom);
+        msg_debug("calibration", "remote station delay model start time is: "<<hops_clock::to_iso8601_format(rem_start)<< eom);
 
         //calculate time differences
         auto ref_tdiff_duration = frt - ref_start;
         auto rem_tdiff_duration = frt - rem_start;
 
         //convert durations to double (seconds)
-        double ref_tdiff = std::chrono::duration<double>(ref_tdiff_duration).count(); 
-        double rem_tdiff = std::chrono::duration<double>(rem_tdiff_duration).count(); 
+        double ref_tdiff = std::chrono::duration<double>(ref_tdiff_duration).count();
+        double rem_tdiff = std::chrono::duration<double>(rem_tdiff_duration).count();
 
         double ref_model_interval = RetrieveTag<double>(fRefData, "model_interval");
         double rem_model_interval = RetrieveTag<double>(fRemData, "model_interval");
@@ -65,9 +64,9 @@ MHO_DelayModel::ComputeModel()
         //calculate seconds into target interval
         double ref_t = ref_tdiff - (ref_int_no * ref_model_interval);
         double rem_t = rem_tdiff - (rem_int_no * rem_model_interval);
-        
-        msg_warn("calibration", "delay_model: ref model interval: "<< ref_int_no <<" and time offset: "<< ref_t << eom);
-        msg_warn("calibration", "delay_model: rem model interval: "<< rem_int_no <<" and time offset: "<< rem_t << eom);
+
+        msg_debug("calibration", "delay_model: ref model interval: "<< ref_int_no <<" and time offset: "<< ref_t << eom);
+        msg_debug("calibration", "delay_model: rem model interval: "<< rem_int_no <<" and time offset: "<< rem_t << eom);
 
         //evaluate delay, rate, accel
         double ref_dra[3];
@@ -78,16 +77,13 @@ MHO_DelayModel::ComputeModel()
         auto rem_coeff = fRemData->SubView(DELAY_COEFF_INDEX, rem_int_no); //extract spline coeffs for delay at this interval;
         EvaluateDelaySpline(rem_coeff, rem_t, rem_dra);
 
-        std::cout<<"ref dra = "<<ref_dra[0]<<std::endl;
-        std::cout<<"rem dra = "<<rem_dra[0]<<std::endl;
-
         fDelay = rem_dra[0] - ref_dra[0];
         fRate = rem_dra[1] - ref_dra[1];
         fAccel = rem_dra[2] - ref_dra[2];
 
-        msg_warn("calibration", "delay model: offset, rate, accel = "<<fDelay<<", "<<fRate<<", "<<fAccel<< eom);
+        msg_debug("calibration", "delay model: offset, rate, accel = "<<fDelay<<", "<<fRate<<", "<<fAccel<< eom);
     }
-    else 
+    else
     {
         msg_fatal("calibration", "cannot compute delay model, missing station data. " << eom );
         std::exit(1);
@@ -104,7 +100,7 @@ MHO_DelayModel::CheckSplineInterval(int n_intervals, double tdiff, int& int_no, 
         msg_fatal("calibration", "number of spline intervals is 0, missing or malformed data?" << eom );
         std::exit(1);
     }
-    
+
     if(tdiff < 0.0)
     {
         msg_warn("calibration", "fourfit reference time is outside of station: "<<station_id<<" spline range - must extrapolate!" << eom);
@@ -118,4 +114,4 @@ MHO_DelayModel::CheckSplineInterval(int n_intervals, double tdiff, int& int_no, 
 }
 
 
-}//end namespace 
+}//end namespace

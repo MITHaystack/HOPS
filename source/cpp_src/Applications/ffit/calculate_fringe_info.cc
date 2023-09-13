@@ -8,7 +8,7 @@
 #include "MHO_FringeRotation.hh"
 
 
-std::string 
+std::string
 leftpadzeros_integer(unsigned int n_places, int value)
 {
     std::stringstream ss;
@@ -58,7 +58,7 @@ double calculate_sbd_error(double sbd_sep, double snr, double sbavg)
     /* get proper weighting for sbd error estimate */
     // status->sbavg = 0.0;
     // for (fr = 0; fr < pass->nfreq; fr++)
-    // for (ap = pass->ap_off; ap < pass->ap_off + pass->num_ap; ap++) 
+    // for (ap = pass->ap_off; ap < pass->ap_off + pass->num_ap; ap++)
     // status->sbavg += pass->pass_data[fr].data[ap].sband;
     // status->sbavg /= status->total_ap;
 
@@ -72,7 +72,7 @@ double calculate_drate_error_v1(double snr, double ref_freq, double total_nap, d
     //originally: temp = status->total_ap * param->acc_period / pass->channels;
     //but we don't need the number of channels due to the difference in the way
     //we count 'APs' vs original c-code.
-    double temp = total_nap*ap_delta; 
+    double temp = total_nap*ap_delta;
     double drate_error = std::sqrt(12.0) / ( 2.0 * M_PI * snr * ref_freq * temp) ;
     return drate_error;
 }
@@ -116,7 +116,7 @@ double calculate_phase_delay_error(double sbavg, double snr, double ref_freq)
 
 std::string calculate_qf()
 {
-    //dummy 
+    //dummy
     return std::string("?");
 }
 
@@ -135,7 +135,7 @@ calculate_residual_phase(MHO_ContainerStore* conStore, MHO_ParameterStore* param
 
     auto weights = conStore->GetObject<weight_type>(std::string("weight"));
     auto sbd_arr = conStore->GetObject<visibility_type>(std::string("sbd"));
-    
+
     std::size_t POLPROD = 0;
     std::size_t nchan = sbd_arr->GetDimension(CHANNEL_AXIS);
     std::size_t nap = sbd_arr->GetDimension(TIME_AXIS);
@@ -147,9 +147,9 @@ calculate_residual_phase(MHO_ContainerStore* conStore, MHO_ParameterStore* param
     auto ap_ax = &(std::get<TIME_AXIS>(*sbd_arr));
     auto sbd_ax = &( std::get<FREQ_AXIS>(*sbd_arr) );
     double sbd_delta = sbd_ax->at(1) - sbd_ax->at(0);
-    
+
     paramStore->Set("/fringe/sbd_separation", sbd_delta);
-    
+
     MHO_FringeRotation frot;
     frot.SetSBDSeparation(sbd_delta);
     frot.SetSBDMaxBin(sbd_max_bin);
@@ -197,7 +197,7 @@ calculate_residual_phase(MHO_ContainerStore* conStore, MHO_ParameterStore* param
             {
                 sum_all += -1.0*wght_phsr;
             }
-            else 
+            else
             {
                 sum_all += wght_phsr;
             }
@@ -234,7 +234,7 @@ void calculate_fringe_info(MHO_ContainerStore* conStore, MHO_ParameterStore* par
     //TODO FIXME (what if channels have multiple-bandwidths?, units?)
     double samp_period = 1.0/(sample_rate*1e6);
 
-    //configuration parameters 
+    //configuration parameters
     double ref_freq = paramStore->GetAs<double>("ref_freq");
     double ap_delta = paramStore->GetAs<double>("ap_period");
 
@@ -246,15 +246,15 @@ void calculate_fringe_info(MHO_ContainerStore* conStore, MHO_ParameterStore* par
     double frate = paramStore->GetAs<double>("/fringe/frate");
     double famp = paramStore->GetAs<double>("/fringe/famp");
 
-    //a priori (correlator) model quantities 
+    //a priori (correlator) model quantities
     double adelay = paramStore->GetAs<double>("/model/adelay");
     double arate = paramStore->GetAs<double>("/model/arate");
     double aaccel = paramStore->GetAs<double>("/model/aaccel");
-    
+
     std::string frt_vex_string = paramStore->GetAs<std::string>("/vex/scan/fourfit_reftime");
     auto frt = hops_clock::from_vex_format(frt_vex_string);
     legacy_hops_date frt_ldate = hops_clock::to_legacy_hops_date(frt);
-    
+
     std::string start_vex_string = paramStore->GetAs<std::string>("/vex/scan/start");
     auto start_time = hops_clock::from_vex_format(start_vex_string);
     double start_offset = paramStore->GetAs<double>("start_offset");
@@ -262,10 +262,10 @@ void calculate_fringe_info(MHO_ContainerStore* conStore, MHO_ParameterStore* par
 
     start_time = start_time + hops_clock::duration(start_offset_as_nanosec);
     legacy_hops_date start_ldate = hops_clock::to_legacy_hops_date(start_time);
-    
+
     double stop_offset = paramStore->GetAs<double>("stop_offset");
     int64_t stop_offset_as_nanosec = (int64_t)stop_offset*SEC_TO_NANOSEC; //KLUDGE;
-    
+
     auto stop_time = hops_clock::from_vex_format(start_vex_string);
     stop_time = stop_time + hops_clock::duration(stop_offset_as_nanosec);
     legacy_hops_date stop_ldate = hops_clock::to_legacy_hops_date(stop_time);
@@ -279,7 +279,7 @@ void calculate_fringe_info(MHO_ContainerStore* conStore, MHO_ParameterStore* par
 
     //calculate SNR
     #pragma message("TODO FIXME -- properly calcualte the effective number of pol-products.")
-    double eff_npol = 1.0; 
+    double eff_npol = 1.0;
     double snr = calculate_snr(eff_npol, ap_delta, samp_period, total_summed_weights, famp);
     paramStore->Set("/fringe/snr", snr);
 
@@ -288,11 +288,11 @@ void calculate_fringe_info(MHO_ContainerStore* conStore, MHO_ParameterStore* par
     double integration_time =  (total_summed_weights*ap_delta)/(double)nchan;
     paramStore->Set("/fringe/integration_time", integration_time);
 
-    //calculate quality code 
+    //calculate quality code
     std::string quality_code = calculate_qf();
     paramStore->Set("/fringe/quality_code", quality_code);
 
-    //total number of points searched 
+    //total number of points searched
     std::size_t nmbd = paramStore->GetAs<std::size_t>("/fringe/n_mbd_points");
     std::size_t nsbd = paramStore->GetAs<std::size_t>("/fringe/n_sbd_points");
     std::size_t ndr = paramStore->GetAs<std::size_t>("/fringe/n_dr_points");
@@ -312,21 +312,15 @@ void calculate_fringe_info(MHO_ContainerStore* conStore, MHO_ParameterStore* par
     double pfd = calculate_pfd(snr, total_npts_searched);
     pfd = 0.0;
     paramStore->Set("/fringe/prob_false_detect", pfd);
-    std::cout<<"SNR, NPTS, PFD = "<<snr<<", "<<total_npts_searched<<", "<<pfd<<std::endl;
 
     //TODO FIXME -- -acount for units (these are printed on fringe plot in usec)
     double tot_mbd = adelay + mbdelay;
     double tot_sbd = adelay + sbdelay;
 
-    std::cout<<"mbdelay = "<<mbdelay<<std::endl;
-    std::cout<<"adelay = "<<adelay<<std::endl;
-    std::cout<<"tot_mbd = "<<tot_mbd<<std::endl;
-    std::cout<<"tot_sbd = "<<tot_sbd<<std::endl;
-
     double ambig = paramStore->GetAs<double>("/fringe/ambiguity");
     double freq_spacing = paramStore->GetAs<double>("/fringe/frequency_spacing");
     std::string mbd_anchor = paramStore->GetAs<std::string>("mbd_anchor");
-    
+
     // anchor total mbd to sbd if desired by control
     double delta_mbd = 0.0;
     double freq0 = paramStore->GetAs<double>("/fringe/start_frequency");
@@ -349,14 +343,14 @@ void calculate_fringe_info(MHO_ContainerStore* conStore, MHO_ParameterStore* par
     paramStore->Set("/fringe/total_sbdelay", tot_sbd);
     paramStore->Set("/fringe/total_mbdelay", tot_mbd);
     paramStore->Set("/fringe/total_drate", tot_drate);
-    
+
     double sbd_sep = paramStore->GetAs<double>("/fringe/sbd_separation");
     double freq_spread = paramStore->GetAs<double>("/fringe/frequency_spread");
     double mbd_error = calculate_mbd_no_ion_error(freq_spread, snr);
-    
+
     #pragma message("TODO FIXME, calculate SBAVG properly")
     double sbavg = 1.0;
-    
+
     double sbd_error = calculate_sbd_error(sbd_sep, snr, sbavg);
 
     int total_naps = paramStore->GetAs<int>("total_naps");
@@ -370,7 +364,7 @@ void calculate_fringe_info(MHO_ContainerStore* conStore, MHO_ParameterStore* par
 
     double ph_err = calculate_phase_error(sbavg, snr);
     double phdelay_err = calculate_phase_delay_error(sbavg, snr, ref_freq);
-    
+
     paramStore->Set("/fringe/phase_error", ph_err);
     paramStore->Set("/fringe/phase_delay_error", phdelay_err);
 
@@ -378,10 +372,10 @@ void calculate_fringe_info(MHO_ContainerStore* conStore, MHO_ParameterStore* par
     double rem_clock_off = paramStore->GetAs<double>("/rem_station/clock_offset_at_frt");
     double ref_rate = paramStore->GetAs<double>("/ref_station/clock_rate");
     double rem_rate = paramStore->GetAs<double>("/rem_station/clock_rate");
-    
+
     double clock_offset = rem_clock_off - ref_clock_off;
     double clock_rate =  rem_rate - ref_rate;
-    
+
     paramStore->Set("/fringe/relative_clock_offset", clock_offset); //usec
     paramStore->Set("/fringe/relative_clock_rate", clock_rate*1e6); //usec/s
 

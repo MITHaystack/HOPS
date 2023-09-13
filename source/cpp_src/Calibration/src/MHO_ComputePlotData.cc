@@ -267,7 +267,7 @@ MHO_ComputePlotData::calc_xpower()
         std::get<0>(sbd_amp)(i) = (*sbd_ax)(i);
         std::get<0>(sbd_xpower_in)(i) = (*sbd_ax)(i);
 
-        std::cout<<"sbd_xpower_in @ "<< i << " = " << sbd_xpower_in(i) <<std::endl; //at this point SBD AMP is correct
+
     }
 
     fCyclicRotator.SetOffset(0, nbins/2);
@@ -290,10 +290,10 @@ MHO_ComputePlotData::calc_xpower()
     ok = fFFTEngine.Execute();
     check_step_fatal(ok, "calibration", "MBD search fft engine execution." << eom );
 
-    for(std::size_t i=0;i<sbd_xpower_out.GetSize(); i++)
-    {
-        std::cout<<"sbd_xpower_out @ "<< i << " = " << sbd_xpower_out(i) <<std::endl; //at this point SBD AMP is correct
-    }
+    // for(std::size_t i=0;i<sbd_xpower_out.GetSize(); i++)
+    // {
+    //     std::cout<<"sbd_xpower_out @ "<< i << " = " << sbd_xpower_out(i) <<std::endl; //at this point SBD AMP is correct
+    // }
 
     return sbd_xpower_out;
 }
@@ -377,7 +377,7 @@ MHO_ComputePlotData::calc_dr()
     std::size_t drsp_size = 8192;
     while ( (drsp_size / 4) > nap ) {drsp_size /= 2;};
     if(drsp_size < 256){drsp_size = 256;}
-    std::cout<<"DRSP size = "<<drsp_size<<std::endl;
+
     ////////////////////////////////////////////////////////////////////////
 
     //resize workspaces (TODO...make conditional on current size -- if already configured)
@@ -524,8 +524,8 @@ MHO_ComputePlotData::calc_phase()
         }
     }
 
-    std::cout<<"sbd sep = "<<sbd_delta<<" sbd max = "<<fSBDelay<<std::endl;
-    std::cout<<"sum all = "<<sum_all<<std::endl;
+    // std::cout<<"sbd sep = "<<sbd_delta<<" sbd max = "<<fSBDelay<<std::endl;
+    // std::cout<<"sum all = "<<sum_all<<std::endl;
 
     double coh_avg_phase = std::arg(sum_all);
 
@@ -833,14 +833,13 @@ MHO_ComputePlotData::calc_xpower_KLUDGE2()
     std::complex<double> cmplx_unit_I(0.0, 1.0);
     cp_spectrum.Resize(X.GetSize());
 
-    std::cout<<"sbd delay = "<<fSBDelay<<std::endl;
-    std::cout<<"sbd delta = "<<freq_delta<<std::endl;
+    // std::cout<<"sbd delay = "<<fSBDelay<<std::endl;
+    // std::cout<<"sbd delta = "<<freq_delta<<std::endl;
 
     for(int i=0; i<X.GetSize(); i++)
     {
         cp_spectrum(i) = X(i);
         double arg = 2.0*M_PI*fSBDelay*(std::get<0>(X)(i));
-        std::cout<<"arg "<<i<<" = "<<arg<<std::endl;
         Z = std::exp(-1.0*cmplx_unit_I * arg) ;
         cp_spectrum[i] *= Z;//
         cp_spectrum[i] *= (sqrt(0.5)/total_summed_weights );
@@ -973,7 +972,7 @@ MHO_ComputePlotData::calc_xpower_KLUDGE3()
         }
     }
 
-    std::cout<<X<<std::endl;
+    //std::cout<<X<<std::endl;
 
     //set up FFT
     fFFTEngine.SetArgs(&X);
@@ -997,7 +996,7 @@ MHO_ComputePlotData::calc_xpower_KLUDGE3()
         Z = std::exp(-1.0*cmplx_unit_I * (fSBDelay * (i) * M_PI / (sbd_delta *2.0* s)));
         cp_spectrum(i) *= Z * (sqrt(0.5)/total_summed_weights );
         std::get<0>(cp_spectrum)(i) = -1.0*(bw)*((double)i/(double)s); //label freq ax
-        std::cout<<"i, abs(c)  ="<<i<<", "<<std::abs(cp_spectrum(i))<<std::endl;
+        //std::cout<<"i, abs(c)  ="<<i<<", "<<std::abs(cp_spectrum(i))<<std::endl;
     }
 
     return cp_spectrum;

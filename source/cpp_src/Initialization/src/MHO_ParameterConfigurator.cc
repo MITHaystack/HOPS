@@ -1,9 +1,9 @@
 #include "MHO_ParameterConfigurator.hh"
 
-namespace hops 
+namespace hops
 {
 
-bool 
+bool
 MHO_ParameterConfigurator::Configure()
 {
     //find the format for this attribute
@@ -15,12 +15,10 @@ MHO_ParameterConfigurator::Configure()
         std::string parameter_type = "generic";
         if(fFormat[name].contains("parameter_type")){ parameter_type = fFormat[name]["parameter_type"].get<std::string>(); }
         param_t param_type = DetermineParamType(parameter_type);
-        
-        std::cout<<"parameter type = "<<parameter_type<<std::endl;
 
         //look up the parameter type in the format
         std::string value_type = fFormat[name]["type"].get<std::string>();
-        switch( DetermineParamValueType(value_type) ) 
+        switch( DetermineParamValueType(value_type) )
         {
             case ParamValueType::int_type:
             {
@@ -75,7 +73,7 @@ MHO_ParameterConfigurator::Configure()
 }
 
 
-MHO_ParameterConfigurator::ParamValueType 
+MHO_ParameterConfigurator::ParamValueType
 MHO_ParameterConfigurator::DetermineParamValueType(const std::string& par_value_type) const
 {
     if(par_value_type == "int"){return ParamValueType::int_type;}

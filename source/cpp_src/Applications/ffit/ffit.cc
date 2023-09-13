@@ -71,21 +71,15 @@ int main(int argc, char** argv)
     auto control_contents = cparser.ParseControl();
     mho_json control_statements;
 
-    //std::cout<<control_contents.dump(4)<<std::endl;
-
     //TODO -- where should frequency group information get stashed/retrieved?
     std::string srcName = paramStore.GetAs<std::string>("/vex/scan/source/name");
     std::string scnName = paramStore.GetAs<std::string>("/vex/scan/name");
     ceval.SetPassInformation(baseline, srcName, "?", scnName);//baseline, source, fgroup, scan
     control_statements = ceval.GetApplicableStatements(control_contents);
-    std::cout << control_statements.dump(2) <<std::endl;
 
     ////////////////////////////////////////////////////////////////////////////
     //LOAD DATA AND ASSEMBLE THE DATA STORE
     ////////////////////////////////////////////////////////////////////////////
-
-    std::cout<<"dumping parameter store"<<std::endl;
-    paramStore.Dump();
 
     //load baseline data
     scanStore.LoadBaseline(baseline, &conStore);
@@ -113,7 +107,6 @@ int main(int argc, char** argv)
     //conStore.DumpShortNamesToIds();
 
 
-
     ////////////////////////////////////////////////////////////////////////////
     //PARAMETER SETTING
     ////////////////////////////////////////////////////////////////////////////
@@ -122,7 +115,7 @@ int main(int argc, char** argv)
 
     paramManager.SetControlStatements(&control_statements);
     paramManager.ConfigureAll();
-    paramStore.Dump();
+    // paramStore.Dump();
 
     //test grab the reference freq
     double ref_freq = paramStore.GetAs<double>(std::string("ref_freq"));
@@ -177,16 +170,6 @@ int main(int argc, char** argv)
     mho_json plot_dict = construct_plot_data(&conStore, &paramStore, vexInfo);
     fill_plot_data(&paramStore, plot_dict);
 
-    std::cout<<"------------------------------------"<<std::endl;
-    std::cout<<"PARAMATER STORE:"<<std::endl;
-    paramStore.Dump();
-    std::cout<<"------------------------------------"<<std::endl;
-
-    // std::cout<<"------------------------------------"<<std::endl;
-    // std::cout<<"PLOT DICT :"<<std::endl;
-    // std::cout<< plot_dict.dump(2) <<std::endl;
-    // std::cout<<"------------------------------------"<<std::endl;
-
     //open and dump to file
     std::string output_file = paramStore.GetAs<std::string>("/cmdline/output_file");
     std::ofstream fdumpFile(output_file.c_str(), std::ofstream::out);
@@ -194,17 +177,6 @@ int main(int argc, char** argv)
     fdumpFile.close();
 
     #ifdef USE_PYBIND11
-
-    // msg_debug("main", "python plot generation enabled." << eom );
-    // //test stuff
-    // py::scoped_interpreter guard{}; // start the interpreter and keep it alive, need this or we segfault
-    // py::dict plot_obj = plot_dict;
-    //
-    // //load our interface module
-    // auto ff_test = py::module::import("ff_plot_test");
-    // //call a python function on the interface class instance
-    // ff_test.attr("fourfit_plot")(plot_obj, "fplot.png");
-
 
     msg_debug("main", "python plot generation enabled." << eom );
     //test stuff
