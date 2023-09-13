@@ -50,7 +50,7 @@ class hops_clock
         using duration                  = std::chrono::nanoseconds;
         using rep                       = duration::rep;
         using period                    = duration::period;
-        using time_point                = std::chrono::time_point<hops_clock>;
+        using time_point                = std::chrono::time_point<hops_clock, std::chrono::nanoseconds>;
         static const bool is_steady     = false;
 
         static time_point now();
@@ -133,17 +133,14 @@ class hops_clock
         std::chrono::time_point<hops_clock, std::chrono::nanoseconds >
         from_vex_format(const std::string& timestamp);
 
+
         static
         std::chrono::time_point<hops_clock, std::chrono::nanoseconds >
-        from_mjd(const date::utc_time< std::chrono::nanoseconds >& mjd_epoch_utc, const double& epoch_offset, const double& mjd);
-
-        // static
-        // double
-        // to_mjd(const std::string& mjd_epoch_utc_iso8601, const double& epoch_offset, const std::chrono::time_point<hops_clock, std::chrono::nanoseconds >& tp);
+        from_mjd(const std::chrono::time_point<hops_clock, std::chrono::nanoseconds >& mjd_epoch, const double& epoch_offset, const double& mjd);
 
         static
         double
-        to_mjd(const date::utc_time< std::chrono::nanoseconds >& mjd_epoch_utc, const double& epoch_offset, const std::chrono::time_point<hops_clock, std::chrono::nanoseconds >& tp);
+        to_mjd(const std::chrono::time_point<hops_clock, std::chrono::nanoseconds >& mjd_epoch, const double& epoch_offset, const std::chrono::time_point<hops_clock, std::chrono::nanoseconds >& tp);
 
 
         static
@@ -161,18 +158,41 @@ class hops_clock
             return std::chrono::time_point_cast<std::chrono::nanoseconds>( date::tai_clock::to_utc( j2000_tai_epoch ) );
         }
 
+        static std::chrono::time_point<hops_clock, std::chrono::nanoseconds > get_hops_epoch()
+        {
+            return from_utc( get_hops_epoch_utc() );
+        }
+
+
+        // //calculates the number of leap seconds inserted between two UTC dates
+        // static std::chrono::seconds get_leap_seconds_between
+        // (
+        //     date::utc_time< std::chrono::nanoseconds >& t_start_utc,
+        //     date::utc_time< std::chrono::nanoseconds >& t_end_utc
+        // )
+        // {
+        //     auto lp_info0  = date::get_leap_second_info(t_start_utc);
+        //     auto lp_info1 = date::get_leap_second_info(t_end_utc);
+        //     int delta = lp_info1.elapsed.count() - lp_info0.elapsed.count();
+        //     return std::chrono::seconds(delta);
+        // }
+
+
         //calculates the number of leap seconds inserted between two UTC dates
         static std::chrono::seconds get_leap_seconds_between
         (
-            date::utc_time< std::chrono::nanoseconds >& t_start_utc,
-            date::utc_time< std::chrono::nanoseconds >& t_end_utc
+            const std::chrono::time_point<hops_clock, std::chrono::nanoseconds >& t_start,
+            const std::chrono::time_point<hops_clock, std::chrono::nanoseconds >& t_end
         )
         {
+            auto t_start_utc = to_utc(t_start);
+            auto t_end_utc = to_utc(t_end);
             auto lp_info0  = date::get_leap_second_info(t_start_utc);
             auto lp_info1 = date::get_leap_second_info(t_end_utc);
             int delta = lp_info1.elapsed.count() - lp_info0.elapsed.count();
             return std::chrono::seconds(delta);
         }
+
 
     private:
 
@@ -488,12 +508,13 @@ hops_clock::to_legacy_hops_date(const std::chrono::time_point<hops_clock, std::c
 
 inline
 std::chrono::time_point<hops_clock, std::chrono::nanoseconds >
-hops_clock::from_mjd(const date::utc_time< std::chrono::nanoseconds >& mjd_epoch_utc, const double& epoch_offset, const double& mjd)
+hops_clock::from_mjd(const std::chrono::time_point<hops_clock, std::chrono::nanoseconds >& mjd_epoch, const double& epoch_offset, const double& mjd)
 {
     double delta = (mjd - epoch_offset);
     delta *= JD_TO_SEC;
     std::chrono::duration<double> duration_seconds(delta);
 
+    auto mjd_epoch_utc = to_utc(mjd_epoch);
     auto utc_time_point = mjd_epoch_utc + std::chrono::duration_cast< std::chrono::nanoseconds >(duration_seconds);
     auto hops_time_point = from_utc(utc_time_point);
     return hops_time_point;
@@ -502,8 +523,9 @@ hops_clock::from_mjd(const date::utc_time< std::chrono::nanoseconds >& mjd_epoch
 
 inline
 double
-hops_clock::to_mjd(const date::utc_time< std::chrono::nanoseconds >& mjd_epoch_utc, const double& epoch_offset, const std::chrono::time_point<hops_clock, std::chrono::nanoseconds >& tp)
+hops_clock::to_mjd(const std::chrono::time_point<hops_clock, std::chrono::nanoseconds >& mjd_epoch, const double& epoch_offset, const std::chrono::time_point<hops_clock, std::chrono::nanoseconds >& tp)
 {
+    auto mjd_epoch_utc = to_utc(mjd_epoch);
     auto tp_utc = to_utc(tp);
 
     double delta = (tp_utc - mjd_epoch_utc).count();
