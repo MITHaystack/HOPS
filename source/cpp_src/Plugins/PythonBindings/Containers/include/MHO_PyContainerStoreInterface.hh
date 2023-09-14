@@ -53,18 +53,23 @@ class MHO_PyContainerStoreInterface
             bool ok = uuid.from_string(uuid_string);
             if(!ok){msg_error("python_bindings", "error could not convert: "<<uuid_string<<" to valid UUID" <<eom);}
             visibility_type* vis = fContainerStore->GetObject<visibility_type>(uuid);
-            if( vis->HasExtension< MHO_PyTableContainer< visibility_type > >() )
+            if(vis != nullptr)
             {
-                return *( vis->AsExtension< MHO_PyTableContainer< visibility_type > >() );
+                if( vis->HasExtension< MHO_PyTableContainer< visibility_type > >() )
+                {
+                    return *( vis->AsExtension< MHO_PyTableContainer< visibility_type > >() );
+                }
+                else
+                {
+                    return *(vis->MakeExtension< MHO_PyTableContainer< visibility_type > >() );
+                }
             }
             else
             {
-                return *(vis->MakeExtension< MHO_PyTableContainer< visibility_type > >() );
+                msg_fatal("python_bindings", "fatal error, object with uuid: "<<uuid_string<<" is not present."<<eom);
+                std::exit(1);
             }
-            //whoops what happens if we get here?!
-
         }
-
 
     private:
 
