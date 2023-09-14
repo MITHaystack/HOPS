@@ -21,6 +21,9 @@ using namespace hops;
 
 int main()
 {
+    MHO_Message::GetInstance().AcceptAllKeys();
+    MHO_Message::GetInstance().SetMessageLevel(eDebug);
+
     py::scoped_interpreter guard{}; // start the interpreter and keep it alive
 
     std::cout<<"the python path directories: "<<std::endl;
