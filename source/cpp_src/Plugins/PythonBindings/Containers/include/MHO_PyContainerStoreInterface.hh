@@ -47,6 +47,33 @@ class MHO_PyContainerStoreInterface
             return fContainerStore->IsObjectPresent(uuid);
         }
 
+        // template< typename XClassType >
+        // MHO_PyTableContainer< XClassType >&
+        // GetObject(const std::string& uuid_string)
+        // {
+        //     MHO_UUID uuid;
+        //     bool ok = uuid.from_string(uuid_string);
+        //     if(!ok){msg_error("python_bindings", "error could not convert: "<<uuid_string<<" to valid UUID" <<eom);}
+        //     XClassType* vis = fContainerStore->GetObject< template XClassType>(uuid);
+        //     if(vis != nullptr)
+        //     {
+        //         if( vis->HasExtension< MHO_PyTableContainer< template XClassType > >() )
+        //         {
+        //             return *( vis->AsExtension< MHO_PyTableContainer< template XClassType > >() );
+        //         }
+        //         else
+        //         {
+        //             return *(vis->MakeExtension< MHO_PyTableContainer< template XClassType > >() );
+        //         }
+        //     }
+        //     else
+        //     {
+        //         msg_fatal("python_bindings", "fatal error, object with uuid: "<<uuid_string<<" is not present."<<eom);
+        //         std::exit(1);
+        //     }
+        // }
+
+
         MHO_PyTableContainer< visibility_type >& GetVisibilityObject(const std::string& uuid_string)
         {
             MHO_UUID uuid;
@@ -91,6 +118,9 @@ DeclarePyContainerStoreInterface(py::module &m, std::string pyclass_name)
         // .def("Set", &hops::MHO_PyContainerStoreInterface::Set)
         // .def("GetContents", &hops::MHO_PyContainerStoreInterface::GetContents);
 }
+
+
+
 
 
 }//end of namespace

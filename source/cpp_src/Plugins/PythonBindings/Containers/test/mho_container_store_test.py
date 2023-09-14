@@ -15,5 +15,5 @@ def test_inter(cstore_interface_obj, param_interface_obj):
     arr[0,0,0,0] =  3.+10.j
     arr[0,0,1,1] =  5.+3.j
 
-    garbage_string = "sbli2709"
+    garbage_string = "sbli270.%$@#$9"
     garbage_obj = cstore_interface_obj.GetVisibilityObject(garbage_string);
