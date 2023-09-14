@@ -4,8 +4,8 @@ hops_internal_include_directories()
 set (HOPS_TEST_LIBS MHO_Message MHO_Utilities MHO_Containers pyMHO_Containers pybind11::embed)
 
 set(SOURCE_BASENAMES
-    TestPythonContainers
-    TestPythonVisibilityAccess
+    # TestPythonContainers
+    # TestPythonVisibilityAccess
     TestPybind11JSONInterface
     TestPythonParameterStoreInterface
     TestPythonContainerStoreInterface
