@@ -7,6 +7,7 @@ set(SOURCE_BASENAMES
     TestPythonContainers
     TestPythonVisibilityAccess
     TestPybind11JSONInterface
+    TestPythonParameterStoreInterface
 )
 
 foreach( BASENAME ${SOURCE_BASENAMES} )
@@ -18,5 +19,7 @@ endforeach( BASENAME )
 
 #temp work around until we do this properly
 install(PROGRAMS "${CMAKE_CURRENT_SOURCE_DIR}/mho_test.py" DESTINATION ${PYTHON_MODULE_INSTALL_DIR})
+install(PROGRAMS "${CMAKE_CURRENT_SOURCE_DIR}/mho_param_test.py" DESTINATION ${PYTHON_MODULE_INSTALL_DIR})
+
 
 hops_install_executables( ${SOURCE_BASENAMES} )
