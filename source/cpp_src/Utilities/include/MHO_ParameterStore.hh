@@ -14,21 +14,21 @@ namespace hops
 //There are some deficiencies with this json-based approach, for example everything except terminal values
 //must be named objects (no lists allowed), though maybe we don't really need that functionality
 
-//TODO -- allow for variable keys in the value path. Sometimes the name 
-//of an item is found within the value of another item, so it would be useful to extract 
+//TODO -- allow for variable keys in the value path. Sometimes the name
+//of an item is found within the value of another item, so it would be useful to extract
 //that name, and substitute it into the value path for the item of interest.
 //For example consider the following structure:
 // {
-// 
+//
 //     "item0":
 //     {
 //         "key1": "kvalue1",
 //         "key2": "kvalue2"
 //     };
-//     "item1": 
+//     "item1":
 //     {
 //         "kvalue1": "value3",
-//         "kvalue2": 
+//         "kvalue2":
 //          {
 //              "key3": "value4",
 //              "key5": "value5"
@@ -46,7 +46,7 @@ namespace hops
 class MHO_ParameterStore
 {
     public:
-        
+
         MHO_ParameterStore()
         {
             fTokenizer.SetDelimiter("/");
@@ -56,12 +56,12 @@ class MHO_ParameterStore
 
         ~MHO_ParameterStore(){};
 
-        //TODO remove me 
+        //TODO remove me
         void Dump(){std::cout<< fStore.dump(2) <<std::endl;}
 
         void FillData(const mho_json& data){fStore = data;}
         void ClearData(){fStore.clear();}
-        
+
         //returns true if no error adding value
         template< typename XValueType>
         bool Set(const std::string& value_path, const XValueType& value);
@@ -69,6 +69,9 @@ class MHO_ParameterStore
         //returns true if found
         template< typename XValueType>
         bool Get(const std::string& value_path, XValueType& value) const;
+
+        mho_json
+        GetJSONObject(const std::string& value_path) const;
 
         //always returns a value, if not found the value returned is XValueType()
         template< typename XValueType>
@@ -118,7 +121,7 @@ template< typename XValueType>
 bool
 MHO_ParameterStore::Set(const std::string& value_path, const XValueType& value)
 {
-    //first we tokenize the value path into a sequence of names 
+    //first we tokenize the value path into a sequence of names
     std::string path = SanitizePath(value_path);
     fPath.clear();
     fTokenizer.SetString(&path);
@@ -135,12 +138,12 @@ MHO_ParameterStore::Set(const std::string& value_path, const XValueType& value)
             {
                 if( p->contains(*it) ) //item with path exists
                 {
-                    p = &(p->at(*it) ); //point to this item 
+                    p = &(p->at(*it) ); //point to this item
                 }
-                else 
+                else
                 {
                     //item doesn't exist yet, so create an entry with this key (*it)
-                    p = &(*p)[ *it ]; 
+                    p = &(*p)[ *it ];
                 }
             }
             else //we've arrived at the terminal point, so set this item to the value
@@ -158,7 +161,7 @@ template< typename XValueType>
 bool
 MHO_ParameterStore::Get(const std::string& value_path, XValueType& value) const
 {
-    //NOTE: we do not use json_pointer to access values specified by path 
+    //NOTE: we do not use json_pointer to access values specified by path
     //because it will throw an exception if used when the path is not present/complete
     std::string path = SanitizePath(value_path);
     fPath.clear();
@@ -185,6 +188,38 @@ MHO_ParameterStore::Get(const std::string& value_path, XValueType& value) const
         }
     }
     return false;
+}
+
+inline
+mho_json
+MHO_ParameterStore::GetJSONObject(const std::string& value_path) const
+{
+    //NOTE: we do not use json_pointer to access values specified by path
+    //because it will throw an exception if used when the path is not present/complete
+    std::string path = SanitizePath(value_path);
+    fPath.clear();
+    fTokenizer.SetString(&path);
+    fTokenizer.GetTokens(&fPath);
+
+    bool present = false;
+    auto* p = &fStore;
+    for(auto it = fPath.begin(); it != fPath.end(); it++)
+    {
+        auto jit = p->find(*it);
+        if(jit == p->end())
+        {
+            return mho_json(); //empty object
+        }
+        else if( *it == *(fPath.rbegin() ) )
+        {
+            return mho_json(*jit); //return copy of json storage object
+        }
+        else
+        {
+            p = &(jit.value());
+        }
+    }
+    return mho_json(); //empty object
 }
 
 template< typename XValueType>
