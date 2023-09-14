@@ -190,38 +190,6 @@ MHO_ParameterStore::Get(const std::string& value_path, XValueType& value) const
     return false;
 }
 
-inline
-mho_json
-MHO_ParameterStore::GetJSONObject(const std::string& value_path) const
-{
-    //NOTE: we do not use json_pointer to access values specified by path
-    //because it will throw an exception if used when the path is not present/complete
-    std::string path = SanitizePath(value_path);
-    fPath.clear();
-    fTokenizer.SetString(&path);
-    fTokenizer.GetTokens(&fPath);
-
-    bool present = false;
-    auto* p = &fStore;
-    for(auto it = fPath.begin(); it != fPath.end(); it++)
-    {
-        auto jit = p->find(*it);
-        if(jit == p->end())
-        {
-            return mho_json(); //empty object
-        }
-        else if( *it == *(fPath.rbegin() ) )
-        {
-            return mho_json(*jit); //return copy of json storage object
-        }
-        else
-        {
-            p = &(jit.value());
-        }
-    }
-    return mho_json(); //empty object
-}
-
 template< typename XValueType>
 XValueType
 MHO_ParameterStore::GetAs(const std::string& value_path) const
