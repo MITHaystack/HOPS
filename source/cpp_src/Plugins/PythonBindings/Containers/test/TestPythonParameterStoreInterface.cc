@@ -26,6 +26,10 @@ int main()
 
     MHO_ParameterStore paramStore;
     paramStore.Set("/my/test/value", 1);
+    paramStore.Set("/a/float/value", 3.14159);
+    paramStore.Set("/a/string/value", "my string");
+    paramStore.Set("/a/int/value", 10);
+    paramStore.Set("/another/test/value", 9874.23);
 
     MHO_PyParameterStoreInterface paramInterface(&paramStore);
 

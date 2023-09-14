@@ -32,27 +32,38 @@ class MHO_PyParameterStoreInterface
         MHO_PyParameterStoreInterface(MHO_ParameterStore* paramStore):fParameterStore(paramStore){};
         virtual ~MHO_PyParameterStoreInterface(){};
 
-        // //single access point to visiblity object
-        // void SetVisibilities(visibility_type* vis){fVisibilities = vis;};
-        // visibility_type& GetVisibilities(){return *fVisibilities;}
-        //
-        // MHO_PyTableContainer< visibility_type >& GetVisibilityTable()
-        // {
-        //     if( fVisibilities->HasExtension< MHO_PyTableContainer< visibility_type > >() )
-        //     {
-        //         return *( fVisibilities->AsExtension< MHO_PyTableContainer< visibility_type > >() );
-        //     }
-        //     else
-        //     {
-        //         return *(fVisibilities->MakeExtension< MHO_PyTableContainer< visibility_type > >() );
-        //     }
-        // }
-
         py::bool_ IsPresent(const std::string& value_path) const
         {
             return fParameterStore->IsPresent(value_path);
         }
 
+        py::str GetAsString(const std::string& value_path) const
+        {
+            return fParameterStore->GetAs<std::string>(value_path);
+        }
+
+        py::float_ GetAsFloat(const std::string& value_path) const
+        {
+            return fParameterStore->GetAs<double>(value_path);
+        }
+
+        py::int_ GetAsInt(const std::string& value_path) const
+        {
+            return fParameterStore->GetAs<int>(value_path);
+        }
+
+        py::object Get(const std::string& value_path) const
+        {
+            int ival;
+            double fval;
+            std::string sval;
+
+            if( fParameterStore->Get(value_path, ival) ){return py::int_(ival);}
+            if( fParameterStore->Get(value_path, fval) ){return py::float_(fval);}
+            if( fParameterStore->Get(value_path, sval) ){return py::str(sval);}
+
+            return py::none();
+        }
 
     private:
 
@@ -69,7 +80,11 @@ DeclarePyParameterStoreInterface(py::module &m, std::string pyclass_name)
 {
     py::class_< MHO_PyParameterStoreInterface >(m, pyclass_name.c_str() )
         //no __init__ def here, as this class is not meant to be constructable on the python side
-        .def("IsPresent", &hops::MHO_PyParameterStoreInterface::IsPresent);
+        .def("IsPresent", &hops::MHO_PyParameterStoreInterface::IsPresent)
+        .def("GetAsString", &hops::MHO_PyParameterStoreInterface::GetAsString)
+        .def("GetAsFloat", &hops::MHO_PyParameterStoreInterface::GetAsFloat)
+        .def("GetAsInt", &hops::MHO_PyParameterStoreInterface::GetAsInt)
+        .def("Get", &hops::MHO_PyParameterStoreInterface::Get);
 }
 
 
