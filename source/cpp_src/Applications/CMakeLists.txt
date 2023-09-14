@@ -15,7 +15,6 @@ set(HOPS_TEST_LIBS
 )
 
 set(SOURCE_BASENAMES
-    #TestSingleBandDelay
     TestMultiObjectStreaming
     TestConvertMk4Visibilities
     DumpFileObjectKeys
@@ -25,7 +24,6 @@ set(SOURCE_BASENAMES
     ConvertVexToJSON
     TestSignalFFT
     CompareCorFiles
-    #SimpleFringeSearch
 )
 
 #for testing purposes only -- ROOT not intended to be a dependency
@@ -44,15 +42,7 @@ if(HOPS_USE_PYBIND11)
     hops_internal_include_directories(../../Plugins/PythonBindings/Operators/include)
     list(APPEND PYBIND_TEST_LIBS pyMHO_Containers pyMHO_Operators pybind11::embed)
     add_cflag(USE_PYBIND11)
-    # list(APPEND PYBIND_TEST_BASENAMES
-    #     SimpleFringeSearchPlot
-    # )
     list(APPEND HOPS_TEST_LIBS ${PYBIND_TEST_LIBS})
-    # foreach( BASENAME ${PYBIND_TEST_BASENAMES} )
-    #     add_executable( ${BASENAME} ${BASENAME}.cc )
-    #     target_link_libraries( ${BASENAME} ${HOPS_TEST_LIBS} ${PYBIND_TEST_LIBS})
-    # endforeach( BASENAME )
-    # hops_install_executables( ${PYBIND_TEST_BASENAMES} )
 endif(HOPS_USE_PYBIND11)
 
 foreach( BASENAME ${SOURCE_BASENAMES} )
