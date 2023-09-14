@@ -47,50 +47,15 @@ class MHO_PyContainerStoreInterface
             return fContainerStore->IsObjectPresent(uuid);
         }
 
-        // template< typename XClassType >
-        // MHO_PyTableContainer< XClassType >&
-        // GetObject(const std::string& uuid_string)
-        // {
-        //     MHO_UUID uuid;
-        //     bool ok = uuid.from_string(uuid_string);
-        //     if(!ok){msg_error("python_bindings", "error could not convert: "<<uuid_string<<" to valid UUID" <<eom);}
-        //     XClassType* vis = fContainerStore->GetObject< template XClassType>(uuid);
-        //     if(vis != nullptr)
-        //     {
-        //         if( vis->HasExtension< MHO_PyTableContainer< template XClassType > >() )
-        //         {
-        //             return *( vis->AsExtension< MHO_PyTableContainer< template XClassType > >() );
-        //         }
-        //         else
-        //         {
-        //             return *(vis->MakeExtension< MHO_PyTableContainer< template XClassType > >() );
-        //         }
-        //     }
-        //     else
-        //     {
-        //         msg_fatal("python_bindings", "fatal error, object with uuid: "<<uuid_string<<" is not present."<<eom);
-        //         std::exit(1);
-        //     }
-        // }
-
 
         MHO_PyTableContainer< visibility_type >& GetVisibilityObject(const std::string& uuid_string)
         {
             MHO_UUID uuid;
             bool ok = uuid.from_string(uuid_string);
             if(!ok){msg_error("python_bindings", "error could not convert: "<<uuid_string<<" to valid UUID" <<eom);}
-            visibility_type* vis = fContainerStore->GetObject<visibility_type>(uuid);
-            if(vis != nullptr)
-            {
-                if( vis->HasExtension< MHO_PyTableContainer< visibility_type > >() )
-                {
-                    return *( vis->AsExtension< MHO_PyTableContainer< visibility_type > >() );
-                }
-                else
-                {
-                    return *(vis->MakeExtension< MHO_PyTableContainer< visibility_type > >() );
-                }
-            }
+            visibility_type* obj = fContainerStore->GetObject<visibility_type>(uuid);
+            auto ext_ptr = GetExtension(obj);
+            if(ext_ptr != nullptr){return *ext_ptr;}
             else
             {
                 msg_fatal("python_bindings", "fatal error, object with uuid: "<<uuid_string<<" is not present."<<eom);
@@ -98,10 +63,37 @@ class MHO_PyContainerStoreInterface
             }
         }
 
+
+        // DeclarePyTableContainer< visibility_type >(m, std::string("visibility_type") );
+        // DeclarePyTableContainer< weight_type >(m, std::string("weight_type") );
+        // DeclarePyTableContainer< visibility_store_type >(m, std::string("visibility_store_type") );
+        // DeclarePyTableContainer< weight_store_type >(m, std::string("weight_store_type") );
+        // DeclarePyTableContainer< station_coord_type >(m, std::string("station_coord_type") );
+
     private:
+
+        template< typename XClassType >
+        MHO_PyTableContainer< XClassType >*
+        GetExtension(XClassType* obj)
+        {
+            if(obj != nullptr)
+            {
+                if( obj->template HasExtension< MHO_PyTableContainer< XClassType > >() )
+                {
+                    return obj->template AsExtension< MHO_PyTableContainer< XClassType > >();
+                }
+                else
+                {
+                    return obj->template MakeExtension< MHO_PyTableContainer< XClassType > >();
+                }
+            }
+            return nullptr;
+        }
 
         //pointer to the parameter store
         MHO_ContainerStore* fContainerStore;
+
+
 
 };
 
@@ -113,10 +105,6 @@ DeclarePyContainerStoreInterface(py::module &m, std::string pyclass_name)
         .def("GetNObjects", &hops::MHO_PyContainerStoreInterface::GetNObjects)
         .def("IsObjectPresent", &hops::MHO_PyContainerStoreInterface::IsObjectPresent)
         .def("GetVisibilityObject", &hops::MHO_PyContainerStoreInterface::GetVisibilityObject);
-
-        // .def("Get", &hops::MHO_PyContainerStoreInterface::Get)
-        // .def("Set", &hops::MHO_PyContainerStoreInterface::Set)
-        // .def("GetContents", &hops::MHO_PyContainerStoreInterface::GetContents);
 }
 
 
