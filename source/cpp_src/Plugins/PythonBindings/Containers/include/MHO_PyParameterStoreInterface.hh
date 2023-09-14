@@ -8,9 +8,15 @@
 
 #include "MHO_ParameterStore.hh"
 
-#include <pybind11/pybind11.h>
 
+//pybind11 stuff to interface with python
+#include <pybind11/pybind11.h>
+#include <pybind11/embed.h>
+#include "pybind11_json/pybind11_json.hpp"
 namespace py = pybind11;
+namespace nl = nlohmann;
+using namespace pybind11::literals;
+
 
 /*
 *@file: MHO_PyParameterStoreInterface.hh
@@ -65,6 +71,13 @@ class MHO_PyParameterStoreInterface
             return py::none();
         }
 
+        py::dict Get2(const std::string& value_path) const
+        {
+            mho_json obj = fParameterStore->GetJSONObject(value_path);
+            py::dict ret_obj = obj;
+            return ret_obj;
+        }
+
     private:
 
         //pointer to the parameter store
@@ -84,7 +97,8 @@ DeclarePyParameterStoreInterface(py::module &m, std::string pyclass_name)
         .def("GetAsString", &hops::MHO_PyParameterStoreInterface::GetAsString)
         .def("GetAsFloat", &hops::MHO_PyParameterStoreInterface::GetAsFloat)
         .def("GetAsInt", &hops::MHO_PyParameterStoreInterface::GetAsInt)
-        .def("Get", &hops::MHO_PyParameterStoreInterface::Get);
+        .def("Get", &hops::MHO_PyParameterStoreInterface::Get)
+        .def("Get2", &hops::MHO_PyParameterStoreInterface::Get2);
 }
 
 
