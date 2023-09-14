@@ -35,7 +35,8 @@ int main()
     MHO_ContainerStore store;
 
     visibility_type* obj = new visibility_type();
-    obj->Resize(2,2,2,2);
+    obj->Resize(1,1,2,2);
+    obj->ZeroArray();
     MHO_FileKey key;
     key.fLabel = 0;
     strncpy(key.fName, "vis", 3);
@@ -57,6 +58,12 @@ int main()
 
     auto mho_constore_test = py::module::import("mho_container_store_test");
     mho_constore_test.attr("test_inter")(conInter, parmInter);
+
+    //dump out the visibility array to make sure
+    for(std::size_t i=0; i<obj->GetSize(); i++)
+    {
+        std::cout<<"value @ "<<i<<" = "<<(*obj)[i]<<std::endl;
+    }
 
     return 0;
 }

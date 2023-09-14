@@ -3,6 +3,7 @@
 
 #include "MHO_ContainerDictionary.hh"
 #include "MHO_ContainerStore.hh"
+#include "MHO_PyTableContainer.hh"
 
 //need these extras to be able to translate between nl:json and py:dict or py::object
 #include <pybind11/pybind11.h>
@@ -45,36 +46,25 @@ class MHO_PyContainerStoreInterface
             if(!ok){msg_error("python_bindings", "error could not convert: "<<uuid_string<<" to valid UUID" <<eom);}
             return fContainerStore->IsObjectPresent(uuid);
         }
-        //
 
+        MHO_PyTableContainer< visibility_type >& GetVisibilityObject(const std::string& uuid_string)
+        {
+            MHO_UUID uuid;
+            bool ok = uuid.from_string(uuid_string);
+            if(!ok){msg_error("python_bindings", "error could not convert: "<<uuid_string<<" to valid UUID" <<eom);}
+            visibility_type* vis = fContainerStore->GetObject<visibility_type>(uuid);
+            if( vis->HasExtension< MHO_PyTableContainer< visibility_type > >() )
+            {
+                return *( vis->AsExtension< MHO_PyTableContainer< visibility_type > >() );
+            }
+            else
+            {
+                return *(vis->MakeExtension< MHO_PyTableContainer< visibility_type > >() );
+            }
+            //whoops what happens if we get here?!
 
+        }
 
-
-
-        // //get a specific value
-        // py::object Get(const std::string& value_path) const
-        // {
-        //     mho_json obj;
-        //     bool ok = fContainerStore->Get(value_path, obj);
-        //     if(!ok){msg_error("python_bindings", "error getting value associated with key: "<< value_path << eom );}
-        //     return obj;
-        // }
-        //
-        // //set a specific value
-        // void Set(const std::string& value_path, py::object value) const
-        // {
-        //     mho_json obj = value;
-        //     bool ok = fContainerStore->Set(value_path, obj);
-        //     if(!ok){msg_error("python_bindings", "error setting value associated with key: "<< value_path << eom );}
-        // }
-        //
-        // //returns a python dictionary containing all of the parameter stores contents
-        // py::dict GetContents()
-        // {
-        //     mho_json obj;
-        //     fContainerStore->DumpData(obj);
-        //     return obj;
-        // }
 
     private:
 
@@ -89,7 +79,9 @@ DeclarePyContainerStoreInterface(py::module &m, std::string pyclass_name)
     py::class_< MHO_PyContainerStoreInterface >(m, pyclass_name.c_str() )
         //no __init__ def here, as this class is not meant to be constructable on the python side
         .def("GetNObjects", &hops::MHO_PyContainerStoreInterface::GetNObjects)
-        .def("IsObjectPresent", &hops::MHO_PyContainerStoreInterface::IsObjectPresent);
+        .def("IsObjectPresent", &hops::MHO_PyContainerStoreInterface::IsObjectPresent)
+        .def("GetVisibilityObject", &hops::MHO_PyContainerStoreInterface::GetVisibilityObject);
+
         // .def("Get", &hops::MHO_PyContainerStoreInterface::Get)
         // .def("Set", &hops::MHO_PyContainerStoreInterface::Set)
         // .def("GetContents", &hops::MHO_PyContainerStoreInterface::GetContents);
