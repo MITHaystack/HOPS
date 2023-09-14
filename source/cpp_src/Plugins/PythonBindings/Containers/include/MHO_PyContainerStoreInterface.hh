@@ -47,31 +47,26 @@ class MHO_PyContainerStoreInterface
             return fContainerStore->IsObjectPresent(uuid);
         }
 
-
-        MHO_PyTableContainer< visibility_type >& GetVisibilityObject(const std::string& uuid_string)
+        template< typename XClassType >
+        MHO_PyTableContainer< XClassType >& GetObject(const std::string& uuid_string)
         {
             MHO_UUID uuid;
             bool ok = uuid.from_string(uuid_string);
             if(!ok){msg_error("python_bindings", "error could not convert: "<<uuid_string<<" to valid UUID" <<eom);}
-            visibility_type* obj = fContainerStore->GetObject<visibility_type>(uuid);
+            XClassType* obj = fContainerStore->GetObject<XClassType>(uuid);
             auto ext_ptr = GetExtension(obj);
             if(ext_ptr != nullptr){return *ext_ptr;}
             else
             {
+                #pragma message("TODO FIXME...this shouldn't necessarily be a fatal error")
                 msg_fatal("python_bindings", "fatal error, object with uuid: "<<uuid_string<<" is not present."<<eom);
                 std::exit(1);
             }
         }
 
-
-        // DeclarePyTableContainer< visibility_type >(m, std::string("visibility_type") );
-        // DeclarePyTableContainer< weight_type >(m, std::string("weight_type") );
-        // DeclarePyTableContainer< visibility_store_type >(m, std::string("visibility_store_type") );
-        // DeclarePyTableContainer< weight_store_type >(m, std::string("weight_store_type") );
-        // DeclarePyTableContainer< station_coord_type >(m, std::string("station_coord_type") );
-
     private:
 
+        //put the extension building/retrieval in this template
         template< typename XClassType >
         MHO_PyTableContainer< XClassType >*
         GetExtension(XClassType* obj)
@@ -104,7 +99,11 @@ DeclarePyContainerStoreInterface(py::module &m, std::string pyclass_name)
         //no __init__ def here, as this class is not meant to be constructable on the python side
         .def("GetNObjects", &hops::MHO_PyContainerStoreInterface::GetNObjects)
         .def("IsObjectPresent", &hops::MHO_PyContainerStoreInterface::IsObjectPresent)
-        .def("GetVisibilityObject", &hops::MHO_PyContainerStoreInterface::GetVisibilityObject);
+        .def("GetVisibilityObject", &hops::MHO_PyContainerStoreInterface::GetObject<visibility_type>)
+        .def("GetWeightObject", &hops::MHO_PyContainerStoreInterface::GetObject<weight_type>)
+        .def("GetStationObject", &hops::MHO_PyContainerStoreInterface::GetObject<station_coord_type>)
+        .def("GetVisibilityStoreObject", &hops::MHO_PyContainerStoreInterface::GetObject<visibility_store_type>)
+        .def("GetWeightStoreObject", &hops::MHO_PyContainerStoreInterface::GetObject<visibility_store_type>);
 }
 
 
