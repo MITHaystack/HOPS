@@ -33,7 +33,7 @@ class MHO_PyParameterStoreInterface
         MHO_PyParameterStoreInterface(MHO_ParameterStore* paramStore):fParameterStore(paramStore){};
         virtual ~MHO_PyParameterStoreInterface(){};
 
-        py::bool_ IsPresent(const std::string& value_path) const
+        bool IsPresent(const std::string& value_path) const
         {
             return fParameterStore->IsPresent(value_path);
         }
