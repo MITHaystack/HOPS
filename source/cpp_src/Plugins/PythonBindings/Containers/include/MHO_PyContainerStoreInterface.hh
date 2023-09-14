@@ -33,7 +33,12 @@ class MHO_PyContainerStoreInterface
         MHO_PyContainerStoreInterface(MHO_ContainerStore* conStore):fContainerStore(conStore){};
         virtual ~MHO_PyContainerStoreInterface(){};
 
-        py::bool_ IsObjectPresent(const std::string& uuid_string) const
+        std::size_t GetNObjects()
+        {
+            return fContainerStore->GetNObjects();
+        }
+
+        bool IsObjectPresent(const std::string& uuid_string) const
         {
             MHO_UUID uuid;
             bool ok = uuid.from_string(uuid_string);
@@ -41,6 +46,11 @@ class MHO_PyContainerStoreInterface
             return fContainerStore->IsObjectPresent(uuid);
         }
         //
+
+
+
+
+
         // //get a specific value
         // py::object Get(const std::string& value_path) const
         // {
@@ -78,6 +88,7 @@ DeclarePyContainerStoreInterface(py::module &m, std::string pyclass_name)
 {
     py::class_< MHO_PyContainerStoreInterface >(m, pyclass_name.c_str() )
         //no __init__ def here, as this class is not meant to be constructable on the python side
+        .def("GetNObjects", &hops::MHO_PyContainerStoreInterface::GetNObjects)
         .def("IsObjectPresent", &hops::MHO_PyContainerStoreInterface::IsObjectPresent);
         // .def("Get", &hops::MHO_PyContainerStoreInterface::Get)
         // .def("Set", &hops::MHO_PyContainerStoreInterface::Set)

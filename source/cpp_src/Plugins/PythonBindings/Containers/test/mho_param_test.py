@@ -33,6 +33,9 @@ def test_inter(interface_obj):
 
     interface_obj.Set("a_list", my_list);
 
+    myNoneType = None
+    interface_obj.Set("a_none_type", myNoneType);
+
     #lets dump the entire dictionary
     contents = interface_obj.GetContents();
     print("full contents = ", contents);
