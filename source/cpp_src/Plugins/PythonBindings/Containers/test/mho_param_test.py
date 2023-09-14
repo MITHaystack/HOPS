@@ -29,6 +29,10 @@ def test_inter(interface_obj):
     print("value of ", float_key, ": ", interface_obj.Get(float_key) )
     print("value of ", string_key, ": ", interface_obj.Get(string_key) )
 
+    my_list = [0.1, 43, 85, 0.6, 1.434]
+
+    interface_obj.Set("a_list", my_list);
+
     #lets dump the entire dictionary
     contents = interface_obj.GetContents();
     print("full contents = ", contents);
