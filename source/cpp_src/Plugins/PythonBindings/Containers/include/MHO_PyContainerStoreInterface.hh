@@ -58,8 +58,10 @@ class MHO_PyContainerStoreInterface
             if(ext_ptr != nullptr){return *ext_ptr;}
             else
             {
-                #pragma message("TODO FIXME...this shouldn't necessarily be a fatal error")
+                #pragma message("TODO FIXME...this doesn't necessarily have be a fatal error")
                 msg_fatal("python_bindings", "fatal error, object with uuid: "<<uuid_string<<" is not present."<<eom);
+                //instead of failing in this case (object is missing), alternatively we could return a dummy object
+                //however, maybe an obvious failure is good in this case?
                 std::exit(1);
             }
         }
