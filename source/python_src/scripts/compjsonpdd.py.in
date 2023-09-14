@@ -12,7 +12,7 @@ def main():
 
     parser = argparse.ArgumentParser(
          prog='compjsonpdd.py', \
-         description='''primitive utility to compare two json files''' \
+         description='''primitive utility to compare a json dump file and a pdd file''' \
          )
 
     parser.add_argument('fileA', help='the HOPS4 json fringe data dump')
@@ -80,14 +80,14 @@ def main():
     #the name of the total group delay parameter changes depending on whether or not 'mbd_anchor sbd'
     #is in the control file, check if either is present, and compare only if it exists
     optional_key_type_dict = {
-        'GroupDelayModel(usec)':'float', 
+        'GroupDelayModel(usec)':'float',
         'GroupDelaySBD(usec)':'float', # TODO -- this becomes GroupDelaySBD(usec) if mbd_anchor sbd is in the control file
     }
 
     bad_count = 0
     bad_keys = []
     rel_percent_error = 0.03
-    
+
     print("tolerance is: ", rel_percent_error, " percent.")
 
     for k,t in key_type_dict.items():
@@ -124,7 +124,7 @@ def main():
                     print("missing ", k , " in ", f2_name)
                 bad_count += 1
                 bad_keys.append(k)
-                
+
 
     for k,t in optional_key_type_dict.items():
         if t == 'string':
