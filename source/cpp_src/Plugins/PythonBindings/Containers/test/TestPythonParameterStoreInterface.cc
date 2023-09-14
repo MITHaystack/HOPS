@@ -44,8 +44,18 @@ int main()
     double my_float = paramStore.GetAs<double>("/a/float/value");
 
     std::cout<<std::setprecision(9);
-    std::cout<<"results on C++ side = "<<my_str<<", "<<my_int<<", "<<my_float<<std::endl;
+    std::cout<<"Contents on c++ side:"<<std::endl;
 
+    paramStore.Dump();
+
+    std::vector<double> alist = paramStore.GetAs< std::vector<double> >("a_list");
+
+    std::cout<<"the list object as a std::vector<double> = "<<std::endl;
+    for(std::size_t i=0; i<alist.size(); i++)
+    {
+        std::cout<<alist[i]<<",";
+    }
+    std::cout<<std::endl;
 
     return 0;
 }

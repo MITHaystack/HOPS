@@ -4,7 +4,6 @@
 
 #include "MHO_ParameterStore.hh"
 
-//pybind11 stuff to interface with python
 //need these extras to be able to translate between nl:json and py:dict or py::object
 #include <pybind11/pybind11.h>
 #include <pybind11/embed.h>
