@@ -59,6 +59,7 @@ class MHO_ParameterStore
         //TODO remove me
         void Dump(){std::cout<< fStore.dump(2) <<std::endl;}
 
+        void DumpData(mho_json& data){data = fStore;}
         void FillData(const mho_json& data){fStore = data;}
         void ClearData(){fStore.clear();}
 
@@ -69,9 +70,6 @@ class MHO_ParameterStore
         //returns true if found
         template< typename XValueType>
         bool Get(const std::string& value_path, XValueType& value) const;
-
-        mho_json
-        GetJSONObject(const std::string& value_path) const;
 
         //always returns a value, if not found the value returned is XValueType()
         template< typename XValueType>

@@ -28,3 +28,7 @@ def test_inter(interface_obj):
     print("value of ", int_key, ": ", interface_obj.Get(int_key) )
     print("value of ", float_key, ": ", interface_obj.Get(float_key) )
     print("value of ", string_key, ": ", interface_obj.Get(string_key) )
+
+    #lets dump the entire dictionary
+    contents = interface_obj.GetContents();
+    print("full contents = ", contents);

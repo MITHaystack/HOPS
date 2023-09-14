@@ -2,14 +2,10 @@
 #define MHO_PyParameterStoreInterface_HH__
 
 
-// #include "MHO_ContainerDefinitions.hh"
-// #include "MHO_ContainerStore.hh"
-// #include "MHO_PyTableContainer.hh"
-
 #include "MHO_ParameterStore.hh"
 
-
 //pybind11 stuff to interface with python
+//need these extras to be able to translate between nl:json and py:dict or py::object
 #include <pybind11/pybind11.h>
 #include <pybind11/embed.h>
 #include "pybind11_json/pybind11_json.hpp"
@@ -43,6 +39,7 @@ class MHO_PyParameterStoreInterface
             return fParameterStore->IsPresent(value_path);
         }
 
+        //get a specific value
         py::object Get(const std::string& value_path) const
         {
             mho_json obj;
@@ -51,11 +48,20 @@ class MHO_PyParameterStoreInterface
             return obj;
         }
 
+        //set a specific value
         void Set(const std::string& value_path, py::object value) const
         {
             mho_json obj = value;
             bool ok = fParameterStore->Set(value_path, obj);
             if(!ok){msg_error("python_bindings", "error setting value associated with key: "<< value_path << eom );}
+        }
+
+        //returns a python dictionary containing all of the parameter stores contents
+        py::dict GetContents()
+        {
+            mho_json obj;
+            fParameterStore->DumpData(obj);
+            return obj;
         }
 
     private:
@@ -65,9 +71,6 @@ class MHO_PyParameterStoreInterface
 
 };
 
-
-
-//XTableType must inherit from MHO_NDArrayWrapper<XValueType, RANK>
 void
 DeclarePyParameterStoreInterface(py::module &m, std::string pyclass_name)
 {
@@ -75,7 +78,8 @@ DeclarePyParameterStoreInterface(py::module &m, std::string pyclass_name)
         //no __init__ def here, as this class is not meant to be constructable on the python side
         .def("IsPresent", &hops::MHO_PyParameterStoreInterface::IsPresent)
         .def("Get", &hops::MHO_PyParameterStoreInterface::Get)
-        .def("Set", &hops::MHO_PyParameterStoreInterface::Set);
+        .def("Set", &hops::MHO_PyParameterStoreInterface::Set)
+        .def("GetContents", &hops::MHO_PyParameterStoreInterface::GetContents);
 }
 
 
