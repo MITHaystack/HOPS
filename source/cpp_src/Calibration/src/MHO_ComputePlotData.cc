@@ -1129,11 +1129,6 @@ MHO_ComputePlotData::DumpInfoToJSON(mho_json& plot_dict)
         }
     }
 
-    std::cout<<"naps = "<<naps<<" nplots = "<<std::endl;
-    std::cout<<"size of seg amp = "<<transposed_flatted_seg_amp.size()<<std::endl;
-
-    // plot_dict["SEG_AMP"] = seg_amp;
-    // plot_dict["SEG_PHS"] = seg_arg;
     plot_dict["SEG_AMP"] = transposed_flatted_seg_amp;
     plot_dict["SEG_PHS"] = transposed_flatted_seg_arg;
 
