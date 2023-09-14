@@ -60,22 +60,9 @@ class MHO_PyParameterStoreInterface
 
         py::object Get(const std::string& value_path) const
         {
-            int ival;
-            double fval;
-            std::string sval;
-
-            if( fParameterStore->Get(value_path, ival) ){return py::int_(ival);}
-            if( fParameterStore->Get(value_path, fval) ){return py::float_(fval);}
-            if( fParameterStore->Get(value_path, sval) ){return py::str(sval);}
-
-            return py::none();
-        }
-
-        py::dict Get2(const std::string& value_path) const
-        {
-            mho_json obj = fParameterStore->GetJSONObject(value_path);
-            py::dict ret_obj = obj;
-            return ret_obj;
+            mho_json obj;
+            bool ok = fParameterStore->Get(value_path, obj);
+            return obj;
         }
 
     private:
@@ -97,8 +84,7 @@ DeclarePyParameterStoreInterface(py::module &m, std::string pyclass_name)
         .def("GetAsString", &hops::MHO_PyParameterStoreInterface::GetAsString)
         .def("GetAsFloat", &hops::MHO_PyParameterStoreInterface::GetAsFloat)
         .def("GetAsInt", &hops::MHO_PyParameterStoreInterface::GetAsInt)
-        .def("Get", &hops::MHO_PyParameterStoreInterface::Get)
-        .def("Get2", &hops::MHO_PyParameterStoreInterface::Get2);
+        .def("Get", &hops::MHO_PyParameterStoreInterface::Get);
 }
 
 

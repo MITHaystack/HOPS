@@ -15,4 +15,4 @@ def test_inter(interface_obj):
     print("value of ", string_key, ": ", interface_obj.GetAsString(string_key) )
     print("value of ", another_test_value, ": ", interface_obj.Get(another_test_value) )
     print("value of ", bad_key, ": ", interface_obj.Get(bad_key) )
-    print("value of ", another_test_value, ": ", interface_obj.Get2(another_test_value) )
+    print("value of ", another_test_value, ": ", interface_obj.Get(another_test_value) )
