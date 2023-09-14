@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>
 
 #include <pybind11/pybind11.h>
 #include <pybind11/embed.h>
@@ -36,6 +37,15 @@ int main()
     auto mho_param_test = py::module::import("mho_param_test");
 
     mho_param_test.attr("test_inter")(paramInterface);
+
+    //now see what has turned up on the C++ side
+    std::string my_str = paramStore.GetAs<std::string>("/a/string/value");
+    int my_int = paramStore.GetAs<int>("/a/int/value");
+    double my_float = paramStore.GetAs<double>("/a/float/value");
+
+    std::cout<<std::setprecision(9);
+    std::cout<<"results on C++ side = "<<my_str<<", "<<my_int<<", "<<my_float<<std::endl;
+
 
     return 0;
 }
