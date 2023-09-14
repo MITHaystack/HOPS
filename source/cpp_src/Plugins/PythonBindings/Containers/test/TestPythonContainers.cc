@@ -16,6 +16,7 @@ int main()
 {
     py::scoped_interpreter guard{}; // start the interpreter and keep it alive
 
+    std::cout<<"the python path directories: "<<std::endl;
     py::exec(R"(
         import sys
         import numpy
