@@ -37,8 +37,6 @@ void fill_plot_data(MHO_ParameterStore* paramStore, mho_json& plot_dict)
     //in order to follow the PDD interface, the name of the following output
     //parameter changes depending on whether or not we are using mbd_anchor = sbd
 
-    std::cout<<"HEYYY"<<std::endl;
-
     std::string mbd_anchor = paramStore->GetAs<std::string>("mbd_anchor");
     if(mbd_anchor == "sbd")
     {
