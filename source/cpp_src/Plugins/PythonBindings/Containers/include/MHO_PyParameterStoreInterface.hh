@@ -43,26 +43,19 @@ class MHO_PyParameterStoreInterface
             return fParameterStore->IsPresent(value_path);
         }
 
-        py::str GetAsString(const std::string& value_path) const
-        {
-            return fParameterStore->GetAs<std::string>(value_path);
-        }
-
-        py::float_ GetAsFloat(const std::string& value_path) const
-        {
-            return fParameterStore->GetAs<double>(value_path);
-        }
-
-        py::int_ GetAsInt(const std::string& value_path) const
-        {
-            return fParameterStore->GetAs<int>(value_path);
-        }
-
         py::object Get(const std::string& value_path) const
         {
             mho_json obj;
             bool ok = fParameterStore->Get(value_path, obj);
+            if(!ok){msg_error("python_bindings", "error getting value associated with key: "<< value_path << eom );}
             return obj;
+        }
+
+        void Set(const std::string& value_path, py::object value) const
+        {
+            mho_json obj = value;
+            bool ok = fParameterStore->Set(value_path, obj);
+            if(!ok){msg_error("python_bindings", "error setting value associated with key: "<< value_path << eom );}
         }
 
     private:
@@ -81,10 +74,8 @@ DeclarePyParameterStoreInterface(py::module &m, std::string pyclass_name)
     py::class_< MHO_PyParameterStoreInterface >(m, pyclass_name.c_str() )
         //no __init__ def here, as this class is not meant to be constructable on the python side
         .def("IsPresent", &hops::MHO_PyParameterStoreInterface::IsPresent)
-        .def("GetAsString", &hops::MHO_PyParameterStoreInterface::GetAsString)
-        .def("GetAsFloat", &hops::MHO_PyParameterStoreInterface::GetAsFloat)
-        .def("GetAsInt", &hops::MHO_PyParameterStoreInterface::GetAsInt)
-        .def("Get", &hops::MHO_PyParameterStoreInterface::Get);
+        .def("Get", &hops::MHO_PyParameterStoreInterface::Get)
+        .def("Set", &hops::MHO_PyParameterStoreInterface::Set);
 }
 
 
