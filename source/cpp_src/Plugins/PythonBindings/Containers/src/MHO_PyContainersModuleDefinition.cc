@@ -2,6 +2,7 @@
 #include "MHO_PyTableContainer.hh"
 #include "MHO_PyContainerInterface.hh"
 #include "MHO_PyParameterStoreInterface.hh"
+#include "MHO_PyContainerStoreInterface.hh"
 
 
 using namespace hops;
@@ -14,6 +15,8 @@ PYBIND11_MODULE(pyMHO_Containers, m)
         DeclarePyTableContainer< visibility_type >(m, std::string("visibility_type") );
 
         DeclarePyParameterStoreInterface(m, "MHO_PyParameterStoreInterface");
+
+        DeclarePyContainerStoreInterface(m, "MHO_PyContainerStoreInterface");
 
         // //just for testing
         // DeclarePyNDArrayWrapper< MHO_NDArrayWrapper<double, 2> >(m, std::string("mx") );
