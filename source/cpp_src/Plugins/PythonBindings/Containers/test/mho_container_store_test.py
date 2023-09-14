@@ -27,6 +27,6 @@ def test_inter(cstore_interface_obj, param_interface_obj):
 
     warr[0,0,0,0] = 1e6
 
-    #TRIGGERS A FATAL ERRROR (as expected)
+    ## TRIGGERS A FATAL ERRROR (as expected)
     # garbage_string = "sbli270.%$@#$9"
     # garbage_obj = cstore_interface_obj.GetVisibilityObject(garbage_string);

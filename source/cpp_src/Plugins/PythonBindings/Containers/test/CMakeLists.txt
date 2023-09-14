@@ -15,7 +15,7 @@ foreach( BASENAME ${SOURCE_BASENAMES} )
     add_executable( ${BASENAME} ${BASENAME}.cc )
     target_compile_options( ${BASENAME} PRIVATE -fvisibility=hidden)
     target_link_libraries( ${BASENAME} PRIVATE ${HOPS_TEST_LIBS})
-    #add_test(NAME ${BASENAME}_test COMMAND ${BASENAME})
+    add_test(NAME ${BASENAME}_test COMMAND ${BASENAME})
 endforeach( BASENAME )
 
 #temp work around until we do this properly
