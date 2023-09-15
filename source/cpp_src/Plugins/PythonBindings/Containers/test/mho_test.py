@@ -50,12 +50,24 @@ def test_inter(cstore_interface_obj, param_interface_obj):
         print(x)
 
 
-def test_plot_visibilities(inter_obj):
-    vis_arr = inter_obj.GetVisibilityTable().GetNumpyArray();
-    axis0 = inter_obj.GetVisibilityTable().GetCoordinateAxis(0);
-    axis1 = inter_obj.GetVisibilityTable().GetCoordinateAxis(1);
-    axis2 = inter_obj.GetVisibilityTable().GetCoordinateAxis(2);
-    axis3 = inter_obj.GetVisibilityTable().GetCoordinateAxis(3);
+def test_plot_visibilities(cstore_interface_obj, param_interface_obj):
+
+    n_obj =  cstore_interface_obj.GetNObjects();
+    print("n objects present = ", n_obj)
+    vis_uuid = param_interface_obj.Get("/uuid/visibilities");
+    print("expecting an object with uuid: ", vis_uuid)
+    print("object with that uuid is present? ", cstore_interface_obj.IsObjectPresent(vis_uuid) )
+
+    if not cstore_interface_obj.IsObjectPresent(vis_uuid):
+        return
+
+    visib_obj = cstore_interface_obj.GetVisibilityObject(vis_uuid);
+
+    vis_arr = visib_obj.GetNumpyArray();
+    axis0 = visib_obj.GetCoordinateAxis(0);
+    axis1 = visib_obj.GetCoordinateAxis(1);
+    axis2 = visib_obj.GetCoordinateAxis(2);
+    axis3 = visib_obj.GetCoordinateAxis(3);
 
     pp = 0;
     ch = 0;
