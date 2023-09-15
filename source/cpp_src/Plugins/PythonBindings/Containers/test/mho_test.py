@@ -18,12 +18,23 @@ def mod_mx(mx_obj):
     arr[0,0] *= 1000;
     print(arr)
 
-def test_inter(inter_obj):
-    vis_arr = inter_obj.GetVisibilityTable().GetNumpyArray() #this is already a numpy array
-    axis1 = inter_obj.GetVisibilityTable().GetCoordinateAxis(1);
-    axis0 = inter_obj.GetVisibilityTable().GetCoordinateAxis(0);
-    axis2 = inter_obj.GetVisibilityTable().GetCoordinateAxis(2);
-    axis3 = inter_obj.GetVisibilityTable().GetCoordinateAxis(3);
+def test_inter(cstore_interface_obj, param_interface_obj):
+
+    n_obj =  cstore_interface_obj.GetNObjects();
+    print("n objects present = ", n_obj)
+    uuid_string = param_interface_obj.Get("vis_uuid");
+    print("expecting an object with uuid: ", uuid_string)
+    print("object with that uuid is present? ", cstore_interface_obj.IsObjectPresent(uuid_string) )
+
+    visib_obj = cstore_interface_obj.GetVisibilityObject(uuid_string);
+    vis_arr = visib_obj.GetNumpyArray() #this is already a numpy array
+    print("vis array shape = ", vis_arr.shape)
+    print("vis array strides = ", vis_arr.strides)
+
+    axis1 = visib_obj.GetCoordinateAxis(1);
+    axis0 = visib_obj.GetCoordinateAxis(0);
+    axis2 = visib_obj.GetCoordinateAxis(2);
+    axis3 = visib_obj.GetCoordinateAxis(3);
     print("the visibility dimensions are: ", vis_arr.shape)
     vis_arr[0,0,0,0] = 1000
     vis_arr[0,0,1,1] = 2000

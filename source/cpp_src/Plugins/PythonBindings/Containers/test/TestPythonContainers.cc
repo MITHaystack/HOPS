@@ -6,8 +6,15 @@ namespace py = pybind11;
 
 #include "MHO_Message.hh"
 
-#include "MHO_PyNDArrayWrapper.hh"
-#include "MHO_PyContainerInterface.hh"
+#include "MHO_Message.hh"
+#include "MHO_FileKey.hh"
+
+#include "MHO_ContainerDefinitions.hh"
+#include "MHO_ContainerStore.hh"
+#include "MHO_PyContainerStoreInterface.hh"
+
+#include "MHO_ParameterStore.hh"
+#include "MHO_PyParameterStoreInterface.hh"
 
 using namespace hops;
 
@@ -25,7 +32,6 @@ int main()
     )");
 
 
-    MHO_PyContainerInterface myInterface;
     //for now just create a vis object
     std::size_t dim[4] = {2,2,2,2};
     visibility_type* visibilities = new visibility_type(dim);
@@ -79,11 +85,31 @@ int main()
 
     std::cout<<"*************** passing visibilities to python **************"<<std::endl;
 
-    myInterface.SetVisibilities(visibilities);
+    MHO_ContainerStore store;
+
+    MHO_FileKey key;
+    key.fLabel = 0;
+    strncpy(key.fName, "vis", 3);
+
+    //stuff something in the container store
+    store.AddObject(visibilities);
+    store.SetObjectLabel(visibilities->GetObjectUUID(), key.fLabel);
+    std::string shortname = std::string(key.fName, MHO_FileKeyNameLength ).c_str();
+    store.SetShortName(visibilities->GetObjectUUID(), shortname);
+
+    //now put the object uuid in the parameter store so we can look it up on the python side
+    MHO_ParameterStore paramStore;
+    std::string obj_uuid_string = visibilities->GetObjectUUID().as_string();
+
+    paramStore.Set("vis_uuid", obj_uuid_string);
+
+    //create the interfaces
+    MHO_PyContainerStoreInterface conInter(&store);
+    MHO_PyParameterStoreInterface parmInter(&paramStore);
 
     auto mho_test = py::module::import("mho_test");
 
-    mho_test.attr("test_inter")(myInterface);
+    mho_test.attr("test_inter")(conInter, parmInter);
 
     //print out on the c++ side
     for(size_t i=0; i<2; i++)
