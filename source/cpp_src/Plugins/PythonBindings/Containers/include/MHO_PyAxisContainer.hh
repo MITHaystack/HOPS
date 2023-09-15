@@ -57,7 +57,7 @@ class MHO_PyAxisContainer
         */
         py::array_t< typename XAxisType::value_type > GetNumpyArray()
         {
-            auto strides = fAxis->GetStrideArray();
+            auto strides = fAxis->GetStrideArray(); //should be [1]
             for(std::size_t i=0; i<fRank; i++){strides[i] *= sizeof(typename XAxisType::value_type);}
             py::array_t< typename XAxisType::value_type > ret_val
             {

@@ -31,6 +31,8 @@ def test_inter(cstore_interface_obj, param_interface_obj):
     print("vis array shape = ", vis_arr.shape)
     print("vis array strides = ", vis_arr.strides)
 
+    print("vis rank = ", visib_obj.GetRank() )
+
     axis1 = visib_obj.GetCoordinateAxis(1);
     axis0 = visib_obj.GetCoordinateAxis(0);
     axis2 = visib_obj.GetCoordinateAxis(2);
