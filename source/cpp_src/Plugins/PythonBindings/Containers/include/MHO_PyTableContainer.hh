@@ -53,6 +53,7 @@ class MHO_PyTableContainer
 
         virtual ~MHO_PyTableContainer(){};
 
+        std::size_t GetRank() const {return fTable->GetRank();}
 
         /**return the ND-array data block as a numpy array
         *this transfer is copy-free
@@ -78,8 +79,11 @@ class MHO_PyTableContainer
         py::list GetCoordinateAxis(size_t index)
         {
             py::list ret_val;
-            PyListFiller filler(&ret_val);
-            apply_at< typename XTableType::axis_pack_tuple_type, PyListFiller >( *fTable, index, filler);
+            if(index < fRank)
+            {
+                PyListFiller filler(&ret_val);
+                apply_at< typename XTableType::axis_pack_tuple_type, PyListFiller >( *fTable, index, filler);
+            }
             return ret_val;
         }
 
@@ -132,6 +136,7 @@ DeclarePyTableContainer(py::module &m, std::string pyclass_name = "")
 
     py::class_< MHO_PyTableContainer<XTableType> >(m, pyclass_name.c_str() )
         //no __init__ def here, as this class is not meant to be constructable on the python side
+        .def("GetRank", &hops::MHO_PyTableContainer<XTableType>::GetRank)
         .def("GetNumpyArray", &hops::MHO_PyTableContainer<XTableType>::GetNumpyArray)
         .def("GetCoordinateAxis", &hops::MHO_PyTableContainer<XTableType>::GetCoordinateAxis);
 }
