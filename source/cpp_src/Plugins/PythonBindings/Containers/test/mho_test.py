@@ -69,6 +69,9 @@ def test_plot_visibilities(cstore_interface_obj, param_interface_obj):
     axis2 = visib_obj.GetCoordinateAxis(2);
     axis3 = visib_obj.GetCoordinateAxis(3);
 
+    #modifying all values for APs 12-15
+    # vis_arr[:,:,12:15,:] = 200.0
+
     pp = 0;
     ch = 0;
 
