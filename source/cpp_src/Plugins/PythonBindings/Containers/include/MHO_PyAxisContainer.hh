@@ -45,7 +45,7 @@ class MHO_PyAxisContainer
             fElement(element)
         {
             fRank = XAxisType::rank::value;
-            fTable = dynamic_cast< XAxisType* >(element);
+            fAxis = dynamic_cast< XAxisType* >(element);
         };
 
 
@@ -57,49 +57,22 @@ class MHO_PyAxisContainer
         */
         py::array_t< typename XAxisType::value_type > GetNumpyArray()
         {
-            auto strides = fTable->GetStrideArray();
+            auto strides = fAxis->GetStrideArray();
             for(std::size_t i=0; i<fRank; i++){strides[i] *= sizeof(typename XAxisType::value_type);}
             py::array_t< typename XAxisType::value_type > ret_val
             {
-                fTable->GetDimensionArray(),
+                fAxis->GetDimensionArray(),
                 strides,
-                fTable->GetData(),
+                fAxis->GetData(),
                 fDummy //dummy owner, to keep python from taking ownership of this memory
             };
             return ret_val;
         }
 
-
-    protected:
-
-
-        //helper class to act as a python-list filling functor
-        class PyListFiller
-        {
-            public:
-                PyListFiller(py::list* alist):fList(alist){};
-                ~PyListFiller(){};
-
-                template< typename XAxisType >
-                void operator()(const XAxisType& axis)
-                {
-                    //expect to get some sort of MHO_Axis
-                    size_t n = axis.GetSize();
-                    for(size_t i=0; i<axis.GetSize(); i++)
-                    {
-                        fList->append(axis[i]);
-                    }
-                }
-
-            private:
-                py::list* fList;
-        };
-
-
     private:
 
         MHO_ExtensibleElement* fElement;
-        XAxisType* fTable;
+        XAxisType* fAxis;
         unsigned int fRank;
         py::str fDummy;
 
@@ -119,8 +92,7 @@ DeclarePyTableContainer(py::module &m, std::string pyclass_name = "")
 
     py::class_< MHO_PyAxisContainer<XAxisType> >(m, pyclass_name.c_str() )
         //no __init__ def here, as this class is not meant to be constructable on the python side
-        .def("GetNumpyArray", &hops::MHO_PyAxisContainer<XAxisType>::GetNumpyArray)
-        .def("GetCoordinateAxis", &hops::MHO_PyAxisContainer<XAxisType>::GetCoordinateAxis);
+        .def("GetNumpyArray", &hops::MHO_PyAxisContainer<XAxisType>::GetNumpyArray);
 }
 
 
