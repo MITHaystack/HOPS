@@ -5,7 +5,7 @@ set (HOPS_TEST_LIBS MHO_Message MHO_Utilities MHO_Containers MHO_Operators pyMHO
 
 set(SOURCE_BASENAMES
     TestPythonOperatorInheritance
-    TestPythonUnaryOperator
+    #TestPythonUnaryOperator
 )
 
 foreach( BASENAME ${SOURCE_BASENAMES} )

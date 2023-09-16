@@ -15,9 +15,6 @@ using namespace pybind11::literals;
 
 #include "MHO_Message.hh"
 
-#include "MHO_PyNDArrayWrapper.hh"
-#include "MHO_PyContainerInterface.hh"
-
 using namespace hops;
 
 

@@ -1,6 +1,4 @@
-#include "MHO_PyNDArrayWrapper.hh"
 #include "MHO_PyTableContainer.hh"
-#include "MHO_PyContainerInterface.hh"
 #include "MHO_PyParameterStoreInterface.hh"
 #include "MHO_PyContainerStoreInterface.hh"
 
@@ -24,11 +22,4 @@ PYBIND11_MODULE(pyMHO_Containers, m)
         //delcare interfaces to the parameter store and the container store
         DeclarePyParameterStoreInterface(m, "MHO_PyParameterStoreInterface");
         DeclarePyContainerStoreInterface(m, "MHO_PyContainerStoreInterface");
-
-        // //just for testing
-        // DeclarePyNDArrayWrapper< MHO_NDArrayWrapper<double, 2> >(m, std::string("mx") );
-
-        py::class_<MHO_PyContainerInterface, std::unique_ptr<MHO_PyContainerInterface, py::nodelete> >(m, "MHO_PyContainerInterface")
-            .def(py::init<>())
-            .def("GetVisibilityTable", &hops::MHO_PyContainerInterface::GetVisibilityTable);
 }

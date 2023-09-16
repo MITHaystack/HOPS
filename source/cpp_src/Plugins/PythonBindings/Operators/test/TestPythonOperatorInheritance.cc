@@ -6,8 +6,6 @@ namespace py = pybind11;
 
 #include "MHO_Message.hh"
 
-#include "MHO_PyContainerInterface.hh"
-
 using namespace hops;
 
 

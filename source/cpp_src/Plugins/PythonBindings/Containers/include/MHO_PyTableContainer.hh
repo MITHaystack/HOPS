@@ -2,8 +2,8 @@
 #define MHO_PyTableContainer_HH__
 
 /*
-*File: MHO_PyNDArrayWrapper.hh
-*Class: MHO_PyNDArrayWrapper
+*File: MHO_PyTableContainer.hh
+*Class: MHO_PyTableContainer
 *Author: J. Barrett
 *Email: barrettj@mit.edu
 *Date:
@@ -84,6 +84,10 @@ class MHO_PyTableContainer
                 PyListFiller filler(&ret_val);
                 apply_at< typename XTableType::axis_pack_tuple_type, PyListFiller >( *fTable, index, filler);
             }
+            else
+            {
+                msg_error("python_bindings", "axis index out of bounds." << eom );
+            }
             return ret_val;
         }
 
@@ -149,4 +153,4 @@ DeclarePyTableContainer(py::module &m, std::string pyclass_name = "")
 
 }//end of hops namespace
 
-#endif /* end of include guard: MHO_PyNDArrayWrapper */
+#endif /* end of include guard: MHO_PyTableContainer */

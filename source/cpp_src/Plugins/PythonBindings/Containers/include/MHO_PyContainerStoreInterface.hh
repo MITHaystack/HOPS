@@ -2,6 +2,8 @@
 #define MHO_PyContainerStoreInterface_HH__
 
 #include "MHO_ContainerDictionary.hh"
+#include "MHO_ContainerDefinitions.hh"
+
 #include "MHO_ContainerStore.hh"
 #include "MHO_PyTableContainer.hh"
 
