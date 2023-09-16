@@ -21,8 +21,9 @@
 #include "MHO_NDArrayWrapper.hh"
 #include "MHO_TableContainer.hh"
 #include "MHO_ExtensibleElement.hh"
-
 #include "MHO_TemplateTypenameDeduction.hh"
+
+#include "MHO_JSONHeaderWrapper.hh"
 
 #include <pybind11/pybind11.h>
 #include <pybind11/numpy.h> //this is important to have for std::complex<T> support!
@@ -116,6 +117,18 @@ class MHO_PyTableContainer
             }
         }
 
+        py::dict GetTags()
+        {
+            mho_json tags;
+            DumpValuesToJSON<bool>(tags);
+            DumpValuesToJSON<char>(tags);
+            DumpValuesToJSON<int>(tags);
+            DumpValuesToJSON<double>(tags);
+            DumpValuesToJSON<std::string>(tags);
+            py::dict tags_as_dict = tags;
+            return tags_as_dict;
+        }
+
     protected:
 
 
@@ -182,6 +195,22 @@ class MHO_PyTableContainer
 
         };
 
+        template< typename XDumpType > 
+        void DumpValuesToJSON(mho_json& dump)
+        {
+            std::vector< std::string > keys;
+            auto map = dynamic_cast< MHO_SingleTypeMap< std::string , XDumpType >* >(fTable);
+            if(map != nullptr)
+            {
+                keys = map->DumpKeys();
+                for(auto it = keys.begin(); it != keys.end(); it++)
+                {
+                    XDumpType val;
+                    map->Retrieve(*it, val);
+                    dump[*it] = val;
+                }
+            }
+        }
 
 
     private:
@@ -209,6 +238,7 @@ DeclarePyTableContainer(py::module &m, std::string pyclass_name = "")
         .def("GetRank", &hops::MHO_PyTableContainer<XTableType>::GetRank)
         .def("GetClassName", &hops::MHO_PyTableContainer<XTableType>::GetClassName)
         .def("GetDimension", &hops::MHO_PyTableContainer<XTableType>::GetDimension)
+        .def("GetTags", &hops::MHO_PyTableContainer<XTableType>::GetTags)
         .def("GetNumpyArray", &hops::MHO_PyTableContainer<XTableType>::GetNumpyArray)
         .def("GetCoordinateAxis", &hops::MHO_PyTableContainer<XTableType>::GetCoordinateAxis)
         .def("SetCoordinateLabel", &hops::MHO_PyTableContainer<XTableType>::SetCoordinateLabel);
