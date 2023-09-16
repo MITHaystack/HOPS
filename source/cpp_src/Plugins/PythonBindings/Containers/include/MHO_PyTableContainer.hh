@@ -6,7 +6,7 @@
 *Class: MHO_PyTableContainer
 *Author: J. Barrett
 *Email: barrettj@mit.edu
-*Date:
+*Date: Fri Sep 15 10:03:38 PM EDT 2023
 *Description:
 */
 
@@ -21,6 +21,8 @@
 #include "MHO_NDArrayWrapper.hh"
 #include "MHO_TableContainer.hh"
 #include "MHO_ExtensibleElement.hh"
+
+#include "MHO_TemplateTypenameDeduction.hh"
 
 #include <pybind11/pybind11.h>
 #include <pybind11/numpy.h> //this is important to have for std::complex<T> support!
@@ -54,6 +56,11 @@ class MHO_PyTableContainer
         virtual ~MHO_PyTableContainer(){};
 
         std::size_t GetRank() const {return fTable->GetRank();}
+
+        std::string GetClassName() const
+        {
+            return MHO_ClassName< XTableType >();
+        }
 
         /**return the ND-array data block as a numpy array
         *this transfer is copy-free
@@ -141,6 +148,7 @@ DeclarePyTableContainer(py::module &m, std::string pyclass_name = "")
     py::class_< MHO_PyTableContainer<XTableType> >(m, pyclass_name.c_str() )
         //no __init__ def here, as this class is not meant to be constructable on the python side
         .def("GetRank", &hops::MHO_PyTableContainer<XTableType>::GetRank)
+        .def("GetClassName", &hops::MHO_PyTableContainer<XTableType>::GetClassName)
         .def("GetNumpyArray", &hops::MHO_PyTableContainer<XTableType>::GetNumpyArray)
         .def("GetCoordinateAxis", &hops::MHO_PyTableContainer<XTableType>::GetCoordinateAxis);
 }
