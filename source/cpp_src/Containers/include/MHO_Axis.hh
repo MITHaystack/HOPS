@@ -208,6 +208,10 @@ class MHO_Axis:
             }
         }
 
+        //access the underlying array data as a std::vector<XValueType>
+        //we have only exposed this for use in the python bindings
+        //perhaps we should make them a friend class and hide this?
+        // std::vector< XValueType >* GetRawVector(){return &(this->fData);}
 
         template<typename XStream> friend XStream& operator>>(XStream& s, MHO_Axis& aData)
         {

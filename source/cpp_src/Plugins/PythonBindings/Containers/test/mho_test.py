@@ -26,7 +26,10 @@ def test_inter(cstore_interface_obj, param_interface_obj):
     print("expecting an object with uuid: ", uuid_string)
     print("object with that uuid is present? ", cstore_interface_obj.IsObjectPresent(uuid_string) )
 
-    visib_obj = cstore_interface_obj.GetVisibilityObject(uuid_string);
+    visib_obj = cstore_interface_obj.GetVisibilityObject(uuid_string)
+
+    print("vis object class name = ", visib_obj.GetClassName() )
+
     vis_arr = visib_obj.GetNumpyArray() #this is already a numpy array
     print("vis array shape = ", vis_arr.shape)
     print("vis array strides = ", vis_arr.strides)
