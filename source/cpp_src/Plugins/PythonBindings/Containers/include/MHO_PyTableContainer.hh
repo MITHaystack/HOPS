@@ -95,7 +95,7 @@ class MHO_PyTableContainer
             }
             else
             {
-                msg_fatal("python_bindings", "axis index exceeds table rank." << eom );
+                msg_fatal("python_bindings", "axis index: "<< index << " exceeds table rank of: "<< fRank << eom );
                 std::exit(1);
             }
             return ret_val;
@@ -111,7 +111,7 @@ class MHO_PyTableContainer
             }
             else
             {
-                msg_fatal("python_bindings", "axis index exceeds table rank." << eom );
+                msg_fatal("python_bindings", "axis index: "<< axis_index << " exceeds table rank of: "<< fRank << eom );
                 std::exit(1);
             }
         }
@@ -119,7 +119,7 @@ class MHO_PyTableContainer
     protected:
 
 
-        //helper class to act as a python-list filling functor
+        //helper class to act as a python-list filling functor (to return copies)
         class PyListFiller
         {
             public:
@@ -171,7 +171,7 @@ class MHO_PyTableContainer
                     else
                     {
                         //out of bounds error
-                        msg_fatal("python_bindings", "error axis label index out of bounds: " << fIndex << " > " << n <<"."<< eom );
+                        msg_fatal("python_bindings", "error axis coordinate index out of bounds: " << fIndex << " > " << n << "."<< eom );
                         std::exit(1);
                     }
                 }
@@ -190,7 +190,6 @@ class MHO_PyTableContainer
         XTableType* fTable;
         unsigned int fRank;
         py::str fDummy;
-
 
 };
 
