@@ -57,6 +57,8 @@ class MHO_PyTableContainer
 
         std::size_t GetRank() const {return fTable->GetRank();}
 
+        std::size_t GetDimension( std::size_t index ) const {return fTable->GetDimension(index); }
+
         std::string GetClassName() const
         {
             return MHO_ClassName< XTableType >();
@@ -93,9 +95,25 @@ class MHO_PyTableContainer
             }
             else
             {
-                msg_error("python_bindings", "axis index out of bounds." << eom );
+                msg_fatal("python_bindings", "axis index exceeds table rank." << eom );
+                std::exit(1);
             }
             return ret_val;
+        }
+
+        //super crude way to modify the coordinate
+        void SetCoordinateLabel(std::size_t axis_index, std::size_t label_index, py::object label)
+        {
+            if(axis_index < fRank)
+            {
+                PyAxisLabelModifier modifier(label_index, &label);
+                apply_at< typename XTableType::axis_pack_tuple_type, PyAxisLabelModifier >( *fTable, axis_index, modifier);
+            }
+            else
+            {
+                msg_fatal("python_bindings", "axis index exceeds table rank." << eom );
+                std::exit(1);
+            }
         }
 
     protected:
@@ -123,6 +141,48 @@ class MHO_PyTableContainer
                 py::list* fList;
         };
 
+        //helper class that allows us to set the value of an axis label from python
+        class PyAxisLabelModifier
+        {
+            public:
+
+                //constructor accepts an coordinate index and a python object
+                //and will attempt to case the object to the underyling axis-label type
+                //and assign it at the location specified by the index
+                PyAxisLabelModifier(std::size_t index, py::object* label_object):
+                    fIndex(index),
+                    fObject(label_object)
+                {};
+
+                ~PyAxisLabelModifier(){};
+
+                template< typename XAxisType >
+                void operator()(XAxisType& axis)
+                {
+                    typename XAxisType::value_type label_value;
+                    label_value = fObject->cast< typename XAxisType::value_type >();
+
+                    //expect to get some sort of MHO_Axis
+                    size_t n = axis.GetSize();
+                    if(fIndex < n)
+                    {
+                        axis(fIndex) = label_value;
+                    }
+                    else
+                    {
+                        //out of bounds error
+                        msg_fatal("python_bindings", "error axis label index out of bounds: " << fIndex << " > " << n <<"."<< eom );
+                        std::exit(1);
+                    }
+                }
+
+            private:
+                std::size_t fIndex;
+                py::object* fObject;
+
+        };
+
+
 
     private:
 
@@ -149,8 +209,10 @@ DeclarePyTableContainer(py::module &m, std::string pyclass_name = "")
         //no __init__ def here, as this class is not meant to be constructable on the python side
         .def("GetRank", &hops::MHO_PyTableContainer<XTableType>::GetRank)
         .def("GetClassName", &hops::MHO_PyTableContainer<XTableType>::GetClassName)
+        .def("GetDimension", &hops::MHO_PyTableContainer<XTableType>::GetDimension)
         .def("GetNumpyArray", &hops::MHO_PyTableContainer<XTableType>::GetNumpyArray)
-        .def("GetCoordinateAxis", &hops::MHO_PyTableContainer<XTableType>::GetCoordinateAxis);
+        .def("GetCoordinateAxis", &hops::MHO_PyTableContainer<XTableType>::GetCoordinateAxis)
+        .def("SetCoordinateLabel", &hops::MHO_PyTableContainer<XTableType>::SetCoordinateLabel);
 }
 
 

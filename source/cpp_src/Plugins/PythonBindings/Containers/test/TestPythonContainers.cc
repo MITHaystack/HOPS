@@ -37,8 +37,8 @@ int main()
     visibility_type* visibilities = new visibility_type(dim);
 
     auto ax0 = &( std::get<0>(*visibilities) );
-    (*ax0)[0] = "LL";
-    (*ax0)[1] = "RR";
+    (*ax0)[0] = "XX";
+    (*ax0)[1] = "YY";
 
     auto ax1 = &( std::get<1>(*visibilities) );
     (*ax1)[0] = 1;
@@ -126,29 +126,8 @@ int main()
         }
     }
 
-
-    // //try the same with a matrix object
-    // std::size_t mxdims[2] = {2,2};
-    // MHO_NDArrayWrapper<double, 2>* mx = new MHO_NDArrayWrapper<double, 2>(mxdims);
-    // (*mx)(0,0) = 1;
-    // (*mx)(0,1) = 2;
-    // (*mx)(1,0) = 3;
-    // (*mx)(1,1) = 4;
-    //
-    // auto strides = mx->GetStrides();
-    // std::cout<<"arr strides for mx = "<<strides[0]<<", "<<strides[1]<<std::endl;
-    //
-    // auto bstrides = mx->GetByteStrides();
-    // std::cout<<"byte strides for mx = "<<bstrides[0]<<", "<<bstrides[1]<<std::endl;
-    //
-    // //print out the python values
-    // mho_test.attr("print_mx")(*mx);
-    //
-    // //try to modify the mx values using python
-    // mho_test.attr("mod_mx")(*mx);
-    //
-    // std::cout<<(*mx)(0,0) <<", "<<(*mx)(0,1)<<", "<<(*mx)(1,0)<<", "<<(*mx)(1,1)<<std::endl;
-
+    //check to see if the coordinate axis labels were appropriately modified
+    std::cout<<"pol axis labels from C++ side = ( " << (*ax0)[0] << ", "<< (*ax0)[1] <<" ) "<< std::endl;
 
     return 0;
 }
