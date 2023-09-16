@@ -7,7 +7,7 @@
 *Author: J. Barrett
 *Email: barrettj@mit.edu
 *Date:
-*Description: Converts a given ndarray-based container into a JSON representation 
+*Description: Converts a given ndarray-based container into a JSON representation
 * this isn't really intended for data transport/storage, but only as
 * conversion to an ascii-like representation for human inspection/debugging
 */
@@ -60,12 +60,12 @@ using hops::eJSONAll;
 inline void FillJSONFromCommonMap(const MHO_CommonLabelMap* map, mho_json& obj_tags)
 {
     bool ok;
-    std::vector< std::string > keys; 
+    std::vector< std::string > keys;
     //only do the types in the "MHO_CommonLabelMap"
     keys = map->DumpKeys<char>();
     for(auto k = keys.begin(); k != keys.end(); k++)
     {
-        char c; ok = map->Retrieve(*k, c); 
+        char c; ok = map->Retrieve(*k, c);
         if(ok){obj_tags[*k] = std::string(&c,1);}
     }
     keys = map->DumpKeys<bool>();
@@ -125,7 +125,7 @@ class MHO_JSONConverter
 
 
 
-template< typename XContainerType > 
+template< typename XContainerType >
 class MHO_ContainerJSONConverter: public MHO_JSONConverter
 {
     public:
@@ -150,13 +150,13 @@ class MHO_ContainerJSONConverter: public MHO_JSONConverter
         virtual void ConstructJSONRepresentation()
         {
             if(fContainer != nullptr)
-            { 
+            {
                 ConstructJSON(fContainer);
-            } 
+            }
         }
 
     private:
-        
+
         XContainerType* fContainer;
 
     protected:
@@ -173,7 +173,7 @@ class MHO_ContainerJSONConverter: public MHO_JSONConverter
         };
 
         //use SFINAE to generate specialization for the rest of the container types
-        //that we actually care about 
+        //that we actually care about
 
         //scalar specialization
         template< typename XCheckType = XContainerType >
@@ -210,7 +210,7 @@ class MHO_ContainerJSONConverter: public MHO_JSONConverter
         //vector specialization (but not an axis!)
         template< typename XCheckType = XContainerType >
         typename std::enable_if<
-                 (std::is_base_of<MHO_VectorContainerBase, XCheckType>::value && 
+                 (std::is_base_of<MHO_VectorContainerBase, XCheckType>::value &&
                  !std::is_base_of<MHO_AxisBase, XCheckType>::value), void >::type
         ConstructJSON(const XContainerType* obj)
         {
@@ -329,8 +329,8 @@ class MHO_ContainerJSONConverter: public MHO_JSONConverter
             }
 
         };
-                
-                
+
+
         class AxisDumper
         {
             public:
@@ -340,9 +340,9 @@ class MHO_ContainerJSONConverter: public MHO_JSONConverter
                     fLOD(level)
                 {};
                 ~AxisDumper(){};
-        
+
                 void SetIndex(std::size_t idx){fIndex = idx;}
-        
+
                 template< typename XAxisType >
                 void operator()(const XAxisType& axis)
                 {
@@ -364,7 +364,7 @@ class MHO_ContainerJSONConverter: public MHO_JSONConverter
                         FillJSONFromCommonMap(&axis, jtags);
                         j["tags"] = jtags;
                     }
-        
+
                     //data goes out flat-packed into 1-d array
                     mho_json data;
                     for(auto it = axis.cbegin(); it != axis.cend(); it++)
@@ -372,12 +372,12 @@ class MHO_ContainerJSONConverter: public MHO_JSONConverter
                         data.push_back(*it);
                     }
                     j["data"] = data;
-        
+
                     if(fLOD >= eJSONWithLabels)
                     {
                         //dump the axis labels too
                         mho_json jilabels;
-                        MHO_Interval<std::size_t> all(0, axis.GetSize() ); 
+                        MHO_Interval<std::size_t> all(0, axis.GetSize() );
                         std::vector< const MHO_IntervalLabel* > labels = axis.GetIntervalsWhichIntersect(&all);
                         for(auto it = labels.begin(); it != labels.end(); it++)
                         {
@@ -406,7 +406,7 @@ class MHO_ContainerJSONConverter: public MHO_JSONConverter
 
 
 
-template<> 
+template<>
 class MHO_ContainerJSONConverter<MHO_ObjectTags>: public MHO_JSONConverter
 {
     public:
@@ -430,7 +430,7 @@ class MHO_ContainerJSONConverter<MHO_ObjectTags>: public MHO_JSONConverter
 
         virtual void ConstructJSONRepresentation()
         {
-            if(fContainer != nullptr){ ConstructJSON(fContainer);} 
+            if(fContainer != nullptr){ ConstructJSON(fContainer);}
         }
 
     private:

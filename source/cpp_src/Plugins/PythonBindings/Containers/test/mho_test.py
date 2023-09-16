@@ -52,6 +52,14 @@ def test_inter(cstore_interface_obj, param_interface_obj):
     for x in axis3:
         print(x)
 
+    print("now we are going to modify the labels of the first axis.")
+    print("we have to do this one label at a time via the visib_obj with the current interface")
+
+    #set the polarization labels to some nonsense
+    visib_obj.SetCoordinateLabel(0, 0, "RR")
+    visib_obj.SetCoordinateLabel(0, 1, "LR")
+
+
 
 def test_plot_visibilities(cstore_interface_obj, param_interface_obj):
 
