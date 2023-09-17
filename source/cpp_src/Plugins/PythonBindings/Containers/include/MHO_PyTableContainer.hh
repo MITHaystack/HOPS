@@ -28,8 +28,6 @@
 #include <pybind11/stl.h>
 namespace py = pybind11;
 
-// #include "MHO_PyAxisContainer.hh"
-
 namespace hops
 {
 
@@ -119,11 +117,42 @@ class MHO_PyTableContainer
         {
             py::dict tags;
             DumpValuesToPyDict<bool>(tags);
-            DumpValuesToPyDict<char>(tags);
+            //DumpValuesToPyDict<char>(tags); //don't pass char tags (should we eliminate these?)
             DumpValuesToPyDict<int>(tags);
             DumpValuesToPyDict<double>(tags);
             DumpValuesToPyDict<std::string>(tags);
             return tags;
+        }
+
+        void SetTag(std::string key, py::object value)
+        {
+            //try casting the py::object to the allowed type, and set the tag value 
+            //note: we do not allow char-type tags to be set from python
+            if(py::isinstance<py::bool_>(value))
+            {
+                bool val = value.cast<bool>();
+                fTable->Insert(key, val);
+            } 
+            else if(py::isinstance<py::int_>(value))
+            {
+                int val = value.cast< int >();
+                fTable->Insert(key, val);
+            } 
+            else if(py::isinstance<py::float_>(value))
+            {
+                double val = value.cast< double >();
+                fTable->Insert(key, val);
+            } 
+            else if(py::isinstance<py::str>(value))
+            {
+                std::string val = value.cast< std::string >();
+                fTable->Insert(key, val);
+            } 
+            else 
+            {
+                msg_error("python_bindings", "unable to set tag with key: "<< key <<" since object not castable to bool, int, float, or string "<< eom);
+            }
+
         }
 
     protected:
@@ -236,6 +265,7 @@ DeclarePyTableContainer(py::module &m, std::string pyclass_name = "")
         .def("GetClassName", &hops::MHO_PyTableContainer<XTableType>::GetClassName)
         .def("GetDimension", &hops::MHO_PyTableContainer<XTableType>::GetDimension)
         .def("GetTags", &hops::MHO_PyTableContainer<XTableType>::GetTags)
+        .def("SetTag", &hops::MHO_PyTableContainer<XTableType>::SetTag)
         .def("GetNumpyArray", &hops::MHO_PyTableContainer<XTableType>::GetNumpyArray)
         .def("GetCoordinateAxis", &hops::MHO_PyTableContainer<XTableType>::GetCoordinateAxis)
         .def("SetCoordinateLabel", &hops::MHO_PyTableContainer<XTableType>::SetCoordinateLabel);
