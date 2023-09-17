@@ -99,9 +99,10 @@ def test_plot_visibilities(cstore_interface_obj, param_interface_obj):
     print("tags = ", tags)
 
     #get the list of axis labels 
-    print("axis 1 interval labels: ")
-    chan_labels = visib_obj.GetCoordinateAxisIntervalLabels(1);
-    print(chan_labels);
+    for idx in [0,1,2,3]:
+        print("axis: ", idx, " interval labels: ")
+        ax_labels = visib_obj.GetCoordinateAxisIntervalLabels(idx);
+        print(ax_labels);
 
     pp = 0;
     ch = 0;
