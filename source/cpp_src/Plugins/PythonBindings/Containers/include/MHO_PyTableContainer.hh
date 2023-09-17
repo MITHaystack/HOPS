@@ -23,8 +23,6 @@
 #include "MHO_ExtensibleElement.hh"
 #include "MHO_TemplateTypenameDeduction.hh"
 
-#include "MHO_JSONHeaderWrapper.hh"
-
 #include <pybind11/pybind11.h>
 #include <pybind11/numpy.h> //this is important to have for std::complex<T> support!
 #include <pybind11/stl.h>
@@ -119,14 +117,13 @@ class MHO_PyTableContainer
 
         py::dict GetTags()
         {
-            mho_json tags;
-            DumpValuesToJSON<bool>(tags);
-            DumpValuesToJSON<char>(tags);
-            DumpValuesToJSON<int>(tags);
-            DumpValuesToJSON<double>(tags);
-            DumpValuesToJSON<std::string>(tags);
-            py::dict tags_as_dict = tags;
-            return tags_as_dict;
+            py::dict tags;
+            DumpValuesToPyDict<bool>(tags);
+            DumpValuesToPyDict<char>(tags);
+            DumpValuesToPyDict<int>(tags);
+            DumpValuesToPyDict<double>(tags);
+            DumpValuesToPyDict<std::string>(tags);
+            return tags;
         }
 
     protected:
@@ -196,7 +193,7 @@ class MHO_PyTableContainer
         };
 
         template< typename XDumpType > 
-        void DumpValuesToJSON(mho_json& dump)
+        void DumpValuesToPyDict(py::dict& dump)
         {
             std::vector< std::string > keys;
             auto map = dynamic_cast< MHO_SingleTypeMap< std::string , XDumpType >* >(fTable);
@@ -207,7 +204,7 @@ class MHO_PyTableContainer
                 {
                     XDumpType val;
                     map->Retrieve(*it, val);
-                    dump[*it] = val;
+                    dump[it->c_str()] = val;
                 }
             }
         }
