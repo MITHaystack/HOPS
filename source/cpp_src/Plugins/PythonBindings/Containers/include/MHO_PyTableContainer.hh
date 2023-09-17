@@ -37,6 +37,36 @@ namespace hops
 * However, no changes to the size/shape or axes of the array are supported.
 */
 
+
+template< typename XDumpType > 
+void DumpValuesToPyDict(MHO_SingleTypeMap< std::string , XDumpType >* map, py::dict& dump)
+{
+    std::vector< std::string > keys;
+    if(map != nullptr)
+    {
+        keys = map->DumpKeys();
+        for(auto it = keys.begin(); it != keys.end(); it++)
+        {
+            XDumpType val;
+            map->Retrieve(*it, val);
+            dump[it->c_str()] = val;
+        }
+    }
+}
+
+
+
+py::dict GetIntervalLabelTags(MHO_IntervalLabel* label)
+{
+    py::dict tags;
+    DumpValuesToPyDict<bool>(dynamic_cast< MHO_SingleTypeMap< std::string , bool >* >(label), tags);
+    DumpValuesToPyDict<char>(dynamic_cast< MHO_SingleTypeMap< std::string , char >* >(label), tags);
+    DumpValuesToPyDict<int>(dynamic_cast< MHO_SingleTypeMap< std::string , int >* >(label), tags);
+    DumpValuesToPyDict<double>(dynamic_cast< MHO_SingleTypeMap< std::string , double >* >(label), tags);
+    DumpValuesToPyDict<std::string>(dynamic_cast< MHO_SingleTypeMap< std::string , std::string >* >(label), tags);
+    return tags;
+}
+
 template< typename XTableType >
 class MHO_PyTableContainer
 {
@@ -112,25 +142,27 @@ class MHO_PyTableContainer
                 std::exit(1);
             }
         }
-
+    
         py::dict GetTags()
         {
-            py::dict tags;
-            DumpValuesToPyDict<bool>(tags);
-            //DumpValuesToPyDict<char>(tags); //don't pass char tags (should we eliminate these?)
-            DumpValuesToPyDict<int>(tags);
-            DumpValuesToPyDict<double>(tags);
-            DumpValuesToPyDict<std::string>(tags);
-            return tags;
+            return GetTableTags(fTable);
         }
+
+
+
 
         void SetTag(std::string key, py::object value)
         {
-            //try casting the py::object to the allowed type, and set the tag value 
-            //note: we do not allow char-type tags to be set from python
+            //try casting the py::object to the allowed types,
+            //and then set the tag value if able
             if(py::isinstance<py::bool_>(value))
             {
                 bool val = value.cast<bool>();
+                fTable->Insert(key, val);
+            } 
+            if(py::isinstance<char>(value))
+            {
+                bool val = value.cast<char>();
                 fTable->Insert(key, val);
             } 
             else if(py::isinstance<py::int_>(value))
@@ -150,12 +182,69 @@ class MHO_PyTableContainer
             } 
             else 
             {
-                msg_error("python_bindings", "unable to set tag with key: "<< key <<" since object not castable to bool, int, float, or string "<< eom);
+                msg_error("python_bindings", "unable to set tag with key: "<< key <<" since object not castable to bool, char, int, float, or string."<< eom);
             }
-
         }
 
+
+        py::list GetCoordinateAxisIntervalLabels(size_t index)
+        {
+            py::list ret_val;
+            if(index < fRank)
+            {
+                PyIntervalLabelListFiller filler(&ret_val);
+                apply_at< typename XTableType::axis_pack_tuple_type, PyIntervalLabelListFiller >( *fTable, index, filler);
+            }
+            else
+            {
+                msg_fatal("python_bindings", "axis index: "<< index << " exceeds table rank of: "<< fRank << eom );
+                std::exit(1);
+            }
+            return ret_val;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     protected:
+
+        py::dict GetTableTags(XTableType* table)
+        {
+            py::dict tags;
+            DumpValuesToPyDict<bool>(dynamic_cast< MHO_SingleTypeMap< std::string , bool >* >(table), tags);
+            DumpValuesToPyDict<char>(dynamic_cast< MHO_SingleTypeMap< std::string , char >* >(table), tags);
+            DumpValuesToPyDict<int>(dynamic_cast< MHO_SingleTypeMap< std::string , int >* >(table), tags);
+            DumpValuesToPyDict<double>(dynamic_cast< MHO_SingleTypeMap< std::string , double >* >(table), tags);
+            DumpValuesToPyDict<std::string>(dynamic_cast< MHO_SingleTypeMap< std::string , std::string >* >(table), tags);
+            return tags;
+        }
+
+
 
 
         //helper class to act as a python-list filling functor (to return copies)
@@ -176,6 +265,33 @@ class MHO_PyTableContainer
                     }
                 }
 
+            private:
+                py::list* fList;
+        };
+
+        
+        //helper class to act as a python-list filling functor (to return copies)
+        class PyIntervalLabelListFiller
+        {
+            public:
+                PyIntervalLabelListFiller(py::list* alist):fList(alist){};
+                ~PyIntervalLabelListFiller(){};
+        
+                template< typename XAxisType >
+                void operator()(XAxisType& axis)
+                {
+                    //expect to get some sort of MHO_Axis
+                    std::vector< MHO_IntervalLabel* > iLabels = axis.GetAllIntervalLabels();
+                    for(std::size_t i=0; i<iLabels.size(); i++)
+                    {
+                        std::size_t low = iLabels[i]->GetLowerBound();
+                        std::size_t up = iLabels[i]->GetUpperBound();
+                        py::dict iLabelDict = GetIntervalLabelTags( iLabels[i] );
+                        iLabelDict["lower_bound"] = low;
+                        iLabelDict["uppper_bound"] = up;
+                        fList->append(iLabelDict);
+                    }
+                }
             private:
                 py::list* fList;
         };
@@ -221,22 +337,25 @@ class MHO_PyTableContainer
 
         };
 
-        template< typename XDumpType > 
-        void DumpValuesToPyDict(py::dict& dump)
-        {
-            std::vector< std::string > keys;
-            auto map = dynamic_cast< MHO_SingleTypeMap< std::string , XDumpType >* >(fTable);
-            if(map != nullptr)
-            {
-                keys = map->DumpKeys();
-                for(auto it = keys.begin(); it != keys.end(); it++)
-                {
-                    XDumpType val;
-                    map->Retrieve(*it, val);
-                    dump[it->c_str()] = val;
-                }
-            }
-        }
+        // template< typename XDumpType > 
+        // void DumpValuesToPyDict(py::dict& dump)
+        // {
+        //     std::vector< std::string > keys;
+        //     auto map = dynamic_cast< MHO_SingleTypeMap< std::string , XDumpType >* >(fTable);
+        //     if(map != nullptr)
+        //     {
+        //         keys = map->DumpKeys();
+        //         for(auto it = keys.begin(); it != keys.end(); it++)
+        //         {
+        //             XDumpType val;
+        //             map->Retrieve(*it, val);
+        //             dump[it->c_str()] = val;
+        //         }
+        //     }
+        // }
+
+
+
 
 
     private:
@@ -268,7 +387,8 @@ DeclarePyTableContainer(py::module &m, std::string pyclass_name = "")
         .def("SetTag", &hops::MHO_PyTableContainer<XTableType>::SetTag)
         .def("GetNumpyArray", &hops::MHO_PyTableContainer<XTableType>::GetNumpyArray)
         .def("GetCoordinateAxis", &hops::MHO_PyTableContainer<XTableType>::GetCoordinateAxis)
-        .def("SetCoordinateLabel", &hops::MHO_PyTableContainer<XTableType>::SetCoordinateLabel);
+        .def("SetCoordinateLabel", &hops::MHO_PyTableContainer<XTableType>::SetCoordinateLabel)
+        .def("GetCoordinateAxisIntervalLabels", &hops::MHO_PyTableContainer<XTableType>:: GetCoordinateAxisIntervalLabels);
 }
 
 
