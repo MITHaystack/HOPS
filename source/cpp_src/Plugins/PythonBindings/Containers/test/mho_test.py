@@ -87,6 +87,18 @@ def test_plot_visibilities(cstore_interface_obj, param_interface_obj):
     tags = visib_obj.GetTags()
     print("tags = ", tags)
 
+    #now set a tag value 
+    visib_obj.SetTag("python_int_tag", 33)
+    visib_obj.SetTag("python_float_tag", 3.14159)
+    visib_obj.SetTag("python_string_tag", "a_new_string")
+    visib_obj.SetTag("python_bool_tag", True)
+
+    #and dump them again 
+    tags = visib_obj.GetTags()
+    print("tags = ", tags)
+
+
+
 
     pp = 0;
     ch = 0;

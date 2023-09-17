@@ -231,7 +231,7 @@ struct cm_size_calculator<std::string>
     const std::string* item;
     uint64_t get_item_size()
     {
-        //every string gets streamed with a 'size'
+        //every string get streamed with a 'size'
         uint64_t total_size = 0;
         total_size += sizeof(uint64_t);
         total_size += item->size();
