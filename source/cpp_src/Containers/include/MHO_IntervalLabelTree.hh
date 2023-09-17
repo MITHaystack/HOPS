@@ -36,6 +36,8 @@ class MHO_IntervalLabelTree: virtual public MHO_Serializable
 
         void ClearLabels();
 
+        std::vector< MHO_IntervalLabel* > GetAllIntervalLabels(){return fIntervals;};
+
         std::vector< MHO_IntervalLabel* > GetIntervalsWhichIntersect(const std::size_t& idx);
         std::vector< const MHO_IntervalLabel* > GetIntervalsWhichIntersect(const std::size_t& idx) const;
         std::vector< MHO_IntervalLabel* > GetIntervalsWhichIntersect(const MHO_Interval<std::size_t>* interval);

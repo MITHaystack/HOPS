@@ -92,13 +92,16 @@ def test_plot_visibilities(cstore_interface_obj, param_interface_obj):
     visib_obj.SetTag("python_float_tag", 3.14159)
     visib_obj.SetTag("python_string_tag", "a_new_string")
     visib_obj.SetTag("python_bool_tag", True)
+    visib_obj.SetTag("python_char_tag", r'a') #note the r prefix for raw encoding as a byte/char
 
     #and dump them again 
     tags = visib_obj.GetTags()
     print("tags = ", tags)
 
-
-
+    #get the list of axis labels 
+    print("axis 1 interval labels: ")
+    chan_labels = visib_obj.GetCoordinateAxisIntervalLabels(1);
+    print(chan_labels);
 
     pp = 0;
     ch = 0;
