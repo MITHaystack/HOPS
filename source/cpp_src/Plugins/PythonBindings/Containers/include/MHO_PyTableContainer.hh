@@ -337,26 +337,6 @@ class MHO_PyTableContainer
 
         };
 
-        // template< typename XDumpType > 
-        // void DumpValuesToPyDict(py::dict& dump)
-        // {
-        //     std::vector< std::string > keys;
-        //     auto map = dynamic_cast< MHO_SingleTypeMap< std::string , XDumpType >* >(fTable);
-        //     if(map != nullptr)
-        //     {
-        //         keys = map->DumpKeys();
-        //         for(auto it = keys.begin(); it != keys.end(); it++)
-        //         {
-        //             XDumpType val;
-        //             map->Retrieve(*it, val);
-        //             dump[it->c_str()] = val;
-        //         }
-        //     }
-        // }
-
-
-
-
 
     private:
 
