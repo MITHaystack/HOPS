@@ -1,6 +1,7 @@
 #list header files #############################################################
 set (PYOPERATOR_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_PyOperator.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_PyGenericOperator.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_PyUnaryTableOperator.hh
 )
 

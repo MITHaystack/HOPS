@@ -131,7 +131,7 @@ class MHO_PyTableContainer
                 bool val = value.cast<bool>();
                 fTable->Insert(key, val);
             } 
-            if(py::isinstance<char>(value))
+            else if(py::isinstance<char>(value))
             {
                 bool val = value.cast<char>();
                 fTable->Insert(key, val);
