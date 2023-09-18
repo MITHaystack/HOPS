@@ -1,0 +1,17 @@
+{
+    "name": "python_labelling",
+    "statement_type": "operator",
+    "operator_category" : "labelling",
+    "type": "compound",
+    "priority": 0.2,
+    "parameters":
+    {
+        "module_name": {"type": "string"},
+        "function_name": {"type": "string"}
+    },
+    "fields": 
+    [
+        "module_name", 
+        "function_name"
+    ]
+}

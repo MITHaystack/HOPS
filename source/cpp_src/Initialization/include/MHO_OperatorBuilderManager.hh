@@ -26,7 +26,7 @@ class MHO_OperatorBuilderManager
             fParameterStore(pstore)
         {
             fFormat = control_format;
-            CreateBuilders();
+            CreateDefaultBuilders();
         };
 
         virtual ~MHO_OperatorBuilderManager()
@@ -46,12 +46,46 @@ class MHO_OperatorBuilderManager
         void BuildOperatorCategory(const char* cat){std::string scat(cat); BuildOperatorCategory(scat);};
         void BuildOperatorCategory(const std::string& cat);
 
-
+        //void AddBuilderType(const std::string& builder_name, const mho_json& format)
         template<typename XBuilderType>
-        void AddBuilderType(const std::string& builder_name, const mho_json& format)
+        void AddBuilderType(const std::string& builder_name, const std::string& format_key)
+        {
+            auto format_it = fFormat.find(format_key);
+            if(format_it != fFormat.end() )
+            {
+                auto it = fNameToBuilderMap.find(builder_name);
+                if(it == fNameToBuilderMap.end() ) //not found, so make one
+                {
+                    auto builder = new XBuilderType(fOperatorToolbox, fContainerStore, fParameterStore);
+                    builder->SetFormat(fFormat[format_key]);
+                    
+                    //the builder's operator category comes from the format specification
+                    std::string category = "unknown"; //default's to unknown
+                    if(format_it->contains("operator_category"))
+                    {
+                        category = (*format_it)["operator_category"].get<std::string>(); 
+                    }
+                    fAllBuilders.push_back(builder);
+                    fNameToBuilderMap.emplace(builder_name, builder);
+                    fCategoryToBuilderMap.emplace(category, builder);
+                }
+            }
+            else 
+            {
+                msg_error("initialization", "cannot add builder for operator with format key: " << format_key << eom );
+            }
+        };
+
+
+
+
+    private:
+        
+        template<typename XBuilderType>
+        void AddBuilderTypeWithFormat(const std::string& builder_name, const mho_json& format)
         {
             auto it = fNameToBuilderMap.find(builder_name);
-            if( it == fNameToBuilderMap.end()) //not found, so make one
+            if(it == fNameToBuilderMap.end() ) //not found, so make one
             {
                 auto builder = new XBuilderType(fOperatorToolbox, fContainerStore, fParameterStore);
                 builder->SetFormat(format);
@@ -68,37 +102,8 @@ class MHO_OperatorBuilderManager
             }
         };
 
-    private:
-        
-        void CreateBuilders();
-        
-        // template<typename XBuilderType>
-        // void AddBuilderType(const char* builder_name, const mho_json& format)
-        // {
-        //     std::string bn(builder_name);
-        //     AddBuilderType<XBuilderType>(bn, format);
-        // };
-        // 
-        // template<typename XBuilderType>
-        // void AddBuilderType(const std::string& builder_name, const mho_json& format)
-        // {
-        //     auto it = fNameToBuilderMap.find(builder_name);
-        //     if( it == fNameToBuilderMap.end()) //not found, so make one
-        //     {
-        //         auto builder = new XBuilderType(fOperatorToolbox, fContainerStore, fParameterStore);
-        //         builder->SetFormat(format);
-        // 
-        //         //the builder's operator category comes from the format specification
-        //         std::string category = "unknown"; //default's to unknown
-        //         if(format.contains("operator_category"))
-        //         {
-        //             category = format["operator_category"].get<std::string>(); 
-        //         }
-        //         fAllBuilders.push_back(builder);
-        //         fNameToBuilderMap.emplace(builder_name, builder);
-        //         fCategoryToBuilderMap.emplace(category, builder);
-        //     }
-        // };
+
+        void CreateDefaultBuilders();
         
         //internal data
         mho_json fFormat; //control file statement formats

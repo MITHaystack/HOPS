@@ -2,11 +2,13 @@
 set (PYOPERATOR_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_PyOperator.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_PyGenericOperator.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_PythonOperatorBuilder.hh
     # ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_PyUnaryTableOperator.hh
 )
 
 set( PYOPERATOR_SOURCEFILES
     #${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_PyGenericOperator.cc -- TODO fix linking for this file
+    # ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_PythonOperatorBuilder.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_PyOperatorsModuleDefinition.cc
 )
 

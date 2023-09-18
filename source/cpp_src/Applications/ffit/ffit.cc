@@ -19,6 +19,11 @@
 #include "MHO_ParameterConfigurator.hh"
 #include "MHO_ParameterManager.hh"
 
+
+#ifdef USE_PYBIND11
+#include "MHO_PythonOperatorBuilder.hh"
+#endif
+
 int main(int argc, char** argv)
 {
     //TODO allow messaging keys to be set via command line arguments
@@ -105,6 +110,19 @@ int main(int argc, char** argv)
 
     //DEBUG
     //conStore.DumpShortNamesToIds();
+    #pragma message("TODO FIXME -- formalize the manner in which we identify data container objects via UUID")
+    //temporarily put the object uuid's in the parameter store so we can look it up on the python side
+    std::string vis_uuid = vis_data->GetObjectUUID().as_string();
+    std::string wt_uuid = wt_data->GetObjectUUID().as_string();
+    std::string ref_uuid = ref_data->GetObjectUUID().as_string();
+    std::string rem_uuid = rem_data->GetObjectUUID().as_string();
+
+    paramStore.Set("/uuid/visibilities", vis_uuid);
+    paramStore.Set("/uuid/weights", wt_uuid);
+    paramStore.Set("/uuid/ref_station", ref_uuid);
+    paramStore.Set("/uuid/rem_station", rem_uuid);
+
+    
 
 
     ////////////////////////////////////////////////////////////////////////////
@@ -138,6 +156,14 @@ int main(int argc, char** argv)
     (*(control_statements.begin()))["statements"].push_back(data_select_format);
 
     MHO_OperatorBuilderManager build_manager(&opToolbox, &conStore, &paramStore, control_format);
+
+    #ifdef USE_PYBIND11
+    py::scoped_interpreter guard{}; // start the interpreter and keep it alive, need this or we segfault
+    #pragma message("TODO FIXME -- formalize the means by which plugin dependent operator builders are added")
+    build_manager.AddBuilderType<MHO_PythonOperatorBuilder>("python_labelling", "python_labelling"); 
+    #endif
+
+
     build_manager.SetControlStatements(&control_statements);
 
     build_manager.BuildOperatorCategory("default");
@@ -180,7 +206,7 @@ int main(int argc, char** argv)
 
     msg_debug("main", "python plot generation enabled." << eom );
     //test stuff
-    py::scoped_interpreter guard{}; // start the interpreter and keep it alive, need this or we segfault
+
     py::dict plot_obj = plot_dict;
 
     //load our interface module
