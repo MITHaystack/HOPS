@@ -13,37 +13,68 @@ namespace hops
 {
 
 void
-MHO_OperatorBuilderManager::CreateBuilders()
+MHO_OperatorBuilderManager::CreateDefaultBuilders()
 {
 
+
     //we have a very limited number of operators enabled currently
-    AddBuilderType<MHO_ChannelLabellerBuilder>("chan_ids", fFormat["chan_ids"]);
+    AddBuilderType<MHO_ChannelLabellerBuilder>("chan_ids", "chan_ids");
     
     //TODO FIXME -- do we need a different labels, should these be consolidated?
     
     //manual per-channel pc phase corrections
-    AddBuilderType<MHO_ManualChannelPhaseCorrectionBuilder>("pc_phases_x", fFormat["pc_phases_x"]); 
-    AddBuilderType<MHO_ManualChannelPhaseCorrectionBuilder>("pc_phases_y", fFormat["pc_phases_y"]);
-    AddBuilderType<MHO_ManualChannelPhaseCorrectionBuilder>("pc_phases_r", fFormat["pc_phases_r"]);
-    AddBuilderType<MHO_ManualChannelPhaseCorrectionBuilder>("pc_phases_l", fFormat["pc_phases_l"]);
+    AddBuilderType<MHO_ManualChannelPhaseCorrectionBuilder>("pc_phases_x", "pc_phases_x"); 
+    AddBuilderType<MHO_ManualChannelPhaseCorrectionBuilder>("pc_phases_y", "pc_phases_y");
+    AddBuilderType<MHO_ManualChannelPhaseCorrectionBuilder>("pc_phases_r", "pc_phases_r");
+    AddBuilderType<MHO_ManualChannelPhaseCorrectionBuilder>("pc_phases_l", "pc_phases_l");
     
     //manual per-channel pc delay corrections
-    AddBuilderType<MHO_ManualChannelDelayCorrectionBuilder>("delay_offs_x", fFormat["delay_offs_x"]); 
-    AddBuilderType<MHO_ManualChannelDelayCorrectionBuilder>("delay_offs_y", fFormat["delay_offs_y"]);
-    AddBuilderType<MHO_ManualChannelDelayCorrectionBuilder>("delay_offs_r", fFormat["delay_offs_r"]);
-    AddBuilderType<MHO_ManualChannelDelayCorrectionBuilder>("delay_offs_l", fFormat["delay_offs_l"]);
+    AddBuilderType<MHO_ManualChannelDelayCorrectionBuilder>("delay_offs_x", "delay_offs_x"); 
+    AddBuilderType<MHO_ManualChannelDelayCorrectionBuilder>("delay_offs_y", "delay_offs_y");
+    AddBuilderType<MHO_ManualChannelDelayCorrectionBuilder>("delay_offs_r", "delay_offs_r");
+    AddBuilderType<MHO_ManualChannelDelayCorrectionBuilder>("delay_offs_l", "delay_offs_l");
     
     //manual per-pol pc phase corrections
-    AddBuilderType<MHO_ManualPolPhaseCorrectionBuilder>("pc_phase_offset_x", fFormat["pc_phase_offset_x"]); 
-    AddBuilderType<MHO_ManualPolPhaseCorrectionBuilder>("pc_phase_offset_y", fFormat["pc_phase_offset_y"]);
-    AddBuilderType<MHO_ManualPolPhaseCorrectionBuilder>("pc_phase_offset_r", fFormat["pc_phase_offset_r"]);
-    AddBuilderType<MHO_ManualPolPhaseCorrectionBuilder>("pc_phase_offset_l", fFormat["pc_phase_offset_l"]);
+    AddBuilderType<MHO_ManualPolPhaseCorrectionBuilder>("pc_phase_offset_x", "pc_phase_offset_x"); 
+    AddBuilderType<MHO_ManualPolPhaseCorrectionBuilder>("pc_phase_offset_y", "pc_phase_offset_y");
+    AddBuilderType<MHO_ManualPolPhaseCorrectionBuilder>("pc_phase_offset_r", "pc_phase_offset_r");
+    AddBuilderType<MHO_ManualPolPhaseCorrectionBuilder>("pc_phase_offset_l", "pc_phase_offset_l");
     
     //manual per-pol pc delay corrections
-    AddBuilderType<MHO_ManualPolDelayCorrectionBuilder>("pc_delay_x", fFormat["pc_delay_x"]); 
-    AddBuilderType<MHO_ManualPolDelayCorrectionBuilder>("pc_delay_y", fFormat["pc_delay_y"]);
-    AddBuilderType<MHO_ManualPolDelayCorrectionBuilder>("pc_delay_r", fFormat["pc_delay_r"]);
-    AddBuilderType<MHO_ManualPolDelayCorrectionBuilder>("pc_delay_l", fFormat["pc_delay_l"]);
+    AddBuilderType<MHO_ManualPolDelayCorrectionBuilder>("pc_delay_x", "pc_delay_x"); 
+    AddBuilderType<MHO_ManualPolDelayCorrectionBuilder>("pc_delay_y", "pc_delay_y");
+    AddBuilderType<MHO_ManualPolDelayCorrectionBuilder>("pc_delay_r", "pc_delay_r");
+    AddBuilderType<MHO_ManualPolDelayCorrectionBuilder>("pc_delay_l", "pc_delay_l");
+
+
+    // //we have a very limited number of operators enabled currently
+    // AddBuilderType<MHO_ChannelLabellerBuilder>("chan_ids", fFormat["chan_ids"]);
+    // 
+    // //TODO FIXME -- do we need a different labels, should these be consolidated?
+    // 
+    // //manual per-channel pc phase corrections
+    // AddBuilderType<MHO_ManualChannelPhaseCorrectionBuilder>("pc_phases_x", fFormat["pc_phases_x"]); 
+    // AddBuilderType<MHO_ManualChannelPhaseCorrectionBuilder>("pc_phases_y", fFormat["pc_phases_y"]);
+    // AddBuilderType<MHO_ManualChannelPhaseCorrectionBuilder>("pc_phases_r", fFormat["pc_phases_r"]);
+    // AddBuilderType<MHO_ManualChannelPhaseCorrectionBuilder>("pc_phases_l", fFormat["pc_phases_l"]);
+    // 
+    // //manual per-channel pc delay corrections
+    // AddBuilderType<MHO_ManualChannelDelayCorrectionBuilder>("delay_offs_x", fFormat["delay_offs_x"]); 
+    // AddBuilderType<MHO_ManualChannelDelayCorrectionBuilder>("delay_offs_y", fFormat["delay_offs_y"]);
+    // AddBuilderType<MHO_ManualChannelDelayCorrectionBuilder>("delay_offs_r", fFormat["delay_offs_r"]);
+    // AddBuilderType<MHO_ManualChannelDelayCorrectionBuilder>("delay_offs_l", fFormat["delay_offs_l"]);
+    // 
+    // //manual per-pol pc phase corrections
+    // AddBuilderType<MHO_ManualPolPhaseCorrectionBuilder>("pc_phase_offset_x", fFormat["pc_phase_offset_x"]); 
+    // AddBuilderType<MHO_ManualPolPhaseCorrectionBuilder>("pc_phase_offset_y", fFormat["pc_phase_offset_y"]);
+    // AddBuilderType<MHO_ManualPolPhaseCorrectionBuilder>("pc_phase_offset_r", fFormat["pc_phase_offset_r"]);
+    // AddBuilderType<MHO_ManualPolPhaseCorrectionBuilder>("pc_phase_offset_l", fFormat["pc_phase_offset_l"]);
+    // 
+    // //manual per-pol pc delay corrections
+    // AddBuilderType<MHO_ManualPolDelayCorrectionBuilder>("pc_delay_x", fFormat["pc_delay_x"]); 
+    // AddBuilderType<MHO_ManualPolDelayCorrectionBuilder>("pc_delay_y", fFormat["pc_delay_y"]);
+    // AddBuilderType<MHO_ManualPolDelayCorrectionBuilder>("pc_delay_r", fFormat["pc_delay_r"]);
+    // AddBuilderType<MHO_ManualPolDelayCorrectionBuilder>("pc_delay_l", fFormat["pc_delay_l"]);
 
     //the below additions are some operators which have to be applied but are not
     //always specified via control file (data selection and default channel labels)
@@ -52,13 +83,13 @@ MHO_OperatorBuilderManager::CreateBuilders()
     mho_json special;
     special["operator_category"] = "selection";
     special["priority"] = 1.1;
-    AddBuilderType<MHO_DataSelectionBuilder>("coarse_selection", special);
+    AddBuilderTypeWithFormat<MHO_DataSelectionBuilder>("coarse_selection", special);
 
     //this one is also special (default channel labeling behavior)
     mho_json special2;
     special2["operator_category"] = "default";
     special2["priority"] = 0.1;
-    AddBuilderType<MHO_ChannelLabellerBuilder>("default_chan_ids", special2);
+    AddBuilderTypeWithFormat<MHO_ChannelLabellerBuilder>("default_chan_ids", special2);
 }
 
 
