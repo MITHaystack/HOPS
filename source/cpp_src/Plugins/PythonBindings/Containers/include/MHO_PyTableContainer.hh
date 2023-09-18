@@ -28,6 +28,8 @@
 #include <pybind11/stl.h>
 namespace py = pybind11;
 
+#include "MHO_PyAxisHelpers.hh"
+
 namespace hops
 {
 
@@ -37,35 +39,6 @@ namespace hops
 * However, no changes to the size/shape or axes of the array are supported.
 */
 
-
-template< typename XDumpType > 
-void DumpValuesToPyDict(MHO_SingleTypeMap< std::string , XDumpType >* map, py::dict& dump)
-{
-    std::vector< std::string > keys;
-    if(map != nullptr)
-    {
-        keys = map->DumpKeys();
-        for(auto it = keys.begin(); it != keys.end(); it++)
-        {
-            XDumpType val;
-            map->Retrieve(*it, val);
-            dump[it->c_str()] = val;
-        }
-    }
-}
-
-
-
-py::dict GetIntervalLabelTags(MHO_IntervalLabel* label)
-{
-    py::dict tags;
-    DumpValuesToPyDict<bool>(dynamic_cast< MHO_SingleTypeMap< std::string , bool >* >(label), tags);
-    DumpValuesToPyDict<char>(dynamic_cast< MHO_SingleTypeMap< std::string , char >* >(label), tags);
-    DumpValuesToPyDict<int>(dynamic_cast< MHO_SingleTypeMap< std::string , int >* >(label), tags);
-    DumpValuesToPyDict<double>(dynamic_cast< MHO_SingleTypeMap< std::string , double >* >(label), tags);
-    DumpValuesToPyDict<std::string>(dynamic_cast< MHO_SingleTypeMap< std::string , std::string >* >(label), tags);
-    return tags;
-}
 
 template< typename XTableType >
 class MHO_PyTableContainer
@@ -145,10 +118,8 @@ class MHO_PyTableContainer
     
         py::dict GetTags()
         {
-            return GetTableTags(fTable);
+            return GetTableTags< XTableType >(fTable);
         }
-
-
 
 
         void SetTag(std::string key, py::object value)
@@ -202,141 +173,6 @@ class MHO_PyTableContainer
             }
             return ret_val;
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    protected:
-
-        py::dict GetTableTags(XTableType* table)
-        {
-            py::dict tags;
-            DumpValuesToPyDict<bool>(dynamic_cast< MHO_SingleTypeMap< std::string , bool >* >(table), tags);
-            DumpValuesToPyDict<char>(dynamic_cast< MHO_SingleTypeMap< std::string , char >* >(table), tags);
-            DumpValuesToPyDict<int>(dynamic_cast< MHO_SingleTypeMap< std::string , int >* >(table), tags);
-            DumpValuesToPyDict<double>(dynamic_cast< MHO_SingleTypeMap< std::string , double >* >(table), tags);
-            DumpValuesToPyDict<std::string>(dynamic_cast< MHO_SingleTypeMap< std::string , std::string >* >(table), tags);
-            return tags;
-        }
-
-
-
-
-        //helper class to act as a python-list filling functor (to return copies)
-        class PyListFiller
-        {
-            public:
-                PyListFiller(py::list* alist):fList(alist){};
-                ~PyListFiller(){};
-
-                template< typename XAxisType >
-                void operator()(const XAxisType& axis)
-                {
-                    //expect to get some sort of MHO_Axis
-                    size_t n = axis.GetSize();
-                    for(size_t i=0; i<axis.GetSize(); i++)
-                    {
-                        fList->append(axis[i]);
-                    }
-                }
-
-            private:
-                py::list* fList;
-        };
-
-        
-        //helper class to act as a python-list filling functor (to return copies)
-        class PyIntervalLabelListFiller
-        {
-            public:
-                PyIntervalLabelListFiller(py::list* alist):fList(alist){};
-                ~PyIntervalLabelListFiller(){};
-        
-                template< typename XAxisType >
-                void operator()(XAxisType& axis)
-                {
-                    //expect to get some sort of MHO_Axis
-                    std::vector< MHO_IntervalLabel* > iLabels = axis.GetAllIntervalLabels();
-                    for(std::size_t i=0; i<iLabels.size(); i++)
-                    {
-                        std::size_t low = iLabels[i]->GetLowerBound();
-                        std::size_t up = iLabels[i]->GetUpperBound();
-                        py::dict iLabelDict = GetIntervalLabelTags( iLabels[i] );
-                        iLabelDict["lower_bound"] = low;
-                        iLabelDict["uppper_bound"] = up;
-                        fList->append(iLabelDict);
-                    }
-                }
-            private:
-                py::list* fList;
-        };
-
-        //helper class that allows us to set the value of an axis label from python
-        class PyAxisLabelModifier
-        {
-            public:
-
-                //constructor accepts an coordinate index and a python object
-                //and will attempt to case the object to the underyling axis-label type
-                //and assign it at the location specified by the index
-                PyAxisLabelModifier(std::size_t index, py::object* label_object):
-                    fIndex(index),
-                    fObject(label_object)
-                {};
-
-                ~PyAxisLabelModifier(){};
-
-                template< typename XAxisType >
-                void operator()(XAxisType& axis)
-                {
-                    typename XAxisType::value_type label_value;
-                    label_value = fObject->cast< typename XAxisType::value_type >();
-
-                    //expect to get some sort of MHO_Axis
-                    size_t n = axis.GetSize();
-                    if(fIndex < n)
-                    {
-                        axis(fIndex) = label_value;
-                    }
-                    else
-                    {
-                        //out of bounds error
-                        msg_fatal("python_bindings", "error axis coordinate index out of bounds: " << fIndex << " > " << n << "."<< eom );
-                        std::exit(1);
-                    }
-                }
-
-            private:
-                std::size_t fIndex;
-                py::object* fObject;
-
-        };
-
 
     private:
 
