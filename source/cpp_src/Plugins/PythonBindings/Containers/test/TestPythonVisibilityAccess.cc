@@ -21,15 +21,9 @@ namespace py = pybind11;
 
 #include "MHO_ParameterStore.hh"
 #include "MHO_PyParameterStoreInterface.hh"
-
-
 #include "MHO_ElementTypeCaster.hh"
 
-
 using namespace hops;
-
-
-
 
 void configure_data_library(MHO_ContainerStore* store)
 {
