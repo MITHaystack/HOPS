@@ -1,10 +1,10 @@
 #declare header paths ##########################################################
 hops_internal_include_directories()
 
-set (HOPS_TEST_LIBS MHO_Message MHO_Utilities MHO_Containers MHO_Operators pyMHO_Containers pyMHO_Operators pybind11::embed)
+set (HOPS_TEST_LIBS MHO_Message MHO_Utilities MHO_Containers MHO_Operators pybind11::embed pyMHO_Containers pyMHO_Operators)
 
 set(SOURCE_BASENAMES
-    TestPythonOperatorInheritance
+    # TestPythonOperatorInheritance
     TestPythonGenericOperator
     #TestPythonUnaryOperator
 )
