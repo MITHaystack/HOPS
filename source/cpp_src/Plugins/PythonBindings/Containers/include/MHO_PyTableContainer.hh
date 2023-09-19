@@ -301,7 +301,6 @@ class MHO_PyTableContainer
         MHO_ExtensibleElement* fElement;
         XTableType* fTable;
         unsigned int fRank;
-        //py::str fDummy;
         std::string fDummy;
 };
 
