@@ -77,22 +77,25 @@ class MHO_PyGenericOperator: public MHO_Operator
                 {
                     //the internal python interpreter has not been started, bail out 
                     msg_error("python_bindings", "python interpreter not running/initialized, " <<
-                    "cannot call python subroutine (module, function) = (" 
-                    << fModuleName<< "," << fFunctionName << ")" << eom);
+                    "cannot call python subroutine (" 
+                    << fModuleName<< "," << fFunctionName << ")." << eom);
                     return success;
                 }
 
+                //calling user code, so use try-catch in case there are errors
                 try
                 {
-                    //assume the python interpreter is already running (should we use try/catch?)
                     auto mod = py::module::import(fModuleName.c_str());
                     mod.attr(fFunctionName.c_str())(*fContainerInterface, *fParameterInterface);
                     success = true;
                 }
-                catch(py::error_already_set &e)
+                catch(py::error_already_set &excep)
                 {
                     success = false;
-                    msg_error("python_bindings", "unknown error when calling python subroutine (module, function) = (" << fModuleName<< "," << fFunctionName << ")" << eom);
+                    msg_error("python_bindings", "python exception when calling subroutine (" << fModuleName<< "," << fFunctionName << ")" << eom );
+                    msg_error("python_bindings", "python error message: "<< excep.what() << eom);
+                    msg_warn("python_bindings", "attempting to continue, but in-memory data may be in unknown state." << eom );
+                    PyErr_Clear(); //clear the error and attempt to continue
                 }
 
                 return success;
