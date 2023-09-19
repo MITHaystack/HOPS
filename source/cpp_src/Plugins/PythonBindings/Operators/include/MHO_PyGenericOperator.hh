@@ -71,11 +71,31 @@ class MHO_PyGenericOperator: public MHO_Operator
         virtual bool Execute() override
         {
             if(fInitialized)
-            {    
-                //assume the python interpreter is already running (should we use try/catch?)
-                auto mod = py::module::import(fModuleName.c_str());
-                mod.attr(fFunctionName.c_str())(*fContainerInterface, *fParameterInterface);
-                return true;
+            {
+                bool success = false;
+                if( Py_IsInitialized() == 0 )
+                {
+                    //the internal python interpreter has not been started, bail out 
+                    msg_error("python_bindings", "python interpreter not running/initialized, " <<
+                    "cannot call python subroutine (module, function) = (" 
+                    << fModuleName<< "," << fFunctionName << ")" << eom);
+                    return success;
+                }
+
+                try
+                {
+                    //assume the python interpreter is already running (should we use try/catch?)
+                    auto mod = py::module::import(fModuleName.c_str());
+                    mod.attr(fFunctionName.c_str())(*fContainerInterface, *fParameterInterface);
+                    success = true;
+                }
+                catch(py::error_already_set &e)
+                {
+                    success = false;
+                    msg_error("python_bindings", "unknown error when calling python subroutine (module, function) = (" << fModuleName<< "," << fFunctionName << ")" << eom);
+                }
+
+                return success;
             }
             return false;
         }
