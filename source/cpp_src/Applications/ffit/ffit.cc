@@ -161,6 +161,8 @@ int main(int argc, char** argv)
     py::scoped_interpreter guard{}; // start the interpreter and keep it alive, need this or we segfault
     #pragma message("TODO FIXME -- formalize the means by which plugin dependent operator builders are added")
     build_manager.AddBuilderType<MHO_PythonOperatorBuilder>("python_labelling", "python_labelling"); 
+    build_manager.AddBuilderType<MHO_PythonOperatorBuilder>("python_flagging", "python_flagging"); 
+    build_manager.AddBuilderType<MHO_PythonOperatorBuilder>("python_calibration", "python_calibration"); 
     #endif
 
 
