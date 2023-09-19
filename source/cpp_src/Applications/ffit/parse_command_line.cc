@@ -37,7 +37,7 @@ int parse_command_line(int argc, char** argv, MHO_ParameterStore* paramStore)
         {
             case ('h'):  // help
                 std::cout << usage << std::endl;
-                return 0;
+                std::exit(0);
             case ('d'):
                 directory = std::string(optarg);
                 break;
