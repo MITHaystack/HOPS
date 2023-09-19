@@ -34,7 +34,7 @@ void configure_data_library(MHO_ContainerStore* store)
 
     vis_store_data = store->GetObject<visibility_store_type>(0);
     wt_store_data = store->GetObject<weight_store_type>(0);
-
+    
     if(vis_store_data == nullptr)
     {
         msg_fatal("main", "failed to read visibility data from the .cor file." <<eom);
@@ -55,11 +55,19 @@ void configure_data_library(MHO_ContainerStore* store)
         msg_warn("main", "multiple visibility and/or weight types not yet supported" << eom);
     }
 
-    std::string vis_shortname = store->GetShortName(vis_store_data->GetObjectUUID() );
-    std::string wt_shortname = store->GetShortName(wt_store_data->GetObjectUUID() );
+    auto vis_store_uuid = vis_store_data->GetObjectUUID();
+    auto wt_store_uuid = wt_store_data->GetObjectUUID();
 
+    std::string vis_shortname = store->GetShortName(vis_store_uuid);
+    std::string wt_shortname = store->GetShortName(wt_store_uuid);
+    
     visibility_type* vis_data = new visibility_type();
     weight_type* wt_data = new weight_type();
+    
+    //assign the storage UUID's to their up-casted counter-parts 
+    //we do this so we can associate them to the file objects (w.r.t to program output, error messages, etc.)
+    vis_data->SetObjectUUID(vis_store_uuid);
+    wt_data->SetObjectUUID(wt_store_uuid);
 
     MHO_ElementTypeCaster<visibility_store_type, visibility_type> up_caster;
     up_caster.SetArgs(vis_store_data, vis_data);
@@ -71,7 +79,7 @@ void configure_data_library(MHO_ContainerStore* store)
     wt_up_caster.Initialize();
     wt_up_caster.Execute();
 
-    //remove the original objects
+    //remove the original objects to save space
     store->DeleteObject(vis_store_data);
     store->DeleteObject(wt_store_data);
 
@@ -85,9 +93,6 @@ void configure_data_library(MHO_ContainerStore* store)
     store->SetShortName(vis_data->GetObjectUUID(), vis_shortname);
     store->SetShortName(wt_data->GetObjectUUID(), wt_shortname);
 }
-
-
-
 
 
 int main(int argc, char** argv)

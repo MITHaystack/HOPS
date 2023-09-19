@@ -146,5 +146,8 @@ def test_plot_visibilities_bad(cstore_interface_obj, param_interface_obj):
     axis2 = visib_obj.GetCoordinateAxis(2);
     axis3 = visib_obj.GetCoordinateAxis(3);
 
+    #shoudl provoke an error 
+    vis_arr.resize( [1,2,3,4] )
+
     #should provoke an error
     vis_arr.reshape(3,4,5,6)
