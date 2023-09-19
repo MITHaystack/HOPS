@@ -1,0 +1,17 @@
+{
+    "name": "python_flagging",
+    "statement_type": "operator",
+    "operator_category" : "flagging",
+    "type": "compound",
+    "priority": 2.9,
+    "parameters":
+    {
+        "module_name": {"type": "string"},
+        "function_name": {"type": "string"}
+    },
+    "fields": 
+    [
+        "module_name", 
+        "function_name"
+    ]
+}
