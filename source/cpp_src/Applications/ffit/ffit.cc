@@ -203,7 +203,7 @@ int main(int argc, char** argv)
     fdumpFile.close();
 
     #ifdef USE_PYBIND11
-
+    //py::scoped_interpreter guard{}; // start the interpreter and keep it alive, need this or we segfault
     msg_debug("main", "python plot generation enabled." << eom );
     //test stuff
 
