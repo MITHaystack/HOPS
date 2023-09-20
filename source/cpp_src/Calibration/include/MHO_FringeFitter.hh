@@ -22,9 +22,12 @@
 //needed to read hops files and extract objects from scan dir
 #include "MHO_ScanDataStore.hh"
 
+//useful helper functions organized in these classes
+#include "MHO_BasicFringeInfo.hh"
+#include "MHO_BasicFringeUtilities.hh"
+
 namespace hops 
 {
-
 
 class MHO_FringeFitter 
 {
@@ -40,7 +43,7 @@ class MHO_FringeFitter
         mho_json GetVex(){return scanStore.GetRootFileData();} 
         MHO_ScanDataStore* GetScanDataStore(){return &fScanStore;}
 
-        //basic run scheme: configure, init, while(!IsFinished() ){ pre-run, run, post-run }
+        //basic run scheme: configure, init, then while(!IsFinished() ){ pre-run, run, post-run }
         virtual void Configure() = 0;
         virtual void Initialize() = 0;
         virtual void PreRun() = 0;
@@ -48,10 +51,9 @@ class MHO_FringeFitter
         virtual void PostRun() = 0;
         virtual bool IsFinished() = 0;
 
-    private:
-        /* data */
-        
-        //provide necessary objects for operation
+    protected:
+
+        //data objects
         MHO_ParameterStore fParameterStore; //stores various parameters using string keys
         MHO_ScanDataStore fScanStore; //provides access to data associated with this scan
         MHO_ContainerStore fContainerStore; //stores data containers for in-use data
