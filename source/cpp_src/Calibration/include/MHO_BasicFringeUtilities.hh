@@ -41,22 +41,13 @@ class MHO_BasicFringeUtilities
         
         static void configure_data_library(MHO_ContainerStore* store);
         
-        static void extract_clock_early(const mho_json& clk, double& clock_early, std::string& clock_early_units, double& clock_rate, std::string& clock_rate_units, std::string& origin, std::string& validity);
-        static void extract_clock_model(const mho_json& vexInfo, MHO_ParameterStore* paramStore);
-        static void extract_vex_info(const mho_json& vexInfo, MHO_ParameterStore* paramStore);
-        
         static void calculate_freq_space(MHO_ContainerStore* conStore, MHO_ParameterStore* paramStore);
         static void calculate_clock_model(MHO_ParameterStore* paramStore);
         static void precalculate_quantities(MHO_ContainerStore* conStore, MHO_ParameterStore* paramStore);
         
         static void calculate_fringe_info(MHO_ContainerStore* conStore, MHO_ParameterStore* paramStore, const mho_json& vexInfo);
         static void fill_plot_data(MHO_ParameterStore* paramStore, mho_json& plot_dict);
-        
-        
-        
-        
 
-        // 
         // static void init_and_exec_operators(MHO_OperatorBuilderManager& build_manager, MHO_OperatorToolbox* opToolbox, const char* category);
 
         static void basic_fringe_search(MHO_ContainerStore* conStore, MHO_ParameterStore* paramStore);
