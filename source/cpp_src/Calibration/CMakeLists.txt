@@ -16,6 +16,7 @@ set (CALIBRATION_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_BasicFringeInfo.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_VexInfoExtractor.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_InitialFringeInfo.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_FringePlotInfo.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_FringeFitter.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_BasicFringeUtilities.hh
 
@@ -38,6 +39,7 @@ set( CALIBRATION_SOURCEFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_BasicFringeInfo.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_VexInfoExtractor.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_InitialFringeInfo.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_FringePlotInfo.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_BasicFringeUtilities.cc
 )
 
