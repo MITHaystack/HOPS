@@ -9,7 +9,6 @@
 
 #include "MHO_Message.hh"
 #include "MHO_Clock.hh"
-#include "MHO_FringeRotation.hh"
 
 
 /*
@@ -18,7 +17,7 @@
 *Author:
 *Email:
 *Date: Tue Sep 19 04:11:24 PM EDT 2023
-*Description: collection of simple static helper functions 
+*Description: collection of very simple static helper functions 
 * used when computing fringe information/parameters
 */
 
