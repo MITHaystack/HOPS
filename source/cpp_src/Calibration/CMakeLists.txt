@@ -13,6 +13,7 @@ set (CALIBRATION_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_InterpolateFringePeak.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ComputePlotData.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_DelayModel.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_BasicFringeDataConfiguration.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_BasicFringeInfo.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_VexInfoExtractor.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_InitialFringeInfo.hh
@@ -36,6 +37,7 @@ set( CALIBRATION_SOURCEFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_InterpolateFringePeak.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ComputePlotData.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_DelayModel.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_BasicFringeDataConfiguration.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_BasicFringeInfo.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_VexInfoExtractor.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_InitialFringeInfo.cc
