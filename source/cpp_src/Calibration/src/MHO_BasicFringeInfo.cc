@@ -120,12 +120,13 @@ MHO_BasicFringeInfo::calculate_phase_delay_error(double sbavg, double snr, doubl
 std::string 
 MHO_BasicFringeInfo::calculate_qf()
 {
-    //dummy
+    //dummy impl
     #pragma message("TODO FIXME, implement quality code calculation.")
     return std::string("?");
 }
 
-void correct_phases_mbd_anchor_sbd(double ref_freq, double freq0, double frequency_spacing, double delta_mbd, double& totphase_deg, double& resphase_deg)
+void 
+MHO_BasicFringeInfo::correct_phases_mbd_anchor_sbd(double ref_freq, double freq0, double frequency_spacing, double delta_mbd, double& totphase_deg, double& resphase_deg)
 {
     //see fill_208.c
     //fixes up the phase when mbd_anchor = 'sbd' is chosen (instead of 'model')
