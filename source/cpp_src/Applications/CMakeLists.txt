@@ -60,9 +60,6 @@ if(HOPS3_USE_CXX)
     add_subdirectory(${CPPSOURCE}/Applications/fourfit)
 endif(HOPS3_USE_CXX)
 
-# #fringe fitter subdir
-# add_subdirectory(${CPPSOURCE}/Applications/ffit)
-
 if(HOPS_ENABLE_TEST)
    add_subdirectory(test)
 endif(HOPS_ENABLE_TEST)
