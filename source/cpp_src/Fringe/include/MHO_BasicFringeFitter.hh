@@ -30,6 +30,9 @@ class MHO_BasicFringeFitter: public MHO_FringeFitter
         virtual void PostRun() override;
         virtual void Finalize() override;
         virtual bool IsFinished() override;
+        
+        //TODO remove this hack in favor of 'plotting'/'output' visitors
+        mho_json GetPlotData(){return fPlotData;}
 
     protected:
 
@@ -37,8 +40,9 @@ class MHO_BasicFringeFitter: public MHO_FringeFitter
         mho_json fVexInfo;
         mho_json fControlFormat;
         
-        //hack 
+        //hacks
         mho_json fDataSelectFormat;
+        mho_json fPlotData;
 };
 
 }//end namespace

@@ -236,27 +236,8 @@ void MHO_BasicFringeFitter::Finalize()
     //PLOTTING/DEBUG
     ////////////////////////////////////////////////////////////////////////////
     //TODO may want to reorg the way this is done
-    mho_json plot_dict = MHO_FringePlotInfo::construct_plot_data(&fContainerStore, &fParameterStore, fVexInfo);
-    MHO_FringePlotInfo::fill_plot_data(&fParameterStore, plot_dict);
-
-    //open and dump to file
-    std::string output_file = fParameterStore.GetAs<std::string>("/cmdline/output_file");
-    std::ofstream fdumpFile(output_file.c_str(), std::ofstream::out);
-    fdumpFile << plot_dict;
-    fdumpFile.close();
-    // 
-    // #ifdef USE_PYBIND11
-    // //py::scoped_interpreter guard{}; // start the interpreter and keep it alive, need this or we segfault
-    // msg_debug("main", "python plot generation enabled." << eom );
-    // //test stuff
-    // 
-    // py::dict plot_obj = plot_dict;
-    // 
-    // //load our interface module
-    // auto vis_module = py::module::import("hops_visualization");
-    // auto plot_lib = vis_module.attr("fourfit_plot");
-    // //call a python function on the interface class instance
-    // plot_lib.attr("make_fourfit_plot")(plot_obj, "fplot.png");
+    fPlotData = MHO_FringePlotInfo::construct_plot_data(&fContainerStore, &fParameterStore, fVexInfo);
+    MHO_FringePlotInfo::fill_plot_data(&fParameterStore, fPlotData);
 }
 
 
