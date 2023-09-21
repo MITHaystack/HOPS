@@ -3,7 +3,9 @@ include_directories(${EXTERN_HLIBS}/json/include)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../include)
 
 set (HOPS_TEST_LIBS
-    vex2json
+    MHO_Message
+    MHO_Utilities
+    MHO_Vex2JSON
 )
 
 set(SOURCE_BASENAMES

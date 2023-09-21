@@ -36,7 +36,7 @@ set( FRINGE_SOURCEFILES
 hops_internal_include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 #list of c++ libraries
-set(FRINGE_LIBS MHO_Message MHO_Math MHO_Utilities MHO_Operators MHO_Containers MHO_Calibration)
+set(FRINGE_LIBS MHO_Message MHO_Math MHO_Utilities MHO_Operators MHO_Containers MHO_Calibration MHO_Initialization)
 
 #compile and install library ###################################################
 add_library (MHO_Fringe SHARED ${FRINGE_SOURCEFILES})

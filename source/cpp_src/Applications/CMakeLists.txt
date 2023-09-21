@@ -3,7 +3,7 @@ hops_internal_include_directories()
 set(HOPS_TEST_LIBS
     MHO_Message
     MHO_Utilities
-    vex2json
+    MHO_Vex2JSON
     MHO_Math
     MHO_Containers
     MHO_Snapshot
@@ -22,7 +22,7 @@ set(SOURCE_BASENAMES
     ConvertMk4Data
     DumpFileObjectToJSON
     ConvertFileToJSON
-    ConvertVexToJSON
+    vex2json
     TestSignalFFT
     CompareCorFiles
 )

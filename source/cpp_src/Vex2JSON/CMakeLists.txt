@@ -27,12 +27,12 @@ set_property( SOURCE ${VEX2JSON_SOURCEFILES}
     APPEND PROPERTY COMPILE_DEFINITIONS VEX_FORMAT_DIR="${DATA_INSTALL_DIR}"
 )
 
-add_library (vex2json SHARED ${VEX2JSON_SOURCEFILES} ${VEX2JSON_HEADERFILES})
+add_library (MHO_Vex2JSON SHARED ${VEX2JSON_SOURCEFILES} ${VEX2JSON_HEADERFILES})
 
-target_link_libraries (vex2json MHO_Utilities)
+target_link_libraries (MHO_Vex2JSON MHO_Utilities)
 
 hops_install_headers (${VEX2JSON_HEADERFILES})
-hops_install_libraries (vex2json)
+hops_install_libraries (MHO_Vex2JSON)
 
 #install vex format specification
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/format)
