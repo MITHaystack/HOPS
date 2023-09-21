@@ -72,7 +72,7 @@ int main(int argc, char** argv)
     ////////////////////////////////////////////////////////////////////////////
     
     mho_json plot_data = ffit.GetPlotData();
-        //open and dump to file
+    //open and dump to file
     std::string output_file = ffit.GetParameterStore()->GetAs<std::string>("/cmdline/output_file");
     std::ofstream fdumpFile(output_file.c_str(), std::ofstream::out);
     fdumpFile << plot_data;

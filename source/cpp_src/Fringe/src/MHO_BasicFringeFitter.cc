@@ -54,7 +54,7 @@ void MHO_BasicFringeFitter::Configure()
     fScanStore.Initialize();
     if( !fScanStore.IsValid() )
     {
-        msg_fatal("main", "cannot initialize a valid scan store from this directory: " << directory << eom);
+        msg_fatal("fringe", "cannot initialize a valid scan store from this directory: " << directory << eom);
         std::exit(1);
     }
     //pass the directory and root file info the the parameter store
@@ -87,7 +87,7 @@ void MHO_BasicFringeFitter::Configure()
     weight_type* wt_data = fContainerStore.GetObject<weight_type>(std::string("weight"));
     if( vis_data == nullptr || wt_data == nullptr )
     {
-        msg_fatal("main", "could not find visibility or weight objects with names (vis, weight)." << eom);
+        msg_fatal("fringe", "could not find visibility or weight objects with names (vis, weight)." << eom);
         std::exit(1);
     }
     
@@ -180,7 +180,9 @@ void MHO_BasicFringeFitter::Initialize()
 
     fOperatorBuildManager->SetControlStatements(&control_statements);
 
-    //take a snapshot
+    //take a snapshot if enabled
+    visibility_type* vis_data = fContainerStore.GetObject<visibility_type>(std::string("vis"));
+    weight_type* wt_data = fContainerStore.GetObject<weight_type>(std::string("weight"));
     take_snapshot_here("test", "visib", __FILE__, __LINE__, vis_data);
     take_snapshot_here("test", "weights", __FILE__, __LINE__,  wt_data);
     
@@ -193,8 +195,10 @@ void MHO_BasicFringeFitter::Initialize()
     MHO_BasicFringeDataConfiguration::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "labelling");
     MHO_BasicFringeDataConfiguration::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "selection");
 
-    // //safety check TODO FIXME!
-    // if(vis_data->GetSize() == 0){msg_fatal("main", "no data left after cuts." << eom); std::exit(1);}
+    //safety check
+    if(vis_data->GetSize() == 0){msg_fatal("fringe", "no visibility data left after cuts." << eom); std::exit(1);}
+    if(wt_data->GetSize() == 0){msg_fatal("fringe", "no weight data left after cuts." << eom); std::exit(1);}
+
 
     MHO_BasicFringeDataConfiguration::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "flagging");
     MHO_BasicFringeDataConfiguration::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "calibration");
