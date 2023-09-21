@@ -106,9 +106,35 @@ void MHO_BasicFringeFitter::Configure()
     fParameterStore.Set("/uuid/ref_station", ref_uuid);
     fParameterStore.Set("/uuid/rem_station", rem_uuid);
     
+    //specify the control format
+    fControlFormat = MHO_ControlDefinitions::GetControlFormat();
     
+    //add the data selection operator
+    //TODO FIXME -- this is a horrible hack to get this operator into the initialization stream
+    #pragma message("fix this horrible hack -- where we modify the control format itself to inject a default operator")
+    fDataSelectFormat =
+    {
+        {"name", "coarse_selection"},
+        {"statement_type", "operator"},
+        {"operator_category" , "selection"},
+        {"type" , "empty"},
+        {"priority", 1.01}
+    };
+    fControlFormat["coarse_selection"] = fDataSelectFormat;
     
-    
+    ////////////////////////////////////////////////////////////////////////////
+    //CONFIGURE THE OPERATOR BUILD MANAGER
+    ////////////////////////////////////////////////////////////////////////////
+    fOperatorBuildManager = new MHO_OperatorBuilderManager(&fOperatorToolbox, &fContainerStore, &fParameterStore, fControlFormat);
+
+    // #ifdef USE_PYBIND11
+    // py::scoped_interpreter guard{}; // start the interpreter and keep it alive, need this or we segfault
+    // #pragma message("TODO FIXME -- formalize the means by which plugin dependent operator builders are added")
+    // fOperatorBuildManager->AddBuilderType<MHO_PythonOperatorBuilder>("python_labelling", "python_labelling"); 
+    // fOperatorBuildManager->AddBuilderType<MHO_PythonOperatorBuilder>("python_flagging", "python_flagging"); 
+    // fOperatorBuildManager->AddBuilderType<MHO_PythonOperatorBuilder>("python_calibration", "python_calibration"); 
+    // #endif
+
 }
 
 void MHO_BasicFringeFitter::Initialize()
@@ -122,7 +148,6 @@ void MHO_BasicFringeFitter::Initialize()
     MHO_ControlFileParser cparser;
     MHO_ControlConditionEvaluator ceval;
     cparser.SetControlFile(control_file);
-    mho_json control_format = MHO_ControlDefinitions::GetControlFormat();
     auto control_contents = cparser.ParseControl();
     mho_json control_statements;
 
@@ -132,47 +157,28 @@ void MHO_BasicFringeFitter::Initialize()
     ceval.SetPassInformation(baseline, srcName, "?", scnName);//baseline, source, fgroup, scan
     control_statements = ceval.GetApplicableStatements(control_contents);
 
-
     ////////////////////////////////////////////////////////////////////////////
     //PARAMETER SETTING
     ////////////////////////////////////////////////////////////////////////////
     MHO_InitialFringeInfo::set_default_parameters(&fContainerStore, &fParameterStore); //set some default parameters (polprod, ref_freq)
-    MHO_ParameterManager paramManager(&fParameterStore, control_format);
-
+    MHO_ParameterManager paramManager(&fParameterStore, fControlFormat);
     paramManager.SetControlStatements(&control_statements);
     paramManager.ConfigureAll();
     // fParameterStore.Dump();
-    
-    ////////////////////////////////////////////////////////////////////////////
-    //CONFIGURE THE OPERATOR BUILD MANAGER
-    ////////////////////////////////////////////////////////////////////////////
-    //add the data selection operator
-    //TODO FIXME -- this is a horrible hack to get this operator into the initialization stream
-    #pragma message("fix this horrible hack -- where we modify the control format itself to inject a default operator")
-    mho_json data_select_format =
+
+    mho_json coarse_selection_hack =
     {
         {"name", "coarse_selection"},
         {"statement_type", "operator"},
-        {"operator_category" , "selection"},
-        {"type" , "empty"},
-        {"priority", 1.01}
+        {"operator_category" , "selection"}
     };
-    control_format["coarse_selection"] = data_select_format;
-    (*(control_statements.begin()))["statements"].push_back(data_select_format);
+     //part of the ugly default coarse selection hack, triggers the build of this operator at the 'selection' step
+    (*(control_statements.begin()))["statements"].push_back(coarse_selection_hack);
 
-    fOperatorBuildManager = new MHO_OperatorBuilderManager(&fOperatorToolbox, &fContainerStore, &fParameterStore, control_format);
-
-    // #ifdef USE_PYBIND11
-    // py::scoped_interpreter guard{}; // start the interpreter and keep it alive, need this or we segfault
-    // #pragma message("TODO FIXME -- formalize the means by which plugin dependent operator builders are added")
-    // fOperatorBuildManager->AddBuilderType<MHO_PythonOperatorBuilder>("python_labelling", "python_labelling"); 
-    // fOperatorBuildManager->AddBuilderType<MHO_PythonOperatorBuilder>("python_flagging", "python_flagging"); 
-    // fOperatorBuildManager->AddBuilderType<MHO_PythonOperatorBuilder>("python_calibration", "python_calibration"); 
-    // #endif
-
+    std::cout<<"fDataSelectFormat = "<<fDataSelectFormat.dump(2)<<std::endl;
+    std::cout<<"control statements = "<<control_statements.dump(2)<<std::endl;
 
     fOperatorBuildManager->SetControlStatements(&control_statements);
-
 
     //take a snapshot
     take_snapshot_here("test", "visib", __FILE__, __LINE__, vis_data);
