@@ -5,7 +5,34 @@
 
 #define EXTRA_DEBUG
 
-#include "ffit.hh"
+//ffit.hh
+
+//global messaging util
+#include "MHO_Message.hh"
+
+//snapshot utility lib
+#include "MHO_Snapshot.hh"
+
+//data/config passing classes
+#include "MHO_ParameterStore.hh"
+#include "MHO_ContainerStore.hh"
+#include "MHO_OperatorToolbox.hh"
+#include "MHO_JSONHeaderWrapper.hh"
+
+//initialization
+#include "MHO_OperatorBuilderManager.hh"
+
+//pybind11 stuff to interface with python
+#ifdef USE_PYBIND11
+    #include <pybind11/pybind11.h>
+    #include <pybind11/embed.h>
+    #include "pybind11_json/pybind11_json.hpp"
+    namespace py = pybind11;
+    namespace nl = nlohmann;
+    using namespace pybind11::literals;
+#endif
+
+
 
 //control
 #include "MHO_ControlFileParser.hh"
@@ -24,6 +51,15 @@
 #include "MHO_PythonOperatorBuilder.hh"
 #endif
 
+#include "MHO_BasicFringeDataConfiguration.hh"
+#include "MHO_BasicFringeInfo.hh"
+#include "MHO_InitialFringeInfo.hh"
+#include "MHO_BasicFringeUtilities.hh"
+#include "MHO_FringePlotInfo.hh"
+#include "MHO_VexInfoExtractor.hh"
+
+using namespace hops;
+
 int main(int argc, char** argv)
 {
     //TODO allow messaging keys to be set via command line arguments
@@ -38,7 +74,7 @@ int main(int argc, char** argv)
     MHO_ContainerStore conStore; //stores data containers for in-use data
     MHO_OperatorToolbox opToolbox; //stores the data operator objects
 
-    int parse_status = parse_command_line(argc, argv, &paramStore);
+    int parse_status = MHO_BasicFringeDataConfiguration::parse_command_line(argc, argv, &paramStore);
     if(parse_status != 0){msg_fatal("main", "could not parse command line options." << eom); std::exit(1);}
 
     std::string directory = paramStore.GetAs<std::string>("/cmdline/directory");
@@ -64,7 +100,7 @@ int main(int argc, char** argv)
 
     //load root file and extract useful vex info
     mho_json vexInfo = scanStore.GetRootFileData();
-    extract_vex_info(vexInfo, &paramStore);
+    MHO_VexInfoExtractor::extract_vex_info(vexInfo, &paramStore);
 
     ////////////////////////////////////////////////////////////////////////////
     //CONTROL CONSTRUCTION
@@ -88,7 +124,7 @@ int main(int argc, char** argv)
 
     //load baseline data
     scanStore.LoadBaseline(baseline, &conStore);
-    configure_data_library(&conStore);//momentarily needed for float -> double cast
+    MHO_BasicFringeDataConfiguration::configure_data_library(&conStore);//momentarily needed for float -> double cast
     //load and rename station data according to reference/remote
     std::string ref_station_mk4id = std::string(1,baseline[0]);
     std::string rem_station_mk4id = std::string(1,baseline[1]);
@@ -128,7 +164,7 @@ int main(int argc, char** argv)
     ////////////////////////////////////////////////////////////////////////////
     //PARAMETER SETTING
     ////////////////////////////////////////////////////////////////////////////
-    set_default_parameters(&conStore, &paramStore); //set some default parameters (polprod, ref_freq)
+    MHO_InitialFringeInfo::set_default_parameters(&conStore, &paramStore); //set some default parameters (polprod, ref_freq)
     MHO_ParameterManager paramManager(&paramStore, control_format);
 
     paramManager.SetControlStatements(&control_statements);
@@ -169,34 +205,34 @@ int main(int argc, char** argv)
     build_manager.SetControlStatements(&control_statements);
 
     build_manager.BuildOperatorCategory("default");
-    init_and_exec_operators(build_manager, &opToolbox, "labelling");
-    init_and_exec_operators(build_manager, &opToolbox, "selection");
+    MHO_BasicFringeDataConfiguration::init_and_exec_operators(build_manager, &opToolbox, "labelling");
+    MHO_BasicFringeDataConfiguration::init_and_exec_operators(build_manager, &opToolbox, "selection");
 
     //safety check
     if(vis_data->GetSize() == 0){msg_fatal("main", "no data left after cuts." << eom); std::exit(1);}
 
-    init_and_exec_operators(build_manager, &opToolbox, "flagging");
-    init_and_exec_operators(build_manager, &opToolbox, "calibration");
+    MHO_BasicFringeDataConfiguration::init_and_exec_operators(build_manager, &opToolbox, "flagging");
+    MHO_BasicFringeDataConfiguration::init_and_exec_operators(build_manager, &opToolbox, "calibration");
 
     //take a snapshot
     take_snapshot_here("test", "visib", __FILE__, __LINE__, vis_data);
     take_snapshot_here("test", "weights", __FILE__, __LINE__,  wt_data);
 
     //calulate useful quantities to stash in the parameter store
-    precalculate_quantities(&conStore, &paramStore);
+    MHO_InitialFringeInfo::precalculate_quantities(&conStore, &paramStore);
 
     //execute the basic fringe search algorithm
-    basic_fringe_search(&conStore, &paramStore);
+    MHO_BasicFringeUtilities::basic_fringe_search(&conStore, &paramStore);
 
     //calculate the fringe properties
-    calculate_fringe_info(&conStore, &paramStore, vexInfo);
+    MHO_BasicFringeUtilities::calculate_fringe_solution_info(&conStore, &paramStore, vexInfo);
 
     ////////////////////////////////////////////////////////////////////////////
     //PLOTTING/DEBUG
     ////////////////////////////////////////////////////////////////////////////
     //TODO may want to reorg the way this is done
-    mho_json plot_dict = construct_plot_data(&conStore, &paramStore, vexInfo);
-    fill_plot_data(&paramStore, plot_dict);
+    mho_json plot_dict = MHO_FringePlotInfo::construct_plot_data(&conStore, &paramStore, vexInfo);
+    MHO_FringePlotInfo::fill_plot_data(&paramStore, plot_dict);
 
     //open and dump to file
     std::string output_file = paramStore.GetAs<std::string>("/cmdline/output_file");
