@@ -19,8 +19,8 @@
 #include "MHO_OperatorToolbox.hh"
 #include "MHO_JSONHeaderWrapper.hh"
 
-// //initialization
-// #include "MHO_OperatorBuilderManager.hh"
+//initialization
+#include "MHO_OperatorBuilderManager.hh"
 
 namespace hops 
 {
@@ -36,7 +36,7 @@ class MHO_BasicFringeDataConfiguration
         //helper functions
         static int parse_command_line(int argc, char** argv, MHO_ParameterStore* paramStore);
         static void configure_data_library(MHO_ContainerStore* store);
-        // static void init_and_exec_operators(MHO_OperatorBuilderManager& build_manager, MHO_OperatorToolbox* opToolbox, const char* category);
+        static void init_and_exec_operators(MHO_OperatorBuilderManager& build_manager, MHO_OperatorToolbox* opToolbox, const char* category);
 };
 
 }//end namespace

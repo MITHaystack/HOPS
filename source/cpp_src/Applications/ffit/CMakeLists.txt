@@ -3,7 +3,7 @@ hops_internal_include_directories("./")
 set(FFIT_LIBS
     MHO_Message
     MHO_Utilities
-    vex2json
+    MHO_Vex2JSON
     MHO_Math
     MHO_Containers
     MHO_Snapshot
