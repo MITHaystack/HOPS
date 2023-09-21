@@ -11,6 +11,7 @@ set(FFIT_LIBS
     MHO_Calibration
     MHO_Control
     MHO_Initialization
+    MHO_Fringe
 )
 
 set(SOURCE_BASENAMES

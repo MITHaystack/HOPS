@@ -12,6 +12,7 @@ set(HOPS_TEST_LIBS
     MHO_MK4Interface
     MHO_Control
     MHO_Initialization
+    MHO_Fringe
 )
 
 set(SOURCE_BASENAMES
