@@ -34,6 +34,7 @@ set (CONTAINER_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ContainerFileInterface.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ContainerStore.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ScanDataStore.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_Snapshot.hh
 )
 
 set( CONTAINER_SOURCEFILES
@@ -43,6 +44,7 @@ set( CONTAINER_SOURCEFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ContainerFileInterface.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ScanDataStore.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ContainerStore.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_Snapshot.cc
 )
 
 #declare header paths ##########################################################
@@ -50,6 +52,9 @@ hops_internal_include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 #install library (headers only) ################################################
 set(CONTAINER_LIBS MHO_Message MHO_Utilities)
+
+#add compile defines
+hops_add_cxxflag("HOPS_SNAPSHOT_DIR=${SNAPSHOT_INSTALL_DIR}")
 
 add_library(MHO_Containers SHARED ${CONTAINER_SOURCEFILES})
 target_link_libraries(MHO_Containers ${CONTAINER_LIBS})

@@ -6,7 +6,6 @@ set(HOPS_TEST_LIBS
     MHO_Vex2JSON
     MHO_Math
     MHO_Containers
-    MHO_Snapshot
     MHO_Operators
     MHO_Calibration
     MHO_MK4Interface

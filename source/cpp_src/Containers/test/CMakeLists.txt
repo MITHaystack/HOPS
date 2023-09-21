@@ -19,6 +19,7 @@ set(SOURCE_BASENAMES
     TestSelectRepack
     TestIntervalLabelTree
     TestObjectTags
+    TestSnapshot
 )
 
 

@@ -24,7 +24,6 @@ add_subdirectory(${CPPSOURCE}/Utilities) #other generic utilities
 add_subdirectory(${CPPSOURCE}/Vex2JSON) #library to convert ovex to json
 add_subdirectory(${CPPSOURCE}/Math) #the generic math library
 add_subdirectory(${CPPSOURCE}/Containers) #data container base classes and generic containers
-add_subdirectory(${CPPSOURCE}/Snapshot)
 add_subdirectory(${CPPSOURCE}/Operators) #data operator base classes and generic operators
 add_subdirectory(${CPPSOURCE}/Calibration) #VLBI specific data containers and operators
 add_subdirectory(${CPPSOURCE}/Control) #library to parse old-fourfit control files
