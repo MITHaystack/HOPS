@@ -31,7 +31,7 @@ MHO_DelayRate::InitializeImpl(const XArgType1* in1, const XArgType2* in2, XArgTy
         #pragma message("Fix the DRSP size calculation to remove upper limit of 8192.")
         fDRSPSize = 8192;
         while ( (fDRSPSize / 4) > fInDims[TIME_AXIS] ) {fDRSPSize /= 2;};
-        msg_debug("calibration", "delay rate search space size = "<< fDRSPSize << eom );
+        msg_debug("fringe", "delay rate search space size = "<< fDRSPSize << eom );
         ////////////////////////////////////////////////////////////////////////
 
         std::size_t np = fDRSPSize*4;
@@ -95,7 +95,7 @@ MHO_DelayRate::ExecuteImpl(const XArgType1* in1, const XArgType2* in2, XArgType3
         if(!ok){msg_error("operators", "Could not execute FFT in MHO_DelayRate" << eom); return false;}
 
         ok = fCyclicRotator.Execute();
-        check_step_fatal(ok, "calibration", "cyclic rotation execution." << eom );
+        check_step_fatal(ok, "fringe", "cyclic rotation execution." << eom );
 
         //linear interpolation, and conversion from fringe rate to delay rate step
         int sz = 4*fDRSPSize;

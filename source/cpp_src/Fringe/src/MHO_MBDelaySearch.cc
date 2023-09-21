@@ -34,7 +34,7 @@ MHO_MBDelaySearch::InitializeImpl(const XArgType* in)
         fNSBD = in->GetDimension(FREQ_AXIS);
         fNDR = in->GetDimension(TIME_AXIS);
 
-        msg_debug("calibration", "MBD search, N grid points = " << fNGridPoints << eom);
+        msg_debug("fringe", "MBD search, N grid points = " << fNGridPoints << eom);
 
         //resize workspaces (TODO...make conditional on current size -- if already configured)
         fMBDWorkspace.Resize(fNGridPoints);//, fNDR);
@@ -46,12 +46,12 @@ MHO_MBDelaySearch::InitializeImpl(const XArgType* in)
         fFFTEngine.SelectAxis(0);
         fFFTEngine.SetForward();
         bool ok = fFFTEngine.Initialize();
-        check_step_fatal(ok, "calibration", "MBD search fft engine initialization." << eom );
+        check_step_fatal(ok, "fringe", "MBD search fft engine initialization." << eom );
 
         fCyclicRotator.SetOffset(0, fNGridPoints/2);
         fCyclicRotator.SetArgs(&fMBDWorkspace);
         ok = fCyclicRotator.Initialize();
-        check_step_fatal(ok, "calibration", "MBD search cyclic rotation initialization." << eom );
+        check_step_fatal(ok, "fringe", "MBD search cyclic rotation initialization." << eom );
 
         fInitialized = true;
     }
@@ -96,7 +96,7 @@ MHO_MBDelaySearch::ExecuteImpl(const XArgType* in)
 
                 //now run an FFT along the MBD axis and cyclic rotate
                 bool ok = fFFTEngine.Execute();
-                check_step_fatal(ok, "calibration", "MBD search fft engine execution." << eom );
+                check_step_fatal(ok, "fringe", "MBD search fft engine execution." << eom );
 
                 std::size_t total_mbd_dr_size = fMBDWorkspace.GetSize();
                 for(std::size_t i=0; i<total_mbd_dr_size; i++)
@@ -117,7 +117,7 @@ MHO_MBDelaySearch::ExecuteImpl(const XArgType* in)
                 {
                     //only need to do this once on the last iter (to properly set-up the MBD axis)
                     ok = fCyclicRotator.Execute();
-                    check_step_fatal(ok, "calibration", "MBD search cyclic rotation execution." << eom );
+                    check_step_fatal(ok, "fringe", "MBD search cyclic rotation execution." << eom );
                 }
             }
         }

@@ -70,7 +70,7 @@ MHO_BasicFringeDataConfiguration::parse_command_line(int argc, char** argv, MHO_
                 break;
             case ('s'):
                 ap_per_seg = std::atoi(optarg);
-                if(ap_per_seg < 0){ap_per_seg = 0; msg_warn("main", "invalid ap_per_seg, ignoring." << eom);}
+                if(ap_per_seg < 0){ap_per_seg = 0; msg_warn("fringe", "invalid ap_per_seg, ignoring." << eom);}
                 break;
             default:
                 std::cout << usage << std::endl;
@@ -80,7 +80,7 @@ MHO_BasicFringeDataConfiguration::parse_command_line(int argc, char** argv, MHO_
 
     if( directory == "" || baseline == "" || polprod == "" || control_file == "")
     {
-        msg_fatal("main", "usage: "<< usage << eom);
+        msg_fatal("fringe", "usage: "<< usage << eom);
         return 1;
     }
 
@@ -92,7 +92,7 @@ MHO_BasicFringeDataConfiguration::parse_command_line(int argc, char** argv, MHO_
             //NOTE: debug messages must be compiled-in
             #ifndef HOPS_ENABLE_DEBUG_MSG
             MHO_Message::GetInstance().SetMessageLevel(eInfo);
-            msg_warn("main", "debug messages are toggled via compiler flag, re-compile with ENABLE_DEBUG_MSG=ON to enable." << eom);
+            msg_warn("fringe", "debug messages are toggled via compiler flag, re-compile with ENABLE_DEBUG_MSG=ON to enable." << eom);
             #else
             MHO_Message::GetInstance().SetMessageLevel(eDebug);
             #endif
@@ -122,7 +122,7 @@ MHO_BasicFringeDataConfiguration::parse_command_line(int argc, char** argv, MHO_
 
     if(baseline.size() != 2)
     {
-        msg_fatal("main", "baseline must be passed as 2-char code."<< eom);
+        msg_fatal("fringe", "baseline must be passed as 2-char code."<< eom);
         return 1;
     }
 
@@ -208,7 +208,7 @@ MHO_BasicFringeDataConfiguration::configure_data_library(MHO_ContainerStore* sto
 
     //warn on non-standard shortnames
     if(vis_shortname != "vis"){msg_warn("initialization", "visibilities do not use canonical short name 'vis', but are called: "<< vis_shortname << eom);}
-    if(wt_shortname != "weights"){msg_warn("initialization", "weights do not use canonical short name 'weights', but are called: "<< wt_shortname << eom);}
+    if(wt_shortname != "weight"){msg_warn("initialization", "weights do not use canonical short name 'weight', but are called: "<< wt_shortname << eom);}
 
     //now shove the double precision data into the container store with the same shortname
     store->AddObject(vis_data);
@@ -219,14 +219,20 @@ MHO_BasicFringeDataConfiguration::configure_data_library(MHO_ContainerStore* sto
 
 
 void 
-MHO_BasicFringeDataConfiguration::init_and_exec_operators(MHO_OperatorBuilderManager& build_manager, MHO_OperatorToolbox* opToolbox, const char* category)
+MHO_BasicFringeDataConfiguration::init_and_exec_operators(MHO_OperatorBuilderManager* build_manager, MHO_OperatorToolbox* opToolbox, const char* category)
 {
+    if(build_manager == nullptr || opToolbox == nullptr)
+    {
+        msg_error("fringe", "cannot initialize or execute operators if builder or toolbox is missing" << eom );
+        return;
+    }
+
     std::string cat(category);
-    build_manager.BuildOperatorCategory(cat);
+    build_manager->BuildOperatorCategory(cat);
     auto ops = opToolbox->GetOperatorsByCategory(cat);
     for(auto opIt= ops.begin(); opIt != ops.end(); opIt++)
     {
-        msg_debug("main", "initializing and executing operator: "<< (*opIt)->GetName() << eom);
+        msg_debug("fringe", "initializing and executing operator: "<< (*opIt)->GetName() << eom);
         (*opIt)->Initialize();
         (*opIt)->Execute();
     }

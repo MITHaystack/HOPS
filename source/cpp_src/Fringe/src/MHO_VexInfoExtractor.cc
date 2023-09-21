@@ -71,7 +71,7 @@ MHO_VexInfoExtractor::extract_clock_model(const mho_json& vexInfo, MHO_Parameter
     auto ref_clock = vexInfo.at(ref_clock_pointer);
     if( !ref_clock.contains("clock_early"))
     {
-        msg_error("main", "root file missing $CLOCK information for reference station." << eom );
+        msg_error("fringe", "root file missing $CLOCK information for reference station." << eom );
         std::exit(1);
     }
 
@@ -96,7 +96,7 @@ MHO_VexInfoExtractor::extract_clock_model(const mho_json& vexInfo, MHO_Parameter
     auto rem_clock = vexInfo.at(rem_clock_pointer);
     if( !rem_clock.contains("clock_early"))
     {
-        msg_error("main", "root file missing $CLOCK information for remote station."<< eom );
+        msg_error("fringe", "root file missing $CLOCK information for remote station."<< eom );
         std::exit(1);
     }
     
@@ -136,7 +136,7 @@ MHO_VexInfoExtractor::extract_vex_info(const mho_json& vexInfo, MHO_ParameterSto
     auto sites = vexInfo.at(site_pointer);
     if(sites.size() < 1)
     {
-        msg_error("main", "root file contains missing or ambiguous $SITE information." << eom );
+        msg_error("fringe", "root file contains missing or ambiguous $SITE information." << eom );
         std::exit(1);
     }
     
@@ -177,7 +177,7 @@ MHO_VexInfoExtractor::extract_vex_info(const mho_json& vexInfo, MHO_ParameterSto
     auto stations = vexInfo.at(station_pointer);
     if(stations.size() < 2)
     {
-        msg_error("main", "root file contains missing or $STATION information." << eom );
+        msg_error("fringe", "root file contains missing or $STATION information." << eom );
         std::exit(1);
     }
     
@@ -214,7 +214,7 @@ MHO_VexInfoExtractor::extract_vex_info(const mho_json& vexInfo, MHO_ParameterSto
     auto sched = vexInfo.at(sched_pointer);
     if(sched.size() != 1)
     {
-        msg_error("main", "root file contains missing or ambiguous $SCHED information." << eom );
+        msg_error("fringe", "root file contains missing or ambiguous $SCHED information." << eom );
         std::exit(1);
     }
 

@@ -22,9 +22,10 @@
 //needed to read hops files and extract objects from scan dir
 #include "MHO_ScanDataStore.hh"
 
-//useful helper functions organized in these classes
-#include "MHO_BasicFringeInfo.hh"
-#include "MHO_BasicFringeUtilities.hh"
+//initialization
+#include "MHO_OperatorBuilderManager.hh"
+#include "MHO_ParameterConfigurator.hh"
+#include "MHO_ParameterManager.hh"
 
 namespace hops 
 {
@@ -32,24 +33,36 @@ namespace hops
 class MHO_FringeFitter 
 {
     public:
-        MHO_FringeFitter();
-        virtual ~MHO_FringeFitter();
+        MHO_FringeFitter()
+        {
+            fOperatorBuildManager = nullptr;
+        };
+        
+        virtual ~MHO_FringeFitter()
+        {
+            delete fOperatorBuildManager;
+        };
         
         MHO_ParameterStore* GetParameterStore(){return &fParameterStore;}
         MHO_ContainerStore* GetContainerStore(){return &fContainerStore;}
         MHO_OperatorToolbox* GetOperatorToolbox(){return &fOperatorToolbox;}
 
         //should we expose these?
-        mho_json GetVex(){return scanStore.GetRootFileData();} 
+        mho_json GetVex(){return fScanStore.GetRootFileData();} 
         MHO_ScanDataStore* GetScanDataStore(){return &fScanStore;}
+        
+        //only valid after 'Configure' is called
+        MHO_OperatorBuilderManager* GetOperatorBuildManager(){return fOperatorBuildManager;}
 
-        //basic run scheme: configure, init, then while(!IsFinished() ){ pre-run, run, post-run }
+        //basic run scheme: configure, init, then while(!IsFinished() ){ pre-run, run, post-run }, then finalize
         virtual void Configure() = 0;
+        //TODO add a 'configure extension' function using visitor pattern to add things like pybind11/opencl etc.
         virtual void Initialize() = 0;
         virtual void PreRun() = 0;
         virtual void Run() = 0;
         virtual void PostRun() = 0;
         virtual bool IsFinished() = 0;
+        virtual void Finalize() = 0;
 
     protected:
 
@@ -59,6 +72,8 @@ class MHO_FringeFitter
         MHO_ContainerStore fContainerStore; //stores data containers for in-use data
         MHO_OperatorToolbox fOperatorToolbox; //stores the data operator objects
 
+        //configuration/initialization managers 
+        MHO_OperatorBuilderManager* fOperatorBuildManager;
 
 };
 
