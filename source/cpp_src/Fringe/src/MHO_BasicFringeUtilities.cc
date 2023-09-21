@@ -274,7 +274,7 @@ MHO_BasicFringeUtilities::basic_fringe_search(MHO_ContainerStore* conStore, MHO_
     weight_type* wt_data = conStore->GetObject<weight_type>(std::string("weight"));
     if( vis_data == nullptr || wt_data == nullptr )
     {
-        msg_fatal("main", "could not find visibility or weight objects with names (vis, weight)." << eom);
+        msg_fatal("fringe", "could not find visibility or weight objects with names (vis, weight)." << eom);
         std::exit(1);
     }
 
@@ -297,10 +297,10 @@ MHO_BasicFringeUtilities::basic_fringe_search(MHO_ContainerStore* conStore, MHO_
     MHO_NormFX nfxOp;
     nfxOp.SetArgs(vis_data, wt_data, sbd_data);
     ok = nfxOp.Initialize();
-    check_step_fatal(ok, "main", "normfx initialization." << eom );
+    check_step_fatal(ok, "fringe", "normfx initialization." << eom );
 
     ok = nfxOp.Execute();
-    check_step_fatal(ok, "main", "normfx execution." << eom );
+    check_step_fatal(ok, "fringe", "normfx execution." << eom );
 
     //take snapshot of sbd data after normfx
     take_snapshot_here("test", "sbd", __FILE__, __LINE__, sbd_data);
@@ -312,9 +312,9 @@ MHO_BasicFringeUtilities::basic_fringe_search(MHO_ContainerStore* conStore, MHO_
     drOp.SetReferenceFrequency(ref_freq);
     drOp.SetArgs(sbd_data, wt_data, sbd_dr_data);
     ok = drOp.Initialize();
-    check_step_fatal(ok, "main", "dr initialization." << eom );
+    check_step_fatal(ok, "fringe", "dr initialization." << eom );
     ok = drOp.Execute();
-    check_step_fatal(ok, "main", "dr execution." << eom );
+    check_step_fatal(ok, "fringe", "dr execution." << eom );
 
     take_snapshot_here("test", "sbd_dr", __FILE__, __LINE__, sbd_dr_data);
 
@@ -322,9 +322,9 @@ MHO_BasicFringeUtilities::basic_fringe_search(MHO_ContainerStore* conStore, MHO_
     MHO_MBDelaySearch mbdSearch;
     mbdSearch.SetArgs(sbd_dr_data);
     ok = mbdSearch.Initialize();
-    check_step_fatal(ok, "main", "mbd initialization." << eom );
+    check_step_fatal(ok, "fringe", "mbd initialization." << eom );
     ok = mbdSearch.Execute();
-    check_step_fatal(ok, "main", "mbd execution." << eom );
+    check_step_fatal(ok, "fringe", "mbd execution." << eom );
 
     int c_mbdmax = mbdSearch.GetMBDMaxBin();
     int c_sbdmax = mbdSearch.GetSBDMaxBin();

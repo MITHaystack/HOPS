@@ -30,8 +30,8 @@ MHO_DelayModel::ComputeModel()
         std::string ref_code = RetrieveTag<std::string>(fRefData, "station_code");
         std::string rem_code = RetrieveTag<std::string>(fRemData, "station_code");
 
-        msg_debug("calibration", "reference staion code: " << ref_code << eom );
-        msg_debug("calibration", "remote staion code: " << rem_code << eom );
+        msg_debug("fringe", "reference staion code: " << ref_code << eom );
+        msg_debug("fringe", "remote staion code: " << rem_code << eom );
 
         //get the ref/rem station delay model start times
         std::string ref_mod_start = RetrieveTag<std::string>(fRefData, "model_start");
@@ -40,9 +40,9 @@ MHO_DelayModel::ComputeModel()
         auto ref_start = hops_clock::from_vex_format(ref_mod_start);
         auto rem_start = hops_clock::from_vex_format(rem_mod_start);
 
-        msg_debug("calibration", "fourfit reference time is: "<< hops_clock::to_iso8601_format(frt)<< eom);
-        msg_debug("calibration", "reference station delay model start time is: "<<hops_clock::to_iso8601_format(ref_start)<< eom);
-        msg_debug("calibration", "remote station delay model start time is: "<<hops_clock::to_iso8601_format(rem_start)<< eom);
+        msg_debug("fringe", "fourfit reference time is: "<< hops_clock::to_iso8601_format(frt)<< eom);
+        msg_debug("fringe", "reference station delay model start time is: "<<hops_clock::to_iso8601_format(ref_start)<< eom);
+        msg_debug("fringe", "remote station delay model start time is: "<<hops_clock::to_iso8601_format(rem_start)<< eom);
 
         //calculate time differences
         auto ref_tdiff_duration = frt - ref_start;
@@ -65,8 +65,8 @@ MHO_DelayModel::ComputeModel()
         double ref_t = ref_tdiff - (ref_int_no * ref_model_interval);
         double rem_t = rem_tdiff - (rem_int_no * rem_model_interval);
 
-        msg_debug("calibration", "delay_model: ref model interval: "<< ref_int_no <<" and time offset: "<< ref_t << eom);
-        msg_debug("calibration", "delay_model: rem model interval: "<< rem_int_no <<" and time offset: "<< rem_t << eom);
+        msg_debug("fringe", "delay_model: ref model interval: "<< ref_int_no <<" and time offset: "<< ref_t << eom);
+        msg_debug("fringe", "delay_model: rem model interval: "<< rem_int_no <<" and time offset: "<< rem_t << eom);
 
         //evaluate delay, rate, accel
         double ref_dra[3];
@@ -81,11 +81,11 @@ MHO_DelayModel::ComputeModel()
         fRate = rem_dra[1] - ref_dra[1];
         fAccel = rem_dra[2] - ref_dra[2];
 
-        msg_debug("calibration", "delay model: offset, rate, accel = "<<fDelay<<", "<<fRate<<", "<<fAccel<< eom);
+        msg_debug("fringe", "delay model: offset, rate, accel = "<<fDelay<<", "<<fRate<<", "<<fAccel<< eom);
     }
     else
     {
-        msg_fatal("calibration", "cannot compute delay model, missing station data. " << eom );
+        msg_fatal("fringe", "cannot compute delay model, missing station data. " << eom );
         std::exit(1);
     }
 
@@ -97,18 +97,18 @@ MHO_DelayModel::CheckSplineInterval(int n_intervals, double tdiff, int& int_no, 
 {
     if(n_intervals == 0)
     {
-        msg_fatal("calibration", "number of spline intervals is 0, missing or malformed data?" << eom );
+        msg_fatal("fringe", "number of spline intervals is 0, missing or malformed data?" << eom );
         std::exit(1);
     }
 
     if(tdiff < 0.0)
     {
-        msg_warn("calibration", "fourfit reference time is outside of station: "<<station_id<<" spline range - must extrapolate!" << eom);
+        msg_warn("fringe", "fourfit reference time is outside of station: "<<station_id<<" spline range - must extrapolate!" << eom);
         int_no = 0;
     }
     if(int_no >= n_intervals )
     {
-        msg_warn("calibration", "fourfit reference time is outside of station: "<<station_id<<" spline range - must extrapolate!" << eom);
+        msg_warn("fringe", "fourfit reference time is outside of station: "<<station_id<<" spline range - must extrapolate!" << eom);
         int_no = n_intervals-1;
     }
 }

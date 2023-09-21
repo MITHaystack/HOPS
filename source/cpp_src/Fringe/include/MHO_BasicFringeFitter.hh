@@ -28,10 +28,14 @@ class MHO_BasicFringeFitter: public MHO_FringeFitter
         virtual void PreRun() override;
         virtual void Run() override;
         virtual void PostRun() override;
+        virtual void Finalize() override;
         virtual bool IsFinished() override;
 
     protected:
 
+        bool fIsFinished;
+        mho_json fVexInfo;
+        mho_json fControlFormat;
 };
 
 }//end namespace

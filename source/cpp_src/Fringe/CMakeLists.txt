@@ -11,9 +11,9 @@ set (FRINGE_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_VexInfoExtractor.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_InitialFringeInfo.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_FringePlotInfo.hh
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_FringeFitter.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_BasicFringeUtilities.hh
-
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_FringeFitter.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_BasicFringeFitter.hh
 )
 
 #list source files #############################################################
@@ -30,13 +30,14 @@ set( FRINGE_SOURCEFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_InitialFringeInfo.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_FringePlotInfo.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_BasicFringeUtilities.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_BasicFringeFitter.cc
 )
 
 #declare header paths ##########################################################
 hops_internal_include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 #list of c++ libraries
-set(FRINGE_LIBS MHO_Message MHO_Math MHO_Utilities MHO_Operators MHO_Containers MHO_Calibration MHO_Initialization)
+set(FRINGE_LIBS MHO_Message MHO_Math MHO_Utilities MHO_Operators MHO_Containers MHO_Calibration MHO_Control MHO_Initialization)
 
 #compile and install library ###################################################
 add_library (MHO_Fringe SHARED ${FRINGE_SOURCEFILES})

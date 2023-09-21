@@ -127,40 +127,47 @@ MHO_OperatorBuilderManager::BuildOperatorCategory(const std::string& cat)
         {
             for(auto ctrl_iter = fControl->begin(); ctrl_iter != fControl->end(); ctrl_iter++)
             {
-                auto statements = &( (*ctrl_iter)["statements"] );
-                for(auto stmt_iter = statements->begin(); stmt_iter != statements->end(); )
+                if( !( ctrl_iter->is_null() || ctrl_iter->is_null() ) )
                 {
-                    std::string name = (*stmt_iter)["name"];
-                    bool build_op = false;
-                    if( fFormat.contains(name) && fFormat[name].contains("operator_category") )
+                    auto statements = &( (*ctrl_iter)["statements"] );
+                    for(auto stmt_iter = statements->begin(); stmt_iter != statements->end(); )
                     {
-                        if(cat == fFormat[name]["operator_category"].get<std::string>() )
+                        std::string name = (*stmt_iter)["name"];
+                        bool build_op = false;
+                        if( fFormat.contains(name) && fFormat[name].contains("operator_category") )
                         {
-                            build_op = true;
+                            if(cat == fFormat[name]["operator_category"].get<std::string>() )
+                            {
+                                build_op = true;
+                            }
                         }
-                    }
 
-                    if(build_op)
-                    {
-                        auto builder_it = fNameToBuilderMap.find(name);
-                        if(builder_it != fNameToBuilderMap.end())
+                        if(build_op)
                         {
-                            msg_debug("initialization", "building operator with name: "<<name<<" in category: "<<cat<<"."<<eom);
-                            builder_it->second->SetConditions(*ctrl_iter);
-                            builder_it->second->SetAttributes(*stmt_iter);
-                            builder_it->second->Build();
-                            stmt_iter = statements->erase(stmt_iter);
+                            auto builder_it = fNameToBuilderMap.find(name);
+                            if(builder_it != fNameToBuilderMap.end())
+                            {
+                                msg_debug("initialization", "building operator with name: "<<name<<" in category: "<<cat<<"."<<eom);
+                                builder_it->second->SetConditions(*ctrl_iter);
+                                builder_it->second->SetAttributes(*stmt_iter);
+                                builder_it->second->Build();
+                                stmt_iter = statements->erase(stmt_iter);
+                            }
+                            else //couldn't find a builder for this operator, skip
+                            {
+                                stmt_iter++;
+                                msg_debug("initialization", "operator: "<< name <<" not yet supported."<<eom);
+                            }
                         }
-                        else //couldn't find a builder for this operator, skip
+                        else
                         {
-                            stmt_iter++;
-                            msg_debug("initialization", "operator: "<< name <<" not yet supported."<<eom);
+                            stmt_iter++; //statement not in this category, skip
                         }
                     }
-                    else
-                    {
-                        stmt_iter++; //statement not in this category, skip
-                    }
+                }
+                else 
+                {
+                    msg_error("initialization", "null control statement encountered " << eom );
                 }
             }
         }

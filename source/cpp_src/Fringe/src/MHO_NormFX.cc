@@ -30,12 +30,12 @@ MHO_NormFX::InitializeImpl(const XArgType1* in1, const XArgType2* in2, XArgType3
         if(n_lsb_chan != 0){fIsUSB = false;}
 
 
-        if(!fIsUSB){msg_debug("operators", "MHO_NormFX operating on LSB data, N LSB channels: " << n_lsb_chan <<eom );}
-        else{msg_debug("operators", "MHO_NormFX operating on USB data, N USB channels: " << n_usb_chan <<eom );}
+        if(!fIsUSB){msg_debug("fringe", "MHO_NormFX operating on LSB data, N LSB channels: " << n_lsb_chan <<eom );}
+        else{msg_debug("fringe", "MHO_NormFX operating on USB data, N USB channels: " << n_usb_chan <<eom );}
 
         if(n_usb_chan != 0 && n_lsb_chan != 0)
         {
-            msg_error("operators", "Could not initialize MHO_NormFX, mixed USB/LSB data not yet supported." << eom);
+            msg_error("fringe", "Could not initialize MHO_NormFX, mixed USB/LSB data not yet supported." << eom);
             return false;
         }
 
@@ -47,7 +47,7 @@ MHO_NormFX::InitializeImpl(const XArgType1* in1, const XArgType2* in2, XArgType3
         if(fInDims[CHANNEL_AXIS] != fOutDims[CHANNEL_AXIS]){status = false;}
         if(fInDims[TIME_AXIS] != fOutDims[TIME_AXIS]){status = false;}
         if(4*fInDims[FREQ_AXIS] != fOutDims[FREQ_AXIS]){status = false;}
-        if(!status){msg_error("operators", "Could not initialize MHO_NormFX, in/out dimension mis-match." << eom); return false;}
+        if(!status){msg_error("fringe", "Could not initialize MHO_NormFX, in/out dimension mis-match." << eom); return false;}
 
         std::size_t nlags = fInDims[FREQ_AXIS]; //in the original norm_fx, nlags is 2x this number
 
@@ -60,7 +60,7 @@ MHO_NormFX::InitializeImpl(const XArgType1* in1, const XArgType2* in2, XArgType3
         #pragma message("TODO FIXME, the following line casts away const-ness:")
         fNaNBroadcaster.SetArgs( const_cast<XArgType1*>(in1) );
         status = fNaNBroadcaster.Initialize();
-        if(!status){msg_error("operators", "Could not initialize NaN mask broadcast in MHO_NormFX." << eom); return false;}
+        if(!status){msg_error("fringe", "Could not initialize NaN mask broadcast in MHO_NormFX." << eom); return false;}
 
         fZeroPadder.SetArgs(in1, &fWorkspace);
         fZeroPadder.DeselectAllAxes();
@@ -74,26 +74,26 @@ MHO_NormFX::InitializeImpl(const XArgType1* in1, const XArgType2* in2, XArgType3
         fFFTEngine.SetForward();//forward DFT
 
         status = fZeroPadder.Initialize();
-        if(!status){msg_error("operators", "Could not initialize zero padder in MHO_NormFX." << eom); return false;}
+        if(!status){msg_error("fringe", "Could not initialize zero padder in MHO_NormFX." << eom); return false;}
 
         status = fFFTEngine.Initialize();
-        if(!status){msg_error("operators", "Could not initialize FFT in MHO_NormFX." << eom); return false;}
+        if(!status){msg_error("fringe", "Could not initialize FFT in MHO_NormFX." << eom); return false;}
 
 
         fSubSampler.SetDimensionAndStride(FREQ_AXIS, 2);
         fSubSampler.SetArgs(&fWorkspace, out);
         status = fSubSampler.Initialize();
-        if(!status){msg_error("operators", "Could not initialize sub-sampler in MHO_NormFX." << eom); return false;}
+        if(!status){msg_error("fringe", "Could not initialize sub-sampler in MHO_NormFX." << eom); return false;}
 
         fCyclicRotator.SetOffset(FREQ_AXIS, 2*nlags);
         fCyclicRotator.SetArgs(out);
         status = fCyclicRotator.Initialize();
-        if(!status){msg_error("operators", "Could not initialize cyclic rotation in MHO_NormFX." << eom); return false;}
+        if(!status){msg_error("fringe", "Could not initialize cyclic rotation in MHO_NormFX." << eom); return false;}
 
         //#pragma message("TODO FIXME, the following line casts away const-ness:")
         fConjBroadcaster.SetArgs( out );
         status = fConjBroadcaster.Initialize();
-        if(!status){msg_error("operators", "Could not initialize complex conjugation broadcast in MHO_NormFX." << eom); return false;}
+        if(!status){msg_error("fringe", "Could not initialize complex conjugation broadcast in MHO_NormFX." << eom); return false;}
 
         //double it
         nlags *= 2;
@@ -126,25 +126,25 @@ MHO_NormFX::ExecuteImpl(const XArgType1* in1, const XArgType2* in2, XArgType3* o
         //first thing we do is filter out any NaNs
         //(ADHOC flagging would likely also be implemented in a similar fashion)
         status = fNaNBroadcaster.Execute();
-        if(!status){msg_error("operators", "Could not execute NaN masker MHO_NormFX." << eom); return false;}
+        if(!status){msg_error("fringe", "Could not execute NaN masker MHO_NormFX." << eom); return false;}
 
         status = fZeroPadder.Execute();
-        if(!status){msg_error("operators", "Could not execute zero padder in MHO_NormFX." << eom); return false;}
+        if(!status){msg_error("fringe", "Could not execute zero padder in MHO_NormFX." << eom); return false;}
 
         status = fFFTEngine.Execute();
-        if(!status){msg_error("operators", "Could not execute FFT in MHO_NormFX." << eom); return false;}
+        if(!status){msg_error("fringe", "Could not execute FFT in MHO_NormFX." << eom); return false;}
 
         status = fSubSampler.Execute();
-        if(!status){msg_error("operators", "Could not execute sub-sampler in MHO_NormFX." << eom); return false;}
+        if(!status){msg_error("fringe", "Could not execute sub-sampler in MHO_NormFX." << eom); return false;}
 
         status = fCyclicRotator.Execute();
-        if(!status){msg_error("operators", "Could not execute cyclic-rotation MHO_NormFX." << eom); return false;}
+        if(!status){msg_error("fringe", "Could not execute cyclic-rotation MHO_NormFX." << eom); return false;}
 
         //for lower sideband we complex conjugate the data
         if(!fIsUSB)
         {
             status = fConjBroadcaster.Execute();
-            if(!status){msg_error("operators", "Could not execute complex conjugation in MHO_NormFX." << eom); return false;}
+            if(!status){msg_error("fringe", "Could not execute complex conjugation in MHO_NormFX." << eom); return false;}
         }
 
 

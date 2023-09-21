@@ -33,19 +33,19 @@ MHO_ComputePlotData::Initialize()
     fSBDArray = fContainerStore->GetObject<visibility_type>(std::string("sbd"));
     if(fVisibilities == nullptr)
     {
-        msg_fatal("main", "could not find visibility, object with name 'vis'." << eom);
+        msg_fatal("fringe", "could not find visibility, object with name 'vis'." << eom);
         std::exit(1);
     }
 
     if(fWeights == nullptr)
     {
-        msg_fatal("main", "could not find visibility, object with name 'weight'." << eom);
+        msg_fatal("fringe", "could not find visibility, object with name 'weight'." << eom);
         std::exit(1);
     }
 
     if(fSBDArray == nullptr)
     {
-        msg_fatal("main", "could not find visibility, object with name 'sbd'." << eom);
+        msg_fatal("fringe", "could not find visibility, object with name 'sbd'." << eom);
         std::exit(1);
     }
 
