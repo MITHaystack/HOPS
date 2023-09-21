@@ -36,6 +36,9 @@ class MHO_BasicFringeFitter: public MHO_FringeFitter
         bool fIsFinished;
         mho_json fVexInfo;
         mho_json fControlFormat;
+        
+        //hack 
+        mho_json fDataSelectFormat;
 };
 
 }//end namespace
