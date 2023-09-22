@@ -39,6 +39,8 @@ class MHO_BasicFringeFitter: public MHO_FringeFitter
         mho_json fVexInfo;
         mho_json fControlFormat;
 
+        int count;
+
         //hacks
         mho_json fDataSelectFormat;
         mho_json fPlotData;
