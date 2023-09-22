@@ -20,24 +20,25 @@
 #include "MHO_FringePlotInfo.hh"
 #include "MHO_VexInfoExtractor.hh"
 
-namespace hops 
+namespace hops
 {
 
 
-MHO_BasicFringeFitter::MHO_BasicFringeFitter():MHO_FringeFitter()
-{
-    fIsFinished = false;
-};
+MHO_BasicFringeFitter::MHO_BasicFringeFitter():MHO_FringeFitter(){};
 
 MHO_BasicFringeFitter::~MHO_BasicFringeFitter(){};
 
 void MHO_BasicFringeFitter::Configure()
 {
+    //set "is finished to false"
+    fParameterStore.Set("/status/is_finished", false);
+
+
     std::string directory = fParameterStore.GetAs<std::string>("/cmdline/directory");
     std::string control_file = fParameterStore.GetAs<std::string>("/cmdline/control_file");
     std::string baseline = fParameterStore.GetAs<std::string>("/cmdline/baseline");
     std::string polprod = fParameterStore.GetAs<std::string>("/cmdline/polprod");
-    
+
     //if any of these are empty, fail out for now
     if(directory == "" || control_file == "" || baseline == "" || polprod == "")
     {
@@ -64,7 +65,7 @@ void MHO_BasicFringeFitter::Configure()
     //load root file and extract useful vex info
     fVexInfo = fScanStore.GetRootFileData();
     MHO_VexInfoExtractor::extract_vex_info(fVexInfo, &fParameterStore);
-    
+
     ////////////////////////////////////////////////////////////////////////////
     //LOAD DATA AND ASSEMBLE THE DATA STORE
     ////////////////////////////////////////////////////////////////////////////
@@ -90,7 +91,7 @@ void MHO_BasicFringeFitter::Configure()
         msg_fatal("fringe", "could not find visibility or weight objects with names (vis, weight)." << eom);
         std::exit(1);
     }
-    
+
 
     //DEBUG
     //fContainerStore.DumpShortNamesToIds();
@@ -105,10 +106,10 @@ void MHO_BasicFringeFitter::Configure()
     fParameterStore.Set("/uuid/weights", wt_uuid);
     fParameterStore.Set("/uuid/ref_station", ref_uuid);
     fParameterStore.Set("/uuid/rem_station", rem_uuid);
-    
+
     //specify the control format
     fControlFormat = MHO_ControlDefinitions::GetControlFormat();
-    
+
     //add the data selection operator
     //TODO FIXME -- this is a horrible hack to get this operator into the initialization stream
     #pragma message("fix this horrible hack -- where we modify the control format itself to inject a default operator")
@@ -121,7 +122,7 @@ void MHO_BasicFringeFitter::Configure()
         {"priority", 1.01}
     };
     fControlFormat["coarse_selection"] = fDataSelectFormat;
-    
+
     ////////////////////////////////////////////////////////////////////////////
     //CONFIGURE THE OPERATOR BUILD MANAGER
     ////////////////////////////////////////////////////////////////////////////
@@ -130,16 +131,16 @@ void MHO_BasicFringeFitter::Configure()
     // #ifdef USE_PYBIND11
     // py::scoped_interpreter guard{}; // start the interpreter and keep it alive, need this or we segfault
     // #pragma message("TODO FIXME -- formalize the means by which plugin dependent operator builders are added")
-    // fOperatorBuildManager->AddBuilderType<MHO_PythonOperatorBuilder>("python_labelling", "python_labelling"); 
-    // fOperatorBuildManager->AddBuilderType<MHO_PythonOperatorBuilder>("python_flagging", "python_flagging"); 
-    // fOperatorBuildManager->AddBuilderType<MHO_PythonOperatorBuilder>("python_calibration", "python_calibration"); 
+    // fOperatorBuildManager->AddBuilderType<MHO_PythonOperatorBuilder>("python_labelling", "python_labelling");
+    // fOperatorBuildManager->AddBuilderType<MHO_PythonOperatorBuilder>("python_flagging", "python_flagging");
+    // fOperatorBuildManager->AddBuilderType<MHO_PythonOperatorBuilder>("python_calibration", "python_calibration");
     // #endif
 
 }
 
 void MHO_BasicFringeFitter::Initialize()
 {
-    
+
     ////////////////////////////////////////////////////////////////////////////
     //CONTROL CONSTRUCTION
     ////////////////////////////////////////////////////////////////////////////
@@ -185,12 +186,12 @@ void MHO_BasicFringeFitter::Initialize()
     weight_type* wt_data = fContainerStore.GetObject<weight_type>(std::string("weight"));
     take_snapshot_here("test", "visib", __FILE__, __LINE__, vis_data);
     take_snapshot_here("test", "weights", __FILE__, __LINE__,  wt_data);
-    
-    
+
+
     ////////////////////////////////////////////////////////////////////////////
     //OPERATOR CONSTRUCTION
     ////////////////////////////////////////////////////////////////////////////
-    
+
     fOperatorBuildManager->BuildOperatorCategory("default");
     MHO_BasicFringeDataConfiguration::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "labelling");
     MHO_BasicFringeDataConfiguration::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "selection");
@@ -218,19 +219,20 @@ void MHO_BasicFringeFitter::Run()
     MHO_BasicFringeUtilities::basic_fringe_search(&fContainerStore, &fParameterStore);
     //calculate the fringe properties
     MHO_BasicFringeUtilities::calculate_fringe_solution_info(&fContainerStore, &fParameterStore, fVexInfo);
-    
-    fIsFinished = true;
+
+    fParameterStore.Set("/status/is_finished", true);
 }
 
 void MHO_BasicFringeFitter::PostRun()
 {
-    
+
 }
 
 
 bool MHO_BasicFringeFitter::IsFinished()
 {
-    return fIsFinished;
+    bool is_finished = fParameterStore.GetAs<bool>("/status/is_finished");
+    return is_finished;
 }
 
 

@@ -83,22 +83,22 @@ def test_plot_visibilities(cstore_interface_obj, param_interface_obj):
     #modifying all values for APs 12-15
     # vis_arr[:,:,12:15,:] = 200.0
 
-    #lets dump the tags 
+    #lets dump the tags
     tags = visib_obj.GetTags()
     print("tags = ", tags)
 
-    #now set a tag value 
+    #now set a tag value
     visib_obj.SetTag("python_int_tag", 33)
     visib_obj.SetTag("python_float_tag", 3.14159)
     visib_obj.SetTag("python_string_tag", "a_new_string")
     visib_obj.SetTag("python_bool_tag", True)
     visib_obj.SetTag("python_char_tag", r'a') #note the r prefix for raw encoding as a byte/char
 
-    #and dump them again 
+    #and dump them again
     tags = visib_obj.GetTags()
     print("tags = ", tags)
 
-    #get the list of axis labels 
+    #get the list of axis labels
     for idx in [0,1,2,3]:
         print("axis: ", idx, " interval labels: ")
         ax_labels = visib_obj.GetCoordinateAxisIntervalLabels(idx);
@@ -117,16 +117,16 @@ def test_plot_visibilities(cstore_interface_obj, param_interface_obj):
     print("vis_00 shape = ", vis.shape)
     vis_mag = np.abs(vis)
 
-    # Plot the surface.
-    surf = ax.plot_surface(time, freq, vis_mag, cmap=cm.coolwarm, linewidth=0, antialiased=False)
+    # # Plot the surface.
+    # surf = ax.plot_surface(time, freq, vis_mag, cmap=cm.coolwarm, linewidth=0, antialiased=False)
+    #
+    # # Add a color bar which maps values to colors.
+    # fig.colorbar(surf, shrink=0.5, aspect=5)
+    # plt.show()
 
-    # Add a color bar which maps values to colors.
-    fig.colorbar(surf, shrink=0.5, aspect=5)
-    plt.show()
-    
-    
-    
-    
+
+
+
 def test_plot_visibilities_bad(cstore_interface_obj, param_interface_obj):
 
     n_obj =  cstore_interface_obj.GetNObjects();
@@ -146,12 +146,12 @@ def test_plot_visibilities_bad(cstore_interface_obj, param_interface_obj):
     axis2 = visib_obj.GetCoordinateAxis(2);
     axis3 = visib_obj.GetCoordinateAxis(3);
 
-    #shoudl provoke an error 
+    #shoudl provoke an error
     vis_arr.resize( [1,2,3,4] )
 
     #should provoke an error
     vis_arr.reshape(3,4,5,6)
-    
+
 def labelling_test(cstore_interface_obj, param_interface_obj):
     print("executing python data-labelling operator")
 

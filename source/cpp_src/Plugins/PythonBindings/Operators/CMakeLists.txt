@@ -7,8 +7,6 @@ set (PYOPERATOR_HEADERFILES
 )
 
 set( PYOPERATOR_SOURCEFILES
-    #${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_PyGenericOperator.cc -- TODO fix linking for this file
-    # ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_PythonOperatorBuilder.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_PyOperatorsModuleDefinition.cc
 )
 
@@ -16,7 +14,7 @@ set( PYOPERATOR_SOURCEFILES
 hops_internal_include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 #set libraries to link agains library (headers only) ###########################
-set(PYOPERATOR_LIBS MHO_Message MHO_Utilities MHO_Containers MHO_Operators pyMHO_Containers) 
+set(PYOPERATOR_LIBS MHO_Message MHO_Utilities MHO_Containers MHO_Operators pyMHO_Containers)
 
 #create and install the python module
 pybind11_add_module(pyMHO_Operators SHARED ${PYOPERATOR_SOURCEFILES})

@@ -12,16 +12,16 @@
 *Description: basic single-baseline fringe fitter, no bells or whistles
 */
 
-namespace hops 
+namespace hops
 {
 
 class MHO_BasicFringeFitter: public MHO_FringeFitter
 {
-        
+
     public:
         MHO_BasicFringeFitter();
         virtual ~MHO_BasicFringeFitter();
-        
+
         //basic run scheme: configure, init, then while(!IsFinished() ){ pre-run, run, post-run }
         virtual void Configure() override;
         virtual void Initialize() override;
@@ -30,16 +30,15 @@ class MHO_BasicFringeFitter: public MHO_FringeFitter
         virtual void PostRun() override;
         virtual void Finalize() override;
         virtual bool IsFinished() override;
-        
+
         //TODO remove this hack in favor of 'plotting'/'output' visitors
         mho_json GetPlotData(){return fPlotData;}
 
     protected:
 
-        bool fIsFinished;
         mho_json fVexInfo;
         mho_json fControlFormat;
-        
+
         //hacks
         mho_json fDataSelectFormat;
         mho_json fPlotData;
