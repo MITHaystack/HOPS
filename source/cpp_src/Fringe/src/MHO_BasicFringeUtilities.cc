@@ -285,7 +285,13 @@ MHO_BasicFringeUtilities::basic_fringe_search(MHO_ContainerStore* conStore, MHO_
     //output for the delay
     std::size_t bl_dim[visibility_type::rank::value];
     vis_data->GetDimensions(bl_dim);
-    visibility_type* sbd_data = vis_data->CloneEmpty();
+    visibility_type* sbd_data = conStore->GetObject<visibility_type>(std::string("sbd"));
+    if(sbd_data == nullptr) //doesn't yet exist so create and cache it in the store
+    {
+        sbd_data = vis_data->CloneEmpty();
+        conStore->AddObject(sbd_data);
+        conStore->SetShortName(vis_data->GetObjectUUID(), std::string("sbd"));
+    }
     bl_dim[FREQ_AXIS] *= 4; //normfx implementation demands this
     sbd_data->Resize(bl_dim);
 
