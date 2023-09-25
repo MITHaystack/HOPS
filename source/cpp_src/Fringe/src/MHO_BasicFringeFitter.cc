@@ -231,8 +231,8 @@ void MHO_BasicFringeFitter::PostRun()
 
 bool MHO_BasicFringeFitter::IsFinished()
 {
-    count++;
-    if(count<4){return false;}
+    // count++;
+    // if(count<4){return false;}
     bool is_finished = fParameterStore.GetAs<bool>("/status/is_finished");
     return is_finished;
 }
