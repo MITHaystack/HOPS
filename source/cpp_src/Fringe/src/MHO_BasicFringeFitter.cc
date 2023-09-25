@@ -127,15 +127,6 @@ void MHO_BasicFringeFitter::Configure()
     //CONFIGURE THE OPERATOR BUILD MANAGER
     ////////////////////////////////////////////////////////////////////////////
     fOperatorBuildManager = new MHO_OperatorBuilderManager(&fOperatorToolbox, &fContainerStore, &fParameterStore, fControlFormat);
-
-    // #ifdef USE_PYBIND11
-    // py::scoped_interpreter guard{}; // start the interpreter and keep it alive, need this or we segfault
-    // #pragma message("TODO FIXME -- formalize the means by which plugin dependent operator builders are added")
-    // fOperatorBuildManager->AddBuilderType<MHO_PythonOperatorBuilder>("python_labelling", "python_labelling");
-    // fOperatorBuildManager->AddBuilderType<MHO_PythonOperatorBuilder>("python_flagging", "python_flagging");
-    // fOperatorBuildManager->AddBuilderType<MHO_PythonOperatorBuilder>("python_calibration", "python_calibration");
-    // #endif
-
 }
 
 void MHO_BasicFringeFitter::Initialize()
