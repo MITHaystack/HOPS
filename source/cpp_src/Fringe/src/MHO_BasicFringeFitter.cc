@@ -24,7 +24,7 @@ namespace hops
 {
 
 
-MHO_BasicFringeFitter::MHO_BasicFringeFitter():MHO_FringeFitter(){};
+MHO_BasicFringeFitter::MHO_BasicFringeFitter():MHO_FringeFitter(){ count =0;};
 
 MHO_BasicFringeFitter::~MHO_BasicFringeFitter(){};
 
@@ -231,6 +231,8 @@ void MHO_BasicFringeFitter::PostRun()
 
 bool MHO_BasicFringeFitter::IsFinished()
 {
+    count++;
+    if(count<4){return false;}
     bool is_finished = fParameterStore.GetAs<bool>("/status/is_finished");
     return is_finished;
 }
