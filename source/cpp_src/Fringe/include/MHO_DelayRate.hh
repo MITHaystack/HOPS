@@ -57,7 +57,7 @@ class MHO_DelayRate: public MHO_BinaryOperator<
         std::size_t fInDims[VIS_NDIM];
         std::size_t fOutDims[VIS_NDIM];
 
-        void ApplyDataWeights(const XArgType2* in2);
+        void ApplyDataWeights(const XArgType2* in2, XArgType3* out);
         void ConditionallyResizeOutput(const std::size_t* dims, std::size_t size, XArgType3* out);
 
         #ifdef HOPS_USE_FFTW3
@@ -72,8 +72,8 @@ class MHO_DelayRate: public MHO_BinaryOperator<
         MHO_EndZeroPadder< visibility_type > fZeroPadder;
         FFT_ENGINE_TYPE fFFTEngine;
 
-        sbd_type fWorkspace;
-        sbd_type fWorkspace2;
+        // sbd_type fWorkspace;
+        // sbd_type fWorkspace2;
         int fDRSPSize;
         double fRefFreq;
 

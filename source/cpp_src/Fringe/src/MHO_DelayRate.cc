@@ -24,8 +24,9 @@ MHO_DelayRate::InitializeImpl(const XArgType1* in1, const XArgType2* in2, XArgTy
 
         in1->GetDimensions(fInDims);
 
-        //copy the input data into the workspace
-        fWorkspace.Copy(*in1);
+        // //copy the input data into the workspace
+        // fWorkspace.Copy(*in1);
+        out->CopyTags(*in1);
 
         //borrow this stupid routine from search_windows.c /////////////////////
         #pragma message("Fix the DRSP size calculation to remove upper limit of 8192.")
@@ -35,15 +36,15 @@ MHO_DelayRate::InitializeImpl(const XArgType1* in1, const XArgType2* in2, XArgTy
         ////////////////////////////////////////////////////////////////////////
 
         std::size_t np = fDRSPSize*4;
-        ConditionallyResizeOutput(&(fInDims[0]), np, &fWorkspace2);
+        ConditionallyResizeOutput(&(fInDims[0]), np, out);
 
-        fZeroPadder.SetArgs(&fWorkspace, &fWorkspace2);
+        fZeroPadder.SetArgs(in1, out);
         fZeroPadder.DeselectAllAxes();
         fZeroPadder.SelectAxis(TIME_AXIS); //only pad on the frequency (to lag) axis
         fZeroPadder.SetPaddedSize(np);
         fZeroPadder.SetEndPadded();
 
-        fFFTEngine.SetArgs(&fWorkspace2);
+        fFFTEngine.SetArgs(out);
         fFFTEngine.DeselectAllAxes();
         fFFTEngine.SelectAxis(TIME_AXIS); //only perform padded fft on frequency (to lag) axis
         fFFTEngine.SetForward();//forward DFT
@@ -55,7 +56,7 @@ MHO_DelayRate::InitializeImpl(const XArgType1* in1, const XArgType2* in2, XArgTy
         if(!ok){msg_error("operators", "Could not initialize FFT in MHO_DelayRate" << eom); return false;}
 
         fCyclicRotator.SetOffset(TIME_AXIS, np/2);
-        fCyclicRotator.SetArgs(&fWorkspace2);
+        fCyclicRotator.SetArgs(out);
         ok = fCyclicRotator.Initialize();
         if(!ok){msg_error("operators", "Could not initialize cyclic rotation in MHO_DelayRate." << eom); return false;}
 
@@ -75,14 +76,15 @@ MHO_DelayRate::ExecuteImpl(const XArgType1* in1, const XArgType2* in2, XArgType3
 
     if(fInitialized)
     {
-        //apply the data weights to the data in fWorkspace
-        std::size_t pprod = fWorkspace.GetDimension(POLPROD_AXIS);
-        std::size_t nch = fWorkspace.GetDimension(CHANNEL_AXIS);
-        std::size_t nap = fWorkspace.GetDimension(TIME_AXIS);
+        // //apply the data weights to the data in fWorkspace
+        // std::size_t pprod = fWorkspace.GetDimension(POLPROD_AXIS);
+        // std::size_t nch = fWorkspace.GetDimension(CHANNEL_AXIS);
+        // std::size_t nap = fWorkspace.GetDimension(TIME_AXIS);
 
+        std::size_t pprod = in1->GetDimension(POLPROD_AXIS);
+        std::size_t nch = in1->GetDimension(CHANNEL_AXIS);
+        std::size_t nap = in1->GetDimension(TIME_AXIS);
         double time_delta = std::get<TIME_AXIS>(*in1)(1) -  std::get<TIME_AXIS>(*in1)(0);
-
-        ApplyDataWeights(in2);
 
         //std::size_t nap = fInDims[TIME_AXIS];
         out->ZeroArray();
@@ -90,6 +92,8 @@ MHO_DelayRate::ExecuteImpl(const XArgType1* in1, const XArgType2* in2, XArgType3
 
         ok = fZeroPadder.Execute();
         if(!ok){msg_error("operators", "Could not execute zero padder in MHO_DelayRate" << eom); return false;}
+
+        ApplyDataWeights(in2, out);
 
         ok = fFFTEngine.Execute();
         if(!ok){msg_error("operators", "Could not execute FFT in MHO_DelayRate" << eom); return false;}
@@ -99,10 +103,13 @@ MHO_DelayRate::ExecuteImpl(const XArgType1* in1, const XArgType2* in2, XArgType3
 
         //linear interpolation, and conversion from fringe rate to delay rate step
         int sz = 4*fDRSPSize;
-        std::size_t nsbd = fWorkspace2.GetDimension(FREQ_AXIS);
-        out->Copy(fWorkspace2);
-        out->Resize(pprod, nch, fDRSPSize, nsbd);
-        out->ZeroArray();
+        std::size_t nsbd = out->GetDimension(FREQ_AXIS);
+        //out->Copy(fWorkspace2);
+        //out->Resize(pprod, nch, fDRSPSize, nsbd);
+        //out->ZeroArray();
+        
+        std::vector< sbd_type::value_type > workspace;
+        workspace.resize(fDRSPSize);
 
         for(std::size_t pp=0; pp<pprod; pp++)
         {
@@ -123,12 +130,16 @@ MHO_DelayRate::ExecuteImpl(const XArgType1* in1, const XArgType2* in2, XArgType3
                         //std::cout<<sz<<":"<<l_int<<": "<<l_int2<<std::endl;
                         if (l_int2 > (sz-1)){ l_int2 = sz - 1;}
                         //std::cout<<sz<<":"<<l_int<<": "<<l_int2<<std::endl;
-                        sbd_type::value_type interp_val = fWorkspace2(pp, ch, l_int, sbd) * (1.0 - l_fp + l_int) + fWorkspace2(pp, ch, l_int2, sbd) * (l_fp - l_int);
-                        (*out)(pp, ch, dr, sbd) = interp_val;
-
+                        sbd_type::value_type interp_val = (*out)(pp, ch, l_int, sbd) * (1.0 - l_fp + l_int) + (*out)(pp, ch, l_int2, sbd) * (l_fp - l_int);
+                        workspace[dr] = interp_val;
+                        // (*out)(pp, ch, dr, sbd) = interp_val;
                         std::get<TIME_AXIS>(*out)(dr) = ( (double)dr - (double)(fDRSPSize/2) )*(1.0/(time_delta*(double)fDRSPSize) );
                         //assign the axis value along dr axis
                         //std::get<TIME_AXIS>(*out)(dr) = std::get<TIME_AXIS>(fWorkspace2)(l_int) * (1.0 - l_fp + l_int) + std::get<TIME_AXIS>(fWorkspace2)(l_int2) * (l_fp - l_int);
+                    }
+                    for(std::size_t dr=0; dr<fDRSPSize; dr++)
+                    {
+                        (*out)(pp, ch, dr, sbd) = workspace[dr];
                     }
                 }
             }
@@ -141,12 +152,12 @@ MHO_DelayRate::ExecuteImpl(const XArgType1* in1, const XArgType2* in2, XArgType3
 };
 
 void
-MHO_DelayRate::ApplyDataWeights(const XArgType2* in2)
+MHO_DelayRate::ApplyDataWeights(const XArgType2* in2,  XArgType3* out)
 {
     //apply the data weights to the data in fWorkspace
-    std::size_t pprod = fWorkspace.GetDimension(POLPROD_AXIS);
-    std::size_t nch = fWorkspace.GetDimension(CHANNEL_AXIS);
-    std::size_t nap = fWorkspace.GetDimension(TIME_AXIS);
+    std::size_t pprod = in2->GetDimension(POLPROD_AXIS);
+    std::size_t nch = in2->GetDimension(CHANNEL_AXIS);
+    std::size_t nap = in2->GetDimension(TIME_AXIS);
 
     for(std::size_t pp=0; pp<pprod; pp++)
     {
@@ -154,7 +165,7 @@ MHO_DelayRate::ApplyDataWeights(const XArgType2* in2)
         {
             for(std::size_t ap=0; ap<nap; ap++)
             {
-                fWorkspace.SliceView(pp, ch, ap, ":") *= (*in2)(pp, ch, ap, 0); //apply the data weights
+                out->SliceView(pp, ch, ap, ":") *= (*in2)(pp, ch, ap, 0); //apply the data weights
             }
         }
     }
