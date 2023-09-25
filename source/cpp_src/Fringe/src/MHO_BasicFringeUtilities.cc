@@ -282,12 +282,18 @@ MHO_BasicFringeUtilities::basic_fringe_search(MHO_ContainerStore* conStore, MHO_
     //TODO consolidate the coarse search in a single class, so it can be mixed-and-matched
     //with different interpolation schemes
 
-    //output for the delay
+    //space for the visibilities transformed into single-band-delay space
     std::size_t bl_dim[visibility_type::rank::value];
     vis_data->GetDimensions(bl_dim);
-    visibility_type* sbd_data = vis_data->CloneEmpty();
-    bl_dim[FREQ_AXIS] *= 4; //normfx implementation demands this
-    sbd_data->Resize(bl_dim);
+    visibility_type* sbd_data = conStore->GetObject<visibility_type>(std::string("sbd"));
+    if(sbd_data == nullptr) //doesn't yet exist so create and cache it in the store
+    {
+        sbd_data = vis_data->CloneEmpty();
+        conStore->AddObject(sbd_data);
+        conStore->SetShortName(sbd_data->GetObjectUUID(), std::string("sbd"));
+        bl_dim[FREQ_AXIS] *= 4; //normfx implementation demands this
+        sbd_data->Resize(bl_dim);
+    }
 
     ////////////////////////////////////////////////////////////////////////////
     //COARSE SBD, DR, MBD SEARCH ALGO
@@ -305,9 +311,16 @@ MHO_BasicFringeUtilities::basic_fringe_search(MHO_ContainerStore* conStore, MHO_
     //take snapshot of sbd data after normfx
     take_snapshot_here("test", "sbd", __FILE__, __LINE__, sbd_data);
 
+    //space for the visibilities transformed into single-band-delay vs delay-rate space
+    visibility_type* sbd_dr_data = conStore->GetObject<visibility_type>(std::string("sbd_dr"));
+    if(sbd_dr_data == nullptr) //doesn't yet exist so create and cache it in the store
+    {
+        sbd_dr_data = sbd_data->CloneEmpty();
+        conStore->AddObject(sbd_dr_data);
+        conStore->SetShortName(sbd_dr_data->GetObjectUUID(), std::string("sbd_dr"));
+    }
     //run the transformation to delay rate space (this also involves a zero padded FFT)
     MHO_DelayRate drOp;
-    visibility_type* sbd_dr_data = sbd_data->CloneEmpty();
     double ref_freq = paramStore->GetAs<double>("ref_freq");
     drOp.SetReferenceFrequency(ref_freq);
     drOp.SetArgs(sbd_data, wt_data, sbd_dr_data);
