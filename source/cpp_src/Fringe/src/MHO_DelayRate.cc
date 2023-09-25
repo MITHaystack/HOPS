@@ -25,7 +25,6 @@ MHO_DelayRate::InitializeImpl(const XArgType1* in1, const XArgType2* in2, XArgTy
         in1->GetDimensions(fInDims);
 
         // //copy the input data into the workspace
-        // fWorkspace.Copy(*in1);
         out->CopyTags(*in1);
 
         //borrow this stupid routine from search_windows.c /////////////////////
@@ -76,17 +75,12 @@ MHO_DelayRate::ExecuteImpl(const XArgType1* in1, const XArgType2* in2, XArgType3
 
     if(fInitialized)
     {
-        // //apply the data weights to the data in fWorkspace
-        // std::size_t pprod = fWorkspace.GetDimension(POLPROD_AXIS);
-        // std::size_t nch = fWorkspace.GetDimension(CHANNEL_AXIS);
-        // std::size_t nap = fWorkspace.GetDimension(TIME_AXIS);
-
+        //apply the data weights
         std::size_t pprod = in1->GetDimension(POLPROD_AXIS);
         std::size_t nch = in1->GetDimension(CHANNEL_AXIS);
         std::size_t nap = in1->GetDimension(TIME_AXIS);
         double time_delta = std::get<TIME_AXIS>(*in1)(1) -  std::get<TIME_AXIS>(*in1)(0);
 
-        //std::size_t nap = fInDims[TIME_AXIS];
         out->ZeroArray();
         bool ok;
 
@@ -104,13 +98,9 @@ MHO_DelayRate::ExecuteImpl(const XArgType1* in1, const XArgType2* in2, XArgType3
         //linear interpolation, and conversion from fringe rate to delay rate step
         int sz = 4*fDRSPSize;
         std::size_t nsbd = out->GetDimension(FREQ_AXIS);
-        //out->Copy(fWorkspace2);
-        //out->Resize(pprod, nch, fDRSPSize, nsbd);
-        //out->ZeroArray();
         
         std::vector< sbd_type::value_type > workspace;
         workspace.resize(fDRSPSize);
-
         for(std::size_t pp=0; pp<pprod; pp++)
         {
             for(std::size_t ch=0; ch<nch; ch++)
@@ -127,15 +117,12 @@ MHO_DelayRate::ExecuteImpl(const XArgType1* in1, const XArgType2* in2, XArgType3
                         int l_int = (int)l_fp;
                         if (l_int < 0){ l_int = 0; }
                         int l_int2 = l_int+1;
-                        //std::cout<<sz<<":"<<l_int<<": "<<l_int2<<std::endl;
                         if (l_int2 > (sz-1)){ l_int2 = sz - 1;}
-                        //std::cout<<sz<<":"<<l_int<<": "<<l_int2<<std::endl;
+                        //evaluate and copy to temporary vector (TODO determine if this is strictly needed)
                         sbd_type::value_type interp_val = (*out)(pp, ch, l_int, sbd) * (1.0 - l_fp + l_int) + (*out)(pp, ch, l_int2, sbd) * (l_fp - l_int);
                         workspace[dr] = interp_val;
-                        // (*out)(pp, ch, dr, sbd) = interp_val;
                         std::get<TIME_AXIS>(*out)(dr) = ( (double)dr - (double)(fDRSPSize/2) )*(1.0/(time_delta*(double)fDRSPSize) );
-                        //assign the axis value along dr axis
-                        //std::get<TIME_AXIS>(*out)(dr) = std::get<TIME_AXIS>(fWorkspace2)(l_int) * (1.0 - l_fp + l_int) + std::get<TIME_AXIS>(fWorkspace2)(l_int2) * (l_fp - l_int);
+
                     }
                     for(std::size_t dr=0; dr<fDRSPSize; dr++)
                     {
@@ -154,7 +141,7 @@ MHO_DelayRate::ExecuteImpl(const XArgType1* in1, const XArgType2* in2, XArgType3
 void
 MHO_DelayRate::ApplyDataWeights(const XArgType2* in2,  XArgType3* out)
 {
-    //apply the data weights to the data in fWorkspace
+    //apply the data weights to the data 
     std::size_t pprod = in2->GetDimension(POLPROD_AXIS);
     std::size_t nch = in2->GetDimension(CHANNEL_AXIS);
     std::size_t nap = in2->GetDimension(TIME_AXIS);
