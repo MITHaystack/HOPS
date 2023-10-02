@@ -88,7 +88,8 @@ case $name in
     *)          echo unconfigured $name ; exit 2    ;;
 esac
 
-# for the purposes of testing in the makefile, we want to provide an override
+# for the purposes of testing in the bootstrap/Makefile, we want to provide
+# an ability to replace MHO_REGRESSION_DATA with a new location.
 [ -n "$MHO_REGRESSION_FAKE" ] &&
     parent=`echo $parent | sed "s,$MHO_REGRESSION_DATA,$MHO_REGRESSION_FAKE,"`
 nukable=$parent/$odr
