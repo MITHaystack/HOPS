@@ -356,6 +356,8 @@ MHO_BasicFringeUtilities::basic_fringe_search(MHO_ContainerStore* conStore, MHO_
     // paramStore->Set("/fringe/ambiguity", 1.0/freq_spacing);
     // paramStore->Set("/fringe/average_frequency", ave_freq);
 
+    std::cout<<"bins = "<<c_mbdmax<<", "<<c_sbdmax<<", "<<c_drmax<<std::endl;
+
     std::size_t n_mbd_pts = sbd_dr_data->GetDimension(CHANNEL_AXIS);
     std::size_t n_dr_pts = sbd_dr_data->GetDimension(TIME_AXIS);
     std::size_t n_sbd_pts = sbd_dr_data->GetDimension(FREQ_AXIS);

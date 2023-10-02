@@ -1,5 +1,6 @@
 #include "MHO_MBDelaySearch2.hh"
-#include "MHO_DelayRate.hh"
+#include "MHO_DelayRate2.hh"
+
 
 namespace hops
 {
@@ -101,7 +102,8 @@ MHO_MBDelaySearch2::ExecuteImpl(const XArgType* in)
             {
                 for(std::size_t j=0;j<b;j++)
                 {
-                    fSBDDrWorkspace(0,a,b,0) = (*in)(0,a,b,0);
+                    //std::cout<<"hey = "<<(*in)(0,i,j,sbd_idx)<<std::endl;
+                    fSBDDrWorkspace(0,i,j,0) = (*in)(0,i,j,sbd_idx);
                 }
             }
 
@@ -109,10 +111,10 @@ MHO_MBDelaySearch2::ExecuteImpl(const XArgType* in)
             fSBDDrWorkspace.CopyTags(*in);
             std::get<CHANNEL_AXIS>(fSBDDrWorkspace) = std::get<CHANNEL_AXIS>(*in);
             std::get<TIME_AXIS>(fSBDDrWorkspace) = std::get<TIME_AXIS>(*in);
-            std::get<FREQ_AXIS>(fSBDDrWorkspace)(0) = std::get<FREQ_AXIS>(*in)(0);
+            std::get<FREQ_AXIS>(fSBDDrWorkspace)(0) = std::get<FREQ_AXIS>(*in)(sbd_idx);
 
             //run the transformation to delay rate space (this also involves a zero padded FFT)
-            MHO_DelayRate drOp;
+            MHO_DelayRate2 drOp;
             drOp.SetReferenceFrequency(fRefFreq);
             drOp.SetArgs(&fSBDDrWorkspace, fWeights, &sbd_dr_data);
             bool ok = drOp.Initialize();
@@ -128,6 +130,7 @@ MHO_MBDelaySearch2::ExecuteImpl(const XArgType* in)
                 for(std::size_t ch=0; ch<nch; ch++)
                 {
                     std::size_t mbd_bin = fMBDBinMap[ch];
+                    //std::cout<<"value @ "<<ch<<", "<<dr_idx<<" = "<<sbd_dr_data(0, ch, dr_idx, 0)<<std::endl;
                     fMBDWorkspace(mbd_bin) = sbd_dr_data(0, ch, dr_idx, 0);
                 }
 
