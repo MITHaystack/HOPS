@@ -421,6 +421,30 @@ MHO_BasicFringeUtilities::basic_fringe_search(MHO_ContainerStore* conStore, MHO_
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 void 
 MHO_BasicFringeUtilities::basic_fringe_search2(MHO_ContainerStore* conStore, MHO_ParameterStore* paramStore)
 {
@@ -466,29 +490,13 @@ MHO_BasicFringeUtilities::basic_fringe_search2(MHO_ContainerStore* conStore, MHO
     //take snapshot of sbd data after normfx
     take_snapshot_here("test", "sbd", __FILE__, __LINE__, sbd_data);
 
-    //space for the visibilities transformed into single-band-delay vs delay-rate space
-    visibility_type* sbd_dr_data = conStore->GetObject<visibility_type>(std::string("sbd_dr"));
-    if(sbd_dr_data == nullptr) //doesn't yet exist so create and cache it in the store
-    {
-        sbd_dr_data = sbd_data->CloneEmpty();
-        conStore->AddObject(sbd_dr_data);
-        conStore->SetShortName(sbd_dr_data->GetObjectUUID(), std::string("sbd_dr"));
-    }
-    //run the transformation to delay rate space (this also involves a zero padded FFT)
-    MHO_DelayRate drOp;
-    double ref_freq = paramStore->GetAs<double>("ref_freq");
-    drOp.SetReferenceFrequency(ref_freq);
-    drOp.SetArgs(sbd_data, wt_data, sbd_dr_data);
-    ok = drOp.Initialize();
-    check_step_fatal(ok, "fringe", "dr initialization." << eom );
-    ok = drOp.Execute();
-    check_step_fatal(ok, "fringe", "dr execution." << eom );
-
-    take_snapshot_here("test", "sbd_dr", __FILE__, __LINE__, sbd_dr_data);
 
     //coarse SBD/MBD/DR search (locates max bin)
-    MHO_MBDelaySearch mbdSearch;
-    mbdSearch.SetArgs(sbd_dr_data);
+    double ref_freq = paramStore->GetAs<double>("ref_freq");
+    MHO_MBDelaySearch2 mbdSearch;
+    mbdSearch.SetWeights(wt_data);
+    mbdSearch.SetReferenceFrequency(ref_freq);
+    mbdSearch.SetArgs(sbd_data);
     ok = mbdSearch.Initialize();
     check_step_fatal(ok, "fringe", "mbd initialization." << eom );
     ok = mbdSearch.Execute();
@@ -500,16 +508,15 @@ MHO_BasicFringeUtilities::basic_fringe_search2(MHO_ContainerStore* conStore, MHO
     double freq_spacing = mbdSearch.GetFrequencySpacing();
     double ave_freq = mbdSearch.GetAverageFrequency();
 
-
     paramStore->Set("/fringe/max_mbd_bin", c_mbdmax);
     paramStore->Set("/fringe/max_sbd_bin", c_sbdmax);
     paramStore->Set("/fringe/max_dr_bin", c_drmax);
     // paramStore->Set("/fringe/ambiguity", 1.0/freq_spacing);
     // paramStore->Set("/fringe/average_frequency", ave_freq);
 
-    std::size_t n_mbd_pts = sbd_dr_data->GetDimension(CHANNEL_AXIS);
-    std::size_t n_dr_pts = sbd_dr_data->GetDimension(TIME_AXIS);
-    std::size_t n_sbd_pts = sbd_dr_data->GetDimension(FREQ_AXIS);
+    std::size_t n_mbd_pts = 1;// sbd_dr_data->GetDimension(CHANNEL_AXIS);
+    std::size_t n_dr_pts = 1; //sbd_dr_data->GetDimension(TIME_AXIS);
+    std::size_t n_sbd_pts = 1;// sbd_dr_data->GetDimension(FREQ_AXIS);
     paramStore->Set("/fringe/n_mbd_points", n_mbd_pts);
     paramStore->Set("/fringe/n_sbd_points", n_sbd_pts);
     paramStore->Set("/fringe/n_dr_points", n_dr_pts);
@@ -554,9 +561,9 @@ MHO_BasicFringeUtilities::basic_fringe_search2(MHO_ContainerStore* conStore, MHO
 
     //add the sbd_data, and sbd_dr_data to the container store
     conStore->AddObject(sbd_data);
-    conStore->AddObject(sbd_dr_data);
+    //conStore->AddObject(sbd_dr_data);
     conStore->SetShortName(sbd_data->GetObjectUUID(), "sbd");
-    conStore->SetShortName(sbd_dr_data->GetObjectUUID(), "sbd_dr");
+    //conStore->SetShortName(sbd_dr_data->GetObjectUUID(), "sbd_dr");
 }
 
 
