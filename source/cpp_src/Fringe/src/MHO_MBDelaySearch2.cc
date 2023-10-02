@@ -1,4 +1,5 @@
 #include "MHO_MBDelaySearch2.hh"
+#include "MHO_DelayRate.hh"
 
 namespace hops
 {
@@ -64,6 +65,18 @@ bool
 MHO_MBDelaySearch2::ExecuteImpl(const XArgType* in)
 {
 
+    // //space for the visibilities transformed into single-band-delay vs delay-rate space
+    // visibility_type* sbd_dr_data = conStore->GetObject<visibility_type>(std::string("sbd_dr"));
+    // if(sbd_dr_data == nullptr) //doesn't yet exist so create and cache it in the store
+    // {
+    //     sbd_dr_data = sbd_data->CloneEmpty();
+    //     conStore->AddObject(sbd_dr_data);
+    //     conStore->SetShortName(sbd_dr_data->GetObjectUUID(), std::string("sbd_dr"));
+    // }
+    // 
+
+
+
     if(fInitialized)
     {
         //loop over the single-band delay 'lags', computing the MBD/DR function
@@ -71,16 +84,51 @@ MHO_MBDelaySearch2::ExecuteImpl(const XArgType* in)
         double maxmbd = 0.0;
         for(std::size_t sbd_idx=0; sbd_idx<fNSBD; sbd_idx++)
         {
+            //first select the slice of visibilities which correspond to this SBD 
+            //auto sbd_slice = in->SliceView(0, ":", ":", sbd_idx);
+
+            //copy this slice into local workspace table container
+            auto sbd_dims = in->GetDimensionArray();
+            sbd_dims[POLPROD_AXIS] = 1;
+            sbd_dims[FREQ_AXIS] = 1;
+            //auto sbd_dr_dim = fSBDDrWorkspace.GetDimensionArray();
+            fSBDDrWorkspace.Resize( &(sbd_dims[0]) );
+            fSBDDrWorkspace.ZeroArray();
+
+            std::size_t a = sbd_dims[CHANNEL_AXIS];
+            std::size_t b = sbd_dims[TIME_AXIS];
+            for(std::size_t i=0;i<a;i++)
+            {
+                for(std::size_t j=0;j<b;j++)
+                {
+                    fSBDDrWorkspace(0,a,b,0) = (*in)(0,a,b,0);
+                }
+            }
+
+            //copy the tags/axes 
+            fSBDDrWorkspace.CopyTags(*in);
+            std::get<CHANNEL_AXIS>(fSBDDrWorkspace) = std::get<CHANNEL_AXIS>(*in);
+            std::get<TIME_AXIS>(fSBDDrWorkspace) = std::get<TIME_AXIS>(*in);
+            std::get<FREQ_AXIS>(fSBDDrWorkspace)(0) = std::get<FREQ_AXIS>(*in)(0);
+
+            //run the transformation to delay rate space (this also involves a zero padded FFT)
+            MHO_DelayRate drOp;
+            drOp.SetReferenceFrequency(fRefFreq);
+            drOp.SetArgs(&fSBDDrWorkspace, fWeights, &sbd_dr_data);
+            bool ok = drOp.Initialize();
+            ok = drOp.Execute();
+
             for(std::size_t dr_idx=0; dr_idx < fNDR; dr_idx++)
             {
-                fMBDWorkspace.ZeroArray(); //zero out workspace
+                //zero out MBD workspace
+               fMBDWorkspace.ZeroArray();
 
                 //copy in the data from each channel for this SDB/DR
                 std::size_t nch = std::get<CHANNEL_AXIS>(*in).GetSize();
                 for(std::size_t ch=0; ch<nch; ch++)
                 {
                     std::size_t mbd_bin = fMBDBinMap[ch];
-                    fMBDWorkspace(mbd_bin) = (*in)(0, ch, dr_idx, sbd_idx);
+                    fMBDWorkspace(mbd_bin) = sbd_dr_data(0, ch, dr_idx, 0);
                 }
 
                 if(sbd_idx == fNSBD-1 && dr_idx == fNDR-1)
