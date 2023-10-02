@@ -1,10 +1,10 @@
-#ifndef MHO_MBDelaySearch_HH__
-#define MHO_MBDelaySearch_HH__
+#ifndef MHO_MBDelaySearch2_HH__
+#define MHO_MBDelaySearch2_HH__
 
 
 /*
-*File: MHO_MBDelaySearch.hh
-*Class: MHO_MBDelaySearch
+*File: MHO_MBDelaySearch2.hh
+*Class: MHO_MBDelaySearch2
 *Author: J. Barrett
 *Email: barrettj@mit.edu
 *Date:
@@ -35,11 +35,14 @@ using mbd_axis_pack = MHO_AxisPack< time_axis_type >;
 using mbd_type = MHO_TableContainer< visibility_element_type, mbd_axis_pack >;
 using mbd_amp_type = MHO_TableContainer< double, mbd_axis_pack >;
 
-class MHO_MBDelaySearch: public MHO_InspectingOperator< visibility_type >
+
+
+
+class MHO_MBDelaySearch2: public MHO_InspectingOperator< visibility_type >
 {
     public:
-        MHO_MBDelaySearch();
-        virtual ~MHO_MBDelaySearch();
+        MHO_MBDelaySearch2();
+        virtual ~MHO_MBDelaySearch2();
 
         int GetMBDMaxBin() const {return fMBDMaxBin;}
         int GetSBDMaxBin() const {return fSBDMaxBin;}
@@ -54,6 +57,8 @@ class MHO_MBDelaySearch: public MHO_InspectingOperator< visibility_type >
 
         time_axis_type* GetMBDAxis(){ return &fMBDAxis; };
         delay_rate_axis_type* GetDRAxis(){ return &fDRAxis; };
+
+
 
     protected:
 
@@ -109,4 +114,4 @@ class MHO_MBDelaySearch: public MHO_InspectingOperator< visibility_type >
 
 
 
-#endif /* end of include guard: MHO_MBDelaySearch_HH__ */
+#endif /* end of include guard: MHO_MBDelaySearch2_HH__ */
