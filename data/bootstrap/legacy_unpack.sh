@@ -1,12 +1,23 @@
 #!/bin/sh
 #
-# Companion script to unpack tarballs tarball configuration and
-# creation is in bootstrap/legacy_tar.sh -- this script does a
-# lookup on any requested tarball and verifies that it either
-# exists or needs to be unpacked.  MHO_REGRESSION_NUKE will be
-# set to a set of directories to remove if MHO_REGRESSION_TIDY=true
+# Script to unpack HOPS3 data tarballs from MHO_REGRESSION_DATA.
 #
+# If MHO_REGRESSION_DATA and an approprate tarball is present
+# then the tarball will be unpacked to a specified location
+# ($nukable below, to emphasize that this can be regenerated).
+#
+# The companion script to create the tarballs is part of the HOPS4
+# GIT repo as part of the migration software suite.
+#
+# This companion script to unpacks according to its configuration
+# (which must be synchronized with the tarball creator, legacy_tar.sh).
+# That is, it does a lookup on any requested tarball and verifies that
+# it either exists (i.e. previously unpacked) or needs to be unpacked.
 # At the moment, unpacking is all or nothing, and that may suffice.
+#
+# If successfully executed, the $nukable directory is echoed, and
+# an exit status of 0 is set.  This allows the caller to remove the
+# test data if that is desirable.
 #
 # This script ends by echoing the name of the directory created
 # (and thus something that may be removed) and sets exit status 0.
