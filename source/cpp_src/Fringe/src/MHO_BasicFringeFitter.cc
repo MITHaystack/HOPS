@@ -207,7 +207,7 @@ void MHO_BasicFringeFitter::PreRun()
 void MHO_BasicFringeFitter::Run()
 {
     //execute the basic fringe search algorithm
-    MHO_BasicFringeUtilities::basic_fringe_search2(&fContainerStore, &fParameterStore);
+    MHO_BasicFringeUtilities::basic_fringe_search(&fContainerStore, &fParameterStore);
     //calculate the fringe properties
     MHO_BasicFringeUtilities::calculate_fringe_solution_info(&fContainerStore, &fParameterStore, fVexInfo);
 
