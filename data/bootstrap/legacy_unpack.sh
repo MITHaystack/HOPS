@@ -10,6 +10,10 @@
 # in the MHO_REGRESION_DEST directory rather than MHO_REGRESSION_DATA
 # and $nukable will refer to this destination.
 #
+# If MHO_REGRESSION_EXTRACT is set to 'false' then the name of the
+# tarball is returned as 'mhoregtgz=...'.  This prevents accidentally
+# nuking the tarball, and the tarball name is available with an eval.
+#
 # The companion script to create the tarballs is part of the HOPS4
 # GIT repo as part of the migration software suite.
 #
@@ -30,7 +34,8 @@
 #  or 77 for no data to unpack (SKIP)
 #  or 99 for some configuration ERROR
 name=${1-'help'}
-[ "$name" = 'help' ] && { echo Usage: $0 name -- read script ; exit 1 ; }
+[ "$name" = 'help' -o "$name" = '--help' ] &&
+    { echo Usage: $0 name -- read script ; exit 1 ; }
 
 # some abbreviations to make the case statement below more compact
 # these are unpack directories
@@ -118,6 +123,7 @@ tgz=$leg/$src.tar.gz
 
 # it is a SKIP if the required tarball is missing
 [ -f "$tgz" ] || { echo source $tgz is missing; exit 77; }
+[ "x$MHO_REGRESSION_EXTRACT" = xfalse ] && { echo mhoregtgz="$tgz" ; exit 0 ; }
 
 # it might not yet exist
 [ -d "$parent" ] || mkdir -p $parent
