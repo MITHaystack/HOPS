@@ -6,6 +6,10 @@
 # then the tarball will be unpacked to a specified location
 # ($nukable below, to emphasize that this can be regenerated).
 #
+# If MHO_REGRESION_DEST is set, then the unpack will put data in the
+# in the MHO_REGRESION_DEST directory rather than MHO_REGRESSION_DATA
+# and $nukable will refer to this destination.
+#
 # The companion script to create the tarballs is part of the HOPS4
 # GIT repo as part of the migration software suite.
 #
@@ -99,15 +103,17 @@ case $name in
     *)          echo unconfigured $name ; exit 2    ;;
 esac
 
-# for the purposes of testing in the bootstrap/Makefile, we want to provide
-# an ability to replace MHO_REGRESSION_DATA with a new location.
-[ -n "$MHO_REGRESSION_FAKE" ] &&
-    parent=`echo $parent | sed "s,$MHO_REGRESSION_DATA,$MHO_REGRESSION_FAKE,"`
+# For the purposes of testing in the bootstrap/Makefile, we want to provide
+# an ability to replace MHO_REGRESSION_DATA with a new (FAKE) location.
+[ -n "$MHO_REGRESSION_DEST" ] &&
+    parent=`echo $parent | sed "s,$MHO_REGRESSION_DATA,$MHO_REGRESSION_DEST,"`
+
 nukable=$parent/$odr
 
 # successfully found -- we are done
 [ -d "$nukable" ] && echo "$nukable" && exit 0
 
+# this is where the tarballs are stored.
 tgz=$leg/$src.tar.gz
 
 # it is a SKIP if the required tarball is missing
