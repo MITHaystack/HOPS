@@ -511,6 +511,9 @@ MHO_BasicFringeUtilities::basic_fringe_search2(MHO_ContainerStore* conStore, MHO
     paramStore->Set("/fringe/max_mbd_bin", c_mbdmax);
     paramStore->Set("/fringe/max_sbd_bin", c_sbdmax);
     paramStore->Set("/fringe/max_dr_bin", c_drmax);
+
+    std::cout<<"bins = "<<c_mbdmax<<", "<<c_sbdmax<<", "<<c_drmax<<std::endl;
+
     // paramStore->Set("/fringe/ambiguity", 1.0/freq_spacing);
     // paramStore->Set("/fringe/average_frequency", ave_freq);
 
