@@ -211,14 +211,6 @@ MHO_BasicFringeUtilities::calculate_residual_phase(MHO_ContainerStore* conStore,
 
     paramStore->Set("/fringe/sbd_separation", sbd_delta);
 
-    
-    std::cout<<" SBD PTR  = "<<sbd_arr<<std::endl;
-    std::cout<<"total size of sbd array = "<<sbd_arr->GetSize()<<std::endl;
-    std::cout<<"IM GONNA DUMP THE POLPROD AX: " << std::get<0>(*sbd_arr) <<std::endl;
-        std::cout<<"IM GONNA DUMP THE CHAN AX: " << std::get<CHANNEL_AXIS>(*sbd_arr) <<std::endl;
-    //FIXME FIXME FIXME!!!!
-    return 0.0;
-
     MHO_FringeRotation frot;
     frot.SetSBDSeparation(sbd_delta);
     frot.SetSBDMaxBin(sbd_max_bin);
@@ -233,6 +225,7 @@ MHO_BasicFringeUtilities::calculate_residual_phase(MHO_ContainerStore* conStore,
         std::string net_sideband = "?";
         std::string sidebandlabelkey = "net_sideband";
         auto other_labels = chan_ax->GetIntervalsWhichIntersect(&ilabel);
+        std::cout<<"N LABELS = "<<other_labels.size()<<std::endl;
         for(auto olit = other_labels.begin(); olit != other_labels.end(); olit++)
         {
             if( (*olit)->HasKey(sidebandlabelkey) )
@@ -541,7 +534,7 @@ MHO_BasicFringeUtilities::basic_fringe_search2(MHO_ContainerStore* conStore, MHO
     // paramStore->Set("/fringe/average_frequency", ave_freq);
 
     std::size_t n_mbd_pts = 32; //sbd_dr_data->GetDimension(CHANNEL_AXIS);
-    std::size_t n_dr_pts = 4092; //sbd_dr_data->GetDimension(TIME_AXIS);
+    std::size_t n_dr_pts = 4096; //sbd_dr_data->GetDimension(TIME_AXIS);
     std::size_t n_sbd_pts = 464;// sbd_dr_data->GetDimension(FREQ_AXIS);
     paramStore->Set("/fringe/n_mbd_points", n_mbd_pts);
     paramStore->Set("/fringe/n_sbd_points", n_sbd_pts);
@@ -561,7 +554,6 @@ MHO_BasicFringeUtilities::basic_fringe_search2(MHO_ContainerStore* conStore, MHO
 
     fringeInterp.SetReferenceFrequency(ref_freq);
     fringeInterp.SetMaxBins(c_sbdmax, c_mbdmax, c_drmax);
-
     fringeInterp.SetSBDArray(sbd_data);
     fringeInterp.SetWeights(wt_data);
 
@@ -584,20 +576,6 @@ MHO_BasicFringeUtilities::basic_fringe_search2(MHO_ContainerStore* conStore, MHO
     paramStore->Set("/fringe/drate", drate);
     paramStore->Set("/fringe/frate", frate);
     paramStore->Set("/fringe/famp", famp);
-
-
-    std::cout<<"DUMP THE CHANNEL AX AGGAAAIIIN = "<< std::get<CHANNEL_AXIS>(*sbd_data)<<std::endl;
-    
-    
-    visibility_type* sbd_copy = conStore->GetObject<visibility_type>(std::string("sbd"));
-    std::cout<<"PTR COPY = "<<sbd_copy<<std::endl;
-    std::cout<<"IMMA DUMP YO COPY CHAN AX"<< std::get<CHANNEL_AXIS>(*sbd_copy) <<std::endl;
-    std::cout<<"size of sbd_copy = "<<sbd_copy->GetSize()<<std::endl;
-    //add the sbd_data, and sbd_dr_data to the container store
-    //conStore->AddObject(sbd_data);
-    //conStore->AddObject(sbd_dr_data);
-    //conStore->SetShortName(sbd_data->GetObjectUUID(), "sbd");
-    //conStore->SetShortName(sbd_dr_data->GetObjectUUID(), "sbd_dr");
 }
 
 
