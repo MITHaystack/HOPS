@@ -65,19 +65,6 @@ MHO_MBDelaySearch2::InitializeImpl(const XArgType* in)
 bool
 MHO_MBDelaySearch2::ExecuteImpl(const XArgType* in)
 {
-
-    // //space for the visibilities transformed into single-band-delay vs delay-rate space
-    // visibility_type* sbd_dr_data = conStore->GetObject<visibility_type>(std::string("sbd_dr"));
-    // if(sbd_dr_data == nullptr) //doesn't yet exist so create and cache it in the store
-    // {
-    //     sbd_dr_data = sbd_data->CloneEmpty();
-    //     conStore->AddObject(sbd_dr_data);
-    //     conStore->SetShortName(sbd_dr_data->GetObjectUUID(), std::string("sbd_dr"));
-    // }
-    // 
-
-
-
     if(fInitialized)
     {
         //loop over the single-band delay 'lags', computing the MBD/DR function
@@ -106,6 +93,8 @@ MHO_MBDelaySearch2::ExecuteImpl(const XArgType* in)
                     fSBDDrWorkspace(0,i,j,0) = (*in)(0,i,j,sbd_idx);
                 }
             }
+            
+            // std::cout<<"NSBD = "<<fNSBD<<std::endl;
 
             //copy the tags/axes 
             fSBDDrWorkspace.CopyTags(*in);
@@ -119,8 +108,12 @@ MHO_MBDelaySearch2::ExecuteImpl(const XArgType* in)
             drOp.SetArgs(&fSBDDrWorkspace, fWeights, &sbd_dr_data);
             bool ok = drOp.Initialize();
             ok = drOp.Execute();
+            
+            
+            auto sbd_dr_dim = sbd_dr_data.GetDimensionArray();
+            // std::cout<<"sbd_dr_data dims = "<<sbd_dr_dim[0]<<", "<<sbd_dr_dim[1]<<", "<<sbd_dr_dim[2]<<", "<<sbd_dr_dim[3]<<std::endl;
 
-            for(std::size_t dr_idx=0; dr_idx < fNDR; dr_idx++)
+            for(std::size_t dr_idx=0; dr_idx < sbd_dr_dim[TIME_AXIS]; dr_idx++)
             {
                 //zero out MBD workspace
                fMBDWorkspace.ZeroArray();
@@ -130,7 +123,7 @@ MHO_MBDelaySearch2::ExecuteImpl(const XArgType* in)
                 for(std::size_t ch=0; ch<nch; ch++)
                 {
                     std::size_t mbd_bin = fMBDBinMap[ch];
-                    //std::cout<<"value @ "<<ch<<", "<<dr_idx<<" = "<<sbd_dr_data(0, ch, dr_idx, 0)<<std::endl;
+                    //std::cout<<"value @ "<<ch<<", "<<dr_idx<<", "<<sbd_idx<<" = "<<sbd_dr_data(0, ch, dr_idx, 0)<<std::endl;
                     fMBDWorkspace(mbd_bin) = sbd_dr_data(0, ch, dr_idx, 0);
                 }
 
@@ -161,6 +154,9 @@ MHO_MBDelaySearch2::ExecuteImpl(const XArgType* in)
                         fMBDMaxBin = (i + fNGridPoints/2) % fNGridPoints;
                         fSBDMaxBin = sbd_idx;
                         fDRMaxBin = dr_idx;
+                        
+                        std::cout<<"new max: "<<maxmbd<<" @ "<< fMBDMaxBin<<", "<<fDRMaxBin<<", "<<fSBDMaxBin<<std::endl;
+                        
                     }
                 }
 
@@ -172,9 +168,11 @@ MHO_MBDelaySearch2::ExecuteImpl(const XArgType* in)
                 }
             }
         }
+        
+        std::cout<<"MAX VAL = "<< maxmbd <<std::endl;
 
         fMBDAxis = std::get<0>(fMBDWorkspace);
-        fDRAxis = std::get<TIME_AXIS>(*in);
+        fDRAxis = std::get<TIME_AXIS>(sbd_dr_data);
 
         return true;
     }

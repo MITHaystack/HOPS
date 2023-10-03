@@ -211,6 +211,14 @@ MHO_BasicFringeUtilities::calculate_residual_phase(MHO_ContainerStore* conStore,
 
     paramStore->Set("/fringe/sbd_separation", sbd_delta);
 
+    
+    std::cout<<" SBD PTR  = "<<sbd_arr<<std::endl;
+    std::cout<<"total size of sbd array = "<<sbd_arr->GetSize()<<std::endl;
+    std::cout<<"IM GONNA DUMP THE POLPROD AX: " << std::get<0>(*sbd_arr) <<std::endl;
+        std::cout<<"IM GONNA DUMP THE CHAN AX: " << std::get<CHANNEL_AXIS>(*sbd_arr) <<std::endl;
+    //FIXME FIXME FIXME!!!!
+    return 0.0;
+
     MHO_FringeRotation frot;
     frot.SetSBDSeparation(sbd_delta);
     frot.SetSBDMaxBin(sbd_max_bin);
@@ -292,11 +300,12 @@ MHO_BasicFringeUtilities::basic_fringe_search(MHO_ContainerStore* conStore, MHO_
     visibility_type* sbd_data = conStore->GetObject<visibility_type>(std::string("sbd"));
     if(sbd_data == nullptr) //doesn't yet exist so create and cache it in the store
     {
-        sbd_data = vis_data->CloneEmpty();
+        sbd_data = vis_data->Clone();
         conStore->AddObject(sbd_data);
         conStore->SetShortName(sbd_data->GetObjectUUID(), std::string("sbd"));
         bl_dim[FREQ_AXIS] *= 4; //normfx implementation demands this
         sbd_data->Resize(bl_dim);
+        sbd_data->ZeroArray();
     }
 
     ////////////////////////////////////////////////////////////////////////////
@@ -334,6 +343,10 @@ MHO_BasicFringeUtilities::basic_fringe_search(MHO_ContainerStore* conStore, MHO_
     check_step_fatal(ok, "fringe", "dr execution." << eom );
 
     take_snapshot_here("test", "sbd_dr", __FILE__, __LINE__, sbd_dr_data);
+
+    auto sbd_dr_dim = sbd_dr_data->GetDimensionArray();
+    std::cout<<"sbd_dr_data dims = "<<sbd_dr_dim[0]<<", "<<sbd_dr_dim[1]<<", "<<sbd_dr_dim[2]<<", "<<sbd_dr_dim[3]<<std::endl;
+
 
     //coarse SBD/MBD/DR search (locates max bin)
     MHO_MBDelaySearch mbdSearch;
@@ -403,11 +416,11 @@ MHO_BasicFringeUtilities::basic_fringe_search(MHO_ContainerStore* conStore, MHO_
     paramStore->Set("/fringe/frate", frate);
     paramStore->Set("/fringe/famp", famp);
 
-    //add the sbd_data, and sbd_dr_data to the container store
-    conStore->AddObject(sbd_data);
-    conStore->AddObject(sbd_dr_data);
-    conStore->SetShortName(sbd_data->GetObjectUUID(), "sbd");
-    conStore->SetShortName(sbd_dr_data->GetObjectUUID(), "sbd_dr");
+    // //add the sbd_data, and sbd_dr_data to the container store
+    // conStore->AddObject(sbd_data);
+    // conStore->AddObject(sbd_dr_data);
+    // conStore->SetShortName(sbd_data->GetObjectUUID(), "sbd");
+    // conStore->SetShortName(sbd_dr_data->GetObjectUUID(), "sbd_dr");
 }
 
 
@@ -469,12 +482,16 @@ MHO_BasicFringeUtilities::basic_fringe_search2(MHO_ContainerStore* conStore, MHO
     visibility_type* sbd_data = conStore->GetObject<visibility_type>(std::string("sbd"));
     if(sbd_data == nullptr) //doesn't yet exist so create and cache it in the store
     {
-        sbd_data = vis_data->CloneEmpty();
+        sbd_data = vis_data->Clone();
         conStore->AddObject(sbd_data);
         conStore->SetShortName(sbd_data->GetObjectUUID(), std::string("sbd"));
         bl_dim[FREQ_AXIS] *= 4; //normfx implementation demands this
         sbd_data->Resize(bl_dim);
+        sbd_data->ZeroArray();
     }
+    else {std::cout<<"WHAT THE HALE?"<<std::endl;}
+    
+    std::cout<<"DUMP THE CHANNEL AX = "<< std::get<CHANNEL_AXIS>(*sbd_data)<<std::endl;
 
     ////////////////////////////////////////////////////////////////////////////
     //COARSE SBD, DR, MBD SEARCH ALGO
@@ -492,6 +509,9 @@ MHO_BasicFringeUtilities::basic_fringe_search2(MHO_ContainerStore* conStore, MHO
     //take snapshot of sbd data after normfx
     take_snapshot_here("test", "sbd", __FILE__, __LINE__, sbd_data);
 
+    std::cout<<"DUMP THE CHANNEL AX = "<< std::get<CHANNEL_AXIS>(*sbd_data)<<std::endl;
+    
+        std::cout<<"THEEEEE SBD DATA PTR = "<<sbd_data<<std::endl;
 
     //coarse SBD/MBD/DR search (locates max bin)
     double ref_freq = paramStore->GetAs<double>("ref_freq");
@@ -507,6 +527,7 @@ MHO_BasicFringeUtilities::basic_fringe_search2(MHO_ContainerStore* conStore, MHO
     int c_mbdmax = mbdSearch.GetMBDMaxBin();
     int c_sbdmax = mbdSearch.GetSBDMaxBin();
     int c_drmax = mbdSearch.GetDRMaxBin();
+
     double freq_spacing = mbdSearch.GetFrequencySpacing();
     double ave_freq = mbdSearch.GetAverageFrequency();
 
@@ -519,9 +540,9 @@ MHO_BasicFringeUtilities::basic_fringe_search2(MHO_ContainerStore* conStore, MHO
     // paramStore->Set("/fringe/ambiguity", 1.0/freq_spacing);
     // paramStore->Set("/fringe/average_frequency", ave_freq);
 
-    std::size_t n_mbd_pts = 1;// sbd_dr_data->GetDimension(CHANNEL_AXIS);
-    std::size_t n_dr_pts = 1; //sbd_dr_data->GetDimension(TIME_AXIS);
-    std::size_t n_sbd_pts = 1;// sbd_dr_data->GetDimension(FREQ_AXIS);
+    std::size_t n_mbd_pts = 32; //sbd_dr_data->GetDimension(CHANNEL_AXIS);
+    std::size_t n_dr_pts = 4092; //sbd_dr_data->GetDimension(TIME_AXIS);
+    std::size_t n_sbd_pts = 464;// sbd_dr_data->GetDimension(FREQ_AXIS);
     paramStore->Set("/fringe/n_mbd_points", n_mbd_pts);
     paramStore->Set("/fringe/n_sbd_points", n_sbd_pts);
     paramStore->Set("/fringe/n_dr_points", n_dr_pts);
@@ -564,10 +585,18 @@ MHO_BasicFringeUtilities::basic_fringe_search2(MHO_ContainerStore* conStore, MHO
     paramStore->Set("/fringe/frate", frate);
     paramStore->Set("/fringe/famp", famp);
 
+
+    std::cout<<"DUMP THE CHANNEL AX AGGAAAIIIN = "<< std::get<CHANNEL_AXIS>(*sbd_data)<<std::endl;
+    
+    
+    visibility_type* sbd_copy = conStore->GetObject<visibility_type>(std::string("sbd"));
+    std::cout<<"PTR COPY = "<<sbd_copy<<std::endl;
+    std::cout<<"IMMA DUMP YO COPY CHAN AX"<< std::get<CHANNEL_AXIS>(*sbd_copy) <<std::endl;
+    std::cout<<"size of sbd_copy = "<<sbd_copy->GetSize()<<std::endl;
     //add the sbd_data, and sbd_dr_data to the container store
-    conStore->AddObject(sbd_data);
+    //conStore->AddObject(sbd_data);
     //conStore->AddObject(sbd_dr_data);
-    conStore->SetShortName(sbd_data->GetObjectUUID(), "sbd");
+    //conStore->SetShortName(sbd_data->GetObjectUUID(), "sbd");
     //conStore->SetShortName(sbd_dr_data->GetObjectUUID(), "sbd_dr");
 }
 

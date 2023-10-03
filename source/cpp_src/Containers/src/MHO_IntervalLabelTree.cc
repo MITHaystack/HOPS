@@ -15,7 +15,6 @@ MHO_IntervalLabelTree::~MHO_IntervalLabelTree()
 
 MHO_IntervalLabelTree::MHO_IntervalLabelTree(const MHO_IntervalLabelTree& obj)
 {
-    fIntervals.clear();
     for(auto iter = obj.fIntervals.begin(); iter != obj.fIntervals.end(); iter++)
     {
         fIntervals.push_back( new MHO_IntervalLabel( *(*iter) ) );
