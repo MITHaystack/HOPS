@@ -1,5 +1,5 @@
 #include "MHO_MBDelaySearch2.hh"
-#include "MHO_DelayRate2.hh"
+#include "MHO_DelayRate.hh"
 
 
 namespace hops
@@ -103,12 +103,18 @@ MHO_MBDelaySearch2::ExecuteImpl(const XArgType* in)
             std::get<FREQ_AXIS>(fSBDDrWorkspace)(0) = std::get<FREQ_AXIS>(*in)(sbd_idx);
 
             //run the transformation to delay rate space (this also involves a zero padded FFT)
-            MHO_DelayRate2 drOp;
+            MHO_DelayRate drOp;
             drOp.SetReferenceFrequency(fRefFreq);
             drOp.SetArgs(&fSBDDrWorkspace, fWeights, &sbd_dr_data);
             bool ok = drOp.Initialize();
             ok = drOp.Execute();
             
+            if(sbd_idx == 0)
+            {
+                fDRAxis = std::get<TIME_AXIS>(sbd_dr_data); 
+                double dr_delta = fDRAxis.at(1) - fDRAxis.at(0);
+                std::cout<<"DR DELTA = "<<dr_delta<<std::endl;
+            }
             
             auto sbd_dr_dim = sbd_dr_data.GetDimensionArray();
             // std::cout<<"sbd_dr_data dims = "<<sbd_dr_dim[0]<<", "<<sbd_dr_dim[1]<<", "<<sbd_dr_dim[2]<<", "<<sbd_dr_dim[3]<<std::endl;
@@ -172,7 +178,7 @@ MHO_MBDelaySearch2::ExecuteImpl(const XArgType* in)
         std::cout<<"MAX VAL = "<< maxmbd <<std::endl;
 
         fMBDAxis = std::get<0>(fMBDWorkspace);
-        fDRAxis = std::get<TIME_AXIS>(sbd_dr_data);
+
 
         return true;
     }
