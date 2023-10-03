@@ -207,8 +207,10 @@ void MHO_BasicFringeFitter::PreRun()
 void MHO_BasicFringeFitter::Run()
 {
     //execute the basic fringe search algorithm
-    MHO_BasicFringeUtilities::basic_fringe_search(&fContainerStore, &fParameterStore);
+    MHO_BasicFringeUtilities::basic_fringe_search2(&fContainerStore, &fParameterStore);
     //calculate the fringe properties
+    
+    std::cout<<"calculating fringe info"<<std::endl;
     MHO_BasicFringeUtilities::calculate_fringe_solution_info(&fContainerStore, &fParameterStore, fVexInfo);
 
     fParameterStore.Set("/status/is_finished", true);
@@ -222,8 +224,6 @@ void MHO_BasicFringeFitter::PostRun()
 
 bool MHO_BasicFringeFitter::IsFinished()
 {
-    // count++;
-    // if(count<4){return false;}
     bool is_finished = fParameterStore.GetAs<bool>("/status/is_finished");
     return is_finished;
 }
@@ -231,6 +231,8 @@ bool MHO_BasicFringeFitter::IsFinished()
 
 void MHO_BasicFringeFitter::Finalize()
 {
+    
+    std::cout<<"FINALIZING"<<std::endl;
     ////////////////////////////////////////////////////////////////////////////
     //PLOTTING/DEBUG
     ////////////////////////////////////////////////////////////////////////////

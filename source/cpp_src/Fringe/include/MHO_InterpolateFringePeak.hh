@@ -35,8 +35,8 @@ class MHO_InterpolateFringePeak: public MHO_Operator
         void SetReferenceFrequency(double ref_freq){fRefFreq = ref_freq;}
         void SetMaxBins(int sbd_max, int mbd_max, int dr_max);
 
-        void SetSBDArray(visibility_type* sbd_arr){fSBDArray = sbd_arr;}
-        void SetWeights(weight_type* weights){fWeights = weights;}
+        void SetSBDArray(const visibility_type* sbd_arr){fSBDArray = sbd_arr;}
+        void SetWeights(const weight_type* weights){fWeights = weights;}
 
         void SetMBDAxis(const time_axis_type* mbd_ax){fMBDAxis.Copy(*mbd_ax);}
         void SetDRAxis(const delay_rate_axis_type* dr_ax){fDRAxis.Copy(*dr_ax);}
@@ -58,8 +58,8 @@ class MHO_InterpolateFringePeak: public MHO_Operator
 
         double fRefFreq;
         double fTotalSummedWeights;
-        visibility_type* fSBDArray;
-        weight_type* fWeights;
+        const visibility_type* fSBDArray;
+        const weight_type* fWeights;
 
         time_axis_type fMBDAxis;
         delay_rate_axis_type fDRAxis;
