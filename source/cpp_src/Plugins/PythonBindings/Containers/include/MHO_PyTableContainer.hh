@@ -204,14 +204,14 @@ class MHO_PyTableContainer
             return tags;
         }
 
-        static py::dict GetIntervalLabelTags(MHO_IntervalLabel* label)
+        static py::dict GetIntervalLabelTags(MHO_IntervalLabel label)
         {
             py::dict tags;
-            DumpValuesToPyDict<bool>(dynamic_cast< MHO_SingleTypeMap< std::string , bool >* >(label), tags);
-            DumpValuesToPyDict<char>(dynamic_cast< MHO_SingleTypeMap< std::string , char >* >(label), tags);
-            DumpValuesToPyDict<int>(dynamic_cast< MHO_SingleTypeMap< std::string , int >* >(label), tags);
-            DumpValuesToPyDict<double>(dynamic_cast< MHO_SingleTypeMap< std::string , double >* >(label), tags);
-            DumpValuesToPyDict<std::string>(dynamic_cast< MHO_SingleTypeMap< std::string , std::string >* >(label), tags);
+            DumpValuesToPyDict<bool>(dynamic_cast< MHO_SingleTypeMap< std::string , bool >* >(&label), tags);
+            DumpValuesToPyDict<char>(dynamic_cast< MHO_SingleTypeMap< std::string , char >* >(&label), tags);
+            DumpValuesToPyDict<int>(dynamic_cast< MHO_SingleTypeMap< std::string , int >* >(&label), tags);
+            DumpValuesToPyDict<double>(dynamic_cast< MHO_SingleTypeMap< std::string , double >* >(&label), tags);
+            DumpValuesToPyDict<std::string>(dynamic_cast< MHO_SingleTypeMap< std::string , std::string >* >(&label), tags);
             return tags;
         }
 
@@ -244,11 +244,11 @@ class MHO_PyTableContainer
                 template< typename XAxisType >
                 void operator()(XAxisType& axis)
                 {
-                    std::vector< MHO_IntervalLabel* > iLabels = axis.GetAllIntervalLabels();
+                    std::vector< MHO_IntervalLabel > iLabels = axis.GetAllIntervalLabels();
                     for(std::size_t i=0; i<iLabels.size(); i++)
                     {
-                        std::size_t low = iLabels[i]->GetLowerBound();
-                        std::size_t up = iLabels[i]->GetUpperBound();
+                        std::size_t low = iLabels[i].GetLowerBound();
+                        std::size_t up = iLabels[i].GetUpperBound();
                         py::dict iLabelDict = GetIntervalLabelTags( iLabels[i] );
                         iLabelDict["lower_bound"] = low;
                         iLabelDict["uppper_bound"] = up;

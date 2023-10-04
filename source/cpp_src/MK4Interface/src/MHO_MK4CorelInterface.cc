@@ -646,14 +646,6 @@ MHO_MK4CorelInterface::ExtractCorelFile()
     date* adate;
 
     // //convert the legacy date structs to a cannonical date/time-stamp string
-    // adate = &(t100->procdate);
-    // ldate.year = adate->year;
-    // ldate.day = adate->day;
-    // ldate.hour = adate->hour;
-    // ldate.minute = adate->minute;
-    // ldate.second = adate->second;
-    // std::string procdate_string = MHO_LegacyDateConverter::ConvertToISO8601Format(ldate);
-
     adate = &(t100->start);
     ldate.year = adate->year;
     ldate.day = adate->day;

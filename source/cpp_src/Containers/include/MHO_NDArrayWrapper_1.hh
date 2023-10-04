@@ -6,6 +6,8 @@
 #error "Do not include MHO_NDArrayWrapper_1.hh directly; use MHO_NDArrayWrapper.hh instead."
 #endif
 
+#define SAFETY_DANCE
+
 namespace hops
 {
 
@@ -186,12 +188,22 @@ class MHO_NDArrayWrapper<XValueType, 1>:
 
         XValueType& ValueAt(const index_type& idx)
         {
-            return fData[idx];
+            #ifdef SAFETY_DANCE
+                if( idx[0] < fDims[0] ){ return fData[ idx[0] ]; }
+                else{ throw std::out_of_range("MHO_NDArrayView::ValueAt index out of range.");}
+            #else
+                return fData[idx[0]];
+            #endif
         }
 
         const XValueType& ValueAt(const index_type& idx) const
         {
-            return fData[idx];
+            #ifdef SAFETY_DANCE
+                if( idx[0] < fDims[0] ){ return fData[ idx[0] ]; }
+                else{ throw std::out_of_range("MHO_NDArrayView::ValueAt index out of range.");}
+            #else
+                return fData[idx[0]];
+            #endif
         }
 
 
