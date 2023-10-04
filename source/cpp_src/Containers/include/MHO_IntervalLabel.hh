@@ -35,6 +35,10 @@ class MHO_IntervalLabel:
         virtual ~MHO_IntervalLabel();
 
         bool HasKey(const std::string& key) const;
+        
+        void SetIsValidFalse(){fIsValid = false;};
+        void SetIsValidTrue(){fIsValid = true;}
+        bool IsValid() const {return fIsValid;}
 
         MHO_IntervalLabel& operator=(const MHO_IntervalLabel& rhs)
         {
@@ -49,6 +53,10 @@ class MHO_IntervalLabel:
             }
             return *this;
         }
+        
+    private: 
+        
+        bool fIsValid;
 
     public: //MHO_Serializable interface
 

@@ -239,8 +239,8 @@ void MHO_BasicFringeFitter::Finalize()
     //PLOTTING/DEBUG
     ////////////////////////////////////////////////////////////////////////////
     //TODO may want to reorg the way this is done
-    //fPlotData = MHO_FringePlotInfo::construct_plot_data(&fContainerStore, &fParameterStore, fVexInfo);
-    //MHO_FringePlotInfo::fill_plot_data(&fParameterStore, fPlotData);
+    fPlotData = MHO_FringePlotInfo::construct_plot_data(&fContainerStore, &fParameterStore, fVexInfo);
+    MHO_FringePlotInfo::fill_plot_data(&fParameterStore, fPlotData);
 }
 
 

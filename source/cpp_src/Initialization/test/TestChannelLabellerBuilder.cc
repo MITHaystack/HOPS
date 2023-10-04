@@ -101,12 +101,12 @@ int main(int argc, char** argv)
         for(std::size_t i=0; i<chan_axis_ptr1->GetSize(); i++)
         {
             std::string ch_label;
-            std::vector< MHO_IntervalLabel* > iLabels;
+            std::vector< MHO_IntervalLabel > iLabels;
             iLabels.clear();
             iLabels = chan_axis_ptr1->GetIntervalsWhichIntersect(i);
             if(iLabels.size() == 1)
             {
-                iLabels[0]->Retrieve(key, ch_label);
+                iLabels[0].Retrieve(key, ch_label);
                 std::cout<<"channel: "<<i<<" user label: "<<ch_label<<" freq: "<< chan_axis_ptr1->at(i) <<std::endl;
             }
             else{std::cout<<"unlabelled channel present"<<std::endl;}

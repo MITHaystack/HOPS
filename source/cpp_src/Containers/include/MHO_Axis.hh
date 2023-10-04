@@ -125,14 +125,14 @@ class MHO_Axis:
             std::vector< std::size_t > matching_idx;
             for(std::size_t i=0; i < this->GetSize(); i++)
             {
-                std::vector< MHO_IntervalLabel* > labels;
+                std::vector< MHO_IntervalLabel > labels;
                 labels = this->GetIntervalsWhichIntersect(i);
                 for(std::size_t j=0; j < labels.size(); j++)
                 {
                     XLabelValueType value;
-                    if(labels[j]->HasKey(label_key))
+                    if(labels[j].HasKey(label_key))
                     {
-                        labels[j]->Retrieve(label_key, value);
+                        labels[j].Retrieve(label_key, value);
                         if(value == label_value){matching_idx.push_back(i);}
                     }
                 }
@@ -149,14 +149,14 @@ class MHO_Axis:
             std::set< std::size_t > idx;
             for(std::size_t i=0; i < this->GetSize(); i++)
             {
-                std::vector< MHO_IntervalLabel* > labels;
+                std::vector< MHO_IntervalLabel > labels;
                 labels = this->GetIntervalsWhichIntersect(i);
                 for(std::size_t j=0; j<labels.size(); j++)
                 {
                     XLabelValueType value;
-                    if(labels[j]->HasKey(label_key))
+                    if(labels[j].HasKey(label_key))
                     {
-                        labels[j]->Retrieve(label_key, value);
+                        labels[j].Retrieve(label_key, value);
                         if( label_values.find(value) != label_values.end() ){idx.insert(i);}
                     }
                 }
@@ -172,14 +172,14 @@ class MHO_Axis:
             label_values.clear();
             for(std::size_t i=0; i < this->GetSize(); i++)
             {
-                std::vector< MHO_IntervalLabel* > labels;
+                std::vector< MHO_IntervalLabel > labels;
                 labels = this->GetIntervalsWhichIntersect(i);
                 for(std::size_t j=0; j < labels.size(); j++)
                 {
                     XLabelValueType value;
-                    if(labels[j]->HasKey(label_key))
+                    if(labels[j].HasKey(label_key))
                     {
-                        labels[j]->Retrieve(label_key, value);
+                        labels[j].Retrieve(label_key, value);
                         label_values.push_back(value);
                         break;
                     }
