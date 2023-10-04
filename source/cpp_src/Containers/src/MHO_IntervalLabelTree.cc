@@ -16,7 +16,7 @@ MHO_IntervalLabelTree::MHO_IntervalLabelTree(const MHO_IntervalLabelTree& obj)
 }
 
 void
-MHO_IntervalLabelTree::InsertLabel(const MHO_IntervalLabel& label)
+MHO_IntervalLabelTree::InsertLabel(MHO_IntervalLabel label)
 {
     //insert copy of this label as a new object
     fIntervals.push_back( label );

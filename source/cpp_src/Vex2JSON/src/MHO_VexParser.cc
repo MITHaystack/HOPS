@@ -260,7 +260,7 @@ MHO_VexParser::MarkBlocks()
                     {
                         fBlockStartLines[*blk_it] = it;
                         fFoundBlocks.insert(*blk_it);
-                        msg_debug("vex", "found block: "<<*blk_it<<" on line: "<< fBlockStartLines[*blk_it]->fLineNumber << eom);
+                        //msg_debug("vex", "found block: "<<*blk_it<<" on line: "<< fBlockStartLines[*blk_it]->fLineNumber << eom);
                         break;
                     }
                     else 
