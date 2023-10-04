@@ -116,10 +116,10 @@ int main(int /*argc*/, char** /*argv*/)
         auto label_vec1 = std::get<FREQ_AXIS>(*test2).GetIntervalsWhichIntersect(5);
         for(auto iter = label_vec1.begin(); iter != label_vec1.end(); iter++)
         {
-            std::cout<<"label found for interval = ["<<(*iter)->GetLowerBound()<<", "<<(*iter)->GetUpperBound()<<") with key:val pairs = "<<std::endl;
-            (*iter)->DumpMap<char>();
-            (*iter)->DumpMap<std::string>();
-            (*iter)->DumpMap<int>();
+            std::cout<<"label found for interval = ["<<iter->GetLowerBound()<<", "<<iter->GetUpperBound()<<") with key:val pairs = "<<std::endl;
+            iter->DumpMap<char>();
+            iter->DumpMap<std::string>();
+            iter->DumpMap<int>();
         }
 
     }

@@ -209,15 +209,12 @@ MHO_BasicFringeUtilities::calculate_residual_phase(MHO_ContainerStore* conStore,
     //and perform the weighted sum of the data at the max-SBD bin
     //with the fitted delay-rate rotation (but mbd=0) applied
     auto sbd_ax = &( std::get<FREQ_AXIS>(*sbd_arr) );
-
-    double sbd_delta = sbd_ax->at(1) - sbd_ax->at(0);
-
-    paramStore->Set("/fringe/sbd_separation", sbd_delta);
-    
-    return 0.0;
-
     auto chan_ax = std::get<CHANNEL_AXIS>(*sbd_arr);
     auto ap_ax = &(std::get<TIME_AXIS>(*sbd_arr));
+
+    double sbd_delta = sbd_ax->at(1) - sbd_ax->at(0);
+    paramStore->Set("/fringe/sbd_separation", sbd_delta);
+
 
     MHO_FringeRotation frot;
     frot.SetSBDSeparation(sbd_delta);
@@ -232,13 +229,13 @@ MHO_BasicFringeUtilities::calculate_residual_phase(MHO_ContainerStore* conStore,
         MHO_IntervalLabel ilabel(ch,ch);
         std::string net_sideband = "?";
         std::string sidebandlabelkey = "net_sideband";
-        auto other_labels = chan_ax.GetIntervalsWhichIntersect(&ilabel);
+        auto other_labels = chan_ax.GetIntervalsWhichIntersect(ilabel);
         std::cout<<"N LABELS = "<<other_labels.size()<<std::endl;
         for(auto olit = other_labels.begin(); olit != other_labels.end(); olit++)
         {
-            if( (*olit)->HasKey(sidebandlabelkey) )
+            if( olit->HasKey(sidebandlabelkey) )
             {
-                (*olit)->Retrieve(sidebandlabelkey, net_sideband);
+                olit->Retrieve(sidebandlabelkey, net_sideband);
                 break;
             }
         }

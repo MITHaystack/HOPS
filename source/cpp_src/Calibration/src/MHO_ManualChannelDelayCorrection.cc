@@ -34,8 +34,6 @@ MHO_ManualChannelDelayCorrection::ExecuteInPlace(visibility_type* in)
 {
     std::size_t st_idx = DetermineStationIndex(in);
 
-    std::cout<<"man delay op, st_idx = "<<st_idx<<" my pol = "<<fPol<<std::endl;
-
     if(st_idx != 0 && st_idx != 1){return false;}
 
     //loop over pol-products and apply pc-phases to the appropriate pol/channel
@@ -51,16 +49,15 @@ MHO_ManualChannelDelayCorrection::ExecuteInPlace(visibility_type* in)
         pp_label = pp_ax->at(pp);
         if( PolMatch(st_idx, pp_label) )
         {
-            std::cout<<"POL MATCH = "<<pp_label<<" st idx = "<<st_idx<<std::endl;
             for(auto pcal_it = fPCDelayMap.begin(); pcal_it != fPCDelayMap.end(); pcal_it++)
             {
                 chan_label = pcal_it->first;
                 double delay = pcal_it->second;
                 //TODO, may need to re-work this mapping method if too slow
-                const MHO_IntervalLabel* ilabel = chan_ax->GetFirstIntervalWithKeyValue(fChannelLabelKey, chan_label);
-                if(ilabel != nullptr)
+                MHO_IntervalLabel ilabel = chan_ax->GetFirstIntervalWithKeyValue(fChannelLabelKey, chan_label);
+                if(ilabel.IsValid())
                 {
-                    std::size_t ch = ilabel->GetLowerBound();
+                    std::size_t ch = ilabel.GetLowerBound();
                     
                     //get the channels bandwidth to determine effective sampling period
                     bool ok = false;
@@ -69,9 +66,9 @@ MHO_ManualChannelDelayCorrection::ExecuteInPlace(visibility_type* in)
                     auto other_labels = chan_ax->GetIntervalsWhichIntersect(ch);
                     for(auto ol_it = other_labels.begin(); ol_it != other_labels.end(); ol_it++)
                     {
-                        if((*ol_it)->HasKey(fBandwidthKey))
+                        if(ol_it->HasKey(fBandwidthKey))
                         {
-                            ok = (*ol_it)->Retrieve(std::string("bandwidth"), bandwidth);
+                            ok = ol_it->Retrieve(std::string("bandwidth"), bandwidth);
                             if(ok)
                             {
                                 //calculate effective sampling period for channel assuming Nyquist rate

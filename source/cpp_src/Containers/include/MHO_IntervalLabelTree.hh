@@ -37,19 +37,12 @@ class MHO_IntervalLabelTree: virtual public MHO_Serializable
         void ClearLabels();
 
         std::vector< MHO_IntervalLabel > GetAllIntervalLabels() const {return fIntervals;};
-
         std::vector< MHO_IntervalLabel > GetIntervalsWhichIntersect(const std::size_t& idx) const;
-        //std::vector< const MHO_IntervalLabel* > GetIntervalsWhichIntersect(const std::size_t& idx) const;
-        std::vector< MHO_IntervalLabel > GetIntervalsWhichIntersect(const MHO_Interval<std::size_t>* interval) const;
-        //std::vector< const MHO_IntervalLabel* > GetIntervalsWhichIntersect(const MHO_Interval<std::size_t>* interval) const;
+        std::vector< MHO_IntervalLabel > GetIntervalsWhichIntersect(const MHO_Interval<std::size_t>& interval) const;
 
-        std::vector< MHO_IntervalLabel >
-        GetIntervalsWithKey(const std::string& key) const;
+        std::vector< MHO_IntervalLabel > GetIntervalsWithKey(const std::string& key) const;
 
-        // std::vector< const MHO_IntervalLabel >
-        // GetIntervalsWithKey(const std::string& key) const;
-
-        template<typename XLabelValueType>
+        template<typename XLabelValueType> 
         std::size_t
         GetNIntervalsWithKeyValue(const std::string& key, const XLabelValueType& value) const;
 
@@ -60,10 +53,6 @@ class MHO_IntervalLabelTree: virtual public MHO_Serializable
         template<typename XLabelValueType>
         MHO_IntervalLabel
         GetFirstIntervalWithKeyValue(const std::string& key, const XLabelValueType& value) const;
-
-        // template<typename XLabelValueType>
-        // const MHO_IntervalLabel
-        // GetFirstIntervalWithKeyValue(const std::string& key, const XLabelValueType& value) const;
 
         virtual void CopyIntervalLabels(const MHO_IntervalLabelTree& obj)
         {
@@ -214,6 +203,7 @@ MHO_IntervalLabel
 MHO_IntervalLabelTree::GetFirstIntervalWithKeyValue(const std::string& key, const XLabelValueType& value) const
 {
     MHO_IntervalLabel label;
+    label.SetIsValidFalse();
     XLabelValueType tmp_value;
     //TODO FIXME -- use an actual interval tree
     //dumb brute force search over all intervals O(n)
@@ -231,30 +221,6 @@ MHO_IntervalLabelTree::GetFirstIntervalWithKeyValue(const std::string& key, cons
     }
     return label;
 }
-
-// template<typename XLabelValueType>
-// const MHO_IntervalLabel
-// MHO_IntervalLabelTree::GetFirstIntervalWithKeyValue(const std::string& key, const XLabelValueType& value) const
-// {
-//     const MHO_IntervalLabel label;
-//     XLabelValueType tmp_value;
-//     //TODO FIXME -- use an actual interval tree
-//     //dumb brute force search over all intervals O(n)
-//     //we may want to make this smarter
-// 
-//     for(std::size_t i=0; i<fIntervals.size(); i++)
-//     {
-//         if( fIntervals[i].Retrieve(key,tmp_value) )
-//         {
-//             if(tmp_value == value)
-//             {
-//                 return fIntervals[i];
-//             }
-//         }
-//     }
-//     return label;
-// }
-
 
 }//end namespace
 
