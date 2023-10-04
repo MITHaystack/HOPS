@@ -252,7 +252,7 @@ MHO_VexBlockParser::ProcessStartTag(const MHO_VexLine& line,
     }
 
     //open a new block
-    msg_debug("vex", "opening a new block element with name: "<<tokens[1]<<eom);
+    //msg_debug("vex", "opening a new block element with name: "<<tokens[1]<<eom);
     path.push( tokens[1] );
     file_node.push( new mho_json() );
 
@@ -279,7 +279,7 @@ MHO_VexBlockParser::ProcessStopTag(const MHO_VexLine& line,
     //insert this object into output json structure
     (*(file_node.top()))[last_obj_name] = *last_obj; 
     delete last_obj;
-    msg_debug("vex", "closed a block element with name: "<<last_obj_name<<eom);
+    //msg_debug("vex", "closed a block element with name: "<<last_obj_name<<eom);
     return true;
 }
 

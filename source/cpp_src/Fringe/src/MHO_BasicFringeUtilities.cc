@@ -18,7 +18,7 @@
 //construct_plot_data
 #include "MHO_ComputePlotData.hh"
 
-#define ALT_MDB_SEARCH
+//#define ALT_MDB_SEARCH
 
 namespace hops 
 {

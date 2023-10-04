@@ -32,7 +32,7 @@ class MHO_IntervalLabelTree: virtual public MHO_Serializable
         MHO_IntervalLabelTree(const MHO_IntervalLabelTree& obj);
 
         //void InsertLabel(MHO_IntervalLabel* label);
-        void InsertLabel(const MHO_IntervalLabel& label);
+        void InsertLabel(MHO_IntervalLabel label);
 
         void ClearLabels();
 
