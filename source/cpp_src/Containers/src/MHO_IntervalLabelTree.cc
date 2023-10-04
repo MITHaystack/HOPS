@@ -108,7 +108,8 @@ MHO_IntervalLabelTree::GetIntervalsWhichIntersect(const MHO_Interval<std::size_t
     {
         if(fIntervals[i]->Intersects(*interval))
         {
-            std::cout<<"interval: "<<fIntervals[i]<<" = "<<*fIntervals[i]<<std::endl;
+            std::cout<<"interval: "<<fIntervals[i]<<std::endl;
+            std::cout<<" = "<<*(fIntervals[i])<<std::endl;
             labels.push_back(fIntervals[i]);
         }
     }
