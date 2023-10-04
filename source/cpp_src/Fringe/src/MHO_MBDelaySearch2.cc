@@ -89,7 +89,6 @@ MHO_MBDelaySearch2::ExecuteImpl(const XArgType* in)
             {
                 for(std::size_t j=0;j<b;j++)
                 {
-                    //std::cout<<"hey = "<<(*in)(0,i,j,sbd_idx)<<std::endl;
                     fSBDDrWorkspace(0,i,j,0) = (*in)(0,i,j,sbd_idx);
                 }
             }

@@ -207,13 +207,15 @@ void MHO_BasicFringeFitter::PreRun()
 void MHO_BasicFringeFitter::Run()
 {
     //execute the basic fringe search algorithm
-    MHO_BasicFringeUtilities::basic_fringe_search2(&fContainerStore, &fParameterStore);
+    MHO_BasicFringeUtilities::basic_fringe_search(&fContainerStore, &fParameterStore);
     //calculate the fringe properties
     
     std::cout<<"calculating fringe info"<<std::endl;
     MHO_BasicFringeUtilities::calculate_fringe_solution_info(&fContainerStore, &fParameterStore, fVexInfo);
 
     fParameterStore.Set("/status/is_finished", true);
+    
+    fParameterStore.Dump();
 }
 
 void MHO_BasicFringeFitter::PostRun()
@@ -237,8 +239,8 @@ void MHO_BasicFringeFitter::Finalize()
     //PLOTTING/DEBUG
     ////////////////////////////////////////////////////////////////////////////
     //TODO may want to reorg the way this is done
-    fPlotData = MHO_FringePlotInfo::construct_plot_data(&fContainerStore, &fParameterStore, fVexInfo);
-    MHO_FringePlotInfo::fill_plot_data(&fParameterStore, fPlotData);
+    //fPlotData = MHO_FringePlotInfo::construct_plot_data(&fContainerStore, &fParameterStore, fVexInfo);
+    //MHO_FringePlotInfo::fill_plot_data(&fParameterStore, fPlotData);
 }
 
 

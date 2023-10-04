@@ -78,16 +78,16 @@ int main(int argc, char** argv)
     fdumpFile << plot_data;
     fdumpFile.close();
     
-    #ifdef USE_PYBIND11
-    msg_debug("main", "python plot generation enabled." << eom );
-    py::dict plot_obj = plot_data;
-    
-    //load our interface module
-    auto vis_module = py::module::import("hops_visualization");
-    auto plot_lib = vis_module.attr("fourfit_plot");
-    //call a python function on the interface class instance
-    plot_lib.attr("make_fourfit_plot")(plot_obj, "fplot.png");
-    #endif //USE_PYBIND11
+    // #ifdef USE_PYBIND11
+    // msg_debug("main", "python plot generation enabled." << eom );
+    // py::dict plot_obj = plot_data;
+    // 
+    // //load our interface module
+    // auto vis_module = py::module::import("hops_visualization");
+    // auto plot_lib = vis_module.attr("fourfit_plot");
+    // //call a python function on the interface class instance
+    // plot_lib.attr("make_fourfit_plot")(plot_obj, "fplot.png");
+    // #endif //USE_PYBIND11
 
     return 0;
 }

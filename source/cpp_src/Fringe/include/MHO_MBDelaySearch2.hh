@@ -50,18 +50,16 @@ class MHO_MBDelaySearch2: public MHO_InspectingOperator< visibility_type >
         int GetMBDMaxBin() const {return fMBDMaxBin;}
         int GetSBDMaxBin() const {return fSBDMaxBin;}
         int GetDRMaxBin() const {return fDRMaxBin;}
+        
+        int GetNMBDBins(){return fNGridPoints;};
+        int GetNSBDBins(){return fNSBD;};
+        int GetNDRBins(){return fNDR;};
 
         double GetFrequencySpacing() const {return fGridSpace;}
         double GetAverageFrequency() const {return fAverageFreq;}
 
-        //TODO FIX ME
-        // time_axis_type* GetMBDAxis(){ return &(std::get<0>(fMBDWorkspace)); };
-        //delay_rate_axis_type* GetDRAxis(){ return &(std::get<1>(fMBDWorkspace)); };
-
         time_axis_type* GetMBDAxis(){ return &fMBDAxis; };
         delay_rate_axis_type* GetDRAxis(){ return &fDRAxis; };
-
-
 
     protected:
 
