@@ -138,18 +138,18 @@ int main(int argc, char** argv)
     size_t xup;
     for( auto iter = labels.begin(); iter != labels.end(); iter++)
     {
-        std::cout<<"bounds for x-chan-5 are: ["<<(*iter)->GetLowerBound()<<", "<<(*iter)->GetUpperBound()<<") "<<std::endl;
-        xlow = (*iter)->GetLowerBound();
-        xup = (*iter)->GetUpperBound();
+        std::cout<<"bounds for x-chan-5 are: ["<<iter->GetLowerBound()<<", "<<iter->GetUpperBound()<<") "<<std::endl;
+        xlow = iter->GetLowerBound();
+        xup = iter->GetUpperBound();
     }
 
     auto label2 = y_axis->GetFirstIntervalWithKeyValue(std::string("y-channel"), std::string("y-chan-1"));
     size_t ylow;
     size_t yup;
-    if(label2 != nullptr)
+    if( label2.IsValid() )
     {
-        ylow = label2->GetLowerBound();
-        yup = label2->GetUpperBound();
+        ylow = label2.GetLowerBound();
+        yup = label2.GetUpperBound();
         std::cout<<"bounds for y-chan-1 are: ["<<ylow<<", "<<yup<<") "<<std::endl;
     }
 

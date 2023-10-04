@@ -50,20 +50,18 @@ MHO_ManualChannelPhaseCorrection::ExecuteInPlace(visibility_type* in)
                 chan_label = pcal_it->first;
                 double pc_val = pcal_it->second;
                 //TODO, may need to re-work this mapping method if too slow
-                const MHO_IntervalLabel* ilabel = chan_ax->GetFirstIntervalWithKeyValue(fChannelLabelKey, chan_label);
+                MHO_IntervalLabel ilabel = chan_ax->GetFirstIntervalWithKeyValue(fChannelLabelKey, chan_label);
                 
-
-
-                if(ilabel != nullptr)
+                if(ilabel.IsValid())
                 {
-                    std::size_t ch = ilabel->GetLowerBound();
+                    std::size_t ch = ilabel.GetLowerBound();
                     std::string net_sideband = "?";
                     auto other_labels = chan_ax->GetIntervalsWhichIntersect(ilabel);
                     for(auto olit = other_labels.begin(); olit != other_labels.end(); olit++)
                     {
-                        if( (*olit)->HasKey(fSidebandLabelKey) )
+                        if( olit->HasKey(fSidebandLabelKey) )
                         {
-                            (*olit)->Retrieve(fSidebandLabelKey, net_sideband);
+                            olit->Retrieve(fSidebandLabelKey, net_sideband);
                             break;
                         }
                     }

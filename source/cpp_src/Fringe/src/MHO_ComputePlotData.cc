@@ -483,12 +483,12 @@ MHO_ComputePlotData::calc_phase()
         MHO_IntervalLabel ilabel(ch,ch);
         std::string net_sideband = "?";
         std::string sidebandlabelkey = "net_sideband";
-        auto other_labels = chan_ax->GetIntervalsWhichIntersect(&ilabel);
+        auto other_labels = chan_ax->GetIntervalsWhichIntersect(ilabel);
         for(auto olit = other_labels.begin(); olit != other_labels.end(); olit++)
         {
-            if( (*olit)->HasKey(sidebandlabelkey) )
+            if( olit->HasKey(sidebandlabelkey) )
             {
-                (*olit)->Retrieve(sidebandlabelkey, net_sideband);
+                olit->Retrieve(sidebandlabelkey, net_sideband);
                 break;
             }
         }
@@ -585,21 +585,21 @@ MHO_ComputePlotData::calc_xpower_KLUDGE()
 
             std::string sidebandlabelkey = "net_sideband";
             std::string bandwidthlabelkey = "bandwidth";
-            auto other_labels = chan_ax->GetIntervalsWhichIntersect(&ilabel);
+            auto other_labels = chan_ax->GetIntervalsWhichIntersect(ilabel);
             for(auto olit = other_labels.begin(); olit != other_labels.end(); olit++)
             {
-                if( (*olit)->HasKey(sidebandlabelkey) )
+                if( olit->HasKey(sidebandlabelkey) )
                 {
-                    (*olit)->Retrieve(sidebandlabelkey, net_sideband);
+                    olit->Retrieve(sidebandlabelkey, net_sideband);
                     break;
                 }
             }
 
             for(auto olit = other_labels.begin(); olit != other_labels.end(); olit++)
             {
-                if( (*olit)->HasKey(bandwidthlabelkey) )
+                if( olit->HasKey(bandwidthlabelkey) )
                 {
-                    (*olit)->Retrieve(bandwidthlabelkey, bw);
+                    olit->Retrieve(bandwidthlabelkey, bw);
                     break;
                 }
             }
@@ -746,21 +746,21 @@ MHO_ComputePlotData::calc_xpower_KLUDGE2()
             std::string net_sideband = "?";
             std::string sidebandlabelkey = "net_sideband";
             std::string bandwidthlabelkey = "bandwidth";
-            auto other_labels = chan_ax->GetIntervalsWhichIntersect(&ilabel);
+            auto other_labels = chan_ax->GetIntervalsWhichIntersect(ilabel);
             for(auto olit = other_labels.begin(); olit != other_labels.end(); olit++)
             {
-                if( (*olit)->HasKey(sidebandlabelkey) )
+                if( olit->HasKey(sidebandlabelkey) )
                 {
-                    (*olit)->Retrieve(sidebandlabelkey, net_sideband);
+                    olit->Retrieve(sidebandlabelkey, net_sideband);
                     break;
                 }
             }
 
             for(auto olit = other_labels.begin(); olit != other_labels.end(); olit++)
             {
-                if( (*olit)->HasKey(bandwidthlabelkey) )
+                if( olit->HasKey(bandwidthlabelkey) )
                 {
-                    (*olit)->Retrieve(bandwidthlabelkey, bw);
+                    olit->Retrieve(bandwidthlabelkey, bw);
                     break;
                 }
             }
@@ -926,21 +926,21 @@ MHO_ComputePlotData::calc_xpower_KLUDGE3()
             std::string net_sideband = "?";
             std::string sidebandlabelkey = "net_sideband";
             std::string bandwidthlabelkey = "bandwidth";
-            auto other_labels = chan_ax->GetIntervalsWhichIntersect(&ilabel);
+            auto other_labels = chan_ax->GetIntervalsWhichIntersect(ilabel);
             for(auto olit = other_labels.begin(); olit != other_labels.end(); olit++)
             {
-                if( (*olit)->HasKey(sidebandlabelkey) )
+                if( olit->HasKey(sidebandlabelkey) )
                 {
-                    (*olit)->Retrieve(sidebandlabelkey, net_sideband);
+                    olit->Retrieve(sidebandlabelkey, net_sideband);
                     break;
                 }
             }
 
             for(auto olit = other_labels.begin(); olit != other_labels.end(); olit++)
             {
-                if( (*olit)->HasKey(bandwidthlabelkey) )
+                if( olit->HasKey(bandwidthlabelkey) )
                 {
-                    (*olit)->Retrieve(bandwidthlabelkey, bw);
+                    olit->Retrieve(bandwidthlabelkey, bw);
                     break;
                 }
             }

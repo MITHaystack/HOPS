@@ -139,9 +139,9 @@ MHO_InitialFringeInfo::precalculate_quantities(MHO_ContainerStore* conStore, MHO
     double bandwidth = 0;
     for(auto it = ch0_labels.begin(); it != ch0_labels.end(); it++)
     {
-        if( (*it)->HasKey("bandwidth") )
+        if( it->HasKey("bandwidth") )
         {
-            (*it)->Retrieve("bandwidth", bandwidth);
+            it->Retrieve("bandwidth", bandwidth);
             break;
         }
     }

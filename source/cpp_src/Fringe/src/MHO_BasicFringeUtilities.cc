@@ -10,11 +10,15 @@
 #include "MHO_NormFX.hh"
 #include "MHO_DelayRate.hh"
 #include "MHO_MBDelaySearch.hh"
+#include "MHO_MBDelaySearch2.hh"
+
 #include "MHO_InterpolateFringePeak.hh"
 #include "MHO_UniformGridPointsCalculator.hh"
 
 //construct_plot_data
 #include "MHO_ComputePlotData.hh"
+
+//#define ALT_MDB_SEARCH
 
 namespace hops 
 {
@@ -178,6 +182,10 @@ MHO_BasicFringeUtilities::calculate_fringe_solution_info(MHO_ContainerStore* con
 }
 
 
+
+
+
+
 double 
 MHO_BasicFringeUtilities::calculate_residual_phase(MHO_ContainerStore* conStore, MHO_ParameterStore* paramStore)
 {
@@ -200,12 +208,13 @@ MHO_BasicFringeUtilities::calculate_residual_phase(MHO_ContainerStore* conStore,
     //now we are going to loop over all of the channels/AP
     //and perform the weighted sum of the data at the max-SBD bin
     //with the fitted delay-rate rotation (but mbd=0) applied
-    auto chan_ax = &( std::get<CHANNEL_AXIS>(*sbd_arr) );
-    auto ap_ax = &(std::get<TIME_AXIS>(*sbd_arr));
     auto sbd_ax = &( std::get<FREQ_AXIS>(*sbd_arr) );
-    double sbd_delta = sbd_ax->at(1) - sbd_ax->at(0);
+    auto chan_ax = std::get<CHANNEL_AXIS>(*sbd_arr);
+    auto ap_ax = &(std::get<TIME_AXIS>(*sbd_arr));
 
+    double sbd_delta = sbd_ax->at(1) - sbd_ax->at(0);
     paramStore->Set("/fringe/sbd_separation", sbd_delta);
+
 
     MHO_FringeRotation frot;
     frot.SetSBDSeparation(sbd_delta);
@@ -216,16 +225,17 @@ MHO_BasicFringeUtilities::calculate_residual_phase(MHO_ContainerStore* conStore,
     std::complex<double> sum_all = 0.0;
     for(std::size_t ch=0; ch < nchan; ch++)
     {
-        double freq = (*chan_ax)(ch);//sky freq of this channel
+        double freq = chan_ax(ch);//sky freq of this channel
         MHO_IntervalLabel ilabel(ch,ch);
         std::string net_sideband = "?";
         std::string sidebandlabelkey = "net_sideband";
-        auto other_labels = chan_ax->GetIntervalsWhichIntersect(&ilabel);
+        auto other_labels = chan_ax.GetIntervalsWhichIntersect(ilabel);
+        std::cout<<"N LABELS = "<<other_labels.size()<<std::endl;
         for(auto olit = other_labels.begin(); olit != other_labels.end(); olit++)
         {
-            if( (*olit)->HasKey(sidebandlabelkey) )
+            if( olit->HasKey(sidebandlabelkey) )
             {
-                (*olit)->Retrieve(sidebandlabelkey, net_sideband);
+                olit->Retrieve(sidebandlabelkey, net_sideband);
                 break;
             }
         }
@@ -266,6 +276,10 @@ MHO_BasicFringeUtilities::calculate_residual_phase(MHO_ContainerStore* conStore,
 }
 
 
+
+
+
+
 void 
 MHO_BasicFringeUtilities::basic_fringe_search(MHO_ContainerStore* conStore, MHO_ParameterStore* paramStore)
 {
@@ -288,11 +302,12 @@ MHO_BasicFringeUtilities::basic_fringe_search(MHO_ContainerStore* conStore, MHO_
     visibility_type* sbd_data = conStore->GetObject<visibility_type>(std::string("sbd"));
     if(sbd_data == nullptr) //doesn't yet exist so create and cache it in the store
     {
-        sbd_data = vis_data->CloneEmpty();
+        sbd_data = vis_data->Clone();
         conStore->AddObject(sbd_data);
         conStore->SetShortName(sbd_data->GetObjectUUID(), std::string("sbd"));
         bl_dim[FREQ_AXIS] *= 4; //normfx implementation demands this
         sbd_data->Resize(bl_dim);
+        sbd_data->ZeroArray();
     }
 
     ////////////////////////////////////////////////////////////////////////////
@@ -310,34 +325,69 @@ MHO_BasicFringeUtilities::basic_fringe_search(MHO_ContainerStore* conStore, MHO_
 
     //take snapshot of sbd data after normfx
     take_snapshot_here("test", "sbd", __FILE__, __LINE__, sbd_data);
+    
+    #ifdef ALT_MDB_SEARCH
+    
+        //coarse SBD/MBD/DR search (locates max bin)
+        double ref_freq = paramStore->GetAs<double>("ref_freq");
+        MHO_MBDelaySearch2 mbdSearch;
+        mbdSearch.SetWeights(wt_data);
+        mbdSearch.SetReferenceFrequency(ref_freq);
+        mbdSearch.SetArgs(sbd_data);
+        ok = mbdSearch.Initialize();
+        check_step_fatal(ok, "fringe", "mbd initialization." << eom );
+        ok = mbdSearch.Execute();
+        check_step_fatal(ok, "fringe", "mbd execution." << eom );
+        
+        std::size_t n_mbd_pts = mbdSearch.GetNMBDBins();
+        std::size_t n_dr_pts = mbdSearch.GetNDRBins();
+        std::size_t n_sbd_pts = mbdSearch.GetNSBDBins();
+        paramStore->Set("/fringe/n_mbd_points", n_mbd_pts);
+        paramStore->Set("/fringe/n_sbd_points", n_sbd_pts);
+        paramStore->Set("/fringe/n_dr_points", n_dr_pts);
+    
+    #else
 
-    //space for the visibilities transformed into single-band-delay vs delay-rate space
-    visibility_type* sbd_dr_data = conStore->GetObject<visibility_type>(std::string("sbd_dr"));
-    if(sbd_dr_data == nullptr) //doesn't yet exist so create and cache it in the store
-    {
-        sbd_dr_data = sbd_data->CloneEmpty();
-        conStore->AddObject(sbd_dr_data);
-        conStore->SetShortName(sbd_dr_data->GetObjectUUID(), std::string("sbd_dr"));
-    }
-    //run the transformation to delay rate space (this also involves a zero padded FFT)
-    MHO_DelayRate drOp;
-    double ref_freq = paramStore->GetAs<double>("ref_freq");
-    drOp.SetReferenceFrequency(ref_freq);
-    drOp.SetArgs(sbd_data, wt_data, sbd_dr_data);
-    ok = drOp.Initialize();
-    check_step_fatal(ok, "fringe", "dr initialization." << eom );
-    ok = drOp.Execute();
-    check_step_fatal(ok, "fringe", "dr execution." << eom );
+        //space for the visibilities transformed into single-band-delay vs delay-rate space
+        visibility_type* sbd_dr_data = conStore->GetObject<visibility_type>(std::string("sbd_dr"));
+        if(sbd_dr_data == nullptr) //doesn't yet exist so create and cache it in the store
+        {
+            sbd_dr_data = sbd_data->CloneEmpty();
+            conStore->AddObject(sbd_dr_data);
+            conStore->SetShortName(sbd_dr_data->GetObjectUUID(), std::string("sbd_dr"));
+        }
+        
+        //run the transformation to delay rate space (this also involves a zero padded FFT)
+        MHO_DelayRate drOp;
+        double ref_freq = paramStore->GetAs<double>("ref_freq");
+        drOp.SetReferenceFrequency(ref_freq);
+        drOp.SetArgs(sbd_data, wt_data, sbd_dr_data);
+        ok = drOp.Initialize();
+        check_step_fatal(ok, "fringe", "dr initialization." << eom );
+        ok = drOp.Execute();
+        check_step_fatal(ok, "fringe", "dr execution." << eom );
 
-    take_snapshot_here("test", "sbd_dr", __FILE__, __LINE__, sbd_dr_data);
+        take_snapshot_here("test", "sbd_dr", __FILE__, __LINE__, sbd_dr_data);
 
-    //coarse SBD/MBD/DR search (locates max bin)
-    MHO_MBDelaySearch mbdSearch;
-    mbdSearch.SetArgs(sbd_dr_data);
-    ok = mbdSearch.Initialize();
-    check_step_fatal(ok, "fringe", "mbd initialization." << eom );
-    ok = mbdSearch.Execute();
-    check_step_fatal(ok, "fringe", "mbd execution." << eom );
+        auto sbd_dr_dim = sbd_dr_data->GetDimensionArray();
+        std::cout<<"sbd_dr_data dims = "<<sbd_dr_dim[0]<<", "<<sbd_dr_dim[1]<<", "<<sbd_dr_dim[2]<<", "<<sbd_dr_dim[3]<<std::endl;
+
+        //coarse SBD/MBD/DR search (locates max bin)
+        MHO_MBDelaySearch mbdSearch;
+        mbdSearch.SetArgs(sbd_dr_data);
+        ok = mbdSearch.Initialize();
+        check_step_fatal(ok, "fringe", "mbd initialization." << eom );
+        ok = mbdSearch.Execute();
+        check_step_fatal(ok, "fringe", "mbd execution." << eom );
+        
+        std::size_t n_mbd_pts = sbd_dr_data->GetDimension(CHANNEL_AXIS);
+        std::size_t n_dr_pts = sbd_dr_data->GetDimension(TIME_AXIS);
+        std::size_t n_sbd_pts = sbd_dr_data->GetDimension(FREQ_AXIS);
+        paramStore->Set("/fringe/n_mbd_points", n_mbd_pts);
+        paramStore->Set("/fringe/n_sbd_points", n_sbd_pts);
+        paramStore->Set("/fringe/n_dr_points", n_dr_pts);
+
+    #endif
 
     int c_mbdmax = mbdSearch.GetMBDMaxBin();
     int c_sbdmax = mbdSearch.GetSBDMaxBin();
@@ -345,19 +395,11 @@ MHO_BasicFringeUtilities::basic_fringe_search(MHO_ContainerStore* conStore, MHO_
     double freq_spacing = mbdSearch.GetFrequencySpacing();
     double ave_freq = mbdSearch.GetAverageFrequency();
 
-
     paramStore->Set("/fringe/max_mbd_bin", c_mbdmax);
     paramStore->Set("/fringe/max_sbd_bin", c_sbdmax);
     paramStore->Set("/fringe/max_dr_bin", c_drmax);
-    // paramStore->Set("/fringe/ambiguity", 1.0/freq_spacing);
-    // paramStore->Set("/fringe/average_frequency", ave_freq);
 
-    std::size_t n_mbd_pts = sbd_dr_data->GetDimension(CHANNEL_AXIS);
-    std::size_t n_dr_pts = sbd_dr_data->GetDimension(TIME_AXIS);
-    std::size_t n_sbd_pts = sbd_dr_data->GetDimension(FREQ_AXIS);
-    paramStore->Set("/fringe/n_mbd_points", n_mbd_pts);
-    paramStore->Set("/fringe/n_sbd_points", n_sbd_pts);
-    paramStore->Set("/fringe/n_dr_points", n_dr_pts);
+    std::cout<<"bins = "<<c_mbdmax<<", "<<c_sbdmax<<", "<<c_drmax<<std::endl;
 
     ////////////////////////////////////////////////////////////////////////////
     //FINE INTERPOLATION STEP (search over 5x5x5 grid around peak)
@@ -396,12 +438,6 @@ MHO_BasicFringeUtilities::basic_fringe_search(MHO_ContainerStore* conStore, MHO_
     paramStore->Set("/fringe/drate", drate);
     paramStore->Set("/fringe/frate", frate);
     paramStore->Set("/fringe/famp", famp);
-
-    //add the sbd_data, and sbd_dr_data to the container store
-    conStore->AddObject(sbd_data);
-    conStore->AddObject(sbd_dr_data);
-    conStore->SetShortName(sbd_data->GetObjectUUID(), "sbd");
-    conStore->SetShortName(sbd_dr_data->GetObjectUUID(), "sbd_dr");
 }
 
 

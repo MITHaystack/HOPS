@@ -41,8 +41,8 @@ int main(int argc, char** argv)
     for(std::size_t i=0; i<chan_axis_ptr->GetSize(); i++)
     {
         std::string ch_label;
-        std::vector< MHO_IntervalLabel* > iLabels = chan_axis_ptr->GetIntervalsWhichIntersect(i);
-        iLabels[0]->Retrieve(key, ch_label);
+        std::vector< MHO_IntervalLabel > iLabels = chan_axis_ptr->GetIntervalsWhichIntersect(i);
+        iLabels[0].Retrieve(key, ch_label);
         std::cout<<"channel: "<<i<<" default label: "<<ch_label<<std::endl;
     }
 
@@ -56,8 +56,8 @@ int main(int argc, char** argv)
     for(std::size_t i=0; i<chan_axis_ptr->GetSize(); i++)
     {
         std::string ch_label;
-        std::vector< MHO_IntervalLabel* > iLabels = chan_axis_ptr->GetIntervalsWhichIntersect(i);
-        iLabels[0]->Retrieve(key, ch_label);
+        std::vector< MHO_IntervalLabel > iLabels = chan_axis_ptr->GetIntervalsWhichIntersect(i);
+        iLabels[0].Retrieve(key, ch_label);
         std::cout<<"channel: "<<i<<" user label: "<<ch_label<<std::endl;
     }
 
