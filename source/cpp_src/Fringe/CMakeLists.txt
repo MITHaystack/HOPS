@@ -2,7 +2,6 @@
 set (FRINGE_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_NormFX.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_DelayRate.hh
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_DelayRate2.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MBDelaySearch.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MBDelaySearch2.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_InterpolateFringePeak.hh
@@ -22,7 +21,6 @@ set (FRINGE_HEADERFILES
 set( FRINGE_SOURCEFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_NormFX.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_DelayRate.cc
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_DelayRate2.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_MBDelaySearch.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_MBDelaySearch2.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_InterpolateFringePeak.cc
