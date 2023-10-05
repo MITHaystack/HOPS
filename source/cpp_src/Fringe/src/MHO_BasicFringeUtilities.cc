@@ -370,7 +370,7 @@ MHO_BasicFringeUtilities::basic_fringe_search(MHO_ContainerStore* conStore, MHO_
         take_snapshot_here("test", "sbd_dr", __FILE__, __LINE__, sbd_dr_data);
 
         auto sbd_dr_dim = sbd_dr_data->GetDimensionArray();
-        std::cout<<"sbd_dr_data dims = "<<sbd_dr_dim[0]<<", "<<sbd_dr_dim[1]<<", "<<sbd_dr_dim[2]<<", "<<sbd_dr_dim[3]<<std::endl;
+        // std::cout<<"sbd_dr_data dims = "<<sbd_dr_dim[0]<<", "<<sbd_dr_dim[1]<<", "<<sbd_dr_dim[2]<<", "<<sbd_dr_dim[3]<<std::endl;
 
         //coarse SBD/MBD/DR search (locates max bin)
         MHO_MBDelaySearch mbdSearch;
@@ -399,7 +399,7 @@ MHO_BasicFringeUtilities::basic_fringe_search(MHO_ContainerStore* conStore, MHO_
     paramStore->Set("/fringe/max_sbd_bin", c_sbdmax);
     paramStore->Set("/fringe/max_dr_bin", c_drmax);
 
-    std::cout<<"bins = "<<c_mbdmax<<", "<<c_sbdmax<<", "<<c_drmax<<std::endl;
+    // std::cout<<"bins = "<<c_mbdmax<<", "<<c_sbdmax<<", "<<c_drmax<<std::endl;
 
     ////////////////////////////////////////////////////////////////////////////
     //FINE INTERPOLATION STEP (search over 5x5x5 grid around peak)
@@ -421,9 +421,7 @@ MHO_BasicFringeUtilities::basic_fringe_search(MHO_ContainerStore* conStore, MHO_
 
     #pragma message("TODO FIXME -- we shouldn't be referencing internal members of the MHO_MBDelaySearch class workspace")
     //Figure out how best to present this axis data to the fine-interp function.
-    
-    std::cout<<"AND MY AXE!  = "<<*( mbdSearch.GetMBDAxis() ) <<std::endl;
-    
+
     fringeInterp.SetMBDAxis( mbdSearch.GetMBDAxis() );
     fringeInterp.SetDRAxis( mbdSearch.GetDRAxis() );
 

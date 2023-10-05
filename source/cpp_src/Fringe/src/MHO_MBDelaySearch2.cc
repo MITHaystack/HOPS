@@ -92,8 +92,6 @@ MHO_MBDelaySearch2::ExecuteImpl(const XArgType* in)
                     fSBDDrWorkspace(0,i,j,0) = (*in)(0,i,j,sbd_idx);
                 }
             }
-            
-            // std::cout<<"NSBD = "<<fNSBD<<std::endl;
 
             //copy the tags/axes 
             fSBDDrWorkspace.CopyTags(*in);
@@ -112,7 +110,6 @@ MHO_MBDelaySearch2::ExecuteImpl(const XArgType* in)
             {
                 fDRAxis = std::get<TIME_AXIS>(sbd_dr_data); 
                 double dr_delta = fDRAxis.at(1) - fDRAxis.at(0);
-                std::cout<<"DR DELTA = "<<dr_delta<<std::endl;
             }
             
             auto sbd_dr_dim = sbd_dr_data.GetDimensionArray();
@@ -159,29 +156,18 @@ MHO_MBDelaySearch2::ExecuteImpl(const XArgType* in)
                         fMBDMaxBin = (i + fNGridPoints/2) % fNGridPoints;
                         fSBDMaxBin = sbd_idx;
                         fDRMaxBin = dr_idx;
-                        
-                        std::cout<<"new max: "<<maxmbd<<" @ "<< fMBDMaxBin<<", "<<fDRMaxBin<<", "<<fSBDMaxBin<<std::endl;
-                        
                     }
                 }
 
                 if(sbd_idx == fNSBD-1 && dr_idx == fNDR-1)
                 {
                     //only need to do this once on the last iter (to properly set-up the MBD axis)
-                    std::cout<<"AX BEFORE: "<<  std::get<0>(fMBDWorkspace) << std::endl;
                     ok = fCyclicRotator.Execute();
                     check_step_fatal(ok, "fringe", "MBD search cyclic rotation execution." << eom );
-                    std::cout<<"AX AFTER: "<<  std::get<0>(fMBDWorkspace) << std::endl;
                     fMBDAxis = std::get<0>(fMBDWorkspace);
                 }
             }
         }
-        
-        std::cout<<"MAX VAL = "<< maxmbd <<std::endl;
-
-        //fMBDAxis = std::get<0>(fMBDWorkspace);
-
-
         return true;
     }
 
