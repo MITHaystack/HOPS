@@ -113,11 +113,20 @@ MHO_MBDelaySearch::ExecuteImpl(const XArgType* in)
                     }
                 }
 
+                // if(sbd_idx == fNSBD-1 && dr_idx == fNDR-1)
+                // {
+                //     //only need to do this once on the last iter (to properly set-up the MBD axis)
+                //     ok = fCyclicRotator.Execute();
+                //     check_step_fatal(ok, "fringe", "MBD search cyclic rotation execution." << eom );
+                // }
+                
                 if(sbd_idx == fNSBD-1 && dr_idx == fNDR-1)
                 {
                     //only need to do this once on the last iter (to properly set-up the MBD axis)
+                    std::cout<<"AX BEFORE: "<<  std::get<0>(fMBDWorkspace) << std::endl;
                     ok = fCyclicRotator.Execute();
                     check_step_fatal(ok, "fringe", "MBD search cyclic rotation execution." << eom );
+                    std::cout<<"AX AFTER: "<<  std::get<0>(fMBDWorkspace) << std::endl;
                 }
             }
         }

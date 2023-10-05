@@ -18,7 +18,7 @@
 //construct_plot_data
 #include "MHO_ComputePlotData.hh"
 
-//#define ALT_MDB_SEARCH
+#define ALT_MDB_SEARCH
 
 namespace hops 
 {
@@ -421,6 +421,9 @@ MHO_BasicFringeUtilities::basic_fringe_search(MHO_ContainerStore* conStore, MHO_
 
     #pragma message("TODO FIXME -- we shouldn't be referencing internal members of the MHO_MBDelaySearch class workspace")
     //Figure out how best to present this axis data to the fine-interp function.
+    
+    std::cout<<"AND MY AXE!  = "<<*( mbdSearch.GetMBDAxis() ) <<std::endl;
+    
     fringeInterp.SetMBDAxis( mbdSearch.GetMBDAxis() );
     fringeInterp.SetDRAxis( mbdSearch.GetDRAxis() );
 
