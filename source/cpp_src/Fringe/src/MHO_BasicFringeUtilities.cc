@@ -230,7 +230,6 @@ MHO_BasicFringeUtilities::calculate_residual_phase(MHO_ContainerStore* conStore,
         std::string net_sideband = "?";
         std::string sidebandlabelkey = "net_sideband";
         auto other_labels = chan_ax.GetIntervalsWhichIntersect(ilabel);
-        std::cout<<"N LABELS = "<<other_labels.size()<<std::endl;
         for(auto olit = other_labels.begin(); olit != other_labels.end(); olit++)
         {
             if( olit->HasKey(sidebandlabelkey) )
