@@ -130,7 +130,11 @@ MHO_InterpolateFringePeak::fine_peak_interpolation()
 
                 if(mbd < mbd_lower){mbd_lower = mbd;}
                 if(mbd > mbd_upper){mbd_upper = mbd;}
-
+                
+                std::cout<<"fMBDMaxBin = "<<fMBDMaxBin<<" max = "<<fMBDAxis.at(fMBDMaxBin)<<std::endl;
+                std::cout<<"mbd delta = "<<mbd_delta<<std::endl;
+                std::cout<<"mbd info = "<<mbd<<", "<<imbd<<std::endl;
+                
                 // counter-rotate data from all freqs. and AP's
                 for(std::size_t fr = 0; fr < nchan; fr++)
                 {
@@ -139,17 +143,18 @@ MHO_InterpolateFringePeak::fine_peak_interpolation()
                     {
                         double tdelta = ap_ax->at(ap) + ap_delta/2.0 - midpoint_time; //need time difference from the f.r.t?
                         visibility_element_type vis = (*fSBDArray)(0,fr,ap,sbd_bin);
+                        
+                        //std::cout<<"fr, ap ="<<fr<<", "<<ap<<" vrot input( "<<tdelta<<", "<<freq<<", "<<fRefFreq<<", "<<dr<<", "<<mbd<<")"<<std::endl;
                         std::complex<double> vr = fRot.vrot(tdelta, freq, fRefFreq, dr, mbd);
                         std::complex<double> x = vis * vr;// vrot_mod(tdelta, dr, mbd, freq, fRefFreq);
                         x *= (*fWeights)(0,fr,ap,0); //multiply by the 'weight'
                         z = z + x;
                     }
                 }
-
                 z = z * 1.0 / total_ap_frac;
                 // drf[isbd][imbd][idr] = std::abs(z);
                 fDRF(isbd, imbd, idr) = std::abs(z);
-                //printf ("drf[%ld][%ld][%ld] %lf \n", isbd, imbd, idr, drf[isbd][imbd][idr]);
+                printf ("drf[%ld][%ld][%ld] %lf \n", isbd, imbd, idr, fDRF(isbd, imbd, idr) );
             }
         }
     }
@@ -169,8 +174,8 @@ MHO_InterpolateFringePeak::fine_peak_interpolation()
     //                             // find maximum value within cube via interpolation
     max555(fDRF, xlim, xi, &drfmax);
 
-    // std::cout<< "xi's "<< xi[0]<<", "<< xi[1] <<", "<< xi[2] <<std::endl;
-    // std::cout<<"drf max = "<<drfmax<<std::endl;
+    std::cout<< "xi's "<< xi[0]<<", "<< xi[1] <<", "<< xi[2] <<std::endl;
+    std::cout<<"drf max = "<<drfmax<<std::endl;
 
     // calculate location of this tabular point (should modulo % axis size)
     // std::size_t sbd_bin = loc[3];
