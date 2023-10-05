@@ -65,15 +65,15 @@ MHO_InterpolateFringePeak::fine_peak_interpolation()
 
     double total_ap_frac = fTotalSummedWeights;
     
-    std::cout<<"total ap frac = "<<total_ap_frac<<std::endl;
+    // std::cout<<"total ap frac = "<<total_ap_frac<<std::endl;
 
     auto chan_ax = &( std::get<CHANNEL_AXIS>(*fSBDArray) );
     auto ap_ax = &(std::get<TIME_AXIS>(*fSBDArray));
     auto sbd_ax = &( std::get<FREQ_AXIS>(*fSBDArray) );
 
-    std::cout<<"sbd ax ="<<sbd_ax<<std::endl;
-    std::cout<<"sbdmaxbin="<<fSBDMaxBin<<std::endl;
-    std::cout<<"fSBDArray = "<<fSBDArray<<std::endl;
+    // std::cout<<"sbd ax ="<<sbd_ax<<std::endl;
+    // std::cout<<"sbdmaxbin="<<fSBDMaxBin<<std::endl;
+    // std::cout<<"fSBDArray = "<<fSBDArray<<std::endl;
 
     std::size_t nap = ap_ax->GetSize();
     std::size_t nchan = chan_ax->GetSize();
@@ -85,11 +85,11 @@ MHO_InterpolateFringePeak::fine_peak_interpolation()
 
     //TODO FIXME -- shoudl this be the fourfit refrence time? Also...should this be calculated elsewhere?
     double midpoint_time = ( ap_ax->at(nap-1) + ap_delta  + ap_ax->at(0) )/2.0;
-    std::cout<<"time midpoint = "<<midpoint_time<<std::endl;
-    std::cout<<"dr delta = "<<dr_delta<<std::endl;
-    std::cout<<"ref freq = "<<fRefFreq<<std::endl;
-    printf("max bin (sbd, mbd, dr) = %d, %d, %d\n", fSBDMaxBin, fMBDMaxBin, fDRMaxBin );
-    printf("mbd delta, dr delta = %.15f, %.15f \n", mbd_delta, dr_delta/fRefFreq);
+    // std::cout<<"time midpoint = "<<midpoint_time<<std::endl;
+    // std::cout<<"dr delta = "<<dr_delta<<std::endl;
+    // std::cout<<"ref freq = "<<fRefFreq<<std::endl;
+    // printf("max bin (sbd, mbd, dr) = %d, %d, %d\n", fSBDMaxBin, fMBDMaxBin, fDRMaxBin );
+    // printf("mbd delta, dr delta = %.15f, %.15f \n", mbd_delta, dr_delta/fRefFreq);
 
     double sbd_lower = 1e30;
     double sbd_upper = -1e30;
@@ -131,9 +131,9 @@ MHO_InterpolateFringePeak::fine_peak_interpolation()
                 if(mbd < mbd_lower){mbd_lower = mbd;}
                 if(mbd > mbd_upper){mbd_upper = mbd;}
                 
-                std::cout<<"fMBDMaxBin = "<<fMBDMaxBin<<" max = "<<fMBDAxis.at(fMBDMaxBin)<<std::endl;
-                std::cout<<"mbd delta = "<<mbd_delta<<std::endl;
-                std::cout<<"mbd info = "<<mbd<<", "<<imbd<<std::endl;
+                // std::cout<<"fMBDMaxBin = "<<fMBDMaxBin<<" max = "<<fMBDAxis.at(fMBDMaxBin)<<std::endl;
+                // std::cout<<"mbd delta = "<<mbd_delta<<std::endl;
+                // std::cout<<"mbd info = "<<mbd<<", "<<imbd<<std::endl;
                 
                 // counter-rotate data from all freqs. and AP's
                 for(std::size_t fr = 0; fr < nchan; fr++)
@@ -154,7 +154,7 @@ MHO_InterpolateFringePeak::fine_peak_interpolation()
                 z = z * 1.0 / total_ap_frac;
                 // drf[isbd][imbd][idr] = std::abs(z);
                 fDRF(isbd, imbd, idr) = std::abs(z);
-                printf ("drf[%ld][%ld][%ld] %lf \n", isbd, imbd, idr, fDRF(isbd, imbd, idr) );
+                // printf ("drf[%ld][%ld][%ld] %lf \n", isbd, imbd, idr, fDRF(isbd, imbd, idr) );
             }
         }
     }
@@ -174,8 +174,8 @@ MHO_InterpolateFringePeak::fine_peak_interpolation()
     //                             // find maximum value within cube via interpolation
     max555(fDRF, xlim, xi, &drfmax);
 
-    std::cout<< "xi's "<< xi[0]<<", "<< xi[1] <<", "<< xi[2] <<std::endl;
-    std::cout<<"drf max = "<<drfmax<<std::endl;
+    // std::cout<< "xi's "<< xi[0]<<", "<< xi[1] <<", "<< xi[2] <<std::endl;
+    // std::cout<<"drf max = "<<drfmax<<std::endl;
 
     // calculate location of this tabular point (should modulo % axis size)
     // std::size_t sbd_bin = loc[3];
@@ -208,9 +208,9 @@ MHO_InterpolateFringePeak::fine_peak_interpolation()
     fDelayRate = dr_max_global;
     fFringeRate = fDRAxis.at(dr_bin) + (xi[2] * 0.5 * dr_delta);
 
-    std::cout<< std::setprecision(15);
-    std::cout<<"coarse location (sbd, mbd, dr) = "<<sbd<<", "<<mbd<<", "<<dr<<std::endl;
-    std::cout<<"change (sbd, mbd, dr) = "<<sbd_change<<", "<<mbd_change<<", "<<dr_change<<std::endl;
+    // std::cout<< std::setprecision(15);
+    // std::cout<<"coarse location (sbd, mbd, dr) = "<<sbd<<", "<<mbd<<", "<<dr<<std::endl;
+    // std::cout<<"change (sbd, mbd, dr) = "<<sbd_change<<", "<<mbd_change<<", "<<dr_change<<std::endl;
     msg_info("fringe", "Peak max555, sbd "<<sbd_max<<" mbd "<<mbd_max_global<<" dr "<<dr_max_global<< eom );
 
 }
