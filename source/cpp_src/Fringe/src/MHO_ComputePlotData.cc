@@ -290,11 +290,6 @@ MHO_ComputePlotData::calc_xpower()
     ok = fFFTEngine.Execute();
     check_step_fatal(ok, "calibration", "MBD search fft engine execution." << eom );
 
-    // for(std::size_t i=0;i<sbd_xpower_out.GetSize(); i++)
-    // {
-    //     std::cout<<"sbd_xpower_out @ "<< i << " = " << sbd_xpower_out(i) <<std::endl; //at this point SBD AMP is correct
-    // }
-
     return sbd_xpower_out;
 }
 

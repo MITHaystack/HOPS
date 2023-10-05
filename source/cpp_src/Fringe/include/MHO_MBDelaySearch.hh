@@ -48,10 +48,6 @@ class MHO_MBDelaySearch: public MHO_InspectingOperator< visibility_type >
         double GetFrequencySpacing() const {return fGridSpace;}
         double GetAverageFrequency() const {return fAverageFreq;}
 
-        //TODO FIX ME
-        // time_axis_type* GetMBDAxis(){ return &(std::get<0>(fMBDWorkspace)); };
-        //delay_rate_axis_type* GetDRAxis(){ return &(std::get<1>(fMBDWorkspace)); };
-
         time_axis_type* GetMBDAxis(){ return &fMBDAxis; };
         delay_rate_axis_type* GetDRAxis(){ return &fDRAxis; };
 

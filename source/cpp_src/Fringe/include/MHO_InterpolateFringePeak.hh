@@ -39,14 +39,7 @@ class MHO_InterpolateFringePeak: public MHO_Operator
         void SetWeights(const weight_type* weights){fWeights = weights;}
 
         void SetMBDAxis(const time_axis_type* mbd_ax){fMBDAxis.Copy(*mbd_ax);}
-        void SetDRAxis(const delay_rate_axis_type* dr_ax)
-        {
-            fDRAxis.Copy(*dr_ax);
-            double dr_delta = dr_ax->at(1) - dr_ax->at(0);
-            std::cout<<"DR DELTA = "<<dr_delta<<std::endl;
-            double dr_delta2 = fDRAxis.at(1) - fDRAxis.at(0);
-            std::cout<<"DR DELTA2 = "<<dr_delta2<<std::endl;
-        }
+        void SetDRAxis(const delay_rate_axis_type* dr_ax){fDRAxis.Copy(*dr_ax);}
 
         virtual bool Initialize() override;
         virtual bool Execute() override;
