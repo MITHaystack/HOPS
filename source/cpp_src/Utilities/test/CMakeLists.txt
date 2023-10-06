@@ -18,6 +18,7 @@ set(SOURCE_BASENAMES
     TestWriteAppend
     TestEncodeDecode
     TestParameterStore
+    TestTimer
 )
 
 if(HOPS_USE_MPI)

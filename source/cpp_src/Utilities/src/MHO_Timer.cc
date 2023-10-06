@@ -63,7 +63,19 @@ MHO_Timer::GetDurationAsTimeSpec() const
     return GetTimeDifference(fStart,fStop);
 }
 
-double MHO_Timer::GetDurationAsDouble() const
+double 
+MHO_Timer::GetTimeSinceStart() const 
+{
+    timespec tmp;
+    clock_gettime(fClockID, &tmp);
+    auto diff = GetTimeDifference(fStart, tmp);
+    double ret_val = diff.tv_sec;
+    ret_val += ( (double) diff.tv_nsec )*1e-9;
+    return ret_val;
+}
+
+double 
+MHO_Timer::GetDurationAsDouble() const
 {
     timespec duration = GetTimeDifference(fStart, fStop);
     double ret_val = duration.tv_sec;
