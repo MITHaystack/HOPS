@@ -27,8 +27,6 @@
 #include "MHO_BidirectionalIndexedIterator.hh"
 
 
-#define SAFETY_DANCE
-
 namespace hops
 {
 
@@ -258,24 +256,12 @@ class MHO_NDArrayView
 
         XValueType& ValueAt(const index_type& idx)
         {
-            #ifdef SAFETY_DANCE
-                std::size_t offset = MHO_NDArrayMath::OffsetFromStrideIndex<RANK>(&(fStrides[0]), &(idx[0]) );
-                if( offset < fSize ){ return fDataPtr[ offset ]; }
-                else{ throw std::out_of_range("MHO_NDArrayView::ValueAt index out of range.");}
-            #else
-                return fDataPtr[ MHO_NDArrayMath::OffsetFromStrideIndex<RANK>(&(fStrides[0]), &(idx[0]) ) ];
-            #endif
+            return fDataPtr[ MHO_NDArrayMath::OffsetFromStrideIndex<RANK>(&(fStrides[0]), &(idx[0]) ) ];
         }
 
         const XValueType& ValueAt(const index_type& idx) const
         {
-            #ifdef SAFETY_DANCE
-                std::size_t offset = MHO_NDArrayMath::OffsetFromStrideIndex<RANK>(&(fStrides[0]), &(idx[0]) );
-                if( offset < fSize ){ return fDataPtr[ offset ]; }
-                else{ throw std::out_of_range("MHO_NDArrayView::ValueAt index out of range.");}
-            #else
-                return fDataPtr[ MHO_NDArrayMath::OffsetFromStrideIndex<RANK>(&(fStrides[0]), &(idx[0]) ) ];
-            #endif
+            return fDataPtr[ MHO_NDArrayMath::OffsetFromStrideIndex<RANK>(&(fStrides[0]), &(idx[0]) ) ];
         }
 
     protected:

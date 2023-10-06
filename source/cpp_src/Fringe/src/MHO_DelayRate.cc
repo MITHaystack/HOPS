@@ -98,7 +98,7 @@ MHO_DelayRate::ExecuteImpl(const XArgType1* in1, const XArgType2* in2, XArgType3
         //linear interpolation, and conversion from fringe rate to delay rate step
         int sz = 4*fDRSPSize;
         std::size_t nsbd = out->GetDimension(FREQ_AXIS);
-        
+
         std::vector< sbd_type::value_type > workspace;
         workspace.resize(fDRSPSize);
         for(std::size_t pp=0; pp<pprod; pp++)
@@ -141,10 +141,11 @@ MHO_DelayRate::ExecuteImpl(const XArgType1* in1, const XArgType2* in2, XArgType3
 void
 MHO_DelayRate::ApplyDataWeights(const XArgType2* in2,  XArgType3* out)
 {
-    //apply the data weights to the data 
+    //apply the data weights to the data
     std::size_t pprod = in2->GetDimension(POLPROD_AXIS);
     std::size_t nch = in2->GetDimension(CHANNEL_AXIS);
     std::size_t nap = in2->GetDimension(TIME_AXIS);
+    std::size_t nsbd = out->GetDimension(FREQ_AXIS);
 
     for(std::size_t pp=0; pp<pprod; pp++)
     {
@@ -152,7 +153,12 @@ MHO_DelayRate::ApplyDataWeights(const XArgType2* in2,  XArgType3* out)
         {
             for(std::size_t ap=0; ap<nap; ap++)
             {
-                out->SliceView(pp, ch, ap, ":") *= (*in2)(pp, ch, ap, 0); //apply the data weights
+                auto val = (*in2)(pp, ch, ap, 0);
+                for(std::size_t sbd=0; sbd<nsbd; sbd++)
+                {
+                    (*out)(pp,ch,ap,sbd) *= val;
+                }
+                //out->SliceView(pp, ch, ap, ":") *= (*in2)(pp, ch, ap, 0); //apply the data weights
             }
         }
     }
