@@ -21,6 +21,8 @@
 #include "MHO_CyclicRotator.hh"
 #include "MHO_UniformGridPointsCalculator.hh"
 #include "MHO_ExtremaSearch.hh"
+#include "MHO_DelayRate.hh"
+
 
 #ifdef HOPS_USE_FFTW3
 #include "MHO_MultidimensionalFastFourierTransformFFTW.hh"
@@ -50,7 +52,7 @@ class MHO_MBDelaySearch2: public MHO_InspectingOperator< visibility_type >
         int GetMBDMaxBin() const {return fMBDMaxBin;}
         int GetSBDMaxBin() const {return fSBDMaxBin;}
         int GetDRMaxBin() const {return fDRMaxBin;}
-        
+
         int GetNMBDBins(){return fNGridPoints;};
         int GetNSBDBins(){return fNSBD;};
         int GetNDRBins(){return fNDR;};
@@ -103,6 +105,7 @@ class MHO_MBDelaySearch2: public MHO_InspectingOperator< visibility_type >
         MHO_Axis<double> fDRAxis;
 
         MHO_UniformGridPointsCalculator fGridCalc;
+        MHO_DelayRate fDelayRateCalc; //delay rate calculator
 
         #ifdef HOPS_USE_FFTW3
         using FFT_ENGINE_TYPE =  MHO_MultidimensionalFastFourierTransformFFTW< mbd_type >;

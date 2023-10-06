@@ -1,6 +1,4 @@
 #include "MHO_MBDelaySearch2.hh"
-#include "MHO_DelayRate.hh"
-
 
 namespace hops
 {
@@ -42,18 +40,36 @@ MHO_MBDelaySearch2::InitializeImpl(const XArgType* in)
         fMBDWorkspace.Resize(fNGridPoints);//, fNDR);
         fMBDAmpWorkspace.Resize(fNGridPoints);//, fNDR);
 
+        //copy the tags/axes for the SBD DR workspace
+        //copy this slice into local workspace table container
+        auto sbd_dims = in->GetDimensionArray();
+        sbd_dims[POLPROD_AXIS] = 1;
+        sbd_dims[FREQ_AXIS] = 1;
+        //auto sbd_dr_dim = fSBDDrWorkspace.GetDimensionArray();
+        fSBDDrWorkspace.Resize( &(sbd_dims[0]) );
+        fSBDDrWorkspace.ZeroArray();
+        fSBDDrWorkspace.CopyTags(*in);
+        std::get<CHANNEL_AXIS>(fSBDDrWorkspace) = std::get<CHANNEL_AXIS>(*in);
+        std::get<TIME_AXIS>(fSBDDrWorkspace) = std::get<TIME_AXIS>(*in);
+        std::get<FREQ_AXIS>(fSBDDrWorkspace)(0) = 0.0;
+
+        fDelayRateCalc.SetReferenceFrequency(fRefFreq);
+        fDelayRateCalc.SetArgs(&fSBDDrWorkspace, fWeights, &sbd_dr_data);
+        bool ok = fDelayRateCalc.Initialize();
+        check_step_fatal(ok, "fringe", "Delay rate search fft engine initialization failed." << eom );
+
         //set up FFT and rotator engines
         fFFTEngine.SetArgs(&fMBDWorkspace);
         fFFTEngine.DeselectAllAxes();
         fFFTEngine.SelectAxis(0);
         fFFTEngine.SetForward();
-        bool ok = fFFTEngine.Initialize();
-        check_step_fatal(ok, "fringe", "MBD search fft engine initialization." << eom );
+        ok = fFFTEngine.Initialize();
+        check_step_fatal(ok, "fringe", "MBD search fft engine initialization failed." << eom );
 
         fCyclicRotator.SetOffset(0, fNGridPoints/2);
         fCyclicRotator.SetArgs(&fMBDWorkspace);
         ok = fCyclicRotator.Initialize();
-        check_step_fatal(ok, "fringe", "MBD search cyclic rotation initialization." << eom );
+        check_step_fatal(ok, "fringe", "MBD search cyclic rotation initialization failed." << eom );
 
         fInitialized = true;
     }
@@ -65,6 +81,7 @@ MHO_MBDelaySearch2::InitializeImpl(const XArgType* in)
 bool
 MHO_MBDelaySearch2::ExecuteImpl(const XArgType* in)
 {
+    bool ok;
     if(fInitialized)
     {
         //loop over the single-band delay 'lags', computing the MBD/DR function
@@ -72,17 +89,9 @@ MHO_MBDelaySearch2::ExecuteImpl(const XArgType* in)
         double maxmbd = 0.0;
         for(std::size_t sbd_idx=0; sbd_idx<fNSBD; sbd_idx++)
         {
-            //first select the slice of visibilities which correspond to this SBD 
-            //auto sbd_slice = in->SliceView(0, ":", ":", sbd_idx);
-
-            //copy this slice into local workspace table container
-            auto sbd_dims = in->GetDimensionArray();
-            sbd_dims[POLPROD_AXIS] = 1;
-            sbd_dims[FREQ_AXIS] = 1;
-            //auto sbd_dr_dim = fSBDDrWorkspace.GetDimensionArray();
-            fSBDDrWorkspace.Resize( &(sbd_dims[0]) );
-            fSBDDrWorkspace.ZeroArray();
-
+            //first select the slice of visibilities which correspond to this SBD
+            //and copy this slice into local workspace table container
+            auto sbd_dims = fSBDDrWorkspace.GetDimensionArray();
             std::size_t a = sbd_dims[CHANNEL_AXIS];
             std::size_t b = sbd_dims[TIME_AXIS];
             for(std::size_t i=0;i<a;i++)
@@ -93,25 +102,14 @@ MHO_MBDelaySearch2::ExecuteImpl(const XArgType* in)
                 }
             }
 
-            //copy the tags/axes 
-            fSBDDrWorkspace.CopyTags(*in);
-            std::get<CHANNEL_AXIS>(fSBDDrWorkspace) = std::get<CHANNEL_AXIS>(*in);
-            std::get<TIME_AXIS>(fSBDDrWorkspace) = std::get<TIME_AXIS>(*in);
-            std::get<FREQ_AXIS>(fSBDDrWorkspace)(0) = std::get<FREQ_AXIS>(*in)(sbd_idx);
-
             //run the transformation to delay rate space (this also involves a zero padded FFT)
-            MHO_DelayRate drOp;
-            drOp.SetReferenceFrequency(fRefFreq);
-            drOp.SetArgs(&fSBDDrWorkspace, fWeights, &sbd_dr_data);
-            bool ok = drOp.Initialize();
-            ok = drOp.Execute();
-            
+            ok = fDelayRateCalc.Execute();
+
             if(sbd_idx == 0)
             {
-                fDRAxis = std::get<TIME_AXIS>(sbd_dr_data); 
-                double dr_delta = fDRAxis.at(1) - fDRAxis.at(0);
+                fDRAxis = std::get<TIME_AXIS>(sbd_dr_data);
             }
-            
+
             auto sbd_dr_dim = sbd_dr_data.GetDimensionArray();
             // std::cout<<"sbd_dr_data dims = "<<sbd_dr_dim[0]<<", "<<sbd_dr_dim[1]<<", "<<sbd_dr_dim[2]<<", "<<sbd_dr_dim[3]<<std::endl;
 
