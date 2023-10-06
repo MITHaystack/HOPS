@@ -6,8 +6,6 @@
 #error "Do not include MHO_NDArrayWrapper_1.hh directly; use MHO_NDArrayWrapper.hh instead."
 #endif
 
-#define SAFETY_DANCE
-
 namespace hops
 {
 
@@ -61,7 +59,7 @@ class MHO_NDArrayWrapper<XValueType, 1>:
         const std::size_t* GetDimensions() const {return &(fDims[0]);}
         void GetDimensions(std::size_t* dim) const { dim[0] = fDims[0]; }
         index_type GetDimensionArray() const {return fDims;}
-        std::size_t GetDimension(std::size_t idx) const 
+        std::size_t GetDimension(std::size_t idx) const
         {
             if(idx==0){return fDims[0];}
             else{ throw std::out_of_range("MHO_NDArrayWrapper_1::GetDimension() index out of range."); }
@@ -129,7 +127,7 @@ class MHO_NDArrayWrapper<XValueType, 1>:
         //         msg_error("containers", "cannot append 1d-array to itself." << eom);
         //         return 1;
         //     }
-        // 
+        //
         //         XValueType* &(fData[0]);
         //         bool fExternallyManaged;
         //         std::vector< XValueType > fData; //used for internally managed data
@@ -137,24 +135,24 @@ class MHO_NDArrayWrapper<XValueType, 1>:
         //         index_type fStrides; //strides between elements in each dimension
         //         mutable index_type fTmp; //temp index workspace
         //         std::size_t fDims[0]; //total size of array
-        // 
+        //
         //     fData.reserve( fDims[0] + addition.fDims[0]);
-        //     //in-case our re-allocation has triggered a move, we need to update the &(fData[0]) 
-        // 
+        //     //in-case our re-allocation has triggered a move, we need to update the &(fData[0])
+        //
         //     if(addition.fExternallyManaged)
         //     {
         //         fData.insert(addition.end(), addition.begin(), addition.end());
-        // 
+        //
         //         &(fData[0]) = &(fData[0]);
         //         fDims[0] = fData.size();
         //         fDims[0] = fDims[0];
         //         fStrides = 1;
         //     }
-        // 
+        //
         //     Construct(nullptr,  &(rhs.fDims[0]));
         //     if(fDims[0] != 0){std::copy(rhs.fData.begin(), rhs.fData.end(), this->fData.begin() );}
         //     return 0;
-        // 
+        //
         // }
 
 
@@ -188,22 +186,12 @@ class MHO_NDArrayWrapper<XValueType, 1>:
 
         XValueType& ValueAt(const index_type& idx)
         {
-            #ifdef SAFETY_DANCE
-                if( idx[0] < fDims[0] ){ return fData[ idx[0] ]; }
-                else{ throw std::out_of_range("MHO_NDArrayView::ValueAt index out of range.");}
-            #else
-                return fData[idx[0]];
-            #endif
+            return fData[idx[0]];
         }
 
         const XValueType& ValueAt(const index_type& idx) const
         {
-            #ifdef SAFETY_DANCE
-                if( idx[0] < fDims[0] ){ return fData[ idx[0] ]; }
-                else{ throw std::out_of_range("MHO_NDArrayView::ValueAt index out of range.");}
-            #else
-                return fData[idx[0]];
-            #endif
+            return fData[idx[0]];
         }
 
 
@@ -274,7 +262,7 @@ class MHO_NDArrayWrapper<XValueType, 1>:
         void Construct(XValueType* ptr, const std::size_t* dim)
         {
             //default construction (empty)
-            fDims[0] = 0; 
+            fDims[0] = 0;
             fStrides[0] = 0;
             if(ptr == nullptr && dim == nullptr){return;}
 
