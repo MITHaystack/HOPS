@@ -104,15 +104,9 @@ MHO_MBDelaySearch2::ExecuteImpl(const XArgType* in)
 
             //run the transformation to delay rate space (this also involves a zero padded FFT)
             ok = fDelayRateCalc.Execute();
-
-            if(sbd_idx == 0)
-            {
-                fDRAxis = std::get<TIME_AXIS>(sbd_dr_data);
-            }
+            if(sbd_idx == 0){fDRAxis = std::get<TIME_AXIS>(sbd_dr_data);} //copy the axis just once
 
             auto sbd_dr_dim = sbd_dr_data.GetDimensionArray();
-            // std::cout<<"sbd_dr_data dims = "<<sbd_dr_dim[0]<<", "<<sbd_dr_dim[1]<<", "<<sbd_dr_dim[2]<<", "<<sbd_dr_dim[3]<<std::endl;
-
             for(std::size_t dr_idx=0; dr_idx < sbd_dr_dim[TIME_AXIS]; dr_idx++)
             {
                 //zero out MBD workspace
@@ -123,7 +117,6 @@ MHO_MBDelaySearch2::ExecuteImpl(const XArgType* in)
                 for(std::size_t ch=0; ch<nch; ch++)
                 {
                     std::size_t mbd_bin = fMBDBinMap[ch];
-                    //std::cout<<"value @ "<<ch<<", "<<dr_idx<<", "<<sbd_idx<<" = "<<sbd_dr_data(0, ch, dr_idx, 0)<<std::endl;
                     fMBDWorkspace(mbd_bin) = sbd_dr_data(0, ch, dr_idx, 0);
                 }
 
