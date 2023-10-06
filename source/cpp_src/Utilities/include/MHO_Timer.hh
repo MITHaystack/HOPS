@@ -77,6 +77,9 @@ class MHO_Timer
         */
         double GetDurationAsDouble() const;
 
+        //Get the time since the start without stopping the timer
+        double GetTimeSinceStart() const; 
+
     protected:
         /** Calculate total compute time spent on a process or thread and store the result in a timespec struct 
         * @param start timespec which is the start time for a process or thread
