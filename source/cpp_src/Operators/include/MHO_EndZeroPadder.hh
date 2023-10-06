@@ -53,8 +53,8 @@ class MHO_EndZeroPadder:
         virtual void SetEndPadded(){fFlipped = false;}; //zero padding from end of signal out to end of the array
         virtual void SetReverseEndPadded(){fFlipped = true;}; //place signal at end of array and zero pad out to start
 
-        virtual void DisableNormFXMode(){fNormFXMode = false;}; //zero padding from end of signal out to end of the array
-        virtual void EnableNormFXMode(){fNormFXMode = true;}; //place signal at end of array and zero pad out to start
+        virtual void DisableNormFXMode(){fNormFXMode = false;}; 
+        virtual void EnableNormFXMode(){fNormFXMode = true;}; 
 
         virtual void PreserveWorkspace(){fPreserveWorkspace = true;} //keep the memory reserved for the workspace around after exectution
         virtual void DoNotPreserveWorkspace(){fPreserveWorkspace = false;} //delete memory after execution
