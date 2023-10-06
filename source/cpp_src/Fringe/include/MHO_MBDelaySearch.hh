@@ -21,6 +21,8 @@
 #include "MHO_CyclicRotator.hh"
 #include "MHO_UniformGridPointsCalculator.hh"
 #include "MHO_ExtremaSearch.hh"
+#include "MHO_DelayRate.hh"
+
 
 #ifdef HOPS_USE_FFTW3
 #include "MHO_MultidimensionalFastFourierTransformFFTW.hh"
@@ -35,15 +37,25 @@ using mbd_axis_pack = MHO_AxisPack< time_axis_type >;
 using mbd_type = MHO_TableContainer< visibility_element_type, mbd_axis_pack >;
 using mbd_amp_type = MHO_TableContainer< double, mbd_axis_pack >;
 
+
+
+
 class MHO_MBDelaySearch: public MHO_InspectingOperator< visibility_type >
 {
     public:
         MHO_MBDelaySearch();
         virtual ~MHO_MBDelaySearch();
 
+        void SetWeights(weight_type* wt_data){fWeights = wt_data;}
+        void SetReferenceFrequency(double ref_freq){fRefFreq = ref_freq;}
+
         int GetMBDMaxBin() const {return fMBDMaxBin;}
         int GetSBDMaxBin() const {return fSBDMaxBin;}
         int GetDRMaxBin() const {return fDRMaxBin;}
+
+        int GetNMBDBins(){return fNGridPoints;};
+        int GetNSBDBins(){return fNSBD;};
+        int GetNDRBins(){return fNDR;};
 
         double GetFrequencySpacing() const {return fGridSpace;}
         double GetAverageFrequency() const {return fAverageFreq;}
@@ -64,6 +76,12 @@ class MHO_MBDelaySearch: public MHO_InspectingOperator< visibility_type >
         //workspace
         bool fInitialized;
         std::vector< double > fChannelFreqs;
+
+        visibility_type fSBDDrWorkspace;
+        visibility_type sbd_dr_data;
+        weight_type fWeightsWorkspace;
+        weight_type* fWeights;
+
         mbd_type fMBDWorkspace;
         mbd_amp_type fMBDAmpWorkspace;
 
@@ -76,6 +94,8 @@ class MHO_MBDelaySearch: public MHO_InspectingOperator< visibility_type >
         std::size_t fNDR;
         std::map<std::size_t, std::size_t> fMBDBinMap;
 
+        double fRefFreq;
+
         //location of the maximum
         int fMBDMaxBin;
         int fSBDMaxBin;
@@ -85,6 +105,7 @@ class MHO_MBDelaySearch: public MHO_InspectingOperator< visibility_type >
         MHO_Axis<double> fDRAxis;
 
         MHO_UniformGridPointsCalculator fGridCalc;
+        MHO_DelayRate fDelayRateCalc; //delay rate calculator
 
         #ifdef HOPS_USE_FFTW3
         using FFT_ENGINE_TYPE =  MHO_MultidimensionalFastFourierTransformFFTW< mbd_type >;
