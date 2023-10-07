@@ -18,7 +18,6 @@
 #include "MHO_UUID.hh"
 #include "MHO_UUIDGenerator.hh"
 
-#
 
 namespace hops
 {
@@ -32,6 +31,14 @@ class MHO_Serializable
             MHO_UUIDGenerator gen;
             fObjectUUID = gen.GenerateUUID();
         };
+
+        MHO_Serializable(const MHO_UUID& uuid)
+        {
+            fObjectUUID = uuid;
+        };
+
+        MHO_Serializable(std::size_t n):fObjectUUID(){};
+
         virtual ~MHO_Serializable(){};
 
         virtual MHO_ClassVersion GetVersion() const {return 0;};

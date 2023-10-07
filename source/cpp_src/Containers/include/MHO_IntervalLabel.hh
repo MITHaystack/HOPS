@@ -25,7 +25,7 @@ namespace hops
 class MHO_IntervalLabel:
     public MHO_Interval< std::size_t >,
     public MHO_CommonLabelMap,
-    virtual public MHO_Serializable
+    public MHO_Serializable
 {
     public:
 
