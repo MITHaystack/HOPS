@@ -78,16 +78,40 @@ void MHO_BasicFringeFitter::Configure()
     //specify the control format
     fControlFormat = MHO_ControlDefinitions::GetControlFormat();
 
+    //add the data selection operator
+    //TODO FIXME -- this is a horrible hack to get this operator into the initialization stream
+    #pragma message("fix this horrible hack -- where we modify the control format itself to inject a default operator")
+    fDataSelectFormat =
+    {
+        {"name", "coarse_selection"},
+        {"statement_type", "operator"},
+        {"operator_category" , "selection"},
+        {"type" , "empty"},
+        {"priority", 1.01}
+    };
+    fControlFormat["coarse_selection"] = fDataSelectFormat;
+
+
     cparser.SetControlFile(control_file);
     auto control_contents = cparser.ParseControl();
-
     //TODO -- where should frequency group information get stashed/retrieved?
     std::string srcName = fParameterStore.GetAs<std::string>("/vex/scan/source/name");
     std::string scnName = fParameterStore.GetAs<std::string>("/vex/scan/name");
     ceval.SetPassInformation(baseline, srcName, "?", scnName);//baseline, source, fgroup, scan
     fControlStatements = ceval.GetApplicableStatements(control_contents);
 
-    // std::cout<<fControlStatements.dump(2)<<std::endl;
+    std::cout<<fControlStatements.dump(2)<<std::endl;
+
+    std::cout<<"----------------------------"<<std::endl;
+    MHO_InitialFringeInfo::set_default_parameters_minimal(&fParameterStore); //set some default parameters (polprod, ref_freq)
+
+    MHO_ParameterManager paramManager(&fParameterStore, fControlFormat);
+    paramManager.SetControlStatements(&fControlStatements);
+    paramManager.ConfigureAll();
+    fParameterStore.Dump();
+
+    std::cout<<"----------------------------"<<std::endl;
+
 
 }
 
@@ -138,33 +162,20 @@ void MHO_BasicFringeFitter::Initialize()
     fParameterStore.Set("/uuid/ref_station", ref_uuid);
     fParameterStore.Set("/uuid/rem_station", rem_uuid);
 
-    //add the data selection operator
-    //TODO FIXME -- this is a horrible hack to get this operator into the initialization stream
-    #pragma message("fix this horrible hack -- where we modify the control format itself to inject a default operator")
-    fDataSelectFormat =
-    {
-        {"name", "coarse_selection"},
-        {"statement_type", "operator"},
-        {"operator_category" , "selection"},
-        {"type" , "empty"},
-        {"priority", 1.01}
-    };
-    fControlFormat["coarse_selection"] = fDataSelectFormat;
-
-    ////////////////////////////////////////////////////////////////////////////
-    //CONFIGURE THE OPERATOR BUILD MANAGER
-    ////////////////////////////////////////////////////////////////////////////
-    fOperatorBuildManager = new MHO_OperatorBuilderManager(&fOperatorToolbox, &fContainerStore, &fParameterStore, fControlFormat);
-
 
     ////////////////////////////////////////////////////////////////////////////
     //PARAMETER SETTING
     ////////////////////////////////////////////////////////////////////////////
-    MHO_InitialFringeInfo::set_default_parameters(&fContainerStore, &fParameterStore); //set some default parameters (polprod, ref_freq)
-    MHO_ParameterManager paramManager(&fParameterStore, fControlFormat);
-    paramManager.SetControlStatements(&fControlStatements);
-    paramManager.ConfigureAll();
+
+    std::cout<<"----------------------------"<<std::endl;
+    //MHO_InitialFringeInfo::set_default_parameters(&fContainerStore, &fParameterStore); //set some default parameters (polprod, ref_freq)
+    // 
+    // MHO_ParameterManager paramManager(&fParameterStore, fControlFormat);
+    // paramManager.SetControlStatements(&fControlStatements);
+    // paramManager.ConfigureAll();
     // fParameterStore.Dump();
+
+    std::cout<<"----------------------------"<<std::endl;
 
     mho_json coarse_selection_hack =
     {
@@ -175,6 +186,12 @@ void MHO_BasicFringeFitter::Initialize()
      //part of the ugly default coarse selection hack, triggers the build of this operator at the 'selection' step
     (*(fControlStatements.begin()))["statements"].push_back(coarse_selection_hack);
 
+
+    
+    ////////////////////////////////////////////////////////////////////////////
+    //CONFIGURE THE OPERATOR BUILD MANAGER
+    ////////////////////////////////////////////////////////////////////////////
+    fOperatorBuildManager = new MHO_OperatorBuilderManager(&fOperatorToolbox, &fContainerStore, &fParameterStore, fControlFormat);
 
     fOperatorBuildManager->SetControlStatements(&fControlStatements);
 

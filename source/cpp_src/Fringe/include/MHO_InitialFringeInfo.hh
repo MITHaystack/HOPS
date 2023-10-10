@@ -30,7 +30,7 @@ class MHO_InitialFringeInfo
         virtual ~MHO_InitialFringeInfo(){};
     
     public:
-
+        static void set_default_parameters_minimal(MHO_ParameterStore* paramStore);
         static void set_default_parameters(MHO_ContainerStore* conStore, MHO_ParameterStore* paramStore);
         static void calculate_freq_space(MHO_ContainerStore* conStore, MHO_ParameterStore* paramStore);
         static void calculate_clock_model(MHO_ParameterStore* paramStore);

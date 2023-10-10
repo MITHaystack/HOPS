@@ -211,6 +211,18 @@ MHO_InitialFringeInfo::precalculate_quantities(MHO_ContainerStore* conStore, MHO
 }
 
 void 
+MHO_InitialFringeInfo::set_default_parameters_minimal(MHO_ParameterStore* paramStore)
+{
+    //set the selected pol-product
+    std::string polprod = paramStore->GetAs<std::string>("/cmdline/polprod");
+    paramStore->Set("selected_polprod", polprod);
+
+    //default mbd_anchor is model (instead of sbd)
+    std::string mbd_anchor = "model";
+    paramStore->Set("mbd_anchor", mbd_anchor);
+};
+
+void 
 MHO_InitialFringeInfo::set_default_parameters(MHO_ContainerStore* conStore, MHO_ParameterStore* paramStore)
 {
     //set the selected pol-product
