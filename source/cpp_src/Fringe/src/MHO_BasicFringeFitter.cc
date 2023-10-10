@@ -100,25 +100,31 @@ void MHO_BasicFringeFitter::Configure()
     ceval.SetPassInformation(baseline, srcName, "?", scnName);//baseline, source, fgroup, scan
     fControlStatements = ceval.GetApplicableStatements(control_contents);
 
-    std::cout<<fControlStatements.dump(2)<<std::endl;
+     //part of the ugly default coarse selection hack, triggers the build of this operator at the 'selection' step
+    mho_json coarse_selection_hack =
+    {
+        {"name", "coarse_selection"},
+        {"statement_type", "operator"},
+        {"operator_category" , "selection"}
+    };
+    (*(fControlStatements.begin()))["statements"].push_back(coarse_selection_hack);
 
-    std::cout<<"----------------------------"<<std::endl;
+    //std::cout<<fControlStatements.dump(2)<<std::endl;
+
     MHO_InitialFringeInfo::set_default_parameters_minimal(&fParameterStore); //set some default parameters (polprod, ref_freq)
 
     MHO_ParameterManager paramManager(&fParameterStore, fControlFormat);
     paramManager.SetControlStatements(&fControlStatements);
     paramManager.ConfigureAll();
-    fParameterStore.Dump();
 
-    std::cout<<"----------------------------"<<std::endl;
+    //fParameterStore.Dump();
 
+    //TODO FIXME -- add the implementation of the 'skip' keyword here, bail out and do not read data into memory
 
 }
 
 void MHO_BasicFringeFitter::Initialize()
 {
-    // std::string directory = fParameterStore.GetAs<std::string>("/cmdline/directory");
-    // std::string control_file = fParameterStore.GetAs<std::string>("/cmdline/control_file");
     std::string baseline = fParameterStore.GetAs<std::string>("/cmdline/baseline");
     std::string polprod = fParameterStore.GetAs<std::string>("/cmdline/polprod");
 
@@ -162,32 +168,11 @@ void MHO_BasicFringeFitter::Initialize()
     fParameterStore.Set("/uuid/ref_station", ref_uuid);
     fParameterStore.Set("/uuid/rem_station", rem_uuid);
 
-
     ////////////////////////////////////////////////////////////////////////////
     //PARAMETER SETTING
     ////////////////////////////////////////////////////////////////////////////
-
-    std::cout<<"----------------------------"<<std::endl;
-    //configure reference frequency if unset
     MHO_InitialFringeInfo::configure_reference_frequency(&fContainerStore, &fParameterStore);
-    // 
-    // MHO_ParameterManager paramManager(&fParameterStore, fControlFormat);
-    // paramManager.SetControlStatements(&fControlStatements);
-    // paramManager.ConfigureAll();
-    // fParameterStore.Dump();
 
-    std::cout<<"----------------------------"<<std::endl;
-
-    mho_json coarse_selection_hack =
-    {
-        {"name", "coarse_selection"},
-        {"statement_type", "operator"},
-        {"operator_category" , "selection"}
-    };
-     //part of the ugly default coarse selection hack, triggers the build of this operator at the 'selection' step
-    (*(fControlStatements.begin()))["statements"].push_back(coarse_selection_hack);
-
-    
     ////////////////////////////////////////////////////////////////////////////
     //CONFIGURE THE OPERATOR BUILD MANAGER
     ////////////////////////////////////////////////////////////////////////////
@@ -200,7 +185,6 @@ void MHO_BasicFringeFitter::Initialize()
     take_snapshot_here("test", "visib", __FILE__, __LINE__, vis_data);
     take_snapshot_here("test", "weights", __FILE__, __LINE__,  wt_data);
 
-
     ////////////////////////////////////////////////////////////////////////////
     //OPERATOR CONSTRUCTION
     ////////////////////////////////////////////////////////////////////////////
@@ -212,7 +196,6 @@ void MHO_BasicFringeFitter::Initialize()
     //safety check
     if(vis_data->GetSize() == 0){msg_fatal("fringe", "no visibility data left after cuts." << eom); std::exit(1);}
     if(wt_data->GetSize() == 0){msg_fatal("fringe", "no weight data left after cuts." << eom); std::exit(1);}
-
 
     MHO_BasicFringeDataConfiguration::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "flagging");
     MHO_BasicFringeDataConfiguration::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "calibration");
