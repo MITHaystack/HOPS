@@ -223,22 +223,18 @@ MHO_InitialFringeInfo::set_default_parameters_minimal(MHO_ParameterStore* paramS
 };
 
 void 
-MHO_InitialFringeInfo::set_default_parameters(MHO_ContainerStore* conStore, MHO_ParameterStore* paramStore)
+MHO_InitialFringeInfo::configure_reference_frequency(MHO_ContainerStore* conStore, MHO_ParameterStore* paramStore)
 {
-    //set the selected pol-product
-    std::string polprod = paramStore->GetAs<std::string>("/cmdline/polprod");
-    paramStore->Set("selected_polprod", polprod);
+    //check if the parameter store already has a reference frequency set, and if not set the default
+    if( !(paramStore->IsPresent("ref_freq") ) )
+    {
+        //grab the visibility data, so we can determine the default reference frequency
+        visibility_type* vis_data = conStore->GetObject<visibility_type>(std::string("vis"));
 
-    //grab the visibility data, so we can determine the default reference frequency
-    visibility_type* vis_data = conStore->GetObject<visibility_type>(std::string("vis"));
-
-    //the first frequency in the array serves as the reference frequency if this value remains unset in the control file
-    double first_freq = std::get<CHANNEL_AXIS>(*vis_data)(0);
-    paramStore->Set("ref_freq", first_freq);
-
-    //default mbd_anchor is model (instead of sbd)
-    std::string mbd_anchor = "model";
-    paramStore->Set("mbd_anchor", mbd_anchor);
+        //the first frequency in the array serves as the reference frequency if this value remains unset in the control file
+        double first_freq = std::get<CHANNEL_AXIS>(*vis_data)(0);
+        paramStore->Set("ref_freq", first_freq);
+    }
 };
 
 

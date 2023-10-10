@@ -168,7 +168,8 @@ void MHO_BasicFringeFitter::Initialize()
     ////////////////////////////////////////////////////////////////////////////
 
     std::cout<<"----------------------------"<<std::endl;
-    //MHO_InitialFringeInfo::set_default_parameters(&fContainerStore, &fParameterStore); //set some default parameters (polprod, ref_freq)
+    //configure reference frequency if unset
+    MHO_InitialFringeInfo::configure_reference_frequency(&fContainerStore, &fParameterStore);
     // 
     // MHO_ParameterManager paramManager(&fParameterStore, fControlFormat);
     // paramManager.SetControlStatements(&fControlStatements);
@@ -186,13 +187,11 @@ void MHO_BasicFringeFitter::Initialize()
      //part of the ugly default coarse selection hack, triggers the build of this operator at the 'selection' step
     (*(fControlStatements.begin()))["statements"].push_back(coarse_selection_hack);
 
-
     
     ////////////////////////////////////////////////////////////////////////////
     //CONFIGURE THE OPERATOR BUILD MANAGER
     ////////////////////////////////////////////////////////////////////////////
     fOperatorBuildManager = new MHO_OperatorBuilderManager(&fOperatorToolbox, &fContainerStore, &fParameterStore, fControlFormat);
-
     fOperatorBuildManager->SetControlStatements(&fControlStatements);
 
     //take a snapshot if enabled
