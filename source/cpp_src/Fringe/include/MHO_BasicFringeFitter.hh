@@ -38,6 +38,7 @@ class MHO_BasicFringeFitter: public MHO_FringeFitter
 
         mho_json fVexInfo;
         mho_json fControlFormat;
+        mho_json fControlStatements;
 
         int count;
 

@@ -33,7 +33,6 @@ void MHO_BasicFringeFitter::Configure()
     //set "is finished to false"
     fParameterStore.Set("/status/is_finished", false);
 
-
     std::string directory = fParameterStore.GetAs<std::string>("/cmdline/directory");
     std::string control_file = fParameterStore.GetAs<std::string>("/cmdline/control_file");
     std::string baseline = fParameterStore.GetAs<std::string>("/cmdline/baseline");
@@ -66,6 +65,39 @@ void MHO_BasicFringeFitter::Configure()
     fVexInfo = fScanStore.GetRootFileData();
     MHO_VexInfoExtractor::extract_vex_info(fVexInfo, &fParameterStore);
 
+
+
+    ////////////////////////////////////////////////////////////////////////////
+    //CONTROL CONSTRUCTION
+    ////////////////////////////////////////////////////////////////////////////
+    // std::string control_file = fParameterStore.GetAs<std::string>("/cmdline/control_file");
+    // std::string baseline = fParameterStore.GetAs<std::string>("/cmdline/baseline");
+    MHO_ControlFileParser cparser;
+    MHO_ControlConditionEvaluator ceval;
+
+    //specify the control format
+    fControlFormat = MHO_ControlDefinitions::GetControlFormat();
+
+    cparser.SetControlFile(control_file);
+    auto control_contents = cparser.ParseControl();
+
+    //TODO -- where should frequency group information get stashed/retrieved?
+    std::string srcName = fParameterStore.GetAs<std::string>("/vex/scan/source/name");
+    std::string scnName = fParameterStore.GetAs<std::string>("/vex/scan/name");
+    ceval.SetPassInformation(baseline, srcName, "?", scnName);//baseline, source, fgroup, scan
+    fControlStatements = ceval.GetApplicableStatements(control_contents);
+
+    // std::cout<<fControlStatements.dump(2)<<std::endl;
+
+}
+
+void MHO_BasicFringeFitter::Initialize()
+{
+    // std::string directory = fParameterStore.GetAs<std::string>("/cmdline/directory");
+    // std::string control_file = fParameterStore.GetAs<std::string>("/cmdline/control_file");
+    std::string baseline = fParameterStore.GetAs<std::string>("/cmdline/baseline");
+    std::string polprod = fParameterStore.GetAs<std::string>("/cmdline/polprod");
+
     ////////////////////////////////////////////////////////////////////////////
     //LOAD DATA AND ASSEMBLE THE DATA STORE
     ////////////////////////////////////////////////////////////////////////////
@@ -92,7 +124,6 @@ void MHO_BasicFringeFitter::Configure()
         std::exit(1);
     }
 
-
     //DEBUG
     //fContainerStore.DumpShortNamesToIds();
     #pragma message("TODO FIXME -- formalize the manner in which we identify data container objects via UUID")
@@ -106,9 +137,6 @@ void MHO_BasicFringeFitter::Configure()
     fParameterStore.Set("/uuid/weights", wt_uuid);
     fParameterStore.Set("/uuid/ref_station", ref_uuid);
     fParameterStore.Set("/uuid/rem_station", rem_uuid);
-
-    //specify the control format
-    fControlFormat = MHO_ControlDefinitions::GetControlFormat();
 
     //add the data selection operator
     //TODO FIXME -- this is a horrible hack to get this operator into the initialization stream
@@ -127,34 +155,14 @@ void MHO_BasicFringeFitter::Configure()
     //CONFIGURE THE OPERATOR BUILD MANAGER
     ////////////////////////////////////////////////////////////////////////////
     fOperatorBuildManager = new MHO_OperatorBuilderManager(&fOperatorToolbox, &fContainerStore, &fParameterStore, fControlFormat);
-}
 
-void MHO_BasicFringeFitter::Initialize()
-{
-
-    ////////////////////////////////////////////////////////////////////////////
-    //CONTROL CONSTRUCTION
-    ////////////////////////////////////////////////////////////////////////////
-    std::string control_file = fParameterStore.GetAs<std::string>("/cmdline/control_file");
-    std::string baseline = fParameterStore.GetAs<std::string>("/cmdline/baseline");
-    MHO_ControlFileParser cparser;
-    MHO_ControlConditionEvaluator ceval;
-    cparser.SetControlFile(control_file);
-    auto control_contents = cparser.ParseControl();
-    mho_json control_statements;
-
-    //TODO -- where should frequency group information get stashed/retrieved?
-    std::string srcName = fParameterStore.GetAs<std::string>("/vex/scan/source/name");
-    std::string scnName = fParameterStore.GetAs<std::string>("/vex/scan/name");
-    ceval.SetPassInformation(baseline, srcName, "?", scnName);//baseline, source, fgroup, scan
-    control_statements = ceval.GetApplicableStatements(control_contents);
 
     ////////////////////////////////////////////////////////////////////////////
     //PARAMETER SETTING
     ////////////////////////////////////////////////////////////////////////////
     MHO_InitialFringeInfo::set_default_parameters(&fContainerStore, &fParameterStore); //set some default parameters (polprod, ref_freq)
     MHO_ParameterManager paramManager(&fParameterStore, fControlFormat);
-    paramManager.SetControlStatements(&control_statements);
+    paramManager.SetControlStatements(&fControlStatements);
     paramManager.ConfigureAll();
     // fParameterStore.Dump();
 
@@ -165,16 +173,14 @@ void MHO_BasicFringeFitter::Initialize()
         {"operator_category" , "selection"}
     };
      //part of the ugly default coarse selection hack, triggers the build of this operator at the 'selection' step
-    (*(control_statements.begin()))["statements"].push_back(coarse_selection_hack);
+    (*(fControlStatements.begin()))["statements"].push_back(coarse_selection_hack);
 
-    std::cout<<"fDataSelectFormat = "<<fDataSelectFormat.dump(2)<<std::endl;
-    std::cout<<"control statements = "<<control_statements.dump(2)<<std::endl;
 
-    fOperatorBuildManager->SetControlStatements(&control_statements);
+    fOperatorBuildManager->SetControlStatements(&fControlStatements);
 
     //take a snapshot if enabled
-    visibility_type* vis_data = fContainerStore.GetObject<visibility_type>(std::string("vis"));
-    weight_type* wt_data = fContainerStore.GetObject<weight_type>(std::string("weight"));
+    // visibility_type* vis_data = fContainerStore.GetObject<visibility_type>(std::string("vis"));
+    // weight_type* wt_data = fContainerStore.GetObject<weight_type>(std::string("weight"));
     take_snapshot_here("test", "visib", __FILE__, __LINE__, vis_data);
     take_snapshot_here("test", "weights", __FILE__, __LINE__,  wt_data);
 
