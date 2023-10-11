@@ -126,7 +126,7 @@ MHO_InitialFringeInfo::precalculate_quantities(MHO_ContainerStore* conStore, MHO
     }
 
     double ap_delta = ap_ax->at(1) - ap_ax->at(0);
-    paramStore->Set("ap_period", ap_delta);
+    paramStore->Set("/config/ap_period", ap_delta);
 
     //append info about the total number of APs
     int naps = ap_ax->GetSize();
