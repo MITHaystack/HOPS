@@ -31,7 +31,7 @@ MHO_InitialFringeInfo::calculate_freq_space(MHO_ContainerStore* conStore, MHO_Pa
     //correct the frequency spread if we only have 1 channel
     //the number of channels present after cuts
     int nchan = paramStore->GetAs<int>("nchannels");
-    double channel_bandwidth = paramStore->GetAs<double>("channel_bandwidth");
+    double channel_bandwidth = paramStore->GetAs<double>("/config/channel_bandwidth");
 
     if(nchan == 1)
     {
@@ -145,7 +145,7 @@ MHO_InitialFringeInfo::precalculate_quantities(MHO_ContainerStore* conStore, MHO
             break;
         }
     }
-    paramStore->Set("channel_bandwidth", bandwidth);
+    paramStore->Set("/config/channel_bandwidth", bandwidth);
 
     //offset to the start of the data
     double start_offset = ap_ax->at(0);
