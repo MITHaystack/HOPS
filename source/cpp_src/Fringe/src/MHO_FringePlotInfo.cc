@@ -20,11 +20,11 @@ MHO_FringePlotInfo::construct_plot_data(MHO_ContainerStore* conStore, MHO_Parame
     //test grab the reference freq
     double ref_freq = paramStore->GetAs<double>(std::string("ref_freq"));
     
-    std::string directory = paramStore->GetAs<std::string>("/cmdline/directory");
-    std::string control_file = paramStore->GetAs<std::string>("/cmdline/control_file");
-    std::string baseline = paramStore->GetAs<std::string>("/cmdline/baseline");
-    std::string polprod = paramStore->GetAs<std::string>("/cmdline/polprod");
-    std::string root_file = paramStore->GetAs<std::string>("root_file");
+    std::string directory = paramStore->GetAs<std::string>("/files/directory");
+    std::string control_file = paramStore->GetAs<std::string>("/files/control_file");
+    std::string baseline = paramStore->GetAs<std::string>("/config/baseline");
+    std::string polprod = paramStore->GetAs<std::string>("/config/polprod");
+    std::string root_file = paramStore->GetAs<std::string>("/files/root_file");
 
     std::string mbd_anchor;
     bool is_mbd_anchor_set = paramStore->Get(std::string("mbd_anchor"), mbd_anchor);
