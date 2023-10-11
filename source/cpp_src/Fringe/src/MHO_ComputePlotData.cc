@@ -110,7 +110,7 @@ MHO_ComputePlotData::calc_mbd()
     auto sbd_ax = &( std::get<FREQ_AXIS>(*fSBDArray) );
     double ap_delta = ap_ax->at(1) - ap_ax->at(0);
     double sbd_delta = sbd_ax->at(1) - sbd_ax->at(0);
-    double frt_offset = fParamStore->GetAs<double>("frt_offset");
+    double frt_offset = fParamStore->GetAs<double>("/config/frt_offset");
 
     std::complex<double> sum = 0;
     for(std::size_t ch=0; ch < nchan; ch++)
@@ -171,7 +171,7 @@ MHO_ComputePlotData::calc_sbd()
     auto sbd_ax = &( std::get<FREQ_AXIS>(*fSBDArray) );
     double ap_delta = ap_ax->at(1) - ap_ax->at(0);
     double sbd_delta = sbd_ax->at(1) - sbd_ax->at(0);
-    double frt_offset = fParamStore->GetAs<double>("frt_offset");
+    double frt_offset = fParamStore->GetAs<double>("/config/frt_offset");
 
     sbd_amp.Resize(nbins);
     sbd_xpower_in.Resize(nbins);
@@ -233,7 +233,7 @@ MHO_ComputePlotData::calc_xpower()
     auto sbd_ax = &( std::get<FREQ_AXIS>(*fSBDArray) );
     double ap_delta = ap_ax->at(1) - ap_ax->at(0);
     double sbd_delta = sbd_ax->at(1) - sbd_ax->at(0);
-    double frt_offset = fParamStore->GetAs<double>("frt_offset");
+    double frt_offset = fParamStore->GetAs<double>("/config/frt_offset");
 
     sbd_amp.Resize(nbins);
     sbd_xpower_in.Resize(nbins);
@@ -308,7 +308,7 @@ MHO_ComputePlotData::calc_segs()
     auto chan_ax = &( std::get<CHANNEL_AXIS>(*fSBDArray) );
     auto ap_ax = &(std::get<TIME_AXIS>(*fSBDArray));
     double ap_delta = ap_ax->at(1) - ap_ax->at(0);
-    double frt_offset = fParamStore->GetAs<double>("frt_offset");
+    double frt_offset = fParamStore->GetAs<double>("/config/frt_offset");
 
     phasor_type phasor_segs;
     phasor_segs.Resize(nchan+1, nap);
@@ -402,7 +402,7 @@ MHO_ComputePlotData::calc_dr()
     auto sbd_ax = &( std::get<FREQ_AXIS>(*fSBDArray) );
     double ap_delta = ap_ax->at(1) - ap_ax->at(0);
     double sbd_delta = sbd_ax->at(1) - sbd_ax->at(0);
-    double frt_offset = fParamStore->GetAs<double>("frt_offset");
+    double frt_offset = fParamStore->GetAs<double>("/config/frt_offset");
     auto dr_ax = &(std::get<0>(fDRWorkspace) );
 
     for(std::size_t i=0; i<drsp_size;i++)
@@ -469,7 +469,7 @@ MHO_ComputePlotData::calc_phase()
     fRot.SetSBDMaxBin(fSBDMaxBin);
     fRot.SetNSBDBins(sbd_ax->GetSize()/2);  //this is effective nlags
     fRot.SetSBDMax( fSBDelay );
-    double frt_offset = fParamStore->GetAs<double>("frt_offset");
+    double frt_offset = fParamStore->GetAs<double>("/config/frt_offset");
 
     std::complex<double> sum_all = 0.0;
     for(std::size_t ch=0; ch < nchan; ch++)
@@ -563,7 +563,7 @@ MHO_ComputePlotData::calc_xpower_KLUDGE()
     auto sbd_ax = &( std::get<FREQ_AXIS>(*fSBDArray) );
     double ap_delta = ap_ax->at(1) - ap_ax->at(0);
     double sbd_delta = sbd_ax->at(1) - sbd_ax->at(0);
-    double frt_offset = fParamStore->GetAs<double>("frt_offset");
+    double frt_offset = fParamStore->GetAs<double>("/config/frt_offset");
 
     std::complex<double> sum;
     std::complex<double> Z, vr;
@@ -725,7 +725,7 @@ MHO_ComputePlotData::calc_xpower_KLUDGE2()
 
 
     //double frt_offset = ( ap_ax->at(nap-1) + ap_delta  + ap_ax->at(0) )/2.0;
-    double frt_offset = fParamStore->GetAs<double>("frt_offset");
+    double frt_offset = fParamStore->GetAs<double>("/config/frt_offset");
 
     std::complex<double> sum;
     std::complex<double> Z, vr;
@@ -905,7 +905,7 @@ MHO_ComputePlotData::calc_xpower_KLUDGE3()
     double sbd_delta = sbd_ax->at(1) - sbd_ax->at(0);
 
     //double frt_offset = ( ap_ax->at(nap-1) + ap_delta  + ap_ax->at(0) )/2.0;
-    double frt_offset = fParamStore->GetAs<double>("frt_offset");
+    double frt_offset = fParamStore->GetAs<double>("/config/frt_offset");
 
     std::complex<double> sum;
     std::complex<double> Z, vr;
