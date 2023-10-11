@@ -47,6 +47,20 @@ void MHO_BasicFringeFitter::Configure()
         std::exit(1);
     }
 
+    
+    ////////////////////////////////////////////////////////////////////////////
+    //INITIALIZE PARAMETERS
+    ////////////////////////////////////////////////////////////////////////////
+
+    //set up the file section of the parameter store: directory, root file, and control file
+    fParameterStore.Set("/files/control_file", control_file);
+    fParameterStore.Set("/files/directory", directory);
+    fParameterStore.Set("/files/root_file", fScanStore.GetRootFileBasename() );
+
+    //put the baseline and pol product selection into the parameter store
+    fParameterStore.Set("/config/polprod", polprod);
+    fParameterStore.Set("/config/baseline", baseline);
+
     ////////////////////////////////////////////////////////////////////////////
     //INITIALIZE SCAN DIRECTORY
     ////////////////////////////////////////////////////////////////////////////
@@ -59,15 +73,10 @@ void MHO_BasicFringeFitter::Configure()
         msg_fatal("fringe", "cannot initialize a valid scan store from this directory: " << directory << eom);
         std::exit(1);
     }
-    //pass the directory and root file info the the parameter store
-    fParameterStore.Set("directory", directory);
-    fParameterStore.Set("root_file", fScanStore.GetRootFileBasename() );
 
     //load root file and extract useful vex info
     fVexInfo = fScanStore.GetRootFileData();
     MHO_VexInfoExtractor::extract_vex_info(fVexInfo, &fParameterStore);
-
-
 
     ////////////////////////////////////////////////////////////////////////////
     //CONTROL CONSTRUCTION
@@ -131,9 +140,7 @@ void MHO_BasicFringeFitter::Configure()
             fParameterStore.Set("/status/is_finished", true);
         }
     }
-
     fParameterStore.Dump();
-
 }
 
 void MHO_BasicFringeFitter::Initialize()
@@ -141,9 +148,8 @@ void MHO_BasicFringeFitter::Initialize()
     bool skipped = fParameterStore.GetAs<bool>("/status/skipped");
     if( !skipped )
     {
-
-        std::string baseline = fParameterStore.GetAs<std::string>("/cmdline/baseline");
-        std::string polprod = fParameterStore.GetAs<std::string>("/cmdline/polprod");
+        std::string baseline = fParameterStore.GetAs<std::string>("/config/baseline");
+        std::string polprod = fParameterStore.GetAs<std::string>("/config/polprod");
 
         ////////////////////////////////////////////////////////////////////////////
         //LOAD DATA AND ASSEMBLE THE DATA STORE

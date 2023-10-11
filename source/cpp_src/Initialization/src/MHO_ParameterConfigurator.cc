@@ -18,49 +18,50 @@ MHO_ParameterConfigurator::Configure()
 
         //look up the parameter type in the format
         std::string value_type = fFormat[name]["type"].get<std::string>();
+        std::string path = name;// "/config/" + name;
         switch( DetermineParamValueType(value_type) )
         {
             case ParamValueType::int_type:
             {
                 //braces needed to avoid 'crossing initialization' error
                 int value = fAttributes["value"].get<int>();
-                SetScalarParameter(name, value);
+                SetScalarParameter(path, value);
             }
             break;
             case ParamValueType::real_type:
             {
                 double value = fAttributes["value"].get<double>();
-                SetScalarParameter(name, value);
+                SetScalarParameter(path, value);
             }
             break;
             case ParamValueType::bool_type:
             {
                 bool value = fAttributes["value"].get<bool>();
-                SetScalarParameter(name, value);
+                SetScalarParameter(path, value);
             }
             break;
             case ParamValueType::string_type:
             {
                 std::string value = fAttributes["value"].get<std::string>();
-                SetScalarParameter(name, value);
+                SetScalarParameter(path, value);
             }
             break;
             case ParamValueType::list_int_type:
             {
                 std::vector< int > values = fAttributes["value"].get< std::vector< int > >();
-                SetVectorParameter(name, values);
+                SetVectorParameter(path, values);
             }
             break;
             case ParamValueType::list_real_type:
             {
                 std::vector< double > values = fAttributes["value"].get< std::vector< double > >();
-                SetVectorParameter(name, values);
+                SetVectorParameter(path, values);
             }
             break;
             case ParamValueType::list_string_type:
             {
                 std::vector< std::string > values = fAttributes["value"].get< std::vector< std::string > >();
-                SetVectorParameter(name, values);
+                SetVectorParameter(path, values);
             }
             break;
             default:

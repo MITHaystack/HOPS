@@ -15,7 +15,7 @@ MHO_DataSelectionBuilder::Build()
         //and channels, it does not do start/stop AP selction (but it should)
 
         bool do_select_polprods = false;
-        std::string polprod_key = "selected_polprod";
+        std::string polprod_key = "/config/polprod";
         std::string polprod = ""; 
         if(fParameterStore->IsPresent(polprod_key))
         {
