@@ -18,7 +18,10 @@ MHO_ParameterConfigurator::Configure()
 
         //look up the parameter type in the format
         std::string value_type = fFormat[name]["type"].get<std::string>();
-        std::string path = name;// "/config/" + name;
+        //TODO -- move the control parameters into a sorted structure
+        // std::string path = "/control/" + parameter_type + "/" + name;
+
+        std::string path = name;
         switch( DetermineParamValueType(value_type) )
         {
             case ParamValueType::int_type:
