@@ -30,7 +30,7 @@ MHO_InitialFringeInfo::calculate_freq_space(MHO_ContainerStore* conStore, MHO_Pa
 
     //correct the frequency spread if we only have 1 channel
     //the number of channels present after cuts
-    int nchan = paramStore->GetAs<int>("nchannels");
+    int nchan = paramStore->GetAs<int>("/config/nchannels");
     double channel_bandwidth = paramStore->GetAs<double>("/config/channel_bandwidth");
 
     if(nchan == 1)
@@ -130,7 +130,7 @@ MHO_InitialFringeInfo::precalculate_quantities(MHO_ContainerStore* conStore, MHO
 
     //append info about the total number of APs
     int naps = ap_ax->GetSize();
-    paramStore->Set("total_naps", naps);
+    paramStore->Set("/config/total_naps", naps);
 
 
     //grab the channel bandwidth (assume to be the same for all channels)
@@ -157,7 +157,7 @@ MHO_InitialFringeInfo::precalculate_quantities(MHO_ContainerStore* conStore, MHO
 
     //the number of channels present after cuts
     int nchan = chan_ax->GetSize();
-    paramStore->Set("nchannels", nchan);
+    paramStore->Set("/config/nchannels", nchan);
 
     //compute the sum of the data weights
     weight_type temp_weights;

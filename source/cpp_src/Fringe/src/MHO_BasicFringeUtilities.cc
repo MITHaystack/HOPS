@@ -82,7 +82,7 @@ MHO_BasicFringeUtilities::calculate_fringe_solution_info(MHO_ContainerStore* con
     paramStore->Set("/fringe/snr", snr);
 
     //calculate integration time
-    int nchan = paramStore->GetAs<int>("nchannels");
+    int nchan = paramStore->GetAs<int>("/config/nchannels");
     double integration_time =  (total_summed_weights*ap_delta)/(double)nchan;
     paramStore->Set("/fringe/integration_time", integration_time);
 
@@ -151,7 +151,7 @@ MHO_BasicFringeUtilities::calculate_fringe_solution_info(MHO_ContainerStore* con
 
     double sbd_error = MHO_BasicFringeInfo::calculate_sbd_error(sbd_sep, snr, sbavg);
 
-    int total_naps = paramStore->GetAs<int>("total_naps");
+    int total_naps = paramStore->GetAs<int>("/config/total_naps");
     double drate_error = MHO_BasicFringeInfo::calculate_drate_error_v1(snr, ref_freq, total_naps, ap_delta);
     //may want to consider using this version in the future
     //double drate_error = calculate_drate_error_v2(snr, ref_freq, integration_time);
