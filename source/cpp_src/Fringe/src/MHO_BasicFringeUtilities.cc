@@ -31,7 +31,7 @@ MHO_BasicFringeUtilities::calculate_fringe_solution_info(MHO_ContainerStore* con
     double samp_period = 1.0/(sample_rate*1e6);
 
     //configuration parameters
-    double ref_freq = paramStore->GetAs<double>("ref_freq");
+    double ref_freq = paramStore->GetAs<double>("/config/ref_freq");
     double ap_delta = paramStore->GetAs<double>("/config/ap_period");
 
     //fringe quantities
@@ -187,7 +187,7 @@ double
 MHO_BasicFringeUtilities::calculate_residual_phase(MHO_ContainerStore* conStore, MHO_ParameterStore* paramStore)
 {
     double total_summed_weights = paramStore->GetAs<double>("/fringe/total_summed_weights");
-    double ref_freq = paramStore->GetAs<double>("ref_freq");
+    double ref_freq = paramStore->GetAs<double>("/config/ref_freq");
     double mbd = paramStore->GetAs<double>("/fringe/mbdelay");
     double drate = paramStore->GetAs<double>("/fringe/drate");
     double sbd = paramStore->GetAs<double>("/fringe/sbdelay");
@@ -325,7 +325,7 @@ MHO_BasicFringeUtilities::basic_fringe_search(MHO_ContainerStore* conStore, MHO_
     // #ifdef ALT_MDB_SEARCH
 
     //coarse SBD/MBD/DR search (locates max bin)
-    double ref_freq = paramStore->GetAs<double>("ref_freq");
+    double ref_freq = paramStore->GetAs<double>("/config/ref_freq");
     MHO_MBDelaySearch mbdSearch;
     mbdSearch.SetWeights(wt_data);
     mbdSearch.SetReferenceFrequency(ref_freq);

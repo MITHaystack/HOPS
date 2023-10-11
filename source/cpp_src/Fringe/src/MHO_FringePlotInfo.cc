@@ -18,7 +18,7 @@ MHO_FringePlotInfo::construct_plot_data(MHO_ContainerStore* conStore, MHO_Parame
     //visibility_type* sbd_dr_data = conStore->GetObject<weight_type>(std::string("sbd_dr"));
     
     //test grab the reference freq
-    double ref_freq = paramStore->GetAs<double>(std::string("ref_freq"));
+    double ref_freq = paramStore->GetAs<double>(std::string("/config/ref_freq"));
     
     std::string directory = paramStore->GetAs<std::string>("/files/directory");
     std::string control_file = paramStore->GetAs<std::string>("/files/control_file");
@@ -79,7 +79,7 @@ MHO_FringePlotInfo::fill_plot_data(MHO_ParameterStore* paramStore, mho_json& plo
     plot_dict["ResidMbd(us)"] = paramStore->GetAs<double>("/fringe/mbdelay");
     plot_dict["FringeRate(Hz)"]  = paramStore->GetAs<double>("/fringe/frate");
     plot_dict["IonTEC(TEC)"] = "-";
-    plot_dict["RefFreq(MHz)"] = paramStore->GetAs<double>("ref_freq");
+    plot_dict["RefFreq(MHz)"] = paramStore->GetAs<double>("/config/ref_freq");
     plot_dict["AP(sec)"] = paramStore->GetAs<double>("/config/ap_period");
     plot_dict["ExperName"] = paramStore->GetAs<std::string>("/vex/experiment_name");
     plot_dict["ExperNum"] = paramStore->GetAs<std::string>("/vex/experiment_number");

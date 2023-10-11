@@ -20,7 +20,7 @@ void
 MHO_ComputePlotData::Initialize()
 {
     fTotalSummedWeights = fParamStore->GetAs<double>("/fringe/total_summed_weights");
-    fRefFreq = fParamStore->GetAs<double>("ref_freq");
+    fRefFreq = fParamStore->GetAs<double>("/config/ref_freq");
     fMBDelay = fParamStore->GetAs<double>("/fringe/mbdelay");
     fDelayRate = fParamStore->GetAs<double>("/fringe/drate");
     fFringeRate = fParamStore->GetAs<double>("/fringe/frate");
