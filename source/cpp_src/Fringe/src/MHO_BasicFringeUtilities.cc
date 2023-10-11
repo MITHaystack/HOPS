@@ -32,7 +32,7 @@ MHO_BasicFringeUtilities::calculate_fringe_solution_info(MHO_ContainerStore* con
 
     //configuration parameters
     double ref_freq = paramStore->GetAs<double>("ref_freq");
-    double ap_delta = paramStore->GetAs<double>("ap_period");
+    double ap_delta = paramStore->GetAs<double>("/config/ap_period");
 
     //fringe quantities
     double total_summed_weights = paramStore->GetAs<double>("/fringe/total_summed_weights");
@@ -193,7 +193,7 @@ MHO_BasicFringeUtilities::calculate_residual_phase(MHO_ContainerStore* conStore,
     double sbd = paramStore->GetAs<double>("/fringe/sbdelay");
     double sbd_max_bin = paramStore->GetAs<double>("/fringe/max_sbd_bin");
     double frt_offset = paramStore->GetAs<double>("frt_offset");
-    double ap_delta =  paramStore->GetAs<double>("ap_period");
+    double ap_delta =  paramStore->GetAs<double>("/config/ap_period");
 
     auto weights = conStore->GetObject<weight_type>(std::string("weight"));
     auto sbd_arr = conStore->GetObject<visibility_type>(std::string("sbd"));

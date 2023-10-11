@@ -80,7 +80,7 @@ MHO_FringePlotInfo::fill_plot_data(MHO_ParameterStore* paramStore, mho_json& plo
     plot_dict["FringeRate(Hz)"]  = paramStore->GetAs<double>("/fringe/frate");
     plot_dict["IonTEC(TEC)"] = "-";
     plot_dict["RefFreq(MHz)"] = paramStore->GetAs<double>("ref_freq");
-    plot_dict["AP(sec)"] = paramStore->GetAs<double>("ap_period");
+    plot_dict["AP(sec)"] = paramStore->GetAs<double>("/config/ap_period");
     plot_dict["ExperName"] = paramStore->GetAs<std::string>("/vex/experiment_name");
     plot_dict["ExperNum"] = paramStore->GetAs<std::string>("/vex/experiment_number");
 
