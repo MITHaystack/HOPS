@@ -30,8 +30,10 @@ MHO_BasicFringeFitter::~MHO_BasicFringeFitter(){};
 
 void MHO_BasicFringeFitter::Configure()
 {
-    //set "is finished to false"
+    //initialize by setting "is_finished" to false, and 'skipped' to false
+    //these parameters must always be present
     fParameterStore.Set("/status/is_finished", false);
+    fParameterStore.Set("/status/skipped", false);
 
     std::string directory = fParameterStore.GetAs<std::string>("/cmdline/directory");
     std::string control_file = fParameterStore.GetAs<std::string>("/cmdline/control_file");
@@ -109,7 +111,7 @@ void MHO_BasicFringeFitter::Configure()
     };
     (*(fControlStatements.begin()))["statements"].push_back(coarse_selection_hack);
 
-    //std::cout<<fControlStatements.dump(2)<<std::endl;
+    std::cout<<fControlStatements.dump(2)<<std::endl;
 
     MHO_InitialFringeInfo::set_default_parameters_minimal(&fParameterStore); //set some default parameters (polprod, ref_freq)
 
@@ -117,113 +119,142 @@ void MHO_BasicFringeFitter::Configure()
     paramManager.SetControlStatements(&fControlStatements);
     paramManager.ConfigureAll();
 
-    //fParameterStore.Dump();
+    //the control statement 'skip' is special because we want to bail out 
+    //as soon as possible (before reading in data) in order to save time
+    if( fParameterStore.IsPresent("skip") )
+    {
+        bool do_skip = fParameterStore.GetAs<bool>("skip");
+        if(do_skip)
+        {
+            //set "is_finished" to true, since we are skipping this data
+            fParameterStore.Set("/status/skipped", true);
+            fParameterStore.Set("/status/is_finished", true);
+        }
+    }
 
-    //TODO FIXME -- add the implementation of the 'skip' keyword here, bail out and do not read data into memory
+    fParameterStore.Dump();
 
 }
 
 void MHO_BasicFringeFitter::Initialize()
 {
-    std::string baseline = fParameterStore.GetAs<std::string>("/cmdline/baseline");
-    std::string polprod = fParameterStore.GetAs<std::string>("/cmdline/polprod");
-
-    ////////////////////////////////////////////////////////////////////////////
-    //LOAD DATA AND ASSEMBLE THE DATA STORE
-    ////////////////////////////////////////////////////////////////////////////
-
-    //load baseline data
-    fScanStore.LoadBaseline(baseline, &fContainerStore);
-    MHO_BasicFringeDataConfiguration::configure_data_library(&fContainerStore);//momentarily needed for float -> double cast
-    //load and rename station data according to reference/remote
-    std::string ref_station_mk4id = std::string(1,baseline[0]);
-    std::string rem_station_mk4id = std::string(1,baseline[1]);
-    fScanStore.LoadStation(ref_station_mk4id, &fContainerStore);
-    fContainerStore.RenameObject("sta", "ref_sta");
-    fScanStore.LoadStation(rem_station_mk4id, &fContainerStore);
-    fContainerStore.RenameObject("sta", "rem_sta");
-
-    station_coord_type* ref_data = fContainerStore.GetObject<station_coord_type>(std::string("ref_sta"));
-    station_coord_type* rem_data = fContainerStore.GetObject<station_coord_type>(std::string("rem_sta"));
-
-    visibility_type* vis_data = fContainerStore.GetObject<visibility_type>(std::string("vis"));
-    weight_type* wt_data = fContainerStore.GetObject<weight_type>(std::string("weight"));
-    if( vis_data == nullptr || wt_data == nullptr )
+    bool skipped = fParameterStore.GetAs<bool>("/status/skipped");
+    if( !skipped )
     {
-        msg_fatal("fringe", "could not find visibility or weight objects with names (vis, weight)." << eom);
-        std::exit(1);
+
+        std::string baseline = fParameterStore.GetAs<std::string>("/cmdline/baseline");
+        std::string polprod = fParameterStore.GetAs<std::string>("/cmdline/polprod");
+
+        ////////////////////////////////////////////////////////////////////////////
+        //LOAD DATA AND ASSEMBLE THE DATA STORE
+        ////////////////////////////////////////////////////////////////////////////
+
+        //load baseline data
+        fScanStore.LoadBaseline(baseline, &fContainerStore);
+        MHO_BasicFringeDataConfiguration::configure_data_library(&fContainerStore);//momentarily needed for float -> double cast
+        //load and rename station data according to reference/remote
+        std::string ref_station_mk4id = std::string(1,baseline[0]);
+        std::string rem_station_mk4id = std::string(1,baseline[1]);
+        fScanStore.LoadStation(ref_station_mk4id, &fContainerStore);
+        fContainerStore.RenameObject("sta", "ref_sta");
+        fScanStore.LoadStation(rem_station_mk4id, &fContainerStore);
+        fContainerStore.RenameObject("sta", "rem_sta");
+
+        station_coord_type* ref_data = fContainerStore.GetObject<station_coord_type>(std::string("ref_sta"));
+        station_coord_type* rem_data = fContainerStore.GetObject<station_coord_type>(std::string("rem_sta"));
+
+        visibility_type* vis_data = fContainerStore.GetObject<visibility_type>(std::string("vis"));
+        weight_type* wt_data = fContainerStore.GetObject<weight_type>(std::string("weight"));
+        if( vis_data == nullptr || wt_data == nullptr )
+        {
+            msg_fatal("fringe", "could not find visibility or weight objects with names (vis, weight)." << eom);
+            std::exit(1);
+        }
+
+        //DEBUG
+        //fContainerStore.DumpShortNamesToIds();
+        #pragma message("TODO FIXME -- formalize the manner in which we identify data container objects via UUID")
+        //temporarily put the object uuid's in the parameter store so we can look it up on the python side
+        std::string vis_uuid = vis_data->GetObjectUUID().as_string();
+        std::string wt_uuid = wt_data->GetObjectUUID().as_string();
+        std::string ref_uuid = ref_data->GetObjectUUID().as_string();
+        std::string rem_uuid = rem_data->GetObjectUUID().as_string();
+
+        fParameterStore.Set("/uuid/visibilities", vis_uuid);
+        fParameterStore.Set("/uuid/weights", wt_uuid);
+        fParameterStore.Set("/uuid/ref_station", ref_uuid);
+        fParameterStore.Set("/uuid/rem_station", rem_uuid);
+
+        ////////////////////////////////////////////////////////////////////////////
+        //PARAMETER SETTING
+        ////////////////////////////////////////////////////////////////////////////
+        MHO_InitialFringeInfo::configure_reference_frequency(&fContainerStore, &fParameterStore);
+
+        ////////////////////////////////////////////////////////////////////////////
+        //CONFIGURE THE OPERATOR BUILD MANAGER
+        ////////////////////////////////////////////////////////////////////////////
+        fOperatorBuildManager = new MHO_OperatorBuilderManager(&fOperatorToolbox, &fContainerStore, &fParameterStore, fControlFormat);
+        fOperatorBuildManager->SetControlStatements(&fControlStatements);
+
+        //take a snapshot if enabled
+        // visibility_type* vis_data = fContainerStore.GetObject<visibility_type>(std::string("vis"));
+        // weight_type* wt_data = fContainerStore.GetObject<weight_type>(std::string("weight"));
+        take_snapshot_here("test", "visib", __FILE__, __LINE__, vis_data);
+        take_snapshot_here("test", "weights", __FILE__, __LINE__,  wt_data);
+
+        ////////////////////////////////////////////////////////////////////////////
+        //OPERATOR CONSTRUCTION
+        ////////////////////////////////////////////////////////////////////////////
+
+        fOperatorBuildManager->BuildOperatorCategory("default");
+        MHO_BasicFringeDataConfiguration::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "labelling");
+        MHO_BasicFringeDataConfiguration::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "selection");
+
+        //safety check
+        if(vis_data->GetSize() == 0){msg_fatal("fringe", "no visibility data left after cuts." << eom); std::exit(1);}
+        if(wt_data->GetSize() == 0){msg_fatal("fringe", "no weight data left after cuts." << eom); std::exit(1);}
+
+        MHO_BasicFringeDataConfiguration::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "flagging");
+        MHO_BasicFringeDataConfiguration::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "calibration");
+
+        //calulate useful quantities to stash in the parameter store
+        MHO_InitialFringeInfo::precalculate_quantities(&fContainerStore, &fParameterStore);
     }
-
-    //DEBUG
-    //fContainerStore.DumpShortNamesToIds();
-    #pragma message("TODO FIXME -- formalize the manner in which we identify data container objects via UUID")
-    //temporarily put the object uuid's in the parameter store so we can look it up on the python side
-    std::string vis_uuid = vis_data->GetObjectUUID().as_string();
-    std::string wt_uuid = wt_data->GetObjectUUID().as_string();
-    std::string ref_uuid = ref_data->GetObjectUUID().as_string();
-    std::string rem_uuid = rem_data->GetObjectUUID().as_string();
-
-    fParameterStore.Set("/uuid/visibilities", vis_uuid);
-    fParameterStore.Set("/uuid/weights", wt_uuid);
-    fParameterStore.Set("/uuid/ref_station", ref_uuid);
-    fParameterStore.Set("/uuid/rem_station", rem_uuid);
-
-    ////////////////////////////////////////////////////////////////////////////
-    //PARAMETER SETTING
-    ////////////////////////////////////////////////////////////////////////////
-    MHO_InitialFringeInfo::configure_reference_frequency(&fContainerStore, &fParameterStore);
-
-    ////////////////////////////////////////////////////////////////////////////
-    //CONFIGURE THE OPERATOR BUILD MANAGER
-    ////////////////////////////////////////////////////////////////////////////
-    fOperatorBuildManager = new MHO_OperatorBuilderManager(&fOperatorToolbox, &fContainerStore, &fParameterStore, fControlFormat);
-    fOperatorBuildManager->SetControlStatements(&fControlStatements);
-
-    //take a snapshot if enabled
-    // visibility_type* vis_data = fContainerStore.GetObject<visibility_type>(std::string("vis"));
-    // weight_type* wt_data = fContainerStore.GetObject<weight_type>(std::string("weight"));
-    take_snapshot_here("test", "visib", __FILE__, __LINE__, vis_data);
-    take_snapshot_here("test", "weights", __FILE__, __LINE__,  wt_data);
-
-    ////////////////////////////////////////////////////////////////////////////
-    //OPERATOR CONSTRUCTION
-    ////////////////////////////////////////////////////////////////////////////
-
-    fOperatorBuildManager->BuildOperatorCategory("default");
-    MHO_BasicFringeDataConfiguration::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "labelling");
-    MHO_BasicFringeDataConfiguration::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "selection");
-
-    //safety check
-    if(vis_data->GetSize() == 0){msg_fatal("fringe", "no visibility data left after cuts." << eom); std::exit(1);}
-    if(wt_data->GetSize() == 0){msg_fatal("fringe", "no weight data left after cuts." << eom); std::exit(1);}
-
-    MHO_BasicFringeDataConfiguration::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "flagging");
-    MHO_BasicFringeDataConfiguration::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "calibration");
-
-    //calulate useful quantities to stash in the parameter store
-    MHO_InitialFringeInfo::precalculate_quantities(&fContainerStore, &fParameterStore);
 }
 
 void MHO_BasicFringeFitter::PreRun()
 {
-
+    bool skipped = fParameterStore.GetAs<bool>("/status/skipped");
+    if( !skipped) //execute if we are not finished and are not skipping
+    {
+        //TODO FILL ME IN -- need to call specified user-scripts here
+    }
 }
 
 void MHO_BasicFringeFitter::Run()
 {
-    //execute the basic fringe search algorithm
-    MHO_BasicFringeUtilities::basic_fringe_search(&fContainerStore, &fParameterStore);
-    //calculate the fringe properties
-    MHO_BasicFringeUtilities::calculate_fringe_solution_info(&fContainerStore, &fParameterStore, fVexInfo);
+    bool status_is_finished = fParameterStore.GetAs<bool>("/status/is_finished");
+    bool skipped = fParameterStore.GetAs<bool>("/status/skipped");
+    if( !status_is_finished  && !skipped) //execute if we are not finished and are not skipping
+    {
+        //execute the basic fringe search algorithm
+        MHO_BasicFringeUtilities::basic_fringe_search(&fContainerStore, &fParameterStore);
+        //calculate the fringe properties
+        MHO_BasicFringeUtilities::calculate_fringe_solution_info(&fContainerStore, &fParameterStore, fVexInfo);
 
-    fParameterStore.Set("/status/is_finished", true);
-    
-    fParameterStore.Dump();
+        fParameterStore.Set("/status/is_finished", true);
+        
+        fParameterStore.Dump();
+    }
 }
 
 void MHO_BasicFringeFitter::PostRun()
 {
-
+    bool skipped = fParameterStore.GetAs<bool>("/status/skipped");
+    if( !skipped) //execute if we are not finished and are not skipping
+    {
+        //TODO FILL ME IN -- need to call specified user-scripts here
+    }
 }
 
 
@@ -240,8 +271,14 @@ void MHO_BasicFringeFitter::Finalize()
     //PLOTTING/DEBUG
     ////////////////////////////////////////////////////////////////////////////
     //TODO may want to reorg the way this is done
-    fPlotData = MHO_FringePlotInfo::construct_plot_data(&fContainerStore, &fParameterStore, fVexInfo);
-    MHO_FringePlotInfo::fill_plot_data(&fParameterStore, fPlotData);
+
+    bool status_is_finished = fParameterStore.GetAs<bool>("/status/is_finished");
+    bool skipped = fParameterStore.GetAs<bool>("/status/skipped");
+    if( status_is_finished  && !skipped ) //have to be finished and not-skipped 
+    {
+        fPlotData = MHO_FringePlotInfo::construct_plot_data(&fContainerStore, &fParameterStore, fVexInfo);
+        MHO_FringePlotInfo::fill_plot_data(&fParameterStore, fPlotData);
+    }
 }
 
 
