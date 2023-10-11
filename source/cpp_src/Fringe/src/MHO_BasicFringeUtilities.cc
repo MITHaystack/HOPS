@@ -192,7 +192,7 @@ MHO_BasicFringeUtilities::calculate_residual_phase(MHO_ContainerStore* conStore,
     double drate = paramStore->GetAs<double>("/fringe/drate");
     double sbd = paramStore->GetAs<double>("/fringe/sbdelay");
     double sbd_max_bin = paramStore->GetAs<double>("/fringe/max_sbd_bin");
-    double frt_offset = paramStore->GetAs<double>("frt_offset");
+    double frt_offset = paramStore->GetAs<double>("/config/frt_offset");
     double ap_delta =  paramStore->GetAs<double>("/config/ap_period");
 
     auto weights = conStore->GetObject<weight_type>(std::string("weight"));

@@ -190,7 +190,7 @@ MHO_InitialFringeInfo::precalculate_quantities(MHO_ContainerStore* conStore, MHO
     auto start_time = hops_clock::from_vex_format(start_vex_string);
     auto offset_to_frt_duration = frt - start_time;
     double frt_offset = std::chrono::duration<double>(offset_to_frt_duration).count();
-    paramStore->Set("frt_offset", frt_offset);
+    paramStore->Set("/config/frt_offset", frt_offset);
 
     double adelay = delay_model.GetDelay();
     double arate = delay_model.GetRate();
