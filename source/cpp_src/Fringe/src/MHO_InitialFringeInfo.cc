@@ -222,15 +222,22 @@ void
 MHO_InitialFringeInfo::configure_reference_frequency(MHO_ContainerStore* conStore, MHO_ParameterStore* paramStore)
 {
     //check if the parameter store already has a reference frequency set, and if not set the default
-    if( !(paramStore->IsPresent("ref_freq") ) )
+    if( !(paramStore->IsPresent("/config/ref_freq") ) )
     {
         //grab the visibility data, so we can determine the default reference frequency
         visibility_type* vis_data = conStore->GetObject<visibility_type>(std::string("vis"));
 
         //the first frequency in the array serves as the reference frequency if this value remains unset in the control file
         double first_freq = std::get<CHANNEL_AXIS>(*vis_data)(0);
-        paramStore->Set("ref_freq", first_freq);
+        paramStore->Set("/config/ref_freq", first_freq);
     }
+
+    if( (paramStore->IsPresent("ref_freq") ) )
+    {
+        double ref_freq = paramStore->GetAs<double>("ref_freq");
+        paramStore->Set("/config/ref_freq", ref_freq);
+    }
+
 };
 
 

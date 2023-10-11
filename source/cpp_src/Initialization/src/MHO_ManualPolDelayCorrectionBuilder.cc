@@ -23,7 +23,7 @@ MHO_ManualPolDelayCorrectionBuilder::Build()
         std::string mk4id = ExtractStationMk4ID();
 
         //grab the reference frequency from the parameter store 
-        double ref_freq = fParameterStore->GetAs<double>(std::string("ref_freq"));
+        double ref_freq = fParameterStore->GetAs<double>(std::string("/config/ref_freq"));
 
         //retrieve the arguments to operate on from the container store
         visibility_type* vis_data = fContainerStore->GetObject<visibility_type>(std::string("vis"));
