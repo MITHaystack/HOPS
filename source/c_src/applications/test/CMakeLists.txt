@@ -7,6 +7,23 @@ if(HOPS_ENABLE_TEST)
     add_subdirectory(hops3-ff-tests)
 endif(HOPS_ENABLE_TEST)
 
+#still need to import these tests:
+# chk_env.sh
+# chk_ff_display.sh
+# chk_ff_dump.sh
+# chk_ff_ps2pdf.sh
+# chk_flagging.sh
+# chk_hdlinks.sh
+# chk_misc_3372.sh
+# chk_misc_3756.sh
+# 
+# hopstest.py
+# hopstestsuite.py.in
+# run_testsuite.sh
+# tst_fourfit.sh
+# 
+
+
 # if(HOPS_ENABLE_TEST)
 #    add_subdirectory(hops3-ae-tests)
 # endif(HOPS_ENABLE_TEST)
