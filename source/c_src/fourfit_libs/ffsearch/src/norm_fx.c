@@ -412,7 +412,8 @@ void norm_fx (struct type_pass *pass,
 #endif /* STATUS_AP_ACCOUNTING == 2 */
 
 #if STATUS_AP_ACCOUNTING == 4
-#warning "STATUS_AP_ACCOUNTING == 4"
+//#warning "STATUS_AP_ACCOUNTING == 4"
+// warning disabled as this is how it has been for some time.
       for (ip=ips; ip<pass->pol+1; ip++)
         {
         if ((sb == 0 && usb_bypol[ip] == 0)
@@ -482,7 +483,8 @@ void norm_fx (struct type_pass *pass,
 #endif /* STATUS_AP_ACCOUNTING == 3 */
 
 #if STATUS_AP_ACCOUNTING == 4
-#warning "STATUS_AP_ACCOUNTING == 4"
+//#warning "STATUS_AP_ACCOUNTING == 4"
+// warning disabled as this is how it has been for some time.
       for (ip=ips; ip<pass->pol+1; ip++)
         {
         if ((sb == 0 && usb_bypol[ip] == 0)

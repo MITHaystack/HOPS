@@ -62,6 +62,11 @@ int precorrect (struct scan_struct* ovex, struct type_pass* pass)
 
     param.mixed_mode_rot = pass->control.mixed_mode_rot;
 
+    param.noautofringes = pass->control.noautofringes;
+    param.mod4numbering = pass->control.mod4numbering;
+    for (i=0; i<3; i++)
+        param.mbdrplopt[i] = pass->control.mbdrplopt[i];
+
     for (i=0; i<2; i++)             // Copy windows into working area
         {
         param.win_sb[i] = pass->control.sb_window[i] + delay_offset;

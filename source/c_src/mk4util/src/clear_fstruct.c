@@ -22,4 +22,11 @@ clear_fstruct (fstruct *f_info)
         f_info->intparm[i] = 0;
         f_info->floatparm[i] = 0.0;
         }
+    /* new features */
+    f_info->nalloc = 0;
+    for (i=0; i<2; i++)
+        f_info->poln[i] = ' ';
+    f_info->poln[i] = 0;
     }
+
+/* eof */

@@ -85,6 +85,9 @@ struct type_param
     int         mount_type[2];          // mount types for ref and rem
     double      elevation[2];           // elevation angle for ref and rem (radians)
     int         mixed_mode_rot;         // iff true, rotate mixed LP-CP RY/YR data by 90
+    int         noautofringes;          // when true, skip fringing of autocorrs
+    int         mod4numbering;          // when true, fr.num % 4 is 0 (LL) 1 (RR) 2 (LR) 3 (RL)
+    int         mbdrplopt[3];           // option(s) on SBD MBD DRate plots
     };
 
 #define WIN_EDGE_SBD   0x01             /* masks for status.interp_err */

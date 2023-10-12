@@ -33,15 +33,47 @@
 // char progname[6] = "fplot";
 // int msglev = 2;
 
+// FIXME: move to sub/dfio/gen_psname.c (later)
+/* this is a verbatim copy from fourfit/display_fplot.c */
+/* note that offset here is 0 due to cmd line processing */
+
+// 9 extra digits should suffice for an integer fn
+static char *gen_psname(char *dn, int ofs, struct mk4_fringe *fringe, int fn)
+{
+    int mm = strlen(dn)+20;
+    char *nn = (char*) calloc(mm-1, 1), *pp;
+    msg("Incoming filename is %s", 1, dn + ofs);
+    pp = strstr(dn, "%P");
+    if (pp) {
+        pp[0] = fringe->t203->channels[0].refpol;   /* Ref ant pol. (R/L) */
+        pp[1] = fringe->t203->channels[0].rempol;   /* Rem ant pol. (R/L) */
+    }
+    pp = strstr(dn, "%B");
+    if (pp) {
+        pp[0] = fringe->t202->baseline[0];
+        pp[1] = fringe->t202->baseline[1];
+    }
+    pp = strstr(dn, "%F");
+    if (pp) {
+        // one could insist that both are the same and arrange for only one
+        // character to be output, but that is more work than we want here.
+        pp[0] = fringe->t203->channels[0].ref_chan_id[0];
+        pp[1] = fringe->t203->channels[0].rem_chan_id[0];
+    }
+    snprintf(nn, mm, dn + ofs, (fn & 0xFFFFFFFF));
+    msg("Generated Filename is %s", 1, nn);
+    return(nn);
+}
+
 int
 main (int argc, char* argv[])
     {
     int i, display, ret, mk4, size, quit, prompt, poln;
-    char c, cmd[128], pmt[128], *file_name;
+    char c, cmd[128], pmt[128], *file_name, *psname;
     struct mk4_fringe fringe4;
     fstruct *files;
     FILE *fp;
-    static char ps_file[1024] = "fplot_";
+    static char ps_file[2048] = "fplot_";
                                         /* Initialize.  No fstruct entry */
                                         /* with a NULL filename is valid */
                                         /* no need to clear whole struct */
@@ -55,13 +87,11 @@ main (int argc, char* argv[])
     if (parse_cmdline (argc, argv, &files, &display, &file_name, &poln) != 0)
         {
         msg ("Fatal error interpreting command line", 2);
-        /* syntax("$HeadURL: https://barrettj@vault.haystack.mit.edu/svn/hops/trunk/postproc/fplot/fplot.c $"); */
         exit(1);
         }
     if (files[0].order == -1)
         {
         msg ("No valid type-2 files found/specified", 2);
-        /* syntax("$HeadURL: https://barrettj@vault.haystack.mit.edu/svn/hops/trunk/postproc/fplot/fplot.c $"); */
         exit (1);
         }
                                         /* Loop over all filenames */
@@ -123,7 +153,9 @@ main (int argc, char* argv[])
             }
         else if (display == DISKFILE || display == PSTOPDF)
             {
-            snprintf(ps_file, sizeof(ps_file), file_name, i-1);
+            psname = gen_psname(file_name, 0, &fringe4, i-1);
+            //snprintf(ps_file, sizeof(ps_file), file_name, i-1);
+            memcpy(ps_file, psname, strlen(psname)+1);
             if ((fp = fopen (ps_file, "w")) == NULL)
                 {
                 msg ("Could not open PS file (%s) for output", 2, ps_file);
@@ -133,7 +165,7 @@ main (int argc, char* argv[])
             fwrite (fringe4.t221->pplot, 1, size, fp);
             fclose (fp);
             msg ("Created PS plot %s", 1, ps_file);
-            if (display == PSTOPDF) /* continue */
+            if (display == PSTOPDF) /* continue and use PS2PDF */
                 {
                 snprintf(cmd, sizeof(cmd), "%s %s", PS2PDF, ps_file);
                 if (system(cmd))
@@ -152,4 +184,5 @@ main (int argc, char* argv[])
             }
 
         }
+    exit (0);
     }
