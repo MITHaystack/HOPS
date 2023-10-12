@@ -27,7 +27,8 @@ parse_cmdline (int argc,
                FILE **fpout,
                struct config *configuration)
     {
-    char c, outfile[100];
+    char c;
+    static char outfile[2000];
     extern char *optarg;
     extern int optind, msglev;
                                         /* Defaults */
@@ -136,5 +137,3 @@ parse_cmdline (int argc,
 
     return (0);
     }
-
-

@@ -159,6 +159,9 @@ init_tokens ()
     tokenize (NASMYTHLEFT_,   "nasmythleft",  INT_CONST + NASMYTHLEFT)
     tokenize (NASMYTHRIGHT_,  "nasmythright", INT_CONST + NASMYTHRIGHT)
     tokenize (MIXED_MODE_ROT_, "mixed_pol_yshift90", INT_PARAM)
+    tokenize (NOAUTOFRINGES_, "noautofringes", INT_PARAM)
+    tokenize (MOD4NUMBERING_, "mod4numbering", INT_PARAM)
+    tokenize (MBDRPLOPT_,     "mbdrplopt",     VECTOR_INT_PARAM)
 
     //return value needed to correct function signature (value is not used, this function should be void)
     //if this return value is not present, fourfit segfaults when compiled as C++...how interesting

@@ -117,10 +117,9 @@ if( PGPLOT_FOUND AND FFTW_FOUND AND X11_FOUND AND GFORTRAN_FOUND )
     list(APPEND INTERNAL_LIBLIST
         MHO_Message
         MHO_Utilities
-        vex2json
+        MHO_Vex2JSON
         MHO_Math
         MHO_Containers
-        MHO_Snapshot
         MHO_Operators
         MHO_Calibration
     )

@@ -1,12 +1,11 @@
 #ifndef FFCONTROL_H__
 #define FFCONTROL_H__
 
-#include "msg.h"
 #include "control.h"
 
 int copy_cblock_parts ( struct c_block* f, struct c_block* t);
 int create_fsm();
-int criteria_match (struct c_block* cb_ptr, char* base, char* sour, char group, int time);
+int criteria_match (struct c_block* cb_ptr, char base[2], char sour[31], char group, int time);
 int default_cblock (struct c_block *cb_ptr);
 char* get_bfstring (char* barg);
 int init_tokens();
@@ -25,7 +24,5 @@ int read_control_file (char* control_file_name, char** input_string, int* flag);
 int skip_data (int scantime, char* baseline, char* source, char group);
 int skip_index (int ind, struct c_block* cblock);
 int fcode (char c, char *codes);
-
-int construct_cblock (char* filename, struct c_block* cb_head, struct c_block* cb_out, char baseline[2], char source[31], char fgroup, int time);
 
 #endif /* end of include guard: FFCONTROL_H__ */
