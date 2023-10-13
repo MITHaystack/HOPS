@@ -55,6 +55,10 @@ if( FFTW_FOUND )
     #external includes
     include_directories(${FFTW_INCLUDE_DIR})
 
+    if(HOPS3_USE_ADHOC_FLAGGING)
+    hops_add_cflag(HAVE_HSEARCH_R)
+    endif(HOPS3_USE_ADHOC_FLAGGING)
+
     # if(HOPS_DEV_USE_OLD)
     # #add a compiler define to cut link between ffplot and ffsearch in fringe_search (this breaks fourfit)
     # #however it is needed to do testing with the C++ code without pulling in all the
