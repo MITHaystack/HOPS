@@ -26,7 +26,6 @@ class MHO_OperatorBuilderManager
             fParameterStore(pstore)
         {
             fFormat = control_format;
-            CreateDefaultBuilders();
         };
 
         virtual ~MHO_OperatorBuilderManager()
@@ -42,6 +41,8 @@ class MHO_OperatorBuilderManager
 
         //pass in parsed control file elements 
         void SetControlStatements(mho_json* statements){fControl = statements;};
+
+        void CreateDefaultBuilders();
 
         void BuildOperatorCategory(const char* cat){std::string scat(cat); BuildOperatorCategory(scat);};
         void BuildOperatorCategory(const std::string& cat);
@@ -77,8 +78,6 @@ class MHO_OperatorBuilderManager
         };
 
 
-
-
     private:
         
         template<typename XBuilderType>
@@ -103,7 +102,7 @@ class MHO_OperatorBuilderManager
         };
 
 
-        void CreateDefaultBuilders();
+
         
         //internal data
         mho_json fFormat; //control file statement formats
