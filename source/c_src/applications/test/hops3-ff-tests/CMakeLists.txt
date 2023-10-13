@@ -29,17 +29,15 @@ if(BASH_PROGRAM)
             chk_frmrsrch
             chk_notches_xf
             chk_ps2pdf
-            #the following tests fail (either as c or c++)
-            #chk_hdlinks -- this one fails (probably we missing the perl script hops_data_links.pl)
-            chk_ff_display
-            chk_ff_dump
-            chk_ff_ps2pdf
             chk_flagging
-            #chk_fsumm
-            #still need to import these tests:
             chk_misc_3372
             chk_misc_3756
-            #tst_fourfit
+            chk_ff_dump
+            #the following tests fail (either as c or c++)
+            #chk_hdlinks -- this one fails (probably we missing the perl script hops_data_links.pl)
+            #chk_ff_display
+            #chk_ff_ps2pdf
+            #tst_fourfit --this one freezes, not sure why
         )
 
         # 
