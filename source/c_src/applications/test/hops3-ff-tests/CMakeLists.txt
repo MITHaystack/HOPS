@@ -31,19 +31,17 @@ if(BASH_PROGRAM)
             chk_ps2pdf
             #the following tests fail (either as c or c++)
             #chk_hdlinks -- this one fails (probably we missing the perl script hops_data_links.pl)
-            # chk_ff_display
-            # chk_ff_dump
-            # chk_ff_ps2pdf
-            # chk_flagging
-            # chk_fsumm
+            chk_ff_display
+            chk_ff_dump
+            chk_ff_ps2pdf
+            chk_flagging
+            #chk_fsumm
+            #still need to import these tests:
+            # chk_misc_3372.sh
+            # chk_misc_3756.sh
+            # tst_fourfit.sh
         )
 
-        #still need to import these tests:
-        # chk_env.sh -- maybe
-        # chk_hdlinks.sh -- maybe
-        # chk_misc_3372.sh
-        # chk_misc_3756.sh
-        # tst_fourfit.sh
         # 
         # also the following tests should be handled under source/python_src
         # hopstest.py
