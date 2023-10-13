@@ -80,8 +80,8 @@ class FFControlStructureBase(ctypes.Structure):
                 print( field[0], ":")
                 a.printsummary()
             else:
-                #if a != NULLINT and a != NULLFLOAT and a != NULLCHAR:
-                print( field[0], ":" , a)
+                if a != NULLINT and a != NULLFLOAT and a != NULLCHAR:
+                    print( field[0], ":" , a)
 
     def printarray(self,a):
         """ dump data form a parsed array """
@@ -118,7 +118,7 @@ class dstats(FFControlStructureBase):
 class c_block(FFControlStructureBase):
     pass
 
-#now decare the c_block fields
+#declare the c_block fields to be aligned with struct c_block of control.h 
 c_block._fields_ = [
     ('cb_chain', ctypes.POINTER(c_block)),
     ('baseline', ctypes.c_char * 2),
@@ -197,15 +197,13 @@ c_block._fields_ = [
     ('vbp_coeffs', dstats * 5),
     ('vbp_file', (ctypes.c_char *256) * 2),
     ('mount_type', (ctypes.c_int) * 2 ),
-    ('mixed_mode_rot', ctypes.c_int)
-]
+    ('mixed_mode_rot', ctypes.c_int),
+    ('noautofringes', ctypes.c_int),
+    ('mod4numbering', ctypes.c_int),
+    ('mbdrplopt', (ctypes.c_int) * 3),
+] #end of c_block._fields_
 
-#TODO IMPORTANT - make sure this matches the c structure 
-    # ('noautofringes', ctypes.c_int),
-    # ('mod4numbering', ctypes.c_int),
-    # ('mbdrplopt', (ctypes.c_int) * 2),
-#] #end of c_block._fields_
-
+#TODO IMPORTANT - make sure the above struct matches the c structure EXACTLY 
 
 ################################################################################
 # library calls
