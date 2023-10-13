@@ -113,6 +113,7 @@ else()
     endif(HOPS3_DISABLE_WARNINGS)
 endif(HOPS3_USE_CXX)
 
+option(HOPS3_USE_ADHOC_FLAGGING "Toggle adhoc flagging feature in fourfit (enabled by default)." ON)
 
 #mk4 and vex c-libraries from old HOPS
 add_subdirectory(msg)
