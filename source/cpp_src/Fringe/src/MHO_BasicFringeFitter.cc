@@ -141,6 +141,8 @@ void MHO_BasicFringeFitter::Configure()
         }
     }
     fParameterStore.Dump();
+
+    fOperatorBuildManager = new MHO_OperatorBuilderManager(&fOperatorToolbox, &fContainerStore, &fParameterStore, fControlFormat);
 }
 
 void MHO_BasicFringeFitter::Initialize()
@@ -199,7 +201,7 @@ void MHO_BasicFringeFitter::Initialize()
         ////////////////////////////////////////////////////////////////////////////
         //CONFIGURE THE OPERATOR BUILD MANAGER
         ////////////////////////////////////////////////////////////////////////////
-        fOperatorBuildManager = new MHO_OperatorBuilderManager(&fOperatorToolbox, &fContainerStore, &fParameterStore, fControlFormat);
+        fOperatorBuildManager->CreateDefaultBuilders();
         fOperatorBuildManager->SetControlStatements(&fControlStatements);
 
         //take a snapshot if enabled
