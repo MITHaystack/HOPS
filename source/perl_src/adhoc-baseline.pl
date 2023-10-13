@@ -12,6 +12,7 @@ $opts{'r'} = 0;
 $opts{'j'} = 0;
 $opts{'v'} = 0;
 $opts{'g'} = 60;
+$opts{'s'} = 0;
 
 my $USAGE="
 Usage: $0 [options]
@@ -19,6 +20,8 @@ Usage: $0 [options]
     -a <file>	  to specify an alist file      [NO DEFAULT]
     -o <filebase> to specify output file prefix [$opts{'o'}]
     -b <baseline>                               [$opts{'b'}]
+
+    -s <shift>    shift in seconds              [$opts{'s'}]
 
     -r            reverse sense of phase (apply to reference, not remote)
 
@@ -33,12 +36,14 @@ Be VERY careful when using adhoc phase files.  Closure phases and
 polarimetric phase differences will be meaningless if consistent adhoc phases
 are not applied on all baselines.
 
+The shift may have to be 0.5 when data are segmented to 1 second.
+
 ";
 
 if ( $#ARGV < 0 || $ARGV[0] eq "--help" || $ARGV[0] eq "-h" ) { print "$USAGE"; exit(0); }
-getopts('a:b:g:o:rj:v',\%opts);
+getopts('a:b:g:o:rj:vs:',\%opts);
 my ($alist,$filebase,$targetbaseline,$maxgap);
-my ($targetreference,$targetremote,$reverse,$verbose,$nchans);
+my ($targetreference,$targetremote,$reverse,$verbose,$nchans,$shift);
 $alist=$opts{'a'};
 $filebase=$opts{'o'};
 $targetbaseline=$opts{'b'};
@@ -46,6 +51,7 @@ $maxgap=$opts{'g'};
 $reverse=$opts{'r'};
 $nchans=$opts{'j'};
 $verbose=$opts{'v'};
+$shift=$opts{'s'};
 $targetreference=substr($targetbaseline,0,1);
 $targetremote=substr($targetbaseline,1,1);
 
@@ -74,7 +80,7 @@ while (<FILIN>) {
     $hh[$i]        = substr($timecode[$i],4,2);
     $mm[$i]        = substr($timecode[$i],6,2);
     $ss[$i]        = substr($timecode[$i],8,2);
-    $timeindays[$i]= ($doy[$i]-1)+($hh[$i]/24)+($mm[$i]/1440)+($ss[$i]/86400);
+    $timeindays[$i]= ($doy[$i]-1)+($hh[$i]/24)+($mm[$i]/1440)+($ss[$i]/86400)+($shift/86400);
     $offset[$i]    = $entry[12];
     $baseline[$i]  = $entry[14];
     $bandcode[$i]  = $entry[16];
