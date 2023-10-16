@@ -36,6 +36,7 @@ include(HopsDefaults)
 include(CMakeDependentOption)
 include(FindGFORTRAN)
 include(FindPGPLOT)
+
 #include(CPack) not ready for this yet
 
 #install prefix
@@ -77,6 +78,7 @@ set(CSOURCE ${CMAKE_CURRENT_SOURCE_DIR}/source/c_src)
 set(CPPSOURCE ${CMAKE_CURRENT_SOURCE_DIR}/source/cpp_src)
 set(SHSOURCE ${CMAKE_CURRENT_SOURCE_DIR}/source/bash_src)
 set(PYSOURCE ${CMAKE_CURRENT_SOURCE_DIR}/source/python_src)
+set(PERLSOURCE ${CMAKE_CURRENT_SOURCE_DIR}/source/perl_src)
 set(EXTERN_HLIBS ${CMAKE_CURRENT_SOURCE_DIR}/extern)
 
 ################################################################################
@@ -234,5 +236,18 @@ if(PY_EXE)
     endif()
 endif()
 
+
+
+################################################################################
+#find and configure perl if available 
+find_package(Perl)
+if(PERL_FOUND)
+    add_subdirectory(${PERLSOURCE})
+endif(PERL_FOUND)
+
+
 #build docs
 add_subdirectory(doc)
+
+
+
