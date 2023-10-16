@@ -34,7 +34,7 @@ if(BASH_PROGRAM)
             chk_misc_3756
             chk_ff_dump
             #the following tests fail (either as c or c++)
-            #chk_hdlinks -- this one fails (probably we missing the perl script hops_data_links.pl)
+            chk_hdlinks # -- this one fails (probably we missing the perl script hops_data_links.pl)
             #chk_ff_display
             #chk_ff_ps2pdf
             #tst_fourfit --this one freezes, not sure why
