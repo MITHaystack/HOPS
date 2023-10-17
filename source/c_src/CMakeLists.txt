@@ -115,6 +115,9 @@ endif(HOPS3_USE_CXX)
 
 option(HOPS3_USE_ADHOC_FLAGGING "Toggle adhoc flagging feature in fourfit (enabled by default)." ON)
 
+#locate ps2pdf
+find_package(LATEX COMPONENTS PS2PDF)
+
 #mk4 and vex c-libraries from old HOPS
 add_subdirectory(msg)
 add_subdirectory(mk4util)
