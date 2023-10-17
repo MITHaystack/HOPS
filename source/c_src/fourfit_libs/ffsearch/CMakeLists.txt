@@ -57,6 +57,7 @@ if( FFTW_FOUND )
 
     if(HOPS3_USE_ADHOC_FLAGGING)
     hops_add_cflag(HAVE_HSEARCH_R)
+    hops_add_cxxflag(HAVE_HSEARCH_R)
     endif(HOPS3_USE_ADHOC_FLAGGING)
 
     # if(HOPS_DEV_USE_OLD)
