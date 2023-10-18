@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# $Id: chk_ff_display.sh 963 2014-07-25 16:31:11Z gbc $
+# $Id: chk_ff_display.sh 4140 2023-10-18 20:47:04Z barrettj $
 #
 # canonical test suite for fourfit
 #
@@ -40,8 +40,8 @@ IFS='()'
 read a snr b <<<"$line"
 
 # snr bounds
-low=139.1
-high=140.1
+low=140.0
+high=141.0
 aok=$(echo "$snr>$low && $snr<$high" | bc)
 $verb && echo aok is $aok and "$low < $snr < $high" is expected from: $line
 
