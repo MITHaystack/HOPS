@@ -32,19 +32,10 @@ if(BASH_PROGRAM)
             chk_misc_3756
             chk_flagging
             chk_ff_dump
-            #the following tests fail (either as c or c++)
-            chk_hdlinks # -- this one fails (probably we missing the perl script hops_data_links.pl)
+            chk_hdlinks
             chk_ff_display
             #tst_fourfit --this one freezes, not sure why
         )
-
-
-        # 
-        # also the following tests should be handled under source/python_src
-        # hopstest.py
-        # hopstestsuite.py.in
-        # run_testsuite.sh
-        # 
 
         foreach( BASENAME ${TEST_SCRIPT_BASENAMES} )
             configure_file( ${CMAKE_CURRENT_SOURCE_DIR}/${BASENAME}.sh ${CMAKE_CURRENT_BINARY_DIR}/${BASENAME}.sh @ONLY)
