@@ -377,7 +377,7 @@ def make_fourfit_plot(plot_dict, filename):
 
     # Adjust the cell font size (optional)
     table.auto_set_font_size(False)
-    table.set_fontsize(8)
+    table.set_fontsize(4)
 
     # Set the table cell height to make it smaller
     table.scale(1, 0.7)  # Adjust the scale factor as needed
