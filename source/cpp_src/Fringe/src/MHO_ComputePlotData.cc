@@ -668,7 +668,7 @@ MHO_ComputePlotData::calc_xpower_KLUDGE()
             cp_spectrum(i) = Y(i+s-1);
             Z = std::exp(cmplx_unit_I * (fSBDelay * (i-s) * M_PI / (sbd_delta *2.0* s)));
             cp_spectrum(i) *= Z * (sqrt(0.5)/total_summed_weights );
-            std::get<0>(cp_spectrum)(i) = -1.0*(bw)*((double)i/(double)s); //label freq ax
+            std::get<0>(cp_spectrum)(i) = (bw)*((double)i/(double)s); //label freq ax
         }
     }
 
