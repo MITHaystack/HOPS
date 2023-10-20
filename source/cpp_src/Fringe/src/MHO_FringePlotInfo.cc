@@ -3,10 +3,10 @@
 //construct_plot_data
 #include "MHO_ComputePlotData.hh"
 
-namespace hops 
+namespace hops
 {
-    
-mho_json 
+
+mho_json
 MHO_FringePlotInfo::construct_plot_data(MHO_ContainerStore* conStore, MHO_ParameterStore* paramStore, mho_json& vexInfo)
 {
     ////////////////////////////////////////////////////////////////////////////
@@ -16,10 +16,10 @@ MHO_FringePlotInfo::construct_plot_data(MHO_ContainerStore* conStore, MHO_Parame
     weight_type* wt_data = conStore->GetObject<weight_type>(std::string("weight"));
     visibility_type* sbd_data = conStore->GetObject<visibility_type>(std::string("sbd"));
     //visibility_type* sbd_dr_data = conStore->GetObject<weight_type>(std::string("sbd_dr"));
-    
+
     //test grab the reference freq
     double ref_freq = paramStore->GetAs<double>(std::string("/config/ref_freq"));
-    
+
     std::string directory = paramStore->GetAs<std::string>("/files/directory");
     std::string control_file = paramStore->GetAs<std::string>("/files/control_file");
     std::string baseline = paramStore->GetAs<std::string>("/config/baseline");
@@ -46,8 +46,8 @@ MHO_FringePlotInfo::construct_plot_data(MHO_ContainerStore* conStore, MHO_Parame
     std::string scan_name = sched_section.begin().key();
     auto sched_info = sched_section.begin().value();
     plot_dict["RootScanBaseline"] = root_file + ", " + scan_name + ", " + baseline;
-    plot_dict["CorrVers"] = "HOPS4/DiFX fourfit  rev 0";
-    
+    plot_dict["CorrVers"] = "HOPS4/DiFX fourfit rev 4.0";
+
     auto ref_name = paramStore->GetAs<std::string>("/ref_station/site_name");
     auto rem_name = paramStore->GetAs<std::string>("/rem_station/site_name");
     std::string freq_group = "fgroup ?";
@@ -65,7 +65,7 @@ MHO_FringePlotInfo::construct_plot_data(MHO_ContainerStore* conStore, MHO_Parame
 }
 
 
-void 
+void
 MHO_FringePlotInfo::fill_plot_data(MHO_ParameterStore* paramStore, mho_json& plot_dict)
 {
     plot_dict["Quality"] = paramStore->GetAs<std::string>("/fringe/quality_code");

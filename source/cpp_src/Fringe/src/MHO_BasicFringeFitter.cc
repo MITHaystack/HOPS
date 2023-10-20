@@ -47,7 +47,7 @@ void MHO_BasicFringeFitter::Configure()
         std::exit(1);
     }
 
-    
+
     ////////////////////////////////////////////////////////////////////////////
     //INITIALIZE PARAMETERS
     ////////////////////////////////////////////////////////////////////////////
@@ -55,7 +55,6 @@ void MHO_BasicFringeFitter::Configure()
     //set up the file section of the parameter store: directory, root file, and control file
     fParameterStore.Set("/files/control_file", control_file);
     fParameterStore.Set("/files/directory", directory);
-    fParameterStore.Set("/files/root_file", fScanStore.GetRootFileBasename() );
 
     //put the baseline and pol product selection into the parameter store
     fParameterStore.Set("/config/polprod", polprod);
@@ -73,6 +72,9 @@ void MHO_BasicFringeFitter::Configure()
         msg_fatal("fringe", "cannot initialize a valid scan store from this directory: " << directory << eom);
         std::exit(1);
     }
+
+    //set the root file name
+    fParameterStore.Set("/files/root_file", fScanStore.GetRootFileBasename() );
 
     //load root file and extract useful vex info
     fVexInfo = fScanStore.GetRootFileData();
@@ -128,7 +130,7 @@ void MHO_BasicFringeFitter::Configure()
     paramManager.SetControlStatements(&fControlStatements);
     paramManager.ConfigureAll();
 
-    //the control statement 'skip' is special because we want to bail out 
+    //the control statement 'skip' is special because we want to bail out
     //as soon as possible (before reading in data) in order to save time
     if( fParameterStore.IsPresent("skip") )
     {
@@ -251,7 +253,7 @@ void MHO_BasicFringeFitter::Run()
         MHO_BasicFringeUtilities::calculate_fringe_solution_info(&fContainerStore, &fParameterStore, fVexInfo);
 
         fParameterStore.Set("/status/is_finished", true);
-        
+
         fParameterStore.Dump();
     }
 }
@@ -282,7 +284,7 @@ void MHO_BasicFringeFitter::Finalize()
 
     bool status_is_finished = fParameterStore.GetAs<bool>("/status/is_finished");
     bool skipped = fParameterStore.GetAs<bool>("/status/skipped");
-    if( status_is_finished  && !skipped ) //have to be finished and not-skipped 
+    if( status_is_finished  && !skipped ) //have to be finished and not-skipped
     {
         fPlotData = MHO_FringePlotInfo::construct_plot_data(&fContainerStore, &fParameterStore, fVexInfo);
         MHO_FringePlotInfo::fill_plot_data(&fParameterStore, fPlotData);
