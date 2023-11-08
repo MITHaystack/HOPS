@@ -261,7 +261,7 @@ MHO_DiFXScanProcessor::NormalizeVisibilities()
         std::size_t npp = auto_corrs->GetDimension(POLPROD_AXIS);
         std::size_t nch = auto_corrs->GetDimension(CHANNEL_AXIS);
         std::size_t nap = auto_corrs->GetDimension(TIME_AXIS);
-        std::size_t n_spectral_pts = auto_corrs->GetDimension(FREQ_AXIS); //do we need to know naps too?
+        std::size_t n_spectral_pts = auto_corrs->GetDimension(FREQ_AXIS);
         reduced->Resize(npp, nch, nap, 1);
         reduced->ZeroArray();
         reducer.SetArgs(auto_corrs, reduced);
