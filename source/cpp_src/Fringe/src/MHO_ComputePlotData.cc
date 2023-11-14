@@ -116,6 +116,23 @@ MHO_ComputePlotData::calc_mbd()
     for(std::size_t ch=0; ch < nchan; ch++)
     {
         double freq = (*chan_ax)(ch);//sky freq of this channel
+        
+        MHO_IntervalLabel ilabel(ch,ch);
+        std::string net_sideband = "?";
+        std::string sidebandlabelkey = "net_sideband";
+        auto other_labels = chan_ax->GetIntervalsWhichIntersect(ilabel);
+        for(auto olit = other_labels.begin(); olit != other_labels.end(); olit++)
+        {
+            if( olit->HasKey(sidebandlabelkey) )
+            {
+                olit->Retrieve(sidebandlabelkey, net_sideband);
+                break;
+            }
+        }
+        fRot.SetSideband(0); //DSB
+        if(net_sideband == "U"){fRot.SetSideband(1);}
+        if(net_sideband == "L"){fRot.SetSideband(-1);}
+        
         sum = 0;
         for(std::size_t ap=0; ap < nap; ap++)
         {
@@ -187,6 +204,23 @@ MHO_ComputePlotData::calc_sbd()
         for(std::size_t ch=0; ch < nchan; ch++)
         {
             double freq = (*chan_ax)(ch);//sky freq of this channel
+
+            MHO_IntervalLabel ilabel(ch,ch);
+            std::string net_sideband = "?";
+            std::string sidebandlabelkey = "net_sideband";
+            auto other_labels = chan_ax->GetIntervalsWhichIntersect(ilabel);
+            for(auto olit = other_labels.begin(); olit != other_labels.end(); olit++)
+            {
+                if( olit->HasKey(sidebandlabelkey) )
+                {
+                    olit->Retrieve(sidebandlabelkey, net_sideband);
+                    break;
+                }
+            }
+            fRot.SetSideband(0); //DSB
+            if(net_sideband == "U"){fRot.SetSideband(1);}
+            if(net_sideband == "L"){fRot.SetSideband(-1);}
+            
             sum = 0;
             for(std::size_t ap=0; ap < nap; ap++)
             {
@@ -244,6 +278,23 @@ MHO_ComputePlotData::calc_segs()
         for(std::size_t ch=0; ch < nchan; ch++)
         {
             double freq = (*chan_ax)(ch);//sky freq of this channel
+            
+            MHO_IntervalLabel ilabel(ch,ch);
+            std::string net_sideband = "?";
+            std::string sidebandlabelkey = "net_sideband";
+            auto other_labels = chan_ax->GetIntervalsWhichIntersect(ilabel);
+            for(auto olit = other_labels.begin(); olit != other_labels.end(); olit++)
+            {
+                if( olit->HasKey(sidebandlabelkey) )
+                {
+                    olit->Retrieve(sidebandlabelkey, net_sideband);
+                    break;
+                }
+            }
+            fRot.SetSideband(0); //DSB
+            if(net_sideband == "U"){fRot.SetSideband(1);}
+            if(net_sideband == "L"){fRot.SetSideband(-1);}
+            
             //make sure this plot gets the channel label:
             MHO_IntervalLabel ch_name(ch,ch);
             ch_name.Insert(chan_label_key, channel_labels[ch]);
@@ -331,6 +382,24 @@ MHO_ComputePlotData::calc_dr()
     for(std::size_t ch=0; ch < nchan; ch++)
     {
         double freq = (*chan_ax)(ch);//sky freq of this channel
+        
+        MHO_IntervalLabel ilabel(ch,ch);
+        std::string net_sideband = "?";
+        std::string sidebandlabelkey = "net_sideband";
+        auto other_labels = chan_ax->GetIntervalsWhichIntersect(ilabel);
+        for(auto olit = other_labels.begin(); olit != other_labels.end(); olit++)
+        {
+            if( olit->HasKey(sidebandlabelkey) )
+            {
+                olit->Retrieve(sidebandlabelkey, net_sideband);
+                break;
+            }
+        }
+        fRot.SetSideband(0); //DSB
+        if(net_sideband == "U"){fRot.SetSideband(1);}
+        if(net_sideband == "L"){fRot.SetSideband(-1);}
+        
+        
         for(std::size_t ap=0; ap < nap; ap++)
         {
             double tdelta = (ap_ax->at(ap) + ap_delta/2.0) - frt_offset; //need time difference from the f.r.t?
@@ -435,9 +504,6 @@ MHO_ComputePlotData::calc_phase()
             }
         }
     }
-
-    // std::cout<<"sbd sep = "<<sbd_delta<<" sbd max = "<<fSBDelay<<std::endl;
-    // std::cout<<"sum all = "<<sum_all<<std::endl;
 
     double coh_avg_phase = std::arg(sum_all);
 
