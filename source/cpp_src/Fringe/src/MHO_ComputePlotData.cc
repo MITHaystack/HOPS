@@ -535,9 +535,10 @@ MHO_ComputePlotData::calc_phase()
 xpower_type
 MHO_ComputePlotData::calc_xpower_KLUDGE()
 {
-    //kludge version - this code is a combination of what is found in 
-    //make_plotdata.c and generate_graphs.c, it is extremely convoluted 
+    //kludge version - this code is adapted from a combination of what is found in 
+    //make_plotdata.c and generate_graphs.c. It is extremely convoluted 
     //and we ought to find a cleaner/clearer way to do the same thing
+    
     #pragma message("TODO FIXME XPOWER KLUDGE")
     //grab the total summed weights
     double total_summed_weights = 1.0;
@@ -609,7 +610,7 @@ MHO_ComputePlotData::calc_xpower_KLUDGE()
             if(net_sideband == "U")
             {
                 nusb += 1;
-                //fRot.SetSideband(1);
+                fRot.SetSideband(1);
             }
             else if(net_sideband == "L")
             {
