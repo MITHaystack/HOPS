@@ -532,25 +532,26 @@ MHO_ComputePlotData::calc_phase()
 
 
 
-
 xpower_type
 MHO_ComputePlotData::calc_xpower_KLUDGE()
 {
-    //kludge version
+    //kludge version - this code is a combination of what is found in 
+    //make_plotdata.c and generate_graphs.c, it is extremely convoluted 
+    //and we ought to find a cleaner/clearer way to do the same thing
     #pragma message("TODO FIXME XPOWER KLUDGE")
     //grab the total summed weights
     double total_summed_weights = 1.0;
     fWeights->Retrieve("total_summed_weights", total_summed_weights);
 
-    int nlags = fSBDArray->GetDimension(FREQ_AXIS)/4;
+    int nlags = fSBDArray->GetDimension(FREQ_AXIS)/2;
     int nl = nlags;
 
-    int MAXLAG = 128;//8192;
     xpower_type X;
     xpower_type Y;
     xpower_type cp_spectrum;
-    X.Resize(2*MAXLAG); X.ZeroArray();
-    Y.Resize(4*MAXLAG); Y.ZeroArray();
+    xpower_type cp_spectrum_out;
+    X.Resize(2*nl); X.ZeroArray();
+    Y.Resize(4*nl); Y.ZeroArray();
     cp_spectrum.Resize(2*nl); cp_spectrum.ZeroArray();
 
     std::size_t POLPROD = 0;
@@ -570,11 +571,14 @@ MHO_ComputePlotData::calc_xpower_KLUDGE()
     double frac;
     double bw;
     std::string net_sideband = "?";
+    //count the sidebands encountered
+    int nusb = 0;
+    int nlsb = 0;
+
     for(int lag = 0; lag < 2*nl; lag++)
     {
         for(int ch = 0; ch < nchan; ch++)
         {
-
             double freq = (*chan_ax)(ch);//sky freq of this channel
             MHO_IntervalLabel ilabel(ch,ch);
 
@@ -604,11 +608,12 @@ MHO_ComputePlotData::calc_xpower_KLUDGE()
             fRot.SetSideband(0); //DSB
             if(net_sideband == "U")
             {
-                fRot.SetSideband(1);
+                nusb += 1;
+                //fRot.SetSideband(1);
             }
-
-            if(net_sideband == "L")
+            else if(net_sideband == "L")
             {
+                nlsb +=1;
                 fRot.SetSideband(-1);
             }
 
@@ -616,7 +621,7 @@ MHO_ComputePlotData::calc_xpower_KLUDGE()
             for (int ap = 0; ap < nap; ap++)
             {
                 double tdelta = (ap_ax->at(ap) + ap_delta/2.0) - frt_offset; //need time difference from the f.r.t?
-                std::complex<double> vis = (*fSBDArray)(POLPROD, ch, ap, 2*lag);
+                std::complex<double> vis = (*fSBDArray)(POLPROD, ch, ap, lag);
                 std::complex<double> vr = fRot.vrot(tdelta, freq, fRefFreq, fDelayRate, fMBDelay);
                 std::complex<double> Z = vis*vr;
                 //apply weight and sum
@@ -628,52 +633,73 @@ MHO_ComputePlotData::calc_xpower_KLUDGE()
         //need to understand this
         int j = lag - nl;
         if(j < 0){j += 4 * nl;}
-        if(lag == 0){j = 2 * nl;}             // pure real lsb/dc channel goes in middle??
+        if(lag == 0){j = 2 * nl;} // pure real lsb/dc channel goes in middle??
         Y[j] = X[lag];
         std::get<0>(Y)(j) = j;
     }
 
-    //set up FFT
+    //set up FFT and run
     fFFTEngine.SetArgs(&Y, &Y);
     fFFTEngine.DeselectAllAxes();
     fFFTEngine.SelectAxis(0);
     fFFTEngine.SetForward();
     bool ok = fFFTEngine.Initialize();
-    check_step_fatal(ok, "calibration", "MBD search fft engine initialization." << eom );
-
-    //now run an FFT along the MBD axis and cyclic rotate
     ok = fFFTEngine.Execute();
-    check_step_fatal(ok, "calibration", "MBD search fft engine execution." << eom );
 
     std::complex<double> cmplx_unit_I(0.0, 1.0);
     int s =  Y.GetDimension(0)/2;
     cp_spectrum.Resize(s);
 
+    for(int i=0; i<2*nl; i++)
+    {
+        int j = nl - i;
+        double sbfactor = 0.0;
+        if(j <= 0){ if(net_sideband == "U"){sbfactor = sqrt(0.5)/(M_PI*total_summed_weights );}}
+        else{ if(net_sideband == "L"){sbfactor = sqrt(0.5)/( M_PI*total_summed_weights );} }
+        if(j < 0){ j += 4*nl; }
 
-    //this is seriously broken
-    if(net_sideband == "L")
-    {
-        for(int i=0; i<s; i++)
-        {
-            cp_spectrum(s-i-1) = Y(i);
-            Z = std::exp(cmplx_unit_I * (fSBDelay * (i-s) * M_PI / (sbd_delta *2.0* s)));
-            cp_spectrum[s-i-1] *= Z * (sqrt(0.5)/total_summed_weights );
-            std::get<0>(cp_spectrum)(s-i-1) = -1.0*(bw)*((double)i/(double)s); //label freq ax
-        }
-    }
-    else
-    {
-        for(int i=0; i<s; i++)
-        {
-            cp_spectrum(i) = Y(i+s-1);
-            Z = std::exp(cmplx_unit_I * (fSBDelay * (i-s) * M_PI / (sbd_delta *2.0* s)));
-            cp_spectrum(i) *= Z * (sqrt(0.5)/total_summed_weights );
-            std::get<0>(cp_spectrum)(i) = (bw)*((double)i/(double)s); //label freq ax
-        }
+        cp_spectrum[i] = Y[j];
+        Z = std::exp(-1.0*cmplx_unit_I * (fSBDelay * (i-nl) * M_PI / (sbd_delta *2.0*nl)));
+        cp_spectrum[i] = Z * sbfactor * cp_spectrum[i];
     }
 
+    //now have to tweak the section exported to the plot data
+    //depending on how many USB/LSB/DSB channels we have encountered
+    double xstart;
+    double xend;
+    int ncp, izero;
+    if (nusb > 0 && nlsb > 0)           /* DSB */
+    {
+        xstart = -bw;
+        xend = bw;
+        ncp = 2 * nl;
+        izero = 0;
+    }
+    else if (nlsb > 0)                  /* LSB only */
+    {
+        xstart = -bw;
+        xend = 0.0;
+        ncp = nl;
+        izero = 0;
+    }
+    else                                /* USB only */
+    {
+        xstart = 0.0;
+        xend = bw;
+        ncp = nl;
+        izero = nl;
+    }
 
-    return cp_spectrum;
+    cp_spectrum_out.Resize(ncp);
+
+    for(int i=0; i<ncp; i++)
+    {
+        double spec_axis_value = xstart + (xend - xstart) * i / ncp;
+        std::get<0>(cp_spectrum_out)(i) = spec_axis_value;
+        cp_spectrum_out[i] = cp_spectrum[i+izero];
+    }
+
+    return cp_spectrum_out;
 
 }
 
