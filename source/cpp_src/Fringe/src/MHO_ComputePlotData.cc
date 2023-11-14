@@ -211,89 +211,6 @@ MHO_ComputePlotData::calc_sbd()
 
 
 
-
-xpower_type
-MHO_ComputePlotData::calc_xpower()
-{
-    //grab the total summed weights
-    double total_summed_weights = 1.0;
-    fWeights->Retrieve("total_summed_weights", total_summed_weights);
-
-    xpower_type sbd_xpower_in;
-    xpower_type sbd_xpower_out;
-    xpower_amp_type sbd_amp;
-
-    std::size_t POLPROD = 0;
-    std::size_t nchan = fSBDArray->GetDimension(CHANNEL_AXIS);
-    std::size_t nap = fSBDArray->GetDimension(TIME_AXIS);
-    std::size_t nbins = fSBDArray->GetDimension(FREQ_AXIS);
-
-    auto chan_ax = &( std::get<CHANNEL_AXIS>(*fSBDArray) );
-    auto ap_ax = &(std::get<TIME_AXIS>(*fSBDArray));
-    auto sbd_ax = &( std::get<FREQ_AXIS>(*fSBDArray) );
-    double ap_delta = ap_ax->at(1) - ap_ax->at(0);
-    double sbd_delta = sbd_ax->at(1) - sbd_ax->at(0);
-    double frt_offset = fParamStore->GetAs<double>("/config/frt_offset");
-
-    sbd_amp.Resize(nbins);
-    sbd_xpower_in.Resize(nbins);
-    sbd_xpower_out.Resize(nbins); //interpolation
-
-    sbd_xpower_in.ZeroArray();
-    sbd_xpower_out.ZeroArray();
-
-    //loop over sbd bins (4*nlags) and sum over channel/ap
-    for(std::size_t i=0; i<nbins; i++)
-    {
-        std::complex<double> sum = 0;
-        for(std::size_t ch=0; ch < nchan; ch++)
-        {
-            double freq = (*chan_ax)(ch);//sky freq of this channel
-            sum = 0;
-            for(std::size_t ap=0; ap < nap; ap++)
-            {
-                double tdelta = (ap_ax->at(ap) + ap_delta/2.0) - frt_offset; //need time difference from the f.r.t?
-                std::complex<double> vis = (*fSBDArray)(POLPROD, ch, ap, i);
-                std::complex<double> vr = fRot.vrot(tdelta, freq, fRefFreq, fDelayRate, fMBDelay);
-                std::complex<double> z = vis*vr;
-                //apply weight and sum
-                double w = (*fWeights)(POLPROD, ch, ap, 0);
-                sum += w*z;
-            }
-            sbd_xpower_in(i) += sum;
-        }
-
-        sbd_amp(i) = std::abs( sbd_xpower_in(i) )/total_summed_weights;
-        std::get<0>(sbd_amp)(i) = (*sbd_ax)(i);
-        std::get<0>(sbd_xpower_in)(i) = (*sbd_ax)(i);
-
-
-    }
-
-    fCyclicRotator.SetOffset(0, nbins/2);
-    fCyclicRotator.SetArgs(&sbd_xpower_in);
-    bool ok = fCyclicRotator.Initialize();
-    check_step_fatal(ok, "calibration", "MBD search cyclic rotation initialization." << eom );
-
-    //set up FFT and rotator engines
-    fFFTEngine.SetArgs(&sbd_xpower_in, &sbd_xpower_out);
-    fFFTEngine.DeselectAllAxes();
-    fFFTEngine.SelectAxis(0);
-    fFFTEngine.SetForward();
-    ok = fFFTEngine.Initialize();
-    check_step_fatal(ok, "calibration", "MBD search fft engine initialization." << eom );
-
-    //ok = fCyclicRotator.Execute();
-    check_step_fatal(ok, "calibration", "MBD search cyclic rotation execution." << eom );
-
-    //now run an FFT along the sbd axis and cyclic rotate
-    ok = fFFTEngine.Execute();
-    check_step_fatal(ok, "calibration", "MBD search fft engine execution." << eom );
-
-    return sbd_xpower_out;
-}
-
-
 phasor_type
 MHO_ComputePlotData::calc_segs()
 {
@@ -533,13 +450,12 @@ MHO_ComputePlotData::calc_phase()
 
 
 xpower_type
-MHO_ComputePlotData::calc_xpower_KLUDGE()
+MHO_ComputePlotData::calc_xpower_spec()
 {
     //kludge version - this code is adapted from a combination of what is found in 
     //make_plotdata.c and generate_graphs.c. It is extremely convoluted 
     //and we ought to find a cleaner/clearer way to do the same thing
     
-    #pragma message("TODO FIXME XPOWER KLUDGE")
     //grab the total summed weights
     double total_summed_weights = 1.0;
     fWeights->Retrieve("total_summed_weights", total_summed_weights);
@@ -604,8 +520,6 @@ MHO_ComputePlotData::calc_xpower_KLUDGE()
                 }
             }
 
-
-            #pragma message("TODO FIXME FOR NON-LSB DATA!")
             fRot.SetSideband(0); //DSB
             if(net_sideband == "U")
             {
@@ -717,7 +631,7 @@ MHO_ComputePlotData::DumpInfoToJSON(mho_json& plot_dict)
     auto dr_amp = calc_dr();
     //TODO FIXME -- move the residual phase calc elsewhere (but we need it for the moment to set the fRot parameters)
     double coh_avg_phase = calc_phase();
-    auto sbd_xpower = calc_xpower_KLUDGE();
+    auto sbd_xpower = calc_xpower_spec();
     auto phasors = calc_segs();
 
     double coh_avg_phase_deg = std::fmod(coh_avg_phase * (180.0/M_PI), 360.0);
