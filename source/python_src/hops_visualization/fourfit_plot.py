@@ -242,6 +242,7 @@ def make_fourfit_plot(plot_dict, filename):
         plt.tick_params(left = False, bottom = False)
         if ch == 0:
             ax7.set_ylabel('U',fontsize=7, rotation=0, labelpad=5)
+            ax7.yaxis.set_label_coords(-0.23,0.0)
 
         ax7b = plt.subplot2grid((256,colw*n_seg_plots),(156,colw*ch),rowspan=4,colspan=colw)
         plt.subplots_adjust(wspace=0, hspace=0)
@@ -257,7 +258,8 @@ def make_fourfit_plot(plot_dict, filename):
         plt.tick_params(left = False, bottom = False)
         if ch == 0:
             ax7b.set_ylabel('L',fontsize=7, rotation=0, labelpad=5)
-
+            ax7b.yaxis.set_label_coords(-0.23,0.0)
+            
     #PCAL PLOTS
     for ch in range(0,n_seg_plots-1):
         ax8 = plt.subplot2grid((255,colw*n_seg_plots),(160,colw*ch),rowspan=16,colspan=colw)
@@ -537,5 +539,5 @@ def make_fourfit_plot(plot_dict, filename):
     plt.text(0.97,bottom_yoffset,btmtextstr8,transform=plt.gcf().transFigure,fontsize=7,verticalalignment='top',
              family='monospace',horizontalalignment='right',color='k')
 
-    #pylab.show()
+    pylab.show()
     pylab.savefig(filename)

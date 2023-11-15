@@ -184,7 +184,7 @@ MHO_InitialFringeInfo::precalculate_quantities(MHO_ContainerStore* conStore, MHO
     delay_model.SetRemoteStationData(rem_data);
     delay_model.ComputeModel();
 
-    //calculate the offset to the refence time (within the scan)
+    //calculate the offset to the reference time (within the scan)
     auto frt = hops_clock::from_vex_format(frt_vex_string);
     std::string start_vex_string = paramStore->GetAs<std::string>("/vex/scan/start");
     auto start_time = hops_clock::from_vex_format(start_vex_string);
