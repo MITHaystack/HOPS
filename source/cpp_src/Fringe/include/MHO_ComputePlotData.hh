@@ -64,6 +64,15 @@ class MHO_ComputePlotData
         xpower_amp_type calc_dr();
 
         double calc_phase();
+        
+        //these functions copied from ffmath and minmax.c -- TODO move to MHO_Math library 
+        int parabola(double y[3], double lower, double upper, double* x_max, double* amp_max, double q[3]);
+        double dwin(double value, double lower, double upper)
+        {
+            if (value < lower) return (lower);
+            else if (value > upper) return (upper);
+            else return (value);
+        }
 
         double fRefFreq;
         double fTotalSummedWeights;
@@ -98,6 +107,11 @@ class MHO_ComputePlotData
         
         //flag for mbd anchor 
         std::string fMBDAnchor;
+        
+        //space for xpower spectrum and sbdbox
+        std::vector< double > fSBDBox;
+        std::vector< int > fNUSBAP;
+        std::vector< int > fNLSBAP;
 
 };
 
