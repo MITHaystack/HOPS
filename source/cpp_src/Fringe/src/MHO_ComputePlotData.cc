@@ -541,6 +541,22 @@ MHO_ComputePlotData::calc_xpower_spec()
     std::size_t nchan = fSBDArray->GetDimension(CHANNEL_AXIS);
     std::size_t nap = fSBDArray->GetDimension(TIME_AXIS);
     std::size_t nbins = fSBDArray->GetDimension(FREQ_AXIS);
+    
+    //single channel xpower spectrum, need this info for the 'sbdbox' parameters 
+    //printed out on the fourfit plot
+    std::vector< xpower_type > sbxsp;
+    std::vector< int > maxlag;
+    std::vector< double > maxlag_amp;
+    std::vector< double > sbdbox;
+    sbxsp.resize(nchan);
+    maxlag.resize(nchan, 0);
+    maxlag_amp.resize(nchan, 0.0);
+    sbdbox.resize(nchan, 0.0);
+    for(std::size_t ch=0; ch < nchan; ch++){sbxsp[ch].Resize(2*nl);}
+    
+    //TODO FIXME...this is temporary, as it doesn't account for min_weight cuts 
+    std::vector<int> nusb_ap; nusb_ap.resize(nchan, 0);
+    std::vector<int> nlsb_ap; nlsb_ap.resize(nchan, 0);
 
     auto chan_ax = &( std::get<CHANNEL_AXIS>(*fSBDArray) );
     auto ap_ax = &(std::get<TIME_AXIS>(*fSBDArray));
@@ -591,11 +607,13 @@ MHO_ComputePlotData::calc_xpower_spec()
             {
                 nusb += 1;
                 fRot.SetSideband(1);
+                nusb_ap[ch] = nap;
             }
             else if(net_sideband == "L")
             {
                 nlsb +=1;
                 fRot.SetSideband(-1);
+                nlsb_ap[ch] = nap;
             }
 
             sum = 0.0;
@@ -609,7 +627,15 @@ MHO_ComputePlotData::calc_xpower_spec()
                 double w = (*fWeights)(POLPROD, ch, ap, 0);
                 sum += w*Z;
             }
+            sbxsp[ch].at(lag) = sum;
             X[lag] = X[lag] + sum;
+            
+            if( std::abs(sum) > maxlag_amp[ch])
+            {
+                maxlag_amp[ch] = std::abs(sum);
+                maxlag[ch] = lag;
+            }
+        
         }
         //need to understand this
         int j = lag - nl;
@@ -679,6 +705,27 @@ MHO_ComputePlotData::calc_xpower_spec()
         std::get<0>(cp_spectrum_out)(i) = spec_axis_value;
         cp_spectrum_out[i] = cp_spectrum[i+izero];
     }
+    
+    //now compute the sbdbox for each channel 
+    double yy[3], q[3];
+    double peak, maxv;
+    for(int ch = 0; ch < nchan; ch++)
+    {
+        for(int i=0; i<3; i++)
+        {
+            int idx = std::max( maxlag[ch] - 1 + i, 0);
+            yy[i] = std::abs( sbxsp[ch].at(idx) );
+        }
+        parabola(yy, -1.0, 1.0, &peak, &maxv, q);
+        sbdbox[ch] = maxlag[ch] + peak + 1;
+    }
+    //'this is the All-channel sbdbox
+    sbdbox.push_back( nl + 1 + fSBDelay/sbd_delta);
+
+    //copy this into the accessible arrays
+    fSBDBox = sbdbox;
+    fNLSBAP = nlsb_ap;
+    fNUSBAP = nusb_ap;
 
     return cp_spectrum_out;
 
@@ -851,14 +898,19 @@ MHO_ComputePlotData::DumpInfoToJSON(mho_json& plot_dict)
         plot_dict["PLOT_INFO"]["Freq(MHz)"].push_back(freq);
         plot_dict["PLOT_INFO"]["Phase"].push_back(ch_arg[i]*(180.0/M_PI));
         plot_dict["PLOT_INFO"]["Ampl"].push_back(ch_amp[i]);
-        plot_dict["PLOT_INFO"]["SbdBox"].push_back(0.0);
+        plot_dict["PLOT_INFO"]["SbdBox"].push_back(fSBDBox[i]);
     }
 
     //just the normal channels (no 'All')
     for(std::size_t i=0; i<nplot-1; i++)
     {
-        plot_dict["PLOT_INFO"]["APsRf"].push_back(0.0);
-        plot_dict["PLOT_INFO"]["APsRm"].push_back(0.0);
+        //the following two quanties are mis-named in the plot_data_dir file
+        //but we'll make due for now, since we don't really compute these correctly yet...we ignore the min_weight parameter. 
+        //this is not AP's used by Ref station, but rather APs with USB data used
+        plot_dict["PLOT_INFO"]["APsRf"].push_back(fNUSBAP[i]);
+        //this is not AP's used by Rem station, but rather APs with LSB data used
+        plot_dict["PLOT_INFO"]["APsRm"].push_back(fNLSBAP[i]); 
+
         plot_dict["PLOT_INFO"]["PCdlyRf"].push_back(0.0);
         plot_dict["PLOT_INFO"]["PCdlyRm"].push_back(0.0);
         plot_dict["PLOT_INFO"]["PCPhsRf"].push_back(0.0);
@@ -875,6 +927,41 @@ MHO_ComputePlotData::DumpInfoToJSON(mho_json& plot_dict)
 
 }
 
+int 
+MHO_ComputePlotData::parabola (double y[3], double lower, double upper, double* x_max, double* amp_max, double q[3])
+{
+    int i, rc;
+    double x, range;
+    //extern double dwin(double, double, double);
+    range = std::fabs (upper - lower);
 
+    q[0] = (y[0] - 2 * y[1] + y[2]) / 2;      /* This is trivial to derive,
+    	                              or see rjc's 94.1.10 derivation */
+    q[1] = (y[2] - y[0]) / 2;
+    q[2] = y[1];
+
+
+    if (q[0] < 0.0)
+        x = -q[1] / (2 * q[0]);                      /* x value at maximum y */
+    else                                         /* no max, pick higher side */
+        x = (y[2] > y[0]) ? 1.0 : -1.0;
+
+    *x_max = dwin (x, lower, upper);
+
+    *amp_max = q[0] * *x_max * *x_max  +  q[1] * *x_max  +  q[2];
+
+    // Test for error conditions
+
+    rc = 0;                         // default: indicates error-free interpolation
+    if (q[0] >= 0)                  // 0 or positive curvature is an interpolation error
+        rc = 2;
+                                    // Is maximum at either edge?
+                                    // (simple floating point equality test can fail
+                                    // in machine-dependent way)
+    else if (std::fabs (*x_max - x) > (0.001 * range)) 
+        rc = 1;
+
+    return (rc); 
+}
 
 }//end namespace
