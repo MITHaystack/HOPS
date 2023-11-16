@@ -55,6 +55,7 @@ void MHO_BasicFringeFitter::Configure()
     //set up the file section of the parameter store: directory, root file, and control file
     fParameterStore.Set("/files/control_file", control_file);
     fParameterStore.Set("/files/directory", directory);
+    fParameterStore.Set("/files/output_file", fParameterStore.GetAs<std::string>("/cmdline/output_file"));
 
     //put the baseline and pol product selection into the parameter store
     fParameterStore.Set("/config/polprod", polprod);
