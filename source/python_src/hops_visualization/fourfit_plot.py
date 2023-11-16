@@ -11,7 +11,7 @@ import matplotlib.gridspec as gridspec
 matplotlib.rcParams.update({'savefig.dpi':300})
 import pylab
 from matplotlib.ticker import FormatStrFormatter
-
+from matplotlib.ticker import AutoMinorLocator
 
 def make_fourfit_plot(plot_dict, filename):
     '''
@@ -223,8 +223,6 @@ def make_fourfit_plot(plot_dict, filename):
             ax6a.yaxis.set_major_locator(plt.NullLocator())
             ax6a.set_yticklabels(labels=[],visible=False)
             plt.tick_params(left = False, bottom = False)
-        # ax6.plot(range(n_seg), seg_amp_arr1[ch],'co-',markersize=2, markerfacecolor='b', linewidth=0.5, markeredgewidth=0.0)
-        # ax6a.plot(range(n_seg), seg_phs_arr1[ch],'ro',markersize=2, linewidth=0.5, markeredgewidth=0.0)
 
     #USB/LSB PLOTS
     for ch in range(0,n_seg_plots-1):
@@ -268,32 +266,31 @@ def make_fourfit_plot(plot_dict, filename):
         ax8.set_xlim(0,n_seg)
         ax8.set_ylim(-180,180)
         ax8.xaxis.set_major_locator(plt.LinearLocator(numticks=3))
-        #ax8.xaxis.minorticks_on()
-        #ax8.xaxis.set_minor_locator(plt.AutoMinorLocator(2))
+        ax8.xaxis.set_minor_locator(AutoMinorLocator(2))
         ax8.set_xticklabels(labels=[],visible=True)
         ax8.tick_params(axis='both', direction='in', which='both')
 
         if ch == 0:
             ax8.set_ylabel(r"pcal $\theta$",fontsize=9)
             ax8.yaxis.set_major_locator(plt.FixedLocator([-180, -90, 0, 90, 180]))
-            #plt.yticks(fontsize=3,rotation=45)
-            #ax8.yticks(visible=True)
-            #ax8.minorticks_on()
-            ax8.tick_params(axis='y', left = False, bottom = False, labelleft=False)
+            #ax8.yaxis.set_minor_locator(AutoMinorLocator(2))
+            ax8.tick_params(axis='y', left = False,  right=False, bottom = False, labelleft=False)
         elif ch == (n_seg_plots-2):
             ax8.yaxis.set_major_locator(plt.FixedLocator([-180, -90, 0, 90, 180]))
-            #plt.yticks(fontsize=3,rotation=45)
+            #ax8.yaxis.set_minor_locator(AutoMinorLocator(2))
             ax8.set_yticklabels(ax8.get_yticks(), fontsize=5)
-            #ax8.yticks(visible=True)
-            #ax8.tick_params(axis='y', left=False, labelleft=False)
-            #ax8.minorticks_on()
             ax8.tick_params(axis='y', left=False, right=True, labelleft=False, labelright=True)
         else:
-            #ax6.axis(" ")
-            #ax8.xaxis.set_major_locator(plt.NullLocator())
             ax8.yaxis.set_major_locator(plt.NullLocator())
             ax8.set_yticklabels(labels=[],visible=False)
             plt.yticks(visible=False)
+    
+    #TODO FIXME -- make these station labels part of the y-axis title so their placement is done properly no matter the number of channels
+    if 'extra' in plot_dict:
+        ref_mk4id = plot_dict["extra"]["ref_station_mk4id"]
+        rem_mk4id = plot_dict["extra"]["rem_station_mk4id"]
+        plt.text(0.925,0.37,ref_mk4id,transform=plt.gcf().transFigure,fontsize=7,verticalalignment='top',family='monospace',horizontalalignment='left',color='g')
+        plt.text(0.94,0.37,rem_mk4id,transform=plt.gcf().transFigure,fontsize=7,verticalalignment='top',family='monospace',horizontalalignment='left',color='m')
 
     #make the text table
     axT = plt.subplot2grid((96,n_seg_plots),(67,0),rowspan=20,colspan=n_seg_plots)
