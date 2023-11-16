@@ -228,7 +228,7 @@ MHO_InitialFringeInfo::precalculate_quantities(MHO_ContainerStore* conStore, MHO
     rem_model.ComputeModel();
     paramStore->Set("/rem_station/azimuth", rem_model.GetAzimuth());
     paramStore->Set("/rem_station/elevation", rem_model.GetElevation());
-    paramStore->Set("/rem_station/parallactic_angle",  ref_model.GetParallacticAngle());
+    paramStore->Set("/rem_station/parallactic_angle",  rem_model.GetParallacticAngle());
     paramStore->Set("/rem_station/u", rem_model.GetUCoordinate());
     paramStore->Set("/rem_station/v", rem_model.GetVCoordinate());
     paramStore->Set("/rem_station/w", rem_model.GetWCoordinate());
