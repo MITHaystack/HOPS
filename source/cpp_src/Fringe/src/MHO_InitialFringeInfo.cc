@@ -3,6 +3,7 @@
 //precalculate_quantities
 #include "MHO_Reducer.hh"
 #include "MHO_DelayModel.hh"
+#include "MHO_StationModel.hh"
 #include "MHO_Clock.hh"
 #include "MHO_UniformGridPointsCalculator.hh"
 
@@ -207,6 +208,30 @@ MHO_InitialFringeInfo::precalculate_quantities(MHO_ContainerStore* conStore, MHO
 
     //determines properties of the frequency grid used in the MBD search
     calculate_freq_space(conStore, paramStore);
+    
+    //figure out the reference station's coordinates (az, el, par_angle, u, v, w)
+    MHO_StationModel ref_model;
+    ref_model.SetEvaluationTimeVexString(frt_vex_string);
+    ref_model.SetStationData(ref_data);
+    ref_model.ComputeModel();
+    paramStore->Set("/ref_station/azimuth", ref_model.GetAzimuth());
+    paramStore->Set("/ref_station/elevation", ref_model.GetElevation());
+    paramStore->Set("/ref_station/parallactic_angle",  ref_model.GetParallacticAngle());
+    paramStore->Set("/ref_station/u", ref_model.GetUCoordinate());
+    paramStore->Set("/ref_station/v", ref_model.GetVCoordinate());
+    paramStore->Set("/ref_station/w", ref_model.GetWCoordinate());
+    
+    //figure out the remote station's coordinates (az, el, par_angle, u, v, w)
+    MHO_StationModel rem_model;
+    rem_model.SetEvaluationTimeVexString(frt_vex_string);
+    rem_model.SetStationData(rem_data);
+    rem_model.ComputeModel();
+    paramStore->Set("/rem_station/azimuth", rem_model.GetAzimuth());
+    paramStore->Set("/rem_station/elevation", rem_model.GetElevation());
+    paramStore->Set("/rem_station/parallactic_angle",  ref_model.GetParallacticAngle());
+    paramStore->Set("/rem_station/u", rem_model.GetUCoordinate());
+    paramStore->Set("/rem_station/v", rem_model.GetVCoordinate());
+    paramStore->Set("/rem_station/w", rem_model.GetWCoordinate());
 
 }
 
