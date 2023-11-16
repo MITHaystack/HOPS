@@ -267,24 +267,30 @@ def make_fourfit_plot(plot_dict, filename):
         ax8.plot(range(n_seg), np.zeros(n_seg),'co-',markersize=2, markerfacecolor='m', linewidth=0.5, markeredgewidth=0.0)
         ax8.set_xlim(0,n_seg)
         ax8.set_ylim(-180,180)
-        ax8.set_xticklabels(labels=[],visible=False)
+        ax8.xaxis.set_major_locator(plt.LinearLocator(numticks=3))
+        #ax8.xaxis.minorticks_on()
+        #ax8.xaxis.set_minor_locator(plt.AutoMinorLocator(2))
+        ax8.set_xticklabels(labels=[],visible=True)
         ax8.tick_params(axis='both', direction='in', which='both')
 
         if ch == 0:
-            ax8.set_ylabel('pcal',fontsize=9)
-            plt.yticks(fontsize=8,rotation=90)
+            ax8.set_ylabel(r"pcal $\theta$",fontsize=9)
+            ax8.yaxis.set_major_locator(plt.FixedLocator([-180, -90, 0, 90, 180]))
+            #plt.yticks(fontsize=3,rotation=45)
             #ax8.yticks(visible=True)
-            ax8.minorticks_on()
+            #ax8.minorticks_on()
             ax8.tick_params(axis='y', left = False, bottom = False, labelleft=False)
-        elif ch == (n_seg_plots-2) :
-            plt.yticks(fontsize=8,rotation=90)
+        elif ch == (n_seg_plots-2):
+            ax8.yaxis.set_major_locator(plt.FixedLocator([-180, -90, 0, 90, 180]))
+            #plt.yticks(fontsize=3,rotation=45)
+            ax8.set_yticklabels(ax8.get_yticks(), fontsize=5)
             #ax8.yticks(visible=True)
-            ax8.minorticks_on()
-            ax8.tick_params(axis='y', left=False, labelleft=False)
-            ax8.tick_params(axis='y', right=True, labelright=True)
+            #ax8.tick_params(axis='y', left=False, labelleft=False)
+            #ax8.minorticks_on()
+            ax8.tick_params(axis='y', left=False, right=True, labelleft=False, labelright=True)
         else:
             #ax6.axis(" ")
-            ax8.xaxis.set_major_locator(plt.NullLocator())
+            #ax8.xaxis.set_major_locator(plt.NullLocator())
             ax8.yaxis.set_major_locator(plt.NullLocator())
             ax8.set_yticklabels(labels=[],visible=False)
             plt.yticks(visible=False)
@@ -436,7 +442,7 @@ def make_fourfit_plot(plot_dict, filename):
         plot_dict['FFTime'] + '\n' + \
         plot_dict['BuildTime'] + '\n\n' + \
         plot_dict['RA'] + '\n' + \
-        plot_dict['Dec']
+        plot_dict['Dec'].replace('d', '$\degree$')
 
 
 
@@ -538,6 +544,43 @@ def make_fourfit_plot(plot_dict, filename):
 
     plt.text(0.97,bottom_yoffset,btmtextstr8,transform=plt.gcf().transFigure,fontsize=7,verticalalignment='top',
              family='monospace',horizontalalignment='right',color='k')
+
+    #this is only true of hops4 generated data (plot_data_dir is missing these items)
+    if 'extra' in plot_dict:
+        ref_mk4id = plot_dict["extra"]["ref_station_mk4id"]
+        ref_az = plot_dict['extra']['ref_station']['az']
+        ref_el = plot_dict['extra']['ref_station']['al']
+        ref_pa = plot_dict['extra']['ref_station']['pa']
+        ref_u = plot_dict['extra']['ref_station']['u']
+        ref_v = plot_dict['extra']['ref_station']['v']
+        refbtmtextstr = ref_mk4id +":"
+        refbtmtextstr += " az " + str(np.round(float(ref_az),1)) 
+        refbtmtextstr += " el " + str(np.round(float(ref_el),1))
+        refbtmtextstr += " pa " + str(np.round(float(ref_pa),1))
+        rem_mk4id = plot_dict["extra"]["rem_station_mk4id"]
+        rem_az = plot_dict['extra']['rem_station']['az']
+        rem_el = plot_dict['extra']['rem_station']['al']
+        rem_pa = plot_dict['extra']['rem_station']['pa']
+        rem_u = plot_dict['extra']['rem_station']['u']
+        rem_v = plot_dict['extra']['rem_station']['v']
+        rembtmtextstr = rem_mk4id +":"
+        rembtmtextstr += " az " + str(np.round(float(rem_az),1)) 
+        rembtmtextstr += " el " + str(np.round(float(rem_el),1))
+        rembtmtextstr += " pa " + str(np.round(float(rem_pa),1))
+        du = plot_dict['extra']['u']
+        dv = plot_dict['extra']['v']
+        uvtextstr = "u,v (fr/asec) " + str(np.round(float(du),3)) + ", " + str(np.round(float(dv),3)) 
+        station_coords_textstr = refbtmtextstr + "    " + rembtmtextstr + "    " + uvtextstr
+        plt.text(0.01,0.03, station_coords_textstr ,transform=plt.gcf().transFigure,fontsize=6,verticalalignment='top', family='monospace',horizontalalignment='left',color='k')
+        plt.text(0.97,0.03, "simultaneous interpolator" ,transform=plt.gcf().transFigure,fontsize=6,verticalalignment='top', family='monospace',horizontalalignment='right',color='k')
+        
+        control_file = plot_dict['extra']['control_file']
+        input_file = plot_dict['extra']['baseline_input_file']
+        output_file = plot_dict['extra']['output_file']
+        file_info_textstr = "Control file: " + control_file + "   Input file: " + input_file + "   Output file: " + output_file
+        plt.text(0.01,0.02, file_info_textstr ,transform=plt.gcf().transFigure,fontsize=6,verticalalignment='top', family='monospace',horizontalalignment='left',color='k')
+
+
 
     pylab.show()
     pylab.savefig(filename)

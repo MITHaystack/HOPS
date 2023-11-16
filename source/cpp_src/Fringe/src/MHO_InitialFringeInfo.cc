@@ -210,6 +210,8 @@ MHO_InitialFringeInfo::precalculate_quantities(MHO_ContainerStore* conStore, MHO
     calculate_freq_space(conStore, paramStore);
     
     //figure out the reference station's coordinates (az, el, par_angle, u, v, w)
+    //these are all evaluated at the fourfit reference time...with the exception of parallactic_angle
+    //since parallactic angle is not given as a spline (this is just the value at the beginning of the scan)
     MHO_StationModel ref_model;
     ref_model.SetEvaluationTimeVexString(frt_vex_string);
     ref_model.SetStationData(ref_data);

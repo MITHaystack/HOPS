@@ -138,22 +138,40 @@ MHO_FringePlotInfo::fill_plot_data(MHO_ParameterStore* paramStore, mho_json& plo
     plot_dict["extra"]["ref_station"]["az"] = paramStore->GetAs<double>("/ref_station/azimuth");
     plot_dict["extra"]["ref_station"]["al"] = paramStore->GetAs<double>("/ref_station/elevation");
     plot_dict["extra"]["ref_station"]["pa"] = paramStore->GetAs<double>("/ref_station/parallactic_angle");
-    plot_dict["extra"]["ref_station"]["u"] = paramStore->GetAs<double>("/ref_station/u");
-    plot_dict["extra"]["ref_station"]["v"] = paramStore->GetAs<double>("/ref_station/v");
-    plot_dict["extra"]["ref_station"]["w"] = paramStore->GetAs<double>("/ref_station/w");
     
+    double refu = paramStore->GetAs<double>("/ref_station/u");
+    double refv = paramStore->GetAs<double>("/ref_station/v");
+    
+    plot_dict["extra"]["ref_station"]["u"] = refu;
+    plot_dict["extra"]["ref_station"]["v"] = refv;
+    plot_dict["extra"]["ref_station"]["w"] = paramStore->GetAs<double>("/ref_station/w");
     plot_dict["extra"]["rem_station"]["az"] = paramStore->GetAs<double>("/rem_station/azimuth");
     plot_dict["extra"]["rem_station"]["al"] = paramStore->GetAs<double>("/rem_station/elevation");
     plot_dict["extra"]["rem_station"]["pa"] = paramStore->GetAs<double>("/rem_station/parallactic_angle");
-    plot_dict["extra"]["rem_station"]["u"] = paramStore->GetAs<double>("/rem_station/u");
-    plot_dict["extra"]["rem_station"]["v"] = paramStore->GetAs<double>("/rem_station/v");
+    
+    double remu = paramStore->GetAs<double>("/rem_station/u");
+    double remv = paramStore->GetAs<double>("/rem_station/v");
+    plot_dict["extra"]["rem_station"]["u"] = remu;
+    plot_dict["extra"]["rem_station"]["v"] = remv;
     plot_dict["extra"]["rem_station"]["w"] = paramStore->GetAs<double>("/rem_station/w");
     
     plot_dict["extra"]["control_file"] = paramStore->GetAs<std::string>("/files/control_file");
     plot_dict["extra"]["baseline_input_file"] = paramStore->GetAs<std::string>("/files/baseline_input_file");
     plot_dict["extra"]["ref_station_input_file"] = paramStore->GetAs<std::string>("/files/ref_station_input_file");
     plot_dict["extra"]["rem_station_input_file"] = paramStore->GetAs<std::string>("/files/rem_station_input_file");
+    plot_dict["extra"]["output_file"] = paramStore->GetAs<std::string>("/files/output_file");
     
+    plot_dict["extra"]["ref_station_mk4id"] = paramStore->GetAs<std::string>("/ref_station/mk4id");
+    plot_dict["extra"]["rem_station_mk4id"] = paramStore->GetAs<std::string>("/rem_station/mk4id");
+    
+    //calculate the (u,v) coordinates (taken from fill_202.c)
+    double speed_of_light_Mm = 299.792458; // in mega-meters (?!)
+    double lambda = speed_of_light_Mm / paramStore->GetAs<double>("/config/ref_freq"); // wavelength (m)
+    double radians_to_arcsec = 4.848137e-6;
+    double du = radians_to_arcsec*(remu - refu) /lambda;
+    double dv = radians_to_arcsec*(remv - refv) /lambda;
+    plot_dict["extra"]["u"] = du;
+    plot_dict["extra"]["v"] = dv;
 }
 
 
