@@ -130,6 +130,30 @@ MHO_FringePlotInfo::fill_plot_data(MHO_ParameterStore* paramStore, mho_json& plo
     plot_dict["ResidPhdelayError(usec)"] = paramStore->GetAs<double>("/fringe/phase_delay_error");
     plot_dict["ResidRateError(us/s)"] = paramStore->GetAs<double>("/fringe/drate_error");
     plot_dict["ResidPhaseError(deg)"] =  paramStore->GetAs<double>("/fringe/phase_error");
+    
+    
+    //the quantities below are stuff that is on the fringe-plot but is not present 
+    //in the plot-data-dir file structure, so we put them under 'extra'
+    
+    plot_dict["extra"]["ref_station"]["az"] = paramStore->GetAs<double>("/ref_station/azimuth");
+    plot_dict["extra"]["ref_station"]["al"] = paramStore->GetAs<double>("/ref_station/elevation");
+    plot_dict["extra"]["ref_station"]["pa"] = paramStore->GetAs<double>("/ref_station/parallactic_angle");
+    plot_dict["extra"]["ref_station"]["u"] = paramStore->GetAs<double>("/ref_station/u");
+    plot_dict["extra"]["ref_station"]["v"] = paramStore->GetAs<double>("/ref_station/v");
+    plot_dict["extra"]["ref_station"]["w"] = paramStore->GetAs<double>("/ref_station/w");
+    
+    plot_dict["extra"]["rem_station"]["az"] = paramStore->GetAs<double>("/rem_station/azimuth");
+    plot_dict["extra"]["rem_station"]["al"] = paramStore->GetAs<double>("/rem_station/elevation");
+    plot_dict["extra"]["rem_station"]["pa"] = paramStore->GetAs<double>("/rem_station/parallactic_angle");
+    plot_dict["extra"]["rem_station"]["u"] = paramStore->GetAs<double>("/rem_station/u");
+    plot_dict["extra"]["rem_station"]["v"] = paramStore->GetAs<double>("/rem_station/v");
+    plot_dict["extra"]["rem_station"]["w"] = paramStore->GetAs<double>("/rem_station/w");
+    
+    plot_dict["extra"]["control_file"] = paramStore->GetAs<std::string>("/files/control_file");
+    plot_dict["extra"]["baseline_input_file"] = paramStore->GetAs<std::string>("/files/baseline_input_file");
+    plot_dict["extra"]["ref_station_input_file"] = paramStore->GetAs<std::string>("/files/ref_station_input_file");
+    plot_dict["extra"]["rem_station_input_file"] = paramStore->GetAs<std::string>("/files/rem_station_input_file");
+    
 }
 
 

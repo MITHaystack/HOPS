@@ -155,6 +155,14 @@ MHO_ScanDataStore::LoadBaseline(std::string baseline, MHO_ContainerStore* store)
     }
 }
 
+std::string
+MHO_ScanDataStore::GetBaselineFilename(std::string baseline) const
+{
+    auto it = fBaselineFileMap.find(baseline);
+    if(it != fBaselineFileMap.end() ){return it->second;}
+    else{return std::string("");}
+}
+
 void
 MHO_ScanDataStore::LoadStation(std::string station, MHO_ContainerStore* store)
 {
@@ -173,6 +181,13 @@ MHO_ScanDataStore::LoadStation(std::string station, MHO_ContainerStore* store)
     }
 }
 
+std::string
+MHO_ScanDataStore::GetStationFilename(std::string station) const
+{
+    auto it = fStationFileMap.find(station);
+    if(it != fStationFileMap.end() ){return it->second;}
+    else{return std::string("");}
+}
 
 void
  MHO_ScanDataStore::Clear()

@@ -161,13 +161,16 @@ void MHO_BasicFringeFitter::Initialize()
 
         //load baseline data
         fScanStore.LoadBaseline(baseline, &fContainerStore);
+        fParameterStore.Set("/files/baseline_input_file", fScanStore.GetBaselineFilename(baseline));
         MHO_BasicFringeDataConfiguration::configure_data_library(&fContainerStore);//momentarily needed for float -> double cast
         //load and rename station data according to reference/remote
         std::string ref_station_mk4id = std::string(1,baseline[0]);
         std::string rem_station_mk4id = std::string(1,baseline[1]);
         fScanStore.LoadStation(ref_station_mk4id, &fContainerStore);
+        fParameterStore.Set("/files/ref_station_input_file", fScanStore.GetStationFilename(ref_station_mk4id));
         fContainerStore.RenameObject("sta", "ref_sta");
         fScanStore.LoadStation(rem_station_mk4id, &fContainerStore);
+        fParameterStore.Set("/files/rem_station_input_file", fScanStore.GetStationFilename(rem_station_mk4id));
         fContainerStore.RenameObject("sta", "rem_sta");
 
         station_coord_type* ref_data = fContainerStore.GetObject<station_coord_type>(std::string("ref_sta"));
