@@ -382,7 +382,9 @@ def make_fourfit_plot(plot_dict, filename):
 
     # Adjust the cell font size (optional)
     table.auto_set_font_size(False)
-    table.set_fontsize(4)
+    table.set_fontsize(6)
+    if n_seg_plots > 16:
+        table.set_fontsize(4)
 
     # Set the table cell height to make it smaller
     table.scale(1, 0.7)  # Adjust the scale factor as needed
@@ -444,10 +446,10 @@ def make_fourfit_plot(plot_dict, filename):
 
 
     # Add the text boxes
-    plt.text(0.83,0.94,textstr1,transform=plt.gcf().transFigure,fontsize=9,verticalalignment='top',
+    plt.text(0.83,0.94,textstr1,transform=plt.gcf().transFigure,fontsize=8,verticalalignment='top',
              family='monospace',horizontalalignment='left',color='g')
 
-    plt.text(0.965,0.94,textstr2,transform=plt.gcf().transFigure,fontsize=9,verticalalignment='top',
+    plt.text(0.965,0.94,textstr2,transform=plt.gcf().transFigure,fontsize=8,verticalalignment='top',
              family='monospace',horizontalalignment='right',color='k')
 
     # Add the top matter
