@@ -567,8 +567,8 @@ def make_fourfit_plot(plot_dict, filename):
         dv = plot_dict['extra']['v']
         uvtextstr = "u,v (fr/asec) " + str(np.round(float(du),3)) + ", " + str(np.round(float(dv),3)) 
         station_coords_textstr = refbtmtextstr + "    " + rembtmtextstr + "    " + uvtextstr
-        plt.text(0.01,0.04, station_coords_textstr ,transform=plt.gcf().transFigure,fontsize=6,verticalalignment='top', family='monospace',horizontalalignment='left',color='k')
-        plt.text(0.97,0.04, "simultaneous interpolator" ,transform=plt.gcf().transFigure,fontsize=6,verticalalignment='top', family='monospace',horizontalalignment='right',color='k')
+        plt.text(0.01,0.04, station_coords_textstr ,transform=plt.gcf().transFigure,fontsize=7,verticalalignment='top', family='monospace',horizontalalignment='left',color='k')
+        plt.text(0.97,0.04, "simultaneous interpolator" ,transform=plt.gcf().transFigure,fontsize=7,verticalalignment='top', family='monospace',horizontalalignment='right',color='k')
         
         control_file = plot_dict['extra']['control_file']
         input_file = plot_dict['extra']['baseline_input_file']
@@ -658,10 +658,16 @@ def make_fourfit_plot(plot_dict, filename):
     # Set the table cell height to make it smaller
     table4.scale(1, 0.7)  # Adjust the scale factor as needed
 
+    #last pile of text
+    textstr100 = "Pcal mode: MANUAL, MANUAL   PC period (AP's) X,X" + '\n' + \
+        'Pcal rate: X,X (us/s)' + '\n' + \
+        'Bits/sample: 2x2 SampCntNorm: disabled' + '\n' + \
+        'Data rate(MSamp/s) X MB pts Y Amb Z us ' + '\n' + \
+        'Data rate(Mb/s) X    nlags: X t_cohere infinite'
 
 
-
-
+    # Add the text boxes
+    plt.text(0.45,0.1,textstr100,transform=plt.gcf().transFigure,fontsize=7,verticalalignment='top',family='monospace',horizontalalignment='left',color='k')
 
 
     pylab.show()
