@@ -471,7 +471,6 @@ def make_fourfit_plot(plot_dict, filename):
     if not group_delay_key in plot_dict:
         group_delay_key = "GroupDelaySBD(usec)"
 
-
     btmtextstr2 = str(np.format_float_scientific( float(plot_dict[group_delay_key]), precision=11, min_digits=11 ) )  + '\n' + \
         str(np.format_float_scientific(float(plot_dict["SbandDelay(usec)"]), precision=11, min_digits=11) ) + '\n' + \
         str(np.format_float_scientific(float(plot_dict["PhaseDelay(usec)"]), precision=11, min_digits=11) ) + '\n' + \
@@ -576,6 +575,62 @@ def make_fourfit_plot(plot_dict, filename):
         output_file = plot_dict['extra']['output_file']
         file_info_textstr = "Control file: " + control_file + "   Input file: " + input_file + "   Output file: " + output_file
         plt.text(0.01,0.02, file_info_textstr ,transform=plt.gcf().transFigure,fontsize=6,verticalalignment='top', family='monospace',horizontalalignment='left',color='k')
+
+
+
+    #more text at the bottom 
+    axT2 = plt.subplot2grid((120,120),(119,1),rowspan=4,colspan=15)
+    ct2_rows = 4
+    ct2_cols = 2
+
+    ct2_col_label = ['']*ct2_cols
+    ct2_col_label[0] = 'RMS'
+    ct2_col_label[1] = 'Theor.'
+
+    ct2_row_label = ['-']*ct2_rows
+    ct2_row_label[0] = 'ph/seg (deg)'
+    ct2_row_label[1] = 'amp/seg (%)'
+    ct2_row_label[2] = 'ph/frq (deg)'
+    ct2_row_label[3] = 'amp/frq (%)'
+
+    #create the table of per-channel data
+    ct2_data = [[' - ']*ct2_cols]*ct2_rows
+    # for n in range(0, ct2_rows):
+    #     ct2_data.append(list())
+    #     for m in range(0, ct2_cols):
+    #         ct2_data[n].append('')
+
+    # #assign row labels 
+    # for n in range(0, ct2_rows ):
+    #     print(n, ct2_row_label[n] )
+    #     ct2_data[n][0] = ct2_row_label[n]
+    # 
+    # #assign col labels 
+    # for m in range(0, ct2_cols):
+    #     print(m, ct2_col_label[m] )
+    #     ct2_data[0][m] = ct2_col_label[m]
+
+    # Create the table
+    # table2 = axT2.table(cellText=ct2_data, loc='center')
+    table2 = axT2.table(cellText=ct2_data, colLabels=ct2_col_label, rowLabels=ct2_row_label, loc='center')
+
+
+    # Remove the borders from the table and set alignment
+    for key, cell in table2._cells.items():
+        cell.set_linewidth(0)
+        cell.set_text_props(ha="left")
+
+    # Hide the axis
+    axT2.axis('off')
+
+    # Adjust the cell font size (optional)
+    table2.auto_set_font_size(False)
+    table2.set_fontsize(6)
+
+    # Set the table cell height to make it smaller
+    table2.scale(1, 0.7)  # Adjust the scale factor as needed
+
+
 
 
 
