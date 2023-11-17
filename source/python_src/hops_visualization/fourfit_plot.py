@@ -567,68 +567,98 @@ def make_fourfit_plot(plot_dict, filename):
         dv = plot_dict['extra']['v']
         uvtextstr = "u,v (fr/asec) " + str(np.round(float(du),3)) + ", " + str(np.round(float(dv),3)) 
         station_coords_textstr = refbtmtextstr + "    " + rembtmtextstr + "    " + uvtextstr
-        plt.text(0.01,0.03, station_coords_textstr ,transform=plt.gcf().transFigure,fontsize=6,verticalalignment='top', family='monospace',horizontalalignment='left',color='k')
-        plt.text(0.97,0.03, "simultaneous interpolator" ,transform=plt.gcf().transFigure,fontsize=6,verticalalignment='top', family='monospace',horizontalalignment='right',color='k')
+        plt.text(0.01,0.04, station_coords_textstr ,transform=plt.gcf().transFigure,fontsize=6,verticalalignment='top', family='monospace',horizontalalignment='left',color='k')
+        plt.text(0.97,0.04, "simultaneous interpolator" ,transform=plt.gcf().transFigure,fontsize=6,verticalalignment='top', family='monospace',horizontalalignment='right',color='k')
         
         control_file = plot_dict['extra']['control_file']
         input_file = plot_dict['extra']['baseline_input_file']
         output_file = plot_dict['extra']['output_file']
         file_info_textstr = "Control file: " + control_file + "   Input file: " + input_file + "   Output file: " + output_file
-        plt.text(0.01,0.02, file_info_textstr ,transform=plt.gcf().transFigure,fontsize=6,verticalalignment='top', family='monospace',horizontalalignment='left',color='k')
+        plt.text(0.01,0.03, file_info_textstr ,transform=plt.gcf().transFigure,fontsize=6,verticalalignment='top', family='monospace',horizontalalignment='left',color='k')
 
 
-
-    #more text at the bottom 
-    axT2 = plt.subplot2grid((120,120),(119,1),rowspan=4,colspan=15)
+    #more text at the bottom (RMS/Theor table)
+    axT2 = plt.subplot2grid((120,240),(119,5),rowspan=4,colspan=30)
     ct2_rows = 4
     ct2_cols = 2
-
     ct2_col_label = ['']*ct2_cols
     ct2_col_label[0] = 'RMS'
     ct2_col_label[1] = 'Theor.'
-
     ct2_row_label = ['-']*ct2_rows
     ct2_row_label[0] = 'ph/seg (deg)'
     ct2_row_label[1] = 'amp/seg (%)'
     ct2_row_label[2] = 'ph/frq (deg)'
     ct2_row_label[3] = 'amp/frq (%)'
-
-    #create the table of per-channel data
+    #create the table of per-channel data TODO - FILL ME IN
     ct2_data = [[' - ']*ct2_cols]*ct2_rows
-    # for n in range(0, ct2_rows):
-    #     ct2_data.append(list())
-    #     for m in range(0, ct2_cols):
-    #         ct2_data[n].append('')
-
-    # #assign row labels 
-    # for n in range(0, ct2_rows ):
-    #     print(n, ct2_row_label[n] )
-    #     ct2_data[n][0] = ct2_row_label[n]
-    # 
-    # #assign col labels 
-    # for m in range(0, ct2_cols):
-    #     print(m, ct2_col_label[m] )
-    #     ct2_data[0][m] = ct2_col_label[m]
-
     # Create the table
-    # table2 = axT2.table(cellText=ct2_data, loc='center')
     table2 = axT2.table(cellText=ct2_data, colLabels=ct2_col_label, rowLabels=ct2_row_label, loc='center')
-
-
     # Remove the borders from the table and set alignment
     for key, cell in table2._cells.items():
         cell.set_linewidth(0)
         cell.set_text_props(ha="left")
 
-    # Hide the axis
-    axT2.axis('off')
-
     # Adjust the cell font size (optional)
     table2.auto_set_font_size(False)
-    table2.set_fontsize(6)
-
+    table2.set_fontsize(7)
+    # Hide the axis
+    axT2.axis('off')
     # Set the table cell height to make it smaller
     table2.scale(1, 0.7)  # Adjust the scale factor as needed
+
+
+    #more text at the bottom (amp table)
+    axT3 = plt.subplot2grid((120,120),(119,32),rowspan=4,colspan=15)
+    ct3_rows = 5
+    ct3_cols = 1
+    ct3_row_label = ['-']*ct3_rows
+    ct3_row_label[0] = 'Amplitude'
+    ct3_row_label[1] = 'Search'
+    ct3_row_label[2] = 'Interp.'
+    ct3_row_label[3] = 'Inc. seg. avg.'
+    ct3_row_label[4] = 'Inc. frq. avg.'
+    #create the table of per-channel data TODO - FILL ME IN
+    ct3_data = [[' - ']*ct3_cols]*ct3_rows
+    # Create the table
+    table3 = axT3.table(cellText=ct3_data, rowLabels=ct3_row_label, loc='center')
+
+    # Remove the borders from the table and set alignment
+    for key, cell in table3._cells.items():
+        cell.set_linewidth(0)
+        cell.set_text_props(ha="left")
+    # Adjust the cell font size (optional)
+    table3.auto_set_font_size(False)
+    table3.set_fontsize(7)
+    axT3.axis('off')
+    # Set the table cell height to make it smaller
+    table3.scale(1, 0.7)  # Adjust the scale factor as needed
+
+
+    #more text at the bottom (amp table)
+    axT4 = plt.subplot2grid((120,120),(119,112),rowspan=4,colspan=10)
+    ct4_rows = 4
+    ct4_cols = 2
+    ct4_row_label = ['-']*ct4_rows
+    ct4_row_label[0] = 'sb window'
+    ct4_row_label[1] = 'mb window'
+    ct4_row_label[2] = 'dr window'
+    ct4_row_label[3] = 'ion window'
+    #create the table of per-channel data TODO - FILL ME IN
+    ct4_data = [[' - ']*ct4_cols]*ct4_rows
+    # Create the table
+    table4 = axT4.table(cellText=ct4_data, rowLabels=ct4_row_label, loc='center')
+    # Remove the borders from the table and set alignment
+    for key, cell in table4._cells.items():
+        cell.set_linewidth(0)
+        cell.set_text_props(ha="left")
+    # Adjust the cell font size (optional)
+    table4.auto_set_font_size(False)
+    table4.set_fontsize(7)
+    axT4.axis('off')
+    # Set the table cell height to make it smaller
+    table4.scale(1, 0.7)  # Adjust the scale factor as needed
+
+
 
 
 
