@@ -635,28 +635,47 @@ def make_fourfit_plot(plot_dict, filename):
 
 
     #more text at the bottom (amp table)
-    axT4 = plt.subplot2grid((120,120),(119,112),rowspan=4,colspan=10)
+    axT4 = plt.subplot2grid((120,120),(119,119),rowspan=4,colspan=1)
     ct4_rows = 4
     ct4_cols = 2
     ct4_row_label = ['-']*ct4_rows
-    ct4_row_label[0] = 'sb window'
-    ct4_row_label[1] = 'mb window'
-    ct4_row_label[2] = 'dr window'
-    ct4_row_label[3] = 'ion window'
+    ct4_row_label[0] = 'sb window (us)'
+    ct4_row_label[1] = 'mb window (us)'
+    ct4_row_label[2] = 'dr window (ns/s)'
+    ct4_row_label[3] = 'ion window (TEC)'
     #create the table of per-channel data TODO - FILL ME IN
-    ct4_data = [[' - ']*ct4_cols]*ct4_rows
+    ct4_data = np.zeros((ct4_rows,ct4_cols)) # [[' - ']*ct4_cols]*ct4_rows
+
+    if 'extra' in plot_dict:
+        ct4_data[0][0] = str(np.round(float(plot_dict['extra']['sb_win'][0]),3) )
+        ct4_data[0][1] = str(np.round(float(plot_dict['extra']['sb_win'][1]),3) )
+        ct4_data[1][0] = str(np.round( float(plot_dict['extra']['mb_win'][0]),3) )
+        ct4_data[1][1] = str(np.round( float(plot_dict['extra']['mb_win'][1]),3) )
+        ct4_data[2][0] = str( np.round(float(plot_dict['extra']['dr_win'][0]),3) ) 
+        ct4_data[2][1] = str( np.round(float(plot_dict['extra']['dr_win'][1]),3) ) 
+        ct4_data[3][0] = str( np.round(float(plot_dict['extra']['ion_win'][0]),3) ) 
+        ct4_data[3][1] = str( np.round(float(plot_dict['extra']['ion_win'][1]),3) ) 
+
+    print(plot_dict['extra'])
+
+    print( str(plot_dict['extra']['sb_win'][0] ) )
+    print( str(plot_dict['extra']['sb_win'][1] ) )
+
+
+    print(ct4_data)
+
     # Create the table
     table4 = axT4.table(cellText=ct4_data, rowLabels=ct4_row_label, loc='center')
     # Remove the borders from the table and set alignment
     for key, cell in table4._cells.items():
         cell.set_linewidth(0)
-        cell.set_text_props(ha="left")
+        cell.set_text_props(ha="right")
     # Adjust the cell font size (optional)
     table4.auto_set_font_size(False)
     table4.set_fontsize(7)
     axT4.axis('off')
     # Set the table cell height to make it smaller
-    table4.scale(1, 0.7)  # Adjust the scale factor as needed
+    table4.scale(12, 0.7)  # Adjust the scale factor as needed
 
     #last pile of text
     textstr100 = "Pcal mode: MANUAL, MANUAL   PC period (AP's) X,X" + '\n' + \
@@ -667,7 +686,7 @@ def make_fourfit_plot(plot_dict, filename):
 
 
     # Add the text boxes
-    plt.text(0.45,0.1,textstr100,transform=plt.gcf().transFigure,fontsize=7,verticalalignment='top',family='monospace',horizontalalignment='left',color='k')
+    plt.text(0.44,0.1,textstr100,transform=plt.gcf().transFigure,fontsize=7,verticalalignment='top',family='monospace',horizontalalignment='left',color='k')
 
 
     pylab.show()

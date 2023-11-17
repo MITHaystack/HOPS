@@ -925,6 +925,28 @@ MHO_ComputePlotData::DumpInfoToJSON(mho_json& plot_dict)
         plot_dict["PLOT_INFO"]["TrkRm"].push_back("-");
     }
 
+    //for the time being, we add the window info here:
+    double sb_win_low = std::get<0>(sbd_amp)(0);
+    double sb_win_high = std::get<0>(sbd_amp)( sbd_amp.GetSize() - 1);
+    plot_dict["extra"]["sb_win"].push_back(sb_win_low);
+    plot_dict["extra"]["sb_win"].push_back(sb_win_high);
+
+    double mb_win_low = std::get<0>(mbd_amp)(0);
+    double mb_win_high = std::get<0>(mbd_amp)( mbd_amp.GetSize() - 1);
+    plot_dict["extra"]["mb_win"].push_back(mb_win_low);
+    plot_dict["extra"]["mb_win"].push_back(mb_win_high);
+
+    double dr_win_low = std::get<0>(dr_amp)(0);
+    double dr_win_high = std::get<0>(dr_amp)( dr_amp.GetSize() - 1);
+    plot_dict["extra"]["dr_win"].push_back(dr_win_low);
+    plot_dict["extra"]["dr_win"].push_back(dr_win_high);
+
+    plot_dict["extra"]["ion_win"].push_back(0.0);
+    plot_dict["extra"]["ion_win"].push_back(0.0);
+
+
+    std::cout<<sb_win_low<<", "<<sb_win_high<<", "<<mb_win_low<<", "<<mb_win_high<<std::endl;
+
 }
 
 int 
