@@ -3,6 +3,8 @@
 //construct_plot_data
 #include "MHO_ComputePlotData.hh"
 
+#include "MHO_BasicFringeInfo.hh"
+
 namespace hops
 {
 
@@ -130,40 +132,40 @@ MHO_FringePlotInfo::fill_plot_data(MHO_ParameterStore* paramStore, mho_json& plo
     plot_dict["ResidPhdelayError(usec)"] = paramStore->GetAs<double>("/fringe/phase_delay_error");
     plot_dict["ResidRateError(us/s)"] = paramStore->GetAs<double>("/fringe/drate_error");
     plot_dict["ResidPhaseError(deg)"] =  paramStore->GetAs<double>("/fringe/phase_error");
-    
-    
-    //the quantities below are stuff that is on the fringe-plot but is not present 
+
+
+    //the quantities below are stuff that is on the fringe-plot but is not present
     //in the plot-data-dir file structure, so we put them under 'extra'
-    
+
     plot_dict["extra"]["ref_station"]["az"] = paramStore->GetAs<double>("/ref_station/azimuth");
     plot_dict["extra"]["ref_station"]["al"] = paramStore->GetAs<double>("/ref_station/elevation");
     plot_dict["extra"]["ref_station"]["pa"] = paramStore->GetAs<double>("/ref_station/parallactic_angle");
-    
+
     double refu = paramStore->GetAs<double>("/ref_station/u");
     double refv = paramStore->GetAs<double>("/ref_station/v");
-    
+
     plot_dict["extra"]["ref_station"]["u"] = refu;
     plot_dict["extra"]["ref_station"]["v"] = refv;
     plot_dict["extra"]["ref_station"]["w"] = paramStore->GetAs<double>("/ref_station/w");
     plot_dict["extra"]["rem_station"]["az"] = paramStore->GetAs<double>("/rem_station/azimuth");
     plot_dict["extra"]["rem_station"]["al"] = paramStore->GetAs<double>("/rem_station/elevation");
     plot_dict["extra"]["rem_station"]["pa"] = paramStore->GetAs<double>("/rem_station/parallactic_angle");
-    
+
     double remu = paramStore->GetAs<double>("/rem_station/u");
     double remv = paramStore->GetAs<double>("/rem_station/v");
     plot_dict["extra"]["rem_station"]["u"] = remu;
     plot_dict["extra"]["rem_station"]["v"] = remv;
     plot_dict["extra"]["rem_station"]["w"] = paramStore->GetAs<double>("/rem_station/w");
-    
+
     plot_dict["extra"]["control_file"] = paramStore->GetAs<std::string>("/files/control_file");
     plot_dict["extra"]["baseline_input_file"] = paramStore->GetAs<std::string>("/files/baseline_input_file");
     plot_dict["extra"]["ref_station_input_file"] = paramStore->GetAs<std::string>("/files/ref_station_input_file");
     plot_dict["extra"]["rem_station_input_file"] = paramStore->GetAs<std::string>("/files/rem_station_input_file");
     plot_dict["extra"]["output_file"] = paramStore->GetAs<std::string>("/files/output_file");
-    
+
     plot_dict["extra"]["ref_station_mk4id"] = paramStore->GetAs<std::string>("/ref_station/mk4id");
     plot_dict["extra"]["rem_station_mk4id"] = paramStore->GetAs<std::string>("/rem_station/mk4id");
-    
+
     //calculate the (u,v) coordinates (taken from fill_202.c)
     double speed_of_light_Mm = 299.792458; // in mega-meters (?!)
     double lambda = speed_of_light_Mm / paramStore->GetAs<double>("/config/ref_freq"); // wavelength (m)
@@ -172,6 +174,20 @@ MHO_FringePlotInfo::fill_plot_data(MHO_ParameterStore* paramStore, mho_json& plo
     double dv = radians_to_arcsec*(remv - refv) /lambda;
     plot_dict["extra"]["u"] = du;
     plot_dict["extra"]["v"] = dv;
+
+
+    double snr = paramStore->GetAs<double>("/fringe/snr");
+    int nseg = plot_dict["NSeg"];
+    int nchan =  paramStore->GetAs<double>("/config/nchannels");
+
+    double th_timerms_phase = MHO_BasicFringeInfo::calculate_theory_timerms_phase(nseg, snr);
+    double th_timerms_amp = MHO_BasicFringeInfo::calculate_theory_timerms_amp(nseg, snr);
+    double th_freqrms_phase = MHO_BasicFringeInfo::calculate_theory_freqrms_phase(nchan, snr);
+    double th_freqrms_amp = MHO_BasicFringeInfo::calculate_theory_freqrms_amp(nchan, snr);
+
+    std::cout<<"Theory values = "<<th_timerms_phase<<", "<<th_timerms_amp<<", "<<th_freqrms_phase<<", "<<th_freqrms_amp<<std::endl;
+
+
 }
 
 
