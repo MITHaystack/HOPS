@@ -1,9 +1,9 @@
 #include "MHO_BasicFringeInfo.hh"
 
-namespace hops 
+namespace hops
 {
 
-std::string 
+std::string
 MHO_BasicFringeInfo::leftpadzeros_integer(unsigned int n_places, int value)
 {
     std::stringstream ss;
@@ -13,7 +13,7 @@ MHO_BasicFringeInfo::leftpadzeros_integer(unsigned int n_places, int value)
     return ss.str();
 }
 
-std::string 
+std::string
 MHO_BasicFringeInfo::make_legacy_datetime_format(legacy_hops_date ldate)
 {
     //formats the time as HHMMSS.xx with no separators (except the '.' for the fractional second)
@@ -27,7 +27,7 @@ MHO_BasicFringeInfo::make_legacy_datetime_format(legacy_hops_date ldate)
 }
 
 
-double 
+double
 MHO_BasicFringeInfo::calculate_snr(double effective_npol, double ap_period, double samp_period, double total_ap_frac, double amp)
 {
     //Poor imitation of SNR -- needs corrections
@@ -43,7 +43,7 @@ MHO_BasicFringeInfo::calculate_snr(double effective_npol, double ap_period, doub
     return snr;
 }
 
-double 
+double
 MHO_BasicFringeInfo::calculate_mbd_no_ion_error(double freq_spread, double snr)
 {
     double mbd_err = (1.0 / (2.0 * M_PI * freq_spread * snr) );
@@ -51,7 +51,7 @@ MHO_BasicFringeInfo::calculate_mbd_no_ion_error(double freq_spread, double snr)
 }
 
 
-double 
+double
 MHO_BasicFringeInfo::calculate_sbd_error(double sbd_sep, double snr, double sbavg)
 {
     /* get proper weighting for sbd error estimate */
@@ -66,7 +66,7 @@ MHO_BasicFringeInfo::calculate_sbd_error(double sbd_sep, double snr, double sbav
 }
 
 
-double 
+double
 MHO_BasicFringeInfo::calculate_drate_error_v1(double snr, double ref_freq, double total_nap, double ap_delta)
 {
     //originally: temp = status->total_ap * param->acc_period / pass->channels;
@@ -78,7 +78,7 @@ MHO_BasicFringeInfo::calculate_drate_error_v1(double snr, double ref_freq, doubl
 }
 
 
-double 
+double
 MHO_BasicFringeInfo::calculate_drate_error_v2(double snr, double ref_freq, double integration_time)
 {
     double temp = integration_time;
@@ -86,7 +86,7 @@ MHO_BasicFringeInfo::calculate_drate_error_v2(double snr, double ref_freq, doubl
     return drate_error;
 }
 
-double 
+double
 MHO_BasicFringeInfo::calculate_pfd(double snr, double pts_searched)
 {
     double a = 1.0 - std::exp(-1.0*(snr*snr)/ 2.0);
@@ -98,7 +98,7 @@ MHO_BasicFringeInfo::calculate_pfd(double snr, double pts_searched)
     return pfd;
 }
 
-double 
+double
 MHO_BasicFringeInfo::calculate_phase_error(double sbavg, double snr)
 {
     //no ionosphere
@@ -107,7 +107,7 @@ MHO_BasicFringeInfo::calculate_phase_error(double sbavg, double snr)
     return phase_err;
 }
 
-double 
+double
 MHO_BasicFringeInfo::calculate_phase_delay_error(double sbavg, double snr, double ref_freq)
 {
     //no ionosphere
@@ -116,8 +116,43 @@ MHO_BasicFringeInfo::calculate_phase_delay_error(double sbavg, double snr, doubl
     return ph_delay_err;
 }
 
+double
+MHO_BasicFringeInfo::calculate_theory_timerms_phase(double nseg, double snr)
+{
+    /* Theoretical RMS values */
+    /* true_nseg is meant to be effective */
+    /* number of segments actually included */
+    /* in the fit for switched mode */
+    //true_nseg = status.nseg * totap / (pass->num_ap * pass->nfreq);
+    double true_nseg = nseg;
+    double th_timerms_phase = std::sqrt(true_nseg) * 180. / (M_PI * snr);
+    return th_timerms_phase;
+}
 
-std::string 
+double
+MHO_BasicFringeInfo::calculate_theory_timerms_amp(double nseg, double snr)
+{
+    double th_timerms_phase = calculate_theory_timerms_phase(nseg, snr);
+    double th_timerms_amp = th_timerms_phase * M_PI * 100. / 180.;
+    return th_timerms_amp;
+}
+
+double
+MHO_BasicFringeInfo::calculate_theory_freqrms_phase(double nchan, double snr)
+{
+    double th_freqrms_phase = std::sqrt(nchan) * 180. / (M_PI * snr);
+    return th_freqrms_phase;
+}
+
+double
+MHO_BasicFringeInfo::calculate_theory_freqrms_amp(double nchan, double snr)
+{
+    double th_freqrms_phase = calculate_theory_freqrms_phase(nchan, snr);
+    double th_freqrms_amp = th_freqrms_phase * M_PI * 100. / 180.;
+    return th_freqrms_amp;
+}
+
+std::string
 MHO_BasicFringeInfo::calculate_qf()
 {
     //dummy impl
@@ -125,7 +160,7 @@ MHO_BasicFringeInfo::calculate_qf()
     return std::string("?");
 }
 
-void 
+void
 MHO_BasicFringeInfo::correct_phases_mbd_anchor_sbd(double ref_freq, double freq0, double frequency_spacing, double delta_mbd, double& totphase_deg, double& resphase_deg)
 {
     //see fill_208.c

@@ -17,16 +17,16 @@
 *Author:
 *Email:
 *Date: Tue Sep 19 04:11:24 PM EDT 2023
-*Description: collection of very simple static helper functions 
+*Description: collection of very simple static helper functions
 * used when computing fringe information/parameters
 */
 
-namespace hops 
+namespace hops
 {
 
 class MHO_BasicFringeInfo
 {
-        
+
     public:
         MHO_BasicFringeInfo(){};
         virtual ~MHO_BasicFringeInfo(){};
@@ -45,6 +45,12 @@ class MHO_BasicFringeInfo
         static double calculate_phase_error(double sbavg, double snr);
         static double calculate_phase_delay_error(double sbavg, double snr, double ref_freq);
         static std::string calculate_qf();
+
+        static double calculate_theory_timerms_phase(double nseg, double snr);
+        static double calculate_theory_timerms_amp(double nseg, double snr);
+        static double calculate_theory_freqrms_phase(double nchan, double snr);
+        static double calculate_theory_freqrms_amp(double nchan, double snr);
+
         static void correct_phases_mbd_anchor_sbd(double ref_freq, double freq0, double frequency_spacing, double delta_mbd, double& totphase_deg, double& resphase_deg);
 };
 
