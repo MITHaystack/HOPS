@@ -662,12 +662,10 @@ def make_fourfit_plot(plot_dict, filename):
         ct4_data[3][0] = str( np.round(float(plot_dict['extra']['ion_win'][0]),3) ) 
         ct4_data[3][1] = str( np.round(float(plot_dict['extra']['ion_win'][1]),3) ) 
 
-    print(plot_dict['extra'])
-    print( str(plot_dict['extra']['sb_win'][0] ) )
-    print( str(plot_dict['extra']['sb_win'][1] ) )
 
-
-    print(ct4_data)
+    # print( str(plot_dict['extra']['sb_win'][0] ) )
+    # print( str(plot_dict['extra']['sb_win'][1] ) )
+    # print(ct4_data)
 
     # Create the table
     table4 = axT4.table(cellText=ct4_data, rowLabels=ct4_row_label, loc='center')
@@ -697,6 +695,7 @@ def make_fourfit_plot(plot_dict, filename):
     # Add the text boxes
     plt.text(0.44,0.1,textstr100,transform=plt.gcf().transFigure,fontsize=7,verticalalignment='top',family='monospace',horizontalalignment='left',color='k')
 
+    print(plot_dict['extra'])
 
     pylab.show()
     pylab.savefig(filename)
