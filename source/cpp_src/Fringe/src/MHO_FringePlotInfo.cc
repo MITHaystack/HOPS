@@ -136,6 +136,8 @@ MHO_FringePlotInfo::fill_plot_data(MHO_ParameterStore* paramStore, mho_json& plo
 
     //the quantities below are stuff that is on the fringe-plot but is not present
     //in the plot-data-dir file structure, so we put them under 'extra'
+    
+    plot_dict["extra"]["ambiguity"] =  paramStore->GetAs<double>("/fringe/ambiguity");
 
     plot_dict["extra"]["ref_station"]["az"] = paramStore->GetAs<double>("/ref_station/azimuth");
     plot_dict["extra"]["ref_station"]["al"] = paramStore->GetAs<double>("/ref_station/elevation");
@@ -184,6 +186,11 @@ MHO_FringePlotInfo::fill_plot_data(MHO_ParameterStore* paramStore, mho_json& plo
     double th_timerms_amp = MHO_BasicFringeInfo::calculate_theory_timerms_amp(nseg, snr);
     double th_freqrms_phase = MHO_BasicFringeInfo::calculate_theory_freqrms_phase(nchan, snr);
     double th_freqrms_amp = MHO_BasicFringeInfo::calculate_theory_freqrms_amp(nchan, snr);
+
+    plot_dict["extra"]["theory_timerms_phase"] = th_timerms_phase;
+    plot_dict["extra"]["theory_timerms_amp"] = th_timerms_amp;
+    plot_dict["extra"]["theory_freqrms_phase"] = th_freqrms_phase;
+    plot_dict["extra"]["theory_freqrms_amp"] = th_freqrms_amp;
 
     std::cout<<"Theory values = "<<th_timerms_phase<<", "<<th_timerms_amp<<", "<<th_freqrms_phase<<", "<<th_freqrms_amp<<std::endl;
 
