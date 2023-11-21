@@ -591,8 +591,13 @@ def make_fourfit_plot(plot_dict, filename):
     ct2_row_label[1] = 'amp/seg (%)'
     ct2_row_label[2] = 'ph/frq (deg)'
     ct2_row_label[3] = 'amp/frq (%)'
-    #create the table of per-channel data TODO - FILL ME IN
-    ct2_data = [[' - ']*ct2_cols]*ct2_rows
+    ct2_data = np.zeros((ct2_rows,ct2_cols))
+    if 'extra' in plot_dict:
+        ct2_data[0][1] = str(np.round(float(plot_dict["extra"]["theory_timerms_phase"]),1) )
+        ct2_data[1][1] = str(np.round(float(plot_dict["extra"]["theory_timerms_amp"]),1) )
+        ct2_data[2][1] = str(np.round(float(plot_dict["extra"]["theory_freqrms_phase"]),1) )
+        ct2_data[3][1] = str(np.round(float(plot_dict["extra"]["theory_freqrms_amp"]),1) )
+
     # Create the table
     table2 = axT2.table(cellText=ct2_data, colLabels=ct2_col_label, rowLabels=ct2_row_label, loc='center')
     # Remove the borders from the table and set alignment
@@ -646,8 +651,7 @@ def make_fourfit_plot(plot_dict, filename):
     ct4_row_label[2] = 'dr window (ns/s)'
     ct4_row_label[3] = 'ion window (TEC)'
     #create the table of per-channel data TODO - FILL ME IN
-    ct4_data = np.zeros((ct4_rows,ct4_cols)) # [[' - ']*ct4_cols]*ct4_rows
-
+    ct4_data = np.zeros((ct4_rows,ct4_cols))
     if 'extra' in plot_dict:
         ct4_data[0][0] = str(np.round(float(plot_dict['extra']['sb_win'][0]),3) )
         ct4_data[0][1] = str(np.round(float(plot_dict['extra']['sb_win'][1]),3) )
@@ -659,7 +663,6 @@ def make_fourfit_plot(plot_dict, filename):
         ct4_data[3][1] = str( np.round(float(plot_dict['extra']['ion_win'][1]),3) ) 
 
     print(plot_dict['extra'])
-
     print( str(plot_dict['extra']['sb_win'][0] ) )
     print( str(plot_dict['extra']['sb_win'][1] ) )
 
@@ -679,11 +682,15 @@ def make_fourfit_plot(plot_dict, filename):
     # Set the table cell height to make it smaller
     table4.scale(12, 0.7)  # Adjust the scale factor as needed
 
+    ambiguity = "-"
+    if 'extra' in plot_dict:
+        ambiguity = str( np.round(float(plot_dict['extra']['ambiguity']),3) ) 
+
     #last pile of text
     textstr100 = "Pcal mode: MANUAL, MANUAL   PC period (AP's) X,X" + '\n' + \
         'Pcal rate: X,X (us/s)' + '\n' + \
         'Bits/sample: 2x2 SampCntNorm: disabled' + '\n' + \
-        'Data rate(MSamp/s) X MB pts Y Amb Z us ' + '\n' + \
+        'Data rate(MSamp/s) X MB pts Y Amb ' + ambiguity +' us ' + '\n' + \
         'Data rate(Mb/s) X    nlags: X t_cohere infinite'
 
 
