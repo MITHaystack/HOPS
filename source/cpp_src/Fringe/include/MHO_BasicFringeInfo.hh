@@ -52,6 +52,7 @@ class MHO_BasicFringeInfo
         static double calculate_theory_freqrms_amp(double nchan, double snr);
 
         static void correct_phases_mbd_anchor_sbd(double ref_freq, double freq0, double frequency_spacing, double delta_mbd, double& totphase_deg, double& resphase_deg);
+
 };
 
 }//end namespace

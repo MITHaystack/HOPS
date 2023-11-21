@@ -949,6 +949,51 @@ MHO_ComputePlotData::DumpInfoToJSON(mho_json& plot_dict)
 
 }
 
+
+/*
+void
+MHO_ComputePlotData::calc_freqrms(phasor_type& phasors)
+{
+    std::size_t nchan = phasors.GetDimension(0)-1; //-1 is for the 'all' channel
+    std::size_t nap = phasors.GetDimension(1);
+
+    for(std::size ch = 0; ch < nchan; ch++)
+    {
+        std::complex<double> sum = 0;
+        for(std::size ap =0; ap < nap; ap ++)
+        {
+            sum += phasors(ch, ap);
+        }
+    }
+
+
+    // Calculate frequency rms values 
+    for(fr=0;fr<nchan;fr++)
+    {
+        c = arg_complex(status.fringe[fr]) - status.coh_avg_phase;
+        // condition to lie in [-pi,pi] interval
+        c = fmod (c, 2.0 * M_PI);
+        if (c > M_PI){c -= 2.0 * M_PI;}
+        else if (c < - M_PI){c += 2.0 * M_PI;}
+        status.freqrms_phase += c * c;
+        c = abs_complex(status.fringe[fr]) - status.delres_max;
+        status.freqrms_amp += c * c;
+    }
+    if (pass->nfreq > 2)
+    {                // avoid 0/0 singularity
+        status.freqrms_phase = sqrt(status.freqrms_phase
+                                    / (pass->nfreq - 2)) * 180./M_PI;
+    }
+    else
+    {
+        status.freqrms_phase = 0.0;
+    }
+    status.freqrms_amp = sqrt(status.freqrms_amp / pass->nfreq) * 100. / status.delres_max;
+
+}
+*/
+
+
 int 
 MHO_ComputePlotData::parabola (double y[3], double lower, double upper, double* x_max, double* amp_max, double q[3])
 {
