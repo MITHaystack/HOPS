@@ -65,6 +65,10 @@ class MHO_ComputePlotData
 
         double calc_phase();
         
+        /*
+        void calc_freqrms(phasor_type& phasors);
+        */
+        
         //these functions copied from ffmath and minmax.c -- TODO move to MHO_Math library 
         int parabola(double y[3], double lower, double upper, double* x_max, double* amp_max, double q[3]);
         double dwin(double value, double lower, double upper)
