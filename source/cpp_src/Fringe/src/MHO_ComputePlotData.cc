@@ -751,7 +751,9 @@ MHO_ComputePlotData::DumpInfoToJSON(mho_json& plot_dict)
     fParamStore->Set("/fringe/raw_resid_phase", coh_avg_phase_deg);
 
     double fringe_amp = fParamStore->GetAs<double>("/fringe/famp");
-    calc_freqrms(phasors, coh_avg_phase, fringe_amp);
+    double tsum_weights = fParamStore->GetAs<double>("/fringe/total_summed_weights");
+    double resid_phase = fParamStore->GetAs<double>("/fringe/resid_phase");
+    calc_freqrms(phasors, resid_phase*(M_PI/180.), fringe_amp, tsum_weights);
 
 
     //calculate AP period
@@ -956,7 +958,7 @@ MHO_ComputePlotData::DumpInfoToJSON(mho_json& plot_dict)
 
 
 void
-MHO_ComputePlotData::calc_freqrms(phasor_type& phasors, double coh_avg_phase, double fringe_amp)
+MHO_ComputePlotData::calc_freqrms(phasor_type& phasors, double coh_avg_phase, double fringe_amp, double total_summed_weights)
 {
     std::size_t nchan = phasors.GetDimension(0)-1; //-1 is for the 'all' channel tacked on the end
     std::size_t nap = phasors.GetDimension(1);
@@ -964,14 +966,22 @@ MHO_ComputePlotData::calc_freqrms(phasor_type& phasors, double coh_avg_phase, do
     double freqrms_phase = 0;
     double freqrms_amp = 0;
 
+
+
+
     for(std::size_t ch = 0; ch < nchan; ch++)
     {
         std::complex<double> sum = 0;
+        double sumwt = 0.0;
         for(std::size_t ap =0; ap < nap; ap ++)
         {
             sum += phasors(ch, ap);
+            sumwt += (*fWeights)(0, ch, ap, 0);
         }
+        sum /= sumwt;
+        printf("fringe @ %d = %f %f \n", ch, std::real(sum), std::imag(sum) );
         double c = std::arg(sum) - coh_avg_phase;
+        printf("c, cap = %f, %f\n", c, coh_avg_phase);
         // condition to lie in [-pi,pi] interval
         //TODO FIXME -- this is the original implementation, but it is incorrect!
         #pragma message("TODO FIXME, this way of computing an average phase angle is incorrect, should compute the average vector first, then take the angle of that.")
@@ -992,6 +1002,8 @@ MHO_ComputePlotData::calc_freqrms(phasor_type& phasors, double coh_avg_phase, do
     {
         freqrms_phase = 0.0;
     }
+
+    printf("freqrms_phase = %f\n ", freqrms_phase);
 
     freqrms_amp = std::sqrt(freqrms_amp / nchan) * 100. / fringe_amp;
 

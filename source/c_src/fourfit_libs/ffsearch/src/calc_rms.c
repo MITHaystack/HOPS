@@ -303,7 +303,9 @@ calc_rms (struct type_pass *pass)
     for(fr=0;fr<pass->nfreq;fr++)
         {
         c = arg_complex(status.fringe[fr]) - status.coh_avg_phase;
+        printf("fringe @ %d = %f %f \n", fr, real_comp(status.fringe[fr]), imag_comp(status.fringe[fr]) );
                                         // condition to lie in [-pi,pi] interval
+        printf("c, cap = %f, %f\n", c, status.coh_avg_phase);
         c = fmod (c, 2.0 * M_PI);
         if (c > M_PI)
             c -= 2.0 * M_PI;
@@ -319,6 +321,8 @@ calc_rms (struct type_pass *pass)
     else
         status.freqrms_phase = 0.0;
     status.freqrms_amp = sqrt(status.freqrms_amp / pass->nfreq) * 100. / status.delres_max;
+
+    printf("freqrms_phase = %f\n ", status.freqrms_phase);
 
                                         /* Theoretical RMS values */
                                         /* true_nseg is meant to be effective */
