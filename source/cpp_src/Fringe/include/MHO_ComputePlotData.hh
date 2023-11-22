@@ -66,7 +66,7 @@ class MHO_ComputePlotData
         double calc_phase();
 
 
-        void calc_freqrms(phasor_type& phasors, double coh_avg_phase, double fringe_amp);
+        void calc_freqrms(phasor_type& phasors, double coh_avg_phase, double fringe_amp, double total_summed_weights);
 
 
         //these functions copied from ffmath and minmax.c -- TODO move to MHO_Math library
