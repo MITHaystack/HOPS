@@ -257,7 +257,7 @@ def make_fourfit_plot(plot_dict, filename):
         if ch == 0:
             ax7b.set_ylabel('L',fontsize=7, rotation=0, labelpad=5)
             ax7b.yaxis.set_label_coords(-0.23,0.0)
-            
+
     #PCAL PLOTS
     for ch in range(0,n_seg_plots-1):
         ax8 = plt.subplot2grid((255,colw*n_seg_plots),(160,colw*ch),rowspan=16,colspan=colw)
@@ -284,7 +284,7 @@ def make_fourfit_plot(plot_dict, filename):
             ax8.yaxis.set_major_locator(plt.NullLocator())
             ax8.set_yticklabels(labels=[],visible=False)
             plt.yticks(visible=False)
-    
+
     #TODO FIXME -- make these station labels part of the y-axis title so their placement is done properly no matter the number of channels
     if 'extra' in plot_dict:
         ref_mk4id = plot_dict["extra"]["ref_station_mk4id"]
@@ -552,7 +552,7 @@ def make_fourfit_plot(plot_dict, filename):
         ref_u = plot_dict['extra']['ref_station']['u']
         ref_v = plot_dict['extra']['ref_station']['v']
         refbtmtextstr = ref_mk4id +":"
-        refbtmtextstr += " az " + str(np.round(float(ref_az),1)) 
+        refbtmtextstr += " az " + str(np.round(float(ref_az),1))
         refbtmtextstr += " el " + str(np.round(float(ref_el),1))
         refbtmtextstr += " pa " + str(np.round(float(ref_pa),1))
         rem_mk4id = plot_dict["extra"]["rem_station_mk4id"]
@@ -562,16 +562,16 @@ def make_fourfit_plot(plot_dict, filename):
         rem_u = plot_dict['extra']['rem_station']['u']
         rem_v = plot_dict['extra']['rem_station']['v']
         rembtmtextstr = rem_mk4id +":"
-        rembtmtextstr += " az " + str(np.round(float(rem_az),1)) 
+        rembtmtextstr += " az " + str(np.round(float(rem_az),1))
         rembtmtextstr += " el " + str(np.round(float(rem_el),1))
         rembtmtextstr += " pa " + str(np.round(float(rem_pa),1))
         du = plot_dict['extra']['u']
         dv = plot_dict['extra']['v']
-        uvtextstr = "u,v (fr/asec) " + str(np.round(float(du),3)) + ", " + str(np.round(float(dv),3)) 
+        uvtextstr = "u,v (fr/asec) " + str(np.round(float(du),3)) + ", " + str(np.round(float(dv),3))
         station_coords_textstr = refbtmtextstr + "    " + rembtmtextstr + "    " + uvtextstr
         plt.text(0.01,0.04, station_coords_textstr ,transform=plt.gcf().transFigure,fontsize=7,verticalalignment='top', family='monospace',horizontalalignment='left',color='k')
         plt.text(0.97,0.04, "simultaneous interpolator" ,transform=plt.gcf().transFigure,fontsize=7,verticalalignment='top', family='monospace',horizontalalignment='right',color='k')
-        
+
         control_file = plot_dict['extra']['control_file']
         input_file = plot_dict['extra']['baseline_input_file']
         output_file = plot_dict['extra']['output_file']
@@ -597,6 +597,8 @@ def make_fourfit_plot(plot_dict, filename):
         ct2_data[1][1] = str(np.round(float(plot_dict["extra"]["theory_timerms_amp"]),1) )
         ct2_data[2][1] = str(np.round(float(plot_dict["extra"]["theory_freqrms_phase"]),1) )
         ct2_data[3][1] = str(np.round(float(plot_dict["extra"]["theory_freqrms_amp"]),1) )
+        ct2_data[2][0] = str(np.round(float(plot_dict["extra"]["freqrms_phase"]),1) )
+        ct2_data[3][0] = str(np.round(float(plot_dict["extra"]["freqrms_amp"]),1) )
 
     # Create the table
     table2 = axT2.table(cellText=ct2_data, colLabels=ct2_col_label, rowLabels=ct2_row_label, loc='center')
@@ -657,10 +659,10 @@ def make_fourfit_plot(plot_dict, filename):
         ct4_data[0][1] = str(np.round(float(plot_dict['extra']['sb_win'][1]),3) )
         ct4_data[1][0] = str(np.round( float(plot_dict['extra']['mb_win'][0]),3) )
         ct4_data[1][1] = str(np.round( float(plot_dict['extra']['mb_win'][1]),3) )
-        ct4_data[2][0] = str( np.round(float(plot_dict['extra']['dr_win'][0]),3) ) 
-        ct4_data[2][1] = str( np.round(float(plot_dict['extra']['dr_win'][1]),3) ) 
-        ct4_data[3][0] = str( np.round(float(plot_dict['extra']['ion_win'][0]),3) ) 
-        ct4_data[3][1] = str( np.round(float(plot_dict['extra']['ion_win'][1]),3) ) 
+        ct4_data[2][0] = str( np.round(float(plot_dict['extra']['dr_win'][0]),3) )
+        ct4_data[2][1] = str( np.round(float(plot_dict['extra']['dr_win'][1]),3) )
+        ct4_data[3][0] = str( np.round(float(plot_dict['extra']['ion_win'][0]),3) )
+        ct4_data[3][1] = str( np.round(float(plot_dict['extra']['ion_win'][1]),3) )
 
 
     # print( str(plot_dict['extra']['sb_win'][0] ) )
@@ -682,7 +684,7 @@ def make_fourfit_plot(plot_dict, filename):
 
     ambiguity = "-"
     if 'extra' in plot_dict:
-        ambiguity = str( np.round(float(plot_dict['extra']['ambiguity']),3) ) 
+        ambiguity = str( np.round(float(plot_dict['extra']['ambiguity']),3) )
 
     #last pile of text
     textstr100 = "Pcal mode: MANUAL, MANUAL   PC period (AP's) X,X" + '\n' + \

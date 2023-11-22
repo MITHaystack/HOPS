@@ -733,9 +733,6 @@ MHO_ComputePlotData::calc_xpower_spec()
 
 
 
-
-
-
 void
 MHO_ComputePlotData::DumpInfoToJSON(mho_json& plot_dict)
 {
@@ -749,11 +746,6 @@ MHO_ComputePlotData::DumpInfoToJSON(mho_json& plot_dict)
 
     double coh_avg_phase_deg = std::fmod(coh_avg_phase * (180.0/M_PI), 360.0);
     fParamStore->Set("/fringe/raw_resid_phase", coh_avg_phase_deg);
-
-    double fringe_amp = fParamStore->GetAs<double>("/fringe/famp");
-    double tsum_weights = fParamStore->GetAs<double>("/fringe/total_summed_weights");
-    double resid_phase = fParamStore->GetAs<double>("/fringe/resid_phase");
-    calc_freqrms(phasors, resid_phase*(M_PI/180.), fringe_amp, tsum_weights);
 
 
     //calculate AP period
@@ -953,21 +945,27 @@ MHO_ComputePlotData::DumpInfoToJSON(mho_json& plot_dict)
 
     std::cout<<sb_win_low<<", "<<sb_win_high<<", "<<mb_win_low<<", "<<mb_win_high<<std::endl;
 
+
+    double fringe_amp = fParamStore->GetAs<double>("/fringe/famp");
+    double tsum_weights = fParamStore->GetAs<double>("/fringe/total_summed_weights");
+    double resid_phase = fParamStore->GetAs<double>("/fringe/resid_phase");
+    double freqrms_phase, freqrms_amp;
+    calc_freqrms(phasors, resid_phase*(M_PI/180.), fringe_amp, tsum_weights, freqrms_phase, freqrms_amp);
+
+    plot_dict["extra"]["freqrms_phase"] = freqrms_phase;
+    plot_dict["extra"]["freqrms_amp"] = freqrms_amp;
 }
 
 
 
 void
-MHO_ComputePlotData::calc_freqrms(phasor_type& phasors, double coh_avg_phase, double fringe_amp, double total_summed_weights)
+MHO_ComputePlotData::calc_freqrms(phasor_type& phasors, double coh_avg_phase, double fringe_amp, double total_summed_weights, double& freqrms_phase, double& freqrms_amp)
 {
     std::size_t nchan = phasors.GetDimension(0)-1; //-1 is for the 'all' channel tacked on the end
     std::size_t nap = phasors.GetDimension(1);
 
-    double freqrms_phase = 0;
-    double freqrms_amp = 0;
-
-
-
+    freqrms_phase = 0;
+    freqrms_amp = 0;
 
     for(std::size_t ch = 0; ch < nchan; ch++)
     {
