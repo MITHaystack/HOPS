@@ -41,7 +41,7 @@ class MHO_ComputePlotData
     public:
         MHO_ComputePlotData();
         virtual ~MHO_ComputePlotData(){};
-        
+
         void EnableOptimizeClosure(){fRot.SetOptimizeClosureTrue();}
         void DisableOptimizeClosure(){fRot.SetOptimizeClosureFalse();}
         void SetMBDAnchor(std::string flag){fMBDAnchor = flag;}
@@ -64,12 +64,12 @@ class MHO_ComputePlotData
         xpower_amp_type calc_dr();
 
         double calc_phase();
-        
-        /*
-        void calc_freqrms(phasor_type& phasors);
-        */
-        
-        //these functions copied from ffmath and minmax.c -- TODO move to MHO_Math library 
+
+
+        void calc_freqrms(phasor_type& phasors, double coh_avg_phase, double fringe_amp);
+
+
+        //these functions copied from ffmath and minmax.c -- TODO move to MHO_Math library
         int parabola(double y[3], double lower, double upper, double* x_max, double* amp_max, double q[3]);
         double dwin(double value, double lower, double upper)
         {
@@ -105,13 +105,13 @@ class MHO_ComputePlotData
         MHO_MultidimensionalPaddedFastFourierTransform< xpower_type > fPaddedFFTEngine;
         MHO_MultidimensionalFastFourierTransform< xpower_type > fFFTEngine;
         MHO_CyclicRotator< xpower_type > fCyclicRotator;
-        
+
         //class which implements vrot
         MHO_FringeRotation fRot;
-        
-        //flag for mbd anchor 
+
+        //flag for mbd anchor
         std::string fMBDAnchor;
-        
+
         //space for xpower spectrum and sbdbox
         std::vector< double > fSBDBox;
         std::vector< int > fNUSBAP;

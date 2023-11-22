@@ -116,7 +116,7 @@ MHO_ComputePlotData::calc_mbd()
     for(std::size_t ch=0; ch < nchan; ch++)
     {
         double freq = (*chan_ax)(ch);//sky freq of this channel
-        
+
         MHO_IntervalLabel ilabel(ch,ch);
         std::string net_sideband = "?";
         std::string sidebandlabelkey = "net_sideband";
@@ -132,7 +132,7 @@ MHO_ComputePlotData::calc_mbd()
         fRot.SetSideband(0); //DSB
         if(net_sideband == "U"){fRot.SetSideband(1);}
         if(net_sideband == "L"){fRot.SetSideband(-1);}
-        
+
         sum = 0;
         for(std::size_t ap=0; ap < nap; ap++)
         {
@@ -220,7 +220,7 @@ MHO_ComputePlotData::calc_sbd()
             fRot.SetSideband(0); //DSB
             if(net_sideband == "U"){fRot.SetSideband(1);}
             if(net_sideband == "L"){fRot.SetSideband(-1);}
-            
+
             sum = 0;
             for(std::size_t ap=0; ap < nap; ap++)
             {
@@ -278,7 +278,7 @@ MHO_ComputePlotData::calc_segs()
         for(std::size_t ch=0; ch < nchan; ch++)
         {
             double freq = (*chan_ax)(ch);//sky freq of this channel
-            
+
             MHO_IntervalLabel ilabel(ch,ch);
             std::string net_sideband = "?";
             std::string sidebandlabelkey = "net_sideband";
@@ -294,7 +294,7 @@ MHO_ComputePlotData::calc_segs()
             fRot.SetSideband(0); //DSB
             if(net_sideband == "U"){fRot.SetSideband(1);}
             if(net_sideband == "L"){fRot.SetSideband(-1);}
-            
+
             //make sure this plot gets the channel label:
             MHO_IntervalLabel ch_name(ch,ch);
             ch_name.Insert(chan_label_key, channel_labels[ch]);
@@ -382,7 +382,7 @@ MHO_ComputePlotData::calc_dr()
     for(std::size_t ch=0; ch < nchan; ch++)
     {
         double freq = (*chan_ax)(ch);//sky freq of this channel
-        
+
         MHO_IntervalLabel ilabel(ch,ch);
         std::string net_sideband = "?";
         std::string sidebandlabelkey = "net_sideband";
@@ -398,8 +398,8 @@ MHO_ComputePlotData::calc_dr()
         fRot.SetSideband(0); //DSB
         if(net_sideband == "U"){fRot.SetSideband(1);}
         if(net_sideband == "L"){fRot.SetSideband(-1);}
-        
-        
+
+
         for(std::size_t ap=0; ap < nap; ap++)
         {
             double tdelta = (ap_ax->at(ap) + ap_delta/2.0) - frt_offset; //need time difference from the f.r.t?
@@ -518,10 +518,10 @@ MHO_ComputePlotData::calc_phase()
 xpower_type
 MHO_ComputePlotData::calc_xpower_spec()
 {
-    //kludge version - this code is adapted from a combination of what is found in 
-    //make_plotdata.c and generate_graphs.c. It is extremely convoluted 
+    //kludge version - this code is adapted from a combination of what is found in
+    //make_plotdata.c and generate_graphs.c. It is extremely convoluted
     //and we ought to find a cleaner/clearer way to do the same thing
-    
+
     //grab the total summed weights
     double total_summed_weights = 1.0;
     fWeights->Retrieve("total_summed_weights", total_summed_weights);
@@ -541,8 +541,8 @@ MHO_ComputePlotData::calc_xpower_spec()
     std::size_t nchan = fSBDArray->GetDimension(CHANNEL_AXIS);
     std::size_t nap = fSBDArray->GetDimension(TIME_AXIS);
     std::size_t nbins = fSBDArray->GetDimension(FREQ_AXIS);
-    
-    //single channel xpower spectrum, need this info for the 'sbdbox' parameters 
+
+    //single channel xpower spectrum, need this info for the 'sbdbox' parameters
     //printed out on the fourfit plot
     std::vector< xpower_type > sbxsp;
     std::vector< int > maxlag;
@@ -553,8 +553,8 @@ MHO_ComputePlotData::calc_xpower_spec()
     maxlag_amp.resize(nchan, 0.0);
     sbdbox.resize(nchan, 0.0);
     for(std::size_t ch=0; ch < nchan; ch++){sbxsp[ch].Resize(2*nl);}
-    
-    //TODO FIXME...this is temporary, as it doesn't account for min_weight cuts 
+
+    //TODO FIXME...this is temporary, as it doesn't account for min_weight cuts
     std::vector<int> nusb_ap; nusb_ap.resize(nchan, 0);
     std::vector<int> nlsb_ap; nlsb_ap.resize(nchan, 0);
 
@@ -629,13 +629,13 @@ MHO_ComputePlotData::calc_xpower_spec()
             }
             sbxsp[ch].at(lag) = sum;
             X[lag] = X[lag] + sum;
-            
+
             if( std::abs(sum) > maxlag_amp[ch])
             {
                 maxlag_amp[ch] = std::abs(sum);
                 maxlag[ch] = lag;
             }
-        
+
         }
         //need to understand this
         int j = lag - nl;
@@ -705,8 +705,8 @@ MHO_ComputePlotData::calc_xpower_spec()
         std::get<0>(cp_spectrum_out)(i) = spec_axis_value;
         cp_spectrum_out[i] = cp_spectrum[i+izero];
     }
-    
-    //now compute the sbdbox for each channel 
+
+    //now compute the sbdbox for each channel
     double yy[3], q[3];
     double peak, maxv;
     for(int ch = 0; ch < nchan; ch++)
@@ -749,6 +749,10 @@ MHO_ComputePlotData::DumpInfoToJSON(mho_json& plot_dict)
 
     double coh_avg_phase_deg = std::fmod(coh_avg_phase * (180.0/M_PI), 360.0);
     fParamStore->Set("/fringe/raw_resid_phase", coh_avg_phase_deg);
+
+    double fringe_amp = fParamStore->GetAs<double>("/fringe/famp");
+    calc_freqrms(phasors, coh_avg_phase, fringe_amp);
+
 
     //calculate AP period
     double ap_delta = std::get<TIME_AXIS>(*fVisibilities)(1) - std::get<TIME_AXIS>(*fVisibilities)(0);
@@ -905,11 +909,11 @@ MHO_ComputePlotData::DumpInfoToJSON(mho_json& plot_dict)
     for(std::size_t i=0; i<nplot-1; i++)
     {
         //the following two quanties are mis-named in the plot_data_dir file
-        //but we'll make due for now, since we don't really compute these correctly yet...we ignore the min_weight parameter. 
+        //but we'll make due for now, since we don't really compute these correctly yet...we ignore the min_weight parameter.
         //this is not AP's used by Ref station, but rather APs with USB data used
         plot_dict["PLOT_INFO"]["APsRf"].push_back(fNUSBAP[i]);
         //this is not AP's used by Rem station, but rather APs with LSB data used
-        plot_dict["PLOT_INFO"]["APsRm"].push_back(fNLSBAP[i]); 
+        plot_dict["PLOT_INFO"]["APsRm"].push_back(fNLSBAP[i]);
 
         plot_dict["PLOT_INFO"]["PCdlyRf"].push_back(0.0);
         plot_dict["PLOT_INFO"]["PCdlyRm"].push_back(0.0);
@@ -950,51 +954,77 @@ MHO_ComputePlotData::DumpInfoToJSON(mho_json& plot_dict)
 }
 
 
-/*
+
 void
-MHO_ComputePlotData::calc_freqrms(phasor_type& phasors)
+MHO_ComputePlotData::calc_freqrms(phasor_type& phasors, double coh_avg_phase, double fringe_amp)
 {
-    std::size_t nchan = phasors.GetDimension(0)-1; //-1 is for the 'all' channel
+    std::size_t nchan = phasors.GetDimension(0)-1; //-1 is for the 'all' channel tacked on the end
     std::size_t nap = phasors.GetDimension(1);
 
-    for(std::size ch = 0; ch < nchan; ch++)
+    double freqrms_phase = 0;
+    double freqrms_amp = 0;
+
+    for(std::size_t ch = 0; ch < nchan; ch++)
     {
         std::complex<double> sum = 0;
-        for(std::size ap =0; ap < nap; ap ++)
+        for(std::size_t ap =0; ap < nap; ap ++)
         {
             sum += phasors(ch, ap);
         }
-    }
-
-
-    // Calculate frequency rms values 
-    for(fr=0;fr<nchan;fr++)
-    {
-        c = arg_complex(status.fringe[fr]) - status.coh_avg_phase;
+        double c = std::arg(sum) - coh_avg_phase;
         // condition to lie in [-pi,pi] interval
-        c = fmod (c, 2.0 * M_PI);
+        //TODO FIXME -- this is the original implementation, but it is incorrect!
+        #pragma message("TODO FIXME, this way of computing an average phase angle is incorrect, should compute the average vector first, then take the angle of that.")
+        c = std::fmod(c, 2.0 * M_PI);
         if (c > M_PI){c -= 2.0 * M_PI;}
         else if (c < - M_PI){c += 2.0 * M_PI;}
-        status.freqrms_phase += c * c;
-        c = abs_complex(status.fringe[fr]) - status.delres_max;
-        status.freqrms_amp += c * c;
+        freqrms_phase += c * c;
+        c = std::abs(sum) - fringe_amp;
+        freqrms_amp += c * c;
     }
-    if (pass->nfreq > 2)
-    {                // avoid 0/0 singularity
-        status.freqrms_phase = sqrt(status.freqrms_phase
-                                    / (pass->nfreq - 2)) * 180./M_PI;
+
+    if(nchan > 2)
+    {
+        // avoid 0/0 singularity
+        freqrms_phase = std::sqrt(freqrms_phase / (nchan - 2) ) * 180./M_PI;
     }
     else
     {
-        status.freqrms_phase = 0.0;
+        freqrms_phase = 0.0;
     }
-    status.freqrms_amp = sqrt(status.freqrms_amp / pass->nfreq) * 100. / status.delres_max;
+
+    freqrms_amp = std::sqrt(freqrms_amp / nchan) * 100. / fringe_amp;
+
+    std::cout<<"freqrms_phase = "<<freqrms_phase<<std::endl;
+    std::cout<<"freqrms_amp = "<<freqrms_amp<<std::endl;
+
+    // // Calculate frequency rms values
+    // for(fr=0;fr<nchan;fr++)
+    // {
+    //     c = arg_complex(status.fringe[fr]) - status.coh_avg_phase;
+    //     // condition to lie in [-pi,pi] interval
+    //     c = fmod (c, 2.0 * M_PI);
+    //     if (c > M_PI){c -= 2.0 * M_PI;}
+    //     else if (c < - M_PI){c += 2.0 * M_PI;}
+    //     status.freqrms_phase += c * c;
+    //     c = abs_complex(status.fringe[fr]) - status.delres_max;
+    //     status.freqrms_amp += c * c;
+    // }
+    // if (pass->nfreq > 2)
+    // {                // avoid 0/0 singularity
+    //     status.freqrms_phase = sqrt(status.freqrms_phase
+    //                                 / (pass->nfreq - 2)) * 180./M_PI;
+    // }
+    // else
+    // {
+    //     status.freqrms_phase = 0.0;
+    // }
+    // status.freqrms_amp = sqrt(status.freqrms_amp / pass->nfreq) * 100. / status.delres_max;
 
 }
-*/
 
 
-int 
+int
 MHO_ComputePlotData::parabola (double y[3], double lower, double upper, double* x_max, double* amp_max, double q[3])
 {
     int i, rc;
@@ -1025,10 +1055,10 @@ MHO_ComputePlotData::parabola (double y[3], double lower, double upper, double* 
                                     // Is maximum at either edge?
                                     // (simple floating point equality test can fail
                                     // in machine-dependent way)
-    else if (std::fabs (*x_max - x) > (0.001 * range)) 
+    else if (std::fabs (*x_max - x) > (0.001 * range))
         rc = 1;
 
-    return (rc); 
+    return (rc);
 }
 
 }//end namespace
