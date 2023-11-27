@@ -949,8 +949,10 @@ MHO_ComputePlotData::DumpInfoToJSON(mho_json& plot_dict)
     double fringe_amp = fParamStore->GetAs<double>("/fringe/famp");
     double tsum_weights = fParamStore->GetAs<double>("/fringe/total_summed_weights");
     double resid_phase = fParamStore->GetAs<double>("/fringe/resid_phase");
-    double freqrms_phase, freqrms_amp;
+    double freqrms_phase, freqrms_amp, timerms_phase, timerms_amp;
     calc_freqrms(phasors, resid_phase*(M_PI/180.), fringe_amp, tsum_weights, freqrms_phase, freqrms_amp);
+    calc_timerms(phasors, resid_phase*(M_PI/180.), fringe_amp, tsum_weights, timerms_phase, timerms_amp);
+
 
     plot_dict["extra"]["freqrms_phase"] = freqrms_phase;
     plot_dict["extra"]["freqrms_amp"] = freqrms_amp;
@@ -1008,28 +1010,62 @@ MHO_ComputePlotData::calc_freqrms(phasor_type& phasors, double coh_avg_phase, do
     std::cout<<"freqrms_phase = "<<freqrms_phase<<std::endl;
     std::cout<<"freqrms_amp = "<<freqrms_amp<<std::endl;
 
-    // // Calculate frequency rms values
-    // for(fr=0;fr<nchan;fr++)
-    // {
-    //     c = arg_complex(status.fringe[fr]) - status.coh_avg_phase;
-    //     // condition to lie in [-pi,pi] interval
-    //     c = fmod (c, 2.0 * M_PI);
-    //     if (c > M_PI){c -= 2.0 * M_PI;}
-    //     else if (c < - M_PI){c += 2.0 * M_PI;}
-    //     status.freqrms_phase += c * c;
-    //     c = abs_complex(status.fringe[fr]) - status.delres_max;
-    //     status.freqrms_amp += c * c;
-    // }
-    // if (pass->nfreq > 2)
-    // {                // avoid 0/0 singularity
-    //     status.freqrms_phase = sqrt(status.freqrms_phase
-    //                                 / (pass->nfreq - 2)) * 180./M_PI;
-    // }
-    // else
-    // {
-    //     status.freqrms_phase = 0.0;
-    // }
-    // status.freqrms_amp = sqrt(status.freqrms_amp / pass->nfreq) * 100. / status.delres_max;
+
+}
+
+
+void
+MHO_ComputePlotData::calc_timerms(phasor_type& phasors, double coh_avg_phase, double fringe_amp, double total_summed_weights, double& timerms_phase, double& timerms_amp)
+{
+
+    std::size_t nchan = phasors.GetDimension(0)-1; //-1 is for the 'all' channel tacked on the end
+    std::size_t nap = phasors.GetDimension(1);
+
+    timerms_phase = 0;
+    timerms_amp = 0;
+
+    for(std::size_t ap =0; ap < nap; ap ++)
+    {
+        std::complex<double> sum = 0;
+        double sumwt = 0.0;
+        for(std::size_t ch = 0; ch < nchan; ch++)
+        {
+            sum += phasors(ch, ap);
+            sumwt += (*fWeights)(0, ch, ap, 0);
+        }
+        sum /= sumwt;
+        printf("fringe @ %d = %f %f \n", ap, std::real(sum), std::imag(sum) );
+        printf("sumwt = %f", sumwt);
+        double c = std::arg(sum) - coh_avg_phase;
+        //printf("c, cap = %f, %f\n", c, coh_avg_phase);
+        // condition to lie in [-pi,pi] interval
+        //TODO FIXME -- this is the original implementation, but it is incorrect!
+        #pragma message("TODO FIXME, this way of computing an average phase angle is incorrect, should compute the average vector first, then take the angle of that.")
+        c = std::fmod(c, 2.0 * M_PI);
+        if (c > M_PI){c -= 2.0 * M_PI;}
+        else if (c < - M_PI){c += 2.0 * M_PI;}
+        timerms_phase += c * c;
+        c = std::abs(sum) - fringe_amp;
+        timerms_amp += c * c;
+    }
+
+    if(nchan > 2)
+    {
+        // avoid 0/0 singularity
+        timerms_phase = std::sqrt(timerms_phase / (nchan - 2) ) * 180./M_PI;
+    }
+    else
+    {
+        timerms_phase = 0.0;
+    }
+
+    printf("timerms_phase = %f\n ", timerms_phase);
+
+    timerms_amp = std::sqrt(timerms_amp / nchan) * 100. / fringe_amp;
+
+    std::cout<<"timerms_phase = "<<timerms_phase<<std::endl;
+    std::cout<<"timerms_amp = "<<timerms_amp<<std::endl;
+
 
 }
 

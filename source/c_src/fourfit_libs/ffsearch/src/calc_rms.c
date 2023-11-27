@@ -265,6 +265,7 @@ calc_rms (struct type_pass *pass)
             plot.seg_phs[pass->nfreq][seg] = arg_complex(vsum);
             }
 
+        printf("vsum = %f, %f\n", real_comp(vsum), imag_comp(vsum));
         c = arg_complex(vsum) - status.coh_avg_phase;
                                         // condition to lie in [-pi,pi] interval
         c = fmod (c, 2.0 * M_PI);
@@ -273,6 +274,7 @@ calc_rms (struct type_pass *pass)
         else if (c < - M_PI)
             c += 2.0 * M_PI;
 
+        printf("wtdsb = %f\n", wt_dsb);
         status.timerms_phase += wt_dsb * c * c;
                                         /* Performs scalar sum over segments */
                                         /* of vector sums within segments and */
@@ -296,6 +298,7 @@ calc_rms (struct type_pass *pass)
 
                                         /* Correct rms values for fringe segmenting */
     status.timerms_phase = sqrt(status.timerms_phase / totwt) * 180. / M_PI;
+    printf("totwt = %f\n", totwt);
     msg ("status.delres_max = %g", 0, status.delres_max);
     status.timerms_amp = sqrt(status.timerms_amp / totwt) * 100./status.delres_max;
     msg ("status.nseg = %d",0, status.nseg);
