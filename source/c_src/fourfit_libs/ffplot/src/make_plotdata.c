@@ -354,15 +354,11 @@ int make_plotdata(struct type_pass *pass)
             }
                                         /* Changed to reflect fractional APs */
         c = (sumwt > 0.0) ? status.amp_corr_fact/sumwt : 0.0;
-        printf("sumwt = %f\n", sumwt);
 
         status.fringe[fr] = sum_freq * c;
         msg ("status.fringe[%d] %f %f", 0, fr, status.fringe[fr]);
         status.inc_avg_amp_freq += abs_complex(sum_freq) * status.amp_corr_fact;
         }
-
-        printf("amp corr fact = %f\n", status.amp_corr_fact);
-
 
     ion_covariance (pass);              // do ionosphere covariance analysis
 
