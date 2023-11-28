@@ -153,8 +153,6 @@ calc_rms (struct type_pass *pass)
                     totap += 1.0;
                 wght_phsr = plot.phasor[fr][trueap] * apwt;
                 vsum = vsum + wght_phsr;
-                //printf("wght_phsr @ %d, %d = %f, %f \n", fr, trueap, real_comp(wght_phsr), imag_comp(wght_phsr) );
-                //printf("vsum @ %d, %d = %f, %f \n", fr, trueap, real_comp(vsum), imag_comp(vsum) );
                 vsumf = vsumf + wght_phsr;
                                         /* Phasecals */
                 if (param.pc_mode[0] == MULTITONE)  // reference multitone?
@@ -267,7 +265,6 @@ calc_rms (struct type_pass *pass)
             plot.seg_phs[pass->nfreq][seg] = arg_complex(vsum);
             }
 
-        printf("vsum = %f, %f\n", real_comp(vsum), imag_comp(vsum));
         c = arg_complex(vsum) - status.coh_avg_phase;
                                         // condition to lie in [-pi,pi] interval
         c = fmod (c, 2.0 * M_PI);
@@ -276,7 +273,6 @@ calc_rms (struct type_pass *pass)
         else if (c < - M_PI)
             c += 2.0 * M_PI;
 
-        printf("wtdsb = %f\n", wt_dsb);
         status.timerms_phase += wt_dsb * c * c;
                                         /* Performs scalar sum over segments */
                                         /* of vector sums within segments and */
@@ -300,7 +296,6 @@ calc_rms (struct type_pass *pass)
 
                                         /* Correct rms values for fringe segmenting */
     status.timerms_phase = sqrt(status.timerms_phase / totwt) * 180. / M_PI;
-    //printf("totwt = %f\n", totwt);
     msg ("status.delres_max = %g", 0, status.delres_max);
     status.timerms_amp = sqrt(status.timerms_amp / totwt) * 100./status.delres_max;
     msg ("status.nseg = %d",0, status.nseg);
@@ -308,9 +303,7 @@ calc_rms (struct type_pass *pass)
     for(fr=0;fr<pass->nfreq;fr++)
         {
         c = arg_complex(status.fringe[fr]) - status.coh_avg_phase;
-        //printf("fringe @ %d = %f %f \n", fr, real_comp(status.fringe[fr]), imag_comp(status.fringe[fr]) );
                                         // condition to lie in [-pi,pi] interval
-        //printf("c, cap = %f, %f\n", c, status.coh_avg_phase);
         c = fmod (c, 2.0 * M_PI);
         if (c > M_PI)
             c -= 2.0 * M_PI;
@@ -326,8 +319,6 @@ calc_rms (struct type_pass *pass)
     else
         status.freqrms_phase = 0.0;
     status.freqrms_amp = sqrt(status.freqrms_amp / pass->nfreq) * 100. / status.delres_max;
-
-    printf("freqrms_phase = %f\n ", status.freqrms_phase);
 
                                         /* Theoretical RMS values */
                                         /* true_nseg is meant to be effective */
