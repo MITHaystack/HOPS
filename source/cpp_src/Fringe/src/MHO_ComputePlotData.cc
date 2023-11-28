@@ -938,12 +938,9 @@ MHO_ComputePlotData::DumpInfoToJSON(mho_json& plot_dict)
     plot_dict["extra"]["dr_win"].push_back(dr_win_low);
     plot_dict["extra"]["dr_win"].push_back(dr_win_high);
 
+    //currently no dTEC fitting support
     plot_dict["extra"]["ion_win"].push_back(0.0);
     plot_dict["extra"]["ion_win"].push_back(0.0);
-
-
-    std::cout<<sb_win_low<<", "<<sb_win_high<<", "<<mb_win_low<<", "<<mb_win_high<<std::endl;
-
 
     double fringe_amp = fParamStore->GetAs<double>("/fringe/famp");
     double tsum_weights = fParamStore->GetAs<double>("/fringe/total_summed_weights");
@@ -981,9 +978,7 @@ MHO_ComputePlotData::calc_freqrms(phasor_type& phasors, double coh_avg_phase, do
             sumwt += (*fWeights)(0, ch, ap, 0);
         }
         sum /= sumwt;
-        printf("fringe @ %d = %f %f \n", ch, std::real(sum), std::imag(sum) );
         double c = std::arg(sum) - coh_avg_phase;
-        printf("c, cap = %f, %f\n", c, coh_avg_phase);
         // condition to lie in [-pi,pi] interval
         //TODO FIXME -- this is the original implementation, but it is incorrect!
         #pragma message("TODO FIXME, this way of computing an average phase angle is incorrect, should compute the average vector first, then take the angle of that.")
@@ -1004,15 +999,7 @@ MHO_ComputePlotData::calc_freqrms(phasor_type& phasors, double coh_avg_phase, do
     {
         freqrms_phase = 0.0;
     }
-
-    printf("freqrms_phase = %f\n ", freqrms_phase);
-
     freqrms_amp = std::sqrt(freqrms_amp / nchan) * 100. / fringe_amp;
-
-    std::cout<<"freqrms_phase = "<<freqrms_phase<<std::endl;
-    std::cout<<"freqrms_amp = "<<freqrms_amp<<std::endl;
-
-
 }
 
 
@@ -1087,14 +1074,11 @@ MHO_ComputePlotData::calc_timerms(phasor_type& phasors, std::size_t nseg, std::s
             }
         }
 
-        printf("vsum = %f, %f\n", std::real(vsum), std::imag(vsum));
         c = std::arg(vsum) - coh_avg_phase;
         // condition to lie in [-pi,pi] interval
         c = std::fmod (c, 2.0 * M_PI);
         if (c > M_PI){c -= 2.0 * M_PI;}
         else if (c < - M_PI){ c += 2.0 * M_PI;}
-
-        printf("wtdsb = %f\n", wt_dsb);
         timerms_phase += wt_dsb * c * c;
         /* Performs scalar sum over segments */
         /* of vector sums within segments and */
@@ -1113,13 +1097,9 @@ MHO_ComputePlotData::calc_timerms(phasor_type& phasors, std::size_t nseg, std::s
     /* SNR of each segment/freq */
     inc_avg_amp /= ((1.0 + (float)nseg/(2.0 * snr * snr)));
     inc_avg_amp /= totwt;
-
-                                        /* Correct rms values for fringe segmenting */
+    /* Correct rms values for fringe segmenting */
     timerms_phase = std::sqrt(timerms_phase / totwt) * 180. / M_PI;
     timerms_amp = sqrt(timerms_amp / totwt) * 100./fringe_amp;
-    
-    std::cout<<"timerms_phase = "<<timerms_phase<<std::endl;
-    std::cout<<"timerms_amp = "<<timerms_amp<<std::endl;
 }
 
 
