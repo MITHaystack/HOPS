@@ -191,10 +191,6 @@ MHO_FringePlotInfo::fill_plot_data(MHO_ParameterStore* paramStore, mho_json& plo
     plot_dict["extra"]["theory_timerms_amp"] = th_timerms_amp;
     plot_dict["extra"]["theory_freqrms_phase"] = th_freqrms_phase;
     plot_dict["extra"]["theory_freqrms_amp"] = th_freqrms_amp;
-
-    std::cout<<"Theory values = "<<th_timerms_phase<<", "<<th_timerms_amp<<", "<<th_freqrms_phase<<", "<<th_freqrms_amp<<std::endl;
-
-
 }
 
 
