@@ -956,6 +956,8 @@ MHO_ComputePlotData::DumpInfoToJSON(mho_json& plot_dict)
 
     plot_dict["extra"]["freqrms_phase"] = freqrms_phase;
     plot_dict["extra"]["freqrms_amp"] = freqrms_amp;
+    plot_dict["extra"]["timerms_phase"] = timerms_phase;
+    plot_dict["extra"]["timerms_amp"] = timerms_amp;
 }
 
 
