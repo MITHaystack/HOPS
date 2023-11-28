@@ -115,7 +115,15 @@ MHO_VexInfoExtractor::extract_clock_model(const mho_json& vexInfo, MHO_Parameter
 
 }
 
-
+void 
+MHO_VexInfoExtractor::extract_sampler_bits(const mho_json& vexInfo, MHO_ParameterStore* paramStore)
+{
+    // std::string ref_id = paramStore->GetAs<std::string>("/ref_station/site_id");
+    // std::string rem_id = paramStore->GetAs<std::string>("/rem_station/site_id");
+    // 
+    // ["$MODE"]["XXX"]["$TRACKS"][0]["qualifiers"]
+    // .$MODE["1mmlcp"].$TRACKS[0].qualifiers
+}
 
 void 
 MHO_VexInfoExtractor::extract_vex_info(const mho_json& vexInfo, MHO_ParameterStore* paramStore)
@@ -279,6 +287,13 @@ MHO_VexInfoExtractor::extract_vex_info(const mho_json& vexInfo, MHO_ParameterSto
     
     //extract the clock model, as well as station information
     extract_clock_model(vexInfo, paramStore);
+    
+    //extract the number of bits per sample for each station 
+    paramStore->Set("/ref_station/mk4id", ref_station_mk4id);
+    paramStore->Set("/rem_station/mk4id", rem_station_mk4id);
+    
+    //extract the number of bits/sample for each station 
+    extract_sampler_bits(vexInfo, paramStore);
 
 }
 

@@ -36,6 +36,7 @@ class MHO_VexInfoExtractor
 
         static void extract_clock_early(const mho_json& clk, double& clock_early, std::string& clock_early_units, double& clock_rate, std::string& clock_rate_units, std::string& origin, std::string& validity);
         static void extract_clock_model(const mho_json& vexInfo, MHO_ParameterStore* paramStore);
+        static void extract_sampler_bits(const mho_json& vexInfo, MHO_ParameterStore* paramStore);
         static void extract_vex_info(const mho_json& vexInfo, MHO_ParameterStore* paramStore);
 
 };
