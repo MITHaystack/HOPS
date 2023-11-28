@@ -597,8 +597,11 @@ def make_fourfit_plot(plot_dict, filename):
         ct2_data[1][1] = str(np.round(float(plot_dict["extra"]["theory_timerms_amp"]),1) )
         ct2_data[2][1] = str(np.round(float(plot_dict["extra"]["theory_freqrms_phase"]),1) )
         ct2_data[3][1] = str(np.round(float(plot_dict["extra"]["theory_freqrms_amp"]),1) )
+        ct2_data[0][0] = str(np.round(float(plot_dict["extra"]["timerms_phase"]),1) )
+        ct2_data[1][0] = str(np.round(float(plot_dict["extra"]["timerms_amp"]),1) )
         ct2_data[2][0] = str(np.round(float(plot_dict["extra"]["freqrms_phase"]),1) )
         ct2_data[3][0] = str(np.round(float(plot_dict["extra"]["freqrms_amp"]),1) )
+        
 
     # Create the table
     table2 = axT2.table(cellText=ct2_data, colLabels=ct2_col_label, rowLabels=ct2_row_label, loc='center')
