@@ -747,7 +747,6 @@ MHO_ComputePlotData::DumpInfoToJSON(mho_json& plot_dict)
     double coh_avg_phase_deg = std::fmod(coh_avg_phase * (180.0/M_PI), 360.0);
     fParamStore->Set("/fringe/raw_resid_phase", coh_avg_phase_deg);
 
-
     //calculate AP period
     double ap_delta = std::get<TIME_AXIS>(*fVisibilities)(1) - std::get<TIME_AXIS>(*fVisibilities)(0);
 
@@ -786,7 +785,7 @@ MHO_ComputePlotData::DumpInfoToJSON(mho_json& plot_dict)
     (&std::get<0>(phasors))->CollectAxisElementLabelValues(chan_label_key, channel_labels);
     plot_dict["ChannelsPlotted"] = channel_labels;
 
-    //grab the per-channe/AP phasors, and average down if necessary
+    //grab the per-channel/AP phasors, and average down if necessary
     std::size_t nplot = phasors.GetDimension(0);
     std::size_t naps = phasors.GetDimension(1);
     std::size_t nseg = naps;
@@ -949,9 +948,10 @@ MHO_ComputePlotData::DumpInfoToJSON(mho_json& plot_dict)
     double fringe_amp = fParamStore->GetAs<double>("/fringe/famp");
     double tsum_weights = fParamStore->GetAs<double>("/fringe/total_summed_weights");
     double resid_phase = fParamStore->GetAs<double>("/fringe/resid_phase");
+    double snr = fParamStore->GetAs<double>("/fringe/snr");
     double freqrms_phase, freqrms_amp, timerms_phase, timerms_amp;
     calc_freqrms(phasors, resid_phase*(M_PI/180.), fringe_amp, tsum_weights, freqrms_phase, freqrms_amp);
-    calc_timerms(phasors, resid_phase*(M_PI/180.), fringe_amp, tsum_weights, timerms_phase, timerms_amp);
+    calc_timerms(phasors, nseg, apseg, resid_phase*(M_PI/180.), fringe_amp, tsum_weights, snr, timerms_phase, timerms_amp);
 
 
     plot_dict["extra"]["freqrms_phase"] = freqrms_phase;
@@ -1015,189 +1015,110 @@ MHO_ComputePlotData::calc_freqrms(phasor_type& phasors, double coh_avg_phase, do
 
 
 void
-MHO_ComputePlotData::calc_timerms(phasor_type& phasors, double coh_avg_phase, double fringe_amp, double total_summed_weights, double& timerms_phase, double& timerms_amp)
+MHO_ComputePlotData::calc_timerms(phasor_type& phasors, std::size_t nseg, std::size_t apseg, double coh_avg_phase, double fringe_amp, double total_summed_weights, double snr, double& timerms_phase, double& timerms_amp)
 {
+    double amp_corr_fact = 1.0;
+    
+    std::size_t nplot = phasors.GetDimension(0);
+    std::size_t nchan = nplot-1; //-1 is for the 'all' channel tacked on the end
+    std::size_t naps = phasors.GetDimension(1);
 
-    std::size_t nchan = phasors.GetDimension(0)-1; //-1 is for the 'all' channel tacked on the end
-    std::size_t nap = phasors.GetDimension(1);
+    auto chan_ax = &( std::get<CHANNEL_AXIS>(*fSBDArray) );
+    
+    double totwt, totap, wt, wtf, wtf_dsb, wt_dsb, apwt, ap_in_seg, usbfrac, lsbfrac, c;
+    totwt = 0.0; totap = 0.0;
+    double inc_avg_amp = 0.0;
+    std::complex<double> vsum, vsumf, wght_phsr;
 
-    timerms_phase = 0;
-    timerms_amp = 0;
-
-    for(std::size_t ap =0; ap < nap; ap++)
+    
+    std::string net_sideband = "?";
+    for(std::size_t seg = 0; seg < nseg; seg++)
     {
-        std::complex<double> sum = 0;
-        double sumwt = 0.0;
-        for(std::size_t ch = 0; ch < nchan; ch++)
+        vsum = 0.0;
+        wt = 0.0;                       /* Loop over freqs, and ap's in segment */
+        wt_dsb = 0.0;                   /* Loop over freqs, and ap's in segment */
+                                        /* forming vector sum */
+        for(std::size_t fr = 0; fr < nchan; fr++)
         {
-            auto p = phasors(ch, ap);
-            auto w = (*fWeights)(0, ch, ap, 0);
-            sum += p*w;
-            //printf("wght_phsr @ %d, %d = %f, %f \n", ch, ap, std::real(p*w), std::imag(p*w) );
-            sumwt += (*fWeights)(0, ch, ap, 0);
+            vsumf = 0.0;
+            wtf = 0.0;
+            wtf_dsb = 0.0;
+            ap_in_seg = 0.0;
+            usbfrac = lsbfrac = 0.0;
+            
+            MHO_IntervalLabel ilabel(fr,fr);
+            std::string sidebandlabelkey = "net_sideband";
+            auto other_labels = chan_ax->GetIntervalsWhichIntersect(ilabel);
+            for(auto olit = other_labels.begin(); olit != other_labels.end(); olit++)
+            {
+                if( olit->HasKey(sidebandlabelkey) )
+                {
+                    olit->Retrieve(sidebandlabelkey, net_sideband);
+                    break;
+                }
+            }
+
+            for(std::size_t ap = seg * apseg; ap < (seg+1)*apseg; ap++)
+            {
+                if(ap >= naps){break;}
+                apwt = fabs( (*fWeights)(0, fr, ap, 0) );
+                wt += apwt;
+                wtf += apwt;
+                
+                if(net_sideband == "U")
+                {
+                    usbfrac += apwt;
+                    wtf_dsb += apwt;
+                    wt_dsb += apwt;
+                }
+                else if(net_sideband == "L")
+                {
+                    lsbfrac += apwt;
+                    wtf_dsb += apwt;
+                    wt_dsb += apwt;
+                }
+                
+                if (apwt > 0.0){totap += 1.0;}
+                wght_phsr = phasors(fr,ap) * apwt;
+                vsum = vsum + wght_phsr;
+                vsumf = vsumf + wght_phsr;
+            }
         }
-        //sum /= sumwt;
-        // printf("fringe @ %d = %f %f \n", ap, std::real(sum), std::imag(sum) );
-        // printf("sumwt = %f", sumwt);
-        printf("vsum @ %d = %f, %f\n", ap,  std::real(sum), std::imag(sum));
-        printf("sumwt @ %d = %f \n", ap, sumwt);
-        double c = std::arg(sum) - coh_avg_phase;
-        //printf("c, cap = %f, %f\n", c, coh_avg_phase);
+
+        printf("vsum = %f, %f\n", std::real(vsum), std::imag(vsum));
+        c = std::arg(vsum) - coh_avg_phase;
         // condition to lie in [-pi,pi] interval
-        //TODO FIXME -- this is the original implementation, but it is incorrect!
-        #pragma message("TODO FIXME, this way of computing an average phase angle is incorrect, should compute the average vector first, then take the angle of that.")
-        c = std::fmod(c, 2.0 * M_PI);
+        c = std::fmod (c, 2.0 * M_PI);
         if (c > M_PI){c -= 2.0 * M_PI;}
-        else if (c < - M_PI){c += 2.0 * M_PI;}
-        timerms_phase += c * c;
-        c = std::abs(sum) - fringe_amp;
-        timerms_amp += c * c;
+        else if (c < - M_PI){ c += 2.0 * M_PI;}
+
+        printf("wtdsb = %f\n", wt_dsb);
+        timerms_phase += wt_dsb * c * c;
+        /* Performs scalar sum over segments */
+        /* of vector sums within segments and */
+        /* over all freqs */
+        c = std::abs(vsum);
+        inc_avg_amp += c * amp_corr_fact;
+        if (wt_dsb == 0){ c = 0.0; }
+        else { c = c / wt_dsb; }
+        /* delres_max is amplitude at peak */
+        c = c * amp_corr_fact - fringe_amp;
+        timerms_amp += wt_dsb * c*c;
+        totwt += wt_dsb;
     }
+    
+    /* This removes noise bias based on */
+    /* SNR of each segment/freq */
+    inc_avg_amp /= ((1.0 + (float)nseg/(2.0 * snr * snr)));
+    inc_avg_amp /= totwt;
 
-    if(nchan > 2)
-    {
-        // avoid 0/0 singularity
-        timerms_phase = std::sqrt(timerms_phase / (nchan - 2) ) * 180./M_PI;
-    }
-    else
-    {
-        timerms_phase = 0.0;
-    }
-
-    printf("timerms_phase = %f\n ", timerms_phase);
-
-    timerms_amp = std::sqrt(timerms_amp / nchan) * 100. / fringe_amp;
-
+                                        /* Correct rms values for fringe segmenting */
+    timerms_phase = std::sqrt(timerms_phase / totwt) * 180. / M_PI;
+    timerms_amp = sqrt(timerms_amp / totwt) * 100./fringe_amp;
+    
     std::cout<<"timerms_phase = "<<timerms_phase<<std::endl;
     std::cout<<"timerms_amp = "<<timerms_amp<<std::endl;
-
-
 }
-
-//
-// calc_timerms_v1()
-// {
-//     totwt = 0.0; totap = 0.0;
-//     for (seg = 0; seg < status.nseg; seg++)
-//     {
-//         vsum = 0.0;
-//         wt = 0.0;                       /* Loop over freqs, and ap's in segment */
-//         wt_dsb = 0.0;                   /* Loop over freqs, and ap's in segment */
-//                                         /* forming vector sum */
-//         for(fr = 0; fr < pass->nfreq; fr++)
-//         {
-//             vsumf = 0.0;
-//             refpc = 0.0;
-//             rempc = 0.0;
-//             refpcwt = rempcwt = 0.0;
-//             wtf = 0.0;
-//             wtf_dsb = 0.0;
-//             mean_ap = 0.0;
-//             ap_in_seg = 0.0;
-//             usbfrac = lsbfrac = 0.0;
-//             ref_tperr = rem_tperr = 0.0;
-//             ref_scount_usb = ref_scount_lsb = 0.0;
-//             rem_scount_usb = rem_scount_lsb = 0.0;
-//             ref_bias_usb = ref_bias_lsb = 0.0;
-//             rem_bias_usb = rem_bias_lsb = 0.0;
-//             for (ap = seg * apseg; ap < (seg+1)*apseg; ap++)
-//             {
-//                 if (ap >= pass->num_ap)
-//                     break;
-//                 trueap = ap + pass->ap_off;
-//                 datum = pass->pass_data[fr].data + trueap;
-//                 apwt = fabs (plot.weights[fr][trueap]);
-//                 wt += apwt;
-//                 wtf += apwt;
-//                 mean_ap += ap * apwt;
-//                                         /* Make sure we account for double */
-//                                         /* sideband normalization */
-//                 if (datum->usbfrac >= 0.0)
-//                 {
-//                     usbfrac += datum->usbfrac;
-//                     wtf_dsb += apwt;
-//                     wt_dsb += apwt;
-//                 }
-//                 if (datum->lsbfrac >= 0.0)
-//                 {
-//                     lsbfrac += datum->lsbfrac;
-//                     wtf_dsb += apwt;
-//                     wt_dsb += apwt;
-//                 }
-//                                         /* State count data */
-//
-//                                         /* The actual data */
-//                 if (apwt > 0.0)
-//                     totap += 1.0;
-//                 wght_phsr = plot.phasor[fr][trueap] * apwt;
-//                 vsum = vsum + wght_phsr;
-//                 vsumf = vsumf + wght_phsr;
-//
-//
-//                                             /* Phasecals */
-//
-//                                             /* Record amp/phase in plot arrays */
-//                                             /* Also compute data fraction */
-//                                             /* tape errors, statecounts and phasecals */
-//                 if (wtf == 0.0)
-//                     plot.seg_amp[fr][seg] = 0.0;
-//                 else
-//                 {
-//                     plot.mean_ap[fr][seg] = mean_ap / wtf;
-//                     plot.seg_amp[fr][seg] = abs_complex(vsumf) / wtf_dsb;
-//                     plot.seg_frac_usb[fr][seg] = (usbfrac >= 0.0) ? usbfrac / (double)apseg : 0.0;
-//                     plot.seg_frac_lsb[fr][seg] = (lsbfrac >= 0.0) ? lsbfrac / (double)apseg : 0.0;
-//                 }
-//                 plot.seg_phs[fr][seg] = arg_complex(vsumf);
-//
-//
-//                                             /* Record amp/phase for all freqs */
-//             if (pass->nfreq > 1)
-//             {
-//                 if (wt == 0.0) plot.seg_amp[pass->nfreq][seg] = 0.0;
-//                 else
-//                 {
-//                     mean_ap = 0.0;
-//                     nfr = 0;
-//                     for (i=0; i<pass->nfreq; i++)
-//                     {
-//                         mean_ap += plot.mean_ap[i][seg];
-//                         if (plot.mean_ap[i][seg] > 0.0) nfr++;
-//                     }
-//                     if (nfr > 0)
-//                         plot.mean_ap[pass->nfreq][seg] = mean_ap / (double)(nfr);
-//                     plot.seg_amp[pass->nfreq][seg] = abs_complex(vsum) / wt_dsb;
-//                 }
-//                 plot.seg_phs[pass->nfreq][seg] = arg_complex(vsum);
-//             }
-//
-//             c = arg_complex(vsum) - status.coh_avg_phase;
-//                                             // condition to lie in [-pi,pi] interval
-//             c = fmod (c, 2.0 * M_PI);
-//             if (c > M_PI)
-//                 c -= 2.0 * M_PI;
-//             else if (c < - M_PI)
-//                 c += 2.0 * M_PI;
-//
-//             status.timerms_phase += wt_dsb * c * c;
-//                                             /* Performs scalar sum over segments */
-//                                             /* of vector sums within segments and */
-//                                             /* over all freqs */
-//             c = abs_complex(vsum);
-//             status.inc_avg_amp += c * status.amp_corr_fact;
-//             if (wt_dsb == 0)
-//                 c = 0.0;
-//             else
-//                 c = c / wt_dsb;
-//                                             /* delres_max is amplitude at peak */
-//             c = c * status.amp_corr_fact - status.delres_max;
-//             status.timerms_amp += wt_dsb * c*c;
-//             totwt += wt_dsb;
-//         }
-//
-//     }
-// }
-
 
 
 int
