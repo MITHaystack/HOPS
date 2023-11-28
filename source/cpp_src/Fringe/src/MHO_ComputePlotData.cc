@@ -1,7 +1,8 @@
 #include "MHO_ComputePlotData.hh"
-
+#include "MHO_BasicFringeInfo.hh"
 #include "MHO_UniformGridPointsCalculator.hh"
 #include "MHO_EndZeroPadder.hh"
+
 namespace hops
 {
 
@@ -950,13 +951,41 @@ MHO_ComputePlotData::DumpInfoToJSON(mho_json& plot_dict)
     calc_freqrms(phasors, resid_phase*(M_PI/180.), fringe_amp, tsum_weights, freqrms_phase, freqrms_amp);
     calc_timerms(phasors, nseg, apseg, resid_phase*(M_PI/180.), fringe_amp, tsum_weights, snr, timerms_phase, timerms_amp);
 
-
     plot_dict["extra"]["freqrms_phase"] = freqrms_phase;
     plot_dict["extra"]["freqrms_amp"] = freqrms_amp;
     plot_dict["extra"]["timerms_phase"] = timerms_phase;
     plot_dict["extra"]["timerms_amp"] = timerms_amp;
-}
+    
+    //stuff this in the parameter store too (reorganize this later)
+    fParamStore->Set("/fringe/freqrms_phase", freqrms_phase);
+    fParamStore->Set("/fringe/freqrms_amp", freqrms_amp);
+    fParamStore->Set("/fringe/timerms_phase", timerms_phase);
+    fParamStore->Set("/fringe/timerms_amp", timerms_amp);
 
+    //calculate the theory values
+
+    int nchan =  fParamStore->GetAs<double>("/config/nchannels");
+    double th_timerms_phase = MHO_BasicFringeInfo::calculate_theory_timerms_phase(nseg, snr);
+    double th_timerms_amp = MHO_BasicFringeInfo::calculate_theory_timerms_amp(nseg, snr);
+    double th_freqrms_phase = MHO_BasicFringeInfo::calculate_theory_freqrms_phase(nchan, snr);
+    double th_freqrms_amp = MHO_BasicFringeInfo::calculate_theory_freqrms_amp(nchan, snr);
+
+    plot_dict["extra"]["theory_timerms_phase"] = th_timerms_phase;
+    plot_dict["extra"]["theory_timerms_amp"] = th_timerms_amp;
+    plot_dict["extra"]["theory_freqrms_phase"] = th_freqrms_phase;
+    plot_dict["extra"]["theory_freqrms_amp"] = th_freqrms_amp;
+    
+    //stuff theory values in the parameter store too
+    fParamStore->Set("/fringe/theory_timerms_phase", th_timerms_phase);
+    fParamStore->Set("/fringe/theory_timerms_amp", th_timerms_amp);
+    fParamStore->Set("/fringe/theory_freqrms_phase", th_freqrms_phase);
+    fParamStore->Set("/fringe/theory_freqrms_amp", th_freqrms_amp);
+    
+    //calculate the quality code 
+    std::string qc = calc_quality_code();
+    fParamStore->Set("/fringe/quality_code", qc);
+    plot_dict["Quality"] = qc;
+}
 
 
 void
@@ -1102,6 +1131,38 @@ MHO_ComputePlotData::calc_timerms(phasor_type& phasors, std::size_t nseg, std::s
     timerms_amp = sqrt(timerms_amp / totwt) * 100./fringe_amp;
 }
 
+
+std::string 
+MHO_ComputePlotData::calc_quality_code()
+{
+    //retrieve from param store
+    double freqrms_phase = fParamStore->GetAs<double>("/fringe/freqrms_phase");
+    double freqrms_amp = fParamStore->GetAs<double>("/fringe/freqrms_amp");
+    double timerms_phase = fParamStore->GetAs<double>("/fringe/timerms_phase");
+    double timerms_amp = fParamStore->GetAs<double>("/fringe/timerms_amp");
+
+    double th_timerms_phase = fParamStore->GetAs<double>("/fringe/theory_timerms_phase");
+    double th_timerms_amp = fParamStore->GetAs<double>("/fringe/theory_timerms_amp");
+    double th_freqrms_phase = fParamStore->GetAs<double>("/fringe/theory_freqrms_phase");
+    double th_freqrms_amp = fParamStore->GetAs<double>("/fringe/theory_freqrms_amp");
+
+    char qcode[1];
+    qcode[0] = '9';
+    if (timerms_phase > 11.46 && th_timerms_phase < 5.73){(*qcode)--;}
+    if (timerms_phase > 22.92 && th_timerms_phase < 11.46){(*qcode)--;}
+    if (freqrms_phase > 11.46 && th_freqrms_phase < 5.73){(*qcode)--;}
+    if (freqrms_phase > 22.92 && th_freqrms_phase < 11.46){(*qcode)--;}
+    if (timerms_amp > 20.0 && th_timerms_amp < 10.0){(*qcode)--;}
+    if (timerms_amp > 40.0 && th_timerms_amp < 20.0){(*qcode)--;}
+    if (freqrms_amp > 20.0 && th_freqrms_amp < 10.0){(*qcode)--;}
+    if (freqrms_amp > 40.0 && th_freqrms_amp < 20.0){(*qcode)--;}
+    if (*qcode < '1') *qcode = '1';
+
+    double prob_false = fParamStore->GetAs<double>("/fringe/prob_false_detect");
+    // No fringes, 0-code
+    if(prob_false > 1.E-4) *qcode = '0';
+    return std::string(1, qcode[0]);
+}
 
 int
 MHO_ComputePlotData::parabola (double y[3], double lower, double upper, double* x_max, double* amp_max, double q[3])
