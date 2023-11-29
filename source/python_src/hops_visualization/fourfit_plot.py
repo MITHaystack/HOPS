@@ -681,13 +681,17 @@ def make_fourfit_plot(plot_dict, filename):
     table4.scale(12, 0.7)  # Adjust the scale factor as needed
 
     ambiguity = "-"
+    ref_bits = "-"
+    rem_bits = "-"
     if 'extra' in plot_dict:
         ambiguity = str( np.round(float(plot_dict['extra']['ambiguity']),3) )
+        ref_bits = str(plot_dict['extra']['ref_station_sample_bits'])
+        rem_bits = str(plot_dict['extra']['rem_station_sample_bits'])
 
     #last pile of text
     textstr100 = "Pcal mode: MANUAL, MANUAL   PC period (AP's) X,X" + '\n' + \
         'Pcal rate: X,X (us/s)' + '\n' + \
-        'Bits/sample: 2x2 SampCntNorm: disabled' + '\n' + \
+        'Bits/sample: '+ ref_bits + 'x' + rem_bits +' SampCntNorm: disabled' + '\n' + \
         'Data rate(MSamp/s) X MB pts Y Amb ' + ambiguity +' us ' + '\n' + \
         'Data rate(Mb/s) X    nlags: X t_cohere infinite'
 

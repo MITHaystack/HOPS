@@ -118,11 +118,37 @@ MHO_VexInfoExtractor::extract_clock_model(const mho_json& vexInfo, MHO_Parameter
 void 
 MHO_VexInfoExtractor::extract_sampler_bits(const mho_json& vexInfo, MHO_ParameterStore* paramStore)
 {
-    // std::string ref_id = paramStore->GetAs<std::string>("/ref_station/site_id");
-    // std::string rem_id = paramStore->GetAs<std::string>("/rem_station/site_id");
-    // 
-    // ["$MODE"]["XXX"]["$TRACKS"][0]["qualifiers"]
-    // .$MODE["1mmlcp"].$TRACKS[0].qualifiers
+    //the amount of indirection needed here to extract one tiny bit of information
+    //(bits/sample used at each station) is lunacy, but such is the design of vex
+    int ref_bits = 0;
+    int rem_bits = 0;
+
+    std::string modeName =  paramStore->GetAs<std::string>("/vex/scan/mode");
+    std::string ref_id = paramStore->GetAs<std::string>("/ref_station/site_id");
+    std::string rem_id = paramStore->GetAs<std::string>("/rem_station/site_id");
+
+    std::string mode_tracks_loc = "/$MODE/" + modeName + "/$TRACKS";
+    mho_json::json_pointer mode_tracks_jptr(mode_tracks_loc);
+    auto mode_tracks = vexInfo.at(mode_tracks_jptr);
+    
+    std::string tracks_loc = "/$TRACKS";
+    mho_json::json_pointer tracks_jptr(tracks_loc);
+    auto tracks = vexInfo.at(tracks_jptr);
+
+    //we are given a list of tracks (most likely only one) so loop until 
+    //we find both the ref and rem station in the 'qualifiers' section
+    for(auto elem = mode_tracks.begin(); elem != mode_tracks.end(); elem++)
+    {
+        std::string trackName = elem.value()["keyword"];
+        auto qualifiers = elem.value()["qualifiers"];
+        for(auto qelem = qualifiers.begin(); qelem != qualifiers.end(); qelem++)
+        {
+            if(qelem.value() == ref_id){ref_bits = tracks[trackName]["bits/sample"].get<int>();}
+            if(qelem.value() == rem_id){rem_bits = tracks[trackName]["bits/sample"].get<int>();}
+        }
+    }
+    paramStore->Set("/ref_station/sample_bits", ref_bits);
+    paramStore->Set("/rem_station/sample_bits", rem_bits);
 }
 
 void 
@@ -131,10 +157,9 @@ MHO_VexInfoExtractor::extract_vex_info(const mho_json& vexInfo, MHO_ParameterSto
     std::string baseline = paramStore->GetAs<std::string>("/cmdline/baseline");
     std::string ref_station_mk4id = std::string(1,baseline[0]);
     std::string rem_station_mk4id = std::string(1,baseline[1]);
-    
+
     paramStore->Set("/ref_station/mk4id", ref_station_mk4id);
     paramStore->Set("/rem_station/mk4id", rem_station_mk4id);
-    
 
     //now get the rest of the station information from the $SITE section 
     //NOTE: to do this properly we should use the reference name specified under 
@@ -158,13 +183,28 @@ MHO_VexInfoExtractor::extract_vex_info(const mho_json& vexInfo, MHO_ParameterSto
             std::string site_name = site->at("site_name").get<std::string>();
             std::string site_type = site->at("site_type").get<std::string>();
             
+            double x = site->at("site_position")["x"]["value"].get<double>();
+            double y = site->at("site_position")["y"]["value"].get<double>();
+            double z = site->at("site_position")["z"]["value"].get<double>();
+            
+            std::string x_units = site->at("site_position")["x"]["units"].get<std::string>();
+            std::string y_units = site->at("site_position")["y"]["units"].get<std::string>();
+            std::string z_units = site->at("site_position")["z"]["units"].get<std::string>();
+
             if(mk4id == ref_station_mk4id)
             {
                 paramStore->Set("/ref_station/site_id", site_id);
                 paramStore->Set("/ref_station/site_name", site_name);
                 paramStore->Set("/ref_station/site_type", site_type);
-                //TODO maybe extract site position/velocity too? Do we need this?
+                paramStore->Set("/ref_station/position_x", x);
+                paramStore->Set("/ref_station/position_y", y);
+                paramStore->Set("/ref_station/position_z", z);
+                paramStore->Set("/ref_station/position_x_units", x_units);
+                paramStore->Set("/ref_station/position_y_units", y_units);
+                paramStore->Set("/ref_station/position_z_units", z_units);
+                //TODO maybe extract site velocity too? Do we need this?
                 //position...yes, if we want to be able to calculate parallactic angle at any time from az,el spline
+                //velocity...maybe, but probably only if the station is mobile
             }
             
             if(mk4id == rem_station_mk4id)
@@ -172,6 +212,12 @@ MHO_VexInfoExtractor::extract_vex_info(const mho_json& vexInfo, MHO_ParameterSto
                 paramStore->Set("/rem_station/site_id", site_id);
                 paramStore->Set("/rem_station/site_name", site_name);
                 paramStore->Set("/rem_station/site_type", site_type);
+                paramStore->Set("/rem_station/position_x", x);
+                paramStore->Set("/rem_station/position_y", y);
+                paramStore->Set("/rem_station/position_z", z);
+                paramStore->Set("/rem_station/position_x_units", x_units);
+                paramStore->Set("/rem_station/position_y_units", y_units);
+                paramStore->Set("/rem_station/position_z_units", z_units);
             }
         }
     }
@@ -226,12 +272,16 @@ MHO_VexInfoExtractor::extract_vex_info(const mho_json& vexInfo, MHO_ParameterSto
         std::exit(1);
     }
 
-    //get the source information
+    //get the scan name (should only be 1)
     std::string scnName = sched.begin().key();
+    paramStore->Set("/vex/scan/name",scnName);
+    std::string modeName = sched[scnName]["mode"].get<std::string>();
+    paramStore->Set("/vex/scan/mode",modeName);
+
+    //get the source information
     std::string src_loc = "/$SCHED/" + scnName + "/source/0/source";
     mho_json::json_pointer src_jptr(src_loc);
     std::string srcName = vexInfo.at(src_jptr).get<std::string>();
-    paramStore->Set("/vex/scan/name",scnName);
     paramStore->Set("/vex/scan/source/name",srcName);
 
     mho_json src_section = vexInfo["$SOURCE"];
@@ -287,11 +337,7 @@ MHO_VexInfoExtractor::extract_vex_info(const mho_json& vexInfo, MHO_ParameterSto
     
     //extract the clock model, as well as station information
     extract_clock_model(vexInfo, paramStore);
-    
-    //extract the number of bits per sample for each station 
-    paramStore->Set("/ref_station/mk4id", ref_station_mk4id);
-    paramStore->Set("/rem_station/mk4id", rem_station_mk4id);
-    
+
     //extract the number of bits/sample for each station 
     extract_sampler_bits(vexInfo, paramStore);
 

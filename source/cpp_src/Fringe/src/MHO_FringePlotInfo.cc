@@ -167,6 +167,9 @@ MHO_FringePlotInfo::fill_plot_data(MHO_ParameterStore* paramStore, mho_json& plo
 
     plot_dict["extra"]["ref_station_mk4id"] = paramStore->GetAs<std::string>("/ref_station/mk4id");
     plot_dict["extra"]["rem_station_mk4id"] = paramStore->GetAs<std::string>("/rem_station/mk4id");
+    
+    plot_dict["extra"]["ref_station_sample_bits"] = paramStore->GetAs<int>("/ref_station/sample_bits");
+    plot_dict["extra"]["rem_station_sample_bits"] = paramStore->GetAs<int>("/rem_station/sample_bits");
 
     //calculate the (u,v) coordinates (taken from fill_202.c)
     double speed_of_light_Mm = 299.792458; // in mega-meters (?!)
