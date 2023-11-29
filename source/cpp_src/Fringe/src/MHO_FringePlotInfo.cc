@@ -179,6 +179,11 @@ MHO_FringePlotInfo::fill_plot_data(MHO_ParameterStore* paramStore, mho_json& plo
     double dv = radians_to_arcsec*(remv - refv) /lambda;
     plot_dict["extra"]["u"] = du;
     plot_dict["extra"]["v"] = dv;
+    
+    //put the sample rate here
+    double srate = paramStore->GetAs<double>("/vex/scan/sample_rate/value");
+    double srate_MHz = srate/1e6; //convert to MHz
+    plot_dict["extra"]["sample_rate"] = srate_MHz;
 }
 
 

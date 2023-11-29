@@ -152,6 +152,75 @@ MHO_VexInfoExtractor::extract_sampler_bits(const mho_json& vexInfo, MHO_Paramete
 }
 
 void 
+MHO_VexInfoExtractor::extract_sample_rate(const mho_json& vexInfo, MHO_ParameterStore* paramStore)
+{
+    double ref_rate = 0;
+    double rem_rate = 0;
+    std::string ref_units;
+    std::string rem_units;
+    std::string modeName =  paramStore->GetAs<std::string>("/vex/scan/mode");
+    std::string ref_id = paramStore->GetAs<std::string>("/ref_station/site_id");
+    std::string rem_id = paramStore->GetAs<std::string>("/rem_station/site_id");
+
+    std::string mode_freq_loc = "/$MODE/" + modeName + "/$FREQ";
+    mho_json::json_pointer mode_freq_jptr(mode_freq_loc);
+    auto mode_freq = vexInfo.at(mode_freq_jptr);
+    
+    std::string freq_loc = "/$FREQ";
+    mho_json::json_pointer freq_jptr(freq_loc);
+    auto freqs = vexInfo.at(freq_jptr);
+
+    //we are given a list of tracks (most likely only one) so loop until 
+    //we find both the ref and rem station in the 'qualifiers' section
+    for(auto elem = mode_freq.begin(); elem != mode_freq.end(); elem++)
+    {
+        std::string freqName = elem.value()["keyword"];
+        auto qualifiers = elem.value()["qualifiers"];
+        for(auto qelem = qualifiers.begin(); qelem != qualifiers.end(); qelem++)
+        {
+            if(qelem.value() == ref_id)
+            {
+                ref_rate = freqs[freqName]["sample_rate"]["value"].get<double>();
+                ref_units = freqs[freqName]["sample_rate"]["units"].get<std::string>();
+            }
+            if(qelem.value() == rem_id)
+            {
+                rem_rate = freqs[freqName]["sample_rate"]["value"].get<double>();
+                rem_units = freqs[freqName]["sample_rate"]["units"].get<std::string>();
+            }
+        }
+    }
+
+    //set the per-station values
+    paramStore->Set("/ref_station/sample_rate/value", ref_rate);
+    paramStore->Set("/ref_station/sample_rate/units", ref_units);
+    paramStore->Set("/rem_station/sample_rate/value", rem_rate);
+    paramStore->Set("/rem_station/sample_rate/units", rem_units);
+
+    //currently only support Ms/sec --> we need to implement units support throughout for proper support
+    double factor = 1.0;
+    if(ref_units == "MHz" || ref_units == "Ms/sec" || ref_units == "Ms/s" ){factor = 1e6;}
+    ref_rate *= factor;
+    factor = 1.0;
+    if(rem_units == "MHz" || rem_units == "Ms/sec" || rem_units == "Ms/s" ){factor = 1e6;}
+    rem_rate *= factor;
+
+    //check that these sample rates are the same
+    double diff = std::abs(ref_rate - rem_rate);
+    if(diff > 1e-15)
+    {
+        msg_error("fringe", "reference and remote station sample rates do not appear to be the same.")
+    }
+    
+    //use the raw values here (Hz and sec)
+    double sample_rate = ref_rate;
+    paramStore->Set("/vex/scan/sample_rate/value", sample_rate);
+    paramStore->Set("/vex/scan/sample_period/value", 1.0/sample_rate);
+    paramStore->Set("/vex/scan/sample_rate/units", std::string("Hz"));
+    paramStore->Set("/vex/scan/sample_period/units", std::string("s"));
+}
+
+void 
 MHO_VexInfoExtractor::extract_vex_info(const mho_json& vexInfo, MHO_ParameterStore* paramStore)
 {
     std::string baseline = paramStore->GetAs<std::string>("/cmdline/baseline");
@@ -196,12 +265,12 @@ MHO_VexInfoExtractor::extract_vex_info(const mho_json& vexInfo, MHO_ParameterSto
                 paramStore->Set("/ref_station/site_id", site_id);
                 paramStore->Set("/ref_station/site_name", site_name);
                 paramStore->Set("/ref_station/site_type", site_type);
-                paramStore->Set("/ref_station/position_x", x);
-                paramStore->Set("/ref_station/position_y", y);
-                paramStore->Set("/ref_station/position_z", z);
-                paramStore->Set("/ref_station/position_x_units", x_units);
-                paramStore->Set("/ref_station/position_y_units", y_units);
-                paramStore->Set("/ref_station/position_z_units", z_units);
+                paramStore->Set("/ref_station/position/x/value", x);
+                paramStore->Set("/ref_station/position/y/value", y);
+                paramStore->Set("/ref_station/position/z/value", z);
+                paramStore->Set("/ref_station/position/x/units", x_units);
+                paramStore->Set("/ref_station/position/y/units", y_units);
+                paramStore->Set("/ref_station/position/z/units", z_units);
                 //TODO maybe extract site velocity too? Do we need this?
                 //position...yes, if we want to be able to calculate parallactic angle at any time from az,el spline
                 //velocity...maybe, but probably only if the station is mobile
@@ -212,12 +281,12 @@ MHO_VexInfoExtractor::extract_vex_info(const mho_json& vexInfo, MHO_ParameterSto
                 paramStore->Set("/rem_station/site_id", site_id);
                 paramStore->Set("/rem_station/site_name", site_name);
                 paramStore->Set("/rem_station/site_type", site_type);
-                paramStore->Set("/rem_station/position_x", x);
-                paramStore->Set("/rem_station/position_y", y);
-                paramStore->Set("/rem_station/position_z", z);
-                paramStore->Set("/rem_station/position_x_units", x_units);
-                paramStore->Set("/rem_station/position_y_units", y_units);
-                paramStore->Set("/rem_station/position_z_units", z_units);
+                paramStore->Set("/rem_station/position/x/value/", x);
+                paramStore->Set("/rem_station/position/y/value/", y);
+                paramStore->Set("/rem_station/position/z/value", z);
+                paramStore->Set("/rem_station/position/x/units", x_units);
+                paramStore->Set("/rem_station/position/y/units", y_units);
+                paramStore->Set("/rem_station/position/z/units", z_units);
             }
         }
     }
@@ -319,27 +388,14 @@ MHO_VexInfoExtractor::extract_vex_info(const mho_json& vexInfo, MHO_ParameterSto
         paramStore->Set("/vex/experiment_number", "----");
     }
 
-    //NOTE: this implicitly assumes that all channels and all stations have the same bandwidth!
-    mho_json freq_section = vexInfo["$FREQ"];
-    auto freq_info = freq_section.begin().value();
-    double sample_rate = freq_info["sample_rate"]["value"];
-    std::string sample_rate_units = freq_info["sample_rate"]["units"];
-    double factor = 1.0;
-    #pragma message("TODO: handle units other than MHz")
-    if(sample_rate_units == "MHz")
-    {
-        factor = 1e6;
-    }
-    sample_rate *= sample_rate*factor;
-    
-    paramStore->Set("/vex/scan/sample_rate", sample_rate);
-    paramStore->Set("/vex/scan/sample_period", 1.0/sample_rate);
-    
     //extract the clock model, as well as station information
     extract_clock_model(vexInfo, paramStore);
 
     //extract the number of bits/sample for each station 
     extract_sampler_bits(vexInfo, paramStore);
+    
+    //extract the channel sample rate for each station and check they're the same
+    extract_sample_rate(vexInfo, paramStore);
 
 }
 
