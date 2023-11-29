@@ -184,6 +184,10 @@ MHO_FringePlotInfo::fill_plot_data(MHO_ParameterStore* paramStore, mho_json& plo
     double srate = paramStore->GetAs<double>("/vex/scan/sample_rate/value");
     double srate_MHz = srate/1e6; //convert to MHz
     plot_dict["extra"]["sample_rate"] = srate_MHz;
+    
+    //grid or frequency points 
+    int grid_pts = paramStore->GetAs<int>("/fringe/n_frequency_points");
+    plot_dict["extra"]["grid_pts"] = grid_pts;
 }
 
 
