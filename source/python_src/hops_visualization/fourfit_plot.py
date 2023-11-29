@@ -389,9 +389,6 @@ def make_fourfit_plot(plot_dict, filename):
     # Set the table cell height to make it smaller
     table.scale(1, 0.7)  # Adjust the scale factor as needed
 
-
-
-
     # # Now build the text boxes
     #
     props = dict(boxstyle='square',facecolor='white',alpha=0.5)
@@ -683,16 +680,18 @@ def make_fourfit_plot(plot_dict, filename):
     ambiguity = "-"
     ref_bits = "-"
     rem_bits = "-"
+    sample_rate = "-"
     if 'extra' in plot_dict:
         ambiguity = str( np.round(float(plot_dict['extra']['ambiguity']),3) )
         ref_bits = str(plot_dict['extra']['ref_station_sample_bits'])
         rem_bits = str(plot_dict['extra']['rem_station_sample_bits'])
+        sample_rate = str( np.round(float(plot_dict['extra']['sample_rate']), 1) ) 
 
     #last pile of text
     textstr100 = "Pcal mode: MANUAL, MANUAL   PC period (AP's) X,X" + '\n' + \
         'Pcal rate: X,X (us/s)' + '\n' + \
         'Bits/sample: '+ ref_bits + 'x' + rem_bits +' SampCntNorm: disabled' + '\n' + \
-        'Data rate(MSamp/s) X MB pts Y Amb ' + ambiguity +' us ' + '\n' + \
+        'Data rate(MSamp/s) ' + sample_rate + ' MBpts Y Amb ' + ambiguity +' us ' + '\n' + \
         'Data rate(Mb/s) X    nlags: X t_cohere infinite'
 
 
