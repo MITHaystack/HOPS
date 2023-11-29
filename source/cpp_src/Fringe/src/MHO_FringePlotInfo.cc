@@ -168,8 +168,10 @@ MHO_FringePlotInfo::fill_plot_data(MHO_ParameterStore* paramStore, mho_json& plo
     plot_dict["extra"]["ref_station_mk4id"] = paramStore->GetAs<std::string>("/ref_station/mk4id");
     plot_dict["extra"]["rem_station_mk4id"] = paramStore->GetAs<std::string>("/rem_station/mk4id");
     
-    plot_dict["extra"]["ref_station_sample_bits"] = paramStore->GetAs<int>("/ref_station/sample_bits");
-    plot_dict["extra"]["rem_station_sample_bits"] = paramStore->GetAs<int>("/rem_station/sample_bits");
+    int ref_bits = paramStore->GetAs<int>("/ref_station/sample_bits");
+    int rem_bits = paramStore->GetAs<int>("/rem_station/sample_bits");
+    plot_dict["extra"]["ref_station_sample_bits"] = ref_bits;
+    plot_dict["extra"]["rem_station_sample_bits"] = rem_bits; 
 
     //calculate the (u,v) coordinates (taken from fill_202.c)
     double speed_of_light_Mm = 299.792458; // in mega-meters (?!)
@@ -188,6 +190,12 @@ MHO_FringePlotInfo::fill_plot_data(MHO_ParameterStore* paramStore, mho_json& plo
     //grid or frequency points 
     int grid_pts = paramStore->GetAs<int>("/fringe/n_frequency_points");
     plot_dict["extra"]["grid_pts"] = grid_pts;
+    
+    //this one is kind of silly:
+    int nchan = paramStore->GetAs<int>("/config/nchannels");
+    int eff_npols = 1; //TODO FIXME!
+    int data_rate = (int)( nchan*eff_npols*srate_MHz* std::sqrt(ref_bits*rem_bits) + 0.5 );
+    plot_dict["extra"]["data_rate"] = data_rate;
 }
 
 
