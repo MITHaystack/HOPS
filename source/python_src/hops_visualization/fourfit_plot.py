@@ -588,8 +588,9 @@ def make_fourfit_plot(plot_dict, filename):
     ct2_row_label[1] = 'amp/seg (%)'
     ct2_row_label[2] = 'ph/frq (deg)'
     ct2_row_label[3] = 'amp/frq (%)'
-    ct2_data = np.zeros((ct2_rows,ct2_cols))
+    ct2_data = np.zeros((ct2_rows,ct2_cols), dtype=object)
     if 'extra' in plot_dict:
+        print(plot_dict['extra'])
         ct2_data[0][1] = str(np.round(float(plot_dict["extra"]["theory_timerms_phase"]),1) )
         ct2_data[1][1] = str(np.round(float(plot_dict["extra"]["theory_timerms_amp"]),1) )
         ct2_data[2][1] = str(np.round(float(plot_dict["extra"]["theory_freqrms_phase"]),1) )
@@ -627,7 +628,18 @@ def make_fourfit_plot(plot_dict, filename):
     ct3_row_label[3] = 'Inc. seg. avg.'
     ct3_row_label[4] = 'Inc. frq. avg.'
     #create the table of per-channel data TODO - FILL ME IN
-    ct3_data = [[' - ']*ct3_cols]*ct3_rows
+    ct3_data = np.zeros((ct3_rows,ct3_cols), dtype=object)
+    
+    #fill the table values
+    amp = float(plot_dict['Amp'])
+    amp_err = amp/float(plot_dict['SNR'])
+    ct3_data[0][0] = str( np.round(amp,3) ) + ' +/- ' + str(np.round(amp_err,3) )
+    ct3_data[1][0] = '0.000' #Search. -- what is this?
+    ct3_data[2][0] = '0.000' #Iterp. -- what is this?
+    if 'extra' in plot_dict:
+        ct3_data[3][0] = str(np.round(float(plot_dict["extra"]["inc_avg_amp"]),3))
+        ct3_data[4][0] = str(np.round(float(plot_dict["extra"]["inc_avg_amp_freq"]),3))
+    
     # Create the table
     table3 = axT3.table(cellText=ct3_data, rowLabels=ct3_row_label, loc='center')
 
@@ -653,7 +665,7 @@ def make_fourfit_plot(plot_dict, filename):
     ct4_row_label[2] = 'dr window (ns/s)'
     ct4_row_label[3] = 'ion window (TEC)'
     #create the table of per-channel data TODO - FILL ME IN
-    ct4_data = np.zeros((ct4_rows,ct4_cols))
+    ct4_data = np.zeros((ct4_rows,ct4_cols), dtype=object)
     if 'extra' in plot_dict:
         ct4_data[0][0] = str(np.round(float(plot_dict['extra']['sb_win'][0]),3) )
         ct4_data[0][1] = str(np.round(float(plot_dict['extra']['sb_win'][1]),3) )
@@ -669,7 +681,7 @@ def make_fourfit_plot(plot_dict, filename):
     # Remove the borders from the table and set alignment
     for key, cell in table4._cells.items():
         cell.set_linewidth(0)
-        cell.set_text_props(ha="right")
+        cell.set_text_props(ha="left")
     # Adjust the cell font size (optional)
     table4.auto_set_font_size(False)
     table4.set_fontsize(7)
@@ -683,6 +695,7 @@ def make_fourfit_plot(plot_dict, filename):
     sample_rate = "-"
     grid_pts = "-"
     data_rate = "-"
+        
     if 'extra' in plot_dict:
         ambiguity = str( np.round(float(plot_dict['extra']['ambiguity']),3) )
         ref_bits = str(plot_dict['extra']['ref_station_sample_bits'])
@@ -694,13 +707,13 @@ def make_fourfit_plot(plot_dict, filename):
     #last pile of text
     textstr100 = "Pcal mode: MANUAL, MANUAL   PC period (AP's) X,X" + '\n' + \
         'Pcal rate: X,X (us/s)' + '\n' + \
-        'Bits/sample: '+ ref_bits + 'x' + rem_bits +' SampCntNorm: disabled' + '\n' + \
+        'Bits/sample: '+ ref_bits + 'x' + rem_bits +'      SampCntNorm: disabled' + '\n' + \
         'Data rate(MSamp/s) ' + sample_rate + ' MBpts '+ grid_pts + ' Amb ' + ambiguity +' us ' + '\n' + \
-        'Data rate(Mb/s) ' + data_rate + '    nlags: X t_cohere infinite'
+        'Data rate(Mb/s) ' + data_rate + '  nlags: X   t_cohere infinite'
 
 
     # Add the text boxes
-    plt.text(0.44,0.1,textstr100,transform=plt.gcf().transFigure,fontsize=7,verticalalignment='top',family='monospace',horizontalalignment='left',color='k')
+    plt.text(0.42,0.1,textstr100,transform=plt.gcf().transFigure,fontsize=7,verticalalignment='top',family='monospace',horizontalalignment='left',color='k')
 
     pylab.show()
     pylab.savefig(filename)
