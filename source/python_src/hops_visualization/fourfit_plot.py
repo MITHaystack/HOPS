@@ -256,11 +256,9 @@ def make_pcal_plots(plot_dict):
         if ch == 0:
             ax8.set_ylabel(r"pcal $\theta$",fontsize=9)
             ax8.yaxis.set_major_locator(plt.FixedLocator([-180, -90, 0, 90, 180]))
-            #ax8.yaxis.set_minor_locator(AutoMinorLocator(2))
             ax8.tick_params(axis='y', left = False,  right=False, bottom = False, labelleft=False)
         elif ch == (n_seg_plots-2):
             ax8.yaxis.set_major_locator(plt.FixedLocator([-180, -90, 0, 90, 180]))
-            #ax8.yaxis.set_minor_locator(AutoMinorLocator(2))
             ax8.set_yticklabels(ax8.get_yticks(), fontsize=5)
             ax8.tick_params(axis='y', left=False, right=True, labelleft=False, labelright=True)
         else:
@@ -280,7 +278,6 @@ def make_channel_info_table(plot_dict):
     #make the text table that sits below the channel/pcal plots 
     n_seg_plots = int(plot_dict["NPlots"])
     axT = plt.subplot2grid((96,n_seg_plots),(67,0),rowspan=20,colspan=n_seg_plots)
-    #plt.subplots_adjust(left=0.07, right=0.93, bottom=0.07, top=0.93)
     #plt.subplots_adjust(left=0.1, right=0.9, top=0.8, bottom=0.1)  # Adjust margins as needed
 
     ct_header_text = {}
@@ -613,7 +610,6 @@ def make_coord_text(plot_dict):
         file_info_textstr = "Control file: " + control_file + "   Input file: " + input_file + "   Output file: " + output_file
         plt.text(0.01,0.03, file_info_textstr ,transform=plt.gcf().transFigure,fontsize=6,verticalalignment='top', family='monospace',horizontalalignment='left',color='k')
         #TODO - also add information about the 'samplers' when statement is present in control file
-
 
 
 def make_amplitude_table(plot_dict):
