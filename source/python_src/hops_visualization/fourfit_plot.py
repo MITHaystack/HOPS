@@ -1,8 +1,6 @@
 
 import os, sys
-
 import numpy as np
-
 import matplotlib
 #matplotlib.use("Agg", warn=False)
 
@@ -13,42 +11,12 @@ import pylab
 from matplotlib.ticker import FormatStrFormatter
 from matplotlib.ticker import AutoMinorLocator
 
-def make_fourfit_plot(plot_dict, filename):
-    '''
-    Function to reproduce a fourfit fringe plot.
+def make_dr_mbd_plot(plot_dict):
 
-    Parameters
-    ----------
-
-    plot_dict : dict
-        Dictionary with key/value pairs for the plot.
-
-    filename : str
-        Path of the filename to save the plot.
-
-
-    Returns
-    -------
-
-    None
-
-    '''
-
-    matplotlib.rcParams.update({'figure.figsize': [8.5,11]})
-
-    # build x-axis arrays for SBD, MBD, delayrate, Xpow spec, etc
-    # build x-axis arrays for SBD, MBD, delayrate, Xpow spec, etc
-    sbd_x = []
+    #The delay rate panel and multidband delay plot share axes
+    #make sure there are x-axes (not present in plot_data_dir objecs)
     mbd_x = []
     dly_x = []
-    xpow_x = []
-
-    # build x-axis arrays for SBD, MBD, delayrate, Xpow spec, etc
-    if 'SBD_AMP_XAXIS' in plot_dict:
-        sbd_x = plot_dict['SBD_AMP_XAXIS']
-    else:
-        sbd_x = np.arange(0,len(plot_dict['SBD_AMP']))
-
     if 'MBD_AMP_XAXIS' in plot_dict:
         mbd_x = plot_dict['MBD_AMP_XAXIS']
     else:
@@ -59,19 +27,6 @@ def make_fourfit_plot(plot_dict, filename):
     else:
         dly_x = np.arange(0,len(plot_dict['DLYRATE']))
 
-    if 'XPSPEC_XAXIS' in plot_dict:
-        xpow_x = plot_dict['XPSPEC_XAXIS']
-    else:
-        xpow_x = np.arange(0,len(plot_dict['XPSPEC-ABS'])/2)
-
-    # xpow_x = np.arange(-2,2,4.0/len(plot_dict['XPSPEC-ABS']))
-
-
-    # Build the figure.  We'll construct this figure using many subplots, with different grid specifications.
-
-    fig = pylab.figure(1)
-
-    # The delay rate panel (shares axes with the multiband delay)
     ax1 = plt.subplot2grid((16,16),(0,0),rowspan=3,colspan=13)
     plt.subplots_adjust(left=0.07, right=0.93, bottom=0.07, top=0.93)
 
@@ -88,7 +43,6 @@ def make_fourfit_plot(plot_dict, filename):
     ax1.minorticks_on()
     ax1.tick_params(axis='both', direction='in', which='both', bottom=True, left=True)
 
-    #
     # twin both axes, retain the intermediate axes object to adjust those ticks
     ax2a = ax1.twinx()
     plt.yticks(fontsize=8,rotation=90)
@@ -102,12 +56,16 @@ def make_fourfit_plot(plot_dict, filename):
     ax2.xaxis.label.set_color('b')
     ax2.minorticks_on()
     ax2.tick_params(axis='both', direction='in', which='both', top=True, right=True)
-    # ax2a.set_ylabel('amplitude',fontsize=9)
-    # ax2a.yaxis.label.set_color('b')
 
+def make_sbd_dtec_plot(plot_dict):
+    #make sure there is an x-axis for the the SBD plot
+    sbd_x = []
+    if 'SBD_AMP_XAXIS' in plot_dict:
+        sbd_x = plot_dict['SBD_AMP_XAXIS']
+    else:
+        sbd_x = np.arange(0,len(plot_dict['SBD_AMP']))
 
-
-    # The singleband delay panel
+    #Plot the singleband delay panel
     ax3 = plt.subplot2grid((16, 16),(4,0),rowspan=2,colspan=6)
     ax3.plot(sbd_x, plot_dict['SBD_AMP'],'g-',linewidth=0.5)
     ax3.set_xlim(sbd_x[0],sbd_x[-1])
@@ -121,9 +79,19 @@ def make_fourfit_plot(plot_dict, filename):
     ax3.yaxis.label.set_color('g')
     ax3.minorticks_on()
     ax3.tick_params(axis='both', direction='in', which='both', right=True, bottom=True, left=True, top=True)
+    #TODO -- when dtec search is implemented and this data is present, twin axes and plot it here
 
-    # The cross-power sepctra
-    #ax4 = plt.subplot2grid((16,16),(5,7),rowspan=3,colspan=6)
+
+def make_xpower_plot(plot_dict):
+
+    #make sure there is x-axis info
+    xpow_x = []
+    if 'XPSPEC_XAXIS' in plot_dict:
+        xpow_x = plot_dict['XPSPEC_XAXIS']
+    else:
+        xpow_x = np.arange(0,len(plot_dict['XPSPEC-ABS'])/2)
+    
+    # The cross-power spectra (amplitude)
     ax4 = plt.subplot2grid((16, 16),(4,7),rowspan=2,colspan=6)
     ax4.plot(xpow_x, plot_dict['XPSPEC-ABS'][0:len(xpow_x)],'co-',markersize=2,markerfacecolor='b',linewidth=0.5, markeredgewidth=0.0)
     ax4.set_xlim(xpow_x[0],xpow_x[-1])
@@ -138,7 +106,7 @@ def make_fourfit_plot(plot_dict, filename):
     ax4.minorticks_on()
     ax4.tick_params(axis='both', direction='in', which='both', right=True, bottom=True, left=True, top=True)
 
-
+    #cross-power spectra phase
     ax5 = ax4.twinx()
     ax5.plot(xpow_x, plot_dict['XPSPEC-ARG'][0:len(xpow_x)],'ro',markersize=2,linewidth=0.5, markeredgewidth=0.0)
     ax5.set_xlim(xpow_x[0],xpow_x[-1])
@@ -150,14 +118,16 @@ def make_fourfit_plot(plot_dict, filename):
     ax5.yaxis.label.set_color('r')
     ax5.tick_params(axis='both', direction='in', which='both')
 
-    # Now we build the plots for each band; this will need attention, currently only supports six bands
-    # (and is built by hand; need to loop)
 
+
+def make_channel_segment_plots(plot_dict):
+
+    # This function constructs the phase/amp plots for each channel from the time-average segments
     n_seg = int(plot_dict["NSeg"])
     n_seg_plots = int(plot_dict["NPlots"])
     colw = 6
 
-    #grab seg amp
+    #grab the segment amplitudes
     seg_amp_arr = np.array( plot_dict['SEG_AMP'] )
     seg_ymax = float(plot_dict['Amp'])*3.0 #see generate_graphs.c
 
@@ -169,10 +139,6 @@ def make_fourfit_plot(plot_dict, filename):
 
     # convert SEG_PHS to deg
     seg_phs_arr = np.array( [xx*180/np.pi for xx in plot_dict['SEG_PHS']] )
-
-    # seg_amp_arr1 = seg_amp_arr.reshape(n_seg_plots,n_seg)
-    # seg_phs_arr1 = seg_phs_arr.reshape(n_seg_plots,n_seg)
-
     seg_amp_arr1 = seg_amp_arr.reshape(n_seg, n_seg_plots)
     seg_phs_arr1 = seg_phs_arr.reshape(n_seg, n_seg_plots)
 
@@ -194,7 +160,6 @@ def make_fourfit_plot(plot_dict, filename):
             ax6.minorticks_on()
             plt.tick_params(left = True, bottom = False)
         else:
-            #ax6.axis("off")
             ax6.xaxis.set_major_locator(plt.NullLocator())
             ax6.yaxis.set_major_locator(plt.NullLocator())
             ax6.set_yticklabels(labels=[],visible=False)
@@ -218,11 +183,20 @@ def make_fourfit_plot(plot_dict, filename):
             ax6a.yaxis.label.set_color('r')
             plt.tick_params(right = True, bottom = False)
         else:
-            #ax6a.axis("off")
             ax6a.xaxis.set_major_locator(plt.NullLocator())
             ax6a.yaxis.set_major_locator(plt.NullLocator())
             ax6a.set_yticklabels(labels=[],visible=False)
             plt.tick_params(left = False, bottom = False)
+            
+            
+            
+def make_channel_segment_validity_plots(plot_dict):
+    
+    #TODO FIXME -- THIS IS A DUMMY IMPLEMENTATION, PLOTS ZEROS
+    # This function constructs USB/LSB validity flag plots for the time-averaged segments of each channel
+    n_seg = int(plot_dict["NSeg"])
+    n_seg_plots = int(plot_dict["NPlots"])
+    colw = 6
 
     #USB/LSB PLOTS
     for ch in range(0,n_seg_plots-1):
@@ -230,7 +204,7 @@ def make_fourfit_plot(plot_dict, filename):
         plt.subplots_adjust(wspace=0, hspace=0)
         ax7.plot(range(n_seg), np.zeros(n_seg),'co-',markersize=2, markerfacecolor='g', linewidth=0.5, markeredgewidth=0.0)
         ax7.set_xlim(0,n_seg)
-        ax7.set_ylim(0,seg_ymax)
+        ax7.set_ylim(0,1)
         ax7.set_xticklabels(labels=[],visible=False)
         ax7.tick_params(axis='both', direction='in', which='both')
         ax7.xaxis.set_major_locator(plt.NullLocator())
@@ -246,7 +220,7 @@ def make_fourfit_plot(plot_dict, filename):
         plt.subplots_adjust(wspace=0, hspace=0)
         ax7b.plot(range(n_seg), np.zeros(n_seg),'co-',markersize=2, markerfacecolor='g', linewidth=0.5, markeredgewidth=0.0)
         ax7b.set_xlim(0,n_seg)
-        ax7b.set_ylim(0,seg_ymax)
+        ax7b.set_ylim(0,1)
         ax7b.set_xticklabels(labels=[],visible=False)
         ax7b.tick_params(axis='both', direction='in', which='both')
         ax7b.xaxis.set_major_locator(plt.NullLocator())
@@ -257,6 +231,15 @@ def make_fourfit_plot(plot_dict, filename):
         if ch == 0:
             ax7b.set_ylabel('L',fontsize=7, rotation=0, labelpad=5)
             ax7b.yaxis.set_label_coords(-0.23,0.0)
+            
+            
+def make_pcal_plots(plot_dict):
+    #TODO FIXME - This is a dummy implementation (zeros)
+    #construct the phase-cal segment plots
+
+    n_seg = int(plot_dict["NSeg"])
+    n_seg_plots = int(plot_dict["NPlots"])
+    colw = 6
 
     #PCAL PLOTS
     for ch in range(0,n_seg_plots-1):
@@ -285,14 +268,17 @@ def make_fourfit_plot(plot_dict, filename):
             ax8.set_yticklabels(labels=[],visible=False)
             plt.yticks(visible=False)
 
-    #TODO FIXME -- make these station labels part of the y-axis title so their placement is done properly no matter the number of channels
+    #TODO FIXME -- make these station labels part of the p-cal y-axis title so their placement is done properly no matter the number of channels
     if 'extra' in plot_dict:
         ref_mk4id = plot_dict["extra"]["ref_station_mk4id"]
         rem_mk4id = plot_dict["extra"]["rem_station_mk4id"]
         plt.text(0.925,0.37,ref_mk4id,transform=plt.gcf().transFigure,fontsize=7,verticalalignment='top',family='monospace',horizontalalignment='left',color='g')
         plt.text(0.94,0.37,rem_mk4id,transform=plt.gcf().transFigure,fontsize=7,verticalalignment='top',family='monospace',horizontalalignment='left',color='m')
 
-    #make the text table
+def make_channel_info_table(plot_dict):
+
+    #make the text table that sits below the channel/pcal plots 
+    n_seg_plots = int(plot_dict["NPlots"])
     axT = plt.subplot2grid((96,n_seg_plots),(67,0),rowspan=20,colspan=n_seg_plots)
     #plt.subplots_adjust(left=0.07, right=0.93, bottom=0.07, top=0.93)
     #plt.subplots_adjust(left=0.1, right=0.9, top=0.8, bottom=0.1)  # Adjust margins as needed
@@ -389,8 +375,9 @@ def make_fourfit_plot(plot_dict, filename):
     # Set the table cell height to make it smaller
     table.scale(1, 0.7)  # Adjust the scale factor as needed
 
-    # # Now build the text boxes
-    #
+def make_info_text_box(plot_dict):
+    #build the text that sits to the right of the DR/MBD and xpower spectra plots
+
     props = dict(boxstyle='square',facecolor='white',alpha=0.5)
     textstr1 = 'Fringe quality ' + '\n\n' + \
         'SNR ' + '\n' + \
@@ -440,16 +427,16 @@ def make_fourfit_plot(plot_dict, filename):
         plot_dict['RA'] + '\n' + \
         plot_dict['Dec'].replace('d', '$\degree$')
 
-
-
-    # Add the text boxes
+    #now add the text boxes to the plot
     plt.text(0.83,0.94,textstr1,transform=plt.gcf().transFigure,fontsize=8,verticalalignment='top',
              family='monospace',horizontalalignment='left',color='g')
 
     plt.text(0.965,0.94,textstr2,transform=plt.gcf().transFigure,fontsize=8,verticalalignment='top',
              family='monospace',horizontalalignment='right',color='k')
 
-    # Add the top matter
+
+def make_top_info_text(plot_dict):
+    #adds the text info at the very top of the page
     plt.text(0.965,0.98,plot_dict['RootScanBaseline'].strip("'"),transform=plt.gcf().transFigure,
              fontsize=12,verticalalignment='top',family='sans-serif',horizontalalignment='right',fontweight='bold')
 
@@ -459,7 +446,10 @@ def make_fourfit_plot(plot_dict, filename):
     plt.text(0.965,0.96, plot_dict['PolStr'].strip("'"),transform=plt.gcf().transFigure,
              fontsize=10,verticalalignment='top',family='sans-serif',horizontalalignment='right',fontweight='bold')
 
-
+def make_model_resid_info_text(plot_dict):
+    #adds the wall of text below the p-cal table with:
+    #a priori, total, and residual delay model infomation
+    
     btmtextstr1 = 'Group delay (usec) ' + '\n' + \
         'Sband delay (usec) ' + '\n' + \
         'Phase delay (usec) ' + '\n' + \
@@ -540,7 +530,52 @@ def make_fourfit_plot(plot_dict, filename):
     plt.text(0.97,bottom_yoffset,btmtextstr8,transform=plt.gcf().transFigure,fontsize=7,verticalalignment='top',
              family='monospace',horizontalalignment='right',color='k')
 
-    #this is only true of hops4 generated data (plot_data_dir is missing these items)
+
+def make_rms_table(plot_dict):
+
+    #add more text at the bottom (with the data RMS/Theor table)
+    axT2 = plt.subplot2grid((120,240),(119,5),rowspan=4,colspan=30)
+    ct2_rows = 4
+    ct2_cols = 2
+    ct2_col_label = ['']*ct2_cols
+    ct2_col_label[0] = 'RMS'
+    ct2_col_label[1] = 'Theor.'
+    ct2_row_label = ['-']*ct2_rows
+    ct2_row_label[0] = 'ph/seg (deg)'
+    ct2_row_label[1] = 'amp/seg (%)'
+    ct2_row_label[2] = 'ph/frq (deg)'
+    ct2_row_label[3] = 'amp/frq (%)'
+    ct2_data = np.zeros((ct2_rows,ct2_cols), dtype=object)
+    if 'extra' in plot_dict:
+        print(plot_dict['extra'])
+        ct2_data[0][1] = str(np.round(float(plot_dict["extra"]["theory_timerms_phase"]),1) )
+        ct2_data[1][1] = str(np.round(float(plot_dict["extra"]["theory_timerms_amp"]),1) )
+        ct2_data[2][1] = str(np.round(float(plot_dict["extra"]["theory_freqrms_phase"]),1) )
+        ct2_data[3][1] = str(np.round(float(plot_dict["extra"]["theory_freqrms_amp"]),1) )
+        ct2_data[0][0] = str(np.round(float(plot_dict["extra"]["timerms_phase"]),1) )
+        ct2_data[1][0] = str(np.round(float(plot_dict["extra"]["timerms_amp"]),1) )
+        ct2_data[2][0] = str(np.round(float(plot_dict["extra"]["freqrms_phase"]),1) )
+        ct2_data[3][0] = str(np.round(float(plot_dict["extra"]["freqrms_amp"]),1) )
+
+    # Create the table
+    table2 = axT2.table(cellText=ct2_data, colLabels=ct2_col_label, rowLabels=ct2_row_label, loc='center')
+    # Remove the borders from the table and set alignment
+    for key, cell in table2._cells.items():
+        cell.set_linewidth(0)
+        cell.set_text_props(ha="left")
+
+    # Adjust the cell font size (optional)
+    table2.auto_set_font_size(False)
+    table2.set_fontsize(7)
+    # Hide the axis
+    axT2.axis('off')
+    # Set the table cell height to make it smaller
+    table2.scale(1, 0.7)  # Adjust the scale factor as needed
+
+def make_coord_text(plot_dict):
+    #add the station sky coordinate and u-v coordinate info to the bottom
+    #note that these parameters are only present in hops4 generated data
+    #(plot_data_dir is currently missing these items)
     if 'extra' in plot_dict:
         ref_mk4id = plot_dict["extra"]["ref_station_mk4id"]
         ref_az = plot_dict['extra']['ref_station']['az']
@@ -569,54 +604,18 @@ def make_fourfit_plot(plot_dict, filename):
         plt.text(0.01,0.04, station_coords_textstr ,transform=plt.gcf().transFigure,fontsize=7,verticalalignment='top', family='monospace',horizontalalignment='left',color='k')
         plt.text(0.97,0.04, "simultaneous interpolator" ,transform=plt.gcf().transFigure,fontsize=7,verticalalignment='top', family='monospace',horizontalalignment='right',color='k')
 
+        #also add some information about the input/output and control file
         control_file = plot_dict['extra']['control_file']
         input_file = plot_dict['extra']['baseline_input_file']
         output_file = plot_dict['extra']['output_file']
         file_info_textstr = "Control file: " + control_file + "   Input file: " + input_file + "   Output file: " + output_file
         plt.text(0.01,0.03, file_info_textstr ,transform=plt.gcf().transFigure,fontsize=6,verticalalignment='top', family='monospace',horizontalalignment='left',color='k')
+        #TODO - also add information about the 'samplers' when statement is present in control file
 
 
-    #more text at the bottom (RMS/Theor table)
-    axT2 = plt.subplot2grid((120,240),(119,5),rowspan=4,colspan=30)
-    ct2_rows = 4
-    ct2_cols = 2
-    ct2_col_label = ['']*ct2_cols
-    ct2_col_label[0] = 'RMS'
-    ct2_col_label[1] = 'Theor.'
-    ct2_row_label = ['-']*ct2_rows
-    ct2_row_label[0] = 'ph/seg (deg)'
-    ct2_row_label[1] = 'amp/seg (%)'
-    ct2_row_label[2] = 'ph/frq (deg)'
-    ct2_row_label[3] = 'amp/frq (%)'
-    ct2_data = np.zeros((ct2_rows,ct2_cols), dtype=object)
-    if 'extra' in plot_dict:
-        print(plot_dict['extra'])
-        ct2_data[0][1] = str(np.round(float(plot_dict["extra"]["theory_timerms_phase"]),1) )
-        ct2_data[1][1] = str(np.round(float(plot_dict["extra"]["theory_timerms_amp"]),1) )
-        ct2_data[2][1] = str(np.round(float(plot_dict["extra"]["theory_freqrms_phase"]),1) )
-        ct2_data[3][1] = str(np.round(float(plot_dict["extra"]["theory_freqrms_amp"]),1) )
-        ct2_data[0][0] = str(np.round(float(plot_dict["extra"]["timerms_phase"]),1) )
-        ct2_data[1][0] = str(np.round(float(plot_dict["extra"]["timerms_amp"]),1) )
-        ct2_data[2][0] = str(np.round(float(plot_dict["extra"]["freqrms_phase"]),1) )
-        ct2_data[3][0] = str(np.round(float(plot_dict["extra"]["freqrms_amp"]),1) )
-        
 
-    # Create the table
-    table2 = axT2.table(cellText=ct2_data, colLabels=ct2_col_label, rowLabels=ct2_row_label, loc='center')
-    # Remove the borders from the table and set alignment
-    for key, cell in table2._cells.items():
-        cell.set_linewidth(0)
-        cell.set_text_props(ha="left")
-
-    # Adjust the cell font size (optional)
-    table2.auto_set_font_size(False)
-    table2.set_fontsize(7)
-    # Hide the axis
-    axT2.axis('off')
-    # Set the table cell height to make it smaller
-    table2.scale(1, 0.7)  # Adjust the scale factor as needed
-
-    #more text at the bottom (amp table)
+def make_amplitude_table(plot_dict):
+    #constructs the fringe amplitude table - more text at the bottom
     axT3 = plt.subplot2grid((120,120),(119,32),rowspan=4,colspan=15)
     ct3_rows = 5
     ct3_cols = 1
@@ -656,8 +655,10 @@ def make_fourfit_plot(plot_dict, filename):
     # Set the table cell height to make it smaller
     table3.scale(1, 0.7)  # Adjust the scale factor as needed
 
-
-    #more text at the bottom (amp table)
+def make_window_table(plot_dict):
+    
+    #construct the table containing the limits of the search windows (sbd, mbd, dr, ion)
+    #this adds more text at the bottom 
     axT4 = plt.subplot2grid((120,120),(119,119),rowspan=4,colspan=1)
     ct4_rows = 4
     ct4_cols = 2
@@ -691,6 +692,8 @@ def make_fourfit_plot(plot_dict, filename):
     # Set the table cell height to make it smaller
     table4.scale(12, 0.7)  # Adjust the scale factor as needed
 
+def make_data_stats_text(plot_dict):
+    #constructs the auxilliary data information text at the bottom of the page
     ambiguity = "-"
     ref_bits = "-"
     rem_bits = "-"
@@ -698,7 +701,7 @@ def make_fourfit_plot(plot_dict, filename):
     grid_pts = "-"
     data_rate = "-"
     nlags = "-"
-        
+
     if 'extra' in plot_dict:
         ambiguity = str( np.round(float(plot_dict['extra']['ambiguity']),3) )
         ref_bits = str(plot_dict['extra']['ref_station_sample_bits'])
@@ -715,9 +718,48 @@ def make_fourfit_plot(plot_dict, filename):
         'Data rate(MSamp/s) ' + sample_rate + ' MBpts '+ grid_pts + ' Amb ' + ambiguity +' us ' + '\n' + \
         'Data rate(Mb/s) ' + data_rate + '  nlags: '+ nlags +'   t_cohere infinite'
 
-
     # Add the text boxes
     plt.text(0.41,0.095,textstr100,transform=plt.gcf().transFigure,fontsize=7,verticalalignment='top',family='monospace',horizontalalignment='left',color='k')
+
+
+
+def make_fourfit_plot(plot_dict, filename):
+    '''
+    Function to reproduce a fourfit fringe plot.
+
+    Parameters
+    ----------
+    plot_dict : dict
+        Dictionary with key/value pairs for the plot.
+    filename : str
+        Path of the filename to save the plot.
+
+    Returns
+    -------
+    None
+
+    '''
+
+    matplotlib.rcParams.update({'figure.figsize': [8.5,11]})
+
+    # Build the figure.  We'll construct this figure using many subplots, with different grid specifications.
+    fig = pylab.figure(1)
+
+    make_dr_mbd_plot(plot_dict)
+    make_sbd_dtec_plot(plot_dict)
+    make_xpower_plot(plot_dict)
+    make_channel_segment_plots(plot_dict)
+    make_channel_segment_validity_plots(plot_dict)
+    make_pcal_plots(plot_dict)
+    make_channel_info_table(plot_dict)
+    make_info_text_box(plot_dict)
+    make_top_info_text(plot_dict)
+    make_model_resid_info_text(plot_dict)
+    make_rms_table(plot_dict)
+    make_coord_text(plot_dict)
+    make_amplitude_table(plot_dict)
+    make_window_table(plot_dict)
+    make_data_stats_text(plot_dict)
 
     pylab.show()
     pylab.savefig(filename)
