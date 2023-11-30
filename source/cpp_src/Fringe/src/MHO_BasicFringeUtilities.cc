@@ -98,6 +98,7 @@ MHO_BasicFringeUtilities::calculate_fringe_solution_info(MHO_ContainerStore* con
 
     //residual phase in radians and degrees
     double resid_phase_rad = calculate_residual_phase(conStore, paramStore);
+    paramStore->Set("/fringe/raw_resid_phase_rad", resid_phase_rad);
     double resid_phase_deg = std::fmod(resid_phase_rad*(180.0/M_PI), 360.0);
 
     //calculate the a priori phase and total phase
