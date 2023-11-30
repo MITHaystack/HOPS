@@ -56,6 +56,7 @@ class MHO_MBDelaySearch: public MHO_InspectingOperator< visibility_type >
         int GetNMBDBins(){return fNGridPoints;};
         int GetNSBDBins(){return fNSBD;};
         int GetNDRBins(){return fNDR;};
+        int GetNDRSPBins(){return fDelayRateCalc.GetDelayRateSearchSpaceSize(); }
 
         double GetSearchMaximumAmplitude() const {return fMax;}
         double GetFrequencySpacing() const {return fGridSpace;}

@@ -622,7 +622,10 @@ def make_fourfit_plot(plot_dict, filename):
     ct3_cols = 1
     ct3_row_label = ['-']*ct3_rows
     ct3_row_label[0] = 'Amplitude'
-    ct3_row_label[1] = 'Search'
+    ct3_row1_label = 'Search'
+    if 'extra' in plot_dict:
+        ct3_row1_label += '(' + str(plot_dict["extra"]["n_drsp_points"]) +'X' + str(plot_dict["extra"]["grid_pts"]) + ')'
+    ct3_row_label[1] = ct3_row1_label
     ct3_row_label[2] = 'Interp.'
     ct3_row_label[3] = 'Inc. seg. avg.'
     ct3_row_label[4] = 'Inc. frq. avg.'
