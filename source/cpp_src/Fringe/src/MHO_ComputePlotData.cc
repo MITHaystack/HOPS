@@ -950,14 +950,16 @@ MHO_ComputePlotData::DumpInfoToJSON(mho_json& plot_dict)
     double resid_phase = fParamStore->GetAs<double>("/fringe/raw_resid_phase_rad");
     
     double snr = fParamStore->GetAs<double>("/fringe/snr");
-    double freqrms_phase, freqrms_amp, timerms_phase, timerms_amp;
-    calc_freqrms(phasors, resid_phase, fringe_amp, tsum_weights, freqrms_phase, freqrms_amp);
-    calc_timerms(phasors, nseg, apseg, resid_phase, fringe_amp, tsum_weights, snr, timerms_phase, timerms_amp);
+    double freqrms_phase, freqrms_amp, timerms_phase, timerms_amp, inc_avg_amp, inc_avg_amp_freq;
+    calc_freqrms(phasors, resid_phase, fringe_amp, tsum_weights, snr, freqrms_phase, freqrms_amp, inc_avg_amp_freq);
+    calc_timerms(phasors, nseg, apseg, resid_phase, fringe_amp, tsum_weights, snr, timerms_phase, timerms_amp, inc_avg_amp);
 
     plot_dict["extra"]["freqrms_phase"] = freqrms_phase;
     plot_dict["extra"]["freqrms_amp"] = freqrms_amp;
     plot_dict["extra"]["timerms_phase"] = timerms_phase;
     plot_dict["extra"]["timerms_amp"] = timerms_amp;
+    plot_dict["extra"]["inc_avg_amp"] = inc_avg_amp;
+    plot_dict["extra"]["inc_avg_amp_freq"] = inc_avg_amp_freq;
     
     //stuff this in the parameter store too (reorganize this later)
     fParamStore->Set("/fringe/freqrms_phase", freqrms_phase);
@@ -966,7 +968,6 @@ MHO_ComputePlotData::DumpInfoToJSON(mho_json& plot_dict)
     fParamStore->Set("/fringe/timerms_amp", timerms_amp);
 
     //calculate the theory values
-
     int nchan =  fParamStore->GetAs<double>("/config/nchannels");
     double th_timerms_phase = MHO_BasicFringeInfo::calculate_theory_timerms_phase(nseg, snr);
     double th_timerms_amp = MHO_BasicFringeInfo::calculate_theory_timerms_amp(nseg, snr);
@@ -992,13 +993,19 @@ MHO_ComputePlotData::DumpInfoToJSON(mho_json& plot_dict)
 
 
 void
-MHO_ComputePlotData::calc_freqrms(phasor_type& phasors, double coh_avg_phase, double fringe_amp, double total_summed_weights, double& freqrms_phase, double& freqrms_amp)
+MHO_ComputePlotData::calc_freqrms(phasor_type& phasors, double coh_avg_phase, double fringe_amp,
+                                  double total_summed_weights, double snr, 
+                                  double& freqrms_phase, double& freqrms_amp, double& inc_avg_amp_freq)
 {
     std::size_t nchan = phasors.GetDimension(0)-1; //-1 is for the 'all' channel tacked on the end
     std::size_t nap = phasors.GetDimension(1);
 
     freqrms_phase = 0;
     freqrms_amp = 0;
+    inc_avg_amp_freq = 0.0;
+    
+    #pragma message("TODO FIXME -- implement amp_corr_fact.");
+    double amp_corr_fact = 1.0;
 
     for(std::size_t ch = 0; ch < nchan; ch++)
     {
@@ -1006,10 +1013,15 @@ MHO_ComputePlotData::calc_freqrms(phasor_type& phasors, double coh_avg_phase, do
         double sumwt = 0.0;
         for(std::size_t ap =0; ap < nap; ap ++)
         {
-            sum += phasors(ch, ap);
-            sumwt += (*fWeights)(0, ch, ap, 0);
+            double wt = (*fWeights)(0, ch, ap, 0);
+            sum += wt*phasors(ch, ap);
+            sumwt += wt;
         }
-        sum /= sumwt;
+        inc_avg_amp_freq += std::abs(sum) * amp_corr_fact;
+        
+        if(sumwt == 0){sum = 0.0;}
+        else{ sum /= sumwt; }
+
         double c = std::arg(sum) - coh_avg_phase;
         // condition to lie in [-pi,pi] interval
         //TODO FIXME -- this is the original implementation, but it is incorrect!
@@ -1032,25 +1044,33 @@ MHO_ComputePlotData::calc_freqrms(phasor_type& phasors, double coh_avg_phase, do
         freqrms_phase = 0.0;
     }
     freqrms_amp = std::sqrt(freqrms_amp / nchan) * 100. / fringe_amp;
+    
+    inc_avg_amp_freq /= total_summed_weights;
+    /* Noise bias correction ? */
+    inc_avg_amp_freq /= ((1.0 + 1.0/(2.0 * snr*snr / (double) nchan )));
 }
 
 
 void
-MHO_ComputePlotData::calc_timerms(phasor_type& phasors, std::size_t nseg, std::size_t apseg, double coh_avg_phase, double fringe_amp, double total_summed_weights, double snr, double& timerms_phase, double& timerms_amp)
+MHO_ComputePlotData::calc_timerms(phasor_type& phasors, std::size_t nseg, std::size_t apseg, 
+                                  double coh_avg_phase, double fringe_amp, double total_summed_weights, double snr, 
+                                  double& timerms_phase, double& timerms_amp, double& inc_avg_amp)
 {
+    #pragma message("TODO FIXME -- implement amp_corr_fact.");
     double amp_corr_fact = 1.0;
+    
+    timerms_phase = 0;
+    timerms_amp = 0;
+    inc_avg_amp = 0.0;
     
     std::size_t nplot = phasors.GetDimension(0);
     std::size_t nchan = nplot-1; //-1 is for the 'all' channel tacked on the end
     std::size_t naps = phasors.GetDimension(1);
-
     auto chan_ax = &( std::get<CHANNEL_AXIS>(*fSBDArray) );
-    
     double totwt, totap, wt, wtf, wtf_dsb, wt_dsb, apwt, ap_in_seg, usbfrac, lsbfrac, c;
     totwt = 0.0; totap = 0.0;
-    double inc_avg_amp = 0.0;
-    std::complex<double> vsum, vsumf, wght_phsr;
 
+    std::complex<double> vsum, vsumf, wght_phsr;
     
     std::string net_sideband = "?";
     for(std::size_t seg = 0; seg < nseg; seg++)
@@ -1101,14 +1121,11 @@ MHO_ComputePlotData::calc_timerms(phasor_type& phasors, std::size_t nseg, std::s
                 
                 if (apwt > 0.0){totap += 1.0;}
                 wght_phsr = phasors(fr,ap) * apwt;
-                // printf("wght_phsr @ %d %d %d = %f, %f \n", seg, fr, ap, std::real(wght_phsr), std::imag(wght_phsr) );
                 vsum = vsum + wght_phsr;
                 vsumf = vsumf + wght_phsr;
             }
         }
 
-        // printf("coh_avg_phase = %f \n ", coh_avg_phase);
-        // printf("arg vsum = %f \n", std::arg(vsum) );
         c = std::arg(vsum) - coh_avg_phase;
         // condition to lie in [-pi,pi] interval
         c = std::fmod (c, 2.0 * M_PI);
@@ -1132,6 +1149,7 @@ MHO_ComputePlotData::calc_timerms(phasor_type& phasors, std::size_t nseg, std::s
     /* SNR of each segment/freq */
     inc_avg_amp /= ((1.0 + (float)nseg/(2.0 * snr * snr)));
     inc_avg_amp /= totwt;
+
     /* Correct rms values for fringe segmenting */
     timerms_phase = std::sqrt(timerms_phase / totwt) * 180. / M_PI;
     timerms_amp = sqrt(timerms_amp / totwt) * 100./fringe_amp;
