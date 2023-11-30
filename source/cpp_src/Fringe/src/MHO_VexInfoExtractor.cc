@@ -143,8 +143,11 @@ MHO_VexInfoExtractor::extract_sampler_bits(const mho_json& vexInfo, MHO_Paramete
         auto qualifiers = elem.value()["qualifiers"];
         for(auto qelem = qualifiers.begin(); qelem != qualifiers.end(); qelem++)
         {
-            if(qelem.value() == ref_id){ref_bits = tracks[trackName]["bits/sample"].get<int>();}
-            if(qelem.value() == rem_id){rem_bits = tracks[trackName]["bits/sample"].get<int>();}
+            if(tracks[trackName].contains("bits/sample")) //guard against incomplete tracks info
+            {
+                if(qelem.value() == ref_id){ref_bits = tracks[trackName]["bits/sample"].get<int>();}
+                if(qelem.value() == rem_id){rem_bits = tracks[trackName]["bits/sample"].get<int>();}
+            }
         }
     }
     paramStore->Set("/ref_station/sample_bits", ref_bits);
