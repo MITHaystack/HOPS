@@ -334,12 +334,15 @@ MHO_BasicFringeUtilities::basic_fringe_search(MHO_ContainerStore* conStore, MHO_
     ok = mbdSearch.Execute();
     check_step_fatal(ok, "fringe", "mbd execution." << eom );
     
-    std::size_t n_mbd_pts = mbdSearch.GetNMBDBins();
-    std::size_t n_dr_pts = mbdSearch.GetNDRBins();
-    std::size_t n_sbd_pts = mbdSearch.GetNSBDBins();
+    int n_mbd_pts = mbdSearch.GetNMBDBins();
+    int n_dr_pts = mbdSearch.GetNDRBins();
+    int n_sbd_pts = mbdSearch.GetNSBDBins();
+    int n_drsp_pts = mbdSearch.GetNDRSPBins();
+    
     paramStore->Set("/fringe/n_mbd_points", n_mbd_pts);
     paramStore->Set("/fringe/n_sbd_points", n_sbd_pts);
     paramStore->Set("/fringe/n_dr_points", n_dr_pts);
+    paramStore->Set("/fringe/n_drsp_points", n_drsp_pts);
     
     int c_mbdmax = mbdSearch.GetMBDMaxBin();
     int c_sbdmax = mbdSearch.GetSBDMaxBin();

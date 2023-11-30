@@ -40,6 +40,7 @@ class MHO_DelayRate: public MHO_BinaryOperator<
         virtual ~MHO_DelayRate();
 
         void SetReferenceFrequency(double ref_freq){fRefFreq = ref_freq;};
+        int GetDelayRateSearchSpaceSize() const {return fDRSPSize;}
 
     protected:
 
