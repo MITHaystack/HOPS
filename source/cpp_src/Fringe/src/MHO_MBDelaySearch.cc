@@ -86,7 +86,7 @@ MHO_MBDelaySearch::ExecuteImpl(const XArgType* in)
     {
         //loop over the single-band delay 'lags', computing the MBD/DR function
         //find the max for each SBD, and globally
-        double maxmbd = 0.0;
+        fMax = 0.0;
         for(std::size_t sbd_idx=0; sbd_idx<fNSBD; sbd_idx++)
         {
             //first select the slice of visibilities which correspond to this SBD
@@ -141,9 +141,9 @@ MHO_MBDelaySearch::ExecuteImpl(const XArgType* in)
                     //since we don't care about the actual amplitude (just searching for the max location)
                     //this is faster since it doesn't need to take a square root
                     double tmp_max = std::norm(fMBDWorkspace[i]);
-                    if(tmp_max > maxmbd)
+                    if(tmp_max > fMax)
                     {
-                        maxmbd = tmp_max;
+                        fMax = tmp_max;
                         fMBDMaxBin = (i + fNGridPoints/2) % fNGridPoints;
                         fSBDMaxBin = sbd_idx;
                         fDRMaxBin = dr_idx;
@@ -159,6 +159,8 @@ MHO_MBDelaySearch::ExecuteImpl(const XArgType* in)
                 }
             }
         }
+        
+        fMax = std::sqrt(fMax);
         return true;
     }
 

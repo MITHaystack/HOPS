@@ -57,6 +57,7 @@ class MHO_MBDelaySearch: public MHO_InspectingOperator< visibility_type >
         int GetNSBDBins(){return fNSBD;};
         int GetNDRBins(){return fNDR;};
 
+        double GetSearchMaximumAmplitude() const {return fMax;}
         double GetFrequencySpacing() const {return fGridSpace;}
         double GetAverageFrequency() const {return fAverageFreq;}
 
@@ -96,7 +97,8 @@ class MHO_MBDelaySearch: public MHO_InspectingOperator< visibility_type >
 
         double fRefFreq;
 
-        //location of the maximum
+        //location and value of the maximum
+        double fMax;
         int fMBDMaxBin;
         int fSBDMaxBin;
         int fDRMaxBin;

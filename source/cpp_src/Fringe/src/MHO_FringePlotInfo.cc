@@ -172,6 +172,12 @@ MHO_FringePlotInfo::fill_plot_data(MHO_ParameterStore* paramStore, mho_json& plo
     int rem_bits = paramStore->GetAs<int>("/rem_station/sample_bits");
     plot_dict["extra"]["ref_station_sample_bits"] = ref_bits;
     plot_dict["extra"]["rem_station_sample_bits"] = rem_bits; 
+    
+    //coarse search info 
+    plot_dict["extra"]["coarse_search_max_amp"] = paramStore->GetAs<double>("/fringe/coarse_search_max_amp");
+    plot_dict["extra"]["n_mbd_points"] = paramStore->GetAs<int>("/fringe/n_mbd_points");
+    plot_dict["extra"]["n_sbd_points"] = paramStore->GetAs<int>("/fringe/n_sbd_points");
+    plot_dict["extra"]["n_dr_points"] = paramStore->GetAs<int>("/fringe/n_dr_points");
 
     //calculate the (u,v) coordinates (taken from fill_202.c)
     double speed_of_light_Mm = 299.792458; // in mega-meters (?!)

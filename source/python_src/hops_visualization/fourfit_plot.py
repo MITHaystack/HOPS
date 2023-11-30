@@ -616,7 +616,6 @@ def make_fourfit_plot(plot_dict, filename):
     # Set the table cell height to make it smaller
     table2.scale(1, 0.7)  # Adjust the scale factor as needed
 
-
     #more text at the bottom (amp table)
     axT3 = plt.subplot2grid((120,120),(119,32),rowspan=4,colspan=15)
     ct3_rows = 5
@@ -634,7 +633,7 @@ def make_fourfit_plot(plot_dict, filename):
     amp = float(plot_dict['Amp'])
     amp_err = amp/float(plot_dict['SNR'])
     ct3_data[0][0] = str( np.round(amp,3) ) + ' +/- ' + str(np.round(amp_err,3) )
-    ct3_data[1][0] = '0.000' #Search. -- what is this?
+    ct3_data[1][0] = str(np.round(float(plot_dict["extra"]["coarse_search_max_amp"]),3))
     ct3_data[2][0] = '0.000' #Iterp. -- what is this?
     if 'extra' in plot_dict:
         ct3_data[3][0] = str(np.round(float(plot_dict["extra"]["inc_avg_amp"]),3))

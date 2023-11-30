@@ -322,8 +322,6 @@ MHO_BasicFringeUtilities::basic_fringe_search(MHO_ContainerStore* conStore, MHO_
 
     //take snapshot of sbd data after normfx
     take_snapshot_here("test", "sbd", __FILE__, __LINE__, sbd_data);
-    
-    // #ifdef ALT_MDB_SEARCH
 
     //coarse SBD/MBD/DR search (locates max bin)
     double ref_freq = paramStore->GetAs<double>("/config/ref_freq");
@@ -349,6 +347,11 @@ MHO_BasicFringeUtilities::basic_fringe_search(MHO_ContainerStore* conStore, MHO_
     double freq_spacing = mbdSearch.GetFrequencySpacing();
     double ave_freq = mbdSearch.GetAverageFrequency();
 
+    //get the coarse maximum and re-scale by the total weights
+    double search_max_amp = mbdSearch.GetSearchMaximumAmplitude();
+    double total_summed_weights = paramStore->GetAs<double>("/fringe/total_summed_weights");
+
+    paramStore->Set("/fringe/coarse_search_max_amp", search_max_amp/total_summed_weights);
     paramStore->Set("/fringe/max_mbd_bin", c_mbdmax);
     paramStore->Set("/fringe/max_sbd_bin", c_sbdmax);
     paramStore->Set("/fringe/max_dr_bin", c_drmax);
