@@ -695,6 +695,7 @@ def make_fourfit_plot(plot_dict, filename):
     sample_rate = "-"
     grid_pts = "-"
     data_rate = "-"
+    nlags = "-"
         
     if 'extra' in plot_dict:
         ambiguity = str( np.round(float(plot_dict['extra']['ambiguity']),3) )
@@ -703,17 +704,18 @@ def make_fourfit_plot(plot_dict, filename):
         sample_rate = str( np.round(float(plot_dict['extra']['sample_rate']), 1) ) 
         grid_pts = str(plot_dict['extra']['grid_pts'])
         data_rate = str(plot_dict['extra']['data_rate'])
+        nlags = str(plot_dict['extra']['nlags'])
 
     #last pile of text
     textstr100 = "Pcal mode: MANUAL, MANUAL   PC period (AP's) X,X" + '\n' + \
         'Pcal rate: X,X (us/s)' + '\n' + \
         'Bits/sample: '+ ref_bits + 'x' + rem_bits +'      SampCntNorm: disabled' + '\n' + \
         'Data rate(MSamp/s) ' + sample_rate + ' MBpts '+ grid_pts + ' Amb ' + ambiguity +' us ' + '\n' + \
-        'Data rate(Mb/s) ' + data_rate + '  nlags: X   t_cohere infinite'
+        'Data rate(Mb/s) ' + data_rate + '  nlags: '+ nlags +'   t_cohere infinite'
 
 
     # Add the text boxes
-    plt.text(0.42,0.1,textstr100,transform=plt.gcf().transFigure,fontsize=7,verticalalignment='top',family='monospace',horizontalalignment='left',color='k')
+    plt.text(0.41,0.095,textstr100,transform=plt.gcf().transFigure,fontsize=7,verticalalignment='top',family='monospace',horizontalalignment='left',color='k')
 
     pylab.show()
     pylab.savefig(filename)

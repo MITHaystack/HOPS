@@ -133,6 +133,10 @@ MHO_InitialFringeInfo::precalculate_quantities(MHO_ContainerStore* conStore, MHO
     int naps = ap_ax->GetSize();
     paramStore->Set("/config/total_naps", naps);
 
+    //append info about the number of lags
+    auto freq_ax = &(std::get<FREQ_AXIS>(*vis_data));
+    int nlags = 2 * freq_ax->GetSize(); //factor of 2 is a properly of padding used in the normFX routine
+    paramStore->Set("/config/nlags", nlags);
 
     //grab the channel bandwidth (assume to be the same for all channels)
     auto chan_ax = &(std::get<CHANNEL_AXIS>(*vis_data));
