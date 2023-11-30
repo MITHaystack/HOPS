@@ -576,6 +576,8 @@ def make_coord_text(plot_dict):
     #add the station sky coordinate and u-v coordinate info to the bottom
     #note that these parameters are only present in hops4 generated data
     #(plot_data_dir is currently missing these items)
+    #ALSO -> IMPORTANT: HOPS4 EVALUATES THESE QUANTIES AT THE FOURFIT REFERENCE TIME 
+    #HOPS3 evalutes them at the beginning of the scan
     if 'extra' in plot_dict:
         ref_mk4id = plot_dict["extra"]["ref_station_mk4id"]
         ref_az = plot_dict['extra']['ref_station']['az']
