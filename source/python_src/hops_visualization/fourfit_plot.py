@@ -737,7 +737,6 @@ def make_fourfit_plot(plot_dict, filename):
     Returns
     -------
     None
-
     '''
 
     matplotlib.rcParams.update({'figure.figsize': [8.5,11]})
@@ -745,21 +744,21 @@ def make_fourfit_plot(plot_dict, filename):
     # Build the figure.  We'll construct this figure using many subplots, with different grid specifications.
     fig = pylab.figure(1)
 
-    make_dr_mbd_plot(plot_dict)
-    make_sbd_dtec_plot(plot_dict)
-    make_xpower_plot(plot_dict)
-    make_channel_segment_plots(plot_dict)
-    make_channel_segment_validity_plots(plot_dict)
-    make_pcal_plots(plot_dict)
-    make_channel_info_table(plot_dict)
-    make_info_text_box(plot_dict)
-    make_top_info_text(plot_dict)
-    make_model_resid_info_text(plot_dict)
-    make_rms_table(plot_dict)
-    make_coord_text(plot_dict)
-    make_amplitude_table(plot_dict)
-    make_window_table(plot_dict)
-    make_data_stats_text(plot_dict)
+    make_dr_mbd_plot(plot_dict) #constructs the delay-rate/multiband delay twin plot
+    make_sbd_dtec_plot(plot_dict) #constructs the single-band delay and (ion-dTEC) twin plot
+    make_xpower_plot(plot_dict) #constructs the cross-power spectrum phase/amp twin plot
+    make_channel_segment_plots(plot_dict) #constructs the per-channel phase/amp plots
+    make_channel_segment_validity_plots(plot_dict) #constructs the USB/LSB validity flags
+    make_pcal_plots(plot_dict) #constructs the per-channel p-cal plots 
+    make_channel_info_table(plot_dict) #constructs the channel/pcal info table 
+    make_info_text_box(plot_dict) #constructs fringe summary text box
+    make_top_info_text(plot_dict) #constructs the title/top-page info
+    make_model_resid_info_text(plot_dict) #constructs the a priori model, totals, and residuals text at the bottom
+    make_rms_table(plot_dict) #constructs the fringe RMS table 
+    make_coord_text(plot_dict) #constructs the station coordinate statements (az,el,pa,u,v)
+    make_amplitude_table(plot_dict) #constructs the amplitude table 
+    make_window_table(plot_dict) #constructs the (sbd,mbd,dr,ion) window limits table 
+    make_data_stats_text(plot_dict) #constructs the data statistics/summary text
 
     pylab.show()
     pylab.savefig(filename)
