@@ -945,11 +945,14 @@ MHO_ComputePlotData::DumpInfoToJSON(mho_json& plot_dict)
 
     double fringe_amp = fParamStore->GetAs<double>("/fringe/famp");
     double tsum_weights = fParamStore->GetAs<double>("/fringe/total_summed_weights");
-    double resid_phase = fParamStore->GetAs<double>("/fringe/resid_phase");
+    
+    //we use the raw phase resid, because it is unaffected by the 'mbd_anchor' parameter
+    double resid_phase = fParamStore->GetAs<double>("/fringe/raw_resid_phase_rad");
+    
     double snr = fParamStore->GetAs<double>("/fringe/snr");
     double freqrms_phase, freqrms_amp, timerms_phase, timerms_amp;
-    calc_freqrms(phasors, resid_phase*(M_PI/180.), fringe_amp, tsum_weights, freqrms_phase, freqrms_amp);
-    calc_timerms(phasors, nseg, apseg, resid_phase*(M_PI/180.), fringe_amp, tsum_weights, snr, timerms_phase, timerms_amp);
+    calc_freqrms(phasors, resid_phase, fringe_amp, tsum_weights, freqrms_phase, freqrms_amp);
+    calc_timerms(phasors, nseg, apseg, resid_phase, fringe_amp, tsum_weights, snr, timerms_phase, timerms_amp);
 
     plot_dict["extra"]["freqrms_phase"] = freqrms_phase;
     plot_dict["extra"]["freqrms_amp"] = freqrms_amp;
@@ -1098,11 +1101,14 @@ MHO_ComputePlotData::calc_timerms(phasor_type& phasors, std::size_t nseg, std::s
                 
                 if (apwt > 0.0){totap += 1.0;}
                 wght_phsr = phasors(fr,ap) * apwt;
+                // printf("wght_phsr @ %d %d %d = %f, %f \n", seg, fr, ap, std::real(wght_phsr), std::imag(wght_phsr) );
                 vsum = vsum + wght_phsr;
                 vsumf = vsumf + wght_phsr;
             }
         }
 
+        // printf("coh_avg_phase = %f \n ", coh_avg_phase);
+        // printf("arg vsum = %f \n", std::arg(vsum) );
         c = std::arg(vsum) - coh_avg_phase;
         // condition to lie in [-pi,pi] interval
         c = std::fmod (c, 2.0 * M_PI);
