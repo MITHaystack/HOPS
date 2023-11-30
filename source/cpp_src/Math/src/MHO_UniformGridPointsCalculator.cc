@@ -1,7 +1,6 @@
 #include "MHO_UniformGridPointsCalculator.hh"
 #include "MHO_Message.hh"
 
-
 #define EXTRA_INTERP_DBG
 
 namespace hops 
@@ -18,9 +17,9 @@ MHO_UniformGridPointsCalculator::MHO_UniformGridPointsCalculator()
     fAverageLocation = 0;
     fSpread = 0;
     fDefaultGridPoints = 2;
-    #ifdef EXTRA_INTERP_DBG
-    fDefaultGridPoints = 256;
-    #endif
+    // #ifdef EXTRA_INTERP_DBG
+    // fDefaultGridPoints = 256;
+    // #endif
 }
 
 MHO_UniformGridPointsCalculator::~MHO_UniformGridPointsCalculator(){};
@@ -67,6 +66,7 @@ MHO_UniformGridPointsCalculator::Calculate_v1()
 
         //find the min freq, the average freq, spacing, etc.
         n_pts = fPoints.size();
+
         min_pts = std::numeric_limits<double>::max();
         min_space = std::numeric_limits<double>::max();
         ave_loc = 0.0;
@@ -100,7 +100,7 @@ MHO_UniformGridPointsCalculator::Calculate_v1()
         }
         fSpread = spread;
 
-        //TODO FIXME
+        //TODO FIXME (single channel)
         // else 
         // {
         //     spread = bandwidth/std::sqrt(12.0); //uniform distribution over bandwidth
@@ -114,7 +114,7 @@ MHO_UniformGridPointsCalculator::Calculate_v1()
             spacing_ok = 1;
             spacing = min_space / div;
             div++;
-            grid_pts = fDefaultGridPoints ; //use this value to simplify debugging of MBD search
+            grid_pts = fDefaultGridPoints; //use this value to simplify debugging of MBD search
 
             for(std::size_t fr = 0; fr < n_pts; fr++)
             {
@@ -122,10 +122,13 @@ MHO_UniformGridPointsCalculator::Calculate_v1()
                 // Check whether all freqs lie on grid points 
                 if (fabs(index - (int)(index+0.5)) > fEpsilon){spacing_ok = 0;}
                 index = (double) (int)(index + 0.5);
-                // Make # of grid points the smallest power of 2 that will cover all points 
-                for(int i = 1; i < 8; i++)
+                // Make # of grid points the smallest power of 2 that will cover all points
+                for(int j = 1; j < 8; j++)
                 {
-                    if( (grid_pts - 1) < index){grid_pts *= 2;}
+                    if( (grid_pts - 1) < index)
+                    {
+                        grid_pts *= 2;
+                    }
                 }
 
                 if ((index > (MBD_GRID_PTS-1)) || (index < 0))
@@ -146,6 +149,12 @@ MHO_UniformGridPointsCalculator::Calculate_v1()
 
         fSpacing = min_space;
         fStart = min_pts;
+        
+        if(grid_pts > MBD_GRID_PTS)
+        {
+            grid_pts = MBD_GRID_PTS;
+        }
+        grid_pts *= MBD_MULT;
         fNGridPoints = grid_pts;
     }
     else 
