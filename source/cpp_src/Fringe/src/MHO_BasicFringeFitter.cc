@@ -47,12 +47,11 @@ void MHO_BasicFringeFitter::Configure()
         std::exit(1);
     }
 
-
     ////////////////////////////////////////////////////////////////////////////
     //INITIALIZE PARAMETERS
     ////////////////////////////////////////////////////////////////////////////
 
-    //set up the file section of the parameter store: directory, root file, and control file
+    //set up the file section of the parameter store to record the directory, root file, and control file
     fParameterStore.Set("/files/control_file", control_file);
     fParameterStore.Set("/files/directory", directory);
     fParameterStore.Set("/files/output_file", fParameterStore.GetAs<std::string>("/cmdline/output_file"));
@@ -188,7 +187,7 @@ void MHO_BasicFringeFitter::Initialize()
         //DEBUG
         //fContainerStore.DumpShortNamesToIds();
         #pragma message("TODO FIXME -- formalize the manner in which we identify data container objects via UUID")
-        //temporarily put the object uuid's in the parameter store so we can look it up on the python side
+        //put the object uuid's in the parameter store so we can document it and also look it up on the python side
         std::string vis_uuid = vis_data->GetObjectUUID().as_string();
         std::string wt_uuid = wt_data->GetObjectUUID().as_string();
         std::string ref_uuid = ref_data->GetObjectUUID().as_string();
