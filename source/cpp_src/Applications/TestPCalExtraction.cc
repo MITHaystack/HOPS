@@ -40,7 +40,8 @@ int main(int argc, char** argv)
     std::string station = "";
     std::string pol = "";
     std::string output_file = "pcal.json"; //for testing
-
+    double lower_freq = -100.0;
+    double upper_freq = -100.0;
     int message_level = -1;
     bool ok;
 
@@ -49,9 +50,11 @@ int main(int argc, char** argv)
                                           {"station", required_argument, 0, 's'},
                                           {"polarization", required_argument, 0, 'P'},
                                           {"message-level", required_argument, 0, 'm'},
+                                          {"lower-frequency", required_argument, 0, 'l'},
+                                          {"upper-frequency", required_argument, 0, 'u'},
                                           {"output", required_argument, 0, 'o'}};
 
-    static const char* optString = "hd:s:P:o:m:";
+    static const char* optString = "hd:s:P:o:m:l:u:";
 
     while(true)
     {
@@ -78,6 +81,12 @@ int main(int argc, char** argv)
             case ('m'):
                 message_level = std::atoi(optarg);
                 break;
+            case ('l'):
+                lower_freq = std::atof(optarg);
+                break;
+            case ('u'):
+                upper_freq = std::atof(optarg);
+                break;
             default:
                 std::cout << usage << std::endl;
                 return 1;
@@ -89,6 +98,15 @@ int main(int argc, char** argv)
         msg_fatal("main", "usage: "<< usage << eom);
         return 1;
     }
+
+    std::cout<<"freq bounds = "<<lower_freq<<", "<<upper_freq<<std::endl;
+
+    if(lower_freq < 0 || upper_freq < 0)
+    {
+        msg_fatal("main", "lower/upper channel frequency limits must be non-zero and specificied in MHz." << eom );
+        return 1;
+    }
+
 
     //set the message level according to the fourfit style
     //where 3 is least verbose, and '-1' is most verbose
@@ -162,6 +180,45 @@ int main(int argc, char** argv)
 
     std::cout<<sdata<<std::endl;
     std::cout<<pcal_data<<std::endl;
+
+    if(sdata == nullptr || pcal_data == nullptr)
+    {
+        msg_fatal("main", "failed to load station or pcal data" << eom );
+        std::exit(1);
+    }
+
+
+    std::size_t rank = pcal_data->GetRank();
+    auto dims = pcal_data->GetDimensionArray();
+
+    for(std::size_t i=0; i<rank; i++)
+    {
+        std::cout<<"pcal dim @"<<i<<" = "<<dims[i]<<std::endl;
+    }
+
+    auto tone_freq_ax = std::get<MTPCAL_FREQ_AXIS>(*pcal_data);
+    double start_tone_frequency = 0;
+    std::size_t start_tone_index = 0;
+    std::size_t ntones = 0;
+    for(std::size_t j=0; j<tone_freq_ax.GetSize(); j++)
+    {
+        if( tone_freq_ax(j) < upper_freq && lower_freq <= tone_freq_ax(j) )
+        {
+            if(ntones == 0)
+            {
+                start_tone_frequency = tone_freq_ax(j) ;
+                start_tone_index = j;
+            }
+            ntones++;
+            std::cout<<"tone: "<<j<<" = "<<tone_freq_ax(j)<<std::endl;
+        }
+    }
+    std::cout<<"start tone = "<<start_tone_frequency<<", start tone index = "<<start_tone_index<<", ntones = "<<ntones<<std::endl;
+
+    //should we channelize the pca-data? yes...but for now just do an FFT on one chunk to test
+
+
+
 
 
     return 0;
