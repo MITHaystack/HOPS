@@ -24,6 +24,7 @@ set(SOURCE_BASENAMES
     vex2json
     TestSignalFFT
     CompareCorFiles
+    TestPCalExtraction
     ffit
 )
 
