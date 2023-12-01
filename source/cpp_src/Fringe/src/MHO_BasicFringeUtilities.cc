@@ -17,18 +17,21 @@
 //construct_plot_data
 #include "MHO_ComputePlotData.hh"
 
-namespace hops 
+namespace hops
 {
 
-void 
+void
 MHO_BasicFringeUtilities::calculate_fringe_solution_info(MHO_ContainerStore* conStore, MHO_ParameterStore* paramStore, const mho_json& vexInfo)
 {
     //vex section info
-    mho_json freq_section = vexInfo["$FREQ"];
-    auto freq_info = freq_section.begin().value();
-    double sample_rate = freq_info["sample_rate"]["value"];
-    //TODO FIXME (what if channels have multiple-bandwidths?, units?)
-    double samp_period = 1.0/(sample_rate*1e6);
+    // mho_json freq_section = vexInfo["$FREQ"];
+    // auto freq_info = freq_section.begin().value();
+    // double sample_rate = freq_info["sample_rate"]["value"];
+    // //TODO FIXME (what if channels have multiple-bandwidths?, units?)
+    // double samp_period = 1.0/(sample_rate*1e6);
+
+    double sample_rate = paramStore->GetAs<double>("/vex/scan/sample_rate/value");
+    double samp_period = paramStore->GetAs<double>("/vex/scan/sample_period/value");
 
     //configuration parameters
     double ref_freq = paramStore->GetAs<double>("/config/ref_freq");
@@ -65,8 +68,8 @@ MHO_BasicFringeUtilities::calculate_fringe_solution_info(MHO_ContainerStore* con
     auto stop_time = hops_clock::from_vex_format(start_vex_string);
     stop_time = stop_time + hops_clock::duration(stop_offset_as_nanosec);
     legacy_hops_date stop_ldate = hops_clock::to_legacy_hops_date(stop_time);
-    std::string year_doy = 
-        MHO_BasicFringeInfo::leftpadzeros_integer(4, frt_ldate.year) + ":" + 
+    std::string year_doy =
+        MHO_BasicFringeInfo::leftpadzeros_integer(4, frt_ldate.year) + ":" +
         MHO_BasicFringeInfo::leftpadzeros_integer(3, frt_ldate.day);
 
     //figure out the legacy date/time stamps for start, stop, and FRT
@@ -184,7 +187,7 @@ MHO_BasicFringeUtilities::calculate_fringe_solution_info(MHO_ContainerStore* con
 
 
 
-double 
+double
 MHO_BasicFringeUtilities::calculate_residual_phase(MHO_ContainerStore* conStore, MHO_ParameterStore* paramStore)
 {
     double total_summed_weights = paramStore->GetAs<double>("/fringe/total_summed_weights");
@@ -277,7 +280,7 @@ MHO_BasicFringeUtilities::calculate_residual_phase(MHO_ContainerStore* conStore,
 
 
 
-void 
+void
 MHO_BasicFringeUtilities::basic_fringe_search(MHO_ContainerStore* conStore, MHO_ParameterStore* paramStore)
 {
     bool ok;
@@ -333,17 +336,17 @@ MHO_BasicFringeUtilities::basic_fringe_search(MHO_ContainerStore* conStore, MHO_
     check_step_fatal(ok, "fringe", "mbd initialization." << eom );
     ok = mbdSearch.Execute();
     check_step_fatal(ok, "fringe", "mbd execution." << eom );
-    
+
     int n_mbd_pts = mbdSearch.GetNMBDBins();
     int n_dr_pts = mbdSearch.GetNDRBins();
     int n_sbd_pts = mbdSearch.GetNSBDBins();
     int n_drsp_pts = mbdSearch.GetNDRSPBins();
-    
+
     paramStore->Set("/fringe/n_mbd_points", n_mbd_pts);
     paramStore->Set("/fringe/n_sbd_points", n_sbd_pts);
     paramStore->Set("/fringe/n_dr_points", n_dr_pts);
     paramStore->Set("/fringe/n_drsp_points", n_drsp_pts);
-    
+
     int c_mbdmax = mbdSearch.GetMBDMaxBin();
     int c_sbdmax = mbdSearch.GetSBDMaxBin();
     int c_drmax = mbdSearch.GetDRMaxBin();
@@ -368,9 +371,8 @@ MHO_BasicFringeUtilities::basic_fringe_search(MHO_ContainerStore* conStore, MHO_
 
     bool optimize_closure_flag = false;
     bool is_oc_set = paramStore->Get(std::string("optimize_closure"), optimize_closure_flag );
-    //NOTE, this has no effect on fringe-phase when using 'simul' algo
-    //This is also true in the legacy code simul implementation, and which is
-    //currently is the only one implemented
+    //NOTE, this has no effect on fringe-phase when using 'simul' algo which is currently is the only one implemented
+    //This is also true in the legacy code simul implementation.
     if(optimize_closure_flag){fringeInterp.EnableOptimizeClosure();}
 
     fringeInterp.SetReferenceFrequency(ref_freq);

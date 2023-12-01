@@ -136,7 +136,7 @@ MHO_FringePlotInfo::fill_plot_data(MHO_ParameterStore* paramStore, mho_json& plo
 
     //the quantities below are stuff that is on the fringe-plot but is not present
     //in the plot-data-dir file structure, so we put them under 'extra'
-    
+
     plot_dict["extra"]["ambiguity"] =  paramStore->GetAs<double>("/fringe/ambiguity");
 
     plot_dict["extra"]["ref_station"]["az"] = paramStore->GetAs<double>("/ref_station/azimuth");
@@ -167,13 +167,13 @@ MHO_FringePlotInfo::fill_plot_data(MHO_ParameterStore* paramStore, mho_json& plo
 
     plot_dict["extra"]["ref_station_mk4id"] = paramStore->GetAs<std::string>("/ref_station/mk4id");
     plot_dict["extra"]["rem_station_mk4id"] = paramStore->GetAs<std::string>("/rem_station/mk4id");
-    
+
     int ref_bits = paramStore->GetAs<int>("/ref_station/sample_bits");
     int rem_bits = paramStore->GetAs<int>("/rem_station/sample_bits");
     plot_dict["extra"]["ref_station_sample_bits"] = ref_bits;
-    plot_dict["extra"]["rem_station_sample_bits"] = rem_bits; 
-    
-    //coarse search info 
+    plot_dict["extra"]["rem_station_sample_bits"] = rem_bits;
+
+    //coarse search info
     plot_dict["extra"]["coarse_search_max_amp"] = paramStore->GetAs<double>("/fringe/coarse_search_max_amp");
     plot_dict["extra"]["n_mbd_points"] = paramStore->GetAs<int>("/fringe/n_mbd_points");
     plot_dict["extra"]["n_sbd_points"] = paramStore->GetAs<int>("/fringe/n_sbd_points");
@@ -188,16 +188,16 @@ MHO_FringePlotInfo::fill_plot_data(MHO_ParameterStore* paramStore, mho_json& plo
     double dv = radians_to_arcsec*(remv - refv) /lambda;
     plot_dict["extra"]["u"] = du;
     plot_dict["extra"]["v"] = dv;
-    
+
     //put the sample rate here
     double srate = paramStore->GetAs<double>("/vex/scan/sample_rate/value");
     double srate_MHz = srate/1e6; //convert to MHz
     plot_dict["extra"]["sample_rate"] = srate_MHz;
-    
-    //grid or frequency points 
+
+    //grid or frequency points
     int grid_pts = paramStore->GetAs<int>("/fringe/n_frequency_points");
     plot_dict["extra"]["grid_pts"] = grid_pts;
-    
+
     //this one is kind of silly:
     int nchan = paramStore->GetAs<int>("/config/nchannels");
     int eff_npols = 1; //TODO FIXME!

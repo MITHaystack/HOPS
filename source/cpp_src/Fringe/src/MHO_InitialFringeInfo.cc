@@ -7,12 +7,12 @@
 #include "MHO_Clock.hh"
 #include "MHO_UniformGridPointsCalculator.hh"
 
-namespace hops 
+namespace hops
 {
-    
 
 
-void 
+
+void
 MHO_InitialFringeInfo::calculate_freq_space(MHO_ContainerStore* conStore, MHO_ParameterStore* paramStore)
 {
     visibility_type* vis_data = conStore->GetObject<visibility_type>(std::string("vis"));
@@ -48,7 +48,7 @@ MHO_InitialFringeInfo::calculate_freq_space(MHO_ContainerStore* conStore, MHO_Pa
 
 }
 
-void 
+void
 MHO_InitialFringeInfo::calculate_clock_model(MHO_ParameterStore* paramStore)
 {
     std::string frt_string = paramStore->GetAs<std::string>("/vex/scan/fourfit_reftime");
@@ -108,7 +108,7 @@ MHO_InitialFringeInfo::calculate_clock_model(MHO_ParameterStore* paramStore)
 }
 
 
-void 
+void
 MHO_InitialFringeInfo::precalculate_quantities(MHO_ContainerStore* conStore, MHO_ParameterStore* paramStore)
 {
     visibility_type* vis_data = conStore->GetObject<visibility_type>(std::string("vis"));
@@ -212,7 +212,7 @@ MHO_InitialFringeInfo::precalculate_quantities(MHO_ContainerStore* conStore, MHO
 
     //determines properties of the frequency grid used in the MBD search
     calculate_freq_space(conStore, paramStore);
-    
+
     //figure out the reference station's coordinates (az, el, par_angle, u, v, w)
     //these are all evaluated at the fourfit reference time...with the exception of parallactic_angle
     //since parallactic angle is not given as a spline (this is just the value at the beginning of the scan)
@@ -226,7 +226,7 @@ MHO_InitialFringeInfo::precalculate_quantities(MHO_ContainerStore* conStore, MHO
     paramStore->Set("/ref_station/u", ref_model.GetUCoordinate());
     paramStore->Set("/ref_station/v", ref_model.GetVCoordinate());
     paramStore->Set("/ref_station/w", ref_model.GetWCoordinate());
-    
+
     //figure out the remote station's coordinates (az, el, par_angle, u, v, w)
     MHO_StationModel rem_model;
     rem_model.SetEvaluationTimeVexString(frt_vex_string);
@@ -241,7 +241,7 @@ MHO_InitialFringeInfo::precalculate_quantities(MHO_ContainerStore* conStore, MHO
 
 }
 
-void 
+void
 MHO_InitialFringeInfo::set_default_parameters_minimal(MHO_ParameterStore* paramStore)
 {
     //default mbd_anchor is model (instead of sbd)
@@ -249,7 +249,7 @@ MHO_InitialFringeInfo::set_default_parameters_minimal(MHO_ParameterStore* paramS
     paramStore->Set("mbd_anchor", mbd_anchor);
 };
 
-void 
+void
 MHO_InitialFringeInfo::configure_reference_frequency(MHO_ContainerStore* conStore, MHO_ParameterStore* paramStore)
 {
     //check if the parameter store already has a reference frequency set, and if not set the default
