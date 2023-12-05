@@ -24,7 +24,6 @@ typedef char FLAG_TYPE;
 using visibility_element_type = std::complex<VFP_TYPE>;
 using weight_element_type = WFP_TYPE;
 using pcal_phasor_type = std::complex<PCFP_TYPE>;
-using pcal_phdly_type = PCFP_TYPE; //pcal reduced by fitting into a phase and delay
 using manual_pcal_element_type = PCFP_TYPE;
 using spline_coeff_type = SPLINE_TYPE;
 
