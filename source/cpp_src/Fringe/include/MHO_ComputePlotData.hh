@@ -11,6 +11,7 @@
 #include "MHO_CyclicRotator.hh"
 #include "MHO_SubSample.hh"
 #include "MHO_FringeRotation.hh"
+#include "MHO_MathUtilities.hh"
 
 #include "MHO_ParameterStore.hh"
 #include "MHO_ContainerStore.hh"
@@ -76,14 +77,14 @@ class MHO_ComputePlotData
         std::string calc_quality_code(); //quality only, not error
 
 
-        //these functions copied from ffmath and minmax.c -- TODO move to MHO_Math library
-        int parabola(double y[3], double lower, double upper, double* x_max, double* amp_max, double q[3]);
-        double dwin(double value, double lower, double upper)
-        {
-            if (value < lower) return (lower);
-            else if (value > upper) return (upper);
-            else return (value);
-        }
+        // //these functions copied from ffmath and minmax.c -- TODO move to MHO_Math library
+        // int parabola(double y[3], double lower, double upper, double* x_max, double* amp_max, double q[3]);
+        // double dwin(double value, double lower, double upper)
+        // {
+        //     if (value < lower) return (lower);
+        //     else if (value > upper) return (upper);
+        //     else return (value);
+        // }
 
         double fRefFreq;
         double fTotalSummedWeights;

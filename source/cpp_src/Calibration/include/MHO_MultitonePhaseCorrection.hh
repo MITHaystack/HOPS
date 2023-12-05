@@ -53,8 +53,14 @@ class MHO_MultitonePhaseCorrection: public MHO_UnaryOperator< visibility_type >
 
     private:
 
-        // std::size_t DetermineStationIndex(const visibility_type* in);
-        // bool PolMatch(std::size_t station_idx, std::string& polprod);
+        std::size_t DetermineStationIndex(const visibility_type* in);
+        bool PolMatch(std::size_t station_idx, std::string& polprod);
+        void DetermineChannelFrequencyLimits(double sky_freq, double bandwidth, std::string net_sideband, double& lower_freq, double& upper_freq);
+        void DetermineChannelToneIndexes(double lower_freq, double upper_freq, std::size_t& lower_idx, std::size_t& upper_idx);
+
+        //fit a mean pcal offset and delay from this set of tones
+        //for a particular pol and ap index (uses pcalibrate.c algo)
+        void FitPCData(std::size_t pol_idx, std::size_t ap_idx, std::size_t tone_start_idx, std::size_t ntones);
 
         //constants
         std::complex<double> fImagUnit;
@@ -79,6 +85,8 @@ class MHO_MultitonePhaseCorrection: public MHO_UnaryOperator< visibility_type >
         std::string fRefStationMk4IDKey;
         std::string fChannelLabelKey;
         std::string fSidebandLabelKey;
+        std::string fBandwidthKey;
+        std::string fSkyFreqKey;
         std::string fLowerSideband;
         std::string fUpperSideband;
 
