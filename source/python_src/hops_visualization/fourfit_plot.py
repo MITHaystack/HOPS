@@ -187,8 +187,7 @@ def make_channel_segment_plots(plot_dict):
             ax6a.yaxis.set_major_locator(plt.NullLocator())
             ax6a.set_yticklabels(labels=[],visible=False)
             plt.tick_params(left = False, bottom = False)
-            
-            
+
             
 def make_channel_segment_validity_plots(plot_dict):
     
@@ -758,5 +757,5 @@ def make_fourfit_plot(plot_dict, filename):
     make_window_table(plot_dict) #constructs the (sbd,mbd,dr,ion) window limits table 
     make_data_stats_text(plot_dict) #constructs the data statistics/summary text
 
-    pylab.show()
+    #pylab.show()
     pylab.savefig(filename)
