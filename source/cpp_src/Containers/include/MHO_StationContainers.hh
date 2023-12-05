@@ -33,7 +33,6 @@ using multitone_pcal_type = MHO_TableContainer< pcal_phasor_type, multitone_pcal
 using pcal_phase_delay_axis_type = MHO_AxisPack< pol_axis_type, channel_axis_type, time_axis_type, coeff_axis_type>;
 using pcal_phase_delay_type = MHO_TableContainer< pcal_phdly_type, pcal_phase_delay_axis_type>;
 
-
 //manual (per-channel) pcal (phase) offsets
 using manual_pcal_axis_type = MHO_AxisPack< pol_axis_type, channel_axis_type >;
 using manual_pcal_type = MHO_TableContainer< manual_pcal_element_type, manual_pcal_axis_type >;
