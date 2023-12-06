@@ -75,13 +75,13 @@ MHO_MultitonePhaseCorrection::ExecuteInPlace(visibility_type* in)
                     }
 
                     //figure out the upper/lower frequency limits for this channel
+                    std::cout<<"working on channel: "<<ch<<" with sky freq: "<<sky_freq<< std::endl;
                     double lower_freq, upper_freq;
                     std::size_t start_idx, ntones;
                     DetermineChannelFrequencyLimits(sky_freq, bandwidth, net_sideband, lower_freq, upper_freq);
                     //determine the pcal tones indices associated with this channel
                     DetermineChannelToneIndexes(lower_freq, upper_freq, start_idx, ntones);
                     //now need to fit the pcal data for the mean phase and delay for this channel, for each AP
-                    std::cout<<"working on channel: "<<ch<<" with sky freq: "<<sky_freq<< std::endl;
                     FitPCData(pol, 0, start_idx, ntones);
                     
                     //finally apply the extracted phase-offset and delay-offset to each channel
