@@ -41,36 +41,37 @@ MHO_MultitonePhaseCorrection::ExecuteInPlace(visibility_type* in)
     std::size_t st_idx = DetermineStationIndex(in);
     if(st_idx != 0 && st_idx != 1){return false;}
     
-    //loop over pol-products and apply pc-phases to the appropriate pol/channel
-    auto pp_ax = &(std::get<POLPROD_AXIS>(*in) );
-    auto chan_ax = &(std::get<CHANNEL_AXIS>(*in) );
-    std::string chan_label;
-    std::string pp_label;
-    for(std::size_t pp=0; pp < pp_ax->GetSize(); pp++)
+    //loop over polarization in pcal data and pol-products 
+    //so we can apply the phase-cal to the appropriate pol/channel
+    auto pcal_pol_ax = &(std::get<MTPCAL_POL_AXIS>(*fPCData));
+    auto vis_pp_ax = &(std::get<POLPROD_AXIS>(*in) );
+    auto vis_chan_ax = &(std::get<CHANNEL_AXIS>(*in) );
+
+    for(std::size_t pol=0; pol < pcal_pol_ax->GetSize(); pol++)
     {
-        pp_label = pp_ax->at(pp);
-        if( PolMatch(st_idx, pp_label) )
+        std::string pc_pol = pcal_pol_ax->at(pol);
+        for(std::size_t pp=0; pp < vis_pp_ax->GetSize(); pp++)
         {
-            // for(auto pcal_it = fPCMap.begin(); pcal_it != fPCMap.end(); pcal_it++)
-            // {
-                // chan_label = pcal_it->first;
-                // double pc_val = pcal_it->second;
-                //TODO, may need to re-work this mapping method if too slow
-                MHO_IntervalLabel ilabel;// = chan_ax->GetFirstIntervalWithKeyValue(fChannelLabelKey, chan_label);
-    
-                if(ilabel.IsValid())
+            std::string pp_label = vis_pp_ax->at(pp);
+            //check if the pcal-pol matches the station's pol for this pol-product
+            if( PolMatch(st_idx, pc_pol, pp_label) ) 
+            {
+                std::string chan_label;
+                //now loop over the channels
+                for(std::size_t ch=0; ch < vis_chan_ax->GetSize(); ch++)
                 {
-                    //grab the sideband, bandwidth,channel frequency
-                    std::size_t ch = ilabel.GetLowerBound();
-                    std::string net_sideband; 
-                    std::string chan_label;
-                    double sky_freq = (*chan_ax)(ch); //get the sky frequency of this channel
+                    //get channel's frequency info
+                    double sky_freq = (*vis_chan_ax)(ch); //get the sky frequency of this channel
                     double bandwidth = 0;
-                    auto other_labels = chan_ax->GetIntervalsWhichIntersect(ilabel);
-                    for(auto olit = other_labels.begin(); olit != other_labels.end(); olit++)
+                    std::string net_sideband;
+                    auto labels = vis_chan_ax->GetIntervalsWhichIntersect(ch);
+                    for(auto iter = labels.begin(); iter != labels.end(); iter++)
                     {
-                        if( olit->HasKey(fSidebandLabelKey) ){olit->Retrieve(fSidebandLabelKey, net_sideband);}
-                        if( olit->HasKey(fBandwidthKey)){olit->Retrieve(fBandwidthKey, bandwidth);}
+                        if(iter->IsValid())
+                        {
+                            if( iter->HasKey(fSidebandLabelKey) ){iter->Retrieve(fSidebandLabelKey, net_sideband);}
+                            if( iter->HasKey(fBandwidthKey)){iter->Retrieve(fBandwidthKey, bandwidth);}
+                        }
                     }
 
                     //figure out the upper/lower frequency limits for this channel
@@ -79,20 +80,23 @@ MHO_MultitonePhaseCorrection::ExecuteInPlace(visibility_type* in)
                     DetermineChannelFrequencyLimits(sky_freq, bandwidth, net_sideband, lower_freq, upper_freq);
                     //determine the pcal tones indices associated with this channel
                     DetermineChannelToneIndexes(lower_freq, upper_freq, start_idx, ntones);
+                    //now need to fit the pcal data for the mean phase and delay for this channel, for each AP
+                    std::cout<<"working on channel: "<<ch<<" with sky freq: "<<sky_freq<< std::endl;
+                    FitPCData(pol, 0, start_idx, ntones);
+                    
+                    //finally apply the extracted phase-offset and delay-offset to each channel
+                    
+                            // visibility_element_type pc_phasor = std::exp( fImagUnit*pc_val*fDegToRad );
+                            // 
+                            // //conjugate phases for LSB data, but not for USB - TODO what about DSB?
+                            // if(net_sideband == fLowerSideband){pc_phasor = std::conj(pc_phasor);}
+                            // #pragma message("TODO FIXME - test all manual pc phase correction cases (ref/rem/USB/LSB/DSB)")
+                            // 
+                            // //retrieve and multiply the appropriate sub view of the visibility array
+                            // auto chunk = in->SubView(pp, ch);
+                            // chunk *= pc_phasor;
 
-                    //need to fit the pcal data for the mean phase and delay for this channel, for each AP
-                    //FitPCData(start_idx, ntones);
-
-                    // visibility_element_type pc_phasor = std::exp( fImagUnit*pc_val*fDegToRad );
-                    // 
-                    // //conjugate phases for LSB data, but not for USB - TODO what about DSB?
-                    // if(net_sideband == fLowerSideband){pc_phasor = std::conj(pc_phasor);}
-                    // #pragma message("TODO FIXME - test all manual pc phase correction cases (ref/rem/USB/LSB/DSB)")
-                    // 
-                    // //retrieve and multiply the appropriate sub view of the visibility array
-                    // auto chunk = in->SubView(pp, ch);
-                    // chunk *= pc_phasor;
-                // }
+                }
             }
         }
     }
@@ -136,10 +140,11 @@ MHO_MultitonePhaseCorrection::DetermineStationIndex(const visibility_type* in)
 }
 
 bool
-MHO_MultitonePhaseCorrection::PolMatch(std::size_t station_idx, std::string& polprod)
+MHO_MultitonePhaseCorrection::PolMatch(std::size_t station_idx, std::string& pc_pol, std::string& polprod)
 {
     make_upper(polprod);
-    return (fPol[0] == polprod[station_idx]);
+    make_upper(pc_pol);
+    return (pc_pol[0] == polprod[station_idx]);
 }
 
 
@@ -197,7 +202,11 @@ MHO_MultitonePhaseCorrection::FitPCData(std::size_t pol_idx, std::size_t ap_idx,
     using pcal_axis_pack = MHO_AxisPack< frequency_axis_type >;
     using pcal_type = MHO_TableContainer< std::complex<double>, pcal_axis_pack >;
 
-    
+    std::cout<<"POL IDX = "<<pol_idx<<std::endl;
+    std::cout<<"AP IDX = "<<ap_idx<<std::endl;
+    std::cout<<"TONE START = "<<tone_start_idx<<std::endl;
+    std::cout<<"NTONES = "<<ntones<<std::endl;
+
     int FFTSIZE = 256; //default x-form size in pcalibrate
     pcal_type test;
     test.Resize(FFTSIZE);

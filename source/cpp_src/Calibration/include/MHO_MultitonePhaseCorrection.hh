@@ -38,7 +38,6 @@ class MHO_MultitonePhaseCorrection: public MHO_UnaryOperator< visibility_type >
 
         void SetStation(std::string station){fStationCode = station;}; //2-char station code
         void SetStationMk4ID(std::string station_id){fMk4ID = station_id;} //1-char mk4id
-        void SetPolarization(const std::string& pol){fPol = pol; make_upper(fPol);};
 
          //channel label -> pc_phases
          void SetMultitonePCData(multitone_pcal_type* pcal);
@@ -54,7 +53,7 @@ class MHO_MultitonePhaseCorrection: public MHO_UnaryOperator< visibility_type >
     private:
 
         std::size_t DetermineStationIndex(const visibility_type* in);
-        bool PolMatch(std::size_t station_idx, std::string& polprod);
+        bool PolMatch(std::size_t station_idx, std::string& pc_pol, std::string& polprod);
         void DetermineChannelFrequencyLimits(double sky_freq, double bandwidth, std::string net_sideband, double& lower_freq, double& upper_freq);
         void DetermineChannelToneIndexes(double lower_freq, double upper_freq, std::size_t& lower_idx, std::size_t& upper_idx);
 
@@ -72,7 +71,6 @@ class MHO_MultitonePhaseCorrection: public MHO_UnaryOperator< visibility_type >
         //selection
         std::string fStationCode;
         std::string fMk4ID;
-        std::string fPol;
 
         //the multi-tone pcal data 
         multitone_pcal_type* fPCData;
