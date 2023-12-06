@@ -42,10 +42,11 @@ MHO_MultitonePhaseCorrection::ExecuteInPlace(visibility_type* in)
     if(st_idx != 0 && st_idx != 1){return false;}
     
     //loop over polarization in pcal data and pol-products 
-    //so we can apply the phase-cal to the appropriate pol/channel
+    //so we can apply the phase-cal to the appropriate pol/channel/ap
     auto pcal_pol_ax = &(std::get<MTPCAL_POL_AXIS>(*fPCData));
     auto vis_pp_ax = &(std::get<POLPROD_AXIS>(*in) );
     auto vis_chan_ax = &(std::get<CHANNEL_AXIS>(*in) );
+    auto vis_ap_ax = &(std::get<TIME_AXIS>(*in) );
 
     for(std::size_t pol=0; pol < pcal_pol_ax->GetSize(); pol++)
     {
@@ -82,7 +83,13 @@ MHO_MultitonePhaseCorrection::ExecuteInPlace(visibility_type* in)
                     //determine the pcal tones indices associated with this channel
                     DetermineChannelToneIndexes(lower_freq, upper_freq, start_idx, ntones);
                     //now need to fit the pcal data for the mean phase and delay for this channel, for each AP
-                    FitPCData(pol, 0, start_idx, ntones);
+                    //TODO FIXME -- make sure the stop/start parameters are accounted for!
+                    double phase_poly[2];
+                    for(std::size_t ap=0; ap < vis_ap_ax->GetSize(); ap++)
+                    {
+                        FitPCData(pol, ap, start_idx, ntones, phase_poly);
+                        std::cout<<"pol, chan, ap = "<<pc_pol<<", "<<ch<<", "<<ap<<", phase_poly = "<<phase_poly[0]<<", "<<phase_poly[1]<<std::endl;
+                    }
                     
                     //finally apply the extracted phase-offset and delay-offset to each channel
                     
@@ -186,26 +193,28 @@ MHO_MultitonePhaseCorrection::DetermineChannelToneIndexes(double lower_freq, dou
                 start_idx = j;
             }
             ntones++;
-            std::cout<<"tone: "<<j<<" = "<<tone_freq_ax(j)<<std::endl;
+            //std::cout<<"tone: "<<j<<" = "<<tone_freq_ax(j)<<std::endl;
         }
     }
-    std::cout<<"start tone = "<<start_tone_frequency<<", start tone index = "<<start_idx<<", ntones = "<<ntones<<std::endl;
+    //std::cout<<"start tone = "<<start_tone_frequency<<", start tone index = "<<start_idx<<", ntones = "<<ntones<<std::endl;
 
 }
 
 
 void 
-MHO_MultitonePhaseCorrection::FitPCData(std::size_t pol_idx, std::size_t ap_idx, std::size_t tone_start_idx, std::size_t ntones)
+MHO_MultitonePhaseCorrection::FitPCData(std::size_t pol_idx, std::size_t ap_idx,
+                                        std::size_t tone_start_idx, std::size_t ntones,
+                                        double* phase_poly)
 {
     //should we channelize the pca-data? yes...but for now just do an FFT on one chunk to test
     //extract the p-cal data between the start/stop indices for this particular pol from the first AP
     using pcal_axis_pack = MHO_AxisPack< frequency_axis_type >;
     using pcal_type = MHO_TableContainer< std::complex<double>, pcal_axis_pack >;
 
-    std::cout<<"POL IDX = "<<pol_idx<<std::endl;
-    std::cout<<"AP IDX = "<<ap_idx<<std::endl;
-    std::cout<<"TONE START = "<<tone_start_idx<<std::endl;
-    std::cout<<"NTONES = "<<ntones<<std::endl;
+    // std::cout<<"POL IDX = "<<pol_idx<<std::endl;
+    // std::cout<<"AP IDX = "<<ap_idx<<std::endl;
+    // std::cout<<"TONE START = "<<tone_start_idx<<std::endl;
+    // std::cout<<"NTONES = "<<ntones<<std::endl;
 
     int FFTSIZE = 256; //default x-form size in pcalibrate
     pcal_type test;
@@ -223,7 +232,7 @@ MHO_MultitonePhaseCorrection::FitPCData(std::size_t pol_idx, std::size_t ap_idx,
     }
 
     double pc_tone_delta = 1e6*(std::get<0>(test)(1) - std::get<0>(test)(0));
-    std::cout<<"PCAL TONE DELTA = "<<pc_tone_delta << std::endl;
+    // std::cout<<"PCAL TONE DELTA = "<<pc_tone_delta << std::endl;
 
     for(std::size_t i=0; i<FFTSIZE; i++)
     {
@@ -237,7 +246,6 @@ MHO_MultitonePhaseCorrection::FitPCData(std::size_t pol_idx, std::size_t ap_idx,
     #endif
 
     FFT_ENGINE_TYPE fFFTEngine;
-
 
     fFFTEngine.SetArgs(&test);
     fFFTEngine.DeselectAllAxes();
@@ -264,9 +272,8 @@ MHO_MultitonePhaseCorrection::FitPCData(std::size_t pol_idx, std::size_t ap_idx,
     }
 
     double delay_delta = (std::get<0>(test)(1) - std::get<0>(test)(0));
-    std::cout<<"delay_delta = "<<delay_delta<<std::endl;
-
-    std::cout<<"max, max_idx, max_del = "<<max_val<<", "<<max_idx<<", "<<max_del<<std::endl;
+    // std::cout<<"delay_delta = "<<delay_delta<<std::endl;
+    // std::cout<<"max, max_idx, max_del = "<<max_val<<", "<<max_idx<<", "<<max_del<<std::endl;
 
     double ymax, ampmax;
     double y[3];
@@ -278,14 +285,17 @@ MHO_MultitonePhaseCorrection::FitPCData(std::size_t pol_idx, std::size_t ap_idx,
 
                         // DC is in 0th element
     double delay = (max_idx+ymax) / 256.0 / pc_tone_delta;
+    double delay2 = (max_idx+ymax)*delay_delta; // alternate way of calculating
+    // std::cout<<"ymax = "<<ymax<<std::endl;
+    // std::cout<<"DELAY = "<<delay<<std::endl;
+    // std::cout<<"DELAY2 = "<<delay2<<std::endl;
 
-    double delay2 = (max_idx+ymax)*delay_delta;
-    std::cout<<"ymax = "<<ymax<<std::endl;
-    std::cout<<"DELAY = "<<delay<<std::endl;
-    std::cout<<"DELAY2 = "<<delay2<<std::endl;
+    // find corresponding delay in suitable range
+    //double pc_amb = 1 / pc_tone_delta;
 
-                        // find corresponding delay in suitable range
-    double pc_amb = 1 / pc_tone_delta;
+    phase_poly[0] = 0.0;
+    phase_poly[1] = delay;
+
 
 }
 
