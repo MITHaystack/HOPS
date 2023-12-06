@@ -40,7 +40,7 @@ class MHO_MultitonePhaseCorrection: public MHO_UnaryOperator< visibility_type >
         void SetStationMk4ID(std::string station_id){fMk4ID = station_id;} //1-char mk4id
 
          //channel label -> pc_phases
-         void SetMultitonePCData(multitone_pcal_type* pcal);
+         void SetMultitonePCData(multitone_pcal_type* pcal){fPCData = pcal;};
 
     protected:
 
