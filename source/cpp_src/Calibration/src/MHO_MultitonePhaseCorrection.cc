@@ -82,27 +82,28 @@ MHO_MultitonePhaseCorrection::ExecuteInPlace(visibility_type* in)
                     DetermineChannelFrequencyLimits(sky_freq, bandwidth, net_sideband, lower_freq, upper_freq);
                     //determine the pcal tones indices associated with this channel
                     DetermineChannelToneIndexes(lower_freq, upper_freq, start_idx, ntones);
+                    
                     //now need to fit the pcal data for the mean phase and delay for this channel, for each AP
+                    //eventually make this match the p-calibrate implemention (with time averaging before delay fit)
                     //TODO FIXME -- make sure the stop/start parameters are accounted for!
                     double phase_poly[2];
                     for(std::size_t ap=0; ap < vis_ap_ax->GetSize(); ap++)
                     {
                         FitPCData(pol, ap, start_idx, ntones, phase_poly);
                         std::cout<<"pol, chan, ap = "<<pc_pol<<", "<<ch<<", "<<ap<<", phase_poly = "<<phase_poly[0]<<", "<<phase_poly[1]<<std::endl;
-                    }
-                    
-                    //finally apply the extracted phase-offset and delay-offset to each channel
-                    
-                            // visibility_element_type pc_phasor = std::exp( fImagUnit*pc_val*fDegToRad );
-                            // 
-                            // //conjugate phases for LSB data, but not for USB - TODO what about DSB?
-                            // if(net_sideband == fLowerSideband){pc_phasor = std::conj(pc_phasor);}
-                            // #pragma message("TODO FIXME - test all manual pc phase correction cases (ref/rem/USB/LSB/DSB)")
-                            // 
-                            // //retrieve and multiply the appropriate sub view of the visibility array
-                            // auto chunk = in->SubView(pp, ch);
-                            // chunk *= pc_phasor;
 
+                        //finally apply the extracted phase-offset and delay-offset to each channel
+                        
+                        // visibility_element_type pc_phasor = std::exp( fImagUnit*pc_val*fDegToRad );
+                        // 
+                        // //conjugate phases for LSB data, but not for USB - TODO what about DSB?
+                        // if(net_sideband == fLowerSideband){pc_phasor = std::conj(pc_phasor);}
+                        // #pragma message("TODO FIXME - test all manual pc phase correction cases (ref/rem/USB/LSB/DSB)")
+                        // 
+                        // //retrieve and multiply the appropriate sub view of the visibility array
+                        // auto chunk = in->SubView(pp, ch);
+                        // chunk *= pc_phasor;
+                    }
                 }
             }
         }
@@ -206,15 +207,12 @@ MHO_MultitonePhaseCorrection::FitPCData(std::size_t pol_idx, std::size_t ap_idx,
                                         std::size_t tone_start_idx, std::size_t ntones,
                                         double* phase_poly)
 {
-    //should we channelize the pca-data? yes...but for now just do an FFT on one chunk to test
-    //extract the p-cal data between the start/stop indices for this particular pol from the first AP
+    //TODO FIXME -- pcalibrate does a time-average of the pcal data before fitting for the delay 
+    //This depends on pc_period...for now we are fitting each AP separately
+
     using pcal_axis_pack = MHO_AxisPack< frequency_axis_type >;
     using pcal_type = MHO_TableContainer< std::complex<double>, pcal_axis_pack >;
 
-    // std::cout<<"POL IDX = "<<pol_idx<<std::endl;
-    // std::cout<<"AP IDX = "<<ap_idx<<std::endl;
-    // std::cout<<"TONE START = "<<tone_start_idx<<std::endl;
-    // std::cout<<"NTONES = "<<ntones<<std::endl;
 
     int FFTSIZE = 256; //default x-form size in pcalibrate
     pcal_type test;
@@ -232,7 +230,6 @@ MHO_MultitonePhaseCorrection::FitPCData(std::size_t pol_idx, std::size_t ap_idx,
     }
 
     double pc_tone_delta = 1e6*(std::get<0>(test)(1) - std::get<0>(test)(0));
-    // std::cout<<"PCAL TONE DELTA = "<<pc_tone_delta << std::endl;
 
     for(std::size_t i=0; i<FFTSIZE; i++)
     {
