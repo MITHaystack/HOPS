@@ -167,8 +167,6 @@ MHO_MultitonePhaseCorrection::DetermineChannelFrequencyLimits(double sky_freq, d
 void 
 MHO_MultitonePhaseCorrection::DetermineChannelToneIndexes(double lower_freq, double upper_freq, std::size_t& start_idx, std::size_t& ntones)
 {
-
-
     auto tone_freq_ax = std::get<MTPCAL_FREQ_AXIS>(*fPCData);
     double start_tone_frequency = 0;
     start_idx = 0;
@@ -189,92 +187,98 @@ MHO_MultitonePhaseCorrection::DetermineChannelToneIndexes(double lower_freq, dou
     std::cout<<"start tone = "<<start_tone_frequency<<", start tone index = "<<start_idx<<", ntones = "<<ntones<<std::endl;
 
 }
-// 
-// 
-// void 
-// MHO_MultitonePhaseCorrection::FitPCData(std::size_t pol_idx, std::size_t ap_idx, std::size_t tone_start_idx, std::size_t ntones)
-// {
-//     using pcal_axis_pack = MHO_AxisPack< frequency_axis_type >;
-//     using pcal_type = MHO_TableContainer< std::complex<double>, pcal_axis_pack >;
-// 
-//     int FFTSIZE = 256; //default x-form size in pcalibrate
-//     pcal_type test;
-//     test.Resize(FFTSIZE);
-//     test.ZeroArray();
-// 
-//     for(std::size_t j=0; j<ntones; j++)
-//     {
-//         std::complex<double> phasor = pcal_data->at(0, 0, start_tone_index+j);
-//         double tone_freq = tone_freq_ax(start_tone_index+j);
-//         test.at(j) = phasor;
-//         std::get<0>(test).at(j) = tone_freq;
-//     }
-// 
-//     double pc_tone_delta = 1e6*(std::get<0>(test)(1) - std::get<0>(test)(0));
-//     std::cout<<"PCAL TONE DELTA = "<<pc_tone_delta << std::endl;
-// 
-//     for(std::size_t i=0; i<FFTSIZE; i++)
-//     {
-//         std::get<0>(test).at(i) = i*pc_tone_delta; //actual freq is irrelevant
-//     }
-// 
-//     #ifdef HOPS_USE_FFTW3
-//     using FFT_ENGINE_TYPE = MHO_MultidimensionalFastFourierTransformFFTW< pcal_type >;
-//     #else
-//     using FFT_ENGINE_TYPE = MHO_MultidimensionalFastFourierTransform< pcal_type >;
-//     #endif
-// 
-//     FFT_ENGINE_TYPE fFFTEngine;
-// 
-// 
-//     fFFTEngine.SetArgs(&test);
-//     fFFTEngine.DeselectAllAxes();
-//     fFFTEngine.SelectAxis(0); //only perform padded fft on frequency (to lag) axis
-//     fFFTEngine.SetForward();//forward DFT
-// 
-//     ok = fFFTEngine.Initialize();
-//     ok = fFFTEngine.Execute();
-// 
-//     double max_val = 0;
-//     int max_idx = 0;
-//     double max_del = 0;
-//     for(std::size_t i=0; i<FFTSIZE; i++)
-//     {
-//         std::complex<double> phasor = test.at(i);
-//         double abs_val = std::abs(phasor);
-//         if(abs_val > max_val)
-//         {
-//             max_val = abs_val;
-//             max_idx = i;
-//             max_del = std::get<0>(test)(i);
-//         }
-//     }
-// 
-//     double delay_delta = (std::get<0>(test)(1) - std::get<0>(test)(0));
-//     std::cout<<"delay_delta = "<<delay_delta<<std::endl;
-// 
-//     std::cout<<"max, max_idx, max_del = "<<max_val<<", "<<max_idx<<", "<<max_del<<std::endl;
-// 
-//     double ymax, ampmax;
-//     double y[3];
-//     double q[3];
-//     y[1] = max_val;
-//     y[0] =std::abs (test[(max_idx+FFTSIZE-1)%FFTSIZE]);
-//     y[2] = std::abs (test[(max_idx+FFTSIZE+1)%FFTSIZE]);
-//     MHO_MathUtilities::parabola(y, -1.0, 1.0, &ymax, &ampmax, q);
-// 
-//                         // DC is in 0th element
-//     double delay = (max_idx+ymax) / 256.0 / pc_tone_delta;
-// 
-//     double delay2 = (max_idx+ymax)*delay_delta;
-//     std::cout<<"ymax = "<<ymax<<std::endl;
-//     std::cout<<"DELAY = "<<delay<<std::endl;
-//     std::cout<<"DELAY2 = "<<delay2<<std::endl;
-// 
-//                         // find corresponding delay in suitable range
-//     double pc_amb = 1 / pc_tone_delta;
-// 
-// }
-// 
+
+
+void 
+MHO_MultitonePhaseCorrection::FitPCData(std::size_t pol_idx, std::size_t ap_idx, std::size_t tone_start_idx, std::size_t ntones)
+{
+    //should we channelize the pca-data? yes...but for now just do an FFT on one chunk to test
+    //extract the p-cal data between the start/stop indices for this particular pol from the first AP
+    using pcal_axis_pack = MHO_AxisPack< frequency_axis_type >;
+    using pcal_type = MHO_TableContainer< std::complex<double>, pcal_axis_pack >;
+
+    
+    int FFTSIZE = 256; //default x-form size in pcalibrate
+    pcal_type test;
+    test.Resize(FFTSIZE);
+    test.ZeroArray();
+
+    auto tone_freq_ax = std::get<MTPCAL_FREQ_AXIS>(*fPCData);
+
+    for(std::size_t j=0; j<ntones; j++)
+    {
+        std::complex<double> phasor = fPCData->at(pol_idx, ap_idx, tone_start_idx+j);
+        double tone_freq = tone_freq_ax(tone_start_idx+j);
+        test.at(j) = phasor;
+        std::get<0>(test).at(j) = tone_freq;
+    }
+
+    double pc_tone_delta = 1e6*(std::get<0>(test)(1) - std::get<0>(test)(0));
+    std::cout<<"PCAL TONE DELTA = "<<pc_tone_delta << std::endl;
+
+    for(std::size_t i=0; i<FFTSIZE; i++)
+    {
+        std::get<0>(test).at(i) = i*pc_tone_delta; //actual freq is irrelevant
+    }
+
+    #ifdef HOPS_USE_FFTW3
+    using FFT_ENGINE_TYPE = MHO_MultidimensionalFastFourierTransformFFTW< pcal_type >;
+    #else
+    using FFT_ENGINE_TYPE = MHO_MultidimensionalFastFourierTransform< pcal_type >;
+    #endif
+
+    FFT_ENGINE_TYPE fFFTEngine;
+
+
+    fFFTEngine.SetArgs(&test);
+    fFFTEngine.DeselectAllAxes();
+    fFFTEngine.SelectAxis(0); //only perform padded fft on frequency (to lag) axis
+    fFFTEngine.SetForward();//forward DFT
+
+    bool ok;
+    ok = fFFTEngine.Initialize();
+    ok = fFFTEngine.Execute();
+
+    double max_val = 0;
+    int max_idx = 0;
+    double max_del = 0;
+    for(std::size_t i=0; i<FFTSIZE; i++)
+    {
+        std::complex<double> phasor = test.at(i);
+        double abs_val = std::abs(phasor);
+        if(abs_val > max_val)
+        {
+            max_val = abs_val;
+            max_idx = i;
+            max_del = std::get<0>(test)(i);
+        }
+    }
+
+    double delay_delta = (std::get<0>(test)(1) - std::get<0>(test)(0));
+    std::cout<<"delay_delta = "<<delay_delta<<std::endl;
+
+    std::cout<<"max, max_idx, max_del = "<<max_val<<", "<<max_idx<<", "<<max_del<<std::endl;
+
+    double ymax, ampmax;
+    double y[3];
+    double q[3];
+    y[1] = max_val;
+    y[0] =std::abs (test[(max_idx+FFTSIZE-1)%FFTSIZE]);
+    y[2] = std::abs (test[(max_idx+FFTSIZE+1)%FFTSIZE]);
+    MHO_MathUtilities::parabola(y, -1.0, 1.0, &ymax, &ampmax, q);
+
+                        // DC is in 0th element
+    double delay = (max_idx+ymax) / 256.0 / pc_tone_delta;
+
+    double delay2 = (max_idx+ymax)*delay_delta;
+    std::cout<<"ymax = "<<ymax<<std::endl;
+    std::cout<<"DELAY = "<<delay<<std::endl;
+    std::cout<<"DELAY2 = "<<delay2<<std::endl;
+
+                        // find corresponding delay in suitable range
+    double pc_amb = 1 / pc_tone_delta;
+
+}
+
 
 }//end of namespace
