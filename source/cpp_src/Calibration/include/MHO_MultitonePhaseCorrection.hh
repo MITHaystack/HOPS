@@ -23,6 +23,12 @@
 #include "MHO_ContainerDefinitions.hh"
 #include "MHO_UnaryOperator.hh"
 
+#ifdef HOPS_USE_FFTW3
+#include "MHO_MultidimensionalFastFourierTransformFFTW.hh"
+#else
+#include "MHO_MultidimensionalFastFourierTransform.hh"
+#endif
+
 
 
 namespace hops
@@ -38,6 +44,7 @@ class MHO_MultitonePhaseCorrection: public MHO_UnaryOperator< visibility_type >
 
         void SetStation(std::string station){fStationCode = station;}; //2-char station code
         void SetStationMk4ID(std::string station_id){fMk4ID = station_id;} //1-char mk4id
+        void SetPCPeriod(std::size_t pc_period){fPCPeriod = pc_period;}
 
          //channel label -> pc_phases
          void SetMultitonePCData(multitone_pcal_type* pcal){fPCData = pcal;};
@@ -51,15 +58,32 @@ class MHO_MultitonePhaseCorrection: public MHO_UnaryOperator< visibility_type >
         virtual bool ExecuteOutOfPlace(const visibility_type* in, visibility_type* out) override;
 
     private:
+        
+        using pcal_axis_pack = MHO_AxisPack< frequency_axis_type >;
+        using pcal_type = MHO_TableContainer< std::complex<double>, pcal_axis_pack >;
+        
+        #ifdef HOPS_USE_FFTW3
+        using FFT_ENGINE_TYPE = MHO_MultidimensionalFastFourierTransformFFTW< pcal_type >;
+        #else
+        using FFT_ENGINE_TYPE = MHO_MultidimensionalFastFourierTransform< pcal_type >;
+        #endif
+
+        FFT_ENGINE_TYPE fFFTEngine;
 
         std::size_t DetermineStationIndex(const visibility_type* in);
         bool PolMatch(std::size_t station_idx, std::string& pc_pol, std::string& polprod);
         void DetermineChannelFrequencyLimits(double sky_freq, double bandwidth, std::string net_sideband, double& lower_freq, double& upper_freq);
         void DetermineChannelToneIndexes(double lower_freq, double upper_freq, std::size_t& lower_idx, std::size_t& upper_idx);
 
+        //applies the station's phase-cal data for the polarization 'pc_pol' to the appropriate pol-product
+        void ApplyPCData(std::size_t pc_pol, std::size_t vis_pp, visibility_type* in);
+
         //fit a mean pcal offset and delay from this set of tones
         //for a particular pol and ap index (uses pcalibrate.c algo)
-        void FitPCData(std::size_t pol_idx, std::size_t ap_idx, std::size_t tone_start_idx, std::size_t ntones, double* phase_poly);
+        //void FitPCData(std::size_t pol_idx, std::size_t ap_idx, std::size_t tone_start_idx, std::size_t ntones, double* phase_poly);
+
+        //void FitPCData(std::vector<double>& tone_freqs, std::vector< std::complex<double> >& tone_phasors, std::vector<double>& phase_spline);
+        void FitPCData(pcal_type* pc_data, double* phase_spline);
 
         //constants
         std::complex<double> fImagUnit;
@@ -73,6 +97,7 @@ class MHO_MultitonePhaseCorrection: public MHO_UnaryOperator< visibility_type >
         std::string fMk4ID;
 
         //the multi-tone pcal data 
+        std::size_t fPCPeriod;
         multitone_pcal_type* fPCData;
 
         //keys for tag retrieval
