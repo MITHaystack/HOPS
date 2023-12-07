@@ -194,7 +194,7 @@ int main(int argc, char** argv)
     
     //load baseline data
     scanStore.LoadBaseline(baseline, &containerStore);
-    MHO_BasicFringeDataConfiguration::configure_data_library(&containerStore);
+    MHO_BasicFringeDataConfiguration::configure_visibility_data(&containerStore);
 
     //load station data
     scanStore.LoadStation(station, &containerStore);
