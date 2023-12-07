@@ -156,16 +156,18 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
                 std::cout<<"pol, chan, ap = "<<pc_pol<<", "<<ch<<", "<<ap<<", phase_spline = "<<phase_spline[0]*(180.0/M_PI)<<", "<<phase_spline[1]<<std::endl;
                 
                 //finally apply the extracted linear phase/delay spline to each channel/ap in this pc period
-
-                // visibility_element_type pc_phasor = std::exp( fImagUnit*pc_val*fDegToRad );
-                // 
-                // //conjugate phases for LSB data, but not for USB - TODO what about DSB?
-                // if(net_sideband == fLowerSideband){pc_phasor = std::conj(pc_phasor);}
-                // #pragma message("TODO FIXME - pc_data all manual pc phase correction cases (ref/rem/USB/LSB/DSB)")
-                // 
-                // //retrieve and multiply the appropriate sub view of the visibility array
-                // auto chunk = in->SubView(pp, ch);
-                // chunk *= pc_phasor;
+                for(std::size_t dap = seg_start_ap; dap < seg_end_ap; dap++)
+                {
+                    //TODO FIXME!!! no delay just mean phase!!!
+                    std::complex<double> pc_phasor = std::exp( fImagUnit*phase_spline[0] ); 
+                    // 
+                    //conjugate phases for LSB data, but not for USB - TODO what about DSB?
+                    if(net_sideband == fLowerSideband){pc_phasor = std::conj(pc_phasor);}
+                    // #pragma message("TODO FIXME - pc_data all manual pc phase correction cases (ref/rem/USB/LSB/DSB)")
+                    //retrieve and multiply the appropriate sub view of the visibility array
+                    auto chunk = in->SubView(vis_pp, ch, dap);
+                    chunk *= pc_phasor;
+                }
             }
         }
     }
