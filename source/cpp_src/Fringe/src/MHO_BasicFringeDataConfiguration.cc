@@ -148,7 +148,7 @@ MHO_BasicFringeDataConfiguration::parse_command_line(int argc, char** argv, MHO_
 
 //more helper functions
 void 
-MHO_BasicFringeDataConfiguration::configure_data_library(MHO_ContainerStore* store)
+MHO_BasicFringeDataConfiguration::configure_visibility_data(MHO_ContainerStore* store)
 {
     //retrieve the (first) visibility and weight objects
     //(currently assuming there is only one object per type)
@@ -215,6 +215,20 @@ MHO_BasicFringeDataConfiguration::configure_data_library(MHO_ContainerStore* sto
     store->AddObject(wt_data);
     store->SetShortName(vis_data->GetObjectUUID(), vis_shortname);
     store->SetShortName(wt_data->GetObjectUUID(), wt_shortname);
+}
+
+void 
+MHO_BasicFringeDataConfiguration::configure_station_data(MHO_ScanDataStore* scanStore, MHO_ContainerStore* containerStore,
+                                                         std::string ref_station_mk4id, std::string rem_station_mk4id)
+{
+    //load station data and assign them the names 'ref_sta' or 'rem_sta'
+    scanStore->LoadStation(ref_station_mk4id, containerStore);
+    containerStore->RenameObject("sta", "ref_sta");
+    scanStore->LoadStation(rem_station_mk4id, containerStore);
+    containerStore->RenameObject("sta", "rem_sta");
+    
+    //load pcal data if it is present
+
 }
 
 

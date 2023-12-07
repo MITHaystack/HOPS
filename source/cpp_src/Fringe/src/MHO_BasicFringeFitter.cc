@@ -162,19 +162,25 @@ void MHO_BasicFringeFitter::Initialize()
         //load baseline data
         fScanStore.LoadBaseline(baseline, &fContainerStore);
         fParameterStore.Set("/files/baseline_input_file", fScanStore.GetBaselineFilename(baseline));
-        MHO_BasicFringeDataConfiguration::configure_data_library(&fContainerStore);//momentarily needed for float -> double cast
+        
+        //loads visibility data and performs float -> double cast
+        MHO_BasicFringeDataConfiguration::configure_visibility_data(&fContainerStore);
+        
         //load and rename station data according to reference/remote
+        //also load pcal data if it is present
         std::string ref_station_mk4id = std::string(1,baseline[0]);
         std::string rem_station_mk4id = std::string(1,baseline[1]);
-        fScanStore.LoadStation(ref_station_mk4id, &fContainerStore);
+        MHO_BasicFringeDataConfiguration::configure_station_data(&fScanStore, &fContainerStore, ref_station_mk4id, rem_station_mk4id);
         fParameterStore.Set("/files/ref_station_input_file", fScanStore.GetStationFilename(ref_station_mk4id));
-        fContainerStore.RenameObject("sta", "ref_sta");
-        fScanStore.LoadStation(rem_station_mk4id, &fContainerStore);
         fParameterStore.Set("/files/rem_station_input_file", fScanStore.GetStationFilename(rem_station_mk4id));
-        fContainerStore.RenameObject("sta", "rem_sta");
 
         station_coord_type* ref_data = fContainerStore.GetObject<station_coord_type>(std::string("ref_sta"));
         station_coord_type* rem_data = fContainerStore.GetObject<station_coord_type>(std::string("rem_sta"));
+        if( ref_data == nullptr || rem_data == nullptr )
+        {
+            msg_fatal("fringe", "could not find station coordinate data with names (ref_sta, rem_sta)." << eom);
+            std::exit(1);
+        }
 
         visibility_type* vis_data = fContainerStore.GetObject<visibility_type>(std::string("vis"));
         weight_type* wt_data = fContainerStore.GetObject<weight_type>(std::string("weight"));

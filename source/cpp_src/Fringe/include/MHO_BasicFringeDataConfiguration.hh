@@ -14,6 +14,7 @@
 #include "MHO_Message.hh"
 
 //data/config passing classes
+#include "MHO_ScanDataStore.hh"
 #include "MHO_ParameterStore.hh"
 #include "MHO_ContainerStore.hh"
 #include "MHO_OperatorToolbox.hh"
@@ -35,7 +36,11 @@ class MHO_BasicFringeDataConfiguration
     public:
         //helper functions
         static int parse_command_line(int argc, char** argv, MHO_ParameterStore* paramStore);
-        static void configure_data_library(MHO_ContainerStore* store);
+        
+        static void configure_visibility_data(MHO_ContainerStore* store);
+        static void configure_station_data(MHO_ScanDataStore* scanStore, MHO_ContainerStore* containerStore,
+                                           std::string ref_station_mk4id, std::string rem_station_mk4id);
+                                           
         static void init_and_exec_operators(MHO_OperatorBuilderManager* build_manager, MHO_OperatorToolbox* opToolbox, const char* category);
 };
 
