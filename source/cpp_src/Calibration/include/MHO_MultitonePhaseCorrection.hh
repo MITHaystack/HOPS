@@ -51,8 +51,8 @@ class MHO_MultitonePhaseCorrection: public MHO_UnaryOperator< visibility_type >
 
     protected:
 
-        virtual bool InitializeInPlace(visibility_type* in) override;
-        virtual bool InitializeOutOfPlace(const visibility_type* in, visibility_type* out) override;
+        virtual bool InitializeInPlace(visibility_type* /*in*/) override {return true;};
+        virtual bool InitializeOutOfPlace(const visibility_type* /*in*/, visibility_type* /*out*/) override {return true;};
 
         virtual bool ExecuteInPlace(visibility_type* in) override;
         virtual bool ExecuteOutOfPlace(const visibility_type* in, visibility_type* out) override;
@@ -79,11 +79,7 @@ class MHO_MultitonePhaseCorrection: public MHO_UnaryOperator< visibility_type >
         void ApplyPCData(std::size_t pc_pol, std::size_t vis_pp, visibility_type* in);
 
         //fit a mean pcal offset and delay from this set of tones
-        //for a particular pol and ap index (uses pcalibrate.c algo)
-        //void FitPCData(std::size_t pol_idx, std::size_t ap_idx, std::size_t tone_start_idx, std::size_t ntones, double* phase_poly);
-
-        //void FitPCData(std::vector<double>& tone_freqs, std::vector< std::complex<double> >& tone_phasors, std::vector<double>& phase_spline);
-        void FitPCData(pcal_type* pc_data, double* phase_spline);
+        void FitPCData(pcal_type* pc_data, std::size_t ntones, double chan_center_freq, double* phase_spline);
 
         //constants
         std::complex<double> fImagUnit;

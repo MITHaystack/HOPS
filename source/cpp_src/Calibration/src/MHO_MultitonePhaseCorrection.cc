@@ -29,7 +29,7 @@ MHO_MultitonePhaseCorrection::MHO_MultitonePhaseCorrection()
     fImagUnit = MHO_Constants::imag_unit;
     fDegToRad = MHO_Constants::deg_to_rad;
     
-    fPCPeriod = 1;
+    fPCPeriod = 30;
 };
 
 MHO_MultitonePhaseCorrection::~MHO_MultitonePhaseCorrection(){};
@@ -76,7 +76,6 @@ MHO_MultitonePhaseCorrection::ExecuteOutOfPlace(const visibility_type* in, visib
 }
 
 
-
 void 
 MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp, visibility_type* in)
 {
@@ -84,17 +83,11 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
     auto vis_ap_ax = &(std::get<TIME_AXIS>(*in) );
     auto tone_freq_ax = &(std::get<MTPCAL_FREQ_AXIS>(*fPCData) );
 
-
     //workspace to store averaged phasors and corresponding tone freqs
     pcal_type pc_workspace;
     pc_workspace.Resize(WORKSPACE_SIZE);
     pc_workspace.ZeroArray();
     auto workspace_freq_ax = &(std::get<0>(pc_workspace));
-    
-    // std::vector<double> tone_freqs;
-    // std::vector< std::complex<double> > tone_phasors;
-    // tone_freqs.resize(TYPICAL_MAX_NTONES);
-    // tone_phasors.resize(TYPICAL_MAX_NTONES);
 
     //now loop over the channels
     for(std::size_t ch=0; ch < vis_chan_ax->GetSize(); ch++)
@@ -118,6 +111,7 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
         double lower_freq, upper_freq;
         std::size_t start_idx, ntones;
         DetermineChannelFrequencyLimits(sky_freq, bandwidth, net_sideband, lower_freq, upper_freq);
+        double chan_center_freq = 0.5*(lower_freq+upper_freq);
         //determine the pcal tones indices associated with this channel
         DetermineChannelToneIndexes(lower_freq, upper_freq, start_idx, ntones);
 
@@ -149,6 +143,7 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
             
             
             //sum the tone phasors
+            //TODO FIXME -- NOTE!! This implementation assumes all tones are sequential and there are no missing tones!
             for(std::size_t i=0; i<ntones; i++){ pc_workspace(i) += fPCData->at(pc_pol, ap, start_idx+i); }
             navg += 1.0; //treat all pc weights as 1 for now (should probably use visibility weights)
             
@@ -157,8 +152,8 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
             {
                 seg_end_ap = ap+1;
                 for(std::size_t i=0; i<ntones; i++){ pc_workspace(i) /= navg;}
-                FitPCData(&pc_workspace, phase_spline);
-                std::cout<<"pol, chan, ap = "<<pc_pol<<", "<<ch<<", "<<ap<<", phase_spline = "<<phase_spline[0]<<", "<<phase_spline[1]<<std::endl;
+                FitPCData(&pc_workspace, ntones, chan_center_freq, phase_spline);
+                std::cout<<"pol, chan, ap = "<<pc_pol<<", "<<ch<<", "<<ap<<", phase_spline = "<<phase_spline[0]*(180.0/M_PI)<<", "<<phase_spline[1]<<std::endl;
                 
                 //finally apply the extracted linear phase/delay spline to each channel/ap in this pc period
 
@@ -211,13 +206,6 @@ MHO_MultitonePhaseCorrection::PolMatch(std::size_t station_idx, std::string& pc_
     return (pc_pol[0] == polprod[station_idx]);
 }
 
-
-bool
-MHO_MultitonePhaseCorrection::InitializeInPlace(visibility_type* /*in*/){ return true;}
-
-bool
-MHO_MultitonePhaseCorrection::InitializeOutOfPlace(const visibility_type* /*in*/, visibility_type* /*out*/){return true;}
-
 void 
 MHO_MultitonePhaseCorrection::DetermineChannelFrequencyLimits(double sky_freq, double bandwidth, std::string net_sideband, double& lower_freq, double& upper_freq)
 {
@@ -246,57 +234,28 @@ MHO_MultitonePhaseCorrection::DetermineChannelToneIndexes(double lower_freq, dou
         {
             if(ntones == 0)
             {
-                start_tone_frequency = tone_freq_ax(j) ;
+                start_tone_frequency = tone_freq_ax(j);
                 start_idx = j;
             }
             ntones++;
-            //std::cout<<"tone: "<<j<<" = "<<tone_freq_ax(j)<<std::endl;
         }
     }
-    //std::cout<<"start tone = "<<start_tone_frequency<<", start tone index = "<<start_idx<<", ntones = "<<ntones<<std::endl;
-
 }
 
 
-// void 
-// MHO_MultitonePhaseCorrection::FitPCData(std::size_t pol_idx, std::size_t ap_idx,
-//                                         std::size_t tone_start_idx, std::size_t ntones,
-//                                         double* phase_spline)
-
-// void 
-// MHO_MultitonePhaseCorrection::FitPCData(std::vector<double>& tone_freqs, 
-//                                         std::vector< std::complex<double> >& tone_phasors, 
-//                                         std::vector<double>& phase_spline)
-
 void
-MHO_MultitonePhaseCorrection::FitPCData(pcal_type* pc_data, double* phase_spline)
+MHO_MultitonePhaseCorrection::FitPCData(pcal_type* pc_data, std::size_t ntones, double chan_center_freq, double* phase_spline)
 {
-    //TODO FIXME -- pcalibrate does a time-average of the pcal data before fitting for the delay 
-    //This depends on fPCPeriod...for now we are fitting each AP separately
-
-
-    // int WORKSPACE_SIZE = 256; //default x-form size in pcalibrate
-    // pcal_type pc_data;
-    // pc_data.Resize(WORKSPACE_SIZE);
-    // pc_data.ZeroArray();
-    // 
-    // auto tone_freq_ax = std::get<MTPCAL_FREQ_AXIS>(*fPCData);
-    // 
-    // for(std::size_t j=0; j<ntones; j++)
-    // {
-    //     std::complex<double> phasor = fPCData->at(pol_idx, ap_idx, tone_start_idx+j);
-    //     double tone_freq = tone_freq_ax(tone_start_idx+j);
-    //     pc_data.at(j) = phasor;
-    //     std::get<0>(pc_data).at(j) = tone_freq;
-    // }
-    // 
-    // double pc_tone_delta = 1e6*(std::get<0>(pc_data)(1) - std::get<0>(pc_data)(0));
-    // 
-    // for(std::size_t i=0; i<WORKSPACE_SIZE; i++)
-    // {
-    //     std::get<0>(pc_data).at(i) = i*pc_tone_delta; //actual freq is irrelevant
-    // }
-
+    //copy the averaged tone data for later use when calculating mean phase
+    pcal_type pc_data_copy;
+    pc_data_copy.Resize(ntones);
+    auto tone_freq_ax = &(std::get<0>(pc_data_copy));
+    for(std::size_t i=0; i<ntones; i++)
+    {
+        pc_data_copy(i) = pc_data->at(i);
+        (*tone_freq_ax)(i) = std::get<0>(*pc_data)(i);
+    }
+    
     fFFTEngine.SetArgs(pc_data);
     fFFTEngine.DeselectAllAxes();
     fFFTEngine.SelectAxis(0); //only perform padded fft on frequency (to lag) axis
@@ -322,9 +281,6 @@ MHO_MultitonePhaseCorrection::FitPCData(pcal_type* pc_data, double* phase_spline
     }
 
     double delay_delta = (std::get<0>(*pc_data)(1) - std::get<0>(*pc_data)(0));
-    // std::cout<<"delay_delta = "<<delay_delta<<std::endl;
-    // std::cout<<"max, max_idx, max_del = "<<max_val<<", "<<max_idx<<", "<<max_del<<std::endl;
-
     double ymax, ampmax;
     double y[3];
     double q[3];
@@ -332,19 +288,32 @@ MHO_MultitonePhaseCorrection::FitPCData(pcal_type* pc_data, double* phase_spline
     y[0] =std::abs( pc_data->at( (max_idx+WORKSPACE_SIZE-1)%WORKSPACE_SIZE) );
     y[2] = std::abs( pc_data->at( (max_idx+WORKSPACE_SIZE+1)%WORKSPACE_SIZE) );
     MHO_MathUtilities::parabola(y, -1.0, 1.0, &ymax, &ampmax, q);
+    double delay = (max_idx+ymax)*delay_delta; 
 
-                        // DC is in 0th element
-    //double delay = (max_idx+ymax) / 256.0 / pc_tone_delta;
-    double delay = (max_idx+ymax)*delay_delta; // alternate way of calculating
-    // std::cout<<"ymax = "<<ymax<<std::endl;
-    // std::cout<<"DELAY = "<<delay<<std::endl;
-    // std::cout<<"DELAY2 = "<<delay2<<std::endl;
+    phase_spline[1] = delay*1e-6 - 200e-9;
 
-    // find corresponding delay in suitable range
-    //double pc_amb = 1 / pc_tone_delta;
+    //TODO -- CORRECT DELAY FOR SAMPLER DELAY AMB
+    std::cout<<"chan center freq = "<<chan_center_freq<<std::endl;
+    //rotate each tone phasor by the delay (zero rot at center freq)
+    std::complex<double> mean_phasor = 0.0;
+    double navg = 0.0;
+    for(std::size_t i=0; i<ntones; i++)
+    {
+        std::complex<double> phasor = pc_data_copy(i);
+        double tone_freq = (*tone_freq_ax)(i);
+        double deltaf = (chan_center_freq - tone_freq)*1e6;
+        std::cout<<"deltaf = "<<deltaf<<std::endl;
+        double theta = 2.0 * M_PI * phase_spline[1] * deltaf;
+        std::cout<<"theta = "<<theta*(180.0/M_PI)<<std::endl;
+        phasor *= std::exp(fImagUnit*theta );
+        mean_phasor += phasor;
+        navg += 1.0;
+    }
 
-    phase_spline[0] = 0.0;
-    phase_spline[1] = delay;
+    mean_phasor = mean_phasor / navg;
+    
+    phase_spline[0] = std::arg(mean_phasor);
+
 }
 
 
