@@ -224,9 +224,22 @@ MHO_BasicFringeDataConfiguration::configure_station_data(MHO_ScanDataStore* scan
     //load station data and assign them the names 'ref_sta' or 'rem_sta'
     scanStore->LoadStation(ref_station_mk4id, containerStore);
     containerStore->RenameObject("sta", "ref_sta");
+    MHO_UUID pcal_uuid;
+    pcal_uuid = containerStore->GetObjectUUID("pcal");
+    if( !(pcal_uuid.is_empty()) )
+    {
+        std::cout<<"Loading ref pcal object with uuid: "<< pcal_uuid.as_string()<<std::endl;
+        containerStore->RenameObject("pcal", "ref_pcal");
+    }
+    
     scanStore->LoadStation(rem_station_mk4id, containerStore);
     containerStore->RenameObject("sta", "rem_sta");
-    
+    pcal_uuid = containerStore->GetObjectUUID("pcal");
+    if( !(pcal_uuid.is_empty()) )
+    {
+        std::cout<<"Loading rem pcal object with uuid: "<< pcal_uuid.as_string()<<std::endl;
+        containerStore->RenameObject("pcal", "rem_pcal");
+    }
     //load pcal data if it is present
 
 }

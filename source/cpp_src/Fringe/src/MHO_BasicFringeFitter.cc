@@ -166,6 +166,18 @@ void MHO_BasicFringeFitter::Initialize()
         //loads visibility data and performs float -> double cast
         MHO_BasicFringeDataConfiguration::configure_visibility_data(&fContainerStore);
         
+        visibility_type* vis_data = fContainerStore.GetObject<visibility_type>(std::string("vis"));
+        weight_type* wt_data = fContainerStore.GetObject<weight_type>(std::string("weight"));
+        if( vis_data == nullptr || wt_data == nullptr )
+        {
+            msg_fatal("fringe", "could not find visibility or weight objects with names (vis, weight)." << eom);
+            std::exit(1);
+        }
+        std::string vis_uuid = vis_data->GetObjectUUID().as_string();
+        std::string wt_uuid = wt_data->GetObjectUUID().as_string();
+        fParameterStore.Set("/uuid/visibilities", vis_uuid);
+        fParameterStore.Set("/uuid/weights", wt_uuid);
+        
         //load and rename station data according to reference/remote
         //also load pcal data if it is present
         std::string ref_station_mk4id = std::string(1,baseline[0]);
@@ -181,28 +193,25 @@ void MHO_BasicFringeFitter::Initialize()
             msg_fatal("fringe", "could not find station coordinate data with names (ref_sta, rem_sta)." << eom);
             std::exit(1);
         }
-
-        visibility_type* vis_data = fContainerStore.GetObject<visibility_type>(std::string("vis"));
-        weight_type* wt_data = fContainerStore.GetObject<weight_type>(std::string("weight"));
-        if( vis_data == nullptr || wt_data == nullptr )
-        {
-            msg_fatal("fringe", "could not find visibility or weight objects with names (vis, weight)." << eom);
-            std::exit(1);
-        }
-
-        //DEBUG
-        //fContainerStore.DumpShortNamesToIds();
-        #pragma message("TODO FIXME -- formalize the manner in which we identify data container objects via UUID")
-        //put the object uuid's in the parameter store so we can document it and also look it up on the python side
-        std::string vis_uuid = vis_data->GetObjectUUID().as_string();
-        std::string wt_uuid = wt_data->GetObjectUUID().as_string();
         std::string ref_uuid = ref_data->GetObjectUUID().as_string();
         std::string rem_uuid = rem_data->GetObjectUUID().as_string();
-
-        fParameterStore.Set("/uuid/visibilities", vis_uuid);
-        fParameterStore.Set("/uuid/weights", wt_uuid);
         fParameterStore.Set("/uuid/ref_station", ref_uuid);
         fParameterStore.Set("/uuid/rem_station", rem_uuid);
+
+        multitone_pcal_type* ref_pcal_data = fContainerStore.GetObject<multitone_pcal_type>(std::string("ref_pcal"));
+        multitone_pcal_type* rem_pcal_data = fContainerStore.GetObject<multitone_pcal_type>(std::string("rem_pcal"));
+        if( ref_pcal_data != nullptr)
+        {
+            std::string ref_pcal_uuid = ref_pcal_data->GetObjectUUID().as_string();
+            fParameterStore.Set("/uuid/ref_pcal", ref_pcal_uuid);
+            fParameterStore.Set("/ref_station/pc_mode", "multitone"); //default to multitone if pcal is present
+        }
+        if( rem_pcal_data != nullptr )
+        {
+            std::string rem_pcal_uuid = rem_pcal_data->GetObjectUUID().as_string();
+            fParameterStore.Set("/uuid/rem_pcal", rem_pcal_uuid);
+            fParameterStore.Set("/rem_station/pc_mode", "multitone"); //default to multitone if pcal is present
+        }
 
         ////////////////////////////////////////////////////////////////////////////
         //PARAMETER SETTING
