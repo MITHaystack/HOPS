@@ -29,7 +29,7 @@ MHO_MultitonePhaseCorrection::MHO_MultitonePhaseCorrection()
     fImagUnit = MHO_Constants::imag_unit;
     fDegToRad = MHO_Constants::deg_to_rad;
     
-    fPCPeriod = 5;//1;
+    fPCPeriod = 1;
 };
 
 MHO_MultitonePhaseCorrection::~MHO_MultitonePhaseCorrection(){};
