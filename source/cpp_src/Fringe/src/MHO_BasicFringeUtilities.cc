@@ -34,7 +34,7 @@ MHO_BasicFringeUtilities::calculate_fringe_solution_info(MHO_ContainerStore* con
     double samp_period = paramStore->GetAs<double>("/vex/scan/sample_period/value");
 
     //configuration parameters
-    double ref_freq = paramStore->GetAs<double>("/config/ref_freq");
+    double ref_freq = paramStore->GetAs<double>("/control/config/ref_freq");
     double ap_delta = paramStore->GetAs<double>("/config/ap_period");
 
     //fringe quantities
@@ -121,7 +121,7 @@ MHO_BasicFringeUtilities::calculate_fringe_solution_info(MHO_ContainerStore* con
 
     double ambig = paramStore->GetAs<double>("/fringe/ambiguity");
     double freq_spacing = paramStore->GetAs<double>("/fringe/frequency_spacing");
-    std::string mbd_anchor = paramStore->GetAs<std::string>("mbd_anchor");
+    std::string mbd_anchor = paramStore->GetAs<std::string>("/control/config/mbd_anchor");
 
     // anchor total mbd to sbd if desired by control
     double delta_mbd = 0.0;
@@ -191,7 +191,7 @@ double
 MHO_BasicFringeUtilities::calculate_residual_phase(MHO_ContainerStore* conStore, MHO_ParameterStore* paramStore)
 {
     double total_summed_weights = paramStore->GetAs<double>("/fringe/total_summed_weights");
-    double ref_freq = paramStore->GetAs<double>("/config/ref_freq");
+    double ref_freq = paramStore->GetAs<double>("/control/config/ref_freq");
     double mbd = paramStore->GetAs<double>("/fringe/mbdelay");
     double drate = paramStore->GetAs<double>("/fringe/drate");
     double sbd = paramStore->GetAs<double>("/fringe/sbdelay");
@@ -327,7 +327,7 @@ MHO_BasicFringeUtilities::basic_fringe_search(MHO_ContainerStore* conStore, MHO_
     take_snapshot_here("test", "sbd", __FILE__, __LINE__, sbd_data);
 
     //coarse SBD/MBD/DR search (locates max bin)
-    double ref_freq = paramStore->GetAs<double>("/config/ref_freq");
+    double ref_freq = paramStore->GetAs<double>("/control/config/ref_freq");
     MHO_MBDelaySearch mbdSearch;
     mbdSearch.SetWeights(wt_data);
     mbdSearch.SetReferenceFrequency(ref_freq);
@@ -370,7 +370,7 @@ MHO_BasicFringeUtilities::basic_fringe_search(MHO_ContainerStore* conStore, MHO_
     MHO_InterpolateFringePeak fringeInterp;
 
     bool optimize_closure_flag = false;
-    bool is_oc_set = paramStore->Get(std::string("optimize_closure"), optimize_closure_flag );
+    bool is_oc_set = paramStore->Get(std::string("/control/fit/optimize_closure"), optimize_closure_flag );
     //NOTE, this has no effect on fringe-phase when using 'simul' algo which is currently is the only one implemented
     //This is also true in the legacy code simul implementation.
     if(optimize_closure_flag){fringeInterp.EnableOptimizeClosure();}

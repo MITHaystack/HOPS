@@ -6,6 +6,9 @@ namespace hops
 bool
 MHO_ParameterConfigurator::Configure()
 {
+    //make sure everything gets put under /control section in parameters
+    return Configure_V2();
+
     //find the format for this attribute
     std::string name = fAttributes["name"].get<std::string>();
     std::string statement_type = fAttributes["statement_type"].get<std::string>();
@@ -72,14 +75,11 @@ MHO_ParameterConfigurator::Configure()
                 return false;
         };
     }
-    
-    //make sure everything gets put under /control section in parameters
-    Configure_V2();
 
     return true; //ok, we were not passed a paramter-attribute
 }
 
-void MHO_ParameterConfigurator::Configure_V2()
+bool MHO_ParameterConfigurator::Configure_V2()
 {
     //find the format for this attribute
     std::string name = fAttributes["name"].get<std::string>();
@@ -144,10 +144,10 @@ void MHO_ParameterConfigurator::Configure_V2()
             break;
             default:
                 msg_debug("initialization", "could not determine the parameter: " <<name <<"'s value type: "<< value_type << eom);
-                //return false;
+                return false;
         };
     }
-    //return true; //ok, we were not passed a paramter-attribute
+    return true; //ok, we were not passed a paramter-attribute
 }
 
 

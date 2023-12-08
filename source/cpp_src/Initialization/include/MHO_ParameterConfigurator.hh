@@ -11,7 +11,7 @@
 
 
 namespace hops {
-    
+
 class MHO_ParameterConfigurator
 {
 
@@ -30,9 +30,9 @@ class MHO_ParameterConfigurator
         virtual bool Configure();
 
     protected:
-        
-        void Configure_V2();
-        
+
+        bool Configure_V2();
+
         /* data */
         enum class ParamType
         {
@@ -45,7 +45,7 @@ class MHO_ParameterConfigurator
             generic,
             unknown
         };
-        
+
         enum class ParamValueType
         {
             int_type,
@@ -57,8 +57,8 @@ class MHO_ParameterConfigurator
             list_string_type,
             unknown
         };
-        
-        
+
+
         typedef ParamType param_t;
         typedef ParamValueType paramv_t;
 
@@ -82,7 +82,7 @@ class MHO_ParameterConfigurator
 
 
 template< typename XValueType >
-void 
+void
 MHO_ParameterConfigurator::SetScalarParameter(std::string path, const XValueType& value)
 {
     bool ok = fParameterStore->Set(path, value);

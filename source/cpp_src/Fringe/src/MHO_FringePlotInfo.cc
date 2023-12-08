@@ -20,7 +20,7 @@ MHO_FringePlotInfo::construct_plot_data(MHO_ContainerStore* conStore, MHO_Parame
     //visibility_type* sbd_dr_data = conStore->GetObject<weight_type>(std::string("sbd_dr"));
 
     //test grab the reference freq
-    double ref_freq = paramStore->GetAs<double>(std::string("/config/ref_freq"));
+    double ref_freq = paramStore->GetAs<double>(std::string("/control/config/ref_freq"));
 
     std::string directory = paramStore->GetAs<std::string>("/files/directory");
     std::string control_file = paramStore->GetAs<std::string>("/files/control_file");
@@ -29,14 +29,14 @@ MHO_FringePlotInfo::construct_plot_data(MHO_ContainerStore* conStore, MHO_Parame
     std::string root_file = paramStore->GetAs<std::string>("/files/root_file");
 
     std::string mbd_anchor;
-    bool is_mbd_anchor_set = paramStore->Get(std::string("mbd_anchor"), mbd_anchor);
+    bool is_mbd_anchor_set = paramStore->Get(std::string("/control/config/mbd_anchor"), mbd_anchor);
 
     MHO_ComputePlotData mk_plotdata;
     mk_plotdata.SetParameterStore(paramStore);
     mk_plotdata.SetContainerStore(conStore);
     mk_plotdata.SetVexInfo(vexInfo);
     bool optimize_closure_flag = false;
-    bool is_oc_set = paramStore->Get(std::string("optimize_closure"), optimize_closure_flag );
+    bool is_oc_set = paramStore->Get(std::string("/control/fit/optimize_closure"), optimize_closure_flag );
     if(optimize_closure_flag){mk_plotdata.EnableOptimizeClosure();} //this does have an effect on overall fringe phase
     if(is_mbd_anchor_set){mk_plotdata.SetMBDAnchor(mbd_anchor);}
     mk_plotdata.Initialize();
@@ -81,7 +81,7 @@ MHO_FringePlotInfo::fill_plot_data(MHO_ParameterStore* paramStore, mho_json& plo
     plot_dict["ResidMbd(us)"] = paramStore->GetAs<double>("/fringe/mbdelay");
     plot_dict["FringeRate(Hz)"]  = paramStore->GetAs<double>("/fringe/frate");
     plot_dict["IonTEC(TEC)"] = "-";
-    plot_dict["RefFreq(MHz)"] = paramStore->GetAs<double>("/config/ref_freq");
+    plot_dict["RefFreq(MHz)"] = paramStore->GetAs<double>("/control/config/ref_freq");
     plot_dict["AP(sec)"] = paramStore->GetAs<double>("/config/ap_period");
     plot_dict["ExperName"] = paramStore->GetAs<std::string>("/vex/experiment_name");
     plot_dict["ExperNum"] = paramStore->GetAs<std::string>("/vex/experiment_number");
@@ -101,7 +101,7 @@ MHO_FringePlotInfo::fill_plot_data(MHO_ParameterStore* paramStore, mho_json& plo
     //in order to follow the PDD interface, the name of the following output
     //parameter changes depending on whether or not we are using mbd_anchor = sbd
 
-    std::string mbd_anchor = paramStore->GetAs<std::string>("mbd_anchor");
+    std::string mbd_anchor = paramStore->GetAs<std::string>("/control/config/mbd_anchor");
     if(mbd_anchor == "sbd")
     {
         plot_dict["GroupDelaySBD(usec)"] = paramStore->GetAs<double>("/fringe/total_mbdelay");
@@ -182,7 +182,7 @@ MHO_FringePlotInfo::fill_plot_data(MHO_ParameterStore* paramStore, mho_json& plo
 
     //calculate the (u,v) coordinates (taken from fill_202.c)
     double speed_of_light_Mm = 299.792458; // in mega-meters (?!)
-    double lambda = speed_of_light_Mm / paramStore->GetAs<double>("/config/ref_freq"); // wavelength (m)
+    double lambda = speed_of_light_Mm / paramStore->GetAs<double>("/control/config/ref_freq"); // wavelength (m)
     double radians_to_arcsec = 4.848137e-6;
     double du = radians_to_arcsec*(remu - refu) /lambda;
     double dv = radians_to_arcsec*(remv - refv) /lambda;
