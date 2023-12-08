@@ -11,19 +11,16 @@ MHO_DataSelectionBuilder::Build()
     {
         msg_debug("initialization", "building data selection operators."<< eom);
 
-        //currently this operator only does coarse data selection on pol-product
-        //and channels, it does not do start/stop AP selction (but it should)
-
         bool do_select_polprods = false;
         std::string polprod_key = "/config/polprod";
-        std::string polprod = ""; 
+        std::string polprod = "";
         if(fParameterStore->IsPresent(polprod_key))
         {
             do_select_polprods = fParameterStore->Get(polprod_key, polprod);
         }
 
         bool do_select_chans = false;
-        std::string select_chan_key = "freqs";
+        std::string select_chan_key = "/control/selection/freqs";
         std::vector< std::string > chans;
         if(fParameterStore->IsPresent(select_chan_key))
         {
@@ -31,8 +28,8 @@ MHO_DataSelectionBuilder::Build()
         }
 
         bool do_select_aps = false;
-        std::string start_key = "start";
-        std::string stop_key = "stop";
+        std::string start_key = "/control/selection/start";
+        std::string stop_key = "/control/selection/stop";
         int start = 0;
         int stop = 0;
         if(fParameterStore->IsPresent(start_key) || fParameterStore->IsPresent(stop_key) )
@@ -40,15 +37,15 @@ MHO_DataSelectionBuilder::Build()
             fParameterStore->Get(start_key, start);
             fParameterStore->Get(stop_key, stop);
             if(start != 0 || stop != 0){do_select_aps = true;}
-            
+
             //negative values are seconds past scan start or before stop
-            if(start > 0 || stop > 0) //in original fourfit positive values imply selection by minute past the last hour, 
+            if(start > 0 || stop > 0) //in original fourfit positive values imply selection by minute past the last hour,
             {
                 msg_error("initialization", "start/stop selection by minute past the hour is not yet supported." << eom);
                 do_select_aps = false;
             }
         }
-        
+
         if( !do_select_chans && !do_select_polprods && !do_select_aps)
         {
             msg_info("initialization", "no pol/freq data selection needed." << eom);
@@ -94,7 +91,7 @@ MHO_DataSelectionBuilder::Build()
             spack->SelectAxisItems(CHANNEL_AXIS,selected_ch);
             wtspack->SelectAxisItems(CHANNEL_AXIS,selected_ch);
         }
-        
+
         if(do_select_aps)
         {
             std::vector<std::size_t> selected_aps;
@@ -123,10 +120,10 @@ MHO_DataSelectionBuilder::Build()
         std::string op_category = "selection";
         bool replace_duplicates = true;
         #pragma message("TODO - figure out proper naming/retrieval scheme for operators")
-        
+
         spack->SetName(op_name + ":vis");
         wtspack->SetName(op_name + ":weight");
-        
+
         fOperatorToolbox->AddOperator(spack, spack->GetName(), op_category, replace_duplicates);
         fOperatorToolbox->AddOperator(wtspack, wtspack->GetName(), op_category, replace_duplicates);
     }
