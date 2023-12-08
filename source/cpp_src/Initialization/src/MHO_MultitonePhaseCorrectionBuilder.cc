@@ -41,14 +41,6 @@ MHO_MultitonePhaseCorrectionBuilder::Build()
         op->SetStationMk4ID(mk4id);
         op->SetName(op_name);
         op->SetMultitonePCData(pcal_data);
-        
-        void SetStation(std::string station){fStationCode = station;}; //2-char station code
-        void SetStationMk4ID(std::string station_id){fMk4ID = station_id;} //1-char mk4id
-        void SetPCPeriod(std::size_t pc_period){fPCPeriod = pc_period;}
-
-         //channel label -> pc_phases
-         void SetMultitonePCData(multitone_pcal_type* pcal){fPCData = pcal;};
-
 
         msg_debug("initialization", "creating operator: "<<op_name<<" for station: "<<mk4id<<" pol: "<<pol<<"."<<eom);
 

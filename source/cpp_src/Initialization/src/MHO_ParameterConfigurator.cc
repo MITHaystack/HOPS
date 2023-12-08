@@ -72,9 +72,84 @@ MHO_ParameterConfigurator::Configure()
                 return false;
         };
     }
+    
+    //make sure everything gets put under /control section in parameters
+    Configure_V2();
 
     return true; //ok, we were not passed a paramter-attribute
 }
+
+void MHO_ParameterConfigurator::Configure_V2()
+{
+    //find the format for this attribute
+    std::string name = fAttributes["name"].get<std::string>();
+    std::string statement_type = fAttributes["statement_type"].get<std::string>();
+
+    if(statement_type == "parameter")
+    {
+        std::string parameter_type = "generic";
+        if(fFormat[name].contains("parameter_type")){ parameter_type = fFormat[name]["parameter_type"].get<std::string>(); }
+        param_t param_type = DetermineParamType(parameter_type);
+
+        //look up the parameter type in the format
+        std::string value_type = fFormat[name]["type"].get<std::string>();
+        //TODO -- move the control parameters into a sorted structure
+        std::string path = "/control/" + parameter_type + "/" + name;
+
+        // std::string path = name;
+        switch( DetermineParamValueType(value_type) )
+        {
+            case ParamValueType::int_type:
+            {
+                //braces needed to avoid 'crossing initialization' error
+                int value = fAttributes["value"].get<int>();
+                SetScalarParameter(path, value);
+            }
+            break;
+            case ParamValueType::real_type:
+            {
+                double value = fAttributes["value"].get<double>();
+                SetScalarParameter(path, value);
+            }
+            break;
+            case ParamValueType::bool_type:
+            {
+                bool value = fAttributes["value"].get<bool>();
+                SetScalarParameter(path, value);
+            }
+            break;
+            case ParamValueType::string_type:
+            {
+                std::string value = fAttributes["value"].get<std::string>();
+                SetScalarParameter(path, value);
+            }
+            break;
+            case ParamValueType::list_int_type:
+            {
+                std::vector< int > values = fAttributes["value"].get< std::vector< int > >();
+                SetVectorParameter(path, values);
+            }
+            break;
+            case ParamValueType::list_real_type:
+            {
+                std::vector< double > values = fAttributes["value"].get< std::vector< double > >();
+                SetVectorParameter(path, values);
+            }
+            break;
+            case ParamValueType::list_string_type:
+            {
+                std::vector< std::string > values = fAttributes["value"].get< std::vector< std::string > >();
+                SetVectorParameter(path, values);
+            }
+            break;
+            default:
+                msg_debug("initialization", "could not determine the parameter: " <<name <<"'s value type: "<< value_type << eom);
+                //return false;
+        };
+    }
+    //return true; //ok, we were not passed a paramter-attribute
+}
+
 
 
 MHO_ParameterConfigurator::ParamValueType
