@@ -1,6 +1,6 @@
 {
     "name": "mbd_anchor",
     "statement_type": "parameter",
-    "parameter_type": "fit",
+    "parameter_type": "config",
     "type": "string"
 }
