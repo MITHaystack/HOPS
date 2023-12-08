@@ -31,8 +31,6 @@ class MHO_ParameterConfigurator
 
     protected:
 
-        bool Configure_V2();
-
         /* data */
         enum class ParamType
         {
