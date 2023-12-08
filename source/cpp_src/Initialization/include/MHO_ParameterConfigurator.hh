@@ -31,6 +31,8 @@ class MHO_ParameterConfigurator
 
     protected:
         
+        void Configure_V2();
+        
         /* data */
         enum class ParamType
         {
