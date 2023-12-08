@@ -52,6 +52,7 @@ MHO_ControlConditionEvaluator::GetApplicableStatements(mho_json& control_content
             {
                 if( Evaluate( *it ) )
                 {
+                    std::cout<<"TRUE STATEMENT  = "<<(*it)["value"].dump(2)<<std::endl;
                     control_statements.push_back(*it);
                     // for(auto st = (*it)["statements"].begin(); st != (*it)["statements"].end(); st++)
                     // {
