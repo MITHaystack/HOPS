@@ -21,14 +21,9 @@ MHO_ParameterConfigurator::Configure()
 		//TODO -- move the control parameters into a sorted structure
 		std::string path = "/control/" + parameter_type + "/" + name;
 
-
         //certain parameter types must modify their path, specifically 'station'
         //parameters need to include the station ID so we can distinguish them later
-        if(param_type == ParamType::station )
-        {
-
-            std::cout<< "CONDITIONS = "<<fConditions["value"].dump(2)<<std::endl;
-        }
+        std::cout<< "----------------CONDITIONS = "<<fConditions.dump(2)<<std::endl;
 
 		// std::string path = name;
 		switch( DetermineParamValueType(value_type) )
