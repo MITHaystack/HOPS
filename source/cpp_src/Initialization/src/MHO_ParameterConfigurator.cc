@@ -23,8 +23,11 @@ MHO_ParameterConfigurator::Configure()
 
         //certain parameter types must modify their path, specifically 'station'
         //parameters need to include the station ID so we can distinguish them later
-        std::cout<< "----------------CONDITIONS = "<<fConditions.dump(2)<<std::endl;
-
+        if(param_type == ParamType::station)
+        {
+            std::cout<< "----------------CONDITIONS = "<<fConditions.dump(2)<<std::endl;
+        }
+        
 		// std::string path = name;
 		switch( DetermineParamValueType(value_type) )
 		{
