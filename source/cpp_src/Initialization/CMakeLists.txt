@@ -1,9 +1,9 @@
 #list header files #############################################################
 set (INITIALIZATION_HEADERFILES
-    #parameters 
+    #parameters
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ParameterConfigurator.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ParameterManager.hh
-    #labelling operators 
+    #labelling operators
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ChannelLabellerBuilder.hh
     #selection operators
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_DataSelectionBuilder.hh
@@ -13,16 +13,17 @@ set (INITIALIZATION_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ManualChannelDelayCorrectionBuilder.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ManualPolPhaseCorrectionBuilder.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ManualPolDelayCorrectionBuilder.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MultitonePhaseCorrectionBuilder.hh
     #manager
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_OperatorBuilderManager.hh
 )
 
 #list source files #############################################################
 set( INITIALIZATION_SOURCEFILES
-    #parameters 
+    #parameters
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ParameterConfigurator.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ParameterManager.cc
-    #labelling operators 
+    #labelling operators
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ChannelLabellerBuilder.cc
     #selection operators
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_DataSelectionBuilder.cc
@@ -32,6 +33,7 @@ set( INITIALIZATION_SOURCEFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ManualChannelDelayCorrectionBuilder.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ManualPolPhaseCorrectionBuilder.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ManualPolDelayCorrectionBuilder.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_MultitonePhaseCorrectionBuilder.cc
     #manager
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_OperatorBuilderManager.cc
 )
