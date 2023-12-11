@@ -26,7 +26,10 @@ class MHO_MultitonePhaseCorrectionBuilder:
                                             MHO_ContainerStore* cstore = nullptr,
                                             MHO_ParameterStore* pstore = nullptr):
             MHO_OperatorBuilder(toolbox, cstore, pstore)
-        {};
+        {
+            fRefOpName = "ref_multitone_pcal";
+            fRemOpName = "rem_multitone_pcal";
+        };
 
         virtual ~MHO_MultitonePhaseCorrectionBuilder(){};
 
@@ -34,7 +37,10 @@ class MHO_MultitonePhaseCorrectionBuilder:
 
     private:
 
-        std::string ExtractStationMk4ID();
+        std::string ExtractStationMk4ID(std::string op_name); //op_name indicates reference or remote station
+
+        std::string fRefOpName;
+        std::string fRemOpName;
 };
 
 }//end namespace

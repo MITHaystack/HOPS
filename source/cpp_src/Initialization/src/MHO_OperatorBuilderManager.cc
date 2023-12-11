@@ -68,12 +68,12 @@ MHO_OperatorBuilderManager::CreateDefaultBuilders()
 
     mho_json ref_mtpcal;
     ref_mtpcal["operator_category"] = "calibration";
-    ref_mtpcal["priority"] = 0.1;
+    ref_mtpcal["priority"] = 2.1;
     AddBuilderTypeWithFormat<MHO_MultitonePhaseCorrectionBuilder>("ref_multitone_pcal", ref_mtpcal);
 
     mho_json rem_mtpcal;
     rem_mtpcal["operator_category"] = "calibration";
-    rem_mtpcal["priority"] = 0.1;
+    rem_mtpcal["priority"] = 2.1;
     AddBuilderTypeWithFormat<MHO_MultitonePhaseCorrectionBuilder>("rem_multitone_pcal", rem_mtpcal);
 }
 
