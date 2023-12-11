@@ -40,7 +40,6 @@ class MHO_ParameterConfigurator
             baseline,
             fit,
             plot,
-            generic,
             unknown
         };
 
