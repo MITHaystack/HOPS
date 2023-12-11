@@ -20,7 +20,7 @@ MHO_MultitonePhaseCorrectionBuilder::Build()
         // std::string channel_name_str = fAttributes["value"]["channel_names"].get<std::string>();
         // std::vector<double> pc_phases = fAttributes["value"]["pc_phases"].get< std::vector<double> >();
 
-        std::string mk4id = ExtractStationMk4ID();
+        std::string mk4id = ExtractStationMk4ID(op_name);
 
         //retrieve the arguments to operate on from the container store
         visibility_type* vis_data = fContainerStore->GetObject<visibility_type>(std::string("vis"));
@@ -71,9 +71,21 @@ MHO_MultitonePhaseCorrectionBuilder::Build()
 
 
 std::string
-MHO_MultitonePhaseCorrectionBuilder::ExtractStationMk4ID()
+MHO_MultitonePhaseCorrectionBuilder::ExtractStationMk4ID(std::string op_name)
 {
     std::string station_id = "?";
+
+    if(op_name == fRefOpName)
+    {
+        station_id = this->fParameterStore->GetAs<std::string>("/ref_station/mk4id");
+    }
+
+    if(op_name == fRemOpName)
+    {
+        station_id = this->fParameterStore->GetAs<std::string>("/rem_station/mk4id");
+    }
+
+
     // std::vector< std::string > condition_values = fConditions["value"].get< std::vector< std::string > >();
     //
     // for(auto it = condition_values.begin(); it != condition_values.end(); it++)
