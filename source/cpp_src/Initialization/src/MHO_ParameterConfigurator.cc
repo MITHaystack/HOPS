@@ -12,7 +12,7 @@ MHO_ParameterConfigurator::Configure()
 
     if(statement_type == "parameter")
     {
-        std::string parameter_type = "generic";
+        std::string parameter_type = "config"; //default type is config
         if(fFormat[name].contains("parameter_type")){ parameter_type = fFormat[name]["parameter_type"].get<std::string>(); }
         param_t param_type = DetermineParamType(parameter_type);
 
@@ -30,31 +30,24 @@ MHO_ParameterConfigurator::Configure()
         if(param_type == ParamType::station)
         {
             //for now only 'station' parameters get this treatment, because of
-            //'or' and 'and' statements we may have multiple paths
-            //this can get tricky!
+            //'or' and 'and' statements we may have multiple paths that are valid
+
+            //note that explict paths override the values at the base level
+            //for example "/control/station/pc_mode/multitone" will be overriden
+            //by "/control/station/G/pc_mode/manual" if the latter is present
 
             for(auto tokit = fConditions.begin(); tokit != fConditions.end(); tokit++)
             {
-                std::cout<<"tok = "<<*tokit<<std::endl;
-                if(*tokit == "station")
+                if(*tokit == "station") //next token must be station MK4 ID
                 {
                     std::string mk4id = *(++tokit);
-                    if(mk4id.size() == 1)
-                    {
-                        std::string station_path = "/control/" + parameter_type + "/" + mk4id + "/" + name;
-                        explicit_paths.push_back(station_path);
-                    }
+                    std::string station_path = "/control/" + parameter_type + "/" + mk4id + "/" + name;
+                    explicit_paths.push_back(station_path);
                 }
             }
-
-            for(std::size_t nst = 0; nst<explicit_paths.size(); nst++)
-            {
-                std::cout<<"path = "<<explicit_paths[nst]<<std::endl;
-            }
-
-            std::cout<< "----------------CONDITIONS = "<<fConditions.dump(2)<<std::endl;
         }
 
+        //just a single path, so add the default path here
         if(explicit_paths.size() == 0)
         {
             explicit_paths.push_back(default_path);
@@ -151,13 +144,12 @@ MHO_ParameterConfigurator::DetermineParamValueType(const std::string& par_value_
 MHO_ParameterConfigurator::ParamType
 MHO_ParameterConfigurator::DetermineParamType(const std::string& par_type) const
 {
-    if(par_type == "config"){return ParamType::config;}
+    if(par_type == "config"){return ParamType::config;} //default type
     if(par_type == "global"){return ParamType::global;}
     if(par_type == "station"){return ParamType::station;}
     if(par_type == "baseline"){return ParamType::baseline;}
     if(par_type == "fit"){return ParamType::fit;}
     if(par_type == "plot"){return ParamType::plot;}
-    if(par_type == "generic"){return ParamType::generic;}
     return ParamType::unknown;
 }
 
