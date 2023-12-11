@@ -1,5 +1,5 @@
 #include "MHO_MultitonePhaseCorrectionBuilder.hh"
-#include "MHO_ManualChannelPhaseCorrection.hh"
+#include "MHO_MultitonePhaseCorrection.hh"
 
 #include "MHO_Meta.hh"
 #include "MHO_Tokenizer.hh"
@@ -15,8 +15,8 @@ MHO_MultitonePhaseCorrectionBuilder::Build()
         msg_debug("initialization", "building a multitone phase correction operator."<< eom);
         //assume attributes are ok for now - TODO add checks!
 
-        // std::string op_name = fAttributes["name"].get<std::string>();
-        // std::string op_category = "calibration";
+        std::string op_name = fAttributes["name"].get<std::string>();
+        std::string op_category = "calibration";
         // std::string channel_name_str = fAttributes["value"]["channel_names"].get<std::string>();
         // std::vector<double> pc_phases = fAttributes["value"]["pc_phases"].get< std::vector<double> >();
 
@@ -28,11 +28,11 @@ MHO_MultitonePhaseCorrectionBuilder::Build()
         visibility_type* pcal_data = fContainerStore->GetObject<visibility_type>(std::string("rem_pcal"));
         if( vis_data == nullptr )
         {
-            msg_error("initialization", "cannot construct MHO_ManualChannelPhaseCorrection without visibility data." << eom);
+            msg_error("initialization", "cannot construct MHO_MultitonePhaseCorrection without visibility data." << eom);
             return false;
         }
 
-        MHO_ManualChannelPhaseCorrection* op = new MHO_ManualChannelPhaseCorrection();
+        MHO_MultitonePhaseCorrection* op = new MHO_MultitonePhaseCorrection();
 
         //set the arguments
         op->SetArgs(vis_data);
@@ -42,7 +42,7 @@ MHO_MultitonePhaseCorrectionBuilder::Build()
         op->SetName(op_name);
         op->SetMultitonePCData(pcal_data);
 
-        msg_debug("initialization", "creating operator: "<<op_name<<" for station: "<<mk4id<<" pol: "<<pol<<"."<<eom);
+        //msg_debug("initialization", "creating operator: "<<op_name<<" for station: "<<mk4id<<" pol: "<<pol<<"."<<eom);
 
         bool replace_duplicates = false;
         this->fOperatorToolbox->AddOperator(op,op->GetName(),op_category,replace_duplicates);
