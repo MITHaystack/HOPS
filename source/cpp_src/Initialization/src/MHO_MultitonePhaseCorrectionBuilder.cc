@@ -25,12 +25,12 @@ MHO_MultitonePhaseCorrectionBuilder::Build()
         //retrieve the arguments to operate on from the container store
         visibility_type* vis_data = fContainerStore->GetObject<visibility_type>(std::string("vis"));
 
+        //grab the correct pcal data
         multitone_pcal_type* pcal_data = nullptr;
         if(op_name == "ref_multitone_pcal")
         {
             multitone_pcal_type* pcal_data = fContainerStore->GetObject<multitone_pcal_type>(std::string("ref_pcal"));
         }
-
         if(op_name == "rem_multitone_pcal")
         {
             multitone_pcal_type* pcal_data = fContainerStore->GetObject<multitone_pcal_type>(std::string("rem_pcal"));
@@ -51,9 +51,10 @@ MHO_MultitonePhaseCorrectionBuilder::Build()
         MHO_MultitonePhaseCorrection* op = new MHO_MultitonePhaseCorrection();
 
         //set the arguments
+
+        std::cout<<" ********************** I'm making a p-cal operator!!!: " <<op_name<<" for station: "<<mk4id<<std::endl;
         op->SetArgs(vis_data);
         op->SetPCPeriod(1);
-        //op->SetStation();
         op->SetStationMk4ID(mk4id);
         op->SetName(op_name);
         op->SetMultitonePCData(pcal_data);
