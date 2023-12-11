@@ -118,6 +118,7 @@ MHO_OperatorBuilderManager::BuildOperatorCategory(const std::string& cat)
                     for(auto stmt_iter = statements->begin(); stmt_iter != statements->end(); )
                     {
                         std::string name = (*stmt_iter)["name"];
+                        std::cout<<"THE STMT!  = " << (*stmt_iter).dump(2)<<std::endl;
                         bool build_op = false;
                         if( fFormat.contains(name) && fFormat[name].contains("operator_category") )
                         {

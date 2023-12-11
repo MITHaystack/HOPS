@@ -122,7 +122,52 @@ void MHO_BasicFringeFitter::Configure()
     };
     (*(fControlStatements.begin()))["statements"].push_back(coarse_selection_hack);
 
+
+
+
+
+    //UGLY HACK TO INSERT MULTITONE PCAL
+
+    mho_json ref_multitone_pcal_format =
+    {
+        {"name", "ref_multitone_pcal"},
+        {"statement_type", "operator"},
+        {"operator_category" , "calibration"},
+        {"type" , "empty"},
+        {"priority", 2.1}
+    };
+    fControlFormat["ref_multitone_pcal"] = ref_multitone_pcal_format;
+
+    mho_json rem_multitone_pcal_format =
+    {
+        {"name", "rem_multitone_pcal"},
+        {"statement_type", "operator"},
+        {"operator_category" , "calibration"},
+        {"type" , "empty"},
+        {"priority", 2.1}
+    };
+    fControlFormat["rem_multitone_pcal"] = rem_multitone_pcal_format;
+
+
+
+    mho_json ref_multitone_pcal_hack =
+    {
+        {"name", "ref_multitone_pcal"},
+        {"statement_type", "operator"},
+        {"operator_category" , "calibration"}
+    };
+    mho_json rem_multitone_pcal_hack =
+    {
+        {"name", "rem_multitone_pcal"},
+        {"statement_type", "operator"},
+        {"operator_category" , "calibration"}
+    };
+    (*(fControlStatements.begin()))["statements"].push_back(ref_multitone_pcal_hack);
+    (*(fControlStatements.begin()))["statements"].push_back(rem_multitone_pcal_hack);
+
     std::cout<<fControlStatements.dump(2)<<std::endl;
+
+    std::cout<<"*****************************************************************************"<<std::endl;
 
     MHO_InitialFringeInfo::set_default_parameters_minimal(&fParameterStore); //set some default parameters (polprod, ref_freq)
 
@@ -162,10 +207,10 @@ void MHO_BasicFringeFitter::Initialize()
         //load baseline data
         fScanStore.LoadBaseline(baseline, &fContainerStore);
         fParameterStore.Set("/files/baseline_input_file", fScanStore.GetBaselineFilename(baseline));
-        
+
         //loads visibility data and performs float -> double cast
         MHO_BasicFringeDataConfiguration::configure_visibility_data(&fContainerStore);
-        
+
         visibility_type* vis_data = fContainerStore.GetObject<visibility_type>(std::string("vis"));
         weight_type* wt_data = fContainerStore.GetObject<weight_type>(std::string("weight"));
         if( vis_data == nullptr || wt_data == nullptr )
@@ -177,7 +222,7 @@ void MHO_BasicFringeFitter::Initialize()
         std::string wt_uuid = wt_data->GetObjectUUID().as_string();
         fParameterStore.Set("/uuid/visibilities", vis_uuid);
         fParameterStore.Set("/uuid/weights", wt_uuid);
-        
+
         //load and rename station data according to reference/remote
         //also load pcal data if it is present
         std::string ref_station_mk4id = std::string(1,baseline[0]);
