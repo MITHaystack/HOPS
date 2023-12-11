@@ -6,80 +6,133 @@ namespace hops
 bool
 MHO_ParameterConfigurator::Configure()
 {
-	//find the format for this attribute
-	std::string name = fAttributes["name"].get<std::string>();
-	std::string statement_type = fAttributes["statement_type"].get<std::string>();
+    //find the format for this attribute
+    std::string name = fAttributes["name"].get<std::string>();
+    std::string statement_type = fAttributes["statement_type"].get<std::string>();
 
-	if(statement_type == "parameter")
-	{
-		std::string parameter_type = "generic";
-		if(fFormat[name].contains("parameter_type")){ parameter_type = fFormat[name]["parameter_type"].get<std::string>(); }
-		param_t param_type = DetermineParamType(parameter_type);
+    if(statement_type == "parameter")
+    {
+        std::string parameter_type = "generic";
+        if(fFormat[name].contains("parameter_type")){ parameter_type = fFormat[name]["parameter_type"].get<std::string>(); }
+        param_t param_type = DetermineParamType(parameter_type);
 
-		//look up the parameter type in the format
-		std::string value_type = fFormat[name]["type"].get<std::string>();
-		//TODO -- move the control parameters into a sorted structure
-		std::string path = "/control/" + parameter_type + "/" + name;
+        //look up the parameter type in the format
+        std::string value_type = fFormat[name]["type"].get<std::string>();
+        //TODO -- move the control parameters into a sorted structure
+        std::string default_path = "/control/" + parameter_type + "/" + name;
+        std::vector< std::string > explicit_paths;
 
-        //certain parameter types must modify their path, specifically 'station'
-        //parameters need to include the station ID so we can distinguish them later
+        //certain parameter types must modify their path based on their conditional
+        //statement, specifically 'station' parameters need to include the station mk4 ID
+        //so we can distinguish them later (reference vs remote station)
+        // e.g. we want to store them as '/control/station/E/ionosphere' or '/control/station/G/pc_mode'
+        // rather than just /control/station/<parameter_name>
         if(param_type == ParamType::station)
         {
+            //for now only 'station' parameters get this treatment, because of
+            //'or' and 'and' statements we may have multiple paths
+            //this can get tricky!
+
+            for(auto tokit = fConditions.begin(); tokit != fConditions.end(); tokit++)
+            {
+                std::cout<<"tok = "<<*tokit<<std::endl;
+                if(*tokit == "station")
+                {
+                    std::string mk4id = *(++tokit);
+                    if(mk4id.size() == 1)
+                    {
+                        std::string station_path = "/control/" + parameter_type + "/" + mk4id + "/" + name;
+                        explicit_paths.push_back(station_path);
+                    }
+                }
+            }
+
+            for(std::size_t nst = 0; nst<explicit_paths.size(); nst++)
+            {
+                std::cout<<"path = "<<explicit_paths[nst]<<std::endl;
+            }
+
             std::cout<< "----------------CONDITIONS = "<<fConditions.dump(2)<<std::endl;
         }
-        
-		// std::string path = name;
-		switch( DetermineParamValueType(value_type) )
-		{
-			case ParamValueType::int_type:
-			{
-				//braces needed to avoid 'crossing initialization' error
-				int value = fAttributes["value"].get<int>();
-				SetScalarParameter(path, value);
-			}
-			break;
-			case ParamValueType::real_type:
-			{
-				double value = fAttributes["value"].get<double>();
-				SetScalarParameter(path, value);
-			}
-			break;
-			case ParamValueType::bool_type:
-			{
-				bool value = fAttributes["value"].get<bool>();
-				SetScalarParameter(path, value);
-			}
-			break;
-			case ParamValueType::string_type:
-			{
-				std::string value = fAttributes["value"].get<std::string>();
-				SetScalarParameter(path, value);
-			}
-			break;
-			case ParamValueType::list_int_type:
-			{
-				std::vector< int > values = fAttributes["value"].get< std::vector< int > >();
-				SetVectorParameter(path, values);
-			}
-			break;
-			case ParamValueType::list_real_type:
-			{
-				std::vector< double > values = fAttributes["value"].get< std::vector< double > >();
-				SetVectorParameter(path, values);
-			}
-			break;
-			case ParamValueType::list_string_type:
-			{
-				std::vector< std::string > values = fAttributes["value"].get< std::vector< std::string > >();
-				SetVectorParameter(path, values);
-			}
-			break;
-			default:
-				msg_debug("initialization", "could not determine the parameter: " <<name <<"'s value type: "<< value_type << eom);
-				return false;
-		};
-	}
-	return true; //ok, we were not passed a paramter-attribute
+
+        if(explicit_paths.size() == 0)
+        {
+            explicit_paths.push_back(default_path);
+        }
+
+        // std::string path = name;
+        switch( DetermineParamValueType(value_type) )
+        {
+            case ParamValueType::int_type:
+            {
+                //braces needed to avoid 'crossing initialization' error
+                int value = fAttributes["value"].get<int>();
+                for(std::size_t nst = 0; nst<explicit_paths.size(); nst++)
+                {
+                    SetScalarParameter(explicit_paths[nst], value);
+                }
+            }
+            break;
+            case ParamValueType::real_type:
+            {
+                double value = fAttributes["value"].get<double>();
+                for(std::size_t nst = 0; nst<explicit_paths.size(); nst++)
+                {
+                    SetScalarParameter(explicit_paths[nst], value);
+                }
+            }
+            break;
+            case ParamValueType::bool_type:
+            {
+                bool value = fAttributes["value"].get<bool>();
+                for(std::size_t nst = 0; nst<explicit_paths.size(); nst++)
+                {
+                    SetScalarParameter(explicit_paths[nst], value);
+                }
+            }
+            break;
+            case ParamValueType::string_type:
+            {
+                std::string value = fAttributes["value"].get<std::string>();
+                for(std::size_t nst = 0; nst<explicit_paths.size(); nst++)
+                {
+                    SetScalarParameter(explicit_paths[nst], value);
+                }
+            }
+            break;
+            case ParamValueType::list_int_type:
+            {
+                std::vector< int > values = fAttributes["value"].get< std::vector< int > >();
+                for(std::size_t nst = 0; nst<explicit_paths.size(); nst++)
+                {
+                    SetVectorParameter(explicit_paths[nst], values);
+                }
+            }
+            break;
+            case ParamValueType::list_real_type:
+            {
+                std::vector< double > values = fAttributes["value"].get< std::vector< double > >();
+                for(std::size_t nst = 0; nst<explicit_paths.size(); nst++)
+                {
+                    SetVectorParameter(explicit_paths[nst], values);
+                }
+            }
+            break;
+            case ParamValueType::list_string_type:
+            {
+                std::vector< std::string > values = fAttributes["value"].get< std::vector< std::string > >();
+                for(std::size_t nst = 0; nst<explicit_paths.size(); nst++)
+                {
+                    SetVectorParameter(explicit_paths[nst], values);
+                }
+            }
+            break;
+            default:
+                msg_debug("initialization", "could not determine the parameter: " <<name <<"'s value type: "<< value_type << eom);
+            return false;
+        };
+    }
+    return true; //ok, we were not passed a paramter-attribute
 }
 
 MHO_ParameterConfigurator::ParamValueType
