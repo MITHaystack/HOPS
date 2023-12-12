@@ -120,12 +120,16 @@ MHO_DataSelectionBuilder::Build()
         std::string op_category = "selection";
         bool replace_duplicates = true;
         #pragma message("TODO - figure out proper naming/retrieval scheme for operators")
+        
+        #pragma message("TODO - coarse selection must also be applied to pcal data (particularly AP select) if available!!")
 
         spack->SetName(op_name + ":vis");
         wtspack->SetName(op_name + ":weight");
 
         fOperatorToolbox->AddOperator(spack, spack->GetName(), op_category, replace_duplicates);
         fOperatorToolbox->AddOperator(wtspack, wtspack->GetName(), op_category, replace_duplicates);
+        
+        return true;
     }
     return false;
 }

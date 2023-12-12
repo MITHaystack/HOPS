@@ -32,7 +32,7 @@ MHO_ParameterManager::ConfigureAll()
                     stmt_iter = statements->erase(stmt_iter);
                 }
                 else{stmt_iter++;}
-                //if need expand the possible parameter/statement types
+                //if needed expand the possible parameter/statement types
 
             }
             else
