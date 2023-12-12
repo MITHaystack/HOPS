@@ -29,11 +29,13 @@ MHO_MultitonePhaseCorrectionBuilder::Build()
         multitone_pcal_type* pcal_data = nullptr;
         if(op_name == "ref_multitone_pcal")
         {
-            multitone_pcal_type* pcal_data = fContainerStore->GetObject<multitone_pcal_type>(std::string("ref_pcal"));
+            pcal_data = fContainerStore->GetObject<multitone_pcal_type>(std::string("ref_pcal"));
+            std::cout<<"ref pcal = "<<pcal_data<<std::endl;
         }
         if(op_name == "rem_multitone_pcal")
         {
-            multitone_pcal_type* pcal_data = fContainerStore->GetObject<multitone_pcal_type>(std::string("rem_pcal"));
+            pcal_data = fContainerStore->GetObject<multitone_pcal_type>(std::string("rem_pcal"));
+            std::cout<<"rem pcal = "<<pcal_data<<std::endl;
         }
 
         if( vis_data == nullptr )
