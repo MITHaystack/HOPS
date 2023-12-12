@@ -247,12 +247,14 @@ void MHO_BasicFringeFitter::Initialize()
         multitone_pcal_type* rem_pcal_data = fContainerStore.GetObject<multitone_pcal_type>(std::string("rem_pcal"));
         if( ref_pcal_data != nullptr)
         {
+            std::cout<<"REF PCAL = "<<ref_pcal_data<<std::endl;
             std::string ref_pcal_uuid = ref_pcal_data->GetObjectUUID().as_string();
             fParameterStore.Set("/uuid/ref_pcal", ref_pcal_uuid);
             fParameterStore.Set("/ref_station/pc_mode", "multitone"); //default to multitone if pcal is present
         }
         if( rem_pcal_data != nullptr )
         {
+            std::cout<<"REM PCAL = "<<rem_pcal_data<<std::endl;
             std::string rem_pcal_uuid = rem_pcal_data->GetObjectUUID().as_string();
             fParameterStore.Set("/uuid/rem_pcal", rem_pcal_uuid);
             fParameterStore.Set("/rem_station/pc_mode", "multitone"); //default to multitone if pcal is present
