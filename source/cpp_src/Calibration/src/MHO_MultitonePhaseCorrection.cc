@@ -34,8 +34,7 @@ MHO_MultitonePhaseCorrection::MHO_MultitonePhaseCorrection()
     //initialize the FFT engine
     fPCWorkspace.Resize(WORKSPACE_SIZE); //default size is 256
     fFFTEngine.SetArgs(&fPCWorkspace);
-    fFFTEngine.DeselectAllAxes();
-    fFFTEngine.SelectAxis(0); //only perform padded fft on frequency (to lag) axis
+    fFFTEngine.SelectAllAxes();
     fFFTEngine.SetForward();//forward DFT
 
     bool ok;
@@ -91,6 +90,7 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
 {
     auto vis_chan_ax = &(std::get<CHANNEL_AXIS>(*in) );
     auto vis_ap_ax = &(std::get<TIME_AXIS>(*in) );
+    auto vis_freq_ax = &(std::get<FREQ_AXIS>(*in) );
     auto tone_freq_ax = &(std::get<MTPCAL_FREQ_AXIS>(*fPCData) );
 
     //workspace to store averaged phasors and corresponding tone freqs
@@ -106,7 +106,6 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
         double bandwidth = 0;
         std::string net_sideband;
         auto labels = vis_chan_ax->GetIntervalsWhichIntersect(ch);
-        std::cout<<"N LABELS = "<<labels.size()<<std::endl;
         for(auto iter = labels.begin(); iter != labels.end(); iter++)
         {
             if(iter->IsValid())
@@ -117,7 +116,7 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
         }
 
         //figure out the upper/lower frequency limits for this channel
-        std::cout<<"working on channel: "<<ch<<" with sky freq: "<<sky_freq<<" sideband: "<<net_sideband<< std::endl;
+        //std::cout<<"working on channel: "<<ch<<" with sky freq: "<<sky_freq<<" sideband: "<<net_sideband<< std::endl;
         double lower_freq, upper_freq;
         std::size_t start_idx, ntones;
         DetermineChannelFrequencyLimits(sky_freq, bandwidth, net_sideband, lower_freq, upper_freq);
@@ -163,22 +162,69 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
                 seg_end_ap = ap+1;
                 for(std::size_t i=0; i<ntones; i++){ fPCWorkspace(i) /= navg;}
                 FitPCData(ntones, chan_center_freq, phase_spline);
-                std::cout<<"sta, pol, chan, ap = "<< fMk4ID<<", "<<pc_pol<<", "<<ch<<", "<<ap<<", phase_spline = "<<phase_spline[0]*(180.0/M_PI)<<", "<<phase_spline[1]<<std::endl;
+            //    std::cout<<"sta, pol, chan, ap = "<< fMk4ID<<", "<<pc_pol<<", "<<ch<<", "<<ap<<", phase_spline = "<<phase_spline[0]*(180.0/M_PI)<<", "<<phase_spline[1]<<std::endl;
+
+                // //finally apply the extracted linear phase/delay spline to each channel/ap in this pc period
+                // for(std::size_t dap = seg_start_ap; dap < seg_end_ap; dap++)
+                // {
+                //     //TODO FIXME!!! no delay just mean phase!!!
+                //     std::complex<double> pc_phasor = std::exp( fImagUnit*phase_spline[0] ); 
+                //     // 
+                //     //conjugate phases for LSB data, but not for USB - TODO what about DSB?
+                //     //if(net_sideband == fLowerSideband){pc_phasor = std::conj(pc_phasor);}
+                //     //if(fMk4ID == "G"){pc_phasor = std::conj(pc_phasor);}
+                //     // #pragma message("TODO FIXME - pc_data all manual pc phase correction cases (ref/rem/USB/LSB/DSB)")
+                //     //retrieve and multiply the appropriate sub view of the visibility array
+                //     auto chunk = in->SubView(vis_pp, ch, dap);
+                //     chunk *= pc_phasor;
+                // }
+
+
+                // // One size may not fit all.  The code below is a compromise
+                // // between current geodetic practice and current EHT needs.
+                // if (param->pc_mode[0] == MANUAL && param->pc_mode[1] == MANUAL)
+                //     {
+                //     // the correction had the wrong sign and minor O(1/nlags) error
+                //     // if one is trying to keep the mean phase of this channel fixed
+                //     phase_shift = - 1e-3 * diff_delay / (4e6 * param->samp_period);
+                //     phase_shift *= - (double)(nlags - 2) / (double)(nlags);
+                //     // per-channel phase should now be stable against delay adjustments
+                //     }
+                // else
+                //     {
                 
-                //finally apply the extracted linear phase/delay spline to each channel/ap in this pc period
+                // // correction to mean phase depends on sideband
+                // phase_shift = - 1e-3 * diff_delay / (4e6 * param->samp_period);
+                // if (sb)
+                //     phase_shift = -phase_shift;
+                // }
+                //                     // apply phase ramp to spectral points 
+                // z = z * exp_complex(-2.0 * M_PI * cmplx_unit_I * (diff_delay * deltaf + phase_shift));
+                // 
+
+                double phase_shift = 0.0; // = phase_spline[1]/(4*);
+
                 for(std::size_t dap = seg_start_ap; dap < seg_end_ap; dap++)
                 {
-                    //TODO FIXME!!! no delay just mean phase!!!
-                    std::complex<double> pc_phasor = std::exp( fImagUnit*phase_spline[0] ); 
-                    // 
-                    //conjugate phases for LSB data, but not for USB - TODO what about DSB?
-                    //if(net_sideband == fLowerSideband){pc_phasor = std::conj(pc_phasor);}
-                    //if(fMk4ID == "G"){pc_phasor = std::conj(pc_phasor);}
-                    // #pragma message("TODO FIXME - pc_data all manual pc phase correction cases (ref/rem/USB/LSB/DSB)")
-                    //retrieve and multiply the appropriate sub view of the visibility array
-                    auto chunk = in->SubView(vis_pp, ch, dap);
-                    chunk *= pc_phasor;
+                    
+                    for(std::size_t sp = 0; sp < vis_freq_ax->GetSize(); sp++)
+                    {
+                        double deltaf = vis_freq_ax->at(sp);
+                        std::complex<double> pc_phasor = std::exp( -2.0*M_PI*fImagUnit*( phase_spline[1]*deltaf + phase_spline[0] + phase_shift) ); 
+                        //if(net_sideband == fLowerSideband){pc_phasor = std::conj(pc_phasor);}
+                        //if(fMk4ID == "G"){pc_phasor = std::conj(pc_phasor);}
+                        // #pragma message("TODO FIXME - pc_data all manual pc phase correction cases (ref/rem/USB/LSB/DSB)")
+                        //retrieve and multiply the appropriate sub view of the visibility array
+                        (*in)(vis_pp, ch, dap, sp) *= pc_phasor;
+                    }
+                    
                 }
+
+                
+                
+                
+                
+
             }
         }
     }

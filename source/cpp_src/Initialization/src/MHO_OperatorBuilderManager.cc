@@ -45,36 +45,8 @@ MHO_OperatorBuilderManager::CreateDefaultBuilders()
     AddBuilderType<MHO_ManualPolDelayCorrectionBuilder>("pc_delay_r", "pc_delay_r");
     AddBuilderType<MHO_ManualPolDelayCorrectionBuilder>("pc_delay_l", "pc_delay_l");
 
-
-    //the below additions are some operators which have to be applied but are not
-    //always specified via control file (data selection and default channel labels)
-    #pragma message("fix this horrible hack")
-    //this one is special since it is not an operator specified via control file
-    mho_json special;
-    special["operator_category"] = "selection";
-    special["priority"] = 1.1;
-    AddBuilderTypeWithFormat<MHO_DataSelectionBuilder>("coarse_selection", special);
-
-    //this one is also special (default channel labeling behavior)
-    mho_json special2;
-    special2["operator_category"] = "default";
-    special2["priority"] = 0.1;
-    AddBuilderTypeWithFormat<MHO_ChannelLabellerBuilder>("default_chan_ids", special2);
-
-
-    //we have to had reference and remote station multitone pcal operator builers defined
-    //since these are applied by default if pcal data is present, however they may be disabled
-    //by control file statements like 'pc_mode manual'
-
-    mho_json ref_mtpcal;
-    ref_mtpcal["operator_category"] = "calibration";
-    ref_mtpcal["priority"] = 2.1;
-    AddBuilderTypeWithFormat<MHO_MultitonePhaseCorrectionBuilder>("ref_multitone_pcal", ref_mtpcal);
-
-    mho_json rem_mtpcal;
-    rem_mtpcal["operator_category"] = "calibration";
-    rem_mtpcal["priority"] = 2.1;
-    AddBuilderTypeWithFormat<MHO_MultitonePhaseCorrectionBuilder>("rem_multitone_pcal", rem_mtpcal);
+    //add builders for operators which are not accessible via control file
+    CreateNullFormatBuilders();
 }
 
 
@@ -118,7 +90,6 @@ MHO_OperatorBuilderManager::BuildOperatorCategory(const std::string& cat)
                     for(auto stmt_iter = statements->begin(); stmt_iter != statements->end(); )
                     {
                         std::string name = (*stmt_iter)["name"];
-                        std::cout<<"THE STMT!  = " << (*stmt_iter).dump(2)<<std::endl;
                         bool build_op = false;
                         if( fFormat.contains(name) && fFormat[name].contains("operator_category") )
                         {
@@ -168,6 +139,42 @@ MHO_OperatorBuilderManager::BuildOperatorCategory(const std::string& cat)
     }
 
 }
+
+
+//creates builders for which there is no 'format' definition, since they are 
+//inaccesible from the control file
+void MHO_OperatorBuilderManager::CreateNullFormatBuilders()
+{
+    //the below additions are some operators which have to be applied (usually by default)
+    //but are not necessarily specified via control file (e.g. data selection and default channel labels)
+
+    //this one is special since it is not an operator specified via control file
+    mho_json special;
+    special["operator_category"] = "selection";
+    special["priority"] = 1.1;
+    AddBuilderTypeWithFormat<MHO_DataSelectionBuilder>("coarse_selection", special);
+
+    //this one is also special (default channel labeling behavior)
+    mho_json special2;
+    special2["operator_category"] = "default";
+    special2["priority"] = 0.1;
+    AddBuilderTypeWithFormat<MHO_ChannelLabellerBuilder>("default_chan_ids", special2);
+
+    //we have to have reference and remote station multitone pcal operator builers defined here
+    //since these are applied by default if pcal data is present, however they may be disabled
+    //by control file statements like 'pc_mode manual'
+
+    mho_json ref_mtpcal;
+    ref_mtpcal["operator_category"] = "calibration";
+    ref_mtpcal["priority"] = 3.1;
+    AddBuilderTypeWithFormat<MHO_MultitonePhaseCorrectionBuilder>("ref_multitone_pcal", ref_mtpcal);
+
+    mho_json rem_mtpcal;
+    rem_mtpcal["operator_category"] = "calibration";
+    rem_mtpcal["priority"] = 3.1;
+    AddBuilderTypeWithFormat<MHO_MultitonePhaseCorrectionBuilder>("rem_multitone_pcal", rem_mtpcal);
+}
+
 
 
 }//end namespace

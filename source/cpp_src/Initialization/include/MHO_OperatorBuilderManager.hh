@@ -80,6 +80,8 @@ class MHO_OperatorBuilderManager
 
     private:
         
+        void CreateNullFormatBuilders();
+        
         template<typename XBuilderType>
         void AddBuilderTypeWithFormat(const std::string& builder_name, const mho_json& format)
         {
