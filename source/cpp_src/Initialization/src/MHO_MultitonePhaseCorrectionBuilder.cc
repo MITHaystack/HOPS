@@ -17,56 +17,73 @@ MHO_MultitonePhaseCorrectionBuilder::Build()
 
         std::string op_name = fAttributes["name"].get<std::string>();
         std::string op_category = "calibration";
-        // std::string channel_name_str = fAttributes["value"]["channel_names"].get<std::string>();
-        // std::vector<double> pc_phases = fAttributes["value"]["pc_phases"].get< std::vector<double> >();
-
         std::string mk4id = ExtractStationMk4ID(op_name);
 
-        //retrieve the arguments to operate on from the container store
-        visibility_type* vis_data = fContainerStore->GetObject<visibility_type>(std::string("vis"));
-
-        //grab the correct pcal data
-        multitone_pcal_type* pcal_data = nullptr;
-        if(op_name == "ref_multitone_pcal")
+        //check pc_mode values to see if this operator should be built at all (defaults to true)
+        //first we check if there is a 'pc_mode' defined under '/control/station/pc_mode'
+        std::string pc_mode = "multitone";
+        if(this->fParameterStore->IsPresent("/control/station/pc_mode"))
         {
-            pcal_data = fContainerStore->GetObject<multitone_pcal_type>(std::string("ref_pcal"));
-            std::cout<<"ref pcal = "<<pcal_data<<std::endl;
+            pc_mode = this->fParameterStore->GetAs<std::string>("/control/station/pc_mode");
         }
-        if(op_name == "rem_multitone_pcal")
+        //however, any station specific value under '/control/station/<mk4id>/pc_mode' will 
+        //override the generic /control/station/pc_mode
+        std::string station_pcmode_path = std::string("/control/station/") + mk4id + "/pc_mode";
+        if(this->fParameterStore->IsPresent(station_pcmode_path) )
         {
-            pcal_data = fContainerStore->GetObject<multitone_pcal_type>(std::string("rem_pcal"));
-            std::cout<<"rem pcal = "<<pcal_data<<std::endl;
-        }
-
-        if( vis_data == nullptr )
-        {
-            msg_error("initialization", "cannot construct MHO_MultitonePhaseCorrection without visibility data." << eom);
-            return false;
+            pc_mode = this->fParameterStore->GetAs<std::string>(station_pcmode_path);
         }
 
-        if( pcal_data == nullptr )
+        if(pc_mode == "multitone")
         {
-            msg_error("initialization", "cannot construct MHO_MultitonePhaseCorrection without pcal data." << eom);
-            return false;
+            //grab the correct pcal data
+            multitone_pcal_type* pcal_data = nullptr;
+            if(op_name == "ref_multitone_pcal")
+            {
+                pcal_data = fContainerStore->GetObject<multitone_pcal_type>(std::string("ref_pcal"));
+            }
+            
+            if(op_name == "rem_multitone_pcal")
+            {
+                pcal_data = fContainerStore->GetObject<multitone_pcal_type>(std::string("rem_pcal"));
+            }
+
+            //this is not necessarily an error...many stations do not have pcal
+            if(pcal_data == nullptr )
+            {
+                msg_debug("initialization", "cannot construct MHO_MultitonePhaseCorrection without pcal data for station: "<<mk4id<< "." << eom);
+                return false;
+            }
+            
+            //retrieve the visibility data from the container store
+            visibility_type* vis_data = fContainerStore->GetObject<visibility_type>(std::string("vis"));
+            if( vis_data == nullptr )
+            {
+                msg_error("initialization", "cannot construct MHO_MultitonePhaseCorrection without visibility data." << eom);
+                return false;
+            }
+
+            MHO_MultitonePhaseCorrection* op = new MHO_MultitonePhaseCorrection();
+
+            //set the arguments
+
+            std::cout<<" ********************** I'm making a p-cal operator!!!: " <<op_name<<" for station: "<<mk4id<<std::endl;
+            op->SetArgs(vis_data);
+            op->SetPCPeriod(1);
+            op->SetStationMk4ID(mk4id);
+            op->SetName(op_name);
+            op->SetMultitonePCData(pcal_data);
+
+            //msg_debug("initialization", "creating operator: "<<op_name<<" for station: "<<mk4id<<" pol: "<<pol<<"."<<eom);
+
+            bool replace_duplicates = false;
+            this->fOperatorToolbox->AddOperator(op,op->GetName(),op_category,replace_duplicates);
+            return true;
         }
-
-        MHO_MultitonePhaseCorrection* op = new MHO_MultitonePhaseCorrection();
-
-        //set the arguments
-
-        std::cout<<" ********************** I'm making a p-cal operator!!!: " <<op_name<<" for station: "<<mk4id<<std::endl;
-        op->SetArgs(vis_data);
-        op->SetPCPeriod(1);
-        op->SetStationMk4ID(mk4id);
-        op->SetName(op_name);
-        op->SetMultitonePCData(pcal_data);
-
-        //msg_debug("initialization", "creating operator: "<<op_name<<" for station: "<<mk4id<<" pol: "<<pol<<"."<<eom);
-
-        bool replace_duplicates = false;
-        this->fOperatorToolbox->AddOperator(op,op->GetName(),op_category,replace_duplicates);
-        return true;
-
+        
+        //multitone pcal not triggered for this station
+        msg_debug("initialization", "MHO_MultitonePhaseCorrection will not be applied to station: "<<mk4id<<"." << eom);
+        return false;
     }
     return false;
 }

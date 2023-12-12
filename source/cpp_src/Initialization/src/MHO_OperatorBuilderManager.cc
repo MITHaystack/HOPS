@@ -136,7 +136,11 @@ MHO_OperatorBuilderManager::BuildOperatorCategory(const std::string& cat)
                                 msg_debug("initialization", "building operator with name: "<<name<<" in category: "<<cat<<"."<<eom);
                                 builder_it->second->SetConditions(*ctrl_iter);
                                 builder_it->second->SetAttributes(*stmt_iter);
-                                builder_it->second->Build();
+                                bool build_status_ok = builder_it->second->Build();
+                                if(!build_status_ok)
+                                {
+                                    msg_debug("initialization", "operator with name: "<<name<<" in category: "<<cat<<", was not built."<<eom);
+                                }
                                 stmt_iter = statements->erase(stmt_iter);
                             }
                             else //couldn't find a builder for this operator, skip

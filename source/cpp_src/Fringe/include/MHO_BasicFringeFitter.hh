@@ -35,6 +35,9 @@ class MHO_BasicFringeFitter: public MHO_FringeFitter
         mho_json GetPlotData(){return fPlotData;}
 
     protected:
+        
+        void AddDefaultOperatorFormatDef(mho_json& format);
+        void AddDefaultOperators(mho_json& statements);
 
         mho_json fVexInfo;
         mho_json fControlFormat;
