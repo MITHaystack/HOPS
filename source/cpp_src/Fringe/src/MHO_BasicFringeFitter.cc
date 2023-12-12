@@ -90,21 +90,11 @@ void MHO_BasicFringeFitter::Configure()
 
     //specify the control format
     fControlFormat = MHO_ControlDefinitions::GetControlFormat();
+    
+    //add default operations to the control format, so we can later trigger them
+    AddDefaultOperatorFormatDef(fControlFormat);
 
-    //add the data selection operator
-    //TODO FIXME -- this is a horrible hack to get this operator into the initialization stream
-    #pragma message("fix this horrible hack -- where we modify the control format itself to inject a default operator")
-    fDataSelectFormat =
-    {
-        {"name", "coarse_selection"},
-        {"statement_type", "operator"},
-        {"operator_category" , "selection"},
-        {"type" , "empty"},
-        {"priority", 1.01}
-    };
-    fControlFormat["coarse_selection"] = fDataSelectFormat;
-
-
+    //now parse the control file and collect the applicable statements 
     cparser.SetControlFile(control_file);
     auto control_contents = cparser.ParseControl();
     //TODO -- where should frequency group information get stashed/retrieved?
@@ -113,64 +103,16 @@ void MHO_BasicFringeFitter::Configure()
     ceval.SetPassInformation(baseline, srcName, "?", scnName);//baseline, source, fgroup, scan
     fControlStatements = ceval.GetApplicableStatements(control_contents);
 
-     //part of the ugly default coarse selection hack, triggers the build of this operator at the 'selection' step
-    mho_json coarse_selection_hack =
-    {
-        {"name", "coarse_selection"},
-        {"statement_type", "operator"},
-        {"operator_category" , "selection"}
-    };
-    (*(fControlStatements.begin()))["statements"].push_back(coarse_selection_hack);
-
-
-
-
-
-    //UGLY HACK TO INSERT MULTITONE PCAL
-
-    mho_json ref_multitone_pcal_format =
-    {
-        {"name", "ref_multitone_pcal"},
-        {"statement_type", "operator"},
-        {"operator_category" , "calibration"},
-        {"type" , "empty"},
-        {"priority", 2.1}
-    };
-    fControlFormat["ref_multitone_pcal"] = ref_multitone_pcal_format;
-
-    mho_json rem_multitone_pcal_format =
-    {
-        {"name", "rem_multitone_pcal"},
-        {"statement_type", "operator"},
-        {"operator_category" , "calibration"},
-        {"type" , "empty"},
-        {"priority", 2.1}
-    };
-    fControlFormat["rem_multitone_pcal"] = rem_multitone_pcal_format;
-
-
-
-    mho_json ref_multitone_pcal_hack =
-    {
-        {"name", "ref_multitone_pcal"},
-        {"statement_type", "operator"},
-        {"operator_category" , "calibration"}
-    };
-    mho_json rem_multitone_pcal_hack =
-    {
-        {"name", "rem_multitone_pcal"},
-        {"statement_type", "operator"},
-        {"operator_category" , "calibration"}
-    };
-    (*(fControlStatements.begin()))["statements"].push_back(ref_multitone_pcal_hack);
-    (*(fControlStatements.begin()))["statements"].push_back(rem_multitone_pcal_hack);
+    //tack on default-operations to the control statements, so we can trigger
+    //the build of these operators at the proper step (e.g. coarse selection, multitone pcal etc.)
+    AddDefaultOperators( (*(fControlStatements.begin()))["statements"] );
 
     std::cout<<fControlStatements.dump(2)<<std::endl;
-
     std::cout<<"*****************************************************************************"<<std::endl;
 
-    MHO_InitialFringeInfo::set_default_parameters_minimal(&fParameterStore); //set some default parameters (polprod, ref_freq)
-
+    //set some intiail/default parameters (polprod, ref_freq)
+    MHO_InitialFringeInfo::set_default_parameters_minimal(&fParameterStore);
+    //configure parameter store from control statements
     MHO_ParameterManager paramManager(&fParameterStore, fControlFormat);
     paramManager.SetControlStatements(&fControlStatements);
     paramManager.ConfigureAll();
@@ -187,8 +129,10 @@ void MHO_BasicFringeFitter::Configure()
             fParameterStore.Set("/status/is_finished", true);
         }
     }
-    fParameterStore.Dump();
-
+    
+    //fParameterStore.Dump();
+    
+    //now build the operator build manager
     fOperatorBuildManager = new MHO_OperatorBuilderManager(&fOperatorToolbox, &fContainerStore, &fParameterStore, fControlFormat);
 }
 
@@ -250,14 +194,16 @@ void MHO_BasicFringeFitter::Initialize()
             std::cout<<"REF PCAL = "<<ref_pcal_data<<std::endl;
             std::string ref_pcal_uuid = ref_pcal_data->GetObjectUUID().as_string();
             fParameterStore.Set("/uuid/ref_pcal", ref_pcal_uuid);
-            fParameterStore.Set("/ref_station/pc_mode", "multitone"); //default to multitone if pcal is present
+            //default to multitone if pcal is present
+            fParameterStore.Set("/ref_station/pc_mode", "multitone"); 
         }
         if( rem_pcal_data != nullptr )
         {
             std::cout<<"REM PCAL = "<<rem_pcal_data<<std::endl;
             std::string rem_pcal_uuid = rem_pcal_data->GetObjectUUID().as_string();
             fParameterStore.Set("/uuid/rem_pcal", rem_pcal_uuid);
-            fParameterStore.Set("/rem_station/pc_mode", "multitone"); //default to multitone if pcal is present
+            //default to multitone if pcal is present
+            fParameterStore.Set("/rem_station/pc_mode", "multitone");
         }
 
         ////////////////////////////////////////////////////////////////////////////
@@ -356,6 +302,83 @@ void MHO_BasicFringeFitter::Finalize()
     }
 }
 
+
+void 
+MHO_BasicFringeFitter::AddDefaultOperatorFormatDef(mho_json& format)
+{
+    //this is bit of a hack to get these operators
+    //(which cannot be triggered via control file statements)
+    //into the initialization stream (part 1)
+    
+    //add the data selection operator
+    fDataSelectFormat =
+    {
+        {"name", "coarse_selection"},
+        {"statement_type", "operator"},
+        {"operator_category" , "selection"},
+        {"type" , "empty"},
+        {"priority", 1.01}
+    };
+    format["coarse_selection"] = fDataSelectFormat;
+
+    //add a multitone pcal op for the reference station
+    mho_json ref_multitone_pcal_format =
+    {
+        {"name", "ref_multitone_pcal"},
+        {"statement_type", "operator"},
+        {"operator_category" , "calibration"},
+        {"type" , "empty"},
+        {"priority", 3.1}
+    };
+    fControlFormat["ref_multitone_pcal"] = ref_multitone_pcal_format;
+
+    //add a multitone pcal op for the remote station
+    mho_json rem_multitone_pcal_format =
+    {
+        {"name", "rem_multitone_pcal"},
+        {"statement_type", "operator"},
+        {"operator_category" , "calibration"},
+        {"type" , "empty"},
+        {"priority", 3.1}
+    };
+    fControlFormat["rem_multitone_pcal"] = rem_multitone_pcal_format;
+}
+
+void 
+MHO_BasicFringeFitter::AddDefaultOperators(mho_json& statements)
+{
+    //this is the rest of the default operators hack 
+    //in part 2 (here) we actually define control statements that trigger 
+    //these operators to be built and exectuted
+    
+    mho_json coarse_selection_hack =
+    {
+       {"name", "coarse_selection"},
+       {"statement_type", "operator"},
+       {"operator_category" , "selection"}
+    };
+    statements.push_back(coarse_selection_hack);
+
+    //add default ops for multi-tone pcal 
+    //note: this operator checks if the pcal data is available and if pc_mode != manual
+    //if either condition fails, it does not get inserted into the execution stream
+    mho_json ref_multitone_pcal_hack =
+    {
+        {"name", "ref_multitone_pcal"},
+        {"statement_type", "operator"},
+        {"operator_category" , "calibration"}
+    };
+
+    mho_json rem_multitone_pcal_hack =
+    {
+        {"name", "rem_multitone_pcal"},
+        {"statement_type", "operator"},
+        {"operator_category" , "calibration"}
+    };
+
+    statements.push_back(ref_multitone_pcal_hack);
+    statements.push_back(rem_multitone_pcal_hack);
+}
 
 
 }//end namespace
