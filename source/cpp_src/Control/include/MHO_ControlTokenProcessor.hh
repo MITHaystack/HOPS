@@ -34,6 +34,7 @@ class MHO_ControlTokenProcessor
         mho_json ProcessReal(const MHO_Token& token);
         mho_json ProcessListInt(const std::vector< MHO_Token >& tokens);
         mho_json ProcessListString(const std::vector< MHO_Token >& tokens);
+        mho_json ProcessFixedLengthListString(const std::vector< MHO_Token >& tokens);
         mho_json ProcessListReal(const std::vector< MHO_Token >& tokens);
         mho_json ProcessBool(const MHO_Token& token);
 

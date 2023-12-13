@@ -37,7 +37,7 @@ class MHO_ParameterConfigurator
             config,
             global,
             station,
-            baseline, 
+            baseline,
             fit,
             plot,
             unknown
@@ -52,7 +52,6 @@ class MHO_ParameterConfigurator
             list_int_type, //list of ints with arbitrary length
             list_real_type, //list of floats with arbitrary length
             list_string_type, //list of strings with arbitrary length
-            fixed_length_list_string_type, //list of strings with pre-specified length passed as int
             unknown
         };
 

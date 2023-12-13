@@ -78,6 +78,9 @@ MHO_ControlElementParser::ParseTokens(const std::string& element_name, mho_json&
         case control_list_string_type:
             element_data = fTokenProcessor.ProcessListString(tokens);
         break;
+        case control_fixed_length_list_string_type:
+            element_data = fTokenProcessor.ProcessFixedLengthListString(tokens);
+        break;
         case control_bool_type:
             element_data = fTokenProcessor.ProcessBool(tokens[0]);
         break;

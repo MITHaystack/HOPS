@@ -120,32 +120,6 @@ MHO_ParameterConfigurator::Configure()
                 }
             }
             break;
-            case ParamValueType::fixed_length_list_string_type:
-            {
-                std::vector< std::string > values = fAttributes["value"].get< std::vector< std::string > >();
-                int n_elem = values.size();
-                if(values.size() > 1)
-                {
-                    int length = std::atoi(values[0].c_str()); //first value is length of remaining list
-                    if( length != n_elem-1)
-                    {
-                        msg_error("initialization", "length mis-match in fixed-length string list, expected length: "<< length<<" but found: "<< n_elem-1 << "." << eom );
-                        std::exit(1);
-                    }
-                }
-            
-                std::vector< std::string > passed_values;
-                for(std::size_t i=1; i < n_elem; i++)
-                {
-                    passed_values.push_back( values[i] );
-                }
-                
-                for(std::size_t nst = 0; nst<explicit_paths.size(); nst++)
-                {
-                    SetVectorParameter(explicit_paths[nst], passed_values);
-                }
-            }
-            break;
             default:
                 msg_debug("initialization", "could not determine the parameter: " <<name <<"'s value type: "<< value_type << eom);
             return false;
@@ -163,8 +137,7 @@ MHO_ParameterConfigurator::DetermineParamValueType(const std::string& par_value_
     if(par_value_type == "string"){return ParamValueType::string_type;}
     if(par_value_type == "list_int"){return ParamValueType::list_int_type;}
     if(par_value_type == "list_real"){return ParamValueType::list_real_type;}
-    if(par_value_type == "list_string"){return ParamValueType::list_string_type;}
-    if(par_value_type == "fixed_length_list_string"){return ParamValueType::fixed_length_list_string_type;}
+    if(par_value_type == "list_string" || par_value_type == "fixed_length_list_string" ){return ParamValueType::list_string_type;}
     return ParamValueType::unknown;
 }
 

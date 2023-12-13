@@ -61,6 +61,34 @@ MHO_ControlTokenProcessor::ProcessListString(const std::vector< MHO_Token >& tok
     return element_data;
 }
 
+mho_json
+MHO_ControlTokenProcessor::ProcessFixedLengthListString(const std::vector< MHO_Token >& tokens)
+{
+    mho_json element_data;
+    std::vector< std::string > values;
+    
+    //check that there is at least 1 token 
+    int n_elem = tokens.size();
+    int length = 0;
+    if(tokens.size() > 1)
+    {
+        //first token is the remaining length of the list
+        length = std::atoi( tokens[0].fValue.c_str() );
+    }
+
+    //check that the specified length equals the number of tokens
+    if(length != n_elem - 1)
+    {
+        msg_fatal("control", "invalid token on line: " << tokens[0].fLineNumber << ", user specified length of "<<
+        tokens[0].fValue << " is inconsistent with the number of tokens: "<< (n_elem - 1) << "." << eom);
+        std::exit(1);
+    }
+    
+    for(std::size_t i=1; i<tokens.size(); i++){values.push_back( tokens[i].fValue );}
+    element_data = values;
+    return element_data;
+}
+
 
 mho_json
 MHO_ControlTokenProcessor::ProcessListReal(const std::vector< MHO_Token >& tokens)
