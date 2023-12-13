@@ -46,6 +46,7 @@ enum control_element_type
     control_real_type,
     control_string_type,
     control_list_string_type,
+    control_fixed_length_list_string_type,
     control_list_real_type,
     control_conditional_type,
     control_compound_type,
