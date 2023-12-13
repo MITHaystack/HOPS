@@ -2,5 +2,5 @@
     "name": "samplers",
     "statement_type": "parameter",
     "parameter_type": "station",
-    "type": "list_string"
+    "type": "fixed_length_list_string"
 }
