@@ -37,7 +37,7 @@ class MHO_ParameterConfigurator
             config,
             global,
             station,
-            baseline,
+            baseline, 
             fit,
             plot,
             unknown
@@ -45,13 +45,14 @@ class MHO_ParameterConfigurator
 
         enum class ParamValueType
         {
-            int_type,
-            real_type,
-            bool_type,
-            string_type,
-            list_int_type,
-            list_real_type,
-            list_string_type,
+            int_type,  //single integer parameter
+            real_type, //single float parameter
+            bool_type, //single boolean parameter
+            string_type, //single string parameter
+            list_int_type, //list of ints with arbitrary length
+            list_real_type, //list of floats with arbitrary length
+            list_string_type, //list of strings with arbitrary length
+            fixed_length_list_string_type, //list of strings with pre-specified length passed as int
             unknown
         };
 

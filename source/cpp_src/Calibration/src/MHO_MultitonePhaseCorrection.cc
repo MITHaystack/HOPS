@@ -1,10 +1,6 @@
 #include "MHO_MultitonePhaseCorrection.hh"
 #include "MHO_MathUtilities.hh"
 
-
-#define WORKSPACE_SIZE 256
-
-
 namespace hops
 {
 
@@ -32,7 +28,8 @@ MHO_MultitonePhaseCorrection::MHO_MultitonePhaseCorrection()
     fPCPeriod = 30;
     
     //initialize the FFT engine
-    fPCWorkspace.Resize(WORKSPACE_SIZE); //default size is 256
+    fWorkspaceSize = 256;
+    fPCWorkspace.Resize(fWorkspaceSize); //default size is 256
     fFFTEngine.SetArgs(&fPCWorkspace);
     fFFTEngine.SelectAllAxes();
     fFFTEngine.SetForward();//forward DFT
@@ -125,10 +122,14 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
         DetermineChannelToneIndexes(lower_freq, upper_freq, start_idx, ntones);
 
         //probably should bump up workspace if needed, but for now just bail out
-        if(WORKSPACE_SIZE < ntones )
+        if(fWorkspaceSize < ntones )
         {
-            msg_fatal("calibration", "number of pcal tones: "<< ntones << " exceeds workspace size of: " << WORKSPACE_SIZE << eom);
+            msg_fatal("calibration", "number of pcal tones: "<< ntones << " exceeds workspace size of: " << fWorkspaceSize << eom);
             std::exit(1);
+            //possible implementation to avoid erroring out:
+            //fWorkspaceSize = NextLargestPowerOfTwo(2*ntones);
+            //fPCWorkspace.Resize(fWorkspaceSize);
+            //fFFTEngine.Initialize()
         }
 
         //now need to fit the pcal data for the mean phase and delay for this channel, for each AP
@@ -321,7 +322,7 @@ MHO_MultitonePhaseCorrection::FitPCData(std::size_t ntones, double chan_center_f
     double max_val = 0;
     int max_idx = 0;
     double max_del = 0;
-    for(std::size_t i=0; i<WORKSPACE_SIZE; i++)
+    for(std::size_t i=0; i<fWorkspaceSize; i++)
     {
         std::complex<double> phasor = fPCWorkspace(i);
         double abs_val = std::abs(phasor);
@@ -338,8 +339,8 @@ MHO_MultitonePhaseCorrection::FitPCData(std::size_t ntones, double chan_center_f
     double y[3];
     double q[3];
     y[1] = max_val;
-    y[0] =std::abs( fPCWorkspace( (max_idx+WORKSPACE_SIZE-1)%WORKSPACE_SIZE) );
-    y[2] = std::abs( fPCWorkspace( (max_idx+WORKSPACE_SIZE+1)%WORKSPACE_SIZE) );
+    y[0] =std::abs( fPCWorkspace( (max_idx+fWorkspaceSize-1)%fWorkspaceSize) );
+    y[2] = std::abs( fPCWorkspace( (max_idx+fWorkspaceSize+1)%fWorkspaceSize) );
     MHO_MathUtilities::parabola(y, -1.0, 1.0, &ymax, &ampmax, q);
     double delay = (max_idx+ymax)*delay_delta; 
 

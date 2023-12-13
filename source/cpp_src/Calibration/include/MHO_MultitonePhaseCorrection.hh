@@ -97,6 +97,7 @@ class MHO_MultitonePhaseCorrection: public MHO_UnaryOperator< visibility_type >
         multitone_pcal_type* fPCData;
         
         //workspace for delay fit
+        std::size_t fWorkspaceSize;
         pcal_type fPCWorkspace;
 
         //keys for tag retrieval
