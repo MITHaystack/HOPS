@@ -22,7 +22,7 @@
 *Email: barrettj@mit.edu
 *Date:
 *Description: Applies 'fourfit' labels to each channel (e.g. a, b,...),
-* if no user-define map is supplied then the default mapping is in order
+* if no user-defined map is supplied then the default mapping is in order
 * of frequency low -> high, starting with 'a'
 */
 

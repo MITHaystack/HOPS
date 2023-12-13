@@ -115,7 +115,7 @@ MHO_ControlElementParser::ProcessCompound(const std::string& element_name, mho_j
                 std::string type_name = next_format["type"].get<std::string>();
                 std::vector< MHO_Token > tmp_tokens;
 
-                if( type_name == "list_int" || type_name == "list_real" || type_name == "list_string")
+                if( type_name == "list_int" || type_name == "list_real" || type_name == "list_string" || type_name == "fixed_length_list_string")
                 {
                     //consume the rest of the tokens until the end
                     for(std::size_t i = token_idx; i<tokens.size(); i++){tmp_tokens.push_back(tokens[i]);};
