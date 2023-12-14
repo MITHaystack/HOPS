@@ -11,14 +11,14 @@
 */
 
 #include "MHO_OperatorBuilder.hh"
-#include "MHO_ChannelQuantity.hh"
+#include "MHO_ContainerDefinitions.hh"
+
 
 namespace hops
 {
 
 class MHO_MultitonePhaseCorrectionBuilder:
-    public MHO_OperatorBuilder,
-    public MHO_ChannelQuantity
+    public MHO_OperatorBuilder
 {
     public:
 
@@ -38,7 +38,10 @@ class MHO_MultitonePhaseCorrectionBuilder:
     private:
 
         std::string ExtractStationMk4ID(std::string op_name); //op_name indicates reference or remote station
-
+        int ExtractPCPeriod(std::string mk4id); //pulls the appropriate pc_period out of parameter store
+        void ExtractSamplerDelays(multitone_pcal_type* pcal_data, std::string mk4id); //attaches sampler delays to pcal data
+        std::string GetSamplerDelayKey(std::string pol);
+        
         std::string fRefOpName;
         std::string fRemOpName;
 };
