@@ -152,8 +152,8 @@ def test_plot_visibilities_bad(cstore_interface_obj, param_interface_obj):
     #should provoke an error
     vis_arr.reshape(3,4,5,6)
 
-def labelling_test(cstore_interface_obj, param_interface_obj):
-    print("executing python data-labelling operator")
+def labeling_test(cstore_interface_obj, param_interface_obj):
+    print("executing python data-labeling operator")
 
 
 def flagging_test(cstore_interface_obj, param_interface_obj):

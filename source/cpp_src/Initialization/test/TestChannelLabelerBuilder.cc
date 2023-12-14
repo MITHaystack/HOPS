@@ -3,8 +3,8 @@
 
 
 #include "MHO_Message.hh"
-#include "MHO_ChannelLabellerBuilder.hh"
-#include "MHO_ChannelLabeller.hh"
+#include "MHO_ChannelLabelerBuilder.hh"
+#include "MHO_ChannelLabeler.hh"
 
 using namespace hops;
 
@@ -78,16 +78,16 @@ int main(int argc, char** argv)
     attrib["channel_names"] = chan_ids;
     attrib["channel_frequencies"] = freqs;
 
-    MHO_ChannelLabellerBuilder builder(&toolbox);
+    MHO_ChannelLabelerBuilder builder(&toolbox);
     builder.SetContainerStore(&store);
     builder.SetAttributes(attrib);
 
     bool ok = builder.Build();
     std::string name1 = "chan_ids:vis";
     std::string name2 = "chan_ids:weight";
-    auto op = toolbox.GetOperatorAs< MHO_ChannelLabeller<visibility_type> >(name1);
+    auto op = toolbox.GetOperatorAs< MHO_ChannelLabeler<visibility_type> >(name1);
     std::cout<<"op = "<<op<<std::endl;
-    auto op_wt = toolbox.GetOperatorAs< MHO_ChannelLabeller<weight_type> >(name2);
+    auto op_wt = toolbox.GetOperatorAs< MHO_ChannelLabeler<weight_type> >(name2);
 
     if(op != nullptr)
     {

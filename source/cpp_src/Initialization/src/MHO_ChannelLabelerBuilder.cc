@@ -1,5 +1,5 @@
-#include "MHO_ChannelLabellerBuilder.hh"
-#include "MHO_ChannelLabeller.hh"
+#include "MHO_ChannelLabelerBuilder.hh"
+#include "MHO_ChannelLabeler.hh"
 #include "MHO_ContainerDefinitions.hh"
 
 #include "MHO_Meta.hh"
@@ -14,26 +14,26 @@ namespace hops
 
 
 bool
-MHO_ChannelLabellerBuilder::Build()
+MHO_ChannelLabelerBuilder::Build()
 {
     if( IsConfigurationOk() )
     {
-        msg_debug("initialization", "building channel labelling operator."<< eom);
+        msg_debug("initialization", "building channel labeling operator."<< eom);
         //assume attributes are ok for now - TODO add checks!
         std::map< std::string, double> label2freq;
         std::string op_name = "chan_ids";
-        std::string op_category = "labelling";
+        std::string op_category = "labeling";
         if(! fAttributes.empty() )
         {
             std::string channel_name_str = fAttributes["value"]["channel_names"].get<std::string>();
             std::vector<double> chan_freqs = fAttributes["value"]["channel_frequencies"].get< std::vector<double> >();
             //construct channel <-> freq map
             label2freq = MapChannelQuantities(channel_name_str, chan_freqs);
-            msg_debug("initialization", "channel labelling operator was given a map of size: "<< label2freq.size() << eom );
+            msg_debug("initialization", "channel labeling operator was given a map of size: "<< label2freq.size() << eom );
         }
         else 
         {
-            msg_debug("initialization", "default channel labelling operator being created."<< eom );
+            msg_debug("initialization", "default channel labeling operator being created."<< eom );
         }
 
         //retrieve the arguments to operate on from the container store
@@ -42,12 +42,12 @@ MHO_ChannelLabellerBuilder::Build()
 
         if( vis_data == nullptr || wt_data == nullptr)
         {
-            msg_error("initialization", "cannot construct MHO_ChannelLabeller without visibility or weight data." << eom);
+            msg_error("initialization", "cannot construct MHO_ChannelLabeler without visibility or weight data." << eom);
             return false;
         }
 
-        MHO_ChannelLabeller<visibility_type>* vis_op = new MHO_ChannelLabeller<visibility_type>();
-        MHO_ChannelLabeller<weight_type>* wt_op = new MHO_ChannelLabeller<weight_type>();
+        MHO_ChannelLabeler<visibility_type>* vis_op = new MHO_ChannelLabeler<visibility_type>();
+        MHO_ChannelLabeler<weight_type>* wt_op = new MHO_ChannelLabeler<weight_type>();
 
         //now set the arguments
         vis_op->SetArgs(vis_data);
@@ -60,7 +60,7 @@ MHO_ChannelLabellerBuilder::Build()
             wt_op->SetChannelLabelToFrequencyMap(label2freq);
         }
 
-        bool replace_duplicates = true; //replces the default labeller
+        bool replace_duplicates = true; //replces the default labeler
         #pragma message("TODO - figure out proper naming/retrieval scheme for operators")
         
         vis_op->SetName(op_name + ":vis");

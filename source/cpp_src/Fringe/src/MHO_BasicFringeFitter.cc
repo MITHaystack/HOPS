@@ -222,7 +222,7 @@ void MHO_BasicFringeFitter::Initialize()
         ////////////////////////////////////////////////////////////////////////////
 
         fOperatorBuildManager->BuildOperatorCategory("default");
-        MHO_BasicFringeDataConfiguration::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "labelling");
+        MHO_BasicFringeDataConfiguration::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "labeling");
         MHO_BasicFringeDataConfiguration::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "selection");
 
         //safety check
@@ -315,6 +315,16 @@ MHO_BasicFringeFitter::AddDefaultOperatorFormatDef(mho_json& format)
     };
     format["coarse_selection"] = fDataSelectFormat;
 
+    mho_json sampler_labeler =
+    {
+        {"name", "sampler_labeler"},
+        {"statement_type", "operator"},
+        {"operator_category" , "labeling"},
+        {"type" , "empty"},
+        {"priority", 0.10}
+    };
+    format["sampler_labeler"] = sampler_labeler;
+
     //add a multitone pcal op for the reference station
     mho_json ref_multitone_pcal_format =
     {
@@ -352,6 +362,14 @@ MHO_BasicFringeFitter::AddDefaultOperators(mho_json& statements)
        {"operator_category" , "selection"}
     };
     statements.push_back(coarse_selection_hack);
+    
+    mho_json sampler_hack =
+    {
+       {"name", "sampler_labeler"},
+       {"statement_type", "operator"},
+       {"operator_category" , "labeling"}
+    };
+    statements.push_back(sampler_hack);
 
     //add default ops for multi-tone pcal 
     //note: this operator checks if the pcal data is available and if pc_mode != manual

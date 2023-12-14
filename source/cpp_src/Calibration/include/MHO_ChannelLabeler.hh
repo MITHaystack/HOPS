@@ -1,5 +1,5 @@
-#ifndef MHO_ChannelLabeller_HH__
-#define MHO_ChannelLabeller_HH__
+#ifndef MHO_ChannelLabeler_HH__
+#define MHO_ChannelLabeler_HH__
 
 #include <string>
 #include <map>
@@ -16,8 +16,8 @@
 
 
 /*
-*File: MHO_ChannelLabeller.hh
-*Class: MHO_ChannelLabeller
+*File: MHO_ChannelLabeler.hh
+*Class: MHO_ChannelLabeler
 *Author: J. Barrett
 *Email: barrettj@mit.edu
 *Date:
@@ -31,15 +31,15 @@ namespace hops
 {
 
 template< typename XArrayType >
-class MHO_ChannelLabeller: public MHO_UnaryOperator< XArrayType >
+class MHO_ChannelLabeler: public MHO_UnaryOperator< XArrayType >
 {
     public:
 
-        MHO_ChannelLabeller()
+        MHO_ChannelLabeler()
         {
             //we inherited the set of 64 characters from fourfit
             //consider how we may want to change this in the future
-            #pragma message("TODO FIXME: re-think mult-char labelling scheme, what is most user friendly?")
+            #pragma message("TODO FIXME: re-think mult-char labeling scheme, what is most user friendly?")
             fDefaultChannelChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789$%";
             fExtendedChannelChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"; //used beyond 64
             fIndexToChannelLabel.clear();
@@ -47,7 +47,7 @@ class MHO_ChannelLabeller: public MHO_UnaryOperator< XArrayType >
             fChannelLabelKey = "channel_label";
         };
 
-        virtual ~MHO_ChannelLabeller(){};
+        virtual ~MHO_ChannelLabeler(){};
 
         //allow channel freq association to use a difference tolerance
         void SetTolerance(double tol){fEps = tol;}
@@ -56,7 +56,7 @@ class MHO_ChannelLabeller: public MHO_UnaryOperator< XArrayType >
         void SetDefaultChannelChars(const std::string& ch_set){fDefaultChannelChars = ch_set;}
         void SetExtendedChannelChars(const std::string& ex_set){fExtendedChannelChars = ex_set;}
 
-        //if there is a user provided labelling scheme, use that (i.e. chan_ids)
+        //if there is a user provided labeling scheme, use that (i.e. chan_ids)
         void SetChannelLabelToFrequencyMap(const std::map< std::string, double >& map)
         {
             fChannelLabelToFrequency = map;
@@ -172,4 +172,4 @@ class MHO_ChannelLabeller: public MHO_UnaryOperator< XArrayType >
 
 } //end of namespace
 
-#endif /* end of include guard: MHO_ChannelLabeller_HH__ */
+#endif /* end of include guard: MHO_ChannelLabeler_HH__ */

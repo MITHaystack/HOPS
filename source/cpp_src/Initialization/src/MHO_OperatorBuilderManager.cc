@@ -2,13 +2,14 @@
 
 
 //builders
-#include "MHO_ChannelLabellerBuilder.hh"
+#include "MHO_ChannelLabelerBuilder.hh"
 #include "MHO_DataSelectionBuilder.hh"
 #include "MHO_ManualChannelPhaseCorrectionBuilder.hh"
 #include "MHO_ManualChannelDelayCorrectionBuilder.hh"
 #include "MHO_ManualPolPhaseCorrectionBuilder.hh"
 #include "MHO_ManualPolDelayCorrectionBuilder.hh"
 #include "MHO_MultitonePhaseCorrectionBuilder.hh"
+#include "MHO_SamplerLabeler.hh"
 
 namespace hops
 {
@@ -19,7 +20,7 @@ MHO_OperatorBuilderManager::CreateDefaultBuilders()
 
 
     //we have a very limited number of operators enabled currently
-    AddBuilderType<MHO_ChannelLabellerBuilder>("chan_ids", "chan_ids");
+    AddBuilderType<MHO_ChannelLabelerBuilder>("chan_ids", "chan_ids");
 
     //manual per-channel pc phase corrections
     AddBuilderType<MHO_ManualChannelPhaseCorrectionBuilder>("pc_phases_x", "pc_phases_x");
@@ -57,7 +58,7 @@ MHO_OperatorBuilderManager::BuildOperatorCategory(const std::string& cat)
     //check that the category is supported (listed below)
     bool ok = false;
     if(cat == "default"){ok = true;}
-    if(cat == "labelling"){ok = true;}
+    if(cat == "labeling"){ok = true;}
     if(cat == "selection"){ok = true;}
     if(cat == "flagging"){ok = true;}
     if(cat == "calibration"){ok = true;}
@@ -148,6 +149,12 @@ void MHO_OperatorBuilderManager::CreateNullFormatBuilders()
     //the below additions are some operators which have to be applied (usually by default)
     //but are not necessarily specified via control file (e.g. data selection and default channel labels)
 
+    
+    mho_json samplers;
+    samplers["operator_category"] = "labeling";
+    samplers["priority"] = 0.9;
+    AddBuilderTypeWithFormat<MHO_DataSelectionBuilder>("sampler_labeler", samplers);
+
     //this one is special since it is not an operator specified via control file
     mho_json special;
     special["operator_category"] = "selection";
@@ -158,7 +165,7 @@ void MHO_OperatorBuilderManager::CreateNullFormatBuilders()
     mho_json special2;
     special2["operator_category"] = "default";
     special2["priority"] = 0.1;
-    AddBuilderTypeWithFormat<MHO_ChannelLabellerBuilder>("default_chan_ids", special2);
+    AddBuilderTypeWithFormat<MHO_ChannelLabelerBuilder>("default_chan_ids", special2);
 
     //we have to have reference and remote station multitone pcal operator builers defined here
     //since these are applied by default if pcal data is present, however they may be disabled

@@ -4,19 +4,19 @@
 #include <getopt.h>
 
 #include "MHO_Message.hh"
-#include "MHO_ChannelLabeller.hh"
+#include "MHO_ChannelLabeler.hh"
 #include "MHO_ContainerDefinitions.hh"
 
 using namespace hops;
 
 int main(int argc, char** argv)
 {
-    std::string usage = "TestChannelLabeller";
+    std::string usage = "TestChannelLabeler";
 
     MHO_Message::GetInstance().AcceptAllKeys();
     MHO_Message::GetInstance().SetMessageLevel(eDebug);
 
-    MHO_ChannelLabeller<visibility_type> label_maker;
+    MHO_ChannelLabeler<visibility_type> label_maker;
     
     visibility_type vis;
     vis.Resize(4, 128, 16, 16);
