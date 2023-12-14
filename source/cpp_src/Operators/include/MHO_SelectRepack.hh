@@ -218,7 +218,7 @@ class MHO_SelectRepack:
                             axis2(i) = axis1( fSelection[i] );
                         }
                         axis2.CopyTags(axis1); //copy the axis tags 
-                        axis2.CopyIntervalLabels(axis1); //copy labels
+                        //axis2.CopyIntervalLabels(axis1); //copy labels
                     }
                     else 
                     {
