@@ -1,7 +1,7 @@
 {
     "name": "chan_ids",
     "statement_type": "operator",
-    "operator_category" : "labelling",
+    "operator_category" : "labeling",
     "type" : "compound",
     "priority": 0.1,
     "parameters":

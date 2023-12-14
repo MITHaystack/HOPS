@@ -52,7 +52,7 @@ class MHO_DiFXChannelNameConstructor
         std::vector< band_range > fBandRangeLabels;
         std::string fScanID;
 
-        double fChanTol; //tolerance for labelling disinct frequencies
+        double fChanTol; //tolerance for labeling disinct frequencies
         std::vector< double > fOrderedSkyFrequencies; 
 };
 

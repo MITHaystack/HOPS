@@ -230,7 +230,7 @@ class MHO_EndZeroPadder:
                     axis2.Copy(axis1);
                     if(!fModify){return;} //just copy this axis
                     axis2.Resize(ax2_size);
-                    //assumes uniform labelling, probably ok as we only need this for FFTs
+                    //assumes uniform labeling, probably ok as we only need this for FFTs
                     double delta = axis1(1) - axis1(0);
                     if(!fFlipped)
                     {
@@ -257,7 +257,7 @@ class MHO_EndZeroPadder:
                     axis2.Copy(axis1);
                     if(!fModify){return;} //just copy this axis
                     axis2.Resize(ax2_size);
-                    //assumes uniform labelling, probably ok as we only need this for FFTs
+                    //assumes uniform labeling, probably ok as we only need this for FFTs
                     double delta = axis1(1) - axis1(0);
                     if(!fFlipped)
                     {

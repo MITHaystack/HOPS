@@ -1,5 +1,5 @@
-#ifndef MHO_SamplerLabeller_HH__
-#define MHO_SamplerLabeller_HH__
+#ifndef MHO_SamplerLabeler_HH__
+#define MHO_SamplerLabeler_HH__
 
 #include <string>
 #include <map>
@@ -15,8 +15,8 @@
 
 
 /*
-*File: MHO_SamplerLabeller.hh
-*Class: MHO_SamplerLabeller
+*File: MHO_SamplerLabeler.hh
+*Class: MHO_SamplerLabeler
 *Author: J. Barrett
 *Email: barrettj@mit.edu
 *Date:
@@ -33,20 +33,22 @@ namespace hops
 {
 
 template< typename XArrayType >
-class MHO_SamplerLabeller: public MHO_UnaryOperator< XArrayType >
+class MHO_SamplerLabeler: public MHO_UnaryOperator< XArrayType >
 {
     public:
 
-        MHO_SamplerLabeller()
+        MHO_SamplerLabeler()
         {
             fComma = ",";
             fChannelLabelKey = "channel_label";
-            fSamplerIndexKey = "sampler_index";
+            fRefSamplerIndexKey = "ref_sampler_index";
+            fRemSamplerIndexKey = "rem_sampler_index";
         };
         
-        virtual ~MHO_SamplerLabeller(){};
+        virtual ~MHO_SamplerLabeler(){};
 
-        void SetSamplerChannelSets(const std::vector< std::string >& channel_sets){fSamplerChanSets = channel_sets;}
+        void SetReferenceStationSamplerChannelSets(const std::vector< std::string >& channel_sets){fRefSamplerChanSets = channel_sets;}
+        void SetRemoteStationSamplerChannelSets(const std::vector< std::string >& channel_sets){fRemSamplerChanSets = channel_sets;}
 
     protected:
 
@@ -55,7 +57,10 @@ class MHO_SamplerLabeller: public MHO_UnaryOperator< XArrayType >
 
         virtual bool ExecuteInPlace(XArrayType* in) override
         {
-            ConstructChannelToSamplerIDMap();
+            //map channel label (e.g. 'a', 'b', etc.) to sampler index for both reference and remote stations
+            ConstructChannelToSamplerIDMap(fRefSamplerChanSets, fRefChanToSamplerID);
+            ConstructChannelToSamplerIDMap(fRemSamplerChanSets, fRemChanToSamplerID);
+
             if(in != nullptr)
             {
                 //need to retrieve the labels of each channel, then look up the 
@@ -81,12 +86,20 @@ class MHO_SamplerLabeller: public MHO_UnaryOperator< XArrayType >
 
                     //this inserts an entirely new label (is this necessary?)
                     //why not just add the key:value to an existing interval label?
-                    if( fChanToSamplerID.find(chan_label) != fChanToSamplerID.end() )
+                    int ref_id = -1;
+                    int rem_id = -1;
+                    if(fRefChanToSamplerID.find(chan_label) != fRefChanToSamplerID.end())
                     {
-                        MHO_IntervalLabel label(ch,ch);
-                        label.Insert(fSamplerIndexKey, fChanToSamplerID[chan_label] );
-                        chan_axis_ptr->InsertLabel(label);
+                        ref_id = fRefChanToSamplerID[chan_label];
                     }
+                    if(fRemChanToSamplerID.find(chan_label) != fRemChanToSamplerID.end())
+                    {
+                        rem_id = fRemChanToSamplerID[chan_label];
+                    }
+                    MHO_IntervalLabel label(ch,ch);
+                    if(0 <= ref_id){label.Insert(fRefSamplerIndexKey, ref_id);}
+                    if(0 <= rem_id){label.Insert(fRemSamplerIndexKey, rem_id);}
+                    if( 0 <= ref_id || 0 <= rem_id ){chan_axis_ptr->InsertLabel(label);}
                 }
                 return true;
             }
@@ -101,25 +114,28 @@ class MHO_SamplerLabeller: public MHO_UnaryOperator< XArrayType >
 
     private:
         
-        //data
-        std::vector< std::string > fSamplerChanSets;
-        std::map< std::string, int > fChanToSamplerID;
+        //data maps channels to sampler 
+        std::vector< std::string > fRefSamplerChanSets;
+        std::vector< std::string > fRemSamplerChanSets;
+        std::map< std::string, int > fRefChanToSamplerID;
+        std::map< std::string, int > fRemChanToSamplerID;
         
         std::string fComma;
         std::string fChannelLabelKey;
-        std::string fSamplerIndexKey;
+        std::string fRefSamplerIndexKey;
+        std::string fRemSamplerIndexKey;
         MHO_Tokenizer fTokenizer;
 
-        void ConstructChannelToSamplerIDMap()
+        void ConstructChannelToSamplerIDMap(std::vector< std::string >& chan_set, std::map< std::string, int >& chan2id)
         {
             //figure out which sampler index each channel has been assigned to
-            for(std::size_t sampler_id = 0; sampler_id < fSamplerChanSets.size(); sampler_id++)
+            for(std::size_t sampler_id = 0; sampler_id < chan_set.size(); sampler_id++)
             {
-                std::string chans = fSamplerChanSets[sampler_id];
+                std::string chans = chan_set[sampler_id];
                 std::vector< std::string > split_chans = SplitChannelLabels(chans);
                 for(auto it = split_chans.begin(); it != split_chans.end(); it++)
                 {
-                    fChanToSamplerID[ *it ] = (int)sampler_id;
+                    chan2id[ *it ] = (int)sampler_id;
                 }
             }
         }
@@ -157,4 +173,4 @@ class MHO_SamplerLabeller: public MHO_UnaryOperator< XArrayType >
 
 } //end of namespace
 
-#endif /* end of include guard: MHO_SamplerLabeller_HH__ */
+#endif /* end of include guard: MHO_SamplerLabeler_HH__ */

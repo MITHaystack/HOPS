@@ -50,7 +50,7 @@ int main(int argc, char** argv)
     ////////////////////////////////////////////////////////////////////////////
     #ifdef USE_PYBIND11
     #pragma message("TODO FIXME -- formalize the means by which plugin dependent operator builders are added to the configuration")
-    ffit.GetOperatorBuildManager()->AddBuilderType<MHO_PythonOperatorBuilder>("python_labelling", "python_labelling"); 
+    ffit.GetOperatorBuildManager()->AddBuilderType<MHO_PythonOperatorBuilder>("python_labeling", "python_labeling"); 
     ffit.GetOperatorBuildManager()->AddBuilderType<MHO_PythonOperatorBuilder>("python_flagging", "python_flagging"); 
     ffit.GetOperatorBuildManager()->AddBuilderType<MHO_PythonOperatorBuilder>("python_calibration", "python_calibration"); 
     #endif

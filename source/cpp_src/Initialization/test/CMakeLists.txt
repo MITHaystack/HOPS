@@ -7,7 +7,7 @@ set (HOPS_TEST_LIBS
 )
 
 set(SOURCE_BASENAMES
-    TestChannelLabellerBuilder
+    TestChannelLabelerBuilder
     TestManualChannelPhaseCorrectionBuilder
 )
 

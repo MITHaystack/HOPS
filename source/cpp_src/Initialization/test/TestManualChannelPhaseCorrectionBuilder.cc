@@ -6,7 +6,7 @@
 
 #include "MHO_ContainerDefinitions.hh"
 
-#include "MHO_ChannelLabeller.hh"
+#include "MHO_ChannelLabeler.hh"
 #include "MHO_ManualChannelPhaseCorrection.hh"
 #include "MHO_ManualChannelPhaseCorrectionBuilder.hh"
 
@@ -44,11 +44,11 @@ int main(int argc, char** argv)
     store.AddObject(vis);
     store.SetShortName(vis->GetObjectUUID(), std::string("vis"));
 
-    //add a default channel labeller
-    MHO_ChannelLabeller<visibility_type> ch_labeller;
-    ch_labeller.SetArgs(vis);
-    ch_labeller.Initialize();
-    ch_labeller.Execute();
+    //add a default channel labeler
+    MHO_ChannelLabeler<visibility_type> ch_labeler;
+    ch_labeler.SetArgs(vis);
+    ch_labeler.Initialize();
+    ch_labeler.Execute();
 
     mho_json conditions;
     conditions["name"] = "if";
