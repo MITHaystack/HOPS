@@ -73,8 +73,6 @@ class MHO_IntervalLabel:
             total_size += cm_aggregate_serializable_item_size<std::string>(*this);
 
             return total_size;
-
-            return total_size;
         }
 
         template<typename XStream> friend XStream& operator>>(XStream& s, MHO_IntervalLabel& aData)
