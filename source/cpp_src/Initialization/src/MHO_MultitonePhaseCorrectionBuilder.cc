@@ -63,20 +63,23 @@ MHO_MultitonePhaseCorrectionBuilder::Build()
                 return false;
             }
 
+            //grab the appropriate pc_period station parameter 
+            int pc_period = ExtractPCPeriod(mk4id);
+
+            //grab the sampler delays (if present) and label each pol with them 
+            ExtractSamplerDelays(pcal_data, mk4id);
+
+            //build the operator
             MHO_MultitonePhaseCorrection* op = new MHO_MultitonePhaseCorrection();
-
-            //set the arguments
-
-            std::cout<<" ********************** I'm making a p-cal operator!!!: " <<op_name<<" for station: "<<mk4id<<std::endl;
-            op->SetArgs(vis_data);
-            op->SetPCPeriod(1);
-            op->SetStationMk4ID(mk4id);
             op->SetName(op_name);
+            op->SetArgs(vis_data);
+            op->SetStationMk4ID(mk4id);
             op->SetMultitonePCData(pcal_data);
+            op->SetPCPeriod(pc_period);
 
-            //msg_debug("initialization", "creating operator: "<<op_name<<" for station: "<<mk4id<<" pol: "<<pol<<"."<<eom);
+            msg_debug("initialization", "creating operator: "<<op_name<<" for station: "<<mk4id<<"."<<eom);
 
-            bool replace_duplicates = false;
+            bool replace_duplicates = true;
             this->fOperatorToolbox->AddOperator(op,op->GetName(),op_category,replace_duplicates);
             return true;
         }
@@ -94,33 +97,65 @@ std::string
 MHO_MultitonePhaseCorrectionBuilder::ExtractStationMk4ID(std::string op_name)
 {
     std::string station_id = "?";
-
-    if(op_name == fRefOpName)
-    {
-        station_id = this->fParameterStore->GetAs<std::string>("/ref_station/mk4id");
-    }
-
-    if(op_name == fRemOpName)
-    {
-        station_id = this->fParameterStore->GetAs<std::string>("/rem_station/mk4id");
-    }
-
-
-    // std::vector< std::string > condition_values = fConditions["value"].get< std::vector< std::string > >();
-    //
-    // for(auto it = condition_values.begin(); it != condition_values.end(); it++)
-    // {
-    //      //grab the first station ID in the 'if' statement
-    //      //this is ok 99% of the time, but what about if there is statement like: 'if station X or station X'?
-    //      //would then need to check that this station is a member of this pass too, and if not use the next
-    //     if(*it == "station")
-    //     {
-    //         it++;
-    //         if(it != condition_values.end()){station_id = *it; return station_id;}
-    //     }
-    // }
-     return station_id;
+    if(op_name == fRefOpName){station_id = this->fParameterStore->GetAs<std::string>("/ref_station/mk4id");}
+    if(op_name == fRemOpName){station_id = this->fParameterStore->GetAs<std::string>("/rem_station/mk4id");}
+    return station_id;
 }
 
+
+int 
+MHO_MultitonePhaseCorrectionBuilder::ExtractPCPeriod(std::string mk4id)
+{
+    int pc_period = 1; //default value
+    //generic path
+    std::string pc_period_path = "/control/station/pc_period"; 
+    //station specific path
+    std::string station_pc_period_path = std::string("/control/station/") + mk4id + "/pc_period"; 
+    if(fParameterStore->IsPresent(pc_period_path)){fParameterStore->Get(pc_period_path, pc_period);}
+    if(fParameterStore->IsPresent(station_pc_period_path)){fParameterStore->Get(station_pc_period_path, pc_period);}
+    return pc_period;
+}
+
+void 
+MHO_MultitonePhaseCorrectionBuilder::ExtractSamplerDelays(multitone_pcal_type* pcal_data, std::string mk4id)
+{
+    //pulls the appropriate sampler delays from the parameter store, and labels the pcal data with them 
+    auto pol_ax = std::get<MTPCAL_POL_AXIS>(*pcal_data);
+    
+    for(std::size_t p = 0; p < pol_ax.GetSize(); p++)
+    {
+        std::string pol = pol_ax(p);
+        std::string sampler_delay_key = GetSamplerDelayKey(pol);
+        if(sampler_delay_key != "")
+        {
+            //generic path
+            std::vector<double> delays;
+            std::string sd_path = std::string("/control/station/") + sampler_delay_key; 
+            //station specific path
+            std::string station_sd_path = std::string("/control/station/") + mk4id + "/" + sampler_delay_key; 
+            if(fParameterStore->IsPresent(sd_path)){fParameterStore->Get(sd_path, delays);}
+            if(fParameterStore->IsPresent(station_sd_path)){fParameterStore->Get(station_sd_path, delays);}
+            for(std::size_t i=0; i<delays.size(); i++)
+            {
+                std::cout<<"station: "<<mk4id<<" DELAY @ "<<pol<<", "<<i<<" = "<<delays[i]<<std::endl;
+            }
+        }
+    }
+    
+}
+
+
+std::string 
+MHO_MultitonePhaseCorrectionBuilder::GetSamplerDelayKey(std::string pol)
+{
+    std::string key = "";
+    if(pol == "X" || pol == "x"){key = "sampler_delay_x";}
+    if(pol == "Y" || pol == "y"){key = "sampler_delay_y";}
+    if(pol == "R" || pol == "r"){key = "sampler_delay_r";}
+    if(pol == "R" || pol == "l"){key = "sampler_delay_l";}
+    if(pol == "H" || pol == "h"){key = "sampler_delay_h";}
+    if(pol == "V" || pol == "v"){key = "sampler_delay_v";}
+    return key;
+}
 
 }//end namespace
