@@ -373,22 +373,22 @@ class MHO_ContainerJSONConverter: public MHO_JSONConverter
                     }
                     j["data"] = data;
 
-                    if(fLOD >= eJSONWithLabels)
-                    {
-                        //dump the axis labels too
-                        mho_json jilabels;
-                        MHO_Interval<std::size_t> all(0, axis.GetSize() );
-                        std::vector< MHO_IntervalLabel > labels = axis.GetIntervalsWhichIntersect(all);
-                        for(auto it = labels.begin(); it != labels.end(); it++)
-                        {
-                            mho_json label_obj;
-                            label_obj["lower_bound"] = it->GetLowerBound();
-                            label_obj["upper_bound"] = it->GetUpperBound();
-                            FillJSONFromCommonMap(&(*it), label_obj);
-                            jilabels.push_back(label_obj);
-                        }
-                        j["labels"] = jilabels;
-                    }
+                    // if(fLOD >= eJSONWithLabels)
+                    // {
+                    //     //dump the axis labels too
+                    //     mho_json jilabels;
+                    //     MHO_Interval<std::size_t> all(0, axis.GetSize() );
+                    //     std::vector< MHO_IntervalLabel > labels = axis.GetIntervalsWhichIntersect(all);
+                    //     for(auto it = labels.begin(); it != labels.end(); it++)
+                    //     {
+                    //         mho_json label_obj;
+                    //         label_obj["lower_bound"] = it->GetLowerBound();
+                    //         label_obj["upper_bound"] = it->GetUpperBound();
+                    //         FillJSONFromCommonMap(&(*it), label_obj);
+                    //         jilabels.push_back(label_obj);
+                    //     }
+                    //     j["labels"] = jilabels;
+                    // }
                     std::stringstream ss;
                     ss << "axis_" << fIndex;
                     (*fAxisJSON)[ss.str().c_str()] = j;
