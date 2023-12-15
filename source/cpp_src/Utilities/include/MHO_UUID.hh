@@ -10,12 +10,14 @@
 *Description:
 */
 
-#include <cstdint>
+
 #include <cstdlib>
 #include <string>
 #include <sstream>
 #include <iomanip>
 #include <algorithm>
+
+#include "MHO_Types.hh"
 #include "MHO_Message.hh"
 
 namespace hops
@@ -140,10 +142,10 @@ class MHO_UUID
                 }
                 return true;
             }
-            else 
+            else
             {
                 msg_error("utility", "could not convert string to uuid, length of " << uuid_str.size() << " != " <<2*MHO_UUID_LENGTH << " is incorrect" << eom );
-                return false; 
+                return false;
             }
         }
 
@@ -152,7 +154,7 @@ class MHO_UUID
             return MHO_UUID_LENGTH;
         }
 
-        bool is_empty() const 
+        bool is_empty() const
         {
             for(std::size_t i=0; i<MHO_UUID_LENGTH; i++){ if(fBytes[i] != 0){return false;} }
             return true;
@@ -162,7 +164,7 @@ class MHO_UUID
 
     protected:
 
-        typedef union 
+        typedef union
         {
             uint8_t byte_values[MHO_UUID_LENGTH];
             uint64_t uint_values[2];

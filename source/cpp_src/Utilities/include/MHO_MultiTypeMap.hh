@@ -16,8 +16,8 @@
 #include <string>
 #include <iostream>
 #include <vector>
-#include <cstdint>
 
+#include "MHO_Types.hh"
 #include "MHO_Meta.hh"
 
 namespace hops
@@ -215,19 +215,19 @@ class MHO_MultiTypeMap< XKeyType, XValueType, XValueTypeS...>: public MHO_MultiT
 //#pragma message("TODO FIXME -- need to specify fixed sized types in MHO_MultiTypeMap from cstdint for portability.")
 typedef MHO_MultiTypeMap< std::string, char, bool, int, double, std::string > MHO_CommonLabelMap;
 
-template< typename XItemType > 
+template< typename XItemType >
 struct cm_size_calculator
-{ 
+{
     const XItemType* item;
     uint64_t get_item_size()
     {
         return (uint64_t) sizeof(XItemType);
     }
-}; 
+};
 
-template<> 
+template<>
 struct cm_size_calculator<std::string>
-{ 
+{
     const std::string* item;
     uint64_t get_item_size()
     {
@@ -237,9 +237,9 @@ struct cm_size_calculator<std::string>
         total_size += item->size();
         return total_size;
     }
-}; 
+};
 
-template<typename XItemType > 
+template<typename XItemType >
 uint64_t cm_aggregate_serializable_item_size(const MHO_CommonLabelMap& aMap)
 {
     uint64_t total_size = 0;
@@ -263,7 +263,7 @@ uint64_t cm_aggregate_serializable_item_size(const MHO_CommonLabelMap& aMap)
     return total_size;
 }
 
-template<typename XStream, typename XImportType > 
+template<typename XStream, typename XImportType >
 void cm_stream_importer(XStream& s, MHO_CommonLabelMap& aMap)
 {
     std::size_t n_elem;
@@ -278,7 +278,7 @@ void cm_stream_importer(XStream& s, MHO_CommonLabelMap& aMap)
     }
 }
 
-template<typename XStream, typename XExportType> 
+template<typename XStream, typename XExportType>
 void cm_stream_exporter(XStream& s, const MHO_CommonLabelMap& aMap)
 {
     std::vector< std::string > keys;
