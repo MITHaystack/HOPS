@@ -10,8 +10,9 @@
 *Description: template class to produce the name of XClassType at runtime
 */
 
-#include <cstdint>
+
 #include <string>
+#include "MHO_Types.hh"
 #include "MHO_TemplateTypenameDeduction.hh"
 #include "MHO_Message.hh"
 #include "MHO_UUID.hh"

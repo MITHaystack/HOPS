@@ -238,7 +238,7 @@ class MHO_CyclicRotator: public MHO_UnaryOperator< XArrayType >
                         XAxisType tmp;
                         tmp.Copy(axis1);
                         axis2.Copy(axis1); //copy the axis first to get tags, etc.
-                        //now rotate the elements by the offset 
+                        //now rotate the elements by the offset
                         std::size_t a, b;
                         int64_t i, j;
                         int64_t n = axis2.GetSize();

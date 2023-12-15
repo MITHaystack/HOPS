@@ -10,7 +10,7 @@
 *Description:
 */
 
-#include <cstdint>
+#include "MHO_Types.hh"
 #include "MHO_UUID.hh"
 
 namespace hops
@@ -118,7 +118,7 @@ class MHO_FileKey
 
     //public access to members:
     public:
-    
+
         uint32_t fSync; //32 bits for sync word for location of object key
         uint32_t fLabel; //32 bits for user/developer assigned labels
         MHO_UUID fObjectId; //128 bits for random (or otherwise determined) unique object ID
