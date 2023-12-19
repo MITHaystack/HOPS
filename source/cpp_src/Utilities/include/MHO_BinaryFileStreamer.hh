@@ -8,7 +8,7 @@
 *Email: barrettj@mit.edu
 *Date:
 *Description: variadic template parameter implemenation
-* of a gen scatter hierarchy streamer for POD types to a file stream
+* of a gen scatter hierarchy streamer for POD and JSON types to a file stream
 */
 
 #include <stdio.h>
@@ -18,7 +18,10 @@
 #include <iostream>
 #include <string>
 #include <complex>
+#include <vector>
 
+// #include "MHO_Types.hh"
+#include "MHO_JSONHeaderWrapper.hh"
 #include "MHO_FileStreamer.hh"
 
 namespace hops
@@ -103,6 +106,53 @@ template<> class MHO_BinaryFileStreamerSingleType<std::string>
         virtual MHO_BinaryFileStreamer& Self() = 0;
 };
 
+
+//specialization for mho_json type (special, because it needs to be encoded and gets a size parameter)
+template<> class MHO_BinaryFileStreamerSingleType<mho_json>
+{
+    public:
+        MHO_BinaryFileStreamerSingleType(){};
+        virtual ~MHO_BinaryFileStreamerSingleType(){};
+
+        //read in
+        friend inline MHO_BinaryFileStreamer& operator>>(MHO_BinaryFileStreamerSingleType<mho_json>& s, mho_json& obj)
+        {
+            uint64_t size;
+            s.GetStream().read(reinterpret_cast<char*>(&size), sizeof(uint64_t));
+            std::vector<std::uint8_t> data;
+            data.resize(size);
+            s.GetStream().read(reinterpret_cast<char*>(&(data[0])), size);
+            //now decode from CBOR 
+            obj = mho_json::from_cbor(data);
+            return s.Self();
+        }
+
+        //write out
+        friend inline MHO_BinaryFileStreamer& operator<<(MHO_BinaryFileStreamerSingleType<mho_json>& s, const mho_json& obj)
+        {
+            //must encode to CBOR
+            std::vector<std::uint8_t> data = mho_json::to_cbor(obj);
+            uint64_t size = data.size();
+            s.GetStream().write(reinterpret_cast<const char*>(&size), sizeof(uint64_t));
+            s.GetStream().write(reinterpret_cast<const char*>(&(data[0])), size);
+            s.AddBytesWritten(sizeof(uint64_t));
+            s.AddBytesWritten(size);
+            return s.Self();
+        }
+
+        virtual std::fstream& GetStream() = 0;
+
+        virtual void ResetByteCount() = 0;
+        virtual void AddBytesWritten(uint64_t) = 0;
+        virtual uint64_t GetNBytesWritten() const = 0;
+
+    protected:
+
+        virtual MHO_BinaryFileStreamer& Self() = 0;
+};
+
+
+
 //now declare a multi-type streamer with a variadic template parameter for the types to be streamed
 template <typename... XValueTypeS>
 class MHO_BinaryFileStreamerMultiType;
@@ -135,7 +185,8 @@ typedef MHO_BinaryFileStreamerMultiType<
     std::complex<float>,
     std::complex<double>,
     std::complex<long double>,
-    std::string>
+    std::string,
+    mho_json>
 MHO_BinaryFileStreamerBasicTypes;
 
 //now declare the concrete class which does the work for file streams
