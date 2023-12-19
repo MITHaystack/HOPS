@@ -25,14 +25,14 @@ int main(int argc, char** argv)
       }}
     };
 
-    std::cout<< j2.dump(2) <<std::endl;
+
 
     double val = 23.0;
     double val2 = 100.0;
     double val3 = 200.0;
 
     //add a whole bunch of numbers 
-    for(std::size_t i=0; i<10000; i++)
+    for(std::size_t i=0; i<10; i++)
     {
         std::stringstream ss;
         ss << "key-";
@@ -40,6 +40,18 @@ int main(int argc, char** argv)
         j2[ss.str()] = i*3.3;
     }
     
+    j2["label_test"] = mho_json::array();
+    //.reserve(100);
+    j2["label_test"].get_ptr<json::array_t*>()->reserve(100);
+    for(std::size_t i=0;i<100;i++)
+    {
+        mho_json empty;
+        empty["index"] = i;
+        j2["label_test"][i] = empty;
+    }
+
+    std::cout<< j2.dump(2) <<std::endl;
+
     MHO_Timer tmr;
     
     tmr.Start();
