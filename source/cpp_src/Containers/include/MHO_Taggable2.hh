@@ -35,6 +35,8 @@ class MHO_Taggable2: virtual public MHO_Serializable
         
         virtual ~MHO_Taggable2(){};
 
+        //old MHO_Taggable inteface
+
         bool HasKey(const std::string& key) const
         {
             auto it = fTags.find(key);
@@ -69,6 +71,85 @@ class MHO_Taggable2: virtual public MHO_Serializable
         {
             fTags.clear();
         }
+    
+        //end of old MHO_Taggable inteface 
+        
+        //start of multi-type map interface 
+        
+        
+
+        std::size_t MapSize() const {return fTags.size(); }
+
+        template< typename XValueType> 
+        void Insert(const std::string& key, const XValueType& value)
+        {
+            fTags[key] = value;//allow replacement of values
+        }
+
+        void Clear()
+        {
+            fTags.clear();
+        }
+
+        template< typename XValueType> 
+        bool Retrieve(const std::string& key, XValueType& value) const
+        {
+            auto iter = fTags.find(key);
+            if(iter == fTags.end()){return false;}
+            else
+            {
+                value = fTags[key].get<XValueType>();
+                return true;
+            }
+        }
+
+        std::vector<std::string> DumpKeys() const
+        {
+            std::vector< std::string > keys;
+            for(auto iter = fTags.begin(); iter != fTags.end(); iter++)
+            {
+                keys.push_back(iter.key());
+            }
+            return keys;
+        }
+
+        void DumpMap() const
+        {
+            for(auto iter = fTags.begin(); iter != fTags.end(); iter++)
+            {
+                std::cout<<iter.key()<<" : "<<iter.value()<<std::endl;
+            }
+        }
+
+        bool ContainsKey(const std::string& key) const
+        {
+            auto iter = fTags.find(key);
+            if(iter == fTags.end()){return false;}
+            else{return true;}
+        }
+
+        void CopyFrom(const MHO_Taggable2& copy_from_obj)
+        {
+            if(this != &copy_from_obj)
+            {
+                fTags.clear();
+                fTags = copy_from_obj.fTags;
+            }
+        }
+
+        void CopyTo(MHO_Taggable2& copy_to_obj) const
+        {
+            if(this != &copy_to_obj)
+            {
+                copy_to_obj.fTags.clear();
+                copy_to_obj.fTags = fTags;
+            }
+        }
+
+        
+        
+        //end of multi-type map interface 
+    
     
     private:
         
