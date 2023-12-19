@@ -101,7 +101,7 @@ int main(int /*argc*/, char** /*argv*/)
         for(auto it = keys.begin(); it != keys.end(); it++)
         {
             std::cout<<"key = "<<*it<<std::endl;
-            std::cout<<"key value type = "<< test3.GetTagValueType(*it) << std::endl;
+            //std::cout<<"key value type = "<< test3.GetTagValueType(*it) << std::endl;
             std::cout<<"key value = "<<test3.GetTagValueAsString(*it) <<std::endl;
         }
 
@@ -111,7 +111,7 @@ int main(int /*argc*/, char** /*argv*/)
         for(auto it = keys.begin(); it != keys.end(); it++)
         {
             std::cout<<"key = "<<*it<<std::endl;
-            std::cout<<"key value type = "<< test4.GetTagValueType(*it) << std::endl;
+            //std::cout<<"key value type = "<< test4.GetTagValueType(*it) << std::endl;
             std::cout<<"key value = "<<test4.GetTagValueAsString(*it) <<std::endl;
         }
 

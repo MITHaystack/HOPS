@@ -98,8 +98,17 @@ class MHO_Taggable: virtual public MHO_Serializable
             if(iter == fTags.end()){return false;}
             else
             {
-                value = fTags[key].get<XValueType>();
-                return true;
+                mho_json test;
+                test["test"] = value;
+                if(test["test"].type() == fTags[key].type()) //this is a major KLUDGE, TODO FIXME
+                {
+                    value = fTags[key].get<XValueType>();
+                    return true;
+                }
+                else 
+                {
+                    return false;
+                }
             }
         }
 

@@ -17,13 +17,13 @@
 #include <sstream>
 
 #include "MHO_UUID.hh"
-#include "MHO_Taggable2.hh"
+#include "MHO_Taggable.hh"
 #include "MHO_ExtensibleElement.hh"
 
 namespace hops{
 
 
-class MHO_ObjectTags: public MHO_Taggable2, public MHO_ExtensibleElement
+class MHO_ObjectTags: public MHO_Taggable, public MHO_ExtensibleElement
 {
     public:
 
@@ -66,12 +66,7 @@ class MHO_ObjectTags: public MHO_Taggable2, public MHO_ExtensibleElement
         //get the number of tags present
         std::size_t GetNTags() const
         {
-            std::size_t n = 0;
-            n += this->MapSize<char>();
-            n += this->MapSize<bool>();
-            n += this->MapSize<int>();
-            n += this->MapSize<double>();
-            n += this->MapSize<std::string>();
+            std::size_t n = this->MapSize();
             return n;
         }
 
@@ -116,60 +111,75 @@ class MHO_ObjectTags: public MHO_Taggable2, public MHO_ExtensibleElement
             return this->Retrieve(tag_name, tag_value);
         }
 
-        //get the number of tags present
-        std::string GetTagValueType(const std::string& tag_name) const
-        {
-            //TODO FIXME, what if key is not unique among types?
-            if(this->ContainsKey<char>(tag_name)){return std::string("char");}
-            if(this->ContainsKey<bool>(tag_name)){return std::string("bool");}
-            if(this->ContainsKey<int>(tag_name)){return std::string("int");}
-            if(this->ContainsKey<double>(tag_name)){return std::string("double");}
-            if(this->ContainsKey<std::string>(tag_name)){return std::string("string");}
-            return std::string("");
-        }
+        // //get the number of tags present
+        // std::string GetTagValueType(const std::string& tag_name) const
+        // {
+        //     //TODO FIXME, what if key is not unique among types?
+        //     if(this->ContainsKey<char>(tag_name)){return std::string("char");}
+        //     if(this->ContainsKey<bool>(tag_name)){return std::string("bool");}
+        //     if(this->ContainsKey<int>(tag_name)){return std::string("int");}
+        //     if(this->ContainsKey<double>(tag_name)){return std::string("double");}
+        //     if(this->ContainsKey<std::string>(tag_name)){return std::string("string");}
+        //     return std::string("");
+        // }
 
         //get the number of tags present
         std::string GetTagValueAsString(const std::string& tag_name) const
         {
             std::stringstream ss;
             //TODO FIXME, what if key is not unique among types?
-            if(this->ContainsKey<char>(tag_name))
+            if(this->ContainsKey(tag_name))
             {
-                char value;
-                this->Retrieve(tag_name,value);
-                ss << value;
-                return ss.str();
-            }
+                {
+                    char value;
+                    bool ok = this->Retrieve(tag_name,value);
+                    if(ok)
+                    {
+                        ss << value;
+                        return ss.str();
+                    }
+                }
 
-            if(this->ContainsKey<bool>(tag_name))
-            {
-                bool value;
-                this->Retrieve(tag_name,value);
-                ss << value;
-                return ss.str();
-            }
-            
-            if(this->ContainsKey<int>(tag_name))
-            {
-                int value;
-                this->Retrieve(tag_name,value);
-                ss << value;
-                return ss.str();
-            }
+                {
+                    bool value;
+                    bool ok = this->Retrieve(tag_name,value);
+                    if(ok)
+                    {
+                        ss << value;
+                        return ss.str();
+                    }
+                }
+                
 
-            if(this->ContainsKey<double>(tag_name))
-            {
-                double value;
-                this->Retrieve(tag_name,value);
-                ss << value;
-                return ss.str();
-            }
+                {
+                    int value;
+                    bool ok = this->Retrieve(tag_name,value);
+                    if(ok)
+                    {
+                        ss << value;
+                        return ss.str();
+                    }
+                }
 
-            if(this->ContainsKey<std::string>(tag_name))
-            {
-                std::string value;
-                this->Retrieve(tag_name,value);
-                return value;
+
+                {
+                    double value;
+                    bool ok = this->Retrieve(tag_name,value);
+                    if(ok)
+                    {
+                        ss << value;
+                        return ss.str();
+                    }
+                }
+
+                {
+                    std::string value;
+                    bool ok = this->Retrieve(tag_name,value);
+                    if(ok)
+                    {
+                        return value;
+                    }
+                }
             }
 
             //return nothing
@@ -182,12 +192,7 @@ class MHO_ObjectTags: public MHO_Taggable2, public MHO_ExtensibleElement
         void DumpTags(std::vector< std::string >& tag_names) const
         {
             tag_names.clear();
-            std::vector<std::string> keys;
-            keys = this->DumpKeys<char>(); tag_names.insert(tag_names.end(), keys.begin(), keys.end());
-            keys = this->DumpKeys<bool>(); tag_names.insert(tag_names.end(), keys.begin(), keys.end());
-            keys = this->DumpKeys<int>(); tag_names.insert(tag_names.end(), keys.begin(), keys.end());
-            keys = this->DumpKeys<double>(); tag_names.insert(tag_names.end(), keys.begin(), keys.end());
-            keys = this->DumpKeys<std::string>(); tag_names.insert(tag_names.end(), keys.begin(), keys.end());
+            tag_names = this->DumpKeys();
         }
 
     protected:
@@ -203,7 +208,7 @@ class MHO_ObjectTags: public MHO_Taggable2, public MHO_ExtensibleElement
             total_size += sizeof(MHO_ClassVersion); //version number
             total_size += sizeof(uint64_t); //number of uuids 
             total_size += MHO_UUID::ByteSize()*(fObjectUUIDSet.size());
-            total_size += MHO_Taggable2::GetSerializedSize();
+            total_size += MHO_Taggable::GetSerializedSize();
             return total_size;
         }
 
@@ -235,7 +240,7 @@ class MHO_ObjectTags: public MHO_Taggable2, public MHO_ExtensibleElement
                 break;
                 default:
                     msg_error("containers", 
-                        "error, cannot stream out MHO_Taggable2 object with unknown version: " 
+                        "error, cannot stream out MHO_Taggable object with unknown version: " 
                         << aData.GetVersion() << eom );
             }
             return s;
@@ -256,7 +261,7 @@ class MHO_ObjectTags: public MHO_Taggable2, public MHO_ExtensibleElement
                 this->AddObjectUUID(tmp_uuid);
             }
             //now do the taggable element;
-            s >> static_cast< MHO_Taggable2& >(*this);
+            s >> static_cast< MHO_Taggable& >(*this);
         };
         
         template<typename XStream> void StreamOutData_V0(XStream& s) const
@@ -270,7 +275,7 @@ class MHO_ObjectTags: public MHO_Taggable2, public MHO_ExtensibleElement
                 s << *it;
             }
             //now do the taggable element;
-            s << static_cast< const MHO_Taggable2& >(*this);
+            s << static_cast< const MHO_Taggable& >(*this);
         };
         
         virtual MHO_UUID DetermineTypeUUID() const override
