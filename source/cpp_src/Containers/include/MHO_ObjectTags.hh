@@ -17,13 +17,13 @@
 #include <sstream>
 
 #include "MHO_UUID.hh"
-#include "MHO_Taggable.hh"
+#include "MHO_Taggable2.hh"
 #include "MHO_ExtensibleElement.hh"
 
 namespace hops{
 
 
-class MHO_ObjectTags: public MHO_Taggable, public MHO_ExtensibleElement
+class MHO_ObjectTags: public MHO_Taggable2, public MHO_ExtensibleElement
 {
     public:
 
@@ -203,7 +203,7 @@ class MHO_ObjectTags: public MHO_Taggable, public MHO_ExtensibleElement
             total_size += sizeof(MHO_ClassVersion); //version number
             total_size += sizeof(uint64_t); //number of uuids 
             total_size += MHO_UUID::ByteSize()*(fObjectUUIDSet.size());
-            total_size += MHO_Taggable::GetSerializedSize();
+            total_size += MHO_Taggable2::GetSerializedSize();
             return total_size;
         }
 
@@ -235,7 +235,7 @@ class MHO_ObjectTags: public MHO_Taggable, public MHO_ExtensibleElement
                 break;
                 default:
                     msg_error("containers", 
-                        "error, cannot stream out MHO_Taggable object with unknown version: " 
+                        "error, cannot stream out MHO_Taggable2 object with unknown version: " 
                         << aData.GetVersion() << eom );
             }
             return s;
@@ -256,7 +256,7 @@ class MHO_ObjectTags: public MHO_Taggable, public MHO_ExtensibleElement
                 this->AddObjectUUID(tmp_uuid);
             }
             //now do the taggable element;
-            s >> static_cast< MHO_Taggable& >(*this);
+            s >> static_cast< MHO_Taggable2& >(*this);
         };
         
         template<typename XStream> void StreamOutData_V0(XStream& s) const
@@ -270,7 +270,7 @@ class MHO_ObjectTags: public MHO_Taggable, public MHO_ExtensibleElement
                 s << *it;
             }
             //now do the taggable element;
-            s << static_cast< const MHO_Taggable& >(*this);
+            s << static_cast< const MHO_Taggable2& >(*this);
         };
         
         virtual MHO_UUID DetermineTypeUUID() const override
