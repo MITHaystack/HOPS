@@ -85,15 +85,15 @@ int main(int argc, char** argv)
 
     //now add some labels to the x_axis
     size_t chan_width = 32;
-    for(size_t i=0; i < x_axis_size/chan_width; i++)
-    {
-        MHO_IntervalLabel label;
-        label.SetBounds(i*chan_width, (i+1)*chan_width);
-        std::stringstream ss;
-        ss << "x-chan-" << i;
-        label.Insert(std::string("x-channel"), ss.str() );
-        x_axis->InsertLabel(label);
-    }
+    // for(size_t i=0; i < x_axis_size/chan_width; i++)
+    // {
+    //     MHO_IntervalLabel label;
+    //     label.SetBounds(i*chan_width, (i+1)*chan_width);
+    //     std::stringstream ss;
+    //     ss << "x-chan-" << i;
+    //     label.Insert(std::string("x-channel"), ss.str() );
+    //     x_axis->InsertLabel(label);
+    // }
 
     auto* y_axis = &(std::get<YDIM>(*test));
     size_t y_axis_size = y_axis->GetDimension(0);
@@ -104,15 +104,15 @@ int main(int argc, char** argv)
 
     //now add some labels to the y_axis
     chan_width = 64;
-    for(size_t i=0; i < x_axis_size/chan_width; i++)
-    {
-        MHO_IntervalLabel label;
-        label.SetBounds(i*chan_width, (i+1)*chan_width);
-        std::stringstream ss;
-        ss << "y-chan-" << i;
-        label.Insert(std::string("y-channel"), ss.str() );
-        y_axis->InsertLabel(label);
-    }
+    // for(size_t i=0; i < x_axis_size/chan_width; i++)
+    // {
+    //     MHO_IntervalLabel label;
+    //     label.SetBounds(i*chan_width, (i+1)*chan_width);
+    //     std::stringstream ss;
+    //     ss << "y-chan-" << i;
+    //     label.Insert(std::string("y-channel"), ss.str() );
+    //     y_axis->InsertLabel(label);
+    // }
 
     auto* z_axis = &(std::get<ZDIM>(*test));
     size_t z_axis_size = z_axis->GetDimension(0);
@@ -133,38 +133,38 @@ int main(int argc, char** argv)
     }
 
     //lets find interval associated with some channel names
-    auto labels = x_axis->GetIntervalsWithKeyValue(std::string("x-channel"), std::string("x-chan-5"));
-    size_t xlow;
-    size_t xup;
-    for( auto iter = labels.begin(); iter != labels.end(); iter++)
-    {
-        std::cout<<"bounds for x-chan-5 are: ["<<iter->GetLowerBound()<<", "<<iter->GetUpperBound()<<") "<<std::endl;
-        xlow = iter->GetLowerBound();
-        xup = iter->GetUpperBound();
-    }
+    // auto labels = x_axis->GetIntervalsWithKeyValue(std::string("x-channel"), std::string("x-chan-5"));
+    // size_t xlow;
+    // size_t xup;
+    // for( auto iter = labels.begin(); iter != labels.end(); iter++)
+    // {
+    //     std::cout<<"bounds for x-chan-5 are: ["<<iter->GetLowerBound()<<", "<<iter->GetUpperBound()<<") "<<std::endl;
+    //     xlow = iter->GetLowerBound();
+    //     xup = iter->GetUpperBound();
+    // }
 
-    auto label2 = y_axis->GetFirstIntervalWithKeyValue(std::string("y-channel"), std::string("y-chan-1"));
-    size_t ylow;
-    size_t yup;
-    if( label2.IsValid() )
-    {
-        ylow = label2.GetLowerBound();
-        yup = label2.GetUpperBound();
-        std::cout<<"bounds for y-chan-1 are: ["<<ylow<<", "<<yup<<") "<<std::endl;
-    }
+    // auto label2 = y_axis->GetFirstIntervalWithKeyValue(std::string("y-channel"), std::string("y-chan-1"));
+    // size_t ylow;
+    // size_t yup;
+    // if( label2.IsValid() )
+    // {
+    //     ylow = label2.GetLowerBound();
+    //     yup = label2.GetUpperBound();
+    //     std::cout<<"bounds for y-chan-1 are: ["<<ylow<<", "<<yup<<") "<<std::endl;
+    // }
 
 
     //zero out values which happen to lie inside x-chan-5 and y-chan-3
-    for(size_t i=xlow; i<xup; i++)
-    {
-        for(size_t j=ylow; j<yup; j++)
-        {
-            for(size_t k=0; k<z_axis_size; k++)
-            {
-                (*test)(i,j,k) = 0.0;
-            }
-        }
-    }
+    // for(size_t i=xlow; i<xup; i++)
+    // {
+    //     for(size_t j=ylow; j<yup; j++)
+    //     {
+    //         for(size_t k=0; k<z_axis_size; k++)
+    //         {
+    //             (*test)(i,j,k) = 0.0;
+    //         }
+    //     }
+    // }
 
 
     std::cout<<"Total serializable size of test data = "<<test->GetSerializedSize()<<std::endl;

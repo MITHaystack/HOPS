@@ -87,7 +87,7 @@ set(EXTERN_HLIBS ${CMAKE_CURRENT_SOURCE_DIR}/extern)
 hops_require_cpp11()
 #hops_require_cpp17()
 #hops_require_cpp20()
-message(STATUS "Using compiler ${COMPILER_ID} ${COMPILER_VERSION} and standard c++${HOPS_CXX_STANDARD}")
+message(STATUS "Using compiler ${COMPILER_ID} ${COMPILER_VERSION}")
 
 option(EXTRA_WARNINGS "Turn on extra compiler warnings." OFF)
 if(EXTRA_WARNINGS)
@@ -239,7 +239,7 @@ endif()
 
 
 ################################################################################
-#find and configure perl if available 
+#find and configure perl if available
 find_package(Perl)
 if(PERL_FOUND)
     add_subdirectory(${PERLSOURCE})
@@ -248,6 +248,3 @@ endif(PERL_FOUND)
 
 #build docs
 add_subdirectory(doc)
-
-
-

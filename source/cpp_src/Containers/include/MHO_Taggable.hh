@@ -10,10 +10,11 @@
 *Description:
 */
 
-#include <cstdint>
+
 #include <string>
 #include <utility>
 
+#include "MHO_Types.hh"
 #include "MHO_MultiTypeMap.hh"
 #include "MHO_Serializable.hh"
 
@@ -103,7 +104,7 @@ class MHO_Taggable:
         {
             MHO_ClassVersion vers;
             s >> vers;
-            switch(vers) 
+            switch(vers)
             {
                 case 0:
                     aData.StreamInData_V0(s);
@@ -118,15 +119,15 @@ class MHO_Taggable:
 
         template<typename XStream> friend XStream& operator<<(XStream& s, const MHO_Taggable& aData)
         {
-            switch( aData.GetVersion() ) 
+            switch( aData.GetVersion() )
             {
                 case 0:
                     s << aData.GetVersion();
                     aData.StreamOutData_V0(s);
                 break;
                 default:
-                    msg_error("containers", 
-                        "error, cannot stream out MHO_Taggable object with unknown version: " 
+                    msg_error("containers",
+                        "error, cannot stream out MHO_Taggable object with unknown version: "
                         << aData.GetVersion() << eom );
             }
             return s;
