@@ -1,9 +1,9 @@
-#ifndef MHO_Taggable_HH__
-#define MHO_Taggable_HH__
+#ifndef MHO_Taggable2_HH__
+#define MHO_Taggable2_HH__
 
 /*
-*File: MHO_Taggable.hh
-*Class: MHO_Taggable
+*File: MHO_Taggable2.hh
+*Class: MHO_Taggable2
 *Author: J. Barrett
 *Email: barrettj@mit.edu
 *Date:
@@ -23,23 +23,22 @@ namespace hops
 {
 
 
-class MHO_Taggable:
-    public MHO_CommonLabelMap,
-    virtual public MHO_Serializable
+class MHO_Taggable2: virtual public MHO_Serializable
 {
     public:
 
-        MHO_Taggable():MHO_CommonLabelMap(){};
-        MHO_Taggable(const MHO_Taggable& copy):MHO_CommonLabelMap(copy){};
-        virtual ~MHO_Taggable(){};
+        MHO_Taggable2(){};
+        MHO_Taggable2(const MHO_Taggable2& copy)
+        {
+            fTags = copy.fTags;
+        };
+        
+        virtual ~MHO_Taggable2(){};
 
         bool HasKey(const std::string& key) const
         {
-            if(this->ContainsKey<char>(key)){return true;}
-            if(this->ContainsKey<bool>(key)){return true;}
-            if(this->ContainsKey<int>(key)){return true;}
-            if(this->ContainsKey<double>(key)){return true;}
-            if(this->ContainsKey<std::string>(key)){return true;}
+            auto it = fTags.find(key);
+            if(it != fTags.end()){return true;}
             return false;
         }
 
@@ -49,39 +48,31 @@ class MHO_Taggable:
             return HasKey(key);
         }
 
-        MHO_Taggable& operator=(const MHO_Taggable& rhs)
+        MHO_Taggable2& operator=(const MHO_Taggable2& rhs)
         {
             if(this != &rhs)
             {
-                this->CopyFrom<char>(rhs);
-                this->CopyFrom<bool>(rhs);
-                this->CopyFrom<int>(rhs);
-                this->CopyFrom<double>(rhs);
-                this->CopyFrom<std::string>(rhs);
+                fTags = rhs.fTags;
             }
             return *this;
         }
 
-        virtual void CopyTags(const MHO_Taggable& rhs)
+        virtual void CopyTags(const MHO_Taggable2& rhs)
         {
             if(this != &rhs)
             {
-                this->CopyFrom<char>(rhs);
-                this->CopyFrom<bool>(rhs);
-                this->CopyFrom<int>(rhs);
-                this->CopyFrom<double>(rhs);
-                this->CopyFrom<std::string>(rhs);
+                fTags = rhs.fTags;
             }
         }
 
         void ClearTags()
         {
-            this->Clear<char>();
-            this->Clear<bool>();
-            this->Clear<int>();
-            this->Clear<double>();
-            this->Clear<std::string>();
+            fTags.clear();
         }
+    
+    private:
+        
+        mho_json fTags;
 
     public: //MHO_Serializable interface
 
@@ -92,16 +83,19 @@ class MHO_Taggable:
             uint64_t total_size = 0;
             total_size += sizeof(MHO_ClassVersion); //version number
 
-            total_size += cm_aggregate_serializable_item_size<char>(*this);
-            total_size += cm_aggregate_serializable_item_size<bool>(*this);
-            total_size += cm_aggregate_serializable_item_size<int>(*this);
-            total_size += cm_aggregate_serializable_item_size<double>(*this);
-            total_size += cm_aggregate_serializable_item_size<std::string>(*this);
+            //compute the serialized size of fTags in CBOR encoding.
+            //this is a somewhat inconvenient waste of time to encode the data 
+            //just so we can find out the size (should we cache this serialized data?)
+            std::vector<std::uint8_t> data = mho_json::to_cbor(fTags);
+            uint64_t size = data.size();
+            
+            total_size += sizeof(uint64_t);//for the encoded data size parameter 
+            total_size += size*sizeof(std::uint8_t);
 
             return total_size;
         }
 
-        template<typename XStream> friend XStream& operator>>(XStream& s, MHO_Taggable& aData)
+        template<typename XStream> friend XStream& operator>>(XStream& s, MHO_Taggable2& aData)
         {
             MHO_ClassVersion vers;
             s >> vers;
@@ -118,7 +112,7 @@ class MHO_Taggable:
             return s;
         }
 
-        template<typename XStream> friend XStream& operator<<(XStream& s, const MHO_Taggable& aData)
+        template<typename XStream> friend XStream& operator<<(XStream& s, const MHO_Taggable2& aData)
         {
             switch( aData.GetVersion() )
             {
@@ -128,7 +122,7 @@ class MHO_Taggable:
                 break;
                 default:
                     msg_error("containers",
-                        "error, cannot stream out MHO_Taggable object with unknown version: "
+                        "error, cannot stream out MHO_Taggable2 object with unknown version: "
                         << aData.GetVersion() << eom );
             }
             return s;
@@ -138,20 +132,12 @@ class MHO_Taggable:
 
         template<typename XStream> void StreamInData_V0(XStream& s)
         {
-            cm_stream_importer<XStream, char>(s, *this);
-            cm_stream_importer<XStream, bool>(s, *this);
-            cm_stream_importer<XStream, int>(s, *this);
-            cm_stream_importer<XStream, double>(s, *this);
-            cm_stream_importer<XStream, std::string>(s, *this);
+            s >> fTags;
         };
 
         template<typename XStream> void StreamOutData_V0(XStream& s) const
         {
-            cm_stream_exporter<XStream, char>(s, *this);
-            cm_stream_exporter<XStream, bool>(s, *this);
-            cm_stream_exporter<XStream, int>(s, *this);
-            cm_stream_exporter<XStream, double>(s, *this);
-            cm_stream_exporter<XStream, std::string>(s, *this);
+            s << fTags;
         };
 
         virtual MHO_UUID DetermineTypeUUID() const override
@@ -168,7 +154,7 @@ class MHO_Taggable:
 
 }
 
-#endif /* end of include guard: MHO_Taggable */
+#endif /* end of include guard: MHO_Taggable2 */
 
 
 
@@ -184,12 +170,12 @@ class MHO_Taggable:
 
 
 
-// #ifndef MHO_Taggable_HH__
-// #define MHO_Taggable_HH__
+// #ifndef MHO_Taggable2_HH__
+// #define MHO_Taggable2_HH__
 // 
 // /*
-// *File: MHO_Taggable.hh
-// *Class: MHO_Taggable
+// *File: MHO_Taggable2.hh
+// *Class: MHO_Taggable2
 // *Author: J. Barrett
 // *Email: barrettj@mit.edu
 // *Date:
@@ -208,15 +194,15 @@ class MHO_Taggable:
 // {
 // 
 // 
-// class MHO_Taggable:
+// class MHO_Taggable2:
 //     public MHO_CommonLabelMap,
 //     virtual public MHO_Serializable
 // {
 //     public:
 // 
-//         MHO_Taggable():MHO_CommonLabelMap(){};
-//         MHO_Taggable(const MHO_Taggable& copy):MHO_CommonLabelMap(copy){};
-//         virtual ~MHO_Taggable(){};
+//         MHO_Taggable2():MHO_CommonLabelMap(){};
+//         MHO_Taggable2(const MHO_Taggable2& copy):MHO_CommonLabelMap(copy){};
+//         virtual ~MHO_Taggable2(){};
 // 
 //         bool HasKey(const std::string& key) const
 //         {
@@ -234,7 +220,7 @@ class MHO_Taggable:
 //             return HasKey(key);
 //         }
 // 
-//         MHO_Taggable& operator=(const MHO_Taggable& rhs)
+//         MHO_Taggable2& operator=(const MHO_Taggable2& rhs)
 //         {
 //             if(this != &rhs)
 //             {
@@ -247,7 +233,7 @@ class MHO_Taggable:
 //             return *this;
 //         }
 // 
-//         virtual void CopyTags(const MHO_Taggable& rhs)
+//         virtual void CopyTags(const MHO_Taggable2& rhs)
 //         {
 //             if(this != &rhs)
 //             {
@@ -286,7 +272,7 @@ class MHO_Taggable:
 //             return total_size;
 //         }
 // 
-//         template<typename XStream> friend XStream& operator>>(XStream& s, MHO_Taggable& aData)
+//         template<typename XStream> friend XStream& operator>>(XStream& s, MHO_Taggable2& aData)
 //         {
 //             MHO_ClassVersion vers;
 //             s >> vers;
@@ -303,7 +289,7 @@ class MHO_Taggable:
 //             return s;
 //         }
 // 
-//         template<typename XStream> friend XStream& operator<<(XStream& s, const MHO_Taggable& aData)
+//         template<typename XStream> friend XStream& operator<<(XStream& s, const MHO_Taggable2& aData)
 //         {
 //             switch( aData.GetVersion() )
 //             {
@@ -313,7 +299,7 @@ class MHO_Taggable:
 //                 break;
 //                 default:
 //                     msg_error("containers",
-//                         "error, cannot stream out MHO_Taggable object with unknown version: "
+//                         "error, cannot stream out MHO_Taggable2 object with unknown version: "
 //                         << aData.GetVersion() << eom );
 //             }
 //             return s;
@@ -353,4 +339,4 @@ class MHO_Taggable:
 // 
 // }
 // 
-// #endif /* end of include guard: MHO_Taggable */
+// #endif /* end of include guard: MHO_Taggable2 */
