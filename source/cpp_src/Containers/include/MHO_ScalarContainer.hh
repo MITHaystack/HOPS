@@ -16,7 +16,7 @@
 
 #include "MHO_Meta.hh"
 #include "MHO_Serializable.hh"
-#include "MHO_Taggable.hh"
+#include "MHO_Taggable2.hh"
 #include "MHO_NDArrayWrapper.hh"
 
 namespace hops
@@ -27,7 +27,7 @@ template< typename XValueType >
 class MHO_ScalarContainer:
     public MHO_ScalarContainerBase,
     public MHO_NDArrayWrapper< XValueType, 0>,
-    public MHO_Taggable
+    public MHO_Taggable2
 {
     public:
         MHO_ScalarContainer():
@@ -38,7 +38,7 @@ class MHO_ScalarContainer:
 
         MHO_ScalarContainer(MHO_ScalarContainer& obj):
             MHO_NDArrayWrapper<XValueType, 0>(obj),
-            MHO_Taggable(obj)
+            MHO_Taggable2(obj)
         {};
 
         virtual MHO_ClassVersion GetVersion() const override {return 0;};
@@ -53,7 +53,7 @@ class MHO_ScalarContainer:
             uint64_t total_size = 0;
             total_size += sizeof(MHO_ClassVersion); //version
             total_size += sizeof(XValueType); //contents
-            total_size += MHO_Taggable::GetSerializedSize();
+            total_size += MHO_Taggable2::GetSerializedSize();
             return total_size;
         }
 
@@ -107,13 +107,13 @@ class MHO_ScalarContainer:
         template<typename XStream> void StreamInData_V0(XStream& s)
         {
             s >> this->fData;
-            s >> static_cast< MHO_Taggable& >(*this);
+            s >> static_cast< MHO_Taggable2& >(*this);
         };
 
         template<typename XStream> void StreamOutData_V0(XStream& s) const
         {
             s << this->fData;
-            s << static_cast< const MHO_Taggable& >(*this);
+            s << static_cast< const MHO_Taggable2& >(*this);
         };
         
         virtual MHO_UUID DetermineTypeUUID() const override
@@ -142,7 +142,7 @@ MHO_ScalarContainer<std::string>::ComputeSerializedSize() const
     total_size += sizeof(MHO_ClassVersion); //version
     total_size += sizeof(uint64_t); //string size parameter
     total_size += fData.size(); //size of the string
-    total_size += MHO_Taggable::GetSerializedSize();
+    total_size += MHO_Taggable2::GetSerializedSize();
     return total_size;
 }
 
