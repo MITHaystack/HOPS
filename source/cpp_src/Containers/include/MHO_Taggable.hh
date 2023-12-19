@@ -100,7 +100,8 @@ class MHO_Taggable: virtual public MHO_Serializable
             {
                 mho_json test;
                 test["test"] = value;
-                if(test["test"].type() == fTags[key].type()) //this is a major KLUDGE, TODO FIXME
+                //TODO FIXME - this is a major KLUDGE (but needed to avoid exceptions)
+                if(test["test"].type() == fTags[key].type()) 
                 {
                     value = fTags[key].get<XValueType>();
                     return true;
