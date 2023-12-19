@@ -10,6 +10,7 @@ set (HOPS_TEST_LIBS
 
 set(SOURCE_BASENAMES
     TestJson
+    TestJson2
     TestVexParser
     TestJson2Vex
     TestExtractFreqTable

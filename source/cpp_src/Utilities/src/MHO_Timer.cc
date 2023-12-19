@@ -1,13 +1,17 @@
 #include "MHO_Timer.hh"
 
+#include <iostream>
+
 namespace hops{
 
 MHO_Timer::MHO_Timer():fName("generic_timer")
 {
+    fClockID = CLOCK_REALTIME; //default is wallclock
 }
 
 MHO_Timer::MHO_Timer(std::string name):fName(name)
 {
+    fClockID = CLOCK_REALTIME; //default is wallclock
 }
 
 MHO_Timer::~MHO_Timer(){}
@@ -78,7 +82,7 @@ double
 MHO_Timer::GetDurationAsDouble() const
 {
     timespec duration = GetTimeDifference(fStart, fStop);
-    double ret_val = duration.tv_sec;
+    double ret_val = (double) duration.tv_sec;
     ret_val += ( (double) duration.tv_nsec )*1e-9;
     return ret_val;
 }
