@@ -18,6 +18,10 @@ int main(int /*argc*/, char** /*argv*/)
     double x = 1.23423423e30;
 
     A->SetValue(x);
+    
+    
+    A->Insert("foo", 1.0);
+    A->Insert("bar", "baz");
 
     std::cout<<"stored valued =  "<<A->GetValue()<<std::endl;
 
@@ -60,6 +64,15 @@ int main(int /*argc*/, char** /*argv*/)
     {
         std::cout<<" error opening file to read"<<std::endl;
     }
+
+    //see if we can get the tag values:
+    double t1;
+    std::string t2;
+    bool ok = B->Retrieve("foo", t1);
+    ok = B->Retrieve("bar", t2);
+
+    std::cout<<"foo = "<<t1<<", bar = "<<t2<<std::endl;
+
 
     inter.Close();
 
