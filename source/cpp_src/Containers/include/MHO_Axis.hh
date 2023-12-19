@@ -61,59 +61,59 @@ class MHO_Axis:
         using MHO_VectorContainer<XValueType>::operator[];
 
 
-        // //index selection from matching axis values
-        // std::vector< std::size_t >
-        // SelectMatchingIndexes(const std::set<XValueType> label_values)
-        // {
-        //     std::vector< std::size_t > selected_idx;
-        //     //dumb brute force search, for each label value
-        //     //check all the axis elements for a match
-        //     for(auto label_it = label_values.begin(); label_it != label_values.end(); label_it++)
-        //     {
-        //         for(std::size_t i = 0; i < this->GetSize(); i++)
-        //         {
-        //             if( (*this)[i] == *label_it )
-        //             {
-        //                 selected_idx.push_back(i);
-        //             }
-        //         }
-        //     }
-        //     return selected_idx;
-        // }
+        //index selection from matching axis values
+        std::vector< std::size_t >
+        SelectMatchingIndexes(const std::set<XValueType> label_values)
+        {
+            std::vector< std::size_t > selected_idx;
+            //dumb brute force search, for each label value
+            //check all the axis elements for a match
+            for(auto label_it = label_values.begin(); label_it != label_values.end(); label_it++)
+            {
+                for(std::size_t i = 0; i < this->GetSize(); i++)
+                {
+                    if( (*this)[i] == *label_it )
+                    {
+                        selected_idx.push_back(i);
+                    }
+                }
+            }
+            return selected_idx;
+        }
 
-        // //index selection for matching axis values (given a single value)
-        // std::vector< std::size_t >
-        // SelectMatchingIndexes(const XValueType& label_value)
-        // {
-        //     std::vector< std::size_t > selected_idx;
-        //     //dumb brute force search, for a single label value
-        //     //check all the axis elements for a match
-        //     for(std::size_t i = 0; i < this->GetSize(); i++)
-        //     {
-        //         if( (*this)[i] == label_value )
-        //         {
-        //             selected_idx.push_back(i);
-        //         }
-        //     }
-        //     return selected_idx;
-        // }
+        //index selection for matching axis values (given a single value)
+        std::vector< std::size_t >
+        SelectMatchingIndexes(const XValueType& label_value)
+        {
+            std::vector< std::size_t > selected_idx;
+            //dumb brute force search, for a single label value
+            //check all the axis elements for a match
+            for(std::size_t i = 0; i < this->GetSize(); i++)
+            {
+                if( (*this)[i] == label_value )
+                {
+                    selected_idx.push_back(i);
+                }
+            }
+            return selected_idx;
+        }
 
 
-        // //index selection for first matching axis values (given a single value)
-        // bool
-        // SelectFirstMatchingIndex(const XValueType& label_value, std::size_t& result)
-        // {
-        //     result = 0;
-        //     for(std::size_t i = 0; i < this->GetSize(); i++)
-        //     {
-        //         if( (*this)[i] == label_value )
-        //         {
-        //             result = i;
-        //             return true;
-        //         }
-        //     }
-        //     return false;
-        // }
+        //index selection for first matching axis values (given a single value)
+        bool
+        SelectFirstMatchingIndex(const XValueType& label_value, std::size_t& result)
+        {
+            result = 0;
+            for(std::size_t i = 0; i < this->GetSize(); i++)
+            {
+                if( (*this)[i] == label_value )
+                {
+                    result = i;
+                    return true;
+                }
+            }
+            return false;
+        }
 
         //index selection from matching label values (e.g. gets the indices for
         //which column is tagged with "channel_label":"a" etc.)

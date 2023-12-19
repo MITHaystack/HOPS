@@ -460,7 +460,8 @@ class MHO_ContainerJSONConverter<MHO_ObjectTags>: public MHO_JSONConverter
             }
 
             mho_json jtags;
-            FillJSONFromCommonMap(obj, jtags);
+            // FillJSONFromCommonMap(obj, jtags);
+            FillJSONFromTaggable(obj, jtags);
             fJSON["tags"] = jtags;
         };
 
