@@ -25,23 +25,25 @@ add_subdirectory(${CPPSOURCE}/Vex2JSON) #library to convert ovex to json
 add_subdirectory(${CPPSOURCE}/Math) #the generic math library
 add_subdirectory(${CPPSOURCE}/Containers) #data container base classes and generic containers
 add_subdirectory(${CPPSOURCE}/Operators) #data operator base classes and generic operators
-add_subdirectory(${CPPSOURCE}/Calibration) #VLBI specific data containers and operators
-add_subdirectory(${CPPSOURCE}/Control) #library to parse old-fourfit control files
-add_subdirectory(${CPPSOURCE}/Initialization) #library to build objects/operators
-add_subdirectory(${CPPSOURCE}/Fringe) #library of fringe-fitting related functionality
-add_subdirectory(${CPPSOURCE}/MK4Interface) #interface to MK4 data types and import
 
 
-if(HOPS_USE_DIFXIO)
-add_subdirectory(${CPPSOURCE}/DiFXInterface)
-endif(HOPS_USE_DIFXIO)
+# add_subdirectory(${CPPSOURCE}/Calibration) #VLBI specific data containers and operators
+# add_subdirectory(${CPPSOURCE}/Control) #library to parse old-fourfit control files
+# add_subdirectory(${CPPSOURCE}/Initialization) #library to build objects/operators
+# add_subdirectory(${CPPSOURCE}/Fringe) #library of fringe-fitting related functionality
+# add_subdirectory(${CPPSOURCE}/MK4Interface) #interface to MK4 data types and import
 
-add_subdirectory(${CPPSOURCE}/Plugins/OpenCL) #opencl plugin
 
-if(HOPS_USE_PYBIND11)
-    add_subdirectory(${CPPSOURCE}/Plugins/PythonBindings) #python bindings
-endif(HOPS_USE_PYBIND11)
-
-add_subdirectory(${CPPSOURCE}/Plugins/Root) #CERN ROOT plugins
-
-add_subdirectory(${CPPSOURCE}/Applications) #applications
+# if(HOPS_USE_DIFXIO)
+# add_subdirectory(${CPPSOURCE}/DiFXInterface)
+# endif(HOPS_USE_DIFXIO)
+# 
+# add_subdirectory(${CPPSOURCE}/Plugins/OpenCL) #opencl plugin
+# 
+# if(HOPS_USE_PYBIND11)
+#     add_subdirectory(${CPPSOURCE}/Plugins/PythonBindings) #python bindings
+# endif(HOPS_USE_PYBIND11)
+# 
+# add_subdirectory(${CPPSOURCE}/Plugins/Root) #CERN ROOT plugins
+# 
+# add_subdirectory(${CPPSOURCE}/Applications) #applications

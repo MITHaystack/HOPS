@@ -15,15 +15,15 @@
 #include <map>
 #include <utility>
 #include <vector>
-#include <cstdint>
 
+#include "MHO_Types.hh"
 #include "MHO_Message.hh"
 #include "MHO_Serializable.hh"
 #include "MHO_UUID.hh"
 #include "MHO_UUIDGenerator.hh"
 #include "MHO_ContainerDictionary.hh"
 
-namespace hops 
+namespace hops
 {
 
 class MHO_ContainerStore
@@ -33,9 +33,9 @@ class MHO_ContainerStore
         MHO_ContainerStore(){};
         virtual ~MHO_ContainerStore(){Clear();};
 
-        //deletes all objects in the store 
+        //deletes all objects in the store
         void Clear();
-        
+
         //add an object with specific type
         template<typename XClassType> bool AddObject(XClassType* obj);
         //get an object of a specific type via object uuid (returns nullptr if not present)
@@ -50,7 +50,7 @@ class MHO_ContainerStore
         template < typename XClassType > MHO_UUID GetTypeUUID();
         //get the number of objects of a specific type
         template < typename XClassType > std::size_t GetNObjects() const;
-        
+
         //check if any object with the give object id is in the store
         bool IsObjectPresent(const MHO_UUID& obj_id) const;
         //get an object via uuid (returns nullptr if not present)
@@ -63,25 +63,25 @@ class MHO_ContainerStore
         void GetAllObjectUUIDsOfType(MHO_UUID type_id, std::vector< MHO_UUID >& obj_ids);
         //get total number of objects in store
         std::size_t GetNObjects() const {return fObjectsToIds.size();}
-        
+
         //provide the ability to attach a nicknames to object uuids
         //all nicknames must be unique
         //returns false if unsuccessful (object not present, or shortname already in use)
         bool SetShortName(const MHO_UUID& obj_id, const std::string& shortname);
-        
+
         //provide retrieval of an object uuid via nickname
         //returns zero'd uuid if none exist
         MHO_UUID GetObjectUUID(const std::string& shortname);
-        
+
         //provide retrival of object short name from uuid
         std::string GetShortName(const MHO_UUID& obj_id);
-        
+
         //get all short names currently in use
         void GetAllShortNames(std::vector< std::string >& shortnames);
-        
+
         //provides a way in which we can replace the nickname of an object
         void RenameObject(const std::string& current_shortname, const std::string& new_shortname);
-        
+
         //provide the ability to attach integer labels to object uuids
         //only a single integer label can be assigned per object uuid
         //returns false if object not present
@@ -89,7 +89,7 @@ class MHO_ContainerStore
 
         //returns zero if object or label is not present
         uint32_t GetObjectLabel(const MHO_UUID& obj_id);
-        
+
         void DumpShortNamesToIds()
         {
             for(auto it = fShortNameToIds.begin(); it != fShortNameToIds.end(); it++)
@@ -97,40 +97,40 @@ class MHO_ContainerStore
                 std::cout<<it->first<<" : "<<it->second.as_string()<<std::endl;
             }
         }
-        
+
 
     protected:
-        
+
         using key_pair = std::pair< MHO_UUID, MHO_UUID >;
 
         //object dictionary...currently we only have one dictionary implementation
-        //however, we may in the future want to allow the user to pass a custom dictionary implementation 
-        //if they have additional classes they want to serialize which are not already supported 
+        //however, we may in the future want to allow the user to pass a custom dictionary implementation
+        //if they have additional classes they want to serialize which are not already supported
         MHO_ContainerDictionary fDictionary;
-        
+
         //all objects are stored as pointers to the base-class MHO_Serializable
         //they are cast to the underlying type specified by the type id upon retrieval
-        
+
         //the key pair is <type_uuid, obj_id>, and the value is a pointer to the object
         std::map< key_pair, MHO_Serializable* > fIdsToObjects;
-        
+
         //the key is a pointer to an object, and the value is a pair of <type_uuid, obj_id>
         std::map< MHO_Serializable*, key_pair > fObjectsToIds;
-        
-        //maps string names to object uuids 
+
+        //maps string names to object uuids
         std::map< std::string, MHO_UUID > fShortNameToIds;
         std::set< std::string > fShortNameSet;
-        //maps uuid to integer label 
+        //maps uuid to integer label
         std::map< MHO_UUID, uint32_t > fIdsToLabels;
-        
-        
-        
-        
+
+
+
+
 };
 
 
 template<typename XClassType>
-bool 
+bool
 MHO_ContainerStore::AddObject(XClassType* obj)
 {
     if(obj == nullptr){return false;}
@@ -141,22 +141,22 @@ MHO_ContainerStore::AddObject(XClassType* obj)
 
     MHO_UUID obj_id = obj->GetObjectUUID();
     MHO_UUID type_id = obj->GetTypeUUID();
-    
+
     key_pair kp;
     kp.first = type_id;
     kp.second = obj_id;
-    
+
     fIdsToObjects[kp] = ptr;
     fObjectsToIds[ptr] = kp;
     return true;
 }
- 
+
 template < typename XClassType >
 XClassType*
 MHO_ContainerStore::GetObject(const MHO_UUID& obj_id)
 {
     MHO_UUID type_id = fDictionary.GetUUIDFor<XClassType>();
-    
+
     key_pair kp;
     kp.first = type_id;
     kp.second = obj_id;
@@ -171,8 +171,8 @@ MHO_ContainerStore::GetObject(const MHO_UUID& obj_id)
     return ptr;
 }
 
-template < typename XClassType > 
-XClassType* 
+template < typename XClassType >
+XClassType*
 MHO_ContainerStore::GetObject(const std::string& shortname)
 {
     XClassType* ptr = nullptr;
@@ -220,21 +220,21 @@ MHO_ContainerStore::DeleteObject(XClassType* obj_ptr)
 {
     MHO_Serializable* ptr = static_cast<MHO_Serializable*>(obj_ptr);
     if(ptr == nullptr){return false;}
-    
+
     auto it = fObjectsToIds.find(ptr);
     if(it == fObjectsToIds.end()){return false;}
-    
+
     key_pair kp = it->second;
     MHO_UUID obj_id = kp.second;
     auto it2 = fIdsToObjects.find(kp);
     if(it2 == fIdsToObjects.end()){return false;}
-    
+
     //remove entries related to this object
     fObjectsToIds.erase(it);
     fIdsToObjects.erase(it2);
     delete obj_ptr;
-    
-    //remove labels and short name associated with this object 
+
+    //remove labels and short name associated with this object
     std::string shortname = "";
     for(auto it = fShortNameToIds.begin(); it != fShortNameToIds.end(); it++)
     {
@@ -249,7 +249,7 @@ MHO_ContainerStore::DeleteObject(XClassType* obj_ptr)
 
     auto label_it = fIdsToLabels.find(obj_id);
     if(label_it != fIdsToLabels.end()){fIdsToLabels.erase(label_it);}
-    
+
     return true;
 }
 
@@ -276,7 +276,7 @@ MHO_ContainerStore::GetNObjects() const
     return count;
 }
 
-inline void 
+inline void
 MHO_ContainerStore::RenameObject(const std::string& current_shortname, const std::string& new_shortname)
 {
     MHO_UUID obj_uuid = GetObjectUUID(current_shortname);
