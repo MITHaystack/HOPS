@@ -157,7 +157,7 @@ class MHO_IndexLabelInterface
             if(fIndexLabelObjectPtr != nullptr){fCurrentSize = fIndexLabelObjectPtr->size();}
         };
     
-        void SetIndexLabelObject(mho_json::array_t* obj){fIndexLabelObjectPtr = obj;}
+        void SetIndexLabelObject(mho_json* obj){fIndexLabelObjectPtr = obj;}
         
     public:
         
@@ -172,7 +172,7 @@ class MHO_IndexLabelInterface
                 fCurrentSize = fIndexLabelObjectPtr->size();
                 if(fCurrentSize != size)
                 {
-                    fIndexLabelObjectPtr->reserve(size);
+                    fIndexLabelObjectPtr->get_ptr<mho_json::array_t*>()->reserve(size);
                     for(std::size_t i=0;i<size;i++) //fill with empty entries
                     {
                         mho_json empty;
@@ -275,7 +275,7 @@ class MHO_IndexLabelInterface
         
         
         std::size_t fCurrentSize;
-        mho_json::array_t* fIndexLabelObjectPtr; //array of mho_json objects holding key:value pairs
+        mho_json* fIndexLabelObjectPtr; //array of mho_json objects holding key:value pairs
         mho_json fDummy;
 };
 
