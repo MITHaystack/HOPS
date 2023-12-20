@@ -12,6 +12,7 @@ set (CONTAINER_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_IntervalLabel.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_IntervalLabelTree.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_Taggable.hh
+    # ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_IndexLabelInterface.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ObjectTags.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_NDArrayWrapper.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_NDArrayWrapper_0.hh

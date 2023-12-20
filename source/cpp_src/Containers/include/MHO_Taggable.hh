@@ -22,32 +22,38 @@ namespace hops
 {
 
 
-class MHO_Taggable: virtual public MHO_Serializable
+class MHO_Taggable:
+    public MHO_JSONWrapper,
+    virtual public MHO_Serializable
 {
     public:
 
-        MHO_Taggable(){};
+        MHO_Taggable()
+        {
+            this->SetObject(&fTags); //MHO_JSONWrapper
+        };
         MHO_Taggable(const MHO_Taggable& copy)
         {
             fTags = copy.fTags;
+            this->SetObject(&fTags);
         };
         
         virtual ~MHO_Taggable(){};
 
         //old MHO_Taggable interface
 
-        bool HasKey(const std::string& key) const
-        {
-            auto it = fTags.find(key);
-            if(it != fTags.end()){return true;}
-            return false;
-        }
-
-        bool HasKey(const char* char_key) const
-        {
-            std::string key(char_key);
-            return HasKey(key);
-        }
+        // bool HasKey(const std::string& key) const
+        // {
+        //     auto it = fTags.find(key);
+        //     if(it != fTags.end()){return true;}
+        //     return false;
+        // }
+        // 
+        // bool HasKey(const char* char_key) const
+        // {
+        //     std::string key(char_key);
+        //     return HasKey(key);
+        // }
 
         MHO_Taggable& operator=(const MHO_Taggable& rhs)
         {
@@ -72,69 +78,69 @@ class MHO_Taggable: virtual public MHO_Serializable
         }
     
         //end of old MHO_Taggable interface 
-        
-        //start of multi-type map interface 
 
+        //start of multi-type map interface 
 
         std::size_t MapSize() const {return fTags.size(); }
 
-        template< typename XValueType> 
-        void Insert(const std::string& key, const XValueType& value)
-        {
-            fTags[key] = value;//allow replacement of values
-        }
+        // template< typename XValueType> 
+        // void Insert(const std::string& key, const XValueType& value)
+        // {
+        //     fTags[key] = value;//allow replacement of values
+        // }
+        // 
+        // void Clear()
+        // {
+        //     fTags.clear();
+        // }
 
-        void Clear()
-        {
-            fTags.clear();
-        }
+        // template< typename XValueType> 
+        // bool Retrieve(const std::string& key, XValueType& value) const
+        // {
+        //     auto iter = fTags.find(key);
+        //     if(iter == fTags.end()){return false;}
+        //     else
+        //     {
+        //         mho_json test;
+        //         test["test"] = value;
+        //         //TODO FIXME - this is a major KLUDGE 
+        //         //but needed to avoid exceptions when key is present, but value type is different
+        //         if(test["test"].type() == fTags[key].type()) 
+        //         {
+        //             value = fTags[key].get<XValueType>();
+        //             return true;
+        //         }
+        //         else 
+        //         {
+        //             return false;
+        //         }
+        //     }
+        // }
 
-        template< typename XValueType> 
-        bool Retrieve(const std::string& key, XValueType& value) const
-        {
-            auto iter = fTags.find(key);
-            if(iter == fTags.end()){return false;}
-            else
-            {
-                mho_json test;
-                test["test"] = value;
-                //TODO FIXME - this is a major KLUDGE (but needed to avoid exceptions)
-                if(test["test"].type() == fTags[key].type()) 
-                {
-                    value = fTags[key].get<XValueType>();
-                    return true;
-                }
-                else 
-                {
-                    return false;
-                }
-            }
-        }
+        // std::vector<std::string> DumpKeys() const
+        // {
+        //     std::vector< std::string > keys;
+        //     for(auto iter = fTags.begin(); iter != fTags.end(); iter++)
+        //     {
+        //         keys.push_back(iter.key());
+        //     }
+        //     return keys;
+        // }
+        // 
+        // void DumpMap() const
+        // {
+        //     for(auto iter = fTags.begin(); iter != fTags.end(); iter++)
+        //     {
+        //         std::cout<<iter.key()<<" : "<<iter.value()<<std::endl;
+        //     }
+        // }
 
-        std::vector<std::string> DumpKeys() const
-        {
-            std::vector< std::string > keys;
-            for(auto iter = fTags.begin(); iter != fTags.end(); iter++)
-            {
-                keys.push_back(iter.key());
-            }
-            return keys;
-        }
-
-        void DumpMap() const
-        {
-            for(auto iter = fTags.begin(); iter != fTags.end(); iter++)
-            {
-                std::cout<<iter.key()<<" : "<<iter.value()<<std::endl;
-            }
-        }
-
-        bool ContainsKey(const std::string& key) const
-        {
-            auto iter = fTags.find(key);
-            if(iter == fTags.end()){return false;}
-            else{return true;}
-        }
+        // bool ContainsKey(const std::string& key) const
+        // {
+        //     auto iter = fTags.find(key);
+        //     if(iter == fTags.end()){return false;}
+        //     else{return true;}
+        // }
 
         void CopyFrom(const MHO_Taggable& copy_from_obj)
         {
@@ -154,10 +160,11 @@ class MHO_Taggable: virtual public MHO_Serializable
             }
         }
 
-        
         mho_json GetDataAsJSON() const {return fTags;}
         //end of multi-type map interface 
     
+        //declare the friend class which extends this interface 
+        // friend class MHO_IndexLabelInterface;
     
     private:
         
