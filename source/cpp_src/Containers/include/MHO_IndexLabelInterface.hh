@@ -94,7 +94,8 @@ class MHO_IndexLabelInterface:
         {
             for(std::size_t i=0; i<fCurrentSize; i++)
             {
-                for(std::size_t i=0;i<size;i++) //fill with empty entries
+                //fill with empty entries, that only contain the index value
+                for(std::size_t i=0;i<size;i++) 
                 {
                     mho_json empty;
                     empty["index"] = i;
