@@ -6,18 +6,19 @@ using mho_json = nlohmann::json;
 using mho_ordered_json = nlohmann::ordered_json;
 namespace nl=nlohmann;
 
-#include <iostream>
+#include "MHO_Message.hh"
 
 namespace hops
 {
 
+
+//constructor is protected
+//this class is only intended to provide an interface that derived classes may inherit
 class MHO_JSONWrapper
 {
-    //this class is only intended to provide an interface for derived classes to inherit
     protected:
 
         MHO_JSONWrapper():fObject(nullptr){};
-        MHO_JSONWrapper(mho_json* obj):fObject(obj){};
         MHO_JSONWrapper(const MHO_JSONWrapper& copy)
         {
             fObject = copy.fObject;
@@ -129,6 +130,161 @@ class MHO_JSONWrapper
             else{return true;}
         }
 };
+
+
+
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+
+//constructor is protected
+//this class is only intended to provide an interface that derived classes may inherit
+//this interface is to enforce a specific access pattern associated with modifying 
+//meta data attached to a vector/axis like object that is in the form of a mho_json::array_t
+class MHO_IndexLabelInterface
+{
+
+    protected:
+        
+        MHO_IndexLabelInterface():fIndexLabelObjectPtr(nullptr)
+        {
+            fCurrentSize = 0;
+            fDummy["index"] = -1; //dummy object for invalid returns, always has an invalid index
+        };
+        
+        MHO_IndexLabelInterface(const MHO_IndexLabelInterface& copy)
+        {
+            fIndexLabelObjectPtr = copy.fIndexLabelObjectPtr;
+            if(fIndexLabelObjectPtr != nullptr){fCurrentSize = fIndexLabelObjectPtr->size();}
+        };
+    
+        void SetIndexLabelObject(mho_json::array_t* obj){fIndexLabelObjectPtr = obj;}
+        
+    public:
+        
+        virtual ~MHO_IndexLabelInterface(){};
+        
+        std::size_t GetIndexLabelSize() const {return fCurrentSize;}
+
+        virtual void ResizeIndexLabels(std::size_t size)
+        {
+            if(fIndexLabelObjectPtr != nullptr)
+            {
+                fCurrentSize = fIndexLabelObjectPtr->size();
+                if(fCurrentSize != size)
+                {
+                    fIndexLabelObjectPtr->reserve(size);
+                    for(std::size_t i=0;i<size;i++) //fill with empty entries
+                    {
+                        mho_json empty;
+                        empty["index"] = i;
+                        (*fIndexLabelObjectPtr)[i] = empty;
+                    }
+                    fCurrentSize = size;
+                }
+            }
+        }
+
+        template< typename XValueType >
+        void InsertIndexLabelKeyValue(std::size_t index, const std::string& key, const XValueType& value)
+        {
+            if(index < fCurrentSize)
+            {
+                (*fIndexLabelObjectPtr)[index][key] = value;
+            }
+            else
+            {
+                msg_warn("containers", "cannot insert key value pair for index: "<< index << " for array of size: "<< fCurrentSize << eom);
+            }
+        }
+        
+        template< typename XValueType >
+        bool RetrieveIndexLabelKeyValue(std::size_t index, const std::string& key, const XValueType& value) const
+        {
+            if(index < fCurrentSize)
+            {
+                mho_json test;
+                test["test"] = value;
+                //TODO FIXME - this is a major KLUDGE 
+                //but needed to avoid exceptions when key is present, but value type is different
+                if(test["test"].type() == (*fIndexLabelObjectPtr)[index][key].type()) 
+                {
+                    XValueType label_value = (*fIndexLabelObjectPtr)[index][key].get<XValueType>();
+                    value = label_value;
+                    return true;
+                }
+            }
+            else
+            {
+                msg_warn("containers", "cannot insert key value pair for index: "<< index << " for array of size: "<< fCurrentSize << eom);
+            }
+            return false;
+        }
+
+        //get a reference to the dictionary object associated with this index
+        mho_json& GetLabelObject(std::size_t index)
+        {
+            if(index < fCurrentSize)
+            {
+                return (*fIndexLabelObjectPtr)[index];
+            }
+            else
+            {
+                msg_error("containers", "cannot access label object for index: "<< index << ", array size is only: "<< fCurrentSize << eom);
+                return fDummy;
+            }
+        }
+        
+        //get a vector of indexes which contain a key with the same name
+        std::vector< std::size_t > GetMatchingIndexes(std::string& key)
+        {
+            std::vector<std::size_t> idx;
+            for(std::size_t i=0; i<fCurrentSize; i++)
+            {
+                if((*fIndexLabelObjectPtr)[i].contains(key))
+                {
+                    idx.push_back(i);
+                }
+            }
+            return idx;
+        }
+
+        //get a vector of indexes which contain a key with a value which matches the passed value
+        template< typename XValueType >
+        std::vector< std::size_t > GetMatchingIndexes(std::string& key, const XValueType& value)
+        {
+            std::vector<std::size_t> idx;
+            for(std::size_t i=0; i<fCurrentSize; i++)
+            {
+                if((*fIndexLabelObjectPtr)[i].contains(key))
+                {
+                    mho_json test;
+                    test["test"] = value;
+                    //TODO FIXME - this is a major KLUDGE 
+                    //but needed to avoid exceptions when key is present, but value type is different
+                    if(test["test"].type() == (*fIndexLabelObjectPtr)[i][key].type()) 
+                    {
+                        XValueType label_value = (*fIndexLabelObjectPtr)[i][key].get<XValueType>();
+                        if(label_value == value){idx.push_back(i);};
+                    }
+                }
+            }
+            return idx;
+        }
+        
+    private:
+        
+        
+        std::size_t fCurrentSize;
+        mho_json::array_t* fIndexLabelObjectPtr; //array of mho_json objects holding key:value pairs
+        mho_json fDummy;
+};
+
+
+
+
+
+
+
 
 
 }//end namespace
