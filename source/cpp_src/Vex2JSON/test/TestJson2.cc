@@ -41,6 +41,7 @@ int main(int argc, char** argv)
     }
     
     j2["label_test"] = mho_json::array();
+    std::cout<<"label_test size = "<<j2["label_test"].size()<<std::endl;
     //.reserve(100);
     j2["label_test"].get_ptr<json::array_t*>()->reserve(100);
     for(std::size_t i=0;i<100;i++)
@@ -49,8 +50,11 @@ int main(int argc, char** argv)
         empty["index"] = i;
         j2["label_test"][i] = empty;
     }
-
+    
     std::cout<< j2.dump(2) <<std::endl;
+
+
+
 
     MHO_Timer tmr;
     
