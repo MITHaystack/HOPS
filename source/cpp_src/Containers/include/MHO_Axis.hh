@@ -13,6 +13,7 @@
 #include <set>
 
 #include "MHO_Meta.hh"
+#include "MHO_JSONHeaderWrapper.hh"
 #include "MHO_VectorContainer.hh"
 // #include "MHO_Interval.hh"
 // #include "MHO_IntervalLabel.hh"
@@ -25,33 +26,60 @@ namespace hops
 template< typename XValueType >
 class MHO_Axis:
     public MHO_AxisBase,
-    public MHO_VectorContainer< XValueType >//,
-    // public MHO_IntervalLabelTree
+    public MHO_VectorContainer< XValueType >,
+    public MHO_IndexLabelInterface
 {
 
     public:
         MHO_Axis():
-            MHO_VectorContainer<XValueType>()//,
-            // MHO_IntervalLabelTree()
-        {};
+            MHO_VectorContainer<XValueType>(),
+            MHO_IndexLabelInterface()
+        {
+            //create and set the pointer to the index label object
+            this->fTags["index_labels"] = mho_json::array();
+            //this->SetIndexLabelObject( this->fTags["index_labels"].get_ptr<mho_json::array_t*>() );
+            this->SetIndexLabelObject( &(this->fTags["index_labels"]) );
+        };
 
 
         MHO_Axis(std::size_t dim):
-            MHO_VectorContainer< XValueType >(dim)//,
-            // MHO_IntervalLabelTree()
-        {};
+            MHO_VectorContainer< XValueType >(dim),
+            MHO_IndexLabelInterface()
+        {
+            //create and set the pointer to the index label object
+            this->fTags["index_labels"] = mho_json::array();
+            this->SetIndexLabelObject( &(this->fTags["index_labels"]) ); // this->fTags["index_labels"].get_ptr<mho_json::array_t*>() );
+            this->ResizeIndexLabels(dim);
+        };
 
         //copy constructor
         MHO_Axis(const MHO_Axis& obj):
-            MHO_VectorContainer< XValueType >(obj)//,
-            // MHO_IntervalLabelTree(obj)
-        {};
+            MHO_VectorContainer< XValueType >(obj),
+            MHO_IndexLabelInterface()
+        {
+            this->SetIndexLabelObject( &(this->fTags["index_labels"]) );// this->fTags["index_labels"].get_ptr<mho_json::array_t*>() );
+        };
 
 
         virtual ~MHO_Axis(){};
 
         //have to make base class functions visible
-        using MHO_VectorContainer<XValueType>::Resize;
+        
+        //resize functions
+        virtual void Resize(const std::size_t* dim)
+        {
+            MHO_VectorContainer<XValueType>::Resize(dim);
+            MHO_IndexLabelInterface::ResizeIndexLabels(dim[0]);
+        }
+
+        virtual void Resize(std::size_t dim)
+        {
+             MHO_VectorContainer<XValueType>::Resize(&dim);
+             MHO_IndexLabelInterface::ResizeIndexLabels(dim);
+        }
+        
+        
+        //using MHO_VectorContainer<XValueType>::Resize;
         using MHO_VectorContainer<XValueType>::GetData;
         using MHO_VectorContainer<XValueType>::GetSize;
         using MHO_VectorContainer<XValueType>::GetDimensions;
@@ -193,7 +221,6 @@ class MHO_Axis:
             uint64_t total_size = 0;
             total_size += sizeof(MHO_ClassVersion);
             total_size += MHO_VectorContainer< XValueType >::GetSerializedSize();
-            //total_size += MHO_IntervalLabelTree::GetSerializedSize();
             return total_size;
         }
 
@@ -204,7 +231,11 @@ class MHO_Axis:
             if(&rhs != this)
             {
                 MHO_VectorContainer<XValueType>::Copy(rhs); //copy the 1-d array
-                //MHO_IntervalLabelTree::CopyIntervalLabels(rhs); //copy interval tree
+                //make sure we point to the correct index_labels object
+                if(this->fTags.contains("index_labels"))
+                {
+                    this->SetIndexLabelObject( &(this->fTags["index_labels"] ) );
+                }
             }
         }
 
@@ -252,13 +283,11 @@ class MHO_Axis:
         template<typename XStream> void StreamInData_V0(XStream& s)
         {
             s >> static_cast< MHO_VectorContainer< XValueType >& >(*this);
-            //s >> static_cast< MHO_IntervalLabelTree& >(*this);
         }
 
         template<typename XStream> void StreamOutData_V0(XStream& s) const
         {
             s << static_cast< const MHO_VectorContainer< XValueType >& >(*this);
-            //s << static_cast< const MHO_IntervalLabelTree& >(*this);
         }
 
         virtual MHO_UUID DetermineTypeUUID() const override

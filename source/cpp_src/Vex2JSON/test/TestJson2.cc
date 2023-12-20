@@ -4,13 +4,12 @@
 #include "MHO_Timer.hh"
 
 #include "MHO_JSONHeaderWrapper.hh"
-using nlohmann::json;
 
 using namespace hops;
 
 int main(int argc, char** argv)
 {
-    json j2 = {
+    mho_json j2 = {
       {"pi", 3.141},
       {"happy", true},
       {"name", "Niels"},
@@ -43,7 +42,7 @@ int main(int argc, char** argv)
     j2["label_test"] = mho_json::array();
     std::cout<<"label_test size = "<<j2["label_test"].size()<<std::endl;
     //.reserve(100);
-    j2["label_test"].get_ptr<json::array_t*>()->reserve(100);
+    j2["label_test"].get_ptr<mho_json::array_t*>()->reserve(100);
     for(std::size_t i=0;i<100;i++)
     {
         mho_json empty;
@@ -60,28 +59,28 @@ int main(int argc, char** argv)
     
     tmr.Start();
     // serialize to BSON
-    std::vector<std::uint8_t> v_bson = json::to_bson(j2);
+    std::vector<std::uint8_t> v_bson = mho_json::to_bson(j2);
     tmr.Stop();
     
     std::cout<<"time to encode to bson: = "<<tmr.GetDurationAsDouble()<<std::endl;
     std::cout<<"size (bytes) "<<v_bson.size()<<std::endl;
 
     tmr.Start();
-    json j_from_bson = json::from_bson(v_bson);
+    mho_json j_from_bson = mho_json::from_bson(v_bson);
     tmr.Stop();
     
     std::cout<<"time to decode to bson: = "<<tmr.GetDurationAsDouble()<<std::endl;
 
     // serialize to CBOR
     tmr.Start();
-    std::vector<std::uint8_t> v_cbor = json::to_cbor(j2);
+    std::vector<std::uint8_t> v_cbor = mho_json::to_cbor(j2);
     tmr.Stop();
     
     std::cout<<"time to encode to cbor: = "<<tmr.GetDurationAsDouble()<<std::endl;
     std::cout<<"size (bytes) "<<v_cbor.size()<<std::endl;
     
     tmr.Start();
-    json j_from_cbor = json::from_cbor(v_cbor);
+    mho_json j_from_cbor = mho_json::from_cbor(v_cbor);
     tmr.Stop();
     
     std::cout<<"time to decode to cbor: = "<<tmr.GetDurationAsDouble()<<std::endl;
