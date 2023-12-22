@@ -27,44 +27,58 @@ template< typename XValueType >
 class MHO_Axis:
     public MHO_AxisBase,
     public MHO_VectorContainer< XValueType >,
-    public MHO_IndexLabelInterface
+    public MHO_IndexLabelInterface,
+    public MHO_IntervalLabelInterface
 {
 
     public:
         MHO_Axis():
             MHO_VectorContainer<XValueType>(),
-            MHO_IndexLabelInterface()
+            MHO_IndexLabelInterface(),
+            MHO_IntervalLabelInterface()
         {
             //create and set the pointer to the index label object
             this->fTags["index_labels"] = mho_json::array();
-            //this->SetIndexLabelObject( this->fTags["index_labels"].get_ptr<mho_json::array_t*>() );
             this->SetIndexLabelObject( &(this->fTags["index_labels"]) );
+
+            //create and set the pointer to the interval label object
+            mho_json tmp;
+            this->fTags["interval_labels"] = tmp;
+            this->SetIntervalLabelObject( &(this->fTags["interval_labels"]) );
         };
 
 
         MHO_Axis(std::size_t dim):
             MHO_VectorContainer< XValueType >(dim),
-            MHO_IndexLabelInterface()
+            MHO_IndexLabelInterface(),
+            MHO_IntervalLabelInterface()
         {
             //create and set the pointer to the index label object
             this->fTags["index_labels"] = mho_json::array();
-            this->SetIndexLabelObject( &(this->fTags["index_labels"]) ); // this->fTags["index_labels"].get_ptr<mho_json::array_t*>() );
+            this->SetIndexLabelObject( &(this->fTags["index_labels"]) );
             this->ResizeIndexLabels(dim);
+
+            //create and set the pointer to the interval label object
+            mho_json tmp;
+            this->fTags["interval_labels"] = tmp;
+            this->SetIntervalLabelObject( &(this->fTags["interval_labels"]) );
         };
 
         //copy constructor
         MHO_Axis(const MHO_Axis& obj):
             MHO_VectorContainer< XValueType >(obj),
-            MHO_IndexLabelInterface()
+            MHO_IndexLabelInterface(),
+            MHO_IntervalLabelInterface()
         {
-            this->SetIndexLabelObject( &(this->fTags["index_labels"]) );// this->fTags["index_labels"].get_ptr<mho_json::array_t*>() );
+            this->SetIndexLabelObject( &(this->fTags["index_labels"]) );
+            this->SetIntervalLabelObject( &(this->fTags["interval_labels"]) );
         };
 
 
         virtual ~MHO_Axis(){};
 
         //have to make base class functions visible
-        
+
         //resize functions
         virtual void Resize(const std::size_t* dim)
         {
@@ -77,8 +91,8 @@ class MHO_Axis:
              MHO_VectorContainer<XValueType>::Resize(&dim);
              MHO_IndexLabelInterface::ResizeIndexLabels(dim);
         }
-        
-        
+
+
         //using MHO_VectorContainer<XValueType>::Resize;
         using MHO_VectorContainer<XValueType>::GetData;
         using MHO_VectorContainer<XValueType>::GetSize;
