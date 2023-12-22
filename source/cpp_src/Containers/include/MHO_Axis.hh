@@ -42,8 +42,7 @@ class MHO_Axis:
             this->SetIndexLabelObject( &(this->fTags["index_labels"]) );
 
             //create and set the pointer to the interval label object
-            mho_json tmp;
-            this->fTags["interval_labels"] = tmp;
+            this->fTags["interval_labels"] = mho_json();
             this->SetIntervalLabelObject( &(this->fTags["interval_labels"]) );
         };
 
@@ -59,8 +58,7 @@ class MHO_Axis:
             this->ResizeIndexLabels(dim);
 
             //create and set the pointer to the interval label object
-            mho_json tmp;
-            this->fTags["interval_labels"] = tmp;
+            this->fTags["interval_labels"] = mho_json();
             this->SetIntervalLabelObject( &(this->fTags["interval_labels"]) );
         };
 
