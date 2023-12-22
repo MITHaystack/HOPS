@@ -7,6 +7,7 @@ using mho_ordered_json = nlohmann::ordered_json;
 namespace nl=nlohmann;
 
 #include "MHO_Message.hh"
+#include "MHO_Tokenizer.hh"
 
 namespace hops
 {
@@ -23,15 +24,15 @@ class MHO_JSONWrapper
         {
             fObject = copy.fObject;
         };
-        
+
         void SetObject(mho_json* obj){fObject = obj;}
-        
+
     private:
-        
+
         mho_json* fObject;
 
     public:
-        
+
         virtual ~MHO_JSONWrapper(){};
 
         bool HasKey(const std::string& key) const
@@ -54,26 +55,26 @@ class MHO_JSONWrapper
             return *this;
         }
 
-        //start of multi-type map interface 
-        std::size_t MapSize() const 
+        //start of multi-type map interface
+        std::size_t MapSize() const
         {
             if(fObject != nullptr){return fObject->size();}
             return 0;
         }
-        
+
         void Clear()
         {
             if(fObject != nullptr){fObject->clear();};
         }
 
-        template< typename XValueType> 
+        template< typename XValueType>
         void Insert(const std::string& key, const XValueType& value)
         {
             //allow replacement of values
             if(fObject != nullptr){(*fObject)[key] = value;}
         }
 
-        template< typename XValueType> 
+        template< typename XValueType>
         bool Retrieve(const std::string& key, XValueType& value) const
         {
             if(fObject == nullptr){return false;}
@@ -83,14 +84,14 @@ class MHO_JSONWrapper
             {
                 mho_json test;
                 test["test"] = value;
-                //TODO FIXME - this is a major KLUDGE 
+                //TODO FIXME - this is a major KLUDGE
                 //but needed to avoid exceptions when key is present, but value type is different
-                if(test["test"].type() == (*fObject)[key].type()) 
+                if(test["test"].type() == (*fObject)[key].type())
                 {
                     value = (*fObject)[key].get<XValueType>();
                     return true;
                 }
-                else 
+                else
                 {
                     return false;
                 }
@@ -133,36 +134,55 @@ class MHO_JSONWrapper
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
 //constructor is protected
 //this class is only intended to provide an interface that derived classes may inherit
-//this interface is to enforce a specific access pattern associated with modifying 
+//this interface is to enforce a specific access pattern associated with modifying
 //meta data attached to a vector/axis like object that is in the form of a mho_json::array_t
 class MHO_IndexLabelInterface
 {
 
     protected:
-        
+
         MHO_IndexLabelInterface():fIndexLabelObjectPtr(nullptr)
         {
             fCurrentSize = 0;
             fDummy["index"] = -1; //dummy object for invalid returns, always has an invalid index
         };
-        
+
         MHO_IndexLabelInterface(const MHO_IndexLabelInterface& copy)
         {
             fIndexLabelObjectPtr = copy.fIndexLabelObjectPtr;
             if(fIndexLabelObjectPtr != nullptr){fCurrentSize = fIndexLabelObjectPtr->size();}
         };
-    
+
         void SetIndexLabelObject(mho_json* obj){fIndexLabelObjectPtr = obj;}
-        
+
     public:
-        
+
         virtual ~MHO_IndexLabelInterface(){};
-        
+
         std::size_t GetIndexLabelSize() const {return fCurrentSize;}
 
         virtual void ResizeIndexLabels(std::size_t size)
@@ -196,7 +216,7 @@ class MHO_IndexLabelInterface
                 msg_warn("containers", "cannot insert key value pair for index: "<< index << " for array of size: "<< fCurrentSize << eom);
             }
         }
-        
+
         template< typename XValueType >
         bool RetrieveIndexLabelKeyValue(std::size_t index, const std::string& key, const XValueType& value) const
         {
@@ -204,9 +224,9 @@ class MHO_IndexLabelInterface
             {
                 mho_json test;
                 test["test"] = value;
-                //TODO FIXME - this is a major KLUDGE 
+                //TODO FIXME - this is a major KLUDGE
                 //but needed to avoid exceptions when key is present, but value type is different
-                if(test["test"].type() == (*fIndexLabelObjectPtr)[index][key].type()) 
+                if(test["test"].type() == (*fIndexLabelObjectPtr)[index][key].type())
                 {
                     XValueType label_value = (*fIndexLabelObjectPtr)[index][key].get<XValueType>();
                     value = label_value;
@@ -215,7 +235,7 @@ class MHO_IndexLabelInterface
             }
             else
             {
-                msg_warn("containers", "cannot insert key value pair for index: "<< index << " for array of size: "<< fCurrentSize << eom);
+                msg_warn("containers", "cannot retrieve key value pair for index: "<< index << " for array of size: "<< fCurrentSize << eom);
             }
             return false;
         }
@@ -233,7 +253,7 @@ class MHO_IndexLabelInterface
                 return fDummy;
             }
         }
-        
+
         //get a vector of indexes which contain a key with the same name
         std::vector< std::size_t > GetMatchingIndexes(std::string& key)
         {
@@ -259,9 +279,9 @@ class MHO_IndexLabelInterface
                 {
                     mho_json test;
                     test["test"] = value;
-                    //TODO FIXME - this is a major KLUDGE 
+                    //TODO FIXME - this is a major KLUDGE
                     //but needed to avoid exceptions when key is present, but value type is different
-                    if(test["test"].type() == (*fIndexLabelObjectPtr)[i][key].type()) 
+                    if(test["test"].type() == (*fIndexLabelObjectPtr)[i][key].type())
                     {
                         XValueType label_value = (*fIndexLabelObjectPtr)[i][key].get<XValueType>();
                         if(label_value == value){idx.push_back(i);};
@@ -270,16 +290,214 @@ class MHO_IndexLabelInterface
             }
             return idx;
         }
-        
+
     private:
-        
-        
+
+
         std::size_t fCurrentSize;
         mho_json* fIndexLabelObjectPtr; //array of mho_json objects holding key:value pairs
         mho_json fDummy;
 };
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+
+//constructor is protected
+//this class is only intended to provide an interface that derived classes may inherit
+//this interface is to enforce a specific access pattern associated with modifying
+//meta data attached to a vector/axis like object that is in the form of a mho_json::array_t
+class MHO_IntervalLabelInterface
+{
+    protected:
+
+        MHO_IntervalLabelInterface():fIntervalLabelObjectPtr(nullptr)
+        {
+            fTokenizer.SetDelimiter(",");
+            fCurrentSize = 0;
+            fDummy["lower_index"] = -1; //dummy object for invalid returns, always has an invalid index
+            fDummy["upper_index"] = -1; //dummy object for invalid returns, always has an invalid index
+        };
+
+        MHO_IntervalLabelInterface(const MHO_IntervalLabelInterface& copy)
+        {
+            fTokenizer.SetDelimiter(",");
+            fCurrentSize = 0;
+            fDummy["lower_index"] = -1; //dummy object for invalid returns, always has an invalid index
+            fDummy["upper_index"] = -1; //dummy object for invalid returns, always has an invalid index
+            fIntervalLabelObjectPtr = copy.fIntervalLabelObjectPtr;
+            if(fIntervalLabelObjectPtr != nullptr){fCurrentSize = fIntervalLabelObjectPtr->size();}
+        };
+
+        void SetIntervalLabelObject(mho_json* obj){fIntervalLabelObjectPtr = obj;}
+
+    public:
+
+        virtual ~MHO_IntervalLabelInterface(){};
+
+        template< typename XValueType >
+        void InsertIntervalLabelKeyValue(std::size_t lower_index, std::size_t upper_index, const std::string& key, const XValueType& value)
+        {
+            std::string ikey = ConstructKey(lower_index, upper_index);
+            (*fIntervalLabelObjectPtr)[ikey][key] = value;
+        }
+
+        template< typename XValueType >
+        bool RetrieveIntervalLabelKeyValue(std::size_t lower_index, std::size_t upper_index, const std::string& key, const XValueType& value) const
+        {
+            std::string ikey = ConstructKey(lower_index, upper_index);
+            if(fIntervalLabelObjectPtr->contains(ikey) )
+            {
+                mho_json test;
+                test["test"] = value;
+                //TODO FIXME - this is a major KLUDGE
+                //but needed to avoid exceptions when key is present, but value type is different
+                if(test["test"].type() == (*fIntervalLabelObjectPtr)[ikey][key].type())
+                {
+                    XValueType label_value = (*fIntervalLabelObjectPtr)[ikey][key].get<XValueType>();
+                    value = label_value;
+                    return true;
+                }
+            }
+            else
+            {
+                msg_warn("containers", "cannot retrieve a key value pair for interval: "<<ikey<<"."<< eom);
+            }
+            return false;
+        }
+
+        //get a reference to the dictionary object associated with this index
+        mho_json& GetIntervalLabelObject(std::size_t lower_index, std::size_t upper_index)
+        {
+            std::string ikey = ConstructKey(lower_index, upper_index);
+            if(fIntervalLabelObjectPtr->contains(ikey) )
+            {
+                return (*fIntervalLabelObjectPtr)[ikey];
+
+            }
+            else
+            {
+                msg_warn("containers", "cannot retrieve interval data for: "<<ikey<<"."<< eom);
+                return fDummy;
+            }
+        }
+        //
+        // //get a vector of indexes which contain a key with the same name
+        // std::vector< std::size_t > GetMatchingIndexes(std::string& key)
+        // {
+        //     std::vector<std::size_t> idx;
+        //     for(std::size_t i=0; i<fCurrentSize; i++)
+        //     {
+        //         if((*fIndexLabelObjectPtr)[i].contains(key))
+        //         {
+        //             idx.push_back(i);
+        //         }
+        //     }
+        //     return idx;
+        // }
+        //
+        // //get a vector of indexes which contain a key with a value which matches the passed value
+        // template< typename XValueType >
+        // std::vector< std::size_t > GetMatchingIndexes(std::string& key, const XValueType& value)
+        // {
+        //     std::vector<std::size_t> idx;
+        //     for(std::size_t i=0; i<fCurrentSize; i++)
+        //     {
+        //         if((*fIndexLabelObjectPtr)[i].contains(key))
+        //         {
+        //             mho_json test;
+        //             test["test"] = value;
+        //             //TODO FIXME - this is a major KLUDGE
+        //             //but needed to avoid exceptions when key is present, but value type is different
+        //             if(test["test"].type() == (*fIndexLabelObjectPtr)[i][key].type())
+        //             {
+        //                 XValueType label_value = (*fIndexLabelObjectPtr)[i][key].get<XValueType>();
+        //                 if(label_value == value){idx.push_back(i);};
+        //             }
+        //         }
+        //     }
+        //     return idx;
+        // }
+
+        std::string ConstructKey(std::size_t lower_index, std::size_t upper_index) const
+        {
+            if(lower_index <= upper_index)
+            {
+                return std::to_string(lower_index) + "," + std::to_string(upper_index);
+            }
+            else
+            {
+                //flip them around
+                return std::to_string(upper_index) + "," + std::to_string(lower_index);
+            }
+        }
+
+        bool ExtractIndexesFromKey(const std::string& key, std::size_t& lower_index, std::size_t& upper_index)
+        {
+            fTokens.clear();
+            fTokenizer.SetString(&key);
+            fTokenizer.GetTokens(&fTokens);
+            if(fTokens.size() != 2 ){return false;}
+            lower_index = std::stoul(fTokens[0]);
+            upper_index = std::stoul(fTokens[1]);
+            if(upper_index < lower_index)
+            {
+                //flip them
+                lower_index = upper_index;
+                upper_index = std::stoul(fTokens[0]);
+            }
+            return true;
+        }
+
+        std::pair< std::size_t, std::size_t> ExtractIndexesFromKey(const std::string& key)
+        {
+            std::size_t lower_index = 0;
+            std::size_t upper_index = 0;
+            fTokens.clear();
+            fTokenizer.SetString(&key);
+            fTokenizer.GetTokens(&fTokens);
+            if(fTokens.size() != 2 ){std::make_pair(0,0);}
+            lower_index = std::stoul(fTokens[0]);
+            upper_index = std::stoul(fTokens[1]);
+            if(upper_index < lower_index)
+            {
+                //flip them
+                lower_index = upper_index;
+                upper_index = std::stoul(fTokens[0]);
+            }
+            return std::make_pair(lower_index, upper_index);
+        }
+
+    private:
+
+        MHO_Tokenizer fTokenizer;
+        std::vector< std::string > fTokens;
+        std::size_t fCurrentSize;
+        mho_json* fIntervalLabelObjectPtr; //array of mho_json objects holding key:value pairs
+        mho_json fDummy;
+};
 
 
 
