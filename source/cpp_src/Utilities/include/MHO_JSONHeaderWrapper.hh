@@ -403,6 +403,13 @@ class MHO_IntervalLabelInterface
                 return fDummy;
             }
         }
+
+
+        void SetIntervalLabelObject(mho_json& obj, std::size_t lower_index, std::size_t upper_index)
+        {
+            std::string ikey = ConstructKey(lower_index, upper_index);
+            (*fIntervalLabelObjectPtr)[ikey] = obj;
+        }
         //
         // //get a vector of indexes which contain a key with the same name
         // std::vector< std::size_t > GetMatchingIndexes(std::string& key)
