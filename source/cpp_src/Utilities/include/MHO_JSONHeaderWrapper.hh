@@ -410,6 +410,7 @@ class MHO_IntervalLabelInterface
             std::string ikey = ConstructKey(lower_index, upper_index);
             (*fIntervalLabelObjectPtr)[ikey] = obj;
         }
+        
         //
         // //get a vector of indexes which contain a key with the same name
         // std::vector< std::size_t > GetMatchingIndexes(std::string& key)

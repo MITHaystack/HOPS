@@ -88,7 +88,7 @@ class MHO_MK4CorelInterface
         std::size_t fNChannelsPerPP;
         std::set< std::string > fPolProducts;
 
-        //meta-data information 
+        //meta-data information
         std::string fBaselineName; //e.g. Gs:Wf
         std::string fBaselineShortName; //e.g GE
         std::string fRefStation; //e.g. Gs
@@ -97,12 +97,12 @@ class MHO_MK4CorelInterface
         std::string fRemStationMk4Id; //e.g.E
 
         //store all channel related data in interval labels for convenience
-        std::map< std::string, MHO_IntervalLabel > fAllChannelMap;
+        std::map< std::string, mho_json > fAllChannelMap;
 
         //this field stores pointers to channel labels on a per-pol product basis
         //the keys are pol-product labels (e.g. XX, RL, YY, etc)
         //the vectors are sorted by sky-frequency
-        std::map< std::string, std::vector< MHO_IntervalLabel* > > fPPSortedChannelInfo;
+        std::map< std::string, std::vector< mho_json* > > fPPSortedChannelInfo;
 
         //helper function to convert raw char arrays to strings
         std::string getstr(const char* char_array, size_t max_size);

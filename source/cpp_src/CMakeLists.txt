@@ -31,7 +31,7 @@ add_subdirectory(${CPPSOURCE}/Operators) #data operator base classes and generic
 add_subdirectory(${CPPSOURCE}/Control) #library to parse old-fourfit control files
 # add_subdirectory(${CPPSOURCE}/Initialization) #library to build objects/operators
 # add_subdirectory(${CPPSOURCE}/Fringe) #library of fringe-fitting related functionality
-# add_subdirectory(${CPPSOURCE}/MK4Interface) #interface to MK4 data types and import
+add_subdirectory(${CPPSOURCE}/MK4Interface) #interface to MK4 data types and import
 
 
 # if(HOPS_USE_DIFXIO)
