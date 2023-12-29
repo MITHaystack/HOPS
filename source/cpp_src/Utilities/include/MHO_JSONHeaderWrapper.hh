@@ -241,6 +241,20 @@ class MHO_IndexLabelInterface
         }
 
         //get a reference to the dictionary object associated with this index
+        void SetLabelObject(mho_json& obj, std::size_t index)
+        {
+            if(index < fCurrentSize)
+            {
+                (*fIndexLabelObjectPtr)[index] = obj;
+            }
+            else
+            {
+                msg_error("containers", "cannot access set label object for index: "<< index << ", array size is only: "<< fCurrentSize << eom);
+            }
+        }
+
+
+        //get a reference to the dictionary object associated with this index
         mho_json& GetLabelObject(std::size_t index)
         {
             if(index < fCurrentSize)
@@ -410,22 +424,42 @@ class MHO_IntervalLabelInterface
             std::string ikey = ConstructKey(lower_index, upper_index);
             (*fIntervalLabelObjectPtr)[ikey] = obj;
         }
-        
-        //
-        // //get a vector of indexes which contain a key with the same name
-        // std::vector< std::size_t > GetMatchingIndexes(std::string& key)
-        // {
-        //     std::vector<std::size_t> idx;
-        //     for(std::size_t i=0; i<fCurrentSize; i++)
-        //     {
-        //         if((*fIndexLabelObjectPtr)[i].contains(key))
-        //         {
-        //             idx.push_back(i);
-        //         }
-        //     }
-        //     return idx;
-        // }
-        //
+
+
+        //get a vector of interval labels which contain a key with the same name
+        std::vector< mho_json > GetMatchingIntervalLabels(std::string key) const
+        {
+            std::vector<mho_json> objects;
+            for(std::size_t i=0; i<fCurrentSize; i++)
+            {
+                if((*fIntervalLabelObjectPtr)[i].contains(key))
+                {
+                    objects.push_back( (*fIntervalLabelObjectPtr)[i] );
+                }
+            }
+            return objects;
+        }
+
+        template< typename XLabelValueType >
+        mho_json GetFirstIntervalWithKeyValue(std::string key, const XLabelValueType& value) const
+        {
+            mho_json obj;
+            for(std::size_t i=0; i<fCurrentSize; i++)
+            {
+                if((*fIntervalLabelObjectPtr)[i].contains(key))
+                {
+                    XLabelValueType v;
+                    v = (*fIntervalLabelObjectPtr)[i][key];
+                    if(v == value)
+                    {
+                        obj = (*fIntervalLabelObjectPtr)[i];
+                        return obj;
+                    }
+                }
+            }
+            return obj;
+        }
+
         // //get a vector of indexes which contain a key with a value which matches the passed value
         // template< typename XValueType >
         // std::vector< std::size_t > GetMatchingIndexes(std::string& key, const XValueType& value)
