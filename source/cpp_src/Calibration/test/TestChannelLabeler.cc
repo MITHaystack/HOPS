@@ -17,7 +17,7 @@ int main(int argc, char** argv)
     MHO_Message::GetInstance().SetMessageLevel(eDebug);
 
     MHO_ChannelLabeler<visibility_type> label_maker;
-    
+
     visibility_type vis;
     vis.Resize(4, 128, 16, 16);
 
@@ -30,7 +30,7 @@ int main(int argc, char** argv)
         double freq = 1001.4*i;
         chan_axis_ptr->at(i) = freq;
         std::string tmp_label = encode_value(i, fake_charset);
-        fUserMap[tmp_label] = freq; 
+        fUserMap[tmp_label] = freq;
     }
 
     std::string key = "channel_label";
@@ -41,12 +41,14 @@ int main(int argc, char** argv)
     for(std::size_t i=0; i<chan_axis_ptr->GetSize(); i++)
     {
         std::string ch_label;
-        std::vector< MHO_IntervalLabel > iLabels = chan_axis_ptr->GetIntervalsWhichIntersect(i);
-        iLabels[0].Retrieve(key, ch_label);
+        mho_json ilabel = chan_axis_ptr->GetLabelObject(i);
+        ch_label = ilabel[key].get<std::string>();
         std::cout<<"channel: "<<i<<" default label: "<<ch_label<<std::endl;
     }
 
-    chan_axis_ptr->ClearLabels();
+    std::size_t ch_size = chan_axis_ptr->GetSize();
+    chan_axis_ptr->ResizeIndexLabels(0);
+    chan_axis_ptr->ResizeIndexLabels(ch_size);
 
     label_maker.SetChannelLabelToFrequencyMap(fUserMap);
     label_maker.SetArgs(&vis);
@@ -56,8 +58,8 @@ int main(int argc, char** argv)
     for(std::size_t i=0; i<chan_axis_ptr->GetSize(); i++)
     {
         std::string ch_label;
-        std::vector< MHO_IntervalLabel > iLabels = chan_axis_ptr->GetIntervalsWhichIntersect(i);
-        iLabels[0].Retrieve(key, ch_label);
+        mho_json ilabel = chan_axis_ptr->GetLabelObject(i);
+        ch_label = ilabel[key].get<std::string>();
         std::cout<<"channel: "<<i<<" user label: "<<ch_label<<std::endl;
     }
 
