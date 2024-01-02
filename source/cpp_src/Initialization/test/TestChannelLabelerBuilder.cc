@@ -45,8 +45,8 @@ int main(int argc, char** argv)
 
     MHO_OperatorToolbox toolbox;
     MHO_ContainerStore store;
-    
-    //make some fake visibility and weight objects 
+
+    //make some fake visibility and weight objects
     visibility_type* vis = new visibility_type();
     vis->Resize(4, 32, 2, 2);
     weight_type* wt = new weight_type();
@@ -58,7 +58,7 @@ int main(int argc, char** argv)
     {
         chan_axis_ptr1->at(i) = freqs[32 - 1 - i]; //reverse labeling to make this interesting
     }
-    
+
     //configure weight channel frequencies
     auto chan_axis_ptr2 = &(std::get<CHANNEL_AXIS>(*wt));
     for(std::size_t i=0; i<chan_axis_ptr2->GetSize(); i++)
@@ -68,7 +68,7 @@ int main(int argc, char** argv)
 
     store.AddObject(vis);
     store.AddObject(wt);
-    
+
     store.SetShortName(vis->GetObjectUUID(), std::string("vis"));
     store.SetShortName(wt->GetObjectUUID(), std::string("weight"));
 
@@ -101,12 +101,10 @@ int main(int argc, char** argv)
         for(std::size_t i=0; i<chan_axis_ptr1->GetSize(); i++)
         {
             std::string ch_label;
-            std::vector< MHO_IntervalLabel > iLabels;
-            iLabels.clear();
-            iLabels = chan_axis_ptr1->GetIntervalsWhichIntersect(i);
-            if(iLabels.size() == 1)
+            mho_json ilabel = chan_axis_ptr1->GetLabelObject(i);
+            if(ilabel.contains(key))
             {
-                iLabels[0].Retrieve(key, ch_label);
+                ch_label = ilabel[key].get<std::string>();
                 std::cout<<"channel: "<<i<<" user label: "<<ch_label<<" freq: "<< chan_axis_ptr1->at(i) <<std::endl;
             }
             else{std::cout<<"unlabelled channel present"<<std::endl;}
@@ -117,6 +115,6 @@ int main(int argc, char** argv)
 
     //error
     std::cout<<"test failed"<<std::endl;
-    
+
     return 1;
 }

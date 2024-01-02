@@ -85,7 +85,12 @@ MHO_DataSelectionBuilder::Build()
             for(auto it = chans.begin(); it != chans.end(); it++){chan_set.insert(*it);}
             std::string chan_label_key = "channel_label";
             std::vector<std::size_t> selected_ch;
-            selected_ch =  (&(std::get<CHANNEL_AXIS>(*vis_data)))->SelectMatchingIndexesByLabelValue(chan_label_key, chan_set);
+
+            for(auto it = chan_set.begin(); it != chan_set.end(); it++)
+            {
+                 auto tmp_ch = (&(std::get<CHANNEL_AXIS>(*vis_data)))->GetMatchingIndexes(chan_label_key, *it);
+                 selected_ch.insert(selected_ch.end(), tmp_ch.begin(), tmp_ch.end() );
+            }
 
             msg_debug("initialization", "data selection, selecting "<<selected_ch.size() << " channels." << eom);
             spack->SelectAxisItems(CHANNEL_AXIS,selected_ch);
@@ -120,7 +125,7 @@ MHO_DataSelectionBuilder::Build()
         std::string op_category = "selection";
         bool replace_duplicates = true;
         #pragma message("TODO - figure out proper naming/retrieval scheme for operators")
-        
+
         #pragma message("TODO - coarse selection must also be applied to pcal data (particularly AP select) if available!!")
 
         spack->SetName(op_name + ":vis");
@@ -128,7 +133,7 @@ MHO_DataSelectionBuilder::Build()
 
         fOperatorToolbox->AddOperator(spack, spack->GetName(), op_category, replace_duplicates);
         fOperatorToolbox->AddOperator(wtspack, wtspack->GetName(), op_category, replace_duplicates);
-        
+
         return true;
     }
     return false;
