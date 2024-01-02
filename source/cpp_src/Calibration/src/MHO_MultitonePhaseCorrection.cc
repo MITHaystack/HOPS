@@ -24,9 +24,9 @@ MHO_MultitonePhaseCorrection::MHO_MultitonePhaseCorrection()
 
     fImagUnit = MHO_Constants::imag_unit;
     fDegToRad = MHO_Constants::deg_to_rad;
-    
+
     fPCPeriod = 30;
-    
+
     //initialize the FFT engine
     fWorkspaceSize = 256;
     fPCWorkspace.Resize(fWorkspaceSize); //default size is 256
@@ -47,8 +47,8 @@ MHO_MultitonePhaseCorrection::ExecuteInPlace(visibility_type* in)
     //figure out if refrence or remote station in this baseline
     std::size_t st_idx = DetermineStationIndex(in);
     if(st_idx != 0 && st_idx != 1){return false;}
-    
-    //loop over polarization in pcal data and pol-products 
+
+    //loop over polarization in pcal data and pol-products
     //so we can apply the phase-cal to the appropriate pol/channel/ap
     auto pcal_pol_ax = &(std::get<MTPCAL_POL_AXIS>(*fPCData));
     auto vis_pp_ax = &(std::get<POLPROD_AXIS>(*in) );
@@ -62,14 +62,14 @@ MHO_MultitonePhaseCorrection::ExecuteInPlace(visibility_type* in)
         {
             std::string vis_pp_label = vis_pp_ax->at(vis_pp);
             //check if this pcal-pol matches the station's pol for this pol-product
-            if( PolMatch(st_idx, pc_pol_label, vis_pp_label) ) 
+            if( PolMatch(st_idx, pc_pol_label, vis_pp_label) )
             {
                 //apply the phase-cal for all channels/APs
-                ApplyPCData(pc_pol, vis_pp, in); 
+                ApplyPCData(pc_pol, vis_pp, in);
             }
         }
     }
-    
+
     return true;
 }
 
@@ -82,7 +82,7 @@ MHO_MultitonePhaseCorrection::ExecuteOutOfPlace(const visibility_type* in, visib
 }
 
 
-void 
+void
 MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp, visibility_type* in)
 {
     auto vis_chan_ax = &(std::get<CHANNEL_AXIS>(*in) );
@@ -102,15 +102,9 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
         double sky_freq = (*vis_chan_ax)(ch); //get the sky frequency of this channel
         double bandwidth = 0;
         std::string net_sideband;
-        auto labels = vis_chan_ax->GetIntervalsWhichIntersect(ch);
-        for(auto iter = labels.begin(); iter != labels.end(); iter++)
-        {
-            if(iter->IsValid())
-            {
-                if( iter->HasKey(fSidebandLabelKey) ){iter->Retrieve(fSidebandLabelKey, net_sideband);}
-                if( iter->HasKey(fBandwidthKey)){iter->Retrieve(fBandwidthKey, bandwidth);}
-            }
-        }
+        mho_json ilabel = vis_chan_ax->GetLabelObject(ch);
+        if( ilabel.contains(fSidebandLabelKey) ){ ilabel[fSidebandLabelKey].get<std::string>();}
+        if( ilabel.contains(fBandwidthKey)){ bandwidth = ilabel[fBandwidthKey].get<double>();}
 
         //figure out the upper/lower frequency limits for this channel
         //std::cout<<"working on channel: "<<ch<<" with sky freq: "<<sky_freq<<" sideband: "<<net_sideband<< std::endl;
@@ -133,7 +127,7 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
         }
 
         //now need to fit the pcal data for the mean phase and delay for this channel, for each AP
-        //TODO FIXME -- make sure the stop/start parameters are accounted for 
+        //TODO FIXME -- make sure the stop/start parameters are accounted for
         //this should be fine, provided if we trim the pcal data appropriately ahead use here
         double phase_spline[2];
         double navg;
@@ -150,13 +144,13 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
                 seg_start_ap = ap;
                 seg_end_ap = ap;
             }
-            
-            
+
+
             //sum the tone phasors
             //TODO FIXME -- NOTE!! This implementation assumes all tones are sequential and there are no missing tones!
             for(std::size_t i=0; i<ntones; i++){ fPCWorkspace(i) += fPCData->at(pc_pol, ap, start_idx+i); }
             navg += 1.0; //treat all pc weights as 1 for now (should probably use visibility weights?)
-            
+
             //finish the average, do delay fit on last ap of segment or last ap
             if(ap % fPCPeriod == fPCPeriod-1 || ap == vis_ap_ax->GetSize()-1 )
             {
@@ -169,8 +163,8 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
                 // for(std::size_t dap = seg_start_ap; dap < seg_end_ap; dap++)
                 // {
                 //     //TODO FIXME!!! no delay just mean phase!!!
-                //     std::complex<double> pc_phasor = std::exp( fImagUnit*phase_spline[0] ); 
-                //     // 
+                //     std::complex<double> pc_phasor = std::exp( fImagUnit*phase_spline[0] );
+                //     //
                 //     //conjugate phases for LSB data, but not for USB - TODO what about DSB?
                 //     //if(net_sideband == fLowerSideband){pc_phasor = std::conj(pc_phasor);}
                 //     //if(fMk4ID == "G"){pc_phasor = std::conj(pc_phasor);}
@@ -193,38 +187,38 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
                 //     }
                 // else
                 //     {
-                
+
                 // // correction to mean phase depends on sideband
                 // phase_shift = - 1e-3 * diff_delay / (4e6 * param->samp_period);
                 // if (sb)
                 //     phase_shift = -phase_shift;
                 // }
-                //                     // apply phase ramp to spectral points 
+                //                     // apply phase ramp to spectral points
                 // z = z * exp_complex(-2.0 * M_PI * cmplx_unit_I * (diff_delay * deltaf + phase_shift));
-                // 
+                //
 
                 double phase_shift = 0.0; // = phase_spline[1]/(4*);
 
                 for(std::size_t dap = seg_start_ap; dap < seg_end_ap; dap++)
                 {
-                    
+
                     for(std::size_t sp = 0; sp < vis_freq_ax->GetSize(); sp++)
                     {
                         double deltaf = vis_freq_ax->at(sp);
-                        std::complex<double> pc_phasor = std::exp( -2.0*M_PI*fImagUnit*( phase_spline[1]*deltaf + phase_spline[0] + phase_shift) ); 
+                        std::complex<double> pc_phasor = std::exp( -2.0*M_PI*fImagUnit*( phase_spline[1]*deltaf + phase_spline[0] + phase_shift) );
                         //if(net_sideband == fLowerSideband){pc_phasor = std::conj(pc_phasor);}
                         //if(fMk4ID == "G"){pc_phasor = std::conj(pc_phasor);}
                         // #pragma message("TODO FIXME - pc_data all manual pc phase correction cases (ref/rem/USB/LSB/DSB)")
                         //retrieve and multiply the appropriate sub view of the visibility array
                         (*in)(vis_pp, ch, dap, sp) *= pc_phasor;
                     }
-                    
+
                 }
 
-                
-                
-                
-                
+
+
+
+
 
             }
         }
@@ -237,7 +231,7 @@ MHO_MultitonePhaseCorrection::DetermineStationIndex(const visibility_type* in)
 {
     //determine if the p-cal corrections are being applied to the remote or reference station
     std::string val;
-    
+
     if(fMk4ID != "") //selection by mk4 id
     {
         in->Retrieve(fRemStationMk4IDKey, val);
@@ -245,7 +239,7 @@ MHO_MultitonePhaseCorrection::DetermineStationIndex(const visibility_type* in)
         in->Retrieve(fRefStationMk4IDKey, val);
         if(fMk4ID == val){return 0;}
     }
-    
+
     if(fStationCode != "")//seletion by 2-char station code
     {
         in->Retrieve(fRemStationKey, val);
@@ -253,7 +247,7 @@ MHO_MultitonePhaseCorrection::DetermineStationIndex(const visibility_type* in)
         in->Retrieve(fRefStationKey, val);
         if(fStationCode == val){return 0;}
     }
-    
+
     msg_warn("calibration", "manual pcal, remote/reference station do not match selection."<< eom );
     return 2;
 }
@@ -266,7 +260,7 @@ MHO_MultitonePhaseCorrection::PolMatch(std::size_t station_idx, std::string& pc_
     return (pc_pol[0] == polprod[station_idx]);
 }
 
-void 
+void
 MHO_MultitonePhaseCorrection::DetermineChannelFrequencyLimits(double sky_freq, double bandwidth, std::string net_sideband, double& lower_freq, double& upper_freq)
 {
     if(net_sideband == fUpperSideband)
@@ -281,7 +275,7 @@ MHO_MultitonePhaseCorrection::DetermineChannelFrequencyLimits(double sky_freq, d
     }
 }
 
-void 
+void
 MHO_MultitonePhaseCorrection::DetermineChannelToneIndexes(double lower_freq, double upper_freq, std::size_t& start_idx, std::size_t& ntones)
 {
     auto tone_freq_ax = std::get<MTPCAL_FREQ_AXIS>(*fPCData);
@@ -342,7 +336,7 @@ MHO_MultitonePhaseCorrection::FitPCData(std::size_t ntones, double chan_center_f
     y[0] =std::abs( fPCWorkspace( (max_idx+fWorkspaceSize-1)%fWorkspaceSize) );
     y[2] = std::abs( fPCWorkspace( (max_idx+fWorkspaceSize+1)%fWorkspaceSize) );
     MHO_MathUtilities::parabola(y, -1.0, 1.0, &ymax, &ampmax, q);
-    double delay = (max_idx+ymax)*delay_delta; 
+    double delay = (max_idx+ymax)*delay_delta;
 
     //TODO FIXME -- CORRECT DELAY FOR SAMPLER DELAY AMBIGUITY
 
@@ -367,7 +361,7 @@ MHO_MultitonePhaseCorrection::FitPCData(std::size_t ntones, double chan_center_f
     }
 
     mean_phasor = mean_phasor / navg;
-    
+
     phase_spline[0] = -1.0*std::arg(mean_phasor);
 
 }
