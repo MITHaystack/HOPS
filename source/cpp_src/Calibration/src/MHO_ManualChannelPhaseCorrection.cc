@@ -50,31 +50,35 @@ MHO_ManualChannelPhaseCorrection::ExecuteInPlace(visibility_type* in)
                 chan_label = pcal_it->first;
                 double pc_val = pcal_it->second;
                 //TODO, may need to re-work this mapping method if too slow
-                MHO_IntervalLabel ilabel = chan_ax->GetFirstIntervalWithKeyValue(fChannelLabelKey, chan_label);
-                
-                if(ilabel.IsValid())
+                auto idx_list = chan_ax->GetMatchingIndexes(fChannelLabelKey, chan_label);
+                if(idx_list.size() > 1)
                 {
-                    std::size_t ch = ilabel.GetLowerBound();
-                    std::string net_sideband = "?";
-                    auto other_labels = chan_ax->GetIntervalsWhichIntersect(ilabel);
-                    for(auto olit = other_labels.begin(); olit != other_labels.end(); olit++)
+                    std::size_t ch = idx_list[0];
+                    mho_json ilabel = chan_ax->GetLabelObject(ch);
+                    if( !(ilabel.empty() ) )
                     {
-                        if( olit->HasKey(fSidebandLabelKey) )
-                        {
-                            olit->Retrieve(fSidebandLabelKey, net_sideband);
-                            break;
-                        }
+                        std::string net_sideband = ilabel[fSidebandLabelKey].get<std::string>();
+
+                        // auto other_labels = chan_ax->GetIntervalsWhichIntersect(ilabel);
+                        // for(auto olit = other_labels.begin(); olit != other_labels.end(); olit++)
+                        // {
+                        //     if( olit->HasKey(fSidebandLabelKey) )
+                        //     {
+                        //         olit->Retrieve(fSidebandLabelKey, net_sideband);
+                        //         break;
+                        //     }
+                        // }
+
+                        visibility_element_type pc_phasor = std::exp( fImagUnit*pc_val*fDegToRad );
+
+                        //conjugate phases for LSB data, but not for USB - TODO what about DSB?
+                        if(net_sideband == fLowerSideband){pc_phasor = std::conj(pc_phasor);}
+                        #pragma message("TODO FIXME - test all manual pc phase correction cases (ref/rem/USB/LSB/DSB)")
+
+                        //retrieve and multiply the appropriate sub view of the visibility array
+                        auto chunk = in->SubView(pp, ch);
+                        chunk *= pc_phasor;
                     }
-
-                    visibility_element_type pc_phasor = std::exp( fImagUnit*pc_val*fDegToRad );
-
-                    //conjugate phases for LSB data, but not for USB - TODO what about DSB?
-                    if(net_sideband == fLowerSideband){pc_phasor = std::conj(pc_phasor);}
-                    #pragma message("TODO FIXME - test all manual pc phase correction cases (ref/rem/USB/LSB/DSB)")
-
-                    //retrieve and multiply the appropriate sub view of the visibility array
-                    auto chunk = in->SubView(pp, ch);
-                    chunk *= pc_phasor;
                 }
             }
         }

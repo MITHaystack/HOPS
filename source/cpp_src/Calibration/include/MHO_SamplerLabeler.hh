@@ -20,8 +20,8 @@
 *Author: J. Barrett
 *Email: barrettj@mit.edu
 *Date:
-*Description: When the 'samplers' keyword is encountered, this operator loops 
-* over all channels and inserts a label for each channel which contains the sampler index 
+*Description: When the 'samplers' keyword is encountered, this operator loops
+* over all channels and inserts a label for each channel which contains the sampler index
 * associated with that channel. This can later be used to look up the station sampler delay (ambiguities)
 * for this channel by the pcal operators
 * e.g.:
@@ -44,7 +44,7 @@ class MHO_SamplerLabeler: public MHO_UnaryOperator< XArrayType >
             fRefSamplerIndexKey = "ref_sampler_index";
             fRemSamplerIndexKey = "rem_sampler_index";
         };
-        
+
         virtual ~MHO_SamplerLabeler(){};
 
         void SetReferenceStationSamplerChannelSets(const std::vector< std::string >& channel_sets){fRefSamplerChanSets = channel_sets;}
@@ -63,29 +63,21 @@ class MHO_SamplerLabeler: public MHO_UnaryOperator< XArrayType >
 
             if(in != nullptr)
             {
-                //need to retrieve the labels of each channel, then look up the 
+                //need to retrieve the labels of each channel, then look up the
                 //sampler delay index using the map, and then insert that key:value pair
                 auto chan_axis_ptr = &( std::get<CHANNEL_AXIS>(*in) );
                 std::size_t nchans = chan_axis_ptr->GetSize();
-            
+
                 for(std::size_t ch=0; ch<nchans; ch++)
                 {
                     std::string chan_label = "";
-                    auto labels = chan_axis_ptr->GetIntervalsWhichIntersect(ch);
-                    for(auto iter = labels.begin(); iter != labels.end(); iter++)
+                    mho_json ilabel = chan_axis_ptr->GetLabelObject(ch);
+                    if( ilabel.contains(fChannelLabelKey) )
                     {
-                        if(iter->IsValid())
-                        {
-                            if( iter->HasKey(fChannelLabelKey) )
-                            {
-                                iter->Retrieve(fChannelLabelKey, chan_label);
-                                break;
-                            }
-                        }
+                        chan_label = ilabel[fChannelLabelKey].get<std::string>();
                     }
 
-                    //this inserts an entirely new label (is this necessary?)
-                    //why not just add the key:value to an existing interval label?
+                    //add sampler labels
                     int ref_id = -1;
                     int rem_id = -1;
                     if(fRefChanToSamplerID.find(chan_label) != fRefChanToSamplerID.end())
@@ -96,10 +88,15 @@ class MHO_SamplerLabeler: public MHO_UnaryOperator< XArrayType >
                     {
                         rem_id = fRemChanToSamplerID[chan_label];
                     }
-                    MHO_IntervalLabel label(ch,ch);
-                    if(0 <= ref_id){label.Insert(fRefSamplerIndexKey, ref_id);}
-                    if(0 <= rem_id){label.Insert(fRemSamplerIndexKey, rem_id);}
-                    if( 0 <= ref_id || 0 <= rem_id ){chan_axis_ptr->InsertLabel(label);}
+
+                    if(0 <= ref_id)
+                    {
+                        chan_axis_ptr->InsertIndexLabelKeyValue(ch, fRefSamplerIndexKey, ref_id);
+                    }
+                    if(0 <= rem_id)
+                    {
+                        chan_axis_ptr->InsertIndexLabelKeyValue(ch, fRemSamplerIndexKey, rem_id);
+                    }
                 }
                 return true;
             }
@@ -113,13 +110,13 @@ class MHO_SamplerLabeler: public MHO_UnaryOperator< XArrayType >
         }
 
     private:
-        
-        //data maps channels to sampler 
+
+        //data maps channels to sampler
         std::vector< std::string > fRefSamplerChanSets;
         std::vector< std::string > fRemSamplerChanSets;
         std::map< std::string, int > fRefChanToSamplerID;
         std::map< std::string, int > fRemChanToSamplerID;
-        
+
         std::string fComma;
         std::string fChannelLabelKey;
         std::string fRefSamplerIndexKey;
@@ -139,13 +136,13 @@ class MHO_SamplerLabeler: public MHO_UnaryOperator< XArrayType >
                 }
             }
         }
-        
+
         std::vector< std::string > SplitChannelLabels(std::string channels)
         {
             std::vector< std::string > split_chans;
-            //we have two possibilities, either channels are delimited by ',' or 
+            //we have two possibilities, either channels are delimited by ',' or
             //they are all single-char labels that are smashed together into a single string
-            
+
             if( (channels.find(',') != std::string::npos) )
             {
                 //found a comma, need to use the tokenizer
@@ -156,7 +153,7 @@ class MHO_SamplerLabeler: public MHO_UnaryOperator< XArrayType >
                 fTokenizer.SetString(&channels);
                 fTokenizer.GetTokens(&split_chans);
             }
-            else 
+            else
             {
                 //just split up the channels into individual characters
                 for(std::size_t i=0; i< channels.size(); i++)

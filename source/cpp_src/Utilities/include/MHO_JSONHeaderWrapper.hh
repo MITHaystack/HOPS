@@ -305,6 +305,7 @@ class MHO_IndexLabelInterface
             return idx;
         }
 
+
     private:
 
 

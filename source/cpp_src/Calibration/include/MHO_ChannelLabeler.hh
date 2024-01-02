@@ -100,9 +100,7 @@ class MHO_ChannelLabeler: public MHO_UnaryOperator< XArrayType >
                     FillDefaultMap(nchans);
                     for(std::size_t i=0; i<nchans; i++)
                     {
-                        MHO_IntervalLabel label(i,i);
-                        label.Insert(fChannelLabelKey, fIndexToChannelLabel[i]);
-                        chan_axis_ptr->InsertLabel(label);
+                        chan_axis_ptr->InsertIndexLabelKeyValue(i, fChannelLabelKey, fIndexToChannelLabel[i]);
                     }
                 }
                 else
@@ -124,9 +122,7 @@ class MHO_ChannelLabeler: public MHO_UnaryOperator< XArrayType >
                             double ch_freq = chan_axis_ptr->at(i);
                             if( std::abs(freq - ch_freq) < fEps )
                             {
-                                MHO_IntervalLabel label(i,i);
-                                label.Insert(fChannelLabelKey, ch_label);
-                                chan_axis_ptr->InsertLabel(label);
+                                chan_axis_ptr->InsertIndexLabelKeyValue(i, fChannelLabelKey, ch_label);
                                 break;
                             }
                         }

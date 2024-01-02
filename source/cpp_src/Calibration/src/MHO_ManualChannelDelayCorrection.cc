@@ -40,10 +40,10 @@ MHO_ManualChannelDelayCorrection::ExecuteInPlace(visibility_type* in)
     auto pp_ax = &(std::get<POLPROD_AXIS>(*in) );
     auto chan_ax = &(std::get<CHANNEL_AXIS>(*in) );
     auto freq_ax = &(std::get<FREQ_AXIS>(*in) );
-    
+
     std::string chan_label;
     std::string pp_label;
-    
+
     for(std::size_t pp=0; pp < pp_ax->GetSize(); pp++)
     {
         pp_label = pp_ax->at(pp);
@@ -53,51 +53,62 @@ MHO_ManualChannelDelayCorrection::ExecuteInPlace(visibility_type* in)
             {
                 chan_label = pcal_it->first;
                 double delay = pcal_it->second;
-                //TODO, may need to re-work this mapping method if too slow
-                MHO_IntervalLabel ilabel = chan_ax->GetFirstIntervalWithKeyValue(fChannelLabelKey, chan_label);
-                if(ilabel.IsValid())
-                {
-                    std::size_t ch = ilabel.GetLowerBound();
-                    
-                    //get the channels bandwidth to determine effective sampling period
-                    bool ok = false;
-                    double bandwidth = 0;
-                    double eff_sample_period = 0;
-                    auto other_labels = chan_ax->GetIntervalsWhichIntersect(ch);
-                    for(auto ol_it = other_labels.begin(); ol_it != other_labels.end(); ol_it++)
-                    {
-                        if(ol_it->HasKey(fBandwidthKey))
-                        {
-                            ok = ol_it->Retrieve(std::string("bandwidth"), bandwidth);
-                            if(ok)
-                            {
-                                //calculate effective sampling period for channel assuming Nyquist rate
-                                bandwidth *= fMHzToHz;
-                                eff_sample_period = 1.0/(2.0*bandwidth); 
-                                break;
-                            }
-                        }
-                    }
-                    if(!ok){msg_error("calibration", "channel: "<<chan_label<<" is missing bandwidth tag."<<eom);}
+                // //TODO, may need to re-work this mapping method if too slow
+                // MHO_IntervalLabel ilabel = chan_ax->GetFirstIntervalWithKeyValue(fChannelLabelKey, chan_label);
+                // if(ilabel.IsValid())
 
-                    //loop over spectral points calculating the phase correction from this delay at each point
-                    std::size_t nsp = freq_ax->GetSize(); 
-                    for(std::size_t sp=0; sp < nsp; sp++)
+
+
+                //TODO, may need to re-work this mapping method if too slow
+                auto idx_list = chan_ax->GetMatchingIndexes(fChannelLabelKey, chan_label);
+                if(idx_list.size() > 1)
+                {
+                    std::size_t ch = idx_list[0];
+                    mho_json ilabel = chan_ax->GetLabelObject(ch);
+                    if( !(ilabel.empty() ) )
                     {
-                        double deltaf = freq_ax->at(sp)*fMHzToHz; //-2e-3 * i / (2e6 * param->samp_period * nlags);
-                        double theta = -2.0*fPi*deltaf*delay*fNanoSecToSecond;
-                        
-                        #pragma message("TODO FIXME -- geodetic phase shift treatment needs implementation (see normfx. line 398)" )
-                        double phase_shift = -2.0*fPi*(1.0/4.0)*delay*fNanoSecToSecond/eff_sample_period; //where does factor of 1/4 come from (see normfx)
-                        phase_shift *=  -( (double)(2*nsp) - 2.0) / (double)(2*nsp); //factor of 2 is from the way normfx zero-pads the data
-                        theta += phase_shift;
-                        
-                        visibility_element_type pc_phasor = std::exp( fImagUnit*theta );
-                        if(st_idx == 1){pc_phasor = std::conj(pc_phasor);} //conjugate for remote but not reference station
-                        
-                        //retrieve and multiply the appropriate sub view of the visibility array
-                        auto chunk = in->SliceView(pp, ch, ":", sp); //select this spectral point (for this pol/channel) across all APs
-                        chunk *= pc_phasor;
+                        //get the channels bandwidth to determine effective sampling period
+                        bool ok = false;
+                        double bandwidth = ilabel["bandwidth"].get<double>();
+                        //calculate effective sampling period for channel assuming Nyquist rate
+                        bandwidth *= fMHzToHz;
+                        double eff_sample_period = 1.0/(2.0*bandwidth);
+
+                        // double eff_sample_period = 0;
+                        // auto other_labels = chan_ax->GetIntervalsWhichIntersect(ch);
+                        // for(auto ol_it = other_labels.begin(); ol_it != other_labels.end(); ol_it++)
+                        // {
+                        //     if(ol_it->HasKey(fBandwidthKey))
+                        //     {
+                        //         ok = ol_it->Retrieve(std::string("bandwidth"), bandwidth);
+                        //         if(ok)
+                        //         {
+                        //
+                        //             break;
+                        //         }
+                        //     }
+                        // }
+                        // if(!ok){msg_error("calibration", "channel: "<<chan_label<<" is missing bandwidth tag."<<eom);}
+
+                        //loop over spectral points calculating the phase correction from this delay at each point
+                        std::size_t nsp = freq_ax->GetSize();
+                        for(std::size_t sp=0; sp < nsp; sp++)
+                        {
+                            double deltaf = freq_ax->at(sp)*fMHzToHz; //-2e-3 * i / (2e6 * param->samp_period * nlags);
+                            double theta = -2.0*fPi*deltaf*delay*fNanoSecToSecond;
+
+                            #pragma message("TODO FIXME -- geodetic phase shift treatment needs implementation (see normfx. line 398)" )
+                            double phase_shift = -2.0*fPi*(1.0/4.0)*delay*fNanoSecToSecond/eff_sample_period; //where does factor of 1/4 come from (see normfx)
+                            phase_shift *=  -( (double)(2*nsp) - 2.0) / (double)(2*nsp); //factor of 2 is from the way normfx zero-pads the data
+                            theta += phase_shift;
+
+                            visibility_element_type pc_phasor = std::exp( fImagUnit*theta );
+                            if(st_idx == 1){pc_phasor = std::conj(pc_phasor);} //conjugate for remote but not reference station
+
+                            //retrieve and multiply the appropriate sub view of the visibility array
+                            auto chunk = in->SliceView(pp, ch, ":", sp); //select this spectral point (for this pol/channel) across all APs
+                            chunk *= pc_phasor;
+                        }
                     }
                 }
             }
