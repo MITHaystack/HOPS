@@ -54,21 +54,10 @@ MHO_ManualChannelPhaseCorrection::ExecuteInPlace(visibility_type* in)
                 if(idx_list.size() > 1)
                 {
                     std::size_t ch = idx_list[0];
-                    mho_json ilabel = chan_ax->GetLabelObject(ch);
-                    if( !(ilabel.empty() ) )
+                    std::string net_sideband = "?";
+                    bool nsb_key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, fSidebandLabelKey, net_sideband);
+                    if( nsb_key_present )
                     {
-                        std::string net_sideband = ilabel[fSidebandLabelKey].get<std::string>();
-
-                        // auto other_labels = chan_ax->GetIntervalsWhichIntersect(ilabel);
-                        // for(auto olit = other_labels.begin(); olit != other_labels.end(); olit++)
-                        // {
-                        //     if( olit->HasKey(fSidebandLabelKey) )
-                        //     {
-                        //         olit->Retrieve(fSidebandLabelKey, net_sideband);
-                        //         break;
-                        //     }
-                        // }
-
                         visibility_element_type pc_phasor = std::exp( fImagUnit*pc_val*fDegToRad );
 
                         //conjugate phases for LSB data, but not for USB - TODO what about DSB?

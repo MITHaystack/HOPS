@@ -102,9 +102,11 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
         double sky_freq = (*vis_chan_ax)(ch); //get the sky frequency of this channel
         double bandwidth = 0;
         std::string net_sideband;
-        mho_json ilabel = vis_chan_ax->GetLabelObject(ch);
-        if( ilabel.contains(fSidebandLabelKey) ){ ilabel[fSidebandLabelKey].get<std::string>();}
-        if( ilabel.contains(fBandwidthKey)){ bandwidth = ilabel[fBandwidthKey].get<double>();}
+
+        bool key_present = vis_chan_ax->RetrieveIndexLabelKeyValue(ch, fSidebandLabelKey, net_sideband);
+        if(!key_present){msg_error("calibration", "missing net_sideband label for channel "<< ch << "." << eom);}
+        key_present = vis_chan_ax->RetrieveIndexLabelKeyValue(ch, fBandwidthKey, bandwidth);
+        if(!key_present){msg_error("calibration", "missing bandwidth label for channel "<< ch << "." << eom);}
 
         //figure out the upper/lower frequency limits for this channel
         //std::cout<<"working on channel: "<<ch<<" with sky freq: "<<sky_freq<<" sideband: "<<net_sideband<< std::endl;

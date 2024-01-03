@@ -142,11 +142,8 @@ MHO_InitialFringeInfo::precalculate_quantities(MHO_ContainerStore* conStore, MHO
     double bandwidth = 0;
     auto chan_ax = &(std::get<CHANNEL_AXIS>(*vis_data));
     std::string bandwidthlabelkey = "bandwidth";
-    mho_json ilabel = chan_ax->GetLabelObject(0);
-    if(ilabel.contains(bandwidthlabelkey)){bandwidth = ilabel[bandwidthlabelkey].get<double>();}
-
-    if(bandwidth == 0){msg_error("fringe", "channel-0 missing bandwidth label value." << eom);}
-
+    bool bwkey_present = chan_ax->RetrieveIndexLabelKeyValue(0, bandwidthlabelkey, bandwidth);
+    if(bandwidth == 0 || !bwkey_present ){msg_error("fringe", "channel-0 missing bandwidth label value." << eom);}
     paramStore->Set("/config/channel_bandwidth", bandwidth);
 
     //offset to the start of the data

@@ -112,15 +112,15 @@ MHO_ComputePlotData::calc_mbd()
     double ap_delta = ap_ax->at(1) - ap_ax->at(0);
     double sbd_delta = sbd_ax->at(1) - sbd_ax->at(0);
     double frt_offset = fParamStore->GetAs<double>("/config/frt_offset");
+    std::string sidebandlabelkey = "net_sideband";
 
     std::complex<double> sum = 0;
     for(std::size_t ch=0; ch < nchan; ch++)
     {
         double freq = (*chan_ax)(ch);//sky freq of this channel
         std::string net_sideband = "?";
-        std::string sidebandlabelkey = "net_sideband";
-        mho_json ilabel = chan_ax->GetLabelObject(ch);
-        if(ilabel.contains(sidebandlabelkey)){net_sideband = ilabel[sidebandlabelkey].get<std::string>();}
+        bool key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, sidebandlabelkey, net_sideband);
+        if(!key_present){msg_error("fringe", "missing net_sideband label for channel "<< ch << "." << eom);}
 
         fRot.SetSideband(0); //DSB
         if(net_sideband == "U"){fRot.SetSideband(1);}
@@ -190,6 +190,7 @@ MHO_ComputePlotData::calc_sbd()
     sbd_xpower_in.ZeroArray();
     sbd_xpower_out.ZeroArray();
 
+    std::string sidebandlabelkey = "net_sideband";
     //loop over sbd bins (4*nlags) and sum over channel/ap
     for(std::size_t i=0; i<nbins; i++)
     {
@@ -199,9 +200,9 @@ MHO_ComputePlotData::calc_sbd()
             double freq = (*chan_ax)(ch);//sky freq of this channel
 
             std::string net_sideband = "?";
-            std::string sidebandlabelkey = "net_sideband";
-            mho_json ilabel = chan_ax->GetLabelObject(ch);
-            if(ilabel.contains(sidebandlabelkey)){net_sideband = ilabel[sidebandlabelkey].get<std::string>();}
+            bool key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, sidebandlabelkey, net_sideband);
+            if(!key_present){msg_error("fringe", "missing net_sideband label for channel "<< ch << "." << eom);}
+
 
             fRot.SetSideband(0); //DSB
             if(net_sideband == "U"){fRot.SetSideband(1);}
@@ -256,15 +257,12 @@ MHO_ComputePlotData::calc_segs()
     std::vector< std::string > channel_labels;
     for(std::size_t ch=0; ch < chan_ax->GetSize(); ch++)
     {
-        mho_json ilabel = chan_ax->GetLabelObject(ch);
         std::string ch_label;
-        if(ilabel.contains(chan_label_key))
-        {
-            ch_label = ilabel[chan_label_key].get<std::string>();
-            channel_labels.push_back(ch_label);
-        }
+        bool key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, chan_label_key, ch_label);
+        if(key_present){channel_labels.push_back(ch_label);}
     }
 
+    std::string sidebandlabelkey = "net_sideband";
     for(std::size_t ap=0; ap < nap; ap++)
     {
         std::complex<double> sum = 0; //sum over all channels
@@ -273,11 +271,9 @@ MHO_ComputePlotData::calc_segs()
         for(std::size_t ch=0; ch < nchan; ch++)
         {
             double freq = (*chan_ax)(ch);//sky freq of this channel
-
             std::string net_sideband = "?";
-            std::string sidebandlabelkey = "net_sideband";
-            mho_json ilabel = chan_ax->GetLabelObject(ch);
-            if(ilabel.contains(sidebandlabelkey)){net_sideband = ilabel[sidebandlabelkey].get<std::string>();}
+            bool key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, sidebandlabelkey, net_sideband);
+            if(!key_present){msg_error("fringe", "missing net_sideband label for channel "<< ch << "." << eom);}
 
             fRot.SetSideband(0); //DSB
             if(net_sideband == "U"){fRot.SetSideband(1);}
@@ -363,15 +359,14 @@ MHO_ComputePlotData::calc_dr()
         dr_ax->at(i) = i*ap_delta;
     }
 
-
+    std::string sidebandlabelkey = "net_sideband";
     for(std::size_t ch=0; ch < nchan; ch++)
     {
         double freq = (*chan_ax)(ch);//sky freq of this channel
 
         std::string net_sideband = "?";
-        std::string sidebandlabelkey = "net_sideband";
-        mho_json ilabel = chan_ax->GetLabelObject(ch);
-        if(ilabel.contains(sidebandlabelkey)){net_sideband = ilabel[sidebandlabelkey].get<std::string>();}
+        bool key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, sidebandlabelkey, net_sideband);
+        if(!key_present){msg_error("fringe", "missing net_sideband label for channel "<< ch << "." << eom);}
 
         fRot.SetSideband(0); //DSB
         if(net_sideband == "U"){fRot.SetSideband(1);}
@@ -436,15 +431,14 @@ MHO_ComputePlotData::calc_phase()
     double frt_offset = fParamStore->GetAs<double>("/config/frt_offset");
 
     std::complex<double> sum_all = 0.0;
+    std::string sidebandlabelkey = "net_sideband";
     for(std::size_t ch=0; ch < nchan; ch++)
     {
         double freq = (*chan_ax)(ch);//sky freq of this channel
 
         std::string net_sideband = "?";
-        std::string sidebandlabelkey = "net_sideband";
-        mho_json ilabel = chan_ax->GetLabelObject(ch);
-        if(ilabel.contains(sidebandlabelkey)){net_sideband = ilabel[sidebandlabelkey].get<std::string>();}
-
+        bool key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, sidebandlabelkey, net_sideband);
+        if(!key_present){msg_error("fringe", "missing net_sideband label for channel "<< ch << "." << eom);}
 
         fRot.SetSideband(0); //DSB
         if(net_sideband == "U")
@@ -546,17 +540,19 @@ MHO_ComputePlotData::calc_xpower_spec()
     int nusb = 0;
     int nlsb = 0;
 
+    std::string sidebandlabelkey = "net_sideband";
+    std::string bandwidthlabelkey = "bandwidth";
+
     for(int lag = 0; lag < 2*nl; lag++)
     {
         for(int ch = 0; ch < nchan; ch++)
         {
             double freq = (*chan_ax)(ch);//sky freq of this channel
 
-            std::string sidebandlabelkey = "net_sideband";
-            std::string bandwidthlabelkey = "bandwidth";
-            mho_json ilabel = chan_ax->GetLabelObject(ch);
-            if(ilabel.contains(sidebandlabelkey)){net_sideband = ilabel[sidebandlabelkey].get<std::string>();}
-            if(ilabel.contains(bandwidthlabelkey)){bw = ilabel[bandwidthlabelkey].get<double>();}
+            bool key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, sidebandlabelkey, net_sideband);
+            if(!key_present){msg_error("fringe", "missing net_sideband label for channel "<< ch << "." << eom);}
+            key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, bandwidthlabelkey, bw);
+            if(!key_present){msg_error("fringe", "missing bandwidth label for channel "<< ch << "." << eom);}
 
             fRot.SetSideband(0); //DSB
             if(net_sideband == "U")
@@ -740,13 +736,9 @@ MHO_ComputePlotData::DumpInfoToJSON(mho_json& plot_dict)
     std::vector< std::string > channel_labels;
     for(std::size_t ch=0; ch < (&std::get<0>(phasors))->GetSize(); ch++)
     {
-        mho_json ilabel = (&std::get<0>(phasors))->GetLabelObject(ch);
         std::string ch_label;
-        if(ilabel.contains(chan_label_key))
-        {
-            ch_label = ilabel[chan_label_key].get<std::string>();
-            channel_labels.push_back(ch_label);
-        }
+        bool key_present = (&std::get<0>(phasors))->RetrieveIndexLabelKeyValue(ch, chan_label_key, ch_label);
+        if(key_present){channel_labels.push_back(ch_label);}
     }
 
     plot_dict["ChannelsPlotted"] = channel_labels;
@@ -1044,6 +1036,7 @@ MHO_ComputePlotData::calc_timerms(phasor_type& phasors, std::size_t nseg, std::s
     std::complex<double> vsum, vsumf, wght_phsr;
 
     std::string net_sideband = "?";
+    std::string sidebandlabelkey = "net_sideband";
     for(std::size_t seg = 0; seg < nseg; seg++)
     {
         vsum = 0.0;
@@ -1058,9 +1051,8 @@ MHO_ComputePlotData::calc_timerms(phasor_type& phasors, std::size_t nseg, std::s
             ap_in_seg = 0.0;
             usbfrac = lsbfrac = 0.0;
 
-            std::string sidebandlabelkey = "net_sideband";
-            mho_json ilabel = chan_ax->GetLabelObject(fr);
-            if(ilabel.contains(sidebandlabelkey)){net_sideband = ilabel[sidebandlabelkey].get<std::string>();}
+            bool key_present = chan_ax->RetrieveIndexLabelKeyValue(fr, sidebandlabelkey, net_sideband);
+            if(!key_present){msg_error("fringe", "missing net_sideband label for channel "<< fr << "." << eom);}
 
             for(std::size_t ap = seg * apseg; ap < (seg+1)*apseg; ap++)
             {

@@ -224,15 +224,14 @@ MHO_BasicFringeUtilities::calculate_residual_phase(MHO_ContainerStore* conStore,
     frot.SetSBDMax( sbd );
 
     std::complex<double> sum_all = 0.0;
+    std::string sidebandlabelkey = "net_sideband";
     for(std::size_t ch=0; ch < nchan; ch++)
     {
         double freq = chan_ax(ch);//sky freq of this channel
 
         std::string net_sideband = "?";
-        std::string sidebandlabelkey = "net_sideband";
-        mho_json ilabel = chan_ax.GetLabelObject(ch);
-        if(ilabel.contains(sidebandlabelkey)){net_sideband = ilabel[sidebandlabelkey].get<std::string>();}
-
+        bool key_present = chan_ax.RetrieveIndexLabelKeyValue(ch, sidebandlabelkey, net_sideband);
+        if(!key_present){msg_error("fringe", "missing net_sideband label for channel "<< ch << "." << eom);}
 
         // MHO_IntervalLabel ilabel(ch,ch);
         // std::string net_sideband = "?";
