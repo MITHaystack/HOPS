@@ -272,7 +272,7 @@ class MHO_ContainerJSONConverter: public MHO_JSONConverter
             if(fLOD >= eJSONTags)
             {
                 mho_json jtags;
-                FillJSONFromTaggable(&fContainer, jtags);
+                FillJSONFromTaggable(fContainer, jtags);
                 //FillJSONFromCommonMap(fContainer ,jtags);
                 fJSON["tags"] = jtags;
             }
