@@ -511,8 +511,8 @@ MHO_MK4CorelInterface::ExtractCorelFile()
                 it != fPPSortedChannelInfo[*ppit].end();
                 it++)
             {
-                sky_freq = (*(*it))["sky_freq"];
-                bw = (*(*it))["bandwidth"];
+                sky_freq = (*(*it))["sky_freq"].get<double>();
+                bw = (*(*it))["bandwidth"].get<double>();
                 //net_sb = (*(*it))["net_sideband"];
                 net_sb = (*(*it))["net_sideband"].get<std::string>();
                 //add the freq-axis bounds info for this channel
@@ -531,10 +531,10 @@ MHO_MK4CorelInterface::ExtractCorelFile()
                 if(indicator.second)
                 {
                     mho_json ch_label;
-                    sky_freq = ch_label["sky_freq"];
-                    bw = ch_label["bandwidth"];
-                    net_sb = ch_label["net_sideband"].get<std::string>();
-                    ch_count = ch_label["channel"];
+                    ch_label["sky_freq"] = sky_freq;
+                    ch_label["bandwidth"] = bw;
+                    ch_label["net_sideband"] = net_sb;
+                    ch_label["channel"] = ch_count;
                     ch_label["lower_index"] = freq_count;
                     ch_label["upper_index"] = freq_count + fNSpectral;
                     //ch_label.SetBounds(freq_count, freq_count + fNSpectral);
