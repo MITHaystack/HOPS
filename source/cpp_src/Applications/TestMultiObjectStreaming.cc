@@ -94,12 +94,10 @@ int main(int argc, char** argv)
     size_t chan_width = 32;
     for(size_t i=0; i < x_axis_size/chan_width; i++)
     {
-        MHO_IntervalLabel label;
-        label.SetBounds(i*chan_width, (i+1)*chan_width);
         std::stringstream ss;
         ss << "x-chan-" << i;
-        label.Insert(std::string("x-channel"), ss.str() );
-        x_axis->InsertLabel(label);
+        std::string xch = "x-channel";
+        x_axis->InsertIntervalLabelKeyValue(i*chan_width, (i+1)*chan_width, xch, ss.str() );
     }
 
     auto* y_axis = &(std::get<YDIM>(*ctable));
@@ -113,12 +111,10 @@ int main(int argc, char** argv)
     chan_width = 64;
     for(size_t i=0; i < x_axis_size/chan_width; i++)
     {
-        MHO_IntervalLabel label;
-        label.SetBounds(i*chan_width, (i+1)*chan_width);
         std::stringstream ss;
         ss << "y-chan-" << i;
-        label.Insert(std::string("y-channel"), ss.str() );
-        y_axis->InsertLabel(label);
+        std::string ych = "y-channel";
+        y_axis->InsertIntervalLabelKeyValue(i*chan_width, (i+1)*chan_width, ych, ss.str() );
     }
 
     auto* z_axis = &(std::get<ZDIM>(*ctable));
@@ -185,7 +181,7 @@ int main(int argc, char** argv)
     {
         std::cout<<"key:"<<std::endl;
 
-        std::stringstream ss1; 
+        std::stringstream ss1;
         ss1 << std::hex << it->fSync;
         std::cout<<"sync: "<<ss1.str()<<std::endl;
 
@@ -213,7 +209,7 @@ int main(int argc, char** argv)
     {
         std::cout<<"key:"<<std::endl;
 
-        std::stringstream ss1; 
+        std::stringstream ss1;
         ss1 << std::hex << it->fSync;
         std::cout<<"sync: "<<ss1.str()<<std::endl;
 
@@ -261,7 +257,7 @@ int main(int argc, char** argv)
     MHO_RootCanvasManager cMan;
     auto c = cMan.CreateCanvas(std::string("test"), 800, 800);
     c->Divide(1,3);
-    
+
     auto r_slice = ctable->SliceView(":", ":", 0);
     auto g_slice = ctable->SliceView(":", ":", 1);
     auto b_slice = ctable->SliceView(":", ":", 2);

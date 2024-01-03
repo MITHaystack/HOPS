@@ -199,7 +199,7 @@ class MHO_ContainerJSONConverter: public MHO_JSONConverter
             {
                 mho_json jtags;
                 // FillJSONFromCommonMap(fContainer, jtags);
-                FillJSONFromTaggable(&fContainer, jtags);
+                FillJSONFromTaggable(fContainer, jtags);
                 fJSON["tags"] = jtags;
             }
 
@@ -234,7 +234,7 @@ class MHO_ContainerJSONConverter: public MHO_JSONConverter
             if(fLOD >= eJSONTags)
             {
                 mho_json jtags;
-                FillJSONFromTaggable(&fContainer, jtags);
+                FillJSONFromTaggable(fContainer, jtags);
                 //FillJSONFromCommonMap(fContainer ,jtags);
                 fJSON["tags"] = jtags;
             }
@@ -398,7 +398,7 @@ class MHO_ContainerJSONConverter: public MHO_JSONConverter
                     //     }
                     //     j["labels"] = jilabels;
                     // }
-                    
+
                     std::stringstream ss;
                     ss << "axis_" << fIndex;
                     (*fAxisJSON)[ss.str().c_str()] = j;
