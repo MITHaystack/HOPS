@@ -190,15 +190,18 @@ class MHO_IndexLabelInterface
             if(fIndexLabelObjectPtr != nullptr)
             {
                 fCurrentSize = fIndexLabelObjectPtr->size();
+                std::cout<<"current size = "<<fCurrentSize<<" and new size = "<<size<<std::endl;
                 if(fCurrentSize != size)
                 {
-                    fIndexLabelObjectPtr->get_ptr<mho_json::array_t*>()->reserve(size);
+                    std::vector< mho_json > tmp;
+                    tmp.resize(size);
                     for(std::size_t i=0;i<size;i++) //fill with empty entries
                     {
                         mho_json empty;
                         empty["index"] = i;
-                        (*fIndexLabelObjectPtr)[i] = empty;
+                        tmp[i] = empty;
                     }
+                    (*fIndexLabelObjectPtr) = tmp;
                     fCurrentSize = size;
                 }
             }

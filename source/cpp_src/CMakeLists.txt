@@ -37,13 +37,13 @@ add_subdirectory(${CPPSOURCE}/MK4Interface) #interface to MK4 data types and imp
 # if(HOPS_USE_DIFXIO)
 # add_subdirectory(${CPPSOURCE}/DiFXInterface)
 # endif(HOPS_USE_DIFXIO)
-#
-# add_subdirectory(${CPPSOURCE}/Plugins/OpenCL) #opencl plugin
-#
-# if(HOPS_USE_PYBIND11)
-#     add_subdirectory(${CPPSOURCE}/Plugins/PythonBindings) #python bindings
-# endif(HOPS_USE_PYBIND11)
-#
-# add_subdirectory(${CPPSOURCE}/Plugins/Root) #CERN ROOT plugins
-#
-# add_subdirectory(${CPPSOURCE}/Applications) #applications
+
+add_subdirectory(${CPPSOURCE}/Plugins/OpenCL) #opencl plugin
+
+if(HOPS_USE_PYBIND11)
+    add_subdirectory(${CPPSOURCE}/Plugins/PythonBindings) #python bindings
+endif(HOPS_USE_PYBIND11)
+
+add_subdirectory(${CPPSOURCE}/Plugins/Root) #CERN ROOT plugins
+
+add_subdirectory(${CPPSOURCE}/Applications) #applications
