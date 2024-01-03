@@ -38,8 +38,8 @@ class MHO_Axis:
             MHO_IntervalLabelInterface()
         {
             //create and set the pointer to the index label object
-            std::vector<mho_json> tmp;
-            this->fTags["index_labels"] = tmp;
+            //std::vector<mho_json> tmp;
+            this->fTags["index_labels"] = mho_json(); //tmp;
             this->SetIndexLabelObject( &(this->fTags["index_labels"]) );
 
             //create and set the pointer to the interval label object
@@ -54,8 +54,8 @@ class MHO_Axis:
             MHO_IntervalLabelInterface()
         {
             //create and set the pointer to the index label object
-            std::vector<mho_json> tmp;
-            this->fTags["index_labels"] = tmp;
+            //std::vector<mho_json> tmp;
+            this->fTags["index_labels"] = mho_json(); //tmp;
             this->SetIndexLabelObject( &(this->fTags["index_labels"]) );
             this->ResizeIndexLabels(dim);
 
@@ -79,21 +79,21 @@ class MHO_Axis:
 
         //have to make base class functions visible
 
-        //resize functions
-        virtual void Resize(const std::size_t* dim)
-        {
-            MHO_VectorContainer<XValueType>::Resize(dim);
-            MHO_IndexLabelInterface::ResizeIndexLabels(dim[0]);
-        }
+        // //resize functions
+        // virtual void Resize(const std::size_t* dim)
+        // {
+        //     MHO_VectorContainer<XValueType>::Resize(dim);
+        //     MHO_IndexLabelInterface::ResizeIndexLabels(dim[0]);
+        // }
+        //
+        // virtual void Resize(std::size_t dim)
+        // {
+        //      MHO_VectorContainer<XValueType>::Resize(&dim);
+        //      MHO_IndexLabelInterface::ResizeIndexLabels(dim);
+        // }
 
-        virtual void Resize(std::size_t dim)
-        {
-             MHO_VectorContainer<XValueType>::Resize(&dim);
-             MHO_IndexLabelInterface::ResizeIndexLabels(dim);
-        }
 
-
-        //using MHO_VectorContainer<XValueType>::Resize;
+        using MHO_VectorContainer<XValueType>::Resize;
         using MHO_VectorContainer<XValueType>::GetData;
         using MHO_VectorContainer<XValueType>::GetSize;
         using MHO_VectorContainer<XValueType>::GetDimensions;
@@ -249,6 +249,11 @@ class MHO_Axis:
                 if(this->fTags.contains("index_labels"))
                 {
                     this->SetIndexLabelObject( &(this->fTags["index_labels"] ) );
+                }
+
+                if(this->fTags.contains("interval_labels"))
+                {
+                    this->SetIntervalLabelObject( &(this->fTags["interval_labels"] ) );
                 }
             }
         }
