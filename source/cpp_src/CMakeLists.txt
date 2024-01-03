@@ -34,9 +34,9 @@ add_subdirectory(${CPPSOURCE}/Fringe) #library of fringe-fitting related functio
 add_subdirectory(${CPPSOURCE}/MK4Interface) #interface to MK4 data types and import
 
 
-# if(HOPS_USE_DIFXIO)
-# add_subdirectory(${CPPSOURCE}/DiFXInterface)
-# endif(HOPS_USE_DIFXIO)
+if(HOPS_USE_DIFXIO)
+add_subdirectory(${CPPSOURCE}/DiFXInterface)
+endif(HOPS_USE_DIFXIO)
 
 add_subdirectory(${CPPSOURCE}/Plugins/OpenCL) #opencl plugin
 
