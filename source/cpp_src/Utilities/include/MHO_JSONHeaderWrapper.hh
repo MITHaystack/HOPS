@@ -269,7 +269,7 @@ class MHO_IndexLabelInterface
         }
 
         //get a vector of indexes which contain a key with the same name
-        std::vector< std::size_t > GetMatchingIndexes(std::string& key)
+        std::vector< std::size_t > GetMatchingIndexes(std::string& key) const
         {
             std::vector<std::size_t> idx;
             for(std::size_t i=0; i<fCurrentSize; i++)
@@ -284,7 +284,7 @@ class MHO_IndexLabelInterface
 
         //get a vector of indexes which contain a key with a value which matches the passed value
         template< typename XValueType >
-        std::vector< std::size_t > GetMatchingIndexes(std::string& key, const XValueType& value)
+        std::vector< std::size_t > GetMatchingIndexes(std::string& key, const XValueType& value) const
         {
             std::vector<std::size_t> idx;
             for(std::size_t i=0; i<fCurrentSize; i++)

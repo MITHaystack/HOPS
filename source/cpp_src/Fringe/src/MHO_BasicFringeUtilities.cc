@@ -227,18 +227,26 @@ MHO_BasicFringeUtilities::calculate_residual_phase(MHO_ContainerStore* conStore,
     for(std::size_t ch=0; ch < nchan; ch++)
     {
         double freq = chan_ax(ch);//sky freq of this channel
-        MHO_IntervalLabel ilabel(ch,ch);
+
         std::string net_sideband = "?";
         std::string sidebandlabelkey = "net_sideband";
-        auto other_labels = chan_ax.GetIntervalsWhichIntersect(ilabel);
-        for(auto olit = other_labels.begin(); olit != other_labels.end(); olit++)
-        {
-            if( olit->HasKey(sidebandlabelkey) )
-            {
-                olit->Retrieve(sidebandlabelkey, net_sideband);
-                break;
-            }
-        }
+        mho_json ilabel = chan_ax.GetLabelObject(ch);
+        if(ilabel.contains(sidebandlabelkey)){net_sideband = ilabel[sidebandlabelkey].get<std::string>();}
+
+
+        // MHO_IntervalLabel ilabel(ch,ch);
+        // std::string net_sideband = "?";
+        // std::string sidebandlabelkey = "net_sideband";
+        // auto other_labels = chan_ax.GetIntervalsWhichIntersect(ilabel);
+        // for(auto olit = other_labels.begin(); olit != other_labels.end(); olit++)
+        // {
+        //     if( olit->HasKey(sidebandlabelkey) )
+        //     {
+        //         olit->Retrieve(sidebandlabelkey, net_sideband);
+        //         break;
+        //     }
+        // }
+
 
         frot.SetSideband(0); //DSB
         if(net_sideband == "U")
