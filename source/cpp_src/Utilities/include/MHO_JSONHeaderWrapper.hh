@@ -217,7 +217,7 @@ class MHO_IndexLabelInterface
         }
 
         template< typename XValueType >
-        bool RetrieveIndexLabelKeyValue(std::size_t index, const std::string& key, const XValueType& value) const
+        bool RetrieveIndexLabelKeyValue(std::size_t index, const std::string& key, XValueType& value) const
         {
             std::string ikey = index2key(index);
             mho_json test;

@@ -43,6 +43,7 @@ MHO_ManualChannelDelayCorrection::ExecuteInPlace(visibility_type* in)
 
     std::string chan_label;
     std::string pp_label;
+    std::string bwkey = "bandwidth";
 
     for(std::size_t pp=0; pp < pp_ax->GetSize(); pp++)
     {
@@ -53,23 +54,18 @@ MHO_ManualChannelDelayCorrection::ExecuteInPlace(visibility_type* in)
             {
                 chan_label = pcal_it->first;
                 double delay = pcal_it->second;
-                // //TODO, may need to re-work this mapping method if too slow
-                // MHO_IntervalLabel ilabel = chan_ax->GetFirstIntervalWithKeyValue(fChannelLabelKey, chan_label);
-                // if(ilabel.IsValid())
 
-
-
-                //TODO, may need to re-work this mapping method if too slow
                 auto idx_list = chan_ax->GetMatchingIndexes(fChannelLabelKey, chan_label);
                 if(idx_list.size() > 1)
                 {
                     std::size_t ch = idx_list[0];
-                    mho_json ilabel = chan_ax->GetLabelObject(ch);
-                    if( !(ilabel.empty() ) )
+                    double bandwidth = 0;
+                    bool bw_key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, bwkey, bandwidth);
+
+                    if( bw_key_present )
                     {
                         //get the channels bandwidth to determine effective sampling period
                         bool ok = false;
-                        double bandwidth = ilabel["bandwidth"].get<double>();
                         //calculate effective sampling period for channel assuming Nyquist rate
                         bandwidth *= fMHzToHz;
                         double eff_sample_period = 1.0/(2.0*bandwidth);
@@ -88,7 +84,7 @@ MHO_ManualChannelDelayCorrection::ExecuteInPlace(visibility_type* in)
                         //         }
                         //     }
                         // }
-                        // if(!ok){msg_error("calibration", "channel: "<<chan_label<<" is missing bandwidth tag."<<eom);}
+                        // if(!ok)
 
                         //loop over spectral points calculating the phase correction from this delay at each point
                         std::size_t nsp = freq_ax->GetSize();
@@ -109,6 +105,10 @@ MHO_ManualChannelDelayCorrection::ExecuteInPlace(visibility_type* in)
                             auto chunk = in->SliceView(pp, ch, ":", sp); //select this spectral point (for this pol/channel) across all APs
                             chunk *= pc_phasor;
                         }
+                    }
+                    else
+                    {
+                        msg_error("calibration", "channel: "<<chan_label<<" is missing bandwidth tag."<<eom);
                     }
                 }
             }
