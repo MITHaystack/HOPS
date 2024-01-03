@@ -117,19 +117,11 @@ MHO_ComputePlotData::calc_mbd()
     for(std::size_t ch=0; ch < nchan; ch++)
     {
         double freq = (*chan_ax)(ch);//sky freq of this channel
-
-        MHO_IntervalLabel ilabel(ch,ch);
         std::string net_sideband = "?";
         std::string sidebandlabelkey = "net_sideband";
-        auto other_labels = chan_ax->GetIntervalsWhichIntersect(ilabel);
-        for(auto olit = other_labels.begin(); olit != other_labels.end(); olit++)
-        {
-            if( olit->HasKey(sidebandlabelkey) )
-            {
-                olit->Retrieve(sidebandlabelkey, net_sideband);
-                break;
-            }
-        }
+        mho_json ilabel = chan_ax->GetLabelObject(ch);
+        if(ilabel.contains(sidebandlabelkey)){net_sideband = ilabel[sidebandlabelkey].get<std::string>();}
+
         fRot.SetSideband(0); //DSB
         if(net_sideband == "U"){fRot.SetSideband(1);}
         if(net_sideband == "L"){fRot.SetSideband(-1);}
@@ -206,18 +198,11 @@ MHO_ComputePlotData::calc_sbd()
         {
             double freq = (*chan_ax)(ch);//sky freq of this channel
 
-            MHO_IntervalLabel ilabel(ch,ch);
             std::string net_sideband = "?";
             std::string sidebandlabelkey = "net_sideband";
-            auto other_labels = chan_ax->GetIntervalsWhichIntersect(ilabel);
-            for(auto olit = other_labels.begin(); olit != other_labels.end(); olit++)
-            {
-                if( olit->HasKey(sidebandlabelkey) )
-                {
-                    olit->Retrieve(sidebandlabelkey, net_sideband);
-                    break;
-                }
-            }
+            mho_json ilabel = chan_ax->GetLabelObject(ch);
+            if(ilabel.contains(sidebandlabelkey)){net_sideband = ilabel[sidebandlabelkey].get<std::string>();}
+
             fRot.SetSideband(0); //DSB
             if(net_sideband == "U"){fRot.SetSideband(1);}
             if(net_sideband == "L"){fRot.SetSideband(-1);}
@@ -266,10 +251,19 @@ MHO_ComputePlotData::calc_segs()
     phasor_segs.Resize(nchan+1, nap);
     phasor_segs.ZeroArray();
 
-    //grab the fourfit channel name
+    //grab the fourfit channel names
     std::string chan_label_key = "channel_label";
     std::vector< std::string > channel_labels;
-    (&std::get<CHANNEL_AXIS>(*fSBDArray))->CollectAxisElementLabelValues(chan_label_key, channel_labels);
+    for(std::size_t ch=0; ch < chan_ax->GetSize(); ch++)
+    {
+        mho_json ilabel = chan_ax->GetLabelObject(ch);
+        std::string ch_label;
+        if(ilabel.contains(chan_label_key))
+        {
+            ch_label = ilabel[chan_label_key].get<std::string>();
+            channel_labels.push_back(ch_label);
+        }
+    }
 
     for(std::size_t ap=0; ap < nap; ap++)
     {
@@ -280,26 +274,17 @@ MHO_ComputePlotData::calc_segs()
         {
             double freq = (*chan_ax)(ch);//sky freq of this channel
 
-            MHO_IntervalLabel ilabel(ch,ch);
             std::string net_sideband = "?";
             std::string sidebandlabelkey = "net_sideband";
-            auto other_labels = chan_ax->GetIntervalsWhichIntersect(ilabel);
-            for(auto olit = other_labels.begin(); olit != other_labels.end(); olit++)
-            {
-                if( olit->HasKey(sidebandlabelkey) )
-                {
-                    olit->Retrieve(sidebandlabelkey, net_sideband);
-                    break;
-                }
-            }
+            mho_json ilabel = chan_ax->GetLabelObject(ch);
+            if(ilabel.contains(sidebandlabelkey)){net_sideband = ilabel[sidebandlabelkey].get<std::string>();}
+
             fRot.SetSideband(0); //DSB
             if(net_sideband == "U"){fRot.SetSideband(1);}
             if(net_sideband == "L"){fRot.SetSideband(-1);}
 
             //make sure this plot gets the channel label:
-            MHO_IntervalLabel ch_name(ch,ch);
-            ch_name.Insert(chan_label_key, channel_labels[ch]);
-            (&std::get<0>(phasor_segs))->InsertLabel(ch_name);
+            (&std::get<0>(phasor_segs))->InsertIndexLabelKeyValue(ch, chan_label_key, channel_labels[ch]);
 
             (&std::get<0>(phasor_segs))->at(ch) = freq;
             std::complex<double> vis = (*fSBDArray)(POLPROD, ch, ap, max_sbd_bin);
@@ -316,9 +301,8 @@ MHO_ComputePlotData::calc_segs()
         (&std::get<1>(phasor_segs))->at(ap) = ap_ax->at(ap); //set the ap label
         //add the sum over all channels
         phasor_segs(nchan,ap) = sum/sumwt;
-        MHO_IntervalLabel ch_name(nchan,nchan);
-        ch_name.Insert(chan_label_key, std::string("All"));
-        (&std::get<0>(phasor_segs))->InsertLabel(ch_name);
+        std::string all_chan_name = "All";
+        (&std::get<0>(phasor_segs))->InsertIndexLabelKeyValue(nchan, chan_label_key, all_chan_name);
     }
     return phasor_segs;
 
@@ -384,18 +368,11 @@ MHO_ComputePlotData::calc_dr()
     {
         double freq = (*chan_ax)(ch);//sky freq of this channel
 
-        MHO_IntervalLabel ilabel(ch,ch);
         std::string net_sideband = "?";
         std::string sidebandlabelkey = "net_sideband";
-        auto other_labels = chan_ax->GetIntervalsWhichIntersect(ilabel);
-        for(auto olit = other_labels.begin(); olit != other_labels.end(); olit++)
-        {
-            if( olit->HasKey(sidebandlabelkey) )
-            {
-                olit->Retrieve(sidebandlabelkey, net_sideband);
-                break;
-            }
-        }
+        mho_json ilabel = chan_ax->GetLabelObject(ch);
+        if(ilabel.contains(sidebandlabelkey)){net_sideband = ilabel[sidebandlabelkey].get<std::string>();}
+
         fRot.SetSideband(0); //DSB
         if(net_sideband == "U"){fRot.SetSideband(1);}
         if(net_sideband == "L"){fRot.SetSideband(-1);}
@@ -462,18 +439,12 @@ MHO_ComputePlotData::calc_phase()
     for(std::size_t ch=0; ch < nchan; ch++)
     {
         double freq = (*chan_ax)(ch);//sky freq of this channel
-        MHO_IntervalLabel ilabel(ch,ch);
+
         std::string net_sideband = "?";
         std::string sidebandlabelkey = "net_sideband";
-        auto other_labels = chan_ax->GetIntervalsWhichIntersect(ilabel);
-        for(auto olit = other_labels.begin(); olit != other_labels.end(); olit++)
-        {
-            if( olit->HasKey(sidebandlabelkey) )
-            {
-                olit->Retrieve(sidebandlabelkey, net_sideband);
-                break;
-            }
-        }
+        mho_json ilabel = chan_ax->GetLabelObject(ch);
+        if(ilabel.contains(sidebandlabelkey)){net_sideband = ilabel[sidebandlabelkey].get<std::string>();}
+
 
         fRot.SetSideband(0); //DSB
         if(net_sideband == "U")
@@ -580,28 +551,12 @@ MHO_ComputePlotData::calc_xpower_spec()
         for(int ch = 0; ch < nchan; ch++)
         {
             double freq = (*chan_ax)(ch);//sky freq of this channel
-            MHO_IntervalLabel ilabel(ch,ch);
 
             std::string sidebandlabelkey = "net_sideband";
             std::string bandwidthlabelkey = "bandwidth";
-            auto other_labels = chan_ax->GetIntervalsWhichIntersect(ilabel);
-            for(auto olit = other_labels.begin(); olit != other_labels.end(); olit++)
-            {
-                if( olit->HasKey(sidebandlabelkey) )
-                {
-                    olit->Retrieve(sidebandlabelkey, net_sideband);
-                    break;
-                }
-            }
-
-            for(auto olit = other_labels.begin(); olit != other_labels.end(); olit++)
-            {
-                if( olit->HasKey(bandwidthlabelkey) )
-                {
-                    olit->Retrieve(bandwidthlabelkey, bw);
-                    break;
-                }
-            }
+            mho_json ilabel = chan_ax->GetLabelObject(ch);
+            if(ilabel.contains(sidebandlabelkey)){net_sideband = ilabel[sidebandlabelkey].get<std::string>();}
+            if(ilabel.contains(bandwidthlabelkey)){bw = ilabel[bandwidthlabelkey].get<double>();}
 
             fRot.SetSideband(0); //DSB
             if(net_sideband == "U")
@@ -783,7 +738,17 @@ MHO_ComputePlotData::DumpInfoToJSON(mho_json& plot_dict)
     //grab the fourfit channel labels
     std::string chan_label_key = "channel_label";
     std::vector< std::string > channel_labels;
-    (&std::get<0>(phasors))->CollectAxisElementLabelValues(chan_label_key, channel_labels);
+    for(std::size_t ch=0; ch < (&std::get<0>(phasors))->GetSize(); ch++)
+    {
+        mho_json ilabel = (&std::get<0>(phasors))->GetLabelObject(ch);
+        std::string ch_label;
+        if(ilabel.contains(chan_label_key))
+        {
+            ch_label = ilabel[chan_label_key].get<std::string>();
+            channel_labels.push_back(ch_label);
+        }
+    }
+
     plot_dict["ChannelsPlotted"] = channel_labels;
 
     //grab the per-channel/AP phasors, and average down if necessary
@@ -1093,17 +1058,9 @@ MHO_ComputePlotData::calc_timerms(phasor_type& phasors, std::size_t nseg, std::s
             ap_in_seg = 0.0;
             usbfrac = lsbfrac = 0.0;
 
-            MHO_IntervalLabel ilabel(fr,fr);
             std::string sidebandlabelkey = "net_sideband";
-            auto other_labels = chan_ax->GetIntervalsWhichIntersect(ilabel);
-            for(auto olit = other_labels.begin(); olit != other_labels.end(); olit++)
-            {
-                if( olit->HasKey(sidebandlabelkey) )
-                {
-                    olit->Retrieve(sidebandlabelkey, net_sideband);
-                    break;
-                }
-            }
+            mho_json ilabel = chan_ax->GetLabelObject(fr);
+            if(ilabel.contains(sidebandlabelkey)){net_sideband = ilabel[sidebandlabelkey].get<std::string>();}
 
             for(std::size_t ap = seg * apseg; ap < (seg+1)*apseg; ap++)
             {

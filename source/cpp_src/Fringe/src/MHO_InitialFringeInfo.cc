@@ -139,17 +139,14 @@ MHO_InitialFringeInfo::precalculate_quantities(MHO_ContainerStore* conStore, MHO
     paramStore->Set("/config/nlags", nlags);
 
     //grab the channel bandwidth (assume to be the same for all channels)
-    auto chan_ax = &(std::get<CHANNEL_AXIS>(*vis_data));
-    auto ch0_labels = chan_ax->GetIntervalsWhichIntersect((std::size_t)0);
     double bandwidth = 0;
-    for(auto it = ch0_labels.begin(); it != ch0_labels.end(); it++)
-    {
-        if( it->HasKey("bandwidth") )
-        {
-            it->Retrieve("bandwidth", bandwidth);
-            break;
-        }
-    }
+    auto chan_ax = &(std::get<CHANNEL_AXIS>(*vis_data));
+    std::string bandwidthlabelkey = "bandwidth";
+    mho_json ilabel = chan_ax->GetLabelObject(0);
+    if(ilabel.contains(bandwidthlabelkey)){bandwidth = ilabel[bandwidthlabelkey].get<double>();}
+
+    if(bandwidth == 0){msg_error("fringe", "channel-0 missing bandwidth label value." << eom);}
+
     paramStore->Set("/config/channel_bandwidth", bandwidth);
 
     //offset to the start of the data

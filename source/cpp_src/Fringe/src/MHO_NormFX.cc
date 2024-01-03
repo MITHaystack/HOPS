@@ -20,12 +20,18 @@ MHO_NormFX::InitializeImpl(const XArgType1* in1, const XArgType2* in2, XArgType3
     fInitialized = false;
     if(in1 != nullptr && in2 != nullptr && out != nullptr)
     {
-
         bool status = true;
         //figure out if we have USB or LSB data (or a mixture)
         auto* channel_axis = &(std::get<CHANNEL_AXIS>( *(in1) ) );
-        std::size_t n_usb_chan = channel_axis->GetNIntervalsWithKeyValue(std::string("net_sideband"), std::string("U"));
-        std::size_t n_lsb_chan = channel_axis->GetNIntervalsWithKeyValue(std::string("net_sideband"), std::string("L"));
+
+        std::string sb_key = "net_sideband";
+        std::string usb_flag = "U";
+        std::string lsb_flag = "L";
+        auto usb_chan = channel_axis->GetMatchingIndexes(sb_key, usb_flag);
+        auto lsb_chan = channel_axis->GetMatchingIndexes(sb_key, lsb_flag);
+
+        std::size_t n_usb_chan = usb_chan.size();
+        std::size_t n_lsb_chan = lsb_chan.size();
         if(n_usb_chan != 0){fIsUSB = true;}
         if(n_lsb_chan != 0){fIsUSB = false;}
 
