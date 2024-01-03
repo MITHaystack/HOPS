@@ -289,21 +289,39 @@ MHO_DiFXBaselineProcessor::ConstructVisibilityFileObjects()
 
                 if(ppidx == 0) //only one label needed for each channel
                 {
-                    MHO_IntervalLabel ch_label(chidx,chidx);
-                    ch_label.Insert(std::string("sky_freq"), sky_freq);
-                    ch_label.Insert(std::string("bandwidth"), bw);
-                    ch_label.Insert(std::string("net_sideband"), sideband);
-                    ch_label.Insert(std::string("difx_freqindex"), freqidx); //probably ought to be more systematic about creating channel names
-                    ch_label.Insert(std::string("channel"), chidx); //channel position index
+                    mho_json ch_label;
+                    ch_label["sky_freq"] =  sky_freq;
+                    ch_label["bandwidth"] = bw;
+                    ch_label["net_sideband"] = sideband;
+                    ch_label["difx_freqindex"] = freqidx; //probably ought to be more systematic about creating channel names
+                    ch_label["channel"] = chidx; //channel position index
                      //TODO FIXME need to construct difx2mark4-style chan_id --
                     //or rather need to construct the chan_id which corresponds to the reference and remote station for this chunk
                     //this also needs to be able to support zoom bands
-                    ch_label.Insert(std::string("chan_id"), std::string("placeholder"));
+                    ch_label["chan_id"] = "placeholder";
 
                     ch_axis->at(chidx) = sky_freq; //channel axis is now sky frequency not chidx;
-                    wch_axis->at(chidx) = sky_freq; // chidx;
-                    ch_axis->InsertLabel(ch_label);
-                    wch_axis->InsertLabel(ch_label);
+                    wch_axis->at(chidx) = sky_freq;
+                    ch_axis->SetLabelObject(ch_label,chidx);
+                    wch_axis->SetLabelObject(ch_label,chidx);
+
+
+
+                    // MHO_IntervalLabel ch_label(chidx,chidx);
+                    // ch_label.Insert(std::string("sky_freq"), sky_freq);
+                    // ch_label.Insert(std::string("bandwidth"), bw);
+                    // ch_label.Insert(std::string("net_sideband"), sideband);
+                    // ch_label.Insert(std::string("difx_freqindex"), freqidx); //probably ought to be more systematic about creating channel names
+                    // ch_label.Insert(std::string("channel"), chidx); //channel position index
+                    //  //TODO FIXME need to construct difx2mark4-style chan_id --
+                    // //or rather need to construct the chan_id which corresponds to the reference and remote station for this chunk
+                    // //this also needs to be able to support zoom bands
+                    // ch_label.Insert(std::string("chan_id"), std::string("placeholder"));
+                    //
+                    // ch_axis->at(chidx) = sky_freq; //channel axis is now sky frequency not chidx;
+                    // wch_axis->at(chidx) = sky_freq; // chidx;
+                    // ch_axis->InsertLabel(ch_label);
+                    // wch_axis->InsertLabel(ch_label);
                 }
 
                 for(std::size_t ap = 0; ap<fVisibilities[pp][freqidx].size(); ap++)
