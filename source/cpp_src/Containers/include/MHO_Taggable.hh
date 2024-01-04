@@ -81,10 +81,13 @@ class MHO_Taggable:
         }
 
         mho_json GetDataAsJSON() const {return fTags;}
-        //end of multi-type map interface 
-    
-        //declare the friend class which extends this interface 
-        // friend class MHO_IndexLabelInterface;
+
+        //completely replaces fTags (use with caution)
+        void SetDataAsJSON(mho_json obj)
+        {
+            fTags = obj;
+        }
+
     
     protected:
         

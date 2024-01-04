@@ -120,58 +120,41 @@ class MHO_PyTableContainer
         {
             return GetTableTags< XTableType >(fTable);
         }
-
-
-        void SetTag(std::string key, py::object value)
+        
+        py::dict GetMetaData()
         {
-            //try casting the py::object to the allowed types,
-            //and then set the tag value if able
-            if(py::isinstance<py::bool_>(value))
+            return GetTableTags< XTableType >(fTable);
+        }
+
+        py::dict GetCoordinateAxisMetaData(std::size_t index)
+        {
+            py::dict ret_val;
+            if(index < fRank)
             {
-                bool val = value.cast<bool>();
-                fTable->Insert(key, val);
-            }
-            else if(py::isinstance<char>(value))
-            {
-                bool val = value.cast<char>();
-                fTable->Insert(key, val);
-            }
-            else if(py::isinstance<py::int_>(value))
-            {
-                int val = value.cast< int >();
-                fTable->Insert(key, val);
-            }
-            else if(py::isinstance<py::float_>(value))
-            {
-                double val = value.cast< double >();
-                fTable->Insert(key, val);
-            }
-            else if(py::isinstance<py::str>(value))
-            {
-                std::string val = value.cast< std::string >();
-                fTable->Insert(key, val);
+                PyAxisMetaDataFiller filler(&ret_val);
+                apply_at< typename XTableType::axis_pack_tuple_type, PyAxisMetaDataFiller >(*fTable, index, filler);
             }
             else
             {
-                msg_error("python_bindings", "unable to set tag with key: "<< key <<" since object not castable to bool, char, int, float, or string."<< eom);
+                msg_fatal("python_bindings", "axis index: "<< index << " exceeds table rank of: "<< fRank << eom );
+                std::exit(1);
             }
-        }
-
-
-        py::list GetCoordinateAxisIntervalLabels(size_t index)
-        {
-            py::list ret_val;
-            // if(index < fRank)
-            // {
-            //     PyIntervalLabelListFiller filler(&ret_val);
-            //     apply_at< typename XTableType::axis_pack_tuple_type, PyIntervalLabelListFiller >( *fTable, index, filler);
-            // }
-            // else
-            // {
-            //     msg_fatal("python_bindings", "axis index: "<< index << " exceeds table rank of: "<< fRank << eom );
-            //     std::exit(1);
-            // }
             return ret_val;
+        }
+        
+        //whole-sale re-setting of metadata (this may be over-kill)
+        void SetCoordinateAxisMetaData(std::size_t index, py::dict metadata)
+        {
+            if(index < fRank)
+            {
+                PyAxisMetaDataSetter filler(&metadata);
+                apply_at< typename XTableType::axis_pack_tuple_type, PyAxisMetaDataSetter >(*fTable, index, filler);
+            }
+            else
+            {
+                msg_fatal("python_bindings", "axis index: "<< index << " exceeds table rank of: "<< fRank << eom );
+                std::exit(1);
+            }
         }
 
     private:
@@ -196,26 +179,8 @@ class MHO_PyTableContainer
         static py::dict GetTableTags(XDataTableType* table)
         {
             py::dict tags = table->GetDataAsJSON();
-            //
-            // DumpValuesToPyDict<bool>(dynamic_cast< MHO_SingleTypeMap< std::string , bool >* >(table), tags);
-            // DumpValuesToPyDict<char>(dynamic_cast< MHO_SingleTypeMap< std::string , char >* >(table), tags);
-            // DumpValuesToPyDict<int>(dynamic_cast< MHO_SingleTypeMap< std::string , int >* >(table), tags);
-            // DumpValuesToPyDict<double>(dynamic_cast< MHO_SingleTypeMap< std::string , double >* >(table), tags);
-            // DumpValuesToPyDict<std::string>(dynamic_cast< MHO_SingleTypeMap< std::string , std::string >* >(table), tags);
             return tags;
         }
-
-        // static py::dict GetIntervalLabelTags(MHO_IntervalLabel label)
-        // {
-        //     py::dict tags;
-        //     DumpValuesToPyDict<bool>(dynamic_cast< MHO_SingleTypeMap< std::string , bool >* >(&label), tags);
-        //     DumpValuesToPyDict<char>(dynamic_cast< MHO_SingleTypeMap< std::string , char >* >(&label), tags);
-        //     DumpValuesToPyDict<int>(dynamic_cast< MHO_SingleTypeMap< std::string , int >* >(&label), tags);
-        //     DumpValuesToPyDict<double>(dynamic_cast< MHO_SingleTypeMap< std::string , double >* >(&label), tags);
-        //     DumpValuesToPyDict<std::string>(dynamic_cast< MHO_SingleTypeMap< std::string , std::string >* >(&label), tags);
-        //     return tags;
-        // }
-
 
         //helper class to act as a python-list filling functor (to return copies)
         class PyListFiller
@@ -233,32 +198,41 @@ class MHO_PyTableContainer
             private:
                 py::list* fList;
         };
+        
+        //helper class to act as a python dict filling functor (to return copies of meta data)
+        class PyAxisMetaDataFiller
+        {
+            public:
+                PyAxisMetaDataFiller(py::dict* adict):fDict(adict){};
+                ~PyAxisMetaDataFiller(){};
 
+                template< typename XAxisType >
+                void operator()(const XAxisType& axis)
+                {
+                    *fDict = axis.GetDataAsJSON();
+                }
 
-        // //helper class to act as a python-list filling functor (to return copies)
-        // class PyIntervalLabelListFiller
-        // {
-        //     public:
-        //         PyIntervalLabelListFiller(py::list* alist):fList(alist){};
-        //         ~PyIntervalLabelListFiller(){};
-        //
-        //         template< typename XAxisType >
-        //         void operator()(XAxisType& axis)
-        //         {
-        //             std::vector< MHO_IntervalLabel > iLabels = axis.GetAllIntervalLabels();
-        //             for(std::size_t i=0; i<iLabels.size(); i++)
-        //             {
-        //                 std::size_t low = iLabels[i].GetLowerBound();
-        //                 std::size_t up = iLabels[i].GetUpperBound();
-        //                 py::dict iLabelDict = GetIntervalLabelTags( iLabels[i] );
-        //                 iLabelDict["lower_bound"] = low;
-        //                 iLabelDict["uppper_bound"] = up;
-        //                 fList->append(iLabelDict);
-        //             }
-        //         }
-        //     private:
-        //         py::list* fList;
-        // };
+            private:
+                py::dict* fDict;
+        };
+        
+        //helper class to act as a python dict filling functor (to return copies of meta data)
+        class PyAxisMetaDataSetter
+        {
+            public:
+                PyAxisMetaDataSetter(py::dict* adict):fDict(adict){};
+                ~PyAxisMetaDataSetter(){};
+
+                template< typename XAxisType >
+                void operator()(XAxisType& axis)
+                {
+                    axis.SetDataAsJSON( *fDict );
+                }
+
+            private:
+                py::dict* fDict;
+        };
+
 
         //helper class that allows us to set the value of an axis label from python
         class PyAxisLabelModifier
@@ -322,11 +296,14 @@ DeclarePyTableContainer(py::module &m, std::string pyclass_name = "")
         .def("GetClassName", &hops::MHO_PyTableContainer<XTableType>::GetClassName)
         .def("GetDimension", &hops::MHO_PyTableContainer<XTableType>::GetDimension)
         .def("GetTags", &hops::MHO_PyTableContainer<XTableType>::GetTags)
-        .def("SetTag", &hops::MHO_PyTableContainer<XTableType>::SetTag)
+        .def("GetMetaData", &hops::MHO_PyTableContainer<XTableType>::GetMetaData)
+        //.def("SetTag", &hops::MHO_PyTableContainer<XTableType>::SetTag)
         .def("GetNumpyArray", &hops::MHO_PyTableContainer<XTableType>::GetNumpyArray)
         .def("GetCoordinateAxis", &hops::MHO_PyTableContainer<XTableType>::GetCoordinateAxis)
-        .def("SetCoordinateLabel", &hops::MHO_PyTableContainer<XTableType>::SetCoordinateLabel)
-        .def("GetCoordinateAxisIntervalLabels", &hops::MHO_PyTableContainer<XTableType>:: GetCoordinateAxisIntervalLabels);
+        .def("GetCoordinateAxisMetaData", &hops::MHO_PyTableContainer<XTableType>::GetCoordinateAxisMetaData)
+        .def("SetCoordinateAxisMetaData", &hops::MHO_PyTableContainer<XTableType>::SetCoordinateAxisMetaData)
+        .def("SetCoordinateLabel", &hops::MHO_PyTableContainer<XTableType>::SetCoordinateLabel);
+        //.def("GetCoordinateAxisIntervalLabels", &hops::MHO_PyTableContainer<XTableType>:: GetCoordinateAxisIntervalLabels);
 }
 
 
