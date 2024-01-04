@@ -63,13 +63,6 @@ class MHO_ObjectTags: public MHO_Taggable, public MHO_ExtensibleElement
             return obj_uuids;
         }
 
-        //get the number of tags present
-        std::size_t GetNTags() const
-        {
-            std::size_t n = this->MapSize();
-            return n;
-        }
-
         //check if a tag with the given name is present
         bool IsTagPresent(const std::string& tag_name) const
         {   
@@ -110,18 +103,6 @@ class MHO_ObjectTags: public MHO_Taggable, public MHO_ExtensibleElement
         {
             return this->Retrieve(tag_name, tag_value);
         }
-
-        // //get the number of tags present
-        // std::string GetTagValueType(const std::string& tag_name) const
-        // {
-        //     //TODO FIXME, what if key is not unique among types?
-        //     if(this->ContainsKey<char>(tag_name)){return std::string("char");}
-        //     if(this->ContainsKey<bool>(tag_name)){return std::string("bool");}
-        //     if(this->ContainsKey<int>(tag_name)){return std::string("int");}
-        //     if(this->ContainsKey<double>(tag_name)){return std::string("double");}
-        //     if(this->ContainsKey<std::string>(tag_name)){return std::string("string");}
-        //     return std::string("");
-        // }
 
         //get the number of tags present
         std::string GetTagValueAsString(const std::string& tag_name) const

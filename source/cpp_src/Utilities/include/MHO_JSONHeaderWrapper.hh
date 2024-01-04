@@ -57,13 +57,6 @@ class MHO_JSONWrapper
             return *this;
         }
 
-        //start of multi-type map interface
-        std::size_t MapSize() const
-        {
-            if(fObject != nullptr){return fObject->size();}
-            return 0;
-        }
-
         void Clear()
         {
             if(fObject != nullptr){fObject->clear();};
