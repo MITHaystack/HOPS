@@ -58,6 +58,7 @@ void ConvertCorel(const std::string root_file, const std::string& input_file, co
     if(init)
     {
         bool exe = channelizer.Execute();
+        if(!exe){msg_error("main", "failed to channelize visibility data." << eom);}
     }
     ch_bl_data->CopyTags(*bl_data);
 
@@ -68,6 +69,7 @@ void ConvertCorel(const std::string root_file, const std::string& input_file, co
     if(winit)
     {
         bool wexe = wchannelizer.Execute();
+        if(!wexe){msg_error("main", "failed to channelize weight data." << eom);}
     }
     ch_bl_wdata->CopyTags(*bl_wdata);
 
@@ -78,7 +80,7 @@ void ConvertCorel(const std::string root_file, const std::string& input_file, co
         uint32_t label = 0xFFFFFFFF; //someday make this mean something
         inter.Write(*ch_bl_data, "vis", label);
         inter.Write(*ch_bl_wdata, "weight", label);
-        // 
+        //
         // // //TODO AFTER DEBUG RETURN TO ch_* data
         // inter.Write(*bl_data, "uch_vis", label);
         // inter.Write(*bl_wdata, "uch_weight", label);

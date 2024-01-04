@@ -89,6 +89,7 @@ MHO_DataSelectionBuilder::Build()
             for(auto it = chan_set.begin(); it != chan_set.end(); it++)
             {
                  auto tmp_ch = (&(std::get<CHANNEL_AXIS>(*vis_data)))->GetMatchingIndexes(chan_label_key, *it);
+                 std::cout<<"selected @ "<<*it<<" n = "<<tmp_ch.size()<<std::endl;
                  selected_ch.insert(selected_ch.end(), tmp_ch.begin(), tmp_ch.end() );
             }
 
@@ -100,7 +101,7 @@ MHO_DataSelectionBuilder::Build()
         if(do_select_aps)
         {
             std::vector<std::size_t> selected_aps;
-            msg_debug("initialization", "data selection, selecting pol-product = "<< polprod << eom);
+            msg_debug("initialization", "data selection, selecting APs."<< eom);
             auto ap_ax_ptr = &(std::get<TIME_AXIS>(*vis_data));
             std::size_t naps = ap_ax_ptr->GetSize();
             double first_t = ap_ax_ptr->at(0);

@@ -102,6 +102,7 @@ class MHO_ChannelLabeler: public MHO_UnaryOperator< XArrayType >
                     {
                         chan_axis_ptr->InsertIndexLabelKeyValue(i, fChannelLabelKey, fIndexToChannelLabel[i]);
                     }
+                    std::cout<< chan_axis_ptr->GetDataAsJSON().dump(2) <<std::endl;
                 }
                 else
                 {

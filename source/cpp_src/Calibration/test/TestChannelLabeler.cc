@@ -47,8 +47,6 @@ int main(int argc, char** argv)
     }
 
     std::size_t ch_size = chan_axis_ptr->GetSize();
-    chan_axis_ptr->ResizeIndexLabels(0);
-    chan_axis_ptr->ResizeIndexLabels(ch_size);
 
     label_maker.SetChannelLabelToFrequencyMap(fUserMap);
     label_maker.SetArgs(&vis);
