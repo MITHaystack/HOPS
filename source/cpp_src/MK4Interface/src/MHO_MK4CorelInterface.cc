@@ -537,6 +537,7 @@ MHO_MK4CorelInterface::ExtractCorelFile()
                     ch_label["channel"] = ch_count;
                     ch_label["lower_index"] = freq_count;
                     ch_label["upper_index"] = freq_count + fNSpectral;
+                    ch_label["chan_id"] = "placeholder";
                     //ch_label.SetBounds(freq_count, freq_count + fNSpectral);
                     std::get<UCH_FREQ_AXIS>(*bl_data).SetIntervalLabelObject(ch_label, freq_count, freq_count+fNSpectral);
                     std::get<UCH_FREQ_AXIS>(*bl_wdata).SetIntervalLabelObject(ch_label, freq_count, freq_count+fNSpectral);

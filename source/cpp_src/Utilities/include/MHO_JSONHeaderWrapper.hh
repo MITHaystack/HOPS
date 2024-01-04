@@ -187,28 +187,6 @@ class MHO_IndexLabelInterface
 
         std::size_t GetIndexLabelSize() const {return fCurrentSize;}
 
-        virtual void ResizeIndexLabels(std::size_t size)
-        {
-            // if(fIndexLabelObjectPtr != nullptr)
-            // {
-            //     fCurrentSize = fIndexLabelObjectPtr->size();
-            //     std::cout<<"current size = "<<fCurrentSize<<" and new size = "<<size<<std::endl;
-            //     if(fCurrentSize != size)
-            //     {
-            //         std::vector< mho_json > tmp;
-            //         tmp.resize(size);
-            //         for(std::size_t i=0;i<size;i++) //fill with empty entries
-            //         {
-            //             mho_json empty;
-            //             empty["index"] = i;
-            //             tmp[i] = empty;
-            //         }
-            //         (*fIndexLabelObjectPtr) = tmp;
-            //         fCurrentSize = size;
-            //     }
-            // }
-        }
-
         template< typename XValueType >
         void InsertIndexLabelKeyValue(std::size_t index, const std::string& key, const XValueType& value)
         {
@@ -237,6 +215,7 @@ class MHO_IndexLabelInterface
         void SetLabelObject(mho_json& obj, std::size_t index)
         {
             (*fIndexLabelObjectPtr)[ index2key(index) ] = obj;
+            std::cout<<"ADDING: "<<index<< (*fIndexLabelObjectPtr)[ index2key(index) ].dump(2) <<std::endl;
         }
 
 
@@ -252,7 +231,7 @@ class MHO_IndexLabelInterface
             std::vector<std::size_t> idx;
             for( auto& it : fIndexLabelObjectPtr->items() )
             {
-                if(it.key() == key)
+                if( it.value().contains(key) )
                 {
                     idx.push_back( key2index( it.key() ) );
                 }
@@ -267,15 +246,15 @@ class MHO_IndexLabelInterface
             std::vector<std::size_t> idx;
             for( auto& it : fIndexLabelObjectPtr->items() )
             {
-                if(it.key() == key)
+                if( it.value().contains(key) )
                 {
                     mho_json test;
                     test["test"] = value;
                     //TODO FIXME - this is a major KLUDGE
                     //but needed to avoid exceptions when key is present, but value type is different
-                    if(test["test"].type() == it.value().type())
+                    if(test["test"].type() == (it.value()[key]).type())
                     {
-                        XValueType label_value = it.value().get<XValueType>();
+                        XValueType label_value = (it.value()[key]).get<XValueType>();
                         if(label_value == value){idx.push_back( key2index(it.key() ) );};
                     }
                 }
@@ -356,7 +335,6 @@ class MHO_IntervalLabelInterface
         MHO_IntervalLabelInterface():fIntervalLabelObjectPtr(nullptr)
         {
             fTokenizer.SetDelimiter(",");
-            fCurrentSize = 0;
             fDummy["lower_index"] = -1; //dummy object for invalid returns, always has an invalid index
             fDummy["upper_index"] = -1; //dummy object for invalid returns, always has an invalid index
         };
@@ -364,11 +342,9 @@ class MHO_IntervalLabelInterface
         MHO_IntervalLabelInterface(const MHO_IntervalLabelInterface& copy)
         {
             fTokenizer.SetDelimiter(",");
-            fCurrentSize = 0;
             fDummy["lower_index"] = -1; //dummy object for invalid returns, always has an invalid index
             fDummy["upper_index"] = -1; //dummy object for invalid returns, always has an invalid index
             fIntervalLabelObjectPtr = copy.fIntervalLabelObjectPtr;
-            if(fIntervalLabelObjectPtr != nullptr){fCurrentSize = fIntervalLabelObjectPtr->size();}
         };
 
         void SetIntervalLabelObject(mho_json* obj){fIntervalLabelObjectPtr = obj;}
@@ -415,7 +391,6 @@ class MHO_IntervalLabelInterface
             if(fIntervalLabelObjectPtr->contains(ikey) )
             {
                 return (*fIntervalLabelObjectPtr)[ikey];
-
             }
             else
             {
@@ -424,10 +399,11 @@ class MHO_IntervalLabelInterface
             }
         }
 
-
         void SetIntervalLabelObject(mho_json& obj, std::size_t lower_index, std::size_t upper_index)
         {
             std::string ikey = ConstructKey(lower_index, upper_index);
+            obj["lower_index"] = std::min(lower_index, upper_index);
+            obj["upper_index"] = std::max(lower_index, upper_index);
             (*fIntervalLabelObjectPtr)[ikey] = obj;
         }
 
@@ -436,11 +412,11 @@ class MHO_IntervalLabelInterface
         std::vector< mho_json > GetMatchingIntervalLabels(std::string key) const
         {
             std::vector<mho_json> objects;
-            for(std::size_t i=0; i<fCurrentSize; i++)
+            for(auto it: fIntervalLabelObjectPtr->items() )
             {
-                if((*fIntervalLabelObjectPtr)[i].contains(key))
+                if( it.value().contains(key) )
                 {
-                    objects.push_back( (*fIntervalLabelObjectPtr)[i] );
+                    objects.push_back( it.value() );
                 }
             }
             return objects;
@@ -450,16 +426,16 @@ class MHO_IntervalLabelInterface
         mho_json GetFirstIntervalWithKeyValue(std::string key, const XLabelValueType& value) const
         {
             mho_json obj;
-            for(std::size_t i=0; i<fCurrentSize; i++)
+            for(auto it: fIntervalLabelObjectPtr->items() )
             {
-                if((*fIntervalLabelObjectPtr)[i].contains(key))
+                if( it.value().contains(key) )
                 {
                     XLabelValueType v;
-                    v = (*fIntervalLabelObjectPtr)[i][key];
+                    v = it.value()[key];
                     if(v == value)
                     {
-                        obj = (*fIntervalLabelObjectPtr)[i];
-                        return obj;
+                        obj = it.value();
+                        break;
                     }
                 }
             }

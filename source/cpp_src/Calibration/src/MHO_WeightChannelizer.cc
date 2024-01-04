@@ -68,7 +68,7 @@ MHO_WeightChannelizer::InitializeImpl(const uch_weight_store_type* in, weight_st
 
             if(channel_sizes.size() != 1)
             {
-                msg_warn("calibration", "channel sizes are not a uniform number of spectral points." << eom);
+                msg_warn("calibration", "channel sizes are not a uniform number of spectral points, there are: "<< channel_sizes.size() <<" distinct sizes." << eom);
             }
             std::size_t channel_length = 1; //only one weight per channel-ap //*( channel_sizes.begin() );
 

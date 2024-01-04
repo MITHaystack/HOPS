@@ -57,7 +57,6 @@ class MHO_Axis:
             //std::vector<mho_json> tmp;
             this->fTags["index_labels"] = mho_json(); //tmp;
             this->SetIndexLabelObject( &(this->fTags["index_labels"]) );
-            this->ResizeIndexLabels(dim);
 
             //create and set the pointer to the interval label object
             this->fTags["interval_labels"] = mho_json();
