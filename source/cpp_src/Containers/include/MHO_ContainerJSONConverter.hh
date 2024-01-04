@@ -93,7 +93,7 @@ inline void FillJSONFromCommonMap(const MHO_CommonLabelMap* map, mho_json& obj_t
 inline void FillJSONFromTaggable(const MHO_Taggable* map, mho_json& obj_tags)
 {
     bool ok;
-    obj_tags = map->GetDataAsJSON();
+    obj_tags = map->GetMetaDataAsJSON();
 }
 
 
