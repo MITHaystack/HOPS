@@ -116,14 +116,14 @@ class MHO_PyTableContainer
             }
         }
 
-        py::dict GetTags()
-        {
-            return GetTableTags< XTableType >(fTable);
-        }
-        
         py::dict GetMetaData()
         {
             return GetTableTags< XTableType >(fTable);
+        }
+
+        void SetMetaData(py::dict metadata)
+        {
+            return SetTableTags< XTableType >(fTable, metadata);
         }
 
         py::dict GetCoordinateAxisMetaData(std::size_t index)
@@ -178,8 +178,15 @@ class MHO_PyTableContainer
         template< typename XDataTableType >
         static py::dict GetTableTags(XDataTableType* table)
         {
-            py::dict tags = table->GetDataAsJSON();
+            py::dict tags = table->GetMetaDataAsJSON();
             return tags;
+        }
+        
+        template< typename XDataTableType >
+        static void SetTableTags(XDataTableType* table, py::dict metadata)
+        {
+            mho_json md = metadata;
+            table->SetMetaDataAsJSON(md);
         }
 
         //helper class to act as a python-list filling functor (to return copies)
@@ -209,7 +216,7 @@ class MHO_PyTableContainer
                 template< typename XAxisType >
                 void operator()(const XAxisType& axis)
                 {
-                    *fDict = axis.GetDataAsJSON();
+                    *fDict = axis.GetMetaDataAsJSON();
                 }
 
             private:
@@ -226,7 +233,7 @@ class MHO_PyTableContainer
                 template< typename XAxisType >
                 void operator()(XAxisType& axis)
                 {
-                    axis.SetDataAsJSON( *fDict );
+                    axis.SetMetaDataAsJSON( *fDict );
                 }
 
             private:
@@ -295,8 +302,9 @@ DeclarePyTableContainer(py::module &m, std::string pyclass_name = "")
         .def("GetRank", &hops::MHO_PyTableContainer<XTableType>::GetRank)
         .def("GetClassName", &hops::MHO_PyTableContainer<XTableType>::GetClassName)
         .def("GetDimension", &hops::MHO_PyTableContainer<XTableType>::GetDimension)
-        .def("GetTags", &hops::MHO_PyTableContainer<XTableType>::GetTags)
+        // .def("GetTags", &hops::MHO_PyTableContainer<XTableType>::GetTags)
         .def("GetMetaData", &hops::MHO_PyTableContainer<XTableType>::GetMetaData)
+        .def("SetMetaData", &hops::MHO_PyTableContainer<XTableType>::SetMetaData)
         //.def("SetTag", &hops::MHO_PyTableContainer<XTableType>::SetTag)
         .def("GetNumpyArray", &hops::MHO_PyTableContainer<XTableType>::GetNumpyArray)
         .def("GetCoordinateAxis", &hops::MHO_PyTableContainer<XTableType>::GetCoordinateAxis)

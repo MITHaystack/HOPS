@@ -84,19 +84,21 @@ def test_plot_visibilities(cstore_interface_obj, param_interface_obj):
     # vis_arr[:,:,12:15,:] = 200.0
 
     #lets dump the tags
-    tags = visib_obj.GetTags()
+    tags = visib_obj.GetMetaData()
     print("tags = ", tags)
 
-    #now set a tag value
-    # visib_obj.SetTag("python_int_tag", 33)
-    # visib_obj.SetTag("python_float_tag", 3.14159)
-    # visib_obj.SetTag("python_string_tag", "a_new_string")
-    # visib_obj.SetTag("python_bool_tag", True)
-    # visib_obj.SetTag("python_char_tag", r'a') #note the r prefix for raw encoding as a byte/char
-
-    #and dump them again
+    tags["python_int_tag"] = 33
+    tags["python_float_tag"] = 3.14159
+    tags["python_string_tag"] = "a_new_string"
+    tags["python vector tag"] = [1.0, 2.0, 3.0, 12.0]
+    tags["python_bool_tag"] = True
+    
+    #now set the tag object 
+    visib_obj.SetMetaData(tags)
+    
+    #now retrieve and dump them again
     tags = visib_obj.GetMetaData()
-    print("table metadata/tags = ", tags)
+    print("updated table metadata/tags = ", tags)
 
     #get the axis meta dat object
     for idx in [0,1,2,3]:

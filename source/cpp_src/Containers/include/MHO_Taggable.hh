@@ -80,14 +80,10 @@ class MHO_Taggable:
             }
         }
 
-        mho_json GetDataAsJSON() const {return fTags;}
+        mho_json GetMetaDataAsJSON() const {return fTags;}
 
-        //completely replaces fTags (use with caution)
-        void SetDataAsJSON(mho_json obj)
-        {
-            fTags = obj;
-        }
-
+        //completely replaces fTags data (use with caution)
+        void SetMetaDataAsJSON(mho_json obj){fTags = obj;}
     
     protected:
         
