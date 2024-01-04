@@ -215,7 +215,6 @@ class MHO_IndexLabelInterface
         void SetLabelObject(mho_json& obj, std::size_t index)
         {
             (*fIndexLabelObjectPtr)[ index2key(index) ] = obj;
-            std::cout<<"ADDING: "<<index<< (*fIndexLabelObjectPtr)[ index2key(index) ].dump(2) <<std::endl;
         }
 
 

@@ -118,23 +118,34 @@ template<> class MHO_BinaryFileStreamerSingleType<mho_json>
         friend inline MHO_BinaryFileStreamer& operator>>(MHO_BinaryFileStreamerSingleType<mho_json>& s, mho_json& obj)
         {
             uint64_t size;
+            uint64_t encoding;
             s.GetStream().read(reinterpret_cast<char*>(&size), sizeof(uint64_t));
+            s.GetStream().read(reinterpret_cast<char*>(&encoding), sizeof(uint64_t));
             std::vector<std::uint8_t> data;
             data.resize(size);
             s.GetStream().read(reinterpret_cast<char*>(&(data[0])), size);
+            //TODO FIXME - Add the ability to support other JSON encodings besides CBOR
             //now decode from CBOR 
-            obj = mho_json::from_cbor(data);
+            if(encoding == 0)
+            {
+                obj = mho_json::from_cbor(data);
+            }
             return s.Self();
         }
 
         //write out
         friend inline MHO_BinaryFileStreamer& operator<<(MHO_BinaryFileStreamerSingleType<mho_json>& s, const mho_json& obj)
         {
-            //must encode to CBOR
+
             std::vector<std::uint8_t> data = mho_json::to_cbor(obj);
             uint64_t size = data.size();
+            //must encode to CBOR
+            //TODO FIXME - Add the ability to support other JSON encodings
+            uint64_t encoding = 0; //CBOR is 0
             s.GetStream().write(reinterpret_cast<const char*>(&size), sizeof(uint64_t));
+            s.GetStream().write(reinterpret_cast<const char*>(&encoding), sizeof(uint64_t));
             s.GetStream().write(reinterpret_cast<const char*>(&(data[0])), size);
+            s.AddBytesWritten(sizeof(uint64_t));
             s.AddBytesWritten(sizeof(uint64_t));
             s.AddBytesWritten(size);
             return s.Self();

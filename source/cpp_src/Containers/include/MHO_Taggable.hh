@@ -108,8 +108,9 @@ class MHO_Taggable:
             std::vector<std::uint8_t> data = mho_json::to_cbor(fTags);
             uint64_t size = data.size();
             
-            total_size += sizeof(uint64_t);//for the encoded data size parameter 
-            total_size += size*sizeof(std::uint8_t);
+            total_size += sizeof(uint64_t);//for the encoded data-size parameter
+            total_size += sizeof(uint64_t);//for parameter that specifies the type of the encoding
+            total_size += size*sizeof(std::uint8_t); //for the actual data
 
             return total_size;
         }
