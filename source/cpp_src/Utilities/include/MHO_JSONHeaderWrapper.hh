@@ -131,23 +131,6 @@ class MHO_JSONWrapper
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -184,7 +167,6 @@ class MHO_IndexLabelInterface
         void InsertIndexLabelKeyValue(std::size_t index, const std::string& key, const XValueType& value)
         {
             (*fIndexLabelObjectPtr)[ index2key(index) ][key] = value;
-            //msg_warn("containers", "cannot insert key value pair for index: "<< index << " for array of size: "<< fCurrentSize << eom);
         }
 
         template< typename XValueType >
@@ -240,43 +222,22 @@ class MHO_IndexLabelInterface
             {
                 if( it.value().contains(key) )
                 {
-                    mho_json test;
-                    test["test"] = value;
-                    //TODO FIXME - this is a major KLUDGE
-                    //but needed to avoid exceptions when key is present, but value type is different
-                    if(test["test"].type() == (it.value()[key]).type())
+                    XValueType v = it.value()[key];
+                    if(v == value)
                     {
-                        XValueType label_value = (it.value()[key]).get<XValueType>();
-                        if(label_value == value){idx.push_back( key2index(it.key() ) );};
+                        std::size_t i = key2index(it.key());
+                        idx.push_back(i);
                     }
                 }
             }
             return idx;
-
-            // std::vector<std::size_t> idx;
-            // for(std::size_t i=0; i<fCurrentSize; i++)
-            // {
-            //     if((*fIndexLabelObjectPtr)[i].contains(key))
-            //     {
-            //         mho_json test;
-            //         test["test"] = value;
-            //         //TODO FIXME - this is a major KLUDGE
-            //         //but needed to avoid exceptions when key is present, but value type is different
-            //         if(test["test"].type() == (*fIndexLabelObjectPtr)[i][key].type())
-            //         {
-            //             XValueType label_value = (*fIndexLabelObjectPtr)[i][key].get<XValueType>();
-            //             if(label_value == value){idx.push_back(i);};
-            //         }
-            //     }
-            // }
-            // return idx;
         }
 
 
     private:
 
-        std::string index2key(std::size_t idx) const {return std::to_string(idx);}
-        std::size_t key2index(std::string key) const
+        static std::string index2key(const std::size_t& idx) {return std::to_string(idx);}
+        static std::size_t key2index(const std::string& key)
         {
             std::size_t retval;
             std::stringstream ss;
@@ -289,27 +250,6 @@ class MHO_IndexLabelInterface
         mho_json* fIndexLabelObjectPtr; //array of mho_json objects holding key:value pairs
         mho_json fDummy;
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -433,29 +373,6 @@ class MHO_IntervalLabelInterface
             }
             return obj;
         }
-
-        // //get a vector of indexes which contain a key with a value which matches the passed value
-        // template< typename XValueType >
-        // std::vector< std::size_t > GetMatchingIndexes(std::string& key, const XValueType& value)
-        // {
-        //     std::vector<std::size_t> idx;
-        //     for(std::size_t i=0; i<fCurrentSize; i++)
-        //     {
-        //         if((*fIndexLabelObjectPtr)[i].contains(key))
-        //         {
-        //             mho_json test;
-        //             test["test"] = value;
-        //             //TODO FIXME - this is a major KLUDGE
-        //             //but needed to avoid exceptions when key is present, but value type is different
-        //             if(test["test"].type() == (*fIndexLabelObjectPtr)[i][key].type())
-        //             {
-        //                 XValueType label_value = (*fIndexLabelObjectPtr)[i][key].get<XValueType>();
-        //                 if(label_value == value){idx.push_back(i);};
-        //             }
-        //         }
-        //     }
-        //     return idx;
-        // }
 
         std::string ConstructKey(std::size_t lower_index, std::size_t upper_index) const
         {

@@ -38,6 +38,7 @@ MHO_ManualChannelPhaseCorrection::ExecuteInPlace(visibility_type* in)
     //loop over pol-products and apply pc-phases to the appropriate pol/channel
     auto pp_ax = &(std::get<POLPROD_AXIS>(*in) );
     auto chan_ax = &(std::get<CHANNEL_AXIS>(*in) );
+
     std::string chan_label;
     std::string pp_label;
     for(std::size_t pp=0; pp < pp_ax->GetSize(); pp++)
@@ -51,7 +52,7 @@ MHO_ManualChannelPhaseCorrection::ExecuteInPlace(visibility_type* in)
                 double pc_val = pcal_it->second;
                 //TODO, may need to re-work this mapping method if too slow
                 auto idx_list = chan_ax->GetMatchingIndexes(fChannelLabelKey, chan_label);
-                if(idx_list.size() > 1)
+                if(idx_list.size() == 1)
                 {
                     std::size_t ch = idx_list[0];
                     std::string net_sideband = "?";
