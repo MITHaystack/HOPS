@@ -62,8 +62,6 @@ class MHO_Taggable:
             fTags.clear();
         }
 
-        std::size_t MapSize() const {return fTags.size(); }
-
         void CopyFrom(const MHO_Taggable& copy_from_obj)
         {
             if(this != &copy_from_obj)
@@ -109,7 +107,7 @@ class MHO_Taggable:
             uint64_t size = data.size();
             
             total_size += sizeof(uint64_t);//for the encoded data-size parameter
-            total_size += sizeof(uint64_t);//for parameter that specifies the type of the encoding
+            total_size += sizeof(uint64_t);//for parameter that specifies the type of the JSON binary encoding
             total_size += size*sizeof(std::uint8_t); //for the actual data
 
             return total_size;
