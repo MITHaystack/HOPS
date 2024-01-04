@@ -56,7 +56,7 @@ MHO_ManualChannelDelayCorrection::ExecuteInPlace(visibility_type* in)
                 double delay = pcal_it->second;
 
                 auto idx_list = chan_ax->GetMatchingIndexes(fChannelLabelKey, chan_label);
-                if(idx_list.size() > 1)
+                if(idx_list.size() == 1)
                 {
                     std::size_t ch = idx_list[0];
                     double bandwidth = 0;
@@ -69,22 +69,6 @@ MHO_ManualChannelDelayCorrection::ExecuteInPlace(visibility_type* in)
                         //calculate effective sampling period for channel assuming Nyquist rate
                         bandwidth *= fMHzToHz;
                         double eff_sample_period = 1.0/(2.0*bandwidth);
-
-                        // double eff_sample_period = 0;
-                        // auto other_labels = chan_ax->GetIntervalsWhichIntersect(ch);
-                        // for(auto ol_it = other_labels.begin(); ol_it != other_labels.end(); ol_it++)
-                        // {
-                        //     if(ol_it->HasKey(fBandwidthKey))
-                        //     {
-                        //         ok = ol_it->Retrieve(std::string("bandwidth"), bandwidth);
-                        //         if(ok)
-                        //         {
-                        //
-                        //             break;
-                        //         }
-                        //     }
-                        // }
-                        // if(!ok)
 
                         //loop over spectral points calculating the phase correction from this delay at each point
                         std::size_t nsp = freq_ax->GetSize();
