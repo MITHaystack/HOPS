@@ -61,6 +61,9 @@ class MHO_SamplerLabeler: public MHO_UnaryOperator< XArrayType >
             ConstructChannelToSamplerIDMap(fRefSamplerChanSets, fRefChanToSamplerID);
             ConstructChannelToSamplerIDMap(fRemSamplerChanSets, fRemChanToSamplerID);
 
+
+            std::cout<<"SAMPLER LABELLER IS RUNNING"<<std::endl;
+
             if(in != nullptr)
             {
                 //need to retrieve the labels of each channel, then look up the

@@ -5,6 +5,7 @@ set (INITIALIZATION_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ParameterManager.hh
     #labeling operators
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ChannelLabelerBuilder.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_SamplerLabelerBuilder.hh
     #selection operators
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_DataSelectionBuilder.hh
     #calibration operators
@@ -25,6 +26,7 @@ set( INITIALIZATION_SOURCEFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ParameterManager.cc
     #labeling operators
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ChannelLabelerBuilder.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_SamplerLabelerBuilder.cc
     #selection operators
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_DataSelectionBuilder.cc
     #calibration operators

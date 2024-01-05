@@ -9,7 +9,7 @@
 #include "MHO_ManualPolPhaseCorrectionBuilder.hh"
 #include "MHO_ManualPolDelayCorrectionBuilder.hh"
 #include "MHO_MultitonePhaseCorrectionBuilder.hh"
-#include "MHO_SamplerLabeler.hh"
+#include "MHO_SamplerLabelerBuilder.hh"
 
 namespace hops
 {
@@ -142,18 +142,18 @@ MHO_OperatorBuilderManager::BuildOperatorCategory(const std::string& cat)
 }
 
 
-//creates builders for which there is no 'format' definition, since they are 
+//creates builders for which there is no 'format' definition, since they are
 //inaccesible from the control file
 void MHO_OperatorBuilderManager::CreateNullFormatBuilders()
 {
     //the below additions are some operators which have to be applied (usually by default)
     //but are not necessarily specified via control file (e.g. data selection and default channel labels)
 
-    
+
     mho_json samplers;
     samplers["operator_category"] = "labeling";
     samplers["priority"] = 0.9;
-    AddBuilderTypeWithFormat<MHO_DataSelectionBuilder>("sampler_labeler", samplers);
+    AddBuilderTypeWithFormat<MHO_SamplerLabelerBuilder>("sampler_labeler", samplers);
 
     //this one is special since it is not an operator specified via control file
     mho_json special;
