@@ -173,16 +173,35 @@ class MHO_IndexLabelInterface
         bool RetrieveIndexLabelKeyValue(std::size_t index, const std::string& key, XValueType& value) const
         {
             std::string ikey = index2key(index);
-            mho_json test;
-            test["test"] = value;
-            //TODO FIXME - this is a major KLUDGE
-            //but needed to avoid exceptions when key is present, but value type is different
-            if(test["test"].type() == (*fIndexLabelObjectPtr)[ikey][key].type())
+            if( (*fIndexLabelObjectPtr)[ikey].contains(key) )
             {
-                XValueType label_value = (*fIndexLabelObjectPtr)[ikey][key].get<XValueType>();
-                value = label_value;
+                value =  (*fIndexLabelObjectPtr)[ikey][key].get<XValueType>();
                 return true;
             }
+
+            // mho_json test;
+            // test["test"] = value;
+            // //TODO FIXME - this is a major KLUDGE
+            // //but needed to avoid exceptions when key is present, but value type is different
+            // if(test["test"].type() == (*fIndexLabelObjectPtr)[ikey][key].type())
+            // {
+            //     XValueType label_value = (*fIndexLabelObjectPtr)[ikey][key].get<XValueType>();
+            //     value = label_value;
+            //     return true;
+            // }
+
+            // std::string ikey = index2key(index);
+            // mho_json test;
+            // test["test"] = value;
+            // //TODO FIXME - this is a major KLUDGE
+            // //but needed to avoid exceptions when key is present, but value type is different
+            // if(test["test"].type() == (*fIndexLabelObjectPtr)[ikey][key].type())
+            // {
+            //     XValueType label_value = (*fIndexLabelObjectPtr)[ikey][key].get<XValueType>();
+            //     value = label_value;
+            //     return true;
+            // }
+
             return false;
         }
 
