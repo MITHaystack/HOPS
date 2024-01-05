@@ -10,11 +10,11 @@
 #include <getopt.h>
 
 
-namespace hops 
+namespace hops
 {
 
 
-int 
+int
 MHO_BasicFringeDataConfiguration::parse_command_line(int argc, char** argv, MHO_ParameterStore* paramStore)
 {
     //TODO make this conform/support most of the command line options of fourfit
@@ -147,7 +147,7 @@ MHO_BasicFringeDataConfiguration::parse_command_line(int argc, char** argv, MHO_
 }
 
 //more helper functions
-void 
+void
 MHO_BasicFringeDataConfiguration::configure_visibility_data(MHO_ContainerStore* store)
 {
     //retrieve the (first) visibility and weight objects
@@ -157,7 +157,7 @@ MHO_BasicFringeDataConfiguration::configure_visibility_data(MHO_ContainerStore* 
 
     vis_store_data = store->GetObject<visibility_store_type>(0);
     wt_store_data = store->GetObject<weight_store_type>(0);
-    
+
     if(vis_store_data == nullptr)
     {
         msg_fatal("initialization", "failed to read visibility data from the .cor file." <<eom);
@@ -183,11 +183,11 @@ MHO_BasicFringeDataConfiguration::configure_visibility_data(MHO_ContainerStore* 
 
     std::string vis_shortname = store->GetShortName(vis_store_uuid);
     std::string wt_shortname = store->GetShortName(wt_store_uuid);
-    
+
     visibility_type* vis_data = new visibility_type();
     weight_type* wt_data = new weight_type();
-    
-    //assign the storage UUID's to their up-casted counter-parts 
+
+    //assign the storage UUID's to their up-casted counter-parts
     //we do this so we can associate them to the file objects (w.r.t to program output, error messages, etc.)
     vis_data->SetObjectUUID(vis_store_uuid);
     wt_data->SetObjectUUID(wt_store_uuid);
@@ -217,7 +217,7 @@ MHO_BasicFringeDataConfiguration::configure_visibility_data(MHO_ContainerStore* 
     store->SetShortName(wt_data->GetObjectUUID(), wt_shortname);
 }
 
-void 
+void
 MHO_BasicFringeDataConfiguration::configure_station_data(MHO_ScanDataStore* scanStore, MHO_ContainerStore* containerStore,
                                                          std::string ref_station_mk4id, std::string rem_station_mk4id)
 {
@@ -231,7 +231,7 @@ MHO_BasicFringeDataConfiguration::configure_station_data(MHO_ScanDataStore* scan
         std::cout<<"Loading ref pcal object with uuid: "<< pcal_uuid.as_string()<<std::endl;
         containerStore->RenameObject("pcal", "ref_pcal");
     }
-    
+
     scanStore->LoadStation(rem_station_mk4id, containerStore);
     containerStore->RenameObject("sta", "rem_sta");
     pcal_uuid = containerStore->GetObjectUUID("pcal");
@@ -245,7 +245,7 @@ MHO_BasicFringeDataConfiguration::configure_station_data(MHO_ScanDataStore* scan
 }
 
 
-void 
+void
 MHO_BasicFringeDataConfiguration::init_and_exec_operators(MHO_OperatorBuilderManager* build_manager, MHO_OperatorToolbox* opToolbox, const char* category)
 {
     if(build_manager == nullptr || opToolbox == nullptr)
@@ -254,7 +254,10 @@ MHO_BasicFringeDataConfiguration::init_and_exec_operators(MHO_OperatorBuilderMan
         return;
     }
 
+
+
     std::string cat(category);
+    std::cout<<"INIT EXEC OPS: "<<cat<<std::endl;
     build_manager->BuildOperatorCategory(cat);
     auto ops = opToolbox->GetOperatorsByCategory(cat);
     for(auto opIt= ops.begin(); opIt != ops.end(); opIt++)

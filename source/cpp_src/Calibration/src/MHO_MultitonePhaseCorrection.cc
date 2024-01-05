@@ -99,8 +99,6 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
     std::vector<double> sampler_delays;
     pcal_pol_ax->RetrieveIndexLabelKeyValue(pc_pol, "sampler_delays", sampler_delays);
     std::cout<<"N sampler delays = "<<sampler_delays.size()<<std::endl;
-
-
     std::cout<<"channel axis meta data = "<< vis_chan_ax->GetMetaDataAsJSON().dump(2) <<std::endl;
 
     //now loop over the channels
@@ -210,7 +208,6 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
                 //
 
                 double phase_shift = 0.0; // = phase_spline[1]/(4*);
-                double MHz2Hz = 1e6;
 
                 for(std::size_t dap = seg_start_ap; dap < seg_end_ap; dap++)
                 {

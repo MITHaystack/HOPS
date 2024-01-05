@@ -28,14 +28,15 @@ MHO_SamplerLabelerBuilder::Build()
 
         if( vis_data == nullptr)
         {
+            std::cout<<"GOT NO DATA"<<std::endl;
             msg_error("initialization", "cannot construct MHO_SamplerLabeler without visibility or weight data." << eom);
             return false;
         }
-        
+
         //get the reference and remote station mk4ids
         std::string ref_id = this->fParameterStore->GetAs<std::string>("/ref_station/mk4id");
         std::string rem_id = this->fParameterStore->GetAs<std::string>("/rem_station/mk4id");
-        
+
         //now determine the path to the channel->sampler info, if it exists at all
         std::string generic_path = "/control/station/samplers";
         std::string ref_path = "";
@@ -58,8 +59,9 @@ MHO_SamplerLabelerBuilder::Build()
         }
 
         //bail out if no info available
-        if(ref_pcal == "" && rem_path == "")
+        if(ref_path == "" && rem_path == "")
         {
+            std::cout<<"GONNA BAIL!"<<std::endl;
             msg_debug("initialization", "will not build MHO_SamplerLabeler operator, as there is no sampler-info present." << eom);
             return false;
         }
@@ -73,18 +75,20 @@ MHO_SamplerLabelerBuilder::Build()
         {
             this->fParameterStore->Get(ref_path, ref_sampler_info);
         }
-        
+
         if(rem_path != "")
         {
             this->fParameterStore->Get(rem_path, rem_sampler_info);
         }
-        
+
         MHO_SamplerLabeler<visibility_type>* op = new MHO_SamplerLabeler<visibility_type>();
         if(ref_sampler_info.size() != 0 ){op->SetRemoteStationSamplerChannelSets(ref_sampler_info);}
         if(rem_sampler_info.size() != 0 ){op->SetRemoteStationSamplerChannelSets(rem_sampler_info);}
         op->SetArgs(vis_data);
         op->SetName(op_name);
-        
+
+
+        std::cout<<"SAMPLER LABELER OP ADDED!!"<<std::endl;
         fOperatorToolbox->AddOperator(op, op->GetName(), op_category);
         return true;
     }
