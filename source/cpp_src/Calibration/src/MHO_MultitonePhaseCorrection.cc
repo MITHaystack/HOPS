@@ -159,7 +159,7 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
                 seg_end_ap = ap+1;
                 for(std::size_t i=0; i<ntones; i++){ fPCWorkspace(i) /= navg;}
                 FitPCData(ntones, chan_center_freq, phase_spline);
-            //    std::cout<<"sta, pol, chan, ap = "<< fMk4ID<<", "<<pc_pol<<", "<<ch<<", "<<ap<<", phase_spline = "<<phase_spline[0]*(180.0/M_PI)<<", "<<phase_spline[1]<<std::endl;
+                std::cout<<"sta, pol, chan, ap = "<< fMk4ID<<", "<<pc_pol<<", "<<ch<<", "<<ap<<", phase_spline = "<<phase_spline[0]*(180.0/M_PI)<<", "<<phase_spline[1]<<std::endl;
 
                 // //finally apply the extracted linear phase/delay spline to each channel/ap in this pc period
                 // for(std::size_t dap = seg_start_ap; dap < seg_end_ap; dap++)
@@ -200,20 +200,22 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
                 //
 
                 double phase_shift = 0.0; // = phase_spline[1]/(4*);
+                double MHz2Hz = 1e6;
 
                 for(std::size_t dap = seg_start_ap; dap < seg_end_ap; dap++)
                 {
 
-                    for(std::size_t sp = 0; sp < vis_freq_ax->GetSize(); sp++)
-                    {
-                        double deltaf = vis_freq_ax->at(sp);
-                        std::complex<double> pc_phasor = std::exp( -2.0*M_PI*fImagUnit*( phase_spline[1]*deltaf + phase_spline[0] + phase_shift) );
+                    // for(std::size_t sp = 0; sp < vis_freq_ax->GetSize(); sp++)
+                    // {
+                        //std::complex<double> pc_phasor = std::exp( -2.0*M_PI*fImagUnit*(phase_spline[1]*deltaf) + -1.0*(phase_spline[0] + phase_shift) );
+                        std::complex<double> pc_phasor = std::exp( -1.0*fImagUnit*( phase_spline[0] + phase_shift) );
                         //if(net_sideband == fLowerSideband){pc_phasor = std::conj(pc_phasor);}
                         //if(fMk4ID == "G"){pc_phasor = std::conj(pc_phasor);}
                         // #pragma message("TODO FIXME - pc_data all manual pc phase correction cases (ref/rem/USB/LSB/DSB)")
                         //retrieve and multiply the appropriate sub view of the visibility array
-                        (*in)(vis_pp, ch, dap, sp) *= pc_phasor;
-                    }
+                        in->SubView(vis_pp, ch, dap)  *= pc_phasor;
+                        //(*in)(vis_pp, ch, dap, sp) *= pc_phasor;
+                    // }
 
                 }
 
