@@ -134,12 +134,25 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
             //fFFTEngine.Initialize()
         }
 
+        //grab the sampler delay associated with this channel
+        std::size_t sampler_delay_index;
+        double sampler_delay = 0.0;
+        bool sd_ok = vis_chan_ax->RetrieveIndexLabelKeyValue(ch, "rem_sampler_index", sampler_delay_index);
+        if(sd_ok && sampler_delay_index < sampler_delays.size())
+        {
+            sampler_delay = sampler_delays[sampler_delay_index];
+            std::cout<<"GOT A SAMPLER DELAY: "<<sampler_delay<<std::endl;
+        }
+        else
+        {
+            std::cout<<"failed to retrieve sampler index"<<std::endl;
+        }
+
         //now need to fit the pcal data for the mean phase and delay for this channel, for each AP
         //TODO FIXME -- make sure the stop/start parameters are accounted for
         //this should be fine, provided if we trim the pcal data appropriately ahead use here
         double phase_spline[2];
         double navg;
-
         std::size_t seg_start_ap, seg_end_ap;
         for(std::size_t ap=0; ap < vis_ap_ax->GetSize(); ap++)
         {

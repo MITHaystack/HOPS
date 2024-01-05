@@ -28,7 +28,6 @@ MHO_SamplerLabelerBuilder::Build()
 
         if( vis_data == nullptr)
         {
-            std::cout<<"GOT NO DATA"<<std::endl;
             msg_error("initialization", "cannot construct MHO_SamplerLabeler without visibility or weight data." << eom);
             return false;
         }
@@ -61,7 +60,6 @@ MHO_SamplerLabelerBuilder::Build()
         //bail out if no info available
         if(ref_path == "" && rem_path == "")
         {
-            std::cout<<"GONNA BAIL!"<<std::endl;
             msg_debug("initialization", "will not build MHO_SamplerLabeler operator, as there is no sampler-info present." << eom);
             return false;
         }
@@ -87,8 +85,6 @@ MHO_SamplerLabelerBuilder::Build()
         op->SetArgs(vis_data);
         op->SetName(op_name);
 
-
-        std::cout<<"SAMPLER LABELER OP ADDED!!"<<std::endl;
         fOperatorToolbox->AddOperator(op, op->GetName(), op_category);
         return true;
     }
