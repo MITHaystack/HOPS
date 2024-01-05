@@ -88,12 +88,20 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
     auto vis_chan_ax = &(std::get<CHANNEL_AXIS>(*in) );
     auto vis_ap_ax = &(std::get<TIME_AXIS>(*in) );
     auto vis_freq_ax = &(std::get<FREQ_AXIS>(*in) );
+    auto pcal_pol_ax = &(std::get<MTPCAL_POL_AXIS>(*fPCData) );
     auto tone_freq_ax = &(std::get<MTPCAL_FREQ_AXIS>(*fPCData) );
 
     //workspace to store averaged phasors and corresponding tone freqs
-
     fPCWorkspace.ZeroArray();
     auto workspace_freq_ax = &(std::get<0>(fPCWorkspace));
+
+    //grab the sampler delay vector
+    std::vector<double> sampler_delays;
+    pcal_pol_ax->RetrieveIndexLabelKeyValue(pc_pol, "sampler_delays", sampler_delays);
+    std::cout<<"N sampler delays = "<<sampler_delays.size()<<std::endl;
+
+
+    std::cout<<"channel axis meta data = "<< vis_chan_ax->GetMetaDataAsJSON().dump(2) <<std::endl;
 
     //now loop over the channels
     for(std::size_t ch=0; ch < vis_chan_ax->GetSize(); ch++)
@@ -147,7 +155,6 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
                 seg_end_ap = ap;
             }
 
-
             //sum the tone phasors
             //TODO FIXME -- NOTE!! This implementation assumes all tones are sequential and there are no missing tones!
             for(std::size_t i=0; i<ntones; i++){ fPCWorkspace(i) += fPCData->at(pc_pol, ap, start_idx+i); }
@@ -159,7 +166,10 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
                 seg_end_ap = ap+1;
                 for(std::size_t i=0; i<ntones; i++){ fPCWorkspace(i) /= navg;}
                 FitPCData(ntones, chan_center_freq, phase_spline);
-                std::cout<<"sta, pol, chan, ap = "<< fMk4ID<<", "<<pc_pol<<", "<<ch<<", "<<ap<<", phase_spline = "<<phase_spline[0]*(180.0/M_PI)<<", "<<phase_spline[1]<<std::endl;
+
+                //TODO FIXME -- CORRECT DELAY FOR SAMPLER DELAY AMBIGUITY
+
+                //std::cout<<"sta, pol, chan, ap = "<< fMk4ID<<", "<<pc_pol<<", "<<ch<<", "<<ap<<", phase_spline = "<<phase_spline[0]*(180.0/M_PI)<<", "<<phase_spline[1]<<std::endl;
 
                 // //finally apply the extracted linear phase/delay spline to each channel/ap in this pc period
                 // for(std::size_t dap = seg_start_ap; dap < seg_end_ap; dap++)
@@ -218,11 +228,6 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
                     // }
 
                 }
-
-
-
-
-
 
             }
         }
