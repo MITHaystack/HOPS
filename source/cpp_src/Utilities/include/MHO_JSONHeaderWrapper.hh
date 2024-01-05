@@ -317,14 +317,9 @@ class MHO_IntervalLabelInterface
             std::string ikey = ConstructKey(lower_index, upper_index);
             if(fIntervalLabelObjectPtr->contains(ikey) )
             {
-                mho_json test;
-                test["test"] = value;
-                //TODO FIXME - this is a major KLUDGE
-                //but needed to avoid exceptions when key is present, but value type is different
-                if(test["test"].type() == (*fIntervalLabelObjectPtr)[ikey][key].type())
+                if( (*fIntervalLabelObjectPtr)[ikey].contains(key) )
                 {
-                    XValueType label_value = (*fIntervalLabelObjectPtr)[ikey][key].get<XValueType>();
-                    value = label_value;
+                    value =  (*fIntervalLabelObjectPtr)[ikey][key].get<XValueType>();
                     return true;
                 }
             }
@@ -333,6 +328,25 @@ class MHO_IntervalLabelInterface
                 msg_warn("containers", "cannot retrieve a key value pair for interval: "<<ikey<<"."<< eom);
             }
             return false;
+
+            // if(fIntervalLabelObjectPtr->contains(ikey) )
+            // {
+            //     mho_json test;
+            //     test["test"] = value;
+            //     //TODO FIXME - this is a major KLUDGE
+            //     //but needed to avoid exceptions when key is present, but value type is different
+            //     if(test["test"].type() == (*fIntervalLabelObjectPtr)[ikey][key].type())
+            //     {
+            //         XValueType label_value = (*fIntervalLabelObjectPtr)[ikey][key].get<XValueType>();
+            //         value = label_value;
+            //         return true;
+            //     }
+            // }
+            // else
+            // {
+            //     msg_warn("containers", "cannot retrieve a key value pair for interval: "<<ikey<<"."<< eom);
+            // }
+            // return false;
         }
 
         //get a reference to the dictionary object associated with this index
