@@ -79,7 +79,7 @@ class MHO_MultitonePhaseCorrection: public MHO_UnaryOperator< visibility_type >
         void ApplyPCData(std::size_t pc_pol, std::size_t vis_pp, visibility_type* in);
 
         //fit a mean pcal offset and delay from this set of tones
-        void FitPCData(std::size_t ntones, double chan_center_freq, double* phase_spline);
+        void FitPCData(std::size_t ntones, double chan_center_freq, double sampler_delay, double* phase_spline);
 
         //constants
         std::complex<double> fImagUnit;
