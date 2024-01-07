@@ -80,7 +80,7 @@ MHO_SamplerLabelerBuilder::Build()
         }
 
         MHO_SamplerLabeler<visibility_type>* op = new MHO_SamplerLabeler<visibility_type>();
-        if(ref_sampler_info.size() != 0 ){op->SetRemoteStationSamplerChannelSets(ref_sampler_info);}
+        if(ref_sampler_info.size() != 0 ){op->SetReferenceStationSamplerChannelSets(ref_sampler_info);}
         if(rem_sampler_info.size() != 0 ){op->SetRemoteStationSamplerChannelSets(rem_sampler_info);}
         op->SetArgs(vis_data);
         op->SetName(op_name);

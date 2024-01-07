@@ -64,6 +64,10 @@ class MHO_SamplerLabeler: public MHO_UnaryOperator< XArrayType >
 
             std::cout<<"SAMPLER LABELLER IS RUNNING"<<std::endl;
 
+            std::cout<<"SIZE OF REF MAP = "<<fRefChanToSamplerID.size()<<std::endl;
+            std::cout<<"SIZE OF REM MAP = "<<fRemChanToSamplerID.size()<<std::endl;
+
+
             if(in != nullptr)
             {
                 //need to retrieve the labels of each channel, then look up the
@@ -79,21 +83,15 @@ class MHO_SamplerLabeler: public MHO_UnaryOperator< XArrayType >
                     //add sampler labels
                     int ref_id = -1;
                     int rem_id = -1;
+
                     if(fRefChanToSamplerID.find(chan_label) != fRefChanToSamplerID.end())
                     {
                         ref_id = fRefChanToSamplerID[chan_label];
+                        chan_axis_ptr->InsertIndexLabelKeyValue(ch, fRefSamplerIndexKey, ref_id);
                     }
                     if(fRemChanToSamplerID.find(chan_label) != fRemChanToSamplerID.end())
                     {
                         rem_id = fRemChanToSamplerID[chan_label];
-                    }
-
-                    if(0 <= ref_id)
-                    {
-                        chan_axis_ptr->InsertIndexLabelKeyValue(ch, fRefSamplerIndexKey, ref_id);
-                    }
-                    if(0 <= rem_id)
-                    {
                         chan_axis_ptr->InsertIndexLabelKeyValue(ch, fRemSamplerIndexKey, rem_id);
                     }
                 }
