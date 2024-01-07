@@ -45,8 +45,8 @@ bool
 MHO_MultitonePhaseCorrection::ExecuteInPlace(visibility_type* in)
 {
     //figure out if refrence or remote station in this baseline
-    std::size_t st_idx = DetermineStationIndex(in);
-    if(st_idx != 0 && st_idx != 1){return false;}
+    std::size_t fStationIndex = DetermineStationIndex(in);
+    if(fStationIndex != 0 && fStationIndex != 1){return false;}
 
     //loop over polarization in pcal data and pol-products
     //so we can apply the phase-cal to the appropriate pol/channel/ap
@@ -62,7 +62,7 @@ MHO_MultitonePhaseCorrection::ExecuteInPlace(visibility_type* in)
         {
             std::string vis_pp_label = vis_pp_ax->at(vis_pp);
             //check if this pcal-pol matches the station's pol for this pol-product
-            if( PolMatch(st_idx, pc_pol_label, vis_pp_label) )
+            if( PolMatch(fStationIndex, pc_pol_label, vis_pp_label) )
             {
                 //apply the phase-cal for all channels/APs
                 ApplyPCData(pc_pol, vis_pp, in);
@@ -137,7 +137,19 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
         //grab the sampler delay associated with this channel
         std::size_t sampler_delay_index;
         double sampler_delay = 0.0;
-        bool sd_ok = vis_chan_ax->RetrieveIndexLabelKeyValue(ch, "rem_sampler_index", sampler_delay_index);
+        bool sd_ok = false;
+
+        if(fStationIndex == 1) //remote station
+        {
+            sd_ok = vis_chan_ax->RetrieveIndexLabelKeyValue(ch, "rem_sampler_index", sampler_delay_index);
+        }
+
+        if(fStationIndex == 0) //reference station
+        {
+            sd_ok = vis_chan_ax->RetrieveIndexLabelKeyValue(ch, "ref_sampler_index", sampler_delay_index);
+        }
+
+
         if(sd_ok && sampler_delay_index < sampler_delays.size())
         {
             sampler_delay = sampler_delays[sampler_delay_index];

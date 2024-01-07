@@ -58,10 +58,10 @@ class MHO_MultitonePhaseCorrection: public MHO_UnaryOperator< visibility_type >
         virtual bool ExecuteOutOfPlace(const visibility_type* in, visibility_type* out) override;
 
     private:
-        
+
         using pcal_axis_pack = MHO_AxisPack< frequency_axis_type >;
         using pcal_type = MHO_TableContainer< std::complex<double>, pcal_axis_pack >;
-        
+
         #ifdef HOPS_USE_FFTW3
         using FFT_ENGINE_TYPE = MHO_MultidimensionalFastFourierTransformFFTW< pcal_type >;
         #else
@@ -91,11 +91,12 @@ class MHO_MultitonePhaseCorrection: public MHO_UnaryOperator< visibility_type >
         //selection
         std::string fStationCode;
         std::string fMk4ID;
+        std::size_t fStationIndex; //0 is reference, 1 is remote, unknown = 2
 
-        //the multi-tone pcal data 
+        //the multi-tone pcal data
         std::size_t fPCPeriod;
         multitone_pcal_type* fPCData;
-        
+
         //workspace for delay fit
         std::size_t fWorkspaceSize;
         pcal_type fPCWorkspace;
