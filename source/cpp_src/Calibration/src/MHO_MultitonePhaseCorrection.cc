@@ -21,6 +21,7 @@ MHO_MultitonePhaseCorrection::MHO_MultitonePhaseCorrection()
 
     fStationCode = "";
     fMk4ID = "";
+    fStationIndex = 2;
 
     fImagUnit = MHO_Constants::imag_unit;
     fDegToRad = MHO_Constants::deg_to_rad;
@@ -45,8 +46,14 @@ bool
 MHO_MultitonePhaseCorrection::ExecuteInPlace(visibility_type* in)
 {
     //figure out if refrence or remote station in this baseline
-    std::size_t fStationIndex = DetermineStationIndex(in);
-    if(fStationIndex != 0 && fStationIndex != 1){return false;}
+    fStationIndex = DetermineStationIndex(in);
+    if(fStationIndex == 2)
+    {
+        msg_error("calibration", "could not determine station index for multitone pcal operation." << eom);
+        return false;
+    }
+
+    std::cout<<"STATION INDEX = "<<fStationIndex<<std::endl;
 
     //loop over polarization in pcal data and pol-products
     //so we can apply the phase-cal to the appropriate pol/channel/ap
@@ -139,26 +146,39 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
         double sampler_delay = 0.0;
         bool sd_ok = false;
 
+        std::cout<<"MY STATION INDEX IS NOW"<<fStationIndex<<std::endl;
         if(fStationIndex == 1) //remote station
         {
+            std::cout<<"WORKING ON REM SD RETRIEVAL"<<std::endl;
             sd_ok = vis_chan_ax->RetrieveIndexLabelKeyValue(ch, "rem_sampler_index", sampler_delay_index);
+            if(sd_ok && sampler_delay_index < sampler_delays.size())
+            {
+                sampler_delay = sampler_delays[sampler_delay_index];
+                std::cout<<"GOT A REM SAMPLER DELAY: "<<sampler_delay<<std::endl;
+            }
+            else
+            {
+                std::cout<<"failed to retrieve REM sampler index"<<std::endl;
+            }
         }
+
 
         if(fStationIndex == 0) //reference station
         {
             sd_ok = vis_chan_ax->RetrieveIndexLabelKeyValue(ch, "ref_sampler_index", sampler_delay_index);
+            if(sd_ok && sampler_delay_index < sampler_delays.size())
+            {
+                sampler_delay = sampler_delays[sampler_delay_index];
+                std::cout<<"GOT A REF SAMPLER DELAY: "<<sampler_delay<<std::endl;
+            }
+            else
+            {
+                std::cout<<"failed to retrieve REF sampler index"<<std::endl;
+            }
         }
 
 
-        if(sd_ok && sampler_delay_index < sampler_delays.size())
-        {
-            sampler_delay = sampler_delays[sampler_delay_index];
-            std::cout<<"GOT A SAMPLER DELAY: "<<sampler_delay<<std::endl;
-        }
-        else
-        {
-            std::cout<<"failed to retrieve sampler index"<<std::endl;
-        }
+
 
         //now need to fit the pcal data for the mean phase and delay for this channel, for each AP
         //TODO FIXME -- make sure the stop/start parameters are accounted for
