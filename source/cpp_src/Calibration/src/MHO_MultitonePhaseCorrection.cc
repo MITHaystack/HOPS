@@ -53,8 +53,6 @@ MHO_MultitonePhaseCorrection::ExecuteInPlace(visibility_type* in)
         return false;
     }
 
-    std::cout<<"STATION INDEX = "<<fStationIndex<<std::endl;
-
     //loop over polarization in pcal data and pol-products
     //so we can apply the phase-cal to the appropriate pol/channel/ap
     auto pcal_pol_ax = &(std::get<MTPCAL_POL_AXIS>(*fPCData));
@@ -117,7 +115,7 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
         std::string net_sideband;
 
         bool key_present = vis_chan_ax->RetrieveIndexLabelKeyValue(ch, fSidebandLabelKey, net_sideband);
-        if(!key_present){msg_error("calibration", "missing net_sideband label for channel "<< ch << "." << eom);}
+        if(!key_present){msg_error("calibration", "missing net_sideband label for channel "<< ch << "." << eom); }
         key_present = vis_chan_ax->RetrieveIndexLabelKeyValue(ch, fBandwidthKey, bandwidth);
         if(!key_present){msg_error("calibration", "missing bandwidth label for channel "<< ch << "." << eom);}
 
@@ -145,40 +143,21 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
         std::size_t sampler_delay_index;
         double sampler_delay = 0.0;
         bool sd_ok = false;
+        std::string sd_key;
+        if(fStationIndex == 0){sd_key = "ref_sampler_index";}
+        if(fStationIndex == 1){sd_key = "rem_sampler_index";}
 
-        std::cout<<"MY STATION INDEX IS NOW"<<fStationIndex<<std::endl;
-        if(fStationIndex == 1) //remote station
+        sd_ok = vis_chan_ax->RetrieveIndexLabelKeyValue(ch, sd_key, sampler_delay_index);
+        if(sd_ok && sampler_delay_index < sampler_delays.size())
         {
-            std::cout<<"WORKING ON REM SD RETRIEVAL"<<std::endl;
-            sd_ok = vis_chan_ax->RetrieveIndexLabelKeyValue(ch, "rem_sampler_index", sampler_delay_index);
-            if(sd_ok && sampler_delay_index < sampler_delays.size())
-            {
-                sampler_delay = sampler_delays[sampler_delay_index];
-                std::cout<<"GOT A REM SAMPLER DELAY: "<<sampler_delay<<std::endl;
-            }
-            else
-            {
-                std::cout<<"failed to retrieve REM sampler index"<<std::endl;
-            }
+            //TODO FIXME -- document units!
+            sampler_delay = 1e-9*(sampler_delays[sampler_delay_index]); //sampler delays are specified in ns
         }
-
-
-        if(fStationIndex == 0) //reference station
+        else
         {
-            sd_ok = vis_chan_ax->RetrieveIndexLabelKeyValue(ch, "ref_sampler_index", sampler_delay_index);
-            if(sd_ok && sampler_delay_index < sampler_delays.size())
-            {
-                sampler_delay = sampler_delays[sampler_delay_index];
-                std::cout<<"GOT A REF SAMPLER DELAY: "<<sampler_delay<<std::endl;
-            }
-            else
-            {
-                std::cout<<"failed to retrieve REF sampler index"<<std::endl;
-            }
+            sampler_delay = 0.0;
+            msg_warn("calibration", "failed to retrieve sampler delay for station: "<< fMk4ID <<" channel: "<<ch<<"."<<eom);
         }
-
-
-
 
         //now need to fit the pcal data for the mean phase and delay for this channel, for each AP
         //TODO FIXME -- make sure the stop/start parameters are accounted for
@@ -208,49 +187,8 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
             {
                 seg_end_ap = ap+1;
                 for(std::size_t i=0; i<ntones; i++){ fPCWorkspace(i) /= navg;}
-                FitPCData(ntones, chan_center_freq, phase_spline);
+                FitPCData(ntones, chan_center_freq, sampler_delay, phase_spline);
 
-                //TODO FIXME -- CORRECT DELAY FOR SAMPLER DELAY AMBIGUITY
-
-                //std::cout<<"sta, pol, chan, ap = "<< fMk4ID<<", "<<pc_pol<<", "<<ch<<", "<<ap<<", phase_spline = "<<phase_spline[0]*(180.0/M_PI)<<", "<<phase_spline[1]<<std::endl;
-
-                // //finally apply the extracted linear phase/delay spline to each channel/ap in this pc period
-                // for(std::size_t dap = seg_start_ap; dap < seg_end_ap; dap++)
-                // {
-                //     //TODO FIXME!!! no delay just mean phase!!!
-                //     std::complex<double> pc_phasor = std::exp( fImagUnit*phase_spline[0] );
-                //     //
-                //     //conjugate phases for LSB data, but not for USB - TODO what about DSB?
-                //     //if(net_sideband == fLowerSideband){pc_phasor = std::conj(pc_phasor);}
-                //     //if(fMk4ID == "G"){pc_phasor = std::conj(pc_phasor);}
-                //     // #pragma message("TODO FIXME - pc_data all manual pc phase correction cases (ref/rem/USB/LSB/DSB)")
-                //     //retrieve and multiply the appropriate sub view of the visibility array
-                //     auto chunk = in->SubView(vis_pp, ch, dap);
-                //     chunk *= pc_phasor;
-                // }
-
-
-                // // One size may not fit all.  The code below is a compromise
-                // // between current geodetic practice and current EHT needs.
-                // if (param->pc_mode[0] == MANUAL && param->pc_mode[1] == MANUAL)
-                //     {
-                //     // the correction had the wrong sign and minor O(1/nlags) error
-                //     // if one is trying to keep the mean phase of this channel fixed
-                //     phase_shift = - 1e-3 * diff_delay / (4e6 * param->samp_period);
-                //     phase_shift *= - (double)(nlags - 2) / (double)(nlags);
-                //     // per-channel phase should now be stable against delay adjustments
-                //     }
-                // else
-                //     {
-
-                // // correction to mean phase depends on sideband
-                // phase_shift = - 1e-3 * diff_delay / (4e6 * param->samp_period);
-                // if (sb)
-                //     phase_shift = -phase_shift;
-                // }
-                //                     // apply phase ramp to spectral points
-                // z = z * exp_complex(-2.0 * M_PI * cmplx_unit_I * (diff_delay * deltaf + phase_shift));
-                //
 
                 double phase_shift = 0.0; // = phase_spline[1]/(4*);
 
@@ -349,7 +287,7 @@ MHO_MultitonePhaseCorrection::DetermineChannelToneIndexes(double lower_freq, dou
 
 
 void
-MHO_MultitonePhaseCorrection::FitPCData(std::size_t ntones, double chan_center_freq, double* phase_spline)
+MHO_MultitonePhaseCorrection::FitPCData(std::size_t ntones, double chan_center_freq, double sampler_delay, double* phase_spline)
 {
     //copy the averaged tone data for later use when calculating mean phase
     pcal_type pc_data_copy;
@@ -360,6 +298,10 @@ MHO_MultitonePhaseCorrection::FitPCData(std::size_t ntones, double chan_center_f
         pc_data_copy(i) = fPCWorkspace(i);
         (*tone_freq_ax)(i) = std::get<0>(fPCWorkspace)(i);
     }
+
+    //calulate the pc delay ambiguity
+    double pc_amb = 1.0/(std::get<0>(fPCWorkspace)(1) - std::get<0>(fPCWorkspace)(0));
+    pc_amb *= 1e-6; //TODO FIXME - document units (converts to ns)
 
     //fFFTEngine already points to fPCWorkspace, so just execute
     bool ok = fFFTEngine.Execute();
@@ -384,14 +326,27 @@ MHO_MultitonePhaseCorrection::FitPCData(std::size_t ntones, double chan_center_f
     double y[3];
     double q[3];
     y[1] = max_val;
-    y[0] =std::abs( fPCWorkspace( (max_idx+fWorkspaceSize-1)%fWorkspaceSize) );
+    y[0] = std::abs( fPCWorkspace( (max_idx+fWorkspaceSize-1)%fWorkspaceSize) );
     y[2] = std::abs( fPCWorkspace( (max_idx+fWorkspaceSize+1)%fWorkspaceSize) );
     MHO_MathUtilities::parabola(y, -1.0, 1.0, &ymax, &ampmax, q);
     double delay = (max_idx+ymax)*delay_delta;
 
-    //TODO FIXME -- CORRECT DELAY FOR SAMPLER DELAY AMBIGUITY
+    delay *= 1e-6; //TODO FIXME - document proper units!
+    std::cout<<"RAW DELAY = "<<delay<<std::endl;
 
-    phase_spline[1] = delay*1e-6 - 200e-9;
+    // find bounds of allowable resolved delay
+    double lo = delay + sampler_delay - pc_amb / 2.0;
+    double hi = delay + sampler_delay + pc_amb / 2.0;
+    while (hi < delay)  // shift delay left if necessary
+        delay -= pc_amb;
+    while (lo > delay)  // shift delay right if necessary
+        delay += pc_amb;
+
+    phase_spline[1] = delay;
+
+    std::cout<<"PC AMB = "<<pc_amb<<std::endl;
+    std::cout<<"SAMPLER DELAY = "<<sampler_delay<<std::endl;
+    std::cout<<"FIXED DELAY = "<<delay<<std::endl;
 
 
     //std::cout<<"chan center freq = "<<chan_center_freq<<std::endl;

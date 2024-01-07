@@ -61,13 +61,6 @@ class MHO_SamplerLabeler: public MHO_UnaryOperator< XArrayType >
             ConstructChannelToSamplerIDMap(fRefSamplerChanSets, fRefChanToSamplerID);
             ConstructChannelToSamplerIDMap(fRemSamplerChanSets, fRemChanToSamplerID);
 
-
-            std::cout<<"SAMPLER LABELLER IS RUNNING"<<std::endl;
-
-            std::cout<<"SIZE OF REF MAP = "<<fRefChanToSamplerID.size()<<std::endl;
-            std::cout<<"SIZE OF REM MAP = "<<fRemChanToSamplerID.size()<<std::endl;
-
-
             if(in != nullptr)
             {
                 //need to retrieve the labels of each channel, then look up the
@@ -81,17 +74,14 @@ class MHO_SamplerLabeler: public MHO_UnaryOperator< XArrayType >
                     chan_axis_ptr->RetrieveIndexLabelKeyValue(ch, fChannelLabelKey, chan_label);
 
                     //add sampler labels
-                    int ref_id = -1;
-                    int rem_id = -1;
-
                     if(fRefChanToSamplerID.find(chan_label) != fRefChanToSamplerID.end())
                     {
-                        ref_id = fRefChanToSamplerID[chan_label];
+                        int ref_id = fRefChanToSamplerID[chan_label];
                         chan_axis_ptr->InsertIndexLabelKeyValue(ch, fRefSamplerIndexKey, ref_id);
                     }
                     if(fRemChanToSamplerID.find(chan_label) != fRemChanToSamplerID.end())
                     {
-                        rem_id = fRemChanToSamplerID[chan_label];
+                        int rem_id = fRemChanToSamplerID[chan_label];
                         chan_axis_ptr->InsertIndexLabelKeyValue(ch, fRemSamplerIndexKey, rem_id);
                     }
                 }
