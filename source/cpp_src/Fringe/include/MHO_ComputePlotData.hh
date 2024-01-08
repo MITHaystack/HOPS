@@ -66,13 +66,15 @@ class MHO_ComputePlotData
 
         double calc_phase();
 
-        void calc_freqrms(phasor_type& phasors, double coh_avg_phase, double fringe_amp, 
-                          double total_summed_weights, double snr, 
+        void calc_freqrms(phasor_type& phasors, double coh_avg_phase, double fringe_amp,
+                          double total_summed_weights, double snr,
                           double& freqrms_phase, double& freqrms_amp, double& inc_avg_amp_freq);
-                          
+
         void calc_timerms(phasor_type& phasors, std::size_t nseg, std::size_t apseg,
                           double coh_avg_phase, double fringe_amp, double total_summed_weights, double snr,
                           double& timerms_phase, double& timerms_amp, double& inc_avg_amp);
+
+        void calc_multitone_pcmodel(mho_json& plot_dict);
 
         std::string calc_quality_code(); //quality only, not error
 

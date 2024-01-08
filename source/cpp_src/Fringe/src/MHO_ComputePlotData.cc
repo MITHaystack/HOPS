@@ -696,6 +696,8 @@ MHO_ComputePlotData::DumpInfoToJSON(mho_json& plot_dict)
     auto sbd_xpower = calc_xpower_spec();
     auto phasors = calc_segs();
 
+    calc_multitone_pcmodel(plot_dict);
+
     double coh_avg_phase_deg = std::fmod(coh_avg_phase * (180.0/M_PI), 360.0);
     fParamStore->Set("/fringe/raw_resid_phase", coh_avg_phase_deg);
 
@@ -1143,5 +1145,71 @@ MHO_ComputePlotData::calc_quality_code()
     return std::string(1, qcode[0]);
 }
 
+
+void MHO_ComputePlotData::calc_multitone_pcmodel(mho_json& plot_dict)
+{
+    std::vector< double > pc_mag_segs;
+    std::vector< double > pc_phase_segs;
+    std::vector< double > pc_delay_segs;
+
+    auto chan_ax = &( std::get<CHANNEL_AXIS>(*fSBDArray) );
+
+    std::string pc_mag_key;
+    std::string pc_phase_key;
+    std::string pc_delay_key;
+    pc_mag_key = "ref_mtpc_mag_X";
+    pc_phase_key = "ref_mtpc_phase_X";
+    pc_delay_key = "ref_mtpc_delays_X";
+
+
+    //extract the multitone pcal model attached to the visibilities
+    for(std::size_t ch=0; ch<chan_ax->GetSize(); ch++)
+    {
+        bool b1 = chan_ax->RetrieveIndexLabelKeyValue(ch, pc_mag_key, pc_mag_segs);
+        bool b2 = chan_ax->RetrieveIndexLabelKeyValue(ch, pc_phase_key, pc_phase_segs);
+        bool b3 = chan_ax->RetrieveIndexLabelKeyValue(ch, pc_delay_key, pc_delay_segs);
+
+        if(b1)
+        {
+            std::cout<<"ref channel: "<<ch<<" pc mag = "<<pc_mag_segs[0]<<std::endl;
+        }
+        if(b2)
+        {
+            std::cout<<"ref channel: "<<ch<<" pc phase = "<<pc_phase_segs[0]<<std::endl;
+        }
+        if(b3)
+        {
+            std::cout<<"ref channel: "<<ch<<" pc delay = "<<pc_delay_segs[0]<<std::endl;
+        }
+
+    }
+
+    pc_mag_key = "rem_mtpc_mag_X";
+    pc_phase_key = "rem_mtpc_phase_X";
+    pc_delay_key = "rem_mtpc_delays_X";
+
+    //extract the multitone pcal model attached to the visibilities
+    for(std::size_t ch=0; ch<chan_ax->GetSize(); ch++)
+    {
+        bool b1 = chan_ax->RetrieveIndexLabelKeyValue(ch, pc_mag_key, pc_mag_segs);
+        bool b2 = chan_ax->RetrieveIndexLabelKeyValue(ch, pc_phase_key, pc_phase_segs);
+        bool b3 = chan_ax->RetrieveIndexLabelKeyValue(ch, pc_delay_key, pc_delay_segs);
+
+        if(b1)
+        {
+            std::cout<<"rem channel: "<<ch<<" pc mag = "<<pc_mag_segs[0]<<std::endl;
+        }
+        if(b2)
+        {
+            std::cout<<"rem channel: "<<ch<<" pc phase = "<<pc_phase_segs[0]<<std::endl;
+        }
+        if(b3)
+        {
+            std::cout<<"rem channel: "<<ch<<" pc delay = "<<pc_delay_segs[0]<<std::endl;
+        }
+    }
+
+
+}
 
 }//end namespace
