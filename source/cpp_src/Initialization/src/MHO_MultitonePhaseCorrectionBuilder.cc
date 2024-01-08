@@ -136,12 +136,13 @@ MHO_MultitonePhaseCorrectionBuilder::ExtractSamplerDelays(multitone_pcal_type* p
             if(fParameterStore->IsPresent(sd_path)){fParameterStore->Get(sd_path, delays);}
             if(fParameterStore->IsPresent(station_sd_path)){fParameterStore->Get(station_sd_path, delays);}
 
-            pol_ax->InsertIndexLabelKeyValue(p, "sampler_delays", delays);
-
             for(std::size_t i=0; i<delays.size(); i++)
             {
                 std::cout<<"station: "<<mk4id<<" DELAY @ "<<pol<<", "<<i<<" = "<<delays[i]<<std::endl;
             }
+            
+            pol_ax->InsertIndexLabelKeyValue(p, "sampler_delays", delays);
+
         }
     }
 

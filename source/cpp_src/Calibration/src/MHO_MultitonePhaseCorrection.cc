@@ -96,6 +96,8 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
     auto pcal_pol_ax = &(std::get<MTPCAL_POL_AXIS>(*fPCData) );
     auto tone_freq_ax = &(std::get<MTPCAL_FREQ_AXIS>(*fPCData) );
 
+    std::string pc_pol_code = pcal_pol_ax->at(pc_pol);
+
     //workspace to store averaged phasors and corresponding tone freqs
     fPCWorkspace.ZeroArray();
     auto workspace_freq_ax = &(std::get<0>(fPCWorkspace));
@@ -104,7 +106,6 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
     std::vector<double> sampler_delays;
     pcal_pol_ax->RetrieveIndexLabelKeyValue(pc_pol, "sampler_delays", sampler_delays);
     std::cout<<"N sampler delays = "<<sampler_delays.size()<<std::endl;
-    std::cout<<"channel axis meta data = "<< vis_chan_ax->GetMetaDataAsJSON().dump(2) <<std::endl;
 
     //now loop over the channels
     for(std::size_t ch=0; ch < vis_chan_ax->GetSize(); ch++)
@@ -162,9 +163,13 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
         //now need to fit the pcal data for the mean phase and delay for this channel, for each AP
         //TODO FIXME -- make sure the stop/start parameters are accounted for
         //this should be fine, provided if we trim the pcal data appropriately ahead use here
-        double pcal_model[3];
+
         double navg;
         std::size_t seg_start_ap, seg_end_ap;
+
+        std::vector< double > pc_mag_segs;
+        std::vector< double > pc_phase_segs;
+        std::vector< double > pc_delay_segs;
         for(std::size_t ap=0; ap < vis_ap_ax->GetSize(); ap++)
         {
             if(ap % fPCPeriod == 0)
@@ -188,31 +193,57 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
             {
                 seg_end_ap = ap+1;
                 for(std::size_t i=0; i<ntones; i++){ fPCWorkspace(i) /= navg;}
+
+                double pcal_model[3];
                 FitPCData(ntones, chan_center_freq, sampler_delay, pcal_model);
 
+                double pcmag = pcal_model[0];
+                double pcphase = pcal_model[1];
+                double pcdelay = pcal_model[2];
 
-                double phase_shift = 0.0; // = pcal_model[1]/(4*);
+                double phase_shift = 0.0; // = pcal_model[1]/(4*)
+                std::complex<double> pc_phasor = std::exp( -1.0*fImagUnit*( pcphase + phase_shift) );
+                pc_mag_segs.push_back(pcmag);
+                pc_phase_segs.push_back(pcphase);
+                pc_delay_segs.push_back(pcdelay);
 
                 for(std::size_t dap = seg_start_ap; dap < seg_end_ap; dap++)
                 {
-
-                    // for(std::size_t sp = 0; sp < vis_freq_ax->GetSize(); sp++)
-                    // {
                         //std::complex<double> pc_phasor = std::exp( -2.0*M_PI*fImagUnit*(pcal_model[1]*deltaf) + -1.0*(pcal_model[0] + phase_shift) );
-                        std::complex<double> pc_phasor = std::exp( -1.0*fImagUnit*( pcal_model[0] + phase_shift) );
-                        //if(net_sideband == fLowerSideband){pc_phasor = std::conj(pc_phasor);}
-                        //if(fMk4ID == "G"){pc_phasor = std::conj(pc_phasor);}
-                        // #pragma message("TODO FIXME - pc_data all manual pc phase correction cases (ref/rem/USB/LSB/DSB)")
-                        //retrieve and multiply the appropriate sub view of the visibility array
-                        in->SubView(vis_pp, ch, dap)  *= pc_phasor;
-                        //(*in)(vis_pp, ch, dap, sp) *= pc_phasor;
-                    // }
-
+                        //in->SubView(vis_pp, ch, dap)  *= pc_phasor;
                 }
 
             }
+
+            //Now attach the multi-tone phase cal data to each channel
+            //this is a bit of a hack...we probably ought to introduce a new data type which
+            //encapsulates the reduces multi-tone pcal data
+            std::string pc_mag_key;
+            std::string pc_phase_key;
+            std::string pc_delay_key;
+            if(fStationIndex == 0)
+            {
+                pc_mag_key = "ref_mtpc_mag_";
+                pc_phase_key = "ref_mtpc_phase_";
+                pc_delay_key = "ref_mtpc_delays_";
+            }
+            if(fStationIndex == 1)
+            {
+                pc_mag_key = "rem_mtpc_mag_";
+                pc_phase_key = "rem_mtpc_phase_";
+                pc_delay_key = "rem_mtpc_delays_";
+            }
+            pc_mag_key += pc_pol_code;
+            pc_phase_key += pc_pol_code;
+            pc_delay_key += pc_pol_code;
+            vis_chan_ax->InsertIndexLabelKeyValue(ch, pc_mag_key, pc_mag_segs);
+            vis_chan_ax->InsertIndexLabelKeyValue(ch, pc_phase_key, pc_phase_segs);
+            vis_chan_ax->InsertIndexLabelKeyValue(ch, pc_delay_key, pc_delay_segs);
         }
     }
+
+    std::cout<<"channel axis meta data = "<< vis_chan_ax->GetMetaDataAsJSON().dump(2) <<std::endl;
+
 }
 
 
@@ -333,7 +364,6 @@ MHO_MultitonePhaseCorrection::FitPCData(std::size_t ntones, double chan_center_f
     double delay = (max_idx+ymax)*delay_delta;
 
     delay *= 1e-6; //TODO FIXME - document proper units!
-    std::cout<<"RAW DELAY = "<<delay<<std::endl;
 
     // find bounds of allowable resolved delay
     double lo = delay + sampler_delay - pc_amb / 2.0;
@@ -342,13 +372,6 @@ MHO_MultitonePhaseCorrection::FitPCData(std::size_t ntones, double chan_center_f
         delay -= pc_amb;
     while (lo > delay)  // shift delay right if necessary
         delay += pc_amb;
-
-
-
-    std::cout<<"PC AMB = "<<pc_amb<<std::endl;
-    std::cout<<"SAMPLER DELAY = "<<sampler_delay<<std::endl;
-    std::cout<<"FIXED DELAY = "<<delay<<std::endl;
-
 
     //std::cout<<"chan center freq = "<<chan_center_freq<<std::endl;
     //rotate each tone phasor by the delay (zero rot at center freq)

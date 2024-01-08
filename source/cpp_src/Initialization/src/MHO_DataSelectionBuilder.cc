@@ -89,7 +89,6 @@ MHO_DataSelectionBuilder::Build()
             for(auto it = chan_set.begin(); it != chan_set.end(); it++)
             {
                  auto tmp_ch = (&(std::get<CHANNEL_AXIS>(*vis_data)))->GetMatchingIndexes(chan_label_key, *it);
-                 std::cout<<"selected @ "<<*it<<" n = "<<tmp_ch.size()<<std::endl;
                  selected_ch.insert(selected_ch.end(), tmp_ch.begin(), tmp_ch.end() );
             }
 
