@@ -204,7 +204,7 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
                 double phase_shift = 0.0; // = pcal_model[1]/(4*)
                 std::complex<double> pc_phasor = std::exp( -1.0*fImagUnit*( pcphase + phase_shift) );
                 pc_mag_segs.push_back(pcmag);
-                pc_phase_segs.push_back(pcphase);
+                pc_phase_segs.push_back(pcphase*(180./M_PI));
                 pc_delay_segs.push_back(pcdelay);
 
                 for(std::size_t dap = seg_start_ap; dap < seg_end_ap; dap++)
@@ -236,6 +236,7 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
             pc_mag_key += pc_pol_code;
             pc_phase_key += pc_pol_code;
             pc_delay_key += pc_pol_code;
+
             vis_chan_ax->InsertIndexLabelKeyValue(ch, pc_mag_key, pc_mag_segs);
             vis_chan_ax->InsertIndexLabelKeyValue(ch, pc_phase_key, pc_phase_segs);
             vis_chan_ax->InsertIndexLabelKeyValue(ch, pc_delay_key, pc_delay_segs);
