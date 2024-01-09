@@ -140,7 +140,7 @@ MHO_MultitonePhaseCorrectionBuilder::ExtractSamplerDelays(multitone_pcal_type* p
             {
                 std::cout<<"station: "<<mk4id<<" DELAY @ "<<pol<<", "<<i<<" = "<<delays[i]<<std::endl;
             }
-            
+            std::cout<<"pol index = "<<p<<std::endl;
             pol_ax->InsertIndexLabelKeyValue(p, "sampler_delays", delays);
 
         }
