@@ -39,7 +39,7 @@ class MHO_Axis:
         {
             //create and set the pointer to the index label object
             //std::vector<mho_json> tmp;
-            this->fTags["index_labels"] = mho_json(); //tmp;
+            this->fTags["index_labels"] = mho_json();// mho_json::array(); //tmp;
             this->SetIndexLabelObject( &(this->fTags["index_labels"]) );
 
             //create and set the pointer to the interval label object
@@ -55,7 +55,7 @@ class MHO_Axis:
         {
             //create and set the pointer to the index label object
             //std::vector<mho_json> tmp;
-            this->fTags["index_labels"] = mho_json(); //tmp;
+            this->fTags["index_labels"] = mho_json();// mho_json::array(); //tmp;
             this->SetIndexLabelObject( &(this->fTags["index_labels"]) );
 
             //create and set the pointer to the interval label object

@@ -42,13 +42,16 @@ int main(int argc, char** argv)
     j2["label_test"] = mho_json::array();
     std::cout<<"label_test size = "<<j2["label_test"].size()<<std::endl;
     //.reserve(100);
-    j2["label_test"].get_ptr<mho_json::array_t*>()->reserve(100);
+    //j2["label_test"].get_ptr<mho_json::array_t*>()->reserve(100);
     for(std::size_t i=0;i<100;i++)
     {
         mho_json empty;
         empty["index"] = i;
         j2["label_test"][i] = empty;
     }
+    
+    
+    j2["label_test"][40]["add_something"] = "a new string";
     
     std::cout<< j2.dump(2) <<std::endl;
 
