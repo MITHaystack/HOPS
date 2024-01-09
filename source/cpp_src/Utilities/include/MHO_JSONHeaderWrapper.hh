@@ -302,6 +302,8 @@ class MHO_IndexLabelInterface
         template< typename XValueType >
         void InsertIndexLabelKeyValue(std::size_t index, const std::string& key, const XValueType& value)
         {
+            std::cout<<"ptr = "<<fIndexLabelObjectPtr<<std::endl;
+            std::cout<<"dump1 = "<<fIndexLabelObjectPtr->dump(2)<<std::endl;
             std::string ikey = index2key(index);
             if( !(fIndexLabelObjectPtr->contains(ikey) ) )
             {
@@ -312,8 +314,8 @@ class MHO_IndexLabelInterface
             }
             mho_json obj;
             obj[key] = value;
-            std::cout<<"ptr = "<<fIndexLabelObjectPtr<<std::endl;
-            std::cout<<"ugh = "<<fIndexLabelObjectPtr->dump(2)<<std::endl;
+
+            std::cout<<"dump2 = "<<fIndexLabelObjectPtr->dump(2)<<std::endl;
             (*fIndexLabelObjectPtr)[ikey].update(obj);
         }
 

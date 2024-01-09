@@ -40,11 +40,13 @@ MHO_MultitonePhaseCorrectionBuilder::Build()
             multitone_pcal_type* pcal_data = nullptr;
             if(op_name == "ref_multitone_pcal")
             {
+                std::cout<<"Building "<<op_name<<std::endl;
                 pcal_data = fContainerStore->GetObject<multitone_pcal_type>(std::string("ref_pcal"));
             }
 
             if(op_name == "rem_multitone_pcal")
             {
+                std::cout<<"Building "<<op_name<<std::endl;
                 pcal_data = fContainerStore->GetObject<multitone_pcal_type>(std::string("rem_pcal"));
             }
 
@@ -65,6 +67,8 @@ MHO_MultitonePhaseCorrectionBuilder::Build()
 
             //grab the appropriate pc_period station parameter
             int pc_period = ExtractPCPeriod(mk4id);
+
+            std::cout<<"My pc period = "<<pc_period<<std::endl;
 
             //grab the sampler delays (if present) and label each pol with them
             ExtractSamplerDelays(pcal_data, mk4id);
