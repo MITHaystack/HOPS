@@ -26,7 +26,7 @@ MHO_MultitonePhaseCorrection::MHO_MultitonePhaseCorrection()
     fImagUnit = MHO_Constants::imag_unit;
     fDegToRad = MHO_Constants::deg_to_rad;
 
-    fPCPeriod = 30;
+    fPCPeriod = 1;
 
     //initialize the FFT engine
     fWorkspaceSize = 256;

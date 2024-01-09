@@ -166,7 +166,28 @@ class MHO_IndexLabelInterface
         template< typename XValueType >
         void InsertIndexLabelKeyValue(std::size_t index, const std::string& key, const XValueType& value)
         {
-            (*fIndexLabelObjectPtr)[ index2key(index) ][key] = value;
+            std::string ikey = index2key(index);
+            std::cout<<"index to key:"<<index<<" key: "<<index2key(index)<<std::endl;
+            std::cout<<"item key = "<<key<<std::endl;
+            std::cout<<"current obj size = "<<fIndexLabelObjectPtr->size()<<std::endl;
+            
+            for(auto it: fIndexLabelObjectPtr->items() )
+            {
+                std::cout<<"key present = "<<it.key()<<std::endl;
+            }
+            
+            
+            mho_json my_key = index2key(index);
+            std::cout<<"mykey type = "<<my_key.type_name()<<std::endl;
+
+            if( !(fIndexLabelObjectPtr->contains(ikey) ) )
+            {
+                std::cout<<"no such object present: "<<ikey<<std::endl;
+                //no such object, so insert one, make sure it gets an 'index' value
+                (*fIndexLabelObjectPtr)[ ikey ] = fDummy;
+                (*fIndexLabelObjectPtr)[ ikey ]["index"] = index;
+            }
+            (*fIndexLabelObjectPtr)[ ikey ][key] = value;
         }
 
         template< typename XValueType >
@@ -178,39 +199,16 @@ class MHO_IndexLabelInterface
                 value =  (*fIndexLabelObjectPtr)[ikey][key].get<XValueType>();
                 return true;
             }
-
-            // mho_json test;
-            // test["test"] = value;
-            // //TODO FIXME - this is a major KLUDGE
-            // //but needed to avoid exceptions when key is present, but value type is different
-            // if(test["test"].type() == (*fIndexLabelObjectPtr)[ikey][key].type())
-            // {
-            //     XValueType label_value = (*fIndexLabelObjectPtr)[ikey][key].get<XValueType>();
-            //     value = label_value;
-            //     return true;
-            // }
-
-            // std::string ikey = index2key(index);
-            // mho_json test;
-            // test["test"] = value;
-            // //TODO FIXME - this is a major KLUDGE
-            // //but needed to avoid exceptions when key is present, but value type is different
-            // if(test["test"].type() == (*fIndexLabelObjectPtr)[ikey][key].type())
-            // {
-            //     XValueType label_value = (*fIndexLabelObjectPtr)[ikey][key].get<XValueType>();
-            //     value = label_value;
-            //     return true;
-            // }
-
             return false;
         }
 
         //get a reference to the dictionary object associated with this index
         void SetLabelObject(mho_json& obj, std::size_t index)
         {
-            (*fIndexLabelObjectPtr)[ index2key(index) ] = obj;
+            //make sure the object also contains the index value:
+            obj["index"] = index;
+            (*fIndexLabelObjectPtr)[ index2key(index) ].update(obj);
         }
-
 
         //get a reference to the dictionary object associated with this index
         mho_json& GetLabelObject(std::size_t index)
@@ -328,25 +326,6 @@ class MHO_IntervalLabelInterface
                 msg_warn("containers", "cannot retrieve a key value pair for interval: "<<ikey<<"."<< eom);
             }
             return false;
-
-            // if(fIntervalLabelObjectPtr->contains(ikey) )
-            // {
-            //     mho_json test;
-            //     test["test"] = value;
-            //     //TODO FIXME - this is a major KLUDGE
-            //     //but needed to avoid exceptions when key is present, but value type is different
-            //     if(test["test"].type() == (*fIntervalLabelObjectPtr)[ikey][key].type())
-            //     {
-            //         XValueType label_value = (*fIntervalLabelObjectPtr)[ikey][key].get<XValueType>();
-            //         value = label_value;
-            //         return true;
-            //     }
-            // }
-            // else
-            // {
-            //     msg_warn("containers", "cannot retrieve a key value pair for interval: "<<ikey<<"."<< eom);
-            // }
-            // return false;
         }
 
         //get a reference to the dictionary object associated with this index
@@ -369,7 +348,7 @@ class MHO_IntervalLabelInterface
             std::string ikey = ConstructKey(lower_index, upper_index);
             obj["lower_index"] = std::min(lower_index, upper_index);
             obj["upper_index"] = std::max(lower_index, upper_index);
-            (*fIntervalLabelObjectPtr)[ikey] = obj;
+            (*fIntervalLabelObjectPtr)[ik = obj;
         }
 
 

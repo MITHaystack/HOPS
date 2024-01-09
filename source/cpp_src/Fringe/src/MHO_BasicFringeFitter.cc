@@ -222,6 +222,11 @@ void MHO_BasicFringeFitter::Initialize()
         ////////////////////////////////////////////////////////////////////////////
 
         fOperatorBuildManager->BuildOperatorCategory("default");
+        
+        
+        std::cout<<"Dumping the parameter store: = "<<std::endl;
+        fParameterStore.Dump();
+        
         MHO_BasicFringeDataConfiguration::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "labeling");
         MHO_BasicFringeDataConfiguration::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "selection");
 
