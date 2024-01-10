@@ -279,8 +279,6 @@ def make_channel_info_table(plot_dict):
     axT = plt.subplot2grid((96,n_seg_plots),(67,0),rowspan=20,colspan=n_seg_plots)
     #plt.subplots_adjust(left=0.1, right=0.9, top=0.8, bottom=0.1)  # Adjust margins as needed
 
-
-
     ct_header_text = {}
     ct_header_text["#Ch"] = ""
     ct_header_text["Freq(MHz)"] = "Freq (MHz)"
@@ -289,15 +287,14 @@ def make_channel_info_table(plot_dict):
     ct_header_text["SbdBox"] = "Sbd box"
     ct_header_text["APsRf"] = "APs used"
     ct_header_text["APsRm"] = "APs used"
-    
+    ct_header_text["PCdlyRf"] = "PC delays (ns)"
+    ct_header_text["PCdlyRm"] = "PC delays (ns)"
     if 'extra' in plot_dict:
         pp = plot_dict["extra"]["pol_product"]
-        ct_header_text["PCdlyRf"] = "PC " + pp[0] + " delays (ns)"
-        ct_header_text["PCdlyRm"] = "PC " + pp[1] + " delays (ns)"
-    else:
-        ct_header_text["PCdlyRf"] = "PC delays (ns)"
-        ct_header_text["PCdlyRm"] = "PC delays (ns)"
-        
+        if len(pp) == 2:
+            ct_header_text["PCdlyRf"] = "PC " + pp[0] + " delays (ns)"
+            ct_header_text["PCdlyRm"] = "PC " + pp[1] + " delays (ns)"
+
     ct_header_text["PCPhsRf"] = "PC phase"
     ct_header_text["PCPhsRm"] = "PC phase"
     ct_header_text["PCOffRf"] = "Manl PC"
