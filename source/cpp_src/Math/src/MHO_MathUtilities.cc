@@ -2,8 +2,8 @@
 
 namespace hops
 {
-    
-double 
+
+double
 MHO_MathUtilities::dwin(double value, double lower, double upper)
 {
     if (value < lower) return (lower);
@@ -48,4 +48,16 @@ MHO_MathUtilities::parabola (double y[3], double lower, double upper, double* x_
     return (rc);
 }
 
+
+double
+MHO_MathUtilities::average(std::vector<double>& vec)
+{
+    std::size_t s = vec.size();
+    if(s == 0){return 0.0;}
+    double ave = 0;
+    for(std::size_t i=0; i<s; i++){ave += vec[i];}
+    ave /= (double) s;
+    return ave;
 }
+
+}//end namespace
