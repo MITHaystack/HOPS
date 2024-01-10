@@ -696,8 +696,6 @@ MHO_ComputePlotData::DumpInfoToJSON(mho_json& plot_dict)
     auto sbd_xpower = calc_xpower_spec();
     auto phasors = calc_segs();
 
-    calc_multitone_pcmodel(plot_dict);
-
     double coh_avg_phase_deg = std::fmod(coh_avg_phase * (180.0/M_PI), 360.0);
     fParamStore->Set("/fringe/raw_resid_phase", coh_avg_phase_deg);
 
@@ -881,6 +879,20 @@ MHO_ComputePlotData::DumpInfoToJSON(mho_json& plot_dict)
         plot_dict["PLOT_INFO"]["ChIdRm"].push_back("-");
         plot_dict["PLOT_INFO"]["TrkRm"].push_back("-");
     }
+
+    int station_flag;
+    std::string pol;
+    std::string polprod = std::get<POLPROD_AXIS>(*fVisibilities).at(0);
+    
+    //export reference pcal stuff
+    station_flag = 0;
+    pol = std::string(1, polprod[station_flag]);
+    calc_multitone_pcmodel(plot_dict, station_flag, pol);
+
+    //export remote pcal stuff
+    station_flag = 1;
+    pol = std::string(1, polprod[station_flag]);
+    calc_multitone_pcmodel(plot_dict, station_flag, pol);
 
     //for the time being, we add the window info here:
     double sb_win_low = std::get<0>(sbd_amp)(0);
@@ -1146,8 +1158,14 @@ MHO_ComputePlotData::calc_quality_code()
 }
 
 
-void MHO_ComputePlotData::calc_multitone_pcmodel(mho_json& plot_dict)
+void MHO_ComputePlotData::calc_multitone_pcmodel
+(
+    mho_json& plot_dict,
+    int station_flag, //0 = reference station, 1 = remote station
+    std::string pol //single char string
+)
 {
+    //workspace for segment retrieval
     std::vector< double > pc_mag_segs;
     std::vector< double > pc_phase_segs;
     std::vector< double > pc_delay_segs;
@@ -1157,11 +1175,25 @@ void MHO_ComputePlotData::calc_multitone_pcmodel(mho_json& plot_dict)
     std::string pc_mag_key;
     std::string pc_phase_key;
     std::string pc_delay_key;
-    pc_mag_key = "ref_mtpc_mag_X";
-    pc_phase_key = "ref_mtpc_phase_X";
-    pc_delay_key = "ref_mtpc_delays_X";
-
-
+    
+    if(station_flag == 0)
+    {
+        pc_mag_key = "ref_mtpc_mag_";
+        pc_phase_key = "ref_mtpc_phase_";
+        pc_delay_key = "ref_mtpc_delays_";
+    }
+    
+    if(station_flag == 1)
+    {
+        pc_mag_key = "rem_mtpc_mag_";
+        pc_phase_key = "rem_mtpc_phase_";
+        pc_delay_key = "rem_mtpc_delays_";
+    }
+    
+    pc_mag_key += pol;
+    pc_phase_key += pol;
+    pc_delay_key += pol;
+    
     //extract the multitone pcal model attached to the visibilities
     for(std::size_t ch=0; ch<chan_ax->GetSize(); ch++)
     {
@@ -1172,51 +1204,42 @@ void MHO_ComputePlotData::calc_multitone_pcmodel(mho_json& plot_dict)
         if(b1)
         {
             double ave_pc_mag = MHO_MathUtilities::average(pc_mag_segs);
-            std::cout<<"ref channel: "<<ch<<" pc mag = "<<1000*ave_pc_mag<<std::endl;
+            if(station_flag == 0)
+            {
+                plot_dict["PLOT_INFO"]["PCAmpRf"][ch] = ave_pc_mag*1000.0; //convert to fourfit units (?)
+            }
+            if(station_flag == 1)
+            {
+                plot_dict["PLOT_INFO"]["PCAmpRm"][ch] = ave_pc_mag*1000.0;
+            }
         }
+        
         if(b2)
         {
-            //THIS IS NOT THE CORRECT WAY TO AVERAGE A PHASE!!
             double ave_pc_phase = MHO_MathUtilities::angular_average(pc_phase_segs);
-            std::cout<<"ref channel: "<<ch<<" pc phase = "<<(180./M_PI)*ave_pc_phase<<std::endl;
+            if(station_flag == 0)
+            {
+                plot_dict["PLOT_INFO"]["PCPhsRf"][ch] = ave_pc_phase*(180./M_PI); //convert to degrees
+            }
+            if(station_flag == 1)
+            {
+                plot_dict["PLOT_INFO"]["PCPhsRm"][ch] = ave_pc_phase*(180./M_PI);
+            }
         }
+        
         if(b3)
         {
             double ave_pc_delay = MHO_MathUtilities::average(pc_delay_segs);
-            std::cout<<"ref channel: "<<ch<<" pc delay = "<<ave_pc_delay<<std::endl;
-        }
-
-    }
-
-    pc_mag_key = "rem_mtpc_mag_X";
-    pc_phase_key = "rem_mtpc_phase_X";
-    pc_delay_key = "rem_mtpc_delays_X";
-
-    //extract the multitone pcal model attached to the visibilities
-    for(std::size_t ch=0; ch<chan_ax->GetSize(); ch++)
-    {
-        bool b1 = chan_ax->RetrieveIndexLabelKeyValue(ch, pc_mag_key, pc_mag_segs);
-        bool b2 = chan_ax->RetrieveIndexLabelKeyValue(ch, pc_phase_key, pc_phase_segs);
-        bool b3 = chan_ax->RetrieveIndexLabelKeyValue(ch, pc_delay_key, pc_delay_segs);
-
-        if(b1)
-        {
-            double ave_pc_mag = MHO_MathUtilities::average(pc_mag_segs);
-            std::cout<<"rem channel: "<<ch<<" pc mag = "<<1000*ave_pc_mag<<std::endl;
-        }
-        if(b2)
-        {
-            //THIS IS NOT THE CORRECT WAY TO AVERAGE A PHASE!!
-            double ave_pc_phase = MHO_MathUtilities::angular_average(pc_phase_segs);
-            std::cout<<"rem channel: "<<ch<<" pc phase = "<<(180./M_PI)*ave_pc_phase<<std::endl;
-        }
-        if(b3)
-        {
-            double ave_pc_delay = MHO_MathUtilities::average(pc_delay_segs);
-            std::cout<<"rem channel: "<<ch<<" pc delay = "<<ave_pc_delay<<std::endl;
+            if(station_flag == 0)
+            {
+                plot_dict["PLOT_INFO"]["PCdlyRf"][ch] = ave_pc_delay*1e9; //convert to ns
+            }
+            if(station_flag == 1)
+            {
+                plot_dict["PLOT_INFO"]["PCdlyRm"][ch] = ave_pc_delay*1e9;
+            }
         }
     }
-
 
 }
 
