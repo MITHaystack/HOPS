@@ -26,6 +26,10 @@ MHO_MultitonePhaseCorrectionBuilder::Build()
         {
             pc_mode = this->fParameterStore->GetAs<std::string>("/control/station/pc_mode");
         }
+        
+        //std::cout<<"GENERIC PC_MODE = "<<pc_mode<<std::endl;
+        
+        
         //however, any station specific value under '/control/station/<mk4id>/pc_mode' will
         //override the generic /control/station/pc_mode
         std::string station_pcmode_path = std::string("/control/station/") + mk4id + "/pc_mode";
@@ -33,6 +37,8 @@ MHO_MultitonePhaseCorrectionBuilder::Build()
         {
             pc_mode = this->fParameterStore->GetAs<std::string>(station_pcmode_path);
         }
+
+        //std::cout<<"STATION SPECIFIC: "<<mk4id<<" PC_MODE = "<<pc_mode<<std::endl;
 
         if(pc_mode == "multitone")
         {

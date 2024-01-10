@@ -31,6 +31,8 @@ class MHO_MathUtilities
         //returns the average of the values in a vector
         static double average(std::vector<double>& vec);
 
+        //returns the average of the values in a vector assuming they are angles (radians) 
+        static double angular_average(std::vector<double>& vec);
 
 };
 

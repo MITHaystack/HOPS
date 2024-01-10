@@ -1,4 +1,5 @@
 #include "MHO_MathUtilities.hh"
+#include "MHO_Constants.hh"
 
 namespace hops
 {
@@ -59,5 +60,23 @@ MHO_MathUtilities::average(std::vector<double>& vec)
     ave /= (double) s;
     return ave;
 }
+
+
+double 
+MHO_MathUtilities::angular_average(std::vector<double>& vec)
+{
+    std::size_t s = vec.size();
+    if(s == 0){return 0.0;}
+    std::complex<double> ave = 0;
+    std::complex<double> imagUnit = MHO_Constants::imag_unit;
+    for(std::size_t i=0; i<s; i++)
+    {
+        std::complex<double> phasor = std::exp(1.0*imagUnit*(vec[i]));
+        ave += phasor;
+    }
+    ave /= (double) s;
+    return std::arg(ave);
+}
+
 
 }//end namespace
