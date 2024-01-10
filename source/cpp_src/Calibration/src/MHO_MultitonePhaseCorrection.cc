@@ -322,6 +322,9 @@ MHO_MultitonePhaseCorrection::DetermineChannelToneIndexes(double lower_freq, dou
 void
 MHO_MultitonePhaseCorrection::FitPCData(std::size_t ntones, double chan_center_freq, double sampler_delay, double* pcal_model)
 {
+    #pragma message("TODO FIXME -- need to retrieve the station delays for multitone pcal processing.")
+    double station_delay = 0.0;
+
     //copy the averaged tone data for later use when calculating mean phase
     pcal_type pc_data_copy;
     pc_data_copy.Resize(ntones);
@@ -367,8 +370,8 @@ MHO_MultitonePhaseCorrection::FitPCData(std::size_t ntones, double chan_center_f
     delay *= 1e-6; //TODO FIXME - document proper units!
 
     // find bounds of allowable resolved delay
-    double lo = delay + sampler_delay - pc_amb / 2.0;
-    double hi = delay + sampler_delay + pc_amb / 2.0;
+    double lo = station_delay + sampler_delay - pc_amb / 2.0;
+    double hi = station_delay + sampler_delay + pc_amb / 2.0;
     while (hi < delay)  // shift delay left if necessary
         delay -= pc_amb;
     while (lo > delay)  // shift delay right if necessary
