@@ -74,13 +74,23 @@ class MHO_ComputePlotData
                           double coh_avg_phase, double fringe_amp, double total_summed_weights, double snr,
                           double& timerms_phase, double& timerms_amp, double& inc_avg_amp);
 
-        void calc_multitone_pcmodel
+        //exports the multitone pcal data (if it was applied)
+        //to the plot dictionary
+        void dump_multitone_pcmodel
         (
             mho_json& plot_dict,
             int station_flag, //0 = reference station, 1 = remote station,
             std::string pol //single char string
         );
-
+        
+        //exports the manual pcal data (pc_phases)
+        //to the plot dictionary
+        void dump_manual_pcmodel
+        (
+            mho_json& plot_dict,
+            int station_flag, //0 = reference station, 1 = remote station,
+            std::string pol //single char string
+        );
 
         std::string calc_quality_code(); //quality only, not error
 

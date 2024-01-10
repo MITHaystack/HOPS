@@ -217,7 +217,7 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
 
             //Now attach the multi-tone phase cal data to each channel
             //this is a bit of a hack...we probably ought to introduce a new data type which
-            //encapsulates the reduces multi-tone pcal data
+            //encapsulates the reduced multi-tone pcal data
             std::string pc_mag_key;
             std::string pc_phase_key;
             std::string pc_delay_key;
@@ -243,7 +243,7 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
         }
     }
 
-    std::cout<<"channel axis meta data = "<< vis_chan_ax->GetMetaDataAsJSON().dump(2) <<std::endl;
+    //std::cout<<"channel axis meta data = "<< vis_chan_ax->GetMetaDataAsJSON().dump(2) <<std::endl;
 
 }
 
