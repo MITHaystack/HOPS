@@ -41,11 +41,17 @@ MHO_ManualChannelPhaseCorrection::ExecuteInPlace(visibility_type* in)
 
     std::string chan_label;
     std::string pp_label;
+    std::string pc_phase_key;
+    std::string pol_code;
     for(std::size_t pp=0; pp < pp_ax->GetSize(); pp++)
     {
         pp_label = pp_ax->at(pp);
         if( PolMatch(st_idx, pp_label) )
         {
+            pol_code = std::string(1, pp_label[st_idx] ); //get the polarization for the appropriate station (ref/rem)
+            if(st_idx == 0){pc_phase_key = "ref_pcphase_";}
+            if(st_idx == 1){pc_phase_key = "rem_pcphase_";}
+            pc_phase_key += pol_code;
             for(auto pcal_it = fPCMap.begin(); pcal_it != fPCMap.end(); pcal_it++)
             {
                 chan_label = pcal_it->first;
@@ -68,11 +74,19 @@ MHO_ManualChannelPhaseCorrection::ExecuteInPlace(visibility_type* in)
                         //retrieve and multiply the appropriate sub view of the visibility array
                         auto chunk = in->SubView(pp, ch);
                         chunk *= pc_phasor;
+                        
+                        //now attach the manual pcal value to this channel/pol/station
+                        //it would probably be better to stash this information in 
+                        //a new data type rather than attaching it as meta data here
+                        chan_ax->InsertIndexLabelKeyValue(ch, pc_phase_key, pc_val*fDegToRad);
                     }
                 }
             }
         }
     }
+
+    std::cout<<"channel axis meta data = "<< chan_ax->GetMetaDataAsJSON().dump(2) <<std::endl;
+
 
     return true;
 }

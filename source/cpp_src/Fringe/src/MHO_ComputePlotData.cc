@@ -887,12 +887,14 @@ MHO_ComputePlotData::DumpInfoToJSON(mho_json& plot_dict)
     //export reference pcal stuff
     station_flag = 0;
     pol = std::string(1, polprod[station_flag]);
-    calc_multitone_pcmodel(plot_dict, station_flag, pol);
+    dump_multitone_pcmodel(plot_dict, station_flag, pol);
+    dump_manual_pcmodel(plot_dict, station_flag, pol);
 
     //export remote pcal stuff
     station_flag = 1;
     pol = std::string(1, polprod[station_flag]);
-    calc_multitone_pcmodel(plot_dict, station_flag, pol);
+    dump_multitone_pcmodel(plot_dict, station_flag, pol);
+    dump_manual_pcmodel(plot_dict, station_flag, pol);
 
     //for the time being, we add the window info here:
     double sb_win_low = std::get<0>(sbd_amp)(0);
@@ -1158,7 +1160,7 @@ MHO_ComputePlotData::calc_quality_code()
 }
 
 
-void MHO_ComputePlotData::calc_multitone_pcmodel
+void MHO_ComputePlotData::dump_multitone_pcmodel
 (
     mho_json& plot_dict,
     int station_flag, //0 = reference station, 1 = remote station
@@ -1237,6 +1239,47 @@ void MHO_ComputePlotData::calc_multitone_pcmodel
             if(station_flag == 1)
             {
                 plot_dict["PLOT_INFO"]["PCdlyRm"][ch] = ave_pc_delay*1e9;
+            }
+        }
+    }
+
+}
+
+
+
+
+void MHO_ComputePlotData::dump_manual_pcmodel
+(
+    mho_json& plot_dict,
+    int station_flag, //0 = reference station, 1 = remote station
+    std::string pol //single char string
+)
+{
+    //workspace for segment retrieval
+    auto chan_ax = &( std::get<CHANNEL_AXIS>(*fSBDArray) );
+
+    std::string pc_mag_key;
+    std::string pc_phase_key;
+    std::string pc_delay_key;
+    
+    if(station_flag == 0){pc_phase_key = "ref_pcphase_";}
+    if(station_flag == 1){pc_phase_key = "rem_pcphase_";}
+    pc_phase_key += pol;
+    
+    //extract the manual pcphases pcal model attached to the visibilities
+    for(std::size_t ch=0; ch<chan_ax->GetSize(); ch++)
+    {
+        double pc_phase;
+        bool b1 = chan_ax->RetrieveIndexLabelKeyValue(ch, pc_phase_key, pc_phase);
+        if(b1)
+        {
+            if(station_flag == 0)
+            {
+                plot_dict["PLOT_INFO"]["PCOffRf"][ch] = pc_phase*(180./M_PI); //convert to fourfit units (?)
+            }
+            if(station_flag == 1)
+            {
+                plot_dict["PLOT_INFO"]["PCOffRm"][ch] = pc_phase*(180./M_PI);
             }
         }
     }
