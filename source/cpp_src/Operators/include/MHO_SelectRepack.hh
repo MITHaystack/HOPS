@@ -74,7 +74,7 @@ class MHO_SelectRepack:
                 fInitialized = true;
                 return true;
             }
-            else 
+            else
             {
                 fInitialized = false;
                 return false;
@@ -102,7 +102,7 @@ class MHO_SelectRepack:
                     //all axes have data selected that we need to extract
                     for(std::size_t i=0; i<total_size; i++)
                     {
-                        //compute the indexes into the 'out' array 
+                        //compute the indexes into the 'out' array
                         MHO_NDArrayMath::RowMajorIndexFromOffset<XArgType::rank::value>(i, &(out_dim[0]), &(out_loc[0]) );
 
                         //compute the indexes into the 'in' array, remapping where needed
@@ -118,10 +118,10 @@ class MHO_SelectRepack:
                 else
                 {
                     //some axes have data selected, an some do not (meaning all is passed)
-                    //so we need to sort through the mess 
+                    //so we need to sort through the mess
                     for(std::size_t i=0; i<total_size; i++)
                     {
-                        //compute the indexes into the 'out' array 
+                        //compute the indexes into the 'out' array
                         MHO_NDArrayMath::RowMajorIndexFromOffset<XArgType::rank::value>(i, &(out_dim[0]), &(out_loc[0]) );
 
                         //compute the indexes into the 'in' array, remapping where needed
@@ -132,7 +132,7 @@ class MHO_SelectRepack:
                             {
                                 in_loc[a] = out_loc[a];
                             }
-                            else 
+                            else
                             {
                                 in_loc[a] = (fAxisSelectionMap[a])[out_loc[a]];
                             }
@@ -167,7 +167,7 @@ class MHO_SelectRepack:
             }
             return out_dim;
         }
-        
+
         void ConditionallyResizeOutput(const std::array<std::size_t, XArgType::rank::value>& dims, XArgType* out)
         {
             auto out_dim = out->GetDimensionArray();
@@ -211,16 +211,18 @@ class MHO_SelectRepack:
                 {
                     if( fSelection.size() != 0 )
                     {
-                        //it doesn't make sense to copy the interval labels 
+                        //it doesn't make sense to copy the interval labels
                         //since we have changed the organization of this axis
                         for(std::size_t i=0; i<fSelection.size();i++)
                         {
                             axis2(i) = axis1( fSelection[i] );
                         }
-                        axis2.CopyTags(axis1); //copy the axis tags 
+                        axis2.CopyTags(axis1); //copy the axis tags
+
+                        #pragma message("TODO FIXME -- ensure that only the proper index tags are selected/copied here.")
                         //axis2.CopyIntervalLabels(axis1); //copy labels
                     }
-                    else 
+                    else
                     {
                         axis2.Copy(axis1); //no selection done on this axis, just copy everything
                     }
@@ -236,7 +238,7 @@ class MHO_SelectRepack:
         XArgType fWorkspace;
 
         //map which holds the indexes selected from each axis
-        //if no item is present for a particular axis, the assumption is that all pre-existing  
+        //if no item is present for a particular axis, the assumption is that all pre-existing
         //elements are selected/passed in the selection process
         std::map< std::size_t, std::vector< std::size_t > > fAxisSelectionMap;
 

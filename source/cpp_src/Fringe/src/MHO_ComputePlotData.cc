@@ -1171,7 +1171,7 @@ void MHO_ComputePlotData::calc_multitone_pcmodel(mho_json& plot_dict)
 
         if(b1)
         {
-            std::cout<<"ref channel: "<<ch<<" pc mag = "<<pc_mag_segs[0]<<std::endl;
+            std::cout<<"ref channel: "<<ch<<" pc mag = "<<1000*pc_mag_segs[0]<<std::endl;
         }
         if(b2)
         {
@@ -1197,7 +1197,7 @@ void MHO_ComputePlotData::calc_multitone_pcmodel(mho_json& plot_dict)
 
         if(b1)
         {
-            std::cout<<"rem channel: "<<ch<<" pc mag = "<<pc_mag_segs[0]<<std::endl;
+            std::cout<<"rem channel: "<<ch<<" pc mag = "<<1000*pc_mag_segs[0]<<std::endl;
         }
         if(b2)
         {
