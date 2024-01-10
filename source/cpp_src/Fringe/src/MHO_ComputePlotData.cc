@@ -1177,8 +1177,8 @@ void MHO_ComputePlotData::calc_multitone_pcmodel(mho_json& plot_dict)
         if(b2)
         {
             //THIS IS NOT THE CORRECT WAY TO AVERAGE A PHASE!!
-            double ave_pc_phase = MHO_MathUtilities::average(pc_phase_segs);
-            std::cout<<"ref channel: "<<ch<<" pc phase = "<<ave_pc_phase<<std::endl;
+            double ave_pc_phase = MHO_MathUtilities::angular_average(pc_phase_segs);
+            std::cout<<"ref channel: "<<ch<<" pc phase = "<<(180./M_PI)*ave_pc_phase<<std::endl;
         }
         if(b3)
         {
@@ -1207,8 +1207,8 @@ void MHO_ComputePlotData::calc_multitone_pcmodel(mho_json& plot_dict)
         if(b2)
         {
             //THIS IS NOT THE CORRECT WAY TO AVERAGE A PHASE!!
-            double ave_pc_phase = MHO_MathUtilities::average(pc_phase_segs);
-            std::cout<<"rem channel: "<<ch<<" pc phase = "<<ave_pc_phase<<std::endl;
+            double ave_pc_phase = MHO_MathUtilities::angular_average(pc_phase_segs);
+            std::cout<<"rem channel: "<<ch<<" pc phase = "<<(180./M_PI)*ave_pc_phase<<std::endl;
         }
         if(b3)
         {
