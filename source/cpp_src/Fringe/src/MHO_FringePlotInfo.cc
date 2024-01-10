@@ -55,6 +55,7 @@ MHO_FringePlotInfo::construct_plot_data(MHO_ContainerStore* conStore, MHO_Parame
     std::string freq_group = "fgroup ?";
 
     plot_dict["PolStr"] = ref_name + " - " + rem_name +", " + freq_group + ", " + "pol " + polprod;
+    plot_dict["extra"]["pol_product"] = polprod;
 
     //DEBUG! open and dump to file
     std::string output_file = "fdump.json"; //for testing
