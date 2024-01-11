@@ -374,7 +374,9 @@ def make_channel_info_table(plot_dict):
     if n_seg_plots > 16:
         table.set_fontsize(4)
 
-    #adjust the cell text colors (needed to set p-cal amplitudes in green, red, and orange)
+    #adjust the cell text colors for the pcal amps 
+    #needed to set p-cal amplitudes in green, red, and orange colors 
+    #also, we round the floats to the nearest integer here
     for key, cell in table._cells.items():
         if cth_text[ key[0] ] == "PC amp":
             cell_text = (table.get_celld()[key].get_text() ).get_text()
