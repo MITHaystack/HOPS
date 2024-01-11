@@ -374,6 +374,24 @@ def make_channel_info_table(plot_dict):
     if n_seg_plots > 16:
         table.set_fontsize(4)
 
+    #adjust the cell text colors (needed to set p-cal amplitudes in green, red, and orange)
+    for key, cell in table._cells.items():
+        if cth_text[ key[0] ] == "PC amp":
+            cell_text = (table.get_celld()[key].get_text() ).get_text()
+            print(cell_text)
+            if cell_text != "PC amp":
+                #convert text to a float, then round to int and modify color
+                entry_color = "black"
+                pcamp = int( np.round( float( cell_text ) ) )
+                if pcamp < 4 or pcamp >= 150:
+                    entry_color = "red"
+                elif pcamp < 10 or pcamp >= 100:
+                    entry_color = "orange"
+                else:
+                    entry_color = "green"
+                table.get_celld()[key].get_text().set_text( str(pcamp) ) #set to integer value
+                cell.set_text_props(color=entry_color)
+
     # Set the table cell height to make it smaller
     table.scale(1, 0.7)  # Adjust the scale factor as needed
 
