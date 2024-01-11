@@ -34,6 +34,8 @@ MHO_MultitonePhaseCorrection::MHO_MultitonePhaseCorrection()
     fFFTEngine.SetArgs(&fPCWorkspace);
     fFFTEngine.SelectAllAxes();
     fFFTEngine.SetForward();//forward DFT
+    
+    fWeights = nullptr;
 
     bool ok;
     ok = fFFTEngine.Initialize(); // TODO FIXME...only need to initialize once!
@@ -190,8 +192,17 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
             #pragma message("TODO FIXME -- fix the phase cal phasor weights and implement pc_tonemask.")
             //TODO FIXME -- NOTE!! This implementation assumes all tones are sequential and there are no missing tones!
             //true for now...but may not be once we add pc_tonemask support
-            for(std::size_t i=0; i<ntones; i++){ fPCWorkspace(i) += fPCData->at(pc_pol, ap, start_idx+i); }
-            navg += 1.0; //treat all pc weights as 1 for now (should probably use visibility weights?)
+            double wght;
+            for(std::size_t i=0; i<ntones; i++)
+            {
+                wght = 1.0; //pc weights default to 1
+                if(fWeights != nullptr)
+                {
+                    wght = fWeights->at(vis_pp, ch, ap, 0);
+                }
+                fPCWorkspace(i) += wght*( fPCData->at(pc_pol, ap, start_idx+i) ); 
+            }
+            navg += wght; 
 
             //finish the average, do delay fit on last ap of segment or last ap
             if(ap % fPCPeriod == fPCPeriod-1 || ap == vis_ap_ax->GetSize()-1 )
