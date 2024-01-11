@@ -205,47 +205,32 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
                 double pcphase = pcal_model[1];
                 double pcdelay = pcal_model[2];
 
+                #pragma message("TODO FIXME -- need to implement the delay 'phase-shift' as applied in norm_fx.c, line 396")
                 double phase_shift = 0.0; // = pcal_model[1]/(4*)
-                std::complex<double> pc_phasor = std::exp( -1.0*fImagUnit*( pcphase + phase_shift) );
+
+                std::complex<double> pc_phasor = std::exp( -1.0*fImagUnit*(pcphase) );
                 pc_mag_segs.push_back(pcmag);
                 pc_phase_segs.push_back(pcphase);
                 pc_delay_segs.push_back(pcdelay);
 
                 for(std::size_t dap = seg_start_ap; dap < seg_end_ap; dap++)
                 {
-                    if(fStationIndex == 0)
+                    //conjugate pc phasor when applied to reference station
+                    if(fStationIndex == 0){pc_phasor = std::conj(pc_phasor);}
+                    //apply phase offset correction
+                    in->SubView(vis_pp, ch, dap) *= pc_phasor;
+
+                    //apply delay correction
+                    for(std::size_t sp=0; sp < vis_freq_ax->GetSize(); sp++)
                     {
-                        in->SubView(vis_pp, ch, dap) *= std::conj(pc_phasor);
-                    }
-                    if(fStationIndex == 1)
-                    {
-                        in->SubView(vis_pp, ch, dap) *= pc_phasor;
-                    }
-                    
-                    if(fStationIndex == 1)
-                    {
-                        for(std::size_t sp=0; sp < vis_freq_ax->GetSize(); sp++)
-                        {
-                            double deltaf = ( (*vis_freq_ax)(sp) )*1e6; //Hz
-                            std::complex<double> pc_delay_phasor = std::exp( -2.0*M_PI*fImagUnit*(pcdelay*deltaf) );
-                            //std::cout<<"deltaf, delay, phase angle = "<<deltaf<<", "<<pcdelay<<", "<< (-2.0*M_PI*(pcdelay*deltaf))*(180./M_PI)<<std::endl;
-                            (*in)(vis_pp, ch, dap, sp) *= pc_delay_phasor;
-                        }
-                    }
-                    
-                    
-                    if(fStationIndex == 0)
-                    {
-                        for(std::size_t sp=0; sp < vis_freq_ax->GetSize(); sp++)
-                        {
-                            double deltaf = ( (*vis_freq_ax)(sp) )*1e6; //Hz
-                            std::complex<double> pc_delay_phasor = std::exp( 2.0*M_PI*fImagUnit*(pcdelay*deltaf) );
-                            //std::cout<<"deltaf, delay, phase angle = "<<deltaf<<", "<<pcdelay<<", "<< (-2.0*M_PI*(pcdelay*deltaf))*(180./M_PI)<<std::endl;
-                            (*in)(vis_pp, ch, dap, sp) *= pc_delay_phasor;
-                        }
+                        double deltaf = ( (*vis_freq_ax)(sp) )*1e6; //Hz
+                        std::complex<double> pc_delay_phasor = std::exp( -2.0*M_PI*fImagUnit*(pcdelay*deltaf + phase_shift) );
+                        
+                        //conjugate pc phasor when applied to reference station
+                        if(fStationIndex == 0){pc_delay_phasor = std::conj(pc_delay_phasor);}
+                        (*in)(vis_pp, ch, dap, sp) *= pc_delay_phasor;
                     }
                 }
-
             }
 
             //Now attach the multi-tone phase cal data to each channel
