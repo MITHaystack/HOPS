@@ -187,6 +187,7 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
             }
 
             //sum the tone phasors
+            #pragma message("TODO FIXME -- fix the phase cal phasor weights and implement pc_tonemask.")
             //TODO FIXME -- NOTE!! This implementation assumes all tones are sequential and there are no missing tones!
             //true for now...but may not be once we add pc_tonemask support
             for(std::size_t i=0; i<ntones; i++){ fPCWorkspace(i) += fPCData->at(pc_pol, ap, start_idx+i); }
@@ -206,7 +207,7 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
                 double pcdelay = pcal_model[2];
 
                 #pragma message("TODO FIXME -- need to implement the delay 'phase-shift' as applied in norm_fx.c, line 396")
-                double phase_shift = 0.0; // = pcal_model[1]/(4*)
+                double phase_shift = 0.0;
 
                 #pragma message("TODO FIXME -- make sure proper treatment of LSB/USB sidebands is done here.")
                 std::complex<double> pc_phasor = std::exp( -1.0*fImagUnit*(pcphase) );
