@@ -69,6 +69,13 @@ MHO_MultitonePhaseCorrectionBuilder::Build()
                 return false;
             }
 
+            //retrieve the visibility data from the container store
+            weight_type* weights = fContainerStore->GetObject<weight_type>(std::string("weight"));
+            if( weights == nullptr )
+            {
+                msg_warn("initialization", "No weights available for MHO_MultitonePhaseCorrection, assuming weights of 1." << eom);
+            }
+
             //grab the appropriate pc_period station parameter
             int pc_period = ExtractPCPeriod(mk4id);
             //grab the sampler delays (if present) and label each pol with them
@@ -81,6 +88,7 @@ MHO_MultitonePhaseCorrectionBuilder::Build()
             op->SetStationMk4ID(mk4id);
             op->SetMultitonePCData(pcal_data);
             op->SetPCPeriod(pc_period);
+            op->SetWeights(weights);
 
             msg_debug("initialization", "creating operator: "<<op_name<<" for station: "<<mk4id<<"."<<eom);
 

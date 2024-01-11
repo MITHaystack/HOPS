@@ -49,6 +49,9 @@ class MHO_MultitonePhaseCorrection: public MHO_UnaryOperator< visibility_type >
          //channel label -> pc_phases
          void SetMultitonePCData(multitone_pcal_type* pcal){fPCData = pcal;};
 
+         //pass in the data weights (to be applied to the pcal phasors as well?)
+         void SetWeights(weight_type* w){fWeights = w;}
+         
     protected:
 
         virtual bool InitializeInPlace(visibility_type* /*in*/) override {return true;};
@@ -96,6 +99,9 @@ class MHO_MultitonePhaseCorrection: public MHO_UnaryOperator< visibility_type >
         //the multi-tone pcal data
         std::size_t fPCPeriod;
         multitone_pcal_type* fPCData;
+        
+        //the data weights
+        weight_type* fWeights;
 
         //workspace for delay fit
         std::size_t fWorkspaceSize;
