@@ -665,7 +665,9 @@ MHO_ComputePlotData::calc_xpower_spec()
     {
         for(int i=0; i<3; i++)
         {
+            //clamp idx so we cannot exceed [0, 2*nl-1]
             int idx = std::max( maxlag[ch] - 1 + i, 0);
+            idx = std::min(idx, 2*nl-1);
             yy[i] = std::abs( sbxsp[ch].at(idx) );
         }
         MHO_MathUtilities::parabola(yy, -1.0, 1.0, &peak, &maxv, q);

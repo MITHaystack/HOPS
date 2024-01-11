@@ -93,6 +93,10 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
     auto vis_chan_ax = &(std::get<CHANNEL_AXIS>(*in) );
     auto vis_ap_ax = &(std::get<TIME_AXIS>(*in) );
     auto vis_freq_ax = &(std::get<FREQ_AXIS>(*in) );
+    
+    std::cout<<"Vis freq ax size = "<<vis_freq_ax->GetSize()<<std::endl;
+    std::cout<<"DIM freq size = "<<in->GetDimension(FREQ_AXIS)<<std::endl;
+    
     auto pcal_pol_ax = &(std::get<MTPCAL_POL_AXIS>(*fPCData) );
     auto tone_freq_ax = &(std::get<MTPCAL_FREQ_AXIS>(*fPCData) );
 
@@ -217,13 +221,29 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
                     {
                         in->SubView(vis_pp, ch, dap) *= pc_phasor;
                     }
-
-                    // for(std::size_t sp=0; sp < vis_freq_ax->GetSize(); sp++)
-                    // {
-                    //     double deltaf = ( (*vis_freq_ax)(sp) - bandwidth/2.0 )*1e6; //Hz
-                    //     std::complex<double> pc_delay_phasor = std::exp( 2.0*M_PI*fImagUnit*(pcal_model[1]*deltaf) );
-                    //     (*in)(vis_pp, ch, dap,sp) *= pc_delay_phasor;
-                    // }
+                    
+                    if(fStationIndex == 1)
+                    {
+                        for(std::size_t sp=0; sp < vis_freq_ax->GetSize(); sp++)
+                        {
+                            double deltaf = ( (*vis_freq_ax)(sp) )*1e6; //Hz
+                            std::complex<double> pc_delay_phasor = std::exp( -2.0*M_PI*fImagUnit*(pcdelay*deltaf) );
+                            //std::cout<<"deltaf, delay, phase angle = "<<deltaf<<", "<<pcdelay<<", "<< (-2.0*M_PI*(pcdelay*deltaf))*(180./M_PI)<<std::endl;
+                            (*in)(vis_pp, ch, dap, sp) *= pc_delay_phasor;
+                        }
+                    }
+                    
+                    
+                    if(fStationIndex == 0)
+                    {
+                        for(std::size_t sp=0; sp < vis_freq_ax->GetSize(); sp++)
+                        {
+                            double deltaf = ( (*vis_freq_ax)(sp) )*1e6; //Hz
+                            std::complex<double> pc_delay_phasor = std::exp( 2.0*M_PI*fImagUnit*(pcdelay*deltaf) );
+                            //std::cout<<"deltaf, delay, phase angle = "<<deltaf<<", "<<pcdelay<<", "<< (-2.0*M_PI*(pcdelay*deltaf))*(180./M_PI)<<std::endl;
+                            (*in)(vis_pp, ch, dap, sp) *= pc_delay_phasor;
+                        }
+                    }
                 }
 
             }
