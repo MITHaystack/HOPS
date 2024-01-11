@@ -208,15 +208,17 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
                 #pragma message("TODO FIXME -- need to implement the delay 'phase-shift' as applied in norm_fx.c, line 396")
                 double phase_shift = 0.0; // = pcal_model[1]/(4*)
 
+                #pragma message("TODO FIXME -- make sure proper treatment of LSB/USB sidebands is done here.")
                 std::complex<double> pc_phasor = std::exp( -1.0*fImagUnit*(pcphase) );
+                //conjugate pc phasor when applied to reference station
+                if(fStationIndex == 0){pc_phasor = std::conj(pc_phasor);}
+                
                 pc_mag_segs.push_back(pcmag);
                 pc_phase_segs.push_back(pcphase);
                 pc_delay_segs.push_back(pcdelay);
 
                 for(std::size_t dap = seg_start_ap; dap < seg_end_ap; dap++)
                 {
-                    //conjugate pc phasor when applied to reference station
-                    if(fStationIndex == 0){pc_phasor = std::conj(pc_phasor);}
                     //apply phase offset correction
                     in->SubView(vis_pp, ch, dap) *= pc_phasor;
 
@@ -225,7 +227,6 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
                     {
                         double deltaf = ( (*vis_freq_ax)(sp) )*1e6; //Hz
                         std::complex<double> pc_delay_phasor = std::exp( -2.0*M_PI*fImagUnit*(pcdelay*deltaf + phase_shift) );
-                        
                         //conjugate pc phasor when applied to reference station
                         if(fStationIndex == 0){pc_delay_phasor = std::conj(pc_delay_phasor);}
                         (*in)(vis_pp, ch, dap, sp) *= pc_delay_phasor;
