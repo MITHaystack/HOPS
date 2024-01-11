@@ -209,8 +209,21 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
 
                 for(std::size_t dap = seg_start_ap; dap < seg_end_ap; dap++)
                 {
-                        //std::complex<double> pc_phasor = std::exp( -2.0*M_PI*fImagUnit*(pcal_model[1]*deltaf) + -1.0*(pcal_model[0] + phase_shift) );
-                        //in->SubView(vis_pp, ch, dap)  *= pc_phasor;
+                    if(fStationIndex == 0)
+                    {
+                        in->SubView(vis_pp, ch, dap) *= std::conj(pc_phasor);
+                    }
+                    if(fStationIndex == 1)
+                    {
+                        in->SubView(vis_pp, ch, dap) *= pc_phasor;
+                    }
+
+                    // for(std::size_t sp=0; sp < vis_freq_ax->GetSize(); sp++)
+                    // {
+                    //     double deltaf = ( (*vis_freq_ax)(sp) - bandwidth/2.0 )*1e6; //Hz
+                    //     std::complex<double> pc_delay_phasor = std::exp( 2.0*M_PI*fImagUnit*(pcal_model[1]*deltaf) );
+                    //     (*in)(vis_pp, ch, dap,sp) *= pc_delay_phasor;
+                    // }
                 }
 
             }
@@ -367,7 +380,7 @@ MHO_MultitonePhaseCorrection::FitPCData(std::size_t ntones, double chan_center_f
     MHO_MathUtilities::parabola(y, -1.0, 1.0, &ymax, &ampmax, q);
     double delay = (max_idx+ymax)*delay_delta;
 
-    delay *= 1e-6; //TODO FIXME - document proper units!
+    delay *= 1e-6; //TODO FIXME - document proper units! (this is seconds)
 
     // find bounds of allowable resolved delay
     double lo = station_delay + sampler_delay - pc_amb / 2.0;
@@ -385,7 +398,7 @@ MHO_MultitonePhaseCorrection::FitPCData(std::size_t ntones, double chan_center_f
     {
         std::complex<double> phasor = pc_data_copy(i);
         double tone_freq = (*tone_freq_ax)(i);
-        double deltaf = (chan_center_freq - tone_freq)*1e6;
+        double deltaf = (chan_center_freq - tone_freq)*1e6; //Hz
         // std::cout<<"deltaf = "<<deltaf<<std::endl;
         double theta = 2.0 * M_PI * delay * deltaf;
         // std::cout<<"theta = "<<theta*(180.0/M_PI)<<std::endl;
