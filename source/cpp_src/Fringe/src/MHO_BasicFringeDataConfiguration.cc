@@ -254,10 +254,7 @@ MHO_BasicFringeDataConfiguration::init_and_exec_operators(MHO_OperatorBuilderMan
         return;
     }
 
-
-
     std::string cat(category);
-    std::cout<<"INIT EXEC OPS: "<<cat<<std::endl;
     build_manager->BuildOperatorCategory(cat);
     auto ops = opToolbox->GetOperatorsByCategory(cat);
     for(auto opIt= ops.begin(); opIt != ops.end(); opIt++)
