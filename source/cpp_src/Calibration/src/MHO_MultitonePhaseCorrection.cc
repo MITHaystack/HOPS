@@ -217,11 +217,9 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
                 double pcphase = pcal_model[1];
                 double pcdelay = pcal_model[2];
 
-                #pragma message("TODO FIXME -- need to implement the delay 'phase-shift' as applied in norm_fx.c, line 396")
+                #pragma message("TODO FIXME -- 'phase-shift' needs testing for both USB/LSB data as applied in norm_fx.c, line 396")
                 double speriod = 1.0/(2.0*bandwidth*1e6);
                 double phase_shift = -1.0 * pcdelay / (4.0*speriod) ;
-                std::cout<<"delay: "<<pcdelay<<" channel: "<<ch<<" bw = "<<bandwidth<<" phase shift = "<<phase_shift*(2.0*M_PI)*(180./M_PI)<<std::endl;
-
 
                 #pragma message("TODO FIXME -- make sure proper treatment of LSB/USB sidebands is done here.")
                 std::complex<double> pc_phasor = std::exp( -1.0*fImagUnit*(pcphase) );
