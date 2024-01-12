@@ -218,7 +218,9 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
                 double pcdelay = pcal_model[2];
 
                 #pragma message("TODO FIXME -- need to implement the delay 'phase-shift' as applied in norm_fx.c, line 396")
-                double phase_shift = 0.0;
+                double phase_shift = -1.0 * pcdelay / (4*(1.0/(2.0*bandwidth*1e6)) );
+                std::cout<<"delay: "<<pcdelay<<" channel: "<<ch<<" bw = "<<bandwidth<<" phase shift = "<<phase_shift*(2.0*M_PI)*(180./M_PI)<<std::endl;
+
 
                 #pragma message("TODO FIXME -- make sure proper treatment of LSB/USB sidebands is done here.")
                 std::complex<double> pc_phasor = std::exp( -1.0*fImagUnit*(pcphase) );
@@ -238,7 +240,7 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
                     for(std::size_t sp=0; sp < vis_freq_ax->GetSize(); sp++)
                     {
                         double deltaf = ( (*vis_freq_ax)(sp) )*1e6; //Hz
-                        std::complex<double> pc_delay_phasor = std::exp( -2.0*M_PI*fImagUnit*(pcdelay*deltaf + phase_shift) );
+                        std::complex<double> pc_delay_phasor = std::exp( -2.0*M_PI*fImagUnit*(pcdelay*deltaf + phase_shift ) );
                         //conjugate pc phasor when applied to reference station
                         if(fStationIndex == 0){pc_delay_phasor = std::conj(pc_delay_phasor);}
                         (*in)(vis_pp, ch, dap, sp) *= pc_delay_phasor;
