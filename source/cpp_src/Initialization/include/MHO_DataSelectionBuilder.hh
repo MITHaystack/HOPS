@@ -12,6 +12,8 @@
 
 #include "MHO_OperatorBuilder.hh"
 
+#include "MHO_Tokenizer.hh"
+
 namespace hops
 {
 
@@ -31,6 +33,8 @@ class MHO_DataSelectionBuilder:
         virtual bool Build() override;
 
     private:
+
+        MHO_Tokenizer fTokenizer;
 
 };
 
