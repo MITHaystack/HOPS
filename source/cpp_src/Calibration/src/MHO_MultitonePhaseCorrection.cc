@@ -274,9 +274,6 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
             vis_chan_ax->InsertIndexLabelKeyValue(ch, pc_delay_key, pc_delay_segs);
         }
     }
-
-    //std::cout<<"channel axis meta data = "<< vis_chan_ax->GetMetaDataAsJSON().dump(2) <<std::endl;
-
 }
 
 

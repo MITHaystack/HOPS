@@ -60,6 +60,10 @@ void MHO_BasicFringeFitter::Configure()
     fParameterStore.Set("/config/polprod", polprod);
     fParameterStore.Set("/config/baseline", baseline);
 
+    //parse the polprod string in order to determine which pol-products are needed (if more than one)
+    std::vector< std::string > pp_vec = DetermineRequiredPolProducts(polprod);
+    fParameterStore.Set("/config/polprod_set", pp_vec);
+
     ////////////////////////////////////////////////////////////////////////////
     //INITIALIZE SCAN DIRECTORY
     ////////////////////////////////////////////////////////////////////////////
@@ -397,5 +401,49 @@ MHO_BasicFringeFitter::AddDefaultOperators(mho_json& statements)
     statements.push_back(rem_multitone_pcal_hack);
 }
 
+std::vector< std::string > 
+MHO_BasicFringeFitter::DetermineRequiredPolProducts(std::string polprod)
+{
+    std::set<std::string> pp_set;
+    std::vector<std::string> pp_vec;
+    //first we parse the polprod string to see what individual pol-products we need 
+    if( polprod.find("+") != std::string::npos)
+    {
+        //we have a pol-product summation like (RR+LL) or XX+YY, or RX+RY
+        //so split on all '+' symbols (currently we only support '+' not '-')
+        fTokenizer.SetDelimiter("+");
+        fTokenizer.SetUseMulticharacterDelimiterFalse();
+        fTokenizer.SetRemoveLeadingTrailingWhitespaceTrue();
+        fTokenizer.SetIncludeEmptyTokensFalse();
+        fTokenizer.GetTokens(&pp_vec);
+    }
+    else if(polprod == "I") //special pseudo-Stokes-I mode (linear pol only)
+    {
+        pp_vec.push_back("XX");
+        pp_vec.push_back("YY");
+        pp_vec.push_back("XY");
+        pp_vec.push_back("YX");
+    }
+    else 
+    {
+        pp_vec.push_back(polprod); //polprod is just a single value
+    }
+
+    //push the values into a set, so we don't have any duplicates
+    pp_set.insert( pp_vec.begin(), pp_vec.end() );
+
+    //push the set values into the vector for return
+    pp_vec.clear();
+    pp_vec.insert(pp_vec.begin(), pp_set.begin(), pp_set.end() );
+
+
+    std::cout<<"PP VEC:"<<std::endl;
+    for(std::size_t i=0; i<pp_vec.size(); i++)
+    {
+        std::cout<<"ppvec @ "<<i<<" = "<<pp_vec[i]<<std::endl;
+    }
+
+    return pp_vec;
+}
 
 }//end namespace

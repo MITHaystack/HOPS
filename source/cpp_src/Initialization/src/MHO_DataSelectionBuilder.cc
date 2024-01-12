@@ -11,12 +11,27 @@ MHO_DataSelectionBuilder::Build()
     {
         msg_debug("initialization", "building data selection operators."<< eom);
 
-        bool do_select_polprods = false;
+        // bool do_select_polprods = false;
+        // std::string polprod_set_key = "/config/polprod";
+        // std::string polprod = "";
+        // if(fParameterStore->IsPresent(polprod_set_key))
+        // {
+        //     do_select_polprods = fParameterStore->Get(polprod_set_key, polprod);
+        // }
+
         std::string polprod_key = "/config/polprod";
         std::string polprod = "";
         if(fParameterStore->IsPresent(polprod_key))
         {
-            do_select_polprods = fParameterStore->Get(polprod_key, polprod);
+            fParameterStore->Get(polprod_key, polprod);
+        }
+
+        bool do_select_polprods = false;
+        std::string polprod_set_key = "/config/polprod_set";
+        std::vector<std::string> pp_vec;
+        if(fParameterStore->IsPresent(polprod_set_key))
+        {
+            do_select_polprods = fParameterStore->Get(polprod_set_key, pp_vec);
         }
 
         bool do_select_chans = false;
@@ -69,36 +84,53 @@ MHO_DataSelectionBuilder::Build()
         auto spack = new MHO_SelectRepack<visibility_type>();
         auto wtspack = new MHO_SelectRepack<weight_type>();
 
+        // //first find indexes which corresponds to the specified pol product
+        // if(do_select_polprods)
+        // {
+        //     std::set<std::string> pp_set;
+        //     std::vector<std::string> pp_vec;
+        //     std::vector<std::size_t> selected_pp;
+        //     //first we parse the polprod string to see what individual pol-products we need 
+        //     if( polprod.find("+") != std::string::npos)
+        //     {
+        //         //we have a pol-product summation like (RR+LL) or XX+YY, or RX+RY
+        //         //so split on all '+'
+        //         fTokenizer.SetDelimiter("+");
+        //         fTokenizer.SetUseMulticharacterDelimiterFalse();
+        //         fTokenizer.SetRemoveLeadingTrailingWhitespaceTrue();
+        //         fTokenizer.SetIncludeEmptyTokensFalse();
+        //         fTokenizer.GetTokens(&pp_vec);
+        //     }
+        //     else if(polprod == "I") //special pseudo-Stokes-I mode (linear pol only)
+        //     {
+        //         pp_vec.push_back("XX");
+        //         pp_vec.push_back("YY");
+        //         pp_vec.push_back("XY");
+        //         pp_vec.push_back("YX");
+        //     }
+        //     else 
+        //     {
+        //         pp_vec.push_back(polprod); //polprod is just a single value
+        //     }
+        //     pp_set.insert( pp_vec.begin(), pp_vec.end() );
+        //     msg_debug("initialization", "data selection, selecting pol-product = "<< polprod << eom);
+        //     selected_pp = (&(std::get<POLPROD_AXIS>(*vis_data)))->SelectMatchingIndexes(pp_set);
+        //     if(selected_pp.size() == 0)
+        //     {
+        //         msg_warn("initialization", "pol-product selection failed to match any data." << eom);
+        //     }
+        //     spack->SelectAxisItems(POLPROD_AXIS,selected_pp);
+        //     wtspack->SelectAxisItems(POLPROD_AXIS,selected_pp);
+        // }
+
+
         //first find indexes which corresponds to the specified pol product
         if(do_select_polprods)
         {
             std::set<std::string> pp_set;
-            std::vector<std::string> pp_vec;
-            std::vector<std::size_t> selected_pp;
-            //first we parse the polprod string to see what individual pol-products we need 
-            if( polprod.find("+") != std::string::npos)
-            {
-                //we have a pol-product summation like (RR+LL) or XX+YY, or RX+RY
-                //so split on all '+'
-                fTokenizer.SetDelimiter("+");
-                fTokenizer.SetUseMulticharacterDelimiterFalse();
-                fTokenizer.SetRemoveLeadingTrailingWhitespaceTrue();
-                fTokenizer.SetIncludeEmptyTokensFalse();
-                fTokenizer.GetTokens(&pp_vec);
-            }
-            else if(polprod == "I") //special pseudo-Stokes-I mode (linear pol only)
-            {
-                pp_vec.push_back("XX");
-                pp_vec.push_back("YY");
-                pp_vec.push_back("XY");
-                pp_vec.push_back("YX");
-            }
-            else 
-            {
-                pp_vec.push_back(polprod); //polprod is just a single value
-            }
-            pp_set.insert( pp_vec.begin(), pp_vec.end() );
-            msg_debug("initialization", "data selection, selecting pol-product = "<< polprod << eom);
+            std::vector< std::size_t > selected_pp;
+            pp_set.insert(pp_vec.begin(), pp_vec.end() );
+            msg_debug("initialization", "data selection, selecting for pol-product: "<< polprod << eom);
             selected_pp = (&(std::get<POLPROD_AXIS>(*vis_data)))->SelectMatchingIndexes(pp_set);
             if(selected_pp.size() == 0)
             {
