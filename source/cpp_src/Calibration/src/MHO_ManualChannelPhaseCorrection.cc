@@ -84,10 +84,6 @@ MHO_ManualChannelPhaseCorrection::ExecuteInPlace(visibility_type* in)
             }
         }
     }
-
-    std::cout<<"channel axis meta data = "<< chan_ax->GetMetaDataAsJSON().dump(2) <<std::endl;
-
-
     return true;
 }
 

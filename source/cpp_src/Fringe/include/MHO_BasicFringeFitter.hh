@@ -2,6 +2,7 @@
 #define MHO_BasicFringeFitter_HH__
 
 #include "MHO_FringeFitter.hh"
+#include "MHO_Tokenizer.hh"
 
 /*
 *File: MHO_BasicFringeFitter.hh
@@ -35,6 +36,8 @@ class MHO_BasicFringeFitter: public MHO_FringeFitter
         mho_json GetPlotData(){return fPlotData;}
 
     protected:
+
+        std::vector< std::string > DetermineRequiredPolProducts(std::string polprod);
         
         void AddDefaultOperatorFormatDef(mho_json& format);
         void AddDefaultOperators(mho_json& statements);
@@ -48,6 +51,9 @@ class MHO_BasicFringeFitter: public MHO_FringeFitter
         //hacks
         mho_json fDataSelectFormat;
         mho_json fPlotData;
+
+        //utility 
+        MHO_Tokenizer fTokenizer;
 };
 
 }//end namespace

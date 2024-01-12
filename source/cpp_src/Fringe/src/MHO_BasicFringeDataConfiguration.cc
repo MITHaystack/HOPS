@@ -67,6 +67,8 @@ MHO_BasicFringeDataConfiguration::parse_command_line(int argc, char** argv, MHO_
                 break;
             case ('m'):
                 message_level = std::atoi(optarg);
+                if(message_level < -2){message_level = -2;}
+                if(message_level > 5){message_level = 5;}
                 break;
             case ('s'):
                 ap_per_seg = std::atoi(optarg);
