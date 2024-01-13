@@ -68,7 +68,7 @@ MHO_BasicFringeDataConfiguration::parse_command_line(int argc, char** argv, MHO_
             case ('m'):
                 message_level = std::atoi(optarg);
                 if(message_level < -2){message_level = -2;}
-                if(message_level > 5){message_level = 5;}
+                if(message_level > 4){message_level = 4;}
                 break;
             case ('s'):
                 ap_per_seg = std::atoi(optarg);
@@ -230,7 +230,6 @@ MHO_BasicFringeDataConfiguration::configure_station_data(MHO_ScanDataStore* scan
     pcal_uuid = containerStore->GetObjectUUID("pcal");
     if( !(pcal_uuid.is_empty()) )
     {
-        std::cout<<"Loading ref pcal object with uuid: "<< pcal_uuid.as_string()<<std::endl;
         containerStore->RenameObject("pcal", "ref_pcal");
     }
 
@@ -239,7 +238,6 @@ MHO_BasicFringeDataConfiguration::configure_station_data(MHO_ScanDataStore* scan
     pcal_uuid = containerStore->GetObjectUUID("pcal");
     if( !(pcal_uuid.is_empty()) )
     {
-        std::cout<<"Loading rem pcal object with uuid: "<< pcal_uuid.as_string()<<std::endl;
         containerStore->RenameObject("pcal", "rem_pcal");
     }
     //load pcal data if it is present
