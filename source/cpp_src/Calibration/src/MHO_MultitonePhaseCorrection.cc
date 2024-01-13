@@ -357,6 +357,7 @@ MHO_MultitonePhaseCorrection::FitPCData(std::size_t ntones, double chan_center_f
     //copy the averaged tone data for later use when calculating mean phase
     pcal_type pc_data_copy;
     pc_data_copy.Resize(ntones);
+    pc_data_copy.ZeroArray();
     auto tone_freq_ax = &(std::get<0>(pc_data_copy));
     for(std::size_t i=0; i<ntones; i++)
     {
@@ -423,10 +424,11 @@ MHO_MultitonePhaseCorrection::FitPCData(std::size_t ntones, double chan_center_f
         navg += 1.0;
     }
 
-    mean_phasor = mean_phasor / navg;
+    #pragma message("TODO FIXME -- verify all sign/conjugation operations work properly for USB/LSB data.")
+    mean_phasor = std::conj( mean_phasor ) / navg;
 
     pcal_model[0] = std::abs(mean_phasor); //magnitude
-    pcal_model[1] = -1.0*std::arg(mean_phasor); //phase
+    pcal_model[1] = std::arg(mean_phasor); //phase
     pcal_model[2] = delay; //delay
 
 }
