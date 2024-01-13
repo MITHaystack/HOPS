@@ -96,9 +96,6 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
     auto vis_ap_ax = &(std::get<TIME_AXIS>(*in) );
     auto vis_freq_ax = &(std::get<FREQ_AXIS>(*in) );
     
-    std::cout<<"Vis freq ax size = "<<vis_freq_ax->GetSize()<<std::endl;
-    std::cout<<"DIM freq size = "<<in->GetDimension(FREQ_AXIS)<<std::endl;
-    
     auto pcal_pol_ax = &(std::get<MTPCAL_POL_AXIS>(*fPCData) );
     auto tone_freq_ax = &(std::get<MTPCAL_FREQ_AXIS>(*fPCData) );
 
@@ -111,7 +108,6 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
     //grab the sampler delay vector
     std::vector<double> sampler_delays;
     pcal_pol_ax->RetrieveIndexLabelKeyValue(pc_pol, "sampler_delays", sampler_delays);
-    std::cout<<"N sampler delays = "<<sampler_delays.size()<<std::endl;
 
     //now loop over the channels
     for(std::size_t ch=0; ch < vis_chan_ax->GetSize(); ch++)

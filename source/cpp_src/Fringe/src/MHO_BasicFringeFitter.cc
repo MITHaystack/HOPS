@@ -111,8 +111,8 @@ void MHO_BasicFringeFitter::Configure()
     //the build of these operators at the proper step (e.g. coarse selection, multitone pcal etc.)
     AddDefaultOperators( (*(fControlStatements.begin()))["statements"] );
 
-    std::cout<<fControlStatements.dump(2)<<std::endl;
-    std::cout<<"*****************************************************************************"<<std::endl;
+    // std::cout<<fControlStatements.dump(2)<<std::endl;
+    // std::cout<<"*****************************************************************************"<<std::endl;
 
     //set some intiail/default parameters (polprod, ref_freq)
     MHO_InitialFringeInfo::set_default_parameters_minimal(&fParameterStore);
@@ -228,8 +228,8 @@ void MHO_BasicFringeFitter::Initialize()
         fOperatorBuildManager->BuildOperatorCategory("default");
         
         
-        std::cout<<"Dumping the parameter store: = "<<std::endl;
-        fParameterStore.Dump();
+        // std::cout<<"Dumping the parameter store: = "<<std::endl;
+        // fParameterStore.Dump();
         
         MHO_BasicFringeDataConfiguration::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "labeling");
         MHO_BasicFringeDataConfiguration::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "selection");
@@ -268,7 +268,7 @@ void MHO_BasicFringeFitter::Run()
 
         fParameterStore.Set("/status/is_finished", true);
 
-        fParameterStore.Dump();
+        // fParameterStore.Dump();
     }
 }
 
@@ -436,12 +436,12 @@ MHO_BasicFringeFitter::DetermineRequiredPolProducts(std::string polprod)
     pp_vec.clear();
     pp_vec.insert(pp_vec.begin(), pp_set.begin(), pp_set.end() );
 
-
-    std::cout<<"PP VEC:"<<std::endl;
-    for(std::size_t i=0; i<pp_vec.size(); i++)
-    {
-        std::cout<<"ppvec @ "<<i<<" = "<<pp_vec[i]<<std::endl;
-    }
+    // 
+    // std::cout<<"PP VEC:"<<std::endl;
+    // for(std::size_t i=0; i<pp_vec.size(); i++)
+    // {
+    //     std::cout<<"ppvec @ "<<i<<" = "<<pp_vec[i]<<std::endl;
+    // }
 
     return pp_vec;
 }

@@ -380,7 +380,6 @@ def make_channel_info_table(plot_dict):
     for key, cell in table._cells.items():
         if cth_text[ key[0] ] == "PC amp":
             cell_text = (table.get_celld()[key].get_text() ).get_text()
-            print(cell_text)
             if cell_text != "PC amp":
                 #convert text to a float, then round to int and modify color
                 entry_color = "black"
@@ -569,7 +568,6 @@ def make_rms_table(plot_dict):
     ct2_row_label[3] = 'amp/frq (%)'
     ct2_data = np.zeros((ct2_rows,ct2_cols), dtype=object)
     if 'extra' in plot_dict:
-        print(plot_dict['extra'])
         # ct2_data[0][1] = str(np.round(float(plot_dict["extra"]["theory_timerms_phase"]),1) )
         # ct2_data[1][1] = str(np.round(float(plot_dict["extra"]["theory_timerms_amp"]),1) )
         # ct2_data[2][1] = str(np.round(float(plot_dict["extra"]["theory_freqrms_phase"]),1) )
