@@ -279,8 +279,7 @@ MHO_MultitonePhaseCorrection::DetermineStationIndex(const visibility_type* in)
     //determine if the p-cal corrections are being applied to the remote or reference station
     std::string val;
 
-    std::cout<<"dumping meta data"<<std::endl;
-    in->DumpMap();
+    std::cout<<"dumping meta data"<<in->GetMetaDataAsJSON().dump(2) <<std::endl;
 
     if(fMk4ID != "") //selection by mk4 id
     {
@@ -298,7 +297,7 @@ MHO_MultitonePhaseCorrection::DetermineStationIndex(const visibility_type* in)
         if(fStationCode == val){return 0;}
     }
 
-    msg_warn("calibration", "manual pcal, remote/reference station do not match selection."<< eom );
+    msg_warn("calibration", "multitone pcal, remote/reference station do not match selection."<< eom );
     return 2;
 }
 
