@@ -28,14 +28,14 @@ class MHO_Taggable:
 {
     public:
 
-        MHO_Taggable()
+        MHO_Taggable():
+            MHO_JSONWrapper()
         {
-            this->SetObject(&fTags); //MHO_JSONWrapper
+            fObject["test"] = "test";
         };
-        MHO_Taggable(const MHO_Taggable& copy)
+        MHO_Taggable(const MHO_Taggable& copy):
+            MHO_JSONWrapper(copy)
         {
-            fTags = copy.fTags;
-            this->SetObject(&fTags);
         };
         
         virtual ~MHO_Taggable(){};
@@ -44,30 +44,30 @@ class MHO_Taggable:
         {
             if(this != &rhs)
             {
-                fTags = rhs.fTags;
+                fObject = rhs.fObject;
             }
             return *this;
         }
 
         virtual void CopyTags(const MHO_Taggable& rhs)
         {
-            if(this != &rhs)
+            if(this != &rhs && !(rhs.fObject.empty()) )
             {
-                fTags = rhs.fTags;
+                fObject = rhs.fObject;
             }
         }
 
         void ClearTags()
         {
-            fTags.clear();
+            fObject.clear();
         }
 
         void CopyFrom(const MHO_Taggable& copy_from_obj)
         {
             if(this != &copy_from_obj)
             {
-                fTags.clear();
-                fTags = copy_from_obj.fTags;
+                fObject.clear();
+                fObject = copy_from_obj.fObject;
             }
         }
 
@@ -75,20 +75,20 @@ class MHO_Taggable:
         {
             if(this != &copy_to_obj)
             {
-                copy_to_obj.fTags.clear();
-                copy_to_obj.fTags = fTags;
+                copy_to_obj.fObject.clear();
+                copy_to_obj.fObject = fObject;
             }
         }
 
-        mho_json GetMetaDataAsJSON() const {return fTags;}
+        mho_json GetMetaDataAsJSON() const {return fObject;}
 
-        //completely replaces fTags data (use with caution)
-        void SetMetaDataAsJSON(mho_json obj){fTags = obj;}
+        //completely replaces fObject data (use with caution)
+        void SetMetaDataAsJSON(mho_json obj){fObject = obj;}
     
     protected:
         
         //object in which the data is stashed
-        mho_json fTags;
+        mho_json fObject;
 
     public: //MHO_Serializable interface
 
@@ -99,10 +99,10 @@ class MHO_Taggable:
             uint64_t total_size = 0;
             total_size += sizeof(MHO_ClassVersion); //version number
 
-            //compute the serialized size of fTags in CBOR encoding.
+            //compute the serialized size of fObject in CBOR encoding.
             //this is a somewhat inconvenient waste of time to encode the data 
             //just so we can find out the size (should we cache this serialized data?)
-            std::vector<std::uint8_t> data = mho_json::to_cbor(fTags);
+            std::vector<std::uint8_t> data = mho_json::to_cbor(fObject);
             uint64_t size = data.size();
             
             total_size += sizeof(uint64_t);//for the encoded data-size parameter
@@ -149,12 +149,12 @@ class MHO_Taggable:
 
         template<typename XStream> void StreamInData_V0(XStream& s)
         {
-            s >> fTags;
+            s >> fObject;
         };
 
         template<typename XStream> void StreamOutData_V0(XStream& s) const
         {
-            s << fTags;
+            s << fObject;
         };
 
         virtual MHO_UUID DetermineTypeUUID() const override

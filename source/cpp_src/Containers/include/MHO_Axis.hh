@@ -39,12 +39,12 @@ class MHO_Axis:
         {
             //create and set the pointer to the index label object
             //std::vector<mho_json> tmp;
-            this->fTags["index_labels"] = mho_json();// mho_json::array(); //tmp;
-            this->SetIndexLabelObject( &(this->fTags["index_labels"]) );
+            this->fObject["index_labels"] = mho_json();// mho_json::array(); //tmp;
+            this->SetIndexLabelObject( &(this->fObject["index_labels"]) );
 
             //create and set the pointer to the interval label object
-            this->fTags["interval_labels"] = mho_json();
-            this->SetIntervalLabelObject( &(this->fTags["interval_labels"]) );
+            this->fObject["interval_labels"] = mho_json();
+            this->SetIntervalLabelObject( &(this->fObject["interval_labels"]) );
         };
 
 
@@ -55,12 +55,12 @@ class MHO_Axis:
         {
             //create and set the pointer to the index label object
             //std::vector<mho_json> tmp;
-            this->fTags["index_labels"] = mho_json();// mho_json::array(); //tmp;
-            this->SetIndexLabelObject( &(this->fTags["index_labels"]) );
+            this->fObject["index_labels"] = mho_json();// mho_json::array(); //tmp;
+            this->SetIndexLabelObject( &(this->fObject["index_labels"]) );
 
             //create and set the pointer to the interval label object
-            this->fTags["interval_labels"] = mho_json();
-            this->SetIntervalLabelObject( &(this->fTags["interval_labels"]) );
+            this->fObject["interval_labels"] = mho_json();
+            this->SetIntervalLabelObject( &(this->fObject["interval_labels"]) );
         };
 
         //copy constructor
@@ -69,8 +69,8 @@ class MHO_Axis:
             MHO_IndexLabelInterface(),
             MHO_IntervalLabelInterface()
         {
-            this->SetIndexLabelObject( &(this->fTags["index_labels"]) );
-            this->SetIntervalLabelObject( &(this->fTags["interval_labels"]) );
+            this->SetIndexLabelObject( &(this->fObject["index_labels"]) );
+            this->SetIntervalLabelObject( &(this->fObject["interval_labels"]) );
         };
 
 
@@ -245,14 +245,14 @@ class MHO_Axis:
             {
                 MHO_VectorContainer<XValueType>::Copy(rhs); //copy the 1-d array
                 //make sure we point to the correct index_labels object
-                if(this->fTags.contains("index_labels"))
+                if(this->fObject.contains("index_labels"))
                 {
-                    this->SetIndexLabelObject( &(this->fTags["index_labels"] ) );
+                    this->SetIndexLabelObject( &(this->fObject["index_labels"] ) );
                 }
 
-                if(this->fTags.contains("interval_labels"))
+                if(this->fObject.contains("interval_labels"))
                 {
-                    this->SetIntervalLabelObject( &(this->fTags["interval_labels"] ) );
+                    this->SetIntervalLabelObject( &(this->fObject["interval_labels"] ) );
                 }
             }
         }
