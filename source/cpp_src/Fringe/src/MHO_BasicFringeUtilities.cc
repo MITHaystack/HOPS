@@ -233,20 +233,6 @@ MHO_BasicFringeUtilities::calculate_residual_phase(MHO_ContainerStore* conStore,
         bool key_present = chan_ax.RetrieveIndexLabelKeyValue(ch, sidebandlabelkey, net_sideband);
         if(!key_present){msg_error("fringe", "missing net_sideband label for channel "<< ch << "." << eom);}
 
-        // MHO_IntervalLabel ilabel(ch,ch);
-        // std::string net_sideband = "?";
-        // std::string sidebandlabelkey = "net_sideband";
-        // auto other_labels = chan_ax.GetIntervalsWhichIntersect(ilabel);
-        // for(auto olit = other_labels.begin(); olit != other_labels.end(); olit++)
-        // {
-        //     if( olit->HasKey(sidebandlabelkey) )
-        //     {
-        //         olit->Retrieve(sidebandlabelkey, net_sideband);
-        //         break;
-        //     }
-        // }
-
-
         frot.SetSideband(0); //DSB
         if(net_sideband == "U")
         {

@@ -71,13 +71,9 @@ class MHO_JSONWrapper
         template< typename XValueType>
         bool Retrieve(const std::string& key, XValueType& value) const
         {
-            std::cout<<"looking for: "<<key<<std::endl;
-            std::cout<<"object size = "<<fObject.size()<<std::endl;
-            
             auto iter = fObject.find(key);
-            if(iter == fObject.end()){std::cout<<"failed"<<std::endl; return false;}
+            if(iter == fObject.end()){return false;}
             value = iter.value().get<XValueType>();
-            std::cout<<"got value = "<<value<<std::endl;
             return true;
         }
 
