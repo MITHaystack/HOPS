@@ -29,7 +29,7 @@ class MHO_JSONWrapper
 
         void SetObject(mho_json obj){fObject = obj;}
 
-    private:
+    protected:
 
         mho_json fObject;
 
@@ -71,24 +71,14 @@ class MHO_JSONWrapper
         template< typename XValueType>
         bool Retrieve(const std::string& key, XValueType& value) const
         {
+            std::cout<<"looking for: "<<key<<std::endl;
+            std::cout<<"object size = "<<fObject.size()<<std::endl;
+            
             auto iter = fObject.find(key);
-            if(iter == fObject.end()){return false;}
-            else
-            {
-                mho_json test;
-                test["test"] = value;
-                //TODO FIXME - this is a major KLUDGE
-                //but needed to avoid exceptions when key is present, but value type is different
-                if(test["test"].type() == fObject[key].type())
-                {
-                    value = fObject[key].get<XValueType>();
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
+            if(iter == fObject.end()){std::cout<<"failed"<<std::endl; return false;}
+            value = iter.value().get<XValueType>();
+            std::cout<<"got value = "<<value<<std::endl;
+            return true;
         }
 
         std::vector<std::string> DumpKeys() const

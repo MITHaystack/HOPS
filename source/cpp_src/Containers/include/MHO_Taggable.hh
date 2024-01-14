@@ -84,11 +84,6 @@ class MHO_Taggable:
 
         //completely replaces fObject data (use with caution)
         void SetMetaDataAsJSON(mho_json obj){fObject = obj;}
-    
-    protected:
-        
-        //object in which the data is stashed
-        mho_json fObject;
 
     public: //MHO_Serializable interface
 
