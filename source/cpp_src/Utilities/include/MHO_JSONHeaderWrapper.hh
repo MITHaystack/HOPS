@@ -21,17 +21,17 @@ class MHO_JSONWrapper
 {
     protected:
 
-        MHO_JSONWrapper():fObject(nullptr){};
+        MHO_JSONWrapper(){};
         MHO_JSONWrapper(const MHO_JSONWrapper& copy)
         {
             fObject = copy.fObject;
         };
 
-        void SetObject(mho_json* obj){fObject = obj;}
+        void SetObject(mho_json obj){fObject = obj;}
 
     private:
 
-        mho_json* fObject;
+        mho_json fObject;
 
     public:
 
@@ -39,9 +39,8 @@ class MHO_JSONWrapper
 
         bool HasKey(const std::string& key) const
         {
-            if(fObject == nullptr){return false;}
-            auto it = fObject->find(key);
-            if(it != fObject->end()){return true;}
+            auto it = fObject.find(key);
+            if(it != fObject.end()){return true;}
             return false;
         }
 
@@ -59,31 +58,30 @@ class MHO_JSONWrapper
 
         void Clear()
         {
-            if(fObject != nullptr){fObject->clear();};
+            fObject.clear();
         }
 
         template< typename XValueType>
         void Insert(const std::string& key, const XValueType& value)
         {
             //allow replacement of values
-            if(fObject != nullptr){(*fObject)[key] = value;}
+            fObject[key] = value;
         }
 
         template< typename XValueType>
         bool Retrieve(const std::string& key, XValueType& value) const
         {
-            if(fObject == nullptr){return false;}
-            auto iter = fObject->find(key);
-            if(iter == fObject->end()){return false;}
+            auto iter = fObject.find(key);
+            if(iter == fObject.end()){return false;}
             else
             {
                 mho_json test;
                 test["test"] = value;
                 //TODO FIXME - this is a major KLUDGE
                 //but needed to avoid exceptions when key is present, but value type is different
-                if(test["test"].type() == (*fObject)[key].type())
+                if(test["test"].type() == fObject[key].type())
                 {
-                    value = (*fObject)[key].get<XValueType>();
+                    value = fObject[key].get<XValueType>();
                     return true;
                 }
                 else
@@ -96,12 +94,9 @@ class MHO_JSONWrapper
         std::vector<std::string> DumpKeys() const
         {
             std::vector< std::string > keys;
-            if(fObject != nullptr)
+            for(auto iter = fObject.begin(); iter != fObject.end(); iter++)
             {
-                for(auto iter = fObject->begin(); iter != fObject->end(); iter++)
-                {
-                    keys.push_back(iter.key());
-                }
+                keys.push_back(iter.key());
             }
             return keys;
         }
@@ -109,20 +104,16 @@ class MHO_JSONWrapper
         //TODO eliminate me
         void DumpMap() const
         {
-            if(fObject != nullptr)
+            for(auto iter = fObject.begin(); iter != fObject.end(); iter++)
             {
-                for(auto iter = fObject->begin(); iter != fObject->end(); iter++)
-                {
-                    std::cout<<iter.key()<<" : "<<iter.value()<<std::endl;
-                }
+                std::cout<<iter.key()<<" : "<<iter.value()<<std::endl;
             }
         }
 
         bool ContainsKey(const std::string& key) const
         {
-            if(fObject == nullptr){return false;}
-            auto iter = fObject->find(key);
-            if(iter == fObject->end()){return false;}
+            auto iter = fObject.find(key);
+            if(iter == fObject.end()){return false;}
             else{return true;}
         }
 };
