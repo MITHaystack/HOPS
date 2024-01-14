@@ -87,6 +87,22 @@ int main(int /*argc*/, char** /*argv*/)
     tokenizer.SetString(&val);
     tokenizer.GetTokens(&tok7);
 
+
+    std::string polprod = "XX+YY";
+    std::vector< std::string > tok9;
+    //we have a pol-product summation like (RR+LL) or XX+YY, or RX+RY
+    //so split on all '+' symbols (currently we only support '+' not '-')
+    tokenizer.SetDelimiter("+");
+    tokenizer.SetUseMulticharacterDelimiterFalse();
+    tokenizer.SetRemoveLeadingTrailingWhitespaceTrue();
+    tokenizer.SetIncludeEmptyTokensFalse();
+    tokenizer.SetString(&polprod);
+    tokenizer.GetTokens(&tok9);
+    for(std::size_t i=0; i<tok9.size(); i++){std::cout<<tok9[i]<<" ";}
+    std::cout<<std::endl;
+
+
+
     for(std::size_t i=0; i<tok7.size(); i++){std::cout<<tok7[i]<<"|";}
     std::cout<<std::endl;
 

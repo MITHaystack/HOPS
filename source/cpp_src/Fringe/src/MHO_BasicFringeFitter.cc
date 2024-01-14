@@ -412,7 +412,8 @@ MHO_BasicFringeFitter::DetermineRequiredPolProducts(std::string polprod)
         //we have a pol-product summation like (RR+LL) or XX+YY, or RX+RY
         //so split on all '+' symbols (currently we only support '+' not '-')
         fTokenizer.SetDelimiter("+");
-        fTokenizer.SetUseMulticharacterDelimiterFalse();
+        fTokenizer.SetString(&polprod);
+        //fTokenizer.SetUseMulticharacterDelimiterFalse();
         fTokenizer.SetRemoveLeadingTrailingWhitespaceTrue();
         fTokenizer.SetIncludeEmptyTokensFalse();
         fTokenizer.GetTokens(&pp_vec);
@@ -436,12 +437,13 @@ MHO_BasicFringeFitter::DetermineRequiredPolProducts(std::string polprod)
     pp_vec.clear();
     pp_vec.insert(pp_vec.begin(), pp_set.begin(), pp_set.end() );
 
-    // 
-    // std::cout<<"PP VEC:"<<std::endl;
-    // for(std::size_t i=0; i<pp_vec.size(); i++)
-    // {
-    //     std::cout<<"ppvec @ "<<i<<" = "<<pp_vec[i]<<std::endl;
-    // }
+    std::stringstream ss;
+    for(std::size_t i=0; i<pp_vec.size(); i++)
+    {
+        ss << pp_vec[i];
+        if(i != pp_vec.size() - 1){ss <<", "; }
+    }
+    msg_debug("fringe", "required pol-products are: {" << ss.str() << "}." << eom );
 
     return pp_vec;
 }

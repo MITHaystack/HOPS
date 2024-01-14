@@ -31,8 +31,8 @@ class MHO_Taggable:
         MHO_Taggable():
             MHO_JSONWrapper()
         {
-            fObject["test"] = "test";
         };
+
         MHO_Taggable(const MHO_Taggable& copy):
             MHO_JSONWrapper(copy)
         {
