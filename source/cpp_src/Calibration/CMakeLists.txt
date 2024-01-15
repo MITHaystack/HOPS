@@ -9,6 +9,7 @@ set (CALIBRATION_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ManualPolPhaseCorrection.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ManualPolDelayCorrection.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MultitonePhaseCorrection.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_PolProductSummation.hh
 )
 
 #list source files #############################################################
@@ -20,6 +21,7 @@ set( CALIBRATION_SOURCEFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ManualPolPhaseCorrection.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ManualPolDelayCorrection.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_MultitonePhaseCorrection.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_PolProductSummation.cc
 )
 
 #declare header paths ##########################################################
