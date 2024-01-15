@@ -64,6 +64,10 @@ MHO_PolProductSummation::PreMultiply(visibility_type* in)
 std::complex<double> 
 MHO_PolProductSummation::GetPrefactor(std::string pp_label)
 {
+
+    //if we cannot find this label in the set, return zero
+    if( std::find( fPolProductSet.begin(), fPolProductSet.end(), pp_label) == fPolProductSet.end()  ){return 0.0;} 
+
     //this needs to compute the pol-product dependent scaling/rotation factor 
     //for the given pol products
     //depending on the telescope mount type, this may have varied dependance 

@@ -111,6 +111,16 @@ void MHO_BasicFringeFitter::Configure()
     //the build of these operators at the proper step (e.g. coarse selection, multitone pcal etc.)
     AddDefaultOperators( (*(fControlStatements.begin()))["statements"] );
 
+    //add the pol-product summation operator into the execution stream if we were passed 
+    //such a thing on the command line (e.g. RR+LL or I)
+    std::size_t npp = pp_vec.size();
+    if(npp > 1)
+    {
+        //add a pol-prouct summation operator
+        std::cout<<"ADDING A POLPROD SUM OPERATOR"<<std::endl;
+        AddPolProductSummationOperator(polprod, pp_vec, (*(fControlStatements.begin()))["statements"] );
+    }
+    
     // std::cout<<fControlStatements.dump(2)<<std::endl;
     // std::cout<<"*****************************************************************************"<<std::endl;
 
@@ -355,6 +365,17 @@ MHO_BasicFringeFitter::AddDefaultOperatorFormatDef(mho_json& format)
         {"priority", 3.1}
     };
     fControlFormat["rem_multitone_pcal"] = rem_multitone_pcal_format;
+
+    mho_json polprod_sum_format =
+    {
+        {"name", "polproduct_sum"},
+        {"statement_type", "operator"},
+        {"operator_category" , "calibration"},
+        {"type" , "empty"},
+        {"priority", 3.99}
+    };
+    fControlFormat["polproduct_sum"] = polprod_sum_format;
+
 }
 
 void 
@@ -399,6 +420,18 @@ MHO_BasicFringeFitter::AddDefaultOperators(mho_json& statements)
 
     statements.push_back(ref_multitone_pcal_hack);
     statements.push_back(rem_multitone_pcal_hack);
+}
+
+void 
+MHO_BasicFringeFitter::AddPolProductSummationOperator(std::string& polprod, std::vector< std::string >& pp_vec, mho_json& statements)
+{
+    mho_json pp_sum_hack = 
+    {
+       {"name", "polproduct_sum"},
+       {"statement_type", "operator"},
+       {"operator_category" , "calibration"}
+    };
+    statements.push_back(pp_sum_hack);
 }
 
 std::vector< std::string > 
