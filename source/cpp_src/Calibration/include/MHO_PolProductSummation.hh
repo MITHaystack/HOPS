@@ -23,6 +23,8 @@
 #include "MHO_ContainerDefinitions.hh"
 #include "MHO_UnaryOperator.hh"
 
+#include "MHO_Reducer.hh"
+
 
 namespace hops
 {
@@ -35,11 +37,6 @@ class MHO_PolProductSummation: public MHO_UnaryOperator< visibility_type >
         MHO_PolProductSummation();
         virtual ~MHO_PolProductSummation();
 
-        // void SetStation(std::string station){fStationCode = station;}; //2-char station code
-        // void SetStationMk4ID(std::string station_id){fMk4ID = station_id;} //1-char mk4id
-        // void SetPolarization(const std::string& pol){fPol = pol; make_upper(fPol);};
-        // void SetPCPhaseOffset(const double& pc_phase_offset){fPhaseOffset = pc_phase_offset;}
-
     protected:
 
         virtual bool InitializeInPlace(visibility_type* in) override;
@@ -50,33 +47,17 @@ class MHO_PolProductSummation: public MHO_UnaryOperator< visibility_type >
 
     private:
 
-        // std::size_t DetermineStationIndex(const visibility_type* in);
-        // bool PolMatch(std::size_t station_idx, std::string& polprod);
-        // 
-        // //constants
-        // std::complex<double> fImagUnit;
-        // double fDegToRad;
-        // 
-        // //selection
-        // std::string fStationCode;
-        // std::string fMk4ID;
-        // std::string fPol;
-        // 
-        // //pc rotation 
-        // double fPhaseOffset;
-        // 
-        // //keys for tag retrieval
-        // std::string fStationKey;
-        // std::string fRemStationKey;
-        // std::string fRefStationKey;
-        // std::string fRemStationMk4IDKey;
-        // std::string fRefStationMk4IDKey;
-        // std::string fChannelLabelKey;
-        // 
-        // //minor helper function to make sure all strings are compared as upper-case only
-        // void make_upper(std::string& s){ for(char& c : s){c = toupper(c); };
-    }
+        //class which does the summation
+        MHO_Reducer< visibility_type, MHO_CompoundSum> fReducer;
 
+        //multiplies each pol product by the appropriate pre-factor
+        void PreMultiply(visibility_type* in);
+
+        std::complex<double> GetPrefactor(std::string pp_label);
+
+        void FixLabels(visibility_type* in);
+
+        std::string fSummedPolProdLabel;
 
 };
 
