@@ -15,6 +15,7 @@ set (INITIALIZATION_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ManualPolPhaseCorrectionBuilder.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ManualPolDelayCorrectionBuilder.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MultitonePhaseCorrectionBuilder.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_PolProductSummationBuilder.hh
     #manager
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_OperatorBuilderManager.hh
 )
@@ -36,6 +37,7 @@ set( INITIALIZATION_SOURCEFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ManualPolPhaseCorrectionBuilder.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ManualPolDelayCorrectionBuilder.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_MultitonePhaseCorrectionBuilder.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_PolProductSummationBuilder.cc
     #manager
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_OperatorBuilderManager.cc
 )
