@@ -37,6 +37,9 @@ class MHO_PolProductSummation: public MHO_UnaryOperator< visibility_type >
         MHO_PolProductSummation();
         virtual ~MHO_PolProductSummation();
 
+        void SetPolProductSumLabel(std::string ppl){fSummedPolProdLabel = ppl;}
+        void SetPolProductSet(std::vector< std::string >& pp_vec){ fPolProductSet = pp_vec;};
+
     protected:
 
         virtual bool InitializeInPlace(visibility_type* in) override;
@@ -58,6 +61,7 @@ class MHO_PolProductSummation: public MHO_UnaryOperator< visibility_type >
         void FixLabels(visibility_type* in);
 
         std::string fSummedPolProdLabel;
+        std::vector< std::string > fPolProductSet;
 
 };
 
