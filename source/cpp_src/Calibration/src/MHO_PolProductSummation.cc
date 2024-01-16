@@ -1,5 +1,6 @@
 #include "MHO_PolProductSummation.hh"
 
+#define signum(a) (a>=0 ? 1.0 : -1.0)
 
 namespace hops
 {
@@ -66,10 +67,35 @@ MHO_PolProductSummation::PreMultiply(visibility_type* in)
 std::complex<double> 
 MHO_PolProductSummation::GetPrefactor(std::string pp_label)
 {
-    return 1.0;
-
+    std::complex<double> factor = 0;
     //if we cannot find this label in the set, return zero
-    if( std::find( fPolProductSet.begin(), fPolProductSet.end(), pp_label) == fPolProductSet.end()  ){return std::complex<double>(0.0, 0.0);} 
+    if( std::find( fPolProductSet.begin(), fPolProductSet.end(), pp_label) == fPolProductSet.end()  ){return factor;}
+
+    double dpar = (130.5  - 138.6)*(M_PI/180.);
+
+    if(pp_label == "XX")
+    {
+        if(fPolProductSet.size() > 1){factor = std::cos(dpar); }
+        else{factor =  signum(dpar); }
+    }
+
+    if(pp_label == "YY")
+    {
+        if(fPolProductSet.size() > 1){factor = std::cos(dpar); }
+        else{factor =  signum(dpar); }
+    }
+
+    if(pp_label == "YX")
+    {
+        if(fPolProductSet.size() > 1){factor = std::sin(dpar); }
+        else{factor =  signum( dpar); }
+    }
+
+    if(pp_label == "XY")
+    {
+        if(fPolProductSet.size() > 1){factor = std::sin(-1.*dpar); }
+        else{factor =  signum(-1.*dpar); }
+    }
 
     //this needs to compute the pol-product dependent scaling/rotation factor 
     //for the given pol products
@@ -79,7 +105,7 @@ MHO_PolProductSummation::GetPrefactor(std::string pp_label)
     #pragma message("FIXME TODO -- implement prefactor calculations for linear and circular pol-products (XX, YY, RR, etc).")
 
     //for now we just return 1 
-    return std::complex<double>(1.0, 0.0);
+    return factor;
 }
 
 void 

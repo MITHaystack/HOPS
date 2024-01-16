@@ -19,6 +19,20 @@ MHO_PolProductSummationBuilder::Build()
         double priority = fFormat["priority"].get<double>();
         std::string op_category = "calibration";
 
+        std::string polprod;
+        std::vector< std::string > pp_set;
+
+        bool pp_ok = this->fParameterStore->IsPresent("/config/polprod"); 
+        bool pps_ok = this->fParameterStore->IsPresent("/config/polprod_set");
+        if(!pp_ok || !pps_ok)
+        {
+            msg_error("initialization", "polarization product information missing for summation operation." << eom );
+            return false;
+        }
+
+        polprod = this->fParameterStore->GetAs<std::string>("/config/polprod");
+        pp_set = this->fParameterStore->GetAs< std::vector< std::string > >("/config/polprod_set");
+
         //retrieve the arguments to operate on from the container store
         visibility_type* vis_data = fContainerStore->GetObject<visibility_type>(std::string("vis"));
         if( vis_data == nullptr )
@@ -29,8 +43,12 @@ MHO_PolProductSummationBuilder::Build()
 
         MHO_PolProductSummation* op = new MHO_PolProductSummation();
 
+
         //set the arguments
         op->SetArgs(vis_data);
+        op->SetPolProductSumLabel(polprod);
+        op->SetPolProductSet(pp_set);
+
         // op->SetPCPhaseOffset(pc_phase_offset);
         // op->SetPolarization(pol);
         // op->SetStationMk4ID(mk4id);
