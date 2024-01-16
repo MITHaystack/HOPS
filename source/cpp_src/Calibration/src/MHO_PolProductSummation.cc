@@ -8,7 +8,7 @@ namespace hops
 
 MHO_PolProductSummation::MHO_PolProductSummation()
 {
-    fSummedPolProdLabel = "XX";
+    fSummedPolProdLabel = "??";
 };
 
 MHO_PolProductSummation::~MHO_PolProductSummation(){};
@@ -54,8 +54,11 @@ MHO_PolProductSummation::InitializeOutOfPlace(const visibility_type* in, visibil
 void 
 MHO_PolProductSummation::PreMultiply(visibility_type* in)
 {
+    //TODO this is an extremely basic implementation (single pre-factor per-pol product)
+    //it is entirely possible to imagine a time dependent pre-factor for each pol-product
+    //(e.g if parallactic angle is changing substantiall)
+    //or other more complex pre-multiplication
     auto pp_ax = &(std::get<POLPROD_AXIS>(*in) );
-
     for(std::size_t i=0; i < pp_ax->GetSize(); i++)
     {
         std::complex<double> prefac = GetPrefactor(pp_ax->at(i));
@@ -70,6 +73,7 @@ MHO_PolProductSummation::GetPrefactor(std::string pp_label)
     std::complex<double> factor = 0;
     //if we cannot find this label in the set, return zero
     if( std::find( fPolProductSet.begin(), fPolProductSet.end(), pp_label) == fPolProductSet.end()  ){return factor;}
+
 
     double dpar = (130.5  - 138.6)*(M_PI/180.);
 
