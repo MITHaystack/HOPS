@@ -278,9 +278,6 @@ MHO_MultitonePhaseCorrection::DetermineStationIndex(const visibility_type* in)
 {
     //determine if the p-cal corrections are being applied to the remote or reference station
     std::string val;
-
-    std::cout<<"dumping meta data"<<in->GetMetaDataAsJSON().dump(2) <<std::endl;
-
     if(fMk4ID != "") //selection by mk4 id
     {
         in->Retrieve(fRemStationMk4IDKey, val);

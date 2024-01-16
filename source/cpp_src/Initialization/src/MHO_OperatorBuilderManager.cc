@@ -9,6 +9,7 @@
 #include "MHO_ManualPolPhaseCorrectionBuilder.hh"
 #include "MHO_ManualPolDelayCorrectionBuilder.hh"
 #include "MHO_MultitonePhaseCorrectionBuilder.hh"
+#include "MHO_PolProductSummationBuilder.hh"
 #include "MHO_SamplerLabelerBuilder.hh"
 
 namespace hops
@@ -180,6 +181,13 @@ void MHO_OperatorBuilderManager::CreateNullFormatBuilders()
     rem_mtpcal["operator_category"] = "calibration";
     rem_mtpcal["priority"] = 3.1;
     AddBuilderTypeWithFormat<MHO_MultitonePhaseCorrectionBuilder>("rem_multitone_pcal", rem_mtpcal);
+
+    mho_json polprod_sum;
+    rem_mtpcal["operator_category"] = "calibration";
+    rem_mtpcal["priority"] = 3.99;
+    AddBuilderTypeWithFormat<MHO_PolProductSummationBuilder>("polproduct_sum", polprod_sum);
+    
+
 }
 
 
