@@ -129,7 +129,8 @@ def make_channel_segment_plots(plot_dict):
 
     #grab the segment amplitudes
     seg_amp_arr = np.array( plot_dict['SEG_AMP'] )
-    seg_ymax = float(plot_dict['Amp'])*3.0 #see generate_graphs.c
+    # seg_ymax = float(plot_dict['Amp'])*3.0 #see generate_graphs.c
+    seg_ymax = float(plot_dict['Amp'])*10.0 #see generate_graphs.c
 
     if "ChannelsPlotted" in plot_dict:
         seg_chan_labels = plot_dict["ChannelsPlotted"]
