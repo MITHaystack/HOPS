@@ -160,8 +160,11 @@ MHO_DataSelectionBuilder::Build()
 
         #pragma message("TODO - coarse selection must also be applied to pcal data (particularly AP select) if available!!")
 
+        double priority = fFormat["priority"].get<double>();
         spack->SetName(op_name + ":vis");
         wtspack->SetName(op_name + ":weight");
+        spack->SetPriority(priority);
+        wtspack->SetPriority(priority);
 
         fOperatorToolbox->AddOperator(spack, spack->GetName(), op_category, replace_duplicates);
         fOperatorToolbox->AddOperator(wtspack, wtspack->GetName(), op_category, replace_duplicates);

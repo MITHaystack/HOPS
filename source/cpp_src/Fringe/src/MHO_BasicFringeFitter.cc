@@ -340,7 +340,7 @@ MHO_BasicFringeFitter::AddDefaultOperatorFormatDef(mho_json& format)
         {"statement_type", "operator"},
         {"operator_category" , "labeling"},
         {"type" , "empty"},
-        {"priority", 0.10}
+        {"priority", 0.9}
     };
     format["sampler_labeler"] = sampler_labeler;
 
