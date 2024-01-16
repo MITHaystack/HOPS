@@ -37,6 +37,7 @@ bool
 MHO_PolProductSummation::InitializeInPlace(visibility_type* in)
 {
     fReducer.SetArgs(in);
+    fReducer.ReduceAxis(POLPROD_AXIS);
     return fReducer.Initialize();
 }
 
@@ -44,6 +45,7 @@ bool
 MHO_PolProductSummation::InitializeOutOfPlace(const visibility_type* in, visibility_type* out)
 {
     fReducer.SetArgs(out);
+    fReducer.ReduceAxis(POLPROD_AXIS);
     return fReducer.Initialize();
 }
 
@@ -66,7 +68,7 @@ MHO_PolProductSummation::GetPrefactor(std::string pp_label)
 {
 
     //if we cannot find this label in the set, return zero
-    if( std::find( fPolProductSet.begin(), fPolProductSet.end(), pp_label) == fPolProductSet.end()  ){return 0.0;} 
+    if( std::find( fPolProductSet.begin(), fPolProductSet.end(), pp_label) == fPolProductSet.end()  ){return std::complex<double>(0.0, 0.0);} 
 
     //this needs to compute the pol-product dependent scaling/rotation factor 
     //for the given pol products
@@ -82,6 +84,14 @@ MHO_PolProductSummation::GetPrefactor(std::string pp_label)
 void 
 MHO_PolProductSummation::FixLabels(visibility_type* in)
 {
+
+    std::cout<<"post reduction meta data dump = "<<in->GetMetaDataAsJSON().dump(4)<<std::endl;
+    std::size_t n = in->GetRank();
+    for(std::size_t i=0; i<n; i++)
+    {
+        std::cout<<"dim @ "<<i<<" = "<< in->GetDimension(i)<<std::endl;
+    }
+
     ( &(std::get<POLPROD_AXIS>(*in)) )->at(0) = fSummedPolProdLabel;
 }
 

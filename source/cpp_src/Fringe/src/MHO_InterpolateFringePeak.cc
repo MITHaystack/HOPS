@@ -112,10 +112,13 @@ MHO_InterpolateFringePeak::fine_peak_interpolation()
                 std::complex<double> z = 0.0;
 
                 // calculate location of this tabular point (should modulo % axis size)
-                sbd_bin = (fSBDMaxBin + isbd - 2) % (int) sbd_ax->GetSize();
-                dr_bin = (fDRMaxBin + idr - 2 ) % (int) fDRAxis.GetSize() ;
-                mbd_bin = ( fMBDMaxBin + imbd - 2) % (int) fMBDAxis.GetSize() ;;
-                //
+                sbd_bin = ( (fSBDMaxBin + isbd - 2) % (int) sbd_ax->GetSize() + (int) sbd_ax->GetSize() ) % (int) sbd_ax->GetSize() ;
+                dr_bin = ( (fDRMaxBin + idr - 2 ) % (int) fDRAxis.GetSize() + (int) fDRAxis.GetSize() ) % (int) fDRAxis.GetSize() ;
+                mbd_bin = ( ( fMBDMaxBin + imbd - 2) % (int) fMBDAxis.GetSize() + (int) fMBDAxis.GetSize()) % (int) fMBDAxis.GetSize();
+                
+                std::cout<<"max bins sbd, mbd, dr = "<<fSBDMaxBin<<", "<<fMBDMaxBin<<", "<<fDRMaxBin<<std::endl;
+                std::cout<<"sbd, dr, mbd bins = "<<sbd_bin<<", "<<dr_bin<<", "<<mbd_bin<<std::endl;
+
                 sbd = sbd_ax->at( (std::size_t) sbd_bin);
                 mbd = fMBDAxis.at(fMBDMaxBin) + 0.5 * (imbd - 2) * mbd_delta;
                 dr  = (fDRAxis.at(fDRMaxBin) + (0.5 * (idr - 2)  * dr_delta) )/fRefFreq;

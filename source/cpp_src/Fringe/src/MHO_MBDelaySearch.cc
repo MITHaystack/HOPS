@@ -46,9 +46,23 @@ MHO_MBDelaySearch::InitializeImpl(const XArgType* in)
         sbd_dims[POLPROD_AXIS] = 1;
         sbd_dims[FREQ_AXIS] = 1;
         //auto sbd_dr_dim = fSBDDrWorkspace.GetDimensionArray();
+
+
+
+
+
         fSBDDrWorkspace.Resize( &(sbd_dims[0]) );
         fSBDDrWorkspace.ZeroArray();
         fSBDDrWorkspace.CopyTags(*in);
+
+        std::cout<<"post reduction meta data dump = "<<fSBDDrWorkspace.GetMetaDataAsJSON().dump(4)<<std::endl;
+        for(std::size_t i=0; i<4; i++)
+        {
+            std::cout<<"dim @ "<<i<<" = "<< fSBDDrWorkspace.GetDimension(i)<<std::endl;
+        }
+
+
+
         std::get<CHANNEL_AXIS>(fSBDDrWorkspace) = std::get<CHANNEL_AXIS>(*in);
         std::get<TIME_AXIS>(fSBDDrWorkspace) = std::get<TIME_AXIS>(*in);
         std::get<FREQ_AXIS>(fSBDDrWorkspace)(0) = 0.0;

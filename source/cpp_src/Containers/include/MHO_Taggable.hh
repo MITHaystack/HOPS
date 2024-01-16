@@ -51,7 +51,7 @@ class MHO_Taggable:
 
         virtual void CopyTags(const MHO_Taggable& rhs)
         {
-            if(this != &rhs && !(rhs.fObject.empty()) )
+            if(this != &rhs && &fObject  && !(rhs.fObject.empty()) )
             {
                 fObject = rhs.fObject;
             }

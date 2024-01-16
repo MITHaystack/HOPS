@@ -142,9 +142,9 @@ void
 MHO_DelayRate::ApplyDataWeights(const XArgType2* in2,  XArgType3* out)
 {
     //apply the data weights to the data
-    std::size_t pprod = in2->GetDimension(POLPROD_AXIS);
-    std::size_t nch = in2->GetDimension(CHANNEL_AXIS);
-    std::size_t nap = in2->GetDimension(TIME_AXIS);
+    std::size_t pprod = out->GetDimension(POLPROD_AXIS);
+    std::size_t nch = out->GetDimension(CHANNEL_AXIS);
+    std::size_t nap = out->GetDimension(TIME_AXIS);
     std::size_t nsbd = out->GetDimension(FREQ_AXIS);
 
     for(std::size_t pp=0; pp<pprod; pp++)
