@@ -121,8 +121,8 @@ void MHO_BasicFringeFitter::Configure()
         AddPolProductSummationOperator(polprod, pp_vec, (*(fControlStatements.begin()))["statements"] );
     }
     
-    // std::cout<<fControlStatements.dump(2)<<std::endl;
-    // std::cout<<"*****************************************************************************"<<std::endl;
+    std::cout<<fControlStatements.dump(2)<<std::endl;
+    std::cout<<"*****************************************************************************"<<std::endl;
 
     //set some intiail/default parameters (polprod, ref_freq)
     MHO_InitialFringeInfo::set_default_parameters_minimal(&fParameterStore);
