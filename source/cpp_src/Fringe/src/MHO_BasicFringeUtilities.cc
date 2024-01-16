@@ -346,6 +346,12 @@ MHO_BasicFringeUtilities::basic_fringe_search(MHO_ContainerStore* conStore, MHO_
     double freq_spacing = mbdSearch.GetFrequencySpacing();
     double ave_freq = mbdSearch.GetAverageFrequency();
 
+    if(c_mbdmax < 0 || c_sbdmax < 0 || c_drmax < 0)
+    {
+        msg_fatal("fringe", "coarse fringe search could not locate peak, bin (sbd, mbd, dr) = (" <<c_sbdmax << ", " << c_mbdmax <<"," << c_drmax<< ")." << eom );
+        std::exit(1);
+    }
+
     //get the coarse maximum and re-scale by the total weights
     double search_max_amp = mbdSearch.GetSearchMaximumAmplitude();
     double total_summed_weights = paramStore->GetAs<double>("/fringe/total_summed_weights");
@@ -354,6 +360,8 @@ MHO_BasicFringeUtilities::basic_fringe_search(MHO_ContainerStore* conStore, MHO_
     paramStore->Set("/fringe/max_mbd_bin", c_mbdmax);
     paramStore->Set("/fringe/max_sbd_bin", c_sbdmax);
     paramStore->Set("/fringe/max_dr_bin", c_drmax);
+
+
 
     // std::cout<<"bins = "<<c_mbdmax<<", "<<c_sbdmax<<", "<<c_drmax<<std::endl;
 
