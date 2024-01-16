@@ -259,7 +259,7 @@ MHO_BasicFringeDataConfiguration::init_and_exec_operators(MHO_OperatorBuilderMan
     auto ops = opToolbox->GetOperatorsByCategory(cat);
     for(auto opIt= ops.begin(); opIt != ops.end(); opIt++)
     {
-        msg_debug("fringe", "initializing and executing operator: "<< (*opIt)->GetName() << eom);
+        msg_debug("fringe", "initializing and executing operator: "<< (*opIt)->GetName() <<", with priority: "<< (*opIt)->Priority() << "." << eom);
         (*opIt)->Initialize();
         (*opIt)->Execute();
     }

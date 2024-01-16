@@ -23,6 +23,8 @@ MHO_ChannelLabelerBuilder::Build()
         std::map< std::string, double> label2freq;
         std::string op_name = "chan_ids";
         std::string op_category = "labeling";
+        double priority = fFormat["priority"].get<double>();
+
         if(! fAttributes.empty() )
         {
             std::string channel_name_str = fAttributes["value"]["channel_names"].get<std::string>();
@@ -63,6 +65,8 @@ MHO_ChannelLabelerBuilder::Build()
         bool replace_duplicates = true; //replces the default labeler
         #pragma message("TODO - figure out proper naming/retrieval scheme for operators")
         
+        vis_op->SetPriority(priority);
+        wt_op->SetPriority(priority);
         vis_op->SetName(op_name + ":vis");
         wt_op->SetName(op_name + ":weight");
         

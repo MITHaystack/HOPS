@@ -17,6 +17,7 @@ MHO_MultitonePhaseCorrectionBuilder::Build()
 
         std::string op_name = fAttributes["name"].get<std::string>();
         std::string op_category = "calibration";
+        double priority = fFormat["priority"].get<double>();
         std::string mk4id = ExtractStationMk4ID(op_name);
 
         //check pc_mode values to see if this operator should be built at all (defaults to true)
@@ -89,6 +90,7 @@ MHO_MultitonePhaseCorrectionBuilder::Build()
             op->SetMultitonePCData(pcal_data);
             op->SetPCPeriod(pc_period);
             op->SetWeights(weights);
+            op->SetPriority(priority);
 
             msg_debug("initialization", "creating operator: "<<op_name<<" for station: "<<mk4id<<"."<<eom);
 

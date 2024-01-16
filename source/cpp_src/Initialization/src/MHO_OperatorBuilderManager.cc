@@ -152,18 +152,21 @@ void MHO_OperatorBuilderManager::CreateNullFormatBuilders()
 
 
     mho_json samplers;
+    samplers["name"] = "sampler_labeler";
     samplers["operator_category"] = "labeling";
     samplers["priority"] = 0.9;
     AddBuilderTypeWithFormat<MHO_SamplerLabelerBuilder>("sampler_labeler", samplers);
 
     //this one is special since it is not an operator specified via control file
     mho_json special;
+    special["name"] = "coarse_selection";
     special["operator_category"] = "selection";
     special["priority"] = 1.1;
     AddBuilderTypeWithFormat<MHO_DataSelectionBuilder>("coarse_selection", special);
 
     //this one is also special (default channel labeling behavior)
     mho_json special2;
+    special2["name"] = "default_chan_ids";
     special2["operator_category"] = "default";
     special2["priority"] = 0.1;
     AddBuilderTypeWithFormat<MHO_ChannelLabelerBuilder>("default_chan_ids", special2);
@@ -173,20 +176,22 @@ void MHO_OperatorBuilderManager::CreateNullFormatBuilders()
     //by control file statements like 'pc_mode manual'
 
     mho_json ref_mtpcal;
+    ref_mtpcal["name"] = "ref_multitone_pcal";
     ref_mtpcal["operator_category"] = "calibration";
     ref_mtpcal["priority"] = 3.1;
     AddBuilderTypeWithFormat<MHO_MultitonePhaseCorrectionBuilder>("ref_multitone_pcal", ref_mtpcal);
 
     mho_json rem_mtpcal;
+    rem_mtpcal["name"] = "rem_multitone_pcal";
     rem_mtpcal["operator_category"] = "calibration";
     rem_mtpcal["priority"] = 3.1;
     AddBuilderTypeWithFormat<MHO_MultitonePhaseCorrectionBuilder>("rem_multitone_pcal", rem_mtpcal);
 
     mho_json polprod_sum;
-    rem_mtpcal["operator_category"] = "calibration";
-    rem_mtpcal["priority"] = 3.99;
+    polprod_sum["name"] = "polproduct_sum";
+    polprod_sum["operator_category"] = "calibration";
+    polprod_sum["priority"] = 3.99;
     AddBuilderTypeWithFormat<MHO_PolProductSummationBuilder>("polproduct_sum", polprod_sum);
-    
 
 }
 

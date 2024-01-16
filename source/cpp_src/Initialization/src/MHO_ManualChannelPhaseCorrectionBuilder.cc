@@ -15,11 +15,11 @@ MHO_ManualChannelPhaseCorrectionBuilder::Build()
         msg_debug("initialization", "building a manual per-channel phase correction operator."<< eom);
         //assume attributes are ok for now - TODO add checks!
 
-
         std::string op_name = fAttributes["name"].get<std::string>();
         std::string op_category = "calibration";
         std::string channel_name_str = fAttributes["value"]["channel_names"].get<std::string>();
         std::vector<double> pc_phases = fAttributes["value"]["pc_phases"].get< std::vector<double> >();
+        double priority = fFormat["priority"].get<double>();
 
         std::string pol = ParsePolFromName(op_name);
         std::string mk4id = ExtractStationMk4ID();
@@ -44,6 +44,7 @@ MHO_ManualChannelPhaseCorrectionBuilder::Build()
             op->SetPolarization(pol);
             op->SetStationMk4ID(mk4id);
             op->SetName(op_name);
+            op->SetPriority(priority);
 
             msg_debug("initialization", "creating operator: "<<op_name<<" for station: "<<mk4id<<" pol: "<<pol<<"."<<eom);
 

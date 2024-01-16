@@ -72,7 +72,6 @@ class MHO_SamplerLabeler: public MHO_UnaryOperator< XArrayType >
                 {
                     std::string chan_label = "";
                     chan_axis_ptr->RetrieveIndexLabelKeyValue(ch, fChannelLabelKey, chan_label);
-
                     //add sampler labels
                     if(fRefChanToSamplerID.find(chan_label) != fRefChanToSamplerID.end())
                     {

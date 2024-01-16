@@ -19,6 +19,7 @@ MHO_ManualChannelDelayCorrectionBuilder::Build()
         std::string op_category = "calibration";
         std::string channel_name_str = fAttributes["value"]["channel_names"].get<std::string>();
         std::vector<double> pc_delays = fAttributes["value"]["pc_delays"].get< std::vector<double> >();
+        double priority = fFormat["priority"].get<double>();
 
         std::string pol = ParsePolFromName(op_name);
         std::string mk4id = ExtractStationMk4ID();
@@ -43,6 +44,7 @@ MHO_ManualChannelDelayCorrectionBuilder::Build()
             op->SetPolarization(pol);
             op->SetStationMk4ID(mk4id);
             op->SetName(op_name);
+            op->SetPriority(priority);
 
             msg_debug("initialization", "creating operator: "<<op_name<<" for station: "<<mk4id<<" pol: "<<pol<<"."<<eom);
 

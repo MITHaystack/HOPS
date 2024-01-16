@@ -16,11 +16,8 @@ MHO_PolProductSummationBuilder::Build()
         //assume attributes are ok for now - TODO add checks!
 
         std::string op_name = fAttributes["name"].get<std::string>();
+        double priority = fFormat["priority"].get<double>();
         std::string op_category = "calibration";
-        // double pc_phase_offset = fAttributes["value"].get<double>();
-        // 
-        // std::string pol = ParsePolFromName(op_name);
-        // std::string mk4id = ExtractStationMk4ID();
 
         //retrieve the arguments to operate on from the container store
         visibility_type* vis_data = fContainerStore->GetObject<visibility_type>(std::string("vis"));
@@ -38,6 +35,7 @@ MHO_PolProductSummationBuilder::Build()
         // op->SetPolarization(pol);
         // op->SetStationMk4ID(mk4id);
         op->SetName(op_name);
+        op->SetPriority(priority);
 
         //msg_debug("initialization", "creating operator: "<<op_name<<" for station: "<<mk4id<<" pol: "<<pol<<"."<<eom);
 

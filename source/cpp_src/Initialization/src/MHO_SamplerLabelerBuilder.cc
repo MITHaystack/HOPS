@@ -22,6 +22,7 @@ MHO_SamplerLabelerBuilder::Build()
 
         std::string op_name = fAttributes["name"].get<std::string>();
         std::string op_category = "labeling";
+        double priority = fFormat["priority"].get<double>();
 
         //retrieve the arguments to operate on from the container store
         visibility_type* vis_data = fContainerStore->GetObject<visibility_type>(std::string("vis"));
@@ -84,6 +85,7 @@ MHO_SamplerLabelerBuilder::Build()
         if(rem_sampler_info.size() != 0 ){op->SetRemoteStationSamplerChannelSets(rem_sampler_info);}
         op->SetArgs(vis_data);
         op->SetName(op_name);
+        op->SetPriority(priority);
 
         fOperatorToolbox->AddOperator(op, op->GetName(), op_category);
         return true;
