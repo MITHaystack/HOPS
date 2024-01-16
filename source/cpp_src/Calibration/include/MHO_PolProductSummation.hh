@@ -40,6 +40,9 @@ class MHO_PolProductSummation: public MHO_UnaryOperator< visibility_type >
         void SetPolProductSumLabel(std::string ppl){fSummedPolProdLabel = ppl;}
         void SetPolProductSet(std::vector< std::string >& pp_vec){ fPolProductSet = pp_vec;};
 
+        void SetReferenceStationCoordinateData(station_coord_type* ref_data){fRefData = ref_data;};
+        void SetRemoteStationCoordinateData(station_coord_type* rem_data){fRemData = rem_data;};
+
     protected:
 
         virtual bool InitializeInPlace(visibility_type* in) override;
@@ -62,6 +65,9 @@ class MHO_PolProductSummation: public MHO_UnaryOperator< visibility_type >
 
         std::string fSummedPolProdLabel;
         std::vector< std::string > fPolProductSet;
+
+        station_coord_type* fRefData;
+        station_coord_type* fRemData;
 
 };
 
