@@ -100,7 +100,7 @@ MHO_MBDelaySearch::ExecuteImpl(const XArgType* in)
     {
         //loop over the single-band delay 'lags', computing the MBD/DR function
         //find the max for each SBD, and globally
-        fMax = 0.0;
+        fMax = -1e30; //0.0;
         for(std::size_t sbd_idx=0; sbd_idx<fNSBD; sbd_idx++)
         {
             //first select the slice of visibilities which correspond to this SBD
