@@ -20,14 +20,24 @@
 #include "MHO_FringePlotInfo.hh"
 #include "MHO_VexInfoExtractor.hh"
 
+//experimental ion phase correction
+#include "MHO_IonosphericPhaseCorrection.hh"
+#define ION_EXP
+
+
+
 namespace hops
 {
 
 
-MHO_IonosphericFringeFitter::MHO_IonosphericFringeFitter():MHO_BasicFringeFitter()
+MHO_IonosphericFringeFitter::MHO_IonosphericFringeFitter():
+    MHO_BasicFringeFitter()
 {
-    
-
+    fNdTECSteps = 20;
+    fdTECLow = 0.0;
+    fdTECHigh = 1.0;
+    fdTECStep = (fdTECHigh - fdTECLow)/(double)fNdTECSteps;
+    fStepCount = 0;
 };
 
 MHO_IonosphericFringeFitter::~MHO_IonosphericFringeFitter(){};
@@ -38,9 +48,17 @@ void MHO_IonosphericFringeFitter::PreRun()
     if( !skipped) //execute if we are not finished and are not skipping
     {
         //apply the ionospheric dTEC to the visibilities for the current grid search point
-        
-        
-        
+        #ifdef ION_EXP
+        visibility_type* vis_data = fContainerStore.GetObject<visibility_type>(std::string("vis"));
+        MHO_IonosphericPhaseCorrection iono;
+        std::cout<<"Applying dTEC of: "<<-1.0*fdTECStep*fStepCount<<std::endl;
+        //iono.SetDifferentialTEC(-1.0*(fdTECLow + fdTECStep*fStepCount) );
+        iono.SetDifferentialTEC(-1.0*fdTECStep);
+        iono.SetArgs(vis_data);
+        iono.Initialize();
+        iono.Execute();
+        fStepCount++;
+        #endif
         //TODO FILL ME IN -- need to call specified user-scripts here
     }
 }
@@ -54,7 +72,7 @@ void MHO_IonosphericFringeFitter::Run()
         //execute the basic fringe search algorithm
         MHO_BasicFringeUtilities::basic_fringe_search(&fContainerStore, &fParameterStore);
 
-        if(!fComplete)
+        if(fStepCount < fNdTECSteps)
         {
             fParameterStore.Set("/status/is_finished", false);
         }

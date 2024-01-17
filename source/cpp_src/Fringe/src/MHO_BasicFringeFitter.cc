@@ -20,6 +20,11 @@
 #include "MHO_FringePlotInfo.hh"
 #include "MHO_VexInfoExtractor.hh"
 
+//experimental ion phase correction
+#include "MHO_IonosphericPhaseCorrection.hh"
+#define ION_EXP
+
+
 namespace hops
 {
 
@@ -264,6 +269,14 @@ void MHO_BasicFringeFitter::PreRun()
     if( !skipped) //execute if we are not finished and are not skipping
     {
         //TODO FILL ME IN -- need to call specified user-scripts here
+        #ifdef ION_EXP
+        visibility_type* vis_data = fContainerStore.GetObject<visibility_type>(std::string("vis"));
+        MHO_IonosphericPhaseCorrection iono;
+        iono.SetDifferentialTEC(-0.28);
+        iono.SetArgs(vis_data);
+        iono.Initialize();
+        iono.Execute();
+        #endif
     }
 }
 
