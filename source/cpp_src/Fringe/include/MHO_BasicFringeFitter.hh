@@ -39,7 +39,6 @@ class MHO_BasicFringeFitter: public MHO_FringeFitter
 
         std::vector< std::string > DetermineRequiredPolProducts(std::string polprod);
         void AddPolProductSummationOperator(std::string& polprod, std::vector< std::string >& pp_vec, mho_json& statements);
-        
 
         void AddDefaultOperatorFormatDef(mho_json& format);
         void AddDefaultOperators(mho_json& statements);
@@ -47,8 +46,6 @@ class MHO_BasicFringeFitter: public MHO_FringeFitter
         mho_json fVexInfo;
         mho_json fControlFormat;
         mho_json fControlStatements;
-
-        int count;
 
         //hacks
         mho_json fDataSelectFormat;
