@@ -79,9 +79,10 @@ MHO_BasicFringeUtilities::calculate_fringe_solution_info(MHO_ContainerStore* con
     paramStore->Set("/fringe/legacy_frt_timestamp", MHO_BasicFringeInfo::make_legacy_datetime_format(frt_ldate) );
 
     //calculate SNR
-    #pragma message("TODO FIXME -- properly calcualte the effective number of pol-products.")
-    double eff_npol = 1.0;
-    double snr = MHO_BasicFringeInfo::calculate_snr(eff_npol, ap_delta, samp_period, total_summed_weights, famp);
+    std::vector< std::string > pp_vec = paramStore->GetAs< std::vector< std::string > >("/config/polprod_set");
+    double eff_npols = 1.0;
+    if(pp_vec.size()  > 2 ){eff_npols = 2.0;}
+    double snr = MHO_BasicFringeInfo::calculate_snr(eff_npols, ap_delta, samp_period, total_summed_weights, famp);
     paramStore->Set("/fringe/snr", snr);
 
     //calculate integration time
