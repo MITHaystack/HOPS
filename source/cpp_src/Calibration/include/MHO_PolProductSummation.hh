@@ -40,8 +40,14 @@ class MHO_PolProductSummation: public MHO_UnaryOperator< visibility_type >
         void SetPolProductSumLabel(std::string ppl){fSummedPolProdLabel = ppl;}
         void SetPolProductSet(std::vector< std::string >& pp_vec){ fPolProductSet = pp_vec;};
 
+        //these data objects are not used yet, but could be needed if we want to apply 
+        //time-dependence to the pol-product pre-factors
         void SetReferenceStationCoordinateData(station_coord_type* ref_data){fRefData = ref_data;};
         void SetRemoteStationCoordinateData(station_coord_type* rem_data){fRemData = rem_data;};
+
+        //parallactic angle values for each station (expects degrees)
+        void SetReferenceParallacticAngle(double p){fRefParAngle = p;}
+        void SetRemoteParallacticAngle(double p){fRemParAngle = p;}
 
     protected:
 
@@ -66,6 +72,8 @@ class MHO_PolProductSummation: public MHO_UnaryOperator< visibility_type >
         std::string fSummedPolProdLabel;
         std::vector< std::string > fPolProductSet;
 
+        double fRefParAngle;
+        double fRemParAngle;
         station_coord_type* fRefData;
         station_coord_type* fRemData;
 

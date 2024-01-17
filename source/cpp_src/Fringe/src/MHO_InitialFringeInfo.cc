@@ -107,15 +107,39 @@ MHO_InitialFringeInfo::calculate_clock_model(MHO_ParameterStore* paramStore)
     paramStore->Set("/rem_station/clock_offset_at_frt", rem_clock);
 }
 
+void
+MHO_InitialFringeInfo::compute_total_summed_weights(MHO_ContainerStore* conStore, MHO_ParameterStore* paramStore)
+{
+    weight_type* wt_data = conStore->GetObject<weight_type>(std::string("weight"));
+    if(wt_data == nullptr )
+    {
+        msg_fatal("main", "could not find weight objectswith name: weight." << eom);
+        std::exit(1);
+    }
+
+    //compute the sum of the data weights
+    weight_type temp_weights;
+    temp_weights.Copy(*wt_data);
+    MHO_Reducer<weight_type, MHO_CompoundSum> wt_reducer;
+    wt_reducer.SetArgs(&temp_weights);
+    for(std::size_t i=0; i<weight_type::rank::value; i++)
+    {
+        wt_reducer.ReduceAxis(i);
+    }
+    wt_reducer.Initialize();
+    wt_reducer.Execute();
+    double total_ap_frac = temp_weights[0];
+    paramStore->Set("/fringe/total_summed_weights", total_ap_frac);
+    wt_data->Insert("total_summed_weights", total_ap_frac);
+}
 
 void
 MHO_InitialFringeInfo::precalculate_quantities(MHO_ContainerStore* conStore, MHO_ParameterStore* paramStore)
 {
     visibility_type* vis_data = conStore->GetObject<visibility_type>(std::string("vis"));
-    weight_type* wt_data = conStore->GetObject<weight_type>(std::string("weight"));
-    if( vis_data == nullptr || wt_data == nullptr )
+    if( vis_data == nullptr )
     {
-        msg_fatal("main", "could not find visibility or weight objects with names (vis, weight)." << eom);
+        msg_fatal("main", "could not find visibility or weight objects with name: vis." << eom);
         std::exit(1);
     }
 
@@ -158,20 +182,6 @@ MHO_InitialFringeInfo::precalculate_quantities(MHO_ContainerStore* conStore, MHO
     int nchan = chan_ax->GetSize();
     paramStore->Set("/config/nchannels", nchan);
 
-    //compute the sum of the data weights
-    weight_type temp_weights;
-    temp_weights.Copy(*wt_data);
-    MHO_Reducer<weight_type, MHO_CompoundSum> wt_reducer;
-    wt_reducer.SetArgs(&temp_weights);
-    for(std::size_t i=0; i<weight_type::rank::value; i++)
-    {
-        wt_reducer.ReduceAxis(i);
-    }
-    wt_reducer.Initialize();
-    wt_reducer.Execute();
-    double total_ap_frac = temp_weights[0];
-    paramStore->Set("/fringe/total_summed_weights", total_ap_frac);
-    wt_data->Insert("total_summed_weights", total_ap_frac);
 
     //compute the a priori delay model
     station_coord_type* ref_data = conStore->GetObject<station_coord_type>(std::string("ref_sta"));

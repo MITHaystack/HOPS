@@ -74,8 +74,8 @@ MHO_PolProductSummation::GetPrefactor(std::string pp_label)
     //if we cannot find this label in the set, return zero
     if( std::find( fPolProductSet.begin(), fPolProductSet.end(), pp_label) == fPolProductSet.end()  ){return factor;}
 
-
-    double dpar = (130.5  - 138.6)*(M_PI/180.);
+    //calculate the parallactic angle difference 
+    double dpar = (fRemParAngle - fRefParAngle)*(M_PI/180.);
 
     if(pp_label == "XX")
     {
