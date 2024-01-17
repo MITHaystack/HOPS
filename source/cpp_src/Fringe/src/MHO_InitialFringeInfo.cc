@@ -131,6 +131,9 @@ MHO_InitialFringeInfo::compute_total_summed_weights(MHO_ContainerStore* conStore
     double total_ap_frac = temp_weights[0];
     paramStore->Set("/fringe/total_summed_weights", total_ap_frac);
     wt_data->Insert("total_summed_weights", total_ap_frac);
+    
+    std::cout<<"TOTAL SUMMED WEIGHTS!"<<total_ap_frac<<std::endl;
+    
 }
 
 void

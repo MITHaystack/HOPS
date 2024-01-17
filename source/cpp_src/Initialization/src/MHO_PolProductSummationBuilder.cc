@@ -42,6 +42,13 @@ MHO_PolProductSummationBuilder::Build()
             return false;
         }
 
+        weight_type* wt_data = fContainerStore->GetObject<weight_type>(std::string("weight"));
+        if( wt_data == nullptr )
+        {
+            msg_error("initialization", "cannot construct MHO_PolProductSummation without weight data." << eom);
+            return false;
+        }
+
         station_coord_type* ref_data = fContainerStore->GetObject<station_coord_type>(std::string("ref_sta"));
         if( ref_data == nullptr )
         {
@@ -72,6 +79,7 @@ MHO_PolProductSummationBuilder::Build()
         MHO_PolProductSummation* op = new MHO_PolProductSummation();
         //set the arguments
         op->SetArgs(vis_data);
+        op->SetWeights(wt_data);
         op->SetReferenceStationCoordinateData(ref_data);
         op->SetRemoteStationCoordinateData(rem_data);
         op->SetPolProductSumLabel(polprod);

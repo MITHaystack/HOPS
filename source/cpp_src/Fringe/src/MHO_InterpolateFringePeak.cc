@@ -116,8 +116,8 @@ MHO_InterpolateFringePeak::fine_peak_interpolation()
                 dr_bin = ( (fDRMaxBin + idr - 2 ) % (int) fDRAxis.GetSize() + (int) fDRAxis.GetSize() ) % (int) fDRAxis.GetSize() ;
                 mbd_bin = ( ( fMBDMaxBin + imbd - 2) % (int) fMBDAxis.GetSize() + (int) fMBDAxis.GetSize()) % (int) fMBDAxis.GetSize();
                 
-                std::cout<<"max bins sbd, mbd, dr = "<<fSBDMaxBin<<", "<<fMBDMaxBin<<", "<<fDRMaxBin<<std::endl;
-                std::cout<<"sbd, dr, mbd bins = "<<sbd_bin<<", "<<dr_bin<<", "<<mbd_bin<<std::endl;
+                // std::cout<<"max bins sbd, mbd, dr = "<<fSBDMaxBin<<", "<<fMBDMaxBin<<", "<<fDRMaxBin<<std::endl;
+                // std::cout<<"sbd, dr, mbd bins = "<<sbd_bin<<", "<<dr_bin<<", "<<mbd_bin<<std::endl;
 
                 sbd = sbd_ax->at( (std::size_t) sbd_bin);
                 mbd = fMBDAxis.at(fMBDMaxBin) + 0.5 * (imbd - 2) * mbd_delta;

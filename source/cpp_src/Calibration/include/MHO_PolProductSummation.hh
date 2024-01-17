@@ -37,6 +37,9 @@ class MHO_PolProductSummation: public MHO_UnaryOperator< visibility_type >
         MHO_PolProductSummation();
         virtual ~MHO_PolProductSummation();
 
+        //perhaps we should have a separate operator to handle the treatment of the weights?
+        void SetWeights(weight_type* w){fWeights = w;}
+
         void SetPolProductSumLabel(std::string ppl){fSummedPolProdLabel = ppl;}
         void SetPolProductSet(std::vector< std::string >& pp_vec){ fPolProductSet = pp_vec;};
 
@@ -48,6 +51,10 @@ class MHO_PolProductSummation: public MHO_UnaryOperator< visibility_type >
         //parallactic angle values for each station (expects degrees)
         void SetReferenceParallacticAngle(double p){fRefParAngle = p;}
         void SetRemoteParallacticAngle(double p){fRemParAngle = p;}
+        
+        //not currently used (but needed for circ-circ pol sum)
+        void SetReferenceMountType(std::string mt){fRefMountType = mt;}
+        void SetRemoteMountType(std::string mt){fRemMountType = mt;}
 
     protected:
 
@@ -58,9 +65,12 @@ class MHO_PolProductSummation: public MHO_UnaryOperator< visibility_type >
         virtual bool ExecuteOutOfPlace(const visibility_type* in, visibility_type* out) override;
 
     private:
-
-        //class which does the summation
+        
+        weight_type* fWeights;
+        
+        //class(es) which do the summation
         MHO_Reducer< visibility_type, MHO_CompoundSum> fReducer;
+        MHO_Reducer< weight_type, MHO_CompoundSum> fWReducer;
 
         //multiplies each pol product by the appropriate pre-factor
         void PreMultiply(visibility_type* in);
@@ -74,6 +84,8 @@ class MHO_PolProductSummation: public MHO_UnaryOperator< visibility_type >
 
         double fRefParAngle;
         double fRemParAngle;
+        std::string fRefMountType;
+        std::string fRemMountType;
         station_coord_type* fRefData;
         station_coord_type* fRemData;
 
