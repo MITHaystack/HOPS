@@ -108,7 +108,6 @@ MHO_PolProductSummation::GetPrefactor(std::string pp_label)
     
     #pragma message("FIXME TODO -- implement prefactor calculations for linear and circular pol-products (XX, YY, RR, etc).")
 
-    //for now we just return 1 
     return factor;
 }
 

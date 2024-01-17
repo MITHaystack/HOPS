@@ -199,9 +199,11 @@ MHO_FringePlotInfo::fill_plot_data(MHO_ParameterStore* paramStore, mho_json& plo
     int grid_pts = paramStore->GetAs<int>("/fringe/n_frequency_points");
     plot_dict["extra"]["grid_pts"] = grid_pts;
 
-    //this one is kind of silly:
     int nchan = paramStore->GetAs<int>("/config/nchannels");
-    int eff_npols = 1; //TODO FIXME!
+    
+    std::vector< std::string > pp_vec = paramStore->GetAs< std::vector< std::string > >("/config/polprod_set");
+    int eff_npols = 1;
+    if(pp_vec.size()  > 2 ){eff_npols = 2;}
     int data_rate = (int)( nchan*eff_npols*srate_MHz* std::sqrt(ref_bits*rem_bits) + 0.5 );
     plot_dict["extra"]["data_rate"] = data_rate;
 }
