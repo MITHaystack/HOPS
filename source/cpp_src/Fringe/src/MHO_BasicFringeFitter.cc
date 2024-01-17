@@ -24,7 +24,7 @@ namespace hops
 {
 
 
-MHO_BasicFringeFitter::MHO_BasicFringeFitter():MHO_FringeFitter(){ count =0;};
+MHO_BasicFringeFitter::MHO_BasicFringeFitter():MHO_FringeFitter(){};
 
 MHO_BasicFringeFitter::~MHO_BasicFringeFitter(){};
 
