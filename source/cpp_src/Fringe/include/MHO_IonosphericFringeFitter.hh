@@ -1,7 +1,7 @@
 #ifndef MHO_IonosphericFringeFitter_HH__
 #define MHO_IonosphericFringeFitter_HH__
 
-#include "MHO_FringeFitter.hh"
+#include "MHO_BasicFringeFitter.hh"
 #include "MHO_Tokenizer.hh"
 
 /*
@@ -36,6 +36,14 @@ class MHO_IonosphericFringeFitter: public MHO_BasicFringeFitter
         // mho_json GetPlotData(){return fPlotData;}
 
     protected:
+
+        int fNdTECSteps;
+        double fdTECLow;
+        double fdTECHigh;
+        double fdTECStep;
+        int fStepCount;
+
+        
 
         // std::vector< std::string > DetermineRequiredPolProducts(std::string polprod);
         // void AddPolProductSummationOperator(std::string& polprod, std::vector< std::string >& pp_vec, mho_json& statements);
