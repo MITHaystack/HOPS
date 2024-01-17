@@ -214,10 +214,15 @@ void MHO_BasicFringeFitter::Initialize()
             fParameterStore.Set("/uuid/rem_pcal", rem_pcal_uuid);
         }
 
+
+
         ////////////////////////////////////////////////////////////////////////////
         //PARAMETER SETTING
         ////////////////////////////////////////////////////////////////////////////
         MHO_InitialFringeInfo::configure_reference_frequency(&fContainerStore, &fParameterStore);
+
+        //calculate useful quantities to stash in the parameter store
+        MHO_InitialFringeInfo::precalculate_quantities(&fContainerStore, &fParameterStore);
 
         ////////////////////////////////////////////////////////////////////////////
         //CONFIGURE THE OPERATOR BUILD MANAGER
@@ -235,12 +240,9 @@ void MHO_BasicFringeFitter::Initialize()
         //OPERATOR CONSTRUCTION
         ////////////////////////////////////////////////////////////////////////////
 
-        fOperatorBuildManager->BuildOperatorCategory("default");
-        
-        
+        fOperatorBuildManager->BuildOperatorCategory("default");    
         // std::cout<<"Dumping the parameter store: = "<<std::endl;
         // fParameterStore.Dump();
-        
         MHO_BasicFringeDataConfiguration::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "labeling");
         MHO_BasicFringeDataConfiguration::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "selection");
 
@@ -251,8 +253,8 @@ void MHO_BasicFringeFitter::Initialize()
         MHO_BasicFringeDataConfiguration::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "flagging");
         MHO_BasicFringeDataConfiguration::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "calibration");
 
-        //calulate useful quantities to stash in the parameter store
-        MHO_InitialFringeInfo::precalculate_quantities(&fContainerStore, &fParameterStore);
+        //compute the sum of all weights and stash in the parameter store
+        MHO_InitialFringeInfo::compute_total_summed_weights(&fContainerStore, &fParameterStore);
     }
 }
 

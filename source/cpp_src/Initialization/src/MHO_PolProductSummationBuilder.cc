@@ -24,9 +24,10 @@ MHO_PolProductSummationBuilder::Build()
 
         bool pp_ok = this->fParameterStore->IsPresent("/config/polprod"); 
         bool pps_ok = this->fParameterStore->IsPresent("/config/polprod_set");
+
         if(!pp_ok || !pps_ok)
         {
-            msg_error("initialization", "polarization product information missing for summation operation." << eom );
+            msg_error("initialization", "polarization product information missing for pol-product summation operation." << eom );
             return false;
         }
 
@@ -55,6 +56,17 @@ MHO_PolProductSummationBuilder::Build()
             return false;
         }
 
+        //get the parallactic angle values for each station 
+        bool ref_pa_ok = this->fParameterStore->IsPresent("/ref_station/parallactic_angle");
+        bool rem_pa_ok = this->fParameterStore->IsPresent("/rem_station/parallactic_angle");
+        if(!ref_pa_ok || !rem_pa_ok)
+        {
+            msg_error("initialization", "parallactic_angle information missing for pol-product summation operation." << eom );
+            return false;
+        }
+        double ref_pa = this->fParameterStore->GetAs< double >("/ref_station/parallactic_angle");
+        double rem_pa = this->fParameterStore->GetAs< double >("/rem_station/parallactic_angle");
+
 
 
         MHO_PolProductSummation* op = new MHO_PolProductSummation();
@@ -64,14 +76,11 @@ MHO_PolProductSummationBuilder::Build()
         op->SetRemoteStationCoordinateData(rem_data);
         op->SetPolProductSumLabel(polprod);
         op->SetPolProductSet(pp_set);
+        op->SetReferenceParallacticAngle(ref_pa); 
+        op->SetRemoteParallacticAngle(rem_pa);
 
-        // op->SetPCPhaseOffset(pc_phase_offset);
-        // op->SetPolarization(pol);
-        // op->SetStationMk4ID(mk4id);
         op->SetName(op_name);
         op->SetPriority(priority);
-
-        //msg_debug("initialization", "creating operator: "<<op_name<<" for station: "<<mk4id<<" pol: "<<pol<<"."<<eom);
 
         bool replace_duplicates = true;
         this->fOperatorToolbox->AddOperator(op,op->GetName(),op_category,replace_duplicates);
@@ -80,37 +89,6 @@ MHO_PolProductSummationBuilder::Build()
     }
     return false;
 }
-
-// std::string
-// MHO_PolProductSummationBuilder::ParsePolFromName(const std::string& name)
-// {
-//     if(name == "pc_phase_offset_x"){return std::string("X");}
-//     if(name == "pc_phase_offset_y"){return std::string("Y");}
-//     if(name == "pc_phase_offset_r"){return std::string("R");}
-//     if(name == "pc_phase_offset_l"){return std::string("L");}
-//     return std::string("?");
-// }
-
-
-// std::string
-// MHO_PolProductSummationBuilder::ExtractStationMk4ID()
-// {
-//     std::string station_id = "?";
-//     std::vector< std::string > condition_values = fConditions["value"].get< std::vector< std::string > >();
-// 
-//     for(auto it = condition_values.begin(); it != condition_values.end(); it++)
-//     {
-//          //grab the first station ID in the 'if' statement
-//          //this is ok 99% of the time, but what about if there is statement like: 'if station X or station X'?
-//          //would then need to check that this station is a member of this pass too, and if not use the next
-//         if(*it == "station")
-//         {
-//             it++;
-//             if(it != condition_values.end()){station_id = *it; return station_id;}
-//         }
-//     }
-//     return station_id;
-// }
 
 
 }//end namespace
