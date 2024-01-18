@@ -103,7 +103,7 @@ MHO_VexElementLineGenerator::GenerateReal(std::string element_name, mho_json& ob
     }
     else
     {
-        msg_error("vex", "could not form valid vex string from json real element: "<< element_name << eom)
+        msg_error("vex", "could not form valid vex string from json real element: "<< element_name << eom);
     }
     return val.str();
 }
@@ -138,7 +138,7 @@ MHO_VexElementLineGenerator::GenerateListReal(std::string element_name, mho_json
     }
     else
     {
-        msg_error("vex", "could not form valid vex string from json list_real element: "<< element_name << eom)
+        msg_error("vex", "could not form valid vex string from json list_real element: "<< element_name << eom);
     }
     return val.str();
 }
