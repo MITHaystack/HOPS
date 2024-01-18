@@ -220,7 +220,8 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
                 #pragma message("TODO FIXME -- make sure proper treatment of LSB/USB sidebands is done here.")
                 std::complex<double> pc_phasor = std::exp( -1.0*fImagUnit*(pcphase) );
                 //conjugate pc phasor when applied to reference station
-                if(fStationIndex == 0){pc_phasor = std::conj(pc_phasor);}
+                // if(fStationIndex == 0){pc_phasor = std::conj(pc_phasor);}
+                pc_phasor = std::conj(pc_phasor);
                 
                 pc_mag_segs.push_back(pcmag);
                 pc_phase_segs.push_back(pcphase);
