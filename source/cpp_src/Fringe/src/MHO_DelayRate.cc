@@ -42,6 +42,8 @@ MHO_DelayRate::InitializeImpl(const XArgType1* in1, const XArgType2* in2, XArgTy
         fZeroPadder.SelectAxis(TIME_AXIS); //only pad on the frequency (to lag) axis
         fZeroPadder.SetPaddedSize(np);
         fZeroPadder.SetEndPadded();
+        fZeroPadder.PreserveWorkspace();
+        fZeroPadder.DisableTagCopy();
 
         fFFTEngine.SetArgs(out);
         fFFTEngine.DeselectAllAxes();
