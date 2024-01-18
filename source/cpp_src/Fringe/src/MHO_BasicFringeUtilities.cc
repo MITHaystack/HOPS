@@ -87,11 +87,6 @@ MHO_BasicFringeUtilities::calculate_fringe_solution_info(MHO_ContainerStore* con
 
     //calculate integration time
     int nchan = paramStore->GetAs<int>("/config/nchannels");
-    std::cout<<"SUMMED WEIGHTS = "<<total_summed_weights<<std::endl;
-    std::cout<<"NCHAN = "<<nchan<<std::endl;
-    std::cout<<"AP DELTA ="<<ap_delta<<std::endl;
-    std::cout<<"EFF NPOLS = "<<eff_npols<<std::endl;
-    
     double integration_time =  (total_summed_weights*ap_delta)/(double)nchan;
     paramStore->Set("/fringe/integration_time", integration_time);
 
