@@ -82,7 +82,7 @@ class MHO_MultidimensionalFastFourierTransformFFTW:
                     DestructPlan();
                     this->fInitialized = ConstructPlan();
                     #ifdef HOPS_ENABLE_DEBUG_MSG
-                    msg_debug("operators", "initialized an FFTW3 FFT plan."<<eom);
+                    msg_debug("operators", "initialized an in-place FFTW3 FFT plan."<<eom);
                     for(std::size_t i=0; i<XArgType::rank::value; i++)
                     {
                         msg_debug("operators", "fft plan dimension: "<<i<<" has size: "<<this->fDimensionSize[i]<<", enabled? "<<this->fAxesToXForm[i]<<"."<<eom);
@@ -126,7 +126,7 @@ class MHO_MultidimensionalFastFourierTransformFFTW:
                     DestructPlan();
                     this->fInitialized = ConstructPlan();
                     #ifdef HOPS_ENABLE_DEBUG_MSG
-                    msg_debug("operators", "initialized an FFTW3 FFT plan."<<eom);
+                    msg_debug("operators", "initialized an out-of-place FFTW3 FFT plan."<<eom);
                     for(std::size_t i=0; i<XArgType::rank::value; i++)
                     {
                         msg_debug("operators", "fft plan dimension: "<<i<<" has size: "<<this->fDimensionSize[i]<<", enabled? "<<this->fAxesToXForm[i]<<"."<<eom);
@@ -156,7 +156,7 @@ class MHO_MultidimensionalFastFourierTransformFFTW:
             //check memory alignment to determine if we can avoid copying the data around
             if( HaveSameAlignment(in->GetData(), fInPtr) )
             {
-                //msg_debug("operators", "FFT input/workspace data have the same memory alignment, no copy needed" << eom);
+                //msg_info("operators", "FFT input/workspace data have the same memory alignment, no copy needed" << eom);
                 if(this->fForward){fCurrentPlan = &fPlanForwardInPlace;}
                 else{fCurrentPlan  = &fPlanBackwardInPlace;}
                 MHO_FFTWTypes<floating_point_value_type>::execute_dft_func(*fCurrentPlan,
@@ -167,7 +167,7 @@ class MHO_MultidimensionalFastFourierTransformFFTW:
             {
                 if(this->fForward){fCurrentPlan = &fPlanForward;}
                 else{fCurrentPlan  = &fPlanBackward;}
-                //msg_debug("operators", "FFT input/workspace do not have the same memory alignment, copy needed" << eom);
+                //msg_info("operators", "FFT input/workspace do not have the same memory alignment, copy needed" << eom);
                 //alignment doesn't match so we need to use memcpy
                 std::memcpy( fInPtr, in->GetData() , fTotalArraySize*sizeof(typename MHO_FFTWTypes<floating_point_value_type>::fftw_complex_type) );
                 MHO_FFTWTypes<floating_point_value_type>::execute_func(*fCurrentPlan);

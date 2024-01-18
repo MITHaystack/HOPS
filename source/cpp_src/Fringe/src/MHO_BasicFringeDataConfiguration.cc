@@ -248,13 +248,15 @@ MHO_BasicFringeDataConfiguration::configure_station_data(MHO_ScanDataStore* scan
 void
 MHO_BasicFringeDataConfiguration::init_and_exec_operators(MHO_OperatorBuilderManager* build_manager, MHO_OperatorToolbox* opToolbox, const char* category)
 {
+    std::string cat(category);
     if(build_manager == nullptr || opToolbox == nullptr)
     {
         msg_error("fringe", "cannot initialize or execute operators if builder or toolbox is missing" << eom );
         return;
     }
+    
+    msg_debug("fringe", "initializing and executing operators in "<<cat<<" category."<<eom);
 
-    std::string cat(category);
     build_manager->BuildOperatorCategory(cat);
     auto ops = opToolbox->GetOperatorsByCategory(cat);
     for(auto opIt= ops.begin(); opIt != ops.end(); opIt++)

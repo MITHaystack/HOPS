@@ -150,7 +150,16 @@ MHO_MultitonePhaseCorrectionBuilder::ExtractSamplerDelays(multitone_pcal_type* p
             std::string station_sd_path = std::string("/control/station/") + mk4id + "/" + sampler_delay_key;
             if(fParameterStore->IsPresent(sd_path)){fParameterStore->Get(sd_path, delays);}
             if(fParameterStore->IsPresent(station_sd_path)){fParameterStore->Get(station_sd_path, delays);}
-            pol_ax->InsertIndexLabelKeyValue(p, "sampler_delays", delays);
+            if(delays.size() != 0)
+            {
+                pol_ax->InsertIndexLabelKeyValue(p, "sampler_delays", delays);
+            }
+            else 
+            {
+                delays.push_back(0.0);
+                pol_ax->InsertIndexLabelKeyValue(p, "sampler_delays", delays);
+                msg_warn("initialization", "sampler delays not specified, assuming a single sampler with delay of zero." << eom);
+            }
         }
     }
 

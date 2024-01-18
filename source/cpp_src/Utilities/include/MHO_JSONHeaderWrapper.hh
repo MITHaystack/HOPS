@@ -73,8 +73,14 @@ class MHO_JSONWrapper
         {
             auto iter = fObject.find(key);
             if(iter == fObject.end()){return false;}
-            value = iter.value().get<XValueType>();
-            return true;
+            mho_json test;
+            test["test"] = value;
+            if( iter.value().type() ==  test.begin().value().type() )
+            {
+                value = iter.value().get<XValueType>();
+                return true;
+            }
+            else{return false;}
         }
 
         std::vector<std::string> DumpKeys() const
@@ -137,27 +143,42 @@ class MHO_IndexLabelInterface
         template< typename XValueType >
         void InsertIndexLabelKeyValue(std::size_t index, const std::string& key, const XValueType& value)
         {
-            std::string ikey = index2key(index);
-            if( !(fIndexLabelObjectPtr->contains(ikey) ) )
+            if(fIndexLabelObjectPtr != nullptr)
             {
-                //no such object, so insert one, make sure it gets an 'index' value
-                (*fIndexLabelObjectPtr).emplace(ikey, fDummy);
-                (*fIndexLabelObjectPtr)[ ikey ]["index"] = index;
+                std::string ikey = index2key(index);
+                if( !(fIndexLabelObjectPtr->contains(ikey) ) )
+                {
+                    //no such object, so insert one, make sure it gets an 'index' value
+                    // (*fIndexLabelObjectPtr).emplace(ikey, fDummy);
+                    (*fIndexLabelObjectPtr).emplace(ikey, fDummy);
+                    (*fIndexLabelObjectPtr)[ ikey ]["index"] = index;
+                }
+                //now update
+                mho_json obj;
+                obj[key] = value;
+                (*fIndexLabelObjectPtr)[ikey].update(obj);
             }
-            //now update
-            mho_json obj;
-            obj[key] = value;
-            (*fIndexLabelObjectPtr)[ikey].update(obj);
+            else 
+            {
+                msg_error("utilities", "cannot insert key:value pair, index label inteface is missing object!" << eom);
+            }
         }
 
         template< typename XValueType >
         bool RetrieveIndexLabelKeyValue(std::size_t index, const std::string& key, XValueType& value) const
         {
-            std::string ikey = index2key(index);
-            if( (*fIndexLabelObjectPtr)[ikey].contains(key) )
+            if(fIndexLabelObjectPtr != nullptr)
             {
-                value = (*fIndexLabelObjectPtr)[ikey][key].get<XValueType>();
-                return true;
+                std::string ikey = index2key(index);
+                if( (*fIndexLabelObjectPtr)[ikey].contains(key) )
+                {
+                    value = (*fIndexLabelObjectPtr)[ikey][key].get<XValueType>();
+                    return true;
+                }
+            }
+            else 
+            {
+                msg_error("utilities", "cannot retrieve key:value pair, index label inteface is missing object!" << eom);
             }
             return false;
         }
@@ -165,37 +186,58 @@ class MHO_IndexLabelInterface
         //get a reference to the dictionary object associated with this index
         void SetLabelObject(mho_json& obj, std::size_t index)
         {
-            std::string ikey = index2key(index);
-            if( !(fIndexLabelObjectPtr->contains(ikey) ) )
+            if(fIndexLabelObjectPtr != nullptr)
             {
-                //no such object, so insert one, make sure it gets an 'index' value
-                (*fIndexLabelObjectPtr).emplace(ikey, fDummy);
-                (*fIndexLabelObjectPtr)[ ikey ]["index"] = index;
-            }
+                std::string ikey = index2key(index);
+                if( !(fIndexLabelObjectPtr->contains(ikey) ) )
+                {
+                    //no such object, so insert one, make sure it gets an 'index' value
+                    (*fIndexLabelObjectPtr).emplace(ikey, fDummy);
+                    (*fIndexLabelObjectPtr)[ ikey ]["index"] = index;
+                }
 
-            //make sure the object also contains the index value:
-            obj["index"] = index;
-            (*fIndexLabelObjectPtr)[ikey].update(obj);
+                //make sure the object also contains the index value:
+                obj["index"] = index;
+                (*fIndexLabelObjectPtr)[ikey].update(obj);
+            }
+            else 
+            {
+                msg_error("utilities", "cannot insert label object, index label inteface is missing object!" << eom);
+            }
         }
 
         //get a reference to the dictionary object associated with this index
         mho_json& GetLabelObject(std::size_t index)
         {
-            std::string ikey = index2key(index);
-            return (*fIndexLabelObjectPtr)[ikey];
+            if(fIndexLabelObjectPtr != nullptr)
+            {
+                std::string ikey = index2key(index);
+                return (*fIndexLabelObjectPtr)[ikey];
+            }
+            else 
+            {
+                msg_error("utilities", "cannot retrieve label object, index label inteface is missing object!" << eom);
+            }
         }
 
         //get a vector of indexes which contain a key with the same name
         std::vector< std::size_t > GetMatchingIndexes(std::string& key) const
         {
             std::vector<std::size_t> idx;
-            for(std::size_t i=0; i<fIndexLabelObjectPtr->size(); i++)
+            if(fIndexLabelObjectPtr != nullptr)
             {
-                std::string ikey = index2key(i);
-                if( (*fIndexLabelObjectPtr)[ikey].contains(key) )
+                for(std::size_t i=0; i<fIndexLabelObjectPtr->size(); i++)
                 {
-                    idx.push_back( i );
+                    std::string ikey = index2key(i);
+                    if( (*fIndexLabelObjectPtr)[ikey].contains(key) )
+                    {
+                        idx.push_back( i );
+                    }
                 }
+            }
+            else 
+            {
+                msg_error("utilities", "cannot determine matching indexes, index label inteface is missing object!" << eom);
             }
             return idx;
         }
@@ -205,17 +247,24 @@ class MHO_IndexLabelInterface
         std::vector< std::size_t > GetMatchingIndexes(std::string& key, const XValueType& value) const
         {
             std::vector<std::size_t> idx;
-            for(std::size_t i=0; i<fIndexLabelObjectPtr->size(); i++)
+            if(fIndexLabelObjectPtr != nullptr)
             {
-                std::string ikey = index2key(i);
-                if( (*fIndexLabelObjectPtr)[ikey].contains(key) )
+                for(std::size_t i=0; i<fIndexLabelObjectPtr->size(); i++)
                 {
-                    XValueType v = (*fIndexLabelObjectPtr)[ikey][key].get<XValueType>();
-                    if(v == value)
+                    std::string ikey = index2key(i);
+                    if( (*fIndexLabelObjectPtr)[ikey].contains(key) )
                     {
-                        idx.push_back(i);
+                        XValueType v = (*fIndexLabelObjectPtr)[ikey][key].get<XValueType>();
+                        if(v == value)
+                        {
+                            idx.push_back(i);
+                        }
                     }
                 }
+            }
+            else 
+            {
+                msg_error("utilities", "cannot determine matching indexes, index label inteface is missing object!" << eom);
             }
             return idx;
         }

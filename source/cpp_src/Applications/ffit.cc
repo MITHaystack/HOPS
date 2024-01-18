@@ -91,7 +91,7 @@ int main(int argc, char** argv)
         msg_debug("main", "python plot generation enabled." << eom );
         py::dict plot_obj = plot_data;
         
-        //load our interface module
+        //load our interface module -- this is extremely slow!
         auto vis_module = py::module::import("hops_visualization");
         auto plot_lib = vis_module.attr("fourfit_plot");
         //call a python function on the interface class instance

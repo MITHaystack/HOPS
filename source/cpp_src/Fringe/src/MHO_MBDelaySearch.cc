@@ -108,6 +108,9 @@ MHO_MBDelaySearch::ExecuteImpl(const XArgType* in)
             ok = fDelayRateCalc.Execute();
             if(sbd_idx == 0){fDRAxis = std::get<TIME_AXIS>(sbd_dr_data);} //copy the axis just once
 
+            //off by default, except on last pass
+            fFFTEngine.DisableAxisLabelTransformation();
+
             auto sbd_dr_dim = sbd_dr_data.GetDimensionArray();
             for(std::size_t dr_idx=0; dr_idx < sbd_dr_dim[TIME_AXIS]; dr_idx++)
             {
@@ -124,6 +127,7 @@ MHO_MBDelaySearch::ExecuteImpl(const XArgType* in)
 
                 if(sbd_idx == fNSBD-1 && dr_idx == fNDR-1)
                 {
+                    fFFTEngine.EnableAxisLabelTransformation();
                     //only need to do this once on the last iter to
                     //set up the mbd delay axis (in frequency space)
                     auto mbd_ax = &(std::get<0>(fMBDWorkspace) );
