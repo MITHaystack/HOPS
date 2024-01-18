@@ -144,16 +144,65 @@ MHO_Message::operator<<(const XStreamableItemType& item)
     return *fInstance;
 }
 
-//abuse the comma operator to smash the lock/unlock onto the same line for the usage macros
-#define msg_fatal(xKEY, xCONTENT) MHO_Message::GetInstance().Lock(), MHO_Message::GetInstance().SendMessage(eFatal,xKEY) << xCONTENT, MHO_Message::GetInstance().Unlock();
-#define msg_error(xKEY, xCONTENT) MHO_Message::GetInstance().Lock(), MHO_Message::GetInstance().SendMessage(eError,xKEY) << xCONTENT, MHO_Message::GetInstance().Unlock();
-#define msg_warn(xKEY, xCONTENT) MHO_Message::GetInstance().Lock(), MHO_Message::GetInstance().SendMessage(eWarning,xKEY) << xCONTENT, MHO_Message::GetInstance().Unlock();
-#define msg_status(xKEY, xCONTENT) MHO_Message::GetInstance().Lock(), MHO_Message::GetInstance().SendMessage(eStatus,xKEY) << xCONTENT, MHO_Message::GetInstance().Unlock();
-#define msg_info(xKEY, xCONTENT) MHO_Message::GetInstance().Lock(), MHO_Message::GetInstance().SendMessage(eInfo,xKEY) << xCONTENT, MHO_Message::GetInstance().Unlock();
+//abuse do-while for multiline message macros
 
-#ifdef HOPS_ENABLE_DEBUG_MSG  //this is defined as a compiler flag via build system
+//FATAL/////////////////////////////////////////////////////////////////////////
+
+#define msg_fatal(xKEY, xCONTENT) \
+do { \
+    MHO_Message::GetInstance().Lock(); \
+    MHO_Message::GetInstance().SendMessage(eFatal,xKEY) << xCONTENT; \
+    MHO_Message::GetInstance().Unlock(); \
+} \
+while(0)
+
+//ERROR/////////////////////////////////////////////////////////////////////////
+#define msg_error(xKEY, xCONTENT) \
+do { \
+    MHO_Message::GetInstance().Lock(); \
+    MHO_Message::GetInstance().SendMessage(eError,xKEY) << xCONTENT; \
+    MHO_Message::GetInstance().Unlock(); \
+} \
+while(0)
+
+//WARNING///////////////////////////////////////////////////////////////////////
+#define msg_warn(xKEY, xCONTENT) \
+do { \
+    MHO_Message::GetInstance().Lock(); \
+    MHO_Message::GetInstance().SendMessage(eWarning,xKEY) << xCONTENT; \
+    MHO_Message::GetInstance().Unlock(); \
+} \
+while(0)
+
+//STATUS////////////////////////////////////////////////////////////////////////
+#define msg_status(xKEY, xCONTENT) \
+do { \
+    MHO_Message::GetInstance().Lock(); \
+    MHO_Message::GetInstance().SendMessage(eStatus,xKEY) << xCONTENT; \
+    MHO_Message::GetInstance().Unlock(); \
+} \
+while(0)
+
+//INFO//////////////////////////////////////////////////////////////////////////
+#define msg_info(xKEY, xCONTENT) \
+do { \
+    MHO_Message::GetInstance().Lock(); \
+    MHO_Message::GetInstance().SendMessage(eInfo,xKEY) << xCONTENT; \
+    MHO_Message::GetInstance().Unlock(); \
+} \
+while(0)
+
 //allow debug messages when debug flag is active
-#define msg_debug(xKEY, xCONTENT) MHO_Message::GetInstance().Lock(), MHO_Message::GetInstance().SendMessage(eDebug,xKEY) << xCONTENT, MHO_Message::GetInstance().Unlock();
+#ifdef HOPS_ENABLE_DEBUG_MSG  //this is defined as a compiler flag via build system
+
+//DEBUG/////////////////////////////////////////////////////////////////////////
+#define msg_debug(xKEY, xCONTENT) \
+    do { \
+        MHO_Message::GetInstance().Lock(); \
+        MHO_Message::GetInstance().SendMessage(eDebug,xKEY) << xCONTENT; \
+        MHO_Message::GetInstance().Unlock(); \
+    } \
+    while(0)
 #else
 //debug is not enabled, so we remove them from compilation
 #define msg_debug(xKEY, xCONTENT)
