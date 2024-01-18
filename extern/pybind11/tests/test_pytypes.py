@@ -1,11 +1,23 @@
 import contextlib
 import sys
+import types
 
 import pytest
 
 import env
 from pybind11_tests import detailed_error_messages_enabled
 from pybind11_tests import pytypes as m
+
+
+def test_obj_class_name():
+    assert m.obj_class_name(None) == "NoneType"
+    assert m.obj_class_name(list) == "list"
+    assert m.obj_class_name([]) == "list"
+
+
+def test_handle_from_move_only_type_with_operator_PyObject():
+    assert m.handle_from_move_only_type_with_operator_PyObject_ncnst()
+    assert m.handle_from_move_only_type_with_operator_PyObject_const()
 
 
 def test_bool(doc):
@@ -18,6 +30,22 @@ def test_int(doc):
 
 def test_iterator(doc):
     assert doc(m.get_iterator) == "get_iterator() -> Iterator"
+
+
+@pytest.mark.parametrize(
+    ("pytype", "from_iter_func"),
+    [
+        (frozenset, m.get_frozenset_from_iterable),
+        (list, m.get_list_from_iterable),
+        (set, m.get_set_from_iterable),
+        (tuple, m.get_tuple_from_iterable),
+    ],
+)
+def test_from_iterable(pytype, from_iter_func):
+    my_iter = iter(range(10))
+    s = from_iter_func(my_iter)
+    assert type(s) == pytype
+    assert s == pytype(range(10))
 
 
 def test_iterable(doc):
@@ -59,7 +87,7 @@ def test_list(capture, doc):
     assert doc(m.print_list) == "print_list(arg0: list) -> None"
 
 
-def test_none(capture, doc):
+def test_none(doc):
     assert doc(m.get_none) == "get_none() -> None"
     assert doc(m.print_none) == "print_none(arg0: None) -> None"
 
@@ -146,6 +174,31 @@ def test_dict(capture, doc):
     assert m.dict_keyword_constructor() == {"x": 1, "y": 2, "z": 3}
 
 
+class CustomContains:
+    d = {"key": None}
+
+    def __contains__(self, m):
+        return m in self.d
+
+
+@pytest.mark.parametrize(
+    ("arg", "func"),
+    [
+        (set(), m.anyset_contains),
+        ({}, m.dict_contains),
+        (CustomContains(), m.obj_contains),
+    ],
+)
+@pytest.mark.xfail("env.PYPY and sys.pypy_version_info < (7, 3, 10)", strict=False)
+def test_unhashable_exceptions(arg, func):
+    class Unhashable:
+        __hash__ = None
+
+    with pytest.raises(TypeError) as exc_info:
+        func(arg, Unhashable())
+    assert "unhashable type:" in str(exc_info.value)
+
+
 def test_tuple():
     assert m.tuple_no_args() == ()
     assert m.tuple_ssize_t() == ()
@@ -197,6 +250,20 @@ def test_str(doc):
         m.str_from_string_from_str(ucs_surrogates_str)
 
 
+@pytest.mark.parametrize(
+    "func",
+    [
+        m.str_from_bytes_input,
+        m.str_from_cstr_input,
+        m.str_from_std_string_input,
+    ],
+)
+def test_surrogate_pairs_unicode_error(func):
+    input_str = "\ud83d\ude4f".encode("utf-8", "surrogatepass")
+    with pytest.raises(UnicodeDecodeError):
+        func(input_str)
+
+
 def test_bytes(doc):
     assert m.bytes_from_char_ssize_t().decode() == "green"
     assert m.bytes_from_char_size_t().decode() == "purple"
@@ -206,7 +273,7 @@ def test_bytes(doc):
     assert doc(m.bytes_from_str) == "bytes_from_str() -> bytes"
 
 
-def test_bytearray(doc):
+def test_bytearray():
     assert m.bytearray_from_char_ssize_t().decode() == "$%"
     assert m.bytearray_from_char_size_t().decode() == "@$!"
     assert m.bytearray_from_string().decode() == "foo"
@@ -253,6 +320,19 @@ def test_capsule(capture):
     )
 
     with capture:
+        a = m.return_capsule_with_destructor_3()
+        del a
+        pytest.gc_collect()
+    assert (
+        capture.unordered
+        == """
+        creating capsule
+        destructing capsule: 1233
+        original name: oname
+    """
+    )
+
+    with capture:
         a = m.return_renamed_capsule_with_destructor_2()
         del a
         pytest.gc_collect()
@@ -274,6 +354,17 @@ def test_capsule(capture):
         == """
         created capsule (1234, 'pointer type description')
         destructing capsule (1234, 'pointer type description')
+    """
+    )
+
+    with capture:
+        a = m.return_capsule_with_explicit_nullptr_dtor()
+        del a
+        pytest.gc_collect()
+    assert (
+        capture.unordered
+        == """
+        creating capsule with explicit nullptr dtor
     """
     )
 
@@ -307,7 +398,7 @@ def test_accessors():
     assert d["implicit_list"] == [1, 2, 3]
     assert all(x in TestObject.__dict__ for x in d["implicit_dict"])
 
-    assert m.tuple_accessor(tuple()) == (0, 1, 2)
+    assert m.tuple_accessor(()) == (0, 1, 2)
 
     d = m.accessor_assignment()
     assert d["get"] == 0
@@ -315,6 +406,14 @@ def test_accessors():
     assert d["set"] == 1
     assert d["deferred_set"] == 1
     assert d["var"] == 99
+
+
+def test_accessor_moves():
+    inc_refs = m.accessor_moves()
+    if inc_refs:
+        assert inc_refs == [1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0]
+    else:
+        pytest.skip("Not defined: PYBIND11_HANDLE_REF_DEBUG")
 
 
 def test_constructors():
@@ -389,7 +488,7 @@ def test_pybind11_str_raw_str():
     assert cvt({}) == "{}"
     assert cvt({3: 4}) == "{3: 4}"
     assert cvt(set()) == "set()"
-    assert cvt({3, 3}) == "{3}"
+    assert cvt({3}) == "{3}"
 
     valid_orig = "Ǳ"
     valid_utf8 = valid_orig.encode("utf-8")
@@ -450,7 +549,7 @@ def test_print(capture):
     assert str(excinfo.value) == "Unable to convert call argument " + (
         "'1' of type 'UnregisteredType' to Python object"
         if detailed_error_messages_enabled
-        else "to Python object (#define PYBIND11_DETAILED_ERROR_MESSAGES or compile in debug mode for details)"
+        else "'1' to Python object (#define PYBIND11_DETAILED_ERROR_MESSAGES or compile in debug mode for details)"
     )
 
 
@@ -507,7 +606,7 @@ def test_issue2361():
 
 
 @pytest.mark.parametrize(
-    "method, args, fmt, expected_view",
+    ("method", "args", "fmt", "expected_view"),
     [
         (m.test_memoryview_object, (b"red",), "B", b"red"),
         (m.test_memoryview_buffer_info, (b"green",), "B", b"green"),
@@ -565,7 +664,7 @@ def test_memoryview_from_memory():
 
 
 def test_builtin_functions():
-    assert m.get_len([i for i in range(42)]) == 42
+    assert m.get_len(list(range(42))) == 42
     with pytest.raises(TypeError) as exc_info:
         m.get_len(i for i in range(42))
     assert str(exc_info.value) in [
@@ -609,7 +708,7 @@ def test_pass_bytes_or_unicode_to_string_types():
 
 
 @pytest.mark.parametrize(
-    "create_weakref, create_weakref_with_callback",
+    ("create_weakref", "create_weakref_with_callback"),
     [
         (m.weakref_from_handle, m.weakref_from_handle_and_function),
         (m.weakref_from_object, m.weakref_from_object_and_function),
@@ -624,7 +723,7 @@ def test_weakref(create_weakref, create_weakref_with_callback):
 
     callback_called = False
 
-    def callback(wr):
+    def callback(_):
         nonlocal callback_called
         callback_called = True
 
@@ -644,7 +743,7 @@ def test_weakref(create_weakref, create_weakref_with_callback):
 
 
 @pytest.mark.parametrize(
-    "create_weakref, has_callback",
+    ("create_weakref", "has_callback"),
     [
         (m.weakref_from_handle, False),
         (m.weakref_from_object, False),
@@ -662,10 +761,7 @@ def test_weakref_err(create_weakref, has_callback):
     ob = C()
     # Should raise TypeError on CPython
     with pytest.raises(TypeError) if not env.PYPY else contextlib.nullcontext():
-        if has_callback:
-            _ = create_weakref(ob, callback)
-        else:
-            _ = create_weakref(ob)
+        _ = create_weakref(ob, callback) if has_callback else create_weakref(ob)
 
 
 def test_cpp_iterators():
@@ -698,3 +794,154 @@ def test_implementation_details():
 def test_external_float_():
     r1 = m.square_float_(2.0)
     assert r1 == 4.0
+
+
+def test_tuple_rvalue_getter():
+    pop = 1000
+    tup = tuple(range(pop))
+    m.tuple_rvalue_getter(tup)
+
+
+def test_list_rvalue_getter():
+    pop = 1000
+    my_list = list(range(pop))
+    m.list_rvalue_getter(my_list)
+
+
+def test_populate_dict_rvalue():
+    pop = 1000
+    my_dict = {i: i for i in range(pop)}
+    assert m.populate_dict_rvalue(pop) == my_dict
+
+
+def test_populate_obj_str_attrs():
+    pop = 1000
+    o = types.SimpleNamespace(**{str(i): i for i in range(pop)})
+    new_o = m.populate_obj_str_attrs(o, pop)
+    new_attrs = {k: v for k, v in new_o.__dict__.items() if not k.startswith("_")}
+    assert all(isinstance(v, str) for v in new_attrs.values())
+    assert len(new_attrs) == pop
+
+
+@pytest.mark.parametrize(
+    ("a", "b"),
+    [("foo", "bar"), (1, 2), (1.0, 2.0), (list(range(3)), list(range(3, 6)))],
+)
+def test_inplace_append(a, b):
+    expected = a + b
+    assert m.inplace_append(a, b) == expected
+
+
+@pytest.mark.parametrize(
+    ("a", "b"), [(3, 2), (3.0, 2.0), (set(range(3)), set(range(2)))]
+)
+def test_inplace_subtract(a, b):
+    expected = a - b
+    assert m.inplace_subtract(a, b) == expected
+
+
+@pytest.mark.parametrize(("a", "b"), [(3, 2), (3.0, 2.0), ([1], 3)])
+def test_inplace_multiply(a, b):
+    expected = a * b
+    assert m.inplace_multiply(a, b) == expected
+
+
+@pytest.mark.parametrize(("a", "b"), [(6, 3), (6.0, 3.0)])
+def test_inplace_divide(a, b):
+    expected = a / b
+    assert m.inplace_divide(a, b) == expected
+
+
+@pytest.mark.parametrize(
+    ("a", "b"),
+    [
+        (False, True),
+        (
+            set(),
+            {
+                1,
+            },
+        ),
+    ],
+)
+def test_inplace_or(a, b):
+    expected = a | b
+    assert m.inplace_or(a, b) == expected
+
+
+@pytest.mark.parametrize(
+    ("a", "b"),
+    [
+        (True, False),
+        (
+            {1, 2, 3},
+            {
+                1,
+            },
+        ),
+    ],
+)
+def test_inplace_and(a, b):
+    expected = a & b
+    assert m.inplace_and(a, b) == expected
+
+
+@pytest.mark.parametrize(("a", "b"), [(8, 1), (-3, 2)])
+def test_inplace_lshift(a, b):
+    expected = a << b
+    assert m.inplace_lshift(a, b) == expected
+
+
+@pytest.mark.parametrize(("a", "b"), [(8, 1), (-2, 2)])
+def test_inplace_rshift(a, b):
+    expected = a >> b
+    assert m.inplace_rshift(a, b) == expected
+
+
+def test_tuple_nonempty_annotations(doc):
+    assert (
+        doc(m.annotate_tuple_float_str)
+        == "annotate_tuple_float_str(arg0: tuple[float, str]) -> None"
+    )
+
+
+def test_tuple_empty_annotations(doc):
+    assert (
+        doc(m.annotate_tuple_empty) == "annotate_tuple_empty(arg0: tuple[()]) -> None"
+    )
+
+
+def test_dict_annotations(doc):
+    assert (
+        doc(m.annotate_dict_str_int)
+        == "annotate_dict_str_int(arg0: dict[str, int]) -> None"
+    )
+
+
+def test_list_annotations(doc):
+    assert doc(m.annotate_list_int) == "annotate_list_int(arg0: list[int]) -> None"
+
+
+def test_set_annotations(doc):
+    assert doc(m.annotate_set_str) == "annotate_set_str(arg0: set[str]) -> None"
+
+
+def test_iterable_annotations(doc):
+    assert (
+        doc(m.annotate_iterable_str)
+        == "annotate_iterable_str(arg0: Iterable[str]) -> None"
+    )
+
+
+def test_iterator_annotations(doc):
+    assert (
+        doc(m.annotate_iterator_int)
+        == "annotate_iterator_int(arg0: Iterator[int]) -> None"
+    )
+
+
+def test_fn_annotations(doc):
+    assert (
+        doc(m.annotate_fn)
+        == "annotate_fn(arg0: Callable[[list[str], str], int]) -> None"
+    )

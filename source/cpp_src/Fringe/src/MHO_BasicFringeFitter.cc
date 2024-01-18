@@ -181,6 +181,11 @@ void MHO_BasicFringeFitter::Initialize()
             msg_fatal("fringe", "could not find visibility or weight objects with names (vis, weight)." << eom);
             std::exit(1);
         }
+        
+        //safety check
+        if(vis_data->GetSize() == 0){msg_fatal("fringe", "visibility data has size zero." << eom); std::exit(1);}
+        if(wt_data->GetSize() == 0){msg_fatal("fringe", "weight data has size zero." << eom); std::exit(1);}
+        
         std::string vis_uuid = vis_data->GetObjectUUID().as_string();
         std::string wt_uuid = wt_data->GetObjectUUID().as_string();
         fParameterStore.Set("/uuid/visibilities", vis_uuid);
@@ -226,9 +231,6 @@ void MHO_BasicFringeFitter::Initialize()
         ////////////////////////////////////////////////////////////////////////////
         MHO_InitialFringeInfo::configure_reference_frequency(&fContainerStore, &fParameterStore);
 
-        //calculate useful quantities to stash in the parameter store
-        MHO_InitialFringeInfo::precalculate_quantities(&fContainerStore, &fParameterStore);
-
         ////////////////////////////////////////////////////////////////////////////
         //CONFIGURE THE OPERATOR BUILD MANAGER
         ////////////////////////////////////////////////////////////////////////////
@@ -251,6 +253,9 @@ void MHO_BasicFringeFitter::Initialize()
         MHO_BasicFringeDataConfiguration::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "labeling");
         MHO_BasicFringeDataConfiguration::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "selection");
 
+        //calculate useful quantities to stash in the parameter store
+        MHO_InitialFringeInfo::precalculate_quantities(&fContainerStore, &fParameterStore);
+        
         //safety check
         if(vis_data->GetSize() == 0){msg_fatal("fringe", "no visibility data left after cuts." << eom); std::exit(1);}
         if(wt_data->GetSize() == 0){msg_fatal("fringe", "no weight data left after cuts." << eom); std::exit(1);}
