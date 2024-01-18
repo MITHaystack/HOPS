@@ -160,7 +160,7 @@ class MHO_IndexLabelInterface
             }
             else 
             {
-                msg_error("utilities", "cannot insert key:value pair, index label inteface is missing object!" << eom);
+                msg_error("utilities", "cannot insert key:value pair, index label interface is missing object!" << eom);
             }
         }
 
@@ -178,7 +178,7 @@ class MHO_IndexLabelInterface
             }
             else 
             {
-                msg_error("utilities", "cannot retrieve key:value pair, index label inteface is missing object!" << eom);
+                msg_error("utilities", "cannot retrieve key:value pair, index label interface is missing object!" << eom);
             }
             return false;
         }
@@ -202,7 +202,7 @@ class MHO_IndexLabelInterface
             }
             else 
             {
-                msg_error("utilities", "cannot insert label object, index label inteface is missing object!" << eom);
+                msg_error("utilities", "cannot insert label object, index label interface is missing object!" << eom);
             }
         }
 
@@ -216,7 +216,8 @@ class MHO_IndexLabelInterface
             }
             else 
             {
-                msg_error("utilities", "cannot retrieve label object, index label inteface is missing object!" << eom);
+                msg_error("utilities", "cannot retrieve label object, index label interface is missing object!" << eom);
+                return fDummy;
             }
         }
 
@@ -237,7 +238,7 @@ class MHO_IndexLabelInterface
             }
             else 
             {
-                msg_error("utilities", "cannot determine matching indexes, index label inteface is missing object!" << eom);
+                msg_error("utilities", "cannot determine matching indexes, index label interface is missing object!" << eom);
             }
             return idx;
         }
@@ -264,7 +265,7 @@ class MHO_IndexLabelInterface
             }
             else 
             {
-                msg_error("utilities", "cannot determine matching indexes, index label inteface is missing object!" << eom);
+                msg_error("utilities", "cannot determine matching indexes, index label interface is missing object!" << eom);
             }
             return idx;
         }
