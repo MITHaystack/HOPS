@@ -36,6 +36,7 @@ class MHO_EndZeroPadder:
             fFlipped = false; //chooses which end we pad
             fNormFXMode = true; //when enabled, then when flipped, copies the last element to N/2
             fPreserveWorkspace = false; //when false tmp workspace will be destroyed after every use
+            fCopyTags = true; //copy tags if available is enabled by default
             fTmpWorkspace = nullptr;
         };
 
@@ -58,6 +59,9 @@ class MHO_EndZeroPadder:
 
         virtual void PreserveWorkspace(){fPreserveWorkspace = true;} //keep the memory reserved for the workspace around after exectution
         virtual void DoNotPreserveWorkspace(){fPreserveWorkspace = false;} //delete memory after execution
+
+        virtual void DisableTagCopy(){fCopyTags = false;}
+        virtual void EnableTagCopy(){fCopyTags = true;}
 
         //sometimes we may want to select/deselect particular dimensions of the x-form
         //default is to transform along every dimension, but that may not always be needed
@@ -196,7 +200,7 @@ class MHO_EndZeroPadder:
         {
             for(size_t i = 0; i < XArgType::rank::value; i++) //apply to all axes
             {
-                TransformAxis axis_transformer(fAxesToXForm[i], fFlipped);
+                TransformAxis axis_transformer(fAxesToXForm[i], fFlipped, fCopyTags);
                 apply_at2< typename XArgType::axis_pack_tuple_type, TransformAxis >( *in, *out, i, axis_transformer);
             }
             out->CopyTags(*in); //make sure the table tags get copied
@@ -208,9 +212,10 @@ class MHO_EndZeroPadder:
         class TransformAxis
         {
             public:
-                TransformAxis(bool modify, bool flipped):
+                TransformAxis(bool modify, bool flipped, bool copy_tags):
                     fModify(modify),
-                    fFlipped(flipped)
+                    fFlipped(flipped),
+                    fCopyTags(copy_tags)
                 {};
 
                 ~TransformAxis(){};
@@ -219,7 +224,8 @@ class MHO_EndZeroPadder:
                 template< typename XAxisType >
                 void operator()(const XAxisType& axis1, XAxisType& axis2)
                 {
-                    axis2.Copy(axis1);
+                    if(!fCopyTags){CopyLabelsWithoutTags(axis1, axis2);}
+                    else{ axis2.Copy(axis1); }
                     if(!fModify){return;} //just copy this axis
                 };
 
@@ -227,7 +233,8 @@ class MHO_EndZeroPadder:
                 {
                     std::size_t ax1_size = axis1.GetSize();
                     std::size_t ax2_size = axis2.GetSize();
-                    axis2.Copy(axis1);
+                    if(!fCopyTags){CopyLabelsWithoutTags(axis1, axis2);}
+                    else{ axis2.Copy(axis1); }
                     if(!fModify){return;} //just copy this axis
                     axis2.Resize(ax2_size);
                     //assumes uniform labeling, probably ok as we only need this for FFTs
@@ -254,7 +261,8 @@ class MHO_EndZeroPadder:
                 {
                     std::size_t ax1_size = axis1.GetSize();
                     std::size_t ax2_size = axis2.GetSize();
-                    axis2.Copy(axis1);
+                    if(!fCopyTags){CopyLabelsWithoutTags(axis1, axis2);}
+                    else{ axis2.Copy(axis1); }
                     if(!fModify){return;} //just copy this axis
                     axis2.Resize(ax2_size);
                     //assumes uniform labeling, probably ok as we only need this for FFTs
@@ -278,8 +286,21 @@ class MHO_EndZeroPadder:
                 }
 
             private:
+                
+                template< typename XAxisType >
+                void CopyLabelsWithoutTags(const XAxisType& axis1, XAxisType& axis2)
+                {
+                    //just copy axis labels
+                    std::size_t ax1_size = axis1.GetSize();
+                    std::size_t ax2_size = axis2.GetSize();
+                    std::size_t s = std::min(ax1_size, ax2_size);
+                    for(std::size_t i=0;i<s;i++){axis2(i) = axis1(i);}
+                }
+                
+                
                 bool fModify;
                 bool fFlipped;
+                bool fCopyTags;
         };
 
         void ConditionallyResizeOutput(const std::array<std::size_t, XArgType::rank::value>& dims, XArgType* out)
@@ -322,6 +343,7 @@ class MHO_EndZeroPadder:
         bool fFlipped;
         bool fNormFXMode;
         bool fPreserveWorkspace;
+        bool fCopyTags;
 
         std::size_t fPaddingFactor;
         std::size_t fPaddedSize;
