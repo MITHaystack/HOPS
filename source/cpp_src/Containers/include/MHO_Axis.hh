@@ -301,6 +301,15 @@ class MHO_Axis:
         template<typename XStream> void StreamInData_V0(XStream& s)
         {
             s >> static_cast< MHO_VectorContainer< XValueType >& >(*this);
+            //make sure we point to the correct index_labels object
+            if(this->fObject.contains("index_labels"))
+            {
+                this->SetIndexLabelObject( &(this->fObject["index_labels"] ) );
+            }
+            if(this->fObject.contains("interval_labels"))
+            {
+                this->SetIntervalLabelObject( &(this->fObject["interval_labels"] ) );
+            }
         }
 
         template<typename XStream> void StreamOutData_V0(XStream& s) const

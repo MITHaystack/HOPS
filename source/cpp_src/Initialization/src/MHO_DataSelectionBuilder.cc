@@ -24,6 +24,17 @@ MHO_DataSelectionBuilder::Build()
         if(fParameterStore->IsPresent(polprod_set_key))
         {
             do_select_polprods = fParameterStore->Get(polprod_set_key, pp_vec);
+            
+            if(do_select_polprods)
+            {
+                std::stringstream ss;
+                for(std::size_t i=0; i<pp_vec.size(); i++)
+                {
+                    ss << pp_vec[i];
+                    if(i != pp_vec.size() - 1){ss <<", "; }
+                }
+                msg_debug("initialization", "will select data by pol-products: {"<<ss.str()<<"}."<< eom);
+            }
         }
 
         bool do_select_chans = false;
@@ -32,6 +43,17 @@ MHO_DataSelectionBuilder::Build()
         if(fParameterStore->IsPresent(select_chan_key))
         {
             do_select_chans = fParameterStore->Get(select_chan_key, chans);
+            if(do_select_chans)
+            {
+                std::stringstream ss;
+                for(std::size_t i=0; i<chans.size(); i++)
+                {
+                    ss << chans[i];
+                    if(i != chans.size() - 1){ss <<", "; }
+                }
+                msg_debug("initialization", "will select data by channels: "<<ss.str()<<"."<< eom);
+            }
+            
         }
 
         bool do_select_aps = false;
@@ -44,6 +66,11 @@ MHO_DataSelectionBuilder::Build()
             fParameterStore->Get(start_key, start);
             fParameterStore->Get(stop_key, stop);
             if(start != 0 || stop != 0){do_select_aps = true;}
+            
+            if(do_select_aps)
+            {
+                msg_debug("initialization", "will select data by AP, start offset: "<<start<<" and stop offset: "<<stop<<"." << eom);
+            }
 
             //negative values are seconds past scan start or before stop
             if(start > 0 || stop > 0) //in original fourfit positive values imply selection by minute past the last hour,
@@ -127,7 +154,6 @@ MHO_DataSelectionBuilder::Build()
         if(do_select_aps)
         {
             std::vector<std::size_t> selected_aps;
-            msg_debug("initialization", "data selection, selecting APs."<< eom);
             auto ap_ax_ptr = &(std::get<TIME_AXIS>(*vis_data));
             std::size_t naps = ap_ax_ptr->GetSize();
             double first_t = ap_ax_ptr->at(0);
@@ -140,6 +166,8 @@ MHO_DataSelectionBuilder::Build()
                 //std::cout<<" t, stop, start, begin, end = "<< t <<", "<< (last_t + stop)<<", "<< (first_t - start)<<", " << first_t<<", "<<last_t<< std::endl;
                 if( t <= (last_t + (double)stop) && t >= (first_t - (double)start) ){selected_aps.push_back(i);}
             }
+
+            msg_debug("initialization", "data selection, selecting "<<selected_aps.size()<<" APs."<< eom);
 
             if(selected_aps.size() == 0)
             {
