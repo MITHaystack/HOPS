@@ -4,8 +4,8 @@ updates:
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
-      interval: "daily"
-    ignore:
-      # Official actions have moving tags like v1
-      - dependency-name: "actions/*"
-        update-types: ["version-update:semver-minor", "version-update:semver-patch"]
+      interval: "weekly"
+    groups:
+      actions:
+        patterns:
+          - "*"

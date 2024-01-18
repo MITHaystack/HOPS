@@ -157,7 +157,7 @@ py::array mkarray_via_buffer(size_t n) {
     do {                                                                                          \
         (s).bool_ = (i) % 2 != 0;                                                                 \
         (s).uint_ = (uint32_t) (i);                                                               \
-        (s).float_ = (float) (i) *1.5f;                                                           \
+        (s).float_ = (float) (i) * 1.5f;                                                          \
         (s).ldbl_ = (long double) (i) * -2.5L;                                                    \
     } while (0)
 
@@ -301,7 +301,7 @@ struct B {};
 TEST_SUBMODULE(numpy_dtypes, m) {
     try {
         py::module_::import("numpy");
-    } catch (...) {
+    } catch (const py::error_already_set &) {
         return;
     }
 
