@@ -131,9 +131,7 @@ MHO_InitialFringeInfo::compute_total_summed_weights(MHO_ContainerStore* conStore
     double total_ap_frac = temp_weights[0];
     paramStore->Set("/fringe/total_summed_weights", total_ap_frac);
     wt_data->Insert("total_summed_weights", total_ap_frac);
-    
-    std::cout<<"TOTAL SUMMED WEIGHTS!"<<total_ap_frac<<std::endl;
-    
+
 }
 
 void
@@ -149,7 +147,7 @@ MHO_InitialFringeInfo::precalculate_quantities(MHO_ContainerStore* conStore, MHO
     auto ap_ax = &(std::get<TIME_AXIS>(*vis_data));
     if(ap_ax->GetSize() <= 1)
     {
-        msg_fatal("main", "could not determine AP period for data." << eom);
+        msg_fatal("main", "could not determine AP period for data since AP axis is of size: "<< ap_ax->GetSize() << eom);
         std::exit(1);
     }
 
