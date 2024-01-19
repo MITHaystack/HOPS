@@ -68,7 +68,7 @@ MHO_VexInfoExtractor::extract_clock_model(const mho_json& vexInfo, MHO_Parameter
     std::string ref_clock_key = "/$CLOCK/" + paramStore->GetAs<std::string>("/ref_station/clock_ref");
 
     mho_json::json_pointer ref_clock_pointer(ref_clock_key);
-    auto ref_clock = vexInfo.at( ref_clock_pointer.to_string() );
+    auto ref_clock = vexInfo.at(ref_clock_pointer);
     if( !ref_clock.contains("clock_early"))
     {
         msg_error("fringe", "root file missing $CLOCK information for reference station." << eom );
@@ -93,7 +93,7 @@ MHO_VexInfoExtractor::extract_clock_model(const mho_json& vexInfo, MHO_Parameter
     
     std::string rem_clock_key = "/$CLOCK/" + paramStore->GetAs<std::string>("/rem_station/clock_ref");
     mho_json::json_pointer rem_clock_pointer(rem_clock_key);
-    auto rem_clock = vexInfo.at(rem_clock_pointer.to_string());
+    auto rem_clock = vexInfo.at(rem_clock_pointer);
     if( !rem_clock.contains("clock_early"))
     {
         msg_error("fringe", "root file missing $CLOCK information for remote station."<< eom );
@@ -129,11 +129,11 @@ MHO_VexInfoExtractor::extract_sampler_bits(const mho_json& vexInfo, MHO_Paramete
 
     std::string mode_tracks_loc = "/$MODE/" + modeName + "/$TRACKS";
     mho_json::json_pointer mode_tracks_jptr(mode_tracks_loc);
-    auto mode_tracks = vexInfo.at(mode_tracks_jptr.to_string());
+    auto mode_tracks = vexInfo.at(mode_tracks_jptr);
     
     std::string tracks_loc = "/$TRACKS";
     mho_json::json_pointer tracks_jptr(tracks_loc);
-    auto tracks = vexInfo.at(tracks_jptr.to_string());
+    auto tracks = vexInfo.at(tracks_jptr);
 
     //we are given a list of tracks (most likely only one) so loop until 
     //we find both the ref and rem station in the 'qualifiers' section
@@ -167,11 +167,11 @@ MHO_VexInfoExtractor::extract_sample_rate(const mho_json& vexInfo, MHO_Parameter
 
     std::string mode_freq_loc = "/$MODE/" + modeName + "/$FREQ";
     mho_json::json_pointer mode_freq_jptr(mode_freq_loc);
-    auto mode_freq = vexInfo.at(mode_freq_jptr.to_string());
+    auto mode_freq = vexInfo.at(mode_freq_jptr);
     
     std::string freq_loc = "/$FREQ";
     mho_json::json_pointer freq_jptr(freq_loc);
-    auto freqs = vexInfo.at(freq_jptr.to_string());
+    auto freqs = vexInfo.at(freq_jptr);
 
     //we are given a list of tracks (most likely only one) so loop until 
     //we find both the ref and rem station in the 'qualifiers' section
@@ -238,7 +238,7 @@ MHO_VexInfoExtractor::extract_vex_info(const mho_json& vexInfo, MHO_ParameterSto
     //the $STATION section, but to do that we would need to know the station 2-char id,
     //but at this point all we have is the single-char mk4_id
     mho_json::json_pointer site_pointer("/$SITE");
-    auto sites = vexInfo.at(site_pointer.to_string());
+    auto sites = vexInfo.at(site_pointer);
     if(sites.size() < 1)
     {
         msg_error("fringe", "root file contains missing or ambiguous $SITE information." << eom );
@@ -300,7 +300,7 @@ MHO_VexInfoExtractor::extract_vex_info(const mho_json& vexInfo, MHO_ParameterSto
     std::string rem_id = paramStore->GetAs<std::string>("/rem_station/site_id");
 
     mho_json::json_pointer station_pointer("/$STATION");
-    auto stations = vexInfo.at(station_pointer.to_string());
+    auto stations = vexInfo.at(station_pointer);
     if(stations.size() < 2)
     {
         msg_error("fringe", "root file contains missing or $STATION information." << eom );
@@ -337,7 +337,7 @@ MHO_VexInfoExtractor::extract_vex_info(const mho_json& vexInfo, MHO_ParameterSto
 
     //get scan name and source name
     mho_json::json_pointer sched_pointer("/$SCHED");
-    auto sched = vexInfo.at(sched_pointer.to_string());
+    auto sched = vexInfo.at(sched_pointer);
     if(sched.size() != 1)
     {
         msg_error("fringe", "root file contains missing or ambiguous $SCHED information." << eom );
@@ -353,7 +353,7 @@ MHO_VexInfoExtractor::extract_vex_info(const mho_json& vexInfo, MHO_ParameterSto
     //get the source information
     std::string src_loc = "/$SCHED/" + scnName + "/source/0/source";
     mho_json::json_pointer src_jptr(src_loc);
-    std::string srcName = vexInfo.at(src_jptr.to_string()).get<std::string>();
+    std::string srcName = vexInfo.at(src_jptr).get<std::string>();
     paramStore->Set("/vex/scan/source/name",srcName);
 
     mho_json src_section = vexInfo["$SOURCE"];
@@ -366,12 +366,12 @@ MHO_VexInfoExtractor::extract_vex_info(const mho_json& vexInfo, MHO_ParameterSto
     //get the fourfit reference time 
     std::string frt_loc = "/$SCHED/" + scnName + "/fourfit_reftime";
     mho_json::json_pointer frt_jptr(frt_loc);
-    std::string frt_string = vexInfo.at(frt_jptr.to_string()).get<std::string>();
+    std::string frt_string = vexInfo.at(frt_jptr).get<std::string>();
     paramStore->Set("/vex/scan/fourfit_reftime", frt_string);
     
     std::string start_loc = "/$SCHED/" + scnName + "/start";
     mho_json::json_pointer start_jptr(start_loc);
-    std::string start_string = vexInfo.at(start_jptr.to_string()).get<std::string>();
+    std::string start_string = vexInfo.at(start_jptr).get<std::string>();
     paramStore->Set("/vex/scan/start", start_string);
     
     //get experiment info
