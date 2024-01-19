@@ -45,7 +45,7 @@ MHO_IonosphericFringeFitter::~MHO_IonosphericFringeFitter(){};
 
 void MHO_IonosphericFringeFitter::PreRun()
 {
-    bool skipped = fParameterStore.GetAs<bool>("/skipped");
+    bool skipped = fParameterStore.GetAs<bool>("/status/skipped");
     if( !skipped) //execute if we are not finished and are not skipping
     {
         // //apply the ionospheric dTEC to the visibilities for the current grid search point
@@ -66,16 +66,27 @@ void MHO_IonosphericFringeFitter::PreRun()
 
 void MHO_IonosphericFringeFitter::Run()
 {
-    bool do_ion = false;
-    bool is_finished = fParameterStore.GetAs<bool>("/is_finished");
-    bool skipped = fParameterStore.GetAs<bool>("/skipped");
+    std::cout<<"dumping parameter store = "<<std::endl;
+    fParameterStore.Dump();
+
+    bool do_ion = true;
+    bool is_finished = fParameterStore.GetAs<bool>("/status/is_finished");
+    bool skipped = fParameterStore.GetAs<bool>("/status/skipped");
     if( !is_finished  && !skipped) //execute if we are not finished and are not skipping
     {
         if(!do_ion)
         {
             //execute the basic fringe search algorithm
             MHO_BasicFringeUtilities::basic_fringe_search(&fContainerStore, &fParameterStore);
-            fParameterStore.Set("/is_finished", false);
+            fParameterStore.Set("/status/is_finished", true);
+            //have sampled all grid points, find the solution and finalize
+            //calculate the fringe properties
+            MHO_BasicFringeUtilities::calculate_fringe_solution_info(&fContainerStore, &fParameterStore, fVexInfo);
+        }
+        else 
+        {
+            rjc_ion_search();
+            fParameterStore.Set("/status/is_finished", true);
             //have sampled all grid points, find the solution and finalize
             //calculate the fringe properties
             MHO_BasicFringeUtilities::calculate_fringe_solution_info(&fContainerStore, &fParameterStore, fVexInfo);
@@ -85,7 +96,7 @@ void MHO_IonosphericFringeFitter::Run()
 
 void MHO_IonosphericFringeFitter::PostRun()
 {
-    bool skipped = fParameterStore.GetAs<bool>("/skipped");
+    bool skipped = fParameterStore.GetAs<bool>("/status/skipped");
     if( !skipped) //execute if we are not finished and are not skipping
     {
         //TODO FILL ME IN -- need to call specified user-scripts here
@@ -100,8 +111,8 @@ void MHO_IonosphericFringeFitter::Finalize()
     ////////////////////////////////////////////////////////////////////////////
     //TODO may want to reorg the way this is done
 
-    bool is_finished = fParameterStore.GetAs<bool>("/is_finished");
-    bool skipped = fParameterStore.GetAs<bool>("/skipped");
+    bool is_finished = fParameterStore.GetAs<bool>("/status/is_finished");
+    bool skipped = fParameterStore.GetAs<bool>("/status/skipped");
     if( is_finished  && !skipped ) //have to be finished and not-skipped
     {
         fPlotData = MHO_FringePlotInfo::construct_plot_data(&fContainerStore, &fParameterStore, fVexInfo);
@@ -149,21 +160,31 @@ MHO_IonosphericFringeFitter::rjc_ion_search() //(struct type_pass *pass)
     double win_ion[2];
     int ion_pts;
     double ion_diff;
+    double last_ion_diff = 0.0;
     double win_dr[2];
     double win_sb[2];
 
+
+    visibility_type* vis_data = fContainerStore.GetObject<visibility_type>(std::string("vis"));
+    if( vis_data == nullptr )
+    {
+        msg_fatal("fringe", "could not find visibility object with names (vis)." << eom);
+        std::exit(1);
+    }
+
+    //iono phase op
+    MHO_IonosphericPhaseCorrection iono;
+    iono.SetArgs(vis_data);
+    iono.Initialize();
 
     //from status
     double dtec[MAX_ION_PTS][2];
     int loopion;
     int nion;
 
-
-    // int parabola (double *, double, double, double *, double *, double *);
-    // void sort_tecs (void);
-    // extern void interp (struct type_pass*);
-    // extern int search (struct type_pass*);
-
+    ion_pts = 45;
+    win_ion[0] = -10.0;
+    win_ion[1] = 10.0;
 
     // prepare for ionospheric search
     center = (win_ion[0] + win_ion[1]) / 2.0;
@@ -189,6 +210,7 @@ MHO_IonosphericFringeFitter::rjc_ion_search() //(struct type_pass *pass)
         switch (level)
         {
             case 0:                     // set up for coarse ion search
+                std::cout<<"CASE 0"<<std::endl;
                 ilmax = ion_pts;
                 step = coarse_spacing;
                 bottom = center - (ilmax - 1) / 2.0 * step;
@@ -198,6 +220,7 @@ MHO_IonosphericFringeFitter::rjc_ion_search() //(struct type_pass *pass)
                 }
             break;
             case 1:                     // set up for medium ion search 
+                std::cout<<"CASE 1"<<std::endl;
                 // find maximum from coarse search
                 // should do parabolic interpolation here
                 valmax = -1.0;
@@ -230,6 +253,7 @@ MHO_IonosphericFringeFitter::rjc_ion_search() //(struct type_pass *pass)
                 bottom = center - (ilmax - 1) / 2.0 * step;
             break;
             case 2:                     // set up for fine ion search 
+                std::cout<<"CASE 2"<<std::endl;
                 // find maximum from medium search
                 // should do parabolic interpolation here
                 valmax = -1.0;
@@ -262,6 +286,7 @@ MHO_IonosphericFringeFitter::rjc_ion_search() //(struct type_pass *pass)
                 bottom = center - (ilmax - 1) / 2.0 * step;
             break;
             case 3:                     // final evaluation
+                std::cout<<"CASE 3"<<std::endl;
                 // find maximum from fine search
                 valmax = -1.0;
                 for (k=0; k<ilmax; k++)
@@ -294,7 +319,8 @@ MHO_IonosphericFringeFitter::rjc_ion_search() //(struct type_pass *pass)
                     y[k] = values[kmax + k - 1 + koff];
                     xlo = bottom + (kmax - 1 + koff) * step;
                 }
-
+        
+                std::cout<<"calling parabola"<<std::endl;
                 rc = MHO_MathUtilities::parabola (y, -1.0, 1.0, &xmax, &ampmax, q);
 
                 if (rc == 1)
@@ -322,6 +348,19 @@ MHO_IonosphericFringeFitter::rjc_ion_search() //(struct type_pass *pass)
             // do 3-D grid search using FFT's
             rc = 0; //search(pass);
             //execute the basic fringe search algorithm
+            //apply the dTEC correction here:
+
+            //remove the effects of the last application
+            std::cout<<"Applying inverse dTEC of: "<<last_ion_diff<<std::endl;
+            iono.SetDifferentialTEC(last_ion_diff);
+            iono.Execute();
+
+            //apply the current ionospheric phase
+            std::cout<<"Applying dTEC of: "<<ion_diff<<std::endl;
+            iono.SetDifferentialTEC(-1.0*ion_diff);
+            iono.Execute();
+            last_ion_diff = ion_diff;
+
             MHO_BasicFringeUtilities::basic_fringe_search(&fContainerStore, &fParameterStore);
             if (rc < 0)
             {
@@ -346,7 +385,7 @@ MHO_IonosphericFringeFitter::rjc_ion_search() //(struct type_pass *pass)
             // save values for iterative search
             double delres_max = fParameterStore.GetAs<double>("/fringe/famp");
             values[ionloop] = delres_max;
-            //msg ("ion search differential TEC %f amp %f",1, ion_diff, delres_max);
+            printf("ion search differential TEC %f amp %f", ion_diff, delres_max);
         }
     }
     
@@ -368,6 +407,7 @@ MHO_IonosphericFringeFitter::rjc_ion_search() //(struct type_pass *pass)
 void 
 MHO_IonosphericFringeFitter::sort_tecs(int nion, double dtec[][2])
 {
+    std::cout<<"calling sort tecs"<<std::endl;
     int i,n,changed = 1;
     double temp[2];
     while (changed)

@@ -255,7 +255,6 @@ void MHO_BasicFringeFitter::Initialize()
 
         //calculate useful quantities to stash in the parameter store
         MHO_InitialFringeInfo::precalculate_quantities(&fContainerStore, &fParameterStore);
-        
         //safety check
         if(vis_data->GetSize() == 0){msg_fatal("fringe", "no visibility data left after cuts." << eom); std::exit(1);}
         if(wt_data->GetSize() == 0){msg_fatal("fringe", "no weight data left after cuts." << eom); std::exit(1);}
