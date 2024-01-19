@@ -290,6 +290,8 @@ MHO_BasicFringeUtilities::basic_fringe_search(MHO_ContainerStore* conStore, MHO_
     //TODO consolidate the coarse search in a single class, so it can be mixed-and-matched
     //with different interpolation schemes
 
+    std::cout<<"getting sbd data container"<<std::endl;
+
     //space for the visibilities transformed into single-band-delay space
     std::size_t bl_dim[visibility_type::rank::value];
     vis_data->GetDimensions(bl_dim);
@@ -308,6 +310,8 @@ MHO_BasicFringeUtilities::basic_fringe_search(MHO_ContainerStore* conStore, MHO_
     //COARSE SBD, DR, MBD SEARCH ALGO
     ////////////////////////////////////////////////////////////////////////////
 
+    std::cout<<"init of nfx op"<<std::endl;
+
     //run norm-fx via the wrapper class (x-form to SBD space)
     MHO_NormFX nfxOp;
     nfxOp.SetArgs(vis_data, wt_data, sbd_data);
@@ -319,6 +323,8 @@ MHO_BasicFringeUtilities::basic_fringe_search(MHO_ContainerStore* conStore, MHO_
 
     //take snapshot of sbd data after normfx
     take_snapshot_here("test", "sbd", __FILE__, __LINE__, sbd_data);
+
+    std::cout<<"coarse mbd search"<<std::endl;
 
     //coarse SBD/MBD/DR search (locates max bin)
     double ref_freq = paramStore->GetAs<double>("/control/config/ref_freq");
@@ -364,11 +370,13 @@ MHO_BasicFringeUtilities::basic_fringe_search(MHO_ContainerStore* conStore, MHO_
 
 
 
-    // std::cout<<"bins = "<<c_mbdmax<<", "<<c_sbdmax<<", "<<c_drmax<<std::endl;
+    std::cout<<"bins = "<<c_mbdmax<<", "<<c_sbdmax<<", "<<c_drmax<<std::endl;
 
     ////////////////////////////////////////////////////////////////////////////
     //FINE INTERPOLATION STEP (search over 5x5x5 grid around peak)
     ////////////////////////////////////////////////////////////////////////////
+    std::cout<<"starting fringe interp"<<std::endl;
+
     MHO_InterpolateFringePeak fringeInterp;
 
     bool optimize_closure_flag = false;
@@ -403,6 +411,8 @@ MHO_BasicFringeUtilities::basic_fringe_search(MHO_ContainerStore* conStore, MHO_
     paramStore->Set("/fringe/drate", drate);
     paramStore->Set("/fringe/frate", frate);
     paramStore->Set("/fringe/famp", famp);
+
+    std::cout<<"done basic fringe search"<<std::endl;
 }
 
 

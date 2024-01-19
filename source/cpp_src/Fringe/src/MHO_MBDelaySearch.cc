@@ -21,6 +21,7 @@ MHO_MBDelaySearch::InitializeImpl(const XArgType* in)
     fInitialized = false;
     if(in != nullptr)
     {
+
         //calculate the frequency grid for MBD search
         MHO_UniformGridPointsCalculator fGridCalc;
         fGridCalc.SetPoints( std::get<CHANNEL_AXIS>(*in).GetData(), std::get<CHANNEL_AXIS>(*in).GetSize() );
@@ -86,6 +87,8 @@ MHO_MBDelaySearch::ExecuteImpl(const XArgType* in)
     bool ok;
     if(fInitialized)
     {
+        std::cout<<"executing MBD search"<<std::endl;
+    
         //loop over the single-band delay 'lags', computing the MBD/DR function
         //find the max for each SBD, and globally
         fMax = 0.0;
@@ -165,6 +168,8 @@ MHO_MBDelaySearch::ExecuteImpl(const XArgType* in)
                 }
             }
         }
+
+        std::cout<<"done MBD search"<<std::endl;
         
         fMax = std::sqrt(fMax);
         return true;
