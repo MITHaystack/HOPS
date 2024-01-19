@@ -22,6 +22,7 @@
 
 //experimental ion phase correction
 #include "MHO_IonosphericPhaseCorrection.hh"
+#include "MHO_MathUtilities.hh"
 #define ION_EXP
 
 
@@ -44,52 +45,47 @@ MHO_IonosphericFringeFitter::~MHO_IonosphericFringeFitter(){};
 
 void MHO_IonosphericFringeFitter::PreRun()
 {
-    bool skipped = fParameterStore.GetAs<bool>("/status/skipped");
+    bool skipped = fParameterStore.GetAs<bool>("/skipped");
     if( !skipped) //execute if we are not finished and are not skipping
     {
-        //apply the ionospheric dTEC to the visibilities for the current grid search point
-        #ifdef ION_EXP
-        visibility_type* vis_data = fContainerStore.GetObject<visibility_type>(std::string("vis"));
-        MHO_IonosphericPhaseCorrection iono;
-        std::cout<<"Applying dTEC of: "<<-1.0*fdTECStep*fStepCount<<std::endl;
-        //iono.SetDifferentialTEC(-1.0*(fdTECLow + fdTECStep*fStepCount) );
-        iono.SetDifferentialTEC(-1.0*fdTECStep);
-        iono.SetArgs(vis_data);
-        iono.Initialize();
-        iono.Execute();
-        fStepCount++;
-        #endif
+        // //apply the ionospheric dTEC to the visibilities for the current grid search point
+        // #ifdef ION_EXP
+        // visibility_type* vis_data = fContainerStore.GetObject<visibility_type>(std::string("vis"));
+        // MHO_IonosphericPhaseCorrection iono;
+        // std::cout<<"Applying dTEC of: "<<-1.0*fdTECStep*fStepCount<<std::endl;
+        // //iono.SetDifferentialTEC(-1.0*(fdTECLow + fdTECStep*fStepCount) );
+        // iono.SetDifferentialTEC(-1.0*fdTECStep);
+        // iono.SetArgs(vis_data);
+        // iono.Initialize();
+        // iono.Execute();
+        // fStepCount++;
+        // #endif
         //TODO FILL ME IN -- need to call specified user-scripts here
     }
 }
 
 void MHO_IonosphericFringeFitter::Run()
 {
-    bool status_is_finished = fParameterStore.GetAs<bool>("/status/is_finished");
-    bool skipped = fParameterStore.GetAs<bool>("/status/skipped");
-    if( !status_is_finished  && !skipped) //execute if we are not finished and are not skipping
+    bool do_ion = false;
+    bool is_finished = fParameterStore.GetAs<bool>("/is_finished");
+    bool skipped = fParameterStore.GetAs<bool>("/skipped");
+    if( !is_finished  && !skipped) //execute if we are not finished and are not skipping
     {
-        //execute the basic fringe search algorithm
-        MHO_BasicFringeUtilities::basic_fringe_search(&fContainerStore, &fParameterStore);
-
-        if(fStepCount < fNdTECSteps)
+        if(!do_ion)
         {
-            fParameterStore.Set("/status/is_finished", false);
-        }
-        else 
-        {
+            //execute the basic fringe search algorithm
+            MHO_BasicFringeUtilities::basic_fringe_search(&fContainerStore, &fParameterStore);
+            fParameterStore.Set("/is_finished", false);
             //have sampled all grid points, find the solution and finalize
             //calculate the fringe properties
             MHO_BasicFringeUtilities::calculate_fringe_solution_info(&fContainerStore, &fParameterStore, fVexInfo);
-
-            fParameterStore.Set("/status/is_finished", true);
         }
     }
 }
 
 void MHO_IonosphericFringeFitter::PostRun()
 {
-    bool skipped = fParameterStore.GetAs<bool>("/status/skipped");
+    bool skipped = fParameterStore.GetAs<bool>("/skipped");
     if( !skipped) //execute if we are not finished and are not skipping
     {
         //TODO FILL ME IN -- need to call specified user-scripts here
@@ -104,9 +100,9 @@ void MHO_IonosphericFringeFitter::Finalize()
     ////////////////////////////////////////////////////////////////////////////
     //TODO may want to reorg the way this is done
 
-    bool status_is_finished = fParameterStore.GetAs<bool>("/status/is_finished");
-    bool skipped = fParameterStore.GetAs<bool>("/status/skipped");
-    if( status_is_finished  && !skipped ) //have to be finished and not-skipped
+    bool is_finished = fParameterStore.GetAs<bool>("/is_finished");
+    bool skipped = fParameterStore.GetAs<bool>("/skipped");
+    if( is_finished  && !skipped ) //have to be finished and not-skipped
     {
         fPlotData = MHO_FringePlotInfo::construct_plot_data(&fContainerStore, &fParameterStore, fVexInfo);
         MHO_FringePlotInfo::fill_plot_data(&fParameterStore, fPlotData);
@@ -114,15 +110,14 @@ void MHO_IonosphericFringeFitter::Finalize()
 }
 
 
-/*
-
-int rjc_ion_search (); //(struct type_pass *pass)
+int 
+MHO_IonosphericFringeFitter::rjc_ion_search() //(struct type_pass *pass)
 {
     // number of points in fine search
     #define N_FINE_PTS 12
     #define N_MED_PTS 12                // number of points in medium search
     #define N_FINE_PTS_SMOOTH 24        // # of fine points with new smoothing algorithm
-
+    #define MAX_ION_PTS 100
     
     int i,
     k,
@@ -149,29 +144,39 @@ int rjc_ion_search (); //(struct type_pass *pass)
     ampmax,
     xlo;
 
-    extern int do_accounting;
-    extern struct type_status status;
-    extern struct type_param param;
-
+    //from param
     double values[MAX_ION_PTS];
-    int parabola (double *, double, double, double *, double *, double *);
-    void sort_tecs (void);
-    extern void interp (struct type_pass*);
-    extern int search (struct type_pass*);
+    double win_ion[2];
+    int ion_pts;
+    double ion_diff;
+    double win_dr[2];
+    double win_sb[2];
+
+
+    //from status
+    double dtec[MAX_ION_PTS][2];
+    int loopion;
+    int nion;
+
+
+    // int parabola (double *, double, double, double *, double *, double *);
+    // void sort_tecs (void);
+    // extern void interp (struct type_pass*);
+    // extern int search (struct type_pass*);
 
 
     // prepare for ionospheric search
-    center = (param.win_ion[0] + param.win_ion[1]) / 2.0;
+    center = (win_ion[0] + win_ion[1]) / 2.0;
     // condition total # of points
-    if (param.ion_pts > MAX_ION_PTS - N_MED_PTS - N_FINE_PTS - 1)   
+    if (ion_pts > MAX_ION_PTS - N_MED_PTS - N_FINE_PTS - 1)   
     {
-        param.ion_pts = MAX_ION_PTS - N_MED_PTS - N_FINE_PTS - 1;   
-        msg ("limited ion search to %d points", 2, param.ion_pts);
+        ion_pts = MAX_ION_PTS - N_MED_PTS - N_FINE_PTS - 1;   
+        //msg ("limited ion search to %d points", 2, ion_pts);
     }
-    coarse_spacing = param.win_ion[1] - param.win_ion[0];
-    if (param.ion_pts > 1)
+    coarse_spacing = win_ion[1] - win_ion[0];
+    if (ion_pts > 1)
     {
-        coarse_spacing /= param.ion_pts - 1;
+        coarse_spacing /= ion_pts - 1;
         nip = 0;
     }
 
@@ -184,10 +189,10 @@ int rjc_ion_search (); //(struct type_pass *pass)
         switch (level)
         {
             case 0:                     // set up for coarse ion search
-                ilmax = param.ion_pts;
+                ilmax = ion_pts;
                 step = coarse_spacing;
                 bottom = center - (ilmax - 1) / 2.0 * step;
-                if (param.ion_pts == 1)// if no ionospheric search, proceed
+                if (ion_pts == 1)// if no ionospheric search, proceed
                 {
                     level = 3;          // immediately to final delay & rate search
                 }
@@ -204,14 +209,14 @@ int rjc_ion_search (); //(struct type_pass *pass)
                         kmax = k;
                     }
                     // store this coarse ionosphere point
-                    status.dtec[nip][0] = bottom + k * step;
-                    status.dtec[nip++][1] = values[k];
+                    dtec[nip][0] = bottom + k * step;
+                    dtec[nip++][1] = values[k];
                 }
                 if (kmax == 0)          // coarse maximum up against lower edge?
                 {
                     center = bottom + (N_MED_PTS - 1) / 2.0 * medium_spacing;
                 }
-                else if (kmax == param.ion_pts) // upper edge?
+                else if (kmax == ion_pts) // upper edge?
                 {
                     center = bottom + (kmax - 1) * step - (N_MED_PTS - 1) / 2.0 * medium_spacing;
                 }
@@ -236,14 +241,14 @@ int rjc_ion_search (); //(struct type_pass *pass)
                         kmax = k;
                     }
                     // store this medium ionosphere point
-                    status.dtec[nip][0] = bottom + k * step;
-                    status.dtec[nip++][1] = values[k];
+                    dtec[nip][0] = bottom + k * step;
+                    dtec[nip++][1] = values[k];
                 }
                 if (kmax == 0)          // medium maximum up against lower edge?
                 {
                     center = bottom + (N_FINE_PTS - 1) / 2.0 * fine_spacing;
                 }
-                else if (kmax == param.ion_pts) // upper edge?
+                else if (kmax == ion_pts) // upper edge?
                 {
                     center = bottom + (kmax - 1) * step - (N_FINE_PTS - 1) / 2.0 * fine_spacing;
                 }
@@ -267,8 +272,8 @@ int rjc_ion_search (); //(struct type_pass *pass)
                         kmax = k;
                     }
                     // store this fine ionosphere point
-                    status.dtec[nip][0] = bottom + k * step;
-                    status.dtec[nip++][1] = values[k];
+                    dtec[nip][0] = bottom + k * step;
+                    dtec[nip++][1] = values[k];
                 }
                 // should do parabolic interpolation here
                 if (kmax == 0)
@@ -290,15 +295,15 @@ int rjc_ion_search (); //(struct type_pass *pass)
                     xlo = bottom + (kmax - 1 + koff) * step;
                 }
 
-                rc = parabola (y, -1.0, 1.0, &xmax, &ampmax, q);
+                rc = MHO_MathUtilities::parabola (y, -1.0, 1.0, &xmax, &ampmax, q);
 
                 if (rc == 1)
                 {
-                    msg ("TEC fine interpolation error; peak out of search range",1);
+                    //msg ("TEC fine interpolation error; peak out of search range",1);
                 }
                 else if (rc == 2)
                 {
-                    msg ("TEC fine interpolation error; positive curvature",1);
+                    //msg ("TEC fine interpolation error; positive curvature",1);
                 }
                 
                 center = xlo + (xmax + 1.0) * step;
@@ -310,55 +315,82 @@ int rjc_ion_search (); //(struct type_pass *pass)
         
         for (ionloop=0; ionloop<ilmax; ionloop++)
         {
-            status.loopion = ionloop;
+            loopion = ionloop;
             // offset ionosphere by search offset
-            param.ion_diff = bottom + ionloop * step;
+            ion_diff = bottom + ionloop * step;
 
             // do 3-D grid search using FFT's
-            rc = search(pass);
+            rc = 0; //search(pass);
+            //execute the basic fringe search algorithm
+            MHO_BasicFringeUtilities::basic_fringe_search(&fContainerStore, &fParameterStore);
             if (rc < 0)
             {
-                msg ("Error fringe searching", 2);
-                return (-1);
+                //msg ("Error fringe searching", 2);
+                return -1;
             }
             else if (rc > 0)
             {
-                return (rc);
+                return rc;
             }
             
             // restore original window values for interpolation
-            for (i=0; i<2; i++)
+            for(i=0; i<2; i++)
             {
-                status.win_sb[i] = win_sb_save[i];
-                status.win_dr[i] = win_dr_save[i];
+                win_sb[i] = win_sb_save[i];
+                win_dr[i] = win_dr_save[i];
             }
-            // interpolate via direct counter-rotation for
-            // more precise results
-            interp (pass);
+            // // interpolate via direct counter-rotation for
+            // // more precise results
+            // interp (pass);
 
             // save values for iterative search
-            values[ionloop] = status.delres_max;
-            msg ("ion search differential TEC %f amp %f",
-            1, param.ion_diff, status.delres_max);
+            double delres_max = fParameterStore.GetAs<double>("/fringe/famp");
+            values[ionloop] = delres_max;
+            //msg ("ion search differential TEC %f amp %f",1, ion_diff, delres_max);
         }
     }
     
     // save the final ion. point, if there is one
-    if (param.ion_pts > 1)
+    if (ion_pts > 1)
     {
-        status.dtec[nip][0] = center;
-        status.dtec[nip++][1] = values[0];
-        status.nion = nip;
-        sort_tecs ();
+        dtec[nip][0] = center;
+        dtec[nip++][1] = values[0];
+        nion = nip;
+        sort_tecs(nion, dtec);
     }
-    else
-    status.nion = 0;
+    else{nion = 0;}
 
     return (0);
-}
+};
 
 
-*/
+// sort tec array
+void 
+MHO_IonosphericFringeFitter::sort_tecs(int nion, double dtec[][2])
+{
+    int i,n,changed = 1;
+    double temp[2];
+    while (changed)
+    {
+        changed = 0;
+        for (n=0; n<nion-1; n++)
+        {
+            if (dtec[n][0] > dtec[n+1][0])
+            {
+                for (i=0; i<2; i++)
+                {
+                    temp[i] = dtec[n][i];
+                    dtec[n][i] = dtec[n+1][i];
+                    dtec[n+1][i] = temp[i];
+                }
+                changed = 1;
+            }
+        }
+    }
+};
+
+
+
 
 
 

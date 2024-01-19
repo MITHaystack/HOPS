@@ -37,6 +37,10 @@ class MHO_IonosphericFringeFitter: public MHO_BasicFringeFitter
 
     protected:
 
+        int rjc_ion_search();
+        void sort_tecs(int nion, double dtec[][2]);
+
+
         int fNdTECSteps;
         double fdTECLow;
         double fdTECHigh;
