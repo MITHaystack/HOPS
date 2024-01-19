@@ -182,9 +182,9 @@ MHO_IonosphericFringeFitter::rjc_ion_search() //(struct type_pass *pass)
     int loopion;
     int nion;
 
-    ion_pts = 45;
-    win_ion[0] = -10.0;
-    win_ion[1] = 10.0;
+    ion_pts = 21;
+    win_ion[0] = -5.0;
+    win_ion[1] = 5.0;
 
     // prepare for ionospheric search
     center = (win_ion[0] + win_ion[1]) / 2.0;
@@ -210,7 +210,7 @@ MHO_IonosphericFringeFitter::rjc_ion_search() //(struct type_pass *pass)
         switch (level)
         {
             case 0:                     // set up for coarse ion search
-                std::cout<<"CASE 0"<<std::endl;
+                std::cout<<"CASE 0 "<<std::endl;
                 ilmax = ion_pts;
                 step = coarse_spacing;
                 bottom = center - (ilmax - 1) / 2.0 * step;
@@ -220,7 +220,7 @@ MHO_IonosphericFringeFitter::rjc_ion_search() //(struct type_pass *pass)
                 }
             break;
             case 1:                     // set up for medium ion search 
-                std::cout<<"CASE 1"<<std::endl;
+                std::cout<<"CASE 1 "<<std::endl;
                 // find maximum from coarse search
                 // should do parabolic interpolation here
                 valmax = -1.0;
@@ -253,7 +253,7 @@ MHO_IonosphericFringeFitter::rjc_ion_search() //(struct type_pass *pass)
                 bottom = center - (ilmax - 1) / 2.0 * step;
             break;
             case 2:                     // set up for fine ion search 
-                std::cout<<"CASE 2"<<std::endl;
+                std::cout<<"CASE 2 "<<std::endl;
                 // find maximum from medium search
                 // should do parabolic interpolation here
                 valmax = -1.0;
@@ -286,7 +286,7 @@ MHO_IonosphericFringeFitter::rjc_ion_search() //(struct type_pass *pass)
                 bottom = center - (ilmax - 1) / 2.0 * step;
             break;
             case 3:                     // final evaluation
-                std::cout<<"CASE 3"<<std::endl;
+                std::cout<<"CASE 3 "<<std::endl;
                 // find maximum from fine search
                 valmax = -1.0;
                 for (k=0; k<ilmax; k++)
@@ -385,7 +385,7 @@ MHO_IonosphericFringeFitter::rjc_ion_search() //(struct type_pass *pass)
             // save values for iterative search
             double delres_max = fParameterStore.GetAs<double>("/fringe/famp");
             values[ionloop] = delres_max;
-            printf("ion search differential TEC %f amp %f", ion_diff, delres_max);
+            printf("ion search differential TEC %f amp %f \n", ion_diff, delres_max);
         }
     }
     
