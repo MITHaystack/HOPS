@@ -4,6 +4,10 @@
 #include "MHO_FringeFitter.hh"
 #include "MHO_Tokenizer.hh"
 
+#include "MHO_NormFX.hh"
+#include "MHO_MBDelaySearch.hh"
+#include "MHO_ContainerDefinitions.hh"
+
 /*
 *File: MHO_BasicFringeFitter.hh
 *Class: MHO_BasicFringeFitter
@@ -42,6 +46,15 @@ class MHO_BasicFringeFitter: public MHO_FringeFitter
 
         void AddDefaultOperatorFormatDef(mho_json& format);
         void AddDefaultOperators(mho_json& statements);
+
+        //main work function and operators for basic fringe search function 
+        void basic_fringe_search();
+        MHO_NormFX fNormFXOp;
+        MHO_MBDelaySearch fMBDSearch;
+        visibility_type* vis_data;
+        weight_type* wt_data;
+        visibility_type* sbd_data;
+
 
         mho_json fVexInfo;
         mho_json fControlFormat;
