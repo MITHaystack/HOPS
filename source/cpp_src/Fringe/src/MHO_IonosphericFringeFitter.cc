@@ -178,6 +178,16 @@ MHO_IonosphericFringeFitter::rjc_ion_search() //(struct type_pass *pass)
     iono.SetArgs(vis_data);
     iono.Initialize();
 
+    //get the original search space
+    int sbd1, sbd2;
+    fMBDSearch.GetSBDLimits(sbd1, sbd2);
+    win_sb_save[0] = sbd1;
+    win_sb_save[1] = sbd2;
+    win_sb[0] = sbd1;
+    win_sb[1] = sbd2;
+
+    bool first_pass = true;
+
     //from status
     double dtec[MAX_ION_PTS][2];
     int loopion;
@@ -364,6 +374,12 @@ MHO_IonosphericFringeFitter::rjc_ion_search() //(struct type_pass *pass)
 
             // MHO_BasicFringeUtilities::basic_fringe_search(&fContainerStore, &fParameterStore);
             basic_fringe_search();
+            if(first_pass)
+            {
+                fMBDSearch.SetSBDLimits(253, 259);
+                first_pass = false;
+            }
+
             if (rc < 0)
             {
                 //msg ("Error fringe searching", 2);
