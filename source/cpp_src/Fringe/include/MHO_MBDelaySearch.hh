@@ -49,6 +49,9 @@ class MHO_MBDelaySearch: public MHO_InspectingOperator< visibility_type >
         void SetWeights(weight_type* wt_data){fWeights = wt_data;}
         void SetReferenceFrequency(double ref_freq){fRefFreq = ref_freq;}
 
+        void SetSBDLimits(int low, int high);
+        void GetSBDLimits(int& low, int& high){low = fSBDStart; high = fSBDStop;};
+
         int GetMBDMaxBin() const {return fMBDMaxBin;}
         int GetSBDMaxBin() const {return fSBDMaxBin;}
         int GetDRMaxBin() const {return fDRMaxBin;}
@@ -97,6 +100,8 @@ class MHO_MBDelaySearch: public MHO_InspectingOperator< visibility_type >
         std::map<std::size_t, std::size_t> fMBDBinMap;
 
         double fRefFreq;
+        int fSBDStart;
+        int fSBDStop;
 
         //location and value of the maximum
         double fMax;
