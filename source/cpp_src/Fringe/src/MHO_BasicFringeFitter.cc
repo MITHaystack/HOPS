@@ -19,6 +19,8 @@
 #include "MHO_BasicFringeUtilities.hh"
 #include "MHO_FringePlotInfo.hh"
 #include "MHO_VexInfoExtractor.hh"
+#include "MHO_InterpolateFringePeak.hh"
+
 
 //experimental ion phase correction
 #include "MHO_IonosphericPhaseCorrection.hh"
@@ -29,7 +31,12 @@ namespace hops
 {
 
 
-MHO_BasicFringeFitter::MHO_BasicFringeFitter():MHO_FringeFitter(){};
+MHO_BasicFringeFitter::MHO_BasicFringeFitter():MHO_FringeFitter()
+{
+    vis_data = nullptr;
+    wt_data = nullptr;
+    sbd_data = nullptr;
+};
 
 MHO_BasicFringeFitter::~MHO_BasicFringeFitter(){};
 
@@ -174,8 +181,8 @@ void MHO_BasicFringeFitter::Initialize()
         //loads visibility data and performs float -> double cast
         MHO_BasicFringeDataConfiguration::configure_visibility_data(&fContainerStore);
 
-        visibility_type* vis_data = fContainerStore.GetObject<visibility_type>(std::string("vis"));
-        weight_type* wt_data = fContainerStore.GetObject<weight_type>(std::string("weight"));
+        vis_data = fContainerStore.GetObject<visibility_type>(std::string("vis"));
+        wt_data = fContainerStore.GetObject<weight_type>(std::string("weight"));
         if( vis_data == nullptr || wt_data == nullptr )
         {
             msg_fatal("fringe", "could not find visibility or weight objects with names (vis, weight)." << eom);
@@ -224,8 +231,6 @@ void MHO_BasicFringeFitter::Initialize()
             fParameterStore.Set("/uuid/rem_pcal", rem_pcal_uuid);
         }
 
-
-
         ////////////////////////////////////////////////////////////////////////////
         //PARAMETER SETTING
         ////////////////////////////////////////////////////////////////////////////
@@ -264,6 +269,37 @@ void MHO_BasicFringeFitter::Initialize()
 
         //compute the sum of all weights and stash in the parameter store
         MHO_InitialFringeInfo::compute_total_summed_weights(&fContainerStore, &fParameterStore);
+
+
+        //initialize the fringe search operators ///////////////////////////////
+
+        //space for the visibilities transformed into single-band-delay space
+        std::size_t bl_dim[visibility_type::rank::value];
+        vis_data->GetDimensions(bl_dim);
+        sbd_data = fContainerStore.GetObject<visibility_type>(std::string("sbd"));
+        if(sbd_data == nullptr) //doesn't yet exist so create and cache it in the store
+        {
+            sbd_data = vis_data->Clone();
+            fContainerStore.AddObject(sbd_data);
+            fContainerStore.SetShortName(sbd_data->GetObjectUUID(), std::string("sbd"));
+            bl_dim[FREQ_AXIS] *= 4; //normfx implementation demands this
+            sbd_data->Resize(bl_dim);
+            sbd_data->ZeroArray();
+        }
+
+        //run norm-fx via the wrapper class (x-form to SBD space)
+        fNormFXOp.SetArgs(vis_data, wt_data, sbd_data);
+        bool ok = fNormFXOp.Initialize();
+        check_step_fatal(ok, "fringe", "normfx initialization." << eom );
+
+        double ref_freq = fParameterStore.GetAs<double>("/control/config/ref_freq");
+        fMBDSearch.SetWeights(wt_data);
+        fMBDSearch.SetReferenceFrequency(ref_freq);
+        fMBDSearch.SetArgs(sbd_data);
+        ok = fMBDSearch.Initialize();
+        check_step_fatal(ok, "fringe", "mbd initialization." << eom );
+
+
     }
 }
 
@@ -291,7 +327,8 @@ void MHO_BasicFringeFitter::Run()
     if( !status_is_finished  && !skipped) //execute if we are not finished and are not skipping
     {
         //execute the basic fringe search algorithm
-        MHO_BasicFringeUtilities::basic_fringe_search(&fContainerStore, &fParameterStore);
+        // MHO_BasicFringeUtilities::basic_fringe_search(&fContainerStore, &fParameterStore);
+        basic_fringe_search();
         //calculate the fringe properties
         MHO_BasicFringeUtilities::calculate_fringe_solution_info(&fContainerStore, &fParameterStore, fVexInfo);
 
@@ -499,5 +536,104 @@ MHO_BasicFringeFitter::DetermineRequiredPolProducts(std::string polprod)
 
     return pp_vec;
 }
+
+
+
+
+
+void
+MHO_BasicFringeFitter::basic_fringe_search()
+{
+    ////////////////////////////////////////////////////////////////////////////
+    //COARSE SBD, DR, MBD SEARCH ALGO
+    ////////////////////////////////////////////////////////////////////////////
+    sbd_data->ZeroArray();
+
+    //run norm_fx (takes visibilities to (single band) delay space)
+    bool ok = fNormFXOp.Execute();
+    check_step_fatal(ok, "fringe", "normfx execution." << eom );
+
+    //take snapshot of sbd data after normfx
+    take_snapshot_here("test", "sbd", __FILE__, __LINE__, sbd_data);
+
+    //coarse SBD/MBD/DR search (locates max bin)
+    ok = fMBDSearch.Execute();
+    check_step_fatal(ok, "fringe", "mbd execution." << eom );
+
+    int n_mbd_pts = fMBDSearch.GetNMBDBins();
+    int n_dr_pts = fMBDSearch.GetNDRBins();
+    int n_sbd_pts = fMBDSearch.GetNSBDBins();
+    int n_drsp_pts = fMBDSearch.GetNDRSPBins();
+
+    fParameterStore.Set("/fringe/n_mbd_points", n_mbd_pts);
+    fParameterStore.Set("/fringe/n_sbd_points", n_sbd_pts);
+    fParameterStore.Set("/fringe/n_dr_points", n_dr_pts);
+    fParameterStore.Set("/fringe/n_drsp_points", n_drsp_pts);
+
+    int c_mbdmax = fMBDSearch.GetMBDMaxBin();
+    int c_sbdmax = fMBDSearch.GetSBDMaxBin();
+    int c_drmax = fMBDSearch.GetDRMaxBin();
+    double freq_spacing = fMBDSearch.GetFrequencySpacing();
+    double ave_freq = fMBDSearch.GetAverageFrequency();
+
+    if(c_mbdmax < 0 || c_sbdmax < 0 || c_drmax < 0)
+    {
+        msg_fatal("fringe", "coarse fringe search could not locate peak, bin (sbd, mbd, dr) = (" <<c_sbdmax << ", " << c_mbdmax <<"," << c_drmax<< ")." << eom );
+        std::exit(1);
+    }
+
+    //get the coarse maximum and re-scale by the total weights
+    double search_max_amp = fMBDSearch.GetSearchMaximumAmplitude();
+    double total_summed_weights = fParameterStore.GetAs<double>("/fringe/total_summed_weights");
+
+    fParameterStore.Set("/fringe/coarse_search_max_amp", search_max_amp/total_summed_weights);
+    fParameterStore.Set("/fringe/max_mbd_bin", c_mbdmax);
+    fParameterStore.Set("/fringe/max_sbd_bin", c_sbdmax);
+    fParameterStore.Set("/fringe/max_dr_bin", c_drmax);
+
+    // std::cout<<"bins = "<<c_mbdmax<<", "<<c_sbdmax<<", "<<c_drmax<<std::endl;
+
+    ////////////////////////////////////////////////////////////////////////////
+    //FINE INTERPOLATION STEP (search over 5x5x5 grid around peak)
+    ////////////////////////////////////////////////////////////////////////////
+    MHO_InterpolateFringePeak aPeakInterpolator;
+
+    bool optimize_closure_flag = false;
+    bool is_oc_set = fParameterStore.Get(std::string("/control/fit/optimize_closure"), optimize_closure_flag );
+    double ref_freq = fParameterStore.GetAs<double>("/control/config/ref_freq");
+    //NOTE, this has no effect on fringe-phase when using 'simul' algo which is currently is the only one implemented
+    //This is also true in the legacy code simul implementation.
+    if(optimize_closure_flag){aPeakInterpolator.EnableOptimizeClosure();}
+
+    aPeakInterpolator.SetReferenceFrequency(ref_freq);
+    aPeakInterpolator.SetSBDArray(sbd_data);
+    aPeakInterpolator.SetWeights(wt_data);
+
+    aPeakInterpolator.SetMaxBins(c_sbdmax, c_mbdmax, c_drmax);
+    #pragma message("TODO FIXME -- we shouldn't be referencing internal members of the MHO_MBDelaySearch class workspace")
+    //Figure out how best to present this axis data to the fine-interp function.
+
+    aPeakInterpolator.SetMBDAxis( fMBDSearch.GetMBDAxis() );
+    aPeakInterpolator.SetDRAxis( fMBDSearch.GetDRAxis() );
+
+    aPeakInterpolator.Initialize();
+    aPeakInterpolator.Execute();
+
+    double sbdelay = aPeakInterpolator.GetSBDelay();
+    double mbdelay = aPeakInterpolator.GetMBDelay();
+    double drate = aPeakInterpolator.GetDelayRate();
+    double frate = aPeakInterpolator.GetFringeRate();
+    double famp = aPeakInterpolator.GetFringeAmplitude();
+
+    fParameterStore.Set("/fringe/sbdelay", sbdelay);
+    fParameterStore.Set("/fringe/mbdelay", mbdelay);
+    fParameterStore.Set("/fringe/drate", drate);
+    fParameterStore.Set("/fringe/frate", frate);
+    fParameterStore.Set("/fringe/famp", famp);
+}
+
+
+
+
 
 }//end namespace
