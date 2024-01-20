@@ -77,7 +77,8 @@ void MHO_IonosphericFringeFitter::Run()
         if(!do_ion)
         {
             //execute the basic fringe search algorithm
-            MHO_BasicFringeUtilities::basic_fringe_search(&fContainerStore, &fParameterStore);
+            basic_fringe_search();
+            // MHO_BasicFringeUtilities::basic_fringe_search(&fContainerStore, &fParameterStore);
             fParameterStore.Set("/status/is_finished", true);
             //have sampled all grid points, find the solution and finalize
             //calculate the fringe properties
@@ -361,7 +362,8 @@ MHO_IonosphericFringeFitter::rjc_ion_search() //(struct type_pass *pass)
             iono.Execute();
             last_ion_diff = ion_diff;
 
-            MHO_BasicFringeUtilities::basic_fringe_search(&fContainerStore, &fParameterStore);
+            // MHO_BasicFringeUtilities::basic_fringe_search(&fContainerStore, &fParameterStore);
+            basic_fringe_search();
             if (rc < 0)
             {
                 //msg ("Error fringe searching", 2);
