@@ -87,12 +87,15 @@ MHO_MBDelaySearch::ExecuteImpl(const XArgType* in)
     bool ok;
     if(fInitialized)
     {
-        std::cout<<"executing MBD search"<<std::endl;
+        std::cout<<"executing MBD search, NSBD = "<<fNSBD<<std::endl;
     
         //loop over the single-band delay 'lags', computing the MBD/DR function
         //find the max for each SBD, and globally
         fMax = 0.0;
-        for(std::size_t sbd_idx=0; sbd_idx<fNSBD; sbd_idx++)
+        // for(std::size_t sbd_idx=0; sbd_idx<fNSBD; sbd_idx++)
+        std::size_t sbd_start = 253;
+        std::size_t sbd_end = 259;
+        for(std::size_t sbd_idx=sbd_start; sbd_idx<sbd_end; sbd_idx++)
         {
             //first select the slice of visibilities which correspond to this SBD
             //and copy this slice into local workspace table container
@@ -109,7 +112,7 @@ MHO_MBDelaySearch::ExecuteImpl(const XArgType* in)
 
             //run the transformation to delay rate space (this also involves a zero padded FFT)
             ok = fDelayRateCalc.Execute();
-            if(sbd_idx == 0){fDRAxis = std::get<TIME_AXIS>(sbd_dr_data);} //copy the axis just once
+            if(sbd_idx == sbd_start){fDRAxis = std::get<TIME_AXIS>(sbd_dr_data);} //copy the axis just once
 
             //off by default, except on last pass
             fFFTEngine.DisableAxisLabelTransformation();
@@ -128,7 +131,7 @@ MHO_MBDelaySearch::ExecuteImpl(const XArgType* in)
                     fMBDWorkspace(mbd_bin) = sbd_dr_data(0, ch, dr_idx, 0);
                 }
 
-                if(sbd_idx == fNSBD-1 && dr_idx == fNDR-1)
+                if(sbd_idx == sbd_end-1 && dr_idx == fNDR-1)
                 {
                     fFFTEngine.EnableAxisLabelTransformation();
                     //only need to do this once on the last iter to
@@ -159,7 +162,7 @@ MHO_MBDelaySearch::ExecuteImpl(const XArgType* in)
                     }
                 }
 
-                if(sbd_idx == fNSBD-1 && dr_idx == fNDR-1)
+                if(sbd_idx == sbd_end-1 && dr_idx == fNDR-1)
                 {
                     //only need to do this once on the last iter (to properly set-up the MBD axis)
                     ok = fCyclicRotator.Execute();
