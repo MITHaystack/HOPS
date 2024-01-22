@@ -296,6 +296,9 @@ void MHO_BasicFringeFitter::Initialize()
         check_step_fatal(ok, "fringe", "mbd initialization." << eom );
 
 
+        std::cout<<"DUMPING THE PARAMETER STORE:"<<std::endl;
+        fParameterStore.Dump();
+
     }
 }
 

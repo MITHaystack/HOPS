@@ -49,6 +49,24 @@ class MHO_MBDelaySearch: public MHO_InspectingOperator< visibility_type >
         void SetWeights(weight_type* wt_data){fWeights = wt_data;}
         void SetReferenceFrequency(double ref_freq){fRefFreq = ref_freq;}
 
+        //configure the search windows (using floating point limits)
+        //default is the full range
+        void SetSBDWindow(double low, double high);
+        void SetMBDWindow(double low, double high);
+        void SetDRWindow(double low, double high);
+
+        //configure the search windows using bin numbers (will take precendence over floating point values)
+        //default is the full range
+        void SetSBDWindowBins(int low, int high);
+        void SetMBDWindowBins(int low, int high);
+        void SetDRWindowBins(int low, int high);
+
+        //retrieve the window limits 
+        void GetSBDWindow(double& low, double& high) const;
+        void GetMBDWindow(double& low, double& high) const;
+        void GetDRWindow(double& low, double& high) const;
+
+
         int GetMBDMaxBin() const {return fMBDMaxBin;}
         int GetSBDMaxBin() const {return fSBDMaxBin;}
         int GetDRMaxBin() const {return fDRMaxBin;}
@@ -95,8 +113,17 @@ class MHO_MBDelaySearch: public MHO_InspectingOperator< visibility_type >
         std::size_t fNSBD;
         std::size_t fNDR;
         std::map<std::size_t, std::size_t> fMBDBinMap;
-
         double fRefFreq;
+
+        //the window limits 
+        double fSBDWinLow, fSBDWinHigh;
+        double fMBDWinLow, fMBDWinHigh;
+        double fDRWinLow, fDRWinHigh;
+
+        int fSBDWinBinLow, fSBDWinBinHigh;
+        int fMBDWinBinLow, fMBDWinBinHigh;
+        int fDRWinBinLow, fDRWinBinHigh;
+
 
         //location and value of the maximum
         double fMax;
