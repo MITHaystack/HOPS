@@ -93,6 +93,9 @@ class MHO_MBDelaySearch: public MHO_InspectingOperator< visibility_type >
     private:
 
 
+        void ConfigureWindows();
+
+
         //workspace
         bool fInitialized;
         std::vector< double > fChannelFreqs;
@@ -123,7 +126,6 @@ class MHO_MBDelaySearch: public MHO_InspectingOperator< visibility_type >
         int fSBDWinBinLow, fSBDWinBinHigh;
         int fMBDWinBinLow, fMBDWinBinHigh;
         int fDRWinBinLow, fDRWinBinHigh;
-
 
         //location and value of the maximum
         double fMax;
