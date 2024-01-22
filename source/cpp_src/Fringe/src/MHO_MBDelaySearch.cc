@@ -48,6 +48,7 @@ MHO_MBDelaySearch::InitializeImpl(const XArgType* in)
         fMBDBinMap = fGridCalc.GetGridIndexMap();
         fNSBD = in->GetDimension(FREQ_AXIS);
         fNDR = in->GetDimension(TIME_AXIS);
+        fSBDAxis = std::get<FREQ_AXIS>(*in);
 
         msg_debug("fringe", "MBD search, N grid points = " << fNGridPoints << eom);
 
@@ -98,6 +99,7 @@ bool
 MHO_MBDelaySearch::ExecuteImpl(const XArgType* in)
 {
     bool ok;
+    bool first = true;
     if(fInitialized)
     {
         ConfigureWindows();
@@ -107,6 +109,8 @@ MHO_MBDelaySearch::ExecuteImpl(const XArgType* in)
         fMax = 0.0;
         for(std::size_t sbd_idx=0; sbd_idx<fNSBD; sbd_idx++)
         {
+            
+
             //first select the slice of visibilities which correspond to this SBD
             //and copy this slice into local workspace table container
             auto sbd_dims = fSBDDrWorkspace.GetDimensionArray();
@@ -124,8 +128,6 @@ MHO_MBDelaySearch::ExecuteImpl(const XArgType* in)
             ok = fDelayRateCalc.Execute();
             if(sbd_idx == 0){fDRAxis = std::get<TIME_AXIS>(sbd_dr_data);} //copy the axis just once
 
-            //off by default, except on last pass
-            fFFTEngine.DisableAxisLabelTransformation();
 
             auto sbd_dr_dim = sbd_dr_data.GetDimensionArray();
             for(std::size_t dr_idx=0; dr_idx < sbd_dr_dim[TIME_AXIS]; dr_idx++)
@@ -141,11 +143,23 @@ MHO_MBDelaySearch::ExecuteImpl(const XArgType* in)
                     fMBDWorkspace(mbd_bin) = sbd_dr_data(0, ch, dr_idx, 0);
                 }
 
-                if(sbd_idx == fNSBD-1 && dr_idx == fNDR-1)
+                // if(sbd_idx == fNSBD-1 && dr_idx == fNDR-1)
+                // {
+                //     fFFTEngine.EnableAxisLabelTransformation();
+                //     //only need to do this once on the last iter to
+                //     //set up the mbd delay axis (in frequency space)
+                //     auto mbd_ax = &(std::get<0>(fMBDWorkspace) );
+                //     for(std::size_t i=0; i<fNGridPoints;i++)
+                //     {
+                //         mbd_ax->at(i) = fGridStart + i*fGridSpace;
+                //     }
+                // }
+
+                if(first)
                 {
-                    fFFTEngine.EnableAxisLabelTransformation();
-                    //only need to do this once on the last iter to
+                    //only need to do this once, in order to 
                     //set up the mbd delay axis (in frequency space)
+                    fFFTEngine.EnableAxisLabelTransformation();
                     auto mbd_ax = &(std::get<0>(fMBDWorkspace) );
                     for(std::size_t i=0; i<fNGridPoints;i++)
                     {
@@ -155,6 +169,14 @@ MHO_MBDelaySearch::ExecuteImpl(const XArgType* in)
 
                 //now run an FFT along the MBD axis and cyclic rotate
                 bool ok = fFFTEngine.Execute();
+
+                if(first)
+                {
+                    //off for all other iterations
+                    fFFTEngine.DisableAxisLabelTransformation();
+                    first = false;
+                }
+
                 check_step_fatal(ok, "fringe", "MBD search fft engine execution." << eom );
 
                 std::size_t total_mbd_dr_size = fMBDWorkspace.GetSize();
@@ -192,7 +214,11 @@ MHO_MBDelaySearch::ExecuteImpl(const XArgType* in)
 
 void MHO_MBDelaySearch::ConfigureWindows()
 {
-    
+    if(fSBDWin[0] == 0.0 || fSBDWin[1] == 0.0)
+    {
+        fSBDWin[0] = fSBDAxis[0];
+        fSBDWin[1] = fSBDAxis[fNSBD-1];
+    }
 }
 
 

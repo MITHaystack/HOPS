@@ -133,6 +133,7 @@ class MHO_MBDelaySearch: public MHO_InspectingOperator< visibility_type >
         int fSBDMaxBin;
         int fDRMaxBin;
 
+        MHO_Axis<double> fSBDAxis;
         MHO_Axis<double> fMBDAxis;
         MHO_Axis<double> fDRAxis;
 
