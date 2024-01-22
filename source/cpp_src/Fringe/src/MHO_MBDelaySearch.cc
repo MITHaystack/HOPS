@@ -107,7 +107,7 @@ MHO_MBDelaySearch::ExecuteImpl(const XArgType* in)
     {
         fSBDAxis = std::get<FREQ_AXIS>(*in);
 
-        ConfigureWindows();
+        ConfigureSBDWindows();
 
         //loop over the single-band delay 'lags', computing the MBD/DR function
         //find the max for each SBD, and globally
@@ -116,9 +116,9 @@ MHO_MBDelaySearch::ExecuteImpl(const XArgType* in)
         for(std::size_t sbd_idx=0; sbd_idx<fNSBD; sbd_idx++)
         {
             double sbd = 1e-6*(fSBDAxis.at(sbd_idx));
-            bool do_search = (fSBDWin[0] <= sbd) && (sbd <= fSBDWin[1]);
+            bool do_sbd_search = (fSBDWin[0] <= sbd) && (sbd <= fSBDWin[1]);
             std::cout<<"win, sbd, win  = "<<fSBDWin[0]<<", "<<sbd<<", "<<fSBDWin[1]<<std::endl;
-            if(do_search)
+            if(do_sbd_search)
             {
                 std::cout<<"SBDIDX = "<<sbd_idx<<std::endl;
                 //first select the slice of visibilities which correspond to this SBD
@@ -136,59 +136,70 @@ MHO_MBDelaySearch::ExecuteImpl(const XArgType* in)
 
                 //run the transformation to delay rate space (this also involves a zero padded FFT)
                 ok = fDelayRateCalc.Execute();
-                if(first){fDRAxis = std::get<TIME_AXIS>(sbd_dr_data);} //copy the axis just once
-
-
-                auto sbd_dr_dim = sbd_dr_data.GetDimensionArray();
-                for(std::size_t dr_idx=0; dr_idx < sbd_dr_dim[TIME_AXIS]; dr_idx++)
+                if(first)
                 {
-                    //zero out MBD workspace
-                   fMBDWorkspace.ZeroArray();
+                    //copy the axis just once
+                    fDRAxis = std::get<TIME_AXIS>(sbd_dr_data);
+                    ConfigureDRWindows();
+                } 
 
-                    //copy in the data from each channel for this SDB/DR
-                    std::size_t nch = std::get<CHANNEL_AXIS>(*in).GetSize();
-                    for(std::size_t ch=0; ch<nch; ch++)
+                auto NDRBin = fDRAxis.GetSize() ;//sbd_dr_data.GetDimensionArray();
+                // for(std::size_t dr_idx=0; dr_idx < sbd_dr_dim[TIME_AXIS]; dr_idx++)
+                for(std::size_t dr_idx=0; dr_idx < NDRBin; dr_idx++)
+                {
+                    double dr = fDRAxis.at(dr_idx);
+                    bool do_dr_search = (fDRWin[0] <= dr) && (dr <= fDRWin[1]);
+                    std::cout<<"win, dr, win  = "<<fDRWin[0]<<", "<<dr<<", "<<fDRWin[1]<<std::endl;
+                    if(do_dr_search)
                     {
-                        std::size_t mbd_bin = fMBDBinMap[ch];
-                        fMBDWorkspace(mbd_bin) = sbd_dr_data(0, ch, dr_idx, 0);
-                    }
+                        //zero out MBD workspace
+                        fMBDWorkspace.ZeroArray();
 
-                    if(first)
-                    {
-                        //only need to do this once, in order to 
-                        //set up the mbd delay axis (in frequency space)
-                        fFFTEngine.EnableAxisLabelTransformation();
-                        auto mbd_ax = &(std::get<0>(fMBDWorkspace) );
-                        for(std::size_t i=0; i<fNGridPoints;i++)
+                        //copy in the data from each channel for this SDB/DR
+                        std::size_t nch = std::get<CHANNEL_AXIS>(*in).GetSize();
+                        for(std::size_t ch=0; ch<nch; ch++)
                         {
-                            mbd_ax->at(i) = fGridStart + i*fGridSpace;
+                            std::size_t mbd_bin = fMBDBinMap[ch];
+                            fMBDWorkspace(mbd_bin) = sbd_dr_data(0, ch, dr_idx, 0);
                         }
-                    }
 
-                    //now run an FFT along the MBD axis and cyclic rotate
-                    bool ok = fFFTEngine.Execute();
-
-                    if(first)
-                    {
-                        //off for all other iterations
-                        fFFTEngine.DisableAxisLabelTransformation();
-                        first = false;
-                    }
-
-                    check_step_fatal(ok, "fringe", "MBD search fft engine execution." << eom );
-
-                    std::size_t total_mbd_dr_size = fMBDWorkspace.GetSize();
-                    for(std::size_t i=0; i<total_mbd_dr_size; i++)
-                    {
-                        //since we don't care about the actual amplitude (just searching for the max location)
-                        //this is faster since it doesn't need to take a square root
-                        double tmp_max = std::norm(fMBDWorkspace[i]);
-                        if(tmp_max > fMax)
+                        if(first)
                         {
-                            fMax = tmp_max;
-                            fMBDMaxBin = (i + fNGridPoints/2) % fNGridPoints;
-                            fSBDMaxBin = sbd_idx;
-                            fDRMaxBin = dr_idx;
+                            //only need to do this once, in order to 
+                            //set up the mbd delay axis (in frequency space)
+                            fFFTEngine.EnableAxisLabelTransformation();
+                            auto mbd_ax = &(std::get<0>(fMBDWorkspace) );
+                            for(std::size_t i=0; i<fNGridPoints;i++)
+                            {
+                                mbd_ax->at(i) = fGridStart + i*fGridSpace;
+                            }
+                        }
+
+                        //now run an FFT along the MBD axis and cyclic rotate
+                        bool ok = fFFTEngine.Execute();
+
+                        if(first)
+                        {
+                            //off for all other iterations
+                            fFFTEngine.DisableAxisLabelTransformation();
+                            first = false;
+                        }
+
+                        check_step_fatal(ok, "fringe", "MBD search fft engine execution." << eom );
+                        std::size_t total_mbd_dr_size = fMBDWorkspace.GetSize();
+
+                        for(std::size_t i=0; i<total_mbd_dr_size; i++)
+                        {
+                            //since we don't care about the actual amplitude (just searching for the max location)
+                            //this is faster since it doesn't need to take a square root
+                            double tmp_max = std::norm(fMBDWorkspace[i]);
+                            if(tmp_max > fMax)
+                            {
+                                fMax = tmp_max;
+                                fMBDMaxBin = (i + fNGridPoints/2) % fNGridPoints;
+                                fSBDMaxBin = sbd_idx;
+                                fDRMaxBin = dr_idx;
+                            }
                         }
                     }
                 }
@@ -208,7 +219,7 @@ MHO_MBDelaySearch::ExecuteImpl(const XArgType* in)
 };
 
 
-void MHO_MBDelaySearch::ConfigureWindows()
+void MHO_MBDelaySearch::ConfigureSBDWindows()
 {
     if(!fSBDWinSet) //unset, use full range
     {
@@ -217,6 +228,17 @@ void MHO_MBDelaySearch::ConfigureWindows()
     }
     std::cout<<"MY SBD WIN = "<<fSBDWin[0]<<", "<<fSBDWin[1]<<std::endl;
 }
+
+void MHO_MBDelaySearch::ConfigureDRWindows()
+{
+    if(!fDRWinSet) //unset, use full range
+    {
+        fDRWin[0] = fDRAxis[0];
+        fDRWin[1] = fDRAxis[fNSBD-1];
+    }
+    std::cout<<"MY DR WIN = "<<fDRWin[0]<<", "<<fDRWin[1]<<std::endl;
+}
+
 
 
 //configure the search windows (using floating point limits)
