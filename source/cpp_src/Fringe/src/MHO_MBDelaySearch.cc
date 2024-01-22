@@ -173,4 +173,75 @@ MHO_MBDelaySearch::ExecuteImpl(const XArgType* in)
 };
 
 
+
+
+
+//configure the search windows (using floating point limits)
+//default is the full range
+void 
+MHO_MBDelaySearch::SetSBDWindow(double low, double high)
+{
+
+}
+
+void 
+MHO_MBDelaySearch::SetMBDWindow(double low, double high)
+{
+
+}
+
+void 
+MHO_MBDelaySearch::SetDRWindow(double low, double high)
+{
+
+}
+
+//configure the search windows using bin numbers (will take precendence over floating point values)
+//default is the full range
+void 
+MHO_MBDelaySearch::SetSBDWindowBins(int low, int high)
+{
+
+}
+
+void 
+MHO_MBDelaySearch::SetMBDWindowBins(int low, int high)
+{
+
+}
+
+void 
+MHO_MBDelaySearch::SetDRWindowBins(int low, int high)
+{
+
+}
+
+//retrieve the window limits 
+void 
+MHO_MBDelaySearch::GetSBDWindow(double& low, double& high) const
+{
+
+}
+
+void 
+MHO_MBDelaySearch::GetMBDWindow(double& low, double& high) const
+{
+
+}
+
+void 
+MHO_MBDelaySearch::GetDRWindow(double& low, double& high) const
+{
+
+}
+
+
+
+
+
+
+
+
+
+
 }
