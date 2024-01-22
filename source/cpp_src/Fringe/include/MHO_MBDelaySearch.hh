@@ -123,6 +123,9 @@ class MHO_MBDelaySearch: public MHO_InspectingOperator< visibility_type >
         double fDRWin[2];
 
         //window limits as bin numbers
+        bool fSBDWinSet;
+        bool fMBDWinSet;
+        bool fDRWinSet;
         int fSBDWinBin[2];
         int fMBDWinBin[2];
         int fDRWinBin[2];
