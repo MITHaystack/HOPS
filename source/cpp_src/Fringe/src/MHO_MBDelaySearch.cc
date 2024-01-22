@@ -10,6 +10,24 @@ MHO_MBDelaySearch::MHO_MBDelaySearch()
     fSBDMaxBin = -1;
     fDRMaxBin = -1;
     fMBDBinMap.clear();
+
+
+    //the window limits 
+    fSBDWinLow = 0.0;
+    fSBDWinHigh = 0.0;
+    fMBDWinLow = 0.0;
+    fMBDWinHigh = 0.0;
+    fDRWinLow = 0.0;
+    fDRWinHigh = 0.0;
+
+    fSBDWinBinLow = -1;
+    fSBDWinBinHigh = -1;
+    fMBDWinBinLow = -1;
+    fMBDWinBinHigh = -1;
+    fDRWinBinLow = -1;
+    fDRWinBinHigh = -1;
+
+
 }
 
 MHO_MBDelaySearch::~MHO_MBDelaySearch(){};
@@ -85,6 +103,8 @@ MHO_MBDelaySearch::ExecuteImpl(const XArgType* in)
     bool ok;
     if(fInitialized)
     {
+        ConfigureWindows();
+
         //loop over the single-band delay 'lags', computing the MBD/DR function
         //find the max for each SBD, and globally
         fMax = 0.0;
@@ -173,7 +193,10 @@ MHO_MBDelaySearch::ExecuteImpl(const XArgType* in)
 };
 
 
+void MHO_MBDelaySearch::ConfigureWindows()
+{
 
+}
 
 
 //configure the search windows (using floating point limits)
@@ -181,19 +204,46 @@ MHO_MBDelaySearch::ExecuteImpl(const XArgType* in)
 void 
 MHO_MBDelaySearch::SetSBDWindow(double low, double high)
 {
-
+    if(low <= high)
+    {
+        fSBDWinLow = low;
+        fSBDWinHigh = high;
+    }
+    else 
+    {
+        fSBDWinLow = high;
+        fSBDWinHigh = low;
+    }
 }
 
 void 
 MHO_MBDelaySearch::SetMBDWindow(double low, double high)
 {
-
+    if(low <= high)
+    {
+        fMBDWinLow = low;
+        fMBDWinHigh = high;
+    }
+    else 
+    {
+        fMBDWinLow = high;
+        fMBDWinHigh = low;
+    }
 }
 
 void 
 MHO_MBDelaySearch::SetDRWindow(double low, double high)
 {
-
+    if(low <= high)
+    {
+        fDRWinLow = low;
+        fDRWinHigh = high;
+    }
+    else 
+    {
+        fDRWinLow = high;
+        fDRWinHigh = low;
+    }
 }
 
 //configure the search windows using bin numbers (will take precendence over floating point values)
@@ -201,19 +251,46 @@ MHO_MBDelaySearch::SetDRWindow(double low, double high)
 void 
 MHO_MBDelaySearch::SetSBDWindowBins(int low, int high)
 {
-
+    if(low <= high)
+    {
+        fSBDWinBinLow = low;
+        fSBDWinBinHigh = high;
+    }
+    else 
+    {
+        fSBDWinBinLow = high;
+        fSBDWinBinHigh = low;
+    }
 }
 
 void 
 MHO_MBDelaySearch::SetMBDWindowBins(int low, int high)
 {
-
+    if(low <= high)
+    {
+        fMBDWinBinLow = low;
+        fMBDWinBinHigh = high;
+    }
+    else 
+    {
+        fMBDWinBinLow = high;
+        fMBDWinBinHigh = low;
+    }
 }
 
 void 
 MHO_MBDelaySearch::SetDRWindowBins(int low, int high)
 {
-
+    if(low <= high)
+    {
+        fDRWinBinLow = low;
+        fDRWinBinHigh = high;
+    }
+    else 
+    {
+        fDRWinBinLow = high;
+        fDRWinBinHigh = low;
+    }
 }
 
 //retrieve the window limits 
