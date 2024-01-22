@@ -92,9 +92,8 @@ class MHO_MBDelaySearch: public MHO_InspectingOperator< visibility_type >
 
     private:
 
-
+        //set up the search windows (sbd,mbd,dr)
         void ConfigureWindows();
-
 
         //workspace
         bool fInitialized;
@@ -119,13 +118,14 @@ class MHO_MBDelaySearch: public MHO_InspectingOperator< visibility_type >
         double fRefFreq;
 
         //the window limits 
-        double fSBDWinLow, fSBDWinHigh;
-        double fMBDWinLow, fMBDWinHigh;
-        double fDRWinLow, fDRWinHigh;
+        double fSBDWin[2];
+        double fMBDWin[2];
+        double fDRWin[2];
 
-        int fSBDWinBinLow, fSBDWinBinHigh;
-        int fMBDWinBinLow, fMBDWinBinHigh;
-        int fDRWinBinLow, fDRWinBinHigh;
+        //window limits as bin numbers
+        int fSBDWinBin[2];
+        int fMBDWinBin[2];
+        int fDRWinBin[2];
 
         //location and value of the maximum
         double fMax;
