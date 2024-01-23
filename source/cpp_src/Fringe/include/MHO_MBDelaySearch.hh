@@ -55,17 +55,10 @@ class MHO_MBDelaySearch: public MHO_InspectingOperator< visibility_type >
         void SetMBDWindow(double low, double high);
         void SetDRWindow(double low, double high);
 
-        //configure the search windows using bin numbers (will take precendence over floating point values)
-        //default is the full range
-        void SetSBDWindowBins(int low, int high);
-        void SetMBDWindowBins(int low, int high);
-        void SetDRWindowBins(int low, int high);
-
-        //retrieve the window limits 
+        //retrieve the window limits (that were actually used)
         void GetSBDWindow(double& low, double& high) const;
         void GetMBDWindow(double& low, double& high) const;
         void GetDRWindow(double& low, double& high) const;
-
 
         int GetMBDMaxBin() const {return fMBDMaxBin;}
         int GetSBDMaxBin() const {return fSBDMaxBin;}
@@ -91,11 +84,6 @@ class MHO_MBDelaySearch: public MHO_InspectingOperator< visibility_type >
         virtual bool ExecuteImpl(const XArgType* in) override;
 
     private:
-
-        //set up the search windows (sbd,mbd,dr)
-        void ConfigureSBDWindows();
-        void ConfigureDRWindows();
-        void ConfigureMBDWindows();
 
         //workspace
         bool fInitialized;
@@ -124,13 +112,11 @@ class MHO_MBDelaySearch: public MHO_InspectingOperator< visibility_type >
         double fMBDWin[2];
         double fDRWin[2];
 
-        //window limits as bin numbers
+        //indicates if window limits have been set
         bool fSBDWinSet;
         bool fMBDWinSet;
         bool fDRWinSet;
-        int fSBDWinBin[2];
-        int fMBDWinBin[2];
-        int fDRWinBin[2];
+
 
         //location and value of the maximum
         double fMax;
