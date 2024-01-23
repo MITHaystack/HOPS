@@ -15,7 +15,6 @@ MHO_MBDelaySearch::MHO_MBDelaySearch()
     fSBDWinSet = false;
     fMBDWinSet = false;
     fDRWinSet = false;
-
     fSBDWin[0] = 1e30;
     fSBDWin[1] = -1e30;
     fMBDWin[0] = 1e30;

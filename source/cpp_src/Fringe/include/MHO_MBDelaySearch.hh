@@ -38,8 +38,6 @@ using mbd_type = MHO_TableContainer< visibility_element_type, mbd_axis_pack >;
 using mbd_amp_type = MHO_TableContainer< double, mbd_axis_pack >;
 
 
-
-
 class MHO_MBDelaySearch: public MHO_InspectingOperator< visibility_type >
 {
     public:
@@ -116,7 +114,6 @@ class MHO_MBDelaySearch: public MHO_InspectingOperator< visibility_type >
         bool fSBDWinSet;
         bool fMBDWinSet;
         bool fDRWinSet;
-
 
         //location and value of the maximum
         double fMax;
