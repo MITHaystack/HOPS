@@ -550,6 +550,7 @@ MHO_BasicFringeFitter::basic_fringe_search()
     //coarse SBD/MBD/DR search (locates max bin)
     fMBDSearch.SetSBDWindow(-0.3e-6, 0.3e-6);
     fMBDSearch.SetDRWindow(-0.02, 0.02);
+    fMBDSearch.SetMBDWindow(-0.005e-6, 0.005e-6);
     ok = fMBDSearch.Execute();
     check_step_fatal(ok, "fringe", "mbd execution." << eom );
 

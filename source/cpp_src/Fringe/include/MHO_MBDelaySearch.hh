@@ -95,6 +95,7 @@ class MHO_MBDelaySearch: public MHO_InspectingOperator< visibility_type >
         //set up the search windows (sbd,mbd,dr)
         void ConfigureSBDWindows();
         void ConfigureDRWindows();
+        void ConfigureMBDWindows();
 
         //workspace
         bool fInitialized;
