@@ -296,9 +296,27 @@ void MHO_BasicFringeFitter::Initialize()
         fMBDSearch.SetWeights(wt_data);
         fMBDSearch.SetReferenceFrequency(ref_freq);
         fMBDSearch.SetArgs(sbd_data);
+
+        //set the coarse SBD/MBD/DR search windows here
+        if(fParameterStore.IsPresent("/control/fit/sb_win"))
+        {
+            std::vector<double> sbwin = fParameterStore.GetAs< std::vector<double> >("/control/fit/sb_win");
+            fMBDSearch.SetSBDWindow(sbwin[0], sbwin[1]); //units are microsec
+        }
+
+        if(fParameterStore.IsPresent("/control/fit/mb_win"))
+        {
+            std::vector<double> mbwin = fParameterStore.GetAs< std::vector<double> >("/control/fit/mb_win");
+            fMBDSearch.SetMBDWindow(mbwin[0], mbwin[1]); //units are microsec
+        }
+
+        if(fParameterStore.IsPresent("/control/fit/dr_win"))
+        {
+            std::vector<double> drwin = fParameterStore.GetAs< std::vector<double> >("/control/fit/dr_win");
+            fMBDSearch.SetDRWindow(drwin[0], drwin[1]); //units are us/s (??)
+        }
         ok = fMBDSearch.Initialize();
         check_step_fatal(ok, "fringe", "mbd initialization." << eom );
-
 
         std::cout<<"DUMPING THE PARAMETER STORE:"<<std::endl;
         fParameterStore.Dump();
@@ -369,6 +387,21 @@ void MHO_BasicFringeFitter::Finalize()
     bool skipped = fParameterStore.GetAs<bool>("/status/skipped");
     if( status_is_finished  && !skipped ) //have to be finished and not-skipped
     {
+        //get the actual search windows that were used 
+        double low, high;
+        std::vector< double > win; win.resize(2);
+        fMBDSearch.GetSBDWindow(low,high);
+        win[0] = low; win[1] = high;
+        fParameterStore.Set("/fringe/sb_win", win);
+        
+        fMBDSearch.GetDRWindow(low,high);
+        win[0] = low; win[1] = high;
+        fParameterStore.Set("/fringe/dr_win", win);
+        
+        fMBDSearch.GetMBDWindow(low,high);
+        win[0] = low; win[1] = high;
+        fParameterStore.Set("/fringe/mb_win", win);
+        
         fPlotData = MHO_FringePlotInfo::construct_plot_data(&fContainerStore, &fParameterStore, fVexInfo);
         MHO_FringePlotInfo::fill_plot_data(&fParameterStore, fPlotData);
     }
@@ -559,28 +592,6 @@ MHO_BasicFringeFitter::basic_fringe_search()
     //take snapshot of sbd data after normfx
     take_snapshot_here("test", "sbd", __FILE__, __LINE__, sbd_data);
 
-    //set the coarse SBD/MBD/DR search windows here
-    //nominally we would set these during initialization, but we set them here 
-    //in case PreRun/PostRun or derived functionality (e.g. ion_search)
-    //want to steer the search windows manually via these parameters
-    if(fParameterStore.IsPresent("/control/fit/sb_win"))
-    {
-        std::vector<double> sbwin = fParameterStore.GetAs< std::vector<double> >("/control/fit/sb_win");
-        fMBDSearch.SetSBDWindow(sbwin[0], sbwin[1]); //units are microsec
-    }
-
-    if(fParameterStore.IsPresent("/control/fit/mb_win"))
-    {
-        std::vector<double> mbwin = fParameterStore.GetAs< std::vector<double> >("/control/fit/mb_win");
-        fMBDSearch.SetMBDWindow(mbwin[0], mbwin[1]); //units are microsec
-    }
-
-    if(fParameterStore.IsPresent("/control/fit/dr_win"))
-    {
-        std::vector<double> drwin = fParameterStore.GetAs< std::vector<double> >("/control/fit/dr_win");
-        fMBDSearch.SetDRWindow(drwin[0], drwin[1]); //units are us/s (??)
-    }
-
     ok = fMBDSearch.Execute();
     check_step_fatal(ok, "fringe", "mbd execution." << eom );
 
@@ -614,21 +625,6 @@ MHO_BasicFringeFitter::basic_fringe_search()
     fParameterStore.Set("/fringe/max_mbd_bin", c_mbdmax);
     fParameterStore.Set("/fringe/max_sbd_bin", c_sbdmax);
     fParameterStore.Set("/fringe/max_dr_bin", c_drmax);
-
-    //get the actual search windows that were used 
-    double low, high;
-    std::vector< double > win; win.resize(2);
-    fMBDSearch.GetSBDWindow(low,high);
-    win[0] = low; win[1] = high;
-    fParameterStore.Set("/fringe/sb_win", win);
-    
-    fMBDSearch.GetDRWindow(low,high);
-    win[0] = low; win[1] = high;
-    fParameterStore.Set("/fringe/dr_win", win);
-    
-    fMBDSearch.GetMBDWindow(low,high);
-    win[0] = low; win[1] = high;
-    fParameterStore.Set("/fringe/mb_win", win);
 
     ////////////////////////////////////////////////////////////////////////////
     //FINE INTERPOLATION STEP (search over 5x5x5 grid around peak)

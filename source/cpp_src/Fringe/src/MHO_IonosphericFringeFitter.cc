@@ -105,21 +105,21 @@ void MHO_IonosphericFringeFitter::PostRun()
 }
 
 
-void MHO_IonosphericFringeFitter::Finalize()
-{
-    ////////////////////////////////////////////////////////////////////////////
-    //PLOTTING/DEBUG
-    ////////////////////////////////////////////////////////////////////////////
-    //TODO may want to reorg the way this is done
-
-    bool is_finished = fParameterStore.GetAs<bool>("/status/is_finished");
-    bool skipped = fParameterStore.GetAs<bool>("/status/skipped");
-    if( is_finished  && !skipped ) //have to be finished and not-skipped
-    {
-        fPlotData = MHO_FringePlotInfo::construct_plot_data(&fContainerStore, &fParameterStore, fVexInfo);
-        MHO_FringePlotInfo::fill_plot_data(&fParameterStore, fPlotData);
-    }
-}
+// void MHO_IonosphericFringeFitter::Finalize()
+// {
+//     ////////////////////////////////////////////////////////////////////////////
+//     //PLOTTING/DEBUG
+//     ////////////////////////////////////////////////////////////////////////////
+//     //TODO may want to reorg the way this is done
+// 
+//     bool is_finished = fParameterStore.GetAs<bool>("/status/is_finished");
+//     bool skipped = fParameterStore.GetAs<bool>("/status/skipped");
+//     if( is_finished  && !skipped ) //have to be finished and not-skipped
+//     {
+//         fPlotData = MHO_FringePlotInfo::construct_plot_data(&fContainerStore, &fParameterStore, fVexInfo);
+//         MHO_FringePlotInfo::fill_plot_data(&fParameterStore, fPlotData);
+//     }
+// }
 
 
 int 
@@ -196,6 +196,60 @@ MHO_IonosphericFringeFitter::rjc_ion_search() //(struct type_pass *pass)
     ion_pts = 21;
     win_ion[0] = -5.0;
     win_ion[1] = 5.0;
+    
+    
+    
+    
+    
+    
+    
+    // 
+    // // possibly save sb & dr indices
+    // if (param.ion_pts > 1)          // is ionosphere being searched? no skips code
+    // {
+    //     if (saved)
+    //     {                       // ion looping, use search values from first loop
+    //         msg("using saved windows for loopion %d", -1, status.loopion);
+    //         for (i = 0; i < 2; i++)
+    //         {
+    //             status.win_sb[i] = status.sb_indx;
+    //             // for now, disable dr overwrite as dangerous  rjc  2016.6.20             
+    //             // status.win_dr[i] = status.dr_indx;
+    //         }
+    //     }
+    //     else if (status.loopion > 0 && snr_approx > 15.0)
+    //     {                       // save indices in case ion looping needs them later
+    //         msg("saving windows", -1);
+    //         for (i = 0; i < 2; i++)
+    //         {
+    //             status.win_sb_save[i] = status.win_sb[i];
+    //             status.win_dr_save[i] = status.win_dr[i];
+    //         }
+    //         saved = TRUE;           // ensure that we only do this once
+    //         pol_save = pass->pol;
+    //         for (i = 0; i < 2; i++)
+    //         bl_save[i] = param.baseline[i];
+    //     }
+    // }
+    // 
+    // 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
     // prepare for ionospheric search
     center = (win_ion[0] + win_ion[1]) / 2.0;
@@ -376,6 +430,10 @@ MHO_IonosphericFringeFitter::rjc_ion_search() //(struct type_pass *pass)
             basic_fringe_search();
             if(first_pass)
             {
+                //cache the full SBD search window for later
+
+                //then just limit the SBD window to bin where the max was located
+                
                 //fMBDSearch.SetSBDLimits(253, 259);
                 first_pass = false;
             }
@@ -396,6 +454,7 @@ MHO_IonosphericFringeFitter::rjc_ion_search() //(struct type_pass *pass)
                 win_sb[i] = win_sb_save[i];
                 win_dr[i] = win_dr_save[i];
             }
+            
             // // interpolate via direct counter-rotation for
             // // more precise results
             // interp (pass);
