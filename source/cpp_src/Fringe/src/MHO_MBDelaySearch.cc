@@ -9,6 +9,8 @@ MHO_MBDelaySearch::MHO_MBDelaySearch()
     fMBDMaxBin = -1;
     fSBDMaxBin = -1;
     fDRMaxBin = -1;
+    fSBDStart = -1;
+    fSBDStop = -1;
     fMBDBinMap.clear();
 
     //the window limits 
@@ -32,7 +34,6 @@ MHO_MBDelaySearch::InitializeImpl(const XArgType* in)
     fInitialized = false;
     if(in != nullptr)
     {
-
         //calculate the frequency grid for MBD search
         MHO_UniformGridPointsCalculator fGridCalc;
         fGridCalc.SetPoints( std::get<CHANNEL_AXIS>(*in).GetData(), std::get<CHANNEL_AXIS>(*in).GetSize() );
@@ -45,6 +46,9 @@ MHO_MBDelaySearch::InitializeImpl(const XArgType* in)
         fMBDBinMap = fGridCalc.GetGridIndexMap();
         fNSBD = in->GetDimension(FREQ_AXIS);
         fNDR = in->GetDimension(TIME_AXIS);
+
+        if(fSBDStart == -1){fSBDStart = 0;}
+        if(fSBDStop == -1){fSBDStop = fNSBD;}
 
         msg_debug("fringe", "MBD search, N grid points = " << fNGridPoints << eom);
 
@@ -99,13 +103,7 @@ MHO_MBDelaySearch::ExecuteImpl(const XArgType* in)
 
     if(fInitialized)
     {
-<<<<<<< HEAD
-        std::cout<<"executing MBD search"<<std::endl;
-    
-=======
         fSBDAxis = std::get<FREQ_AXIS>(*in);
-
->>>>>>> master
         //loop over the single-band delay 'lags', computing the MBD/DR function
         //find the max for each SBD, and globally
         fMax = -0.0;
@@ -204,16 +202,11 @@ MHO_MBDelaySearch::ExecuteImpl(const XArgType* in)
             }
         }
 
-<<<<<<< HEAD
-        std::cout<<"done MBD search"<<std::endl;
-        
-=======
         //only need to do this once after the last iter (to properly set-up the MBD axis)
         ok = fCyclicRotator.Execute();
         check_step_fatal(ok, "fringe", "MBD search cyclic rotation execution." << eom );
         fMBDAxis = std::get<0>(fMBDWorkspace);
 
->>>>>>> master
         fMax = std::sqrt(fMax);
         return true;
     }
