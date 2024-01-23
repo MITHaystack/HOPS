@@ -898,25 +898,6 @@ MHO_ComputePlotData::DumpInfoToJSON(mho_json& plot_dict)
     dump_multitone_pcmodel(plot_dict, station_flag, pol);
     dump_manual_pcmodel(plot_dict, station_flag, pol);
 
-    //for the time being, we add the window info here:
-    double sb_win_low = std::get<0>(sbd_amp)(0);
-    double sb_win_high = std::get<0>(sbd_amp)( sbd_amp.GetSize() - 1);
-    double sb_sep = std::get<0>(sbd_amp)(1) - std::get<0>(sbd_amp)(0);
-    plot_dict["extra"]["sb_win"].push_back(sb_win_low);
-    plot_dict["extra"]["sb_win"].push_back(sb_win_high+sb_sep);
-
-    double mb_win_low = std::get<0>(mbd_amp)(0);
-    double mb_win_high = std::get<0>(mbd_amp)( mbd_amp.GetSize() - 1);
-    double mb_sep = std::get<0>(mbd_amp)(1) - std::get<0>(mbd_amp)(0);
-    plot_dict["extra"]["mb_win"].push_back(mb_win_low);
-    plot_dict["extra"]["mb_win"].push_back(mb_win_high + mb_sep);
-
-    double dr_win_low = std::get<0>(dr_amp)(0);
-    double dr_win_high = std::get<0>(dr_amp)( dr_amp.GetSize() - 1);
-    double dr_sep = std::get<0>(dr_amp)(1) - std::get<0>(dr_amp)(0);
-    plot_dict["extra"]["dr_win"].push_back(dr_win_low);
-    plot_dict["extra"]["dr_win"].push_back(dr_win_high+dr_sep);
-
     //currently no dTEC fitting support
     plot_dict["extra"]["ion_win"].push_back(0.0);
     plot_dict["extra"]["ion_win"].push_back(0.0);

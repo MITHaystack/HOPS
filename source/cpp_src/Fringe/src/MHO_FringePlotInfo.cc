@@ -181,6 +181,17 @@ MHO_FringePlotInfo::fill_plot_data(MHO_ParameterStore* paramStore, mho_json& plo
     plot_dict["extra"]["n_dr_points"] = paramStore->GetAs<int>("/fringe/n_dr_points");
     plot_dict["extra"]["n_drsp_points"] = paramStore->GetAs<int>("/fringe/n_drsp_points");
 
+    //add the window info here:
+    std::vector< double > win; win.resize(2);
+    win = paramStore->GetAs< std::vector<double> >("/fringe/sb_win");
+    plot_dict["extra"]["sb_win"] = win;
+    win = paramStore->GetAs< std::vector<double> >("/fringe/mb_win");
+    plot_dict["extra"]["mb_win"] = win;
+    win = paramStore->GetAs< std::vector<double> >("/fringe/dr_win");
+    #pragma message("TODO FIXME -- perform proper accounting of window units, here we (convert to ns/s)")
+    win[0] *= 1e3; win[1] *= 1e3; 
+    plot_dict["extra"]["dr_win"] = win;
+    
     //calculate the (u,v) coordinates (taken from fill_202.c)
     double speed_of_light_Mm = 299.792458; // in mega-meters (?!)
     double lambda = speed_of_light_Mm / paramStore->GetAs<double>("/control/config/ref_freq"); // wavelength (m)

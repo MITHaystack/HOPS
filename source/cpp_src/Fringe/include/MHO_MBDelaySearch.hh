@@ -38,8 +38,6 @@ using mbd_type = MHO_TableContainer< visibility_element_type, mbd_axis_pack >;
 using mbd_amp_type = MHO_TableContainer< double, mbd_axis_pack >;
 
 
-
-
 class MHO_MBDelaySearch: public MHO_InspectingOperator< visibility_type >
 {
     public:
@@ -48,6 +46,17 @@ class MHO_MBDelaySearch: public MHO_InspectingOperator< visibility_type >
 
         void SetWeights(weight_type* wt_data){fWeights = wt_data;}
         void SetReferenceFrequency(double ref_freq){fRefFreq = ref_freq;}
+
+        //configure the search windows (using floating point limits)
+        //default is the full range
+        void SetSBDWindow(double low, double high);
+        void SetMBDWindow(double low, double high);
+        void SetDRWindow(double low, double high);
+
+        //retrieve the window limits (that were actually used)
+        void GetSBDWindow(double& low, double& high) const;
+        void GetMBDWindow(double& low, double& high) const;
+        void GetDRWindow(double& low, double& high) const;
 
         int GetMBDMaxBin() const {return fMBDMaxBin;}
         int GetSBDMaxBin() const {return fSBDMaxBin;}
@@ -74,7 +83,6 @@ class MHO_MBDelaySearch: public MHO_InspectingOperator< visibility_type >
 
     private:
 
-
         //workspace
         bool fInitialized;
         std::vector< double > fChannelFreqs;
@@ -95,8 +103,17 @@ class MHO_MBDelaySearch: public MHO_InspectingOperator< visibility_type >
         std::size_t fNSBD;
         std::size_t fNDR;
         std::map<std::size_t, std::size_t> fMBDBinMap;
-
         double fRefFreq;
+
+        //the window limits 
+        double fSBDWin[2];
+        double fMBDWin[2];
+        double fDRWin[2];
+
+        //indicates if window limits have been set
+        bool fSBDWinSet;
+        bool fMBDWinSet;
+        bool fDRWinSet;
 
         //location and value of the maximum
         double fMax;
@@ -104,6 +121,7 @@ class MHO_MBDelaySearch: public MHO_InspectingOperator< visibility_type >
         int fSBDMaxBin;
         int fDRMaxBin;
 
+        MHO_Axis<double> fSBDAxis;
         MHO_Axis<double> fMBDAxis;
         MHO_Axis<double> fDRAxis;
 
