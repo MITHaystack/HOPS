@@ -180,7 +180,39 @@ MHO_FringePlotInfo::fill_plot_data(MHO_ParameterStore* paramStore, mho_json& plo
     plot_dict["extra"]["n_sbd_points"] = paramStore->GetAs<int>("/fringe/n_sbd_points");
     plot_dict["extra"]["n_dr_points"] = paramStore->GetAs<int>("/fringe/n_dr_points");
     plot_dict["extra"]["n_drsp_points"] = paramStore->GetAs<int>("/fringe/n_drsp_points");
-
+    
+    // //for the time being, we add the window info here:
+    // double sb_win_low = std::get<0>(sbd_amp)(0);
+    // double sb_win_high = std::get<0>(sbd_amp)( sbd_amp.GetSize() - 1);
+    // double sb_sep = std::get<0>(sbd_amp)(1) - std::get<0>(sbd_amp)(0);
+    // plot_dict["extra"]["sb_win"].push_back(sb_win_low);
+    // plot_dict["extra"]["sb_win"].push_back(sb_win_high+sb_sep);
+    // 
+    // double mb_win_low = std::get<0>(mbd_amp)(0);
+    // double mb_win_high = std::get<0>(mbd_amp)( mbd_amp.GetSize() - 1);
+    // double mb_sep = std::get<0>(mbd_amp)(1) - std::get<0>(mbd_amp)(0);
+    // plot_dict["extra"]["mb_win"].push_back(mb_win_low);
+    // plot_dict["extra"]["mb_win"].push_back(mb_win_high + mb_sep);
+    // 
+    // double dr_win_low = std::get<0>(dr_amp)(0);
+    // double dr_win_high = std::get<0>(dr_amp)( dr_amp.GetSize() - 1);
+    // double dr_sep = std::get<0>(dr_amp)(1) - std::get<0>(dr_amp)(0);
+    // plot_dict["extra"]["dr_win"].push_back(dr_win_low);
+    // plot_dict["extra"]["dr_win"].push_back(dr_win_high+dr_sep);
+    
+    paramStore->Dump();
+    
+    //for the time being, we add the window info here:
+    std::vector< double > win; win.resize(2);
+    win = paramStore->GetAs< std::vector<double> >("/fringe/sb_win");
+    plot_dict["extra"]["sb_win"] = win;
+    win = paramStore->GetAs< std::vector<double> >("/fringe/mb_win");
+    plot_dict["extra"]["mb_win"] = win;
+    win = paramStore->GetAs< std::vector<double> >("/fringe/dr_win");
+    //TODO FIXME (convert to ns/s)
+    win[0] *= 1e3; win[1] *= 1e3; 
+    plot_dict["extra"]["dr_win"] = win;
+    
     //calculate the (u,v) coordinates (taken from fill_202.c)
     double speed_of_light_Mm = 299.792458; // in mega-meters (?!)
     double lambda = speed_of_light_Mm / paramStore->GetAs<double>("/control/config/ref_freq"); // wavelength (m)

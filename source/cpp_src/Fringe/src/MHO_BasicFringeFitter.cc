@@ -551,25 +551,20 @@ MHO_BasicFringeFitter::basic_fringe_search()
     if(fParameterStore.IsPresent("/control/fit/sb_win"))
     {
         std::vector<double> sbwin = fParameterStore.GetAs< std::vector<double> >("/control/fit/sb_win");
-        fMBDSearch.SetSBDWindow(1e-6*sbwin[0], 1e-6*sbwin[1]);
+        fMBDSearch.SetSBDWindow(sbwin[0], sbwin[1]); //units are microsec
     }
 
     if(fParameterStore.IsPresent("/control/fit/mb_win"))
     {
         std::vector<double> mbwin = fParameterStore.GetAs< std::vector<double> >("/control/fit/mb_win");
-        fMBDSearch.SetDRWindow(1e-6*mbwin[0], 1e-6*mbwin[1]);
+        fMBDSearch.SetMBDWindow(mbwin[0], mbwin[1]); //units are microsec
     }
 
     if(fParameterStore.IsPresent("/control/fit/dr_win"))
     {
         std::vector<double> drwin = fParameterStore.GetAs< std::vector<double> >("/control/fit/dr_win");
-        fMBDSearch.SetDRWindow(drwin[0], drwin[1]);
+        fMBDSearch.SetDRWindow(drwin[0], drwin[1]); //units are ns/s (??)
     }
-
-
-
-
-
 
     ok = fMBDSearch.Execute();
     check_step_fatal(ok, "fringe", "mbd execution." << eom );
@@ -605,7 +600,20 @@ MHO_BasicFringeFitter::basic_fringe_search()
     fParameterStore.Set("/fringe/max_sbd_bin", c_sbdmax);
     fParameterStore.Set("/fringe/max_dr_bin", c_drmax);
 
-    // std::cout<<"bins = "<<c_mbdmax<<", "<<c_sbdmax<<", "<<c_drmax<<std::endl;
+    //get the actual search windows that were used 
+    double low, high;
+    std::vector< double > win; win.resize(2);
+    fMBDSearch.GetSBDWindow(low,high);
+    win[0] = low; win[1] = high;
+    fParameterStore.Set("/fringe/sb_win", win);
+    
+    fMBDSearch.GetDRWindow(low,high);
+    win[0] = low; win[1] = high;
+    fParameterStore.Set("/fringe/dr_win", win);
+    
+    fMBDSearch.GetMBDWindow(low,high);
+    win[0] = low; win[1] = high;
+    fParameterStore.Set("/fringe/mb_win", win);
 
     ////////////////////////////////////////////////////////////////////////////
     //FINE INTERPOLATION STEP (search over 5x5x5 grid around peak)
