@@ -547,7 +547,10 @@ MHO_BasicFringeFitter::basic_fringe_search()
     //take snapshot of sbd data after normfx
     take_snapshot_here("test", "sbd", __FILE__, __LINE__, sbd_data);
 
-    //set the coarse SBD/MBD/DR search windows
+    //set the coarse SBD/MBD/DR search windows here
+    //nominally we would set these during initialization, but we set them here 
+    //in case PreRun/PostRun or derived functionality (e.g. ion_search)
+    //want to steer the search windows manually via these parameters
     if(fParameterStore.IsPresent("/control/fit/sb_win"))
     {
         std::vector<double> sbwin = fParameterStore.GetAs< std::vector<double> >("/control/fit/sb_win");
@@ -563,7 +566,7 @@ MHO_BasicFringeFitter::basic_fringe_search()
     if(fParameterStore.IsPresent("/control/fit/dr_win"))
     {
         std::vector<double> drwin = fParameterStore.GetAs< std::vector<double> >("/control/fit/dr_win");
-        fMBDSearch.SetDRWindow(drwin[0], drwin[1]); //units are ns/s (??)
+        fMBDSearch.SetDRWindow(drwin[0], drwin[1]); //units are us/s (??)
     }
 
     ok = fMBDSearch.Execute();
