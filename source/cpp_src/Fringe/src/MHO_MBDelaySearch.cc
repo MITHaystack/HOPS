@@ -117,10 +117,10 @@ MHO_MBDelaySearch::ExecuteImpl(const XArgType* in)
         {
             double sbd = 1e-6*(fSBDAxis.at(sbd_idx));
             bool do_sbd_search = (fSBDWin[0] <= sbd) && (sbd <= fSBDWin[1]);
-            std::cout<<"win, sbd, win  = "<<fSBDWin[0]<<", "<<sbd<<", "<<fSBDWin[1]<<std::endl;
+            //std::cout<<"win, sbd, win  = "<<fSBDWin[0]<<", "<<sbd<<", "<<fSBDWin[1]<<std::endl;
             if(do_sbd_search)
             {
-                std::cout<<"SBDIDX = "<<sbd_idx<<std::endl;
+                //std::cout<<"SBDIDX = "<<sbd_idx<<std::endl;
                 //first select the slice of visibilities which correspond to this SBD
                 //and copy this slice into local workspace table container
                 auto sbd_dims = fSBDDrWorkspace.GetDimensionArray();
@@ -149,7 +149,7 @@ MHO_MBDelaySearch::ExecuteImpl(const XArgType* in)
                 {
                     double dr = fDRAxis.at(dr_idx);
                     bool do_dr_search = (fDRWin[0] <= dr) && (dr <= fDRWin[1]);
-                    std::cout<<"win, dr, win  = "<<fDRWin[0]<<", "<<dr<<", "<<fDRWin[1]<<std::endl;
+                    //std::cout<<"win, dr, win  = "<<fDRWin[0]<<", "<<dr<<", "<<fDRWin[1]<<std::endl;
                     if(do_dr_search)
                     {
                         //zero out MBD workspace
@@ -180,6 +180,9 @@ MHO_MBDelaySearch::ExecuteImpl(const XArgType* in)
 
                         if(first)
                         {
+                            //grab mbd axis
+                            fMBDAxis = std::get<0>(fMBDWorkspace);
+                            ConfigureMBDWindows();
                             //off for all other iterations
                             fFFTEngine.DisableAxisLabelTransformation();
                             first = false;
@@ -190,15 +193,23 @@ MHO_MBDelaySearch::ExecuteImpl(const XArgType* in)
 
                         for(std::size_t i=0; i<total_mbd_dr_size; i++)
                         {
-                            //since we don't care about the actual amplitude (just searching for the max location)
-                            //this is faster since it doesn't need to take a square root
-                            double tmp_max = std::norm(fMBDWorkspace[i]);
-                            if(tmp_max > fMax)
+                            double mbd = 1e-6*(fMBDAxis.at(i));
+                            bool do_mbd_search = (fMBDWin[0] <= mbd) && (mbd <= fMBDWin[1]);
+
+                            if(do_mbd_search)
                             {
-                                fMax = tmp_max;
-                                fMBDMaxBin = (i + fNGridPoints/2) % fNGridPoints;
-                                fSBDMaxBin = sbd_idx;
-                                fDRMaxBin = dr_idx;
+                                //std::cout<<"MBD WIN, MBD, MBDWIN  = "<<fMBDWin[0]<<", "<<mbd<<", "<<fMBDWin[1]<<std::endl;
+                                //since we don't care about the actual amplitude (just searching for the max location)
+                                //this is faster since it doesn't need to take a square root
+                                double tmp_max = std::norm(fMBDWorkspace[i]);
+                                if(tmp_max > fMax)
+                                {
+                                    fMax = tmp_max;
+                                    //index shift here is because we haven't yet applied the cyclic rotator to the mbd axis
+                                    fMBDMaxBin = (i + fNGridPoints/2) % fNGridPoints;
+                                    fSBDMaxBin = sbd_idx;
+                                    fDRMaxBin = dr_idx;
+                                }
                             }
                         }
                     }
@@ -223,8 +234,8 @@ void MHO_MBDelaySearch::ConfigureSBDWindows()
 {
     if(!fSBDWinSet) //unset, use full range
     {
-        fSBDWin[0] = fSBDAxis[0];
-        fSBDWin[1] = fSBDAxis[fNSBD-1];
+        fSBDWin[0] = 1e-6*(fSBDAxis[0]);
+        fSBDWin[1] = 1e-6*(fSBDAxis[fNSBD-1]);
     }
     std::cout<<"MY SBD WIN = "<<fSBDWin[0]<<", "<<fSBDWin[1]<<std::endl;
 }
@@ -239,6 +250,25 @@ void MHO_MBDelaySearch::ConfigureDRWindows()
     std::cout<<"MY DR WIN = "<<fDRWin[0]<<", "<<fDRWin[1]<<std::endl;
 }
 
+
+void MHO_MBDelaySearch::ConfigureMBDWindows()
+{
+    if(!fMBDWinSet) //unset, use full range
+    {
+        double min = 1e30;
+        double max = -1e30;
+        for(std::size_t i=0;i<fMBDAxis.GetSize(); i++)
+        {
+            double mbd = fMBDAxis.at(i);
+            if(mbd < min){min = mbd;}
+            if(mbd > max){max = mbd;}
+        }
+
+        fMBDWin[0] = 1e-6*min;
+        fMBDWin[1] = 1e-6*max;
+    }
+    std::cout<<"MY MBD WIN = "<<fMBDWin[0]<<", "<<fMBDWin[1]<<std::endl;
+}
 
 
 //configure the search windows (using floating point limits)
