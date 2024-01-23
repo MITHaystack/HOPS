@@ -82,7 +82,6 @@ class MHO_ParameterStore
             fTokenizer.SetString(&path);
             fTokenizer.GetTokens(&fPath);
 
-            bool present = false;
             auto* p = &fStore;
             for(auto it = fPath.begin(); it != fPath.end(); it++)
             {

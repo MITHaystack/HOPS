@@ -554,11 +554,11 @@ MHO_BasicFringeFitter::basic_fringe_search()
         fMBDSearch.SetSBDWindow(1e-6*sbwin[0], 1e-6*sbwin[1]);
     }
 
-    // if(fParameterStore.IsPresent("/control/fit/mb_win"));
-    // {
-    //     std::vector<double> mbwin = fParameterStore.GetAs< std::vector<double> >("/control/fit/mb_win");
-    //     fMBDSearch.SetDRWindow(1e-6*mbwin[0], 1e-6*mbwin[1]);
-    // }
+    if(fParameterStore.IsPresent("/control/fit/mb_win"))
+    {
+        std::vector<double> mbwin = fParameterStore.GetAs< std::vector<double> >("/control/fit/mb_win");
+        fMBDSearch.SetDRWindow(1e-6*mbwin[0], 1e-6*mbwin[1]);
+    }
 
     if(fParameterStore.IsPresent("/control/fit/dr_win"))
     {
