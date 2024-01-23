@@ -29,7 +29,7 @@ class MHO_IonosphericFringeFitter: public MHO_BasicFringeFitter
         virtual void PreRun() override;
         virtual void Run() override;
         virtual void PostRun() override;
-        virtual void Finalize() override;
+        // virtual void Finalize() override;
         // virtual bool IsFinished() override;
 
         // //TODO remove this hack in favor of 'plotting'/'output' visitors
