@@ -547,10 +547,30 @@ MHO_BasicFringeFitter::basic_fringe_search()
     //take snapshot of sbd data after normfx
     take_snapshot_here("test", "sbd", __FILE__, __LINE__, sbd_data);
 
-    //coarse SBD/MBD/DR search (locates max bin)
-    fMBDSearch.SetSBDWindow(-0.3e-6, 0.3e-6);
-    fMBDSearch.SetDRWindow(-0.02, 0.02);
-    fMBDSearch.SetMBDWindow(-0.005e-6, 0.005e-6);
+    //set the coarse SBD/MBD/DR search windows
+    if(fParameterStore.IsPresent("/control/fit/sb_win"))
+    {
+        std::vector<double> sbwin = fParameterStore.GetAs< std::vector<double> >("/control/fit/sb_win");
+        fMBDSearch.SetSBDWindow(1e-6*sbwin[0], 1e-6*sbwin[1]);
+    }
+
+    // if(fParameterStore.IsPresent("/control/fit/mb_win"));
+    // {
+    //     std::vector<double> mbwin = fParameterStore.GetAs< std::vector<double> >("/control/fit/mb_win");
+    //     fMBDSearch.SetDRWindow(1e-6*mbwin[0], 1e-6*mbwin[1]);
+    // }
+
+    if(fParameterStore.IsPresent("/control/fit/dr_win"))
+    {
+        std::vector<double> drwin = fParameterStore.GetAs< std::vector<double> >("/control/fit/dr_win");
+        fMBDSearch.SetDRWindow(drwin[0], drwin[1]);
+    }
+
+
+
+
+
+
     ok = fMBDSearch.Execute();
     check_step_fatal(ok, "fringe", "mbd execution." << eom );
 
