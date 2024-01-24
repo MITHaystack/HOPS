@@ -43,26 +43,7 @@ MHO_IonosphericFringeFitter::MHO_IonosphericFringeFitter():
 
 MHO_IonosphericFringeFitter::~MHO_IonosphericFringeFitter(){};
 
-void MHO_IonosphericFringeFitter::PreRun()
-{
-    bool skipped = fParameterStore.GetAs<bool>("/status/skipped");
-    if( !skipped) //execute if we are not finished and are not skipping
-    {
-        // //apply the ionospheric dTEC to the visibilities for the current grid search point
-        // #ifdef ION_EXP
-        // visibility_type* vis_data = fContainerStore.GetObject<visibility_type>(std::string("vis"));
-        // MHO_IonosphericPhaseCorrection iono;
-        // std::cout<<"Applying dTEC of: "<<-1.0*fdTECStep*fStepCount<<std::endl;
-        // //iono.SetDifferentialTEC(-1.0*(fdTECLow + fdTECStep*fStepCount) );
-        // iono.SetDifferentialTEC(-1.0*fdTECStep);
-        // iono.SetArgs(vis_data);
-        // iono.Initialize();
-        // iono.Execute();
-        // fStepCount++;
-        // #endif
-        //TODO FILL ME IN -- need to call specified user-scripts here
-    }
-}
+
 
 void MHO_IonosphericFringeFitter::Run()
 {
@@ -95,14 +76,6 @@ void MHO_IonosphericFringeFitter::Run()
     }
 }
 
-void MHO_IonosphericFringeFitter::PostRun()
-{
-    bool skipped = fParameterStore.GetAs<bool>("/status/skipped");
-    if( !skipped) //execute if we are not finished and are not skipping
-    {
-        //TODO FILL ME IN -- need to call specified user-scripts here
-    }
-}
 
 
 // void MHO_IonosphericFringeFitter::Finalize()
@@ -140,8 +113,10 @@ MHO_IonosphericFringeFitter::rjc_ion_search() //(struct type_pass *pass)
     rc,
     koff,
     nip,
-    win_sb_save[2],
     win_dr_save[2];
+
+    double win_sb_save[2];
+
 
     double coarse_spacing,
     medium_spacing,
@@ -177,14 +152,6 @@ MHO_IonosphericFringeFitter::rjc_ion_search() //(struct type_pass *pass)
     MHO_IonosphericPhaseCorrection iono;
     iono.SetArgs(vis_data);
     iono.Initialize();
-
-    //get the original search space
-    int sbd1, sbd2;
-    //fMBDSearch.GetSBDLimits(sbd1, sbd2);
-    win_sb_save[0] = sbd1;
-    win_sb_save[1] = sbd2;
-    win_sb[0] = sbd1;
-    win_sb[1] = sbd2;
 
     bool first_pass = true;
 
@@ -428,13 +395,14 @@ MHO_IonosphericFringeFitter::rjc_ion_search() //(struct type_pass *pass)
 
             // MHO_BasicFringeUtilities::basic_fringe_search(&fContainerStore, &fParameterStore);
             basic_fringe_search();
-            if(first_pass)
+
+            if(ionloop==0)
             {
                 //cache the full SBD search window for later
-
+                fMBDSearch.GetSBDWindow(win_sb_save[0], win_sb_save[1]);
                 //then just limit the SBD window to bin where the max was located
-                
-                //fMBDSearch.SetSBDLimits(253, 259);
+                // double sbdelay = fParameterStore.GetAs<double>("/fringe/sbdelay");
+                // fMBDSearch.SetSBDWindow(sbdelay, sbdelay);
                 first_pass = false;
             }
 
