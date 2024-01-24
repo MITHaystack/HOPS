@@ -11,7 +11,7 @@
 
 //fringe finding library helper functions
 #include "MHO_BasicFringeFitter.hh"
-#include "MHO_IonosphericFringeFitter.hh"
+//#include "MHO_IonosphericFringeFitter.hh"
 
 //for command line parsing
 #include "MHO_BasicFringeDataConfiguration.hh"
@@ -38,9 +38,9 @@ int main(int argc, char** argv)
     
     MHO_FringeFitter* ffit;
     
-    //ffit = new MHO_BasicFringeFitter();
+    ffit = new MHO_BasicFringeFitter();
 
-    ffit = new MHO_IonosphericFringeFitter();
+    //ffit = new MHO_IonosphericFringeFitter();
     
     int parse_status = MHO_BasicFringeDataConfiguration::parse_command_line(argc, argv, ffit->GetParameterStore() );
     if(parse_status != 0){msg_fatal("main", "could not parse command line options." << eom); std::exit(1);}

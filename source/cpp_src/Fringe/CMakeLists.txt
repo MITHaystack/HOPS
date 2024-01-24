@@ -15,7 +15,7 @@ set (FRINGE_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_BasicFringeUtilities.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_FringeFitter.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_BasicFringeFitter.hh
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_IonosphericFringeFitter.hh
+    #${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_IonosphericFringeFitter.hh
 )
 
 #list source files #############################################################
@@ -34,7 +34,7 @@ set( FRINGE_SOURCEFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_FringePlotInfo.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_BasicFringeUtilities.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_BasicFringeFitter.cc
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_IonosphericFringeFitter.cc
+    #${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_IonosphericFringeFitter.cc
 )
 
 #declare header paths ##########################################################
