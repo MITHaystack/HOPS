@@ -28,7 +28,11 @@ MHO_ControlElementParser::ParseControlStatement(const MHO_ControlStatement& cont
     {
         std::string statement_type = fElementFormats[element_name]["statement_type"];
 
-        if( statement_type != "unknown" && statement_type.size() != 0)
+        if(statement_type.size() != 0 && statement_type == "deprecated")
+        {
+            msg_warn("control", "control function for: "<<element_name<<" is deprecated/unsupported, ignoring."<<eom);
+        }
+        else if(statement_type.size() != 0 && statement_type != "unknown")
         {
             elem["statement_type"] = statement_type;
             elem["value"] = ParseTokens(element_name, fElementFormats[element_name], control_statement.fTokens); //otherwise parse any of the other supported elements

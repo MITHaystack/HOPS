@@ -1,5 +1,5 @@
 {
-    "name": "unknown",
-    "statement_type": "unknown",
-    "type": "unknown"
+    "name": "ra_offset",
+    "statement_type": "deprecated",
+    "type": "deprecated"
 }
