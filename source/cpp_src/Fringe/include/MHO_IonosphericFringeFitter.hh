@@ -26,9 +26,9 @@ class MHO_IonosphericFringeFitter: public MHO_BasicFringeFitter
         //basic run scheme: configure, init, then while(!IsFinished() ){ pre-run, run, post-run }
         // virtual void Configure() override;
         // virtual void Initialize() override;
-        virtual void PreRun() override;
+        // virtual void PreRun() override;
         virtual void Run() override;
-        virtual void PostRun() override;
+        //virtual void PostRun() override;
         // virtual void Finalize() override;
         // virtual bool IsFinished() override;
 
