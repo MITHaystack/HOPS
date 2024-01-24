@@ -66,6 +66,14 @@ class MHO_BasicFringeFitter: public MHO_FringeFitter
 
         //utility 
         MHO_Tokenizer fTokenizer;
+
+
+        //ionosphere fitting functionality 
+        int rjc_ion_search();
+        void sort_tecs(int nion, double dtec[][2]);
+
+
+
 };
 
 }//end namespace
