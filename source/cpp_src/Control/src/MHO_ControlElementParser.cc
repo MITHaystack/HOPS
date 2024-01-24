@@ -30,7 +30,7 @@ MHO_ControlElementParser::ParseControlStatement(const MHO_ControlStatement& cont
 
         if(statement_type.size() != 0 && statement_type == "deprecated")
         {
-            msg_warn("control", "control function for: "<<element_name<<" is deprecated/unsupported, ignoring."<<eom);
+            msg_warn("control", "control function for: '"<<element_name<<"' is deprecated/unsupported, ignoring."<<eom);
         }
         else if(statement_type.size() != 0 && statement_type != "unknown")
         {
@@ -39,12 +39,12 @@ MHO_ControlElementParser::ParseControlStatement(const MHO_ControlStatement& cont
         }
         else
         {
-            msg_warn("control", "control function for: "<<element_name<<" not yet implemented, skipping."<<eom);
+            msg_warn("control", "control function for: '"<<element_name<<"' not yet implemented, skipping."<<eom);
         }
     }
     else
     {
-        msg_warn("control", "parser error, could not load format file for: "<<element_name<<" element, skipping."<<eom);
+        msg_warn("control", "parser error, could not load format file for: '"<<element_name<<">' element, skipping."<<eom);
     }
 
     return elem;
