@@ -23,48 +23,17 @@ class MHO_IonosphericFringeFitter: public MHO_BasicFringeFitter
         MHO_IonosphericFringeFitter();
         virtual ~MHO_IonosphericFringeFitter();
 
-        //basic run scheme: configure, init, then while(!IsFinished() ){ pre-run, run, post-run }
-        // virtual void Configure() override;
-        // virtual void Initialize() override;
-        // virtual void PreRun() override;
         virtual void Run() override;
-        //virtual void PostRun() override;
-        // virtual void Finalize() override;
-        // virtual bool IsFinished() override;
-
-        // //TODO remove this hack in favor of 'plotting'/'output' visitors
-        // mho_json GetPlotData(){return fPlotData;}
 
     protected:
 
         int rjc_ion_search();
         void sort_tecs(int nion, double dtec[][2]);
-
-
-        int fNdTECSteps;
-        double fdTECLow;
-        double fdTECHigh;
-        double fdTECStep;
-        int fStepCount;
-
-        
-
-        // std::vector< std::string > DetermineRequiredPolProducts(std::string polprod);
-        // void AddPolProductSummationOperator(std::string& polprod, std::vector< std::string >& pp_vec, mho_json& statements);
-        // 
-        // void AddDefaultOperatorFormatDef(mho_json& format);
-        // void AddDefaultOperators(mho_json& statements);
-        // 
-        // mho_json fVexInfo;
-        // mho_json fControlFormat;
-        // mho_json fControlStatements;
-        // 
-        // //hacks
-        // mho_json fDataSelectFormat;
-        // mho_json fPlotData;
-        // 
-        // //utility 
-        // MHO_Tokenizer fTokenizer;
+        // int fNdTECSteps;
+        // double fdTECLow;
+        // double fdTECHigh;
+        // double fdTECStep;
+        // int fStepCount;
 };
 
 }//end namespace
