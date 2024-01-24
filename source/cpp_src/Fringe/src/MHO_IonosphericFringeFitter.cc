@@ -33,13 +33,7 @@ namespace hops
 
 MHO_IonosphericFringeFitter::MHO_IonosphericFringeFitter():
     MHO_BasicFringeFitter()
-{
-    fNdTECSteps = 20;
-    fdTECLow = 0.0;
-    fdTECHigh = 1.0;
-    fdTECStep = (fdTECHigh - fdTECLow)/(double)fNdTECSteps;
-    fStepCount = 0;
-};
+{};
 
 MHO_IonosphericFringeFitter::~MHO_IonosphericFringeFitter(){};
 
@@ -163,60 +157,7 @@ MHO_IonosphericFringeFitter::rjc_ion_search() //(struct type_pass *pass)
     ion_pts = 21;
     win_ion[0] = -5.0;
     win_ion[1] = 5.0;
-    
-    
-    
-    
-    
-    
-    
-    // 
-    // // possibly save sb & dr indices
-    // if (param.ion_pts > 1)          // is ionosphere being searched? no skips code
-    // {
-    //     if (saved)
-    //     {                       // ion looping, use search values from first loop
-    //         msg("using saved windows for loopion %d", -1, status.loopion);
-    //         for (i = 0; i < 2; i++)
-    //         {
-    //             status.win_sb[i] = status.sb_indx;
-    //             // for now, disable dr overwrite as dangerous  rjc  2016.6.20             
-    //             // status.win_dr[i] = status.dr_indx;
-    //         }
-    //     }
-    //     else if (status.loopion > 0 && snr_approx > 15.0)
-    //     {                       // save indices in case ion looping needs them later
-    //         msg("saving windows", -1);
-    //         for (i = 0; i < 2; i++)
-    //         {
-    //             status.win_sb_save[i] = status.win_sb[i];
-    //             status.win_dr_save[i] = status.win_dr[i];
-    //         }
-    //         saved = TRUE;           // ensure that we only do this once
-    //         pol_save = pass->pol;
-    //         for (i = 0; i < 2; i++)
-    //         bl_save[i] = param.baseline[i];
-    //     }
-    // }
-    // 
-    // 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
 
     // prepare for ionospheric search
     center = (win_ion[0] + win_ion[1]) / 2.0;
