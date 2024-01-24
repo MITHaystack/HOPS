@@ -95,10 +95,8 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
     auto vis_chan_ax = &(std::get<CHANNEL_AXIS>(*in) );
     auto vis_ap_ax = &(std::get<TIME_AXIS>(*in) );
     auto vis_freq_ax = &(std::get<FREQ_AXIS>(*in) );
-    
     auto pcal_pol_ax = &(std::get<MTPCAL_POL_AXIS>(*fPCData) );
     auto tone_freq_ax = &(std::get<MTPCAL_FREQ_AXIS>(*fPCData) );
-
     std::string pc_pol_code = pcal_pol_ax->at(pc_pol);
 
     //workspace to store averaged phasors and corresponding tone freqs
@@ -123,7 +121,6 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
         if(!key_present){msg_error("calibration", "missing bandwidth label for channel "<< ch << "." << eom);}
 
         //figure out the upper/lower frequency limits for this channel
-        //std::cout<<"working on channel: "<<ch<<" with sky freq: "<<sky_freq<<" sideband: "<<net_sideband<< std::endl;
         double lower_freq, upper_freq;
         std::size_t start_idx, ntones;
         DetermineChannelFrequencyLimits(sky_freq, bandwidth, net_sideband, lower_freq, upper_freq);
@@ -136,10 +133,6 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
         {
             msg_fatal("calibration", "number of pcal tones: "<< ntones << " exceeds workspace size of: " << fWorkspaceSize << eom);
             std::exit(1);
-            //possible implementation to avoid erroring out:
-            //fWorkspaceSize = NextLargestPowerOfTwo(2*ntones);
-            //fPCWorkspace.Resize(fWorkspaceSize);
-            //fFFTEngine.Initialize()
         }
 
         //grab the sampler delay associated with this channel
@@ -172,6 +165,8 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
         std::vector< double > pc_mag_segs;
         std::vector< double > pc_phase_segs;
         std::vector< double > pc_delay_segs;
+        std::vector< int > seg_start_aps;
+        std::vector< int > seg_end_aps;
         for(std::size_t ap=0; ap < vis_ap_ax->GetSize(); ap++)
         {
             if(ap % fPCPeriod == 0)
@@ -200,76 +195,217 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
             }
             navg += wght; 
 
-            //finish the average, do delay fit on last ap of segment or last ap
+            //finish the average, do delay fit on last ap of segment or last ap and append to list
             if(ap % fPCPeriod == fPCPeriod-1 || ap == vis_ap_ax->GetSize()-1 )
             {
                 seg_end_ap = ap+1;
                 for(std::size_t i=0; i<ntones; i++){ fPCWorkspace(i) /= navg;}
-
                 double pcal_model[3];
                 FitPCData(ntones, chan_center_freq, sampler_delay, pcal_model);
-
-                double pcmag = pcal_model[0];
-                double pcphase = pcal_model[1];
-                double pcdelay = pcal_model[2];
-
-                #pragma message("TODO FIXME -- 'phase-shift' needs testing for both USB/LSB data as applied in norm_fx.c, line 396")
-                double speriod = 1.0/(2.0*bandwidth*1e6);
-                double phase_shift = -1.0 * pcdelay / (4.0*speriod) ;
-
-                #pragma message("TODO FIXME -- make sure proper treatment of LSB/USB sidebands is done here.")
-                std::complex<double> pc_phasor = std::exp( -1.0*fImagUnit*(pcphase) );
-                //conjugate pc phasor when applied to reference station
-                if(fStationIndex == 0){pc_phasor = std::conj(pc_phasor);}
-                
-                pc_mag_segs.push_back(pcmag);
-                pc_phase_segs.push_back(pcphase);
-                pc_delay_segs.push_back(pcdelay);
-
-                for(std::size_t dap = seg_start_ap; dap < seg_end_ap; dap++)
-                {
-                    //apply phase offset correction
-                    in->SubView(vis_pp, ch, dap) *= pc_phasor;
-
-                    //apply delay correction
-                    for(std::size_t sp=0; sp < vis_freq_ax->GetSize(); sp++)
-                    {
-                        double deltaf = ( (*vis_freq_ax)(sp) )*1e6; //Hz
-                        std::complex<double> pc_delay_phasor = std::exp( -2.0*M_PI*fImagUnit*(pcdelay*deltaf + phase_shift ) );
-                        //conjugate pc phasor when applied to reference station
-                        if(fStationIndex == 0){pc_delay_phasor = std::conj(pc_delay_phasor);}
-                        (*in)(vis_pp, ch, dap, sp) *= pc_delay_phasor;
-                    }
-                }
+                seg_start_aps.push_back(seg_start_ap);
+                seg_end_aps.push_back(seg_end_ap);
+                pc_mag_segs.push_back(pcal_model[0]);
+                pc_phase_segs.push_back(pcal_model[1]);
+                pc_delay_segs.push_back(pcal_model[2]);
             }
 
             //Now attach the multi-tone phase cal data to each channel
             //this is a bit of a hack...we probably ought to introduce a new data type which
-            //encapsulates the reduced multi-tone pcal data
-            std::string pc_mag_key;
-            std::string pc_phase_key;
-            std::string pc_delay_key;
-            if(fStationIndex == 0)
-            {
-                pc_mag_key = "ref_mtpc_mag_";
-                pc_phase_key = "ref_mtpc_phase_";
-                pc_delay_key = "ref_mtpc_delays_";
-            }
-            if(fStationIndex == 1)
-            {
-                pc_mag_key = "rem_mtpc_mag_";
-                pc_phase_key = "rem_mtpc_phase_";
-                pc_delay_key = "rem_mtpc_delays_";
-            }
-            pc_mag_key += pc_pol_code;
-            pc_phase_key += pc_pol_code;
-            pc_delay_key += pc_pol_code;
-
+            //encapsulates the reduced multi-tone pcal data and store it in the container store
+            std::string st_prefix = "ref";
+            if(fStationIndex == 1){st_prefix = "rem";}
+            std::string pc_seg_start_key = st_prefix + "_mtpc_seg_start_" + pc_pol_code;
+            std::string pc_seg_end_key = st_prefix + "_mtpc_apseg_end_" + pc_pol_code;
+            std::string pc_mag_key = st_prefix + "_mtpc_mag_" + pc_pol_code;
+            std::string pc_phase_key = st_prefix + "_mtpc_phase_" + pc_pol_code;
+            std::string pc_delay_key = st_prefix + "_mtpc_delays_" + pc_pol_code;
+            vis_chan_ax->InsertIndexLabelKeyValue(ch, pc_seg_start_key, seg_start_aps);
+            vis_chan_ax->InsertIndexLabelKeyValue(ch, pc_seg_end_key, seg_end_aps);
             vis_chan_ax->InsertIndexLabelKeyValue(ch, pc_mag_key, pc_mag_segs);
             vis_chan_ax->InsertIndexLabelKeyValue(ch, pc_phase_key, pc_phase_segs);
             vis_chan_ax->InsertIndexLabelKeyValue(ch, pc_delay_key, pc_delay_segs);
         }
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //here follows the 'sampler_delay.c' code which averages the pcal delays over all 
+    //channels and AP's which belong to the same sampler. We should investigate if 
+    //this is really needed, or if it improves the post-fit residuals. It doesn't
+    //seem to be necessary and overcomplicates the code.
+    
+    //loop over sampler delays and average
+    for(std::size_t sd=0; sd<sampler_delays.size(); sd++)
+    {
+        std::vector< double > mean_pc_delay;
+        bool first_pass = true;
+        double n_avg = 0.0;
+        //now loop over the channels to accumulate
+        for(std::size_t ch=0; ch < vis_chan_ax->GetSize(); ch++)
+        {
+            //grab the sampler delay index associated with this channel
+            std::size_t sampler_delay_index;
+            double sampler_delay = 0.0;
+            bool sd_ok = false;
+            std::string sd_key;
+            if(fStationIndex == 0){sd_key = "ref_sampler_index";}
+            if(fStationIndex == 1){sd_key = "rem_sampler_index";}
+            sd_ok = vis_chan_ax->RetrieveIndexLabelKeyValue(ch, sd_key, sampler_delay_index);
+
+            if(sd == sampler_delay_index)
+            {
+                std::vector< double > pc_delay_segs;
+                std::string st_prefix = "ref";
+                if(fStationIndex == 1){st_prefix = "rem";}
+                std::string pc_delay_key = st_prefix + "_mtpc_delays_" + pc_pol_code;
+                vis_chan_ax->RetrieveIndexLabelKeyValue(ch, pc_delay_key, pc_delay_segs);
+                
+                std::size_t nsegs = pc_delay_segs.size();
+                if(first_pass){mean_pc_delay.resize(nsegs, 0.0); first_pass = false;}
+                for(std::size_t s=0; s<nsegs; s++)
+                {
+                    std::cout<<"ch pc_delay seg = "<<ch<<", "<<s<<", "<<1e9*pc_delay_segs[s]<<std::endl;
+                    mean_pc_delay[s] += pc_delay_segs[s]; 
+                }
+                n_avg += 1.0;
+            }
+        }
+
+        //compute the average 
+        for(std::size_t i=0; i<mean_pc_delay.size(); i++)
+        {
+            mean_pc_delay[i] /= n_avg;
+        }
+        
+        //now loop over the channels and insert the 'averaged' delay to be applied
+        for(std::size_t ch=0; ch < vis_chan_ax->GetSize(); ch++)
+        {
+            //grab the sampler delay index associated with this channel
+            std::size_t sampler_delay_index;
+            double sampler_delay = 0.0;
+            bool sd_ok = false;
+            std::string sd_key;
+            if(fStationIndex == 0){sd_key = "ref_sampler_index";}
+            if(fStationIndex == 1){sd_key = "rem_sampler_index";}
+            sd_ok = vis_chan_ax->RetrieveIndexLabelKeyValue(ch, sd_key, sampler_delay_index);
+
+            if(sd == sampler_delay_index)
+            {
+                std::string st_prefix = "ref";
+                if(fStationIndex == 1){st_prefix = "rem";}
+                std::string pc_delay_key = st_prefix + "_mtpc_delays_applied_" + pc_pol_code;
+                vis_chan_ax->InsertIndexLabelKeyValue(ch, pc_delay_key, mean_pc_delay);
+            }
+        }
+    }
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    //now loop over the channels and actually apply the processed pcal phase 
+    //and averaged-down delays
+    for(std::size_t ch=0; ch < vis_chan_ax->GetSize(); ch++)
+    {
+        //get channel's frequency info
+        double sky_freq = (*vis_chan_ax)(ch); //get the sky frequency of this channel
+        double bandwidth = 0;
+        std::string net_sideband;
+        bool key_present = vis_chan_ax->RetrieveIndexLabelKeyValue(ch, fSidebandLabelKey, net_sideband);
+        if(!key_present){msg_error("calibration", "missing net_sideband label for channel "<< ch << "." << eom); }
+        key_present = vis_chan_ax->RetrieveIndexLabelKeyValue(ch, fBandwidthKey, bandwidth);
+        if(!key_present){msg_error("calibration", "missing bandwidth label for channel "<< ch << "." << eom);}
+
+        std::vector< int > seg_start_aps;
+        std::vector< int > seg_end_aps;
+        std::vector< double > pc_mag_segs;
+        std::vector< double > pc_phase_segs;
+        std::vector< double > pc_delay_segs;
+        
+        std::string st_prefix = "ref";
+        if(fStationIndex == 1){st_prefix = "rem";}
+        std::string pc_seg_start_key = st_prefix + "_mtpc_seg_start_" + pc_pol_code;
+        std::string pc_seg_end_key = st_prefix + "_mtpc_apseg_end_" + pc_pol_code;
+        // std::string pc_mag_key = st_prefix + "_mtpc_mag_" + pc_pol_code;
+        std::string pc_phase_key = st_prefix + "_mtpc_phase_" + pc_pol_code;
+        std::string pc_delay_key = st_prefix + "_mtpc_delays_applied_" + pc_pol_code;
+        vis_chan_ax->RetrieveIndexLabelKeyValue(ch, pc_seg_start_key, seg_start_aps);
+        vis_chan_ax->RetrieveIndexLabelKeyValue(ch, pc_seg_end_key, seg_end_aps);
+        // vis_chan_ax->RetrieveIndexLabelKeyValue(ch, pc_mag_key, pc_mag_segs);
+        vis_chan_ax->RetrieveIndexLabelKeyValue(ch, pc_phase_key, pc_phase_segs);
+        vis_chan_ax->RetrieveIndexLabelKeyValue(ch, pc_delay_key, pc_delay_segs);
+        
+        for(std::size_t seg=0; seg < seg_start_aps.size(); seg++)
+        {
+            std::size_t seg_start_ap = seg_start_aps[seg];
+            std::size_t seg_end_ap = seg_end_aps[seg];
+            double pcphase = pc_phase_segs[seg];
+            double pcdelay = pc_delay_segs[seg];
+
+            #pragma message("TODO FIXME -- 'phase-shift' needs testing for both USB/LSB data as applied in norm_fx.c, line 396")
+            double speriod = 1.0/(2.0*bandwidth*1e6);
+            double phase_shift = -1.0 * pcdelay / (4.0*speriod) ;
+
+            #pragma message("TODO FIXME -- make sure proper treatment of LSB/USB sidebands is done here.")
+            std::complex<double> pc_phasor = std::exp( -1.0*fImagUnit*(pcphase) );
+
+            //conjugate pc phasor when applied to reference station
+            if(fStationIndex == 0){pc_phasor = std::conj(pc_phasor);}
+            
+            for(std::size_t dap = seg_start_ap; dap < seg_end_ap; dap++)
+            {
+                //apply phase offset correction
+                in->SubView(vis_pp, ch, dap) *= pc_phasor;
+                
+                std::cout<<"pol, ch, ap, phase/delay = "<<vis_pp<<", "<<ch<<", "<<dap<<", "<<pcphase<<", "<<1e9*pcdelay<<std::endl;
+
+                //apply delay correction
+                for(std::size_t sp=0; sp < vis_freq_ax->GetSize(); sp++)
+                {
+                    double deltaf = ( (*vis_freq_ax)(sp) )*1e6; //Hz
+                    std::complex<double> pc_delay_phasor = std::exp( -2.0*M_PI*fImagUnit*(pcdelay*deltaf + phase_shift ) );
+                    //conjugate pc phasor when applied to reference station
+                    if(fStationIndex == 0){pc_delay_phasor = std::conj(pc_delay_phasor);}
+                    (*in)(vis_pp, ch, dap, sp) *= pc_delay_phasor;
+                }
+            }
+        }
+    }
+
 }
 
 
