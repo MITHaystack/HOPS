@@ -1,5 +1,5 @@
 {
-    "name": "unknown",
-    "statement_type": "unknown",
-    "type": "unknown"
+    "name": "y_slip_sync",
+    "statement_type": "deprecated",
+    "type": "deprecated"
 }
