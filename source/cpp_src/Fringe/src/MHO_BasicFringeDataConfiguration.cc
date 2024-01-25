@@ -48,7 +48,7 @@ MHO_BasicFringeDataConfiguration::parse_command_line(int argc, char** argv, MHO_
                                           {"accounting", no_argument, 0, 'a'},
                                           {"baseline", required_argument, 0, 'b'},
                                           {"control", required_argument, 0, 'c'},
-                                          {"directory", required_argument, 0, 'd'},
+                                          // {"directory", required_argument, 0, 'd'},
                                           {"estimate-time", no_argument, 0, 'e'},
                                           {"first-plot-channel", required_argument, 0, 'f'},
                                           {"message-level", required_argument, 0, 'm'},
@@ -78,66 +78,68 @@ MHO_BasicFringeDataConfiguration::parse_command_line(int argc, char** argv, MHO_
             break;
         switch(optId)
         {
-            case ('h'):  // help
+            case 'h':  // help
                 std::cout << usage << std::endl;
                 std::exit(0);
-            case ('a'):  // help
+            case 'a':  // help
                 accounting = true;
                 msg_fatal("fringe", "accounting option '-a' is not available." << eom);
                 std::exit(1);
-            case ('b'):
+            case 'b':
                 parse_baseline_freqgrp(std::string(optarg), baseline, freqgrp);
                 break;
-            case ('c'):
+            case 'c':
                 control_file = std::string(optarg);
                 break;
-            case ('d'):
-                directory = std::string(optarg);
+            case 'd':
+                //directory = std::string(optarg);
+                msg_fatal("fringe", "plotting device option '-d' is not available." << eom);
+                std::exit(1);
                 break;
-            case ('e'):
+            case 'e':
                 estimate_time = true;
                 msg_fatal("fringe", "option '-e' is not available." << eom);
                 std::exit(1);
                 break;
-            case ('f'):
+            case 'f':
                 first_plot_chan = std::atoi(optarg);
                 break;
-            case ('p'):
+            case 'p':
                 show_plot = true;
                 break;
-            case ('r'):
+            case 'r':
                 refringe_alist_file = std::string(optarg);
                 msg_fatal("fringe", "refringe option '-r' is not available." << eom);
                 std::exit(1);
                 break;
-            case ('s'):
+            case 's':
                 ap_per_seg = std::atoi(optarg);
                 if(ap_per_seg < 0){ap_per_seg = 0; msg_warn("fringe", "invalid ap_per_seg, ignoring." << eom);}
                 break;
-            case ('t'):
+            case 't':
                 test_mode = true;
                 break;
-            case ('u'):
+            case 'u':
                 msg_fatal("fringe", "option '-u' is not available." << eom);
                 std::exit(1);
                 break;
-            case ('x'):
+            case 'x':
                 show_plot = true; //equivalent to '-p', we do not use pgplot/xwindows
                 break;
-            case ('P'):
+            case 'P':
                 polprod = std::string(optarg);
                 break;
-            case ('T'):
+            case 'T':
                 reftime = std::string(optarg);
                 msg_fatal("fringe", "alternate reference time option '-T' is not available." << eom);
                 std::exit(1);
                 break;
-            case ('m'):
+            case 'm':
                 message_level = std::atoi(optarg);
                 if(message_level < -2){message_level = -2;}
                 if(message_level > 4){message_level = 4;}
                 break;
-            case ('n'):
+            case 'n':
                 nplot_chans = std::atoi(optarg);
                 break;
             case 'X':
@@ -145,13 +147,50 @@ MHO_BasicFringeDataConfiguration::parse_command_line(int argc, char** argv, MHO_
                 msg_fatal("fringe", "xpower output option '-X' is not available." << eom);
                 std::exit(1);
                 break;
-            case ('o'):
+            case 'o':
                 output_file = std::string(optarg);
                 break;
+                
+            case '?':
+                //invalid option or missing argument
+                msg_fatal("fringe", "invalid option or missing argument, use '-h' for help." << eom);
+                std::exit(1);
             default:
                 std::cout << usage << std::endl;
                 return 1;
         }
+    }
+    
+    //set the message level
+    set_message_level(message_level);
+    
+    //store the raw arguments in the parameter store
+    std::vector<std::string> arglist;
+    for(int i=0; i<argc; i++){arglist.push_back( std::string(argv[i]) );}
+    paramStore->Set("/cmdline/args", arglist);
+    
+    //detect and parse the set_string, if it exists
+    int set_arg_index = -1;
+    std::string set_string = parse_set_string(arglist, set_arg_index);
+
+    //resolve remaining positional arguments and put them in the parameter store
+    std::vector< std::string > positional_args;
+    if(set_arg_index == -1){set_arg_index = argc;}
+    for(int i = optind; i < set_arg_index; i++) 
+    {
+        positional_args.push_back( std::string(argv[i]) );
+        std::cout<<"positional argument @"<<i<<" = "<<argv[i]<<std::endl;;
+    }
+    paramStore->Set("/cmdline/positional_args", positional_args);
+    
+    if(positional_args.size() != 1)
+    {
+        msg_fatal("fringe", "the data directory must be passed as the first positional argument." << eom );
+        std::exit(1);
+    }
+    else 
+    {
+        directory = positional_args[0];
     }
 
     if( directory == "" || baseline == "" || polprod == "" || control_file == "")
@@ -159,20 +198,6 @@ MHO_BasicFringeDataConfiguration::parse_command_line(int argc, char** argv, MHO_
         msg_fatal("fringe", "usage: "<< usage << eom);
         return 1;
     }
-    
-    set_message_level(message_level);
-
-    //store the raw arguments in the parameter store
-    std::vector<std::string> arglist;
-    for(int i=0; i<argc; i++)
-    {
-        arglist.push_back( std::string(argv[i]) );
-    }
-    paramStore->Set("/cmdline/args", arglist);
-    
-    //detect and parse the set_string, if it exists
-    //TODO IMPLEMENT ME!
-    std::string set_string = parse_set_string(arglist);
 
     //pass the extracted command line info back in the parameter store
     //accounting = false;  //not implemented
@@ -395,20 +420,26 @@ MHO_BasicFringeDataConfiguration::set_message_level(int message_level)
 }
 
 std::string 
-MHO_BasicFringeDataConfiguration::parse_set_string(const std::vector< std::string >& arglist)
+MHO_BasicFringeDataConfiguration::parse_set_string(const std::vector< std::string >& arglist, int& set_arg_index)
 {
-    std::size_t start_idx = 0;
-    for(std::size_t i=0; i<arglist.size(); i++)
+    set_arg_index = -1;
+    int nargs = arglist.size();
+    for(int i=0; i<nargs; i++)
     {
-        if(arglist[i] == "set"){start_idx = i+1; break;}
+        if(arglist[i] == "set")
+        {
+            set_arg_index = i;
+            break;
+        }
     }
 
     //if we've found a 'set' comman, assume everything after this is control 
     //file syntax and concatenate everything together with spaces
     std::string set_string = "";
-    if(start_idx != 0 && start_idx < arglist.size()-1 )
+    int start_idx = set_arg_index+1; 
+    if(set_arg_index != -1 && start_idx < nargs-1 )
     {
-        for(std::size_t i=start_idx; i<arglist.size(); i++)
+        for(int i=start_idx; i<nargs; i++)
         {
             set_string += arglist[i];
             set_string += " ";

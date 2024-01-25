@@ -45,7 +45,7 @@ class MHO_BasicFringeDataConfiguration
 
         static void set_message_level(int message_level);
         static void parse_baseline_freqgrp(std::string baseline_freqgrp, std::string& baseline, std::string& freqgrp);
-        static std::string parse_set_string(const std::vector< std::string >& arglist);
+        static std::string parse_set_string(const std::vector< std::string >& arglist, int& set_arg_index);
 
 };
 
