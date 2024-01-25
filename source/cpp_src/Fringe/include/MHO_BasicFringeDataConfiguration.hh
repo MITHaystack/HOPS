@@ -42,6 +42,11 @@ class MHO_BasicFringeDataConfiguration
                                            std::string ref_station_mk4id, std::string rem_station_mk4id);
                                            
         static void init_and_exec_operators(MHO_OperatorBuilderManager* build_manager, MHO_OperatorToolbox* opToolbox, const char* category);
+
+        static void set_message_level(int message_level);
+        static void parse_baseline_freqgrp(std::string baseline_freqgrp, std::string& baseline, std::string& freqgrp);
+        static std::string parse_set_string(const std::vector< std::string >& arglist);
+
 };
 
 }//end namespace

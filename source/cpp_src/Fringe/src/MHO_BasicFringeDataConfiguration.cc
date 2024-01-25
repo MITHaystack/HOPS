@@ -8,7 +8,7 @@
 
 //parse_command_line
 #include <getopt.h>
-
+#include "MHO_Tokenizer.hh"
 
 namespace hops
 {
@@ -20,25 +20,56 @@ MHO_BasicFringeDataConfiguration::parse_command_line(int argc, char** argv, MHO_
     //TODO make this conform/support most of the command line options of fourfit
     std::string usage = "ffit -d <directory> -c <control file> -b <baseline> -P <pol. product>";
 
-    std::string directory = "";
-    std::string control_file = "";
-    std::string baseline = "";
-    std::string polprod = "";
-    std::string output_file = "fdump.json"; //for testing
-    int message_level = -1;
-    int ap_per_seg = 0;
+    //command line parameters
+    bool accounting = false; //'-a' perform run-time accounting - not yet enabled
+    std::string baseline = ""; //'-b' baseline:frequency_group selection
+    std::string freqgrp = ""; //'-b' frequency_group selection
+    std::string control_file = ""; //'-c' specifies the control file
+    std::string directory = ""; // specifies the data direct (TODO REMOVE ME)
+    bool estimate_time = false; //'-e' estimate run time
+    int first_plot_chan = 0; //'-n' specifies the first channel displayed in the fringe plot
+    int message_level = -1; //'-m' specifies the message verbosity level
+    int nplot_chans = 0; //'-n' specifies the number of channels to display in the fringe plot
+    bool show_plot = false; //'-p' generates and shows fringe plot
+    std::string refringe_alist_file = ""; // '-r' alist file for refringing - not yet enabled
+    int ap_per_seg = 0; //'-s' specify the APs to be averaged per plot-segment
+    bool test_mode = false; //'-t' if true, then no output is written
+    bool update_mode = false; //'-u' not yet enabled
+    std::string polprod = ""; //'-P' polarization product argument (e.g XX or I or RR+LL)
+    std::string reftime = ""; //'-T' specify the fourfit reference time - not yet enabled
+    bool xpower_output = false; //'-x' same as option '-p' we no long use pgplot/xwindows
+    std::string output_file = "fdump.json"; //'-o' specify the output file, for testing
+
     bool ok;
+    
+    MHO_Tokenizer tokenizer;
 
     static struct option longOptions[] = {{"help", no_argument, 0, 'h'},
-                                          {"directory", required_argument, 0, 'd'},
-                                          {"control", required_argument, 0, 'c'},
+                                          {"accounting", no_argument, 0, 'a'},
                                           {"baseline", required_argument, 0, 'b'},
-                                          {"polarization-product", required_argument, 0, 'P'},
+                                          {"control", required_argument, 0, 'c'},
+                                          {"directory", required_argument, 0, 'd'},
+                                          {"estimate-time", no_argument, 0, 'e'},
+                                          {"first-plot-channel", required_argument, 0, 'f'},
                                           {"message-level", required_argument, 0, 'm'},
+                                          {"nplot-chans", required_argument, 0, 'n'},
+                                          {"plot", no_argument, 0, 'p'},
+                                          {"refringe", required_argument, 0, 'r'},
                                           {"ap-per-seg", required_argument, 0, 's'},
-                                          {"output", required_argument, 0, 'o'}};
+                                          {"test-mode", no_argument, 0, 't'},
+                                          {"update-mode", no_argument, 0, 'u'},
+                                          {"xwindow", no_argument, 0, 'x'},
+                                          {"polarization-product", required_argument, 0, 'P'},
+                                          {"time-reference", required_argument, 0, 'T'},
+                                          {"xpower-output", no_argument, 0, 'X'},
+                                          {"output", required_argument, 0, 'o'}
+                                      };
 
-    static const char* optString = "hd:c:b:P:o:m:s:";
+    //these are nearly all of the options of the original fourfit
+    //However, some are disabled, and the '-d' option has been coopted to point 
+    //to the data directory, and '-o' is used to specify the output file name
+    static const char* optString = "hab:c:d:ef:m:n:pr:s:tuxP:T:Xo:";
+    //"+ab:c:d:ef:m:n:pr:s:tuxP:T:X"
 
     while(true)
     {
@@ -50,29 +81,72 @@ MHO_BasicFringeDataConfiguration::parse_command_line(int argc, char** argv, MHO_
             case ('h'):  // help
                 std::cout << usage << std::endl;
                 std::exit(0);
-            case ('d'):
-                directory = std::string(optarg);
+            case ('a'):  // help
+                accounting = true;
+                msg_fatal("fringe", "accounting option '-a' is not available." << eom);
+                std::exit(1);
+            case ('b'):
+                parse_baseline_freqgrp(std::string(optarg), baseline, freqgrp);
                 break;
             case ('c'):
                 control_file = std::string(optarg);
                 break;
-            case ('b'):
-                baseline = std::string(optarg);
+            case ('d'):
+                directory = std::string(optarg);
+                break;
+            case ('e'):
+                estimate_time = true;
+                msg_fatal("fringe", "option '-e' is not available." << eom);
+                std::exit(1);
+                break;
+            case ('f'):
+                first_plot_chan = std::atoi(optarg);
+                break;
+            case ('p'):
+                show_plot = true;
+                break;
+            case ('r'):
+                refringe_alist_file = std::string(optarg);
+                msg_fatal("fringe", "refringe option '-r' is not available." << eom);
+                std::exit(1);
+                break;
+            case ('s'):
+                ap_per_seg = std::atoi(optarg);
+                if(ap_per_seg < 0){ap_per_seg = 0; msg_warn("fringe", "invalid ap_per_seg, ignoring." << eom);}
+                break;
+            case ('t'):
+                test_mode = true;
+                break;
+            case ('u'):
+                msg_fatal("fringe", "option '-u' is not available." << eom);
+                std::exit(1);
+                break;
+            case ('x'):
+                show_plot = true; //equivalent to '-p', we do not use pgplot/xwindows
                 break;
             case ('P'):
                 polprod = std::string(optarg);
                 break;
-            case ('o'):
-                output_file = std::string(optarg);
+            case ('T'):
+                reftime = std::string(optarg);
+                msg_fatal("fringe", "alternate reference time option '-T' is not available." << eom);
+                std::exit(1);
                 break;
             case ('m'):
                 message_level = std::atoi(optarg);
                 if(message_level < -2){message_level = -2;}
                 if(message_level > 4){message_level = 4;}
                 break;
-            case ('s'):
-                ap_per_seg = std::atoi(optarg);
-                if(ap_per_seg < 0){ap_per_seg = 0; msg_warn("fringe", "invalid ap_per_seg, ignoring." << eom);}
+            case ('n'):
+                nplot_chans = std::atoi(optarg);
+                break;
+            case 'X':
+                xpower_output = false;
+                msg_fatal("fringe", "xpower output option '-X' is not available." << eom);
+                std::exit(1);
+                break;
+            case ('o'):
+                output_file = std::string(optarg);
                 break;
             default:
                 std::cout << usage << std::endl;
@@ -85,48 +159,8 @@ MHO_BasicFringeDataConfiguration::parse_command_line(int argc, char** argv, MHO_
         msg_fatal("fringe", "usage: "<< usage << eom);
         return 1;
     }
-
-    //set the message level according to the fourfit style
-    //where 3 is least verbose, and '-1' is most verbose
-    switch (message_level)
-    {
-        case -2:
-            //NOTE: debug messages must be compiled-in
-            #ifndef HOPS_ENABLE_DEBUG_MSG
-            MHO_Message::GetInstance().SetMessageLevel(eInfo);
-            msg_warn("fringe", "debug messages are toggled via compiler flag, re-compile with ENABLE_DEBUG_MSG=ON to enable." << eom);
-            #else
-            MHO_Message::GetInstance().SetMessageLevel(eDebug);
-            #endif
-        break;
-        case -1:
-            MHO_Message::GetInstance().SetMessageLevel(eInfo);
-        break;
-        case 0:
-            MHO_Message::GetInstance().SetMessageLevel(eStatus);
-        break;
-        case 1:
-            MHO_Message::GetInstance().SetMessageLevel(eWarning);
-        break;
-        case 2:
-            MHO_Message::GetInstance().SetMessageLevel(eError);
-        break;
-        case 3:
-            MHO_Message::GetInstance().SetMessageLevel(eFatal);
-        break;
-        case 4:
-            MHO_Message::GetInstance().SetMessageLevel(eSilent);
-        break;
-        default:
-            //for now default is most verbose, eventually will change this to silent
-            MHO_Message::GetInstance().SetMessageLevel(eDebug);
-    }
-
-    if(baseline.size() != 2)
-    {
-        msg_fatal("fringe", "baseline must be passed as 2-char code."<< eom);
-        return 1;
-    }
+    
+    set_message_level(message_level);
 
     //store the raw arguments in the parameter store
     std::vector<std::string> arglist;
@@ -135,14 +169,31 @@ MHO_BasicFringeDataConfiguration::parse_command_line(int argc, char** argv, MHO_
         arglist.push_back( std::string(argv[i]) );
     }
     paramStore->Set("/cmdline/args", arglist);
+    
+    //detect and parse the set_string, if it exists
+    //TODO IMPLEMENT ME!
+    std::string set_string = parse_set_string(arglist);
 
-    //pass the extracted info back in the parameter store
-    paramStore->Set("/cmdline/directory", directory);
+    //pass the extracted command line info back in the parameter store
+    //accounting = false;  //not implemented
     paramStore->Set("/cmdline/baseline", baseline);
-    paramStore->Set("/cmdline/polprod", polprod);
+    paramStore->Set("/cmdline/frequency_group", freqgrp);
     paramStore->Set("/cmdline/control_file",control_file);
+    paramStore->Set("/cmdline/directory", directory);
+    //estimate_time = false; //not implemented
+    paramStore->Set("/cmdline/first_plot_channel", first_plot_chan); //TODO
+    paramStore->Set("/cmdline/message_level", message_level);
+    paramStore->Set("/cmdline/nplot_channels", nplot_chans); //TODO
+    paramStore->Set("/cmdline/show_plot", show_plot); //TODO
+    //refringe_alist_file = ""; //not implemented
     paramStore->Set("/cmdline/ap_per_seg",ap_per_seg);
-    paramStore->Set("/cmdline/output_file",output_file);
+    paramStore->Set("/cmdline/test_mode", test_mode); //TODO
+    //update_mode = false; //not implemented
+    paramStore->Set("/cmdline/polprod", polprod);
+    //reftime = ""; //not implemented
+    //xpower_output = false; //not implemented
+    paramStore->Set("/cmdline/output_file",output_file); 
+    paramStore->Set("/cmdline/set_string", set_string); //TODO
 
     return 0;
 
@@ -267,5 +318,104 @@ MHO_BasicFringeDataConfiguration::init_and_exec_operators(MHO_OperatorBuilderMan
     }
 }
 
+
+void 
+MHO_BasicFringeDataConfiguration::parse_baseline_freqgrp(std::string baseline_freqgrp, std::string& baseline, std::string& freqgrp)
+{
+    MHO_Tokenizer tokenizer;
+    
+    if( baseline_freqgrp.find(':') == std::string::npos )
+    {
+        baseline = baseline_freqgrp;
+        
+        if(baseline.size() != 2)
+        {
+            msg_fatal("fringe", "baseline must be passed as 2-char code."<< eom);
+            std::exit(1);
+        }
+    }
+    else 
+    {
+        //split on ':' into baseline and frequency group
+        std::vector< std::string> tokens;
+        std::string delim = ":";
+        tokenizer.SetDelimiter(delim);
+        tokenizer.SetRemoveLeadingTrailingWhitespaceTrue();
+        tokenizer.SetIncludeEmptyTokensFalse();
+        tokenizer.SetString(&baseline_freqgrp);
+        tokenizer.GetTokens(&tokens);
+        if(tokens.size() != 2)
+        {
+            msg_fatal("fringe", "could not parse '-b' command line argument: "<<baseline_freqgrp<< eom);
+            std::exit(1);
+        }
+        baseline = tokens[0];
+        freqgrp = tokens[1];
+    }
+}
+
+void 
+MHO_BasicFringeDataConfiguration::set_message_level(int message_level)
+{
+    //set the message level according to the fourfit style
+    //where 3 is least verbose, and '-1' is most verbose
+    switch (message_level)
+    {
+        case -2:
+            //NOTE: debug messages must be compiled-in
+            #ifndef HOPS_ENABLE_DEBUG_MSG
+            MHO_Message::GetInstance().SetMessageLevel(eInfo);
+            msg_warn("fringe", "debug messages are toggled via compiler flag, re-compile with ENABLE_DEBUG_MSG=ON to enable." << eom);
+            #else
+            MHO_Message::GetInstance().SetMessageLevel(eDebug);
+            #endif
+        break;
+        case -1:
+            MHO_Message::GetInstance().SetMessageLevel(eInfo);
+        break;
+        case 0:
+            MHO_Message::GetInstance().SetMessageLevel(eStatus);
+        break;
+        case 1:
+            MHO_Message::GetInstance().SetMessageLevel(eWarning);
+        break;
+        case 2:
+            MHO_Message::GetInstance().SetMessageLevel(eError);
+        break;
+        case 3:
+            MHO_Message::GetInstance().SetMessageLevel(eFatal);
+        break;
+        case 4:
+            MHO_Message::GetInstance().SetMessageLevel(eSilent);
+        break;
+        default:
+            //for now default is most verbose, eventually will change this to silent
+            MHO_Message::GetInstance().SetMessageLevel(eDebug);
+    }
+}
+
+std::string 
+MHO_BasicFringeDataConfiguration::parse_set_string(const std::vector< std::string >& arglist)
+{
+    std::size_t start_idx = 0;
+    for(std::size_t i=0; i<arglist.size(); i++)
+    {
+        if(arglist[i] == "set"){start_idx = i+1; break;}
+    }
+
+    //if we've found a 'set' comman, assume everything after this is control 
+    //file syntax and concatenate everything together with spaces
+    std::string set_string = "";
+    if(start_idx != 0 && start_idx < arglist.size()-1 )
+    {
+        for(std::size_t i=start_idx; i<arglist.size(); i++)
+        {
+            set_string += arglist[i];
+            set_string += " ";
+        }
+    }
+    
+    return set_string;
+}
 
 }//end namespace
