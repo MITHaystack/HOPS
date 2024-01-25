@@ -17,8 +17,8 @@ namespace hops
 int
 MHO_BasicFringeDataConfiguration::parse_command_line(int argc, char** argv, MHO_ParameterStore* paramStore)
 {
-    //TODO make this conform/support most of the command line options of fourfit
-    std::string usage = "ffit -d <directory> -c <control file> -b <baseline> -P <pol. product>";
+    //TODO update the usage string
+    std::string usage = "ffit -c <control file> -b <baseline> -P <pol. product> <directory>";
 
     //command line parameters
     bool accounting = false; //'-a' perform run-time accounting - not yet enabled
@@ -40,36 +40,34 @@ MHO_BasicFringeDataConfiguration::parse_command_line(int argc, char** argv, MHO_
     bool xpower_output = false; //'-x' same as option '-p' we no long use pgplot/xwindows
     std::string output_file = "fdump.json"; //'-o' specify the output file, for testing
 
-    bool ok;
-    
-    MHO_Tokenizer tokenizer;
-
-    static struct option longOptions[] = {{"help", no_argument, 0, 'h'},
-                                          {"accounting", no_argument, 0, 'a'},
-                                          {"baseline", required_argument, 0, 'b'},
-                                          {"control", required_argument, 0, 'c'},
-                                          // {"directory", required_argument, 0, 'd'},
-                                          {"estimate-time", no_argument, 0, 'e'},
-                                          {"first-plot-channel", required_argument, 0, 'f'},
-                                          {"message-level", required_argument, 0, 'm'},
-                                          {"nplot-chans", required_argument, 0, 'n'},
-                                          {"plot", no_argument, 0, 'p'},
-                                          {"refringe", required_argument, 0, 'r'},
-                                          {"ap-per-seg", required_argument, 0, 's'},
-                                          {"test-mode", no_argument, 0, 't'},
-                                          {"update-mode", no_argument, 0, 'u'},
-                                          {"xwindow", no_argument, 0, 'x'},
-                                          {"polarization-product", required_argument, 0, 'P'},
-                                          {"time-reference", required_argument, 0, 'T'},
-                                          {"xpower-output", no_argument, 0, 'X'},
-                                          {"output", required_argument, 0, 'o'}
-                                      };
+    static struct option longOptions[] = 
+    {
+        {"help", no_argument, 0, 'h'},
+        {"accounting", no_argument, 0, 'a'},
+        {"baseline", required_argument, 0, 'b'},
+        {"control", required_argument, 0, 'c'},
+        {"device", required_argument, 0, 'd'},
+        {"estimate-time", no_argument, 0, 'e'},
+        {"first-plot-channel", required_argument, 0, 'f'},
+        {"message-level", required_argument, 0, 'm'},
+        {"nplot-chans", required_argument, 0, 'n'},
+        {"plot", no_argument, 0, 'p'},
+        {"refringe", required_argument, 0, 'r'},
+        {"ap-per-seg", required_argument, 0, 's'},
+        {"test-mode", no_argument, 0, 't'},
+        {"update-mode", no_argument, 0, 'u'},
+        {"xwindow", no_argument, 0, 'x'},
+        {"polarization-product", required_argument, 0, 'P'},
+        {"time-reference", required_argument, 0, 'T'},
+        {"xpower-output", no_argument, 0, 'X'},
+        {"output", required_argument, 0, 'o'}
+    };
 
     //these are nearly all of the options of the original fourfit
     //However, some are disabled, and the '-d' option has been coopted to point 
     //to the data directory, and '-o' is used to specify the output file name
     static const char* optString = "hab:c:d:ef:m:n:pr:s:tuxP:T:Xo:";
-    //"+ab:c:d:ef:m:n:pr:s:tuxP:T:X"
+    //fourfit option string is "+ab:c:d:ef:m:n:pr:s:tuxP:T:X"
 
     while(true)
     {
@@ -93,7 +91,7 @@ MHO_BasicFringeDataConfiguration::parse_command_line(int argc, char** argv, MHO_
                 break;
             case 'd':
                 //directory = std::string(optarg);
-                msg_fatal("fringe", "plotting device option '-d' is not available." << eom);
+                msg_fatal("fringe", "device (plotting) option '-d' is not available." << eom);
                 std::exit(1);
                 break;
             case 'e':
@@ -150,7 +148,6 @@ MHO_BasicFringeDataConfiguration::parse_command_line(int argc, char** argv, MHO_
             case 'o':
                 output_file = std::string(optarg);
                 break;
-                
             case '?':
                 //invalid option or missing argument
                 msg_fatal("fringe", "invalid option or missing argument, use '-h' for help." << eom);
@@ -173,31 +170,18 @@ MHO_BasicFringeDataConfiguration::parse_command_line(int argc, char** argv, MHO_
     int set_arg_index = -1;
     std::string set_string = parse_set_string(arglist, set_arg_index);
 
-    //resolve remaining positional arguments and put them in the parameter store
-    std::vector< std::string > positional_args;
+    //resolve remaining positional arguments (data directory) and put them in the parameter store
+    std::vector< std::string > pargs;
     if(set_arg_index == -1){set_arg_index = argc;}
-    for(int i = optind; i < set_arg_index; i++) 
-    {
-        positional_args.push_back( std::string(argv[i]) );
-        std::cout<<"positional argument @"<<i<<" = "<<argv[i]<<std::endl;;
-    }
-    paramStore->Set("/cmdline/positional_args", positional_args);
-    
-    if(positional_args.size() != 1)
+    for(int i = optind; i < set_arg_index; i++){pargs.push_back( std::string(argv[i]) );}
+
+    paramStore->Set("/cmdline/positional_args", pargs);
+    if(pargs.size() != 1)
     {
         msg_fatal("fringe", "the data directory must be passed as the first positional argument." << eom );
         std::exit(1);
     }
-    else 
-    {
-        directory = positional_args[0];
-    }
-
-    if( directory == "" || baseline == "" || polprod == "" || control_file == "")
-    {
-        msg_fatal("fringe", "usage: "<< usage << eom);
-        return 1;
-    }
+    else{ directory = pargs[0]; }
 
     //pass the extracted command line info back in the parameter store
     //accounting = false;  //not implemented
@@ -220,129 +204,10 @@ MHO_BasicFringeDataConfiguration::parse_command_line(int argc, char** argv, MHO_
     paramStore->Set("/cmdline/output_file",output_file); 
     paramStore->Set("/cmdline/set_string", set_string); //TODO
 
-    return 0;
+    int status = sanity_check(paramStore);
 
+    return status; //0 is ok, anything else is an error
 }
-
-//more helper functions
-void
-MHO_BasicFringeDataConfiguration::configure_visibility_data(MHO_ContainerStore* store)
-{
-    //retrieve the (first) visibility and weight objects
-    //(currently assuming there is only one object per type)
-    visibility_store_type* vis_store_data = nullptr;
-    weight_store_type* wt_store_data = nullptr;
-
-    vis_store_data = store->GetObject<visibility_store_type>(0);
-    wt_store_data = store->GetObject<weight_store_type>(0);
-
-    if(vis_store_data == nullptr)
-    {
-        msg_fatal("initialization", "failed to read visibility data from the .cor file." <<eom);
-        std::exit(1);
-    }
-
-    if(wt_store_data == nullptr)
-    {
-        msg_fatal("initialization", "failed to read weight data from the .cor file." <<eom);
-        std::exit(1);
-    }
-
-    std::size_t n_vis = store->GetNObjects<visibility_store_type>();
-    std::size_t n_wt = store->GetNObjects<weight_store_type>();
-
-    if(n_vis != 1 || n_wt != 1)
-    {
-        msg_warn("initialization", "multiple visibility and/or weight types per-baseline not yet supported" << eom);
-    }
-
-    auto vis_store_uuid = vis_store_data->GetObjectUUID();
-    auto wt_store_uuid = wt_store_data->GetObjectUUID();
-
-    std::string vis_shortname = store->GetShortName(vis_store_uuid);
-    std::string wt_shortname = store->GetShortName(wt_store_uuid);
-
-    visibility_type* vis_data = new visibility_type();
-    weight_type* wt_data = new weight_type();
-
-    //assign the storage UUID's to their up-casted counter-parts
-    //we do this so we can associate them to the file objects (w.r.t to program output, error messages, etc.)
-    vis_data->SetObjectUUID(vis_store_uuid);
-    wt_data->SetObjectUUID(wt_store_uuid);
-
-    MHO_ElementTypeCaster<visibility_store_type, visibility_type> up_caster;
-    up_caster.SetArgs(vis_store_data, vis_data);
-    up_caster.Initialize();
-    up_caster.Execute();
-
-    MHO_ElementTypeCaster< weight_store_type, weight_type> wt_up_caster;
-    wt_up_caster.SetArgs(wt_store_data, wt_data);
-    wt_up_caster.Initialize();
-    wt_up_caster.Execute();
-
-    //remove the original objects to save space
-    store->DeleteObject(vis_store_data);
-    store->DeleteObject(wt_store_data);
-
-    //warn on non-standard shortnames
-    if(vis_shortname != "vis"){msg_warn("initialization", "visibilities do not use canonical short name 'vis', but are called: "<< vis_shortname << eom);}
-    if(wt_shortname != "weight"){msg_warn("initialization", "weights do not use canonical short name 'weight', but are called: "<< wt_shortname << eom);}
-
-    //now shove the double precision data into the container store with the same shortname
-    store->AddObject(vis_data);
-    store->AddObject(wt_data);
-    store->SetShortName(vis_data->GetObjectUUID(), vis_shortname);
-    store->SetShortName(wt_data->GetObjectUUID(), wt_shortname);
-}
-
-void
-MHO_BasicFringeDataConfiguration::configure_station_data(MHO_ScanDataStore* scanStore, MHO_ContainerStore* containerStore,
-                                                         std::string ref_station_mk4id, std::string rem_station_mk4id)
-{
-    //load station data and assign them the names 'ref_sta' or 'rem_sta'
-    scanStore->LoadStation(ref_station_mk4id, containerStore);
-    containerStore->RenameObject("sta", "ref_sta");
-    MHO_UUID pcal_uuid;
-    pcal_uuid = containerStore->GetObjectUUID("pcal");
-    if( !(pcal_uuid.is_empty()) )
-    {
-        containerStore->RenameObject("pcal", "ref_pcal");
-    }
-
-    scanStore->LoadStation(rem_station_mk4id, containerStore);
-    containerStore->RenameObject("sta", "rem_sta");
-    pcal_uuid = containerStore->GetObjectUUID("pcal");
-    if( !(pcal_uuid.is_empty()) )
-    {
-        containerStore->RenameObject("pcal", "rem_pcal");
-    }
-    //load pcal data if it is present
-
-}
-
-
-void
-MHO_BasicFringeDataConfiguration::init_and_exec_operators(MHO_OperatorBuilderManager* build_manager, MHO_OperatorToolbox* opToolbox, const char* category)
-{
-    std::string cat(category);
-    if(build_manager == nullptr || opToolbox == nullptr)
-    {
-        msg_error("fringe", "cannot initialize or execute operators if builder or toolbox is missing" << eom );
-        return;
-    }
-    
-    msg_debug("fringe", "initializing and executing operators in "<<cat<<" category."<<eom);
-
-    build_manager->BuildOperatorCategory(cat);
-    auto ops = opToolbox->GetOperatorsByCategory(cat);
-    for(auto opIt= ops.begin(); opIt != ops.end(); opIt++)
-    {
-        msg_debug("fringe", "initializing and executing operator: "<< (*opIt)->GetName() <<", with priority: "<< (*opIt)->Priority() << "." << eom);
-        (*opIt)->Initialize();
-        (*opIt)->Execute();
-    }
-}
-
 
 void 
 MHO_BasicFringeDataConfiguration::parse_baseline_freqgrp(std::string baseline_freqgrp, std::string& baseline, std::string& freqgrp)
@@ -448,5 +313,157 @@ MHO_BasicFringeDataConfiguration::parse_set_string(const std::vector< std::strin
     
     return set_string;
 }
+
+
+//sanity check of parameters after command line parsing
+int 
+MHO_BasicFringeDataConfiguration::sanity_check(MHO_ParameterStore* paramStore)
+{
+    //command line parameters
+    //bool accounting = false; //'-a' perform run-time accounting - not yet enabled
+    std::string baseline = paramStore->GetAs<std::string>("/cmdline/baseline"); 
+    std::string freqgrp = paramStore->GetAs<std::string>("/cmdline/frequency_group");
+    std::string control_file = paramStore->GetAs<std::string>("/cmdline/control_file");
+    std::string directory = paramStore->GetAs<std::string>("/cmdline/directory");
+    //bool estimate_time = false; //'-e' estimate run time
+    int first_plot_chan = paramStore->GetAs<int>("/cmdline/first_plot_channel");
+    int message_level = paramStore->GetAs<int>("/cmdline/message_level");
+    int nplot_chans = paramStore->GetAs<int>("/cmdline/nplot_channels");
+    bool show_plot = paramStore->GetAs<bool>("/cmdline/show_plot");
+    //std::string refringe_alist_file = ""; // '-r' alist file for refringing - not yet enabled
+    int ap_per_seg = paramStore->GetAs<int>("/cmdline/ap_per_seg");
+    bool test_mode = paramStore->GetAs<bool>("/cmdline/test_mode");
+    //bool update_mode = false; //'-u' not yet enabled
+    std::string polprod = paramStore->GetAs<std::string>("/cmdline/polprod");
+    //std::string reftime = ""; 
+    //bool xpower_output = false; 
+    std::string output_file = paramStore->GetAs<std::string>("/cmdline/output_file");
+
+    #pragma message("TODO FIXME - fill out the sanity_check function for command line arguments")
+    if( directory == "" || baseline == "" || polprod == "" || control_file == "")
+    {
+        return 1;
+    }
+    
+    return 0;
+}
+
+
+//more helper functions
+void
+MHO_BasicFringeDataConfiguration::configure_visibility_data(MHO_ContainerStore* store)
+{
+    //retrieve the (first) visibility and weight objects
+    //(currently assuming there is only one object per type)
+    visibility_store_type* vis_store_data = nullptr;
+    weight_store_type* wt_store_data = nullptr;
+
+    vis_store_data = store->GetObject<visibility_store_type>(0);
+    wt_store_data = store->GetObject<weight_store_type>(0);
+
+    if(vis_store_data == nullptr)
+    {
+        msg_fatal("initialization", "failed to read visibility data from the .cor file." <<eom);
+        std::exit(1);
+    }
+
+    if(wt_store_data == nullptr)
+    {
+        msg_fatal("initialization", "failed to read weight data from the .cor file." <<eom);
+        std::exit(1);
+    }
+
+    std::size_t n_vis = store->GetNObjects<visibility_store_type>();
+    std::size_t n_wt = store->GetNObjects<weight_store_type>();
+
+    if(n_vis != 1 || n_wt != 1)
+    {
+        msg_warn("initialization", "multiple visibility and/or weight types per-baseline not yet supported" << eom);
+    }
+
+    auto vis_store_uuid = vis_store_data->GetObjectUUID();
+    auto wt_store_uuid = wt_store_data->GetObjectUUID();
+
+    std::string vis_shortname = store->GetShortName(vis_store_uuid);
+    std::string wt_shortname = store->GetShortName(wt_store_uuid);
+
+    visibility_type* vis_data = new visibility_type();
+    weight_type* wt_data = new weight_type();
+
+    //assign the storage UUID's to their up-casted counter-parts
+    //we do this so we can associate them to the file objects (w.r.t to program output, error messages, etc.)
+    vis_data->SetObjectUUID(vis_store_uuid);
+    wt_data->SetObjectUUID(wt_store_uuid);
+
+    MHO_ElementTypeCaster<visibility_store_type, visibility_type> up_caster;
+    up_caster.SetArgs(vis_store_data, vis_data);
+    up_caster.Initialize();
+    up_caster.Execute();
+
+    MHO_ElementTypeCaster< weight_store_type, weight_type> wt_up_caster;
+    wt_up_caster.SetArgs(wt_store_data, wt_data);
+    wt_up_caster.Initialize();
+    wt_up_caster.Execute();
+
+    //remove the original objects to save space
+    store->DeleteObject(vis_store_data);
+    store->DeleteObject(wt_store_data);
+
+    //warn on non-standard shortnames
+    if(vis_shortname != "vis"){msg_warn("initialization", "visibilities do not use canonical short name 'vis', but are called: "<< vis_shortname << eom);}
+    if(wt_shortname != "weight"){msg_warn("initialization", "weights do not use canonical short name 'weight', but are called: "<< wt_shortname << eom);}
+
+    //now shove the double precision data into the container store with the same shortname
+    store->AddObject(vis_data);
+    store->AddObject(wt_data);
+    store->SetShortName(vis_data->GetObjectUUID(), vis_shortname);
+    store->SetShortName(wt_data->GetObjectUUID(), wt_shortname);
+}
+
+void
+MHO_BasicFringeDataConfiguration::configure_station_data(MHO_ScanDataStore* scanStore, MHO_ContainerStore* containerStore,
+                                                         std::string ref_station_mk4id, std::string rem_station_mk4id)
+{
+    //load station data and assign them the names 'ref_sta' or 'rem_sta'
+    scanStore->LoadStation(ref_station_mk4id, containerStore);
+    containerStore->RenameObject("sta", "ref_sta");
+    MHO_UUID pcal_uuid;
+    pcal_uuid = containerStore->GetObjectUUID("pcal");
+    if( !(pcal_uuid.is_empty()) )
+    {
+        containerStore->RenameObject("pcal", "ref_pcal");
+    }
+
+    scanStore->LoadStation(rem_station_mk4id, containerStore);
+    containerStore->RenameObject("sta", "rem_sta");
+    pcal_uuid = containerStore->GetObjectUUID("pcal");
+    if( !(pcal_uuid.is_empty()) )
+    {
+        containerStore->RenameObject("pcal", "rem_pcal");
+    }
+}
+
+void
+MHO_BasicFringeDataConfiguration::init_and_exec_operators(MHO_OperatorBuilderManager* build_manager, MHO_OperatorToolbox* opToolbox, const char* category)
+{
+    std::string cat(category);
+    if(build_manager == nullptr || opToolbox == nullptr)
+    {
+        msg_error("fringe", "cannot initialize or execute operators if builder or toolbox is missing" << eom );
+        return;
+    }
+    
+    msg_debug("fringe", "initializing and executing operators in "<<cat<<" category."<<eom);
+
+    build_manager->BuildOperatorCategory(cat);
+    auto ops = opToolbox->GetOperatorsByCategory(cat);
+    for(auto opIt= ops.begin(); opIt != ops.end(); opIt++)
+    {
+        msg_debug("fringe", "initializing and executing operator: "<< (*opIt)->GetName() <<", with priority: "<< (*opIt)->Priority() << "." << eom);
+        (*opIt)->Initialize();
+        (*opIt)->Execute();
+    }
+}
+
 
 }//end namespace
