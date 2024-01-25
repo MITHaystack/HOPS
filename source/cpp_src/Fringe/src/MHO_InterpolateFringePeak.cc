@@ -84,6 +84,7 @@ MHO_InterpolateFringePeak::fine_peak_interpolation()
     double mbd_delta = fMBDAxis.at(1) - fMBDAxis.at(0);
 
     //TODO FIXME -- shoudl this be the fourfit refrence time? Also...should this be calculated elsewhere?
+    #pragma message("TODO FIXME -- replace midpoint time with fourfit refernce time")
     double midpoint_time = ( ap_ax->at(nap-1) + ap_delta  + ap_ax->at(0) )/2.0;
     // std::cout<<"time midpoint = "<<midpoint_time<<std::endl;
     // std::cout<<"dr delta = "<<dr_delta<<std::endl;
