@@ -103,7 +103,8 @@ int main(int argc, char** argv)
             auto vis_module = py::module::import("hops_visualization");
             auto plot_lib = vis_module.attr("fourfit_plot");
             //call a python function on the interface class instance
-            plot_lib.attr("make_fourfit_plot")(plot_obj, "fplot.png");
+            //TODO, pass filename to save plot if needed
+            plot_lib.attr("make_fourfit_plot")(plot_obj, true, "");
         }
         #else //USE_PYBIND11
         if(show_plot)

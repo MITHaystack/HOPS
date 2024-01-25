@@ -752,7 +752,7 @@ def make_data_stats_text(plot_dict):
 
 
 
-def make_fourfit_plot(plot_dict, filename):
+def make_fourfit_plot(plot_dict, show_on_screen, filename):
     '''
     Function to reproduce a fourfit fringe plot.
 
@@ -760,8 +760,10 @@ def make_fourfit_plot(plot_dict, filename):
     ----------
     plot_dict : dict
         Dictionary with key/value pairs for the plot.
+    show_on_screen : bool
+        Show the plot on-screen.
     filename : str
-        Path of the filename to save the plot.
+        Path of the filename to save the plot, if empty, plot will not be saved.
 
     Returns
     -------
@@ -789,5 +791,8 @@ def make_fourfit_plot(plot_dict, filename):
     make_window_table(plot_dict) #constructs the (sbd,mbd,dr,ion) window limits table 
     make_data_stats_text(plot_dict) #constructs the data statistics/summary text
 
-    #pylab.show()
-    pylab.savefig(filename)
+    if show_on_screen:
+        pylab.show()
+
+    if filename != "":
+        pylab.savefig(filename)
