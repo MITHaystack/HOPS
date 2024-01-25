@@ -14,6 +14,7 @@ MHO_ControlFileParser::MHO_ControlFileParser()
     fWhitespace = MHO_ControlDefinitions::WhitespaceDelim();
     fCommentFlag = MHO_ControlDefinitions::CommentFlag();
     fKeywordNames = MHO_ControlDefinitions::GetKeywordNames();
+    fSetString = "";
 }
 
 MHO_ControlFileParser::~MHO_ControlFileParser(){};
@@ -47,14 +48,38 @@ MHO_ControlFileParser::ParseControl()
 bool
 MHO_ControlFileParser::ReadFile()
 {
+    //the set string needs to be handled here 
+    //this can be tricky because the set string may contain conditional statements 
+    //like 'if station G'
+    //the problem with this is that if we prepend the control file with the set string 
+    //then we may be accidentally prepending the entire control file contents with an 
+    //'if' statement which does not apply. So, what we have to do is check if the 
+    //set string contains an 'if' and if so, we need to split its contents on the first 
+    //instance of 'if'. Anything before this if statement should be prepended to the 
+    //control file, while anything after it should be append to the end of the control file
+    
+    std::string prepend = "";
+    std::string append = "";
+    SplitSetString(fSetString, prepend, append);
+    
+    //prepend applicable portion of the set string (give it line #0)
+    if(prepend != "")
+    {
+        MHO_ControlLine line;
+        line.fLineNumber = 0;
+        line.fContents = prepend;
+        fLines.push_back(line);
+    }
+    
     //nothing special, just read in the entire file line by line and stash in memory
+    bool status = false;
+    std::size_t line_count = 1;
     if(fControlFileName != "")
     {
         //open input/output files
         std::ifstream vfile(fControlFileName.c_str(), std::ifstream::in);
         if(vfile.is_open() )
         {
-            std::size_t line_count = 1;
             std::string contents;
             while( getline(vfile, contents) )
             {
@@ -65,7 +90,7 @@ MHO_ControlFileParser::ReadFile()
                 line_count++;
             }
             vfile.close();
-            return true;
+            status = true;
         }
         else
         {
@@ -73,7 +98,17 @@ MHO_ControlFileParser::ReadFile()
             std::exit(1);
         }
     }
-    return false;
+    
+    //append applicable portion of the set string
+    if(append != "")
+    {
+        MHO_ControlLine line;
+        line.fLineNumber = line_count;
+        line.fContents = append;
+        fLines.push_back(line);
+    }
+    
+    return status;
 }
 
 
@@ -263,6 +298,29 @@ MHO_ControlFileParser::FindAndReplace(const std::string& find_str, const std::st
     {
         std::string fixed_line = std::regex_replace(text, std::regex(regex_str), replace_str);
         text = fixed_line;
+    }
+}
+
+void 
+MHO_ControlFileParser::SplitSetString(const std::string& set_string, std::string& prepend, std::string& append)
+{
+    if(set_string != "")
+    {
+        std::string if_flag = "if";
+        std::size_t first_if_pos = set_string.find(if_flag);
+        if(first_if_pos == std::string::npos)
+        {
+            //no 'if' statement in the set string, add everything to prepend
+            prepend = set_string;
+        }
+        else 
+        {
+            //need to split the set_string into two parts at the location of the first 'if'
+            std::string part1 = set_string.substr(0, first_if_pos);
+            std::string part2 = set_string.substr(first_if_pos);
+            prepend = part1;
+            append = part2;
+        }
     }
 }
 

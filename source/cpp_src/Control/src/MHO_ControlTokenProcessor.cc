@@ -56,7 +56,10 @@ MHO_ControlTokenProcessor::ProcessListString(const std::vector< MHO_Token >& tok
 {
     mho_json element_data;
     std::vector< std::string > values;
-    for(std::size_t i=0; i<tokens.size(); i++){values.push_back( tokens[i].fValue );}
+    for(std::size_t i=0; i<tokens.size(); i++)
+    {
+        values.push_back( tokens[i].fValue );
+    }
     element_data = values;
     return element_data;
 }
