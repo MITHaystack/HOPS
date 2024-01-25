@@ -423,10 +423,10 @@ def make_info_text_box(plot_dict):
         'RA & Dec (J2000)'
 
     textstr2 = str(plot_dict['Quality'].strip("'")) + '\n\n' + \
-        str(np.round(float(plot_dict['SNR']),1)) + '\n' + \
-        str(np.round(float(plot_dict['IntgTime']),3)) + '\n' + \
-        str(np.round(float(plot_dict['Amp']),3)) + '\n' + \
-        str(np.round(float(plot_dict['ResPhase']),1)) + '\n' + \
+        str(format(float(plot_dict['SNR']),'.1f')) + '\n' + \
+        str(format(float(plot_dict['IntgTime']),'.3f')) + '\n' + \
+        str(format(float(plot_dict['Amp']),'.3f')) + '\n' + \
+        str(format(float(plot_dict['ResPhase']),'.1f')) + '\n' + \
         str(np.round(float(plot_dict['PFD']),2)) + '\n' + \
         '\n' + \
         str( format( float(plot_dict['ResidSbd(us)']), '.6f') ) + '\n' + \
