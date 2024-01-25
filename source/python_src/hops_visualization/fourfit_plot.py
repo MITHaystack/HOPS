@@ -2,7 +2,9 @@
 import os, sys
 import numpy as np
 import matplotlib
-#matplotlib.use("Agg", warn=False)
+#are any of these backends faster? matplotlib is abysmally slow
+# matplotlib.use("Agg")
+# matplotlib.use('Qt5Cairo') 
 
 import matplotlib.pyplot as plt
 import matplotlib.gridspec as gridspec
