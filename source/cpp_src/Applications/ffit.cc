@@ -46,7 +46,8 @@ int main(int argc, char** argv)
     if(parse_status != 0){msg_fatal("main", "could not parse command line options." << eom); std::exit(1);}
     
     #ifdef USE_PYBIND11
-    py::scoped_interpreter guard{}; // start the interpreter and keep it alive, need this or we segfault
+    // start the interpreter and keep it alive, need this or we segfault
+    py::scoped_interpreter guard{}; 
     #endif
     
     ffit->Configure();
@@ -76,27 +77,40 @@ int main(int argc, char** argv)
     ////////////////////////////////////////////////////////////////////////////
     //OUTPUT/PLOTTING -- this should be reorganized with visitor pattern
     ////////////////////////////////////////////////////////////////////////////
+    bool test_mode = ffit->GetParameterStore()->GetAs<bool>("/cmdline/test_mode");
+    bool show_plot = ffit->GetParameterStore()->GetAs<bool>("/cmdline/show_plot");
     
     MHO_BasicFringeFitter* bffit = dynamic_cast< MHO_BasicFringeFitter* >(ffit);
     if(bffit != nullptr)
     {
         mho_json plot_data = bffit->GetPlotData(); //function only available in MHO_BasicFringeFitter
         //open and dump to file
-        std::string output_file = bffit->GetParameterStore()->GetAs<std::string>("/cmdline/output_file");
-        std::ofstream fdumpFile(output_file.c_str(), std::ofstream::out);
-        fdumpFile << plot_data;
-        fdumpFile.close();
+        if(!test_mode)
+        {
+            std::string output_file = bffit->GetParameterStore()->GetAs<std::string>("/cmdline/output_file");
+            std::ofstream fdumpFile(output_file.c_str(), std::ofstream::out);
+            fdumpFile << plot_data;
+            fdumpFile.close();
+        }
         
         #ifdef USE_PYBIND11
-        msg_debug("main", "python plot generation enabled." << eom );
-        py::dict plot_obj = plot_data;
-        
-        //load our interface module -- this is extremely slow!
-        auto vis_module = py::module::import("hops_visualization");
-        auto plot_lib = vis_module.attr("fourfit_plot");
-        //call a python function on the interface class instance
-        plot_lib.attr("make_fourfit_plot")(plot_obj, "fplot.png");
-        #endif //USE_PYBIND11
+        if(show_plot)
+        {
+            msg_debug("main", "python plot generation enabled." << eom );
+            py::dict plot_obj = plot_data;
+            
+            //load our interface module -- this is extremely slow!
+            auto vis_module = py::module::import("hops_visualization");
+            auto plot_lib = vis_module.attr("fourfit_plot");
+            //call a python function on the interface class instance
+            plot_lib.attr("make_fourfit_plot")(plot_obj, "fplot.png");
+        }
+        #else //USE_PYBIND11
+        if(show_plot)
+        {
+            msg_warn("main", "plot output requested, but not enabled since HOPS was built without pybind11 support, ignoring." << eom);
+        }
+        #endif
     }
 
     return 0;

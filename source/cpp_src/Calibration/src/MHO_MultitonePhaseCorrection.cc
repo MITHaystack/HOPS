@@ -283,7 +283,7 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
                 if(first_pass){mean_pc_delay.resize(nsegs, 0.0); first_pass = false;}
                 for(std::size_t s=0; s<nsegs; s++)
                 {
-                    std::cout<<"ch pc_delay seg = "<<ch<<", "<<s<<", "<<1e9*pc_delay_segs[s]<<std::endl;
+                    //std::cout<<"ch pc_delay seg = "<<ch<<", "<<s<<", "<<1e9*pc_delay_segs[s]<<std::endl;
                     mean_pc_delay[s] += pc_delay_segs[s]; 
                 }
                 n_avg += 1.0;
@@ -397,7 +397,7 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
                 //apply phase offset correction
                 in->SubView(vis_pp, ch, dap) *= pc_phasor;
                 
-                std::cout<<"pol, ch, ap, phase/delay = "<<vis_pp<<", "<<ch<<", "<<dap<<", "<<pcphase<<", "<<1e9*pcdelay<<std::endl;
+                //std::cout<<"pol, ch, ap, phase/delay = "<<vis_pp<<", "<<ch<<", "<<dap<<", "<<pcphase<<", "<<1e9*pcdelay<<std::endl;
 
                 //apply delay correction
                 for(std::size_t sp=0; sp < vis_freq_ax->GetSize(); sp++)
