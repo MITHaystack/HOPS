@@ -47,17 +47,11 @@ void MHO_BasicFringeFitter::Configure()
     fParameterStore.Set("/status/is_finished", false);
     fParameterStore.Set("/status/skipped", false);
 
+    //these should all be present and ok at this point
     std::string directory = fParameterStore.GetAs<std::string>("/cmdline/directory");
     std::string control_file = fParameterStore.GetAs<std::string>("/cmdline/control_file");
     std::string baseline = fParameterStore.GetAs<std::string>("/cmdline/baseline");
     std::string polprod = fParameterStore.GetAs<std::string>("/cmdline/polprod");
-
-    //if any of these are empty, fail out for now
-    if(directory == "" || control_file == "" || baseline == "" || polprod == "")
-    {
-        msg_fatal("fringe", "missing command line information (directory, control file, baseline, or pol-product)" << eom );
-        std::exit(1);
-    }
 
     ////////////////////////////////////////////////////////////////////////////
     //INITIALIZE PARAMETERS

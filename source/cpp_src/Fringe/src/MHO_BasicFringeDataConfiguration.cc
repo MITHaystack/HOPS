@@ -298,7 +298,7 @@ MHO_BasicFringeDataConfiguration::parse_set_string(const std::vector< std::strin
         }
     }
 
-    //if we've found a 'set' comman, assume everything after this is control 
+    //if we've found a 'set' command, assume everything after this is control 
     //file syntax and concatenate everything together with spaces
     std::string set_string = "";
     int start_idx = set_arg_index+1; 
