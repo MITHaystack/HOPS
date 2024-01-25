@@ -7,7 +7,7 @@
 
 #include "MHO_Message.hh"
 #include "MHO_Snapshot.hh"
-
+#include "MHO_Timer.hh"
 
 //fringe finding library helper functions
 #include "MHO_BasicFringeFitter.hh"
@@ -96,6 +96,10 @@ int main(int argc, char** argv)
         #ifdef USE_PYBIND11
         if(show_plot)
         {
+            // MHO_Timer timer;
+            // double current_time;
+            // timer.Start();
+
             msg_debug("main", "python plot generation enabled." << eom );
             py::dict plot_obj = plot_data;
             
@@ -105,6 +109,10 @@ int main(int argc, char** argv)
             //call a python function on the interface class instance
             //TODO, pass filename to save plot if needed
             plot_lib.attr("make_fourfit_plot")(plot_obj, true, "");
+            
+            // current_time = timer.GetTimeSinceStart();
+            // std::cout<<"time to plot = "<<current_time<<std::endl;
+            
         }
         #else //USE_PYBIND11
         if(show_plot)
