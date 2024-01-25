@@ -102,6 +102,10 @@ void MHO_BasicFringeFitter::Configure()
     //add default operations to the control format, so we can later trigger them
     AddDefaultOperatorFormatDef(fControlFormat);
 
+    //add the set string info if it is available 
+    std::string set_string = fParameterStore.GetAs<std::string>("/cmdline/set_string");
+    if(set_string != ""){cparser.PassSetString(set_string);}
+
     //now parse the control file and collect the applicable statements 
     cparser.SetControlFile(control_file);
     auto control_contents = cparser.ParseControl();

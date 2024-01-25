@@ -32,6 +32,7 @@ class MHO_ControlFileParser
         MHO_ControlFileParser();
         virtual ~MHO_ControlFileParser();
 
+        void PassSetString(std::string set_string){fSetString = set_string;};
         void SetControlFile(std::string filename);
 
         mho_json ParseControl();
@@ -46,10 +47,12 @@ class MHO_ControlFileParser
         void FindKeywords();
         void FormStatements();
         mho_json ConstructControlObjects();
-
+        
+        void SplitSetString(const std::string& set_string, std::string& prepend, std::string& append);
 
         void FindAndReplace(const std::string& find_str, const std::string& regex_str, const std::string& replace_str, std::string& text);
 
+        std::string fSetString;
         std::string fControlFileName;
 
         //token/delimiter definitions
