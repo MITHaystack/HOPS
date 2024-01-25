@@ -15,14 +15,14 @@ cd $EXP_DIR
 
 export HOPS_PLOT_DATA_MASK=0x83FFFFFF
 
-echo "Running: ffit -d ./${D2H_EXP_NUM}/${SCAN_DIR} -c ./cf_test5 -b GE -P XX"
+echo "Running: ffit -d ./${D2H_EXP_NUM}/${SCAN_DIR} -c ./cf_test5 -b GE -P I"
 
-time ffit -d ./${D2H_EXP_NUM}/${SCAN_DIR} -c ./cf_test5 -b GE -P XX | grep max555 | tee ./sfs.out
+time ffit -d ./${D2H_EXP_NUM}/${SCAN_DIR} -c ./cf_test5 -b GE -P I | grep max555 | tee ./sfs.out
 
-echo "Running: fourfit -m 1 -t -c ./cf_test5 -b GE -P XX ./${D2M4_EXP_NUM}/${SCAN_DIR}"
-time fourfit -m 1 -t -c ./cf_test5 -b GE -P XX ./${D2M4_EXP_NUM}/${SCAN_DIR} set plot_data_dir ./chk1 2>&1  | grep max555 | tee ./ff.out
+echo "Running: fourfit -m 1 -t -c ./cf_test5 -b GE -P I ./${D2M4_EXP_NUM}/${SCAN_DIR}"
+time fourfit -m 1 -t -c ./cf_test5 -b GE -P I ./${D2M4_EXP_NUM}/${SCAN_DIR} set plot_data_dir ./chk1 2>&1  | grep max555 | tee ./ff.out
 
-compjsonpdd.py ./fdump.json ./chk1/105-1800*
+compjsonpdd.py -r 0.015 ./fdump.json ./chk1/105-1800-GE-X-Ixy*
 RET_VAL=$?
 
 exit $RET_VAL
