@@ -36,16 +36,20 @@ class MHO_BasicFringeDataConfiguration
     public:
         //helper functions
         static int parse_command_line(int argc, char** argv, MHO_ParameterStore* paramStore);
-        
-        static void configure_visibility_data(MHO_ContainerStore* store);
-        static void configure_station_data(MHO_ScanDataStore* scanStore, MHO_ContainerStore* containerStore,
-                                           std::string ref_station_mk4id, std::string rem_station_mk4id);
-                                           
-        static void init_and_exec_operators(MHO_OperatorBuilderManager* build_manager, MHO_OperatorToolbox* opToolbox, const char* category);
-
+        //functions for consuming command line arguments
         static void set_message_level(int message_level);
         static void parse_baseline_freqgrp(std::string baseline_freqgrp, std::string& baseline, std::string& freqgrp);
         static std::string parse_set_string(const std::vector< std::string >& arglist, int& set_arg_index);
+        //sanity check of parameters after command line parsing
+        static int sanity_check(MHO_ParameterStore* paramStore);
+
+        static void configure_visibility_data(MHO_ContainerStore* store);
+        static void configure_station_data(MHO_ScanDataStore* scanStore, 
+                                           MHO_ContainerStore* containerStore,
+                                           std::string ref_station_mk4id, 
+                                           std::string rem_station_mk4id);
+
+        static void init_and_exec_operators(MHO_OperatorBuilderManager* build_manager, MHO_OperatorToolbox* opToolbox, const char* category);
 
 };
 
