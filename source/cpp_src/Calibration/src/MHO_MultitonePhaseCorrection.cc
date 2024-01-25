@@ -362,7 +362,13 @@ MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp
         std::string pc_seg_end_key = st_prefix + "_mtpc_apseg_end_" + pc_pol_code;
         // std::string pc_mag_key = st_prefix + "_mtpc_mag_" + pc_pol_code;
         std::string pc_phase_key = st_prefix + "_mtpc_phase_" + pc_pol_code;
+
         std::string pc_delay_key = st_prefix + "_mtpc_delays_applied_" + pc_pol_code;
+
+        //the string below is the old behavior (above is closer to the fourfit sampler_delays.c behavior)
+        // std::string pc_delay_key = st_prefix + "_mtpc_delays_" + pc_pol_code;
+
+
         vis_chan_ax->RetrieveIndexLabelKeyValue(ch, pc_seg_start_key, seg_start_aps);
         vis_chan_ax->RetrieveIndexLabelKeyValue(ch, pc_seg_end_key, seg_end_aps);
         // vis_chan_ax->RetrieveIndexLabelKeyValue(ch, pc_mag_key, pc_mag_segs);
