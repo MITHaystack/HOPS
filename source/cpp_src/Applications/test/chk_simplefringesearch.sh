@@ -15,9 +15,9 @@ cd $EXP_DIR
 
 export HOPS_PLOT_DATA_MASK=0x83FFFFFF
 
-echo "Running: ffit -d ./${D2H_EXP_NUM}/${SCAN_DIR} -c ./cf_test4 -b GE -P XX"
+echo "Running: ffit -c ./cf_test4 -b GE -P XX ./${D2H_EXP_NUM}/${SCAN_DIR}"
 
-time ffit -d ./${D2H_EXP_NUM}/${SCAN_DIR} -c ./cf_test4 -b GE -P XX | grep max555 | tee ./sfs.out
+time ffit -c ./cf_test4 -b GE -P XX ./${D2H_EXP_NUM}/${SCAN_DIR} | grep max555 | tee ./sfs.out
 
 echo "Running: fourfit -m 1 -t -c ./cf_test4 -b GE -P XX ./${D2M4_EXP_NUM}/${SCAN_DIR}"
 time fourfit -m 1 -t -c ./cf_test4 -b GE -P XX ./${D2M4_EXP_NUM}/${SCAN_DIR} set plot_data_dir ./chk1 2>&1  | grep max555 | tee ./ff.out
