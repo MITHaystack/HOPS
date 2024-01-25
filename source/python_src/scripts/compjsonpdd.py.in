@@ -15,11 +15,13 @@ def main():
          description='''primitive utility to compare a json dump file and a pdd file''' \
          )
 
+    parser.add_argument('-r', '--rel-tolerance', type=float, dest='reltol', help='the relative tolerance to use when comparing floating point numbers, default = 3e-4.', default=3e-4)
     parser.add_argument('fileA', help='the HOPS4 json fringe data dump')
     parser.add_argument('fileB', help='the HOPS3 (plot_data_dir) dump file')
 
     args = parser.parse_args()
 
+    reltol = abs(args.reltol)
     f1_name = os.path.abspath(args.fileA)
     f2_name = os.path.abspath(args.fileB)
 
@@ -86,7 +88,8 @@ def main():
 
     bad_count = 0
     bad_keys = []
-    rel_percent_error = 0.03
+    
+    rel_percent_error = reltol*100;
 
     print("tolerance is: ", rel_percent_error, " percent.")
 

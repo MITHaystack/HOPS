@@ -22,7 +22,7 @@ time ffit -d ./${D2H_EXP_NUM}/${SCAN_DIR} -c ./cf_test4 -b GE -P XX | grep max55
 echo "Running: fourfit -m 1 -t -c ./cf_test4 -b GE -P XX ./${D2M4_EXP_NUM}/${SCAN_DIR}"
 time fourfit -m 1 -t -c ./cf_test4 -b GE -P XX ./${D2M4_EXP_NUM}/${SCAN_DIR} set plot_data_dir ./chk1 2>&1  | grep max555 | tee ./ff.out
 
-compjsonpdd.py ./fdump.json ./chk1/105-1800*
+compjsonpdd.py ./fdump.json ./chk1/105-1800-GE-X-XX*
 RET_VAL=$?
 
 exit $RET_VAL
