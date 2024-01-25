@@ -11,7 +11,7 @@ if(ENABLE_SNAPSHOTS)
 endif(ENABLE_SNAPSHOTS)
 
 #add option to throw errors on bad return values
-option(ENABLE_STEPWISE_CHECK "When specified, check return value of operation initialization/execution, throw on error" OFF)
+option(ENABLE_STEPWISE_CHECK "When specified, checks the return value of operator initialization/execution, throws on error" OFF)
 if(ENABLE_STEPWISE_CHECK)
     hops_add_cxxflag(HOPS_ENABLE_STEPWISE_CHECK)
 endif(ENABLE_STEPWISE_CHECK)
