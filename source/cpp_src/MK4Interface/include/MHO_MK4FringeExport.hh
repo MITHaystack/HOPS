@@ -29,6 +29,7 @@ extern "C"
 #include "MHO_ContainerStore.hh"
 #include "MHO_OperatorToolbox.hh"
 #include "MHO_JSONHeaderWrapper.hh"
+#include "MHO_Tokenizer.hh"
 
 //needed to read hops files and extract objects from scan dir
 #include "MHO_ScanDataStore.hh"
@@ -61,6 +62,10 @@ class MHO_MK4FringeExport
         MHO_ContainerStore* fCStore;
 
         void char_clear(char* arr, std::size_t n){ for(std::size_t i=0; i<n; i++){arr[i] = '\0';} }
+
+        //utilty to convert source coordinate strings to numerical values 
+        int convert_sky_coords(struct sky_coord& coords, std::string ra, std::string dec);
+        MHO_Tokenizer fTokenizer;
 
         //the fringe data to be filled and written
         struct mk4_fringe fringe;

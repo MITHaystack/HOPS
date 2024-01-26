@@ -3,6 +3,7 @@
 #include "MHO_LegacyDateConverter.hh"
 
 #include "MHO_MK4Type200Converter.hh"
+#include "MHO_MK4Type201Converter.hh"
 
 
 #include <algorithm>
@@ -143,24 +144,80 @@ int MHO_MK4FringeExport::fill_200( struct type_200 *t200)
 
 int MHO_MK4FringeExport::fill_201( struct type_201 *t201)
 {
+    bool ok;
+
     clear_201(t201);
 
-    // clear_201 (t201);
-    // 
-    // strncpy (t201->source, root->src.source_name, 32);
-    // memcpy (&(t201->coord), &(root->src.position), sizeof (struct sky_coord));
-    // if (root->src.position_ref_frame == J2000) t201->epoch = 2000;
-    // else if (root->src.position_ref_frame == B1950) t201->epoch = 1950;
-    // memcpy (&(t201->coord_date), &(root->src.position_epoch), 
-    //                                      sizeof (struct date));
-    // t201->ra_rate = root->src.ra_rate;
-    // t201->dec_rate = root->src.dec_rate;
-    // 
-    //                                     // NOTE!!!! Differential TEC is accidentally
-    //                                     // in the sense of reference_tec - remote_tec
-    //                                     // This differs from all other diff. quantities
-    // t201->dispersion = param->ion_diff;
-    //                                     /* Ignore pulsar parameters for now */
+
+    // struct type_201 
+    //     {
+    //     char                record_id[3];           /* Standard 3-digit id */
+    //     char                version_no[2];          /* Standard 2-digit version # */
+    //     char                unused1[3];             /* Reserved space */
+    //     char                source[32];             /* Source name from OVEX */
+    //     struct sky_coord    coord;                  /* Source coordinates */
+    //     short               epoch;                  /* 1950 or 2000 */
+    //     char                unused2[2];             /* Padding */
+    //     struct date         coord_date;             /* Date of coordinate meas. */
+    //     double              ra_rate;                /* Proper motion (rad/sec) */
+    //     double              dec_rate;               /* Proper motion (rad/sec) */
+    //     double              pulsar_phase[4];        /* Polynomial coeffs for timing */
+    //     double              pulsar_epoch;           /* Reference time for polynomial */
+    //     double              dispersion;             /* Pulsar dispersion measure */
+    //     };
+
+    char_clear(t201->source, 32);
+    std::string source_name; 
+    ok = fPStore->Get("/vex/scan/source/name", source_name);
+    if(!ok){source_name = "";}
+    strncpy(t201->source, source_name.c_str(), std::min(32, (int) source_name.size() ) );
+
+    std::string source_ra;
+    ok = fPStore->Get("/vex/scan/source/ra", source_ra);
+    if(!ok){source_ra = "00h00m00.0s"; }
+    std::string source_dec;
+    ok = fPStore->Get("/vex/scan/source/dec", source_dec);
+    if(!ok){source_dec = "00d00'00.0\"";}
+
+    struct sky_coord src_coords;
+    int check = convert_sky_coords(src_coords, source_ra, source_dec);
+    if(check != 0){msg_error("mk4interface", "error converting source coordinates" << eom); return -1;}
+    t201->coord.ra_hrs = src_coords.ra_hrs;
+    t201->coord.ra_mins = src_coords.ra_mins;
+    t201->coord.ra_secs = src_coords.ra_secs;
+    t201->coord.dec_degs = src_coords.dec_degs;
+    t201->coord.dec_mins = src_coords.dec_mins;
+    t201->coord.dec_secs = src_coords.dec_secs;
+
+    //TODO FIXME, just use 2000 for now
+    //this is stored in the root file as "ref_coord_frame", but we have yet to extract it and add to the parameter store
+    t201->epoch = 2000;
+    ///t201->epoch = 1950;
+
+    //TODO FIXME, this optional parameter (src.position_epoch) may or may not be present in the vex/root file
+    t201->coord_date.year = 0;
+    t201->coord_date.day = 0;
+    t201->coord_date.hour = 0;
+    t201->coord_date.minute = 0;
+    t201->coord_date.second = 0;
+
+    //TODO FIXME, these optional parameters may or may not be present in the vex/root file
+    t201->ra_rate = 0.0;
+    t201->dec_rate = 0.0;
+    
+    // NOTE!!!! Differential TEC is accidentally
+    // in the sense of reference_tec - remote_tec
+    // This differs from all other diff. quantities
+    double ion_diff = 0.0;
+    ok = fPStore->Get("/fringe/ion_diff", ion_diff);
+    if(!ok){ion_diff = 0.0;}
+    t201->dispersion = ion_diff;
+
+    /* Ignore the rest of pulsar parameters for now */
+
+    mho_json j = convertToJSON(*t201);
+    std::cout<<"type 201 json = "<<j.dump(2)<<std::endl;
+
     return 0;
 
 }
@@ -1233,6 +1290,88 @@ MHO_MK4FringeExport::output(std::string filename)
     return 0;
 }
 
+
+int
+MHO_MK4FringeExport::convert_sky_coords(struct sky_coord& coords, std::string ra, std::string dec)
+{
+    short ra_hrs = 0;
+    short ra_mins = 0;
+    float ra_secs = 0;
+    short dec_degs = 0;
+    short dec_mins = 0;
+    float dec_secs = 0;
+
+    // "source": {
+    //   "dec": "73d27'30.0174\"",
+    //   "name": "0016+731",
+    //   "ra": "00h19m45.78642s"
+    // },
+
+    std::string delim1 = "d";
+    std::string delim2 = "'";
+    std::string delim3 = "h";
+    std::string delim4 = "m";
+
+    std::string tmp;
+    std::vector< std::string > tokens;
+    fTokenizer.SetUseMulticharacterDelimiterFalse();
+    fTokenizer.SetRemoveLeadingTrailingWhitespaceTrue();
+    fTokenizer.SetIncludeEmptyTokensFalse();
+
+    fTokenizer.SetDelimiter(delim1);
+    fTokenizer.SetString(&dec);
+    fTokenizer.GetTokens(&tokens);
+    if(tokens.size() != 2){ msg_error("mk4interface", "error parsing dec string: " << dec << " with delimiter" << delim1 << eom); return 1;}
+    
+    tmp = tokens[0];
+    dec_degs = std::atoi(tmp.c_str());
+    tmp = tokens[1];
+
+    fTokenizer.SetDelimiter(delim2);
+    fTokenizer.SetString(&tmp);
+    fTokenizer.GetTokens(&tokens);
+    if(tokens.size() != 2){ msg_error("mk4interface", "error parsing dec string: " << dec << " with delimiter" << delim2 << eom); return 1;}
+    
+    tmp = tokens[0];
+    dec_mins = std::atoi(tmp.c_str());
+    tmp = tokens[1];
+
+    std::size_t last = tokens[1].find_first_not_of("0123456789.e+-");
+    tmp = tokens[1].substr(0, last);
+    dec_secs = std::atof(tmp.c_str());
+
+    fTokenizer.SetDelimiter(delim3);
+    fTokenizer.SetString(&ra);
+    fTokenizer.GetTokens(&tokens);
+    if(tokens.size() != 2){ msg_error("mk4interface", "error parsing ra string: " << ra << " with delimiter" << delim3 << eom); return 1;}
+    
+    tmp = tokens[0];
+    ra_hrs = std::atoi(tmp.c_str());
+    tmp = tokens[1];
+
+    fTokenizer.SetDelimiter(delim4);
+    fTokenizer.SetString(&tmp);
+    fTokenizer.GetTokens(&tokens);
+    if(tokens.size() != 2){ msg_error("mk4interface", "error parsing ra string: " << ra << " with delimiter" << delim4 << eom); return 1;}
+    
+    tmp = tokens[0];
+    ra_mins = std::atoi(tmp.c_str());
+    tmp = tokens[1];
+
+    std::size_t last2 = tokens[1].find_first_not_of("0123456789.e+-");
+    tmp = tokens[1].substr(0, last2);
+    ra_secs = std::atof(tmp.c_str());
+
+    coords.ra_hrs = ra_hrs;
+    coords.ra_mins = ra_mins;
+    coords.ra_secs = ra_secs;
+    coords.dec_degs = dec_degs;
+    coords.dec_mins = dec_mins;
+    coords.dec_secs = dec_secs;
+
+    return 0;
+
+}
 
 
 }//end of namespace
