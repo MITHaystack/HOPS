@@ -50,7 +50,7 @@ int MHO_MK4FringeExport::fill_200( struct type_200 *t200)
     //                                     /* from type-1 file in memory */
     // if (sscanf (cdata.id->date, "%4d%3d-%2d%2d%2d", 
     //                 &year, &day, &hour, &minute, &second) != 5)
-    //     msg ("Warning: unable to get correlation date from type-1 file", 2);
+    //     //msg ("Warning: unable to get correlation date from type-1 file", 2);
     // else
     //     {
     //     t200->corr_date.year = year;
@@ -79,11 +79,7 @@ int MHO_MK4FringeExport::fill_200( struct type_200 *t200)
     // t200->frt.hour = int_reftime % 24;
     // t200->frt.day = int_reftime / 24 + 1; /* days start with 001 */
     // 
-    // return (0);
-    // 
-
-
-
+    return 0;
 }
 
 int MHO_MK4FringeExport::fill_201( struct type_201 *t201)
@@ -106,7 +102,7 @@ int MHO_MK4FringeExport::fill_201( struct type_201 *t201)
     //                                     // This differs from all other diff. quantities
     // t201->dispersion = param->ion_diff;
     //                                     /* Ignore pulsar parameters for now */
-    // return (0);
+    return 0;
 
 }
 
@@ -141,9 +137,9 @@ int MHO_MK4FringeExport::fill_202( struct type_202 *t202)
     // if ((ref == NULL) || (rem == NULL))
     //     {
     //     if (ref == NULL)
-    //         msg ("Failed to find station '%c' in ovex file", 2, refst);
+    //         //msg ("Failed to find station '%c' in ovex file", 2, refst);
     //     else
-    //         msg ("Failed to find station '%c' in ovex file", 2, remst);
+    //         //msg ("Failed to find station '%c' in ovex file", 2, remst);
     //     return (-1);
     //     }
     // strncpy (t202->ref_intl_id, ref->site_id, 2);
@@ -171,7 +167,7 @@ int MHO_MK4FringeExport::fill_202( struct type_202 *t202)
     // else refepoch = frt;
     // refdiff = frt - refepoch;
     // if (fabs (refdiff) > 3.0e5)
-    //     msg ("Warning, ref station clockrate epoch highly discrepant from FRT\n"
+    //     //msg ("Warning, ref station clockrate epoch highly discrepant from FRT\n"
     //          "frt = %12.2f, ref epoch = %12.2f", 1, frt, refepoch);
     //                                     /* Rem station clockrate ref time */
     // if (rem->clockrate != 0.0)
@@ -179,7 +175,7 @@ int MHO_MK4FringeExport::fill_202( struct type_202 *t202)
     // else remepoch = frt;
     // remdiff = frt - remepoch;
     // if (fabs (remdiff) > 3.0e5)
-    //     msg ("Warning, rem station clockrate epoch highly discrepant from FRT\n"
+    //     //msg ("Warning, rem station clockrate epoch highly discrepant from FRT\n"
     //          "frt = %12.2f, ref epoch = %12.2f", 1, frt, remepoch);
     //                                     /* Adjust clocks to frt for clockrate */
     // t202->ref_clock = (ref->clock_early + (refdiff * ref->clockrate)) * 1.0e6;
@@ -200,7 +196,7 @@ int MHO_MK4FringeExport::fill_202( struct type_202 *t202)
     //         }
     // if ((refsd == NULL) || (remsd == NULL))
     //     {
-    //     msg ("Could not find stations in t303 records in fill_202()", 2);
+    //     //msg ("Could not find stations in t303 records in fill_202()", 2);
     //     return (-1);
     //     }
     // 
@@ -227,7 +223,7 @@ int MHO_MK4FringeExport::fill_202( struct type_202 *t202)
     //     if (root->lvex->stn[i].station == remst)
     //         strncpy (t202->rem_tape, root->lvex->stn[i].vsn, 8);
     //     }
-    // return (0);
+    return 0;
 }
 
 int MHO_MK4FringeExport::fill_203( struct type_203 *t203)
@@ -251,10 +247,10 @@ int MHO_MK4FringeExport::fill_203( struct type_203 *t203)
 //     if ((refst == NULL) || (remst == NULL))
 //         {
 //         if (refst == NULL)
-//             msg ("Failed to find station '%c' in ovex file", 
+//             //msg ("Failed to find station '%c' in ovex file", 
 //                                                 2, param->baseline[0]);
 //         else
-//             msg ("Failed to find station '%c' in ovex file", 
+//             //msg ("Failed to find station '%c' in ovex file", 
 //                                                 2, param->baseline[1]);
 //         return (-1);
 //         }
@@ -298,7 +294,7 @@ int MHO_MK4FringeExport::fill_203( struct type_203 *t203)
 //             }
 //         if (chfound != 2)
 //             {
-//             msg ("Could not find channel (%s,%s) in root", 2, t101->ref_chan_id,
+//             //msg ("Could not find channel (%s,%s) in root", 2, t101->ref_chan_id,
 //                                     t101->rem_chan_id);
 //             return (-1);
 //             }
@@ -306,12 +302,12 @@ int MHO_MK4FringeExport::fill_203( struct type_203 *t203)
 //         ch++;
 //         if (ch == 8 * MAXFREQ)      // ensure there aren't too many channels
 //             {
-//             msg ("Too many (%d) t101 channels for t203 record", 2, ch);
+//             //msg ("Too many (%d) t101 channels for t203 record", 2, ch);
 //             return -1;
 //             }
 //         }
 // 
-//     return (0);
+    return 0;
 
 }
 
@@ -337,7 +333,7 @@ int MHO_MK4FringeExport::fill_204( struct type_204 *t204)
     // strncpy (t204->control_file, control_filename, 96);
     //                                     /* Look up modification date */
     // if (stat (control_filename, &buf) != 0)
-    //     msg ("Failure statting control file '%s'", 1, control_filename);
+    //     //msg ("Failure statting control file '%s'", 1, control_filename);
     // else
     //     {
     //     mod_time = gmtime (&(buf.st_mtime));
@@ -351,13 +347,13 @@ int MHO_MK4FringeExport::fill_204( struct type_204 *t204)
     // strncpy (t204->override, control_string, 128);
     // if (strlen (control_string) > 127)
     //     {
-    //     msg ("Warning, command line override string in type 204 record", 1);
-    //     msg ("truncated at 128 characters", 1);
+    //     //msg ("Warning, command line override string in type 204 record", 1);
+    //     //msg ("truncated at 128 characters", 1);
     //     t204->override[124] = t204->override[125] = t204->override[126] = '.';
     //     t204->override[127] = 0;
     //     }
     // 
-    // return (0);
+    return 0;
 
 }
 
@@ -432,13 +428,13 @@ int MHO_MK4FringeExport::fill_205( struct type_203 *t203, struct type_205 *t205)
     //                 break;
     //         if (j == nchan)
     //             {
-    //             msg ("Could not find index number %d in type 203 record", 
+    //             //msg ("Could not find index number %d in type 203 record", 
     //                                             2, fc->index[ind]);
     //             return (-1);
     //             }
     //         if (nch >= 4)
     //             {
-    //             msg ("Error - more than 4 correlator indices in ffit chan '%c'", 
+    //             //msg ("Error - more than 4 correlator indices in ffit chan '%c'", 
     //                                             2, fc->freq_code);
     //             return (-1);
     //             }
@@ -447,7 +443,7 @@ int MHO_MK4FringeExport::fill_205( struct type_203 *t203, struct type_205 *t205)
     //         }
     //     }
     // 
-    // return (0);
+    return 0;
 
 }
 
@@ -500,7 +496,7 @@ int MHO_MK4FringeExport::fill_206( struct type_206 *t206)
     // t206->mbdsize = status->grid_points;
     // t206->sbdsize = param->nlags * 4;
     // 
-    // return (0);
+    return 0;
 
 }
 
@@ -575,7 +571,7 @@ int MHO_MK4FringeExport::fill_207( struct type_207 *t207)
     //         t207->rem_errate[i] = rem_errate / nremtrk;
     //     }
     // 
-    // return (0);
+    return 0;
 
 }
 
@@ -627,14 +623,14 @@ int MHO_MK4FringeExport::fill_208( struct type_202 *t202, struct type_208 *t208)
     // if (compute_model (param, sdata, t202, &adelay, &arate, &aaccel,
     //                    &adelay_ref, &arate_ref, &ref_stn_delay) != 0)
     //     {
-    //     msg ("Model computation fails in fill_208()", 2);
+    //     //msg ("Model computation fails in fill_208()", 2);
     //     return (-1);
     //     }
-    // msg ("baseline model delay, rate, accel = %g, %g, %g", 0, adelay,arate,aaccel);
+    // //msg ("baseline model delay, rate, accel = %g, %g, %g", 0, adelay,arate,aaccel);
     //                                     /* Quality/error codes */
     // if (compute_qf (pass, param, status, &qcode, &errcode, tqcode) != 0)
     //     {
-    //     msg ("Quality/error code computation fails in fill_208()", 2);
+    //     //msg ("Quality/error code computation fails in fill_208()", 2);
     //     return (-1);
     //     }
     // t208->quality = qcode;
@@ -675,7 +671,7 @@ int MHO_MK4FringeExport::fill_208( struct type_202 *t202, struct type_208 *t208)
     // t208->mbd_error = (status->nion == 0) ?
     //     (float)(1.0 / (2.0 * M_PI * status->freq_spread * status->snr)) :
     //     1e-3 * status->ion_sigmas[0];
-    //     msg ("mbd sigma w/ no ionosphere %f with ion %f ps", 1, 
+    //     //msg ("mbd sigma w/ no ionosphere %f with ion %f ps", 1, 
     //         (double)(1e6 / (2.0 * M_PI * status->freq_spread * status->snr)), 1e3 * status->ion_sigmas[0]);
     //                                     /* get proper weighting for sbd error estimate */
     // status->sbavg = 0.0;
@@ -710,18 +706,18 @@ int MHO_MK4FringeExport::fill_208( struct type_202 *t202, struct type_208 *t208)
     // if (param->mbd_anchor == SBD)
     //     {
     //     delta_f = fmod (param->ref_freq - pass->pass_data[0].frequency, status->freq_space);
-    //     msg ("delta_mbd %g delta_f %g", 1, delta_mbd, delta_f);
+    //     //msg ("delta_mbd %g delta_f %g", 1, delta_mbd, delta_f);
     //     t208->totphase += 360.0 * delta_mbd * delta_f;
     //     t208->totphase = fmod(t208->totphase, 360.0);
     //     t208->resphase += 360.0 * delta_mbd * delta_f;
     //     t208->resphase = fmod(t208->resphase, 360.0);
     //     }
     // 
-    // msg ("residual phase %f", 1, t208->resphase);
+    // //msg ("residual phase %f", 1, t208->resphase);
     // 
     // t208->tec_error = (status->nion) ? status->ion_sigmas[2] : 0.0;
     // 
-    // return (0);
+    return 0;
 
 }
 
@@ -739,7 +735,7 @@ int MHO_MK4FringeExport::fill_210( struct type_210 *t210)
     //     t210->amp_phas[i].phase = (float)arg_complex( status->fringe[i] ) * 180.0 / pi;
     //     }
     // 
-    // return (0);
+    return 0;
 
 }
 
@@ -781,7 +777,7 @@ int MHO_MK4FringeExport::fill_212( int fr, struct type_212 *t212)
     //     t212->data[ap_212].weight = plot.weights[fr][ap];
     //     }
     // 
-    // return (0);
+    return 0;
 
 }
 
@@ -821,7 +817,7 @@ int MHO_MK4FringeExport::fill_222( struct type_222 **t222)
     // *t222 = (struct type_222*) malloc ( full_size );
     // if (*t222 == NULL)
     //     {
-    //     msg ("Memory allocation failure in fill_222()", 2);
+    //     //msg ("Memory allocation failure in fill_222()", 2);
     //     return (-1);
     //     }
     // 
@@ -845,7 +841,7 @@ int MHO_MK4FringeExport::fill_222( struct type_222 **t222)
     // memcpy ( &( ((*t222)->control_contents)[setstr_pad] ),  param->control_file_buff, cf_len);
     // for(i=setstr_pad+cf_len; i<setstr_pad+cf_pad; i++){ ((*t222)->control_contents)[i] = '\0';}
     // 
-    // return 0;
+    return 0;
 
 }
 
@@ -908,67 +904,68 @@ int MHO_MK4FringeExport::fill_230( int fr, int ap, struct type_230 *t230)
     //    t230->xpower[i].imag = imag_comp(work_array[j]);
     //    }
     // 
-    // return (0);
+    return 0;
 
 }
 
 int MHO_MK4FringeExport::fill_fringe_info(char *filename)
 {
 
-    // static struct type_200 t200;
-    // static struct type_201 t201;
-    // static struct type_202 t202;
-    // static struct type_203 t203;
-    // static struct type_204 t204;
-    // static struct type_205 t205;
-    // static struct type_206 t206;
-    // static struct type_207 t207;
-    // static struct type_208 t208;
-    // static struct type_210 t210;
-    // static struct type_000 t2_id;
-    // double sband_err, ref_freq;
-    // int error, nap, xpow_len, fr, ap, size_of_t212, size_of_t230, recno;
-    // char buf[256];
-    // char *t212_array, *t230_array, *address;
-    // extern int write_xpower;
-    // extern struct mk4_fringe fringe;
-    // extern struct type_param param;
-    // extern struct type_status status;
-    // 
-    //                                     /* Init */
-    // clear_mk4fringe (&fringe);
-    // 
-    // ref_freq = param.ref_freq;
-    // 
-    // strcpy (buf, filename);
-    // if (init_000 (&t2_id, filename) != 0)
-    //     {
-    //     msg ("Error filling in id record", 2);
-    //     return (-1);
-    //     }
-    // 
-    // error = fill_200 (root->ovex, &param, &t200);
-    // error += fill_201 (root->ovex, &param, &t201);
-    // error += fill_202 (root, &param, &t202);
-    // error += fill_203 (root->ovex, &param, &t203);
-    // error += fill_204 (&t204);
-    // error += fill_205 (root->ovex, pass, &param, &t203, &t205);
-    // error += fill_206 (root->ovex, pass, &param, &status, &t206);
-    // error += fill_207 (pass, &status, &param, &t207);
-    // error += fill_208 (pass, &param, &status, &t202, &t208);
-    // error += fill_210 (pass, &status, &t210);
-    // 
-    // fringe.id = &t2_id;
-    // fringe.t200 = &t200;
-    // fringe.t201 = &t201;
-    // fringe.t202 = &t202;
-    // fringe.t203 = &t203;
-    // fringe.t204 = &t204;
-    // fringe.t205 = &t205;
-    // fringe.t206 = &t206;
-    // fringe.t207 = &t207;
-    // fringe.t208 = &t208;
-    // fringe.t210 = &t210;
+    struct type_200 t200;
+    struct type_201 t201;
+    struct type_202 t202;
+    struct type_203 t203;
+    struct type_204 t204;
+    struct type_205 t205;
+    struct type_206 t206;
+    struct type_207 t207;
+    struct type_208 t208;
+    struct type_210 t210;
+    struct type_000 t2_id;
+
+    double sband_err, ref_freq;
+    int error, nap, xpow_len, fr, ap, size_of_t212, size_of_t230, recno;
+    char buf[256];
+    char *t212_array, *t230_array, *address;
+    //extern int write_xpower;
+    struct mk4_fringe fringe;
+    //extern struct type_param param;
+    //extern struct type_status status;
+    
+                                        /* Init */
+    clear_mk4fringe (&fringe);
+    
+    ref_freq = 0.0;//param.ref_freq;
+    
+    strcpy (buf, filename);
+    if (init_000 (&t2_id, filename) != 0)
+        {
+        //msg ("Error filling in id record", 2);
+        return (-1);
+        }
+    
+    error = fill_200(&t200);
+    error += fill_201(&t201);
+    error += fill_202(&t202);
+    error += fill_203(&t203);
+    error += fill_204(&t204);
+    error += fill_205(&t203, &t205);
+    error += fill_206(&t206);
+    error += fill_207(&t207);
+    error += fill_208(&t202, &t208);
+    error += fill_210(&t210);
+    
+    fringe.id = &t2_id;
+    fringe.t200 = &t200;
+    fringe.t201 = &t201;
+    fringe.t202 = &t202;
+    fringe.t203 = &t203;
+    fringe.t204 = &t204;
+    fringe.t205 = &t205;
+    fringe.t206 = &t206;
+    fringe.t207 = &t207;
+    fringe.t208 = &t208;
+    fringe.t210 = &t210;
     //                                     /* Type 212 (ap-by-ap data) records */
     //                                     /* Allocate memory as a block */
     // nap = pass->num_ap;
@@ -977,7 +974,7 @@ int MHO_MK4FringeExport::fill_fringe_info(char *filename)
     // t212_array = (char *)malloc (pass->nfreq * size_of_t212);
     // if (t212_array == NULL)
     //     {
-    //     msg ("Failure allocating memory for type 212 records!", 2);
+    //     //msg ("Failure allocating memory for type 212 records!", 2);
     //     return (0);
     //     }
     //                                     /* record the allocation */
@@ -1000,7 +997,7 @@ int MHO_MK4FringeExport::fill_fringe_info(char *filename)
     //     t230_array = (char *)malloc (pass->nfreq * nap * size_of_t230);
     //     if (t230_array == NULL)
     //         {
-    //         msg ("Failure allocating memory for type 230 records!", 2);
+    //         //msg ("Failure allocating memory for type 230 records!", 2);
     //         return (0);
     //         }
     //                                     /* record the allocation */
@@ -1020,7 +1017,7 @@ int MHO_MK4FringeExport::fill_fringe_info(char *filename)
     //     }
     // 
     // if (error != 0)
-    //     msg ("Warning - some or all of the output records were not filled", 2);
+    //     //msg ("Warning - some or all of the output records were not filled", 2);
     // 
     // status.amp_err = status.delres_max / status.snr;
     // status.resid_phase = status.coh_avg_phase * ( 180.0 / M_PI);
@@ -1031,17 +1028,9 @@ int MHO_MK4FringeExport::fill_fringe_info(char *filename)
     //     360.0 * status.ion_sigmas[1];
     // status.resid_ph_delay = status.coh_avg_phase / (2.0 * M_PI *ref_freq);
     // status.ph_delay_err = sband_err / (2.0 * M_PI * status.snr * ref_freq);
-    // 
-    // /*     status.rate_ra_width = fabs(0.5 * (param.win_dr[1] - param.win_dr[0])  */
-    // /*       * 1.0E6 / (rbase->t2600.u_rate)); */
-    // /*     status.rate_dec_width = fabs(0.5 * (param.win_dr[1] - param.win_dr[0])  */
-    // /*       * 1.0E6 / (rbase->t2600.v_rate)); */
-    // /*     status.sbd_ra_width = fabs(0.5 * (param.win_sb[1] - param.win_sb[0])  */
-    // /*        / (rbase->t2600.u_1ghz * 1.0E-3)); */
-    // /*     status.sbd_dec_width = fabs(0.5 * (param.win_sb[1] - param.win_sb[0])  */
-    // /*       / (rbase->t2600.v_1ghz * 1.0E-3)); */
-    // 
-    // return (0);
+    
+
+    return 0;
 
 }
 
