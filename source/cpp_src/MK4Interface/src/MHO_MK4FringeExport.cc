@@ -67,66 +67,22 @@ int MHO_MK4FringeExport::fill_200( struct type_200 *t200)
     FillString( &(t200->exper_name[0]), "/vex/experiment_name", 32);
     FillString( &(t200->scan_name[0]), "/vex/scan/name", 32);
     FillString( &(t200->correlator[0]), "/correlator/name", 32, "DiFX");
-
-    // legacy_hops_date start_date;
-    // std::string tstart;
-    // ok = fPStore->Get("/vex/scan/start", tstart);
-    // if(ok){start_date = MHO_LegacyDateConverter::ConvertFromVexFormat(tstart);}
-    // else{ start_date = MHO_LegacyDateConverter::HopsEpoch(); } //dummy date
-
     FillDate(&(t200->scantime), "/vex/scan/start");
-
-    // t200->scantime.year = start_date.year;
-    // t200->scantime.day = start_date.day;
-    // t200->scantime.hour = start_date.hour;
-    // t200->scantime.minute = start_date.minute;
-    // t200->scantime.second = start_date.second;
-
-    // int start_offset = 0;
-    // int stop_offset = 0;
-    // ok = fPStore->Get("/control/selection/start", start_offset);
-    // if(!ok){start_offset = 0;}
-    // ok = fPStore->Get("/control/selection/stop", stop_offset);
-    // if(!ok){stop_offset = 0;}
-    // t200->start_offset = start_offset;
-    // t200->stop_offset = stop_offset;
-
     FillInt(t200->start_offset, "/control/selection/start", 0);
     FillInt(t200->stop_offset, "/control/selection/stop", 0);
 
     //get the current time
     legacy_hops_date now_date = MHO_LegacyDateConverter::Now();
     FillDate(&(t200->fourfit_date), now_date);
-    // //write out the current fringe-fitting time
-    // t200->fourfit_date.year = now_date.year;
-    // t200->fourfit_date.day = now_date.day;
-    // t200->fourfit_date.hour = now_date.hour;
-    // t200->fourfit_date.minute = now_date.minute;
-    // t200->fourfit_date.second = now_date.second;
 
     //TODO FIXME -- store and retrieve the correlation date info in HOPS4
     //currently we do not have the correlation date information, so just the current time
     FillDate(&(t200->corr_date), now_date);
-    // t200->corr_date.year = now_date.year;
-    // t200->corr_date.day = now_date.day;
-    // t200->corr_date.hour = now_date.hour;
-    // t200->corr_date.minute = now_date.minute;
-    // t200->corr_date.second = now_date.second;
 
     //write out the fourfit reference time 
-    legacy_hops_date frt_date;
-    std::string frt;
-    ok = fPStore->Get("/vex/scan/fourfit_reftime", frt);
-    if(ok){frt_date = MHO_LegacyDateConverter::ConvertFromVexFormat(frt);}
-    else{ frt_date = MHO_LegacyDateConverter::HopsEpoch(); } //dummy date
-    t200->frt.year = frt_date.year;
-    t200->frt.day = frt_date.day;
-    t200->frt.hour = frt_date.hour;
-    t200->frt.minute = frt_date.minute;
-    t200->frt.second = frt_date.second;
+    FillDate(&(t200->frt), "/vex/scan/fourfit_reftime");
 
     mho_json j = convertToJSON(*t200);
-
     std::cout<<"type 200 json = "<<j.dump(2)<<std::endl;
 
     return 0;
@@ -154,11 +110,7 @@ int MHO_MK4FringeExport::fill_201( struct type_201 *t201)
     bool ok;
     clear_201(t201);
 
-    char_clear(t201->source, 32);
-    std::string source_name; 
-    ok = fPStore->Get("/vex/scan/source/name", source_name);
-    if(!ok){source_name = "";}
-    strncpy(t201->source, source_name.c_str(), std::min(32, (int) source_name.size() ) );
+    FillString( &(t201->source[0]), "/vex/scan/source/name", 32);
 
     std::string source_ra;
     ok = fPStore->Get("/vex/scan/source/ra", source_ra);
@@ -183,26 +135,18 @@ int MHO_MK4FringeExport::fill_201( struct type_201 *t201)
     ///t201->epoch = 1950;
 
     //TODO FIXME, this optional parameter (src.position_epoch) may or may not be present in the vex/root file
-    t201->coord_date.year = 0;
-    t201->coord_date.day = 0;
-    t201->coord_date.hour = 0;
-    t201->coord_date.minute = 0;
-    t201->coord_date.second = 0;
+    FillDate(&(t201->coord_date), "/vex/scan/source/source_position_epoch");
 
     //TODO FIXME, these optional parameters may or may not be present in the vex/root file
-    t201->ra_rate = 0.0;
-    t201->dec_rate = 0.0;
-    
+    FillDouble(t201->ra_rate, "/vex/scan/source/ra_rate");
+    FillDouble(t201->dec_rate, "/vex/scan/source/dec_rate");
+
     // NOTE!!!! Differential TEC is accidentally
     // in the sense of reference_tec - remote_tec
     // This differs from all other diff. quantities
-    double ion_diff = 0.0;
-    ok = fPStore->Get("/fringe/ion_diff", ion_diff);
-    if(!ok){ion_diff = 0.0;}
-    t201->dispersion = ion_diff;
+    FillDouble(t201->dispersion, "/fringe/ion_diff");
 
     /* Ignore the rest of pulsar parameters for now */
-
     mho_json j = convertToJSON(*t201);
     std::cout<<"type 201 json = "<<j.dump(2)<<std::endl;
 
