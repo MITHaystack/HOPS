@@ -47,6 +47,9 @@ class MHO_MK4FringeExport
 
     private:
 
+        //the fringe data to be filled and written
+        struct mk4_fringe fringe;
+
         int fill_200( struct type_200 *t200);
         int fill_201( struct type_201 *t201);
         int fill_202( struct type_202 *t202);
@@ -60,7 +63,9 @@ class MHO_MK4FringeExport
         int fill_212( int fr, struct type_212 *t212);
         int fill_222( struct type_222 **t222);
         int fill_230( int fr, int ap, struct type_230 *t230);
+
         int fill_fringe_info(char *filename);
+        int output(std::string filename);
 
         //original function prototypes (these also use a varying number of 'extern' global variables)
         //these are listed here for reference (showing some of the objects the require for data retrieval)
@@ -79,7 +84,7 @@ class MHO_MK4FringeExport
         // int fill_222( struct type_param *param, struct type_222 **t222);
         // int fill_230( struct type_pass *pass, struct type_param *param, int fr, int ap, struct type_230 *t230);
         // int fill_fringe_info( struct vex *root, struct type_pass *pass, char *filename);
-
+        //int output (struct vex* root, struct type_pass* pass)
 
 };
 
