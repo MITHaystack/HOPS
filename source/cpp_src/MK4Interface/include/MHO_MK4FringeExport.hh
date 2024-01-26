@@ -43,9 +43,24 @@ class MHO_MK4FringeExport
         MHO_MK4FringeExport();
         virtual ~MHO_MK4FringeExport();
 
-        void ExportFringeFile();
+        void SetParameterStore(MHO_ParameterStore* pStore){fPStore = pStore;};
+        void SetContainerStore(MHO_ContainerStore* cStore){fCStore = cStore;};
+
+        void SetFilename(std::string filename){fFilename = filename;}
+
+        void ExportFringeFile()
+        {
+            std::cout<<"filename = "<<fFilename<<std::endl;
+            output(fFilename);
+        }
 
     private:
+
+        std::string fFilename;
+        MHO_ParameterStore* fPStore;
+        MHO_ContainerStore* fCStore;
+
+        void char_clear(char* arr, std::size_t n){ for(std::size_t i=0; i<n; i++){arr[i] = '\0';} }
 
         //the fringe data to be filled and written
         struct mk4_fringe fringe;

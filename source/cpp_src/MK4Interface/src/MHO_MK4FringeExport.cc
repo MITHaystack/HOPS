@@ -1,6 +1,11 @@
 #include "MHO_MK4FringeExport.hh"
 
-#include "MHO_MultiTypeMap.hh"
+#include "MHO_LegacyDateConverter.hh"
+
+#include "MHO_MK4Type200Converter.hh"
+
+
+#include <algorithm>
 #include <array>
 
 #define LOCK_STATUS_OK 0
@@ -20,67 +25,119 @@ MHO_MK4FringeExport::~MHO_MK4FringeExport()
 }
 
 
-void
-MHO_MK4FringeExport::ExportFringeFile()
-{
-
-}
+// void
+// MHO_MK4FringeExport::ExportFringeFile()
+// {
+// 
+// }
 
 
 int MHO_MK4FringeExport::fill_200( struct type_200 *t200)
 {
+    // struct type_200
+    //     {
+    //     char                record_id[3];           /* Standard 3-digit id */
+    //     char                version_no[2];          /* Standard 2-digit version # */
+    //     char                unused1[3];             /* Reserved space */
+    //     short               software_rev[10];       /* Revision levels for online progs */
+    //     int                 expt_no;                /* Experiment number */
+    //     char                exper_name[32];         /* Observing program name */
+    //     char                scan_name[32];          /* Scan label from OVEX */
+    //     char                correlator[8];          /* Correlator identification */
+    //     struct date         scantime;               /* Scan time to 1 second */
+    //     int                 start_offset;           /* Nom. bline start rel. to scantime (s) */
+    //     int                 stop_offset;            /* Nom. bline stop rel. to scantime (s) */
+    //     struct date         corr_date;              /* Time of correlation */
+    //     struct date         fourfit_date;           /* Time of fourfit processing */
+    //     struct date         frt;                    /* Fourfit reference time */
+    //     };
+
+    bool ok;
     clear_200(t200);
 
-    // extern struct mk4_corel cdata; 
+    // //extern struct mk4_corel cdata; 
     // time_t tm;
     // struct tm *utc_now, *gmtime(const time_t*);
     // int int_reftime, year, day, hour, minute, second;
-    // 
-    // clear_200 (t200);
-    // 
-    // #ifdef HAVE_CONFIG_H
-    // t200->software_rev[0] = HOPS_SVN_REV;
-    // #endif
-    // t200->expt_no = root->exper_num;
-    // strcpy (t200->exper_name, root->exper_name);
-    // strcpy (t200->scan_name, root->scan_name);
-    // strncpy (t200->correlator, root->correlator, 8);
-    // memcpy (&(t200->scantime), &(root->start_time), sizeof (struct date));
-    // t200->start_offset = param->start_offset;
-    // t200->stop_offset = param->stop_offset;
-    //                                     /* Extract correlation date */
-    //                                     /* from type-1 file in memory */
-    // if (sscanf (cdata.id->date, "%4d%3d-%2d%2d%2d", 
-    //                 &year, &day, &hour, &minute, &second) != 5)
-    //     //msg ("Warning: unable to get correlation date from type-1 file", 2);
-    // else
-    //     {
-    //     t200->corr_date.year = year;
-    //     t200->corr_date.day = day;
-    //     t200->corr_date.hour = hour;
-    //     t200->corr_date.minute = minute;
-    //     t200->corr_date.second = second;
-    //     }
-    //                                     /* Get current time (redundant with */
-    //                                     /* time in id record, no harm done) */
-    // tm = time (NULL);
-    // utc_now = gmtime (&tm);
-    // t200->fourfit_date.year = utc_now->tm_year + 1900;
-    // t200->fourfit_date.day = utc_now->tm_yday + 1;
-    // t200->fourfit_date.hour = utc_now->tm_hour;
-    // t200->fourfit_date.minute = utc_now->tm_min % 100;
-    // t200->fourfit_date.second = utc_now->tm_sec % 100;
-    //                                     /* Convert fourfit reference time to */
-    //                                     /* standard date format */
-    // t200->frt.year = t200->scantime.year;
-    // t200->frt.second = fmod ((double)param->reftime,  60.0);
-    // int_reftime = param->reftime;       /* In seconds */
-    // int_reftime /= 60;                  /* Now in minutes */
-    // t200->frt.minute = int_reftime % 60;
-    // int_reftime /= 60;                  /* Now in hours */
-    // t200->frt.hour = int_reftime % 24;
-    // t200->frt.day = int_reftime / 24 + 1; /* days start with 001 */
-    // 
+    
+    //set to zero for now
+    t200->software_rev[0] = 0; //HOPS_SVN_REV;
+
+    std::string exper_num;
+    ok = fPStore->Get("/vex/experiment_number", exper_num);
+    if(!ok){exper_num = "9999";}
+    t200->expt_no = std::atoi(exper_num.c_str()); // root->exper_num;
+
+    char_clear(t200->exper_name, 32);
+    std::string exper_name; 
+    ok = fPStore->Get("/vex/experiment_name", exper_name);
+    if(!ok){exper_name = "";}
+    strncpy(t200->exper_name, exper_name.c_str(), std::min(32, (int) exper_name.size() ) );
+
+    char_clear(t200->scan_name, 32);
+    std::string scan_name; 
+    ok = fPStore->Get("/vex/scan/name", scan_name);
+    if(!ok){scan_name = "";}
+    strncpy(t200->scan_name, scan_name.c_str(), std::min(32, (int) scan_name.size() ) );
+
+    char_clear(t200->correlator, 8);
+    std::string correlator = "DiFX";
+    strncpy(t200->correlator, correlator.c_str(), std::min(8, (int) correlator.size() ) );
+
+    legacy_hops_date start_date;
+    std::string tstart;
+    ok = fPStore->Get("/vex/scan/start", tstart);
+    if(ok){start_date = MHO_LegacyDateConverter::ConvertFromVexFormat(tstart);}
+    else{ start_date = MHO_LegacyDateConverter::HopsEpoch(); } //dummy date
+
+    t200->scantime.year = start_date.year;
+    t200->scantime.day = start_date.day;
+    t200->scantime.hour = start_date.hour;
+    t200->scantime.minute = start_date.minute;
+    t200->scantime.second = start_date.second;
+
+    int start_offset = 0;
+    int stop_offset = 0;
+    ok = fPStore->Get("/control/selection/start", start_offset);
+    if(!ok){start_offset = 0;}
+    ok = fPStore->Get("/control/selection/stop", stop_offset);
+    if(!ok){stop_offset = 0;}
+    t200->start_offset = start_offset;
+    t200->stop_offset = stop_offset;
+
+    //get the current time
+    legacy_hops_date now_date = MHO_LegacyDateConverter::Now();
+    //write out the current fringe-fitting time
+    t200->fourfit_date.year = now_date.year;
+    t200->fourfit_date.day = now_date.day;
+    t200->fourfit_date.hour = now_date.hour;
+    t200->fourfit_date.minute = now_date.minute;
+    t200->fourfit_date.second = now_date.second;
+
+    //TODO FIXME -- store and retrieve the correlation date info in HOPS4
+    //currently we do not have the correlation date information, so just the current time
+    t200->corr_date.year = now_date.year;
+    t200->corr_date.day = now_date.day;
+    t200->corr_date.hour = now_date.hour;
+    t200->corr_date.minute = now_date.minute;
+    t200->corr_date.second = now_date.second;
+
+    //write out the fourfit reference time 
+    legacy_hops_date frt_date;
+    std::string frt;
+    ok = fPStore->Get("/vex/scan/fourfit_reftime", frt);
+    if(ok){frt_date = MHO_LegacyDateConverter::ConvertFromVexFormat(frt);}
+    else{ frt_date = MHO_LegacyDateConverter::HopsEpoch(); } //dummy date
+    t200->frt.year = frt_date.year;
+    t200->frt.day = frt_date.day;
+    t200->frt.hour = frt_date.hour;
+    t200->frt.minute = frt_date.minute;
+    t200->frt.second = frt_date.second;
+
+    mho_json j = convertToJSON(*t200);
+
+    std::cout<<"type 200 json = "<<j.dump(2)<<std::endl;
+
     return 0;
 }
 
@@ -940,11 +997,13 @@ int MHO_MK4FringeExport::fill_fringe_info(char *filename)
     ref_freq = 0.0;//param.ref_freq;
     
     strcpy (buf, filename);
-    if (init_000 (&t2_id, filename) != 0)
-        {
+    int val = init_000 (&t2_id, filename);
+    if(  val != 0)
+    {
+        std::cout<<"error t000: "<<val<<std::endl;
         //msg ("Error filling in id record", 2);
         return (-1);
-        }
+    }
     
     error = fill_200(&t200);
     error += fill_201(&t201);
@@ -968,6 +1027,10 @@ int MHO_MK4FringeExport::fill_fringe_info(char *filename)
     fringe.t207 = &t207;
     fringe.t208 = &t208;
     fringe.t210 = &t210;
+
+    std::cout<<"done filling"<<std::endl;
+
+
                                         /* Type 212 (ap-by-ap data) records */
                                         /* Allocate memory as a block */
     // nap = pass->num_ap;
@@ -1040,6 +1103,8 @@ int MHO_MK4FringeExport::fill_fringe_info(char *filename)
 int
 MHO_MK4FringeExport::output(std::string filename)
 {
+    std::cout<<"output"<<std::endl;
+
     char fringe_name[256];
     for(std::size_t i=0; i<256; i++){fringe_name[i] = '\0';}
 
@@ -1135,9 +1200,9 @@ MHO_MK4FringeExport::output(std::string filename)
     // }
 
             /* Actually write output fringe file */
-    if( !test_mode)
+    //if( !test_mode)
     {
-        if( lock_retval == LOCK_STATUS_OK)
+        //if( lock_retval == LOCK_STATUS_OK)
         {
             //kludge to get fourfit to feed the generated fringe file name 
             //(but nothing else) as a return value to a
@@ -1145,21 +1210,24 @@ MHO_MK4FringeExport::output(std::string filename)
             //e.g. chops/source/python_src/hopstest_module/hopstestb/hopstestb.py
             //around line 74 in the FourFitThread class.
             //if(msglev==4){msg ("%s",4,fringe_name);} //iff msglev=4
-            if(write_mk4fringe(&fringe, fringe_name) != 0)
-            {
-                // pause 50ms, if a lock file was created, delete it now
-                //usleep(50000); remove_lockfile();
-                //msg ("Error writing fringe file", 2);
-                return 1;
-            }
+            std::cout<<"writing fringe file with name "<<filename<<std::endl;
+            int val = write_mk4fringe(&fringe, fringe_name);
+            std::cout<<"write fringe retval = "<<val<<std::endl;
+            // if(write_mk4fringe(&fringe, fringe_name) != 0)
+            // {
+            //     // pause 50ms, if a lock file was created, delete it now
+            //     //usleep(50000); remove_lockfile();
+            //     //msg ("Error writing fringe file", 2);
+            //     return 1;
+            // }
             //if a lock file was created, delete it now
             //usleep(50000); remove_lockfile();
         }
-        else
-        {
-            //msg ("Error getting write lock on directory.", 2);
-            return 1;
-        }
+        // else
+        // {
+        //     //msg ("Error getting write lock on directory.", 2);
+        //     return 1;
+        // }
     }
 
     return 0;

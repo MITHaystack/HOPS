@@ -388,7 +388,7 @@ MHO_VexInfoExtractor::extract_vex_info(const mho_json& vexInfo, MHO_ParameterSto
     }
     else
     {
-        paramStore->Set("/vex/experiment_number", "----");
+        paramStore->Set("/vex/experiment_number", "9999"); //default
     }
 
     //extract the clock model, as well as station information
