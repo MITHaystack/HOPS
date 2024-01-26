@@ -80,6 +80,9 @@ int main(int argc, char** argv)
                 0.0
               ]
             },
+            "selection": {
+              "stop": -3
+            },
             "station": {
               "E": {
                 "ionosphere": 0.0,

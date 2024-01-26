@@ -56,11 +56,6 @@ int MHO_MK4FringeExport::fill_200( struct type_200 *t200)
     bool ok;
     clear_200(t200);
 
-    // //extern struct mk4_corel cdata; 
-    // time_t tm;
-    // struct tm *utc_now, *gmtime(const time_t*);
-    // int int_reftime, year, day, hour, minute, second;
-    
     //set to zero for now
     t200->software_rev[0] = 0; //HOPS_SVN_REV;
 
@@ -69,59 +64,54 @@ int MHO_MK4FringeExport::fill_200( struct type_200 *t200)
     if(!ok){exper_num = "9999";}
     t200->expt_no = std::atoi(exper_num.c_str()); // root->exper_num;
 
-    char_clear(t200->exper_name, 32);
-    std::string exper_name; 
-    ok = fPStore->Get("/vex/experiment_name", exper_name);
-    if(!ok){exper_name = "";}
-    strncpy(t200->exper_name, exper_name.c_str(), std::min(32, (int) exper_name.size() ) );
+    FillString( &(t200->exper_name[0]), "/vex/experiment_name", 32);
+    FillString( &(t200->scan_name[0]), "/vex/scan/name", 32);
+    FillString( &(t200->correlator[0]), "/correlator/name", 32, "DiFX");
 
-    char_clear(t200->scan_name, 32);
-    std::string scan_name; 
-    ok = fPStore->Get("/vex/scan/name", scan_name);
-    if(!ok){scan_name = "";}
-    strncpy(t200->scan_name, scan_name.c_str(), std::min(32, (int) scan_name.size() ) );
+    // legacy_hops_date start_date;
+    // std::string tstart;
+    // ok = fPStore->Get("/vex/scan/start", tstart);
+    // if(ok){start_date = MHO_LegacyDateConverter::ConvertFromVexFormat(tstart);}
+    // else{ start_date = MHO_LegacyDateConverter::HopsEpoch(); } //dummy date
 
-    char_clear(t200->correlator, 8);
-    std::string correlator = "DiFX";
-    strncpy(t200->correlator, correlator.c_str(), std::min(8, (int) correlator.size() ) );
+    FillDate(&(t200->scantime), "/vex/scan/start");
 
-    legacy_hops_date start_date;
-    std::string tstart;
-    ok = fPStore->Get("/vex/scan/start", tstart);
-    if(ok){start_date = MHO_LegacyDateConverter::ConvertFromVexFormat(tstart);}
-    else{ start_date = MHO_LegacyDateConverter::HopsEpoch(); } //dummy date
+    // t200->scantime.year = start_date.year;
+    // t200->scantime.day = start_date.day;
+    // t200->scantime.hour = start_date.hour;
+    // t200->scantime.minute = start_date.minute;
+    // t200->scantime.second = start_date.second;
 
-    t200->scantime.year = start_date.year;
-    t200->scantime.day = start_date.day;
-    t200->scantime.hour = start_date.hour;
-    t200->scantime.minute = start_date.minute;
-    t200->scantime.second = start_date.second;
+    // int start_offset = 0;
+    // int stop_offset = 0;
+    // ok = fPStore->Get("/control/selection/start", start_offset);
+    // if(!ok){start_offset = 0;}
+    // ok = fPStore->Get("/control/selection/stop", stop_offset);
+    // if(!ok){stop_offset = 0;}
+    // t200->start_offset = start_offset;
+    // t200->stop_offset = stop_offset;
 
-    int start_offset = 0;
-    int stop_offset = 0;
-    ok = fPStore->Get("/control/selection/start", start_offset);
-    if(!ok){start_offset = 0;}
-    ok = fPStore->Get("/control/selection/stop", stop_offset);
-    if(!ok){stop_offset = 0;}
-    t200->start_offset = start_offset;
-    t200->stop_offset = stop_offset;
+    FillInt(t200->start_offset, "/control/selection/start", 0);
+    FillInt(t200->stop_offset, "/control/selection/stop", 0);
 
     //get the current time
     legacy_hops_date now_date = MHO_LegacyDateConverter::Now();
-    //write out the current fringe-fitting time
-    t200->fourfit_date.year = now_date.year;
-    t200->fourfit_date.day = now_date.day;
-    t200->fourfit_date.hour = now_date.hour;
-    t200->fourfit_date.minute = now_date.minute;
-    t200->fourfit_date.second = now_date.second;
+    FillDate(&(t200->fourfit_date), now_date);
+    // //write out the current fringe-fitting time
+    // t200->fourfit_date.year = now_date.year;
+    // t200->fourfit_date.day = now_date.day;
+    // t200->fourfit_date.hour = now_date.hour;
+    // t200->fourfit_date.minute = now_date.minute;
+    // t200->fourfit_date.second = now_date.second;
 
     //TODO FIXME -- store and retrieve the correlation date info in HOPS4
     //currently we do not have the correlation date information, so just the current time
-    t200->corr_date.year = now_date.year;
-    t200->corr_date.day = now_date.day;
-    t200->corr_date.hour = now_date.hour;
-    t200->corr_date.minute = now_date.minute;
-    t200->corr_date.second = now_date.second;
+    FillDate(&(t200->corr_date), now_date);
+    // t200->corr_date.year = now_date.year;
+    // t200->corr_date.day = now_date.day;
+    // t200->corr_date.hour = now_date.hour;
+    // t200->corr_date.minute = now_date.minute;
+    // t200->corr_date.second = now_date.second;
 
     //write out the fourfit reference time 
     legacy_hops_date frt_date;
@@ -144,11 +134,6 @@ int MHO_MK4FringeExport::fill_200( struct type_200 *t200)
 
 int MHO_MK4FringeExport::fill_201( struct type_201 *t201)
 {
-    bool ok;
-
-    clear_201(t201);
-
-
     // struct type_201 
     //     {
     //     char                record_id[3];           /* Standard 3-digit id */
@@ -165,6 +150,9 @@ int MHO_MK4FringeExport::fill_201( struct type_201 *t201)
     //     double              pulsar_epoch;           /* Reference time for polynomial */
     //     double              dispersion;             /* Pulsar dispersion measure */
     //     };
+
+    bool ok;
+    clear_201(t201);
 
     char_clear(t201->source, 32);
     std::string source_name; 
@@ -224,7 +212,46 @@ int MHO_MK4FringeExport::fill_201( struct type_201 *t201)
 
 int MHO_MK4FringeExport::fill_202( struct type_202 *t202)
 {
+    bool ok;
     clear_202(t202);
+
+    // struct type_202 
+    //     {
+    //     char                record_id[3];           /* Standard 3-digit id */
+    //     char                version_no[2];          /* Standard 2-digit version # */
+    //     char                unused1[3];             /* Reserved space */
+    //     char                baseline[2];            /* 2-char baseline ID */
+    //     char                ref_intl_id[2];         /* Reference station int'l ID */
+    //     char                rem_intl_id[2];         /* Reference station int'l ID */
+    //     char                ref_name[8];            /* Reference station name */
+    //     char                rem_name[8];            /* Remote station name */
+    //     char                ref_tape[8];            /* Reference station tape VSN */
+    //     char                rem_tape[8];            /* Remote station tape VSN */
+    //     short               nlags;                  /* # lags used for correlation */
+    //     double              ref_xpos;               /* Station X-coord (meters) */
+    //     double              rem_xpos;               /* Station X-coord (meters) */
+    //     double              ref_ypos;               /* Station Y-coord (meters) */
+    //     double              rem_ypos;               /* Station Y-coord (meters) */
+    //     double              ref_zpos;               /* Station Z-coord (meters) */
+    //     double              rem_zpos;               /* Station Z-coord (meters) */
+    //     double              u;                      /* Fringes/arcsec E-W 1GHz */
+    //     double              v;                      /* Fringes/arcsec N-S 1GHz */
+    //     double              uf;                     /* mHz/arcsec/GHz in R.A. */
+    //     double              vf;                     /* mHz/arcsec/GHz in dec. */
+    //     float               ref_clock;              /* Ref station clock (usec) */
+    //     float               rem_clock;              /* Rem station clock (usec) */
+    //     float               ref_clockrate;          /* Ref clockrate (sec/sec) */
+    //     float               rem_clockrate;          /* Rem clockrate (sec/sec) */
+    //     float               ref_idelay;             /* Ref station instr. delay (usec) */
+    //     float               rem_idelay;             /* Rem station instr. delay (usec) */
+    //     float               ref_zdelay;             /* Ref station z.atm. delay (usec) */
+    //     float               rem_zdelay;             /* Rem station z.atm. delay (usec) */
+    //     float               ref_elev;               /* Elevation at ref. antenna (deg) */
+    //     float               rem_elev;               /* Elevation at rem. antenna (deg) */
+    //     float               ref_az;                 /* Azimuth at ref. antenna (deg) */
+    //     float               rem_az;                 /* Azimuth at rem. antenna (deg) */
+    //     };
+
 
     // char refst, remst;
     // int i;
@@ -236,7 +263,8 @@ int MHO_MK4FringeExport::fill_202( struct type_202 *t202)
     // extern struct mk4_sdata sdata[];
     // struct mk4_sdata *refsd, 
     //                  *remsd;
-    // clear_202 (t202);
+    
+    FillString( &(t202->baseline[0]), "/config/baseline", 2);
     // 
     // strncpy (t202->baseline, param->baseline, 2);
     //                                     /* Get station structs from root */
@@ -258,6 +286,10 @@ int MHO_MK4FringeExport::fill_202( struct type_202 *t202)
     //         //msg ("Failed to find station '%c' in ovex file", 2, remst);
     //     return (-1);
     //     }
+    // 
+    // 
+    // 
+    // 
     // strncpy (t202->ref_intl_id, ref->site_id, 2);
     // strncpy (t202->rem_intl_id, rem->site_id, 2);
     // strncpy (t202->ref_name, ref->site_name, 8);
@@ -339,7 +371,7 @@ int MHO_MK4FringeExport::fill_202( struct type_202 *t202)
     //     if (root->lvex->stn[i].station == remst)
     //         strncpy (t202->rem_tape, root->lvex->stn[i].vsn, 8);
     //     }
-    return 0;
+    // return 0;
 }
 
 int MHO_MK4FringeExport::fill_203( struct type_203 *t203)
@@ -1370,8 +1402,61 @@ MHO_MK4FringeExport::convert_sky_coords(struct sky_coord& coords, std::string ra
     coords.dec_secs = dec_secs;
 
     return 0;
-
 }
+
+void 
+MHO_MK4FringeExport::FillString(char* destination, std::string param_path, int max_length, std::string default_value)
+{
+    char_clear(destination, max_length);
+    std::string tmp; 
+    bool ok = fPStore->Get(param_path, tmp);
+    if(!ok){tmp = default_value;}
+    strncpy(destination, tmp.c_str(), std::min(max_length, (int) tmp.size() ) );
+}
+
+void 
+MHO_MK4FringeExport::FillInt(int& destination, std::string param_path, int default_value)
+{
+    int value;
+    bool ok = fPStore->Get(param_path, value);
+    if(!ok){value = default_value;}
+    destination = value;
+}
+
+void 
+MHO_MK4FringeExport::FillDouble(double& destination, std::string param_path, double default_value)
+{
+    double value;
+    bool ok = fPStore->Get(param_path, value);
+    if(!ok){value = default_value;}
+    destination = value;
+}
+
+void 
+MHO_MK4FringeExport::FillDate(struct date* destination, std::string param_path)
+{
+    legacy_hops_date a_date;
+    std::string date_vex_string;
+    bool ok = fPStore->Get(param_path, date_vex_string);
+    if(ok){a_date = MHO_LegacyDateConverter::ConvertFromVexFormat(date_vex_string);}
+    else{ a_date = MHO_LegacyDateConverter::HopsEpoch(); } //dummy date
+    destination->year = a_date.year;
+    destination->day = a_date.day;
+    destination->hour = a_date.hour;
+    destination->minute = a_date.minute;
+    destination->second = a_date.second;
+}
+
+void 
+MHO_MK4FringeExport::FillDate(struct date* destination, struct legacy_hops_date& a_date)
+{
+    destination->year = a_date.year;
+    destination->day = a_date.day;
+    destination->hour = a_date.hour;
+    destination->minute = a_date.minute;
+    destination->second = a_date.second;
+}
+
 
 
 }//end of namespace

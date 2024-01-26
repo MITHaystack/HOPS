@@ -70,6 +70,14 @@ class MHO_MK4FringeExport
         //the fringe data to be filled and written
         struct mk4_fringe fringe;
 
+        //utilities 
+        void FillString(char* destination, std::string param_path, int max_length, std::string default_value="");
+        void FillInt(int& destination, std::string param_path, int default_value = 0);
+        void FillDouble(double& destination, std::string param_path, double default_value = 0);
+        void FillDate(struct date* destination, std::string param_path);
+        void FillDate(struct date* destination, struct legacy_hops_date& a_date);
+
+        //the filling functions for each type
         int fill_200( struct type_200 *t200);
         int fill_201( struct type_201 *t201);
         int fill_202( struct type_202 *t202);
