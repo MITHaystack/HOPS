@@ -4,6 +4,7 @@
 
 #include "MHO_MK4Type200Converter.hh"
 #include "MHO_MK4Type201Converter.hh"
+#include "MHO_MK4Type202Converter.hh"
 
 
 #include <algorithm>
@@ -209,6 +210,29 @@ int MHO_MK4FringeExport::fill_202( struct type_202 *t202)
     //                  *remsd;
     
     FillString( &(t202->baseline[0]), "/config/baseline", 2);
+    FillString( &(t202->ref_intl_id[0]), "/ref_station/site_id", 2);
+    FillString( &(t202->rem_intl_id[0]), "/rem_station/site_id", 2);
+    FillString( &(t202->ref_name[0]), "/ref_station/site_name", 8);
+    FillString( &(t202->rem_name[0]), "/rem_station/site_name", 8);
+    FillString( &(t202->ref_tape[0]), "/ref_station/tape_name", 8); //obsolete
+    FillString( &(t202->rem_tape[0]), "/rem_station/tape_name", 8); //obsolete
+
+    short nlags = fPStore->GetAs<int>("/config/nlags");
+    t202->nlags = (short) nlags;
+
+    FillDouble(t202->ref_xpos, "ref_station/position/x/value");
+    FillDouble(t202->ref_ypos, "ref_station/position/y/value");
+    FillDouble(t202->ref_zpos, "ref_station/position/z/value");
+    FillDouble(t202->rem_xpos, "rem_station/position/x/value");
+    FillDouble(t202->rem_ypos, "rem_station/position/y/value");
+    FillDouble(t202->rem_zpos, "rem_station/position/z/value");
+
+    //     double              u;                      /* Fringes/arcsec E-W 1GHz */
+    //     double              v;                      /* Fringes/arcsec N-S 1GHz */
+    //     double              uf;                     /* mHz/arcsec/GHz in R.A. */
+    //     double              vf;                     /* mHz/arcsec/GHz in dec. */
+
+
     // 
     // strncpy (t202->baseline, param->baseline, 2);
     //                                     /* Get station structs from root */
@@ -234,17 +258,7 @@ int MHO_MK4FringeExport::fill_202( struct type_202 *t202)
     // 
     // 
     // 
-    // strncpy (t202->ref_intl_id, ref->site_id, 2);
-    // strncpy (t202->rem_intl_id, rem->site_id, 2);
-    // strncpy (t202->ref_name, ref->site_name, 8);
-    // strncpy (t202->rem_name, rem->site_name, 8);
-    // t202->nlags = param->nlags;
-    // t202->ref_xpos = ref->coordinates[0];
-    // t202->rem_xpos = rem->coordinates[0];
-    // t202->ref_ypos = ref->coordinates[1];
-    // t202->rem_ypos = rem->coordinates[1];
-    // t202->ref_zpos = ref->coordinates[2];
-    // t202->rem_zpos = rem->coordinates[2];
+
     //                                     /* Fourfit ref time is relative to start of year */
     //                                     /* So need to convert to secs since 1980 */
     // tempdate.year = root->ovex->start_time.year;
@@ -315,7 +329,11 @@ int MHO_MK4FringeExport::fill_202( struct type_202 *t202)
     //     if (root->lvex->stn[i].station == remst)
     //         strncpy (t202->rem_tape, root->lvex->stn[i].vsn, 8);
     //     }
-    // return 0;
+
+    mho_json j = convertToJSON(*t202);
+    std::cout<<"type 202 json = "<<j.dump(2)<<std::endl;
+
+    return 0;
 }
 
 int MHO_MK4FringeExport::fill_203( struct type_203 *t203)
