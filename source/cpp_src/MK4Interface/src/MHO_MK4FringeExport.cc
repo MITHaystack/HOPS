@@ -132,7 +132,6 @@ int MHO_MK4FringeExport::fill_202( struct type_202 *t202)
     bool ok;
     clear_202(t202);
 
-    
     FillString( &(t202->baseline[0]), "/config/baseline", 2);
     FillString( &(t202->ref_intl_id[0]), "/ref_station/site_id", 2);
     FillString( &(t202->rem_intl_id[0]), "/rem_station/site_id", 2);
@@ -192,8 +191,8 @@ int MHO_MK4FringeExport::fill_204( struct type_204 *t204)
 {
     clear_204(t204);
 
-    t204->ff_version[0];
-    t204->ff_version[0];
+    t204->ff_version[0] = 4;
+    t204->ff_version[1] = 0;
 
     std::string tmp = getenv("HOPS_ARCH");
     char_clear( &(t204->platform[0]), 8);
@@ -477,8 +476,8 @@ int MHO_MK4FringeExport::fill_208( struct type_202 *t202, struct type_208 *t208)
     FillFloat(t208->resid_mbd, "/fringe/mbdelay");
     FillFloat(t208->resid_sbd, "/fringe/sbdelay");
     FillFloat(t208->resid_rate, "/fringe/drate");
-    FillFloat(t208->resid_mbd, "/fringe/mbd_error");
-    FillFloat(t208->resid_mbd, "/fringe/sbd_error");
+    FillFloat(t208->mbd_error, "/fringe/mbd_error");
+    FillFloat(t208->sbd_error, "/fringe/sbd_error");
 
     FillFloat(t208->rate_error, "/fringe/drate_error");
     FillFloat(t208->ambiguity, "/fringe/ambiguity");

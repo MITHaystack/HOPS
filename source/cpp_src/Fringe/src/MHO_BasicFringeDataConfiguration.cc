@@ -187,8 +187,12 @@ MHO_BasicFringeDataConfiguration::parse_command_line(int argc, char** argv, MHO_
     //accounting = false;  //not implemented
     paramStore->Set("/cmdline/baseline", baseline);
     paramStore->Set("/cmdline/frequency_group", freqgrp);
+
+    //TODO set the absolute path for the control file
     paramStore->Set("/cmdline/control_file",control_file);
+    //TODO et the absolute path for the data directory 
     paramStore->Set("/cmdline/directory", directory);
+
     //estimate_time = false; //not implemented
     paramStore->Set("/cmdline/first_plot_channel", first_plot_chan); //TODO
     paramStore->Set("/cmdline/message_level", message_level);
