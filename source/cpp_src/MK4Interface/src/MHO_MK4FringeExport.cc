@@ -7,6 +7,7 @@
 #include "MHO_MK4Type202Converter.hh"
 #include "MHO_MK4Type203Converter.hh"
 #include "MHO_MK4Type204Converter.hh"
+#include "MHO_MK4Type205Converter.hh"
 
 #include "MHO_MK4Type208Converter.hh"
 #include "MHO_MK4Type210Converter.hh"
@@ -228,90 +229,63 @@ int MHO_MK4FringeExport::fill_204( struct type_204 *t204)
 
 int MHO_MK4FringeExport::fill_205( struct type_203 *t203, struct type_205 *t205)
 {
+    bool ok;
     clear_205(t205);
 
-    // int i, j, ch, nch, int_time, sb, ind,
-    //     nchan, nfreqs;
-    // struct freq_corel *fc;
-    // nchan = (strncmp (t203->version_no, "00", (size_t)2) == 0) ? 32 : 8*MAXFREQ;
-    // 
-    // clear_205 (t205);
-    //                                     /* For now, UCT central is same as FRT */
-    // t205->utc_central.year = root->start_time.year;
-    // t205->utc_central.second = fmod ((double)param->reftime,  60.0);
-    // int_time = param->reftime;       /* In seconds */
-    // int_time /= 60;                  /* Now in minutes */
-    // t205->utc_central.minute = int_time % 60;
-    // int_time /= 60;                  /* Now in hours */
-    // t205->utc_central.hour = int_time % 24;
-    // t205->utc_central.day = int_time / 24 + 1; /* doy starts at 001 */
-    // t205->offset = 0.0;
-    //                                     /* Skip fourfit execution modes for now */
-    // 
-    //                                     /* Search windows */
-    // t205->search[0] = param->win_sb[0];
-    // t205->search[1] = param->win_sb[1];
-    // t205->search[2] = param->win_dr[0];
-    // t205->search[3] = param->win_dr[1];
-    // t205->search[4] = param->win_mb[0];
-    // t205->search[5] = param->win_mb[1];
-    //                                     /* Filtering thresholds NYI */
-    // 
-    //                                     /* Start and stop times for this pass */
-    // t205->start.year = root->start_time.year;
-    // t205->start.second = fmod ((double)pass->start,  60.0);
-    // int_time = pass->start;
-    // int_time /= 60;                  /* Now in minutes */
-    // t205->start.minute = int_time % 60;
-    // int_time /= 60;                  /* Now in hours */
-    // t205->start.hour = int_time % 24;
-    // t205->start.day = int_time / 24 + 1;
-    // 
-    // t205->stop.year = root->start_time.year;
-    // t205->stop.second = fmod ((double)pass->stop,  60.0);
-    // int_time = pass->stop;
-    // int_time /= 60;                  /* Now in minutes */
-    // t205->stop.minute = int_time % 60;
-    // int_time /= 60;                  /* Now in hours */
-    // t205->stop.hour = int_time % 24;
-    // t205->stop.day = int_time / 24 + 1;
-    // 
-    // t205->ref_freq = param->ref_freq;
-    // 
-    // nfreqs = 0;
-    // for (ch=0; ch<MAXFREQ; ch++)
-    //     {
-    //     fc = pass->pass_data + ch;
-    //     if (fc->frequency == 0.0 || nfreqs >= pass->nfreq) 
-    //         continue;
-    //     nfreqs++;
-    //     t205->ffit_chan[ch].ffit_chan_id = fc->freq_code;
-    //     nch = 0;
-    //     for (sb=0; sb<2; sb++)
-    //         {
-    //         ind = sb + 2 * pass->pol;
-    //         if (fc->index[ind] <= 0) 
-    //             continue;
-    //         for (j=0; j<nchan; j++)
-    //             if (fc->index[ind] == t203->channels[j].index) 
-    //                 break;
-    //         if (j == nchan)
-    //             {
-    //             //msg ("Could not find index number %d in type 203 record", 
-    //                                             2, fc->index[ind]);
-    //             return (-1);
-    //             }
-    //         if (nch >= 4)
-    //             {
-    //             //msg ("Error - more than 4 correlator indices in ffit chan '%c'", 
-    //                                             2, fc->freq_code);
-    //             return (-1);
-    //             }
-    //         t205->ffit_chan[ch].channels[nch] = j;
-    //         nch++;
-    //         }
-    //     }
-    // 
+    /* For now, UTC central is same as FRT */
+    FillDate(&(t205->utc_central), "/vex/scan/fourfit_reftime");
+    t205->offset = 0.0;
+
+    //ffmode and filter are not used/populated
+
+    //fill out the search windows used
+    std::vector<double> sb_win;
+    std::vector<double> dr_win;
+    std::vector<double> mb_win;
+
+    ok = fPStore->Get("/fringe/sb_win", sb_win);
+    if(!ok){sb_win.resize(2, 0.0);}
+    ok = fPStore->Get("/fringe/dr_win", dr_win);
+    if(!ok){dr_win.resize(2, 0.0);}
+    ok = fPStore->Get("/fringe/mb_win", mb_win);
+    if(!ok){mb_win.resize(2, 0.0);}
+
+    t205->search[0] = sb_win[0];
+    t205->search[1] = sb_win[1];
+    t205->search[2] = dr_win[0];
+    t205->search[3] = dr_win[1];
+    t205->search[4] = mb_win[0];
+    t205->search[5] = mb_win[1];
+
+    //TODO FIXME, these parameters are not yet populated
+    FillDate(&(t205->start), "/fringe/start_date");
+    FillDate(&(t205->stop), "/fringe/stop_date");
+
+    //fill the ref freq
+    FillDouble(t205->ref_freq, "/control/config/ref_freq");
+
+    int nchan;
+    FillInt(nchan, "/config/nchannels", 0);
+    nchan = std::min(MAX_CHAN, nchan);
+    std::vector< std::string > ch_labels;
+    ok = fPlotData.Get("/PLOT_INFO/#Ch", ch_labels);
+    if(ok && nchan > 0 && nchan < ch_labels.size() )
+    {
+        for(int i=0; i<nchan; i++)
+        {
+            t205->ffit_chan[i].ffit_chan_id = ch_labels[i][0];
+            t205->ffit_chan[i].channels[0] = (short) i; //this is effectively not used
+            t205->ffit_chan[i].channels[1] = (short) i; //this is effectively not used
+            t205->ffit_chan[i].channels[2] = (short) i; //this is effectively not used
+            t205->ffit_chan[i].channels[3] = (short) i; //this is effectively not used
+        }
+    }
+    
+    std::cout<<"NCHAN = "<<nchan<<std::endl;
+
+    mho_json j = convertToJSON(*t205);
+    std::cout<<"type 205 json = "<<j.dump(2)<<std::endl;
+
     return 0;
 
 }
@@ -504,13 +478,12 @@ int MHO_MK4FringeExport::fill_208( struct type_202 *t202, struct type_208 *t208)
 int MHO_MK4FringeExport::fill_210( struct type_210 *t210)
 {
     clear_210 (t210);
-
     bool ok1, ok2;
     std::vector<double> ch_amp;
     std::vector<double> ch_phase;
     int nchan;
-    FillInt(nchan, "/config/nchannels", 0);
 
+    FillInt(nchan, "/config/nchannels", 0);
     ok1 = fPlotData.Get("/PLOT_INFO/Ampl", ch_amp);
     ok2 = fPlotData.Get("/PLOT_INFO/Phase", ch_phase);
     if(ok1 && ok2 && nchan > 0)
@@ -522,10 +495,8 @@ int MHO_MK4FringeExport::fill_210( struct type_210 *t210)
             t210->amp_phas[i].phase = ch_phase[i];//(float)arg_complex( status->fringe[i] ) * 180.0 / pi;
         }
     }
-
     mho_json j = convertToJSON(*t210);
     std::cout<<"type 210 json = "<<j.dump(2)<<std::endl;
-
     return 0;
 }
 
