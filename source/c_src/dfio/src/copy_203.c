@@ -82,7 +82,7 @@ copy_203 (struct type_203 *t203,
         t203_v1 = (struct type_203_v1 *) *ptr;
         strncpy (t203_v1->record_id, "203", 3);
         strncpy (t203_v1->version_no, "01", 2);
-        for (i=0; i<8*MAXFREQ; i++)
+        for (i=0; i<8*MAXFREQ-1; i++)
             {
             cp_short (t203_v1->channels[i].index, t203->channels[i].index);
             cp_unsig (t203_v1->channels[i].sample_rate, t203->channels[i].sample_rate);
