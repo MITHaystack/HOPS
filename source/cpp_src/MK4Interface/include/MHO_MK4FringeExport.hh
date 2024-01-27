@@ -46,6 +46,7 @@ class MHO_MK4FringeExport
 
         void SetParameterStore(MHO_ParameterStore* pStore){fPStore = pStore;};
         void SetContainerStore(MHO_ContainerStore* cStore){fCStore = cStore;};
+        void SetPlotData(mho_json& plot_data){fPlotData = plot_data;}
 
         void SetFilename(std::string filename){fFilename = filename;}
 
@@ -60,6 +61,7 @@ class MHO_MK4FringeExport
         std::string fFilename;
         MHO_ParameterStore* fPStore;
         MHO_ContainerStore* fCStore;
+        mho_json fPlotData;
 
         void char_clear(char* arr, std::size_t n){ for(std::size_t i=0; i<n; i++){arr[i] = '\0';} }
 

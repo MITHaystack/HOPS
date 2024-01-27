@@ -84,6 +84,7 @@ int main(int argc, char** argv)
     if(bffit != nullptr)
     {
         mho_json plot_data = bffit->GetPlotData(); //function only available in MHO_BasicFringeFitter
+        std::cout<<"plot data = "<<plot_data.dump(2)<<std::endl;
         //open and dump to file
         if(!test_mode)
         {

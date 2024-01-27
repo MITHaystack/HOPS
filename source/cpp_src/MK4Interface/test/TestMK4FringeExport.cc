@@ -271,9 +271,135 @@ int main(int argc, char** argv)
     MHO_ParameterStore pStore;
     pStore.FillData(params);
     pStore.Dump();
+
+
+    char text2[] = R"(
+        {
+          "AP": 1.0,
+          "Amp": 4.240562311573398,
+          "AprioriAccel": -2.351127226975069e-06,
+          "AprioriClock": 96.58727777,
+          "AprioriClockrate": 1.238e-06,
+          "AprioriDelay": -426.7657403524763,
+          "AprioriRate": 0.01546835364977025,
+          "BuildTime": "-",
+          "CorrTime": "-",
+          "CorrVers": "HOPS4/DiFX fourfit rev 4.0",
+          "Dec": "73d27'30.0174\"",
+          "DelayRate": 0.015468500316436918,
+          "ExperName": "VT9105",
+          "ExperNum": "9999",
+          "FFTime": "-",
+          "FRT": "180015.00",
+          "FringeRate": 0.00088,
+          "GroupDelaySBD": -426.7643090458357,
+          "IntgTime": 26.98268200457096,
+          "IonTEC": "-",
+          "NPlots": 33,
+          "NSeg": 7,
+          "PFD": 0.0,
+          "PhaseDelay": -426.76577226655814,
+          "PolStr": "GGAO12M - WESTFORD, fgroup ?, pol YY",
+          "Quality": "7",
+          "RA": "00h19m45.78642s",
+          "RefFreq": 6000.0,
+          "ResPhase": -68.93441672232275,
+          "ResidMbd": 0.001431306640625,
+          "ResidMbdelay": 0.001431306640625,
+          "ResidMbdelayError": 7.151674528526199e-07,
+          "ResidPhase": -68.93441672232275,
+          "ResidPhaseError": 1.3451601793990349,
+          "ResidPhdelay": -3.191408181589016e-05,
+          "ResidPhdelayError": 6.227593423143681e-07,
+          "ResidRate": 1.4666666666666668e-07,
+          "ResidRateError": 3.995003043617274e-08,
+          "ResidSbd": 0.001378,
+          "ResidSbdelay": 0.001378,
+          "ResidSbdelayError": 0.0002022470290831245,
+          "RootScanBaseline": "0016+731.3319AR.json, 105-1800, GE",
+          "SNR": 85.18803989377658,
+          "SbandDelay": -426.7643623524763,
+          "Start": "180000.00",
+          "StartPlot": 0,
+          "Stop": "180027.00",
+          "TotalPhase": -228.0957655420554,
+          "YearDOY": "2019:105",
+          "extra": {
+            "ambiguity": 0.03125,
+            "baseline_input_file": "/home/barrettj/work/projects/hops-git/build/test_data/vt9105/1111/105-1800/GE.3319AR.cor",
+            "coarse_search_max_amp": 4.220078499615456,
+            "control_file": "./cf_test4a",
+            "data_rate": 0,
+            "dr_win": [
+              -0.005,
+              0.005
+            ],
+            "freqrms_amp": 34.534840303518486,
+            "freqrms_phase": 19.415486229892316,
+            "grid_pts": 1024,
+            "inc_avg_amp": 4.231201267323538,
+            "inc_avg_amp_freq": 4.444880481811597,
+            "ion_win": [
+              0.0,
+              0.0
+            ],
+            "mb_win": [
+              -0.015625,
+              0.015594482421875
+            ],
+            "n_dr_points": 27,
+            "n_drsp_points": 64,
+            "n_mbd_points": 1024,
+            "n_sbd_points": 512,
+            "nlags": 256,
+            "output_file": "fdump.json",
+            "pol_product": "YY",
+            "ref_station": {
+              "al": 52.285488532496586,
+              "az": 345.9565304132007,
+              "pa": 138.3187286377507,
+              "u": -2604423.1118670977,
+              "v": 2920830.227377143,
+              "w": -5026448.234686273
+            },
+            "ref_station_input_file": "/home/barrettj/work/projects/hops-git/build/test_data/vt9105/1111/105-1800/G.3319AR.sta",
+            "ref_station_mk4id": "G",
+            "ref_station_sample_bits": 0,
+            "rem_station": {
+              "al": 54.66278220069358,
+              "az": 342.88706845583266,
+              "pa": 130.20672971383217,
+              "u": -2828864.7445050916,
+              "v": 2386099.7998840506,
+              "w": -5183345.403434753
+            },
+            "rem_station_input_file": "/home/barrettj/work/projects/hops-git/build/test_data/vt9105/1111/105-1800/E.3319AR.sta",
+            "rem_station_mk4id": "E",
+            "rem_station_sample_bits": 0,
+            "sample_rate": 64.0,
+            "sb_win": [
+              -2.0,
+              1.9921875
+            ],
+            "theory_freqrms_amp": 6.640432455713356,
+            "theory_freqrms_phase": 3.8046875385406818,
+            "theory_timerms_amp": 3.1057778936616627,
+            "theory_timerms_phase": 1.7794796541184383,
+            "timerms_amp": 3.9051201988565047,
+            "timerms_phase": 2.0952967894655803,
+            "u": -21.77754151905981,
+            "v": -51.88482167663629
+          }
+        }
+    )";
+
+    mho_json plot_data = mho_json::parse(text2);
     
+    std::cout<<plot_data.dump(4)<<std::endl;
+
     MHO_MK4FringeExport fexporter;
     fexporter.SetParameterStore(&pStore);
+    fexporter.SetPlotData(plot_data);
 
     fexporter.SetFilename("/home/barrettj/work/projects/hops-git/build/GE.X.1.ABCDEF");
     fexporter.ExportFringeFile();
