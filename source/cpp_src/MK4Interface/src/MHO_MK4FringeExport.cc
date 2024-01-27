@@ -6,6 +6,15 @@
 #include "MHO_MK4Type201Converter.hh"
 #include "MHO_MK4Type202Converter.hh"
 #include "MHO_MK4Type203Converter.hh"
+#include "MHO_MK4Type204Converter.hh"
+
+
+#include <sys/stat.h>
+#include <unistd.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <time.h>
+#include <string.h>
 
 
 #include <algorithm>
@@ -28,32 +37,8 @@ MHO_MK4FringeExport::~MHO_MK4FringeExport()
 }
 
 
-// void
-// MHO_MK4FringeExport::ExportFringeFile()
-// {
-// 
-// }
-
-
 int MHO_MK4FringeExport::fill_200( struct type_200 *t200)
 {
-    // struct type_200
-    //     {
-    //     char                record_id[3];           /* Standard 3-digit id */
-    //     char                version_no[2];          /* Standard 2-digit version # */
-    //     char                unused1[3];             /* Reserved space */
-    //     short               software_rev[10];       /* Revision levels for online progs */
-    //     int                 expt_no;                /* Experiment number */
-    //     char                exper_name[32];         /* Observing program name */
-    //     char                scan_name[32];          /* Scan label from OVEX */
-    //     char                correlator[8];          /* Correlator identification */
-    //     struct date         scantime;               /* Scan time to 1 second */
-    //     int                 start_offset;           /* Nom. bline start rel. to scantime (s) */
-    //     int                 stop_offset;            /* Nom. bline stop rel. to scantime (s) */
-    //     struct date         corr_date;              /* Time of correlation */
-    //     struct date         fourfit_date;           /* Time of fourfit processing */
-    //     struct date         frt;                    /* Fourfit reference time */
-    //     };
 
     bool ok;
     clear_200(t200);
@@ -92,22 +77,6 @@ int MHO_MK4FringeExport::fill_200( struct type_200 *t200)
 
 int MHO_MK4FringeExport::fill_201( struct type_201 *t201)
 {
-    // struct type_201 
-    //     {
-    //     char                record_id[3];           /* Standard 3-digit id */
-    //     char                version_no[2];          /* Standard 2-digit version # */
-    //     char                unused1[3];             /* Reserved space */
-    //     char                source[32];             /* Source name from OVEX */
-    //     struct sky_coord    coord;                  /* Source coordinates */
-    //     short               epoch;                  /* 1950 or 2000 */
-    //     char                unused2[2];             /* Padding */
-    //     struct date         coord_date;             /* Date of coordinate meas. */
-    //     double              ra_rate;                /* Proper motion (rad/sec) */
-    //     double              dec_rate;               /* Proper motion (rad/sec) */
-    //     double              pulsar_phase[4];        /* Polynomial coeffs for timing */
-    //     double              pulsar_epoch;           /* Reference time for polynomial */
-    //     double              dispersion;             /* Pulsar dispersion measure */
-    //     };
 
     bool ok;
     clear_201(t201);
@@ -161,54 +130,6 @@ int MHO_MK4FringeExport::fill_202( struct type_202 *t202)
     bool ok;
     clear_202(t202);
 
-    // struct type_202 
-    //     {
-    //     char                record_id[3];           /* Standard 3-digit id */
-    //     char                version_no[2];          /* Standard 2-digit version # */
-    //     char                unused1[3];             /* Reserved space */
-    //     char                baseline[2];            /* 2-char baseline ID */
-    //     char                ref_intl_id[2];         /* Reference station int'l ID */
-    //     char                rem_intl_id[2];         /* Reference station int'l ID */
-    //     char                ref_name[8];            /* Reference station name */
-    //     char                rem_name[8];            /* Remote station name */
-    //     char                ref_tape[8];            /* Reference station tape VSN */
-    //     char                rem_tape[8];            /* Remote station tape VSN */
-    //     short               nlags;                  /* # lags used for correlation */
-    //     double              ref_xpos;               /* Station X-coord (meters) */
-    //     double              rem_xpos;               /* Station X-coord (meters) */
-    //     double              ref_ypos;               /* Station Y-coord (meters) */
-    //     double              rem_ypos;               /* Station Y-coord (meters) */
-    //     double              ref_zpos;               /* Station Z-coord (meters) */
-    //     double              rem_zpos;               /* Station Z-coord (meters) */
-    //     double              u;                      /* Fringes/arcsec E-W 1GHz */
-    //     double              v;                      /* Fringes/arcsec N-S 1GHz */
-    //     double              uf;                     /* mHz/arcsec/GHz in R.A. */
-    //     double              vf;                     /* mHz/arcsec/GHz in dec. */
-    //     float               ref_clock;              /* Ref station clock (usec) */
-    //     float               rem_clock;              /* Rem station clock (usec) */
-    //     float               ref_clockrate;          /* Ref clockrate (sec/sec) */
-    //     float               rem_clockrate;          /* Rem clockrate (sec/sec) */
-    //     float               ref_idelay;             /* Ref station instr. delay (usec) */
-    //     float               rem_idelay;             /* Rem station instr. delay (usec) */
-    //     float               ref_zdelay;             /* Ref station z.atm. delay (usec) */
-    //     float               rem_zdelay;             /* Rem station z.atm. delay (usec) */
-    //     float               ref_elev;               /* Elevation at ref. antenna (deg) */
-    //     float               rem_elev;               /* Elevation at rem. antenna (deg) */
-    //     float               ref_az;                 /* Azimuth at ref. antenna (deg) */
-    //     float               rem_az;                 /* Azimuth at rem. antenna (deg) */
-    //     };
-
-
-    // char refst, remst;
-    // int i;
-    // double refepoch, remepoch, frt, refdiff, remdiff, lambda;
-    // extern double time_to_double(struct date);
-    // struct station_struct *ref, *rem;
-    // struct station_log *lref, *lrem;
-    // struct date tempdate;
-    // extern struct mk4_sdata sdata[];
-    // struct mk4_sdata *refsd, 
-    //                  *remsd;
     
     FillString( &(t202->baseline[0]), "/config/baseline", 2);
     FillString( &(t202->ref_intl_id[0]), "/ref_station/site_id", 2);
@@ -228,6 +149,8 @@ int MHO_MK4FringeExport::fill_202( struct type_202 *t202)
     FillDouble(t202->rem_ypos, "rem_station/position/y/value");
     FillDouble(t202->rem_zpos, "rem_station/position/z/value");
 
+    #pragma message("TODO FIXME -- finish t202")
+
     t202->u = 0.0;
     t202->v = 0.0;
     t202->uf = 0.0;
@@ -245,91 +168,6 @@ int MHO_MK4FringeExport::fill_202( struct type_202 *t202)
     t202->ref_az = 0.0;
     t202->rem_az = 0.0;
 
-
-
-    //     double              u;                      /* Fringes/arcsec E-W 1GHz */
-    //     double              v;                      /* Fringes/arcsec N-S 1GHz */
-    //     double              uf;                     /* mHz/arcsec/GHz in R.A. */
-    //     double              vf;                     /* mHz/arcsec/GHz in dec. */
-
-
-
-    // 
-    // 
-    // 
-    // 
-
-    //                                     /* Fourfit ref time is relative to start of year */
-    //                                     /* So need to convert to secs since 1980 */
-    // tempdate.year = root->ovex->start_time.year;
-    // tempdate.day = 1;
-    // tempdate.hour = 0;
-    // tempdate.minute = 0;
-    // tempdate.second = 0.0;
-    // frt = time_to_double (tempdate) + param->reftime;
-    //                                     /* Ref station clockrate ref time */
-    // if (ref->clockrate != 0.0)
-    //     refepoch = time_to_double (ref->clockrate_epoch);
-    // else refepoch = frt;
-    // refdiff = frt - refepoch;
-    // if (fabs (refdiff) > 3.0e5)
-    //     //msg ("Warning, ref station clockrate epoch highly discrepant from FRT\n"
-    //          "frt = %12.2f, ref epoch = %12.2f", 1, frt, refepoch);
-    //                                     /* Rem station clockrate ref time */
-    // if (rem->clockrate != 0.0)
-    //     remepoch = time_to_double (rem->clockrate_epoch);
-    // else remepoch = frt;
-    // remdiff = frt - remepoch;
-    // if (fabs (remdiff) > 3.0e5)
-    //     //msg ("Warning, rem station clockrate epoch highly discrepant from FRT\n"
-    //          "frt = %12.2f, ref epoch = %12.2f", 1, frt, remepoch);
-    //                                     /* Adjust clocks to frt for clockrate */
-    // t202->ref_clock = (ref->clock_early + (refdiff * ref->clockrate)) * 1.0e6;
-    // t202->rem_clock = (rem->clock_early + (remdiff * rem->clockrate)) * 1.0e6;
-    // t202->ref_clockrate = ref->clockrate;
-    // t202->rem_clockrate = rem->clockrate;
-    //                                     /* Instrumental delays(?) here */
-    // t202->ref_zdelay = ref->zenith_atm * 1.0e6;
-    // t202->rem_zdelay = rem->zenith_atm * 1.0e6;
-    //                                     /* elevations/azimuths here */
-    // for (i=0; i<MAXSTATIONS; i++)       // find correct splines
-    //     if (sdata[i].t300 != NULL)
-    //         {
-    //         if (sdata[i].t300->id == refst)
-    //             refsd = sdata + i;
-    //         if (sdata[i].t300->id == remst) 
-    //             remsd = sdata + i;
-    //         }
-    // if ((refsd == NULL) || (remsd == NULL))
-    //     {
-    //     //msg ("Could not find stations in t303 records in fill_202()", 2);
-    //     return (-1);
-    //     }
-    // 
-    //                                     // should actually evaluate these polys at frt
-    // if (refsd->model[0].t303[0] != NULL && remsd->model[0].t303[0] != NULL)
-    //     {
-    //     t202->ref_elev = refsd->model[0].t303[0]->elevation[0];
-    //     t202->rem_elev = remsd->model[0].t303[0]->elevation[0];
-    //     t202->ref_az   = refsd->model[0].t303[0]->azimuth[0];
-    //     t202->rem_az   = remsd->model[0].t303[0]->azimuth[0];
-    //                                     // Baseline u,v in fr / asec
-    //                                     // should evaluate these polys at frt, too!
-    //     lambda = 299.792458 / param->ref_freq; // wavelength (m)
-    //     t202->u = 4.848137e-6 * (remsd->model[0].t303[0]->u[0] 
-    //                            - refsd->model[0].t303[0]->u[0]) / lambda;
-    //     t202->v = 4.848137e-6 * (remsd->model[0].t303[0]->v[0] 
-    //                            - refsd->model[0].t303[0]->v[0]) / lambda;
-    //     }
-    //                                     /* Now find stations in lvex for VSNs */
-    // for (i=0; i<root->lvex->nstation; i++)
-    //     {
-    //     if (root->lvex->stn[i].station == refst)
-    //         strncpy (t202->ref_tape, root->lvex->stn[i].vsn, 8);
-    //     if (root->lvex->stn[i].station == remst)
-    //         strncpy (t202->rem_tape, root->lvex->stn[i].vsn, 8);
-    //     }
-
     mho_json j = convertToJSON(*t202);
     std::cout<<"type 202 json = "<<j.dump(2)<<std::endl;
 
@@ -338,40 +176,12 @@ int MHO_MK4FringeExport::fill_202( struct type_202 *t202)
 
 int MHO_MK4FringeExport::fill_203( struct type_203 *t203)
 {
-
     clear_203(t203);
     std::size_t nchannels = MAX_CHAN;
     FillChannels( &(t203->channels[0]) , nchannels);
 
-    // std::string dummy = "01234567";
-    // 
-    // int ch = 0;
-    // for(int i=0; i<32; i++)
-    // {
-    //     t203->channels[ch].index = (short) i;
-    //     t203->channels[ch].sample_rate = 0.0;
-    //     strncpy (t203->channels[ch].ref_chan_id, dummy.c_str(), 8);
-    //     strncpy (t203->channels[ch].rem_chan_id, dummy.c_str(), 8);
-    // 
-    //     t203->channels[ch].refsb = ' ';
-    //     t203->channels[ch].refpol = ' ';
-    //     t203->channels[ch].ref_freq = 0.0;
-    // 
-    //     t203->channels[ch].remsb = ' ';
-    //     t203->channels[ch].rempol = ' ';
-    //     t203->channels[ch].rem_freq = 0.0;
-    // 
-    //     ch++;
-    //     if (ch == 8 * MAXFREQ)      // ensure there aren't too many channels
-    //     {
-    //         printf("Too many channels for t203 record \n");
-    //         return -1;
-    //     }
-    // }
-    
     mho_json j = convertToJSON(*t203);
     std::cout<<"type 203 json = "<<j.dump(2)<<std::endl;
-    
 
     return 0;
 }
@@ -380,44 +190,36 @@ int MHO_MK4FringeExport::fill_204( struct type_204 *t204)
 {
     clear_204(t204);
 
-    // extern char control_filename[], *control_string, version_no[];
-    // char *dummy;
-    // struct stat buf;
-    // struct tm *mod_time, *gmtime(const time_t*);
-    // 
-    // clear_204 (t204);
-    //                                     /* Insert ff_version number */
-    // t204->ff_version[0] = version_no[0] - '0';;
-    // t204->ff_version[1] = version_no[2] - '0';
-    //                                     /* Assume this is run from a */
-    //                                     /* standard mk4 environment */
-    // dummy = getenv ("ARCH");
-    // if (dummy != NULL) strncpy (t204->platform, dummy, 8);
-    // else strcpy (t204->platform, "unknown");
-    // 
-    // strncpy (t204->control_file, control_filename, 96);
-    //                                     /* Look up modification date */
-    // if (stat (control_filename, &buf) != 0)
-    //     //msg ("Failure statting control file '%s'", 1, control_filename);
-    // else
-    //     {
-    //     mod_time = gmtime (&(buf.st_mtime));
-    //     t204->ffcf_date.year = mod_time->tm_year + 1900;
-    //     t204->ffcf_date.day = mod_time->tm_yday + 1;
-    //     t204->ffcf_date.hour = mod_time->tm_hour;
-    //     t204->ffcf_date.minute = mod_time->tm_min % 100;
-    //     t204->ffcf_date.second = mod_time->tm_sec % 100;
-    //     }
-    //                                     /* From parse_cmdline() */
-    // strncpy (t204->override, control_string, 128);
-    // if (strlen (control_string) > 127)
-    //     {
-    //     //msg ("Warning, command line override string in type 204 record", 1);
-    //     //msg ("truncated at 128 characters", 1);
-    //     t204->override[124] = t204->override[125] = t204->override[126] = '.';
-    //     t204->override[127] = 0;
-    //     }
-    // 
+    t204->ff_version[0];
+    t204->ff_version[0];
+
+    std::string tmp = getenv("HOPS_ARCH");
+    char_clear( &(t204->platform[0]), 8);
+    strncpy(&(t204->platform[0]), tmp.c_str(), std::min(8, (int) tmp.size() ) );
+
+    FillString(&(t204->control_file[0]), "/files/control_file", 96);
+
+    /* Look up modification date */
+    struct stat buf;
+    if( stat(t204->control_file, &buf) == 0)
+    {
+        struct tm *mod_time;
+        mod_time = gmtime (&(buf.st_mtime));
+        t204->ffcf_date.year = mod_time->tm_year + 1900;
+        t204->ffcf_date.day = mod_time->tm_yday + 1;
+        t204->ffcf_date.hour = mod_time->tm_hour;
+        t204->ffcf_date.minute = mod_time->tm_min % 100;
+        t204->ffcf_date.second = mod_time->tm_sec % 100;
+    }
+
+    //this is the text after 'set' on the command line, Ignore for now
+    std::string set_string = "unknown";
+    char_clear( &(t204->override[0]), 128);
+    strncpy(&(t204->override[0]), set_string.c_str(), std::min(128, (int) set_string.size() ) );
+
+    mho_json j = convertToJSON(*t204);
+    std::cout<<"type 204 json = "<<j.dump(2)<<std::endl;
+
     return 0;
 
 }
