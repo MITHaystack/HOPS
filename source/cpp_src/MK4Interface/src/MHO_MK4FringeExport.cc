@@ -5,6 +5,7 @@
 #include "MHO_MK4Type200Converter.hh"
 #include "MHO_MK4Type201Converter.hh"
 #include "MHO_MK4Type202Converter.hh"
+#include "MHO_MK4Type203Converter.hh"
 
 
 #include <algorithm>
@@ -147,7 +148,7 @@ int MHO_MK4FringeExport::fill_201( struct type_201 *t201)
     // This differs from all other diff. quantities
     FillDouble(t201->dispersion, "/fringe/ion_diff");
 
-    /* Ignore the rest of pulsar parameters for now */
+    // /* Ignore the rest of pulsar parameters for now */
     mho_json j = convertToJSON(*t201);
     std::cout<<"type 201 json = "<<j.dump(2)<<std::endl;
 
@@ -227,33 +228,32 @@ int MHO_MK4FringeExport::fill_202( struct type_202 *t202)
     FillDouble(t202->rem_ypos, "rem_station/position/y/value");
     FillDouble(t202->rem_zpos, "rem_station/position/z/value");
 
+    t202->u = 0.0;
+    t202->v = 0.0;
+    t202->uf = 0.0;
+    t202->vf = 0.0;
+    t202->ref_clock = 0.0;
+    t202->rem_clock = 0.0;
+    t202->ref_clockrate = 0.0;
+    t202->rem_clockrate = 0.0;
+    t202->ref_idelay = 0.0;
+    t202->rem_idelay = 0.0;
+    t202->ref_zdelay = 0.0;
+    t202->rem_zdelay = 0.0;
+    t202->ref_elev = 0.0;
+    t202->rem_elev = 0.0;
+    t202->ref_az = 0.0;
+    t202->rem_az = 0.0;
+
+
+
     //     double              u;                      /* Fringes/arcsec E-W 1GHz */
     //     double              v;                      /* Fringes/arcsec N-S 1GHz */
     //     double              uf;                     /* mHz/arcsec/GHz in R.A. */
     //     double              vf;                     /* mHz/arcsec/GHz in dec. */
 
 
-    // 
-    // strncpy (t202->baseline, param->baseline, 2);
-    //                                     /* Get station structs from root */
-    // refst = param->baseline[0];
-    // remst = param->baseline[1];
-    // ref = rem = NULL;
-    // for (i=0; i<root->ovex->nst; i++)
-    //     {
-    //     if (root->ovex->st[i].mk4_site_id == refst) 
-    //         ref = root->ovex->st + i;
-    //     if (root->ovex->st[i].mk4_site_id == remst) 
-    //         rem = root->ovex->st + i;
-    //     }
-    // if ((ref == NULL) || (rem == NULL))
-    //     {
-    //     if (ref == NULL)
-    //         //msg ("Failed to find station '%c' in ovex file", 2, refst);
-    //     else
-    //         //msg ("Failed to find station '%c' in ovex file", 2, remst);
-    //     return (-1);
-    //     }
+
     // 
     // 
     // 
@@ -340,85 +340,40 @@ int MHO_MK4FringeExport::fill_203( struct type_203 *t203)
 {
 
     clear_203(t203);
+    std::size_t nchannels = MAX_CHAN;
+    FillChannels( &(t203->channels[0]) , nchannels);
 
-//     extern struct mk4_corel cdata; 
-//     struct station_struct *refst, *remst;
-//     struct chan_struct *refch, *remch;
-//     int i, ch, chfound, rootch;
-//     struct type_101 *t101;
-//     clear_203 (t203);
-//                                         /* Get stations from root */
-//     refst = remst = NULL;
-//     for (i=0; i<root->nst; i++)
-//         {
-//         if (root->st[i].mk4_site_id == param->baseline[0]) refst = root->st + i;
-//         if (root->st[i].mk4_site_id == param->baseline[1]) remst = root->st + i;
-//         }
-//     if ((refst == NULL) || (remst == NULL))
-//         {
-//         if (refst == NULL)
-//             //msg ("Failed to find station '%c' in ovex file", 
-//                                                 2, param->baseline[0]);
-//         else
-//             //msg ("Failed to find station '%c' in ovex file", 
-//                                                 2, param->baseline[1]);
-//         return (-1);
-//         }
-// 
-// 
-//     ch = 0;
-//     for (i=0; i<cdata.index_space; i++)
-//         {
-//         t101 = cdata.index[i].t101;
-//                                         /* Empty slot? */
-//         if (t101 == NULL) continue;
-//                                         /* Is this a mirror? If so, skip */
-// /*         if (i != t101->primary) continue; */
-// 
-//         t203->channels[ch].index = t101->index;
-//                                         /* Assume this is constant for all channels */
-//                                         /* and both stations */
-//         t203->channels[ch].sample_rate = 1.0 / param->samp_period;
-//         strncpy (t203->channels[ch].ref_chan_id, t101->ref_chan_id, 8);
-//         strncpy (t203->channels[ch].rem_chan_id, t101->rem_chan_id, 8);
-//                                         /* Find the channel name in root */
-//         chfound = 0;
-//         for (rootch=0; rootch<MAX_CHAN; rootch++)
-//             {
-//             if (strncmp (t203->channels[ch].ref_chan_id, 
-//                         refst->channels[rootch].chan_name, 8) == 0)
-//                 {
-//                 t203->channels[ch].refsb = refst->channels[rootch].net_sideband;
-//                 t203->channels[ch].refpol = refst->channels[rootch].polarization;
-//                 t203->channels[ch].ref_freq = refst->channels[rootch].sky_frequency;
-//                 chfound++;
-//                 }
-//             if (strncmp (t203->channels[ch].rem_chan_id, 
-//                         remst->channels[rootch].chan_name, 8) == 0)
-//                 {
-//                 t203->channels[ch].remsb = remst->channels[rootch].net_sideband;
-//                 t203->channels[ch].rempol = remst->channels[rootch].polarization;
-//                 t203->channels[ch].rem_freq = remst->channels[rootch].sky_frequency;
-//                 chfound++;
-//                 }
-//             }
-//         if (chfound != 2)
-//             {
-//             //msg ("Could not find channel (%s,%s) in root", 2, t101->ref_chan_id,
-//                                     t101->rem_chan_id);
-//             return (-1);
-//             }
-//                                         /* Point to next t203 channel */
-//         ch++;
-//         if (ch == 8 * MAXFREQ)      // ensure there aren't too many channels
-//             {
-//             //msg ("Too many (%d) t101 channels for t203 record", 2, ch);
-//             return -1;
-//             }
-//         }
-// 
+    // std::string dummy = "01234567";
+    // 
+    // int ch = 0;
+    // for(int i=0; i<32; i++)
+    // {
+    //     t203->channels[ch].index = (short) i;
+    //     t203->channels[ch].sample_rate = 0.0;
+    //     strncpy (t203->channels[ch].ref_chan_id, dummy.c_str(), 8);
+    //     strncpy (t203->channels[ch].rem_chan_id, dummy.c_str(), 8);
+    // 
+    //     t203->channels[ch].refsb = ' ';
+    //     t203->channels[ch].refpol = ' ';
+    //     t203->channels[ch].ref_freq = 0.0;
+    // 
+    //     t203->channels[ch].remsb = ' ';
+    //     t203->channels[ch].rempol = ' ';
+    //     t203->channels[ch].rem_freq = 0.0;
+    // 
+    //     ch++;
+    //     if (ch == 8 * MAXFREQ)      // ensure there aren't too many channels
+    //     {
+    //         printf("Too many channels for t203 record \n");
+    //         return -1;
+    //     }
+    // }
+    
+    mho_json j = convertToJSON(*t203);
+    std::cout<<"type 203 json = "<<j.dump(2)<<std::endl;
+    
+
     return 0;
-
 }
 
 int MHO_MK4FringeExport::fill_204( struct type_204 *t204)
@@ -1018,6 +973,21 @@ int MHO_MK4FringeExport::fill_230( int fr, int ap, struct type_230 *t230)
 
 }
 
+//dummy, just clears the structure
+int MHO_MK4FringeExport::fill_221( struct type_221* t221)
+{
+    char version[3];
+    strncpy (t221->record_id, "221", 3);
+    sprintf (version, "%02d", T221_VERSION);
+    strncpy (t221->version_no, version, 2);
+    t221->unused1 = ' ';
+    t221->padded = 0;
+    t221->ps_length = 0;
+    t221->pplot[0] = '\0';
+
+    return 0;
+}
+
 int MHO_MK4FringeExport::fill_fringe_info(char *filename)
 {
 
@@ -1084,26 +1054,30 @@ int MHO_MK4FringeExport::fill_fringe_info(char *filename)
 
                                         /* Type 212 (ap-by-ap data) records */
                                         /* Allocate memory as a block */
-    // nap = pass->num_ap;
-    // size_of_t212 = sizeof (struct type_212) + 12*(nap-1);
-    // if ((nap % 2) == 1) size_of_t212 += 12;
-    // t212_array = (char *)malloc (pass->nfreq * size_of_t212);
-    // if (t212_array == NULL)
-    //     {
-    //     //msg ("Failure allocating memory for type 212 records!", 2);
-    //     return (0);
-    //     }
-    //                                     /* record the allocation */
-    // fringe.allocated[fringe.nalloc] = t212_array;
-    // fringe.nalloc += 1;
+    nap = fPStore->GetAs<int>("/config/total_naps");
+    int nfreq = 32;
+    size_of_t212 = sizeof (struct type_212) + 12*(nap-1);
+    if ((nap % 2) == 1) size_of_t212 += 12;
+    t212_array = (char *)malloc (nfreq * size_of_t212);
+    if (t212_array == NULL)
+    {
+        //msg ("Failure allocating memory for type 212 records!", 2);
+        return (0);
+    }
+                                        /* record the allocation */
+    fringe.allocated[fringe.nalloc] = t212_array;
+    fringe.nalloc += 1;
+
+
     //                                     /* Fill in records and pointers */
-    // fringe.n212 = pass->nfreq;
-    // for (fr=0; fr<pass->nfreq; fr++)
-    //     {
-    //     address = t212_array + (fr * size_of_t212);
-    //     fringe.t212[fr] = (struct type_212 *)address;
-    //     error += fill_212 (pass, &status, &param, fr, fringe.t212[fr]);
-    //     }
+    fringe.n212 = nfreq;
+    for (fr=0; fr < nfreq; fr++)
+    {
+        address = t212_array + (fr * size_of_t212);
+        fringe.t212[fr] = (struct type_212 *)address;
+        // error += fill_212 (pass, &status, &param, fr, fringe.t212[fr]);
+        error += fill_212(fr, fringe.t212[fr]);
+    }
     //                                     /* Cross power spectra (if requested) */
     // if (write_xpower)
     //     {
@@ -1172,7 +1146,8 @@ MHO_MK4FringeExport::output(std::string filename)
     int the_seq_no;
     bool test_mode = false;
 
-    struct type_221 *t221;
+    //struct type_221 *t221;
+
     struct type_222 *t222;
 
     // // for locking, see below and include/write_lock_mechanism.h
@@ -1226,16 +1201,21 @@ MHO_MK4FringeExport::output(std::string filename)
     //     return (1);
     //     }
 
+    struct type_221 t221;
+    fill_221(&t221);
+    fringe.t221 = &t221;
 
-    // fringe.t221 = t221;
-    // fringe.t221->ps_length = strlen (fringe.t221->pplot);
-    //         /* Record the memory allocation */
+    // fringe.t221 = NULL;
+
+    //fringe.t221 = t221;
+    //fringe.t221->ps_length = strlen (fringe.t221->pplot);
+            /* Record the memory allocation */
     // fringe.allocated[fringe.nalloc] = fringe.t221;
     // fringe.nalloc += 1;
-    // 
-    //        /* Fill in the control file record */
-    //        /* if desired */
-    // fringe.t222 = NULL;
+    
+           /* Fill in the control file record */
+           /* if desired */
+    fringe.t222 = NULL;
     // if(param.gen_cf_record)
     // {
     //     if (fill_222 (&param, &t222) != 0)
@@ -1373,7 +1353,7 @@ MHO_MK4FringeExport::FillString(char* destination, std::string param_path, int m
     std::string tmp; 
     bool ok = fPStore->Get(param_path, tmp);
     if(!ok){tmp = default_value;}
-    strncpy(destination, tmp.c_str(), std::min(max_length, (int) tmp.size() ) );
+    strncpy(destination, tmp.c_str(), std::min( max_length, (int) tmp.size() ) );
 }
 
 void 
@@ -1419,6 +1399,61 @@ MHO_MK4FringeExport::FillDate(struct date* destination, struct legacy_hops_date&
     destination->second = a_date.second;
 }
 
+void MHO_MK4FringeExport::FillChannels(struct ch_struct* chan_array, std::size_t nchannels)
+{
+    // visibility_type* vis_data = fCStore->GetObject<visibility_type>(std::string("vis"));
+    // if( vis_data == nullptr || wt_data == nullptr )
+    // {
+    //     msg_fatal("fringe", "could not find visibility object with name: vis." << eom);
+    //     std::exit(1);
+    // }
+    // auto chan_ax = &( std::get<CHANNEL_AXIS>(*vis_data) );
+
+    //limit to supported number of channels
+    std::size_t nchan = 32;// chan_ax->GetSize();
+    nchan = std::min(nchan, nchannels);
+    for(std::size_t ch=0; ch < nchan; ch++)
+    {
+        int findex = ch;
+        double bandwidth = 0;
+        short index = 0;
+        unsigned short int sample_rate = 0;
+        std::string refsb = "";
+        std::string remsb = "";
+        std::string refpol = "";
+        std::string rempol  = "";
+        double ref_freq = 0;
+        double rem_freq = 0;
+        std::string ref_chan_id = "";
+        std::string rem_chan_id = "";
+
+        // chan_ax->RetrieveIndexLabelKeyValue(ch, "index", findex);
+        // chan_ax->RetrieveIndexLabelKeyValue(ch, "net_sideband", refsb);
+        // chan_ax->RetrieveIndexLabelKeyValue(ch, "net_sideband", remsb);
+        // chan_ax->RetrieveIndexLabelKeyValue(ch, "sky_freq", ref_freq);
+        // chan_ax->RetrieveIndexLabelKeyValue(ch, "sky_freq", rem_freq);
+        // chan_ax->RetrieveIndexLabelKeyValue(ch, "bandwidth", bandwidth);
+        // chan_ax->RetrieveIndexLabelKeyValue(ch, "chan_id", rem_chan_id);
+        // chan_ax->RetrieveIndexLabelKeyValue(ch, "chan_id", ref_chan_id);
+
+        index = (short)findex;
+        sample_rate = (unsigned short int)  (2.0*bandwidth*1000.0); //sample rate = 2 x bandwidth (MHz) x (1000KHz/MHz)
+
+        chan_array[ch].index = index;
+        chan_array[ch].sample_rate = sample_rate;
+        chan_array[ch].refsb = ' '; //refsb[0];
+        chan_array[ch].remsb = ' '; //remsb[0];
+        chan_array[ch].refpol = ' '; //refpol[0];
+        chan_array[ch].rempol = ' '; //rempol[0];
+        chan_array[ch].ref_freq = ref_freq;
+        chan_array[ch].rem_freq = rem_freq;
+        char_clear(&(chan_array[ch].ref_chan_id[0]),8);
+        char_clear(&(chan_array[ch].rem_chan_id[0]),8);
+        strncpy( &(chan_array[ch].ref_chan_id[0]), ref_chan_id.c_str(), std::min(7, (int) ref_chan_id.size() ) );
+        strncpy( &(chan_array[ch].rem_chan_id[0]), rem_chan_id.c_str(), std::min(7, (int) rem_chan_id.size() ) );
+    }
+
+}
 
 
 }//end of namespace

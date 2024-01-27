@@ -76,6 +76,7 @@ class MHO_MK4FringeExport
         void FillDouble(double& destination, std::string param_path, double default_value = 0);
         void FillDate(struct date* destination, std::string param_path);
         void FillDate(struct date* destination, struct legacy_hops_date& a_date);
+        void FillChannels(struct ch_struct* chan_array, std::size_t nchannels);
 
         //the filling functions for each type
         int fill_200( struct type_200 *t200);
@@ -89,6 +90,8 @@ class MHO_MK4FringeExport
         int fill_208( struct type_202 *t202, struct type_208 *t208);
         int fill_210( struct type_210 *t210);
         int fill_212( int fr, struct type_212 *t212);
+        int fill_221( struct type_221* t221);
+
         int fill_222( struct type_222 **t222);
         int fill_230( int fr, int ap, struct type_230 *t230);
 
