@@ -79,12 +79,15 @@ int main(int argc, char** argv)
     ////////////////////////////////////////////////////////////////////////////
     bool test_mode = ffit->GetParameterStore()->GetAs<bool>("/cmdline/test_mode");
     bool show_plot = ffit->GetParameterStore()->GetAs<bool>("/cmdline/show_plot");
+
+    std::cout<<"param store = "<<std::endl;
+    ffit->GetParameterStore()->Dump();
     
     MHO_BasicFringeFitter* bffit = dynamic_cast< MHO_BasicFringeFitter* >(ffit);
     if(bffit != nullptr)
     {
         mho_json plot_data = bffit->GetPlotData(); //function only available in MHO_BasicFringeFitter
-        std::cout<<"plot data = "<<plot_data.dump(2)<<std::endl;
+        //std::cout<<"plot data = "<<plot_data.dump(2)<<std::endl;
         //open and dump to file
         if(!test_mode)
         {

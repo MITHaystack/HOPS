@@ -446,189 +446,56 @@ int MHO_MK4FringeExport::fill_207( struct type_207 *t207)
 
 int MHO_MK4FringeExport::fill_208( struct type_202 *t202, struct type_208 *t208)
 {
+    bool ok;
     clear_208(t208);
 
-    // struct type_208 
-    //     {
-    //     char                record_id[3];           /* Standard 3-digit id */
-    //     char                version_no[2];          /* Standard 2-digit version # */
-    //     char                unused1[3];             /* Reserved space */
-    //     char                quality;                /* Fringe quality 0 to 9 */
-    //     char                errcode;                /* A to F, maybe others */
-    //     char                tape_qcode[6];          /* For A-file backward compat. */
-    //     double              adelay;                 /* Apriori delay at FRT (usec) */
-    //     double              arate;                  /* Apriori rate at FRT (usec/sec) */
-    //     double              aaccel;                 /* Apriori accel at FRT (usec/sec^2) */
-    //     double              tot_mbd;                /* Total observed MBD (usec) */
-    //     double              tot_sbd;                /* Total observed SBD (usec) */
-    //     double              tot_rate;               /* Total observed rate (usec/sec) */
-    //     double              tot_mbd_ref;            /* Total observed MBD (usec) at ref stn epoch */
-    //     double              tot_sbd_ref;            /* Total observed SBD (usec) at ref stn epoch */
-    //     double              tot_rate_ref;           /* Total observed rate (usec/sec) at ref stn epoch */
-    //     float               resid_mbd;              /* MBD residual to model (usec) */
-    //     float               resid_sbd;              /* SBD residual to model (usec) */
-    //     float               resid_rate;             /* Rate residual to model (usec/sec) */
-    //     float               mbd_error;              /* MBD error calc'd from data (usec) */
-    //     float               sbd_error;              /* SBD error calc'd from data (usec) */
-    //     float               rate_error;             /* Rate error calc'd from data (usec/sec) */
-    //     float               ambiguity;              /* MBD ambiguity (usec) */
-    //     float               amplitude;              /* Coherent amplitude (corr. coeff.) */
-    //     float               inc_seg_ampl;           /* Incoherent segment addition amp. */
-    //     float               inc_chan_ampl;          /* Incoherent channel addition amp. */
-    //     float               snr;                    /* SNR in sigmas */
-    //     float               prob_false;             /* Probability of false detection */
-    //     float               totphase;               /* Total observed fringe phase (deg) */
-    //     float               totphase_ref;           /* Total phase at ref stn epoch */
-    //     float               resphase;               /* Residual earth-centered phase (deg) */
-    //     float               tec_error;              // std dev of tec estimate (TEC units)
-    //     };
-    // 
+    std::string qcode;
+    ok = fPStore->Get("/fringe/quality_code", qcode);
+    if(!ok){qcode = "0";}
+    t208->quality = qcode[0];
 
-    t208->resid_mbd = fPlotData["ResidMbd"].get<double>(); // "ResidMbd(us)"
+    std::string errcode;
+    ok = fPStore->Get("/fringe/error_code", errcode);     //TODO implement the error code calc!
+    errcode = " ";
+    t208->errcode = errcode[0];
 
+    //not used
+    strncpy(t208->tape_qcode, "000000", 6);
 
-    // int fr, ap;
-    // extern struct mk4_sdata sdata[]; 
-    // struct mk4_sdata *refsd, *remsd;
-    // double adelay, arate, aaccel, temp, adelay_ref, arate_ref;
-    // double apphase_ref, ref_stn_delay, ambig;
-    // double delta_mbd;               // change in mbd to get into desired ambiguity
-    // double delta_f;                 // difference between ref freq and nearest freq grid pt
-    // char qcode, errcode, tqcode[6];
-    // 
-    // 
-    // extern int
-    // compute_model (
-    // struct type_param *param,
-    // struct mk4_sdata *sdata,
-    // struct type_202 *t202,
-    // double *delay,
-    // double *rate,
-    // double *accel,
-    // double *delay_ref,
-    // double *rate_ref,
-    // double *ref_stn_delay);
-    // 
-    // extern int
-    // compute_qf (
-    // struct type_pass *pass,
-    // struct type_param *param,
-    // struct type_status *status,
-    // char *qcode,
-    // char *errcode,
-    // char *tape_qcode);
-    // 
-    // 
-    // clear_208 (t208);
-    // 
-    // //Add in an indicator of which polarization product we have:
-    // //Encode pass and param pol values in the unused1 padding portion of the type 208
-    // t208->unused1[0] = pass->pol + POLCHAR_OFFSET; 
-    // t208->unused1[1] = param->pol + POLCHAR_OFFSET;
-    // t208->unused1[2] = '\0';
-    // 
-    //                                     /* Compute apriori model */
-    // if (compute_model (param, sdata, t202, &adelay, &arate, &aaccel,
-    //                    &adelay_ref, &arate_ref, &ref_stn_delay) != 0)
-    //     {
-    //     //msg ("Model computation fails in fill_208()", 2);
-    //     return (-1);
-    //     }
-    // //msg ("baseline model delay, rate, accel = %g, %g, %g", 0, adelay,arate,aaccel);
-    //                                     /* Quality/error codes */
-    // if (compute_qf (pass, param, status, &qcode, &errcode, tqcode) != 0)
-    //     {
-    //     //msg ("Quality/error code computation fails in fill_208()", 2);
-    //     return (-1);
-    //     }
-    // t208->quality = qcode;
-    // t208->errcode = errcode;
-    // strncpy (t208->tape_qcode, tqcode, 6);
-    //                                     /* Convert to usec */
-    // t208->adelay = adelay * 1.0e6;
-    // t208->arate = arate * 1.0e6;
-    // t208->aaccel = aaccel * 1.0e6;
-    //                                     /* Totals, residuals, and errors */
-    //                                     // status values assigned by update(...GLOBAL)
-    //                                     // and subsequenly updated by interp(max555)
-    // t208->tot_mbd = t208->adelay + status->mbd_max_global;
-    // t208->tot_sbd = t208->adelay + status->sbd_max;
-    //                                     // anchor total mbd to sbd if desired
-    // ambig = 1.0 / status->freq_space;
-    // if (param->mbd_anchor == SBD)
-    //     {
-    //     delta_mbd = ambig * floor ((t208->tot_sbd - t208->tot_mbd) / ambig + 0.5);
-    //     t208->tot_mbd += delta_mbd;
-    //     }
-    // 
-    // t208->tot_rate = t208->arate + status->corr_dr_max;
-    //                                     /* ref. stn. time-tagged observables are
-    //                                      * approximated by combining retarded a prioris
-    //                                      * with non-retarded residuals */
-    // t208->tot_mbd_ref  = adelay_ref * 1e6 + status->mbd_max_global;
-    // t208->tot_sbd_ref  = adelay_ref * 1e6 + status->sbd_max;
-    //                                     // anchor ref mbd as above
-    // if (param->mbd_anchor == SBD)
-    //     t208->tot_mbd_ref += ambig 
-    //                        * floor ((t208->tot_sbd_ref - t208->tot_mbd_ref) / ambig + 0.5);
-    // t208->tot_rate_ref = arate_ref * 1e6 + status->corr_dr_max;
-    // 
-    // t208->resid_mbd = status->mbd_max_global;
-    // t208->resid_sbd = status->sbd_max;
-    // t208->resid_rate = status->corr_dr_max;
-    // t208->mbd_error = (status->nion == 0) ?
-    //     (float)(1.0 / (2.0 * M_PI * status->freq_spread * status->snr)) :
-    //     1e-3 * status->ion_sigmas[0];
-    //     //msg ("mbd sigma w/ no ionosphere %f with ion %f ps", 1, 
-    //         (double)(1e6 / (2.0 * M_PI * status->freq_spread * status->snr)), 1e3 * status->ion_sigmas[0]);
-    //                                     /* get proper weighting for sbd error estimate */
-    // status->sbavg = 0.0;
-    // for (fr = 0; fr < pass->nfreq; fr++)
-    //     for (ap = pass->ap_off; ap < pass->ap_off + pass->num_ap; ap++) 
-    //         status->sbavg += pass->pass_data[fr].data[ap].sband;
-    // status->sbavg /= status->total_ap;
-    // t208->sbd_error = (float)(sqrt (12.0) * status->sbd_sep * 4.0
-    //             / (2.0 * M_PI * status->snr * (2.0 - fabs (status->sbavg) )));
-    // temp = status->total_ap * param->acc_period / pass->channels;
-    // t208->rate_error = (float)(sqrt(12.0) 
-    //                     / ( 2.0 * M_PI * status->snr * param->ref_freq * temp));
-    // 
-    // t208->ambiguity = 1.0 / status->freq_space;
-    // t208->amplitude = status->delres_max/10000.;
-    // t208->inc_seg_ampl = status->inc_avg_amp;
-    // t208->inc_chan_ampl = status->inc_avg_amp_freq;
-    // t208->snr = status->snr;
-    // t208->prob_false = status->prob_false;
-    // status->apphase = fmod (param->ref_freq * t208->adelay * 360.0, 360.0);
-    // t208->totphase = fmod (status->apphase + status->coh_avg_phase
-    //                     * (180.0/M_PI) , 360.0);
-    //                                     /* Ref stn frame apriori delay usec */
-    // adelay_ref *= 1.0e6;
-    //                                     /* ref_stn_delay in sec, rate in usec/sec */
-    // adelay_ref -= ref_stn_delay * t208->resid_rate;
-    // apphase_ref = fmod (param->ref_freq * adelay_ref * 360.0, 360.0);
-    // t208->totphase_ref = fmod (apphase_ref + status->coh_avg_phase
-    //                     * (180.0/M_PI) , 360.0);
-    // t208->resphase = fmod (status->coh_avg_phase * (180.0/M_PI), 360.0);
-    //                                 // adjust phases for mbd ambiguity
-    // if (param->mbd_anchor == SBD)
-    //     {
-    //     delta_f = fmod (param->ref_freq - pass->pass_data[0].frequency, status->freq_space);
-    //     //msg ("delta_mbd %g delta_f %g", 1, delta_mbd, delta_f);
-    //     t208->totphase += 360.0 * delta_mbd * delta_f;
-    //     t208->totphase = fmod(t208->totphase, 360.0);
-    //     t208->resphase += 360.0 * delta_mbd * delta_f;
-    //     t208->resphase = fmod(t208->resphase, 360.0);
-    //     }
-    // 
-    // //msg ("residual phase %f", 1, t208->resphase);
-    // 
-    // t208->tec_error = (status->nion) ? status->ion_sigmas[2] : 0.0;
-    // 
+    FillDouble(t208->adelay, "/model/adelay");
+    FillDouble(t208->arate, "/model/arate");
+    FillDouble(t208->aaccel, "/model/aaccel");
+    FillDouble(t208->tot_mbd, "/fringe/total_mbdelay");
+    FillDouble(t208->tot_sbd, "/fringe/total_sbdelay");
+    FillDouble(t208->tot_rate, "/fringe/total_drate");
+
+    #pragma message("TODO FIXME -- the totals for the reference station are not yet calculated")
+    FillDouble(t208->tot_mbd_ref, "/fringe/total_mbdelay_ref");
+    FillDouble(t208->tot_sbd_ref, "/fringe/total_mbdelay_ref");
+    FillDouble(t208->tot_rate_ref, "/fringe/total_mbdelay_ref");
+
+    FillFloat(t208->resid_mbd, "/fringe/mbdelay");
+    FillFloat(t208->resid_sbd, "/fringe/sbdelay");
+    FillFloat(t208->resid_rate, "/fringe/drate");
+    FillFloat(t208->resid_mbd, "/fringe/mbd_error");
+    FillFloat(t208->resid_mbd, "/fringe/sbd_error");
+
+    FillFloat(t208->rate_error, "/fringe/drate_error");
+    FillFloat(t208->ambiguity, "/fringe/ambiguity");
+    FillFloat(t208->amplitude, "/fringe/famp");
+
+    #pragma message("TODO FIXME inc_seg, inc_chan amps, and PFD are in plot data, move to parameter store?")
+    FillFloat(t208->inc_seg_ampl, "/fringe/inc_seg_ampl");
+    FillFloat(t208->inc_chan_ampl, "/fringe/inc_chan_ampl");
+    FillFloat(t208->snr, "/fringe/snr");
+    FillFloat(t208->prob_false, "/fringe/pfd");
+    FillFloat(t208->totphase, "/fringe/tot_phase");
+    FillFloat(t208->totphase_ref, "/fringe/tot_phase_ref"); //DOES NOT EXIST YET
+    FillFloat(t208->resphase, "/fringe/resid_phase");
+    FillFloat(t208->tec_error, "/fringe/tec_error"); //DOES NOT EXIST YET
 
     mho_json j = convertToJSON(*t208);
     std::cout<<"type 208 json = "<<j.dump(2)<<std::endl;
-
 
     return 0;
 
@@ -1218,6 +1085,15 @@ MHO_MK4FringeExport::FillDouble(double& destination, std::string param_path, dou
 {
     double value;
     bool ok = fPStore->Get(param_path, value);
+    if(!ok){value = default_value;}
+    destination = value;
+}
+
+void 
+MHO_MK4FringeExport::FillFloat(float& destination, std::string param_path, float default_value)
+{
+    double value;
+    bool ok = fPStore->Get(param_path, value); //all params are stored as doubles
     if(!ok){value = default_value;}
     destination = value;
 }
