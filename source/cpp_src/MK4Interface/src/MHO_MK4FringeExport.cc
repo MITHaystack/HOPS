@@ -9,6 +9,7 @@
 #include "MHO_MK4Type204Converter.hh"
 
 #include "MHO_MK4Type208Converter.hh"
+#include "MHO_MK4Type210Converter.hh"
 
 
 #include <sys/stat.h>
@@ -502,20 +503,30 @@ int MHO_MK4FringeExport::fill_208( struct type_202 *t202, struct type_208 *t208)
 
 int MHO_MK4FringeExport::fill_210( struct type_210 *t210)
 {
-    clear_210(t210);
+    clear_210 (t210);
 
-    // int i;
-    // 
-    // clear_210 (t210);
-    //                                     /* Precalculated in make_plotdata() */
-    // for (i=0; i<pass->nfreq; i++)
-    //     {
-    //     t210->amp_phas[i].ampl = (float)abs_complex( status->fringe[i] ) / 10000.0;
-    //     t210->amp_phas[i].phase = (float)arg_complex( status->fringe[i] ) * 180.0 / pi;
-    //     }
-    // 
+    bool ok1, ok2;
+    std::vector<double> ch_amp;
+    std::vector<double> ch_phase;
+    int nchan;
+    FillInt(nchan, "/config/nchannels", 0);
+
+    ok1 = fPlotData.Get("/PLOT_INFO/Ampl", ch_amp);
+    ok2 = fPlotData.Get("/PLOT_INFO/Phase", ch_phase);
+    if(ok1 && ok2 && nchan > 0)
+    {
+        nchan = std::min(MAX_CHAN, nchan);
+        for(int i=0; i<nchan; i++)
+        {
+            t210->amp_phas[i].ampl = ch_amp[i];//(float)abs_complex( status->fringe[i] ) / 10000.0;
+            t210->amp_phas[i].phase = ch_phase[i];//(float)arg_complex( status->fringe[i] ) * 180.0 / pi;
+        }
+    }
+
+    mho_json j = convertToJSON(*t210);
+    std::cout<<"type 210 json = "<<j.dump(2)<<std::endl;
+
     return 0;
-
 }
 
 int MHO_MK4FringeExport::fill_212( int fr, struct type_212 *t212)
