@@ -325,7 +325,6 @@ int MHO_MK4FringeExport::fill_206( struct type_206 *t206)
     //TODO fill these in (though reason1 to 8 are not used and not populated in original code)
     // struct sidebands    accepted[64];           /* APs accepted by chan/sband */
     // struct sbweights    weights[64];            /* Samples per channel/sideband */
-    // float               intg_time;              /* Effective integration time (sec) */
     // float               accept_ratio;           /* % ratio min/max data accepted */
     // float               discard;                /* % data discarded */
     // struct sidebands    reason1[64];            /* APs filtered by chan/sband */
@@ -503,7 +502,7 @@ int MHO_MK4FringeExport::fill_210( struct type_210 *t210)
 int MHO_MK4FringeExport::fill_212(int fr, struct type_212 *t212)
 {
     clear_212(t212);
-
+    // 
     // struct type_212
     //     {
     //     char            record_id[3];   /* Standard 3-digit id */
@@ -517,40 +516,43 @@ int MHO_MK4FringeExport::fill_212(int fr, struct type_212 *t212)
     //     struct newphasor data[1];        /* data values, variable length array */
     //     };
     // 
-    // int i, ap_212, nap, ap, nrec, aprec, phase, pcal1, pcal2, nrec_per_fr, nalloc;
-    // double factor;
-    // struct data_corel *datum;
-    // extern struct type_plot plot;
-    // 
-    // clear_212 (t212);
-    // 
-    // nap = pass->num_ap;
+    // // int i, ap_212, nap, ap, nrec, aprec, phase, pcal1, pcal2, nrec_per_fr, nalloc;
+    // // double factor;
+    // // struct data_corel *datum;
+    // // extern struct type_plot plot;
+    // // 
+    // // clear_212 (t212);
+    // // 
+    // //nap = pass->num_ap;
+    // int nap = fPStore->GetAs<int>("/config/total_naps");
     // t212->nap = nap;
     // t212->first_ap = pass->ap_off;
     // t212->channel = fr;
     // t212->sbd_chan = status->max_delchan;
-    //                                     /* Loop over the aps for this pass */
+    // 
+    // 
+    // /* Loop over the aps for this pass */
     // for (ap = pass->ap_off; ap < pass->ap_off + nap; ap++)
-    //     {
-    //                                     /* Location in 212 array starts at 0 */
+    // {
+    //     /* Location in 212 array starts at 0 */
     //     ap_212 = ap - pass->ap_off;
-    //                                     /* Ptr to element in main data array */
+    //     /* Ptr to element in main data array */
     //     datum = pass->pass_data[fr].data + ap;
-    //                                     /* Data missing, put in -1 */
-    //                                     /* Check on weights is insurance */
+    //     /* Data missing, put in -1 */
+    //     /* Check on weights is insurance */
     //     if ((datum->flag == 0) || (plot.weights[fr][ap] == 0))
-    //         {
+    //     {
     //         t212->data[ap_212].amp = -1.0;
     //         t212->data[ap_212].phase = 0.0;
     //         t212->data[ap_212].weight = 0.0;
     //         continue;
-    //         }
-    //                                     /* Amplitude and phase */
+    //     }
+    //     /* Amplitude and phase */
     //     t212->data[ap_212].amp = abs_complex( plot.phasor[fr][ap] ) * status->amp_corr_fact;
     //     t212->data[ap_212].phase = arg_complex( plot.phasor[fr][ap] );
     //     t212->data[ap_212].weight = plot.weights[fr][ap];
-    //     }
-    
+    // }
+
     return 0;
 
 }
@@ -1183,7 +1185,6 @@ void MHO_MK4FringeExport::FillChannels(struct ch_struct* chan_array, std::size_t
 
         index = (short)findex;
         sample_rate = (unsigned short int)  (2.0*bandwidth*1000.0); //sample rate = 2 x bandwidth (MHz) x (1000KHz/MHz)
-
 
 
         chan_array[ch].index = index;
