@@ -10,19 +10,45 @@
 *Description:
 */
 
-#include <iostream>
-#include <string>
-
-//mk4 IO library
+//forward declaration of mk4 structs
+//we do this to keep the mk4 structures from 'leaking' into the new code via includes,
+//We want to make sure any interface to the old mk4 IO libraries is kept only
+//within the MK4Interface library.
 #ifndef HOPS3_USE_CXX
 extern "C"
 {
 #endif
-    #include "mk4_data.h"
-    #include "mk4_dfio.h"
+
+struct type_000;
+struct type_200;
+struct type_201;
+struct type_202;
+struct type_203;
+struct type_204;
+struct type_205;
+struct type_206;
+struct type_207;
+struct type_208;
+struct type_210;
+struct type_212;
+struct type_220;
+struct type_221;
+struct type_222;
+struct type_230;
+struct mk4_fringe;
+struct sky_coord;
+struct date;
+struct ch_struct;
+
 #ifndef HOPS3_USE_CXX
 }
 #endif
+
+
+
+
+#include <iostream>
+#include <string>
 
 //data/config passing classes
 #include "MHO_ParameterStore.hh"
@@ -73,7 +99,7 @@ class MHO_MK4FringeExport
         MHO_Tokenizer fTokenizer;
 
         //the fringe data to be filled and written
-        struct mk4_fringe fringe;
+        struct mk4_fringe* fringe;
 
         //utilities 
         void FillString(char* destination, std::string param_path, int max_length, std::string default_value="");
@@ -102,7 +128,7 @@ class MHO_MK4FringeExport
         int fill_222( struct type_222 **t222);
         int fill_230( int fr, int ap, struct type_230 *t230);
 
-        int fill_fringe_info(char *filename);
+        int fill_fringe_info(char *filename, struct mk4_fringe* fringe);
         int output(std::string filename);
 
         //original function prototypes (these also use a varying number of 'extern' global variables)
