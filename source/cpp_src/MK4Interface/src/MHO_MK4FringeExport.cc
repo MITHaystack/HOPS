@@ -1,5 +1,16 @@
 #include "MHO_MK4FringeExport.hh"
 
+//mk4 IO library
+#ifndef HOPS3_USE_CXX
+extern "C"
+{
+#endif
+    #include "mk4_data.h"
+    #include "mk4_dfio.h"
+#ifndef HOPS3_USE_CXX
+}
+#endif
+
 #include "MHO_LegacyDateConverter.hh"
 
 #include "MHO_MK4Type200Converter.hh"
@@ -311,7 +322,7 @@ int MHO_MK4FringeExport::fill_206( struct type_206 *t206)
     FillShort(t206->mbdsize, "/fringe/n_mbd_points");
     FillShort(t206->sbdsize, "/fringe/n_sbd_points");
 
-    //TODO fill these in (reason1-8 not used)
+    //TODO fill these in (though reason1 to 8 are not used and not populated in original code)
     // struct sidebands    accepted[64];           /* APs accepted by chan/sband */
     // struct sbweights    weights[64];            /* Samples per channel/sideband */
     // float               intg_time;              /* Effective integration time (sec) */
@@ -329,9 +340,7 @@ int MHO_MK4FringeExport::fill_206( struct type_206 *t206)
     mho_json j = convertToJSON(*t206);
     std::cout<<"type 206 json = "<<j.dump(2)<<std::endl;
 
-
     return 0;
-
 }
 
 int MHO_MK4FringeExport::fill_207( struct type_207 *t207)
@@ -491,10 +500,23 @@ int MHO_MK4FringeExport::fill_210( struct type_210 *t210)
     return 0;
 }
 
-int MHO_MK4FringeExport::fill_212( int fr, struct type_212 *t212)
+int MHO_MK4FringeExport::fill_212(int fr, struct type_212 *t212)
 {
     clear_212(t212);
 
+    // struct type_212
+    //     {
+    //     char            record_id[3];   /* Standard 3-digit id */
+    //     char            version_no[2];  /* Standard 2-digit version # */
+    //     char            unused;
+    //     short           nap;            /* Needed by IO library */
+    //     short           first_ap;       /* Number of first ap in record */
+    //     short           channel;        /* fourfit channel number */
+    //     short           sbd_chan;       /* Singleband delay channel */
+    //     char            unused2[2];
+    //     struct newphasor data[1];        /* data values, variable length array */
+    //     };
+    // 
     // int i, ap_212, nap, ap, nrec, aprec, phase, pcal1, pcal2, nrec_per_fr, nalloc;
     // double factor;
     // struct data_corel *datum;
@@ -528,7 +550,7 @@ int MHO_MK4FringeExport::fill_212( int fr, struct type_212 *t212)
     //     t212->data[ap_212].phase = arg_complex( plot.phasor[fr][ap] );
     //     t212->data[ap_212].weight = plot.weights[fr][ap];
     //     }
-    // 
+    
     return 0;
 
 }
@@ -675,9 +697,8 @@ int MHO_MK4FringeExport::fill_221( struct type_221* t221)
     return 0;
 }
 
-int MHO_MK4FringeExport::fill_fringe_info(char *filename)
+int MHO_MK4FringeExport::fill_fringe_info(char *filename, struct mk4_fringe* fringe)
 {
-
     struct type_200 t200;
     struct type_201 t201;
     struct type_202 t202;
@@ -700,7 +721,7 @@ int MHO_MK4FringeExport::fill_fringe_info(char *filename)
     //extern struct type_status status;
     
                                         /* Init */
-    clear_mk4fringe (&fringe);
+    clear_mk4fringe(fringe);
     
     ref_freq = 0.0;//param.ref_freq;
     
@@ -724,17 +745,17 @@ int MHO_MK4FringeExport::fill_fringe_info(char *filename)
     error += fill_208(&t202, &t208);
     error += fill_210(&t210);
     
-    fringe.id = &t2_id;
-    fringe.t200 = &t200;
-    fringe.t201 = &t201;
-    fringe.t202 = &t202;
-    fringe.t203 = &t203;
-    fringe.t204 = &t204;
-    fringe.t205 = &t205;
-    fringe.t206 = &t206;
-    fringe.t207 = &t207;
-    fringe.t208 = &t208;
-    fringe.t210 = &t210;
+    fringe->id = &t2_id;
+    fringe->t200 = &t200;
+    fringe->t201 = &t201;
+    fringe->t202 = &t202;
+    fringe->t203 = &t203;
+    fringe->t204 = &t204;
+    fringe->t205 = &t205;
+    fringe->t206 = &t206;
+    fringe->t207 = &t207;
+    fringe->t208 = &t208;
+    fringe->t210 = &t210;
 
     std::cout<<"done filling"<<std::endl;
 
@@ -752,18 +773,18 @@ int MHO_MK4FringeExport::fill_fringe_info(char *filename)
         return (0);
     }
                                         /* record the allocation */
-    fringe.allocated[fringe.nalloc] = t212_array;
-    fringe.nalloc += 1;
+    fringe->allocated[fringe->nalloc] = t212_array;
+    fringe->nalloc += 1;
 
 
     //                                     /* Fill in records and pointers */
-    fringe.n212 = nfreq;
+    fringe->n212 = nfreq;
     for (fr=0; fr < nfreq; fr++)
     {
         address = t212_array + (fr * size_of_t212);
-        fringe.t212[fr] = (struct type_212 *)address;
+        fringe->t212[fr] = (struct type_212 *)address;
         // error += fill_212 (pass, &status, &param, fr, fringe.t212[fr]);
-        error += fill_212(fr, fringe.t212[fr]);
+        error += fill_212(fr, fringe->t212[fr]);
     }
     //                                     /* Cross power spectra (if requested) */
     // if (write_xpower)
@@ -815,6 +836,10 @@ int MHO_MK4FringeExport::fill_fringe_info(char *filename)
 int
 MHO_MK4FringeExport::output(std::string filename)
 {
+
+    struct mk4_fringe fringe;
+
+
     std::cout<<"output"<<std::endl;
 
     char fringe_name[256];
@@ -874,7 +899,7 @@ MHO_MK4FringeExport::output(std::string filename)
     //     return (1);
     //     }
         /* Fill in fringe file structure */
-    if(fill_fringe_info(fringe_name) != 0)
+    if(fill_fringe_info(fringe_name, &fringe) != 0)
     {
         //msg ("Error filling fringe records", 2);
         return 1;
@@ -1106,13 +1131,29 @@ MHO_MK4FringeExport::FillDate(struct date* destination, struct legacy_hops_date&
 
 void MHO_MK4FringeExport::FillChannels(struct ch_struct* chan_array, std::size_t nchannels)
 {
-    // visibility_type* vis_data = fCStore->GetObject<visibility_type>(std::string("vis"));
-    // if( vis_data == nullptr || wt_data == nullptr )
-    // {
-    //     msg_fatal("fringe", "could not find visibility object with name: vis." << eom);
-    //     std::exit(1);
-    // }
-    // auto chan_ax = &( std::get<CHANNEL_AXIS>(*vis_data) );
+    visibility_type* vis_data = fCStore->GetObject<visibility_type>(std::string("vis"));
+    if( vis_data == nullptr )
+    {
+        msg_fatal("fringe", "could not find visibility object with name: vis." << eom);
+        std::exit(1);
+    }
+    auto chan_ax = &( std::get<CHANNEL_AXIS>(*vis_data) );
+
+
+    std::string polprod;
+    bool ok = fPStore->Get("/config/polprod", polprod);
+    char refpol = ' ';
+    char rempol  = ' ';
+    if(ok && polprod.size() == 2)
+    {
+        refpol = polprod[0];
+        rempol = polprod[1];
+    }
+    if(ok && polprod.size() == 1)
+    {
+        refpol = polprod[0];
+        rempol = polprod[0];
+    }
 
     //limit to supported number of channels
     std::size_t nchan = 32;// chan_ax->GetSize();
@@ -1125,31 +1166,32 @@ void MHO_MK4FringeExport::FillChannels(struct ch_struct* chan_array, std::size_t
         unsigned short int sample_rate = 0;
         std::string refsb = "";
         std::string remsb = "";
-        std::string refpol = "";
-        std::string rempol  = "";
+
         double ref_freq = 0;
         double rem_freq = 0;
         std::string ref_chan_id = "";
         std::string rem_chan_id = "";
 
-        // chan_ax->RetrieveIndexLabelKeyValue(ch, "index", findex);
-        // chan_ax->RetrieveIndexLabelKeyValue(ch, "net_sideband", refsb);
-        // chan_ax->RetrieveIndexLabelKeyValue(ch, "net_sideband", remsb);
-        // chan_ax->RetrieveIndexLabelKeyValue(ch, "sky_freq", ref_freq);
-        // chan_ax->RetrieveIndexLabelKeyValue(ch, "sky_freq", rem_freq);
-        // chan_ax->RetrieveIndexLabelKeyValue(ch, "bandwidth", bandwidth);
-        // chan_ax->RetrieveIndexLabelKeyValue(ch, "chan_id", rem_chan_id);
-        // chan_ax->RetrieveIndexLabelKeyValue(ch, "chan_id", ref_chan_id);
+        chan_ax->RetrieveIndexLabelKeyValue(ch, "index", findex);
+        chan_ax->RetrieveIndexLabelKeyValue(ch, "net_sideband", refsb);
+        chan_ax->RetrieveIndexLabelKeyValue(ch, "net_sideband", remsb);
+        chan_ax->RetrieveIndexLabelKeyValue(ch, "sky_freq", ref_freq);
+        chan_ax->RetrieveIndexLabelKeyValue(ch, "sky_freq", rem_freq);
+        chan_ax->RetrieveIndexLabelKeyValue(ch, "bandwidth", bandwidth);
+        chan_ax->RetrieveIndexLabelKeyValue(ch, "chan_id", rem_chan_id);
+        chan_ax->RetrieveIndexLabelKeyValue(ch, "chan_id", ref_chan_id);
 
         index = (short)findex;
         sample_rate = (unsigned short int)  (2.0*bandwidth*1000.0); //sample rate = 2 x bandwidth (MHz) x (1000KHz/MHz)
 
+
+
         chan_array[ch].index = index;
         chan_array[ch].sample_rate = sample_rate;
-        chan_array[ch].refsb = ' '; //refsb[0];
-        chan_array[ch].remsb = ' '; //remsb[0];
-        chan_array[ch].refpol = ' '; //refpol[0];
-        chan_array[ch].rempol = ' '; //rempol[0];
+        chan_array[ch].refsb = refsb[0];
+        chan_array[ch].remsb = remsb[0];
+        chan_array[ch].refpol = refpol;
+        chan_array[ch].rempol = rempol;
         chan_array[ch].ref_freq = ref_freq;
         chan_array[ch].rem_freq = rem_freq;
         char_clear(&(chan_array[ch].ref_chan_id[0]),8);

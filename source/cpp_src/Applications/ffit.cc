@@ -27,6 +27,12 @@
     #include "MHO_PythonOperatorBuilder.hh"
 #endif
 
+#define EXPORT_MK4
+
+#ifdef EXPORT_MK4
+#include "MHO_MK4FringeExport.hh"
+#endif
+
 using namespace hops;
 
 int main(int argc, char** argv)
@@ -80,14 +86,14 @@ int main(int argc, char** argv)
     bool test_mode = ffit->GetParameterStore()->GetAs<bool>("/cmdline/test_mode");
     bool show_plot = ffit->GetParameterStore()->GetAs<bool>("/cmdline/show_plot");
 
-    std::cout<<"param store = "<<std::endl;
-    ffit->GetParameterStore()->Dump();
+    // std::cout<<"param store = "<<std::endl;
+    // ffit->GetParameterStore()->Dump();
     
     MHO_BasicFringeFitter* bffit = dynamic_cast< MHO_BasicFringeFitter* >(ffit);
     if(bffit != nullptr)
     {
         mho_json plot_data = bffit->GetPlotData(); //function only available in MHO_BasicFringeFitter
-        std::cout<<"plot data = "<<plot_data.dump(2)<<std::endl;
+        // std::cout<<"plot data = "<<plot_data.dump(2)<<std::endl;
         //open and dump to file
         if(!test_mode)
         {
@@ -95,6 +101,15 @@ int main(int argc, char** argv)
             std::ofstream fdumpFile(output_file.c_str(), std::ofstream::out);
             fdumpFile << plot_data;
             fdumpFile.close();
+
+            #ifdef EXPORT_MK4
+            MHO_MK4FringeExport fexporter;
+            fexporter.SetParameterStore(ffit->GetParameterStore());
+            fexporter.SetPlotData(plot_data);
+            fexporter.SetContainerStore(ffit->GetContainerStore());
+            fexporter.SetFilename("/home/barrettj/work/projects/hops-git/build/test_data/vt9105/GE.X.1.ABCDEF");
+            fexporter.ExportFringeFile();
+            #endif
         }
         
         #ifdef USE_PYBIND11
