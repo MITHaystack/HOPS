@@ -78,6 +78,7 @@ class MHO_MK4FringeExport
         //utilities 
         void FillString(char* destination, std::string param_path, int max_length, std::string default_value="");
         void FillInt(int& destination, std::string param_path, int default_value = 0);
+        void FillShort(short& destination, std::string param_path, int default_value = 0);
         void FillDouble(double& destination, std::string param_path, double default_value = 0);
         void FillFloat(float& destination, std::string param_path, float default_value = 0);
         void FillDate(struct date* destination, std::string param_path);

@@ -8,7 +8,7 @@
 #include "MHO_MK4Type203Converter.hh"
 #include "MHO_MK4Type204Converter.hh"
 #include "MHO_MK4Type205Converter.hh"
-
+#include "MHO_MK4Type206Converter.hh"
 #include "MHO_MK4Type208Converter.hh"
 #include "MHO_MK4Type210Converter.hh"
 
@@ -193,6 +193,7 @@ int MHO_MK4FringeExport::fill_204( struct type_204 *t204)
 {
     clear_204(t204);
 
+    //TODO FIXME -- what shoudl these values be?
     t204->ff_version[0] = 4;
     t204->ff_version[1] = 0;
 
@@ -257,7 +258,6 @@ int MHO_MK4FringeExport::fill_205( struct type_203 *t203, struct type_205 *t205)
     t205->search[4] = mb_win[0];
     t205->search[5] = mb_win[1];
 
-    //TODO FIXME, these parameters are not yet populated
     FillDate(&(t205->start), "/fringe/start_date");
     FillDate(&(t205->stop), "/fringe/stop_date");
 
@@ -292,51 +292,44 @@ int MHO_MK4FringeExport::fill_206( struct type_206 *t206)
 {
     clear_206(t206);
 
-    // int int_start, max, min, fr, num_ap, samp_per_ap;
-    // extern struct type_filter filter;
-    // 
-    // clear_206 (t206);
-    // 
-    // t206->start.year = root->start_time.year;
-    // t206->start.second = fmod ((double)param->start,  60.0);
-    // int_start = param->start;               /* In seconds */
-    // int_start /= 60;                        /* Now in minutes */
-    // t206->start.minute = int_start % 60;
-    // int_start /= 60;                        /* Now in hours */
-    // t206->start.hour = int_start % 24;
-    // t206->start.day = int_start / 24 + 1;   // add 1 to make doy
-    // 
-    // t206->first_ap = pass->ap_off;
-    // t206->last_ap = pass->ap_off + pass->num_ap;
-    //                                         /* Take account of fractional APs */
-    // if (pass->channels > 0)
-    //     t206->intg_time = status->total_ap_frac * param->acc_period / pass->channels;
-    // 
-    // // this arises from bandwidth editing, see discussion in adjust_snr.c
-    // if (status->tot_sb_bw_aperr > 0.0)
-    //     t206->intg_time += status->tot_sb_bw_aperr * param->acc_period / pass->channels;
-    // 
-    // min = max = status->ap_num[0][0] + status->ap_num[1][0];
-    // samp_per_ap = param->acc_period / param->samp_period;
-    // for (fr = 0; fr < pass->nfreq; fr++)
-    //     {
-    //     t206->accepted[fr].usb = status->ap_num[0][fr];
-    //     t206->accepted[fr].lsb = status->ap_num[1][fr];
-    //     num_ap = status->ap_num[0][fr] + status->ap_num[1][fr];
-    //     if (num_ap > max) max = num_ap;
-    //     if (num_ap < min) min = num_ap;
-    //                                         /* Number of samples by freq/sband */
-    //     t206->weights[fr].usb = status->ap_frac[0][fr] * samp_per_ap;
-    //     t206->weights[fr].lsb = status->ap_frac[1][fr] * samp_per_ap;
-    //     }
-    // if (max > 0) t206->accept_ratio = (float)(100 * min) / (float)max;
-    // t206->discard = (float)(100 * filter.ndiscard) / 
-    //                     (float)(status->total_ap + filter.ndiscard);
-    // 
-    // t206->ratesize = status->drsp_size;
-    // t206->mbdsize = status->grid_points;
-    // t206->sbdsize = param->nlags * 4;
-    // 
+    //this is the same as the type 205 start parameter as far as I can tell...
+    FillDate(&(t206->start), "/fringe/start_date");
+
+    double first_ap;
+    double last_ap;
+    double ap_period;
+    FillDouble(ap_period, "/config/ap_period");
+    FillDouble(first_ap, "/start_offset");
+    FillDouble(last_ap, "/stop_offset");
+    short first = first_ap/ap_period;
+    short last = last_ap/ap_period;
+    t206->first_ap = first;
+    t206->last_ap = last;
+
+    FillFloat(t206->intg_time, "/fringe/integration_time");
+    FillShort(t206->ratesize, "/fringe/n_drsp_points");
+    FillShort(t206->mbdsize, "/fringe/n_mbd_points");
+    FillShort(t206->sbdsize, "/fringe/n_sbd_points");
+
+    //TODO fill these in (reason1-8 not used)
+    // struct sidebands    accepted[64];           /* APs accepted by chan/sband */
+    // struct sbweights    weights[64];            /* Samples per channel/sideband */
+    // float               intg_time;              /* Effective integration time (sec) */
+    // float               accept_ratio;           /* % ratio min/max data accepted */
+    // float               discard;                /* % data discarded */
+    // struct sidebands    reason1[64];            /* APs filtered by chan/sband */
+    // struct sidebands    reason2[64];            /* APs filtered by chan/sband */
+    // struct sidebands    reason3[64];            /* APs filtered by chan/sband */
+    // struct sidebands    reason4[64];            /* APs filtered by chan/sband */
+    // struct sidebands    reason5[64];            /* APs filtered by chan/sband */
+    // struct sidebands    reason6[64];            /* APs filtered by chan/sband */
+    // struct sidebands    reason7[64];            /* APs filtered by chan/sband */
+    // struct sidebands    reason8[64];            /* APs filtered by chan/sband */
+
+    mho_json j = convertToJSON(*t206);
+    std::cout<<"type 206 json = "<<j.dump(2)<<std::endl;
+
+
     return 0;
 
 }
@@ -1057,6 +1050,15 @@ MHO_MK4FringeExport::FillInt(int& destination, std::string param_path, int defau
     bool ok = fPStore->Get(param_path, value);
     if(!ok){value = default_value;}
     destination = value;
+}
+
+void 
+MHO_MK4FringeExport::FillShort(short& destination, std::string param_path, int default_value)
+{
+    int value;
+    bool ok = fPStore->Get(param_path, value);
+    if(!ok){value = default_value;}
+    destination = (short) value;
 }
 
 void 
