@@ -187,6 +187,8 @@ int main(int argc, char** argv)
           "sbdelay": 0.001378,
           "snr": 85.18803989377658,
           "start_frequency": 3032.4,
+          "start_date": "2019y105d18h00m00s",
+          "stop_date": "2019y105d18h00m27s",
           "theory_freqrms_amp": 6.640432455713356,
           "theory_freqrms_phase": 3.8046875385406818,
           "theory_timerms_amp": 3.1057778936616627,

@@ -179,6 +179,7 @@ MHO_InitialFringeInfo::precalculate_quantities(MHO_ContainerStore* conStore, MHO
     double stop_offset = ap_ax->at( ap_ax->GetSize()-1 ) + ap_delta;
     paramStore->Set("stop_offset", stop_offset);
 
+
     //the number of channels present after cuts
     int nchan = chan_ax->GetSize();
     paramStore->Set("/config/nchannels", nchan);
@@ -201,6 +202,16 @@ MHO_InitialFringeInfo::precalculate_quantities(MHO_ContainerStore* conStore, MHO
     auto offset_to_frt_duration = frt - start_time;
     double frt_offset = std::chrono::duration<double>(offset_to_frt_duration).count();
     paramStore->Set("/config/frt_offset", frt_offset);
+
+    //calculate the data start and stop dates (including the start/stop offsets)
+    int64_t start_offset_ns = 1e9*start_offset; 
+    int64_t stop_offset_ns = 1e9*stop_offset;
+    auto data_start_tp = start_time + std::chrono::nanoseconds(start_offset_ns);
+    auto data_stop_tp = start_time + std::chrono::nanoseconds(stop_offset_ns);
+    std::string data_start_vex = hops_clock::to_vex_format(data_start_tp);
+    std::string data_stop_vex = hops_clock::to_vex_format(data_stop_tp);
+    paramStore->Set("/fringe/start_date", data_start_vex); //store as vex formatted string
+    paramStore->Set("/fringe/stop_date", data_stop_vex);
 
     double adelay = delay_model.GetDelay();
     double arate = delay_model.GetRate();

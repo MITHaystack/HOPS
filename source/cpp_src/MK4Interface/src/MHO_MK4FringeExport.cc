@@ -281,8 +281,6 @@ int MHO_MK4FringeExport::fill_205( struct type_203 *t203, struct type_205 *t205)
         }
     }
     
-    std::cout<<"NCHAN = "<<nchan<<std::endl;
-
     mho_json j = convertToJSON(*t205);
     std::cout<<"type 205 json = "<<j.dump(2)<<std::endl;
 
