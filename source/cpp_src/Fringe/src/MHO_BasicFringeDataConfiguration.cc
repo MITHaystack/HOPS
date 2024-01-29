@@ -39,6 +39,16 @@ MHO_BasicFringeDataConfiguration::parse_command_line(int argc, char** argv, MHO_
     std::string reftime = ""; //'-T' specify the fourfit reference time - not yet enabled
     bool xpower_output = false; //'-x' same as option '-p' we no long use pgplot/xwindows
     std::string output_file = "fdump.json"; //'-o' specify the output file, for testing
+    
+    //store the raw arguments in the parameter store
+    std::vector<std::string> arglist;
+    for(int i=0; i<argc; i++){arglist.push_back( std::string(argv[i]) );}
+    paramStore->Set("/cmdline/args", arglist);
+    
+    //detect and parse the set_string, if it exists, so we can ignore items which may be 
+    //valid control parameters but look like options to get opt (e.g. 'set start -3')
+    int set_arg_index = -1;
+    std::string set_string = parse_set_string(arglist, set_arg_index);
 
     static struct option longOptions[] = 
     {
@@ -66,7 +76,7 @@ MHO_BasicFringeDataConfiguration::parse_command_line(int argc, char** argv, MHO_
     //these are nearly all of the options of the original fourfit
     //However, some are disabled, and the '-d' option has been coopted to point 
     //to the data directory, and '-o' is used to specify the output file name
-    static const char* optString = "hab:c:d:ef:m:n:pr:s:tuxP:T:Xo:";
+    static const char* optString = "+hab:c:d:ef:m:n:pr:s:tuxP:T:Xo:";
     //fourfit option string is "+ab:c:d:ef:m:n:pr:s:tuxP:T:X"
 
     while(true)
@@ -149,9 +159,13 @@ MHO_BasicFringeDataConfiguration::parse_command_line(int argc, char** argv, MHO_
                 output_file = std::string(optarg);
                 break;
             case '?':
-                //invalid option or missing argument
-                msg_fatal("fringe", "invalid option or missing argument, use '-h' for help." << eom);
-                std::exit(1);
+                if(set_arg_index != -1 && optind < set_arg_index)
+                {
+                    //invalid option or missing argument
+                    msg_fatal("fringe", "invalid option or missing argument, use '-h' for help." << eom);
+                    std::exit(1);
+                }
+                break;
             default:
                 std::cout << usage << std::endl;
                 return 1;
@@ -160,15 +174,7 @@ MHO_BasicFringeDataConfiguration::parse_command_line(int argc, char** argv, MHO_
     
     //set the message level
     set_message_level(message_level);
-    
-    //store the raw arguments in the parameter store
-    std::vector<std::string> arglist;
-    for(int i=0; i<argc; i++){arglist.push_back( std::string(argv[i]) );}
-    paramStore->Set("/cmdline/args", arglist);
-    
-    //detect and parse the set_string, if it exists
-    int set_arg_index = -1;
-    std::string set_string = parse_set_string(arglist, set_arg_index);
+
 
     //resolve remaining positional arguments (data directory) and put them in the parameter store
     std::vector< std::string > pargs;
