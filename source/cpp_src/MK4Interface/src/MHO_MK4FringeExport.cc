@@ -207,8 +207,8 @@ int MHO_MK4FringeExport::fill_203( struct type_203 *t203)
     std::size_t nchannels = MAX_CHAN;
     FillChannels( &(t203->channels[0]) , nchannels);
 
-    // mho_json j = convertToJSON(*t203);
-    // std::cout<<"type 203 json = "<<j.dump(2)<<std::endl;
+    mho_json j = convertToJSON(*t203);
+    std::cout<<"type 203 json = "<<j.dump(2)<<std::endl;
 
     return 0;
 }
@@ -1202,15 +1202,14 @@ void MHO_MK4FringeExport::FillChannels(struct ch_struct* chan_array, std::size_t
         index = (short)findex;
         sample_rate = (unsigned short int)  (2.0*bandwidth*1000.0); //sample rate = 2 x bandwidth (MHz) x (1000KHz/MHz)
 
-
         chan_array[ch].index = index;
         chan_array[ch].sample_rate = sample_rate;
         chan_array[ch].refsb = refsb[0];
         chan_array[ch].remsb = remsb[0];
         chan_array[ch].refpol = refpol;
         chan_array[ch].rempol = rempol;
-        chan_array[ch].ref_freq = ref_freq;
-        chan_array[ch].rem_freq = rem_freq;
+        chan_array[ch].ref_freq = ref_freq*1e6; //convert to Hz
+        chan_array[ch].rem_freq = rem_freq*1e6; //convert to Hz
         char_clear(&(chan_array[ch].ref_chan_id[0]),8);
         char_clear(&(chan_array[ch].rem_chan_id[0]),8);
         strncpy( &(chan_array[ch].ref_chan_id[0]), ref_chan_id.c_str(), std::min(7, (int) ref_chan_id.size() ) );
