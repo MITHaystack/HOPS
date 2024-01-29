@@ -81,7 +81,7 @@ int MHO_MK4FringeExport::fill_200( struct type_200 *t200)
     FillDate(&(t200->fourfit_date), now_date);
 
     //TODO FIXME -- store and retrieve the correlation date info in HOPS4
-    //currently we do not have the correlation date information, so just the current time
+    //currently we do not have the correlation date information, so just use the current time
     FillDate(&(t200->corr_date), now_date);
 
     //write out the fourfit reference time 
@@ -119,7 +119,7 @@ int MHO_MK4FringeExport::fill_201( struct type_201 *t201)
     t201->coord.dec_secs = src_coords.dec_secs;
 
     //TODO FIXME, just use 2000 for now
-    //this is stored in the root file as "ref_coord_frame", but we have yet to extract it and add to the parameter store
+    //this may be stored optionally in the root file as "ref_coord_frame", but we have yet to extract it and add to the parameter store
     t201->epoch = 2000;
     ///t201->epoch = 1950;
 
@@ -181,7 +181,10 @@ int MHO_MK4FringeExport::fill_202( struct type_202 *t202)
 
     double ref_freq;
     FillDouble(ref_freq, "/control/config/ref_freq");
-    double lambda = 299.792458 / ref_freq; // wavelength (m)
+
+    double speed_of_light_Mm = 299.792458; // in mega-meters (?!)
+    double radians_to_arcsec = 4.848137e-6;
+    double lambda = speed_of_light_Mm / ref_freq; // wavelength (m)
 
     double ref_u, ref_v; 
     double rem_u, rem_v;
@@ -190,8 +193,8 @@ int MHO_MK4FringeExport::fill_202( struct type_202 *t202)
     FillDouble(rem_u, "/rem_station/u");
     FillDouble(rem_v, "/rem_station/v");
 
-    double du = 4.848137e-6 * (rem_u - ref_u) / lambda;
-    double dv = 4.848137e-6 * (rem_v - ref_v) / lambda;
+    double du = radians_to_arcsec * (rem_u - ref_u) / lambda;
+    double dv = radians_to_arcsec * (rem_v - ref_v) / lambda;
     t202->u = (float) du;
     t202->v = (float) dv;
 
@@ -207,8 +210,8 @@ int MHO_MK4FringeExport::fill_203( struct type_203 *t203)
     std::size_t nchannels = MAX_CHAN;
     FillChannels( &(t203->channels[0]) , nchannels);
 
-    mho_json j = convertToJSON(*t203);
-    std::cout<<"type 203 json = "<<j.dump(2)<<std::endl;
+    // mho_json j = convertToJSON(*t203);
+    // std::cout<<"type 203 json = "<<j.dump(2)<<std::endl;
 
     return 0;
 }
@@ -240,15 +243,15 @@ int MHO_MK4FringeExport::fill_204( struct type_204 *t204)
         t204->ffcf_date.second = mod_time->tm_sec % 100;
     }
 
-    //this is the text after 'set' on the command line, Ignore for now
+    //this is the text after  the (optional) 'set' keyword on the command line
     std::string set_string;
     bool ok = fPStore->Get("/cmdline/set_string", set_string);
     if(!ok){set_string="";}
     char_clear( &(t204->override[0]), 128);
     strncpy(&(t204->override[0]), set_string.c_str(), std::min(128, (int) set_string.size() ) );
 
-    mho_json j = convertToJSON(*t204);
-    std::cout<<"type 204 json = "<<j.dump(2)<<std::endl;
+    // mho_json j = convertToJSON(*t204);
+    // std::cout<<"type 204 json = "<<j.dump(2)<<std::endl;
 
     return 0;
 
@@ -300,10 +303,8 @@ int MHO_MK4FringeExport::fill_205( struct type_203 *t203, struct type_205 *t205)
         for(int i=0; i<nchan; i++)
         {
             t205->ffit_chan[i].ffit_chan_id = ch_labels[i][0];
-            t205->ffit_chan[i].channels[0] = (short) i; //this is effectively not used
-            t205->ffit_chan[i].channels[1] = (short) i; //this is effectively not used
-            t205->ffit_chan[i].channels[2] = (short) i; //this is effectively not used
-            t205->ffit_chan[i].channels[3] = (short) i; //this is effectively not used
+            //this element (array 0-3) is effectively useless (we have no type_101 records to reference)
+            t205->ffit_chan[i].channels[0] = (short) i; 
         }
     }
     
@@ -336,7 +337,7 @@ int MHO_MK4FringeExport::fill_206( struct type_206 *t206)
     FillShort(t206->ratesize, "/fringe/n_drsp_points");
     FillShort(t206->mbdsize, "/fringe/n_mbd_points");
 
-    //do not use: "/fringe/n_sbd_points, instead follow recipe from fll_206
+    //do not use: "/fringe/n_sbd_points", instead follow recipe from fll_206
     //this is due to fact that we drop every-other-point directly after the FFT
     //while HOPS3 removes them at a later stage
     int nlags = fPStore->GetAs<int>("/config/nlags");
@@ -348,15 +349,7 @@ int MHO_MK4FringeExport::fill_206( struct type_206 *t206)
     // float               accept_ratio;           /* % ratio min/max data accepted */
     // float               discard;                /* % data discarded */
 
-    // These are not popluated in the original code - ignore
-    // struct sidebands    reason1[64];            /* APs filtered by chan/sband */
-    // struct sidebands    reason2[64];            /* APs filtered by chan/sband */
-    // struct sidebands    reason3[64];            /* APs filtered by chan/sband */
-    // struct sidebands    reason4[64];            /* APs filtered by chan/sband */
-    // struct sidebands    reason5[64];            /* APs filtered by chan/sband */
-    // struct sidebands    reason6[64];            /* APs filtered by chan/sband */
-    // struct sidebands    reason7[64];            /* APs filtered by chan/sband */
-    // struct sidebands    reason8[64];            /* APs filtered by chan/sband */
+    // struct sidebands reason1-reason8 are not popluated in the original code - so ignore
 
     // mho_json j = convertToJSON(*t206);
     // std::cout<<"type 206 json = "<<j.dump(2)<<std::endl;
@@ -468,6 +461,7 @@ int MHO_MK4FringeExport::fill_208( struct type_202 *t202, struct type_208 *t208)
     FillDouble(t208->tot_mbd_ref, "/fringe/total_mbdelay_ref");
     FillDouble(t208->tot_sbd_ref, "/fringe/total_mbdelay_ref");
     FillDouble(t208->tot_rate_ref, "/fringe/total_mbdelay_ref");
+    FillFloat(t208->totphase_ref, "/fringe/tot_phase_ref"); //DOES NOT EXIST YET
 
     FillFloat(t208->resid_mbd, "/fringe/mbdelay");
     FillFloat(t208->resid_sbd, "/fringe/sbdelay");
@@ -486,7 +480,6 @@ int MHO_MK4FringeExport::fill_208( struct type_202 *t202, struct type_208 *t208)
     FillFloat(t208->snr, "/fringe/snr");
     FillFloat(t208->prob_false, "/fringe/pfd");
     FillFloat(t208->totphase, "/fringe/tot_phase");
-    FillFloat(t208->totphase_ref, "/fringe/tot_phase_ref"); //DOES NOT EXIST YET
     FillFloat(t208->resphase, "/fringe/resid_phase");
     FillFloat(t208->tec_error, "/fringe/tec_error"); //DOES NOT EXIST YET
 
@@ -513,8 +506,8 @@ int MHO_MK4FringeExport::fill_210( struct type_210 *t210)
         nchan = std::min(MAX_CHAN, nchan);
         for(int i=0; i<nchan; i++)
         {
-            t210->amp_phas[i].ampl = ch_amp[i] / 10000.0;//(float)abs_complex( status->fringe[i] ) / 10000.0;
-            t210->amp_phas[i].phase = ch_phase[i];//(float)arg_complex( status->fringe[i] ) * 180.0 / pi;
+            t210->amp_phas[i].ampl = ch_amp[i] / 10000.0; //remove Whitneys prefactor
+            t210->amp_phas[i].phase = ch_phase[i]; //already in degrees
         }
     }
     // mho_json j = convertToJSON(*t210);
