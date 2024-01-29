@@ -166,13 +166,8 @@ int MHO_MK4FringeExport::fill_202( struct type_202 *t202)
     FillDouble(t202->rem_ypos, "/rem_station/position/y/value");
     FillDouble(t202->rem_zpos, "/rem_station/position/z/value");
 
-    #pragma message("TODO FIXME -- finish t202")
-
-
-
     FillFloat(t202->ref_clockrate, "/ref_station/clock_rate");
     FillFloat(t202->rem_clockrate, "/rem_station/clock_rate");
-
     FillFloat(t202->ref_clock, "/ref_station/clock_early_offset");
     FillFloat(t202->rem_clock, "/rem_station/clock_early_offset");
 
@@ -181,12 +176,10 @@ int MHO_MK4FringeExport::fill_202( struct type_202 *t202)
     FillFloat(t202->ref_az, "/ref_station/azimuth");
     FillFloat(t202->rem_az, "/rem_station/azimuth");
 
-
     // Baseline u,v in fr / asec  should evaluate these polys at frt, too!
     double ref_freq;
     FillDouble(ref_freq, "/control/config/ref_freq");
     double lambda = 299.792458 / ref_freq; // wavelength (m)
-    std::cout<<"lambdda = "<<lambda<<std::endl;
 
     double ref_u, ref_v; 
     double rem_u, rem_v;
@@ -195,21 +188,10 @@ int MHO_MK4FringeExport::fill_202( struct type_202 *t202)
     FillDouble(rem_u, "/rem_station/u");
     FillDouble(rem_v, "/rem_station/v");
 
-    std::cout<<"uv, = "<<ref_u<<", "<<rem_u<<", "<<ref_u<<", "<<ref_v<<std::endl;
     double du = 4.848137e-6 * (rem_u - ref_u) / lambda;
     double dv = 4.848137e-6 * (rem_v - ref_v) / lambda;
-
-    std::cout<<"du = "<<du<<std::endl;
-    std::cout<<"dv = "<<dv<<std::endl;
-
     t202->u = (float) du;
     t202->v = (float) dv;
-
-
-
-
-    std::cout<<"u = "<<t202->u<<std::endl;
-    std::cout<<"v = "<<t202->v<<std::endl;
 
     mho_json j = convertToJSON(*t202);
     std::cout<<"type 202 json = "<<j.dump(2)<<std::endl;
