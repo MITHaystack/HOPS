@@ -335,13 +335,20 @@ int MHO_MK4FringeExport::fill_206( struct type_206 *t206)
     FillFloat(t206->intg_time, "/fringe/integration_time");
     FillShort(t206->ratesize, "/fringe/n_drsp_points");
     FillShort(t206->mbdsize, "/fringe/n_mbd_points");
-    FillShort(t206->sbdsize, "/fringe/n_sbd_points");
 
-    //TODO fill these in (though reason1 to 8 are not used and not populated in original code)
+    //do not use: "/fringe/n_sbd_points, instead follow recipe from fll_206
+    //this is due to fact that we drop every-other-point directly after the FFT
+    //while HOPS3 removes them at a later stage
+    int nlags = fPStore->GetAs<int>("/config/nlags");
+    t206->sbdsize = (short) 4*nlags;
+
+    //TODO fill these in 
     // struct sidebands    accepted[64];           /* APs accepted by chan/sband */
     // struct sbweights    weights[64];            /* Samples per channel/sideband */
     // float               accept_ratio;           /* % ratio min/max data accepted */
     // float               discard;                /* % data discarded */
+
+    // These are not popluated in the original code - ignore
     // struct sidebands    reason1[64];            /* APs filtered by chan/sband */
     // struct sidebands    reason2[64];            /* APs filtered by chan/sband */
     // struct sidebands    reason3[64];            /* APs filtered by chan/sband */

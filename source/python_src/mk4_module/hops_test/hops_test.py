@@ -550,6 +550,8 @@ def compare_fringe_files(filenameA, filenameB, verbose=True, pedantic=False, ign
             if fileA.t206 and fileB.t206:
                 t206a = fileA.t206.contents
                 t206b = fileB.t206.contents
+                t206a.printsummary()
+                t206b.printsummary()
                 t206result = t206a.approximately_equal(t206b, ignore_dates, verbose, abs_tol, rel_tol)
                 check_results.append(t206result)
                 result_list.append(206)
