@@ -68,7 +68,7 @@ int MHO_MK4FringeExport::fill_200( struct type_200 *t200)
 
     FillString( &(t200->exper_name[0]), "/vex/experiment_name", 32);
     FillString( &(t200->scan_name[0]), "/vex/scan/name", 32);
-    FillString( &(t200->correlator[0]), "/correlator/name", 32, "DiFX");
+    FillString( &(t200->correlator[0]), "/correlator/name", 32, "difx");
     FillDate(&(t200->scantime), "/vex/scan/start");
     FillInt(t200->start_offset, "/control/selection/start", 0);
     FillInt(t200->stop_offset, "/control/selection/stop", 0);
@@ -433,7 +433,7 @@ int MHO_MK4FringeExport::fill_208( struct type_202 *t202, struct type_208 *t208)
     t208->errcode = errcode[0];
 
     //not used
-    strncpy(t208->tape_qcode, "000000", 6);
+    strncpy(t208->tape_qcode, "99999?", 6);
 
     FillDouble(t208->adelay, "/model/adelay");
     FillDouble(t208->arate, "/model/arate");
@@ -456,6 +456,7 @@ int MHO_MK4FringeExport::fill_208( struct type_202 *t202, struct type_208 *t208)
     FillFloat(t208->rate_error, "/fringe/drate_error");
     FillFloat(t208->ambiguity, "/fringe/ambiguity");
     FillFloat(t208->amplitude, "/fringe/famp");
+    t208->amplitude /= 10000.0; //remove Whitneys prefactor
 
     #pragma message("TODO FIXME inc_seg, inc_chan amps, and PFD are in plot data, move to parameter store?")
     FillFloat(t208->inc_seg_ampl, "/fringe/inc_seg_ampl");
@@ -490,7 +491,7 @@ int MHO_MK4FringeExport::fill_210( struct type_210 *t210)
         nchan = std::min(MAX_CHAN, nchan);
         for(int i=0; i<nchan; i++)
         {
-            t210->amp_phas[i].ampl = ch_amp[i];//(float)abs_complex( status->fringe[i] ) / 10000.0;
+            t210->amp_phas[i].ampl = ch_amp[i] / 10000.0;//(float)abs_complex( status->fringe[i] ) / 10000.0;
             t210->amp_phas[i].phase = ch_phase[i];//(float)arg_complex( status->fringe[i] ) * 180.0 / pi;
         }
     }
