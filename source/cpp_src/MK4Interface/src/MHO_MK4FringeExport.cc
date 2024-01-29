@@ -87,8 +87,8 @@ int MHO_MK4FringeExport::fill_200( struct type_200 *t200)
     //write out the fourfit reference time 
     FillDate(&(t200->frt), "/vex/scan/fourfit_reftime");
 
-    mho_json j = convertToJSON(*t200);
-    std::cout<<"type 200 json = "<<j.dump(2)<<std::endl;
+    // mho_json j = convertToJSON(*t200);
+    // std::cout<<"type 200 json = "<<j.dump(2)<<std::endl;
 
     return 0;
 }
@@ -135,9 +135,9 @@ int MHO_MK4FringeExport::fill_201( struct type_201 *t201)
     // This differs from all other diff. quantities
     FillDouble(t201->dispersion, "/fringe/ion_diff");
 
-    // /* Ignore the rest of pulsar parameters for now */
-    mho_json j = convertToJSON(*t201);
-    std::cout<<"type 201 json = "<<j.dump(2)<<std::endl;
+    // // /* Ignore the rest of pulsar parameters for now */
+    // mho_json j = convertToJSON(*t201);
+    // std::cout<<"type 201 json = "<<j.dump(2)<<std::endl;
 
     return 0;
 
@@ -171,12 +171,14 @@ int MHO_MK4FringeExport::fill_202( struct type_202 *t202)
     FillFloat(t202->ref_clock, "/ref_station/clock_early_offset");
     FillFloat(t202->rem_clock, "/rem_station/clock_early_offset");
 
+    //note that in HOPS4 these (az,el, u,v) are evaluated at the FRT, 
+    //so they will differ from the HOPS3 values (evaluated at scan start)
+
     FillFloat(t202->ref_elev, "/ref_station/elevation");
     FillFloat(t202->rem_elev, "/rem_station/elevation");
     FillFloat(t202->ref_az, "/ref_station/azimuth");
     FillFloat(t202->rem_az, "/rem_station/azimuth");
 
-    // Baseline u,v in fr / asec  should evaluate these polys at frt, too!
     double ref_freq;
     FillDouble(ref_freq, "/control/config/ref_freq");
     double lambda = 299.792458 / ref_freq; // wavelength (m)
@@ -193,8 +195,8 @@ int MHO_MK4FringeExport::fill_202( struct type_202 *t202)
     t202->u = (float) du;
     t202->v = (float) dv;
 
-    mho_json j = convertToJSON(*t202);
-    std::cout<<"type 202 json = "<<j.dump(2)<<std::endl;
+    // mho_json j = convertToJSON(*t202);
+    // std::cout<<"type 202 json = "<<j.dump(2)<<std::endl;
 
     return 0;
 }
@@ -239,7 +241,9 @@ int MHO_MK4FringeExport::fill_204( struct type_204 *t204)
     }
 
     //this is the text after 'set' on the command line, Ignore for now
-    std::string set_string = "unknown";
+    std::string set_string;
+    bool ok = fPStore->Get("/cmdline/set_string", set_string);
+    if(!ok){set_string="";}
     char_clear( &(t204->override[0]), 128);
     strncpy(&(t204->override[0]), set_string.c_str(), std::min(128, (int) set_string.size() ) );
 

@@ -508,8 +508,8 @@ def compare_fringe_files(filenameA, filenameB, verbose=True, pedantic=False, ign
         if fileA.t202 and fileB.t202:
             t202a = fileA.t202.contents
             t202b = fileB.t202.contents
-            t202a.printsummary()
-            t202b.printsummary()
+            # t202a.printsummary()
+            # t202b.printsummary()
             t202result = t202a.approximately_equal(t202b, ignore_dates, verbose, abs_tol, rel_tol)
             check_results.append(t202result)
             result_list.append(202)
@@ -527,6 +527,8 @@ def compare_fringe_files(filenameA, filenameB, verbose=True, pedantic=False, ign
             if fileA.t204 and fileB.t204:
                 t204a = fileA.t204.contents
                 t204b = fileB.t204.contents
+                t204a.printsummary()
+                t204b.printsummary()
                 t204result = t204a.approximately_equal(t204b, ignore_dates, verbose, abs_tol, rel_tol)
                 check_results.append(t204result)
                 result_list.append(204)
