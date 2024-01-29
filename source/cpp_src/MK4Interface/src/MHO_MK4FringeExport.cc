@@ -70,8 +70,11 @@ int MHO_MK4FringeExport::fill_200( struct type_200 *t200)
     FillString( &(t200->scan_name[0]), "/vex/scan/name", 32);
     FillString( &(t200->correlator[0]), "/correlator/name", 32, "difx");
     FillDate(&(t200->scantime), "/vex/scan/start");
-    FillInt(t200->start_offset, "/control/selection/start", 0);
-    FillInt(t200->stop_offset, "/control/selection/stop", 0);
+
+    //we need to retrieve these values from the vex (it is the start/stop of the scan in the schedule, not data)
+
+    FillInt(t200->start_offset, "/start_offset", 0);
+    FillInt(t200->stop_offset, "/stop_offset", 0);
 
     //get the current time
     legacy_hops_date now_date = MHO_LegacyDateConverter::Now();
@@ -156,31 +159,57 @@ int MHO_MK4FringeExport::fill_202( struct type_202 *t202)
     short nlags = fPStore->GetAs<int>("/config/nlags");
     t202->nlags = (short) nlags;
 
-    FillDouble(t202->ref_xpos, "ref_station/position/x/value");
-    FillDouble(t202->ref_ypos, "ref_station/position/y/value");
-    FillDouble(t202->ref_zpos, "ref_station/position/z/value");
-    FillDouble(t202->rem_xpos, "rem_station/position/x/value");
-    FillDouble(t202->rem_ypos, "rem_station/position/y/value");
-    FillDouble(t202->rem_zpos, "rem_station/position/z/value");
+    FillDouble(t202->ref_xpos, "/ref_station/position/x/value");
+    FillDouble(t202->ref_ypos, "/ref_station/position/y/value");
+    FillDouble(t202->ref_zpos, "/ref_station/position/z/value");
+    FillDouble(t202->rem_xpos, "/rem_station/position/x/value");
+    FillDouble(t202->rem_ypos, "/rem_station/position/y/value");
+    FillDouble(t202->rem_zpos, "/rem_station/position/z/value");
 
     #pragma message("TODO FIXME -- finish t202")
 
-    t202->u = 0.0;
-    t202->v = 0.0;
-    t202->uf = 0.0;
-    t202->vf = 0.0;
-    t202->ref_clock = 0.0;
-    t202->rem_clock = 0.0;
-    t202->ref_clockrate = 0.0;
-    t202->rem_clockrate = 0.0;
-    t202->ref_idelay = 0.0;
-    t202->rem_idelay = 0.0;
-    t202->ref_zdelay = 0.0;
-    t202->rem_zdelay = 0.0;
-    t202->ref_elev = 0.0;
-    t202->rem_elev = 0.0;
-    t202->ref_az = 0.0;
-    t202->rem_az = 0.0;
+
+
+    FillFloat(t202->ref_clockrate, "/ref_station/clock_rate");
+    FillFloat(t202->rem_clockrate, "/rem_station/clock_rate");
+
+    FillFloat(t202->ref_clock, "/ref_station/clock_early_offset");
+    FillFloat(t202->rem_clock, "/rem_station/clock_early_offset");
+
+    FillFloat(t202->ref_elev, "/ref_station/elevation");
+    FillFloat(t202->rem_elev, "/rem_station/elevation");
+    FillFloat(t202->ref_az, "/ref_station/azimuth");
+    FillFloat(t202->rem_az, "/rem_station/azimuth");
+
+
+    // Baseline u,v in fr / asec  should evaluate these polys at frt, too!
+    double ref_freq;
+    FillDouble(ref_freq, "/control/config/ref_freq");
+    double lambda = 299.792458 / ref_freq; // wavelength (m)
+    std::cout<<"lambdda = "<<lambda<<std::endl;
+
+    double ref_u, ref_v; 
+    double rem_u, rem_v;
+    FillDouble(ref_u, "/ref_station/u");
+    FillDouble(ref_v, "/ref_station/v");
+    FillDouble(rem_u, "/rem_station/u");
+    FillDouble(rem_v, "/rem_station/v");
+
+    std::cout<<"uv, = "<<ref_u<<", "<<rem_u<<", "<<ref_u<<", "<<ref_v<<std::endl;
+    double du = 4.848137e-6 * (rem_u - ref_u) / lambda;
+    double dv = 4.848137e-6 * (rem_v - ref_v) / lambda;
+
+    std::cout<<"du = "<<du<<std::endl;
+    std::cout<<"dv = "<<dv<<std::endl;
+
+    t202->u = (float) du;
+    t202->v = (float) dv;
+
+
+
+
+    std::cout<<"u = "<<t202->u<<std::endl;
+    std::cout<<"v = "<<t202->v<<std::endl;
 
     mho_json j = convertToJSON(*t202);
     std::cout<<"type 202 json = "<<j.dump(2)<<std::endl;
@@ -194,8 +223,8 @@ int MHO_MK4FringeExport::fill_203( struct type_203 *t203)
     std::size_t nchannels = MAX_CHAN;
     FillChannels( &(t203->channels[0]) , nchannels);
 
-    mho_json j = convertToJSON(*t203);
-    std::cout<<"type 203 json = "<<j.dump(2)<<std::endl;
+    // mho_json j = convertToJSON(*t203);
+    // std::cout<<"type 203 json = "<<j.dump(2)<<std::endl;
 
     return 0;
 }
@@ -292,8 +321,8 @@ int MHO_MK4FringeExport::fill_205( struct type_203 *t203, struct type_205 *t205)
         }
     }
     
-    mho_json j = convertToJSON(*t205);
-    std::cout<<"type 205 json = "<<j.dump(2)<<std::endl;
+    // mho_json j = convertToJSON(*t205);
+    // std::cout<<"type 205 json = "<<j.dump(2)<<std::endl;
 
     return 0;
 
@@ -336,8 +365,8 @@ int MHO_MK4FringeExport::fill_206( struct type_206 *t206)
     // struct sidebands    reason7[64];            /* APs filtered by chan/sband */
     // struct sidebands    reason8[64];            /* APs filtered by chan/sband */
 
-    mho_json j = convertToJSON(*t206);
-    std::cout<<"type 206 json = "<<j.dump(2)<<std::endl;
+    // mho_json j = convertToJSON(*t206);
+    // std::cout<<"type 206 json = "<<j.dump(2)<<std::endl;
 
     return 0;
 }
@@ -468,8 +497,8 @@ int MHO_MK4FringeExport::fill_208( struct type_202 *t202, struct type_208 *t208)
     FillFloat(t208->resphase, "/fringe/resid_phase");
     FillFloat(t208->tec_error, "/fringe/tec_error"); //DOES NOT EXIST YET
 
-    mho_json j = convertToJSON(*t208);
-    std::cout<<"type 208 json = "<<j.dump(2)<<std::endl;
+    // mho_json j = convertToJSON(*t208);
+    // std::cout<<"type 208 json = "<<j.dump(2)<<std::endl;
 
     return 0;
 
@@ -495,8 +524,8 @@ int MHO_MK4FringeExport::fill_210( struct type_210 *t210)
             t210->amp_phas[i].phase = ch_phase[i];//(float)arg_complex( status->fringe[i] ) * 180.0 / pi;
         }
     }
-    mho_json j = convertToJSON(*t210);
-    std::cout<<"type 210 json = "<<j.dump(2)<<std::endl;
+    // mho_json j = convertToJSON(*t210);
+    // std::cout<<"type 210 json = "<<j.dump(2)<<std::endl;
     return 0;
 }
 
