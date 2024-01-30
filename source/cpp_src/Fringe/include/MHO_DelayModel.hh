@@ -27,6 +27,7 @@ class MHO_DelayModel
     
         double GetRefDelay(){return fRefDelay;}
         double GetRefRate(){return fRefRate;};
+        double GetRefStationDelay(){return fRefStationDelay;}
         // double GetRefAcceleration(){return fRefAccel;};
 
     private:
@@ -52,15 +53,13 @@ class MHO_DelayModel
         double fRate;
         double fAccel;
 
-
-
         //ref station 
         double fRefClockOff;
         double fRefClockRate;
 
         double fRefDelay;
         double fRefRate;
-        // double fRefAccel;
+        double fRefStationDelay;
 
 };
 

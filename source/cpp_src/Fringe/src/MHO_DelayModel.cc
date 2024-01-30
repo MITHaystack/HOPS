@@ -123,7 +123,7 @@ MHO_DelayModel::ComputeModel()
         CheckSplineInterval(fRemData->GetDimension(INTERVAL_AXIS), rem_tdiff, rem_int_no, rem_code);
 
         //re-calculate seconds into target interval
-         ref_t = ref_tdiff - (ref_int_no * ref_model_interval);
+        ref_t = ref_tdiff - (ref_int_no * ref_model_interval);
         rem_t = rem_tdiff - (rem_int_no * rem_model_interval);
 
         //evaluate delay, rate, accel
@@ -135,6 +135,7 @@ MHO_DelayModel::ComputeModel()
 
         fRefDelay = rem_dra[0] - ref_dra[0];
         fRefRate  = (rem_dra[1] - ref_dra[1]) * ref_doppler;
+        fRefStationDelay = ref_dra[0];
 
     }
     else
