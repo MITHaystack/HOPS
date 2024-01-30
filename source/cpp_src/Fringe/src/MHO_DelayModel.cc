@@ -82,6 +82,60 @@ MHO_DelayModel::ComputeModel()
         fAccel = rem_dra[2] - ref_dra[2];
 
         msg_debug("fringe", "delay model: offset, rate, accel = "<<fDelay<<", "<<fRate<<", "<<fAccel<< eom);
+
+        ////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////
+        //The following section calculates the a priori delay and rate at the 
+        //reference station. This is not actually used anywhere by the rest of the 
+        //fringe algorithm, and is only used for populating the type_208s on export.
+        //It should be a candidate for deprecation if the 208 functionality is unneeded.
+
+
+
+        /* now do calculations all over again at the
+         * time of wavefront passing the ref station */
+        /* Correct ref delay/rate for clocks */
+        /* which are inherent in model from genaroot */
+        /* Clock in usec, clockrate dimensionless */
+        ref_dra[0] -= fRefClockOff; 
+        ref_dra[1] -= fRefClockRate;
+        /* Adjust ref delay for approx time of ref */
+        /* station wavefront passage, not geocenter */
+        /* wavefront passage */
+        ref_dra[0] *= 1.0 - ref_dra[1];
+        /* Doppler shift for ref stn, < 1 is redshift
+         * do this so can correct for missing or extra
+         * data bits in both streams (see rate calc) */
+        double ref_doppler = 1.0 - ref_dra[1];
+        /* Which model interval number? Use adjusted */
+        /* times */
+
+        //re-calculate time differences
+        ref_tdiff_duration = frt - ref_start;
+        rem_tdiff_duration = frt - rem_start;
+        //convert durations to double (seconds)
+        ref_tdiff = std::chrono::duration<double>(ref_tdiff_duration).count() - ref_dra[0];
+        rem_tdiff = std::chrono::duration<double>(rem_tdiff_duration).count() - ref_dra[0];
+        //re-calculate which spline interval we are on
+        ref_int_no = std::floor(ref_tdiff/ref_model_interval);
+        rem_int_no = std::floor(rem_tdiff/rem_model_interval);
+        CheckSplineInterval(fRefData->GetDimension(INTERVAL_AXIS), ref_tdiff, ref_int_no, ref_code);
+        CheckSplineInterval(fRemData->GetDimension(INTERVAL_AXIS), rem_tdiff, rem_int_no, rem_code);
+
+        //re-calculate seconds into target interval
+         ref_t = ref_tdiff - (ref_int_no * ref_model_interval);
+        rem_t = rem_tdiff - (rem_int_no * rem_model_interval);
+
+        //evaluate delay, rate, accel
+        ref_coeff = fRefData->SubView(DELAY_COEFF_INDEX, ref_int_no); //extract spline coeffs for delay at this interval;
+        EvaluateDelaySpline(ref_coeff, ref_t, ref_dra);
+
+        rem_coeff = fRemData->SubView(DELAY_COEFF_INDEX, rem_int_no); //extract spline coeffs for delay at this interval;
+        EvaluateDelaySpline(rem_coeff, rem_t, rem_dra);
+
+        fRefDelay = rem_dra[0] - ref_dra[0];
+        fRefRate  = (rem_dra[1] - ref_dra[1]) * ref_doppler;
+
     }
     else
     {
@@ -89,8 +143,8 @@ MHO_DelayModel::ComputeModel()
         std::exit(1);
     }
 
-    #pragma message("TODO: implement the reference station delay, rate, accel calculation (requires clock model), see compute_model.c")
 }
+
 
 void
 MHO_DelayModel::CheckSplineInterval(int n_intervals, double tdiff, int& int_no, std::string station_id)

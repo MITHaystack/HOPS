@@ -190,9 +190,15 @@ MHO_InitialFringeInfo::precalculate_quantities(MHO_ContainerStore* conStore, MHO
     station_coord_type* rem_data = conStore->GetObject<station_coord_type>(std::string("rem_sta"));
     MHO_DelayModel delay_model;
     std::string frt_vex_string = paramStore->GetAs<std::string>("/vex/scan/fourfit_reftime");
+    double ref_clockoff = paramStore->GetAs<double>("/ref_station/clock_early_offset"); //usec
+    double ref_clockrate = paramStore->GetAs<double>("/ref_station/clock_rate");
+
     delay_model.SetFourfitReferenceTimeVexString(frt_vex_string);
     delay_model.SetReferenceStationData(ref_data);
     delay_model.SetRemoteStationData(rem_data);
+    delay_model.SetReferenceStationClockOffset(ref_clockoff*1e-6);
+    delay_model.SetReferenceStationClockRate(ref_clockrate);
+
     delay_model.ComputeModel();
 
     //calculate the offset to the reference time (within the scan)
@@ -217,11 +223,16 @@ MHO_InitialFringeInfo::precalculate_quantities(MHO_ContainerStore* conStore, MHO
     double arate = delay_model.GetRate();
     double aaccel = delay_model.GetAcceleration();
 
+    double ref_adelay = delay_model.GetRefDelay();
+    double ref_arate = delay_model.GetRefRate();
+
     //store and  convert to microsec
     //TODO FIXME - document units of all the various parameters/quantities
     paramStore->Set("/model/adelay", 1e6*adelay);
     paramStore->Set("/model/arate", 1e6*arate);
     paramStore->Set("/model/aaccel", 1e6*aaccel);
+    paramStore->Set("/model/ref_adelay", 1e6*ref_adelay);
+    paramStore->Set("/model/ref_arate", 1e6*ref_arate);
 
     //figure out the clock information at the FRT
     calculate_clock_model(paramStore);

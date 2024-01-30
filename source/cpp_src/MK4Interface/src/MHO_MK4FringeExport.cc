@@ -453,14 +453,18 @@ int MHO_MK4FringeExport::fill_208( struct type_202 *t202, struct type_208 *t208)
     FillDouble(t208->adelay, "/model/adelay");
     FillDouble(t208->arate, "/model/arate");
     FillDouble(t208->aaccel, "/model/aaccel");
+
+    std::cout<<fPStore->GetAs<double>("/model/ref_adelay")<<std::endl;
+    std::cout<<fPStore->GetAs<double>("/model/ref_arate")<<std::endl;
+
     FillDouble(t208->tot_mbd, "/fringe/total_mbdelay");
     FillDouble(t208->tot_sbd, "/fringe/total_sbdelay");
     FillDouble(t208->tot_rate, "/fringe/total_drate");
 
     #pragma message("TODO FIXME -- the totals for the reference station are not yet calculated")
     FillDouble(t208->tot_mbd_ref, "/fringe/total_mbdelay_ref");
-    FillDouble(t208->tot_sbd_ref, "/fringe/total_mbdelay_ref");
-    FillDouble(t208->tot_rate_ref, "/fringe/total_mbdelay_ref");
+    FillDouble(t208->tot_sbd_ref, "/fringe/total_sbdelay_ref");
+    FillDouble(t208->tot_rate_ref, "/fringe/total_rate_ref");
     FillFloat(t208->totphase_ref, "/fringe/tot_phase_ref"); //DOES NOT EXIST YET
 
     FillFloat(t208->resid_mbd, "/fringe/mbdelay");
