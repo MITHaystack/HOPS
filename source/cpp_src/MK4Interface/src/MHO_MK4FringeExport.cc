@@ -339,7 +339,7 @@ int MHO_MK4FringeExport::fill_206( struct type_206 *t206)
     FillShort(t206->ratesize, "/fringe/n_drsp_points");
     FillShort(t206->mbdsize, "/fringe/n_mbd_points");
 
-    //do not use: "/fringe/n_sbd_points", instead follow recipe from fll_206
+    //do not use: "/fringe/n_sbd_points", instead follow recipe from fill_206
     //this is due to fact that we drop every-other-point directly after the FFT
     //while HOPS3 removes them at a later stage
     int nlags = fPStore->GetAs<int>("/config/nlags");
@@ -728,162 +728,13 @@ int MHO_MK4FringeExport::fill_221( struct type_221* t221)
     return 0;
 }
 
-// int MHO_MK4FringeExport::fill_fringe_info(char *filename, struct mk4_fringe* fringe)
-// {
-//     struct type_200 t200;
-//     struct type_201 t201;
-//     struct type_202 t202;
-//     struct type_203 t203;
-//     struct type_204 t204;
-//     struct type_205 t205;
-//     struct type_206 t206;
-//     struct type_207 t207;
-//     struct type_208 t208;
-//     struct type_210 t210;
-//     struct type_000 t2_id;
-// 
-//     double sband_err, ref_freq;
-//     int error, nap, xpow_len, fr, ap, size_of_t212, size_of_t230, recno;
-//     char buf[256];
-//     char *t212_array, *t230_array, *address;
-//     //extern int write_xpower;
-// 
-//     //extern struct type_param param;
-//     //extern struct type_status status;
-// 
-//                                         /* Init */
-//     fringe.nalloc = 0;
-//     clear_mk4fringe(fringe);
-// 
-//     ref_freq = 0.0;//param.ref_freq;
-// 
-//     strcpy (buf, filename);
-//     int val = init_000 (&t2_id, filename);
-//     if(  val != 0)
-//     {
-//         std::cout<<"error t000: "<<val<<std::endl;
-//         //msg ("Error filling in id record", 2);
-//         return (-1);
-//     }
-// 
-//     error = fill_200(&t200);
-//     error += fill_201(&t201);
-//     error += fill_202(&t202);
-//     error += fill_203(&t203);
-//     error += fill_204(&t204);
-//     error += fill_205(&t203, &t205);
-//     error += fill_206(&t206);
-//     error += fill_207(&t207);
-//     error += fill_208(&t202, &t208);
-//     error += fill_210(&t210);
-// 
-//     fringe->id = &t2_id;
-//     fringe->t200 = &t200;
-//     fringe->t201 = &t201;
-//     fringe->t202 = &t202;
-//     fringe->t203 = &t203;
-//     fringe->t204 = &t204;
-//     fringe->t205 = &t205;
-//     fringe->t206 = &t206;
-//     fringe->t207 = &t207;
-//     fringe->t208 = &t208;
-//     fringe->t210 = &t210;
-// 
-//     std::cout<<"done filling"<<std::endl;
-// 
-// 
-//                                         /* Type 212 (ap-by-ap data) records */
-//                                         /* Allocate memory as a block */
-//     nap = fPStore->GetAs<int>("/config/total_naps");
-//     int nfreq = 32;
-//     size_of_t212 = sizeof (struct type_212) + 12*(nap-1);
-//     if ((nap % 2) == 1) size_of_t212 += 12;
-//     t212_array = (char *)malloc (nfreq * size_of_t212);
-//     if (t212_array == NULL)
-//     {
-//         //msg ("Failure allocating memory for type 212 records!", 2);
-//         return (0);
-//     }
-//                                         /* record the allocation */
-//     fringe->allocated[fringe->nalloc] = t212_array;
-//     fringe->nalloc += 1;
-// 
-// 
-//     //                                     /* Fill in records and pointers */
-//     fringe->n212 = nfreq;
-//     for (fr=0; fr < nfreq; fr++)
-//     {
-//         address = t212_array + (fr * size_of_t212);
-//         fringe->t212[fr] = (struct type_212 *)address;
-//         // error += fill_212 (pass, &status, &param, fr, fringe.t212[fr]);
-//         error += fill_212(fr, fringe->t212[fr]);
-//     }
-//     //                                     /* Cross power spectra (if requested) */
-//     // if (write_xpower)
-//     //     {
-//     //                                     /* Allocate memory as a block */
-//     //     xpow_len = 16 * 2 * param.nlags;
-//     //     size_of_t230 = sizeof (struct type_230) - sizeof (hops_complex) + xpow_len;
-//     //     t230_array = (char *)malloc (pass->nfreq * nap * size_of_t230);
-//     //     if (t230_array == NULL)
-//     //         {
-//     //         //msg ("Failure allocating memory for type 230 records!", 2);
-//     //         return (0);
-//     //         }
-//     //                                     /* record the allocation */
-//     //     fringe.allocated[fringe.nalloc] = t230_array;
-//     //     fringe.nalloc += 1;
-//     //                                     /* Loop over all freqs, aps */
-//     //     recno = 0;
-//     //     for (fr=0; fr<pass->nfreq; fr++)
-//     //         for (ap = pass->ap_off; ap < pass->ap_off + nap; ap++)
-//     //             {
-//     //             address = t230_array + recno * size_of_t230;
-//     //             fringe.t230[recno] = (struct type_230 *)address;
-//     //             error += fill_230 (pass, &param, fr, ap, fringe.t230[recno]);
-//     //             recno++;
-//     //             }
-//     //     fringe.n230 = recno;
-//     //     }
-//     // 
-//     // if (error != 0)
-//     //     //msg ("Warning - some or all of the output records were not filled", 2);
-//     // 
-//     // status.amp_err = status.delres_max / status.snr;
-//     // status.resid_phase = status.coh_avg_phase * ( 180.0 / M_PI);
-//     // status.mod_resid_phase *= 180.0 / M_PI;
-//     // sband_err = sqrt (1.0 + 3.0 * (status.sbavg * status.sbavg));
-//     // status.phase_err = (status.nion == 0) ?
-//     //     180.0 * sband_err / (M_PI * status.snr) :
-//     //     360.0 * status.ion_sigmas[1];
-//     // status.resid_ph_delay = status.coh_avg_phase / (2.0 * M_PI *ref_freq);
-//     // status.ph_delay_err = sband_err / (2.0 * M_PI * status.snr * ref_freq);
-// 
-// 
-//     return 0;
-// }
-
 
 
 int
 MHO_MK4FringeExport::output(std::string filename)
 {
-
+    //declare the fringe structure and items we are going to fill on the stack
     struct mk4_fringe fringe;
-
-
-    std::cout<<"output"<<std::endl;
-
-    char fringe_name[256];
-    for(std::size_t i=0; i<256; i++){fringe_name[i] = '\0';}
-
-    if(filename.size() > 255)
-    {
-        msg_fatal("mk4interface", "filename exceeds max length of 256." << eom);
-        std::exit(1);
-    }
-    strncpy(fringe_name, filename.c_str(), filename.size());
-
     struct type_200 t200;
     struct type_201 t201;
     struct type_202 t202;
@@ -896,17 +747,22 @@ MHO_MK4FringeExport::output(std::string filename)
     struct type_210 t210;
     struct type_000 t2_id;
 
+    char fringe_name[256];
+    char_clear(fringe_name, 256);
+    if(filename.size() > 256)
+    {
+        msg_fatal("mk4interface", "filename exceeds max length of 256." << eom);
+        std::exit(1);
+    }
+    strncpy(fringe_name, filename.c_str(), std::min(255, (int)filename.size() ) );
+
     double sband_err, ref_freq;
     int error, nap, xpow_len, fr, ap, size_of_t212, size_of_t230, recno;
     char buf[256];
-    char filename_buf[512];
     char_clear(buf, 256);
-    char_clear(filename_buf,512);
-    strncpy( &(filename_buf[0]), filename.c_str(), std::min(512, (int)filename.size() ) );
-    
+
     char *t212_array, *t230_array, *address;
     //extern int write_xpower;
-
     //extern struct type_param param;
     //extern struct type_status status;
 
@@ -917,14 +773,15 @@ MHO_MK4FringeExport::output(std::string filename)
     ref_freq = 0.0;//param.ref_freq;
 
     strcpy (buf, filename.c_str());
-    int val = init_000 (&t2_id, filename_buf);
-    if(  val != 0)
+    int val = init_000 (&t2_id, fringe_name);
+    if(val != 0)
     {
         std::cout<<"error t000: "<<val<<std::endl;
-        //msg ("Error filling in id record", 2);
+        msg_fatal("mk4interface", "failed to init type 000, error due to filename: "<< filename << " ?"<< eom);
         return (-1);
     }
 
+    //fill the data structures
     error = fill_200(&t200);
     error += fill_201(&t201);
     error += fill_202(&t202);
@@ -936,6 +793,7 @@ MHO_MK4FringeExport::output(std::string filename)
     error += fill_208(&t202, &t208);
     error += fill_210(&t210);
 
+    //point the fringe to the data structures
     fringe.id = &t2_id;
     fringe.t200 = &t200;
     fringe.t201 = &t201;
@@ -948,11 +806,8 @@ MHO_MK4FringeExport::output(std::string filename)
     fringe.t208 = &t208;
     fringe.t210 = &t210;
 
-    std::cout<<"done filling"<<std::endl;
-
-
-                                        /* Type 212 (ap-by-ap data) records */
-                                        /* Allocate memory as a block */
+    // Type 212 (ap-by-ap data) records
+    // Allocate memory as a block
     nap = fPStore->GetAs<int>("/config/total_naps");
     int nfreq = 32;
     size_of_t212 = sizeof (struct type_212) + 12*(nap-1);
@@ -963,12 +818,13 @@ MHO_MK4FringeExport::output(std::string filename)
         //msg ("Failure allocating memory for type 212 records!", 2);
         return (0);
     }
-                                        /* record the allocation */
+
+    //record the allocation
     fringe.allocated[fringe.nalloc] = t212_array;
     fringe.nalloc += 1;
 
 
-    //                                     /* Fill in records and pointers */
+    //Fill in records and pointers
     fringe.n212 = nfreq;
     for (fr=0; fr < nfreq; fr++)
     {
@@ -977,6 +833,8 @@ MHO_MK4FringeExport::output(std::string filename)
         // error += fill_212 (pass, &status, &param, fr, fringe.t212[fr]);
         error += fill_212(fr, fringe.t212[fr]);
     }
+    
+    
     //                                     /* Cross power spectra (if requested) */
     // if (write_xpower)
     //     {
@@ -1007,40 +865,6 @@ MHO_MK4FringeExport::output(std::string filename)
     // 
     // if (error != 0)
     //     //msg ("Warning - some or all of the output records were not filled", 2);
-    // 
-    // status.amp_err = status.delres_max / status.snr;
-    // status.resid_phase = status.coh_avg_phase * ( 180.0 / M_PI);
-    // status.mod_resid_phase *= 180.0 / M_PI;
-    // sband_err = sqrt (1.0 + 3.0 * (status.sbavg * status.sbavg));
-    // status.phase_err = (status.nion == 0) ?
-    //     180.0 * sband_err / (M_PI * status.snr) :
-    //     360.0 * status.ion_sigmas[1];
-    // status.resid_ph_delay = status.coh_avg_phase / (2.0 * M_PI *ref_freq);
-    // status.ph_delay_err = sband_err / (2.0 * M_PI * status.snr * ref_freq);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     char sg;
@@ -1050,7 +874,6 @@ MHO_MK4FringeExport::output(std::string filename)
     bool test_mode = false;
 
     //struct type_221 *t221;
-
     struct type_222 *t222;
 
     // // for locking, see below and include/write_lock_mechanism.h
