@@ -106,7 +106,7 @@ MHO_BasicFringeUtilities::calculate_fringe_solution_info(MHO_ContainerStore* con
     double resid_phase_deg = std::fmod(resid_phase_rad*(180.0/M_PI), 360.0);
 
     //calculate the a priori phase and total phase
-    double aphase = std::fmod( ref_freq*adelay*360.0, 360.0); //from fill_208.c, no conversion from radians??!!
+    double aphase = std::fmod( ref_freq*adelay*360.0, 360.0); //from fill_208.c
     double tot_phase_deg = std::fmod( aphase + resid_phase_rad*(180.0/M_PI), 360.0 );
     paramStore->Set("/fringe/aphase", aphase);
 
@@ -167,12 +167,10 @@ MHO_BasicFringeUtilities::calculate_fringe_solution_info(MHO_ContainerStore* con
     paramStore->Set("/fringe/total_mbdelay_ref", tot_mbd_ref);
     paramStore->Set("/fringe/total_rate_ref", tot_rate_ref);
 
-    //calculate the ref station a priori phase and total phase
+    //calculate the ref station a priori phase and total phase /////////////////
     /* ref_stn_delay in sec, rate in usec/sec */
     ref_adelay -= ref_station_delay * drate;
-    std::cout<<"INFO"<<std::endl;
-    std::cout<<ref_adelay<<", "<<ref_station_delay<<", "<<drate<<std::endl; 
-    double aphase_ref = std::fmod( ref_freq*ref_adelay*360.0, 360.0); //from fill_208.c, no conversion from radians??!!!
+    double aphase_ref = std::fmod( ref_freq*ref_adelay*360.0, 360.0); //from fill_208.c
     double tot_phase_ref_deg = std::fmod( aphase_ref + resid_phase_rad*(180.0/M_PI), 360.0 );
     paramStore->Set("/fringe/tot_phase_ref", tot_phase_ref_deg); //not modified by mbd_anchor, see fill_208
 

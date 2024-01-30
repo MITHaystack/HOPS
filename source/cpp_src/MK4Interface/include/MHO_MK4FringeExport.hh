@@ -81,7 +81,6 @@ class MHO_MK4FringeExport
 
         void ExportFringeFile()
         {
-            std::cout<<"filename = "<<fFilename<<std::endl;
             output(fFilename);
         }
 
