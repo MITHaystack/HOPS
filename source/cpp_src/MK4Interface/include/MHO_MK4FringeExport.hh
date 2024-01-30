@@ -128,7 +128,7 @@ class MHO_MK4FringeExport
         int fill_222( struct type_222 **t222);
         int fill_230( int fr, int ap, struct type_230 *t230);
 
-        int fill_fringe_info(char *filename, struct mk4_fringe* fringe);
+        //int fill_fringe_info(char *filename, struct mk4_fringe* fringe);
         int output(std::string filename);
 
         //original function prototypes (these also use a varying number of 'extern' global variables)
