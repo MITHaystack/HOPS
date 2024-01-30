@@ -82,7 +82,7 @@ int MHO_MK4FringeExport::fill_200( struct type_200 *t200)
 
     //TODO FIXME -- store and retrieve the correlation date info in HOPS4
     //currently we do not have the correlation date information, so just use the current time
-    FillDate(&(t200->corr_date), now_date);
+    FillDate(&(t200->corr_date), "/config/correlation_date");
 
     //write out the fourfit reference time 
     FillDate(&(t200->frt), "/vex/scan/fourfit_reftime");
@@ -832,8 +832,6 @@ MHO_MK4FringeExport::output(std::string filename)
         // error += fill_212 (pass, &status, &param, fr, fringe.t212[fr]);
         error += fill_212(fr, fringe.t212[fr]);
     }
-    
-    
 
     fringe.n230 = 0;
     //                                     /* Cross power spectra (if requested) */

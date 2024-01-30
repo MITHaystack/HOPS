@@ -21,6 +21,7 @@ MHO_DiFXBaselineProcessor::MHO_DiFXBaselineProcessor():
     fStationCodeMap(nullptr)
 {
     fRootCode = "unknown";
+    fCorrDate = "";
     fRescale = true;
     fScaleFactor = 1.0;
 
@@ -225,6 +226,7 @@ MHO_DiFXBaselineProcessor::ConstructVisibilityFileObjects()
         fV->Insert(std::string("remote_station"), fRemStation);
         fV->Insert(std::string("reference_station_mk4id"), fRefStationMk4Id);
         fV->Insert(std::string("remote_station_mk4id"), fRemStationMk4Id);
+        fV->Insert(std::string("correlation_date"), fCorrDate);
 
         //tags for the weights
         fW->Resize(fNPolPairs, fNChannels, fNAPs, 1); //fNSpectralPoints -- we only have 1 weight value for each AP, so set dimension along the spectral point axis to 1
@@ -237,6 +239,7 @@ MHO_DiFXBaselineProcessor::ConstructVisibilityFileObjects()
         fW->Insert(std::string("remote_station"), fRemStation);
         fW->Insert(std::string("reference_station_mk4id"), fRefStationMk4Id);
         fW->Insert(std::string("remote_station_mk4id"), fRemStationMk4Id);
+        fW->Insert(std::string("correlation_date"), fCorrDate);
 
         //polarization product axis
         auto* polprod_axis = &(std::get<POLPROD_AXIS>(*fV));

@@ -61,6 +61,8 @@ class MHO_DiFXScanProcessor
 
         //given a mjd date and number of seconds, compute the vex string representation
         std::string get_vexdate_from_mjd_sec(double mjd, double sec);
+        
+        std::string get_correlation_vexdate() const {return fCorrDate;} ;
 
     private:
 
@@ -91,6 +93,7 @@ class MHO_DiFXScanProcessor
 
         //the root code assigned to this scan 
         std::string fRootCode;
+        std::string fCorrDate; //the correlation data as a vex-formatted string
 
         //integer experiment number 
         int fExperNum;

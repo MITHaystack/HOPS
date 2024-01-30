@@ -150,6 +150,12 @@ MHO_InitialFringeInfo::precalculate_quantities(MHO_ContainerStore* conStore, MHO
         msg_fatal("main", "could not determine AP period for data since AP axis is of size: "<< ap_ax->GetSize() << eom);
         std::exit(1);
     }
+    
+    //retrieve the correlation processing date from the visibilities 
+    std::string corr_date;
+    bool ok = vis_data->Retrieve("correlation_date", corr_date);
+    if(!ok){corr_date = "";}
+    paramStore->Set("/config/correlation_date", corr_date); //should this get stuffed in config?
 
     double ap_delta = ap_ax->at(1) - ap_ax->at(0);
     paramStore->Set("/config/ap_period", ap_delta);
