@@ -120,6 +120,7 @@ MHO_BasicFringeUtilities::calculate_fringe_solution_info(MHO_ContainerStore* con
     double tot_mbd = adelay + mbdelay;
     double tot_sbd = adelay + sbdelay;
 
+
     double ambig = paramStore->GetAs<double>("/fringe/ambiguity");
     double freq_spacing = paramStore->GetAs<double>("/fringe/frequency_spacing");
     std::string mbd_anchor = paramStore->GetAs<std::string>("/control/config/mbd_anchor");
@@ -146,6 +147,20 @@ MHO_BasicFringeUtilities::calculate_fringe_solution_info(MHO_ContainerStore* con
     paramStore->Set("/fringe/total_sbdelay", tot_sbd);
     paramStore->Set("/fringe/total_mbdelay", tot_mbd);
     paramStore->Set("/fringe/total_drate", tot_drate);
+
+
+    double ref_adelay = paramStore->GetAs<double>("/model/ref_adelay");
+    double ref_arate = paramStore->GetAs<double>("/model/ref_arate");
+
+    double tot_mbd_ref  = ref_adelay + mbdelay;
+    double tot_sbd_ref = ref_adelay + sbdelay;
+    double tot_rate_ref = ref_arate + drate;
+
+    paramStore->Set("/fringe/total_sbdelay_ref", tot_sbd_ref);
+    paramStore->Set("/fringe/total_mbdelay_ref", tot_mbd_ref);
+    paramStore->Set("/fringe/total_rate_ref", tot_rate_ref);
+    //FillFloat(t208->totphase_ref, "/fringe/tot_phase_ref"); //DOES NOT EXIST YET
+
 
     double sbd_sep = paramStore->GetAs<double>("/fringe/sbd_separation");
     double freq_spread = paramStore->GetAs<double>("/fringe/frequency_spread");

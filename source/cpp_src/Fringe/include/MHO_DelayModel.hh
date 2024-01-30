@@ -21,7 +21,14 @@ class MHO_DelayModel
         double GetDelay(){return fDelay;}
         double GetRate(){return fRate;};
         double GetAcceleration(){return fAccel;};
+
+        void SetReferenceStationClockOffset(double clock_off){fRefClockOff = clock_off;}
+        void SetReferenceStationClockRate(double clock_rate){fRefClockRate = clock_rate;}
     
+        double GetRefDelay(){return fRefDelay;}
+        double GetRefRate(){return fRefRate;};
+        // double GetRefAcceleration(){return fRefAccel;};
+
     private:
 
         //evalute the delay model (delay, rate, accel) from the spline coefficients
@@ -44,6 +51,16 @@ class MHO_DelayModel
         double fDelay;
         double fRate;
         double fAccel;
+
+
+
+        //ref station 
+        double fRefClockOff;
+        double fRefClockRate;
+
+        double fRefDelay;
+        double fRefRate;
+        // double fRefAccel;
 
 };
 
