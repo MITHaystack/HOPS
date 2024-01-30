@@ -170,8 +170,6 @@ MHO_BasicFringeUtilities::calculate_fringe_solution_info(MHO_ContainerStore* con
     //calculate the ref station a priori phase and total phase
     /* ref_stn_delay in sec, rate in usec/sec */
     ref_adelay -= ref_station_delay * drate;
-    std::cout<<"INFO"<<std::endl;
-    std::cout<<ref_adelay<<", "<<ref_station_delay<<", "<<drate<<std::endl; 
     double aphase_ref = std::fmod( ref_freq*ref_adelay*360.0, 360.0); //from fill_208.c, no conversion from radians??!!!
     double tot_phase_ref_deg = std::fmod( aphase_ref + resid_phase_rad*(180.0/M_PI), 360.0 );
     paramStore->Set("/fringe/tot_phase_ref", tot_phase_ref_deg); //not modified by mbd_anchor, see fill_208
