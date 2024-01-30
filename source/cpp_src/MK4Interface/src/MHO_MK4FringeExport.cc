@@ -456,9 +456,6 @@ int MHO_MK4FringeExport::fill_208( struct type_202 *t202, struct type_208 *t208)
     FillDouble(t208->arate, "/model/arate");
     FillDouble(t208->aaccel, "/model/aaccel");
 
-    std::cout<<fPStore->GetAs<double>("/model/ref_adelay")<<std::endl;
-    std::cout<<fPStore->GetAs<double>("/model/ref_arate")<<std::endl;
-
     FillDouble(t208->tot_mbd, "/fringe/total_mbdelay");
     FillDouble(t208->tot_sbd, "/fringe/total_sbdelay");
     FillDouble(t208->tot_rate, "/fringe/total_drate");
@@ -553,34 +550,34 @@ int MHO_MK4FringeExport::fill_212(int fr, struct type_212 *t212)
     // // clear_212 (t212);
     // // 
     // //nap = pass->num_ap;
-    // int nap = fPStore->GetAs<int>("/config/total_naps");
-    // t212->nap = nap;
-    // t212->first_ap = pass->ap_off;
-    // t212->channel = fr;
-    // t212->sbd_chan = status->max_delchan;
-    // 
-    // 
-    // /* Loop over the aps for this pass */
-    // for (ap = pass->ap_off; ap < pass->ap_off + nap; ap++)
-    // {
-    //     /* Location in 212 array starts at 0 */
-    //     ap_212 = ap - pass->ap_off;
-    //     /* Ptr to element in main data array */
-    //     datum = pass->pass_data[fr].data + ap;
-    //     /* Data missing, put in -1 */
-    //     /* Check on weights is insurance */
-    //     if ((datum->flag == 0) || (plot.weights[fr][ap] == 0))
-    //     {
-    //         t212->data[ap_212].amp = -1.0;
-    //         t212->data[ap_212].phase = 0.0;
-    //         t212->data[ap_212].weight = 0.0;
-    //         continue;
-    //     }
-    //     /* Amplitude and phase */
-    //     t212->data[ap_212].amp = abs_complex( plot.phasor[fr][ap] ) * status->amp_corr_fact;
-    //     t212->data[ap_212].phase = arg_complex( plot.phasor[fr][ap] );
-    //     t212->data[ap_212].weight = plot.weights[fr][ap];
-    // }
+    int nap = fPStore->GetAs<int>("/config/total_naps");
+    t212->nap = nap;
+    t212->first_ap = 0;//pass->ap_off;
+    t212->channel = fr;
+    t212->sbd_chan = fPStore->GetAs<int>("/fringe/max_sbd_bin");//status->max_delchan;
+    
+    
+    /* Loop over the aps for this pass */
+    for(int ap = 0; ap < nap; ap++)
+    {
+        /* Location in 212 array starts at 0 */
+        //ap_212 = ap;// - pass->ap_off;
+        /* Ptr to element in main data array */
+        //datum = 0; // pass->pass_data[fr].data + ap;
+        /* Data missing, put in -1 */
+        /* Check on weights is insurance */
+        // if ((datum->flag == 0) || (plot.weights[fr][ap] == 0))
+        // {
+            t212->data[ap].amp = -1.0;
+            t212->data[ap].phase = 0.0;
+            t212->data[ap].weight = 0.0;
+            // continue;
+        // // }
+        // /* Amplitude and phase */
+        // t212->data[ap_212].amp = abs_complex( plot.phasor[fr][ap] ) * status->amp_corr_fact;
+        // t212->data[ap_212].phase = arg_complex( plot.phasor[fr][ap] );
+        // t212->data[ap_212].weight = plot.weights[fr][ap];
+    }
 
     return 0;
 
@@ -716,13 +713,15 @@ int MHO_MK4FringeExport::fill_230( int fr, int ap, struct type_230 *t230)
 //dummy, just clears the structure
 int MHO_MK4FringeExport::fill_221( struct type_221* t221)
 {
+    clear_221(t221);
+    
     char version[3];
     strncpy (t221->record_id, "221", 3);
     sprintf (version, "%02d", T221_VERSION);
     strncpy (t221->version_no, version, 2);
     t221->unused1 = ' ';
     t221->padded = 0;
-    t221->ps_length = 0;
+    t221->ps_length = 1;
     t221->pplot[0] = '\0';
 
     return 0;
@@ -809,7 +808,8 @@ MHO_MK4FringeExport::output(std::string filename)
     // Type 212 (ap-by-ap data) records
     // Allocate memory as a block
     nap = fPStore->GetAs<int>("/config/total_naps");
-    int nfreq = 32;
+    int nfreq = fPStore->GetAs<int>("/config/nchannels");
+    
     size_of_t212 = sizeof (struct type_212) + 12*(nap-1);
     if ((nap % 2) == 1) size_of_t212 += 12;
     t212_array = (char *)malloc (nfreq * size_of_t212);
@@ -823,7 +823,6 @@ MHO_MK4FringeExport::output(std::string filename)
     fringe.allocated[fringe.nalloc] = t212_array;
     fringe.nalloc += 1;
 
-
     //Fill in records and pointers
     fringe.n212 = nfreq;
     for (fr=0; fr < nfreq; fr++)
@@ -835,6 +834,8 @@ MHO_MK4FringeExport::output(std::string filename)
     }
     
     
+
+    fringe.n230 = 0;
     //                                     /* Cross power spectra (if requested) */
     // if (write_xpower)
     //     {
@@ -927,17 +928,17 @@ MHO_MK4FringeExport::output(std::string filename)
     //     return (1);
     //     }
 
-    struct type_221 t221;
-    fill_221(&t221);
-    fringe.t221 = &t221;
+    struct type_221* t221 = (struct type_221 *) malloc( sizeof(struct type_221) );
+    fill_221(t221);
+    fringe.t221 = t221;
 
     // fringe.t221 = NULL;
 
     //fringe.t221 = t221;
-    //fringe.t221->ps_length = strlen (fringe.t221->pplot);
+    fringe.t221->ps_length = strlen (fringe.t221->pplot);
             /* Record the memory allocation */
-    // fringe.allocated[fringe.nalloc] = fringe.t221;
-    // fringe.nalloc += 1;
+    fringe.allocated[fringe.nalloc] = fringe.t221;
+    fringe.nalloc += 1;
     
            /* Fill in the control file record */
            /* if desired */
@@ -967,9 +968,8 @@ MHO_MK4FringeExport::output(std::string filename)
             //e.g. chops/source/python_src/hopstest_module/hopstestb/hopstestb.py
             //around line 74 in the FourFitThread class.
             //if(msglev==4){msg ("%s",4,fringe_name);} //iff msglev=4
-            std::cout<<"writing fringe file with name "<<filename<<std::endl;
             int val = write_mk4fringe(&fringe, fringe_name);
-            std::cout<<"write fringe retval = "<<val<<std::endl;
+
             // if(write_mk4fringe(&fringe, fringe_name) != 0)
             // {
             //     // pause 50ms, if a lock file was created, delete it now
