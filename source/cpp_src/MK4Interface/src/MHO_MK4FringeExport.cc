@@ -80,8 +80,7 @@ int MHO_MK4FringeExport::fill_200( struct type_200 *t200)
     legacy_hops_date now_date = MHO_LegacyDateConverter::Now();
     FillDate(&(t200->fourfit_date), now_date);
 
-    //TODO FIXME -- store and retrieve the correlation date info in HOPS4
-    //currently we do not have the correlation date information, so just use the current time
+    //the correlation processing date
     FillDate(&(t200->corr_date), "/config/correlation_date");
 
     //write out the fourfit reference time 
