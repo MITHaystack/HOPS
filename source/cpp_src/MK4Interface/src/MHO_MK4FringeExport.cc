@@ -182,7 +182,7 @@ int MHO_MK4FringeExport::fill_202( struct type_202 *t202)
     double ref_freq;
     FillDouble(ref_freq, "/control/config/ref_freq");
 
-    double speed_of_light_Mm = 299.792458; // in mega-meters (?!)
+    double speed_of_light_Mm = 299.792458; // in mega-meters
     double radians_to_arcsec = 4.848137e-6;
     double lambda = speed_of_light_Mm / ref_freq; // wavelength (m)
 
@@ -220,11 +220,13 @@ int MHO_MK4FringeExport::fill_204( struct type_204 *t204)
 {
     clear_204(t204);
 
-    //TODO FIXME -- what shoudl these values be?
+    //TODO FIXME -- what should these values be?
     t204->ff_version[0] = 4;
     t204->ff_version[1] = 0;
 
-    std::string tmp = getenv("HOPS_ARCH");
+    std::string tmp = "";
+    char* env = secure_getenv("HOPS_ARCH");
+    if(env != nullptr){tmp = env;}
     char_clear( &(t204->platform[0]), 8);
     strncpy(&(t204->platform[0]), tmp.c_str(), std::min(8, (int) tmp.size() ) );
 
@@ -478,9 +480,16 @@ int MHO_MK4FringeExport::fill_208( struct type_202 *t202, struct type_208 *t208)
     FillFloat(t208->amplitude, "/fringe/famp");
     t208->amplitude /= 10000.0; //remove Whitneys prefactor
 
-    #pragma message("TODO FIXME inc_seg, inc_chan amps, and PFD are in plot data, move to parameter store?")
-    FillFloat(t208->inc_seg_ampl, "/fringe/inc_seg_ampl");
-    FillFloat(t208->inc_chan_ampl, "/fringe/inc_chan_ampl");
+    double inc_avg_amp;
+    double inc_avg_amp_freq;
+    ok = fPlotData.Get("/extra/inc_avg_amp", inc_avg_amp);
+    if(!ok){inc_avg_amp = 0.0;}
+    ok = fPlotData.Get("extra/inc_avg_amp_freq", inc_avg_amp_freq);
+    if(!ok){inc_avg_amp_freq = 0.0;}
+    t208->inc_seg_ampl = inc_avg_amp;
+    t208->inc_chan_ampl = inc_avg_amp_freq;
+
+
     FillFloat(t208->snr, "/fringe/snr");
     FillFloat(t208->prob_false, "/fringe/pfd");
     FillFloat(t208->totphase, "/fringe/tot_phase");
@@ -743,6 +752,7 @@ int MHO_MK4FringeExport::fill_fringe_info(char *filename, struct mk4_fringe* fri
     //extern struct type_status status;
     
                                         /* Init */
+    fringe->nalloc = 0;
     clear_mk4fringe(fringe);
     
     ref_freq = 0.0;//param.ref_freq;
