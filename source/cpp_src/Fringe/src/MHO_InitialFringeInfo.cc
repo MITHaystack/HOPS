@@ -225,6 +225,7 @@ MHO_InitialFringeInfo::precalculate_quantities(MHO_ContainerStore* conStore, MHO
 
     double ref_adelay = delay_model.GetRefDelay();
     double ref_arate = delay_model.GetRefRate();
+    double ref_stn_delay = delay_model.GetRefStationDelay();
 
     //store and  convert to microsec
     //TODO FIXME - document units of all the various parameters/quantities
@@ -233,6 +234,7 @@ MHO_InitialFringeInfo::precalculate_quantities(MHO_ContainerStore* conStore, MHO
     paramStore->Set("/model/aaccel", 1e6*aaccel);
     paramStore->Set("/model/ref_adelay", 1e6*ref_adelay);
     paramStore->Set("/model/ref_arate", 1e6*ref_arate);
+    paramStore->Set("/model/ref_station_delay", ref_stn_delay); //kept in units of sec
 
     //figure out the clock information at the FRT
     calculate_clock_model(paramStore);

@@ -106,7 +106,7 @@ MHO_BasicFringeUtilities::calculate_fringe_solution_info(MHO_ContainerStore* con
     double resid_phase_deg = std::fmod(resid_phase_rad*(180.0/M_PI), 360.0);
 
     //calculate the a priori phase and total phase
-    double aphase = std::fmod( ref_freq*adelay*360.0, 360.0); //from fill_208.c, no conversion from radians??
+    double aphase = std::fmod( ref_freq*adelay*360.0, 360.0); //from fill_208.c, no conversion from radians??!!
     double tot_phase_deg = std::fmod( aphase + resid_phase_rad*(180.0/M_PI), 360.0 );
     paramStore->Set("/fringe/aphase", aphase);
 
@@ -148,19 +148,35 @@ MHO_BasicFringeUtilities::calculate_fringe_solution_info(MHO_ContainerStore* con
     paramStore->Set("/fringe/total_mbdelay", tot_mbd);
     paramStore->Set("/fringe/total_drate", tot_drate);
 
-
+    //totals computed at the reference station (instead of geocenter)
+    //section is only needed to populate type_208s when exporting to mk4 output 
+    //this is a candidate for deprecation 
     double ref_adelay = paramStore->GetAs<double>("/model/ref_adelay");
     double ref_arate = paramStore->GetAs<double>("/model/ref_arate");
-
+    double ref_station_delay = paramStore->GetAs<double>("/model/ref_station_delay");
     double tot_mbd_ref  = ref_adelay + mbdelay;
     double tot_sbd_ref = ref_adelay + sbdelay;
+    if(mbd_anchor == "sbd")
+    {
+        delta_mbd = ambig * std::floor( (tot_sbd_ref - tot_mbd_ref) / ambig + 0.5);
+        tot_mbd_ref += delta_mbd;
+    }
     double tot_rate_ref = ref_arate + drate;
 
     paramStore->Set("/fringe/total_sbdelay_ref", tot_sbd_ref);
     paramStore->Set("/fringe/total_mbdelay_ref", tot_mbd_ref);
     paramStore->Set("/fringe/total_rate_ref", tot_rate_ref);
-    //FillFloat(t208->totphase_ref, "/fringe/tot_phase_ref"); //DOES NOT EXIST YET
 
+    //calculate the ref station a priori phase and total phase
+    /* ref_stn_delay in sec, rate in usec/sec */
+    ref_adelay -= ref_station_delay * drate;
+    std::cout<<"INFO"<<std::endl;
+    std::cout<<ref_adelay<<", "<<ref_station_delay<<", "<<drate<<std::endl; 
+    double aphase_ref = std::fmod( ref_freq*ref_adelay*360.0, 360.0); //from fill_208.c, no conversion from radians??!!!
+    double tot_phase_ref_deg = std::fmod( aphase_ref + resid_phase_rad*(180.0/M_PI), 360.0 );
+    paramStore->Set("/fringe/tot_phase_ref", tot_phase_ref_deg); //not modified by mbd_anchor, see fill_208
+
+    //end of section on ref station totals /////////////////////////////////////
 
     double sbd_sep = paramStore->GetAs<double>("/fringe/sbd_separation");
     double freq_spread = paramStore->GetAs<double>("/fringe/frequency_spread");
