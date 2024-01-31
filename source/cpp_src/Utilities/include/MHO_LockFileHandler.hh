@@ -3,6 +3,7 @@
 
 #include <cstdlib>
 #include <csignal>
+#include <unistd.h>
 #include "MHO_DirectoryInterface.hh"
 
 //return error codes
