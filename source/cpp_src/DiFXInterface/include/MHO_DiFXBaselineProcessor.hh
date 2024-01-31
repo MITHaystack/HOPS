@@ -36,6 +36,7 @@ class MHO_DiFXBaselineProcessor
         int GetBaselineID() const {return fBaselineID;};
         void SetDiFXInputData(const mho_json* input){fInput = input;}
         void SetRootCode(std::string rcode){fRootCode = rcode;}
+        void SetCorrelationDate(std::string corrdate){fCorrDate = corrdate;}
 
         //apply mk4 style visibility normalization
         void SetRescaleFalse(){fRescale = false;}
@@ -62,6 +63,7 @@ class MHO_DiFXBaselineProcessor
         void DeleteDiFXVisRecords();
 
         std::string fRootCode;
+        std::string fCorrDate;
         int fBaselineID;
         std::string fRefStation;
         std::string fRemStation;

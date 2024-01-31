@@ -80,9 +80,8 @@ int MHO_MK4FringeExport::fill_200( struct type_200 *t200)
     legacy_hops_date now_date = MHO_LegacyDateConverter::Now();
     FillDate(&(t200->fourfit_date), now_date);
 
-    //TODO FIXME -- store and retrieve the correlation date info in HOPS4
-    //currently we do not have the correlation date information, so just use the current time
-    FillDate(&(t200->corr_date), now_date);
+    //the correlation processing date
+    FillDate(&(t200->corr_date), "/config/correlation_date");
 
     //write out the fourfit reference time 
     FillDate(&(t200->frt), "/vex/scan/fourfit_reftime");
@@ -182,7 +181,7 @@ int MHO_MK4FringeExport::fill_202( struct type_202 *t202)
     double ref_freq;
     FillDouble(ref_freq, "/control/config/ref_freq");
 
-    double speed_of_light_Mm = 299.792458; // in mega-meters (?!)
+    double speed_of_light_Mm = 299.792458; // in mega-meters
     double radians_to_arcsec = 4.848137e-6;
     double lambda = speed_of_light_Mm / ref_freq; // wavelength (m)
 
@@ -220,11 +219,13 @@ int MHO_MK4FringeExport::fill_204( struct type_204 *t204)
 {
     clear_204(t204);
 
-    //TODO FIXME -- what shoudl these values be?
+    //TODO FIXME -- what should these values be?
     t204->ff_version[0] = 4;
     t204->ff_version[1] = 0;
 
-    std::string tmp = getenv("HOPS_ARCH");
+    std::string tmp = "";
+    char* env = secure_getenv("HOPS_ARCH");
+    if(env != nullptr){tmp = env;}
     char_clear( &(t204->platform[0]), 8);
     strncpy(&(t204->platform[0]), tmp.c_str(), std::min(8, (int) tmp.size() ) );
 
@@ -337,7 +338,7 @@ int MHO_MK4FringeExport::fill_206( struct type_206 *t206)
     FillShort(t206->ratesize, "/fringe/n_drsp_points");
     FillShort(t206->mbdsize, "/fringe/n_mbd_points");
 
-    //do not use: "/fringe/n_sbd_points", instead follow recipe from fll_206
+    //do not use: "/fringe/n_sbd_points", instead follow recipe from fill_206
     //this is due to fact that we drop every-other-point directly after the FFT
     //while HOPS3 removes them at a later stage
     int nlags = fPStore->GetAs<int>("/config/nlags");
@@ -454,9 +455,6 @@ int MHO_MK4FringeExport::fill_208( struct type_202 *t202, struct type_208 *t208)
     FillDouble(t208->arate, "/model/arate");
     FillDouble(t208->aaccel, "/model/aaccel");
 
-    std::cout<<fPStore->GetAs<double>("/model/ref_adelay")<<std::endl;
-    std::cout<<fPStore->GetAs<double>("/model/ref_arate")<<std::endl;
-
     FillDouble(t208->tot_mbd, "/fringe/total_mbdelay");
     FillDouble(t208->tot_sbd, "/fringe/total_sbdelay");
     FillDouble(t208->tot_rate, "/fringe/total_drate");
@@ -478,9 +476,16 @@ int MHO_MK4FringeExport::fill_208( struct type_202 *t202, struct type_208 *t208)
     FillFloat(t208->amplitude, "/fringe/famp");
     t208->amplitude /= 10000.0; //remove Whitneys prefactor
 
-    #pragma message("TODO FIXME inc_seg, inc_chan amps, and PFD are in plot data, move to parameter store?")
-    FillFloat(t208->inc_seg_ampl, "/fringe/inc_seg_ampl");
-    FillFloat(t208->inc_chan_ampl, "/fringe/inc_chan_ampl");
+    double inc_avg_amp;
+    double inc_avg_amp_freq;
+    ok = fPlotData.Get("/extra/inc_avg_amp", inc_avg_amp);
+    if(!ok){inc_avg_amp = 0.0;}
+    ok = fPlotData.Get("extra/inc_avg_amp_freq", inc_avg_amp_freq);
+    if(!ok){inc_avg_amp_freq = 0.0;}
+    t208->inc_seg_ampl = inc_avg_amp;
+    t208->inc_chan_ampl = inc_avg_amp_freq;
+
+
     FillFloat(t208->snr, "/fringe/snr");
     FillFloat(t208->prob_false, "/fringe/pfd");
     FillFloat(t208->totphase, "/fringe/tot_phase");
@@ -544,34 +549,34 @@ int MHO_MK4FringeExport::fill_212(int fr, struct type_212 *t212)
     // // clear_212 (t212);
     // // 
     // //nap = pass->num_ap;
-    // int nap = fPStore->GetAs<int>("/config/total_naps");
-    // t212->nap = nap;
-    // t212->first_ap = pass->ap_off;
-    // t212->channel = fr;
-    // t212->sbd_chan = status->max_delchan;
-    // 
-    // 
-    // /* Loop over the aps for this pass */
-    // for (ap = pass->ap_off; ap < pass->ap_off + nap; ap++)
-    // {
-    //     /* Location in 212 array starts at 0 */
-    //     ap_212 = ap - pass->ap_off;
-    //     /* Ptr to element in main data array */
-    //     datum = pass->pass_data[fr].data + ap;
-    //     /* Data missing, put in -1 */
-    //     /* Check on weights is insurance */
-    //     if ((datum->flag == 0) || (plot.weights[fr][ap] == 0))
-    //     {
-    //         t212->data[ap_212].amp = -1.0;
-    //         t212->data[ap_212].phase = 0.0;
-    //         t212->data[ap_212].weight = 0.0;
-    //         continue;
-    //     }
-    //     /* Amplitude and phase */
-    //     t212->data[ap_212].amp = abs_complex( plot.phasor[fr][ap] ) * status->amp_corr_fact;
-    //     t212->data[ap_212].phase = arg_complex( plot.phasor[fr][ap] );
-    //     t212->data[ap_212].weight = plot.weights[fr][ap];
-    // }
+    int nap = fPStore->GetAs<int>("/config/total_naps");
+    t212->nap = nap;
+    t212->first_ap = 0;//pass->ap_off;
+    t212->channel = fr;
+    t212->sbd_chan = fPStore->GetAs<int>("/fringe/max_sbd_bin");//status->max_delchan;
+    
+    
+    /* Loop over the aps for this pass */
+    for(int ap = 0; ap < nap; ap++)
+    {
+        /* Location in 212 array starts at 0 */
+        //ap_212 = ap;// - pass->ap_off;
+        /* Ptr to element in main data array */
+        //datum = 0; // pass->pass_data[fr].data + ap;
+        /* Data missing, put in -1 */
+        /* Check on weights is insurance */
+        // if ((datum->flag == 0) || (plot.weights[fr][ap] == 0))
+        // {
+            t212->data[ap].amp = -1.0;
+            t212->data[ap].phase = 0.0;
+            t212->data[ap].weight = 0.0;
+            // continue;
+        // // }
+        // /* Amplitude and phase */
+        // t212->data[ap_212].amp = abs_complex( plot.phasor[fr][ap] ) * status->amp_corr_fact;
+        // t212->data[ap_212].phase = arg_complex( plot.phasor[fr][ap] );
+        // t212->data[ap_212].weight = plot.weights[fr][ap];
+    }
 
     return 0;
 
@@ -707,20 +712,27 @@ int MHO_MK4FringeExport::fill_230( int fr, int ap, struct type_230 *t230)
 //dummy, just clears the structure
 int MHO_MK4FringeExport::fill_221( struct type_221* t221)
 {
+    clear_221(t221);
+    
     char version[3];
     strncpy (t221->record_id, "221", 3);
     sprintf (version, "%02d", T221_VERSION);
     strncpy (t221->version_no, version, 2);
     t221->unused1 = ' ';
     t221->padded = 0;
-    t221->ps_length = 0;
+    t221->ps_length = 1;
     t221->pplot[0] = '\0';
 
     return 0;
 }
 
-int MHO_MK4FringeExport::fill_fringe_info(char *filename, struct mk4_fringe* fringe)
+
+
+int
+MHO_MK4FringeExport::output(std::string filename)
 {
+    //declare the fringe structure and items we are going to fill on the stack
+    struct mk4_fringe fringe;
     struct type_200 t200;
     struct type_201 t201;
     struct type_202 t202;
@@ -733,29 +745,41 @@ int MHO_MK4FringeExport::fill_fringe_info(char *filename, struct mk4_fringe* fri
     struct type_210 t210;
     struct type_000 t2_id;
 
+    char fringe_name[256];
+    char_clear(fringe_name, 256);
+    if(filename.size() > 256)
+    {
+        msg_fatal("mk4interface", "filename exceeds max length of 256." << eom);
+        std::exit(1);
+    }
+    strncpy(fringe_name, filename.c_str(), std::min(255, (int)filename.size() ) );
+
     double sband_err, ref_freq;
     int error, nap, xpow_len, fr, ap, size_of_t212, size_of_t230, recno;
     char buf[256];
+    char_clear(buf, 256);
+
     char *t212_array, *t230_array, *address;
     //extern int write_xpower;
-
     //extern struct type_param param;
     //extern struct type_status status;
-    
+
                                         /* Init */
-    clear_mk4fringe(fringe);
-    
+    fringe.nalloc = 0;
+    clear_mk4fringe(&fringe);
+
     ref_freq = 0.0;//param.ref_freq;
-    
-    strcpy (buf, filename);
-    int val = init_000 (&t2_id, filename);
-    if(  val != 0)
+
+    strcpy (buf, filename.c_str());
+    int val = init_000 (&t2_id, fringe_name);
+    if(val != 0)
     {
         std::cout<<"error t000: "<<val<<std::endl;
-        //msg ("Error filling in id record", 2);
+        msg_fatal("mk4interface", "failed to init type 000, error due to filename: "<< filename << " ?"<< eom);
         return (-1);
     }
-    
+
+    //fill the data structures
     error = fill_200(&t200);
     error += fill_201(&t201);
     error += fill_202(&t202);
@@ -766,26 +790,25 @@ int MHO_MK4FringeExport::fill_fringe_info(char *filename, struct mk4_fringe* fri
     error += fill_207(&t207);
     error += fill_208(&t202, &t208);
     error += fill_210(&t210);
-    
-    fringe->id = &t2_id;
-    fringe->t200 = &t200;
-    fringe->t201 = &t201;
-    fringe->t202 = &t202;
-    fringe->t203 = &t203;
-    fringe->t204 = &t204;
-    fringe->t205 = &t205;
-    fringe->t206 = &t206;
-    fringe->t207 = &t207;
-    fringe->t208 = &t208;
-    fringe->t210 = &t210;
 
-    std::cout<<"done filling"<<std::endl;
+    //point the fringe to the data structures
+    fringe.id = &t2_id;
+    fringe.t200 = &t200;
+    fringe.t201 = &t201;
+    fringe.t202 = &t202;
+    fringe.t203 = &t203;
+    fringe.t204 = &t204;
+    fringe.t205 = &t205;
+    fringe.t206 = &t206;
+    fringe.t207 = &t207;
+    fringe.t208 = &t208;
+    fringe.t210 = &t210;
 
-
-                                        /* Type 212 (ap-by-ap data) records */
-                                        /* Allocate memory as a block */
+    // Type 212 (ap-by-ap data) records
+    // Allocate memory as a block
     nap = fPStore->GetAs<int>("/config/total_naps");
-    int nfreq = 32;
+    int nfreq = fPStore->GetAs<int>("/config/nchannels");
+    
     size_of_t212 = sizeof (struct type_212) + 12*(nap-1);
     if ((nap % 2) == 1) size_of_t212 += 12;
     t212_array = (char *)malloc (nfreq * size_of_t212);
@@ -794,20 +817,22 @@ int MHO_MK4FringeExport::fill_fringe_info(char *filename, struct mk4_fringe* fri
         //msg ("Failure allocating memory for type 212 records!", 2);
         return (0);
     }
-                                        /* record the allocation */
-    fringe->allocated[fringe->nalloc] = t212_array;
-    fringe->nalloc += 1;
 
+    //record the allocation
+    fringe.allocated[fringe.nalloc] = t212_array;
+    fringe.nalloc += 1;
 
-    //                                     /* Fill in records and pointers */
-    fringe->n212 = nfreq;
+    //Fill in records and pointers
+    fringe.n212 = nfreq;
     for (fr=0; fr < nfreq; fr++)
     {
         address = t212_array + (fr * size_of_t212);
-        fringe->t212[fr] = (struct type_212 *)address;
+        fringe.t212[fr] = (struct type_212 *)address;
         // error += fill_212 (pass, &status, &param, fr, fringe.t212[fr]);
-        error += fill_212(fr, fringe->t212[fr]);
+        error += fill_212(fr, fringe.t212[fr]);
     }
+
+    fringe.n230 = 0;
     //                                     /* Cross power spectra (if requested) */
     // if (write_xpower)
     //     {
@@ -838,41 +863,7 @@ int MHO_MK4FringeExport::fill_fringe_info(char *filename, struct mk4_fringe* fri
     // 
     // if (error != 0)
     //     //msg ("Warning - some or all of the output records were not filled", 2);
-    // 
-    // status.amp_err = status.delres_max / status.snr;
-    // status.resid_phase = status.coh_avg_phase * ( 180.0 / M_PI);
-    // status.mod_resid_phase *= 180.0 / M_PI;
-    // sband_err = sqrt (1.0 + 3.0 * (status.sbavg * status.sbavg));
-    // status.phase_err = (status.nion == 0) ?
-    //     180.0 * sband_err / (M_PI * status.snr) :
-    //     360.0 * status.ion_sigmas[1];
-    // status.resid_ph_delay = status.coh_avg_phase / (2.0 * M_PI *ref_freq);
-    // status.ph_delay_err = sband_err / (2.0 * M_PI * status.snr * ref_freq);
-    
 
-    return 0;
-}
-
-
-
-int
-MHO_MK4FringeExport::output(std::string filename)
-{
-
-    struct mk4_fringe fringe;
-
-
-    std::cout<<"output"<<std::endl;
-
-    char fringe_name[256];
-    for(std::size_t i=0; i<256; i++){fringe_name[i] = '\0';}
-
-    if(filename.size() > 255)
-    {
-        msg_fatal("mk4interface", "filename exceeds max length of 256." << eom);
-        std::exit(1);
-    }
-    strncpy(fringe_name, filename.c_str(), filename.size());
 
     char sg;
     int i, dret;
@@ -881,7 +872,6 @@ MHO_MK4FringeExport::output(std::string filename)
     bool test_mode = false;
 
     //struct type_221 *t221;
-
     struct type_222 *t222;
 
     // // for locking, see below and include/write_lock_mechanism.h
@@ -921,11 +911,11 @@ MHO_MK4FringeExport::output(std::string filename)
     //     return (1);
     //     }
         /* Fill in fringe file structure */
-    if(fill_fringe_info(fringe_name, &fringe) != 0)
-    {
-        //msg ("Error filling fringe records", 2);
-        return 1;
-    }
+    // if(fill_fringe_info(fringe_name, &fringe) != 0)
+    // {
+    //     //msg ("Error filling fringe records", 2);
+    //     return 1;
+    // }
 
 
     // 
@@ -935,17 +925,17 @@ MHO_MK4FringeExport::output(std::string filename)
     //     return (1);
     //     }
 
-    struct type_221 t221;
-    fill_221(&t221);
-    fringe.t221 = &t221;
+    struct type_221* t221 = (struct type_221 *) malloc( sizeof(struct type_221) );
+    fill_221(t221);
+    fringe.t221 = t221;
 
     // fringe.t221 = NULL;
 
     //fringe.t221 = t221;
-    //fringe.t221->ps_length = strlen (fringe.t221->pplot);
+    fringe.t221->ps_length = strlen (fringe.t221->pplot);
             /* Record the memory allocation */
-    // fringe.allocated[fringe.nalloc] = fringe.t221;
-    // fringe.nalloc += 1;
+    fringe.allocated[fringe.nalloc] = fringe.t221;
+    fringe.nalloc += 1;
     
            /* Fill in the control file record */
            /* if desired */
@@ -975,9 +965,8 @@ MHO_MK4FringeExport::output(std::string filename)
             //e.g. chops/source/python_src/hopstest_module/hopstestb/hopstestb.py
             //around line 74 in the FourFitThread class.
             //if(msglev==4){msg ("%s",4,fringe_name);} //iff msglev=4
-            std::cout<<"writing fringe file with name "<<filename<<std::endl;
             int val = write_mk4fringe(&fringe, fringe_name);
-            std::cout<<"write fringe retval = "<<val<<std::endl;
+
             // if(write_mk4fringe(&fringe, fringe_name) != 0)
             // {
             //     // pause 50ms, if a lock file was created, delete it now
