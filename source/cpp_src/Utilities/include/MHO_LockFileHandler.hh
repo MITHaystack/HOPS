@@ -65,11 +65,11 @@ class MHO_LockFileHandler
         void clear();
         void remove_lockfile();
         int parse_lockfile_name(char* lockfile_name_base, lockfile_data* result);
-        int create_lockfile(char *rootname, char* lockfile_name, int cand_seq_no);
+        int create_lockfile(char* lockfile_name, int cand_seq_no);
         int check_stale(lockfile_data* other);
         int lock_has_priority(lockfile_data* other);
-        int at_front(char* rootname, char* lockfile_name, int cand_seq_no);
-        int wait_for_write_lock(char* rootname, char* lockfile_name, struct fileset *fset);
+        int at_front(char* lockfile_name, int cand_seq_no);
+        int wait_for_write_lock(char* lockfile_name, int& next_seq_no);
 
 
     private:

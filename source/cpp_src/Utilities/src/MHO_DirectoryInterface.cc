@@ -430,6 +430,46 @@ MHO_DirectoryInterface::GetStationFiles(const std::vector<std::string>& files, s
     }
 }
 
+void
+MHO_DirectoryInterface::GetFringeFiles(const std::vector<std::string>& files, std::vector<std::string>& fringe_files, int& max_sequence_num) const
+{
+    //sift through the list of files to find the ones which match the
+    //fringe file characteristics
+    fringe_files.clear();
+    fTokenizer.SetDelimiter(".");
+    fTokenizer.SetIncludeEmptyTokensFalse();
+    fTokenizer.SetRemoveLeadingTrailingWhitespaceTrue();
+    std::vector< std::string > tokens;
+    
+    max_sequence_num = 0;
+    for(auto it = files.begin(); it != files.end(); it++)
+    {
+        std::string base_filename = it->substr(it->find_last_of("/\\") + 1);
+        //check that there is two dots in the filename base
+        if(count_number_of_matches(base_filename, '.') == 2) 
+        {
+            //check that the two dots are separated by a single "frequency group" character
+            //format looks like "GE.X.1.0VSI1M"
+            tokens.clear();
+            fTokenizer.SetString(&base_filename);
+            fTokenizer.GetTokens(&tokens);
+            if(tokens.size() == 4) 
+            {
+                //fringe file should get split into 4 tokens
+                //first token is the 2-char baseline code 
+                //second token is 1-char freq group code 
+                //third token is integer "sequence number"
+                //4th token is 6 char root code 
+                if(tokens[0].size() == 2 && tokens[1].size() == 1 && tokens[3].size() == 6)
+                {
+                    int seq_no = std::atoi(tokens[2].c_str());
+                    if(seq_no > max_sequence_num){max_sequence_num = seq_no;}
+                    fringe_files.push_back(*it);
+                }
+            }
+        }
+    }
+}
 
 void
 MHO_DirectoryInterface::SplitCorelFileBasename(const std::string& corel_basename, std::string& st_pair, std::string& root_code) const

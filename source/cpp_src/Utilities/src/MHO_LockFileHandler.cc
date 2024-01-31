@@ -181,7 +181,7 @@ int MHO_LockFileHandler::lock_has_priority(lockfile_data* other)
 
 }
 
-int MHO_LockFileHandler::create_lockfile(char *rootname, char* lockfile_name, int max_seq_no)
+int MHO_LockFileHandler::create_lockfile(char* lockfile_name, int max_seq_no)
 {
     //max file extent number seen at time of lock file creation 
     //(or rather, the time which fileset() was run)
@@ -211,7 +211,7 @@ int MHO_LockFileHandler::create_lockfile(char *rootname, char* lockfile_name, in
     for(i=0; i<MAX_LOCKNAME_LEN; i++){lockfile_name[i] = '\0';}
 
     //copy in the scan directory and append the filename
-    strcpy(lockfile_name, rootname);
+    strcpy(lockfile_name, fDirectory.c_str());
     char* end_ptr = strrchr(lockfile_name, '/');
     end_ptr++;
     sprintf(end_ptr, "%u.%u.%lx.%lx.%s.lock",
@@ -251,12 +251,12 @@ int MHO_LockFileHandler::create_lockfile(char *rootname, char* lockfile_name, in
 //returns LOCK_PROCESS_HAS_PRIORITY if this process is at the front of the queue
 //returns LOCK_PROCESS_NO_PRIORITY if otherwise
 //returns and error code (various, see write_lock_mechanism.h) if an error
-int MHO_LockFileHandler::at_front(char* rootname, char* lockfile_name, int cand_seq_no)
-    {
+int MHO_LockFileHandler::at_front(char* lockfile_name, int cand_seq_no)
+{
 
     //figure out root directory
     char root_dir[MAX_LOCKNAME_LEN] = {'\0'};
-    strcpy(root_dir, rootname);
+    strcpy(root_dir, fDirectory.c_str());
     char* end_ptr_a = strrchr(root_dir, '/');
     end_ptr_a++;
     *end_ptr_a = '\0';
@@ -308,7 +308,7 @@ int MHO_LockFileHandler::at_front(char* rootname, char* lockfile_name, int cand_
     if(process_priority != LOCK_PROCESS_HAS_PRIORITY){return process_priority;};
     
     //no other locks present, so go ahead and try to create a lock file
-    int lock_retval = create_lockfile(rootname, lockfile_name, cand_seq_no);
+    int lock_retval = create_lockfile(lockfile_name, cand_seq_no);
 
     if(lock_retval == LOCK_STATUS_OK)
     {
@@ -342,13 +342,13 @@ int MHO_LockFileHandler::at_front(char* rootname, char* lockfile_name, int cand_
                         process_priority = lock_has_priority(&temp_lock_struct);
                         if(process_priority != LOCK_PROCESS_HAS_PRIORITY)
                         {
-                            //either we don't have write priority or an error occured    
+                            //either we don't have write priority or an error occured
                             break;
                         }
                     }
                 }
             }
-                closedir(d);
+            closedir(d);
         }
         else
         {
@@ -381,58 +381,57 @@ int MHO_LockFileHandler::at_front(char* rootname, char* lockfile_name, int cand_
     
 }
 
-int MHO_LockFileHandler::wait_for_write_lock(char* rootname, char* lockfile_name, struct fileset *fset)
+int MHO_LockFileHandler::wait_for_write_lock(char* lockfile_name, int& next_seq_no)
 {
-    return 0;
-    // //this function gets the max file extent number seen at time of lock file
-    // //creation (or rather, the time which fileset() was run);found in sub/util
-    // // extern int get_fileset(char*, struct fileset* );
-    // int ret_val;
-    // //wait until this process is at the front of the write queue
-    // int is_at_front = 0;
-    // int n_checks = 0;
-    // do
-    //     {
-    //     //check for max sequence number on disk
-    //     ret_val = get_fileset(rootname, fset);
-    //     if(ret_val != 0)
-    //         {
-    //         return LOCK_FILESET_FAIL;
-    //         }
-    //     //provisionally fset->maxfile is the largest fringe number on disk
-    //     //but we need to check that WE are allowed to take the successor:  
-    //     is_at_front = at_front(rootname, lockfile_name, fset->maxfile);
-    //     n_checks++;
-    //     if(is_at_front == LOCK_PROCESS_NO_PRIORITY){usleep(100000);}
-    //     }
-    // while( is_at_front == LOCK_PROCESS_NO_PRIORITY && n_checks < LOCK_TIMEOUT );
-    // 
-    // //couldn't get a write lock because of time out
-    // if(n_checks >= LOCK_TIMEOUT)
-    //     {
-    //     msg ("Error: lock file time-out error associated with: %s ", 3, rootname);
-    //     return LOCK_TIMEOUT_ERROR;
-    //     }
-    // 
-    // if(is_at_front != LOCK_PROCESS_HAS_PRIORITY)
-    //     {
-    //     //some other error has occurred
-    //     return is_at_front;
-    //     }
-    // 
-    // //made it here, so we have write priority now, just need to
-    // //check/update the extent number for type-2 files and return it
-    // ret_val = get_fileset(rootname, fset);
-    // //fset->maxfile is the largest fringe number on disk
-    // if(ret_val == 0)
-    // {
-    //     return LOCK_STATUS_OK;
-    // }
-    // else
-    // {
-    //     return LOCK_FILESET_FAIL;
-    // }
+    next_seq_no = -1;
+    
+    //wait until this process is at the front of the write queue, 
+    //then return with the next sequence number
+    int is_at_front = 0;
+    int n_checks = 0;
+    int max_seq_no = 0;
+    std::vector< std::string > files;
+    std::vector< std::string > fringe_files;
+    do
+    {
+        ///check for max sequence number on disk
+        //point the directory interface to where we plan to write the file
+        //and check for the max sequency number seen in fringe files
+        fDirInterface.SetCurrentDirectory(fDirectory);
+        fDirInterface.ReadCurrentDirectory();
+        fDirInterface.GetFileList(files);
+        fDirInterface.GetFringeFiles(files, fringe_files, max_seq_no);
 
+        //provisionally fset->maxfile is the largest fringe number on disk
+        //but we need to check that WE are allowed to take the successor:
+        is_at_front = at_front(lockfile_name, max_seq_no+1);
+        n_checks++;
+        if(is_at_front == LOCK_PROCESS_NO_PRIORITY){usleep(100000);}
+    }
+    while( is_at_front == LOCK_PROCESS_NO_PRIORITY && n_checks < LOCK_TIMEOUT );
+    
+    //couldn't get a write lock because of time out
+    if(n_checks >= LOCK_TIMEOUT)
+    {
+        //msg ("Error: lock file time-out error associated with: %s ", 3, rootname);
+        return LOCK_TIMEOUT_ERROR;
+    }
+    
+    if(is_at_front != LOCK_PROCESS_HAS_PRIORITY)
+    {
+        //some other error has occurred
+        return is_at_front;
+    }
+    
+    //made it here, so we have write priority now, just need to
+    //check/update the extent number for type-2 files and return it
+    fDirInterface.SetCurrentDirectory(fDirectory);
+    fDirInterface.ReadCurrentDirectory();
+    fDirInterface.GetFileList(files);
+    fDirInterface.GetFringeFiles(files, fringe_files, max_seq_no);
+    next_seq_no = max_seq_no+1;
+
+    return LOCK_STATUS_OK;
 }
 
 
