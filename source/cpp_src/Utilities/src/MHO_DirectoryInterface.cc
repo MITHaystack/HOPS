@@ -380,7 +380,7 @@ void
 MHO_DirectoryInterface::GetCorelFiles(const std::vector<std::string>& files, std::vector<std::string>& corel_files) const
 {
     corel_files.clear();
-    //sift through the list of files to find which ones matche the
+    //sift through the list of files to find which ones match the
     //corel file characteristics and put them in the corel_files list
     for(auto it = files.begin(); it != files.end(); it++)
     {
