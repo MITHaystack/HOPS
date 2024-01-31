@@ -23,15 +23,6 @@
 #define LOCK_VALID 0
 #define LOCK_INVALID -1
 
-//return error codes
-#define LOCK_FILESET_FAIL -6
-#define LOCK_TIMEOUT_ERROR -5
-#define LOCK_FILE_ERROR -4
-#define LOCK_STALE_ERROR -3
-#define LOCK_PARSE_ERROR -2
-#define LOCK_PROCESS_NO_PRIORITY -1
-#define LOCK_STATUS_OK 0
-#define LOCK_PROCESS_HAS_PRIORITY 1
 
 namespace hops
 {

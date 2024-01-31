@@ -12,6 +12,7 @@ extern "C"
 #endif
 
 #include "MHO_LegacyDateConverter.hh"
+#include "MHO_LockFileHandler.hh"
 
 #include "MHO_MK4Type200Converter.hh"
 #include "MHO_MK4Type201Converter.hh"
@@ -729,259 +730,283 @@ int MHO_MK4FringeExport::fill_221( struct type_221* t221)
 
 
 int
-MHO_MK4FringeExport::output(std::string filename)
+MHO_MK4FringeExport::output(std::string filename2)
 {
-    //declare the fringe structure and items we are going to fill on the stack
-    struct mk4_fringe fringe;
-    struct type_200 t200;
-    struct type_201 t201;
-    struct type_202 t202;
-    struct type_203 t203;
-    struct type_204 t204;
-    struct type_205 t205;
-    struct type_206 t206;
-    struct type_207 t207;
-    struct type_208 t208;
-    struct type_210 t210;
-    struct type_000 t2_id;
-
+    //set up the write lock mechanism
+    //TODO -- allow for a different directory for output than the input directory
+    std::string directory = fPStore->GetAs<std::string>("/files/directory");
+    MHO_LockFileHandler::GetInstance().SetDirectory(directory);
+    
+    // for locking
+    int lock_retval = LOCK_PROCESS_NO_PRIORITY;
+    char lockfile_name[512] = {'\0'};
     char fringe_name[256];
     char_clear(fringe_name, 256);
-    if(filename.size() > 256)
-    {
-        msg_fatal("mk4interface", "filename exceeds max length of 256." << eom);
-        std::exit(1);
-    }
-    strncpy(fringe_name, filename.c_str(), std::min(255, (int)filename.size() ) );
-
-    double sband_err, ref_freq;
-    int error, nap, xpow_len, fr, ap, size_of_t212, size_of_t230, recno;
-    char buf[256];
-    char_clear(buf, 256);
-
-    char *t212_array, *t230_array, *address;
-    //extern int write_xpower;
-    //extern struct type_param param;
-    //extern struct type_status status;
-
-                                        /* Init */
-    fringe.nalloc = 0;
-    clear_mk4fringe(&fringe);
-
-    ref_freq = 0.0;//param.ref_freq;
-
-    strcpy (buf, filename.c_str());
-    int val = init_000 (&t2_id, fringe_name);
-    if(val != 0)
-    {
-        std::cout<<"error t000: "<<val<<std::endl;
-        msg_fatal("mk4interface", "failed to init type 000, error due to filename: "<< filename << " ?"<< eom);
-        return (-1);
-    }
-
-    //fill the data structures
-    error = fill_200(&t200);
-    error += fill_201(&t201);
-    error += fill_202(&t202);
-    error += fill_203(&t203);
-    error += fill_204(&t204);
-    error += fill_205(&t203, &t205);
-    error += fill_206(&t206);
-    error += fill_207(&t207);
-    error += fill_208(&t202, &t208);
-    error += fill_210(&t210);
-
-    //point the fringe to the data structures
-    fringe.id = &t2_id;
-    fringe.t200 = &t200;
-    fringe.t201 = &t201;
-    fringe.t202 = &t202;
-    fringe.t203 = &t203;
-    fringe.t204 = &t204;
-    fringe.t205 = &t205;
-    fringe.t206 = &t206;
-    fringe.t207 = &t207;
-    fringe.t208 = &t208;
-    fringe.t210 = &t210;
-
-    // Type 212 (ap-by-ap data) records
-    // Allocate memory as a block
-    nap = fPStore->GetAs<int>("/config/total_naps");
-    int nfreq = fPStore->GetAs<int>("/config/nchannels");
-    
-    size_of_t212 = sizeof (struct type_212) + 12*(nap-1);
-    if ((nap % 2) == 1) size_of_t212 += 12;
-    t212_array = (char *)malloc (nfreq * size_of_t212);
-    if (t212_array == NULL)
-    {
-        //msg ("Failure allocating memory for type 212 records!", 2);
-        return (0);
-    }
-
-    //record the allocation
-    fringe.allocated[fringe.nalloc] = t212_array;
-    fringe.nalloc += 1;
-
-    //Fill in records and pointers
-    fringe.n212 = nfreq;
-    for (fr=0; fr < nfreq; fr++)
-    {
-        address = t212_array + (fr * size_of_t212);
-        fringe.t212[fr] = (struct type_212 *)address;
-        // error += fill_212 (pass, &status, &param, fr, fringe.t212[fr]);
-        error += fill_212(fr, fringe.t212[fr]);
-    }
-
-    fringe.n230 = 0;
-    //                                     /* Cross power spectra (if requested) */
-    // if (write_xpower)
-    //     {
-    //                                     /* Allocate memory as a block */
-    //     xpow_len = 16 * 2 * param.nlags;
-    //     size_of_t230 = sizeof (struct type_230) - sizeof (hops_complex) + xpow_len;
-    //     t230_array = (char *)malloc (pass->nfreq * nap * size_of_t230);
-    //     if (t230_array == NULL)
-    //         {
-    //         //msg ("Failure allocating memory for type 230 records!", 2);
-    //         return (0);
-    //         }
-    //                                     /* record the allocation */
-    //     fringe.allocated[fringe.nalloc] = t230_array;
-    //     fringe.nalloc += 1;
-    //                                     /* Loop over all freqs, aps */
-    //     recno = 0;
-    //     for (fr=0; fr<pass->nfreq; fr++)
-    //         for (ap = pass->ap_off; ap < pass->ap_off + nap; ap++)
-    //             {
-    //             address = t230_array + recno * size_of_t230;
-    //             fringe.t230[recno] = (struct type_230 *)address;
-    //             error += fill_230 (pass, &param, fr, ap, fringe.t230[recno]);
-    //             recno++;
-    //             }
-    //     fringe.n230 = recno;
-    //     }
-    // 
-    // if (error != 0)
-    //     //msg ("Warning - some or all of the output records were not filled", 2);
-
-
-    char sg;
-    int i, dret;
-    char **fplot;
     int the_seq_no;
-    bool test_mode = false;
-
-    //struct type_221 *t221;
-    struct type_222 *t222;
-
-    // // for locking, see below and include/write_lock_mechanism.h
-    int lock_retval = LOCK_STATUS_OK;//LOCK_PROCESS_NO_PRIORITY;
-    // char lockfile_name[512] = {'\0'};
-
-    /* Generate information to create fringe plot */
-    /* Some of this also goes into fringe file */
-
-    //try to get a lock on the root directory in order to write the fringe
-    //this is used to signal any other possible fourfit processes in this
-    //directory that we are about to create a file so we can avoid name 
-    //collisions.  The lock persists from point of acqusition until the
-    //eventual call to write_mk4fringe() below.
-    // FIXME: should worry about stale locks if ^C is hit.
-    // if(!test_mode)
-    //     {
-    //     struct fileset fset;
-    //     //wait until we are the next process allowed to write an output file
-    //     lock_retval = wait_for_write_lock(root->ovex->filename,
-    //         lockfile_name, &fset);
-    //     //this is the last filenumber that exists on disk
-    //     the_seq_no = fset.maxfile;
-    //     }
-    // else
-    //     {
-    //     // in test mode, nothing should be written, so the number is moot.
-    //     the_seq_no = -1;
-    //     }
-
-    // /* create_fname() will put the next seq number into the fringe name */
-    // the_seq_no++;
-    //                                 /* Figure out the correct, full pathname */
-    // if (create_fname (root->ovex, pass, the_seq_no, fringe_name) != 0)
-    //     {
-    //     msg ("Error figuring out proper fringe filename", 2);
-    //     return (1);
-    //     }
-        /* Fill in fringe file structure */
-    // if(fill_fringe_info(fringe_name, &fringe) != 0)
-    // {
-    //     //msg ("Error filling fringe records", 2);
-    //     return 1;
-    // }
-
-
-    // 
-    // if (make_postplot (root->ovex, pass, fringe_name, &t221) != 0)
-    //     {
-    //     msg ("Error creating postscript plot", 2);
-    //     return (1);
-    //     }
-
-    struct type_221* t221 = (struct type_221 *) malloc( sizeof(struct type_221) );
-    fill_221(t221);
-    fringe.t221 = t221;
-
-    // fringe.t221 = NULL;
-
-    //fringe.t221 = t221;
-    fringe.t221->ps_length = strlen (fringe.t221->pplot);
-            /* Record the memory allocation */
-    fringe.allocated[fringe.nalloc] = fringe.t221;
-    fringe.nalloc += 1;
     
-           /* Fill in the control file record */
-           /* if desired */
-    fringe.t222 = NULL;
-    // if(param.gen_cf_record)
-    // {
-    //     if (fill_222 (&param, &t222) != 0)
-    //     {
-    //         //msg ("Error filling control record", 2);
-    //         return (1);
-    //     }
-    // 
-    //     fringe.t222 = t222;
-    //             /* Record the memory allocation */
-    //     fringe.allocated[fringe.nalloc] = fringe.t222;
-    //     fringe.nalloc += 1;
-    // }
-
-            /* Actually write output fringe file */
-    //if( !test_mode)
+    //wait until we are the next process allowed to write an output file
+    lock_retval = MHO_LockFileHandler::GetInstance().wait_for_write_lock(lockfile_name, the_seq_no);
+    
+    std::stringstream ss;
+    ss << "GE.X.";
+    ss << the_seq_no;
+    ss << ".ABCDEF";
+    std::string filename = ss.str();
+    
+    if(lock_retval == LOCK_STATUS_OK && the_seq_no > 0)
     {
-        //if( lock_retval == LOCK_STATUS_OK)
-        {
-            //kludge to get fourfit to feed the generated fringe file name 
-            //(but nothing else) as a return value to a
-            //a python calling script (requires passing option "-m 4"); see
-            //e.g. chops/source/python_src/hopstest_module/hopstestb/hopstestb.py
-            //around line 74 in the FourFitThread class.
-            //if(msglev==4){msg ("%s",4,fringe_name);} //iff msglev=4
-            int val = write_mk4fringe(&fringe, fringe_name);
+            
+        //declare the fringe structure and items we are going to fill on the stack
+        struct mk4_fringe fringe;
+        struct type_200 t200;
+        struct type_201 t201;
+        struct type_202 t202;
+        struct type_203 t203;
+        struct type_204 t204;
+        struct type_205 t205;
+        struct type_206 t206;
+        struct type_207 t207;
+        struct type_208 t208;
+        struct type_210 t210;
+        struct type_000 t2_id;
 
-            // if(write_mk4fringe(&fringe, fringe_name) != 0)
-            // {
-            //     // pause 50ms, if a lock file was created, delete it now
-            //     //usleep(50000); remove_lockfile();
-            //     //msg ("Error writing fringe file", 2);
-            //     return 1;
-            // }
-            //if a lock file was created, delete it now
-            //usleep(50000); remove_lockfile();
+        if(filename.size() > 256)
+        {
+            msg_fatal("mk4interface", "filename exceeds max length of 256." << eom);
+            std::exit(1);
         }
+        strncpy(fringe_name, filename.c_str(), std::min(255, (int)filename.size() ) );
+
+        double sband_err, ref_freq;
+        int error, nap, xpow_len, fr, ap, size_of_t212, size_of_t230, recno;
+        char buf[256];
+        char_clear(buf, 256);
+
+        char *t212_array, *t230_array, *address;
+        //extern int write_xpower;
+        //extern struct type_param param;
+        //extern struct type_status status;
+
+                                            /* Init */
+        fringe.nalloc = 0;
+        clear_mk4fringe(&fringe);
+
+        ref_freq = 0.0;//param.ref_freq;
+
+        strcpy (buf, filename.c_str());
+        int val = init_000 (&t2_id, fringe_name);
+        if(val != 0)
+        {
+            std::cout<<"error t000: "<<val<<std::endl;
+            msg_fatal("mk4interface", "failed to init type 000, error due to filename: "<< filename << " ?"<< eom);
+            return (-1);
+        }
+
+        //fill the data structures
+        error = fill_200(&t200);
+        error += fill_201(&t201);
+        error += fill_202(&t202);
+        error += fill_203(&t203);
+        error += fill_204(&t204);
+        error += fill_205(&t203, &t205);
+        error += fill_206(&t206);
+        error += fill_207(&t207);
+        error += fill_208(&t202, &t208);
+        error += fill_210(&t210);
+
+        //point the fringe to the data structures
+        fringe.id = &t2_id;
+        fringe.t200 = &t200;
+        fringe.t201 = &t201;
+        fringe.t202 = &t202;
+        fringe.t203 = &t203;
+        fringe.t204 = &t204;
+        fringe.t205 = &t205;
+        fringe.t206 = &t206;
+        fringe.t207 = &t207;
+        fringe.t208 = &t208;
+        fringe.t210 = &t210;
+
+        // Type 212 (ap-by-ap data) records
+        // Allocate memory as a block
+        nap = fPStore->GetAs<int>("/config/total_naps");
+        int nfreq = fPStore->GetAs<int>("/config/nchannels");
+        
+        size_of_t212 = sizeof (struct type_212) + 12*(nap-1);
+        if ((nap % 2) == 1) size_of_t212 += 12;
+        t212_array = (char *)malloc (nfreq * size_of_t212);
+        if (t212_array == NULL)
+        {
+            //msg ("Failure allocating memory for type 212 records!", 2);
+            return (0);
+        }
+
+        //record the allocation
+        fringe.allocated[fringe.nalloc] = t212_array;
+        fringe.nalloc += 1;
+
+        //Fill in records and pointers
+        fringe.n212 = nfreq;
+        for (fr=0; fr < nfreq; fr++)
+        {
+            address = t212_array + (fr * size_of_t212);
+            fringe.t212[fr] = (struct type_212 *)address;
+            // error += fill_212 (pass, &status, &param, fr, fringe.t212[fr]);
+            error += fill_212(fr, fringe.t212[fr]);
+        }
+
+        fringe.n230 = 0;
+        //                                     /* Cross power spectra (if requested) */
+        // if (write_xpower)
+        //     {
+        //                                     /* Allocate memory as a block */
+        //     xpow_len = 16 * 2 * param.nlags;
+        //     size_of_t230 = sizeof (struct type_230) - sizeof (hops_complex) + xpow_len;
+        //     t230_array = (char *)malloc (pass->nfreq * nap * size_of_t230);
+        //     if (t230_array == NULL)
+        //         {
+        //         //msg ("Failure allocating memory for type 230 records!", 2);
+        //         return (0);
+        //         }
+        //                                     /* record the allocation */
+        //     fringe.allocated[fringe.nalloc] = t230_array;
+        //     fringe.nalloc += 1;
+        //                                     /* Loop over all freqs, aps */
+        //     recno = 0;
+        //     for (fr=0; fr<pass->nfreq; fr++)
+        //         for (ap = pass->ap_off; ap < pass->ap_off + nap; ap++)
+        //             {
+        //             address = t230_array + recno * size_of_t230;
+        //             fringe.t230[recno] = (struct type_230 *)address;
+        //             error += fill_230 (pass, &param, fr, ap, fringe.t230[recno]);
+        //             recno++;
+        //             }
+        //     fringe.n230 = recno;
+        //     }
+        // 
+        // if (error != 0)
+        //     //msg ("Warning - some or all of the output records were not filled", 2);
+
+
+        char sg;
+        int i, dret;
+        char **fplot;
+        //int the_seq_no;
+        bool test_mode = false;
+
+        //struct type_221 *t221;
+        struct type_222 *t222;
+
+        // // for locking, see below and include/write_lock_mechanism.h
+        //int lock_retval = LOCK_STATUS_OK;//LOCK_PROCESS_NO_PRIORITY;
+        // char lockfile_name[512] = {'\0'};
+
+        /* Generate information to create fringe plot */
+        /* Some of this also goes into fringe file */
+
+        //try to get a lock on the root directory in order to write the fringe
+        //this is used to signal any other possible fourfit processes in this
+        //directory that we are about to create a file so we can avoid name 
+        //collisions.  The lock persists from point of acqusition until the
+        //eventual call to write_mk4fringe() below.
+        // FIXME: should worry about stale locks if ^C is hit.
+        // if(!test_mode)
+        //     {
+        //     struct fileset fset;
+        //     //wait until we are the next process allowed to write an output file
+        //     lock_retval = wait_for_write_lock(root->ovex->filename,
+        //         lockfile_name, &fset);
+        //     //this is the last filenumber that exists on disk
+        //     the_seq_no = fset.maxfile;
+        //     }
         // else
+        //     {
+        //     // in test mode, nothing should be written, so the number is moot.
+        //     the_seq_no = -1;
+        //     }
+
+        // /* create_fname() will put the next seq number into the fringe name */
+        // the_seq_no++;
+        //                                 /* Figure out the correct, full pathname */
+        // if (create_fname (root->ovex, pass, the_seq_no, fringe_name) != 0)
+        //     {
+        //     msg ("Error figuring out proper fringe filename", 2);
+        //     return (1);
+        //     }
+            /* Fill in fringe file structure */
+        // if(fill_fringe_info(fringe_name, &fringe) != 0)
         // {
-        //     //msg ("Error getting write lock on directory.", 2);
+        //     //msg ("Error filling fringe records", 2);
         //     return 1;
         // }
+
+
+        // 
+        // if (make_postplot (root->ovex, pass, fringe_name, &t221) != 0)
+        //     {
+        //     msg ("Error creating postscript plot", 2);
+        //     return (1);
+        //     }
+
+        struct type_221* t221 = (struct type_221 *) malloc( sizeof(struct type_221) );
+        fill_221(t221);
+        fringe.t221 = t221;
+
+        // fringe.t221 = NULL;
+
+        //fringe.t221 = t221;
+        fringe.t221->ps_length = strlen (fringe.t221->pplot);
+                /* Record the memory allocation */
+        fringe.allocated[fringe.nalloc] = fringe.t221;
+        fringe.nalloc += 1;
+        
+               /* Fill in the control file record */
+               /* if desired */
+        fringe.t222 = NULL;
+        // if(param.gen_cf_record)
+        // {
+        //     if (fill_222 (&param, &t222) != 0)
+        //     {
+        //         //msg ("Error filling control record", 2);
+        //         return (1);
+        //     }
+        // 
+        //     fringe.t222 = t222;
+        //             /* Record the memory allocation */
+        //     fringe.allocated[fringe.nalloc] = fringe.t222;
+        //     fringe.nalloc += 1;
+        // }
+
+                /* Actually write output fringe file */
+        //if( !test_mode)
+
+
+        //try to get a lock on the root directory in order to write the fringe
+        //this is used to signal any other possible fourfit processes in this
+        //directory that we are about to create a file so we can avoid name 
+        //collisions.  The lock persists from point of acqusition until the
+        //eventual call to write_mk4fringe() below.
+
+
+
+        //kludge to get fourfit to feed the generated fringe file name 
+        //(but nothing else) as a return value to a
+        //a python calling script (requires passing option "-m 4"); see
+        //e.g. chops/source/python_src/hopstest_module/hopstestb/hopstestb.py
+        //around line 74 in the FourFitThread class.
+        //if(msglev==4){msg ("%s",4,fringe_name);} //iff msglev=4
+        val = write_mk4fringe(&fringe, fringe_name);
+        //pause 50ms, if a lock file was created, delete it now
+        usleep(50000); MHO_LockFileHandler::GetInstance().remove_lockfile();
+        if(val != 0)
+        {
+            msg_error("mk4interface", "error writing fringe file." << eom);
+            return 1;
+        }
+    }
+    else 
+    {
+        msg_error("mk4interface", "could not obtain write lock for directory: " <<directory << eom);
     }
 
     return 0;
