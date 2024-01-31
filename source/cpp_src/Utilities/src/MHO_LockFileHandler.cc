@@ -6,9 +6,32 @@
 #include <string.h>
 #include <dirent.h>
 #include <unistd.h>
-#include "fileset.h"
-#include "msg.h"
-#include "write_lock_mechanism.h"
+#include <stdlib.h>
+
+
+
+
+//wait time allowed before a lock file is declared stale
+//this is 5 minutes...probably much longer than needed
+#define LOCK_STALE_SEC 300
+
+//number of lock attempts before time-out error
+//this is roughly 15 minutes...probably much longer than needed
+#define LOCK_TIMEOUT 9000
+
+//struct validity
+#define LOCK_VALID 0
+#define LOCK_INVALID -1
+
+//return error codes
+#define LOCK_FILESET_FAIL -6
+#define LOCK_TIMEOUT_ERROR -5
+#define LOCK_FILE_ERROR -4
+#define LOCK_STALE_ERROR -3
+#define LOCK_PARSE_ERROR -2
+#define LOCK_PROCESS_NO_PRIORITY -1
+#define LOCK_STATUS_OK 0
+#define LOCK_PROCESS_HAS_PRIORITY 1
 
 namespace hops
 {
@@ -19,7 +42,7 @@ namespace hops
 MHO_LockFileHandler* MHO_LockFileHandler::fInstance = nullptr;
 
 
-void MHO_LockFileHandler::init_lockfile_data(lockfile_data_struct* data)
+void MHO_LockFileHandler::init_lockfile_data(lockfile_data* data)
 {
     data->validity = LOCK_INVALID;
     data->seq_number = 0;
@@ -31,21 +54,21 @@ void MHO_LockFileHandler::init_lockfile_data(lockfile_data_struct* data)
     for(i=0; i<MAX_LOCKNAME_LEN; i++){data->lockfile_name[i] = '\0';}
 }
 
-void MHO_LockFileHandler::clear_global_lockfile_data()
+void MHO_LockFileHandler::clear()
 {
-    init_lockfile_data(&global_lockfile_data);
+    init_lockfile_data(&fProcessLockFileData);
 }
 
 void MHO_LockFileHandler::remove_lockfile()
 {
-    if(global_lockfile_data.validity == LOCK_VALID)
+    if(fProcessLockFileData.validity == LOCK_VALID)
     {
-        remove(global_lockfile_data.lockfile_name);
-        clear_global_lockfile_data();
+        remove(fProcessLockFileData.lockfile_name);
+        clear();
     }
 }
     
-int MHO_LockFileHandler::parse_lockfile_name(char* lockfile_name_base, lockfile_data_struct* result)
+int MHO_LockFileHandler::parse_lockfile_name(char* lockfile_name_base, lockfile_data* result)
 {
 
     init_lockfile_data(result);
@@ -83,7 +106,7 @@ int MHO_LockFileHandler::parse_lockfile_name(char* lockfile_name_base, lockfile_
     return 0;
 }
 
-int MHO_LockFileHandler::check_stale(lockfile_data_struct* other)
+int MHO_LockFileHandler::check_stale(lockfile_data* other)
 {
     //returns LOCK_STATUS_OK if the other lock is stale 
     //returns LOCK_STALE_ERROR if the lock is not stale
@@ -95,20 +118,20 @@ int MHO_LockFileHandler::check_stale(lockfile_data_struct* other)
     unsigned long int micro_sec = timevalue.tv_usec;
 
     if( other->time_sec < epoch_sec )
-        {
+    {
         if( (epoch_sec - other->time_sec) > LOCK_STALE_SEC )
-            {
+        {
             //issue warning, do not have priority
-            msg ("Error: stale lock file detected: %s ", 3, other->lockfile_name);
+            //msg ("Error: stale lock file detected: %s ", 3, other->lockfile_name);
             return LOCK_STALE_ERROR;
-            }
         }
+    }
 
     return LOCK_STATUS_OK;
 }
 
 
-int MHO_LockFileHandler::lock_has_priority(lockfile_data_struct* other)
+int MHO_LockFileHandler::lock_has_priority(lockfile_data* other)
 {
     //returns LOCK_PROCESS_HAS_PRIORITY if this process has priority
     //  over the other's lock 
@@ -125,19 +148,19 @@ int MHO_LockFileHandler::lock_has_priority(lockfile_data_struct* other)
     //of different hosts or pid recycling, we defer to using time ordering
     //if that in turn fails, then the lock with be deleted and we try again
 
-    if(global_lockfile_data.pid < other->pid)
+    if(fProcessLockFileData.pid < other->pid)
     {
         return LOCK_PROCESS_HAS_PRIORITY;
     }
-    else if( global_lockfile_data.pid == other->pid)    // tie-break w/time
+    else if( fProcessLockFileData.pid == other->pid)    // tie-break w/time
     {
-        if( global_lockfile_data.time_sec < other->time_sec )
+        if( fProcessLockFileData.time_sec < other->time_sec )
         {
             return LOCK_PROCESS_HAS_PRIORITY;
         }
-        else if ( global_lockfile_data.time_sec == other->time_sec)
+        else if ( fProcessLockFileData.time_sec == other->time_sec)
         {
-            if( global_lockfile_data.time_usec < other->time_usec)
+            if( fProcessLockFileData.time_usec < other->time_usec)
             {
                 return LOCK_PROCESS_HAS_PRIORITY;
             }
@@ -168,7 +191,7 @@ int MHO_LockFileHandler::create_lockfile(char *rootname, char* lockfile_name, in
     int ret_val = gethostname(host_name, 256);
     if( ret_val != 0)
     {
-        msg("Fatal error retrieving host name: create_lockfile.", 3);
+        //msg("Fatal error retrieving host name: create_lockfile.", 3);
         exit(1);
     };
 
@@ -207,13 +230,13 @@ int MHO_LockFileHandler::create_lockfile(char *rootname, char* lockfile_name, in
 
         //variables so that the signal handler can remove the lock
         //file if an interrupt is caught
-        global_lockfile_data.validity = LOCK_VALID;
-        global_lockfile_data.seq_number = sequence_to_reserve;
-        global_lockfile_data.pid = this_pid;
-        global_lockfile_data.time_sec = epoch_sec;
-        global_lockfile_data.time_usec = micro_sec;
-        strcpy(global_lockfile_data.hostname, host_name);
-        strcpy(global_lockfile_data.lockfile_name, lockfile_name);
+        fProcessLockFileData.validity = LOCK_VALID;
+        fProcessLockFileData.seq_number = sequence_to_reserve;
+        fProcessLockFileData.pid = this_pid;
+        fProcessLockFileData.time_sec = epoch_sec;
+        fProcessLockFileData.time_usec = micro_sec;
+        strcpy(fProcessLockFileData.hostname, host_name);
+        strcpy(fProcessLockFileData.lockfile_name, lockfile_name);
     }
     else
     {
@@ -240,7 +263,7 @@ int MHO_LockFileHandler::at_front(char* rootname, char* lockfile_name, int cand_
     
     int process_priority = LOCK_PROCESS_HAS_PRIORITY;
     char temp_lock_name[MAX_LOCKNAME_LEN] = {'\0'};
-    lockfile_data_struct temp_lock_struct;
+    lockfile_data temp_lock_struct;
     
     //scan the list of all files in the directory 
     //for ones with the ".lock" extension
@@ -248,11 +271,11 @@ int MHO_LockFileHandler::at_front(char* rootname, char* lockfile_name, int cand_
     struct dirent* dir;
     d = opendir(root_dir);
     if(d)
-        {
+    {
         while( (dir = readdir(d)) != NULL)
-            {
+        {
             if(strstr(dir->d_name, ".lock") != NULL)
-                {
+            {
                 //found a lock file already in the directory
                 //so this process cannot have priority
                 process_priority = LOCK_PROCESS_NO_PRIORITY;
@@ -261,25 +284,25 @@ int MHO_LockFileHandler::at_front(char* rootname, char* lockfile_name, int cand_
                 init_lockfile_data(&temp_lock_struct);
                 int error_code = parse_lockfile_name(temp_lock_name, &temp_lock_struct);
                 if(error_code != LOCK_STATUS_OK)
-                    {
-                    msg ("Error: un-parsable lock file name: %s ", 3, dir->d_name);
+                {
+                    //msg ("Error: un-parsable lock file name: %s ", 3, dir->d_name);
                     return LOCK_PARSE_ERROR;
-                    }
+                }
                 int stale_lock = check_stale(&temp_lock_struct);
                 if(stale_lock != LOCK_STATUS_OK)
-                    {
+                {
                     closedir(d);
                     return LOCK_STALE_ERROR;
-                    }
                 }
             }
+        }
         closedir(d);
-        }
+    }
     else
-        {
-        msg ("Error: can't access directory: %s ", 3, root_dir);
+    {
+        //msg ("Error: can't access directory: %s ", 3, root_dir);
         return LOCK_FILE_ERROR;
-        }
+    }
 
     //don't have priority, bail out
     if(process_priority != LOCK_PROCESS_HAS_PRIORITY){return process_priority;};
@@ -288,7 +311,7 @@ int MHO_LockFileHandler::at_front(char* rootname, char* lockfile_name, int cand_
     int lock_retval = create_lockfile(rootname, lockfile_name, cand_seq_no);
 
     if(lock_retval == LOCK_STATUS_OK)
-        {
+    {
         //created the lock file OK, but now we need to make sure
         //that no other process stole it out from under us
 
@@ -301,117 +324,116 @@ int MHO_LockFileHandler::at_front(char* rootname, char* lockfile_name, int cand_
         //look for other lock files that may have snuck in
         d = opendir(root_dir);
         if(d)
-            {
+        {
             while( (dir = readdir(d)) != NULL)
-                {
+            {
                 if(strstr(dir->d_name, ".lock") != NULL)
-                    {
+                {
                     strcpy(temp_lock_name, dir->d_name);
                     if(strcmp(lockfile_base, temp_lock_name) != 0) //not our own lock file
-                        {
+                    {
                         init_lockfile_data(&temp_lock_struct);
                         int error_code = parse_lockfile_name(temp_lock_name, &temp_lock_struct);
                         if(error_code != 0)
-                            {
-                            msg ("Error: un-parsable lock file name: %s ", 3, dir->d_name);
+                        {
+                            //msg ("Error: un-parsable lock file name: %s ", 3, dir->d_name);
                             return LOCK_PARSE_ERROR;
-                            }
+                        }
                         process_priority = lock_has_priority(&temp_lock_struct);
                         if(process_priority != LOCK_PROCESS_HAS_PRIORITY)
-                            {
+                        {
                             //either we don't have write priority or an error occured    
                             break;
-                            }
                         }
                     }
                 }
-                closedir(d);
             }
+                closedir(d);
+        }
         else
-            {
+        {
             //something went wrong reading the directory, clean up
             remove_lockfile();
             lockfile_name[0] = '\0';
-            msg ("Error: can't access directory: %s ", 3, root_dir);
+            //msg ("Error: can't access directory: %s ", 3, root_dir);
             return LOCK_FILE_ERROR;
-            }
+        }
 
-        
         if(process_priority != LOCK_PROCESS_HAS_PRIORITY)
-            {
+        {
             //some other process created a lock file at almost the same time
             //and we don't have priority, so defer to the other process, delete our lock
             //and return 0 (we don't have priority) 
             remove_lockfile();
             lockfile_name[0] = '\0';
             return process_priority;
-            }
+        }
         
         //made it here so this process has write priority
         return process_priority;
         
-        }
+    }
     else
-        {
-        msg ("Error: could not create write lock on directory: %s ", 3, root_dir);
+    {
+        //msg ("Error: could not create write lock on directory: %s ", 3, root_dir);
         return LOCK_FILE_ERROR;
-        }
+    }
     
-    }
+}
 
-int MHO_LockFileHandler::wait_for_write_lock(char* rootname, char* lockfile_name,
-    struct fileset *fset)
-    {
-    //this function gets the max file extent number seen at time of lock file
-    //creation (or rather, the time which fileset() was run);found in sub/util
-    // extern int get_fileset(char*, struct fileset* );
-    int ret_val;
-    //wait until this process is at the front of the write queue
-    int is_at_front = 0;
-    int n_checks = 0;
-    do
-        {
-        //check for max sequence number on disk
-        ret_val = get_fileset(rootname, fset);
-        if(ret_val != 0)
-            {
-            return LOCK_FILESET_FAIL;
-            }
-        //provisionally fset->maxfile is the largest fringe number on disk
-        //but we need to check that WE are allowed to take the successor:  
-        is_at_front = at_front(rootname, lockfile_name, fset->maxfile);
-        n_checks++;
-        if(is_at_front == LOCK_PROCESS_NO_PRIORITY){usleep(100000);}
-        }
-    while( is_at_front == LOCK_PROCESS_NO_PRIORITY && n_checks < LOCK_TIMEOUT );
+int MHO_LockFileHandler::wait_for_write_lock(char* rootname, char* lockfile_name, struct fileset *fset)
+{
+    return 0;
+    // //this function gets the max file extent number seen at time of lock file
+    // //creation (or rather, the time which fileset() was run);found in sub/util
+    // // extern int get_fileset(char*, struct fileset* );
+    // int ret_val;
+    // //wait until this process is at the front of the write queue
+    // int is_at_front = 0;
+    // int n_checks = 0;
+    // do
+    //     {
+    //     //check for max sequence number on disk
+    //     ret_val = get_fileset(rootname, fset);
+    //     if(ret_val != 0)
+    //         {
+    //         return LOCK_FILESET_FAIL;
+    //         }
+    //     //provisionally fset->maxfile is the largest fringe number on disk
+    //     //but we need to check that WE are allowed to take the successor:  
+    //     is_at_front = at_front(rootname, lockfile_name, fset->maxfile);
+    //     n_checks++;
+    //     if(is_at_front == LOCK_PROCESS_NO_PRIORITY){usleep(100000);}
+    //     }
+    // while( is_at_front == LOCK_PROCESS_NO_PRIORITY && n_checks < LOCK_TIMEOUT );
+    // 
+    // //couldn't get a write lock because of time out
+    // if(n_checks >= LOCK_TIMEOUT)
+    //     {
+    //     msg ("Error: lock file time-out error associated with: %s ", 3, rootname);
+    //     return LOCK_TIMEOUT_ERROR;
+    //     }
+    // 
+    // if(is_at_front != LOCK_PROCESS_HAS_PRIORITY)
+    //     {
+    //     //some other error has occurred
+    //     return is_at_front;
+    //     }
+    // 
+    // //made it here, so we have write priority now, just need to
+    // //check/update the extent number for type-2 files and return it
+    // ret_val = get_fileset(rootname, fset);
+    // //fset->maxfile is the largest fringe number on disk
+    // if(ret_val == 0)
+    // {
+    //     return LOCK_STATUS_OK;
+    // }
+    // else
+    // {
+    //     return LOCK_FILESET_FAIL;
+    // }
 
-    //couldn't get a write lock because of time out
-    if(n_checks >= LOCK_TIMEOUT)
-        {
-        msg ("Error: lock file time-out error associated with: %s ", 3, rootname);
-        return LOCK_TIMEOUT_ERROR;
-        }
-
-    if(is_at_front != LOCK_PROCESS_HAS_PRIORITY)
-        {
-        //some other error has occurred
-        return is_at_front;
-        }
-
-    //made it here, so we have write priority now, just need to
-    //check/update the extent number for type-2 files and return it
-    ret_val = get_fileset(rootname, fset);
-    //fset->maxfile is the largest fringe number on disk
-    if(ret_val == 0)
-    {
-        return LOCK_STATUS_OK;
-    }
-    else
-    {
-        return LOCK_FILESET_FAIL;
-    }
-
-    }
+}
 
 
 
