@@ -18,6 +18,7 @@ from .hops_test import get_file_polarization_product_provisional
 from .hops_test import get_polarization_products_present
 from .hops_test import get_required_pol_products
 from .hops_test import compare_fringe_files
+from .hops_test import dump_fringe_file
 from .hops_test import compare_alist_files
 from .hops_test import compare_alist_files_field
 from .hops_test import recursive_find_root_files

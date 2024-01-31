@@ -6,6 +6,9 @@
 #include "MHO_Reducer.hh"
 
 #include <math.h>
+#include <sys/stat.h>
+#include <time.h>
+#include <ctime>
 
 #include <iomanip>
 
@@ -14,7 +17,7 @@
 //this is the nominal DiFX MJD epoch start...however, it will be off by however
 //many leap seconds have been inserted between this time and the time point of
 //interest...so when UTC times are calculated from DiFX MJD values, this epoch
-//start but be corrected by the number of leap seconds inserted (total of 5 as of 2023)
+//start must be corrected by the number of leap seconds inserted (total of 5 as of 2023)
 #define DIFX_J2000_MJD_EPOCH_UTC_ISO8601 "2000-01-01T12:00:00.000000000Z"
 #define DIFX_J2000_MJD_EPOCH_OFFSET 51544.50000
 
@@ -191,6 +194,7 @@ MHO_DiFXScanProcessor::ConvertVisibilityFileObjects()
     {
         it->second.SetRescaleTrue(); //default is to always apply VanVleck and x10000 scaling
         it->second.SetRootCode(fRootCode);
+        it->second.SetCorrelationDate(fCorrDate);
         it->second.SetStationCodes(fStationCodeMap);
         it->second.SetDiFXInputData(&fInput);
         it->second.ConstructVisibilityFileObjects();
@@ -429,6 +433,25 @@ MHO_DiFXScanProcessor::LoadInputFile()
     input_proc.LoadDiFXInputFile(fFileSet->fInputFile);
     input_proc.ConvertToJSON(fInput);
     // input_proc.FillFrequencyTable();
+    
+    //grab the date when the fInputFile was last modified as the correlation time 
+    struct tm *mod_time;
+    struct stat attrib;
+    fCorrDate = "";
+    int err = stat(fFileSet->fInputFile.c_str(), &attrib);
+    if (err)
+    {
+        msg_debug("difx_interface", "could not stat input file: " << fFileSet->fInputFile <<", correlation date will be set to start of J2000 epoch." << eom);
+        fCorrDate = hops_clock::to_vex_format(hops_clock::get_hops_epoch() );
+    }
+    else
+    {
+        mod_time = gmtime(&(attrib.st_mtime));
+        std::time_t timeval = std::mktime(mod_time);
+        auto mod_datetime = std::chrono::system_clock::from_time_t(timeval);
+        auto hops_datetime = hops_clock::from_sys(mod_datetime);
+        fCorrDate = hops_clock::to_vex_format(hops_datetime);
+    } 
 
     msg_debug("difx_interface", "difx .input file: " << fFileSet->fInputFile <<" converted to json." << eom);
 }

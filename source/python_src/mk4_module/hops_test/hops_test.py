@@ -659,6 +659,72 @@ def compare_fringe_files(filenameA, filenameB, verbose=True, pedantic=False, ign
         return 1
 
 
+def dump_fringe_file(filenameA, type_list=[200, 201, 202, 203, 204, 205, 206, 206, 208, 210, 212, 230]):
+    """ performs a rough comparison of data in two fringe files (useful for regression testing) """
+    if os.path.isfile(filenameA):
+        fileA = mk4io.mk4fringe(filenameA)
+
+        check_results = []
+        result_list = []
+
+        #quick and dirty, make this more robust...
+        if fileA.t200 and 200 in type_list:
+            t200a = fileA.t200.contents
+            t200a.printsummary()
+
+        if fileA.t201 and 201 in type_list:
+            t201a = fileA.t201.contents
+            t201a.printsummary()
+
+        if fileA.t202 and 202 in type_list:
+            t202a = fileA.t202.contents
+            t202a.printsummary()
+
+        if fileA.t203 and 203 in type_list:
+            t203a = fileA.t203.contents
+            t203a.printsummary()
+
+        if fileA.t204 and 204 in type_list:
+            t204a = fileA.t204.contents
+            t204a.printsummary()
+
+        if fileA.t205 and 205 in type_list:
+            t205a = fileA.t205.contents
+            t205a.printsummary()
+
+        if fileA.t206 and 206 in type_list:
+            t206a = fileA.t206.contents
+            t206a.printsummary()
+
+        if fileA.t207 and 207 in type_list:
+            t207a = fileA.t207.contents
+            t207a.printsummary()
+
+        if fileA.t208 and 208 in type_list:
+            t208a = fileA.t208.contents
+            t208a.printsummary()
+
+        if fileA.t210 and 210 in type_list:
+            t210a = fileA.t210.contents
+            t210a.printsummary()
+
+        #now deal with the array data elements (type_212 and type_230)
+
+        #check type_212 objects
+        n212a = fileA.n212
+        if n212a != 0 and 212 in type_list:
+            for x in list(range(n212a)):
+                fileA.t212[x].contents.printsummary()
+
+        #check type_230 objects
+        n230a = fileA.n230
+        if n230a != 0 and 230 in type_list:
+            for x in list(range(n230a)):
+                fileA.t230[x].contents.printsummary();
+
+    return 0
+
+
 def compare_alist_files(filenameA, filenameB, verbose=True, pedantic=False, exit_on_first_neq=True, abs_tol=1e-14, rel_tol=1e-6):
     """performs rough comparison check of two afiles """
     if os.path.isfile(filenameA) and os.path.isfile(filenameB):
