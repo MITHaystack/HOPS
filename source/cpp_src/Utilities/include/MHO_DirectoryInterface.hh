@@ -13,6 +13,8 @@
 #include <vector>
 #include <string>
 
+#include "MHO_Tokenizer.hh"
+
 namespace hops
 {
 
@@ -48,6 +50,7 @@ class MHO_DirectoryInterface
         void GetRootFile(const std::vector<std::string>& files, std::string& root_file) const;
         void GetCorelFiles(const std::vector<std::string>& files, std::vector<std::string>& corel_files) const;
         void GetStationFiles(const std::vector<std::string>& files, std::vector<std::string>& station_files) const;
+        void GetFringeFiles(const std::vector<std::string>& files, std::vector<std::string>& fringe_files, int& max_sequence_num) const;
         void SplitCorelFileBasename(const std::string& corel_basename, std::string& st_pair, std::string& root_code) const;
         void SplitStationFileBasename(const std::string& station_basename, std::string& st, std::string& root_code) const;
 
@@ -60,8 +63,6 @@ class MHO_DirectoryInterface
         //number of chars in a string
         std::size_t count_number_of_matches(const std::string& aString, char elem) const;
 
-
-
         std::string fCurrentDirectoryFullPath;
         std::string fCurrentParentFullPath;
 
@@ -71,7 +72,7 @@ class MHO_DirectoryInterface
         std::vector<std::string> fCurrentFileList;
         std::vector<std::string> fCurrentSubDirectoryList;
 
-
+        mutable MHO_Tokenizer fTokenizer;
 };
 
 

@@ -33,6 +33,7 @@ set (UTILITIES_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_Clock.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MPIInterfaceWrapper.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_EncodeDecodeValue.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_LockFileHandler.hh
 )
 
 #set_source_files_properties(picohash.h PROPERTIES COMPILE_FLAGS -fpermissive)
@@ -48,6 +49,7 @@ set( UTILITIES_SOURCEFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_DirectoryInterface.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_LegacyRootCodeGenerator.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_StationCodeMap.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_LockFileHandler.cc
 )
 
 if (HOPS_USE_MPI)
