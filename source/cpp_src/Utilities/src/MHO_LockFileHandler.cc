@@ -251,6 +251,7 @@ int MHO_LockFileHandler::at_front(char* lockfile_name, int cand_seq_no)
 {
 
     //figure out root directory
+    std::cout<<"directory = "<<fDirectory<<std::endl;
     char root_dir[MAX_LOCKNAME_LEN] = {'\0'};
     strcpy(root_dir, fDirectory.c_str());
     char* end_ptr_a = strrchr(root_dir, '/');

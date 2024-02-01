@@ -33,6 +33,10 @@ MHO_DirectoryInterface::GetDirectoryFullPath(const std::string& dirname)
     char* tmp = realpath( tmp_path.c_str(), buffer);
     (void) tmp; //shut up the compiler about unused variable...we don't need it, result is stored in buffer
     std::string fullpath(buffer);
+    if(fullpath.size() !=0)
+    {
+        if( fullpath[fullpath.size()-1] != '/'){fullpath += "/";}
+    }
     return fullpath;
 }
 
@@ -445,8 +449,8 @@ MHO_DirectoryInterface::GetFringeFiles(const std::vector<std::string>& files, st
     for(auto it = files.begin(); it != files.end(); it++)
     {
         std::string base_filename = it->substr(it->find_last_of("/\\") + 1);
-        //check that there is two dots in the filename base
-        if(count_number_of_matches(base_filename, '.') == 2) 
+        //check that there is three dots in the filename base
+        if(count_number_of_matches(base_filename, '.') == 3) 
         {
             //check that the two dots are separated by a single "frequency group" character
             //format looks like "GE.X.1.0VSI1M"
