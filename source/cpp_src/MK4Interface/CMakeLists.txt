@@ -54,6 +54,10 @@ include_directories(${EXTERN_HLIBS}/date/include) #date library
 
 hops_internal_include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
+set_property( SOURCE ${MK4INTERFACE_SOURCEFILES}
+    APPEND PROPERTY COMPILE_DEFINITIONS HOPS_MK4AUX_DIR="${DATA_INSTALL_DIR}"
+)
+
 #compile and install library ###################################################
 
 set(MK4INTERFACE_LIBS mk4util dfio vex MHO_Vex2JSON MHO_Message MHO_Utilities MHO_Containers date-tz)
