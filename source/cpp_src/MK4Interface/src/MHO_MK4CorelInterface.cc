@@ -680,6 +680,19 @@ MHO_MK4CorelInterface::ExtractCorelFile()
     ldate.second = adate->second;
     std::string stop_string = MHO_LegacyDateConverter::ConvertToISO8601Format(ldate);
 
+    //get the creation/correlation time
+    type_000* t000 = fCorel->id;
+    std::string cdate = std::string( &(t000->date[0]), 16 ); //yyyyddd-hhmmss
+    if(cdate.size() >= 14)
+    {
+        ldate.year = std::atoi( cdate.substr(0,4).c_str() );
+        ldate.day = std::atoi( cdate.substr(4,3).c_str() );
+        ldate.hour = std::atoi( cdate.substr(8,2).c_str() );
+        ldate.minute = std::atoi( cdate.substr(10,2).c_str() );
+        ldate.second = std::atoi( cdate.substr(12,2).c_str() );
+    }
+    std::string corrdate_string = MHO_LegacyDateConverter::ConvertToISO8601Format(ldate);
+
     bl_data->Insert(std::string("name"), std::string("visibilities"));
     bl_data->Insert(std::string("baseline"), fBaselineName);
     bl_data->Insert(std::string("baseline_shortname"), fBaselineShortName);
@@ -687,7 +700,7 @@ MHO_MK4CorelInterface::ExtractCorelFile()
     bl_data->Insert(std::string("remote_station"), fRemStation);
     bl_data->Insert(std::string("reference_station_mk4id"), fRefStationMk4Id);
     bl_data->Insert(std::string("remote_station_mk4id"), fRemStationMk4Id);
-    //bl_data->Insert(std::string("procdate"), procdate_string); //processing data no long used
+    bl_data->Insert(std::string("correlation_date"), corrdate_string);
     bl_data->Insert(std::string("start"), start_string);
     bl_data->Insert(std::string("stop"), stop_string);
     bl_data->Insert(std::string("root_code"), fRootCode);
@@ -699,7 +712,7 @@ MHO_MK4CorelInterface::ExtractCorelFile()
     bl_wdata->Insert(std::string("remote_station"), fRemStation);
     bl_wdata->Insert(std::string("reference_station_mk4id"), fRefStationMk4Id);
     bl_wdata->Insert(std::string("remote_station_mk4id"), fRemStationMk4Id);
-    //bl_wdata->Insert(std::string("procdate"), procdate_string);
+    bl_wdata->Insert(std::string("correlation_date"), corrdate_string);
     bl_wdata->Insert(std::string("start"), start_string);
     bl_wdata->Insert(std::string("stop"), stop_string);
     bl_wdata->Insert(std::string("root_code"), fRootCode);
