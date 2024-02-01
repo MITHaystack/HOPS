@@ -613,8 +613,6 @@ int MHO_MK4FringeExport::fill_222(struct type_222 **t222)
     //now allocate the necessary amount of memory
     setstr_len = 0; //nothing, we've packed this into the control contents
     cf_len = control_contents.size();
-
-    std::cout<<"cflen = "<<cf_len<<std::endl;
     
     //find next largest multiple of 8 bytes
     setstr_pad = (( setstr_len + 7 ) & ~7) + 8;
@@ -627,9 +625,7 @@ int MHO_MK4FringeExport::fill_222(struct type_222 **t222)
         if(j<cf_len){temp_buf[j] = control_contents[j];}
         else{temp_buf[j] = '\0';}
     }
-    
-    std::cout<<setstr_pad<<", "<<cf_pad<<", "<<full_size<<std::endl;
-    
+
     /* Allocate space for output record */
     *t222 = (struct type_222*) malloc ( full_size );
     if (*t222 == NULL)
@@ -642,20 +638,6 @@ int MHO_MK4FringeExport::fill_222(struct type_222 **t222)
     setstr_hash = adler32_checksum( (unsigned char*) &(set_string_buff[0]), setstr_len);
     cf_hash = adler32_checksum( (unsigned char*) temp_buf, cf_len);
     
-    /* Fill it in */
-    
-    // char version[3];
-    // strncpy (t222->record_id, "222", 3);
-    // sprintf (version, "%02d", T222_VERSION);
-    // strncpy (t222->version_no, version, 2);
-    // t222->unused1 = ' ';
-    // t222->padded = 0;
-    // t222->setstring_hash = 0;
-    // t222->control_hash = 0;
-    // t222->setstring_length = 0;
-    // t222->cf_length = 0;
-    // t222->control_contents[0] = '\0';
-    
     strncpy ( (*t222)->record_id, "222", 3);
     strncpy ( (*t222)->version_no, "00", 2);
     (*t222)->unused1 = ' ';
@@ -665,80 +647,16 @@ int MHO_MK4FringeExport::fill_222(struct type_222 **t222)
     (*t222)->setstring_length = setstr_len;
     (*t222)->cf_length = cf_len;
     
-    //memcpy( (*t222)->control_contents, &(set_string_buff[0]), setstr_len );
-    //for(std::size_t j=0;j<setstr_len; j++){((*t222)->control_contents)[j] = ' ';}
+    //don't bother with set string stuff
     for(i=0; i<setstr_pad; i++){ ((*t222)->control_contents)[i] = ' ';}
-    
-    //set the starting position of the control contents to the right place
-    //memcpy ( &( ((*t222)->control_contents)[setstr_pad] ), temp_buf, cf_len);
-    
+
     for(std::size_t j=0;j<cf_len; j++){((*t222)->control_contents)[j+setstr_pad] = temp_buf[j];}
     for(i=setstr_pad+cf_len; i<setstr_pad+cf_pad; i++){ ((*t222)->control_contents)[i] = '\0';}
-    
-    std::cout<<"cc string = "<<control_contents<<std::endl;
-    std::cout<<"222 contents = "<<std::string((*t222)->control_contents)<<std::endl;
-    
+
     delete[] temp_buf;
-    
+
     return 0;
-
 }
-
-// 
-// int fill_221(struct type_221 **t221)
-// {
-// 
-//     /* Create a temporary file to hold */
-//     /* the postscript output */
-//     strcpy(ps_file, P_tmpdir "/fourfit_XXXXXX");
-//     msg ("Temporary postscript filename = '%s'", 0, ps_file);
-// 
-// 
-// 
-//                                         /* Allocate memory for type_221 record */
-//     if ((*t221 = (struct type_221 *)malloc (size)) == NULL)
-//         {
-//         msg ("Memory allocation error in read_mk4file()", 2);
-//         return (-1);
-//         }
-//                                         /* Initialize it */
-//     clear_221 (*t221);
-//                                         /* Make sure we are at start of file */
-//     rewind (fp);
-//                                         /* Figure out starting address of the */
-//                                         /* postscript instructions */
-//     pplot = (*t221)->pplot;
-//                                         /* Read file in a single call, let */
-//                                         /* system figure out best buffering */
-//     nb = fread (pplot, sizeof(char), filesize, fp);
-//     pplot[filesize] = 0;                // terminate with null to be safe
-//                                         /* Did it go OK? */
-//     if (nb != filesize)
-//         {
-//         msg ("Error, expected %zu bytes, read %zu bytes", 2, filesize, nb);
-//         return (-1);
-//         }
-//                                         /* Tidy up */
-//     fclose (fp);
-//     unlink (ps_file);
-//                                         /* Forcibly null-terminate file image */
-//     if ((end = strstr (pplot, "EOF\n")) != NULL)
-//         *(end+4) = '\0';
-//                                         /* Store away trailing part of file */
-//     if ((showpage = strstr (pplot, "PGPLOT restore showpage")) != NULL)
-//         {
-//         strcpy (trailer, showpage);
-//                                         /* Null terminate what's left */
-//         showpage[0] = '\0';
-//         }
-// 
-//  /* Re-attach trailing part of file */
-//     strcat (pplot, trailer);
-//     (*t221)->ps_length = strlen (pplot);
-// 
-//     return (0);
-// }
-
 
 int MHO_MK4FringeExport::fill_230( int fr, int ap, struct type_230 *t230)
 {
@@ -806,88 +724,38 @@ int MHO_MK4FringeExport::fill_230( int fr, int ap, struct type_230 *t230)
 //dummy, just clears the structure
 int MHO_MK4FringeExport::fill_221(struct type_221** t221)
 {
-    
     struct stat file_status;
     int fd;
     size_t nb, size, filesize;
-    int rc;
     FILE *fp;
-    char *pplot, *showpage, *end, trailer[1024];
+    char *pplot, *end;
 
     double tickinc;
-
-
-
-                                        /* Now need to read in the resulting */
-                                        /* postscript file.  This is done by */
-                                        /* creating a type 221 record in */
-                                        /* allocated memory, and reading the */
-                                        /* file into the pplot member */
     //load the dummy ps file 
     std::string ps_file;
     ps_file += HOPS_MK4AUX_DIR;
     ps_file += "/mk4aux/blank.ps"; 
     fp = fopen (ps_file.c_str(), "r");
-                                        /* Map stream pointer onto file */
-                                        /* descriptor, and make stat() call */
-                                        /* to figure out file size */
-    if ((fd = fileno (fp)) < 0)
-    {
-        //msg ("Problem with stream pointer in read_mk4file()", 2);
-        return (-1);
-    }
-    if (fstat (fd, &file_status) != 0)
-    {
-        //msg ("Problem making stat call in read_mk4file()", 2);
-        return (-1);
-    }
+
+    if( (fd = fileno (fp)) < 0){return -1;}
+    if( fstat (fd, &file_status) != 0){return -2;}
+
     filesize = file_status.st_size;
 
     size = filesize + (size_t) 512; //don't really need this much extra space
-                                        /* Allocate memory for type_221 record */
-    if ((*t221 = (struct type_221 *) malloc (size)) == NULL)
-    {
-        //msg ("Memory allocation error in read_mk4file()", 2);
-        return (-1);
-    }
-                                        /* Initialize it */
+    if( (*t221 = (struct type_221 *) malloc (size)) == NULL){return -3;}
+
     clear_221 (*t221);
-                                        /* Make sure we are at start of file */
     rewind (fp);
-                                        /* Figure out starting address of the */
-                                        /* postscript instructions */
     pplot = (*t221)->pplot;
-                                        /* Read file in a single call, let */
-                                        /* system figure out best buffering */
+
     nb = fread (pplot, sizeof(char), filesize, fp);
-    pplot[filesize] = 0;                // terminate with null to be safe
-                                        /* Did it go OK? */
-    if (nb != filesize)
-    {
-        //msg ("Error, expected %zu bytes, read %zu bytes", 2, filesize, nb);
-        return (-1);
-    }
-                                        /* Tidy up */
+    pplot[filesize] = '\0';
+    if (nb != filesize){return -4;}
     fclose (fp);
-                                        /* Forcibly null-terminate file image */
-    if ((end = strstr (pplot, "EOF\n")) != NULL)
-    {
-        *(end+4) = '\0';
-    }
-    //                                     /* Store away trailing part of file */
-    // if ((showpage = strstr (pplot, "PGPLOT restore showpage")) != NULL)
-    //     {
-    //     strcpy (trailer, showpage);
-    //                                     /* Null terminate what's left */
-    //     showpage[0] = '\0';
-    //     }
-    // 
-    // 
-    // 
-    //                                     /* Re-attach trailing part of file */
     
-    // strcat (pplot, trailer);
-    (*t221)->ps_length = strlen (pplot);
+    if( (end = strstr (pplot, "EOF\n")) != NULL){*(end+4) = '\0';}
+    (*t221)->ps_length = strlen(pplot);
 
     return 0;
 }
@@ -958,7 +826,6 @@ MHO_MK4FringeExport::output(std::string filename2)
         int val = init_000 (&t2_id, fringe_name);
         if(val != 0)
         {
-            std::cout<<"error t000: "<<val<<std::endl;
             msg_fatal("mk4interface", "failed to init type 000, error due to filename: "<< filename << " ?"<< eom);
             return (-1);
         }
@@ -1026,8 +893,11 @@ MHO_MK4FringeExport::output(std::string filename2)
         bool test_mode = false;
 
         struct type_221 *t221;
-        t221 = (struct type_221 *) malloc( sizeof(struct type_221) );
-        fill_221(&t221);
+        if(fill_221(&t221) != 0)
+        {
+            msg_error("mk4interface", "error filling dummy postscript record" << eom);
+            return 1;
+        }
         fringe.t221 = t221;
 
         //fringe.t221 = t221;
@@ -1044,7 +914,6 @@ MHO_MK4FringeExport::output(std::string filename2)
             msg_error("mk4interface", "error filling control file record" << eom);
             return 1;
         }
-        std::cout<<"t222 ptr = "<<t222<<std::endl;
         fringe.t222 = t222;
         /* Record the memory allocation */
         fringe.allocated[fringe.nalloc] = fringe.t222;
