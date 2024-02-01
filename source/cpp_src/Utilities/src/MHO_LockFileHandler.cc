@@ -53,6 +53,7 @@ void MHO_LockFileHandler::remove_lockfile()
 {
     if(fProcessLockFileData.validity == LOCK_VALID)
     {
+        std::cout<<"removing lock file "<<std::string(fProcessLockFileData.lockfile_name)<<std::endl;
         remove(fProcessLockFileData.lockfile_name);
         clear();
     }
@@ -174,6 +175,8 @@ int MHO_LockFileHandler::lock_has_priority(lockfile_data* other)
 
 int MHO_LockFileHandler::create_lockfile(char* lockfile_name, int max_seq_no)
 {
+    std::cout<<"in create lock file"<<std::endl;
+
     //max file extent number seen at time of lock file creation 
     //(or rather, the time which fileset() was run)
 
@@ -228,6 +231,8 @@ int MHO_LockFileHandler::create_lockfile(char* lockfile_name, int max_seq_no)
         fProcessLockFileData.time_usec = micro_sec;
         strcpy(fProcessLockFileData.hostname, host_name);
         strcpy(fProcessLockFileData.lockfile_name, lockfile_name);
+
+        std::cout<<"lock file name = "<<std::string(lockfile_name)<<std::endl;
     }
     else
     {
@@ -251,11 +256,12 @@ int MHO_LockFileHandler::at_front(char* lockfile_name, int cand_seq_no)
     char* end_ptr_a = strrchr(root_dir, '/');
     end_ptr_a++;
     *end_ptr_a = '\0';
-    
     int process_priority = LOCK_PROCESS_HAS_PRIORITY;
     char temp_lock_name[MAX_LOCKNAME_LEN] = {'\0'};
     lockfile_data temp_lock_struct;
     
+
+    std::cout<<"root dir = "<<std::string(root_dir)<<std::endl;
     //scan the list of all files in the directory 
     //for ones with the ".lock" extension
     DIR* d;
@@ -265,6 +271,7 @@ int MHO_LockFileHandler::at_front(char* lockfile_name, int cand_seq_no)
     {
         while( (dir = readdir(d)) != NULL)
         {
+            std::cout<<"dir name = "<<std::string(dir->d_name)<<std::endl;
             if(strstr(dir->d_name, ".lock") != NULL)
             {
                 //found a lock file already in the directory
@@ -272,7 +279,11 @@ int MHO_LockFileHandler::at_front(char* lockfile_name, int cand_seq_no)
                 process_priority = LOCK_PROCESS_NO_PRIORITY;
                 //check if the other file is stale (this is an error)
                 strcpy(temp_lock_name, dir->d_name);
+                std::cout<<"dir name = "<<std::string(dir->d_name)<<std::endl;
+                std::cout<<"our process lock name = "<<std::string(fProcessLockFileData.lockfile_name)<<std::endl;
+                std::cout<<"found a stale lock file: "<<std::string(temp_lock_name)<<std::endl;
                 init_lockfile_data(&temp_lock_struct);
+
                 int error_code = parse_lockfile_name(temp_lock_name, &temp_lock_struct);
                 if(error_code != LOCK_STATUS_OK)
                 {
@@ -375,6 +386,8 @@ int MHO_LockFileHandler::at_front(char* lockfile_name, int cand_seq_no)
 
 int MHO_LockFileHandler::wait_for_write_lock(char* lockfile_name, int& next_seq_no)
 {
+    std::cout<<"planned lock file name = "<<std::string(lockfile_name)<<std::endl;
+
     next_seq_no = -1;
     
     //wait until this process is at the front of the write queue, 

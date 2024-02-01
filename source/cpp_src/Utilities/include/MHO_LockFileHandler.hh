@@ -97,6 +97,7 @@ class MHO_LockFileHandler
             std::signal(SIGHUP, &HandleSignal);
             std::signal(SIGABRT, &HandleSignal);
             fDirectory = "./";
+            init_lockfile_data(&fProcessLockFileData);
         };
         virtual ~MHO_LockFileHandler(){};
 
