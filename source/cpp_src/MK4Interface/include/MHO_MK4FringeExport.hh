@@ -56,6 +56,7 @@ struct ch_struct;
 #include "MHO_OperatorToolbox.hh"
 #include "MHO_JSONHeaderWrapper.hh"
 #include "MHO_Tokenizer.hh"
+#include "MHO_DirectoryInterface.hh"
 
 //needed to read hops files and extract objects from scan dir
 #include "MHO_ScanDataStore.hh"

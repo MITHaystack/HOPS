@@ -735,6 +735,7 @@ MHO_MK4FringeExport::output(std::string filename2)
     //set up the write lock mechanism
     //TODO -- allow for a different directory for output than the input directory
     std::string directory = fPStore->GetAs<std::string>("/files/directory");
+    directory = MHO_DirectoryInterface::GetDirectoryFullPath(directory);
     MHO_LockFileHandler::GetInstance().SetDirectory(directory);
     
     // for locking
@@ -748,7 +749,8 @@ MHO_MK4FringeExport::output(std::string filename2)
     lock_retval = MHO_LockFileHandler::GetInstance().wait_for_write_lock(lockfile_name, the_seq_no);
     
     std::stringstream ss;
-    ss << "GE.X.";
+    ss << directory;
+    ss << "/GE.X.";
     ss << the_seq_no;
     ss << ".ABCDEF";
     std::string filename = ss.str();

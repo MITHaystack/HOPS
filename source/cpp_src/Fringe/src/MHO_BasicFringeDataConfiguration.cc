@@ -1,4 +1,5 @@
 #include "MHO_BasicFringeDataConfiguration.hh"
+#include "MHO_DirectoryInterface.hh"
 
 //snapshot utility lib
 #include "MHO_Snapshot.hh"
@@ -49,6 +50,8 @@ MHO_BasicFringeDataConfiguration::parse_command_line(int argc, char** argv, MHO_
     //valid control parameters but look like options to get opt (e.g. 'set start -3')
     int set_arg_index = -1;
     std::string set_string = parse_set_string(arglist, set_arg_index);
+
+
 
     static struct option longOptions[] = 
     {
@@ -188,6 +191,8 @@ MHO_BasicFringeDataConfiguration::parse_command_line(int argc, char** argv, MHO_
         std::exit(1);
     }
     else{ directory = pargs[0]; }
+
+    directory = MHO_DirectoryInterface::GetDirectoryFullPath(directory);
 
     //pass the extracted command line info back in the parameter store
     //accounting = false;  //not implemented
