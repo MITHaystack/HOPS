@@ -36,6 +36,8 @@ class MHO_ControlFileParser
         void SetControlFile(std::string filename);
 
         mho_json ParseControl();
+        
+        std::string GetProcessedControlFileText(){return fProcessedControlFileText;}
 
     private:
 
@@ -44,6 +46,7 @@ class MHO_ControlFileParser
         void FixSymbols();
         void TokenizeLines();
         void MergeTokens();
+        void ExportTokens();
         void FindKeywords();
         void FormStatements();
         mho_json ConstructControlObjects();
@@ -78,6 +81,8 @@ class MHO_ControlFileParser
 
         MHO_ControlElementParser fElementParser;
 
+        //output (the parsed text of the control file with comments removes )
+        std::string fProcessedControlFileText;
 };
 
 }//end namespace

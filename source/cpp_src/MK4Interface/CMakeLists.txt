@@ -64,6 +64,9 @@ target_link_libraries (MHO_MK4Interface ${MK4INTERFACE_LIBS})
 hops_install_headers (${MK4INTERFACE_HEADERFILES})
 hops_install_libraries (MHO_MK4Interface)
 
+#install aux files
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/aux)
+
 if (HOPS_ENABLE_TEST)
     add_subdirectory(test)
 endif (HOPS_ENABLE_TEST)

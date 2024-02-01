@@ -708,6 +708,10 @@ def dump_fringe_file(filenameA, type_list=[200, 201, 202, 203, 204, 205, 206, 20
             t210a = fileA.t210.contents
             t210a.printsummary()
 
+        #check type_222 objects
+        if fileA.t222 and 222 in type_list:
+            fileA.t222.contents.printsummary()
+
         #now deal with the array data elements (type_212 and type_230)
 
         #check type_212 objects

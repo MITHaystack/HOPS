@@ -109,6 +109,11 @@ void MHO_BasicFringeFitter::Configure()
     //now parse the control file and collect the applicable statements 
     cparser.SetControlFile(control_file);
     auto control_contents = cparser.ParseControl();
+    
+    //stash the processed text in the parameter store
+    //TODO FIXME -- we may want to move this elsewhere 
+    std::string parsed_control = cparser.GetProcessedControlFileText();
+    fParameterStore.Set("/control/control_file_contents", parsed_control);
     //TODO -- where should frequency group information get stashed/retrieved?
     std::string srcName = fParameterStore.GetAs<std::string>("/vex/scan/source/name");
     std::string scnName = fParameterStore.GetAs<std::string>("/vex/scan/name");

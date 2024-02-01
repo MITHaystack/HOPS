@@ -15,6 +15,7 @@ MHO_ControlFileParser::MHO_ControlFileParser()
     fCommentFlag = MHO_ControlDefinitions::CommentFlag();
     fKeywordNames = MHO_ControlDefinitions::GetKeywordNames();
     fSetString = "";
+    fProcessedControlFileText = "";
 }
 
 MHO_ControlFileParser::~MHO_ControlFileParser(){};
@@ -38,6 +39,11 @@ MHO_ControlFileParser::ParseControl()
     FixSymbols();
     TokenizeLines();
     MergeTokens();
+    
+    //exports the cleaned-up tokens to fProcessedControlFileText
+    //this is only for record keeping
+    ExportTokens();
+    
     FindKeywords();
     FormStatements();
 
@@ -204,6 +210,21 @@ MHO_ControlFileParser::MergeTokens()
     {
         fFileTokens.insert( fFileTokens.end(), it->fTokens.begin(), it->fTokens.end() );
         it++;
+    }
+}
+
+void
+MHO_ControlFileParser::ExportTokens()
+{
+    fProcessedControlFileText = "";
+    for(auto it = fFileTokens.begin(); it != fFileTokens.end(); )
+    {
+        fProcessedControlFileText += it->fValue;
+        it++;
+        if(it != fFileTokens.end())
+        {
+            fProcessedControlFileText += " ";
+        }
     }
 }
 
