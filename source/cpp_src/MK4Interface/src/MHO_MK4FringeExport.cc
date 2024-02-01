@@ -1000,7 +1000,7 @@ MHO_MK4FringeExport::output(std::string filename2)
         std::cout<<"writing fringe file = "<<std::string(fringe_name)<<std::endl;
         val = write_mk4fringe(&fringe, fringe_name);
         //pause 50ms, if a lock file was created, delete it now
-        usleep(50000); MHO_LockFileHandler::GetInstance().remove_lockfile();
+        usleep(50000); MHO_LockFileHandler::GetInstance().RemoveLockFile();
         if(val != 0)
         {
             msg_error("mk4interface", "error writing fringe file." << eom);

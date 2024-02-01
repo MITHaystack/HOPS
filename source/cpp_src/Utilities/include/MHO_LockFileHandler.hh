@@ -42,6 +42,7 @@ struct lockfile_data
     unsigned long int time_sec;
     unsigned long int time_usec;
     char hostname[256];
+    char active_directory[MAX_LOCKNAME_LEN];
     char lockfile_name[MAX_LOCKNAME_LEN];
 };
 
@@ -57,7 +58,6 @@ class MHO_LockFileHandler
         MHO_LockFileHandler& operator=(MHO_LockFileHandler const&) = delete;
         MHO_LockFileHandler& operator=(MHO_LockFileHandler&&) = delete;
 
-
         //provide public access to the only static instance
         static MHO_LockFileHandler& GetInstance()
         {
@@ -68,35 +68,24 @@ class MHO_LockFileHandler
         //function to handle signals (to ensure we clean up lockfiles if we get interrupted)
         static void HandleSignal(int signal_value) 
         {
-            MHO_LockFileHandler::GetInstance().remove_lockfile(); //just make sure we remove the lock file
+            MHO_LockFileHandler::GetInstance().RemoveLockFile();
             signal(signal_value, SIG_DFL); //reset the handler for this particular signal to default
             kill(getpid(), signal_value); //re-send the signal to this process
         }
         
         //set the write directory
-        void SetDirectory(std::string dir)
-        {
-            fDirectory = dir;
-            //make sure our directory is terminated with a "/"
-            //this needs to be the case for the dir/file parsing code
-            if(fDirectory.size() !=0)
-            {
-                if( fDirectory[fDirectory.size()-1] != '/'){fDirectory += "/";}
-            }
-        }
-        
+        void SetDirectory(std::string dir);
+        void RemoveLockFile(){remove_lockfile(&fProcessLockFileData);}
+
         static void init_lockfile_data(lockfile_data* data);
         static int parse_lockfile_name(char* lockfile_name_base, lockfile_data* result);
         static int create_lockfile(const char* directory, char* lockfile_name, lockfile_data* lock_data, int max_seq_no);
         //static int create_lockfile(char* lockfile_name, int cand_seq_no);
         static int check_stale(lockfile_data* other);
         static int lock_has_priority(lockfile_data* ours, lockfile_data* other);
-        
-        void clear();
-        void remove_lockfile();
-        
+        static int at_front(const char* directory, char* lockfile_name, lockfile_data* lock_data, int cand_seq_no);
 
-        int at_front(char* lockfile_name, int cand_seq_no);
+        static void remove_lockfile(lockfile_data* other);
         int wait_for_write_lock(char* lockfile_name, int& next_seq_no);
 
     private:
