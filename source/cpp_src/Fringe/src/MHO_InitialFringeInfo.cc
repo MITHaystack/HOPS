@@ -151,9 +151,15 @@ MHO_InitialFringeInfo::precalculate_quantities(MHO_ContainerStore* conStore, MHO
         std::exit(1);
     }
     
+    //retrieve the root code from the visib (only needed if we export to mk4)
+    std::string root_code;
+    bool ok = vis_data->Retrieve("root_code", root_code);
+    if(!ok){root_code = "XXXXXX";}
+    paramStore->Set("/config/root_code", root_code); //should this get stuffed in config?
+    
     //retrieve the correlation processing date from the visibilities 
     std::string corr_date;
-    bool ok = vis_data->Retrieve("correlation_date", corr_date);
+    ok = vis_data->Retrieve("correlation_date", corr_date);
     if(!ok){corr_date = "";}
     paramStore->Set("/config/correlation_date", corr_date); //should this get stuffed in config?
 

@@ -86,6 +86,8 @@ class MHO_MK4FringeExport
         }
 
     private:
+        
+        std::string CreateFringeFileName(std::string directory, int seq_no);
 
         std::string fFilename;
         MHO_ParameterStore* fPStore;
@@ -103,6 +105,7 @@ class MHO_MK4FringeExport
 
         //utilities 
         void FillString(char* destination, std::string param_path, int max_length, std::string default_value="");
+        void FillString(std::string& destination, std::string param_path, std::string default_value="");
         void FillInt(int& destination, std::string param_path, int default_value = 0);
         void FillShort(short& destination, std::string param_path, int default_value = 0);
         void FillDouble(double& destination, std::string param_path, double default_value = 0);
