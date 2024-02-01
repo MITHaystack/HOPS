@@ -7,11 +7,7 @@
 #include <dirent.h>
 #include <stdlib.h>
 
-
-
-
-//wait time allowed before a lock file is declared stale
-//this is 5 minutes...probably much longer than needed
+//wait time allowed before a lock file is declared stale (5 min)
 #define LOCK_STALE_SEC 300
 
 //number of lock attempts before time-out error
@@ -31,6 +27,17 @@ namespace hops
 //initialization to nullptr
 MHO_LockFileHandler* MHO_LockFileHandler::fInstance = nullptr;
 
+//set the write directory
+void MHO_LockFileHandler::SetDirectory(std::string dir)
+{
+    fDirectory = dir;
+    //make sure our directory is terminated with a "/"
+    //this needs to be the case for the dir/file parsing code
+    if(fDirectory.size() !=0)
+    {
+        if( fDirectory[fDirectory.size()-1] != '/'){fDirectory += "/";}
+    }
+}
 
 void MHO_LockFileHandler::init_lockfile_data(lockfile_data* data)
 {
@@ -41,22 +48,19 @@ void MHO_LockFileHandler::init_lockfile_data(lockfile_data* data)
     data->time_usec = 0;
     int i = 0;
     for(i=0; i<256; i++){data->hostname[i] = '\0';}
+    for(i=0; i<MAX_LOCKNAME_LEN; i++){data->active_directory[i] = '\0';}
     for(i=0; i<MAX_LOCKNAME_LEN; i++){data->lockfile_name[i] = '\0';}
 }
 
-void MHO_LockFileHandler::clear()
+void MHO_LockFileHandler::remove_lockfile(lockfile_data* data)
 {
-    init_lockfile_data(&fProcessLockFileData);
-}
-
-void MHO_LockFileHandler::remove_lockfile()
-{
-    if(fProcessLockFileData.validity == LOCK_VALID)
+    if(data->validity == LOCK_VALID)
     {
-        std::cout<<"removing lock file "<<std::string(fProcessLockFileData.lockfile_name)<<std::endl;
-        remove(fProcessLockFileData.lockfile_name);
-        clear();
+        msg_debug("mk4interface", "removing write lock file: "<< 
+            std::string(data->active_directory) + std::string(data->lockfile_name) << eom);
+        remove(data->lockfile_name);
     }
+    init_lockfile_data(data);
 }
     
 int MHO_LockFileHandler::parse_lockfile_name(char* lockfile_name_base, lockfile_data* result)
@@ -112,9 +116,9 @@ int MHO_LockFileHandler::check_stale(lockfile_data* other)
     {
         if( (epoch_sec - other->time_sec) > LOCK_STALE_SEC )
         {
-            //issue warning, do not have priority
-            std::string oname = other->lockfile_name;
-            std::cout<< "Error: stale lock file detected: "<< oname <<std::endl;
+            //issue warning, we do not have priority
+            msg_warn("mk4interface", "stale lock file detected: "<<
+                std::string(other->active_directory) + std::string(other->lockfile_name) << eom);
             return LOCK_STALE_ERROR;
         }
     }
@@ -173,20 +177,20 @@ int MHO_LockFileHandler::lock_has_priority(lockfile_data* ours, lockfile_data* o
 
 }
 
-int MHO_LockFileHandler::create_lockfile(const char* directory, char* lockfile_name, lockfile_data* lock_data, int max_seq_no)
+int MHO_LockFileHandler::create_lockfile(const char* directory, char* lockfile_name, 
+                                         lockfile_data* lock_data, int max_seq_no)
 {
-    std::cout<<"in create lock file"<<std::endl;
-
-    //max file extent number seen at time of lock file creation 
-    //(or rather, the time which fileset() was run)
-
-    //get the host name
+    //max_seq_no is the max file extent number seen at time of lock file creation 
+    //e.g. the '2' in GE.X.2.ABCDEF
+    
+    //get the host name, need to track this 
+    //in case we have multiple machines modifying the same NFS space
     char host_name[256] = {'\0'};
     int ret_val = gethostname(host_name, 256);
     if( ret_val != 0)
     {
-        //msg("Fatal error retrieving host name: create_lockfile.", 3);
-        exit(1);
+        msg_fatal("mk4interface", "error retrieving host name in create_lockfile." << eom);
+        std::exit(1);
     };
 
     //get the process id,
@@ -205,6 +209,7 @@ int MHO_LockFileHandler::create_lockfile(const char* directory, char* lockfile_n
     for(i=0; i<MAX_LOCKNAME_LEN; i++){lockfile_name[i] = '\0';}
 
     //copy in the scan directory and append the filename
+
     strcpy(lockfile_name, directory);//fDirectory.c_str());
     char* end_ptr = strrchr(lockfile_name, '/');
     end_ptr++;
@@ -224,23 +229,16 @@ int MHO_LockFileHandler::create_lockfile(const char* directory, char* lockfile_n
 
         //variables so that the signal handler can remove the lock
         //file if an interrupt is caught
-        // fProcessLockFileData.validity = LOCK_VALID;
-        // fProcessLockFileData.seq_number = sequence_to_reserve;
-        // fProcessLockFileData.pid = this_pid;
-        // fProcessLockFileData.time_sec = epoch_sec;
-        // fProcessLockFileData.time_usec = micro_sec;
-        // strcpy(fProcessLockFileData.hostname, host_name);
-        // strcpy(fProcessLockFileData.lockfile_name, lockfile_name);
-        
         lock_data->validity = LOCK_VALID;
         lock_data->seq_number = sequence_to_reserve;
         lock_data->pid = this_pid;
         lock_data->time_sec = epoch_sec;
         lock_data->time_usec = micro_sec;
         strcpy(lock_data->hostname, host_name);
+        strcpy(lock_data->active_directory, directory);
         strcpy(lock_data->lockfile_name, lockfile_name);
-
-        std::cout<<"lock file name = "<<std::string(lockfile_name)<<std::endl;
+        msg_debug("mk4interface", "creating write lock file: "<< 
+            std::string(lock_data->active_directory) + std::string(lock_data->lockfile_name) << eom);
     }
     else
     {
@@ -255,22 +253,20 @@ int MHO_LockFileHandler::create_lockfile(const char* directory, char* lockfile_n
 //returns LOCK_PROCESS_HAS_PRIORITY if this process is at the front of the queue
 //returns LOCK_PROCESS_NO_PRIORITY if otherwise
 //returns and error code (various, see write_lock_mechanism.h) if an error
-int MHO_LockFileHandler::at_front(char* lockfile_name, int cand_seq_no)
+int MHO_LockFileHandler::at_front(const char* directory, char* lockfile_name,
+                                  lockfile_data* lock_data, int cand_seq_no)
 {
 
     //figure out root directory
-    std::cout<<"directory = "<<fDirectory<<std::endl;
     char root_dir[MAX_LOCKNAME_LEN] = {'\0'};
-    strcpy(root_dir, fDirectory.c_str());
+    strcpy(root_dir, directory);
     char* end_ptr_a = strrchr(root_dir, '/');
     end_ptr_a++;
     *end_ptr_a = '\0';
     int process_priority = LOCK_PROCESS_HAS_PRIORITY;
     char temp_lock_name[MAX_LOCKNAME_LEN] = {'\0'};
     lockfile_data temp_lock_struct;
-    
 
-    std::cout<<"root dir = "<<std::string(root_dir)<<std::endl;
     //scan the list of all files in the directory 
     //for ones with the ".lock" extension
     DIR* d;
@@ -280,7 +276,6 @@ int MHO_LockFileHandler::at_front(char* lockfile_name, int cand_seq_no)
     {
         while( (dir = readdir(d)) != NULL)
         {
-            std::cout<<"dir name = "<<std::string(dir->d_name)<<std::endl;
             if(strstr(dir->d_name, ".lock") != NULL)
             {
                 //found a lock file already in the directory
@@ -288,15 +283,12 @@ int MHO_LockFileHandler::at_front(char* lockfile_name, int cand_seq_no)
                 process_priority = LOCK_PROCESS_NO_PRIORITY;
                 //check if the other file is stale (this is an error)
                 strcpy(temp_lock_name, dir->d_name);
-                std::cout<<"dir name = "<<std::string(dir->d_name)<<std::endl;
-                std::cout<<"our process lock name = "<<std::string(fProcessLockFileData.lockfile_name)<<std::endl;
-                std::cout<<"found a stale lock file: "<<std::string(temp_lock_name)<<std::endl;
                 init_lockfile_data(&temp_lock_struct);
-
                 int error_code = parse_lockfile_name(temp_lock_name, &temp_lock_struct);
+                strcpy(temp_lock_struct.active_directory, root_dir); 
                 if(error_code != LOCK_STATUS_OK)
                 {
-                    std::cout<<" Error: un-parsable lock file name: "<< dir->d_name<<std::endl;
+                    msg_error("mk4interface", "un-parsable lock file name: "<< std::string(dir->d_name) << eom);
                     return LOCK_PARSE_ERROR;
                 }
                 int stale_lock = check_stale(&temp_lock_struct);
@@ -311,7 +303,7 @@ int MHO_LockFileHandler::at_front(char* lockfile_name, int cand_seq_no)
     }
     else
     {
-        std::cout<< "Error: can't access directory: "<< root_dir<<std::endl;
+        msg_error("mk4interface", "cannot access the directory: "<< root_dir << eom );
         return LOCK_FILE_ERROR;
     }
 
@@ -319,8 +311,7 @@ int MHO_LockFileHandler::at_front(char* lockfile_name, int cand_seq_no)
     if(process_priority != LOCK_PROCESS_HAS_PRIORITY){return process_priority;};
     
     //no other locks present, so go ahead and try to create a lock file
-    std::cout<<"creating a lock file = "<<std::string(lockfile_name)<<std::endl;
-    int lock_retval = create_lockfile(fDirectory.c_str(), lockfile_name, &fProcessLockFileData, cand_seq_no);
+    int lock_retval = create_lockfile(directory, lockfile_name, lock_data, cand_seq_no);
 
     if(lock_retval == LOCK_STATUS_OK)
     {
@@ -351,7 +342,7 @@ int MHO_LockFileHandler::at_front(char* lockfile_name, int cand_seq_no)
                             //msg ("Error: un-parsable lock file name: %s ", 3, dir->d_name);
                             return LOCK_PARSE_ERROR;
                         }
-                        process_priority = lock_has_priority(&fProcessLockFileData, &temp_lock_struct);
+                        process_priority = lock_has_priority(lock_data, &temp_lock_struct);
                         if(process_priority != LOCK_PROCESS_HAS_PRIORITY)
                         {
                             //either we don't have write priority or an error occured
@@ -365,7 +356,7 @@ int MHO_LockFileHandler::at_front(char* lockfile_name, int cand_seq_no)
         else
         {
             //something went wrong reading the directory, clean up
-            remove_lockfile();
+            remove_lockfile(lock_data);
             lockfile_name[0] = '\0';
             //msg ("Error: can't access directory: %s ", 3, root_dir);
             return LOCK_FILE_ERROR;
@@ -376,7 +367,7 @@ int MHO_LockFileHandler::at_front(char* lockfile_name, int cand_seq_no)
             //some other process created a lock file at almost the same time
             //and we don't have priority, so defer to the other process, delete our lock
             //and return 0 (we don't have priority) 
-            remove_lockfile();
+            remove_lockfile(lock_data);
             lockfile_name[0] = '\0';
             return process_priority;
         }
@@ -395,8 +386,6 @@ int MHO_LockFileHandler::at_front(char* lockfile_name, int cand_seq_no)
 
 int MHO_LockFileHandler::wait_for_write_lock(char* lockfile_name, int& next_seq_no)
 {
-    std::cout<<"planned lock file name = "<<std::string(lockfile_name)<<std::endl;
-
     next_seq_no = -1;
     
     //wait until this process is at the front of the write queue, 
@@ -415,12 +404,11 @@ int MHO_LockFileHandler::wait_for_write_lock(char* lockfile_name, int& next_seq_
         fDirInterface.ReadCurrentDirectory();
         fDirInterface.GetFileList(files);
         fDirInterface.GetFringeFiles(files, fringe_files, max_seq_no);
-        std::cout<<"initial max seq no = "<<max_seq_no<<std::endl;
+        msg_debug("mk4interface", "detected max sequence number of: "<< max_seq_no << ", in: " << fDirectory << eom);
 
         //provisionally fset->maxfile is the largest fringe number on disk
         //but we need to check that WE are allowed to take the successor:
-        is_at_front = at_front(lockfile_name, max_seq_no+1);
-        std::cout<<"is at front = "<<is_at_front<<std::endl;
+        is_at_front = at_front(fDirectory.c_str(), lockfile_name, &fProcessLockFileData, max_seq_no+1);
         n_checks++;
         if(is_at_front == LOCK_PROCESS_NO_PRIORITY){usleep(100000);}
     }
@@ -429,7 +417,7 @@ int MHO_LockFileHandler::wait_for_write_lock(char* lockfile_name, int& next_seq_
     //couldn't get a write lock because of time out
     if(n_checks >= LOCK_TIMEOUT)
     {
-        std::cout<<"Error: lock file time-out error associated with dir: "<<fDirectory<<std::endl;
+        msg_error("mk4interface", "lock file time-out error associated with dir: "<< fDirectory<< eom);
         return LOCK_TIMEOUT_ERROR;
     }
     
@@ -445,9 +433,8 @@ int MHO_LockFileHandler::wait_for_write_lock(char* lockfile_name, int& next_seq_
     fDirInterface.ReadCurrentDirectory();
     fDirInterface.GetFileList(files);
     fDirInterface.GetFringeFiles(files, fringe_files, max_seq_no);
-    std::cout<<"max seq no = "<<max_seq_no<<std::endl;
     next_seq_no = max_seq_no+1;
-    std::cout<<"next seq no = "<<next_seq_no<<std::endl;
+    msg_debug("mk4interface", "acquired write lock for sequence number: "<< next_seq_no << eom);
 
     return LOCK_STATUS_OK;
 }
