@@ -41,6 +41,22 @@ extern "C"
 namespace hops
 {
 
+unsigned int adler32_checksum(unsigned char *buf, int len)
+{
+    #define MOD_ADLER 65521
+
+    unsigned int s1 = 1;
+    unsigned int s2 = 0;
+    int n;
+
+    for(n = 0; n < len; n++) 
+    {
+        s1 = (s1 + buf[n]) % MOD_ADLER;
+        s2 = (s2 + s1) % MOD_ADLER;
+    }
+    return (s2 << 16) + s1;
+}
+
 
 MHO_MK4FringeExport::MHO_MK4FringeExport()
 {
@@ -583,69 +599,146 @@ int MHO_MK4FringeExport::fill_212(int fr, struct type_212 *t212)
 
 }
 
-int MHO_MK4FringeExport::fill_222( struct type_222 **t222)
+int MHO_MK4FringeExport::fill_222(struct type_222 **t222)
 {
-    clear_222(*t222);
+    std::string control_contents;
+    bool ok = fPStore->Get("/control/control_file_contents", control_contents);
+    if(!ok){control_contents = "";}
 
-    // int setstr_len, cf_len, setstr_pad, cf_pad, full_size, i;
-    // unsigned int setstr_hash = 0;
-    // unsigned int cf_hash = 0;
-    // 
-    // //now allocate the necessary amount of memory
-    // if(param->set_string_buff != NULL)
-    //     {
-    //     setstr_len = strlen(param->set_string_buff);
-    //     }
-    // else
-    //     {
-    //     setstr_len = 0;
-    //     }
-    // 
-    // if(param->control_file_buff != NULL)
-    //     {
-    //     cf_len = strlen(param->control_file_buff);
-    //     }
-    // else
-    //     {
-    //     cf_len = 0;
-    //     }
-    // 
-    // //find next largest multiple of 8 bytes
-    // setstr_pad = (( setstr_len + 7 ) & ~7) + 8;
-    // cf_pad = ( (cf_len + 7 ) & ~7) + 8;
-    // full_size = sizeof(struct type_222) + setstr_pad + cf_pad; 
-    // 
-    // /* Allocate space for output record */
-    // *t222 = (struct type_222*) malloc ( full_size );
-    // if (*t222 == NULL)
-    //     {
-    //     //msg ("Memory allocation failure in fill_222()", 2);
-    //     return (-1);
-    //     }
-    // 
-    // //now do the hashing
-    // setstr_hash = adler32_checksum( (unsigned char*) param->set_string_buff, setstr_len);
-    // cf_hash = adler32_checksum( (unsigned char*) param->control_file_buff, cf_len);
-    // 
-    // /* Fill it in */
-    // strncpy ( (*t222)->record_id, "222", 3);
-    // strncpy ( (*t222)->version_no, "00", 2);
-    // (*t222)->padded = 0;
-    // (*t222)->setstring_hash = setstr_hash;
-    // (*t222)->control_hash = cf_hash;
-    // (*t222)->setstring_length = setstr_len;
-    // (*t222)->cf_length = cf_len;
-    // 
-    // memcpy ( (*t222)->control_contents, param->set_string_buff, setstr_len );
-    // for(i=setstr_len; i<setstr_pad; i++){ ((*t222)->control_contents)[i] = '\0';}
-    // 
-    // //set the starting position of the control contents to the right place
-    // memcpy ( &( ((*t222)->control_contents)[setstr_pad] ),  param->control_file_buff, cf_len);
-    // for(i=setstr_pad+cf_len; i<setstr_pad+cf_pad; i++){ ((*t222)->control_contents)[i] = '\0';}
-    // 
+    unsigned char set_string_buff[1] = {' '};
+    int setstr_len, cf_len, setstr_pad, cf_pad, full_size, i;
+    unsigned int setstr_hash = 0;
+    unsigned int cf_hash = 0;
+    
+    //now allocate the necessary amount of memory
+    setstr_len = 0; //nothing, we've packed this into the control contents
+    cf_len = control_contents.size();
+
+    std::cout<<"cflen = "<<cf_len<<std::endl;
+    
+    //find next largest multiple of 8 bytes
+    setstr_pad = (( setstr_len + 7 ) & ~7) + 8;
+    cf_pad = ( (cf_len + 7 ) & ~7) + 8;
+    full_size = sizeof(struct type_222) + setstr_pad + cf_pad; 
+    
+    char* temp_buf = new char[cf_pad];
+    for(std::size_t j=0;j<cf_pad; j++)
+    {
+        if(j<cf_len){temp_buf[j] = control_contents[j];}
+        else{temp_buf[j] = '\0';}
+    }
+    
+    std::cout<<setstr_pad<<", "<<cf_pad<<", "<<full_size<<std::endl;
+    
+    /* Allocate space for output record */
+    *t222 = (struct type_222*) malloc ( full_size );
+    if (*t222 == NULL)
+    {
+        msg_error("mk4interface", "memory allocation failure in fill_222" << eom);
+        return -1;
+    }
+        
+    //now do the hashing
+    setstr_hash = adler32_checksum( (unsigned char*) &(set_string_buff[0]), setstr_len);
+    cf_hash = adler32_checksum( (unsigned char*) temp_buf, cf_len);
+    
+    /* Fill it in */
+    
+    // char version[3];
+    // strncpy (t222->record_id, "222", 3);
+    // sprintf (version, "%02d", T222_VERSION);
+    // strncpy (t222->version_no, version, 2);
+    // t222->unused1 = ' ';
+    // t222->padded = 0;
+    // t222->setstring_hash = 0;
+    // t222->control_hash = 0;
+    // t222->setstring_length = 0;
+    // t222->cf_length = 0;
+    // t222->control_contents[0] = '\0';
+    
+    strncpy ( (*t222)->record_id, "222", 3);
+    strncpy ( (*t222)->version_no, "00", 2);
+    (*t222)->unused1 = ' ';
+    (*t222)->padded = 0;
+    (*t222)->setstring_hash = setstr_hash;
+    (*t222)->control_hash = cf_hash;
+    (*t222)->setstring_length = setstr_len;
+    (*t222)->cf_length = cf_len;
+    
+    //memcpy( (*t222)->control_contents, &(set_string_buff[0]), setstr_len );
+    //for(std::size_t j=0;j<setstr_len; j++){((*t222)->control_contents)[j] = ' ';}
+    for(i=0; i<setstr_pad; i++){ ((*t222)->control_contents)[i] = ' ';}
+    
+    //set the starting position of the control contents to the right place
+    //memcpy ( &( ((*t222)->control_contents)[setstr_pad] ), temp_buf, cf_len);
+    
+    for(std::size_t j=0;j<cf_len; j++){((*t222)->control_contents)[j+setstr_pad] = temp_buf[j];}
+    for(i=setstr_pad+cf_len; i<setstr_pad+cf_pad; i++){ ((*t222)->control_contents)[i] = '\0';}
+    
+    std::cout<<"cc string = "<<control_contents<<std::endl;
+    std::cout<<"222 contents = "<<std::string((*t222)->control_contents)<<std::endl;
+    
+    delete[] temp_buf;
+    
     return 0;
 
 }
+
+// 
+// int fill_221(struct type_221 **t221)
+// {
+// 
+//     /* Create a temporary file to hold */
+//     /* the postscript output */
+//     strcpy(ps_file, P_tmpdir "/fourfit_XXXXXX");
+//     msg ("Temporary postscript filename = '%s'", 0, ps_file);
+// 
+// 
+// 
+//                                         /* Allocate memory for type_221 record */
+//     if ((*t221 = (struct type_221 *)malloc (size)) == NULL)
+//         {
+//         msg ("Memory allocation error in read_mk4file()", 2);
+//         return (-1);
+//         }
+//                                         /* Initialize it */
+//     clear_221 (*t221);
+//                                         /* Make sure we are at start of file */
+//     rewind (fp);
+//                                         /* Figure out starting address of the */
+//                                         /* postscript instructions */
+//     pplot = (*t221)->pplot;
+//                                         /* Read file in a single call, let */
+//                                         /* system figure out best buffering */
+//     nb = fread (pplot, sizeof(char), filesize, fp);
+//     pplot[filesize] = 0;                // terminate with null to be safe
+//                                         /* Did it go OK? */
+//     if (nb != filesize)
+//         {
+//         msg ("Error, expected %zu bytes, read %zu bytes", 2, filesize, nb);
+//         return (-1);
+//         }
+//                                         /* Tidy up */
+//     fclose (fp);
+//     unlink (ps_file);
+//                                         /* Forcibly null-terminate file image */
+//     if ((end = strstr (pplot, "EOF\n")) != NULL)
+//         *(end+4) = '\0';
+//                                         /* Store away trailing part of file */
+//     if ((showpage = strstr (pplot, "PGPLOT restore showpage")) != NULL)
+//         {
+//         strcpy (trailer, showpage);
+//                                         /* Null terminate what's left */
+//         showpage[0] = '\0';
+//         }
+// 
+//  /* Re-attach trailing part of file */
+//     strcat (pplot, trailer);
+//     (*t221)->ps_length = strlen (pplot);
+// 
+//     return (0);
+// }
+
 
 int MHO_MK4FringeExport::fill_230( int fr, int ap, struct type_230 *t230)
 {
@@ -749,7 +842,6 @@ MHO_MK4FringeExport::output(std::string filename2)
 
     if(lock_retval == LOCK_STATUS_OK && the_seq_no > 0)
     {
-            
         //construct the fringe filename 
         std::string filename = CreateFringeFileName(directory, the_seq_no);
         
@@ -811,6 +903,7 @@ MHO_MK4FringeExport::output(std::string filename2)
         error += fill_208(&t202, &t208);
         error += fill_210(&t210);
 
+
         //point the fringe to the data structures
         fringe.id = &t2_id;
         fringe.t200 = &t200;
@@ -853,37 +946,6 @@ MHO_MK4FringeExport::output(std::string filename2)
         }
 
         fringe.n230 = 0;
-        //                                     /* Cross power spectra (if requested) */
-        // if (write_xpower)
-        //     {
-        //                                     /* Allocate memory as a block */
-        //     xpow_len = 16 * 2 * param.nlags;
-        //     size_of_t230 = sizeof (struct type_230) - sizeof (hops_complex) + xpow_len;
-        //     t230_array = (char *)malloc (pass->nfreq * nap * size_of_t230);
-        //     if (t230_array == NULL)
-        //         {
-        //         //msg ("Failure allocating memory for type 230 records!", 2);
-        //         return (0);
-        //         }
-        //                                     /* record the allocation */
-        //     fringe.allocated[fringe.nalloc] = t230_array;
-        //     fringe.nalloc += 1;
-        //                                     /* Loop over all freqs, aps */
-        //     recno = 0;
-        //     for (fr=0; fr<pass->nfreq; fr++)
-        //         for (ap = pass->ap_off; ap < pass->ap_off + nap; ap++)
-        //             {
-        //             address = t230_array + recno * size_of_t230;
-        //             fringe.t230[recno] = (struct type_230 *)address;
-        //             error += fill_230 (pass, &param, fr, ap, fringe.t230[recno]);
-        //             recno++;
-        //             }
-        //     fringe.n230 = recno;
-        //     }
-        // 
-        // if (error != 0)
-        //     //msg ("Warning - some or all of the output records were not filled", 2);
-
 
         char sg;
         int i, dret;
@@ -891,65 +953,10 @@ MHO_MK4FringeExport::output(std::string filename2)
         //int the_seq_no;
         bool test_mode = false;
 
-        //struct type_221 *t221;
-        struct type_222 *t222;
-
-        // // for locking, see below and include/write_lock_mechanism.h
-        //int lock_retval = LOCK_STATUS_OK;//LOCK_PROCESS_NO_PRIORITY;
-        // char lockfile_name[512] = {'\0'};
-
-        /* Generate information to create fringe plot */
-        /* Some of this also goes into fringe file */
-
-        //try to get a lock on the root directory in order to write the fringe
-        //this is used to signal any other possible fourfit processes in this
-        //directory that we are about to create a file so we can avoid name 
-        //collisions.  The lock persists from point of acqusition until the
-        //eventual call to write_mk4fringe() below.
-        // FIXME: should worry about stale locks if ^C is hit.
-        // if(!test_mode)
-        //     {
-        //     struct fileset fset;
-        //     //wait until we are the next process allowed to write an output file
-        //     lock_retval = wait_for_write_lock(root->ovex->filename,
-        //         lockfile_name, &fset);
-        //     //this is the last filenumber that exists on disk
-        //     the_seq_no = fset.maxfile;
-        //     }
-        // else
-        //     {
-        //     // in test mode, nothing should be written, so the number is moot.
-        //     the_seq_no = -1;
-        //     }
-
-        // /* create_fname() will put the next seq number into the fringe name */
-        // the_seq_no++;
-        //                                 /* Figure out the correct, full pathname */
-        // if (create_fname (root->ovex, pass, the_seq_no, fringe_name) != 0)
-        //     {
-        //     msg ("Error figuring out proper fringe filename", 2);
-        //     return (1);
-        //     }
-            /* Fill in fringe file structure */
-        // if(fill_fringe_info(fringe_name, &fringe) != 0)
-        // {
-        //     //msg ("Error filling fringe records", 2);
-        //     return 1;
-        // }
-
-
-        // 
-        // if (make_postplot (root->ovex, pass, fringe_name, &t221) != 0)
-        //     {
-        //     msg ("Error creating postscript plot", 2);
-        //     return (1);
-        //     }
-
-        struct type_221* t221 = (struct type_221 *) malloc( sizeof(struct type_221) );
+        struct type_221 *t221;
+        t221 = (struct type_221 *) malloc( sizeof(struct type_221) );
         fill_221(t221);
         fringe.t221 = t221;
-
-        // fringe.t221 = NULL;
 
         //fringe.t221 = t221;
         fringe.t221->ps_length = strlen (fringe.t221->pplot);
@@ -957,34 +964,19 @@ MHO_MK4FringeExport::output(std::string filename2)
         fringe.allocated[fringe.nalloc] = fringe.t221;
         fringe.nalloc += 1;
         
-               /* Fill in the control file record */
-               /* if desired */
+        /* Fill in the control file record */
         fringe.t222 = NULL;
-        // if(param.gen_cf_record)
-        // {
-        //     if (fill_222 (&param, &t222) != 0)
-        //     {
-        //         //msg ("Error filling control record", 2);
-        //         return (1);
-        //     }
-        // 
-        //     fringe.t222 = t222;
-        //             /* Record the memory allocation */
-        //     fringe.allocated[fringe.nalloc] = fringe.t222;
-        //     fringe.nalloc += 1;
-        // }
-
-                /* Actually write output fringe file */
-        //if( !test_mode)
-
-
-        //try to get a lock on the root directory in order to write the fringe
-        //this is used to signal any other possible fourfit processes in this
-        //directory that we are about to create a file so we can avoid name 
-        //collisions.  The lock persists from point of acqusition until the
-        //eventual call to write_mk4fringe() below.
-
-
+        struct type_222 *t222;
+        if(fill_222(&t222) != 0)
+        {
+            msg_error("mk4interface", "error filling control file record" << eom);
+            return 1;
+        }
+        std::cout<<"t222 ptr = "<<t222<<std::endl;
+        fringe.t222 = t222;
+        /* Record the memory allocation */
+        fringe.allocated[fringe.nalloc] = fringe.t222;
+        fringe.nalloc += 1;
 
         //kludge to get fourfit to feed the generated fringe file name 
         //(but nothing else) as a return value to a
@@ -1258,6 +1250,8 @@ MHO_MK4FringeExport::CreateFringeFileName(std::string directory, int seq_no)
     ss << directory << "/" << baseline << "." << frequency_group << "." << seq_no << "." << root_code;
     return ss.str();
 }
+
+
 
 
 }//end of namespace

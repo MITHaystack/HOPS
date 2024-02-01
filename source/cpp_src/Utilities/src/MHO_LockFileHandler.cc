@@ -79,8 +79,7 @@ void MHO_LockFileHandler::remove_lockfile(lockfile_data* data)
 {
     if(data->validity == LOCK_VALID)
     {
-        msg_debug("mk4interface", "removing write lock file: "<< 
-            std::string(data->active_directory) + std::string(data->lockfile_name) << eom);
+        msg_debug("mk4interface", "removing write lock file: "<< std::string(data->lockfile_name) << eom);
         remove(data->lockfile_name);
     }
     init_lockfile_data(data);
@@ -260,8 +259,7 @@ int MHO_LockFileHandler::create_lockfile(const char* directory, char* lockfile_n
         strcpy(lock_data->hostname, host_name);
         strcpy(lock_data->active_directory, directory);
         strcpy(lock_data->lockfile_name, lockfile_name);
-        msg_debug("mk4interface", "creating write lock file: "<< 
-            std::string(lock_data->active_directory) + std::string(lock_data->lockfile_name) << eom);
+        msg_debug("mk4interface", "creating write lock file: "<< std::string(lock_data->lockfile_name) << eom);
     }
     else
     {
@@ -427,8 +425,10 @@ int MHO_LockFileHandler::wait_for_write_lock(int& next_seq_no)
         fDirInterface.ReadCurrentDirectory();
         fDirInterface.GetFileList(files);
         fDirInterface.GetFringeFiles(files, fringe_files, max_seq_no);
-        msg_debug("mk4interface", "detected max sequence number of: "<< max_seq_no << ", in: " << fDirectory << eom);
-
+        if(n_checks == 0)
+        {
+            msg_debug("mk4interface", "detected max sequence number of: "<< max_seq_no << ", in: " << fDirectory << eom);
+        }
         //provisionally fset->maxfile is the largest fringe number on disk
         //but we need to check that WE are allowed to take the successor:
         is_at_front = at_front(fDirectory.c_str(), lockfile_name, &fProcessLockFileData, max_seq_no+1);

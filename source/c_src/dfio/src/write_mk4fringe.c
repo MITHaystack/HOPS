@@ -88,6 +88,7 @@ write_mk4fringe (struct mk4_fringe *fringe,
     totbytes += bytes;
     if(fringe->t222 != NULL)
         {
+            printf("ima write a 222 \n");
         if (write_record ((char*)fringe->t222, fp, &bytes) < 0) quit;
         totbytes += bytes;
         }

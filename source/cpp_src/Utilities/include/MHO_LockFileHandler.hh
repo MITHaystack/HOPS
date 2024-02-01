@@ -65,7 +65,7 @@ class MHO_LockFileHandler
             return *fInstance;
         }
 
-        //only functions user needs to call via the instance: 
+        //the only two functions user needs to call via the instance: 
         //(1) wait for lock (2) remove lock
         int WaitForWriteLock(std::string directory, int& next_seq_no);
         void RemoveWriteLock();
