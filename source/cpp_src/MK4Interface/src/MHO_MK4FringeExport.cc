@@ -804,18 +804,90 @@ int MHO_MK4FringeExport::fill_230( int fr, int ap, struct type_230 *t230)
 }
 
 //dummy, just clears the structure
-int MHO_MK4FringeExport::fill_221( struct type_221* t221)
+int MHO_MK4FringeExport::fill_221(struct type_221** t221)
 {
-    clear_221(t221);
     
-    char version[3];
-    strncpy (t221->record_id, "221", 3);
-    sprintf (version, "%02d", T221_VERSION);
-    strncpy (t221->version_no, version, 2);
-    t221->unused1 = ' ';
-    t221->padded = 0;
-    t221->ps_length = 1;
-    t221->pplot[0] = '\0';
+    struct stat file_status;
+    int fd;
+    size_t nb, size, filesize;
+    int rc;
+    FILE *fp;
+    char *pplot, *showpage, *end, trailer[1024];
+
+    double tickinc;
+
+
+
+                                        /* Now need to read in the resulting */
+                                        /* postscript file.  This is done by */
+                                        /* creating a type 221 record in */
+                                        /* allocated memory, and reading the */
+                                        /* file into the pplot member */
+    //load the dummy ps file 
+    std::string ps_file;
+    ps_file += HOPS_MK4AUX_DIR;
+    ps_file += "/mk4aux/blank.ps"; 
+    fp = fopen (ps_file.c_str(), "r");
+                                        /* Map stream pointer onto file */
+                                        /* descriptor, and make stat() call */
+                                        /* to figure out file size */
+    if ((fd = fileno (fp)) < 0)
+    {
+        //msg ("Problem with stream pointer in read_mk4file()", 2);
+        return (-1);
+    }
+    if (fstat (fd, &file_status) != 0)
+    {
+        //msg ("Problem making stat call in read_mk4file()", 2);
+        return (-1);
+    }
+    filesize = file_status.st_size;
+
+    size = filesize + (size_t) 512; //don't really need this much extra space
+                                        /* Allocate memory for type_221 record */
+    if ((*t221 = (struct type_221 *) malloc (size)) == NULL)
+    {
+        //msg ("Memory allocation error in read_mk4file()", 2);
+        return (-1);
+    }
+                                        /* Initialize it */
+    clear_221 (*t221);
+                                        /* Make sure we are at start of file */
+    rewind (fp);
+                                        /* Figure out starting address of the */
+                                        /* postscript instructions */
+    pplot = (*t221)->pplot;
+                                        /* Read file in a single call, let */
+                                        /* system figure out best buffering */
+    nb = fread (pplot, sizeof(char), filesize, fp);
+    pplot[filesize] = 0;                // terminate with null to be safe
+                                        /* Did it go OK? */
+    if (nb != filesize)
+    {
+        //msg ("Error, expected %zu bytes, read %zu bytes", 2, filesize, nb);
+        return (-1);
+    }
+                                        /* Tidy up */
+    fclose (fp);
+                                        /* Forcibly null-terminate file image */
+    if ((end = strstr (pplot, "EOF\n")) != NULL)
+    {
+        *(end+4) = '\0';
+    }
+    //                                     /* Store away trailing part of file */
+    // if ((showpage = strstr (pplot, "PGPLOT restore showpage")) != NULL)
+    //     {
+    //     strcpy (trailer, showpage);
+    //                                     /* Null terminate what's left */
+    //     showpage[0] = '\0';
+    //     }
+    // 
+    // 
+    // 
+    //                                     /* Re-attach trailing part of file */
+    
+    // strcat (pplot, trailer);
+    (*t221)->ps_length = strlen (pplot);
 
     return 0;
 }
@@ -955,7 +1027,7 @@ MHO_MK4FringeExport::output(std::string filename2)
 
         struct type_221 *t221;
         t221 = (struct type_221 *) malloc( sizeof(struct type_221) );
-        fill_221(t221);
+        fill_221(&t221);
         fringe.t221 = t221;
 
         //fringe.t221 = t221;

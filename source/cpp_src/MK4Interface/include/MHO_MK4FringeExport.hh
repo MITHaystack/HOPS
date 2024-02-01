@@ -126,9 +126,10 @@ class MHO_MK4FringeExport
         int fill_208( struct type_202 *t202, struct type_208 *t208);
         int fill_210( struct type_210 *t210);
         int fill_212( int fr, struct type_212 *t212);
-        int fill_221( struct type_221* t221);
+        
+        int fill_221( struct type_221** t221);
 
-        int fill_222( struct type_222 **t222);
+        int fill_222( struct type_222** t222);
         int fill_230( int fr, int ap, struct type_230 *t230);
 
         int output(std::string filename2);
