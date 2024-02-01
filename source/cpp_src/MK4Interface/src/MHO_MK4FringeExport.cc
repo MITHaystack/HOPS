@@ -736,7 +736,6 @@ MHO_MK4FringeExport::output(std::string filename2)
     //TODO -- allow for a different directory for output than the input directory
     std::string directory = fPStore->GetAs<std::string>("/files/directory");
     directory = MHO_DirectoryInterface::GetDirectoryFullPath(directory);
-    MHO_LockFileHandler::GetInstance().SetDirectory(directory);
     
     // for locking
     int lock_retval = LOCK_PROCESS_NO_PRIORITY;
@@ -746,18 +745,14 @@ MHO_MK4FringeExport::output(std::string filename2)
     int the_seq_no;
     
     //wait until we are the next process allowed to write an output file
-    lock_retval = MHO_LockFileHandler::GetInstance().wait_for_write_lock(lockfile_name, the_seq_no);
-    
-    std::stringstream ss;
-    ss << directory;
-    ss << "/GE.X.";
-    ss << the_seq_no;
-    ss << ".ABCDEF";
-    std::string filename = ss.str();
-    
+    lock_retval = MHO_LockFileHandler::GetInstance().WaitForWriteLock(directory, the_seq_no);
+
     if(lock_retval == LOCK_STATUS_OK && the_seq_no > 0)
     {
             
+        //construct the fringe filename 
+        std::string filename = CreateFringeFileName(directory, the_seq_no);
+        
         //declare the fringe structure and items we are going to fill on the stack
         struct mk4_fringe fringe;
         struct type_200 t200;
@@ -1000,7 +995,7 @@ MHO_MK4FringeExport::output(std::string filename2)
         msg_debug("mk4interface", "writing fringe file: "<<std::string(fringe_name) << eom );
         int write_nbytes = write_mk4fringe(&fringe, fringe_name);
         //pause 50ms, if a lock file was created, delete it now
-        usleep(50000); MHO_LockFileHandler::GetInstance().RemoveLockFile();
+        usleep(50000); MHO_LockFileHandler::GetInstance().RemoveWriteLock();
         if(write_nbytes <= 0)
         {
             msg_error("mk4interface", "error writing fringe file, mk4 code: "<< write_nbytes << "." << eom);
@@ -1105,6 +1100,14 @@ MHO_MK4FringeExport::FillString(char* destination, std::string param_path, int m
     bool ok = fPStore->Get(param_path, tmp);
     if(!ok){tmp = default_value;}
     strncpy(destination, tmp.c_str(), std::min( max_length, (int) tmp.size() ) );
+}
+void 
+MHO_MK4FringeExport::FillString(std::string& destination, std::string param_path, std::string default_value)
+{
+    std::string tmp; 
+    bool ok = fPStore->Get(param_path, tmp);
+    if(!ok){tmp = default_value;}
+    destination = tmp;
 }
 
 void 
@@ -1237,6 +1240,23 @@ void MHO_MK4FringeExport::FillChannels(struct ch_struct* chan_array, std::size_t
         strncpy( &(chan_array[ch].rem_chan_id[0]), rem_chan_id.c_str(), std::min(7, (int) rem_chan_id.size() ) );
     }
 
+}
+
+std::string 
+MHO_MK4FringeExport::CreateFringeFileName(std::string directory, int seq_no)
+{
+    //grab the name info
+    std::string baseline;
+    std::string root_code; 
+    std::string frequency_group;
+    
+    FillString(baseline, "/config/baseline", "??");
+    FillString(root_code, "/config/root_code", "XXXXXX");
+    FillString(frequency_group, "/config/frequency_group", "X");
+
+    std::stringstream ss;
+    ss << directory << "/" << baseline << "." << frequency_group << "." << seq_no << "." << root_code;
+    return ss.str();
 }
 
 

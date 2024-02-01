@@ -27,8 +27,18 @@ namespace hops
 //initialization to nullptr
 MHO_LockFileHandler* MHO_LockFileHandler::fInstance = nullptr;
 
+//function to handle signals (to ensure we clean up lockfiles if we get interrupted)
+void 
+MHO_LockFileHandler::HandleSignal(int signal_value) 
+{
+    MHO_LockFileHandler::GetInstance().RemoveWriteLock();
+    signal(signal_value, SIG_DFL); //reset the handler for this particular signal to default
+    kill(getpid(), signal_value); //re-send the signal to this process
+}
+
 //set the write directory
-void MHO_LockFileHandler::SetDirectory(std::string dir)
+void 
+MHO_LockFileHandler::SetDirectory(std::string dir)
 {
     fDirectory = dir;
     //make sure our directory is terminated with a "/"
@@ -37,6 +47,19 @@ void MHO_LockFileHandler::SetDirectory(std::string dir)
     {
         if( fDirectory[fDirectory.size()-1] != '/'){fDirectory += "/";}
     }
+}
+
+void 
+MHO_LockFileHandler::RemoveWriteLock()
+{
+    remove_lockfile(&fProcessLockFileData);
+}
+
+int 
+MHO_LockFileHandler::WaitForWriteLock(std::string directory, int& next_seq_no)
+{
+    SetDirectory(directory);
+    return wait_for_write_lock(next_seq_no);
 }
 
 void MHO_LockFileHandler::init_lockfile_data(lockfile_data* data)
@@ -384,10 +407,10 @@ int MHO_LockFileHandler::at_front(const char* directory, char* lockfile_name,
     
 }
 
-int MHO_LockFileHandler::wait_for_write_lock(char* lockfile_name, int& next_seq_no)
+int MHO_LockFileHandler::wait_for_write_lock(int& next_seq_no)
 {
     next_seq_no = -1;
-    
+    char lockfile_name[MAX_LOCKNAME_LEN] = {'\0'};
     //wait until this process is at the front of the write queue, 
     //then return with the next sequence number
     int is_at_front = 0;

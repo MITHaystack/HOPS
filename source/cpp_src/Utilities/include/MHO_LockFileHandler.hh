@@ -65,30 +65,25 @@ class MHO_LockFileHandler
             return *fInstance;
         }
 
-        //function to handle signals (to ensure we clean up lockfiles if we get interrupted)
-        static void HandleSignal(int signal_value) 
-        {
-            MHO_LockFileHandler::GetInstance().RemoveLockFile();
-            signal(signal_value, SIG_DFL); //reset the handler for this particular signal to default
-            kill(getpid(), signal_value); //re-send the signal to this process
-        }
-        
-        //set the write directory
-        void SetDirectory(std::string dir);
-        void RemoveLockFile(){remove_lockfile(&fProcessLockFileData);}
+        //only functions user needs to call via the instance: 
+        //(1) wait for lock (2) remove lock
+        int WaitForWriteLock(std::string directory, int& next_seq_no);
+        void RemoveWriteLock();
 
+    private:
+        
+        static void HandleSignal(int signal_value);
+        
         static void init_lockfile_data(lockfile_data* data);
         static int parse_lockfile_name(char* lockfile_name_base, lockfile_data* result);
         static int create_lockfile(const char* directory, char* lockfile_name, lockfile_data* lock_data, int max_seq_no);
-        //static int create_lockfile(char* lockfile_name, int cand_seq_no);
         static int check_stale(lockfile_data* other);
         static int lock_has_priority(lockfile_data* ours, lockfile_data* other);
         static int at_front(const char* directory, char* lockfile_name, lockfile_data* lock_data, int cand_seq_no);
-
+        int wait_for_write_lock(int& next_seq_no);
         static void remove_lockfile(lockfile_data* other);
-        int wait_for_write_lock(char* lockfile_name, int& next_seq_no);
 
-    private:
+        void SetDirectory(std::string dir);
 
         MHO_LockFileHandler()
         {
