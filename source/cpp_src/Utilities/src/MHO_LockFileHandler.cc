@@ -123,7 +123,7 @@ int MHO_LockFileHandler::check_stale(lockfile_data* other)
 }
 
 
-int MHO_LockFileHandler::lock_has_priority(lockfile_data* other)
+int MHO_LockFileHandler::lock_has_priority(lockfile_data* ours, lockfile_data* other)
 {
     //returns LOCK_PROCESS_HAS_PRIORITY if this process has priority
     //  over the other's lock 
@@ -140,19 +140,19 @@ int MHO_LockFileHandler::lock_has_priority(lockfile_data* other)
     //of different hosts or pid recycling, we defer to using time ordering
     //if that in turn fails, then the lock with be deleted and we try again
 
-    if(fProcessLockFileData.pid < other->pid)
+    if(ours->pid < other->pid)
     {
         return LOCK_PROCESS_HAS_PRIORITY;
     }
-    else if( fProcessLockFileData.pid == other->pid)    // tie-break w/time
+    else if( ours->pid == other->pid)    // tie-break w/time
     {
-        if( fProcessLockFileData.time_sec < other->time_sec )
+        if( ours->time_sec < other->time_sec )
         {
             return LOCK_PROCESS_HAS_PRIORITY;
         }
-        else if ( fProcessLockFileData.time_sec == other->time_sec)
+        else if ( ours->time_sec == other->time_sec)
         {
-            if( fProcessLockFileData.time_usec < other->time_usec)
+            if( ours->time_usec < other->time_usec)
             {
                 return LOCK_PROCESS_HAS_PRIORITY;
             }
@@ -173,7 +173,7 @@ int MHO_LockFileHandler::lock_has_priority(lockfile_data* other)
 
 }
 
-int MHO_LockFileHandler::create_lockfile(char* lockfile_name, int max_seq_no)
+int MHO_LockFileHandler::create_lockfile(const char* directory, char* lockfile_name, lockfile_data* lock_data, int max_seq_no)
 {
     std::cout<<"in create lock file"<<std::endl;
 
@@ -205,7 +205,7 @@ int MHO_LockFileHandler::create_lockfile(char* lockfile_name, int max_seq_no)
     for(i=0; i<MAX_LOCKNAME_LEN; i++){lockfile_name[i] = '\0';}
 
     //copy in the scan directory and append the filename
-    strcpy(lockfile_name, fDirectory.c_str());
+    strcpy(lockfile_name, directory);//fDirectory.c_str());
     char* end_ptr = strrchr(lockfile_name, '/');
     end_ptr++;
     sprintf(end_ptr, "%u.%u.%lx.%lx.%s.lock",
@@ -224,13 +224,21 @@ int MHO_LockFileHandler::create_lockfile(char* lockfile_name, int max_seq_no)
 
         //variables so that the signal handler can remove the lock
         //file if an interrupt is caught
-        fProcessLockFileData.validity = LOCK_VALID;
-        fProcessLockFileData.seq_number = sequence_to_reserve;
-        fProcessLockFileData.pid = this_pid;
-        fProcessLockFileData.time_sec = epoch_sec;
-        fProcessLockFileData.time_usec = micro_sec;
-        strcpy(fProcessLockFileData.hostname, host_name);
-        strcpy(fProcessLockFileData.lockfile_name, lockfile_name);
+        // fProcessLockFileData.validity = LOCK_VALID;
+        // fProcessLockFileData.seq_number = sequence_to_reserve;
+        // fProcessLockFileData.pid = this_pid;
+        // fProcessLockFileData.time_sec = epoch_sec;
+        // fProcessLockFileData.time_usec = micro_sec;
+        // strcpy(fProcessLockFileData.hostname, host_name);
+        // strcpy(fProcessLockFileData.lockfile_name, lockfile_name);
+        
+        lock_data->validity = LOCK_VALID;
+        lock_data->seq_number = sequence_to_reserve;
+        lock_data->pid = this_pid;
+        lock_data->time_sec = epoch_sec;
+        lock_data->time_usec = micro_sec;
+        strcpy(lock_data->hostname, host_name);
+        strcpy(lock_data->lockfile_name, lockfile_name);
 
         std::cout<<"lock file name = "<<std::string(lockfile_name)<<std::endl;
     }
@@ -312,7 +320,7 @@ int MHO_LockFileHandler::at_front(char* lockfile_name, int cand_seq_no)
     
     //no other locks present, so go ahead and try to create a lock file
     std::cout<<"creating a lock file = "<<std::string(lockfile_name)<<std::endl;
-    int lock_retval = create_lockfile(lockfile_name, cand_seq_no);
+    int lock_retval = create_lockfile(fDirectory.c_str(), lockfile_name, &fProcessLockFileData, cand_seq_no);
 
     if(lock_retval == LOCK_STATUS_OK)
     {
@@ -343,7 +351,7 @@ int MHO_LockFileHandler::at_front(char* lockfile_name, int cand_seq_no)
                             //msg ("Error: un-parsable lock file name: %s ", 3, dir->d_name);
                             return LOCK_PARSE_ERROR;
                         }
-                        process_priority = lock_has_priority(&temp_lock_struct);
+                        process_priority = lock_has_priority(&fProcessLockFileData, &temp_lock_struct);
                         if(process_priority != LOCK_PROCESS_HAS_PRIORITY)
                         {
                             //either we don't have write priority or an error occured

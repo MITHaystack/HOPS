@@ -33,6 +33,20 @@
 namespace hops
 {
 
+//struct for holding data about the lock file's creation
+struct lockfile_data
+{
+    int validity;
+    unsigned int seq_number;
+    unsigned int pid;
+    unsigned long int time_sec;
+    unsigned long int time_usec;
+    char hostname[256];
+    char lockfile_name[MAX_LOCKNAME_LEN];
+};
+
+
+
 //uses the singleton pattern
 class MHO_LockFileHandler
 {
@@ -43,17 +57,6 @@ class MHO_LockFileHandler
         MHO_LockFileHandler& operator=(MHO_LockFileHandler const&) = delete;
         MHO_LockFileHandler& operator=(MHO_LockFileHandler&&) = delete;
 
-        //struct for holding data about the lock file's creation
-        struct lockfile_data
-        {
-            int validity;
-            unsigned int seq_number;
-            unsigned int pid;
-            unsigned long int time_sec;
-            unsigned long int time_usec;
-            char hostname[256];
-            char lockfile_name[MAX_LOCKNAME_LEN];
-        };
 
         //provide public access to the only static instance
         static MHO_LockFileHandler& GetInstance()
@@ -71,18 +74,30 @@ class MHO_LockFileHandler
         }
         
         //set the write directory
-        void SetDirectory(std::string dir){fDirectory = dir;}
+        void SetDirectory(std::string dir)
+        {
+            fDirectory = dir;
+            //make sure our directory is terminated with a "/"
+            //this needs to be the case for the dir/file parsing code
+            if(fDirectory.size() !=0)
+            {
+                if( fDirectory[fDirectory.size()-1] != '/'){fDirectory += "/";}
+            }
+        }
         
-        void init_lockfile_data(lockfile_data* data);
+        static void init_lockfile_data(lockfile_data* data);
+        static int parse_lockfile_name(char* lockfile_name_base, lockfile_data* result);
+        static int create_lockfile(const char* directory, char* lockfile_name, lockfile_data* lock_data, int max_seq_no);
+        //static int create_lockfile(char* lockfile_name, int cand_seq_no);
+        static int check_stale(lockfile_data* other);
+        static int lock_has_priority(lockfile_data* ours, lockfile_data* other);
+        
         void clear();
         void remove_lockfile();
-        int parse_lockfile_name(char* lockfile_name_base, lockfile_data* result);
-        int create_lockfile(char* lockfile_name, int cand_seq_no);
-        int check_stale(lockfile_data* other);
-        int lock_has_priority(lockfile_data* other);
+        
+
         int at_front(char* lockfile_name, int cand_seq_no);
         int wait_for_write_lock(char* lockfile_name, int& next_seq_no);
-
 
     private:
 

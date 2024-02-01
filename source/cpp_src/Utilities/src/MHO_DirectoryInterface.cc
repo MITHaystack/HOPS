@@ -33,11 +33,6 @@ MHO_DirectoryInterface::GetDirectoryFullPath(const std::string& dirname)
     char* tmp = realpath( tmp_path.c_str(), buffer);
     (void) tmp; //shut up the compiler about unused variable...we don't need it, result is stored in buffer
     std::string fullpath(buffer);
-    //make sure our directory is terminated with a "/"
-    if(fullpath.size() !=0)
-    {
-        if( fullpath[fullpath.size()-1] != '/'){fullpath += "/";}
-    }
     return fullpath;
 }
 
