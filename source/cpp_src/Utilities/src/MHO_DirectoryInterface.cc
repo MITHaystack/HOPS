@@ -24,7 +24,7 @@ MHO_DirectoryInterface::MHO_DirectoryInterface():
 MHO_DirectoryInterface::~MHO_DirectoryInterface(){};
 
 std::string
-MHO_DirectoryInterface::GetDirectoryFullPath(const std::string& dirname) const
+MHO_DirectoryInterface::GetDirectoryFullPath(const std::string& dirname)
 {
     //get the full path to a directory (in case it is relative)
     std::string tmp_path = dirname;
