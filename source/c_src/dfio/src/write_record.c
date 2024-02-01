@@ -133,7 +133,6 @@ write_record (char *record,
         case 222:
             t222 = (struct type_222 *)record;
             *bytes = copy_222 (t222, &overlay, &alloc_overlay);
-            printf("I wrote some bytes: %d\n", *bytes);
             break;
         case 230:
             t230 = (struct type_230 *)record;
