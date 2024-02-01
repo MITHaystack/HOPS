@@ -65,6 +65,7 @@ MHO_MK4CorelInterface::MHO_MK4CorelInterface():
     fRemStation = "";
     fRefStationMk4Id = "";
     fRemStationMk4Id = "";
+    fRootCode = "";
 }
 
 MHO_MK4CorelInterface::~MHO_MK4CorelInterface()
@@ -78,7 +79,7 @@ MHO_MK4CorelInterface::ReadCorelFile()
 {
     if(fHaveCorel)
     {
-        msg_debug("mk4interface", "Clearing a previously exisiting corel struct."<< eom);
+        msg_debug("mk4interface", "clearing a previously exisiting corel struct."<< eom);
         clear_mk4corel(fCorel);
         fCorel = nullptr;
         fHaveCorel = false;
@@ -90,12 +91,12 @@ MHO_MK4CorelInterface::ReadCorelFile()
     if(retval != 0)
     {
         fHaveCorel = false;
-        msg_debug("mk4interface", "Failed to read corel file: "<< fCorelFile << ", error value: "<< retval << eom);
+        msg_debug("mk4interface", "failed to read corel file: "<< fCorelFile << ", error value: "<< retval << eom);
     }
     else
     {
         fHaveCorel = true;
-        msg_debug("mk4interface", "Successfully read corel file."<< fCorelFile << eom);
+        msg_debug("mk4interface", "successfully read corel file."<< fCorelFile << eom);
     }
 
     fBaselineName = "";
@@ -104,6 +105,17 @@ MHO_MK4CorelInterface::ReadCorelFile()
     fRemStation = "";
     fRefStationMk4Id = "";
     fRemStationMk4Id = "";
+    
+    //determine the root code;
+    std::size_t last_dot = fCorelFile.find_last_of('.');
+    fRootCode = "";
+    if(last_dot != std::string::npos && last_dot < fCorelFile.length() - 1)
+    {
+        fRootCode = fCorelFile.substr(last_dot + 1);
+        //trim to 6 chars if too long (this shouldn't happen)
+        if(fRootCode.size() > 6){fRootCode.resize(6);}
+    } 
+
 }
 
 
@@ -678,6 +690,7 @@ MHO_MK4CorelInterface::ExtractCorelFile()
     //bl_data->Insert(std::string("procdate"), procdate_string); //processing data no long used
     bl_data->Insert(std::string("start"), start_string);
     bl_data->Insert(std::string("stop"), stop_string);
+    bl_data->Insert(std::string("root_code"), fRootCode);
 
     bl_wdata->Insert(std::string("name"), std::string("weights"));
     bl_wdata->Insert(std::string("baseline"), fBaselineName);
@@ -689,6 +702,7 @@ MHO_MK4CorelInterface::ExtractCorelFile()
     //bl_wdata->Insert(std::string("procdate"), procdate_string);
     bl_wdata->Insert(std::string("start"), start_string);
     bl_wdata->Insert(std::string("stop"), stop_string);
+    bl_wdata->Insert(std::string("root_code"), fRootCode);
 
 
     fExtractedVisibilities = bl_data;

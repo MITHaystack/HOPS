@@ -204,9 +204,6 @@ MHO_DiFXBaselineProcessor::ConstructVisibilityFileObjects()
     if(fCanChannelize && fInput != nullptr)
     {
         //insert the difx input data as a json object
-        // std::stringstream jss;
-        // jss << *fInput;
-        // fTags.SetTagValue("difx_input_json", jss.str());
         fTags.SetTagValue("difx_input_json", *fInput);
         fTags.SetTagValue("root_code", fRootCode);
 
