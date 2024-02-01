@@ -6,12 +6,20 @@ import matplotlib
 # matplotlib.use("Agg")
 # matplotlib.use('Qt5Cairo') 
 
+
+
 import matplotlib.pyplot as plt
 import matplotlib.gridspec as gridspec
 matplotlib.rcParams.update({'savefig.dpi':300})
 import pylab
 from matplotlib.ticker import FormatStrFormatter
 from matplotlib.ticker import AutoMinorLocator
+
+
+#these don't do much, still slow
+#import matplotlib.style as mplstyle
+# mplstyle.use('fast') 
+# matplotlib.rcParams['path.simplify_threshold'] = 1.0
 
 def make_dr_mbd_plot(plot_dict):
 
