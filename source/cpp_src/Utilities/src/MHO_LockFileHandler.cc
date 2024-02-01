@@ -112,7 +112,8 @@ int MHO_LockFileHandler::check_stale(lockfile_data* other)
         if( (epoch_sec - other->time_sec) > LOCK_STALE_SEC )
         {
             //issue warning, do not have priority
-            //msg ("Error: stale lock file detected: %s ", 3, other->lockfile_name);
+            std::string oname = other->lockfile_name;
+            std::cout<< "Error: stale lock file detected: "<< oname <<std::endl;
             return LOCK_STALE_ERROR;
         }
     }
@@ -275,7 +276,7 @@ int MHO_LockFileHandler::at_front(char* lockfile_name, int cand_seq_no)
                 int error_code = parse_lockfile_name(temp_lock_name, &temp_lock_struct);
                 if(error_code != LOCK_STATUS_OK)
                 {
-                    //msg ("Error: un-parsable lock file name: %s ", 3, dir->d_name);
+                    std::cout<<" Error: un-parsable lock file name: "<< dir->d_name<<std::endl;
                     return LOCK_PARSE_ERROR;
                 }
                 int stale_lock = check_stale(&temp_lock_struct);
@@ -290,7 +291,7 @@ int MHO_LockFileHandler::at_front(char* lockfile_name, int cand_seq_no)
     }
     else
     {
-        //msg ("Error: can't access directory: %s ", 3, root_dir);
+        std::cout<< "Error: can't access directory: "<< root_dir<<std::endl;
         return LOCK_FILE_ERROR;
     }
 
@@ -298,6 +299,7 @@ int MHO_LockFileHandler::at_front(char* lockfile_name, int cand_seq_no)
     if(process_priority != LOCK_PROCESS_HAS_PRIORITY){return process_priority;};
     
     //no other locks present, so go ahead and try to create a lock file
+    std::cout<<"creating a lock file = "<<std::string(lockfile_name)<<std::endl;
     int lock_retval = create_lockfile(lockfile_name, cand_seq_no);
 
     if(lock_retval == LOCK_STATUS_OK)
@@ -391,10 +393,12 @@ int MHO_LockFileHandler::wait_for_write_lock(char* lockfile_name, int& next_seq_
         fDirInterface.ReadCurrentDirectory();
         fDirInterface.GetFileList(files);
         fDirInterface.GetFringeFiles(files, fringe_files, max_seq_no);
+        std::cout<<"initial max seq no = "<<max_seq_no<<std::endl;
 
         //provisionally fset->maxfile is the largest fringe number on disk
         //but we need to check that WE are allowed to take the successor:
         is_at_front = at_front(lockfile_name, max_seq_no+1);
+        std::cout<<"is at front = "<<is_at_front<<std::endl;
         n_checks++;
         if(is_at_front == LOCK_PROCESS_NO_PRIORITY){usleep(100000);}
     }
@@ -403,7 +407,7 @@ int MHO_LockFileHandler::wait_for_write_lock(char* lockfile_name, int& next_seq_
     //couldn't get a write lock because of time out
     if(n_checks >= LOCK_TIMEOUT)
     {
-        //msg ("Error: lock file time-out error associated with: %s ", 3, rootname);
+        std::cout<<"Error: lock file time-out error associated with dir: "<<fDirectory<<std::endl;
         return LOCK_TIMEOUT_ERROR;
     }
     
@@ -419,7 +423,9 @@ int MHO_LockFileHandler::wait_for_write_lock(char* lockfile_name, int& next_seq_
     fDirInterface.ReadCurrentDirectory();
     fDirInterface.GetFileList(files);
     fDirInterface.GetFringeFiles(files, fringe_files, max_seq_no);
+    std::cout<<"max seq no = "<<max_seq_no<<std::endl;
     next_seq_no = max_seq_no+1;
+    std::cout<<"next seq no = "<<next_seq_no<<std::endl;
 
     return LOCK_STATUS_OK;
 }
