@@ -161,6 +161,17 @@ class MHO_ObjectTags: public MHO_Taggable, public MHO_ExtensibleElement
                         return value;
                     }
                 }
+                
+                {
+                    mho_json value;
+                    bool ok = this->Retrieve(tag_name,value);
+                    if(ok)
+                    {
+                        std::stringstream jss;
+                        jss << value;
+                        return jss.str();
+                    }
+                }
             }
 
             //return nothing

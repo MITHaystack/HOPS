@@ -203,10 +203,12 @@ MHO_DiFXBaselineProcessor::ConstructVisibilityFileObjects()
 
     if(fCanChannelize && fInput != nullptr)
     {
-        //insert the difx input data as a json string
-        std::stringstream jss;
-        jss << *fInput;
-        fTags.SetTagValue("difx_input_json", jss.str());
+        //insert the difx input data as a json object
+        // std::stringstream jss;
+        // jss << *fInput;
+        // fTags.SetTagValue("difx_input_json", jss.str());
+        fTags.SetTagValue("difx_input_json", *fInput);
+        fTags.SetTagValue("root_code", fRootCode);
 
     	//first construct a channelized visibility container
         if(fV){delete fV; fV = nullptr;}
@@ -227,6 +229,7 @@ MHO_DiFXBaselineProcessor::ConstructVisibilityFileObjects()
         fV->Insert(std::string("reference_station_mk4id"), fRefStationMk4Id);
         fV->Insert(std::string("remote_station_mk4id"), fRemStationMk4Id);
         fV->Insert(std::string("correlation_date"), fCorrDate);
+        fV->Insert(std::string("root_code"), fRootCode);
 
         //tags for the weights
         fW->Resize(fNPolPairs, fNChannels, fNAPs, 1); //fNSpectralPoints -- we only have 1 weight value for each AP, so set dimension along the spectral point axis to 1
@@ -240,6 +243,7 @@ MHO_DiFXBaselineProcessor::ConstructVisibilityFileObjects()
         fW->Insert(std::string("reference_station_mk4id"), fRefStationMk4Id);
         fW->Insert(std::string("remote_station_mk4id"), fRemStationMk4Id);
         fW->Insert(std::string("correlation_date"), fCorrDate);
+        fW->Insert(std::string("root_code"), fRootCode);
 
         //polarization product axis
         auto* polprod_axis = &(std::get<POLPROD_AXIS>(*fV));
