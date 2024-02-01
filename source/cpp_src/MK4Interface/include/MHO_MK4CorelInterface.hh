@@ -78,6 +78,7 @@ class MHO_MK4CorelInterface
         mho_json fVex;
         std::string fVexFile;
         std::string fCorelFile;
+        std::string fRootCode; //derived from corel file name
 
         //data dimensions related members
         void DetermineDataDimensions();
