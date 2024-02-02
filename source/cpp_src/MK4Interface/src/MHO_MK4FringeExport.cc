@@ -706,7 +706,7 @@ MHO_MK4FringeExport::output(std::string filename2)
         //e.g. chops/source/python_src/hopstest_module/hopstestb/hopstestb.py
         //around line 74 in the FourFitThread class.
         int msglev = fPStore->GetAs<int>("/cmdline/message_level");
-        if(msglev==4){printf("fourfit: %s \n",fringe_name);} //iff msglev=4
+        if(msglev==4){fprintf(stderr,"fourfit: %s \n",fringe_name);} //iff msglev=4
 
         int write_nbytes = write_mk4fringe(&fringe, fringe_name);
         //pause 5ms, if a lock file was created, delete it now
