@@ -328,9 +328,9 @@ void MHO_BasicFringeFitter::Run()
     //     // fParameterStore.Dump();
     // }
 
-
-    std::cout<<"dumping parameter store = "<<std::endl;
-    fParameterStore.Dump();
+    // 
+    // std::cout<<"dumping parameter store = "<<std::endl;
+    // fParameterStore.Dump();
 
     bool do_ion = false;
     // #ifdef ION_EXP 
