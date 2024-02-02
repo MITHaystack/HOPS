@@ -17,10 +17,10 @@ set(HOPS_TEST_LIBS
 set(SOURCE_BASENAMES
     TestMultiObjectStreaming
     TestConvertMk4Visibilities
-    DumpFileObjectKeys
-    ConvertMk4Data
-    DumpFileObjectToJSON
-    ConvertFileToJSON
+    hopskeys
+    mark42hops
+    hopsobj2json
+    hops2json
     vex2json
     TestSignalFFT
     CompareCorFiles

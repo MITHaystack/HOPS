@@ -15,7 +15,7 @@ SCAN_DIR=105-1800
 TMP_FILE="tmp.txt"
 cd $EXP_DIR
 
-DumpFileObjectKeys -f ./${D2H_EXP_NUM}/${SCAN_DIR}/GE.*.cor > ./${TMP_FILE}
+hopskeys -f ./${D2H_EXP_NUM}/${SCAN_DIR}/GE.*.cor > ./${TMP_FILE}
 
 #check the the dumped keys contain the class uuid's for visibilities, weights, and tags
 N_VIS=$(grep "a5c26065821b6dc92b06f780f8641d0e" ./${TMP_FILE} | wc -l)

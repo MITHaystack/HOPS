@@ -21,8 +21,8 @@ cd $EXP_DIR
 echo "Running: ConvertMk4Data -i ./${D2M4_EXP_NUM}/${SCAN_DIR} -o ./${CM42H_DIR}"
 ConvertMk4Data -i ./${D2M4_EXP_NUM}/${SCAN_DIR} -o ./${CM42H_DIR}
 
-echo "Running: ConvertFileToJSON -f ./${CM42H_DIR}GE.*.cor -d 0 -o ${NEW_JSON_FILE}"
-ConvertFileToJSON -f ./${CM42H_DIR}/GE.*.cor -d 0 -o ${NEW_JSON_FILE}
+echo "Running: hops2json -f ./${CM42H_DIR}GE.*.cor -d 0 -o ${NEW_JSON_FILE}"
+hops2json -f ./${CM42H_DIR}/GE.*.cor -d 0 -o ${NEW_JSON_FILE}
 
 #compare the json output to the reference 
 @PY_EXE@ @CMAKE_CURRENT_BINARY_DIR@/hopsobjdata.py $REF_JSON_FILE $NEW_JSON_FILE
