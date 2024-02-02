@@ -705,8 +705,8 @@ MHO_MK4FringeExport::output(std::string filename2)
         //a python calling script (requires passing option "-m 4"); see
         //e.g. chops/source/python_src/hopstest_module/hopstestb/hopstestb.py
         //around line 74 in the FourFitThread class.
-        int msglev = fPStore->GetAs<int>("/cmdline/message_level");
-        if(msglev==4){fprintf(stderr,"fourfit: %s \n",fringe_name);} //iff msglev=4
+        auto msglev = MHO_Message::GetInstance().GetMessageLevel();
+        if(msglev == eSpecial){fprintf(stderr,"fourfit: %s \n",fringe_name);}
 
         int write_nbytes = write_mk4fringe(&fringe, fringe_name);
         //pause 5ms, if a lock file was created, delete it now

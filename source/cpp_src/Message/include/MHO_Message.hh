@@ -92,6 +92,7 @@ class MHO_Message
 
         void Flush();
         void SetMessageLevel(MHO_MessageLevel level){fAllowedLevel = level;}
+        MHO_MessageLevel GetMessageLevel() const {return fAllowedLevel;}
 
         MHO_Message& SendMessage(const MHO_MessageLevel& level, const std::string& key);
         MHO_Message& SendMessage(const MHO_MessageLevel& level, const char* key);
