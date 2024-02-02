@@ -7,6 +7,7 @@
 #include <complex>
 #include <set>
 #include <algorithm>
+#include <cctype>
 
 //mk4 IO library
 #ifndef HOPS3_USE_CXX
@@ -20,6 +21,8 @@ extern "C"
 #ifndef HOPS3_USE_CXX
 }
 #endif
+
+#define N_MAX_PCAL_CHAN 64
 
 namespace hops
 {
@@ -133,51 +136,8 @@ MHO_MK4StationInterface::ExtractStationFile()
             }
         }
 
-
         //now deal with the type_309 pcal data 
-        int n309 = fStation->n309;
-        if(n309 != 0)
-        {
-            type_309** t309 = fStation->t309;
-
-            for(int i=0; i < n309; i++)
-            {
-                int su = t309[i]->su;
-                int ntones = t309[i]->ntones;
-                double rot = t309[i]->rot;
-                double acc_period = t309[i]->acc_period;
-                std::cout<<"t309 @ "<<i<<" = "<<su<<", "<<ntones<<", "<<rot<<", "<<acc_period<<std::endl;
-
-                for(int ch=0; ch < 64; ch++)
-                {
-                    std::string ch_name( &(t309[i]->chan[ch].chan_name[0]), 8);
-                    std::cout<<"chan name = "<<ch_name<<std::endl;
-
-                    for(int ti=0; ti < 64; ti++)
-                    {
-                        std::cout<<"tone"<<ti<<" = ("<<t309[i]->chan[ch].acc[ti][0]<<", "<<t309[i]->chan[ch].acc[ti][1]<<std::endl;
-                    }
-
-                }
-                
-
-            }
-
-                // char        record_id[3];           // Standard 3-digit id
-                // char        version_no[2];          // Standard 2-digit version #
-                // char        unused1[3]; 
-                // int         su;                     // SU
-                // int         ntones;                 // number of tones [0..64]
-                // double      rot;                    // ROT at start of AP
-                // double      acc_period;             // in secs
-                // struct ch1_tag
-                //   {
-                //   char      chan_name[8];
-                //   double    freq;                   // tone frequency in Hz
-                //   U32       acc[64][2];             // accumulators for 64 freqs x 2 quads (C..S)
-                //   } chan[64];
-                // };
-        }
+        ExtractPCal(fStation->n309, fStation->t309);
 
     }
 
@@ -209,6 +169,186 @@ void MHO_MK4StationInterface::ReadStationFile()
         fHaveStation = false;
         msg_debug("mk4interface", "Failed to read station data file: "<< fStationFile << ", error value: "<< retval << eom);
     }
+}
+
+void 
+MHO_MK4StationInterface::ExtractPCal(int n309, type_309** t309)
+{
+    if(n309 == 0){return;}
+
+    multitone_pcal_type pcal; //pol x time x freq
+
+
+    //determine polarizations which are present
+    std::set< std::string > pol_set;
+    std::set< std::string > chanids;
+    std::map< std::string, int> chan2idx;     //map mk4 channel id to 'order' index
+    std::map< std::string, std::string> chan2pol; //map mk4 channel id to pol string
+    std::map< std::string, int> chan2ntones;
+
+    //loop over all records and extract info from the mk4 names
+    int n_channels = 0;
+    int max_tones_per_channel = 0;
+
+    for(int i=0; i < n309; i++)
+    {
+        for(int ch=0; ch < N_MAX_PCAL_CHAN; ch++)
+        {
+            std::string ch_name = getstr(&(t309[i]->chan[ch].chan_name[0]), 8);
+            if(ch_name != "")
+            {
+                chanids.insert(ch_name);
+                int val = IndexFromMK4ChannelId(ch_name);
+                if(val != -1){chan2idx[ch_name] = val;}
+                std::string pol = PolFromMK4ChannelID(ch_name);
+                if(pol != "")
+                {
+                    chan2pol[ch_name] = pol;
+                    pol_set.insert(pol);
+                }
+
+                int count = 0; 
+                for(int ti=0; ti < 64; ti++)
+                {
+                    if(t309[i]->chan[ch].acc[ti][0] != 0 || t309[i]->chan[ch].acc[ti][1] != 0){count++;}
+                }
+                chan2ntones[ch_name] = count;
+                if(count > max_tones_per_channel){max_tones_per_channel = count;}
+            }
+        }
+    }
+    
+    n_channels = chanids.size();
+    std::size_t nap = n309;
+    std::size_t npol = pol_set.size();
+
+    std::size_t ntotal_tones = 0; 
+    for(auto it = chan2ntones.begin(); it != chan2ntones.end(); it++)
+    {
+        ntotal_tones += it->second;
+    }
+
+    
+    std::cout<<"NAP = "<<nap<<std::endl;
+    std::cout<<"NPOL = "<<npol<<std::endl;
+    std::cout<<"NCHAN = "<<n_channels<<std::endl;
+    std::cout<<"MAXTONES PER CHAN = "<<max_tones_per_channel<<std::endl;
+    std::cout<<"N TOTAL TONES = "<<ntotal_tones<<std::endl;
+
+    for(auto it = pol_set.begin(); it != pol_set.end(); it++)
+    {
+        std::cout<<"pcal pol present = "<<*it<<std::endl;
+    }
+
+    for(int i=0; i < n309; i++)
+    {
+        int su = t309[i]->su;
+        int ntones = t309[i]->ntones;
+        double rot = t309[i]->rot;
+        double acc_period = t309[i]->acc_period;
+        //std::cout<<"t309 @ "<<i<<" = "<<su<<", "<<ntones<<", "<<rot<<", "<<acc_period<<std::endl;
+
+        for(int ch=0; ch < N_MAX_PCAL_CHAN; ch++)
+        {
+            std::string ch_name = getstr(&(t309[i]->chan[ch].chan_name[0]), 8);
+            //std::cout<<"chan name = "<<ch_name<<std::endl;
+            double freq = t309[i]->chan[ch].freq;
+            //std::cout<<"chan freq = "<<freq<<std::endl;
+            for(int ti=0; ti < N_MAX_PCAL_CHAN; ti++)
+            {
+                //std::cout<<"tone"<<ti<<" = ("<<t309[i]->chan[ch].acc[ti][0]<<", "<<t309[i]->chan[ch].acc[ti][1]<<std::endl;
+            }
+
+        }
+    }
+
+}
+
+// std::set< std::string > 
+// MHO_MK4StationInterface::DeterminePCalPols(int n309, type_309** t309) const
+// {
+//     std::set< std::string > pset;
+//     for(int i=0; i < n309; i++)
+//     {
+//         for(int ch=0; ch < N_MAX_PCAL_CHAN; ch++)
+//         {
+//             std::string ch_name( &(t309[i]->chan[ch].chan_name[0]), 8);
+//             if(ch_name != "")
+//             {
+//                 std::string pol = PolFromMK4ChannelID(ch_name);
+//                 if(pol != ""){pset.insert(pol);}
+//             }
+//         }
+//     }
+//     return pset;
+// }
+
+std::string 
+MHO_MK4StationInterface::PolFromMK4ChannelID(std::string id) const
+{
+    std::string pol = "";
+    if(id.size() < 5){return pol;}
+
+    //MK4 channel ID format looks like "freq group" + "index" + "sideband" + "pol"
+    //e.g X22LY
+    std::string p = id.substr(4,1);
+
+    //only allow the following values for polarization
+    if(p == "R" || p == "L" || p == "X" || p == "Y" || p == "H" || p == "V")
+    {
+        pol = p;
+    }
+    else 
+    {
+        msg_warn("mk4interface", "error parsing mk4 channel id: "<<id<<" for polarization. "<< eom);
+    }
+
+    return pol;
+}
+
+std::string 
+MHO_MK4StationInterface::SidebandFromMK4ChannelId(std::string id) const
+{
+    std::string sb = "";
+    if(id.size() < 5){return sb;}
+
+    //MK4 channel ID format looks like "freq group" + "index" + "sideband" + "pol"
+    //e.g X22LY
+    std::string side = id.substr(3,1);
+    //only allow the following values for sideband
+    if(side == "L" || side == "U" || side == "D")
+    {
+        sb = side;
+    }
+    else 
+    {
+        msg_warn("mk4interface", "error parsing mk4 channel id: "<<id<<" for sideband. "<< eom);
+    }
+
+    return sb;
+}
+
+int 
+MHO_MK4StationInterface::IndexFromMK4ChannelId(std::string id) const
+{
+    int idx = -1;
+    if(id.size() < 5){return idx;}
+
+    //MK4 channel ID format looks like "freq group" + "index" + "sideband" + "pol"
+    //e.g X22LY
+
+    std::string index = id.substr(1,2);
+    if(std::isdigit(index[0]) && std::isdigit(index[1]) )
+    {
+        idx = std::atoi( index.c_str() );
+    }
+    else 
+    {
+        msg_warn("mk4interface", "error parsing mk4 channel id: "<<id<<" for index. "<< eom);
+    }
+
+    return idx;
+
 }
 
 

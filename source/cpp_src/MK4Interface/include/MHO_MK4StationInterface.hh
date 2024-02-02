@@ -16,6 +16,8 @@
 #include <cstdlib>
 #include <cstring>
 #include <string>
+#include <map>
+#include <set>
 
 #include "MHO_ContainerDefinitions.hh"
 
@@ -30,6 +32,7 @@ extern "C"
 {
 #endif
     struct mk4_sdata;
+    struct type_309;
 #ifndef HOPS3_USE_CXX
 }
 #endif
@@ -60,7 +63,14 @@ class MHO_MK4StationInterface
 
         void ReadStationFile();
 
+        void ExtractPCal(int n309, type_309** t309);
+
+        std::string PolFromMK4ChannelID(std::string id) const;
+        std::string SidebandFromMK4ChannelId(std::string id) const;
+        int IndexFromMK4ChannelId(std::string id) const;
+
         bool fHaveStation;
+
         struct mk4_sdata* fStation;
 
         std::string fStationFile;
