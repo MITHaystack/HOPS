@@ -11,7 +11,7 @@ using namespace hops;
 
 int main(int argc, char** argv)
 {
-    std::string usage = "DumpFileObjectKeys -f <file>";
+    std::string usage = "hopskeys -f <file>";
 
     MHO_Message::GetInstance().AcceptAllKeys();
     MHO_Message::GetInstance().SetMessageLevel(eDebug);

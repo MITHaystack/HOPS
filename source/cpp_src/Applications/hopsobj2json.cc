@@ -10,7 +10,7 @@ using namespace hops;
 
 int main(int argc, char** argv)
 {
-    std::string usage = "DumpFileObjectToJSON -f <file> -u <object_uuid> -d <detail level 0-4> -o <output_file>";
+    std::string usage = "hopsobj2json -f <file> -u <object_uuid> -d <detail level 0-4> -o <output_file>";
 
     MHO_Message::GetInstance().AcceptAllKeys();
     MHO_Message::GetInstance().SetMessageLevel(eDebug);
