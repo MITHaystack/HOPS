@@ -14,17 +14,6 @@ extern "C"
 #include "MHO_LegacyDateConverter.hh"
 #include "MHO_LockFileHandler.hh"
 
-#include "MHO_MK4Type200Converter.hh"
-#include "MHO_MK4Type201Converter.hh"
-#include "MHO_MK4Type202Converter.hh"
-#include "MHO_MK4Type203Converter.hh"
-#include "MHO_MK4Type204Converter.hh"
-#include "MHO_MK4Type205Converter.hh"
-#include "MHO_MK4Type206Converter.hh"
-#include "MHO_MK4Type208Converter.hh"
-#include "MHO_MK4Type210Converter.hh"
-
-
 #include <sys/stat.h>
 #include <unistd.h>
 #include <stdlib.h>
@@ -103,9 +92,6 @@ int MHO_MK4FringeExport::fill_200( struct type_200 *t200)
     //write out the fourfit reference time 
     FillDate(&(t200->frt), "/vex/scan/fourfit_reftime");
 
-    // mho_json j = convertToJSON(*t200);
-    // std::cout<<"type 200 json = "<<j.dump(2)<<std::endl;
-
     return 0;
 }
 
@@ -151,12 +137,7 @@ int MHO_MK4FringeExport::fill_201( struct type_201 *t201)
     // This differs from all other diff. quantities
     FillDouble(t201->dispersion, "/fringe/ion_diff");
 
-    // // /* Ignore the rest of pulsar parameters for now */
-    // mho_json j = convertToJSON(*t201);
-    // std::cout<<"type 201 json = "<<j.dump(2)<<std::endl;
-
     return 0;
-
 }
 
 int MHO_MK4FringeExport::fill_202( struct type_202 *t202)
@@ -214,9 +195,6 @@ int MHO_MK4FringeExport::fill_202( struct type_202 *t202)
     t202->u = (float) du;
     t202->v = (float) dv;
 
-    // mho_json j = convertToJSON(*t202);
-    // std::cout<<"type 202 json = "<<j.dump(2)<<std::endl;
-
     return 0;
 }
 
@@ -225,10 +203,6 @@ int MHO_MK4FringeExport::fill_203( struct type_203 *t203)
     clear_203(t203);
     std::size_t nchannels = MAX_CHAN;
     FillChannels( &(t203->channels[0]) , nchannels);
-
-    // mho_json j = convertToJSON(*t203);
-    // std::cout<<"type 203 json = "<<j.dump(2)<<std::endl;
-
     return 0;
 }
 
@@ -268,11 +242,7 @@ int MHO_MK4FringeExport::fill_204( struct type_204 *t204)
     char_clear( &(t204->override[0]), 128);
     strncpy(&(t204->override[0]), set_string.c_str(), std::min(128, (int) set_string.size() ) );
 
-    // mho_json j = convertToJSON(*t204);
-    // std::cout<<"type 204 json = "<<j.dump(2)<<std::endl;
-
     return 0;
-
 }
 
 int MHO_MK4FringeExport::fill_205( struct type_203 *t203, struct type_205 *t205)
@@ -325,12 +295,8 @@ int MHO_MK4FringeExport::fill_205( struct type_203 *t203, struct type_205 *t205)
             t205->ffit_chan[i].channels[0] = (short) i; 
         }
     }
-    
-    // mho_json j = convertToJSON(*t205);
-    // std::cout<<"type 205 json = "<<j.dump(2)<<std::endl;
 
     return 0;
-
 }
 
 int MHO_MK4FringeExport::fill_206( struct type_206 *t206)
@@ -367,85 +333,15 @@ int MHO_MK4FringeExport::fill_206( struct type_206 *t206)
     // float               accept_ratio;           /* % ratio min/max data accepted */
     // float               discard;                /* % data discarded */
 
-    // struct sidebands reason1-reason8 are not popluated in the original code - so ignore
-
-    // mho_json j = convertToJSON(*t206);
-    // std::cout<<"type 206 json = "<<j.dump(2)<<std::endl;
+    // struct sidebands reason1-reason8 are not populated in the original code - so ignore
 
     return 0;
 }
 
 int MHO_MK4FringeExport::fill_207( struct type_207 *t207)
 {
+    //TODO FIXME implement this
     clear_207(t207);
-
-    // int i, j, pol;
-    // int stnpol[2][4] = {0, 1, 0, 1, 0, 1, 1, 0}; // [stn][pol] = 0:L, 1:R
-    // float ref_errate, rem_errate, nreftrk, nremtrk;
-    // double midband;
-    // struct freq_corel *p;
-    // 
-    // midband = 2.5e-4 / param->samp_period;  // midband freq in KHz
-    // clear_207 (t207);
-    //                                     /* Phasecal information */
-    // t207->pcal_mode = 10 * param->pc_mode[0] + param->pc_mode[1];
-    // for (i=0; i<pass->nfreq; i++)
-    //     {
-    //     t207->ref_pcamp[i].lsb = status->pc_amp[i][0][stnpol[0][pass->pol]];
-    //     t207->rem_pcamp[i].lsb = status->pc_amp[i][1][stnpol[1][pass->pol]];
-    //     t207->ref_pcphase[i].lsb = status->pc_meas[i][0][stnpol[0][pass->pol]] * DEGRAD;
-    //     t207->rem_pcphase[i].lsb = status->pc_meas[i][1][stnpol[1][pass->pol]] * DEGRAD;
-    //     t207->ref_pcoffset[i].lsb = status->pc_offset[i][0][stnpol[0][pass->pol]];
-    //     t207->rem_pcoffset[i].lsb = status->pc_offset[i][1][stnpol[1][pass->pol]];
-    //     t207->ref_pcamp[i].usb = status->pc_amp[i][0][stnpol[0][pass->pol]];
-    //     t207->rem_pcamp[i].usb = status->pc_amp[i][1][stnpol[1][pass->pol]];
-    //     t207->ref_pcphase[i].usb = status->pc_meas[i][0][stnpol[0][pass->pol]] * DEGRAD;
-    //     t207->rem_pcphase[i].usb = status->pc_meas[i][1][stnpol[1][pass->pol]] * DEGRAD;
-    //     t207->ref_pcoffset[i].usb = status->pc_offset[i][0][stnpol[0][pass->pol]];
-    //     t207->rem_pcoffset[i].usb = status->pc_offset[i][1][stnpol[1][pass->pol]];
-    //                                     /* LSB unused for now  rjc 2001.6.19 */
-    //     if (param->pc_mode[0] == MULTITONE)
-    //         t207->ref_pcfreq[i].usb = midband;
-    //     else
-    //         t207->ref_pcfreq[i].usb = pass->pass_data[i].pc_freqs[0][pass->pci[0][i]];
-    //     if (param->pc_mode[1] == MULTITONE)
-    //         t207->rem_pcfreq[i].usb = midband;
-    //     else
-    //         t207->rem_pcfreq[i].usb = pass->pass_data[i].pc_freqs[1][pass->pci[1][i]];
-    //     }
-    // 
-    // t207->ref_pcrate = status->pc_rate[0];
-    // t207->rem_pcrate = status->pc_rate[1];
-    //                                     /* Mean error rates, sidebands averaged */
-    // for (i=0; i<pass->nfreq; i++)
-    //     {
-    //     pol = pass->pol;
-    //     p = pass->pass_data + i;
-    //     nreftrk = nremtrk = 0.0;
-    //     ref_errate = rem_errate = 0.0;
-    //                                     /* Add up rates for all tracks */
-    //     for (j=0; j<16; j++)
-    //         {
-    //         if ((pol == 0) || (pol == 2))
-    //             if (p->trk_lcp[0][j] >= 0)
-    //                 { ref_errate += p->mean_lcp_trk_err[0][j];nreftrk += 1.0; }
-    //         if ((pol == 1) || (pol == 3))
-    //             if (p->trk_rcp[0][j] >= 0)
-    //                 { ref_errate += p->mean_rcp_trk_err[0][j];nreftrk += 1.0; }
-    //         if ((pol == 0) || (pol == 3))
-    //             if (p->trk_lcp[1][j] >= 0)
-    //                 { rem_errate += p->mean_lcp_trk_err[1][j];nremtrk += 1.0; }
-    //         if ((pol == 1) || (pol == 2))
-    //             if (p->trk_rcp[1][j] >= 0)
-    //                 { rem_errate += p->mean_rcp_trk_err[1][j];nremtrk += 1.0; }
-    //         }
-    //                                     /* Record arithmetic average */
-    //     if (nreftrk > 0.0) 
-    //         t207->ref_errate[i] = ref_errate / nreftrk;
-    //     if (nremtrk > 0.0) 
-    //         t207->rem_errate[i] = rem_errate / nremtrk;
-    //     }
-    // 
     return 0;
 
 }
@@ -502,15 +398,11 @@ int MHO_MK4FringeExport::fill_208( struct type_202 *t202, struct type_208 *t208)
     t208->inc_seg_ampl = inc_avg_amp;
     t208->inc_chan_ampl = inc_avg_amp_freq;
 
-
     FillFloat(t208->snr, "/fringe/snr");
     FillFloat(t208->prob_false, "/fringe/pfd");
     FillFloat(t208->totphase, "/fringe/tot_phase");
     FillFloat(t208->resphase, "/fringe/resid_phase");
     FillFloat(t208->tec_error, "/fringe/tec_error"); //DOES NOT EXIST YET
-
-    // mho_json j = convertToJSON(*t208);
-    // std::cout<<"type 208 json = "<<j.dump(2)<<std::endl;
 
     return 0;
 
@@ -536,67 +428,29 @@ int MHO_MK4FringeExport::fill_210( struct type_210 *t210)
             t210->amp_phas[i].phase = ch_phase[i]; //already in degrees
         }
     }
-    // mho_json j = convertToJSON(*t210);
-    // std::cout<<"type 210 json = "<<j.dump(2)<<std::endl;
+
     return 0;
 }
 
 int MHO_MK4FringeExport::fill_212(int fr, struct type_212 *t212)
 {
     clear_212(t212);
-    // 
-    // struct type_212
-    //     {
-    //     char            record_id[3];   /* Standard 3-digit id */
-    //     char            version_no[2];  /* Standard 2-digit version # */
-    //     char            unused;
-    //     short           nap;            /* Needed by IO library */
-    //     short           first_ap;       /* Number of first ap in record */
-    //     short           channel;        /* fourfit channel number */
-    //     short           sbd_chan;       /* Singleband delay channel */
-    //     char            unused2[2];
-    //     struct newphasor data[1];        /* data values, variable length array */
-    //     };
-    // 
-    // // int i, ap_212, nap, ap, nrec, aprec, phase, pcal1, pcal2, nrec_per_fr, nalloc;
-    // // double factor;
-    // // struct data_corel *datum;
-    // // extern struct type_plot plot;
-    // // 
-    // // clear_212 (t212);
-    // // 
-    // //nap = pass->num_ap;
+
     int nap = fPStore->GetAs<int>("/config/total_naps");
     t212->nap = nap;
     t212->first_ap = 0;//pass->ap_off;
     t212->channel = fr;
     t212->sbd_chan = fPStore->GetAs<int>("/fringe/max_sbd_bin");//status->max_delchan;
     
-    
-    /* Loop over the aps for this pass */
+    //TODO FIXME -- dummy implementation for now
     for(int ap = 0; ap < nap; ap++)
     {
-        /* Location in 212 array starts at 0 */
-        //ap_212 = ap;// - pass->ap_off;
-        /* Ptr to element in main data array */
-        //datum = 0; // pass->pass_data[fr].data + ap;
-        /* Data missing, put in -1 */
-        /* Check on weights is insurance */
-        // if ((datum->flag == 0) || (plot.weights[fr][ap] == 0))
-        // {
             t212->data[ap].amp = -1.0;
             t212->data[ap].phase = 0.0;
             t212->data[ap].weight = 0.0;
-            // continue;
-        // // }
-        // /* Amplitude and phase */
-        // t212->data[ap_212].amp = abs_complex( plot.phasor[fr][ap] ) * status->amp_corr_fact;
-        // t212->data[ap_212].phase = arg_complex( plot.phasor[fr][ap] );
-        // t212->data[ap_212].weight = plot.weights[fr][ap];
     }
 
     return 0;
-
 }
 
 int MHO_MK4FringeExport::fill_222(struct type_222 **t222)
@@ -660,65 +514,9 @@ int MHO_MK4FringeExport::fill_222(struct type_222 **t222)
 
 int MHO_MK4FringeExport::fill_230( int fr, int ap, struct type_230 *t230)
 {
+    //TODO FIXME implement this
     clear_230(t230);
-
-    // struct data_corel *datum;
-    // hops_complex value;
-    // static hops_complex work_array[4 * MAXLAG];
-    // double theta;
-    // int i, j, lag, nl;
-    // int stnpol[2][4] = {0, 1, 0, 1, 0, 1, 1, 0}; // [stn][pol] = 0:L, 1:R
-    // extern struct type_status status;
-    // static int fftsize = 0;
-    // static fftw_plan fftplan;
-    // 
-    // clear_230 (t230);
-    // 
-    // datum = pass->pass_data[fr].data + ap;
-    // 
-    // t230->nspec_pts = 2 * param->nlags;
-    // t230->frq = fr;
-    // t230->ap = ap;
-    // t230->usbweight = datum->usbfrac;
-    // t230->lsbweight = datum->lsbfrac;
-    // if (datum->flag == 0)
-    //     t230->usbweight = t230->lsbweight = -1.0;
-    // 
-    // for (i = 0; i < 4 * MAXLAG; i++)
-    //     work_array[i] = 0.0;
-    //                                     /* Fill padded work array */
-    // nl = param->nlags;
-    // if (fftsize != 4 * nl)
-    //     {
-    //     fftsize = 4 * nl;
-    //     fftplan = fftw_plan_dft_1d (fftsize, (fftw_complex*) work_array, (fftw_complex*) work_array, FFTW_FORWARD, FFTW_MEASURE);
-    //     }
-    // 
-    // for (lag = 0; lag < nl * 2; lag++)
-    //     {
-    //     j = lag - nl;
-    //     if (j < 0)
-    //         j += 4 * nl;
-    //     // value = datum->sbdelay[lag];
-    //                                     /* Remove mean phasecal */
-    //     // theta = (status.pc_phase[fr][1][stnpol[1][pass->pol]]
-    //     //       - status.pc_phase[fr][0][stnpol[0][pass->pol]]);
-    //     // work_array[j] = c_mult (value, c_exp (theta));
-    //     work_array[j] = datum->sbdelay[lag];
-    //     }
-    //                                     /* FFT sband delay to xpower spectrum */
-    // fftw_execute (fftplan);
-    //                                     /* Sort back into xpower array */
-    // for (i = 0; i < 2*nl; i++)
-    //    {
-    //    j = nl - i;
-    //    if (j < 0) j += 4*nl;
-    //    t230->xpower[i].real = real_comp(work_array[j]);
-    //    t230->xpower[i].imag = imag_comp(work_array[j]);
-    //    }
-    // 
     return 0;
-
 }
 
 //dummy, just clears the structure
@@ -775,7 +573,21 @@ MHO_MK4FringeExport::output(std::string filename2)
     char lockfile_name[512] = {'\0'};
     char fringe_name[256];
     char_clear(fringe_name, 256);
-    int the_seq_no;
+    int the_seq_no; //the fringe file sequence number
+
+    //declare the fringe structure and items we are going to fill on the stack
+    struct mk4_fringe fringe;
+    struct type_200 t200;
+    struct type_201 t201;
+    struct type_202 t202;
+    struct type_203 t203;
+    struct type_204 t204;
+    struct type_205 t205;
+    struct type_206 t206;
+    struct type_207 t207;
+    struct type_208 t208;
+    struct type_210 t210;
+    struct type_000 t2_id;
     
     //wait until we are the next process allowed to write an output file
     lock_retval = MHO_LockFileHandler::GetInstance().WaitForWriteLock(directory, the_seq_no);
@@ -784,20 +596,6 @@ MHO_MK4FringeExport::output(std::string filename2)
     {
         //construct the fringe filename 
         std::string filename = CreateFringeFileName(directory, the_seq_no);
-        
-        //declare the fringe structure and items we are going to fill on the stack
-        struct mk4_fringe fringe;
-        struct type_200 t200;
-        struct type_201 t201;
-        struct type_202 t202;
-        struct type_203 t203;
-        struct type_204 t204;
-        struct type_205 t205;
-        struct type_206 t206;
-        struct type_207 t207;
-        struct type_208 t208;
-        struct type_210 t210;
-        struct type_000 t2_id;
 
         if(filename.size() > 256)
         {
@@ -806,21 +604,15 @@ MHO_MK4FringeExport::output(std::string filename2)
         }
         strncpy(fringe_name, filename.c_str(), std::min(255, (int)filename.size() ) );
 
-        double sband_err, ref_freq;
+        //some of these are unused...leave as for now
         int error, nap, xpow_len, fr, ap, size_of_t212, size_of_t230, recno;
         char buf[256];
         char_clear(buf, 256);
-
         char *t212_array, *t230_array, *address;
-        //extern int write_xpower;
-        //extern struct type_param param;
-        //extern struct type_status status;
 
-                                            /* Init */
+
         fringe.nalloc = 0;
         clear_mk4fringe(&fringe);
-
-        ref_freq = 0.0;//param.ref_freq;
 
         strcpy (buf, filename.c_str());
         int val = init_000 (&t2_id, fringe_name);
@@ -841,7 +633,6 @@ MHO_MK4FringeExport::output(std::string filename2)
         error += fill_207(&t207);
         error += fill_208(&t202, &t208);
         error += fill_210(&t210);
-
 
         //point the fringe to the data structures
         fringe.id = &t2_id;
@@ -866,8 +657,8 @@ MHO_MK4FringeExport::output(std::string filename2)
         t212_array = (char *)malloc (nfreq * size_of_t212);
         if (t212_array == NULL)
         {
-            //msg ("Failure allocating memory for type 212 records!", 2);
-            return (0);
+            msg_error("mk4interface", "error allocating memory for type_212 record." << eom);
+            return 0;
         }
 
         //record the allocation
@@ -880,17 +671,11 @@ MHO_MK4FringeExport::output(std::string filename2)
         {
             address = t212_array + (fr * size_of_t212);
             fringe.t212[fr] = (struct type_212 *)address;
-            // error += fill_212 (pass, &status, &param, fr, fringe.t212[fr]);
             error += fill_212(fr, fringe.t212[fr]);
         }
 
+        //TODO FIXME implement type_230
         fringe.n230 = 0;
-
-        char sg;
-        int i, dret;
-        char **fplot;
-        //int the_seq_no;
-        bool test_mode = false;
 
         struct type_221 *t221;
         if(fill_221(&t221) != 0)
@@ -899,10 +684,7 @@ MHO_MK4FringeExport::output(std::string filename2)
             return 1;
         }
         fringe.t221 = t221;
-
-        //fringe.t221 = t221;
         fringe.t221->ps_length = strlen (fringe.t221->pplot);
-                /* Record the memory allocation */
         fringe.allocated[fringe.nalloc] = fringe.t221;
         fringe.nalloc += 1;
         
@@ -915,7 +697,6 @@ MHO_MK4FringeExport::output(std::string filename2)
             return 1;
         }
         fringe.t222 = t222;
-        /* Record the memory allocation */
         fringe.allocated[fringe.nalloc] = fringe.t222;
         fringe.nalloc += 1;
 
