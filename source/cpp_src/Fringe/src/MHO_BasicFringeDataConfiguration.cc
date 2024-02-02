@@ -192,7 +192,7 @@ MHO_BasicFringeDataConfiguration::parse_command_line(int argc, char** argv, MHO_
     }
     else{ directory = pargs[0]; }
 
-    directory = MHO_DirectoryInterface::GetDirectoryFullPath(directory);
+    directory = sanitize_directory(directory);
 
     //pass the extracted command line info back in the parameter store
     //accounting = false;  //not implemented
@@ -329,6 +329,36 @@ MHO_BasicFringeDataConfiguration::parse_set_string(const std::vector< std::strin
     return set_string;
 }
 
+std::string 
+MHO_BasicFringeDataConfiguration::sanitize_directory(std::string dir)
+{
+    bool ok;
+    std::string fullpath = MHO_DirectoryInterface::GetDirectoryFullPath(dir);
+    ok = MHO_DirectoryInterface::DoesDirectoryExist(fullpath);
+    if(ok){return fullpath;}
+
+    //check if we have actually been passed a root-file instead (and need to return the prefix)
+    std::string basename = MHO_DirectoryInterface::GetBasename(fullpath);
+    std::string prefix = MHO_DirectoryInterface::GetPrefix(fullpath);
+    std::size_t dot = basename.find('.');
+    if(dot != std::string::npos)
+    {
+        std::string root_code = basename.substr(dot+1);
+        if( root_code.size() == 6 )
+        {
+            //check if is a directory 
+            bool ok = MHO_DirectoryInterface::DoesDirectoryExist(fullpath);
+            if(!ok)
+            {
+                //we were actually passed a root file, so return the prefix 
+                fullpath = prefix;
+            }
+        }
+    }
+    
+    return fullpath;
+
+}
 
 //sanity check of parameters after command line parsing
 int 

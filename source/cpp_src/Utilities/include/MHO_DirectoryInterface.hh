@@ -25,7 +25,7 @@ class MHO_DirectoryInterface
         virtual ~MHO_DirectoryInterface();
 
         static std::string GetDirectoryFullPath(const std::string& dirname);
-        bool DoesDirectoryExist(const std::string& dirname) const;
+        static bool DoesDirectoryExist(const std::string& dirname);
         bool CreateDirectory(const std::string& dirname) const;
 
         void SetCurrentDirectory(const std::string& dirname);

@@ -10,9 +10,13 @@ EXP_DIR=$DATADIR
 cd $EXP_DIR
 
 #remove any previously generated fringe files
-rm $EXP_DIR/059-0000/??.X.?.*
-rm $EXP_DIR/059-0019/??.X.?.*
-rm $EXP_DIR/059-0116/??.X.?.*
+rm $EXP_DIR/059-0000/??.X.*.??????
+rm $EXP_DIR/059-0019/??.X.*.??????
+rm $EXP_DIR/059-0116/??.X.*.??????
+
+mark42hops -i $EXP_DIR/059-0000 -o $EXP_DIR/059-0000
+mark42hops -i $EXP_DIR/059-0019 -o $EXP_DIR/059-0019
+mark42hops -i $EXP_DIR/059-0116 -o $EXP_DIR/059-0116
 
 ################################################################################
 #run the test suite (environmental var DATADIR should be set before running this)

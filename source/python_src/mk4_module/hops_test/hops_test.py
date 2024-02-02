@@ -26,8 +26,8 @@ import mk4io
 import afio
 
 def get_fourfit_cmd():
-    return "fourfit"
-    #return "ffit"
+    #return "fourfit"
+    return "ffit"
 
 def check_thread_is_alive( a_thread ):
     if sys.version_info[0] == 3 and sys.version_info[1] >= 10:
