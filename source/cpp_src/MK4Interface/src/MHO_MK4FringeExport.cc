@@ -924,11 +924,12 @@ MHO_MK4FringeExport::output(std::string filename2)
         //a python calling script (requires passing option "-m 4"); see
         //e.g. chops/source/python_src/hopstest_module/hopstestb/hopstestb.py
         //around line 74 in the FourFitThread class.
-        //if(msglev==4){msg ("%s",4,fringe_name);} //iff msglev=4
-        msg_debug("mk4interface", "writing fringe file: "<<std::string(fringe_name) << eom );
+        int msglev = fPStore->GetAs<int>("/cmdline/message_level");
+        if(msglev==4){printf("fourfit: %s \n",fringe_name);} //iff msglev=4
+
         int write_nbytes = write_mk4fringe(&fringe, fringe_name);
-        //pause 50ms, if a lock file was created, delete it now
-        usleep(50000); MHO_LockFileHandler::GetInstance().RemoveWriteLock();
+        //pause 5ms, if a lock file was created, delete it now
+        usleep(5000); MHO_LockFileHandler::GetInstance().RemoveWriteLock();
         if(write_nbytes <= 0)
         {
             msg_error("mk4interface", "error writing fringe file, mk4 code: "<< write_nbytes << "." << eom);
