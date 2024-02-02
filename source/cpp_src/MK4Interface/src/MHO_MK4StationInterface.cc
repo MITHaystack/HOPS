@@ -184,7 +184,10 @@ MHO_MK4StationInterface::ExtractPCal(int n309, type_309** t309)
     std::set< std::string > chanids;
     std::map< std::string, int> chan2idx;     //map mk4 channel id to 'order' index
     std::map< std::string, std::string> chan2pol; //map mk4 channel id to pol string
-    std::map< std::string, int> chan2ntones;
+
+    //needed to determine the number of tones
+    std::map< std::string, int> chan2ntones; //count tones per each channel
+    std::map< std::string, int > pol2ntones; //count tones per each pol
 
     //loop over all records and extract info from the mk4 names
     int n_channels = 0;
@@ -198,35 +201,47 @@ MHO_MK4StationInterface::ExtractPCal(int n309, type_309** t309)
             if(ch_name != "")
             {
                 chanids.insert(ch_name);
-                int val = IndexFromMK4ChannelId(ch_name);
-                if(val != -1){chan2idx[ch_name] = val;}
+                std::string fgroup = FreqGroupFromMK4ChannelID(ch_name);
+                std::string sb = SidebandFromMK4ChannelId(ch_name);
                 std::string pol = PolFromMK4ChannelID(ch_name);
-                if(pol != "")
+                int idx = IndexFromMK4ChannelId(ch_name);
+                
+                if(ChannelInfoOK(fgroup, sb, pol, idx))
                 {
                     chan2pol[ch_name] = pol;
-                    pol_set.insert(pol);
+                    auto ib_pair = pol_set.insert(pol);
+                    if(ib_pair.second == true){pol2ntones[pol] = 0;} //insertion was successful, so init count to zero
+                    int count = 0; 
+                    int ntones = t309[i]->ntones;
+                    for(int ti=0; ti < ntones; ti++)
+                    {
+                        if(t309[i]->chan[ch].acc[ti][0] != 0 || t309[i]->chan[ch].acc[ti][1] != 0){count++;}
+                    }
+                    chan2ntones[ch_name] = count;
+                    pol2ntones[pol] += count; //this is ok because mapped int value has already been initialized to zero
+                    if(count > max_tones_per_channel){max_tones_per_channel = count;}
                 }
-
-                int count = 0; 
-                for(int ti=0; ti < 64; ti++)
-                {
-                    if(t309[i]->chan[ch].acc[ti][0] != 0 || t309[i]->chan[ch].acc[ti][1] != 0){count++;}
-                }
-                chan2ntones[ch_name] = count;
-                if(count > max_tones_per_channel){max_tones_per_channel = count;}
             }
         }
     }
     
-    n_channels = chanids.size();
+    n_channels = chanids.size(); //total count of channels *(includes both polarizations)
     std::size_t nap = n309;
     std::size_t npol = pol_set.size();
-
-    std::size_t ntotal_tones = 0; 
-    for(auto it = chan2ntones.begin(); it != chan2ntones.end(); it++)
+    std::size_t ntotal_tones = 0;
+    std::set<int> tmp;
+    for(auto it = pol2ntones.begin(); it != pol2ntones.end(); it++)
     {
-        ntotal_tones += it->second;
+        tmp.insert(it->second);
     }
+    
+    //error out if number of tones for each pol do not match! 
+    //will not create a pcal object for this station
+    if(tmp.size() == 1)
+    {
+        ntotal_tones = *(tmp.begin())/nap; 
+    }
+    else{msg_error("mk4interface", "cannot create pcal object, number of tones per polarization do no match.");}
 
     
     std::cout<<"NAP = "<<nap<<std::endl;
@@ -282,6 +297,15 @@ MHO_MK4StationInterface::ExtractPCal(int n309, type_309** t309)
 //     }
 //     return pset;
 // }
+
+std::string MHO_MK4StationInterface::FreqGroupFromMK4ChannelID(std::string id) const
+{
+    //MK4 channel ID format looks like "freq group" + "index" + "sideband" + "pol"
+    //e.g X22LY
+    std::string fgroup = "";
+    if(id.size() < 5){return fgroup;}
+    return id.substr(0,1);
+}
 
 std::string 
 MHO_MK4StationInterface::PolFromMK4ChannelID(std::string id) const
@@ -349,6 +373,17 @@ MHO_MK4StationInterface::IndexFromMK4ChannelId(std::string id) const
 
     return idx;
 
+}
+
+
+bool 
+MHO_MK4StationInterface::ChannelInfoOK(std::string fgroup, std::string sb, std::string pol, int index)
+{
+    if(fgroup == ""){return false;}
+    if(sb == ""){return false;}
+    if(pol == ""){return false;}
+    if(index < 0){return false;}
+    return true;
 }
 
 
