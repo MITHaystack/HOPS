@@ -38,7 +38,7 @@ MHO_DirectoryInterface::GetDirectoryFullPath(const std::string& dirname)
 
 
 bool
-MHO_DirectoryInterface::DoesDirectoryExist(const std::string& dirname) const
+MHO_DirectoryInterface::DoesDirectoryExist(const std::string& dirname)
 {
     std::string fullpath = GetDirectoryFullPath(dirname);
     //check for directory existence by trying to open it, this is not fool-proof

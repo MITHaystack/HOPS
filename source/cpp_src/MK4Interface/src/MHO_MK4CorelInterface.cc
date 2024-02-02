@@ -670,7 +670,7 @@ MHO_MK4CorelInterface::ExtractCorelFile()
     ldate.hour = adate->hour;
     ldate.minute = adate->minute;
     ldate.second = adate->second;
-    std::string start_string = MHO_LegacyDateConverter::ConvertToISO8601Format(ldate);
+    std::string start_string = MHO_LegacyDateConverter::ConvertToVexFormat(ldate);
 
     adate = &(t100->stop);
     ldate.year = adate->year;
@@ -678,7 +678,7 @@ MHO_MK4CorelInterface::ExtractCorelFile()
     ldate.hour = adate->hour;
     ldate.minute = adate->minute;
     ldate.second = adate->second;
-    std::string stop_string = MHO_LegacyDateConverter::ConvertToISO8601Format(ldate);
+    std::string stop_string = MHO_LegacyDateConverter::ConvertToVexFormat(ldate);
 
     //get the creation/correlation time
     type_000* t000 = fCorel->id;
@@ -691,7 +691,7 @@ MHO_MK4CorelInterface::ExtractCorelFile()
         ldate.minute = std::atoi( cdate.substr(10,2).c_str() );
         ldate.second = std::atoi( cdate.substr(12,2).c_str() );
     }
-    std::string corrdate_string = MHO_LegacyDateConverter::ConvertToISO8601Format(ldate);
+    std::string corrdate_string = MHO_LegacyDateConverter::ConvertToVexFormat(ldate);
 
     bl_data->Insert(std::string("name"), std::string("visibilities"));
     bl_data->Insert(std::string("baseline"), fBaselineName);
