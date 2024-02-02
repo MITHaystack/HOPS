@@ -710,7 +710,8 @@ MHO_MK4FringeExport::output(std::string filename2)
 
         int write_nbytes = write_mk4fringe(&fringe, fringe_name);
         //pause 5ms, if a lock file was created, delete it now
-        usleep(5000); MHO_LockFileHandler::GetInstance().RemoveWriteLock();
+        usleep(5000); 
+        MHO_LockFileHandler::GetInstance().RemoveWriteLock();
         if(write_nbytes <= 0)
         {
             msg_error("mk4interface", "error writing fringe file, mk4 code: "<< write_nbytes << "." << eom);
