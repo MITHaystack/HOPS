@@ -148,7 +148,7 @@ MHO_BasicFringeDataConfiguration::parse_command_line(int argc, char** argv, MHO_
             case 'm':
                 message_level = std::atoi(optarg);
                 if(message_level < -2){message_level = -2;}
-                if(message_level > 4){message_level = 4;}
+                if(message_level > 5){message_level = 5;}
                 break;
             case 'n':
                 nplot_chans = std::atoi(optarg);
@@ -291,6 +291,12 @@ MHO_BasicFringeDataConfiguration::set_message_level(int message_level)
             MHO_Message::GetInstance().SetMessageLevel(eFatal);
         break;
         case 4:
+            //silent, but prints out the mk4 fringe file name to stderr if it is created
+            //this is for backwards compatiblity with VGOS post-processing scripts
+            MHO_Message::GetInstance().SetMessageLevel(eSpecial);
+        break;
+        case 5:
+            //completely silent
             MHO_Message::GetInstance().SetMessageLevel(eSilent);
         break;
         default:
