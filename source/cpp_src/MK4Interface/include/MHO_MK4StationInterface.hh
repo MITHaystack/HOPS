@@ -71,6 +71,7 @@ class MHO_MK4StationInterface
         int IndexFromMK4ChannelId(std::string id) const;
         bool ChannelInfoOK(std::string fgroup, std::string sb, std::string pol, int index);
 
+        std::complex< double > ComputePhasor(uint32_t real, uint32_t imag, double acc_period, double sample_period);
         
 
 
