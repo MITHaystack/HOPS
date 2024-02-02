@@ -111,8 +111,7 @@ MHO_Message::operator<<(const MHO_MessageEndline&)
 bool
 MHO_Message::PassMessage()
 {
-    return ( (fCurrentLevel <= fAllowedLevel && ( fCurrentKeyIsAllowed || fAcceptAllKeys ) )
-            || fCurrentLevel == eFatal );
+    return ( (fCurrentLevel <= fAllowedLevel && ( fCurrentKeyIsAllowed || fAcceptAllKeys ) ) );
 }
 
 std::string
