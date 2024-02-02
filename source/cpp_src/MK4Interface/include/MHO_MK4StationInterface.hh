@@ -63,14 +63,18 @@ class MHO_MK4StationInterface
 
         void ReadStationFile();
 
+        //pcal stuff
         void ExtractPCal(int n309, type_309** t309);
-
+        std::string FreqGroupFromMK4ChannelID(std::string id) const;
         std::string PolFromMK4ChannelID(std::string id) const;
         std::string SidebandFromMK4ChannelId(std::string id) const;
         int IndexFromMK4ChannelId(std::string id) const;
+        bool ChannelInfoOK(std::string fgroup, std::string sb, std::string pol, int index);
+
+        
+
 
         bool fHaveStation;
-
         struct mk4_sdata* fStation;
 
         std::string fStationFile;
