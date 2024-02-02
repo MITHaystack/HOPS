@@ -132,6 +132,53 @@ MHO_MK4StationInterface::ExtractStationFile()
                 }
             }
         }
+
+
+        //now deal with the type_309 pcal data 
+        int n309 = fStation->n309;
+        if(n309 != 0)
+        {
+            type_309** t309 = fStation->t309;
+
+            for(int i=0; i < n309; i++)
+            {
+                int su = t309[i]->su;
+                int ntones = t309[i]->ntones;
+                double rot = t309[i]->rot;
+                double acc_period = t309[i]->acc_period;
+                std::cout<<"t309 @ "<<i<<" = "<<su<<", "<<ntones<<", "<<rot<<", "<<acc_period<<std::endl;
+
+                for(int ch=0; ch < 64; ch++)
+                {
+                    std::string ch_name( &(t309[i]->chan[ch].chan_name[0]), 8);
+                    std::cout<<"chan name = "<<ch_name<<std::endl;
+
+                    for(int ti=0; ti < 64; ti++)
+                    {
+                        std::cout<<"tone"<<ti<<" = ("<<t309[i]->chan[ch].acc[ti][0]<<", "<<t309[i]->chan[ch].acc[ti][1]<<std::endl;
+                    }
+
+                }
+                
+
+            }
+
+                // char        record_id[3];           // Standard 3-digit id
+                // char        version_no[2];          // Standard 2-digit version #
+                // char        unused1[3]; 
+                // int         su;                     // SU
+                // int         ntones;                 // number of tones [0..64]
+                // double      rot;                    // ROT at start of AP
+                // double      acc_period;             // in secs
+                // struct ch1_tag
+                //   {
+                //   char      chan_name[8];
+                //   double    freq;                   // tone frequency in Hz
+                //   U32       acc[64][2];             // accumulators for 64 freqs x 2 quads (C..S)
+                //   } chan[64];
+                // };
+        }
+
     }
 
     return st_data;
