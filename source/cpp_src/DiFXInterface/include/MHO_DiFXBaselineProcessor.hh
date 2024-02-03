@@ -75,6 +75,8 @@ class MHO_DiFXBaselineProcessor
         int fRemStationBits;
         double fAPLength;
 
+        std::string fFreqGroup;
+
         //the station 2-char to 1-char code map (user specified)
         MHO_StationCodeMap* fStationCodeMap;
 
@@ -129,7 +131,7 @@ class MHO_DiFXBaselineProcessor
         };
         FreqIndexPairLess fFreqPredicate;
 
-
+        std::string ConstructMK4ChannelID(std::string fgroup, int index, std::string sideband, char pol);
 
 
 };
